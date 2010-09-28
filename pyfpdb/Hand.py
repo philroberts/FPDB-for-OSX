@@ -71,7 +71,7 @@ class Hand(object):
         self.maxseats = None
         self.counted_seats = 0
         self.buttonpos = 0
-        
+
         #tourney stuff
         self.tourNo = None
         self.tourneyId = None
@@ -97,7 +97,7 @@ class Hand(object):
         self.players = []
         self.posted = []
         self.tourneysPlayersIds = []
-        
+
         # Collections indexed by street names
         self.bets = {}
         self.lastBet = {}
@@ -232,7 +232,7 @@ dealt   whether they were seen in a 'dealt to' line
 
         #Gametypes
         self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype)
-        
+
         if self.tourNo!=None:
             self.tourneyTypeId = db.createTourneyType(self)
             db.commit()
@@ -355,7 +355,7 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
 #            self.pot.addMoney(player, Decimal(ante))
             self.pot.addCommonMoney(player, Decimal(ante))
 #I think the antes should be common money, don't have enough hand history to check
-        
+
     def addBlind(self, player, blindtype, amount):
         # if player is None, it's a missing small blind.
         # The situation we need to cover are:
@@ -375,7 +375,7 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
             if blindtype == 'both':
                 # work with the real amount. limit games are listed as $1, $2, where
                 # the SB 0.50 and the BB is $1, after the turn the minimum bet amount is $2....
-                amount = self.bb 
+                amount = self.bb
                 self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
                 self.pot.addCommonMoney(player, Decimal(self.sb))
 
@@ -544,7 +544,7 @@ Card ranks will be uppercased
             self.totalcollected = 0;
             #self.collected looks like [[p1,amount][px,amount]]
             for entry in self.collected:
-                self.totalcollected += Decimal(entry[1]) 
+                self.totalcollected += Decimal(entry[1])
 
     def getGameTypeAsString(self):
         """\
@@ -684,12 +684,12 @@ class HoldemOmahaHand(Hand):
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
-            
+
             if self.cancelled:
                 return
-            
+
             hhc.readBlinds(self)
-            
+
             hhc.readAntes(self)
             hhc.readButton(self)
             hhc.readHeroCards(self)
@@ -1486,7 +1486,7 @@ class Pot(object):
         # Return any uncalled bet.
         committed = sorted([ (v,k) for (k,v) in self.committed.items()])
         #print "DEBUG: committed: %s" % committed
-        #ERROR below. lastbet is correct in most cases, but wrong when 
+        #ERROR below. lastbet is correct in most cases, but wrong when
         #             additional money is committed to the pot in cash games
         #             due to an additional sb being posted. (Speculate that
         #             posting sb+bb is also potentially wrong)
