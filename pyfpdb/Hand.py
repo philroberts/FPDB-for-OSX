@@ -67,6 +67,7 @@ class Hand(object):
         self.cancelled = False
         self.dbid_hands = 0
         self.dbid_pids = None
+        self.dbid_hpid = None
         self.dbid_gt = 0
         self.tablename = ""
         self.hero = ""
@@ -264,10 +265,11 @@ db: a connected Database object"""
             hh['seats'] = len(self.dbid_pids)
 
             self.dbid_hands = db.storeHand(hh)
-            db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.stats.getHandsPlayers(), printdata = printtest)
-            # TODO HandsActions - all actions for all players for all streets - self.actions
-            # HudCache data can be generated from HandsActions (HandsPlayers?)
-            #db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.stats.getHandsActions(), printdata = printtest)
+            self.dbid_hpid = db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, 
+                                                  self.stats.getHandsPlayers(), printdata = printtest)
+            
+            db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.dbid_hpid,
+                                     self.stats.getHandsActions(), printdata = printtest)
         else:
             log.info(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
             self.is_duplicate = True  # i.e. don't update hudcache

@@ -1676,6 +1676,7 @@ class Database:
             pp.pprint(pdata)
 
         inserts = []
+        hpid = {}
         for p in pdata:
             inserts.append( (hid,
                              pids[p],
@@ -1780,39 +1781,41 @@ class Database:
         #print "DEBUG: inserts: %s" %inserts
         #print "DEBUG: q: %s" % q
         c = self.get_cursor()
-        c.executemany(q, inserts)
+        
+        for r in inserts:
+            c.execute(q, r)
+            hpid[(r[0], r[1])] = self.get_last_insert_id(c)
+        
+        return hpid
 
-    def storeHandsActions(self, hid, pids, adata, printdata = False):
+    def storeHandsActions(self, hid, pids, hpid, adata, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, adata)
         if printdata:
             import pprint
             pp = pprint.PrettyPrinter(indent=4)
             pp.pprint(adata)
 
-        #inserts = []
-        #for p in pdata:
-        #    inserts.append( (hid,
-        #                     pids[p],
-        #                     adata[p]['startCash'],
-        #                     adata[p]['seatNo'],
-        #                     adata[p]['sitout'],
-        #                     adata[p]['card1'],
-
-        #handsPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
-        #street SMALLINT NOT NULL,
-        #actionNo SMALLINT NOT NULL,
-        #action CHAR(5) NOT NULL,
-        #allIn BOOLEAN NOT NULL,
-        #amount INT NOT NULL,
-
+        inserts = []
+        for a in adata:
+            inserts.append( (hpid[(hid, pids[adata[a]['player']])],
+                            #self.getHandsPlayerId(self.hid, pids[adata[a]['player']]),
+                             adata[a]['street'],
+                             adata[a]['actionNo'],
+                             adata[a]['streetActionNo'],
+                             adata[a]['actionId'],
+                             adata[a]['amount'],
+                             adata[a]['raiseTo'],
+                             adata[a]['amountCalled'],
+                             adata[a]['numDiscarded'],
+                             adata[a]['cardsDiscarded'],
+                             adata[a]['allIn']
+                            ) )
 
         q = self.sql.query['store_hands_actions']
-        #q = q.replace('%s', self.sql.query['placeholder'])
+        q = q.replace('%s', self.sql.query['placeholder'])
 
-        #print "DEBUG: inserts: %s" %inserts
-        #print "DEBUG: q: %s" % q
-        #c = self.get_cursor()
-        #c.executemany(q, inserts)
+        c = self.get_cursor()
+        c.executemany(q, inserts)
 
     def storeHudCache(self, gid, pids, starttime, pdata):
         """Update cached statistics. If update fails because no record exists, do an insert."""
