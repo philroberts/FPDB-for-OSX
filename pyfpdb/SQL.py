@@ -1010,11 +1010,14 @@ class Sql:
                         handsPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
                         street SMALLINT NOT NULL,
                         actionNo SMALLINT NOT NULL,
-                        action CHAR(5) NOT NULL,
-                        allIn BOOLEAN NOT NULL,
+                        streetActionNo SMALLINT NOT NULL,
+                        actionId SMALLINT NOT NULL, FOREIGN KEY (actionId) REFERENCES Actions(id),
                         amount INT NOT NULL,
-                        comment TEXT,
-                        commentTs DATETIME)
+                        raiseTo INT NOT NULL,
+                        amountCalled INT NOT NULL,
+                        numDiscarded SMALLINT NOT NULL,
+                        cardsDiscarded varchar(14),
+                        allIn BOOLEAN NOT NULL)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
@@ -1022,24 +1025,31 @@ class Sql:
                         handsPlayerId BIGINT, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
                         street SMALLINT,
                         actionNo SMALLINT,
-                        action CHAR(5),
-                        allIn BOOLEAN,
+                        streetActionNo SMALLINT,
+                        actionId SMALLINT, FOREIGN KEY (actionId) REFERENCES Actions(id),
                         amount INT,
-                        comment TEXT,
-                        commentTs timestamp without time zone)"""
+                        raiseTo INT,
+                        amountCalled INT,
+                        numDiscarded SMALLINT,
+                        cardsDiscarded varchar(14),
+                        allIn BOOLEAN)"""
         elif db_server == 'sqlite':
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                         id INTEGER PRIMARY KEY,
                         handsPlayerId BIGINT,
                         street SMALLINT,
                         actionNo SMALLINT,
-                        action CHAR(5),
-                        allIn INT,
+                        streetActionNo SMALLINT,
+                        actionId SMALLINT,
                         amount INT,
-                        comment TEXT,
-                        commentTs timestamp without time zone,
-                        FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id)
-                        )"""
+                        raiseTo INT,
+                        amountCalled INT,
+                        numDiscarded SMALLINT,
+                        cardsDiscarded TEXT,
+                        allIn BOOLEAN,
+                        FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
+                        FOREIGN KEY (actionId) REFERENCES Actions(id) ON DELETE CASCADE
+                        )""" 
 
 
         ################################
@@ -4272,11 +4282,17 @@ class Sql:
                         handsPlayerId,
                         street,
                         actionNo,
-                        action,
-                        allIn,
-                        amount
+                        streetActionNo,
+                        actionId,
+                        amount,
+                        raiseTo,
+                        amountCalled,
+                        numDiscarded,
+                        cardsDiscarded,
+                        allIn
                )
                VALUES (
+                    %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s
                 )"""
