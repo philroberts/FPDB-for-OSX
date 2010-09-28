@@ -219,7 +219,7 @@ class DerivedStats():
                 self.handsactions[k]['actionNo'] = k
                 self.handsactions[k]['streetActionNo'] = (j+1)
                 self.handsactions[k]['actionId'] = hand.ACTION[act[1]]
-                if act[1] not in ('discards'):
+                if act[1] not in ('discards') and len(act) > 2:
                     self.handsactions[k]['amount'] = int(100 * act[2])
                 if act[1] in ('raises', 'completes'):
                     self.handsactions[k]['raiseTo'] = int(100 * act[3])
