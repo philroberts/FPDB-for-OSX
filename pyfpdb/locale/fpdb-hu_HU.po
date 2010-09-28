@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2010-09-22 20:10+CEST\n"
-"PO-Revision-Date: 2010-09-23 11:36+0200\n"
+"PO-Revision-Date: 2010-09-28 15:55+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -1449,7 +1449,7 @@ msgstr "Sessionök"
 
 #: GuiTourneyGraphViewer.py:185
 msgid "Tournaments"
-msgstr "Verseny3k"
+msgstr "Versenyek"
 
 #: GuiTourneyGraphViewer.py:212 GuiTourneyGraphViewer.py:225
 msgid ""
