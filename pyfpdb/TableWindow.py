@@ -141,6 +141,8 @@ class Table_Window(object):
         self.height = geo['height']
         self.x      = geo['x']
         self.y      = geo['y']
+        self.oldx   = self.x # attn ray: remove these two lines and update Hud.py::update_table_position()
+        self.oldy   = self.y
 
         self.game = self.get_game()
 
@@ -184,7 +186,8 @@ class Table_Window(object):
 
         mo = re.search(self.tableno_re, new_title)
         if mo is not None:
-            return mo[1]
+            print "get_table_no: mo=",mo.groups()
+            return mo.group(1)
         return False
 
 ####################################################################
@@ -238,6 +241,7 @@ class Table_Window(object):
             return "client_destroyed"
 
         if self.x != new_geo['x'] or self.y != new_geo['y']: # window moved
+            print self.x, self.y, new_geo['x'], new_geo['y']
             self.x      = new_geo['x']
             self.y      = new_geo['y']
             return "client_moved"
@@ -247,7 +251,8 @@ class Table_Window(object):
         result = self.get_table_no()
         if result != False and result != self.table:
             self.table = result
-            hud.main_window.emit("table_changed", hud)
+            if hud is not None:
+                hud.main_window.emit("table_changed", hud)
         return True
 
     def check_bad_words(self, title):

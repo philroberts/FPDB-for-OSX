@@ -53,6 +53,7 @@ import Mucked
 import Database
 #import HUD_main
 
+
 def importName(module_name, name):
     """Import a named object 'name' from module 'module_name'."""
 #    Recipe 16.3 in the Python Cookbook, 2nd ed.  Thanks!!!!
@@ -63,12 +64,12 @@ def importName(module_name, name):
         return None
     return(getattr(module, name))
 
-class Hud:
 
+class Hud:
     def __init__(self, parent, table, max, poker_game, config, db_connection):
 #    __init__ is (now) intended to be called from the stdin thread, so it
 #    cannot touch the gui
-        if parent is None: # running from cli ..
+        if parent is None:  # running from cli ..
             self.parent = self
         else:
             self.parent    = parent
@@ -82,7 +83,6 @@ class Hud:
         self.site          = table.site
         self.mw_created    = False
         self.hud_params    = parent.hud_params
-
 
         self.stat_windows  = {}
         self.popup_windows = {}
@@ -115,11 +115,11 @@ class Hud:
     def create_mw(self):
 #	Set up a main window for this this instance of the HUD
         win = gtk.Window()
-        win.set_skip_taskbar_hint(True) # invisible to taskbar
+        win.set_skip_taskbar_hint(True)  # invisible to taskbar
         win.set_gravity(gtk.gdk.GRAVITY_STATIC)
         win.set_title("%s FPDBHUD" % (self.table.name)) # give it a title that we can easily filter out in the window list when Table search code is looking
-        win.set_decorated(False) # kill titlebars
-        win.set_opacity(self.colors["hudopacity"]) # set it to configured hud opacity
+        win.set_decorated(False)    # kill titlebars
+        win.set_opacity(self.colors["hudopacity"])  # set it to configured hud opacity
         win.set_focus(None)
         win.set_focus_on_map(False)
         win.set_accept_focus(False)
@@ -165,9 +165,9 @@ class Hud:
         # set agg_bb_mult to 1 to stop aggregation
         item = gtk.CheckMenuItem(_('For This Blind Level Only'))
         self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, ('P',1))
+        item.connect("activate", self.set_aggregation, ('P', 1))
         setattr(self, 'h_aggBBmultItem1', item)
-        
+
         item = gtk.MenuItem(_('For Multiple Blind Levels:'))
         self.aggMenu.append(item)
         
@@ -362,7 +362,7 @@ class Hud:
             item.ms = i
             maxSeatsMenu.append(item)
             item.connect("activate", self.change_max_seats)
-            setattr(self, 'maxSeatsMenuItem%d' % (i-1), item)
+            setattr(self, 'maxSeatsMenuItem%d' % (i - 1), item)
 
         eventbox.connect_object("button-press-event", self.on_button_press, menu)
 
@@ -472,27 +472,19 @@ class Hud:
                 return False
         # anyone know how to do this in unix, or better yet, trap the X11 error that is triggered when executing the get_origin() for a closed window?
         if self.table.gdkhandle is not None:
-            updateFlag = False
-            actual_seat = self.get_actual_seat(self.config.supported_sites[self.table.site].screen_name)
-            if self.table.hud != actual_seat:
-                self.table.hud = actual_seat
-                updateFlag = True
-                # dont know what the intention of table.hud was, so misusing the variable here
-                # to auto detect table change during tourney's
-            (x, y) = self.table.gdkhandle.get_origin() # In Windows, this call returns (0,0) if it's an invalid window.  In X, the X server is immediately killed.
-            if self.table.x != x or self.table.y != y: # If the current position does not equal the stored position, save the new position, and then move all the sub windows.
-
-                self.table.x = x
-                self.table.y = y
-                self.main_window.move(x + self.site_params['xshift'], y + self.site_params['yshift'])
-                updateFlag = True
-            if updateFlag:
+            (oldx, oldy) = self.table.gdkhandle.get_origin() # In Windows, this call returns (0,0) if it's an invalid window.  In X, the X server is immediately killed.
+            #(x, y, width, height) = self.table.get_geometry()
+            #print "self.table.get_geometry=",x,y,width,height
+            if self.table.oldx != oldx or self.table.oldy != oldy: # If the current position does not equal the stored position, save the new position, and then move all the sub windows.
+                self.table.oldx = oldx
+                self.table.oldy = oldy
+                self.main_window.move(oldx + self.site_params['xshift'], oldy + self.site_params['yshift'])
                 adj = self.adj_seats(self.hand, self.config)
                 loc = self.config.get_locations(self.table.site, self.max)
                 # TODO: is stat_windows getting converted somewhere from a list to a dict, for no good reason?
                 for i, w in enumerate(self.stat_windows.itervalues()):
-                    (x, y) = loc[adj[i+1]]
-                    w.relocate(x, y)
+                    (oldx, oldy) = loc[adj[i+1]]
+                    w.relocate(oldx, oldy)
 
                 # While we're at it, fix the positions of mucked cards too
                 for aux in self.aux_windows:
@@ -552,7 +544,7 @@ class Hud:
             loc = self.stat_windows[sw].window.get_position()
             new_loc = (loc[0] - self.table.x, loc[1] - self.table.y)
             new_layout[self.stat_windows[sw].adj - 1] = new_loc
-        self.config.edit_layout(self.table.site, self.max, locations = new_layout)
+        self.config.edit_layout(self.table.site, self.max, locations=new_layout)
 #    ask each aux to save its layout back to the config object
         [aux.save_layout() for aux in self.aux_windows]
 #    save the config object back to the file
@@ -565,7 +557,7 @@ class Hud:
         adj = range(0, self.max + 1) # default seat adjustments = no adjustment
 #    does the user have a fav_seat?
         if self.max not in config.supported_sites[self.table.site].layout:
-            sys.stderr.write(_("No layout found for %d-max games for site %s\n") % (self.max, self.table.site) )
+            sys.stderr.write(_("No layout found for %d-max games for site %s\n") % (self.max, self.table.site))
             return adj
         if self.table.site != None and int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
             try:

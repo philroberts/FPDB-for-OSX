@@ -40,6 +40,10 @@ from optparse import OptionParser
 import Configuration
 import string
 
+if os.name == "nt":
+    import win32console
+
+
 class GuiAutoImport (threading.Thread):
     def __init__(self, settings, config, sql, parent):
         self.importtimer = 0
@@ -205,13 +209,17 @@ class GuiAutoImport (threading.Thread):
                 self.doAutoImportBool = True
                 widget.set_label(_(u'  _Stop Auto Import  '))
                 if self.pipe_to_hud is None:
-                    if Configuration.FROZEN:
+                    if Configuration.FROZEN:    # if py2exe, run hud_main.exe
                         path = Configuration.EXEC_PATH
                         command = "HUD_main.exe"
                         bs = 0
                     elif os.name == 'nt':
                         path = sys.path[0].replace('\\','\\\\')
-                        command = 'pythonw "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
+                        if win32console.GetConsoleWindow() == 0:
+                            command = 'pythonw "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
+                        else:
+                            command = 'python "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
+                        # uncomment above line if you want hud_main stdout to work ... and make sure you are running fpdb.py using python.exe not pythonw.exe
                         bs = 0
                     else:
                         command = os.path.join(sys.path[0], 'HUD_main.pyw')
@@ -220,12 +228,15 @@ class GuiAutoImport (threading.Thread):
 
                     try:
                         print _("opening pipe to HUD")
-                        self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
-                                                            stdin=subprocess.PIPE,
-                                                            stdout=subprocess.PIPE,  # only needed for py2exe
-                                                            stderr=subprocess.PIPE,  # only needed for py2exe
-                                                            universal_newlines=True
-                                                           )
+                        if Configuration.FROZEN or (os.name == "nt" and win32console.GetConsoleWindow()) == 0:
+                            self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
+                                                                stdin=subprocess.PIPE,
+                                                                stdout=subprocess.PIPE,  # needed for pythonw / py2exe
+                                                                stderr=subprocess.PIPE,  # needed for pythonw / py2exe
+                                                                universal_newlines=True
+                                                               )
+                        else:
+                            self.pipe_to_hud = subprocess.Popen(command, bufsize=bs, stdin=subprocess.PIPE, universal_newlines=True)
                         #self.pipe_to_hud.stdout.close()
                         #self.pipe_to_hud.stderr.close()
                     except:
