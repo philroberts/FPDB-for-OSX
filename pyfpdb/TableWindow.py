@@ -186,7 +186,7 @@ class Table_Window(object):
         if mo is not None:
             return mo[1]
         return False
-        
+
 ####################################################################
 #    check_table() is meant to be called by the hud periodically to
 #    determine if the client has been moved or resized. check_table()
@@ -249,7 +249,7 @@ class Table_Window(object):
             self.table = result
             hud.main_window.emit("table_changed", hud)
         return True
-        
+
     def check_bad_words(self, title):
         for word in bad_words:
             if word in title: return True
