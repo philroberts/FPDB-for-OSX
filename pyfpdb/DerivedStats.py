@@ -23,13 +23,6 @@ import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("parser")
 
-DEBUG = False
-
-if DEBUG:
-    import pprint
-    pp = pprint.PrettyPrinter(indent=4)
-
-
 class DerivedStats():
     def __init__(self, hand):
         self.hand = hand
@@ -93,16 +86,8 @@ class DerivedStats():
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
 
-        if DEBUG:
+        if self.hand.saveActions:
             self.assembleHandsActions(self.hand)
-
-        if DEBUG:
-            #print "Hands:"
-            #pp.pprint(self.hands)
-            #print "HandsPlayers:"
-            #pp.pprint(self.handsplayers)
-            print "HandsActions:"
-            pp.pprint(self.handsactions)
 
     def getHands(self):
         return self.hands

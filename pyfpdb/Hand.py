@@ -56,6 +56,7 @@ class Hand(object):
     def __init__(self, config, sitename, gametype, handText, builtFrom = "HHC"):
         #log.debug( _("Hand.init(): handText is ") + str(handText) )
         self.config = config
+        self.saveActions = self.config.get_import_parameters().get('saveActions')
         #log = Configuration.get_logger("logging.conf", "db", log_dir=self.config.dir_log)
         self.sitename = sitename
         self.siteId = self.config.get_site_id(sitename)
@@ -267,8 +268,8 @@ db: a connected Database object"""
             self.dbid_hands = db.storeHand(hh)
             self.dbid_hpid = db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, 
                                                   self.stats.getHandsPlayers(), printdata = printtest)
-            
-            db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.dbid_hpid,
+            if self.saveActions:
+                db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.dbid_hpid,
                                      self.stats.getHandsActions(), printdata = printtest)
         else:
             log.info(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
