@@ -153,7 +153,28 @@ class Sql:
                         tourneyId BIGINT NOT NULL,
                         rawTourney TEXT NOT NULL,
                         complain BOOLEAN NOT NULL DEFAULT FALSE)"""
-        
+                        
+        ################################
+        # Create Actions
+        ################################
+
+        if db_server == 'mysql':
+            self.query['createActionsTable'] = """CREATE TABLE Actions (
+                        id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        name varchar(32) NOT NULL,
+                        code char(2) NOT NULL)
+                        ENGINE=INNODB"""
+        elif db_server == 'postgresql':
+            self.query['createActionsTable'] = """CREATE TABLE Actions (
+                        id SERIAL, PRIMARY KEY (id),
+                        name varchar(32),
+                        code char(2))"""
+        elif db_server == 'sqlite':
+            self.query['createActionsTable'] = """CREATE TABLE Actions (
+                        id INTEGER PRIMARY KEY,
+                        name TEXT NOT NULL,
+                        code TEXT NOT NULL)"""        
+                        
         ################################
         # Create Sites
         ################################
