@@ -472,7 +472,7 @@ Add a raise on [street] by [player] to [amountTo]
         log.debug(_("%s %s raise %s") %(street, player, Rt))
         self.bets[street][player].append(C + Rb)
         self.stacks[player] -= (C + Rb)
-        act = (player, 'raises', Rb, Rt, C, self.stacks[player]==0)
+        act = (player, action, Rb, Rt, C, self.stacks[player]==0)
         self.actions[street].append(act)
         self.lastBet[street] = Rt # TODO check this is correct
         self.pot.addMoney(player, C+Rb)
