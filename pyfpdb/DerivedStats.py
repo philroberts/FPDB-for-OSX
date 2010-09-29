@@ -23,13 +23,6 @@ import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("parser")
 
-DEBUG = False
-
-if DEBUG:
-    import pprint
-    pp = pprint.PrettyPrinter(indent=4)
-
-
 class DerivedStats():
     def __init__(self, hand):
         self.hand = hand
@@ -93,16 +86,8 @@ class DerivedStats():
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
 
-        if DEBUG:
+        if self.hand.saveActions:
             self.assembleHandsActions(self.hand)
-
-        if DEBUG:
-            #print "Hands:"
-            #pp.pprint(self.hands)
-            #print "HandsPlayers:"
-            #pp.pprint(self.handsplayers)
-            print "HandsActions:"
-            pp.pprint(self.handsactions)
 
     def getHands(self):
         return self.hands
@@ -216,9 +201,35 @@ class DerivedStats():
         # Squeeze, Ratchet?
 
     def assembleHandsActions(self, hand):
-        print "DEBUG: hand.actions"
-        pp.pprint(hand.actions)
-        pass
+        k = 0
+        for i, street in enumerate(hand.actionStreets):
+            for j, act in enumerate(hand.actions[street]):
+                k += 1
+                self.handsactions[k] = {}
+                #default values
+                self.handsactions[k]['amount'] = 0
+                self.handsactions[k]['raiseTo'] = 0
+                self.handsactions[k]['amountCalled'] = 0
+                self.handsactions[k]['numDiscarded'] = 0
+                self.handsactions[k]['cardsDiscarded'] = None
+                self.handsactions[k]['allIn'] = False
+                #Insert values from hand.actions
+                self.handsactions[k]['player'] = act[0]
+                self.handsactions[k]['street'] = i-1
+                self.handsactions[k]['actionNo'] = k
+                self.handsactions[k]['streetActionNo'] = (j+1)
+                self.handsactions[k]['actionId'] = hand.ACTION[act[1]]
+                if act[1] not in ('discards') and len(act) > 2:
+                    self.handsactions[k]['amount'] = int(100 * act[2])
+                if act[1] in ('raises', 'completes'):
+                    self.handsactions[k]['raiseTo'] = int(100 * act[3])
+                    self.handsactions[k]['amountCalled'] = int(100 * act[4])
+                if act[1] in ('discards'):
+                    self.handsactions[k]['numDiscarded'] = int(act[2])
+                if act[1] in ('discards') and len(act) > 3:
+                    self.handsactions[k]['cardsDiscarded'] = act[3]
+                if len(act) > 3 and act[1] not in ('discards'):
+                    self.handsactions[k]['allIn'] = act[-1]
 
     def setPositions(self, hand):
         """Sets the position for each player in HandsPlayers
