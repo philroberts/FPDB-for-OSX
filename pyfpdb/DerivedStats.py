@@ -262,8 +262,8 @@ class DerivedStats():
         else:
             # set blinds first, then others from pfbao list, avoids problem if bb
             # is missing from pfbao list or if there is no small blind
-            bb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[2] == 'big blind']
-            sb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[2] == 'small blind']
+            bb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'big blind']
+            sb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'small blind']
             # if there are > 1 sb or bb only the first is used!
             if bb:
                 self.handsplayers[bb[0]]['position'] = 'B'
