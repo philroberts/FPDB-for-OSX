@@ -1782,10 +1782,13 @@ class Database:
         #print "DEBUG: q: %s" % q
         c = self.get_cursor()
         
-        for r in inserts:
-            c.execute(q, r)
-            hpid[(r[0], r[1])] = self.get_last_insert_id(c)
-        
+        if self.import_options['saveActions']:
+            for r in inserts:
+                c.execute(q, r)
+                hpid[(r[0], r[1])] = self.get_last_insert_id(c)
+        else:
+            c.executemany(q, inserts)
+            
         return hpid
 
     def storeHandsActions(self, hid, pids, hpid, adata, printdata = False):
