@@ -49,7 +49,7 @@ class Winamax(HandHistoryConverter):
     siteName = "Winamax"
     filetype = "text"
     codepage = ("utf8", "cp1252")
-    siteId   = 5 # Needs to match id entry in Sites database
+    siteId   = 14 # Needs to match id entry in Sites database
 
     mixes = { } # Legal mixed games
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
