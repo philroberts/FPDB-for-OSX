@@ -52,7 +52,7 @@ class PartyPoker(HandHistoryConverter):
     re_GameInfoRing     = re.compile("""
             (?P<CURRENCY>\$|)\s*(?P<RINGLIMIT>[.,0-9]+)([.,0-9/$]+)?\s*(?:USD)?\s*
             (?P<LIMIT>(NL|PL|))\s*
-            (?P<GAME>(Texas\ Hold\'em|Omaha))
+            (?P<GAME>(Texas\ Hold\'em|Omaha|7 Card Stud Hi-Lo))
             \s*\-\s*
             (?P<DATETIME>.+)
             """, re.VERBOSE)
@@ -202,6 +202,7 @@ class PartyPoker(HandHistoryConverter):
         games = {                          # base, category
                          "Texas Hold'em" : ('hold','holdem'),
                                 'Omaha' : ('hold','omahahi'),
+                     "7 Card Stud Hi-Lo" : ('stud','studhi'),
                }
         currencies = { '$':'USD', '':'T$' }
 
@@ -348,19 +349,19 @@ class PartyPoker(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
-        players = []
+        maxKnownStack = 0
+        zeroStackPlayers = []
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'),
-                           clearMoneyString(a.group('CASH')))
-
-        # detecting new active players without a seat
-        # and new active players with zero stack
+            if a.group('CASH') > '0':
+                #record max known stack for use with players with unknown stack
+                maxKnownStack = max(a.group('CASH'),maxKnownStack)
+                hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), clearMoneyString(a.group('CASH')))
+            else:
+                #zero stacked players are added later
+                zeroStackPlayers.append([int(a.group('SEAT')), a.group('PNAME'), clearMoneyString(a.group('CASH'))])
 
         if hand.gametype['type'] == 'ring':
-            re_JoiningPlayers = re.compile(r"(?P<PLAYERNAME>.*) has joined the table")
-            re_BBPostingPlayers = re.compile(r"(?P<PLAYERNAME>.*) posts big blind")
-            seatedPlayers = list([(f[1]) for f in hand.players])
-
+            #finds first vacant seat after an exact seat
             def findFirstEmptySeat(startSeat):
                 while startSeat in occupiedSeats:
                     if startSeat >= hand.maxseats:
@@ -368,14 +369,25 @@ class PartyPoker(HandHistoryConverter):
                     startSeat += 1
                 return startSeat
 
+            re_JoiningPlayers = re.compile(r"(?P<PLAYERNAME>.*) has joined the table")
+            re_BBPostingPlayers = re.compile(r"(?P<PLAYERNAME>.*) posts big blind")
+
             match_JoiningPlayers = re_JoiningPlayers.findall(hand.handText)
             match_BBPostingPlayers = re_BBPostingPlayers.findall(hand.handText)
-            ringLimit = self.re_GameInfoRing.search(hand.handText).groupdict()['RINGLIMIT']
-            unseatedActivePlayers = list(set(match_BBPostingPlayers) - set(seatedPlayers))
 
-            for player in seatedPlayers:
-                if hand.stacks[player] == 0 and player in match_BBPostingPlayers:
-                    hand.stacks[player] = Decimal(ringLimit)
+            #add every player with zero stack, but:
+            #if a zero stacked player is just joined the table in this very hand then set his stack to maxKnownStack
+            for p in zeroStackPlayers:
+                if p[1] in match_JoiningPlayers:
+                    p[2] = clearMoneyString(maxKnownStack)
+                hand.addPlayer(p[0],p[1],p[2])
+
+            seatedPlayers = list([(f[1]) for f in hand.players])
+
+            #it works for all known cases as of 2010-09-28
+            #should be refined with using match_ActivePlayers instead of match_BBPostingPlayers
+            #as a leaving and rejoining player could be active without posting a BB (sample HH needed)
+            unseatedActivePlayers = list(set(match_BBPostingPlayers) - set(seatedPlayers))
 
             if unseatedActivePlayers:
                 for player in unseatedActivePlayers:
@@ -384,7 +396,7 @@ class PartyPoker(HandHistoryConverter):
                     occupiedSeats = list([(f[0]) for f in hand.players])
                     occupiedSeats.sort()
                     newPlayerSeat = findFirstEmptySeat(previousBBPosterSeat)
-                    hand.addPlayer(newPlayerSeat,player,clearMoneyString(ringLimit))
+                    hand.addPlayer(newPlayerSeat,player,clearMoneyString(maxKnownStack))
 
     def markStreets(self, hand):
         m =  re.search(
