@@ -52,11 +52,11 @@ class OnGame(HandHistoryConverter):
 
     games = {                          # base, category
                           "TEXAS_HOLDEM" : ('hold','holdem'),
-             #                   'Omaha' : ('hold','omahahi'),
+                              'OMAHA_HI' : ('hold','omahahi'),
              #             'Omaha Hi/Lo' : ('hold','omahahilo'),
              #                    'Razz' : ('stud','razz'),
              #                    'RAZZ' : ('stud','razz'),
-             #             '7 Card Stud' : ('stud','studhi'),
+                       'SEVEN_CARD_STUD' : ('stud','studhi'),
                  'SEVEN_CARD_STUD_HI_LO' : ('stud','studhilo'),
              #                  'Badugi' : ('draw','badugi'),
              # 'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
@@ -88,7 +88,7 @@ class OnGame(HandHistoryConverter):
             Table:\s(?P<TABLE>[\'\w\s]+)\s\[\d+\]\s\(
             (
             (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit)\s
-            (?P<GAME>TEXAS_HOLDEM|RAZZ)\s
+            (?P<GAME>TEXAS_HOLDEM|OMAHA_HI|SEVEN_CARD_STUD|SEVEN_CARD_STUD_HI_LO|RAZZ)\s
             (%(LS)s)?(?P<SB>[.0-9]+)/
             (%(LS)s)?(?P<BB>[.0-9]+)
             )?
@@ -239,18 +239,19 @@ class OnGame(HandHistoryConverter):
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
-        # PREFLOP = ** Dealing down cards **
-        # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
-        #m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \])?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\* \[ (?P<TURN1>\S\S) \])?(?P<TURN>.*?\*\*)?( Dealing River \*\* \[ (?P<RIVER1>\S\S) \])?(?P<RIVER>.*)', hand.string,re.DOTALL)
-
-        #if hand.gametype['base'] in ("hold"):
-        #elif hand.gametype['base'] in ("stud"):
-        #elif hand.gametype['base'] in ("draw"):
-        # only holdem so far:
-        m =  re.search(r"pocket cards(?P<PREFLOP>.+(?= Dealing flop )|.+(?=Summary))"
+        if hand.gametype['base'] in ("hold"):
+            m =  re.search(r"pocket cards(?P<PREFLOP>.+(?= Dealing flop )|.+(?=Summary))"
                        r"( Dealing flop (?P<FLOP>\[\S\S, \S\S, \S\S\].+(?= Dealing turn)|.+(?=Summary)))?"
                        r"( Dealing turn (?P<TURN>\[\S\S\].+(?= Dealing river)|.+(?=Summary)))?"
                        r"( Dealing river (?P<RIVER>\[\S\S\].+(?=Summary)))?", hand.handText, re.DOTALL)
+        elif hand.gametype['base'] in ("stud"):
+            m =  re.search(r"(?P<ANTES>.+(?=Dealing pocket cards)|.+)"
+                           r"(Dealing pocket cards(?P<THIRD>.+(?=Dealing 4th street)|.+))?"
+                           r"(Dealing 4th street(?P<FOURTH>.+(?=Dealing 5th street)|.+))?"
+                           r"(Dealing 5th street(?P<FIFTH>.+(?=Dealing 6th street)|.+))?"
+                           r"(Dealing 6th street(?P<SIXTH>.+(?=Dealing river)|.+))?"
+                           r"(Dealing river(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
+        #elif hand.gametype['base'] in ("draw"):
 
         hand.addStreets(m)
 
@@ -311,10 +312,10 @@ class OnGame(HandHistoryConverter):
         for street in ('PREFLOP', 'DEAL'):
             if street in hand.streets.keys():
                 m = self.re_HeroCards.finditer(hand.streets[street])
-            for found in m:
-                hand.hero = found.group('PNAME')
-                newcards = found.group('CARDS').split(', ')
-                hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
+                for found in m:
+                    hand.hero = found.group('PNAME')
+                    newcards = found.group('CARDS').split(', ')
+                    hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
