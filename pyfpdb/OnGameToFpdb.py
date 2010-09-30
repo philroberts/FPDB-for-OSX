@@ -60,7 +60,7 @@ class OnGame(HandHistoryConverter):
                  'SEVEN_CARD_STUD_HI_LO' : ('stud','studhilo'),
              #                  'Badugi' : ('draw','badugi'),
              # 'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
-             #             '5 Card Draw' : ('draw','fivedraw')
+                        'FIVE_CARD_DRAW' : ('draw','fivedraw')
                }
 
     # Static regexes
@@ -88,7 +88,7 @@ class OnGame(HandHistoryConverter):
             Table:\s(?P<TABLE>[\'\w\s]+)\s\[\d+\]\s\(
             (
             (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit)\s
-            (?P<GAME>TEXAS_HOLDEM|OMAHA_HI|SEVEN_CARD_STUD|SEVEN_CARD_STUD_HI_LO|RAZZ)\s
+            (?P<GAME>TEXAS_HOLDEM|OMAHA_HI|SEVEN_CARD_STUD|SEVEN_CARD_STUD_HI_LO|RAZZ|FIVE_CARD_DRAW)\s
             (%(LS)s)?(?P<SB>[.0-9]+)/
             (%(LS)s)?(?P<BB>[.0-9]+)
             )?
@@ -156,6 +156,7 @@ class OnGame(HandHistoryConverter):
                 ["ring", "hold", "fl"],
                 ["ring", "hold", "nl"],
                 ["ring", "stud", "fl"],
+                ["ring", "draw", "fl"],
                ]
 
     def determineGameType(self, handText):
@@ -251,7 +252,12 @@ class OnGame(HandHistoryConverter):
                            r"(Dealing 5th street(?P<FIFTH>.+(?=Dealing 6th street)|.+))?"
                            r"(Dealing 6th street(?P<SIXTH>.+(?=Dealing river)|.+))?"
                            r"(Dealing river(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
-        #elif hand.gametype['base'] in ("draw"):
+        elif hand.gametype['base'] in ("draw"):
+            m =  re.search(r"(?P<PREDEAL>.+(?=Dealing pocket cards)|.+)"
+                           r"(Dealing pocket cards(?P<DEAL>.+(?=\*\*\* FIRST DRAW \*\*\*)|.+))?"
+                           r"(\*\*\* FIRST DRAW \*\*\*(?P<DRAWONE>.+(?=\*\*\* SECOND DRAW \*\*\*)|.+))?"
+                           r"(\*\*\* SECOND DRAW \*\*\*(?P<DRAWTWO>.+(?=\*\*\* THIRD DRAW \*\*\*)|.+))?"
+                           r"(\*\*\* THIRD DRAW \*\*\*(?P<DRAWTHREE>.+))?", hand.handText,re.DOTALL)
 
         hand.addStreets(m)
 
