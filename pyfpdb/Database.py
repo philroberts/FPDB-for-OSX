@@ -1586,7 +1586,7 @@ class Database:
             self.connection.set_isolation_level(1)   # go back to normal isolation level
         self.commit()
         atime = time() - stime
-        print _("Analyze took %.1f seconds") % (atime,)
+        log.info(_("Analyze took %.1f seconds") % (atime,))
     #end def analyzeDB
 
     def vacuumDB(self):
