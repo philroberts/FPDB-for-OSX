@@ -239,7 +239,7 @@ class Importer:
         if self.settings['dropIndexes'] == 'drop':
             self.database.prepareBulkImport()
         else:
-            log.debug(_("No need to drop indexes."))
+            log.info(_("No need to drop indexes."))
         #print "dropInd =", self.settings['dropIndexes'], "  dropHudCache =", self.settings['dropHudCache']
 
         if self.settings['threads'] <= 0:
@@ -277,11 +277,11 @@ class Importer:
         if self.settings['dropIndexes'] == 'drop':
             self.database.afterBulkImport()
         else:
-            print _("No need to rebuild indexes.")
+            log.info (_("No need to rebuild indexes."))
         if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'drop':
             self.database.rebuild_hudcache()
         else:
-            print _("No need to rebuild hudcache.")
+            log.info (_("No need to rebuild hudcache."))
         self.database.analyzeDB()
         endtime = time()
         return (totstored, totdups, totpartial, toterrors, endtime-starttime)

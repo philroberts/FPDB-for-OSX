@@ -262,9 +262,16 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             self.obs = m.sub('', self.obs)
 
         if self.obs is None or self.obs == "":
-            log.info(_("Read no hands."))
+            log.error(_("Read no hands."))
             return []
-        return re.split(self.re_SplitHands,  self.obs)
+        handlist = re.split(self.re_SplitHands,  self.obs)
+        # Some HH formats leave dangling text after the split
+        # ie. </game> (split) </session>EOL
+        # Remove this dangler if less than 50 characters and warn in the log
+        if len(handlist[-1]) <= 50:
+            handlist.pop()
+            log.warn(_("Removing text < 50 characters"))
+        return handlist
 
     def processHand(self, handText):
         gametype = self.determineGameType(handText)

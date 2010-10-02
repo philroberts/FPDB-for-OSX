@@ -126,6 +126,7 @@ class Database:
                 , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
                 #, {'tab':'Hands',           'col':'siteHandNo',        'drop':0}  unique indexes not dropped
                 , {'tab':'HandsActions',    'col':'handsPlayerId',     'drop':0}
+                , {'tab':'HandsActions',    'col':'actionId',          'drop':1}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':1}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
@@ -149,6 +150,8 @@ class Database:
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0} 
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
+                , {'tab':'HandsActions',    'col':'handsPlayerId',     'drop':0}
+                , {'tab':'HandsActions',    'col':'actionId',          'drop':1}
                 , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
                 , {'tab':'HudCache',        'col':'tourneyTypeId',     'drop':0}
@@ -172,6 +175,7 @@ class Database:
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions', 'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                     , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
@@ -181,6 +185,7 @@ class Database:
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions', 'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                     , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
@@ -302,7 +307,7 @@ class Database:
         
         tables=self.cursor.execute(self.sql.query['list_tables'])
         tables=self.cursor.fetchall()
-        for table in (u'Autorates', u'Backings', u'Gametypes', u'Hands', u'HandsActions', u'HandsPlayers', u'HudCache', u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
+        for table in (u'Actions', u'Autorates', u'Backings', u'Gametypes', u'Hands', u'HandsActions', u'HandsPlayers', u'HudCache', u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
             print "table:", table
             result+="###################\nTable "+table+"\n###################\n"
             rows=self.cursor.execute(self.sql.query['get'+table])
@@ -1151,6 +1156,7 @@ class Database:
             c.execute(self.sql.query['createSettingsTable'])
 
             log.debug("Creating tables")
+            c.execute(self.sql.query['createActionsTable'])
             c.execute(self.sql.query['createSitesTable'])
             c.execute(self.sql.query['createGametypesTable'])
             c.execute(self.sql.query['createPlayersTable'])
@@ -1422,6 +1428,7 @@ class Database:
     def fillDefaultData(self):
         c = self.get_cursor() 
         c.execute("INSERT INTO Settings (version) VALUES (%s);" % (DB_VERSION))
+        #Fill Sites
         c.execute("INSERT INTO Sites (name,code) VALUES ('Full Tilt Poker', 'FT')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('PokerStars', 'PS')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('Everleaf', 'EV')")
@@ -1436,6 +1443,22 @@ class Database:
         c.execute("INSERT INTO Sites (name,code) VALUES ('PKR', 'PK')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('iPoker', 'IP')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('Winamax', 'WM')")
+        #Fill Actions
+        c.execute("INSERT INTO Actions (name,code) VALUES ('ante', 'A')")
+        c.execute("INSERT INTO Actions (name,code) VALUES ('small blind', 'SB')")
+        c.execute("INSERT INTO Actions (name,code) VALUES ('secondsb', 'SSB')")
+        c.execute("INSERT INTO Actions (name,code) VALUES ('big blind', 'BB')")
+        c.execute("INSERT INTO Actions (name,code) VALUES ('both', 'SBBB')")
+        c.execute("INSERT INTO Actions (name,code) VALUES ('calls', 'C')")
+        c.execute("INSERT INTO Actions (name,code) VALUES ('raises', 'R')")
+        c.execute("INSERT INTO Actions (name,code) VALUES ('bets', 'B')")
+        c.execute("INSERT INTO Actions (name,code) VALUES ('stands pat', 'S')")
+        c.execute("INSERT INTO Actions (name,code) VALUES ('folds', 'F')")
+        c.execute("INSERT INTO Actions (name,code) VALUES ('checks', 'K')")
+        c.execute("INSERT INTO Actions (name,code) VALUES ('discards', 'D')")
+        c.execute("INSERT INTO Actions (name,code) VALUES ('bringin', 'I')")
+        c.execute("INSERT INTO Actions (name,code) VALUES ('completes', 'P')")
+        
     #end def fillDefaultData
 
     def rebuild_indexes(self, start=None):
@@ -1563,7 +1586,7 @@ class Database:
             self.connection.set_isolation_level(1)   # go back to normal isolation level
         self.commit()
         atime = time() - stime
-        print _("Analyze took %.1f seconds") % (atime,)
+        log.info(_("Analyze took %.1f seconds") % (atime,))
     #end def analyzeDB
 
     def vacuumDB(self):
@@ -1653,6 +1676,7 @@ class Database:
             pp.pprint(pdata)
 
         inserts = []
+        hpid = {}
         for p in pdata:
             inserts.append( (hid,
                              pids[p],
@@ -1757,39 +1781,44 @@ class Database:
         #print "DEBUG: inserts: %s" %inserts
         #print "DEBUG: q: %s" % q
         c = self.get_cursor()
-        c.executemany(q, inserts)
+        
+        if self.import_options['saveActions']:
+            for r in inserts:
+                c.execute(q, r)
+                hpid[(r[0], r[1])] = self.get_last_insert_id(c)
+        else:
+            c.executemany(q, inserts)
+            
+        return hpid
 
-    def storeHandsActions(self, hid, pids, adata, printdata = False):
+    def storeHandsActions(self, hid, pids, hpid, adata, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, adata)
         if printdata:
             import pprint
             pp = pprint.PrettyPrinter(indent=4)
             pp.pprint(adata)
 
-        #inserts = []
-        #for p in pdata:
-        #    inserts.append( (hid,
-        #                     pids[p],
-        #                     adata[p]['startCash'],
-        #                     adata[p]['seatNo'],
-        #                     adata[p]['sitout'],
-        #                     adata[p]['card1'],
-
-        #handsPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
-        #street SMALLINT NOT NULL,
-        #actionNo SMALLINT NOT NULL,
-        #action CHAR(5) NOT NULL,
-        #allIn BOOLEAN NOT NULL,
-        #amount INT NOT NULL,
-
+        inserts = []
+        for a in adata:
+            inserts.append( (hpid[(hid, pids[adata[a]['player']])],
+                            #self.getHandsPlayerId(self.hid, pids[adata[a]['player']]),
+                             adata[a]['street'],
+                             adata[a]['actionNo'],
+                             adata[a]['streetActionNo'],
+                             adata[a]['actionId'],
+                             adata[a]['amount'],
+                             adata[a]['raiseTo'],
+                             adata[a]['amountCalled'],
+                             adata[a]['numDiscarded'],
+                             adata[a]['cardsDiscarded'],
+                             adata[a]['allIn']
+                            ) )
 
         q = self.sql.query['store_hands_actions']
-        #q = q.replace('%s', self.sql.query['placeholder'])
+        q = q.replace('%s', self.sql.query['placeholder'])
 
-        #print "DEBUG: inserts: %s" %inserts
-        #print "DEBUG: q: %s" % q
-        #c = self.get_cursor()
-        #c.executemany(q, inserts)
+        c = self.get_cursor()
+        c.executemany(q, inserts)
 
     def storeHudCache(self, gid, pids, starttime, pdata):
         """Update cached statistics. If update fails because no record exists, do an insert."""
