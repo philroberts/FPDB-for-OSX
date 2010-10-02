@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2010-10-02 13:52+CEST\n"
-"PO-Revision-Date: 2010-09-28 15:55+0200\n"
+"PO-Revision-Date: 2010-10-03 01:26+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -1004,8 +1004,8 @@ msgid ""
 "GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d "
 "in %s seconds - %.0f/sec"
 msgstr ""
-"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d "
-"%s másodperc alatt - %.0f/mp"
+"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d %"
+"s másodperc alatt - %.0f/mp"
 
 #: GuiDatabase.py:107
 msgid "_Add"
@@ -1553,19 +1553,19 @@ msgstr "HUD Főablak"
 
 #: HUD_main.pyw:126 HUD_main.pyw.orig:137
 msgid "hud_main: Client resized"
-msgstr ""
+msgstr "hud_main: Kliens átméretezve"
 
 #: HUD_main.pyw:130 HUD_main.pyw.orig:141
 msgid "hud_main: Client destroyed"
-msgstr ""
+msgstr "hud_main: Kliens bezárva"
 
 #: HUD_main.pyw:134 HUD_main.pyw.orig:145
 msgid "hud_main: Game changed."
-msgstr ""
+msgstr "hud_main: Jatékváltás."
 
 #: HUD_main.pyw:137 HUD_main.pyw.orig:148
 msgid "hud_main: Table changed."
-msgstr ""
+msgstr "hud_main: Asztalváltás."
 
 #: HUD_main.pyw:141 HUD_main.pyw.orig:152
 msgid "Terminating normally."
@@ -1597,11 +1597,11 @@ msgstr "\"%s\" nevű asztal már nem létezik\n"
 
 #: HUD_main.pyw:339 HUD_main.pyw.orig:350
 msgid ""
-"HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,"
-"%4.3f,%4.3f)"
+"HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%"
+"4.3f,%4.3f)"
 msgstr ""
-"HUD_main.read_stdin: leosztás beolvasva %4.3f mp alatt (%4.3f,%4.3f,%4.3f,"
-"%4.3f,%4.3f,%4.3f)"
+"HUD_main.read_stdin: leosztás beolvasva %4.3f mp alatt (%4.3f,%4.3f,%4.3f,%"
+"4.3f,%4.3f,%4.3f)"
 
 #: HUD_run_me.py:45
 msgid "HUD_main starting\n"
@@ -2026,7 +2026,7 @@ msgstr "Nem történt beolvasás."
 
 #: HandHistoryConverter.py:273
 msgid "Removing text < 50 characters"
-msgstr ""
+msgstr "50 karakternél rövidebb szöveg eltávolítása"
 
 #: HandHistoryConverter.py:481
 msgid "HH Sanity Check: output and input files are the same, check config"
@@ -3349,8 +3349,8 @@ msgstr ""
 "GPL2 vagy újabb licensszel.\n"
 "A Windows telepítő csomag tartalmaz MIT licensz hatálya alá eső részeket "
 "is.\n"
-"A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, "
-"gpl-2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
+"A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, gpl-"
+"2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
 
 #: fpdb.pyw:1054
 msgid "Help"
