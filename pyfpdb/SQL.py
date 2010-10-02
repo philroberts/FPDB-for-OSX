@@ -162,13 +162,13 @@ class Sql:
             self.query['createActionsTable'] = """CREATE TABLE Actions (
                         id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         name varchar(32) NOT NULL,
-                        code char(2) NOT NULL)
+                        code char(4) NOT NULL)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createActionsTable'] = """CREATE TABLE Actions (
                         id SERIAL, PRIMARY KEY (id),
                         name varchar(32),
-                        code char(2))"""
+                        code char(4))"""
         elif db_server == 'sqlite':
             self.query['createActionsTable'] = """CREATE TABLE Actions (
                         id INTEGER PRIMARY KEY,
@@ -1011,7 +1011,7 @@ class Sql:
                         street SMALLINT NOT NULL,
                         actionNo SMALLINT NOT NULL,
                         streetActionNo SMALLINT NOT NULL,
-                        actionId SMALLINT NOT NULL, FOREIGN KEY (actionId) REFERENCES Actions(id),
+                        actionId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (actionId) REFERENCES Actions(id),
                         amount INT NOT NULL,
                         raiseTo INT NOT NULL,
                         amountCalled INT NOT NULL,
