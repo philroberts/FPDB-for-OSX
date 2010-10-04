@@ -73,6 +73,7 @@ class GuiGraphViewer (threading.Thread):
                             "Seats"     : False,
                             "SeatSep"   : False,
                             "Dates"     : True,
+                            "GraphOps"  : True,
                             "Groups"    : False,
                             "Button1"   : True,
                             "Button2"   : True
@@ -144,11 +145,7 @@ class GuiGraphViewer (threading.Thread):
             siteids = self.filters.getSiteIds()
             limits  = self.filters.getLimits()
             games   = self.filters.getGames()
-            graphs  = {
-                        "profit"      : True,
-                        "sawShowdown" : True,
-                        "nonShowdown" : True
-                      }
+            graphops = self.filters.getGraphOps()
             
             for i in ('show', 'none'):
                 if i in limits:
@@ -183,13 +180,15 @@ class GuiGraphViewer (threading.Thread):
 
             #Get graph data from DB
             starttime = time()
-            (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games)
+            (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games, graphops['dspin'])
             print _("Graph generated in: %s") %(time() - starttime)
+
 
 
             #Set axis labels and grid overlay properites
             self.ax.set_xlabel(_("Hands"), fontsize = 12)
-            self.ax.set_ylabel("$", fontsize = 12)
+            # SET LABEL FOR X AXIS
+            self.ax.set_ylabel(graphops['dspin'], fontsize = 12)
             self.ax.grid(color='g', linestyle=':', linewidth=0.2)
             if green == None or green == []:
                 self.ax.set_title(_("No Data for Player(s) Found"))
@@ -228,12 +227,12 @@ class GuiGraphViewer (threading.Thread):
                 self.ax.set_title(_("Profit graph for ring games"))
 
                 #Draw plot
-                if graphs['profit'] == True:
-                    self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: $%.2f') %(len(green), green[-1]))
-                if graphs['sawShowdown'] == True:
-                    self.ax.plot(blue, color='blue', label=_('Showdown: $%.2f') %(blue[-1]))
-                if graphs['nonShowdown'] == True:
-                    self.ax.plot(red, color='red', label=_('Non-showdown: $%.2f') %(red[-1]))
+                self.ax.plot(green, color='green', label=_('Hands: %d\nProfit (%s): %.2f') %(len(green),graphops['dspin'], green[-1]))
+                if graphops['showdown'] == 'ON':
+                    self.ax.plot(blue, color='blue', label=_('Showdown (%s): %.2f') %(graphops['dspin'], blue[-1]))
+                if graphops['nonshowdown'] == 'ON':
+                    self.ax.plot(red, color='red', label=_('Non-showdown (%s): %.2f') %(graphops['dspin'], red[-1]))
+
                 if sys.version[0:3] == '2.5':
                     self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
                 else:
@@ -249,9 +248,17 @@ class GuiGraphViewer (threading.Thread):
 
     #end of def showClicked
 
-    def getRingProfitGraph(self, names, sites, limits, games):
-        tmp = self.sql.query['getRingProfitAllHandsPlayerIdSite']
+
+    def getRingProfitGraph(self, names, sites, limits, games, units):
+#        tmp = self.sql.query['getRingProfitAllHandsPlayerIdSite']
 #        print "DEBUG: getRingProfitGraph"
+
+        if units == '$':
+            tmp = self.sql.query['getRingProfitAllHandsPlayerIdSiteInDollars']
+        elif units == 'BB':
+            tmp = self.sql.query['getRingProfitAllHandsPlayerIdSiteInBB']
+
+
         start_date, end_date = self.filters.getDates()
 
         #Buggered if I can find a way to do this 'nicely' take a list of integers and longs
