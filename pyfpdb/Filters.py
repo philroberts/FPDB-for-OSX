@@ -106,7 +106,7 @@ class Filters(threading.Thread):
         self.numHands = 0
 
         # for use in graphops
-        # dspin = display in '$' or 'B'        
+        # dspin = display in '$' or 'B'
         self.graphops['dspin'] = "$"
         self.graphops['showdown'] = 'OFF'
         self.graphops['nonshowdown'] = 'OFF'
@@ -566,7 +566,7 @@ class Filters(threading.Thread):
 
     def __set_displayin_select(self, w, ops):
         self.graphops['dspin'] = ops
-    
+
     def __set_graphopscheck_select(self, w, data):
         #print "%s was toggled %s" % (data, ("OFF", "ON")[w.get_active()])
         self.graphops[data] = ("OFF", "ON")[w.get_active()]
@@ -841,7 +841,7 @@ class Filters(threading.Thread):
 
         button = gtk.CheckButton("Showdown Winnings", False)
         vbox1.pack_start(button, True, True, 0)
-        # wouldn't it be awesome if there was a way to remember the state of things like 
+        # wouldn't it be awesome if there was a way to remember the state of things like
         # this and be able to set it to what it was last time?
         #button.set_active(True)
         button.connect("toggled", self.__set_graphopscheck_select, "showdown")

@@ -73,7 +73,7 @@ class GuiGraphViewer (threading.Thread):
                             "Seats"     : False,
                             "SeatSep"   : False,
                             "Dates"     : True,
-                            "GraphOps"  : True, 
+                            "GraphOps"  : True,
                             "Groups"    : False,
                             "Button1"   : True,
                             "Button2"   : True
@@ -146,11 +146,6 @@ class GuiGraphViewer (threading.Thread):
             limits  = self.filters.getLimits()
             games   = self.filters.getGames()
             graphops = self.filters.getGraphOps()
-            graphs  = {
-                        "profit"      : True,
-                        "sawShowdown" : True,
-                        "nonShowdown" : True
-                      }
             
             for i in ('show', 'none'):
                 if i in limits:
@@ -232,27 +227,11 @@ class GuiGraphViewer (threading.Thread):
                 self.ax.set_title(_("Profit graph for ring games"))
 
                 #Draw plot
-                # this if is only  to switch the dollar sign in the labels
-                # since one goes in the front and one goes in back i cant think of a better
-                # way to do it.  
-                if graphops['dspin'] == '$':
-                    if graphs['profit'] == True:
-                        self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: $%.2f') %(len(green),green[-1]))
-                    if graphops['showdown'] == 'ON':
-                        if graphs['sawShowdown'] == True:
-                            self.ax.plot(blue, color='blue', label=_('Showdown: $%.2f') %(blue[-1]))
-                    if graphops['nonshowdown'] == 'ON':
-                        if graphs['nonShowdown'] == True:
-                            self.ax.plot(red, color='red', label=_('Non-showdown: $%.2f') %(red[-1]))
-                elif graphops['dspin'] == 'BB':
-                    if graphs['profit'] == True:
-                        self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: %.2fBB') %(len(green),green[-1]))
-                    if graphops['showdown'] == 'ON':
-                        if graphs['sawShowdown'] == True:
-                            self.ax.plot(blue, color='blue', label=_('Showdown: %.2fBB') %(blue[-1]))
-                    if graphops['nonshowdown'] == 'ON':
-                        if graphs['nonShowdown'] == True:
-                            self.ax.plot(red, color='red', label=_('Non-showdown: %.2fBB') %(red[-1]))
+                self.ax.plot(green, color='green', label=_('Hands: %d\nProfit (%s): %.2f') %(len(green),graphops['dspin'], green[-1]))
+                if graphops['showdown'] == 'ON':
+                    self.ax.plot(blue, color='blue', label=_('Showdown (%s): %.2f') %(graphops['dspin'], blue[-1]))
+                if graphops['nonshowdown'] == 'ON':
+                    self.ax.plot(red, color='red', label=_('Non-showdown (%s): %.2f') %(graphops['dspin'], red[-1]))
 
                 if sys.version[0:3] == '2.5':
                     self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
@@ -268,11 +247,6 @@ class GuiGraphViewer (threading.Thread):
             print _("***Error: ")+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
 
     #end of def showClicked
-
-
-    
-
-
 
 
     def getRingProfitGraph(self, names, sites, limits, games, units):
