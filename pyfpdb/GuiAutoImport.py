@@ -348,7 +348,7 @@ if __name__== "__main__":
     settings.update(config.get_default_paths())
 
     if(options.gui == True):
-        i = GuiAutoImport(settings, config)
+        i = GuiAutoImport(settings, config, None, None)
         main_window = gtk.Window()
         main_window.connect('destroy', destroy)
         main_window.add(i.mainVBox)
