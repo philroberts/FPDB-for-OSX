@@ -148,6 +148,7 @@ class GuiGraphViewer (threading.Thread):
             limits  = self.filters.getLimits()
             games   = self.filters.getGames()
             graphops = self.filters.getGraphOps()
+            names   = ""
             
             for i in ('show', 'none'):
                 if i in limits:
@@ -156,10 +157,11 @@ class GuiGraphViewer (threading.Thread):
             for site in sites:
                 if sites[site] == True:
                     sitenos.append(siteids[site])
-                    _hname = Charset.to_utf8(heroes[site])
+                    _hname = Charset.to_utf8(heroes[site])                    
                     result = self.db.get_player_id(self.conf, site, _hname)
                     if result is not None:
                         playerids.append(int(result))
+                        names = names + "\n"+_hname + " on "+site
 
             if not sitenos:
                 #Should probably pop up here.
@@ -226,7 +228,7 @@ class GuiGraphViewer (threading.Thread):
                 #TODO: Do something useful like alert user
                 #print "No hands returned by graph query"
             else:
-                self.ax.set_title(_("Profit graph for ring games"))
+                self.ax.set_title(_("Profit graph for ring games"+names),fontsize=12)
 
                 #Draw plot
                 self.ax.plot(green, color='green', label=_('Hands: %d\nProfit (%s): %.2f') %(len(green),graphops['dspin'], green[-1]))
