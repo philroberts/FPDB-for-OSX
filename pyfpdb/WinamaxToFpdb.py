@@ -152,7 +152,6 @@ class Winamax(HandHistoryConverter):
                 ["ring", "hold", "fl"],
                 ["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
-                ["ring", "stud", "fl"],
                ]
 
     def determineGameType(self, handText):
@@ -233,7 +232,6 @@ class Winamax(HandHistoryConverter):
         log.info("readplayerstacks: re is '%s'" % self.re_PlayerInfo)
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
-            print "DEBUG: found '%s' with '%s'" %(a.group('PNAME'), a.group('CASH'))
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
 
