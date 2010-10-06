@@ -600,7 +600,7 @@ class GUICashStats(list):
             [u'variance', u'Variance', True, True, u'%5.2f', u'str', 1.0]
             ]
         for col in defaults:
-            self.append (col)            
+            self.append (col)
 
 #    def __str__(self):
 #        s = ""
