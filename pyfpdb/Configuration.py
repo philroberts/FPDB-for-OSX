@@ -579,7 +579,7 @@ class GUICashStats(list):
             [u'avgseats', u'Seats', False, False, u'%3.1f', u'str', 1.0],
             [u'vpip', u'VPIP', True, True, u'%3.1f', u'str', 1.0],
             [u'pfr', u'PFR', True, True, u'%3.1f', u'str', 1.0],
-            [u'pf3', u'PF9', True, True, u'%3.1f', u'str', 1.0],
+            [u'pf3', u'PF3', True, True, u'%3.1f', u'str', 1.0],
             [u'aggfac', u'AggFac', True, True, u'%2.2f', u'str', 1.0],
             [u'aggfrq', u'AggFreq', True, True, u'%3.1f', u'str', 1.0],
             [u'conbet', u'ContBet', True, True, u'%3.1f', u'str', 1.0],
