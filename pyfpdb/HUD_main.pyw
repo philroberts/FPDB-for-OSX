@@ -122,8 +122,16 @@ class HUD_main(object):
             self.vb.add(self.label)
             self.main_window.add(self.vb)
             self.main_window.set_title(_("HUD Main Window"))
+            cards = os.path.join(os.getcwd(), '..','gfx','fpdb-cards.png')
+            if os.path.exists(cards):
+                self.main_window.set_icon_from_file(cards)
+            elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
+                self.main_window.set_icon_from_file('/usr/share/pixmaps/fpdb-cards.png')
+            else:
+                self.main_window.set_icon_stock(gtk.STOCK_HOME)
             self.main_window.show_all()
             gobject.timeout_add(100, self.check_tables)
+                        
         except:
             log.error("*** Exception in HUD_main.init() *** ")
             for e in traceback.format_tb(sys.exc_info()[2]):

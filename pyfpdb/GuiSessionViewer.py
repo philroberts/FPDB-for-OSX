@@ -30,7 +30,7 @@ try:
     calluse = not 'matplotlib' in sys.modules
     import matplotlib
     if calluse:
-        matplotlib.use('GTK')
+        matplotlib.use('GTKCairo')
     from matplotlib.figure import Figure
     from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
     from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar

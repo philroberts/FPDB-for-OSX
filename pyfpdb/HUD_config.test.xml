@@ -578,6 +578,7 @@ Left-Drag to Move"
         <hhc site="Carbon" converter="CarbonToFpdb"/>
         <hhc site="PKR" converter="PkrToFpdb"/>
         <hhc site="iPoker" converter="iPokerToFpdb"/>
+        <hhc site="Winamax" converter="WinamaxToFpdb"/>
     </hhcs>
 
     <supported_databases>

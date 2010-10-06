@@ -152,7 +152,6 @@ class Winamax(HandHistoryConverter):
                 ["ring", "hold", "fl"],
                 ["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
-                ["ring", "stud", "fl"],
                ]
 
     def determineGameType(self, handText):
@@ -233,7 +232,6 @@ class Winamax(HandHistoryConverter):
         log.info("readplayerstacks: re is '%s'" % self.re_PlayerInfo)
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
-            print "DEBUG: found '%s' with '%s'" %(a.group('PNAME'), a.group('CASH'))
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
 
@@ -280,8 +278,8 @@ class Winamax(HandHistoryConverter):
 # Total pot 0.71€ | Rake 0.04€
         m =  re.search(r"\*\*\* ANTE\/BLINDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
                        r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN \*\*\*)|.+))?"
-                       r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN>\[\S\S\].+(?=\*\*\* RIVER \*\*\*)|.+))?"
-                       r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?", hand.handText,re.DOTALL)
+                       r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S](?P<TURN>\[\S\S\].+(?=\*\*\* RIVER \*\*\*)|.+))?"
+                       r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S](?P<RIVER>\[\S\S\].+))?", hand.handText,re.DOTALL)
 
         try:
             hand.addStreets(m)
