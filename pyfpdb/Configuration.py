@@ -570,7 +570,8 @@ class GUICashStats(list):
 
     def get_defaults(self):
         """A list of defaults to be called, should there be no entry in config"""
-        defaults = [   [u'game', u'Game', True, True, u'%s', u'str', 0.0],
+        # SQL column name, display title, display all, display positional, format, type, alignment
+        defaults = [   [u'game', u'Game', True, True, u'%s', u'str', 0.0],       
             [u'hand', u'Hand', False, False, u'%s', u'str', 0.0],
             [u'plposition', u'Posn', False, False, u'%s', u'str', 1.0],
             [u'pname', u'Name', False, False, u'%s', u'str', 0.0],
@@ -578,7 +579,7 @@ class GUICashStats(list):
             [u'avgseats', u'Seats', False, False, u'%3.1f', u'str', 1.0],
             [u'vpip', u'VPIP', True, True, u'%3.1f', u'str', 1.0],
             [u'pfr', u'PFR', True, True, u'%3.1f', u'str', 1.0],
-            [u'pf3', u'PF3', True, True, u'%3.1f', u'str', 1.0],
+            [u'pf3', u'PF9', True, True, u'%3.1f', u'str', 1.0],
             [u'aggfac', u'AggFac', True, True, u'%2.2f', u'str', 1.0],
             [u'aggfrq', u'AggFreq', True, True, u'%3.1f', u'str', 1.0],
             [u'conbet', u'ContBet', True, True, u'%3.1f', u'str', 1.0],
@@ -599,7 +600,7 @@ class GUICashStats(list):
             [u'variance', u'Variance', True, True, u'%5.2f', u'str', 1.0]
             ]
         for col in defaults:
-            self.append (col)
+            self.append (col)            
 
 #    def __str__(self):
 #        s = ""
