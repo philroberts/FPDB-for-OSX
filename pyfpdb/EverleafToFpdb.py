@@ -66,14 +66,16 @@ class Everleaf(HandHistoryConverter):
             self.re_SitsOut         = re.compile(ur"^%s sits out" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
-        return [["ring", "hold", "nl"],
+        return [
+                ["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
-                ["ring", "studhi", "fl"],
-                ["ring", "omahahi", "pl"],
-                ["ring", "omahahilo", "pl"],
+                ["ring", "stud", "fl"],
+                #["ring", "omahahi", "pl"],
+                #["ring", "omahahilo", "pl"],
                 ["tour", "hold", "nl"],
-                ["tour", "hold", "fl"]
+                ["tour", "hold", "fl"],
+                ["tour", "hold", "pl"]
                ]
 
     def determineGameType(self, handText):
