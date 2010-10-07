@@ -72,7 +72,8 @@ class Everleaf(HandHistoryConverter):
                 ["ring", "studhi", "fl"],
                 ["ring", "omahahi", "pl"],
                 ["ring", "omahahilo", "pl"],
-                ["tour", "hold", "nl"]
+                ["tour", "hold", "nl"],
+                ["tour", "hold", "fl"]
                ]
 
     def determineGameType(self, handText):
