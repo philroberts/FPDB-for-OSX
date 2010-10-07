@@ -145,13 +145,14 @@ def main(argv=None):
     EverleafErrors    = FpdbError('Everleaf Poker')
     CarbonErrors      = FpdbError('Carbon')
     PKRErrors         = FpdbError('PKR')
-    iPokerErrors         = FpdbError('iPoker')
+    iPokerErrors      = FpdbError('iPoker')
+    WinamaxErrors     = FpdbError('Winamax')
 
     ErrorsList = [
                     PokerStarsErrors, FTPErrors, PartyPokerErrors,
                     BetfairErrors, OnGameErrors, AbsoluteErrors,
                     EverleafErrors, CarbonErrors, PKRErrors,
-                    iPokerErrors
+                    iPokerErrors, WinamaxErrors
                 ]
 
     sites = {
@@ -165,6 +166,7 @@ def main(argv=None):
                 'Carbon' : True,
                 'PKR' : True,
                 'iPoker' : True,
+                'Winamax' : True,
             }
 
     if sites['PokerStars'] == True:
@@ -190,6 +192,8 @@ def main(argv=None):
         walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
     if sites['iPoker'] == True:
         walk_testfiles("regression-test-files/cash/iPoker/", compare, importer, iPokerErrors, "iPoker")
+    if sites['Winamax'] == True:
+        walk_testfiles("regression-test-files/cash/Winamax/", compare, importer, WinamaxErrors, "Winamax")
 
     totalerrors = 0
 
