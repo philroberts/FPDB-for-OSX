@@ -23,10 +23,6 @@
 
 Main for FreePokerTools HUD.
 """
-
-import L10n
-_ = L10n.get_translation()
-
 #    TODO allow window resizing
 #    TODO hud to echo, but ignore non numbers
 #    TODO no stat window for hero
@@ -63,6 +59,21 @@ elif os.name == 'nt':
     import WinTables as Tables
 #import Tables
 import Hud
+
+import locale
+lang = locale.getdefaultlocale()[0][0:2]
+print "lang:", lang
+if lang == "en":
+    def _(string):
+        return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string):
+            return string
 
 # get config and set up logger
 c = Configuration.Config(file=options.config, dbname=options.dbname)
@@ -134,7 +145,7 @@ class HUD_main(object):
         print _("hud_main: Client resized")
         print hud, hud.table.name, hud.table.x, hud.table.y
 
-    def client_destroyed(self, widget, hud):    # call back for terminating the main eventloop
+    def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
         print _("hud_main: Client destroyed")
         self.kill_hud(None, hud.table.name)
 
