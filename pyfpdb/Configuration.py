@@ -570,7 +570,8 @@ class GUICashStats(list):
 
     def get_defaults(self):
         """A list of defaults to be called, should there be no entry in config"""
-        defaults = [   [u'game', u'Game', True, True, u'%s', u'str', 0.0],
+        # SQL column name, display title, display all, display positional, format, type, alignment
+        defaults = [   [u'game', u'Game', True, True, u'%s', u'str', 0.0],       
             [u'hand', u'Hand', False, False, u'%s', u'str', 0.0],
             [u'plposition', u'Posn', False, False, u'%s', u'str', 1.0],
             [u'pname', u'Name', False, False, u'%s', u'str', 0.0],
