@@ -175,6 +175,12 @@ class DerivedStats():
             self.handsplayers[player]['rake'] = int(100* hand.rake)/len(hand.collectees)
             if self.handsplayers[player]['street1Seen'] == True:
                 self.handsplayers[player]['wonWhenSeenStreet1'] = 1.0
+            if self.handsplayers[player]['street2Seen'] == True:
+                self.handsplayers[player]['wonWhenSeenStreet2'] = 1.0
+            if self.handsplayers[player]['street3Seen'] == True:
+                self.handsplayers[player]['wonWhenSeenStreet3'] = 1.0
+            if self.handsplayers[player]['street4Seen'] == True:
+                self.handsplayers[player]['wonWhenSeenStreet4'] = 1.0
             if self.handsplayers[player]['sawShowdown'] == True:
                 self.handsplayers[player]['wonAtSD'] = 1.0
 
