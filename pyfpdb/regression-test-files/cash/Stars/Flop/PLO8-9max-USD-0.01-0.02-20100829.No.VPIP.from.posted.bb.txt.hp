@@ -841,6 +841,6 @@
                    'winnings': 14,
                    'wonAtSD': 0.0,
                    'wonWhenSeenStreet1': 1.0,
-                   'wonWhenSeenStreet2': 0.0,
+                   'wonWhenSeenStreet2': 1.0,
                    'wonWhenSeenStreet3': 0.0,
                    'wonWhenSeenStreet4': 0.0}}
