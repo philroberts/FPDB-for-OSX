@@ -67,7 +67,7 @@ class Winamax(HandHistoryConverter):
              #                    'Razz' : ('stud','razz'),
              #                    'RAZZ' : ('stud','razz'),
              #             '7 Card Stud' : ('stud','studhi'),
-                 'SEVEN_CARD_STUD_HI_LO' : ('stud','studhilo'),
+             #   'SEVEN_CARD_STUD_HI_LO' : ('stud','studhilo'),
              #                  'Badugi' : ('draw','badugi'),
              # 'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
              #             '5 Card Draw' : ('draw','fivedraw')
