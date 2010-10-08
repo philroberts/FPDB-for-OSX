@@ -164,7 +164,7 @@ def main(argv=None):
                 'Absolute' : True,
                 'Everleaf' : True,
                 'Carbon' : True,
-                'PKR' : True,
+                'PKR' : False,
                 'iPoker' : True,
                 'Winamax' : True,
             }
