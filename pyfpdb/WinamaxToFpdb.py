@@ -125,6 +125,7 @@ class Winamax(HandHistoryConverter):
             subst = {'PLYR': player_re, 'CUR': self.sym[hand.gametype['currency']]}
             self.re_PostSB    = re.compile('%(PLYR)s posts small blind (%(CUR)s)?(?P<SB>[\.0-9]+)(%(CUR)s)?' % subst, re.MULTILINE)
             self.re_PostBB    = re.compile('%(PLYR)s posts big blind (%(CUR)s)?(?P<BB>[\.0-9]+)(%(CUR)s)?' % subst, re.MULTILINE)
+            self.re_DenySB    = re.compile('(?P<PNAME>.*) deny SB' % subst, re.MULTILINE)
             self.re_Antes     = re.compile(r"^%(PLYR)s: posts the ante (%(CUR)s)?(?P<ANTE>[\.0-9]+)(%(CUR)s)?" % subst, re.MULTILINE)
             self.re_BringIn   = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for (%(CUR)s)?(?P<BRINGIN>[\.0-9]+(%(CUR)s)?)" % subst, re.MULTILINE)
             self.re_PostBoth  = re.compile('(?P<PNAME>.*): posts small \& big blind \( (%(CUR)s)?(?P<SBBB>[\.0-9]+)(%(CUR)s)?\)' % subst)
@@ -256,11 +257,13 @@ class Winamax(HandHistoryConverter):
             hand.setCommunityCards(street, m.group('CARDS').split(' '))
 
     def readBlinds(self, hand):
-        m = self.re_PostSB.search(hand.handText)
-        if m:
-            hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
-        else:
-            log.warning(_("readBlinds in noSB exception - no SB created"))
+        if not self.re_DenySB.search(hand.handText):
+            try:
+                m = self.re_PostSB.search(hand.handText)
+                hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
+            except exceptions.AttributeError: # no small blind
+                log.warning( _("readBlinds in noSB exception - no SB created")+str(sys.exc_info()) )
+            #hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostDead.finditer(hand.handText):
@@ -332,26 +335,38 @@ class Winamax(HandHistoryConverter):
         # Winamax has unfortunately thinks that a sidepot is created
         # when there is uncalled money in the pot - something that can
         # only happen when a player is all-in
-        # The first side pot mentioned is always the uncalled money, so we can remove it.
-        # If there is only 1 collected line, then add it
-        hand.totalPot()
-        collectees = []
-        for m in self.re_CollectPot.finditer(hand.handText):
-            collectees.append([m.group('PNAME'), m.group('POT')])
 
+        # Becuase of this, we need to do the same calculations as class Pot()
+        # and determine if the amount returned is the same as the amount collected
+        # if so then the collected line is invalid
+
+        total = sum(hand.pot.committed.values()) + sum(hand.pot.common.values())
+
+        # Return any uncalled bet.
         committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
+        #print "DEBUG: committed: %s" % committed
+        #ERROR below. lastbet is correct in most cases, but wrong when
+        #             additional money is committed to the pot in cash games
+        #             due to an additional sb being posted. (Speculate that
+        #             posting sb+bb is also potentially wrong)
+        returned = {}
         lastbet = committed[-1][0] - committed[-2][0]
         if lastbet > 0: # uncalled
             returnto = committed[-1][1]
-            for plyr, p in collectees:
-                if plyr == returnto and p == lastbet:
-                    pass
-                else:
-                    print "DEBUG: addCollectPot(%s, %s)" %(plyr, p)
-                    hand.addCollectPot(player=plyr,pot=p)
-        else:
-            for plyr, p in collectees[1:]:
-                print "DEBUG: addCollectPot(%s, %s)" %(plyr, p)
+            #print "DEBUG: returning %f to %s" % (lastbet, returnto)
+            total -= lastbet
+            returned[returnto] = lastbet
+
+        collectees = []
+
+        for m in self.re_CollectPot.finditer(hand.handText):
+            collectees.append([m.group('PNAME'), m.group('POT')])
+
+        for plyr, p in collectees:
+            if plyr in returned.keys() and Decimal(p) - returned[plyr] == 0:
+                p = Decimal(p) - returned[plyr]
+            if p > 0:
+                print "DEBUG: addCollectPot(%s,%s)" %(plyr, p)
                 hand.addCollectPot(player=plyr,pot=p)
 
     def readShownCards(self,hand):
