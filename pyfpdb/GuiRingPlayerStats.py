@@ -85,9 +85,9 @@ class DemoTips(TreeViewTooltips):
     def get_tooltip(self, view, column, path):
         model = view.get_model()
         cards = model[path][0]
-
         title=column.get_title()
-        display='<big>%s</big>\n<i>%s</i>' % (title,onlinehelp[title])
+        if (title == 'Hand' or title == 'Game'): display=''     #no tooltips on headers                   
+        else: display='<big>%s for %s</big>\n<i>%s</i>' % (title,cards,onlinehelp[title])
         return (display)
 
     def location(self, x, y, w, h):
