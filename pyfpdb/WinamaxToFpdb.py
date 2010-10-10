@@ -213,7 +213,7 @@ class Winamax(HandHistoryConverter):
         hand.mixed = None
 
     def readPlayerStacks(self, hand):
-        log.debug("readplayerstacks: re is '%s'" % self.re_PlayerInfo)
+        log.debug(_("readplayerstacks: re is '%s'" % self.re_PlayerInfo))
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
@@ -230,7 +230,7 @@ class Winamax(HandHistoryConverter):
 #            print "adding street", m.group(0)
 #            print "---"
         except:
-            print ("Failed to add streets. handtext=%s")
+            print (_("Failed to add streets. handtext=%s"))
 
     #Needs to return a list in the format
     # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb,
@@ -240,7 +240,7 @@ class Winamax(HandHistoryConverter):
         m = self.re_Button.search(hand.handText)
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
-            log.debug('readButton: button on pos %d'%hand.buttonpos)
+            log.debug(_('readButton: button on pos %d'%hand.buttonpos))
         else:
             log.warning(_('readButton: not found'))
 
@@ -292,13 +292,13 @@ class Winamax(HandHistoryConverter):
             if street in hand.streets.keys():
                 m = self.re_HeroCards.finditer(hand.streets[street])
             if m == []:
-                log.debug("No hole cards found for %s"%street)
+                log.debug(_("No hole cards found for %s"%street))
             for found in m:
                 hand.hero = found.group('PNAME')
                 newcards = found.group('CARDS').split(' ')
 #                print "DEBUG: addHoleCards(%s, %s, %s)" %(street, hand.hero, newcards)
                 hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
-                log.debug("Hero cards  %s: %s"%(hand.hero, newcards))
+                log.debug(_("Hero cards %s: %s"%(hand.hero, newcards)))
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
@@ -319,13 +319,13 @@ class Winamax(HandHistoryConverter):
             elif action.group('ATYPE') == ' stands pat':
                 hand.addStandsPat( street, action.group('PNAME'))
             else:
-                log.fatal("DEBUG: unimplemented readAction: '%s' '%s'") %(action.group('PNAME'),action.group('ATYPE'),)
+                log.fatal(_("DEBUG: unimplemented readAction: '%s' '%s'")) %(action.group('PNAME'),action.group('ATYPE'),)
 #            print "Processed %s"%acts
 #            print "committed=",hand.pot.committed
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):
-            log.debug("add show actions %s"%shows)
+            log.debug(_("add show actions %s"%shows))
             cards = shows.group('CARDS')
             cards = cards.split(' ')
 #            print "DEBUG: addShownCards(%s, %s)" %(cards, shows.group('PNAME'))
@@ -371,7 +371,7 @@ class Winamax(HandHistoryConverter):
 
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
-            log.debug("Read shown cards: %s"%m.group(0))
+            log.debug(_("Read shown cards: %s"%m.group(0)))
             cards = m.group('CARDS')
             cards = cards.split(' ') # needs to be a list, not a set--stud needs the order
             (shown, mucked) = (False, False)
