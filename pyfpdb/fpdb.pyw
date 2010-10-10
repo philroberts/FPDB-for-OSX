@@ -1127,10 +1127,13 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         cards = os.path.join(os.getcwd(), '..','gfx','fpdb-cards.png')
         if os.path.exists(cards):
             self.statusIcon.set_from_file(cards)
+	    self.window.set_icon_from_file(cards)
         elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
             self.statusIcon.set_from_file('/usr/share/pixmaps/fpdb-cards.png')
+            self.window.set_icon_from_file('/usr/share/pixmaps/fpdb-cards.png')
         else:
             self.statusIcon.set_from_stock(gtk.STOCK_HOME)
+            self.window.set_icon_stock(gtk.STOCK_HOME)
         self.statusIcon.set_tooltip("Free Poker Database")
         self.statusIcon.connect('activate', self.statusicon_activate)
         self.statusMenu = gtk.Menu()

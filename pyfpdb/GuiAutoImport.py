@@ -45,7 +45,7 @@ if os.name == "nt":
 
 
 class GuiAutoImport (threading.Thread):
-    def __init__(self, settings, config, sql, parent):
+    def __init__(self, settings, config, sql = None, parent = None, cli = False):
         self.importtimer = 0
         self.settings = settings
         self.config = config
@@ -53,9 +53,6 @@ class GuiAutoImport (threading.Thread):
         self.parent = parent
 
         imp = self.config.get_import_parameters()
-
-#        print "Import parameters"
-#        print imp
 
         self.input_settings = {}
         self.pipe_to_hud = None
@@ -66,13 +63,21 @@ class GuiAutoImport (threading.Thread):
         self.importer.setQuiet(False)
         self.importer.setFailOnError(False)
         self.importer.setHandCount(0)
-#        self.importer.setWatchTime()
 
         self.server = settings['db-host']
         self.user = settings['db-user']
         self.password = settings['db-password']
         self.database = settings['db-databaseName']
 
+        if cli == False:
+            self.setupGui()
+        else:
+            # TODO: Separate the code that grabs the directories from config
+            #       Separate the calls to the Importer API
+            #       Create a timer interface that doesn't rely on GTK
+            pass
+
+    def setupGui(self):
         self.mainVBox = gtk.VBox(False,1)
 
         hbox = gtk.HBox(True, 0) # contains 2 equal vboxes
@@ -355,4 +360,4 @@ if __name__== "__main__":
         main_window.show()
         gtk.main()
     else:
-        pass
+        i = GuiAutoImport(settings, config, cli = True)
