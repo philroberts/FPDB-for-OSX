@@ -3055,8 +3055,6 @@ class Sql:
                 order by stats.category, stats.limitType, stats.bigBlindDesc desc
                          <orderbyseats>, cast(stats.PlPosition as smallint)
                 """
-        #elif db_server == 'sqlite':
-        #    self.query['playerStatsByPosition'] = """ """
 
         ####################################
         # Cash Game Graph query

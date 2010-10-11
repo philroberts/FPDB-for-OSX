@@ -24,6 +24,7 @@
 #
 #    dpopowich AT astro dot umass dot edu
 #
+# This version of the file is part of fpdb, contact: fpdb-main@lists.sourceforge.net
 
 '''
 TreeViewTooltips.py
@@ -104,7 +105,7 @@ import gobject
 if gtk.gtk_version < (2, 8):
     import warnings
 
-    msg = ('''This module was developed and tested with version 2.8.18 of gtk.  You are using version %d.%d.%d.  Your milage may vary.'''
+    msg = (_('''This module was developed and tested with version 2.8.18 of gtk.  You are using version %d.%d.%d.  Your milage may vary.''')
            % gtk.gtk_version)
     warnings.warn(msg)
 
