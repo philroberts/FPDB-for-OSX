@@ -962,6 +962,7 @@ class fpdb:
         if self.db!=None:
             if self.db.backend==self.db.MYSQL_INNODB:
                 try:
+                    import _mysql_exceptions
                     if self.db is not None and self.db.is_connected():
                         self.db.disconnect()
                 except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
