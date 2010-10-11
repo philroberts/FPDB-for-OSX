@@ -271,10 +271,11 @@ class Fulltilt(HandHistoryConverter):
                         hand.isMatrix = True
                     if special == "Shootout":
                         hand.isShootout = True
-                 
+            if hand.buyin is None:
+                hand.buyin = 0
+                hand.fee=0
+                hand.buyinCurrency="NA"
 
-        if hand.buyin is None:
-            hand.buyin = "$0.00+$0.00"
         if hand.level is None:
             hand.level = "0"            
 
