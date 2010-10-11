@@ -97,7 +97,10 @@ class Table(Table_Window):
             return None
 
     def get_window_title(self):
-        return win32gui.GetWindowText(self.window)
+        try: # after window is destroyed, self.window = attribute error
+            return win32gui.GetWindowText(self.window)
+        except AttributeError:
+            return ""
 
 #    def get_nt_exe(self, hwnd):
 #        """Finds the name of the executable that the given window handle belongs to."""
