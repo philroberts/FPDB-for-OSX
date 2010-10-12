@@ -404,7 +404,7 @@ class Hud:
 
             if     self.hud_params['agg_bb_mult'] != num \
                and getattr(self, 'aggBBmultItem'+str(num)).get_active():
-                log.debug('set_opponent_aggregation', num)
+                log.debug('set_opponent_aggregation %d', num)
                 self.hud_params['agg_bb_mult'] = num
                 for mult in ('1', '2', '3', '10', '10000'):
                     if mult != str(num):

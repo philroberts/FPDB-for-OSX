@@ -186,7 +186,7 @@ class Table_Window(object):
 
         mo = re.search(self.tableno_re, new_title)
         if mo is not None:
-            print "get_table_no: mo=",mo.groups()
+            #print "get_table_no: mo=",mo.groups()
             return mo.group(1)
         return False
 
