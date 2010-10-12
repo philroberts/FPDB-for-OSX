@@ -1062,6 +1062,7 @@ class Filters(threading.Thread):
             result = self.db.cursor.fetchall()
             t1 = result[0][0].split()[0]
             self.start_date.set_text(t1)
+        
         if t2 == '':
             self.cursor.execute(self.sql.query['get_last_date'])
             result = self.db.cursor.fetchall()

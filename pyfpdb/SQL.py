@@ -1396,6 +1396,10 @@ class Sql:
                                              , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
 
         self.query['get_last_hand'] = "select max(id) from Hands"
+        
+        self.query['get_last_date'] = "SELECT MAX(startTime) FROM Hands"
+        
+        self.query['get_first_date'] = "SELECT MIN(startTime) FROM Hands"
 
         self.query['get_player_id'] = """
                 select Players.id AS player_id 
