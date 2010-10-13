@@ -243,11 +243,6 @@ class DerivedStats():
             first betting round is 0
             NOTE: HU, both values are negative for non-stud games
             NOTE2: I've never seen a HU stud match"""
-        # The position calculation must be done differently for Stud and other games as
-        # Stud the 'blind' acts first - in all other games they act last.
-        #
-        #This function is going to get it wrong when there in situations where there
-        # is no small blind. I can live with that.
         actions = hand.actions[hand.holeStreets[0]]
         # Note:  pfbao list may not include big blind if all others folded
         players = self.pfbao(actions)
