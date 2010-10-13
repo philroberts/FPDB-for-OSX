@@ -289,7 +289,7 @@ class DerivedStats():
     def vpip(self, hand):
         vpipers = set()
         for act in hand.actions[hand.actionStreets[1]]:
-            if act[1] in ('calls','bets', 'raises'):
+            if act[1] in ('calls','bets', 'raises', 'completes'):
                 vpipers.add(act[0])
 
         self.hands['playersVpi'] = len(vpipers)
