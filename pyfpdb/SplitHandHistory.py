@@ -44,6 +44,7 @@ class SplitHandHistory:
         self.archive = archive
         self.re_SplitHands = None
         self.line_delimiter = None
+        self.line_addendum = None
         self.filedone = False
         
         #Acquire re_SplitHands for this hh
@@ -52,15 +53,20 @@ class SplitHandHistory:
         mod = __import__(filter)
         obj = getattr(mod, filter_name, None)
         self.re_SplitHands = obj.re_SplitHands
+        
         #Determine line delimiter type if any
         if self.re_SplitHands.match('\n\n'):
             self.line_delimiter = '\n\n'
-        elif self.re_SplitHands.match('\n\n\n'):
+        if self.re_SplitHands.match('\n\n\n'):
             self.line_delimiter = '\n\n\n'
-        else:
-            pass
-        
-        #Open the gargantuan file
+            
+        #Add new line addendum for sites which match SplitHand to next line as well
+        if site == 'OnGame':
+            self.line_addendum = '*'
+        if site == 'Carbon':
+            self.line_addendum = '<game'
+            
+        #Open the gargantuan file  
         try:
             infile = file(self.in_path, 'r')
         except:
@@ -72,6 +78,7 @@ class SplitHandHistory:
                     print 'File not found'
                     sys.exit(2)
         
+        #Split with do_hands_per_file if archive and paragraphs if a regular hh
         if self.archive:
             nn = 0
             while True:
@@ -86,7 +93,7 @@ class SplitHandHistory:
                 filenum += 1
                 outfile = self.new_file(filenum)
                 handnum = 0
-                for hand in self.paragraphs(infile):
+                for hand in self.paragraphs(infile, None, self.line_addendum):
                     outfile.write(hand)
                     if self.line_delimiter:
                         outfile.write(self.line_delimiter)
@@ -125,15 +132,15 @@ class SplitHandHistory:
             return None
     
     #Non-Archive Hand Splitter
-    def paragraphs(self, file, separator=None):
+    def paragraphs(self, file, separator=None, addendum=None):
         if not callable(separator) and self.line_delimiter:
             def separator(line): return line == '\n'
         else:
-            def separator(sline): return self.re_SplitHands.search(line)
+            def separator(line): return self.re_SplitHands.search(line)
         file_str = StringIO()
         print file_str.getvalue()
         for line in file:
-            if separator(line):
+            if separator(line+addendum):
                 if file_str.getvalue():
                     if not self.line_delimiter:
                         file_str.write(line)
@@ -202,8 +209,6 @@ def main(argv=None):
     (options, argv) = parser.parse_args(args = argv)
     
     config = Configuration.Config(file = "HUD_config.test.xml")
-    
-    print options.archive
 
     if not options.filename:
         pass
