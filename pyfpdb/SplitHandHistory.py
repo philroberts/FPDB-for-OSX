@@ -200,7 +200,7 @@ def main(argv=None):
         options.config = Configuration.Config(file = "HUD_config.test.xml")
 
     if options.filename:
-        SplitHH = SplitHandHistory(options.config, options.filename, options.outpath, options.hands,
+        SplitHH = SplitHandHistory(options.config, options.infile, options.outpath, options.hands,
                                    options.hhc, options.archive)
 
 if __name__ == '__main__':
