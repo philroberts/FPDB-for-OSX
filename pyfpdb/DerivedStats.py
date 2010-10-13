@@ -377,9 +377,9 @@ class DerivedStats():
             if steal_attempt and act != 'folds':
                 break
 
-            if not steal_attempt and not raised: # if posn in steal_positions and not steal_attempt:
+            if not steal_attempt and not raised and not act in ('bringin'):
                 self.handsplayers[pname]['raiseFirstInChance'] = True
-                if act in ('bets', 'raises'):
+                if act in ('bets', 'raises', 'completes'):
                     self.handsplayers[pname]['raisedFirstIn'] = True
                     raised = True
                     if posn in steal_positions:
@@ -387,7 +387,7 @@ class DerivedStats():
                 if act == 'calls':
                     break
             
-            if posn not in steal_positions and act != 'folds':
+            if posn not in steal_positions and act not in ('folds', 'bringin'):
                 break
 
     def calc34BetStreet0(self, hand):
