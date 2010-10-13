@@ -131,7 +131,7 @@ def readFile(filename, options):
     return whole_file
 
 def runFake(db, config, options):
-    summaryText = readFile(options.infile, options)
+    summaryText = readFile(options.filename, options)
     importSummaries(db, config,[summaryText], options=options)
 
 def importSummaries(db, config, summaries, options = None):

@@ -38,9 +38,6 @@ def fpdb_options():
     parser.add_option("-r", "--rerunPython",
                       action="store_true",
                       help=_("Indicates program was restarted with a different path (only allowed once)."))
-    parser.add_option("-i", "--infile",
-                      dest="infile", default="Slartibartfast",
-                      help=_("Input file"))
     parser.add_option("-k", "--konverter",
                       dest="hhc", default="PokerStarsToFpdb",
                       help=_("Module name for Hand History Converter"))
@@ -54,6 +51,8 @@ def fpdb_options():
     parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False,
                     help=_("Print some useful one liners"))
     # The following options are used for SplitHandHistory.py
+    parser.add_option("-f", "--file", dest="filename", metavar="FILE", default=None,
+                    help=_("Input file in quiet mode"))
     parser.add_option("-o", "--outpath", dest="outpath", metavar="FILE", default=None,
                     help=_("Input out path in quiet mode"))
     parser.add_option("-a", "--archive", action="store_true", dest="archive", default=False,
