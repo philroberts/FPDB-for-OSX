@@ -247,35 +247,30 @@ class DerivedStats():
         # Note:  pfbao list may not include big blind if all others folded
         players = self.pfbao(actions)
 
+        # set blinds first, then others from pfbao list, avoids problem if bb
+        # is missing from pfbao list or if there is no small blind
+        sb, bb, bi = False, False, False
         if hand.gametype['base'] == 'stud':
-            positions = [7, 6, 5, 4, 3, 2, 1, 0, 'S', 'B']
-            seats = len(players)
-            map = []
-            # Could posibly change this to be either -2 or -1 depending if they complete or bring-in
-            # First player to act is -1, last player is 0 for 6 players it should look like:
-            # ['S', 4, 3, 2, 1, 0]
-            map = positions[-seats-1:-1] # Copy required positions from postions array anding in -1
-            map = map[-1:] + map[0:-1] # and move the -1 to the start of that array
-
-            for i, player in enumerate(players):
-                #print "player %s in posn %s" % (player, str(map[i]))
-                self.handsplayers[player]['position'] = map[i]
+            # Stud position is determined after cards are dealt
+            bi = [x[0] for x in hand.actions[hand.actionStreets[1]] if x[1] == 'bringin']
         else:
-            # set blinds first, then others from pfbao list, avoids problem if bb
-            # is missing from pfbao list or if there is no small blind
             bb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'big blind']
             sb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'small blind']
-            # if there are > 1 sb or bb only the first is used!
-            if bb:
-                self.handsplayers[bb[0]]['position'] = 'B'
-                if bb[0] in players:  players.remove(bb[0])
-            if sb:
-                self.handsplayers[sb[0]]['position'] = 'S'
-                if sb[0] in players:  players.remove(sb[0])
 
-            #print "bb =", bb, "sb =", sb, "players =", players
-            for i,player in enumerate(reversed(players)):
-                self.handsplayers[player]['position'] = i
+        # if there are > 1 sb or bb only the first is used!
+        if bb:
+            self.handsplayers[bb[0]]['position'] = 'B'
+            if bb[0] in players:  players.remove(bb[0])
+        if sb:
+            self.handsplayers[sb[0]]['position'] = 'S'
+            if sb[0] in players:  players.remove(sb[0])
+        if bi:
+            self.handsplayers[bi[0]]['position'] = 'S'
+            if bi[0] in players:  players.remove(bi[0])
+
+        #print "DEBUG: bb: '%s' sb: '%s' bi: '%s' plyrs: '%s'" %(bb, sb, bi, players)
+        for i,player in enumerate(reversed(players)):
+            self.handsplayers[player]['position'] = i
 
     def assembleHudCache(self, hand):
         # No real work to be done - HandsPlayers data already contains the correct info
