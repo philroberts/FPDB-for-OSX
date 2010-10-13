@@ -24,9 +24,12 @@ import os
 import sys
 import re
 import codecs
-from optparse import OptionParser
+import Options
 import Configuration
+from Exceptions import *
 from cStringIO import StringIO
+
+(options, argv) = Options.fpdb_options()
 
 __ARCHIVE_PRE_HEADER_REGEX='^Hand #(\d+)\s*$|\*{20}\s#\s\d+\s\*+\s+'
 re_SplitArchive = re.compile(__ARCHIVE_PRE_HEADER_REGEX)
@@ -34,7 +37,7 @@ codepage = ["utf-16", "utf-8", "cp1252"]
 
 
 class SplitHandHistory:
-    def __init__(self, config, in_path = '-', out_path = None, hands = 100, site = "PokerStars", archive = False):
+    def __init__(self, config, in_path = '-', out_path = None, hands = 100, filter = "PokerStarsToFpdb", archive = False):
         self.config = config
         self.in_path = in_path
         self.out_path = out_path
@@ -48,7 +51,6 @@ class SplitHandHistory:
         self.filedone = False
         
         #Acquire re_SplitHands for this hh
-        filter = self.config.hhcs[site].converter
         filter_name = filter.replace("ToFpdb", "")
         mod = __import__(filter)
         obj = getattr(mod, filter_name, None)
@@ -61,22 +63,18 @@ class SplitHandHistory:
             self.line_delimiter = '\n\n\n'
             
         #Add new line addendum for sites which match SplitHand to next line as well
-        if site == 'OnGame':
+        if filter_name == 'OnGame':
             self.line_addendum = '*'
-        if site == 'Carbon':
+        if filter_name == 'Carbon':
             self.line_addendum = '<game'
             
-        #Open the gargantuan file  
-        try:
-            infile = file(self.in_path, 'r')
-        except:
-            print 'File is sophisticated'
-            for kodec in self.__listof(codepage):
-                try:
-                    infile = codecs.open(self.in_path, 'r', kodec)
-                except IOError:
-                    print 'File not found'
-                    sys.exit(2)
+        #Open the gargantuan file
+        for kodec in self.__listof(codepage):
+            try:
+                infile = codecs.open(self.in_path, 'r', kodec)
+            except IOError:
+                print 'File not found'
+                sys.exit(2)
         
         #Split with do_hands_per_file if archive and paragraphs if a regular hh
         if self.archive:
@@ -104,7 +102,7 @@ class SplitHandHistory:
                     
     def new_file(self, fileno=-1):
         if fileno < 1:
-            print 'Nope, won\'t work (fileno=%d)' % fileno
+            print 'Nope, will not work (fileno=%d)' % fileno
             sys.exit(2)
         basename = os.path.splitext(os.path.basename(self.in_path))[0]
         name = os.path.join(self.out_path, basename+'-%06d.txt' % fileno)
@@ -121,9 +119,12 @@ class SplitHandHistory:
             try:
                 infile = self.next_hand(infile)
                 infile = self.process_hand(infile, outfile)
-            except:
+            except FpdbEndOfFile:
                 done = True
                 break
+            except:
+                print "Unexpected error processing file"
+                sys.exit(2)
             n += 1
         outfile.close()
         if not done:
@@ -161,7 +162,7 @@ class SplitHandHistory:
             #print l, len(l)
             # Catch EOF
             if len(l) == 0:
-                raise IOError
+                raise FpdbEndOfFile("End of file reached")
             m = re_SplitArchive.search(l)
         # There is an empty line after pre-hand header and actual HH entry
         l = infile.readline()
@@ -195,26 +196,12 @@ def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
 
-    parser = OptionParser()
-    parser.add_option("-f", "--file", dest="filename", metavar="FILE", default=None,
-                    help=_("Input file in quiet mode"))
-    parser.add_option("-o", "--outpath", dest="outpath", metavar="FILE", default=None,
-                    help=_("Input out path in quiet mode"))
-    parser.add_option("-c", "--convert", dest="filtername", default="PokerStars", metavar="FILTER",
-                    help=_("Conversion filter (*Full Tilt Poker, PokerStars, Everleaf, Absolute)"))
-    parser.add_option("-a", "--archive", action="store_true", dest="archive", default=False,
-                    help=_("File to be split is a PokerStars or Full Tilt Poker archive file"))
-    parser.add_option("-d", "--hands", dest="hands", default="100", type="int",
-                    help=_("How many hands do you want saved to each file. Default is 100"))
-    (options, argv) = parser.parse_args(args = argv)
-    
-    config = Configuration.Config(file = "HUD_config.test.xml")
+    if not options.config:
+        options.config = Configuration.Config(file = "HUD_config.test.xml")
 
-    if not options.filename:
-        pass
-    else:
-        SplitHH = SplitHandHistory(config, options.filename, options.outpath, options.hands,
-                                   options.filtername, options.archive)
+    if options.filename:
+        SplitHH = SplitHandHistory(options.config, options.filename, options.outpath, options.hands,
+                                   options.hhc, options.archive)
 
 if __name__ == '__main__':
     sys.exit(main())
