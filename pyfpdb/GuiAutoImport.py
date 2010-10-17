@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 import threading
 import subprocess
 import traceback
@@ -26,25 +29,23 @@ import gobject
 import os
 import sys
 import time
+
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("importer")
+
+
 import fpdb_import
 from optparse import OptionParser
 import Configuration
 import string
 
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
+if os.name == "nt":
+    import win32console
+
 
 class GuiAutoImport (threading.Thread):
-    def __init__(self, settings, config, sql, parent):
+    def __init__(self, settings, config, sql = None, parent = None, cli = False):
         self.importtimer = 0
         self.settings = settings
         self.config = config
@@ -52,9 +53,6 @@ class GuiAutoImport (threading.Thread):
         self.parent = parent
 
         imp = self.config.get_import_parameters()
-
-#        print "Import parameters"
-#        print imp
 
         self.input_settings = {}
         self.pipe_to_hud = None
@@ -65,13 +63,21 @@ class GuiAutoImport (threading.Thread):
         self.importer.setQuiet(False)
         self.importer.setFailOnError(False)
         self.importer.setHandCount(0)
-#        self.importer.setWatchTime()
 
         self.server = settings['db-host']
         self.user = settings['db-user']
         self.password = settings['db-password']
         self.database = settings['db-databaseName']
 
+        if cli == False:
+            self.setupGui()
+        else:
+            # TODO: Separate the code that grabs the directories from config
+            #       Separate the calls to the Importer API
+            #       Create a timer interface that doesn't rely on GTK
+            pass
+
+    def setupGui(self):
         self.mainVBox = gtk.VBox(False,1)
 
         hbox = gtk.HBox(True, 0) # contains 2 equal vboxes
@@ -208,13 +214,17 @@ class GuiAutoImport (threading.Thread):
                 self.doAutoImportBool = True
                 widget.set_label(_(u'  _Stop Auto Import  '))
                 if self.pipe_to_hud is None:
-                    if Configuration.FROZEN:
+                    if Configuration.FROZEN:    # if py2exe, run hud_main.exe
                         path = Configuration.EXEC_PATH
                         command = "HUD_main.exe"
                         bs = 0
                     elif os.name == 'nt':
                         path = sys.path[0].replace('\\','\\\\')
-                        command = 'pythonw "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
+                        if win32console.GetConsoleWindow() == 0:
+                            command = 'pythonw "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
+                        else:
+                            command = 'python "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
+                        # uncomment above line if you want hud_main stdout to work ... and make sure you are running fpdb.py using python.exe not pythonw.exe
                         bs = 0
                     else:
                         command = os.path.join(sys.path[0], 'HUD_main.pyw')
@@ -223,12 +233,15 @@ class GuiAutoImport (threading.Thread):
 
                     try:
                         print _("opening pipe to HUD")
-                        self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
-                                                            stdin=subprocess.PIPE,
-                                                            stdout=subprocess.PIPE,  # only needed for py2exe
-                                                            stderr=subprocess.PIPE,  # only needed for py2exe
-                                                            universal_newlines=True
-                                                           )
+                        if Configuration.FROZEN or (os.name == "nt" and win32console.GetConsoleWindow()) == 0:
+                            self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
+                                                                stdin=subprocess.PIPE,
+                                                                stdout=subprocess.PIPE,  # needed for pythonw / py2exe
+                                                                stderr=subprocess.PIPE,  # needed for pythonw / py2exe
+                                                                universal_newlines=True
+                                                               )
+                        else:
+                            self.pipe_to_hud = subprocess.Popen(command, bufsize=bs, stdin=subprocess.PIPE, universal_newlines=True)
                         #self.pipe_to_hud.stdout.close()
                         #self.pipe_to_hud.stderr.close()
                     except:
@@ -296,6 +309,7 @@ class GuiAutoImport (threading.Thread):
 
     def addSites(self, vbox1, vbox2):
         the_sites = self.config.get_supported_sites()
+        #log.debug("addSites: the_sites="+str(the_sites))
         for site in the_sites:
             pathHBox1 = gtk.HBox(False, 0)
             vbox1.pack_start(pathHBox1, False, True, 0)
@@ -306,6 +320,7 @@ class GuiAutoImport (threading.Thread):
             paths = self.config.get_default_paths(site)
             self.createSiteLine(pathHBox1, pathHBox2, site, False, paths['hud-defaultPath'], params['converter'], params['enabled'])
             self.input_settings[site] = [paths['hud-defaultPath']] + [params['converter']]
+        #log.debug("addSites: input_settings="+str(self.input_settings))
 
 if __name__== "__main__":
     def destroy(*args):             # call back for terminating the main eventloop
@@ -333,16 +348,16 @@ if __name__== "__main__":
     if os.name == 'nt': settings['os'] = 'windows'
     else:               settings['os'] = 'linuxmac'
 
-    settings.update(config.get_db_parameters('fpdb'))
+    settings.update(config.get_db_parameters())
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
 
     if(options.gui == True):
-        i = GuiAutoImport(settings, config)
+        i = GuiAutoImport(settings, config, None, None)
         main_window = gtk.Window()
         main_window.connect('destroy', destroy)
         main_window.add(i.mainVBox)
         main_window.show()
         gtk.main()
     else:
-        pass
+        i = GuiAutoImport(settings, config, cli = True)

@@ -61,17 +61,19 @@ elif os.name == 'nt':
 import Hud
 
 import locale
-lang=locale.getdefaultlocale()[0][0:2]
+lang = locale.getdefaultlocale()[0][0:2]
 print "lang:", lang
-if lang=="en":
-    def _(string): return string
+if lang == "en":
+    def _(string):
+        return string
 else:
     import gettext
     try:
         trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
         trans.install()
     except IOError:
-        def _(string): return string
+        def _(string):
+            return string
 
 # get config and set up logger
 c = Configuration.Config(file=options.config, dbname=options.dbname)
@@ -82,7 +84,7 @@ class HUD_main(object):
     """A main() object to own both the read_stdin thread and the gui."""
 #    This class mainly provides state for controlling the multiple HUDs.
 
-    def __init__(self, db_name = 'fpdb'):
+    def __init__(self, db_name='fpdb'):
         print _("\nHUD_main: starting ...")
         self.db_name = db_name
         self.config = c
@@ -92,9 +94,9 @@ class HUD_main(object):
         try:
             if not options.errorsToConsole:
                 fileName = os.path.join(self.config.dir_log, 'HUD-errors.txt')
-                print _("Note: error output is being diverted to:\n")+fileName \
+                print _("Note: error output is being diverted to:\n") + fileName \
                       + _("\nAny major error will be reported there _only_.\n")
-                log.info(_("Note: error output is being diverted to:")+fileName)
+                log.info(_("Note: error output is being diverted to:") + fileName)
                 log.info(_("Any major error will be reported there _only_."))
                 errorFile = open(fileName, 'w', 0)
                 sys.stderr = errorFile
@@ -104,23 +106,55 @@ class HUD_main(object):
             self.hud_params = self.config.get_hud_ui_parameters()
 
     #    a thread to read stdin
-            gobject.threads_init()                       # this is required
-            thread.start_new_thread(self.read_stdin, ()) # starts the thread
+            gobject.threads_init()                        # this is required
+            thread.start_new_thread(self.read_stdin, ())  # starts the thread
 
     #    a main window
             self.main_window = gtk.Window()
+            self.main_window.connect("client_moved", self.client_moved)
+            self.main_window.connect("client_resized", self.client_resized)
+            self.main_window.connect("client_destroyed", self.client_destroyed)
+            self.main_window.connect("game_changed", self.game_changed)
+            self.main_window.connect("table_changed", self.table_changed)
             self.main_window.connect("destroy", self.destroy)
             self.vb = gtk.VBox()
             self.label = gtk.Label(_('Closing this window will exit from the HUD.'))
             self.vb.add(self.label)
             self.main_window.add(self.vb)
             self.main_window.set_title(_("HUD Main Window"))
+            cards = os.path.join(os.getcwd(), '..','gfx','fpdb-cards.png')
+            if os.path.exists(cards):
+                self.main_window.set_icon_from_file(cards)
+            elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
+                self.main_window.set_icon_from_file('/usr/share/pixmaps/fpdb-cards.png')
+            else:
+                self.main_window.set_icon_stock(gtk.STOCK_HOME)
             self.main_window.show_all()
+            gobject.timeout_add(100, self.check_tables)
+                        
         except:
-            log.error( "*** Exception in HUD_main.init() *** " )
+            log.error("*** Exception in HUD_main.init() *** ")
             for e in traceback.format_tb(sys.exc_info()[2]):
                 log.error(e)
 
+    def client_moved(self, widget, hud):
+        print "hud_main: client moved"
+        print hud, hud.table.name, "moved", hud.table.x, hud.table.y
+
+    def client_resized(self, widget, hud):
+        print _("hud_main: Client resized")
+        print hud, hud.table.name, hud.table.x, hud.table.y
+
+    def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
+        print _("hud_main: Client destroyed")
+        self.kill_hud(None, hud.table.name)
+
+    def game_changed(self, widget, hud):
+        print _("hud_main: Game changed.")
+
+    def table_changed(self, widget, hud):
+        print _("hud_main: Table changed.")
+        self.kill_hud(None, hud.table.name)
 
     def destroy(self, *args):             # call back for terminating the main eventloop
         log.info(_("Terminating normally."))
@@ -133,7 +167,12 @@ class HUD_main(object):
             self.hud_dict[table].main_window.destroy()
             self.vb.remove(self.hud_dict[table].tablehudlabel)
             del(self.hud_dict[table])
-        self.main_window.resize(1,1)
+        self.main_window.resize(1, 1)
+
+    def check_tables(self):
+        for hud in self.hud_dict.keys():
+            self.hud_dict[hud].table.check_table(self.hud_dict[hud])
+        return True
 
     def create_HUD(self, new_hand_id, table, table_name, max, poker_game, type, stat_dict, cards):
         """type is "ring" or "tour" used to set hud_params"""
@@ -156,7 +195,7 @@ class HUD_main(object):
                 self.hud_dict[table_name].update(new_hand_id, self.config)
                 self.hud_dict[table_name].reposition_windows()
             except:
-                log.error( "*** Exception in HUD_main::idle_func() *** " + str(sys.exc_info()) )
+                log.error("*** Exception in HUD_main::idle_func() *** " + str(sys.exc_info()))
                 for e in traceback.format_tb(sys.exc_info()[2]):
                     log.error(e)
             finally:
@@ -222,7 +261,7 @@ class HUD_main(object):
         self.hero, self.hero_ids = {}, {}
         found = False
 
-        while 1: # wait for a new hand number on stdin
+        while 1:    # wait for a new hand number on stdin
             new_hand_id = sys.stdin.readline()
             t0 = time.time()
             t1 = t2 = t3 = t4 = t5 = t6 = t0
@@ -266,9 +305,10 @@ class HUD_main(object):
                 self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
                                                      , self.hud_dict[temp_key].hud_params['h_hud_days'])
                 t2 = time.time()
-                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params
-                                                                  ,self.hero_ids[site_id], num_seats)
+                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params,
+                                                                   self.hero_ids[site_id], num_seats)
                 t3 = time.time()
+
                 try:
                     self.hud_dict[temp_key].stat_dict = stat_dict
                 except KeyError:    # HUD instance has been killed off, key is stale
@@ -277,7 +317,7 @@ class HUD_main(object):
                     # Unlocks table, copied from end of function
                     self.db_connection.connection.rollback()
                     return
-                cards      = self.db_connection.get_cards(new_hand_id)
+                cards = self.db_connection.get_cards(new_hand_id)
                 t4 = time.time()
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
                 t5 = time.time()
@@ -291,18 +331,15 @@ class HUD_main(object):
             else:
                 # get stats using default params--also get cards
                 self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
-                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params
-                                                                  ,self.hero_ids[site_id], num_seats)
+                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params,
+                                                                   self.hero_ids[site_id], num_seats)
                 cards      = self.db_connection.get_cards(new_hand_id)
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
                 if comm_cards != {}: # stud!
                     cards['common'] = comm_cards['common']
 
-                table_kwargs = dict(table_name = table_name, tournament = tour_number, table_number = tab_number)
-                search_string = getTableTitleRe(self.config, site_name, type, **table_kwargs)
-                # print "getTableTitleRe ", self.config, site_name, type, "=", search_string
-                tablewindow = Tables.Table(search_string, **table_kwargs)
-
+                table_kwargs = dict(table_name=table_name, tournament=tour_number, table_number=tab_number)
+                tablewindow = Tables.Table(self.config, site_name, **table_kwargs)
                 if tablewindow is None:
 #        If no client window is found on the screen, complain and continue
                     if type == "tour":
@@ -319,9 +356,11 @@ class HUD_main(object):
 
             t6 = time.time()
             log.info(_("HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f)")
-                     % (t6-t0,t1-t0,t2-t0,t3-t0,t4-t0,t5-t0,t6-t0))
+                     % (t6 - t0,t1 - t0,t2 - t0,t3 - t0,t4 - t0,t5 - t0,t6 - t0))
             self.db_connection.connection.rollback()
-
+            if type == "tour":
+                tablewindow.check_table_no(None)
+            # Ray!! tablewindow::check_table_no expects a HUD as an argument!
 if __name__== "__main__":
 
 #    start the HUD_main object

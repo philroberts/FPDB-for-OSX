@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Discover_TableWindow.py
+"""Base class for interacting with poker client windows.
 
-Inspects the currently open windows and finds those of interest to us--that is
-poker table windows from supported sites.  Returns a list
-of Table_Window objects representing the windows found.
+There are currently subclasses for X and Windows.
+
+The class queries the poker client window for data of interest, such as
+size and location. It also controls the signals to alert the HUD when the
+client has been resized, destroyed, etc.
 """
-#    Copyright 2008-2010, Ray E. Barker
+#    Copyright 2008 - 2010, Ray E. Barker
 
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -25,37 +27,38 @@ of Table_Window objects representing the windows found.
 ########################################################################
 
 #    Standard Library modules
-import os
-import sys
+import re
 
 #    pyGTK modules
-import pygtk
 import gtk
 import gobject
 
 #    FreePokerTools modules
-import Configuration
-#if os.name == "posix":
-#    import XTables
-#elif os.name == "nt":
-#    import WinTables
+from HandHistoryConverter import getTableTitleRe
+from HandHistoryConverter import getTableNoRe
 
-#    Global used for figuring out the current game being played from the title
-#    The dict key is the fpdb name for the game
+#    Global used for figuring out the current game being played from the title.
+#    The dict key is a tuple of (limit type, category) for the game. 
 #    The list is the names for those games used by the supported poker sites
-#    This is currently only used for HORSE, so it only needs to support those
+#    This is currently only used for mixed games, so it only needs to support those
 #    games on PokerStars and Full Tilt.
-game_names = { #fpdb name      Stars Name   FTP Name
-              "holdem"     : ("Hold\'em"  ,          ),
-              "omahahilo"  : ("Omaha H/L" ,          ),
-              "studhilo"   : ("Stud H/L"  ,          ),
-              "razz"       : ("Razz"      ,          ),
-              "studhi"     : ("Stud"      , "Stud Hi")
+nlpl_game_names = { #fpdb name      Stars Name   FTP Name (if different)
+              ("nl", "holdem"    ) : ("No Limit Hold\'em"  ,                     ),
+              ("pl", "holdem"    ) : ("Pot Limit Hold\'em" ,                     ),
+              ("pl", "omahahi"   ) : ("Pot Limit Omaha"    ,"Pot Limit Omaha Hi" ),
+             }
+limit_game_names = { #fpdb name      Stars Name   FTP Name
+              ("fl", "holdem"    ) : ("Limit Hold\'em"  ,          ),
+              ("fl", "omahahilo" ) : ("Limit Omaha H/L" ,          ),
+              ("fl", "studhilo"  ) : ("Limit Stud H/L"  ,          ),
+              ("fl", "razz"      ) : ("Limit Razz"      ,          ),
+              ("fl", "studhi"    ) : ("Limit Stud"      , "Stud Hi"),
+              ("fl", "27_3draw"  ) : ("Limit Triple Draw 2-7 Lowball",          )
              }
 
-#    A window title might have our table name + one of theses words/
+#    A window title might have our table name + one of these words/
 #    phrases. If it has this word in the title, it is not a table.
-bad_words = ('History for table:', 'HUD:', 'Chat:')
+bad_words = ('History for table:', 'HUD:', 'Chat:', 'FPDBHUD')
 
 #    Here are the custom signals we define for allowing the 'client watcher'
 #    thread to communicate with the gui thread. Any time a poker client is
@@ -76,11 +79,19 @@ gobject.signal_new("client_destroyed", gtk.Window,
                    gobject.TYPE_NONE,
                    (gobject.TYPE_PYOBJECT,))
 
+gobject.signal_new("game_changed", gtk.Window,
+                   gobject.SIGNAL_RUN_LAST,
+                   gobject.TYPE_NONE,
+                   (gobject.TYPE_PYOBJECT,))
+
+gobject.signal_new("table_changed", gtk.Window,
+                   gobject.SIGNAL_RUN_LAST,
+                   gobject.TYPE_NONE,
+                   (gobject.TYPE_PYOBJECT,))
+
 #    Each TableWindow object must have the following attributes correctly populated:
 #    tw.name = the table name from the title bar, which must to match the table name
-#              from the corresponding hand history.
-#    tw.site = the site name, e.g. PokerStars, FullTilt.  This must match the site
-#            name specified in the config file.
+#              from the corresponding hand record in the db.
 #    tw.number = This is the system id number for the client table window in the
 #                format that the system presents it.  This is Xid in Xwindows and
 #                hwnd in Microsoft Windows.
@@ -92,60 +103,157 @@ gobject.signal_new("client_destroyed", gtk.Window,
 #            to the top left of the display screen.  This also does not include the
 #            title bar and window borders.  To put it another way, this is the
 #            screen location of (0, 0) in the working window.
+#    tournament = Tournament number for a tournament or None for a cash game.
+#    table = Table number for a tournament.
+#    gdkhandle = 
+#    window = 
+#    parent = 
+#    game = 
+#    search_string = 
 
 class Table_Window(object):
-    def __init__(self, search_string, table_name = None, tournament = None, table_number = None):
+    def __init__(self, config, site, table_name = None, tournament = None, table_number = None):
 
+        self.config = config
+        self.site = site
         if tournament is not None and table_number is not None:
-            print "tournament %s, table %s" % (tournament, table_number)
             self.tournament = int(tournament)
             self.table = int(table_number)
             self.name = "%s - %s" % (self.tournament, self.table)
+            self.type = "tour"
+            table_kwargs = dict(tournament = self.tournament, table_number = self.table)
+            self.tableno_re = getTableNoRe(self.config, self.site, tournament = self.tournament)
         elif table_name is not None:
-            # search_string = table_name
             self.name = table_name
+            self.type = "cash"
             self.tournament = None
+            table_kwargs = dict(table_name = table_name)
+
         else:
             return None
 
-        self.find_table_parameters(search_string)
+        self.search_string = getTableTitleRe(self.config, self.site, self.type, **table_kwargs)
+        self.find_table_parameters()
+
+        geo = self.get_geometry()
+        if geo is None:  return None
+        self.width  = geo['width']
+        self.height = geo['height']
+        self.x      = geo['x']
+        self.y      = geo['y']
+        self.oldx   = self.x # attn ray: remove these two lines and update Hud.py::update_table_position()
+        self.oldy   = self.y
+
+        self.game = self.get_game()
 
     def __str__(self):
 #    __str__ method for testing
-        likely_attrs = ("site", "number", "title", "width", "height", "x", "y",
-                        "tournament", "table", "gdkhandle")
+        likely_attrs = ("number", "title", "site", "width", "height", "x", "y",
+                        "tournament", "table", "gdkhandle", "window", "parent",
+                        "game", "search_string", "tableno_re")
         temp = 'TableWindow object\n'
         for a in likely_attrs:
             if getattr(self, a, 0):
                 temp += "    %s = %s\n" % (a, getattr(self, a))
         return temp
 
+####################################################################
+#    "get" methods. These query the table and return the info to get.
+#    They don't change the data in the table and are generally used
+#    by the "check" methods. Most of the get methods are in the 
+#    subclass because they are specific to X, Windows, etc.
     def get_game(self):
-        title = self.get_window_title()
-        print title
-        for game, names in game_names.iteritems():
+#        title = self.get_window_title()
+#        if title is None:
+#            return False
+        title = self.title
+
+#    check for nl and pl games first, to avoid bad matches
+        for game, names in nlpl_game_names.iteritems():
             for name in names:
                 if name in title:
                     return game
-        return None
+        for game, names in limit_game_names.iteritems():
+            for name in names:
+                if name in title:
+                    return game
+        return False
 
-    def check_geometry(self):
+    def get_table_no(self):
+        new_title = self.get_window_title()
+        if new_title is None:
+            return False
+
+        mo = re.search(self.tableno_re, new_title)
+        if mo is not None:
+            print "get_table_no: mo=",mo.groups()
+            return mo.group(1)
+        return False
+
+####################################################################
+#    check_table() is meant to be called by the hud periodically to
+#    determine if the client has been moved or resized. check_table()
+#    also checks and signals if the client has been closed. 
+    def check_table(self, hud):
+        result = self.check_size()
+        if result != False:
+            hud.parent.main_window.emit(result, hud)
+            if result == "client_destroyed":
+                return True
+
+        result = self.check_loc()
+        if result != False:
+            hud.parent.main_window.emit(result, hud)
+            if result == "client_destroyed":
+                return True
+        return True
+
+####################################################################
+#    "check" methods. They use the corresponding get method, update the
+#    table object and return the name of the signal to be emitted or 
+#    False if unchanged. These do not signal for destroyed
+#    clients to prevent a race condition.
+
+#    These might be called by a Window.timeout, so they must not
+#    return False, or the timeout will be cancelled.
+    def check_game(self, hud):
+        new_game = self.get_game()
+        if new_game is not None and self.game != new_game:
+            self.game = new_game
+            hud.main_window.emit("game_changed", hud)
+            return "game_changed"
+        return True
+
+    def check_size(self):
         new_geo = self.get_geometry()
-
         if new_geo is None:   # window destroyed
             return "client_destroyed"
-
-        elif  self.x != new_geo['x'] or self.y != new_geo['y']: # window moved
-            self.x      = new_geo['x']
-            self.y      = new_geo['y']
-            return "client_moved"
 
         elif  self.width  != new_geo['width'] or self.height != new_geo['height']:    # window resized
             self.width  = new_geo['width']
             self.height = new_geo['height']
             return "client_resized"
+        return False  # no change
 
-        else: return False    # window not changed
+    def check_loc(self):
+        new_geo = self.get_geometry()        
+        if new_geo is None:   # window destroyed
+            return "client_destroyed"
+
+        if self.x != new_geo['x'] or self.y != new_geo['y']: # window moved
+            print self.x, self.y, new_geo['x'], new_geo['y']
+            self.x      = new_geo['x']
+            self.y      = new_geo['y']
+            return "client_moved"
+        return False  # no change
+
+    def check_table_no(self, hud):
+        result = self.get_table_no()
+        if result != False and result != self.table:
+            self.table = result
+            if hud is not None:
+                hud.main_window.emit("table_changed", hud)
+        return True
 
     def check_bad_words(self, title):
         for word in bad_words:

@@ -18,21 +18,12 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 import sys
 import logging
 from HandHistoryConverter import *
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 # Class for converting Everleaf HH format.
 
@@ -75,13 +66,16 @@ class Everleaf(HandHistoryConverter):
             self.re_SitsOut         = re.compile(ur"^%s sits out" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
-        return [["ring", "hold", "nl"],
+        return [
+                ["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
-                ["ring", "studhi", "fl"],
-                ["ring", "omahahi", "pl"],
-                ["ring", "omahahilo", "pl"],
-                ["tour", "hold", "nl"]
+                ["ring", "stud", "fl"],
+                #["ring", "omahahi", "pl"],
+                #["ring", "omahahilo", "pl"],
+                ["tour", "hold", "nl"],
+                ["tour", "hold", "fl"],
+                ["tour", "hold", "pl"]
                ]
 
     def determineGameType(self, handText):

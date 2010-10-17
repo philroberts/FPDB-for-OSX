@@ -23,19 +23,13 @@ import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("parser")
 
-DEBUG = False
-
-if DEBUG:
-    import pprint
-    pp = pprint.PrettyPrinter(indent=4)
-
-
 class DerivedStats():
     def __init__(self, hand):
         self.hand = hand
 
-        self.hands = {}
+        self.hands        = {}
         self.handsplayers = {}
+        self.handsactions = {}
 
     def getStats(self, hand):
         
@@ -92,18 +86,17 @@ class DerivedStats():
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
 
-
-        if DEBUG:
-            print "Hands:"
-            pp.pprint(self.hands)
-            print "HandsPlayers:"
-            pp.pprint(self.handsplayers)
+        if self.hand.saveActions:
+            self.assembleHandsActions(self.hand)
 
     def getHands(self):
         return self.hands
 
     def getHandsPlayers(self):
         return self.handsplayers
+
+    def getHandsActions(self):
+        return self.handsactions
 
     def assembleHands(self, hand):
         self.hands['tableName']  = hand.tablename
@@ -182,6 +175,12 @@ class DerivedStats():
             self.handsplayers[player]['rake'] = int(100* hand.rake)/len(hand.collectees)
             if self.handsplayers[player]['street1Seen'] == True:
                 self.handsplayers[player]['wonWhenSeenStreet1'] = 1.0
+            if self.handsplayers[player]['street2Seen'] == True:
+                self.handsplayers[player]['wonWhenSeenStreet2'] = 1.0
+            if self.handsplayers[player]['street3Seen'] == True:
+                self.handsplayers[player]['wonWhenSeenStreet3'] = 1.0
+            if self.handsplayers[player]['street4Seen'] == True:
+                self.handsplayers[player]['wonWhenSeenStreet4'] = 1.0
             if self.handsplayers[player]['sawShowdown'] == True:
                 self.handsplayers[player]['wonAtSD'] = 1.0
 
@@ -207,6 +206,36 @@ class DerivedStats():
         # 3betSB, 3betBB
         # Squeeze, Ratchet?
 
+    def assembleHandsActions(self, hand):
+        k = 0
+        for i, street in enumerate(hand.actionStreets):
+            for j, act in enumerate(hand.actions[street]):
+                k += 1
+                self.handsactions[k] = {}
+                #default values
+                self.handsactions[k]['amount'] = 0
+                self.handsactions[k]['raiseTo'] = 0
+                self.handsactions[k]['amountCalled'] = 0
+                self.handsactions[k]['numDiscarded'] = 0
+                self.handsactions[k]['cardsDiscarded'] = None
+                self.handsactions[k]['allIn'] = False
+                #Insert values from hand.actions
+                self.handsactions[k]['player'] = act[0]
+                self.handsactions[k]['street'] = i-1
+                self.handsactions[k]['actionNo'] = k
+                self.handsactions[k]['streetActionNo'] = (j+1)
+                self.handsactions[k]['actionId'] = hand.ACTION[act[1]]
+                if act[1] not in ('discards') and len(act) > 2:
+                    self.handsactions[k]['amount'] = int(100 * act[2])
+                if act[1] in ('raises', 'completes'):
+                    self.handsactions[k]['raiseTo'] = int(100 * act[3])
+                    self.handsactions[k]['amountCalled'] = int(100 * act[4])
+                if act[1] in ('discards'):
+                    self.handsactions[k]['numDiscarded'] = int(act[2])
+                if act[1] in ('discards') and len(act) > 3:
+                    self.handsactions[k]['cardsDiscarded'] = act[3]
+                if len(act) > 3 and act[1] not in ('discards'):
+                    self.handsactions[k]['allIn'] = act[-1]
 
     def setPositions(self, hand):
         """Sets the position for each player in HandsPlayers
@@ -239,8 +268,8 @@ class DerivedStats():
         else:
             # set blinds first, then others from pfbao list, avoids problem if bb
             # is missing from pfbao list or if there is no small blind
-            bb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[2] == 'big blind']
-            sb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[2] == 'small blind']
+            bb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'big blind']
+            sb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'small blind']
             # if there are > 1 sb or bb only the first is used!
             if bb:
                 self.handsplayers[bb[0]]['position'] = 'B'

@@ -1,0 +1,40 @@
+Everleaf Gaming Game #190070009
+***** Hand history for game #190070009 *****
+Blinds $0.01/$0.02 NL Hold'em - 2010/08/03 - 17:00:00
+Table Los Angeles XV
+Seat 2 is the button
+Total number of players: 8
+Seat 1: Player1 (  $ 0.98 USD )
+Seat 2: Player2 (  $ 1.95 USD )
+Seat 3: Player3 (  $ 0.94 USD )
+Seat 4: Player4 (  $ 1.80 USD )
+Seat 5: Player5 (  $ 0.40 USD )
+Seat 8: Player6 (  $ 1.51 USD )
+Seat 9: Player7 (  $ 0.03 USD )
+Seat 10: Player8 (  $ 4.19 USD )
+Player3: posts small blind [$ 0.01 USD]
+Player4: posts big blind [$ 0.02 USD]
+** Dealing down cards **
+Player5 calls [$ 0.02 USD]
+Player6 folds
+Player7 calls [$ 0.02 USD]
+Player8 folds
+Player1 calls [$ 0.02 USD]
+Player2 folds
+Player3 calls [$ 0.01 USD]
+Player4 raises [$ 0.18 USD]
+Player5 folds
+Player7 calls [$ 0.01 USD]
+Player1 raises [$ 0.96 USD]
+Player3 folds
+Player4 calls [$ 0.78 USD]
+** Dealing Flop ** [ 6d, Jc, Js ]
+** Dealing Turn ** [ 3d ]
+** Dealing River ** [ 9d ]
+Player1 shows [ 4c, 4d ] two pairs, jacks and fours
+Player4 shows [ 8c, 8h ] two pairs, jacks and eights
+Player7 shows [ 5s, Td ] a pair of jacks
+Player4 wins $ 0.13 USD from main pot with two pairs, jacks and
+eights [ Jc, Js, 9d, 8c, 8h ]
+Player4 wins $ 1.81 USD from side pot with two pairs, jacks and
+eights [ Jc, Js, 9d, 8c, 8h ]

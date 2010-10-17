@@ -15,22 +15,13 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 import os
 import sys
 import re
 import Queue
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 # if path is set to use an old version of python look for a new one:
 # (does this work in linux?)
@@ -122,6 +113,7 @@ import GuiTourneyViewer
 import GuiPositionalStats
 import GuiAutoImport
 import GuiGraphViewer
+import GuiTourneyGraphViewer
 import GuiSessionViewer
 import SQL
 import Database
@@ -778,6 +770,7 @@ class fpdb:
                   <menuitem action="autoimp"/>
                   <menuitem action="hudConfigurator"/>
                   <menuitem action="graphs"/>
+                  <menuitem action="tourneygraphs"/>
                   <menuitem action="ringplayerstats"/>
                   <menuitem action="tourneyplayerstats"/>
                   <menuitem action="tourneyviewer"/>
@@ -817,6 +810,7 @@ class fpdb:
                                  ('autoimp', None, _('_Auto Import and HUD'), _('<control>A'), 'Auto Import and HUD', self.tab_auto_import),
                                  ('hudConfigurator', None, _('_HUD Configurator'), _('<control>H'), 'HUD Configurator', self.diaHudConfigurator),
                                  ('graphs', None, _('_Graphs'), _('<control>G'), 'Graphs', self.tabGraphViewer),
+                                 ('tourneygraphs', None, _('Tourney Graphs'), None, 'TourneyGraphs', self.tabTourneyGraphViewer),
                                  ('ringplayerstats', None, _('Ring _Player Stats (tabulated view, not on pgsql)'), _('<control>P'), 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
                                  ('tourneyplayerstats', None, _('_Tourney Player Stats (tabulated view, not on pgsql)'), _('<control>T'), 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
                                  ('tourneyviewer', None, _('Tourney _Viewer'), None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
@@ -996,7 +990,7 @@ class fpdb:
 
     def tab_bulk_import(self, widget, data=None):
         """opens a tab for bulk importing"""
-        new_import_thread = GuiBulkImport.GuiBulkImport(self.settings, self.config, self.sql)
+        new_import_thread = GuiBulkImport.GuiBulkImport(self.settings, self.config, self.sql, self.window)
         self.threads.append(new_import_thread)
         bulk_tab=new_import_thread.get_vbox()
         self.add_and_display_tab(bulk_tab, _("Bulk Import"))
@@ -1066,6 +1060,13 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         gv_tab = new_gv_thread.get_vbox()
         self.add_and_display_tab(gv_tab, _("Graphs"))
 
+    def tabTourneyGraphViewer(self, widget, data=None):
+        """opens a graph viewer tab"""
+        new_gv_thread = GuiTourneyGraphViewer.GuiTourneyGraphViewer(self.sql, self.config, self.window)
+        self.threads.append(new_gv_thread)
+        gv_tab = new_gv_thread.get_vbox()
+        self.add_and_display_tab(gv_tab, _("Tourney Graphs"))
+
     def __init__(self):
         # no more than 1 process can this lock at a time:
         self.lock = interlocks.InterProcessLock(name="fpdb_global_lock")
@@ -1126,10 +1127,13 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         cards = os.path.join(os.getcwd(), '..','gfx','fpdb-cards.png')
         if os.path.exists(cards):
             self.statusIcon.set_from_file(cards)
+	    self.window.set_icon_from_file(cards)
         elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
             self.statusIcon.set_from_file('/usr/share/pixmaps/fpdb-cards.png')
+            self.window.set_icon_from_file('/usr/share/pixmaps/fpdb-cards.png')
         else:
             self.statusIcon.set_from_stock(gtk.STOCK_HOME)
+            self.window.set_icon_stock(gtk.STOCK_HOME)
         self.statusIcon.set_tooltip("Free Poker Database")
         self.statusIcon.connect('activate', self.statusicon_activate)
         self.statusMenu = gtk.Menu()
@@ -1214,6 +1218,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         return response
 
     def validate_config(self):
+        # can this be removed now?
         if self.config.get_import_parameters().get('saveStarsHH'):
             hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
             hhbase    = os.path.expanduser(hhbase)
@@ -1232,6 +1237,50 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
                         self.warning_box(_("WARNING: Unable to create hand output directory. Importing is not likely to work until this is fixed."))
                 elif response == gtk.RESPONSE_NO:
                     self.select_hhArchiveBase()
+
+        # check if sites in config file are in DB
+        for site in self.config.get_supported_sites(True):    # get site names from config file
+            try:
+                self.config.get_site_id(site)                     # and check against list from db
+            except KeyError as exc:
+                log.warning("site %s missing from db" % site)
+                dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Unknown Site")
+                diastring = _("WARNING: Unable to find site  '%s'\n\nPress YES to add this site to the database.") % site
+                dia.format_secondary_text(diastring)
+                response = dia.run()
+                dia.destroy()
+                if response == gtk.RESPONSE_YES:
+                    self.add_site(site)
+
+    def add_site(self, site):
+        dia = gtk.Dialog( title="Add Site", parent=self.window
+                        , flags=gtk.DIALOG_DESTROY_WITH_PARENT
+                        , buttons=(gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT
+                                  ,gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
+                        )
+
+        h = gtk.HBox()
+        dia.vbox.pack_start(h, padding=5)  # sets horizontal padding
+        label = gtk.Label( _("\nEnter short code for %s\n(up to 3 characters):\n") % site )
+        h.pack_start(label, padding=20)     # sets horizontal padding
+        #label.set_alignment(1.0, 0.5)
+        
+        h = gtk.HBox()
+        dia.vbox.add(h)
+        e_code = gtk.Entry(max=3)
+        e_code.set_width_chars(5)
+        h.pack_start(e_code, True, False, padding=5)
+
+        label = gtk.Label( "" )
+        dia.vbox.add(label) # create space below entry, maybe padding arg above makes this redundant?
+
+        dia.show_all()
+        response = dia.run()
+        site_code = e_code.get_text()
+        if response == gtk.RESPONSE_ACCEPT and site_code is not None and site_code != "":
+            self.db.add_site(site, site_code)
+            self.db.commit()
+        dia.destroy()
 
     def main(self):
         gtk.main()

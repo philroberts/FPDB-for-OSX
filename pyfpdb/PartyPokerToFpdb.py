@@ -18,20 +18,11 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 import sys
 from collections import defaultdict
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 from Exceptions import FpdbParseError
 from HandHistoryConverter import *
@@ -61,7 +52,7 @@ class PartyPoker(HandHistoryConverter):
     re_GameInfoRing     = re.compile("""
             (?P<CURRENCY>\$|)\s*(?P<RINGLIMIT>[.,0-9]+)([.,0-9/$]+)?\s*(?:USD)?\s*
             (?P<LIMIT>(NL|PL|))\s*
-            (?P<GAME>(Texas\ Hold\'em|Omaha))
+            (?P<GAME>(Texas\ Hold\'em|Omaha|7 Card Stud Hi-Lo))
             \s*\-\s*
             (?P<DATETIME>.+)
             """, re.VERBOSE)
@@ -199,6 +190,10 @@ class PartyPoker(HandHistoryConverter):
         m = self._getGameType(handText)
         m_20BBmin = self.re_20BBmin.search(handText)
         if m is None:
+            tmp = handText[0:100]
+            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("determineGameType: Raising FpdbParseError"))
+            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
             return None
 
         mg = m.groupdict()
@@ -207,6 +202,7 @@ class PartyPoker(HandHistoryConverter):
         games = {                          # base, category
                          "Texas Hold'em" : ('hold','holdem'),
                                 'Omaha' : ('hold','omahahi'),
+                     "7 Card Stud Hi-Lo" : ('stud','studhi'),
                }
         currencies = { '$':'USD', '':'T$' }
 
@@ -353,10 +349,54 @@ class PartyPoker(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
-        players = []
+        maxKnownStack = 0
+        zeroStackPlayers = []
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'),
-                           clearMoneyString(a.group('CASH')))
+            if a.group('CASH') > '0':
+                #record max known stack for use with players with unknown stack
+                maxKnownStack = max(a.group('CASH'),maxKnownStack)
+                hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), clearMoneyString(a.group('CASH')))
+            else:
+                #zero stacked players are added later
+                zeroStackPlayers.append([int(a.group('SEAT')), a.group('PNAME'), clearMoneyString(a.group('CASH'))])
+
+        if hand.gametype['type'] == 'ring':
+            #finds first vacant seat after an exact seat
+            def findFirstEmptySeat(startSeat):
+                while startSeat in occupiedSeats:
+                    if startSeat >= hand.maxseats:
+                        startSeat = 0
+                    startSeat += 1
+                return startSeat
+
+            re_JoiningPlayers = re.compile(r"(?P<PLAYERNAME>.*) has joined the table")
+            re_BBPostingPlayers = re.compile(r"(?P<PLAYERNAME>.*) posts big blind")
+
+            match_JoiningPlayers = re_JoiningPlayers.findall(hand.handText)
+            match_BBPostingPlayers = re_BBPostingPlayers.findall(hand.handText)
+
+            #add every player with zero stack, but:
+            #if a zero stacked player is just joined the table in this very hand then set his stack to maxKnownStack
+            for p in zeroStackPlayers:
+                if p[1] in match_JoiningPlayers:
+                    p[2] = clearMoneyString(maxKnownStack)
+                hand.addPlayer(p[0],p[1],p[2])
+
+            seatedPlayers = list([(f[1]) for f in hand.players])
+
+            #it works for all known cases as of 2010-09-28
+            #should be refined with using match_ActivePlayers instead of match_BBPostingPlayers
+            #as a leaving and rejoining player could be active without posting a BB (sample HH needed)
+            unseatedActivePlayers = list(set(match_BBPostingPlayers) - set(seatedPlayers))
+
+            if unseatedActivePlayers:
+                for player in unseatedActivePlayers:
+                    previousBBPoster = match_BBPostingPlayers[match_BBPostingPlayers.index(player)-1]
+                    previousBBPosterSeat = dict([(f[1], f[0]) for f in hand.players])[previousBBPoster]
+                    occupiedSeats = list([(f[0]) for f in hand.players])
+                    occupiedSeats.sort()
+                    newPlayerSeat = findFirstEmptySeat(previousBBPosterSeat)
+                    hand.addPlayer(newPlayerSeat,player,clearMoneyString(maxKnownStack))
 
     def markStreets(self, hand):
         m =  re.search(

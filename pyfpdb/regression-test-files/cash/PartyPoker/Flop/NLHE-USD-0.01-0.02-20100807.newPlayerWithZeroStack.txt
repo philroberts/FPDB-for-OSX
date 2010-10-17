@@ -1,0 +1,45 @@
+Game #9507514114 starts.
+
+#Game No : 9507514114 
+***** Hand History for Game 9507514114 *****
+$2 USD NL Texas Hold'em - Saturday, August 07, 17:05:05 CEST 2010
+Table Table  178053 (Real Money)
+Seat 3 is the button
+Total number of players : 9/9 
+Seat 9: Player1 ( $1.60 USD )
+Seat 4: Player2 ( $1.98 USD )
+Seat 7: Player3 ( $2.90 USD )
+Seat 3: Player4 ( $1.97 USD )
+Seat 8: Player5 ( $2.43 USD )
+Seat 6: Player6 ( $2 USD )
+Seat 5: Player7 ( $2 USD )
+Seat 2: Player8 ( $0 USD )
+Seat 1: Player9 ( $1.83 USD )
+Player8 has joined the table.
+Player2 posts small blind [$0.01 USD].
+Player7 posts big blind [$0.02 USD].
+Player8 posts big blind [$0.02 USD].
+** Dealing down cards **
+Dealt to Player3 [  7c 6c ]
+Player6 calls [$0.02 USD]
+Player3 calls [$0.02 USD]
+Player5 calls [$0.02 USD]
+Player1 folds
+Player9 folds
+Player8 checks
+Player4 folds
+Player2 calls [$0.01 USD]
+Player7 checks
+** Dealing Flop ** [ 5d, 2s, 8h ]
+Player2 checks
+Player7 bets [$0.09 USD]
+Player6 folds
+Player3 calls [$0.09 USD]
+Player5 folds
+Player8 folds
+Player2 folds
+** Dealing Turn ** [ Kd ]
+Player7 bets [$0.21 USD]
+Player3 folds
+Player7 does not show cards.
+Player7 wins $0.50 USD

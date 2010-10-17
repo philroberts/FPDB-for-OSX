@@ -23,8 +23,13 @@ Handles HUD configuration files.
 
 ########################################################################
 
+
 #    Standard Library modules
 from __future__ import with_statement
+
+import L10n
+_ = L10n.get_translation()
+
 import os
 import sys
 import inspect
@@ -35,18 +40,6 @@ import locale
 import re
 import xml.dom.minidom
 from xml.dom.minidom import Node
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 import logging, logging.config
 import ConfigParser
@@ -484,7 +477,7 @@ class Import:
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
         self.hhBulkPath = node.getAttribute("hhBulkPath")
-        self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=True)
+        self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=False)
         self.fastStoreHudCache = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
         self.saveStarsHH = string_to_bool(node.getAttribute("saveStarsHH"), default=False)
 
@@ -577,7 +570,8 @@ class GUICashStats(list):
 
     def get_defaults(self):
         """A list of defaults to be called, should there be no entry in config"""
-        defaults = [   [u'game', u'Game', True, True, u'%s', u'str', 0.0],
+        # SQL column name, display title, display all, display positional, format, type, alignment
+        defaults = [   [u'game', u'Game', True, True, u'%s', u'str', 0.0],       
             [u'hand', u'Hand', False, False, u'%s', u'str', 0.0],
             [u'plposition', u'Posn', False, False, u'%s', u'str', 1.0],
             [u'pname', u'Name', False, False, u'%s', u'str', 0.0],
@@ -680,6 +674,7 @@ class Config:
                 sys.stderr.write(_("Configuration file %s not found.  Using defaults.") % (file))
                 file = None
 
+        self.example_copy,example_file = True,None
         if file is None: (file,self.example_copy,example_file) = get_config("HUD_config.xml", True)
 
         self.file = file
@@ -697,10 +692,11 @@ class Config:
         self.aux_windows = {}
         self.hhcs = {}
         self.popup_windows = {}
-        self.db_selected = None    # database the user would like to use
+        self.db_selected = None              # database the user would like to use
         self.general = General()
         self.emails = {}
         self.gui_cash_stats = GUICashStats()
+        self.site_ids = {}                   # site ID list from the database
 
         added,n = 1,0  # use n to prevent infinite loop if add_missing_elements() fails somehow
         while added > 0 and n < 2:
@@ -1261,7 +1257,7 @@ class Config:
         except:  imp['hhBulkPath']    = ""
 
         try:    imp['saveActions']     = self.imp.saveActions
-        except:  imp['saveActions']     = True
+        except:  imp['saveActions']     = False
 
         try:    imp['saveStarsHH'] = self.imp.saveStarsHH
         except:  imp['saveStarsHH'] = False
@@ -1390,6 +1386,12 @@ class Config:
             if font_size      is not None: site_node.setAttribute("font_size", font_size)
         return
 
+    def set_site_ids(self, sites):
+        self.site_ids = dict(sites)
+
+    def get_site_id(self, site):
+        return( self.site_ids[site] )
+        
     def get_aux_windows(self):
         """Gets the list of mucked window formats in the configuration."""
         return self.aux_windows.keys()

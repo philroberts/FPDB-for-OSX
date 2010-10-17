@@ -21,6 +21,9 @@
 
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 #    to do allow window resizing
 #    to do hud to echo, but ignore non numbers
 #    to do no stat window for hero
@@ -33,18 +36,6 @@ import Options
 import traceback
 
 (options, argv) = Options.fpdb_options()
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 if not options.errorsToConsole:
     print _("Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_.")

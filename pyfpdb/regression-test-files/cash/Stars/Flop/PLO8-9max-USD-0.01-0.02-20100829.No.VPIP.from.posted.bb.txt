@@ -1,0 +1,64 @@
+PokerStars Game #48850962136:  Omaha Hi/Lo Pot Limit ($0.01/$0.02 USD) - 2010/08/29 13:22:48 PT [2010/08/29 16:22:48 ET]
+Table 'Jiangxi IV' 9-max Seat #6 is the button
+Seat 1: 2TONTOM ($0.94 in chips)
+Seat 2: RadRandyF ($2.48 in chips)
+Seat 3: 1meandog4u ($5 in chips)
+Seat 4: Mr NoNo! Srb ($5.31 in chips)
+Seat 5: toxic7 ($4.84 in chips)
+Seat 6: jthegreat ($5.57 in chips)
+Seat 7: CoinJock ($2.80 in chips)
+Seat 8: ros-r-reed ($1.52 in chips)
+Seat 9: skinner1947 ($1.82 in chips)
+CoinJock: posts small blind $0.01
+ros-r-reed: posts big blind $0.02
+1meandog4u: posts big blind $0.02
+*** HOLE CARDS ***
+Dealt to 1meandog4u [Qs Th 3c 3h]
+skinner1947: folds
+2TONTOM: folds
+RadRandyF: calls $0.02
+1meandog4u: checks
+Mr NoNo! Srb: calls $0.02
+toxic7: calls $0.02
+jthegreat: calls $0.02
+CoinJock: calls $0.01
+ros-r-reed: checks
+*** FLOP *** [4d 9c Ts]
+CoinJock: checks
+ros-r-reed: checks
+RadRandyF: checks
+1meandog4u: checks
+Mr NoNo! Srb: checks
+toxic7: checks
+jthegreat: checks
+*** TURN *** [4d 9c Ts] [Kd]
+CoinJock: checks
+ros-r-reed: checks
+RadRandyF: checks
+1meandog4u: checks
+Mr NoNo! Srb: checks
+toxic7: bets $0.14
+jthegreat: folds
+CoinJock: folds
+ros-r-reed: folds
+RadRandyF: folds
+1meandog4u: folds
+Mr NoNo! Srb: folds
+Uncalled bet ($0.14) returned to toxic7
+toxic7 collected $0.14 from pot
+toxic7: doesn't show hand
+*** SUMMARY ***
+Total pot $0.14 | Rake $0
+Board [4d 9c Ts Kd]
+Seat 1: 2TONTOM folded before Flop (didn't bet)
+Seat 2: RadRandyF folded on the Turn
+Seat 3: 1meandog4u folded on the Turn
+Seat 4: Mr NoNo! Srb folded on the Turn
+Seat 5: toxic7 collected ($0.14)
+Seat 6: jthegreat (button) folded on the Turn
+Seat 7: CoinJock (small blind) folded on the Turn
+Seat 8: ros-r-reed (big blind) folded on the Turn
+Seat 9: skinner1947 folded before Flop (didn't bet)
+
+
+
