@@ -184,9 +184,13 @@ class Table_Window(object):
         if new_title is None:
             return False
 
-        mo = re.search(self.tableno_re, new_title)
+        try:
+              mo = re.search(self.tableno_re, new_title)
+        except AttributeError: #'Table' object has no attribute 'tableno_re'
+              return False
+              
         if mo is not None:
-            print "get_table_no: mo=",mo.groups()
+            #print "get_table_no: mo=",mo.groups()
             return mo.group(1)
         return False
 

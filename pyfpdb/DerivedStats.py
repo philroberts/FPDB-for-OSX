@@ -243,44 +243,34 @@ class DerivedStats():
             first betting round is 0
             NOTE: HU, both values are negative for non-stud games
             NOTE2: I've never seen a HU stud match"""
-        # The position calculation must be done differently for Stud and other games as
-        # Stud the 'blind' acts first - in all other games they act last.
-        #
-        #This function is going to get it wrong when there in situations where there
-        # is no small blind. I can live with that.
         actions = hand.actions[hand.holeStreets[0]]
         # Note:  pfbao list may not include big blind if all others folded
         players = self.pfbao(actions)
 
+        # set blinds first, then others from pfbao list, avoids problem if bb
+        # is missing from pfbao list or if there is no small blind
+        sb, bb, bi = False, False, False
         if hand.gametype['base'] == 'stud':
-            positions = [7, 6, 5, 4, 3, 2, 1, 0, 'S', 'B']
-            seats = len(players)
-            map = []
-            # Could posibly change this to be either -2 or -1 depending if they complete or bring-in
-            # First player to act is -1, last player is 0 for 6 players it should look like:
-            # ['S', 4, 3, 2, 1, 0]
-            map = positions[-seats-1:-1] # Copy required positions from postions array anding in -1
-            map = map[-1:] + map[0:-1] # and move the -1 to the start of that array
-
-            for i, player in enumerate(players):
-                #print "player %s in posn %s" % (player, str(map[i]))
-                self.handsplayers[player]['position'] = map[i]
+            # Stud position is determined after cards are dealt
+            bi = [x[0] for x in hand.actions[hand.actionStreets[1]] if x[1] == 'bringin']
         else:
-            # set blinds first, then others from pfbao list, avoids problem if bb
-            # is missing from pfbao list or if there is no small blind
             bb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'big blind']
             sb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'small blind']
-            # if there are > 1 sb or bb only the first is used!
-            if bb:
-                self.handsplayers[bb[0]]['position'] = 'B'
-                if bb[0] in players:  players.remove(bb[0])
-            if sb:
-                self.handsplayers[sb[0]]['position'] = 'S'
-                if sb[0] in players:  players.remove(sb[0])
 
-            #print "bb =", bb, "sb =", sb, "players =", players
-            for i,player in enumerate(reversed(players)):
-                self.handsplayers[player]['position'] = i
+        # if there are > 1 sb or bb only the first is used!
+        if bb:
+            self.handsplayers[bb[0]]['position'] = 'B'
+            if bb[0] in players:  players.remove(bb[0])
+        if sb:
+            self.handsplayers[sb[0]]['position'] = 'S'
+            if sb[0] in players:  players.remove(sb[0])
+        if bi:
+            self.handsplayers[bi[0]]['position'] = 'S'
+            if bi[0] in players:  players.remove(bi[0])
+
+        #print "DEBUG: bb: '%s' sb: '%s' bi: '%s' plyrs: '%s'" %(bb, sb, bi, players)
+        for i,player in enumerate(reversed(players)):
+            self.handsplayers[player]['position'] = i
 
     def assembleHudCache(self, hand):
         # No real work to be done - HandsPlayers data already contains the correct info
@@ -289,7 +279,7 @@ class DerivedStats():
     def vpip(self, hand):
         vpipers = set()
         for act in hand.actions[hand.actionStreets[1]]:
-            if act[1] in ('calls','bets', 'raises'):
+            if act[1] in ('calls','bets', 'raises', 'completes'):
                 vpipers.add(act[0])
 
         self.hands['playersVpi'] = len(vpipers)
@@ -387,9 +377,9 @@ class DerivedStats():
             if steal_attempt and act != 'folds':
                 break
 
-            if not steal_attempt and not raised: # if posn in steal_positions and not steal_attempt:
+            if not steal_attempt and not raised and not act in ('bringin'):
                 self.handsplayers[pname]['raiseFirstInChance'] = True
-                if act in ('bets', 'raises'):
+                if act in ('bets', 'raises', 'completes'):
                     self.handsplayers[pname]['raisedFirstIn'] = True
                     raised = True
                     if posn in steal_positions:
@@ -397,7 +387,7 @@ class DerivedStats():
                 if act == 'calls':
                     break
             
-            if posn not in steal_positions and act != 'folds':
+            if posn not in steal_positions and act not in ('folds', 'bringin'):
                 break
 
     def calc34BetStreet0(self, hand):
