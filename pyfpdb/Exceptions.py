@@ -73,3 +73,6 @@ class FpdbHandDuplicate(FpdbHandError):
 
 class FpdbHandPartial(FpdbHandError):
     pass
+
+class FpdbEndOfFile(FpdbHandError):
+    pass

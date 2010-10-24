@@ -49,6 +49,7 @@ from TableWindow import Table_Window
 b_width = 3
 tb_height = 29
 
+
 class Table(Table_Window):
 
     def find_table_parameters(self):
@@ -56,43 +57,50 @@ class Table(Table_Window):
         titles = {}
         win32gui.EnumWindows(win_enum_handler, titles)
         for hwnd in titles:
-            if titles[hwnd] == "": continue
+            if titles[hwnd] == "":
+                continue
             if re.search(self.search_string, titles[hwnd]):
-                if self.check_bad_words(titles[hwnd]): continue
+                if self.check_bad_words(titles[hwnd]):
+                    continue
                 self.window = hwnd
                 break
 
         try:
             if self.window == None:
-                log.error( "Window %s not found. Skipping." % self.search_string )
+                log.error(_("Window %s not found. Skipping." % self.search_string))
                 return None
         except AttributeError:
             log.error(_("self.window doesn't exist? why?"))
             return None
 
-        self.title  = titles[hwnd]
-        self.hud    = None
+        self.title = titles[hwnd]
+        self.hud = None
         self.number = hwnd
 
     def get_geometry(self):
-        if not win32gui.IsWindow(self.number):  # window closed
-            return None
-
         try:
-            (x, y, width, height) = win32gui.GetWindowRect(self.number)
-            #print "x=",x,"y=",y,"width=",width,"height=",height
-            width = width - x
-            height = height - y
-            return {'x'      : int(x) + b_width,
+            if win32gui.IsWindow(self.number):
+                (x, y, width, height) = win32gui.GetWindowRect(self.number)
+                # this apparently returns x = far left side of window, width = far right side of window, y = top of window, height = bottom of window
+                # so apparently we have to subtract x from "width" to get actual width, and y from "height" to get actual height ?
+                # it definitely gives slightly different results than the GTK code that does the same thing.
+                #print "x=", x, "y=", y, "width=", width, "height=", height
+                width = width - x
+                height = height - y
+                return {
+                    'x'      : int(x) + b_width,
                     'y'      : int(y) + tb_height,
                     'height' : int(height) - y,
                     'width'  : int(width) - x
-                   }
-        except:
+                }
+        except AttributeError:
             return None
 
     def get_window_title(self):
-        return win32gui.GetWindowText(self.window)
+        try: # after window is destroyed, self.window = attribute error
+            return win32gui.GetWindowText(self.window)
+        except AttributeError:
+            return ""
 
 #    def get_nt_exe(self, hwnd):
 #        """Finds the name of the executable that the given window handle belongs to."""
@@ -144,6 +152,7 @@ class Table(Table_Window):
 #                break
 
 #        hud.main_window.set_title(real_name)
+
 
 def win_enum_handler(hwnd, titles):
     titles[hwnd] = win32gui.GetWindowText(hwnd)
