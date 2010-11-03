@@ -23,8 +23,13 @@ Handles HUD configuration files.
 
 ########################################################################
 
+
 #    Standard Library modules
 from __future__ import with_statement
+
+import L10n
+_ = L10n.get_translation()
+
 import os
 import sys
 import inspect
@@ -70,6 +75,11 @@ def get_exec_path():
 
 def get_config(file_name, fallback = True):
     """Looks in cwd and in self.default_config_path for a config file."""
+
+    # look for example file even if not used here, path is returned to caller
+    config_found,example_found,example_copy = False,False,False
+    config_path, example_path = None,None
+
     exec_dir = get_exec_path()
     if file_name == 'logging.conf' and not hasattr(sys, "frozen"):
         config_path = os.path.join(exec_dir, 'pyfpdb', file_name)
@@ -77,42 +87,58 @@ def get_config(file_name, fallback = True):
         config_path = os.path.join(exec_dir, file_name)
 #    print "config_path=", config_path
     if os.path.exists(config_path):    # there is a file in the cwd
-        return (config_path,False)     # so we use it
+        config_found = True            # so we use it
     else: # no file in the cwd, look where it should be in the first place
         default_dir = get_default_config_path()
         config_path = os.path.join(default_dir, file_name)
 #        print "config path 2=", config_path
         if os.path.exists(config_path):
-            return (config_path,False)
+            config_found = True
 
-#    No file found
-    if not fallback:
-        return (False,False)
+# Example configuration for debian package
+    if os.name == 'posix':
+        # If we're on linux, try to copy example from the place
+        # debian package puts it; get_default_config_path() creates
+        # the config directory for us so there's no need to check it
+        # again
+        example_path = '/usr/share/python-fpdb/' + file_name + '.example'
+        if not config_found and fallback:
+            try:
+                shutil.copyfile(example_path, config_path)
+                example_copy = True
+                msg = _("Config file has been created at %s.\n") % config_path
+                logging.info(msg)
+            except IOError:
+                pass
 
 #    OK, fall back to the .example file, should be in the start dir
-    if os.path.exists(file_name + ".example"):
+    elif os.path.exists(file_name + ".example"):
         try:
             print ""
+            example_path = file_name + ".example"
             check_dir(default_dir)
-            shutil.copyfile(file_name + ".example", config_path)
-            msg = "No %s found\n  in %s\n  or %s\n" % (file_name, exec_dir, default_dir) \
-                  + "Config file has been created at %s.\n" % config_path
-            print msg
-            logging.info(msg)
-            file_name = config_path
+            if not config_found and fallback:
+                shutil.copyfile(example_path, config_path)
+                example_copy = True
+                msg = _("No %s found\n  in %s\n  or %s\n") % (file_name, exec_dir, default_dir) \
+                      + _("Config file has been created at %s.\n") % config_path
+                print msg
+                logging.info(msg)
         except:
-            print "Error copying .example file, cannot fall back. Exiting.\n"
-            sys.stderr.write("Error copying .example file, cannot fall back. Exiting.\n")
+            print _("Error copying .example config file, cannot fall back. Exiting.\n")
+            sys.stderr.write(_("Error copying .example config file, cannot fall back. Exiting.\n"))
             sys.stderr.write( str(sys.exc_info()) )
             sys.exit()
-    else:
-        print "No %s found, cannot fall back. Exiting.\n" % file_name
-        sys.stderr.write("No %s found, cannot fall back. Exiting.\n" % file_name)
+    elif fallback:
+        print _("No %s found, cannot fall back. Exiting.\n") % file_name
+        sys.stderr.write(_("No %s found, cannot fall back. Exiting.\n") % file_name)
         sys.exit()
-    return (file_name,True)
+
+    #print "get_config: returning "+str( (config_path,example_copy,example_path) )
+    return (config_path,example_copy,example_path)
 
 def get_logger(file_name, config = "config", fallback = False, log_dir=None, log_file=None):
-    (conf_file,copied) = get_config(file_name, fallback = fallback)
+    (conf_file,copied,example_file) = get_config(file_name, fallback = fallback)
 
     if log_dir is None:
         log_dir = os.path.join(get_exec_path(), u'log')
@@ -137,8 +163,8 @@ def get_logger(file_name, config = "config", fallback = False, log_dir=None, log
     log = logging.basicConfig(filename=file, level=logging.INFO)
     log = logging.getLogger()
     # but it looks like default is no output :-(  maybe because all the calls name a module?
-    log.debug("Default logger initialised for "+file)
-    print "Default logger intialised for "+file
+    log.debug(_("Default logger initialised for ")+file)
+    print _("Default logger intialised for ")+file
     return log
 
 def check_dir(path, create = True):
@@ -149,7 +175,7 @@ def check_dir(path, create = True):
         else:
             return False
     if create:
-        msg = "Creating directory: '%s'" % (path)
+        msg = _("Creating directory: '%s'") % (path)
         print msg
         log.info(msg)
         os.mkdir(path)#, "utf-8"))
@@ -175,7 +201,7 @@ DATABASE_TYPES = (
 #LOCALE_ENCODING = locale.getdefaultlocale()[1]
 LOCALE_ENCODING = locale.getpreferredencoding()
 if LOCALE_ENCODING == "US-ASCII":
-    print "Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're not on a Mac, please report this problem."
+    print _("Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're not on a Mac, please report this problem.")
     LOCALE_ENCODING = "cp1252"
 
 
@@ -229,6 +255,20 @@ class Layout:
 
         return temp + "\n"
 
+class Email:
+    def __init__(self, node):
+        self.node = node
+        self.host= node.getAttribute("host")
+        self.username = node.getAttribute("username")
+        self.password = node.getAttribute("password")
+        self.useSsl = node.getAttribute("useSsl")
+        self.folder = node.getAttribute("folder")
+        self.fetchType = node.getAttribute("fetchType")
+        
+    def __str__(self):
+        return "    fetchType=%s\n    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
+            % (self.fetchType, self.host, self.username, self.password, self.useSsl, self.folder) 
+
 class Site:
     def __init__(self, node):
         def normalizePath(path):
@@ -257,12 +297,17 @@ class Site:
         self.xshift       = node.getAttribute("xshift")
         self.yshift       = node.getAttribute("yshift")
         self.layout       = {}
+        self.emails       = {}
 
-        print "Loading site", self.site_name
+        print _("Loading site"), self.site_name
 
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
             self.layout[lo.max] = lo
+        
+        for email_node in node.getElementsByTagName('email'):
+            email = Email(email_node)
+            self.emails[email.fetchType] = email
 
 #   Site defaults
         self.xpad = 1 if self.xpad == "" else int(self.xpad)
@@ -432,28 +477,13 @@ class Import:
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
         self.hhBulkPath = node.getAttribute("hhBulkPath")
-        self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=True)
+        self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=False)
         self.fastStoreHudCache = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
         self.saveStarsHH = string_to_bool(node.getAttribute("saveStarsHH"), default=False)
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
             % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.fastStoreHudCache)
-
-class Email:
-    def __init__(self, node):
-        self.node = node
-        self.host= node.getAttribute("host")
-        self.username = node.getAttribute("username")
-        self.password = node.getAttribute("password")
-        self.useSsl = node.getAttribute("useSsl")
-        self.folder = node.getAttribute("folder")
-        self.siteName = node.getAttribute("siteName")
-        self.fetchType = node.getAttribute("fetchType")
-        
-    def __str__(self):
-        return "    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
-            % (self.host, self.username, self.password, self.useSsl, self.folder) 
 
 class HudUI:
     def __init__(self, node):
@@ -477,16 +507,6 @@ class HudUI:
         return "    label = %s\n" % self.label
 
 
-class Tv:
-    def __init__(self, node):
-        self.combinedStealFold = string_to_bool(node.getAttribute("combinedStealFold"), default=True)
-        self.combined2B3B    = string_to_bool(node.getAttribute("combined2B3B"), default=True)
-        self.combinedPostflop  = string_to_bool(node.getAttribute("combinedPostflop"), default=True)
-
-    def __str__(self):
-        return ("    combinedStealFold = %s\n    combined2B3B = %s\n    combinedPostflop = %s\n" %
-                (self.combinedStealFold, self.combined2B3B, self.combinedPostflop) )
-
 class General(dict):
     def __init__(self):
         super(General, self).__init__()
@@ -496,8 +516,22 @@ class General(dict):
         #                e.g. user could set to 4.0 for day to start at 4am local time
         # [ HH_bulk_path was here - now moved to import section ]
         for (name, value) in node.attributes.items():
-            log.debug("config.general: adding %s = %s" % (name,value))
+            log.debug(_("config.general: adding %s = %s") % (name,value))
             self[name] = value
+        
+        try:
+            self["version"]=int(self["version"])
+        except KeyError:
+            self["version"]=0
+            self["ui_language"]="system"
+            self["config_difficulty"]="expert"
+            
+    def get_defaults(self):
+        self["version"]=0
+        self["ui_language"]="system"
+        self["config_difficulty"]="expert"
+        self["config_wrap_len"]="-1"
+        self["day_start"]="5"
 
     def __str__(self):
         s = ""
@@ -529,16 +563,102 @@ class GUICashStats(list):
                 try:
                     if child.hasAttribute('xalignment'):   xalignment   = float(child.getAttribute('xalignment'))
                 except ValueError:
-                    print "bad number in xalignment was ignored"
-                    log.info("bad number in xalignment was ignored")
+                    print _("bad number in xalignment was ignored")
+                    log.info(_("bad number in xalignment was ignored"))
 
                 self.append( [col_name, col_title, disp_all, disp_posn, field_format, field_type, xalignment] )
+
+    def get_defaults(self):
+        """A list of defaults to be called, should there be no entry in config"""
+        # SQL column name, display title, display all, display positional, format, type, alignment
+        defaults = [   [u'game', u'Game', True, True, u'%s', u'str', 0.0],       
+            [u'hand', u'Hand', False, False, u'%s', u'str', 0.0],
+            [u'plposition', u'Posn', False, False, u'%s', u'str', 1.0],
+            [u'pname', u'Name', False, False, u'%s', u'str', 0.0],
+            [u'n', u'Hds', True, True, u'%1.0f', u'str', 1.0],
+            [u'avgseats', u'Seats', False, False, u'%3.1f', u'str', 1.0],
+            [u'vpip', u'VPIP', True, True, u'%3.1f', u'str', 1.0],
+            [u'pfr', u'PFR', True, True, u'%3.1f', u'str', 1.0],
+            [u'pf3', u'PF3', True, True, u'%3.1f', u'str', 1.0],
+            [u'aggfac', u'AggFac', True, True, u'%2.2f', u'str', 1.0],
+            [u'aggfrq', u'AggFreq', True, True, u'%3.1f', u'str', 1.0],
+            [u'conbet', u'ContBet', True, True, u'%3.1f', u'str', 1.0],
+            [u'rfi', u'RFI', True, True, u'%3.1f', u'str', 1.0],
+            [u'steals', u'Steals', True, True, u'%3.1f', u'str', 1.0],
+            [u'saw_f', u'Saw_F', True, True, u'%3.1f', u'str', 1.0],
+            [u'sawsd', u'SawSD', True, True, u'%3.1f', u'str', 1.0],
+            [u'wtsdwsf', u'WtSDwsF', True, True, u'%3.1f', u'str', 1.0],
+            [u'wmsd', u'W$SD', True, True, u'%3.1f', u'str', 1.0],
+            [u'flafq', u'FlAFq', True, True, u'%3.1f', u'str', 1.0],
+            [u'tuafq', u'TuAFq', True, True, u'%3.1f', u'str', 1.0],
+            [u'rvafq', u'RvAFq', True, True, u'%3.1f', u'str', 1.0],
+            [u'pofafq', u'PoFAFq', False, False, u'%3.1f', u'str', 1.0],
+            [u'net', u'Net($)', True, True, u'%6.2f', u'cash', 1.0],
+            [u'bbper100', u'bb/100', True, True, u'%4.2f', u'str', 1.0],
+            [u'rake', u'Rake($)', True, True, u'%6.2f', u'cash', 1.0],
+            [u'bb100xr', u'bbxr/100', True, True, u'%4.2f', u'str', 1.0],
+            [u'variance', u'Variance', True, True, u'%5.2f', u'str', 1.0]
+            ]
+        for col in defaults:
+            self.append (col)
 
 #    def __str__(self):
 #        s = ""
 #        for l in self:
 #            s = s + "    %s = %s\n" % (k, self[k])
 #        return(s)
+
+class RawHands:
+    def __init__(self, node=None):
+        if node==None:
+            self.save="error"
+            self.compression="none"
+            print _("missing config section raw_hands")
+        else:
+            save=node.getAttribute("save")
+            if save in ("none", "error", "all"):
+                self.save=save
+            else:
+                print _("Invalid config value for raw_hands.save, defaulting to \"error\"")
+                self.save="error"
+            
+            compression=node.getAttribute("compression")
+            if save in ("none", "gzip", "bzip2"):
+                self.compression=compression
+            else:
+                print _("Invalid config value for raw_hands.compression, defaulting to \"none\"")
+                self.compression="none"
+    #end def __init__
+
+    def __str__(self):
+        return "        save= %s, compression= %s\n" % (self.save, self.compression)
+#end class RawHands
+
+class RawTourneys:
+    def __init__(self, node=None):
+        if node==None:
+            self.save="error"
+            self.compression="none"
+            print _("missing config section raw_tourneys")
+        else:
+            save=node.getAttribute("save")
+            if save in ("none", "error", "all"):
+                self.save=save
+            else:
+                print _("Invalid config value for raw_tourneys.save, defaulting to \"error\"")
+                self.save="error"
+            
+            compression=node.getAttribute("compression")
+            if save in ("none", "gzip", "bzip2"):
+                self.compression=compression
+            else:
+                print _("Invalid config value for raw_tourneys.compression, defaulting to \"none\"")
+                self.compression="none"
+    #end def __init__
+
+    def __str__(self):
+        return "        save= %s, compression= %s\n" % (self.save, self.compression)
+#end class RawTourneys
 
 class Config:
     def __init__(self, file = None, dbname = ''):
@@ -550,11 +670,12 @@ class Config:
         if file is not None: # config file path passed in
             file = os.path.expanduser(file)
             if not os.path.exists(file):
-                print "Configuration file %s not found.  Using defaults." % (file)
-                sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
+                print _("Configuration file %s not found.  Using defaults.") % (file)
+                sys.stderr.write(_("Configuration file %s not found.  Using defaults.") % (file))
                 file = None
 
-        if file is None: (file,self.example_copy) = get_config("HUD_config.xml", True)
+        self.example_copy,example_file = True,None
+        if file is None: (file,self.example_copy,example_file) = get_config("HUD_config.xml", True)
 
         self.file = file
         self.dir_self = get_exec_path()
@@ -565,41 +686,51 @@ class Config:
         self.log_file = os.path.join(self.dir_log, u'fpdb-log.txt')
         log = get_logger("logging.conf", "config", log_dir=self.dir_log)
 
-#    Parse even if there was no real config file found and we are using the example
-#    If using the example, we'll edit it later
-        log.info("Reading configuration file %s" % file)
-        print "\nReading configuration file %s\n" % file
-        try:
-            doc = xml.dom.minidom.parse(file)
-            self.file_error = None
-        except:
-            log.error("Error parsing %s.  See error log file." % (file))
-            traceback.print_exc(file=sys.stderr)
-            self.file_error = sys.exc_info()[1]
-            # we could add a parameter to decide whether to return or read a line and exit?
-            return
-            #print "press enter to continue"
-            #sys.stdin.readline()
-            #sys.exit()
-#ExpatError: not well-formed (invalid token): line 511, column 4
-#sys.exc_info = (<class 'xml.parsers.expat.ExpatError'>, ExpatError('not well-formed (invalid token): line 511,
-# column 4',), <traceback object at 0x024503A0>)
-
-        self.doc = doc
         self.supported_sites = {}
         self.supported_games = {}
         self.supported_databases = {}        # databaseName --> Database instance
         self.aux_windows = {}
         self.hhcs = {}
         self.popup_windows = {}
-        self.db_selected = None    # database the user would like to use
-        self.tv = None
+        self.db_selected = None              # database the user would like to use
         self.general = General()
+        self.emails = {}
         self.gui_cash_stats = GUICashStats()
+        self.site_ids = {}                   # site ID list from the database
 
+        added,n = 1,0  # use n to prevent infinite loop if add_missing_elements() fails somehow
+        while added > 0 and n < 2:
+            n = n + 1
+            log.info(_("Reading configuration file %s") % file)
+            print _("\nReading configuration file %s\n") % file
+            try:
+                doc = xml.dom.minidom.parse(file)
+                self.doc = doc
+                self.file_error = None
+            except:
+                log.error(_("Error parsing %s.  See error log file.") % (file))
+                traceback.print_exc(file=sys.stderr)
+                self.file_error = sys.exc_info()[1]
+                # we could add a parameter to decide whether to return or read a line and exit?
+                return
+                #print "press enter to continue"
+                #sys.stdin.readline()
+                #sys.exit()
+#ExpatError: not well-formed (invalid token): line 511, column 4
+#sys.exc_info = (<class 'xml.parsers.expat.ExpatError'>, ExpatError('not well-formed (invalid token): line 511,
+# column 4',), <traceback object at 0x024503A0>)
+
+            if not self.example_copy and example_file is not None:
+                # reads example file and adds missing elements into current config
+                added = self.add_missing_elements(doc, example_file)
+
+        if doc.getElementsByTagName("general") == []:
+            self.general.get_defaults()
         for gen_node in doc.getElementsByTagName("general"):
             self.general.add_elements(node=gen_node) # add/overwrite elements in self.general
 
+        if doc.getElementsByTagName("gui_cash_stats") == []:
+            self.gui_cash_stats.get_defaults()
         for gcs_node in doc.getElementsByTagName("gui_cash_stats"):
             self.gui_cash_stats.add_elements(node=gcs_node) # add/overwrite elements in self.gui_cash_stats
 
@@ -625,6 +756,7 @@ class Config:
                 raise ValueError("Database names must be unique")
             if self.db_selected is None or db.db_selected:
                 self.db_selected = db.db_name
+                db_node.setAttribute("default", "True")
             self.supported_databases[db.db_name] = db
         #TODO: if the user may passes '' (empty string) as database name via command line, his choice is ignored
         #           ..when we parse the xml we allow for ''. there has to be a decission if to allow '' or not
@@ -653,16 +785,9 @@ class Config:
             imp = Import(node = imp_node)
             self.imp = imp
 
-        for email_node in doc.getElementsByTagName("email"):
-            email = Email(node = email_node)
-            self.email = email
-
         for hui_node in doc.getElementsByTagName('hud_ui'):
             hui = HudUI(node = hui_node)
             self.ui = hui
-
-        for tv_node in doc.getElementsByTagName("tv"):
-            self.tv = Tv(node = tv_node)
 
         db = self.get_db_parameters()
         if db['db-password'] == 'YOUR MYSQL PASSWORD':
@@ -674,9 +799,54 @@ class Config:
                 self.set_db_parameters(db_name = 'fpdb', db_ip = df_parms['db-host'],
                                      db_user = df_parms['db-user'],
                                      db_pass = df_parms['db-password'])
-                self.save(file=os.path.join(self.default_config_path, "HUD_config.xml"))
-
+                self.save(file=os.path.join(self.dir_config, "HUD_config.xml"))
+        
+        if doc.getElementsByTagName("raw_hands") == []:
+            self.raw_hands = RawHands()
+        for raw_hands_node in doc.getElementsByTagName('raw_hands'):
+            self.raw_hands = RawHands(raw_hands_node)
+        
+        if doc.getElementsByTagName("raw_tourneys") == []:
+            self.raw_tourneys = RawTourneys()
+        for raw_tourneys_node in doc.getElementsByTagName('raw_tourneys'):
+            self.raw_tourneys = RawTourneys(raw_tourneys_node)
+        
         print ""
+    #end def __init__
+
+    def add_missing_elements(self, doc, example_file):
+        """ Look through example config file and add any elements that are not in the config
+            May need to add some 'enabled' attributes to turn things off - can't just delete a
+            config section now because this will add it back in"""
+
+        nodes_added = 0
+
+        try:
+            example_doc = xml.dom.minidom.parse(example_file)
+        except:
+            log.error(_("Error parsing example file %s. See error log file.") % (example_file))
+            return nodes_added
+
+        for cnode in doc.getElementsByTagName("FreePokerToolsConfig"):
+            for example_cnode in example_doc.childNodes:
+                if example_cnode.localName == "FreePokerToolsConfig":
+                    for e in example_cnode.childNodes:
+                        #print "nodetype", e.nodeType, "name", e.localName, "found", len(doc.getElementsByTagName(e.localName))
+                        if e.nodeType == e.ELEMENT_NODE and doc.getElementsByTagName(e.localName) == []:
+                            new = doc.importNode(e, True)  # True means do deep copy
+                            t_node = self.doc.createTextNode("    ")
+                            cnode.appendChild(t_node)
+                            cnode.appendChild(new)
+                            t_node = self.doc.createTextNode("\r\n\r\n")
+                            cnode.appendChild(t_node)
+                            print "... adding missing config section: " + e.localName
+                            nodes_added = nodes_added + 1
+
+        if nodes_added > 0:
+            print "Added %d missing config sections\n" % nodes_added
+            self.save()
+
+        return nodes_added
 
     def set_hhArchiveBase(self, path):
         self.imp.node.setAttribute("hhArchiveBase", path)
@@ -701,6 +871,15 @@ class Config:
         for site_node in self.doc.getElementsByTagName("site"):
             if site_node.getAttribute("site_name") == site:
                 return site_node
+
+    def getEmailNode(self, siteName, fetchType):
+        siteNode = self.get_site_node(siteName)
+        for emailNode in siteNode.getElementsByTagName("email"):
+            if emailNode.getAttribute("fetchType") == fetchType:
+                print "found emailNode"
+                return emailNode
+                break
+    #end def getEmailNode
 
     def getGameNode(self,gameName):
         """returns DOM game node for a given game"""
@@ -776,6 +955,15 @@ class Config:
         else:
             return(l)
 
+    def editEmail(self, siteName, fetchType, newEmail):
+        emailNode = self.getEmailNode(siteName, fetchType)
+        emailNode.setAttribute("host", newEmail.host)
+        emailNode.setAttribute("username", newEmail.username)
+        emailNode.setAttribute("password", newEmail.password)
+        emailNode.setAttribute("folder", newEmail.folder)
+        emailNode.setAttribute("useSsl", newEmail.useSsl)
+    #end def editEmail
+    
     def edit_layout(self, site_name, max, width = None, height = None,
                     fav_seat = None, locations = None):
         site_node   = self.get_site_node(site_name)
@@ -893,7 +1081,11 @@ class Config:
             if db_user   is not None: db_node.setAttribute("db_user", db_user)
             if db_pass   is not None: db_node.setAttribute("db_pass", db_pass)
             if db_server is not None: db_node.setAttribute("db_server", db_server)
-            if defaultb:              db_node.setAttribute("default", default)
+            if defaultb or self.db_selected == db_name:
+                db_node.setAttribute("default", "True")
+                for dbn in self.doc.getElementsByTagName("database"):
+                    if dbn.getAttribute('db_name') != db_name and dbn.hasAttribute("default"):
+                        dbn.removeAttribute("default")
             elif db_node.hasAttribute("default"): 
                 db_node.removeAttribute("default")
         if self.supported_databases.has_key(db_name):
@@ -903,6 +1095,64 @@ class Config:
             if db_pass   is not None: self.supported_databases[db_name].dp_pass   = db_pass
             if db_server is not None: self.supported_databases[db_name].dp_server = db_server
             self.supported_databases[db_name].db_selected = defaultb
+        if defaultb:
+            self.db_selected = db_name
+        return
+
+    def add_db_parameters(self, db_name = 'fpdb', db_ip = None, db_user = None,
+                          db_pass = None, db_desc = None, db_server = None,
+                          default = "False"):
+        default = default.lower()
+        defaultb = string_to_bool(default, False)
+        if db_name in self.supported_databases:
+            raise ValueError("Database names must be unique")
+
+        db_node = self.get_db_node(db_name)
+        if db_node is None:
+            for db_node in self.doc.getElementsByTagName("supported_databases"):
+                # should only be one supported_databases element, use last one if there are several
+                suppdb_node = db_node
+            t_node = self.doc.createTextNode("    ")
+            suppdb_node.appendChild(t_node)
+            db_node = self.doc.createElement("database")
+            suppdb_node.appendChild(db_node)
+            t_node = self.doc.createTextNode("\r\n    ")
+            suppdb_node.appendChild(t_node)
+            db_node.setAttribute("db_name", db_name)
+            if db_desc   is not None: db_node.setAttribute("db_desc", db_desc)
+            if db_ip     is not None: db_node.setAttribute("db_ip", db_ip)
+            if db_user   is not None: db_node.setAttribute("db_user", db_user)
+            if db_pass   is not None: db_node.setAttribute("db_pass", db_pass)
+            if db_server is not None: db_node.setAttribute("db_server", db_server)
+            if defaultb:
+                db_node.setAttribute("default", "True")
+                for dbn in self.doc.getElementsByTagName("database"):
+                    if dbn.getAttribute('db_name') != db_name and dbn.hasAttribute("default"):
+                        dbn.removeAttribute("default")
+            elif db_node.hasAttribute("default"): 
+                db_node.removeAttribute("default")
+        else:
+            if db_desc   is not None: db_node.setAttribute("db_desc", db_desc)
+            if db_ip     is not None: db_node.setAttribute("db_ip", db_ip)
+            if db_user   is not None: db_node.setAttribute("db_user", db_user)
+            if db_pass   is not None: db_node.setAttribute("db_pass", db_pass)
+            if db_server is not None: db_node.setAttribute("db_server", db_server)
+            if defaultb or self.db_selected == db_name:
+                                      db_node.setAttribute("default", "True")
+            elif db_node.hasAttribute("default"): 
+                                      db_node.removeAttribute("default")
+
+        if self.supported_databases.has_key(db_name):
+            if db_desc   is not None: self.supported_databases[db_name].dp_desc   = db_desc
+            if db_ip     is not None: self.supported_databases[db_name].dp_ip     = db_ip
+            if db_user   is not None: self.supported_databases[db_name].dp_user   = db_user
+            if db_pass   is not None: self.supported_databases[db_name].dp_pass   = db_pass
+            if db_server is not None: self.supported_databases[db_name].dp_server = db_server
+            self.supported_databases[db_name].db_selected = defaultb
+        else:
+            db = Database(node=db_node)
+            self.supported_databases[db.db_name] = db
+
         if defaultb:
             self.db_selected = db_name
         return
@@ -930,15 +1180,6 @@ class Config:
             if site.enabled:
                 return site_name
         return None
-
-    def get_tv_parameters(self):
-        if self.tv is not None:
-            return {
-                    'combinedStealFold': self.tv.combinedStealFold,
-                    'combined2B3B': self.tv.combined2B3B,
-                    'combinedPostflop': self.tv.combinedPostflop
-                    }
-        return {}
 
     # Allow to change the menu appearance
     def get_hud_ui_parameters(self):
@@ -1016,7 +1257,7 @@ class Config:
         except:  imp['hhBulkPath']    = ""
 
         try:    imp['saveActions']     = self.imp.saveActions
-        except:  imp['saveActions']     = True
+        except:  imp['saveActions']     = False
 
         try:    imp['saveStarsHH'] = self.imp.saveStarsHH
         except:  imp['saveStarsHH'] = False
@@ -1145,6 +1386,12 @@ class Config:
             if font_size      is not None: site_node.setAttribute("font_size", font_size)
         return
 
+    def set_site_ids(self, sites):
+        self.site_ids = dict(sites)
+
+    def get_site_id(self, site):
+        return( self.site_ids[site] )
+        
     def get_aux_windows(self):
         """Gets the list of mucked window formats in the configuration."""
         return self.aux_windows.keys()
@@ -1232,15 +1479,10 @@ if __name__== "__main__":
     print c.imp
     print "----------- END IMPORT -----------"
 
-    print "\n----------- TABLE VIEW -----------"
-#    print c.tv
-    print "----------- END TABLE VIEW -----------"
-
     c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))
     c.save(file="testout.xml")
 
     print "db    = ", c.get_db_parameters()
-#    print "tv    = ", c.get_tv_parameters()
 #    print "imp    = ", c.get_import_parameters()
     print "paths  = ", c.get_default_paths("PokerStars")
     print "colors = ", c.get_default_colors("PokerStars")

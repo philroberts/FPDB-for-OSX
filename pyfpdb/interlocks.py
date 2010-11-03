@@ -3,6 +3,9 @@
 # Code from http://ender.snowburst.org:4747/~jjohns/interlocks.py
 # Thanks JJ!
 
+import L10n
+_ = L10n.get_translation()
+
 import sys
 import os, os.path
 import subprocess
@@ -46,7 +49,7 @@ class InterProcessLockBase:
         if source == None:
             source="Unknown"
         if self._has_lock:             # make sure 2nd acquire in same process fails
-            print "lock already held by:",self.heldBy
+            print _("lock already held by:"),self.heldBy
             return False
         while not self._has_lock:
             try:

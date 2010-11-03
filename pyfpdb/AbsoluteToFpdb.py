@@ -18,6 +18,9 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 # TODO: I have no idea if AP has multi-currency options, i just copied the regex out of Everleaf converter for the currency symbols.. weeeeee - Eric
 import sys
 import logging
@@ -42,7 +45,13 @@ class Absolute(HandHistoryConverter):
 #Seat 6 - FETS63 ($0.75 in chips)
 #Board [10s 5d Kh Qh 8c]
 
-    re_GameInfo     = re.compile(ur"^Stage #(C?[0-9]+): (?P<GAME>Holdem|HORSE)(?: \(1 on 1\)|)?  ?(?P<LIMIT>No Limit|Pot Limit|Normal|)? ?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/?(?:\$| €|)(?P<BB>[.0-9]+)?", re.MULTILINE)
+    re_GameInfo     = re.compile(ur"""^Stage #(C?[0-9]+):\s+
+                                      (?P<GAME>Holdem|Seven\sCard\sHi\/L|HORSE)
+                                      (?:\s\(1\son\s1\)|)?\s+?
+                                      (?P<LIMIT>No Limit|Pot\sLimit|Normal|)?\s?
+                                      (?P<CURRENCY>\$|\s€|)
+                                      (?P<SB>[.0-9]+)/?(?:\$|\s€|)(?P<BB>[.0-9]+)?
+                                    """, re.MULTILINE|re.VERBOSE)
     re_HorseGameInfo = re.compile(ur"^Game Type: (?P<LIMIT>Limit) (?P<GAME>Holdem)", re.MULTILINE)
     # TODO: can set max seats via (1 on 1) to a known 2 .. 
     re_HandInfo     = re.compile(ur"^Stage #C?(?P<HID>[0-9]+): .*(?P<DATETIME>\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d).*\n(Table: (?P<TABLE>.*) \(Real Money\))?", re.MULTILINE)
@@ -50,12 +59,6 @@ class Absolute(HandHistoryConverter):
     re_Button       = re.compile(ur"Seat #(?P<BUTTON>[0-9]) is the ?[dead]* dealer$", re.MULTILINE) # TODO: that's not the right way to match for "dead" dealer is it?
     re_PlayerInfo   = re.compile(ur"^Seat (?P<SEAT>[0-9]) - (?P<PNAME>.*) \((?:\$| €|)(?P<CASH>[0-9]*[.0-9]+) in chips\)", re.MULTILINE)
     re_Board        = re.compile(ur"\[(?P<CARDS>[^\]]*)\]? *$", re.MULTILINE)
-#    re_GameInfo    = re.compile(ur"^(Blinds )?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/(?:\$| €)?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) ?(?P<GAME>(Holdem|Omaha|7 Card Stud))", re.MULTILINE)
-                     #re.compile(ur"^(Blinds )?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/(?:\$| €)?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) (?P<GAME>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
-#    re_HandInfo    = re.compile(ur".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?:\$| €|)(?P<SB>[.0-9]+)/(?:\$| €|)(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)", re.MULTILINE)
-#    re_Button      = re.compile(ur"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
-#    re_PlayerInfo  = re.compile(ur"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+((?:\$| €|) (?P<CASH>[.0-9]+) (USD|EUR|)|new player|All-in) \)", re.MULTILINE)
-#    re_Board       = re.compile(ur"\[ (?P<CARDS>.+) \]")
     
     
     def compilePlayerRegexs(self, hand):
@@ -112,16 +115,21 @@ class Absolute(HandHistoryConverter):
         
         m = self.re_GameInfo.search(handText)
         if not m:
-            return None
+            tmp = handText[0:100]
+            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("determineGameType: Raising FpdbParseError"))
+            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+
         
         mg = m.groupdict()
         
         # translations from captured groups to our info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Normal':'fl', 'Limit':'fl'}
         games = {              # base, category
-                  "Holdem" : ('hold','holdem'), 
+                   "Holdem" : ('hold','holdem'),
                     'Omaha' : ('hold','omahahi'), 
                      'Razz' : ('stud','razz'), 
+          'Seven Card Hi/L' : ('stud','studhilo'),
               '7 Card Stud' : ('stud','studhi')
                }
         currencies = { u' €':'EUR', '$':'USD', '':'T$' }
@@ -164,7 +172,7 @@ class Absolute(HandHistoryConverter):
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if(m == None):
-            logging.info("Didn't match re_HandInfo")
+            logging.info(_("Didn't match re_HandInfo"))
             logging.info(hand.handText)
             return None
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
@@ -221,7 +229,7 @@ class Absolute(HandHistoryConverter):
         hand.setCommunityCards(street=street, cards=cards)
 
     def readAntes(self, hand):
-        logging.debug("reading antes")
+        logging.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
@@ -230,17 +238,17 @@ class Absolute(HandHistoryConverter):
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
-            logging.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))        
+            logging.debug(_("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN'))))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         else:
-            logging.warning("No bringin found.")
+            logging.warning(_("No bringin found."))
 
     def readBlinds(self, hand):
         m = self.re_PostSB.search(hand.handText)
         if m is not None:
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
         else:
-            logging.debug("No small blind")
+            logging.debug(_("No small blind"))
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
@@ -267,7 +275,7 @@ class Absolute(HandHistoryConverter):
     
     def readStudPlayerCards(self, hand, street):
         # lol. see Plymouth.txt
-        logging.warning("Absolute readStudPlayerCards is only a stub.")
+        logging.warning(_("Absolute readStudPlayerCards is only a stub."))
         #~ if street in ('THIRD', 'FOURTH',  'FIFTH',  'SIXTH'):
             #~ hand.addPlayerCards(player = player.group('PNAME'), street = street,  closed = [],  open = [])
 
@@ -290,7 +298,7 @@ class Absolute(HandHistoryConverter):
             elif action.group('ATYPE') == ' complete to': # TODO: not supported yet ?
                 hand.addComplete( street, action.group('PNAME'), action.group('BET'))
             else:
-                logging.debug("Unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),))
+                logging.debug(_("Unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)))
 
 
     def readShowdownActions(self, hand):
@@ -334,9 +342,9 @@ if __name__ == "__main__":
     config =  Configuration.Config(None)
 
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="-")
-    parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
-    parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
+    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"), default="-")
+    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
+    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
     parser.add_option("-q", "--quiet",
                   action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
     parser.add_option("-v", "--verbose",

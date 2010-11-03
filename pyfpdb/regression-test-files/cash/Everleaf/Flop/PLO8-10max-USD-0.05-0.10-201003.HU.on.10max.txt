@@ -1,0 +1,588 @@
+Everleaf Gaming Game #149107406
+***** Hand history for game #149107406 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:35:19
+Table Old Market I
+Seat 5 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 10 USD )
+Seat 10: Hero (  $ 10 USD )
+Villain has disconnected and has been given a further 20 seconds to react
+Villain has disconnected and has been given a further 20 seconds to react
+Villain: posts small blind [$ 0.05 USD]
+Hero: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ Qc, Qh, 7s, Jd ]
+Villain calls [$ 0.05 USD]
+Hero raises [$ 0.20 USD]
+Villain calls [$ 0.20 USD]
+** Dealing Flop ** [ Tc, Kc, 3s ]
+Hero: bets [$ 0.60 USD]
+Villain calls [$ 0.60 USD]
+** Dealing Turn ** [ 6d ]
+Hero checks
+Villain: bets [$ 1.80 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 1.71 USD) from main pot
+
+
+
+Everleaf Gaming Game #149107627
+***** Hand history for game #149107627 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:36:09
+Table Old Market I
+Seat 10 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 10.81 USD )
+Seat 10: Hero (  $ 9.10 USD )
+Hero: posts small blind [$ 0.05 USD]
+Villain: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ Jd, 9h, 3h, 3c ]
+Hero calls [$ 0.05 USD]
+Villain checks
+** Dealing Flop ** [ 8c, 8h, Qs ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ 7h ]
+Villain: bets [$ 0.10 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.19 USD) from main pot
+
+
+
+Everleaf Gaming Game #149107795
+***** Hand history for game #149107795 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:36:48
+Table Old Market I
+Seat 5 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 10.90 USD )
+Seat 10: Hero (  $ 9 USD )
+Villain: posts small blind [$ 0.05 USD]
+Hero: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ Qc, As, 4s, Qh ]
+Villain calls [$ 0.05 USD]
+Hero raises [$ 0.20 USD]
+Villain calls [$ 0.20 USD]
+** Dealing Flop ** [ 8d, 6h, 3c ]
+Hero: bets [$ 0.60 USD]
+Villain calls [$ 0.60 USD]
+** Dealing Turn ** [ Qd ]
+Hero: bets [$ 1.80 USD]
+Villain calls [$ 1.80 USD]
+** Dealing River ** [ 7h ]
+Hero checks
+Villain checks
+Hero shows [ Qc, As, 4s, Qh ] three of a kind, queens
+Villain does not show cards
+Hero wins  high ($ 2.57 USD) from main pot with three of a kind, queens [ Qc, Qh, Qd, 8d, 7h ]
+Hero wins  low ($2.56) from main pot with 7, 6, 4, 3, A [ As, 7h, 6h, 4s, 3c ]
+
+
+
+Everleaf Gaming Game #149108010
+***** Hand history for game #149108010 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:37:35
+Table Old Market I
+Seat 10 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 8.20 USD )
+Seat 10: Hero (  $ 11.43 USD )
+Hero: posts small blind [$ 0.05 USD]
+Villain: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ 4s, Ts, 3h, 5s ]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.10 USD) from main pot
+
+
+
+Everleaf Gaming Game #149108038
+***** Hand history for game #149108038 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:37:43
+Table Old Market I
+Seat 5 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 8.25 USD )
+Seat 10: Hero (  $ 11.38 USD )
+Villain: posts small blind [$ 0.05 USD]
+Hero: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ 9d, Qc, 9s, Tc ]
+Villain raises [$ 0.25 USD]
+Hero calls [$ 0.20 USD]
+** Dealing Flop ** [ 3d, 4d, 2h ]
+Hero checks
+Villain: bets [$ 0.60 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.57 USD) from main pot
+
+
+
+Everleaf Gaming Game #149108121
+***** Hand history for game #149108121 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:38:02
+Table Old Market I
+Seat 10 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 8.52 USD )
+Seat 10: Hero (  $ 11.08 USD )
+Hero: posts small blind [$ 0.05 USD]
+Villain: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ 4d, Ks, 7h, As ]
+Hero raises [$ 0.25 USD]
+Villain calls [$ 0.20 USD]
+** Dealing Flop ** [ 7d, Qc, 6s ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ Kh ]
+Villain: bets [$ 0.60 USD]
+Hero calls [$ 0.60 USD]
+** Dealing River ** [ Qh ]
+Villain: bets [$ 1.80 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 1.71 USD) from main pot
+
+
+
+Everleaf Gaming Game #149108259
+***** Hand history for game #149108259 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:38:32
+Table Old Market I
+Seat 5 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 9.33 USD )
+Seat 10: Hero (  $ 10.18 USD )
+Villain: posts small blind [$ 0.05 USD]
+Hero: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ 7d, 2h, Ad, Jh ]
+Villain calls [$ 0.05 USD]
+Hero raises [$ 0.20 USD]
+Villain has disconnected and has been given a further 20 seconds to react
+Villain has disconnected and has been given a further 20 seconds to react
+Villain folds
+Hero does not show cards
+Hero wins $ 0.20 USD from main pot
+
+
+
+Everleaf Gaming Game #149108411
+***** Hand history for game #149108411 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:39:07
+Table Old Market I
+Seat 10 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 9.23 USD )
+Seat 10: Hero (  $ 10.28 USD )
+Hero: posts small blind [$ 0.05 USD]
+Villain: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ Ks, Kd, 7c, 7s ]
+Hero raises [$ 0.25 USD]
+Villain calls [$ 0.20 USD]
+** Dealing Flop ** [ 7d, Ac, 9h ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ 2d ]
+Villain: bets [$ 0.60 USD]
+Hero calls [$ 0.60 USD]
+** Dealing River ** [ 9s ]
+Villain checks
+Hero: bets [$ 1.80 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 1.71 USD from main pot
+
+
+
+Everleaf Gaming Game #149108717
+***** Hand history for game #149108717 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:40:22
+Table Old Market I
+Seat 5 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 8.33 USD )
+Seat 10: Hero (  $ 11.09 USD )
+Villain: posts small blind [$ 0.05 USD]
+Hero: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ 5s, 3s, Js, 9d ]
+Villain calls [$ 0.05 USD]
+Hero checks
+** Dealing Flop ** [ 6c, 4s, 4d ]
+Hero checks
+Villain checks
+** Dealing Turn ** [ 7c ]
+Hero: bets [$ 0.20 USD]
+Villain calls [$ 0.20 USD]
+** Dealing River ** [ Qd ]
+Hero: bets [$ 0.60 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 0.29 USD from main pot
+Hero wins $ 0.28 USD from main pot
+
+
+
+Everleaf Gaming Game #149108874
+***** Hand history for game #149108874 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:40:58
+Table Old Market I
+Seat 10 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 8.03 USD )
+Seat 10: Hero (  $ 11.36 USD )
+Hero: posts small blind [$ 0.05 USD]
+Villain: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ Qd, Jh, 2h, 5s ]
+Hero calls [$ 0.05 USD]
+Villain checks
+** Dealing Flop ** [ 7d, 2c, 9c ]
+Villain: bets [$ 0.20 USD]
+Hero folds
+Villain does not show cards
+Villain wins $ 0.19 USD from main pot
+
+
+
+Everleaf Gaming Game #149109021
+***** Hand history for game #149109021 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:41:31
+Table Old Market I
+Seat 5 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 8.12 USD )
+Seat 10: Hero (  $ 11.26 USD )
+Villain: posts small blind [$ 0.05 USD]
+Hero: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ 4c, 6h, 8s, 5c ]
+Villain calls [$ 0.05 USD]
+Hero checks
+** Dealing Flop ** [ 3d, 8h, Qd ]
+Hero checks
+Villain: bets [$ 0.20 USD]
+Hero folds
+Villain does not show cards
+Villain wins $ 0.19 USD from main pot
+
+
+
+Everleaf Gaming Game #149109123
+***** Hand history for game #149109123 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:41:54
+Table Old Market I
+Seat 10 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 8.21 USD )
+Seat 10: Hero (  $ 11.16 USD )
+Hero: posts small blind [$ 0.05 USD]
+Villain: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ 7s, 3d, Tc, 5s ]
+Hero folds
+Villain does not show cards
+Villain wins $ 0.10 USD from main pot
+
+
+
+Everleaf Gaming Game #149109165
+***** Hand history for game #149109165 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:42:04
+Table Old Market I
+Seat 5 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 8.26 USD )
+Seat 10: Hero (  $ 11.11 USD )
+Villain: posts small blind [$ 0.05 USD]
+Hero: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ Kh, 3c, 6d, 6s ]
+Villain calls [$ 0.05 USD]
+Hero checks
+** Dealing Flop ** [ 2d, 6c, Th ]
+Hero checks
+Villain checks
+** Dealing Turn ** [ 9d ]
+Hero checks
+Villain: bets [$ 0.20 USD]
+Hero folds
+Villain does not show cards
+Villain wins $ 0.19 USD from main pot
+
+
+
+Everleaf Gaming Game #149109398
+***** Hand history for game #149109398 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:42:55
+Table Old Market I
+Seat 10 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 8.35 USD )
+Seat 10: Hero (  $ 11.01 USD )
+Hero: posts small blind [$ 0.05 USD]
+Villain: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ 5c, Qd, 6d, 7d ]
+Hero calls [$ 0.05 USD]
+Villain raises [$ 0.20 USD]
+Hero folds
+Villain does not show cards
+Villain wins $ 0.20 USD from main pot
+
+
+
+Everleaf Gaming Game #149109482
+***** Hand history for game #149109482 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:43:15
+Table Old Market I
+Seat 5 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 8.45 USD )
+Seat 10: Hero (  $ 10.91 USD )
+Villain: posts small blind [$ 0.05 USD]
+Hero: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ 7s, 8d, 5c, Qc ]
+Villain calls [$ 0.05 USD]
+Hero checks
+** Dealing Flop ** [ 5s, Js, 7h ]
+Hero: bets [$ 0.20 USD]
+Villain calls [$ 0.20 USD]
+** Dealing Turn ** [ Ac ]
+Hero checks
+Villain checks
+** Dealing River ** [ 8h ]
+Hero checks
+Villain checks
+Hero shows [ 7s, 8d, 5c, Qc ] two pairs, eights and sevens
+Villain does not show cards
+Hero wins  high ($ 0.57 USD) from main pot with two pairs, eights and sevens [ Ac, 8d, 8h, 7s, 7h ]
+
+
+
+Everleaf Gaming Game #149109706
+***** Hand history for game #149109706 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:44:04
+Table Old Market I
+Seat 10 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 8.15 USD )
+Seat 10: Hero (  $ 11.18 USD )
+Hero: posts small blind [$ 0.05 USD]
+Villain: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ 5s, 8c, 7s, Td ]
+Hero calls [$ 0.05 USD]
+Villain raises [$ 0.20 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.20 USD) from main pot
+
+
+
+Everleaf Gaming Game #149109783
+***** Hand history for game #149109783 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:44:23
+Table Old Market I
+Seat 5 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 8.25 USD )
+Seat 10: Hero (  $ 11.08 USD )
+Villain: posts small blind [$ 0.05 USD]
+Hero: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ 5d, 4c, 8c, Th ]
+Villain calls [$ 0.05 USD]
+Hero checks
+** Dealing Flop ** [ 7h, As, 7s ]
+Hero checks
+Villain checks
+** Dealing Turn ** [ Jc ]
+Hero checks
+Villain checks
+** Dealing River ** [ 3h ]
+Hero checks
+Villain checks
+Hero shows [ 5d, 4c, 8c, Th ] a pair of sevens
+Villain shows [ 2h, Kd, 8d, Ts ] a pair of sevens
+Villain wins  high ($ 0.10 USD) from main pot with a pair of sevens [ As, Kd, Ts, 7h, 7s ] with kicker [ Kh ]
+Hero wins  low ($0.09) from main pot with 7, 5, 4, 3, A [ As, 7h, 5d, 4c, 3h ]
+
+
+
+Everleaf Gaming Game #149109887
+***** Hand history for game #149109887 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:44:48
+Table Old Market I
+Seat 10 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 8.25 USD )
+Seat 10: Hero (  $ 11.07 USD )
+Hero: posts small blind [$ 0.05 USD]
+Villain: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ Js, Jc, 3d, 7d ]
+Hero raises [$ 0.25 USD]
+Villain calls [$ 0.20 USD]
+** Dealing Flop ** [ 9s, 5d, Qh ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ 6d ]
+Villain: bets [$ 0.60 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.57 USD) from main pot
+
+
+
+Everleaf Gaming Game #149110044
+***** Hand history for game #149110044 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:45:23
+Table Old Market I
+Seat 5 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 8.52 USD )
+Seat 10: Hero (  $ 10.77 USD )
+Villain: posts small blind [$ 0.05 USD]
+Hero: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ Ah, 2d, 6d, Qh ]
+Villain calls [$ 0.05 USD]
+Hero raises [$ 0.20 USD]
+Villain calls [$ 0.20 USD]
+** Dealing Flop ** [ 5c, Td, 9h ]
+Hero checks
+Villain checks
+** Dealing Turn ** [ Ks ]
+Hero checks
+Villain checks
+** Dealing River ** [ 8s ]
+Hero checks
+Villain: bets [$ 0.30 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.57 USD) from main pot
+
+
+
+Everleaf Gaming Game #149110335
+***** Hand history for game #149110335 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:46:33
+Table Old Market I
+Seat 10 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 8.79 USD )
+Seat 10: Hero (  $ 10.47 USD )
+Hero: posts small blind [$ 0.05 USD]
+Villain: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ Th, 5d, Qd, 7s ]
+Hero calls [$ 0.05 USD]
+Villain checks
+** Dealing Flop ** [ 8s, 9c, 3s ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ Tc ]
+Villain checks
+Hero checks
+** Dealing River ** [ Qc ]
+Villain checks
+Hero checks
+Villain shows [ 8d, Kc, 6c, 4s ] a flush, king high
+Hero does not show cards
+Villain wins  high ($ 0.19 USD) from main pot with a flush, king high [ Kc, Qc, Tc, 9c, 6c ]
+
+
+
+Everleaf Gaming Game #149110588
+***** Hand history for game #149110588 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:47:30
+Table Old Market I
+Seat 5 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 8.88 USD )
+Seat 10: Hero (  $ 10.37 USD )
+Villain: posts small blind [$ 0.05 USD]
+Hero: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ 2h, 2s, Qs, Ah ]
+Villain calls [$ 0.05 USD]
+Hero raises [$ 0.20 USD]
+Villain calls [$ 0.20 USD]
+** Dealing Flop ** [ Td, Qh, 8h ]
+Hero: bets [$ 0.60 USD]
+Villain calls [$ 0.60 USD]
+** Dealing Turn ** [ 9s ]
+Hero checks
+Villain: bets [$ 1.80 USD]
+Hero calls [$ 1.80 USD]
+** Dealing River ** [ 8s ]
+Hero checks
+Villain checks
+Villain shows [ Js, 5h, Tc, 7d ] a straight, queen high
+Hero does not show cards
+Villain wins  high ($ 5.13 USD) from main pot with a straight, queen high [ Qh, Js, Tc, 9s, 8h ]
+
+
+
+Everleaf Gaming Game #149110838
+***** Hand history for game #149110838 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:48:31
+Table Old Market I
+Seat 10 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 11.31 USD )
+Seat 10: Hero (  $ 7.67 USD )
+Hero: posts small blind [$ 0.05 USD]
+Villain: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ Ts, 3d, 8s, 9h ]
+Hero calls [$ 0.05 USD]
+Villain raises [$ 0.20 USD]
+Hero folds
+Villain has disconnected and has been given a further 20 seconds to react
+Villain does not show cards
+Villain wins  high ($ 0.20 USD) from main pot
+
+
+
+Everleaf Gaming Game #149111070
+***** Hand history for game #149111070 *****
+Blinds $0.05/$0.10 PL Omaha Hi/Lo - 2010/03/02 - 19:49:28
+Table Old Market I
+Seat 5 is the button
+Total number of players: 2
+Seat 5: Villain (  $ 11.41 USD )
+Seat 10: Hero (  $ 7.57 USD )
+Villain: posts small blind [$ 0.05 USD]
+Hero: posts big blind [$ 0.10 USD]
+** Dealing down cards **
+Dealt to Hero [ 9c, 4d, 8h, Th ]
+Villain calls [$ 0.05 USD]
+Hero checks
+** Dealing Flop ** [ Ad, Qs, 4s ]
+Hero checks
+Villain checks
+** Dealing Turn ** [ Td ]
+Hero checks
+Villain checks
+** Dealing River ** [ 6d ]
+Hero checks
+Villain: bets [$ 0.10 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.10 USD) from main pot
+Villain wins  low ($0.09) from main pot
+
+
+

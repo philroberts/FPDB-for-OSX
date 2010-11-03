@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 import os
 import Queue
 
@@ -29,7 +32,6 @@ import traceback
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("logview")
-
 
 MAX_LINES = 100000         # max lines to display in window
 EST_CHARS_PER_LINE = 150   # used to guesstimate number of lines in log file
@@ -47,7 +49,7 @@ class GuiLogView:
         self.closeq = closeq
 
         self.logfile = os.path.join(self.config.dir_log, LOGFILES[1][1])
-        self.dia = gtk.Dialog(title="Log Messages"
+        self.dia = gtk.Dialog(title=_("Log Messages")
                              ,parent=None
                              ,flags=gtk.DIALOG_DESTROY_WITH_PARENT
                              ,buttons=(gtk.STOCK_CLOSE,gtk.RESPONSE_OK))
@@ -82,7 +84,7 @@ class GuiLogView:
             rb.set_active(logf[2])
             rb.connect('clicked', self.__set_logfile, logf[0])
             hb.pack_start(rb, False, False, 3)
-        refreshbutton = gtk.Button("Refresh")
+        refreshbutton = gtk.Button(_("Refresh"))
         refreshbutton.connect("clicked", self.refresh, None)
         hb.pack_start(refreshbutton, False, False, 3)
         refreshbutton.show()
@@ -186,7 +188,7 @@ class GuiLogView:
             # to turn indicator off for other cols
         except:
             err = traceback.extract_tb(sys.exc_info()[2])
-            print "***sortCols error: " + str(sys.exc_info()[1])
+            print _("***sortCols error: ") + str(sys.exc_info()[1])
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
 
     def refresh(self, widget, data):
@@ -199,12 +201,12 @@ if __name__=="__main__":
     config = Configuration.Config()
 
     win = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    win.set_title("Test Log Viewer")
+    win.set_title(_("Test Log Viewer"))
     win.set_border_width(1)
     win.set_default_size(600, 500)
     win.set_resizable(True)
 
-    dia = gtk.Dialog("Log Viewer",
+    dia = gtk.Dialog(_("Log Viewer"),
                      win,
                      gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                      (gtk.STOCK_CLOSE, gtk.RESPONSE_OK))

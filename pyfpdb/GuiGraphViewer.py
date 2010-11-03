@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 import threading
 import pygtk
 pygtk.require('2.0')
@@ -26,9 +29,16 @@ from time import *
 from datetime import datetime
 #import pokereval
 
+import fpdb_import
+import Database
+import Filters
+import Charset
+
 try:
+    calluse = not 'matplotlib' in sys.modules
     import matplotlib
-    matplotlib.use('GTKCairo')
+    if calluse:
+        matplotlib.use('GTKCairo')
     from matplotlib.figure import Figure
     from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
     from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
@@ -36,16 +46,11 @@ try:
     from numpy import arange, cumsum
     from pylab import *
 except ImportError, inst:
-    print """Failed to load libs for graphing, graphing will not function. Please in
-                 stall numpy and matplotlib if you want to use graphs."""
-    print """This is of no consequence for other parts of the program, e.g. import 
-         and HUD are NOT affected by this problem."""
+    print _("""Failed to load libs for graphing, graphing will not function. Please
+                 install numpy and matplotlib if you want to use graphs.""")
+    print _("""This is of no consequence for other parts of the program, e.g. import 
+         and HUD are NOT affected by this problem.""")
     print "ImportError: %s" % inst.args
-
-import fpdb_import
-import Database
-import Filters
-import Charset
 
 class GuiGraphViewer (threading.Thread):
 
@@ -70,15 +75,16 @@ class GuiGraphViewer (threading.Thread):
                             "Seats"     : False,
                             "SeatSep"   : False,
                             "Dates"     : True,
+                            "GraphOps"  : True,
                             "Groups"    : False,
                             "Button1"   : True,
                             "Button2"   : True
                           }
 
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
-        self.filters.registerButton1Name("Refresh _Graph")
+        self.filters.registerButton1Name(_("Refresh _Graph"))
         self.filters.registerButton1Callback(self.generateGraph)
-        self.filters.registerButton2Name("_Export to File")
+        self.filters.registerButton2Name(_("_Export to File"))
         self.filters.registerButton2Callback(self.exportGraph)
 
         self.mainHBox = gtk.HBox(False, 0)
@@ -126,7 +132,7 @@ class GuiGraphViewer (threading.Thread):
             self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            print _("***Error: ")+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
             raise
 
     def generateGraph(self, widget, data):
@@ -141,6 +147,8 @@ class GuiGraphViewer (threading.Thread):
             siteids = self.filters.getSiteIds()
             limits  = self.filters.getLimits()
             games   = self.filters.getGames()
+            graphops = self.filters.getGraphOps()
+            names   = ""
             
             for i in ('show', 'none'):
                 if i in limits:
@@ -153,20 +161,21 @@ class GuiGraphViewer (threading.Thread):
                     result = self.db.get_player_id(self.conf, site, _hname)
                     if result is not None:
                         playerids.append(int(result))
+                        names = names + "\n"+_hname + " on "+site
 
             if not sitenos:
                 #Should probably pop up here.
-                print "No sites selected - defaulting to PokerStars"
+                print _("No sites selected - defaulting to PokerStars")
                 self.db.rollback()
                 return
 
             if not playerids:
-                print "No player ids found"
+                print _("No player ids found")
                 self.db.rollback()
                 return
 
             if not limits:
-                print "No limits found"
+                print _("No limits found")
                 self.db.rollback()
                 return
 
@@ -175,16 +184,18 @@ class GuiGraphViewer (threading.Thread):
 
             #Get graph data from DB
             starttime = time()
-            (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games)
-            print "Graph generated in: %s" %(time() - starttime)
+            (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games, graphops['dspin'])
+            print _("Graph generated in: %s") %(time() - starttime)
+
 
 
             #Set axis labels and grid overlay properites
-            self.ax.set_xlabel("Hands", fontsize = 12)
-            self.ax.set_ylabel("$", fontsize = 12)
+            self.ax.set_xlabel(_("Hands"), fontsize = 12)
+            # SET LABEL FOR X AXIS
+            self.ax.set_ylabel(graphops['dspin'], fontsize = 12)
             self.ax.grid(color='g', linestyle=':', linewidth=0.2)
             if green == None or green == []:
-                self.ax.set_title("No Data for Player(s) Found")
+                self.ax.set_title(_("No Data for Player(s) Found"))
                 green = ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
                             700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
                             500.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,
@@ -207,9 +218,9 @@ class GuiGraphViewer (threading.Thread):
                             0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
                             400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
 
-                self.ax.plot(green, color='green', label='Hands: %d\nProfit: $%.2f' %(len(green), green[-1]))
-                self.ax.plot(blue, color='blue', label='Showdown: $%.2f' %(blue[-1]))
-                self.ax.plot(red, color='red', label='Non-showdown: $%.2f' %(red[-1]))
+                self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: $%.2f') %(len(green), green[-1]))
+                self.ax.plot(blue, color='blue', label=_('Showdown: $%.2f') %(blue[-1]))
+                self.ax.plot(red, color='red', label=_('Non-showdown: $%.2f') %(red[-1]))
                 self.graphBox.add(self.canvas)
                 self.canvas.show()
                 self.canvas.draw()
@@ -217,18 +228,15 @@ class GuiGraphViewer (threading.Thread):
                 #TODO: Do something useful like alert user
                 #print "No hands returned by graph query"
             else:
-                self.ax.set_title("Profit graph for ring games")
-                #text = "Profit: $%.2f\nTotal Hands: %d" %(green[-1], len(green))
-                #self.ax.annotate(text,
-                #                 xy=(10, -10),
-                #                 xycoords='axes points',
-                #                 horizontalalignment='left', verticalalignment='top',
-                #                 fontsize=10)
+                self.ax.set_title(_("Profit graph for ring games"+names),fontsize=12)
 
                 #Draw plot
-                self.ax.plot(green, color='green', label='Hands: %d\nProfit: $%.2f' %(len(green), green[-1]))
-                self.ax.plot(blue, color='blue', label='Showdown: $%.2f' %(blue[-1]))
-                self.ax.plot(red, color='red', label='Non-showdown: $%.2f' %(red[-1]))
+                self.ax.plot(green, color='green', label=_('Hands: %d\nProfit (%s): %.2f') %(len(green),graphops['dspin'], green[-1]))
+                if graphops['showdown'] == 'ON':
+                    self.ax.plot(blue, color='blue', label=_('Showdown (%s): %.2f') %(graphops['dspin'], blue[-1]))
+                if graphops['nonshowdown'] == 'ON':
+                    self.ax.plot(red, color='red', label=_('Non-showdown (%s): %.2f') %(graphops['dspin'], red[-1]))
+
                 if sys.version[0:3] == '2.5':
                     self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
                 else:
@@ -240,13 +248,21 @@ class GuiGraphViewer (threading.Thread):
                 #self.exportButton.set_sensitive(True)
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            print _("***Error: ")+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
 
     #end of def showClicked
 
-    def getRingProfitGraph(self, names, sites, limits, games):
-        tmp = self.sql.query['getRingProfitAllHandsPlayerIdSite']
+
+    def getRingProfitGraph(self, names, sites, limits, games, units):
+#        tmp = self.sql.query['getRingProfitAllHandsPlayerIdSite']
 #        print "DEBUG: getRingProfitGraph"
+
+        if units == '$':
+            tmp = self.sql.query['getRingProfitAllHandsPlayerIdSiteInDollars']
+        elif units == 'BB':
+            tmp = self.sql.query['getRingProfitAllHandsPlayerIdSiteInBB']
+
+
         start_date, end_date = self.filters.getDates()
 
         #Buggered if I can find a way to do this 'nicely' take a list of integers and longs
@@ -337,7 +353,7 @@ class GuiGraphViewer (threading.Thread):
         if self.fig is None:
             return # Might want to disable export button until something has been generated.
 
-        dia_chooser = gtk.FileChooserDialog(title="Please choose the directory you wish to export to:",
+        dia_chooser = gtk.FileChooserDialog(title=_("Please choose the directory you wish to export to:"),
                                             action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
                                             buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OK,gtk.RESPONSE_OK))
         dia_chooser.set_destroy_with_parent(True)
@@ -350,7 +366,7 @@ class GuiGraphViewer (threading.Thread):
         response = dia_chooser.run()
         
         if response <> gtk.RESPONSE_OK:
-            print 'Closed, no graph exported'
+            print _('Closed, no graph exported')
             dia_chooser.destroy()
             return
             
@@ -368,7 +384,7 @@ class GuiGraphViewer (threading.Thread):
                                 flags=gtk.DIALOG_DESTROY_WITH_PARENT,
                                 type=gtk.MESSAGE_INFO,
                                 buttons=gtk.BUTTONS_OK,
-                                message_format="Graph created")
+                                message_format=_("Graph created"))
         diainfo.format_secondary_text(self.exportFile)          
         diainfo.run()
         diainfo.destroy()

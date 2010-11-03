@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 import threading
 import pygtk
 pygtk.require('2.0')
@@ -28,7 +31,6 @@ from time import gmtime, mktime, strftime, strptime
 
 import logging #logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("filter")
-
 
 #import Configuration
 #import Database
@@ -45,9 +47,9 @@ class TourneyFilters(Filters.Filters):
         self.conf = db.config
         self.display = display
         
-        self.filterText = {'playerstitle':'Hero:', 'sitestitle':'Sites:', 'seatstitle':'Number of Players:',
-                    'seatsbetween':'Between:', 'seatsand':'And:', 'datestitle':'Date:',
-                    'tourneyTypesTitle':'Tourney Type'}
+        self.filterText = {'playerstitle':_('Hero:'), 'sitestitle':_('Sites:'), 'seatstitle':_('Number of Players:'),
+                    'seatsbetween':_('Between:'), 'seatsand':_('And:'), 'datestitle':_('Date:'),
+                    'tourneyTypesTitle':_('Tourney Type')}
         
         gen = self.conf.get_general_params()
         self.day_start = 0
@@ -74,7 +76,7 @@ class TourneyFilters(Filters.Filters):
             self.numTourneys = int(w.get_text())
         except:
             self.numTourneys = 0
-        print "setting numTourneys:", self.numTourneys
+        print _("setting numTourneys:"), self.numTourneys
     #end def __set_num_tourneys
 
     def __toggle_box(self, widget, entry): #identical with Filters
@@ -102,7 +104,7 @@ class TourneyFilters(Filters.Filters):
             if len(result) == 1:
                 self.siteid[site] = result[0][0]
             else:
-                print "Either 0 or more than one site matched (%s) - EEK" % site
+                print _("Either 0 or more than one site matched (%s) - EEK") % site
 
         # For use in date ranges.
         self.start_date = gtk.Entry(max=12)

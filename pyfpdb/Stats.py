@@ -47,8 +47,11 @@
 #           other stuff.
 #        6  For each stat you make add a line to the __main__ function to test it.
 
+import L10n
+_ = L10n.get_translation()
+
 #    Standard Library modules
-#import sys
+import sys
 
 #    pyGTK modules
 import pygtk
@@ -60,36 +63,55 @@ import Configuration
 import Database
 import Charset
 
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("db")
+
 
 re_Places = re.compile("_[0-9]$")
-re_Percent = re.compile("%$")
 
 # String manipulation
 import codecs
 encoder = codecs.lookup(Configuration.LOCALE_ENCODING)
 
+
+# Since tuples are immutable, we have to create a new one when
+# overriding any decimal placements. Copy old ones and recreate the
+# second value in tuple to specified format-
+def __stat_override(decimals, stat_vals):
+    s = '%.*f' % (decimals, 100.0*stat_vals[0])
+    res = (stat_vals[0], s, stat_vals[2],
+            stat_vals[3], stat_vals[4], stat_vals[5])
+    return res
+
+
 def do_tip(widget, tip):
     _tip = Charset.to_utf8(tip)
     widget.set_tooltip_text(_tip)
 
+
 def do_stat(stat_dict, player = 24, stat = 'vpip'):
+    statname = stat
     match = re_Places.search(stat)
-    if match is None:
-        result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': stat, 'player': player})
-    else:
-        base = stat[0:-2]
+    if match:   # override if necessary
+        statname = stat[0:-2]
+
+    result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': statname, 'player': player})
+
+    # If decimal places have been defined, override result[1]
+    # NOTE: decimal place override ALWAYS assumes the raw result is a
+    # fraction (x/100); manual decimal places really only make sense for
+    # percentage values. Also, profit/100 hands (bb/BB) already default
+    # to three decimal places anyhow, so they are unlikely override
+    # candidates.
+    if match:
         places = int(stat[-1:])
-        result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': base, 'player': player})
-        match = re_Percent.search(result[1])
-        if match is None:
-            result = (result[0], "%.*f" % (places, result[0]), result[2], result[3], result[4], result[5])
-        else:
-            result = (result[0], "%.*f%%" % (places, 100*result[0]), result[2], result[3], result[4], result[5])
+        result = __stat_override(places, result)
     return result
 
 #    OK, for reference the tuple returned by the stat is:
 #    0 - The stat, raw, no formating, eg 0.33333333
-#    1 - formatted stat with appropriate precision and punctuation, eg 33%
+#    1 - formatted stat with appropriate precision, eg. 33; shown in HUD
 #    2 - formatted stat with appropriate precision, punctuation and a hint, eg v=33%
 #    3 - same as #2 except name of stat instead of hint, eg vpip=33%
 #    4 - the calculation that got the stat, eg 9/27
@@ -102,8 +124,8 @@ def totalprofit(stat_dict, player):
     """    Total Profit."""
     if stat_dict[player]['net'] != 0:
         stat = float(stat_dict[player]['net']) / 100
-        return (stat, '$%.2f' % stat, 'tp=$%.2f' % stat, 'totalprofit=$%.2f' % stat, str(stat), 'Total Profit')
-    return ('0', '$0.00', 'tp=0', 'totalprofit=0', '0', 'Total Profit')
+        return (stat, '$%.2f' % stat, 'tp=$%.2f' % stat, 'totalprofit=$%.2f' % stat, str(stat), _('Total Profit'))
+    return ('0', '$0.00', 'tp=0', 'totalprofit=0', '0', _('Total Profit'))
 
 def playername(stat_dict, player):
     """    Player Name."""
@@ -120,18 +142,18 @@ def vpip(stat_dict, player):
     try:
         stat = float(stat_dict[player]['vpip'])/float(stat_dict[player]['n'])
         return (stat,
-                '%3.1f'      % (100*stat) + '%',
-                'v=%3.1f'    % (100*stat) + '%',
-                'vpip=%3.1f' % (100*stat) + '%',
-                '(%d/%d)'    % (stat_dict[player]['vpip'], stat_dict[player]['n']),
-                'Voluntarily Put In Pot Pre-Flop%'
+                '%3.1f'         % (100.0*stat),
+                'v=%3.1f%%'     % (100.0*stat),
+                'vpip=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['vpip'], stat_dict[player]['n']),
+                _('Voluntarily Put In Pot Pre-Flop%')
                 )
     except: return (stat,
-                    '%3.1f'      % (0) + '%',
-                    'v=%3.1f'    % (0) + '%',
-                    'vpip=%3.1f' % (0) + '%',
-                    '(%d/%d)'    % (0, 0),
-                    'Voluntarily Put In Pot Pre-Flop%'
+                    'NA',
+                    'v=NA',
+                    'vpip=NA',
+                    '(0/0)',
+                    _('Voluntarily Put In Pot Pre-Flop%')
                     )
 
 def pfr(stat_dict, player):
@@ -140,19 +162,19 @@ def pfr(stat_dict, player):
     try:
         stat = float(stat_dict[player]['pfr'])/float(stat_dict[player]['n'])
         return (stat,
-                '%3.1f'      % (100*stat) + '%',
-                'p=%3.1f'    % (100*stat) + '%',
-                'pfr=%3.1f'  % (100*stat) + '%',
+                '%3.1f'         % (100.0*stat),
+                'p=%3.1f%%'     % (100.0*stat),
+                'pfr=%3.1f%%'   % (100.0*stat),
                 '(%d/%d)'    % (stat_dict[player]['pfr'], stat_dict[player]['n']),
-                'Pre-Flop Raise %'
+                _('Pre-Flop Raise %')
                 )
     except: 
         return (stat,
-                '%3.1f'      % (0) + '%',
-                'p=%3.1f'    % (0) + '%',
-                'pfr=%3.1f' % (0) + '%',
-                '(%d/%d)'    % (0, 0),
-                'Pre-Flop Raise %'
+                'NA',
+                'p=NA',
+                'pfr=NA',
+                '(0/0)',
+                _('Pre-Flop Raise %')
                 )
 
 def wtsd(stat_dict, player):
@@ -161,19 +183,19 @@ def wtsd(stat_dict, player):
     try:
         stat = float(stat_dict[player]['sd'])/float(stat_dict[player]['saw_f'])
         return (stat,
-                '%3.1f'      % (100*stat) + '%',
-                'w=%3.1f'    % (100*stat) + '%',
-                'wtsd=%3.1f' % (100*stat) + '%',
-                '(%d/%d)'    % (stat_dict[player]['sd'], stat_dict[player]['saw_f']),
-                '% went to showdown'
+                '%3.1f'         % (100.0*stat),
+                'w=%3.1f%%'     % (100.0*stat),
+                'wtsd=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['sd'], stat_dict[player]['saw_f']),
+                _('% went to showdown')
                 )
     except:
         return (stat,
-                '%3.1f'      % (0) + '%',
-                'w=%3.1f'    % (0) + '%',
-                'wtsd=%3.1f' % (0) + '%',
-                '(%d/%d)'    % (0, 0),
-                '% went to showdown'
+                'NA',
+                'w=NA',
+                'wtsd=NA',
+                '(0/0)',
+                _('% went to showdown')
                 )
 
 def wmsd(stat_dict, player):
@@ -182,42 +204,88 @@ def wmsd(stat_dict, player):
     try:
         stat = float(stat_dict[player]['wmsd'])/float(stat_dict[player]['sd'])
         return (stat,
-                '%3.1f'      % (100*stat) + '%',
-                'w=%3.1f'    % (100*stat) + '%',
-                'wmsd=%3.1f' % (100*stat) + '%',
+                '%3.1f'         % (100.0*stat),
+                'w=%3.1f%%'     % (100.0*stat),
+                'wmsd=%3.1f%%'  % (100.0*stat),
                 '(%5.1f/%d)'    % (float(stat_dict[player]['wmsd']), stat_dict[player]['sd']),
-                '% won money at showdown'
+                _('% won money at showdown')
                 )
     except:
         return (stat,
-                '%3.1f'      % (0) + '%',
-                'w=%3.1f'    % (0) + '%',
-                'wmsd=%3.1f' % (0) + '%',
-                '(%d/%d)'    % (0, 0),
-                '% won money at showdown'
+                'NA',
+                'w=NA',
+                'wmsd=NA',
+                '(0/0)',
+                _('% won money at showdown')
                 )
 
+# Money is stored as pennies, so there is an implicit 100-multiplier
+# already in place
 def profit100(stat_dict, player):
-    """    Profit won per 100 hands (no decimal places)."""
+    """    Profit won per 100 hands."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['net'])/float(stat_dict[player]['n'])
         return (stat,
-                '%.0f'        % (100.0*stat),
-                'p=%.0f'     % (100.0*stat),
-                'p/100=%.0f'  % (100.0*stat),
+                '%.2f'          % (stat),
+                'p=%.2f'        % (stat),
+                'p/100=%.2f'    % (stat),
                 '%d/%d' % (stat_dict[player]['net'], stat_dict[player]['n']),
-                'profit/100hands'
+                _('profit/100hands')
                 )
     except:
-            print "exception calcing p/100: 100 * %d / %d" % (stat_dict[player]['net'], stat_dict[player]['n'])
+            print _("exception calcing p/100: 100 * %d / %d") % (stat_dict[player]['net'], stat_dict[player]['n'])
             return (stat,
-                    '%.0f'       % (0),
-                    'p=%.0f'     % (0),
-                    'p/100=%.0f'  % (0),
-                    '(%d/%d)' % (0, 0),
-                    'profit/100hands'
+                    'NA',
+                    'p=NA',
+                    'p/100=NA',
+                    '(0/0)',
+                    _('profit/100hands')
                     )
+
+def bbper100(stat_dict, player):
+    """    big blinds won per 100 hands."""
+    stat = 0.0
+    try:
+        stat = 100.0 * float(stat_dict[player]['net']) / float(stat_dict[player]['bigblind'])
+        return (stat,
+                '%5.3f'         % (stat),
+                'bb100=%5.3f'   % (stat),
+                'bb100=%5.3f'   % (stat),
+                '(%d,%d)'       % (100*stat_dict[player]['net'],stat_dict[player]['bigblind']),
+                _('big blinds/100 hands')
+                )
+    except:
+        log.info("exception calcing bb/100: "+str(stat_dict[player]))
+        return (stat,
+                'NA',
+                'bb100=NA',
+                'bb100=NA',
+                '(--)',
+                _('big blinds/100 hands')
+                )
+
+def BBper100(stat_dict, player):
+    """    Big Bets won per 100 hands."""
+    stat = 0.0
+    try:
+        stat = 50 * float(stat_dict[player]['net']) / float(stat_dict[player]['bigblind'])
+        return (stat,
+                '%5.3f'         % (stat),
+                'BB100=%5.3f'   % (stat),
+                'BB100=%5.3f'   % (stat),
+                '(%d,%d)'       % (100*stat_dict[player]['net'],2*stat_dict[player]['bigblind']),
+                _('Big Bets/100 hands')
+                )
+    except:
+        log.info(_("exception calcing BB/100: ")+str(stat_dict[player]))
+        return (stat,
+                'NA',
+                'BB100=NA',
+                'BB100=NA',
+                '(--)',
+                _('Big Bets/100 hands')
+                )
 
 def saw_f(stat_dict, player):
     """    Saw flop/4th."""
@@ -226,22 +294,20 @@ def saw_f(stat_dict, player):
         den = float(stat_dict[player]['n'])
         stat = num/den
         return (stat,
-            '%3.1f'      % (100*stat) + '%',
-            'sf=%3.1f'    % (100*stat) + '%',
-            'saw_f=%3.1f' % (100*stat) + '%',
-            '(%d/%d)'    % (stat_dict[player]['saw_f'], stat_dict[player]['n']),
-            'Flop Seen %'
+            '%3.1f'         % (100.0*stat),
+            'sf=%3.1f%%'    % (100.0*stat),
+            'saw_f=%3.1f%%' % (100.0*stat),
+            '(%d/%d)'       % (stat_dict[player]['saw_f'], stat_dict[player]['n']),
+            _('Flop Seen %')
             )
     except:
         stat = 0.0
-        num = 0
-        den = 0
         return (stat,
-            '%3.1f'       % (stat) + '%',
-            'sf=%3.1f'    % (stat) + '%',
-            'saw_f=%3.1f' % (stat) + '%',
-            '(%d/%d)'     % (num, den),
-            'Flop Seen %'
+            'NA',
+            'sf=NA',
+            'saw_f=NA',
+            '(0/0)',
+            _('Flop Seen %')
             )
 
 def n(stat_dict, player):
@@ -264,15 +330,16 @@ def n(stat_dict, player):
                 'n=%d'      % (stat_dict[player]['n']),
                 'n=%d'      % (stat_dict[player]['n']),
                 '(%d)'      % (stat_dict[player]['n']),
-                'number hands seen'
+                _('number hands seen')
                 )
     except:
+        # Number of hands shouldn't ever be "NA"; zeroes are better here
         return (0,
                 '%d'        % (0),
                 'n=%d'      % (0),
                 'n=%d'      % (0),
                 '(%d)'      % (0),
-                'number hands seen'
+                _('number hands seen')
                 )
     
 def fold_f(stat_dict, player):
@@ -281,19 +348,19 @@ def fold_f(stat_dict, player):
     try:
         stat = float(stat_dict[player]['fold_2'])/float(stat_dict[player]['saw_f'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'ff=%3.1f'     % (100*stat) + '%',
-                'fold_f=%3.1f' % (100*stat) + '%',
-                '(%d/%d)'      % (stat_dict[player]['fold_2'], stat_dict[player]['saw_f']),
-                'folded flop/4th'
+                '%3.1f'             % (100.0*stat),
+                'ff=%3.1f%%'        % (100.0*stat),
+                'fold_f=%3.1f%%'    % (100.0*stat),
+                '(%d/%d)'           % (stat_dict[player]['fold_2'], stat_dict[player]['saw_f']),
+                _('folded flop/4th')
                 )
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'ff=%3.1f'     % (0) + '%',
-                'fold_f=%3.1f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                'folded flop/4th'
+                'NA',
+                'ff=NA',
+                'fold_f=NA',
+                '(0/0)',
+                _('folded flop/4th')
                 )
            
 def steal(stat_dict, player):
@@ -302,11 +369,11 @@ def steal(stat_dict, player):
     try:
         stat = float(stat_dict[player]['steal'])/float(stat_dict[player]['steal_opp'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'st=%3.1f'     % (100*stat) + '%',
-                'steal=%3.1f' % (100*stat) + '%',
-                '(%d/%d)'      % (stat_dict[player]['steal'], stat_dict[player]['steal_opp']),
-                '% steal attempted'
+                '%3.1f'         % (100.0*stat),
+                'st=%3.1f%%'    % (100.0*stat),
+                'steal=%3.1f%%' % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['steal'], stat_dict[player]['steal_opp']),
+                _('% steal attempted')
                 )
     except:
         return (stat, 'NA', 'st=NA', 'steal=NA', '(0/0)', '% steal attempted')
@@ -317,19 +384,18 @@ def f_SB_steal(stat_dict, player):
     try:
         stat = float(stat_dict[player]['sbnotdef'])/float(stat_dict[player]['sbstolen'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'fSB=%3.1f'     % (100*stat) + '%',
-                'fSB_s=%3.1f' % (100*stat) + '%',
-                '(%d/%d)'      % (stat_dict[player]['sbnotdef'], stat_dict[player]['sbstolen']),
-                '% folded SB to steal'
-                )
+                '%3.1f'         % (100.0*stat),
+                'fSB=%3.1f%%'   % (100.0*stat),
+                'fSB_s=%3.1f%%' % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['sbnotdef'], stat_dict[player]['sbstolen']),
+                _('% folded SB to steal'))
     except:
         return (stat,
                 'NA',
                 'fSB=NA',
                 'fSB_s=NA',
                 '(0/0)',
-                '% folded SB to steal')
+                _('% folded SB to steal'))
 
 def f_BB_steal(stat_dict, player):
     """    Folded BB to steal."""
@@ -337,19 +403,18 @@ def f_BB_steal(stat_dict, player):
     try:
         stat = float(stat_dict[player]['bbnotdef'])/float(stat_dict[player]['bbstolen'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'fBB=%3.1f'     % (100*stat) + '%',
-                'fBB_s=%3.1f' % (100*stat) + '%',
-                '(%d/%d)'      % (stat_dict[player]['bbnotdef'], stat_dict[player]['bbstolen']),
-                '% folded BB to steal'
-                )
+                '%3.1f'         % (100.0*stat),
+                'fBB=%3.1f%%'   % (100.0*stat),
+                'fBB_s=%3.1f%%' % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['bbnotdef'], stat_dict[player]['bbstolen']),
+                _('% folded BB to steal'))
     except:
         return (stat,
                 'NA',
                 'fBB=NA',
                 'fBB_s=NA',
                 '(0/0)',
-                '% folded BB to steal')
+                _('% folded BB to steal'))
                 
 def f_steal(stat_dict, player):
     """    Folded blind to steal."""
@@ -360,19 +425,18 @@ def f_steal(stat_dict, player):
         
         stat = float(folded_blind)/float(blind_stolen)
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'fB=%3.1f'     % (100*stat) + '%',
-                'fB_s=%3.1f' % (100*stat) + '%',
-                '(%d/%d)'      % (folded_blind, blind_stolen),
-                '% folded blind to steal'
-                )
+                '%3.1f'         % (100.0*stat),
+                'fB=%3.1f%%'    % (100.0*stat),
+                'fB_s=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (folded_blind, blind_stolen),
+                _('% folded blind to steal'))
     except:
         return (stat,
                 'NA',
                 'fB=NA',
                 'fB_s=NA',
                 '(0/0)',
-                '% folded blind to steal')
+                _('% folded blind to steal'))
 
 def three_B(stat_dict, player):
     """    Three bet preflop/3rd."""
@@ -380,20 +444,18 @@ def three_B(stat_dict, player):
     try:
         stat = float(stat_dict[player]['tb_0'])/float(stat_dict[player]['tb_opp_0'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                '3B=%3.1f'     % (100*stat) + '%',
-                '3B_pf=%3.1f'  % (100*stat) + '%',
-                '(%d/%d)'      % (stat_dict[player]['tb_0'], stat_dict[player]['tb_opp_0']),
-                '% 3/4 Bet preflop/3rd'
-                )
+                '%3.1f'         % (100.0*stat),
+                '3B=%3.1f%%'    % (100.0*stat),
+                '3B_pf=%3.1f%%' % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['tb_0'], stat_dict[player]['tb_opp_0']),
+                _('% 3/4 Bet preflop/3rd'))
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                '3B=%3.1f'     % (0) + '%',
-                '3B_pf=%3.1f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                '% 3/4 Bet preflop/3rd'
-                )
+                'NA',
+                '3B=NA',
+                '3B_pf=NA',
+                '(0/0)',
+                _('% 3/4 Bet preflop/3rd'))
 
 def WMsF(stat_dict, player):
     """    Won $ when saw flop/4th."""
@@ -401,20 +463,18 @@ def WMsF(stat_dict, player):
     try:
         stat = float(stat_dict[player]['w_w_s_1'])/float(stat_dict[player]['saw_1'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'wf=%3.1f'     % (100*stat) + '%',
-                'w_w_f=%3.1f'  % (100*stat) + '%',
-                '(%d/%d)'      % (stat_dict[player]['w_w_s_1'], stat_dict[player]['saw_f']),
-                '% won$/saw flop/4th'
-                )
+                '%3.1f'         % (100.0*stat),
+                'wf=%3.1f%%'    % (100.0*stat),
+                'w_w_f=%3.1f%%' % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['w_w_s_1'], stat_dict[player]['saw_f']),
+                _('% won$/saw flop/4th'))
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'wf=%3.1f'     % (0) + '%',
-                'w_w_f=%3.1f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                '% won$/saw flop/4th'
-                )
+                'NA',
+                'wf=NA',
+                'w_w_f=NA',
+                '(0/0)',
+                _('% won$/saw flop/4th'))
 
 def a_freq1(stat_dict, player):
     """    Flop/4th aggression frequency."""
@@ -422,20 +482,18 @@ def a_freq1(stat_dict, player):
     try:
         stat = float(stat_dict[player]['aggr_1'])/float(stat_dict[player]['saw_f'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'a1=%3.1f'     % (100*stat) + '%',
-                'a_fq_1=%3.1f'  % (100*stat) + '%',
+                '%3.1f'             % (100.0*stat),
+                'a1=%3.1f%%'        % (100.0*stat),
+                'a_fq_1=%3.1f%%'    % (100.0*stat),
                 '(%d/%d)'      % (stat_dict[player]['aggr_1'], stat_dict[player]['saw_f']),
-                'Aggression Freq flop/4th'
-                )
+                _('Aggression Freq flop/4th'))
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'a1=%3.1f'     % (0) + '%',
-                'a_fq_1=%3.1f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                'Aggression Freq flop/4th'
-                )
+                'NA',
+                'a1=NA',
+                'a_fq_1=NA',
+                '(0/0)',
+                _('Aggression Freq flop/4th'))
     
 def a_freq2(stat_dict, player):
     """    Turn/5th aggression frequency."""
@@ -443,20 +501,18 @@ def a_freq2(stat_dict, player):
     try:
         stat = float(stat_dict[player]['aggr_2'])/float(stat_dict[player]['saw_2'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'a2=%3.1f'     % (100*stat) + '%',
-                'a_fq_2=%3.1f'  % (100*stat) + '%',
-                '(%d/%d)'      % (stat_dict[player]['aggr_2'], stat_dict[player]['saw_2']),
-                'Aggression Freq turn/5th'
-                )
+                '%3.1f'             % (100.0*stat),
+                'a2=%3.1f%%'        % (100.0*stat),
+                'a_fq_2=%3.1f%%'    % (100.0*stat),
+                '(%d/%d)'           % (stat_dict[player]['aggr_2'], stat_dict[player]['saw_2']),
+                _('Aggression Freq turn/5th'))
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'a2=%3.1f'     % (0) + '%',
-                'a_fq_2=%3.1f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                'Aggression Freq turn/5th'
-                )
+                'NA',
+                'a2=NA',
+                'a_fq_2=NA',
+                '(0/0)',
+                _('Aggression Freq turn/5th'))
     
 def a_freq3(stat_dict, player):
     """    River/6th aggression frequency."""
@@ -464,20 +520,18 @@ def a_freq3(stat_dict, player):
     try:
         stat = float(stat_dict[player]['aggr_3'])/float(stat_dict[player]['saw_3'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'a3=%3.1f'     % (100*stat) + '%',
-                'a_fq_3=%3.1f'  % (100*stat) + '%',
+                '%3.1f'             % (100.0*stat),
+                'a3=%3.1f%%'        % (100.0*stat),
+                'a_fq_3=%3.1f%%'    % (100.0*stat),
                 '(%d/%d)'      % (stat_dict[player]['aggr_3'], stat_dict[player]['saw_3']),
-                'Aggression Freq river/6th'
-                )
+                _('Aggression Freq river/6th'))
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'a3=%3.1f'     % (0) + '%',
-                'a_fq_3=%3.1f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                'Aggression Freq river/6th'
-                )
+                'NA',
+                'a3=NA',
+                'a_fq_3=NA',
+                '(0/0)',
+                _('Aggression Freq river/6th'))
     
 def a_freq4(stat_dict, player):
     """    7th street aggression frequency."""
@@ -485,20 +539,18 @@ def a_freq4(stat_dict, player):
     try:
         stat = float(stat_dict[player]['aggr_4'])/float(stat_dict[player]['saw_4'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'a4=%3.1f'     % (100*stat) + '%',
-                'a_fq_4=%3.1f'  % (100*stat) + '%',
-                '(%d/%d)'      % (stat_dict[player]['aggr_4'], stat_dict[player]['saw_4']),
-                'Aggression Freq 7th'
-                )
+                '%3.1f'             % (100.0*stat),
+                'a4=%3.1f%%'        % (100.0*stat),
+                'a_fq_4=%3.1f%%'    % (100.0*stat),
+                '(%d/%d)'           % (stat_dict[player]['aggr_4'], stat_dict[player]['saw_4']),
+                _('Aggression Freq 7th'))
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'a4=%3.1f'     % (0) + '%',
-                'a_fq_4=%3.1f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                'Aggression Freq 7th'
-                )
+                'NA',
+                'a4=NA',
+                'a_fq_4=NA',
+                '(0/0)',
+                _('Aggression Freq 7th'))
 
 def a_freq_123(stat_dict, player):
     """    Post-Flop aggression frequency."""
@@ -507,9 +559,9 @@ def a_freq_123(stat_dict, player):
         stat = float(  stat_dict[player]['aggr_1'] + stat_dict[player]['aggr_2'] + stat_dict[player]['aggr_3']
                     ) / float(  stat_dict[player]['saw_1'] + stat_dict[player]['saw_2'] + stat_dict[player]['saw_3']);
         return (stat,
-                '%3.1f'             % (100*stat) + '%',
-                'afq=%3.1f'         % (100*stat) + '%',
-                'postf_aggfq=%3.1f' % (100*stat) + '%',
+                '%3.1f'                 % (100.0*stat),
+                'afq=%3.1f%%'           % (100.0*stat),
+                'postf_aggfq=%3.1f%%'   % (100.0*stat),
                 '(%d/%d)'           % (  stat_dict[player]['aggr_1']
                                        + stat_dict[player]['aggr_2']
                                        + stat_dict[player]['aggr_3']
@@ -517,16 +569,14 @@ def a_freq_123(stat_dict, player):
                                        + stat_dict[player]['saw_2']
                                        + stat_dict[player]['saw_3']
                                       ),
-                'Post-Flop Aggression Freq'
-                )
+                _('Post-Flop Aggression Freq'))
     except:
         return (stat,
-                '%2.0f'        % (0) + '%',
-                'a3=%2.0f'     % (0) + '%',
-                'a_fq_3=%2.0f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                'Post-Flop Aggression Freq'
-                )
+                'NA',
+                'a3=NA',
+                'a_fq_3=NA',
+                '(0/0)',
+                _('Post-Flop Aggression Freq'))
 
 def agg_freq(stat_dict, player):
     """    Post-Flop aggression frequency."""
@@ -543,20 +593,18 @@ def agg_freq(stat_dict, player):
         stat = float (bet_raise) / float(post_call + post_fold + bet_raise)
 
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'afr=%3.1f'    % (100*stat) + '%',
-                'agg_fr=%3.1f' % (100*stat) + '%',
-                '(%d/%d)'      % (bet_raise, (post_call + post_fold + bet_raise)),
-                'Aggression Freq'
-                )
+                '%3.1f'             % (100.0*stat),
+                'afr=%3.1f%%'       % (100.0*stat),
+                'agg_fr=%3.1f%%'    % (100.0*stat),
+                '(%d/%d)'           % (bet_raise, (post_call + post_fold + bet_raise)),
+                _('Aggression Freq'))
     except:
         return (stat,
-                '%2.1f'        % (0) + '%',
-                'af=%3.1f'     % (0) + '%',
-                'agg_f=%3.1f'  % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                'Aggression Freq'
-                )
+                'NA',
+                'af=NA',
+                'agg_f=NA',
+                '(0/0)',
+                _('Aggression Freq'))
 
 def agg_fact(stat_dict, player):
     """    Post-Flop aggression frequency."""
@@ -575,17 +623,14 @@ def agg_fact(stat_dict, player):
                 'afa=%2.2f'    % (stat) ,
                 'agg_fa=%2.2f' % (stat) ,
                 '(%d/%d)'      % (bet_raise, post_call),
-                'Aggression Factor'
-                )
+                _('Aggression Factor'))
     except:
         return (stat,
-                '%2.2f'        % (0) ,
-                'afa=%2.2f'    % (0) ,
-                'agg_fa=%2.2f' % (0),
-                '(%d/%d)'      % (0, 0),
-                'Aggression Factor'
-                )
-
+                'NA',
+                'afa=NA',
+                'agg_fa=NA',
+                '(0/0)',
+                _('Aggression Factor'))
 
 def cbet(stat_dict, player):
 
@@ -598,20 +643,18 @@ def cbet(stat_dict, player):
         oppt = stat_dict[player]['cb_opp_1']+stat_dict[player]['cb_opp_2']+stat_dict[player]['cb_opp_3']+stat_dict[player]['cb_opp_4']
         stat = float(cbets)/float(oppt)
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'cbet=%3.1f'   % (100*stat) + '%',
-                'cbet=%3.1f'   % (100*stat) + '%',
-                '(%d/%d)'      % (cbets, oppt),
-                '% continuation bet '
-                )
+                '%3.1f'         % (100.0*stat),
+                'cbet=%3.1f%%'  % (100.0*stat),
+                'cbet=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (cbets, oppt),
+                _('% continuation bet '))
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'cbet=%3.1f'   % (0) + '%',
-                'cbet=%3.1f'   % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                '% continuation bet '
-                )
+                'NA',
+                'cbet=NA',
+                'cbet=NA',
+                '(0/0)',
+                _('% continuation bet '))
     
 def cb1(stat_dict, player):
     """    Flop continuation bet."""
@@ -619,20 +662,18 @@ def cb1(stat_dict, player):
     try:
         stat = float(stat_dict[player]['cb_1'])/float(stat_dict[player]['cb_opp_1'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'cb1=%3.1f'     % (100*stat) + '%',
-                'cb_1=%3.1f'  % (100*stat) + '%',
-                '(%d/%d)'      % (stat_dict[player]['cb_1'], stat_dict[player]['cb_opp_1']),
-                '% continuation bet flop/4th'
-                )
+                '%3.1f'         % (100.0*stat),
+                'cb1=%3.1f%%'   % (100.0*stat),
+                'cb_1=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['cb_1'], stat_dict[player]['cb_opp_1']),
+                _('% continuation bet flop/4th'))
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'cb1=%3.1f'     % (0) + '%',
-                'cb_1=%3.1f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                '% continuation bet flop/4th'
-                )
+                'NA',
+                'cb1=NA',
+                'cb_1=NA',
+                '(0/0)',
+                _('% continuation bet flop/4th'))
     
 def cb2(stat_dict, player):
     """    Turn continuation bet."""
@@ -640,20 +681,18 @@ def cb2(stat_dict, player):
     try:
         stat = float(stat_dict[player]['cb_2'])/float(stat_dict[player]['cb_opp_2'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'cb2=%3.1f'     % (100*stat) + '%',
-                'cb_2=%3.1f'  % (100*stat) + '%',
-                '(%d/%d)'      % (stat_dict[player]['cb_2'], stat_dict[player]['cb_opp_2']),
-                '% continuation bet turn/5th'
-                )
+                '%3.1f'         % (100.0*stat),
+                'cb2=%3.1f%%'   % (100.0*stat),
+                'cb_2=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['cb_2'], stat_dict[player]['cb_opp_2']),
+                _('% continuation bet turn/5th'))
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'cb2=%3.1f'     % (0) + '%',
-                'cb_2=%3.1f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                '% continuation bet turn/5th'
-                )
+                'NA',
+                'cb2=NA',
+                'cb_2=NA',
+                '(0/0)',
+                _('% continuation bet turn/5th'))
     
 def cb3(stat_dict, player):
     """    River continuation bet."""
@@ -661,20 +700,18 @@ def cb3(stat_dict, player):
     try:
         stat = float(stat_dict[player]['cb_3'])/float(stat_dict[player]['cb_opp_3'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'cb3=%3.1f'     % (100*stat) + '%',
-                'cb_3=%3.1f'  % (100*stat) + '%',
-                '(%d/%d)'      % (stat_dict[player]['cb_3'], stat_dict[player]['cb_opp_3']),
-                '% continuation bet river/6th'
-                )
+                '%3.1f'         % (100.0*stat),
+                'cb3=%3.1f%%'   % (100.0*stat),
+                'cb_3=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['cb_3'], stat_dict[player]['cb_opp_3']),
+                _('% continuation bet river/6th'))
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'cb3=%3.1f'     % (0) + '%',
-                'cb_3=%3.1f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                '% continuation bet river/6th'
-                )
+                'NA',
+                'cb3=NA',
+                'cb_3=NA',
+                '(0/0)',
+                _('% continuation bet river/6th'))
     
 def cb4(stat_dict, player):
     """    7th street continuation bet."""
@@ -682,20 +719,18 @@ def cb4(stat_dict, player):
     try:
         stat = float(stat_dict[player]['cb_4'])/float(stat_dict[player]['cb_opp_4'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'cb4=%3.1f'     % (100*stat) + '%',
-                'cb_4=%3.1f'  % (100*stat) + '%',
+                '%3.1f'         % (100.0*stat),
+                'cb4=%3.1f%%'   % (100.0*stat),
+                'cb_4=%3.1f%%'  % (100.0*stat),
                 '(%d/%d)'      % (stat_dict[player]['cb_4'], stat_dict[player]['cb_opp_4']),
-                '% continuation bet 7th'
-                )
+                _('% continuation bet 7th'))
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'cb4=%3.1f'     % (0) + '%',
-                'cb_4=%3.1f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                '% continuation bet 7th'
-                )
+                'NA',
+                'cb4=NA',
+                'cb_4=NA',
+                '(0/0)',
+                _('% continuation bet 7th'))
     
 def ffreq1(stat_dict, player):
     """    Flop/4th fold frequency."""
@@ -703,20 +738,18 @@ def ffreq1(stat_dict, player):
     try:
         stat = float(stat_dict[player]['f_freq_1'])/float(stat_dict[player]['was_raised_1'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'ff1=%3.1f'     % (100*stat) + '%',
-                'ff_1=%3.1f'  % (100*stat) + '%',
-                '(%d/%d)'      % (stat_dict[player]['f_freq_1'], stat_dict[player]['was_raised_1']),
-                '% fold frequency flop/4th'
-                )
+                '%3.1f'         % (100.0*stat),
+                'ff1=%3.1f%%'   % (100.0*stat),
+                'ff_1=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['f_freq_1'], stat_dict[player]['was_raised_1']),
+                _('% fold frequency flop/4th'))
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'ff1=%3.1f'     % (0) + '%',
-                'ff_1=%3.1f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                '% fold frequency flop/4th'
-                )
+                'NA',
+                'ff1=NA',
+                'ff_1=NA',
+                '(0/0)',
+                _('% fold frequency flop/4th'))
     
 def ffreq2(stat_dict, player):
     """    Turn/5th fold frequency."""
@@ -724,20 +757,18 @@ def ffreq2(stat_dict, player):
     try:
         stat = float(stat_dict[player]['f_freq_2'])/float(stat_dict[player]['was_raised_2'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'ff2=%3.1f'     % (100*stat) + '%',
-                'ff_2=%3.1f'  % (100*stat) + '%',
-                '(%d/%d)'      % (stat_dict[player]['f_freq_2'], stat_dict[player]['was_raised_2']),
-                '% fold frequency turn/5th'
-                )
+                '%3.1f'         % (100.0*stat),
+                'ff2=%3.1f%%'   % (100.0*stat),
+                'ff_2=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['f_freq_2'], stat_dict[player]['was_raised_2']),
+                _('% fold frequency turn/5th'))
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'ff2=%3.1f'     % (0) + '%',
-                'ff_2=%3.1f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                '% fold frequency turn/5th'
-                )
+                'NA',
+                'ff2=NA',
+                'ff_2=NA',
+                '(0/0)',
+                _('% fold frequency turn/5th'))
     
 def ffreq3(stat_dict, player):
     """    River/6th fold frequency."""
@@ -745,20 +776,18 @@ def ffreq3(stat_dict, player):
     try:
         stat = float(stat_dict[player]['f_freq_3'])/float(stat_dict[player]['was_raised_3'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'ff3=%3.1f'     % (100*stat) + '%',
-                'ff_3=%3.1f'  % (100*stat) + '%',
-                '(%d/%d)'      % (stat_dict[player]['f_freq_3'], stat_dict[player]['was_raised_3']),
-                '% fold frequency river/6th'
-                )
+                '%3.1f'         % (100.0*stat),
+                'ff3=%3.1f%%'   % (100.0*stat),
+                'ff_3=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['f_freq_3'], stat_dict[player]['was_raised_3']),
+                _('% fold frequency river/6th'))
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'ff3=%3.1f'     % (0) + '%',
-                'ff_3=%3.1f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                '% fold frequency river/6th'
-                )
+                'NA',
+                'ff3=NA',
+                'ff_3=NA',
+                '(0/0)',
+                _('% fold frequency river/6th'))
     
 def ffreq4(stat_dict, player):
     """    7th fold frequency."""
@@ -766,29 +795,41 @@ def ffreq4(stat_dict, player):
     try:
         stat = float(stat_dict[player]['f_freq_4'])/float(stat_dict[player]['was_raised_4'])
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'ff4=%3.1f'     % (100*stat) + '%',
-                'ff_4=%3.1f'  % (100*stat) + '%',
-                '(%d/%d)'      % (stat_dict[player]['f_freq_4'], stat_dict[player]['was_raised_4']),
-                '% fold frequency 7th'
-                )
+                '%3.1f'         % (100.0*stat),
+                'ff4=%3.1f%%'   % (100.0*stat),
+                'ff_4=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['f_freq_4'], stat_dict[player]['was_raised_4']),
+                _('% fold frequency 7th'))
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'ff4=%3.1f'     % (0) + '%',
-                'ff_4=%3.1f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
-                '% fold frequency 7th'
-                )
+                'NA',
+                'ff4=NA',
+                'ff_4=NA',
+                '(0/0)',
+                _('% fold frequency 7th'))
     
 if __name__== "__main__":
+    statlist = dir()
+    misslist = [ "Configuration", "Database", "Charset", "codecs", "encoder"
+               , "do_stat", "do_tip", "GInitiallyUnowned", "gtk", "pygtk"
+               , "re", "re_Places"
+               ]
+    statlist = [ x for x in statlist if x not in dir(sys) ]
+    statlist = [ x for x in statlist if x not in dir(codecs) ]
+    statlist = [ x for x in statlist if x not in misslist ]
+    #print "statlist is", statlist
+
     c = Configuration.Config()
     #TODO: restore the below code. somehow it creates a version 119 DB but commenting this out makes it print a stat list
-    #db_connection = Database.Database(c)
-    #h = db_connection.get_last_hand()
-    #stat_dict = db_connection.get_stats_from_hand(h, "ring")
+    db_connection = Database.Database(c)
+    h = db_connection.get_last_hand()
+    stat_dict = db_connection.get_stats_from_hand(h, "ring")
     
-    #for player in stat_dict.keys():
+    for player in stat_dict.keys():
+        print (_("Example stats, player = %s  hand = %s:") % (player, h))
+        for attr in statlist:
+            print "  ", do_stat(stat_dict, player=player, stat=attr)
+        break
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'vpip') 
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'pfr') 
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'wtsd') 
@@ -818,13 +859,9 @@ if __name__== "__main__":
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq4')
         #print "\n" 
 
-    print "\n\nLegal stats:"
-    print "(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)\n"
-    for attr in dir():
-        if attr.startswith('__'): continue
-        if attr in ("Configuration", "Database", "GInitiallyUnowned", "gtk", "pygtk",
-                    "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict",
-                    "h", "re", "re_Percent", "re_Places"): continue
+    print _("\n\nLegal stats:")
+    print _("(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)\n")
+    for attr in statlist:
         print "%-14s %s" % (attr, eval("%s.__doc__" % (attr)))
 #        print "            <pu_stat pu_stat_name = \"%s\"> </pu_stat>" % (attr)
     print

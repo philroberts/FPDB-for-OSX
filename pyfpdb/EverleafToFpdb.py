@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2008-2010, Carl Gherardi
@@ -17,6 +17,9 @@
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
+
+import L10n
+_ = L10n.get_translation()
 
 import sys
 import logging
@@ -63,13 +66,16 @@ class Everleaf(HandHistoryConverter):
             self.re_SitsOut         = re.compile(ur"^%s sits out" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
-        return [["ring", "hold", "nl"],
+        return [
+                ["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
-                ["ring", "studhi", "fl"],
-                ["ring", "omahahi", "pl"],
-                ["ring", "omahahilo", "pl"],
-                ["tour", "hold", "nl"]
+                ["ring", "stud", "fl"],
+                #["ring", "omahahi", "pl"],
+                #["ring", "omahahilo", "pl"],
+                ["tour", "hold", "nl"],
+                ["tour", "hold", "fl"],
+                ["tour", "hold", "pl"]
                ]
 
     def determineGameType(self, handText):
@@ -133,7 +139,7 @@ or None if we fail to get the info """
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if(m == None):
-            logging.info("Didn't match re_HandInfo")
+            logging.info(_("Didn't match re_HandInfo"))
             logging.info(hand.handText)
             return None
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
@@ -168,8 +174,10 @@ or None if we fail to get the info """
         for a in m:
             seatnum = int(a.group('SEAT'))
             hand.addPlayer(seatnum, a.group('PNAME'), a.group('CASH'))
-            if seatnum > 6:
-                hand.maxseats = 10 # everleaf currently does 2/6/10 games, so if seats > 6 are in use, it must be 10-max.
+            if seatnum > 8:
+                hand.maxseats = 10 # they added 8-seat games now
+            elif seatnum > 6:
+                hand.maxseats = 8 # everleaf currently does 2/6/10 games, so if seats > 6 are in use, it must be 10-max.
                 # TODO: implement lookup list by table-name to determine maxes, then fall back to 6 default/10 here, if there's no entry in the list?
 
 
@@ -202,7 +210,7 @@ or None if we fail to get the info """
         hand.setCommunityCards(street=street, cards=cards)
 
     def readAntes(self, hand):
-        logging.debug("reading antes")
+        logging.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
@@ -214,14 +222,14 @@ or None if we fail to get the info """
             logging.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         else:
-            logging.warning("No bringin found.")
+            logging.warning(_("No bringin found."))
 
     def readBlinds(self, hand):
         m = self.re_PostSB.search(hand.handText)
         if m is not None:
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
         else:
-            logging.debug("No small blind")
+            logging.debug(_("No small blind"))
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
@@ -249,7 +257,7 @@ or None if we fail to get the info """
 
     def readStudPlayerCards(self, hand, street):
         # lol. see Plymouth.txt
-        logging.warning("Everleaf readStudPlayerCards is only a stub.")
+        logging.warning(_("Everleaf readStudPlayerCards is only a stub."))
         #~ if street in ('THIRD', 'FOURTH',  'FIFTH',  'SIXTH'):
             #~ hand.addPlayerCards(player = player.group('PNAME'), street = street,  closed = [],  open = [])
 
@@ -272,7 +280,7 @@ or None if we fail to get the info """
             elif action.group('ATYPE') == ' complete to':
                 hand.addComplete( street, action.group('PNAME'), action.group('BET'))
             else:
-                logging.debug("Unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),))
+                logging.debug(_("Unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)))
 
 
     def readShowdownActions(self, hand):
@@ -281,7 +289,7 @@ or None if we fail to get the info """
         for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
             cards = cards.split(', ')
-            logging.debug("readShowdownActions %s %s" %(cards, shows.group('PNAME')))
+            logging.debug(_("readShowdownActions %s %s" %(cards, shows.group('PNAME'))))
             hand.addShownCards(cards, shows.group('PNAME'))
 
 
@@ -310,9 +318,9 @@ or None if we fail to get the info """
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="-")
-    parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
-    parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
+    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"), default="-")
+    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
+    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
     parser.add_option("-q", "--quiet",
                   action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
     parser.add_option("-v", "--verbose",

@@ -1,0 +1,1905 @@
+Everleaf Gaming Game #148735443
+***** Hand history for game #148735443 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:00:02
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 25 USD )
+Seat 10: Hero (  $ 25 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 9c, 4h, Td, Jc ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ 2s, Ad, 8d ]
+Hero checks
+Villain: bets [$ 0.50 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.95 USD) from main pot
+
+
+
+Everleaf Gaming Game #148735485
+***** Hand history for game #148735485 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:00:24
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 25.45 USD )
+Seat 10: Hero (  $ 24.50 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 9d, 2h, 5c, 5d ]
+Hero calls [$ 0.25 USD]
+Villain raises [$ 0.50 USD]
+Hero calls [$ 0.50 USD]
+** Dealing Flop ** [ 8c, Jd, Td ]
+Villain: bets [$ 0.50 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 1.90 USD) from main pot
+
+
+
+Everleaf Gaming Game #148735532
+***** Hand history for game #148735532 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:00:45
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 26.35 USD )
+Seat 10: Hero (  $ 23.50 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Kc, Kh, 2c, Kd ]
+Villain raises [$ 0.75 USD]
+Hero calls [$ 0.50 USD]
+** Dealing Flop ** [ Ks, 5s, Qd ]
+Hero: bets [$ 0.50 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 1.90 USD from main pot
+
+
+
+Everleaf Gaming Game #148735563
+***** Hand history for game #148735563 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:01:04
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 25.35 USD )
+Seat 10: Hero (  $ 24.40 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Qc, 5c, Ah, 5d ]
+Hero raises [$ 0.75 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ 6h, 8d, 9h ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ Ad ]
+Villain: bets [$ 1 USD]
+Hero folds
+Villain does not show cards
+Villain wins $ 1.90 USD from main pot
+
+
+
+Everleaf Gaming Game #148735617
+***** Hand history for game #148735617 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:01:32
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 26.25 USD )
+Seat 10: Hero (  $ 23.40 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 8s, 6s, 6h, 4h ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ As, 9c, Ks ]
+Hero checks
+Villain: bets [$ 0.50 USD]
+Hero folds
+Villain does not show cards
+Villain wins $ 0.95 USD from main pot
+
+
+
+Everleaf Gaming Game #148735643
+***** Hand history for game #148735643 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:01:48
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 26.70 USD )
+Seat 10: Hero (  $ 22.90 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 5h, Ac, 9d, Qd ]
+Hero raises [$ 0.75 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 1 USD from main pot
+
+
+
+Everleaf Gaming Game #148735677
+***** Hand history for game #148735677 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:02:00
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 26.20 USD )
+Seat 10: Hero (  $ 23.40 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Qc, Qd, 5c, 8c ]
+Villain calls [$ 0.25 USD]
+Hero raises [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ 5d, Ad, Jc ]
+Hero checks
+Villain: bets [$ 0.50 USD]
+Hero folds
+Villain does not show cards
+Villain wins $ 1.90 USD from main pot
+
+
+
+Everleaf Gaming Game #148735718
+***** Hand history for game #148735718 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:02:24
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 27.10 USD )
+Seat 10: Hero (  $ 22.40 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Tc, 6c, 3c, Ac ]
+Hero raises [$ 0.75 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ As, Jh, Ah ]
+Villain checks
+Hero: bets [$ 0.50 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 1.90 USD from main pot
+
+
+
+Everleaf Gaming Game #148735755
+***** Hand history for game #148735755 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:02:43
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 26.10 USD )
+Seat 10: Hero (  $ 23.30 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Qd, 4c, 7c, 6c ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ Td, 6d, Ah ]
+Hero checks
+Villain: bets [$ 0.50 USD]
+Hero folds
+Villain does not show cards
+Villain wins $ 0.95 USD from main pot
+
+
+
+Everleaf Gaming Game #148735800
+***** Hand history for game #148735800 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:03:06
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 26.55 USD )
+Seat 10: Hero (  $ 22.80 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 9s, Td, 3c, 4c ]
+Hero folds
+Villain does not show cards
+Villain wins $ 0.50 USD from main pot
+
+
+
+Everleaf Gaming Game #148735813
+***** Hand history for game #148735813 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:03:13
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 26.80 USD )
+Seat 10: Hero (  $ 22.55 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Th, 4c, 9h, 2h ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ 9d, 5h, Kd ]
+Hero checks
+Villain: bets [$ 0.50 USD]
+Hero folds
+Villain does not show cards
+Villain wins $ 0.95 USD from main pot
+
+
+
+Everleaf Gaming Game #148735851
+***** Hand history for game #148735851 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:03:30
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 27.25 USD )
+Seat 10: Hero (  $ 22.05 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 9s, Jc, 6c, 9c ]
+Hero calls [$ 0.25 USD]
+Villain checks
+** Dealing Flop ** [ 9d, 5s, 2d ]
+Villain checks
+Hero: bets [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Turn ** [ Th ]
+Villain checks
+Hero: bets [$ 1 USD]
+Villain calls [$ 1 USD]
+** Dealing River ** [ 5h ]
+Villain checks
+Hero: bets [$ 1 USD]
+Villain calls [$ 1 USD]
+Hero shows [ 9s, Jc, 6c, 9c ] a full house, nines full of fives
+Villain does not show cards
+Hero wins  high ($ 5.70 USD) from main pot with a full house, nines full of fives [ 9s, 9c, 9d, 5s, 5h ]
+
+
+
+Everleaf Gaming Game #148735911
+***** Hand history for game #148735911 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:03:59
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 24.25 USD )
+Seat 10: Hero (  $ 24.75 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Ac, 5d, 3d, Qs ]
+Villain calls [$ 0.25 USD]
+Hero raises [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ Ts, 3c, 8d ]
+Hero: bets [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Turn ** [ 9h ]
+Hero checks
+Villain checks
+** Dealing River ** [ Qd ]
+Hero checks
+Villain checks
+Hero shows [ Ac, 5d, 3d, Qs ] two pairs, queens and threes
+Villain shows [ Qc, 2h, As, 9s ] two pairs, queens and nines
+Villain wins  high ($ 2.85 USD) from main pot with two pairs, queens and nines [ Qc, Qd, Ts, 9s, 9h ]
+
+
+
+Everleaf Gaming Game #148735968
+***** Hand history for game #148735968 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:04:27
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 25.60 USD )
+Seat 10: Hero (  $ 23.25 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 7h, As, 6h, 3c ]
+Hero raises [$ 0.75 USD]
+Villain raises [$ 1 USD]
+Hero calls [$ 0.50 USD]
+** Dealing Flop ** [ 7c, 4h, Ks ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ 8h ]
+Villain checks
+Hero: bets [$ 1 USD]
+Villain calls [$ 1 USD]
+** Dealing River ** [ Qh ]
+Villain checks
+Hero: bets [$ 1 USD]
+Villain calls [$ 1 USD]
+Hero shows [ 7h, As, 6h, 3c ] a flush, queen high
+Villain does not show cards
+Hero wins  high ($ 3.33 USD) from main pot with a flush, queen high [ Qh, 8h, 7h, 6h, 4h ]
+Hero wins  low ($3.32) from main pot with 8, 7, 4, 3, A [ As, 8h, 7c, 4h, 3c ]
+
+
+
+Everleaf Gaming Game #148736022
+***** Hand history for game #148736022 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:04:52
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 22.10 USD )
+Seat 10: Hero (  $ 26.40 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 9d, As, Ac, 9s ]
+Villain calls [$ 0.25 USD]
+Hero raises [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ 2c, Qh, 4h ]
+Hero: bets [$ 0.50 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 1.90 USD from main pot
+
+
+
+Everleaf Gaming Game #148736049
+***** Hand history for game #148736049 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:05:06
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 21.10 USD )
+Seat 10: Hero (  $ 27.30 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 2d, 3d, Jh, Kh ]
+Hero calls [$ 0.25 USD]
+Villain raises [$ 0.50 USD]
+Hero calls [$ 0.50 USD]
+** Dealing Flop ** [ Qd, Jd, 4c ]
+Villain: bets [$ 0.50 USD]
+Hero calls [$ 0.50 USD]
+** Dealing Turn ** [ 5d ]
+Villain: bets [$ 1 USD]
+Hero calls [$ 1 USD]
+** Dealing River ** [ Ac ]
+Villain: bets [$ 1 USD]
+Hero raises [$ 2 USD]
+Villain calls [$ 1 USD]
+Hero shows [ 2d, 3d, Jh, Kh ] a flush, queen high
+Villain does not show cards
+Hero wins  high ($ 4.28 USD) from main pot with a flush, queen high [ Qd, Jd, 5d, 3d, 2d ]
+Hero wins  low ($4.27) from main pot with 5, 4, 3, 2, A [ Ac, 5d, 4c, 3d, 2d ]
+
+
+
+Everleaf Gaming Game #148736101
+***** Hand history for game #148736101 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:05:34
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 16.60 USD )
+Seat 10: Hero (  $ 31.35 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Ks, 6c, As, 2s ]
+Villain folds
+Hero does not show cards
+Hero wins $ 0.50 USD from main pot
+
+
+
+Everleaf Gaming Game #148736116
+***** Hand history for game #148736116 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:05:40
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 16.35 USD )
+Seat 10: Hero (  $ 31.60 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 9h, Kc, Ah, Td ]
+Hero raises [$ 0.75 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ 2c, Jh, 5h ]
+Villain checks
+Hero: bets [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Turn ** [ Jd ]
+Villain checks
+Hero checks
+** Dealing River ** [ 2s ]
+Villain checks
+Hero checks
+Villain shows [ Ts, 2h, 3d, As ] three of a kind, twos
+Hero does not show cards
+Villain wins  high ($ 2.85 USD) from main pot with three of a kind, twos [ As, Jh, 2h, 2c, 2s ]
+
+
+
+Everleaf Gaming Game #148736205
+***** Hand history for game #148736205 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:06:19
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 17.70 USD )
+Seat 10: Hero (  $ 30.10 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 8d, 7s, 7c, Jd ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ Ac, Ts, Ks ]
+Hero checks
+Villain: bets [$ 0.50 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.95 USD) from main pot
+
+
+
+Everleaf Gaming Game #148736235
+***** Hand history for game #148736235 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:06:35
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 18.15 USD )
+Seat 10: Hero (  $ 29.60 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Th, Ad, Kd, Jh ]
+Hero raises [$ 0.75 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ 9h, 3c, 9s ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ 5c ]
+Villain: bets [$ 1 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 1.90 USD) from main pot
+
+
+
+Everleaf Gaming Game #148736268
+***** Hand history for game #148736268 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:06:50
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 19.05 USD )
+Seat 10: Hero (  $ 28.60 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ As, 3c, 6h, 7h ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ 2s, Ah, Jd ]
+Hero: bets [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Turn ** [ 7d ]
+Hero checks
+Villain checks
+** Dealing River ** [ 4s ]
+Hero: bets [$ 1 USD]
+Villain calls [$ 1 USD]
+Hero shows [ As, 3c, 6h, 7h ] two pairs, aces and sevens
+Villain shows [ 3d, 4h, 4d, 2d ] three of a kind, fours
+Villain wins  high ($ 1.90 USD) from main pot with three of a kind, fours [ Ah, Jd, 4h, 4d, 4s ]
+Hero wins  low ($1.90) from main pot with 6, 4, 3, 2, A [ Ah, 6h, 4s, 3c, 2s ]
+
+
+
+Everleaf Gaming Game #148736316
+***** Hand history for game #148736316 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:07:13
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 18.95 USD )
+Seat 10: Hero (  $ 28.50 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 4d, 4s, 2h, 4h ]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.50 USD) from main pot
+
+
+
+Everleaf Gaming Game #148736331
+***** Hand history for game #148736331 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:07:20
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 19.20 USD )
+Seat 10: Hero (  $ 28.25 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 4h, 9s, Kd, 5s ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ 5d, Td, Js ]
+Hero checks
+Villain checks
+** Dealing Turn ** [ 7d ]
+Hero checks
+Villain checks
+** Dealing River ** [ 2c ]
+Hero checks
+Villain checks
+Hero shows [ 4h, 9s, Kd, 5s ] a pair of fives
+Villain shows [ 4c, Ts, 9h, 4s ] a pair of tens
+Villain wins  high ($ 0.95 USD) from main pot with a pair of tens [ Js, Ts, Td, 9h, 7d ]
+
+
+
+Everleaf Gaming Game #148736380
+***** Hand history for game #148736380 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:07:46
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 19.65 USD )
+Seat 10: Hero (  $ 27.75 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Js, Qh, 8s, Ks ]
+Hero calls [$ 0.25 USD]
+Villain checks
+** Dealing Flop ** [ 6d, 2c, 5c ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ 7d ]
+Villain checks
+Hero checks
+** Dealing River ** [ 2h ]
+Villain: bets [$ 1 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.48 USD) from main pot
+Villain wins  low ($0.47) from main pot
+
+
+
+Everleaf Gaming Game #148736454
+***** Hand history for game #148736454 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:08:20
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 20.10 USD )
+Seat 10: Hero (  $ 27.25 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Jd, 2c, Td, 2s ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ Qh, Ad, 6s ]
+Hero checks
+Villain checks
+** Dealing Turn ** [ 9h ]
+Hero checks
+Villain checks
+** Dealing River ** [ Ks ]
+Hero: bets [$ 1 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 0.95 USD from main pot
+
+
+
+Everleaf Gaming Game #148736512
+***** Hand history for game #148736512 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:08:46
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 19.60 USD )
+Seat 10: Hero (  $ 27.70 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 8d, Qc, 8c, 7d ]
+Hero calls [$ 0.25 USD]
+Villain checks
+** Dealing Flop ** [ 6s, Kd, 5d ]
+Villain: bets [$ 0.50 USD]
+Hero raises [$ 1 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Turn ** [ 6d ]
+Villain: bets [$ 1 USD]
+Hero calls [$ 1 USD]
+** Dealing River ** [ 3h ]
+Villain: bets [$ 1 USD]
+Hero calls [$ 1 USD]
+Villain shows [ 2s, 5h, 9c, 6c ] a full house, sixes full of fives
+Hero shows [ 8d, Qc, 8c, 7d ] a flush, king high
+Villain wins  high ($ 3.33 USD) from main pot with a full house, sixes full of fives [ 6c, 6s, 6d, 5h, 5d ]
+Hero wins  low ($3.32) from main pot with 8, 7, 6, 5, 3 [ 8d, 7d, 6s, 5d, 3h ]
+
+
+
+Everleaf Gaming Game #148736585
+***** Hand history for game #148736585 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:09:23
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 19.43 USD )
+Seat 10: Hero (  $ 27.52 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Qh, Tc, 7h, 3c ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ 5c, 6s, 9s ]
+Hero checks
+Villain checks
+** Dealing Turn ** [ 9h ]
+Hero checks
+Villain checks
+** Dealing River ** [ Qc ]
+Hero checks
+Villain checks
+Hero shows [ Qh, Tc, 7h, 3c ] two pairs, queens and nines
+Villain does not show cards
+Hero wins  high ($ 0.95 USD) from main pot with two pairs, queens and nines [ Qh, Qc, Tc, 9s, 9h ]
+
+
+
+Everleaf Gaming Game #148736633
+***** Hand history for game #148736633 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:09:44
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 18.93 USD )
+Seat 10: Hero (  $ 27.97 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 3s, Tc, 7d, 4h ]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.50 USD) from main pot
+
+
+
+Everleaf Gaming Game #148736641
+***** Hand history for game #148736641 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:09:52
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 19.18 USD )
+Seat 10: Hero (  $ 27.72 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 7h, Td, 3d, Kh ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ 4d, 6c, Ad ]
+Hero: bets [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Turn ** [ Js ]
+Hero checks
+Villain checks
+** Dealing River ** [ Tc ]
+Hero checks
+Villain checks
+Hero shows [ 7h, Td, 3d, Kh ] a pair of tens
+Villain shows [ 3c, Ts, Kc, 5c ] a pair of tens
+Villain wins  high ($ 0.47 USD) from main pot with a pair of tens [ Ad, Kc, Js, Ts, Tc ]
+Hero wins  high ($ 0.48 USD) from main pot with a pair of tens [ Ad, Kh, Js, Td, Tc ]
+Villain wins  low ($0.95) from main pot with 6, 5, 4, 3, A [ Ad, 6c, 5c, 4d, 3c ]
+
+
+
+Everleaf Gaming Game #148736705
+***** Hand history for game #148736705 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:10:20
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 19.60 USD )
+Seat 10: Hero (  $ 27.20 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 6s, 3s, Th, Td ]
+Hero calls [$ 0.25 USD]
+Villain checks
+** Dealing Flop ** [ 3h, 9s, 4c ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ As ]
+Villain checks
+Hero checks
+** Dealing River ** [ 5c ]
+Villain checks
+Hero checks
+Villain shows [ 2d, Ks, 8s, 9d ] a pair of nines
+Hero shows [ 6s, 3s, Th, Td ] a pair of tens
+Hero wins  high ($ 0.48 USD) from main pot with a pair of tens [ As, Th, Td, 9s, 5c ]
+Hero wins  low ($0.47) from main pot with 6, 5, 4, 3, A [ As, 6s, 5c, 4c, 3s ]
+
+
+
+Everleaf Gaming Game #148736743
+***** Hand history for game #148736743 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:10:44
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 19.10 USD )
+Seat 10: Hero (  $ 27.65 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Qd, Qs, Qh, 6h ]
+Villain raises [$ 0.75 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 1 USD) from main pot
+
+
+
+Everleaf Gaming Game #148736763
+***** Hand history for game #148736763 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:10:53
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 19.60 USD )
+Seat 10: Hero (  $ 27.15 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Th, 8c, 5s, Qs ]
+Hero calls [$ 0.25 USD]
+Villain checks
+** Dealing Flop ** [ 6s, 7d, 3h ]
+Villain checks
+Hero: bets [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Turn ** [ Kh ]
+Villain checks
+Hero checks
+** Dealing River ** [ Ah ]
+Villain checks
+Hero checks
+Villain shows [ 3d, Kd, 8d, 5h ] two pairs, kings and threes
+Hero does not show cards
+Villain wins  high ($ 0.95 USD) from main pot with two pairs, kings and threes [ Ah, Kd, Kh, 3d, 3h ]
+Villain wins  low ($0.95) from main pot with 7, 6, 5, 3, A [ Ah, 7d, 6s, 5h, 3d ]
+
+
+
+Everleaf Gaming Game #148736826
+***** Hand history for game #148736826 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:11:25
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 20.50 USD )
+Seat 10: Hero (  $ 26.15 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Ac, 6s, 3d, Th ]
+Villain raises [$ 0.75 USD]
+Hero calls [$ 0.50 USD]
+** Dealing Flop ** [ 4h, 3h, As ]
+Hero: bets [$ 0.50 USD]
+Villain raises [$ 1 USD]
+Hero calls [$ 0.50 USD]
+** Dealing Turn ** [ 5c ]
+Hero checks
+Villain: bets [$ 1 USD]
+Hero calls [$ 1 USD]
+** Dealing River ** [ Ks ]
+Hero checks
+Villain: bets [$ 1 USD]
+Hero calls [$ 1 USD]
+Villain shows [ Ad, Ah, Qc, 6d ] three of a kind, aces
+Hero shows [ Ac, 6s, 3d, Th ] two pairs, aces and threes
+Villain wins  high ($ 3.80 USD) from main pot with three of a kind, aces [ Ad, Ah, As, Ks, 5c ]
+Villain wins  low ($1.90) from main pot with 6, 5, 4, 3, A [ Ad, 6d, 5c, 4h, 3h ]
+Hero wins  low ($1.90) from main pot with 6, 5, 4, 3, A [ Ac, 6s, 5c, 4h, 3h ]
+
+
+
+Everleaf Gaming Game #148736881
+***** Hand history for game #148736881 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:11:49
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 22.20 USD )
+Seat 10: Hero (  $ 24.05 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ As, Qc, 7d, Ts ]
+Hero raises [$ 0.75 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ 3h, 5s, 6c ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ 8s ]
+Villain checks
+Hero checks
+** Dealing River ** [ Th ]
+Villain checks
+Hero checks
+Villain shows [ Ks, Ad, 2c, 2s ] a pair of twos
+Hero shows [ As, Qc, 7d, Ts ] a pair of tens
+Hero wins  high ($ 0.95 USD) from main pot with a pair of tens [ As, Ts, Th, 8s, 6c ]
+Villain wins  low ($0.95) from main pot with 6, 5, 3, 2, A [ Ad, 6c, 5s, 3h, 2c ]
+
+
+
+Everleaf Gaming Game #148736929
+***** Hand history for game #148736929 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:12:14
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 22.15 USD )
+Seat 10: Hero (  $ 24 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Ac, 2s, 2h, As ]
+Villain calls [$ 0.25 USD]
+Hero raises [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ 5d, 3d, 6s ]
+Hero: bets [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Turn ** [ 6h ]
+Hero: bets [$ 1 USD]
+Villain calls [$ 1 USD]
+** Dealing River ** [ 7s ]
+Hero: bets [$ 1 USD]
+Villain calls [$ 1 USD]
+Hero shows [ Ac, 2s, 2h, As ] two pairs, aces and sixes
+Villain shows [ 4c, Ts, 5c, 8d ] a straight, eight high
+Villain wins  high ($ 3.33 USD) from main pot with a straight, eight high [ 8d, 7s, 6s, 5d, 4c ]
+Hero wins  low ($3.32) from main pot with 6, 5, 3, 2, A [ Ac, 6s, 5d, 3d, 2s ]
+
+
+
+Everleaf Gaming Game #148736970
+***** Hand history for game #148736970 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:12:35
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 21.98 USD )
+Seat 10: Hero (  $ 23.82 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 9d, 9c, 2d, 2s ]
+Hero raises [$ 0.75 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ Kh, 6d, 4c ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ 3d ]
+Villain checks
+Hero checks
+** Dealing River ** [ 6c ]
+Villain checks
+Hero checks
+Villain shows [ 5d, Qh, 4s, 8d ] two pairs, sixes and fours
+Hero shows [ 9d, 9c, 2d, 2s ] two pairs, nines and sixes
+Hero wins  high ($ 0.95 USD) from main pot with two pairs, nines and sixes [ Kh, 9d, 9c, 6d, 6c ]
+Villain wins  low ($0.95) from main pot with 8, 6, 5, 4, 3 [ 8d, 6d, 5d, 4c, 3d ]
+
+
+
+Everleaf Gaming Game #148737009
+***** Hand history for game #148737009 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:12:53
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 21.93 USD )
+Seat 10: Hero (  $ 23.77 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 3h, 5d, 9c, 8d ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ 2d, Tc, 8c ]
+Hero checks
+Villain checks
+** Dealing Turn ** [ 8s ]
+Hero: bets [$ 1 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 0.95 USD from main pot
+
+
+
+Everleaf Gaming Game #148737047
+***** Hand history for game #148737047 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:13:12
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 21.43 USD )
+Seat 10: Hero (  $ 24.22 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 9c, Kc, 2d, 5c ]
+Hero folds
+Villain does not show cards
+Villain wins $ 0.50 USD from main pot
+
+
+
+Everleaf Gaming Game #148737063
+***** Hand history for game #148737063 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:13:20
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 21.68 USD )
+Seat 10: Hero (  $ 23.97 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 5s, 9d, Ad, Qd ]
+Villain calls [$ 0.25 USD]
+Hero raises [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ Ah, 3d, Qh ]
+Hero: bets [$ 0.50 USD]
+Villain raises [$ 1 USD]
+Hero calls [$ 0.50 USD]
+** Dealing Turn ** [ 3h ]
+Hero checks
+Villain: bets [$ 1 USD]
+Hero calls [$ 1 USD]
+** Dealing River ** [ 2h ]
+Hero checks
+Villain checks
+Hero shows [ 5s, 9d, Ad, Qd ] two pairs, aces and queens
+Villain shows [ 6h, As, Qc, 6s ] two pairs, aces and queens
+Villain wins  high ($ 2.85 USD) from main pot with two pairs, aces and queens [ As, Ah, Qc, Qh, 3d ]
+Hero wins  high ($ 2.85 USD) from main pot with two pairs, aces and queens [ Ad, Ah, Qd, Qh, 3d ]
+
+
+
+Everleaf Gaming Game #148737126
+***** Hand history for game #148737126 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:13:51
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 21.53 USD )
+Seat 10: Hero (  $ 23.82 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Ah, 6c, Kc, 2c ]
+Hero raises [$ 0.75 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ 4h, 2h, 2d ]
+Villain checks
+Hero: bets [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Turn ** [ 6h ]
+Villain: bets [$ 1 USD]
+Hero raises [$ 2 USD]
+Villain calls [$ 1 USD]
+** Dealing River ** [ 7d ]
+Villain checks
+Hero: bets [$ 1 USD]
+Villain calls [$ 1 USD]
+Hero shows [ Ah, 6c, Kc, 2c ] a full house, twos full of sixes
+Villain shows [ 5h, 3c, 9c, Th ] a flush, ten high
+Hero wins  high ($ 4.28 USD) from main pot with a full house, twos full of sixes [ 6c, 6h, 2c, 2h, 2d ]
+Villain wins  low ($4.27) from main pot with 6, 5, 4, 3, 2 [ 6h, 5h, 4h, 3c, 2h ]
+
+
+
+Everleaf Gaming Game #148737179
+***** Hand history for game #148737179 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:14:17
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 21.30 USD )
+Seat 10: Hero (  $ 23.60 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 7c, 3h, 5s, 6c ]
+Villain raises [$ 0.75 USD]
+Hero calls [$ 0.50 USD]
+** Dealing Flop ** [ Tc, Ad, 5c ]
+Hero checks
+Villain: bets [$ 0.50 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 1.90 USD) from main pot
+
+
+
+Everleaf Gaming Game #148737225
+***** Hand history for game #148737225 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:14:38
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 22.20 USD )
+Seat 10: Hero (  $ 22.60 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 6c, 9s, Ad, Ac ]
+Hero raises [$ 0.75 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ 7s, 6s, 9c ]
+Villain: bets [$ 0.50 USD]
+Hero calls [$ 0.50 USD]
+** Dealing Turn ** [ 4s ]
+Villain: bets [$ 1 USD]
+Hero calls [$ 1 USD]
+** Dealing River ** [ Qh ]
+Villain: bets [$ 1 USD]
+Hero calls [$ 1 USD]
+Villain shows [ 6h, 7d, 9h, 6d ] three of a kind, sixes
+Hero does not show cards
+Villain wins  high ($ 6.65 USD) from main pot with three of a kind, sixes [ Qh, 9c, 6h, 6d, 6s ]
+
+
+
+Everleaf Gaming Game #148737270
+***** Hand history for game #148737270 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:14:58
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 25.35 USD )
+Seat 10: Hero (  $ 19.10 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Th, Jc, 7s, 8d ]
+Villain calls [$ 0.25 USD]
+Hero raises [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ 6c, Js, 7h ]
+Hero: bets [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Turn ** [ Kc ]
+Hero: bets [$ 1 USD]
+Villain calls [$ 1 USD]
+** Dealing River ** [ 2h ]
+Hero: bets [$ 1 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 4.75 USD from main pot
+
+
+
+Everleaf Gaming Game #148737344
+***** Hand history for game #148737344 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:15:31
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 22.85 USD )
+Seat 10: Hero (  $ 21.35 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Qs, 3c, 7c, 8h ]
+Hero calls [$ 0.25 USD]
+Villain checks
+** Dealing Flop ** [ 9d, Qd, 8d ]
+Villain checks
+Hero: bets [$ 0.50 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 0.95 USD from main pot
+
+
+
+Everleaf Gaming Game #148737405
+***** Hand history for game #148737405 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:16:03
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 22.35 USD )
+Seat 10: Hero (  $ 21.80 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 9s, 8s, Jh, Th ]
+Villain folds
+Hero does not show cards
+Hero wins $ 0.50 USD from main pot
+
+
+
+Everleaf Gaming Game #148737425
+***** Hand history for game #148737425 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:16:11
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 22.10 USD )
+Seat 10: Hero (  $ 22.05 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 5h, Jd, 3c, Kd ]
+Hero calls [$ 0.25 USD]
+Villain checks
+** Dealing Flop ** [ 2s, 6d, 7s ]
+Villain: bets [$ 0.50 USD]
+Hero calls [$ 0.50 USD]
+** Dealing Turn ** [ Ac ]
+Villain: bets [$ 1 USD]
+Hero calls [$ 1 USD]
+** Dealing River ** [ 2c ]
+Villain: bets [$ 1 USD]
+Hero calls [$ 1 USD]
+Villain shows [ Td, 2d, 7c, 4c ] a full house, twos full of sevens
+Hero shows [ 5h, Jd, 3c, Kd ] a pair of twos
+Villain wins  high ($ 2.85 USD) from main pot with a full house, twos full of sevens [ 7c, 7s, 2d, 2s, 2c ]
+Hero wins  low ($2.85) from main pot with 6, 5, 3, 2, A [ Ac, 6d, 5h, 3c, 2s ]
+
+
+
+Everleaf Gaming Game #148737475
+***** Hand history for game #148737475 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:16:38
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 21.95 USD )
+Seat 10: Hero (  $ 21.90 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Kc, 6c, 2c, 5h ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ Ks, 3h, As ]
+Hero checks
+Villain: bets [$ 0.50 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.95 USD) from main pot
+
+
+
+Everleaf Gaming Game #148737509
+***** Hand history for game #148737509 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:16:55
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 22.40 USD )
+Seat 10: Hero (  $ 21.40 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 2s, 4c, Td, 9d ]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.50 USD) from main pot
+
+
+
+Everleaf Gaming Game #148737530
+***** Hand history for game #148737530 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:17:02
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 22.65 USD )
+Seat 10: Hero (  $ 21.15 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 8d, Ts, 4h, 4s ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ 2s, Ac, 9h ]
+Hero checks
+Villain: bets [$ 0.50 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.95 USD) from main pot
+
+
+
+Everleaf Gaming Game #148737550
+***** Hand history for game #148737550 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:17:16
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 23.10 USD )
+Seat 10: Hero (  $ 20.65 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 7c, Jc, Kd, Kc ]
+Hero raises [$ 0.75 USD]
+Villain raises [$ 1 USD]
+Hero calls [$ 0.50 USD]
+** Dealing Flop ** [ 5c, 7s, Tc ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ 7d ]
+Villain checks
+Hero: bets [$ 1 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 2.85 USD from main pot
+
+
+
+Everleaf Gaming Game #148737589
+***** Hand history for game #148737589 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:17:38
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 21.60 USD )
+Seat 10: Hero (  $ 22 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 5d, Tc, 3h, Ks ]
+Villain raises [$ 0.75 USD]
+Hero folds
+Villain does not show cards
+Villain wins $ 1 USD from main pot
+
+
+
+Everleaf Gaming Game #148737612
+***** Hand history for game #148737612 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:17:49
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 22.10 USD )
+Seat 10: Hero (  $ 21.50 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 6c, Qh, Kh, Jc ]
+Hero calls [$ 0.25 USD]
+Villain checks
+** Dealing Flop ** [ 7c, 5h, 2c ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ As ]
+Villain checks
+Hero checks
+** Dealing River ** [ 2h ]
+Villain checks
+Hero checks
+Villain shows [ Jh, 9h, 6s, 2s ] three of a kind, twos
+Hero does not show cards
+Villain wins  high ($ 0.48 USD) from main pot with three of a kind, twos [ As, Jh, 2s, 2c, 2h ]
+Villain wins  low ($0.47) from main pot with 7, 6, 5, 2, A [ As, 7c, 6s, 5h, 2s ]
+
+
+
+Everleaf Gaming Game #148737651
+***** Hand history for game #148737651 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:18:10
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 22.55 USD )
+Seat 10: Hero (  $ 21 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 2d, 3d, Tc, 8s ]
+Villain raises [$ 0.75 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 1 USD) from main pot
+
+
+
+Everleaf Gaming Game #148737675
+***** Hand history for game #148737675 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:18:21
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 23.05 USD )
+Seat 10: Hero (  $ 20.50 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 6h, Ah, 6d, Ac ]
+Hero raises [$ 0.75 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 1 USD from main pot
+
+
+
+Everleaf Gaming Game #148737692
+***** Hand history for game #148737692 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:18:28
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 22.55 USD )
+Seat 10: Hero (  $ 21 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Kh, 7h, 2c, Jc ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ 7s, Jd, 5c ]
+Hero: bets [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Turn ** [ 8c ]
+Hero: bets [$ 1 USD]
+Villain calls [$ 1 USD]
+** Dealing River ** [ 3c ]
+Hero: bets [$ 1 USD]
+Villain calls [$ 1 USD]
+Hero shows [ Kh, 7h, 2c, Jc ] a flush, jack high
+Villain shows [ Ad, 4c, 8h, 5s ] two pairs, eights and fives
+Hero wins  high ($ 2.85 USD) from main pot with a flush, jack high [ Jc, 8c, 5c, 3c, 2c ]
+Villain wins  low ($2.85) from main pot with 7, 5, 4, 3, A [ Ad, 7s, 5c, 4c, 3c ]
+
+
+
+Everleaf Gaming Game #148737727
+***** Hand history for game #148737727 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:18:50
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 22.40 USD )
+Seat 10: Hero (  $ 20.85 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 2s, 2c, 8c, Jh ]
+Hero calls [$ 0.25 USD]
+Villain checks
+** Dealing Flop ** [ 4s, 5h, Ah ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ 2d ]
+Villain checks
+Hero: bets [$ 1 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 0.95 USD from main pot
+
+
+
+Everleaf Gaming Game #148737762
+***** Hand history for game #148737762 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:19:09
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 21.90 USD )
+Seat 10: Hero (  $ 21.30 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 3d, Qd, Js, 7d ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ 5d, 9d, 2c ]
+Hero checks
+Villain: bets [$ 0.50 USD]
+Hero calls [$ 0.50 USD]
+** Dealing Turn ** [ 2d ]
+Hero checks
+Villain checks
+** Dealing River ** [ Qh ]
+Hero: bets [$ 1 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 1.90 USD from main pot
+
+
+
+Everleaf Gaming Game #148737833
+***** Hand history for game #148737833 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:19:45
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 20.90 USD )
+Seat 10: Hero (  $ 22.20 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Kd, 6c, As, 7s ]
+Hero raises [$ 0.75 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ 2c, 4h, 6s ]
+Villain checks
+Hero: bets [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Turn ** [ 7c ]
+Villain checks
+Hero: bets [$ 1 USD]
+Villain calls [$ 1 USD]
+** Dealing River ** [ 2h ]
+Villain checks
+Hero checks
+Villain shows [ Jc, Ad, 9h, 5c ] a pair of twos
+Hero shows [ Kd, 6c, As, 7s ] two pairs, sevens and sixes
+Hero wins  high ($ 2.38 USD) from main pot with two pairs, sevens and sixes [ 7s, 7c, 6c, 6s, 4h ]
+Villain wins  low ($2.37) from main pot with 6, 5, 4, 2, A [ Ad, 6s, 5c, 4h, 2c ]
+
+
+
+Everleaf Gaming Game #148737880
+***** Hand history for game #148737880 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:20:12
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 20.77 USD )
+Seat 10: Hero (  $ 22.08 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 7h, Qh, 2s, Js ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ 8h, As, Ac ]
+Hero checks
+Villain: bets [$ 0.50 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.95 USD) from main pot
+
+
+
+Everleaf Gaming Game #148737917
+***** Hand history for game #148737917 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:20:29
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 21.22 USD )
+Seat 10: Hero (  $ 21.58 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 5c, As, 4s, 8h ]
+Hero calls [$ 0.25 USD]
+Villain checks
+** Dealing Flop ** [ Jc, Kh, 3c ]
+Villain: bets [$ 0.50 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.95 USD) from main pot
+
+
+
+Everleaf Gaming Game #148737951
+***** Hand history for game #148737951 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:20:44
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 21.67 USD )
+Seat 10: Hero (  $ 21.08 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 7c, Jd, Qd, Th ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ Jc, 5h, 6d ]
+Hero: bets [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Turn ** [ 2h ]
+Hero checks
+Villain checks
+** Dealing River ** [ Ts ]
+Hero: bets [$ 1 USD]
+Villain raises [$ 2 USD]
+Hero calls [$ 1 USD]
+Villain shows [ Kd, Tc, Td, 6h ] three of a kind, tens
+Hero does not show cards
+Villain wins  high ($ 5.70 USD) from main pot with three of a kind, tens [ Jc, Tc, Td, Ts, 6d ]
+
+
+
+Everleaf Gaming Game #148738008
+***** Hand history for game #148738008 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:21:16
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 24.37 USD )
+Seat 10: Hero (  $ 18.08 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 9d, Ac, Qs, Ks ]
+Hero raises [$ 0.75 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 1 USD from main pot
+
+
+
+Everleaf Gaming Game #148738022
+***** Hand history for game #148738022 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:21:23
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 23.87 USD )
+Seat 10: Hero (  $ 18.58 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 5s, 9c, 2s, Js ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ 3c, Ad, 6d ]
+Hero checks
+Villain: bets [$ 0.50 USD]
+Hero folds
+Villain does not show cards
+Villain wins $ 0.95 USD from main pot
+
+
+
+Everleaf Gaming Game #148738049
+***** Hand history for game #148738049 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:21:38
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 24.32 USD )
+Seat 10: Hero (  $ 18.08 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 3c, 9s, 2d, Jd ]
+Hero calls [$ 0.25 USD]
+Villain raises [$ 0.50 USD]
+Hero calls [$ 0.50 USD]
+** Dealing Flop ** [ 3s, 4s, Tc ]
+Villain: bets [$ 0.50 USD]
+Hero folds
+Villain does not show cards
+Villain wins $ 1.90 USD from main pot
+
+
+
+Everleaf Gaming Game #148738093
+***** Hand history for game #148738093 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:21:58
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 25.22 USD )
+Seat 10: Hero (  $ 17.08 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 9s, Ks, Th, 7d ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ 6h, Ad, Ts ]
+Hero checks
+Villain checks
+** Dealing Turn ** [ As ]
+Hero: bets [$ 1 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 0.95 USD from main pot
+
+
+
+Everleaf Gaming Game #148738137
+***** Hand history for game #148738137 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:22:19
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 24.72 USD )
+Seat 10: Hero (  $ 17.53 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Qh, 5s, Td, 4c ]
+Hero calls [$ 0.25 USD]
+Villain checks
+** Dealing Flop ** [ 5h, 7c, 2h ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ 8d ]
+Villain checks
+Hero checks
+** Dealing River ** [ Ks ]
+Villain checks
+Hero checks
+Villain shows [ Th, 6c, 6d, Kd ] a pair of kings
+Hero shows [ Qh, 5s, Td, 4c ] a pair of fives
+Villain wins  high ($ 0.48 USD) from main pot with a pair of kings [ Kd, Ks, Th, 8d, 7c ]
+Hero wins  low ($0.47) from main pot with 8, 7, 5, 4, 2 [ 8d, 7c, 5s, 4c, 2h ]
+
+
+
+Everleaf Gaming Game #148738182
+***** Hand history for game #148738182 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:22:45
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 24.70 USD )
+Seat 10: Hero (  $ 17.50 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 2d, Qs, 6c, 9d ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ 2h, Ac, As ]
+Hero checks
+Villain: bets [$ 0.50 USD]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.95 USD) from main pot
+
+
+
+Everleaf Gaming Game #148738243
+***** Hand history for game #148738243 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:23:11
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 25.15 USD )
+Seat 10: Hero (  $ 17 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 3s, Qh, 4h, Kc ]
+Hero calls [$ 0.25 USD]
+Villain checks
+** Dealing Flop ** [ 2s, 3d, 9h ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ As ]
+Villain checks
+Hero checks
+** Dealing River ** [ Kh ]
+Villain checks
+Hero checks
+Villain shows [ 8d, 8c, 8h, 7h ] a pair of eights
+Hero shows [ 3s, Qh, 4h, Kc ] two pairs, kings and threes
+Hero wins  high ($ 0.48 USD) from main pot with two pairs, kings and threes [ As, Kc, Kh, 3s, 3d ]
+Villain wins  low ($0.47) from main pot with 8, 7, 3, 2, A [ As, 8d, 7h, 3d, 2s ]
+
+
+
+Everleaf Gaming Game #148738287
+***** Hand history for game #148738287 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:23:32
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 25.12 USD )
+Seat 10: Hero (  $ 16.98 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 7c, Tc, Kd, 2h ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ 9c, Kh, Jd ]
+Hero: bets [$ 0.50 USD]
+Villain folds
+Hero does not show cards
+Hero wins $ 0.95 USD from main pot
+
+
+
+Everleaf Gaming Game #148738314
+***** Hand history for game #148738314 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:23:46
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 24.62 USD )
+Seat 10: Hero (  $ 17.43 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Qs, Ah, 4c, 5c ]
+Hero raises [$ 0.75 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ 9h, Kd, 3c ]
+Villain checks
+Hero checks
+** Dealing Turn ** [ 3s ]
+Villain checks
+Hero checks
+** Dealing River ** [ Tc ]
+Villain checks
+Hero checks
+Villain shows [ Qd, Jh, 8c, As ] a straight, king high
+Hero does not show cards
+Villain wins  high ($ 1.90 USD) from main pot with a straight, king high [ Kd, Qd, Jh, Tc, 9h ]
+
+
+
+Everleaf Gaming Game #148738348
+***** Hand history for game #148738348 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:24:03
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 25.52 USD )
+Seat 10: Hero (  $ 16.43 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Qs, 3s, 9d, As ]
+Villain calls [$ 0.25 USD]
+Hero raises [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ 7h, 5s, 6h ]
+Hero: bets [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Turn ** [ Ks ]
+Hero: bets [$ 1 USD]
+Villain calls [$ 1 USD]
+** Dealing River ** [ 4c ]
+Hero: bets [$ 1 USD]
+Villain raises [$ 2 USD]
+Hero calls [$ 1 USD]
+Villain shows [ Jh, Kd, 8c, 7s ] a straight, eight high
+Hero shows [ Qs, 3s, 9d, As ] high card ace
+Villain wins  high ($ 4.28 USD) from main pot with a straight, eight high [ 8c, 7s, 6h, 5s, 4c ]
+Hero wins  low ($4.27) from main pot with 6, 5, 4, 3, A [ As, 6h, 5s, 4c, 3s ]
+
+
+
+Everleaf Gaming Game #148738403
+***** Hand history for game #148738403 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:24:31
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 25.30 USD )
+Seat 10: Hero (  $ 16.20 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 2s, 9d, 3h, 7c ]
+Hero folds
+Villain does not show cards
+Villain wins  high ($ 0.50 USD) from main pot
+
+
+
+Everleaf Gaming Game #148738420
+***** Hand history for game #148738420 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:24:36
+Table Kentfield I
+Seat 6 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 25.55 USD )
+Seat 10: Hero (  $ 15.95 USD )
+Villain: posts small blind [$ 0.25 USD]
+Hero: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 6h, 6d, 7d, 9h ]
+Villain calls [$ 0.25 USD]
+Hero checks
+** Dealing Flop ** [ 3c, Jh, 8d ]
+Hero checks
+Villain checks
+** Dealing Turn ** [ Qs ]
+Hero checks
+Villain checks
+** Dealing River ** [ 6c ]
+Hero: bets [$ 1 USD]
+Villain calls [$ 1 USD]
+Hero shows [ 6h, 6d, 7d, 9h ] three of a kind, sixes
+Villain shows [ Ac, 7c, 3h, 5s ] a pair of threes
+Hero wins  high ($ 1.43 USD) from main pot with three of a kind, sixes [ Qs, Jh, 6h, 6d, 6c ]
+Villain wins  low ($1.42) from main pot with 8, 6, 5, 3, A [ Ac, 8d, 6c, 5s, 3c ]
+
+
+
+Everleaf Gaming Game #148738468
+***** Hand history for game #148738468 *****
+$0.50/$1 Omaha Hi/Lo - 2010/03/01 - 11:24:57
+Table Kentfield I
+Seat 10 is the button
+Total number of players: 2
+Seat 6: Villain (  $ 25.47 USD )
+Seat 10: Hero (  $ 15.88 USD )
+Hero: posts small blind [$ 0.25 USD]
+Villain: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ 6s, Kd, 3c, Qd ]
+Hero raises [$ 0.75 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Flop ** [ Jh, Th, 5d ]
+Villain checks
+Hero: bets [$ 0.50 USD]
+Villain calls [$ 0.50 USD]
+** Dealing Turn ** [ Ks ]
+Villain checks
+Hero checks
+** Dealing River ** [ 9h ]
+Villain checks
+Hero checks
+Villain shows [ Js, 4s, 8d, 6c ] a pair of jacks
+Hero shows [ 6s, Kd, 3c, Qd ] a straight, king high
+Hero wins  high ($ 2.85 USD) from main pot with a straight, king high [ Kd, Qd, Jh, Th, 9h ]
+
+
+

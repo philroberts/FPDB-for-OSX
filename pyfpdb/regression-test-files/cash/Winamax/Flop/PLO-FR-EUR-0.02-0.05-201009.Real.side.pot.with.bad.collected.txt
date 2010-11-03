@@ -1,0 +1,57 @@
+Winamax Poker - CashGame - HandId: #270777-217-1284853532 - Omaha pot limit (0.02€/0.05€) - 2010/09/19 01:45:32 UTC
+Table: 'Petit-Bourg' 9-max (real money) Seat #4 is the button
+Seat 1: Player22 (9.10€)
+Seat 2: Player25 (1.45€)
+Seat 3: Player17 (0€)
+Seat 4: Player5 (12.92€)
+Seat 5: Player7 (0.99€)
+Seat 6: Player10 (5.21€)
+Seat 7: Player20 (5.05€)
+Seat 8: Player13 (12.71€)
+Seat 9: Player14 (4.73€)
+*** ANTE/BLINDS *** 
+Player7 posts small blind 0.02€
+Player10 posts big blind 0.05€
+Player25 posts big blind 0.05€ out of position
+Dealt to Player13 [9h 3c 4h 4c]
+*** PRE-FLOP *** 
+Player20 folds
+Player13 folds
+Player14 calls 0.05€
+Player22 calls 0.05€
+Player25 raises 0.22€ to 0.27€
+Player5 calls 0.27€
+Player7 calls 0.25€
+Player10 calls 0.22€
+Player14 folds
+Player22 calls 0.22€
+*** FLOP *** [Kc Jd 7h]
+Player7 checks
+Player10 bets 1.40€
+Player22 folds
+Player25 calls 1.18€ and is all-in
+Player5 folds
+Player7 calls 0.72€ and is all-in
+*** TURN *** [Kc Jd 7h][9c]
+*** RIVER *** [Kc Jd 7h 9c][Js]
+*** SHOW DOWN ***
+Player7 shows [Ad Jc Jh 6c] (Quads of Jack)
+Player25 shows [9s Kh 3d Ks] (Full of King and Jack)
+Player10 shows [7c 7d 6h 8s] (Full of 7 and Jack)
+Player10 collected 0.22€ from side pot 2
+Player25 collected 0.88€ from side pot 1
+Player7 collected 3.38€ from main pot
+*** SUMMARY ***
+Total pot 4.48€ | Rake 0.22€
+Board: [Kc Jd 7h 9c Js]
+Seat 1: Player22 folded on the flop
+Seat 2: Player25 showed [9s Kh 3d Ks] and won 0.88€ with Full of King and Jack
+Seat 3: Player17 folded
+Seat 4: Player5 (button) folded on the flop
+Seat 5: Player7 (small blind) showed [Ad Jc Jh 6c] and won 3.38€ with Quads of Jack
+Seat 6: Player10 (big blind) showed [7c 7d 6h 8s] and won 0.22€ with Full of 7 and Jack
+Seat 7: Player20 folded on the pre-flop
+Seat 8: Player13 folded on the pre-flop
+Seat 9: Player14 folded on the pre-flop
+
+

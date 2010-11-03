@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 import threading
 import subprocess
 import traceback
@@ -26,13 +29,23 @@ import gobject
 import os
 import sys
 import time
+
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("importer")
+
+
 import fpdb_import
 from optparse import OptionParser
 import Configuration
 import string
 
+if os.name == "nt":
+    import win32console
+
+
 class GuiAutoImport (threading.Thread):
-    def __init__(self, settings, config, sql, parent):
+    def __init__(self, settings, config, sql = None, parent = None, cli = False):
         self.importtimer = 0
         self.settings = settings
         self.config = config
@@ -40,9 +53,6 @@ class GuiAutoImport (threading.Thread):
         self.parent = parent
 
         imp = self.config.get_import_parameters()
-
-#        print "Import parameters"
-#        print imp
 
         self.input_settings = {}
         self.pipe_to_hud = None
@@ -53,13 +63,21 @@ class GuiAutoImport (threading.Thread):
         self.importer.setQuiet(False)
         self.importer.setFailOnError(False)
         self.importer.setHandCount(0)
-#        self.importer.setWatchTime()
 
         self.server = settings['db-host']
         self.user = settings['db-user']
         self.password = settings['db-password']
         self.database = settings['db-databaseName']
 
+        if cli == False:
+            self.setupGui()
+        else:
+            # TODO: Separate the code that grabs the directories from config
+            #       Separate the calls to the Importer API
+            #       Create a timer interface that doesn't rely on GTK
+            pass
+
+    def setupGui(self):
         self.mainVBox = gtk.VBox(False,1)
 
         hbox = gtk.HBox(True, 0) # contains 2 equal vboxes
@@ -70,7 +88,7 @@ class GuiAutoImport (threading.Thread):
         vbox2 = gtk.VBox(True, 0)
         hbox.pack_start(vbox2, True, True, 0)
 
-        self.intervalLabel = gtk.Label("Time between imports in seconds:")
+        self.intervalLabel = gtk.Label(_("Time between imports in seconds:"))
         self.intervalLabel.set_alignment(xalign=1.0, yalign=0.5)
         vbox1.pack_start(self.intervalLabel, False, True, 0)
 
@@ -101,7 +119,7 @@ class GuiAutoImport (threading.Thread):
         hbox.pack_start(lbl1, expand=True, fill=False)
 
         self.doAutoImportBool = False
-        self.startButton = gtk.ToggleButton("  Start _Autoimport  ")
+        self.startButton = gtk.ToggleButton(_("  Start _Auto Import  "))
         self.startButton.connect("clicked", self.startClicked, "start clicked")
         hbox.pack_start(self.startButton, expand=False, fill=False)
 
@@ -120,7 +138,7 @@ class GuiAutoImport (threading.Thread):
         scrolledwindow.add(self.textview)
 
         self.mainVBox.show_all()
-        self.addText("AutoImport Ready.")
+        self.addText(_("Auto Import Ready."))
 
     def addText(self, text):
         end_iter = self.textbuffer.get_end_iter()
@@ -133,7 +151,7 @@ class GuiAutoImport (threading.Thread):
         """runs when user clicks one of the browse buttons in the auto import tab"""
         current_path=data[1].get_text()
 
-        dia_chooser = gtk.FileChooserDialog(title="Please choose the path that you want to auto import",
+        dia_chooser = gtk.FileChooserDialog(title=_("Please choose the path that you want to Auto Import"),
                 action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
                 buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
         #dia_chooser.set_current_folder(pathname)
@@ -156,7 +174,7 @@ class GuiAutoImport (threading.Thread):
     def do_import(self):
         """Callback for timer to do an import iteration."""
         if self.doAutoImportBool:
-            self.startButton.set_label(u'  _Auto Import Running  ')
+            self.startButton.set_label(_(u'  _Auto Import Running  '))
             self.importer.runUpdated()
             self.addText(".")
             #sys.stdout.write(".")
@@ -167,9 +185,9 @@ class GuiAutoImport (threading.Thread):
 
     def reset_startbutton(self):
         if self.pipe_to_hud is not None:
-            self.startButton.set_label(u'  Stop _Autoimport  ')
+            self.startButton.set_label(_(u'  Stop _Auto Import  '))
         else:
-            self.startButton.set_label(u'  Start _Autoimport  ')
+            self.startButton.set_label(_(u'  Start _Auto Import  '))
 
         return False
 
@@ -192,17 +210,21 @@ class GuiAutoImport (threading.Thread):
             # - Ideally we want to release the lock if the auto-import is killed by some
             # kind of exception - is this possible?
             if self.settings['global_lock'].acquire(False):   # returns false immediately if lock not acquired
-                self.addText("\nGlobal lock taken ... Auto Import Started.\n")
+                self.addText(_("\nGlobal lock taken ... Auto Import Started.\n"))
                 self.doAutoImportBool = True
-                widget.set_label(u'  _Stop Autoimport  ')
+                widget.set_label(_(u'  _Stop Auto Import  '))
                 if self.pipe_to_hud is None:
-                    if Configuration.FROZEN:
+                    if Configuration.FROZEN:    # if py2exe, run hud_main.exe
                         path = Configuration.EXEC_PATH
                         command = "HUD_main.exe"
                         bs = 0
                     elif os.name == 'nt':
                         path = sys.path[0].replace('\\','\\\\')
-                        command = 'pythonw "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
+                        if win32console.GetConsoleWindow() == 0:
+                            command = 'pythonw "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
+                        else:
+                            command = 'python "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
+                        # uncomment above line if you want hud_main stdout to work ... and make sure you are running fpdb.py using python.exe not pythonw.exe
                         bs = 0
                     else:
                         command = os.path.join(sys.path[0], 'HUD_main.pyw')
@@ -210,19 +232,22 @@ class GuiAutoImport (threading.Thread):
                         bs = 1
 
                     try:
-                        print "opening pipe to HUD"
-                        self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
-                                                            stdin=subprocess.PIPE,
-                                                            stdout=subprocess.PIPE,  # only needed for py2exe
-                                                            stderr=subprocess.PIPE,  # only needed for py2exe
-                                                            universal_newlines=True
-                                                           )
+                        print _("opening pipe to HUD")
+                        if Configuration.FROZEN or (os.name == "nt" and win32console.GetConsoleWindow()) == 0:
+                            self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
+                                                                stdin=subprocess.PIPE,
+                                                                stdout=subprocess.PIPE,  # needed for pythonw / py2exe
+                                                                stderr=subprocess.PIPE,  # needed for pythonw / py2exe
+                                                                universal_newlines=True
+                                                               )
+                        else:
+                            self.pipe_to_hud = subprocess.Popen(command, bufsize=bs, stdin=subprocess.PIPE, universal_newlines=True)
                         #self.pipe_to_hud.stdout.close()
                         #self.pipe_to_hud.stderr.close()
                     except:
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
                         #self.addText( "\n*** GuiAutoImport Error opening pipe: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1]))
-                        self.addText( "\n*** GuiAutoImport Error opening pipe: " + traceback.format_exc() )
+                        self.addText(_("\n*** GuiAutoImport Error opening pipe: ") + traceback.format_exc() )
                     else:
                         for site in self.input_settings:
                             self.importer.addImportDirectory(self.input_settings[site][0], True, site, self.input_settings[site][1])
@@ -234,19 +259,19 @@ class GuiAutoImport (threading.Thread):
                     self.importtimer = gobject.timeout_add(interval * 1000, self.do_import)
 
             else:
-                self.addText("\nauto-import aborted - global lock not available")
+                self.addText(_("\nAuto Import aborted - global lock not available"))
         else: # toggled off
             gobject.source_remove(self.importtimer)
             self.settings['global_lock'].release()
             self.doAutoImportBool = False # do_import will return this and stop the gobject callback timer
-            self.addText("\nStopping autoimport - global lock released.")
+            self.addText(_("\nStopping Auto Import - global lock released."))
             if self.pipe_to_hud.poll() is not None:
-                self.addText("\n * Stop Autoimport: HUD already terminated")
+                self.addText(_("\n * Stop Auto Import: HUD already terminated"))
             else:
                 #print >>self.pipe_to_hud.stdin, "\n"
                 self.pipe_to_hud.communicate('\n') # waits for process to terminate
             self.pipe_to_hud = None
-            self.startButton.set_label(u'  Start _Autoimport  ')
+            self.startButton.set_label(_(u'  Start _Auto Import  '))
 
     #end def GuiAutoImport.startClicked
 
@@ -268,7 +293,7 @@ class GuiAutoImport (threading.Thread):
         hbox1.pack_start(dirPath, True, True, 3)
         dirPath.show()
 
-        browseButton=gtk.Button("Browse...")
+        browseButton=gtk.Button(_("Browse..."))
         browseButton.connect("clicked", self.browseClicked, [site] + [dirPath])
         hbox2.pack_start(browseButton, False, False, 3)
         browseButton.show()
@@ -284,6 +309,7 @@ class GuiAutoImport (threading.Thread):
 
     def addSites(self, vbox1, vbox2):
         the_sites = self.config.get_supported_sites()
+        #log.debug("addSites: the_sites="+str(the_sites))
         for site in the_sites:
             pathHBox1 = gtk.HBox(False, 0)
             vbox1.pack_start(pathHBox1, False, True, 0)
@@ -294,6 +320,7 @@ class GuiAutoImport (threading.Thread):
             paths = self.config.get_default_paths(site)
             self.createSiteLine(pathHBox1, pathHBox2, site, False, paths['hud-defaultPath'], params['converter'], params['enabled'])
             self.input_settings[site] = [paths['hud-defaultPath']] + [params['converter']]
+        #log.debug("addSites: input_settings="+str(self.input_settings))
 
 if __name__== "__main__":
     def destroy(*args):             # call back for terminating the main eventloop
@@ -311,7 +338,7 @@ if __name__== "__main__":
     parser = OptionParser()
     parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True, help="don't start gui")
     parser.add_option("-m", "--minPrint", "--status", dest="minPrint", default="0", type="int",
-                    help="How often to print a one-line status report (0 (default) means never)")
+                    help=_("How often to print a one-line status report (0 (default) means never)"))
     (options, argv) = parser.parse_args()
 
     config = Configuration.Config()
@@ -321,17 +348,16 @@ if __name__== "__main__":
     if os.name == 'nt': settings['os'] = 'windows'
     else:               settings['os'] = 'linuxmac'
 
-    settings.update(config.get_db_parameters('fpdb'))
-    settings.update(config.get_tv_parameters())
+    settings.update(config.get_db_parameters())
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
 
     if(options.gui == True):
-        i = GuiAutoImport(settings, config)
+        i = GuiAutoImport(settings, config, None, None)
         main_window = gtk.Window()
         main_window.connect('destroy', destroy)
         main_window.add(i.mainVBox)
         main_window.show()
         gtk.main()
     else:
-        pass
+        i = GuiAutoImport(settings, config, cli = True)

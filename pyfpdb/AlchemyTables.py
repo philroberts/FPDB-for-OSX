@@ -19,6 +19,8 @@
 Contains all sqlalchemy tables
 """
 
+#TODO: gettextify if file is used again
+
 from sqlalchemy import Table, Float, Column, Integer, String, MetaData, \
         ForeignKey, Boolean, SmallInteger, DateTime, Text, Index, CHAR, \
         PickleType, Unicode
@@ -448,7 +450,6 @@ def sss():
         self.settings['os']="windows"
 
     self.settings.update(self.config.get_db_parameters())
-    self.settings.update(self.config.get_tv_parameters())
     self.settings.update(self.config.get_import_parameters())
     self.settings.update(self.config.get_default_paths())
 

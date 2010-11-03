@@ -17,6 +17,9 @@
 
 """parses and stores summary sections from e.g. eMail or summary files"""
 
+import L10n
+_ = L10n.get_translation()
+
 # TODO: check to keep only the needed modules
 
 import re
@@ -30,6 +33,7 @@ import operator
 import time,datetime
 from copy import deepcopy
 from Exceptions import *
+
 import pprint
 import DerivedStats
 import Card
@@ -61,10 +65,10 @@ class TourneySummary(object):
         self.endTime            = None
         self.tourNo             = None
         self.currency           = None
-        self.buyin              = None
-        self.fee                = None
+        self.buyin              = 0
+        self.fee                = 0
         self.hero               = None
-        self.maxseats           = None
+        self.maxseats           = 0
         self.entries            = 0
         self.speed              = "Normal"
         self.prizepool          = 0  # Make it a dict in order to deal (eventually later) with non-money winnings : {'MONEY' : amount, 'OTHER' : Value ??}
@@ -112,65 +116,68 @@ class TourneySummary(object):
         self.sym = None
         
         if builtFrom=="IMAP":
-            self.parseSummary()
-            self.insertOrUpdate()
+            # Fix line endings?
+            pass
+
+        self.parseSummary()
+        self.insertOrUpdate()
     #end def __init__
 
     def __str__(self):
         #TODO : Update
-        vars = ( ("SITE", self.siteName),
-                 ("START TIME", self.startTime),
-                 ("END TIME", self.endTime),
-                 ("TOURNEY NAME", self.tourneyName),
-                 ("TOURNEY NO", self.tourNo),
-                 ("TOURNEY TYPE ID", self.tourneyTypeId),
-                 ("TOURNEY ID", self.tourneyId),
-                 ("BUYIN", self.buyin),
-                 ("FEE", self.fee),
-                 ("CURRENCY", self.currency),
-                 ("HERO", self.hero),
-                 ("MAXSEATS", self.maxseats),
-                 ("ENTRIES", self.entries),
-                 ("SPEED", self.speed),
-                 ("PRIZE POOL", self.prizepool),
-                 ("STARTING CHIP COUNT", self.buyInChips),
-                 ("MIXED", self.mixed),
-                 ("REBUY", self.isRebuy),
-                 ("ADDON", self.isAddOn),
-                 ("KO", self.isKO),
-                 ("MATRIX", self.isMatrix),
-                 ("MATRIX ID PROCESSED", self.matrixIdProcessed),
-                 ("SHOOTOUT", self.isShootout),
-                 ("MATRIX MATCH ID", self.matrixMatchId),
-                 ("SUB TOURNEY BUY IN", self.subTourneyBuyin),
-                 ("SUB TOURNEY FEE", self.subTourneyFee),
-                 ("REBUY CHIPS", self.rebuyChips),
-                 ("ADDON CHIPS", self.addOnChips),
-                 ("REBUY COST", self.rebuyCost),
-                 ("ADDON COST", self.addOnCost),
-                 ("TOTAL REBUYS", self.totalRebuyCount),
-                 ("TOTAL ADDONS", self.totalAddOnCount),
-                 ("KO BOUNTY", self.koBounty),
-                 ("TOURNEY COMMENT", self.tourneyComment),
-                 ("SNG", self.isSng),
-                 ("SATELLITE", self.isSatellite),
-                 ("DOUBLE OR NOTHING", self.isDoubleOrNothing),
-                 ("GUARANTEE", self.guarantee),
-                 ("ADDED", self.added),
-                 ("ADDED CURRENCY", self.addedCurrency),
-                 ("COMMENT", self.comment),
-                 ("COMMENT TIMESTAMP", self.commentTs)
+        vars = ( (_("SITE"), self.siteName),
+                 (_("START TIME"), self.startTime),
+                 (_("END TIME"), self.endTime),
+                 (_("TOURNEY NAME"), self.tourneyName),
+                 (_("TOURNEY NO"), self.tourNo),
+                 (_("TOURNEY TYPE ID"), self.tourneyTypeId),
+                 (_("TOURNEY ID"), self.tourneyId),
+                 (_("BUYIN"), self.buyin),
+                 (_("FEE"), self.fee),
+                 (_("CURRENCY"), self.currency),
+                 (_("HERO"), self.hero),
+                 (_("MAXSEATS"), self.maxseats),
+                 (_("ENTRIES"), self.entries),
+                 (_("SPEED"), self.speed),
+                 (_("PRIZE POOL"), self.prizepool),
+                 (_("STARTING CHIP COUNT"), self.buyInChips),
+                 (_("MIXED"), self.mixed),
+                 (_("REBUY"), self.isRebuy),
+                 (_("ADDON"), self.isAddOn),
+                 (_("KO"), self.isKO),
+                 (_("MATRIX"), self.isMatrix),
+                 (_("MATRIX ID PROCESSED"), self.matrixIdProcessed),
+                 (_("SHOOTOUT"), self.isShootout),
+                 (_("MATRIX MATCH ID"), self.matrixMatchId),
+                 (_("SUB TOURNEY BUY IN"), self.subTourneyBuyin),
+                 (_("SUB TOURNEY FEE"), self.subTourneyFee),
+                 (_("REBUY CHIPS"), self.rebuyChips),
+                 (_("ADDON CHIPS"), self.addOnChips),
+                 (_("REBUY COST"), self.rebuyCost),
+                 (_("ADDON COST"), self.addOnCost),
+                 (_("TOTAL REBUYS"), self.totalRebuyCount),
+                 (_("TOTAL ADDONS"), self.totalAddOnCount),
+                 (_("KO BOUNTY"), self.koBounty),
+                 (_("TOURNEY COMMENT"), self.tourneyComment),
+                 (_("SNG"), self.isSng),
+                 (_("SATELLITE"), self.isSatellite),
+                 (_("DOUBLE OR NOTHING"), self.isDoubleOrNothing),
+                 (_("GUARANTEE"), self.guarantee),
+                 (_("ADDED"), self.added),
+                 (_("ADDED CURRENCY"), self.addedCurrency),
+                 (_("COMMENT"), self.comment),
+                 (_("COMMENT TIMESTAMP"), self.commentTs)
         )
  
-        structs = ( ("PLAYER IDS", self.playerIds),
-                    ("PLAYERS", self.players),
-                    ("TOURNEYS PLAYERS IDS", self.tourneysPlayersIds),
-                    ("RANKS", self.ranks),                    
-                    ("WINNINGS", self.winnings),
-                    ("WINNINGS CURRENCY", self.winningsCurrency),
-                    ("COUNT REBUYS", self.rebuyCounts),
-                    ("COUNT ADDONS", self.addOnCounts),
-                    ("NB OF KO", self.koCounts)
+        structs = ( (_("PLAYER IDS"), self.playerIds),
+                    (_("PLAYERS"), self.players),
+                    (_("TOURNEYS PLAYERS IDS"), self.tourneysPlayersIds),
+                    (_("RANKS"), self.ranks),                    
+                    (_("WINNINGS"), self.winnings),
+                    (_("WINNINGS CURRENCY"), self.winningsCurrency),
+                    (_("COUNT REBUYS"), self.rebuyCounts),
+                    (_("COUNT ADDONS"), self.addOnCounts),
+                    (_("NB OF KO"), self.koCounts)
         )
         str = ''
         for (name, var) in vars:
@@ -217,7 +224,7 @@ class TourneySummary(object):
         self.tourneysPlayersIds = self.db.createOrUpdateTourneysPlayers(self, "TS")
         self.db.commit()
         
-        logging.debug("Tourney Insert/Update done")
+        logging.debug(_("Tourney Insert/Update done"))
         
         # TO DO : Return what has been done (tourney created, updated, nothing)
         # ?? stored = 1 if tourney is fully created / duplicates = 1, if everything was already here and correct / partial=1 if some things were already here (between tourney, tourneysPlayers and handsPlayers)
@@ -237,7 +244,7 @@ rank        (int) indicating the finishing rank (can be -1 if unknown)
 name        (string) player name
 winnings    (decimal) the money the player ended the tourney with (can be 0, or -1 if unknown)
 """
-        log.debug("addPlayer: rank:%s - name : '%s' - Winnings (%s)" % (rank, name, winnings))
+        log.debug(_("addPlayer: rank:%s - name : '%s' - Winnings (%s)") % (rank, name, winnings))
         self.players.append(name)
         if rank:
             self.ranks.update( { name : Decimal(rank) } )
@@ -264,7 +271,7 @@ winnings    (decimal) the money the player ended the tourney with (can be 0, or 
     #end def addPlayer
 
     def incrementPlayerWinnings(self, name, additionnalWinnings):
-        log.debug("incrementPlayerWinnings: name : '%s' - Add Winnings (%s)" % (name, additionnalWinnings))
+        log.debug(_("incrementPlayerWinnings: name : '%s' - Add Winnings (%s)") % (name, additionnalWinnings))
         oldWins = 0
         if self.winnings.has_key(name):
             oldWins = self.winnings[name]

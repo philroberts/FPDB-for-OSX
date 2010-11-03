@@ -1,0 +1,23 @@
+# Copyright 1999-2010 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# created by Steffen Schaumburg, steffen@schaumburger.info
+
+  29 Aug 2010; Erki Ferenc <erkiferenc@gmail.com>
+  fpdb-0.20.906.ebuild, fpdb-9999.ebuild:
+  improve l10n handling
+
+  29 Aug 2010; Steffen Schaumburg <steffen@schaumburger.info>
+  fpdb-0.20.1.ebuild, fpdb-0.20.906.ebuild, fpdb-9999.ebuild:
+  change required python version to 2.6
+
+*fpdb-0.20.906 (29 Aug 2010)
+  29 Aug 2010; Steffen Schaumburg <steffen@schaumburger.info>
+  +fpdb-0.20.906.ebuild -fpdb-0.20.904.ebuild:
+  Bump version
+
+*fpdb-0.20.1 fpdb-0.20.904 fpdb-9999 (17 Aug 2010)
+
+  17 Aug 2010; Steffen Schaumburg <steffen@schaumburger.info>
+  +fpdb-0.20.1.ebuild, +fpdb-0.20.904.ebuild, +fpdb-9999.ebuild, +metadata.xml:
+  Initial changelog for repoman.
+

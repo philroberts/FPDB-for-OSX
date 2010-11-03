@@ -18,6 +18,9 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 import sys
 from collections import defaultdict
 
@@ -40,8 +43,8 @@ class FpdbParseError(FpdbParseError):
 class PartyPoker(HandHistoryConverter):
     sitename = "PartyPoker"
     codepage = "utf8"
-    siteId = 9 
-    filetype = "text" 
+    siteId = 9
+    filetype = "text"
     sym = {'USD': "\$", }
 
     # Static regexes
@@ -50,7 +53,7 @@ class PartyPoker(HandHistoryConverter):
     re_GameInfoRing     = re.compile("""
             (?P<CURRENCY>\$|)\s*(?P<RINGLIMIT>[.,0-9]+)([.,0-9/$]+)?\s*(?:USD)?\s*
             (?P<LIMIT>(NL|PL|))\s*
-            (?P<GAME>(Texas\ Hold\'em|Omaha))
+            (?P<GAME>(Texas\ Hold\'em|Omaha|7 Card Stud Hi-Lo))
             \s*\-\s*
             (?P<DATETIME>.+)
             """, re.VERBOSE | re.UNICODE)
@@ -97,8 +100,7 @@ class PartyPoker(HandHistoryConverter):
     re_NoSmallBlind = re.compile(
                     '^There is no Small Blind in this hand as the Big Blind '
                     'of the previous hand left the table', re.MULTILINE)
-    re_ringSB       = re.compile(r"(?P<PLAYER>.*) posts small blind \[\$(?P<RINGSB>[.,0-9]*) USD\]\.")
-    re_ringBB       = re.compile(r"(?P<PLAYER>.*) posts big blind \[\$(?P<RINGBB>[.,0-9]*) USD\]\.")
+    re_20BBmin       = re.compile(r"Table 20BB Min")
 
     def allHandsAsList(self):
         list = HandHistoryConverter.allHandsAsList(self)
@@ -192,9 +194,12 @@ class PartyPoker(HandHistoryConverter):
         info = {}
         handText = self.decode_hand_text(handText)
         m = self._getGameType(handText)
-        m_sb = self.re_ringSB.search(handText)
-        m_bb = self.re_ringBB.search(handText)
+        m_20BBmin = self.re_20BBmin.search(handText)
         if m is None:
+            tmp = handText[0:100]
+            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("determineGameType: Raising FpdbParseError"))
+            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
             return None
 
         mg = m.groupdict()
@@ -203,21 +208,22 @@ class PartyPoker(HandHistoryConverter):
         games = {                          # base, category
                          "Texas Hold'em" : ('hold','holdem'),
                                 'Omaha' : ('hold','omahahi'),
+                     "7 Card Stud Hi-Lo" : ('stud','studhi'),
                }
         currencies = { '$':'USD', '':'T$' }
 
         for expectedField in ['LIMIT', 'GAME']:
             if mg[expectedField] is None:
-                raise FpdbParseError( "Cannot fetch field '%s'" % expectedField)
+                raise FpdbParseError(_("Cannot fetch field '%s'") % expectedField)
         try:
             info['limitType'] = limits[mg['LIMIT'].strip()]
         except:
-            raise FpdbParseError("Unknown limit '%s'" % mg['LIMIT'])
+            raise FpdbParseError(_("Unknown limit '%s'") % mg['LIMIT'])
 
         try:
             (info['base'], info['category']) = games[mg['GAME']]
         except:
-            raise FpdbParseError("Unknown game type '%s'" % mg['GAME'])
+            raise FpdbParseError(_("Unknown game type '%s'") % mg['GAME'])
 
         if 'TOURNO' in mg:
             info['type'] = 'tour'
@@ -225,8 +231,18 @@ class PartyPoker(HandHistoryConverter):
             info['type'] = 'ring'
 
         if info['type'] == 'ring':
-            info['sb'] = m_sb.group('RINGSB')
-            info['bb'] = m_bb.group('RINGBB')
+            if m_20BBmin is None:
+                bb = float(mg['RINGLIMIT'])/100.0
+            else:
+                bb = float(mg['RINGLIMIT'])/40.0
+
+            if bb == 0.25:
+                sb = 0.10
+            else:
+                sb = bb/2.0
+
+            info['bb'] = "%.2f" % (bb)
+            info['sb'] = "%.2f" % (sb)
             info['currency'] = currencies[mg['CURRENCY']]
         else:
             info['sb'] = clearMoneyString(mg['SB'])
@@ -245,17 +261,17 @@ class PartyPoker(HandHistoryConverter):
         try:
             info.update(self.re_Hid.search(hand.handText).groupdict())
         except:
-            raise FpdbParseError("Cannot read HID for current hand")
+            raise FpdbParseError(_("Cannot read HID for current hand"))
 
         try:
             info.update(self.re_HandInfo.search(hand.handText,re.DOTALL).groupdict())
         except:
-            raise FpdbParseError("Cannot read Handinfo for current hand", hid = info['HID'])
+            raise FpdbParseError(_("Cannot read Handinfo for current hand"), hid = info['HID'])
 
         try:
             info.update(self._getGameType(hand.handText).groupdict())
         except:
-            raise FpdbParseError("Cannot read GameType for current hand", hid = info['HID'])
+            raise FpdbParseError(_("Cannot read GameType for current hand"), hid = info['HID'])
 
 
         m = self.re_CountedSeats.search(hand.handText)
@@ -310,9 +326,9 @@ class PartyPoker(HandHistoryConverter):
             if key == 'TABLE':
                 hand.tablename = info[key]
             if key == 'MTTTABLE':
-            	if info[key] != None:
-            		hand.tablename = info[key]
-            		hand.tourNo = info['TABLE']
+                if info[key] != None:
+                    hand.tablename = info[key]
+                    hand.tourNo = info['TABLE']
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
             if key == 'TOURNO':
@@ -343,15 +359,59 @@ class PartyPoker(HandHistoryConverter):
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
         else:
-            log.info('readButton: not found')
+            log.info(_('readButton: not found'))
 
     def readPlayerStacks(self, hand):
         log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
-        players = []
+        maxKnownStack = 0
+        zeroStackPlayers = []
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'),
-                           clearMoneyString(a.group('CASH')))
+            if a.group('CASH') > '0':
+                #record max known stack for use with players with unknown stack
+                maxKnownStack = max(a.group('CASH'),maxKnownStack)
+                hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), clearMoneyString(a.group('CASH')))
+            else:
+                #zero stacked players are added later
+                zeroStackPlayers.append([int(a.group('SEAT')), a.group('PNAME'), clearMoneyString(a.group('CASH'))])
+
+        if hand.gametype['type'] == 'ring':
+            #finds first vacant seat after an exact seat
+            def findFirstEmptySeat(startSeat):
+                while startSeat in occupiedSeats:
+                    if startSeat >= hand.maxseats:
+                        startSeat = 0
+                    startSeat += 1
+                return startSeat
+
+            re_JoiningPlayers = re.compile(r"(?P<PLAYERNAME>.*) has joined the table")
+            re_BBPostingPlayers = re.compile(r"(?P<PLAYERNAME>.*) posts big blind")
+
+            match_JoiningPlayers = re_JoiningPlayers.findall(hand.handText)
+            match_BBPostingPlayers = re_BBPostingPlayers.findall(hand.handText)
+
+            #add every player with zero stack, but:
+            #if a zero stacked player is just joined the table in this very hand then set his stack to maxKnownStack
+            for p in zeroStackPlayers:
+                if p[1] in match_JoiningPlayers:
+                    p[2] = clearMoneyString(maxKnownStack)
+                hand.addPlayer(p[0],p[1],p[2])
+
+            seatedPlayers = list([(f[1]) for f in hand.players])
+
+            #it works for all known cases as of 2010-09-28
+            #should be refined with using match_ActivePlayers instead of match_BBPostingPlayers
+            #as a leaving and rejoining player could be active without posting a BB (sample HH needed)
+            unseatedActivePlayers = list(set(match_BBPostingPlayers) - set(seatedPlayers))
+
+            if unseatedActivePlayers:
+                for player in unseatedActivePlayers:
+                    previousBBPoster = match_BBPostingPlayers[match_BBPostingPlayers.index(player)-1]
+                    previousBBPosterSeat = dict([(f[1], f[0]) for f in hand.players])[previousBBPoster]
+                    occupiedSeats = list([(f[0]) for f in hand.players])
+                    occupiedSeats.sort()
+                    newPlayerSeat = findFirstEmptySeat(previousBBPosterSeat)
+                    hand.addPlayer(newPlayerSeat,player,clearMoneyString(maxKnownStack))
 
     def markStreets(self, hand):
         m =  re.search(
@@ -471,7 +531,7 @@ class PartyPoker(HandHistoryConverter):
                 hand.addCheck( street, playerName )
             else:
                 raise FpdbParseError(
-                    "Unimplemented readAction: '%s' '%s'" % (playerName,actionType,),
+                    _("Unimplemented readAction: '%s' '%s'") % (playerName,actionType,),
                     hid = hand.hid, )
 
     def readShowdownActions(self, hand):
@@ -496,7 +556,11 @@ class PartyPoker(HandHistoryConverter):
         "Returns string to search in windows titles"
         if type=="tour":
             TableName = table_name.split(" ")
-            return "%s.+Table\s#%s" % (TableName[0], table_number)
+            print 'party', 'getTableTitleRe', "%s.+Table\s#%s" % (TableName[0], table_number)
+            if len(TableName[1]) > 6:
+                return "#%s" % (table_number)
+            else:
+                return "%s.+Table\s#%s" % (TableName[0], table_number)
         else:
             return table_name
 
@@ -512,9 +576,9 @@ def renderCards(string):
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history")
-    parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
-    parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
+    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"))
+    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
+    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
     parser.add_option("-q", "--quiet",
                   action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
     parser.add_option("-v", "--verbose",

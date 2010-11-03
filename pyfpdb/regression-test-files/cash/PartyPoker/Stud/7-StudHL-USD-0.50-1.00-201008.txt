@@ -1,0 +1,54 @@
+Game #9581478205 starts.
+
+#Game No : 9581478205 
+***** Hand History for Game 9581478205 *****
+$0.50/$1 USD 7 Card Stud Hi-Lo - Monday, August 30, 20:20:17 EEST 2010
+Table Table  136403 (Real Money)
+Seat 0 is the button
+Total number of players : 7/8 
+Seat 3: XMAN1 ( $24.95 USD )
+Seat 5: ISqzUSqueal ( $31.02 USD )
+Seat 7: PPPPPositive ( $4.20 USD )
+Seat 8: Unladylike ( $19 USD )
+Seat 6: YMAN1 ( $10.18 USD )
+Seat 2: strandalleen ( $17.55 USD )
+Seat 1: tubby09 ( $24.20 USD )
+tubby09 posts ante [$0.05 USD]
+strandalleen posts ante [$0.05 USD]
+XMAN1 posts ante [$0.05 USD]
+ISqzUSqueal posts ante [$0.05 USD]
+YMAN1 posts ante [$0.05 USD]
+PPPPPositive posts ante [$0.05 USD]
+Unladylike posts ante [$0.05 USD]
+** Dealing **
+Dealt to XMAN1 [  Td 5s 3c ]
+YMAN1 opens
+YMAN1 bring-ins [$0.25 USD]
+PPPPPositive completes [$0.50 USD]
+Unladylike folds
+tubby09 folds
+strandalleen calls [$0.50 USD]
+XMAN1 folds
+ISqzUSqueal folds
+YMAN1 calls [$0.25 USD]
+** Dealing Fourth street **
+PPPPPositive opens
+PPPPPositive bets [$0.50 USD]
+strandalleen calls [$0.50 USD]
+YMAN1 folds
+** Dealing Fifth street **
+PPPPPositive opens
+PPPPPositive bets [$1 USD]
+strandalleen calls [$1 USD]
+** Dealing Sixth street **
+PPPPPositive opens
+PPPPPositive bets [$1 USD]
+strandalleen calls [$1 USD]
+** Dealing River **
+PPPPPositive opens
+PPPPPositive bets [$1 USD]
+strandalleen calls [$1 USD]
+PPPPPositive shows [ Ad, Qd, Ah, 2d, 7d, Th, 6d ]a flush, Ace high.
+strandalleen doesn't show [ 5h, 9d, 9c, Qc, 2h, Kc, Js ]a pair of Nines.
+PPPPPositive wins $8.45 USD from the main pot with a flush, Ace high.
+There was no qualifying low hand

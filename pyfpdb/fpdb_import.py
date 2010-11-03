@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 #    Standard Library modules
 
 import os  # todo: remove this once import_dir is in fpdb_import
@@ -36,7 +39,6 @@ import pygtk
 import gtk
 
 #    fpdb/FreePokerTools modules
-
 import Database
 import Configuration
 import Exceptions
@@ -46,25 +48,26 @@ import Exceptions
 try:
     import MySQLdb
 except ImportError:
-    log.debug("Import database module: MySQLdb not found")
+    log.debug(_("Import database module: MySQLdb not found"))
 else:
     mysqlLibFound = True
 
 try:
     import psycopg2
 except ImportError:
-    log.debug("Import database module: psycopg2 not found")
+    log.debug(_("Import database module: psycopg2 not found"))
 else:
     import psycopg2.extensions
     psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
 
 class Importer:
-    def __init__(self, caller, settings, config, sql = None):
+    def __init__(self, caller, settings, config, sql = None, parent = None):
         """Constructor"""
         self.settings   = settings
         self.caller     = caller
         self.config     = config
         self.sql        = sql
+        self.parent     = parent
 
         #log = Configuration.get_logger("logging.conf", "importer", log_dir=self.config.dir_log)
         self.filelist   = {}
@@ -91,6 +94,9 @@ class Importer:
         self.settings.setdefault("dropIndexes", "don't drop")
         self.settings.setdefault("dropHudCache", "don't drop")
         self.settings.setdefault("starsArchive", False)
+        self.settings.setdefault("ftpArchive", False)
+        self.settings.setdefault("testData", False)
+        self.settings.setdefault("cacheHHC", False)
 
         self.writeq = None
         self.database = Database.Database(self.config, sql = self.sql)
@@ -135,6 +141,18 @@ class Importer:
     def setStarsArchive(self, value):
         self.settings['starsArchive'] = value
 
+    def setFTPArchive(self, value):
+        self.settings['ftpArchive'] = value
+
+    def setPrintTestData(self, value):
+        self.settings['testData'] = value
+
+    def setFakeCacheHHC(self, value):
+        self.settings['cacheHHC'] = value
+
+    def getCachedHHC(self):
+        return self.handhistoryconverter
+
 #   def setWatchTime(self):
 #       self.updated = time()
 
@@ -164,9 +182,9 @@ class Importer:
                 self.siteIds[site] = result[0][0]
             else:
                 if len(result) == 0:
-                    log.error("Database ID for %s not found" % site)
+                    log.error(_("Database ID for %s not found") % site)
                 else:
-                    log.error("[ERROR] More than 1 Database ID found for %s - Multiple currencies not implemented yet" % site)
+                    log.error(_("[ERROR] More than 1 Database ID found for %s - Multiple currencies not implemented yet") % site)
 
 
     # Called from GuiBulkImport to add a file or directory.
@@ -202,7 +220,7 @@ class Importer:
                 #print "                    adding file ", file
                 self.addImportFile(os.path.join(dir, file), site, filter)
         else:
-            log.warning("Attempted to add non-directory: '%s' as an import directory" % str(dir))
+            log.warning(_("Attempted to add non-directory '%s' as an import directory") % str(dir))
 
     def runImport(self):
         """"Run full import on self.filelist. This is called from GuiBulkImport.py"""
@@ -212,7 +230,7 @@ class Importer:
         # Initial setup
         start = datetime.datetime.now()
         starttime = time()
-        log.info("Started at %s -- %d files to import. indexes: %s" % (start, len(self.filelist), self.settings['dropIndexes']))
+        log.info(_("Started at %s -- %d files to import. indexes: %s") % (start, len(self.filelist), self.settings['dropIndexes']))
         if self.settings['dropIndexes'] == 'auto':
             self.settings['dropIndexes'] = self.calculate_auto2(self.database, 12.0, 500.0)
         if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'auto':
@@ -221,7 +239,7 @@ class Importer:
         if self.settings['dropIndexes'] == 'drop':
             self.database.prepareBulkImport()
         else:
-            log.debug("No need to drop indexes.")
+            log.info(_("No need to drop indexes."))
         #print "dropInd =", self.settings['dropIndexes'], "  dropHudCache =", self.settings['dropHudCache']
 
         if self.settings['threads'] <= 0:
@@ -240,10 +258,10 @@ class Importer:
             (totstored, totdups, totpartial, toterrors) = self.importFiles(self.database, self.writeq)
 
             if self.writeq.empty():
-                print "writers finished already"
+                print _("writers finished already")
                 pass
             else:
-                print "waiting for writers to finish ..."
+                print _("waiting for writers to finish ...")
                 #for t in threading.enumerate():
                 #    print "    "+str(t)
                 #self.writeq.join()
@@ -253,17 +271,17 @@ class Importer:
                     while gtk.events_pending(): # see http://faq.pygtk.org/index.py?req=index for more hints (3.7)
                         gtk.main_iteration(False)
                     sleep(0.5)
-                print "                              ... writers finished"
+                print _("                              ... writers finished")
 
         # Tidying up after import
         if self.settings['dropIndexes'] == 'drop':
             self.database.afterBulkImport()
         else:
-            print "No need to rebuild indexes."
+            log.info (_("No need to rebuild indexes."))
         if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'drop':
             self.database.rebuild_hudcache()
         else:
-            print "No need to rebuild hudcache."
+            log.info (_("No need to rebuild hudcache."))
         self.database.analyzeDB()
         endtime = time()
         return (totstored, totdups, totpartial, toterrors, endtime-starttime)
@@ -279,7 +297,14 @@ class Importer:
         totpartial = 0
         toterrors = 0
         tottime = 0
+        
+        #prepare progress popup window
+        ProgressDialog = ProgressBar(len(self.filelist), self.parent)
+        
         for file in self.filelist:
+            
+            ProgressDialog.progress_update()
+            
             (stored, duplicates, partial, errors, ttime) = self.import_file_dict(db, file
                                                ,self.filelist[file][0], self.filelist[file][1], q)
             totstored += stored
@@ -287,10 +312,13 @@ class Importer:
             totpartial += partial
             toterrors += errors
 
+        del ProgressDialog
+        
         for i in xrange( self.settings['threads'] ):
-            print "sending finish msg qlen =", q.qsize()
+            print _("sending finish message queue length ="), q.qsize()
             db.send_finish_msg(q)
 
+        
         return (totstored, totdups, totpartial, toterrors)
     # end def importFiles
 
@@ -362,7 +390,7 @@ class Importer:
                 #rulog.writelines("path exists ")
                 if file in self.updatedsize: # we should be able to assume that if we're in size, we're in time as well
                     if stat_info.st_size > self.updatedsize[file] or stat_info.st_mtime > self.updatedtime[file]:
-#                        print "file",counter," updated", os.path.basename(file), stat_info.st_size, self.updatedsize[file], stat_info.st_mtime, self.updatedtime[file]
+#                        print "file",file," updated", os.path.basename(file), stat_info.st_size, self.updatedsize[file], stat_info.st_mtime, self.updatedtime[file]
                         try:
                             if not os.path.isdir(file):
                                 self.caller.addText("\n"+os.path.basename(file))
@@ -414,9 +442,9 @@ class Importer:
 
         # Load filter, process file, pass returned filename to import_fpdb_file
         if self.settings['threads'] > 0 and self.writeq is not None:
-            log.info("Converting " + file + " (" + str(q.qsize()) + ")")
+            log.info((_("Converting %s") % file) + " (" + str(q.qsize()) + ")")
         else:
-            log.info("Converting " + file)
+            log.info(_("Converting %s") % file)
         hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
         hhbase    = os.path.expanduser(hhbase)
         hhdir     = os.path.join(hhbase,site)
@@ -435,7 +463,9 @@ class Importer:
                 idx = self.pos_in_file[file]
             else:
                 self.pos_in_file[file] = 0
-            hhc = obj(self.config, in_path = file, out_path = out_path, index = idx, starsArchive = self.settings['starsArchive'])
+            hhc = obj( self.config, in_path = file, out_path = out_path, index = idx
+                     , starsArchive = self.settings['starsArchive'], ftpArchive = self.settings['ftpArchive'],
+                       sitename = site )
             if hhc.getStatus():
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
@@ -445,14 +475,14 @@ class Importer:
                     if hand is not None:
                         hand.prepInsert(self.database)
                         try:
-                            hand.insert(self.database)
+                            hand.insert(self.database, printtest = self.settings['testData'])
                         except Exceptions.FpdbHandDuplicate:
                             duplicates += 1
                         else:
                             if self.callHud and hand.dbid_hands != 0:
                                 to_hud.append(hand.dbid_hands)
                     else: # TODO: Treat empty as an error, or just ignore?
-                        log.error("Hand processed but empty")
+                        log.error(_("Hand processed but empty"))
 
                 # Call hudcache update if not in bulk import mode
                 # FIXME: Need to test for bulk import that isn't rebuilding the cache
@@ -465,21 +495,25 @@ class Importer:
                 #pipe the Hands.id out to the HUD
                 for hid in to_hud:
                     try:
-                        print "fpdb_import: sending hand to hud", hand.dbid_hands, "pipe =", self.caller.pipe_to_hud
+                        print _("fpdb_import: sending hand to hud"), hand.dbid_hands, "pipe =", self.caller.pipe_to_hud
                         self.caller.pipe_to_hud.stdin.write("%s" % (hid) + os.linesep)
                     except IOError, e:
-                        log.error("Failed to send hand to HUD: %s" % e)
+                        log.error(_("Failed to send hand to HUD: %s") % e)
 
                 errors = getattr(hhc, 'numErrors')
                 stored = getattr(hhc, 'numHands')
                 stored -= duplicates
                 stored -= errors
+                # Really ugly hack to allow testing Hands within the HHC from someone
+                # with only an Importer objec
+                if self.settings['cacheHHC']:
+                    self.handhistoryconverter = hhc
             else:
                 # conversion didn't work
                 # TODO: appropriate response?
                 return (0, 0, 0, 1, time() - ttime)
         else:
-            log.warning("Unknown filter filter_name:'%s' in filter:'%s'" %(filter_name, filter))
+            log.warning(_("Unknown filter filter_name:'%s' in filter:'%s'") %(filter_name, filter))
             return (0, 0, 0, 1, time() - ttime)
 
         ttime = time() - ttime
@@ -490,16 +524,92 @@ class Importer:
 
     def printEmailErrorMessage(self, errors, filename, line):
         traceback.print_exc(file=sys.stderr)
-        print "Error No.",errors,", please send the hand causing this to fpdb-main@lists.sourceforge.net so we can fix the problem."
-        print "Filename:", filename
-        print "Here is the first line of the hand so you can identify it. Please mention that the error was a ValueError:"
+        print (_("Error No.%s please send the hand causing this to fpdb-main@lists.sourceforge.net so we can fix the problem.") % errors)
+        print _("Filename:"), filename
+        print _("Here is the first line of the hand so you can identify it. Please mention that the error was a ValueError:")
         print self.hand[0]
-        print "Hand logged to hand-errors.txt"
+        print _("Hand logged to hand-errors.txt")
         logfile = open('hand-errors.txt', 'a')
         for s in self.hand:
             logfile.write(str(s) + "\n")
         logfile.write("\n")
         logfile.close()
+        
+        
+class ProgressBar:
+
+    """
+    Popup window to show progress
+    
+    Init method sets up total number of expected iterations
+    If no parent is passed to init, command line
+    mode assumed, and does not create a progress bar
+    """
+    
+    def __del__(self):
+        
+        if self.parent:
+            self.progress.destroy()
+
+
+    def progress_update(self):
+
+        if not self.parent:
+            #nothing to do
+            return
+            
+        self.fraction += 1
+        #update sum if fraction exceeds expected total number of iterations
+        if self.fraction > self.sum: 
+            sum = self.fraction
+        
+        #progress bar total set to 1 plus the number of items,to prevent it
+        #reaching 100% prior to processing fully completing
+
+        progress_percent = float(self.fraction) / (float(self.sum) + 1.0)
+        progress_text = (self.title + " " 
+                            + str(self.fraction) + " / " + str(self.sum))
+
+        self.pbar.set_fraction(progress_percent)
+        self.pbar.set_text(progress_text)
+
+
+    def __init__(self, sum, parent):
+
+        self.parent = parent
+        if not self.parent:
+            #no parent is passed, assume this is being run from the 
+            #command line, so return immediately
+            return
+        
+        self.fraction = 0
+        self.sum = sum
+        self.title = _("Importing")
+            
+        self.progress = gtk.Window(gtk.WINDOW_TOPLEVEL)
+
+        self.progress.set_resizable(False)
+        self.progress.set_modal(True)
+        self.progress.set_transient_for(self.parent)
+        self.progress.set_decorated(True)
+        self.progress.set_deletable(False)
+        self.progress.set_title(self.title)
+        
+        vbox = gtk.VBox(False, 5)
+        vbox.set_border_width(10)
+        self.progress.add(vbox)
+        vbox.show()
+  
+        align = gtk.Alignment(0.5, 0.5, 0, 0)
+        vbox.pack_start(align, True, True, 2)
+        align.show()
+
+        self.pbar = gtk.ProgressBar()
+        align.add(self.pbar)
+        self.pbar.show()
+
+        self.progress.show()
+
 
 if __name__ == "__main__":
-    print "CLI for fpdb_import is now available as CliFpdb.py"
+    print _("CLI for fpdb_import is now available as CliFpdb.py")
