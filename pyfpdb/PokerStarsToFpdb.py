@@ -147,6 +147,7 @@ class PokerStars(HandHistoryConverter):
                         ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
                         (\s(%(CUR)s)?(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
                         \s*(and\sis\sall.in)?
+                        (and\shas\sreached\sthe\s[%(CUR)s\d\.]+\scap)?
                         (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?\s*$"""
                          %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
