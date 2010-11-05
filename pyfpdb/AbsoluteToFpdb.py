@@ -38,8 +38,8 @@ class Absolute(HandHistoryConverter):
     HORSEHand = False
 
     # Static regexes
-    re_SplitHands  = re.compile(r"\n\n\n+")
-    re_TailSplitHands  = re.compile(r"(\n\n\n+)")
+    re_SplitHands  = re.compile(r"\n\n+")
+    re_TailSplitHands  = re.compile(r"(\nn\n+)")
     #Stage #1571362962: Holdem  No Limit $0.02 - 2009-08-05 15:24:06 (ET)
     #Table: TORONTO AVE (Real Money) Seat #6 is the dealer
     #Seat 6 - FETS63 ($0.75 in chips)
@@ -70,8 +70,8 @@ class Absolute(HandHistoryConverter):
     re_RingInfoFromFilename = re.compile(ur".*IHH([0-9]+) (?P<TABLE>.*) -")
     re_TrnyInfoFromFilename = re.compile(
             ur".*IHH ([0-9]+) (?P<TRNY_NAME>.*) "\
-              "ID (?P<TRNY_ID>\d+) \((?P<TABLE>\d+)\) .* "\
-              "(?:\$|\s€|)(?P<BUYIN>[0-9.]+)\s*\+\s*(?:\$|\s€|)(?P<FEE>[0-9.]+)"
+            ur"ID (?P<TRNY_ID>\d+) \((?P<TABLE>\d+)\) .* "\
+            ur"(?:\$|\s€|)(?P<BUYIN>[0-9.]+)\s*\+\s*(?:\$|\s€|)(?P<FEE>[0-9.]+)"
             )
 
     # TODO: that's not the right way to match for "dead" dealer is it?
@@ -79,7 +79,7 @@ class Absolute(HandHistoryConverter):
 
     re_PlayerInfo = re.compile(
             ur"^Seat (?P<SEAT>[0-9]) - (?P<PNAME>.*) "\
-              "\((?:\$| €|)(?P<CASH>[0-9]*[.0-9]+) in chips\)",
+            ur"\((?:\$| €|)(?P<CASH>[0-9]*[.,0-9]+) in chips\)",
             re.MULTILINE)
 
     re_Board = re.compile(ur"\[(?P<CARDS>[^\]]*)\]? *$", re.MULTILINE)
@@ -180,7 +180,6 @@ class Absolute(HandHistoryConverter):
             info['bb'] = mg['SB']
             info['sb'] = str(float(mg['SB']) * 0.5) # TODO: AP does provide Small BET for Limit .. I think? at least 1-on-1 limit they do.. sigh
 
-
         return info
 
 
@@ -221,7 +220,7 @@ class Absolute(HandHistoryConverter):
         hand.maxseats = 6
 
         if self.HORSEHand:
-            hand.maxseats = 8
+            hand.maxseats = 9
         return
 
     def readPlayerStacks(self, hand):
@@ -230,7 +229,7 @@ class Absolute(HandHistoryConverter):
             seatnum = int(a.group('SEAT'))
             hand.addPlayer(seatnum, a.group('PNAME'), a.group('CASH'))
             if seatnum > 6:
-                hand.maxseats = 10 # absolute does 2/4/6/8/10 games
+                hand.maxseats = 9 # absolute does 2/4/6/9 games
                 # TODO: implement lookup list by table-name to determine maxes, 
                 # then fall back to 6 default/10 here, if there's no entry in the list?
 
@@ -377,7 +376,12 @@ def validCard(card):
 
 if __name__ == "__main__":
     import Configuration
+    import Database
     config =  Configuration.Config(None)
+    # line below this is required
+    # because config.site_ids (site_name to site_id map) is required 
+    # and one is stored and db.
+    db = Database.Database(config)
 
     parser = OptionParser()
     parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"), default="-")
@@ -395,5 +399,5 @@ if __name__ == "__main__":
     LOG_FILENAME = './logging.out'
     logging.basicConfig(filename=LOG_FILENAME,level=options.verbosity)
 
-    e = Absolute(config, in_path = options.ipath, out_path = options.opath, follow = options.follow, autostart=True)
+    e = Absolute(config, in_path = options.ipath, out_path = options.opath, follow = options.follow, autostart=True, sitename="Absolute")
 
