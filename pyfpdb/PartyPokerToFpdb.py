@@ -24,6 +24,7 @@ _ = L10n.get_translation()
 import sys
 from collections import defaultdict
 
+from Configuration import LOCALE_ENCODING
 from Exceptions import FpdbParseError
 from HandHistoryConverter import *
 
@@ -41,7 +42,7 @@ class FpdbParseError(FpdbParseError):
 
 class PartyPoker(HandHistoryConverter):
     sitename = "PartyPoker"
-    codepage = "cp1252"
+    codepage = "utf8"
     siteId = 9
     filetype = "text"
     sym = {'USD': "\$", }
@@ -55,7 +56,7 @@ class PartyPoker(HandHistoryConverter):
             (?P<GAME>(Texas\ Hold\'em|Omaha|7 Card Stud Hi-Lo))
             \s*\-\s*
             (?P<DATETIME>.+)
-            """, re.VERBOSE)
+            """, re.VERBOSE | re.UNICODE)
     re_GameInfoTrny     = re.compile("""
             (?P<LIMIT>(NL|PL|))\s*
             (?P<GAME>(Texas\ Hold\'em|Omaha))\s+
@@ -69,7 +70,7 @@ class PartyPoker(HandHistoryConverter):
             \)
             \s*\-\s*
             (?P<DATETIME>.+)
-            """, re.VERBOSE)
+            """, re.VERBOSE | re.UNICODE)
     re_Hid          = re.compile("^Game \#(?P<HID>\d+) starts.")
 
     re_PlayerInfo   = re.compile("""
@@ -180,6 +181,10 @@ class PartyPoker(HandHistoryConverter):
                         return self._gameType
         return self._gameType
 
+    @staticmethod
+    def decode_hand_text(handText):
+        return handText.encode("latin1").decode(LOCALE_ENCODING)
+
     def determineGameType(self, handText):
         """inspect the handText and return the gametype dict
 
@@ -187,6 +192,7 @@ class PartyPoker(HandHistoryConverter):
         {'limitType': xxx, 'base': xxx, 'category': xxx}"""
 
         info = {}
+        handText = self.decode_hand_text(handText)
         m = self._getGameType(handText)
         m_20BBmin = self.re_20BBmin.search(handText)
         if m is None:
@@ -247,6 +253,10 @@ class PartyPoker(HandHistoryConverter):
 
 
     def readHandInfo(self, hand):
+        # we should redecode handtext here (as it imposible to it above)
+        # if you know more accurate way to do it - tell me
+        hand.handText = self.decode_hand_text(hand.handText)
+
         info = {}
         try:
             info.update(self.re_Hid.search(hand.handText).groupdict())
@@ -295,10 +305,15 @@ class PartyPoker(HandHistoryConverter):
                 #Saturday, July 25, 07:53:52 EDT 2009
                 #Thursday, July 30, 21:40:41 MSKS 2009
                 #Sunday, October 25, 13:39:07 MSK 2009
-                m2 = re.search("\w+, (?P<M>\w+) (?P<D>\d+), (?P<H>\d+):(?P<MIN>\d+):(?P<S>\d+) (?P<TZ>[A-Z]+) (?P<Y>\d+)", info[key])
-                # we cant use '%B' due to locale problems
+                m2 = re.search(
+                    r"\w+,\s+(?P<M>\w+)\s+(?P<D>\d+),\s+(?P<H>\d+):(?P<MIN>\d+):(?P<S>\d+)\s+(?P<TZ>[A-Z]+)\s+(?P<Y>\d+)", 
+                    info[key], 
+                    re.UNICODE
+                )
                 months = ['January', 'February', 'March', 'April','May', 'June',
                     'July','August','September','October','November','December']
+                if m2.group('M') not in months:
+                    raise FpdbParseError("Only english hh is supported", hid=info["HID"])
                 month = months.index(m2.group('M')) + 1
                 datetimestr = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), month,m2.group('D'),m2.group('H'),m2.group('MIN'),m2.group('S'))
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
@@ -547,7 +562,6 @@ class PartyPoker(HandHistoryConverter):
             else:
                 return "%s.+Table\s#%s" % (TableName[0], table_number)
         else:
-            print 'party', 'getTableTitleRe', table_number
             return table_name
 
 def clearMoneyString(money):

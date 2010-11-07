@@ -1,0 +1,32 @@
+﻿PokerStars Game #41888200000: Tournament #257640000, $20+$1 USD Hold'em No Limit - Match Round I, Level IV (50/100) - 2010/03/20 19:20:00 CET [2010/03/20 13:20:00 ET]
+Table '257643067 1' 2-max Seat #1 is the button
+Seat 1: Hero (1510 in chips) 
+Seat 2: Villain (1490 in chips) 
+Hero: posts small blind 50
+Villain: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [Js Kc]
+Hero: calls 50
+Villain: checks 
+*** FLOP *** [Jh Kd Ts]
+Villain: checks 
+Hero: bets 200
+Villain: calls 200
+*** TURN *** [Jh Kd Ts] [Kh]
+Villain: checks 
+Hero: checks 
+*** RIVER *** [Jh Kd Ts Kh] [3c]
+Villain: bets 1190 and is all-in
+Hero: calls 1190
+*** SHOW DOWN ***
+Villain: shows [Qc 9h] (a straight, Nine to King)
+Hero: shows [Js Kc] (a full house, Kings full of Jacks)
+Hero collected 2980 from pot
+*** SUMMARY ***
+Total pot 2980 | Rake 0 
+Board [Jh Kd Ts Kh 3c]
+Seat 1: Hero (button) (small blind) showed [Js Kc] and won (2980) with a full house, Kings full of Jacks
+Seat 2: Villain (big blind) showed [Qc 9h] and lost with a straight, Nine to King
+
+
+
