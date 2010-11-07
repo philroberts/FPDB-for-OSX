@@ -161,6 +161,8 @@ class Fulltilt(HandHistoryConverter):
                 ["ring", "stud", "fl"],
 
                 ["ring", "draw", "fl"],
+                ["ring", "draw", "pl"],
+                ["ring", "draw", "nl"],
 
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
