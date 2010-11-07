@@ -50,7 +50,7 @@ class Fulltilt(HandHistoryConverter):
                                     (Ante\s\$?(?P<ANTE>[.0-9]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[.0-9]+\sCap\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
-                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw))
+                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw))
                                  ''' % substitutions, re.VERBOSE)
     re_SplitHands   = re.compile(r"\n\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
@@ -195,6 +195,7 @@ class Fulltilt(HandHistoryConverter):
                   'Stud Hi' : ('stud','studhi'), 
                  'Stud H/L' : ('stud','studhilo'),
           '2-7 Triple Draw' : ('draw','27_3draw'),
+              '5 Card Draw' : ('draw','fivedraw'),
                }
         currencies = { u'€':'EUR', '$':'USD', '':'T$' }
         if mg['CAP']:
