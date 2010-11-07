@@ -298,7 +298,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             elif gametype['base'] == 'draw':
                 hand = Hand.DrawHand(self.config, self, self.sitename, gametype, handText)
         else:
-            log.info(_("Unsupported game type: %s" % gametype))
+            log.error(_("Unsupported game type: %s" % gametype))
             raise FpdbParseError(_("Unsupported game type: %s" % gametype))
 
         if hand:
