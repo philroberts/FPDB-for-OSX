@@ -50,7 +50,7 @@ class Fulltilt(HandHistoryConverter):
                                     (Ante\s\$?(?P<ANTE>[.0-9]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[.0-9]+\sCap\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
-                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi))
+                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw))
                                  ''' % substitutions, re.VERBOSE)
     re_SplitHands   = re.compile(r"\n\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
@@ -62,7 +62,7 @@ class Fulltilt(HandHistoryConverter):
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
                                     [%(LS)s]?(?P<SB>[.0-9]+)/[%(LS)s]?(?P<BB>[.0-9]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[.0-9]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[.0-9]+\sCap\s)?
-                                    (?P<GAMETYPE>[a-zA-Z\/\'\s]+)\s-\s
+                                    (?P<GAMETYPE>[-\da-zA-Z\/\'\s]+)\s-\s
                                     (?P<DATETIME>\d+:\d+:\d+\s(?P<TZ1>\w+)\s-\s\d+/\d+/\d+|\d+:\d+\s(?P<TZ2>\w+)\s-\s\w+\,\s\w+\s\d+\,\s\d+)
                                     (?P<PARTIAL>\(partial\))?\n
                                     (?:.*?\n(?P<CANCELLED>Hand\s\#(?P=HID)\shas\sbeen\scanceled))?
@@ -160,6 +160,8 @@ class Fulltilt(HandHistoryConverter):
 
                 ["ring", "stud", "fl"],
 
+                ["ring", "draw", "fl"],
+
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
                 ["tour", "hold", "fl"],
@@ -191,7 +193,8 @@ class Fulltilt(HandHistoryConverter):
                 'Omaha H/L' : ('hold','omahahilo'),
                      'Razz' : ('stud','razz'), 
                   'Stud Hi' : ('stud','studhi'), 
-                 'Stud H/L' : ('stud','studhilo')
+                 'Stud H/L' : ('stud','studhilo'),
+          '2-7 Triple Draw' : ('draw','27_3draw'),
                }
         currencies = { u'€':'EUR', '$':'USD', '':'T$' }
         if mg['CAP']:
@@ -212,8 +215,8 @@ class Fulltilt(HandHistoryConverter):
     def readHandInfo(self, hand):
         m =  self.re_HandInfo.search(hand.handText)
         if m is None:
-            logging.info(_("Didn't match re_HandInfo"))
-            logging.info(hand.handText)
+            tmp = hand.handText[0:100]
+            log.error(_("readHandInfo: Unable to recognise handinfo from: '%s'") % tmp)
             raise FpdbParseError(_("No match in readHandInfo."))
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
@@ -279,20 +282,6 @@ class Fulltilt(HandHistoryConverter):
         if hand.level is None:
             hand.level = "0"            
 
-# These work, but the info is already in the Hand class - should be used for tourneys though.
-#       m.group('SB')
-#       m.group('BB')
-#       m.group('GAMETYPE')
-
-# Stars format (Nov 10 2008): 2008/11/07 12:38:49 CET [2008/11/07 7:38:49 ET]
-# or                        : 2008/11/07 12:38:49 ET
-# Not getting it in my HH files yet, so using
-# 2008/11/10 3:58:52 ET
-#TODO: Do conversion from GMT to ET
-#TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
-        #hand.starttime = "%d/%02d/%02d %d:%02d:%02d ET" %(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')),
-                            ##int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
-
     def readPlayerStacks(self, hand):
         # Split hand text for FTP, as the regex matches the player names incorrectly
         # in the summary section
@@ -305,21 +294,28 @@ class Fulltilt(HandHistoryConverter):
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
+
     def markStreets(self, hand):
-        # PREFLOP = ** Dealing down cards **
 
         if hand.gametype['base'] == 'hold':
             m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
                        r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN \*\*\*)|.+))?"
                        r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN>\[\S\S\].+(?=\*\*\* RIVER \*\*\*)|.+))?"
                        r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?", hand.handText,re.DOTALL)
-        elif hand.gametype['base'] == "stud": # or should this be gametype['category'] == 'razz'
+        elif hand.gametype['base'] == "stud":
             m =  re.search(r"(?P<ANTES>.+(?=\*\*\* 3RD STREET \*\*\*)|.+)"
                            r"(\*\*\* 3RD STREET \*\*\*(?P<THIRD>.+(?=\*\*\* 4TH STREET \*\*\*)|.+))?"
                            r"(\*\*\* 4TH STREET \*\*\*(?P<FOURTH>.+(?=\*\*\* 5TH STREET \*\*\*)|.+))?"
                            r"(\*\*\* 5TH STREET \*\*\*(?P<FIFTH>.+(?=\*\*\* 6TH STREET \*\*\*)|.+))?"
                            r"(\*\*\* 6TH STREET \*\*\*(?P<SIXTH>.+(?=\*\*\* 7TH STREET \*\*\*)|.+))?"
                            r"(\*\*\* 7TH STREET \*\*\*(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
+        elif hand.gametype['base'] in ("draw"):
+            m =  re.search(r"(?P<PREDEAL>.+(?=\*\*\* HOLE CARDS \*\*\*)|.+)"
+                           r"(\*\*\* HOLE CARDS \*\*\*(?P<DEAL>.+(?=\*\*\* FIRST DRAW \*\*\*)|.+))?"
+                           r"(\*\*\* FIRST DRAW \*\*\*(?P<DRAWONE>.+(?=\*\*\* SECOND DRAW \*\*\*)|.+))?"
+                           r"(\*\*\* SECOND DRAW \*\*\*(?P<DRAWTWO>.+(?=\*\*\* THIRD DRAW \*\*\*)|.+))?"
+                           r"(\*\*\* THIRD DRAW \*\*\*(?P<DRAWTHREE>.+))?", hand.handText,re.DOTALL)
+
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
