@@ -1,0 +1,58 @@
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+Stage #C241220000: Holdem  No Limit $0.02 - 2010-11-06 15:00:00 (ET)
+Table: BASELINE RD (Real Money) Seat #8 is the dealer
+Seat 8 - PLAYER8 ($2.05 in chips)
+Seat 9 - PLAYER9 ($2.01 in chips)
+Seat 1 - PLAYER1 ($2.90 in chips)
+Seat 2 - VILLAIN1 ($1.52 in chips)
+Seat 3 - PLAYER3 ($2 in chips)
+Seat 4 - VILLAIN2 ($3.58 in chips)
+Seat 5 - PLAYER5 ($2 in chips)
+Seat 6 - PLAYER6 ($1.07 in chips)
+Seat 7 - Hero ($1 in chips)
+PLAYER9 - Posts small blind $0.01
+PLAYER1 - Posts big blind $0.02
+Hero - Posts $0.02
+*** POCKET CARDS ***
+Dealt to Hero [10s 3s] 
+VILLAIN1 - Calls $0.02
+PLAYER3 - Folds
+VILLAIN2 - Calls $0.02
+PLAYER5 - Folds
+PLAYER6 - Folds
+Hero - Checks
+PLAYER8 - Folds
+PLAYER9 - Folds
+PLAYER1 - Folds
+*** FLOP *** [Kc Qh 8h]
+VILLAIN1 - Checks
+VILLAIN2 - Checks
+Hero - Checks
+*** TURN *** [Kc Qh 8h] [6d]
+VILLAIN1 - Checks
+VILLAIN2 - Checks
+Hero - Checks
+*** RIVER *** [Kc Qh 8h 6d] [8c]
+VILLAIN1 - Checks
+VILLAIN2 - Checks
+Hero - Checks
+*** SHOW DOWN ***
+VILLAIN1 - Shows [5c Ac] (One pair, eights) 
+VILLAIN2 - Shows [7s 6c] (Two Pair, eights and sixes) 
+Hero - Mucks
+VILLAIN2 Collects $0.09 from main pot
+*** SUMMARY ***
+Total Pot($0.09)
+Board [Kc Qh 8h 6d 8c]
+Seat 1: PLAYER1 (big blind) Folded on the POCKET CARDS
+Seat 2: VILLAIN1 HI:lost with One pair, eights [5c Ac - B:8h,B:8c,P:Ac,B:Kc,B:Qh] 
+Seat 3: PLAYER3 Folded on the POCKET CARDS
+Seat 4: VILLAIN2 won Total ($0.09) HI:($0.09) with Two Pair, eights and sixes [7s 6c - B:8h,B:8c,B:6d,P:6c,B:Kc] 
+Seat 5: PLAYER5 Folded on the POCKET CARDS
+Seat 6: PLAYER6 Folded on the POCKET CARDS
+Seat 7: Hero HI: [Mucked] [10s 3s] 
+Seat 8: PLAYER8 (dealer) Folded on the POCKET CARDS
+Seat 9: PLAYER9 (small blind) Folded on the POCKET CARDS
+
+
+
