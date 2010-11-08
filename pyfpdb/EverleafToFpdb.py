@@ -179,6 +179,8 @@ or None if we fail to get the info """
             elif seatnum > 6:
                 hand.maxseats = 8 # everleaf currently does 2/6/10 games, so if seats > 6 are in use, it must be 10-max.
                 # TODO: implement lookup list by table-name to determine maxes, then fall back to 6 default/10 here, if there's no entry in the list?
+            elif seatnum > 4:
+                hand.maxseats = 6 # they added 4-seat games too!
 
 
     def markStreets(self, hand):
