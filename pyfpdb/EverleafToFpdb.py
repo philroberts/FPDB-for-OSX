@@ -145,7 +145,7 @@ or None if we fail to get the info """
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid =  m.group('HID')
         hand.tablename = m.group('TABLE')
-        hand.maxseats = 6     # assume 6-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
+        hand.maxseats = 4     # assume 4-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
         
         currencies = { u'€':'EUR', '$':'USD', '':'T$', None:'T$' }
         mg = m.groupdict()
