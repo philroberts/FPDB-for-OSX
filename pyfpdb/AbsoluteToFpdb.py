@@ -18,6 +18,8 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+#Note that this filter also supports UltimateBet, they are both owned by the same company and form the Cereus Network
+
 import L10n
 _ = L10n.get_translation()
 
