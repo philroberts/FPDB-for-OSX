@@ -39,17 +39,17 @@ obj = getattr(mod, filter_name, None)
 
 hhc = obj(config, autostart=False)
 
-if os.path.exists(options.infile):
-    in_fh = codecs.open(options.infile, 'r', "utf8")
+if os.path.exists(options.filename):
+    in_fh = codecs.open(options.filename, 'r', "utf8")
     filecontents = in_fh.read()
     in_fh.close()
 else:
-    print _("Could not find file %s") % options.infile
+    print _("Could not find file %s") % options.filename
     exit(1)
 
 m = hhc.re_PlayerInfo.finditer(filecontents)
 
-outfile = options.infile+".anon"
+outfile = options.filename+".anon"
 print _("Output being written to"), outfile
 
 savestdout = sys.stdout

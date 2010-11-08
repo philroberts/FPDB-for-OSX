@@ -131,7 +131,7 @@ class HUD_main(object):
                 self.main_window.set_icon_stock(gtk.STOCK_HOME)
             self.main_window.show_all()
             gobject.timeout_add(100, self.check_tables)
-                        
+
         except:
             log.error("*** Exception in HUD_main.init() *** ")
             for e in traceback.format_tb(sys.exc_info()[2]):
