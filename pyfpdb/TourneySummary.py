@@ -37,6 +37,7 @@ from Exceptions import *
 import pprint
 import DerivedStats
 import Card
+import Database
 
 log = logging.getLogger("parser")
 
@@ -118,6 +119,8 @@ class TourneySummary(object):
         if builtFrom=="IMAP":
             # Fix line endings?
             pass
+        if self.db == None:
+            self.db = Database.Database(config)
 
         self.parseSummary()
         self.insertOrUpdate()
