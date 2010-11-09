@@ -811,10 +811,10 @@ class fpdb:
                                  ('hudConfigurator', None, _('_HUD Configurator'), _('<control>H'), 'HUD Configurator', self.diaHudConfigurator),
                                  ('graphs', None, _('_Graphs'), _('<control>G'), 'Graphs', self.tabGraphViewer),
                                  ('tourneygraphs', None, _('Tourney Graphs'), None, 'TourneyGraphs', self.tabTourneyGraphViewer),
-                                 ('ringplayerstats', None, _('Ring _Player Stats (tabulated view, not on pgsql)'), _('<control>P'), 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
-                                 ('tourneyplayerstats', None, _('_Tourney Player Stats (tabulated view, not on pgsql)'), _('<control>T'), 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
+                                 ('ringplayerstats', None, _('Ring _Player Stats (tabulated view, not on pgsql)'), _('<control>P'), 'Ring Player Stats (tabulated view, not on pgsql)', self.tab_ring_player_stats),
+                                 ('tourneyplayerstats', None, _('_Tourney Stats (tabulated view, not on pgsql)'), _('<control>T'), 'Tourney Stats (tabulated view, not on pgsql)', self.tab_tourney_player_stats),
                                  ('tourneyviewer', None, _('Tourney _Viewer'), None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
-                                 ('posnstats', None, _('P_ositional Stats (tabulated view, not on sqlite)'), _('<control>O'), 'Positional Stats (tabulated view)', self.tab_positional_stats),
+                                 ('posnstats', None, _('P_ositional Stats (tabulated view, not on sqlite)'), _('<control>O'), 'Positional Stats (tabulated view, not on sqlite)', self.tab_positional_stats),
                                  ('sessionstats', None, _('Session Stats'), None, 'Session Stats', self.tab_session_stats),
                                  ('database', None, _('_Database')),
                                  ('maintaindbs', None, _('_Maintain Databases'), None, 'Maintain Databases', self.dia_maintain_dbs),
@@ -1013,7 +1013,7 @@ class fpdb:
         new_ps_thread = GuiTourneyPlayerStats.GuiTourneyPlayerStats(self.config, self.db, self.sql, self.window)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
-        self.add_and_display_tab(ps_tab, _("Tourney Player Stats"))
+        self.add_and_display_tab(ps_tab, _("Tourney Stats"))
 
     def tab_tourney_viewer_stats(self, widget, data=None):
         new_thread = GuiTourneyViewer.GuiTourneyViewer(self.config, self.db, self.sql, self.window)
