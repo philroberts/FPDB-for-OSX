@@ -193,11 +193,14 @@ class Absolute(HandHistoryConverter):
 
         if m is None or fname_info is None:
             if m is None:
-                logging.error(_("Didn't match re_HandInfo"))
-                logging.error(hand.handText)
+                tmp = hand.handText[0:100]
+                logging.error(_("readHandInfo: Didn't match: '%s'") % tmp)
+                raise FpdbParseError(_("Absolute: Didn't match re_HandInfo: '%s'") % tmp)
             elif fname_info is None:
-                logging.info(_("File name didn't match re_*InfoFromFilename"))
-                logging.info(_("File name: %s") % self.in_path)
+                logging.error(_("readHandInfo: File name didn't match re_*InfoFromFilename"))
+                logging.error(_("File name: %s") % self.in_path)
+                raise FpdbParseError(_("Absolute: Didn't match re_*InfoFromFilename: '%s'") % self.in_path)
+
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid =  m.group('HID')
         if m.group('TABLE'):
