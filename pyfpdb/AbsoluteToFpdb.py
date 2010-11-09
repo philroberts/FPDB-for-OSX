@@ -69,8 +69,8 @@ class Absolute(HandHistoryConverter):
     # on HORSE STUD games, the table name isn't in the hand info!
     re_RingInfoFromFilename = re.compile(ur".*IHH([0-9]+) (?P<TABLE>.*) -")
     re_TrnyInfoFromFilename = re.compile(
-            ur".*IHH ([0-9]+) (?P<TRNY_NAME>.*) "\
-            ur"ID (?P<TRNY_ID>\d+) \((?P<TABLE>\d+)\) .* "\
+            ur"IHH\s?([0-9]+) (?P<TRNY_NAME>.*) "\
+            ur"ID (?P<TRNY_ID>\d+)\s?\((?P<TABLE>\d+)\) .* "\
             ur"(?:\$|\s€|)(?P<BUYIN>[0-9.]+)\s*\+\s*(?:\$|\s€|)(?P<FEE>[0-9.]+)"
             )
 
