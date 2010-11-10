@@ -51,7 +51,7 @@ class Absolute(HandHistoryConverter):
               ^Stage\s+\#C?(?P<HID>[0-9]+):?\s+
               (?:Tourney\ ID\ (?P<TRNY_ID>\d+)\s+)?
               (?P<GAME>Holdem|Seven\ Card\ Hi\/L|HORSE)\s+
-              (?P<TRNY_TYPE>\(1\son\s1\)|Single\ Tournament|)\s*
+              (?P<TRNY_TYPE>\(1\son\s1\)|Single\ Tournament|Multi\ Normal\ Tournament|)\s*
               (?P<LIMIT>No\ Limit|Pot\ Limit|Normal|)\s?
               (?P<CURRENCY>\$|\s€|)
               (?P<SB>[.0-9]+)/?(?:\$|\s€|)(?P<BB>[.0-9]+)?
@@ -142,6 +142,7 @@ class Absolute(HandHistoryConverter):
 
 
         mg = m.groupdict()
+        #print "DEBUG: mg: %s" % mg
 
         # translations from captured groups to our info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Normal':'fl', 'Limit':'fl'}
