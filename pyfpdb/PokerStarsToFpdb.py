@@ -171,7 +171,11 @@ class PokerStars(HandHistoryConverter):
                 ["tour", "hold", "fl"],
 
                 ["tour", "stud", "fl"],
-               ]
+                
+                ["tour", "draw", "fl"],
+                ["tour", "draw", "pl"],
+                ["tour", "draw", "nl"],
+                ]
 
     def determineGameType(self, handText):
         info = {}
