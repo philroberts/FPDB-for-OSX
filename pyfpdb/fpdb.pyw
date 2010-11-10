@@ -106,6 +106,7 @@ import GuiPrefs
 import GuiLogView
 import GuiDatabase
 import GuiBulkImport
+import GuiTourneyImport
 import GuiImapFetcher
 import GuiRingPlayerStats
 import GuiTourneyPlayerStats
@@ -763,6 +764,7 @@ class fpdb:
                 </menu>
                 <menu action="import">
                   <menuitem action="bulkimp"/>
+                  <menuitem action="tourneyimp"/>
                   <menuitem action="imapimport"/>
                   <menuitem action="autoimp"/>
                 </menu>
@@ -805,6 +807,7 @@ class fpdb:
                                  ('Preferences', None, _('Pre_ferences'), _('<control>F'), 'Edit your preferences', self.dia_preferences),
                                  ('import', None, _('_Import')),
                                  ('bulkimp', None, _('_Bulk Import'), _('<control>B'), 'Bulk Import', self.tab_bulk_import),
+                                 ('tourneyimp', None, _('Tournament _Results Import'), _('<control>R'), 'Tournament Results Import', self.tab_tourney_import),
                                  ('imapimport', None, _('_Import through eMail/IMAP'), _('<control>I'), 'Import through eMail/IMAP', self.tab_imap_import),
                                  ('viewers', None, _('_Viewers')),
                                  ('autoimp', None, _('_Auto Import and HUD'), _('<control>A'), 'Auto Import and HUD', self.tab_auto_import),
@@ -995,6 +998,13 @@ class fpdb:
         self.threads.append(new_import_thread)
         bulk_tab=new_import_thread.get_vbox()
         self.add_and_display_tab(bulk_tab, _("Bulk Import"))
+
+    def tab_tourney_import(self, widget, data=None):
+        """opens a tab for bulk importing"""
+        new_import_thread = GuiTourneyImport.GuiTourneyImport(self.settings, self.config, self.sql, self.window)
+        self.threads.append(new_import_thread)
+        bulk_tab=new_import_thread.get_vbox()
+        self.add_and_display_tab(bulk_tab, _("Tournament Results Import"))
 
     def tab_imap_import(self, widget, data=None):
         new_thread = GuiImapFetcher.GuiImapFetcher(self.config, self.db, self.sql, self.window)
