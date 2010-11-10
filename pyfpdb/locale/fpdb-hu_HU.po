@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2010-11-07 14:35+CET\n"
-"PO-Revision-Date: 2010-10-03 01:26+0200\n"
+"PO-Revision-Date: 2010-11-10 10:26+0100\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -45,12 +45,11 @@ msgstr "re_HandInfo nem illeszkedik"
 
 #: AbsoluteToFpdb.py:201
 msgid "File name didn't match re_*InfoFromFilename"
-msgstr ""
+msgstr "A fájlnév nem illeszkedik re_*InfoFromFilename-re"
 
 #: AbsoluteToFpdb.py:202
-#, fuzzy
 msgid "File name: %s"
-msgstr "Fájlnév:"
+msgstr "Fájlnév: %s"
 
 #: AbsoluteToFpdb.py:270 EverleafToFpdb.py:213 FulltiltToFpdb.py:346
 #: OnGameToFpdb.py:303 PokerStarsToFpdb.py:346 Win2dayToFpdb.py:203
@@ -346,23 +345,20 @@ msgid "warning: index %s_%s_idx not dropped %s, continuing ..."
 msgstr "figyelem: a(z) %s_%s_idx index nem lett eldobva: %s, folytatás ..."
 
 #: Database.py:1071 Database.py:1079
-#, fuzzy
 msgid "Creating foreign key "
-msgstr "idegen kulcs létrehozása: "
+msgstr "idegen kulcs létrehozása "
 
 #: Database.py:1077 Database.py:1086 Database.py:1098
-#, fuzzy
 msgid "Create foreign key failed: "
-msgstr "   idegen kulcs létrehozása sikertelen: "
+msgstr "idegen kulcs létrehozása sikertelen: "
 
 #: Database.py:1093 Database.py:1250 Database.py:1251
 msgid "Creating mysql index %s %s"
 msgstr "MySQL index létrehozása: %s %s"
 
 #: Database.py:1102
-#, fuzzy
 msgid "Creating pg index "
-msgstr "pg index létrehozása: "
+msgstr "pg index létrehozása "
 
 #: Database.py:1107 Database.py:1256 Database.py:1265 Database.py:1273
 msgid "Create index failed: "
@@ -715,9 +711,9 @@ msgid "Unable to locate currency"
 msgstr "Nem található a pénznem"
 
 #: FulltiltToFpdb.py:223
-#, fuzzy
 msgid "readHandInfo: Unable to recognise handinfo from: '%s'"
-msgstr "Nem sikerült felismerni a játéktípust innen: '%s'"
+msgstr ""
+"readHandInfo: Nem sikerült felismerni a leosztásinformációkat innen: '%s'"
 
 #: FulltiltToFpdb.py:356
 msgid "Player bringing in: %s for %s"
@@ -1292,23 +1288,20 @@ msgid "Non-showdown: $%.2f"
 msgstr "Mutatás nélkül: $%.2f"
 
 #: GuiGraphViewer.py:234
-#, fuzzy
 msgid ""
 "Hands: %d\n"
 "Profit (%s): %.2f"
 msgstr ""
 "Leosztások: %d\n"
-"Profit: $%.2f"
+"Profit (%s): %.2f"
 
 #: GuiGraphViewer.py:236
-#, fuzzy
 msgid "Showdown (%s): %.2f"
-msgstr "Mutatással: $%.2f"
+msgstr "Mutatással (%s): %.2f"
 
 #: GuiGraphViewer.py:238
-#, fuzzy
 msgid "Non-showdown (%s): %.2f"
-msgstr "Mutatás nélkül: $%.2f"
+msgstr "Mutatás nélkül (%s): %.2f"
 
 #: GuiGraphViewer.py:356 GuiTourneyGraphViewer.py:276
 msgid "Please choose the directory you wish to export to:"
@@ -1425,128 +1418,135 @@ msgstr "Beállítások"
 
 #: GuiRingPlayerStats.py:44
 msgid "Type of Game"
-msgstr ""
+msgstr "Játék típusa"
 
 #: GuiRingPlayerStats.py:45
 msgid "Hole cards"
-msgstr ""
+msgstr "Osztott lapok"
 
 #: GuiRingPlayerStats.py:46
-#, fuzzy
 msgid "Position"
-msgstr "Pozíciós statisztikák"
+msgstr "Pozíció"
 
 #: GuiRingPlayerStats.py:47
-#, fuzzy
 msgid "Name of the player"
-msgstr "Játékosok száma:"
+msgstr "Játékos neve"
 
 #: GuiRingPlayerStats.py:48
-#, fuzzy
 msgid "Number of hands played"
-msgstr "Leosztások száma:"
+msgstr "Leosztások száma"
 
 #: GuiRingPlayerStats.py:49
-#, fuzzy
 msgid "Number of Seats"
-msgstr "Szálak száma:"
+msgstr "Székek száma"
 
 #: GuiRingPlayerStats.py:50
-#, fuzzy
 msgid ""
 "Voluntarily Putting In the pot\n"
 "(blinds excluded)"
-msgstr "önként befizet preflop %"
+msgstr ""
+"Önként befizet preflop\n"
+"(vakok kivételével)"
 
 #: GuiRingPlayerStats.py:51
-#, fuzzy
 msgid "% Pre Flop Raise"
 msgstr "preflop emelés"
 
 #: GuiRingPlayerStats.py:52
-#, fuzzy
 msgid "% Pre Flop Re-Raise / 3Bet"
-msgstr "preflop emelés"
+msgstr "preflop visszaemelés / 3bet"
 
 #: GuiRingPlayerStats.py:53
-#, fuzzy
 msgid "Aggression Factor\n"
-msgstr "agresszió faktor"
+msgstr "agresszió faktor\n"
 
 #: GuiRingPlayerStats.py:54
 msgid ""
 "Aggression Frequency\n"
 "Bet or Raise vs Fold"
 msgstr ""
+"aggresszió gyakoriság\n"
+"bet vagy raise vs fold"
 
 #: GuiRingPlayerStats.py:55
-#, fuzzy
 msgid "Continuation Bet on the flop"
-msgstr "folytató nyitás flopon/4. utcán %"
+msgstr "folytató nyitás flopon"
 
 #: GuiRingPlayerStats.py:56
 msgid "% Raise First In\\% Raise when first to bet"
-msgstr ""
+msgstr "nyitóemelés"
 
 #: GuiRingPlayerStats.py:57
 msgid ""
 "% First to raise pre-flop\n"
 "and steal blinds"
 msgstr ""
+"nyitóemelés preflop\n"
+"és vaklopás"
 
 #: GuiRingPlayerStats.py:58
 msgid "% Saw Flop vs hands dealt"
-msgstr ""
+msgstr "flopot néz vs leosztások"
 
 #: GuiRingPlayerStats.py:59
 msgid "Saw Show Down / River"
-msgstr ""
+msgstr "terítésig megy / river"
 
 #: GuiRingPlayerStats.py:60
 msgid "Went To Show Down When Saw Flop"
-msgstr ""
+msgstr "terítésig megy, ha flopot nézett"
 
 #: GuiRingPlayerStats.py:61
 msgid "Amount Won when Show Down seen"
-msgstr ""
+msgstr "nyeremény, amikor terítésig ment"
 
 #: GuiRingPlayerStats.py:62
 msgid ""
 "Flop Aggression\n"
 "% Bet or Raise after seeing Flop"
 msgstr ""
+"flop aggresszió\n"
+"bet vagy raise a flop láttán"
 
 #: GuiRingPlayerStats.py:63
 msgid ""
 "Turn Aggression\n"
 "% Bet or Raise after seeing Turn"
 msgstr ""
+"turn aggresszió\n"
+"bet vagy raise a turn láttán"
 
 #: GuiRingPlayerStats.py:64
 msgid ""
 "River Aggression\n"
 "% Bet or Raise after seeing River"
 msgstr ""
+"river aggresszió\n"
+"bet vagy raise a river láttán"
 
 #: GuiRingPlayerStats.py:65
 msgid ""
 "Coming Soon\n"
 "Total % agression"
 msgstr ""
+"hamarosan\n"
+"totál aggresszió"
 
 #: GuiRingPlayerStats.py:66
 msgid "Amount won"
-msgstr ""
+msgstr "nyeremény"
 
 #: GuiRingPlayerStats.py:67
 msgid ""
 "Number of Big Blinds won\n"
 "or lost per 100 hands"
 msgstr ""
+"átlagosan nyert nagyvakok\n"
+"100 leosztásonként"
 
 #: GuiRingPlayerStats.py:68
 msgid "Amount of rake paid"
-msgstr ""
+msgstr "Fizetett jutalék"
 
 #: GuiRingPlayerStats.py:69
 msgid ""
@@ -1554,12 +1554,17 @@ msgid ""
 "or lost per 100 hands\n"
 "when excluding rake"
 msgstr ""
+"átlagosan nyert nagyvakok\n"
+"100 leosztásonként,\n"
+"ha leszámítjuk a jutalékot"
 
 #: GuiRingPlayerStats.py:70
 msgid ""
 "Measure of uncertainty\n"
 "The lower, the more stable the amounts won"
 msgstr ""
+"A bizonytalanság mértéke\n"
+"Minél kisebb, annál stabilabb a nyeremény"
 
 #: GuiRingPlayerStats.py:347 GuiSessionViewer.py:239
 #: GuiTourneyPlayerStats.py:243
@@ -2469,17 +2474,16 @@ msgid "Print version information and exit."
 msgstr "Verzióinformáció kiírása, majd kilépés."
 
 #: Options.py:57
-#, fuzzy
 msgid "Input out path in quiet mode"
-msgstr "Fájl feldolgozása csendes módban"
+msgstr "Könyvtár beolvasása csendes módban"
 
 #: Options.py:59
 msgid "File to be split is a PokerStars or Full Tilt Poker archive file"
-msgstr ""
+msgstr "A darabolandó fájl PokerStars vagy Full Tilt Poker archív fájl"
 
 #: Options.py:61
 msgid "How many hands do you want saved to each file. Default is 100"
-msgstr ""
+msgstr "Ennyi leosztásonként daraboljon. Alapértelmezetten 100"
 
 #: Options.py:73
 msgid "press enter to end"
@@ -2526,17 +2530,16 @@ msgid "failed to detect currency"
 msgstr "nem sikerült a pénznem meghatározása"
 
 #: SplitHandHistory.py:76
-#, fuzzy
 msgid "File not found"
-msgstr "Az asztal nem található."
+msgstr "Fájl nem található"
 
 #: SplitHandHistory.py:126
 msgid "Unexpected error processing file"
-msgstr ""
+msgstr "Váratlan hiba a fájl feldolgozása közben"
 
 #: SplitHandHistory.py:165
 msgid "End of file reached"
-msgstr ""
+msgstr "Fájl vége"
 
 #: Stats.py:127 Stats.py:128
 msgid "Total Profit"
@@ -2949,15 +2952,16 @@ msgid ""
 "This module was developed and tested with version 2.8.18 of gtk.  You are "
 "using version %d.%d.%d.  Your milage may vary."
 msgstr ""
+"Ez a modul a gtk 2.8.18 verziójával lett fejlesztve és tesztelve.  Te most a "
+"%d.%d.%d verziót használod.  Lehet, hogy máshogy fog működni."
 
 #: WinTables.py:73
 msgid "self.window doesn't exist? why?"
 msgstr "self.window nem létezik? miért?"
 
 #: WinamaxToFpdb.py:233
-#, fuzzy
 msgid "Failed to add streets. handtext=%s"
-msgstr "Nem sikerült a leosztás elküldése a HUD számára: %s"
+msgstr "Nem sikerült az utcák hozzáadása. handtext=%s"
 
 #: fpdb.pyw:39
 msgid " - press return to continue\n"
