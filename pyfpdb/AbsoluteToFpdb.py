@@ -224,7 +224,7 @@ class Absolute(HandHistoryConverter):
         hand.maxseats = 6
 
         if self.HORSEHand:
-            hand.maxseats = 9
+            hand.maxseats = 8  # todo : unless it's heads up!!?
         return
 
     def readPlayerStacks(self, hand):
