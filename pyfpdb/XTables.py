@@ -46,7 +46,7 @@ class Table(Table_Window):
 
         self.number = None
         for listing in os.popen('xwininfo -root -tree').readlines():
-            if re.search(self.search_string, listing):
+            if re.search(self.search_string, listing, re.I):
                 mo = re.match('\s+([\dxabcdef]+) (.+):\s\(\"([a-zA-Z0-9\-.]+)\".+  (\d+)x(\d+)\+\d+\+\d+  \+(\d+)\+(\d+)', listing)
                 title  = re.sub('\"', '', mo.group(2))
                 if self.check_bad_words(title): continue
