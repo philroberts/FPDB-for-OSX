@@ -72,7 +72,7 @@ class Absolute(HandHistoryConverter):
     re_RingInfoFromFilename = re.compile(ur".*IHH([0-9]+) (?P<TABLE>.*) -")
     re_TrnyInfoFromFilename = re.compile(
             ur"IHH\s?([0-9]+) (?P<TRNY_NAME>.*) "\
-            ur"ID (?P<TRNY_ID>\d+)\s?\((?P<TABLE>\d+)\) .* "\
+            ur"ID (?P<TRNY_ID>\d+)\s?(\((?P<TABLE>\d+)\))? .* "\
             ur"(?:\$|\s€|)(?P<BUYIN>[0-9.]+)\s*\+\s*(?:\$|\s€|)(?P<FEE>[0-9.]+)"
             )
 
@@ -193,6 +193,8 @@ class Absolute(HandHistoryConverter):
         fname_re = self.re_TrnyInfoFromFilename if is_trny \
                    else self.re_RingInfoFromFilename
         fname_info = fname_re.search(self.in_path)
+
+        #print "DEBUG: fname_info.groupdict(): %s" %(fname_info.groupdict())
 
         if m is None or fname_info is None:
             if m is None:
