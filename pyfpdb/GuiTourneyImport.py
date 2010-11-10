@@ -35,6 +35,7 @@ import gobject
 
 #    fpdb/FreePokerTools modules
 import Configuration
+import Options
 from Exceptions import FpdbParseError
 
 import logging
@@ -248,13 +249,11 @@ class SummaryImporter:
 
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""
+    import SQL
     if argv is None:
         argv = sys.argv[1:]
 
     (options, argv) = Options.fpdb_options()
-
-    if not options.config:
-        options.config = Configuration.Config(file = "HUD_config.test.xml")
 
     if options.usage == True:
         #Print usage examples and exit
@@ -265,14 +264,28 @@ def main(argv=None):
         print _("Need to define a converter")
         exit(0)
 
-    config = Configuration.Config()
-    db = Database.Database(config)
+    config = Configuration.Config("HUD_config.test.xml")
     sql = SQL.Sql(db_server = 'sqlite')
 
-    db.recreate_tables()
+    if options.filename == None:
+        print _("Need a filename to import")
+        exit(0)
+
+    importer = SummaryImporter(config, sql, None)
+
+    importer.addImportFileOrDir(options.filename, site = options.hhc)
+    starttime = time()
+    (stored, errs) = importer.runImport()
+
+    ttime = time() - starttime
+    if ttime == 0:
+        ttime = 1
+    print _('GuiTourneyImport.load done: Stored: %d\tErrors: %d in %s seconds - %.0f/sec')\
+                     % (stored, errs, ttime, (stored+0.0) / ttime)
+    importer.clearFileList()
 
     
 
 
-if __name__ == '__main__':
+if __name__  == '__main__':
     sys.exit(main())
