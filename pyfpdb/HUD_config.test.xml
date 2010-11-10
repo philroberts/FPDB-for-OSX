@@ -566,7 +566,7 @@ Left-Drag to Move"
     </aux_windows>
 
     <hhcs>
-        <hhc site="PokerStars" converter="PokerStarsToFpdb"/>
+        <hhc site="PokerStars" converter="PokerStarsToFpdb" summaryImporter="PokerStarsSummary"/>
         <hhc site="Full Tilt Poker" converter="FulltiltToFpdb"/>
         <hhc site="Everleaf" converter="EverleafToFpdb"/>
         <hhc site="Win2day" converter="Win2dayToFpdb"/>
