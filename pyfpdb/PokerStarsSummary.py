@@ -57,13 +57,13 @@ class PokerStarsSummary(TourneySummary):
                         (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s
                         (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s+
                         (?P<DESC>[ a-zA-Z]+\s+)?
-                        (Buy-In:\s\$(?P<BUYIN>[.0-9]+)(\/\$(?P<FEE>[.0-9]+))?\s+)?
+                        (Buy-In:\s\$(?P<BUYIN>[.0-9]+)(\/\$(?P<FEE>[.0-9]+))?(?P<CUR>\s%(LEGAL_ISO)s)?\s+)?
                         (?P<ENTRIES>[0-9]+)\splayers\s+
                         (\$?(?P<ADDED>[.\d]+)\sadded\sto\sthe\sprize\spool\sby\sPokerStars\.com\s+)?
-                        (Total\sPrize\sPool:\s\$?(?P<PRIZEPOOL>[.0-9]+)\s+)?
+                        (Total\sPrize\sPool:\s\$?(?P<PRIZEPOOL>[.0-9]+)(\s%(LEGAL_ISO)s)?\s+)?
                         (Target\sTournament\s.*)?
-                        Tournament\sstarted\s-\s
-                        (?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\-\s]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s?\(?(?P<TZ>[A-Z]+)\)\s
+                        Tournament\sstarted\s+(-\s)?
+                        (?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\-\s]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s?\(?(?P<TZ>[A-Z]+)\)?\s
                                """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
 
     re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP)""" % substitutions)

@@ -158,15 +158,12 @@ class SummaryImporter:
         self.updatedtime = {}
 
     def addImportFile(self, filename, site = "default", tsc = "passthrough"):
-        print "DEBUG: addImportFile"
         if filename in self.filelist or not os.path.exists(filename):
             print "DEBUG: addImportFile: File exists, or path non-existent"
             return
         self.filelist[filename] = [site] + [tsc]
-        print "DEBUG: addImportFile: self.filelist[%s]: %s" %(filename, self.filelist[filename])
 
     def addImportDirectory(self,dir,monitor=False, site="default", tsc="passthrough"):
-        print "DEBUG: addImportDirectory"
         if os.path.isdir(dir):
             if monitor == True:
                 self.monitor = True
@@ -178,7 +175,6 @@ class SummaryImporter:
             log.warning(_("Attempted to add non-directory '%s' as an import directory") % str(dir))
 
     def addImportFileOrDir(self, inputPath, site = "PokerStars"):
-        print "DEBUG: addImportFileOrDir"
         tsc = self.config.hhcs[site].summaryImporter
         if os.path.isdir(inputPath):
             for subdir in os.walk(inputPath):
@@ -213,6 +209,17 @@ class SummaryImporter:
         if callable(obj):
             foabs = self.readFile(obj, filename)
             summaryTexts = re.split(obj.re_SplitTourneys, foabs)
+
+            # The summary files tend to have a header or footer
+            # Remove the first and/or last entry if it has < 100 characters
+            if len(summaryTexts[-1]) <= 100:
+                summaryTexts.pop()
+                log.warn(_("TourneyImport: Removing text < 100 characters from end of file"))
+
+            if len(summaryTexts[0]) <= 130:
+                del summaryTexts[0]
+                log.warn(_("TourneyImport: Removing text < 100 characters from start of file"))
+
             print "Found %s summaries" %(len(summaryTexts))
             errors = 0
             imported = 0
@@ -236,7 +243,6 @@ class SummaryImporter:
         tsc.codepage
 
         for kodec in codepage:
-            print "DEBUG: TSC.readFile: trying codepage '%s'" % kodec
             try:
                 in_fh = codecs.open(filename, 'r', kodec)
                 whole_file = in_fh.read()
