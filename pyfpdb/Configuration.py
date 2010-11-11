@@ -450,11 +450,12 @@ class Aux_window:
 
 class HHC:
     def __init__(self, node):
-        self.site    = node.getAttribute("site")
-        self.converter = node.getAttribute("converter")
+        self.site            = node.getAttribute("site")
+        self.converter       = node.getAttribute("converter")
+        self.summaryImporter = node.getAttribute("summaryImporter")
 
     def __str__(self):
-        return "%s:\t%s" % (self.site, self.converter)
+        return "%s:\tconverter: '%s' summaryImporter: '%s'" % (self.site, self.converter, self.summaryImporter)
 
 
 class Popup:

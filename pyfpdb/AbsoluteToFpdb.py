@@ -51,7 +51,7 @@ class Absolute(HandHistoryConverter):
               ^Stage\s+\#C?(?P<HID>[0-9]+):?\s+
               (?:Tourney\ ID\ (?P<TRNY_ID>\d+)\s+)?
               (?P<GAME>Holdem|Seven\ Card\ Hi\/L|HORSE)\s+
-              (?P<TRNY_TYPE>\(1\son\s1\)|Single\ Tournament|)\s*
+              (?P<TRNY_TYPE>\(1\son\s1\)|Single\ Tournament|Multi\ Normal\ Tournament|)\s*
               (?P<LIMIT>No\ Limit|Pot\ Limit|Normal|)\s?
               (?P<CURRENCY>\$|\s€|)
               (?P<SB>[.0-9]+)/?(?:\$|\s€|)(?P<BB>[.0-9]+)?
@@ -71,8 +71,8 @@ class Absolute(HandHistoryConverter):
     # on HORSE STUD games, the table name isn't in the hand info!
     re_RingInfoFromFilename = re.compile(ur".*IHH([0-9]+) (?P<TABLE>.*) -")
     re_TrnyInfoFromFilename = re.compile(
-            ur".*IHH ([0-9]+) (?P<TRNY_NAME>.*) "\
-            ur"ID (?P<TRNY_ID>\d+) \((?P<TABLE>\d+)\) .* "\
+            ur"IHH\s?([0-9]+) (?P<TRNY_NAME>.*) "\
+            ur"ID (?P<TRNY_ID>\d+)\s?(\((?P<TABLE>\d+)\))? .* "\
             ur"(?:\$|\s€|)(?P<BUYIN>[0-9.]+)\s*\+\s*(?:\$|\s€|)(?P<FEE>[0-9.]+)"
             )
 
@@ -142,6 +142,7 @@ class Absolute(HandHistoryConverter):
 
 
         mg = m.groupdict()
+        #print "DEBUG: mg: %s" % mg
 
         # translations from captured groups to our info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Normal':'fl', 'Limit':'fl'}
@@ -193,13 +194,18 @@ class Absolute(HandHistoryConverter):
                    else self.re_RingInfoFromFilename
         fname_info = fname_re.search(self.in_path)
 
+        #print "DEBUG: fname_info.groupdict(): %s" %(fname_info.groupdict())
+
         if m is None or fname_info is None:
             if m is None:
-                logging.error(_("Didn't match re_HandInfo"))
-                logging.error(hand.handText)
+                tmp = hand.handText[0:100]
+                logging.error(_("readHandInfo: Didn't match: '%s'") % tmp)
+                raise FpdbParseError(_("Absolute: Didn't match re_HandInfo: '%s'") % tmp)
             elif fname_info is None:
-                logging.info(_("File name didn't match re_*InfoFromFilename"))
-                logging.info(_("File name: %s") % self.in_path)
+                logging.error(_("readHandInfo: File name didn't match re_*InfoFromFilename"))
+                logging.error(_("File name: %s") % self.in_path)
+                raise FpdbParseError(_("Absolute: Didn't match re_*InfoFromFilename: '%s'") % self.in_path)
+
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid =  m.group('HID')
         if m.group('TABLE'):
@@ -221,7 +227,7 @@ class Absolute(HandHistoryConverter):
         hand.maxseats = 6
 
         if self.HORSEHand:
-            hand.maxseats = 9
+            hand.maxseats = 8  # todo : unless it's heads up!!?
         return
 
     def readPlayerStacks(self, hand):
