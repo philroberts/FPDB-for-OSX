@@ -112,7 +112,9 @@ def walk_testfiles(dir, function, importer, errors, site):
         if os.path.isdir(nfile):
             walk_testfiles(nfile, compare, importer, errors, site)
         else:
+            print "***********************************"
             compare(nfile, importer, errors, site)
+            print "***********************************"
 
 def main(argv=None):
     if argv is None:
