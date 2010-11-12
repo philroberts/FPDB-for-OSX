@@ -630,8 +630,8 @@ class Hud:
                       [config.supported_games[self.poker_game].stats[stat].col] = \
                       config.supported_games[self.poker_game].stats[stat].stat_name
 
-        if os.name == "nt": # we call update_table_position() regularly in Windows to see if we're moving around.  See comments on that function for why this isn't done in X.
-            gobject.timeout_add(500, self.update_table_position)
+#        if os.name == "nt": # we call update_table_position() regularly in Windows to see if we're moving around.  See comments on that function for why this isn't done in X.
+#            gobject.timeout_add(500, self.update_table_position)
 
     def update(self, hand, config):
         self.hand = hand   # this is the last hand, so it is available later
