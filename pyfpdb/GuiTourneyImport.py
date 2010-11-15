@@ -238,7 +238,7 @@ class SummaryImporter:
         self.filelist = {}
 
     def readFile(self, tsc, filename):
-        codepage = ["utf8"]
+        codepage = ["utf8", "utf16"]
         whole_file = None
         tsc.codepage
 
@@ -248,7 +248,8 @@ class SummaryImporter:
                 whole_file = in_fh.read()
                 in_fh.close()
                 break
-            except:
+            except UnicodeDecodeError, e:
+                log.warn(_("GTI.readFile: '%s'") % e)
                 pass
 
         return whole_file
