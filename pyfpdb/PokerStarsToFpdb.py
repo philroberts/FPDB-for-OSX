@@ -100,7 +100,7 @@ class PokerStars(HandHistoryConverter):
           (?P<BLAH>\s-\s[%(LS)s\d\.]+\sCap\s-\s)?        # Optional Cap part
           \s?(?P<ISO>%(LEGAL_ISO)s)?
           \)                        # close paren of the stakes
-          (?P<BLAH2>\s\[AAMS\sID:\s[A-Z0-9]+\])         # AAMS ID: in .it HH's
+          (?P<BLAH2>\s\[AAMS\sID:\s[A-Z0-9]+\])?         # AAMS ID: in .it HH's
           \s-\s
           (?P<DATETIME>.*$)
         """ % substitutions, re.MULTILINE|re.VERBOSE)
