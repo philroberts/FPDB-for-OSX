@@ -54,7 +54,7 @@ class Absolute(HandHistoryConverter):
               (?P<TRNY_TYPE>\(1\son\s1\)|Single\ Tournament|Multi\ Normal\ Tournament|)\s*
               (?P<LIMIT>No\ Limit|Pot\ Limit|Normal|)\s?
               (?P<CURRENCY>\$|\s€|)
-              (?P<SB>[.0-9]+)/?(?:\$|\s€|)(?P<BB>[.0-9]+)?
+              (?P<SB>[.,0-9]+)/?(?:\$|\s€|)(?P<BB>[.,0-9]+)?
               \s+-\s+
               (?P<DATETIME>\d\d\d\d-\d\d-\d\d\ \d\d:\d\d:\d\d)\s+
               (?: \( (?P<TZ>[A-Z]+) \)\s+ )?
@@ -95,10 +95,10 @@ class Absolute(HandHistoryConverter):
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             logging.debug("player_re: "+ player_re)
             #(?P<CURRENCY>\$| €|)(?P<BB>[0-9]*[.0-9]+)
-            self.re_PostSB          = re.compile(ur"^%s - Posts small blind (?:\$| €|)(?P<SB>[0-9]*[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_PostBB          = re.compile(ur"^%s - Posts big blind (?:\$| €|)(?P<BB>[0-9]*[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostSB          = re.compile(ur"^%s - Posts small blind (?:\$| €|)(?P<SB>[,.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostBB          = re.compile(ur"^%s - Posts big blind (?:\$| €|)(?P<BB>[.,0-9]+)" % player_re, re.MULTILINE)
             # TODO: Absolute posting when coming in new: %s - Posts $0.02 .. should that be a new Post line? where do we need to add support for that? *confused*
-            self.re_PostBoth        = re.compile(ur"^%s - Posts dead (?:\$| €|)(?P<SBBB>[0-9]*[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostBoth        = re.compile(ur"^%s - Posts dead (?:\$| €|)(?P<SBBB>[,.0-9]+)" % player_re, re.MULTILINE)
             self.re_Action          = re.compile(ur"^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[0-9]*[.0-9]+)?" % player_re, re.MULTILINE)
             self.re_ShowdownAction  = re.compile(ur"^%s - Shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
             self.re_CollectPot      = re.compile(ur"^Seat [0-9]: %s(?: \(dealer\)|)(?: \(big blind\)| \(small blind\)|) (?:won|collected) Total \((?:\$| €|)(?P<POT>[0-9]*[.0-9]+)\)" % player_re, re.MULTILINE)
@@ -175,11 +175,13 @@ class Absolute(HandHistoryConverter):
             if info['currency'] == 'T$':
                 info['type'] = 'tour'
         if 'SB' in mg:
+            mg['SB'] = mg['SB'].replace(',', '')
             info['sb'] = mg['SB']
         if 'BB' in mg:
             info['bb'] = mg['BB']
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         if info['bb'] is None:
+            mg['SB'] = mg['SB'].replace(',', '')
             info['bb'] = mg['SB']
             info['sb'] = str(float(mg['SB']) * 0.5) # TODO: AP does provide Small BET for Limit .. I think? at least 1-on-1 limit they do.. sigh
 
