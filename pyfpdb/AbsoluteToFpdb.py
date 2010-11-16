@@ -332,17 +332,21 @@ class Absolute(HandHistoryConverter):
         for action in m:
             logging.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
             if action.group('ATYPE') == 'Raises ' or action.group('ATYPE') == 'All-In(Raise) ':
-                hand.addCallandRaise( street, action.group('PNAME'), action.group('BET') )
+                bet = action.group('BET').replace(',', '')
+                hand.addCallandRaise( street, action.group('PNAME'), bet)
             elif action.group('ATYPE') == 'Calls ':
-                hand.addCall( street, action.group('PNAME'), action.group('BET') )
+                bet = action.group('BET').replace(',', '')
+                hand.addCall( street, action.group('PNAME'), bet)
             elif action.group('ATYPE') == 'Bets ' or action.group('ATYPE') == 'All-In ':
-                hand.addBet( street, action.group('PNAME'), action.group('BET') )
+                bet = action.group('BET').replace(',', '')
+                hand.addBet( street, action.group('PNAME'), bet)
             elif action.group('ATYPE') == 'Folds':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'Checks':
                 hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' complete to': # TODO: not supported yet ?
-                hand.addComplete( street, action.group('PNAME'), action.group('BET'))
+                bet = action.group('BET').replace(',', '')
+                hand.addComplete( street, action.group('PNAME'), bet)
             else:
                 logging.debug(_("Unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)))
 
@@ -359,7 +363,8 @@ class Absolute(HandHistoryConverter):
 
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
-            hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
+            pot = m.group('POT').replace(',','')
+            hand.addCollectPot(player=m.group('PNAME'),pot=pot)
 
     def readShownCards(self,hand):
         """Reads lines where hole & board cards are mixed to form a hand (summary lines)"""
