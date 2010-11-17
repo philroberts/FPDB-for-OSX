@@ -128,7 +128,7 @@ def main(argv=None):
     importer = SummaryImporter(config, sql, None)
 
     PokerStarsErrors  = FpdbError('PokerStars')
-    #FTPErrors         = FpdbError('Full Tilt Poker')
+    FTPErrors         = FpdbError('Full Tilt Poker')
     #PartyPokerErrors  = FpdbError('Party Poker')
     #BetfairErrors     = FpdbError('Betfair')
     #OnGameErrors      = FpdbError('OnGame')
@@ -142,7 +142,7 @@ def main(argv=None):
 
     ErrorsList = [
                     PokerStarsErrors, 
-                    #FTPErrors, PartyPokerErrors,
+                    FTPErrors, #PartyPokerErrors,
                     #BetfairErrors, OnGameErrors, AbsoluteErrors,
                     #EverleafErrors, CarbonErrors, PKRErrors,
                     #iPokerErrors, WinamaxErrors, UltimateBetErrors,
@@ -150,7 +150,7 @@ def main(argv=None):
 
     sites = {
                 'PokerStars' : True,
-                #'Full Tilt Poker' : True,
+                'Full Tilt Poker' : True,
                 #'PartyPoker' : True,
                 #'Betfair' : True,
                 #'OnGame' : True,
@@ -165,8 +165,8 @@ def main(argv=None):
 
     if sites['PokerStars'] == True:
         walk_testfiles("regression-test-files/summaries/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
-    #if sites['Full Tilt Poker'] == True:
-    #    walk_testfiles("regression-test-files/cash/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
+    if sites['Full Tilt Poker'] == True:
+        walk_testfiles("regression-test-files/summaries/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
     #    walk_testfiles("regression-test-files/tour/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
     #if sites['PartyPoker'] == True:
     #    walk_testfiles("regression-test-files/cash/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
