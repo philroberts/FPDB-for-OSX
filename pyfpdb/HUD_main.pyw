@@ -130,7 +130,7 @@ class HUD_main(object):
             else:
                 self.main_window.set_icon_stock(gtk.STOCK_HOME)
             self.main_window.show_all()
-#            gobject.timeout_add(100, self.check_tables)
+            gobject.timeout_add(100, self.check_tables)
 
         except:
             log.error("*** Exception in HUD_main.init() *** ")
@@ -138,15 +138,12 @@ class HUD_main(object):
                 log.error(e)
 
     def client_moved(self, widget, hud):
-        print "hud_main: client moved"
-        print hud, hud.table.name, "moved", hud.table.x, hud.table.y
+        hud.up_update_table_position()
 
     def client_resized(self, widget, hud):
-        print _("hud_main: Client resized")
-        print hud, hud.table.name, hud.table.x, hud.table.y
+        pass
 
     def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
-        print _("hud_main: Client destroyed")
         self.kill_hud(None, hud.table.name)
 
     def game_changed(self, widget, hud):
