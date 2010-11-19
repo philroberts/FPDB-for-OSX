@@ -245,7 +245,7 @@ class Table_Window(object):
             return "client_destroyed"
 
         if self.x != new_geo['x'] or self.y != new_geo['y']: # window moved
-            print self.x, self.y, new_geo['x'], new_geo['y']
+#            print self.x, self.y, new_geo['x'], new_geo['y']
             self.x      = new_geo['x']
             self.y      = new_geo['y']
             return "client_moved"

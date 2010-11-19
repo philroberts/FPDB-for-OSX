@@ -59,7 +59,7 @@ class Table(Table_Window):
         for hwnd in titles:
             if titles[hwnd] == "":
                 continue
-            if re.search(self.search_string, titles[hwnd]):
+            if re.search(self.search_string, titles[hwnd], re.I):
                 if self.check_bad_words(titles[hwnd]):
                     continue
                 self.window = hwnd
