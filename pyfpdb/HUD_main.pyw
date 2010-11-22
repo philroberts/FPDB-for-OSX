@@ -24,9 +24,6 @@
 Main for FreePokerTools HUD.
 """
 #    TODO allow window resizing
-#    TODO hud to echo, but ignore non numbers
-#    TODO no stat window for hero
-#    TODO things to add to config.xml
 
 #    Standard Library modules
 import sys
@@ -39,26 +36,21 @@ import traceback
 import thread
 import time
 import string
-import re
 
 #    pyGTK modules
-import pygtk
 import gtk
 import gobject
 
 #    FreePokerTools modules
 import Configuration
-
-
 import Database
-from HandHistoryConverter import getTableTitleRe
+import Hud
+
 #    get the correct module for the current os
 if os.name == 'posix':
     import XTables as Tables
 elif os.name == 'nt':
     import WinTables as Tables
-#import Tables
-import Hud
 
 import locale
 lang = locale.getdefaultlocale()[0][0:2]
@@ -78,7 +70,6 @@ else:
 # get config and set up logger
 c = Configuration.Config(file=options.config, dbname=options.dbname)
 log = Configuration.get_logger("logging.conf", "hud", log_dir=c.dir_log, log_file='HUD-log.txt')
-
 
 class HUD_main(object):
     """A main() object to own both the read_stdin thread and the gui."""
@@ -144,14 +135,13 @@ class HUD_main(object):
         pass
 
     def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
-        self.kill_hud(None, hud.table.name)
+        self.kill_hud(None, hud.table.key)
 
     def game_changed(self, widget, hud):
         print _("hud_main: Game changed.")
 
     def table_changed(self, widget, hud):
-        print _("hud_main: Table changed.")
-        self.kill_hud(None, hud.table.name)
+        self.kill_hud(None, hud.table.key)
 
     def destroy(self, *args):             # call back for terminating the main eventloop
         log.info(_("Terminating normally."))
@@ -159,12 +149,24 @@ class HUD_main(object):
 
     def kill_hud(self, event, table):
 #    called by an event in the HUD, to kill this specific HUD
-        if table in self.hud_dict:
-            self.hud_dict[table].kill()
-            self.hud_dict[table].main_window.destroy()
-            self.vb.remove(self.hud_dict[table].tablehudlabel)
-            del(self.hud_dict[table])
-        self.main_window.resize(1, 1)
+
+#    This method can be called by either gui or non-gui thread. It doesn't
+#    cost much to always do it in a thread-safe manner.
+        def idle():
+            gtk.gdk.threads_enter()
+            try:
+                if table in self.hud_dict:
+                    self.hud_dict[table].kill()
+                    self.hud_dict[table].main_window.destroy()
+                    self.vb.remove(self.hud_dict[table].tablehudlabel)
+                    del(self.hud_dict[table])
+                self.main_window.resize(1, 1)
+            except:
+                pass
+            finally:
+                gtk.gdk.threads_leave()
+
+        gobject.idle_add(idle)
 
     def check_tables(self):
         for hud in self.hud_dict.keys():
@@ -178,42 +180,42 @@ class HUD_main(object):
 
             gtk.gdk.threads_enter()
             try:
-                table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
                 newlabel = gtk.Label("%s - %s" % (table.site, table_name))
                 self.vb.add(newlabel)
                 newlabel.show()
                 self.main_window.resize_children()
-
-                self.hud_dict[table_name].tablehudlabel = newlabel
-                self.hud_dict[table_name].create(new_hand_id, self.config, stat_dict, cards)
-                for m in self.hud_dict[table_name].aux_windows:
+    
+                self.hud_dict[table.key].tablehudlabel = newlabel
+                self.hud_dict[table.key].create(new_hand_id, self.config, stat_dict, cards)
+                for m in self.hud_dict[table.key].aux_windows:
                     m.create()
                     m.update_gui(new_hand_id)
-                self.hud_dict[table_name].update(new_hand_id, self.config)
-                self.hud_dict[table_name].reposition_windows()
+                self.hud_dict[table.key].update(new_hand_id, self.config)
+                self.hud_dict[table.key].reposition_windows()
             except:
                 log.error("*** Exception in HUD_main::idle_func() *** " + str(sys.exc_info()))
                 for e in traceback.format_tb(sys.exc_info()[2]):
                     log.error(e)
             finally:
                 gtk.gdk.threads_leave()
-                return False
+            return False
 
-        self.hud_dict[table_name] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
-        self.hud_dict[table_name].table_name = table_name
-        self.hud_dict[table_name].stat_dict = stat_dict
-        self.hud_dict[table_name].cards = cards
-
+        self.hud_dict[table.key] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
+        self.hud_dict[table.key].table_name = table_name
+        self.hud_dict[table.key].stat_dict = stat_dict
+        self.hud_dict[table.key].cards = cards
+        table.hud = self.hud_dict[table.key]
+        
         # set agg_bb_mult so that aggregate_tour and aggregate_ring can be ignored,
         # agg_bb_mult == 1 means no aggregation after these if statements:
         if type == "tour" and self.hud_params['aggregate_tour'] == False:
-            self.hud_dict[table_name].hud_params['agg_bb_mult'] = 1
+            self.hud_dict[table.key].hud_params['agg_bb_mult'] = 1
         elif type == "ring" and self.hud_params['aggregate_ring'] == False:
-            self.hud_dict[table_name].hud_params['agg_bb_mult'] = 1
+            self.hud_dict[table.key].hud_params['agg_bb_mult'] = 1
         if type == "tour" and self.hud_params['h_aggregate_tour'] == False:
-            self.hud_dict[table_name].hud_params['h_agg_bb_mult'] = 1
+            self.hud_dict[table.key].hud_params['h_agg_bb_mult'] = 1
         elif type == "ring" and self.hud_params['h_aggregate_ring'] == False:
-            self.hud_dict[table_name].hud_params['h_agg_bb_mult'] = 1
+            self.hud_dict[table.key].hud_params['h_agg_bb_mult'] = 1
         # sqlcoder: I forget why these are set to true (aren't they ignored from now on?)
         # but I think it's needed:
         self.hud_params['aggregate_ring'] = True
@@ -222,7 +224,7 @@ class HUD_main(object):
         self.hud_params['aggregate_tour'] = True
         self.hud_params['h_aggregate_tour'] = True
 
-        [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[table_name].aux_windows]
+        [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[table.key].aux_windows]
         gobject.idle_add(idle_func)
 
     def update_HUD(self, new_hand_id, table_name, config):
@@ -268,6 +270,8 @@ class HUD_main(object):
                 self.destroy()
                 break # this thread is not always killed immediately with gtk.main_quit()
 
+#    This block cannot be hoisted outside the while loop, because it would
+#    cause a problem when auto importing into an empty db.
             if not found:
                 for site in self.config.get_supported_sites():
                     result = self.db_connection.get_site_id(site)
@@ -355,9 +359,10 @@ class HUD_main(object):
             log.info(_("HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f)")
                      % (t6 - t0,t1 - t0,t2 - t0,t3 - t0,t4 - t0,t5 - t0,t6 - t0))
             self.db_connection.connection.rollback()
-#            if type == "tour":
-#                tablewindow.check_table_no(None)
-#            # Ray!! tablewindow::check_table_no expects a HUD as an argument!
+
+            if type == "tour":
+                self.hud_dict[temp_key].table.check_table_no(self.hud_dict[temp_key])
+
 if __name__== "__main__":
 
 #    start the HUD_main object

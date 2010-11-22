@@ -116,6 +116,7 @@ class Table_Window(object):
 
         self.config = config
         self.site = site
+        self.hud = None   # fill in later
         if tournament is not None and table_number is not None:
             self.tournament = int(tournament)
             self.table = int(table_number)
@@ -123,11 +124,13 @@ class Table_Window(object):
             self.type = "tour"
             table_kwargs = dict(tournament = self.tournament, table_number = self.table)
             self.tableno_re = getTableNoRe(self.config, self.site, tournament = self.tournament)
+            self.key = tournament   # used as key for the hud_dict in HUD_main
         elif table_name is not None:
             self.name = table_name
             self.type = "cash"
             self.tournament = None
             table_kwargs = dict(table_name = table_name)
+            self.key = table_name
 
         else:
             return None
@@ -135,6 +138,7 @@ class Table_Window(object):
         self.search_string = getTableTitleRe(self.config, self.site, self.type, **table_kwargs)
         self.find_table_parameters()
 
+        self.gdkhandle = gtk.gdk.window_foreign_new(self.number)
         geo = self.get_geometry()
         if geo is None:  return None
         self.width  = geo['width']
@@ -150,7 +154,7 @@ class Table_Window(object):
 #    __str__ method for testing
         likely_attrs = ("number", "title", "site", "width", "height", "x", "y",
                         "tournament", "table", "gdkhandle", "window", "parent",
-                        "game", "search_string", "tableno_re")
+                        "key", "hud", "game", "search_string", "tableno_re")
         temp = 'TableWindow object\n'
         for a in likely_attrs:
             if getattr(self, a, 0):
@@ -185,13 +189,13 @@ class Table_Window(object):
             return False
 
         try:
-              mo = re.search(self.tableno_re, new_title)
+            mo = re.search(self.tableno_re, new_title)
         except AttributeError: #'Table' object has no attribute 'tableno_re'
-              return False
+            return False
               
         if mo is not None:
             #print "get_table_no: mo=",mo.groups()
-            return mo.group(1)
+            return int(mo.group(1))
         return False
 
 ####################################################################
@@ -256,7 +260,7 @@ class Table_Window(object):
         if result != False and result != self.table:
             self.table = result
             if hud is not None:
-                hud.main_window.emit("table_changed", hud)
+                hud.parent.main_window.emit("table_changed", hud)
         return True
 
     def check_bad_words(self, title):
