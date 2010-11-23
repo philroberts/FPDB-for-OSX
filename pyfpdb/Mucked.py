@@ -415,9 +415,12 @@ class Aux_Seats(Aux_Window):
 #   Methods likely to be of use for any Seat_Window implementation
     def destroy(self):
         """Destroy all of the seat windows."""
-        for i in self.m_windows.keys():
-            self.m_windows[i].destroy()
-            del(self.m_windows[i])
+        try:
+            for i in self.m_windows.keys():
+                self.m_windows[i].destroy()
+                del(self.m_windows[i])
+        except AttributeError:
+            pass
 
 #   Methods likely to be useful for mucked card windows (or similar) only
     def hide(self):
