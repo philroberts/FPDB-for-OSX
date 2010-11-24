@@ -2047,7 +2047,7 @@ class Sql:
         # gets a date, would need to use handsplayers (not hudcache) to get exact hand Id
         if db_server == 'mysql':
             self.query['get_date_nhands_ago'] = """
-                select concat( 'd', date_format(max(h.startTime), '%Y%m%d%h') )
+                select concat( 'd', date_format(max(h.startTime), '%Y%m%d%H') )
                 from (select hp.playerId
                             ,coalesce(greatest(max(hp.handId)-%s,1),1) as maxminusx
                       from HandsPlayers hp
@@ -3290,7 +3290,7 @@ class Sql:
                             else 'E'
                        end                                            AS hc_position
                       <tourney_select_clause>
-                      ,date_format(h.startTime, 'd%y%m%d%h')
+                      ,date_format(h.startTime, 'd%y%m%d%H')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonWhenSeenStreet2)
@@ -3379,7 +3379,7 @@ class Sql:
                         ,h.seats
                         ,hc_position
                         <tourney_group_clause>
-                        ,date_format(h.startTime, 'd%y%m%d%h')
+                        ,date_format(h.startTime, 'd%y%m%d%H')
 """
         elif db_server == 'postgresql':
             self.query['rebuildHudCache'] = """
@@ -3686,7 +3686,7 @@ class Sql:
                             else 'E'
                        end                                            AS hc_position
                       <tourney_select_clause>
-                      ,'d' || substr(strftime('%Y%m%d%h', h.startTime),3,7)
+                      ,'d' || substr(strftime('%Y%m%d%H', h.startTime),3,7)
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonWhenSeenStreet2)
@@ -3775,7 +3775,7 @@ class Sql:
                         ,h.seats
                         ,hc_position
                         <tourney_group_clause>
-                        ,'d' || substr(strftime('%Y%m%d%h', h.startTime),3,7)
+                        ,'d' || substr(strftime('%Y%m%d%H', h.startTime),3,7)
 """
 
         self.query['insert_hudcache'] = """

@@ -1827,7 +1827,7 @@ class Database:
         """Update cached statistics. If update fails because no record exists, do an insert."""
 
         if self.use_date_in_hudcache:
-            styleKey = datetime.strftime(starttime, 'd%y%m%d%h')
+            styleKey = datetime.strftime(starttime, 'd%y%m%d%H')
             #styleKey = "d%02d%02d%02d%02d" % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day, hand_start_time.hour)
         else:
             # hard-code styleKey as 'A00000000' (all-time cache, no key) for now
