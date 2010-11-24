@@ -55,6 +55,7 @@ import Card
 import Charset
 from Exceptions import *
 import Configuration
+import Filters
 
 
 #    Other library modules
@@ -689,14 +690,16 @@ class Database:
         else:
             if row and row[0]:
                 self.hand_1day_ago = int(row[0])
-
-        d = timedelta(days=hud_days)
+        
+        offset = strptime(Filters.Filters(self, self.config, self.sql).getDates()[0],"%Y-%m-%d %H:%M:%S").tm_hour
+        
+        d = timedelta(days=hud_days, hours=offset)
         now = datetime.utcnow() - d
-        self.date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
+        self.date_ndays_ago = "d%02d%02d%02d%02d" % (now.year - 2000, now.month, now.day, offset)
 
-        d = timedelta(days=h_hud_days)
+        d = timedelta(days=h_hud_days, hours=offset)
         now = datetime.utcnow() - d
-        self.h_date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
+        self.h_date_ndays_ago = "d%02d%02d%02d%02d" % (now.year - 2000, now.month, now.day, offset)
 
     def init_player_hud_stat_vars(self, playerid):
         # not sure if this is workable, to be continued ...
