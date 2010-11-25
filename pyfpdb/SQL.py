@@ -1064,7 +1064,7 @@ class Sql:
                         activeSeats SMALLINT NOT NULL,
                         position CHAR(1),
                         tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
-                        styleKey CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
+                        styleKey CHAR(9) NOT NULL,  /* 1st char is style (A/T/H/S), other 8 are the key */
                         HDs INT NOT NULL,
 
                         wonWhenSeenStreet1 FLOAT,
@@ -1165,7 +1165,7 @@ class Sql:
                         activeSeats SMALLINT,
                         position CHAR(1),
                         tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
-                        styleKey CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
+                        styleKey CHAR(9) NOT NULL,  /* 1st char is style (A/T/H/S), other 8 are the key */
                         HDs INT,
 
                         wonWhenSeenStreet1 FLOAT,
@@ -3686,7 +3686,7 @@ class Sql:
                             else 'E'
                        end                                            AS hc_position
                       <tourney_select_clause>
-                      ,'d' || substr(strftime('%Y%m%d%H', h.startTime),3,7)
+                      ,'d' || substr(strftime('%Y%m%d%H', h.startTime),3,9)
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonWhenSeenStreet2)
@@ -3775,7 +3775,7 @@ class Sql:
                         ,h.seats
                         ,hc_position
                         <tourney_group_clause>
-                        ,'d' || substr(strftime('%Y%m%d%H', h.startTime),3,7)
+                        ,'d' || substr(strftime('%Y%m%d%H', h.startTime),3,9)
 """
 
         self.query['insert_hudcache'] = """
