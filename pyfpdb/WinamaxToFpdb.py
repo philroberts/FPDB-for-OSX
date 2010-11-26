@@ -82,15 +82,26 @@ class Winamax(HandHistoryConverter):
 # Winamax Poker - CashGame - HandId: #279823-223-1285031451 - Holdem no limit (0.02€/0.05€) - 2010/09/21 03:10:51 UTC
 # Table: 'Charenton-le-Pont' 9-max (real money) Seat #5 is the button
     re_HandInfo = re.compile(u"""
-            \s*Winamax\sPoker\s-\sCashGame\s-\sHandId:\s\#(?P<HID1>\d+)-(?P<HID2>\d+)-(?P<HID3>\d+).*\s
+            \s*Winamax\sPoker\s-\s
+            (?P<RING>CashGame)?
+            (?P<TOUR>Tournament\s
+            (?P<TOURNAME>.+)?\s
+            buyIn:\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\,]+)?\s\+?\s(?P<BIRAKE>[%(LS)s\d\,]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Gratuit|Ticket\suniquement)?\s
+            (level:\s(?P<LEVEL>\d+))?
+            .*)?
+            \s-\sHandId:\s\#(?P<HID1>\d+)-(?P<HID2>\d+)-(?P<HID3>\d+).*\s
             (?P<GAME>Holdem|Omaha)\s
             (?P<LIMIT>no\slimit|pot\slimit)\s
             \(
+            (((%(LS)s)?(?P<ANTE>[.0-9]+)(%(LS)s)?)/)?
             ((%(LS)s)?(?P<SB>[.0-9]+)(%(LS)s)?)/
             ((%(LS)s)?(?P<BB>[.0-9]+)(%(LS)s)?)
             \)\s-\s
             (?P<DATETIME>.*)
-            Table:\s\'(?P<TABLE>[^']+)\'\s(?P<MAXPLAYER>\d+)\-max
+            Table:\s\'(?P<TABLE>[^(]+)
+            (.(?P<TOURNO>\d+).\#(?P<TABLENO>\d+))?.*
+            \'
+            \s(?P<MAXPLAYER>\d+)\-max
             """ % substitutions, re.MULTILINE|re.DOTALL|re.VERBOSE)
 
     re_TailSplitHands = re.compile(r'\n\s*\n')
@@ -126,8 +137,8 @@ class Winamax(HandHistoryConverter):
             self.re_PostSB    = re.compile('%(PLYR)s posts small blind (%(CUR)s)?(?P<SB>[\.0-9]+)(%(CUR)s)?' % subst, re.MULTILINE)
             self.re_PostBB    = re.compile('%(PLYR)s posts big blind (%(CUR)s)?(?P<BB>[\.0-9]+)(%(CUR)s)?' % subst, re.MULTILINE)
             self.re_DenySB    = re.compile('(?P<PNAME>.*) deny SB' % subst, re.MULTILINE)
-            self.re_Antes     = re.compile(r"^%(PLYR)s: posts the ante (%(CUR)s)?(?P<ANTE>[\.0-9]+)(%(CUR)s)?" % subst, re.MULTILINE)
-            self.re_BringIn   = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for (%(CUR)s)?(?P<BRINGIN>[\.0-9]+(%(CUR)s)?)" % subst, re.MULTILINE)
+            self.re_Antes     = re.compile(r"^%(PLYR)s posts ante (%(CUR)s)?(?P<ANTE>[\.0-9]+)(%(CUR)s)?" % subst, re.MULTILINE)
+            self.re_BringIn   = re.compile(r"^%(PLYR)s brings[- ]in( low|) for (%(CUR)s)?(?P<BRINGIN>[\.0-9]+(%(CUR)s)?)" % subst, re.MULTILINE)
             self.re_PostBoth  = re.compile('(?P<PNAME>.*): posts small \& big blind \( (%(CUR)s)?(?P<SBBB>[\.0-9]+)(%(CUR)s)?\)' % subst)
             self.re_PostDead  = re.compile('(?P<PNAME>.*) posts dead blind \((%(CUR)s)?(?P<DEAD>[\.0-9]+)(%(CUR)s)?\)' % subst, re.MULTILINE)
             self.re_HeroCards = re.compile('Dealt\sto\s%(PLYR)s\s\[(?P<CARDS>.*)\]' % subst)
@@ -144,6 +155,9 @@ class Winamax(HandHistoryConverter):
                 ["ring", "hold", "fl"],
                 ["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
+                ["tour", "hold", "fl"],
+                ["tour", "hold", "nl"],
+                ["tour", "hold", "pl"],
                ]
 
     def determineGameType(self, handText):
@@ -160,7 +174,11 @@ class Winamax(HandHistoryConverter):
 
         mg = m.groupdict()
 
-        info['type'] = 'ring'
+        if mg.get('TOUR'):
+            info['type'] = 'tour'
+        elif mg.get('RING'):
+            info['type'] = 'ring'
+
         info['currency'] = 'EUR'
 
         if 'LIMIT' in mg:
@@ -202,10 +220,61 @@ class Winamax(HandHistoryConverter):
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "CET", "UTC")
             if key == 'HID1':
-                hand.handid = "1%.4d%s%s"%(int(info['HID2']),info['HID1'],info['HID3'])
                 # Need to remove non-alphanumerics for MySQL
+                hand.handid = "1%.9d%s%s"%(int(info['HID2']),info['HID1'],info['HID3'])
+            if key == 'TOURNO':
+                hand.tourNo = info[key]
             if key == 'TABLE':
                 hand.tablename = info[key]
+
+            if key == 'BUYIN':
+                if hand.tourNo!=None:
+                    #print "DEBUG: info['BUYIN']: %s" % info['BUYIN']
+                    #print "DEBUG: info['BIAMT']: %s" % info['BIAMT']
+                    #print "DEBUG: info['BIRAKE']: %s" % info['BIRAKE']
+                    #print "DEBUG: info['BOUNTY']: %s" % info['BOUNTY']
+                    for k in ['BIAMT','BIRAKE']:
+                        if k in info.keys() and info[k]:
+                            info[k] = info[k].replace(',','.')
+
+                    if info[key] == 'Freeroll':
+                        hand.buyin = 0
+                        hand.fee = 0
+                        hand.buyinCurrency = "FREE"
+                    else:
+                        if info[key].find("$")!=-1:
+                            hand.buyinCurrency="USD"
+                        elif info[key].find(u"€")!=-1:
+                            hand.buyinCurrency="EUR"
+                        elif info[key].find("FPP")!=-1:
+                            hand.buyinCurrency="PSFP"
+                        else:
+                            #FIXME: handle other currencies, FPP, play money
+                            raise FpdbParseError(_("failed to detect currency"))
+
+                        info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
+
+                        if hand.buyinCurrency!="PSFP":
+                            if info['BOUNTY'] != None:
+                                # There is a bounty, Which means we need to switch BOUNTY and BIRAKE values
+                                tmp = info['BOUNTY']
+                                info['BOUNTY'] = info['BIRAKE']
+                                info['BIRAKE'] = tmp
+                                info['BOUNTY'] = info['BOUNTY'].strip(u'$€') # Strip here where it isn't 'None'
+                                hand.koBounty = int(100*Decimal(info['BOUNTY']))
+                                hand.isKO = True
+                            else:
+                                hand.isKO = False
+
+                            info['BIRAKE'] = info['BIRAKE'].strip(u'$€')
+                            hand.buyin = int(100*Decimal(info['BIAMT']))
+                            hand.fee = int(100*Decimal(info['BIRAKE']))
+                        else:
+                            hand.buyin = int(Decimal(info['BIAMT']))
+                            hand.fee = 0
+
+            if key == 'LEVEL':
+                hand.level = info[key]
 
         # TODO: These
         hand.buttonpos = 1
