@@ -138,7 +138,10 @@ class Table_Window(object):
         self.search_string = getTableTitleRe(self.config, self.site, self.type, **table_kwargs)
         self.find_table_parameters()
 
-        self.gdkhandle = gtk.gdk.window_foreign_new(self.number)
+        try:
+            self.gdkhandle = gtk.gdk.window_foreign_new(self.number)
+        except AttributeError: # self.number does not exist, table was closed
+            return None
         geo = self.get_geometry()
         if geo is None:  return None
         self.width  = geo['width']
