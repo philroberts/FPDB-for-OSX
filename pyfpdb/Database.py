@@ -37,7 +37,7 @@ import os
 import sys
 import traceback
 from datetime import datetime, date, time, timedelta
-from time import time, strftime, sleep
+from time import time, strftime, sleep, strptime
 from decimal import Decimal
 import string
 import re
