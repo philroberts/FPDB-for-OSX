@@ -133,8 +133,9 @@ or None if we fail to get the info """
 
         self.info = {}
         mg = m.groupdict()
+        print mg
 
-        limits = { 'No Limit':'nl', 'Limit':'fl' }
+        limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl' }
         games = {              # base, category
                     'Holdem' : ('hold','holdem'),
          'Holdem Tournament' : ('hold','holdem') }

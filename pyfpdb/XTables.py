@@ -44,6 +44,10 @@ class Table(Table_Window):
 
     def find_table_parameters(self):
 
+#    This is called by __init__(). Find the poker table window of interest,
+#    given the self.search_string. Then populate self.number, self.title, 
+#    self.window, and self.parent (if required).
+
         reg = '''
                 \s+(?P<XID>[\dxabcdef]+)    # XID in hex
                 \s(?P<TITLE>.+):            # window title
@@ -53,12 +57,10 @@ class Table(Table_Window):
         for listing in os.popen('xwininfo -root -tree').readlines():
             if re.search(self.search_string, listing, re.I):
                 mo = re.match(reg, listing, re.VERBOSE)
-#                mo = re.match('\s+([\dxabcdef]+) (.+):\s\(\"([a-zA-Z0-9\-.]+)\".+  (\d+)x(\d+)\+\d+\+\d+  \+(\d+)\+(\d+)', listing)
                 title  = re.sub('\"', '', mo.groupdict()["TITLE"])
                 if self.check_bad_words(title): continue
                 self.number = int( mo.groupdict()["XID"], 0 )
                 self.title = title
-                self.hud    = None   # specified later
                 break
 
         if self.number is None:
