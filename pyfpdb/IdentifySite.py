@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #Copyright 2010 Chaz Littlejohn
@@ -28,21 +28,18 @@ import Configuration
 import Database
 
 __ARCHIVE_PRE_HEADER_REGEX='^Hand #(\d+)\s*$|\*{20}\s#\s\d+\s\*+\s+'
-re_SplitArchive = re.compile(__ARCHIVE_PRE_HEADER_REGEX, re.MULTILINE)
+re_SplitArchive = re.compile(__ARCHIVE_PRE_HEADER_REGEX)
 
 
 class IdentifySite:
     def __init__(self, config, in_path = '-'):
         self.in_path = in_path
         self.config = config
-        self.db = Database.Database(self.config)
+        self.db = Database.Database(config)
         self.sitelist = {}
         self.filelist = {}
         self.generateSiteList()
-        if os.path.isdir(self.in_path):
-            self.walkDirectory(self.in_path, self.sitelist)
-        else:
-            self.idSite(self.in_path, self.sitelist)
+        self.walkDirectory(self.in_path, self.sitelist)
         
     def generateSiteList(self):
         """Generates a ordered dictionary of site, filter and filter name for each site in hhcs"""
@@ -83,7 +80,7 @@ class IdentifySite:
                 for kodec in self.__listof(obj.codepage):
                     try:
                         in_fh = codecs.open(file, 'r', kodec)
-                        whole_file = in_fh.read(2000)
+                        whole_file = in_fh.read()
                         in_fh.close()
                 
                         if info[2] in ('OnGame', 'Winamax'):
@@ -97,7 +94,7 @@ class IdentifySite:
                             if re_SplitArchive.search(whole_file):
                                 archive = True
                         if m:
-                            self.filelist[file] = [info[1]] + [kodec] + [archive]
+                            self.filelist[file] = [info[0]] + [info[1]] + [kodec] + [archive]
                             break
                     except:
                         pass

@@ -1064,7 +1064,7 @@ class Sql:
                         activeSeats SMALLINT NOT NULL,
                         position CHAR(1),
                         tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
-                        styleKey CHAR(9) NOT NULL,  /* 1st char is style (A/T/H/S), other 8 are the key */
+                        styleKey CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
                         HDs INT NOT NULL,
 
                         wonWhenSeenStreet1 FLOAT,
@@ -1165,7 +1165,7 @@ class Sql:
                         activeSeats SMALLINT,
                         position CHAR(1),
                         tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
-                        styleKey CHAR(9) NOT NULL,  /* 1st char is style (A/T/H/S), other 8 are the key */
+                        styleKey CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
                         HDs INT,
 
                         wonWhenSeenStreet1 FLOAT,
@@ -2047,7 +2047,7 @@ class Sql:
         # gets a date, would need to use handsplayers (not hudcache) to get exact hand Id
         if db_server == 'mysql':
             self.query['get_date_nhands_ago'] = """
-                select concat( 'd', date_format(max(h.startTime), '%Y%m%d%H') )
+                select concat( 'd', date_format(max(h.startTime), '%Y%m%d') )
                 from (select hp.playerId
                             ,coalesce(greatest(max(hp.handId)-%s,1),1) as maxminusx
                       from HandsPlayers hp
@@ -2059,7 +2059,7 @@ class Sql:
                 """
         elif db_server == 'postgresql':
             self.query['get_date_nhands_ago'] = """
-                select 'd' || to_char(max(h3.startTime), 'YYMMDDHH')
+                select 'd' || to_char(max(h3.startTime), 'YYMMDD')
                 from (select hp.playerId
                             ,coalesce(greatest(max(hp.handId)-%s,1),1) as maxminusx
                       from HandsPlayers hp
@@ -2071,7 +2071,7 @@ class Sql:
                 """
         elif db_server == 'sqlite': # untested guess at query:
             self.query['get_date_nhands_ago'] = """
-                select 'd' || strftime(max(h3.startTime), 'YYMMDDHH')
+                select 'd' || strftime(max(h3.startTime), 'YYMMDD')
                 from (select hp.playerId
                             ,coalesce(greatest(max(hp.handId)-%s,1),1) as maxminusx
                       from HandsPlayers hp
@@ -3290,7 +3290,7 @@ class Sql:
                             else 'E'
                        end                                            AS hc_position
                       <tourney_select_clause>
-                      ,date_format(h.startTime, 'd%y%m%d%H')
+                      ,date_format(h.startTime, 'd%y%m%d')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonWhenSeenStreet2)
@@ -3379,7 +3379,7 @@ class Sql:
                         ,h.seats
                         ,hc_position
                         <tourney_group_clause>
-                        ,date_format(h.startTime, 'd%y%m%d%H')
+                        ,date_format(h.startTime, 'd%y%m%d')
 """
         elif db_server == 'postgresql':
             self.query['rebuildHudCache'] = """
@@ -3488,7 +3488,7 @@ class Sql:
                             else 'E'
                        end                                            AS hc_position
                       <tourney_select_clause>
-                      ,'d' || to_char(h.startTime, 'YYMMDDHH')
+                      ,'d' || to_char(h.startTime, 'YYMMDD')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonWhenSeenStreet2)
@@ -3577,7 +3577,7 @@ class Sql:
                         ,h.seats
                         ,hc_position
                         <tourney_group_clause>
-                        ,to_char(h.startTime, 'YYMMDDHH')
+                        ,to_char(h.startTime, 'YYMMDD')
 """
         else:   # assume sqlite
             self.query['rebuildHudCache'] = """
@@ -3686,7 +3686,7 @@ class Sql:
                             else 'E'
                        end                                            AS hc_position
                       <tourney_select_clause>
-                      ,'d' || substr(strftime('%Y%m%d%H', h.startTime),3,9)
+                      ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonWhenSeenStreet2)
@@ -3775,7 +3775,7 @@ class Sql:
                         ,h.seats
                         ,hc_position
                         <tourney_group_clause>
-                        ,'d' || substr(strftime('%Y%m%d%H', h.startTime),3,9)
+                        ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
 """
 
         self.query['insert_hudcache'] = """

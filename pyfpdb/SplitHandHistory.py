@@ -1,22 +1,19 @@
-#!/usr/bin/env python
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
-#    Copyright 2010, Chaz Littlejohn
-#    
-#    This program is free software; you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation; either version 2 of the License, or
-#    (at your option) any later version.
-#    
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU General Public License for more details.
-#    
-#    You should have received a copy of the GNU General Public License
-#    along with this program; if not, write to the Free Software
-#    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-
-########################################################################
+#Copyright 2010 Chaz Littlejohn
+#This program is free software: you can redistribute it and/or modify
+#it under the terms of the GNU Affero General Public License as published by
+#the Free Software Foundation, version 3 of the License.
+#
+#This program is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#GNU General Public License for more details.
+#
+#You should have received a copy of the GNU Affero General Public License
+#along with this program. If not, see <http://www.gnu.org/licenses/>.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 import L10n
 _ = L10n.get_translation()
@@ -31,7 +28,6 @@ import Options
 import Configuration
 from Exceptions import *
 from cStringIO import StringIO
-import time
 
 (options, argv) = Options.fpdb_options()
 
@@ -41,7 +37,7 @@ codepage = ["utf-16", "utf-8", "cp1252"]
 
 
 class SplitHandHistory:
-    def __init__(self, config, in_path = '-', out_path = None, hands = 100, filter = "PokerStarsToFpdb", archive = False, workerid = 0):
+    def __init__(self, config, in_path = '-', out_path = None, hands = 100, filter = "PokerStarsToFpdb", archive = False):
         self.config = config
         self.in_path = in_path
         self.out_path = out_path
@@ -54,25 +50,22 @@ class SplitHandHistory:
         self.line_addendum = None
         self.filedone = False
         
-        self.timestamp = str(time.time())
-        self.workerid = '%02d' % workerid
-        
         #Acquire re_SplitHands for this hh
-        self.filter_name = filter.replace("ToFpdb", "")
+        filter_name = filter.replace("ToFpdb", "")
         mod = __import__(filter)
-        obj = getattr(mod, self.filter_name, None)
+        obj = getattr(mod, filter_name, None)
         self.re_SplitHands = obj.re_SplitHands
         
         #Determine line delimiter type if any
-        if self.re_SplitHands.match('\n\n\n'):
-            self.line_delimiter = '\n\n\n'
         if self.re_SplitHands.match('\n\n'):
             self.line_delimiter = '\n\n'
+        if self.re_SplitHands.match('\n\n\n'):
+            self.line_delimiter = '\n\n\n'
             
         #Add new line addendum for sites which match SplitHand to next line as well
-        if self.filter_name == 'OnGame':
+        if filter_name == 'OnGame':
             self.line_addendum = '*'
-        if self.filter_name == 'Carbon':
+        if filter_name == 'Carbon':
             self.line_addendum = '<game'
             
         #Open the gargantuan file
@@ -82,7 +75,6 @@ class SplitHandHistory:
             except IOError:
                 print _('File not found')
                 sys.exit(2)
-            self.kodec = kodec
         
         #Split with do_hands_per_file if archive and paragraphs if a regular hh
         if self.archive:
@@ -113,10 +105,9 @@ class SplitHandHistory:
             print _('Nope, will not work (fileno=%d)' % fileno)
             sys.exit(2)
         basename = os.path.splitext(os.path.basename(self.in_path))[0]
-        name = os.path.join(self.out_path, self.filter_name+'-'+basename+'_'+self.workerid+'_'+self.timestamp+'_%06d.txt' % fileno)
+        name = os.path.join(self.out_path, basename+'-%06d.txt' % fileno)
         print '-> %s' % name
         newfile = file(name, 'w')
-        os.chmod(name, 0775)
         return newfile
         
     #Archive Hand Splitter
@@ -131,11 +122,8 @@ class SplitHandHistory:
             except FpdbEndOfFile:
                 done = True
                 break
-            except UnicodeEncodeError:
-                print _('Absurd character done messed you up')
-                sys.exit(2)
             except:
-                print _('Unexpected error processing file')
+                print _("Unexpected error processing file")
                 sys.exit(2)
             n += 1
         outfile.close()
@@ -186,7 +174,7 @@ class SplitHandHistory:
         l = infile.readline()
         l = l.replace('\r\n', '\n')
         outfile.write(l)
-        l = infile.readline().encode(self.kodec)
+        l = infile.readline()
     
         while len(l) < 3:
             l = infile.readline()
@@ -194,7 +182,7 @@ class SplitHandHistory:
         while len(l) > 2:
             l = l.replace('\r\n', '\n')
             outfile.write(l)
-            l = infile.readline().encode(self.kodec)
+            l = infile.readline()
         outfile.write(self.line_delimiter)
         return infile
         
@@ -207,19 +195,13 @@ class SplitHandHistory:
 def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
-        
-    if not options.filename:
-        options.filename = sys.argv[1]
 
     if not options.config:
-        options.config = sys.argv[2]
-        
-    if sys.argv[3] == "True":
-        options.archive = True
-        
+        options.config = Configuration.Config(file = "HUD_config.test.xml")
+
     if options.filename:
         SplitHH = SplitHandHistory(options.config, options.filename, options.outpath, options.hands,
-                                   options.hhc, options.archive, options.workerid)
+                                   options.hhc, options.archive)
 
 if __name__ == '__main__':
     sys.exit(main())

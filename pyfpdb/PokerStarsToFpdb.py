@@ -298,7 +298,7 @@ class PokerStars(HandHistoryConverter):
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
             if key == 'MAX':
-                if info[key]: hand.maxseats = int(info[key])
+                hand.maxseats = int(info[key])
 
             if key == 'MIXED':
                 hand.mixed = self.mixes[info[key]] if info[key] is not None else None

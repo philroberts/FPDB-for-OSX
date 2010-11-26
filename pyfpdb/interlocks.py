@@ -108,7 +108,7 @@ class InterProcessLockFcntl(InterProcessLockBase):
         self.lockfd = 0
         try:
             os.unlink(self.lock_file_name)
-        except OSError:
+        except IOError:
             # We don't care about the existence of the file too much here.  It's the flock() we care about,
             # And that should just go away magically.
             pass
