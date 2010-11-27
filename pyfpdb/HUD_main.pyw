@@ -184,7 +184,8 @@ class HUD_main(object):
                 self.vb.add(newlabel)
                 newlabel.show()
                 self.main_window.resize_children()
-    
+                table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
+
                 self.hud_dict[table.key].tablehudlabel = newlabel
                 self.hud_dict[table.key].create(new_hand_id, self.config, stat_dict, cards)
                 for m in self.hud_dict[table.key].aux_windows:

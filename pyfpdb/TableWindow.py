@@ -138,7 +138,7 @@ class Table_Window(object):
         self.search_string = getTableTitleRe(self.config, self.site, self.type, **table_kwargs)
         self.find_table_parameters()
 
-        self.gdkhandle = gtk.gdk.window_foreign_new(self.number)
+#        self.gdkhandle = gtk.gdk.window_foreign_new(self.number)
         geo = self.get_geometry()
         if geo is None:  return None
         self.width  = geo['width']
