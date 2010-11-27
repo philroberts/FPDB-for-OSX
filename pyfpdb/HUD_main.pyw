@@ -354,6 +354,7 @@ class HUD_main(object):
                         self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
                     else:
                         log.error(_('Table "%s" no longer exists\n') % table_name)
+                        return
 
             t6 = time.time()
             log.info(_("HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f)")
@@ -361,7 +362,10 @@ class HUD_main(object):
             self.db_connection.connection.rollback()
 
             if type == "tour":
-                self.hud_dict[temp_key].table.check_table_no(self.hud_dict[temp_key])
+                try:
+                    self.hud_dict[temp_key].table.check_table_no(self.hud_dict[temp_key])
+                except KeyError:
+                    pass
 
 if __name__== "__main__":
 
