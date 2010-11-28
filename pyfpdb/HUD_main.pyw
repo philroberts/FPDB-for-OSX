@@ -102,6 +102,11 @@ class HUD_main(object):
 
     #    a main window
             self.main_window = gtk.Window()
+            if options.minimized:
+                self.main_window.iconify()
+            if options.hidden:
+                self.main_window.hide()        
+            
             if options.xloc is not None or options.yloc is not None:
                 if options.xloc is None:
                     options.xloc = 0
@@ -126,7 +131,8 @@ class HUD_main(object):
                 self.main_window.set_icon_from_file('/usr/share/pixmaps/fpdb-cards.png')
             else:
                 self.main_window.set_icon_stock(gtk.STOCK_HOME)
-            self.main_window.show_all()
+            if not options.hidden:
+                self.main_window.show_all()
             gobject.timeout_add(100, self.check_tables)
 
         except:

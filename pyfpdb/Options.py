@@ -65,6 +65,10 @@ def fpdb_options():
                       help=_("Y location to open Window"))
     parser.add_option("--autoimport", action="store_true", dest="autoimport",
                       help=_("Auto-start Auto-import"))
+    parser.add_option("--minimized", action="store_true", dest="minimized",
+                      help=_("Start Minimized"))
+    parser.add_option("--hidden", action="store_true", dest="hidden",
+                      help=_("Start Hidden"))
 
 
     (options, argv) = parser.parse_args()

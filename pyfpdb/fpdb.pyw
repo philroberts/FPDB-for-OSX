@@ -1140,6 +1140,11 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         self.nb_tab_names=[]  # list of tab names currently displayed in notebook
 
         self.tab_main_help(None, None)
+        
+        if options.minimized:
+            self.window.iconify()
+        if options.hidden:
+            self.window.hide()        
 
         self.window.show()
         self.visible = True     # Flip on
