@@ -63,6 +63,8 @@ def fpdb_options():
                       help=_("X location to open window"))
     parser.add_option("--yloc", dest="yloc", default=None, type="int",
                       help=_("Y location to open Window"))
+    parser.add_option("--autoimport", action="store_true", dest="autoimport",
+                      help=_("Auto-start Auto-import"))
 
 
     (options, argv) = parser.parse_args()

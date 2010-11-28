@@ -204,7 +204,7 @@ class GuiAutoImport (threading.Thread):
 #    That is not correct.  It should open another dir for importing while piping the
 #    results to the same pipe.  This means that self.path should be a a list of dirs
 #    to watch.
-        if widget.get_active(): # toggled on
+        if widget.get_active() or data == "autostart": # toggled on
             # - Does the lock acquisition need to be more sophisticated for multiple dirs?
             # (see comment above about what to do if pipe already open)
             # - Ideally we want to release the lock if the auto-import is killed by some

@@ -993,6 +993,9 @@ class fpdb:
         self.threads.append(new_aimp_thread)
         aimp_tab=new_aimp_thread.get_vbox()
         self.add_and_display_tab(aimp_tab, _("Auto Import"))
+        if options.autoimport:
+            new_aimp_thread.startClicked(new_aimp_thread.startButton, "autostart")
+            options.autoimport = False
 
     def tab_bulk_import(self, widget, data=None):
         """opens a tab for bulk importing"""
@@ -1177,6 +1180,9 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
 
         self.window.connect('window-state-event', self.window_state_event_cb)
         sys.stderr.write(_("fpdb starting ..."))
+        
+        if options.autoimport:
+            self.tab_auto_import(None)
 
 
     def __iconify(self):
