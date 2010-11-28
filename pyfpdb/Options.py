@@ -59,6 +59,10 @@ def fpdb_options():
                     help=_("File to be split is a PokerStars or Full Tilt Poker archive file"))
     parser.add_option("-n", "--numhands", dest="hands", default="100", type="int",
                     help=_("How many hands do you want saved to each file. Default is 100"))
+    parser.add_option("--xloc", dest="xloc", default=None, type="int",
+                      help=_("X location to open window"))
+    parser.add_option("--yloc", dest="yloc", default=None, type="int",
+                      help=_("Y location to open Window"))
 
 
     (options, argv) = parser.parse_args()

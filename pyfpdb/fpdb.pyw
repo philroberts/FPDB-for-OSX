@@ -14,7 +14,6 @@
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
-
 import L10n
 _ = L10n.get_translation()
 
@@ -1097,6 +1096,13 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
 
         self.visible = False
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        if options.xloc is not None or options.yloc is not None:
+            if options.xloc is None:
+                options.xloc = 0
+            if options.yloc is None:
+                options.yloc = 0
+            self.window.move(options.xloc,options.yloc)
+        
         self.window.connect("delete_event", self.delete_event)
         self.window.connect("destroy", self.destroy)
         self.window.set_title("Free Poker DB - v%s" % (VERSION, ))
@@ -1148,7 +1154,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         cards = os.path.join(os.getcwd(), '..','gfx','fpdb-cards.png')
         if os.path.exists(cards):
             self.statusIcon.set_from_file(cards)
-	    self.window.set_icon_from_file(cards)
+            self.window.set_icon_from_file(cards)
         elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
             self.statusIcon.set_from_file('/usr/share/pixmaps/fpdb-cards.png')
             self.window.set_icon_from_file('/usr/share/pixmaps/fpdb-cards.png')

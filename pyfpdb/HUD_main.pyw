@@ -102,6 +102,12 @@ class HUD_main(object):
 
     #    a main window
             self.main_window = gtk.Window()
+            if options.xloc is not None or options.yloc is not None:
+                if options.xloc is None:
+                    options.xloc = 0
+                if options.yloc is None:
+                    options.yloc = 0
+                self.main_window.move(options.xloc,options.yloc)
             self.main_window.connect("client_moved", self.client_moved)
             self.main_window.connect("client_resized", self.client_resized)
             self.main_window.connect("client_destroyed", self.client_destroyed)
