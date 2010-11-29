@@ -75,7 +75,7 @@ try:
     pygtk.require('2.0')
     import gtk
     import pango
-except:
+except ImportError:
     print _("Unable to load PyGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org.")
     raw_input(_("Press ENTER to continue."))
     exit()
@@ -86,18 +86,18 @@ import interlocks
 try:
     import matplotlib
     matplotlib_version = matplotlib.__version__
-except:
+except ImportError:
     matplotlib_version = 'not found'
 try:
     import numpy
     numpy_version = numpy.__version__
-except:
+except ImportError:
     numpy_version = 'not found'
 try:
     import sqlite3
     sqlite3_version = sqlite3.version
     sqlite_version = sqlite3.sqlite_version
-except:
+except ImportError:
     sqlite3_version = 'not found'
     sqlite_version = 'not found'
 
@@ -203,7 +203,7 @@ class fpdb:
         gtk.Button.set_relief(button, gtk.RELIEF_NONE)
         settings = gtk.Widget.get_settings(button);
         (w,h) = gtk.icon_size_lookup_for_settings(settings, gtk.ICON_SIZE_SMALL_TOOLBAR);
-        gtk.Widget.set_size_request (button, w + 4, h + 4);
+        gtk.Widget.set_size_request(button, w + 4, h + 4);
         image.show()
         iconBox.pack_start(image, True, False, 0)
         button.add(iconBox)
