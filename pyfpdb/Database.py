@@ -55,7 +55,6 @@ import Card
 import Charset
 from Exceptions import *
 import Configuration
-import Filters
 
 
 #    Other library modules
@@ -256,6 +255,11 @@ class Database:
         self.database = db_params['db-databaseName']
         self.host = db_params['db-host']
         self.db_path = ''
+        gen = c.get_general_params()
+        self.day_start = 0
+        
+        if 'day_start' in gen:
+            self.day_start = float(gen['day_start'])
 
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql is None:
@@ -690,16 +694,18 @@ class Database:
         else:
             if row and row[0]:
                 self.hand_1day_ago = int(row[0])
+                
+        tz = datetime.utcnow() - datetime.today()
+        tz_offset = tz.seconds/3600
+        tz_day_start_offset = self.day_start + tz_offset
         
-        offset = strptime(Filters.Filters(self, self.config, self.sql).getDates()[0],"%Y-%m-%d %H:%M:%S").tm_hour
+        d = timedelta(days=hud_days, hours=tz_day_start_offset)
+        now = datetime.utcnow() - d
+        self.date_ndays_ago = "d%02d%02d%02d%02d" % (now.year - 2000, now.month, now.day, tz_day_start_offset)
         
-        d = timedelta(days=hud_days, hours=offset)
+        d = timedelta(days=h_hud_days, hours=tz_day_start_offset)
         now = datetime.utcnow() - d
-        self.date_ndays_ago = "d%02d%02d%02d%02d" % (now.year - 2000, now.month, now.day, offset)
-
-        d = timedelta(days=h_hud_days, hours=offset)
-        now = datetime.utcnow() - d
-        self.h_date_ndays_ago = "d%02d%02d%02d%02d" % (now.year - 2000, now.month, now.day, offset)
+        self.h_date_ndays_ago = "d%02d%02d%02d%02d" % (now.year - 2000, now.month, now.day, tz_day_start_offset)
 
     def init_player_hud_stat_vars(self, playerid):
         # not sure if this is workable, to be continued ...
