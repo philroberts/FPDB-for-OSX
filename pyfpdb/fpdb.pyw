@@ -931,6 +931,7 @@ class fpdb:
             response = diaDbVersionWarning.run()
             diaDbVersionWarning.destroy()
 
+        # TODO: This should probably be setup in GUI Init
         if self.status_bar is None:
             self.status_bar = gtk.Label("")
             self.main_vbox.pack_end(self.status_bar, False, True, 0)
