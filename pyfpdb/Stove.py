@@ -47,7 +47,6 @@ class Stove:
             board.b3 = b[2]
 
         self.board = board
-        return board
 
     def set_hero_cards_string(self, string):
         # Our pocket cards
@@ -56,7 +55,6 @@ class Stove:
         c2 = cc[1]
         pocket_cards = Cards(c1, c2)
         self.hand = pocket_cards
-        return pocket_cards
 
     def set_villain_range_string(self, string):
         # Villain's range
@@ -221,9 +219,6 @@ def expand_hands(abbrev, hand, board):
                 range.append(Cards(c1, c2))
     return range
 
-
-
-    
 
 def parse_args(args, container):
     # args[0] is the path being executed; need 3 more args
