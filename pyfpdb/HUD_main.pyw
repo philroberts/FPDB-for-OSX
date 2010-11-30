@@ -297,7 +297,8 @@ class HUD_main(object):
             t1 = time.time()
 
             if type == "tour":   # hand is from a tournament
-                temp_key = tour_number
+#                temp_key = tour_number
+                temp_key = "%s Table %s" % (tour_number, tab_number)
             else:
                 temp_key = table_name
 

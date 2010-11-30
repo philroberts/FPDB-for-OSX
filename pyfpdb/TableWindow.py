@@ -104,12 +104,14 @@ gobject.signal_new("table_changed", gtk.Window,
 #            title bar and window borders.  To put it another way, this is the
 #            screen location of (0, 0) in the working window.
 #    tournament = Tournament number for a tournament or None for a cash game.
-#    table = Table number for a tournament.
-#    gdkhandle = 
-#    window = 
-#    parent = 
-#    game = 
-#    search_string = 
+#    tw.table = tournament: Table number for the tournament.
+#               cash: full Table name as given by the poker site
+#    tw.gdkhandle = gdk handle for the poker client window - used to nail the hud to the window 
+#    tw.window = is this still used?
+#    tw.parent = window object of the parent of the client window, only used in Linux 
+#    tw.game = the poker game being played at the table, only used in mixed games 
+#    tw.search_string = regular expression used to find the table, supplied by XToFpdb.py
+#    tw.key = a string formulated to be a unique id for this table window, used in the hud main window
 
 class Table_Window(object):
     def __init__(self, config, site, table_name = None, tournament = None, table_number = None):
@@ -124,13 +126,13 @@ class Table_Window(object):
             self.type = "tour"
             table_kwargs = dict(tournament = self.tournament, table_number = self.table)
             self.tableno_re = getTableNoRe(self.config, self.site, tournament = self.tournament)
-            self.key = tournament   # used as key for the hud_dict in HUD_main
+            self.key = "%s Table %s" % (tournament, str(self.table))
         elif table_name is not None:
             self.name = table_name
             self.type = "cash"
             self.tournament = None
             table_kwargs = dict(table_name = table_name)
-            self.key = table_name
+            self.key = table_name  # used as key for the hud_dict in HUD_main
 
         else:
             return None
