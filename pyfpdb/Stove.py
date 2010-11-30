@@ -22,13 +22,18 @@ OFFSUIT = 2
 
 ev = pokereval.PokerEval()
 
-holder = None
 
-class Holder:
+class Stove:
     def __init__(self):
         self.hand = None
         self.board = None
         self.range = None
+
+    def set_board_with_list(self, board):
+        pass
+
+    def set_board_with_string(self, board):
+        pass
 
 
 class Cards:
@@ -218,9 +223,9 @@ def parse_args(args, container):
         else:
             range.expand(expand_hands(_h, pocket_cards, board))
 
-    holder.hand = pocket_cards
-    holder.range = range
-    holder.board = board
+    container.hand = pocket_cards
+    container.range = range
+    container.board = board
 
     return True
 
@@ -283,27 +288,13 @@ def odds_for_range(holder):
         sev.add(e)
 
     sev.show(holder.hand, holder.range.get())
-    
 
+def main(argv=None):
+    stove = Stove()
+    if not parse_args(sys.argv, stove):
+        usage(sys.argv[0])
+        sys.exit(2)
+    odds_for_range(stove)
 
-holder = Holder()
-if not parse_args(sys.argv, holder):
-    usage(sys.argv[0])
-    sys.exit(2)
-odds_for_range(holder)
-
-# debugs
-#print '%s, %s' % ( holder.hand.c1, holder.hand.c2)
-#print '%s %s %s %s %s' % (holder.board.b1, holder.board.b2,
-#    holder.board.b3, holder.board.b4, holder.board.b5)
-#while True:
-#    try:
-#        vl = holder.range.get()
-#        v = vl.pop()
-#        print '\t%s %s' % (v.c1, v.c2)
-#    except IndexError:
-#        break
-
-
-
-
+if __name__  == '__main__':
+    sys.exit(main())
