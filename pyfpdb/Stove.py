@@ -32,8 +32,48 @@ class Stove:
     def set_board_with_list(self, board):
         pass
 
-    def set_board_with_string(self, board):
-        pass
+    def set_board_string(self, string):
+        board = Board()
+
+        # Board
+        b = string.strip().split()
+        if len(b) > 4:
+            board.b5 = b[4]
+        if len(b) > 3:
+            board.b4 = b[3]
+        if len(b) > 2:
+            board.b1 = b[0]
+            board.b2 = b[1]
+            board.b3 = b[2]
+
+        self.board = board
+        return board
+
+    def set_hero_cards_string(self, string):
+        # Our pocket cards
+        cc = string.strip().split()
+        c1 = cc[0]
+        c2 = cc[1]
+        pocket_cards = Cards(c1, c2)
+        self.hand = pocket_cards
+        return pocket_cards
+
+    def set_villain_range_string(self, string):
+        # Villain's range
+        range = Range()
+        hands_in_range = string.strip().split(',')
+        for h in hands_in_range:
+            _h = h.strip()
+            if len(_h) > 3:
+                cc = _h.split()
+                r1 = cc[0]
+                r2 = cc[1]
+                vp = Cards(r1, r2)
+                range.add(vp)
+            else:
+                range.expand(expand_hands(_h, pocket_cards, board))
+
+        self.range = range
 
 
 class Cards:
@@ -190,42 +230,10 @@ def parse_args(args, container):
     if len(args) < 4:
         return False
 
-    board = Board()
+    container.set_board_string(args[1])
+    container.set_hero_cards_string(args[2])
+    container.set_villain_range_string(args[3])
 
-    # Board
-    b = args[1].strip().split()
-    if len(b) > 4:
-        board.b5 = b[4]
-    if len(b) > 3:
-        board.b4 = b[3]
-    if len(b) > 2:
-        board.b1 = b[0]
-        board.b2 = b[1]
-        board.b3 = b[2]
-
-    # Our pocket cards
-    cc = args[2].strip().split()
-    c1 = cc[0]
-    c2 = cc[1]
-    pocket_cards = Cards(c1, c2)
-
-    # Villain's range
-    range = Range()
-    hands_in_range = args[3].strip().split(',')
-    for h in hands_in_range:
-        _h = h.strip()
-        if len(_h) > 3:
-            cc = _h.split()
-            r1 = cc[0]
-            r2 = cc[1]
-            vp = Cards(r1, r2)
-            range.add(vp)
-        else:
-            range.expand(expand_hands(_h, pocket_cards, board))
-
-    container.hand = pocket_cards
-    container.range = range
-    container.board = board
 
     return True
 
