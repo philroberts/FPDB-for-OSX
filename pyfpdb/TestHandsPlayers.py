@@ -201,6 +201,7 @@ def main(argv=None):
         walk_testfiles("regression-test-files/cash/iPoker/", compare, importer, iPokerErrors, "iPoker")
     if sites['Winamax'] == True:
         walk_testfiles("regression-test-files/cash/Winamax/", compare, importer, WinamaxErrors, "Winamax")
+        walk_testfiles("regression-test-files/tour/Winamax/", compare, importer, WinamaxErrors, "Winamax")
     if sites['Win2day'] == True:
         walk_testfiles("regression-test-files/cash/Win2day/", compare, importer, Win2dayErrors, "Win2day")
 

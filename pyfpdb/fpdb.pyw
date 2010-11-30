@@ -116,6 +116,7 @@ import GuiAutoImport
 import GuiGraphViewer
 import GuiTourneyGraphViewer
 import GuiSessionViewer
+import GuiStove
 import SQL
 import Database
 import Configuration
@@ -778,6 +779,7 @@ class fpdb:
                   <menuitem action="tourneyviewer"/>
                   <menuitem action="posnstats"/>
                   <menuitem action="sessionstats"/>
+                  <menuitem action="stove"/>
                 </menu>
                 <menu action="database">
                   <menuitem action="maintaindbs"/>
@@ -814,6 +816,7 @@ class fpdb:
                                  ('hudConfigurator', None, _('_HUD Configurator'), _('<control>H'), 'HUD Configurator', self.diaHudConfigurator),
                                  ('graphs', None, _('_Graphs'), _('<control>G'), 'Graphs', self.tabGraphViewer),
                                  ('tourneygraphs', None, _('Tourney Graphs'), None, 'TourneyGraphs', self.tabTourneyGraphViewer),
+                                 ('stove', None, _('Stove'), None, 'Stove', self.tabStove),
                                  ('ringplayerstats', None, _('Ring _Player Stats (tabulated view, not on pgsql)'), _('<control>P'), 'Ring Player Stats (tabulated view, not on pgsql)', self.tab_ring_player_stats),
                                  ('tourneyplayerstats', None, _('_Tourney Stats (tabulated view, not on pgsql)'), _('<control>T'), 'Tourney Stats (tabulated view, not on pgsql)', self.tab_tourney_player_stats),
                                  ('tourneyviewer', None, _('Tourney _Viewer'), None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
@@ -1000,7 +1003,7 @@ class fpdb:
         self.add_and_display_tab(bulk_tab, _("Bulk Import"))
 
     def tab_tourney_import(self, widget, data=None):
-        """opens a tab for bulk importing"""
+        """opens a tab for bulk importing tournament summaries"""
         new_import_thread = GuiTourneyImport.GuiTourneyImport(self.settings, self.config, self.sql, self.window)
         self.threads.append(new_import_thread)
         bulk_tab=new_import_thread.get_vbox()
@@ -1077,6 +1080,13 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         self.threads.append(new_gv_thread)
         gv_tab = new_gv_thread.get_vbox()
         self.add_and_display_tab(gv_tab, _("Tourney Graphs"))
+
+    def tabStove(self, widget, data=None):
+        """opens a tab for bulk importing tournament summaries"""
+        thread = GuiStove.GuiStove(self.config, self.window)
+        self.threads.append(thread)
+        tab = thread.get_vbox()
+        self.add_and_display_tab(tab, _("Stove"))
 
     def __init__(self):
         # no more than 1 process can this lock at a time:

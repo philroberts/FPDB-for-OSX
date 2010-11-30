@@ -22,13 +22,56 @@ OFFSUIT = 2
 
 ev = pokereval.PokerEval()
 
-holder = None
 
-class Holder:
+class Stove:
     def __init__(self):
         self.hand = None
         self.board = None
         self.range = None
+
+    def set_board_with_list(self, board):
+        pass
+
+    def set_board_string(self, string):
+        board = Board()
+
+        # Board
+        b = string.strip().split()
+        if len(b) > 4:
+            board.b5 = b[4]
+        if len(b) > 3:
+            board.b4 = b[3]
+        if len(b) > 2:
+            board.b1 = b[0]
+            board.b2 = b[1]
+            board.b3 = b[2]
+
+        self.board = board
+
+    def set_hero_cards_string(self, string):
+        # Our pocket cards
+        cc = string.strip().split()
+        c1 = cc[0]
+        c2 = cc[1]
+        pocket_cards = Cards(c1, c2)
+        self.hand = pocket_cards
+
+    def set_villain_range_string(self, string):
+        # Villain's range
+        range = Range()
+        hands_in_range = string.strip().split(',')
+        for h in hands_in_range:
+            _h = h.strip()
+            if len(_h) > 3:
+                cc = _h.split()
+                r1 = cc[0]
+                r2 = cc[1]
+                vp = Cards(r1, r2)
+                range.add(vp)
+            else:
+                range.expand(expand_hands(_h, pocket_cards, board))
+
+        self.range = range
 
 
 class Cards:
@@ -177,50 +220,15 @@ def expand_hands(abbrev, hand, board):
     return range
 
 
-
-    
-
 def parse_args(args, container):
     # args[0] is the path being executed; need 3 more args
     if len(args) < 4:
         return False
 
-    board = Board()
+    container.set_board_string(args[1])
+    container.set_hero_cards_string(args[2])
+    container.set_villain_range_string(args[3])
 
-    # Board
-    b = args[1].strip().split()
-    if len(b) > 4:
-        board.b5 = b[4]
-    if len(b) > 3:
-        board.b4 = b[3]
-    if len(b) > 2:
-        board.b1 = b[0]
-        board.b2 = b[1]
-        board.b3 = b[2]
-
-    # Our pocket cards
-    cc = args[2].strip().split()
-    c1 = cc[0]
-    c2 = cc[1]
-    pocket_cards = Cards(c1, c2)
-
-    # Villain's range
-    range = Range()
-    hands_in_range = args[3].strip().split(',')
-    for h in hands_in_range:
-        _h = h.strip()
-        if len(_h) > 3:
-            cc = _h.split()
-            r1 = cc[0]
-            r2 = cc[1]
-            vp = Cards(r1, r2)
-            range.add(vp)
-        else:
-            range.expand(expand_hands(_h, pocket_cards, board))
-
-    holder.hand = pocket_cards
-    holder.range = range
-    holder.board = board
 
     return True
 
@@ -283,27 +291,13 @@ def odds_for_range(holder):
         sev.add(e)
 
     sev.show(holder.hand, holder.range.get())
-    
 
+def main(argv=None):
+    stove = Stove()
+    if not parse_args(sys.argv, stove):
+        usage(sys.argv[0])
+        sys.exit(2)
+    odds_for_range(stove)
 
-holder = Holder()
-if not parse_args(sys.argv, holder):
-    usage(sys.argv[0])
-    sys.exit(2)
-odds_for_range(holder)
-
-# debugs
-#print '%s, %s' % ( holder.hand.c1, holder.hand.c2)
-#print '%s %s %s %s %s' % (holder.board.b1, holder.board.b2,
-#    holder.board.b3, holder.board.b4, holder.board.b5)
-#while True:
-#    try:
-#        vl = holder.range.get()
-#        v = vl.pop()
-#        print '\t%s %s' % (v.c1, v.c2)
-#    except IndexError:
-#        break
-
-
-
-
+if __name__  == '__main__':
+    sys.exit(main())
