@@ -26,6 +26,8 @@ import HandHistoryConverter
 import Configuration
 import sys
 
+#   command line is:
+#  ./Anonymise.py -f <valid path to HH file> -k <name of input filter>
 
 (options, argv) = Options.fpdb_options()
 config = Configuration.Config()
