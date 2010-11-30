@@ -180,11 +180,11 @@ class HUD_main(object):
 
             gtk.gdk.threads_enter()
             try:
+                table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
                 newlabel = gtk.Label("%s - %s" % (table.site, table_name))
                 self.vb.add(newlabel)
                 newlabel.show()
                 self.main_window.resize_children()
-                table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
 
                 self.hud_dict[table.key].tablehudlabel = newlabel
                 self.hud_dict[table.key].create(new_hand_id, self.config, stat_dict, cards)
