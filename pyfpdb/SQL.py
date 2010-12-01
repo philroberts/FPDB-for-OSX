@@ -3964,11 +3964,12 @@ class Sql:
             street2Raises=street2Raises+%s,
             street3Raises=street3Raises+%s,
             street4Raises=street4Raises+%s
-        WHERE gametypeId+0=%s
+        WHERE gametypeId=%s
             AND   playerId=%s
             AND   activeSeats=%s
             AND   position=%s
-            AND   tourneyTypeId+0=%s
+            AND   (case when tourneyTypeId is NULL then 1 else 
+                   (case when tourneyTypeId=%s then 1 else 0 end) end)=1
             AND   styleKey=%s"""
 
         self.query['get_hero_hudcache_start'] = """select min(hc.styleKey)
