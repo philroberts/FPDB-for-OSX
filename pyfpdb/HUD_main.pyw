@@ -132,7 +132,7 @@ class HUD_main(object):
         hud.up_update_table_position()
 
     def client_resized(self, widget, hud):
-        pass
+        gobject.idle_add(idle_resize, hud)
 
     def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
         self.kill_hud(None, hud.table.key)
@@ -148,26 +148,8 @@ class HUD_main(object):
         gtk.main_quit()
 
     def kill_hud(self, event, table):
-#    called by an event in the HUD, to kill this specific HUD
-
-#    This method can be called by either gui or non-gui thread. It doesn't
-#    cost much to always do it in a thread-safe manner.
-        def idle():
-            gtk.gdk.threads_enter()
-            try:
-                if table in self.hud_dict:
-                    self.hud_dict[table].kill()
-                    self.hud_dict[table].main_window.destroy()
-                    self.vb.remove(self.hud_dict[table].tablehudlabel)
-                    del(self.hud_dict[table])
-                self.main_window.resize(1, 1)
-            except:
-                pass
-            finally:
-                gtk.gdk.threads_leave()
-
-        gobject.idle_add(idle)
-
+        gobject.idle_add(idle_kill, self, table)
+    
     def check_tables(self):
         for hud in self.hud_dict.keys():
             self.hud_dict[hud].table.check_table(self.hud_dict[hud])
@@ -175,31 +157,6 @@ class HUD_main(object):
 
     def create_HUD(self, new_hand_id, table, table_name, max, poker_game, type, stat_dict, cards):
         """type is "ring" or "tour" used to set hud_params"""
-
-        def idle_func():
-
-            gtk.gdk.threads_enter()
-            try:
-                table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
-                newlabel = gtk.Label("%s - %s" % (table.site, table_name))
-                self.vb.add(newlabel)
-                newlabel.show()
-                self.main_window.resize_children()
-
-                self.hud_dict[table.key].tablehudlabel = newlabel
-                self.hud_dict[table.key].create(new_hand_id, self.config, stat_dict, cards)
-                for m in self.hud_dict[table.key].aux_windows:
-                    m.create()
-                    m.update_gui(new_hand_id)
-                self.hud_dict[table.key].update(new_hand_id, self.config)
-                self.hud_dict[table.key].reposition_windows()
-            except:
-                log.error("*** Exception in HUD_main::idle_func() *** " + str(sys.exc_info()))
-                for e in traceback.format_tb(sys.exc_info()[2]):
-                    log.error(e)
-            finally:
-                gtk.gdk.threads_leave()
-            return False
 
         self.hud_dict[table.key] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
         self.hud_dict[table.key].table_name = table_name
@@ -226,27 +183,11 @@ class HUD_main(object):
         self.hud_params['h_aggregate_tour'] = True
 
         [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[table.key].aux_windows]
-        gobject.idle_add(idle_func)
+        gobject.idle_add(idle_create, self, new_hand_id, table, table_name, max, poker_game, type, stat_dict, cards)
 
     def update_HUD(self, new_hand_id, table_name, config):
         """Update a HUD gui from inside the non-gui read_stdin thread."""
-#    This is written so that only 1 thread can touch the gui--mainly
-#    for compatibility with Windows. This method dispatches the
-#    function idle_func() to be run by the gui thread, at its leisure.
-        def idle_func():
-            gtk.gdk.threads_enter()
-            try:
-                self.hud_dict[table_name].update(new_hand_id, config)
-            # The HUD could get destroyed in the above call ^^, which leaves us with a KeyError here vv
-            # if we ever get an error we need to expect ^^ then we need to handle it vv - Eric
-                [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
-            except KeyError:
-                pass
-            finally:
-                gtk.gdk.threads_leave()
-                return False
-
-        gobject.idle_add(idle_func)
+        gobject.idle_add(idle_update, self, new_hand_id, table_name, config)
 
     def read_stdin(self):            # This is the thread function
         """Do all the non-gui heavy lifting for the HUD program."""
@@ -364,6 +305,78 @@ class HUD_main(object):
 
             if type == "tour":
                 self.hud_dict[temp_key].table.check_table_no(self.hud_dict[temp_key])
+
+######################################################################
+#   idle FUNCTIONS
+#
+#    These are passed to the event loop by the non-gui thread to do
+#    gui things in a thread-safe way. They are passed to the event
+#    loop using the gobject.idle_add() function.
+#
+#    A general rule for gtk is that only 1 thread should be messing
+#    with the gui.
+
+def idle_resize(hud):
+    gtk.gdk.threads_enter()
+    try:
+        [aw.update_card_positions() for aw in hud.aux_windows]
+        hud.resize_windows()
+    except:
+        pass
+    finally:
+        gtk.gdk.threads_leave()
+
+def idle_kill(hud_main, table):
+    gtk.gdk.threads_enter()
+    try:
+        if table in hud_main.hud_dict:
+            hud_main.hud_dict[table].kill()
+            hud_main.hud_dict[table].main_window.destroy()
+            hud_main.vb.remove(hud_main.hud_dict[table].tablehudlabel)
+            del(hud_main.hud_dict[table])
+        hud_main.main_window.resize(1, 1)
+    except:
+        pass
+    finally:
+        gtk.gdk.threads_leave()
+
+def idle_create(hud_main, new_hand_id, table, table_name, max, poker_game, type, stat_dict, cards):
+
+    gtk.gdk.threads_enter()
+    try:
+        table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
+        newlabel = gtk.Label("%s - %s" % (table.site, table_name))
+        hud_main.vb.add(newlabel)
+        newlabel.show()
+        hud_main.main_window.resize_children()
+
+        hud_main.hud_dict[table.key].tablehudlabel = newlabel
+        hud_main.hud_dict[table.key].create(new_hand_id, hud_main.config, stat_dict, cards)
+        for m in hud_main.hud_dict[table.key].aux_windows:
+            m.create()
+            m.update_gui(new_hand_id)
+        hud_main.hud_dict[table.key].update(new_hand_id, hud_main.config)
+        hud_main.hud_dict[table.key].reposition_windows()
+    except:
+        log.error("*** Exception in HUD_main::idle_func() *** " + str(sys.exc_info()))
+        for e in traceback.format_tb(sys.exc_info()[2]):
+            log.error(e)
+    finally:
+        gtk.gdk.threads_leave()
+    return False
+
+def idle_update(hud_main, new_hand_id, table_name, config):
+    gtk.gdk.threads_enter()
+    try:
+        hud_main.hud_dict[table_name].update(new_hand_id, config)
+    # The HUD could get destroyed in the above call ^^, which leaves us with a KeyError here vv
+    # if we ever get an error we need to expect ^^ then we need to handle it vv - Eric
+        [aw.update_gui(new_hand_id) for aw in hud_main.hud_dict[table_name].aux_windows]
+    except KeyError:
+        pass
+    finally:
+        gtk.gdk.threads_leave()
+        return False
 
 if __name__== "__main__":
 
