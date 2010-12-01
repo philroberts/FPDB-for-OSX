@@ -536,6 +536,16 @@ class Hud:
             aux.destroy()
         self.aux_windows = []
 
+    def resize_windows(self, *args):
+        for w in self.stat_windows.itervalues():
+            if type(w) == int:
+                continue
+            rel_x = (w.x - self.table.x) * self.table.width  / self.table.oldwidth
+            rel_y = (w.y - self.table.y) * self.table.height / self.table.oldheight
+            w.x = self.table.x + rel_x
+            w.y = self.table.y + rel_y
+            w.window.move(w.x, w.y) 
+
     def reposition_windows(self, *args):
         self.update_table_position()
         for w in self.stat_windows.itervalues():

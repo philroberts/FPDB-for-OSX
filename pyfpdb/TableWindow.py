@@ -240,7 +240,9 @@ class Table_Window(object):
             return "client_destroyed"
 
         elif  self.width  != new_geo['width'] or self.height != new_geo['height']:    # window resized
+            self.oldwidth = self.width
             self.width  = new_geo['width']
+            self.oldheight = self.height
             self.height = new_geo['height']
             return "client_resized"
         return False  # no change
