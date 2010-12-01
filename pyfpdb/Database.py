@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 144
+DB_VERSION = 146
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -1836,7 +1836,7 @@ class Database:
         tz_offset = tz.seconds/3600
         tz_day_start_offset = self.day_start + tz_offset
         
-        d = timedelta(days=hud_days, hours=tz_day_start_offset)
+        d = timedelta(hours=tz_day_start_offset)
         starttime_offset = starttime - d
         
         if self.use_date_in_hudcache:
