@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 145
+DB_VERSION = 146
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -296,8 +296,8 @@ class Database:
 
             # vars for hand ids or dates fetched according to above config:
             self.hand_1day_ago = 0             # max hand id more than 24 hrs earlier than now
-            self.date_ndays_ago = 'd00000000'    # date N days ago ('d' + YYMMDD)
-            self.h_date_ndays_ago = 'd00000000'  # date N days ago ('d' + YYMMDD) for hero
+            self.date_ndays_ago = 'd000000'    # date N days ago ('d' + YYMMDD)
+            self.h_date_ndays_ago = 'd000000'  # date N days ago ('d' + YYMMDD) for hero
             self.date_nhands_ago = {}          # dates N hands ago per player - not used yet
 
             self.saveActions = False if self.import_options['saveActions'] == False else True
@@ -701,18 +701,18 @@ class Database:
         
         d = timedelta(days=hud_days, hours=tz_day_start_offset)
         now = datetime.utcnow() - d
-        self.date_ndays_ago = "d%02d%02d%02d%02d" % (now.year - 2000, now.month, now.day, tz_day_start_offset)
+        self.date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
         
         d = timedelta(days=h_hud_days, hours=tz_day_start_offset)
         now = datetime.utcnow() - d
-        self.h_date_ndays_ago = "d%02d%02d%02d%02d" % (now.year - 2000, now.month, now.day, tz_day_start_offset)
+        self.h_date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
 
     def init_player_hud_stat_vars(self, playerid):
         # not sure if this is workable, to be continued ...
         try:
             # self.date_nhands_ago is used for fetching stats for last n hands (hud_style = 'H')
             # This option not used yet - needs to be called for each player :-(
-            self.date_nhands_ago[str(playerid)] = 'd00000000'
+            self.date_nhands_ago[str(playerid)] = 'd000000'
 
             # should use aggregated version of query if appropriate
             c.execute(self.sql.query['get_date_nhands_ago'], (self.hud_hands, playerid))
@@ -780,11 +780,11 @@ class Database:
         if hud_style == 'T':
             stylekey = self.date_ndays_ago
         elif hud_style == 'A':
-            stylekey = '000000000'  # all stylekey values should be higher than this
+            stylekey = '0000000'  # all stylekey values should be higher than this
         elif hud_style == 'S':
-            stylekey = 'zzzzzzzzz'  # all stylekey values should be lower than this
+            stylekey = 'zzzzzzz'  # all stylekey values should be lower than this
         else:
-            stylekey = '000000000'
+            stylekey = '0000000'
             log.info('hud_style: %s' % hud_style)
 
         #elif hud_style == 'H':
@@ -793,9 +793,9 @@ class Database:
         if h_hud_style == 'T':
             h_stylekey = self.h_date_ndays_ago
         elif h_hud_style == 'A':
-            h_stylekey = '000000000'  # all stylekey values should be higher than this
+            h_stylekey = '0000000'  # all stylekey values should be higher than this
         elif h_hud_style == 'S':
-            h_stylekey = 'zzzzzzzzz'  # all stylekey values should be lower than this
+            h_stylekey = 'zzzzzzz'  # all stylekey values should be lower than this
         else:
             h_stylekey = '00000000'
             log.info('h_hud_style: %s' % h_hud_style)
@@ -1832,12 +1832,19 @@ class Database:
     def storeHudCache(self, gid, pids, starttime, pdata):
         """Update cached statistics. If update fails because no record exists, do an insert."""
 
+        tz = datetime.utcnow() - datetime.today()
+        tz_offset = tz.seconds/3600
+        tz_day_start_offset = self.day_start + tz_offset
+        
+        d = timedelta(hours=tz_day_start_offset)
+        starttime_offset = starttime - d
+        
         if self.use_date_in_hudcache:
-            styleKey = datetime.strftime(starttime, 'd%y%m%d%H')
-            #styleKey = "d%02d%02d%02d%02d" % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day, hand_start_time.hour)
+            styleKey = datetime.strftime(starttime_offset, 'd%y%m%d')
+            #styleKey = "d%02d%02d%02d" % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day)
         else:
-            # hard-code styleKey as 'A00000000' (all-time cache, no key) for now
-            styleKey = 'A00000000'
+            # hard-code styleKey as 'A000000' (all-time cache, no key) for now
+            styleKey = 'A000000'
 
         update_hudcache = self.sql.query['update_hudcache']
         update_hudcache = update_hudcache.replace('%s', self.sql.query['placeholder'])
