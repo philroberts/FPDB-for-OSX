@@ -497,12 +497,13 @@ class Importer:
                 self.database.commit()
 
                 #pipe the Hands.id out to the HUD
-                for hid in to_hud:
-                    try:
-                        print _("fpdb_import: sending hand to hud"), hand.dbid_hands, "pipe =", self.caller.pipe_to_hud
-                        self.caller.pipe_to_hud.stdin.write("%s" % (hid) + os.linesep)
-                    except IOError, e:
-                        log.error(_("Failed to send hand to HUD: %s") % e)
+                if self.caller:
+                    for hid in to_hud:
+                        try:
+                            print _("fpdb_import: sending hand to hud"), hand.dbid_hands, "pipe =", self.caller.pipe_to_hud
+                            self.caller.pipe_to_hud.stdin.write("%s" % (hid) + os.linesep)
+                        except IOError, e:
+                            log.error(_("Failed to send hand to HUD: %s") % e)
 
                 errors = getattr(hhc, 'numErrors')
                 stored = getattr(hhc, 'numHands')
