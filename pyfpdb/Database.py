@@ -1966,6 +1966,53 @@ class Database:
             else:
                 #print "DEBUG: Successfully updated HudCacho using UPDATE"
                 pass
+            
+    def storeSessionsCache(self, pids, starttime, pdata):
+        """Update cached sessions. If update fails because no record exists, do an insert."""
+        #In development
+        pass
+
+        #update_sessionscache = self.sql.query['update_sessionscache']
+        #update_sessionscache = update_sessionscache.replace('%s', self.sql.query['placeholder'])
+        #insert_sessionscache = self.sql.query['insert_sessionscache']
+        #insert_sessionscache = insert_sessionscache.replace('%s', self.sql.query['placeholder'])
+        #merge_sessionscache = self.sql.query['merge_sessionscache']
+        #merge_sessionscache = merge_sessionscache.replace('%s', self.sql.query['placeholder'])
+
+        #print "DEBUG: %s %s %s" %(hid, pids, pdata)
+        #inserts = []
+        #for p in pdata:
+            #line = [0]*5
+
+            #line[0] = 1 # HDs
+            #line[1] = pdata[p]['totalProfit']
+            
+            #line[2] = pids[p]    # playerId
+            #line[3] = sessionStart
+            #line[4] = sessionEnd
+            #inserts.append(line)
+
+
+        #cursor = self.get_cursor()
+
+        #for row in inserts:
+            # Try to do the update first:
+            #num = cursor.execute(update_sessionscache, row)
+            #print "DEBUG: values: %s" % row[-3:]
+            # Test statusmessage to see if update worked, do insert if not
+            # num is a cursor in sqlite
+            #if ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
+                    #or (self.backend == self.MYSQL_INNODB and num == 0)
+                    #or (self.backend == self.SQLITE and num.rowcount == 0)):
+                #move the last 6 items in WHERE clause of row from the end of the array
+                # to the beginning for the INSERT statement
+                #print "DEBUG: using INSERT: %s" % num
+                #row = row[-3:] + row[:-3]
+                #num = cursor.execute(insert_sessionscache, row)
+                #print "DEBUG: Successfully(?: %s) updated HudCacho using INSERT" % num
+            #else:
+                #print "DEBUG: Successfully updated HudCacho using UPDATE"
+                #pass
 
     def isDuplicate(self, gametypeID, siteHandNo):
         dup = False
