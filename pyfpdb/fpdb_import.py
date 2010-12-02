@@ -83,6 +83,7 @@ class Importer:
         self.pos_in_file = {}        # dict to remember how far we have read in the file
         #Set defaults
         self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
+        self.cacheSessions = self.config.get_import_parameters().get("cacheSessions")
 
         # CONFIGURATION OPTIONS
         self.settings.setdefault("minPrint", 30)
@@ -110,6 +111,9 @@ class Importer:
     #Set functions
     def setCallHud(self, value):
         self.callHud = value
+        
+    def setCacheSessions(self, value):
+        self.cacheSessions = value
 
     def setMinPrint(self, value):
         self.settings['minPrint'] = int(value)
