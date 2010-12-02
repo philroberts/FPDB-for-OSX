@@ -495,6 +495,13 @@ class Importer:
                         if hand is not None and not hand.is_duplicate:
                             hand.updateHudCache(self.database)
                 self.database.commit()
+                
+                # Call sessionsCache update
+                if self.cacheSessions:
+                    for hand in handlist:
+                        if hand is not None and not hand.is_duplicate:
+                            hand.updateSessionsCache(self.database)
+                self.database.commit()
 
                 #pipe the Hands.id out to the HUD
                 if self.caller:
