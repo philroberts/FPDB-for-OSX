@@ -181,10 +181,6 @@ class PartyPoker(HandHistoryConverter):
                         return self._gameType
         return self._gameType
 
-    @staticmethod
-    def decode_hand_text(handText):
-        return handText.encode("latin1").decode(LOCALE_ENCODING)
-
     def determineGameType(self, handText):
         """inspect the handText and return the gametype dict
 
@@ -192,7 +188,6 @@ class PartyPoker(HandHistoryConverter):
         {'limitType': xxx, 'base': xxx, 'category': xxx}"""
 
         info = {}
-        handText = self.decode_hand_text(handText)
         m = self._getGameType(handText)
         m_20BBmin = self.re_20BBmin.search(handText)
         if m is None:
@@ -253,10 +248,6 @@ class PartyPoker(HandHistoryConverter):
 
 
     def readHandInfo(self, hand):
-        # we should redecode handtext here (as it imposible to it above)
-        # if you know more accurate way to do it - tell me
-        hand.handText = self.decode_hand_text(hand.handText)
-
         info = {}
         try:
             info.update(self.re_Hid.search(hand.handText).groupdict())
