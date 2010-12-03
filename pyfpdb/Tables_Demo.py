@@ -103,9 +103,12 @@ if __name__=="__main__":
         table_kwargs = dict(table_name = table_name)
 
     table = Tables.Table(config, "Full Tilt Poker", **table_kwargs)
+    table.gdk_handle = gtk.gdk.window_foreign_new(table.number)
     print table
 
     fake = fake_hud(table)
+    fake.parent = fake
+
     gobject.timeout_add(1000, table.check_game, fake)
     gobject.timeout_add(100, table.check_table, fake)
     print "calling main"
