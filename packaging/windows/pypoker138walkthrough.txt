@@ -154,6 +154,7 @@ test.py from pypoker-eval-138.0
 pokereval.py from pypoker-eval-138.0
 poker-eval.vcproj from c:\poker-eval
 pypoker-eval.vcproj from c:\pypoker-eval
+pypokereval.c from c:\pypoker-eval
 
 Remember to include the version (138), python 265 and win32 in the package filename
 
