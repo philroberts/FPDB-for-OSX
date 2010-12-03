@@ -192,11 +192,12 @@ class HUD_main(object):
 
             gtk.gdk.threads_enter()
             try:
+                table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
                 newlabel = gtk.Label("%s - %s" % (table.site, table_name))
                 self.vb.add(newlabel)
                 newlabel.show()
                 self.main_window.resize_children()
-    
+
                 self.hud_dict[table.key].tablehudlabel = newlabel
                 self.hud_dict[table.key].create(new_hand_id, self.config, stat_dict, cards)
                 for m in self.hud_dict[table.key].aux_windows:
@@ -308,7 +309,8 @@ class HUD_main(object):
             t1 = time.time()
 
             if type == "tour":   # hand is from a tournament
-                temp_key = tour_number
+#                temp_key = tour_number
+                temp_key = "%s Table %s" % (tour_number, tab_number)
             else:
                 temp_key = table_name
 

@@ -264,7 +264,7 @@ class PokerStars(HandHistoryConverter):
                             hand.buyinCurrency="PSFP"
                         else:
                             #FIXME: handle other currencies, FPP, play money
-                            raise FpdbParseError(_("failed to detect currency"))
+                            raise FpdbParseError(_("Failed to detect currency: '%s'" % info[key]))
 
                         info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
                         

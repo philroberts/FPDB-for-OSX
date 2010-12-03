@@ -45,8 +45,8 @@ class GuiStove():
         self.notebook.set_show_border(True)
 
         self.createFlopTab()
-        #self.createStudTab()
-        #self.createDrawTab()
+        self.createStudTab()
+        self.createDrawTab()
 
 
         self.mainHBox.add(self.notebook)
@@ -92,6 +92,19 @@ Thankyou
         combobox.set_active(0)
         return combobox
 
+    def createDrawTab(self):
+        tab_title = "Draw"
+        label = gtk.Label(tab_title)
+
+        ddbox = gtk.VBox(False, 0)
+        self.notebook.append_page(ddbox, label)
+
+    def createStudTab(self):
+        tab_title = "Stud"
+        label = gtk.Label(tab_title)
+
+        ddbox = gtk.VBox(False, 0)
+        self.notebook.append_page(ddbox, label)
 
     def createFlopTab(self):
         # hierarchy: hbox / ddbox     / ddhbox / Label + flop_games_cb | label + players_cb

@@ -37,7 +37,7 @@ import os
 import sys
 import traceback
 from datetime import datetime, date, time, timedelta
-from time import time, strftime, sleep, strptime
+from time import time, strftime, sleep
 from decimal import Decimal
 import string
 import re
@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 145
+DB_VERSION = 146
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -255,6 +255,11 @@ class Database:
         self.database = db_params['db-databaseName']
         self.host = db_params['db-host']
         self.db_path = ''
+        gen = c.get_general_params()
+        self.day_start = 0
+        
+        if 'day_start' in gen:
+            self.day_start = float(gen['day_start'])
 
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql is None:
@@ -689,12 +694,16 @@ class Database:
         else:
             if row and row[0]:
                 self.hand_1day_ago = int(row[0])
-
-        d = timedelta(days=hud_days)
+                
+        tz = datetime.utcnow() - datetime.today()
+        tz_offset = tz.seconds/3600
+        tz_day_start_offset = self.day_start + tz_offset
+        
+        d = timedelta(days=hud_days, hours=tz_day_start_offset)
         now = datetime.utcnow() - d
         self.date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
-
-        d = timedelta(days=h_hud_days)
+        
+        d = timedelta(days=h_hud_days, hours=tz_day_start_offset)
         now = datetime.utcnow() - d
         self.h_date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
 
@@ -788,7 +797,7 @@ class Database:
         elif h_hud_style == 'S':
             h_stylekey = 'zzzzzzz'  # all stylekey values should be lower than this
         else:
-            h_stylekey = '000000'
+            h_stylekey = '00000000'
             log.info('h_hud_style: %s' % h_hud_style)
 
         #elif h_hud_style == 'H':
@@ -1823,8 +1832,15 @@ class Database:
     def storeHudCache(self, gid, pids, starttime, pdata):
         """Update cached statistics. If update fails because no record exists, do an insert."""
 
+        tz = datetime.utcnow() - datetime.today()
+        tz_offset = tz.seconds/3600
+        tz_day_start_offset = self.day_start + tz_offset
+        
+        d = timedelta(hours=tz_day_start_offset)
+        starttime_offset = starttime - d
+        
         if self.use_date_in_hudcache:
-            styleKey = datetime.strftime(starttime, 'd%y%m%d')
+            styleKey = datetime.strftime(starttime_offset, 'd%y%m%d')
             #styleKey = "d%02d%02d%02d" % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day)
         else:
             # hard-code styleKey as 'A000000' (all-time cache, no key) for now
@@ -1950,6 +1966,53 @@ class Database:
             else:
                 #print "DEBUG: Successfully updated HudCacho using UPDATE"
                 pass
+            
+    def storeSessionsCache(self, pids, starttime, pdata):
+        """Update cached sessions. If update fails because no record exists, do an insert."""
+        #In development
+        pass
+
+        #update_sessionscache = self.sql.query['update_sessionscache']
+        #update_sessionscache = update_sessionscache.replace('%s', self.sql.query['placeholder'])
+        #insert_sessionscache = self.sql.query['insert_sessionscache']
+        #insert_sessionscache = insert_sessionscache.replace('%s', self.sql.query['placeholder'])
+        #merge_sessionscache = self.sql.query['merge_sessionscache']
+        #merge_sessionscache = merge_sessionscache.replace('%s', self.sql.query['placeholder'])
+
+        #print "DEBUG: %s %s %s" %(hid, pids, pdata)
+        #inserts = []
+        #for p in pdata:
+            #line = [0]*5
+
+            #line[0] = 1 # HDs
+            #line[1] = pdata[p]['totalProfit']
+            
+            #line[2] = pids[p]    # playerId
+            #line[3] = sessionStart
+            #line[4] = sessionEnd
+            #inserts.append(line)
+
+
+        #cursor = self.get_cursor()
+
+        #for row in inserts:
+            # Try to do the update first:
+            #num = cursor.execute(update_sessionscache, row)
+            #print "DEBUG: values: %s" % row[-3:]
+            # Test statusmessage to see if update worked, do insert if not
+            # num is a cursor in sqlite
+            #if ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
+                    #or (self.backend == self.MYSQL_INNODB and num == 0)
+                    #or (self.backend == self.SQLITE and num.rowcount == 0)):
+                #move the last 6 items in WHERE clause of row from the end of the array
+                # to the beginning for the INSERT statement
+                #print "DEBUG: using INSERT: %s" % num
+                #row = row[-3:] + row[:-3]
+                #num = cursor.execute(insert_sessionscache, row)
+                #print "DEBUG: Successfully(?: %s) updated HudCacho using INSERT" % num
+            #else:
+                #print "DEBUG: Successfully updated HudCacho using UPDATE"
+                #pass
 
     def isDuplicate(self, gametypeID, siteHandNo):
         dup = False

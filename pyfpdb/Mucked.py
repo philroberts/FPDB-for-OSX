@@ -25,17 +25,17 @@ Mucked cards display for FreePokerTools HUD.
 #    to do
 
 #    Standard Library modules
-import sys
-import pprint
+#import sys
+#import pprint
 
 #    pyGTK modules
-import pygtk
+#import pygtk
 import gtk
 import gobject
 
 #    FreePokerTools modules
-import Configuration
-import Database
+#import Configuration
+#import Database
 import Card
 
 class Aux_Window(object):
