@@ -58,7 +58,7 @@ class PartyPoker(HandHistoryConverter):
     re_GameInfoRing     = re.compile(u"""
             (?P<CURRENCY>[%(LS)s])\s*(?P<RINGLIMIT>[.,0-9]+)([.,0-9/$]+)?\s*(?:%(LEGAL_ISO)s)?\s*
             (?P<LIMIT>(NL|PL|))\s*
-            (?P<GAME>(Texas\ Hold\'em|Omaha|7 Card Stud Hi-Lo))
+            (?P<GAME>(Texas\ Hold\'em|Omaha|7\ Card\ Stud\ Hi-Lo))
             \s*\-\s*
             (?P<DATETIME>.+)
             """ % substitutions, re.VERBOSE | re.UNICODE)
