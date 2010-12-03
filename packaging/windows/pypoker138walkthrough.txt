@@ -1,12 +1,19 @@
-pypokereval build stepbystep
+pypokereval build for windows stepbystep guide
+----------------------------------------------
 
-These build instructions are for Python2.6 and Visual Studio C++ 2008
+Created by Gimick on 3rd December 2010 
 
-We are building against the 2008 runtime because Python 2.6
-   has the same dependency (msvcr90.dll version 9.0.21022.8)
+This walkthrough is derived with the assistance of EricBlade and the build notes
+supplied by Loic Dachary <loic@dachary.org> http://dachary.org/
+
+Content is available under the the GNU Affero General Public License version 3
+
 
 0. Build environ
 ----------------
+
+We are building against the 2008 runtime because Python 2.6
+   has the same dependency (msvcr90.dll version 9.0.21022.8)
 
 Using winXPhome 32 bit
 
@@ -99,7 +106,6 @@ change references to "python24" to "python26" in the following:
 
 Change the following
 
- =  c/c++/general/Debug information format - set to disabled
  =  linker/generate debug info - set to No
  =  linker/debugging/Generate debug info - set to No
 
@@ -116,7 +122,7 @@ Change the following
 
 7.2 In the solution explorer window, hilight poker-eval / right mouse / build
 
-7.3 There should be no errors (but quite a lot of warnings)
+7.3 There should be no errors
 
 7.4 Exit from visual studio
 
@@ -139,10 +145,31 @@ Change the following
 
 9.1 Navigate to c:/pypoker-eval/release 
 9.2 the output file is pypokereval.dll
-9.3 rename this file to _pypoker_2_6.pyd
+9.3 rename this file to _pokereval_2_6.pyd
 
-9.4 create a zip file containing _pypoker_2_6.pyd, test.py and pokereval.py, 
-include the version (138) and win32 in the filename
+9.4 create a zip file containing :
+
+_pokereval_2_6.pyd from releases
+test.py from pypoker-eval-138.0
+pokereval.py from pypoker-eval-138.0
+poker-eval.vcproj from c:\poker-eval
+pypoker-eval.vcproj from c:\pypoker-eval
+
+Remember to include the version (138), python 265 and win32 in the package filename
+
+10. Installation and Testing
+----------------------------
+
+Python 2.6.5 must be installed
+
+10.1 Extract this package to directory
+10.2 Change directory to the directory in 10.1
+10.3 execute dos> c:\Python26\python.exe test.py
+10.4 hand-output should scroll down the screen
+10.5 start the python interpreter
+10.6 >>> import pokereval
+10.7 No errors should be seen
+
 
 
 
