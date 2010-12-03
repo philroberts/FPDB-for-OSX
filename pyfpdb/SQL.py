@@ -2479,7 +2479,11 @@ class Sql:
                       select s.name                                                                 AS siteName
                             ,t.tourneyTypeId                                                        AS tourneyTypeId
                             ,tt.currency                                                            AS currency
-                            ,(CASE WHEN tt.currency = 'USD' THEN tt.buyIn/100.0 ELSE tt.buyIn END)  AS buyIn
+                            ,(CASE
+                                WHEN tt.currency = 'USD' THEN tt.buyIn/100.0
+                                WHEN tt.currency = 'EUR' THEN tt.buyIn/100.0
+                                ELSE tt.buyIn
+                              END)                                                                  AS buyIn
                             ,tt.fee/100.0                                                           AS fee
                             ,tt.category                                                            AS category
                             ,tt.limitType                                                           AS limitType
@@ -2512,7 +2516,11 @@ class Sql:
                       select s.name                                                                 AS siteName
                             ,t.tourneyTypeId                                                        AS tourneyTypeId
                             ,tt.currency                                                            AS currency
-                            ,(CASE WHEN tt.currency = 'USD' THEN tt.buyIn/100.0 ELSE tt.buyIn END)  AS buyIn
+                            ,(CASE
+                                WHEN tt.currency = 'USD' THEN tt.buyIn/100.0
+                                WHEN tt.currency = 'EUR' THEN tt.buyIn/100.0
+                                ELSE tt.buyIn
+                              END)                                                                  AS buyIn
                             ,tt.fee/100.0                                                           AS fee
                             ,tt.category                                                            AS category
                             ,tt.limitType                                                           AS limitType
@@ -2546,7 +2554,11 @@ class Sql:
                       select s.name                                                                 AS siteName
                             ,t.tourneyTypeId                                                        AS tourneyTypeId
                             ,tt.currency                                                            AS currency
-                            ,(CASE WHEN tt.currency = 'USD' THEN tt.buyIn/100.0 ELSE tt.buyIn END)  AS buyIn
+                            ,(CASE
+                                WHEN tt.currency = 'USD' THEN tt.buyIn/100.0
+                                WHEN tt.currency = 'EUR' THEN tt.buyIn/100.0
+                                ELSE tt.buyIn
+                              END)                                                                  AS buyIn
                             ,tt.fee/100.0                                                           AS fee
                             ,tt.category                                                            AS category
                             ,tt.limitType                                                           AS limitType
