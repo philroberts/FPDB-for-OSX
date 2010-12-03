@@ -69,7 +69,7 @@ class Stove:
                 vp = Cards(r1, r2)
                 range.add(vp)
             else:
-                range.expand(expand_hands(_h, pocket_cards, board))
+                range.expand(expand_hands(_h, self.hand, self.board))
 
         self.range = range
 
@@ -158,26 +158,6 @@ class SumEV:
         print ' %5.2f%%    %5.2f%%    %5.2f%%' % (win_pct, lose_pct, tie_pct)
 
 
-def usage(me):
-    print """Texas Hold'Em odds calculator
-Calculates odds against a range of hands.
-
-To use: %s '<board cards>' '<your hand>' '<opponent's range>' [...]
-
-Separate cards with space.
-Separate hands in range with commas.
-""" % me
-
-def cards_from_range(range):
-    s = '{'
-    for h in range:
-        if h.c1 == '__' and h.c2 == '__':
-            s += 'random, '
-        else:
-            s += '%s%s, ' % (h.c1, h.c2)
-    s = s.rstrip(', ')
-    s += '}'
-    return s
 
 
 # Expands hand abbreviations such as JJ and AK to full hand ranges.
@@ -228,7 +208,6 @@ def parse_args(args, container):
     container.set_board_string(args[1])
     container.set_hero_cards_string(args[2])
     container.set_villain_range_string(args[3])
-
 
     return True
 
@@ -291,6 +270,27 @@ def odds_for_range(holder):
         sev.add(e)
 
     sev.show(holder.hand, holder.range.get())
+
+def usage(me):
+    print """Texas Hold'Em odds calculator
+Calculates odds against a range of hands.
+
+To use: %s '<board cards>' '<your hand>' '<opponent's range>' [...]
+
+Separate cards with space.
+Separate hands in range with commas.
+""" % me
+
+def cards_from_range(range):
+    s = '{'
+    for h in range:
+        if h.c1 == '__' and h.c2 == '__':
+            s += 'random, '
+        else:
+            s += '%s%s, ' % (h.c1, h.c2)
+    s = s.rstrip(', ')
+    s += '}'
+    return s
 
 def main(argv=None):
     stove = Stove()
