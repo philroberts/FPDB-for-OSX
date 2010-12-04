@@ -2,7 +2,7 @@
 
 <FreePokerToolsConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FreePokerToolsConfig.xsd">
 
-    <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="True" cacheSessions="False"></import>
+    <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="True" cacheSessions="False" sessionTimeout="30"></import>
 
 <!-- These values determine what stats are displayed in the HUD
 
@@ -104,7 +104,7 @@ Left-Drag to Move"
         <site enabled="True"
               site_name="PokerStars"
               table_finder="PokerStars.exe"
-              screen_name="YOUR SCREEN NAME HERE"
+              screen_name="s0rrow"
               site_path="C:/Program Files/PokerStars/"
               HH_path="C:/Program Files/PokerStars/HandHistory/YOUR SCREEN NAME HERE/"
               decoder="pokerstars_decode_table"
@@ -165,7 +165,7 @@ Left-Drag to Move"
         <site enabled="True"
               site_name="Full Tilt Poker"
               table_finder="FullTiltPoker"
-              screen_name="YOUR SCREEN NAME HERE"
+              screen_name="Sorrowful"
               site_path="C:/Program Files/Full Tilt Poker/"
               HH_path="C:/Program Files/Full Tilt Poker/HandHistory/YOUR SCREEN NAME HERE/"
               decoder="fulltilt_decode_table"
