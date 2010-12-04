@@ -14,7 +14,6 @@
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
-
 import L10n
 _ = L10n.get_translation()
 
@@ -76,7 +75,7 @@ try:
     pygtk.require('2.0')
     import gtk
     import pango
-except:
+except ImportError:
     print _("Unable to load PyGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org.")
     raw_input(_("Press ENTER to continue."))
     exit()
@@ -87,18 +86,18 @@ import interlocks
 try:
     import matplotlib
     matplotlib_version = matplotlib.__version__
-except:
+except ImportError:
     matplotlib_version = 'not found'
 try:
     import numpy
     numpy_version = numpy.__version__
-except:
+except ImportError:
     numpy_version = 'not found'
 try:
     import sqlite3
     sqlite3_version = sqlite3.version
     sqlite_version = sqlite3.sqlite_version
-except:
+except ImportError:
     sqlite3_version = 'not found'
     sqlite_version = 'not found'
 
@@ -205,7 +204,7 @@ class fpdb:
         gtk.Button.set_relief(button, gtk.RELIEF_NONE)
         settings = gtk.Widget.get_settings(button);
         (w,h) = gtk.icon_size_lookup_for_settings(settings, gtk.ICON_SIZE_SMALL_TOOLBAR);
-        gtk.Widget.set_size_request (button, w + 4, h + 4);
+        gtk.Widget.set_size_request(button, w + 4, h + 4);
         image.show()
         iconBox.pack_start(image, True, False, 0)
         button.add(iconBox)
@@ -935,6 +934,7 @@ class fpdb:
             response = diaDbVersionWarning.run()
             diaDbVersionWarning.destroy()
 
+        # TODO: This should probably be setup in GUI Init
         if self.status_bar is None:
             self.status_bar = gtk.Label("")
             self.main_vbox.pack_end(self.status_bar, False, True, 0)
@@ -968,8 +968,8 @@ class fpdb:
             self.quitting = True
         # TODO: check if current settings differ from profile, if so offer to save or abort
         
-        if self.db!=None:
-            if self.db.backend==self.db.MYSQL_INNODB:
+        if self.db is not None:
+            if self.db.backend == self.db.MYSQL_INNODB:
                 try:
                     import _mysql_exceptions
                     if self.db is not None and self.db.is_connected():
@@ -995,8 +995,11 @@ class fpdb:
         """opens the auto import tab"""
         new_aimp_thread = GuiAutoImport.GuiAutoImport(self.settings, self.config, self.sql, self.window)
         self.threads.append(new_aimp_thread)
-        aimp_tab=new_aimp_thread.get_vbox()
+        aimp_tab = new_aimp_thread.get_vbox()
         self.add_and_display_tab(aimp_tab, _("Auto Import"))
+        if options.autoimport:
+            new_aimp_thread.startClicked(new_aimp_thread.startButton, "autostart")
+            options.autoimport = False
 
     def tab_bulk_import(self, widget, data=None):
         """opens a tab for bulk importing"""
@@ -1103,12 +1106,24 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         self.db = None
         self.status_bar = None
         self.quitting = False
-
         self.visible = False
+        self.threads = []     # objects used by tabs - no need for threads, gtk handles it
+        self.closeq = Queue.Queue(20)  # used to signal ending of a thread (only logviewer for now)       
+        
+        # create window, move it to specific location on command line
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        if options.xloc is not None or options.yloc is not None:
+            if options.xloc is None:
+                options.xloc = 0
+            if options.yloc is None:
+                options.yloc = 0
+            self.window.move(options.xloc,options.yloc)
+        
+        # connect to required events
         self.window.connect("delete_event", self.delete_event)
         self.window.connect("destroy", self.destroy)
         self.window.set_title("Free Poker DB - v%s" % (VERSION, ))
+        # set a default x/y size for the window
         self.window.set_border_width(1)
         defx, defy = 900, 720
         sx, sy = gtk.gdk.screen_width(), gtk.gdk.screen_height()
@@ -1117,34 +1132,43 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         self.window.set_default_size(defx, defy)
         self.window.set_resizable(True)
 
+        # main area of window
         self.main_vbox = gtk.VBox(False, 1)
         self.main_vbox.set_border_width(1)
         self.window.add(self.main_vbox)
         self.main_vbox.show()
 
+        # create our Main Menu Bar
         menubar = self.get_menu(self.window)
         self.main_vbox.pack_start(menubar, False, True, 0)
         menubar.show()
-        #done menubar
 
-        self.threads = []     # objects used by tabs - no need for threads, gtk handles it
-        self.closeq = Queue.Queue(20)  # used to signal ending of a thread (only logviewer for now)
-
+        # create a tab bar
         self.nb = gtk.Notebook()
         self.nb.set_show_tabs(True)
         self.nb.show()
         self.main_vbox.pack_start(self.nb, True, True, 0)
-        self.tabs=[]          # the event_boxes forming the actual tabs
-        self.tab_names=[]     # names of tabs used since program started, not removed if tab is closed
-        self.pages=[]         # the contents of the page, not removed if tab is closed
-        self.nb_tab_names=[]  # list of tab names currently displayed in notebook
+        self.tabs = []          # the event_boxes forming the actual tabs
+        self.tab_names = []     # names of tabs used since program started, not removed if tab is closed
+        self.pages = []         # the contents of the page, not removed if tab is closed
+        self.nb_tab_names = []  # list of tab names currently displayed in notebook
 
+        # create the first tab
         self.tab_main_help(None, None)
+        
+        # determine window visibility from command line options
+        if options.minimized:
+            self.window.iconify()
+        if options.hidden:
+            self.window.hide()        
 
-        self.window.show()
-        self.visible = True     # Flip on
+        if not options.hidden:
+            self.window.show()
+            self.visible = True     # Flip on
+            
         self.load_profile(create_db = True)
 
+        # setup error logging
         if not options.errorsToConsole:
             fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
             print (_("\nNote: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in: %s") % self.config.dir_log) \
@@ -1152,12 +1176,13 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
             errorFile = open(fileName, 'w', 0)
             sys.stderr = errorFile
 
+        # set up tray-icon and menu
         self.statusIcon = gtk.StatusIcon()
         # use getcwd() here instead of sys.path[0] so that py2exe works:
         cards = os.path.join(os.getcwd(), '..','gfx','fpdb-cards.png')
         if os.path.exists(cards):
             self.statusIcon.set_from_file(cards)
-	    self.window.set_icon_from_file(cards)
+            self.window.set_icon_from_file(cards)
         elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
             self.statusIcon.set_from_file('/usr/share/pixmaps/fpdb-cards.png')
             self.window.set_icon_from_file('/usr/share/pixmaps/fpdb-cards.png')
@@ -1167,20 +1192,39 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         self.statusIcon.set_tooltip("Free Poker Database")
         self.statusIcon.connect('activate', self.statusicon_activate)
         self.statusMenu = gtk.Menu()
-        menuItem = gtk.ImageMenuItem(gtk.STOCK_ABOUT)
-        menuItem.connect('activate', self.dia_about)
-        self.statusMenu.append(menuItem)
- 
-        menuItem = gtk.ImageMenuItem(gtk.STOCK_QUIT)
-        menuItem.connect('activate', self.quit)
-        self.statusMenu.append(menuItem)
+
+        # set default menu options        
+        self.addImageToTrayMenu(gtk.STOCK_ABOUT, self.dia_about)
+        self.addImageToTrayMenu(gtk.STOCK_QUIT, self.quit)
 
         self.statusIcon.connect('popup-menu', self.statusicon_menu, self.statusMenu)
         self.statusIcon.set_visible(True)
 
         self.window.connect('window-state-event', self.window_state_event_cb)
         sys.stderr.write(_("fpdb starting ..."))
-
+        
+        if options.autoimport:
+            self.tab_auto_import(None)
+            
+    def addImageToTrayMenu(self, image, event=None):
+        menuItem = gtk.ImageMenuItem(image)
+        if event is not None:
+            menuItem.connect('activate', event)
+        self.statusMenu.append(menuItem)
+        menuItem.show()
+        return menuItem
+        
+    def addLabelToTrayMenu(self, label, event=None):
+        menuItem = gtk.MenuItem(label)
+        if event is not None:
+            menuItem.connect('activate', event)
+        self.statusMenu.append(menuItem)
+        menuItem.show()
+        return menuItem
+    
+    def removeFromTrayMenu(self, menuItem):
+        menuItem.destroy()
+        menuItem = None
 
     def __iconify(self):
         self.visible = False

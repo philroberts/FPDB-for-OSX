@@ -102,6 +102,17 @@ class HUD_main(object):
 
     #    a main window
             self.main_window = gtk.Window()
+            if options.minimized:
+                self.main_window.iconify()
+            if options.hidden:
+                self.main_window.hide()        
+            
+            if options.xloc is not None or options.yloc is not None:
+                if options.xloc is None:
+                    options.xloc = 0
+                if options.yloc is None:
+                    options.yloc = 0
+                self.main_window.move(options.xloc,options.yloc)
             self.main_window.connect("client_moved", self.client_moved)
             self.main_window.connect("client_resized", self.client_resized)
             self.main_window.connect("client_destroyed", self.client_destroyed)
@@ -120,7 +131,8 @@ class HUD_main(object):
                 self.main_window.set_icon_from_file('/usr/share/pixmaps/fpdb-cards.png')
             else:
                 self.main_window.set_icon_stock(gtk.STOCK_HOME)
-            self.main_window.show_all()
+            if not options.hidden:
+                self.main_window.show_all()
             gobject.timeout_add(100, self.check_tables)
 
         except:
@@ -356,6 +368,7 @@ class HUD_main(object):
                         self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
                     else:
                         log.error(_('Table "%s" no longer exists\n') % table_name)
+                        return
 
             t6 = time.time()
             log.info(_("HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f)")
@@ -363,7 +376,10 @@ class HUD_main(object):
             self.db_connection.connection.rollback()
 
             if type == "tour":
-                self.hud_dict[temp_key].table.check_table_no(self.hud_dict[temp_key])
+                try:
+                    self.hud_dict[temp_key].table.check_table_no(self.hud_dict[temp_key])
+                except KeyError:
+                    pass
 
 if __name__== "__main__":
 
