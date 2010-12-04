@@ -98,7 +98,11 @@ class Table(Table_Window):
         except AttributeError:
             return None
         
+    def topify(self, window):
+#    The idea here is to call set_transient_for on the HUD window, with the table window
+#    as the argument. This should keep the HUD window on top of the table window, as if 
+#    the hud window was a dialog belonging to the table.
 
-    def topify(self, hud):
-        hud.main_window.gdkhandle = gtk.gdk.window_foreign_new(hud.main_window.window.xid)
-        hud.main_window.gdkhandle.set_transient_for(self.gdk_handle)
+#    This is the gdkhandle for the HUD window
+        gdkwindow = gtk.gdk.window_foreign_new(window.window.xid)
+        gdkwindow.set_transient_for(self.gdkhandle)
