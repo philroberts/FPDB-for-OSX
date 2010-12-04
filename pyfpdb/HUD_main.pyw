@@ -75,16 +75,16 @@ class HUD_main(object):
     def __init__(self, db_name='fpdb'):
         self.db_name = db_name
         self.config = c
-        log.info(_("HUD_main starting: using db name = %s") % (db_name))
+        log.info("HUD_main starting: using db name = %s" % (db_name))
 
         try:
             if not options.errorsToConsole:
                 fileName = os.path.join(self.config.dir_log, 'HUD-errors.txt')
-                log.info(_("Note: error output is being diverted to:") + fileName)
-                log.info(_("Any major error will be reported there _only_."))
+                log.info("Note: error output is being diverted to:" + fileName)
+                log.info("Any major error will be reported there _only_.")
                 errorFile = open(fileName, 'w', 0)
                 sys.stderr = errorFile
-                sys.stderr.write(_("HUD_main: starting ...\n"))
+                sys.stderr.write("HUD_main: starting ...\n")
 
             self.hud_dict = {}
             self.hud_params = self.config.get_hud_ui_parameters()
@@ -102,10 +102,10 @@ class HUD_main(object):
             self.main_window.connect("table_changed", self.table_changed)
             self.main_window.connect("destroy", self.destroy)
             self.vb = gtk.VBox()
-            self.label = gtk.Label(_('Closing this window will exit from the HUD.'))
+            self.label = gtk.Label('Closing this window will exit from the HUD.')
             self.vb.add(self.label)
             self.main_window.add(self.vb)
-            self.main_window.set_title(_("HUD Main Window"))
+            self.main_window.set_title("HUD Main Window")
             cards = os.path.join(os.getcwd(), '..','gfx','fpdb-cards.png')
             if os.path.exists(cards):
                 self.main_window.set_icon_from_file(cards)
@@ -117,7 +117,7 @@ class HUD_main(object):
             gobject.timeout_add(100, self.check_tables)
 
         except:
-            log.exception(_("Error initializing main_window"))
+            log.exception("Error initializing main_window")
             gtk.main_quit()   # we're hosed, just terminate
 
     def client_moved(self, widget, hud):
@@ -130,13 +130,13 @@ class HUD_main(object):
         self.kill_hud(None, hud.table.key)
 
     def game_changed(self, widget, hud):
-        print _("hud_main: Game changed.")
+        print "hud_main: Game changed."
 
     def table_changed(self, widget, hud):
         self.kill_hud(None, hud.table.key)
 
     def destroy(self, *args):             # call back for terminating the main eventloop
-        log.info(_("Terminating normally."))
+        log.info("Terminating normally.")
         gtk.main_quit()
 
     def kill_hud(self, event, table):
@@ -147,25 +147,25 @@ class HUD_main(object):
             self.hud_dict[hud].table.check_table(self.hud_dict[hud])
         return True
 
-    def create_HUD(self, new_hand_id, table, table_name, max, poker_game, type, stat_dict, cards):
+    def create_HUD(self, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards):
         """type is "ring" or "tour" used to set hud_params"""
 
-        self.hud_dict[table.key] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
-        self.hud_dict[table.key].table_name = table_name
-        self.hud_dict[table.key].stat_dict = stat_dict
-        self.hud_dict[table.key].cards = cards
-        table.hud = self.hud_dict[table.key]
+        self.hud_dict[temp_key] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
+        self.hud_dict[temp_key].table_name = temp_key
+        self.hud_dict[temp_key].stat_dict = stat_dict
+        self.hud_dict[temp_key].cards = cards
+        table.hud = self.hud_dict[temp_key]
         
         # set agg_bb_mult so that aggregate_tour and aggregate_ring can be ignored,
         # agg_bb_mult == 1 means no aggregation after these if statements:
         if type == "tour" and self.hud_params['aggregate_tour'] == False:
-            self.hud_dict[table.key].hud_params['agg_bb_mult'] = 1
+            self.hud_dict[temp_key].hud_params['agg_bb_mult'] = 1
         elif type == "ring" and self.hud_params['aggregate_ring'] == False:
-            self.hud_dict[table.key].hud_params['agg_bb_mult'] = 1
+            self.hud_dict[temp_key].hud_params['agg_bb_mult'] = 1
         if type == "tour" and self.hud_params['h_aggregate_tour'] == False:
-            self.hud_dict[table.key].hud_params['h_agg_bb_mult'] = 1
+            self.hud_dict[temp_key].hud_params['h_agg_bb_mult'] = 1
         elif type == "ring" and self.hud_params['h_aggregate_ring'] == False:
-            self.hud_dict[table.key].hud_params['h_agg_bb_mult'] = 1
+            self.hud_dict[temp_key].hud_params['h_agg_bb_mult'] = 1
         # sqlcoder: I forget why these are set to true (aren't they ignored from now on?)
         # but I think it's needed:
         self.hud_params['aggregate_ring'] = True
@@ -174,8 +174,8 @@ class HUD_main(object):
         self.hud_params['aggregate_tour'] = True
         self.hud_params['h_aggregate_tour'] = True
 
-        [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[table.key].aux_windows]
-        gobject.idle_add(idle_create, self, new_hand_id, table, table_name, max, poker_game, type, stat_dict, cards)
+        [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
+        gobject.idle_add(idle_create, self, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards)
 
     def update_HUD(self, new_hand_id, table_name, config):
         """Update a HUD gui from inside the non-gui read_stdin thread."""
@@ -197,7 +197,7 @@ class HUD_main(object):
         while 1:    # wait for a new hand number on stdin
             new_hand_id = sys.stdin.readline()
             new_hand_id = string.rstrip(new_hand_id)
-            log.debug(_("Received hand no %s") % new_hand_id)
+            log.debug("Received hand no %s" % new_hand_id)
             if new_hand_id == "":           # blank line means quit
                 self.destroy()
                 break # this thread is not always killed immediately with gtk.main_quit()
@@ -221,12 +221,12 @@ class HUD_main(object):
 
 #        get basic info about the new hand from the db
 #        if there is a db error, complain, skip hand, and proceed
-            log.info(_("HUD_main.read_stdin: hand processing starting ..."))
+            log.info("HUD_main.read_stdin: hand processing starting ...")
             try:
                 (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
             except Exception:
-                log.exception(_("db error: skipping %s" % new_hand_id))
+                log.exception("db error: skipping %s" % new_hand_id)
                 continue
 
             if type == "tour":   # hand is from a tournament
@@ -245,8 +245,8 @@ class HUD_main(object):
                 try:
                     self.hud_dict[temp_key].stat_dict = stat_dict
                 except KeyError:    # HUD instance has been killed off, key is stale
-                    log.error(_('hud_dict[%s] was not found\n') % temp_key)
-                    log.error(_('will not send hand\n'))
+                    log.error('hud_dict[%s] was not found\n' % temp_key)
+                    log.error('will not send hand\n')
                     # Unlocks table, copied from end of function
                     self.db_connection.connection.rollback()
                     return
@@ -268,7 +268,7 @@ class HUD_main(object):
 #        If no client window is found on the screen, complain and continue
                     if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
-                    log.error(_("HUD create: table name %s not found, skipping.") % table_name)
+                    log.error("HUD create: table name %s not found, skipping." % table_name)
                 else:
                     tablewindow.max = max
                     tablewindow.site = site_name
@@ -276,7 +276,7 @@ class HUD_main(object):
                     if hasattr(tablewindow, 'number'):
                         self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
                     else:
-                        log.error(_('Table "%s" no longer exists\n') % table_name)
+                        log.error('Table "%s" no longer exists\n' % table_name)
 
             if type == "tour":
                 self.hud_dict[temp_key].table.check_table_no(self.hud_dict[temp_key])
@@ -321,23 +321,23 @@ def idle_kill(hud_main, table):
     finally:
         gtk.gdk.threads_leave()
 
-def idle_create(hud_main, new_hand_id, table, table_name, max, poker_game, type, stat_dict, cards):
+def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards):
 
     gtk.gdk.threads_enter()
     try:
         table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
-        newlabel = gtk.Label("%s - %s" % (table.site, table_name))
+        newlabel = gtk.Label("%s - %s" % (table.site, temp_key))
         hud_main.vb.add(newlabel)
         newlabel.show()
         hud_main.main_window.resize_children()
 
-        hud_main.hud_dict[table.key].tablehudlabel = newlabel
-        hud_main.hud_dict[table.key].create(new_hand_id, hud_main.config, stat_dict, cards)
-        for m in hud_main.hud_dict[table.key].aux_windows:
+        hud_main.hud_dict[temp_key].tablehudlabel = newlabel
+        hud_main.hud_dict[temp_key].create(new_hand_id, hud_main.config, stat_dict, cards)
+        for m in hud_main.hud_dict[temp_key].aux_windows:
             m.create()
             m.update_gui(new_hand_id)
-        hud_main.hud_dict[table.key].update(new_hand_id, hud_main.config)
-        hud_main.hud_dict[table.key].reposition_windows()
+        hud_main.hud_dict[temp_key].update(new_hand_id, hud_main.config)
+        hud_main.hud_dict[temp_key].reposition_windows()
     except:
         log.exception("Error creating HUD for hand %s." % new_hand_id)
     finally:
