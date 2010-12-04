@@ -1355,7 +1355,42 @@ class Sql:
                         street3Raises INT,
                         street4Raises INT)
                         """
+                        
+        ################################
+        # Create SessionsCache
+        ################################
 
+        if db_server == 'mysql':
+            self.query['createSessionsCacheTable'] = """CREATE TABLE SessionsCache (
+                        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        sessionStart DATETIME NOT NULL,
+                        sessionEnd DATETIME NOT NULL,
+                        ringHDs INT NOT NULL,
+                        tourHDs INT NOT NULL,
+                        totalProfit INT NOT NULL,
+                        bigBets FLOAT UNSIGNED NOT NULL)
+
+                        ENGINE=INNODB"""
+        elif db_server == 'postgresql':
+            self.query['createSessionsCacheTable'] = """CREATE TABLE SessionsCache (
+                        id BIGSERIAL, PRIMARY KEY (id),
+                        sessionStart REAL NOT NULL,
+                        sessionEnd REAL NOT NULL,
+                        ringHDs INT NOT NULL,
+                        tourHDs INT NOT NULL,
+                        totalProfit INT NOT NULL,
+                        bigBets FLOAT NOT NULL)
+                        """
+        elif db_server == 'sqlite':
+            self.query['createSessionsCacheTable'] = """CREATE TABLE SessionsCache (
+                        id INTEGER PRIMARY KEY,
+                        sessionStart REAL NOT NULL,
+                        sessionEnd REAL NOT NULL,
+                        ringHDs INT NOT NULL,
+                        tourHDs INT NOT NULL,
+                        totalProfit INT NOT NULL,
+                        bigBets REAL UNSIGNED NOT NULL)
+                        """
 
         if db_server == 'mysql':
             self.query['addTourneyIndex'] = """ALTER TABLE Tourneys ADD UNIQUE INDEX siteTourneyNo(siteTourneyNo, tourneyTypeId)"""
@@ -3971,6 +4006,69 @@ class Sql:
             AND   (case when tourneyTypeId is NULL then 1 else 
                    (case when tourneyTypeId+0=%s then 1 else 0 end) end)=1
             AND   styleKey=%s"""
+            
+        self.query['check_sessionscache'] = """
+            UPDATE SessionsCache SET
+            sessionStart=sessionStart,
+            sessionEnd=sessionEnd,
+            ringHDs=ringHDs,
+            tourHDs=tourHDs,
+            totalProfit=totalProfit,
+            bigBets=bigBets
+        WHERE sessionEnd>=%s
+        AND sessionStart<=%s"""
+
+        self.query['insert_sessionscache'] = """
+            INSERT INTO SessionsCache (
+                sessionStart,
+                sessionEnd,
+                ringHDs,
+                tourHDs,
+                totalProfit,
+                bigBets)
+            VALUES (%s, %s, %s, %s, %s, %s)"""
+
+        self.query['update_sessionscache_start'] = """
+            UPDATE SessionsCache SET
+            sessionStart=%s,
+            ringHDs=ringHDs+%s,
+            tourHDs=tourHDs+%s,
+            totalProfit=totalProfit+%s,
+            bigBets=bigBets+%s
+        WHERE sessionStart>%s
+        AND sessionEnd>=%s
+        AND sessionStart<=%s"""
+        
+        self.query['update_sessionscache_end'] = """
+            UPDATE SessionsCache SET
+            sessionEnd=%s,
+            ringHDs=ringHDs+%s,
+            tourHDs=tourHDs+%s,
+            totalProfit=totalProfit+%s,
+            bigBets=bigBets+%s
+        WHERE sessionEnd<%s
+        AND sessionEnd>=%s
+        AND sessionStart<=%s"""
+        
+        self.query['update_sessionscache'] = """
+            UPDATE SessionsCache SET
+            ringHDs=ringHDs+%s,
+            tourHDs=tourHDs+%s,
+            totalProfit=totalProfit+%s,
+            bigBets=bigBets+%s
+        WHERE sessionStart<=%s
+        AND sessionEnd>=%s"""
+        
+        self.query['merge_sessionscache'] = """
+            SELECT min(sessionStart), max(sessionEnd), sum(ringHDs), sum(tourHDs), sum(totalProfit), sum(bigBets)
+            FROM SessionsCache
+        WHERE sessionStart>=%s 
+        AND sessionEnd<=%s"""
+        
+        self.query['delete_sessions'] = """
+            DELETE FROM SessionsCache
+        WHERE sessionStart>=%s
+        AND sessionEnd<=%s"""
 
         self.query['get_hero_hudcache_start'] = """select min(hc.styleKey)
                                                    from HudCache hc
