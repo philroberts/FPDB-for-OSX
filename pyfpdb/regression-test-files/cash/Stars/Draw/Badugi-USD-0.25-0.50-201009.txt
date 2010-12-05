@@ -1,17 +1,17 @@
 ﻿PokerStars Game #49164202872:  Badugi Limit ($0.25/$0.50 USD) - 2010/09/05 10:32:15 ET
 Table 'Benkoela V' 8-max Seat #8 is the button
 Seat 1: Lino19 ($6.80 in chips) 
-Seat 2: s0rrow ($5 in chips) 
+Seat 2: Hero ($5 in chips) 
 Seat 3: jodarin ($0.70 in chips) 
 Seat 4: Scorpio2000 ($3.40 in chips) 
 Seat 5: buddyboy3399 ($8.25 in chips) 
 Seat 6: JDANIELDC ($8.75 in chips) 
 Seat 8: Kula91 ($3.80 in chips) 
 Lino19: posts small blind $0.10
-s0rrow: posts big blind $0.25
+Hero: posts big blind $0.25
 cuchiku: sits out 
 *** DEALING HANDS ***
-Dealt to s0rrow [As 3h 8h 6s]
+Dealt to Hero [As 3h 8h 6s]
 jodarin: calls $0.25
 Scorpio2000: calls $0.25
 buddyboy3399: calls $0.25
@@ -19,16 +19,16 @@ JDANIELDC: folds
 Kula91: folds 
 Kula91 leaves the table
 Lino19: calls $0.15
-s0rrow: checks 
+Hero: checks 
 *** FIRST DRAW ***
 Lino19: discards 1 card
-s0rrow: discards 2 cards [8h 6s]
-Dealt to s0rrow [As 3h] [5h Ks]
+Hero: discards 2 cards [8h 6s]
+Dealt to Hero [As 3h] [5h Ks]
 jodarin: discards 2 cards
 Scorpio2000: discards 1 card
 buddyboy3399: discards 2 cards
 Lino19: bets $0.25
-s0rrow: folds 
+Hero: folds 
 jodarin: calls $0.25
 Scorpio2000: calls $0.25
 buddyboy3399: raises $0.25 to $0.50
@@ -63,7 +63,7 @@ jodarin leaves the table
 *** SUMMARY ***
 Total pot $5.70 Main pot $2.90. Side pot $2.55. | Rake $0.25 
 Seat 1: Lino19 (small blind) folded after the 3rd Draw
-Seat 2: s0rrow (big blind) folded after the 1st Draw
+Seat 2: Hero (big blind) folded after the 1st Draw
 Seat 3: jodarin mucked [Ad Td Qc 2s]
 Seat 4: Scorpio2000 showed [8c 5d 7s Th] and lost with a Badugi: T,8,7,5
 Seat 5: buddyboy3399 showed [8s 3d Ac 4h] and won ($5.45) with a Badugi: 8,4,3,A
@@ -75,28 +75,28 @@ Seat 8: Kula91 (button) folded before the Draw (didn't bet)
 PokerStars Game #49164247462:  Badugi Limit ($0.25/$0.50 USD) - 2010/09/05 10:33:25 ET
 Table 'Benkoela V' 8-max Seat #1 is the button
 Seat 1: Lino19 ($5.55 in chips) 
-Seat 2: s0rrow ($4.75 in chips) 
+Seat 2: Hero ($4.75 in chips) 
 Seat 4: Scorpio2000 ($1.65 in chips) 
 Seat 5: buddyboy3399 ($11.95 in chips) 
 Seat 6: JDANIELDC ($8.75 in chips) 
-s0rrow: posts small blind $0.10
+Hero: posts small blind $0.10
 Scorpio2000: posts big blind $0.25
 cuchiku: sits out 
 *** DEALING HANDS ***
-Dealt to s0rrow [3h Tc Kc Ad]
+Dealt to Hero [3h Tc Kc Ad]
 oooDestroyoo joins the table at seat #3 
 kallexx1 joins the table at seat #8 
 buddyboy3399: folds 
 JDANIELDC: folds 
 Lino19: folds 
-s0rrow: folds 
+Hero: folds 
 Uncalled bet ($0.15) returned to Scorpio2000
 Scorpio2000 collected $0.20 from pot
 Scorpio2000: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.20 | Rake $0 
 Seat 1: Lino19 (button) folded before the Draw (didn't bet)
-Seat 2: s0rrow (small blind) folded before the Draw
+Seat 2: Hero (small blind) folded before the Draw
 Seat 4: Scorpio2000 (big blind) collected ($0.20)
 Seat 5: buddyboy3399 folded before the Draw (didn't bet)
 Seat 6: JDANIELDC folded before the Draw (didn't bet)
@@ -106,7 +106,7 @@ Seat 6: JDANIELDC folded before the Draw (didn't bet)
 PokerStars Game #49164255772:  Badugi Limit ($0.25/$0.50 USD) - 2010/09/05 10:33:38 ET
 Table 'Benkoela V' 8-max Seat #2 is the button
 Seat 1: Lino19 ($5.55 in chips) 
-Seat 2: s0rrow ($4.65 in chips) 
+Seat 2: Hero ($4.65 in chips) 
 Seat 4: Scorpio2000 ($1.75 in chips) 
 Seat 5: buddyboy3399 ($11.95 in chips) 
 Seat 6: JDANIELDC ($8.75 in chips) 
@@ -117,11 +117,11 @@ buddyboy3399: posts big blind $0.25
 cuchiku: sits out 
 kallexx1: posts big blind $0.25
 *** DEALING HANDS ***
-Dealt to s0rrow [4s 8s Kc 3h]
+Dealt to Hero [4s 8s Kc 3h]
 JDANIELDC: calls $0.25
 kallexx1: checks 
 Lino19: folds 
-s0rrow: folds 
+Hero: folds 
 Scorpio2000: calls $0.15
 cuchiku leaves the table
 buddyboy3399: raises $0.25 to $0.50
@@ -152,7 +152,7 @@ kallexx1 collected $4.05 from pot
 *** SUMMARY ***
 Total pot $4.25 | Rake $0.20 
 Seat 1: Lino19 folded before the Draw (didn't bet)
-Seat 2: s0rrow (button) folded before the Draw (didn't bet)
+Seat 2: Hero (button) folded before the Draw (didn't bet)
 Seat 4: Scorpio2000 (small blind) folded before the Draw
 Seat 5: buddyboy3399 (big blind) showed [Tc 3s 2s 7h] and lost with a 3-card: T,7,2
 Seat 6: JDANIELDC folded after the 1st Draw
@@ -163,7 +163,7 @@ Seat 8: kallexx1 showed [4c 4d 5s 6h] and won ($4.05) with a 3-card: 6,5,4
 PokerStars Game #49164287914:  Badugi Limit ($0.25/$0.50 USD) - 2010/09/05 10:34:29 ET
 Table 'Benkoela V' 8-max Seat #4 is the button
 Seat 1: Lino19 ($5.55 in chips) 
-Seat 2: s0rrow ($4.65 in chips) 
+Seat 2: Hero ($4.65 in chips) 
 Seat 3: oooDestroyoo ($20 in chips) 
 Seat 4: Scorpio2000 ($1.50 in chips) 
 Seat 5: buddyboy3399 ($10.20 in chips) 
@@ -173,11 +173,11 @@ buddyboy3399: posts small blind $0.10
 JDANIELDC: posts big blind $0.25
 oooDestroyoo: posts big blind $0.25
 *** DEALING HANDS ***
-Dealt to s0rrow [2h 5c Kd 7h]
+Dealt to Hero [2h 5c Kd 7h]
 kallexx1: folds 
 kallexx1 leaves the table
 Lino19: folds 
-s0rrow: folds 
+Hero: folds 
 oooDestroyoo: checks 
 Scorpio2000: calls $0.25
 buddyboy3399: calls $0.15
@@ -214,7 +214,7 @@ JDANIELDC collected $5.95 from pot
 *** SUMMARY ***
 Total pot $6.25 | Rake $0.30 
 Seat 1: Lino19 folded before the Draw (didn't bet)
-Seat 2: s0rrow folded before the Draw (didn't bet)
+Seat 2: Hero folded before the Draw (didn't bet)
 Seat 3: oooDestroyoo mucked [9d 3d 2s 7c]
 Seat 4: Scorpio2000 (button) folded after the 1st Draw
 Seat 5: buddyboy3399 (small blind) mucked [Qh 3s 4c Td]

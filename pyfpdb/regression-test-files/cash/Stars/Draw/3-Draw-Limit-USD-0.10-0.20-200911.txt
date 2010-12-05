@@ -1,21 +1,21 @@
 PokerStars Game #35839001292:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:12:58 ET
 Table 'Theodora VI' 6-max Seat #5 is the button
-Seat 1: s0rrow ($4 in chips) 
+Seat 1: Hero ($4 in chips) 
 Seat 2: rumble1111 ($4.58 in chips) 
 Seat 3: Eisenherz73 ($7.54 in chips) 
 Seat 4: cypis28 ($1.40 in chips) 
 Seat 5: bakter9 ($0.78 in chips) 
 Seat 6: TheLabman ($6.31 in chips) 
 TheLabman: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 *** DEALING HANDS ***
-Dealt to s0rrow [8s Ts 8h 2s 3s]
+Dealt to Hero [8s Ts 8h 2s 3s]
 rumble1111: calls $0.10
 Eisenherz73: folds 
 cypis28: raises $0.10 to $0.20
 bakter9: raises $0.10 to $0.30
 TheLabman: folds 
-s0rrow: folds 
+Hero: folds 
 rumble1111: calls $0.20
 cypis28: raises $0.10 to $0.40
 Betting is capped
@@ -45,7 +45,7 @@ bakter9: shows [7s 5s 8d 4h 3c] (Lo: 8,7,5,4,3)
 bakter9 collected $2.01 from pot
 *** SUMMARY ***
 Total pot $2.11 | Rake $0.10 
-Seat 1: s0rrow (big blind) folded before the Draw
+Seat 1: Hero (big blind) folded before the Draw
 Seat 2: rumble1111 folded after the 1st Draw
 Seat 3: Eisenherz73 folded before the Draw (didn't bet)
 Seat 4: cypis28 showed [7c 6d 9c 4s 2c] and lost with Lo: 9,7,6,4,2
@@ -56,49 +56,49 @@ Seat 6: TheLabman (small blind) folded before the Draw
 
 PokerStars Game #35839050562:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:14:02 ET
 Table 'Theodora VI' 6-max Seat #6 is the button
-Seat 1: s0rrow ($3.90 in chips) 
+Seat 1: Hero ($3.90 in chips) 
 Seat 2: rumble1111 ($4.18 in chips) 
 Seat 3: Eisenherz73 ($7.54 in chips) 
 Seat 4: cypis28 ($0.62 in chips) 
 Seat 5: bakter9 ($2.01 in chips) 
 Seat 6: TheLabman ($6.26 in chips) 
-s0rrow: posts small blind $0.05
+Hero: posts small blind $0.05
 rumble1111: posts big blind $0.10
 *** DEALING HANDS ***
-Dealt to s0rrow [Kh Th 3d Tc 7c]
+Dealt to Hero [Kh Th 3d Tc 7c]
 Eisenherz73: folds 
 cypis28: folds 
 bakter9: calls $0.10
 TheLabman: folds 
-s0rrow: calls $0.05
+Hero: calls $0.05
 rumble1111: checks 
 *** FIRST DRAW ***
-s0rrow: discards 2 cards [Kh Th]
-Dealt to s0rrow [3d Tc 7c] [5c Qs]
+Hero: discards 2 cards [Kh Th]
+Dealt to Hero [3d Tc 7c] [5c Qs]
 rumble1111: discards 2 cards
 bakter9: discards 2 cards
-s0rrow: checks 
+Hero: checks 
 rumble1111: bets $0.10
 bakter9: folds 
-s0rrow: calls $0.10
+Hero: calls $0.10
 *** SECOND DRAW ***
-s0rrow: discards 2 cards [Qs Tc]
-Dealt to s0rrow [3d 7c 5c] [4c 2s]
+Hero: discards 2 cards [Qs Tc]
+Dealt to Hero [3d 7c 5c] [4c 2s]
 rumble1111: stands pat 
-s0rrow: bets $0.20
+Hero: bets $0.20
 rumble1111: calls $0.20
 *** THIRD DRAW ***
-s0rrow: stands pat on [3d 7c 5c 4c 2s]
+Hero: stands pat on [3d 7c 5c 4c 2s]
 rumble1111: discards 1 card
-s0rrow: bets $0.20
+Hero: bets $0.20
 rumble1111: calls $0.20
 *** SHOW DOWN ***
-s0rrow: shows [5c 4c 3d 2s 7c] (Lo: 7,5,4,3,2)
+Hero: shows [5c 4c 3d 2s 7c] (Lo: 7,5,4,3,2)
 rumble1111: mucks hand 
-s0rrow collected $1.24 from pot
+Hero collected $1.24 from pot
 *** SUMMARY ***
 Total pot $1.30 | Rake $0.06 
-Seat 1: s0rrow (small blind) showed [5c 4c 3d 2s 7c] and won ($1.24) with Lo: 7,5,4,3,2
+Seat 1: Hero (small blind) showed [5c 4c 3d 2s 7c] and won ($1.24) with Lo: 7,5,4,3,2
 Seat 2: rumble1111 (big blind) mucked [8s 7d 3c 6d 2h]
 Seat 3: Eisenherz73 folded before the Draw (didn't bet)
 Seat 4: cypis28 folded before the Draw (didn't bet)
@@ -109,7 +109,7 @@ Seat 6: TheLabman (button) folded before the Draw (didn't bet)
 
 PokerStars Game #35839109592:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:15:18 ET
 Table 'Theodora VI' 6-max Seat #1 is the button
-Seat 1: s0rrow ($4.54 in chips) 
+Seat 1: Hero ($4.54 in chips) 
 Seat 2: rumble1111 ($3.58 in chips) 
 Seat 3: Eisenherz73 ($7.54 in chips) 
 Seat 4: cypis28 ($0.62 in chips) 
@@ -118,18 +118,18 @@ Seat 6: TheLabman ($6.26 in chips)
 rumble1111: posts small blind $0.05
 Eisenherz73: posts big blind $0.10
 *** DEALING HANDS ***
-Dealt to s0rrow [Tc 9s Qc 8h 3d]
+Dealt to Hero [Tc 9s Qc 8h 3d]
 cypis28: folds 
 bakter9: folds 
 TheLabman: folds 
-s0rrow: folds 
+Hero: folds 
 rumble1111: folds 
 Uncalled bet ($0.05) returned to Eisenherz73
 Eisenherz73 collected $0.10 from pot
 Eisenherz73: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.10 | Rake $0 
-Seat 1: s0rrow (button) folded before the Draw (didn't bet)
+Seat 1: Hero (button) folded before the Draw (didn't bet)
 Seat 2: rumble1111 (small blind) folded before the Draw
 Seat 3: Eisenherz73 (big blind) collected ($0.10)
 Seat 4: cypis28 folded before the Draw (didn't bet)
@@ -140,7 +140,7 @@ Seat 6: TheLabman folded before the Draw (didn't bet)
 
 PokerStars Game #35839118248:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:15:29 ET
 Table 'Theodora VI' 6-max Seat #2 is the button
-Seat 1: s0rrow ($4.54 in chips) 
+Seat 1: Hero ($4.54 in chips) 
 Seat 2: rumble1111 ($3.53 in chips) 
 Seat 3: Eisenherz73 ($7.59 in chips) 
 Seat 4: cypis28 ($0.62 in chips) 
@@ -149,10 +149,10 @@ Seat 6: TheLabman ($6.26 in chips)
 Eisenherz73: posts small blind $0.05
 cypis28: posts big blind $0.10
 *** DEALING HANDS ***
-Dealt to s0rrow [Js 3d Qc 9s 5h]
+Dealt to Hero [Js 3d Qc 9s 5h]
 bakter9: raises $0.10 to $0.20
 TheLabman: folds 
-s0rrow: folds 
+Hero: folds 
 rumble1111: folds 
 Eisenherz73: folds 
 cypis28: raises $0.10 to $0.30
@@ -178,7 +178,7 @@ bakter9: shows [4d 7c 2c 5s 6d] (Lo: 7,6,5,4,2)
 bakter9 collected $1.23 from pot
 *** SUMMARY ***
 Total pot $1.29 | Rake $0.06 
-Seat 1: s0rrow folded before the Draw (didn't bet)
+Seat 1: Hero folded before the Draw (didn't bet)
 Seat 2: rumble1111 (button) folded before the Draw (didn't bet)
 Seat 3: Eisenherz73 (small blind) folded before the Draw
 Seat 4: cypis28 (big blind) showed [7h 3s 2h 8h 6h] and lost with Lo: 8,7,6,3,2
@@ -189,7 +189,7 @@ Seat 6: TheLabman folded before the Draw (didn't bet)
 
 PokerStars Game #35839149377:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:16:10 ET
 Table 'Theodora VI' 6-max Seat #3 is the button
-Seat 1: s0rrow ($4.54 in chips) 
+Seat 1: Hero ($4.54 in chips) 
 Seat 2: rumble1111 ($3.53 in chips) 
 Seat 3: Eisenherz73 ($7.54 in chips) 
 Seat 5: bakter9 ($2.52 in chips) 
@@ -197,9 +197,9 @@ Seat 6: TheLabman ($6.26 in chips)
 bakter9: posts small blind $0.05
 TheLabman: posts big blind $0.10
 *** DEALING HANDS ***
-Dealt to s0rrow [2c 3c Ts Jc Kc]
+Dealt to Hero [2c 3c Ts Jc Kc]
 cypis28 leaves the table
-s0rrow: folds 
+Hero: folds 
 rumble1111: folds 
 Eisenherz73: folds 
 bakter9: calls $0.05
@@ -226,7 +226,7 @@ TheLabman: shows [3h 6d 7h 5h 8d] (Lo: 8,7,6,5,3)
 TheLabman collected $0.58 from pot
 *** SUMMARY ***
 Total pot $0.60 | Rake $0.02 
-Seat 1: s0rrow folded before the Draw (didn't bet)
+Seat 1: Hero folded before the Draw (didn't bet)
 Seat 2: rumble1111 folded before the Draw (didn't bet)
 Seat 3: Eisenherz73 (button) folded before the Draw (didn't bet)
 Seat 5: bakter9 (small blind) showed [5d 4h 8h 7d 6h] and lost with Lo: a straight, Four to Eight
@@ -236,67 +236,67 @@ Seat 6: TheLabman (big blind) showed [3h 6d 7h 5h 8d] and won ($0.58) with Lo: 8
 
 PokerStars Game #35839176665:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:16:46 ET
 Table 'Theodora VI' 6-max Seat #5 is the button
-Seat 1: s0rrow ($4.54 in chips) 
+Seat 1: Hero ($4.54 in chips) 
 Seat 2: rumble1111 ($3.53 in chips) 
 Seat 3: Eisenherz73 ($7.54 in chips) 
 Seat 4: tom1206 ($4 in chips) 
 Seat 5: bakter9 ($2.22 in chips) 
 Seat 6: TheLabman ($6.54 in chips) 
 TheLabman: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 tom1206: posts big blind $0.10
 *** DEALING HANDS ***
-Dealt to s0rrow [5d Js 7d Jd 4d]
+Dealt to Hero [5d Js 7d Jd 4d]
 rumble1111: calls $0.10
 Eisenherz73: calls $0.10
 tom1206: checks 
 bakter9: folds 
 TheLabman: calls $0.05
-s0rrow: checks 
+Hero: checks 
 *** FIRST DRAW ***
 TheLabman: discards 3 cards
-s0rrow: discards 2 cards [Js Jd]
-Dealt to s0rrow [5d 7d 4d] [6d 2s]
+Hero: discards 2 cards [Js Jd]
+Dealt to Hero [5d 7d 4d] [6d 2s]
 rumble1111: discards 2 cards
 Eisenherz73: discards 2 cards
 tom1206: discards 2 cards
 TheLabman: checks 
-s0rrow: checks 
+Hero: checks 
 rumble1111: checks 
 Eisenherz73: checks 
 tom1206: checks 
 *** SECOND DRAW ***
 TheLabman: discards 3 cards
-s0rrow: stands pat on [5d 7d 4d 6d 2s]
+Hero: stands pat on [5d 7d 4d 6d 2s]
 rumble1111: discards 2 cards
 Eisenherz73: discards 1 card
 tom1206: discards 2 cards
 TheLabman: checks 
-s0rrow: checks 
+Hero: checks 
 rumble1111: checks 
 Eisenherz73: checks 
 tom1206: checks 
 *** THIRD DRAW ***
 TheLabman: discards 2 cards
-s0rrow: stands pat on [5d 7d 4d 6d 2s]
+Hero: stands pat on [5d 7d 4d 6d 2s]
 rumble1111: discards 1 card
 The deck is reshuffled
 Eisenherz73: discards 1 card
 tom1206: discards 2 cards
 TheLabman: checks 
-s0rrow: bets $0.20
+Hero: bets $0.20
 rumble1111: folds 
 Eisenherz73: folds 
 Eisenherz73 is sitting out
 Eisenherz73 leaves the table
 tom1206: folds 
 TheLabman: folds 
-Uncalled bet ($0.20) returned to s0rrow
+Uncalled bet ($0.20) returned to Hero
 X USN-USMC joins the table at seat #3 
-s0rrow collected $0.48 from pot
+Hero collected $0.48 from pot
 *** SUMMARY ***
 Total pot $0.50 | Rake $0.02 
-Seat 1: s0rrow (big blind) collected ($0.48)
+Seat 1: Hero (big blind) collected ($0.48)
 Seat 2: rumble1111 folded after the 3rd Draw
 Seat 3: Eisenherz73 folded after the 3rd Draw
 Seat 4: tom1206 folded after the 3rd Draw
@@ -307,24 +307,24 @@ Seat 6: TheLabman (small blind) folded after the 3rd Draw
 
 PokerStars Game #35839272371:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:18:50 ET
 Table 'Theodora VI' 6-max Seat #6 is the button
-Seat 1: s0rrow ($4.92 in chips) 
+Seat 1: Hero ($4.92 in chips) 
 Seat 2: rumble1111 ($3.43 in chips) 
 Seat 3: X USN-USMC ($4 in chips) 
 Seat 4: tom1206 ($3.90 in chips) 
 Seat 5: bakter9 ($2.22 in chips) 
 Seat 6: TheLabman ($6.44 in chips) 
-s0rrow: posts small blind $0.05
+Hero: posts small blind $0.05
 rumble1111: posts big blind $0.10
 X USN-USMC: posts big blind $0.10
 *** DEALING HANDS ***
-Dealt to s0rrow [Th Js Kd 2h Qc]
+Dealt to Hero [Th Js Kd 2h Qc]
 X USN-USMC: checks 
 tom1206 has timed out
 tom1206: folds 
 tom1206 is sitting out
 bakter9: folds 
 TheLabman: calls $0.10
-s0rrow: folds 
+Hero: folds 
 tom1206 has returned
 rumble1111: checks 
 *** FIRST DRAW ***
@@ -357,7 +357,7 @@ X USN-USMC collected $1.19 from pot
 X USN-USMC: doesn't show hand 
 *** SUMMARY ***
 Total pot $1.25 | Rake $0.06 
-Seat 1: s0rrow (small blind) folded before the Draw
+Seat 1: Hero (small blind) folded before the Draw
 Seat 2: rumble1111 (big blind) folded after the 3rd Draw
 Seat 3: X USN-USMC collected ($1.19)
 Seat 4: tom1206 folded before the Draw (didn't bet)
@@ -368,7 +368,7 @@ Seat 6: TheLabman (button) folded after the 3rd Draw
 
 PokerStars Game #35839360555:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:20:53 ET
 Table 'Theodora VI' 6-max Seat #1 is the button
-Seat 1: s0rrow ($4.87 in chips) 
+Seat 1: Hero ($4.87 in chips) 
 Seat 2: rumble1111 ($3.03 in chips) 
 Seat 3: X USN-USMC ($4.79 in chips) 
 Seat 4: tom1206 ($3.90 in chips) 
@@ -377,11 +377,11 @@ Seat 6: TheLabman ($6.04 in chips)
 rumble1111: posts small blind $0.05
 X USN-USMC: posts big blind $0.10
 *** DEALING HANDS ***
-Dealt to s0rrow [9s Kh 2d Ks 4c]
+Dealt to Hero [9s Kh 2d Ks 4c]
 tom1206: raises $0.10 to $0.20
 bakter9: folds 
 TheLabman: folds 
-s0rrow: folds 
+Hero: folds 
 rumble1111: calls $0.15
 X USN-USMC: calls $0.10
 *** FIRST DRAW ***
@@ -414,7 +414,7 @@ tom1206: mucks hand
 rumble1111 collected $2.38 from pot
 *** SUMMARY ***
 Total pot $2.50 | Rake $0.12 
-Seat 1: s0rrow (button) folded before the Draw (didn't bet)
+Seat 1: Hero (button) folded before the Draw (didn't bet)
 Seat 2: rumble1111 (small blind) showed [7d 4s 2s 3s 6c] and won ($2.38) with Lo: 7,6,4,3,2
 Seat 3: X USN-USMC (big blind) folded after the 3rd Draw
 Seat 4: tom1206 mucked [4h 6d 8d 5c 3d]
@@ -425,7 +425,7 @@ Seat 6: TheLabman folded before the Draw (didn't bet)
 
 PokerStars Game #35839412131:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:21:58 ET
 Table 'Theodora VI' 6-max Seat #2 is the button
-Seat 1: s0rrow ($4.87 in chips) 
+Seat 1: Hero ($4.87 in chips) 
 Seat 2: rumble1111 ($4.51 in chips) 
 Seat 3: X USN-USMC ($4.09 in chips) 
 Seat 4: tom1206 ($3 in chips) 
@@ -434,10 +434,10 @@ Seat 6: TheLabman ($6.04 in chips)
 X USN-USMC: posts small blind $0.05
 tom1206: posts big blind $0.10
 *** DEALING HANDS ***
-Dealt to s0rrow [8c 3s Tc Ac Qd]
+Dealt to Hero [8c 3s Tc Ac Qd]
 bakter9: calls $0.10
 TheLabman: calls $0.10
-s0rrow: folds 
+Hero: folds 
 rumble1111: calls $0.10
 X USN-USMC: calls $0.05
 tom1206: checks 
@@ -480,7 +480,7 @@ bakter9: shows [8d 5c 7c 2d 6h] (Lo: 8,7,6,5,2)
 tom1206 collected $1.62 from pot
 *** SUMMARY ***
 Total pot $1.70 | Rake $0.08 
-Seat 1: s0rrow folded before the Draw (didn't bet)
+Seat 1: Hero folded before the Draw (didn't bet)
 Seat 2: rumble1111 (button) folded after the 3rd Draw
 Seat 3: X USN-USMC (small blind) folded after the 3rd Draw
 Seat 4: tom1206 (big blind) showed [4s 3h 7d 8s 2c] and won ($1.62) with Lo: 8,7,4,3,2
@@ -491,7 +491,7 @@ Seat 6: TheLabman folded after the 2nd Draw
 
 PokerStars Game #35839484932:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:23:30 ET
 Table 'Theodora VI' 6-max Seat #3 is the button
-Seat 1: s0rrow ($4.87 in chips) 
+Seat 1: Hero ($4.87 in chips) 
 Seat 2: rumble1111 ($4.21 in chips) 
 Seat 3: X USN-USMC ($3.79 in chips) 
 Seat 4: tom1206 ($4.12 in chips) 
@@ -500,53 +500,53 @@ Seat 6: TheLabman ($5.94 in chips)
 tom1206: posts small blind $0.05
 bakter9: posts big blind $0.10
 *** DEALING HANDS ***
-Dealt to s0rrow [3d 7h 7c Jh 5s]
+Dealt to Hero [3d 7h 7c Jh 5s]
 TheLabman: folds 
-s0rrow: calls $0.10
+Hero: calls $0.10
 rumble1111: folds 
 rumble1111 leaves the table
 X USN-USMC: folds 
 tom1206: calls $0.05
 bakter9: raises $0.10 to $0.20
-s0rrow: calls $0.10
+Hero: calls $0.10
 tom1206: calls $0.10
 *** FIRST DRAW ***
 tom1206: discards 3 cards
 bakter9: discards 2 cards
-s0rrow: discards 2 cards [7c Jh]
-Dealt to s0rrow [3d 7h 5s] [9h Ad]
+Hero: discards 2 cards [7c Jh]
+Dealt to Hero [3d 7h 5s] [9h Ad]
 tom1206: checks 
 bakter9: bets $0.10
-s0rrow: calls $0.10
+Hero: calls $0.10
 tom1206: calls $0.10
 *** SECOND DRAW ***
 tom1206: discards 2 cards
 bakter9: discards 1 card
-s0rrow: discards 1 card [9h]
-Dealt to s0rrow [3d 7h 5s Ad] [4c]
+Hero: discards 1 card [9h]
+Dealt to Hero [3d 7h 5s Ad] [4c]
 tom1206: bets $0.20
 bakter9: raises $0.20 to $0.40
 bakter9 said, "zzzzzzzzzzzzzzzzzzz"
-s0rrow: calls $0.40
+Hero: calls $0.40
 tom1206: calls $0.20
 *** THIRD DRAW ***
 tom1206: discards 1 card
 bakter9: stands pat 
-s0rrow: stands pat on [3d 7h 5s Ad 4c]
+Hero: stands pat on [3d 7h 5s Ad 4c]
 tom1206: checks 
 bakter9: bets $0.20
-s0rrow: calls $0.20
+Hero: calls $0.20
 tom1206: raises $0.20 to $0.40
 bakter9: calls $0.20
-s0rrow: calls $0.20
+Hero: calls $0.20
 *** SHOW DOWN ***
 tom1206: shows [4h 3c Qc 2c 6c] (Lo: Q,6,4,3,2)
 bakter9: shows [3h 5d 2s 8c 6s] (Lo: 8,6,5,3,2)
-s0rrow: mucks hand 
+Hero: mucks hand 
 bakter9 collected $3.14 from pot
 *** SUMMARY ***
 Total pot $3.30 | Rake $0.16 
-Seat 1: s0rrow mucked [3d 7h 4c Ad 5s]
+Seat 1: Hero mucked [3d 7h 4c Ad 5s]
 Seat 2: rumble1111 folded before the Draw (didn't bet)
 Seat 3: X USN-USMC (button) folded before the Draw (didn't bet)
 Seat 4: tom1206 (small blind) showed [4h 3c Qc 2c 6c] and lost with Lo: Q,6,4,3,2
@@ -557,7 +557,7 @@ Seat 6: TheLabman folded before the Draw (didn't bet)
 
 PokerStars Game #35839619404:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:26:21 ET
 Table 'Theodora VI' 6-max Seat #4 is the button
-Seat 1: s0rrow ($3.77 in chips) 
+Seat 1: Hero ($3.77 in chips) 
 Seat 3: X USN-USMC ($3.79 in chips) 
 Seat 4: tom1206 ($3.02 in chips) 
 Seat 5: bakter9 ($3.76 in chips) 
@@ -565,38 +565,38 @@ Seat 6: TheLabman ($5.94 in chips)
 bakter9: posts small blind $0.05
 TheLabman: posts big blind $0.10
 *** DEALING HANDS ***
-Dealt to s0rrow [Ah 7s Ad 5d As]
+Dealt to Hero [Ah 7s Ad 5d As]
 bakter9 said, "ty"
-s0rrow: raises $0.10 to $0.20
+Hero: raises $0.10 to $0.20
 X USN-USMC: folds 
 tom1206: folds 
 bakter9: folds 
 TheLabman: calls $0.10
 *** FIRST DRAW ***
 TheLabman: discards 2 cards
-s0rrow: discards 2 cards [7s Ad]
-Dealt to s0rrow [Ah 5d As] [5h 8s]
+Hero: discards 2 cards [7s Ad]
+Dealt to Hero [Ah 5d As] [5h 8s]
 TheLabman: checks 
 Mamega joins the table at seat #2 
-s0rrow: bets $0.10
+Hero: bets $0.10
 TheLabman: calls $0.10
 *** SECOND DRAW ***
 TheLabman: discards 1 card
-s0rrow: stands pat on [Ah 5d As 5h 8s]
+Hero: stands pat on [Ah 5d As 5h 8s]
 TheLabman: checks 
-s0rrow: bets $0.20
+Hero: bets $0.20
 TheLabman: calls $0.20
 *** THIRD DRAW ***
 TheLabman: discards 1 card
-s0rrow: stands pat on [Ah 5d As 5h 8s]
+Hero: stands pat on [Ah 5d As 5h 8s]
 TheLabman: checks 
-s0rrow: bets $0.20
+Hero: bets $0.20
 TheLabman: folds 
-Uncalled bet ($0.20) returned to s0rrow
-s0rrow collected $1 from pot
+Uncalled bet ($0.20) returned to Hero
+Hero collected $1 from pot
 *** SUMMARY ***
 Total pot $1.05 | Rake $0.05 
-Seat 1: s0rrow collected ($1)
+Seat 1: Hero collected ($1)
 Seat 3: X USN-USMC folded before the Draw (didn't bet)
 Seat 4: tom1206 (button) folded before the Draw (didn't bet)
 Seat 5: bakter9 (small blind) folded before the Draw
@@ -606,33 +606,33 @@ Seat 6: TheLabman (big blind) folded after the 3rd Draw
 
 PokerStars Game #35839669792:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:27:24 ET
 Table 'Theodora VI' 6-max Seat #5 is the button
-Seat 1: s0rrow ($4.27 in chips) 
+Seat 1: Hero ($4.27 in chips) 
 Seat 3: X USN-USMC ($3.79 in chips) 
 Seat 4: tom1206 ($3.02 in chips) 
 Seat 5: bakter9 ($3.71 in chips) 
 Seat 6: TheLabman ($5.44 in chips) 
 TheLabman: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 Mamega: sits out 
 *** DEALING HANDS ***
-Dealt to s0rrow [3h 6d 9s 5s Kc]
+Dealt to Hero [3h 6d 9s 5s Kc]
 X USN-USMC: calls $0.10
 tom1206: calls $0.10
 bakter9: folds 
 TheLabman: calls $0.05
-s0rrow: checks 
+Hero: checks 
 *** FIRST DRAW ***
 TheLabman: discards 1 card
-s0rrow: discards 1 card [Kc]
-Dealt to s0rrow [3h 6d 9s 5s] [Jh]
+Hero: discards 1 card [Kc]
+Dealt to Hero [3h 6d 9s 5s] [Jh]
 X USN-USMC: discards 2 cards
 tom1206: discards 2 cards
 TheLabman: checks 
-s0rrow: checks 
+Hero: checks 
 X USN-USMC: bets $0.10
 tom1206: raises $0.10 to $0.20
 TheLabman: calls $0.20
-s0rrow: folds 
+Hero: folds 
 X USN-USMC: calls $0.10
 *** SECOND DRAW ***
 TheLabman: discards 1 card
@@ -662,7 +662,7 @@ X USN-USMC collected $3.24 from pot
 LumBita joins the table at seat #5 
 *** SUMMARY ***
 Total pot $3.40 | Rake $0.16 
-Seat 1: s0rrow (big blind) folded after the 1st Draw
+Seat 1: Hero (big blind) folded after the 1st Draw
 Seat 3: X USN-USMC showed [3s 4s 7s 2d 6c] and won ($3.24) with Lo: 7,6,4,3,2
 Seat 4: tom1206 mucked [8d 7c 4h 5h 3d]
 Seat 5: bakter9 (button) folded before the Draw (didn't bet)
@@ -672,22 +672,22 @@ Seat 6: TheLabman (small blind) mucked [4d 6h 7h 2s 5c]
 
 PokerStars Game #35839735773:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:28:48 ET
 Table 'Theodora VI' 6-max Seat #6 is the button
-Seat 1: s0rrow ($4.17 in chips) 
+Seat 1: Hero ($4.17 in chips) 
 Seat 2: Mamega ($4 in chips) 
 Seat 3: X USN-USMC ($5.93 in chips) 
 Seat 4: tom1206 ($1.92 in chips) 
 Seat 5: LumBita ($1 in chips) 
 Seat 6: TheLabman ($4.34 in chips) 
-s0rrow: posts small blind $0.05
+Hero: posts small blind $0.05
 Mamega: posts big blind $0.10
 LumBita: posts big blind $0.10
 *** DEALING HANDS ***
-Dealt to s0rrow [5c Kc Js Ts Jc]
+Dealt to Hero [5c Kc Js Ts Jc]
 X USN-USMC: calls $0.10
 tom1206: calls $0.10
 LumBita: checks 
 TheLabman: folds 
-s0rrow: folds 
+Hero: folds 
 Mamega: checks 
 *** FIRST DRAW ***
 Mamega: stands pat 
@@ -722,7 +722,7 @@ LumBita: mucks hand
 X USN-USMC collected $1.29 from pot
 *** SUMMARY ***
 Total pot $1.35 | Rake $0.06 
-Seat 1: s0rrow (small blind) folded before the Draw
+Seat 1: Hero (small blind) folded before the Draw
 Seat 2: Mamega (big blind) folded after the 1st Draw
 Seat 3: X USN-USMC showed [2h 4h 7d 5s 6c] and won ($1.29) with Lo: 7,6,5,4,2
 Seat 4: tom1206 mucked [7h 8c 3s 4d 5h]
@@ -733,7 +733,7 @@ Seat 6: TheLabman (button) folded before the Draw (didn't bet)
 
 PokerStars Game #35839797257:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:30:09 ET
 Table 'Theodora VI' 6-max Seat #1 is the button
-Seat 1: s0rrow ($4.12 in chips) 
+Seat 1: Hero ($4.12 in chips) 
 Seat 2: Mamega ($3.90 in chips) 
 Seat 3: X USN-USMC ($6.82 in chips) 
 Seat 4: tom1206 ($1.52 in chips) 
@@ -742,11 +742,11 @@ Seat 6: TheLabman ($4.34 in chips)
 Mamega: posts small blind $0.05
 X USN-USMC: posts big blind $0.10
 *** DEALING HANDS ***
-Dealt to s0rrow [2c Ah 3h 8h 5s]
+Dealt to Hero [2c Ah 3h 8h 5s]
 tom1206: calls $0.10
 LumBita: calls $0.10
 TheLabman: folds 
-s0rrow: raises $0.10 to $0.20
+Hero: raises $0.10 to $0.20
 Mamega: folds 
 X USN-USMC: folds 
 tom1206: calls $0.10
@@ -754,37 +754,37 @@ LumBita: calls $0.10
 *** FIRST DRAW ***
 tom1206: discards 2 cards
 LumBita: discards 2 cards
-s0rrow: discards 1 card [8h]
-Dealt to s0rrow [2c Ah 3h 5s] [8d]
+Hero: discards 1 card [8h]
+Dealt to Hero [2c Ah 3h 5s] [8d]
 tom1206: checks 
 LumBita: checks 
-s0rrow: bets $0.10
+Hero: bets $0.10
 tom1206: calls $0.10
 LumBita: calls $0.10
 *** SECOND DRAW ***
 tom1206: discards 2 cards
 LumBita: stands pat 
-s0rrow: discards 1 card [8d]
-Dealt to s0rrow [2c Ah 3h 5s] [2s]
+Hero: discards 1 card [8d]
+Dealt to Hero [2c Ah 3h 5s] [2s]
 tom1206: checks 
 LumBita: bets $0.20
-s0rrow: calls $0.20
+Hero: calls $0.20
 tom1206: calls $0.20
 *** THIRD DRAW ***
 tom1206: discards 1 card
 LumBita: stands pat 
-s0rrow: discards 1 card [2s]
-Dealt to s0rrow [2c Ah 3h 5s] [Qd]
+Hero: discards 1 card [2s]
+Dealt to Hero [2c Ah 3h 5s] [Qd]
 tom1206: checks 
 LumBita: bets $0.10 and is all-in
-s0rrow: folds 
+Hero: folds 
 tom1206: folds 
 Uncalled bet ($0.10) returned to LumBita
 LumBita collected $1.57 from pot
 LumBita: doesn't show hand 
 *** SUMMARY ***
 Total pot $1.65 | Rake $0.08 
-Seat 1: s0rrow (button) folded after the 3rd Draw
+Seat 1: Hero (button) folded after the 3rd Draw
 Seat 2: Mamega (small blind) folded before the Draw
 Seat 3: X USN-USMC (big blind) folded before the Draw
 Seat 4: tom1206 folded after the 3rd Draw
@@ -795,7 +795,7 @@ Seat 6: TheLabman folded before the Draw (didn't bet)
 
 PokerStars Game #35839866916:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:31:36 ET
 Table 'Theodora VI' 6-max Seat #2 is the button
-Seat 1: s0rrow ($3.62 in chips) 
+Seat 1: Hero ($3.62 in chips) 
 Seat 2: Mamega ($3.85 in chips) 
 Seat 3: X USN-USMC ($6.72 in chips) 
 Seat 4: tom1206 ($1.02 in chips) 
@@ -804,10 +804,10 @@ Seat 6: TheLabman ($4.34 in chips)
 X USN-USMC: posts small blind $0.05
 tom1206: posts big blind $0.10
 *** DEALING HANDS ***
-Dealt to s0rrow [Jd 5c 2s 5h Qs]
+Dealt to Hero [Jd 5c 2s 5h Qs]
 LumBita: calls $0.10
 TheLabman: folds 
-s0rrow: folds 
+Hero: folds 
 Mamega: folds 
 X USN-USMC: calls $0.05
 tom1206: checks 
@@ -838,7 +838,7 @@ tom1206: mucks hand
 X USN-USMC collected $0.67 from pot
 *** SUMMARY ***
 Total pot $0.70 | Rake $0.03 
-Seat 1: s0rrow folded before the Draw (didn't bet)
+Seat 1: Hero folded before the Draw (didn't bet)
 Seat 2: Mamega (button) folded before the Draw (didn't bet)
 Seat 3: X USN-USMC (small blind) showed [4h 3h 2d 7h 6d] and won ($0.67) with Lo: 7,6,4,3,2
 Seat 4: tom1206 (big blind) mucked [7c 5d 9s Th 8d]
@@ -849,7 +849,7 @@ Seat 6: TheLabman folded before the Draw (didn't bet)
 
 PokerStars Game #35839926911:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:32:52 ET
 Table 'Theodora VI' 6-max Seat #3 is the button
-Seat 1: s0rrow ($3.62 in chips) 
+Seat 1: Hero ($3.62 in chips) 
 Seat 2: Mamega ($3.85 in chips) 
 Seat 3: X USN-USMC ($7.09 in chips) 
 Seat 4: tom1206 ($0.72 in chips) 
@@ -858,37 +858,37 @@ Seat 6: TheLabman ($4.34 in chips)
 tom1206: posts small blind $0.05
 LumBita: posts big blind $0.10
 *** DEALING HANDS ***
-Dealt to s0rrow [Qd 2d 5s Ah 8d]
+Dealt to Hero [Qd 2d 5s Ah 8d]
 TheLabman: folds 
-s0rrow: calls $0.10
+Hero: calls $0.10
 Mamega: folds 
 X USN-USMC: folds 
 tom1206: folds 
 LumBita: checks 
 *** FIRST DRAW ***
 LumBita: discards 3 cards
-s0rrow: discards 2 cards [Qd 8d]
-Dealt to s0rrow [2d 5s Ah] [Jc 8h]
+Hero: discards 2 cards [Qd 8d]
+Dealt to Hero [2d 5s Ah] [Jc 8h]
 LumBita: checks 
-s0rrow: checks 
+Hero: checks 
 *** SECOND DRAW ***
 LumBita: discards 2 cards
-s0rrow: discards 1 card [Jc]
-Dealt to s0rrow [2d 5s Ah 8h] [9s]
+Hero: discards 1 card [Jc]
+Dealt to Hero [2d 5s Ah 8h] [9s]
 LumBita: bets $0.20
-s0rrow: calls $0.20
+Hero: calls $0.20
 *** THIRD DRAW ***
 LumBita: stands pat 
-s0rrow: stands pat on [2d 5s Ah 8h 9s]
+Hero: stands pat on [2d 5s Ah 8h 9s]
 LumBita: checks 
-s0rrow: checks 
+Hero: checks 
 *** SHOW DOWN ***
 LumBita: shows [7h 2s 5c 8c 6c] (Lo: 8,7,6,5,2)
-s0rrow: mucks hand 
+Hero: mucks hand 
 LumBita collected $0.62 from pot
 *** SUMMARY ***
 Total pot $0.65 | Rake $0.03 
-Seat 1: s0rrow mucked [9s 2d 5s Ah 8h]
+Seat 1: Hero mucked [9s 2d 5s Ah 8h]
 Seat 2: Mamega folded before the Draw (didn't bet)
 Seat 3: X USN-USMC (button) folded before the Draw (didn't bet)
 Seat 4: tom1206 (small blind) folded before the Draw
@@ -899,7 +899,7 @@ Seat 6: TheLabman folded before the Draw (didn't bet)
 
 PokerStars Game #35839959625:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2009/11/25 14:33:33 ET
 Table 'Theodora VI' 6-max Seat #4 is the button
-Seat 1: s0rrow ($3.32 in chips) 
+Seat 1: Hero ($3.32 in chips) 
 Seat 2: Mamega ($3.85 in chips) 
 Seat 3: X USN-USMC ($7.09 in chips) 
 Seat 4: tom1206 ($0.67 in chips) 
@@ -908,8 +908,8 @@ Seat 6: TheLabman ($4.34 in chips)
 LumBita: posts small blind $0.05
 TheLabman: posts big blind $0.10
 *** DEALING HANDS ***
-Dealt to s0rrow [Jd As 8h 3s 7c]
-s0rrow: calls $0.10
+Dealt to Hero [Jd As 8h 3s 7c]
+Hero: calls $0.10
 Mamega: folds 
 X USN-USMC: folds 
 tom1206: calls $0.10
@@ -918,49 +918,49 @@ TheLabman: checks
 *** FIRST DRAW ***
 LumBita: discards 2 cards
 TheLabman: discards 1 card
-s0rrow: discards 1 card [Jd]
-Dealt to s0rrow [As 8h 3s 7c] [4h]
+Hero: discards 1 card [Jd]
+Dealt to Hero [As 8h 3s 7c] [4h]
 tom1206: discards 2 cards
 LumBita: checks 
 TheLabman: bets $0.10
-s0rrow: calls $0.10
+Hero: calls $0.10
 tom1206: raises $0.10 to $0.20
 LumBita: calls $0.20
 TheLabman: calls $0.10
-s0rrow: calls $0.10
+Hero: calls $0.10
 *** SECOND DRAW ***
 LumBita: discards 1 card
 TheLabman: discards 1 card
-s0rrow: discards 1 card [8h]
-Dealt to s0rrow [As 3s 7c 4h] [8d]
+Hero: discards 1 card [8h]
+Dealt to Hero [As 3s 7c 4h] [8d]
 tom1206: stands pat 
 LumBita: checks 
 TheLabman: checks 
-s0rrow: checks 
+Hero: checks 
 tom1206: bets $0.20
 LumBita: calls $0.20
 TheLabman: calls $0.20
-s0rrow: calls $0.20
+Hero: calls $0.20
 *** THIRD DRAW ***
 LumBita: discards 1 card
 TheLabman: discards 1 card
-s0rrow: stands pat on [As 3s 7c 4h 8d]
+Hero: stands pat on [As 3s 7c 4h 8d]
 tom1206: stands pat 
 LumBita: checks 
 TheLabman: checks 
-s0rrow: checks 
+Hero: checks 
 tom1206: bets $0.17 and is all-in
 LumBita: calls $0.17
 TheLabman: folds 
-s0rrow: calls $0.17
+Hero: calls $0.17
 *** SHOW DOWN ***
 tom1206: shows [5c 6c 4d 2h 8c] (Lo: 8,6,5,4,2)
 LumBita: mucks hand 
-s0rrow: mucks hand 
+Hero: mucks hand 
 tom1206 collected $2.39 from pot
 *** SUMMARY ***
 Total pot $2.51 | Rake $0.12 
-Seat 1: s0rrow mucked [4h As 8d 3s 7c]
+Seat 1: Hero mucked [4h As 8d 3s 7c]
 Seat 2: Mamega folded before the Draw (didn't bet)
 Seat 3: X USN-USMC folded before the Draw (didn't bet)
 Seat 4: tom1206 (button) showed [5c 6c 4d 2h 8c] and won ($2.39) with Lo: 8,6,5,4,2

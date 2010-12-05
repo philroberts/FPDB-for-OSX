@@ -8,13 +8,13 @@ Seat 2 is the button
 Total number of players : 5/6
 Seat 5: Player1 ( $1.60 USD )
 Seat 1: Player2 ( $2.45 USD )
-Seat 4: Player3 ( $2.18 USD )
+Seat 4: Hero ( $2.18 USD )
 Seat 2: Player4 ( $2.80 USD )
 Seat 3: Player5 ( $0.01 USD )
 Player5 posts small blind [$0.01 USD].
-Player3 posts big blind [$0.04 USD].
+Hero posts big blind [$0.04 USD].
 ** Dealing down cards **
-Dealt to Player3 [  6s 2c ]
+Dealt to Hero [  6s 2c ]
 Player1 folds
 Player2 folds
 Player4 folds
@@ -22,7 +22,7 @@ Player4 folds
 ** Dealing Turn ** [ Js ]
 ** Dealing River ** [ Kc ]
 Player5 shows [ 5h, 5s ]a pair of Fives.
-Player3 shows [ 6s, 2c ]high card Ace.
-Player3 wins $0.03 USD from the side pot 1 with high card, Ace.
+Hero shows [ 6s, 2c ]high card Ace.
+Hero wins $0.03 USD from the side pot 1 with high card, Ace.
 Player5 wins $0.02 USD from the main pot with a pair of Fives.
 Player5 has left the table.

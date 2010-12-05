@@ -13,17 +13,17 @@ Seat 2: Player2 - $5.28
 Seat 3: Player3 - $1.80
 Seat 4: allout96 - $3.99
 Seat 5: Player4 - $1.47
-Seat 6: Player5 - $4
+Seat 6: Hero - $4
 Moving Button to seat 1
 Player2 posts small blind ($0.02)
 Player3 posts big blind ($0.04)
-Player5 posts $0.04
+Hero posts $0.04
 Shuffling Deck
 Dealing Cards
-Dealing [Ad 8h] to Player5
+Dealing [Ad 8h] to Hero
 allout96 folds
 Player4 calls $0.04
-Player5 checks
+Hero checks
 Player1 folds
 Player2 calls $0.04
 Player3 checks
@@ -31,7 +31,7 @@ Dealing Flop [9s Ac 5s]
 Player2 bets $0.08
 Player3 calls $0.08
 Player4 calls $0.08
-Player5 raises to $0.16
+Hero raises to $0.16
 Player2 calls $0.16
 Player3 calls $0.16
 Player4 calls $0.16
@@ -39,11 +39,11 @@ Dealing Turn [4s]
 Player2 checks
 Player3 bets $0.04
 Player4 calls $0.04
-Player5 raises to $0.72
+Hero raises to $0.72
 Player2 folds
 Player3 raises to $1.40
 Player4 calls $1.27 (all-in)
-Player5 folds
+Hero folds
 Returning $0.13 to Player3 uncalled
 Player3 shows [2h 3d]
 Player4 shows [4d 9c]
@@ -56,6 +56,6 @@ Seat 2: Player2 - $5.08
 Seat 3: Player3 - $3.99
 Seat 4: allout96 - $3.99
 Seat 5: Player4 - $0
-Seat 6: Player5 - $3.08
+Seat 6: Hero - $3.08
 End Of Hand #746382682
 

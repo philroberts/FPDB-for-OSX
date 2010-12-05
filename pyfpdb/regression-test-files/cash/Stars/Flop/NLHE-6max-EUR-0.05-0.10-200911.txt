@@ -3,32 +3,32 @@ Table 'Lampland' 6-max Seat #2 is the button
 Seat 1: rico4429 (€2.37 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: joycer01 (€4.60 in chips) 
-Seat 4: s0rrow (€2 in chips) 
+Seat 4: Hero (€2 in chips) 
 Seat 5: Poptart74 (€2.34 in chips) 
 Seat 6: PokerMill100 (€7.60 in chips) 
 joycer01: posts small blind €0.05
-s0rrow: posts big blind €0.10
+Hero: posts big blind €0.10
 rico4429: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Js 3d]
+Dealt to Hero [Js 3d]
 Poptart74: folds 
 PokerMill100: calls €0.10
 rico4429: checks 
 HomerrrJay: folds 
 joycer01: calls €0.05
-s0rrow: checks 
+Hero: checks 
 *** FLOP *** [8h Jh Kh]
 joycer01: checks 
-s0rrow: checks 
+Hero: checks 
 PokerMill100: checks 
 rico4429: checks 
 *** TURN *** [8h Jh Kh] [Ah]
 joycer01: checks 
-s0rrow: checks 
+Hero: checks 
 PokerMill100: checks 
 rico4429: bets €0.50
 joycer01: folds 
-s0rrow: folds 
+Hero: folds 
 PokerMill100: folds 
 Uncalled bet (€0.50) returned to rico4429
 rico4429 collected €0.38 from pot
@@ -39,7 +39,7 @@ Board [8h Jh Kh Ah]
 Seat 1: rico4429 collected (€0.38)
 Seat 2: HomerrrJay (button) folded before Flop (didn't bet)
 Seat 3: joycer01 (small blind) folded on the Turn
-Seat 4: s0rrow (big blind) folded on the Turn
+Seat 4: Hero (big blind) folded on the Turn
 Seat 5: Poptart74 folded before Flop (didn't bet)
 Seat 6: PokerMill100 folded on the Turn
 
@@ -50,29 +50,29 @@ Table 'Lampland' 6-max Seat #3 is the button
 Seat 1: rico4429 (€2.65 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: joycer01 (€4.50 in chips) 
-Seat 4: s0rrow (€1.90 in chips) 
+Seat 4: Hero (€1.90 in chips) 
 Seat 5: Poptart74 (€2.34 in chips) 
 Seat 6: PokerMill100 (€7.50 in chips) 
-s0rrow: posts small blind €0.05
+Hero: posts small blind €0.05
 Poptart74: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Th Td]
+Dealt to Hero [Th Td]
 PokerMill100: raises €0.20 to €0.30
 rico4429: folds 
 HomerrrJay: folds 
 joycer01: calls €0.30
-s0rrow: raises €1.60 to €1.90 and is all-in
+Hero: raises €1.60 to €1.90 and is all-in
 Poptart74: folds 
 PokerMill100: folds 
 joycer01: folds 
-Uncalled bet (€1.60) returned to s0rrow
-s0rrow collected €1 from pot
+Uncalled bet (€1.60) returned to Hero
+Hero collected €1 from pot
 *** SUMMARY ***
 Total pot €1 | Rake €0 
 Seat 1: rico4429 folded before Flop (didn't bet)
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: joycer01 (button) folded before Flop
-Seat 4: s0rrow (small blind) collected (€1)
+Seat 4: Hero (small blind) collected (€1)
 Seat 5: Poptart74 (big blind) folded before Flop
 Seat 6: PokerMill100 folded before Flop
 
@@ -83,29 +83,29 @@ Table 'Lampland' 6-max Seat #4 is the button
 Seat 1: rico4429 (€2.65 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: joycer01 (€4.20 in chips) 
-Seat 4: s0rrow (€2.60 in chips) 
+Seat 4: Hero (€2.60 in chips) 
 Seat 5: Poptart74 (€2.24 in chips) 
 Seat 6: PokerMill100 (€7.20 in chips) 
 Poptart74: posts small blind €0.05
 PokerMill100: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qh Js]
+Dealt to Hero [Qh Js]
 rico4429: calls €0.10
 HomerrrJay: folds 
 joycer01: folds 
-s0rrow: calls €0.10
+Hero: calls €0.10
 Poptart74: calls €0.05
 PokerMill100: checks 
 *** FLOP *** [7s 3c 7h]
 Poptart74: checks 
 PokerMill100: checks 
 rico4429: checks 
-s0rrow: checks 
+Hero: checks 
 *** TURN *** [7s 3c 7h] [2c]
 Poptart74: checks 
 PokerMill100: checks 
 rico4429: bets €0.40
-s0rrow: folds 
+Hero: folds 
 Poptart74: folds 
 PokerMill100: folds 
 Uncalled bet (€0.40) returned to rico4429
@@ -117,7 +117,7 @@ Board [7s 3c 7h 2c]
 Seat 1: rico4429 collected (€0.38)
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: joycer01 folded before Flop (didn't bet)
-Seat 4: s0rrow (button) folded on the Turn
+Seat 4: Hero (button) folded on the Turn
 Seat 5: Poptart74 (small blind) folded on the Turn
 Seat 6: PokerMill100 (big blind) folded on the Turn
 
@@ -128,16 +128,16 @@ Table 'Lampland' 6-max Seat #5 is the button
 Seat 1: rico4429 (€2.93 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: joycer01 (€4.20 in chips) 
-Seat 4: s0rrow (€2.50 in chips) 
+Seat 4: Hero (€2.50 in chips) 
 Seat 5: Poptart74 (€2.14 in chips) 
 Seat 6: PokerMill100 (€7.10 in chips) 
 PokerMill100: posts small blind €0.05
 rico4429: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Kh 8h]
+Dealt to Hero [Kh 8h]
 HomerrrJay: folds 
 joycer01: calls €0.10
-s0rrow: raises €0.30 to €0.40
+Hero: raises €0.30 to €0.40
 Poptart74: calls €0.40
 PokerMill100: folds 
 rico4429: calls €0.30
@@ -145,7 +145,7 @@ joycer01: calls €0.30
 *** FLOP *** [2d Ad 6d]
 rico4429: checks 
 joycer01: bets €0.60
-s0rrow: folds 
+Hero: folds 
 Poptart74: calls €0.60
 rico4429: calls €0.60
 *** TURN *** [2d Ad 6d] [9s]
@@ -165,7 +165,7 @@ Board [2d Ad 6d 9s Th]
 Seat 1: rico4429 (big blind) folded on the Turn
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: joycer01 showed [Qd 8c] and lost with high card Ace
-Seat 4: s0rrow folded on the Flop
+Seat 4: Hero folded on the Flop
 Seat 5: Poptart74 (button) showed [6s As] and won (€5.46) with two pair, Aces and Sixes
 Seat 6: PokerMill100 (small blind) folded before Flop
 
@@ -176,15 +176,15 @@ Table 'Lampland' 6-max Seat #6 is the button
 Seat 1: rico4429 (€1.93 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: joycer01 (€2.06 in chips) 
-Seat 4: s0rrow (€2.10 in chips) 
+Seat 4: Hero (€2.10 in chips) 
 Seat 5: Poptart74 (€5.46 in chips) 
 Seat 6: PokerMill100 (€7.05 in chips) 
 rico4429: posts small blind €0.05
 HomerrrJay: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [5s 2h]
+Dealt to Hero [5s 2h]
 joycer01: folds 
-s0rrow: folds 
+Hero: folds 
 Poptart74: calls €0.10
 PokerMill100: calls €0.10
 rico4429: calls €0.05
@@ -215,7 +215,7 @@ Board [Jc 9s Qd 6c 4h]
 Seat 1: rico4429 (small blind) folded on the Flop
 Seat 2: HomerrrJay (big blind) folded on the Flop
 Seat 3: joycer01 folded before Flop (didn't bet)
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Poptart74 mucked [9c Qh]
 Seat 6: PokerMill100 (button) showed [Td 8s] and won (€4.95) with a straight, Eight to Queen
 
@@ -226,14 +226,14 @@ Table 'Lampland' 6-max Seat #1 is the button
 Seat 1: rico4429 (€1.83 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: joycer01 (€2.06 in chips) 
-Seat 4: s0rrow (€2.10 in chips) 
+Seat 4: Hero (€2.10 in chips) 
 Seat 5: Poptart74 (€2.96 in chips) 
 Seat 6: PokerMill100 (€9.50 in chips) 
 HomerrrJay: posts small blind €0.05
 joycer01: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [2c Jc]
-s0rrow: folds 
+Dealt to Hero [2c Jc]
+Hero: folds 
 Poptart74: calls €0.10
 PokerMill100: raises €0.30 to €0.40
 rico4429: folds 
@@ -255,7 +255,7 @@ Board [Kc 9s Qs Ts]
 Seat 1: rico4429 (button) folded before Flop (didn't bet)
 Seat 2: HomerrrJay (small blind) folded before Flop
 Seat 3: joycer01 (big blind) folded before Flop
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Poptart74 folded on the Turn
 Seat 6: PokerMill100 collected (€0.91)
 
@@ -266,26 +266,26 @@ Table 'Lampland' 6-max Seat #2 is the button
 Seat 1: rico4429 (€1.83 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: joycer01 (€1.96 in chips) 
-Seat 4: s0rrow (€2.10 in chips) 
+Seat 4: Hero (€2.10 in chips) 
 Seat 5: Poptart74 (€2.56 in chips) 
 Seat 6: PokerMill100 (€10.01 in chips) 
 joycer01: posts small blind €0.05
-s0rrow: posts big blind €0.10
+Hero: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [3c 6s]
+Dealt to Hero [3c 6s]
 Poptart74: folds 
 PokerMill100: calls €0.10
 rico4429: calls €0.10
 HomerrrJay: folds 
 joycer01: calls €0.05
-s0rrow: checks 
+Hero: checks 
 *** FLOP *** [Kd Qh 6c]
 joycer01: checks 
-s0rrow: checks 
+Hero: checks 
 PokerMill100: checks 
 rico4429: bets €0.60
 joycer01: folds 
-s0rrow: folds 
+Hero: folds 
 PokerMill100: folds 
 Uncalled bet (€0.60) returned to rico4429
 rico4429 collected €0.38 from pot
@@ -295,7 +295,7 @@ Board [Kd Qh 6c]
 Seat 1: rico4429 collected (€0.38)
 Seat 2: HomerrrJay (button) folded before Flop (didn't bet)
 Seat 3: joycer01 (small blind) folded on the Flop
-Seat 4: s0rrow (big blind) folded on the Flop
+Seat 4: Hero (big blind) folded on the Flop
 Seat 5: Poptart74 folded before Flop (didn't bet)
 Seat 6: PokerMill100 folded on the Flop
 
@@ -306,18 +306,18 @@ Table 'Lampland' 6-max Seat #3 is the button
 Seat 1: rico4429 (€2.11 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: joycer01 (€1.86 in chips) 
-Seat 4: s0rrow (€2 in chips) 
+Seat 4: Hero (€2 in chips) 
 Seat 5: Poptart74 (€2.56 in chips) 
 Seat 6: PokerMill100 (€9.91 in chips) 
-s0rrow: posts small blind €0.05
+Hero: posts small blind €0.05
 Poptart74: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [2d Ts]
+Dealt to Hero [2d Ts]
 PokerMill100: folds 
 rico4429: calls €0.10
 HomerrrJay: folds 
 joycer01: raises €0.30 to €0.40
-s0rrow: folds 
+Hero: folds 
 Poptart74: folds 
 rico4429: calls €0.30
 *** FLOP *** [Jc 8d Ah]
@@ -332,7 +332,7 @@ Board [Jc 8d Ah]
 Seat 1: rico4429 folded on the Flop
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: joycer01 (button) collected (€0.91)
-Seat 4: s0rrow (small blind) folded before Flop
+Seat 4: Hero (small blind) folded before Flop
 Seat 5: Poptart74 (big blind) folded before Flop
 Seat 6: PokerMill100 folded before Flop (didn't bet)
 
@@ -343,17 +343,17 @@ Table 'Lampland' 6-max Seat #4 is the button
 Seat 1: rico4429 (€1.71 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: joycer01 (€2.37 in chips) 
-Seat 4: s0rrow (€1.95 in chips) 
+Seat 4: Hero (€1.95 in chips) 
 Seat 5: Poptart74 (€2.46 in chips) 
 Seat 6: PokerMill100 (€9.91 in chips) 
 Poptart74: posts small blind €0.05
 PokerMill100: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [2c 8h]
+Dealt to Hero [2c 8h]
 rico4429: raises €0.10 to €0.20
 HomerrrJay: folds 
 joycer01: folds 
-s0rrow: folds 
+Hero: folds 
 Poptart74: calls €0.15
 PokerMill100: calls €0.10
 *** FLOP *** [7c 3c 2d]
@@ -373,7 +373,7 @@ Board [7c 3c 2d 7s 5h]
 Seat 1: rico4429 showed [Ad Js] and lost with a pair of Sevens
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: joycer01 folded before Flop (didn't bet)
-Seat 4: s0rrow (button) folded before Flop (didn't bet)
+Seat 4: Hero (button) folded before Flop (didn't bet)
 Seat 5: Poptart74 (small blind) showed [Th Td] and won (€3.45) with two pair, Tens and Sevens
 Seat 6: PokerMill100 (big blind) folded on the Flop
 
@@ -383,15 +383,15 @@ PokerStars Game #35602140774:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #5 is the button
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: joycer01 (€2.37 in chips) 
-Seat 4: s0rrow (€1.95 in chips) 
+Seat 4: Hero (€1.95 in chips) 
 Seat 5: Poptart74 (€4.20 in chips) 
 Seat 6: PokerMill100 (€9.71 in chips) 
 PokerMill100: posts small blind €0.05
 HomerrrJay: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [7h Jh]
+Dealt to Hero [7h Jh]
 joycer01: raises €0.30 to €0.40
-s0rrow: folds 
+Hero: folds 
 rico4429 leaves the table
 Poptart74: folds 
 PokerMill100: folds 
@@ -402,7 +402,7 @@ joycer01 collected €0.25 from pot
 Total pot €0.25 | Rake €0 
 Seat 2: HomerrrJay (big blind) folded before Flop
 Seat 3: joycer01 collected (€0.25)
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Poptart74 (button) folded before Flop (didn't bet)
 Seat 6: PokerMill100 (small blind) folded before Flop
 
@@ -412,15 +412,15 @@ PokerStars Game #35602147145:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #6 is the button
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: joycer01 (€2.52 in chips) 
-Seat 4: s0rrow (€1.95 in chips) 
+Seat 4: Hero (€1.95 in chips) 
 Seat 5: Poptart74 (€4.20 in chips) 
 Seat 6: PokerMill100 (€9.66 in chips) 
 HomerrrJay: posts small blind €0.05
 joycer01: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [9h 2d]
+Dealt to Hero [9h 2d]
 Oswood joins the table at seat #1 
-s0rrow: folds 
+Hero: folds 
 Poptart74: calls €0.10
 PokerMill100: folds 
 HomerrrJay: folds 
@@ -435,7 +435,7 @@ Total pot €0.25 | Rake €0.01
 Board [6h 5c 4s]
 Seat 2: HomerrrJay (small blind) folded before Flop
 Seat 3: joycer01 (big blind) collected (€0.24)
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Poptart74 folded on the Flop
 Seat 6: PokerMill100 (button) folded before Flop (didn't bet)
 
@@ -446,20 +446,20 @@ Table 'Lampland' 6-max Seat #2 is the button
 Seat 1: Oswood (€10 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: joycer01 (€2.66 in chips) 
-Seat 4: s0rrow (€1.95 in chips) 
+Seat 4: Hero (€1.95 in chips) 
 Seat 5: Poptart74 (€4.10 in chips) 
 Seat 6: PokerMill100 (€9.66 in chips) 
 joycer01: posts small blind €0.05
-s0rrow: posts big blind €0.10
+Hero: posts big blind €0.10
 Oswood: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [2h 8d]
+Dealt to Hero [2h 8d]
 Poptart74: calls €0.10
 PokerMill100: raises €0.20 to €0.30
 Oswood: calls €0.20
 HomerrrJay: folds 
 joycer01: folds 
-s0rrow: folds 
+Hero: folds 
 Poptart74: calls €0.20
 *** FLOP *** [4h Ac 7h]
 Poptart74: checks 
@@ -474,7 +474,7 @@ Board [4h Ac 7h]
 Seat 1: Oswood folded on the Flop
 Seat 2: HomerrrJay (button) folded before Flop (didn't bet)
 Seat 3: joycer01 (small blind) folded before Flop
-Seat 4: s0rrow (big blind) folded before Flop
+Seat 4: Hero (big blind) folded before Flop
 Seat 5: Poptart74 folded on the Flop
 Seat 6: PokerMill100 collected (€1)
 
@@ -485,34 +485,34 @@ Table 'Lampland' 6-max Seat #3 is the button
 Seat 1: Oswood (€9.70 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: joycer01 (€2.61 in chips) 
-Seat 4: s0rrow (€1.85 in chips) 
+Seat 4: Hero (€1.85 in chips) 
 Seat 5: Poptart74 (€3.80 in chips) 
 Seat 6: PokerMill100 (€10.36 in chips) 
-s0rrow: posts small blind €0.05
+Hero: posts small blind €0.05
 Poptart74: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qh 9d]
+Dealt to Hero [Qh 9d]
 PokerMill100: folds 
 Oswood: folds 
 HomerrrJay: folds 
 joycer01: folds 
-s0rrow: raises €0.20 to €0.30
+Hero: raises €0.20 to €0.30
 Poptart74: calls €0.20
 *** FLOP *** [6c Ks Td]
-s0rrow: checks 
+Hero: checks 
 Poptart74: checks 
 *** TURN *** [6c Ks Td] [Qs]
-s0rrow: bets €0.50
+Hero: bets €0.50
 Poptart74: folds 
-Uncalled bet (€0.50) returned to s0rrow
-s0rrow collected €0.57 from pot
+Uncalled bet (€0.50) returned to Hero
+Hero collected €0.57 from pot
 *** SUMMARY ***
 Total pot €0.60 | Rake €0.03 
 Board [6c Ks Td Qs]
 Seat 1: Oswood folded before Flop (didn't bet)
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: joycer01 (button) folded before Flop (didn't bet)
-Seat 4: s0rrow (small blind) collected (€0.57)
+Seat 4: Hero (small blind) collected (€0.57)
 Seat 5: Poptart74 (big blind) folded on the Turn
 Seat 6: PokerMill100 folded before Flop (didn't bet)
 
@@ -523,17 +523,17 @@ Table 'Lampland' 6-max Seat #4 is the button
 Seat 1: Oswood (€9.70 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: joycer01 (€2.61 in chips) 
-Seat 4: s0rrow (€2.12 in chips) 
+Seat 4: Hero (€2.12 in chips) 
 Seat 5: Poptart74 (€3.50 in chips) 
 Seat 6: PokerMill100 (€10.36 in chips) 
 Poptart74: posts small blind €0.05
 PokerMill100: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Ad 4c]
+Dealt to Hero [Ad 4c]
 Oswood: folds 
 HomerrrJay: raises €0.20 to €0.30
 joycer01: calls €0.30
-s0rrow: folds 
+Hero: folds 
 Poptart74: folds 
 PokerMill100: folds 
 *** FLOP *** [Tc 6d 4d]
@@ -548,7 +548,7 @@ Board [Tc 6d 4d]
 Seat 1: Oswood folded before Flop (didn't bet)
 Seat 2: HomerrrJay collected (€0.72)
 Seat 3: joycer01 folded on the Flop
-Seat 4: s0rrow (button) folded before Flop (didn't bet)
+Seat 4: Hero (button) folded before Flop (didn't bet)
 Seat 5: Poptart74 (small blind) folded before Flop
 Seat 6: PokerMill100 (big blind) folded before Flop
 
@@ -559,16 +559,16 @@ Table 'Lampland' 6-max Seat #5 is the button
 Seat 1: Oswood (€9.70 in chips) 
 Seat 2: HomerrrJay (€10.42 in chips) 
 Seat 3: joycer01 (€2.31 in chips) 
-Seat 4: s0rrow (€2.12 in chips) 
+Seat 4: Hero (€2.12 in chips) 
 Seat 5: Poptart74 (€3.45 in chips) 
 Seat 6: PokerMill100 (€10.26 in chips) 
 PokerMill100: posts small blind €0.05
 Oswood: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Td 7d]
+Dealt to Hero [Td 7d]
 HomerrrJay: folds 
 joycer01: raises €0.20 to €0.30
-s0rrow: folds 
+Hero: folds 
 Poptart74: folds 
 PokerMill100: folds 
 Oswood: folds 
@@ -579,7 +579,7 @@ Total pot €0.25 | Rake €0
 Seat 1: Oswood (big blind) folded before Flop
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: joycer01 collected (€0.25)
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Poptart74 (button) folded before Flop (didn't bet)
 Seat 6: PokerMill100 (small blind) folded before Flop
 
@@ -590,15 +590,15 @@ Table 'Lampland' 6-max Seat #6 is the button
 Seat 1: Oswood (€9.60 in chips) 
 Seat 2: HomerrrJay (€10.42 in chips) 
 Seat 3: joycer01 (€2.46 in chips) 
-Seat 4: s0rrow (€2.12 in chips) 
+Seat 4: Hero (€2.12 in chips) 
 Seat 5: Poptart74 (€3.45 in chips) 
 Seat 6: PokerMill100 (€10.21 in chips) 
 Oswood: posts small blind €0.05
 HomerrrJay: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [6c 4s]
+Dealt to Hero [6c 4s]
 joycer01: raises €0.30 to €0.40
-s0rrow: folds 
+Hero: folds 
 Poptart74: folds 
 PokerMill100: calls €0.40
 Oswood: calls €0.35
@@ -623,7 +623,7 @@ Board [3s 6h Qs 2h 5h]
 Seat 1: Oswood (small blind) showed [Qh Ah] and won (€5.73) with a flush, Ace high
 Seat 2: HomerrrJay (big blind) folded before Flop
 Seat 3: joycer01 showed [Ks Qd] and lost with a pair of Queens
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Poptart74 folded before Flop (didn't bet)
 Seat 6: PokerMill100 (button) folded on the Flop
 
@@ -633,19 +633,19 @@ PokerStars Game #35602222776:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #1 is the button
 Seat 1: Oswood (€12.87 in chips) 
 Seat 2: HomerrrJay (€10.32 in chips) 
-Seat 4: s0rrow (€2.12 in chips) 
+Seat 4: Hero (€2.12 in chips) 
 Seat 5: Poptart74 (€3.45 in chips) 
 Seat 6: PokerMill100 (€9.21 in chips) 
 HomerrrJay: posts small blind €0.05
-s0rrow: posts big blind €0.10
+Hero: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Ad 4h]
+Dealt to Hero [Ad 4h]
 Poptart74: folds 
 joycer01 has returned
 PokerMill100: folds 
 Oswood: folds 
 HomerrrJay: raises €0.20 to €0.30
-s0rrow: folds 
+Hero: folds 
 Uncalled bet (€0.20) returned to HomerrrJay
 HomerrrJay collected €0.20 from pot
 joycer01 leaves the table
@@ -654,7 +654,7 @@ HomerrrJay: doesn't show hand
 Total pot €0.20 | Rake €0 
 Seat 1: Oswood (button) folded before Flop (didn't bet)
 Seat 2: HomerrrJay (small blind) collected (€0.20)
-Seat 4: s0rrow (big blind) folded before Flop
+Seat 4: Hero (big blind) folded before Flop
 Seat 5: Poptart74 folded before Flop (didn't bet)
 Seat 6: PokerMill100 folded before Flop (didn't bet)
 
@@ -664,37 +664,37 @@ PokerStars Game #35602228303:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #2 is the button
 Seat 1: Oswood (€12.87 in chips) 
 Seat 2: HomerrrJay (€10.42 in chips) 
-Seat 4: s0rrow (€2.02 in chips) 
+Seat 4: Hero (€2.02 in chips) 
 Seat 5: Poptart74 (€3.45 in chips) 
 Seat 6: PokerMill100 (€9.21 in chips) 
-s0rrow: posts small blind €0.05
+Hero: posts small blind €0.05
 Poptart74: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [5s Ad]
+Dealt to Hero [5s Ad]
 PokerMill100: folds 
 Oswood: folds 
 HomerrrJay: folds 
-s0rrow: raises €0.20 to €0.30
+Hero: raises €0.20 to €0.30
 Poptart74: calls €0.20
 *** FLOP *** [6c 3d 5h]
-s0rrow: bets €0.40
+Hero: bets €0.40
 Poptart74: calls €0.40
 *** TURN *** [6c 3d 5h] [Qc]
-s0rrow: checks 
+Hero: checks 
 Poptart74: bets €0.60
-s0rrow: calls €0.60
+Hero: calls €0.60
 *** RIVER *** [6c 3d 5h Qc] [6h]
 andi661 joins the table at seat #3 
-s0rrow: bets €0.72 and is all-in
+Hero: bets €0.72 and is all-in
 Poptart74: folds 
-Uncalled bet (€0.72) returned to s0rrow
-s0rrow collected €2.48 from pot
+Uncalled bet (€0.72) returned to Hero
+Hero collected €2.48 from pot
 *** SUMMARY ***
 Total pot €2.60 | Rake €0.12 
 Board [6c 3d 5h Qc 6h]
 Seat 1: Oswood folded before Flop (didn't bet)
 Seat 2: HomerrrJay (button) folded before Flop (didn't bet)
-Seat 4: s0rrow (small blind) collected (€2.48)
+Seat 4: Hero (small blind) collected (€2.48)
 Seat 5: Poptart74 (big blind) folded on the River
 Seat 6: PokerMill100 folded before Flop (didn't bet)
 
@@ -705,18 +705,18 @@ Table 'Lampland' 6-max Seat #4 is the button
 Seat 1: Oswood (€12.87 in chips) 
 Seat 2: HomerrrJay (€10.42 in chips) 
 Seat 3: andi661 (€2.83 in chips) 
-Seat 4: s0rrow (€3.20 in chips) 
+Seat 4: Hero (€3.20 in chips) 
 Seat 5: Poptart74 (€2.15 in chips) 
 Seat 6: PokerMill100 (€9.21 in chips) 
 Poptart74: posts small blind €0.05
 PokerMill100: posts big blind €0.10
 andi661: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Tc Td]
+Dealt to Hero [Tc Td]
 Oswood: folds 
 HomerrrJay: raises €0.40 to €0.50
 andi661: calls €0.40
-s0rrow: raises €2.70 to €3.20 and is all-in
+Hero: raises €2.70 to €3.20 and is all-in
 Poptart74: folds 
 PokerMill100: folds 
 HomerrrJay: raises €2.70 to €5.90
@@ -727,15 +727,15 @@ Uncalled bet (€2.70) returned to HomerrrJay
 *** RIVER *** [7s Th 6h 6d] [Jd]
 *** SHOW DOWN ***
 HomerrrJay: shows [Kd Ks] (two pair, Kings and Sixes)
-s0rrow: shows [Tc Td] (a full house, Tens full of Sixes)
-s0rrow collected €6.70 from pot
+Hero: shows [Tc Td] (a full house, Tens full of Sixes)
+Hero collected €6.70 from pot
 *** SUMMARY ***
 Total pot €7.05 | Rake €0.35 
 Board [7s Th 6h 6d Jd]
 Seat 1: Oswood folded before Flop (didn't bet)
 Seat 2: HomerrrJay showed [Kd Ks] and lost with two pair, Kings and Sixes
 Seat 3: andi661 folded before Flop
-Seat 4: s0rrow (button) showed [Tc Td] and won (€6.70) with a full house, Tens full of Sixes
+Seat 4: Hero (button) showed [Tc Td] and won (€6.70) with a full house, Tens full of Sixes
 Seat 5: Poptart74 (small blind) folded before Flop
 Seat 6: PokerMill100 (big blind) folded before Flop
 
@@ -746,16 +746,16 @@ Table 'Lampland' 6-max Seat #5 is the button
 Seat 1: Oswood (€12.87 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€2.33 in chips) 
-Seat 4: s0rrow (€6.70 in chips) 
+Seat 4: Hero (€6.70 in chips) 
 Seat 5: Poptart74 (€2.10 in chips) 
 Seat 6: PokerMill100 (€9.11 in chips) 
 PokerMill100: posts small blind €0.05
 Oswood: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [2d Kh]
+Dealt to Hero [2d Kh]
 HomerrrJay: folds 
 andi661: calls €0.10
-s0rrow: folds 
+Hero: folds 
 Poptart74: folds 
 PokerMill100: calls €0.05
 Oswood: checks 
@@ -781,7 +781,7 @@ Board [Kc 8s Ah 8d Jc]
 Seat 1: Oswood (big blind) showed [Tc Ac] and won (€1.09) with two pair, Aces and Eights
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: andi661 folded on the Flop
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Poptart74 (button) folded before Flop (didn't bet)
 Seat 6: PokerMill100 (small blind) showed [As 7d] and won (€1.10) with two pair, Aces and Eights
 
@@ -792,15 +792,15 @@ Table 'Lampland' 6-max Seat #6 is the button
 Seat 1: Oswood (€12.86 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€2.23 in chips) 
-Seat 4: s0rrow (€6.70 in chips) 
+Seat 4: Hero (€6.70 in chips) 
 Seat 5: Poptart74 (€2.10 in chips) 
 Seat 6: PokerMill100 (€9.11 in chips) 
 Oswood: posts small blind €0.05
 HomerrrJay: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Ac 9c]
+Dealt to Hero [Ac 9c]
 andi661: folds 
-s0rrow: raises €0.20 to €0.30
+Hero: raises €0.20 to €0.30
 Poptart74 is disconnected 
 Poptart74 is connected 
 Poptart74: folds 
@@ -809,17 +809,17 @@ Oswood: calls €0.25
 HomerrrJay: folds 
 *** FLOP *** [Ah Qd 9s]
 Oswood: checks 
-s0rrow: bets €0.50
+Hero: bets €0.50
 Oswood: folds 
-Uncalled bet (€0.50) returned to s0rrow
-s0rrow collected €0.67 from pot
+Uncalled bet (€0.50) returned to Hero
+Hero collected €0.67 from pot
 *** SUMMARY ***
 Total pot €0.70 | Rake €0.03 
 Board [Ah Qd 9s]
 Seat 1: Oswood (small blind) folded on the Flop
 Seat 2: HomerrrJay (big blind) folded before Flop
 Seat 3: andi661 folded before Flop (didn't bet)
-Seat 4: s0rrow collected (€0.67)
+Seat 4: Hero collected (€0.67)
 Seat 5: Poptart74 folded before Flop (didn't bet)
 Seat 6: PokerMill100 (button) folded before Flop (didn't bet)
 
@@ -830,14 +830,14 @@ Table 'Lampland' 6-max Seat #1 is the button
 Seat 1: Oswood (€12.56 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€2.23 in chips) 
-Seat 4: s0rrow (€7.07 in chips) 
+Seat 4: Hero (€7.07 in chips) 
 Seat 5: Poptart74 (€2.10 in chips) 
 Seat 6: PokerMill100 (€9.11 in chips) 
 HomerrrJay: posts small blind €0.05
 andi661: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [4s 3d]
-s0rrow: folds 
+Dealt to Hero [4s 3d]
+Hero: folds 
 Poptart74: folds 
 PokerMill100: raises €0.20 to €0.30
 Oswood: folds 
@@ -850,7 +850,7 @@ Total pot €0.25 | Rake €0
 Seat 1: Oswood (button) folded before Flop (didn't bet)
 Seat 2: HomerrrJay (small blind) folded before Flop
 Seat 3: andi661 (big blind) folded before Flop
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Poptart74 folded before Flop (didn't bet)
 Seat 6: PokerMill100 collected (€0.25)
 
@@ -861,31 +861,31 @@ Table 'Lampland' 6-max Seat #2 is the button
 Seat 1: Oswood (€12.56 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€2.13 in chips) 
-Seat 4: s0rrow (€7.07 in chips) 
+Seat 4: Hero (€7.07 in chips) 
 Seat 5: Poptart74 (€2.10 in chips) 
 Seat 6: PokerMill100 (€9.26 in chips) 
 andi661: posts small blind €0.05
-s0rrow: posts big blind €0.10
+Hero: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [As 8h]
+Dealt to Hero [As 8h]
 Poptart74: folds 
 PokerMill100: folds 
 Oswood: folds 
 HomerrrJay: folds 
 andi661: calls €0.05
-s0rrow: checks 
+Hero: checks 
 *** FLOP *** [5s Jd 2c]
 andi661: checks 
-s0rrow: checks 
+Hero: checks 
 *** TURN *** [5s Jd 2c] [8s]
 andi661: bets €0.30
-s0rrow: calls €0.30
+Hero: calls €0.30
 *** RIVER *** [5s Jd 2c 8s] [7s]
 andi661: bets €0.50
-s0rrow: calls €0.50
+Hero: calls €0.50
 *** SHOW DOWN ***
 andi661: shows [6s 9d] (a straight, Five to Nine)
-s0rrow: mucks hand 
+Hero: mucks hand 
 andi661 collected €1.72 from pot
 *** SUMMARY ***
 Total pot €1.80 | Rake €0.08 
@@ -893,7 +893,7 @@ Board [5s Jd 2c 8s 7s]
 Seat 1: Oswood folded before Flop (didn't bet)
 Seat 2: HomerrrJay (button) folded before Flop (didn't bet)
 Seat 3: andi661 (small blind) showed [6s 9d] and won (€1.72) with a straight, Five to Nine
-Seat 4: s0rrow (big blind) mucked [As 8h]
+Seat 4: Hero (big blind) mucked [As 8h]
 Seat 5: Poptart74 folded before Flop (didn't bet)
 Seat 6: PokerMill100 folded before Flop (didn't bet)
 
@@ -904,28 +904,28 @@ Table 'Lampland' 6-max Seat #3 is the button
 Seat 1: Oswood (€12.56 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€2.95 in chips) 
-Seat 4: s0rrow (€6.17 in chips) 
+Seat 4: Hero (€6.17 in chips) 
 Seat 5: Poptart74 (€2.10 in chips) 
 Seat 6: PokerMill100 (€9.26 in chips) 
-s0rrow: posts small blind €0.05
+Hero: posts small blind €0.05
 Poptart74: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [7s 6d]
+Dealt to Hero [7s 6d]
 PokerMill100: folds 
 Oswood: folds 
 HomerrrJay: folds 
 andi661: calls €0.10
-s0rrow: calls €0.05
+Hero: calls €0.05
 Poptart74: checks 
 *** FLOP *** [3h Ad Js]
-s0rrow: checks 
+Hero: checks 
 Poptart74: checks 
 andi661: checks 
 *** TURN *** [3h Ad Js] [Jc]
-s0rrow: checks 
+Hero: checks 
 Poptart74: checks 
 andi661: bets €0.30
-s0rrow: folds 
+Hero: folds 
 Poptart74: folds 
 Uncalled bet (€0.30) returned to andi661
 andi661 collected €0.29 from pot
@@ -935,7 +935,7 @@ Board [3h Ad Js Jc]
 Seat 1: Oswood folded before Flop (didn't bet)
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: andi661 (button) collected (€0.29)
-Seat 4: s0rrow (small blind) folded on the Turn
+Seat 4: Hero (small blind) folded on the Turn
 Seat 5: Poptart74 (big blind) folded on the Turn
 Seat 6: PokerMill100 folded before Flop (didn't bet)
 
@@ -946,17 +946,17 @@ Table 'Lampland' 6-max Seat #4 is the button
 Seat 1: Oswood (€12.56 in chips) 
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€3.14 in chips) 
-Seat 4: s0rrow (€6.07 in chips) 
+Seat 4: Hero (€6.07 in chips) 
 Seat 5: Poptart74 (€2 in chips) 
 Seat 6: PokerMill100 (€9.26 in chips) 
 Poptart74: posts small blind €0.05
 PokerMill100: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Kd 7h]
+Dealt to Hero [Kd 7h]
 Oswood: folds 
 HomerrrJay: raises €0.20 to €0.30
 andi661: folds 
-s0rrow: folds 
+Hero: folds 
 Poptart74: folds 
 PokerMill100: calls €0.20
 *** FLOP *** [7c Qc 6c]
@@ -980,7 +980,7 @@ Board [7c Qc 6c Kh 2d]
 Seat 1: Oswood folded before Flop (didn't bet)
 Seat 2: HomerrrJay collected (€1.95)
 Seat 3: andi661 folded before Flop (didn't bet)
-Seat 4: s0rrow (button) folded before Flop (didn't bet)
+Seat 4: Hero (button) folded before Flop (didn't bet)
 Seat 5: Poptart74 (small blind) folded before Flop
 Seat 6: PokerMill100 (big blind) folded on the River
 
@@ -991,16 +991,16 @@ Table 'Lampland' 6-max Seat #5 is the button
 Seat 1: Oswood (€12.56 in chips) 
 Seat 2: HomerrrJay (€10.95 in chips) 
 Seat 3: andi661 (€3.14 in chips) 
-Seat 4: s0rrow (€6.07 in chips) 
+Seat 4: Hero (€6.07 in chips) 
 Seat 5: Poptart74 (€1.95 in chips) 
 Seat 6: PokerMill100 (€8.26 in chips) 
 PokerMill100: posts small blind €0.05
 Oswood: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [6d Ac]
+Dealt to Hero [6d Ac]
 HomerrrJay: folds 
 andi661: calls €0.10
-s0rrow: folds 
+Hero: folds 
 Poptart74: folds 
 PokerMill100: calls €0.05
 Oswood: checks 
@@ -1020,7 +1020,7 @@ Board [6c 4h Kh]
 Seat 1: Oswood (big blind) folded on the Flop
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: andi661 folded on the Flop
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Poptart74 (button) folded before Flop (didn't bet)
 Seat 6: PokerMill100 (small blind) collected (€0.48)
 
@@ -1031,37 +1031,37 @@ Table 'Lampland' 6-max Seat #6 is the button
 Seat 1: Oswood (€12.46 in chips) 
 Seat 2: HomerrrJay (€10.95 in chips) 
 Seat 3: andi661 (€2.94 in chips) 
-Seat 4: s0rrow (€6.07 in chips) 
+Seat 4: Hero (€6.07 in chips) 
 Seat 5: Poptart74 (€1.95 in chips) 
 Seat 6: PokerMill100 (€8.54 in chips) 
 Oswood: posts small blind €0.05
 HomerrrJay: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qs Qc]
+Dealt to Hero [Qs Qc]
 andi661: folds 
-s0rrow: raises €0.20 to €0.30
+Hero: raises €0.20 to €0.30
 Poptart74: folds 
 PokerMill100: raises €0.50 to €0.80
 Oswood: folds 
 HomerrrJay: folds 
-s0rrow: raises €1.60 to €2.40
+Hero: raises €1.60 to €2.40
 PokerMill100: calls €1.60
 *** FLOP *** [5c 8c 7c]
-s0rrow: bets €3.67 and is all-in
+Hero: bets €3.67 and is all-in
 PokerMill100: calls €3.67
 *** TURN *** [5c 8c 7c] [9h]
 *** RIVER *** [5c 8c 7c 9h] [2h]
 *** SHOW DOWN ***
-s0rrow: shows [Qs Qc] (a pair of Queens)
+Hero: shows [Qs Qc] (a pair of Queens)
 PokerMill100: shows [Qd Ac] (high card Ace)
-s0rrow collected €11.69 from pot
+Hero collected €11.69 from pot
 *** SUMMARY ***
 Total pot €12.29 | Rake €0.60 
 Board [5c 8c 7c 9h 2h]
 Seat 1: Oswood (small blind) folded before Flop
 Seat 2: HomerrrJay (big blind) folded before Flop
 Seat 3: andi661 folded before Flop (didn't bet)
-Seat 4: s0rrow showed [Qs Qc] and won (€11.69) with a pair of Queens
+Seat 4: Hero showed [Qs Qc] and won (€11.69) with a pair of Queens
 Seat 5: Poptart74 folded before Flop (didn't bet)
 Seat 6: PokerMill100 (button) showed [Qd Ac] and lost with high card Ace
 
@@ -1072,24 +1072,24 @@ Table 'Lampland' 6-max Seat #1 is the button
 Seat 1: Oswood (€12.41 in chips) 
 Seat 2: HomerrrJay (€10.85 in chips) 
 Seat 3: andi661 (€2.94 in chips) 
-Seat 4: s0rrow (€11.69 in chips) 
+Seat 4: Hero (€11.69 in chips) 
 Seat 5: Poptart74 (€1.95 in chips) 
 Seat 6: PokerMill100 (€2.47 in chips) 
 HomerrrJay: posts small blind €0.05
 andi661: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [As 8s]
-s0rrow: raises €0.20 to €0.30
+Dealt to Hero [As 8s]
+Hero: raises €0.20 to €0.30
 Poptart74: folds 
 PokerMill100: raises €0.30 to €0.60
 Oswood: folds 
 HomerrrJay: folds 
 andi661: folds 
-s0rrow: calls €0.30
+Hero: calls €0.30
 *** FLOP *** [2h 7h Qc]
-s0rrow: checks 
+Hero: checks 
 PokerMill100: bets €0.50
-s0rrow: folds 
+Hero: folds 
 Uncalled bet (€0.50) returned to PokerMill100
 PokerMill100 collected €1.29 from pot
 PokerMill100: doesn't show hand 
@@ -1099,7 +1099,7 @@ Board [2h 7h Qc]
 Seat 1: Oswood (button) folded before Flop (didn't bet)
 Seat 2: HomerrrJay (small blind) folded before Flop
 Seat 3: andi661 (big blind) folded before Flop
-Seat 4: s0rrow folded on the Flop
+Seat 4: Hero folded on the Flop
 Seat 5: Poptart74 folded before Flop (didn't bet)
 Seat 6: PokerMill100 collected (€1.29)
 
@@ -1110,13 +1110,13 @@ Table 'Lampland' 6-max Seat #2 is the button
 Seat 1: Oswood (€12.41 in chips) 
 Seat 2: HomerrrJay (€10.80 in chips) 
 Seat 3: andi661 (€2.84 in chips) 
-Seat 4: s0rrow (€11.09 in chips) 
+Seat 4: Hero (€11.09 in chips) 
 Seat 5: Poptart74 (€1.95 in chips) 
 Seat 6: PokerMill100 (€3.16 in chips) 
 andi661: posts small blind €0.05
-s0rrow: posts big blind €0.10
+Hero: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [9h 9d]
+Dealt to Hero [9h 9d]
 Poptart74: folds 
 PokerMill100: folds 
 Oswood has timed out
@@ -1125,21 +1125,21 @@ Oswood is sitting out
 Oswood has returned
 HomerrrJay: raises €0.20 to €0.30
 andi661: folds 
-s0rrow: calls €0.20
+Hero: calls €0.20
 *** FLOP *** [4h 9s Qc]
-s0rrow: checks 
+Hero: checks 
 HomerrrJay: bets €0.40
-s0rrow: raises €1 to €1.40
+Hero: raises €1 to €1.40
 HomerrrJay: folds 
-Uncalled bet (€1) returned to s0rrow
-s0rrow collected €1.38 from pot
+Uncalled bet (€1) returned to Hero
+Hero collected €1.38 from pot
 *** SUMMARY ***
 Total pot €1.45 | Rake €0.07 
 Board [4h 9s Qc]
 Seat 1: Oswood folded before Flop (didn't bet)
 Seat 2: HomerrrJay (button) folded on the Flop
 Seat 3: andi661 (small blind) folded before Flop
-Seat 4: s0rrow (big blind) collected (€1.38)
+Seat 4: Hero (big blind) collected (€1.38)
 Seat 5: Poptart74 folded before Flop (didn't bet)
 Seat 6: PokerMill100 folded before Flop (didn't bet)
 
@@ -1150,20 +1150,20 @@ Table 'Lampland' 6-max Seat #3 is the button
 Seat 1: Oswood (€12.41 in chips) 
 Seat 2: HomerrrJay (€10.10 in chips) 
 Seat 3: andi661 (€2.79 in chips) 
-Seat 4: s0rrow (€11.77 in chips) 
+Seat 4: Hero (€11.77 in chips) 
 Seat 5: Poptart74 (€1.95 in chips) 
 Seat 6: PokerMill100 (€3.16 in chips) 
-s0rrow: posts small blind €0.05
+Hero: posts small blind €0.05
 Poptart74: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qd 3s]
+Dealt to Hero [Qd 3s]
 PokerMill100: folds 
 Oswood has timed out
 Oswood: folds 
 Oswood is sitting out
 HomerrrJay: folds 
 andi661: calls €0.10
-s0rrow: folds 
+Hero: folds 
 Poptart74: checks 
 *** FLOP *** [7d Kd 6h]
 Poptart74: checks 
@@ -1177,7 +1177,7 @@ Board [7d Kd 6h]
 Seat 1: Oswood folded before Flop (didn't bet)
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: andi661 (button) collected (€0.24)
-Seat 4: s0rrow (small blind) folded before Flop
+Seat 4: Hero (small blind) folded before Flop
 Seat 5: Poptart74 (big blind) folded on the Flop
 Seat 6: PokerMill100 folded before Flop (didn't bet)
 
@@ -1187,16 +1187,16 @@ PokerStars Game #35602435059:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #4 is the button
 Seat 2: HomerrrJay (€10.10 in chips) 
 Seat 3: andi661 (€2.93 in chips) 
-Seat 4: s0rrow (€11.72 in chips) 
+Seat 4: Hero (€11.72 in chips) 
 Seat 5: Poptart74 (€1.85 in chips) 
 Seat 6: PokerMill100 (€3.16 in chips) 
 Poptart74: posts small blind €0.05
 PokerMill100: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [9h Tc]
+Dealt to Hero [9h Tc]
 HomerrrJay: raises €0.30 to €0.40
 andi661: calls €0.40
-s0rrow: folds 
+Hero: folds 
 Poptart74: folds 
 PokerMill100: folds 
 *** FLOP *** [Kc Kh As]
@@ -1213,7 +1213,7 @@ Total pot €0.95 | Rake €0.04
 Board [Kc Kh As 9c]
 Seat 2: HomerrrJay collected (€0.91)
 Seat 3: andi661 folded on the Turn
-Seat 4: s0rrow (button) folded before Flop (didn't bet)
+Seat 4: Hero (button) folded before Flop (didn't bet)
 Seat 5: Poptart74 (small blind) folded before Flop
 Seat 6: PokerMill100 (big blind) folded before Flop
 
@@ -1223,15 +1223,15 @@ PokerStars Game #35602449190:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #5 is the button
 Seat 2: HomerrrJay (€10.61 in chips) 
 Seat 3: andi661 (€2.53 in chips) 
-Seat 4: s0rrow (€11.72 in chips) 
+Seat 4: Hero (€11.72 in chips) 
 Seat 5: Poptart74 (€1.80 in chips) 
 Seat 6: PokerMill100 (€3.06 in chips) 
 PokerMill100: posts small blind €0.05
 HomerrrJay: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [4d Ac]
+Dealt to Hero [4d Ac]
 andi661: raises €0.10 to €0.20
-s0rrow: folds 
+Hero: folds 
 Poptart74: folds 
 PokerMill100: folds 
 HomerrrJay: folds 
@@ -1241,7 +1241,7 @@ andi661 collected €0.25 from pot
 Total pot €0.25 | Rake €0 
 Seat 2: HomerrrJay (big blind) folded before Flop
 Seat 3: andi661 collected (€0.25)
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Poptart74 (button) folded before Flop (didn't bet)
 Seat 6: PokerMill100 (small blind) folded before Flop
 
@@ -1251,14 +1251,14 @@ PokerStars Game #35602454945:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #6 is the button
 Seat 2: HomerrrJay (€10.51 in chips) 
 Seat 3: andi661 (€2.68 in chips) 
-Seat 4: s0rrow (€11.72 in chips) 
+Seat 4: Hero (€11.72 in chips) 
 Seat 5: Poptart74 (€1.80 in chips) 
 Seat 6: PokerMill100 (€3.01 in chips) 
 HomerrrJay: posts small blind €0.05
 andi661: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qh 3c]
-s0rrow: folds 
+Dealt to Hero [Qh 3c]
+Hero: folds 
 Poptart74: calls €0.10
 PokerMill100: calls €0.10
 HomerrrJay: calls €0.05
@@ -1283,7 +1283,7 @@ Total pot €1.80 | Rake €0.08
 Board [9s 8h 8d Qc Td]
 Seat 2: HomerrrJay (small blind) folded on the River
 Seat 3: andi661 (big blind) collected (€1.72)
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Poptart74 folded on the Flop
 Seat 6: PokerMill100 (button) folded on the Flop
 
@@ -1293,39 +1293,39 @@ PokerStars Game #35602472519:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #2 is the button
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€3.60 in chips) 
-Seat 4: s0rrow (€11.72 in chips) 
+Seat 4: Hero (€11.72 in chips) 
 Seat 5: Poptart74 (€1.70 in chips) 
 Seat 6: PokerMill100 (€2.91 in chips) 
 andi661: posts small blind €0.05
-s0rrow: posts big blind €0.10
+Hero: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Ah Th]
+Dealt to Hero [Ah Th]
 Poptart74: calls €0.10
 PokerMill100: folds 
 HomerrrJay: folds 
 andi661: calls €0.05
-s0rrow: checks 
+Hero: checks 
 *** FLOP *** [As Js 8s]
 andi661: checks 
-s0rrow: checks 
+Hero: checks 
 Poptart74: checks 
 *** TURN *** [As Js 8s] [8c]
 andi661: bets €0.20
-s0rrow: calls €0.20
+Hero: calls €0.20
 Poptart74: folds 
 *** RIVER *** [As Js 8s 8c] [3c]
 andi661: bets €0.50
-s0rrow: calls €0.50
+Hero: calls €0.50
 *** SHOW DOWN ***
 andi661: shows [Jd 9h] (two pair, Jacks and Eights)
-s0rrow: shows [Ah Th] (two pair, Aces and Eights)
-s0rrow collected €1.62 from pot
+Hero: shows [Ah Th] (two pair, Aces and Eights)
+Hero collected €1.62 from pot
 *** SUMMARY ***
 Total pot €1.70 | Rake €0.08 
 Board [As Js 8s 8c 3c]
 Seat 2: HomerrrJay (button) folded before Flop (didn't bet)
 Seat 3: andi661 (small blind) showed [Jd 9h] and lost with two pair, Jacks and Eights
-Seat 4: s0rrow (big blind) showed [Ah Th] and won (€1.62) with two pair, Aces and Eights
+Seat 4: Hero (big blind) showed [Ah Th] and won (€1.62) with two pair, Aces and Eights
 Seat 5: Poptart74 folded on the Turn
 Seat 6: PokerMill100 folded before Flop (didn't bet)
 
@@ -1335,23 +1335,23 @@ PokerStars Game #35602487338:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #3 is the button
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€2.80 in chips) 
-Seat 4: s0rrow (€12.54 in chips) 
+Seat 4: Hero (€12.54 in chips) 
 Seat 5: Poptart74 (€1.60 in chips) 
 Seat 6: PokerMill100 (€2.91 in chips) 
-s0rrow: posts small blind €0.05
+Hero: posts small blind €0.05
 Poptart74: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qd Td]
+Dealt to Hero [Qd Td]
 PokerMill100: folds 
 HomerrrJay: folds 
 andi661: calls €0.10
-s0rrow: calls €0.05
+Hero: calls €0.05
 Poptart74: checks 
 *** FLOP *** [4s 8d 6h]
-s0rrow: checks 
+Hero: checks 
 Poptart74: checks 
 andi661: bets €0.20
-s0rrow: folds 
+Hero: folds 
 Poptart74: calls €0.20
 *** TURN *** [4s 8d 6h] [Kc]
 Poptart74: checks 
@@ -1370,7 +1370,7 @@ Total pot €2.30 | Rake €0.11
 Board [4s 8d 6h Kc Qc]
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: andi661 (button) showed [3h 3c] and lost with a pair of Threes
-Seat 4: s0rrow (small blind) folded on the Flop
+Seat 4: Hero (small blind) folded on the Flop
 Seat 5: Poptart74 (big blind) showed [5h 6c] and won (€2.19) with a pair of Sixes
 Seat 6: PokerMill100 folded before Flop (didn't bet)
 
@@ -1380,16 +1380,16 @@ PokerStars Game #35602509002:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #4 is the button
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€1.70 in chips) 
-Seat 4: s0rrow (€12.44 in chips) 
+Seat 4: Hero (€12.44 in chips) 
 Seat 5: Poptart74 (€2.69 in chips) 
 Seat 6: PokerMill100 (€2.91 in chips) 
 Poptart74: posts small blind €0.05
 PokerMill100: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Kd 5d]
+Dealt to Hero [Kd 5d]
 HomerrrJay: folds 
 andi661: calls €0.10
-s0rrow: folds 
+Hero: folds 
 Poptart74: calls €0.05
 PokerMill100: checks 
 *** FLOP *** [Ts 8c Qc]
@@ -1412,7 +1412,7 @@ Total pot €3.50 | Rake €0.17
 Board [Ts 8c Qc 7s Qh]
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: andi661 showed [Jd Th] and won (€3.33) with two pair, Queens and Tens
-Seat 4: s0rrow (button) folded before Flop (didn't bet)
+Seat 4: Hero (button) folded before Flop (didn't bet)
 Seat 5: Poptart74 (small blind) showed [8s 9s] and lost with two pair, Queens and Eights
 Seat 6: PokerMill100 (big blind) folded on the Flop
 
@@ -1422,15 +1422,15 @@ PokerStars Game #35602528089:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #5 is the button
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€3.33 in chips) 
-Seat 4: s0rrow (€12.44 in chips) 
+Seat 4: Hero (€12.44 in chips) 
 Seat 5: Poptart74 (€0.99 in chips) 
 Seat 6: PokerMill100 (€2.81 in chips) 
 PokerMill100: posts small blind €0.05
 HomerrrJay: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [7d Th]
+Dealt to Hero [7d Th]
 andi661: folds 
-s0rrow: folds 
+Hero: folds 
 Poptart74: folds 
 PokerMill100: folds 
 Uncalled bet (€0.05) returned to HomerrrJay
@@ -1440,7 +1440,7 @@ HomerrrJay: doesn't show hand
 Total pot €0.10 | Rake €0 
 Seat 2: HomerrrJay (big blind) collected (€0.10)
 Seat 3: andi661 folded before Flop (didn't bet)
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Poptart74 (button) folded before Flop (didn't bet)
 Seat 6: PokerMill100 (small blind) folded before Flop
 
@@ -1450,14 +1450,14 @@ PokerStars Game #35602532574:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #6 is the button
 Seat 2: HomerrrJay (€10.05 in chips) 
 Seat 3: andi661 (€3.33 in chips) 
-Seat 4: s0rrow (€12.44 in chips) 
+Seat 4: Hero (€12.44 in chips) 
 Seat 5: Poptart74 (€0.99 in chips) 
 Seat 6: PokerMill100 (€2.76 in chips) 
 HomerrrJay: posts small blind €0.05
 andi661: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [6d Qh]
-s0rrow: folds 
+Dealt to Hero [6d Qh]
+Hero: folds 
 Poptart74: folds 
 PokerMill100: folds 
 HomerrrJay: folds 
@@ -1467,7 +1467,7 @@ andi661 collected €0.10 from pot
 Total pot €0.10 | Rake €0 
 Seat 2: HomerrrJay (small blind) folded before Flop
 Seat 3: andi661 (big blind) collected (€0.10)
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Poptart74 folded before Flop (didn't bet)
 Seat 6: PokerMill100 (button) folded before Flop (didn't bet)
 
@@ -1477,18 +1477,18 @@ PokerStars Game #35602538264:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #2 is the button
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€3.38 in chips) 
-Seat 4: s0rrow (€12.44 in chips) 
+Seat 4: Hero (€12.44 in chips) 
 Seat 5: Poptart74 (€0.99 in chips) 
 Seat 6: PokerMill100 (€2.76 in chips) 
 andi661: posts small blind €0.05
-s0rrow: posts big blind €0.10
+Hero: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [4h Jh]
+Dealt to Hero [4h Jh]
 Poptart74: folds 
 PokerMill100: raises €0.20 to €0.30
 HomerrrJay: folds 
 andi661: folds 
-s0rrow: folds 
+Hero: folds 
 Uncalled bet (€0.20) returned to PokerMill100
 PokerMill100 collected €0.25 from pot
 PokerMill100: doesn't show hand 
@@ -1496,7 +1496,7 @@ PokerMill100: doesn't show hand
 Total pot €0.25 | Rake €0 
 Seat 2: HomerrrJay (button) folded before Flop (didn't bet)
 Seat 3: andi661 (small blind) folded before Flop
-Seat 4: s0rrow (big blind) folded before Flop
+Seat 4: Hero (big blind) folded before Flop
 Seat 5: Poptart74 folded before Flop (didn't bet)
 Seat 6: PokerMill100 collected (€0.25)
 
@@ -1506,17 +1506,17 @@ PokerStars Game #35602543794:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #3 is the button
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€3.33 in chips) 
-Seat 4: s0rrow (€12.34 in chips) 
+Seat 4: Hero (€12.34 in chips) 
 Seat 5: Poptart74 (€0.99 in chips) 
 Seat 6: PokerMill100 (€2.91 in chips) 
-s0rrow: posts small blind €0.05
+Hero: posts small blind €0.05
 Poptart74: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qs 4c]
+Dealt to Hero [Qs 4c]
 PokerMill100: raises €0.30 to €0.40
 HomerrrJay: folds 
 andi661: folds 
-s0rrow: folds 
+Hero: folds 
 Poptart74: folds 
 Uncalled bet (€0.30) returned to PokerMill100
 PokerMill100 collected €0.25 from pot
@@ -1524,7 +1524,7 @@ PokerMill100 collected €0.25 from pot
 Total pot €0.25 | Rake €0 
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: andi661 (button) folded before Flop (didn't bet)
-Seat 4: s0rrow (small blind) folded before Flop
+Seat 4: Hero (small blind) folded before Flop
 Seat 5: Poptart74 (big blind) folded before Flop
 Seat 6: PokerMill100 collected (€0.25)
 
@@ -1534,16 +1534,16 @@ PokerStars Game #35602548453:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #4 is the button
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€3.33 in chips) 
-Seat 4: s0rrow (€12.29 in chips) 
+Seat 4: Hero (€12.29 in chips) 
 Seat 5: Poptart74 (€0.89 in chips) 
 Seat 6: PokerMill100 (€3.06 in chips) 
 Poptart74: posts small blind €0.05
 PokerMill100: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Jh 6c]
+Dealt to Hero [Jh 6c]
 HomerrrJay: folds 
 andi661: calls €0.10
-s0rrow: folds 
+Hero: folds 
 Poptart74: calls €0.05
 PokerMill100: checks 
 *** FLOP *** [Td 9s Kc]
@@ -1569,7 +1569,7 @@ Total pot €0.90 | Rake €0.04
 Board [Td 9s Kc 9h 8h]
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: andi661 showed [3h 4h] and lost with a pair of Nines
-Seat 4: s0rrow (button) folded before Flop (didn't bet)
+Seat 4: Hero (button) folded before Flop (didn't bet)
 Seat 5: Poptart74 (small blind) showed [Qh Ts] and won (€0.86) with two pair, Tens and Nines
 Seat 6: PokerMill100 (big blind) folded on the River
 
@@ -1579,15 +1579,15 @@ PokerStars Game #35602569251:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #5 is the button
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€2.93 in chips) 
-Seat 4: s0rrow (€12.29 in chips) 
+Seat 4: Hero (€12.29 in chips) 
 Seat 5: Poptart74 (€1.35 in chips) 
 Seat 6: PokerMill100 (€2.96 in chips) 
 PokerMill100: posts small blind €0.05
 HomerrrJay: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Jh 5s]
+Dealt to Hero [Jh 5s]
 andi661: folds 
-s0rrow: folds 
+Hero: folds 
 Poptart74: calls €0.10
 PokerMill100: raises €0.30 to €0.40
 HomerrrJay: folds 
@@ -1598,7 +1598,7 @@ PokerMill100 collected €0.30 from pot
 Total pot €0.30 | Rake €0 
 Seat 2: HomerrrJay (big blind) folded before Flop
 Seat 3: andi661 folded before Flop (didn't bet)
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Poptart74 (button) folded before Flop
 Seat 6: PokerMill100 (small blind) collected (€0.30)
 
@@ -1608,14 +1608,14 @@ PokerStars Game #35602575727:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #6 is the button
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€2.93 in chips) 
-Seat 4: s0rrow (€12.29 in chips) 
+Seat 4: Hero (€12.29 in chips) 
 Seat 5: Poptart74 (€1.25 in chips) 
 Seat 6: PokerMill100 (€3.16 in chips) 
 HomerrrJay: posts small blind €0.05
 andi661: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [4d 2c]
-s0rrow: folds 
+Dealt to Hero [4d 2c]
+Hero: folds 
 Poptart74: raises €0.20 to €0.30
 PokerMill100: calls €0.30
 HomerrrJay: folds 
@@ -1641,7 +1641,7 @@ Total pot €1.55 | Rake €0.07
 Board [7c 8h 9h 3d 7d]
 Seat 2: HomerrrJay (small blind) folded before Flop
 Seat 3: andi661 (big blind) folded on the Turn
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Poptart74 folded on the River
 Seat 6: PokerMill100 (button) collected (€1.48)
 
@@ -1651,23 +1651,23 @@ PokerStars Game #35602599492:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #2 is the button
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€2.63 in chips) 
-Seat 4: s0rrow (€12.29 in chips) 
+Seat 4: Hero (€12.29 in chips) 
 Seat 5: Poptart74 (€0.65 in chips) 
 Seat 6: PokerMill100 (€4.04 in chips) 
 andi661: posts small blind €0.05
-s0rrow: posts big blind €0.10
+Hero: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [5d 6d]
+Dealt to Hero [5d 6d]
 Poptart74: raises €0.55 to €0.65 and is all-in
 PokerMill100: folds 
 HomerrrJay: folds 
 andi661: folds 
-s0rrow: calls €0.55
+Hero: calls €0.55
 *** FLOP *** [9c 2c 7d]
 *** TURN *** [9c 2c 7d] [Jc]
 *** RIVER *** [9c 2c 7d Jc] [Jd]
 *** SHOW DOWN ***
-s0rrow: shows [5d 6d] (a pair of Jacks)
+Hero: shows [5d 6d] (a pair of Jacks)
 Poptart74: shows [7h Kh] (two pair, Jacks and Sevens)
 Poptart74 collected €1.29 from pot
 *** SUMMARY ***
@@ -1675,7 +1675,7 @@ Total pot €1.35 | Rake €0.06
 Board [9c 2c 7d Jc Jd]
 Seat 2: HomerrrJay (button) folded before Flop (didn't bet)
 Seat 3: andi661 (small blind) folded before Flop
-Seat 4: s0rrow (big blind) showed [5d 6d] and lost with a pair of Jacks
+Seat 4: Hero (big blind) showed [5d 6d] and lost with a pair of Jacks
 Seat 5: Poptart74 showed [7h Kh] and won (€1.29) with two pair, Jacks and Sevens
 Seat 6: PokerMill100 folded before Flop (didn't bet)
 
@@ -1685,17 +1685,17 @@ PokerStars Game #35602610521:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #3 is the button
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€2.58 in chips) 
-Seat 4: s0rrow (€11.64 in chips) 
+Seat 4: Hero (€11.64 in chips) 
 Seat 5: Poptart74 (€1.29 in chips) 
 Seat 6: PokerMill100 (€4.04 in chips) 
-s0rrow: posts small blind €0.05
+Hero: posts small blind €0.05
 Poptart74: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [5h Jc]
+Dealt to Hero [5h Jc]
 PokerMill100: folds 
 HomerrrJay: folds 
 andi661: folds 
-s0rrow: folds 
+Hero: folds 
 Uncalled bet (€0.05) returned to Poptart74
 Poptart74 collected €0.10 from pot
 Poptart74: doesn't show hand 
@@ -1703,7 +1703,7 @@ Poptart74: doesn't show hand
 Total pot €0.10 | Rake €0 
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: andi661 (button) folded before Flop (didn't bet)
-Seat 4: s0rrow (small blind) folded before Flop
+Seat 4: Hero (small blind) folded before Flop
 Seat 5: Poptart74 (big blind) collected (€0.10)
 Seat 6: PokerMill100 folded before Flop (didn't bet)
 
@@ -1713,16 +1713,16 @@ PokerStars Game #35602613846:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #4 is the button
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€2.58 in chips) 
-Seat 4: s0rrow (€11.59 in chips) 
+Seat 4: Hero (€11.59 in chips) 
 Seat 5: Poptart74 (€1.34 in chips) 
 Seat 6: PokerMill100 (€4.04 in chips) 
 Poptart74: posts small blind €0.05
 PokerMill100: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Td 5c]
+Dealt to Hero [Td 5c]
 HomerrrJay: folds 
 andi661: folds 
-s0rrow: folds 
+Hero: folds 
 Poptart74: calls €0.05
 PokerMill100: raises €0.20 to €0.30
 Poptart74: folds 
@@ -1732,7 +1732,7 @@ PokerMill100 collected €0.20 from pot
 Total pot €0.20 | Rake €0 
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: andi661 folded before Flop (didn't bet)
-Seat 4: s0rrow (button) folded before Flop (didn't bet)
+Seat 4: Hero (button) folded before Flop (didn't bet)
 Seat 5: Poptart74 (small blind) folded before Flop
 Seat 6: PokerMill100 (big blind) collected (€0.20)
 
@@ -1742,15 +1742,15 @@ PokerStars Game #35602622054:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #5 is the button
 Seat 2: HomerrrJay (€10 in chips) 
 Seat 3: andi661 (€2.58 in chips) 
-Seat 4: s0rrow (€11.59 in chips) 
+Seat 4: Hero (€11.59 in chips) 
 Seat 5: Poptart74 (€1.24 in chips) 
 Seat 6: PokerMill100 (€4.14 in chips) 
 PokerMill100: posts small blind €0.05
 HomerrrJay: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [3s Qd]
+Dealt to Hero [3s Qd]
 andi661: raises €0.20 to €0.30
-s0rrow: folds 
+Hero: folds 
 Poptart74: calls €0.30
 PokerMill100: calls €0.25
 HomerrrJay: calls €0.20
@@ -1778,7 +1778,7 @@ Total pot €4.02 | Rake €0.19
 Board [Kh 8h 9d 4d 9h]
 Seat 2: HomerrrJay (big blind) showed [9s Js] and won (€3.83) with three of a kind, Nines
 Seat 3: andi661 showed [Jc Qc] and lost with a pair of Nines
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Poptart74 (button) mucked [Tc Kd]
 Seat 6: PokerMill100 (small blind) folded on the Flop
 
@@ -1788,14 +1788,14 @@ PokerStars Game #35602639577:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #6 is the button
 Seat 2: HomerrrJay (€12.59 in chips) 
 Seat 3: andi661 (€1.34 in chips) 
-Seat 4: s0rrow (€11.59 in chips) 
+Seat 4: Hero (€11.59 in chips) 
 Seat 6: PokerMill100 (€3.84 in chips) 
 Oswood was removed from the table for failing to post
 HomerrrJay: posts small blind €0.05
 andi661: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [3d 7d]
-s0rrow: folds 
+Dealt to Hero [3d 7d]
+Hero: folds 
 PokerMill100: folds 
 Poptart74 leaves the table
 HomerrrJay: raises €0.20 to €0.30
@@ -1814,7 +1814,7 @@ Total pot €0.60 | Rake €0.03
 Board [9c 2c 9h Qc]
 Seat 2: HomerrrJay (small blind) collected (€0.57)
 Seat 3: andi661 (big blind) folded on the Turn
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 6: PokerMill100 (button) folded before Flop (didn't bet)
 
 
@@ -1823,22 +1823,22 @@ PokerStars Game #35602648744:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #2 is the button
 Seat 2: HomerrrJay (€12.86 in chips) 
 Seat 3: andi661 (€1.04 in chips) 
-Seat 4: s0rrow (€11.59 in chips) 
+Seat 4: Hero (€11.59 in chips) 
 Seat 6: PokerMill100 (€3.84 in chips) 
 andi661: posts small blind €0.05
-s0rrow: posts big blind €0.10
+Hero: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [6c Qc]
+Dealt to Hero [6c Qc]
 PokerMill100: folds 
 HomerrrJay: folds 
 andi661: calls €0.05
-s0rrow: checks 
+Hero: checks 
 *** FLOP *** [5d Ac 3d]
 andi661: checks 
-s0rrow: checks 
+Hero: checks 
 *** TURN *** [5d Ac 3d] [Td]
 andi661: bets €0.20
-s0rrow: folds 
+Hero: folds 
 Uncalled bet (€0.20) returned to andi661
 andi661 collected €0.19 from pot
 *** SUMMARY ***
@@ -1846,7 +1846,7 @@ Total pot €0.20 | Rake €0.01
 Board [5d Ac 3d Td]
 Seat 2: HomerrrJay (button) folded before Flop (didn't bet)
 Seat 3: andi661 (small blind) collected (€0.19)
-Seat 4: s0rrow (big blind) folded on the Turn
+Seat 4: Hero (big blind) folded on the Turn
 Seat 6: PokerMill100 folded before Flop (didn't bet)
 
 
@@ -1855,15 +1855,15 @@ PokerStars Game #35602658421:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #3 is the button
 Seat 2: HomerrrJay (€12.86 in chips) 
 Seat 3: andi661 (€1.13 in chips) 
-Seat 4: s0rrow (€11.49 in chips) 
+Seat 4: Hero (€11.49 in chips) 
 Seat 6: PokerMill100 (€3.84 in chips) 
-s0rrow: posts small blind €0.05
+Hero: posts small blind €0.05
 PokerMill100: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [9s 2s]
+Dealt to Hero [9s 2s]
 HomerrrJay: folds 
 andi661: calls €0.10
-s0rrow: folds 
+Hero: folds 
 PokerMill100: checks 
 *** FLOP *** [Jh Qs Js]
 PokerMill100: checks 
@@ -1876,7 +1876,7 @@ Total pot €0.25 | Rake €0.01
 Board [Jh Qs Js]
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: andi661 (button) collected (€0.24)
-Seat 4: s0rrow (small blind) folded before Flop
+Seat 4: Hero (small blind) folded before Flop
 Seat 6: PokerMill100 (big blind) folded on the Flop
 
 
@@ -1885,14 +1885,14 @@ PokerStars Game #35602664558:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #4 is the button
 Seat 2: HomerrrJay (€12.86 in chips) 
 Seat 3: andi661 (€1.27 in chips) 
-Seat 4: s0rrow (€11.44 in chips) 
+Seat 4: Hero (€11.44 in chips) 
 Seat 6: PokerMill100 (€3.74 in chips) 
 PokerMill100: posts small blind €0.05
 HomerrrJay: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [9h 4h]
+Dealt to Hero [9h 4h]
 andi661: folds 
-s0rrow: folds 
+Hero: folds 
 PokerMill100: calls €0.05
 HomerrrJay: checks 
 *** FLOP *** [6h Qd 9s]
@@ -1914,7 +1914,7 @@ Total pot €0.60 | Rake €0.02
 Board [6h Qd 9s 6c 2d]
 Seat 2: HomerrrJay (big blind) mucked [2s 3d]
 Seat 3: andi661 folded before Flop (didn't bet)
-Seat 4: s0rrow (button) folded before Flop (didn't bet)
+Seat 4: Hero (button) folded before Flop (didn't bet)
 Seat 6: PokerMill100 (small blind) showed [6d 5h] and won (€0.58) with three of a kind, Sixes
 
 
@@ -1923,28 +1923,28 @@ PokerStars Game #35602675399:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #6 is the button
 Seat 2: HomerrrJay (€12.56 in chips) 
 Seat 3: andi661 (€1.27 in chips) 
-Seat 4: s0rrow (€11.44 in chips) 
+Seat 4: Hero (€11.44 in chips) 
 Seat 6: PokerMill100 (€4.02 in chips) 
 HomerrrJay: posts small blind €0.05
 andi661: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Ts Th]
-s0rrow: raises €0.20 to €0.30
+Dealt to Hero [Ts Th]
+Hero: raises €0.20 to €0.30
 PokerMill100: folds 
 HomerrrJay: raises €0.80 to €1.10
 andi661: raises €0.17 to €1.27 and is all-in
 Frenchmeistr joins the table at seat #5 
-s0rrow: calls €0.97
+Hero: calls €0.97
 HomerrrJay: calls €0.17
 *** FLOP *** [2h 8c Qd]
 HomerrrJay: checks 
-s0rrow: checks 
+Hero: checks 
 *** TURN *** [2h 8c Qd] [8h]
 HomerrrJay: checks 
-s0rrow: checks 
+Hero: checks 
 *** RIVER *** [2h 8c Qd 8h] [Ah]
 HomerrrJay: bets €2
-s0rrow: folds 
+Hero: folds 
 Uncalled bet (€2) returned to HomerrrJay
 *** SHOW DOWN ***
 HomerrrJay: shows [Kd As] (two pair, Aces and Eights)
@@ -1956,7 +1956,7 @@ Total pot €3.81 | Rake €0.19
 Board [2h 8c Qd 8h Ah]
 Seat 2: HomerrrJay (small blind) showed [Kd As] and won (€3.62) with two pair, Aces and Eights
 Seat 3: andi661 (big blind) showed [4s 4c] and lost with two pair, Eights and Fours
-Seat 4: s0rrow folded on the River
+Seat 4: Hero folded on the River
 Seat 6: PokerMill100 (button) folded before Flop (didn't bet)
 
 
@@ -1964,25 +1964,25 @@ Seat 6: PokerMill100 (button) folded before Flop (didn't bet)
 PokerStars Game #35602689357:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/20 7:41:56 ET
 Table 'Lampland' 6-max Seat #2 is the button
 Seat 2: HomerrrJay (€14.91 in chips) 
-Seat 4: s0rrow (€10.17 in chips) 
+Seat 4: Hero (€10.17 in chips) 
 Seat 5: Frenchmeistr (€2 in chips) 
 Seat 6: PokerMill100 (€4.02 in chips) 
-s0rrow: posts small blind €0.05
+Hero: posts small blind €0.05
 Frenchmeistr: posts big blind €0.10
 terpoox: sits out 
 *** HOLE CARDS ***
-Dealt to s0rrow [8h Qs]
+Dealt to Hero [8h Qs]
 PokerMill100: folds 
 andi661 leaves the table
 HomerrrJay: folds 
-s0rrow: folds 
+Hero: folds 
 Uncalled bet (€0.05) returned to Frenchmeistr
 Frenchmeistr collected €0.10 from pot
 Frenchmeistr: doesn't show hand 
 *** SUMMARY ***
 Total pot €0.10 | Rake €0 
 Seat 2: HomerrrJay (button) folded before Flop (didn't bet)
-Seat 4: s0rrow (small blind) folded before Flop
+Seat 4: Hero (small blind) folded before Flop
 Seat 5: Frenchmeistr (big blind) collected (€0.10)
 Seat 6: PokerMill100 folded before Flop (didn't bet)
 
@@ -1991,16 +1991,16 @@ Seat 6: PokerMill100 folded before Flop (didn't bet)
 PokerStars Game #35602693895:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/20 7:42:07 ET
 Table 'Lampland' 6-max Seat #4 is the button
 Seat 2: HomerrrJay (€14.91 in chips) 
-Seat 4: s0rrow (€10.12 in chips) 
+Seat 4: Hero (€10.12 in chips) 
 Seat 5: Frenchmeistr (€2.05 in chips) 
 Seat 6: PokerMill100 (€4.02 in chips) 
 Frenchmeistr: posts small blind €0.05
 PokerMill100: posts big blind €0.10
 terpoox: sits out 
 *** HOLE CARDS ***
-Dealt to s0rrow [8s 4h]
+Dealt to Hero [8s 4h]
 HomerrrJay: folds 
-s0rrow: folds 
+Hero: folds 
 Frenchmeistr: calls €0.05
 PokerMill100: raises €0.30 to €0.40
 Frenchmeistr: calls €0.30
@@ -2016,7 +2016,7 @@ PokerMill100: doesn't show hand
 Total pot €0.80 | Rake €0.04 
 Board [Js 7d Qs]
 Seat 2: HomerrrJay folded before Flop (didn't bet)
-Seat 4: s0rrow (button) folded before Flop (didn't bet)
+Seat 4: Hero (button) folded before Flop (didn't bet)
 Seat 5: Frenchmeistr (small blind) folded on the Flop
 Seat 6: PokerMill100 (big blind) collected (€0.76)
 
@@ -2026,20 +2026,20 @@ PokerStars Game #35602703765:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #5 is the button
 Seat 1: terpoox (€2 in chips) 
 Seat 2: HomerrrJay (€14.91 in chips) 
-Seat 4: s0rrow (€10.12 in chips) 
+Seat 4: Hero (€10.12 in chips) 
 Seat 5: Frenchmeistr (€1.65 in chips) 
 Seat 6: PokerMill100 (€4.38 in chips) 
 PokerMill100: posts small blind €0.05
 terpoox: posts big blind €0.10
 Oswood: sits out 
 *** HOLE CARDS ***
-Dealt to s0rrow [8s Jc]
+Dealt to Hero [8s Jc]
 HomerrrJay: folds 
-s0rrow: raises €0.20 to €0.30
+Hero: raises €0.20 to €0.30
 Frenchmeistr: raises €1.35 to €1.65 and is all-in
 PokerMill100: folds 
 terpoox: folds 
-s0rrow: folds 
+Hero: folds 
 Uncalled bet (€1.35) returned to Frenchmeistr
 Frenchmeistr collected €0.75 from pot
 Frenchmeistr: doesn't show hand 
@@ -2047,7 +2047,7 @@ Frenchmeistr: doesn't show hand
 Total pot €0.75 | Rake €0 
 Seat 1: terpoox (big blind) folded before Flop
 Seat 2: HomerrrJay folded before Flop (didn't bet)
-Seat 4: s0rrow folded before Flop
+Seat 4: Hero folded before Flop
 Seat 5: Frenchmeistr (button) collected (€0.75)
 Seat 6: PokerMill100 (small blind) folded before Flop
 
@@ -2057,22 +2057,22 @@ PokerStars Game #35602710852:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #6 is the button
 Seat 1: terpoox (€1.90 in chips) 
 Seat 2: HomerrrJay (€14.91 in chips) 
-Seat 4: s0rrow (€9.82 in chips) 
+Seat 4: Hero (€9.82 in chips) 
 Seat 5: Frenchmeistr (€2.10 in chips) 
 Seat 6: PokerMill100 (€4.33 in chips) 
 terpoox: posts small blind €0.05
 HomerrrJay: posts big blind €0.10
 Oswood: sits out 
 *** HOLE CARDS ***
-Dealt to s0rrow [As Kd]
-s0rrow: raises €0.20 to €0.30
+Dealt to Hero [As Kd]
+Hero: raises €0.20 to €0.30
 Frenchmeistr: calls €0.30
 PokerMill100: folds 
 terpoox: calls €0.25
 HomerrrJay: folds 
 *** FLOP *** [Tc Ts Jd]
 terpoox: bets €1.60 and is all-in
-s0rrow: folds 
+Hero: folds 
 Frenchmeistr: folds 
 Uncalled bet (€1.60) returned to terpoox
 terpoox collected €0.95 from pot
@@ -2082,7 +2082,7 @@ Total pot €1 | Rake €0.05
 Board [Tc Ts Jd]
 Seat 1: terpoox (small blind) collected (€0.95)
 Seat 2: HomerrrJay (big blind) folded before Flop
-Seat 4: s0rrow folded on the Flop
+Seat 4: Hero folded on the Flop
 Seat 5: Frenchmeistr folded on the Flop
 Seat 6: PokerMill100 (button) folded before Flop (didn't bet)
 
@@ -2093,14 +2093,14 @@ Table 'Lampland' 6-max Seat #1 is the button
 Seat 1: terpoox (€2.55 in chips) 
 Seat 2: HomerrrJay (€14.81 in chips) 
 Seat 3: Oswood (€12.41 in chips) 
-Seat 4: s0rrow (€9.52 in chips) 
+Seat 4: Hero (€9.52 in chips) 
 Seat 5: Frenchmeistr (€1.80 in chips) 
 Seat 6: PokerMill100 (€4.33 in chips) 
 HomerrrJay: posts small blind €0.05
 Oswood: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [8c 7h]
-s0rrow: folds 
+Dealt to Hero [8c 7h]
+Hero: folds 
 Frenchmeistr: calls €0.10
 PokerMill100: calls €0.10
 terpoox: folds 
@@ -2131,7 +2131,7 @@ Board [6h 5s As 9c Ad]
 Seat 1: terpoox (button) folded before Flop (didn't bet)
 Seat 2: HomerrrJay (small blind) folded before Flop
 Seat 3: Oswood (big blind) showed [7s 5h] and lost with two pair, Aces and Fives
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Frenchmeistr mucked [2h 3d]
 Seat 6: PokerMill100 showed [9d Kd] and won (€0.91) with two pair, Aces and Nines
 
@@ -2142,19 +2142,19 @@ Table 'Lampland' 6-max Seat #2 is the button
 Seat 1: terpoox (€2.55 in chips) 
 Seat 2: HomerrrJay (€14.76 in chips) 
 Seat 3: Oswood (€12.11 in chips) 
-Seat 4: s0rrow (€9.52 in chips) 
+Seat 4: Hero (€9.52 in chips) 
 Seat 5: Frenchmeistr (€1.50 in chips) 
 Seat 6: PokerMill100 (€4.94 in chips) 
 Oswood: posts small blind €0.05
-s0rrow: posts big blind €0.10
+Hero: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Jd 3d]
+Dealt to Hero [Jd 3d]
 Frenchmeistr: calls €0.10
 PokerMill100: raises €0.30 to €0.40
 terpoox: folds 
 HomerrrJay: calls €0.40
 Oswood: calls €0.35
-s0rrow: folds 
+Hero: folds 
 Frenchmeistr: calls €0.30
 *** FLOP *** [6d 3c 4d]
 Oswood: checks 
@@ -2175,7 +2175,7 @@ Board [6d 3c 4d 7h Th]
 Seat 1: terpoox folded before Flop (didn't bet)
 Seat 2: HomerrrJay (button) showed [9c 9s] and lost with a pair of Nines
 Seat 3: Oswood (small blind) folded on the Flop
-Seat 4: s0rrow (big blind) folded before Flop
+Seat 4: Hero (big blind) folded before Flop
 Seat 5: Frenchmeistr showed [5h Qc] and won (€3.71) with a straight, Three to Seven
 Seat 6: PokerMill100 folded on the Flop
 
@@ -2186,18 +2186,18 @@ Table 'Lampland' 6-max Seat #3 is the button
 Seat 1: terpoox (€2.55 in chips) 
 Seat 2: HomerrrJay (€13.26 in chips) 
 Seat 3: Oswood (€11.71 in chips) 
-Seat 4: s0rrow (€9.42 in chips) 
+Seat 4: Hero (€9.42 in chips) 
 Seat 5: Frenchmeistr (€3.71 in chips) 
 Seat 6: PokerMill100 (€4.54 in chips) 
-s0rrow: posts small blind €0.05
+Hero: posts small blind €0.05
 Frenchmeistr: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [4d Jh]
+Dealt to Hero [4d Jh]
 PokerMill100: folds 
 terpoox: raises €0.20 to €0.30
 HomerrrJay: raises €0.80 to €1.10
 Oswood: folds 
-s0rrow: folds 
+Hero: folds 
 Frenchmeistr: folds 
 terpoox: folds 
 Uncalled bet (€0.80) returned to HomerrrJay
@@ -2208,7 +2208,7 @@ Total pot €0.75 | Rake €0
 Seat 1: terpoox folded before Flop
 Seat 2: HomerrrJay collected (€0.75)
 Seat 3: Oswood (button) folded before Flop (didn't bet)
-Seat 4: s0rrow (small blind) folded before Flop
+Seat 4: Hero (small blind) folded before Flop
 Seat 5: Frenchmeistr (big blind) folded before Flop
 Seat 6: PokerMill100 folded before Flop (didn't bet)
 
@@ -2219,17 +2219,17 @@ Table 'Lampland' 6-max Seat #4 is the button
 Seat 1: terpoox (€2.25 in chips) 
 Seat 2: HomerrrJay (€13.71 in chips) 
 Seat 3: Oswood (€11.71 in chips) 
-Seat 4: s0rrow (€9.37 in chips) 
+Seat 4: Hero (€9.37 in chips) 
 Seat 5: Frenchmeistr (€3.61 in chips) 
 Seat 6: PokerMill100 (€4.54 in chips) 
 Frenchmeistr: posts small blind €0.05
 PokerMill100: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [5d 9h]
+Dealt to Hero [5d 9h]
 terpoox: calls €0.10
 HomerrrJay: raises €0.40 to €0.50
 Oswood: calls €0.50
-s0rrow: folds 
+Hero: folds 
 Frenchmeistr: folds 
 PokerMill100: calls €0.40
 terpoox: calls €0.40
@@ -2255,7 +2255,7 @@ Board [Qh As 9d 8d 3h]
 Seat 1: terpoox showed [Ac 4c] and lost with a pair of Aces
 Seat 2: HomerrrJay folded on the Turn
 Seat 3: Oswood showed [Js Ts] and won (€5.28) with a straight, Eight to Queen
-Seat 4: s0rrow (button) folded before Flop (didn't bet)
+Seat 4: Hero (button) folded before Flop (didn't bet)
 Seat 5: Frenchmeistr (small blind) folded before Flop
 Seat 6: PokerMill100 (big blind) folded on the Turn
 
@@ -2265,15 +2265,15 @@ PokerStars Game #35602783606:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #5 is the button
 Seat 2: HomerrrJay (€13.21 in chips) 
 Seat 3: Oswood (€14.74 in chips) 
-Seat 4: s0rrow (€9.37 in chips) 
+Seat 4: Hero (€9.37 in chips) 
 Seat 5: Frenchmeistr (€3.56 in chips) 
 Seat 6: PokerMill100 (€4.04 in chips) 
 PokerMill100: posts small blind €0.05
 HomerrrJay: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [7s Kh]
+Dealt to Hero [7s Kh]
 Oswood: raises €0.20 to €0.30
-s0rrow: folds 
+Hero: folds 
 Frenchmeistr: calls €0.30
 PokerMill100: calls €0.25
 HomerrrJay: folds 
@@ -2296,7 +2296,7 @@ Total pot €7.52 | Rake €0.37
 Board [5h 3c 6s Qs 2s]
 Seat 2: HomerrrJay (big blind) folded before Flop
 Seat 3: Oswood folded on the Flop
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Frenchmeistr (button) showed [9d 6h] and lost with a pair of Sixes
 Seat 6: PokerMill100 (small blind) showed [6d 3d] and won (€7.15) with two pair, Sixes and Threes
 
@@ -2306,13 +2306,13 @@ PokerStars Game #35602802439:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #6 is the button
 Seat 2: HomerrrJay (€13.11 in chips) 
 Seat 3: Oswood (€14.44 in chips) 
-Seat 4: s0rrow (€9.37 in chips) 
+Seat 4: Hero (€9.37 in chips) 
 Seat 6: PokerMill100 (€7.63 in chips) 
 HomerrrJay: posts small blind €0.05
 Oswood: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [9s Qc]
-s0rrow: folds 
+Dealt to Hero [9s Qc]
+Hero: folds 
 PokerMill100: folds 
 HomerrrJay: folds 
 Uncalled bet (€0.05) returned to Oswood
@@ -2322,7 +2322,7 @@ Oswood collected €0.10 from pot
 Total pot €0.10 | Rake €0 
 Seat 2: HomerrrJay (small blind) folded before Flop
 Seat 3: Oswood (big blind) collected (€0.10)
-Seat 4: s0rrow folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 6: PokerMill100 (button) folded before Flop (didn't bet)
 
 
@@ -2331,37 +2331,37 @@ PokerStars Game #35602807096:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #2 is the button
 Seat 2: HomerrrJay (€13.06 in chips) 
 Seat 3: Oswood (€14.49 in chips) 
-Seat 4: s0rrow (€9.37 in chips) 
+Seat 4: Hero (€9.37 in chips) 
 Seat 6: PokerMill100 (€7.63 in chips) 
 Oswood: posts small blind €0.05
-s0rrow: posts big blind €0.10
+Hero: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [7d 9h]
+Dealt to Hero [7d 9h]
 PokerMill100: folds 
 smokin_hot08 joins the table at seat #1 
 HomerrrJay: folds 
 Oswood: calls €0.05
-s0rrow: checks 
+Hero: checks 
 *** FLOP *** [2h Ts Th]
 Oswood: checks 
-s0rrow: checks 
+Hero: checks 
 *** TURN *** [2h Ts Th] [2d]
 Oswood: checks 
-s0rrow: checks 
+Hero: checks 
 *** RIVER *** [2h Ts Th 2d] [As]
 Oswood: checks 
-s0rrow: checks 
+Hero: checks 
 *** SHOW DOWN ***
 Oswood: shows [5s Qs] (two pair, Tens and Deuces)
-s0rrow: shows [7d 9h] (two pair, Tens and Deuces)
+Hero: shows [7d 9h] (two pair, Tens and Deuces)
 Oswood collected €0.10 from pot
-s0rrow collected €0.09 from pot
+Hero collected €0.09 from pot
 *** SUMMARY ***
 Total pot €0.20 | Rake €0.01 
 Board [2h Ts Th 2d As]
 Seat 2: HomerrrJay (button) folded before Flop (didn't bet)
 Seat 3: Oswood (small blind) showed [5s Qs] and won (€0.10) with two pair, Tens and Deuces
-Seat 4: s0rrow (big blind) showed [7d 9h] and won (€0.09) with two pair, Tens and Deuces
+Seat 4: Hero (big blind) showed [7d 9h] and won (€0.09) with two pair, Tens and Deuces
 Seat 6: PokerMill100 folded before Flop (didn't bet)
 
 
@@ -2371,17 +2371,17 @@ Table 'Lampland' 6-max Seat #3 is the button
 Seat 1: smokin_hot08 (€2 in chips) 
 Seat 2: HomerrrJay (€13.06 in chips) 
 Seat 3: Oswood (€14.49 in chips) 
-Seat 4: s0rrow (€9.36 in chips) 
+Seat 4: Hero (€9.36 in chips) 
 Seat 6: PokerMill100 (€7.63 in chips) 
-s0rrow: posts small blind €0.05
+Hero: posts small blind €0.05
 PokerMill100: posts big blind €0.10
 smokin_hot08: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [5c 8d]
+Dealt to Hero [5c 8d]
 smokin_hot08: raises €0.50 to €0.60
 HomerrrJay: folds 
 Oswood: folds 
-s0rrow: folds 
+Hero: folds 
 PokerMill100: calls €0.50
 *** FLOP *** [Th Qh 2h]
 PokerMill100: checks 
@@ -2399,7 +2399,7 @@ Board [Th Qh 2h 3h Td]
 Seat 1: smokin_hot08 showed [9c 9d] and lost with two pair, Tens and Nines
 Seat 2: HomerrrJay folded before Flop (didn't bet)
 Seat 3: Oswood (button) folded before Flop (didn't bet)
-Seat 4: s0rrow (small blind) folded before Flop
+Seat 4: Hero (small blind) folded before Flop
 Seat 6: PokerMill100 (big blind) showed [Ah Jc] and won (€3.86) with a flush, Ace high
 
 
@@ -2408,15 +2408,15 @@ PokerStars Game #35602834956:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #4 is the button
 Seat 2: HomerrrJay (€13.06 in chips) 
 Seat 3: Oswood (€14.49 in chips) 
-Seat 4: s0rrow (€9.31 in chips) 
+Seat 4: Hero (€9.31 in chips) 
 Seat 6: PokerMill100 (€9.49 in chips) 
 PokerMill100: posts small blind €0.05
 HomerrrJay: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [4s 5d]
+Dealt to Hero [4s 5d]
 smokin_hot08 leaves the table
 Oswood: folds 
-s0rrow: folds 
+Hero: folds 
 PokerMill100: calls €0.05
 HomerrrJay: checks 
 *** FLOP *** [Kh 7d Jc]
@@ -2438,7 +2438,7 @@ Total pot €0.20 | Rake €0.01
 Board [Kh 7d Jc 9h Kd]
 Seat 2: HomerrrJay (big blind) showed [2h As] and won (€0.19) with a pair of Kings
 Seat 3: Oswood folded before Flop (didn't bet)
-Seat 4: s0rrow (button) folded before Flop (didn't bet)
+Seat 4: Hero (button) folded before Flop (didn't bet)
 Seat 6: PokerMill100 (small blind) showed [5s 6d] and lost with a pair of Kings
 
 
@@ -2447,21 +2447,21 @@ PokerStars Game #35602844425:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #2 is the button
 Seat 2: HomerrrJay (€13.15 in chips) 
 Seat 3: Oswood (€14.49 in chips) 
-Seat 4: s0rrow (€9.31 in chips) 
+Seat 4: Hero (€9.31 in chips) 
 PokerMill100 leaves the table
 Oswood: posts small blind €0.05
-s0rrow: posts big blind €0.10
+Hero: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [9s Jd]
+Dealt to Hero [9s Jd]
 HomerrrJay: folds 
 Oswood: folds 
-Uncalled bet (€0.05) returned to s0rrow
-s0rrow collected €0.10 from pot
+Uncalled bet (€0.05) returned to Hero
+Hero collected €0.10 from pot
 *** SUMMARY ***
 Total pot €0.10 | Rake €0 
 Seat 2: HomerrrJay (button) folded before Flop (didn't bet)
 Seat 3: Oswood (small blind) folded before Flop
-Seat 4: s0rrow (big blind) collected (€0.10)
+Seat 4: Hero (big blind) collected (€0.10)
 
 
 
@@ -2469,62 +2469,62 @@ PokerStars Game #35602847618:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/
 Table 'Lampland' 6-max Seat #3 is the button
 Seat 2: HomerrrJay (€13.15 in chips) 
 Seat 3: Oswood (€14.44 in chips) 
-Seat 4: s0rrow (€9.36 in chips) 
-s0rrow: posts small blind €0.05
+Seat 4: Hero (€9.36 in chips) 
+Hero: posts small blind €0.05
 HomerrrJay: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Ad Th]
+Dealt to Hero [Ad Th]
 Oswood: folds 
 Oswood leaves the table
-s0rrow: raises €0.20 to €0.30
+Hero: raises €0.20 to €0.30
 HomerrrJay: folds 
-Uncalled bet (€0.20) returned to s0rrow
-s0rrow collected €0.20 from pot
+Uncalled bet (€0.20) returned to Hero
+Hero collected €0.20 from pot
 *** SUMMARY ***
 Total pot €0.20 | Rake €0 
 Seat 2: HomerrrJay (big blind) folded before Flop
 Seat 3: Oswood (button) folded before Flop (didn't bet)
-Seat 4: s0rrow (small blind) collected (€0.20)
+Seat 4: Hero (small blind) collected (€0.20)
 
 
 
 PokerStars Game #35602851942:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/20 7:48:57 ET
 Table 'Lampland' 6-max Seat #2 is the button
 Seat 2: HomerrrJay (€13.05 in chips) 
-Seat 4: s0rrow (€9.46 in chips) 
+Seat 4: Hero (€9.46 in chips) 
 HomerrrJay: posts small blind €0.05
-s0rrow: posts big blind €0.10
+Hero: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [4s Qd]
+Dealt to Hero [4s Qd]
 HomerrrJay: raises €0.20 to €0.30
-s0rrow: folds 
+Hero: folds 
 Uncalled bet (€0.20) returned to HomerrrJay
 HomerrrJay collected €0.20 from pot
 HomerrrJay: doesn't show hand 
 *** SUMMARY ***
 Total pot €0.20 | Rake €0 
 Seat 2: HomerrrJay (button) (small blind) collected (€0.20)
-Seat 4: s0rrow (big blind) folded before Flop
+Seat 4: Hero (big blind) folded before Flop
 
 
 
 PokerStars Game #35602855141:  Hold'em No Limit (€0.05/€0.10 EUR) - 2009/11/20 7:49:05 ET
 Table 'Lampland' 6-max Seat #4 is the button
 Seat 2: HomerrrJay (€13.15 in chips) 
-Seat 4: s0rrow (€9.36 in chips) 
-s0rrow: posts small blind €0.05
+Seat 4: Hero (€9.36 in chips) 
+Hero: posts small blind €0.05
 HomerrrJay: posts big blind €0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Ad 8d]
-s0rrow: raises €0.20 to €0.30
+Dealt to Hero [Ad 8d]
+Hero: raises €0.20 to €0.30
 HomerrrJay: folds 
-Uncalled bet (€0.20) returned to s0rrow
+Uncalled bet (€0.20) returned to Hero
 HomerrrJay leaves the table
-s0rrow collected €0.20 from pot
+Hero collected €0.20 from pot
 *** SUMMARY ***
 Total pot €0.20 | Rake €0 
 Seat 2: HomerrrJay (big blind) folded before Flop
-Seat 4: s0rrow (button) (small blind) collected (€0.20)
+Seat 4: Hero (button) (small blind) collected (€0.20)
 
 
 
