@@ -7,39 +7,39 @@ Seat 4: Lawwill (3300 in chips)
 Seat 5: nakamurov (1890 in chips) 
 Seat 6: 67_fredf_67 (1425 in chips) 
 Seat 7: NICk.nico333 (1960 in chips) 
-Seat 8: steffen780 (1745 in chips) 
+Seat 8: Hero (1745 in chips) 
 Seat 9: PORCHES996 (390 in chips) 
 101ripcord: posts small blind 25
 Lawwill: posts big blind 50
 *** HOLE CARDS ***
-Dealt to steffen780 [Td Th]
+Dealt to Hero [Td Th]
 nakamurov: folds 
 67_fredf_67: calls 50
 NICk.nico333: folds 
-steffen780: raises 50 to 100
+Hero: raises 50 to 100
 PORCHES996: folds 
 Slush11: raises 10 to 110 and is all-in
 zsoccerino: folds 
 101ripcord: calls 85
 Lawwill: folds 
 67_fredf_67: calls 60
-steffen780: calls 10
+Hero: calls 10
 *** FLOP *** [2c Qh 6c]
 101ripcord: checks 
 67_fredf_67: checks 
-steffen780: bets 50
+Hero: bets 50
 101ripcord: calls 50
 67_fredf_67: folds 
 *** TURN *** [2c Qh 6c] [9s]
 101ripcord: checks 
-steffen780: bets 100
+Hero: bets 100
 101ripcord: calls 100
 *** RIVER *** [2c Qh 6c 9s] [4d]
 101ripcord: bets 100
-steffen780: calls 100
+Hero: calls 100
 *** SHOW DOWN ***
 101ripcord: shows [9c 4c] (two pair, Nines and Fours)
-steffen780: mucks hand 
+Hero: mucks hand 
 101ripcord collected 500 from side pot
 Slush11: mucks hand 
 101ripcord collected 490 from main pot
@@ -53,7 +53,7 @@ Seat 4: Lawwill (big blind) folded before Flop
 Seat 5: nakamurov folded before Flop (didn't bet)
 Seat 6: 67_fredf_67 folded on the Flop
 Seat 7: NICk.nico333 folded before Flop (didn't bet)
-Seat 8: steffen780 mucked [Td Th]
+Seat 8: Hero mucked [Td Th]
 Seat 9: PORCHES996 folded before Flop (didn't bet)
 
 
