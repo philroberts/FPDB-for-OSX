@@ -66,27 +66,37 @@ class Table(Table_Window):
         if self.number is None:
             return None
         
-        self.window = self.get_window_from_xid(self.number)
-        self.parent = self.window.query_tree().parent
+        (self.window, self.parent) = self.get_window_from_xid(self.number)
 
     def get_window_from_xid(self, id):
         for outside in root.query_tree().children:
             if outside.id == id:
-                return outside
+                return (outside, outside.query_tree().parent)
             for inside in outside.query_tree().children:
-                if inside.id == id:
-                    return inside
-        return None
+                if inside.id == id:  # GNOME, Xfce
+                    return (inside, inside.query_tree().parent)
+                for wayinside in inside.query_tree().children:
+                    if wayinside.id == id:  # KDE
+                        parent = wayinside.query_tree().parent
+                        return (wayinside, parent.query_tree().parent)
+        return (None, None)
 
     def get_geometry(self):
         try:
             my_geo = self.window.get_geometry()
-            pa_geo = self.parent.get_geometry()
-            return {'x'      : my_geo.x + pa_geo.x,
-                    'y'      : my_geo.y + pa_geo.y,
-                    'width'  : my_geo.width,
-                    'height' : my_geo.height
-                   }
+            if self.parent is None:
+                return {'x'      : my_geo.x + pa_geo.x,
+                        'y'      : my_geo.y + pa_geo.y,
+                        'width'  : my_geo.width,
+                        'height' : my_geo.height
+                       }
+            else:
+                pa_geo = self.parent.get_geometry()
+                return {'x'      : my_geo.x + pa_geo.x,
+                        'y'      : my_geo.y + pa_geo.y,
+                        'width'  : my_geo.width,
+                        'height' : my_geo.height
+                       }
         except:
             return None
 
@@ -98,7 +108,11 @@ class Table(Table_Window):
         except AttributeError:
             return None
         
+    def topify(self, window):
+#    The idea here is to call set_transient_for on the HUD window, with the table window
+#    as the argument. This should keep the HUD window on top of the table window, as if 
+#    the hud window was a dialog belonging to the table.
 
-    def topify(self, hud):
-        hud.main_window.gdkhandle = gtk.gdk.window_foreign_new(hud.main_window.window.xid)
-        hud.main_window.gdkhandle.set_transient_for(self.gdk_handle)
+#    This is the gdkhandle for the HUD window
+        gdkwindow = gtk.gdk.window_foreign_new(window.window.xid)
+        gdkwindow.set_transient_for(self.gdkhandle)
