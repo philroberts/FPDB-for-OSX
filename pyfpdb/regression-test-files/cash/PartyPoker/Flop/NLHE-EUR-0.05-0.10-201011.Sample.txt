@@ -1,0 +1,32 @@
+﻿Game #9864152000 starts.
+
+#Game No : 9864152000 
+***** Hand History for Game 9864152000 *****
+€10 EUR NL Texas Hold'em - Sunday, November 21, 19:00:00 CET 2010
+Table Table  183347 (Real Money)
+Seat 1 is the button
+Total number of players : 5/6 
+Seat 3: Hero ( €10 EUR )
+Seat 6: Player6 ( €16.49 EUR )
+Seat 4: Player4 ( €10.73 EUR )
+Seat 1: Player1 ( €8.56 EUR )
+Seat 2: Player2 ( €4.90 EUR )
+Player2 posts small blind [€0.05 EUR].
+Hero posts big blind [€0.10 EUR].
+** Dealing down cards **
+Dealt to Hero [  Ah Kc ]
+Player4 calls [€0.10 EUR]
+Player6 calls [€0.10 EUR]
+Player1 calls [€0.10 EUR]
+Player2 calls [€0.05 EUR]
+Hero raises [€0.56 EUR]
+Player4 folds
+Player6 folds
+Player1 folds
+Player2 calls [€0.56 EUR]
+** Dealing Flop ** [ 5s, 9d, Ad ]
+Player2 checks
+Hero bets [€1.52 EUR]
+Player2 folds
+Hero does not show cards.
+Hero wins €3.04 EUR

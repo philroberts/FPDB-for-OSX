@@ -33,6 +33,7 @@ class FullTiltPokerSummary(TourneySummary):
     games = {                          # base, category
                               "Hold'em" : ('hold','holdem'), 
                                 'Omaha' : ('hold','omahahi'),
+                            'Omahai Hi' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
                                  'Razz' : ('stud','razz'), 
                                  'RAZZ' : ('stud','razz'),
@@ -55,7 +56,7 @@ class FullTiltPokerSummary(TourneySummary):
     re_TourneyInfo = re.compile(u"""
                         \s.*
                         (?P<TYPE>Tournament|Sit\s\&\sGo)\s\((?P<TOURNO>[0-9]+)\)(\s+)?
-                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s+
+                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s+
                         (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+
                         (Buy-In:\s\$(?P<BUYIN>[.\d]+)(\s\+\s\$(?P<FEE>[.\d]+))?\s+)?
                         (Buy-In\sChips:\s(?P<CHIPS>\d+)\s+)?

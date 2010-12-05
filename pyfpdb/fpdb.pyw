@@ -116,6 +116,7 @@ import GuiAutoImport
 import GuiGraphViewer
 import GuiTourneyGraphViewer
 import GuiSessionViewer
+import GuiReplayer
 import GuiStove
 import SQL
 import Database
@@ -779,6 +780,7 @@ class fpdb:
                   <menuitem action="tourneyviewer"/>
                   <menuitem action="posnstats"/>
                   <menuitem action="sessionstats"/>
+                  <menuitem action="replayer"/>
                   <menuitem action="stove"/>
                 </menu>
                 <menu action="database">
@@ -822,6 +824,7 @@ class fpdb:
                                  ('tourneyviewer', None, _('Tourney _Viewer'), None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
                                  ('posnstats', None, _('P_ositional Stats (tabulated view, not on sqlite)'), _('<control>O'), 'Positional Stats (tabulated view, not on sqlite)', self.tab_positional_stats),
                                  ('sessionstats', None, _('Session Stats'), None, 'Session Stats', self.tab_session_stats),
+                                 ('replayer', None, _('Hand _Replayer'), None, 'Hand Replayer', self.tab_replayer),
                                  ('database', None, _('_Database')),
                                  ('maintaindbs', None, _('_Maintain Databases'), None, 'Maintain Databases', self.dia_maintain_dbs),
                                  ('createtabs', None, _('Create or Recreate _Tables'), None, 'Create or Recreate Tables ', self.dia_recreate_tables),
@@ -1045,6 +1048,12 @@ class fpdb:
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, _("Session Stats"))
+
+    def tab_replayer(self, widget, data=None):
+        new_ps_thread = GuiReplayer.GuiReplayer(self.config, self.sql, self.window)
+        self.threads.append(new_ps_thread)
+        ps_tab=new_ps_thread.get_vbox()
+        self.add_and_display_tab(ps_tab, _("Hand Replayer"))
 
     def tab_main_help(self, widget, data=None):
         """Displays a tab with the main fpdb help screen"""

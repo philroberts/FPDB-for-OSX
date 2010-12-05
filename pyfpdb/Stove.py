@@ -27,7 +27,7 @@ class Stove:
     def __init__(self):
         self.hand = None
         self.board = None
-        self.range = None
+        self.h_range = None
 
     def set_board_with_list(self, board):
         pass
@@ -58,7 +58,7 @@ class Stove:
 
     def set_villain_range_string(self, string):
         # Villain's range
-        range = Range()
+        h_range = Range()
         hands_in_range = string.strip().split(',')
         for h in hands_in_range:
             _h = h.strip()
@@ -67,11 +67,11 @@ class Stove:
                 r1 = cc[0]
                 r2 = cc[1]
                 vp = Cards(r1, r2)
-                range.add(vp)
+                h_range.add(vp)
             else:
-                range.expand(expand_hands(_h, pocket_cards, board))
+                h_range.expand(expand_hands(_h, self.hand, self.board))
 
-        self.range = range
+        self.h_range = h_range
 
 
 class Cards:
@@ -147,37 +147,17 @@ class SumEV:
         self.n_ties += ev.n_ties
         self.n_losses += ev.n_losses
 
-    def show(self, hand, range):
+    def show(self, hand, h_range):
         win_pct = 100 * (float(self.n_wins) / float(self.n_hands))
         lose_pct = 100 * (float(self.n_losses) / float(self.n_hands))
         tie_pct = 100 * (float(self.n_ties) / float(self.n_hands))
         print 'Enumerated %d possible plays.' % self.n_hands
         print 'Your hand: (%s %s)' % (hand.c1, hand.c2)
-        print 'Against the range: %s\n' % cards_from_range(range)
+        print 'Against the range: %s\n' % cards_from_range(h_range)
         print '  Win       Lose       Tie'
         print ' %5.2f%%    %5.2f%%    %5.2f%%' % (win_pct, lose_pct, tie_pct)
 
 
-def usage(me):
-    print """Texas Hold'Em odds calculator
-Calculates odds against a range of hands.
-
-To use: %s '<board cards>' '<your hand>' '<opponent's range>' [...]
-
-Separate cards with space.
-Separate hands in range with commas.
-""" % me
-
-def cards_from_range(range):
-    s = '{'
-    for h in range:
-        if h.c1 == '__' and h.c2 == '__':
-            s += 'random, '
-        else:
-            s += '%s%s, ' % (h.c1, h.c2)
-    s = s.rstrip(', ')
-    s += '}'
-    return s
 
 
 # Expands hand abbreviations such as JJ and AK to full hand ranges.
@@ -202,7 +182,7 @@ def expand_hands(abbrev, hand, board):
     else:
         selection = ANY
 
-    range = []
+    h_range = []
     considered = set()
     for s1 in SUITS:
         c1 = r1 + s1
@@ -216,8 +196,8 @@ def expand_hands(abbrev, hand, board):
             elif selection == OFFSUIT and s1 == s2:
                 continue
             if c2 not in considered and c2 not in known_cards:
-                range.append(Cards(c1, c2))
-    return range
+                h_range.append(Cards(c1, c2))
+    return h_range
 
 
 def parse_args(args, container):
@@ -228,7 +208,6 @@ def parse_args(args, container):
     container.set_board_string(args[1])
     container.set_hero_cards_string(args[2])
     container.set_villain_range_string(args[3])
-
 
     return True
 
@@ -281,7 +260,7 @@ def odds_for_range(holder):
         iters = random.randint(25000, 125000)
     else:
         iters = -1
-    for h in holder.range.get():
+    for h in holder.h_range.get():
         e = odds_for_hand(
             [holder.hand.c1, holder.hand.c2],
             [h.c1, h.c2],
@@ -290,7 +269,28 @@ def odds_for_range(holder):
             )
         sev.add(e)
 
-    sev.show(holder.hand, holder.range.get())
+    sev.show(holder.hand, holder.h_range.get())
+
+def usage(me):
+    print """Texas Hold'Em odds calculator
+Calculates odds against a range of hands.
+
+To use: %s '<board cards>' '<your hand>' '<opponent's range>' [...]
+
+Separate cards with space.
+Separate hands in range with commas.
+""" % me
+
+def cards_from_range(h_range):
+    s = '{'
+    for h in h_range:
+        if h.c1 == '__' and h.c2 == '__':
+            s += 'random, '
+        else:
+            s += '%s%s, ' % (h.c1, h.c2)
+    s = s.rstrip(', ')
+    s += '}'
+    return s
 
 def main(argv=None):
     stove = Stove()
