@@ -112,7 +112,7 @@ def copy_file(source,destination):
     shutil.copy( source, destination )
 
 
-fpdbver = '0.20.906'
+fpdbver = '0.21.rc1'
 
 distdir = r'fpdb-' + fpdbver
 rootdir = r'../../' #cwd is normally /packaging/windows
@@ -148,9 +148,10 @@ setup(
                                       ,'matplotlib.numerix.random_array'
                                       ,'AbsoluteToFpdb',      'BetfairToFpdb'
                                       ,'CarbonToFpdb',        'EverleafToFpdb'
-                                      ,'FulltiltToFpdb',      'OnGameToFpdb'
-                                      ,'PartyPokerToFpdb',    'PokerStarsToFpdb'
-                                      ,'UltimateBetToFpdb',   'Win2dayToFpdb'
+                                      ,'FulltiltToFpdb',      'iPokerToFpdb'
+                                      ,'OnGameToFpdb',        'PartyPokerToFpdb'
+                                      ,'PkrToFpdb',           'PokerStarsToFpdb'
+                                      ,'Win2dayToFpdb',       'WinamaxToFpdb'
                                       ],
                       'excludes'    : ['_tkagg', '_agg2', 'cocoaagg', 'fltkagg'],
                       'dll_excludes': ['libglade-2.0-0.dll', 'libgdk-win32-2.0-0.dll', 'libgobject-2.0-0.dll'
