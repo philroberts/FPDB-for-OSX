@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2010-08-30 01:30+CEST\n"
-"PO-Revision-Date: 2010-08-30 01:33+0200\n"
+"POT-Creation-Date: 2010-11-29 21:40+CET\n"
+"PO-Revision-Date: 2010-11-10 10:26+0100\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -16,72 +16,119 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 "Plural-Forms: nplurals=2; plural=n !=1;\n"
 
-#: AbsoluteToFpdb.py:167 BetfairToFpdb.py:114 CarbonToFpdb.py:151
-#: EverleafToFpdb.py:148 FulltiltToFpdb.py:221
-msgid "Didn't match re_HandInfo"
+#: AbsoluteToFpdb.py:139 BetfairToFpdb.py:76 CarbonToFpdb.py:130
+#: FulltiltToFpdb.py:185 OnGameToFpdb.py:170 PartyPokerToFpdb.py:200
+#: PkrToFpdb.py:128 PokerStarsToFpdb.py:187 Win2dayToFpdb.py:95
+#: WinamaxToFpdb.py:157 iPokerToFpdb.py:122
+msgid "determineGameType: Unable to recognise gametype from: '%s'"
+msgstr "determineGameType: Nem sikerült felismerni a játéktípust innen: '%s'"
+
+#: AbsoluteToFpdb.py:140 BetfairToFpdb.py:77 CarbonToFpdb.py:131
+#: FulltiltToFpdb.py:186 OnGameToFpdb.py:171 OnGameToFpdb.py:185
+#: PartyPokerToFpdb.py:201 PkrToFpdb.py:129 PkrToFpdb.py:154
+#: PokerStarsToFpdb.py:188 PokerStarsToFpdb.py:214 Win2dayToFpdb.py:96
+#: WinamaxToFpdb.py:158 WinamaxToFpdb.py:172 iPokerToFpdb.py:123
+msgid "determineGameType: Raising FpdbParseError"
+msgstr "determineGameType: FpdbParseError"
+
+#: AbsoluteToFpdb.py:141 BetfairToFpdb.py:78 CarbonToFpdb.py:132
+#: FulltiltToFpdb.py:187 OnGameToFpdb.py:172 PartyPokerToFpdb.py:202
+#: PkrToFpdb.py:130 PokerStarsToFpdb.py:189 Win2dayToFpdb.py:97
+#: WinamaxToFpdb.py:159 iPokerToFpdb.py:124
+msgid "Unable to recognise gametype from: '%s'"
+msgstr "Nem sikerült felismerni a játéktípust innen: '%s'"
+
+#: AbsoluteToFpdb.py:204
+msgid "readHandInfo: Didn't match: '%s'"
+msgstr ""
+
+#: AbsoluteToFpdb.py:205
+#, fuzzy
+msgid "Absolute: Didn't match re_HandInfo: '%s'"
 msgstr "re_HandInfo nem illeszkedik"
 
-#: AbsoluteToFpdb.py:224 EverleafToFpdb.py:217 FulltiltToFpdb.py:351
-#: OnGameToFpdb.py:296 PokerStarsToFpdb.py:359 UltimateBetToFpdb.py:183
-#: Win2dayToFpdb.py:197
+#: AbsoluteToFpdb.py:207
+#, fuzzy
+msgid "readHandInfo: File name didn't match re_*InfoFromFilename"
+msgstr "A fájlnév nem illeszkedik re_*InfoFromFilename-re"
+
+#: AbsoluteToFpdb.py:208
+msgid "File name: %s"
+msgstr "Fájlnév: %s"
+
+#: AbsoluteToFpdb.py:209
+#, fuzzy
+msgid "Absolute: Didn't match re_*InfoFromFilename: '%s'"
+msgstr "A fájlnév nem illeszkedik re_*InfoFromFilename-re"
+
+#: AbsoluteToFpdb.py:278 EverleafToFpdb.py:215 FulltiltToFpdb.py:346
+#: OnGameToFpdb.py:303 PokerStarsToFpdb.py:352 Win2dayToFpdb.py:203
+#: WinamaxToFpdb.py:276
 msgid "reading antes"
 msgstr "antek olvasása"
 
-#: AbsoluteToFpdb.py:236 EverleafToFpdb.py:229
+#: AbsoluteToFpdb.py:290 EverleafToFpdb.py:227
 msgid "No bringin found."
 msgstr "Nyitó hívás nem található."
 
-#: AbsoluteToFpdb.py:243 EverleafToFpdb.py:236
+#: AbsoluteToFpdb.py:297 EverleafToFpdb.py:234
 msgid "No small blind"
 msgstr "Nincs kisvak"
 
-#: AbsoluteToFpdb.py:270
+#: AbsoluteToFpdb.py:324
 msgid "Absolute readStudPlayerCards is only a stub."
 msgstr "Az Absolute terem readStudPlayerCards funkciója csak egy csonk."
 
-#: AbsoluteToFpdb.py:337 BetfairToFpdb.py:229 CarbonToFpdb.py:288
-#: EverleafToFpdb.py:325 FulltiltToFpdb.py:715 PartyPokerToFpdb.py:525
-#: PokerStarsToFpdb.py:468 UltimateBetToFpdb.py:315 Win2dayToFpdb.py:362
+#: AbsoluteToFpdb.py:401 BetfairToFpdb.py:222 CarbonToFpdb.py:298
+#: EverleafToFpdb.py:323 FulltiltToFpdb.py:710 PartyPokerToFpdb.py:579
+#: PokerStarsToFpdb.py:462 Win2dayToFpdb.py:368 iPokerToFpdb.py:291
 msgid "parse input hand history"
 msgstr "leosztástörténet feldolgozása"
 
-#: AbsoluteToFpdb.py:338 BetfairToFpdb.py:230 CarbonToFpdb.py:289
-#: EverleafToFpdb.py:326 FulltiltToFpdb.py:716 PartyPokerToFpdb.py:526
-#: PokerStarsToFpdb.py:469 UltimateBetToFpdb.py:316 Win2dayToFpdb.py:363
+#: AbsoluteToFpdb.py:402 BetfairToFpdb.py:223 CarbonToFpdb.py:299
+#: EverleafToFpdb.py:324 FulltiltToFpdb.py:711 PartyPokerToFpdb.py:580
+#: PokerStarsToFpdb.py:463 Win2dayToFpdb.py:369 iPokerToFpdb.py:292
 msgid "output translation to"
 msgstr "feldolgozás eredményének helye"
 
-#: AbsoluteToFpdb.py:339 BetfairToFpdb.py:231 CarbonToFpdb.py:290
-#: EverleafToFpdb.py:327 FulltiltToFpdb.py:717 PartyPokerToFpdb.py:527
-#: PokerStarsToFpdb.py:470 UltimateBetToFpdb.py:317 Win2dayToFpdb.py:364
+#: AbsoluteToFpdb.py:403 BetfairToFpdb.py:224 CarbonToFpdb.py:300
+#: EverleafToFpdb.py:325 FulltiltToFpdb.py:712 PartyPokerToFpdb.py:581
+#: PokerStarsToFpdb.py:464 Win2dayToFpdb.py:370 iPokerToFpdb.py:293
 msgid "follow (tail -f) the input"
 msgstr "kövesse a kimenetet (tail -f)"
 
-#: Anonymise.py:55
+#: Anonymise.py:47
 msgid "Could not find file %s"
 msgstr "%s fájl nem található"
 
-#: Anonymise.py:61
+#: Anonymise.py:53
 msgid "Output being written to"
 msgstr "Az eredmény ide került kiírásra"
 
-#: BetfairToFpdb.py:83
-msgid "GameInfo regex did not match"
-msgstr "GameInfo regex nem illeszkedik"
+#: BetfairToFpdb.py:108 CarbonToFpdb.py:163 EverleafToFpdb.py:142
+#: iPokerToFpdb.py:156 iPokerToFpdb.py:158
+msgid "Didn't match re_HandInfo"
+msgstr "re_HandInfo nem illeszkedik"
 
-#: BetfairToFpdb.py:130
+#: BetfairToFpdb.py:109 CarbonToFpdb.py:165 FulltiltToFpdb.py:224
+#: PokerStarsToFpdb.py:225
+msgid "No match in readHandInfo."
+msgstr "readHandInfo nem illeszkedik."
+
+#: BetfairToFpdb.py:123
 msgid "readPlayerStacks: Less than 2 players found in a hand"
 msgstr "readPlayerStacks: Kettőnél kevesebb játékost találtam egy leosztásban"
 
-#: BetfairToFpdb.py:170
+#: BetfairToFpdb.py:163
 msgid "No bringin found"
 msgstr "Nyitó hívás nem található"
 
-#: BetfairToFpdb.py:206 OnGameToFpdb.py:339 PokerStarsToFpdb.py:441
+#: BetfairToFpdb.py:199 OnGameToFpdb.py:346 PokerStarsToFpdb.py:434
+#: WinamaxToFpdb.py:322
 msgid "DEBUG: unimplemented readAction: '%s' '%s'"
 msgstr "DEBUG: nem ismert readAction: '%s' '%s'"
 
-#: Card.py:167
+#: Card.py:430
 msgid "fpdb card encoding(same as pokersource)"
 msgstr "fpdb kártyakódolás (ugyanaz, mint amit a pokersource használ)"
 
@@ -93,11 +140,11 @@ msgstr "Nem sikerült konvertálni: \"%s\"\n"
 msgid "Could not encode: \"%s\"\n"
 msgstr "Nem sikerült kódolni: \"%s\"\n"
 
-#: Configuration.py:116 Configuration.py:131
+#: Configuration.py:109 Configuration.py:124
 msgid "Config file has been created at %s.\n"
 msgstr "Konfigurációs fájl létrehozva itt: %s.\n"
 
-#: Configuration.py:130
+#: Configuration.py:123
 msgid ""
 "No %s found\n"
 "  in %s\n"
@@ -107,29 +154,29 @@ msgstr ""
 "  itt: %s\n"
 "  vagy itt: %s\n"
 
-#: Configuration.py:135 Configuration.py:136
+#: Configuration.py:128 Configuration.py:129
 msgid "Error copying .example config file, cannot fall back. Exiting.\n"
 msgstr ""
 "Hiba a .example konfigurációs fájl másolása közben, nem tudom folytatni. "
 "Kilépés.\n"
 
-#: Configuration.py:140 Configuration.py:141
+#: Configuration.py:133 Configuration.py:134
 msgid "No %s found, cannot fall back. Exiting.\n"
 msgstr "%s nem található, nem tudom folytatni. Kilépés.\n"
 
-#: Configuration.py:173
+#: Configuration.py:166
 msgid "Default logger initialised for "
 msgstr "Alapértelmezett naplózó előkészítve ehhez: "
 
-#: Configuration.py:174
+#: Configuration.py:167
 msgid "Default logger intialised for "
 msgstr "Alapértelmezett naplózó előkészítve ehhez: "
 
-#: Configuration.py:185 Database.py:438 Database.py:439
+#: Configuration.py:178 Database.py:435 Database.py:436
 msgid "Creating directory: '%s'"
 msgstr "Könyvtár létrehozása: '%s'"
 
-#: Configuration.py:211
+#: Configuration.py:204
 msgid ""
 "Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're "
 "not on a Mac, please report this problem."
@@ -137,59 +184,59 @@ msgstr ""
 "US-ASCII az alapértelmezett karakterkódolás, CP1252 használata ehelyett.Ha "
 "nem Mac-et használsz, akkor kérlek jelentsd ezt a problémát."
 
-#: Configuration.py:309
+#: Configuration.py:302
 msgid "Loading site"
 msgstr "Terem betöltése"
 
-#: Configuration.py:526
+#: Configuration.py:520
 msgid "config.general: adding %s = %s"
 msgstr "config.general: %s = %s hozzáadása"
 
-#: Configuration.py:573 Configuration.py:574
+#: Configuration.py:567 Configuration.py:568
 msgid "bad number in xalignment was ignored"
 msgstr "hibás érték az xalignment-ben - figyelmen kívül hagyás"
 
-#: Configuration.py:622
+#: Configuration.py:617
 msgid "missing config section raw_hands"
 msgstr "hiányzó konfigurációs bekezdés: raw_hands"
 
-#: Configuration.py:628
+#: Configuration.py:623
 msgid "Invalid config value for raw_hands.save, defaulting to \"error\""
 msgstr ""
 "Érvénytelen raw_hands.save beállítás, az alapértelmezett \"error\" használata"
 
-#: Configuration.py:635
+#: Configuration.py:630
 msgid "Invalid config value for raw_hands.compression, defaulting to \"none\""
 msgstr ""
 "Érvénytelen raw_hands.compression beállítás, az alapértelmezett \"none\" "
 "használata"
 
-#: Configuration.py:648
+#: Configuration.py:643
 msgid "missing config section raw_tourneys"
 msgstr "hiányzó konfigurációs bekezdés: raw_tourneys"
 
-#: Configuration.py:654
+#: Configuration.py:649
 msgid "Invalid config value for raw_tourneys.save, defaulting to \"error\""
 msgstr ""
 "Érvénytelen raw_tourneys.save beállítás, az alapértelmezett \"error\" "
 "használata"
 
-#: Configuration.py:661
+#: Configuration.py:656
 msgid ""
 "Invalid config value for raw_tourneys.compression, defaulting to \"none\""
 msgstr ""
 "Érvénytelen raw_tourneys.compression beállítás, az alapértelmezett \"none\" "
 "használata"
 
-#: Configuration.py:679 Configuration.py:680
+#: Configuration.py:674 Configuration.py:675
 msgid "Configuration file %s not found.  Using defaults."
 msgstr "A %s konfigurációs fájl nem található. Alapértelmezések használata."
 
-#: Configuration.py:708
+#: Configuration.py:705
 msgid "Reading configuration file %s"
 msgstr "%s konfigurációs fájl olvasása"
 
-#: Configuration.py:709
+#: Configuration.py:706
 msgid ""
 "\n"
 "Reading configuration file %s\n"
@@ -197,543 +244,565 @@ msgstr ""
 "\n"
 "%s konfigurációs fájl olvasása\n"
 
-#: Configuration.py:715
+#: Configuration.py:712
 msgid "Error parsing %s.  See error log file."
 msgstr "Hiba a(z) %s értelmezése közben. Nézz bele a hibanaplóba."
 
-#: Configuration.py:831
+#: Configuration.py:828
 msgid "Error parsing example file %s. See error log file."
 msgstr "Hiba a(z) %s mintafájl értelmezése közben. Nézz bele a hibanaplóba."
 
-#: Database.py:74
+#: Database.py:65
 msgid "Not using sqlalchemy connection pool."
 msgstr "SQLAlchemy connection pool használatának kihagyása."
 
-#: Database.py:81
+#: Database.py:72
 msgid "Not using numpy to define variance in sqlite."
 msgstr "A variancia SQLite-ban való definiálásához nincs használva a NumPy."
 
-#: Database.py:250
+#: Database.py:246
 msgid "Creating Database instance, sql = %s"
 msgstr "Adatbázis-példány létrehozása, sql = %s"
 
-#: Database.py:389
+#: Database.py:386
 msgid "*** WARNING UNKNOWN MYSQL ERROR:"
 msgstr "*** FIGYELEM: ISMERETLEN MYSQL HIBA: "
 
-#: Database.py:443
+#: Database.py:440
 msgid "Connecting to SQLite: %(database)s"
 msgstr "Kapcsolódás a %(database)s SQLite adatbázishoz"
 
-#: Database.py:455
+#: Database.py:452
 msgid "Some database functions will not work without NumPy support"
 msgstr "Néhány adatbázis-funkció nem fog működni NumPy támogatás nélkül"
 
-#: Database.py:476
+#: Database.py:482
 msgid "outdated or too new database version (%s) - please recreate tables"
 msgstr ""
 "elavult vagy túl új adatbázis verzió (%s) - kérlek hozd létre újra a táblákat"
 
-#: Database.py:482 Database.py:483
+#: Database.py:488 Database.py:489
 msgid "Failed to read settings table - recreating tables"
 msgstr ""
 "Nem sikerült az olvasás a beállítások táblából - táblák újra létrehozása"
 
-#: Database.py:487 Database.py:488
+#: Database.py:493 Database.py:494
 msgid "Failed to read settings table - please recreate tables"
 msgstr ""
 "Nem sikerült az olvasás a beállítások táblából - kérlek hozd létre újra a "
 "táblákat"
 
-#: Database.py:509
+#: Database.py:515
 msgid "commit %s failed: info=%s value=%s"
 msgstr "%s. véglegesítés nem sikerült: info=%s érték=%s"
 
-#: Database.py:513
+#: Database.py:519
 msgid "commit failed"
 msgstr "a véglegesítés nem sikerült"
 
-#: Database.py:682 Database.py:711
+#: Database.py:688 Database.py:717
 msgid "*** Database Error: "
 msgstr "*** Adatbázis hiba: "
 
-#: Database.py:708
+#: Database.py:714
 msgid "Database: date n hands ago = "
 msgstr "Adatbázis: n-nel ezelőtti leosztás dátuma = "
 
-#: Database.py:865
+#: Database.py:871
 msgid "ERROR: query %s result does not have player_id as first column"
 msgstr "ERROR: a(z) %s lekérdezés eredményének nem a player_id az első oszlopa"
 
-#: Database.py:907
+#: Database.py:913
 msgid "getLastInsertId(): problem fetching insert_id? ret=%d"
 msgstr "getLastInsertId(): probléma az insert_id lekérdezése közben? ret=%d"
 
-#: Database.py:919
+#: Database.py:925
 msgid "getLastInsertId(%s): problem fetching lastval? row=%d"
 msgstr "getLastInsertId(%s): probléma a lastval lekérdezése közben? sor=%d"
 
-#: Database.py:926
+#: Database.py:932
 msgid "getLastInsertId(): unknown backend: %d"
 msgstr "getLastInsertId(): ismeretlen backend: %d"
 
-#: Database.py:931
+#: Database.py:937
 msgid "*** Database get_last_insert_id error: "
 msgstr "*** get_last_insert_id adatbázis hiba: "
 
-#: Database.py:985 Database.py:1407
+#: Database.py:991 Database.py:1414
 msgid "warning: drop pg fk %s_%s_fkey failed: %s, continuing ..."
 msgstr ""
 "figyelem: a(z) %s_%s_fkey pg idegen kulcs eldobása nem sikerült: %s, "
 "folytatás ..."
 
-#: Database.py:989 Database.py:1411
+#: Database.py:995 Database.py:1418
 msgid "warning: constraint %s_%s_fkey not dropped: %s, continuing ..."
 msgstr "figyelem: a(z) %s_%s_fkey megkötés nem lett eldobva: %s, folytatás ..."
 
-#: Database.py:997 Database.py:1285
+#: Database.py:1003 Database.py:1292
 msgid "dropping mysql index "
 msgstr "MySQL index eldobása: "
 
-#: Database.py:1003 Database.py:1290 Database.py:1298 Database.py:1305
+#: Database.py:1009 Database.py:1297 Database.py:1305 Database.py:1312
 msgid "    drop index failed: "
 msgstr "    index eldobása nem sikerült: "
 
-#: Database.py:1008 Database.py:1292
+#: Database.py:1014 Database.py:1299
 msgid "dropping pg index "
 msgstr "pg index eldobása: "
 
-#: Database.py:1021
+#: Database.py:1027
 msgid "warning: drop index %s_%s_idx failed: %s, continuing ..."
 msgstr ""
 "figyelem: a(z) %s_%s_idx index eldobása nem sikerült: %s, folytatás ..."
 
-#: Database.py:1025
+#: Database.py:1031
 msgid "warning: index %s_%s_idx not dropped %s, continuing ..."
 msgstr "figyelem: a(z) %s_%s_idx index nem lett eldobva: %s, folytatás ..."
 
-#: Database.py:1065 Database.py:1073 Database.py:1338 Database.py:1346
-msgid "creating foreign key "
-msgstr "idegen kulcs létrehozása: "
+#: Database.py:1071 Database.py:1079
+msgid "Creating foreign key "
+msgstr "idegen kulcs létrehozása "
 
-#: Database.py:1071 Database.py:1092 Database.py:1344
-msgid "    create foreign key failed: "
-msgstr "    idegen kulcs létrehozása sikertelen: "
+#: Database.py:1077 Database.py:1086 Database.py:1098
+msgid "Create foreign key failed: "
+msgstr "idegen kulcs létrehozása sikertelen: "
 
-#: Database.py:1080 Database.py:1353
-msgid "   create foreign key failed: "
-msgstr "   idegen kulcs létrehozása sikertelen: "
-
-#: Database.py:1087
-msgid "creating mysql index "
-msgstr "MySQL index létrehozása: "
-
-#: Database.py:1096
-msgid "creating pg index "
-msgstr "pg index létrehozása: "
-
-#: Database.py:1101
-msgid "   create index failed: "
-msgstr "    index létrehozása nem sikerült: "
-
-#: Database.py:1141 Database.py:1142
-msgid "Finished recreating tables"
-msgstr "A táblák újra létrehozása befejeződött"
-
-#: Database.py:1181
-msgid "***Error creating tables: "
-msgstr "*** Hiba a táblák létrehozása közben: "
-
-#: Database.py:1191
-msgid "*** Error unable to get databasecursor"
-msgstr "*** Hiba: nem olvasható a databasecursor"
-
-#: Database.py:1203 Database.py:1214 Database.py:1224 Database.py:1231
-msgid "***Error dropping tables: "
-msgstr "*** Hiba a táblák eldobása közben: "
-
-#: Database.py:1229
-msgid "*** Error in committing table drop"
-msgstr "*** Hiba a tábla-eldobás véglegesítése közben"
-
-#: Database.py:1243 Database.py:1244
+#: Database.py:1093 Database.py:1250 Database.py:1251
 msgid "Creating mysql index %s %s"
 msgstr "MySQL index létrehozása: %s %s"
 
-#: Database.py:1249 Database.py:1258
-msgid "    create index failed: "
-msgstr "    Index létrehozása nem sikerült: "
+#: Database.py:1102
+msgid "Creating pg index "
+msgstr "pg index létrehozása "
 
-#: Database.py:1252 Database.py:1253
-msgid "Creating pgsql index %s %s"
-msgstr "pgsql index létrehozása: %s %s"
-
-#: Database.py:1260 Database.py:1261
-msgid "Creating sqlite index %s %s"
-msgstr "SQLite index létrehozása: %s %s"
-
-#: Database.py:1266
+#: Database.py:1107 Database.py:1256 Database.py:1265 Database.py:1273
 msgid "Create index failed: "
 msgstr "Index létrehozása nem sikerült: "
 
-#: Database.py:1268
+#: Database.py:1147 Database.py:1148
+msgid "Finished recreating tables"
+msgstr "A táblák újra létrehozása befejeződött"
+
+#: Database.py:1188
+msgid "***Error creating tables: "
+msgstr "*** Hiba a táblák létrehozása közben: "
+
+#: Database.py:1198
+msgid "*** Error unable to get databasecursor"
+msgstr "*** Hiba: nem olvasható a databasecursor"
+
+#: Database.py:1210 Database.py:1221 Database.py:1231 Database.py:1238
+msgid "***Error dropping tables: "
+msgstr "*** Hiba a táblák eldobása közben: "
+
+#: Database.py:1236
+msgid "*** Error in committing table drop"
+msgstr "*** Hiba a tábla-eldobás véglegesítése közben"
+
+#: Database.py:1259 Database.py:1260
+msgid "Creating pgsql index %s %s"
+msgstr "pgsql index létrehozása: %s %s"
+
+#: Database.py:1267 Database.py:1268
+msgid "Creating sqlite index %s %s"
+msgstr "SQLite index létrehozása: %s %s"
+
+#: Database.py:1275
 msgid "Unknown database: MySQL, Postgres and SQLite supported"
 msgstr "Ismeretlen adatbázis: a MySQL, a Postgres és az SQLite támogatott"
 
-#: Database.py:1273
+#: Database.py:1280
 msgid "Error creating indexes: "
 msgstr "Hiba az indexek létrehozása közben: "
 
-#: Database.py:1300
+#: Database.py:1307
 msgid "Dropping sqlite index "
 msgstr "SQLite index eldobása: "
 
-#: Database.py:1307
+#: Database.py:1314
 msgid ""
 "Fpdb only supports MySQL, Postgres and SQLITE, what are you trying to use?"
 msgstr ""
 "Fpdb csak a MySQL-t, a Postgres-t és az SQLite-ot támogatja. Mit próbáltál "
 "használni?"
 
-#: Database.py:1321 Database.py:1361
+#: Database.py:1328 Database.py:1368
 msgid "    set_isolation_level failed: "
 msgstr "    set_isolation_level meghiúsult: "
 
-#: Database.py:1355 Database.py:1414
+#: Database.py:1345 Database.py:1353
+msgid "creating foreign key "
+msgstr "idegen kulcs létrehozása: "
+
+#: Database.py:1351
+msgid "    create foreign key failed: "
+msgstr "    idegen kulcs létrehozása sikertelen: "
+
+#: Database.py:1360
+msgid "   create foreign key failed: "
+msgstr "   idegen kulcs létrehozása sikertelen: "
+
+#: Database.py:1362 Database.py:1421
 msgid "Only MySQL and Postgres supported so far"
 msgstr "Egyelőre csak a MySQL és a Postgres támogatott"
 
-#: Database.py:1385
+#: Database.py:1392
 msgid "dropping mysql foreign key"
 msgstr "MySQL idegen kulcs eldobása"
 
-#: Database.py:1389
+#: Database.py:1396
 msgid "    drop failed: "
 msgstr "    az eldobás sikertelen: "
 
-#: Database.py:1392
+#: Database.py:1399
 msgid "dropping pg foreign key"
 msgstr "pg idegen kulcs eldobása"
 
-#: Database.py:1404
+#: Database.py:1411
 msgid "dropped pg foreign key %s_%s_fkey, continuing ..."
 msgstr "%s_%s_fkey pg idegen kulcs eldobva, folytatás ..."
 
-#: Database.py:1505
+#: Database.py:1531
 msgid "Rebuild hudcache took %.1f seconds"
 msgstr "A HUD cache újraépítése %.1f másodpercig tartott"
 
-#: Database.py:1508 Database.py:1541
+#: Database.py:1534 Database.py:1567
 msgid "Error rebuilding hudcache:"
 msgstr "Hiba a HUD cache újraépítése közben:"
 
-#: Database.py:1553 Database.py:1559
+#: Database.py:1579 Database.py:1585
 msgid "Error during analyze:"
 msgstr "Hiba analyze közben:"
 
-#: Database.py:1563
+#: Database.py:1589
 msgid "Analyze took %.1f seconds"
 msgstr "Analyze %.1f másodpercig tartott"
 
-#: Database.py:1573 Database.py:1579
+#: Database.py:1599 Database.py:1605
 msgid "Error during vacuum:"
 msgstr "Hiba vacuum közben:"
 
-#: Database.py:1583
+#: Database.py:1609
 msgid "Vacuum took %.1f seconds"
 msgstr "Vacuum %.1f másodpercig tartott"
 
-#: Database.py:1595
+#: Database.py:1621
 msgid "Error during lock_for_insert:"
 msgstr "Hiba lock_for_insert közben:"
 
-#: Database.py:1992
+#: Database.py:2056
 msgid "queue empty too long - writer stopping ..."
 msgstr "Queue.Empty túl sokáig tart - az írás befejeződik ..."
 
-#: Database.py:1995
+#: Database.py:2059
 msgid "writer stopping, error reading queue: "
 msgstr "az írás megállt, hiba a sor olvasásakor: "
 
-#: Database.py:2020
+#: Database.py:2084
 msgid "deadlock detected - trying again ..."
 msgstr "deadlock történt - újrapróbálás ..."
 
-#: Database.py:2025
+#: Database.py:2089
 msgid "too many deadlocks - failed to store hand "
 msgstr "túl sok deadlock - nem sikerült tárolni a leosztást "
 
-#: Database.py:2029
+#: Database.py:2093
 msgid "***Error storing hand: "
 msgstr "***Hiba a leosztás tárolása közben: "
 
-#: Database.py:2039
+#: Database.py:2103
 msgid "db writer finished: stored %d hands (%d fails) in %.1f seconds"
 msgstr ""
 "adatbázisba írás befejeződött: %d leosztás tárolva (%d sikertelen) %.1f mp "
 "alatt"
 
-#: Database.py:2049
+#: Database.py:2113
 msgid "***Error sending finish: "
 msgstr "***Hiba a befejezés küldésekor: "
 
-#: Database.py:2131
+#: Database.py:2195
 msgid "invalid source in Database.createOrUpdateTourney"
 msgstr "érvénytelen forrás a Database.createOrUpdateTourney-ban"
 
-#: Database.py:2144
+#: Database.py:2208
 msgid "invalid source in Database.createOrUpdateTourneysPlayers"
 msgstr "érvénytelen forrás a Database.createOrUpdateTourneysPlayers-ben"
 
-#: Database.py:2270
+#: Database.py:2334
 msgid "HandToWrite.init error: "
 msgstr "HandToWrite.init hiba: "
 
-#: Database.py:2320
+#: Database.py:2384
 msgid "HandToWrite.set_all error: "
 msgstr "HandToWrite.set_all hiba: "
 
-#: Database.py:2351
+#: Database.py:2415
 msgid "nutOmatic is id_player = %d"
 msgstr "nutOmatic id_player értéke = %d"
 
-#: Database.py:2359
+#: Database.py:2423
 msgid "query plan: "
 msgstr "lekérdezési terv: "
 
-#: Database.py:2368
+#: Database.py:2432
 msgid "cards ="
 msgstr "kezdőkéz ="
 
-#: Database.py:2371
+#: Database.py:2435
 msgid "get_stats took:  %4.3f seconds"
 msgstr "get_stats időigény: %4.3f mp"
 
-#: Database.py:2373
+#: Database.py:2437
 msgid "press enter to continue"
 msgstr "nyomj ENTER-t a folytatáshoz"
 
-#: EverleafToFpdb.py:264
+#: EverleafToFpdb.py:262
 msgid "Everleaf readStudPlayerCards is only a stub."
 msgstr "Az Everleaf terem readStudPlayerCards funkciója csak egy csonk."
 
-#: Filters.py:62
+#: Filters.py:53
 msgid "All"
 msgstr "Mind"
 
-#: Filters.py:62
+#: Filters.py:53
 msgid "None"
 msgstr "Egyik sem"
 
-#: Filters.py:62
+#: Filters.py:53
 msgid "Show _Limits"
 msgstr "_Limitek"
 
-#: Filters.py:63
+#: Filters.py:54
 msgid "Show Number of _Players"
 msgstr "_Játékosok száma"
 
-#: Filters.py:63 TourneyFilters.py:60
+#: Filters.py:54 TourneyFilters.py:51
 msgid "And:"
 msgstr "Max:"
 
-#: Filters.py:63 TourneyFilters.py:60
+#: Filters.py:54 TourneyFilters.py:51
 msgid "Between:"
 msgstr "Min:"
 
-#: Filters.py:64
+#: Filters.py:55
 msgid "Games:"
 msgstr "Játékok:"
 
-#: Filters.py:64 TourneyFilters.py:59
+#: Filters.py:55 TourneyFilters.py:50
 msgid "Hero:"
 msgstr "Játékos:"
 
-#: Filters.py:64 TourneyFilters.py:59
+#: Filters.py:55 TourneyFilters.py:50
 msgid "Sites:"
 msgstr "Termek:"
 
-#: Filters.py:65
+#: Filters.py:56
 msgid "Limits:"
 msgstr "Limitek:"
 
-#: Filters.py:65 TourneyFilters.py:59
+#: Filters.py:56 TourneyFilters.py:50
 msgid "Number of Players:"
 msgstr "Játékosok száma:"
 
-#: Filters.py:66
+#: Filters.py:57
 msgid "Grouping:"
 msgstr "Csoportosítás:"
 
-#: Filters.py:66
+#: Filters.py:57
 msgid "Show Position Stats"
 msgstr "Pozíciók"
 
-#: Filters.py:67 TourneyFilters.py:60
+#: Filters.py:58 TourneyFilters.py:51
 msgid "Date:"
 msgstr "Dátum:"
 
-#: Filters.py:68
+#: Filters.py:59
 msgid "All Players"
 msgstr "Minden játékos"
 
-#: Filters.py:69
+#: Filters.py:60
 msgid "Ring"
 msgstr "Készpénzes játékok"
 
-#: Filters.py:69
+#: Filters.py:60
 msgid "Tourney"
 msgstr "Versenyek"
 
-#: Filters.py:103 TourneyFilters.py:116
+#: Filters.py:96 TourneyFilters.py:107
 msgid "Either 0 or more than one site matched (%s) - EEK"
 msgstr "Vagy egynél több, vagy egy terem sem illeszkedik (%s) - EEK"
 
-#: Filters.py:313
+#: Filters.py:328
 msgid "%s was toggled %s"
 msgstr "%s %s lett kapcsolva"
 
-#: Filters.py:313
+#: Filters.py:328
 msgid "OFF"
 msgstr "KI"
 
-#: Filters.py:313
+#: Filters.py:328
 msgid "ON"
 msgstr "BE"
 
-#: Filters.py:394
+#: Filters.py:409
 msgid "self.sites[%s] set to %s"
 msgstr "self.sites[%s] beállítva erre: %s"
 
-#: Filters.py:400
+#: Filters.py:415
 msgid "self.games[%s] set to %s"
 msgstr "self.games[%s] beállítva erre: %s"
 
-#: Filters.py:406
+#: Filters.py:421
 msgid "self.limit[%s] set to %s"
 msgstr "self.limit[%s] beállítva erre: %s"
 
-#: Filters.py:543
+#: Filters.py:558
 msgid "self.seats[%s] set to %s"
 msgstr "self.seats[%s] beállítva erre: %s"
 
-#: Filters.py:549
+#: Filters.py:564
 msgid "self.groups[%s] set to %s"
 msgstr "self.groups[%s] beállítva erre: %s"
 
-#: Filters.py:582
+#: Filters.py:605
 msgid "Min # Hands:"
 msgstr "Min. leosztásszám:"
 
-#: Filters.py:648
+#: Filters.py:671
 msgid "INFO: No tourney types returned from database"
 msgstr "INFO: nem található versenytípus az adatbázisban"
 
-#: Filters.py:649
+#: Filters.py:672
 msgid "No tourney types returned from database"
 msgstr "Nem található versenytípus az adatbázisban"
 
-#: Filters.py:675 Filters.py:764
+#: Filters.py:698 Filters.py:787
 msgid "INFO: No games returned from database"
 msgstr "INFO: nem található játék az adatbázisban"
 
-#: Filters.py:676 Filters.py:765
+#: Filters.py:699 Filters.py:788
 msgid "No games returned from database"
 msgstr "Nem található játék az adatbázisban"
 
-#: Filters.py:894
+#: Filters.py:967
 msgid "From:"
 msgstr "Ettől:"
 
-#: Filters.py:908
+#: Filters.py:981
 msgid "To:"
 msgstr "Eddig:"
 
-#: Filters.py:913
+#: Filters.py:986
 msgid " Clear Dates "
 msgstr "Törlés"
 
-#: Filters.py:940 fpdb.pyw:723
+#: Filters.py:1013 fpdb.pyw:716
 msgid "Pick a date"
 msgstr "Válassz napot"
 
-#: Filters.py:946 fpdb.pyw:729
+#: Filters.py:1019 fpdb.pyw:722
 msgid "Done"
 msgstr "Kész"
 
-#: FulltiltToFpdb.py:361
+#: FullTiltPokerSummary.py:82 PokerStarsSummary.py:81
+msgid "parseSummary: Unable to recognise Tourney Info: '%s'"
+msgstr "parseSummary: Nem sikerült felismerni a verseny információt: '%s'"
+
+#: FullTiltPokerSummary.py:83 FullTiltPokerSummary.py:109
+#: PokerStarsSummary.py:82 PokerStarsSummary.py:108
+msgid "parseSummary: Raising FpdbParseError"
+msgstr "parseSummary: FpdbParseError"
+
+#: FullTiltPokerSummary.py:84 PokerStarsSummary.py:83
+msgid "Unable to recognise Tourney Info: '%s'"
+msgstr "Nem sikerült felismerni a verseny információt: '%s'"
+
+#: FullTiltPokerSummary.py:108 PokerStarsSummary.py:107
+msgid "parseSummary: Unable to locate currency"
+msgstr "parseSummary: Nem található a pénznem"
+
+#: FullTiltPokerSummary.py:110 PokerStarsSummary.py:109
+msgid "Unable to locate currency"
+msgstr "Nem található a pénznem"
+
+#: FulltiltToFpdb.py:223
+msgid "readHandInfo: Unable to recognise handinfo from: '%s'"
+msgstr ""
+"readHandInfo: Nem sikerült felismerni a leosztásinformációkat innen: '%s'"
+
+#: FulltiltToFpdb.py:356
 msgid "Player bringing in: %s for %s"
 msgstr "Nyitó hívás: %s hív %s-t"
 
-#: FulltiltToFpdb.py:364
+#: FulltiltToFpdb.py:359
 msgid "No bringin found, handid =%s"
 msgstr "Nyitó hívás nem található, leosztásazonosító = %s"
 
-#: FulltiltToFpdb.py:421
+#: FulltiltToFpdb.py:416
 msgid "FullTilt: DEBUG: unimplemented readAction: '%s' '%s'"
 msgstr "FullTilt: DEBUG: nem ismert readAction: '%s' '%s'"
 
-#: FulltiltToFpdb.py:497
+#: FulltiltToFpdb.py:492
 msgid "determineTourneyType : Parsing NOK"
 msgstr "determineTourneyType : értelmezés nem OK"
 
-#: FulltiltToFpdb.py:555
+#: FulltiltToFpdb.py:550
 msgid "Unable to get a valid Tournament ID -- File rejected"
 msgstr "Nem sikerült érvényes versenyazonosítót találni --- A fájl elutasítva"
 
-#: FulltiltToFpdb.py:586
+#: FulltiltToFpdb.py:581
 msgid "Conflict between buyins read in topline (%s) and in BuyIn field (%s)"
 msgstr ""
 "Eltérés a beülők mértéke között a fejlécben (%s) és a Beülő mezőben (%s)"
 
-#: FulltiltToFpdb.py:593
+#: FulltiltToFpdb.py:588
 msgid "Conflict between fees read in topline (%s) and in BuyIn field (%s)"
 msgstr ""
 "Eltérés a díjak mértéke között a fejlécben (%s) és a Beülő mezőben (%s)"
 
-#: FulltiltToFpdb.py:597
+#: FulltiltToFpdb.py:592
 msgid "Unable to affect a buyin to this tournament : assume it's a freeroll"
 msgstr ""
 "Nem sikerült beülőt meghatározni ehhez a versenyhez : feltételezem, hogy ez "
 "egy freeroll"
 
-#: FulltiltToFpdb.py:698
+#: FulltiltToFpdb.py:693
 msgid "FullTilt: Player finishing stats unreadable : %s"
 msgstr "FullTilt: A következő játékos helyezési adata nem olvashatóak : %s"
 
-#: FulltiltToFpdb.py:707
+#: FulltiltToFpdb.py:702
 msgid "FullTilt: %s not found in tourney.ranks ..."
 msgstr "FullTilt: %s nem található a verseny helyezései között ..."
 
-#: FulltiltToFpdb.py:709
+#: FulltiltToFpdb.py:704
 msgid "FullTilt: Bad parsing : finish position incoherent : %s / %s"
 msgstr "FullTilt: Hibás értelmezés : a helyezések nem egyeznek : %s / %s"
 
-#: GuiAutoImport.py:85
+#: GuiAutoImport.py:91
 msgid "Time between imports in seconds:"
 msgstr "Importálások közti idő (mp):"
 
-#: GuiAutoImport.py:116 GuiAutoImport.py:184 GuiAutoImport.py:261
+#: GuiAutoImport.py:122 GuiAutoImport.py:190 GuiAutoImport.py:274
 msgid "  Start _Auto Import  "
 msgstr "  _Auto Import indítása  "
 
-#: GuiAutoImport.py:135
+#: GuiAutoImport.py:141
 msgid "Auto Import Ready."
 msgstr "Auto Import kész."
 
-#: GuiAutoImport.py:148
+#: GuiAutoImport.py:154
 msgid "Please choose the path that you want to Auto Import"
 msgstr "Válaszd ki a könyvtárat az Auto Importhoz"
 
-#: GuiAutoImport.py:171
+#: GuiAutoImport.py:177
 msgid "  _Auto Import Running  "
 msgstr "  _Auto Import fut  "
 
-#: GuiAutoImport.py:182
+#: GuiAutoImport.py:188
 msgid "  Stop _Auto Import  "
 msgstr "  _Auto Import leállítása  "
 
-#: GuiAutoImport.py:207
+#: GuiAutoImport.py:213
 msgid ""
 "\n"
 "Global lock taken ... Auto Import Started.\n"
@@ -741,15 +810,15 @@ msgstr ""
 "\n"
 "Globális zárolás OK ... Auto Import elindítva.\n"
 
-#: GuiAutoImport.py:209
+#: GuiAutoImport.py:215
 msgid "  _Stop Auto Import  "
 msgstr "  _Auto Import leállítása  "
 
-#: GuiAutoImport.py:225
+#: GuiAutoImport.py:235
 msgid "opening pipe to HUD"
 msgstr "cső nyitása a HUD-hoz"
 
-#: GuiAutoImport.py:237
+#: GuiAutoImport.py:250
 msgid ""
 "\n"
 "*** GuiAutoImport Error opening pipe: "
@@ -757,7 +826,7 @@ msgstr ""
 "\n"
 "*** GuiAutoImport Hiba a cső nyitásakor: "
 
-#: GuiAutoImport.py:249
+#: GuiAutoImport.py:262
 msgid ""
 "\n"
 "Auto Import aborted - global lock not available"
@@ -765,7 +834,7 @@ msgstr ""
 "\n"
 "Auto Import megszakítva - nem elérhető a globális zárolás"
 
-#: GuiAutoImport.py:254
+#: GuiAutoImport.py:267
 msgid ""
 "\n"
 "Stopping Auto Import - global lock released."
@@ -773,7 +842,7 @@ msgstr ""
 "\n"
 "Auto Import leállítása - globális zárolás feloldva."
 
-#: GuiAutoImport.py:256
+#: GuiAutoImport.py:269
 msgid ""
 "\n"
 " * Stop Auto Import: HUD already terminated"
@@ -781,17 +850,17 @@ msgstr ""
 "\n"
 " * Auto Import megállítása: A HUD már nem fut"
 
-#: GuiAutoImport.py:283
+#: GuiAutoImport.py:296
 msgid "Browse..."
 msgstr "Kiválaszt..."
 
-#: GuiAutoImport.py:326 GuiBulkImport.py:354
+#: GuiAutoImport.py:341 GuiBulkImport.py:348
 msgid "How often to print a one-line status report (0 (default) means never)"
 msgstr ""
 "Egysoros státuszriportok megjelenítési gyakorisága (az alapértelmezett 0 "
 "szerint soha)"
 
-#: GuiBulkImport.py:67
+#: GuiBulkImport.py:59
 msgid ""
 "\n"
 "Global lock taken ..."
@@ -799,11 +868,11 @@ msgstr ""
 "\n"
 "Globális zárolás OK..."
 
-#: GuiBulkImport.py:68
+#: GuiBulkImport.py:60
 msgid "Importing..."
 msgstr "Importálás..."
 
-#: GuiBulkImport.py:117
+#: GuiBulkImport.py:109
 msgid ""
 "GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: "
 "%d in %s seconds - %.0f/sec"
@@ -811,97 +880,97 @@ msgstr ""
 "GuiBulkImport.load kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d "
 "\tHibák: %d %s másodperc alatt - %.0f/mp"
 
-#: GuiBulkImport.py:131
+#: GuiBulkImport.py:123
 msgid "Import Complete"
 msgstr "Importálás kész"
 
-#: GuiBulkImport.py:139
+#: GuiBulkImport.py:131 GuiTourneyImport.py:78
 msgid "bulk import aborted - global lock not available"
 msgstr "importálás megszakítva - nem elérhető a globális zárolás"
 
-#: GuiBulkImport.py:165
+#: GuiBulkImport.py:159
 msgid "Print Start/Stop Info"
 msgstr "Start/Stop infó megjelenítése"
 
-#: GuiBulkImport.py:172
+#: GuiBulkImport.py:166
 msgid "Hands/status print:"
 msgstr "Leosztás/állapotjelzés:"
 
-#: GuiBulkImport.py:189
+#: GuiBulkImport.py:183
 msgid "Number of threads:"
 msgstr "Szálak száma:"
 
-#: GuiBulkImport.py:209
+#: GuiBulkImport.py:203
 msgid "Fail on error"
 msgstr "Hiba esetén megáll"
 
-#: GuiBulkImport.py:214
+#: GuiBulkImport.py:208
 msgid "Hands/file:"
 msgstr "Leosztás/fájl:"
 
-#: GuiBulkImport.py:229
+#: GuiBulkImport.py:223
 msgid "Drop indexes:"
 msgstr "Indexek eldobása:"
 
-#: GuiBulkImport.py:238 GuiBulkImport.py:288
+#: GuiBulkImport.py:232 GuiBulkImport.py:282
 msgid "auto"
 msgstr "automatikus"
 
-#: GuiBulkImport.py:239 GuiBulkImport.py:289 GuiBulkImport.py:398
+#: GuiBulkImport.py:233 GuiBulkImport.py:283 GuiBulkImport.py:394
 msgid "don't drop"
 msgstr "megtartás"
 
-#: GuiBulkImport.py:240 GuiBulkImport.py:290
+#: GuiBulkImport.py:234 GuiBulkImport.py:284
 msgid "drop"
 msgstr "eldobás"
 
-#: GuiBulkImport.py:246
+#: GuiBulkImport.py:240
 msgid "HUD Test mode"
 msgstr "HUD teszt mód"
 
-#: GuiBulkImport.py:251
+#: GuiBulkImport.py:245 GuiTourneyImport.py:106
 msgid "Site filter:"
 msgstr "Terem:"
 
-#: GuiBulkImport.py:279
+#: GuiBulkImport.py:273
 msgid "Drop HudCache:"
 msgstr "HUD gyorstár eldobása:"
 
-#: GuiBulkImport.py:297 fpdb.pyw:814
+#: GuiBulkImport.py:291 GuiTourneyImport.py:135 fpdb.pyw:809
 msgid "_Bulk Import"
 msgstr "_Importálás"
 
-#: GuiBulkImport.py:299
+#: GuiBulkImport.py:293 GuiTourneyImport.py:137
 msgid "Import clicked"
 msgstr "Importálásra kattintva"
 
-#: GuiBulkImport.py:317
+#: GuiBulkImport.py:311
 msgid "Waiting..."
 msgstr "Várakozás..."
 
-#: GuiBulkImport.py:346
+#: GuiBulkImport.py:340 Options.py:55
 msgid "Input file in quiet mode"
 msgstr "Fájl feldolgozása csendes módban"
 
-#: GuiBulkImport.py:348
+#: GuiBulkImport.py:342
 msgid "don't start gui; deprecated (just give a filename with -f)."
 msgstr "ne indítsa el a GUI-t; elévült (használd helyette a -f kapcsolót)."
 
-#: GuiBulkImport.py:350
+#: GuiBulkImport.py:344
 msgid "Conversion filter (*Full Tilt Poker, PokerStars, Everleaf, Absolute)"
 msgstr "Konverziós szűrő (*Full Tilt Poker, PokerStars, Everleaf, Absolute)"
 
-#: GuiBulkImport.py:352
+#: GuiBulkImport.py:346
 msgid "If this option is passed it quits when it encounters any error"
 msgstr ""
 "Ha ez az opció ki van választva, akkor az fpdb kilép, ha bármilyen hibát "
 "észlel."
 
-#: GuiBulkImport.py:356
+#: GuiBulkImport.py:350 Options.py:52
 msgid "Print some useful one liners"
 msgstr "Megjelenít néhány hasznos egysoros információt."
 
-#: GuiBulkImport.py:358
+#: GuiBulkImport.py:352
 msgid ""
 "Do the required conversion for Stars Archive format (ie. as provided by "
 "support"
@@ -909,250 +978,257 @@ msgstr ""
 "A kiválasztott konverzió elvégzése Stars Archívum formátumra (ahogy az "
 "ügyfélszolgálattól jön"
 
-#: GuiBulkImport.py:360
+#: GuiBulkImport.py:354
+msgid ""
+"Do the required conversion for FTP Archive format (ie. as provided by support"
+msgstr ""
+"A kiválasztott konverzió elvégzése FTP Archívum formátumra (ahogy az "
+"ügyfélszolgálattól jön"
+
+#: GuiBulkImport.py:356
 msgid ""
 "Output the pprinted version of the HandsPlayer hash for regresion testing"
 msgstr "A HandsPlayer hash kiíratása pprint-tel regresszió tesztelés céljából"
 
-#: GuiBulkImport.py:365
+#: GuiBulkImport.py:361 GuiTourneyImport.py:267 ImapFetcher.py:172
 msgid "USAGE:"
 msgstr "HASZNÁLAT:"
 
-#: GuiBulkImport.py:366
+#: GuiBulkImport.py:362
 msgid "PokerStars converter: ./GuiBulkImport.py -c PokerStars -f filename"
 msgstr "PokerStars átalakító: ./GuiBulkImport.py -c PokerStars -f fájlnév"
 
-#: GuiBulkImport.py:367
+#: GuiBulkImport.py:363
 msgid ""
 "Full Tilt  converter: ./GuiBulkImport.py -c \"Full Tilt Poker\" -f filename"
 msgstr ""
 "Full Tilt átalakító: ./GuiBulkImport.py -c \"Full Tilt Poker\" -f fájlnév"
 
-#: GuiBulkImport.py:368
+#: GuiBulkImport.py:364
 msgid "Everleaf   converter: ./GuiBulkImport.py -c Everleaf -f filename"
 msgstr "Everleaf átalakító: ./GuiBulkImport.py -c Everleaf -f fájlnév"
 
-#: GuiBulkImport.py:369
+#: GuiBulkImport.py:365
 msgid "Absolute   converter: ./GuiBulkImport.py -c Absolute -f filename"
 msgstr "Absolute átalakító: ./GuiBulkImport.py -c Absolute -f fájlnév"
 
-#: GuiBulkImport.py:370
+#: GuiBulkImport.py:366
 msgid "PartyPoker converter: ./GuiBulkImport.py -c PartyPoker -f filename"
 msgstr "PartyPoker átalakító: ./GuiBulkImport.py -c PartyPoker -f fájlnév"
 
-#: GuiBulkImport.py:385
+#: GuiBulkImport.py:381
 msgid "-q is deprecated. Just use \"-f filename\" instead"
 msgstr "A -q már elévült. Használd helyette a \"-f fájlnév\" formát."
 
-#: GuiBulkImport.py:409
+#: GuiBulkImport.py:407
 msgid ""
 "GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d "
 "in %s seconds - %.0f/sec"
 msgstr ""
-"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d %"
-"s másodperc alatt - %.0f/mp"
+"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d "
+"%s másodperc alatt - %.0f/mp"
 
-#: GuiDatabase.py:117
+#: GuiDatabase.py:107
 msgid "_Add"
 msgstr "Hozzá_adás"
 
-#: GuiDatabase.py:121
+#: GuiDatabase.py:111
 msgid "_Refresh"
 msgstr "F_rissítés"
 
-#: GuiDatabase.py:125
+#: GuiDatabase.py:115
 msgid "Type"
 msgstr "Típus"
 
-#: GuiDatabase.py:126
+#: GuiDatabase.py:116
 msgid "Name"
 msgstr "Név"
 
-#: GuiDatabase.py:127
+#: GuiDatabase.py:117
 msgid "Description"
 msgstr "Leírás"
 
-#: GuiDatabase.py:128 GuiDatabase.py:458 GuiImapFetcher.py:119
+#: GuiDatabase.py:118 GuiDatabase.py:448 GuiImapFetcher.py:110
 msgid "Username"
 msgstr "Felhasználónév"
 
-#: GuiDatabase.py:129 GuiDatabase.py:465 GuiImapFetcher.py:119
+#: GuiDatabase.py:119 GuiDatabase.py:455 GuiImapFetcher.py:110
 msgid "Password"
 msgstr "Jelszó"
 
-#: GuiDatabase.py:130
+#: GuiDatabase.py:120
 msgid "Host"
 msgstr "Kiszolgáló"
 
-#: GuiDatabase.py:131
+#: GuiDatabase.py:121
 msgid "Open"
 msgstr "Megnyitva"
 
-#: GuiDatabase.py:132
+#: GuiDatabase.py:122
 msgid "Status"
 msgstr "Állapot"
 
-#: GuiDatabase.py:266
+#: GuiDatabase.py:256
 msgid "Testing database connections ... "
 msgstr "Adatbázis-kapcsolatok ellenőrzése ..."
 
-#: GuiDatabase.py:293
+#: GuiDatabase.py:283
 msgid "finished."
 msgstr "befejezve."
 
-#: GuiDatabase.py:303
+#: GuiDatabase.py:293
 msgid "loadDbs error: "
 msgstr "loadDbs hiba: "
 
-#: GuiDatabase.py:324 GuiLogView.py:200 GuiTourneyPlayerStats.py:466
+#: GuiDatabase.py:314 GuiLogView.py:191 GuiTourneyPlayerStats.py:457
 msgid "***sortCols error: "
 msgstr "***sortCols hiba: "
 
-#: GuiDatabase.py:326
+#: GuiDatabase.py:316
 msgid "sortCols error: "
 msgstr "sortCols hiba: "
 
-#: GuiDatabase.py:371
+#: GuiDatabase.py:361
 msgid "testDB: trying to connect to: %s/%s, %s, %s/%s"
 msgstr "testDB: kapcsolódási kísérlet: %s/%s, %s, %s/%s"
 
-#: GuiDatabase.py:374
+#: GuiDatabase.py:364
 msgid "         connected ok"
 msgstr "         kapcsolódás OK"
 
-#: GuiDatabase.py:381
+#: GuiDatabase.py:371
 msgid "         not connected but no exception"
 msgstr "         nem kapcsolódott, de nem volt hibaüzenet"
 
-#: GuiDatabase.py:383 fpdb.pyw:886
+#: GuiDatabase.py:373 fpdb.pyw:883
 msgid ""
 "MySQL Server reports: Access denied. Are your permissions set correctly?"
 msgstr ""
 "MySQL szerver jelenti: A hozzáférés megtagadva. Biztosan megfelelőek a "
 "jogosultságaid?"
 
-#: GuiDatabase.py:387 fpdb.pyw:888
+#: GuiDatabase.py:377 fpdb.pyw:885
 msgid "MySQL client reports: 2002 or 2003 error. Unable to connect - "
 msgstr ""
 "MySQL kliens jelenti: 2002-es vagy 2003-as hiba. Nem sikerült a kapcsolódás "
 "- "
 
-#: GuiDatabase.py:388 fpdb.pyw:889
+#: GuiDatabase.py:378 fpdb.pyw:886
 msgid "Please check that the MySQL service has been started"
 msgstr "Kérlek ellenőrizd, hogy a MySQL szolgáltatás el van-e indítva"
 
-#: GuiDatabase.py:392 fpdb.pyw:891
+#: GuiDatabase.py:382 fpdb.pyw:888
 msgid ""
 "PostgreSQL Server reports: Access denied. Are your permissions set correctly?"
 msgstr ""
 "PostgreSQL szerver jelenti: A hozzáférés megtagadva. Megfelelőek a "
 "jogosultságaid?"
 
-#: GuiDatabase.py:395 fpdb.pyw:893
+#: GuiDatabase.py:385 fpdb.pyw:890
 msgid "PostgreSQL client reports: Unable to connect - "
 msgstr "PostgreSQL kliens jelenti: Nem sikerült a kapcsolódás - "
 
-#: GuiDatabase.py:396 fpdb.pyw:894
+#: GuiDatabase.py:386 fpdb.pyw:891
 msgid "Please check that the PostgreSQL service has been started"
 msgstr "Kérlek ellenőrizd, hogy a PostgreSQL szolgáltatás el van-e indítva"
 
-#: GuiDatabase.py:406
+#: GuiDatabase.py:396
 msgid "db connection to %s, %s, %s, %s, %s failed: %s"
 msgstr "adatbázis kapcsolódás sikertelen: %s, %s, %s, %s, %s hibaüzenet: %s"
 
-#: GuiDatabase.py:414
+#: GuiDatabase.py:404
 msgid "AddDB starting"
 msgstr "AddDB indítása"
 
-#: GuiDatabase.py:423
+#: GuiDatabase.py:413
 msgid "Add New Database"
 msgstr "Új adatbázis hozzáadása"
 
-#: GuiDatabase.py:433
+#: GuiDatabase.py:423
 msgid "DB Type"
 msgstr "Adatbázis típus"
 
-#: GuiDatabase.py:443
+#: GuiDatabase.py:433
 msgid "DB Name"
 msgstr "Adatbázis név"
 
-#: GuiDatabase.py:451
+#: GuiDatabase.py:441
 msgid "DB Description"
 msgstr "Adatbázis leírás"
 
-#: GuiDatabase.py:472
+#: GuiDatabase.py:462
 msgid "Host Computer"
 msgstr "Kiszolgáló"
 
-#: GuiDatabase.py:505
+#: GuiDatabase.py:495
 msgid "start creating new db"
 msgstr "új adatbázis létrehozásának indítása"
 
-#: GuiDatabase.py:524
+#: GuiDatabase.py:514
 msgid "tested new db, result=%s"
 msgstr "új adatbázis tesztelve, eredmény=%s"
 
-#: GuiDatabase.py:527
+#: GuiDatabase.py:517
 msgid "Database created"
 msgstr "Adatbázis létrehozva"
 
-#: GuiDatabase.py:530
+#: GuiDatabase.py:520
 msgid "Database creation failed"
 msgstr "Adatbázis létrehozása nem sikerült"
 
-#: GuiDatabase.py:543
+#: GuiDatabase.py:533
 msgid "check_fields: starting"
 msgstr "check_fields: indítás"
 
-#: GuiDatabase.py:549
+#: GuiDatabase.py:539
 msgid "No Database Name given"
 msgstr "Nem lett adatbázis név megadva"
 
-#: GuiDatabase.py:552
+#: GuiDatabase.py:542
 msgid "No Database Description given"
 msgstr "Nem lett adatbázis leírás megadva"
 
-#: GuiDatabase.py:555
+#: GuiDatabase.py:545
 msgid "No Username given"
 msgstr "Nem lett felhasználónév megadva"
 
-#: GuiDatabase.py:558
+#: GuiDatabase.py:548
 msgid "No Password given"
 msgstr "Nem lett jelszó megadva"
 
-#: GuiDatabase.py:561
+#: GuiDatabase.py:551
 msgid "No Host given"
 msgstr "Nem lett kiszolgáló megadva"
 
-#: GuiDatabase.py:575
+#: GuiDatabase.py:565
 msgid "Unknown Database Type selected"
 msgstr "Ismeretlen adatbázis típus lett kiválasztva"
 
-#: GuiDatabase.py:579
+#: GuiDatabase.py:569
 msgid "check_fields: open dialog"
 msgstr "check_fields: párbeszéd nyitása"
 
-#: GuiDatabase.py:588
+#: GuiDatabase.py:578
 msgid "Do you want to try again?"
 msgstr "Meg akarod próbálni újból?"
 
-#: GuiDatabase.py:595
+#: GuiDatabase.py:585
 msgid "check_fields: destroy dialog"
 msgstr "check_fields: párbeszéd lezárása"
 
-#: GuiDatabase.py:599
+#: GuiDatabase.py:589
 msgid "check_fields: returning ok as %s, try_again as %s"
 msgstr "check_fields: OK visszaadása, mint %s, újrapróbálás, mint %s"
 
-#: GuiDatabase.py:701 GuiLogView.py:213
+#: GuiDatabase.py:691 GuiLogView.py:204
 msgid "Test Log Viewer"
 msgstr "Napló böngésző (teszt)"
 
-#: GuiDatabase.py:706 GuiLogView.py:218
+#: GuiDatabase.py:696 GuiLogView.py:209
 msgid "Log Viewer"
 msgstr "Napló böngésző"
 
-#: GuiGraphViewer.py:56
+#: GuiGraphViewer.py:49 GuiTourneyGraphViewer.py:49
 msgid ""
 "Failed to load libs for graphing, graphing will not function. Please\n"
 "                 install numpy and matplotlib if you want to use graphs."
@@ -1160,7 +1236,7 @@ msgstr ""
 "Nem sikerült a grafikonokhoz szükséges libraryl betöltése.\n"
 "A grafikonokhoz telepítsd a numpy-t és a matplotlib-et."
 
-#: GuiGraphViewer.py:58
+#: GuiGraphViewer.py:51 GuiTourneyGraphViewer.py:51
 msgid ""
 "This is of no consequence for other parts of the program, e.g. import \n"
 "         and HUD are NOT affected by this problem."
@@ -1168,38 +1244,49 @@ msgstr ""
 "A program más részeit, pl. az importálást vagy a HUD-ot,\n"
 "nem érinti ez a probléma."
 
-#: GuiGraphViewer.py:141 GuiGraphViewer.py:255 GuiSessionViewer.py:354
+#: GuiGraphViewer.py:85 GuiTourneyGraphViewer.py:84
+msgid "Refresh _Graph"
+msgstr "F_rissítés"
+
+#: GuiGraphViewer.py:87 GuiTourneyGraphViewer.py:86
+msgid "_Export to File"
+msgstr "_Exportálás fájlba"
+
+#: GuiGraphViewer.py:135 GuiGraphViewer.py:251 GuiSessionViewer.py:370
+#: GuiTourneyGraphViewer.py:134 GuiTourneyGraphViewer.py:232
 msgid "***Error: "
 msgstr "***Hiba: "
 
-#: GuiGraphViewer.py:171 GuiPositionalStats.py:177 GuiRingPlayerStats.py:251
-#: GuiSessionViewer.py:203 GuiTourneyPlayerStats.py:277
+#: GuiGraphViewer.py:168 GuiPositionalStats.py:177 GuiRingPlayerStats.py:276
+#: GuiSessionViewer.py:219 GuiTourneyGraphViewer.py:159
+#: GuiTourneyPlayerStats.py:268
 msgid "No sites selected - defaulting to PokerStars"
 msgstr "Nincs kiválasztott terem - PokerStars használata"
 
-#: GuiGraphViewer.py:176 GuiPositionalStats.py:180 GuiRingPlayerStats.py:254
-#: GuiSessionViewer.py:206 GuiTourneyPlayerStats.py:280
+#: GuiGraphViewer.py:173 GuiPositionalStats.py:180 GuiRingPlayerStats.py:279
+#: GuiSessionViewer.py:222 GuiTourneyGraphViewer.py:164
+#: GuiTourneyPlayerStats.py:271
 msgid "No player ids found"
 msgstr "Nincs játékosazonosító"
 
-#: GuiGraphViewer.py:181 GuiPositionalStats.py:183 GuiRingPlayerStats.py:257
-#: GuiSessionViewer.py:209
+#: GuiGraphViewer.py:178 GuiPositionalStats.py:183 GuiRingPlayerStats.py:282
+#: GuiSessionViewer.py:225
 msgid "No limits found"
 msgstr "Nem található limit"
 
-#: GuiGraphViewer.py:191
+#: GuiGraphViewer.py:188 GuiTourneyGraphViewer.py:174
 msgid "Graph generated in: %s"
 msgstr "Grafikon létrehozva %s mp alatt"
 
-#: GuiGraphViewer.py:195
+#: GuiGraphViewer.py:193
 msgid "Hands"
 msgstr "Leosztások"
 
-#: GuiGraphViewer.py:199
+#: GuiGraphViewer.py:198 GuiTourneyGraphViewer.py:182
 msgid "No Data for Player(s) Found"
 msgstr "Nem található adat a játékos(ok)ra vonatkozóan"
 
-#: GuiGraphViewer.py:222 GuiGraphViewer.py:241
+#: GuiGraphViewer.py:221
 msgid ""
 "Hands: %d\n"
 "Profit: $%.2f"
@@ -1207,64 +1294,76 @@ msgstr ""
 "Leosztások: %d\n"
 "Profit: $%.2f"
 
-#: GuiGraphViewer.py:223 GuiGraphViewer.py:242
+#: GuiGraphViewer.py:222
 msgid "Showdown: $%.2f"
 msgstr "Mutatással: $%.2f"
 
-#: GuiGraphViewer.py:224 GuiGraphViewer.py:243
+#: GuiGraphViewer.py:223
 msgid "Non-showdown: $%.2f"
 msgstr "Mutatás nélkül: $%.2f"
 
-#: GuiGraphViewer.py:232
-msgid "Profit graph for ring games"
-msgstr "Bevételgrafikon a készpénzes játékokról"
+#: GuiGraphViewer.py:234
+msgid ""
+"Hands: %d\n"
+"Profit (%s): %.2f"
+msgstr ""
+"Leosztások: %d\n"
+"Profit (%s): %.2f"
 
-#: GuiGraphViewer.py:352
+#: GuiGraphViewer.py:236
+msgid "Showdown (%s): %.2f"
+msgstr "Mutatással (%s): %.2f"
+
+#: GuiGraphViewer.py:238
+msgid "Non-showdown (%s): %.2f"
+msgstr "Mutatás nélkül (%s): %.2f"
+
+#: GuiGraphViewer.py:356 GuiTourneyGraphViewer.py:276
 msgid "Please choose the directory you wish to export to:"
 msgstr "Válaszd ki az exportálás könyvtárát:"
 
-#: GuiGraphViewer.py:365
+#: GuiGraphViewer.py:369 GuiTourneyGraphViewer.py:289
 msgid "Closed, no graph exported"
 msgstr "Bezárva, nincs exportált grafikon"
 
-#: GuiGraphViewer.py:383
+#: GuiGraphViewer.py:387 GuiTourneyGraphViewer.py:307
 msgid "Graph created"
 msgstr "Grafikon létrehozva"
 
-#: GuiImapFetcher.py:49
+#: GuiImapFetcher.py:40
 msgid "To cancel just close this tab."
 msgstr "A megszakításhoz csukd be ezt a fület."
 
-#: GuiImapFetcher.py:52
+#: GuiImapFetcher.py:43
 msgid "_Save"
 msgstr "Menté_s"
 
-#: GuiImapFetcher.py:56
+#: GuiImapFetcher.py:47
 msgid "_Import All"
 msgstr "Mindet _importál"
 
-#: GuiImapFetcher.py:60
+#: GuiImapFetcher.py:51
 msgid "If you change the config you must save before importing"
 msgstr ""
 "Ha megváltoztatod a beállításokat, akkor importálás előtt előbb el kell "
 "mentened őket."
 
-#: GuiImapFetcher.py:98
+#: GuiImapFetcher.py:89
 msgid "Starting import. Please wait."
 msgstr "Importálás indítása. Kérlek várj."
 
-#: GuiImapFetcher.py:103
+#: GuiImapFetcher.py:94
 msgid "Finished import without error."
 msgstr "Importálás sikeresen befejezve."
 
-#: GuiImapFetcher.py:106
+#: GuiImapFetcher.py:97
 msgid ""
 "Login to mailserver failed: please check mailserver, username and password"
 msgstr ""
 "A bejelentkezés a levelezőkiszolgálóra meghiúsult: kérlek ellenőrizd a "
 "megadott levelezőkiszolgálót, a felhasználónevet és a jelszót."
 
-#: GuiImapFetcher.py:109
+#: GuiImapFetcher.py:100
 msgid ""
 "Could not connect to mailserver: check mailserver and use SSL settings and "
 "internet connectivity"
@@ -1272,39 +1371,39 @@ msgstr ""
 "nem sikerült a csatlakozás a levelezőkiszolgálóhoz: ellenőrizd a "
 "levelezőkiszolgáló és az SSL beállításait, illetve az internetkapcsolatot."
 
-#: GuiImapFetcher.py:119
+#: GuiImapFetcher.py:110
 msgid "Fetch Type"
 msgstr "Fogadás módja"
 
-#: GuiImapFetcher.py:119
+#: GuiImapFetcher.py:110
 msgid "Mail Folder"
 msgstr "Levelek mappája"
 
-#: GuiImapFetcher.py:119
+#: GuiImapFetcher.py:110
 msgid "Mailserver"
 msgstr "Levelezőkiszolgáló"
 
-#: GuiImapFetcher.py:119
+#: GuiImapFetcher.py:110
 msgid "Site"
 msgstr "Terem"
 
-#: GuiImapFetcher.py:119
+#: GuiImapFetcher.py:110
 msgid "Use SSL"
 msgstr "SSL használata"
 
-#: GuiImapFetcher.py:151
+#: GuiImapFetcher.py:142
 msgid "Yes"
 msgstr "Igen"
 
-#: GuiImapFetcher.py:152
+#: GuiImapFetcher.py:143
 msgid "No"
 msgstr "Nem"
 
-#: GuiLogView.py:61
+#: GuiLogView.py:52
 msgid "Log Messages"
 msgstr "Naplóbejegyzések"
 
-#: GuiLogView.py:96
+#: GuiLogView.py:87
 msgid "Refresh"
 msgstr "Frissítés"
 
@@ -1328,76 +1427,291 @@ msgstr "Érték (kattints duplán a módosításhoz)"
 msgid "Test Preferences Dialog"
 msgstr "Beállítási párbeszéd (teszt)"
 
-#: GuiPrefs.py:192 fpdb.pyw:297
+#: GuiPrefs.py:192 fpdb.pyw:290
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: GuiRingPlayerStats.py:322 GuiSessionViewer.py:248
-#: GuiTourneyPlayerStats.py:252
+#: GuiRingPlayerStats.py:44
+msgid "Type of Game"
+msgstr "Játék típusa"
+
+#: GuiRingPlayerStats.py:45
+msgid "Hole cards"
+msgstr "Osztott lapok"
+
+#: GuiRingPlayerStats.py:46
+msgid "Position"
+msgstr "Pozíció"
+
+#: GuiRingPlayerStats.py:47
+msgid "Name of the player"
+msgstr "Játékos neve"
+
+#: GuiRingPlayerStats.py:48
+msgid "Number of hands played"
+msgstr "Leosztások száma"
+
+#: GuiRingPlayerStats.py:49
+msgid "Number of Seats"
+msgstr "Székek száma"
+
+#: GuiRingPlayerStats.py:50
+msgid ""
+"Voluntarily Putting In the pot\n"
+"(blinds excluded)"
+msgstr ""
+"Önként befizet preflop\n"
+"(vakok kivételével)"
+
+#: GuiRingPlayerStats.py:51
+msgid "% Pre Flop Raise"
+msgstr "preflop emelés"
+
+#: GuiRingPlayerStats.py:52
+msgid "% Pre Flop Re-Raise / 3Bet"
+msgstr "preflop visszaemelés / 3bet"
+
+#: GuiRingPlayerStats.py:53
+msgid "Aggression Factor\n"
+msgstr "agresszió faktor\n"
+
+#: GuiRingPlayerStats.py:54
+msgid ""
+"Aggression Frequency\n"
+"Bet or Raise vs Fold"
+msgstr ""
+"aggresszió gyakoriság\n"
+"bet vagy raise vs fold"
+
+#: GuiRingPlayerStats.py:55
+msgid "Continuation Bet on the flop"
+msgstr "folytató nyitás flopon"
+
+#: GuiRingPlayerStats.py:56
+msgid "% Raise First In\\% Raise when first to bet"
+msgstr "nyitóemelés"
+
+#: GuiRingPlayerStats.py:57
+msgid ""
+"% First to raise pre-flop\n"
+"and steal blinds"
+msgstr ""
+"nyitóemelés preflop\n"
+"és vaklopás"
+
+#: GuiRingPlayerStats.py:58
+msgid "% Saw Flop vs hands dealt"
+msgstr "flopot néz vs leosztások"
+
+#: GuiRingPlayerStats.py:59
+msgid "Saw Show Down / River"
+msgstr "terítésig megy / river"
+
+#: GuiRingPlayerStats.py:60
+msgid "Went To Show Down When Saw Flop"
+msgstr "terítésig megy, ha flopot nézett"
+
+#: GuiRingPlayerStats.py:61
+msgid "Amount Won when Show Down seen"
+msgstr "nyeremény, amikor terítésig ment"
+
+#: GuiRingPlayerStats.py:62
+msgid ""
+"Flop Aggression\n"
+"% Bet or Raise after seeing Flop"
+msgstr ""
+"flop aggresszió\n"
+"bet vagy raise a flop láttán"
+
+#: GuiRingPlayerStats.py:63
+msgid ""
+"Turn Aggression\n"
+"% Bet or Raise after seeing Turn"
+msgstr ""
+"turn aggresszió\n"
+"bet vagy raise a turn láttán"
+
+#: GuiRingPlayerStats.py:64
+msgid ""
+"River Aggression\n"
+"% Bet or Raise after seeing River"
+msgstr ""
+"river aggresszió\n"
+"bet vagy raise a river láttán"
+
+#: GuiRingPlayerStats.py:65
+msgid ""
+"Coming Soon\n"
+"Total % agression"
+msgstr ""
+"hamarosan\n"
+"totál aggresszió"
+
+#: GuiRingPlayerStats.py:66
+msgid "Amount won"
+msgstr "nyeremény"
+
+#: GuiRingPlayerStats.py:67
+msgid ""
+"Number of Big Blinds won\n"
+"or lost per 100 hands"
+msgstr ""
+"átlagosan nyert nagyvakok\n"
+"100 leosztásonként"
+
+#: GuiRingPlayerStats.py:68
+msgid "Amount of rake paid"
+msgstr "Fizetett jutalék"
+
+#: GuiRingPlayerStats.py:69
+msgid ""
+"Number of Big Blinds won\n"
+"or lost per 100 hands\n"
+"when excluding rake"
+msgstr ""
+"átlagosan nyert nagyvakok\n"
+"100 leosztásonként,\n"
+"ha leszámítjuk a jutalékot"
+
+#: GuiRingPlayerStats.py:70
+msgid ""
+"Measure of uncertainty\n"
+"The lower, the more stable the amounts won"
+msgstr ""
+"A bizonytalanság mértéke\n"
+"Minél kisebb, annál stabilabb a nyeremény"
+
+#: GuiRingPlayerStats.py:347 GuiSessionViewer.py:264
+#: GuiTourneyPlayerStats.py:243
 msgid "Stats page displayed in %4.2f seconds"
 msgstr "Statisztikák megjelenítve %4.2f mp alatt"
 
-#: GuiRingPlayerStats.py:369
+#: GuiRingPlayerStats.py:394
 msgid "***sortnums error: "
 msgstr "***sortnums hiba: "
 
-#: GuiRingPlayerStats.py:391
+#: GuiRingPlayerStats.py:416
 msgid "***sortcols error: "
 msgstr "***sortCols hiba: "
 
-#: GuiRingPlayerStats.py:682
+#: GuiRingPlayerStats.py:712
 msgid "Detailed Filters"
 msgstr "Részletes szűrők"
 
-#: GuiRingPlayerStats.py:691
+#: GuiRingPlayerStats.py:721
 msgid "Hand Filters:"
 msgstr "Leosztás szűrők:"
 
-#: GuiRingPlayerStats.py:704
+#: GuiRingPlayerStats.py:734
 msgid "between"
 msgstr "Min:"
 
-#: GuiRingPlayerStats.py:705
+#: GuiRingPlayerStats.py:735
 msgid "and"
 msgstr "Max:"
 
-#: GuiSessionViewer.py:41
+#: GuiSessionViewer.py:44
 msgid "Failed to load numpy and/or matplotlib in Session Viewer"
 msgstr "Nem sikerült a numpy és/vagy a matplotlib betöltése a Session nézetben"
 
-#: GuiSessionViewer.py:42
+#: GuiSessionViewer.py:45
 msgid "ImportError: %s"
 msgstr "ImportError: %s"
 
-#: GuiSessionViewer.py:89
+#: GuiSessionViewer.py:83
 msgid "Hand Breakdown for all levels listed above"
 msgstr "Kezdőkezekre bontva a fenti limiteknél"
 
-#: GuiSessionViewer.py:375
+#: GuiSessionViewer.py:171 fpdb.pyw:1220
+msgid "FPDB WARNING"
+msgstr "FPDB FIGYELMEZTETÉS"
+
+#: GuiSessionViewer.py:391
 msgid "Session candlestick graph"
 msgstr "Session gyertya grafikon"
 
-#: GuiSessionViewer.py:378
+#: GuiSessionViewer.py:394
 msgid "Sessions"
 msgstr "Sessionök"
 
-#: GuiTourneyPlayerStats.py:84
+#: GuiTourneyGraphViewer.py:178
+msgid "Tournaments"
+msgstr "Versenyek"
+
+#: GuiTourneyGraphViewer.py:205 GuiTourneyGraphViewer.py:218
+msgid ""
+"Tournaments: %d\n"
+"Profit: $%.2f"
+msgstr ""
+"Versenyek: %d\n"
+"Profit: $%.2f"
+
+#: GuiTourneyGraphViewer.py:215
+msgid "Tournament Results"
+msgstr "Versenyeredmények"
+
+#: GuiTourneyImport.py:72 GuiTourneyImport.py:290
+#, fuzzy
+msgid ""
+"GuiTourneyImport.load done: Stored: %d\tErrors: %d in %s seconds - %.0f/sec"
+msgstr ""
+"GuiBulkImport.load kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d "
+"\tHibák: %d %s másodperc alatt - %.0f/mp"
+
+#: GuiTourneyImport.py:175 fpdb_import.py:223
+msgid "Attempted to add non-directory '%s' as an import directory"
+msgstr "Nem könyvtár ('%s') megadása importálási könyvtárként"
+
+#: GuiTourneyImport.py:191
+#, fuzzy
+msgid "Tourney Summary Import started at %s - %d files to import."
+msgstr "Elindítva: %s -- %d fájl importálása. Indexek: %s"
+
+#: GuiTourneyImport.py:217
+#, fuzzy
+msgid "TourneyImport: Removing text < 100 characters from end of file"
+msgstr "50 karakternél rövidebb szöveg eltávolítása"
+
+#: GuiTourneyImport.py:221
+#, fuzzy
+msgid "TourneyImport: Removing text < 100 characters from start of file"
+msgstr "50 karakternél rövidebb szöveg eltávolítása"
+
+#: GuiTourneyImport.py:231
+#, fuzzy
+msgid "Finished importing %s/%s tournament summaries"
+msgstr "%s/%s PS összefoglaló importálása kész"
+
+#: GuiTourneyImport.py:252
+#, fuzzy
+msgid "GTI.readFile: '%s'"
+msgstr "'%s' követése"
+
+#: GuiTourneyImport.py:271 ImapFetcher.py:176
+msgid "Need to define a converter"
+msgstr "Meg kell adni egy konvertert"
+
+#: GuiTourneyImport.py:278
+msgid "Need a filename to import"
+msgstr ""
+
+#: GuiTourneyPlayerStats.py:75
 msgid "_Refresh Stats"
 msgstr "Statisztikák f_rissítése"
 
-#: GuiTourneyViewer.py:49
+#: GuiTourneyViewer.py:40
 msgid "Enter the tourney number you want to display:"
 msgstr "Add meg a megjelenítendő verseny azonosítóját:"
 
-#: GuiTourneyViewer.py:55
+#: GuiTourneyViewer.py:46
 msgid "_Display"
 msgstr "_Mutat"
 
-#: GuiTourneyViewer.py:62
+#: GuiTourneyViewer.py:53
 msgid "Display _Player"
 msgstr "_Játékost mutat"
 
-#: GuiTourneyViewer.py:77
+#: GuiTourneyViewer.py:68
 msgid ""
 "Tournament not found - please ensure you imported it and selected the "
 "correct site"
@@ -1405,7 +1719,7 @@ msgstr ""
 "A verseny nem található - kérlek ellenőrizd, hogy importáltad-e már, és hogy "
 "a helyes termet választottad"
 
-#: GuiTourneyViewer.py:105
+#: GuiTourneyViewer.py:96
 msgid ""
 "Player or tourney not found - please ensure you imported it and selected the "
 "correct site"
@@ -1413,15 +1727,15 @@ msgstr ""
 "A játékos vagy a verseny nem található - kérlek ellenőrizd, hogy importáltad-"
 "e már, és hogy a helyes termet választottad"
 
-#: GuiTourneyViewer.py:119
+#: GuiTourneyViewer.py:110
 msgid "N/A"
 msgstr "N/A"
 
-#: GuiTourneyViewer.py:140
+#: GuiTourneyViewer.py:131
 msgid "invalid entry in tourney number - must enter numbers only"
 msgstr "érvénytelen érték a versenyazonosítónál - csak számok használhatóak"
 
-#: HUD_main.pyw:86
+#: HUD_main.pyw:88 HUD_main.pyw.orig:88
 msgid ""
 "\n"
 "HUD_main: starting ..."
@@ -1429,19 +1743,19 @@ msgstr ""
 "\n"
 "HUD_main: indítás ..."
 
-#: HUD_main.pyw:89
+#: HUD_main.pyw:91 HUD_main.pyw.orig:91
 msgid "Logfile is "
 msgstr "A naplófájl "
 
-#: HUD_main.pyw:90
+#: HUD_main.pyw:92 HUD_main.pyw.orig:92
 msgid "HUD_main starting: using db name = %s"
 msgstr "HUD_main indítás: %s adatbázis használata"
 
-#: HUD_main.pyw:95
+#: HUD_main.pyw:97 HUD_main.pyw.orig:97
 msgid "Note: error output is being diverted to:\n"
 msgstr "Megjegyzés: a hibakimenet ide van átirányítva:\n"
 
-#: HUD_main.pyw:96 fpdb.pyw:1120
+#: HUD_main.pyw:98 HUD_main.pyw.orig:98 fpdb.pyw:1132
 msgid ""
 "\n"
 "Any major error will be reported there _only_.\n"
@@ -1449,325 +1763,341 @@ msgstr ""
 "\n"
 "Bármilyen nagyobb hiba _csak_oda_ kerül kiírásra.\n"
 
-#: HUD_main.pyw:97
+#: HUD_main.pyw:99 HUD_main.pyw.orig:99
 msgid "Note: error output is being diverted to:"
 msgstr "Megjegyzés: a hibakimenet ide van átirányítva:"
 
-#: HUD_main.pyw:98
+#: HUD_main.pyw:100 HUD_main.pyw.orig:100
 msgid "Any major error will be reported there _only_."
 msgstr "Bármilyen nagyobb hiba _csak_oda_ kerül kiírásra."
 
-#: HUD_main.pyw:101
+#: HUD_main.pyw:103 HUD_main.pyw.orig:103
 msgid "HUD_main: starting ...\n"
 msgstr "HUD_main: indítás ...\n"
 
-#: HUD_main.pyw:114 HUD_run_me.py:62
+#: HUD_main.pyw:121 HUD_main.pyw.orig:121 HUD_run_me.py:62
 msgid "Closing this window will exit from the HUD."
 msgstr "Ezen ablak bezárása a HUD-ot is bezárja."
 
-#: HUD_main.pyw:117 HUD_run_me.py:66
+#: HUD_main.pyw:124 HUD_main.pyw.orig:124 HUD_run_me.py:66
 msgid "HUD Main Window"
 msgstr "HUD Főablak"
 
-#: HUD_main.pyw:126
+#: HUD_main.pyw:150 HUD_main.pyw.orig:145
+msgid "hud_main: Game changed."
+msgstr "hud_main: Jatékváltás."
+
+#: HUD_main.pyw:153 HUD_main.pyw.orig:148
+msgid "hud_main: Table changed."
+msgstr "hud_main: Asztalváltás."
+
+#: HUD_main.pyw:157 HUD_main.pyw.orig:152
 msgid "Terminating normally."
 msgstr "Normál leállás."
 
-#: HUD_main.pyw:230
+#: HUD_main.pyw:266 HUD_main.pyw.orig:261
 msgid "Received hand no %s"
 msgstr "Leosztás fogadva, azonosító: %s"
 
-#: HUD_main.pyw:249
+#: HUD_main.pyw:285 HUD_main.pyw.orig:280
 msgid "HUD_main.read_stdin: hand processing starting ..."
 msgstr "HUD_main.read_stdin: leosztás feldolgozása indul"
 
-#: HUD_main.pyw:275
+#: HUD_main.pyw:312 HUD_main.pyw.orig:307
 msgid "hud_dict[%s] was not found\n"
 msgstr "hud_dict[%s] nincs meg\n"
 
-#: HUD_main.pyw:276
+#: HUD_main.pyw:313 HUD_main.pyw.orig:308
 msgid "will not send hand\n"
 msgstr "leosztás nem lesz elküldve\n"
 
-#: HUD_main.pyw:310
+#: HUD_main.pyw:344 HUD_main.pyw.orig:339
 msgid "HUD create: table name %s not found, skipping."
 msgstr "HUD létrehozás: %s nevű asztal nincs meg, kihagyás."
 
-#: HUD_main.pyw:318
+#: HUD_main.pyw:352 HUD_main.pyw.orig:347
 msgid "Table \"%s\" no longer exists\n"
 msgstr "\"%s\" nevű asztal már nem létezik\n"
 
-#: HUD_main.pyw:321
+#: HUD_main.pyw:355 HUD_main.pyw.orig:350
 msgid ""
-"HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%"
-"4.3f,%4.3f)"
+"HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,"
+"%4.3f,%4.3f)"
 msgstr ""
-"HUD_main.read_stdin: leosztás beolvasva %4.3f mp alatt (%4.3f,%4.3f,%4.3f,%"
-"4.3f,%4.3f,%4.3f)"
+"HUD_main.read_stdin: leosztás beolvasva %4.3f mp alatt (%4.3f,%4.3f,%4.3f,"
+"%4.3f,%4.3f,%4.3f)"
+
+#: HUD_main.pyw.orig:137
+msgid "hud_main: Client resized"
+msgstr "hud_main: Kliens átméretezve"
+
+#: HUD_main.pyw.orig:141
+msgid "hud_main: Client destroyed"
+msgstr "hud_main: Kliens bezárva"
 
 #: HUD_run_me.py:45
 msgid "HUD_main starting\n"
 msgstr "HUD_main indítás\n"
 
-#: HUD_run_me.py:51 TournamentTracker.py:317
+#: HUD_run_me.py:51 TournamentTracker.py:308
 msgid "Using db name = %s\n"
 msgstr "%s adatbázis használata\n"
 
-#: Hand.py:151
+#: Hand.py:145
 msgid "BB"
 msgstr "BB"
 
-#: Hand.py:152
+#: Hand.py:146
 msgid "SB"
 msgstr "SB"
 
-#: Hand.py:153
+#: Hand.py:147
 msgid "BUTTONPOS"
 msgstr "GOMB"
 
-#: Hand.py:154
+#: Hand.py:148
 msgid "HAND NO."
 msgstr "LEOSZTÁS"
 
-#: Hand.py:155 TourneySummary.py:134
+#: Hand.py:149 TourneySummary.py:131
 msgid "SITE"
 msgstr "TEREM"
 
-#: Hand.py:156
+#: Hand.py:150
 msgid "TABLE NAME"
 msgstr "ASZTAL NEVE"
 
-#: Hand.py:157 TourneySummary.py:144
+#: Hand.py:151 TourneySummary.py:141
 msgid "HERO"
 msgstr "JÁTÉKOS"
 
-#: Hand.py:158 TourneySummary.py:145
+#: Hand.py:152 TourneySummary.py:142
 msgid "MAXSEATS"
 msgstr "MAX. SZÉKEK"
 
-#: Hand.py:159
+#: Hand.py:153
 msgid "LEVEL"
 msgstr "SZINT"
 
-#: Hand.py:160 TourneySummary.py:150
+#: Hand.py:154 TourneySummary.py:147
 msgid "MIXED"
 msgstr "KEVERT"
 
-#: Hand.py:161
+#: Hand.py:155
 msgid "LASTBET"
 msgstr "UTOLSÓ TÉT"
 
-#: Hand.py:162
+#: Hand.py:156
 msgid "ACTION STREETS"
 msgstr "AKCIÓ UTCÁK"
 
-#: Hand.py:163
+#: Hand.py:157
 msgid "STREETS"
 msgstr "UTCÁK"
 
-#: Hand.py:164
+#: Hand.py:158
 msgid "ALL STREETS"
 msgstr "MINDEN UTCA"
 
-#: Hand.py:165
+#: Hand.py:159
 msgid "COMMUNITY STREETS"
 msgstr "KÖZÖS UTCÁK"
 
-#: Hand.py:166
+#: Hand.py:160
 msgid "HOLE STREETS"
 msgstr "HOLE UTCÁK"
 
-#: Hand.py:167
+#: Hand.py:161
 msgid "COUNTED SEATS"
 msgstr "SZÁMOLT SZÉKEK"
 
-#: Hand.py:168
+#: Hand.py:162
 msgid "DEALT"
 msgstr "OSZTOTT"
 
-#: Hand.py:169
+#: Hand.py:163
 msgid "SHOWN"
 msgstr "MUTATOTT"
 
-#: Hand.py:170
+#: Hand.py:164
 msgid "MUCKED"
 msgstr "NEM MUTATOTT"
 
-#: Hand.py:171
+#: Hand.py:165
 msgid "TOTAL POT"
 msgstr "TELJES KASSZA"
 
-#: Hand.py:172
+#: Hand.py:166
 msgid "TOTAL COLLECTED"
 msgstr "TELJES BEGYŰJTÖTT"
 
-#: Hand.py:173
+#: Hand.py:167
 msgid "RAKE"
 msgstr "JUTALÉK"
 
-#: Hand.py:174 TourneySummary.py:135
+#: Hand.py:168 TourneySummary.py:132
 msgid "START TIME"
 msgstr "KEZDÉSI IDŐ"
 
-#: Hand.py:175
+#: Hand.py:169
 msgid "TOURNAMENT NO"
 msgstr "VERSENY SZÁM"
 
-#: Hand.py:176 TourneySummary.py:140
+#: Hand.py:170 TourneySummary.py:137
 msgid "TOURNEY ID"
 msgstr "VERSENYAZONOSÍTÓ"
 
-#: Hand.py:177 TourneySummary.py:139
+#: Hand.py:171 TourneySummary.py:136
 msgid "TOURNEY TYPE ID"
 msgstr "VERSENYTÍPUS AZONOSÍTÓ"
 
-#: Hand.py:178 TourneySummary.py:141
+#: Hand.py:172 TourneySummary.py:138
 msgid "BUYIN"
 msgstr "NEVEZÉSI DÍJ"
 
-#: Hand.py:179
+#: Hand.py:173
 msgid "BUYIN CURRENCY"
 msgstr "NEVEZÉSI DÍJ PÉNZNEME"
 
-#: Hand.py:180
+#: Hand.py:174
 msgid "BUYIN CHIPS"
 msgstr "KEZDŐ ZSETONOK"
 
-#: Hand.py:181 TourneySummary.py:142
+#: Hand.py:175 TourneySummary.py:139
 msgid "FEE"
 msgstr "DÍJ"
 
-#: Hand.py:182
+#: Hand.py:176
 msgid "IS REBUY"
 msgstr "REBUY"
 
-#: Hand.py:183
+#: Hand.py:177
 msgid "IS ADDON"
 msgstr "ADDON"
 
-#: Hand.py:184
+#: Hand.py:178
 msgid "IS KO"
 msgstr "KIÜTÉSES"
 
-#: Hand.py:185 TourneySummary.py:166
+#: Hand.py:179 TourneySummary.py:163
 msgid "KO BOUNTY"
 msgstr "FEJVADÁSZ"
 
-#: Hand.py:186
+#: Hand.py:180
 msgid "IS MATRIX"
 msgstr "MÁTRIX"
 
-#: Hand.py:187
+#: Hand.py:181
 msgid "IS SHOOTOUT"
 msgstr "SHOOTOUT"
 
-#: Hand.py:188 TourneySummary.py:167
+#: Hand.py:182 TourneySummary.py:164
 msgid "TOURNEY COMMENT"
 msgstr "VERSENY MEGJEGYZÉS"
 
-#: Hand.py:191 TourneySummary.py:179
+#: Hand.py:185 TourneySummary.py:176
 msgid "PLAYERS"
 msgstr "JÁTÉKOSOK"
 
-#: Hand.py:192
+#: Hand.py:186
 msgid "STACKS"
 msgstr "LETÉTEK"
 
-#: Hand.py:193
+#: Hand.py:187
 msgid "POSTED"
 msgstr "BETETT"
 
-#: Hand.py:194
+#: Hand.py:188
 msgid "POT"
 msgstr "KASSZA"
 
-#: Hand.py:195
+#: Hand.py:189
 msgid "SEATING"
 msgstr "ÜLTETÉS"
 
-#: Hand.py:196
+#: Hand.py:190
 msgid "GAMETYPE"
 msgstr "JÁTÉKTÍPUS"
 
-#: Hand.py:197
+#: Hand.py:191
 msgid "ACTION"
 msgstr "AKCIÓ"
 
-#: Hand.py:198
+#: Hand.py:192
 msgid "COLLECTEES"
 msgstr "BEGYŰJTŐK"
 
-#: Hand.py:199
+#: Hand.py:193
 msgid "BETS"
 msgstr "TÉTEK"
 
-#: Hand.py:200
+#: Hand.py:194
 msgid "BOARD"
 msgstr "ASZTAL"
 
-#: Hand.py:201
+#: Hand.py:195
 msgid "DISCARDS"
 msgstr "DOBÁSOK"
 
-#: Hand.py:202
+#: Hand.py:196
 msgid "HOLECARDS"
 msgstr "KEZDŐKÉZ"
 
-#: Hand.py:203
+#: Hand.py:197
 msgid "TOURNEYS PLAYER IDS"
 msgstr "VERSENYJÁTÉKOS AZONOSÍTÓK"
 
-#: Hand.py:226 Hand.py:1243
+#: Hand.py:220 Hand.py:1371
 msgid "[ERROR] Tried to add holecards for unknown player: %s"
 msgstr "[ERROR] Kezdőkéz hozzáadása ismeretlen játékoshoz: %s"
 
-#: Hand.py:279
+#: Hand.py:275
 msgid "Hand.insert(): hid #: %s is a duplicate"
 msgstr "Hand.insert(): %s leosztásazonosító duplikáció"
 
-#: Hand.py:318
+#: Hand.py:448
 msgid "markstreets didn't match - Assuming hand %s was cancelled"
 msgstr ""
 "markstreets nem egyezik - A(z) %s leosztás érvénytelenítését feltételezem"
 
-#: Hand.py:320
+#: Hand.py:450
 msgid "FpdbParseError: markStreets appeared to fail: First 100 chars: '%s'"
 msgstr ""
 "FpdbParseError: markStreets hívása meghiúsult: az első 100 karakter: '%s'"
 
-#: Hand.py:324
+#: Hand.py:454
 msgid "DEBUG: checkPlayerExists %s fail on hand number %s"
 msgstr "DEBUG: checkPlayerExists %s hiba a következő leosztásban: %s"
 
-#: Hand.py:325
+#: Hand.py:455
 msgid "checkPlayerExists: '%s fail on hand number %s"
 msgstr "checkPlayerExists: '%s hiba a következő leosztásban: %s"
 
-#: Hand.py:406
+#: Hand.py:536
 msgid "%s %s calls %s"
 msgstr "%s utcán %s játékos ennyit megad: %s"
 
-#: Hand.py:476
+#: Hand.py:606
 msgid "%s %s raise %s"
 msgstr "%s utcán %s játékos eddig emel: %s"
 
-#: Hand.py:487
+#: Hand.py:617
 msgid "%s %s bets %s"
 msgstr "%s utcán %s játékos ennyit hív: %s"
 
-#: Hand.py:506
+#: Hand.py:636
 msgid "%s %s folds"
 msgstr "%s utcán %s játékos dob"
 
-#: Hand.py:515
+#: Hand.py:645
 msgid "%s %s checks"
 msgstr "%s utcán %s játékos passzol"
 
-#: Hand.py:535
+#: Hand.py:665
 msgid "addShownCards %s hole=%s all=%s"
 msgstr "addShownCards %s játékos kézben=%s mind=%s"
 
-#: Hand.py:646
+#: Hand.py:776
 msgid ""
 "*** ERROR - HAND: calling writeGameLine with unexpected STARTTIME value, "
 "expecting datetime.date object, received:"
@@ -1775,94 +2105,86 @@ msgstr ""
 "*** ERROR - HAND: writeGameLine hívása nem várt STARTTIME értékkel, datetime."
 "date objektumot vár, ezt kapta:"
 
-#: Hand.py:647
+#: Hand.py:777
 msgid ""
 "*** Make sure your HandHistoryConverter is setting hand.startTime properly!"
 msgstr ""
 "*** Győződj meg róla, hogy a feldolgozód helyesen állítja be a hand."
 "startTime értékét!"
 
-#: Hand.py:648
+#: Hand.py:778
 msgid "*** Game String:"
 msgstr "*** Játék sztring:"
 
-#: Hand.py:702
-msgid ""
-"*** Parse error reading blinds (check compilePlayerRegexs as a likely "
-"culprit)"
-msgstr ""
-"*** Feldolgozási hiba a vakok beolvasása közben (valószínűleg a "
-"compilePlayerRegex-eket kell ellenőrizni)"
-
-#: Hand.py:729
+#: Hand.py:856
 msgid "HoldemOmahaHand.__init__:Can't assemble hand from db without a handid"
 msgstr ""
 "HoldemOmahaHand.__init__: nem lehet a leosztást összeállítani az "
 "adatbázisból a leosztás azonosítója nélkül"
 
-#: Hand.py:731
+#: Hand.py:858
 msgid "HoldemOmahaHand.__init__:Neither HHC nor DB+handid provided"
 msgstr ""
 "HoldemOmahaHand.__init__: sem a HHC, sem az adatbázis+leosztásaonosító nem "
 "lett megadva"
 
-#: Hand.py:1112
+#: Hand.py:1239
 msgid "*** DEALING HANDS ***"
 msgstr "*** OSZTÁS ***"
 
-#: Hand.py:1117
+#: Hand.py:1244
 msgid "Dealt to %s: [%s]"
 msgstr "%s kapja: [%s]"
 
-#: Hand.py:1122
+#: Hand.py:1249
 msgid "*** FIRST DRAW ***"
 msgstr "*** ELSŐ CSERE ***"
 
-#: Hand.py:1132
+#: Hand.py:1259
 msgid "*** SECOND DRAW ***"
 msgstr "*** MÁSODIK CSERE ***"
 
-#: Hand.py:1142
+#: Hand.py:1269
 msgid "*** THIRD DRAW ***"
 msgstr "*** HARMADIK CSERE ***"
 
-#: Hand.py:1152 Hand.py:1370
+#: Hand.py:1279 Hand.py:1498
 msgid "*** SHOW DOWN ***"
 msgstr "*** MUTATÁS ***"
 
-#: Hand.py:1167 Hand.py:1385
+#: Hand.py:1294 Hand.py:1513
 msgid "*** SUMMARY ***"
 msgstr "*** ÖSSZEGZÉS ***"
 
-#: Hand.py:1252
+#: Hand.py:1380
 msgid "%s %s completes %s"
 msgstr "%s utcán %s játékos kiegészít erre: %s"
 
-#: Hand.py:1270
+#: Hand.py:1398
 msgid "Bringin: %s, %s"
 msgstr "Nyitó hívás: %s, %s"
 
-#: Hand.py:1310
+#: Hand.py:1438
 msgid "*** 3RD STREET ***"
 msgstr "*** HARMADIK UTCA ***"
 
-#: Hand.py:1324
+#: Hand.py:1452
 msgid "*** 4TH STREET ***"
 msgstr "*** NEGYEDIK UTCA ***"
 
-#: Hand.py:1336
+#: Hand.py:1464
 msgid "*** 5TH STREET ***"
 msgstr "*** ÖTÖDIK UTCA ***"
 
-#: Hand.py:1348
+#: Hand.py:1476
 msgid "*** 6TH STREET ***"
 msgstr "*** HATODIK UTCA ***"
 
-#: Hand.py:1358
+#: Hand.py:1486
 msgid "*** RIVER ***"
 msgstr "*** RIVER ***"
 
-#: Hand.py:1450
+#: Hand.py:1578
 msgid ""
 "join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should "
 "be impossible for anyone who is not a hero"
@@ -1870,113 +2192,117 @@ msgstr ""
 "join_holecards: a kézbe kapott lapok száma vagy < 4, 4 or 7 - 5 és 6 "
 "mindenki számára lehetetlen, aki nem hős"
 
-#: Hand.py:1451
+#: Hand.py:1579
 msgid "join_holcards: holecards(%s): %s"
 msgstr "join_holcards: holecards(%s): %s"
 
-#: Hand.py:1534
+#: Hand.py:1666
 msgid "DEBUG: call Pot.end() before printing pot total"
 msgstr "DEBUG: Pot.end() hívása a teljes kassza kiírása előtt"
 
-#: Hand.py:1536
+#: Hand.py:1668
 msgid "FpdbError in printing Hand object"
 msgstr "FpdbError egy Hand objektum kiírása közben"
 
-#: HandHistoryConverter.py:135
+#: HandHistoryConverter.py:130
 msgid "Failed sanity check"
 msgstr "A megfelelőségi ellenőrzésen nem ment át"
 
-#: HandHistoryConverter.py:143
+#: HandHistoryConverter.py:138
 msgid "Tailing '%s'"
 msgstr "'%s' követése"
 
-#: HandHistoryConverter.py:150
+#: HandHistoryConverter.py:145
 msgid "HHC.start(follow): processHand failed: Exception msg: '%s'"
 msgstr "HHC.start(follow): processHand meghiúsult: A hibaüzenet szövege: '%s'"
 
-#: HandHistoryConverter.py:154
+#: HandHistoryConverter.py:149
 msgid "handsList is "
 msgstr "A handsList a következő: "
 
-#: HandHistoryConverter.py:165
+#: HandHistoryConverter.py:160
 msgid "HHC.start(): processHand failed: Exception msg: '%s'"
 msgstr "HHC.start(): processHand meghiúsult: A hibaüzenet szövege: '%s'"
 
-#: HandHistoryConverter.py:169
+#: HandHistoryConverter.py:164
 msgid "Read %d hands (%d failed) in %.3f seconds"
 msgstr "%d leosztás beolvasva (%d sikertelen) %.3f mp alatt"
 
-#: HandHistoryConverter.py:175
+#: HandHistoryConverter.py:170
 msgid "Summary file '%s' correctly parsed  (took %.3f seconds)"
 msgstr "A(z) '%s' összefoglaló fájl rendben feldolgozva (%.3f mp)"
 
-#: HandHistoryConverter.py:177
+#: HandHistoryConverter.py:172
 msgid "Error converting summary file '%s' (took %.3f seconds)"
 msgstr "Hiba a(z) '%s' összefoglaló fájl konvertálása közben (%.3f mp)"
 
-#: HandHistoryConverter.py:180
+#: HandHistoryConverter.py:175
 msgid "Error converting '%s'"
 msgstr "Hiba a(z) '%s' konvertálása közben"
 
-#: HandHistoryConverter.py:211
+#: HandHistoryConverter.py:206
 msgid "%s changed inode numbers from %d to %d"
 msgstr "%s megváltoztatta az inode számokat %d =>%d"
 
-#: HandHistoryConverter.py:256
+#: HandHistoryConverter.py:254
 msgid "Converting starsArchive format to readable"
 msgstr "starsArchive formátum konvertálása olvashatóra"
 
-#: HandHistoryConverter.py:261
+#: HandHistoryConverter.py:259
 msgid "Converting ftpArchive format to readable"
 msgstr "ftpArchive formátum konvertálása olvashatóra"
 
-#: HandHistoryConverter.py:266
+#: HandHistoryConverter.py:265
 msgid "Read no hands."
 msgstr "Nem történt beolvasás."
 
-#: HandHistoryConverter.py:474
+#: HandHistoryConverter.py:273
+msgid "Removing text < 50 characters"
+msgstr "50 karakternél rövidebb szöveg eltávolítása"
+
+#: HandHistoryConverter.py:481
 msgid "HH Sanity Check: output and input files are the same, check config"
 msgstr ""
 "HH Sanity Check: a kimeneti és bemeneti fájlok azonosak, ellenőrizd a "
 "beállításokat"
 
-#: HandHistoryConverter.py:497
+#: HandHistoryConverter.py:504
 msgid "Reading stdin with %s"
 msgstr "Standard bemenet olvasása ezzel: %s"
 
-#: HandHistoryConverter.py:512
+#: HandHistoryConverter.py:519
 msgid "unable to read file with any codec in list!"
 msgstr "a fájl olvasása nem sikerült egyik listabeli kódolással sem"
 
-#: HandHistoryConverter.py:579
+#: HandHistoryConverter.py:586
 msgid " given TZ:"
 msgstr " adott időzóna:"
 
-#: HandHistoryConverter.py:579
+#: HandHistoryConverter.py:586
 msgid "raw time:"
 msgstr "nyers idő:"
 
-#: HandHistoryConverter.py:589
+#: HandHistoryConverter.py:596
 msgid "changeTimeZone: offset="
 msgstr "changeTimeZone: offszet="
 
-#: HandHistoryConverter.py:652
+#: HandHistoryConverter.py:659
 msgid "utcTime:"
 msgstr "utcTime:"
 
-#: HandHistoryConverter.py:685
+#: HandHistoryConverter.py:703
 msgid "Unable to create output directory %s for HHC!"
 msgstr "A %s kimeneti könyvtár nem hozható létre a feldolgozó számára!"
 
-#: HandHistoryConverter.py:686
+#: HandHistoryConverter.py:704
 msgid "*** ERROR: UNABLE TO CREATE OUTPUT DIRECTORY"
 msgstr "*** ERROR: A KIMENETI KÖNYVTÁR NEM HOZHATÓ LÉTRE"
 
-#: HandHistoryConverter.py:688
+#: HandHistoryConverter.py:706
 msgid "Created directory '%s'"
 msgstr "'%s' könyvtár létrehozva"
 
-#: HandHistoryConverter.py:692
+#: HandHistoryConverter.py:710
 msgid "out_path %s couldn't be opened"
 msgstr "%s kimeneti könyvtár nem nyitható meg"
 
@@ -2090,15 +2416,15 @@ msgstr "StatWindows debugolása"
 msgid "Set max seats"
 msgstr "Max székek beállítása"
 
-#: Hud.py:542
+#: Hud.py:567
 msgid "Updating config file"
 msgstr "Konfigurációs fájl frissítése"
 
-#: Hud.py:551
+#: Hud.py:576
 msgid "No layout found for %d-max games for site %s\n"
 msgstr "Nem található elrendezés a %d fős asztalok számára a %s teremben\n"
 
-#: Hud.py:565
+#: Hud.py:590
 msgid ""
 "exception in Hud.adj_seats\n"
 "\n"
@@ -2106,19 +2432,19 @@ msgstr ""
 "hiba a Hud.adj_seats helyen\n"
 "\n"
 
-#: Hud.py:566
+#: Hud.py:591
 msgid "error is %s"
 msgstr "A hiba a következő: %s"
 
-#: Hud.py:573
+#: Hud.py:598
 msgid "Error finding actual seat.\n"
 msgstr "Hiba az aktuális szék keresése közben.\n"
 
-#: Hud.py:589
+#: Hud.py:614
 msgid "Creating hud from hand "
 msgstr "HUD készítése ebből a leosztásból: "
 
-#: Hud.py:638
+#: Hud.py:663
 msgid ""
 "KeyError at the start of the for loop in update in hud_main. How this can "
 "possibly happen is totally beyond my comprehension. Your HUD may be about to "
@@ -2127,86 +2453,97 @@ msgstr ""
 "KeyError a for ciklus kezdeténél a hud_main-ban. Fogalmam sincs, hogy ez "
 "hogyan lehetséges. A HUD-od valószínűleg nagyon furcsa lesz. -Eric"
 
-#: Hud.py:639
+#: Hud.py:664
 msgid "(btw, the key was %s and statd is %s"
 msgstr "(ja, a kulcs %s volt a statd pedig %s)"
 
-#: ImapFetcher.py:54
+#: ImapFetcher.py:44 ImapFetcher.py:53
+msgid "DEBUG: re_SplitTourneys isn't matching"
+msgstr "DEBUG: re_SplitTourneys nem egyezik"
+
+#: ImapFetcher.py:67
 msgid "response to logging in:"
 msgstr "válasz a bejelentkezésre:"
 
-#: ImapFetcher.py:85
-msgid "completed running Imap import, closing server connection"
-msgstr "IMAP import befejezve, kapcsolat lezárása"
+#: ImapFetcher.py:83
+msgid "ImapFetcher: Found %s messages to fetch"
+msgstr "ImapFetcher: %s üzenetet találtam"
+
+#: ImapFetcher.py:103
+msgid "Completed retrieving IMAP messages, closing server connection"
+msgstr "IMAP üzenetek letöltése befejezve, kapcsolat lezárása"
+
+#: ImapFetcher.py:109
+msgid "No Tournament summaries found."
+msgstr "Nem található verseny összefoglaló."
+
+#: ImapFetcher.py:159
+msgid "Finished importing %s/%s PS summaries"
+msgstr "%s/%s PS összefoglaló importálása kész"
 
 #: Mucked.py:327
 msgid "No Name"
 msgstr "Nincs név"
 
-#: OnGameToFpdb.py:178 PkrToFpdb.py:144 PokerStarsToFpdb.py:189
-msgid "determineGameType: Unable to recognise gametype from: '%s'"
-msgstr "determineGameType: Nem sikerült felismerni a játéktípust innen: '%s'"
-
-#: OnGameToFpdb.py:179 OnGameToFpdb.py:193 PkrToFpdb.py:145 PkrToFpdb.py:173
-#: PokerStarsToFpdb.py:190 PokerStarsToFpdb.py:220
-msgid "determineGameType: Raising FpdbParseError"
-msgstr "determineGameType: FpdbParseError"
-
-#: OnGameToFpdb.py:180 PkrToFpdb.py:146 PokerStarsToFpdb.py:191
-msgid "Unable to recognise gametype from: '%s'"
-msgstr "Nem sikerült felismerni a játéktípust innen: '%s'"
-
-#: OnGameToFpdb.py:192
+#: OnGameToFpdb.py:184 WinamaxToFpdb.py:171
 msgid "determineGameType: limit not found in self.limits(%s). hand: '%s'"
 msgstr ""
 "determineGameType: limit nem található ebben: self.limits(%s). leosztás: '%s'"
 
-#: OnGameToFpdb.py:194
+#: OnGameToFpdb.py:186 WinamaxToFpdb.py:173
 msgid "limit not found in self.limits(%s). hand: '%s'"
 msgstr "limit nem található ebben: self.limits(%s). leosztás: '%s'"
 
-#: OnGameToFpdb.py:268 PartyPokerToFpdb.py:351 PokerStarsToFpdb.py:321
-#: UltimateBetToFpdb.py:144 Win2dayToFpdb.py:156
+#: OnGameToFpdb.py:273 PartyPokerToFpdb.py:362 PokerStarsToFpdb.py:314
+#: Win2dayToFpdb.py:162 WinamaxToFpdb.py:245
 msgid "readButton: not found"
 msgstr "readButton: nem található"
 
-#: OnGameToFpdb.py:288
+#: OnGameToFpdb.py:292 WinamaxToFpdb.py:265
 msgid "readBlinds in noSB exception - no SB created"
 msgstr "noSB-n belüli readBlinds hiba - kisvak nem lett létrehozva"
 
-#: Options.py:40
+#: Options.py:31
 msgid "If passed error output will go to the console rather than ."
 msgstr "Ha be van állítva, akkor a hibakimenet a konzolra lesz irányítva."
 
-#: Options.py:43
+#: Options.py:34
 msgid "Overrides the default database name"
 msgstr "Felülbírálja az alapértelmezett adatbázis-nevet"
 
-#: Options.py:46
+#: Options.py:37
 msgid "Specifies a configuration file."
 msgstr "Megad egy konfigurációs fájlt."
 
-#: Options.py:49
+#: Options.py:40
 msgid ""
 "Indicates program was restarted with a different path (only allowed once)."
 msgstr ""
 "Jelzi a program más útvonallal való indítását (csak egyszer engedélyezett)"
 
-#: Options.py:52
-msgid "Input file"
-msgstr "Bemeneti fájl"
-
-#: Options.py:55
+#: Options.py:43
 msgid "Module name for Hand History Converter"
 msgstr "Modulnév a Leosztástörténet Konvertáló számára"
 
-#: Options.py:59
+#: Options.py:47
 msgid "Error logging level:"
 msgstr "Hibanaplózási szint:"
 
-#: Options.py:62
+#: Options.py:50
 msgid "Print version information and exit."
 msgstr "Verzióinformáció kiírása, majd kilépés."
+
+#: Options.py:57
+msgid "Input out path in quiet mode"
+msgstr "Könyvtár beolvasása csendes módban"
+
+#: Options.py:59
+msgid "File to be split is a PokerStars or Full Tilt Poker archive file"
+msgstr "A darabolandó fájl PokerStars vagy Full Tilt Poker archív fájl"
+
+#: Options.py:61
+msgid "How many hands do you want saved to each file. Default is 100"
+msgstr "Ennyi leosztásonként daraboljon. Alapértelmezetten 100"
 
 #: Options.py:73
 msgid "press enter to end"
@@ -2216,195 +2553,199 @@ msgstr "nyomj ENTER-t a befejezéshez"
 msgid "You need to manually enter the playername"
 msgstr "Meg kell adnod a játékos nevét"
 
-#: PartyPokerToFpdb.py:215
+#: PartyPokerToFpdb.py:217
 msgid "Cannot fetch field '%s'"
 msgstr "Nem található mező: '%s'"
 
-#: PartyPokerToFpdb.py:219
+#: PartyPokerToFpdb.py:221
 msgid "Unknown limit '%s'"
 msgstr "Ismeretlen limit: '%s'"
 
-#: PartyPokerToFpdb.py:224
+#: PartyPokerToFpdb.py:226
 msgid "Unknown game type '%s'"
 msgstr "Ismeretlen játéktípus: '%s'"
 
-#: PartyPokerToFpdb.py:258
+#: PartyPokerToFpdb.py:264
 msgid "Cannot read HID for current hand"
 msgstr "HID nem olvasható az aktuális leosztásból"
 
-#: PartyPokerToFpdb.py:263
+#: PartyPokerToFpdb.py:269
 msgid "Cannot read Handinfo for current hand"
 msgstr "Handinfo nem olvasható az aktuális leosztásból"
 
-#: PartyPokerToFpdb.py:268
+#: PartyPokerToFpdb.py:274
 msgid "Cannot read GameType for current hand"
 msgstr "GameType nem olvasható az aktuális leosztásból"
 
-#: PartyPokerToFpdb.py:479
+#: PartyPokerToFpdb.py:534
 msgid "Unimplemented readAction: '%s' '%s'"
 msgstr "Nem ismert readAction: '%s' '%s'"
 
-#: PkrToFpdb.py:174 PokerStarsToFpdb.py:221
+#: PkrToFpdb.py:155 PokerStarsToFpdb.py:215
 msgid "Lim_Blinds has no lookup for '%s'"
 msgstr "Lim_Blinds nem tartalmazza ezt: '%s'"
 
-#: PokerStarsSummary.py:72
-msgid "didn't recognise buyin currency in:"
-msgstr "nem sikerült felismerni a beülő pénznemét ebben:"
-
-#: PokerStarsSummary.py:112
-msgid "in not result starttime"
-msgstr "a starttime nem található részében"
-
-#: PokerStarsToFpdb.py:274
+#: PokerStarsToFpdb.py:267
 msgid "failed to detect currency"
 msgstr "nem sikerült a pénznem meghatározása"
 
-#: Stats.py:122 Stats.py:123
+#: SplitHandHistory.py:76
+msgid "File not found"
+msgstr "Fájl nem található"
+
+#: SplitHandHistory.py:126
+msgid "Unexpected error processing file"
+msgstr "Váratlan hiba a fájl feldolgozása közben"
+
+#: SplitHandHistory.py:165
+msgid "End of file reached"
+msgstr "Fájl vége"
+
+#: Stats.py:127 Stats.py:128
 msgid "Total Profit"
 msgstr "teljes profit"
 
-#: Stats.py:144 Stats.py:151
+#: Stats.py:149 Stats.py:156
 msgid "Voluntarily Put In Pot Pre-Flop%"
 msgstr "önként befizet preflop %"
 
-#: Stats.py:164 Stats.py:172
+#: Stats.py:169 Stats.py:177
 msgid "Pre-Flop Raise %"
 msgstr "preflop emelés"
 
-#: Stats.py:185 Stats.py:193
+#: Stats.py:190 Stats.py:198
 msgid "% went to showdown"
 msgstr "terítésig megy %"
 
-#: Stats.py:206 Stats.py:214
+#: Stats.py:211 Stats.py:219
 msgid "% won money at showdown"
 msgstr "pénzt nyer terítéskor %"
 
-#: Stats.py:227 Stats.py:236
+#: Stats.py:234 Stats.py:243
 msgid "profit/100hands"
 msgstr "profit/100 leosztás"
 
-#: Stats.py:230
+#: Stats.py:237
 msgid "exception calcing p/100: 100 * %d / %d"
 msgstr "hiba a p/100 számítása közben: 100 * %d / %d"
 
-#: Stats.py:249 Stats.py:258
+#: Stats.py:256 Stats.py:265
 msgid "big blinds/100 hands"
 msgstr "nagyvak/100 leosztás"
 
-#: Stats.py:271 Stats.py:280
+#: Stats.py:278 Stats.py:287
 msgid "Big Bets/100 hands"
 msgstr "nagytét/100 leosztás"
 
-#: Stats.py:274
+#: Stats.py:281
 msgid "exception calcing BB/100: "
 msgstr "hiba a BB/100 számítása közben: "
 
-#: Stats.py:294 Stats.py:303
+#: Stats.py:301 Stats.py:310
 msgid "Flop Seen %"
 msgstr "flopot néz %"
 
-#: Stats.py:326 Stats.py:335
+#: Stats.py:333 Stats.py:342
 msgid "number hands seen"
 msgstr "látott leosztások száma"
 
-#: Stats.py:348 Stats.py:356
+#: Stats.py:355 Stats.py:363
 msgid "folded flop/4th"
 msgstr "dobott flopon/4. utcán"
 
-#: Stats.py:369
+#: Stats.py:376
 msgid "% steal attempted"
 msgstr "lopási kísérlet %"
 
-#: Stats.py:384 Stats.py:391
+#: Stats.py:391 Stats.py:398
 msgid "% folded SB to steal"
 msgstr "kisvakból dob lopásra %"
 
-#: Stats.py:403 Stats.py:410
+#: Stats.py:410 Stats.py:417
 msgid "% folded BB to steal"
 msgstr "nagyvakból dob lopásra %"
 
-#: Stats.py:425 Stats.py:432
+#: Stats.py:432 Stats.py:439
 msgid "% folded blind to steal"
 msgstr "dob lopásra %"
 
-#: Stats.py:444 Stats.py:451
+#: Stats.py:451 Stats.py:458
 msgid "% 3/4 Bet preflop/3rd"
 msgstr "3/4-bet preflop/3. utcán %"
 
-#: Stats.py:463 Stats.py:470
+#: Stats.py:470 Stats.py:477
 msgid "% won$/saw flop/4th"
 msgstr "$nyer/flopot/4. utcát néz %"
 
-#: Stats.py:482 Stats.py:489
+#: Stats.py:489 Stats.py:496
 msgid "Aggression Freq flop/4th"
 msgstr "agresszió gyakoriság flopon/4. utcán"
 
-#: Stats.py:501 Stats.py:508
+#: Stats.py:508 Stats.py:515
 msgid "Aggression Freq turn/5th"
 msgstr "agresszió gyakoriság turnön/5. utcán"
 
-#: Stats.py:520 Stats.py:527
+#: Stats.py:527 Stats.py:534
 msgid "Aggression Freq river/6th"
 msgstr "agresszió gyakoriság riveren/6. utcán"
 
-#: Stats.py:539 Stats.py:546
+#: Stats.py:546 Stats.py:553
 msgid "Aggression Freq 7th"
 msgstr "agresszió gyakoriság 7. utcán"
 
-#: Stats.py:565 Stats.py:572
+#: Stats.py:572 Stats.py:579
 msgid "Post-Flop Aggression Freq"
 msgstr "postflop agresszió gyakoriság"
 
-#: Stats.py:593 Stats.py:600
+#: Stats.py:600 Stats.py:607
 msgid "Aggression Freq"
 msgstr "agresszió gyakoriság"
 
-#: Stats.py:619 Stats.py:626
+#: Stats.py:626 Stats.py:633
 msgid "Aggression Factor"
 msgstr "agresszió faktor"
 
-#: Stats.py:643 Stats.py:650
+#: Stats.py:650 Stats.py:657
 msgid "% continuation bet "
 msgstr "folytató nyitás %"
 
-#: Stats.py:662 Stats.py:669
+#: Stats.py:669 Stats.py:676
 msgid "% continuation bet flop/4th"
 msgstr "folytató nyitás flopon/4. utcán %"
 
-#: Stats.py:681 Stats.py:688
+#: Stats.py:688 Stats.py:695
 msgid "% continuation bet turn/5th"
 msgstr "folytató nyitás turnön/5. utcán %"
 
-#: Stats.py:700 Stats.py:707
+#: Stats.py:707 Stats.py:714
 msgid "% continuation bet river/6th"
 msgstr "folytató nyitás riveren/6. utcán %"
 
-#: Stats.py:719 Stats.py:726
+#: Stats.py:726 Stats.py:733
 msgid "% continuation bet 7th"
 msgstr "folytató nyitás 7. utcán %"
 
-#: Stats.py:738 Stats.py:745
+#: Stats.py:745 Stats.py:752
 msgid "% fold frequency flop/4th"
 msgstr "dobási gyakoriság flopon/4. utcán %"
 
-#: Stats.py:757 Stats.py:764
+#: Stats.py:764 Stats.py:771
 msgid "% fold frequency turn/5th"
 msgstr "dobási gyakoriság turnön/5. utcán %"
 
-#: Stats.py:776 Stats.py:783
+#: Stats.py:783 Stats.py:790
 msgid "% fold frequency river/6th"
 msgstr "dobási gyakoriság riveren/6. utcán %"
 
-#: Stats.py:795 Stats.py:802
+#: Stats.py:802 Stats.py:809
 msgid "% fold frequency 7th"
 msgstr "dobási gyakoriság 7. utcán %"
 
-#: Stats.py:822
+#: Stats.py:829
 msgid "Example stats, player = %s  hand = %s:"
 msgstr "Példa statisztikák, játékos = %s  leosztás = %s:"
 
-#: Stats.py:855
+#: Stats.py:862
 msgid ""
 "\n"
 "\n"
@@ -2414,7 +2755,7 @@ msgstr ""
 "\n"
 "Érvényes statisztikák:"
 
-#: Stats.py:856
+#: Stats.py:863
 msgid ""
 "(add _0 to name to display with 0 decimal places, _1 to display with 1, "
 "etc)\n"
@@ -2422,19 +2763,15 @@ msgstr ""
 "(írj a név után _0-t tizedesjegy nélküli megjelenítéshez, _1-et az egy "
 "tizedesjegyhez, stb.)\n"
 
-#: Tables_Demo.py:72
+#: Tables_Demo.py:60
 msgid "Fake HUD Main Window"
 msgstr "Kamu HUD Főablak"
 
-#: Tables_Demo.py:95
+#: Tables_Demo.py:90
 msgid "enter table name to find: "
 msgstr "add meg a keresendő asztalnevet: "
 
-#: Tables_Demo.py:120
-msgid "calling main"
-msgstr "main hívása"
-
-#: TournamentTracker.py:50
+#: TournamentTracker.py:41
 msgid ""
 "Note: error output is being diverted to fpdb-error-log.txt and HUD-error."
 "txt. Any major error will be reported there _only_."
@@ -2442,251 +2779,255 @@ msgstr ""
 "Megjegyzés: a hibakimenet átirányítva az fpdb-errors.txt és HUD-errors.txt "
 "fájlokba. Bármilyen nagyobb hiba _csak_oda_ kerül kiírásra."
 
-#: TournamentTracker.py:111
+#: TournamentTracker.py:102
 msgid "tournament edit window="
 msgstr "versenyszerkesztő ablak="
 
-#: TournamentTracker.py:114
+#: TournamentTracker.py:105
 msgid "FPDB Tournament Entry"
 msgstr "FPDB Versenybeírás"
 
-#: TournamentTracker.py:154
+#: TournamentTracker.py:145
 msgid "Closing this window will stop the Tournament Tracker"
 msgstr "Ezen ablak bezárása leállítja a Versenykövetőt"
 
-#: TournamentTracker.py:156
+#: TournamentTracker.py:147
 msgid "Enter Tournament"
 msgstr "Verseny beírása"
 
-#: TournamentTracker.py:161
+#: TournamentTracker.py:152
 msgid "FPDB Tournament Tracker"
 msgstr "FPDB Versenykövető"
 
-#: TournamentTracker.py:172
+#: TournamentTracker.py:163
 msgid "Edit"
 msgstr "Szerkeszt"
 
-#: TournamentTracker.py:175
+#: TournamentTracker.py:166
 msgid "Rebuy"
 msgstr "Rebuy"
 
-#: TournamentTracker.py:274
+#: TournamentTracker.py:265
 msgid "db error: skipping "
 msgstr "adatbázis hiba: kihagyásra kerül a(z)"
 
-#: TournamentTracker.py:276
+#: TournamentTracker.py:267
 msgid "Database error %s in hand %d. Skipping.\n"
 msgstr "%s adatbázishiba a %d leosztásban. Kihagyás.\n"
 
-#: TournamentTracker.py:285
+#: TournamentTracker.py:276
 msgid "could not find tournament: skipping"
 msgstr "nem található a verseny: kihagyás"
 
-#: TournamentTracker.py:286
+#: TournamentTracker.py:277
 msgid "Could not find tournament %d in hand %d. Skipping.\n"
 msgstr "Nem található a %d versenyazonosító a %d leosztásban. Kihagyás.\n"
 
-#: TournamentTracker.py:309
+#: TournamentTracker.py:300
 msgid "table name %s not found, skipping.\n"
 msgstr "%s nevű asztal nincs meg, kihagyás.\n"
 
-#: TournamentTracker.py:316
+#: TournamentTracker.py:307
 msgid "tournament tracker starting\n"
 msgstr "versenykövető indítása\n"
 
-#: TourneyFilters.py:61
+#: TourneyFilters.py:52
 msgid "Tourney Type"
 msgstr "Verseny típusa"
 
-#: TourneyFilters.py:88
+#: TourneyFilters.py:79
 msgid "setting numTourneys:"
 msgstr "numTourneys beállítása:"
 
-#: TourneySummary.py:136
+#: TourneySummary.py:133
 msgid "END TIME"
 msgstr "BEFEJEZÉS IDŐPONTJA"
 
-#: TourneySummary.py:137
+#: TourneySummary.py:134
 msgid "TOURNEY NAME"
 msgstr "VERSENY NEVE"
 
-#: TourneySummary.py:138
+#: TourneySummary.py:135
 msgid "TOURNEY NO"
 msgstr "VERSENY SZÁMA"
 
-#: TourneySummary.py:143
+#: TourneySummary.py:140
 msgid "CURRENCY"
 msgstr "PÉNZNEM"
 
-#: TourneySummary.py:146
+#: TourneySummary.py:143
 msgid "ENTRIES"
 msgstr "NEVEZÉSEK SZÁMA"
 
-#: TourneySummary.py:147
+#: TourneySummary.py:144
 msgid "SPEED"
 msgstr "GYORS"
 
-#: TourneySummary.py:148
+#: TourneySummary.py:145
 msgid "PRIZE POOL"
 msgstr "DÍJALAP"
 
-#: TourneySummary.py:149
+#: TourneySummary.py:146
 msgid "STARTING CHIP COUNT"
 msgstr "KEZDŐ ZSETONKÉSZLET"
 
-#: TourneySummary.py:151
+#: TourneySummary.py:148
 msgid "REBUY"
 msgstr "REBUY"
 
-#: TourneySummary.py:152
+#: TourneySummary.py:149
 msgid "ADDON"
 msgstr "ADDON"
 
-#: TourneySummary.py:153
+#: TourneySummary.py:150
 msgid "KO"
 msgstr "KIÜTÉSES"
 
-#: TourneySummary.py:154
+#: TourneySummary.py:151
 msgid "MATRIX"
 msgstr "MÁTRIX"
 
-#: TourneySummary.py:155
+#: TourneySummary.py:152
 msgid "MATRIX ID PROCESSED"
 msgstr "MÁTRIX AZONOSÍTÓ FELDOLGOZOTT"
 
-#: TourneySummary.py:156
+#: TourneySummary.py:153
 msgid "SHOOTOUT"
 msgstr "SHOOTOUT"
 
-#: TourneySummary.py:157
+#: TourneySummary.py:154
 msgid "MATRIX MATCH ID"
 msgstr "MÁTRIX MECCSAZONOSÍTÓ"
 
-#: TourneySummary.py:158
+#: TourneySummary.py:155
 msgid "SUB TOURNEY BUY IN"
 msgstr "ALVERSENY NEVEZÉSI DÍJ"
 
-#: TourneySummary.py:159
+#: TourneySummary.py:156
 msgid "SUB TOURNEY FEE"
 msgstr "ALVERSENY DÍJ"
 
-#: TourneySummary.py:160
+#: TourneySummary.py:157
 msgid "REBUY CHIPS"
 msgstr "REBUY ZSETONOK"
 
-#: TourneySummary.py:161
+#: TourneySummary.py:158
 msgid "ADDON CHIPS"
 msgstr "ADDON ZSETONOK"
 
-#: TourneySummary.py:162
+#: TourneySummary.py:159
 msgid "REBUY COST"
 msgstr "REBUY ÁRA"
 
-#: TourneySummary.py:163
+#: TourneySummary.py:160
 msgid "ADDON COST"
 msgstr "ADDON ÁRA"
 
-#: TourneySummary.py:164
+#: TourneySummary.py:161
 msgid "TOTAL REBUYS"
 msgstr "ÖSSZES REBUY"
 
-#: TourneySummary.py:165
+#: TourneySummary.py:162
 msgid "TOTAL ADDONS"
 msgstr "ÖSSZES ADDON"
 
-#: TourneySummary.py:168
+#: TourneySummary.py:165
 msgid "SNG"
 msgstr "SIT'N'GO"
 
-#: TourneySummary.py:169
+#: TourneySummary.py:166
 msgid "SATELLITE"
 msgstr "SZATELIT"
 
-#: TourneySummary.py:170
+#: TourneySummary.py:167
 msgid "DOUBLE OR NOTHING"
 msgstr "DUPLA VAGY SEMMI"
 
-#: TourneySummary.py:171
+#: TourneySummary.py:168
 msgid "GUARANTEE"
 msgstr "GARANTÁLT DÍJ"
 
-#: TourneySummary.py:172
+#: TourneySummary.py:169
 msgid "ADDED"
 msgstr "HOZZÁADOTT DÍJ"
 
-#: TourneySummary.py:173
+#: TourneySummary.py:170
 msgid "ADDED CURRENCY"
 msgstr "HOZZÁADOTT DÍJ PÉNZNEME"
 
-#: TourneySummary.py:174
+#: TourneySummary.py:171
 msgid "COMMENT"
 msgstr "MEGJEGYZÉS"
 
-#: TourneySummary.py:175
+#: TourneySummary.py:172
 msgid "COMMENT TIMESTAMP"
 msgstr "MEGJEGYZÉS IDŐBÉLYEG"
 
-#: TourneySummary.py:178
+#: TourneySummary.py:175
 msgid "PLAYER IDS"
 msgstr "JÁTÉKOS AZONOSÍTÓK"
 
-#: TourneySummary.py:180
+#: TourneySummary.py:177
 msgid "TOURNEYS PLAYERS IDS"
 msgstr "VERSENYJÁTÉKOS AZONOSÍTÓK"
 
-#: TourneySummary.py:181
+#: TourneySummary.py:178
 msgid "RANKS"
 msgstr "HELYEZÉSEK"
 
-#: TourneySummary.py:182
+#: TourneySummary.py:179
 msgid "WINNINGS"
 msgstr "NYEREMÉNY"
 
-#: TourneySummary.py:183
+#: TourneySummary.py:180
 msgid "WINNINGS CURRENCY"
 msgstr "NYEREMÉNY PÉNZNEME"
 
-#: TourneySummary.py:184
+#: TourneySummary.py:181
 msgid "COUNT REBUYS"
 msgstr "REBUYOK SZÁMA"
 
-#: TourneySummary.py:185
+#: TourneySummary.py:182
 msgid "COUNT ADDONS"
 msgstr "ADDONOK SZÁMA"
 
-#: TourneySummary.py:186
+#: TourneySummary.py:183
 msgid "NB OF KO"
 msgstr "KO SZÁMA"
 
-#: TourneySummary.py:233
+#: TourneySummary.py:230
 msgid "Tourney Insert/Update done"
 msgstr "Verseny beszúrás/frissítés kész"
 
-#: TourneySummary.py:253
+#: TourneySummary.py:250
 msgid "addPlayer: rank:%s - name : '%s' - Winnings (%s)"
 msgstr "addPlayer: helyezés:%s - név : '%s' - Nyeremény (%s)"
 
-#: TourneySummary.py:280
+#: TourneySummary.py:277
 msgid "incrementPlayerWinnings: name : '%s' - Add Winnings (%s)"
 msgstr "incrementPlayerWinnings: név : '%s' - plusz nyeremény (%s)"
 
-#: UltimateBetToFpdb.py:42
-msgid "Initialising UltimateBetconverter class"
-msgstr "UltimateBetconverter osztály inicializálása"
+#: TreeViewTooltips.py:108
+msgid ""
+"This module was developed and tested with version 2.8.18 of gtk.  You are "
+"using version %d.%d.%d.  Your milage may vary."
+msgstr ""
+"Ez a modul a gtk 2.8.18 verziójával lett fejlesztve és tesztelve.  Te most a "
+"%d.%d.%d verziót használod.  Lehet, hogy máshogy fog működni."
 
-#: WinTables.py:82
-msgid "Window %s not found. Skipping."
-msgstr "A(z) %s nevű ablak nincs meg. Kihagyás."
-
-#: WinTables.py:85
+#: WinTables.py:73
 msgid "self.window doesn't exist? why?"
 msgstr "self.window nem létezik? miért?"
 
-#: fpdb.pyw:48
+#: WinamaxToFpdb.py:233
+msgid "Failed to add streets. handtext=%s"
+msgstr "Nem sikerült az utcák hozzáadása. handtext=%s"
+
+#: fpdb.pyw:39
 msgid " - press return to continue\n"
 msgstr " - nyomj ENTER-t a folytatáshoz\n"
 
-#: fpdb.pyw:55
+#: fpdb.pyw:46
 msgid ""
 "\n"
 "python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n"
@@ -2695,11 +3036,11 @@ msgstr ""
 "Python 2.5-2.7 nem található, kérlek telepítsd a Python 2.5-öt, 2.6-ot, vagy "
 "2.7-et az fpdb számára\n"
 
-#: fpdb.pyw:56 fpdb.pyw:68 fpdb.pyw:90
+#: fpdb.pyw:47 fpdb.pyw:59 fpdb.pyw:81
 msgid "Press ENTER to continue."
 msgstr "Nyomj ENTER-t a folytatáshoz."
 
-#: fpdb.pyw:67
+#: fpdb.pyw:58
 msgid ""
 "We appear to be running in Windows, but the Windows Python Extensions are "
 "not loading. Please install the PYWIN32 package from http://sourceforge.net/"
@@ -2709,7 +3050,7 @@ msgstr ""
 "Bővítmények nem töltődnek be. Kérlek telepítsd a PYWIN32 csomagot innen: "
 "http://sourceforge.net/projects/pywin32/"
 
-#: fpdb.pyw:89
+#: fpdb.pyw:80
 msgid ""
 "Unable to load PyGTK modules required for GUI. Please install PyCairo, "
 "PyGObject, and PyGTK from www.pygtk.org."
@@ -2717,7 +3058,7 @@ msgstr ""
 "Nem sikerült a GUI által igényelt PyGTK modulok betöltése. Kérlek telepítsd "
 "a PyCairo-t, a PyGObject-et és a PyGTK-t a www.pygtk.org címről."
 
-#: fpdb.pyw:247
+#: fpdb.pyw:240
 msgid ""
 "Copyright 2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, "
 "sqlcoder, Bostik, and others"
@@ -2725,7 +3066,7 @@ msgstr ""
 "Copyright 2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, "
 "sqlcoder, Bostik, and others"
 
-#: fpdb.pyw:248
+#: fpdb.pyw:241
 msgid ""
 "You are free to change, and distribute original or changed versions of fpdb "
 "within the rules set out by the license"
@@ -2733,31 +3074,31 @@ msgstr ""
 "Szabadon megváltoztathatod és terjesztheted az eredeti vagy már "
 "megváltoztatott fpdb verziókat a licenszben szabályozott feltételek mellett"
 
-#: fpdb.pyw:249
+#: fpdb.pyw:242
 msgid "Please see fpdb's start screen for license information"
 msgstr "Licensz információkért kérlek tekintsd meg az fpdb induló képernyőjét"
 
-#: fpdb.pyw:253
+#: fpdb.pyw:246
 msgid "and others"
 msgstr "és mások"
 
-#: fpdb.pyw:259
+#: fpdb.pyw:252
 msgid "Operating System"
 msgstr "Operációs rendszer"
 
-#: fpdb.pyw:280
+#: fpdb.pyw:273
 msgid "Your config file is: "
 msgstr "Konfigurációs fájl:"
 
-#: fpdb.pyw:285
+#: fpdb.pyw:278
 msgid "Version Information:"
 msgstr "Verzióinformáció:"
 
-#: fpdb.pyw:292
+#: fpdb.pyw:285
 msgid "Threads: "
 msgstr "Szálak:"
 
-#: fpdb.pyw:315
+#: fpdb.pyw:308
 msgid ""
 "Updated preferences have not been loaded because windows are open. Re-start "
 "fpdb to load them."
@@ -2765,19 +3106,19 @@ msgstr ""
 "A megváltoztatott beállítások még nem léptek érvénybe, mert vannak nyitott "
 "ablakok. Indítsd újra az fpdb-t az érvénybe léptetésükhöz."
 
-#: fpdb.pyw:325
+#: fpdb.pyw:318
 msgid "Maintain Databases"
 msgstr "Adatbázisok karbantartása"
 
-#: fpdb.pyw:335
+#: fpdb.pyw:328
 msgid "saving updated db data"
 msgstr "frissített adatbázis adatok mentése"
 
-#: fpdb.pyw:342
+#: fpdb.pyw:335
 msgid "guidb response was "
 msgstr "a guidb válasza ez volt: "
 
-#: fpdb.pyw:348
+#: fpdb.pyw:341
 msgid ""
 "Cannot open Database Maintenance window because other windows have been "
 "opened. Re-start fpdb to use this option."
@@ -2785,11 +3126,11 @@ msgstr ""
 "Nem tudom megnyitni az adatbázis karbantartó ablakot, mert más ablakok is "
 "nyitva vannak. Indítsd újra az fpdb-t ezen funkció használatához."
 
-#: fpdb.pyw:351
+#: fpdb.pyw:344
 msgid "Number of Hands: "
 msgstr "Leosztások száma:"
 
-#: fpdb.pyw:352
+#: fpdb.pyw:345
 msgid ""
 "\n"
 "Number of Tourneys: "
@@ -2797,7 +3138,7 @@ msgstr ""
 "\n"
 "Versenyek száma: "
 
-#: fpdb.pyw:353
+#: fpdb.pyw:346
 msgid ""
 "\n"
 "Number of TourneyTypes: "
@@ -2805,39 +3146,39 @@ msgstr ""
 "\n"
 "Versenytípusok száma: "
 
-#: fpdb.pyw:354
+#: fpdb.pyw:347
 msgid "Database Statistics"
 msgstr "Adatbázis statisztikák"
 
-#: fpdb.pyw:363
+#: fpdb.pyw:356
 msgid "HUD Configurator - choose category"
 msgstr "HUD beállító - válassz típust és méretet"
 
-#: fpdb.pyw:369
+#: fpdb.pyw:362
 msgid ""
 "Please select the game category for which you want to configure HUD stats:"
 msgstr "Válassz játéktípust, amelyre vonatkozóan be akarod állítani a HUD-ot:"
 
-#: fpdb.pyw:421
+#: fpdb.pyw:414
 msgid "HUD Configurator - please choose your stats"
 msgstr "HUD beállító - válassz statisztikákat"
 
-#: fpdb.pyw:427
+#: fpdb.pyw:420
 msgid "Please choose the stats you wish to use in the below table."
 msgstr "Válaszd ki a lenti táblázatból a megjelenítendő statisztikákat."
 
-#: fpdb.pyw:431
+#: fpdb.pyw:424
 msgid "Note that you may not select any stat more than once or it will crash."
 msgstr ""
 "Egy statisztikát ne válassz ki többször, mert nem fog működni (ki fog lépni)."
 
-#: fpdb.pyw:435
+#: fpdb.pyw:428
 msgid ""
 "It is not currently possible to select \"empty\" or anything else to that "
 "end."
 msgstr "Jelenleg nem lehetséges olyat választani, hogy \"üres\" vagy hasonló."
 
-#: fpdb.pyw:439
+#: fpdb.pyw:432
 msgid ""
 "To configure things like colouring you will still have to use the "
 "Preferences dialogue or manually edit your HUD_config.xml."
@@ -2846,16 +3187,16 @@ msgstr ""
 "menüpontot kell használnod, vagy kézzel kell szerkesztened a HUD_config.xml "
 "fájlt."
 
-#: fpdb.pyw:546
+#: fpdb.pyw:539
 msgid "Confirm deleting and recreating tables"
 msgstr "Erősítsd meg a táblák törlését és újra létrehozását"
 
-#: fpdb.pyw:547
+#: fpdb.pyw:540
 msgid "Please confirm that you want to (re-)create the tables."
 msgstr ""
 "Kérlek erősítsd meg, hogy valóban (újra) létre akarod hozni a táblákat."
 
-#: fpdb.pyw:548
+#: fpdb.pyw:541
 msgid ""
 " If there already are tables in the database %s on %s they will be deleted "
 "and you will have to re-import your histories.\n"
@@ -2863,220 +3204,235 @@ msgstr ""
 " Ha már vannak táblák a(z) %s adatbázisban a(z) %s kiszolgálón, akkor azok "
 "törölve lesznek, és újra kell majd importálnod a leosztástörténeteket.\n"
 
-#: fpdb.pyw:549
+#: fpdb.pyw:542
 msgid "This may take a while."
 msgstr "Ez eltarthat egy darabig."
 
-#: fpdb.pyw:574
+#: fpdb.pyw:567
 msgid "User cancelled recreating tables"
 msgstr "A felhasználó megszakította a táblák újra létrehozását"
 
-#: fpdb.pyw:581
+#: fpdb.pyw:574
 msgid "Please confirm that you want to re-create the HUD cache."
 msgstr ""
 "Kérlek erősítsd meg, hogy valóban újra akarod generálni a HUD gyorstárat."
 
-#: fpdb.pyw:589
+#: fpdb.pyw:582
 msgid " Hero's cache starts: "
 msgstr " Saját gyorstár innentől: "
 
-#: fpdb.pyw:603
+#: fpdb.pyw:596
 msgid " Villains' cache starts: "
 msgstr " Ellenfelek gyorstára innentől: "
 
-#: fpdb.pyw:616
+#: fpdb.pyw:609
 msgid " Rebuilding HUD Cache ... "
 msgstr " HUD gyorstár újraépítése ... "
 
-#: fpdb.pyw:624
+#: fpdb.pyw:617
 msgid "User cancelled rebuilding hud cache"
 msgstr "A felhasználó megszakította a HUD gyorstár újraépítését."
 
-#: fpdb.pyw:636
+#: fpdb.pyw:629
 msgid "Confirm rebuilding database indexes"
 msgstr "Erősítsd meg az adatbázis indexeinek újraépítését"
 
-#: fpdb.pyw:637
+#: fpdb.pyw:630
 msgid "Please confirm that you want to rebuild the database indexes."
 msgstr ""
 "Kérlek erősítsd meg, hogy valóban újra akarod építeni az adatbázis indexeit."
 
-#: fpdb.pyw:645
+#: fpdb.pyw:638
 msgid " Rebuilding Indexes ... "
 msgstr " Indexek újraépítése ... "
 
-#: fpdb.pyw:652
+#: fpdb.pyw:645
 msgid " Cleaning Database ... "
 msgstr " Adatbázis tisztítása ... "
 
-#: fpdb.pyw:657
+#: fpdb.pyw:650
 msgid " Analyzing Database ... "
 msgstr " Adatbázis elemzése ... "
 
-#: fpdb.pyw:662
+#: fpdb.pyw:655
 msgid "User cancelled rebuilding db indexes"
 msgstr "A felhasználó megszakította az adatbázis indexeinek újraépítését."
 
-#: fpdb.pyw:757
+#: fpdb.pyw:750
 msgid ""
 "Unimplemented: Save Profile (try saving a HUD layout, that should do it)"
 msgstr ""
 "Még nincs kész: Profil mentése (addig használd a HUD elrendezésének "
 "mentését, az jó)"
 
-#: fpdb.pyw:808
+#: fpdb.pyw:803
 msgid "_Main"
 msgstr "Fő_menü"
 
-#: fpdb.pyw:809 fpdb.pyw:836
+#: fpdb.pyw:804 fpdb.pyw:833
 msgid "_Quit"
 msgstr "_Kilépés"
 
-#: fpdb.pyw:810
+#: fpdb.pyw:805
 msgid "<control>L"
 msgstr "<control>L"
 
-#: fpdb.pyw:810
+#: fpdb.pyw:805
 msgid "_Load Profile (broken)"
 msgstr "Profil betö_ltése (hibás)"
 
-#: fpdb.pyw:811
+#: fpdb.pyw:806
 msgid "<control>S"
 msgstr "<control>S"
 
-#: fpdb.pyw:811
+#: fpdb.pyw:806
 msgid "_Save Profile (todo)"
 msgstr "Profil menté_se (todo)"
 
-#: fpdb.pyw:812
+#: fpdb.pyw:807
 msgid "<control>F"
 msgstr "<control>B"
 
-#: fpdb.pyw:812
+#: fpdb.pyw:807
 msgid "Pre_ferences"
 msgstr "_Beállítások"
 
-#: fpdb.pyw:813
+#: fpdb.pyw:808
 msgid "_Import"
 msgstr "_Importálás"
 
-#: fpdb.pyw:814
+#: fpdb.pyw:809
 msgid "<control>B"
 msgstr "<control>I"
 
-#: fpdb.pyw:815
+#: fpdb.pyw:810
+#, fuzzy
+msgid "<control>R"
+msgstr "<control>L"
+
+#: fpdb.pyw:810
+#, fuzzy
+msgid "Tournament _Results Import"
+msgstr "Versenyeredmények"
+
+#: fpdb.pyw:811
 msgid "<control>I"
 msgstr "<control>E"
 
-#: fpdb.pyw:815
+#: fpdb.pyw:811
 msgid "_Import through eMail/IMAP"
 msgstr "_Email import (IMAP)"
 
-#: fpdb.pyw:816
+#: fpdb.pyw:812
 msgid "_Viewers"
 msgstr "_Nézetek"
 
-#: fpdb.pyw:817
+#: fpdb.pyw:813
 msgid "<control>A"
 msgstr "<control>A"
 
-#: fpdb.pyw:817
+#: fpdb.pyw:813
 msgid "_Auto Import and HUD"
 msgstr "_Auto Import és HUD"
 
-#: fpdb.pyw:818
+#: fpdb.pyw:814
 msgid "<control>H"
 msgstr "<control>H"
 
-#: fpdb.pyw:818
+#: fpdb.pyw:814
 msgid "_HUD Configurator"
 msgstr "_HUD beállítása"
 
-#: fpdb.pyw:819
+#: fpdb.pyw:815
 msgid "<control>G"
 msgstr "<control>G"
 
-#: fpdb.pyw:819
+#: fpdb.pyw:815
 msgid "_Graphs"
 msgstr "_Grafikonok"
 
-#: fpdb.pyw:820
+#: fpdb.pyw:816 fpdb.pyw:1079
+msgid "Tourney Graphs"
+msgstr "Verseny grafikonok"
+
+#: fpdb.pyw:817
 msgid "<control>P"
 msgstr "<control>P"
 
-#: fpdb.pyw:820
+#: fpdb.pyw:817
 msgid "Ring _Player Stats (tabulated view, not on pgsql)"
 msgstr "Kész_pénzes statisztikák (táblázat; Postgre-vel nem)"
 
-#: fpdb.pyw:821
+#: fpdb.pyw:818
 msgid "<control>T"
 msgstr "<control>T"
 
-#: fpdb.pyw:821
-msgid "_Tourney Player Stats (tabulated view, not on pgsql)"
+#: fpdb.pyw:818
+#, fuzzy
+msgid "_Tourney Stats (tabulated view, not on pgsql)"
 msgstr "Versenyjá_tékos statisztikák (táblázat; Postgre-vel nem)"
 
-#: fpdb.pyw:822
+#: fpdb.pyw:819
 msgid "Tourney _Viewer"
 msgstr "_Verseny nézet"
 
-#: fpdb.pyw:823
+#: fpdb.pyw:820
 msgid "<control>O"
 msgstr "<control>O"
 
-#: fpdb.pyw:823
+#: fpdb.pyw:820
 msgid "P_ositional Stats (tabulated view, not on sqlite)"
 msgstr "P_ozíciós statisztikák (táblázat; SQLite-tal nem)"
 
-#: fpdb.pyw:824 fpdb.pyw:1039
+#: fpdb.pyw:821 fpdb.pyw:1044
 msgid "Session Stats"
 msgstr "Session statisztikák"
 
-#: fpdb.pyw:825
+#: fpdb.pyw:822
 msgid "_Database"
 msgstr "A_datbázis"
 
-#: fpdb.pyw:826
+#: fpdb.pyw:823
 msgid "_Maintain Databases"
 msgstr "_Karbantartás"
 
-#: fpdb.pyw:827
+#: fpdb.pyw:824
 msgid "Create or Recreate _Tables"
 msgstr "_Táblák (újra) létrehozása"
 
-#: fpdb.pyw:828
+#: fpdb.pyw:825
 msgid "Rebuild HUD Cache"
 msgstr "HUD gyorstár újraépítése"
 
-#: fpdb.pyw:829
+#: fpdb.pyw:826
 msgid "Rebuild DB Indexes"
 msgstr "Adatbázis indexek újraépítése"
 
-#: fpdb.pyw:830
+#: fpdb.pyw:827
 msgid "_Statistics"
 msgstr "_Statisztikák"
 
-#: fpdb.pyw:831
+#: fpdb.pyw:828
 msgid "Dump Database to Textfile (takes ALOT of time)"
 msgstr "Adatbázis kiírása textfájlba (SOKÁIG tart)"
 
-#: fpdb.pyw:832
+#: fpdb.pyw:829
 msgid "_Help"
 msgstr "_Súgó"
 
-#: fpdb.pyw:833
+#: fpdb.pyw:830
 msgid "_Log Messages"
 msgstr "Nap_lóbejegyzések"
 
-#: fpdb.pyw:834
+#: fpdb.pyw:831
 msgid "A_bout, License, Copying"
 msgstr "_Névjegy, licensz, másolás"
 
-#: fpdb.pyw:852
+#: fpdb.pyw:849
 msgid "There is an error in your config file\n"
 msgstr "Hiba van a konfigurációs fájlodban\n"
 
-#: fpdb.pyw:853
+#: fpdb.pyw:850
 msgid ""
 "\n"
 "\n"
@@ -3086,19 +3442,19 @@ msgstr ""
 "\n"
 "A hiba a következő:  "
 
-#: fpdb.pyw:854
+#: fpdb.pyw:851
 msgid "CONFIG FILE ERROR"
 msgstr "KONFIGURÁCIÓS FÁJL HIBA"
 
-#: fpdb.pyw:858
+#: fpdb.pyw:855
 msgid "Logfile is %s\n"
 msgstr "A naplófájl: %s\n"
 
-#: fpdb.pyw:860
+#: fpdb.pyw:857
 msgid "Config file"
 msgstr "Konfigurációs fájl"
 
-#: fpdb.pyw:861
+#: fpdb.pyw:858
 msgid ""
 "has been created at:\n"
 "%s.\n"
@@ -3106,7 +3462,7 @@ msgstr ""
 "létrehozva itt:\n"
 "%s.\n"
 
-#: fpdb.pyw:862
+#: fpdb.pyw:859
 msgid ""
 "Edit your screen_name and hand history path in the supported_sites section "
 "of the Preferences window (Main menu) before trying to import hands."
@@ -3115,19 +3471,19 @@ msgstr ""
 "supported_sites résznél a Beállítások ablakban (Főmenü) mielőtt megpróbálnál "
 "leosztásokat importálni."
 
-#: fpdb.pyw:884
+#: fpdb.pyw:881
 msgid "Connected to SQLite: %s"
 msgstr "Kapcsolódva az SQLite adatbázishoz: %s"
 
-#: fpdb.pyw:918
+#: fpdb.pyw:915
 msgid "Strong Warning - Invalid database version"
 msgstr "Nyomatékos figyelmeztetés - Érvénytelen adatbázis verzió"
 
-#: fpdb.pyw:920
+#: fpdb.pyw:917
 msgid "An invalid DB version or missing tables have been detected."
 msgstr "Érvénytelen adatbázis verziót vagy hiányzó táblá(ka)t találtam."
 
-#: fpdb.pyw:924
+#: fpdb.pyw:921
 msgid ""
 "This error is not necessarily fatal but it is strongly recommended that you "
 "recreate the tables by using the Database menu."
@@ -3135,7 +3491,7 @@ msgstr ""
 "Ez a hiba nem feltétlenül végzetes, de erősen javasolt a táblák "
 "újragenerálása az Adatbázis menü használatával."
 
-#: fpdb.pyw:928
+#: fpdb.pyw:925
 msgid ""
 "Not doing this will likely lead to misbehaviour including fpdb crashes, "
 "corrupt data etc."
@@ -3144,13 +3500,13 @@ msgstr ""
 "kiléphet, tönkretehet adatokat, stb."
 
 # FIXME: would need a different word ordering in Hungarian
-#: fpdb.pyw:941
+#: fpdb.pyw:938
 msgid "Status: Connected to %s database named %s on host %s"
 msgstr ""
 "Állapot: Kapcsolódva a(z) %s adatbázis-kezelő %s nevű adatbázisához a(z) %s "
 "kiszolgálón"
 
-#: fpdb.pyw:951
+#: fpdb.pyw:948
 msgid ""
 "\n"
 "Global lock taken by %s"
@@ -3158,7 +3514,7 @@ msgstr ""
 "\n"
 "Globális zárolást végzett %s"
 
-#: fpdb.pyw:954
+#: fpdb.pyw:951
 msgid ""
 "\n"
 "Failed to get global lock, it is currently held by %s"
@@ -3166,43 +3522,49 @@ msgstr ""
 "\n"
 "Globális zárolás meghiúsult, %s már zárolta"
 
-#: fpdb.pyw:964
+#: fpdb.pyw:961
 msgid "Quitting normally"
 msgstr "Normál kilépés"
 
-#: fpdb.pyw:988
+#: fpdb.pyw:986
 msgid "Global lock released.\n"
 msgstr "Globális zárolás feloldva.\n"
 
-#: fpdb.pyw:995
+#: fpdb.pyw:993
 msgid "Auto Import"
 msgstr "Auto Import"
 
-#: fpdb.pyw:1002
+#: fpdb.pyw:1000
 msgid "Bulk Import"
 msgstr "Importálás"
 
-#: fpdb.pyw:1008
+#: fpdb.pyw:1007
+#, fuzzy
+msgid "Tournament Results Import"
+msgstr "Versenyeredmények"
+
+#: fpdb.pyw:1013
 msgid "eMail Import"
 msgstr "Email import"
 
-#: fpdb.pyw:1015
+#: fpdb.pyw:1020
 msgid "Ring Player Stats"
 msgstr "Készpénzes statisztikák"
 
-#: fpdb.pyw:1021
-msgid "Tourney Player Stats"
+#: fpdb.pyw:1026
+#, fuzzy
+msgid "Tourney Stats"
 msgstr "Versenystatisztikák"
 
-#: fpdb.pyw:1027
+#: fpdb.pyw:1032
 msgid "Tourney Viewer"
 msgstr "Verseny nézet"
 
-#: fpdb.pyw:1033
+#: fpdb.pyw:1038
 msgid "Positional Stats"
 msgstr "Pozíciós statisztikák"
 
-#: fpdb.pyw:1043
+#: fpdb.pyw:1048
 msgid ""
 "Fpdb needs translators!\n"
 "If you speak another language and have a few minutes or more to spare get in "
@@ -3260,18 +3622,18 @@ msgstr ""
 "GPL2 vagy újabb licensszel.\n"
 "A Windows telepítő csomag tartalmaz MIT licensz hatálya alá eső részeket "
 "is.\n"
-"A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, gpl-"
-"2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
+"A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, "
+"gpl-2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
 
-#: fpdb.pyw:1060
+#: fpdb.pyw:1065
 msgid "Help"
 msgstr "Súgó"
 
-#: fpdb.pyw:1067
+#: fpdb.pyw:1072
 msgid "Graphs"
 msgstr "Grafikonok"
 
-#: fpdb.pyw:1119
+#: fpdb.pyw:1131
 msgid ""
 "\n"
 "Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt "
@@ -3281,15 +3643,11 @@ msgstr ""
 "Megjegyzés: a hibakimenet átirányítva az fpdb-errors.txt és HUD-errors.txt "
 "fájlokba itt: %s"
 
-#: fpdb.pyw:1148
+#: fpdb.pyw:1163
 msgid "fpdb starting ..."
 msgstr "fpdb indítása ..."
 
-#: fpdb.pyw:1205
-msgid "FPDB WARNING"
-msgstr "FPDB FIGYELMEZTETÉS"
-
-#: fpdb.pyw:1224
+#: fpdb.pyw:1240
 msgid ""
 "WARNING: Unable to find output hand history directory %s\n"
 "\n"
@@ -3300,7 +3658,7 @@ msgstr ""
 " Kattints az IGEN gombra a könyvtár létrehozásához, vagy a NEM gombra egy "
 "másik könyvtár választásához."
 
-#: fpdb.pyw:1232
+#: fpdb.pyw:1248
 msgid ""
 "WARNING: Unable to create hand output directory. Importing is not likely to "
 "work until this is fixed."
@@ -3308,19 +3666,39 @@ msgstr ""
 "FIGYELEM: Nem sikerült a leosztásarchívum könyvtárának létrehozása. Az "
 "importálás valószínűleg nem fog működni."
 
-#: fpdb_import.py:60
+#: fpdb.pyw:1259
+msgid ""
+"WARNING: Unable to find site  '%s'\n"
+"\n"
+"Press YES to add this site to the database."
+msgstr ""
+"FIGYELEM: Nem található a '%s' terem\n"
+"\n"
+"Kattints az IGEN gombra a terem hozzáadásához."
+
+#: fpdb.pyw:1275
+msgid ""
+"\n"
+"Enter short code for %s\n"
+"(up to 3 characters):\n"
+msgstr ""
+"\n"
+"Add meg a rövid kódot a(z) %s számára\n"
+"(maximum 3 karakter):\n"
+
+#: fpdb_import.py:51
 msgid "Import database module: MySQLdb not found"
 msgstr "Nem található a következő adatbázis-modul: MySQLdb"
 
-#: fpdb_import.py:67
+#: fpdb_import.py:58
 msgid "Import database module: psycopg2 not found"
 msgstr "Nem található a következő adatbázis-modul: psycopg2"
 
-#: fpdb_import.py:189
+#: fpdb_import.py:185
 msgid "Database ID for %s not found"
 msgstr "Azonosító nem található a(z) %s teremhez"
 
-#: fpdb_import.py:191
+#: fpdb_import.py:187
 msgid ""
 "[ERROR] More than 1 Database ID found for %s - Multiple currencies not "
 "implemented yet"
@@ -3328,63 +3706,59 @@ msgstr ""
 "[ERROR] Egynél több azonosítót találtam a(z) %s teremhez - Termenként több "
 "pénznem még nem támogatott"
 
-#: fpdb_import.py:227
-msgid "Attempted to add non-directory '%s' as an import directory"
-msgstr "Nem könyvtár ('%s') megadása importálási könyvtárként"
-
-#: fpdb_import.py:237
+#: fpdb_import.py:233
 msgid "Started at %s -- %d files to import. indexes: %s"
 msgstr "Elindítva: %s -- %d fájl importálása. Indexek: %s"
 
-#: fpdb_import.py:246
+#: fpdb_import.py:242
 msgid "No need to drop indexes."
 msgstr "Nem szükséges az indexek eldobása."
 
-#: fpdb_import.py:265
+#: fpdb_import.py:261
 msgid "writers finished already"
 msgstr "az írások már befejeződtek"
 
-#: fpdb_import.py:268
+#: fpdb_import.py:264
 msgid "waiting for writers to finish ..."
 msgstr "várakozás az írások befejeződésére ..."
 
-#: fpdb_import.py:278
+#: fpdb_import.py:274
 msgid "                              ... writers finished"
 msgstr "                              ... az írások befejeződtek"
 
-#: fpdb_import.py:284
+#: fpdb_import.py:280
 msgid "No need to rebuild indexes."
 msgstr "Nem szükséges az adatbázis indexeinek újraépítése."
 
-#: fpdb_import.py:288
+#: fpdb_import.py:284
 msgid "No need to rebuild hudcache."
 msgstr "Nem szükséges a HUD gyorstár újraépítése."
 
-#: fpdb_import.py:313
+#: fpdb_import.py:318
 msgid "sending finish message queue length ="
 msgstr "befejező üzenet küldése; sor hossza ="
 
-#: fpdb_import.py:439 fpdb_import.py:441
+#: fpdb_import.py:445 fpdb_import.py:447
 msgid "Converting %s"
 msgstr "%s konvertálása"
 
-#: fpdb_import.py:477
+#: fpdb_import.py:485
 msgid "Hand processed but empty"
 msgstr "A leosztás feldolgozva, de üres volt"
 
-#: fpdb_import.py:490
+#: fpdb_import.py:498
 msgid "fpdb_import: sending hand to hud"
 msgstr "fpdb_import: leosztás küldése a HUD számára"
 
-#: fpdb_import.py:493
+#: fpdb_import.py:501
 msgid "Failed to send hand to HUD: %s"
 msgstr "Nem sikerült a leosztás elküldése a HUD számára: %s"
 
-#: fpdb_import.py:508
+#: fpdb_import.py:516
 msgid "Unknown filter filter_name:'%s' in filter:'%s'"
 msgstr "Ismeretlen szűrő: filter_name:'%s' a '%s' szűrőben"
 
-#: fpdb_import.py:519
+#: fpdb_import.py:527
 msgid ""
 "Error No.%s please send the hand causing this to fpdb-main@lists.sourceforge."
 "net so we can fix the problem."
@@ -3392,11 +3766,11 @@ msgstr ""
 "%s számú hiba. Kérlek küldd el az ezt okozó leosztást az fpdb-main@lists."
 "sourceforge.net címre, hogy ki tudjuk javítani a hibát."
 
-#: fpdb_import.py:520
+#: fpdb_import.py:528
 msgid "Filename:"
 msgstr "Fájlnév:"
 
-#: fpdb_import.py:521
+#: fpdb_import.py:529
 msgid ""
 "Here is the first line of the hand so you can identify it. Please mention "
 "that the error was a ValueError:"
@@ -3404,15 +3778,19 @@ msgstr ""
 "Itt az első sora a leosztásnak azonosítás céljából. Kérlek említsd majd meg, "
 "hogy a hiba ValueError volt:"
 
-#: fpdb_import.py:523
+#: fpdb_import.py:531
 msgid "Hand logged to hand-errors.txt"
 msgstr "A leosztás naplózva a hand-errors.txt fájlba"
 
-#: fpdb_import.py:531
+#: fpdb_import.py:587
+msgid "Importing"
+msgstr "Importálás"
+
+#: fpdb_import.py:615
 msgid "CLI for fpdb_import is now available as CliFpdb.py"
 msgstr "az fpdb_import már parancssorból is elérhető a CliFpdb.py segítségével"
 
-#: interlocks.py:61
+#: interlocks.py:52
 msgid "lock already held by:"
 msgstr "a zárolást már elvégezte:"
 
@@ -3442,6 +3820,46 @@ msgstr ""
 "\n"
 "Nem találhatóak a GTK könyvtárak az útvonaladban - telepítsd a GTK-t, vagy "
 "állítsd be kézzel az útvonalat\n"
+
+#~ msgid "creating mysql index "
+#~ msgstr "MySQL index létrehozása: "
+
+#~ msgid "   create index failed: "
+#~ msgstr "    index létrehozása nem sikerült: "
+
+#~ msgid "    create index failed: "
+#~ msgstr "    Index létrehozása nem sikerült: "
+
+#~ msgid "Profit graph for ring games"
+#~ msgstr "Bevételgrafikon a készpénzes játékokról"
+
+#~ msgid "Input file"
+#~ msgstr "Bemeneti fájl"
+
+#~ msgid "Initialising UltimateBetconverter class"
+#~ msgstr "UltimateBetconverter osztály inicializálása"
+
+#~ msgid "calling main"
+#~ msgstr "main hívása"
+
+#~ msgid "Window %s not found. Skipping."
+#~ msgstr "A(z) %s nevű ablak nincs meg. Kihagyás."
+
+#~ msgid "GameInfo regex did not match"
+#~ msgstr "GameInfo regex nem illeszkedik"
+
+#~ msgid ""
+#~ "*** Parse error reading blinds (check compilePlayerRegexs as a likely "
+#~ "culprit)"
+#~ msgstr ""
+#~ "*** Feldolgozási hiba a vakok beolvasása közben (valószínűleg a "
+#~ "compilePlayerRegex-eket kell ellenőrizni)"
+
+#~ msgid "didn't recognise buyin currency in:"
+#~ msgstr "nem sikerült felismerni a beülő pénznemét ebben:"
+
+#~ msgid "in not result starttime"
+#~ msgstr "a starttime nem található részében"
 
 #~ msgid "db connection to "
 #~ msgstr "kapcsolódás az adatbázishoz "
@@ -3512,9 +3930,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Kamu főablak, bla bla, bla\n"
 #~ "bla, bla"
-
-#~ msgid "Table not found."
-#~ msgstr "Az asztal nem található."
 
 #~ msgid "re_postSB failed, hand="
 #~ msgstr "re_postSB nem sikerült, leosztás="

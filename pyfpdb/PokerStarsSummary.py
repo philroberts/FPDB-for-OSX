@@ -17,6 +17,9 @@
 
 """pokerstars-specific summary parsing code"""
 
+import L10n
+_ = L10n.get_translation()
+
 from decimal import Decimal
 import datetime
 
@@ -24,18 +27,6 @@ from Exceptions import FpdbParseError
 from HandHistoryConverter import *
 import PokerStarsToFpdb
 from TourneySummary import *
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 class PokerStarsSummary(TourneySummary):
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
@@ -57,147 +48,38 @@ class PokerStarsSummary(TourneySummary):
                             'LS' : "\$|\xe2\x82\xac|"        # legal currency symbols - Euro(cp1252, utf-8)
                     }
 
-    re_SplitGames = re.compile("^PokerStars")
+    re_SplitTourneys = re.compile("PokerStars Tournament ")
     
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
 
     re_TourneyInfo = re.compile(u"""
                         \#(?P<TOURNO>[0-9]+),\s
                         (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s
-                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
-                        (?P<DESC>[ a-zA-Z]+\s)?
-                        (Buy-In:\s\$(?P<BUYIN>[.0-9]+)(\/\$(?P<FEE>[.0-9]+))?\s)?
-                        (?P<ENTRIES>[0-9]+)\splayers\s
-                        (\$?(?P<ADDED>[.\d]+)\sadded\sto\sthe\sprize\spool\sby\sPokerStars\.com\s)?
-                        (Total\sPrize\sPool:\s\$?(?P<PRIZEPOOL>[.0-9]+)\s)?
+                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s+
+                        (?P<DESC>[ a-zA-Z]+\s+)?
+                        (Buy-In:\s\$(?P<BUYIN>[.0-9]+)(\/\$(?P<FEE>[.0-9]+))?(?P<CUR>\s%(LEGAL_ISO)s)?\s+)?
+                        (?P<ENTRIES>[0-9]+)\splayers\s+
+                        (\$?(?P<ADDED>[.\d]+)\sadded\sto\sthe\sprize\spool\sby\sPokerStars\.com\s+)?
+                        (Total\sPrize\sPool:\s\$?(?P<PRIZEPOOL>[.0-9]+)(\s%(LEGAL_ISO)s)?\s+)?
                         (Target\sTournament\s.*)?
-                        Tournament\sstarted\s-\s
-                        (?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\-\s]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s?\(?(?P<TZ>[A-Z]+)\)\s
+                        Tournament\sstarted\s+(-\s)?
+                        (?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\-\s]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s?\(?(?P<TZ>[A-Z]+)\)?\s
                                """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
 
     re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP)""" % substitutions)
 
-    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s)?(\$(?P<WINNINGS>[0-9]+\.[0-9]+))?(?P<STILLPLAYING>still\splaying)?""")
+    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s)?(\$(?P<WINNINGS>[0-9]+\.[0-9]+))?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(\s+)?""")
 
     re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
 
-    re_Entries = re.compile("[0-9]+")
-    re_Prizepool = re.compile("\$[0-9]+\.[0-9]+")
-    re_BuyInFee = re.compile("(?P<BUYIN>[0-9]+\.[0-9]+).*(?P<FEE>[0-9]+\.[0-9]+)")
-    re_FPP = re.compile("(?P<FPP>[0-9]+)\sFPP")
-    #note: the dollar and cent in the below line are currency-agnostic
-    re_Added = re.compile("(?P<DOLLAR>[0-9]+)\.(?P<CENT>[0-9]+)\s(?P<CURRENCY>[A-Z]+)(\sadded\sto\sthe\sprize\spool\sby\sPokerStars)")
-    re_DateTimeET = re.compile("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
-    re_GameInfo = re.compile(u""".+(?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s(?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)""")
+    codepage = ["utf-8"]
 
     def parseSummary(self):
-        lines=self.summaryText.splitlines()
-        
-        self.tourNo = self.re_TourNo.findall(lines[0])[0][1:-1] #ignore game and limit type as thats not recorded
-        
-        result=self.re_GameInfo.search(lines[0])
-        result=result.groupdict()
-        self.gametype['limitType']=self.limits[result['LIMIT']]
-        self.gametype['category']=self.games[result['GAME']][1]
-        
-        if lines[1].find("$")!=-1: #TODO: move this into a method and call that from PokerStarsToFpdb.py:269    if hand.buyinCurrency=="USD" etc.
-            self.currency="USD"
-        elif lines[1].find(u"€")!=-1:
-            self.currency="EUR"
-        elif lines[1].find("FPP")!=-1:
-            self.currency="PSFP"
-        else:
-            raise FpdbParseError(_("didn't recognise buyin currency in:")+lines[1])
-        
-        if self.currency=="USD" or self.currency=="EUR":
-            result=self.re_BuyInFee.search(lines[1])
-            result=result.groupdict()
-            self.buyin=int(100*Decimal(result['BUYIN']))
-            self.fee=int(100*Decimal(result['FEE']))
-        elif self.currency=="PSFP":
-            result=self.re_FPP.search(lines[1])
-            result=result.groupdict()
-            self.buyin=int(Decimal(result['FPP']))
-            self.fee=0
-        
-        currentLine=2
-        self.entries = self.re_Entries.findall(lines[currentLine])[0]
-        currentLine+=1 #note that I chose to make the code keep state (the current line number)
-                       #as that means it'll fail rather than silently skip potentially valuable information
-        #print "after entries lines[currentLine]", lines[currentLine]
-
-        result=self.re_Added.search(lines[currentLine])
-        if result:
-            result=result.groupdict()
-            self.added=100*int(Decimal(result['DOLLAR']))+int(Decimal(result['CENT']))
-            self.addedCurrency=result['CURRENCY']
-            currentLine+=1
-        else:
-            self.added=0
-            self.addedCurrency="NA"
-        #print "after added/entries lines[currentLine]", lines[currentLine]
-
-        result=self.re_Prizepool.findall(lines[currentLine])
-        if result:
-            self.prizepool = result[0]
-            self.prizepool = self.prizepool[1:-3]+self.prizepool[-2:]
-            currentLine+=1
-        #print "after prizepool lines[currentLine]", lines[currentLine]
-        
-        useET=False
-        result=self.re_DateTime.search(lines[currentLine])
-        if not result:
-            print _("in not result starttime")
-            useET=True
-            result=self.re_DateTimeET.search(lines[currentLine])
-        result=result.groupdict()
-        datetimestr = "%s/%s/%s %s:%s:%s" % (result['Y'], result['M'],result['D'],result['H'],result['MIN'],result['S'])
-        self.startTime= datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
-        self.startTime = HandHistoryConverter.changeTimezone(self.startTime, "ET", "UTC")
-        currentLine+=1
-
-        if useET:
-            result=self.re_DateTimeET.search(lines[currentLine])
-        else:
-            result=self.re_DateTime.search(lines[currentLine])
-        if result:
-            result=result.groupdict()
-            datetimestr = "%s/%s/%s %s:%s:%s" % (result['Y'], result['M'],result['D'],result['H'],result['MIN'],result['S'])
-            self.endTime= datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
-            self.endTime = HandHistoryConverter.changeTimezone(self.endTime, "ET", "UTC")
-        currentLine+=1
-        
-        if lines[currentLine].find("Tournament is still in progress")!=-1:
-            currentLine+=1
-        
-        for i in range(currentLine,len(lines)-2): #lines with rank and winnings info
-            if lines[i].find(":")==-1:
-                break
-            result=self.re_Player.search(lines[i])
-            result=result.groupdict()
-            rank=result['RANK']
-            name=result['NAME']
-            winnings=result['WINNINGS']
-
-            if winnings:
-                winnings=int(100*Decimal(winnings))
-            else:
-                winnings=0
-            
-            if result['STILLPLAYING']:
-                #print "stillplaying"
-                rank=None
-                winnings=None
-            
-            self.addPlayer(rank, name, winnings, self.currency, None, None, None)#TODO: currency, ko/addon/rebuy count -> need examples!
-    #end def parseSummary
-
-    def parseSummaryFile(self):
         m = self.re_TourneyInfo.search(self.summaryText)
         if m == None:
             tmp = self.summaryText[0:200]
-            log.error(_("parseSummaryFile: Unable to recognise Tourney Info: '%s'") % tmp)
-            log.error(_("parseSummaryFile: Raising FpdbParseError"))
+            log.error(_("parseSummary: Unable to recognise Tourney Info: '%s'") % tmp)
+            log.error(_("parseSummary: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise Tourney Info: '%s'") % tmp)
 
         #print "DEBUG: m.groupdict(): %s" % m.groupdict()
@@ -222,8 +104,8 @@ class PokerStarsSummary(TourneySummary):
 
         m = self.re_Currency.search(self.summaryText)
         if m == None:
-            log.error(_("parseSummaryFile: Unable to locate currency"))
-            log.error(_("parseSummaryFile: Raising FpdbParseError"))
+            log.error(_("parseSummary: Unable to locate currency"))
+            log.error(_("parseSummary: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to locate currency"))
         #print "DEBUG: m.groupdict(): %s" % m.groupdict()
 
@@ -247,6 +129,18 @@ class PokerStarsSummary(TourneySummary):
                 #print "stillplaying"
                 rank=None
                 winnings=None
+
+            if 'TICKET' and mg['TICKET'] != None:
+                #print "Tournament Ticket Level %s" % mg['LEVEL']
+                step_values = {
+                                '1' :    '750', # Step 1 -    $7.50 USD
+                                '2' :   '2750', # Step 2 -   $27.00 USD
+                                '3' :   '8200', # Step 3 -   $82.00 USD
+                                '4' :  '21500', # Step 4 -  $215.00 USD
+                                '5' :  '70000', # Step 5 -  $700.00 USD
+                                '6' : '210000', # Step 6 - $2100.00 USD
+                              }
+                winnings = step_values[mg['LEVEL']]
 
             #TODO: currency, ko/addon/rebuy count -> need examples!
             #print "DEBUG: addPlayer(%s, %s, %s, %s, None, None, None)" %(rank, name, winnings, self.currency)

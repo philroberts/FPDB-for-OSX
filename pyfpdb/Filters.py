@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 import threading
 import pygtk
 pygtk.require('2.0')
@@ -29,18 +32,6 @@ import gobject
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("filter")
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 import Configuration
 import Database
@@ -71,6 +62,7 @@ class Filters(threading.Thread):
 
         gen = self.conf.get_general_params()
         self.day_start = 0
+
         if 'day_start' in gen:
             self.day_start = float(gen['day_start'])
 
@@ -92,6 +84,7 @@ class Filters(threading.Thread):
         self.siteid = {}
         self.heroes = {}
         self.boxes  = {}
+        self.graphops = {}
 
         for site in self.conf.get_supported_sites():
             #Get db site id for filtering later
@@ -111,6 +104,12 @@ class Filters(threading.Thread):
         # For use in groups etc
         self.sbGroups = {}
         self.numHands = 0
+
+        # for use in graphops
+        # dspin = display in '$' or 'B'
+        self.graphops['dspin'] = "$"
+        self.graphops['showdown'] = 'OFF'
+        self.graphops['nonshowdown'] = 'OFF'
 
         playerFrame = gtk.Frame()
         playerFrame.set_label_align(0.0, 0.0)
@@ -152,6 +151,16 @@ class Filters(threading.Thread):
         self.fillLimitsFrame(vbox, self.display)
         limitsFrame.add(vbox)
 
+        # GraphOps
+        graphopsFrame = gtk.Frame()
+        #graphops.set_label_align(0,0, 0.0)
+        graphopsFrame.show()
+        vbox = gtk.VBox(False, 0)
+
+        self.fillGraphOpsFrame(vbox)
+        graphopsFrame.add(vbox)
+
+
         # Seats
         seatsFrame = gtk.Frame()
         seatsFrame.show()
@@ -192,6 +201,7 @@ class Filters(threading.Thread):
         self.mainVBox.add(seatsFrame)
         self.mainVBox.add(groupsFrame)
         self.mainVBox.add(dateFrame)
+        self.mainVBox.add(graphopsFrame)
         self.mainVBox.add(self.Button1)
         self.mainVBox.add(self.Button2)
 
@@ -212,6 +222,8 @@ class Filters(threading.Thread):
             groupsFrame.hide()
         if "Dates" not in self.display or self.display["Dates"] == False:
             dateFrame.hide()
+        if "GraphOps" not in self.display or self.display["GraphOps"] == False:
+            graphopsFrame.hide()
         if "Button1" not in self.display or self.display["Button1"] == False:
             self.Button1.hide()
         if "Button2" not in self.display or self.display["Button2"] == False:
@@ -263,6 +275,9 @@ class Filters(threading.Thread):
     def getHeroes(self):
         return self.heroes
     #end def getHeroes
+
+    def getGraphOps(self):
+        return self.graphops
 
     def getLimits(self):
         ltuple = []
@@ -548,6 +563,14 @@ class Filters(threading.Thread):
         self.groups[group] = w.get_active()
         log.debug( _("self.groups[%s] set to %s") %(group, self.groups[group]) )
 
+
+    def __set_displayin_select(self, w, ops):
+        self.graphops['dspin'] = ops
+
+    def __set_graphopscheck_select(self, w, data):
+        #print "%s was toggled %s" % (data, ("OFF", "ON")[w.get_active()])
+        self.graphops[data] = ("OFF", "ON")[w.get_active()]
+
     def fillPlayerFrame(self, vbox, display):
         top_hbox = gtk.HBox(False, 0)
         vbox.pack_start(top_hbox, False, False, 0)
@@ -779,7 +802,57 @@ class Filters(threading.Thread):
             # set_active doesn't seem to call this for some reason so call manually:
             self.__set_limit_select(rb1, 'ring')
             self.type = 'ring'
+            top_hbox.pack_start(showb, expand=False, padding=1)
+
+    def fillGraphOpsFrame(self, vbox):
+        top_hbox = gtk.HBox(False, 0)
+        vbox.pack_start(top_hbox, False, False, 0)
+        title = gtk.Label("Graphing Options:")
+        title.set_alignment(xalign=0.0, yalign=0.5)
+        top_hbox.pack_start(title, expand=True, padding=3)
+        showb = gtk.Button(label="hide", stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'games')
         top_hbox.pack_start(showb, expand=False, padding=1)
+
+        hbox1 = gtk.HBox(False, 0)
+        vbox.pack_start(hbox1, False, False, 0)
+        hbox1.show()
+
+        label = gtk.Label("Show Graph In:")
+        label.set_alignment(xalign=0.0, yalign=0.5)
+        hbox1.pack_start(label, True, True, 0)
+        label.show()
+
+        button = gtk.RadioButton(None, "$$")
+        hbox1.pack_start(button, True, True, 0)
+        button.connect("toggled", self.__set_displayin_select, "$")
+        button.set_active(True)
+        button.show()
+
+        button = gtk.RadioButton(button, "BB")
+        hbox1.pack_start(button, True, True, 0)
+        button.connect("toggled", self.__set_displayin_select, "BB")
+        button.show()
+
+        vbox1 = gtk.VBox(False, 0)
+        vbox.pack_start(vbox1, False, False, 0)
+        vbox1.show()
+
+        button = gtk.CheckButton("Showdown Winnings", False)
+        vbox1.pack_start(button, True, True, 0)
+        # wouldn't it be awesome if there was a way to remember the state of things like
+        # this and be able to set it to what it was last time?
+        #button.set_active(True)
+        button.connect("toggled", self.__set_graphopscheck_select, "showdown")
+        button.show()
+
+        button = gtk.CheckButton("Non-Showdown Winnings", False)
+        vbox1.pack_start(button, True, True, 0)
+        # ditto as 8 lines up :)
+        #button.set_active(True)
+        button.connect("toggled", self.__set_graphopscheck_select, "nonshowdown");
+        button.show()
 
     def fillSeatsFrame(self, vbox, display):
         hbox = gtk.HBox(False, 0)

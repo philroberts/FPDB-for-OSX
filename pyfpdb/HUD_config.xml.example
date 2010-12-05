@@ -290,6 +290,18 @@ Left-Drag to Move"
 	        	<location seat="9" x="7" y="88">  </location>
 	        	<location seat="10" x="196" y="69">  </location>
 	        </layout>
+	        <layout fav_seat="0" height="546" max="8" width="792">
+			<location seat="0" x="182" y="69"> </location>
+	        	<location seat="1" x="456" y="74">  </location>
+	        	<location seat="2" x="630" y="81"> </location>
+	        	<location seat="3" x="618" y="352"> </location>
+	        	<location seat="4" x="426" y="380"> </location>
+	        	<location seat="5" x="243" y="382"> </location>
+	        	<location seat="6" x="34" y="351"> </location>
+	        	<location seat="7" x="22" y="82"> </location>
+	        	<location seat="8" x="213" y="74">  </location>
+                </layout>
+
 	        <layout fav_seat="0" height="546" max="2" width="792">
 	        	<location seat="1" x="651" y="288"> </location>
 	        	<location seat="2" x="10" y="288"> </location>
@@ -550,6 +562,43 @@ Left-Drag to Move"
                 <location seat="9" x="70" y="53">  </location>
             </layout>
         </site>
+
+        <site HH_path="C:/Program Files/Winamax/HandHistory/YOUR SCREEN NAME HERE/" converter="WinamaxToFpdb" decoder="everleaf_decode_table" enabled="False" screen_name="YOUR SCREEN NAME HERE" site_name="Winamax" site_path="C:/Program Files/Winamax/" supported_games="holdem" table_finder="Winamax.exe">
+            <layout fav_seat="0" height="547" max="8" width="794">
+                <location seat="1" x="640" y="64">  </location>
+                <location seat="2" x="650" y="230"> </location>
+                <location seat="3" x="650" y="385"> </location>
+                <location seat="4" x="588" y="425"> </location>
+                <location seat="5" x="92" y="425"> </location>
+                <location seat="6" x="0" y="373"> </location>
+                <location seat="7" x="0" y="223"> </location>
+                <location seat="8" x="25" y="50">  </location>
+            </layout>
+            <layout fav_seat="0" height="547" max="6" width="794">
+                <location seat="1" x="640" y="58"> </location>
+                <location seat="2" x="654" y="288"> </location>
+                <location seat="3" x="615" y="424"> </location>
+                <location seat="4" x="70" y="421"> </location>
+                <location seat="5" x="0" y="280"> </location>
+                <location seat="6" x="70" y="58"> </location>
+            </layout>
+            <layout fav_seat="0" height="547" max="2" width="794">
+                <location seat="1" x="651" y="288"> </location>
+                <location seat="2" x="10" y="288"> </location>
+            </layout>
+            <layout fav_seat="0" height="547" max="9" width="794">
+                <location seat="1" x="634" y="38">  </location>
+                <location seat="2" x="667" y="184"> </location>
+                <location seat="3" x="667" y="321"> </location>
+                <location seat="4" x="667" y="445"> </location>
+                <location seat="5" x="337" y="459"> </location>
+                <location seat="6" x="0" y="400"> </location>
+                <location seat="7" x="0" y="322"> </location>
+                <location seat="8" x="0" y="181">  </location>
+                <location seat="9" x="70" y="53">  </location>
+            </layout>
+        </site>
+
     </supported_sites>
 
     <supported_games>
@@ -609,6 +658,43 @@ Left-Drag to Move"
         	<stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
         	<stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
         </game>
+
+        <game cols="3" db="fpdb" game_name="27_3draw" rows="2">
+            <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
+        </game>
+
+        <game cols="3" db="fpdb" game_name="27_1draw" rows="2">
+            <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
+        </game>
+
+        <game cols="3" db="fpdb" game_name="badugi" rows="2">
+            <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
+        </game>
+
+        <game cols="3" db="fpdb" game_name="fivedraw" rows="2">
+            <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
+        </game>
+
     </supported_games>
 
     <popup_windows>
@@ -691,17 +777,18 @@ Left-Drag to Move"
     </aux_windows>
 
     <hhcs>
-        <hhc site="PokerStars" converter="PokerStarsToFpdb"/>
-        <hhc site="Full Tilt Poker" converter="FulltiltToFpdb"/>
+        <hhc site="PokerStars" converter="PokerStarsToFpdb" summaryImporter="PokerStarsSummary"/>
+        <hhc site="Full Tilt Poker" converter="FulltiltToFpdb" summaryImporter="FullTiltPokerSummary"/>
         <hhc site="Everleaf" converter="EverleafToFpdb"/>
         <hhc site="Win2day" converter="Win2dayToFpdb"/>
         <hhc site="Absolute" converter="AbsoluteToFpdb"/>
         <hhc site="PartyPoker" converter="PartyPokerToFpdb"/>
         <hhc site="Betfair" converter="BetfairToFpdb"/>
-        <hhc site="Partouche" converter="PartoucheToFpdb"/>
         <hhc site="Carbon" converter="CarbonToFpdb"/>
         <hhc site="OnGame" converter="OnGameToFpdb"/>
         <hhc site="PKR" converter="PkrToFpdb"/>
+        <hhc site="iPoker" converter="iPokerToFpdb"/>
+        <hhc site="Winamax" converter="WinamaxToFpdb"/>
     </hhcs>
 
     <raw_hands save="none" compression="none"/>

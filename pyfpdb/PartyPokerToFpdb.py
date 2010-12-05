@@ -18,21 +18,13 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 import sys
 from collections import defaultdict
 
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
-
+from Configuration import LOCALE_ENCODING
 from Exceptions import FpdbParseError
 from HandHistoryConverter import *
 
@@ -50,7 +42,7 @@ class FpdbParseError(FpdbParseError):
 
 class PartyPoker(HandHistoryConverter):
     sitename = "PartyPoker"
-    codepage = "cp1252"
+    codepage = "utf8"
     siteId = 9
     filetype = "text"
     sym = {'USD': "\$", }
@@ -61,10 +53,10 @@ class PartyPoker(HandHistoryConverter):
     re_GameInfoRing     = re.compile("""
             (?P<CURRENCY>\$|)\s*(?P<RINGLIMIT>[.,0-9]+)([.,0-9/$]+)?\s*(?:USD)?\s*
             (?P<LIMIT>(NL|PL|))\s*
-            (?P<GAME>(Texas\ Hold\'em|Omaha))
+            (?P<GAME>(Texas\ Hold\'em|Omaha|7 Card Stud Hi-Lo))
             \s*\-\s*
             (?P<DATETIME>.+)
-            """, re.VERBOSE)
+            """, re.VERBOSE | re.UNICODE)
     re_GameInfoTrny     = re.compile("""
             (?P<LIMIT>(NL|PL|))\s*
             (?P<GAME>(Texas\ Hold\'em|Omaha))\s+
@@ -78,7 +70,7 @@ class PartyPoker(HandHistoryConverter):
             \)
             \s*\-\s*
             (?P<DATETIME>.+)
-            """, re.VERBOSE)
+            """, re.VERBOSE | re.UNICODE)
     re_Hid          = re.compile("^Game \#(?P<HID>\d+) starts.")
 
     re_PlayerInfo   = re.compile("""
@@ -189,6 +181,10 @@ class PartyPoker(HandHistoryConverter):
                         return self._gameType
         return self._gameType
 
+    @staticmethod
+    def decode_hand_text(handText):
+        return handText.encode("latin1").decode(LOCALE_ENCODING)
+
     def determineGameType(self, handText):
         """inspect the handText and return the gametype dict
 
@@ -196,9 +192,14 @@ class PartyPoker(HandHistoryConverter):
         {'limitType': xxx, 'base': xxx, 'category': xxx}"""
 
         info = {}
+        handText = self.decode_hand_text(handText)
         m = self._getGameType(handText)
         m_20BBmin = self.re_20BBmin.search(handText)
         if m is None:
+            tmp = handText[0:100]
+            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("determineGameType: Raising FpdbParseError"))
+            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
             return None
 
         mg = m.groupdict()
@@ -207,6 +208,7 @@ class PartyPoker(HandHistoryConverter):
         games = {                          # base, category
                          "Texas Hold'em" : ('hold','holdem'),
                                 'Omaha' : ('hold','omahahi'),
+                     "7 Card Stud Hi-Lo" : ('stud','studhi'),
                }
         currencies = { '$':'USD', '':'T$' }
 
@@ -251,6 +253,10 @@ class PartyPoker(HandHistoryConverter):
 
 
     def readHandInfo(self, hand):
+        # we should redecode handtext here (as it imposible to it above)
+        # if you know more accurate way to do it - tell me
+        hand.handText = self.decode_hand_text(hand.handText)
+
         info = {}
         try:
             info.update(self.re_Hid.search(hand.handText).groupdict())
@@ -299,10 +305,15 @@ class PartyPoker(HandHistoryConverter):
                 #Saturday, July 25, 07:53:52 EDT 2009
                 #Thursday, July 30, 21:40:41 MSKS 2009
                 #Sunday, October 25, 13:39:07 MSK 2009
-                m2 = re.search("\w+, (?P<M>\w+) (?P<D>\d+), (?P<H>\d+):(?P<MIN>\d+):(?P<S>\d+) (?P<TZ>[A-Z]+) (?P<Y>\d+)", info[key])
-                # we cant use '%B' due to locale problems
+                m2 = re.search(
+                    r"\w+,\s+(?P<M>\w+)\s+(?P<D>\d+),\s+(?P<H>\d+):(?P<MIN>\d+):(?P<S>\d+)\s+(?P<TZ>[A-Z]+)\s+(?P<Y>\d+)", 
+                    info[key], 
+                    re.UNICODE
+                )
                 months = ['January', 'February', 'March', 'April','May', 'June',
                     'July','August','September','October','November','December']
+                if m2.group('M') not in months:
+                    raise FpdbParseError("Only english hh is supported", hid=info["HID"])
                 month = months.index(m2.group('M')) + 1
                 datetimestr = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), month,m2.group('D'),m2.group('H'),m2.group('MIN'),m2.group('S'))
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
@@ -353,10 +364,54 @@ class PartyPoker(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
-        players = []
+        maxKnownStack = 0
+        zeroStackPlayers = []
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'),
-                           clearMoneyString(a.group('CASH')))
+            if a.group('CASH') > '0':
+                #record max known stack for use with players with unknown stack
+                maxKnownStack = max(a.group('CASH'),maxKnownStack)
+                hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), clearMoneyString(a.group('CASH')))
+            else:
+                #zero stacked players are added later
+                zeroStackPlayers.append([int(a.group('SEAT')), a.group('PNAME'), clearMoneyString(a.group('CASH'))])
+
+        if hand.gametype['type'] == 'ring':
+            #finds first vacant seat after an exact seat
+            def findFirstEmptySeat(startSeat):
+                while startSeat in occupiedSeats:
+                    if startSeat >= hand.maxseats:
+                        startSeat = 0
+                    startSeat += 1
+                return startSeat
+
+            re_JoiningPlayers = re.compile(r"(?P<PLAYERNAME>.*) has joined the table")
+            re_BBPostingPlayers = re.compile(r"(?P<PLAYERNAME>.*) posts big blind")
+
+            match_JoiningPlayers = re_JoiningPlayers.findall(hand.handText)
+            match_BBPostingPlayers = re_BBPostingPlayers.findall(hand.handText)
+
+            #add every player with zero stack, but:
+            #if a zero stacked player is just joined the table in this very hand then set his stack to maxKnownStack
+            for p in zeroStackPlayers:
+                if p[1] in match_JoiningPlayers:
+                    p[2] = clearMoneyString(maxKnownStack)
+                hand.addPlayer(p[0],p[1],p[2])
+
+            seatedPlayers = list([(f[1]) for f in hand.players])
+
+            #it works for all known cases as of 2010-09-28
+            #should be refined with using match_ActivePlayers instead of match_BBPostingPlayers
+            #as a leaving and rejoining player could be active without posting a BB (sample HH needed)
+            unseatedActivePlayers = list(set(match_BBPostingPlayers) - set(seatedPlayers))
+
+            if unseatedActivePlayers:
+                for player in unseatedActivePlayers:
+                    previousBBPoster = match_BBPostingPlayers[match_BBPostingPlayers.index(player)-1]
+                    previousBBPosterSeat = dict([(f[1], f[0]) for f in hand.players])[previousBBPoster]
+                    occupiedSeats = list([(f[0]) for f in hand.players])
+                    occupiedSeats.sort()
+                    newPlayerSeat = findFirstEmptySeat(previousBBPosterSeat)
+                    hand.addPlayer(newPlayerSeat,player,clearMoneyString(maxKnownStack))
 
     def markStreets(self, hand):
         m =  re.search(
@@ -507,7 +562,6 @@ class PartyPoker(HandHistoryConverter):
             else:
                 return "%s.+Table\s#%s" % (TableName[0], table_number)
         else:
-            print 'party', 'getTableTitleRe', table_number
             return table_name
 
 def clearMoneyString(money):

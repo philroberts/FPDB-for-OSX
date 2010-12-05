@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 import sys
 import threading
 import pygtk
@@ -27,7 +30,7 @@ try:
     calluse = not 'matplotlib' in sys.modules
     import matplotlib
     if calluse:
-        matplotlib.use('GTK')
+        matplotlib.use('GTKCairo')
     from matplotlib.figure import Figure
     from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
     from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
@@ -41,29 +44,20 @@ except ImportError, inst:
     print _("""Failed to load numpy and/or matplotlib in Session Viewer""")
     print _("ImportError: %s") % inst.args
 
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
-
 import Card
 import fpdb_import
 import Database
 import Filters
 import Charset
 
+DEBUG = False
+
 class GuiSessionViewer (threading.Thread):
     def __init__(self, config, querylist, mainwin, debug=True):
         self.debug = debug
         self.conf = config
         self.sql = querylist
+        self.window = mainwin
 
         self.liststore = None
 
@@ -162,6 +156,28 @@ class GuiSessionViewer (threading.Thread):
 
         # make sure Hand column is not displayed
         #[x for x in self.columns if x[0] == 'hand'][0][1] = False
+        if DEBUG == False:
+            warning_string = """
+Session Viewer is proof of concept code only, and contains many bugs.
+
+Feel free to use the viewer, but there is no guarantee that the data is accurate.
+
+If you are interested in developing the code further please contact us via the usual channels.
+
+Thankyou
+"""
+            self.warning_box(warning_string)
+
+    def warning_box(self, str, diatitle=_("FPDB WARNING")):
+        diaWarning = gtk.Dialog(title=diatitle, parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
+
+        label = gtk.Label(str)
+        diaWarning.vbox.add(label)
+        label.show()
+
+        response = diaWarning.run()
+        diaWarning.destroy()
+        return response
 
     def get_vbox(self):
         """returns the vbox of this thread"""

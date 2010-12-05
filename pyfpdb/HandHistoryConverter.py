@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 import re
 import sys
 import traceback
@@ -40,18 +43,6 @@ log = logging.getLogger("parser")
 import Hand
 from Exceptions import FpdbParseError
 import Configuration
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 import pygtk
 import gtk
@@ -266,13 +257,21 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
 
         if self.ftpArchive == True:
             log.debug(_("Converting ftpArchive format to readable"))
-            m = re.compile('^\*\*\*\*\*\*+\s#\s\d+\s\*\*\*\*\*+$', re.MULTILINE)
+            # Remove  ******************** # 1 *************************
+            m = re.compile('\*{20}\s#\s\d+\s\*{25}\s+', re.MULTILINE)
             self.obs = m.sub('', self.obs)
 
         if self.obs is None or self.obs == "":
-            log.info(_("Read no hands."))
+            log.error(_("Read no hands."))
             return []
-        return re.split(self.re_SplitHands,  self.obs)
+        handlist = re.split(self.re_SplitHands,  self.obs)
+        # Some HH formats leave dangling text after the split
+        # ie. </game> (split) </session>EOL
+        # Remove this dangler if less than 50 characters and warn in the log
+        if len(handlist[-1]) <= 50:
+            handlist.pop()
+            log.warn(_("Removing text < 50 characters"))
+        return handlist
 
     def processHand(self, handText):
         gametype = self.determineGameType(handText)
@@ -289,6 +288,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             base = gametype['base']
             limit = gametype['limitType']
             l = [type] + [base] + [limit]
+
         if l in self.readSupportedGames():
             if gametype['base'] == 'hold':
                 log.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
@@ -298,15 +298,15 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             elif gametype['base'] == 'draw':
                 hand = Hand.DrawHand(self.config, self, self.sitename, gametype, handText)
         else:
-            log.info(_("Unsupported game type: %s" % gametype))
+            log.error(_("Unsupported game type: %s" % gametype))
+            raise FpdbParseError(_("Unsupported game type: %s" % gametype))
 
         if hand:
             #hand.writeHand(self.out_fh)
             return hand
         else:
-            log.info(_("Unsupported game type: %s" % gametype))
+            log.error(_("Unsupported game type: %s" % gametype))
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
-            # From the log we can deduce that it is the hand after the one before :)
 
 
     # These functions are parse actions that may be overridden by the inheriting class
@@ -668,11 +668,22 @@ or None if we fail to get the info """
         else:
             return table_name
 
-
+    @staticmethod
+    def getTableNoRe(tournament):
+        "Returns string to search window title for tournament table no."
+# Full Tilt:  $30 + $3 Tournament (181398949), Table 1 - 600/1200 Ante 100 - Limit Razz
+# PokerStars: WCOOP 2nd Chance 02: $1,050 NLHE - Tournament 307521826 Table 1 - Blinds $30/$60
+        return "%s.+Table (\d+)" % (tournament, )
 
 def getTableTitleRe(config, sitename, *args, **kwargs):
     "Returns string to search in windows titles for current site"
     return getSiteHhc(config, sitename).getTableTitleRe(*args, **kwargs)
+
+def getTableNoRe(config, sitename, *args, **kwargs):
+    "Returns string to search window titles for tournament table no."
+    return getSiteHhc(config, sitename).getTableNoRe(*args, **kwargs)
+
+
 
 def getSiteHhc(config, sitename):
     "Returns HHC class for current site"

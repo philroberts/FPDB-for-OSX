@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2008-2010, Carl Gherardi
@@ -18,21 +18,12 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 import sys
 import logging
 from HandHistoryConverter import *
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 # Class for converting Everleaf HH format.
 
@@ -75,13 +66,16 @@ class Everleaf(HandHistoryConverter):
             self.re_SitsOut         = re.compile(ur"^%s sits out" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
-        return [["ring", "hold", "nl"],
+        return [
+                ["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
-                ["ring", "studhi", "fl"],
-                ["ring", "omahahi", "pl"],
-                ["ring", "omahahilo", "pl"],
-                ["tour", "hold", "nl"]
+                ["ring", "stud", "fl"],
+                #["ring", "omahahi", "pl"],
+                #["ring", "omahahilo", "pl"],
+                ["tour", "hold", "nl"],
+                ["tour", "hold", "fl"],
+                ["tour", "hold", "pl"]
                ]
 
     def determineGameType(self, handText):
@@ -151,7 +145,7 @@ or None if we fail to get the info """
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid =  m.group('HID')
         hand.tablename = m.group('TABLE')
-        hand.maxseats = 6     # assume 6-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
+        hand.maxseats = 4     # assume 4-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
         
         currencies = { u'€':'EUR', '$':'USD', '':'T$', None:'T$' }
         mg = m.groupdict()
@@ -180,9 +174,13 @@ or None if we fail to get the info """
         for a in m:
             seatnum = int(a.group('SEAT'))
             hand.addPlayer(seatnum, a.group('PNAME'), a.group('CASH'))
-            if seatnum > 6:
-                hand.maxseats = 10 # everleaf currently does 2/6/10 games, so if seats > 6 are in use, it must be 10-max.
+            if seatnum > 8:
+                hand.maxseats = 10 # they added 8-seat games now
+            elif seatnum > 6:
+                hand.maxseats = 8 # everleaf currently does 2/6/10 games, so if seats > 6 are in use, it must be 10-max.
                 # TODO: implement lookup list by table-name to determine maxes, then fall back to 6 default/10 here, if there's no entry in the list?
+            elif seatnum > 4:
+                hand.maxseats = 6 # they added 4-seat games too!
 
 
     def markStreets(self, hand):

@@ -129,7 +129,7 @@ def main(argv=None):
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
     db.recreate_tables()
-    importer = fpdb_import.Importer(False, settings, config)
+    importer = fpdb_import.Importer(False, settings, config, None)
     importer.setDropIndexes("don't drop")
     importer.setFailOnError(True)
     importer.setThreads(-1)
@@ -142,28 +142,67 @@ def main(argv=None):
     BetfairErrors     = FpdbError('Betfair')
     OnGameErrors      = FpdbError('OnGame')
     AbsoluteErrors    = FpdbError('Absolute Poker')
+    UltimateBetErrors = FpdbError('Ultimate Bet')
     EverleafErrors    = FpdbError('Everleaf Poker')
     CarbonErrors      = FpdbError('Carbon')
     PKRErrors         = FpdbError('PKR')
+    iPokerErrors      = FpdbError('iPoker')
+    Win2dayErrors     = FpdbError('Win2day')
+    WinamaxErrors     = FpdbError('Winamax')
 
     ErrorsList = [
                     PokerStarsErrors, FTPErrors, PartyPokerErrors,
                     BetfairErrors, OnGameErrors, AbsoluteErrors,
-                    EverleafErrors, CarbonErrors, PKRErrors
+                    EverleafErrors, CarbonErrors, PKRErrors,
+                    iPokerErrors, WinamaxErrors, UltimateBetErrors,
+                    Win2dayErrors,
                 ]
-    
-    walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
-    walk_testfiles("regression-test-files/tour/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
-    walk_testfiles("regression-test-files/cash/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
-    walk_testfiles("regression-test-files/tour/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
-    walk_testfiles("regression-test-files/cash/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
-    walk_testfiles("regression-test-files/tour/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
-    walk_testfiles("regression-test-files/cash/Betfair/", compare, importer, BetfairErrors, "Betfair")
-    walk_testfiles("regression-test-files/cash/OnGame/", compare, importer, OnGameErrors, "OnGame")
-    walk_testfiles("regression-test-files/cash/Absolute/", compare, importer, AbsoluteErrors, "Absolute")
-    walk_testfiles("regression-test-files/cash/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
-    walk_testfiles("regression-test-files/cash/Carbon/", compare, importer, CarbonErrors, "Carbon")
-    walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
+
+    sites = {
+                'PokerStars' : True,
+                'Full Tilt Poker' : True,
+                'PartyPoker' : True,
+                'Betfair' : True,
+                'OnGame' : True,
+                'Absolute' : True,
+                'UltimateBet' : True,
+                'Everleaf' : True,
+                'Carbon' : True,
+                'PKR' : False,
+                'iPoker' : True,
+                'Win2day' : True,
+                'Winamax' : True,
+            }
+
+    if sites['PokerStars'] == True:
+        walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
+        walk_testfiles("regression-test-files/tour/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
+    if sites['Full Tilt Poker'] == True:
+        walk_testfiles("regression-test-files/cash/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
+        walk_testfiles("regression-test-files/tour/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
+    if sites['PartyPoker'] == True:
+        walk_testfiles("regression-test-files/cash/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
+        walk_testfiles("regression-test-files/tour/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
+    if sites['Betfair'] == True:
+        walk_testfiles("regression-test-files/cash/Betfair/", compare, importer, BetfairErrors, "Betfair")
+    if sites['OnGame'] == True:
+        walk_testfiles("regression-test-files/cash/OnGame/", compare, importer, OnGameErrors, "OnGame")
+    if sites['Absolute'] == True:
+        walk_testfiles("regression-test-files/cash/Absolute/", compare, importer, AbsoluteErrors, "Absolute")
+    if sites['UltimateBet'] == True:
+        walk_testfiles("regression-test-files/cash/UltimateBet/", compare, importer, UltimateBetErrors, "Absolute")
+    if sites['Everleaf'] == True:
+        walk_testfiles("regression-test-files/cash/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
+    if sites['Carbon'] == True:
+        walk_testfiles("regression-test-files/cash/Carbon/", compare, importer, CarbonErrors, "Carbon")
+    if sites['PKR'] == True:
+        walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
+    if sites['iPoker'] == True:
+        walk_testfiles("regression-test-files/cash/iPoker/", compare, importer, iPokerErrors, "iPoker")
+    if sites['Winamax'] == True:
+        walk_testfiles("regression-test-files/cash/Winamax/", compare, importer, WinamaxErrors, "Winamax")
+    if sites['Win2day'] == True:
+        walk_testfiles("regression-test-files/cash/Win2day/", compare, importer, Win2dayErrors, "Win2day")
 
     totalerrors = 0
 

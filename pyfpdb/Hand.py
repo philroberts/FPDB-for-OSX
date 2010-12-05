@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 # TODO: get writehand() encoding correct
 
 import re
@@ -27,18 +30,6 @@ import operator
 import time,datetime
 from copy import deepcopy
 import pprint
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
@@ -56,13 +47,16 @@ class Hand(object):
 #    Class Variables
     UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K', 'S':'s', 'C':'c', 'H':'h', 'D':'d'}
     LCS = {'H':'h', 'D':'d', 'C':'c', 'S':'s'}
-    SYMBOL = {'USD': '$', 'EUR': u'$', 'T$': '', 'play': ''}
+    SYMBOL = {'USD': '$', 'EUR': u'$', 'GBP': '$', 'T$': '', 'play': ''}
     MS = {'horse' : 'HORSE', '8game' : '8-Game', 'hose'  : 'HOSE', 'ha': 'HA'}
+    ACTION = {'ante': 1, 'small blind': 2, 'secondsb': 3, 'big blind': 4, 'both': 5, 'calls': 6, 'raises': 7,
+              'bets': 8, 'stands pat': 9, 'folds': 10, 'checks': 11, 'discards': 12, 'bringin': 13, 'completes': 14}
 
 
     def __init__(self, config, sitename, gametype, handText, builtFrom = "HHC"):
         #log.debug( _("Hand.init(): handText is ") + str(handText) )
         self.config = config
+        self.saveActions = self.config.get_import_parameters().get('saveActions')
         #log = Configuration.get_logger("logging.conf", "db", log_dir=self.config.dir_log)
         self.sitename = sitename
         self.siteId = self.config.get_site_id(sitename)
@@ -74,13 +68,14 @@ class Hand(object):
         self.cancelled = False
         self.dbid_hands = 0
         self.dbid_pids = None
+        self.dbid_hpid = None
         self.dbid_gt = 0
         self.tablename = ""
         self.hero = ""
         self.maxseats = None
         self.counted_seats = 0
         self.buttonpos = 0
-        
+
         #tourney stuff
         self.tourNo = None
         self.tourneyId = None
@@ -106,7 +101,7 @@ class Hand(object):
         self.players = []
         self.posted = []
         self.tourneysPlayersIds = []
-        
+
         # Collections indexed by street names
         self.bets = {}
         self.lastBet = {}
@@ -241,7 +236,7 @@ dealt   whether they were seen in a 'dealt to' line
 
         #Gametypes
         self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype)
-        
+
         if self.tourNo!=None:
             self.tourneyTypeId = db.createTourneyType(self)
             db.commit()
@@ -271,10 +266,11 @@ db: a connected Database object"""
             hh['seats'] = len(self.dbid_pids)
 
             self.dbid_hands = db.storeHand(hh)
-            db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.stats.getHandsPlayers(), printdata = printtest)
-            # TODO HandsActions - all actions for all players for all streets - self.actions
-            # HudCache data can be generated from HandsActions (HandsPlayers?)
-            #db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.stats.getHandsActions(), printdata = printtest)
+            self.dbid_hpid = db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, 
+                                                  self.stats.getHandsPlayers(), printdata = printtest)
+            if self.saveActions:
+                db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.dbid_hpid,
+                                     self.stats.getHandsActions(), printdata = printtest)
         else:
             log.info(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
             self.is_duplicate = True  # i.e. don't update hudcache
@@ -285,9 +281,143 @@ db: a connected Database object"""
 
     def select(self, handId):
         """ Function to create Hand object from database """
+        c = cnxn.cursor()
+
+        # We need at least sitename, gametype, handid
+        # for the Hand.__init__
+        c.execute("""SELECT
+                        s.name,
+                        g.category,
+                        g.base,
+                        g.type,
+                        g.limitType,
+                        g.hilo,
+                        round(g.smallBlind / 100.0,2),
+                        round(g.bigBlind / 100.0,2),
+                        round(g.smallBet / 100.0,2),
+                        round(g.bigBet / 100.0,2),
+                        s.currency,
+                        h.boardcard1,
+                        h.boardcard2,
+                        h.boardcard3,
+                        h.boardcard4,
+                        h.boardcard5
+                    FROM
+                        hands as h,
+                        sites as s,
+                        gametypes as g,
+                        handsplayers as hp,
+                        players as p
+                    WHERE
+                        h.id = %(handid)s
+                    and g.id = h.gametypeid
+                    and hp.handid = h.id
+                    and p.id = hp.playerid
+                    and s.id = p.siteid
+                    limit 1""", {'handid':handid})
+        #TODO: siteid should be in hands table - we took the scenic route through players here.
+        res = c.fetchone()
+        gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
+        c = Configuration.Config()
+        h = HoldemOmahaHand(config = c, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
+        cards = map(Card.valueSuitFromCard, res[11:16] )
+        if cards[0]:
+            h.setCommunityCards('FLOP', cards[0:3])
+        if cards[3]:
+            h.setCommunityCards('TURN', [cards[3]])
+        if cards[4]:
+            h.setCommunityCards('RIVER', [cards[4]])
+        #[Card.valueSuitFromCard(x) for x in cards]
+
+        # HandInfo : HID, TABLE
+        # BUTTON - why is this treated specially in Hand?
+        # answer: it is written out in hand histories
+        # still, I think we should record all the active seat positions in a seat_order array
+        c.execute("""SELECT
+                        h.sitehandno as hid,
+                        h.tablename as table,
+                        h.startTime as startTime
+                    FROM
+                        hands as h
+                    WHERE h.id = %(handid)s
+                    """, {'handid':handid})
+        res = c.fetchone()
+        h.handid = res[0]
+        h.tablename = res[1]
+        h.startTime = res[2] # automatically a datetime
+
+        # PlayerStacks
+        c.execute("""SELECT
+                        hp.seatno,
+                        round(hp.winnings / 100.0,2) as winnings,
+                        p.name,
+                        round(hp.startcash / 100.0,2) as chips,
+                        hp.card1,hp.card2,
+                        hp.position
+                    FROM
+                        handsplayers as hp,
+                        players as p
+                    WHERE
+                        hp.handid = %(handid)s
+                        and p.id = hp.playerid
+                """, {'handid':handid})
+        for (seat, winnings, name, chips, card1,card2, position) in c.fetchall():
+            h.addPlayer(seat,name,chips)
+            if card1 and card2:
+                h.addHoleCards(map(Card.valueSuitFromCard, (card1,card2)), name, dealt=True)
+            if winnings > 0:
+                h.addCollectPot(name, winnings)
+            if position == 'B':
+                h.buttonpos = seat
 
 
+        # actions
+        c.execute("""SELECT
+                        (ha.street,ha.actionno) as actnum,
+                        p.name,
+                        ha.street,
+                        ha.action,
+                        ha.allin,
+                        round(ha.amount / 100.0,2)
+                    FROM
+                        handsplayers as hp,
+                        handsactions as ha,
+                        players as p
+                    WHERE
+                        hp.handid = %(handid)s
+                        and ha.handsplayerid = hp.id
+                        and p.id = hp.playerid
+                    ORDER BY
+                        ha.street,ha.actionno
+                    """, {'handid':handid})
+        res = c.fetchall()
+        for (actnum,player, streetnum, act, allin, amount) in res:
+            act=act.strip()
+            street = h.allStreets[streetnum+1]
+            if act==u'blind':
+                h.addBlind(player, 'big blind', amount)
+                # TODO: The type of blind is not recorded in the DB.
+                # TODO: preflop street name anomalies in Hand
+            elif act==u'fold':
+                h.addFold(street,player)
+            elif act==u'call':
+                h.addCall(street,player,amount)
+            elif act==u'bet':
+                h.addBet(street,player,amount)
+            elif act==u'check':
+                h.addCheck(street,player)
+            elif act==u'unbet':
+                pass
+            else:
+                print act, player, streetnum, allin, amount
+            # TODO : other actions
 
+        #hhc.readShowdownActions(self)
+        #hc.readShownCards(self)
+        h.totalPot()
+        h.rake = h.totalpot - h.totalcollected
+
+        return h
 
     def addPlayer(self, seat, name, chips):
         """\
@@ -359,12 +489,12 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
             ante = re.sub(u',', u'', ante) #some sites have commas
             self.bets['BLINDSANTES'][player].append(Decimal(ante))
             self.stacks[player] -= Decimal(ante)
-            act = (player, 'posts', "ante", ante, self.stacks[player]==0)
+            act = (player, 'ante', Decimal(ante), self.stacks[player]==0)
             self.actions['BLINDSANTES'].append(act)
 #            self.pot.addMoney(player, Decimal(ante))
             self.pot.addCommonMoney(player, Decimal(ante))
 #I think the antes should be common money, don't have enough hand history to check
-        
+
     def addBlind(self, player, blindtype, amount):
         # if player is None, it's a missing small blind.
         # The situation we need to cover are:
@@ -378,13 +508,13 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
         if player is not None:
             amount = re.sub(u',', u'', amount) #some sites have commas
             self.stacks[player] -= Decimal(amount)
-            act = (player, 'posts', blindtype, amount, self.stacks[player]==0)
+            act = (player, blindtype, Decimal(amount), self.stacks[player]==0)
             self.actions['BLINDSANTES'].append(act)
 
             if blindtype == 'both':
                 # work with the real amount. limit games are listed as $1, $2, where
                 # the SB 0.50 and the BB is $1, after the turn the minimum bet amount is $2....
-                amount = self.bb 
+                amount = self.bb
                 self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
                 self.pot.addCommonMoney(player, Decimal(self.sb))
 
@@ -411,7 +541,7 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
             #self.lastBet[street] = Decimal(amount)
             self.stacks[player] -= Decimal(amount)
             #print "DEBUG %s calls %s, stack %s" % (player, amount, self.stacks[player])
-            act = (player, 'calls', amount, self.stacks[player]==0)
+            act = (player, 'calls', Decimal(amount), self.stacks[player]==0)
             self.actions[street].append(act)
             self.pot.addMoney(player, Decimal(amount))
 
@@ -472,11 +602,11 @@ Add a raise on [street] by [player] to [amountTo]
         Rb = Rt - C - Bc
         self._addRaise(street, player, C, Rb, Rt)
 
-    def _addRaise(self, street, player, C, Rb, Rt):
+    def _addRaise(self, street, player, C, Rb, Rt, action = 'raises'):
         log.debug(_("%s %s raise %s") %(street, player, Rt))
         self.bets[street][player].append(C + Rb)
         self.stacks[player] -= (C + Rb)
-        act = (player, 'raises', Rb, Rt, C, self.stacks[player]==0)
+        act = (player, action, Rb, Rt, C, self.stacks[player]==0)
         self.actions[street].append(act)
         self.lastBet[street] = Rt # TODO check this is correct
         self.pot.addMoney(player, C+Rb)
@@ -490,7 +620,7 @@ Add a raise on [street] by [player] to [amountTo]
         self.bets[street][player].append(Decimal(amount))
         self.stacks[player] -= Decimal(amount)
         #print "DEBUG %s bets %s, stack %s" % (player, amount, self.stacks[player])
-        act = (player, 'bets', amount, self.stacks[player]==0)
+        act = (player, 'bets', Decimal(amount), self.stacks[player]==0)
         self.actions[street].append(act)
         self.lastBet[street] = Decimal(amount)
         self.pot.addMoney(player, Decimal(amount))
@@ -553,7 +683,7 @@ Card ranks will be uppercased
             self.totalcollected = 0;
             #self.collected looks like [[p1,amount][px,amount]]
             for entry in self.collected:
-                self.totalcollected += Decimal(entry[1]) 
+                self.totalcollected += Decimal(entry[1])
 
     def getGameTypeAsString(self):
         """\
@@ -693,15 +823,12 @@ class HoldemOmahaHand(Hand):
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
-            
+
             if self.cancelled:
                 return
-            
-            try: hhc.readBlinds(self)
-            except:
-                print _("*** Parse error reading blinds (check compilePlayerRegexs as a likely culprit)"), self
-                return
-            
+
+            hhc.readBlinds(self)
+
             hhc.readAntes(self)
             hhc.readButton(self)
             hhc.readHeroCards(self)
@@ -1032,7 +1159,7 @@ class DrawHand(Hand):
             self.bets['DEAL'][player].append(Decimal(amount))
             self.stacks[player] -= Decimal(amount)
             #print "DEBUG %s posts, stack %s" % (player, self.stacks[player])
-            act = (player, 'posts', blindtype, amount, self.stacks[player]==0)
+            act = (player, blindtype, Decimal(amount), self.stacks[player]==0)
             self.actions['BLINDSANTES'].append(act)
             self.pot.addMoney(player, Decimal(amount))
             if blindtype == 'big blind':
@@ -1062,10 +1189,10 @@ class DrawHand(Hand):
     def addDiscard(self, street, player, num, cards):
         self.checkPlayerExists(player)
         if cards:
-            act = (player, 'discards', num, cards)
+            act = (player, 'discards', Decimal(num), cards)
             self.discardDrawHoleCards(cards, player, street)
         else:
-            act = (player, 'discards', num)
+            act = (player, 'discards', Decimal(num))
         self.actions[street].append(act)
 
     def holecardsAsSet(self, street, player):
@@ -1224,7 +1351,8 @@ class StudHand(Hand):
             self.addHoleCards('FOURTH',  player, open=[cards[3]], closed=[cards[2]],  shown=shown, mucked=mucked)
             self.addHoleCards('FIFTH',   player, open=[cards[4]], closed=cards[2:4], shown=shown, mucked=mucked)
             self.addHoleCards('SIXTH',   player, open=[cards[5]], closed=cards[2:5], shown=shown, mucked=mucked)
-            self.addHoleCards('SEVENTH', player, open=[],         closed=[cards[6]], shown=shown, mucked=mucked)
+            if len(cards) > 6:
+                self.addHoleCards('SEVENTH', player, open=[],         closed=[cards[6]], shown=shown, mucked=mucked)
 
 
     def addPlayerCards(self, player,  street,  open=[],  closed=[]):
@@ -1257,7 +1385,7 @@ Add a complete on [street] by [player] to [amountTo]
         Rt = Decimal(amountTo)
         C = Bp - Bc
         Rb = Rt - C
-        self._addRaise(street, player, C, Rb, Rt)
+        self._addRaise(street, player, C, Rb, Rt, 'completes')
         #~ self.bets[street][player].append(C + Rb)
         #~ self.stacks[player] -= (C + Rb)
         #~ act = (player, 'raises', Rb, Rt, C, self.stacks[player]==0)
@@ -1270,7 +1398,7 @@ Add a complete on [street] by [player] to [amountTo]
             log.debug(_("Bringin: %s, %s") % (player , bringin))
             self.bets['THIRD'][player].append(Decimal(bringin))
             self.stacks[player] -= Decimal(bringin)
-            act = (player, 'bringin', bringin, self.stacks[player]==0)
+            act = (player, 'bringin', Decimal(bringin), self.stacks[player]==0)
             self.actions['THIRD'].append(act)
             self.lastBet['THIRD'] = Decimal(bringin)
             self.pot.addMoney(player, Decimal(bringin))
@@ -1497,7 +1625,7 @@ class Pot(object):
         # Return any uncalled bet.
         committed = sorted([ (v,k) for (k,v) in self.committed.items()])
         #print "DEBUG: committed: %s" % committed
-        #ERROR below. lastbet is correct in most cases, but wrong when 
+        #ERROR below. lastbet is correct in most cases, but wrong when
         #             additional money is committed to the pot in cash games
         #             due to an additional sb being posted. (Speculate that
         #             posting sb+bb is also potentially wrong)
@@ -1546,146 +1674,4 @@ class Pot(object):
 
         return ret + ''.join([ (" Side pot %s%.2f." % (self.sym, self.pots[x]) ) for x in xrange(1, len(self.pots)) ])
 
-def assemble(cnxn, handid):
-    c = cnxn.cursor()
 
-    # We need at least sitename, gametype, handid
-    # for the Hand.__init__
-    c.execute("""
-select
-    s.name,
-    g.category,
-    g.base,
-    g.type,
-    g.limitType,
-    g.hilo,
-    round(g.smallBlind / 100.0,2),
-    round(g.bigBlind / 100.0,2),
-    round(g.smallBet / 100.0,2),
-    round(g.bigBet / 100.0,2),
-    s.currency,
-    h.boardcard1,
-    h.boardcard2,
-    h.boardcard3,
-    h.boardcard4,
-    h.boardcard5
-from
-    hands as h,
-    sites as s,
-    gametypes as g,
-    handsplayers as hp,
-    players as p
-where
-    h.id = %(handid)s
-and g.id = h.gametypeid
-and hp.handid = h.id
-and p.id = hp.playerid
-and s.id = p.siteid
-limit 1""", {'handid':handid})
-    #TODO: siteid should be in hands table - we took the scenic route through players here.
-    res = c.fetchone()
-    gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
-    c = Configuration.Config()
-    h = HoldemOmahaHand(config = c, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
-    cards = map(Card.valueSuitFromCard, res[11:16] )
-    if cards[0]:
-        h.setCommunityCards('FLOP', cards[0:3])
-    if cards[3]:
-        h.setCommunityCards('TURN', [cards[3]])
-    if cards[4]:
-        h.setCommunityCards('RIVER', [cards[4]])
-    #[Card.valueSuitFromCard(x) for x in cards]
-
-    # HandInfo : HID, TABLE
-    # BUTTON - why is this treated specially in Hand?
-    # answer: it is written out in hand histories
-    # still, I think we should record all the active seat positions in a seat_order array
-    c.execute("""
-SELECT
-    h.sitehandno as hid,
-    h.tablename as table,
-    h.startTime as startTime
-FROM
-    hands as h
-WHERE h.id = %(handid)s
-""", {'handid':handid})
-    res = c.fetchone()
-    h.handid = res[0]
-    h.tablename = res[1]
-    h.startTime = res[2] # automatically a datetime
-
-    # PlayerStacks
-    c.execute("""
-SELECT
-    hp.seatno,
-    round(hp.winnings / 100.0,2) as winnings,
-    p.name,
-    round(hp.startcash / 100.0,2) as chips,
-    hp.card1,hp.card2,
-    hp.position
-FROM
-    handsplayers as hp,
-    players as p
-WHERE
-    hp.handid = %(handid)s
-and p.id = hp.playerid
-""", {'handid':handid})
-    for (seat, winnings, name, chips, card1,card2, position) in c.fetchall():
-        h.addPlayer(seat,name,chips)
-        if card1 and card2:
-            h.addHoleCards(map(Card.valueSuitFromCard, (card1,card2)), name, dealt=True)
-        if winnings > 0:
-            h.addCollectPot(name, winnings)
-        if position == 'B':
-            h.buttonpos = seat
-
-
-    # actions
-    c.execute("""
-SELECT
-    (ha.street,ha.actionno) as actnum,
-    p.name,
-    ha.street,
-    ha.action,
-    ha.allin,
-    round(ha.amount / 100.0,2)
-FROM
-    handsplayers as hp,
-    handsactions as ha,
-    players as p
-WHERE
-    hp.handid = %(handid)s
-and ha.handsplayerid = hp.id
-and p.id = hp.playerid
-ORDER BY
-    ha.street,ha.actionno
-""", {'handid':handid})
-    res = c.fetchall()
-    for (actnum,player, streetnum, act, allin, amount) in res:
-        act=act.strip()
-        street = h.allStreets[streetnum+1]
-        if act==u'blind':
-            h.addBlind(player, 'big blind', amount)
-            # TODO: The type of blind is not recorded in the DB.
-            # TODO: preflop street name anomalies in Hand
-        elif act==u'fold':
-            h.addFold(street,player)
-        elif act==u'call':
-            h.addCall(street,player,amount)
-        elif act==u'bet':
-            h.addBet(street,player,amount)
-        elif act==u'check':
-            h.addCheck(street,player)
-        elif act==u'unbet':
-            pass
-        else:
-            print act, player, streetnum, allin, amount
-            # TODO : other actions
-
-    #hhc.readShowdownActions(self)
-    #hc.readShownCards(self)
-    h.totalPot()
-    h.rake = h.totalpot - h.totalcollected
-
-
-    return h

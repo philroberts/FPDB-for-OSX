@@ -18,21 +18,11 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
 
 import sys
 from HandHistoryConverter import *
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 
 class Pkr(HandHistoryConverter):
@@ -115,7 +105,7 @@ class Pkr(HandHistoryConverter):
                         ^%(PLYR)s(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds)(\sto)?
                         (\s(%(CUR)s)?(?P<BET>[.\d]+))?
                         """ %  subst, re.MULTILINE|re.VERBOSE)
-            self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
+            self.re_ShowdownAction   = re.compile(r"^%(PLYR)s shows \[(?P<CARDS>.*)\]" % subst, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"^%(PLYR)s wins %(CUR)s(?P<POT>[.\d]+)" %  subst, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
@@ -239,6 +229,7 @@ class Pkr(HandHistoryConverter):
             if players.has_key(a.group('PNAME')):
                 pass # Ignore
             else:
+                #print "DEBUG: addPlayer(%s, %s, %s)" % (a.group('SEAT'), a.group('PNAME'), a.group('CASH'))
                 hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
                 players[a.group('PNAME')] = True
 
@@ -335,9 +326,16 @@ class Pkr(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
+            #print "DEBUG: readAction: acts: %s" % acts
             if action.group('ATYPE') == ' raises':
                 hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' calls':
+                # Amount in hand history is not cumulative
+                # ie. Player3 calls 0.08
+                #     Player5 raises to 0.16
+                #     Player3 calls 0.16 (Doh! he's only calling 0.08
+                # TODO: Going to have to write an addCallStoopid()
+                #print "DEBUG: addCall( %s, %s, None)" %(street,action.group('PNAME'))
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
@@ -354,9 +352,10 @@ class Pkr(HandHistoryConverter):
 
 
     def readShowdownActions(self, hand):
-# TODO: pick up mucks also??
-        for shows in self.re_ShowdownAction.finditer(hand.handText):            
+        # TODO: pick up mucks also??
+        for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS').split(' ')
+            #print "DEBUG: addShownCards(%s, %s)" %(cards, shows.group('PNAME'))
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):

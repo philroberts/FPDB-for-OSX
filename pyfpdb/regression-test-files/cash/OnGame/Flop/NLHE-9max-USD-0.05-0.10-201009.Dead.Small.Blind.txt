@@ -1,0 +1,27 @@
+***** History for hand R5-79836934-72 *****
+Start hand: Sat Sep 4 05:34:19 GMT+0100 2010
+Table: Bnei Brak [79836934] (NO_LIMIT TEXAS_HOLDEM $0.05/$0.10, Real money)
+User: tchazx
+Button: seat 10
+Players in round: 2
+Seat 1: feradf ($6.86)
+Seat 10: tchazx ($15.44)
+tchazx posts big blind ($0.10)
+tchazx posts dead blind ($0.05)
+feradf posts big blind ($0.10)
+---
+Dealing pocket cards
+Dealing to tchazx: [Qh, 4h]
+tchazx raises $0.20 to $0.30
+feradf calls $0.20
+--- Dealing flop [6c, Qs, 7h]
+feradf checks
+tchazx bets $0.45
+feradf folds
+---
+Summary:
+Main pot: $0.65 won by tchazx ($0.62)
+Rake taken: $0.03
+Seat 1: feradf ($6.56), net: -$0.30
+Seat 10: tchazx ($15.71), net: +$0.27
+***** End of hand R5-79836934-72 *****

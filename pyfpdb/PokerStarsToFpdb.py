@@ -18,23 +18,14 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 # TODO: straighten out discards for draw games
 
 import sys
 from HandHistoryConverter import *
 from decimal import Decimal
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 # PokerStars HH Format
 
@@ -48,7 +39,7 @@ class PokerStars(HandHistoryConverter):
     siteId   = 2 # Needs to match id entry in Sites database
 
     mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'} # Legal mixed games
-    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
+    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3", "play": ""}         # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
                             'LS' : "\$|\xe2\x82\xac|"        # legal currency symbols - Euro(cp1252, utf-8)
@@ -106,10 +97,13 @@ class PokerStars(HandHistoryConverter):
           (?P<CURRENCY>%(LS)s|)?
           (?P<SB>[.0-9]+)/(%(LS)s)?
           (?P<BB>[.0-9]+)
+          (?P<BLAH>\s-\s[%(LS)s\d\.]+\sCap\s-\s)?        # Optional Cap part
           \s?(?P<ISO>%(LEGAL_ISO)s)?
-          \)\s-\s                        # close paren of the stakes
-          (?P<DATETIME>.*$)""" % substitutions,
-          re.MULTILINE|re.VERBOSE)
+          \)                        # close paren of the stakes
+          (?P<BLAH2>\s\[AAMS\sID:\s[A-Z0-9]+\])?         # AAMS ID: in .it HH's
+          \s-\s
+          (?P<DATETIME>.*$)
+        """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_PlayerInfo   = re.compile(u"""
           ^Seat\s(?P<SEAT>[0-9]+):\s
@@ -155,6 +149,7 @@ class PokerStars(HandHistoryConverter):
                         ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
                         (\s(%(CUR)s)?(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
                         \s*(and\sis\sall.in)?
+                        (and\shas\sreached\sthe\s[%(CUR)s\d\.]+\scap)?
                         (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?\s*$"""
                          %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
@@ -170,6 +165,7 @@ class PokerStars(HandHistoryConverter):
                 ["ring", "stud", "fl"],
 
                 ["ring", "draw", "fl"],
+                ["ring", "draw", "pl"],
                 ["ring", "draw", "nl"],
 
                 ["tour", "hold", "nl"],
@@ -177,7 +173,11 @@ class PokerStars(HandHistoryConverter):
                 ["tour", "hold", "fl"],
 
                 ["tour", "stud", "fl"],
-               ]
+                
+                ["tour", "draw", "fl"],
+                ["tour", "draw", "pl"],
+                ["tour", "draw", "nl"],
+                ]
 
     def determineGameType(self, handText):
         info = {}
@@ -221,9 +221,8 @@ class PokerStars(HandHistoryConverter):
         m  = self.re_HandInfo.search(hand.handText,re.DOTALL)
         m2 = self.re_GameInfo.search(hand.handText)
         if m is None or m2 is None:
-            logging.info("Didn't match re_HandInfo")
-            logging.info(hand.handText)
-            raise FpdbParseError("No match in readHandInfo.")
+            log.error("Didn't match re_HandInfo")
+            raise FpdbParseError(_("No match in readHandInfo."))
 
         info.update(m.groupdict())
         info.update(m2.groupdict())
@@ -455,6 +454,7 @@ class PokerStars(HandHistoryConverter):
                 if m.group('SHOWED') == "showed": shown = True
                 elif m.group('SHOWED') == "mucked": mucked = True
 
+                #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
 
 if __name__ == "__main__":

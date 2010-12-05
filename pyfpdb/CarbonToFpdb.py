@@ -19,11 +19,13 @@
 
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 # This code is based heavily on EverleafToFpdb.py, by Carl Gherardi
 #
 # TODO:
 #
-# -- No siteID assigned
 # -- No support for games other than NL hold 'em cash. Hand histories for other
 #    games required
 # -- No support for limit hold 'em yet, though this would be easy to add
@@ -53,18 +55,6 @@ import logging
 from HandHistoryConverter import *
 from decimal import Decimal
 
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
-
 
 class Carbon(HandHistoryConverter):
 
@@ -76,7 +66,7 @@ class Carbon(HandHistoryConverter):
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r'<description type="(?P<GAME>[a-zA-Z ]+)" stakes="(?P<LIMIT>[a-zA-Z ]+) \(\$(?P<SB>[.0-9]+)/\$(?P<BB>[.0-9]+)\)"/>', re.MULTILINE)
+    re_GameInfo = re.compile(r'<description type="(?P<GAME>[a-zA-Z ]+)" stakes="(?P<LIMIT>[a-zA-Z ]+) ?\(\$(?P<SB>[.0-9]+)/\$(?P<BB>[.0-9]+)?\)"/>', re.MULTILINE)
     re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="2" gametype="2" realmoney="true" data="[0-9]+\|(?P<TABLE>[^\(]+)', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
@@ -86,8 +76,8 @@ class Carbon(HandHistoryConverter):
     # The following are also static regexes: there is no need to call
     # compilePlayerRegexes (which does nothing), since players are identified
     # not by name but by seat number
-    re_PostSB = re.compile(r'<event sequence="[0-9]+" type="(SMALL_BLIND|RETURN_BLIND)" player="(?P<PSEAT>[0-9])" amount="(?P<SB>[.0-9]+)"/>', re.MULTILINE)
-    re_PostBB = re.compile(r'<event sequence="[0-9]+" type="(BIG_BLIND|INITIAL_BLIND)" player="(?P<PSEAT>[0-9])" amount="(?P<BB>[.0-9]+)"/>', re.MULTILINE)
+    re_PostSB = re.compile(r'<event sequence="[0-9]+" type="(SMALL_BLIND|RETURN_BLIND)" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])" amount="(?P<SB>[.0-9]+)"/>', re.MULTILINE)
+    re_PostBB = re.compile(r'<event sequence="[0-9]+" type="(BIG_BLIND|INITIAL_BLIND)" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])" amount="(?P<BB>[.0-9]+)"/>', re.MULTILINE)
     re_PostBoth = re.compile(r'<event sequence="[0-9]+" type="(RETURN_BLIND)" player="(?P<PSEAT>[0-9])" amount="(?P<SBBB>[.0-9]+)"/>', re.MULTILINE)
     #re_Antes = ???
     #re_BringIn = ???
@@ -143,8 +133,9 @@ or None if we fail to get the info """
 
         self.info = {}
         mg = m.groupdict()
+        print mg
 
-        limits = { 'No Limit':'nl', 'Limit':'fl' }
+        limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl' }
         games = {              # base, category
                     'Holdem' : ('hold','holdem'),
          'Holdem Tournament' : ('hold','holdem') }
@@ -171,7 +162,7 @@ or None if we fail to get the info """
         if m is None:
             logging.info(_("Didn't match re_HandInfo"))
             logging.info(hand.handText)
-            return None
+            raise FpdbParseError(_("No match in readHandInfo."))
         logging.debug("HID %s-%s, Table %s" % (m.group('HID1'),
                       m.group('HID2'), m.group('TABLE')[:-1]))
         hand.handid = m.group('HID1') + m.group('HID2')
@@ -182,7 +173,7 @@ or None if we fail to get the info """
         # Check that the hand is complete up to the awarding of the pot; if
         # not, the hand is unparseable
         if self.re_EndOfHand.search(hand.handText) is None:
-            raise FpdbParseError(hid=m.group('HID1') + "-" + m.group('HID2'))
+            raise FpdbParseError("readHandInfo failed: HID: '%s' HID2: '%s'" %(m.group('HID1'), m.group('HID2')))
 
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.handText)
@@ -222,15 +213,13 @@ or None if we fail to get the info """
         pass # ???
 
     def readBlinds(self, hand):
-        try:
-            m = self.re_PostSB.search(hand.handText)
-            hand.addBlind(self.playerNameFromSeatNo(m.group('PSEAT'), hand),
-                          'small blind', m.group('SB'))
-        except: # no small blind
-            hand.addBlind(None, None, None)
+        for a in self.re_PostSB.finditer(hand.handText):
+            #print "DEBUG: found sb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('SB'))
+            hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),'small blind', a.group('SB'))
+
         for a in self.re_PostBB.finditer(hand.handText):
-            hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),
-                          'big blind', a.group('BB'))
+            #print "DEBUG: found bb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('BB'))
+            hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.handText):
             bb = Decimal(self.info['bb'])
             amount = Decimal(a.group('SBBB'))

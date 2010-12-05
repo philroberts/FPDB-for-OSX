@@ -23,8 +23,13 @@ Handles HUD configuration files.
 
 ########################################################################
 
+
 #    Standard Library modules
 from __future__ import with_statement
+
+import L10n
+_ = L10n.get_translation()
+
 import os
 import sys
 import inspect
@@ -35,18 +40,6 @@ import locale
 import re
 import xml.dom.minidom
 from xml.dom.minidom import Node
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 import logging, logging.config
 import ConfigParser
@@ -457,11 +450,12 @@ class Aux_window:
 
 class HHC:
     def __init__(self, node):
-        self.site    = node.getAttribute("site")
-        self.converter = node.getAttribute("converter")
+        self.site            = node.getAttribute("site")
+        self.converter       = node.getAttribute("converter")
+        self.summaryImporter = node.getAttribute("summaryImporter")
 
     def __str__(self):
-        return "%s:\t%s" % (self.site, self.converter)
+        return "%s:\tconverter: '%s' summaryImporter: '%s'" % (self.site, self.converter, self.summaryImporter)
 
 
 class Popup:
@@ -484,7 +478,7 @@ class Import:
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
         self.hhBulkPath = node.getAttribute("hhBulkPath")
-        self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=True)
+        self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=False)
         self.fastStoreHudCache = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
         self.saveStarsHH = string_to_bool(node.getAttribute("saveStarsHH"), default=False)
 
@@ -577,7 +571,8 @@ class GUICashStats(list):
 
     def get_defaults(self):
         """A list of defaults to be called, should there be no entry in config"""
-        defaults = [   [u'game', u'Game', True, True, u'%s', u'str', 0.0],
+        # SQL column name, display title, display all, display positional, format, type, alignment
+        defaults = [   [u'game', u'Game', True, True, u'%s', u'str', 0.0],       
             [u'hand', u'Hand', False, False, u'%s', u'str', 0.0],
             [u'plposition', u'Posn', False, False, u'%s', u'str', 1.0],
             [u'pname', u'Name', False, False, u'%s', u'str', 0.0],
@@ -1263,7 +1258,7 @@ class Config:
         except:  imp['hhBulkPath']    = ""
 
         try:    imp['saveActions']     = self.imp.saveActions
-        except:  imp['saveActions']     = True
+        except:  imp['saveActions']     = False
 
         try:    imp['saveStarsHH'] = self.imp.saveStarsHH
         except:  imp['saveStarsHH'] = False

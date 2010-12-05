@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 import os
 import re
 import codecs
@@ -23,17 +26,6 @@ import HandHistoryConverter
 import Configuration
 import sys
 
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 (options, argv) = Options.fpdb_options()
 config = Configuration.Config()
@@ -47,17 +39,17 @@ obj = getattr(mod, filter_name, None)
 
 hhc = obj(config, autostart=False)
 
-if os.path.exists(options.infile):
-    in_fh = codecs.open(options.infile, 'r', "utf8")
+if os.path.exists(options.filename):
+    in_fh = codecs.open(options.filename, 'r', "utf8")
     filecontents = in_fh.read()
     in_fh.close()
 else:
-    print _("Could not find file %s") % options.infile
+    print _("Could not find file %s") % options.filename
     exit(1)
 
 m = hhc.re_PlayerInfo.finditer(filecontents)
 
-outfile = options.infile+".anon"
+outfile = options.filename+".anon"
 print _("Output being written to"), outfile
 
 savestdout = sys.stdout

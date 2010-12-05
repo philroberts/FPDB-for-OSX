@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 #    Standard Library modules
 import os
 import sys
@@ -33,17 +36,6 @@ import fpdb_import
 import Configuration
 import Exceptions
 
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 class GuiBulkImport():
 
@@ -358,6 +350,8 @@ def main(argv=None):
                     help=_("Print some useful one liners"))
     parser.add_option("-s", "--starsarchive", action="store_true", dest="starsArchive", default=False,
                     help=_("Do the required conversion for Stars Archive format (ie. as provided by support"))
+    parser.add_option("-F", "--ftparchive", action="store_true", dest="ftpArchive", default=False,
+                    help=_("Do the required conversion for FTP Archive format (ie. as provided by support"))
     parser.add_option("-t", "--testdata", action="store_true", dest="testData", default=False,
                     help=_("Output the pprinted version of the HandsPlayer hash for regresion testing"))
     (options, argv) = parser.parse_args(args = argv)
@@ -395,7 +389,7 @@ def main(argv=None):
         gtk.main()
     else:
         #Do something useful
-        importer = fpdb_import.Importer(False,settings, config, self.parent)
+        importer = fpdb_import.Importer(False,settings, config, None)
         # importer.setDropIndexes("auto")
         importer.setDropIndexes(_("don't drop"))
         importer.setFailOnError(options.failOnError)
@@ -404,6 +398,8 @@ def main(argv=None):
         importer.setCallHud(False)
         if options.starsArchive:
             importer.setStarsArchive(True)
+        if options.ftpArchive:
+            importer.setFTPArchive(True)
         if options.testData:
             importer.setPrintTestData(True)
         (stored, dups, partial, errs, ttime) = importer.runImport()

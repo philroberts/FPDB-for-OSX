@@ -153,7 +153,28 @@ class Sql:
                         tourneyId BIGINT NOT NULL,
                         rawTourney TEXT NOT NULL,
                         complain BOOLEAN NOT NULL DEFAULT FALSE)"""
-        
+                        
+        ################################
+        # Create Actions
+        ################################
+
+        if db_server == 'mysql':
+            self.query['createActionsTable'] = """CREATE TABLE Actions (
+                        id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        name varchar(32) NOT NULL,
+                        code char(4) NOT NULL)
+                        ENGINE=INNODB"""
+        elif db_server == 'postgresql':
+            self.query['createActionsTable'] = """CREATE TABLE Actions (
+                        id SERIAL, PRIMARY KEY (id),
+                        name varchar(32),
+                        code char(4))"""
+        elif db_server == 'sqlite':
+            self.query['createActionsTable'] = """CREATE TABLE Actions (
+                        id INTEGER PRIMARY KEY,
+                        name TEXT NOT NULL,
+                        code TEXT NOT NULL)"""        
+                        
         ################################
         # Create Sites
         ################################
@@ -989,11 +1010,14 @@ class Sql:
                         handsPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
                         street SMALLINT NOT NULL,
                         actionNo SMALLINT NOT NULL,
-                        action CHAR(5) NOT NULL,
-                        allIn BOOLEAN NOT NULL,
+                        streetActionNo SMALLINT NOT NULL,
+                        actionId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (actionId) REFERENCES Actions(id),
                         amount INT NOT NULL,
-                        comment TEXT,
-                        commentTs DATETIME)
+                        raiseTo INT NOT NULL,
+                        amountCalled INT NOT NULL,
+                        numDiscarded SMALLINT NOT NULL,
+                        cardsDiscarded varchar(14),
+                        allIn BOOLEAN NOT NULL)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
@@ -1001,24 +1025,31 @@ class Sql:
                         handsPlayerId BIGINT, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
                         street SMALLINT,
                         actionNo SMALLINT,
-                        action CHAR(5),
-                        allIn BOOLEAN,
+                        streetActionNo SMALLINT,
+                        actionId SMALLINT, FOREIGN KEY (actionId) REFERENCES Actions(id),
                         amount INT,
-                        comment TEXT,
-                        commentTs timestamp without time zone)"""
+                        raiseTo INT,
+                        amountCalled INT,
+                        numDiscarded SMALLINT,
+                        cardsDiscarded varchar(14),
+                        allIn BOOLEAN)"""
         elif db_server == 'sqlite':
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                         id INTEGER PRIMARY KEY,
                         handsPlayerId BIGINT,
                         street SMALLINT,
                         actionNo SMALLINT,
-                        action CHAR(5),
-                        allIn INT,
+                        streetActionNo SMALLINT,
+                        actionId SMALLINT,
                         amount INT,
-                        comment TEXT,
-                        commentTs timestamp without time zone,
-                        FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id)
-                        )"""
+                        raiseTo INT,
+                        amountCalled INT,
+                        numDiscarded SMALLINT,
+                        cardsDiscarded TEXT,
+                        allIn BOOLEAN,
+                        FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
+                        FOREIGN KEY (actionId) REFERENCES Actions(id) ON DELETE CASCADE
+                        )""" 
 
 
         ################################
@@ -1365,6 +1396,10 @@ class Sql:
                                              , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
 
         self.query['get_last_hand'] = "select max(id) from Hands"
+        
+        self.query['get_last_date'] = "SELECT MAX(startTime) FROM Hands"
+        
+        self.query['get_first_date'] = "SELECT MIN(startTime) FROM Hands"
 
         self.query['get_player_id'] = """
                 select Players.id AS player_id 
@@ -3024,8 +3059,6 @@ class Sql:
                 order by stats.category, stats.limitType, stats.bigBlindDesc desc
                          <orderbyseats>, cast(stats.PlPosition as smallint)
                 """
-        #elif db_server == 'sqlite':
-        #    self.query['playerStatsByPosition'] = """ """
 
         ####################################
         # Cash Game Graph query
@@ -3046,11 +3079,45 @@ class Sql:
             GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
             ORDER BY h.startTime"""
 
+        self.query['getRingProfitAllHandsPlayerIdSiteInBB'] = """
+            SELECT hp.handId, ( hp.totalProfit / ( gt.bigBlind  * 2 ) ) * 100 , hp.sawShowdown
+            FROM HandsPlayers hp
+            INNER JOIN Players pl      ON  (pl.id = hp.playerId)
+            INNER JOIN Hands h         ON  (h.id  = hp.handId)
+            INNER JOIN Gametypes gt    ON  (gt.id = h.gametypeId)
+            WHERE pl.id in <player_test>
+            AND   pl.siteId in <site_test>
+            AND   h.startTime > '<startdate_test>'
+            AND   h.startTime < '<enddate_test>'
+            <limit_test>
+            <game_test>
+            AND   hp.tourneysPlayersId IS NULL
+            GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
+            ORDER BY h.startTime"""
+
+        self.query['getRingProfitAllHandsPlayerIdSiteInDollars'] = """
+            SELECT hp.handId, hp.totalProfit, hp.sawShowdown
+            FROM HandsPlayers hp
+            INNER JOIN Players pl      ON  (pl.id = hp.playerId)
+            INNER JOIN Hands h         ON  (h.id  = hp.handId)
+            INNER JOIN Gametypes gt    ON  (gt.id = h.gametypeId)
+            WHERE pl.id in <player_test>
+            AND   pl.siteId in <site_test>
+            AND   h.startTime > '<startdate_test>'
+            AND   h.startTime < '<enddate_test>'
+            <limit_test>
+            <game_test>
+            AND   hp.tourneysPlayersId IS NULL
+            GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
+            ORDER BY h.startTime"""
+
+
+
         ####################################
         # Tourney Results query
         ####################################
         self.query['tourneyResults'] = """
-            SELECT tp.tourneyId, (tp.winnings - tt.buyIn - tt.fee) as profit, tp.koCount, tp.rebuyCount, tp.addOnCount, tt.buyIn, tt.fee, t.siteTourneyNo
+            SELECT tp.tourneyId, (coalesce(tp.winnings,0) - coalesce(tt.buyIn,0) - coalesce(tt.fee,0)) as profit, tp.koCount, tp.rebuyCount, tp.addOnCount, tt.buyIn, tt.fee, t.siteTourneyNo
             FROM TourneysPlayers tp
             INNER JOIN Players pl      ON  (pl.id = tp.playerId)
             INNER JOIN Tourneys t         ON  (t.id  = tp.tourneyId)
@@ -4251,11 +4318,17 @@ class Sql:
                         handsPlayerId,
                         street,
                         actionNo,
-                        action,
-                        allIn,
-                        amount
+                        streetActionNo,
+                        actionId,
+                        amount,
+                        raiseTo,
+                        amountCalled,
+                        numDiscarded,
+                        cardsDiscarded,
+                        allIn
                )
                VALUES (
+                    %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s
                 )"""
@@ -4263,9 +4336,9 @@ class Sql:
         ################################
         # Counts for DB stats window
         ################################
-        self.query['getHandCount'] = "SELECT COUNT(id) FROM Hands"
-        self.query['getTourneyCount'] = "SELECT COUNT(id) FROM Tourneys"
-        self.query['getTourneyTypeCount'] = "SELECT COUNT(id) FROM TourneyTypes"
+        self.query['getHandCount'] = "SELECT COUNT(*) FROM Hands"
+        self.query['getTourneyCount'] = "SELECT COUNT(*) FROM Tourneys"
+        self.query['getTourneyTypeCount'] = "SELECT COUNT(*) FROM TourneyTypes"
         
         ################################
         # queries for dumpDatabase

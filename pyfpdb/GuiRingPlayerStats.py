@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 import traceback
 import threading
 import pygtk
@@ -24,18 +27,6 @@ import os
 import sys
 from time import time, strftime
 
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
-
 import Card
 import fpdb_import
 import Database
@@ -43,10 +34,72 @@ import Filters
 import Charset
 import GuiPlayerStats
 
+from TreeViewTooltips import TreeViewTooltips
+
+
 #colalias,colshowsumm,colshowposn,colheading,colxalign,colformat,coltype = 0,1,2,3,4,5,6
 #new order in config file:
 colalias,colheading,colshowsumm,colshowposn,colformat,coltype,colxalign = 0,1,2,3,4,5,6
 ranks = {'x':0, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 'J':11, 'Q':12, 'K':13, 'A':14}
+onlinehelp = {'Game':_('Type of Game'),
+              'Hand':_('Hole cards'),
+              'Posn':_('Position'),
+              'Name':_('Name of the player'),
+              'Hds':_('Number of hands played'),
+              'Seats':_('Number of Seats'),
+              'VPIP':_('Voluntarily Putting In the pot\n(blinds excluded)'),
+              'PFR':_('% Pre Flop Raise'),
+              'PF3':_('% Pre Flop Re-Raise / 3Bet'),
+              'AggFac':_('Aggression Factor\n'),
+              'AggFreq':_('Aggression Frequency\nBet or Raise vs Fold'),
+              'ContBet':_('Continuation Bet on the flop'),
+              'RFI':_('% Raise First In\% Raise when first to bet'),
+              'Steals':_('% First to raise pre-flop\nand steal blinds'),
+              'Saw_F':_('% Saw Flop vs hands dealt'),
+              'SawSD':_('Saw Show Down / River'),
+              'WtSDwsF':_('Went To Show Down When Saw Flop'),
+              'W$SD':_('Amount Won when Show Down seen'),
+              'FlAFq':_('Flop Aggression\n% Bet or Raise after seeing Flop'),
+              'TuAFq':_('Turn Aggression\n% Bet or Raise after seeing Turn'),
+              'RvAFq':_('River Aggression\n% Bet or Raise after seeing River'),
+              'PoFAFq':_('Coming Soon\nTotal % agression'),
+              'Net($)':_('Amount won'),
+              'bb/100':_('Number of Big Blinds won\nor lost per 100 hands'),
+              'Rake($)':_('Amount of rake paid'),
+              'bbxr/100':_('Number of Big Blinds won\nor lost per 100 hands\nwhen excluding rake'),
+              'Variance':_('Measure of uncertainty\nThe lower, the more stable the amounts won')
+              } 
+
+
+
+class DemoTips(TreeViewTooltips):
+
+    def __init__(self, customer_column):
+        # customer_column is an instance of gtk.TreeViewColumn and
+        # is being used in the gtk.TreeView to show customer names.
+        # self.cust_col = customer_column
+
+        # call base class init
+        TreeViewTooltips.__init__(self)
+
+    def get_tooltip(self, view, column, path):
+        model = view.get_model()
+        cards = model[path][0]
+        title=column.get_title()
+        if (title == 'Hand' or title == 'Game'): display=''     #no tooltips on headers                   
+        else: display='<big>%s for %s</big>\n<i>%s</i>' % (title,cards,onlinehelp[title])
+        return (display)
+
+    def location(self, x, y, w, h):
+        # rename me to "location" so I override the base class
+        # method.  This will demonstrate being able to change
+        # where the tooltip window popups, relative to the
+        # pointer.
+
+        # this will place the tooltip above and to the right
+        return x + 30, y - (h + 10)
+        
+        
 
 class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
 
@@ -103,34 +156,6 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         # columns to display, keys match column name returned by sql, values in tuple are:
         #     is column displayed(summary then position), column heading, xalignment, formatting, celltype
         self.columns = self.conf.get_gui_cash_stat_params()
-#        self.columns = [ ["game",       True,  True,  "Game",     0.0, "%s",    "str"]
-#                       , ["hand",       False, False, "Hand",     0.0, "%s",    "str"]   # initial setting ignored for this line (set in code)
-#                       , ["plposition", False, False, "Posn",     1.0, "%s",    "str"]   # initial setting ignored for this line (set in code)
-#                       , ["pname",      False, False, "Name",     0.0, "%s",    "str"]   # initial setting ignored for this line (set in code)
-#                       , ["n",          True,  True,  "Hds",      1.0, "%1.0f", "str"]
-#                       , ["avgseats",   False, False, "Seats",    1.0, "%3.1f", "str"]
-#                       , ["vpip",       True,  True,  "VPIP",     1.0, "%3.1f", "str"]
-#                       , ["pfr",        True,  True,  "PFR",      1.0, "%3.1f", "str"]
-#                       , ["pf3",        True,  True,  "PF3",      1.0, "%3.1f", "str"]
-#                       , ["aggfac",     True,  True,  "AggFac",   1.0, "%2.2f", "str"]
-#                       , ["aggfrq",     True,  True,  "AggFreq",  1.0, "%3.1f", "str"]
-#                       , ["conbet",     True,  True,  "ContBet",  1.0, "%3.1f", "str"]
-#                       , ["rfi",        True,  True,  "RFI",      1.0, "%3.1f", "str"]
-#                       , ["steals",     True,  True,  "Steals",   1.0, "%3.1f", "str"]
-#                       , ["saw_f",      True,  True,  "Saw_F",    1.0, "%3.1f", "str"]
-#                       , ["sawsd",      True,  True,  "SawSD",    1.0, "%3.1f", "str"]
-#                       , ["wtsdwsf",    True,  True,  "WtSDwsF",  1.0, "%3.1f", "str"]
-#                       , ["wmsd",       True,  True,  "W$SD",     1.0, "%3.1f", "str"]
-#                       , ["flafq",      True,  True,  "FlAFq",    1.0, "%3.1f", "str"]
-#                       , ["tuafq",      True,  True,  "TuAFq",    1.0, "%3.1f", "str"]
-#                       , ["rvafq",      True,  True,  "RvAFq",    1.0, "%3.1f", "str"]
-#                       , ["pofafq",     False, False, "PoFAFq",   1.0, "%3.1f", "str"]
-#                       , ["net",        True,  True,  "Net($)",   1.0, "%6.2f", "cash"]
-#                       , ["bbper100",   True,  True,  "bb/100",   1.0, "%4.2f", "str"]
-#                       , ["rake",       True,  True,  "Rake($)",  1.0, "%6.2f", "cash"]
-#                       , ["bb100xr",    True,  True,  "bbxr/100", 1.0, "%4.2f", "str"]
-#                       , ["variance",   True,  True,  "Variance", 1.0, "%5.2f", "str"]
-#                       ]
 
         # Detail filters:  This holds the data used in the popup window, extra values are
         # added at the end of these lists during processing
@@ -391,6 +416,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
             print _("***sortcols error: ") + str(sys.exc_info()[1])
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
     #end def sortcols
+    
 
     def addGrid(self, vbox, query, flags, playerids, sitenos, limits, type, seats, groups, dates, games):
         counter = 0
@@ -401,6 +427,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
 
         tmp = self.sql.query[query]
         tmp = self.refineQuery(tmp, flags, playerids, sitenos, limits, type, seats, groups, dates, games)
+        #print "DEBUG: query: %s" % tmp
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
         colnames = [desc[0].lower() for desc in self.cursor.description]
@@ -476,7 +503,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                 else:
                     if column[colalias] == 'game':
                         if holecards:
-                            value = Card.twoStartCardString( result[sqlrow][hgametypeid_idx] )
+                            value = Card.decodeStartHandValue(result[sqlrow][colnames.index('category')], result[sqlrow][hgametypeid_idx] )
                         else:
                             minbb = result[sqlrow][colnames.index('minbigblind')]
                             maxbb = result[sqlrow][colnames.index('maxbigblind')]
@@ -502,6 +529,9 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
             #print treerow
             sqlrow += 1
             row += 1
+        tips = DemoTips(column[colformat])
+        tips.add_view(view)     
+
         vbox.show_all()
         view.show()
         if len(self.liststore) == 1:
