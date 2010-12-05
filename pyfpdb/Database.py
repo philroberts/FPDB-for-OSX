@@ -1546,6 +1546,11 @@ class Database:
             print _("Error rebuilding hudcache:"), str(sys.exc_value)
             print err
     #end def rebuild_hudcache
+    
+    def rebuild_sessionscache(self, h_start=None, v_start=None):
+        """clears sessionscache and rebuilds from the individual handsplayers records"""
+        #Will get to this soon
+        pass
 
     def get_hero_hudcache_start(self):
         """fetches earliest stylekey from hudcache for one of hero's player ids"""
