@@ -1,0 +1,16 @@
+PokerStars Game #2344646393:  Hold'em Limit ($1/$2 USD) - 2005/08/15 14:27:10 ET
+Table 'Phad' Seat #6 is the button
+Seat 6: Hero ($40 in chips) 
+Seat 7: fblm2002 ($24.75 in chips) 
+fblm2002: posts small blind $0.50
+Hero: posts big blind $1
+*** HOLE CARDS ***
+Dealt to Hero [3s 4s]
+fblm2002: folds 
+Hero collected $1 from pot
+*** SUMMARY ***
+Total pot $1 | Rake $0 
+Seat 6: Hero (button) (big blind) collected ($1)
+Seat 7: fblm2002 (small blind) folded before Flop
+
+
