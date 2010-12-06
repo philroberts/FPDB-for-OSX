@@ -68,7 +68,6 @@ import matplotlib
 import shutil
 #from datetime import date
 
-
 def isSystemDLL(pathname):
         #dwmapi appears to be vista-specific file, not XP 
         if os.path.basename(pathname).lower() in ("dwmapi.dll"):
@@ -120,6 +119,7 @@ pydir = rootdir+'pyfpdb/'
 gfxdir = rootdir+'gfx/'
 sys.path.append( pydir )  # allows fpdb modules to be found by options/includes below
 
+
 print "\n" + r"Output will be created in "+distdir
 
 print "*** Cleaning working folders ***"
@@ -140,6 +140,9 @@ setup(
     windows = [   {'script': pydir+'fpdb.pyw', "icon_resources": [(1, gfxdir+"fpdb_large_icon.ico")]},
                   {'script': pydir+'HUD_main.pyw', },
                   {'script': pydir+'Configuration.py', }
+              ],
+
+    console = [   {'script': pydir+'Stove.py', }
               ],
 
     options = {'py2exe': {

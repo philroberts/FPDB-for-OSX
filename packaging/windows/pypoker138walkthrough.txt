@@ -67,6 +67,20 @@ to be this:
 
 4.2/ save and exit
 
+4.3/ dos> write c:/pypoker-eval/pokereval.py
+
+Comment-out this line:
+
+_pokereval = __import__('_pokereval_' + sys.version[0] + '_' + sys.version[2])
+
+Insert this one in its' place:
+
+import _pokereval_2_6 as _pokereval
+
+
+4.4/ save and exit
+
+
 5. Build pre-preparation
 ------------------------
 
