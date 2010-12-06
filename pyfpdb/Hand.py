@@ -280,7 +280,7 @@ db: a connected Database object"""
         db.storeHudCache(self.dbid_gt, self.dbid_pids, self.startTime, self.stats.getHandsPlayers())
         
     def updateSessionsCache(self, db):
-        db.storeSessionsCache(self.dbid_pids, self.startTime, self.stats.getHandsPlayers())
+        db.storeSessionsCache(self.dbid_pids, self.startTime, self.gametype, self.stats.getHandsPlayers())
 
     def select(self, handId):
         """ Function to create Hand object from database """

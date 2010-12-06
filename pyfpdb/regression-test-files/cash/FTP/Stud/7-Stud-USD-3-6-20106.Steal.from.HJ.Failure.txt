@@ -3,13 +3,13 @@ Seat 1: bllodshot ($38)
 Seat 2: kwuiyhw ($64.50)
 Seat 3: chasrigg ($298.50)
 Seat 4: goulartarm ($98.50)
-Seat 5: ExecDec ($266.50)
+Seat 5: Hero ($266.50)
 Seat 6: arjun1111 ($42.50)
 Seat 7: thebear666 ($84)
 Seat 8: FILL A RACK ($129.50)
 thebear666 antes $0.50
 kwuiyhw antes $0.50
-ExecDec antes $0.50
+Hero antes $0.50
 chasrigg antes $0.50
 arjun1111 antes $0.50
 bllodshot antes $0.50
@@ -20,7 +20,7 @@ Dealt to bllodshot [8h]
 Dealt to kwuiyhw [4c]
 Dealt to chasrigg [7c]
 Dealt to goulartarm [6d]
-Dealt to ExecDec [3d 4s] [4d]
+Dealt to Hero [3d 4s] [4d]
 Dealt to arjun1111 [8s]
 Dealt to thebear666 [Ac]
 Dealt to FILL A RACK [Jh]
@@ -28,8 +28,8 @@ kwuiyhw is low with [4c]
 kwuiyhw brings in for $1
 chasrigg folds
 goulartarm folds
-ExecDec has 15 seconds left to act
-ExecDec folds
+Hero has 15 seconds left to act
+Hero folds
 arjun1111 folds
 thebear666 completes it to $3
 FILL A RACK folds
@@ -55,7 +55,7 @@ Seat 1: bllodshot folded on 5th St.
 Seat 2: kwuiyhw folded on 3rd St.
 Seat 3: chasrigg folded on 3rd St.
 Seat 4: goulartarm folded on 3rd St.
-Seat 5: ExecDec folded on 3rd St.
+Seat 5: Hero folded on 3rd St.
 Seat 6: arjun1111 folded on 3rd St.
 Seat 7: thebear666 collected ($17), mucked
 Seat 8: FILL A RACK folded on 3rd St.

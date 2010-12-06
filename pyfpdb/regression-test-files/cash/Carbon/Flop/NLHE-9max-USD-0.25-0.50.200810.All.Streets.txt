@@ -2,7 +2,7 @@
 <game id="15245216-1000" starttime="20081013150000" numholecards="2" gametype="2" realmoney="true" data="20081013|Niagara Falls (15245216)|15245216|15245216-1000|false">
 	<players dealer="8">
 		<player seat="3" nickname="Player1" balance="$34.13" dealtin="true" />
-		<player seat="2" nickname="Player2" balance="$49.25" dealtin="true" />
+		<player seat="2" nickname="Hero" balance="$49.25" dealtin="true" />
 		<player seat="1" nickname="Player3" balance="$55.64" dealtin="true" />
 		<player seat="0" nickname="Player4" balance="$19.72" dealtin="true" />
 		<player seat="7" nickname="Player5" balance="$25.16" dealtin="true" />

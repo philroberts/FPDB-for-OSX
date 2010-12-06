@@ -6,17 +6,17 @@ Seat 3: Player30 (4.71€)
 Seat 4: Player5 (4.67€)
 Seat 6: Player11 (5€)
 Seat 7: Player1 (7.21€)
-Seat 8: Player13 (11.12€)
+Seat 8: Hero (11.12€)
 Seat 9: Player14 (5.07€)
 *** ANTE/BLINDS *** 
 Player30 posts small blind 0.02€
 Player5 posts big blind 0.05€
 Player11 posts big blind 0.05€ out of position
-Dealt to Player13 [6h 8s Qc 6d]
+Dealt to Hero [6h 8s Qc 6d]
 *** PRE-FLOP *** 
 Player11 folds
 Player1 folds
-Player13 folds
+Hero folds
 Player14 folds
 Player15 folds
 Player23 calls 0.05€
@@ -41,7 +41,7 @@ Seat 3: Player30 (small blind) folded on the flop
 Seat 4: Player5 (big blind) won 0.33€
 Seat 6: Player11 folded on the pre-flop
 Seat 7: Player1 folded on the pre-flop
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -53,41 +53,41 @@ Seat 3: Player30 (4.66€)
 Seat 4: Player5 (4.85€)
 Seat 5: Player7 (1€)
 Seat 7: Player0 (5€)
-Seat 8: Player13 (11.12€)
+Seat 8: Hero (11.12€)
 Seat 9: Player14 (5.07€)
 *** ANTE/BLINDS *** 
 Player5 posts small blind 0.02€
-Player13 posts big blind 0.05€
-Dealt to Player13 [6h 6s 4c 9h]
+Hero posts big blind 0.05€
+Dealt to Hero [6h 6s 4c 9h]
 *** PRE-FLOP *** 
 Player14 folds
 Player15 folds
 Player23 raises 0.05€ to 0.10€
 Player30 calls 0.10€
 Player5 calls 0.08€
-Player13 calls 0.05€
+Hero calls 0.05€
 *** FLOP *** [5c Tc 6c]
 Player5 checks
-Player13 bets 0.30€
+Hero bets 0.30€
 Player23 folds
 Player30 calls 0.30€
 Player5 calls 0.30€
 *** TURN *** [5c Tc 6c][Jh]
 Player5 checks
-Player13 checks
+Hero checks
 Player30 bets 0.25€
 Player5 calls 0.25€
-Player13 calls 0.25€
+Hero calls 0.25€
 *** RIVER *** [5c Tc 6c Jh][5s]
 Player5 checks
-Player13 checks
+Hero checks
 Player30 bets 0.90€
 Player5 folds
-Player13 raises 2.25€ to 3.15€
+Hero raises 2.25€ to 3.15€
 Player30 raises 0.86€ to 4.01€ and is all-in
-Player13 calls 0.86€
+Hero calls 0.86€
 *** SHOW DOWN ***
-Player13 shows [6h 6s 4c 9h] (Full of 6 and 5)
+Hero shows [6h 6s 4c 9h] (Full of 6 and 5)
 Player30 shows [Jd Kc 4s Jc] (Full of Jack and 5)
 Player30 collected 9.57€ from pot
 *** SUMMARY ***
@@ -99,7 +99,7 @@ Seat 3: Player30 (button) showed [Jd Kc 4s Jc] and won 9.57€ with Full of Jack
 Seat 4: Player5 (small blind) folded on the river
 Seat 5: Player7 folded
 Seat 7: Player0 folded
-Seat 8: Player13 (big blind) showed [6h 6s 4c 9h] and lost with Full of 6 and 5
+Seat 8: Hero (big blind) showed [6h 6s 4c 9h] and lost with Full of 6 and 5
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -111,37 +111,37 @@ Seat 4: Player5 (4.20€)
 Seat 5: Player7 (1€)
 Seat 6: Player29 (1.06€)
 Seat 7: Player0 (5€)
-Seat 8: Player13 (6.46€)
+Seat 8: Hero (6.46€)
 Seat 9: Player14 (5.07€)
 *** ANTE/BLINDS *** 
-Player13 posts small blind 0.02€
+Hero posts small blind 0.02€
 Player14 posts big blind 0.05€
-Dealt to Player13 [2c 4h Jh Kc]
+Dealt to Hero [2c 4h Jh Kc]
 *** PRE-FLOP *** 
 Player23 calls 0.05€
 Player30 calls 0.05€
 Player5 calls 0.05€
-Player13 calls 0.03€
+Hero calls 0.03€
 Player14 checks
 *** FLOP *** [Js 9s Ac]
-Player13 checks
+Hero checks
 Player14 checks
 Player23 checks
 Player30 checks
 Player5 checks
 *** TURN *** [Js 9s Ac][Th]
-Player13 checks
+Hero checks
 Player14 checks
 Player23 checks
 Player30 checks
 Player5 checks
 *** RIVER *** [Js 9s Ac Th][3c]
-Player13 checks
+Hero checks
 Player14 checks
 Player23 bets 0.25€
 Player30 folds
 Player5 folds
-Player13 folds
+Hero folds
 Player14 folds
 Player23 collected 0.49€ from pot
 *** SUMMARY ***
@@ -153,7 +153,7 @@ Seat 4: Player5 (button) folded on the river
 Seat 5: Player7 folded
 Seat 6: Player29 folded
 Seat 7: Player0 folded
-Seat 8: Player13 (small blind) folded on the river
+Seat 8: Hero (small blind) folded on the river
 Seat 9: Player14 (big blind) folded on the river
 
 
@@ -166,7 +166,7 @@ Seat 4: Player5 (4.15€)
 Seat 5: Player7 (1€)
 Seat 6: Player29 (1.06€)
 Seat 7: Player0 (5€)
-Seat 8: Player13 (6.41€)
+Seat 8: Hero (6.41€)
 Seat 9: Player14 (5.02€)
 *** ANTE/BLINDS *** 
 Player14 posts small blind 0.02€
@@ -174,14 +174,14 @@ Player23 posts big blind 0.05€
 Player7 posts big blind 0.05€ out of position
 Player29 posts big blind 0.05€ out of position
 Player0 posts big blind 0.05€ out of position
-Dealt to Player13 [2h 7s 8d Jd]
+Dealt to Hero [2h 7s 8d Jd]
 *** PRE-FLOP *** 
 Player30 calls 0.05€
 Player5 calls 0.05€
 Player7 checks
 Player29 checks
 Player0 checks
-Player13 folds
+Hero folds
 Player14 calls 0.03€
 Player23 checks
 *** FLOP *** [Qd Ac 5s]
@@ -215,7 +215,7 @@ Seat 4: Player5 folded on the flop
 Seat 5: Player7 showed [4c 3h Qc As] and won 1.07€ with Two pairs : Ace and Queen
 Seat 6: Player29 showed [Js 3s Qs Ah] and won 1.07€ with Two pairs : Ace and Queen
 Seat 7: Player0 folded on the flop
-Seat 8: Player13 (button) folded on the pre-flop
+Seat 8: Hero (button) folded on the pre-flop
 Seat 9: Player14 (small blind) folded on the flop
 
 
@@ -228,18 +228,18 @@ Seat 4: Player5 (4.10€)
 Seat 5: Player7 (1.07€)
 Seat 6: Player29 (1.13€)
 Seat 7: Player0 (4.95€)
-Seat 8: Player13 (6.41€)
+Seat 8: Hero (6.41€)
 Seat 9: Player14 (4.97€)
 *** ANTE/BLINDS *** 
 Player23 posts small blind 0.02€
 Player30 posts big blind 0.05€
-Dealt to Player13 [5c 4d 7c Jc]
+Dealt to Hero [5c 4d 7c Jc]
 *** PRE-FLOP *** 
 Player5 calls 0.05€
 Player7 folds
 Player29 calls 0.05€
 Player0 calls 0.05€
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 folds
 Player23 folds
 Player30 checks
@@ -248,17 +248,17 @@ Player30 checks
 Player5 folds
 Player29 checks
 Player0 checks
-Player13 checks
+Hero checks
 *** TURN *** [9d 2s Kc][5s]
 Player30 checks
 Player29 checks
 Player0 checks
-Player13 checks
+Hero checks
 *** RIVER *** [9d 2s Kc 5s][As]
 Player30 checks
 Player29 checks
 Player0 bets 0.05€
-Player13 folds
+Hero folds
 Player30 folds
 Player29 folds
 Player0 collected 0.31€ from pot
@@ -272,7 +272,7 @@ Seat 4: Player5 folded on the flop
 Seat 5: Player7 folded on the pre-flop
 Seat 6: Player29 folded on the river
 Seat 7: Player0 won 0.31€
-Seat 8: Player13 folded on the river
+Seat 8: Hero folded on the river
 Seat 9: Player14 (button) folded on the pre-flop
 
 
@@ -284,18 +284,18 @@ Seat 4: Player5 (4.05€)
 Seat 5: Player7 (1.07€)
 Seat 6: Player29 (1.08€)
 Seat 7: Player0 (5.16€)
-Seat 8: Player13 (6.36€)
+Seat 8: Hero (6.36€)
 Seat 9: Player14 (4.97€)
 *** ANTE/BLINDS *** 
 Player30 posts small blind 0.02€
 Player5 posts big blind 0.05€
 Player8 posts big blind 0.05€ out of position
-Dealt to Player13 [2d 2h Kc Ah]
+Dealt to Hero [2d 2h Kc Ah]
 *** PRE-FLOP *** 
 Player7 raises 0.17€ to 0.22€
 Player29 calls 0.22€
 Player0 folds
-Player13 folds
+Hero folds
 Player14 folds
 Player8 calls 0.17€
 Player30 folds
@@ -316,7 +316,7 @@ Seat 4: Player5 (big blind) folded on the flop
 Seat 5: Player7 won 1.70€
 Seat 6: Player29 folded on the flop
 Seat 7: Player0 folded on the pre-flop
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -328,16 +328,16 @@ Seat 4: Player5 (3.83€)
 Seat 5: Player7 (1.70€)
 Seat 6: Player29 (0.86€)
 Seat 7: Player0 (5.16€)
-Seat 8: Player13 (6.36€)
+Seat 8: Hero (6.36€)
 Seat 9: Player14 (4.97€)
 *** ANTE/BLINDS *** 
 Player5 posts small blind 0.02€
 Player7 posts big blind 0.05€
-Dealt to Player13 [3d 9h Qc 6c]
+Dealt to Hero [3d 9h Qc 6c]
 *** PRE-FLOP *** 
 Player29 calls 0.05€
 Player0 folds
-Player13 folds
+Hero folds
 Player14 folds
 Player8 folds
 Player30 calls 0.05€
@@ -369,7 +369,7 @@ Seat 4: Player5 (small blind) folded on the flop
 Seat 5: Player7 (big blind) showed [9c 7h 3s 8c] and won 2.57€ with Straight Jack high
 Seat 6: Player29 showed [Ad Ac Td Js] and lost with Two pairs : Jack and Ten
 Seat 7: Player0 folded on the pre-flop
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -380,14 +380,14 @@ Seat 3: Player30 (9.35€)
 Seat 4: Player5 (3.78€)
 Seat 5: Player7 (2.57€)
 Seat 7: Player0 (5.16€)
-Seat 8: Player13 (6.36€)
+Seat 8: Hero (6.36€)
 Seat 9: Player14 (4.97€)
 *** ANTE/BLINDS *** 
 Player7 posts small blind 0.02€
 Player0 posts big blind 0.05€
-Dealt to Player13 [8d Qd 9h 8c]
+Dealt to Hero [8d Qd 9h 8c]
 *** PRE-FLOP *** 
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 folds
 Player8 calls 0.05€
 Player30 calls 0.05€
@@ -396,12 +396,12 @@ Player7 folds
 Player0 checks
 *** FLOP *** [6s Ad 6d]
 Player0 checks
-Player13 checks
+Hero checks
 Player8 bets 0.27€
 Player30 folds
 Player5 calls 0.27€
 Player0 folds
-Player13 folds
+Hero folds
 *** TURN *** [6s Ad 6d][8s]
 Player8 bets 0.81€
 Player5 calls 0.81€
@@ -417,7 +417,7 @@ Seat 3: Player30 folded on the flop
 Seat 4: Player5 (button) folded on the river
 Seat 5: Player7 (small blind) folded on the pre-flop
 Seat 7: Player0 (big blind) folded on the flop
-Seat 8: Player13 folded on the flop
+Seat 8: Hero folded on the flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -428,12 +428,12 @@ Seat 3: Player30 (9.30€)
 Seat 4: Player5 (2.65€)
 Seat 5: Player7 (2.55€)
 Seat 7: Player0 (5.11€)
-Seat 8: Player13 (6.31€)
+Seat 8: Hero (6.31€)
 Seat 9: Player14 (4.97€)
 *** ANTE/BLINDS *** 
 Player0 posts small blind 0.02€
-Player13 posts big blind 0.05€
-Dealt to Player13 [3h Jh 2h Qd]
+Hero posts big blind 0.05€
+Dealt to Hero [3h Jh 2h Qd]
 *** PRE-FLOP *** 
 Player14 folds
 Player8 calls 0.05€
@@ -441,7 +441,7 @@ Player30 calls 0.05€
 Player5 calls 0.05€
 Player7 raises 0.27€ to 0.32€
 Player0 folds
-Player13 folds
+Hero folds
 Player8 folds
 Player30 folds
 Player5 calls 0.27€
@@ -464,7 +464,7 @@ Seat 3: Player30 folded on the pre-flop
 Seat 4: Player5 folded on the river
 Seat 5: Player7 (button) won 1.05€
 Seat 7: Player0 (small blind) folded on the pre-flop
-Seat 8: Player13 (big blind) folded on the pre-flop
+Seat 8: Hero (big blind) folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -475,28 +475,28 @@ Seat 3: Player30 (9.25€)
 Seat 4: Player5 (2.33€)
 Seat 5: Player7 (3€)
 Seat 7: Player0 (5.09€)
-Seat 8: Player13 (6.26€)
+Seat 8: Hero (6.26€)
 Seat 9: Player14 (4.97€)
 *** ANTE/BLINDS *** 
-Player13 posts small blind 0.02€
+Hero posts small blind 0.02€
 Player14 posts big blind 0.05€
-Dealt to Player13 [2c Js 4s 6s]
+Dealt to Hero [2c Js 4s 6s]
 *** PRE-FLOP *** 
 Player8 folds
 Player30 calls 0.05€
 Player5 calls 0.05€
 Player7 calls 0.05€
 Player0 calls 0.05€
-Player13 calls 0.03€
+Hero calls 0.03€
 Player14 checks
 *** FLOP *** [6d Jc As]
-Player13 checks
+Hero checks
 Player14 checks
 Player30 checks
 Player5 folds
 Player7 checks
 Player0 bets 0.30€
-Player13 folds
+Hero folds
 Player14 folds
 Player30 folds
 Player7 folds
@@ -509,7 +509,7 @@ Seat 3: Player30 folded on the flop
 Seat 4: Player5 folded on the flop
 Seat 5: Player7 folded on the flop
 Seat 7: Player0 (button) won 0.58€
-Seat 8: Player13 (small blind) folded on the flop
+Seat 8: Hero (small blind) folded on the flop
 Seat 9: Player14 (big blind) folded on the flop
 
 
@@ -519,17 +519,17 @@ Seat 3: Player30 (9.20€)
 Seat 4: Player5 (2.28€)
 Seat 5: Player7 (2.95€)
 Seat 7: Player0 (5.32€)
-Seat 8: Player13 (6.21€)
+Seat 8: Hero (6.21€)
 Seat 9: Player14 (4.92€)
 *** ANTE/BLINDS *** 
 Player14 posts small blind 0.02€
 Player30 posts big blind 0.05€
-Dealt to Player13 [6d 9d Jh Ah]
+Dealt to Hero [6d 9d Jh Ah]
 *** PRE-FLOP *** 
 Player5 calls 0.05€
 Player7 folds
 Player0 calls 0.05€
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 calls 0.03€
 Player30 checks
 *** FLOP *** [8d 7s 8c]
@@ -537,13 +537,13 @@ Player14 checks
 Player30 checks
 Player5 checks
 Player0 checks
-Player13 checks
+Hero checks
 *** TURN *** [8d 7s 8c][2c]
 Player14 bets 0.13€
 Player30 folds
 Player5 folds
 Player0 folds
-Player13 folds
+Hero folds
 Player14 collected 0.37€ from pot
 *** SUMMARY ***
 Total pot 0.37€ | Rake 0.01€
@@ -552,7 +552,7 @@ Seat 3: Player30 (big blind) folded on the turn
 Seat 4: Player5 folded on the turn
 Seat 5: Player7 folded on the pre-flop
 Seat 7: Player0 folded on the turn
-Seat 8: Player13 (button) folded on the turn
+Seat 8: Hero (button) folded on the turn
 Seat 9: Player14 (small blind) won 0.37€
 
 
@@ -563,23 +563,23 @@ Seat 3: Player30 (9.15€)
 Seat 4: Player5 (2.23€)
 Seat 5: Player7 (2.95€)
 Seat 7: Player0 (5.27€)
-Seat 8: Player13 (6.16€)
+Seat 8: Hero (6.16€)
 Seat 9: Player14 (5.11€)
 *** ANTE/BLINDS *** 
 Player30 posts small blind 0.02€
 Player5 posts big blind 0.05€
-Dealt to Player13 [8d 5d 8s 3d]
+Dealt to Hero [8d 5d 8s 3d]
 *** PRE-FLOP *** 
 Player7 calls 0.05€
 Player0 folds
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 folds
 Player30 calls 0.03€
 Player5 folds
 *** FLOP *** [6s Jc Th]
 Player30 checks
 Player7 bets 0.12€
-Player13 folds
+Hero folds
 Player30 calls 0.12€
 *** TURN *** [6s Jc Th][4c]
 Player30 checks
@@ -601,7 +601,7 @@ Seat 3: Player30 (small blind) showed [Kc 8c 5s 9h] and won 5.70€ with Straigh
 Seat 4: Player5 (big blind) folded on the pre-flop
 Seat 5: Player7 showed [6c 6d 8h 4h] and lost with Trips of 6
 Seat 7: Player0 folded on the pre-flop
-Seat 8: Player13 folded on the flop
+Seat 8: Hero folded on the flop
 Seat 9: Player14 (button) folded on the pre-flop
 
 
@@ -613,16 +613,16 @@ Seat 4: Player5 (2.18€)
 Seat 5: Player7 (1€)
 Seat 6: Player28 (5€)
 Seat 7: Player0 (5.27€)
-Seat 8: Player13 (6.11€)
+Seat 8: Hero (6.11€)
 Seat 9: Player14 (5.11€)
 *** ANTE/BLINDS *** 
 Player5 posts small blind 0.02€
 Player7 posts big blind 0.05€
 Player4 posts big blind 0.05€ out of position
-Dealt to Player13 [Qs 5h Qd 9c]
+Dealt to Hero [Qs 5h Qd 9c]
 *** PRE-FLOP *** 
 Player0 calls 0.05€
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 folds
 Player4 checks
 Player30 calls 0.05€
@@ -632,20 +632,20 @@ Player7 checks
 Player5 checks
 Player7 checks
 Player0 checks
-Player13 checks
+Hero checks
 Player4 checks
 Player30 checks
 *** TURN *** [Ks 7h 6h][4h]
 Player5 checks
 Player7 checks
 Player0 checks
-Player13 checks
+Hero checks
 Player4 checks
 Player30 bets 0.05€
 Player5 calls 0.05€
 Player7 calls 0.05€
 Player0 folds
-Player13 folds
+Hero folds
 Player4 folds
 *** RIVER *** [Ks 7h 6h 4h][6d]
 Player5 bets 0.05€
@@ -664,7 +664,7 @@ Seat 4: Player5 (small blind) showed [Kh Th 3c 6s] and won 0.52€ with Full of 
 Seat 5: Player7 (big blind) folded on the river
 Seat 6: Player28 folded
 Seat 7: Player0 folded on the turn
-Seat 8: Player13 folded on the turn
+Seat 8: Hero folded on the turn
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -677,15 +677,15 @@ Seat 4: Player5 (2.55€)
 Seat 5: Player7 (0.90€)
 Seat 6: Player28 (5€)
 Seat 7: Player0 (5.22€)
-Seat 8: Player13 (6.06€)
+Seat 8: Hero (6.06€)
 Seat 9: Player14 (5.11€)
 *** ANTE/BLINDS *** 
 Player7 posts small blind 0.02€
 Player28 posts big blind 0.05€
-Dealt to Player13 [5s 7h 6d 3s]
+Dealt to Hero [5s 7h 6d 3s]
 *** PRE-FLOP *** 
 Player0 calls 0.05€
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 folds
 Player4 calls 0.05€
 Player30 calls 0.05€
@@ -693,14 +693,14 @@ Player5 calls 0.05€
 Player7 raises 0.35€ to 0.40€
 Player28 folds
 Player0 calls 0.35€
-Player13 calls 0.35€
+Hero calls 0.35€
 Player4 folds
 Player30 folds
 Player5 calls 0.35€
 *** FLOP *** [Kc Qc 2d]
 Player7 bets 0.50€ and is all-in
 Player0 calls 0.50€
-Player13 folds
+Hero folds
 Player5 calls 0.50€
 *** TURN *** [Kc Qc 2d][6c]
 Player0 checks
@@ -724,7 +724,7 @@ Seat 4: Player5 (button) showed [9d 3c 9c 7d] and won 6.22€ with Flush King hi
 Seat 5: Player7 (small blind) showed [Ac Ks 4d Ah] and lost with One pair : Ace
 Seat 6: Player28 (big blind) folded on the pre-flop
 Seat 7: Player0 showed [8c 9h 7c 8d] and won 1.60€ with Flush King high
-Seat 8: Player13 folded on the flop
+Seat 8: Hero folded on the flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -737,14 +737,14 @@ Seat 4: Player5 (6.22€)
 Seat 5: Player7 (1€)
 Seat 6: Player28 (4.95€)
 Seat 7: Player0 (2.67€)
-Seat 8: Player13 (5.66€)
+Seat 8: Hero (5.66€)
 Seat 9: Player14 (5.11€)
 *** ANTE/BLINDS *** 
 Player28 posts small blind 0.02€
 Player0 posts big blind 0.05€
-Dealt to Player13 [Kd Tc 8c 7h]
+Dealt to Hero [Kd Tc 8c 7h]
 *** PRE-FLOP *** 
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 folds
 Player4 calls 0.05€
 Player30 calls 0.05€
@@ -755,7 +755,7 @@ Player0 checks
 *** FLOP *** [Qh Ts 9d]
 Player28 checks
 Player0 checks
-Player13 checks
+Hero checks
 Player4 checks
 Player30 checks
 Player5 checks
@@ -763,7 +763,7 @@ Player7 checks
 *** TURN *** [Qh Ts 9d][Ah]
 Player28 checks
 Player0 checks
-Player13 checks
+Hero checks
 Player4 checks
 Player30 checks
 Player5 checks
@@ -771,7 +771,7 @@ Player7 checks
 *** RIVER *** [Qh Ts 9d Ah][6s]
 Player28 checks
 Player0 checks
-Player13 checks
+Hero checks
 Player4 checks
 Player30 checks
 Player5 checks
@@ -783,8 +783,8 @@ Player5 shows [9s 2h Kh 2c] (One pair : 9)
 Player7 shows [Ad 6c 5d 5s] (Two pairs : Ace and 6)
 Player28 shows [Ks 3h 3s 4s] (One pair : 3)
 Player0 shows [Jc 2d 7c 7d] (One pair : 7)
-Player13 shows [Kd Tc 8c 7h] (Straight Ten high)
-Player13 collected 0.33€ from pot
+Hero shows [Kd Tc 8c 7h] (Straight Ten high)
+Hero collected 0.33€ from pot
 *** SUMMARY ***
 Total pot 0.33€ | Rake 0.02€
 Board: [Qh Ts 9d Ah 6s]
@@ -795,7 +795,7 @@ Seat 4: Player5 showed [9s 2h Kh 2c] and lost with One pair : 9
 Seat 5: Player7 (button) showed [Ad 6c 5d 5s] and lost with Two pairs : Ace and 6
 Seat 6: Player28 (small blind) showed [Ks 3h 3s 4s] and lost with One pair : 3
 Seat 7: Player0 (big blind) showed [Jc 2d 7c 7d] and lost with One pair : 7
-Seat 8: Player13 showed [Kd Tc 8c 7h] and won 0.33€ with Straight Ten high
+Seat 8: Hero showed [Kd Tc 8c 7h] and won 0.33€ with Straight Ten high
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -808,12 +808,12 @@ Seat 4: Player5 (6.17€)
 Seat 5: Player7 (0.95€)
 Seat 6: Player28 (4.90€)
 Seat 7: Player3 (2.50€)
-Seat 8: Player13 (5.94€)
+Seat 8: Hero (5.94€)
 Seat 9: Player14 (5.11€)
 *** ANTE/BLINDS *** 
-Player13 posts big blind 0.05€
+Hero posts big blind 0.05€
 Player15 posts big blind 0.05€ out of position
-Dealt to Player13 [2c 9c 4s 4h]
+Dealt to Hero [2c 9c 4s 4h]
 *** PRE-FLOP *** 
 Player14 folds
 Player4 calls 0.05€
@@ -822,7 +822,7 @@ Player30 calls 0.05€
 Player5 calls 0.05€
 Player7 raises 0.30€ to 0.35€
 Player28 folds
-Player13 folds
+Hero folds
 Player4 calls 0.30€
 Player15 folds
 Player30 folds
@@ -854,7 +854,7 @@ Seat 4: Player5 folded on the turn
 Seat 5: Player7 showed [Ac Ad 4d 7h] and won 2.56€ with Flush Ace high
 Seat 6: Player28 (button) folded on the pre-flop
 Seat 7: Player3 folded
-Seat 8: Player13 (big blind) folded on the pre-flop
+Seat 8: Hero (big blind) folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -867,12 +867,12 @@ Seat 4: Player5 (5.52€)
 Seat 5: Player7 (2.56€)
 Seat 6: Player28 (4.90€)
 Seat 7: Player3 (2.50€)
-Seat 8: Player13 (5.89€)
+Seat 8: Hero (5.89€)
 Seat 9: Player14 (5.11€)
 *** ANTE/BLINDS *** 
-Player13 posts small blind 0.02€
+Hero posts small blind 0.02€
 Player14 posts big blind 0.05€
-Dealt to Player13 [Js 9h 4d Kd]
+Dealt to Hero [Js 9h 4d Kd]
 *** PRE-FLOP *** 
 Player4 calls 0.05€
 Player15 folds
@@ -880,10 +880,10 @@ Player30 calls 0.05€
 Player5 calls 0.05€
 Player7 calls 0.05€
 Player28 calls 0.05€
-Player13 calls 0.03€
+Hero calls 0.03€
 Player14 checks
 *** FLOP *** [Ks Kh 8h]
-Player13 checks
+Hero checks
 Player14 checks
 Player4 checks
 Player30 checks
@@ -891,22 +891,22 @@ Player5 checks
 Player7 checks
 Player28 checks
 *** TURN *** [Ks Kh 8h][Jh]
-Player13 bets 0.35€
+Hero bets 0.35€
 Player14 folds
 Player4 folds
 Player30 folds
 Player5 folds
 Player7 folds
 Player28 raises 0.35€ to 0.70€
-Player13 raises 1.75€ to 2.45€
+Hero raises 1.75€ to 2.45€
 Player28 raises 1.75€ to 4.20€
-Player13 raises 1.64€ to 5.84€ and is all-in
+Hero raises 1.64€ to 5.84€ and is all-in
 Player28 calls 0.65€ and is all-in
 *** RIVER *** [Ks Kh 8h Jh][6d]
 *** SHOW DOWN ***
 Player28 shows [Qs 8d 7s Kc] (Full of King and 8)
-Player13 shows [Js 9h 4d Kd] (Full of King and Jack)
-Player13 collected 10.54€ from pot
+Hero shows [Js 9h 4d Kd] (Full of King and Jack)
+Hero collected 10.54€ from pot
 *** SUMMARY ***
 Total pot 10.54€ | Rake 0.50€
 Board: [Ks Kh 8h Jh 6d]
@@ -917,7 +917,7 @@ Seat 4: Player5 folded on the turn
 Seat 5: Player7 folded on the turn
 Seat 6: Player28 showed [Qs 8d 7s Kc] and lost with Full of King and 8
 Seat 7: Player3 (button) folded
-Seat 8: Player13 (small blind) showed [Js 9h 4d Kd] and won 10.54€ with Full of King and Jack
+Seat 8: Hero (small blind) showed [Js 9h 4d Kd] and won 10.54€ with Full of King and Jack
 Seat 9: Player14 (big blind) folded on the turn
 
 
@@ -930,40 +930,40 @@ Seat 4: Player5 (5.47€)
 Seat 5: Player7 (2.51€)
 Seat 6: Player16 (1€)
 Seat 7: Player3 (2.50€)
-Seat 8: Player13 (10.54€)
+Seat 8: Hero (10.54€)
 Seat 9: Player14 (5.06€)
 *** ANTE/BLINDS *** 
 Player14 posts small blind 0.02€
 Player4 posts big blind 0.05€
-Dealt to Player13 [8h 7s 2h 8c]
+Dealt to Hero [8h 7s 2h 8c]
 *** PRE-FLOP *** 
 Player15 folds
 Player30 calls 0.05€
 Player5 calls 0.05€
 Player7 folds
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 folds
 Player4 checks
 *** FLOP *** [5d 4h 4s]
 Player4 checks
 Player30 checks
 Player5 checks
-Player13 checks
+Hero checks
 *** TURN *** [5d 4h 4s][Ah]
 Player4 checks
 Player30 checks
 Player5 checks
-Player13 checks
+Hero checks
 *** RIVER *** [5d 4h 4s Ah][Jh]
 Player4 checks
 Player30 checks
 Player5 folds
-Player13 checks
+Hero checks
 *** SHOW DOWN ***
 Player4 shows [Ad 8s 2d 9s] (Two pairs : Ace and 4)
 Player30 shows [7c 7d 9d Ts] (Two pairs : 7 and 4)
-Player13 shows [8h 7s 2h 8c] (Flush Ace high)
-Player13 collected 0.21€ from pot
+Hero shows [8h 7s 2h 8c] (Flush Ace high)
+Hero collected 0.21€ from pot
 *** SUMMARY ***
 Total pot 0.21€ | Rake 0.01€
 Board: [5d 4h 4s Ah Jh]
@@ -974,7 +974,7 @@ Seat 4: Player5 folded on the river
 Seat 5: Player7 folded on the pre-flop
 Seat 6: Player16 folded
 Seat 7: Player3 folded
-Seat 8: Player13 (button) showed [8h 7s 2h 8c] and won 0.21€ with Flush Ace high
+Seat 8: Hero (button) showed [8h 7s 2h 8c] and won 0.21€ with Flush Ace high
 Seat 9: Player14 (small blind) folded on the pre-flop
 
 
@@ -987,17 +987,17 @@ Seat 4: Player5 (5.42€)
 Seat 5: Player7 (2.51€)
 Seat 6: Player16 (1€)
 Seat 7: Player3 (2.50€)
-Seat 8: Player13 (10.70€)
+Seat 8: Hero (10.70€)
 Seat 9: Player14 (5.04€)
 *** ANTE/BLINDS *** 
 Player4 posts small blind 0.02€
 Player15 posts big blind 0.05€
-Dealt to Player13 [7d Qd Kc Ks]
+Dealt to Hero [7d Qd Kc Ks]
 *** PRE-FLOP *** 
 Player30 calls 0.05€
 Player5 calls 0.05€
 Player7 calls 0.05€
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 calls 0.05€
 Player4 calls 0.03€
 Player15 checks
@@ -1007,7 +1007,7 @@ Player15 checks
 Player30 checks
 Player5 checks
 Player7 checks
-Player13 checks
+Hero checks
 Player14 checks
 *** TURN *** [As 6h 6d][Kh]
 Player4 checks
@@ -1015,7 +1015,7 @@ Player15 checks
 Player30 checks
 Player5 checks
 Player7 checks
-Player13 bets 0.35€
+Hero bets 0.35€
 Player14 folds
 Player4 folds
 Player15 folds
@@ -1024,12 +1024,12 @@ Player5 folds
 Player7 calls 0.35€
 *** RIVER *** [As 6h 6d Kh][5s]
 Player7 checks
-Player13 bets 1.05€
+Hero bets 1.05€
 Player7 calls 1.05€
 *** SHOW DOWN ***
 Player7 shows [3h 9h 6c 2h] (Trips of 6)
-Player13 shows [7d Qd Kc Ks] (Full of King and 6)
-Player13 collected 2.99€ from pot
+Hero shows [7d Qd Kc Ks] (Full of King and 6)
+Hero collected 2.99€ from pot
 *** SUMMARY ***
 Total pot 2.99€ | Rake 0.16€
 Board: [As 6h 6d Kh 5s]
@@ -1040,7 +1040,7 @@ Seat 4: Player5 folded on the turn
 Seat 5: Player7 showed [3h 9h 6c 2h] and lost with Trips of 6
 Seat 6: Player16 folded
 Seat 7: Player3 folded
-Seat 8: Player13 showed [7d Qd Kc Ks] and won 2.99€ with Full of King and 6
+Seat 8: Hero showed [7d Qd Kc Ks] and won 2.99€ with Full of King and 6
 Seat 9: Player14 (button) folded on the turn
 
 
@@ -1053,18 +1053,18 @@ Seat 4: Player5 (5.37€)
 Seat 5: Player7 (1.06€)
 Seat 6: Player16 (1€)
 Seat 7: Player3 (2.50€)
-Seat 8: Player13 (12.24€)
+Seat 8: Hero (12.24€)
 Seat 9: Player14 (4.99€)
 *** ANTE/BLINDS *** 
 Player15 posts small blind 0.02€
 Player30 posts big blind 0.05€
 Player16 posts big blind 0.05€ out of position
-Dealt to Player13 [4c 9s Td 8c]
+Dealt to Hero [4c 9s Td 8c]
 *** PRE-FLOP *** 
 Player5 calls 0.05€
 Player7 calls 0.05€
 Player16 checks
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 calls 0.05€
 Player4 calls 0.05€
 Player15 folds
@@ -1074,13 +1074,13 @@ Player30 checks
 Player5 folds
 Player7 checks
 Player16 checks
-Player13 checks
+Hero checks
 Player14 checks
 Player4 bets 0.25€
 Player30 folds
 Player7 calls 0.25€
 Player16 folds
-Player13 folds
+Hero folds
 Player14 folds
 *** TURN *** [Th 2c 4s][Ac]
 Player7 checks
@@ -1101,7 +1101,7 @@ Seat 4: Player5 folded on the flop
 Seat 5: Player7 showed [Kc 3c 6h 7h] and lost with One pair : 2
 Seat 6: Player16 folded on the flop
 Seat 7: Player3 folded
-Seat 8: Player13 folded on the flop
+Seat 8: Hero folded on the flop
 Seat 9: Player14 folded on the flop
 
 
@@ -1114,16 +1114,16 @@ Seat 4: Player5 (5.32€)
 Seat 5: Player7 (1€)
 Seat 6: Player16 (0.95€)
 Seat 7: Player3 (2.50€)
-Seat 8: Player13 (12.19€)
+Seat 8: Hero (12.19€)
 Seat 9: Player14 (4.94€)
 *** ANTE/BLINDS *** 
 Player30 posts small blind 0.02€
 Player5 posts big blind 0.05€
-Dealt to Player13 [Qc 6h Qh 7d]
+Dealt to Hero [Qc 6h Qh 7d]
 *** PRE-FLOP *** 
 Player7 calls 0.05€
 Player16 calls 0.05€
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 folds
 Player4 calls 0.05€
 Player15 raises 0.32€ to 0.37€
@@ -1131,7 +1131,7 @@ Player30 folds
 Player5 calls 0.32€
 Player7 folds
 Player16 folds
-Player13 folds
+Hero folds
 Player4 folds
 *** FLOP *** [Kh Ad 5s]
 Player5 folds
@@ -1146,7 +1146,7 @@ Seat 4: Player5 (big blind) folded on the flop
 Seat 5: Player7 folded on the pre-flop
 Seat 6: Player16 folded on the pre-flop
 Seat 7: Player3 folded
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -1159,15 +1159,15 @@ Seat 4: Player5 (4.95€)
 Seat 5: Player7 (0.95€)
 Seat 6: Player16 (0.90€)
 Seat 7: Player3 (2.50€)
-Seat 8: Player13 (12.14€)
+Seat 8: Hero (12.14€)
 Seat 9: Player14 (4.94€)
 *** ANTE/BLINDS *** 
 Player5 posts small blind 0.02€
 Player7 posts big blind 0.05€
-Dealt to Player13 [9s 7d 5s Kd]
+Dealt to Hero [9s 7d 5s Kd]
 *** PRE-FLOP *** 
 Player16 calls 0.05€
-Player13 folds
+Hero folds
 Player14 folds
 Player4 calls 0.05€
 Player15 calls 0.05€
@@ -1195,7 +1195,7 @@ Seat 4: Player5 (small blind) folded on the pre-flop
 Seat 5: Player7 (big blind) won 1.40€
 Seat 6: Player16 folded on the pre-flop
 Seat 7: Player3 folded
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -1208,14 +1208,14 @@ Seat 4: Player5 (4.93€)
 Seat 5: Player7 (1.40€)
 Seat 6: Player16 (0.85€)
 Seat 7: Player3 (2.50€)
-Seat 8: Player13 (12.14€)
+Seat 8: Hero (12.14€)
 Seat 9: Player14 (4.94€)
 *** ANTE/BLINDS *** 
 Player7 posts small blind 0.02€
 Player16 posts big blind 0.05€
-Dealt to Player13 [6s 5h 2d Kh]
+Dealt to Hero [6s 5h 2d Kh]
 *** PRE-FLOP *** 
-Player13 folds
+Hero folds
 Player14 folds
 Player4 calls 0.05€
 Player15 folds
@@ -1246,7 +1246,7 @@ Seat 4: Player5 (button) folded on the flop
 Seat 5: Player7 (small blind) showed [As 9d 7s 4s] and won 1.76€ with Two pairs : Ace and 4
 Seat 6: Player16 (big blind) showed [Kd 3s Qd 8h] and lost with Two pairs : King and Queen
 Seat 7: Player3 folded
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -1259,13 +1259,13 @@ Seat 4: Player5 (4.88€)
 Seat 5: Player7 (2.31€)
 Seat 6: Player19 (4€)
 Seat 7: Player3 (2.50€)
-Seat 8: Player13 (12.14€)
+Seat 8: Hero (12.14€)
 Seat 9: Player14 (4.94€)
 *** ANTE/BLINDS *** 
 Player3 posts big blind 0.05€
-Dealt to Player13 [Jc 8s 6s Jh]
+Dealt to Hero [Jc 8s 6s Jh]
 *** PRE-FLOP *** 
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 folds
 Player4 folds
 Player15 folds
@@ -1275,16 +1275,16 @@ Player7 folds
 Player3 checks
 *** FLOP *** [8c 8h Ad]
 Player3 checks
-Player13 checks
+Hero checks
 Player30 checks
 Player5 checks
 *** TURN *** [8c 8h Ad][Qh]
 Player3 checks
-Player13 bets 0.20€
+Hero bets 0.20€
 Player30 folds
 Player5 folds
 Player3 folds
-Player13 collected 0.39€ from pot
+Hero collected 0.39€ from pot
 *** SUMMARY ***
 Total pot 0.39€ | Rake 0.01€
 Board: [8c 8h Ad Qh]
@@ -1295,7 +1295,7 @@ Seat 4: Player5 folded on the turn
 Seat 5: Player7 (button) folded on the pre-flop
 Seat 6: Player19 folded
 Seat 7: Player3 (big blind) folded on the turn
-Seat 8: Player13 won 0.39€
+Seat 8: Hero won 0.39€
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -1307,12 +1307,12 @@ Seat 3: Player30 (11.23€)
 Seat 4: Player5 (4.83€)
 Seat 5: Player7 (2.31€)
 Seat 7: Player3 (2.45€)
-Seat 8: Player13 (12.28€)
+Seat 8: Hero (12.28€)
 Seat 9: Player14 (4.94€)
 *** ANTE/BLINDS *** 
 Player3 posts small blind 0.02€
-Player13 posts big blind 0.05€
-Dealt to Player13 [7s 8c 6s 7c]
+Hero posts big blind 0.05€
+Dealt to Hero [7s 8c 6s 7c]
 *** PRE-FLOP *** 
 Player14 folds
 Player4 folds
@@ -1321,25 +1321,25 @@ Player30 calls 0.05€
 Player5 calls 0.05€
 Player7 raises 0.22€ to 0.27€
 Player3 folds
-Player13 calls 0.22€
+Hero calls 0.22€
 Player30 calls 0.22€
 Player5 calls 0.22€
 *** FLOP *** [Jh 5h Ad]
-Player13 checks
+Hero checks
 Player30 checks
 Player5 checks
 Player7 checks
 *** TURN *** [Jh 5h Ad][5c]
-Player13 checks
+Hero checks
 Player30 checks
 Player5 checks
 Player7 checks
 *** RIVER *** [Jh 5h Ad 5c][Qd]
-Player13 checks
+Hero checks
 Player30 checks
 Player5 checks
 Player7 bets 0.35€
-Player13 folds
+Hero folds
 Player30 folds
 Player5 calls 0.35€
 *** SHOW DOWN ***
@@ -1355,7 +1355,7 @@ Seat 3: Player30 folded on the river
 Seat 4: Player5 showed [Kh Jd Ac 6h] and lost with Two pairs : Ace and Jack
 Seat 5: Player7 showed [Tc Th Ah As] and won 1.71€ with Full of Ace and 5
 Seat 7: Player3 (small blind) folded on the pre-flop
-Seat 8: Player13 (big blind) folded on the river
+Seat 8: Hero (big blind) folded on the river
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -1367,12 +1367,12 @@ Seat 3: Player30 (10.96€)
 Seat 4: Player5 (4.21€)
 Seat 5: Player7 (3.40€)
 Seat 7: Player3 (2.43€)
-Seat 8: Player13 (12.01€)
+Seat 8: Hero (12.01€)
 Seat 9: Player14 (4.94€)
 *** ANTE/BLINDS *** 
-Player13 posts small blind 0.02€
+Hero posts small blind 0.02€
 Player14 posts big blind 0.05€
-Dealt to Player13 [8s 5h 8h Qs]
+Dealt to Hero [8s 5h 8h Qs]
 *** PRE-FLOP *** 
 Player4 folds
 Player15 calls 0.05€
@@ -1380,16 +1380,16 @@ Player30 calls 0.05€
 Player5 calls 0.05€
 Player7 calls 0.05€
 Player3 folds
-Player13 calls 0.03€
+Hero calls 0.03€
 Player14 checks
 *** FLOP *** [9h Ts Td]
-Player13 checks
+Hero checks
 Player14 checks
 Player15 bets 0.10€
 Player30 folds
 Player5 calls 0.10€
 Player7 folds
-Player13 folds
+Hero folds
 Player14 folds
 *** TURN *** [9h Ts Td][Qd]
 Player15 bets 0.20€
@@ -1411,7 +1411,7 @@ Seat 3: Player30 folded on the flop
 Seat 4: Player5 showed [Ad Ah 9d As] and won 0.95€ with Full of Ace and Ten
 Seat 5: Player7 folded on the flop
 Seat 7: Player3 (button) folded on the pre-flop
-Seat 8: Player13 (small blind) folded on the flop
+Seat 8: Hero (small blind) folded on the flop
 Seat 9: Player14 (big blind) folded on the flop
 
 
@@ -1424,19 +1424,19 @@ Seat 4: Player5 (4.76€)
 Seat 5: Player7 (3.35€)
 Seat 6: Player9 (5€)
 Seat 7: Player3 (2.43€)
-Seat 8: Player13 (11.96€)
+Seat 8: Hero (11.96€)
 Seat 9: Player14 (4.89€)
 *** ANTE/BLINDS *** 
 Player14 posts small blind 0.02€
 Player4 posts big blind 0.05€
-Dealt to Player13 [7h 3s Th Ah]
+Dealt to Hero [7h 3s Th Ah]
 *** PRE-FLOP *** 
 Player15 folds
 Player30 calls 0.05€
 Player5 calls 0.05€
 Player7 calls 0.05€
 Player3 calls 0.05€
-Player13 folds
+Hero folds
 Player14 calls 0.03€
 Player4 checks
 *** FLOP *** [2s 5h 5s]
@@ -1470,7 +1470,7 @@ Seat 4: Player5 showed [5c Td 4h 8d] and won 0.62€ with Trips of 5
 Seat 5: Player7 folded on the turn
 Seat 6: Player9 folded
 Seat 7: Player3 showed [9d 9s Js Ts] and lost with Two pairs : 9 and 5
-Seat 8: Player13 (button) folded on the pre-flop
+Seat 8: Hero (button) folded on the pre-flop
 Seat 9: Player14 (small blind) folded on the flop
 
 
@@ -1482,18 +1482,18 @@ Seat 3: Player30 (10.86€)
 Seat 4: Player5 (5.18€)
 Seat 5: Player7 (3.25€)
 Seat 7: Player3 (2.23€)
-Seat 8: Player13 (11.96€)
+Seat 8: Hero (11.96€)
 Seat 9: Player14 (4.84€)
 *** ANTE/BLINDS *** 
 Player4 posts small blind 0.02€
 Player15 posts big blind 0.05€
-Dealt to Player13 [9d 8d Ks Td]
+Dealt to Hero [9d 8d Ks Td]
 *** PRE-FLOP *** 
 Player30 calls 0.05€
 Player5 calls 0.05€
 Player7 calls 0.05€
 Player3 raises 0.20€ to 0.25€
-Player13 folds
+Hero folds
 Player14 folds
 Player4 folds
 Player15 folds
@@ -1532,7 +1532,7 @@ Seat 3: Player30 folded on the river
 Seat 4: Player5 showed [Kc 7d 7h Ad] and won 4.01€ with Straight Ace high
 Seat 5: Player7 folded on the river
 Seat 7: Player3 showed [5c As Ah 4h] and lost with One pair : Ace
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 (button) folded on the pre-flop
 
 
@@ -1545,17 +1545,17 @@ Seat 4: Player5 (7.44€)
 Seat 5: Player7 (2.90€)
 Seat 6: Player12 (5€)
 Seat 7: Player3 (0.48€)
-Seat 8: Player13 (11.96€)
+Seat 8: Hero (11.96€)
 Seat 9: Player14 (4.84€)
 *** ANTE/BLINDS *** 
 Player15 posts small blind 0.02€
 Player30 posts big blind 0.05€
-Dealt to Player13 [Kh 3h 5s Ts]
+Dealt to Hero [Kh 3h 5s Ts]
 *** PRE-FLOP *** 
 Player5 calls 0.05€
 Player7 calls 0.05€
 Player3 raises 0.22€ to 0.27€
-Player13 folds
+Hero folds
 Player14 folds
 Player4 folds
 Player15 folds
@@ -1582,7 +1582,7 @@ Seat 4: Player5 folded on the pre-flop
 Seat 5: Player7 showed [Ac 7h 8c Td] and lost with One pair : 9
 Seat 6: Player12 folded
 Seat 7: Player3 showed [4h As 5c 4s] and won 1.03€ with Two pairs : 9 and 5
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -1595,18 +1595,18 @@ Seat 4: Player5 (7.39€)
 Seat 5: Player7 (2.42€)
 Seat 6: Player12 (5€)
 Seat 7: Player3 (1.03€)
-Seat 8: Player13 (11.96€)
+Seat 8: Hero (11.96€)
 Seat 9: Player14 (4.84€)
 *** ANTE/BLINDS *** 
 Player30 posts small blind 0.02€
 Player5 posts big blind 0.05€
 Player12 posts big blind 0.05€ out of position
-Dealt to Player13 [6h 8h 3h 8c]
+Dealt to Hero [6h 8h 3h 8c]
 *** PRE-FLOP *** 
 Player7 calls 0.05€
 Player12 checks
 Player3 raises 0.22€ to 0.27€
-Player13 folds
+Hero folds
 Player14 folds
 Player4 folds
 Player15 calls 0.27€
@@ -1644,7 +1644,7 @@ Seat 4: Player5 (big blind) folded on the flop
 Seat 5: Player7 showed [Jh Th 5d 2c] and lost with Flush King high
 Seat 6: Player12 folded on the river
 Seat 7: Player3 folded on the flop
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -1657,16 +1657,16 @@ Seat 4: Player5 (7.12€)
 Seat 5: Player7 (1€)
 Seat 6: Player12 (2.58€)
 Seat 7: Player3 (0.76€)
-Seat 8: Player13 (11.96€)
+Seat 8: Hero (11.96€)
 Seat 9: Player14 (4.84€)
 *** ANTE/BLINDS *** 
 Player5 posts small blind 0.02€
 Player7 posts big blind 0.05€
-Dealt to Player13 [Ah 2d Jh 6c]
+Dealt to Hero [Ah 2d Jh 6c]
 *** PRE-FLOP *** 
 Player12 raises 0.12€ to 0.17€
 Player3 raises 0.41€ to 0.58€
-Player13 folds
+Hero folds
 Player14 folds
 Player4 folds
 Player15 folds
@@ -1695,7 +1695,7 @@ Seat 4: Player5 (small blind) folded on the pre-flop
 Seat 5: Player7 (big blind) showed [8h Ad Qs Th] and won 3.17€ with Two pairs : Queen and 4
 Seat 6: Player12 showed [Kc 5h Qd Ts] and won 1.58€ with Two pairs : Queen and 4
 Seat 7: Player3 showed [Tc Js 8c 9h] and lost with Two pairs : Jack and 4
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -1707,14 +1707,14 @@ Seat 4: Player5 (6.54€)
 Seat 5: Player7 (3.17€)
 Seat 6: Player12 (1.58€)
 Seat 7: Player20 (5€)
-Seat 8: Player13 (11.96€)
+Seat 8: Hero (11.96€)
 Seat 9: Player14 (4.84€)
 *** ANTE/BLINDS *** 
 Player7 posts small blind 0.02€
 Player12 posts big blind 0.05€
-Dealt to Player13 [6c 9s 7h 2h]
+Dealt to Hero [6c 9s 7h 2h]
 *** PRE-FLOP *** 
-Player13 folds
+Hero folds
 Player14 folds
 Player4 calls 0.05€
 Player30 calls 0.05€
@@ -1739,7 +1739,7 @@ Seat 4: Player5 (button) folded on the flop
 Seat 5: Player7 (small blind) folded on the pre-flop
 Seat 6: Player12 (big blind) won 1.95€
 Seat 7: Player20 folded
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -1752,14 +1752,14 @@ Seat 4: Player5 (6.24€)
 Seat 5: Player7 (3.12€)
 Seat 6: Player12 (2.23€)
 Seat 7: Player20 (5€)
-Seat 8: Player13 (11.96€)
+Seat 8: Hero (11.96€)
 Seat 9: Player14 (4.84€)
 *** ANTE/BLINDS *** 
 Player12 posts small blind 0.02€
 Player20 posts big blind 0.05€
-Dealt to Player13 [3h Jh Kc 6h]
+Dealt to Hero [3h Jh Kc 6h]
 *** PRE-FLOP *** 
-Player13 folds
+Hero folds
 Player14 folds
 Player4 calls 0.05€
 Player30 calls 0.05€
@@ -1789,7 +1789,7 @@ Seat 4: Player5 folded on the turn
 Seat 5: Player7 (button) folded on the pre-flop
 Seat 6: Player12 (small blind) folded on the pre-flop
 Seat 7: Player20 (big blind) folded on the turn
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -1802,13 +1802,13 @@ Seat 4: Player5 (6.19€)
 Seat 5: Player7 (3.12€)
 Seat 6: Player10 (5€)
 Seat 7: Player20 (4.95€)
-Seat 8: Player13 (11.96€)
+Seat 8: Hero (11.96€)
 Seat 9: Player14 (4.84€)
 *** ANTE/BLINDS *** 
 Player20 posts small blind 0.02€
-Player13 posts big blind 0.05€
+Hero posts big blind 0.05€
 Player6 posts big blind 0.05€ out of position
-Dealt to Player13 [Ad Qc 4s Td]
+Dealt to Hero [Ad Qc 4s Td]
 *** PRE-FLOP *** 
 Player14 folds
 Player4 calls 0.05€
@@ -1817,21 +1817,21 @@ Player30 calls 0.05€
 Player5 calls 0.05€
 Player7 calls 0.05€
 Player20 folds
-Player13 checks
+Hero checks
 *** FLOP *** [Kd 5c 9d]
-Player13 checks
+Hero checks
 Player4 bets 0.11€
 Player6 raises 0.23€ to 0.34€
 Player30 folds
 Player5 folds
 Player7 folds
-Player13 calls 0.34€
+Hero calls 0.34€
 Player4 calls 0.23€
 *** TURN *** [Kd 5c 9d][Ts]
-Player13 checks
+Hero checks
 Player4 checks
 Player6 bets 0.85€ and is all-in
-Player13 folds
+Hero folds
 Player4 folds
 Player6 collected 2.12€ from pot
 *** SUMMARY ***
@@ -1844,7 +1844,7 @@ Seat 4: Player5 folded on the flop
 Seat 5: Player7 folded on the flop
 Seat 6: Player10 (button) folded
 Seat 7: Player20 (small blind) folded on the pre-flop
-Seat 8: Player13 (big blind) folded on the turn
+Seat 8: Hero (big blind) folded on the turn
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -1857,13 +1857,13 @@ Seat 4: Player5 (6.14€)
 Seat 5: Player7 (3.07€)
 Seat 6: Player10 (5€)
 Seat 7: Player20 (4.93€)
-Seat 8: Player13 (11.57€)
+Seat 8: Hero (11.57€)
 Seat 9: Player14 (5.05€)
 *** ANTE/BLINDS *** 
-Player13 posts small blind 0.02€
+Hero posts small blind 0.02€
 Player14 posts big blind 0.05€
 Player10 posts big blind 0.05€ out of position
-Dealt to Player13 [6d 5d 9h 7h]
+Dealt to Hero [6d 5d 9h 7h]
 *** PRE-FLOP *** 
 Player4 calls 0.05€
 Player6 calls 0.05€
@@ -1872,7 +1872,7 @@ Player5 calls 0.05€
 Player7 raises 0.37€ to 0.42€
 Player10 calls 0.37€
 Player20 folds
-Player13 folds
+Hero folds
 Player14 folds
 Player4 calls 0.37€
 Player6 calls 0.37€
@@ -1896,7 +1896,7 @@ Seat 4: Player5 folded on the flop
 Seat 5: Player7 folded on the flop
 Seat 6: Player10 folded on the flop
 Seat 7: Player20 (button) folded on the pre-flop
-Seat 8: Player13 (small blind) folded on the pre-flop
+Seat 8: Hero (small blind) folded on the pre-flop
 Seat 9: Player14 (big blind) folded on the pre-flop
 
 
@@ -1909,12 +1909,12 @@ Seat 4: Player5 (5.72€)
 Seat 5: Player7 (2.65€)
 Seat 6: Player10 (4.58€)
 Seat 7: Player20 (4.93€)
-Seat 8: Player13 (11.55€)
+Seat 8: Hero (11.55€)
 Seat 9: Player14 (5€)
 *** ANTE/BLINDS *** 
 Player14 posts small blind 0.02€
 Player4 posts big blind 0.05€
-Dealt to Player13 [4d 8h 5d 4h]
+Dealt to Hero [4d 8h 5d 4h]
 *** PRE-FLOP *** 
 Player6 calls 0.05€
 Player30 calls 0.05€
@@ -1922,7 +1922,7 @@ Player5 calls 0.05€
 Player7 calls 0.05€
 Player10 calls 0.05€
 Player20 calls 0.05€
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 calls 0.03€
 Player4 checks
 *** FLOP *** [9h Ks 2c]
@@ -1934,7 +1934,7 @@ Player5 folds
 Player7 folds
 Player10 folds
 Player20 folds
-Player13 folds
+Hero folds
 Player14 folds
 *** TURN *** [9h Ks 2c][3s]
 Player4 bets 0.30€
@@ -1956,7 +1956,7 @@ Seat 4: Player5 folded on the flop
 Seat 5: Player7 folded on the flop
 Seat 6: Player10 folded on the flop
 Seat 7: Player20 folded on the flop
-Seat 8: Player13 (button) folded on the flop
+Seat 8: Hero (button) folded on the flop
 Seat 9: Player14 (small blind) folded on the flop
 
 
@@ -1969,19 +1969,19 @@ Seat 4: Player5 (5.67€)
 Seat 5: Player7 (2.60€)
 Seat 6: Player10 (4.53€)
 Seat 7: Player20 (4.88€)
-Seat 8: Player13 (11.50€)
+Seat 8: Hero (11.50€)
 Seat 9: Player14 (4.95€)
 *** ANTE/BLINDS *** 
 Player4 posts small blind 0.02€
 Player6 posts big blind 0.05€
-Dealt to Player13 [9c Kh Qc Ah]
+Dealt to Hero [9c Kh Qc Ah]
 *** PRE-FLOP *** 
 Player30 calls 0.05€
 Player5 calls 0.05€
 Player7 raises 0.22€ to 0.27€
 Player10 folds
 Player20 calls 0.27€
-Player13 calls 0.27€
+Hero calls 0.27€
 Player14 folds
 Player4 calls 0.25€
 Player6 calls 0.22€
@@ -1993,7 +1993,7 @@ Player6 bets 0.85€
 Player5 calls 0.85€
 Player7 calls 0.85€
 Player20 folds
-Player13 folds
+Hero folds
 Player4 folds
 *** TURN *** [4d 3c 7h][Kd]
 Player6 bets 1.10€
@@ -2018,7 +2018,7 @@ Seat 4: Player5 showed [6h As 5d 4s] and won 7.24€ with Straight 7 high
 Seat 5: Player7 folded on the river
 Seat 6: Player10 folded on the pre-flop
 Seat 7: Player20 folded on the flop
-Seat 8: Player13 folded on the flop
+Seat 8: Hero folded on the flop
 Seat 9: Player14 (button) folded on the pre-flop
 
 
@@ -2031,32 +2031,32 @@ Seat 4: Player5 (10.64€)
 Seat 5: Player7 (0.38€)
 Seat 6: Player10 (4.53€)
 Seat 7: Player20 (4.61€)
-Seat 8: Player13 (11.23€)
+Seat 8: Hero (11.23€)
 Seat 9: Player14 (4.95€)
 *** ANTE/BLINDS *** 
 Player6 posts small blind 0.02€
 Player30 posts big blind 0.05€
-Dealt to Player13 [Jc Kh 4c Ks]
+Dealt to Hero [Jc Kh 4c Ks]
 *** PRE-FLOP *** 
 Player5 calls 0.05€
 Player7 calls 0.05€
 Player10 folds
 Player20 folds
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 folds
 Player4 calls 0.05€
 Player6 raises 0.05€ to 0.10€
 Player30 calls 0.05€
 Player5 calls 0.05€
 Player7 calls 0.05€
-Player13 calls 0.05€
+Hero calls 0.05€
 Player4 calls 0.05€
 *** FLOP *** [9c Kd 5s]
 Player6 bets 0.40€
 Player30 folds
 Player5 folds
 Player7 calls 0.28€ and is all-in
-Player13 raises 1.68€ to 2.08€
+Hero raises 1.68€ to 2.08€
 Player4 folds
 Player6 calls 0.99€ and is all-in
 *** TURN *** [9c Kd 5s][Qs]
@@ -2064,8 +2064,8 @@ Player6 calls 0.99€ and is all-in
 *** SHOW DOWN ***
 Player6 shows [Ah Js 5h As] (One pair : Ace)
 Player7 shows [Kc 6h 3d 2h] (Two pairs : King and 6)
-Player13 shows [Jc Kh 4c Ks] (Trips of King)
-Player13 collected 4.17€ from pot
+Hero shows [Jc Kh 4c Ks] (Trips of King)
+Hero collected 4.17€ from pot
 *** SUMMARY ***
 Total pot 4.17€ | Rake 0.18€
 Board: [9c Kd 5s Qs 6c]
@@ -2076,7 +2076,7 @@ Seat 4: Player5 folded on the flop
 Seat 5: Player7 showed [Kc 6h 3d 2h] and lost with Two pairs : King and 6
 Seat 6: Player10 folded on the pre-flop
 Seat 7: Player20 folded on the pre-flop
-Seat 8: Player13 showed [Jc Kh 4c Ks] and won 4.17€ with Trips of King
+Seat 8: Hero showed [Jc Kh 4c Ks] and won 4.17€ with Trips of King
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -2088,16 +2088,16 @@ Seat 4: Player5 (10.54€)
 Seat 5: Player7 (1€)
 Seat 6: Player10 (5.05€)
 Seat 7: Player20 (4.61€)
-Seat 8: Player13 (13.22€)
+Seat 8: Hero (13.22€)
 Seat 9: Player14 (4.95€)
 *** ANTE/BLINDS *** 
 Player30 posts small blind 0.02€
 Player5 posts big blind 0.05€
-Dealt to Player13 [Td 9d Ad 4s]
+Dealt to Hero [Td 9d Ad 4s]
 *** PRE-FLOP *** 
 Player10 calls 0.05€
 Player20 calls 0.05€
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 calls 0.05€
 Player30 calls 0.03€
 Player5 checks
@@ -2106,7 +2106,7 @@ Player30 checks
 Player5 checks
 Player10 checks
 Player20 checks
-Player13 bets 0.30€
+Hero bets 0.30€
 Player14 folds
 Player30 calls 0.30€
 Player5 folds
@@ -2114,12 +2114,12 @@ Player10 folds
 Player20 folds
 *** TURN *** [Qd Ts 5d][Kh]
 Player30 checks
-Player13 checks
+Hero checks
 *** RIVER *** [Qd Ts 5d Kh][4c]
 Player30 bets 0.25€
-Player13 calls 0.25€
+Hero calls 0.25€
 *** SHOW DOWN ***
-Player13 shows [Td 9d Ad 4s] (Two pairs : Ten and 4)
+Hero shows [Td 9d Ad 4s] (Two pairs : Ten and 4)
 Player30 shows [Kc Jh 9h 8s] (Straight King high)
 Player30 collected 1.33€ from pot
 *** SUMMARY ***
@@ -2131,7 +2131,7 @@ Seat 4: Player5 (big blind) folded on the flop
 Seat 5: Player7 folded
 Seat 6: Player10 folded on the flop
 Seat 7: Player20 folded on the flop
-Seat 8: Player13 showed [Td 9d Ad 4s] and lost with Two pairs : Ten and 4
+Seat 8: Hero showed [Td 9d Ad 4s] and lost with Two pairs : Ten and 4
 Seat 9: Player14 folded on the flop
 
 
@@ -2144,16 +2144,16 @@ Seat 4: Player5 (10.49€)
 Seat 5: Player7 (1€)
 Seat 6: Player10 (5€)
 Seat 7: Player20 (4.56€)
-Seat 8: Player13 (12.62€)
+Seat 8: Hero (12.62€)
 Seat 9: Player14 (4.90€)
 *** ANTE/BLINDS *** 
 Player5 posts small blind 0.02€
 Player7 posts big blind 0.05€
 Player18 posts big blind 0.05€ out of position
-Dealt to Player13 [7h 2d 4s 7c]
+Dealt to Hero [7h 2d 4s 7c]
 *** PRE-FLOP *** 
 Player20 calls 0.05€
-Player13 folds
+Hero folds
 Player14 folds
 Player18 folds
 Player30 calls 0.05€
@@ -2185,7 +2185,7 @@ Seat 4: Player5 (small blind) won 0.29€
 Seat 5: Player7 (big blind) folded on the river
 Seat 6: Player10 folded
 Seat 7: Player20 folded on the river
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -2198,16 +2198,16 @@ Seat 4: Player5 (10.68€)
 Seat 5: Player7 (0.95€)
 Seat 6: Player10 (5€)
 Seat 7: Player20 (4.51€)
-Seat 8: Player13 (12.62€)
+Seat 8: Hero (12.62€)
 Seat 9: Player14 (4.90€)
 *** ANTE/BLINDS *** 
 Player7 posts small blind 0.02€
 Player10 posts big blind 0.05€
 Player2 posts big blind 0.05€ out of position
-Dealt to Player13 [Js 9s Tc Ts]
+Dealt to Hero [Js 9s Tc Ts]
 *** PRE-FLOP *** 
 Player20 folds
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 folds
 Player2 folds
 Player30 calls 0.05€
@@ -2217,26 +2217,26 @@ Player10 checks
 *** FLOP *** [4s Qs 5s]
 Player7 checks
 Player10 checks
-Player13 checks
+Hero checks
 Player30 checks
 Player5 checks
 *** TURN *** [4s Qs 5s][4d]
 Player7 checks
 Player10 checks
-Player13 checks
+Hero checks
 Player30 checks
 Player5 checks
 *** RIVER *** [4s Qs 5s 4d][5d]
 Player7 bets 0.12€
 Player10 folds
-Player13 calls 0.12€
+Hero calls 0.12€
 Player30 folds
 Player5 calls 0.12€
 *** SHOW DOWN ***
 Player5 shows [Ac Kc 7d Ad] (Two pairs : Ace and 5)
 Player7 shows [5h 6d 6h 2c] (Trips of 5)
-Player13 shows [Js 9s Tc Ts] (Flush Queen high)
-Player13 collected 0.63€ from pot
+Hero shows [Js 9s Tc Ts] (Flush Queen high)
+Hero collected 0.63€ from pot
 *** SUMMARY ***
 Total pot 0.63€ | Rake 0.03€
 Board: [4s Qs 5s 4d 5d]
@@ -2247,7 +2247,7 @@ Seat 4: Player5 (button) showed [Ac Kc 7d Ad] and lost with Two pairs : Ace and 
 Seat 5: Player7 (small blind) showed [5h 6d 6h 2c] and lost with Trips of 5
 Seat 6: Player10 (big blind) folded on the river
 Seat 7: Player20 folded on the pre-flop
-Seat 8: Player13 showed [Js 9s Tc Ts] and won 0.63€ with Flush Queen high
+Seat 8: Hero showed [Js 9s Tc Ts] and won 0.63€ with Flush Queen high
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -2260,15 +2260,15 @@ Seat 4: Player5 (10.51€)
 Seat 5: Player7 (0.78€)
 Seat 6: Player10 (4.95€)
 Seat 7: Player20 (4.51€)
-Seat 8: Player13 (13.08€)
+Seat 8: Hero (13.08€)
 Seat 9: Player14 (4.90€)
 *** ANTE/BLINDS *** 
 Player10 posts small blind 0.02€
 Player20 posts big blind 0.05€
 Player22 posts big blind 0.05€ out of position
-Dealt to Player13 [Jd 6s 9c Qh]
+Dealt to Hero [Jd 6s 9c Qh]
 *** PRE-FLOP *** 
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 folds
 Player22 checks
 Player30 calls 0.05€
@@ -2279,14 +2279,14 @@ Player20 checks
 *** FLOP *** [Qd 3s 2c]
 Player10 checks
 Player20 checks
-Player13 checks
+Hero checks
 Player22 checks
 Player30 checks
 Player5 checks
 Player7 bets 0.35€
 Player10 folds
 Player20 folds
-Player13 folds
+Hero folds
 Player22 folds
 Player30 folds
 Player5 calls 0.35€
@@ -2309,7 +2309,7 @@ Seat 4: Player5 showed [6h 9s Ac Ah] and lost with One pair : Ace
 Seat 5: Player7 (button) showed [Qc 4d 5c 3d] and won 1.72€ with Two pairs : Queen and 3
 Seat 6: Player10 (small blind) folded on the flop
 Seat 7: Player20 (big blind) folded on the flop
-Seat 8: Player13 folded on the flop
+Seat 8: Hero folded on the flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -2322,13 +2322,13 @@ Seat 4: Player5 (9.73€)
 Seat 5: Player7 (1.72€)
 Seat 6: Player10 (4.90€)
 Seat 7: Player20 (4.46€)
-Seat 8: Player13 (13.03€)
+Seat 8: Hero (13.03€)
 Seat 9: Player14 (4.90€)
 *** ANTE/BLINDS *** 
 Player20 posts small blind 0.02€
-Player13 posts big blind 0.05€
+Hero posts big blind 0.05€
 Player27 posts big blind 0.05€ out of position
-Dealt to Player13 [Js 3c 3d 9d]
+Dealt to Hero [Js 3c 3d 9d]
 *** PRE-FLOP *** 
 Player14 folds
 Player22 folds
@@ -2338,14 +2338,14 @@ Player5 calls 0.05€
 Player7 calls 0.05€
 Player10 folds
 Player20 folds
-Player13 checks
+Hero checks
 *** FLOP *** [Ac Kd Tc]
-Player13 checks
+Hero checks
 Player27 checks
 Player30 checks
 Player5 bets 0.05€
 Player7 folds
-Player13 folds
+Hero folds
 Player27 calls 0.05€
 Player30 folds
 *** TURN *** [Ac Kd Tc][Jh]
@@ -2370,7 +2370,7 @@ Seat 4: Player5 showed [Jc Qh Ks 6h] and won 2.44€ with Full of King and Jack
 Seat 5: Player7 folded on the flop
 Seat 6: Player10 (button) folded on the pre-flop
 Seat 7: Player20 (small blind) folded on the pre-flop
-Seat 8: Player13 (big blind) folded on the flop
+Seat 8: Hero (big blind) folded on the flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -2382,12 +2382,12 @@ Seat 4: Player5 (10.79€)
 Seat 5: Player7 (1.67€)
 Seat 6: Player10 (4.90€)
 Seat 7: Player20 (4.44€)
-Seat 8: Player13 (12.98€)
+Seat 8: Hero (12.98€)
 Seat 9: Player14 (4.90€)
 *** ANTE/BLINDS *** 
-Player13 posts small blind 0.02€
+Hero posts small blind 0.02€
 Player14 posts big blind 0.05€
-Dealt to Player13 [Qc Jc 6s Qd]
+Dealt to Hero [Qc Jc 6s Qd]
 *** PRE-FLOP *** 
 Player22 calls 0.05€
 Player30 folds
@@ -2395,17 +2395,17 @@ Player5 calls 0.05€
 Player7 calls 0.05€
 Player10 calls 0.05€
 Player20 calls 0.05€
-Player13 calls 0.03€
+Hero calls 0.03€
 Player14 checks
 *** FLOP *** [2d Kc Jd]
-Player13 checks
+Hero checks
 Player14 checks
 Player22 bets 0.18€
 Player5 calls 0.18€
 Player7 calls 0.18€
 Player10 folds
 Player20 calls 0.18€
-Player13 folds
+Hero folds
 Player14 folds
 *** TURN *** [2d Kc Jd][2h]
 Player22 checks
@@ -2433,7 +2433,7 @@ Seat 4: Player5 folded on the turn
 Seat 5: Player7 folded on the turn
 Seat 6: Player10 folded on the flop
 Seat 7: Player20 (button) showed [2c Td Kd 3c] and lost with Full of 2 and King
-Seat 8: Player13 (small blind) folded on the flop
+Seat 8: Hero (small blind) folded on the flop
 Seat 9: Player14 (big blind) folded on the flop
 
 
@@ -2445,19 +2445,19 @@ Seat 4: Player5 (10.56€)
 Seat 5: Player7 (1.44€)
 Seat 6: Player10 (4.85€)
 Seat 7: Player20 (5€)
-Seat 8: Player13 (12.93€)
+Seat 8: Hero (12.93€)
 Seat 9: Player14 (4.85€)
 *** ANTE/BLINDS *** 
 Player14 posts small blind 0.02€
 Player22 posts big blind 0.05€
-Dealt to Player13 [Js 2h Td Jd]
+Dealt to Hero [Js 2h Td Jd]
 *** PRE-FLOP *** 
 Player30 calls 0.05€
 Player5 calls 0.05€
 Player7 folds
 Player10 calls 0.05€
 Player20 folds
-Player13 folds
+Hero folds
 Player14 folds
 Player22 checks
 *** FLOP *** [7d Ad 8h]
@@ -2490,7 +2490,7 @@ Seat 4: Player5 showed [5s 8d 6s 6h] and lost with Trips of 6
 Seat 5: Player7 folded on the pre-flop
 Seat 6: Player10 showed [Kc Ah Jh 3h] and lost with One pair : Ace
 Seat 7: Player20 folded on the pre-flop
-Seat 8: Player13 (button) folded on the pre-flop
+Seat 8: Hero (button) folded on the pre-flop
 Seat 9: Player14 (small blind) folded on the pre-flop
 
 
@@ -2502,18 +2502,18 @@ Seat 4: Player5 (10.51€)
 Seat 5: Player7 (1.44€)
 Seat 6: Player10 (5.05€)
 Seat 7: Player20 (5€)
-Seat 8: Player13 (12.93€)
+Seat 8: Hero (12.93€)
 Seat 9: Player14 (4.83€)
 *** ANTE/BLINDS *** 
 Player30 deny BB 0€
 Player22 posts small blind 0.02€
 Player5 posts big blind 0.05€
-Dealt to Player13 [Js Td 8d 6h]
+Dealt to Hero [Js Td 8d 6h]
 *** PRE-FLOP *** 
 Player7 folds
 Player10 calls 0.05€
 Player20 folds
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 folds
 Player22 calls 0.03€
 Player5 checks
@@ -2521,17 +2521,17 @@ Player5 checks
 Player22 checks
 Player5 checks
 Player10 checks
-Player13 checks
+Hero checks
 *** TURN *** [7h 2c Ah][4c]
 Player22 checks
 Player5 checks
 Player10 checks
-Player13 checks
+Hero checks
 *** RIVER *** [7h 2c Ah 4c][Qs]
 Player22 checks
 Player5 bets 0.05€
 Player10 folds
-Player13 folds
+Hero folds
 Player22 folds
 Player5 collected 0.24€ from pot
 *** SUMMARY ***
@@ -2543,7 +2543,7 @@ Seat 4: Player5 (big blind) won 0.24€
 Seat 5: Player7 folded on the pre-flop
 Seat 6: Player10 folded on the river
 Seat 7: Player20 folded on the pre-flop
-Seat 8: Player13 folded on the river
+Seat 8: Hero folded on the river
 Seat 9: Player14 (button) folded on the pre-flop
 
 
@@ -2554,21 +2554,21 @@ Seat 4: Player5 (10.65€)
 Seat 5: Player7 (1.44€)
 Seat 6: Player10 (5€)
 Seat 7: Player20 (5€)
-Seat 8: Player13 (12.88€)
+Seat 8: Hero (12.88€)
 Seat 9: Player14 (4.83€)
 *** ANTE/BLINDS *** 
 Player5 posts small blind 0.02€
 Player7 posts big blind 0.05€
-Dealt to Player13 [3s Qd 7s Qs]
+Dealt to Hero [3s Qd 7s Qs]
 *** PRE-FLOP *** 
 Player10 folds
 Player20 folds
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 folds
 Player22 calls 0.05€
 Player5 calls 0.03€
 Player7 raises 0.20€ to 0.25€
-Player13 folds
+Hero folds
 Player22 calls 0.20€
 Player5 calls 0.20€
 *** FLOP *** [Ad Qh 2s]
@@ -2594,7 +2594,7 @@ Seat 4: Player5 (small blind) folded on the flop
 Seat 5: Player7 (big blind) showed [Ts Tc Js Kc] and won 2.28€ with One pair : Ten
 Seat 6: Player10 folded on the pre-flop
 Seat 7: Player20 folded on the pre-flop
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -2606,15 +2606,15 @@ Seat 4: Player5 (10.40€)
 Seat 5: Player7 (2.67€)
 Seat 6: Player10 (5€)
 Seat 7: Player20 (5€)
-Seat 8: Player13 (12.83€)
+Seat 8: Hero (12.83€)
 Seat 9: Player14 (4.83€)
 *** ANTE/BLINDS *** 
 Player7 posts small blind 0.02€
 Player10 posts big blind 0.05€
-Dealt to Player13 [Ah Jc 9h 6d]
+Dealt to Hero [Ah Jc 9h 6d]
 *** PRE-FLOP *** 
 Player20 calls 0.05€
-Player13 folds
+Hero folds
 Player14 folds
 Player22 calls 0.05€
 Player5 calls 0.05€
@@ -2647,7 +2647,7 @@ Seat 4: Player5 (button) showed [5h 5d Kd Kh] and won 2.71€ with Full of 3 and
 Seat 5: Player7 (small blind) showed [Ac Th 2s Qc] and lost with Flush Ace high
 Seat 6: Player10 (big blind) folded on the pre-flop
 Seat 7: Player20 folded on the pre-flop
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -2659,15 +2659,15 @@ Seat 4: Player5 (11.76€)
 Seat 5: Player7 (1.32€)
 Seat 6: Player10 (4.95€)
 Seat 7: Player20 (4.95€)
-Seat 8: Player13 (12.83€)
+Seat 8: Hero (12.83€)
 Seat 9: Player14 (4.83€)
 *** ANTE/BLINDS *** 
 Player10 posts small blind 0.02€
 Player20 posts big blind 0.05€
 Player26 posts big blind 0.05€ out of position
-Dealt to Player13 [Kh 8d Tc 8s]
+Dealt to Hero [Kh 8d Tc 8s]
 *** PRE-FLOP *** 
-Player13 folds
+Hero folds
 Player14 folds
 Player22 calls 0.05€
 Player26 checks
@@ -2699,7 +2699,7 @@ Seat 4: Player5 showed [5c Ad As 9s] and won 2.93€ with Full of Ace and 2
 Seat 5: Player7 (button) showed [8c Ks Kc 7d] and lost with Two pairs : King and 2
 Seat 6: Player10 (small blind) folded on the pre-flop
 Seat 7: Player20 (big blind) folded on the pre-flop
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -2711,12 +2711,12 @@ Seat 4: Player5 (13.37€)
 Seat 5: Player7 (1€)
 Seat 6: Player10 (4.93€)
 Seat 7: Player20 (4.90€)
-Seat 8: Player13 (12.83€)
+Seat 8: Hero (12.83€)
 Seat 9: Player14 (4.83€)
 *** ANTE/BLINDS *** 
 Player20 posts small blind 0.02€
-Player13 posts big blind 0.05€
-Dealt to Player13 [Qd Ks 5h Ac]
+Hero posts big blind 0.05€
+Dealt to Hero [Qd Ks 5h Ac]
 *** PRE-FLOP *** 
 Player14 folds
 Player22 calls 0.05€
@@ -2725,13 +2725,13 @@ Player5 calls 0.05€
 Player7 calls 0.05€
 Player10 folds
 Player20 folds
-Player13 checks
+Hero checks
 *** FLOP *** [4d 2s 8c]
-Player13 checks
+Hero checks
 Player22 checks
 Player5 checks
 Player7 bets 0.22€
-Player13 folds
+Hero folds
 Player22 calls 0.22€
 Player5 folds
 *** TURN *** [4d 2s 8c][4s]
@@ -2755,7 +2755,7 @@ Seat 4: Player5 folded on the flop
 Seat 5: Player7 showed [7d 5d 3h 8h] and lost with Two pairs : 8 and 4
 Seat 6: Player10 (button) folded on the pre-flop
 Seat 7: Player20 (small blind) folded on the pre-flop
-Seat 8: Player13 (big blind) folded on the flop
+Seat 8: Hero (big blind) folded on the flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -2766,19 +2766,19 @@ Seat 4: Player5 (13.32€)
 Seat 5: Player7 (1€)
 Seat 6: Player10 (4.93€)
 Seat 7: Player20 (4.88€)
-Seat 8: Player13 (12.78€)
+Seat 8: Hero (12.78€)
 Seat 9: Player14 (4.83€)
 *** ANTE/BLINDS *** 
-Player13 posts small blind 0.02€
+Hero posts small blind 0.02€
 Player14 posts big blind 0.05€
-Dealt to Player13 [Ts 2c 3d 9h]
+Dealt to Hero [Ts 2c 3d 9h]
 *** PRE-FLOP *** 
 Player22 calls 0.05€
 Player5 calls 0.05€
 Player7 calls 0.05€
 Player10 folds
 Player20 calls 0.05€
-Player13 folds
+Hero folds
 Player14 checks
 *** FLOP *** [7s 3c 8s]
 Player14 checks
@@ -2813,7 +2813,7 @@ Seat 4: Player5 showed [Qh 5s 4c 6h] and lost with One pair : 8
 Seat 5: Player7 showed [9d Kc 6s Js] and lost with One pair : 8
 Seat 6: Player10 folded on the pre-flop
 Seat 7: Player20 (button) showed [Ks As Jh 2d] and lost with One pair : 8
-Seat 8: Player13 (small blind) folded on the pre-flop
+Seat 8: Hero (small blind) folded on the pre-flop
 Seat 9: Player14 (big blind) showed [6d 4s Th Jd] and lost with One pair : 8
 
 
@@ -2824,18 +2824,18 @@ Seat 4: Player5 (13.27€)
 Seat 5: Player7 (0.95€)
 Seat 6: Player10 (4.93€)
 Seat 7: Player20 (4.83€)
-Seat 8: Player13 (12.76€)
+Seat 8: Hero (12.76€)
 Seat 9: Player14 (4.78€)
 *** ANTE/BLINDS *** 
 Player14 posts small blind 0.02€
 Player22 posts big blind 0.05€
-Dealt to Player13 [Ad Qc 6d 9c]
+Dealt to Hero [Ad Qc 6d 9c]
 *** PRE-FLOP *** 
 Player5 calls 0.05€
 Player7 calls 0.05€
 Player10 calls 0.05€
 Player20 calls 0.05€
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 calls 0.03€
 Player22 checks
 *** FLOP *** [Ks 6h 5s]
@@ -2845,7 +2845,7 @@ Player5 checks
 Player7 checks
 Player10 bets 0.35€
 Player20 folds
-Player13 folds
+Hero folds
 Player14 folds
 Player22 folds
 Player5 folds
@@ -2859,7 +2859,7 @@ Seat 4: Player5 folded on the flop
 Seat 5: Player7 folded on the flop
 Seat 6: Player10 won 0.68€
 Seat 7: Player20 folded on the flop
-Seat 8: Player13 (button) folded on the flop
+Seat 8: Hero (button) folded on the flop
 Seat 9: Player14 (small blind) folded on the flop
 
 
@@ -2870,17 +2870,17 @@ Seat 4: Player5 (13.22€)
 Seat 5: Player7 (0.90€)
 Seat 6: Player10 (5.21€)
 Seat 7: Player20 (4.78€)
-Seat 8: Player13 (12.71€)
+Seat 8: Hero (12.71€)
 Seat 9: Player14 (4.73€)
 *** ANTE/BLINDS *** 
 Player22 posts small blind 0.02€
 Player5 posts big blind 0.05€
-Dealt to Player13 [9d 7s 3c Jc]
+Dealt to Hero [9d 7s 3c Jc]
 *** PRE-FLOP *** 
 Player7 calls 0.05€
 Player10 folds
 Player20 calls 0.05€
-Player13 folds
+Hero folds
 Player14 folds
 Player22 calls 0.03€
 Player5 checks
@@ -2900,7 +2900,7 @@ Seat 4: Player5 (big blind) folded on the flop
 Seat 5: Player7 won 0.39€
 Seat 6: Player10 folded on the pre-flop
 Seat 7: Player20 folded on the flop
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 (button) folded on the pre-flop
 
 
@@ -2912,16 +2912,16 @@ Seat 4: Player5 (13.17€)
 Seat 5: Player7 (1.04€)
 Seat 6: Player10 (5.21€)
 Seat 7: Player20 (4.73€)
-Seat 8: Player13 (12.71€)
+Seat 8: Hero (12.71€)
 Seat 9: Player14 (4.73€)
 *** ANTE/BLINDS *** 
 Player5 posts small blind 0.02€
 Player7 posts big blind 0.05€
-Dealt to Player13 [Th 2s 7s Qc]
+Dealt to Hero [Th 2s 7s Qc]
 *** PRE-FLOP *** 
 Player10 folds
 Player20 calls 0.05€
-Player13 folds
+Hero folds
 Player14 folds
 Player22 calls 0.05€
 Player5 calls 0.03€
@@ -2947,7 +2947,7 @@ Seat 4: Player5 (small blind) folded on the turn
 Seat 5: Player7 (big blind) folded on the flop
 Seat 6: Player10 folded on the pre-flop
 Seat 7: Player20 won 1.17€
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -2960,16 +2960,16 @@ Seat 4: Player5 (12.92€)
 Seat 5: Player7 (0.99€)
 Seat 6: Player10 (5.21€)
 Seat 7: Player20 (5.05€)
-Seat 8: Player13 (12.71€)
+Seat 8: Hero (12.71€)
 Seat 9: Player14 (4.73€)
 *** ANTE/BLINDS *** 
 Player7 posts small blind 0.02€
 Player10 posts big blind 0.05€
 Player25 posts big blind 0.05€ out of position
-Dealt to Player13 [9h 3c 4h 4c]
+Dealt to Hero [9h 3c 4h 4c]
 *** PRE-FLOP *** 
 Player20 folds
-Player13 folds
+Hero folds
 Player14 calls 0.05€
 Player22 calls 0.05€
 Player25 raises 0.22€ to 0.27€
@@ -3004,7 +3004,7 @@ Seat 4: Player5 (button) folded on the flop
 Seat 5: Player7 (small blind) showed [Ad Jc Jh 6c] and won 3.38€ with Quads of Jack
 Seat 6: Player10 (big blind) showed [7c 7d 6h 8s] and won 0.22€ with Full of 7 and Jack
 Seat 7: Player20 folded on the pre-flop
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -3016,14 +3016,14 @@ Seat 4: Player5 (12.65€)
 Seat 5: Player7 (3.38€)
 Seat 6: Player10 (5.02€)
 Seat 7: Player20 (5.05€)
-Seat 8: Player13 (12.71€)
+Seat 8: Hero (12.71€)
 Seat 9: Player14 (4.68€)
 *** ANTE/BLINDS *** 
 Player10 posts small blind 0.02€
 Player20 posts big blind 0.05€
-Dealt to Player13 [Qs 3s 3c Ah]
+Dealt to Hero [Qs 3s 3c Ah]
 *** PRE-FLOP *** 
-Player13 folds
+Hero folds
 Player14 folds
 Player22 calls 0.05€
 Player25 raises 0.17€ to 0.22€
@@ -3055,7 +3055,7 @@ Seat 4: Player5 folded on the turn
 Seat 5: Player7 (button) showed [7s Td Ks Kc] and won 3.85€ with Quads of King
 Seat 6: Player10 (small blind) folded on the pre-flop
 Seat 7: Player20 (big blind) folded on the pre-flop
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -3067,12 +3067,12 @@ Seat 4: Player5 (11.65€)
 Seat 5: Player7 (5.23€)
 Seat 6: Player10 (5€)
 Seat 7: Player20 (5€)
-Seat 8: Player13 (12.71€)
+Seat 8: Hero (12.71€)
 Seat 9: Player14 (4.68€)
 *** ANTE/BLINDS *** 
 Player20 posts small blind 0.02€
-Player13 posts big blind 0.05€
-Dealt to Player13 [9c 5h 8d 6s]
+Hero posts big blind 0.05€
+Dealt to Hero [9c 5h 8d 6s]
 *** PRE-FLOP *** 
 Player14 folds
 Player22 folds
@@ -3080,20 +3080,20 @@ Player5 calls 0.05€
 Player7 folds
 Player10 folds
 Player20 folds
-Player13 checks
+Hero checks
 *** FLOP *** [Ad 6h Js]
-Player13 checks
+Hero checks
 Player5 checks
 *** TURN *** [Ad 6h Js][6c]
-Player13 checks
+Hero checks
 Player5 checks
 *** RIVER *** [Ad 6h Js 6c][7s]
-Player13 checks
+Hero checks
 Player5 checks
 *** SHOW DOWN ***
 Player5 shows [3c 3d Ac Th] (Two pairs : Ace and 6)
-Player13 shows [9c 5h 8d 6s] (Trips of 6)
-Player13 collected 0.11€ from pot
+Hero shows [9c 5h 8d 6s] (Trips of 6)
+Hero collected 0.11€ from pot
 *** SUMMARY ***
 Total pot 0.11€ | Rake 0.01€
 Board: [Ad 6h Js 6c 7s]
@@ -3103,7 +3103,7 @@ Seat 4: Player5 showed [3c 3d Ac Th] and lost with Two pairs : Ace and 6
 Seat 5: Player7 folded on the pre-flop
 Seat 6: Player10 (button) folded on the pre-flop
 Seat 7: Player20 (small blind) folded on the pre-flop
-Seat 8: Player13 (big blind) showed [9c 5h 8d 6s] and won 0.11€ with Trips of 6
+Seat 8: Hero (big blind) showed [9c 5h 8d 6s] and won 0.11€ with Trips of 6
 Seat 9: Player14 folded on the pre-flop
 
 
@@ -3115,13 +3115,13 @@ Seat 4: Player5 (11.60€)
 Seat 5: Player7 (5.23€)
 Seat 6: Player10 (5€)
 Seat 7: Player20 (4.98€)
-Seat 8: Player13 (12.77€)
+Seat 8: Hero (12.77€)
 Seat 9: Player14 (4.68€)
 *** ANTE/BLINDS *** 
-Player13 posts small blind 0.02€
+Hero posts small blind 0.02€
 Player14 posts big blind 0.05€
 Player24 posts big blind 0.05€ out of position
-Dealt to Player13 [Kh 7s Qs Tc]
+Dealt to Hero [Kh 7s Qs Tc]
 *** PRE-FLOP *** 
 Player22 calls 0.05€
 Player24 folds
@@ -3129,23 +3129,23 @@ Player5 calls 0.05€
 Player7 calls 0.05€
 Player10 folds
 Player20 calls 0.05€
-Player13 calls 0.03€
+Hero calls 0.03€
 Player14 checks
 *** FLOP *** [4h 3c 6d]
-Player13 checks
+Hero checks
 Player14 checks
 Player22 checks
 Player5 checks
 Player7 checks
 Player20 checks
 *** TURN *** [4h 3c 6d][7c]
-Player13 checks
+Hero checks
 Player14 checks
 Player22 bets 0.35€
 Player5 calls 0.35€
 Player7 folds
 Player20 folds
-Player13 folds
+Hero folds
 Player14 folds
 *** RIVER *** [4h 3c 6d 7c][Jd]
 Player22 bets 1.05€
@@ -3163,7 +3163,7 @@ Seat 4: Player5 showed [3s Js Qh 5s] and lost with Straight 7 high
 Seat 5: Player7 folded on the turn
 Seat 6: Player10 folded on the pre-flop
 Seat 7: Player20 (button) folded on the turn
-Seat 8: Player13 (small blind) folded on the turn
+Seat 8: Hero (small blind) folded on the turn
 Seat 9: Player14 (big blind) folded on the turn
 
 
@@ -3174,18 +3174,18 @@ Seat 4: Player5 (10.15€)
 Seat 5: Player7 (5.18€)
 Seat 6: Player10 (5€)
 Seat 7: Player20 (4.93€)
-Seat 8: Player13 (12.72€)
+Seat 8: Hero (12.72€)
 Seat 9: Player14 (4.63€)
 *** ANTE/BLINDS *** 
 Player14 posts small blind 0.02€
 Player22 posts big blind 0.05€
-Dealt to Player13 [7d Kc Jd Td]
+Dealt to Hero [7d Kc Jd Td]
 *** PRE-FLOP *** 
 Player5 calls 0.05€
 Player7 calls 0.05€
 Player10 calls 0.05€
 Player20 calls 0.05€
-Player13 calls 0.05€
+Hero calls 0.05€
 Player14 calls 0.03€
 Player22 checks
 *** FLOP *** [2h 9d 2s]
@@ -3195,7 +3195,7 @@ Player5 checks
 Player7 checks
 Player10 checks
 Player20 checks
-Player13 checks
+Hero checks
 *** TURN *** [2h 9d 2s][3s]
 Player14 bets 0.35€
 Player22 folds
@@ -3203,7 +3203,7 @@ Player5 folds
 Player7 folds
 Player10 folds
 Player20 folds
-Player13 folds
+Hero folds
 Player14 collected 0.68€ from pot
 *** SUMMARY ***
 Total pot 0.68€ | Rake 0.02€
@@ -3213,7 +3213,7 @@ Seat 4: Player5 folded on the turn
 Seat 5: Player7 folded on the turn
 Seat 6: Player10 folded on the turn
 Seat 7: Player20 folded on the turn
-Seat 8: Player13 (button) folded on the turn
+Seat 8: Hero (button) folded on the turn
 Seat 9: Player14 (small blind) won 0.68€
 
 
@@ -3223,15 +3223,15 @@ Seat 4: Player5 (10.10€)
 Seat 5: Player7 (5.13€)
 Seat 6: Player10 (4.95€)
 Seat 7: Player20 (4.88€)
-Seat 8: Player13 (12.67€)
+Seat 8: Hero (12.67€)
 Seat 9: Player14 (4.91€)
 *** ANTE/BLINDS *** 
 Player7 posts big blind 0.05€
-Dealt to Player13 [5s 8h Td 2h]
+Dealt to Hero [5s 8h Td 2h]
 *** PRE-FLOP *** 
 Player10 calls 0.05€
 Player20 folds
-Player13 folds
+Hero folds
 Player14 folds
 Player7 raises 0.10€ to 0.15€
 Player10 calls 0.10€
@@ -3246,7 +3246,7 @@ Seat 4: Player5 folded
 Seat 5: Player7 (big blind) won 0.38€
 Seat 6: Player10 folded on the flop
 Seat 7: Player20 folded on the pre-flop
-Seat 8: Player13 folded on the pre-flop
+Seat 8: Hero folded on the pre-flop
 Seat 9: Player14 (button) folded on the pre-flop
 
 

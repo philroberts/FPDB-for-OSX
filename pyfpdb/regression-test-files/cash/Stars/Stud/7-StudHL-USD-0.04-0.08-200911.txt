@@ -2,54 +2,54 @@ PokerStars Game #35874487284:  7 Card Stud Hi/Lo Limit ($0.04/$0.08 USD) - 2009/
 Table 'Dawn II' 8-max
 Seat 3: gashpor ($1.46 in chips) 
 Seat 4: denny501 ($0.93 in chips) 
-Seat 5: s0rrow ($1.60 in chips) 
+Seat 5: Hero ($1.60 in chips) 
 Seat 8: rdiezchang ($1.16 in chips) 
 gashpor: posts the ante $0.01
 denny501: posts the ante $0.01
-s0rrow: posts the ante $0.01
+Hero: posts the ante $0.01
 rdiezchang: posts the ante $0.01
 *** 3rd STREET ***
 Dealt to gashpor [Kc]
 Dealt to denny501 [7c]
-Dealt to s0rrow [5d Ks 2h]
+Dealt to Hero [5d Ks 2h]
 Dealt to rdiezchang [3d]
-s0rrow: brings in for $0.02
+Hero: brings in for $0.02
 rdiezchang: calls $0.02
 gashpor: calls $0.02
 denny501: calls $0.02
 *** 4th STREET ***
 Dealt to gashpor [Kc] [4d]
 Dealt to denny501 [7c] [Qh]
-Dealt to s0rrow [5d Ks 2h] [9h]
+Dealt to Hero [5d Ks 2h] [9h]
 Dealt to rdiezchang [3d] [7s]
 Soroka69 joins the table at seat #7 
 gashpor: checks 
 poconoman is connected 
 denny501: checks 
-s0rrow: checks 
+Hero: checks 
 rdiezchang: checks 
 *** 5th STREET ***
 Dealt to gashpor [Kc 4d] [Qd]
 Dealt to denny501 [7c Qh] [9s]
-Dealt to s0rrow [5d Ks 2h 9h] [Js]
+Dealt to Hero [5d Ks 2h 9h] [Js]
 Dealt to rdiezchang [3d 7s] [Jh]
 gashpor: checks 
 denny501: checks 
-s0rrow: checks 
+Hero: checks 
 rdiezchang: checks 
 *** 6th STREET ***
 Dealt to gashpor [Kc 4d Qd] [5s]
 Dealt to denny501 [7c Qh 9s] [6s]
-Dealt to s0rrow [5d Ks 2h 9h Js] [4c]
+Dealt to Hero [5d Ks 2h 9h Js] [4c]
 Dealt to rdiezchang [3d 7s Jh] [5c]
 123smoothie joins the table at seat #2 
 gashpor: checks 
 denny501: checks 
-s0rrow: checks 
+Hero: checks 
 rdiezchang: bets $0.08
 gashpor: folds 
 denny501: folds 
-s0rrow: folds 
+Hero: folds 
 Uncalled bet ($0.08) returned to rdiezchang
 rdiezchang collected $0.12 from pot
 rdiezchang: doesn't show hand 
@@ -57,7 +57,7 @@ rdiezchang: doesn't show hand
 Total pot $0.12 | Rake $0 
 Seat 3: gashpor folded on the 6th Street
 Seat 4: denny501 folded on the 6th Street
-Seat 5: s0rrow folded on the 6th Street
+Seat 5: Hero folded on the 6th Street
 Seat 8: rdiezchang collected ($0.12)
 
 
@@ -67,27 +67,27 @@ Table 'Dawn II' 8-max
 Seat 2: 123smoothie ($1.60 in chips) 
 Seat 3: gashpor ($1.43 in chips) 
 Seat 4: denny501 ($0.90 in chips) 
-Seat 5: s0rrow ($1.57 in chips) 
+Seat 5: Hero ($1.57 in chips) 
 Seat 7: Soroka69 ($1 in chips) 
 Seat 8: rdiezchang ($1.25 in chips) 
 123smoothie: posts the ante $0.01
 gashpor: posts the ante $0.01
 denny501: posts the ante $0.01
-s0rrow: posts the ante $0.01
+Hero: posts the ante $0.01
 Soroka69: posts the ante $0.01
 rdiezchang: posts the ante $0.01
 *** 3rd STREET ***
 Dealt to 123smoothie [9h]
 Dealt to gashpor [4s]
 Dealt to denny501 [Qs]
-Dealt to s0rrow [Qd Js Kc]
+Dealt to Hero [Qd Js Kc]
 Dealt to Soroka69 [6s]
 Dealt to rdiezchang [8d]
 poconoman was removed from the table for failing to post
 gashpor: brings in for $0.02
 TomSludge joins the table at seat #6 
 denny501: calls $0.02
-s0rrow: folds 
+Hero: folds 
 Soroka69: calls $0.02
 rdiezchang: calls $0.02
 u.pressure joins the table at seat #1 
@@ -135,7 +135,7 @@ Total pot $0.80 | Rake $0.03
 Seat 2: 123smoothie mucked [9c Jc 9h Ah 5d 4c Qc]
 Seat 3: gashpor folded on the River
 Seat 4: denny501 folded on the 5th Street
-Seat 5: s0rrow folded on the 3rd Street (didn't bet)
+Seat 5: Hero folded on the 3rd Street (didn't bet)
 Seat 7: Soroka69 folded on the 5th Street
 Seat 8: rdiezchang showed [Ad 5s 8d Ac 8c Jd Th] and won ($0.77) with HI: two pair, Aces and Eights
 
@@ -147,7 +147,7 @@ Seat 1: u.pressure ($11 in chips)
 Seat 2: 123smoothie ($1.33 in chips) 
 Seat 3: gashpor ($1.24 in chips) 
 Seat 4: denny501 ($0.87 in chips) 
-Seat 5: s0rrow ($1.56 in chips) 
+Seat 5: Hero ($1.56 in chips) 
 Seat 6: TomSludge ($1.60 in chips) 
 Seat 7: Soroka69 ($0.97 in chips) 
 Seat 8: rdiezchang ($1.75 in chips) 
@@ -155,7 +155,7 @@ u.pressure: posts the ante $0.01
 123smoothie: posts the ante $0.01
 gashpor: posts the ante $0.01
 denny501: posts the ante $0.01
-s0rrow: posts the ante $0.01
+Hero: posts the ante $0.01
 TomSludge: posts the ante $0.01
 Soroka69: posts the ante $0.01
 rdiezchang: posts the ante $0.01
@@ -164,7 +164,7 @@ Dealt to u.pressure [Qs]
 Dealt to 123smoothie [4h]
 Dealt to gashpor [4c]
 Dealt to denny501 [8s]
-Dealt to s0rrow [Ah Kd 8d]
+Dealt to Hero [Ah Kd 8d]
 Dealt to TomSludge [Ks]
 Dealt to Soroka69 [3h]
 Dealt to rdiezchang [5s]
@@ -174,13 +174,13 @@ u.pressure: calls $0.02
 123smoothie: calls $0.02
 gashpor: calls $0.02
 denny501: folds 
-s0rrow: calls $0.02
+Hero: calls $0.02
 TomSludge: folds 
 *** 4th STREET ***
 Dealt to u.pressure [Qs] [Td]
 Dealt to 123smoothie [4h] [9d]
 Dealt to gashpor [4c] [Jc]
-Dealt to s0rrow [Ah Kd 8d] [Kc]
+Dealt to Hero [Ah Kd 8d] [Kc]
 Dealt to Soroka69 [3h] [Ad]
 Dealt to rdiezchang [5s] [7c]
 Soroka69: checks 
@@ -188,12 +188,12 @@ rdiezchang: checks
 u.pressure: checks 
 123smoothie: checks 
 gashpor: checks 
-s0rrow: checks 
+Hero: checks 
 *** 5th STREET ***
 Dealt to u.pressure [Qs Td] [Jh]
 Dealt to 123smoothie [4h 9d] [2c]
 Dealt to gashpor [4c Jc] [5h]
-Dealt to s0rrow [Ah Kd 8d Kc] [2d]
+Dealt to Hero [Ah Kd 8d Kc] [2d]
 Dealt to Soroka69 [3h Ad] [Qd]
 Dealt to rdiezchang [5s 7c] [4d]
 Soroka69: checks 
@@ -201,7 +201,7 @@ rdiezchang: checks
 u.pressure: checks 
 123smoothie: checks 
 gashpor: bets $0.08
-s0rrow: folds 
+Hero: folds 
 Soroka69: calls $0.08
 rdiezchang: calls $0.08
 u.pressure: calls $0.08
@@ -235,7 +235,7 @@ Seat 1: u.pressure showed [Qc Kh Qs Td Jh 6d 6s] and won ($0.37) with HI: two pa
 Seat 2: 123smoothie folded on the 5th Street
 Seat 3: gashpor showed [7h 2h 4c Jc 5h 7s 8c] and won ($0.36) with HI: a pair of Sevens; LO: 8,7,5,4,2
 Seat 4: denny501 folded on the 3rd Street (didn't bet)
-Seat 5: s0rrow folded on the 5th Street
+Seat 5: Hero folded on the 5th Street
 Seat 6: TomSludge folded on the 3rd Street (didn't bet)
 Seat 7: Soroka69 folded on the River
 Seat 8: rdiezchang showed [As Qh 5s 7c 4d Th Ac] and lost with HI: a pair of Aces
@@ -248,7 +248,7 @@ Seat 1: u.pressure ($11.18 in chips)
 Seat 2: 123smoothie ($1.30 in chips) 
 Seat 3: gashpor ($1.41 in chips) 
 Seat 4: denny501 ($0.86 in chips) 
-Seat 5: s0rrow ($1.53 in chips) 
+Seat 5: Hero ($1.53 in chips) 
 Seat 6: TomSludge ($1.59 in chips) 
 Seat 7: Soroka69 ($0.86 in chips) 
 Seat 8: rdiezchang ($1.56 in chips) 
@@ -256,7 +256,7 @@ u.pressure: posts the ante $0.01
 123smoothie: posts the ante $0.01
 gashpor: posts the ante $0.01
 denny501: posts the ante $0.01
-s0rrow: posts the ante $0.01
+Hero: posts the ante $0.01
 TomSludge: posts the ante $0.01
 Soroka69: posts the ante $0.01
 rdiezchang: posts the ante $0.01
@@ -265,14 +265,14 @@ Dealt to u.pressure [8c]
 Dealt to 123smoothie [2c]
 Dealt to gashpor [Qd]
 Dealt to denny501 [9d]
-Dealt to s0rrow [Ts 5c Js]
+Dealt to Hero [Ts 5c Js]
 Dealt to TomSludge [3h]
 Dealt to Soroka69 [7s]
 Dealt to rdiezchang [6c]
 123smoothie: brings in for $0.02
 gashpor: folds 
 denny501: calls $0.02
-s0rrow: folds 
+Hero: folds 
 TomSludge: folds 
 Soroka69: calls $0.02
 rdiezchang: calls $0.02
@@ -314,7 +314,7 @@ Seat 1: u.pressure folded on the 3rd Street (didn't bet)
 Seat 2: 123smoothie mucked [2d 7d 2c 8d 3c 3s Tc]
 Seat 3: gashpor folded on the 3rd Street (didn't bet)
 Seat 4: denny501 folded on the 6th Street
-Seat 5: s0rrow folded on the 3rd Street (didn't bet)
+Seat 5: Hero folded on the 3rd Street (didn't bet)
 Seat 6: TomSludge folded on the 3rd Street (didn't bet)
 Seat 7: Soroka69 folded on the 4th Street
 Seat 8: rdiezchang showed [8s 7c 6c Ac 6s Qc Qs] and won ($0.80) with HI: two pair, Queens and Sixes
@@ -327,7 +327,7 @@ Seat 1: u.pressure ($11.17 in chips)
 Seat 2: 123smoothie ($0.99 in chips) 
 Seat 3: gashpor ($1.40 in chips) 
 Seat 4: denny501 ($0.71 in chips) 
-Seat 5: s0rrow ($1.52 in chips) 
+Seat 5: Hero ($1.52 in chips) 
 Seat 6: TomSludge ($1.58 in chips) 
 Seat 7: Soroka69 ($0.83 in chips) 
 Seat 8: rdiezchang ($2.05 in chips) 
@@ -335,7 +335,7 @@ u.pressure: posts the ante $0.01
 123smoothie: posts the ante $0.01
 gashpor: posts the ante $0.01
 denny501: posts the ante $0.01
-s0rrow: posts the ante $0.01
+Hero: posts the ante $0.01
 TomSludge: posts the ante $0.01
 Soroka69: posts the ante $0.01
 rdiezchang: posts the ante $0.01
@@ -344,12 +344,12 @@ Dealt to u.pressure [Td]
 Dealt to 123smoothie [4c]
 Dealt to gashpor [5d]
 Dealt to denny501 [2c]
-Dealt to s0rrow [7c 3s 5h]
+Dealt to Hero [7c 3s 5h]
 Dealt to TomSludge [8s]
 Dealt to Soroka69 [7d]
 Dealt to rdiezchang [Ad]
 denny501: brings in for $0.02
-s0rrow: calls $0.02
+Hero: calls $0.02
 TomSludge: folds 
 Soroka69: calls $0.02
 rdiezchang: calls $0.02
@@ -360,7 +360,7 @@ gashpor: calls $0.02
 Dealt to 123smoothie [4c] [3c]
 Dealt to gashpor [5d] [Qd]
 Dealt to denny501 [2c] [7s]
-Dealt to s0rrow [7c 3s 5h] [Qc]
+Dealt to Hero [7c 3s 5h] [Qc]
 Dealt to Soroka69 [7d] [5s]
 Dealt to rdiezchang [Ad] [Js]
 rdiezchang: checks 
@@ -368,12 +368,12 @@ rdiezchang: checks
 gashpor: checks 
 denny501: folds 
 denny501 leaves the table
-s0rrow: checks 
+Hero: checks 
 Soroka69: checks 
 *** 5th STREET ***
 Dealt to 123smoothie [4c 3c] [9s]
 Dealt to gashpor [5d Qd] [Jd]
-Dealt to s0rrow [7c 3s 5h Qc] [Kc]
+Dealt to Hero [7c 3s 5h Qc] [Kc]
 Dealt to Soroka69 [7d 5s] [5c]
 Dealt to rdiezchang [Ad Js] [Ts]
 LainaRahat joins the table at seat #4 
@@ -381,36 +381,36 @@ Soroka69: checks
 rdiezchang: checks 
 123smoothie: checks 
 gashpor: bets $0.08
-s0rrow: calls $0.08
+Hero: calls $0.08
 Soroka69: calls $0.08
 rdiezchang: folds 
 123smoothie: folds 
 *** 6th STREET ***
 Dealt to gashpor [5d Qd Jd] [9d]
-Dealt to s0rrow [7c 3s 5h Qc Kc] [6d]
+Dealt to Hero [7c 3s 5h Qc Kc] [6d]
 Dealt to Soroka69 [7d 5s 5c] [2s]
 Soroka69: checks 
 gashpor: bets $0.08
-s0rrow: calls $0.08
+Hero: calls $0.08
 Soroka69: calls $0.08
 *** RIVER ***
-Dealt to s0rrow [7c 3s 5h Qc Kc 6d] [4d]
+Dealt to Hero [7c 3s 5h Qc Kc 6d] [4d]
 Soroka69: checks 
 gashpor: bets $0.08
-s0rrow: calls $0.08
+Hero: calls $0.08
 Soroka69: folds 
 *** SHOW DOWN ***
 gashpor: shows [4h 3d 5d Qd Jd 9d 6h] (HI: a flush, Queen high)
-s0rrow: shows [7c 3s 5h Qc Kc 6d 4d] (HI: a straight, Three to Seven; LO: 7,6,5,4,3)
+Hero: shows [7c 3s 5h Qc Kc 6d 4d] (HI: a straight, Three to Seven; LO: 7,6,5,4,3)
 gashpor collected $0.40 from pot
-s0rrow collected $0.40 from pot
+Hero collected $0.40 from pot
 *** SUMMARY ***
 Total pot $0.84 | Rake $0.04 
 Seat 1: u.pressure folded on the 3rd Street (didn't bet)
 Seat 2: 123smoothie folded on the 5th Street
 Seat 3: gashpor showed [4h 3d 5d Qd Jd 9d 6h] and won ($0.40) with HI: a flush, Queen high
 Seat 4: denny501 folded on the 4th Street
-Seat 5: s0rrow showed [7c 3s 5h Qc Kc 6d 4d] and won ($0.40) with HI: a straight, Three to Seven; LO: 7,6,5,4,3
+Seat 5: Hero showed [7c 3s 5h Qc Kc 6d 4d] and won ($0.40) with HI: a straight, Three to Seven; LO: 7,6,5,4,3
 Seat 6: TomSludge folded on the 3rd Street (didn't bet)
 Seat 7: Soroka69 folded on the River
 Seat 8: rdiezchang folded on the 5th Street
@@ -423,7 +423,7 @@ Seat 1: u.pressure ($11.16 in chips)
 Seat 2: 123smoothie ($0.96 in chips) 
 Seat 3: gashpor ($1.53 in chips) 
 Seat 4: LainaRahat ($2 in chips) 
-Seat 5: s0rrow ($1.65 in chips) 
+Seat 5: Hero ($1.65 in chips) 
 Seat 6: TomSludge ($1.57 in chips) 
 Seat 7: Soroka69 ($0.64 in chips) 
 Seat 8: rdiezchang ($2.02 in chips) 
@@ -431,7 +431,7 @@ u.pressure: posts the ante $0.01
 123smoothie: posts the ante $0.01
 gashpor: posts the ante $0.01
 LainaRahat: posts the ante $0.01
-s0rrow: posts the ante $0.01
+Hero: posts the ante $0.01
 TomSludge: posts the ante $0.01
 Soroka69: posts the ante $0.01
 rdiezchang: posts the ante $0.01
@@ -440,11 +440,11 @@ Dealt to u.pressure [Js]
 Dealt to 123smoothie [Kc]
 Dealt to gashpor [Kd]
 Dealt to LainaRahat [Ts]
-Dealt to s0rrow [Qd Ad 2s]
+Dealt to Hero [Qd Ad 2s]
 Dealt to TomSludge [4h]
 Dealt to Soroka69 [3c]
 Dealt to rdiezchang [3h]
-s0rrow: brings in for $0.02
+Hero: brings in for $0.02
 TomSludge: folds 
 Soroka69: calls $0.02
 rdiezchang: folds 
@@ -455,40 +455,40 @@ LainaRahat: calls $0.02
 *** 4th STREET ***
 Dealt to 123smoothie [Kc] [7d]
 Dealt to LainaRahat [Ts] [4c]
-Dealt to s0rrow [Qd Ad 2s] [As]
+Dealt to Hero [Qd Ad 2s] [As]
 Dealt to Soroka69 [3c] [Qc]
 rdiezchang leaves the table
-s0rrow: bets $0.04
+Hero: bets $0.04
 Soroka69: raises $0.04 to $0.08
 geo_441 joins the table at seat #8 
 123smoothie: folds 
 LainaRahat: calls $0.08
-s0rrow: calls $0.04
+Hero: calls $0.04
 *** 5th STREET ***
 Dealt to LainaRahat [Ts 4c] [Ks]
-Dealt to s0rrow [Qd Ad 2s As] [2h]
+Dealt to Hero [Qd Ad 2s As] [2h]
 Dealt to Soroka69 [3c Qc] [6h]
-s0rrow: checks 
+Hero: checks 
 Soroka69: bets $0.08
 LainaRahat: calls $0.08
-s0rrow: calls $0.08
+Hero: calls $0.08
 *** 6th STREET ***
 Dealt to LainaRahat [Ts 4c Ks] [Tc]
-Dealt to s0rrow [Qd Ad 2s As 2h] [8d]
+Dealt to Hero [Qd Ad 2s As 2h] [8d]
 Dealt to Soroka69 [3c Qc 6h] [7h]
 LainaRahat: checks 
-s0rrow: checks 
+Hero: checks 
 Soroka69: checks 
 *** RIVER ***
-Dealt to s0rrow [Qd Ad 2s As 2h 8d] [6c]
+Dealt to Hero [Qd Ad 2s As 2h 8d] [6c]
 LainaRahat: checks 
-s0rrow: checks 
+Hero: checks 
 Soroka69: checks 
 *** SHOW DOWN ***
 LainaRahat: shows [Ac 3s Ts 4c Ks Tc Kh] (HI: two pair, Kings and Tens)
-s0rrow: shows [Qd Ad 2s As 2h 8d 6c] (HI: two pair, Aces and Deuces)
+Hero: shows [Qd Ad 2s As 2h 8d 6c] (HI: two pair, Aces and Deuces)
 Soroka69: mucks hand 
-s0rrow collected $0.61 from pot
+Hero collected $0.61 from pot
 No low hand qualified
 *** SUMMARY ***
 Total pot $0.64 | Rake $0.03 
@@ -496,7 +496,7 @@ Seat 1: u.pressure folded on the 3rd Street (didn't bet)
 Seat 2: 123smoothie folded on the 4th Street
 Seat 3: gashpor folded on the 3rd Street (didn't bet)
 Seat 4: LainaRahat showed [Ac 3s Ts 4c Ks Tc Kh] and lost with HI: two pair, Kings and Tens
-Seat 5: s0rrow showed [Qd Ad 2s As 2h 8d 6c] and won ($0.61) with HI: two pair, Aces and Deuces
+Seat 5: Hero showed [Qd Ad 2s As 2h 8d 6c] and won ($0.61) with HI: two pair, Aces and Deuces
 Seat 6: TomSludge folded on the 3rd Street (didn't bet)
 Seat 7: Soroka69 mucked [2d Qh 3c Qc 6h 7h Jd]
 Seat 8: rdiezchang folded on the 3rd Street (didn't bet)
@@ -509,7 +509,7 @@ Seat 1: u.pressure ($11.15 in chips)
 Seat 2: 123smoothie ($0.93 in chips) 
 Seat 3: gashpor ($1.52 in chips) 
 Seat 4: LainaRahat ($1.81 in chips) 
-Seat 5: s0rrow ($2.07 in chips) 
+Seat 5: Hero ($2.07 in chips) 
 Seat 6: TomSludge ($1.56 in chips) 
 Seat 7: Soroka69 ($0.45 in chips) 
 Seat 8: geo_441 ($1.60 in chips) 
@@ -517,7 +517,7 @@ u.pressure: posts the ante $0.01
 123smoothie: posts the ante $0.01
 gashpor: posts the ante $0.01
 LainaRahat: posts the ante $0.01
-s0rrow: posts the ante $0.01
+Hero: posts the ante $0.01
 TomSludge: posts the ante $0.01
 Soroka69: posts the ante $0.01
 geo_441: posts the ante $0.01
@@ -526,12 +526,12 @@ Dealt to u.pressure [5c]
 Dealt to 123smoothie [8c]
 Dealt to gashpor [5s]
 Dealt to LainaRahat [2c]
-Dealt to s0rrow [8d Qs Kc]
+Dealt to Hero [8d Qs Kc]
 Dealt to TomSludge [As]
 Dealt to Soroka69 [Tc]
 Dealt to geo_441 [4d]
 LainaRahat: brings in for $0.02
-s0rrow: folds 
+Hero: folds 
 TomSludge: calls $0.02
 Soroka69: calls $0.02
 geo_441: calls $0.02
@@ -602,7 +602,7 @@ Seat 1: u.pressure folded on the 3rd Street (didn't bet)
 Seat 2: 123smoothie showed [Qd Ks 8c 9d Jd 3c 9c] and lost with HI: a pair of Nines
 Seat 3: gashpor showed [4c Th 5s 5d Td 9h Ad] and lost with HI: two pair, Tens and Fives
 Seat 4: LainaRahat folded on the 4th Street
-Seat 5: s0rrow folded on the 3rd Street (didn't bet)
+Seat 5: Hero folded on the 3rd Street (didn't bet)
 Seat 6: TomSludge showed [7s Ah As 8h Js 6c Jc] and won ($1.45) with HI: two pair, Aces and Jacks
 Seat 7: Soroka69 mucked [Qh Ts Tc 2h Qc 5h 6s]
 Seat 8: geo_441 folded on the River
