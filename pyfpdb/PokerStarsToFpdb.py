@@ -297,7 +297,7 @@ class PokerStars(HandHistoryConverter):
                     hand.tablename = info[key]
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
-            if key == 'MAX':
+            if key == 'MAX' and info[key] != None:
                 hand.maxseats = int(info[key])
 
             if key == 'MIXED':
