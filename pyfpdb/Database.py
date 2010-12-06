@@ -913,6 +913,56 @@ class Database:
         result = c.fetchall()
         return result
 
+    def resetPlayerIDs(self):
+        self.pcache = None
+
+    def getSqlPlayerIDs(self, pnames, siteid):
+        result = {}
+        if(self.pcache == None):
+            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key[0], key[1]))
+
+        for player in pnames:
+            result[player] = self.pcache[(player,siteid)]
+            # NOTE: Using the LambdaDict does the same thing as:
+            #if player in self.pcache:
+            #    #print "DEBUG: cachehit"
+            #    pass
+            #else:
+            #    self.pcache[player] = self.insertPlayer(player, siteid)
+            #result[player] = self.pcache[player]
+
+        return result
+
+    def insertPlayer(self, name, site_id):
+        result = None
+        _name = Charset.to_db_utf8(name)
+        c = self.get_cursor()
+        q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
+        q = q.replace('%s', self.sql.query['placeholder'])
+
+        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
+        #Usage:
+        #        INSERT INTO `tags` (`tag`, `count`)
+        #         VALUES ($tag, 1)
+        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
+
+
+        #print "DEBUG: name: %s site: %s" %(name, site_id)
+
+        c.execute (q, (site_id, _name))
+
+        tmp = c.fetchone()
+        if (tmp == None): #new player
+            c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
+                      ,(_name, site_id))
+            #Get last id might be faster here.
+            #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
+            result = self.get_last_insert_id(c)
+        else:
+            result = tmp[1]
+        return result
+
+
     def get_last_insert_id(self, cursor=None):
         ret = None
         try:
@@ -2041,54 +2091,6 @@ class Database:
                                     #FIXME: recognise currency
         return tmp[0]
 
-    def resetPlayerIDs(self):
-        self.pcache = None
-
-    def getSqlPlayerIDs(self, pnames, siteid):
-        result = {}
-        if(self.pcache == None):
-            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key[0], key[1]))
-
-        for player in pnames:
-            result[player] = self.pcache[(player,siteid)]
-            # NOTE: Using the LambdaDict does the same thing as:
-            #if player in self.pcache:
-            #    #print "DEBUG: cachehit"
-            #    pass
-            #else:
-            #    self.pcache[player] = self.insertPlayer(player, siteid)
-            #result[player] = self.pcache[player]
-
-        return result
-
-    def insertPlayer(self, name, site_id):
-        result = None
-        _name = Charset.to_db_utf8(name)
-        c = self.get_cursor()
-        q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
-        q = q.replace('%s', self.sql.query['placeholder'])
-
-        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
-        #Usage:
-        #        INSERT INTO `tags` (`tag`, `count`)
-        #         VALUES ($tag, 1)
-        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
-
-
-        #print "DEBUG: name: %s site: %s" %(name, site_id)
-
-        c.execute (q, (site_id, _name))
-
-        tmp = c.fetchone()
-        if (tmp == None): #new player
-            c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
-                      ,(_name, site_id))
-            #Get last id might be faster here.
-            #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
-            result = self.get_last_insert_id(c)
-        else:
-            result = tmp[1]
-        return result
 
     def insertGameTypes(self, row):
         c = self.get_cursor()
