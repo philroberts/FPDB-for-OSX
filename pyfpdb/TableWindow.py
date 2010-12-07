@@ -126,13 +126,11 @@ class Table_Window(object):
             self.type = "tour"
             table_kwargs = dict(tournament = self.tournament, table_number = self.table)
             self.tableno_re = getTableNoRe(self.config, self.site, tournament = self.tournament)
-            self.key = "%s Table %s" % (tournament, str(self.table))
         elif table_name is not None:
             self.name = table_name
             self.type = "cash"
             self.tournament = None
             table_kwargs = dict(table_name = table_name)
-            self.key = table_name  # used as key for the hud_dict in HUD_main
 
         else:
             return None
