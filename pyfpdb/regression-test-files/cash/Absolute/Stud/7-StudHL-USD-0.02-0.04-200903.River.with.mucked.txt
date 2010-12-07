@@ -2,7 +2,7 @@ Stage #1300000000: Seven Card Hi/Lo  Normal $0.02/$0.04 - 2009-03-18 19:10:00 (E
 Seat 1 - PLAYER1 ($0.17 in chips)
 Seat 2 - PLAYER2 ($0.36 in chips)
 Seat 3 - PLAYER3 ($3.46 in chips)
-Seat 5 - PLAYER4 ($1 in chips)
+Seat 5 - Hero ($1 in chips)
 Seat 6 - PLAYER5 ($1.07 in chips)
 Seat 7 - PLAYER6 ($2.31 in chips)
 Seat 8 - PLAYER7 ($0.93 in chips)
@@ -12,12 +12,12 @@ PLAYER6 - Ante $0.01
 PLAYER3 - Ante $0.01
 PLAYER7 - Ante $0.01
 PLAYER2 - Ante $0.01
-PLAYER4 - Ante $0.01
+Hero - Ante $0.01
 *** 3rd STREET ***
 Player1 - Pocket [H H Js] 
 PLAYER2 - Pocket [H H 7h] 
 PLAYER3 - Pocket [H H 6s] 
-PLAYER4 - Pocket [10c 5c 7s] 
+Hero - Pocket [10c 5c 7s] 
 PLAYER5 - Pocket [H H Qh] 
 PLAYER6 - Pocket [H H 9c] 
 PLAYER7 - Pocket [H H 3s] 
@@ -25,13 +25,13 @@ PLAYER7 - Bring-In $0.01
 Player1 - Calls $0.01
 PLAYER2 - Folds
 PLAYER3 - Calls $0.01
-PLAYER4 - Folds
+Hero - Folds
 PLAYER5 - Folds
 PLAYER6 - Calls $0.01
 *** 4TH STREET ***
 Player1 - Pocket [H H Js 10d] 
 PLAYER3 - Pocket [H H 6s Ah] 
-PLAYER4 - Pocket [10c 5c 7s] 
+Hero - Pocket [10c 5c 7s] 
 PLAYER6 - Pocket [H H 9c Ks] 
 PLAYER7 - Pocket [H H 3s Qc] 
 PLAYER3 - Checks
@@ -41,7 +41,7 @@ Player1 - Checks
 *** 5TH STREET ***
 Player1 - Pocket [H H Js 10d Kh] 
 PLAYER3 - Pocket [H H 6s Ah 8c] 
-PLAYER4 - Pocket [10c 5c 7s] 
+Hero - Pocket [10c 5c 7s] 
 PLAYER6 - Pocket [H H 9c Ks 10s] 
 PLAYER7 - Pocket [H H 3s Qc 6c] 
 PLAYER3 - Bets $0.04
@@ -51,7 +51,7 @@ Player1 - Calls $0.04
 *** 6TH STREET ***
 Player1 - Pocket [H H Js 10d Kh 2c] 
 PLAYER3 - Pocket [H H 6s Ah 8c Jc] 
-PLAYER4 - Pocket [10c 5c 7s] 
+Hero - Pocket [10c 5c 7s] 
 PLAYER6 - Pocket [H H 9c Ks 10s 8h] 
 PLAYER7 - Pocket [H H 3s Qc 6c Qs] 
 PLAYER7 - Checks
@@ -63,7 +63,7 @@ Player1 - Calls $0.04
 *** RIVER ***
 Player1 - Pocket [H H Js 10d Kh 2c H] 
 PLAYER3 - Pocket [H H 6s Ah 8c Jc H] 
-PLAYER4 - Pocket [10c 5c 7s] 
+Hero - Pocket [10c 5c 7s] 
 PLAYER6 - Pocket [H H 9c Ks 10s 8h H] 
 PLAYER7 - Pocket [H H 3s Qc 6c Qs H] 
 PLAYER7 - Checks
@@ -82,7 +82,7 @@ Total Pot($0.43) | Rake ($0.04)
 Seat 1: Player1 HI:lost with Two Pair, jacks and twos [Jh 3h Js 10d Kh 2c 2h - B:Js,P:Jh,P:2h,B:2c,B:Kh] 
 Seat 2: PLAYER2 Folded on the 3rd STREET
 Seat 3: PLAYER3 won Total ($0.19) HI:with One pair, aces [3d 5d 6s Ah 8c Jc As - P:As,B:Ah,B:Jc,B:8c,B:6s] LO:($0.19) [B:Ah,P:3d,P:5d,B:6s,B:8c] 
-Seat 5: PLAYER4 Folded on the 3rd STREET
+Seat 5: Hero Folded on the 3rd STREET
 Seat 6: PLAYER5 Folded on the 3rd STREET
 Seat 7: PLAYER6 won Total ($0.20) HI:($0.20) with Two Pair, kings and tens [Kc 10h 9c Ks 10s 8h 2s - B:Ks,P:Kc,B:10s,P:10h,B:9c] 
 Seat 8: PLAYER7 HI:lost with One pair, queens [5s 8d 3s Qc 6c Qs 9s - B:Qs,B:Qc,P:9s,P:8d,B:6c] 

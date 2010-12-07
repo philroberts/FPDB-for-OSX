@@ -4,25 +4,25 @@ Seat 1: Player1 ($27.95 in chips)
 Seat 2: Player2 ($7.50 in chips) 
 Seat 3: Player3 ($12.15 in chips) 
 Seat 4: Player4 ($9.25 in chips) 
-Seat 5: Player5 ($20 in chips) 
+Seat 5: Hero ($20 in chips) 
 Player4: posts small blind $0.25
-Player5: posts big blind $0.50
+Hero: posts big blind $0.50
 vega104: sits out 
 *** DEALING HANDS ***
-Dealt to Player5 [4d 7d 4c 5c Tc]
+Dealt to Hero [4d 7d 4c 5c Tc]
 Player1: folds 
 Player2: folds 
 Player3: folds 
 Player4: calls $0.25
-Player5: checks 
+Hero: checks 
 Player4: discards 1 card
-Player5: discards 1 card [4c]
-Dealt to Player5 [4d 7d 5c Tc] [Ad]
+Hero: discards 1 card [4c]
+Dealt to Hero [4d 7d 5c Tc] [Ad]
 Player4: checks 
-Player5: checks 
+Hero: checks 
 *** SHOW DOWN ***
 Player4: shows [6d Js As Jd 6c] (two pair, Jacks and Sixes)
-Player5: mucks hand 
+Hero: mucks hand 
 Player4 collected $0.95 from pot
 *** SUMMARY ***
 Total pot $1 | Rake $0.05 
@@ -30,7 +30,7 @@ Seat 1: Player1 folded before the Draw (didn't bet)
 Seat 2: Player2 folded before the Draw (didn't bet)
 Seat 3: Player3 (button) folded before the Draw (didn't bet)
 Seat 4: Player4 (small blind) showed [6d Js As Jd 6c] and won ($0.95) with two pair, Jacks and Sixes
-Seat 5: Player5 (big blind) mucked [4d 7d Ad 5c Tc]
+Seat 5: Hero (big blind) mucked [4d 7d Ad 5c Tc]
 
 
 

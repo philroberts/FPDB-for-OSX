@@ -6,28 +6,28 @@ $0.80 USD NL Texas Hold'em - Saturday, July 31, 13:52:16 EDT 2010
 Table 20BB Min Speed #1770998 (Real Money)
 Seat 1 is the button
 Total number of players : 4/9
-Seat 3: Player1 ( $1.64 USD )
+Seat 3: Hero ( $1.64 USD )
 Seat 5: Player2 ( $0.01 USD )
 Seat 9: Player3 ( $1.02 USD )
 Seat 1: Player4 ( $1.20 USD )
-Player1 posts small blind [$0.01 USD].
+Hero posts small blind [$0.01 USD].
 Player2 posts big blind [$0.01 USD].
 ** Dealing down cards **
-Dealt to Player1 [  8h Kc ]
+Dealt to Hero [  8h Kc ]
 Player3 folds
 Player4 calls [$0.02 USD]
-Player1 calls [$0.01 USD]
+Hero calls [$0.01 USD]
 ** Dealing Flop ** [ Td, 7c, 9h ]
-Player1 checks
+Hero checks
 Player4 checks
 ** Dealing Turn ** [ 3h ]
-Player1 checks
+Hero checks
 Player4 checks
 ** Dealing River ** [ Jc ]
-Player1 bets [$0.04 USD]
+Hero bets [$0.04 USD]
 Player4 folds
-Player1 shows [ 8h, Kc ]a straight, Seven to Jack.
+Hero shows [ 8h, Kc ]a straight, Seven to Jack.
 Player2 doesn't show [ Ts, Jd ]two pairs, Jacks and Tens.
-Player1 wins $0.06 USD from the side pot 1 with a straight, Seven to Jack.
-Player1 wins $0.03 USD from the main pot with a straight, Seven to Jack.
+Hero wins $0.06 USD from the side pot 1 with a straight, Seven to Jack.
+Hero wins $0.03 USD from the main pot with a straight, Seven to Jack.
 Player2 has left the table.

@@ -7,18 +7,18 @@ Seat 4: Player4 (1500 in chips)
 Seat 5: Player5 (1500 in chips) 
 Seat 6: Player2 (1500 in chips) 
 Seat 7: Player6 (1500 in chips) 
-Seat 8: Player0 (1500 in chips) 
+Seat 8: Hero (1500 in chips) 
 Seat 9: Player9 (1500 in chips) 
 Seat 10: Player8 (1500 in chips) 
 Player1: posts small blind 10
 Player3: posts big blind 20
 *** HOLE CARDS ***
-Dealt to Player0 [4c 7d]
+Dealt to Hero [4c 7d]
 Player4: folds 
 Player5: folds 
 Player2: folds 
 Player6: folds 
-Player0: folds 
+Hero: folds 
 Player9: folds 
 Player8: folds 
 Player7: folds 
@@ -35,7 +35,7 @@ Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
 Seat 7: Player6 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 9: Player9 folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
@@ -50,17 +50,17 @@ Seat 4: Player4 (1500 in chips)
 Seat 5: Player5 (1500 in chips) 
 Seat 6: Player2 (1500 in chips) 
 Seat 7: Player6 (1500 in chips) 
-Seat 8: Player0 (1500 in chips) 
+Seat 8: Hero (1500 in chips) 
 Seat 9: Player9 (1500 in chips) 
 Seat 10: Player8 (1500 in chips) 
 Player3: posts small blind 10
 Player4: posts big blind 20
 *** HOLE CARDS ***
-Dealt to Player0 [8h Jh]
+Dealt to Hero [8h Jh]
 Player5: folds 
 Player2: folds 
 Player6: folds 
-Player0: raises 40 to 60
+Hero: raises 40 to 60
 Player9: folds 
 Player8: folds 
 Player7: folds 
@@ -68,19 +68,19 @@ Player1: calls 60
 Player3: folds 
 Player4: folds 
 *** FLOP *** [2h 7c Th]
-Player0: bets 80
+Hero: bets 80
 Player1: calls 80
 *** TURN *** [2h 7c Th] [5s]
-Player0: checks 
+Hero: checks 
 Player1: bets 217
-Player0: calls 217
+Hero: calls 217
 *** RIVER *** [2h 7c Th 5s] [Jd]
-Player0: checks 
+Hero: checks 
 Player1: checks 
 *** SHOW DOWN ***
-Player0: shows [8h Jh] (a pair of Jacks)
+Hero: shows [8h Jh] (a pair of Jacks)
 Player1: mucks hand 
-Player0 collected 744 from pot
+Hero collected 744 from pot
 *** SUMMARY ***
 Total pot 744 | Rake 0 
 Board [2h 7c Th 5s Jd]
@@ -91,7 +91,7 @@ Seat 4: Player4 (big blind) folded before Flop
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
 Seat 7: Player6 folded before Flop (didn't bet)
-Seat 8: Player0 showed [8h Jh] and won (744) with a pair of Jacks
+Seat 8: Hero showed [8h Jh] and won (744) with a pair of Jacks
 Seat 9: Player9 folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
@@ -106,16 +106,16 @@ Seat 4: Player4 (1480 in chips)
 Seat 5: Player5 (1500 in chips) 
 Seat 6: Player2 (1500 in chips) 
 Seat 7: Player6 (1500 in chips) 
-Seat 8: Player0 (1887 in chips) 
+Seat 8: Hero (1887 in chips) 
 Seat 9: Player9 (1500 in chips) 
 Seat 10: Player8 (1500 in chips) 
 Player4: posts small blind 10
 Player5: posts big blind 20
 *** HOLE CARDS ***
-Dealt to Player0 [Ks 8s]
+Dealt to Hero [Ks 8s]
 Player2: folds 
 Player6: folds 
-Player0: folds 
+Hero: folds 
 Player9: calls 20
 Player8: folds 
 Player7: folds 
@@ -136,7 +136,7 @@ Seat 4: Player4 (small blind) folded before Flop
 Seat 5: Player5 (big blind) folded before Flop
 Seat 6: Player2 folded before Flop (didn't bet)
 Seat 7: Player6 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 9: Player9 folded before Flop
 Seat 10: Player8 folded before Flop (didn't bet)
 
@@ -151,15 +151,15 @@ Seat 4: Player4 (1470 in chips)
 Seat 5: Player5 (1480 in chips) 
 Seat 6: Player2 (1500 in chips) 
 Seat 7: Player6 (1500 in chips) 
-Seat 8: Player0 (1887 in chips) 
+Seat 8: Hero (1887 in chips) 
 Seat 9: Player9 (1480 in chips) 
 Seat 10: Player8 (1500 in chips) 
 Player5: posts small blind 10
 Player2: posts big blind 20
 *** HOLE CARDS ***
-Dealt to Player0 [7c 5c]
+Dealt to Hero [7c 5c]
 Player6: folds 
-Player0: folds 
+Hero: folds 
 Player9: calls 20
 Player8: folds 
 Player7: folds 
@@ -184,7 +184,7 @@ Seat 4: Player4 (button) folded before Flop (didn't bet)
 Seat 5: Player5 (small blind) folded before Flop
 Seat 6: Player2 (big blind) folded before Flop
 Seat 7: Player6 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 9: Player9 collected (190)
 Seat 10: Player8 folded before Flop (didn't bet)
 
@@ -199,14 +199,14 @@ Seat 4: Player4 (1470 in chips)
 Seat 5: Player5 (1470 in chips) 
 Seat 6: Player2 (1480 in chips) 
 Seat 7: Player6 (1500 in chips) 
-Seat 8: Player0 (1887 in chips) 
+Seat 8: Hero (1887 in chips) 
 Seat 9: Player9 (1590 in chips) 
 Seat 10: Player8 (1500 in chips) 
 Player2: posts small blind 10
 Player6: posts big blind 20
 *** HOLE CARDS ***
-Dealt to Player0 [Jh Qc]
-Player0: folds 
+Dealt to Hero [Jh Qc]
+Hero: folds 
 Player9: raises 40 to 60
 Player8: folds 
 Player7: folds 
@@ -239,7 +239,7 @@ Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 (button) folded before Flop (didn't bet)
 Seat 6: Player2 (small blind) folded before Flop
 Seat 7: Player6 (big blind) folded before Flop
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 9: Player9 showed [Qs Kd] and lost with two pair, Queens and Eights
 Seat 10: Player8 folded before Flop (didn't bet)
 
@@ -254,13 +254,13 @@ Seat 4: Player4 (1470 in chips)
 Seat 5: Player5 (1470 in chips) 
 Seat 6: Player2 (1470 in chips) 
 Seat 7: Player6 (1480 in chips) 
-Seat 8: Player0 (1887 in chips) 
+Seat 8: Hero (1887 in chips) 
 Seat 9: Player9 (120 in chips) 
 Seat 10: Player8 (1500 in chips) 
 Player6: posts small blind 10
-Player0: posts big blind 20
+Hero: posts big blind 20
 *** HOLE CARDS ***
-Dealt to Player0 [7h 8c]
+Dealt to Hero [7h 8c]
 Player9: raises 100 to 120 and is all-in
 Player8: folds 
 Player7: folds 
@@ -270,12 +270,12 @@ Player4: folds
 Player5: folds 
 Player2: folds 
 Player6: folds 
-Player0: calls 100
+Hero: calls 100
 *** FLOP *** [4h 9h 3s]
 *** TURN *** [4h 9h 3s] [Ks]
 *** RIVER *** [4h 9h 3s Ks] [9s]
 *** SHOW DOWN ***
-Player0: shows [7h 8c] (a pair of Nines)
+Hero: shows [7h 8c] (a pair of Nines)
 Player9: shows [2d 2c] (two pair, Nines and Deuces)
 Player9 collected 250 from pot
 *** SUMMARY ***
@@ -288,7 +288,7 @@ Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 (button) folded before Flop (didn't bet)
 Seat 7: Player6 (small blind) folded before Flop
-Seat 8: Player0 (big blind) showed [7h 8c] and lost with a pair of Nines
+Seat 8: Hero (big blind) showed [7h 8c] and lost with a pair of Nines
 Seat 9: Player9 showed [2d 2c] and won (250) with two pair, Nines and Deuces
 Seat 10: Player8 folded before Flop (didn't bet)
 
@@ -303,13 +303,13 @@ Seat 4: Player4 (1470 in chips)
 Seat 5: Player5 (1470 in chips) 
 Seat 6: Player2 (1470 in chips) 
 Seat 7: Player6 (1470 in chips) 
-Seat 8: Player0 (1767 in chips) 
+Seat 8: Hero (1767 in chips) 
 Seat 9: Player9 (250 in chips) 
 Seat 10: Player8 (1500 in chips) 
-Player0: posts small blind 10
+Hero: posts small blind 10
 Player9: posts big blind 20
 *** HOLE CARDS ***
-Dealt to Player0 [2d 4s]
+Dealt to Hero [2d 4s]
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -318,7 +318,7 @@ Player4: calls 80
 Player5: folds 
 Player2: folds 
 Player6: calls 80
-Player0: folds 
+Hero: folds 
 Player9: folds 
 *** FLOP *** [Ks 8s 8c]
 Player3: checks 
@@ -342,7 +342,7 @@ Seat 4: Player4 folded on the Turn
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
 Seat 7: Player6 (button) collected (270)
-Seat 8: Player0 (small blind) folded before Flop
+Seat 8: Hero (small blind) folded before Flop
 Seat 9: Player9 (big blind) folded before Flop
 Seat 10: Player8 folded before Flop (didn't bet)
 
@@ -357,13 +357,13 @@ Seat 4: Player4 (1390 in chips)
 Seat 5: Player5 (1470 in chips) 
 Seat 6: Player2 (1470 in chips) 
 Seat 7: Player6 (1660 in chips) 
-Seat 8: Player0 (1757 in chips) 
+Seat 8: Hero (1757 in chips) 
 Seat 9: Player9 (230 in chips) 
 Seat 10: Player8 (1500 in chips) 
 Player9: posts small blind 15
 Player8: posts big blind 30
 *** HOLE CARDS ***
-Dealt to Player0 [Th Kd]
+Dealt to Hero [Th Kd]
 Player7: folds 
 Player1: folds 
 Player3: raises 90 to 120
@@ -371,7 +371,7 @@ Player4: folds
 Player5: folds 
 Player2: folds 
 Player6: folds 
-Player0: folds 
+Hero: folds 
 Player9: raises 110 to 230 and is all-in
 Player8: folds 
 Player3: calls 110
@@ -393,7 +393,7 @@ Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
 Seat 7: Player6 folded before Flop (didn't bet)
-Seat 8: Player0 (button) folded before Flop (didn't bet)
+Seat 8: Hero (button) folded before Flop (didn't bet)
 Seat 9: Player9 (small blind) showed [Ks 8d] and lost with a pair of Fives
 Seat 10: Player8 (big blind) folded before Flop
 
@@ -408,24 +408,24 @@ Seat 4: Player4 (1390 in chips)
 Seat 5: Player5 (1470 in chips) 
 Seat 6: Player2 (1470 in chips) 
 Seat 7: Player6 (1660 in chips) 
-Seat 8: Player0 (1757 in chips) 
+Seat 8: Hero (1757 in chips) 
 Seat 10: Player8 (1470 in chips) 
 Player7: posts small blind 15
 Player1: posts big blind 30
 *** HOLE CARDS ***
-Dealt to Player0 [Ah Td]
+Dealt to Hero [Ah Td]
 Player3: folds 
 Player4: folds 
 Player5: folds 
 Player2: folds 
 Player6: folds 
-Player0: raises 90 to 120
+Hero: raises 90 to 120
 Player8: folds 
 Player7: folds 
 Player1: folds 
-Uncalled bet (90) returned to Player0
-Player0 collected 75 from pot
-Player0: doesn't show hand 
+Uncalled bet (90) returned to Hero
+Hero collected 75 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot 75 | Rake 0 
 Seat 1: Player7 (small blind) folded before Flop
@@ -435,7 +435,7 @@ Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
 Seat 7: Player6 folded before Flop (didn't bet)
-Seat 8: Player0 collected (75)
+Seat 8: Hero collected (75)
 Seat 10: Player8 (button) folded before Flop (didn't bet)
 
 
@@ -449,17 +449,17 @@ Seat 4: Player4 (1390 in chips)
 Seat 5: Player5 (1470 in chips) 
 Seat 6: Player2 (1470 in chips) 
 Seat 7: Player6 (1660 in chips) 
-Seat 8: Player0 (1802 in chips) 
+Seat 8: Hero (1802 in chips) 
 Seat 10: Player8 (1470 in chips) 
 Player1: posts small blind 15
 Player3: posts big blind 30
 *** HOLE CARDS ***
-Dealt to Player0 [Js Qs]
+Dealt to Hero [Js Qs]
 Player4: folds 
 Player5: folds 
 Player2: raises 30 to 60
 Player6: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: calls 45
@@ -486,7 +486,7 @@ Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded on the River
 Seat 7: Player6 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -500,16 +500,16 @@ Seat 4: Player4 (1390 in chips)
 Seat 5: Player5 (1470 in chips) 
 Seat 6: Player2 (1140 in chips) 
 Seat 7: Player6 (1660 in chips) 
-Seat 8: Player0 (1802 in chips) 
+Seat 8: Hero (1802 in chips) 
 Seat 10: Player8 (1470 in chips) 
 Player3: posts small blind 15
 Player4: posts big blind 30
 *** HOLE CARDS ***
-Dealt to Player0 [6h Kc]
+Dealt to Hero [6h Kc]
 Player5: folds 
 Player2: folds 
 Player6: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -525,7 +525,7 @@ Seat 4: Player4 (big blind) collected (30)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
 Seat 7: Player6 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -539,15 +539,15 @@ Seat 4: Player4 (1405 in chips)
 Seat 5: Player5 (1470 in chips) 
 Seat 6: Player2 (1140 in chips) 
 Seat 7: Player6 (1660 in chips) 
-Seat 8: Player0 (1802 in chips) 
+Seat 8: Hero (1802 in chips) 
 Seat 10: Player8 (1470 in chips) 
 Player4: posts small blind 15
 Player5: posts big blind 30
 *** HOLE CARDS ***
-Dealt to Player0 [Td 9c]
+Dealt to Hero [Td 9c]
 Player2: raises 60 to 90
 Player6: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -566,7 +566,7 @@ Seat 4: Player4 (small blind) folded before Flop
 Seat 5: Player5 (big blind) folded before Flop
 Seat 6: Player2 collected (75)
 Seat 7: Player6 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -580,14 +580,14 @@ Seat 4: Player4 (1390 in chips)
 Seat 5: Player5 (1440 in chips) 
 Seat 6: Player2 (1185 in chips) 
 Seat 7: Player6 (1660 in chips) 
-Seat 8: Player0 (1802 in chips) 
+Seat 8: Hero (1802 in chips) 
 Seat 10: Player8 (1470 in chips) 
 Player5: posts small blind 15
 Player2: posts big blind 30
 *** HOLE CARDS ***
-Dealt to Player0 [4c Ts]
+Dealt to Hero [4c Ts]
 Player6: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -606,7 +606,7 @@ Seat 4: Player4 (button) folded before Flop (didn't bet)
 Seat 5: Player5 (small blind) folded before Flop
 Seat 6: Player2 (big blind) collected (30)
 Seat 7: Player6 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -620,7 +620,7 @@ Seat 4: Player4 (1390 in chips)
 Seat 5: Player5 (1425 in chips) 
 Seat 6: Player2 (1200 in chips) 
 Seat 7: Player6 (1660 in chips) 
-Seat 8: Player0 (1802 in chips) 
+Seat 8: Hero (1802 in chips) 
 Seat 10: Player8 (1470 in chips) 
 Player7: posts the ante 5
 Player1: posts the ante 5
@@ -629,13 +629,13 @@ Player4: posts the ante 5
 Player5: posts the ante 5
 Player2: posts the ante 5
 Player6: posts the ante 5
-Player0: posts the ante 5
+Hero: posts the ante 5
 Player8: posts the ante 5
 Player2: posts small blind 25
 Player6: posts big blind 50
 *** HOLE CARDS ***
-Dealt to Player0 [3c Th]
-Player0: folds 
+Dealt to Hero [3c Th]
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -656,7 +656,7 @@ Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 (button) folded before Flop (didn't bet)
 Seat 6: Player2 (small blind) folded before Flop
 Seat 7: Player6 (big blind) folded before Flop
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -670,7 +670,7 @@ Seat 4: Player4 (1385 in chips)
 Seat 5: Player5 (1420 in chips) 
 Seat 6: Player2 (1170 in chips) 
 Seat 7: Player6 (1605 in chips) 
-Seat 8: Player0 (1797 in chips) 
+Seat 8: Hero (1797 in chips) 
 Seat 10: Player8 (1465 in chips) 
 Player7: posts the ante 5
 Player1: posts the ante 5
@@ -679,12 +679,12 @@ Player4: posts the ante 5
 Player5: posts the ante 5
 Player2: posts the ante 5
 Player6: posts the ante 5
-Player0: posts the ante 5
+Hero: posts the ante 5
 Player8: posts the ante 5
 Player6: posts small blind 25
-Player0: posts big blind 50
+Hero: posts big blind 50
 *** HOLE CARDS ***
-Dealt to Player0 [Ad 3h]
+Dealt to Hero [Ad 3h]
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -693,7 +693,7 @@ Player4: raises 150 to 200
 Player5: folds 
 Player2: folds 
 Player6: folds 
-Player0: folds 
+Hero: folds 
 Uncalled bet (150) returned to Player4
 Player4 collected 170 from pot
 Player4: shows [Th Td] (a pair of Tens)
@@ -706,7 +706,7 @@ Seat 4: Player4 collected (170)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 (button) folded before Flop (didn't bet)
 Seat 7: Player6 (small blind) folded before Flop
-Seat 8: Player0 (big blind) folded before Flop
+Seat 8: Hero (big blind) folded before Flop
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -720,7 +720,7 @@ Seat 4: Player4 (1500 in chips)
 Seat 5: Player5 (1415 in chips) 
 Seat 6: Player2 (1165 in chips) 
 Seat 7: Player6 (1575 in chips) 
-Seat 8: Player0 (1742 in chips) 
+Seat 8: Hero (1742 in chips) 
 Seat 10: Player8 (1460 in chips) 
 Player7: posts the ante 5
 Player1: posts the ante 5
@@ -729,12 +729,12 @@ Player4: posts the ante 5
 Player5: posts the ante 5
 Player2: posts the ante 5
 Player6: posts the ante 5
-Player0: posts the ante 5
+Hero: posts the ante 5
 Player8: posts the ante 5
-Player0: posts small blind 25
+Hero: posts small blind 25
 Player8: posts big blind 50
 *** HOLE CARDS ***
-Dealt to Player0 [4c 3d]
+Dealt to Hero [4c 3d]
 Player7: folds 
 Player1: folds 
 Player3: raises 50 to 100
@@ -742,7 +742,7 @@ Player4: folds
 Player5: folds 
 Player2: folds 
 Player6: calls 100
-Player0: folds 
+Hero: folds 
 Player8: folds 
 *** FLOP *** [As 7h Td]
 Player3: bets 3110 and is all-in
@@ -760,7 +760,7 @@ Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
 Seat 7: Player6 (button) folded on the Flop
-Seat 8: Player0 (small blind) folded before Flop
+Seat 8: Hero (small blind) folded before Flop
 Seat 10: Player8 (big blind) folded before Flop
 
 
@@ -774,7 +774,7 @@ Seat 4: Player4 (1495 in chips)
 Seat 5: Player5 (1410 in chips) 
 Seat 6: Player2 (1160 in chips) 
 Seat 7: Player6 (1470 in chips) 
-Seat 8: Player0 (1712 in chips) 
+Seat 8: Hero (1712 in chips) 
 Seat 10: Player8 (1405 in chips) 
 Player7: posts the ante 5
 Player1: posts the ante 5
@@ -783,19 +783,19 @@ Player4: posts the ante 5
 Player5: posts the ante 5
 Player2: posts the ante 5
 Player6: posts the ante 5
-Player0: posts the ante 5
+Hero: posts the ante 5
 Player8: posts the ante 5
 Player8: posts small blind 25
 Player7: posts big blind 50
 *** HOLE CARDS ***
-Dealt to Player0 [Js Qd]
+Dealt to Hero [Js Qd]
 Player1: folds 
 Player3: raises 50 to 100
 Player4: folds 
 Player5: folds 
 Player2: folds 
 Player6: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Uncalled bet (50) returned to Player3
@@ -810,7 +810,7 @@ Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
 Seat 7: Player6 folded before Flop (didn't bet)
-Seat 8: Player0 (button) folded before Flop (didn't bet)
+Seat 8: Hero (button) folded before Flop (didn't bet)
 Seat 10: Player8 (small blind) folded before Flop
 
 
@@ -824,7 +824,7 @@ Seat 4: Player4 (1490 in chips)
 Seat 5: Player5 (1405 in chips) 
 Seat 6: Player2 (1155 in chips) 
 Seat 7: Player6 (1465 in chips) 
-Seat 8: Player0 (1707 in chips) 
+Seat 8: Hero (1707 in chips) 
 Seat 10: Player8 (1375 in chips) 
 Player7: posts the ante 5
 Player1: posts the ante 5
@@ -833,18 +833,18 @@ Player4: posts the ante 5
 Player5: posts the ante 5
 Player2: posts the ante 5
 Player6: posts the ante 5
-Player0: posts the ante 5
+Hero: posts the ante 5
 Player8: posts the ante 5
 Player7: posts small blind 25
 Player1: posts big blind 50
 *** HOLE CARDS ***
-Dealt to Player0 [4h Qh]
+Dealt to Hero [4h Qh]
 Player3: folds 
 Player4: folds 
 Player5: folds 
 Player2: folds 
 Player6: folds 
-Player0: folds 
+Hero: folds 
 Player8: raises 100 to 150
 Player7: folds 
 Player1: folds 
@@ -860,7 +860,7 @@ Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
 Seat 7: Player6 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 (button) collected (170)
 
 
@@ -874,7 +874,7 @@ Seat 4: Player4 (1485 in chips)
 Seat 5: Player5 (1400 in chips) 
 Seat 6: Player2 (1150 in chips) 
 Seat 7: Player6 (1460 in chips) 
-Seat 8: Player0 (1702 in chips) 
+Seat 8: Hero (1702 in chips) 
 Seat 10: Player8 (1490 in chips) 
 Player7: posts the ante 5
 Player1: posts the ante 5
@@ -883,17 +883,17 @@ Player4: posts the ante 5
 Player5: posts the ante 5
 Player2: posts the ante 5
 Player6: posts the ante 5
-Player0: posts the ante 5
+Hero: posts the ante 5
 Player8: posts the ante 5
 Player1: posts small blind 25
 Player3: posts big blind 50
 *** HOLE CARDS ***
-Dealt to Player0 [Td 7c]
+Dealt to Hero [Td 7c]
 Player4: folds 
 Player5: folds 
 Player2: folds 
 Player6: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -909,7 +909,7 @@ Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
 Seat 7: Player6 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -923,7 +923,7 @@ Seat 4: Player4 (1480 in chips)
 Seat 5: Player5 (1395 in chips) 
 Seat 6: Player2 (1145 in chips) 
 Seat 7: Player6 (1455 in chips) 
-Seat 8: Player0 (1697 in chips) 
+Seat 8: Hero (1697 in chips) 
 Seat 10: Player8 (1485 in chips) 
 Player7: posts the ante 5
 Player1: posts the ante 5
@@ -932,16 +932,16 @@ Player4: posts the ante 5
 Player5: posts the ante 5
 Player2: posts the ante 5
 Player6: posts the ante 5
-Player0: posts the ante 5
+Hero: posts the ante 5
 Player8: posts the ante 5
 Player3: posts small blind 25
 Player4: posts big blind 50
 *** HOLE CARDS ***
-Dealt to Player0 [8s 7h]
+Dealt to Hero [8s 7h]
 Player5: raises 100 to 150
 Player2: folds 
 Player6: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -959,7 +959,7 @@ Seat 4: Player4 (big blind) folded before Flop
 Seat 5: Player5 collected (170)
 Seat 6: Player2 folded before Flop (didn't bet)
 Seat 7: Player6 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -973,7 +973,7 @@ Seat 4: Player4 (1425 in chips)
 Seat 5: Player5 (1510 in chips) 
 Seat 6: Player2 (1140 in chips) 
 Seat 7: Player6 (1450 in chips) 
-Seat 8: Player0 (1692 in chips) 
+Seat 8: Hero (1692 in chips) 
 Seat 10: Player8 (1480 in chips) 
 Player7: posts the ante 10
 Player1: posts the ante 10
@@ -982,24 +982,24 @@ Player4: posts the ante 10
 Player5: posts the ante 10
 Player2: posts the ante 10
 Player6: posts the ante 10
-Player0: posts the ante 10
+Hero: posts the ante 10
 Player8: posts the ante 10
 Player4: posts small blind 50
 Player5: posts big blind 100
 *** HOLE CARDS ***
-Dealt to Player0 [Ts As]
+Dealt to Hero [Ts As]
 Player2: folds 
 Player6: folds 
-Player0: raises 200 to 300
+Hero: raises 200 to 300
 Player8: folds 
 Player7: folds 
 Player1: folds 
 Player3: folds 
 Player4: folds 
 Player5: folds 
-Uncalled bet (200) returned to Player0
-Player0 collected 340 from pot
-Player0: doesn't show hand 
+Uncalled bet (200) returned to Hero
+Hero collected 340 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot 340 | Rake 0 
 Seat 1: Player7 folded before Flop (didn't bet)
@@ -1009,7 +1009,7 @@ Seat 4: Player4 (small blind) folded before Flop
 Seat 5: Player5 (big blind) folded before Flop
 Seat 6: Player2 folded before Flop (didn't bet)
 Seat 7: Player6 folded before Flop (didn't bet)
-Seat 8: Player0 collected (340)
+Seat 8: Hero collected (340)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -1023,7 +1023,7 @@ Seat 4: Player4 (1365 in chips)
 Seat 5: Player5 (1400 in chips) 
 Seat 6: Player2 (1130 in chips) 
 Seat 7: Player6 (1440 in chips) 
-Seat 8: Player0 (1922 in chips) 
+Seat 8: Hero (1922 in chips) 
 Seat 10: Player8 (1470 in chips) 
 Player7: posts the ante 10
 Player1: posts the ante 10
@@ -1032,14 +1032,14 @@ Player4: posts the ante 10
 Player5: posts the ante 10
 Player2: posts the ante 10
 Player6: posts the ante 10
-Player0: posts the ante 10
+Hero: posts the ante 10
 Player8: posts the ante 10
 Player5: posts small blind 50
 Player2: posts big blind 100
 *** HOLE CARDS ***
-Dealt to Player0 [Th 7d]
+Dealt to Hero [Th 7d]
 Player6: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -1067,7 +1067,7 @@ Seat 4: Player4 (button) folded before Flop (didn't bet)
 Seat 5: Player5 (small blind) folded before Flop
 Seat 6: Player2 (big blind) collected (940)
 Seat 7: Player6 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -1081,7 +1081,7 @@ Seat 4: Player4 (1355 in chips)
 Seat 5: Player5 (1340 in chips) 
 Seat 6: Player2 (1660 in chips) 
 Seat 7: Player6 (1430 in chips) 
-Seat 8: Player0 (1912 in chips) 
+Seat 8: Hero (1912 in chips) 
 Seat 10: Player8 (1460 in chips) 
 Player7: posts the ante 10
 Player1: posts the ante 10
@@ -1090,13 +1090,13 @@ Player4: posts the ante 10
 Player5: posts the ante 10
 Player2: posts the ante 10
 Player6: posts the ante 10
-Player0: posts the ante 10
+Hero: posts the ante 10
 Player8: posts the ante 10
 Player2: posts small blind 50
 Player6: posts big blind 100
 *** HOLE CARDS ***
-Dealt to Player0 [Tc 4c]
-Player0: folds 
+Dealt to Hero [Tc 4c]
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: raises 1223 to 1323 and is all-in
@@ -1116,7 +1116,7 @@ Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 (button) folded before Flop (didn't bet)
 Seat 6: Player2 (small blind) folded before Flop
 Seat 7: Player6 (big blind) folded before Flop
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -1130,7 +1130,7 @@ Seat 4: Player4 (1345 in chips)
 Seat 5: Player5 (1330 in chips) 
 Seat 6: Player2 (1600 in chips) 
 Seat 7: Player6 (1320 in chips) 
-Seat 8: Player0 (1902 in chips) 
+Seat 8: Hero (1902 in chips) 
 Seat 10: Player8 (1450 in chips) 
 Player7: posts the ante 10
 Player1: posts the ante 10
@@ -1139,12 +1139,12 @@ Player4: posts the ante 10
 Player5: posts the ante 10
 Player2: posts the ante 10
 Player6: posts the ante 10
-Player0: posts the ante 10
+Hero: posts the ante 10
 Player8: posts the ante 10
 Player6: posts small blind 50
-Player0: posts big blind 100
+Hero: posts big blind 100
 *** HOLE CARDS ***
-Dealt to Player0 [7s 2h]
+Dealt to Hero [7s 2h]
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -1153,9 +1153,9 @@ Player4: folds
 Player5: folds 
 Player2: folds 
 Player6: folds 
-Uncalled bet (50) returned to Player0
-Player0 collected 190 from pot
-Player0: doesn't show hand 
+Uncalled bet (50) returned to Hero
+Hero collected 190 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot 190 | Rake 0 
 Seat 1: Player7 folded before Flop (didn't bet)
@@ -1165,7 +1165,7 @@ Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 (button) folded before Flop (didn't bet)
 Seat 7: Player6 (small blind) folded before Flop
-Seat 8: Player0 (big blind) collected (190)
+Seat 8: Hero (big blind) collected (190)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -1179,7 +1179,7 @@ Seat 4: Player4 (1335 in chips)
 Seat 5: Player5 (1320 in chips) 
 Seat 6: Player2 (1590 in chips) 
 Seat 7: Player6 (1260 in chips) 
-Seat 8: Player0 (2032 in chips) 
+Seat 8: Hero (2032 in chips) 
 Seat 10: Player8 (1440 in chips) 
 Player7: posts the ante 10
 Player1: posts the ante 10
@@ -1188,12 +1188,12 @@ Player4: posts the ante 10
 Player5: posts the ante 10
 Player2: posts the ante 10
 Player6: posts the ante 10
-Player0: posts the ante 10
+Hero: posts the ante 10
 Player8: posts the ante 10
-Player0: posts small blind 50
+Hero: posts small blind 50
 Player8: posts big blind 100
 *** HOLE CARDS ***
-Dealt to Player0 [Jc 6h]
+Dealt to Hero [Jc 6h]
 Player7: folds 
 Player1: folds 
 Player3: folds 
@@ -1201,7 +1201,7 @@ Player4: raises 100 to 200
 Player5: folds 
 Player2: raises 300 to 500
 Player6: raises 750 to 1250 and is all-in
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player4: folds 
 Player2: calls 750
@@ -1223,7 +1223,7 @@ Seat 4: Player4 folded before Flop
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 showed [Js Jd] and won (2940) with a pair of Jacks
 Seat 7: Player6 (button) showed [Kc Ad] and lost with high card Ace
-Seat 8: Player0 (small blind) folded before Flop
+Seat 8: Hero (small blind) folded before Flop
 Seat 10: Player8 (big blind) folded before Flop
 
 
@@ -1236,7 +1236,7 @@ Seat 3: Player3 (3125 in chips)
 Seat 4: Player4 (1125 in chips) 
 Seat 5: Player5 (1310 in chips) 
 Seat 6: Player2 (3270 in chips) 
-Seat 8: Player0 (1972 in chips) 
+Seat 8: Hero (1972 in chips) 
 Seat 10: Player8 (1330 in chips) 
 Player7: posts the ante 10
 Player1: posts the ante 10
@@ -1244,19 +1244,19 @@ Player3: posts the ante 10
 Player4: posts the ante 10
 Player5: posts the ante 10
 Player2: posts the ante 10
-Player0: posts the ante 10
+Hero: posts the ante 10
 Player8: posts the ante 10
 Player8: posts small blind 50
 Player7: posts big blind 100
 *** HOLE CARDS ***
-Dealt to Player0 [Tc Kd]
+Dealt to Hero [Tc Kd]
 Player4 said, "Hey Newfyboy,, you were ragging everyone about fishing at our last table,,,,what about you shoving all in to me with Q 10  in the small blind position and me busting you with KK"
 Player1: raises 1433 to 1533 and is all-in
 Player3: folds 
 Player4: folds 
 Player5: folds 
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Uncalled bet (1433) returned to Player1
@@ -1269,7 +1269,7 @@ Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 (button) folded before Flop (didn't bet)
+Seat 8: Hero (button) folded before Flop (didn't bet)
 Seat 10: Player8 (small blind) folded before Flop
 
 
@@ -1282,7 +1282,7 @@ Seat 3: Player3 (3115 in chips)
 Seat 4: Player4 (1115 in chips) 
 Seat 5: Player5 (1300 in chips) 
 Seat 6: Player2 (3260 in chips) 
-Seat 8: Player0 (1962 in chips) 
+Seat 8: Hero (1962 in chips) 
 Seat 10: Player8 (1270 in chips) 
 Player7: posts the ante 10
 Player1: posts the ante 10
@@ -1290,24 +1290,24 @@ Player3: posts the ante 10
 Player4: posts the ante 10
 Player5: posts the ante 10
 Player2: posts the ante 10
-Player0: posts the ante 10
+Hero: posts the ante 10
 Player8: posts the ante 10
 Player7: posts small blind 50
 Player1: posts big blind 100
 *** HOLE CARDS ***
-Dealt to Player0 [2s Js]
+Dealt to Hero [2s Js]
 Player3: folds 
 Player4: raises 200 to 300
-Player0 is connected 
+Hero is connected 
 Player5 said, "i wasnt ragging everyone..just the guy that donked me in a couple trnys"
 Player5: folds 
 Player2: folds 
 Player4 said, "oh,,,"
-Player0: folds 
-Player0 is sitting out
+Hero: folds 
+Hero is sitting out
 Player8: folds 
 Player7: folds 
-Player0 has returned
+Hero has returned
 Player1: folds 
 Uncalled bet (200) returned to Player4
 Player4 collected 330 from pot
@@ -1320,7 +1320,7 @@ Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 collected (330)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 (button) folded before Flop (didn't bet)
 
 
@@ -1333,7 +1333,7 @@ Seat 3: Player3 (3105 in chips)
 Seat 4: Player4 (1335 in chips) 
 Seat 5: Player5 (1290 in chips) 
 Seat 6: Player2 (3250 in chips) 
-Seat 8: Player0 (1952 in chips) 
+Seat 8: Hero (1952 in chips) 
 Seat 10: Player8 (1260 in chips) 
 Player7: posts the ante 15
 Player1: posts the ante 15
@@ -1341,16 +1341,16 @@ Player3: posts the ante 15
 Player4: posts the ante 15
 Player5: posts the ante 15
 Player2: posts the ante 15
-Player0: posts the ante 15
+Hero: posts the ante 15
 Player8: posts the ante 15
 Player1: posts small blind 75
 Player3: posts big blind 150
 *** HOLE CARDS ***
-Dealt to Player0 [9d Tc]
+Dealt to Hero [9d Tc]
 Player4: folds 
 Player5: folds 
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: raises 990 to 1140 and is all-in
 Player1: folds 
@@ -1366,7 +1366,7 @@ Seat 3: Player3 (big blind) folded before Flop
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -1379,7 +1379,7 @@ Seat 3: Player3 (2940 in chips)
 Seat 4: Player4 (1320 in chips) 
 Seat 5: Player5 (1275 in chips) 
 Seat 6: Player2 (3235 in chips) 
-Seat 8: Player0 (1937 in chips) 
+Seat 8: Hero (1937 in chips) 
 Seat 10: Player8 (1245 in chips) 
 Player7: posts the ante 15
 Player1: posts the ante 15
@@ -1387,16 +1387,16 @@ Player3: posts the ante 15
 Player4: posts the ante 15
 Player5: posts the ante 15
 Player2: posts the ante 15
-Player0: posts the ante 15
+Hero: posts the ante 15
 Player8: posts the ante 15
 Player3: posts small blind 75
 Player4: posts big blind 150
 *** HOLE CARDS ***
-Dealt to Player0 [Jh 7d]
+Dealt to Hero [Jh 7d]
 Player4 said, "just unlucky timing is all"
 Player5: folds 
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: raises 1320 to 1470 and is all-in
 Player1: folds 
@@ -1412,7 +1412,7 @@ Seat 3: Player3 (small blind) folded before Flop
 Seat 4: Player4 (big blind) folded before Flop
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -1425,7 +1425,7 @@ Seat 3: Player3 (2850 in chips)
 Seat 4: Player4 (1155 in chips) 
 Seat 5: Player5 (1260 in chips) 
 Seat 6: Player2 (3220 in chips) 
-Seat 8: Player0 (1922 in chips) 
+Seat 8: Hero (1922 in chips) 
 Seat 10: Player8 (1230 in chips) 
 Player7: posts the ante 15
 Player1: posts the ante 15
@@ -1433,14 +1433,14 @@ Player3: posts the ante 15
 Player4: posts the ante 15
 Player5: posts the ante 15
 Player2: posts the ante 15
-Player0: posts the ante 15
+Hero: posts the ante 15
 Player8: posts the ante 15
 Player4: posts small blind 75
 Player5: posts big blind 150
 *** HOLE CARDS ***
-Dealt to Player0 [Td 6d]
+Dealt to Hero [Td 6d]
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -1462,7 +1462,7 @@ Seat 3: Player3 (button) folded before Flop (didn't bet)
 Seat 4: Player4 (small blind) collected (420)
 Seat 5: Player5 (big blind) folded on the Flop
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -1475,7 +1475,7 @@ Seat 3: Player3 (2835 in chips)
 Seat 4: Player4 (1410 in chips) 
 Seat 5: Player5 (1095 in chips) 
 Seat 6: Player2 (3205 in chips) 
-Seat 8: Player0 (1907 in chips) 
+Seat 8: Hero (1907 in chips) 
 Seat 10: Player8 (1215 in chips) 
 Player7: posts the ante 15
 Player1: posts the ante 15
@@ -1483,13 +1483,13 @@ Player3: posts the ante 15
 Player4: posts the ante 15
 Player5: posts the ante 15
 Player2: posts the ante 15
-Player0: posts the ante 15
+Hero: posts the ante 15
 Player8: posts the ante 15
 Player5: posts small blind 75
 Player2: posts big blind 150
 *** HOLE CARDS ***
-Dealt to Player0 [3c 5h]
-Player0: folds 
+Dealt to Hero [3c 5h]
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -1508,7 +1508,7 @@ Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 (button) folded before Flop (didn't bet)
 Seat 5: Player5 (small blind) collected (420)
 Seat 6: Player2 (big blind) folded before Flop
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -1521,7 +1521,7 @@ Seat 3: Player3 (2820 in chips)
 Seat 4: Player4 (1395 in chips) 
 Seat 5: Player5 (1350 in chips) 
 Seat 6: Player2 (3040 in chips) 
-Seat 8: Player0 (1892 in chips) 
+Seat 8: Hero (1892 in chips) 
 Seat 10: Player8 (1200 in chips) 
 Player7: posts the ante 15
 Player1: posts the ante 15
@@ -1529,12 +1529,12 @@ Player3: posts the ante 15
 Player4: posts the ante 15
 Player5: posts the ante 15
 Player2: posts the ante 15
-Player0: posts the ante 15
+Hero: posts the ante 15
 Player8: posts the ante 15
 Player2: posts small blind 75
-Player0: posts big blind 150
+Hero: posts big blind 150
 *** HOLE CARDS ***
-Dealt to Player0 [Tc 8s]
+Dealt to Hero [Tc 8s]
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -1543,9 +1543,9 @@ Player5 said, "3 outered once again..had k 10"
 Player4: folds 
 Player5: folds 
 Player2: folds 
-Uncalled bet (75) returned to Player0
-Player0 collected 270 from pot
-Player0: doesn't show hand 
+Uncalled bet (75) returned to Hero
+Hero collected 270 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot 270 | Rake 0 
 Seat 1: Player7 folded before Flop (didn't bet)
@@ -1554,7 +1554,7 @@ Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 (button) folded before Flop (didn't bet)
 Seat 6: Player2 (small blind) folded before Flop
-Seat 8: Player0 (big blind) collected (270)
+Seat 8: Hero (big blind) collected (270)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -1567,7 +1567,7 @@ Seat 3: Player3 (2805 in chips)
 Seat 4: Player4 (1380 in chips) 
 Seat 5: Player5 (1335 in chips) 
 Seat 6: Player2 (2950 in chips) 
-Seat 8: Player0 (2072 in chips) 
+Seat 8: Hero (2072 in chips) 
 Seat 10: Player8 (1185 in chips) 
 Player7: posts the ante 15
 Player1: posts the ante 15
@@ -1575,12 +1575,12 @@ Player3: posts the ante 15
 Player4: posts the ante 15
 Player5: posts the ante 15
 Player2: posts the ante 15
-Player0: posts the ante 15
+Hero: posts the ante 15
 Player8: posts the ante 15
-Player0: posts small blind 75
+Hero: posts small blind 75
 Player8: posts big blind 150
 *** HOLE CARDS ***
-Dealt to Player0 [2c 6h]
+Dealt to Hero [2c 6h]
 Player7: folds 
 Player4 said, "i showed,,,,you see K 9"
 Player1: folds 
@@ -1588,7 +1588,7 @@ Player3: folds
 Player4: folds 
 Player5: folds 
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Uncalled bet (75) returned to Player8
 Player8 collected 270 from pot
 Player8: doesn't show hand 
@@ -1600,7 +1600,7 @@ Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 (button) folded before Flop (didn't bet)
-Seat 8: Player0 (small blind) folded before Flop
+Seat 8: Hero (small blind) folded before Flop
 Seat 10: Player8 (big blind) collected (270)
 
 
@@ -1613,7 +1613,7 @@ Seat 3: Player3 (2790 in chips)
 Seat 4: Player4 (1365 in chips) 
 Seat 5: Player5 (1320 in chips) 
 Seat 6: Player2 (2935 in chips) 
-Seat 8: Player0 (1982 in chips) 
+Seat 8: Hero (1982 in chips) 
 Seat 10: Player8 (1365 in chips) 
 Player7: posts the ante 15
 Player1: posts the ante 15
@@ -1621,22 +1621,22 @@ Player3: posts the ante 15
 Player4: posts the ante 15
 Player5: posts the ante 15
 Player2: posts the ante 15
-Player0: posts the ante 15
+Hero: posts the ante 15
 Player8: posts the ante 15
 Player8: posts small blind 75
 Player7: posts big blind 150
 *** HOLE CARDS ***
-Dealt to Player0 [Js 6d]
+Dealt to Hero [Js 6d]
 Player1: folds 
 Player3: folds 
 Player4: folds 
 Player5: folds 
 Player2: folds 
-Player0: raises 1817 to 1967 and is all-in
+Hero: raises 1817 to 1967 and is all-in
 Player8: folds 
 Player7: folds 
-Uncalled bet (1817) returned to Player0
-Player0 collected 495 from pot
+Uncalled bet (1817) returned to Hero
+Hero collected 495 from pot
 *** SUMMARY ***
 Total pot 495 | Rake 0 
 Seat 1: Player7 (big blind) folded before Flop
@@ -1645,7 +1645,7 @@ Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 (button) collected (495)
+Seat 8: Hero (button) collected (495)
 Seat 10: Player8 (small blind) folded before Flop
 
 
@@ -1658,7 +1658,7 @@ Seat 3: Player3 (2775 in chips)
 Seat 4: Player4 (1350 in chips) 
 Seat 5: Player5 (1305 in chips) 
 Seat 6: Player2 (2920 in chips) 
-Seat 8: Player0 (2312 in chips) 
+Seat 8: Hero (2312 in chips) 
 Seat 10: Player8 (1275 in chips) 
 Player7: posts the ante 15
 Player1: posts the ante 15
@@ -1666,17 +1666,17 @@ Player3: posts the ante 15
 Player4: posts the ante 15
 Player5: posts the ante 15
 Player2: posts the ante 15
-Player0: posts the ante 15
+Hero: posts the ante 15
 Player8: posts the ante 15
 Player7: posts small blind 75
 Player1: posts big blind 150
 *** HOLE CARDS ***
-Dealt to Player0 [4s Ks]
+Dealt to Hero [4s Ks]
 Player3: folds 
 Player4: folds 
 Player5: folds 
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Player8: raises 1110 to 1260 and is all-in
 Player7: folds 
 Player1: folds 
@@ -1691,7 +1691,7 @@ Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 (button) collected (495)
 
 
@@ -1704,7 +1704,7 @@ Seat 3: Player3 (2760 in chips)
 Seat 4: Player4 (1335 in chips) 
 Seat 5: Player5 (1290 in chips) 
 Seat 6: Player2 (2905 in chips) 
-Seat 8: Player0 (2297 in chips) 
+Seat 8: Hero (2297 in chips) 
 Seat 10: Player8 (1605 in chips) 
 Player7: posts the ante 20
 Player1: posts the ante 20
@@ -1712,16 +1712,16 @@ Player3: posts the ante 20
 Player4: posts the ante 20
 Player5: posts the ante 20
 Player2: posts the ante 20
-Player0: posts the ante 20
+Hero: posts the ante 20
 Player8: posts the ante 20
 Player1: posts small blind 100
 Player3: posts big blind 200
 *** HOLE CARDS ***
-Dealt to Player0 [5d Ac]
+Dealt to Hero [5d Ac]
 Player4: raises 600 to 800
 Player5: folds 
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -1736,7 +1736,7 @@ Seat 3: Player3 (big blind) folded before Flop
 Seat 4: Player4 collected (660)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -1749,7 +1749,7 @@ Seat 3: Player3 (2540 in chips)
 Seat 4: Player4 (1775 in chips) 
 Seat 5: Player5 (1270 in chips) 
 Seat 6: Player2 (2885 in chips) 
-Seat 8: Player0 (2277 in chips) 
+Seat 8: Hero (2277 in chips) 
 Seat 10: Player8 (1585 in chips) 
 Player7: posts the ante 20
 Player1: posts the ante 20
@@ -1757,23 +1757,23 @@ Player3: posts the ante 20
 Player4: posts the ante 20
 Player5: posts the ante 20
 Player2: posts the ante 20
-Player0: posts the ante 20
+Hero: posts the ante 20
 Player8: posts the ante 20
 Player3: posts small blind 100
 Player4: posts big blind 200
 *** HOLE CARDS ***
-Dealt to Player0 [Qc Ac]
+Dealt to Hero [Qc Ac]
 Player5: folds 
 Player2: folds 
-Player0: raises 2057 to 2257 and is all-in
+Hero: raises 2057 to 2257 and is all-in
 Player8: folds 
 Player7: folds 
 Player1: folds 
 Player3: folds 
 Player4: folds 
-Uncalled bet (2057) returned to Player0
-Player0 collected 660 from pot
-Player0: doesn't show hand 
+Uncalled bet (2057) returned to Hero
+Hero collected 660 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot 660 | Rake 0 
 Seat 1: Player7 folded before Flop (didn't bet)
@@ -1782,7 +1782,7 @@ Seat 3: Player3 (small blind) folded before Flop
 Seat 4: Player4 (big blind) folded before Flop
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 collected (660)
+Seat 8: Hero collected (660)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -1795,7 +1795,7 @@ Seat 3: Player3 (2420 in chips)
 Seat 4: Player4 (1555 in chips) 
 Seat 5: Player5 (1250 in chips) 
 Seat 6: Player2 (2865 in chips) 
-Seat 8: Player0 (2717 in chips) 
+Seat 8: Hero (2717 in chips) 
 Seat 10: Player8 (1565 in chips) 
 Player7: posts the ante 20
 Player1: posts the ante 20
@@ -1803,14 +1803,14 @@ Player3: posts the ante 20
 Player4: posts the ante 20
 Player5: posts the ante 20
 Player2: posts the ante 20
-Player0: posts the ante 20
+Hero: posts the ante 20
 Player8: posts the ante 20
 Player4: posts small blind 100
 Player5: posts big blind 200
 *** HOLE CARDS ***
-Dealt to Player0 [4d 8d]
+Dealt to Hero [4d 8d]
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Player8: raises 1345 to 1545 and is all-in
 Player7: folds 
 Player1: folds 
@@ -1828,7 +1828,7 @@ Seat 3: Player3 (button) folded before Flop (didn't bet)
 Seat 4: Player4 (small blind) folded before Flop
 Seat 5: Player5 (big blind) folded before Flop
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 collected (660)
 
 
@@ -1841,7 +1841,7 @@ Seat 3: Player3 (2400 in chips)
 Seat 4: Player4 (1435 in chips) 
 Seat 5: Player5 (1030 in chips) 
 Seat 6: Player2 (2845 in chips) 
-Seat 8: Player0 (2697 in chips) 
+Seat 8: Hero (2697 in chips) 
 Seat 10: Player8 (2005 in chips) 
 Player7: posts the ante 20
 Player1: posts the ante 20
@@ -1849,13 +1849,13 @@ Player3: posts the ante 20
 Player4: posts the ante 20
 Player5: posts the ante 20
 Player2: posts the ante 20
-Player0: posts the ante 20
+Hero: posts the ante 20
 Player8: posts the ante 20
 Player5: posts small blind 100
 Player2: posts big blind 200
 *** HOLE CARDS ***
-Dealt to Player0 [Tc 9d]
-Player0: folds 
+Dealt to Hero [Tc 9d]
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -1874,7 +1874,7 @@ Seat 3: Player3 collected (660)
 Seat 4: Player4 (button) folded before Flop (didn't bet)
 Seat 5: Player5 (small blind) folded before Flop
 Seat 6: Player2 (big blind) folded before Flop
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -1887,7 +1887,7 @@ Seat 3: Player3 (2840 in chips)
 Seat 4: Player4 (1415 in chips) 
 Seat 5: Player5 (910 in chips) 
 Seat 6: Player2 (2625 in chips) 
-Seat 8: Player0 (2677 in chips) 
+Seat 8: Hero (2677 in chips) 
 Seat 10: Player8 (1985 in chips) 
 Player7: posts the ante 20
 Player1: posts the ante 20
@@ -1895,12 +1895,12 @@ Player3: posts the ante 20
 Player4: posts the ante 20
 Player5: posts the ante 20
 Player2: posts the ante 20
-Player0: posts the ante 20
+Hero: posts the ante 20
 Player8: posts the ante 20
 Player2: posts small blind 100
-Player0: posts big blind 200
+Hero: posts big blind 200
 *** HOLE CARDS ***
-Dealt to Player0 [Th Jd]
+Dealt to Hero [Th Jd]
 Player8: folds 
 Player7: raises 1200 to 1400 and is all-in
 Player1: folds 
@@ -1908,7 +1908,7 @@ Player3: folds
 Player4: folds 
 Player5: folds 
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Uncalled bet (1200) returned to Player7
 Player7 collected 660 from pot
 *** SUMMARY ***
@@ -1919,7 +1919,7 @@ Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 (button) folded before Flop (didn't bet)
 Seat 6: Player2 (small blind) folded before Flop
-Seat 8: Player0 (big blind) folded before Flop
+Seat 8: Hero (big blind) folded before Flop
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -1932,7 +1932,7 @@ Seat 3: Player3 (2820 in chips)
 Seat 4: Player4 (1395 in chips) 
 Seat 5: Player5 (890 in chips) 
 Seat 6: Player2 (2505 in chips) 
-Seat 8: Player0 (2457 in chips) 
+Seat 8: Hero (2457 in chips) 
 Seat 10: Player8 (1965 in chips) 
 Player7: posts the ante 20
 Player1: posts the ante 20
@@ -1940,23 +1940,23 @@ Player3: posts the ante 20
 Player4: posts the ante 20
 Player5: posts the ante 20
 Player2: posts the ante 20
-Player0: posts the ante 20
+Hero: posts the ante 20
 Player8: posts the ante 20
-Player0: posts small blind 100
+Hero: posts small blind 100
 Player8: posts big blind 200
 *** HOLE CARDS ***
-Dealt to Player0 [Kc 8s]
+Dealt to Hero [Kc 8s]
 Player7: folds 
 Player1: folds 
 Player3: folds 
 Player4: folds 
 Player5: folds 
 Player2: folds 
-Player0: raises 1200 to 1400
+Hero: raises 1200 to 1400
 Player8: folds 
-Uncalled bet (1200) returned to Player0
-Player0 collected 560 from pot
-Player0: doesn't show hand 
+Uncalled bet (1200) returned to Hero
+Hero collected 560 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot 560 | Rake 0 
 Seat 1: Player7 folded before Flop (didn't bet)
@@ -1965,7 +1965,7 @@ Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 (button) folded before Flop (didn't bet)
-Seat 8: Player0 (small blind) collected (560)
+Seat 8: Hero (small blind) collected (560)
 Seat 10: Player8 (big blind) folded before Flop
 
 
@@ -1978,7 +1978,7 @@ Seat 3: Player3 (2800 in chips)
 Seat 4: Player4 (1375 in chips) 
 Seat 5: Player5 (870 in chips) 
 Seat 6: Player2 (2485 in chips) 
-Seat 8: Player0 (2797 in chips) 
+Seat 8: Hero (2797 in chips) 
 Seat 10: Player8 (1745 in chips) 
 Player7: posts the ante 20
 Player1: posts the ante 20
@@ -1986,18 +1986,18 @@ Player3: posts the ante 20
 Player4: posts the ante 20
 Player5: posts the ante 20
 Player2: posts the ante 20
-Player0: posts the ante 20
+Hero: posts the ante 20
 Player8: posts the ante 20
 Player8: posts small blind 100
 Player7: posts big blind 200
 *** HOLE CARDS ***
-Dealt to Player0 [9h 4h]
+Dealt to Hero [9h 4h]
 Player1: raises 868 to 1068 and is all-in
 Player3: raises 1712 to 2780 and is all-in
 Player4: folds 
 Player5: folds 
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Uncalled bet (1712) returned to Player3
@@ -2017,7 +2017,7 @@ Seat 3: Player3 showed [Qh Ad] and lost with two pair, Sevens and Fours
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 (button) folded before Flop (didn't bet)
+Seat 8: Hero (button) folded before Flop (didn't bet)
 Seat 10: Player8 (small blind) folded before Flop
 
 
@@ -2030,7 +2030,7 @@ Seat 3: Player3 (1712 in chips)
 Seat 4: Player4 (1355 in chips) 
 Seat 5: Player5 (850 in chips) 
 Seat 6: Player2 (2465 in chips) 
-Seat 8: Player0 (2777 in chips) 
+Seat 8: Hero (2777 in chips) 
 Seat 10: Player8 (1625 in chips) 
 Player7: posts the ante 20
 Player1: posts the ante 20
@@ -2038,17 +2038,17 @@ Player3: posts the ante 20
 Player4: posts the ante 20
 Player5: posts the ante 20
 Player2: posts the ante 20
-Player0: posts the ante 20
+Hero: posts the ante 20
 Player8: posts the ante 20
 Player7: posts small blind 100
 Player1: posts big blind 200
 *** HOLE CARDS ***
-Dealt to Player0 [9c 6h]
+Dealt to Hero [9c 6h]
 Player3: folds 
 Player4: folds 
 Player5: folds 
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Player8: raises 1405 to 1605 and is all-in
 Player7: folds 
 Player1: folds 
@@ -2063,7 +2063,7 @@ Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 (button) collected (660)
 
 
@@ -2076,7 +2076,7 @@ Seat 3: Player3 (1692 in chips)
 Seat 4: Player4 (1335 in chips) 
 Seat 5: Player5 (830 in chips) 
 Seat 6: Player2 (2445 in chips) 
-Seat 8: Player0 (2757 in chips) 
+Seat 8: Hero (2757 in chips) 
 Seat 10: Player8 (2065 in chips) 
 Player7: posts the ante 20
 Player1: posts the ante 20
@@ -2084,16 +2084,16 @@ Player3: posts the ante 20
 Player4: posts the ante 20
 Player5: posts the ante 20
 Player2: posts the ante 20
-Player0: posts the ante 20
+Hero: posts the ante 20
 Player8: posts the ante 20
 Player1: posts small blind 100
 Player3: posts big blind 200
 *** HOLE CARDS ***
-Dealt to Player0 [Qh 3h]
+Dealt to Hero [Qh 3h]
 Player4: folds 
 Player5: raises 610 to 810 and is all-in
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -2109,7 +2109,7 @@ Seat 3: Player3 (big blind) folded before Flop
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 collected (660)
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -2122,7 +2122,7 @@ Seat 3: Player3 (1472 in chips)
 Seat 4: Player4 (1315 in chips) 
 Seat 5: Player5 (1270 in chips) 
 Seat 6: Player2 (2425 in chips) 
-Seat 8: Player0 (2737 in chips) 
+Seat 8: Hero (2737 in chips) 
 Seat 10: Player8 (2045 in chips) 
 Player7: posts the ante 25
 Player1: posts the ante 25
@@ -2130,15 +2130,15 @@ Player3: posts the ante 25
 Player4: posts the ante 25
 Player5: posts the ante 25
 Player2: posts the ante 25
-Player0: posts the ante 25
+Hero: posts the ante 25
 Player8: posts the ante 25
 Player3: posts small blind 125
 Player4: posts big blind 250
 *** HOLE CARDS ***
-Dealt to Player0 [7c 9c]
+Dealt to Hero [7c 9c]
 Player5: folds 
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -2156,7 +2156,7 @@ Seat 3: Player3 (small blind) folded before Flop
 Seat 4: Player4 (big blind) collected (1200)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -2169,7 +2169,7 @@ Seat 3: Player3 (947 in chips)
 Seat 4: Player4 (1990 in chips) 
 Seat 5: Player5 (1245 in chips) 
 Seat 6: Player2 (2400 in chips) 
-Seat 8: Player0 (2712 in chips) 
+Seat 8: Hero (2712 in chips) 
 Seat 10: Player8 (2020 in chips) 
 Player7: posts the ante 25
 Player1: posts the ante 25
@@ -2177,14 +2177,14 @@ Player3: posts the ante 25
 Player4: posts the ante 25
 Player5: posts the ante 25
 Player2: posts the ante 25
-Player0: posts the ante 25
+Hero: posts the ante 25
 Player8: posts the ante 25
 Player4: posts small blind 125
 Player5: posts big blind 250
 *** HOLE CARDS ***
-Dealt to Player0 [8h Js]
+Dealt to Hero [8h Js]
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: raises 1956 to 2206 and is all-in
@@ -2208,7 +2208,7 @@ Seat 3: Player3 (button) showed [Ah Ad] and won (2419) with two pair, Aces and F
 Seat 4: Player4 (small blind) folded before Flop
 Seat 5: Player5 (big blind) folded before Flop
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -2221,7 +2221,7 @@ Seat 3: Player3 (2419 in chips)
 Seat 4: Player4 (1840 in chips) 
 Seat 5: Player5 (970 in chips) 
 Seat 6: Player2 (2375 in chips) 
-Seat 8: Player0 (2687 in chips) 
+Seat 8: Hero (2687 in chips) 
 Seat 10: Player8 (1995 in chips) 
 Player7: posts the ante 25
 Player1: posts the ante 25
@@ -2229,13 +2229,13 @@ Player3: posts the ante 25
 Player4: posts the ante 25
 Player5: posts the ante 25
 Player2: posts the ante 25
-Player0: posts the ante 25
+Hero: posts the ante 25
 Player8: posts the ante 25
 Player5: posts small blind 125
 Player2: posts big blind 250
 *** HOLE CARDS ***
-Dealt to Player0 [5c Ks]
-Player0: folds 
+Dealt to Hero [5c Ks]
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: raises 1009 to 1259 and is all-in
@@ -2253,7 +2253,7 @@ Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 (button) folded before Flop (didn't bet)
 Seat 5: Player5 (small blind) folded before Flop
 Seat 6: Player2 (big blind) folded before Flop
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -2266,7 +2266,7 @@ Seat 3: Player3 (2394 in chips)
 Seat 4: Player4 (1815 in chips) 
 Seat 5: Player5 (820 in chips) 
 Seat 6: Player2 (2100 in chips) 
-Seat 8: Player0 (2662 in chips) 
+Seat 8: Hero (2662 in chips) 
 Seat 10: Player8 (1970 in chips) 
 Player7: posts the ante 25
 Player1: posts the ante 25
@@ -2274,12 +2274,12 @@ Player3: posts the ante 25
 Player4: posts the ante 25
 Player5: posts the ante 25
 Player2: posts the ante 25
-Player0: posts the ante 25
+Hero: posts the ante 25
 Player8: posts the ante 25
 Player2: posts small blind 125
-Player0: posts big blind 250
+Hero: posts big blind 250
 *** HOLE CARDS ***
-Dealt to Player0 [4s Ks]
+Dealt to Hero [4s Ks]
 Player8: folds 
 Player4 said, "gamlet,,,A 10,,,nice suck out"
 Player7: folds 
@@ -2289,9 +2289,9 @@ Player3: folds
 Player4: folds 
 Player5: folds 
 Player2: folds 
-Uncalled bet (125) returned to Player0
-Player0 collected 450 from pot
-Player0: doesn't show hand 
+Uncalled bet (125) returned to Hero
+Hero collected 450 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot 450 | Rake 0 
 Seat 1: Player7 folded before Flop (didn't bet)
@@ -2300,7 +2300,7 @@ Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 (button) folded before Flop (didn't bet)
 Seat 6: Player2 (small blind) folded before Flop
-Seat 8: Player0 (big blind) collected (450)
+Seat 8: Hero (big blind) collected (450)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -2313,7 +2313,7 @@ Seat 3: Player3 (2369 in chips)
 Seat 4: Player4 (1790 in chips) 
 Seat 5: Player5 (795 in chips) 
 Seat 6: Player2 (1950 in chips) 
-Seat 8: Player0 (2962 in chips) 
+Seat 8: Hero (2962 in chips) 
 Seat 10: Player8 (1945 in chips) 
 Player7: posts the ante 25
 Player1: posts the ante 25
@@ -2321,23 +2321,23 @@ Player3: posts the ante 25
 Player4: posts the ante 25
 Player5: posts the ante 25
 Player2: posts the ante 25
-Player0: posts the ante 25
+Hero: posts the ante 25
 Player8: posts the ante 25
-Player0: posts small blind 125
+Hero: posts small blind 125
 Player8: posts big blind 250
 *** HOLE CARDS ***
-Dealt to Player0 [3d 7s]
+Dealt to Hero [3d 7s]
 Player7: folds 
 Player1: folds 
 Player3: folds 
 Player4: folds 
 Player5: folds 
 Player2: folds 
-Player0: raises 2687 to 2937 and is all-in
+Hero: raises 2687 to 2937 and is all-in
 Player8: folds 
-Uncalled bet (2687) returned to Player0
-Player0 collected 700 from pot
-Player0: doesn't show hand 
+Uncalled bet (2687) returned to Hero
+Hero collected 700 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot 700 | Rake 0 
 Seat 1: Player7 folded before Flop (didn't bet)
@@ -2346,7 +2346,7 @@ Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player2 (button) folded before Flop (didn't bet)
-Seat 8: Player0 (small blind) collected (700)
+Seat 8: Hero (small blind) collected (700)
 Seat 10: Player8 (big blind) folded before Flop
 
 
@@ -2359,7 +2359,7 @@ Seat 3: Player3 (2344 in chips)
 Seat 4: Player4 (1765 in chips) 
 Seat 5: Player5 (770 in chips) 
 Seat 6: Player2 (1925 in chips) 
-Seat 8: Player0 (3387 in chips) 
+Seat 8: Hero (3387 in chips) 
 Seat 10: Player8 (1670 in chips) 
 Player7: posts the ante 25
 Player1: posts the ante 25
@@ -2367,18 +2367,18 @@ Player3: posts the ante 25
 Player4: posts the ante 25
 Player5: posts the ante 25
 Player2: posts the ante 25
-Player0: posts the ante 25
+Hero: posts the ante 25
 Player8: posts the ante 25
 Player8: posts small blind 125
 Player7: posts big blind 250
 *** HOLE CARDS ***
-Dealt to Player0 [2d As]
+Dealt to Hero [2d As]
 Player1: raises 1509 to 1759 and is all-in
 Player3: folds 
 Player4: folds 
 Player5: calls 745 and is all-in
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Uncalled bet (1014) returned to Player1
@@ -2399,7 +2399,7 @@ Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 5: Player5 showed [Ts Td] and lost with a pair of Tens
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 (button) folded before Flop (didn't bet)
+Seat 8: Hero (button) folded before Flop (didn't bet)
 Seat 10: Player8 (small blind) folded before Flop
 
 
@@ -2411,23 +2411,23 @@ Seat 2: Player1 (3079 in chips)
 Seat 3: Player3 (2319 in chips) 
 Seat 4: Player4 (1740 in chips) 
 Seat 6: Player2 (1900 in chips) 
-Seat 8: Player0 (3362 in chips) 
+Seat 8: Hero (3362 in chips) 
 Seat 10: Player8 (1520 in chips) 
 Player7: posts the ante 25
 Player1: posts the ante 25
 Player3: posts the ante 25
 Player4: posts the ante 25
 Player2: posts the ante 25
-Player0: posts the ante 25
+Hero: posts the ante 25
 Player8: posts the ante 25
 Player7: posts small blind 125
 Player1: posts big blind 250
 *** HOLE CARDS ***
-Dealt to Player0 [Qh 2s]
+Dealt to Hero [Qh 2s]
 Player3: raises 250 to 500
 Player4: folds 
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player1: folds 
@@ -2441,7 +2441,7 @@ Seat 2: Player1 (big blind) folded before Flop
 Seat 3: Player3 collected (800)
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 (button) folded before Flop (didn't bet)
 
 
@@ -2453,32 +2453,32 @@ Seat 2: Player1 (2804 in chips)
 Seat 3: Player3 (2844 in chips) 
 Seat 4: Player4 (1715 in chips) 
 Seat 6: Player2 (1875 in chips) 
-Seat 8: Player0 (3337 in chips) 
+Seat 8: Hero (3337 in chips) 
 Seat 10: Player8 (1495 in chips) 
 Player7: posts the ante 25
 Player1: posts the ante 25
 Player3: posts the ante 25
 Player4: posts the ante 25
 Player2: posts the ante 25
-Player0: posts the ante 25
+Hero: posts the ante 25
 Player8: posts the ante 25
 Player1: posts small blind 125
 Player3: posts big blind 250
 *** HOLE CARDS ***
-Dealt to Player0 [Ad Ts]
+Dealt to Hero [Ad Ts]
 Player4: folds 
 Player2: folds 
-Player0: raises 500 to 750
+Hero: raises 500 to 750
 Player8: folds 
 Player7: raises 155 to 905 and is all-in
 Player1: folds 
 Player3: folds 
-Player0: calls 155
+Hero: calls 155
 *** FLOP *** [5h 7h As]
 *** TURN *** [5h 7h As] [8h]
 *** RIVER *** [5h 7h As 8h] [Jh]
 *** SHOW DOWN ***
-Player0: shows [Ad Ts] (a pair of Aces)
+Hero: shows [Ad Ts] (a pair of Aces)
 Player7: shows [Kh Kc] (a flush, King high)
 Player7 collected 2360 from pot
 *** SUMMARY ***
@@ -2489,7 +2489,7 @@ Seat 2: Player1 (small blind) folded before Flop
 Seat 3: Player3 (big blind) folded before Flop
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 showed [Ad Ts] and lost with a pair of Aces
+Seat 8: Hero showed [Ad Ts] and lost with a pair of Aces
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -2501,29 +2501,29 @@ Seat 2: Player1 (2654 in chips)
 Seat 3: Player3 (2569 in chips) 
 Seat 4: Player4 (1690 in chips) 
 Seat 6: Player2 (1850 in chips) 
-Seat 8: Player0 (2407 in chips) 
+Seat 8: Hero (2407 in chips) 
 Seat 10: Player8 (1470 in chips) 
 Player7: posts the ante 30
 Player1: posts the ante 30
 Player3: posts the ante 30
 Player4: posts the ante 30
 Player2: posts the ante 30
-Player0: posts the ante 30
+Hero: posts the ante 30
 Player8: posts the ante 30
 Player3: posts small blind 150
 Player4: posts big blind 300
 *** HOLE CARDS ***
-Dealt to Player0 [As Kc]
+Dealt to Hero [As Kc]
 Player2: folds 
-Player0: raises 2077 to 2377 and is all-in
+Hero: raises 2077 to 2377 and is all-in
 Player8: folds 
 Player7: folds 
 Player1: folds 
 Player3: folds 
 Player4: folds 
-Uncalled bet (2077) returned to Player0
-Player0 collected 960 from pot
-Player0: doesn't show hand 
+Uncalled bet (2077) returned to Hero
+Hero collected 960 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot 960 | Rake 0 
 Seat 1: Player7 folded before Flop (didn't bet)
@@ -2531,7 +2531,7 @@ Seat 2: Player1 (button) folded before Flop (didn't bet)
 Seat 3: Player3 (small blind) folded before Flop
 Seat 4: Player4 (big blind) folded before Flop
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 collected (960)
+Seat 8: Hero collected (960)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -2543,29 +2543,29 @@ Seat 2: Player1 (2624 in chips)
 Seat 3: Player3 (2389 in chips) 
 Seat 4: Player4 (1360 in chips) 
 Seat 6: Player2 (1820 in chips) 
-Seat 8: Player0 (3037 in chips) 
+Seat 8: Hero (3037 in chips) 
 Seat 10: Player8 (1440 in chips) 
 Player7: posts the ante 30
 Player1: posts the ante 30
 Player3: posts the ante 30
 Player4: posts the ante 30
 Player2: posts the ante 30
-Player0: posts the ante 30
+Hero: posts the ante 30
 Player8: posts the ante 30
 Player4: posts small blind 150
 Player2: posts big blind 300
 *** HOLE CARDS ***
-Dealt to Player0 [2s 2d]
-Player0: raises 2707 to 3007 and is all-in
+Dealt to Hero [2s 2d]
+Hero: raises 2707 to 3007 and is all-in
 Player8: folds 
 Player7: folds 
 Player1: folds 
 Player3: folds 
 Player4: folds 
 Player2: folds 
-Uncalled bet (2707) returned to Player0
-Player0 collected 960 from pot
-Player0: doesn't show hand 
+Uncalled bet (2707) returned to Hero
+Hero collected 960 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot 960 | Rake 0 
 Seat 1: Player7 folded before Flop (didn't bet)
@@ -2573,7 +2573,7 @@ Seat 2: Player1 folded before Flop (didn't bet)
 Seat 3: Player3 (button) folded before Flop (didn't bet)
 Seat 4: Player4 (small blind) folded before Flop
 Seat 6: Player2 (big blind) folded before Flop
-Seat 8: Player0 collected (960)
+Seat 8: Hero collected (960)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -2585,33 +2585,33 @@ Seat 2: Player1 (2594 in chips)
 Seat 3: Player3 (2359 in chips) 
 Seat 4: Player4 (1180 in chips) 
 Seat 6: Player2 (1490 in chips) 
-Seat 8: Player0 (3667 in chips) 
+Seat 8: Hero (3667 in chips) 
 Seat 10: Player8 (1410 in chips) 
 Player7: posts the ante 30
 Player1: posts the ante 30
 Player3: posts the ante 30
 Player4: posts the ante 30
 Player2: posts the ante 30
-Player0: posts the ante 30
+Hero: posts the ante 30
 Player8: posts the ante 30
 Player2: posts small blind 150
-Player0: posts big blind 300
+Hero: posts big blind 300
 *** HOLE CARDS ***
-Dealt to Player0 [Th Td]
+Dealt to Hero [Th Td]
 Player8: folds 
 Player7: folds 
 Player1: raises 2264 to 2564 and is all-in
 Player3: folds 
 Player4: folds 
 Player2: folds 
-Player0: calls 2264
+Hero: calls 2264
 *** FLOP *** [Ad Kc 7c]
 *** TURN *** [Ad Kc 7c] [9s]
 *** RIVER *** [Ad Kc 7c 9s] [Qs]
 *** SHOW DOWN ***
-Player0: shows [Th Td] (a pair of Tens)
+Hero: shows [Th Td] (a pair of Tens)
 Player1: shows [Tc 9c] (a pair of Nines)
-Player0 collected 5488 from pot
+Hero collected 5488 from pot
 Player1 finished the tournament in 7th place
 *** SUMMARY ***
 Total pot 5488 | Rake 0 
@@ -2621,7 +2621,7 @@ Seat 2: Player1 showed [Tc 9c] and lost with a pair of Nines
 Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 (button) folded before Flop (didn't bet)
 Seat 6: Player2 (small blind) folded before Flop
-Seat 8: Player0 (big blind) showed [Th Td] and won (5488) with a pair of Tens
+Seat 8: Hero (big blind) showed [Th Td] and won (5488) with a pair of Tens
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -2632,34 +2632,34 @@ Seat 1: Player7 (2270 in chips)
 Seat 3: Player3 (2329 in chips) 
 Seat 4: Player4 (1150 in chips) 
 Seat 6: Player2 (1310 in chips) 
-Seat 8: Player0 (6561 in chips) 
+Seat 8: Hero (6561 in chips) 
 Seat 10: Player8 (1380 in chips) 
 Player7: posts the ante 30
 Player3: posts the ante 30
 Player4: posts the ante 30
 Player2: posts the ante 30
-Player0: posts the ante 30
+Hero: posts the ante 30
 Player8: posts the ante 30
-Player0: posts small blind 150
+Hero: posts small blind 150
 Player8: posts big blind 300
 *** HOLE CARDS ***
-Dealt to Player0 [6d 7s]
+Dealt to Hero [6d 7s]
 Player7: folds 
 Player3: folds 
 Player4: folds 
 Player2: folds 
-Player0: raises 1800 to 2100
+Hero: raises 1800 to 2100
 Player8: folds 
-Uncalled bet (1800) returned to Player0
-Player0 collected 780 from pot
-Player0: doesn't show hand 
+Uncalled bet (1800) returned to Hero
+Hero collected 780 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot 780 | Rake 0 
 Seat 1: Player7 folded before Flop (didn't bet)
 Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 6: Player2 (button) folded before Flop (didn't bet)
-Seat 8: Player0 (small blind) collected (780)
+Seat 8: Hero (small blind) collected (780)
 Seat 10: Player8 (big blind) folded before Flop
 
 
@@ -2670,22 +2670,22 @@ Seat 1: Player7 (2240 in chips)
 Seat 3: Player3 (2299 in chips) 
 Seat 4: Player4 (1120 in chips) 
 Seat 6: Player2 (1280 in chips) 
-Seat 8: Player0 (7011 in chips) 
+Seat 8: Hero (7011 in chips) 
 Seat 10: Player8 (1050 in chips) 
 Player7: posts the ante 30
 Player3: posts the ante 30
 Player4: posts the ante 30
 Player2: posts the ante 30
-Player0: posts the ante 30
+Hero: posts the ante 30
 Player8: posts the ante 30
 Player8: posts small blind 150
 Player7: posts big blind 300
 *** HOLE CARDS ***
-Dealt to Player0 [Kc Jc]
+Dealt to Hero [Kc Jc]
 Player3: raises 300 to 600
 Player4: folds 
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Uncalled bet (300) returned to Player3
@@ -2697,7 +2697,7 @@ Seat 1: Player7 (big blind) folded before Flop
 Seat 3: Player3 collected (930)
 Seat 4: Player4 folded before Flop (didn't bet)
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 (button) folded before Flop (didn't bet)
+Seat 8: Hero (button) folded before Flop (didn't bet)
 Seat 10: Player8 (small blind) folded before Flop
 
 
@@ -2708,21 +2708,21 @@ Seat 1: Player7 (1910 in chips)
 Seat 3: Player3 (2899 in chips) 
 Seat 4: Player4 (1090 in chips) 
 Seat 6: Player2 (1250 in chips) 
-Seat 8: Player0 (6981 in chips) 
+Seat 8: Hero (6981 in chips) 
 Seat 10: Player8 (870 in chips) 
 Player7: posts the ante 30
 Player3: posts the ante 30
 Player4: posts the ante 30
 Player2: posts the ante 30
-Player0: posts the ante 30
+Hero: posts the ante 30
 Player8: posts the ante 30
 Player7: posts small blind 150
 Player3: posts big blind 300
 *** HOLE CARDS ***
-Dealt to Player0 [9c 4d]
+Dealt to Hero [9c 4d]
 Player4: raises 760 to 1060 and is all-in
 Player2: folds 
-Player0: folds 
+Hero: folds 
 Player8: folds 
 Player7: folds 
 Player3: folds 
@@ -2734,7 +2734,7 @@ Seat 1: Player7 (small blind) folded before Flop
 Seat 3: Player3 (big blind) folded before Flop
 Seat 4: Player4 collected (930)
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 (button) folded before Flop (didn't bet)
 
 
@@ -2745,34 +2745,34 @@ Seat 1: Player7 (1730 in chips)
 Seat 3: Player3 (2569 in chips) 
 Seat 4: Player4 (1690 in chips) 
 Seat 6: Player2 (1220 in chips) 
-Seat 8: Player0 (6951 in chips) 
+Seat 8: Hero (6951 in chips) 
 Seat 10: Player8 (840 in chips) 
 Player7: posts the ante 30
 Player3: posts the ante 30
 Player4: posts the ante 30
 Player2: posts the ante 30
-Player0: posts the ante 30
+Hero: posts the ante 30
 Player8: posts the ante 30
 Player3: posts small blind 150
 Player4: posts big blind 300
 *** HOLE CARDS ***
-Dealt to Player0 [4d Ac]
+Dealt to Hero [4d Ac]
 Player2: folds 
-Player0: raises 600 to 900
+Hero: raises 600 to 900
 Player8: folds 
 Player7: folds 
 Player3: folds 
 Player4: folds 
-Uncalled bet (600) returned to Player0
-Player0 collected 930 from pot
-Player0: doesn't show hand 
+Uncalled bet (600) returned to Hero
+Hero collected 930 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot 930 | Rake 0 
 Seat 1: Player7 (button) folded before Flop (didn't bet)
 Seat 3: Player3 (small blind) folded before Flop
 Seat 4: Player4 (big blind) folded before Flop
 Seat 6: Player2 folded before Flop (didn't bet)
-Seat 8: Player0 collected (930)
+Seat 8: Hero collected (930)
 Seat 10: Player8 folded before Flop (didn't bet)
 
 
@@ -2783,19 +2783,19 @@ Seat 1: Player7 (1700 in chips)
 Seat 3: Player3 (2389 in chips) 
 Seat 4: Player4 (1360 in chips) 
 Seat 6: Player2 (1190 in chips) 
-Seat 8: Player0 (7551 in chips) 
+Seat 8: Hero (7551 in chips) 
 Seat 10: Player8 (810 in chips) 
 Player7: posts the ante 30
 Player3: posts the ante 30
 Player4: posts the ante 30
 Player2: posts the ante 30
-Player0: posts the ante 30
+Hero: posts the ante 30
 Player8: posts the ante 30
 Player4: posts small blind 150
 Player2: posts big blind 300
 *** HOLE CARDS ***
-Dealt to Player0 [9d 6s]
-Player0: folds 
+Dealt to Hero [9d 6s]
+Hero: folds 
 Player8: raises 450 to 750
 Player7: folds 
 Player3: folds 
@@ -2810,7 +2810,7 @@ Seat 1: Player7 folded before Flop (didn't bet)
 Seat 3: Player3 (button) folded before Flop (didn't bet)
 Seat 4: Player4 (small blind) folded before Flop
 Seat 6: Player2 (big blind) folded before Flop
-Seat 8: Player0 folded before Flop (didn't bet)
+Seat 8: Hero folded before Flop (didn't bet)
 Seat 10: Player8 collected (930)
 
 
@@ -2821,36 +2821,36 @@ Seat 1: Player7 (1670 in chips)
 Seat 3: Player3 (2359 in chips) 
 Seat 4: Player4 (1180 in chips) 
 Seat 6: Player2 (860 in chips) 
-Seat 8: Player0 (7521 in chips) 
+Seat 8: Hero (7521 in chips) 
 Seat 10: Player8 (1410 in chips) 
 Player7: posts the ante 30
 Player3: posts the ante 30
 Player4: posts the ante 30
 Player2: posts the ante 30
-Player0: posts the ante 30
+Hero: posts the ante 30
 Player8: posts the ante 30
 Player2: posts small blind 150
-Player0: posts big blind 300
+Hero: posts big blind 300
 *** HOLE CARDS ***
-Dealt to Player0 [Kd 7c]
+Dealt to Hero [Kd 7c]
 Player8: folds 
 Player7: folds 
 Player3: folds 
 Player4: folds 
 Player2: raises 530 to 830 and is all-in
-Player0: calls 530
+Hero: calls 530
 *** FLOP *** [7s Kc 3s]
 *** TURN *** [7s Kc 3s] [9c]
 *** RIVER *** [7s Kc 3s 9c] [6s]
 *** SHOW DOWN ***
 Player2: shows [Ah 6c] (a pair of Sixes)
-Player0: shows [Kd 7c] (two pair, Kings and Sevens)
-Player0 collected 1840 from pot
+Hero: shows [Kd 7c] (two pair, Kings and Sevens)
+Hero collected 1840 from pot
 Player2 finished the tournament in 6th place
 Player7 finished the tournament in 1st place and received $40.00.
 Player3 finished the tournament in 1st place and received $40.00.
 Player4 finished the tournament in 1st place and received $40.00.
-Player0 finished the tournament in 1st place and received $40.00.
+Hero finished the tournament in 1st place and received $40.00.
 Player8 finished the tournament in 1st place and received $40.00.
 *** SUMMARY ***
 Total pot 1840 | Rake 0 
@@ -2859,7 +2859,7 @@ Seat 1: Player7 folded before Flop (didn't bet)
 Seat 3: Player3 folded before Flop (didn't bet)
 Seat 4: Player4 (button) folded before Flop (didn't bet)
 Seat 6: Player2 (small blind) showed [Ah 6c] and lost with a pair of Sixes
-Seat 8: Player0 (big blind) showed [Kd 7c] and won (1840) with two pair, Kings and Sevens
+Seat 8: Hero (big blind) showed [Kd 7c] and won (1840) with two pair, Kings and Sevens
 Seat 10: Player8 folded before Flop (didn't bet)
 
 

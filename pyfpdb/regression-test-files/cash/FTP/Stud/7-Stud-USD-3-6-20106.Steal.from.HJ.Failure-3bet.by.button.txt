@@ -3,12 +3,12 @@ Seat 1: bllodshot ($31), is sitting out
 Seat 2: kwuiyhw ($67)
 Seat 3: chasrigg ($294.50)
 Seat 4: goulartarm ($92.50)
-Seat 5: ExecDec ($306)
+Seat 5: Hero ($306)
 Seat 6: arjun1111 ($37)
 Seat 7: thebear666 ($84.50)
 Seat 8: shasatipu ($293.50)
 chasrigg antes $0.50
-ExecDec antes $0.50
+Hero antes $0.50
 kwuiyhw antes $0.50
 thebear666 antes $0.50
 arjun1111 antes $0.50
@@ -18,7 +18,7 @@ goulartarm antes $0.50
 Dealt to kwuiyhw [Th]
 Dealt to chasrigg [8h]
 Dealt to goulartarm [5c]
-Dealt to ExecDec [Td Jd] [As]
+Dealt to Hero [Td Jd] [As]
 Dealt to arjun1111 [8c]
 Dealt to thebear666 [Kc]
 Dealt to shasatipu [3c]
@@ -28,51 +28,51 @@ kwuiyhw folds
 chasrigg folds
 kwuiyhw is sitting out
 goulartarm folds
-ExecDec completes it to $3
+Hero completes it to $3
 arjun1111 calls $3
 thebear666 raises to $6
 shasatipu has 15 seconds left to act
 shasatipu calls $5
-ExecDec calls $3
+Hero calls $3
 arjun1111 calls $3
 *** 4TH STREET ***
-Dealt to ExecDec [Td Jd As] [Jc]
+Dealt to Hero [Td Jd As] [Jc]
 Dealt to arjun1111 [8c] [3h]
 Dealt to thebear666 [Kc] [2h]
 Dealt to shasatipu [3c] [2d]
-ExecDec checks
+Hero checks
 arjun1111 checks
 thebear666 has 15 seconds left to act
 thebear666 bets $3
 shasatipu folds
-ExecDec raises to $6
+Hero raises to $6
 arjun1111 folds
 thebear666 calls $3
 *** 5TH STREET ***
-Dealt to ExecDec [Td Jd As Jc] [Js]
+Dealt to Hero [Td Jd As Jc] [Js]
 Dealt to thebear666 [Kc 2h] [3s]
-ExecDec bets $6
+Hero bets $6
 thebear666 calls $6
 *** 6TH STREET ***
-Dealt to ExecDec [Td Jd As Jc Js] [7h]
+Dealt to Hero [Td Jd As Jc Js] [7h]
 Dealt to thebear666 [Kc 2h 3s] [4d]
-ExecDec bets $6
+Hero bets $6
 thebear666 calls $6
 *** 7TH STREET ***
-Dealt to ExecDec [Td Jd As Jc Js 7h] [2s]
-ExecDec bets $6
+Dealt to Hero [Td Jd As Jc Js 7h] [2s]
+Hero bets $6
 thebear666 calls $6
 *** SHOW DOWN ***
-ExecDec shows [Jd Td As Jc Js 7h 2s] three of a kind, Jacks
+Hero shows [Jd Td As Jc Js 7h 2s] three of a kind, Jacks
 thebear666 mucks
-ExecDec wins the pot ($72.50) with three of a kind, Jacks
+Hero wins the pot ($72.50) with three of a kind, Jacks
 *** SUMMARY ***
 Total pot $75.50 | Rake $3
 Seat 1: bllodshot is sitting out
 Seat 2: kwuiyhw folded on 3rd St.
 Seat 3: chasrigg folded on 3rd St.
 Seat 4: goulartarm folded on 3rd St.
-Seat 5: ExecDec showed [Jd Td As Jc Js 7h 2s] and won ($72.50) with three of a kind, Jacks
+Seat 5: Hero showed [Jd Td As Jc Js 7h 2s] and won ($72.50) with three of a kind, Jacks
 Seat 6: arjun1111 folded on 4th St.
 Seat 7: thebear666 mucked [Kd 7c Kc 2h 3s 4d 5h] - a pair of Kings
 Seat 8: shasatipu folded on 4th St.

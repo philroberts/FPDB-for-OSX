@@ -9,7 +9,9 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, version 3 of the License.
 #
-#TODO: gettextify
+
+import L10n
+_ = L10n.get_translation()
 
 import sys, random
 import pokereval
@@ -256,7 +258,7 @@ def odds_for_range(holder):
         b.append("__")
 
     if monte_carlo:
-        print 'No board given. Using Monte-Carlo simulation...'
+        print _('No board given. Using Monte-Carlo simulation...')
         iters = random.randint(25000, 125000)
     else:
         iters = -1

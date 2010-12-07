@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 146
+DB_VERSION = 147
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -260,6 +260,8 @@ class Database:
         
         if 'day_start' in gen:
             self.day_start = float(gen['day_start'])
+            
+        self.sessionTimeout = float(self.import_options['sessionTimeout'])
 
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql is None:
@@ -312,7 +314,7 @@ class Database:
 
         tables=self.cursor.execute(self.sql.query['list_tables'])
         tables=self.cursor.fetchall()
-        for table in (u'Actions', u'Autorates', u'Backings', u'Gametypes', u'Hands', u'HandsActions', u'HandsPlayers', u'HudCache', u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
+        for table in (u'Actions', u'Autorates', u'Backings', u'Gametypes', u'Hands', u'HandsActions', u'HandsPlayers', u'HudCache', u'SessionsCache', u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
             print "table:", table
             result+="###################\nTable "+table+"\n###################\n"
             rows=self.cursor.execute(self.sql.query['get'+table])
@@ -913,6 +915,56 @@ class Database:
         result = c.fetchall()
         return result
 
+    def resetPlayerIDs(self):
+        self.pcache = None
+
+    def getSqlPlayerIDs(self, pnames, siteid):
+        result = {}
+        if(self.pcache == None):
+            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key[0], key[1]))
+
+        for player in pnames:
+            result[player] = self.pcache[(player,siteid)]
+            # NOTE: Using the LambdaDict does the same thing as:
+            #if player in self.pcache:
+            #    #print "DEBUG: cachehit"
+            #    pass
+            #else:
+            #    self.pcache[player] = self.insertPlayer(player, siteid)
+            #result[player] = self.pcache[player]
+
+        return result
+
+    def insertPlayer(self, name, site_id):
+        result = None
+        _name = Charset.to_db_utf8(name)
+        c = self.get_cursor()
+        q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
+        q = q.replace('%s', self.sql.query['placeholder'])
+
+        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
+        #Usage:
+        #        INSERT INTO `tags` (`tag`, `count`)
+        #         VALUES ($tag, 1)
+        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
+
+
+        #print "DEBUG: name: %s site: %s" %(name, site_id)
+
+        c.execute (q, (site_id, _name))
+
+        tmp = c.fetchone()
+        if (tmp == None): #new player
+            c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
+                      ,(_name, site_id))
+            #Get last id might be faster here.
+            #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
+            result = self.get_last_insert_id(c)
+        else:
+            result = tmp[1]
+        return result
+
+
     def get_last_insert_id(self, cursor=None):
         ret = None
         try:
@@ -1177,6 +1229,7 @@ class Database:
             c.execute(self.sql.query['createHandsPlayersTable'])
             c.execute(self.sql.query['createHandsActionsTable'])
             c.execute(self.sql.query['createHudCacheTable'])
+            c.execute(self.sql.query['createSessionsCacheTable'])
             c.execute(self.sql.query['createBackingsTable'])
             c.execute(self.sql.query['createRawHands'])
             c.execute(self.sql.query['createRawTourneys'])
@@ -1543,6 +1596,11 @@ class Database:
             print _("Error rebuilding hudcache:"), str(sys.exc_value)
             print err
     #end def rebuild_hudcache
+    
+    def rebuild_sessionscache(self, h_start=None, v_start=None):
+        """clears sessionscache and rebuilds from the individual handsplayers records"""
+        #Will get to this soon
+        pass
 
     def get_hero_hudcache_start(self):
         """fetches earliest stylekey from hudcache for one of hero's player ids"""
@@ -1967,52 +2025,135 @@ class Database:
                 #print "DEBUG: Successfully updated HudCacho using UPDATE"
                 pass
             
-    def storeSessionsCache(self, pids, starttime, pdata):
+    def storeSessionsCache(self, pids, startTime, game, pdata):
         """Update cached sessions. If update fails because no record exists, do an insert."""
-        #In development
-        pass
+        
+        THRESHOLD = timedelta(seconds=int(self.sessionTimeout * 60)) #convert minutes to seconds
+        bigBet = int(Decimal(game['bb'])*200)
+        
+        check_sessionscache = self.sql.query['check_sessionscache']
+        check_sessionscache = check_sessionscache.replace('%s', self.sql.query['placeholder'])
+        update_sessionscache = self.sql.query['update_sessionscache']
+        update_sessionscache = update_sessionscache.replace('%s', self.sql.query['placeholder'])
+        update_sessionscache_start = self.sql.query['update_sessionscache_start']
+        update_sessionscache_start = update_sessionscache_start.replace('%s', self.sql.query['placeholder'])
+        update_sessionscache_end = self.sql.query['update_sessionscache_end']
+        update_sessionscache_end = update_sessionscache_end.replace('%s', self.sql.query['placeholder'])
+        insert_sessionscache = self.sql.query['insert_sessionscache']
+        insert_sessionscache = insert_sessionscache.replace('%s', self.sql.query['placeholder'])
+        merge_sessionscache = self.sql.query['merge_sessionscache']
+        merge_sessionscache = merge_sessionscache.replace('%s', self.sql.query['placeholder'])
+        delete_sessions = self.sql.query['delete_sessions']
+        delete_sessions = delete_sessions.replace('%s', self.sql.query['placeholder'])
+        
+        #Grab playerIds using hero names in HUD_Config.xml
+        try:
+            # derive list of program owner's player ids
+            self.hero = {}                               # name of program owner indexed by site id
+            self.hero_ids = []
+                                                         # make sure at least two values in list
+                                                         # so that tuple generation creates doesn't use
+                                                         # () or (1,) style
+            for site in self.config.get_supported_sites():
+                result = self.get_site_id(site)
+                if result:
+                    site_id = result[0][0]
+                    self.hero[site_id] = self.config.supported_sites[site].screen_name
+                    p_id = self.get_player_id(self.config, site, self.hero[site_id])
+                    if p_id:
+                        self.hero_ids.append(int(p_id))
 
-        #update_sessionscache = self.sql.query['update_sessionscache']
-        #update_sessionscache = update_sessionscache.replace('%s', self.sql.query['placeholder'])
-        #insert_sessionscache = self.sql.query['insert_sessionscache']
-        #insert_sessionscache = insert_sessionscache.replace('%s', self.sql.query['placeholder'])
-        #merge_sessionscache = self.sql.query['merge_sessionscache']
-        #merge_sessionscache = merge_sessionscache.replace('%s', self.sql.query['placeholder'])
+        except:
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print _("Error aquiring hero ids:"), str(sys.exc_value)
+            print err
 
-        #print "DEBUG: %s %s %s" %(hid, pids, pdata)
-        #inserts = []
-        #for p in pdata:
-            #line = [0]*5
+        inserts = []
+        for p in pdata:
+            if pids[p] in self.hero_ids:
+                line = [0]*5
+    
+                if (game['type']=='ring'): line[0] = 1 # count ring hands
+                if (game['type']=='tour'): line[1] = 1 # count tour hands
+                if (game['type']=='ring'): line[2] = pdata[p]['totalProfit'] #sum of profit
+                if (game['type']=='ring'): line[3] = float(Decimal(pdata[p]['totalProfit'])/Decimal(bigBet)) #sum of big bets won
+                line[4] = startTime
+                inserts.append(line)
 
-            #line[0] = 1 # HDs
-            #line[1] = pdata[p]['totalProfit']
+        cursor = self.get_cursor()
+
+        for row in inserts:
+            check = []
+            check.append(row[-1]-THRESHOLD)
+            check.append(row[-1]+THRESHOLD)
+            num = cursor.execute(check_sessionscache, check)
+            #DEBUG log.info(_("check yurself: '%s'") % (num.rowcount))
             
-            #line[2] = pids[p]    # playerId
-            #line[3] = sessionStart
-            #line[4] = sessionEnd
-            #inserts.append(line)
-
-
-        #cursor = self.get_cursor()
-
-        #for row in inserts:
             # Try to do the update first:
-            #num = cursor.execute(update_sessionscache, row)
-            #print "DEBUG: values: %s" % row[-3:]
-            # Test statusmessage to see if update worked, do insert if not
-            # num is a cursor in sqlite
-            #if ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
-                    #or (self.backend == self.MYSQL_INNODB and num == 0)
-                    #or (self.backend == self.SQLITE and num.rowcount == 0)):
-                #move the last 6 items in WHERE clause of row from the end of the array
+            if ((self.backend == self.PGSQL and cursor.statusmessage == "UPDATE 1")
+                    or (self.backend == self.MYSQL_INNODB and num == 1)
+                    or (self.backend == self.SQLITE and num.rowcount == 1)):
+                update = row + row[-1:]
+                mid = cursor.execute(update_sessionscache, update)
+                #DEBUG log.info(_("update '%s' rows, no change to session times ") % str(mid.rowcount))
+                if ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
+                    or (self.backend == self.MYSQL_INNODB and mid == 0)
+                    or (self.backend == self.SQLITE and mid.rowcount == 0)):
+                    update_start = row[-1:] + row + check
+                    start = cursor.execute(update_sessionscache_start, update_start)
+                    #DEBUG log.info(_("update '%s' rows, and updated sessionStart") % str(start.rowcount))
+                    if ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
+                        or (self.backend == self.MYSQL_INNODB and start == 0)
+                        or (self.backend == self.SQLITE and start.rowcount == 0)):
+                        update_end = row[-1:] + row + check
+                        end = cursor.execute(update_sessionscache_end, update_end)
+                        #DEBUG log.info(_("update '%s' rows, and updated sessionEnd") % str(end.rowcount))
+                    else:
+                        pass
+                else:
+                    pass
+            elif ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1" and "UPDATE" in cursor.statusmessage)
+                    or (self.backend == self.MYSQL_INNODB and num > 1)
+                    or (self.backend == self.SQLITE and num.rowcount > 1)):
+                #DEBUG log.info(_("multiple matches"))
+                pass
+                #merge two sessions if there are multiple matches
+                cursor.execute(merge_sessionscache, check)
+                merge = cursor.fetchone()
+                cursor.execute(delete_sessions, check)
+                cursor.execute(insert_sessionscache, merge)
+                update = row + row[-1:]
+                mid = cursor.execute(update_sessionscache, update)
+                #DEBUG log.info(_("update '%s' rows, no change to session times ") % str(mid.rowcount))
+                if ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
+                    or (self.backend == self.MYSQL_INNODB and mid == 0)
+                    or (self.backend == self.SQLITE and mid.rowcount == 0)):
+                    update_start = row[-1:] + row + check
+                    start = cursor.execute(update_sessionscache_start, update_start)
+                    #DEBUG log.info(_("update '%s' rows, and updated sessionStart") % str(start.rowcount))
+                    if ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
+                        or (self.backend == self.MYSQL_INNODB and start == 0)
+                        or (self.backend == self.SQLITE and start.rowcount == 0)):
+                        update_end = row[-1:] + row + check
+                        end = cursor.execute(update_sessionscache_end, update_end)
+                        #DEBUG log.info(_("update '%s' rows, and updated sessionEnd") % str(end.rowcount))
+                    else:
+                        pass
+                else:
+                    pass
+                
+            elif ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
+                    or (self.backend == self.MYSQL_INNODB and num == 0)
+                    or (self.backend == self.SQLITE and num.rowcount == 0)):
+                #move the last 2 items in WHERE clause of row from the end of the array
                 # to the beginning for the INSERT statement
                 #print "DEBUG: using INSERT: %s" % num
-                #row = row[-3:] + row[:-3]
-                #num = cursor.execute(insert_sessionscache, row)
-                #print "DEBUG: Successfully(?: %s) updated HudCacho using INSERT" % num
-            #else:
-                #print "DEBUG: Successfully updated HudCacho using UPDATE"
-                #pass
+                insert = row + row[-1:]
+                insert = insert[-2:] + insert[:-2]
+                #DEBUG log.info(_("insert row: '%s'") % (insert))
+                cursor.execute(insert_sessionscache, insert)
+            else:
+                pass
 
     def isDuplicate(self, gametypeID, siteHandNo):
         dup = False
@@ -2041,54 +2182,6 @@ class Database:
                                     #FIXME: recognise currency
         return tmp[0]
 
-    def resetPlayerIDs(self):
-        self.pcache = None
-
-    def getSqlPlayerIDs(self, pnames, siteid):
-        result = {}
-        if(self.pcache == None):
-            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key[0], key[1]))
-
-        for player in pnames:
-            result[player] = self.pcache[(player,siteid)]
-            # NOTE: Using the LambdaDict does the same thing as:
-            #if player in self.pcache:
-            #    #print "DEBUG: cachehit"
-            #    pass
-            #else:
-            #    self.pcache[player] = self.insertPlayer(player, siteid)
-            #result[player] = self.pcache[player]
-
-        return result
-
-    def insertPlayer(self, name, site_id):
-        result = None
-        _name = Charset.to_db_utf8(name)
-        c = self.get_cursor()
-        q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
-        q = q.replace('%s', self.sql.query['placeholder'])
-
-        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
-        #Usage:
-        #        INSERT INTO `tags` (`tag`, `count`)
-        #         VALUES ($tag, 1)
-        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
-
-
-        #print "DEBUG: name: %s site: %s" %(name, site_id)
-
-        c.execute (q, (site_id, _name))
-
-        tmp = c.fetchone()
-        if (tmp == None): #new player
-            c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
-                      ,(_name, site_id))
-            #Get last id might be faster here.
-            #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
-            result = self.get_last_insert_id(c)
-        else:
-            result = tmp[1]
-        return result
 
     def insertGameTypes(self, row):
         c = self.get_cursor()

@@ -2,7 +2,7 @@
 Table '99999999' 9-max Seat #5 is the button
 Seat 2: Player14 ($0.97 in chips) 
 Seat 3: Player23 ($1.53 in chips) 
-Seat 4: Player17 ($1.60 in chips) 
+Seat 4: Hero ($1.60 in chips) 
 Seat 5: Player5 ($2.91 in chips) 
 Seat 6: Player22 ($2.45 in chips) 
 Seat 7: Player19 ($2.56 in chips) 
@@ -10,14 +10,14 @@ Seat 8: Player3 ($3.01 in chips)
 Seat 9: Player21 ($0.58 in chips) 
 Player22: posts small blind $0.01
 Player19: posts big blind $0.02
-Player17: posts big blind $0.02
+Hero: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [2d Kc]
+Dealt to Hero [2d Kc]
 Player3: folds 
 Player21: folds 
 Player14: calls $0.02
 Player23: calls $0.02
-Player17: checks 
+Hero: checks 
 Player5: folds 
 Player22: calls $0.01
 Player19: checks 
@@ -26,7 +26,7 @@ Player22: bets $0.06
 Player19: folds 
 Player14: calls $0.06
 Player23: folds 
-Player17: folds 
+Hero: folds 
 *** TURN *** [Qh 8d 7s] [3s]
 Player22: bets $0.30
 Player14: folds 
@@ -38,7 +38,7 @@ Total pot $0.22 | Rake $0
 Board [Qh 8d 7s 3s]
 Seat 2: Player14 folded on the Turn
 Seat 3: Player23 folded on the Flop
-Seat 4: Player17 folded on the Flop
+Seat 4: Hero folded on the Flop
 Seat 5: Player5 (button) folded before Flop (didn't bet)
 Seat 6: Player22 (small blind) collected ($0.22)
 Seat 7: Player19 (big blind) folded on the Flop
@@ -51,7 +51,7 @@ PokerStars Game #85321652824:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #6 is the button
 Seat 2: Player14 ($0.89 in chips) 
 Seat 3: Player23 ($1.51 in chips) 
-Seat 4: Player17 ($1.58 in chips) 
+Seat 4: Hero ($1.58 in chips) 
 Seat 5: Player5 ($2.91 in chips) 
 Seat 6: Player22 ($2.59 in chips) 
 Seat 7: Player19 ($2.54 in chips) 
@@ -60,11 +60,11 @@ Seat 9: Player21 ($0.58 in chips)
 Player19: posts small blind $0.01
 Player3: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [3h Td]
+Dealt to Hero [3h Td]
 Player21: folds 
 Player14: folds 
 Player23: folds 
-Player17: folds 
+Hero: folds 
 Player5: raises $0.10 to $0.12
 Player22: calls $0.12
 Player11 joins the table at seat #1 
@@ -82,7 +82,7 @@ Total pot $0.27 | Rake $0
 Board [Js Qh 9s]
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player23 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player5 folded on the Flop
 Seat 6: Player22 (button) collected ($0.27)
 Seat 7: Player19 (small blind) folded before Flop
@@ -95,7 +95,7 @@ PokerStars Game #30102275294:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #7 is the button
 Seat 2: Player14 ($0.89 in chips) 
 Seat 3: Player23 ($1.51 in chips) 
-Seat 4: Player17 ($1.58 in chips) 
+Seat 4: Hero ($1.58 in chips) 
 Seat 5: Player5 ($2.79 in chips) 
 Seat 6: Player22 ($2.74 in chips) 
 Seat 7: Player19 ($2.53 in chips) 
@@ -105,23 +105,23 @@ Player3: posts small blind $0.01
 Player21: posts big blind $0.02
 Player11: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [Qc 5d]
+Dealt to Hero [Qc 5d]
 Player14: folds 
 Player23: folds 
-Player17: raises $0.04 to $0.06
+Hero: raises $0.04 to $0.06
 Player5: folds 
 Player22: folds 
 Player19: folds 
 Player3: folds 
 Player21: folds 
-Uncalled bet ($0.04) returned to Player17
-Player17 collected $0.05 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.04) returned to Hero
+Hero collected $0.05 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.05 | Rake $0 
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player23 folded before Flop (didn't bet)
-Seat 4: Player17 collected ($0.05)
+Seat 4: Hero collected ($0.05)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 (button) folded before Flop (didn't bet)
@@ -135,7 +135,7 @@ Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player11 ($1.60 in chips) 
 Seat 2: Player14 ($0.89 in chips) 
 Seat 3: Player23 ($1.51 in chips) 
-Seat 4: Player17 ($1.61 in chips) 
+Seat 4: Hero ($1.61 in chips) 
 Seat 5: Player5 ($2.79 in chips) 
 Seat 6: Player22 ($2.74 in chips) 
 Seat 7: Player19 ($2.53 in chips) 
@@ -144,10 +144,10 @@ Seat 9: Player21 ($0.56 in chips)
 Player21: posts small blind $0.01
 Player11: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [5d Qc]
+Dealt to Hero [5d Qc]
 Player14: folds 
 Player23: folds 
-Player17: folds 
+Hero: folds 
 Player5: folds 
 Player22: folds 
 Player19: folds 
@@ -166,7 +166,7 @@ Board [7s 3s Kd]
 Seat 1: Player11 (big blind) folded on the Flop
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player23 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -180,7 +180,7 @@ Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player11 ($1.58 in chips) 
 Seat 2: Player14 ($0.89 in chips) 
 Seat 3: Player23 ($1.51 in chips) 
-Seat 4: Player17 ($1.61 in chips) 
+Seat 4: Hero ($1.61 in chips) 
 Seat 5: Player5 ($2.79 in chips) 
 Seat 6: Player22 ($2.74 in chips) 
 Seat 7: Player19 ($2.53 in chips) 
@@ -189,9 +189,9 @@ Seat 9: Player21 ($0.58 in chips)
 Player11: posts small blind $0.01
 Player14: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [8d 7d]
+Dealt to Hero [8d 7d]
 Player23: folds 
-Player17: calls $0.02
+Hero: calls $0.02
 Player5: folds 
 Player22: folds 
 Player19: calls $0.02
@@ -202,16 +202,16 @@ Player14: checks
 *** FLOP *** [5s 9c 4c]
 Player11: bets $0.08
 Player14: calls $0.08
-Player17: calls $0.08
+Hero: calls $0.08
 Player19: folds 
 *** TURN *** [5s 9c 4c] [Td]
 Player11: bets $0.04
 Player14: calls $0.04
-Player17: calls $0.04
+Hero: calls $0.04
 *** RIVER *** [5s 9c 4c Td] [Kh]
 Player11: checks 
 Player14: bets $0.10
-Player17: folds 
+Hero: folds 
 Player11: folds 
 Uncalled bet ($0.10) returned to Player14
 Player14 collected $0.44 from pot
@@ -221,7 +221,7 @@ Board [5s 9c 4c Td Kh]
 Seat 1: Player11 (small blind) folded on the River
 Seat 2: Player14 (big blind) collected ($0.44)
 Seat 3: Player23 folded before Flop (didn't bet)
-Seat 4: Player17 folded on the River
+Seat 4: Hero folded on the River
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 folded on the Flop
@@ -235,7 +235,7 @@ Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player11 ($1.44 in chips) 
 Seat 2: Player14 ($1.19 in chips) 
 Seat 3: Player23 ($1.51 in chips) 
-Seat 4: Player17 ($1.47 in chips) 
+Seat 4: Hero ($1.47 in chips) 
 Seat 5: Player5 ($2.79 in chips) 
 Seat 6: Player22 ($2.74 in chips) 
 Seat 7: Player19 ($2.51 in chips) 
@@ -244,8 +244,8 @@ Seat 9: Player21 ($0.58 in chips)
 Player14: posts small blind $0.01
 Player23: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [3s 5d]
-Player17: folds 
+Dealt to Hero [3s 5d]
+Hero: folds 
 Player5: folds 
 Player22: raises $0.02 to $0.04
 Player19: folds 
@@ -269,7 +269,7 @@ Board [4h 6d 4s]
 Seat 1: Player11 (button) collected ($0.55)
 Seat 2: Player14 (small blind) folded before Flop
 Seat 3: Player23 (big blind) folded on the Flop
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded on the Flop
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -283,16 +283,16 @@ Table '99999999' 9-max Seat #2 is the button
 Seat 1: Player11 ($1.81 in chips) 
 Seat 2: Player14 ($1.18 in chips) 
 Seat 3: Player23 ($2.13 in chips) 
-Seat 4: Player17 ($1.47 in chips) 
+Seat 4: Hero ($1.47 in chips) 
 Seat 5: Player5 ($2.79 in chips) 
 Seat 6: Player22 ($2.56 in chips) 
 Seat 7: Player19 ($2.51 in chips) 
 Seat 8: Player3 ($3 in chips) 
 Seat 9: Player21 ($0.58 in chips) 
 Player23: posts small blind $0.01
-Player17: posts big blind $0.02
+Hero: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [2c 5d]
+Dealt to Hero [2c 5d]
 Player5: folds 
 Player22: folds 
 Player19: folds 
@@ -301,21 +301,21 @@ Player21: folds
 Player11: folds 
 Player14: calls $0.02
 Player23: calls $0.01
-Player17: checks 
+Hero: checks 
 *** FLOP *** [8s 4s Ah]
 Player23: checks 
-Player17: checks 
+Hero: checks 
 Player14: bets $0.06
 Player23: folds 
-Player17: calls $0.06
+Hero: calls $0.06
 *** TURN *** [8s 4s Ah] [Qs]
-Player17: bets $0.10
+Hero: bets $0.10
 Player14: calls $0.10
 *** RIVER *** [8s 4s Ah Qs] [9h]
-Player17: checks 
+Hero: checks 
 Player14: checks 
 *** SHOW DOWN ***
-Player17: shows [2c 5d] (high card Ace)
+Hero: shows [2c 5d] (high card Ace)
 Player14: shows [Ac Jc] (a pair of Aces)
 Player14 collected $0.38 from pot
 *** SUMMARY ***
@@ -324,7 +324,7 @@ Board [8s 4s Ah Qs 9h]
 Seat 1: Player11 folded before Flop (didn't bet)
 Seat 2: Player14 (button) showed [Ac Jc] and won ($0.38) with a pair of Aces
 Seat 3: Player23 (small blind) folded on the Flop
-Seat 4: Player17 (big blind) showed [2c 5d] and lost with high card Ace
+Seat 4: Hero (big blind) showed [2c 5d] and lost with high card Ace
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -338,16 +338,16 @@ Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player11 ($1.81 in chips) 
 Seat 2: Player14 ($1.38 in chips) 
 Seat 3: Player23 ($2.11 in chips) 
-Seat 4: Player17 ($1.29 in chips) 
+Seat 4: Hero ($1.29 in chips) 
 Seat 5: Player5 ($2.79 in chips) 
 Seat 6: Player22 ($2.56 in chips) 
 Seat 7: Player19 ($2.51 in chips) 
 Seat 8: Player3 ($3 in chips) 
 Seat 9: Player21 ($0.58 in chips) 
-Player17: posts small blind $0.01
+Hero: posts small blind $0.01
 Player5: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [4h Qh]
+Dealt to Hero [4h Qh]
 Player22: folds 
 Player19: folds 
 Player3: folds 
@@ -355,13 +355,13 @@ Player21: folds
 Player11: folds 
 Player14: folds 
 Player23: raises $0.04 to $0.06
-Player17: calls $0.05
+Hero: calls $0.05
 Player5: calls $0.04
 *** FLOP *** [7s 3s Ah]
-Player17: bets $0.20
+Hero: bets $0.20
 Player5: folds 
 Player23: raises $1.85 to $2.05 and is all-in
-Player17: folds 
+Hero: folds 
 Uncalled bet ($1.85) returned to Player23
 Player23 collected $0.58 from pot
 Player23: doesn't show hand 
@@ -371,7 +371,7 @@ Board [7s 3s Ah]
 Seat 1: Player11 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player23 (button) collected ($0.58)
-Seat 4: Player17 (small blind) folded on the Flop
+Seat 4: Hero (small blind) folded on the Flop
 Seat 5: Player5 (big blind) folded on the Flop
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -385,7 +385,7 @@ Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player11 ($1.81 in chips) 
 Seat 2: Player14 ($1.38 in chips) 
 Seat 3: Player23 ($2.43 in chips) 
-Seat 4: Player17 ($1.03 in chips) 
+Seat 4: Hero ($1.03 in chips) 
 Seat 5: Player5 ($2.73 in chips) 
 Seat 6: Player22 ($2.56 in chips) 
 Seat 7: Player19 ($2.51 in chips) 
@@ -394,14 +394,14 @@ Seat 9: Player21 ($0.58 in chips)
 Player5: posts small blind $0.01
 Player22: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Tc 4s]
+Dealt to Hero [Tc 4s]
 Player19: folds 
 Player3: folds 
 Player21: folds 
 Player11: folds 
 Player14: folds 
 Player23: raises $0.04 to $0.06
-Player17: folds 
+Hero: folds 
 Player5: folds 
 Player22: calls $0.04
 *** FLOP *** [2h 7d 3s]
@@ -419,7 +419,7 @@ Board [2h 7d 3s Ks]
 Seat 1: Player11 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player23 folded on the Turn
-Seat 4: Player17 (button) folded before Flop (didn't bet)
+Seat 4: Hero (button) folded before Flop (didn't bet)
 Seat 5: Player5 (small blind) folded before Flop
 Seat 6: Player22 (big blind) collected ($0.13)
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -433,7 +433,7 @@ Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player11 ($1.81 in chips) 
 Seat 2: Player14 ($1.38 in chips) 
 Seat 3: Player23 ($2.37 in chips) 
-Seat 4: Player17 ($1.83 in chips) 
+Seat 4: Hero ($1.83 in chips) 
 Seat 5: Player5 ($2.72 in chips) 
 Seat 6: Player22 ($2.63 in chips) 
 Seat 7: Player19 ($2.51 in chips) 
@@ -442,34 +442,34 @@ Seat 9: Player21 ($0.58 in chips)
 Player22: posts small blind $0.01
 Player19: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Ad 3s]
+Dealt to Hero [Ad 3s]
 Player3: folds 
 Player21: folds 
 Player11: folds 
 Player14 has timed out
 Player14: folds 
 Player23: folds 
-Player17: raises $0.06 to $0.08
+Hero: raises $0.06 to $0.08
 Player5: folds 
 Player22: folds 
 Player19: calls $0.06
 *** FLOP *** [6d Jd 7c]
 Player19: bets $0.04
-Player17: calls $0.04
+Hero: calls $0.04
 *** TURN *** [6d Jd 7c] [Js]
 Player19: checks 
-Player17: bets $0.26
+Hero: bets $0.26
 Player19: folds 
-Uncalled bet ($0.26) returned to Player17
-Player17 collected $0.25 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.26) returned to Hero
+Hero collected $0.25 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.25 | Rake $0 
 Board [6d Jd 7c Js]
 Seat 1: Player11 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player23 folded before Flop (didn't bet)
-Seat 4: Player17 collected ($0.25)
+Seat 4: Hero collected ($0.25)
 Seat 5: Player5 (button) folded before Flop (didn't bet)
 Seat 6: Player22 (small blind) folded before Flop
 Seat 7: Player19 (big blind) folded on the Turn
@@ -483,7 +483,7 @@ Table '99999999' 9-max Seat #6 is the button
 Seat 1: Player11 ($1.81 in chips) 
 Seat 2: Player14 ($1.38 in chips) 
 Seat 3: Player23 ($2.37 in chips) 
-Seat 4: Player17 ($1.96 in chips) 
+Seat 4: Hero ($1.96 in chips) 
 Seat 5: Player5 ($2.72 in chips) 
 Seat 6: Player22 ($2.62 in chips) 
 Seat 7: Player19 ($2.39 in chips) 
@@ -492,12 +492,12 @@ Seat 9: Player21 ($0.58 in chips)
 Player19: posts small blind $0.01
 Player3: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [2c 8c]
+Dealt to Hero [2c 8c]
 Player21: raises $0.06 to $0.08
 Player11: raises $0.10 to $0.18
 Player14: folds 
 Player23: folds 
-Player17: folds 
+Hero: folds 
 Player5: folds 
 Player22: folds 
 Player19: folds 
@@ -517,7 +517,7 @@ Board [Qs Jh 6h Jc 4h]
 Seat 1: Player11 showed [Ac Qd] and lost with two pair, Queens and Jacks
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player23 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 (button) folded before Flop (didn't bet)
 Seat 7: Player19 (small blind) folded before Flop
@@ -531,7 +531,7 @@ Table '99999999' 9-max Seat #7 is the button
 Seat 1: Player11 ($1.23 in chips) 
 Seat 2: Player14 ($1.38 in chips) 
 Seat 3: Player23 ($2.37 in chips) 
-Seat 4: Player17 ($1.96 in chips) 
+Seat 4: Hero ($1.96 in chips) 
 Seat 5: Player5 ($2.72 in chips) 
 Seat 6: Player22 ($2.62 in chips) 
 Seat 7: Player19 ($2.38 in chips) 
@@ -540,23 +540,23 @@ Seat 9: Player21 ($1.14 in chips)
 Player3: posts small blind $0.01
 Player21: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [9c 4h]
+Dealt to Hero [9c 4h]
 Player11: raises $0.04 to $0.06
 Player14: folds 
 Player23: folds 
-Player17: calls $0.06
+Hero: calls $0.06
 Player5: calls $0.06
 Player22: calls $0.06
 Player19: raises $0.18 to $0.24
 Player3: folds 
 Player21: folds 
 Player11: calls $0.18
-Player17: calls $0.18
+Hero: calls $0.18
 Player5: folds 
 Player22: folds 
 *** FLOP *** [Th 7c 5s]
 Player11: bets $0.23
-Player17: folds 
+Hero: folds 
 Player19: raises $1.91 to $2.14 and is all-in
 Player11: calls $0.76 and is all-in
 Uncalled bet ($1.15) returned to Player19
@@ -572,7 +572,7 @@ Board [Th 7c 5s Td 4s]
 Seat 1: Player11 showed [Kh Qh] and lost with a pair of Tens
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player23 folded before Flop (didn't bet)
-Seat 4: Player17 folded on the Flop
+Seat 4: Hero folded on the Flop
 Seat 5: Player5 folded before Flop
 Seat 6: Player22 folded before Flop
 Seat 7: Player19 (button) showed [As Ac] and won ($2.75) with two pair, Aces and Tens
@@ -585,7 +585,7 @@ PokerStars Game #27226323531:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #8 is the button
 Seat 2: Player14 ($1.38 in chips) 
 Seat 3: Player23 ($2.37 in chips) 
-Seat 4: Player17 ($1.72 in chips) 
+Seat 4: Hero ($1.72 in chips) 
 Seat 5: Player5 ($2.66 in chips) 
 Seat 6: Player22 ($2.56 in chips) 
 Seat 7: Player19 ($3.90 in chips) 
@@ -594,9 +594,9 @@ Seat 9: Player21 ($1.12 in chips)
 Player21: posts small blind $0.01
 Player14: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [3d 4d]
+Dealt to Hero [3d 4d]
 Player23: folds 
-Player17: calls $0.02
+Hero: calls $0.02
 Player11 leaves the table
 Player5: folds 
 Player22: folds 
@@ -606,11 +606,11 @@ Player21: folds
 Player14: checks 
 *** FLOP *** [8s Ad 8h]
 Player14: checks 
-Player17: checks 
+Hero: checks 
 Player3: checks 
 *** TURN *** [8s Ad 8h] [8c]
 Player14: bets $0.06
-Player17: folds 
+Hero: folds 
 Player3: folds 
 Uncalled bet ($0.06) returned to Player14
 Player14 collected $0.07 from pot
@@ -619,7 +619,7 @@ Total pot $0.07 | Rake $0
 Board [8s Ad 8h 8c]
 Seat 2: Player14 (big blind) collected ($0.07)
 Seat 3: Player23 folded before Flop (didn't bet)
-Seat 4: Player17 folded on the Turn
+Seat 4: Hero folded on the Turn
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -632,7 +632,7 @@ PokerStars Game #32657659628:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #9 is the button
 Seat 2: Player14 ($1.43 in chips) 
 Seat 3: Player23 ($2.37 in chips) 
-Seat 4: Player17 ($1.70 in chips) 
+Seat 4: Hero ($1.70 in chips) 
 Seat 5: Player5 ($2.66 in chips) 
 Seat 6: Player22 ($2.56 in chips) 
 Seat 7: Player19 ($3.90 in chips) 
@@ -641,8 +641,8 @@ Seat 9: Player21 ($1.11 in chips)
 Player14: posts small blind $0.01
 Player23: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Ad Kd]
-Player17: calls $0.02
+Dealt to Hero [Ad Kd]
+Hero: calls $0.02
 Player5: folds 
 Player22: folds 
 Player19: folds 
@@ -653,16 +653,16 @@ Player23: checks
 *** FLOP *** [5c 9s Kh]
 Player14: checks 
 Player23: checks 
-Player17: checks 
+Hero: checks 
 *** TURN *** [5c 9s Kh] [7s]
 Player14: bets $0.04
 Player23: calls $0.04
 Player21 leaves the table
-Player17: calls $0.04
+Hero: calls $0.04
 *** RIVER *** [5c 9s Kh 7s] [3s]
 Player14: bets $0.04
 Player23: raises $0.04 to $0.08
-Player17: folds 
+Hero: folds 
 Player18 joins the table at seat #1 
 Player14: calls $0.04
 *** SHOW DOWN ***
@@ -674,7 +674,7 @@ Total pot $0.34 | Rake $0
 Board [5c 9s Kh 7s 3s]
 Seat 2: Player14 (small blind) mucked [Kc Td]
 Seat 3: Player23 (big blind) showed [Qs Ts] and won ($0.34) with a flush, Queen high
-Seat 4: Player17 folded on the River
+Seat 4: Hero folded on the River
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -687,34 +687,34 @@ PokerStars Game #22479236161:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #2 is the button
 Seat 2: Player14 ($1.29 in chips) 
 Seat 3: Player23 ($2.57 in chips) 
-Seat 4: Player17 ($1.64 in chips) 
+Seat 4: Hero ($1.64 in chips) 
 Seat 5: Player5 ($2.66 in chips) 
 Seat 6: Player22 ($2.56 in chips) 
 Seat 7: Player19 ($3.90 in chips) 
 Seat 8: Player3 ($3 in chips) 
 Player23: posts small blind $0.01
-Player17: posts big blind $0.02
+Hero: posts big blind $0.02
 Player18: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [4c Js]
+Dealt to Hero [4c Js]
 Player5: folds 
 Player22: calls $0.02
 Player19: folds 
 Player3: folds 
 Player14: calls $0.02
 Player23: calls $0.01
-Player17: raises $0.12 to $0.14
+Hero: raises $0.12 to $0.14
 Player22: folds 
 Player14: folds 
 Player23: folds 
-Uncalled bet ($0.12) returned to Player17
-Player17 collected $0.08 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.12) returned to Hero
+Hero collected $0.08 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.08 | Rake $0 
 Seat 2: Player14 (button) folded before Flop
 Seat 3: Player23 (small blind) folded before Flop
-Seat 4: Player17 (big blind) collected ($0.08)
+Seat 4: Hero (big blind) collected ($0.08)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -726,32 +726,32 @@ PokerStars Game #12335306021:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #3 is the button
 Seat 2: Player14 ($1.27 in chips) 
 Seat 3: Player23 ($2.55 in chips) 
-Seat 4: Player17 ($1.70 in chips) 
+Seat 4: Hero ($1.70 in chips) 
 Seat 5: Player5 ($2.66 in chips) 
 Seat 6: Player22 ($2.54 in chips) 
 Seat 7: Player19 ($3.90 in chips) 
 Seat 8: Player3 ($3 in chips) 
-Player17: posts small blind $0.01
+Hero: posts small blind $0.01
 Player5: posts big blind $0.02
 Player18: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [Ts Qc]
+Dealt to Hero [Ts Qc]
 Player9 joins the table at seat #9 
 Player22: folds 
 Player19: folds 
 Player3: folds 
 Player14: folds 
 Player23: folds 
-Player17: raises $0.06 to $0.08
+Hero: raises $0.06 to $0.08
 Player5: folds 
-Uncalled bet ($0.06) returned to Player17
-Player17 collected $0.04 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.06) returned to Hero
+Hero collected $0.04 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.04 | Rake $0 
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player23 (button) folded before Flop (didn't bet)
-Seat 4: Player17 (small blind) collected ($0.04)
+Seat 4: Hero (small blind) collected ($0.04)
 Seat 5: Player5 (big blind) folded before Flop
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -763,7 +763,7 @@ PokerStars Game #10841092831:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #4 is the button
 Seat 2: Player14 ($1.27 in chips) 
 Seat 3: Player23 ($2.55 in chips) 
-Seat 4: Player17 ($1.72 in chips) 
+Seat 4: Hero ($1.72 in chips) 
 Seat 5: Player5 ($2.64 in chips) 
 Seat 6: Player22 ($2.54 in chips) 
 Seat 7: Player19 ($3.90 in chips) 
@@ -774,29 +774,29 @@ Player22: posts big blind $0.02
 Player9: posts big blind $0.02
 Player18: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [6d Ac]
+Dealt to Hero [6d Ac]
 Player19: folds 
 Player3: folds 
 Player9: checks 
 Player14: folds 
 Player23: folds 
-Player17: calls $0.02
+Hero: calls $0.02
 Player5: folds 
 Player22: checks 
 *** FLOP *** [7s 2d 3h]
 Player22: checks 
 Player9: checks 
-Player17: bets $0.04
+Hero: bets $0.04
 Player22: calls $0.04
 Player9: folds 
 *** TURN *** [7s 2d 3h] [5d]
 Player22: checks 
-Player17: checks 
+Hero: checks 
 *** RIVER *** [7s 2d 3h 5d] [7c]
 Player22: bets $0.02
-Player17: raises $0.06 to $0.08
+Hero: raises $0.06 to $0.08
 Player22: raises $0.06 to $0.14
-Player17: folds 
+Hero: folds 
 Uncalled bet ($0.06) returned to Player22
 Player22 collected $0.31 from pot
 Player22: doesn't show hand 
@@ -805,7 +805,7 @@ Total pot $0.31 | Rake $0
 Board [7s 2d 3h 5d 7c]
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player23 folded before Flop (didn't bet)
-Seat 4: Player17 (button) folded on the River
+Seat 4: Hero (button) folded on the River
 Seat 5: Player5 (small blind) folded before Flop
 Seat 6: Player22 (big blind) collected ($0.31)
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -818,7 +818,7 @@ PokerStars Game #13957140902:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #5 is the button
 Seat 2: Player14 ($1.27 in chips) 
 Seat 3: Player23 ($2.55 in chips) 
-Seat 4: Player17 ($1.58 in chips) 
+Seat 4: Hero ($1.58 in chips) 
 Seat 5: Player5 ($2.63 in chips) 
 Seat 6: Player22 ($2.71 in chips) 
 Seat 7: Player19 ($3.90 in chips) 
@@ -828,12 +828,12 @@ Player22: posts small blind $0.01
 Player19: posts big blind $0.02
 Player18: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [9s Kd]
+Dealt to Hero [9s Kd]
 Player3: folds 
 Player9: calls $0.02
 Player14: folds 
 Player23: folds 
-Player17: folds 
+Hero: folds 
 Player5: folds 
 Player22: calls $0.01
 Player19: checks 
@@ -857,7 +857,7 @@ Total pot $0.90 | Rake $0
 Board [9c Qh Tc 5h 2c]
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player23 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player5 (button) folded before Flop (didn't bet)
 Seat 6: Player22 (small blind) mucked [Js 8c]
 Seat 7: Player19 (big blind) folded on the Flop
@@ -870,7 +870,7 @@ PokerStars Game #91692634264:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #6 is the button
 Seat 2: Player14 ($1.27 in chips) 
 Seat 3: Player23 ($2.55 in chips) 
-Seat 4: Player17 ($1.58 in chips) 
+Seat 4: Hero ($1.58 in chips) 
 Seat 5: Player5 ($2.63 in chips) 
 Seat 6: Player22 ($2.27 in chips) 
 Seat 7: Player19 ($3.88 in chips) 
@@ -880,11 +880,11 @@ Player19: posts small blind $0.01
 Player3: posts big blind $0.02
 Player18: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [Ts 9h]
+Dealt to Hero [Ts 9h]
 Player9: calls $0.02
 Player14: folds 
 Player23: folds 
-Player17: raises $0.06 to $0.08
+Hero: raises $0.06 to $0.08
 Player5: folds 
 Player22: calls $0.08
 Player19: folds 
@@ -892,18 +892,18 @@ Player3: folds
 Player9: calls $0.06
 *** FLOP *** [Ad 8s Js]
 Player9: checks 
-Player17: checks 
+Hero: checks 
 Player22: bets $0.08
 Player9: folds 
-Player17: calls $0.08
+Hero: calls $0.08
 *** TURN *** [Ad 8s Js] [3s]
-Player17: checks 
+Hero: checks 
 Player22: bets $0.08
-Player17: calls $0.08
+Hero: calls $0.08
 *** RIVER *** [Ad 8s Js 3s] [Jh]
-Player17: checks 
+Hero: checks 
 Player22: bets $0.25
-Player17: folds 
+Hero: folds 
 Uncalled bet ($0.25) returned to Player22
 Player22 collected $0.59 from pot
 Player22: doesn't show hand 
@@ -912,7 +912,7 @@ Total pot $0.59 | Rake $0
 Board [Ad 8s Js 3s Jh]
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player23 folded before Flop (didn't bet)
-Seat 4: Player17 folded on the River
+Seat 4: Hero folded on the River
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 (button) collected ($0.59)
 Seat 7: Player19 (small blind) folded before Flop
@@ -925,7 +925,7 @@ PokerStars Game #18556118881:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #7 is the button
 Seat 2: Player14 ($1.27 in chips) 
 Seat 3: Player23 ($2.55 in chips) 
-Seat 4: Player17 ($1.34 in chips) 
+Seat 4: Hero ($1.34 in chips) 
 Seat 5: Player5 ($2.63 in chips) 
 Seat 6: Player22 ($2.62 in chips) 
 Seat 7: Player19 ($3.87 in chips) 
@@ -935,10 +935,10 @@ Player3: posts small blind $0.01
 Player9: posts big blind $0.02
 Player18: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [3c Tc]
+Dealt to Hero [3c Tc]
 Player14: folds 
 Player23: folds 
-Player17: folds 
+Hero: folds 
 Player5: folds 
 Player22: raises $0.04 to $0.06
 Player19: folds 
@@ -951,7 +951,7 @@ Player22: doesn't show hand
 Total pot $0.05 | Rake $0 
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player23 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 collected ($0.05)
 Seat 7: Player19 (button) folded before Flop (didn't bet)
@@ -965,7 +965,7 @@ Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player18 ($0.80 in chips) 
 Seat 2: Player14 ($1.27 in chips) 
 Seat 3: Player23 ($2.55 in chips) 
-Seat 4: Player17 ($1.34 in chips) 
+Seat 4: Hero ($1.34 in chips) 
 Seat 5: Player5 ($2.63 in chips) 
 Seat 6: Player22 ($2.65 in chips) 
 Seat 7: Player19 ($3.87 in chips) 
@@ -974,25 +974,25 @@ Seat 9: Player9 ($2.19 in chips)
 Player9: posts small blind $0.01
 Player18: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [6c Qs]
+Dealt to Hero [6c Qs]
 Player14: folds 
 Player23: folds 
-Player17: raises $0.04 to $0.06
+Hero: raises $0.04 to $0.06
 Player5: folds 
 Player22: folds 
 Player19: folds 
 Player3: folds 
 Player9: folds 
 Player18: folds 
-Uncalled bet ($0.04) returned to Player17
-Player17 collected $0.05 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.04) returned to Hero
+Hero collected $0.05 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.05 | Rake $0 
 Seat 1: Player18 (big blind) folded before Flop
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player23 folded before Flop (didn't bet)
-Seat 4: Player17 collected ($0.05)
+Seat 4: Hero collected ($0.05)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -1006,7 +1006,7 @@ Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player18 ($0.78 in chips) 
 Seat 2: Player14 ($1.27 in chips) 
 Seat 3: Player23 ($2.55 in chips) 
-Seat 4: Player17 ($2.17 in chips) 
+Seat 4: Hero ($2.17 in chips) 
 Seat 5: Player5 ($2.63 in chips) 
 Seat 6: Player22 ($2.65 in chips) 
 Seat 7: Player19 ($3.87 in chips) 
@@ -1015,9 +1015,9 @@ Seat 9: Player9 ($2.18 in chips)
 Player18: posts small blind $0.01
 Player14: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [6c Ac]
+Dealt to Hero [6c Ac]
 Player23: folds 
-Player17: calls $0.02
+Hero: calls $0.02
 Player5: folds 
 Player22: calls $0.02
 Player19: calls $0.02
@@ -1028,7 +1028,7 @@ Player14: checks
 *** FLOP *** [3s 7s Qh]
 Player18: checks 
 Player14: checks 
-Player17: checks 
+Hero: checks 
 Player22: checks 
 Player19: checks 
 Player9: checks 
@@ -1036,14 +1036,14 @@ Player9: checks
 Player23 leaves the table
 Player18: checks 
 Player14: checks 
-Player17: checks 
+Hero: checks 
 Player22: checks 
 Player19: checks 
 Player9: bets $0.02
 Player18: calls $0.02
 Player24 joins the table at seat #3 
 Player14: calls $0.02
-Player17: folds 
+Hero: folds 
 Player22: folds 
 Player19: folds 
 *** RIVER *** [3s 7s Qh Ah] [5d]
@@ -1060,7 +1060,7 @@ Board [3s 7s Qh Ah 5d]
 Seat 1: Player18 (small blind) folded on the River
 Seat 2: Player14 (big blind) folded on the River
 Seat 3: Player23 folded before Flop (didn't bet)
-Seat 4: Player17 folded on the Turn
+Seat 4: Hero folded on the Turn
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded on the Turn
 Seat 7: Player19 folded on the Turn
@@ -1074,7 +1074,7 @@ Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player18 ($0.74 in chips) 
 Seat 2: Player14 ($1.23 in chips) 
 Seat 3: Player24 ($2 in chips) 
-Seat 4: Player17 ($2.15 in chips) 
+Seat 4: Hero ($2.15 in chips) 
 Seat 5: Player5 ($2.63 in chips) 
 Seat 6: Player22 ($2.63 in chips) 
 Seat 7: Player19 ($3.85 in chips) 
@@ -1083,8 +1083,8 @@ Seat 9: Player9 ($2.32 in chips)
 Player14: posts small blind $0.01
 Player24: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [2c Qc]
-Player17: calls $0.02
+Dealt to Hero [2c Qc]
+Hero: calls $0.02
 Player5: folds 
 Player22: calls $0.02
 Player19: calls $0.02
@@ -1096,7 +1096,7 @@ Player24: checks
 *** FLOP *** [5d 2s 3c]
 Player14: checks 
 Player24: checks 
-Player17: bets $0.08
+Hero: bets $0.08
 Player22: folds 
 Player19: folds 
 Player3: folds 
@@ -1104,14 +1104,14 @@ Player14: calls $0.08
 Player24: folds 
 *** TURN *** [5d 2s 3c] [9d]
 Player14: checks 
-Player17: bets $0.20
+Hero: bets $0.20
 Player14: calls $0.20
 *** RIVER *** [5d 2s 3c 9d] [Jc]
 Player14: checks 
-Player17: checks 
+Hero: checks 
 *** SHOW DOWN ***
 Player14: shows [4c 4s] (a pair of Fours)
-Player17: mucks hand 
+Hero: mucks hand 
 Player14 collected $0.68 from pot
 *** SUMMARY ***
 Total pot $0.68 | Rake $0 
@@ -1119,7 +1119,7 @@ Board [5d 2s 3c 9d Jc]
 Seat 1: Player18 (button) folded before Flop (didn't bet)
 Seat 2: Player14 (small blind) showed [4c 4s] and won ($0.68) with a pair of Fours
 Seat 3: Player24 (big blind) folded on the Flop
-Seat 4: Player17 mucked [2c Qc]
+Seat 4: Hero mucked [2c Qc]
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded on the Flop
 Seat 7: Player19 folded on the Flop
@@ -1133,16 +1133,16 @@ Table '99999999' 9-max Seat #2 is the button
 Seat 1: Player18 ($0.74 in chips) 
 Seat 2: Player14 ($1.61 in chips) 
 Seat 3: Player24 ($1.98 in chips) 
-Seat 4: Player17 ($1.85 in chips) 
+Seat 4: Hero ($1.85 in chips) 
 Seat 5: Player5 ($2.63 in chips) 
 Seat 6: Player22 ($2.61 in chips) 
 Seat 7: Player19 ($3.83 in chips) 
 Seat 8: Player3 ($3 in chips) 
 Seat 9: Player9 ($2.32 in chips) 
 Player24: posts small blind $0.01
-Player17: posts big blind $0.02
+Hero: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Tc Td]
+Dealt to Hero [Tc Td]
 Player5: folds 
 Player22: folds 
 Player19: raises $0.06 to $0.08
@@ -1151,25 +1151,25 @@ Player9: folds
 Player18: folds 
 Player14: folds 
 Player24: calls $0.07
-Player17: raises $0.40 to $0.48
+Hero: raises $0.40 to $0.48
 Player19: raises $3.35 to $3.83 and is all-in
 Player24: folds 
-Player17: calls $1.37 and is all-in
+Hero: calls $1.37 and is all-in
 Uncalled bet ($1.98) returned to Player19
 *** FLOP *** [3s 5c 7c]
 *** TURN *** [3s 5c 7c] [Th]
 *** RIVER *** [3s 5c 7c Th] [Jh]
 *** SHOW DOWN ***
-Player17: shows [Tc Td] (three of a kind, Tens)
+Hero: shows [Tc Td] (three of a kind, Tens)
 Player19: shows [Ac As] (a pair of Aces)
-Player17 collected $3.63 from pot
+Hero collected $3.63 from pot
 *** SUMMARY ***
 Total pot $3.78 | Rake $0.15 
 Board [3s 5c 7c Th Jh]
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 (button) folded before Flop (didn't bet)
 Seat 3: Player24 (small blind) folded before Flop
-Seat 4: Player17 (big blind) showed [Tc Td] and won ($3.63) with three of a kind, Tens
+Seat 4: Hero (big blind) showed [Tc Td] and won ($3.63) with three of a kind, Tens
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 showed [Ac As] and lost with a pair of Aces
@@ -1183,16 +1183,16 @@ Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player18 ($0.74 in chips) 
 Seat 2: Player14 ($1.61 in chips) 
 Seat 3: Player24 ($1.90 in chips) 
-Seat 4: Player17 ($3.63 in chips) 
+Seat 4: Hero ($3.63 in chips) 
 Seat 5: Player5 ($2.63 in chips) 
 Seat 6: Player22 ($2.61 in chips) 
 Seat 7: Player19 ($1.98 in chips) 
 Seat 8: Player3 ($3 in chips) 
 Seat 9: Player9 ($2.32 in chips) 
-Player17: posts small blind $0.01
+Hero: posts small blind $0.01
 Player5: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Ad 2s]
+Dealt to Hero [Ad 2s]
 Player22: folds 
 Player19: folds 
 Player3: folds 
@@ -1200,23 +1200,23 @@ Player9: calls $0.02
 Player18: folds 
 Player14: folds 
 Player24: folds 
-Player17: calls $0.01
+Hero: calls $0.01
 Player5: checks 
 *** FLOP *** [6d 7h 3s]
-Player17: bets $0.06
+Hero: bets $0.06
 Player5: folds 
 Player9: calls $0.06
 *** TURN *** [6d 7h 3s] [Kc]
-Player17: checks 
+Hero: checks 
 Player9: bets $0.04
-Player17: calls $0.04
+Hero: calls $0.04
 *** RIVER *** [6d 7h 3s Kc] [5d]
-Player17: checks 
+Hero: checks 
 Player9: bets $0.04
-Player17: raises $0.22 to $0.26
+Hero: raises $0.22 to $0.26
 Player9: calls $0.22
 *** SHOW DOWN ***
-Player17: shows [Ad 2s] (high card Ace)
+Hero: shows [Ad 2s] (high card Ace)
 Player9: shows [Jc Js] (a pair of Jacks)
 Player9 collected $0.78 from pot
 *** SUMMARY ***
@@ -1225,7 +1225,7 @@ Board [6d 7h 3s Kc 5d]
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 (button) folded before Flop (didn't bet)
-Seat 4: Player17 (small blind) showed [Ad 2s] and lost with high card Ace
+Seat 4: Hero (small blind) showed [Ad 2s] and lost with high card Ace
 Seat 5: Player5 (big blind) folded on the Flop
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -1239,7 +1239,7 @@ Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player18 ($0.74 in chips) 
 Seat 2: Player14 ($1.61 in chips) 
 Seat 3: Player24 ($1.90 in chips) 
-Seat 4: Player17 ($3.25 in chips) 
+Seat 4: Hero ($3.25 in chips) 
 Seat 5: Player5 ($2.61 in chips) 
 Seat 6: Player22 ($2.61 in chips) 
 Seat 7: Player19 ($1.98 in chips) 
@@ -1248,22 +1248,22 @@ Seat 9: Player9 ($2.72 in chips)
 Player5: posts small blind $0.01
 Player22: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Ad 3s]
+Dealt to Hero [Ad 3s]
 Player19: folds 
 Player3: folds 
 Player9: calls $0.02
 Player18: folds 
 Player14: folds 
 Player24: folds 
-Player17: calls $0.02
+Hero: calls $0.02
 Player5: raises $0.10 to $0.12
 Player22: folds 
 Player9: calls $0.10
-Player17: calls $0.10
+Hero: calls $0.10
 *** FLOP *** [6h 2c Jd]
 Player5: bets $0.29
 Player9: folds 
-Player17: folds 
+Hero: folds 
 Uncalled bet ($0.29) returned to Player5
 Player5 collected $0.38 from pot
 Player5: doesn't show hand 
@@ -1273,7 +1273,7 @@ Board [6h 2c Jd]
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 (button) folded on the Flop
+Seat 4: Hero (button) folded on the Flop
 Seat 5: Player5 (small blind) collected ($0.38)
 Seat 6: Player22 (big blind) folded before Flop
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -1287,7 +1287,7 @@ Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player18 ($0.74 in chips) 
 Seat 2: Player14 ($1.61 in chips) 
 Seat 3: Player24 ($1.90 in chips) 
-Seat 4: Player17 ($3.13 in chips) 
+Seat 4: Hero ($3.13 in chips) 
 Seat 5: Player5 ($2.87 in chips) 
 Seat 6: Player22 ($2.59 in chips) 
 Seat 7: Player19 ($1.98 in chips) 
@@ -1296,26 +1296,26 @@ Seat 9: Player9 ($2.60 in chips)
 Player22: posts small blind $0.01
 Player19: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Kd Th]
+Dealt to Hero [Kd Th]
 Player3: folds 
 Player9 said, "tu pua madre farolero"
 Player9: folds 
 Player18: folds 
 Player14: folds 
 Player24: folds 
-Player17: raises $0.06 to $0.08
+Hero: raises $0.06 to $0.08
 Player5: folds 
 Player22: folds 
 Player19: folds 
-Uncalled bet ($0.06) returned to Player17
-Player17 collected $0.05 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.06) returned to Hero
+Hero collected $0.05 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.05 | Rake $0 
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 collected ($0.05)
+Seat 4: Hero collected ($0.05)
 Seat 5: Player5 (button) folded before Flop (didn't bet)
 Seat 6: Player22 (small blind) folded before Flop
 Seat 7: Player19 (big blind) folded before Flop
@@ -1329,7 +1329,7 @@ Table '99999999' 9-max Seat #6 is the button
 Seat 1: Player18 ($0.74 in chips) 
 Seat 2: Player14 ($1.61 in chips) 
 Seat 3: Player24 ($1.90 in chips) 
-Seat 4: Player17 ($3.16 in chips) 
+Seat 4: Hero ($3.16 in chips) 
 Seat 5: Player5 ($2.87 in chips) 
 Seat 6: Player22 ($2.58 in chips) 
 Seat 7: Player19 ($1.96 in chips) 
@@ -1338,13 +1338,13 @@ Seat 9: Player9 ($2.60 in chips)
 Player19: posts small blind $0.01
 Player3: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Ks 4h]
+Dealt to Hero [Ks 4h]
 Player9 has timed out
 Player9: folds 
 Player18: folds 
 Player14: folds 
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player5: folds 
 Player22: raises $0.02 to $0.04
 Player19: folds 
@@ -1357,7 +1357,7 @@ Total pot $0.05 | Rake $0
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 (button) collected ($0.05)
 Seat 7: Player19 (small blind) folded before Flop
@@ -1371,7 +1371,7 @@ Table '99999999' 9-max Seat #7 is the button
 Seat 1: Player18 ($0.74 in chips) 
 Seat 2: Player14 ($1.61 in chips) 
 Seat 3: Player24 ($1.90 in chips) 
-Seat 4: Player17 ($3.16 in chips) 
+Seat 4: Hero ($3.16 in chips) 
 Seat 5: Player5 ($2.87 in chips) 
 Seat 6: Player22 ($2.61 in chips) 
 Seat 7: Player19 ($1.95 in chips) 
@@ -1380,11 +1380,11 @@ Seat 9: Player9 ($2.60 in chips)
 Player3: posts small blind $0.01
 Player9: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Jd Th]
+Dealt to Hero [Jd Th]
 Player18: folds 
 Player14: folds 
 Player24: calls $0.02
-Player17: calls $0.02
+Hero: calls $0.02
 Player5: folds 
 Player22: folds 
 Player19: folds 
@@ -1393,23 +1393,23 @@ Player9: checks
 *** FLOP *** [4d 7d Kh]
 Player9: checks 
 Player24: checks 
-Player17: checks 
+Hero: checks 
 *** TURN *** [4d 7d Kh] [3c]
 Player9: checks 
 Player24: checks 
-Player17: bets $0.06
+Hero: bets $0.06
 Player9: folds 
 Player24: folds 
-Uncalled bet ($0.06) returned to Player17
-Player17 collected $0.07 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.06) returned to Hero
+Hero collected $0.07 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.07 | Rake $0 
 Board [4d 7d Kh 3c]
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded on the Turn
-Seat 4: Player17 collected ($0.07)
+Seat 4: Hero collected ($0.07)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 (button) folded before Flop (didn't bet)
@@ -1423,7 +1423,7 @@ Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player18 ($0.74 in chips) 
 Seat 2: Player14 ($1.61 in chips) 
 Seat 3: Player24 ($1.88 in chips) 
-Seat 4: Player17 ($3.21 in chips) 
+Seat 4: Hero ($3.21 in chips) 
 Seat 5: Player5 ($2.87 in chips) 
 Seat 6: Player22 ($2.61 in chips) 
 Seat 7: Player19 ($1.95 in chips) 
@@ -1432,10 +1432,10 @@ Seat 9: Player9 ($2.58 in chips)
 Player9: posts small blind $0.01
 Player18: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [9s 3d]
+Dealt to Hero [9s 3d]
 Player14: folds 
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player5: folds 
 Player22: folds 
 Player19: folds 
@@ -1456,7 +1456,7 @@ Board [3c Ac Kc Qc]
 Seat 1: Player18 (big blind) folded on the Turn
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -1470,7 +1470,7 @@ Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player18 ($0.70 in chips) 
 Seat 2: Player14 ($1.61 in chips) 
 Seat 3: Player24 ($1.88 in chips) 
-Seat 4: Player17 ($3.21 in chips) 
+Seat 4: Hero ($3.21 in chips) 
 Seat 5: Player5 ($2.87 in chips) 
 Seat 6: Player22 ($2.61 in chips) 
 Seat 7: Player19 ($1.95 in chips) 
@@ -1479,9 +1479,9 @@ Seat 9: Player9 ($2.62 in chips)
 Player18: posts small blind $0.01
 Player14: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [6h 5c]
+Dealt to Hero [6h 5c]
 Player24: folds 
-Player17: calls $0.02
+Hero: calls $0.02
 Player5: folds 
 Player22: calls $0.02
 Player19: folds 
@@ -1491,23 +1491,23 @@ Player18: folds
 Player14: checks 
 *** FLOP *** [4c 7c 6s]
 Player14: checks 
-Player17: bets $0.08
+Hero: bets $0.08
 Player22: folds 
 Player9: calls $0.08
 Player14: folds 
 *** TURN *** [4c 7c 6s] [Th]
-Player17: bets $0.32
+Hero: bets $0.32
 Player9: folds 
-Uncalled bet ($0.32) returned to Player17
-Player17 collected $0.25 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.32) returned to Hero
+Hero collected $0.25 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.25 | Rake $0 
 Board [4c 7c 6s Th]
 Seat 1: Player18 (small blind) folded before Flop
 Seat 2: Player14 (big blind) folded on the Flop
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 collected ($0.25)
+Seat 4: Hero collected ($0.25)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded on the Flop
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -1521,7 +1521,7 @@ Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player18 ($0.69 in chips) 
 Seat 2: Player14 ($1.59 in chips) 
 Seat 3: Player24 ($1.88 in chips) 
-Seat 4: Player17 ($3.36 in chips) 
+Seat 4: Hero ($3.36 in chips) 
 Seat 5: Player5 ($2.87 in chips) 
 Seat 6: Player22 ($2.59 in chips) 
 Seat 7: Player19 ($1.95 in chips) 
@@ -1530,8 +1530,8 @@ Seat 9: Player9 ($2.52 in chips)
 Player14: posts small blind $0.01
 Player24: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [7c Tc]
-Player17: calls $0.02
+Dealt to Hero [7c Tc]
+Hero: calls $0.02
 Player5: raises $0.10 to $0.12
 Player22: calls $0.12
 Player19: folds 
@@ -1540,25 +1540,25 @@ Player9: folds
 Player18: folds 
 Player14: folds 
 Player24: folds 
-Player17: calls $0.10
+Hero: calls $0.10
 *** FLOP *** [Jh 6c 5d]
-Player17: checks 
+Hero: checks 
 Player5: bets $0.29
 Player22: folds 
-Player17: calls $0.29
+Hero: calls $0.29
 *** TURN *** [Jh 6c 5d] [9d]
-Player17: bets $0.32
+Hero: bets $0.32
 Player5: folds 
-Uncalled bet ($0.32) returned to Player17
-Player17 collected $0.97 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.32) returned to Hero
+Hero collected $0.97 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.97 | Rake $0 
 Board [Jh 6c 5d 9d]
 Seat 1: Player18 (button) folded before Flop (didn't bet)
 Seat 2: Player14 (small blind) folded before Flop
 Seat 3: Player24 (big blind) folded before Flop
-Seat 4: Player17 collected ($0.97)
+Seat 4: Hero collected ($0.97)
 Seat 5: Player5 folded on the Turn
 Seat 6: Player22 folded on the Flop
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -1572,16 +1572,16 @@ Table '99999999' 9-max Seat #2 is the button
 Seat 1: Player18 ($0.69 in chips) 
 Seat 2: Player14 ($1.58 in chips) 
 Seat 3: Player24 ($1.86 in chips) 
-Seat 4: Player17 ($3.92 in chips) 
+Seat 4: Hero ($3.92 in chips) 
 Seat 5: Player5 ($2.46 in chips) 
 Seat 6: Player22 ($2.47 in chips) 
 Seat 7: Player19 ($1.95 in chips) 
 Seat 8: Player3 ($3 in chips) 
 Seat 9: Player9 ($2.52 in chips) 
 Player24: posts small blind $0.01
-Player17: posts big blind $0.02
+Hero: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [9c 3s]
+Dealt to Hero [9c 3s]
 Player5: folds 
 Player22: folds 
 Player19: folds 
@@ -1590,10 +1590,10 @@ Player9: calls $0.02
 Player18: folds 
 Player14: folds 
 Player24: calls $0.01
-Player17: checks 
+Hero: checks 
 *** FLOP *** [2s Jd Qd]
 Player24: checks 
-Player17: folds 
+Hero: folds 
 Player9: checks 
 *** TURN *** [2s Jd Qd] [7h]
 Player24: bets $0.06
@@ -1606,7 +1606,7 @@ Board [2s Jd Qd 7h]
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 (button) folded before Flop (didn't bet)
 Seat 3: Player24 (small blind) collected ($0.06)
-Seat 4: Player17 (big blind) folded on the Flop
+Seat 4: Hero (big blind) folded on the Flop
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -1620,16 +1620,16 @@ Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player18 ($0.69 in chips) 
 Seat 2: Player14 ($1.58 in chips) 
 Seat 3: Player24 ($1.90 in chips) 
-Seat 4: Player17 ($3.90 in chips) 
+Seat 4: Hero ($3.90 in chips) 
 Seat 5: Player5 ($2.46 in chips) 
 Seat 6: Player22 ($2.47 in chips) 
 Seat 7: Player19 ($1.95 in chips) 
 Seat 8: Player3 ($3 in chips) 
 Seat 9: Player9 ($2.50 in chips) 
-Player17: posts small blind $0.01
+Hero: posts small blind $0.01
 Player5: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [As 3c]
+Dealt to Hero [As 3c]
 Player22: calls $0.02
 Player19: folds 
 Player3: folds 
@@ -1637,7 +1637,7 @@ Player9: calls $0.02
 Player18: folds 
 Player14: folds 
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player5: checks 
 *** FLOP *** [6s Js 9d]
 Player5: checks 
@@ -1653,7 +1653,7 @@ Board [6s Js 9d]
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 (button) folded before Flop (didn't bet)
-Seat 4: Player17 (small blind) folded before Flop
+Seat 4: Hero (small blind) folded before Flop
 Seat 5: Player5 (big blind) folded on the Flop
 Seat 6: Player22 collected ($0.07)
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -1667,7 +1667,7 @@ Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player18 ($0.69 in chips) 
 Seat 2: Player14 ($1.58 in chips) 
 Seat 3: Player24 ($1.90 in chips) 
-Seat 4: Player17 ($3.89 in chips) 
+Seat 4: Hero ($3.89 in chips) 
 Seat 5: Player5 ($2.44 in chips) 
 Seat 6: Player22 ($2.52 in chips) 
 Seat 7: Player19 ($1.95 in chips) 
@@ -1676,25 +1676,25 @@ Seat 9: Player9 ($2.48 in chips)
 Player5: posts small blind $0.01
 Player22: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [8d 6h]
+Dealt to Hero [8d 6h]
 Player19: raises $0.04 to $0.06
 Player3: folds 
 Player9: folds 
 Player18: folds 
 Player14: folds 
 Player24: folds 
-Player17: calls $0.06
+Hero: calls $0.06
 Player5: folds 
 Player22: folds 
 *** FLOP *** [5c 4h 3h]
 Player19: bets $0.08
-Player17: calls $0.08
+Hero: calls $0.08
 *** TURN *** [5c 4h 3h] [5s]
 Player19: bets $0.10
-Player17: calls $0.10
+Hero: calls $0.10
 *** RIVER *** [5c 4h 3h 5s] [9s]
 Player19: bets $0.14
-Player17: folds 
+Hero: folds 
 Uncalled bet ($0.14) returned to Player19
 Player19 collected $0.51 from pot
 Player19: doesn't show hand 
@@ -1704,7 +1704,7 @@ Board [5c 4h 3h 5s 9s]
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 (button) folded on the River
+Seat 4: Hero (button) folded on the River
 Seat 5: Player5 (small blind) folded before Flop
 Seat 6: Player22 (big blind) folded before Flop
 Seat 7: Player19 collected ($0.51)
@@ -1718,7 +1718,7 @@ Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player18 ($0.69 in chips) 
 Seat 2: Player14 ($1.58 in chips) 
 Seat 3: Player24 ($1.90 in chips) 
-Seat 4: Player17 ($3.65 in chips) 
+Seat 4: Hero ($3.65 in chips) 
 Seat 5: Player5 ($2.43 in chips) 
 Seat 6: Player22 ($2.50 in chips) 
 Seat 7: Player19 ($2.22 in chips) 
@@ -1727,13 +1727,13 @@ Seat 9: Player9 ($2.48 in chips)
 Player22: posts small blind $0.01
 Player19: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [2s 4c]
+Dealt to Hero [2s 4c]
 Player3: folds 
 Player9: calls $0.02
 Player18: folds 
 Player14: folds 
 Player24: calls $0.02
-Player17: calls $0.02
+Hero: calls $0.02
 Player5: folds 
 Player22: folds 
 Player19: checks 
@@ -1741,17 +1741,17 @@ Player19: checks
 Player19: checks 
 Player9: checks 
 Player24: checks 
-Player17: checks 
+Hero: checks 
 *** TURN *** [Jh 9h Ac] [2d]
 Player19: checks 
 Player9: bets $0.02
 Player24: calls $0.02
-Player17: calls $0.02
+Hero: calls $0.02
 Player19: folds 
 *** RIVER *** [Jh 9h Ac 2d] [Kd]
 Player9: bets $0.02
 Player24: calls $0.02
-Player17: folds 
+Hero: folds 
 *** SHOW DOWN ***
 Player9: shows [Qc Qd] (a pair of Queens)
 Player24: shows [7d Ad] (a pair of Aces)
@@ -1762,7 +1762,7 @@ Board [Jh 9h Ac 2d Kd]
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 showed [7d Ad] and won ($0.19) with a pair of Aces
-Seat 4: Player17 folded on the River
+Seat 4: Hero folded on the River
 Seat 5: Player5 (button) folded before Flop (didn't bet)
 Seat 6: Player22 (small blind) folded before Flop
 Seat 7: Player19 (big blind) folded on the Turn
@@ -1776,7 +1776,7 @@ Table '99999999' 9-max Seat #6 is the button
 Seat 1: Player18 ($0.69 in chips) 
 Seat 2: Player14 ($1.58 in chips) 
 Seat 3: Player24 ($2.03 in chips) 
-Seat 4: Player17 ($3.61 in chips) 
+Seat 4: Hero ($3.61 in chips) 
 Seat 5: Player5 ($2.43 in chips) 
 Seat 6: Player22 ($2.49 in chips) 
 Seat 7: Player19 ($2.20 in chips) 
@@ -1785,12 +1785,12 @@ Seat 9: Player9 ($2.42 in chips)
 Player19: posts small blind $0.01
 Player3: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Kd 9d]
+Dealt to Hero [Kd 9d]
 Player9: calls $0.02
 Player18: folds 
 Player14: folds 
 Player24: folds 
-Player17: raises $0.04 to $0.06
+Hero: raises $0.04 to $0.06
 Player5: calls $0.06
 Player22: folds 
 Player19: folds 
@@ -1798,23 +1798,23 @@ Player3: folds
 Player9: calls $0.04
 *** FLOP *** [Tc Ts 8s]
 Player9: checks 
-Player17: checks 
+Hero: checks 
 Player5: checks 
 *** TURN *** [Tc Ts 8s] [Jh]
 Player9: checks 
-Player17: bets $0.12
+Hero: bets $0.12
 Player5: folds 
 Player9: folds 
-Uncalled bet ($0.12) returned to Player17
-Player17 collected $0.21 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.12) returned to Hero
+Hero collected $0.21 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.21 | Rake $0 
 Board [Tc Ts 8s Jh]
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 collected ($0.21)
+Seat 4: Hero collected ($0.21)
 Seat 5: Player5 folded on the Turn
 Seat 6: Player22 (button) folded before Flop (didn't bet)
 Seat 7: Player19 (small blind) folded before Flop
@@ -1828,7 +1828,7 @@ Table '99999999' 9-max Seat #7 is the button
 Seat 1: Player18 ($0.69 in chips) 
 Seat 2: Player14 ($1.58 in chips) 
 Seat 3: Player24 ($2.03 in chips) 
-Seat 4: Player17 ($3.76 in chips) 
+Seat 4: Hero ($3.76 in chips) 
 Seat 5: Player5 ($2.37 in chips) 
 Seat 6: Player22 ($2.49 in chips) 
 Seat 7: Player19 ($2.19 in chips) 
@@ -1837,26 +1837,26 @@ Seat 9: Player9 ($2.36 in chips)
 Player3: posts small blind $0.01
 Player9: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Ah Ad]
+Dealt to Hero [Ah Ad]
 Player18: folds 
 Player14: folds 
 Player24: folds 
-Player17: raises $0.06 to $0.08
+Hero: raises $0.06 to $0.08
 Player5: folds 
 Player5 leaves the table
 Player22: folds 
 Player19: folds 
 Player3: folds 
 Player9: folds 
-Uncalled bet ($0.06) returned to Player17
-Player17 collected $0.05 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.06) returned to Hero
+Hero collected $0.05 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.05 | Rake $0 
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 collected ($0.05)
+Seat 4: Hero collected ($0.05)
 Seat 5: Player5 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 (button) folded before Flop (didn't bet)
@@ -1870,7 +1870,7 @@ Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player18 ($0.69 in chips) 
 Seat 2: Player14 ($1.58 in chips) 
 Seat 3: Player24 ($2.03 in chips) 
-Seat 4: Player17 ($3.79 in chips) 
+Seat 4: Hero ($3.79 in chips) 
 Seat 6: Player22 ($2.49 in chips) 
 Seat 7: Player19 ($2.19 in chips) 
 Seat 8: Player3 ($3 in chips) 
@@ -1878,10 +1878,10 @@ Seat 9: Player9 ($2.34 in chips)
 Player9: posts small blind $0.01
 Player18: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [8h 8s]
+Dealt to Hero [8h 8s]
 Player14: folds 
 Player24: folds 
-Player17: calls $0.02
+Hero: calls $0.02
 Player22: folds 
 Player19: folds 
 Player3: calls $0.02
@@ -1891,31 +1891,31 @@ Player18: checks
 Player0 joins the table at seat #5 
 Player9: checks 
 Player18: checks 
-Player17: checks 
+Hero: checks 
 Player3: checks 
 *** TURN *** [Ts 5c 5h] [9h]
 Player9: checks 
 Player18: checks 
-Player17: checks 
+Hero: checks 
 Player3: checks 
 *** RIVER *** [Ts 5c 5h 9h] [2d]
 Player9: checks 
 Player18: checks 
-Player17: checks 
+Hero: checks 
 Player3: checks 
 *** SHOW DOWN ***
 Player9: shows [8d Qh] (a pair of Fives)
 Player18: mucks hand 
-Player17: shows [8h 8s] (two pair, Eights and Fives)
+Hero: shows [8h 8s] (two pair, Eights and Fives)
 Player3: mucks hand 
-Player17 collected $0.08 from pot
+Hero collected $0.08 from pot
 *** SUMMARY ***
 Total pot $0.08 | Rake $0 
 Board [Ts 5c 5h 9h 2d]
 Seat 1: Player18 (big blind) mucked [Js 3h]
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 showed [8h 8s] and won ($0.08) with two pair, Eights and Fives
+Seat 4: Hero showed [8h 8s] and won ($0.08) with two pair, Eights and Fives
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 folded before Flop (didn't bet)
 Seat 8: Player3 (button) mucked [Ac 3c]
@@ -1928,7 +1928,7 @@ Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player18 ($0.67 in chips) 
 Seat 2: Player14 ($1.58 in chips) 
 Seat 3: Player24 ($2.03 in chips) 
-Seat 4: Player17 ($3.85 in chips) 
+Seat 4: Hero ($3.85 in chips) 
 Seat 5: Player0 ($1.60 in chips) 
 Seat 6: Player22 ($2.49 in chips) 
 Seat 7: Player19 ($2.19 in chips) 
@@ -1938,9 +1938,9 @@ Player18: posts small blind $0.01
 Player14: posts big blind $0.02
 Player0: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [9h Kc]
+Dealt to Hero [9h Kc]
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player0: raises $0.04 to $0.06
 Player22: calls $0.06
 Player19: folds 
@@ -1975,7 +1975,7 @@ Board [As 4s Js 4c Jc]
 Seat 1: Player18 (small blind) folded before Flop
 Seat 2: Player14 (big blind) folded on the Flop
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player0 folded on the Flop
 Seat 6: Player22 showed [Ks Qd] and lost with two pair, Jacks and Fours
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -1989,7 +1989,7 @@ Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player18 ($0.66 in chips) 
 Seat 2: Player14 ($1.52 in chips) 
 Seat 3: Player24 ($2.03 in chips) 
-Seat 4: Player17 ($3.85 in chips) 
+Seat 4: Hero ($3.85 in chips) 
 Seat 5: Player0 ($1.54 in chips) 
 Seat 6: Player22 ($1.65 in chips) 
 Seat 7: Player19 ($2.19 in chips) 
@@ -1998,8 +1998,8 @@ Seat 9: Player9 ($3.24 in chips)
 Player14: posts small blind $0.01
 Player24: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [6h 8d]
-Player17: folds 
+Dealt to Hero [6h 8d]
+Hero: folds 
 Player0: raises $0.02 to $0.04
 Player22: raises $0.04 to $0.08
 Player19: calls $0.08
@@ -2023,7 +2023,7 @@ Board [4d Td 4s]
 Seat 1: Player18 (button) folded before Flop (didn't bet)
 Seat 2: Player14 (small blind) folded before Flop
 Seat 3: Player24 (big blind) folded before Flop
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player0 collected ($0.35)
 Seat 6: Player22 folded on the Flop
 Seat 7: Player19 folded on the Flop
@@ -2037,16 +2037,16 @@ Table '99999999' 9-max Seat #2 is the button
 Seat 1: Player18 ($0.66 in chips) 
 Seat 2: Player14 ($1.51 in chips) 
 Seat 3: Player24 ($2.01 in chips) 
-Seat 4: Player17 ($3.85 in chips) 
+Seat 4: Hero ($3.85 in chips) 
 Seat 5: Player0 ($1.81 in chips) 
 Seat 6: Player22 ($1.57 in chips) 
 Seat 7: Player19 ($2.11 in chips) 
 Seat 8: Player3 ($3 in chips) 
 Seat 9: Player9 ($3.16 in chips) 
 Player24: posts small blind $0.01
-Player17: posts big blind $0.02
+Hero: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [8d Jd]
+Dealt to Hero [8d Jd]
 Player0: folds 
 Player22: calls $0.02
 Player19: folds 
@@ -2055,28 +2055,28 @@ Player9: calls $0.02
 Player18: folds 
 Player14: folds 
 Player24: calls $0.01
-Player17: raises $0.02 to $0.04
+Hero: raises $0.02 to $0.04
 Player22: calls $0.02
 Player3: calls $0.02
 Player9: calls $0.02
 Player24: calls $0.02
 *** FLOP *** [6d 9s 3d]
 Player24: checks 
-Player17: bets $0.02
+Hero: bets $0.02
 Player22: folds 
 Player3: folds 
 Player9: calls $0.02
 Player24: calls $0.02
 *** TURN *** [6d 9s 3d] [3c]
 Player24: checks 
-Player17: bets $0.02
+Hero: bets $0.02
 Player9: calls $0.02
 Player24: folds 
 *** RIVER *** [6d 9s 3d 3c] [5c]
-Player17: bets $0.02
+Hero: bets $0.02
 Player9: calls $0.02
 *** SHOW DOWN ***
-Player17: shows [8d Jd] (a pair of Threes)
+Hero: shows [8d Jd] (a pair of Threes)
 Player9: shows [Ts 6s] (two pair, Sixes and Threes)
 Player9 collected $0.34 from pot
 *** SUMMARY ***
@@ -2085,7 +2085,7 @@ Board [6d 9s 3d 3c 5c]
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 (button) folded before Flop (didn't bet)
 Seat 3: Player24 (small blind) folded on the Turn
-Seat 4: Player17 (big blind) showed [8d Jd] and lost with a pair of Threes
+Seat 4: Hero (big blind) showed [8d Jd] and lost with a pair of Threes
 Seat 5: Player0 folded before Flop (didn't bet)
 Seat 6: Player22 folded on the Flop
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -2099,16 +2099,16 @@ Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player18 ($0.66 in chips) 
 Seat 2: Player14 ($1.51 in chips) 
 Seat 3: Player24 ($1.95 in chips) 
-Seat 4: Player17 ($3.75 in chips) 
+Seat 4: Hero ($3.75 in chips) 
 Seat 5: Player0 ($1.81 in chips) 
 Seat 6: Player22 ($1.53 in chips) 
 Seat 7: Player19 ($2.11 in chips) 
 Seat 8: Player3 ($3 in chips) 
 Seat 9: Player9 ($3.40 in chips) 
-Player17: posts small blind $0.01
+Hero: posts small blind $0.01
 Player0: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [5c As]
+Dealt to Hero [5c As]
 Player22: folds 
 Player19: folds 
 Player3: folds 
@@ -2116,27 +2116,27 @@ Player9: calls $0.02
 Player18: folds 
 Player14: calls $0.02
 Player24: folds 
-Player17: calls $0.01
+Hero: calls $0.01
 Player0: checks 
 *** FLOP *** [3s 2c 5s]
-Player17: checks 
+Hero: checks 
 Player0: bets $0.04
 Player9: calls $0.04
 Player14: folds 
-Player17: raises $0.22 to $0.26
+Hero: raises $0.22 to $0.26
 Player0: raises $0.22 to $0.48
 Player9: folds 
-Player17: calls $0.22
+Hero: calls $0.22
 *** TURN *** [3s 2c 5s] [2h]
-Player17: bets $0.36
+Hero: bets $0.36
 Player0: calls $0.36
 *** RIVER *** [3s 2c 5s 2h] [3d]
-Player17: bets $0.90
+Hero: bets $0.90
 Player0: raises $0.05 to $0.95 and is all-in
-Player17: calls $0.05
+Hero: calls $0.05
 *** SHOW DOWN ***
 Player0: shows [5d 3h] (a full house, Threes full of Fives)
-Player17: shows [5c As] (two pair, Fives and Threes)
+Hero: shows [5c As] (two pair, Fives and Threes)
 Player0 collected $3.55 from pot
 *** SUMMARY ***
 Total pot $3.70 | Rake $0.15 
@@ -2144,7 +2144,7 @@ Board [3s 2c 5s 2h 3d]
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 folded on the Flop
 Seat 3: Player24 (button) folded before Flop (didn't bet)
-Seat 4: Player17 (small blind) showed [5c As] and lost with two pair, Fives and Threes
+Seat 4: Hero (small blind) showed [5c As] and lost with two pair, Fives and Threes
 Seat 5: Player0 (big blind) showed [5d 3h] and won ($3.55) with a full house, Threes full of Fives
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -2158,7 +2158,7 @@ Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player18 ($0.66 in chips) 
 Seat 2: Player14 ($1.49 in chips) 
 Seat 3: Player24 ($1.95 in chips) 
-Seat 4: Player17 ($1.94 in chips) 
+Seat 4: Hero ($1.94 in chips) 
 Seat 5: Player0 ($3.55 in chips) 
 Seat 6: Player22 ($1.53 in chips) 
 Seat 7: Player19 ($2.11 in chips) 
@@ -2167,14 +2167,14 @@ Seat 9: Player9 ($3.34 in chips)
 Player0: posts small blind $0.01
 Player22: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Kc 9d]
+Dealt to Hero [Kc 9d]
 Player19: folds 
 Player3: folds 
 Player9: calls $0.02
 Player18: folds 
 Player14: folds 
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player0: calls $0.01
 Player22: checks 
 *** FLOP *** [6h 2s Ad]
@@ -2202,7 +2202,7 @@ Board [6h 2s Ad 9s Jh]
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 (button) folded before Flop (didn't bet)
+Seat 4: Hero (button) folded before Flop (didn't bet)
 Seat 5: Player0 (small blind) folded on the River
 Seat 6: Player22 (big blind) showed [As 5d] and won ($0.24) with a pair of Aces
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -2216,7 +2216,7 @@ Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player18 ($0.66 in chips) 
 Seat 2: Player14 ($1.49 in chips) 
 Seat 3: Player24 ($1.95 in chips) 
-Seat 4: Player17 ($3.54 in chips) 
+Seat 4: Hero ($3.54 in chips) 
 Seat 5: Player0 ($3.51 in chips) 
 Seat 6: Player22 ($1.67 in chips) 
 Seat 7: Player19 ($2.11 in chips) 
@@ -2225,13 +2225,13 @@ Seat 9: Player9 ($3.24 in chips)
 Player22: posts small blind $0.01
 Player19: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [5d 6c]
+Dealt to Hero [5d 6c]
 Player3: folds 
 Player9: calls $0.02
 Player18: folds 
 Player14: folds 
 Player24: folds 
-Player17: calls $0.02
+Hero: calls $0.02
 Player0: calls $0.02
 Player22: calls $0.01
 Player19: checks 
@@ -2239,18 +2239,18 @@ Player19: checks
 Player22: checks 
 Player19: checks 
 Player9: checks 
-Player17: bets $0.06
+Hero: bets $0.06
 Player0: calls $0.06
 Player22: folds 
 Player19: folds 
 Player9: calls $0.06
 *** TURN *** [Jh 7d 8h] [Qc]
 Player9: checks 
-Player17: checks 
+Hero: checks 
 Player0: checks 
 *** RIVER *** [Jh 7d 8h Qc] [5c]
 Player9: bets $0.04
-Player17: folds 
+Hero: folds 
 Player0: calls $0.04
 *** SHOW DOWN ***
 Player9: shows [Ah Kh] (high card Ace)
@@ -2262,7 +2262,7 @@ Board [Jh 7d 8h Qc 5c]
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded on the River
+Seat 4: Hero folded on the River
 Seat 5: Player0 (button) showed [As 8s] and won ($0.36) with a pair of Eights
 Seat 6: Player22 (small blind) folded on the Flop
 Seat 7: Player19 (big blind) folded on the Flop
@@ -2276,7 +2276,7 @@ Table '99999999' 9-max Seat #6 is the button
 Seat 1: Player18 ($0.66 in chips) 
 Seat 2: Player14 ($1.49 in chips) 
 Seat 3: Player24 ($1.95 in chips) 
-Seat 4: Player17 ($3.46 in chips) 
+Seat 4: Hero ($3.46 in chips) 
 Seat 5: Player0 ($3.75 in chips) 
 Seat 6: Player22 ($1.65 in chips) 
 Seat 7: Player19 ($2.09 in chips) 
@@ -2285,41 +2285,41 @@ Seat 9: Player9 ($3.12 in chips)
 Player19: posts small blind $0.01
 Player3: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Kh 2h]
+Dealt to Hero [Kh 2h]
 Player9: folds 
 Player18: folds 
 Player14: folds 
 Player24: calls $0.02
-Player17: calls $0.02
+Hero: calls $0.02
 Player0: raises $0.04 to $0.06
 Player22: folds 
 Player19: folds 
 Player3: folds 
 Player24: calls $0.04
-Player17: calls $0.04
+Hero: calls $0.04
 *** FLOP *** [2s 2d Kc]
 Player24: checks 
-Player17: bets $0.06
+Hero: bets $0.06
 Player0: calls $0.06
 Player24: folds 
 *** TURN *** [2s 2d Kc] [7h]
-Player17: bets $0.20
+Hero: bets $0.20
 Player0: calls $0.20
 *** RIVER *** [2s 2d Kc 7h] [5s]
-Player17: bets $3.04
+Hero: bets $3.04
 Player0 said, "lol"
 Player0 said, "such bs"
 Player0: folds 
-Uncalled bet ($3.04) returned to Player17
-Player17 collected $0.73 from pot
-Player17: doesn't show hand 
+Uncalled bet ($3.04) returned to Hero
+Hero collected $0.73 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.73 | Rake $0 
 Board [2s 2d Kc 7h 5s]
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded on the Flop
-Seat 4: Player17 collected ($0.73)
+Seat 4: Hero collected ($0.73)
 Seat 5: Player0 folded on the River
 Seat 6: Player22 (button) folded before Flop (didn't bet)
 Seat 7: Player19 (small blind) folded before Flop
@@ -2333,7 +2333,7 @@ Table '99999999' 9-max Seat #7 is the button
 Seat 1: Player18 ($0.66 in chips) 
 Seat 2: Player14 ($1.49 in chips) 
 Seat 3: Player24 ($1.89 in chips) 
-Seat 4: Player17 ($3.87 in chips) 
+Seat 4: Hero ($3.87 in chips) 
 Seat 5: Player0 ($3.43 in chips) 
 Seat 6: Player22 ($1.65 in chips) 
 Seat 7: Player19 ($2.08 in chips) 
@@ -2342,11 +2342,11 @@ Seat 9: Player9 ($3.12 in chips)
 Player3: posts small blind $0.01
 Player9: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [2c Ad]
+Dealt to Hero [2c Ad]
 Player18: folds 
 Player14: folds 
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player0: folds 
 Player22: folds 
 Player19: calls $0.02
@@ -2364,7 +2364,7 @@ Board [2h Kd 8d]
 Seat 1: Player18 folded before Flop (didn't bet)
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player0 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 (button) folded on the Flop
@@ -2378,7 +2378,7 @@ Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player18 ($0.66 in chips) 
 Seat 2: Player14 ($1.49 in chips) 
 Seat 3: Player24 ($1.89 in chips) 
-Seat 4: Player17 ($3.87 in chips) 
+Seat 4: Hero ($3.87 in chips) 
 Seat 6: Player22 ($1.65 in chips) 
 Seat 7: Player19 ($2.06 in chips) 
 Seat 8: Player3 ($3 in chips) 
@@ -2386,20 +2386,20 @@ Seat 9: Player9 ($3.15 in chips)
 Player9: posts small blind $0.01
 Player18: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [4h Ah]
+Dealt to Hero [4h Ah]
 Player14: folds 
 Player24: folds 
-Player17: raises $0.04 to $0.06
+Hero: raises $0.04 to $0.06
 Player22: calls $0.06
 Player19: calls $0.06
 Player3: folds 
 Player9: folds 
 Player18: folds 
 *** FLOP *** [Qs 5c Qc]
-Player17: checks 
+Hero: checks 
 Player22: bets $0.09
 Player19: folds 
-Player17: folds 
+Hero: folds 
 Uncalled bet ($0.09) returned to Player22
 Player22 collected $0.21 from pot
 Player22: doesn't show hand 
@@ -2409,7 +2409,7 @@ Board [Qs 5c Qc]
 Seat 1: Player18 (big blind) folded before Flop
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded on the Flop
+Seat 4: Hero folded on the Flop
 Seat 6: Player22 collected ($0.21)
 Seat 7: Player19 folded on the Flop
 Seat 8: Player3 (button) folded before Flop (didn't bet)
@@ -2422,7 +2422,7 @@ Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player18 ($0.64 in chips) 
 Seat 2: Player14 ($1.49 in chips) 
 Seat 3: Player24 ($1.89 in chips) 
-Seat 4: Player17 ($3.81 in chips) 
+Seat 4: Hero ($3.81 in chips) 
 Seat 6: Player22 ($1.80 in chips) 
 Seat 7: Player19 ($2 in chips) 
 Seat 8: Player3 ($3 in chips) 
@@ -2430,9 +2430,9 @@ Seat 9: Player9 ($3.14 in chips)
 Player18: posts small blind $0.01
 Player14: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Kd 6c]
+Dealt to Hero [Kd 6c]
 Player24: folds 
-Player17: raises $0.06 to $0.08
+Hero: raises $0.06 to $0.08
 Player22: folds 
 Player19: calls $0.08
 Player3: folds 
@@ -2440,11 +2440,11 @@ Player9: calls $0.08
 Player18: folds 
 Player14: folds 
 *** FLOP *** [8s 3d 7h]
-Player17: bets $0.18
+Hero: bets $0.18
 Player15 joins the table at seat #5 
 Player19: raises $0.18 to $0.36
 Player9: folds 
-Player17: folds 
+Hero: folds 
 Uncalled bet ($0.18) returned to Player19
 Player19 collected $0.63 from pot
 Player19: doesn't show hand 
@@ -2454,7 +2454,7 @@ Board [8s 3d 7h]
 Seat 1: Player18 (small blind) folded before Flop
 Seat 2: Player14 (big blind) folded before Flop
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded on the Flop
+Seat 4: Hero folded on the Flop
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 collected ($0.63)
 Seat 8: Player3 folded before Flop (didn't bet)
@@ -2467,7 +2467,7 @@ Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player18 ($0.63 in chips) 
 Seat 2: Player14 ($1.47 in chips) 
 Seat 3: Player24 ($1.89 in chips) 
-Seat 4: Player17 ($3.55 in chips) 
+Seat 4: Hero ($3.55 in chips) 
 Seat 6: Player22 ($1.80 in chips) 
 Seat 7: Player19 ($2.37 in chips) 
 Seat 8: Player3 ($3 in chips) 
@@ -2476,8 +2476,8 @@ Player14: posts small blind $0.01
 Player24: posts big blind $0.02
 Player15: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [5d Ks]
-Player17: folds 
+Dealt to Hero [5d Ks]
+Hero: folds 
 Player22: folds 
 Player19: calls $0.02
 Player3: folds 
@@ -2504,7 +2504,7 @@ Board [3h Kh 2c Jd]
 Seat 1: Player18 (button) folded before Flop (didn't bet)
 Seat 2: Player14 (small blind) folded before Flop
 Seat 3: Player24 (big blind) folded on the Flop
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 folded on the Turn
 Seat 8: Player3 folded before Flop (didn't bet)
@@ -2516,29 +2516,29 @@ PokerStars Game #19663159832:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #2 is the button
 Seat 2: Player14 ($1.46 in chips) 
 Seat 3: Player24 ($1.87 in chips) 
-Seat 4: Player17 ($3.55 in chips) 
+Seat 4: Hero ($3.55 in chips) 
 Seat 6: Player22 ($1.80 in chips) 
 Seat 7: Player19 ($2.33 in chips) 
 Seat 8: Player3 ($3 in chips) 
 Seat 9: Player9 ($3.13 in chips) 
 Player24: posts small blind $0.01
-Player17: posts big blind $0.02
+Hero: posts big blind $0.02
 Player15: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [8s 2h]
+Dealt to Hero [8s 2h]
 Player22: folds 
 Player19: folds 
 Player3: folds 
 Player9: folds 
 Player14: calls $0.02
 Player24: calls $0.01
-Player17: raises $0.12 to $0.14
+Hero: raises $0.12 to $0.14
 Player14: calls $0.12
 Player24: folds 
 *** FLOP *** [3h As 7h]
-Player17: checks 
+Hero: checks 
 Player14: bets $0.20
-Player17: folds 
+Hero: folds 
 Uncalled bet ($0.20) returned to Player14
 Player14 collected $0.30 from pot
 *** SUMMARY ***
@@ -2546,7 +2546,7 @@ Total pot $0.30 | Rake $0
 Board [3h As 7h]
 Seat 2: Player14 (button) collected ($0.30)
 Seat 3: Player24 (small blind) folded before Flop
-Seat 4: Player17 (big blind) folded on the Flop
+Seat 4: Hero (big blind) folded on the Flop
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 folded before Flop (didn't bet)
 Seat 8: Player3 folded before Flop (didn't bet)
@@ -2558,33 +2558,33 @@ PokerStars Game #32364377323:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #3 is the button
 Seat 2: Player14 ($1.62 in chips) 
 Seat 3: Player24 ($1.85 in chips) 
-Seat 4: Player17 ($3.41 in chips) 
+Seat 4: Hero ($3.41 in chips) 
 Seat 5: Player15 ($1 in chips) 
 Seat 6: Player22 ($1.80 in chips) 
 Seat 7: Player19 ($2.33 in chips) 
 Seat 8: Player3 ($3 in chips) 
 Seat 9: Player9 ($3.13 in chips) 
-Player17: posts small blind $0.01
+Hero: posts small blind $0.01
 Player15: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Ad Qh]
+Dealt to Hero [Ad Qh]
 Player22: calls $0.02
 Player19: folds 
 Player3: folds 
 Player9: folds 
 Player14: folds 
 Player24: folds 
-Player17: raises $0.92 to $0.94
+Hero: raises $0.92 to $0.94
 Player15: folds 
 Player22: folds 
-Uncalled bet ($0.92) returned to Player17
-Player17 collected $0.06 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.92) returned to Hero
+Hero collected $0.06 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.06 | Rake $0 
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 (button) folded before Flop (didn't bet)
-Seat 4: Player17 (small blind) collected ($0.06)
+Seat 4: Hero (small blind) collected ($0.06)
 Seat 5: Player15 (big blind) folded before Flop
 Seat 6: Player22 folded before Flop
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -2597,7 +2597,7 @@ PokerStars Game #23073312602:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #4 is the button
 Seat 2: Player14 ($1.62 in chips) 
 Seat 3: Player24 ($1.85 in chips) 
-Seat 4: Player17 ($3.45 in chips) 
+Seat 4: Hero ($3.45 in chips) 
 Seat 5: Player15 ($0.98 in chips) 
 Seat 6: Player22 ($1.78 in chips) 
 Seat 7: Player19 ($2.33 in chips) 
@@ -2606,13 +2606,13 @@ Seat 9: Player9 ($3.13 in chips)
 Player15: posts small blind $0.01
 Player22: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [3h Qh]
+Dealt to Hero [3h Qh]
 Player19: folds 
 Player3: folds 
 Player9: calls $0.02
 Player14: folds 
 Player24: calls $0.02
-Player17: raises $0.04 to $0.06
+Hero: raises $0.04 to $0.06
 Player15: folds 
 Player22: folds 
 Player9: calls $0.04
@@ -2620,22 +2620,22 @@ Player24: calls $0.04
 *** FLOP *** [3c 4s 7h]
 Player9: checks 
 Player24: checks 
-Player17: checks 
+Hero: checks 
 *** TURN *** [3c 4s 7h] [3s]
 Player9: checks 
 Player24: checks 
-Player17: bets $0.14
+Hero: bets $0.14
 Player9: folds 
 Player24: folds 
-Uncalled bet ($0.14) returned to Player17
-Player17 collected $0.21 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.14) returned to Hero
+Hero collected $0.21 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.21 | Rake $0 
 Board [3c 4s 7h 3s]
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded on the Turn
-Seat 4: Player17 (button) collected ($0.21)
+Seat 4: Hero (button) collected ($0.21)
 Seat 5: Player15 (small blind) folded before Flop
 Seat 6: Player22 (big blind) folded before Flop
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -2648,7 +2648,7 @@ PokerStars Game #89372402099:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #5 is the button
 Seat 2: Player14 ($1.62 in chips) 
 Seat 3: Player24 ($1.79 in chips) 
-Seat 4: Player17 ($3.60 in chips) 
+Seat 4: Hero ($3.60 in chips) 
 Seat 5: Player15 ($0.97 in chips) 
 Seat 6: Player22 ($1.76 in chips) 
 Seat 7: Player19 ($2.33 in chips) 
@@ -2657,12 +2657,12 @@ Seat 9: Player9 ($3.07 in chips)
 Player22: posts small blind $0.01
 Player19: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Td 8d]
+Dealt to Hero [Td 8d]
 Player3: folds 
 Player9: calls $0.02
 Player14: folds 
 Player24: calls $0.02
-Player17: raises $0.16 to $0.18
+Hero: raises $0.16 to $0.18
 Player15: folds 
 Player22: folds 
 Player19: folds 
@@ -2671,18 +2671,18 @@ Player24: calls $0.16
 *** FLOP *** [2d 9s Ts]
 Player9: checks 
 Player24: checks 
-Player17: bets $0.42
+Hero: bets $0.42
 Player9: folds 
 Player24: folds 
-Uncalled bet ($0.42) returned to Player17
-Player17 collected $0.57 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.42) returned to Hero
+Hero collected $0.57 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.57 | Rake $0 
 Board [2d 9s Ts]
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded on the Flop
-Seat 4: Player17 collected ($0.57)
+Seat 4: Hero collected ($0.57)
 Seat 5: Player15 (button) folded before Flop (didn't bet)
 Seat 6: Player22 (small blind) folded before Flop
 Seat 7: Player19 (big blind) folded before Flop
@@ -2695,7 +2695,7 @@ PokerStars Game #27215384828:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #6 is the button
 Seat 2: Player14 ($1.62 in chips) 
 Seat 3: Player24 ($1.61 in chips) 
-Seat 4: Player17 ($3.99 in chips) 
+Seat 4: Hero ($3.99 in chips) 
 Seat 5: Player15 ($0.97 in chips) 
 Seat 6: Player22 ($1.75 in chips) 
 Seat 7: Player19 ($2.31 in chips) 
@@ -2704,12 +2704,12 @@ Seat 9: Player9 ($2.89 in chips)
 Player19: posts small blind $0.01
 Player3: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [5s 7d]
+Dealt to Hero [5s 7d]
 Player20 joins the table at seat #1 
 Player9: calls $0.02
 Player14: folds 
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player15: folds 
 Player15 leaves the table
 Player22: calls $0.02
@@ -2738,7 +2738,7 @@ Total pot $1.54 | Rake $0.05
 Board [8d Jh 7c 5c Qc]
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player15 folded before Flop (didn't bet)
 Seat 6: Player22 (button) folded on the Turn
 Seat 7: Player19 (small blind) folded on the River
@@ -2751,7 +2751,7 @@ PokerStars Game #32706209671:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #7 is the button
 Seat 2: Player14 ($1.62 in chips) 
 Seat 3: Player24 ($1.61 in chips) 
-Seat 4: Player17 ($3.99 in chips) 
+Seat 4: Hero ($3.99 in chips) 
 Seat 5: Player12 ($1 in chips) 
 Seat 6: Player22 ($1.59 in chips) 
 Seat 7: Player19 ($1.63 in chips) 
@@ -2762,23 +2762,23 @@ Player9: posts big blind $0.02
 Player20: sits out 
 Player12: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [9c 2c]
+Dealt to Hero [9c 2c]
 Player14: folds 
 Player24: folds 
-Player17: raises $0.04 to $0.06
+Hero: raises $0.04 to $0.06
 Player12: folds 
 Player22: folds 
 Player19: folds 
 Player3: folds 
 Player9: folds 
-Uncalled bet ($0.04) returned to Player17
-Player17 collected $0.07 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.04) returned to Hero
+Hero collected $0.07 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.07 | Rake $0 
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 collected ($0.07)
+Seat 4: Hero collected ($0.07)
 Seat 5: Player12 folded before Flop
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 (button) folded before Flop (didn't bet)
@@ -2792,7 +2792,7 @@ Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player20 ($5 in chips) 
 Seat 2: Player14 ($1.62 in chips) 
 Seat 3: Player24 ($1.61 in chips) 
-Seat 4: Player17 ($4.04 in chips) 
+Seat 4: Hero ($4.04 in chips) 
 Seat 5: Player12 ($0.98 in chips) 
 Seat 6: Player22 ($1.59 in chips) 
 Seat 7: Player19 ($1.63 in chips) 
@@ -2801,11 +2801,11 @@ Seat 9: Player9 ($3.68 in chips)
 Player9: posts small blind $0.01
 Player20: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [9d Tc]
+Dealt to Hero [9d Tc]
 Player14: folds 
 Player24: folds 
 Player14 leaves the table
-Player17: folds 
+Hero: folds 
 Player12: folds 
 Player22: calls $0.02
 Player19: folds 
@@ -2835,7 +2835,7 @@ Board [7d 4h Qs 3c Kd]
 Seat 1: Player20 (big blind) folded on the River
 Seat 2: Player14 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 folded before Flop (didn't bet)
 Seat 6: Player22 showed [Ts Kh] and won ($0.30) with a pair of Kings
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -2848,7 +2848,7 @@ PokerStars Game #23826224249:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player20 ($4.96 in chips) 
 Seat 3: Player24 ($1.61 in chips) 
-Seat 4: Player17 ($4.04 in chips) 
+Seat 4: Hero ($4.04 in chips) 
 Seat 5: Player12 ($0.98 in chips) 
 Seat 6: Player22 ($1.76 in chips) 
 Seat 7: Player19 ($1.63 in chips) 
@@ -2857,8 +2857,8 @@ Seat 9: Player9 ($3.55 in chips)
 Player20: posts small blind $0.01
 Player24: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [2h 7h]
-Player17: raises $0.04 to $0.06
+Dealt to Hero [2h 7h]
+Hero: raises $0.04 to $0.06
 Player12: calls $0.06
 Player22: calls $0.06
 Player19: folds 
@@ -2869,22 +2869,22 @@ Player20: folds
 Player24: calls $0.04
 *** FLOP *** [2d 4s 5d]
 Player24: checks 
-Player17: checks 
+Hero: checks 
 Player12: checks 
 Player22: bets $0.06
 Player9: calls $0.06
 Player24: folds 
-Player17: calls $0.06
+Hero: calls $0.06
 Player12: folds 
 *** TURN *** [2d 4s 5d] [Kc]
-Player17: checks 
+Hero: checks 
 Player22: checks 
 Player9: checks 
 *** RIVER *** [2d 4s 5d Kc] [Ks]
-Player17: checks 
+Hero: checks 
 Player22: checks 
 Player9: bets $0.40
-Player17: folds 
+Hero: folds 
 Player22: folds 
 Uncalled bet ($0.40) returned to Player9
 Player9 collected $0.49 from pot
@@ -2893,7 +2893,7 @@ Total pot $0.49 | Rake $0
 Board [2d 4s 5d Kc Ks]
 Seat 1: Player20 (small blind) folded before Flop
 Seat 3: Player24 (big blind) folded on the Flop
-Seat 4: Player17 folded on the River
+Seat 4: Hero folded on the River
 Seat 5: Player12 folded on the Flop
 Seat 6: Player22 folded on the River
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -2906,7 +2906,7 @@ PokerStars Game #28582235522:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player20 ($4.95 in chips) 
 Seat 3: Player24 ($1.55 in chips) 
-Seat 4: Player17 ($3.92 in chips) 
+Seat 4: Hero ($3.92 in chips) 
 Seat 5: Player12 ($0.92 in chips) 
 Seat 6: Player22 ($1.64 in chips) 
 Seat 7: Player19 ($1.63 in chips) 
@@ -2914,9 +2914,9 @@ Seat 8: Player3 ($3 in chips)
 Seat 9: Player9 ($3.92 in chips) 
 Player2 will be allowed to play after the button
 Player24: posts small blind $0.01
-Player17: posts big blind $0.02
+Hero: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [8h Qd]
+Dealt to Hero [8h Qd]
 Player12: calls $0.02
 Player22: folds 
 Player19: folds 
@@ -2925,7 +2925,7 @@ Player3: folds
 Player9: calls $0.02
 Player20: raises $0.10 to $0.12
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player12: calls $0.10
 Player9: folds 
 *** FLOP *** [3h Js Td]
@@ -2940,7 +2940,7 @@ Total pot $0.29 | Rake $0
 Board [3h Js Td]
 Seat 1: Player20 (button) collected ($0.29)
 Seat 3: Player24 (small blind) folded before Flop
-Seat 4: Player17 (big blind) folded before Flop
+Seat 4: Hero (big blind) folded before Flop
 Seat 5: Player12 folded on the Flop
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player19 folded before Flop (didn't bet)
@@ -2954,16 +2954,16 @@ Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player20 ($5.12 in chips) 
 Seat 2: Player2 ($1 in chips) 
 Seat 3: Player24 ($1.54 in chips) 
-Seat 4: Player17 ($3.90 in chips) 
+Seat 4: Hero ($3.90 in chips) 
 Seat 5: Player12 ($0.80 in chips) 
 Seat 6: Player22 ($1.64 in chips) 
 Seat 8: Player3 ($3 in chips) 
 Seat 9: Player9 ($3.90 in chips) 
-Player17: posts small blind $0.01
+Hero: posts small blind $0.01
 Player12: posts big blind $0.02
 Player2: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Jh Ah]
+Dealt to Hero [Jh Ah]
 Player22: folds 
 Player3: folds 
 Player9: calls $0.02
@@ -2971,20 +2971,20 @@ Player20: folds
 Player2: checks 
 Player8 joins the table at seat #7 
 Player24: calls $0.02
-Player17: raises $0.08 to $0.10
+Hero: raises $0.08 to $0.10
 Player12: folds 
 Player9: folds 
 Player2: folds 
 Player24: folds 
-Uncalled bet ($0.08) returned to Player17
-Player17 collected $0.10 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.08) returned to Hero
+Hero collected $0.10 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.10 | Rake $0 
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 2: Player2 folded before Flop
 Seat 3: Player24 (button) folded before Flop
-Seat 4: Player17 (small blind) collected ($0.10)
+Seat 4: Hero (small blind) collected ($0.10)
 Seat 5: Player12 (big blind) folded before Flop
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 8: Player3 folded before Flop (didn't bet)
@@ -2997,7 +2997,7 @@ Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player20 ($5.12 in chips) 
 Seat 2: Player2 ($0.98 in chips) 
 Seat 3: Player24 ($1.52 in chips) 
-Seat 4: Player17 ($3.98 in chips) 
+Seat 4: Hero ($3.98 in chips) 
 Seat 5: Player12 ($0.78 in chips) 
 Seat 6: Player22 ($1.64 in chips) 
 Seat 7: Player8 ($1.11 in chips) 
@@ -3007,14 +3007,14 @@ Player12: posts small blind $0.01
 Player22: posts big blind $0.02
 Player8: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Jc 2h]
+Dealt to Hero [Jc 2h]
 Player8: checks 
 Player3: folds 
 Player9: calls $0.02
 Player20: calls $0.02
 Player2: folds 
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player12: calls $0.01
 Player22: checks 
 *** FLOP *** [Jh Tc 2d]
@@ -3038,7 +3038,7 @@ Board [Jh Tc 2d Js]
 Seat 1: Player20 folded on the Turn
 Seat 2: Player2 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 (button) folded before Flop (didn't bet)
+Seat 4: Hero (button) folded before Flop (didn't bet)
 Seat 5: Player12 (small blind) folded on the Turn
 Seat 6: Player22 (big blind) collected ($0.18)
 Seat 7: Player8 folded on the Turn
@@ -3052,7 +3052,7 @@ Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player20 ($5.08 in chips) 
 Seat 2: Player2 ($0.98 in chips) 
 Seat 3: Player24 ($1.52 in chips) 
-Seat 4: Player17 ($3.98 in chips) 
+Seat 4: Hero ($3.98 in chips) 
 Seat 5: Player12 ($0.74 in chips) 
 Seat 6: Player22 ($1.78 in chips) 
 Seat 7: Player8 ($1.07 in chips) 
@@ -3061,13 +3061,13 @@ Seat 9: Player9 ($3.86 in chips)
 Player22: posts small blind $0.01
 Player8: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Kc 7s]
+Dealt to Hero [Kc 7s]
 Player3: folds 
 Player9: folds 
 Player20: calls $0.02
 Player2: folds 
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player12: calls $0.02
 Player22: folds 
 Player8: checks 
@@ -3093,7 +3093,7 @@ Board [Th 5d 7h 6s 8s]
 Seat 1: Player20 collected ($0.07)
 Seat 2: Player2 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 (button) folded on the River
 Seat 6: Player22 (small blind) folded before Flop
 Seat 7: Player8 (big blind) folded on the River
@@ -3107,7 +3107,7 @@ Table '99999999' 9-max Seat #6 is the button
 Seat 1: Player20 ($5.13 in chips) 
 Seat 2: Player2 ($0.98 in chips) 
 Seat 3: Player24 ($1.52 in chips) 
-Seat 4: Player17 ($3.98 in chips) 
+Seat 4: Hero ($3.98 in chips) 
 Seat 5: Player12 ($0.72 in chips) 
 Seat 6: Player22 ($1.77 in chips) 
 Seat 7: Player8 ($1.05 in chips) 
@@ -3116,12 +3116,12 @@ Player8: posts small blind $0.01
 Player3: is sitting out 
 Player9: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Ah 2c]
+Dealt to Hero [Ah 2c]
 Player20: folds 
 Player2: calls $0.02
 Player3 leaves the table
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player12: raises $0.06 to $0.08
 Player22: calls $0.08
 Player8: calls $0.07
@@ -3145,7 +3145,7 @@ Board [6h Js 3h 5h 8d]
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 2: Player2 showed [Qc Jd] and won ($2.04) with a pair of Jacks
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 folded on the Flop
 Seat 6: Player22 (button) folded on the Flop
 Seat 7: Player8 (small blind) showed [6s 9s] and lost with a pair of Sixes
@@ -3158,7 +3158,7 @@ Table '99999999' 9-max Seat #7 is the button
 Seat 1: Player20 ($5.13 in chips) 
 Seat 2: Player2 ($2.04 in chips) 
 Seat 3: Player24 ($1.52 in chips) 
-Seat 4: Player17 ($3.98 in chips) 
+Seat 4: Hero ($3.98 in chips) 
 Seat 5: Player12 ($0.64 in chips) 
 Seat 6: Player22 ($1.69 in chips) 
 Seat 7: Player8 ($0.07 in chips) 
@@ -3166,10 +3166,10 @@ Seat 9: Player9 ($3.84 in chips)
 Player9: posts small blind $0.01
 Player20: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Ks 9d]
+Dealt to Hero [Ks 9d]
 Player2: raises $0.06 to $0.08
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player12: folds 
 Player22: folds 
 Player8: folds 
@@ -3191,7 +3191,7 @@ Board [Js Tc 8s Ad]
 Seat 1: Player20 (big blind) folded before Flop
 Seat 2: Player2 collected ($0.70)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player8 (button) folded before Flop (didn't bet)
@@ -3204,7 +3204,7 @@ Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player20 ($5.11 in chips) 
 Seat 2: Player2 ($2.40 in chips) 
 Seat 3: Player24 ($1.52 in chips) 
-Seat 4: Player17 ($3.98 in chips) 
+Seat 4: Hero ($3.98 in chips) 
 Seat 5: Player12 ($0.64 in chips) 
 Seat 6: Player22 ($1.69 in chips) 
 Seat 7: Player8 ($0.07 in chips) 
@@ -3212,9 +3212,9 @@ Seat 9: Player9 ($3.50 in chips)
 Player20: posts small blind $0.01
 Player2: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Ad 4s]
+Dealt to Hero [Ad 4s]
 Player24: folds 
-Player17: raises $0.04 to $0.06
+Hero: raises $0.04 to $0.06
 Player12: calls $0.06
 Player22: folds 
 Player8: folds 
@@ -3222,10 +3222,10 @@ Player9: calls $0.06
 Player20: folds 
 Player2: folds 
 *** FLOP *** [As 6c 5c]
-Player17: bets $0.08
+Hero: bets $0.08
 Player12: calls $0.08
 Player9: raises $0.08 to $0.16
-Player17: folds 
+Hero: folds 
 Player12: raises $0.42 to $0.58 and is all-in
 Player9: calls $0.42
 *** TURN *** [As 6c 5c] [Qd]
@@ -3240,7 +3240,7 @@ Board [As 6c 5c Qd 9d]
 Seat 1: Player20 (small blind) folded before Flop
 Seat 2: Player2 (big blind) folded before Flop
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded on the Flop
+Seat 4: Hero folded on the Flop
 Seat 5: Player12 showed [Ac Tc] and won ($1.40) with a pair of Aces
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player8 folded before Flop (didn't bet)
@@ -3253,7 +3253,7 @@ Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player20 ($5.10 in chips) 
 Seat 2: Player2 ($2.38 in chips) 
 Seat 3: Player24 ($1.52 in chips) 
-Seat 4: Player17 ($3.84 in chips) 
+Seat 4: Hero ($3.84 in chips) 
 Seat 5: Player12 ($1.40 in chips) 
 Seat 6: Player22 ($1.69 in chips) 
 Seat 7: Player8 ($0.07 in chips) 
@@ -3261,8 +3261,8 @@ Seat 9: Player9 ($2.86 in chips)
 Player2: posts small blind $0.01
 Player24: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [5c 5d]
-Player17: raises $0.04 to $0.06
+Dealt to Hero [5c 5d]
+Hero: raises $0.04 to $0.06
 Player12: folds 
 Player22: folds 
 Player8: folds 
@@ -3272,19 +3272,19 @@ Player2: folds
 Player24: folds 
 *** FLOP *** [7d 4s 8h]
 Player2 leaves the table
-Player17: checks 
+Hero: checks 
 Player20: checks 
 *** TURN *** [7d 4s 8h] [Th]
-Player17: checks 
+Hero: checks 
 Player13 joins the table at seat #8 
 Player20: bets $0.08
-Player17: raises $0.12 to $0.20
+Hero: raises $0.12 to $0.20
 Player20: calls $0.12
 *** RIVER *** [7d 4s 8h Th] [4h]
-Player17: checks 
+Hero: checks 
 Player20: checks 
 *** SHOW DOWN ***
-Player17: shows [5c 5d] (two pair, Fives and Fours)
+Hero: shows [5c 5d] (two pair, Fives and Fours)
 Player20: shows [Jc Tc] (two pair, Tens and Fours)
 Player20 collected $0.55 from pot
 *** SUMMARY ***
@@ -3293,7 +3293,7 @@ Board [7d 4s 8h Th 4h]
 Seat 1: Player20 (button) showed [Jc Tc] and won ($0.55) with two pair, Tens and Fours
 Seat 2: Player2 (small blind) folded before Flop
 Seat 3: Player24 (big blind) folded before Flop
-Seat 4: Player17 showed [5c 5d] and lost with two pair, Fives and Fours
+Seat 4: Hero showed [5c 5d] and lost with two pair, Fives and Fours
 Seat 5: Player12 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player8 folded before Flop (didn't bet)
@@ -3305,37 +3305,37 @@ PokerStars Game #25223712121:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 3: Player24 ($1.50 in chips) 
-Seat 4: Player17 ($3.58 in chips) 
+Seat 4: Hero ($3.58 in chips) 
 Seat 5: Player12 ($1.40 in chips) 
 Seat 6: Player22 ($1.69 in chips) 
 Seat 7: Player8 ($0.07 in chips) 
 Seat 9: Player9 ($2.86 in chips) 
-Player17: posts small blind $0.01
+Hero: posts small blind $0.01
 Player12: posts big blind $0.02
 Player13: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [Kd 7d]
+Dealt to Hero [Kd 7d]
 Player22: calls $0.02
 Player8: folds 
 Player10 joins the table at seat #2 
 Player9: folds 
 Player20: folds 
 Player24: calls $0.02
-Player17: calls $0.01
+Hero: calls $0.01
 Player12: checks 
 *** FLOP *** [6s 9d 6d]
-Player17: bets $0.08
+Hero: bets $0.08
 Player12: folds 
 Player22: calls $0.08
 Player24: folds 
 *** TURN *** [6s 9d 6d] [2c]
-Player17: checks 
+Hero: checks 
 Player22: checks 
 *** RIVER *** [6s 9d 6d 2c] [8h]
-Player17: checks 
+Hero: checks 
 Player22: checks 
 *** SHOW DOWN ***
-Player17: shows [Kd 7d] (a pair of Sixes)
+Hero: shows [Kd 7d] (a pair of Sixes)
 Player22: shows [5h 5s] (two pair, Sixes and Fives)
 Player22 collected $0.24 from pot
 *** SUMMARY ***
@@ -3343,7 +3343,7 @@ Total pot $0.24 | Rake $0
 Board [6s 9d 6d 2c 8h]
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 3: Player24 (button) folded on the Flop
-Seat 4: Player17 (small blind) showed [Kd 7d] and lost with a pair of Sixes
+Seat 4: Hero (small blind) showed [Kd 7d] and lost with a pair of Sixes
 Seat 5: Player12 (big blind) folded on the Flop
 Seat 6: Player22 showed [5h 5s] and won ($0.24) with two pair, Sixes and Fives
 Seat 7: Player8 folded before Flop (didn't bet)
@@ -3355,7 +3355,7 @@ PokerStars Game #73402790620:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 2
 Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 3: Player24 ($1.48 in chips) 
-Seat 4: Player17 ($3.48 in chips) 
+Seat 4: Hero ($3.48 in chips) 
 Seat 5: Player12 ($1.38 in chips) 
 Seat 6: Player22 ($1.83 in chips) 
 Seat 7: Player8 ($0.07 in chips) 
@@ -3366,37 +3366,37 @@ Player22: posts big blind $0.02
 Player13: posts big blind $0.02
 Player10: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [5d 7c]
+Dealt to Hero [5d 7c]
 Player8: folds 
 Player13: checks 
 Player9: folds 
 Player20: folds 
 Player24: folds 
-Player17: calls $0.02
+Hero: calls $0.02
 Player12: calls $0.01
 Player22: checks 
 *** FLOP *** [7d Kd Jh]
 Player12: checks 
 Player22: checks 
 Player13: checks 
-Player17: checks 
+Hero: checks 
 *** TURN *** [7d Kd Jh] [7s]
 Player12: checks 
 Player22: checks 
 Player13: checks 
-Player17: bets $0.08
+Hero: bets $0.08
 Player12: folds 
 Player22: folds 
 Player13: folds 
-Uncalled bet ($0.08) returned to Player17
-Player17 collected $0.08 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.08) returned to Hero
+Hero collected $0.08 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.08 | Rake $0 
 Board [7d Kd Jh 7s]
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 (button) collected ($0.08)
+Seat 4: Hero (button) collected ($0.08)
 Seat 5: Player12 (small blind) folded on the Turn
 Seat 6: Player22 (big blind) folded on the Turn
 Seat 7: Player8 folded before Flop (didn't bet)
@@ -3410,7 +3410,7 @@ Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 2: Player10 ($1.29 in chips) 
 Seat 3: Player24 ($1.48 in chips) 
-Seat 4: Player17 ($3.54 in chips) 
+Seat 4: Hero ($3.54 in chips) 
 Seat 5: Player12 ($1.36 in chips) 
 Seat 6: Player22 ($1.81 in chips) 
 Seat 7: Player8 ($0.07 in chips) 
@@ -3420,13 +3420,13 @@ Player22: posts small blind $0.01
 Player8: posts big blind $0.02
 Player10: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [8d Js]
+Dealt to Hero [8d Js]
 Player13: folds 
 Player9: folds 
 Player20: folds 
 Player10: checks 
 Player24: folds 
-Player17: raises $0.06 to $0.08
+Hero: raises $0.06 to $0.08
 Player12: calls $0.08
 Player22: calls $0.07
 Player8: calls $0.05 and is all-in
@@ -3434,7 +3434,7 @@ Player10: calls $0.06
 *** FLOP *** [9c 9s Ah]
 Player22: bets $0.04
 Player10: folds 
-Player17: folds 
+Hero: folds 
 Player12: calls $0.04
 *** TURN *** [9c 9s Ah] [Td]
 Player22: bets $0.08
@@ -3452,7 +3452,7 @@ Board [9c 9s Ah Td 3d]
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 2: Player10 folded on the Flop
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded on the Flop
+Seat 4: Hero folded on the Flop
 Seat 5: Player12 (button) folded on the Turn
 Seat 6: Player22 (small blind) showed [Ac 6c] and won ($0.47) with two pair, Aces and Nines
 Seat 7: Player8 (big blind) showed [Kh Th] and lost with two pair, Tens and Nines
@@ -3466,7 +3466,7 @@ Table '99999999' 9-max Seat #6 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 2: Player10 ($1.21 in chips) 
 Seat 3: Player24 ($1.48 in chips) 
-Seat 4: Player17 ($3.46 in chips) 
+Seat 4: Hero ($3.46 in chips) 
 Seat 5: Player12 ($1.24 in chips) 
 Seat 6: Player22 ($2.16 in chips) 
 Seat 8: Player13 ($4.98 in chips) 
@@ -3474,12 +3474,12 @@ Seat 9: Player9 ($2.86 in chips)
 Player13: posts small blind $0.01
 Player9: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [7s 5h]
+Dealt to Hero [7s 5h]
 Player20: folds 
 Player10: calls $0.02
 Player8 leaves the table
 Player24: folds 
-Player17: calls $0.02
+Hero: calls $0.02
 Player12: calls $0.02
 Player22: folds 
 Player13: folds 
@@ -3487,29 +3487,29 @@ Player9: checks
 *** FLOP *** [5s 8d Kc]
 Player9: checks 
 Player10: bets $0.06
-Player17: raises $0.08 to $0.14
+Hero: raises $0.08 to $0.14
 Player12: folds 
 Player9: folds 
 Player10: calls $0.08
 *** TURN *** [5s 8d Kc] [4c]
 Player10: checks 
 Player13 leaves the table
-Player17: checks 
+Hero: checks 
 *** RIVER *** [5s 8d Kc 4c] [3s]
 Player10: checks 
 Player7 joins the table at seat #8 
-Player17: checks 
+Hero: checks 
 *** SHOW DOWN ***
 Player10: shows [2c 2h] (a pair of Deuces)
-Player17: shows [7s 5h] (a pair of Fives)
-Player17 collected $0.37 from pot
+Hero: shows [7s 5h] (a pair of Fives)
+Hero collected $0.37 from pot
 *** SUMMARY ***
 Total pot $0.37 | Rake $0 
 Board [5s 8d Kc 4c 3s]
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 2: Player10 showed [2c 2h] and lost with a pair of Deuces
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 showed [7s 5h] and won ($0.37) with a pair of Fives
+Seat 4: Hero showed [7s 5h] and won ($0.37) with a pair of Fives
 Seat 5: Player12 folded on the Flop
 Seat 6: Player22 (button) folded before Flop (didn't bet)
 Seat 8: Player13 (small blind) folded before Flop
@@ -3522,16 +3522,16 @@ Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 2: Player10 ($1.05 in chips) 
 Seat 3: Player24 ($1.48 in chips) 
-Seat 4: Player17 ($3.67 in chips) 
+Seat 4: Hero ($3.67 in chips) 
 Seat 5: Player12 ($1.22 in chips) 
 Seat 9: Player9 ($2.84 in chips) 
 Player20: posts small blind $0.01
 Player10: posts big blind $0.02
 Player7: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [Js 6c]
+Dealt to Hero [Js 6c]
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player12: folds 
 Player9: calls $0.02
 Player20: raises $0.04 to $0.06
@@ -3559,7 +3559,7 @@ Board [2c 2s Ts Kd 9s]
 Seat 1: Player20 (small blind) showed [Ad Ah] and won ($3.43) with two pair, Aces and Deuces
 Seat 2: Player10 (big blind) showed [Kh Ks] and won ($3) with a full house, Kings full of Deuces
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 folded before Flop (didn't bet)
 Seat 9: Player9 (button) showed [Qs 7h] and lost with a pair of Deuces
 
@@ -3570,34 +3570,34 @@ Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player20 ($5.98 in chips) 
 Seat 2: Player10 ($3 in chips) 
 Seat 3: Player24 ($1.48 in chips) 
-Seat 4: Player17 ($3.67 in chips) 
+Seat 4: Hero ($3.67 in chips) 
 Seat 5: Player12 ($1.22 in chips) 
 Player10: posts small blind $0.01
 Player24: posts big blind $0.02
 Player7: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [6c Tc]
-Player17: raises $0.04 to $0.06
+Dealt to Hero [6c Tc]
+Hero: raises $0.04 to $0.06
 Player12: folds 
 Player16 joins the table at seat #7 
 Player20 said, "lol everytime"
 Player20: folds 
 Player10: raises $0.04 to $0.10
 Player24: folds 
-Player17: calls $0.04
+Hero: calls $0.04
 *** FLOP *** [5c Kc Jh]
 Player10: checks 
-Player17: bets $0.08
+Hero: bets $0.08
 Player10: calls $0.08
 *** TURN *** [5c Kc Jh] [5h]
 Player10: checks 
-Player17: checks 
+Hero: checks 
 *** RIVER *** [5c Kc Jh 5h] [Ts]
 Player10: checks 
-Player17: checks 
+Hero: checks 
 *** SHOW DOWN ***
 Player10: shows [Ad Ac] (two pair, Aces and Fives)
-Player17: mucks hand 
+Hero: mucks hand 
 Player10 collected $0.38 from pot
 *** SUMMARY ***
 Total pot $0.38 | Rake $0 
@@ -3605,7 +3605,7 @@ Board [5c Kc Jh 5h Ts]
 Seat 1: Player20 (button) folded before Flop (didn't bet)
 Seat 2: Player10 (small blind) showed [Ad Ac] and won ($0.38) with two pair, Aces and Fives
 Seat 3: Player24 (big blind) folded before Flop
-Seat 4: Player17 mucked [6c Tc]
+Seat 4: Hero mucked [6c Tc]
 Seat 5: Player12 folded before Flop (didn't bet)
 
 
@@ -3615,48 +3615,48 @@ Table '99999999' 9-max Seat #2 is the button
 Seat 1: Player20 ($5.98 in chips) 
 Seat 2: Player10 ($3.20 in chips) 
 Seat 3: Player24 ($1.46 in chips) 
-Seat 4: Player17 ($3.49 in chips) 
+Seat 4: Hero ($3.49 in chips) 
 Seat 5: Player12 ($1.22 in chips) 
 Seat 9: Player9 ($1.80 in chips) 
 Player24: posts small blind $0.01
-Player17: posts big blind $0.02
+Hero: posts big blind $0.02
 Player16: sits out 
 Player7: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [As 7h]
+Dealt to Hero [As 7h]
 Player12: calls $0.02
 Player20 said, "haha nice"
 Player9: calls $0.02
 Player20: calls $0.02
 Player10: calls $0.02
 Player24: calls $0.01
-Player17: checks 
+Hero: checks 
 *** FLOP *** [Qs Qh Ad]
 Player24: checks 
-Player17: bets $0.12
+Hero: bets $0.12
 Player12: folds 
 Player9: calls $0.12
 Player20: folds 
 Player10: folds 
 Player24: folds 
 *** TURN *** [Qs Qh Ad] [5h]
-Player17: bets $0.10
+Hero: bets $0.10
 Player9: calls $0.10
 *** RIVER *** [Qs Qh Ad 5h] [Ah]
-Player17: bets $0.12
+Hero: bets $0.12
 Player9: raises $1.44 to $1.56 and is all-in
-Player17: calls $1.44
+Hero: calls $1.44
 *** SHOW DOWN ***
 Player9: shows [Kh Jh] (a flush, Ace high)
-Player17: shows [As 7h] (a full house, Aces full of Queens)
-Player17 collected $3.53 from pot
+Hero: shows [As 7h] (a full house, Aces full of Queens)
+Hero collected $3.53 from pot
 *** SUMMARY ***
 Total pot $3.68 | Rake $0.15 
 Board [Qs Qh Ad 5h Ah]
 Seat 1: Player20 folded on the Flop
 Seat 2: Player10 (button) folded on the Flop
 Seat 3: Player24 (small blind) folded on the Flop
-Seat 4: Player17 (big blind) showed [As 7h] and won ($3.53) with a full house, Aces full of Queens
+Seat 4: Hero (big blind) showed [As 7h] and won ($3.53) with a full house, Aces full of Queens
 Seat 5: Player12 folded on the Flop
 Seat 9: Player9 showed [Kh Jh] and lost with a flush, Ace high
 
@@ -3667,30 +3667,30 @@ Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player20 ($5.96 in chips) 
 Seat 2: Player10 ($3.18 in chips) 
 Seat 3: Player24 ($1.44 in chips) 
-Seat 4: Player17 ($5.22 in chips) 
+Seat 4: Hero ($5.22 in chips) 
 Seat 5: Player12 ($1.20 in chips) 
 Seat 6: Player22 ($2.16 in chips) 
-Player17: posts small blind $0.01
+Hero: posts small blind $0.01
 Player12: posts big blind $0.02
 Player16: sits out 
 Player7: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [Ac 7s]
+Dealt to Hero [Ac 7s]
 Player22: folds 
 Player20: folds 
 Player10: folds 
 Player24: folds 
 Player22 said, "nh"
-Player17: raises $0.08 to $0.10
+Hero: raises $0.08 to $0.10
 Player12: calls $0.08
 *** FLOP *** [8c 5d Qh]
-Player17 said, "tyty"
-Player17: checks 
+Hero said, "tyty"
+Hero: checks 
 Player12: checks 
 *** TURN *** [8c 5d Qh] [Tc]
-Player17: checks 
+Hero: checks 
 Player12: bets $0.10
-Player17: folds 
+Hero: folds 
 Uncalled bet ($0.10) returned to Player12
 Player12 collected $0.20 from pot
 *** SUMMARY ***
@@ -3699,7 +3699,7 @@ Board [8c 5d Qh Tc]
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 2: Player10 folded before Flop (didn't bet)
 Seat 3: Player24 (button) folded before Flop (didn't bet)
-Seat 4: Player17 (small blind) folded on the Turn
+Seat 4: Hero (small blind) folded on the Turn
 Seat 5: Player12 (big blind) collected ($0.20)
 Seat 6: Player22 folded before Flop (didn't bet)
 
@@ -3710,7 +3710,7 @@ Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player20 ($5.96 in chips) 
 Seat 2: Player10 ($3.18 in chips) 
 Seat 3: Player24 ($1.44 in chips) 
-Seat 4: Player17 ($5.12 in chips) 
+Seat 4: Hero ($5.12 in chips) 
 Seat 5: Player12 ($1.30 in chips) 
 Seat 6: Player22 ($2.16 in chips) 
 Player12: posts small blind $0.01
@@ -3718,23 +3718,23 @@ Player22: posts big blind $0.02
 Player16: sits out 
 Player7: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [As Qc]
+Dealt to Hero [As Qc]
 Player20: folds 
 Player10: calls $0.02
 Player24: folds 
-Player17: calls $0.02
+Hero: calls $0.02
 Player12: calls $0.01
 Player22: checks 
 *** FLOP *** [8s 8h Kd]
 Player12: checks 
 Player22: checks 
 Player10: checks 
-Player17: checks 
+Hero: checks 
 *** TURN *** [8s 8h Kd] [9h]
 Player12: bets $0.06
 Player22: folds 
 Player10: calls $0.06
-Player17: folds 
+Hero: folds 
 *** RIVER *** [8s 8h Kd 9h] [6s]
 Player12: bets $0.24
 Player10: folds 
@@ -3747,7 +3747,7 @@ Board [8s 8h Kd 9h 6s]
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 2: Player10 folded on the River
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 (button) folded on the Turn
+Seat 4: Hero (button) folded on the Turn
 Seat 5: Player12 (small blind) collected ($0.20)
 Seat 6: Player22 (big blind) folded on the Turn
 
@@ -3757,7 +3757,7 @@ PokerStars Game #25404395119:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0
 Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player20 ($5.96 in chips) 
 Seat 3: Player24 ($1.44 in chips) 
-Seat 4: Player17 ($5.10 in chips) 
+Seat 4: Hero ($5.10 in chips) 
 Seat 5: Player12 ($1.42 in chips) 
 Seat 6: Player22 ($2.14 in chips) 
 Seat 7: Player16 ($1.60 in chips) 
@@ -3766,23 +3766,23 @@ Player22: posts small blind $0.01
 Player16: posts big blind $0.02
 Player7: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [5c 8c]
+Dealt to Hero [5c 8c]
 Player9: calls $0.02
 Player20: folds 
 Player24: folds 
-Player17: calls $0.02
+Hero: calls $0.02
 Player12: calls $0.02
 Player22: folds 
 Player16: checks 
 *** FLOP *** [Ad Kd Qh]
 Player16: checks 
 Player9: checks 
-Player17: checks 
+Hero: checks 
 Player12: checks 
 *** TURN *** [Ad Kd Qh] [9c]
 Player16: checks 
 Player9: bets $0.02
-Player17: folds 
+Hero: folds 
 Player12: calls $0.02
 Player16: folds 
 *** RIVER *** [Ad Kd Qh 9c] [7d]
@@ -3798,7 +3798,7 @@ Total pot $0.13 | Rake $0
 Board [Ad Kd Qh 9c 7d]
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded on the Turn
+Seat 4: Hero folded on the Turn
 Seat 5: Player12 (button) showed [5h Kh] and won ($0.13) with a pair of Kings
 Seat 6: Player22 (small blind) folded before Flop
 Seat 7: Player16 (big blind) folded on the Turn
@@ -3810,7 +3810,7 @@ PokerStars Game #19191328622:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0
 Table '99999999' 9-max Seat #7 is the button
 Seat 1: Player20 ($5.94 in chips) 
 Seat 3: Player24 ($1.44 in chips) 
-Seat 4: Player17 ($5.08 in chips) 
+Seat 4: Hero ($5.08 in chips) 
 Seat 5: Player12 ($1.15 in chips) 
 Seat 6: Player22 ($2.56 in chips) 
 Seat 7: Player16 ($1.57 in chips) 
@@ -3820,10 +3820,10 @@ Player7: posts small blind $0.01
 Player9: posts big blind $0.02
 Player4: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [4h As]
+Dealt to Hero [4h As]
 Player20: folds 
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player12: calls $0.02
 Player22: calls $0.02
 Player16: folds 
@@ -3855,7 +3855,7 @@ Total pot $0.08 | Rake $0
 Board [Qh 5c 9c 7d Qd]
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 mucked [3h 2s]
 Seat 6: Player22 mucked [Ts 6s]
 Seat 7: Player16 (button) folded before Flop (didn't bet)
@@ -3868,7 +3868,7 @@ PokerStars Game #35042386427:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0
 Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player20 ($5.94 in chips) 
 Seat 3: Player24 ($1.44 in chips) 
-Seat 4: Player17 ($5.08 in chips) 
+Seat 4: Hero ($5.08 in chips) 
 Seat 5: Player12 ($1.13 in chips) 
 Seat 6: Player22 ($2.54 in chips) 
 Seat 7: Player16 ($1.57 in chips) 
@@ -3878,9 +3878,9 @@ Player9: posts small blind $0.01
 Player20: posts big blind $0.02
 Player4: sits out 
 *** HOLE CARDS ***
-Dealt to Player17 [5s Ks]
+Dealt to Hero [5s Ks]
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player12: calls $0.02
 Player22: folds 
 Player16: folds 
@@ -3910,7 +3910,7 @@ Total pot $0.26 | Rake $0
 Board [Qc 9c 5h Td Jh]
 Seat 1: Player20 (big blind) folded on the Flop
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 folded on the River
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player16 folded before Flop (didn't bet)
@@ -3924,7 +3924,7 @@ Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player20 ($5.92 in chips) 
 Seat 2: Player4 ($1 in chips) 
 Seat 3: Player24 ($1.44 in chips) 
-Seat 4: Player17 ($5.08 in chips) 
+Seat 4: Hero ($5.08 in chips) 
 Seat 5: Player12 ($1.05 in chips) 
 Seat 6: Player22 ($2.54 in chips) 
 Seat 7: Player16 ($1.57 in chips) 
@@ -3933,9 +3933,9 @@ Seat 9: Player9 ($1.10 in chips)
 Player20: posts small blind $0.01
 Player4: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Ts 8s]
+Dealt to Hero [Ts 8s]
 Player24: folds 
-Player17: calls $0.02
+Hero: calls $0.02
 Player12: calls $0.02
 Player22: calls $0.02
 Player16: calls $0.02
@@ -3946,37 +3946,37 @@ Player4: checks
 *** FLOP *** [9d 3c Js]
 Player20: checks 
 Player4: checks 
-Player17: checks 
+Hero: checks 
 Player12: checks 
 Player22: checks 
 Player16: bets $0.10
 Player7: folds 
 Player20: calls $0.10
 Player4: calls $0.10
-Player17: calls $0.10
+Hero: calls $0.10
 Player12: folds 
 Player22: folds 
 *** TURN *** [9d 3c Js] [Qh]
 Player20: checks 
 Player4: checks 
-Player17: checks 
+Hero: checks 
 Player16: checks 
 *** RIVER *** [9d 3c Js Qh] [2s]
 Player20: bets $0.26
 Player4: folds 
-Player17: calls $0.26
+Hero: calls $0.26
 Player16: folds 
 *** SHOW DOWN ***
 Player20: shows [2h Jh] (two pair, Jacks and Deuces)
-Player17: shows [Ts 8s] (a straight, Eight to Queen)
-Player17 collected $1.01 from pot
+Hero: shows [Ts 8s] (a straight, Eight to Queen)
+Hero collected $1.01 from pot
 *** SUMMARY ***
 Total pot $1.06 | Rake $0.05 
 Board [9d 3c Js Qh 2s]
 Seat 1: Player20 (small blind) showed [2h Jh] and lost with two pair, Jacks and Deuces
 Seat 2: Player4 (big blind) folded on the River
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 showed [Ts 8s] and won ($1.01) with a straight, Eight to Queen
+Seat 4: Hero showed [Ts 8s] and won ($1.01) with a straight, Eight to Queen
 Seat 5: Player12 folded on the Flop
 Seat 6: Player22 folded on the Flop
 Seat 7: Player16 folded on the River
@@ -3990,7 +3990,7 @@ Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player20 ($5.54 in chips) 
 Seat 2: Player4 ($0.88 in chips) 
 Seat 3: Player24 ($1.44 in chips) 
-Seat 4: Player17 ($5.71 in chips) 
+Seat 4: Hero ($5.71 in chips) 
 Seat 5: Player12 ($1.03 in chips) 
 Seat 6: Player22 ($2.52 in chips) 
 Seat 7: Player16 ($1.45 in chips) 
@@ -3999,8 +3999,8 @@ Seat 9: Player9 ($1.10 in chips)
 Player4: posts small blind $0.01
 Player24: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [5h Qh]
-Player17: folds 
+Dealt to Hero [5h Qh]
+Hero: folds 
 Player12: calls $0.02
 Player22: calls $0.02
 Player16: folds 
@@ -4035,7 +4035,7 @@ Board [6c 7s 9h 3h 2h]
 Seat 1: Player20 (button) folded before Flop (didn't bet)
 Seat 2: Player4 (small blind) folded on the River
 Seat 3: Player24 (big blind) folded on the Turn
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 folded on the Turn
 Seat 6: Player22 folded on the River
 Seat 7: Player16 folded before Flop (didn't bet)
@@ -4049,16 +4049,16 @@ Table '99999999' 9-max Seat #2 is the button
 Seat 1: Player20 ($5.54 in chips) 
 Seat 2: Player4 ($0.82 in chips) 
 Seat 3: Player24 ($1.40 in chips) 
-Seat 4: Player17 ($5.71 in chips) 
+Seat 4: Hero ($5.71 in chips) 
 Seat 5: Player12 ($0.99 in chips) 
 Seat 6: Player22 ($2.46 in chips) 
 Seat 7: Player16 ($1.45 in chips) 
 Seat 8: Player7 ($2 in chips) 
 Seat 9: Player9 ($1.30 in chips) 
 Player24: posts small blind $0.01
-Player17: posts big blind $0.02
+Hero: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [5d 7s]
+Dealt to Hero [5d 7s]
 Player12: calls $0.02
 Player22: calls $0.02
 Player16: folds 
@@ -4067,17 +4067,17 @@ Player9: calls $0.02
 Player20: calls $0.02
 Player4: calls $0.02
 Player24: calls $0.01
-Player17: checks 
+Hero: checks 
 *** FLOP *** [7c Qs Th]
 Player24: checks 
-Player17: checks 
+Hero: checks 
 Player12: checks 
 Player22: bets $0.10
 Player9: folds 
 Player20: folds 
 Player4: calls $0.10
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player12: folds 
 *** TURN *** [7c Qs Th] [Qd]
 Player22: checks 
@@ -4094,7 +4094,7 @@ Board [7c Qs Th Qd 6h]
 Seat 1: Player20 folded on the Flop
 Seat 2: Player4 (button) folded on the River
 Seat 3: Player24 (small blind) folded on the Flop
-Seat 4: Player17 (big blind) folded on the Flop
+Seat 4: Hero (big blind) folded on the Flop
 Seat 5: Player12 folded on the Flop
 Seat 6: Player22 collected ($0.34)
 Seat 7: Player16 folded before Flop (didn't bet)
@@ -4108,16 +4108,16 @@ Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player20 ($5.52 in chips) 
 Seat 2: Player4 ($0.70 in chips) 
 Seat 3: Player24 ($1.38 in chips) 
-Seat 4: Player17 ($5.69 in chips) 
+Seat 4: Hero ($5.69 in chips) 
 Seat 5: Player12 ($0.97 in chips) 
 Seat 6: Player22 ($2.68 in chips) 
 Seat 7: Player16 ($1.45 in chips) 
 Seat 8: Player7 ($2 in chips) 
 Seat 9: Player9 ($1.28 in chips) 
-Player17: posts small blind $0.01
+Hero: posts small blind $0.01
 Player12: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [As Kd]
+Dealt to Hero [As Kd]
 Player22: folds 
 Player16: folds 
 Player7: folds 
@@ -4125,32 +4125,32 @@ Player9: folds
 Player20: folds 
 Player4: raises $0.04 to $0.06
 Player24: folds 
-Player17: calls $0.05
+Hero: calls $0.05
 Player12: calls $0.04
 *** FLOP *** [Kh 3c Ah]
-Player17: checks 
+Hero: checks 
 Player12: checks 
 Player4: checks 
 *** TURN *** [Kh 3c Ah] [Jh]
-Player17: checks 
+Hero: checks 
 Player12: checks 
 Player4: checks 
 *** RIVER *** [Kh 3c Ah Jh] [5c]
-Player17: checks 
+Hero: checks 
 Player12: checks 
 Player4: checks 
 *** SHOW DOWN ***
-Player17: shows [As Kd] (two pair, Aces and Kings)
+Hero: shows [As Kd] (two pair, Aces and Kings)
 Player12: mucks hand 
 Player4: mucks hand 
-Player17 collected $0.18 from pot
+Hero collected $0.18 from pot
 *** SUMMARY ***
 Total pot $0.18 | Rake $0 
 Board [Kh 3c Ah Jh 5c]
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 2: Player4 mucked [7s 8s]
 Seat 3: Player24 (button) folded before Flop (didn't bet)
-Seat 4: Player17 (small blind) showed [As Kd] and won ($0.18) with two pair, Aces and Kings
+Seat 4: Hero (small blind) showed [As Kd] and won ($0.18) with two pair, Aces and Kings
 Seat 5: Player12 (big blind) mucked [Ts 3s]
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player16 folded before Flop (didn't bet)
@@ -4164,7 +4164,7 @@ Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player20 ($5.52 in chips) 
 Seat 2: Player4 ($0.64 in chips) 
 Seat 3: Player24 ($1.38 in chips) 
-Seat 4: Player17 ($5.81 in chips) 
+Seat 4: Hero ($5.81 in chips) 
 Seat 5: Player12 ($0.91 in chips) 
 Seat 6: Player22 ($2.68 in chips) 
 Seat 7: Player16 ($1.45 in chips) 
@@ -4173,7 +4173,7 @@ Seat 9: Player9 ($1.28 in chips)
 Player12: posts small blind $0.01
 Player22: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [9s 2d]
+Dealt to Hero [9s 2d]
 Player16: folds 
 Player7: folds 
 Player9 has timed out
@@ -4181,7 +4181,7 @@ Player9: folds
 Player20: raises $0.04 to $0.06
 Player4: folds 
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player12: folds 
 Player22: folds 
 Uncalled bet ($0.04) returned to Player20
@@ -4192,7 +4192,7 @@ Total pot $0.05 | Rake $0
 Seat 1: Player20 collected ($0.05)
 Seat 2: Player4 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 (button) folded before Flop (didn't bet)
+Seat 4: Hero (button) folded before Flop (didn't bet)
 Seat 5: Player12 (small blind) folded before Flop
 Seat 6: Player22 (big blind) folded before Flop
 Seat 7: Player16 folded before Flop (didn't bet)
@@ -4206,7 +4206,7 @@ Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player20 ($5.55 in chips) 
 Seat 2: Player4 ($0.64 in chips) 
 Seat 3: Player24 ($1.38 in chips) 
-Seat 4: Player17 ($5.81 in chips) 
+Seat 4: Hero ($5.81 in chips) 
 Seat 5: Player12 ($0.90 in chips) 
 Seat 6: Player22 ($2.66 in chips) 
 Seat 7: Player16 ($1.45 in chips) 
@@ -4215,13 +4215,13 @@ Seat 9: Player9 ($1.28 in chips)
 Player22: posts small blind $0.01
 Player16: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Kh 5c]
+Dealt to Hero [Kh 5c]
 Player7: folds 
 Player9: calls $0.02
 Player20: folds 
 Player4: folds 
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player12: calls $0.02
 Player22: calls $0.01
 Player16: checks 
@@ -4244,7 +4244,7 @@ Board [8d 5s Ts 9h]
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 2: Player4 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 (button) folded on the Turn
 Seat 6: Player22 (small blind) collected ($0.08)
 Seat 7: Player16 (big blind) folded on the Turn
@@ -4258,7 +4258,7 @@ Table '99999999' 9-max Seat #6 is the button
 Seat 1: Player20 ($5.55 in chips) 
 Seat 2: Player4 ($0.64 in chips) 
 Seat 3: Player24 ($1.38 in chips) 
-Seat 4: Player17 ($5.81 in chips) 
+Seat 4: Hero ($5.81 in chips) 
 Seat 5: Player12 ($0.88 in chips) 
 Seat 6: Player22 ($2.72 in chips) 
 Seat 7: Player16 ($1.43 in chips) 
@@ -4267,13 +4267,13 @@ Seat 9: Player9 ($1.26 in chips)
 Player16: posts small blind $0.01
 Player7: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Qs 6h]
+Dealt to Hero [Qs 6h]
 Player9 has timed out
 Player9: folds 
 Player20: folds 
 Player4: calls $0.02
 Player24: calls $0.02
-Player17: folds 
+Hero: folds 
 Player12: calls $0.02
 Player22: calls $0.02
 Player16: folds 
@@ -4302,7 +4302,7 @@ Board [5d Th 9c 2d 9s]
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 2: Player4 folded on the Flop
 Seat 3: Player24 folded on the River
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 collected ($0.15)
 Seat 6: Player22 (button) folded on the Flop
 Seat 7: Player16 (small blind) folded before Flop
@@ -4316,7 +4316,7 @@ Table '99999999' 9-max Seat #7 is the button
 Seat 1: Player20 ($5.55 in chips) 
 Seat 2: Player4 ($0.62 in chips) 
 Seat 3: Player24 ($1.34 in chips) 
-Seat 4: Player17 ($5.81 in chips) 
+Seat 4: Hero ($5.81 in chips) 
 Seat 5: Player12 ($0.99 in chips) 
 Seat 6: Player22 ($2.70 in chips) 
 Seat 7: Player16 ($1.42 in chips) 
@@ -4325,11 +4325,11 @@ Seat 9: Player9 ($1.26 in chips)
 Player7: posts small blind $0.01
 Player9: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [4d 9d]
+Dealt to Hero [4d 9d]
 Player20: folds 
 Player4: folds 
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player12: folds 
 Player22: folds 
 Player16: folds 
@@ -4344,7 +4344,7 @@ Total pot $0.04 | Rake $0
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 2: Player4 folded before Flop (didn't bet)
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player16 (button) folded before Flop (didn't bet)
@@ -4358,7 +4358,7 @@ Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player20 ($5.55 in chips) 
 Seat 2: Player4 ($0.62 in chips) 
 Seat 3: Player24 ($1.34 in chips) 
-Seat 4: Player17 ($5.81 in chips) 
+Seat 4: Hero ($5.81 in chips) 
 Seat 5: Player12 ($0.99 in chips) 
 Seat 6: Player22 ($2.70 in chips) 
 Seat 7: Player16 ($1.42 in chips) 
@@ -4366,9 +4366,9 @@ Seat 8: Player7 ($2.02 in chips)
 Player20: posts small blind $0.01
 Player4: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Js 7d]
+Dealt to Hero [Js 7d]
 Player24: folds 
-Player17: folds 
+Hero: folds 
 Player24 leaves the table
 Player12: folds 
 Player22: calls $0.02
@@ -4396,7 +4396,7 @@ Board [Jc 2d 9d Ac]
 Seat 1: Player20 (small blind) folded on the Turn
 Seat 2: Player4 (big blind) folded on the Turn
 Seat 3: Player24 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 folded before Flop (didn't bet)
 Seat 6: Player22 collected ($0.06)
 Seat 7: Player16 folded before Flop (didn't bet)
@@ -4409,7 +4409,7 @@ Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player20 ($5.53 in chips) 
 Seat 2: Player4 ($0.60 in chips) 
 Seat 3: Player1 ($2 in chips) 
-Seat 4: Player17 ($5.81 in chips) 
+Seat 4: Hero ($5.81 in chips) 
 Seat 5: Player12 ($0.99 in chips) 
 Seat 6: Player22 ($2.74 in chips) 
 Seat 7: Player16 ($1.42 in chips) 
@@ -4419,8 +4419,8 @@ Player4: posts small blind $0.01
 Player1: posts big blind $0.02
 Player9: posts small blind $0.01
 *** HOLE CARDS ***
-Dealt to Player17 [9c 8s]
-Player17: folds 
+Dealt to Hero [9c 8s]
+Hero: folds 
 Player12: calls $0.02
 Player22: calls $0.02
 Player16: folds 
@@ -4453,7 +4453,7 @@ Board [Td 3s Th 9s]
 Seat 1: Player20 (button) folded before Flop (didn't bet)
 Seat 2: Player4 (small blind) folded on the Turn
 Seat 3: Player1 (big blind) folded on the Turn
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 folded on the Turn
 Seat 6: Player22 collected ($0.11)
 Seat 7: Player16 folded before Flop (didn't bet)
@@ -4467,16 +4467,16 @@ Table '99999999' 9-max Seat #2 is the button
 Seat 1: Player20 ($5.53 in chips) 
 Seat 2: Player4 ($0.58 in chips) 
 Seat 3: Player1 ($1.98 in chips) 
-Seat 4: Player17 ($5.81 in chips) 
+Seat 4: Hero ($5.81 in chips) 
 Seat 5: Player12 ($0.97 in chips) 
 Seat 6: Player22 ($2.83 in chips) 
 Seat 7: Player16 ($1.42 in chips) 
 Seat 8: Player7 ($2.02 in chips) 
 Seat 9: Player9 ($1.21 in chips) 
 Player1: posts small blind $0.01
-Player17: posts big blind $0.02
+Hero: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [9d Qc]
+Dealt to Hero [9d Qc]
 Player12: folds 
 Player22: folds 
 Player16: folds 
@@ -4485,7 +4485,7 @@ Player9: calls $0.02
 Player20: raises $0.04 to $0.06
 Player4: folds 
 Player1: folds 
-Player17: folds 
+Hero: folds 
 Player9: calls $0.04
 *** FLOP *** [6d 4d Qh]
 Player9: checks 
@@ -4506,7 +4506,7 @@ Board [6d 4d Qh Ac Ah]
 Seat 1: Player20 mucked [Kc Jd]
 Seat 2: Player4 (button) folded before Flop (didn't bet)
 Seat 3: Player1 (small blind) folded before Flop
-Seat 4: Player17 (big blind) folded before Flop
+Seat 4: Hero (big blind) folded before Flop
 Seat 5: Player12 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player16 folded before Flop (didn't bet)
@@ -4520,16 +4520,16 @@ Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player20 ($5.45 in chips) 
 Seat 2: Player4 ($0.58 in chips) 
 Seat 3: Player1 ($1.97 in chips) 
-Seat 4: Player17 ($5.79 in chips) 
+Seat 4: Hero ($5.79 in chips) 
 Seat 5: Player12 ($0.97 in chips) 
 Seat 6: Player22 ($2.83 in chips) 
 Seat 7: Player16 ($1.42 in chips) 
 Seat 8: Player7 ($2.02 in chips) 
 Seat 9: Player9 ($1.32 in chips) 
-Player17: posts small blind $0.01
+Hero: posts small blind $0.01
 Player12: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Td 2h]
+Dealt to Hero [Td 2h]
 Player22: folds 
 Player16: raises $0.06 to $0.08
 Player7: folds 
@@ -4537,7 +4537,7 @@ Player9: folds
 Player20: folds 
 Player4: folds 
 Player1: calls $0.08
-Player17: folds 
+Hero: folds 
 Player12: folds 
 *** FLOP *** [9c 7d 3h]
 Player16: checks 
@@ -4554,7 +4554,7 @@ Board [9c 7d 3h 9h]
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 2: Player4 folded before Flop (didn't bet)
 Seat 3: Player1 (button) folded on the Turn
-Seat 4: Player17 (small blind) folded before Flop
+Seat 4: Hero (small blind) folded before Flop
 Seat 5: Player12 (big blind) folded before Flop
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player16 collected ($0.19)
@@ -4568,7 +4568,7 @@ Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player20 ($5.45 in chips) 
 Seat 2: Player4 ($0.58 in chips) 
 Seat 3: Player1 ($1.89 in chips) 
-Seat 4: Player17 ($5.78 in chips) 
+Seat 4: Hero ($5.78 in chips) 
 Seat 5: Player12 ($0.95 in chips) 
 Seat 6: Player22 ($2.83 in chips) 
 Seat 7: Player16 ($1.53 in chips) 
@@ -4577,7 +4577,7 @@ Seat 9: Player9 ($1.32 in chips)
 Player12: posts small blind $0.01
 Player22: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [5d 6s]
+Dealt to Hero [5d 6s]
 Player16: folds 
 Player16 leaves the table
 Player7: folds 
@@ -4585,7 +4585,7 @@ Player9: folds
 Player20: raises $0.04 to $0.06
 Player4: folds 
 Player1: folds 
-Player17: folds 
+Hero: folds 
 Player12: calls $0.05
 Player22: calls $0.04
 *** FLOP *** [Ts Kc Jd]
@@ -4603,7 +4603,7 @@ Board [Ts Kc Jd]
 Seat 1: Player20 folded on the Flop
 Seat 2: Player4 folded before Flop (didn't bet)
 Seat 3: Player1 folded before Flop (didn't bet)
-Seat 4: Player17 (button) folded before Flop (didn't bet)
+Seat 4: Hero (button) folded before Flop (didn't bet)
 Seat 5: Player12 (small blind) folded on the Flop
 Seat 6: Player22 (big blind) collected ($0.18)
 Seat 7: Player16 folded before Flop (didn't bet)
@@ -4617,7 +4617,7 @@ Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 2: Player4 ($0.58 in chips) 
 Seat 3: Player1 ($1.89 in chips) 
-Seat 4: Player17 ($5.78 in chips) 
+Seat 4: Hero ($5.78 in chips) 
 Seat 5: Player12 ($0.89 in chips) 
 Seat 6: Player22 ($2.95 in chips) 
 Seat 7: Player6 ($2 in chips) 
@@ -4626,13 +4626,13 @@ Seat 9: Player9 ($1.32 in chips)
 Player22: posts small blind $0.01
 Player6: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Ks Jd]
+Dealt to Hero [Ks Jd]
 Player7: calls $0.02
 Player9: folds 
 Player20: folds 
 Player4: calls $0.02
 Player1: raises $0.04 to $0.06
-Player17: folds 
+Hero: folds 
 Player12: folds 
 Player22: calls $0.05
 Player6: calls $0.04
@@ -4663,7 +4663,7 @@ Board [5c 3h 4s Qh 6h]
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 2: Player4 folded on the River
 Seat 3: Player1 folded on the River
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 (button) folded before Flop (didn't bet)
 Seat 6: Player22 (small blind) collected ($0.46)
 Seat 7: Player6 (big blind) folded on the River
@@ -4677,7 +4677,7 @@ Table '99999999' 9-max Seat #6 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 2: Player4 ($0.48 in chips) 
 Seat 3: Player1 ($1.79 in chips) 
-Seat 4: Player17 ($5.78 in chips) 
+Seat 4: Hero ($5.78 in chips) 
 Seat 5: Player12 ($0.89 in chips) 
 Seat 6: Player22 ($3.31 in chips) 
 Seat 7: Player6 ($1.90 in chips) 
@@ -4686,25 +4686,25 @@ Seat 9: Player9 ($1.32 in chips)
 Player6: posts small blind $0.01
 Player7: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Qs 9s]
+Dealt to Hero [Qs 9s]
 Player9: folds 
 Player20: folds 
 Player4: folds 
 Player1: folds 
-Player17: raises $0.04 to $0.06
+Hero: raises $0.04 to $0.06
 Player12: folds 
 Player22: folds 
 Player6: folds 
 Player7: folds 
-Uncalled bet ($0.04) returned to Player17
-Player17 collected $0.05 from pot
-Player17: doesn't show hand 
+Uncalled bet ($0.04) returned to Hero
+Hero collected $0.05 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.05 | Rake $0 
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 2: Player4 folded before Flop (didn't bet)
 Seat 3: Player1 folded before Flop (didn't bet)
-Seat 4: Player17 collected ($0.05)
+Seat 4: Hero collected ($0.05)
 Seat 5: Player12 folded before Flop (didn't bet)
 Seat 6: Player22 (button) folded before Flop (didn't bet)
 Seat 7: Player6 (small blind) folded before Flop
@@ -4718,7 +4718,7 @@ Table '99999999' 9-max Seat #7 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 2: Player4 ($0.48 in chips) 
 Seat 3: Player1 ($1.79 in chips) 
-Seat 4: Player17 ($5.81 in chips) 
+Seat 4: Hero ($5.81 in chips) 
 Seat 5: Player12 ($0.89 in chips) 
 Seat 6: Player22 ($3.31 in chips) 
 Seat 7: Player6 ($1.89 in chips) 
@@ -4727,11 +4727,11 @@ Seat 9: Player9 ($1.32 in chips)
 Player7: posts small blind $0.01
 Player9: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [4d Js]
+Dealt to Hero [4d Js]
 Player20: folds 
 Player4: folds 
 Player1: folds 
-Player17: folds 
+Hero: folds 
 Player12: folds 
 Player22: folds 
 Player6: folds 
@@ -4743,7 +4743,7 @@ Total pot $0.02 | Rake $0
 Seat 1: Player20 folded before Flop (didn't bet)
 Seat 2: Player4 folded before Flop (didn't bet)
 Seat 3: Player1 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player6 (button) folded before Flop (didn't bet)
@@ -4757,7 +4757,7 @@ Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 2: Player4 ($0.48 in chips) 
 Seat 3: Player1 ($1.79 in chips) 
-Seat 4: Player17 ($5.81 in chips) 
+Seat 4: Hero ($5.81 in chips) 
 Seat 5: Player12 ($0.89 in chips) 
 Seat 6: Player22 ($3.31 in chips) 
 Seat 7: Player6 ($1.89 in chips) 
@@ -4766,11 +4766,11 @@ Seat 9: Player9 ($1.33 in chips)
 Player9: posts small blind $0.01
 Player20: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Qd 2s]
+Dealt to Hero [Qd 2s]
 Player4: folds 
 Player1 has timed out
 Player1: folds 
-Player17: folds 
+Hero: folds 
 Player12: calls $0.02
 Player22: folds 
 Player6: folds 
@@ -4791,7 +4791,7 @@ Board [Qs 6d 4s]
 Seat 1: Player20 (big blind) folded on the Flop
 Seat 2: Player4 folded before Flop (didn't bet)
 Seat 3: Player1 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 collected ($0.06)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player6 folded before Flop (didn't bet)
@@ -4805,7 +4805,7 @@ Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player20 ($5.37 in chips) 
 Seat 2: Player4 ($0.48 in chips) 
 Seat 3: Player1 ($1.79 in chips) 
-Seat 4: Player17 ($5.81 in chips) 
+Seat 4: Hero ($5.81 in chips) 
 Seat 5: Player12 ($0.93 in chips) 
 Seat 6: Player22 ($3.31 in chips) 
 Seat 7: Player6 ($1.89 in chips) 
@@ -4814,9 +4814,9 @@ Seat 9: Player9 ($1.31 in chips)
 Player20: posts small blind $0.01
 Player4: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player17 [Tc 6c]
+Dealt to Hero [Tc 6c]
 Player1: folds 
-Player17: folds 
+Hero: folds 
 Player12: folds 
 Player22: folds 
 Player6: folds 
@@ -4842,7 +4842,7 @@ Board [4h 7d Td 3d Qs]
 Seat 1: Player20 (small blind) collected ($0.04)
 Seat 2: Player4 (big blind) folded on the River
 Seat 3: Player1 folded before Flop (didn't bet)
-Seat 4: Player17 folded before Flop (didn't bet)
+Seat 4: Hero folded before Flop (didn't bet)
 Seat 5: Player12 folded before Flop (didn't bet)
 Seat 6: Player22 folded before Flop (didn't bet)
 Seat 7: Player6 folded before Flop (didn't bet)

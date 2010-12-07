@@ -1,39 +1,39 @@
 ***** History for hand R5-75443872-61 *****
 Start hand: Wed Aug 18 19:32:32 GMT+0100 2010
 Table: someplace [75443872] (LIMIT TEXAS_HOLDEM 0.50/1, Real money)
-User: player3
+User: Hero
 Button: seat 5
 Players in round: 5
 Seat 7: player4 (34.70)
 Seat 9: player5 (1.05)
-Seat 1: player3 (23.90)
+Seat 1: Hero (23.90)
 Seat 3: player2 (33.95)
 Seat 5: player1 (14.20)
 player4 posts small blind (0.25)
 player5 posts big blind (0.50)
 ---
 Dealing pocket cards
-Dealing to player3: [Kd, Ks]
-player3 raises 1 to 1
+Dealing to Hero: [Kd, Ks]
+Hero raises 1 to 1
 player2 folds
 player1 calls 1
 player4 folds
 player5 raises 0.55 to 1.05 [all in]
-player3 calls 0.05
+Hero calls 0.05
 player1 calls 0.05
 --- Dealing flop [2d, Ad, Th]
-player3 bets 0.50
+Hero bets 0.50
 player1 folds
 --- Dealing flop [2d, Ad, Th]
 --- Dealing turn [8s]
 --- Dealing river [7d]
 ---
 Summary:
-Main pot: 3.40 won by player3 (3.25)
+Main pot: 3.40 won by Hero (3.25)
 Rake taken: $0.15
 Seat 7: player4 (34.45), net: -0.25
 Seat 9: player5 (0), net: -1.05, [Qd, Qh] (PAIR QUEEN)
-Seat 1: player3 (26.10), net: +2.20, [Kd, Ks] (PAIR KING)
+Seat 1: Hero (26.10), net: +2.20, [Kd, Ks] (PAIR KING)
 Seat 3: player2 (33.95)
 Seat 5: player1 (13.15), net: -1.05
 ***** End of hand R5-75443872-61 *****

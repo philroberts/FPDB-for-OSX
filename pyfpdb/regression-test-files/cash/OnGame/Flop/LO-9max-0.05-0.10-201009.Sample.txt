@@ -1,66 +1,66 @@
 ***** History for hand R5-81867677-656 *****
 Start hand: Mon Sep 13 00:26:26 GMT+0100 2010
 Table: Tilburg [81867677] (LIMIT OMAHA_HI $0.05/$0.10, Real money)
-User: tchazx
+User: Hero
 Button: seat 8
 Players in round: 3
 Seat 3: nickgerm ($3.74)
-Seat 4: tchazx ($5)
+Seat 4: Hero ($5)
 Seat 8: XYXY26XYXY ($1.79)
 nickgerm posts small blind ($0.02)
-tchazx posts big blind ($0.05)
+Hero posts big blind ($0.05)
 ---
 Dealing pocket cards
-Dealing to tchazx: [Ks, 4s, 6s, Th]
+Dealing to Hero: [Ks, 4s, 6s, Th]
 XYXY26XYXY calls $0.05
 nickgerm calls $0.03
-tchazx checks
+Hero checks
 --- Dealing flop [5h, 7d, 2s]
 nickgerm checks
-tchazx checks
+Hero checks
 XYXY26XYXY checks
 --- Dealing turn [Qs]
 nickgerm checks
-tchazx checks
+Hero checks
 XYXY26XYXY checks
 --- Dealing river [4d]
 nickgerm bets $0.10
-tchazx folds
+Hero folds
 XYXY26XYXY folds
 ---
 Summary:
 Main pot: $0.15 won by nickgerm ($0.15)
 Rake taken: $0
 Seat 3: nickgerm ($3.84), net: +$0.10
-Seat 4: tchazx ($4.95), net: -$0.05
+Seat 4: Hero ($4.95), net: -$0.05
 Seat 8: XYXY26XYXY ($1.74), net: -$0.05
 ***** End of hand R5-81867677-656 *****
 ***** History for hand R5-81867677-657 *****
 Start hand: Mon Sep 13 00:27:13 GMT+0100 2010
 Table: Tilburg [81867677] (LIMIT OMAHA_HI $0.05/$0.10, Real money)
-User: tchazx
+User: Hero
 Button: seat 3
 Players in round: 3
-Seat 4: tchazx ($4.95)
+Seat 4: Hero ($4.95)
 Seat 8: XYXY26XYXY ($1.74)
 Seat 3: nickgerm ($3.84)
-tchazx posts small blind ($0.02)
+Hero posts small blind ($0.02)
 XYXY26XYXY posts big blind ($0.05)
 ---
 Dealing pocket cards
-Dealing to tchazx: [Jd, Td, 8h, Tc]
+Dealing to Hero: [Jd, Td, 8h, Tc]
 nickgerm calls $0.05
-tchazx calls $0.03
+Hero calls $0.03
 XYXY26XYXY checks
 --- Dealing flop [4h, 7c, 2c]
-tchazx checks
+Hero checks
 XYXY26XYXY checks
 nickgerm checks
 --- Dealing turn [Kc]
-tchazx checks
+Hero checks
 XYXY26XYXY checks
 nickgerm bets $0.10
-tchazx folds
+Hero folds
 XYXY26XYXY calls $0.10
 --- Dealing river [3d]
 XYXY26XYXY checks
@@ -70,30 +70,30 @@ XYXY26XYXY calls $0.10
 Summary:
 Main pot: $0.55 won by nickgerm ($0.27), XYXY26XYXY ($0.26)
 Rake taken: $0.02
-Seat 4: tchazx ($4.90), net: -$0.05
+Seat 4: Hero ($4.90), net: -$0.05
 Seat 8: XYXY26XYXY ($1.75), net: +$0.01, [7h, Qs, 9c, Kd] (TWO_PAIR KING, SEVEN)
 Seat 3: nickgerm ($3.86), net: +$0.02, [7d, 6s, Ks, Jc] (TWO_PAIR KING, SEVEN)
 ***** End of hand R5-81867677-657 *****
 ***** History for hand R5-81867677-658 *****
 Start hand: Mon Sep 13 00:28:06 GMT+0100 2010
 Table: Tilburg [81867677] (LIMIT OMAHA_HI $0.05/$0.10, Real money)
-User: tchazx
+User: Hero
 Button: seat 4
 Players in round: 5
 Seat 8: XYXY26XYXY ($1.75)
 Seat 10: Mandala14 ($3)
 Seat 1: ANOKATO ($2.33)
 Seat 3: nickgerm ($3.86)
-Seat 4: tchazx ($4.90)
+Seat 4: Hero ($4.90)
 XYXY26XYXY posts small blind ($0.02)
 Mandala14 posts big blind ($0.05)
 ANOKATO posts big blind ($0.05)
 ---
 Dealing pocket cards
-Dealing to tchazx: [Ad, Js, Jc, 9h]
+Dealing to Hero: [Ad, Js, Jc, 9h]
 ANOKATO checks
 nickgerm raises $0.10 to $0.10
-tchazx calls $0.10
+Hero calls $0.10
 XYXY26XYXY calls $0.08
 Mandala14 calls $0.05
 ANOKATO calls $0.05
@@ -102,24 +102,24 @@ XYXY26XYXY checks
 Mandala14 checks
 ANOKATO bets $0.05
 nickgerm raises $0.10 to $0.10
-tchazx calls $0.10
+Hero calls $0.10
 XYXY26XYXY folds
 Mandala14 calls $0.10
 ANOKATO raises $0.10 to $0.15
 nickgerm calls $0.05
-tchazx calls $0.05
+Hero calls $0.05
 Mandala14 calls $0.05
 --- Dealing turn [Kh]
 Mandala14 checks
 ANOKATO bets $0.10
 nickgerm calls $0.10
-tchazx calls $0.10
+Hero calls $0.10
 Mandala14 calls $0.10
 --- Dealing river [Ks]
 Mandala14 bets $0.10
 ANOKATO calls $0.10
 nickgerm folds
-tchazx calls $0.10
+Hero calls $0.10
 ---
 Summary:
 Main pot: $1.80 won by Mandala14 ($1.71)
@@ -128,26 +128,26 @@ Seat 8: XYXY26XYXY ($1.65), net: -$0.10
 Seat 10: Mandala14 ($4.26), net: +$1.26, [As, Ah, 5s, Qs] (TWO_PAIR ACE, KING)
 Seat 1: ANOKATO ($1.88), net: -$0.45
 Seat 3: nickgerm ($3.51), net: -$0.35
-Seat 4: tchazx ($4.45), net: -$0.45
+Seat 4: Hero ($4.45), net: -$0.45
 ***** End of hand R5-81867677-658 *****
 ***** History for hand R5-81867677-659 *****
 Start hand: Mon Sep 13 00:29:21 GMT+0100 2010
 Table: Tilburg [81867677] (LIMIT OMAHA_HI $0.05/$0.10, Real money)
-User: tchazx
+User: Hero
 Button: seat 8
 Players in round: 5
 Seat 10: Mandala14 ($4.26)
 Seat 1: ANOKATO ($1.88)
 Seat 3: nickgerm ($3.51)
-Seat 4: tchazx ($4.45)
+Seat 4: Hero ($4.45)
 Seat 8: XYXY26XYXY ($1.65)
 Mandala14 posts small blind ($0.02)
 ANOKATO posts big blind ($0.05)
 ---
 Dealing pocket cards
-Dealing to tchazx: [5h, Tc, 9c, 3h]
+Dealing to Hero: [5h, Tc, 9c, 3h]
 nickgerm raises $0.10 to $0.10
-tchazx calls $0.10
+Hero calls $0.10
 XYXY26XYXY calls $0.10
 Mandala14 calls $0.08
 ANOKATO calls $0.05
@@ -155,7 +155,7 @@ ANOKATO calls $0.05
 Mandala14 checks
 ANOKATO checks
 nickgerm bets $0.05
-tchazx calls $0.05
+Hero calls $0.05
 XYXY26XYXY calls $0.05
 Mandala14 calls $0.05
 ANOKATO calls $0.05
@@ -163,7 +163,7 @@ ANOKATO calls $0.05
 Mandala14 checks
 ANOKATO bets $0.10
 nickgerm raises $0.20 to $0.20
-tchazx folds
+Hero folds
 XYXY26XYXY calls $0.20
 Mandala14 calls $0.20
 ANOKATO raises $0.20 to $0.30
@@ -183,51 +183,51 @@ Rake taken: $0.09
 Seat 10: Mandala14 ($3.81), net: -$0.45
 Seat 1: ANOKATO ($3.29), net: +$1.41
 Seat 3: nickgerm ($3.06), net: -$0.45
-Seat 4: tchazx ($4.30), net: -$0.15
+Seat 4: Hero ($4.30), net: -$0.15
 Seat 8: XYXY26XYXY ($1.20), net: -$0.45
 ***** End of hand R5-81867677-659 *****
 ***** History for hand R5-81867677-660 *****
 Start hand: Mon Sep 13 00:30:43 GMT+0100 2010
 Table: Tilburg [81867677] (LIMIT OMAHA_HI $0.05/$0.10, Real money)
-User: tchazx
+User: Hero
 Button: seat 10
 Players in round: 5
 Seat 1: ANOKATO ($3.29)
 Seat 3: nickgerm ($3.06)
-Seat 4: tchazx ($4.30)
+Seat 4: Hero ($4.30)
 Seat 8: XYXY26XYXY ($1.20)
 Seat 10: Mandala14 ($3.81)
 ANOKATO posts small blind ($0.02)
 nickgerm posts big blind ($0.05)
 ---
 Dealing pocket cards
-Dealing to tchazx: [Qh, 4d, Ts, 9d]
-tchazx calls $0.05
+Dealing to Hero: [Qh, 4d, Ts, 9d]
+Hero calls $0.05
 XYXY26XYXY calls $0.05
 Mandala14 calls $0.05
 ANOKATO calls $0.03
 nickgerm raises $0.05 to $0.10
-tchazx calls $0.05
+Hero calls $0.05
 XYXY26XYXY calls $0.05
 Mandala14 calls $0.05
 ANOKATO calls $0.05
 --- Dealing flop [6d, 3c, Qc]
 ANOKATO checks
 nickgerm bets $0.05
-tchazx calls $0.05
+Hero calls $0.05
 XYXY26XYXY calls $0.05
 Mandala14 calls $0.05
 ANOKATO calls $0.05
 --- Dealing turn [7h]
 ANOKATO checks
 nickgerm checks
-tchazx checks
+Hero checks
 XYXY26XYXY checks
 Mandala14 checks
 --- Dealing river [Jh]
 ANOKATO bets $0.10
 nickgerm folds
-tchazx calls $0.10
+Hero calls $0.10
 XYXY26XYXY folds
 Mandala14 folds
 ---
@@ -236,34 +236,34 @@ Main pot: $0.95 won by ANOKATO ($0.91)
 Rake taken: $0.04
 Seat 1: ANOKATO ($3.95), net: +$0.66, [7c, Qd, Ks, 5d] (TWO_PAIR QUEEN, SEVEN)
 Seat 3: nickgerm ($2.91), net: -$0.15
-Seat 4: tchazx ($4.05), net: -$0.25
+Seat 4: Hero ($4.05), net: -$0.25
 Seat 8: XYXY26XYXY ($1.05), net: -$0.15
 Seat 10: Mandala14 ($3.66), net: -$0.15
 ***** End of hand R5-81867677-660 *****
 ***** History for hand R5-81867677-661 *****
 Start hand: Mon Sep 13 00:31:54 GMT+0100 2010
 Table: Tilburg [81867677] (LIMIT OMAHA_HI $0.05/$0.10, Real money)
-User: tchazx
+User: Hero
 Button: seat 1
 Players in round: 5
 Seat 3: nickgerm ($2.91)
-Seat 4: tchazx ($4.05)
+Seat 4: Hero ($4.05)
 Seat 8: XYXY26XYXY ($1.05)
 Seat 10: Mandala14 ($3.66)
 Seat 1: ANOKATO ($3.95)
 nickgerm posts small blind ($0.02)
-tchazx posts big blind ($0.05)
+Hero posts big blind ($0.05)
 ---
 Dealing pocket cards
-Dealing to tchazx: [5d, 9h, 6h, 4h]
+Dealing to Hero: [5d, 9h, 6h, 4h]
 XYXY26XYXY calls $0.05
 Mandala14 calls $0.05
 ANOKATO calls $0.05
 nickgerm calls $0.03
-tchazx checks
+Hero checks
 --- Dealing flop [2d, 4d, Jh]
 nickgerm bets $0.05
-tchazx folds
+Hero folds
 XYXY26XYXY calls $0.05
 Mandala14 folds
 ANOKATO calls $0.05
@@ -285,7 +285,7 @@ Summary:
 Main pot: $1.70 won by nickgerm ($1.62)
 Rake taken: $0.08
 Seat 3: nickgerm ($3.93), net: +$1.02, [9c, 4s, Jd, 6c] (FULL_HOUSE JACK, FOUR)
-Seat 4: tchazx ($4), net: -$0.05
+Seat 4: Hero ($4), net: -$0.05
 Seat 8: XYXY26XYXY ($0.65), net: -$0.40
 Seat 10: Mandala14 ($3.61), net: -$0.05
 Seat 1: ANOKATO ($3.35), net: -$0.60
@@ -293,23 +293,23 @@ Seat 1: ANOKATO ($3.35), net: -$0.60
 ***** History for hand R5-81867677-662 *****
 Start hand: Mon Sep 13 00:33:20 GMT+0100 2010
 Table: Tilburg [81867677] (LIMIT OMAHA_HI $0.05/$0.10, Real money)
-User: tchazx
+User: Hero
 Button: seat 3
 Players in round: 5
-Seat 4: tchazx ($4)
+Seat 4: Hero ($4)
 Seat 8: XYXY26XYXY ($0.65)
 Seat 10: Mandala14 ($3.61)
 Seat 1: ANOKATO ($3.35)
 Seat 3: nickgerm ($3.93)
-tchazx posts small blind ($0.02)
+Hero posts small blind ($0.02)
 XYXY26XYXY posts big blind ($0.05)
 ---
 Dealing pocket cards
-Dealing to tchazx: [5s, 6c, Kc, 3s]
+Dealing to Hero: [5s, 6c, Kc, 3s]
 Mandala14 calls $0.05
 ANOKATO calls $0.05
 nickgerm raises $0.10 to $0.10
-tchazx folds
+Hero folds
 XYXY26XYXY calls $0.05
 Mandala14 calls $0.05
 ANOKATO calls $0.05
@@ -335,7 +335,7 @@ nickgerm checks
 Summary:
 Main pot: $1.07 won by ANOKATO ($1.02)
 Rake taken: $0.05
-Seat 4: tchazx ($3.98), net: -$0.02
+Seat 4: Hero ($3.98), net: -$0.02
 Seat 8: XYXY26XYXY ($0.50), net: -$0.15
 Seat 10: Mandala14 ($3.51), net: -$0.10
 Seat 1: ANOKATO ($3.97), net: +$0.62, [Js, 5c, 9c, 2h] (THREE_OF_A_KIND TWO)
@@ -344,22 +344,22 @@ Seat 3: nickgerm ($3.53), net: -$0.40
 ***** History for hand R5-81867677-663 *****
 Start hand: Mon Sep 13 00:34:34 GMT+0100 2010
 Table: Tilburg [81867677] (LIMIT OMAHA_HI $0.05/$0.10, Real money)
-User: tchazx
+User: Hero
 Button: seat 4
 Players in round: 5
 Seat 8: XYXY26XYXY ($0.50)
 Seat 10: Mandala14 ($3.51)
 Seat 1: ANOKATO ($3.97)
 Seat 3: nickgerm ($3.53)
-Seat 4: tchazx ($3.98)
+Seat 4: Hero ($3.98)
 XYXY26XYXY posts small blind ($0.02)
 Mandala14 posts big blind ($0.05)
 ---
 Dealing pocket cards
-Dealing to tchazx: [Ac, 9h, 6h, Jc]
+Dealing to Hero: [Ac, 9h, 6h, Jc]
 ANOKATO calls $0.05
 nickgerm calls $0.05
-tchazx calls $0.05
+Hero calls $0.05
 XYXY26XYXY calls $0.03
 Mandala14 checks
 --- Dealing flop [7s, 4c, 8s]
@@ -367,7 +367,7 @@ XYXY26XYXY checks
 Mandala14 checks
 ANOKATO bets $0.05
 nickgerm calls $0.05
-tchazx calls $0.05
+Hero calls $0.05
 XYXY26XYXY calls $0.05
 Mandala14 calls $0.05
 --- Dealing turn [2d]
@@ -375,7 +375,7 @@ XYXY26XYXY checks
 Mandala14 checks
 ANOKATO bets $0.10
 nickgerm raises $0.20 to $0.20
-tchazx calls $0.20
+Hero calls $0.20
 XYXY26XYXY calls $0.20
 Mandala14 calls $0.20
 ANOKATO calls $0.10
@@ -384,7 +384,7 @@ XYXY26XYXY bets $0.10
 Mandala14 folds
 ANOKATO calls $0.10
 nickgerm raises $0.20 to $0.20
-tchazx folds
+Hero folds
 XYXY26XYXY calls $0.10 [all in]
 ANOKATO folds
 ---
@@ -395,26 +395,26 @@ Seat 8: XYXY26XYXY ($1.90), net: +$1.40, [8d, 5c, 4d, 3c] (FULL_HOUSE FOUR, EIGH
 Seat 10: Mandala14 ($3.21), net: -$0.30
 Seat 1: ANOKATO ($3.57), net: -$0.40
 Seat 3: nickgerm ($3.03), net: -$0.50, [6s, Th, 3d, 5d] (STRAIGHT EIGHT)
-Seat 4: tchazx ($3.68), net: -$0.30
+Seat 4: Hero ($3.68), net: -$0.30
 ***** End of hand R5-81867677-663 *****
 ***** History for hand R5-81867677-664 *****
 Start hand: Mon Sep 13 00:36:21 GMT+0100 2010
 Table: Tilburg [81867677] (LIMIT OMAHA_HI $0.05/$0.10, Real money)
-User: tchazx
+User: Hero
 Button: seat 8
 Players in round: 5
 Seat 10: Mandala14 ($3.21)
 Seat 1: ANOKATO ($3.57)
 Seat 3: nickgerm ($3.03)
-Seat 4: tchazx ($3.68)
+Seat 4: Hero ($3.68)
 Seat 8: XYXY26XYXY ($1.90)
 Mandala14 posts small blind ($0.02)
 ANOKATO posts big blind ($0.05)
 ---
 Dealing pocket cards
-Dealing to tchazx: [7d, Kh, 4s, Jh]
+Dealing to Hero: [7d, Kh, 4s, Jh]
 nickgerm calls $0.05
-tchazx calls $0.05
+Hero calls $0.05
 XYXY26XYXY folds
 Mandala14 calls $0.03
 ANOKATO checks
@@ -422,23 +422,23 @@ ANOKATO checks
 Mandala14 checks
 ANOKATO folds
 nickgerm bets $0.05
-tchazx calls $0.05
+Hero calls $0.05
 Mandala14 calls $0.05
 --- Dealing turn [8c]
 Mandala14 checks
 nickgerm checks
-tchazx checks
+Hero checks
 --- Dealing river [3d]
 Mandala14 checks
 nickgerm checks
-tchazx checks
+Hero checks
 ---
 Summary:
-Main pot: $0.35 won by tchazx ($0.34)
+Main pot: $0.35 won by Hero ($0.34)
 Rake taken: $0.01
 Seat 10: Mandala14 ($3.11), net: -$0.10, [7h, 4d, Qh, 6d] (PAIR FOUR)
 Seat 1: ANOKATO ($3.52), net: -$0.05
 Seat 3: nickgerm ($2.93), net: -$0.10, [7s, Qd, 6s, Ah] (PAIR ACE)
-Seat 4: tchazx ($3.92), net: +$0.24, [7d, Kh, 4s, Jh] (TWO_PAIR JACK, FOUR)
+Seat 4: Hero ($3.92), net: +$0.24, [7d, Kh, 4s, Jh] (TWO_PAIR JACK, FOUR)
 Seat 8: XYXY26XYXY ($1.90)
 ***** End of hand R5-81867677-664 *****

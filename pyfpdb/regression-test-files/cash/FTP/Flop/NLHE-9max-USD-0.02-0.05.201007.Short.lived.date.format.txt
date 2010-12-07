@@ -4,15 +4,15 @@ Seat 2: stark00 ($4.41)
 Seat 3: T0r3x ($12.97)
 Seat 4: yrthligar ($15)
 Seat 5: MANUTD ($8.56)
-Seat 6: gimick ($2)
+Seat 6: Hero ($2)
 Seat 7: vision ($2.97)
 Seat 8: shleekom ($2)
 Seat 9: proud2Bwhack ($8.77)
 MANUTD posts the small blind of $0.02
-gimick posts the big blind of $0.05
+Hero posts the big blind of $0.05
 The button is in seat #4
 *** HOLE CARDS ***
-Dealt to gimick [Qs 4d]
+Dealt to Hero [Qs 4d]
 vision folds
 shleekom folds
 proud2Bwhack folds
@@ -23,9 +23,9 @@ yrthligar has 8 seconds left to act
 yrthligar has timed out
 yrthligar folds
 MANUTD folds
-Uncalled bet of $0.03 returned to gimick
-gimick mucks
-gimick wins the pot ($0.04)
+Uncalled bet of $0.03 returned to Hero
+Hero mucks
+Hero wins the pot ($0.04)
 *** SUMMARY ***
 Total pot $0.04 | Rake $0
 Seat 1: ronaldd1969 didn't bet (folded)
@@ -33,7 +33,7 @@ Seat 2: stark00 didn't bet (folded)
 Seat 3: T0r3x didn't bet (folded)
 Seat 4: yrthligar (button) didn't bet (folded)
 Seat 5: MANUTD (small blind) folded before the Flop
-Seat 6: gimick (big blind) collected ($0.04), mucked
+Seat 6: Hero (big blind) collected ($0.04), mucked
 Seat 7: vision didn't bet (folded)
 Seat 8: shleekom didn't bet (folded)
 Seat 9: proud2Bwhack didn't bet (folded)
