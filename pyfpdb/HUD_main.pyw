@@ -312,7 +312,6 @@ def idle_kill(hud_main, table):
     try:
         if table in hud_main.hud_dict:
             hud_main.hud_dict[table].kill()
-            hud_main.hud_dict[table].main_window.destroy()
             hud_main.vb.remove(hud_main.hud_dict[table].tablehudlabel)
             del(hud_main.hud_dict[table])
         hud_main.main_window.resize(1, 1)
