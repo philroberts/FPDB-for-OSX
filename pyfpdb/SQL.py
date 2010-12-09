@@ -4019,26 +4019,57 @@ class Sql:
                    (case when tourneyTypeId+0=%s then 1 else 0 end) end)=1
             AND   styleKey=%s"""
             
-        self.query['check_sessionscache'] = """
-            UPDATE SessionsCache SET
-            sessionStart=sessionStart,
-            sessionEnd=sessionEnd,
-            ringHDs=ringHDs,
-            tourHDs=tourHDs,
-            totalProfit=totalProfit,
-            bigBets=bigBets
-        WHERE sessionEnd>=%s
-        AND sessionStart<=%s"""
-
-        self.query['insert_sessionscache'] = """
-            INSERT INTO SessionsCache (
-                sessionStart,
+        self.query['get_hero_hudcache_start'] = """select min(hc.styleKey)
+                                                   from HudCache hc
+                                                   where hc.playerId in <playerid_list>
+                                                   and   hc.styleKey like 'd%'"""
+            
+        ####################################
+        # Queries to rebuild/modify sessionscache
+        ####################################
+            
+        self.query['select_sessionscache'] = """
+            SELECT sessionStart,
                 sessionEnd,
                 ringHDs,
                 tourHDs,
                 totalProfit,
-                bigBets)
-            VALUES (%s, %s, %s, %s, %s, %s)"""
+                bigBets
+            FROM SessionsCache
+        WHERE sessionEnd>=%s
+        AND sessionStart<=%s"""
+        
+        self.query['select_sessionscache_mid'] = """
+            SELECT sessionStart,
+                sessionEnd,
+                ringHDs,
+                tourHDs,
+                totalProfit,
+                bigBets
+            FROM SessionsCache
+        WHERE sessionEnd>=%s
+        AND sessionStart<=%s"""
+        
+        self.query['select_sessionscache_start'] = """
+            SELECT sessionStart,
+                sessionEnd,
+                ringHDs,
+                tourHDs,
+                totalProfit,
+                bigBets
+            FROM SessionsCache
+        WHERE sessionStart>%s
+        AND sessionEnd>=%s
+        AND sessionStart<=%s"""
+        
+        self.query['update_sessionscache_mid'] = """
+            UPDATE SessionsCache SET
+            ringHDs=ringHDs+%s,
+            tourHDs=tourHDs+%s,
+            totalProfit=totalProfit+%s,
+            bigBets=bigBets+%s
+        WHERE sessionStart<=%s
+        AND sessionEnd>=%s"""
 
         self.query['update_sessionscache_start'] = """
             UPDATE SessionsCache SET
@@ -4050,7 +4081,7 @@ class Sql:
         WHERE sessionStart>%s
         AND sessionEnd>=%s
         AND sessionStart<=%s"""
-        
+    
         self.query['update_sessionscache_end'] = """
             UPDATE SessionsCache SET
             sessionEnd=%s,
@@ -4062,30 +4093,26 @@ class Sql:
         AND sessionEnd>=%s
         AND sessionStart<=%s"""
         
-        self.query['update_sessionscache'] = """
-            UPDATE SessionsCache SET
-            ringHDs=ringHDs+%s,
-            tourHDs=tourHDs+%s,
-            totalProfit=totalProfit+%s,
-            bigBets=bigBets+%s
-        WHERE sessionStart<=%s
-        AND sessionEnd>=%s"""
+        self.query['insert_sessionscache'] = """
+            INSERT INTO SessionsCache (
+                sessionStart,
+                sessionEnd,
+                ringHDs,
+                tourHDs,
+                totalProfit,
+                bigBets)
+            VALUES (%s, %s, %s, %s, %s, %s)"""
         
         self.query['merge_sessionscache'] = """
             SELECT min(sessionStart), max(sessionEnd), sum(ringHDs), sum(tourHDs), sum(totalProfit), sum(bigBets)
             FROM SessionsCache
-        WHERE sessionStart>=%s 
-        AND sessionEnd<=%s"""
+        WHERE sessionEnd>=%s
+        AND sessionStart<=%s"""
         
         self.query['delete_sessions'] = """
             DELETE FROM SessionsCache
-        WHERE sessionStart>=%s
-        AND sessionEnd<=%s"""
-
-        self.query['get_hero_hudcache_start'] = """select min(hc.styleKey)
-                                                   from HudCache hc
-                                                   where hc.playerId in <playerid_list>
-                                                   and   hc.styleKey like 'd%'"""
+        WHERE sessionEnd>=%s
+        AND sessionStart<=%s"""
 
         if db_server == 'mysql':
             self.query['analyze'] = """
