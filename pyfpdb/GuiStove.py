@@ -54,7 +54,7 @@ class GuiStove():
         self.mainHBox.show_all()
 
         if DEBUG == False:
-            warning_string = """
+            warning_string = _("""
 Stove is a GUI mockup of a EV calculation page, and completely non functional.
 
 Unless you are interested in developing this feature, please ignore this page.
@@ -62,7 +62,7 @@ Unless you are interested in developing this feature, please ignore this page.
 If you are interested in developing the code further see GuiStove.py and Stove.py
 
 Thankyou
-"""
+""")
             self.warning_box(warning_string)
 
 
@@ -161,14 +161,14 @@ Against the range: {
  69.91%    15.83%    14.26%
 
 """
-        label = gtk.Label(outstring)
-        out_frame.add(label)
+        self.outputlabel = gtk.Label(outstring)
+        out_frame.add(self.outputlabel)
 
         # Input Frame
         table = gtk.Table(4, 4, True)
         label = gtk.Label("Board:")
         board = gtk.Entry()
-        #board.connect("changed", self._some_function, arg)
+        board.connect("changed", self.set_board_flop, board)
 
         btn1 = gtk.Button()
         btn1.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
@@ -180,7 +180,7 @@ Against the range: {
 
         label = gtk.Label("Player1:")
         board = gtk.Entry()
-        #board.connect("changed", self._some_function, arg)
+        board.connect("changed", self.set_hero_cards_flop, board)
         btn2 = gtk.Button()
         btn2.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
         #btn.connect('clicked', self._some_function, arg)
@@ -195,7 +195,7 @@ Against the range: {
 
         label = gtk.Label("Player2:")
         board = gtk.Entry()
-        #board.connect("changed", self._some_function, arg)
+        board.connect("changed", self.set_villain_cards_flop, board)
         btn4 = gtk.Button()
         btn4.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
         #btn.connect('clicked', self._some_function, arg)
@@ -209,6 +209,15 @@ Against the range: {
         
         #table.attach(label, i, i+1, j, j+1,)
         in_frame.add(table)
+
+    def set_board_flop(self, caller, string):
+        print "DEBUG: called set_board_flop: '%s' '%s'" %(caller ,string)
+
+    def set_hero_cards_flop(self, caller, string):
+        print "DEBUG: called set_hero_cards_flop"
+
+    def set_villain_cards_flop(self, caller, string):
+        print "DEBUG: called set_villain_cards_flop"
 
 
 
