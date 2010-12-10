@@ -1708,7 +1708,7 @@ class Database:
 
         c.execute(q, (
                 p['tableName'],
-                p['gameTypeId'],
+                p['gametypeId'],
                 p['siteHandNo'],
                 p['tourneyId'],
                 p['startTime'],

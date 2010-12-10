@@ -1400,11 +1400,11 @@ class Sql:
             self.query['addTourneyIndex'] = """CREATE UNIQUE INDEX siteTourneyNo ON Tourneys (siteTourneyNo, tourneyTypeId)"""
 
         if db_server == 'mysql':
-            self.query['addHandsIndex'] = """ALTER TABLE Hands ADD UNIQUE INDEX siteHandNo(siteHandNo, gameTypeId)"""
+            self.query['addHandsIndex'] = """ALTER TABLE Hands ADD UNIQUE INDEX siteHandNo(siteHandNo, gametypeId)"""
         elif db_server == 'postgresql':
-            self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (siteHandNo, gameTypeId)"""
+            self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (siteHandNo, gametypeId)"""
         elif db_server == 'sqlite':
-            self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (siteHandNo, gameTypeId)"""
+            self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (siteHandNo, gametypeId)"""
 
         if db_server == 'mysql':
             self.query['addPlayersIndex'] = """ALTER TABLE Players ADD UNIQUE INDEX name(name, siteId)"""
@@ -2145,7 +2145,7 @@ class Sql:
 
         if db_server == 'mysql':
             self.query['playerDetailedStats'] = """
-                     select  <hgameTypeId>                                                          AS hgametypeid
+                     select  <hgametypeId>                                                          AS hgametypeid
                             ,<playerName>                                                           AS pname
                             ,gt.base
                             ,gt.category
@@ -2231,7 +2231,7 @@ class Sql:
                             ,variance(hp.totalProfit/100.0)                                         AS variance
                       from HandsPlayers hp
                            inner join Hands h       on  (h.id = hp.handId)
-                           inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
+                           inner join Gametypes gt  on  (gt.Id = h.gametypeId)
                            inner join Sites s       on  (s.Id = gt.siteId)
                            inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
@@ -2242,7 +2242,7 @@ class Sql:
                       <flagtest>
                       <gtbigBlind_test>
                       and   date_format(h.startTime, '%Y-%m-%d %T') <datestest>
-                      group by hgameTypeId
+                      group by hgametypeId
                               ,pname
                               ,gt.base
                               ,gt.category
@@ -2259,14 +2259,14 @@ class Sql:
                                                when 'S' then 'S'
                                                else concat('Z', <position>)
                                end
-                              <orderbyhgameTypeId>
+                              <orderbyhgametypeId>
                               ,upper(gt.limitType) desc
                               ,maxbigblind desc
                               ,s.name
                       """
         elif db_server == 'postgresql':
             self.query['playerDetailedStats'] = """
-                     select  <hgameTypeId>                                                          AS hgametypeid
+                     select  <hgametypeId>                                                          AS hgametypeid
                             ,<playerName>                                                           AS pname
                             ,gt.base
                             ,gt.category
@@ -2352,7 +2352,7 @@ class Sql:
                             ,variance(hp.totalProfit/100.0)                                         AS variance
                       from HandsPlayers hp
                            inner join Hands h       on  (h.id = hp.handId)
-                           inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
+                           inner join Gametypes gt  on  (gt.Id = h.gametypeId)
                            inner join Sites s       on  (s.Id = gt.siteId)
                            inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
@@ -2363,7 +2363,7 @@ class Sql:
                       <flagtest>
                       <gtbigBlind_test>
                       and   to_char(h.startTime, 'YYYY-MM-DD HH24:MI:SS') <datestest>
-                      group by hgameTypeId
+                      group by hgametypeId
                               ,pname
                               ,gt.base
                               ,gt.category
@@ -2381,14 +2381,14 @@ class Sql:
                                                when '0' then 'Y'
                                                else 'Z'||<position>
                                end
-                              <orderbyhgameTypeId>
+                              <orderbyhgametypeId>
                               ,upper(gt.limitType) desc
                               ,maxbigblind desc
                               ,s.name
                       """
         elif db_server == 'sqlite':
             self.query['playerDetailedStats'] = """
-                     select  <hgameTypeId>                                                          AS hgametypeid
+                     select  <hgametypeId>                                                          AS hgametypeid
                             ,<playerName>                                                           AS pname
                             ,gt.base
                             ,gt.category                                                            AS category
@@ -2474,7 +2474,7 @@ class Sql:
                             ,variance(hp.totalProfit/100.0)                                         AS variance
                       from HandsPlayers hp
                            inner join Hands h       on  (h.id = hp.handId)
-                           inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
+                           inner join Gametypes gt  on  (gt.Id = h.gametypeId)
                            inner join Sites s       on  (s.Id = gt.siteId)
                            inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
@@ -2485,7 +2485,7 @@ class Sql:
                       <flagtest>
                       <gtbigBlind_test>
                       and   datetime(h.startTime) <datestest>
-                      group by hgameTypeId
+                      group by hgametypeId
                               ,hp.playerId
                               ,gt.base
                               ,gt.category
@@ -2503,7 +2503,7 @@ class Sql:
                                                when '0' then 'Y'
                                                else 'Z'||<position>
                                end
-                              <orderbyhgameTypeId>
+                              <orderbyhgametypeId>
                               ,upper(gt.limitType) desc
                               ,max(gt.bigBlind) desc
                               ,s.name
@@ -2693,7 +2693,7 @@ class Sql:
                            ,format( sum(activeSeats*HDs)/(sum(HDs)+0.0), 2)                 AS AvgSeats
                      from Gametypes gt
                           inner join Sites s on s.Id = gt.siteId
-                          inner join HudCache hc on hc.gameTypeId = gt.Id
+                          inner join HudCache hc on hc.gametypeId = gt.Id
                      where hc.playerId in <player_test>
                      and   <gtbigBlind_test>
                      and   hc.activeSeats <seats_test>
@@ -2714,7 +2714,7 @@ class Sql:
                                   else variance(hprof.profit/100.0)
                              end as variance
                       from
-                          (select hp.handId, <hgameTypeId> as gtId, hp.totalProfit as profit
+                          (select hp.handId, <hgametypeId> as gtId, hp.totalProfit as profit
                            from HandsPlayers hp
                            inner join Hands h        ON h.id            = hp.handId
                            where hp.playerId in <player_test>
@@ -2798,7 +2798,7 @@ class Sql:
                            ,to_char(sum(activeSeats*HDs)/(sum(HDs)+0.0),'90D00')            AS AvgSeats
                      from Gametypes gt
                           inner join Sites s on s.Id = gt.siteId
-                          inner join HudCache hc on hc.gameTypeId = gt.Id
+                          inner join HudCache hc on hc.gametypeId = gt.Id
                      where hc.playerId in <player_test>
                      and   <gtbigBlind_test>
                      and   hc.activeSeats <seats_test>
@@ -2819,7 +2819,7 @@ class Sql:
                                   else variance(hprof.profit/100.0)
                              end as variance
                       from
-                          (select hp.handId, <hgameTypeId> as gtId, hp.totalProfit as profit
+                          (select hp.handId, <hgametypeId> as gtId, hp.totalProfit as profit
                            from HandsPlayers hp
                            inner join Hands h   ON (h.id = hp.handId)
                            where hp.playerId in <player_test>
@@ -2921,7 +2921,7 @@ class Sql:
                            ,format( sum(activeSeats*HDs)/(sum(HDs)+0.0), 2)                 AS AvgSeats
                      from Gametypes gt
                           inner join Sites s on s.Id = gt.siteId
-                          inner join HudCache hc on hc.gameTypeId = gt.Id
+                          inner join HudCache hc on hc.gametypeId = gt.Id
                      where hc.playerId in <player_test>
                      and   <gtbigBlind_test>
                      and   hc.activeSeats <seats_test>
@@ -2951,7 +2951,7 @@ class Sql:
                                   else variance(hprof.profit/100.0)
                              end as variance
                       from
-                          (select hp.handId, <hgameTypeId> as gtId, hp.position
+                          (select hp.handId, <hgametypeId> as gtId, hp.position
                                 , hp.totalProfit as profit
                            from HandsPlayers hp
                            inner join Hands h  ON  (h.id = hp.handId)
@@ -3060,7 +3060,7 @@ class Sql:
                            ,to_char(sum(activeSeats*HDs)/(sum(HDs)+0.0),'90D00')            AS AvgSeats
                      from Gametypes gt
                           inner join Sites s     on (s.Id = gt.siteId)
-                          inner join HudCache hc on (hc.gameTypeId = gt.Id)
+                          inner join HudCache hc on (hc.gametypeId = gt.Id)
                      where hc.playerId in <player_test>
                      and   <gtbigBlind_test>
                      and   hc.activeSeats <seats_test>
@@ -3090,14 +3090,14 @@ class Sql:
                                   else variance(hprof.profit/100.0)
                              end as variance
                       from
-                          (select hp.handId, <hgameTypeId> as gtId, hp.position
+                          (select hp.handId, <hgametypeId> as gtId, hp.position
                                 , hp.totalProfit as profit
                            from HandsPlayers hp
                            inner join Hands h  ON  (h.id = hp.handId)
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
                            and   to_char(h.startTime, 'YYYY-MM-DD') <datestest>
-                           group by hp.handId, gameTypeId, hp.position, hp.totalProfit
+                           group by hp.handId, gametypeId, hp.position, hp.totalProfit
                           ) hprof
                       group by hprof.gtId, PlPosition
                     ) hprof2
@@ -3191,7 +3191,7 @@ class Sql:
                 SELECT UNIX_TIMESTAMP(h.startTime) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
                 FROM HandsPlayers hp
                  INNER JOIN Hands h       on  (h.id = hp.handId)
-                 INNER JOIN Gametypes gt  on  (gt.Id = h.gameTypeId)
+                 INNER JOIN Gametypes gt  on  (gt.Id = h.gametypeId)
                  INNER JOIN Sites s       on  (s.Id = gt.siteId)
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
@@ -3203,7 +3203,7 @@ class Sql:
                 SELECT EXTRACT(epoch from h.startTime) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
                 FROM HandsPlayers hp
                  INNER JOIN Hands h       on  (h.id = hp.handId)
-                 INNER JOIN Gametypes gt  on  (gt.Id = h.gameTypeId)
+                 INNER JOIN Gametypes gt  on  (gt.Id = h.gametypeId)
                  INNER JOIN Sites s       on  (s.Id = gt.siteId)
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
@@ -3215,7 +3215,7 @@ class Sql:
                 SELECT STRFTIME('<ampersand_s>', h.startTime) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
                 FROM HandsPlayers hp
                  INNER JOIN Hands h       on  (h.id = hp.handId)
-                 INNER JOIN Gametypes gt  on  (gt.Id = h.gameTypeId)
+                 INNER JOIN Gametypes gt  on  (gt.Id = h.gametypeId)
                  INNER JOIN Sites s       on  (s.Id = gt.siteId)
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>

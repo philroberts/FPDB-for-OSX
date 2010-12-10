@@ -261,7 +261,7 @@ db: a connected Database object"""
 
         if not db.isDuplicate(self.dbid_gt, hh['siteHandNo']):
             # Hands - Summary information of hand indexed by handId - gameinfo
-            hh['gameTypeId'] = self.dbid_gt
+            hh['gametypeId'] = self.dbid_gt
             # seats TINYINT NOT NULL,
             hh['seats'] = len(self.dbid_pids)
 
