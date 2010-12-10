@@ -41,6 +41,9 @@ def fpdb_options():
     parser.add_option("-k", "--konverter",
                       dest="hhc", default="PokerStarsToFpdb",
                       help=_("Module name for Hand History Converter"))
+    parser.add_option("-s", "--sitename",
+                      dest="sitename", default=None,
+                      help=_("A sitename"))
     parser.add_option("-l", "--logging",
                       dest = "log_level", 
                       choices = ('DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL', 'EMPTY'),
