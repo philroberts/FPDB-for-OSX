@@ -17,7 +17,7 @@
     'seats': 6,
     'showdownPot': 0,
     'siteHandNo': u'20000000801',
-    'startTime': datetime.datetime(2010, 8, 13, 20, 59, 2, tzinfo=pytz.utc),
+    'startTime': datetime.datetime(2010, 8, 13, 19, 59, 2, tzinfo=pytz.utc),
     'street0Raises': 1,
     'street1Pot': 0,
     'street1Raises': 0,
