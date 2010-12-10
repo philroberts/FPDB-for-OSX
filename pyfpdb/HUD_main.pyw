@@ -291,9 +291,6 @@ class HUD_main(object):
                         log.error(_('Table "%s" no longer exists\n') % table_name)
                         return
 
-#            t6 = time.time()
-#            log.info(_("HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f)")
-#                     % (t6 - t0,t1 - t0,t2 - t0,t3 - t0,t4 - t0,t5 - t0,t6 - t0))
             self.db_connection.connection.rollback()
             if type == "tour":
                 try:
