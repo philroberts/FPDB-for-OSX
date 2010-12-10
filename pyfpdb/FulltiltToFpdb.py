@@ -63,10 +63,10 @@ class Fulltilt(HandHistoryConverter):
                                     [%(LS)s]?(?P<SB>[.0-9]+)/[%(LS)s]?(?P<BB>[.0-9]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[.0-9]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[.0-9]+\sCap\s)?
                                     (?P<GAMETYPE>[-\da-zA-Z\/\'\s]+)\s-\s
-                                    (?P<DATETIME>\d+:\d+:\d+\s(?P<TZ1>\w+)\s-\s\d+/\d+/\d+|\d+:\d+\s(?P<TZ2>\w+)\s-\s\w+\,\s\w+\s\d+\,\s\d+)
+                                    (?P<DATETIME>.*$)
                                     (?P<PARTIAL>\(partial\))?\n
                                     (?:.*?\n(?P<CANCELLED>Hand\s\#(?P=HID)\shas\sbeen\scanceled))?
-                                 ''' % substitutions, re.VERBOSE|re.DOTALL)
+                                 ''' % substitutions, re.MULTILINE|re.VERBOSE)
     re_TourneyExtraInfo  = re.compile('''(((?P<TOURNEY_NAME>[^$]+)?
                                          (?P<CURRENCY>[%(LS)s])?(?P<BUYIN>[.0-9]+)?\s*\+\s*[%(LS)s]?(?P<FEE>[.0-9]+)?
                                          (\s(?P<SPECIAL>(KO|Heads\sUp|Matrix\s\dx|Rebuy|Madness)))?
@@ -123,6 +123,7 @@ class Fulltilt(HandHistoryConverter):
     re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>HA|HORSE|HOSE)\s\-\s', re.VERBOSE)
     re_Max          = re.compile("(?P<MAX>\d+)( max)?", re.MULTILINE)
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
+    re_DateTime     = re.compile("""((?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s(?P<TZ>\w+)\s-\s(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})|(?P<H2>[0-9]+):(?P<MIN2>[0-9]+)\s(?P<TZ2>\w+)\s-\s\w+\,\s(?P<M2>\w+)\s(?P<D2>\d+)\,\s(?P<Y2>[0-9]{4}))""", re.MULTILINE)
 
 
 
@@ -225,18 +226,24 @@ class Fulltilt(HandHistoryConverter):
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
 
-        timezone = "ET"
-        if m.group('TZ1') == "CET" or m.group('TZ2') == "CET":
-            timezone = "CET"
-        try:
-            stringformat = "%H:%M:%S " + m.group('TZ1') + " - %Y/%m/%d"
-            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), stringformat)
-        except:
-            stringformat = "%H:%M " + m.group('TZ2') + " - %a, %B %d, %Y"
-            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), stringformat)
+        if m.group('DATETIME'):
+            # This section of code should match either a single date (which is ET) or
+            # the last date in the header, which is also recorded in ET.
+            timezone = "ET"
+            m1 = self.re_DateTime.finditer(m.group('DATETIME'))
+            datetimestr = "2000/01/01 00:00:00"
+            for a in m1:
+                if a.group('TZ2') == None:
+                    datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
+                    timezone = a.group('TZ')
+                    hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+                else: # Short-lived date format
+                    datetimestr = "%s/%s/%s %s:%s" % (a.group('Y2'), a.group('M2'),a.group('D2'),a.group('H2'),a.group('MIN2'))
+                    timezone = a.group('TZ2')
+                    hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%B/%d %H:%M")
 
-        hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, timezone, "UTC")
-        
+            hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, timezone, "UTC")
+
         if m.group("CANCELLED") or m.group("PARTIAL"):
             raise FpdbParseError(hid=m.group('HID'))
 
