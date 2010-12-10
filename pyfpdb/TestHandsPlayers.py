@@ -29,6 +29,8 @@ import Database
 import SQL
 import fpdb_import
 import Options
+import datetime
+import pytz
 
 
 class FpdbError:
@@ -60,6 +62,69 @@ class FpdbError:
             idx = f.find('regression')
             print "(%3d) : %s" %(self.histogram[f], f[idx:])
 
+def compare_handsplayers_file(filename, importer, errors):
+    hashfilename = filename + '.hp'
+
+    in_fh = codecs.open(hashfilename, 'r', 'utf8')
+    whole_file = in_fh.read()
+    in_fh.close()
+
+    testhash = eval(whole_file)
+
+    hhc = importer.getCachedHHC()
+    handlist = hhc.getProcessedHands()
+    #We _really_ only want to deal with a single hand here.
+    for hand in handlist:
+        ghash = hand.stats.getHandsPlayers()
+        for p in ghash:
+            #print "DEBUG: player: '%s'" % p
+            pstat = ghash[p]
+            teststat = testhash[p]
+
+            for stat in pstat:
+                #print "pstat[%s][%s]: %s == %s" % (p, stat, pstat[stat], teststat[stat])
+                try:
+                    if pstat[stat] == teststat[stat]:
+                        # The stats match - continue
+                        pass
+                    else:
+                        # Stats don't match - Doh!
+                        errors.error_report(filename, hand, stat, ghash, testhash, p)
+                except KeyError, e:
+                    errors.error_report(filename, False, "KeyError: '%s'" % stat, False, False, p)
+
+def compare_hands_file(filename, importer, errors):
+    hashfilename = filename + '.hands'
+
+    in_fh = codecs.open(hashfilename, 'r', 'utf8')
+    whole_file = in_fh.read()
+    in_fh.close()
+
+    testhash = eval(whole_file)
+
+    hhc = importer.getCachedHHC()
+    handlist = hhc.getProcessedHands()
+
+    for hand in handlist:
+        ghash = hand.stats.getHands()
+        for datum in ghash:
+            #print "DEBUG: hand: '%s'" % datum
+            try:
+                if ghash[datum] == testhash[datum]:
+                    # The stats match - continue
+                    pass
+                else:
+                    # Stats don't match. 
+                    if datum == "gametypeId":
+                        # Not an error. gametypeIds are dependent on the order added to the db.
+                        #print "DEBUG: Skipping mismatched gamtypeId"
+                        pass
+                    else:
+                        errors.error_report(filename, hand, datum, ghash, testhash, None)
+            except KeyError, e:
+                errors.error_report(filename, False, "KeyError: '%s'" % stat, False, False, p)
+
+
 def compare(leaf, importer, errors, site):
     filename = leaf
     #print "DEBUG: fileanme: %s" % filename
@@ -70,39 +135,13 @@ def compare(leaf, importer, errors, site):
         importer.addBulkImportImportFileOrDir(filename, site=site)
         (stored, dups, partial, errs, ttime) = importer.runImport()
 
-        if os.path.isfile(filename + '.hp') and errs < 1:
-            # Compare them
-            hashfilename = filename + '.hp'
-
-            in_fh = codecs.open(hashfilename, 'r', 'utf8')
-            whole_file = in_fh.read()
-            in_fh.close()
-
-            testhash = eval(whole_file)
-
-            hhc = importer.getCachedHHC()
-            handlist = hhc.getProcessedHands()
-            #We _really_ only want to deal with a single hand here.
-            for hand in handlist:
-                ghash = hand.stats.getHandsPlayers()
-                for p in ghash:
-                    #print "DEBUG: player: '%s'" % p
-                    pstat = ghash[p]
-                    teststat = testhash[p]
-
-                    for stat in pstat:
-                        #print "pstat[%s][%s]: %s == %s" % (p, stat, pstat[stat], teststat[stat])
-                        try:
-                            if pstat[stat] == teststat[stat]:
-                                # The stats match - continue
-                                pass
-                            else:
-                                # Stats don't match - Doh!
-                                errors.error_report(filename, hand, stat, ghash, testhash, p)
-                        except KeyError, e:
-                            errors.error_report(filename, False, "KeyError: '%s'" % stat, False, False, p)
         if errs > 0:
             errors.error_report(filename, False, "Parse", False, False, False)
+        else:
+            if os.path.isfile(filename + '.hp'):
+                compare_handsplayers_file(filename, importer, errors)
+            if os.path.isfile(filename + '.hands'):
+                compare_hands_file(filename, importer, errors)
 
         importer.clearFileList()
 
