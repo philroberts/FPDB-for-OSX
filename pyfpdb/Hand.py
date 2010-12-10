@@ -1580,6 +1580,11 @@ Add a complete on [street] by [player] to [amountTo]
             else:
                 log.warning(_("join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should be impossible for anyone who is not a hero"))
                 log.warning(_("join_holcards: holecards(%s): %s") %(player, holecards))
+            if holecards == [u'0x', u'0x']:
+                log.warning(_("join_holecards: Player '%s' appears not to have been dealt a card"))
+                # If a player is listed but not dealt a card in a cash game this can occur
+                # Noticed in FTP Razz hand. Return 3 empty cards in this case
+                holecards = [u'0x', u'0x', u'0x']
             return holecards
 
 
