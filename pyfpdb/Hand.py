@@ -265,7 +265,7 @@ db: a connected Database object"""
             # seats TINYINT NOT NULL,
             hh['seats'] = len(self.dbid_pids)
 
-            self.dbid_hands = db.storeHand(hh)
+            self.dbid_hands = db.storeHand(hh, printdata = printtest)
             self.dbid_hpid = db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, 
                                                   self.stats.getHandsPlayers(), printdata = printtest)
             if self.saveActions:

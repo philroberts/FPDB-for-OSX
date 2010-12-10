@@ -1692,7 +1692,13 @@ class Database:
 # NEWIMPORT CODE
 ###########################
 
-    def storeHand(self, p):
+    def storeHand(self, p, printdata = False):
+        if printdata:
+            print "######## Hands ##########"
+            import pprint
+            pp = pprint.PrettyPrinter(indent=4)
+            pp.pprint(p)
+            print "###### End Hands ########"
         #stores into table hands:
         q = self.sql.query['store_hand']
 
