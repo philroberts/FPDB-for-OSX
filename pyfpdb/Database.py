@@ -1860,10 +1860,12 @@ class Database:
 
     def storeHandsActions(self, hid, pids, hpid, adata, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, adata)
-        if printdata:
-            import pprint
-            pp = pprint.PrettyPrinter(indent=4)
-            pp.pprint(adata)
+
+        # This can be used to generate test data. Currently unused
+        #if printdata:
+        #    import pprint
+        #    pp = pprint.PrettyPrinter(indent=4)
+        #    pp.pprint(adata)
 
         inserts = []
         for a in adata:
