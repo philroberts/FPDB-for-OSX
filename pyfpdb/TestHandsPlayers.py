@@ -28,6 +28,7 @@ import Configuration
 import Database
 import SQL
 import fpdb_import
+import Options
 
 
 class FpdbError:
@@ -121,6 +122,19 @@ def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
 
+    (options, argv) = Options.fpdb_options()
+
+    test_all_sites = True
+
+    if options.usage == True:
+        #Print usage examples and exit
+        print "USAGE:"
+        sys.exit(0)
+
+    if options.sitename:
+        print "Only regression testing '%s' files" % (options.sitename)
+        test_all_sites = False
+
     config = Configuration.Config(file = "HUD_config.test.xml")
     db = Database.Database(config)
     sql = SQL.Sql(db_server = 'sqlite')
@@ -159,20 +173,26 @@ def main(argv=None):
                 ]
 
     sites = {
-                'PokerStars' : True,
-                'Full Tilt Poker' : True,
-                'PartyPoker' : True,
-                'Betfair' : True,
-                'OnGame' : True,
-                'Absolute' : True,
-                'UltimateBet' : True,
-                'Everleaf' : True,
-                'Carbon' : True,
-                'PKR' : False,
-                'iPoker' : True,
-                'Win2day' : True,
-                'Winamax' : True,
+                'PokerStars' : False,
+                'Full Tilt Poker' : False,
+                'PartyPoker' : False,
+                'Betfair' : False,
+                'OnGame' : False,
+                'Absolute' : False,
+                'UltimateBet' : False,
+                'Everleaf' : False,
+                'Carbon' : False,
+                #'PKR' : False,
+                'iPoker' : False,
+                'Win2day' : False,
+                'Winamax' : False,
             }
+
+    if test_all_sites == True:
+        for s in sites:
+            sites[s] = True
+    else:
+        sites[options.sitename] = True
 
     if sites['PokerStars'] == True:
         walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
@@ -195,8 +215,8 @@ def main(argv=None):
         walk_testfiles("regression-test-files/cash/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
     if sites['Carbon'] == True:
         walk_testfiles("regression-test-files/cash/Carbon/", compare, importer, CarbonErrors, "Carbon")
-    if sites['PKR'] == True:
-        walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
+    #if sites['PKR'] == True:
+    #    walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
     if sites['iPoker'] == True:
         walk_testfiles("regression-test-files/cash/iPoker/", compare, importer, iPokerErrors, "iPoker")
     if sites['Winamax'] == True:
