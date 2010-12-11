@@ -124,13 +124,11 @@ class Table_Window(object):
             self.type = "tour"
             table_kwargs = dict(tournament = self.tournament, table_number = self.table)
             self.tableno_re = getTableNoRe(self.config, self.site, tournament = self.tournament)
-            self.key = tournament   # used as key for the hud_dict in HUD_main
         elif table_name is not None:
             self.name = table_name
             self.type = "cash"
             self.tournament = None
             table_kwargs = dict(table_name = table_name)
-            self.key = table_name
 
         else:
             return None
@@ -138,10 +136,7 @@ class Table_Window(object):
         self.search_string = getTableTitleRe(self.config, self.site, self.type, **table_kwargs)
         self.find_table_parameters()
 
-        try:
-            self.gdkhandle = gtk.gdk.window_foreign_new(self.number)
-        except AttributeError: # self.number does not exist, table was closed
-            return None
+#        self.gdkhandle = gtk.gdk.window_foreign_new(self.number)
         geo = self.get_geometry()
         if geo is None:  return None
         self.width  = geo['width']

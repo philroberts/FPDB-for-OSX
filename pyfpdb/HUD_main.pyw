@@ -282,6 +282,7 @@ class HUD_main(object):
                         table_name = "%s %s" % (tour_number, tab_number)
                     log.error("HUD create: table name %s not found, skipping." % table_name)
                 else:
+                    tablewindow.key = temp_key
                     tablewindow.max = max
                     tablewindow.site = site_name
                     # Test that the table window still exists
@@ -328,9 +329,9 @@ def idle_kill(hud_main, table):
     gtk.gdk.threads_enter()
     try:
         if table in hud_main.hud_dict:
-            hud_main.hud_dict[table].kill()
-            hud_main.hud_dict[table].main_window.destroy()
             hud_main.vb.remove(hud_main.hud_dict[table].tablehudlabel)
+            hud_main.hud_dict[table].main_window.destroy()
+            hud_main.hud_dict[table].kill()
             del(hud_main.hud_dict[table])
         hud_main.main_window.resize(1, 1)
     except:
