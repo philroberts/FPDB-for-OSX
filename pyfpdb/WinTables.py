@@ -76,6 +76,11 @@ class Table(Table_Window):
         self.title = titles[hwnd]
         self.hud = None
         self.number = hwnd
+        if self.gdkhandle is not None:
+            try:   # Windows likes this here - Linux doesn't
+                self.gdkhandle = gtk.gdk.window_foreign_new(self.number)
+            except AttributeError:
+                pass
 
     def get_geometry(self):
         try:

@@ -117,6 +117,7 @@ class Table_Window(object):
         self.config = config
         self.site = site
         self.hud = None   # fill in later
+        self.gdkhandle = None
         if tournament is not None and table_number is not None:
             self.tournament = int(tournament)
             self.table = int(table_number)
@@ -136,7 +137,6 @@ class Table_Window(object):
         self.search_string = getTableTitleRe(self.config, self.site, self.type, **table_kwargs)
         self.find_table_parameters()
 
-#        self.gdkhandle = gtk.gdk.window_foreign_new(self.number)
         geo = self.get_geometry()
         if geo is None:  return None
         self.width  = geo['width']
