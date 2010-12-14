@@ -343,7 +343,8 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
 
     gtk.gdk.threads_enter()
     try:
-        table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
+        if table.gdkhandle is not None:  # on windows this should already be set
+            table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
         newlabel = gtk.Label("%s - %s" % (table.site, temp_key))
         hud_main.vb.add(newlabel)
         newlabel.show()

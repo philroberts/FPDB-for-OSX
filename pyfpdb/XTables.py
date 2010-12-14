@@ -65,28 +65,35 @@ class Table(Table_Window):
 
         if self.number is None:
             return None
-        
         (self.window, self.parent) = self.get_window_from_xid(self.number)
 
+#    def get_window_from_xid(self, id):
+#        for outside in root.query_tree().children:
+#            if outside.id == id:
+#                return (outside, outside.query_tree().parent)
+#            for inside in outside.query_tree().children:
+#                if inside.id == id:  # GNOME, Xfce
+#                    return (inside, inside.query_tree().parent)
+#                for wayinside in inside.query_tree().children:
+#                    if wayinside.id == id:  # KDE
+#                        parent = wayinside.query_tree().parent
+#                        return (wayinside, parent.query_tree().parent)
+#        return (None, None)
+
     def get_window_from_xid(self, id):
-        for outside in root.query_tree().children:
-            if outside.id == id:
-                return (outside, outside.query_tree().parent)
-            for inside in outside.query_tree().children:
-                if inside.id == id:  # GNOME, Xfce
-                    return (inside, inside.query_tree().parent)
-                for wayinside in inside.query_tree().children:
-                    if wayinside.id == id:  # KDE
-                        parent = wayinside.query_tree().parent
-                        return (wayinside, parent.query_tree().parent)
-        return (None, None)
+        for top_level in root.query_tree().children:
+            if top_level.id == id:
+                return (top_level, None)
+            for w in treewalk(top_level):
+                if w.id == id:
+                    return (w, top_level)
 
     def get_geometry(self):
         try:
             my_geo = self.window.get_geometry()
             if self.parent is None:
-                return {'x'      : my_geo.x + pa_geo.x,
-                        'y'      : my_geo.y + pa_geo.y,
+                return {'x'      : my_geo.x,
+                        'y'      : my_geo.y,
                         'width'  : my_geo.width,
                         'height' : my_geo.height
                        }
@@ -116,3 +123,10 @@ class Table(Table_Window):
 #    This is the gdkhandle for the HUD window
         gdkwindow = gtk.gdk.window_foreign_new(window.window.xid)
         gdkwindow.set_transient_for(self.gdkhandle)
+
+def treewalk(parent):
+    for w in parent.query_tree().children:
+        for ww in treewalk(w):
+            yield ww
+        yield w
+
