@@ -77,6 +77,35 @@ def fpdb_options():
     (options, argv) = parser.parse_args()
     return (options, argv)
 
+def site_alias(alias):
+    """Function for converting various site aliases to the FPDB name"""
+    tmp = alias
+    aliases = {
+                "PokerStars"     : "PokerStars",
+                "Full Tilt Poker": "Full Tilt Poker",
+                "PartyPoker"     : "PartyPoker",
+                "Betfair"        : "Betfair",
+                "OnGame"         : "OnGame",
+                "Absolute"       : "Absolute",
+                "UltimateBet"    : "UltimateBet",
+                "Everleaf"       : "Everleaf",
+                "Carbon"         : "Carbon",
+                "iPoker"         : "iPoker",
+                "Winamax"        : "Winamax",
+                "Win2day"        : "Win2day",
+                "Stars"          : "PokerStars",
+                "FTP"            : "Full Tilt Poker",
+                "Party"          : "PartyPoker",
+                "AP"             : "Absolute",
+                "UB"             : "UltimateBet",
+              }
+    try:
+        tmp = aliases[alias]
+    except KeyError, e:
+        print _("Alias '%s' unknown" % alias)
+
+    return False
+
 if __name__== "__main__":
     (options, argv) = fpdb_options()
     print "errorsToConsole =", options.errorsToConsole
