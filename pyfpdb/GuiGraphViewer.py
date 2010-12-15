@@ -224,9 +224,6 @@ class GuiGraphViewer (threading.Thread):
                 self.graphBox.add(self.canvas)
                 self.canvas.show()
                 self.canvas.draw()
-
-                #TODO: Do something useful like alert user
-                #print "No hands returned by graph query"
             else:
                 self.ax.set_title(_("Profit graph for ring games"+names),fontsize=12)
 
@@ -340,7 +337,10 @@ class GuiGraphViewer (threading.Thread):
         if len(winnings) == 0:
             return (None, None, None)
 
-        green = map(lambda x:float(x[1]), winnings)
+        #Insert a 0th entry into winnings so graph starts 'zerod'
+        winnings.insert(0, (0,0,0))
+
+        green = map(lambda x: float(x[1]), winnings)
         blue  = map(lambda x: float(x[1]) if x[2] == True  else 0.0, winnings)
         red   = map(lambda x: float(x[1]) if x[2] == False else 0.0, winnings)
         greenline = cumsum(green)
