@@ -157,6 +157,10 @@ def walk_testfiles(dir, function, importer, errors, site):
         else:
             compare(nfile, importer, errors, site)
 
+def usage():
+    print "USAGE:"
+    sys.exit(0)
+
 def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
@@ -166,11 +170,12 @@ def main(argv=None):
     test_all_sites = True
 
     if options.usage == True:
-        #Print usage examples and exit
-        print "USAGE:"
-        sys.exit(0)
+        usage()
 
     if options.sitename:
+        options.sitename = Options.site_alias(options.sitename)
+        if options.sitename == False:
+            usage()
         print "Only regression testing '%s' files" % (options.sitename)
         test_all_sites = False
 
