@@ -102,9 +102,10 @@ def site_alias(alias):
     try:
         tmp = aliases[alias]
     except KeyError, e:
+        tmp = False
         print _("Alias '%s' unknown" % alias)
 
-    return False
+    return tmp
 
 if __name__== "__main__":
     (options, argv) = fpdb_options()
