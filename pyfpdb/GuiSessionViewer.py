@@ -157,15 +157,10 @@ class GuiSessionViewer (threading.Thread):
         # make sure Hand column is not displayed
         #[x for x in self.columns if x[0] == 'hand'][0][1] = False
         if DEBUG == False:
-            warning_string = """
-Session Viewer is proof of concept code only, and contains many bugs.
-
-Feel free to use the viewer, but there is no guarantee that the data is accurate.
-
-If you are interested in developing the code further please contact us via the usual channels.
-
-Thankyou
-"""
+            warning_string = _("Session Viewer is proof of concept code only, and contains many bugs.\n")
+            warning_string += _("Feel free to use the viewer, but there is no guarantee that the data is accurate.\n")
+            warning_string += _("If you are interested in developing the code further please contact us via the usual channels.\n")
+            warning_string += _("Thankyou")
             self.warning_box(warning_string)
 
     def warning_box(self, str, diatitle=_("FPDB WARNING")):
