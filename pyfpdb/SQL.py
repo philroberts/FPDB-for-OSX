@@ -1451,6 +1451,34 @@ class Sql:
                 and   (p.siteId = %s or %s = -1)
             """
 
+        self.query['get_gameinfo_from_hid'] = """
+                SELECT
+                        s.name,
+                        g.category,
+                        g.base,
+                        g.type,
+                        g.limitType,
+                        g.hilo,
+                        round(g.smallBlind / 100.0,2),
+                        round(g.bigBlind / 100.0,2),
+                        round(g.smallBet / 100.0,2),
+                        round(g.bigBet / 100.0,2),
+                        g.currency
+                    FROM
+                        Hands as h,
+                        Sites as s,
+                        Gametypes as g,
+                        HandsPlayers as hp,
+                        Players as p
+                    WHERE
+                        h.id = %s
+                    and g.id = h.gametypeid
+                    and hp.handid = h.id
+                    and p.id = hp.playerid
+                    and s.id = p.siteid
+                    limit 1
+            """
+
         self.query['get_stats_from_hand'] = """
                 SELECT hc.playerId                      AS player_id,
                     hp.seatNo                           AS seat,
