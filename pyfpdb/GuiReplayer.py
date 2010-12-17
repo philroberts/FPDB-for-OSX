@@ -249,31 +249,52 @@ class GuiReplayer:
         be replaced by a function to select a hand from the db in the not so distant future.
         This code has been shamelessly stolen from Carl
         """
-        settings = {}
-        settings.update(self.conf.get_db_parameters())
-        settings.update(self.conf.get_import_parameters())
-        settings.update(self.conf.get_default_paths())
+        if True:
+            settings = {}
+            settings.update(self.conf.get_db_parameters())
+            settings.update(self.conf.get_import_parameters())
+            settings.update(self.conf.get_default_paths())
 
-        importer = fpdb_import.Importer(False, settings, self.conf, None)
-        importer.setDropIndexes("don't drop")
-        importer.setFailOnError(True)
-        importer.setThreads(-1)
-        importer.setCallHud(False)
-        importer.setFakeCacheHHC(True)
+            importer = fpdb_import.Importer(False, settings, self.conf, None)
+            importer.setDropIndexes("don't drop")
+            importer.setFailOnError(True)
+            importer.setThreads(-1)
+            importer.setCallHud(False)
+            importer.setFakeCacheHHC(True)
 
+            print "DEBUG: self.filename: '%s' self.site: '%s'" %(self.filename, self.site)
+            importer.addBulkImportImportFileOrDir(self.filename, site=self.site)
+            (stored, dups, partial, errs, ttime) = importer.runImport()
 
-        #Get a simple regression file with a few hands of Hold'em
-        print "DEBUG: self.filename: '%s' self.site: '%s'" %(self.filename, self.site)
+            hhc = importer.getCachedHHC()
+            handlist = hhc.getProcessedHands()
 
-        importer.addBulkImportImportFileOrDir(self.filename, site=self.site)
-        (stored, dups, partial, errs, ttime) = importer.runImport()
+            return handlist[0]
+        else:
+            # Fetch hand info
+            # We need at least sitename, gametype, handid
+            # for the Hand.__init__
 
+            ####### Shift this section in Database.py for all to use ######
+            handid = 40
+            q = self.sql.query['get_gameinfo_from_hid']
+            q = q.replace('%s', self.sql.query['placeholder'])
 
-        hhc = importer.getCachedHHC()
-        handlist = hhc.getProcessedHands()
- 
-        return handlist[0]
+            c = self.db.get_cursor()
 
+            c.execute(q, (handid,))
+            res = c.fetchone()
+            gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
+            #FIXME: smallbet and bigbet are res[8] and res[9] respectively
+            ###### End section ########
+            print "DEBUG: gametype: %s" % gametype
+            if gametype['base'] == 'hold':
+                h = HoldemOmahaHand(config = self.conf, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
+                h.select(self.db, handid)
+            elif gametype['base'] == 'stud':
+                print "DEBUG: Create stud hand here"
+            elif gametype['base'] == 'draw':
+                print "DEBUG: Create draw hand here"
 
     def temp(self):
         pass
