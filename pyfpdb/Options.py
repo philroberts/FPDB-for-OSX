@@ -41,6 +41,9 @@ def fpdb_options():
     parser.add_option("-k", "--konverter",
                       dest="hhc", default="PokerStarsToFpdb",
                       help=_("Module name for Hand History Converter"))
+    parser.add_option("-s", "--sitename",
+                      dest="sitename", default=None,
+                      help=_("A sitename"))
     parser.add_option("-l", "--logging",
                       dest = "log_level", 
                       choices = ('DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL', 'EMPTY'),
@@ -73,6 +76,36 @@ def fpdb_options():
 
     (options, argv) = parser.parse_args()
     return (options, argv)
+
+def site_alias(alias):
+    """Function for converting various site aliases to the FPDB name"""
+    tmp = alias
+    aliases = {
+                "PokerStars"     : "PokerStars",
+                "Full Tilt Poker": "Full Tilt Poker",
+                "PartyPoker"     : "PartyPoker",
+                "Betfair"        : "Betfair",
+                "OnGame"         : "OnGame",
+                "Absolute"       : "Absolute",
+                "UltimateBet"    : "UltimateBet",
+                "Everleaf"       : "Everleaf",
+                "Carbon"         : "Carbon",
+                "iPoker"         : "iPoker",
+                "Winamax"        : "Winamax",
+                "Win2day"        : "Win2day",
+                "Stars"          : "PokerStars",
+                "FTP"            : "Full Tilt Poker",
+                "Party"          : "PartyPoker",
+                "AP"             : "Absolute",
+                "UB"             : "UltimateBet",
+              }
+    try:
+        tmp = aliases[alias]
+    except KeyError, e:
+        tmp = False
+        print _("Alias '%s' unknown" % alias)
+
+    return tmp
 
 if __name__== "__main__":
     (options, argv) = fpdb_options()

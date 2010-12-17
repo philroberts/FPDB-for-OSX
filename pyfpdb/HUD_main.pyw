@@ -126,7 +126,7 @@ class HUD_main(object):
                 self.main_window.set_icon_stock(gtk.STOCK_HOME)
             if not options.hidden:
                 self.main_window.show_all()
-            gobject.timeout_add(100, self.check_tables)
+#            gobject.timeout_add(100, self.check_tables)
 
         except:
             log.exception("Error initializing main_window")
@@ -282,6 +282,7 @@ class HUD_main(object):
                         table_name = "%s %s" % (tour_number, tab_number)
                     log.error("HUD create: table name %s not found, skipping." % table_name)
                 else:
+                    tablewindow.key = temp_key
                     tablewindow.max = max
                     tablewindow.site = site_name
                     # Test that the table window still exists
@@ -328,9 +329,9 @@ def idle_kill(hud_main, table):
     gtk.gdk.threads_enter()
     try:
         if table in hud_main.hud_dict:
-            hud_main.hud_dict[table].kill()
-            hud_main.hud_dict[table].main_window.destroy()
             hud_main.vb.remove(hud_main.hud_dict[table].tablehudlabel)
+            hud_main.hud_dict[table].main_window.destroy()
+            hud_main.hud_dict[table].kill()
             del(hud_main.hud_dict[table])
         hud_main.main_window.resize(1, 1)
     except:
@@ -342,7 +343,8 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
 
     gtk.gdk.threads_enter()
     try:
-        table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
+        if table.gdkhandle is not None:  # on windows this should already be set
+            table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
         newlabel = gtk.Label("%s - %s" % (table.site, temp_key))
         hud_main.vb.add(newlabel)
         newlabel.show()

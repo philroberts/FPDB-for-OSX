@@ -33,28 +33,38 @@ import gobject
 
 
 class GuiReplayer:
-    def __init__(self, config, querylist, mainwin, debug=True):
+    def __init__(self, config, querylist, mainwin, options = None, debug=True):
         self.debug = debug
         self.conf = config
         self.main_window = mainwin
         self.sql = querylist
 
+        # These are temporary variables until it becomes possible
+        # to select() a Hand object from the database
+        self.filename="regression-test-files/cash/Stars/Flop/NLHE-FR-USD-0.01-0.02-201005.microgrind.txt"
+        self.site="PokerStars"
+
+        if options.filename != None:
+            self.filename = options.filename
+        if options.sitename != None:
+            self.site = options.sitename
+
         self.db = Database.Database(self.conf, sql=self.sql)
 
         filters_display = { "Heroes"    : True,
-                    "Sites"     : True,
-                    "Games"     : True,
-                    "Limits"    : True,
-                    "LimitSep"  : True,
-                    "LimitType" : True,
-                    "Type"      : True,
-                    "Seats"     : True,
-                    "SeatSep"   : True,
+                    "Sites"     : False,
+                    "Games"     : False,
+                    "Limits"    : False,
+                    "LimitSep"  : False,
+                    "LimitType" : False,
+                    "Type"      : False,
+                    "Seats"     : False,
+                    "SeatSep"   : False,
                     "Dates"     : True,
-                    "Groups"    : True,
-                    "GroupsAll" : True,
+                    "Groups"    : False,
+                    "GroupsAll" : False,
                     "Button1"   : True,
-                    "Button2"   : True
+                    "Button2"   : False
                   }
 
 
@@ -239,36 +249,90 @@ class GuiReplayer:
         be replaced by a function to select a hand from the db in the not so distant future.
         This code has been shamelessly stolen from Carl
         """
-        config = Configuration.Config(file = "HUD_config.test.xml")
-        db = Database.Database(config)
-        sql = SQL.Sql(db_server = 'sqlite')
-        settings = {}
-        settings.update(config.get_db_parameters())
-        settings.update(config.get_import_parameters())
-        settings.update(config.get_default_paths())
-        #db.recreate_tables()
-        importer = fpdb_import.Importer(False, settings, config, None)
-        importer.setDropIndexes("don't drop")
-        importer.setFailOnError(True)
-        importer.setThreads(-1)
-        importer.setCallHud(False)
-        importer.setFakeCacheHHC(True)
+        if True:
+            settings = {}
+            settings.update(self.conf.get_db_parameters())
+            settings.update(self.conf.get_import_parameters())
+            settings.update(self.conf.get_default_paths())
 
-        #Get a simple regression file with a few hands of Hold'em
-        filename="regression-test-files/cash/Stars/Flop/NLHE-FR-USD-0.01-0.02-201005.microgrind.txt"
-        site="PokerStars"
+            importer = fpdb_import.Importer(False, settings, self.conf, None)
+            importer.setDropIndexes("don't drop")
+            importer.setFailOnError(True)
+            importer.setThreads(-1)
+            importer.setCallHud(False)
+            importer.setFakeCacheHHC(True)
 
+            print "DEBUG: self.filename: '%s' self.site: '%s'" %(self.filename, self.site)
+            importer.addBulkImportImportFileOrDir(self.filename, site=self.site)
+            (stored, dups, partial, errs, ttime) = importer.runImport()
 
-        importer.addBulkImportImportFileOrDir(filename, site=site)
-        (stored, dups, partial, errs, ttime) = importer.runImport()
+            hhc = importer.getCachedHHC()
+            handlist = hhc.getProcessedHands()
 
+            return handlist[0]
+        else:
+            # Fetch hand info
+            # We need at least sitename, gametype, handid
+            # for the Hand.__init__
 
-        hhc = importer.getCachedHHC()
-        handlist = hhc.getProcessedHands()
- 
-        return handlist[0]
+            ####### Shift this section in Database.py for all to use ######
+            handid = 40
+            q = self.sql.query['get_gameinfo_from_hid']
+            q = q.replace('%s', self.sql.query['placeholder'])
 
+            c = self.db.get_cursor()
+
+            c.execute(q, (handid,))
+            res = c.fetchone()
+            gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
+            #FIXME: smallbet and bigbet are res[8] and res[9] respectively
+            ###### End section ########
+            print "DEBUG: gametype: %s" % gametype
+            if gametype['base'] == 'hold':
+                h = HoldemOmahaHand(config = self.conf, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
+                h.select(self.db, handid)
+            elif gametype['base'] == 'stud':
+                print "DEBUG: Create stud hand here"
+            elif gametype['base'] == 'draw':
+                print "DEBUG: Create draw hand here"
 
     def temp(self):
         pass
 
+def main(argv=None):
+    """main can also be called in the python interpreter, by supplying the command line as the argument."""
+    if argv is None:
+        argv = sys.argv[1:]
+
+    def destroy(*args):  # call back for terminating the main eventloop
+        gtk.main_quit()
+
+    import Options
+
+    (options, argv) = Options.fpdb_options()
+
+    if options.usage == True:
+        #Print usage examples and exit
+        sys.exit(0)
+
+    if options.sitename:
+        options.sitename = Options.site_alias(options.sitename)
+        if options.sitename == False:
+            usage()
+
+    config = Configuration.Config(file = "HUD_config.test.xml")
+    db = Database.Database(config)
+    sql = SQL.Sql(db_server = 'sqlite')
+
+    main_window = gtk.Window()
+    main_window.connect('destroy', destroy)
+
+    replayer = GuiReplayer(config, sql, main_window, options=options, debug=True)
+
+    main_window.add(replayer.get_vbox())
+    main_window.set_default_size(800,800)
+    main_window.show()
+    gtk.main()
+
+if __name__ == '__main__':
+    sys.exit(main())

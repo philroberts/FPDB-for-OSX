@@ -1692,7 +1692,13 @@ class Database:
 # NEWIMPORT CODE
 ###########################
 
-    def storeHand(self, p):
+    def storeHand(self, p, printdata = False):
+        if printdata:
+            print "######## Hands ##########"
+            import pprint
+            pp = pprint.PrettyPrinter(indent=4)
+            pp.pprint(p)
+            print "###### End Hands ########"
         #stores into table hands:
         q = self.sql.query['store_hand']
 
@@ -1702,7 +1708,7 @@ class Database:
 
         c.execute(q, (
                 p['tableName'],
-                p['gameTypeId'],
+                p['gametypeId'],
                 p['siteHandNo'],
                 p['tourneyId'],
                 p['startTime'],
@@ -1860,10 +1866,12 @@ class Database:
 
     def storeHandsActions(self, hid, pids, hpid, adata, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, adata)
-        if printdata:
-            import pprint
-            pp = pprint.PrettyPrinter(indent=4)
-            pp.pprint(adata)
+
+        # This can be used to generate test data. Currently unused
+        #if printdata:
+        #    import pprint
+        #    pp = pprint.PrettyPrinter(indent=4)
+        #    pp.pprint(adata)
 
         inserts = []
         for a in adata:
@@ -2026,19 +2034,25 @@ class Database:
                 pass
             
     def storeSessionsCache(self, pids, startTime, game, pdata):
-        """Update cached sessions. If update fails because no record exists, do an insert."""
+        """Update cached sessions. If update fails because no record exists, do an insert"""
         
-        THRESHOLD = timedelta(seconds=int(self.sessionTimeout * 60)) #convert minutes to seconds
+        THRESHOLD = timedelta(seconds=int(self.sessionTimeout * 60))
         bigBet = int(Decimal(game['bb'])*200)
         
-        check_sessionscache = self.sql.query['check_sessionscache']
-        check_sessionscache = check_sessionscache.replace('%s', self.sql.query['placeholder'])
-        update_sessionscache = self.sql.query['update_sessionscache']
-        update_sessionscache = update_sessionscache.replace('%s', self.sql.query['placeholder'])
+        select_sessionscache = self.sql.query['select_sessionscache']
+        select_sessionscache = select_sessionscache.replace('%s', self.sql.query['placeholder'])
+        select_sessionscache_mid = self.sql.query['select_sessionscache_mid']
+        select_sessionscache_mid = select_sessionscache_mid.replace('%s', self.sql.query['placeholder'])
+        select_sessionscache_start = self.sql.query['select_sessionscache_start']
+        select_sessionscache_start = select_sessionscache_start.replace('%s', self.sql.query['placeholder'])
+    
+        update_sessionscache_mid = self.sql.query['update_sessionscache_mid']
+        update_sessionscache_mid = update_sessionscache_mid.replace('%s', self.sql.query['placeholder'])
         update_sessionscache_start = self.sql.query['update_sessionscache_start']
         update_sessionscache_start = update_sessionscache_start.replace('%s', self.sql.query['placeholder'])
         update_sessionscache_end = self.sql.query['update_sessionscache_end']
         update_sessionscache_end = update_sessionscache_end.replace('%s', self.sql.query['placeholder'])
+        
         insert_sessionscache = self.sql.query['insert_sessionscache']
         insert_sessionscache = insert_sessionscache.replace('%s', self.sql.query['placeholder'])
         merge_sessionscache = self.sql.query['merge_sessionscache']
@@ -2083,77 +2097,62 @@ class Database:
         cursor = self.get_cursor()
 
         for row in inserts:
-            check = []
-            check.append(row[-1]-THRESHOLD)
-            check.append(row[-1]+THRESHOLD)
-            num = cursor.execute(check_sessionscache, check)
-            #DEBUG log.info(_("check yurself: '%s'") % (num.rowcount))
-            
-            # Try to do the update first:
-            if ((self.backend == self.PGSQL and cursor.statusmessage == "UPDATE 1")
-                    or (self.backend == self.MYSQL_INNODB and num == 1)
-                    or (self.backend == self.SQLITE and num.rowcount == 1)):
-                update = row + row[-1:]
-                mid = cursor.execute(update_sessionscache, update)
-                #DEBUG log.info(_("update '%s' rows, no change to session times ") % str(mid.rowcount))
-                if ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
-                    or (self.backend == self.MYSQL_INNODB and mid == 0)
-                    or (self.backend == self.SQLITE and mid.rowcount == 0)):
-                    update_start = row[-1:] + row + check
-                    start = cursor.execute(update_sessionscache_start, update_start)
-                    #DEBUG log.info(_("update '%s' rows, and updated sessionStart") % str(start.rowcount))
-                    if ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
-                        or (self.backend == self.MYSQL_INNODB and start == 0)
-                        or (self.backend == self.SQLITE and start.rowcount == 0)):
-                        update_end = row[-1:] + row + check
-                        end = cursor.execute(update_sessionscache_end, update_end)
-                        #DEBUG log.info(_("update '%s' rows, and updated sessionEnd") % str(end.rowcount))
+            threshold = []
+            threshold.append(row[-1]-THRESHOLD)
+            threshold.append(row[-1]+THRESHOLD)
+            cursor.execute(select_sessionscache, threshold)
+            num = cursor.rowcount
+            if (num == 1):
+                # Try to do the update first:
+                #print "DEBUG: found 1 record to update"
+                update_mid = row + row[-1:]
+                cursor.execute(select_sessionscache_mid, update_mid[-2:])
+                mid = cursor.rowcount
+                if (mid == 0):
+                    update_startend = row[-1:] + row + threshold
+                    cursor.execute(select_sessionscache_start, update_startend[-3:])
+                    start = cursor.rowcount
+                    if (start == 0):
+                        #print "DEBUG:", start, " start record found. Update stats and start time"
+                        cursor.execute(update_sessionscache_end, update_startend)                 
                     else:
-                        pass
+                        #print "DEBUG: 1 end record found. Update stats and end time time"
+                        cursor.execute(update_sessionscache_start, update_startend) 
                 else:
-                    pass
-            elif ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1" and "UPDATE" in cursor.statusmessage)
-                    or (self.backend == self.MYSQL_INNODB and num > 1)
-                    or (self.backend == self.SQLITE and num.rowcount > 1)):
-                #DEBUG log.info(_("multiple matches"))
-                pass
-                #merge two sessions if there are multiple matches
-                cursor.execute(merge_sessionscache, check)
+                    #print "DEBUG: update stats mid-session"
+                    cursor.execute(update_sessionscache_mid, update_mid)
+            elif (num > 1):
+                # Multiple matches found - merge them into one session and update:
+                #print "DEBUG:", num, "matches found"
+                cursor.execute(merge_sessionscache, threshold)
                 merge = cursor.fetchone()
-                cursor.execute(delete_sessions, check)
+                cursor.execute(delete_sessions, threshold)
                 cursor.execute(insert_sessionscache, merge)
-                update = row + row[-1:]
-                mid = cursor.execute(update_sessionscache, update)
-                #DEBUG log.info(_("update '%s' rows, no change to session times ") % str(mid.rowcount))
-                if ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
-                    or (self.backend == self.MYSQL_INNODB and mid == 0)
-                    or (self.backend == self.SQLITE and mid.rowcount == 0)):
-                    update_start = row[-1:] + row + check
-                    start = cursor.execute(update_sessionscache_start, update_start)
-                    #DEBUG log.info(_("update '%s' rows, and updated sessionStart") % str(start.rowcount))
-                    if ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
-                        or (self.backend == self.MYSQL_INNODB and start == 0)
-                        or (self.backend == self.SQLITE and start.rowcount == 0)):
-                        update_end = row[-1:] + row + check
-                        end = cursor.execute(update_sessionscache_end, update_end)
-                        #DEBUG log.info(_("update '%s' rows, and updated sessionEnd") % str(end.rowcount))
+                update_mid = row + row[-1:]
+                cursor.execute(select_sessionscache_mid, update_mid[-2:])
+                mid = cursor.rowcount
+                if (mid == 0):
+                    update_startend = row[-1:] + row + threshold
+                    cursor.execute(select_sessionscache_start, update_startend[-3:])
+                    start = cursor.rowcount
+                    if (start == 0):
+                        #print "DEBUG:", start, " start record found. Update stats and start time"
+                        cursor.execute(update_sessionscache_end, update_startend)                 
                     else:
-                        pass
+                        #print "DEBUG: 1 end record found. Update stats and end time time"
+                        cursor.execute(update_sessionscache_start, update_startend) 
                 else:
-                    pass
-                
-            elif ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
-                    or (self.backend == self.MYSQL_INNODB and num == 0)
-                    or (self.backend == self.SQLITE and num.rowcount == 0)):
-                #move the last 2 items in WHERE clause of row from the end of the array
-                # to the beginning for the INSERT statement
-                #print "DEBUG: using INSERT: %s" % num
+                    #print "DEBUG: update stats mid-session"
+                    cursor.execute(update_sessionscache_mid, update_mid)
+            elif (num == 0):
+                # No matches found, insert new session:
                 insert = row + row[-1:]
                 insert = insert[-2:] + insert[:-2]
-                #DEBUG log.info(_("insert row: '%s'") % (insert))
+                #print "DEBUG: No matches found. Insert record", insert
                 cursor.execute(insert_sessionscache, insert)
             else:
-                pass
+                # Something bad happened
+                pass    
 
     def isDuplicate(self, gametypeID, siteHandNo):
         dup = False
