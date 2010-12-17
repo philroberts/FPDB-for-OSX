@@ -272,3 +272,41 @@ class GuiReplayer:
     def temp(self):
         pass
 
+def main(argv=None):
+    """main can also be called in the python interpreter, by supplying the command line as the argument."""
+    if argv is None:
+        argv = sys.argv[1:]
+
+    def destroy(*args):  # call back for terminating the main eventloop
+        gtk.main_quit()
+
+    import Options
+
+    (options, argv) = Options.fpdb_options()
+
+    if options.usage == True:
+        #Print usage examples and exit
+        sys.exit(0)
+
+    config = Configuration.Config(file = "HUD_config.test.xml")
+    db = Database.Database(config)
+    sql = SQL.Sql(db_server = 'sqlite')
+
+    settings = {}
+    settings.update(config.get_db_parameters())
+    settings.update(config.get_import_parameters())
+    settings.update(config.get_default_paths())
+
+
+    main_window = gtk.Window()
+    main_window.connect('destroy', destroy)
+
+    replayer = GuiReplayer(config, sql, main_window, debug=True)
+
+    main_window.add(replayer.get_vbox())
+    main_window.set_default_size(800,800)
+    main_window.show_all()
+    gtk.main()
+
+if __name__ == '__main__':
+    sys.exit(main())
