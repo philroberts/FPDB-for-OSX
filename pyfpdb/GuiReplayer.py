@@ -33,28 +33,38 @@ import gobject
 
 
 class GuiReplayer:
-    def __init__(self, config, querylist, mainwin, debug=True):
+    def __init__(self, config, querylist, mainwin, options = None, debug=True):
         self.debug = debug
         self.conf = config
         self.main_window = mainwin
         self.sql = querylist
 
+        # These are temporary variables until it becomes possible
+        # to select() a Hand object from the database
+        self.filename="regression-test-files/cash/Stars/Flop/NLHE-FR-USD-0.01-0.02-201005.microgrind.txt"
+        self.site="PokerStars"
+
+        if options.filename != None:
+            self.filename = options.filename
+        if options.sitename != None:
+            self.site = options.sitename
+
         self.db = Database.Database(self.conf, sql=self.sql)
 
         filters_display = { "Heroes"    : True,
-                    "Sites"     : True,
-                    "Games"     : True,
-                    "Limits"    : True,
-                    "LimitSep"  : True,
-                    "LimitType" : True,
-                    "Type"      : True,
-                    "Seats"     : True,
-                    "SeatSep"   : True,
+                    "Sites"     : False,
+                    "Games"     : False,
+                    "Limits"    : False,
+                    "LimitSep"  : False,
+                    "LimitType" : False,
+                    "Type"      : False,
+                    "Seats"     : False,
+                    "SeatSep"   : False,
                     "Dates"     : True,
-                    "Groups"    : True,
-                    "GroupsAll" : True,
+                    "Groups"    : False,
+                    "GroupsAll" : False,
                     "Button1"   : True,
-                    "Button2"   : True
+                    "Button2"   : False
                   }
 
 
@@ -239,27 +249,23 @@ class GuiReplayer:
         be replaced by a function to select a hand from the db in the not so distant future.
         This code has been shamelessly stolen from Carl
         """
-        config = Configuration.Config(file = "HUD_config.test.xml")
-        db = Database.Database(config)
-        sql = SQL.Sql(db_server = 'sqlite')
         settings = {}
-        settings.update(config.get_db_parameters())
-        settings.update(config.get_import_parameters())
-        settings.update(config.get_default_paths())
-        #db.recreate_tables()
-        importer = fpdb_import.Importer(False, settings, config, None)
+        settings.update(self.conf.get_db_parameters())
+        settings.update(self.conf.get_import_parameters())
+        settings.update(self.conf.get_default_paths())
+
+        importer = fpdb_import.Importer(False, settings, self.conf, None)
         importer.setDropIndexes("don't drop")
         importer.setFailOnError(True)
         importer.setThreads(-1)
         importer.setCallHud(False)
         importer.setFakeCacheHHC(True)
 
+
         #Get a simple regression file with a few hands of Hold'em
-        filename="regression-test-files/cash/Stars/Flop/NLHE-FR-USD-0.01-0.02-201005.microgrind.txt"
-        site="PokerStars"
+        print "DEBUG: self.filename: '%s' self.site: '%s'" %(self.filename, self.site)
 
-
-        importer.addBulkImportImportFileOrDir(filename, site=site)
+        importer.addBulkImportImportFileOrDir(self.filename, site=self.site)
         (stored, dups, partial, errs, ttime) = importer.runImport()
 
 
@@ -288,24 +294,23 @@ def main(argv=None):
         #Print usage examples and exit
         sys.exit(0)
 
+    if options.sitename:
+        options.sitename = Options.site_alias(options.sitename)
+        if options.sitename == False:
+            usage()
+
     config = Configuration.Config(file = "HUD_config.test.xml")
     db = Database.Database(config)
     sql = SQL.Sql(db_server = 'sqlite')
 
-    settings = {}
-    settings.update(config.get_db_parameters())
-    settings.update(config.get_import_parameters())
-    settings.update(config.get_default_paths())
-
-
     main_window = gtk.Window()
     main_window.connect('destroy', destroy)
 
-    replayer = GuiReplayer(config, sql, main_window, debug=True)
+    replayer = GuiReplayer(config, sql, main_window, options=options, debug=True)
 
     main_window.add(replayer.get_vbox())
     main_window.set_default_size(800,800)
-    main_window.show_all()
+    main_window.show()
     gtk.main()
 
 if __name__ == '__main__':
