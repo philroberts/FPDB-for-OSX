@@ -122,7 +122,7 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.21-rc1"
+VERSION = "0.21-rc1 plus git"
 
 
 class fpdb:
