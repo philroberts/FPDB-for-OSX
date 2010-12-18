@@ -1,0 +1,42 @@
+﻿PokerStars Game #2428142447:  Hold'em Limit ($1/$2 USD) - 2005/08/26 16:12:22 ET
+Table 'Teucer II' Seat #5 is the button
+Seat 1: Frankson34 ($24 in chips) 
+Seat 2: webb22 ($64 in chips) 
+Seat 3: eric_mtx ($26 in chips) 
+Seat 4: sososolid ($147.75 in chips) 
+Seat 5: DRILHER ($48.25 in chips) 
+Seat 6: Naughtychic ($60 in chips) 
+Seat 7: Terps78 ($71.50 in chips) 
+Seat 8: Hero ($69.25 in chips) 
+Seat 9: alekos ($55 in chips) 
+Seat 10: BigNards84 ($64.25 in chips) 
+Naughtychic: posts small blind $0.50
+Terps78: posts big blind $1
+*** HOLE CARDS ***
+Dealt to Hero [8c Kd]
+Hero: folds 
+alekos: folds 
+BigNards84: raises $1 to $2
+Frankson34: folds 
+webb22: folds 
+eric_mtx: folds 
+Hero leaves the table
+sososolid: folds 
+DRILHER: folds 
+cdhender joins the table at seat #8 
+Naughtychic: folds 
+Terps78: folds 
+BigNards84 collected $2.50 from pot
+BigNards84: doesn't show hand 
+*** SUMMARY ***
+Total pot $2.50 | Rake $0 
+Seat 1: Frankson34 folded before Flop (didn't bet)
+Seat 2: webb22 folded before Flop (didn't bet)
+Seat 3: eric_mtx folded before Flop (didn't bet)
+Seat 4: sososolid folded before Flop (didn't bet)
+Seat 5: DRILHER (button) folded before Flop (didn't bet)
+Seat 6: Naughtychic (small blind) folded before Flop
+Seat 7: Terps78 (big blind) folded before Flop
+Seat 8: Hero folded before Flop (didn't bet)
+Seat 9: alekos folded before Flop (didn't bet)
+Seat 10: BigNards84 collected ($2.50)

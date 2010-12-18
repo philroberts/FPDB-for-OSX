@@ -1,6 +1,6 @@
 PokerStars Game #46290540537:  Hold'em Limit ($0.05/$0.10 USD) - 2010/07/03 14:46:30 CET [2010/07/03 8:46:30 ET]
 Table 'Elektra II' 10-max Seat #6 is the button
-Seat 1: steffen780 ($2.77 in chips) 
+Seat 1: Hero ($2.77 in chips) 
 Seat 2: ialexiv ($1.93 in chips) 
 Seat 4: seregaserg ($2.80 in chips) 
 Seat 5: GREEN373 ($2.38 in chips) 
@@ -13,9 +13,9 @@ Tora-Usagi: is sitting out
 bigsergv: posts big blind $0.05
 Ted the Mad: sits out 
 *** HOLE CARDS ***
-Dealt to steffen780 [8h 3c]
+Dealt to Hero [8h 3c]
 garikoitz_22: folds 
-steffen780: folds 
+Hero: folds 
 ialexiv: folds 
 seregaserg: folds 
 GREEN373: folds 
@@ -26,7 +26,7 @@ bigsergv collected $0.04 from pot
 bigsergv: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.04 | Rake $0 
-Seat 1: steffen780 folded before Flop (didn't bet)
+Seat 1: Hero folded before Flop (didn't bet)
 Seat 2: ialexiv folded before Flop (didn't bet)
 Seat 4: seregaserg folded before Flop (didn't bet)
 Seat 5: GREEN373 folded before Flop (didn't bet)

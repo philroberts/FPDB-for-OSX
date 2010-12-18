@@ -1,0 +1,310 @@
+Winamax Poker - Tournament "No Limit Hold'em" buyIn: 0,90€ + 0,10€ level: 0 - HandId: #7959970263859201-1-1288800933 - Holdem no limit (10/20) - 2010/11/03 17:15:33 UTC
+Table: 'No Limit Hold'em(1853325)#0' 10-max (real money) Seat #3 is the button
+Seat 1: Hero (1500)
+Seat 2: Player3 (1500)
+Seat 3: Player9 (1500)
+Seat 4: Player1 (1500)
+Seat 5: Player0 (1500)
+Seat 6: Player7 (1500)
+Seat 7: Player4 (1500)
+Seat 8: Player2 (1500)
+Seat 9: Player5 (1500)
+Seat 10: Player8 (1500)
+*** ANTE/BLINDS *** 
+Player1 posts small blind 10
+Player0 posts big blind 20
+Dealt to Hero [Jd 7h]
+*** PRE-FLOP *** 
+Player7 folds
+Player4 folds
+Player2 folds
+Player5 calls 20
+Player8 folds
+Hero calls 20
+Player3 calls 20
+Player9 calls 20
+Player1 calls 10
+Player0 checks
+*** FLOP *** [Td 4c 5h]
+Player1 checks
+Player0 checks
+Player5 checks
+Hero bets 80
+Player3 calls 80
+Player9 folds
+Player1 folds
+Player0 calls 80
+Player5 folds
+*** TURN *** [Td 4c 5h][3h]
+Player0 checks
+Hero checks
+Player3 checks
+*** RIVER *** [Td 4c 5h 3h][Kc]
+Player0 checks
+Hero bets 240
+Player3 calls 240
+Player0 folds
+*** SHOW DOWN ***
+Hero shows [Jd 7h] (High card : King)
+Player3 shows [Kd 4d] (Two pairs : Kings and 4)
+Player3 collected 840 from pot
+*** SUMMARY ***
+Total pot 840 | No rake
+Board: [Td 4c 5h 3h Kc]
+Seat 1: Hero showed [Jd 7h] and lost with High card : King
+Seat 2: Player3 showed [Kd 4d] and won 840 with Two pairs : Kings and 4
+Seat 3: Player9 (button) folded on the flop
+Seat 4: Player1 (small blind) folded on the flop
+Seat 5: Player0 (big blind) folded on the river
+Seat 6: Player7 folded on the pre-flop
+Seat 7: Player4 folded
+Seat 8: Player2 folded on the pre-flop
+Seat 9: Player5 folded on the flop
+Seat 10: Player8 folded on the pre-flop
+
+
+Winamax Poker - Tournament "No Limit Hold'em" buyIn: 0,90€ + 0,10€ level: 0 - HandId: #7959970263859201-2-1288801071 - Holdem no limit (10/20) - 2010/11/03 17:17:51 UTC
+Table: 'No Limit Hold'em(1853325)#0' 10-max (real money) Seat #4 is the button
+Seat 1: Hero (1160)
+Seat 2: Player3 (2000)
+Seat 3: Player9 (1480)
+Seat 4: Player1 (1480)
+Seat 5: Player0 (1400)
+Seat 6: Player7 (1500)
+Seat 7: Player4 (1500)
+Seat 8: Player2 (1500)
+Seat 9: Player5 (1480)
+Seat 10: Player8 (1500)
+*** ANTE/BLINDS *** 
+Player0 posts small blind 10
+Player7 posts big blind 20
+Dealt to Hero [7h 3s]
+*** PRE-FLOP *** 
+Player4 folds
+Player2 folds
+Player5 calls 20
+Player8 calls 20
+Hero folds
+Player3 calls 20
+Player9 folds
+Player1 calls 20
+Player0 calls 10
+Player7 checks
+*** FLOP *** [Jh 6h Qd]
+Player0 checks
+Player7 bets 20
+Player5 calls 20
+Player8 calls 20
+Player3 folds
+Player1 calls 20
+Player0 calls 20
+*** TURN *** [Jh 6h Qd][5s]
+Player0 checks
+Player7 checks
+Player5 bets 220
+Player8 folds
+Player1 folds
+Player0 folds
+Player7 calls 220
+*** RIVER *** [Jh 6h Qd 5s][3c]
+Player7 checks
+Player5 bets 660
+Player7 folds
+Player5 collected 1320 from pot
+*** SUMMARY ***
+Total pot 1.32k | No rake
+Board: [Jh 6h Qd 5s 3c]
+Seat 1: Hero folded on the pre-flop
+Seat 2: Player3 folded on the flop
+Seat 3: Player9 folded on the pre-flop
+Seat 4: Player1 (button) folded on the turn
+Seat 5: Player0 (small blind) folded on the turn
+Seat 6: Player7 (big blind) folded on the river
+Seat 7: Player4 folded on the pre-flop
+Seat 8: Player2 folded on the pre-flop
+Seat 9: Player5 won 1320
+Seat 10: Player8 folded on the turn
+
+
+Winamax Poker - Tournament "No Limit Hold'em" buyIn: 0,90€ + 0,10€ level: 0 - HandId: #7959970263859201-3-1288801160 - Holdem no limit (10/20) - 2010/11/03 17:19:20 UTC
+Table: 'No Limit Hold'em(1853325)#0' 10-max (real money) Seat #5 is the button
+Seat 1: Hero (1160)
+Seat 2: Player3 (1980)
+Seat 3: Player9 (1480)
+Seat 4: Player1 (1440)
+Seat 5: Player0 (1360)
+Seat 6: Player7 (1240)
+Seat 7: Player4 (1500)
+Seat 8: Player2 (1500)
+Seat 9: Player5 (1880)
+Seat 10: Player8 (1460)
+*** ANTE/BLINDS *** 
+Player7 posts small blind 10
+Player4 posts big blind 20
+Dealt to Hero [4h 3d]
+*** PRE-FLOP *** 
+Player2 folds
+Player5 calls 20
+Player8 calls 20
+Hero folds
+Player3 folds
+Player9 folds
+Player1 calls 20
+Player0 folds
+Player7 raises 20 to 40
+Player4 folds
+Player5 calls 20
+Player8 calls 20
+Player1 calls 20
+*** FLOP *** [Qd Kh 4s]
+Player7 bets 1200 and is all-in
+Player5 folds
+Player8 folds
+Player1 folds
+Player7 collected 1380 from pot
+*** SUMMARY ***
+Total pot 1.38k | No rake
+Board: [Qd Kh 4s]
+Seat 1: Hero folded on the pre-flop
+Seat 2: Player3 folded on the pre-flop
+Seat 3: Player9 folded on the pre-flop
+Seat 4: Player1 folded on the flop
+Seat 5: Player0 (button) folded on the pre-flop
+Seat 6: Player7 (small blind) won 1380
+Seat 7: Player4 (big blind) folded on the pre-flop
+Seat 8: Player2 folded on the pre-flop
+Seat 9: Player5 folded on the flop
+Seat 10: Player8 folded on the flop
+
+
+Winamax Poker - Tournament "No Limit Hold'em" buyIn: 0,90€ + 0,10€ level: 0 - HandId: #7959970263859201-4-1288801277 - Holdem no limit (10/20) - 2010/11/03 17:21:17 UTC
+Table: 'No Limit Hold'em(1853325)#0' 10-max (real money) Seat #6 is the button
+Seat 1: Hero (1160)
+Seat 2: Player3 (1980)
+Seat 3: Player9 (1480)
+Seat 4: Player1 (1400)
+Seat 5: Player0 (1360)
+Seat 6: Player7 (1380)
+Seat 7: Player4 (1480)
+Seat 8: Player2 (1500)
+Seat 9: Player5 (1840)
+Seat 10: Player8 (1420)
+*** ANTE/BLINDS *** 
+Player4 posts small blind 10
+Player2 posts big blind 20
+Dealt to Hero [Qc 7d]
+*** PRE-FLOP *** 
+Player5 calls 20
+Player8 folds
+Hero folds
+Player3 folds
+Player9 folds
+Player1 calls 20
+Player0 folds
+Player7 calls 20
+Player4 calls 10
+Player2 checks
+*** FLOP *** [9s 7h 5h]
+Player4 checks
+Player2 checks
+Player5 checks
+Player1 checks
+Player7 checks
+*** TURN *** [9s 7h 5h][Ts]
+Player4 checks
+Player2 checks
+Player5 checks
+Player1 checks
+Player7 bets 20
+Player4 calls 20
+Player2 folds
+Player5 folds
+Player1 calls 20
+*** RIVER *** [9s 7h 5h Ts][7s]
+Player4 checks
+Player1 checks
+Player7 bets 160
+Player4 folds
+Player1 calls 160
+*** SHOW DOWN ***
+Player1 shows [4c 4d] (Two pairs : 7 and 4)
+Player7 shows [4s As] (Flush Ace high)
+Player7 collected 480 from pot
+*** SUMMARY ***
+Total pot 480 | No rake
+Board: [9s 7h 5h Ts 7s]
+Seat 1: Hero folded on the pre-flop
+Seat 2: Player3 folded on the pre-flop
+Seat 3: Player9 folded on the pre-flop
+Seat 4: Player1 showed [4c 4d] and lost with Two pairs : 7 and 4
+Seat 5: Player0 folded on the pre-flop
+Seat 6: Player7 (button) showed [4s As] and won 480 with Flush Ace high
+Seat 7: Player4 (small blind) folded on the river
+Seat 8: Player2 (big blind) folded on the turn
+Seat 9: Player5 folded on the turn
+Seat 10: Player8 folded on the pre-flop
+
+
+Winamax Poker - Tournament "No Limit Hold'em" buyIn: 0,90€ + 0,10€ level: 1 - HandId: #7959970263859201-5-1288801360 - Holdem no limit (10/20) - 2010/11/03 17:22:40 UTC
+Table: 'No Limit Hold'em(1853325)#0' 10-max (real money) Seat #7 is the button
+Seat 1: Hero (1160)
+Seat 2: Player3 (1980)
+Seat 3: Player9 (1480)
+Seat 4: Player1 (1200)
+Seat 5: Player0 (1360)
+Seat 6: Player7 (1660)
+Seat 7: Player4 (1440)
+Seat 8: Player2 (1480)
+Seat 9: Player5 (1820)
+Seat 10: Player8 (1420)
+*** ANTE/BLINDS *** 
+Player2 posts small blind 10
+Player5 posts big blind 20
+Dealt to Hero [Kd Ah]
+*** PRE-FLOP *** 
+Player8 calls 20
+Hero raises 70 to 90
+Player3 folds
+Player9 calls 90
+Player1 calls 90
+Player0 calls 90
+Player7 calls 90
+Player4 calls 90
+Player2 folds
+Player5 calls 70
+Player8 calls 70
+*** FLOP *** [2s 5h 3h]
+Player5 checks
+Player8 checks
+Hero bets 365
+Player9 folds
+Player1 folds
+Player0 folds
+Player7 calls 365
+Player4 folds
+Player5 folds
+Player8 folds
+*** TURN *** [2s 5h 3h][6d]
+Hero bets 705 and is all-in
+Player7 calls 705
+*** RIVER *** [2s 5h 3h 6d][5s]
+*** SHOW DOWN ***
+Hero shows [Kd Ah] (One pair : 5)
+Player7 shows [7d 7h] (Two pairs : 7 and 5)
+Player7 collected 2870 from pot
+*** SUMMARY ***
+Total pot 2.87k | No rake
+Board: [2s 5h 3h 6d 5s]
+Seat 1: Hero showed [Kd Ah] and lost with One pair : 5
+Seat 2: Player3 folded on the pre-flop
+Seat 3: Player9 folded on the flop
+Seat 4: Player1 folded on the flop
+Seat 5: Player0 folded on the flop
+Seat 6: Player7 showed [7d 7h] and won 2870 with Two pairs : 7 and 5
+Seat 7: Player4 (button) folded on the flop
+Seat 8: Player2 (small blind) folded on the pre-flop
+Seat 9: Player5 (big blind) folded on the flop
+Seat 10: Player8 folded on the flop
+
+
+

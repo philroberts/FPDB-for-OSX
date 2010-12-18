@@ -92,7 +92,7 @@
                     'wonWhenSeenStreet2': 0.0,
                     'wonWhenSeenStreet3': 0.0,
                     'wonWhenSeenStreet4': 0.0},
-    u'Player1': {   'card1': 15,
+    u'Hero': {   'card1': 15,
                     'card2': 51,
                     'card3': 0,
                     'card4': 0,

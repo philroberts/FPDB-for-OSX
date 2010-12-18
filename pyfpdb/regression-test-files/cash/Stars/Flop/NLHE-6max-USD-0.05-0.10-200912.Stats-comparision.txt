@@ -1,6 +1,6 @@
 PokerStars Game #36185273365:  Hold'em No Limit ($0.05/$0.10 USD) - 2009/12/03 9:16:10 ET
 Table 'Eurynome IV' 6-max Seat #3 is the button
-Seat 1: s0rrow ($16.10 in chips)
+Seat 1: Hero ($16.10 in chips)
 Seat 2: chrisbiz ($9.45 in chips)
 Seat 3: papajohn77 ($6.55 in chips)
 Seat 4: WSOFish ($21.05 in chips)
@@ -9,30 +9,30 @@ Seat 6: garegerret ($10.60 in chips)
 WSOFish: posts small blind $0.05
 drefron: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [5s As]
+Dealt to Hero [5s As]
 garegerret: folds
-s0rrow: raises $0.20 to $0.30
+Hero: raises $0.20 to $0.30
 chrisbiz: calls $0.30
 papajohn77: folds
 WSOFish: folds
 drefron: folds
 *** FLOP *** [8c 4c 4d]
-s0rrow: checks
+Hero: checks
 chrisbiz: bets $0.40
-s0rrow: raises $1 to $1.40
+Hero: raises $1 to $1.40
 chrisbiz: calls $1
 *** TURN *** [8c 4c 4d] [Kc]
-s0rrow: bets $3.20
+Hero: bets $3.20
 chrisbiz: calls $3.20
 *** RIVER *** [8c 4c 4d Kc] [2s]
-s0rrow: bets $11.20 and is all-in
+Hero: bets $11.20 and is all-in
 chrisbiz: folds
-Uncalled bet ($11.20) returned to s0rrow
-s0rrow collected $9.50 from pot
+Uncalled bet ($11.20) returned to Hero
+Hero collected $9.50 from pot
 *** SUMMARY ***
 Total pot $9.95 | Rake $0.45
 Board [8c 4c 4d Kc 2s]
-Seat 1: s0rrow collected ($9.50)
+Seat 1: Hero collected ($9.50)
 Seat 2: chrisbiz folded on the River
 Seat 3: papajohn77 (button) folded before Flop (didn't bet)
 Seat 4: WSOFish (small blind) folded before Flop

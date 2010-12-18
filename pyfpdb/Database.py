@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 144
+DB_VERSION = 147
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -255,6 +255,13 @@ class Database:
         self.database = db_params['db-databaseName']
         self.host = db_params['db-host']
         self.db_path = ''
+        gen = c.get_general_params()
+        self.day_start = 0
+        
+        if 'day_start' in gen:
+            self.day_start = float(gen['day_start'])
+            
+        self.sessionTimeout = float(self.import_options['sessionTimeout'])
 
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql is None:
@@ -307,7 +314,7 @@ class Database:
 
         tables=self.cursor.execute(self.sql.query['list_tables'])
         tables=self.cursor.fetchall()
-        for table in (u'Actions', u'Autorates', u'Backings', u'Gametypes', u'Hands', u'HandsActions', u'HandsPlayers', u'HudCache', u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
+        for table in (u'Actions', u'Autorates', u'Backings', u'Gametypes', u'Hands', u'HandsActions', u'HandsPlayers', u'HudCache', u'SessionsCache', u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
             print "table:", table
             result+="###################\nTable "+table+"\n###################\n"
             rows=self.cursor.execute(self.sql.query['get'+table])
@@ -689,12 +696,16 @@ class Database:
         else:
             if row and row[0]:
                 self.hand_1day_ago = int(row[0])
-
-        d = timedelta(days=hud_days)
+                
+        tz = datetime.utcnow() - datetime.today()
+        tz_offset = tz.seconds/3600
+        tz_day_start_offset = self.day_start + tz_offset
+        
+        d = timedelta(days=hud_days, hours=tz_day_start_offset)
         now = datetime.utcnow() - d
         self.date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
-
-        d = timedelta(days=h_hud_days)
+        
+        d = timedelta(days=h_hud_days, hours=tz_day_start_offset)
         now = datetime.utcnow() - d
         self.h_date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
 
@@ -788,7 +799,7 @@ class Database:
         elif h_hud_style == 'S':
             h_stylekey = 'zzzzzzz'  # all stylekey values should be lower than this
         else:
-            h_stylekey = '000000'
+            h_stylekey = '00000000'
             log.info('h_hud_style: %s' % h_hud_style)
 
         #elif h_hud_style == 'H':
@@ -903,6 +914,56 @@ class Database:
         c.execute(self.sql.query['getSiteId'], (site,))
         result = c.fetchall()
         return result
+
+    def resetPlayerIDs(self):
+        self.pcache = None
+
+    def getSqlPlayerIDs(self, pnames, siteid):
+        result = {}
+        if(self.pcache == None):
+            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key[0], key[1]))
+
+        for player in pnames:
+            result[player] = self.pcache[(player,siteid)]
+            # NOTE: Using the LambdaDict does the same thing as:
+            #if player in self.pcache:
+            #    #print "DEBUG: cachehit"
+            #    pass
+            #else:
+            #    self.pcache[player] = self.insertPlayer(player, siteid)
+            #result[player] = self.pcache[player]
+
+        return result
+
+    def insertPlayer(self, name, site_id):
+        result = None
+        _name = Charset.to_db_utf8(name)
+        c = self.get_cursor()
+        q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
+        q = q.replace('%s', self.sql.query['placeholder'])
+
+        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
+        #Usage:
+        #        INSERT INTO `tags` (`tag`, `count`)
+        #         VALUES ($tag, 1)
+        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
+
+
+        #print "DEBUG: name: %s site: %s" %(name, site_id)
+
+        c.execute (q, (site_id, _name))
+
+        tmp = c.fetchone()
+        if (tmp == None): #new player
+            c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
+                      ,(_name, site_id))
+            #Get last id might be faster here.
+            #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
+            result = self.get_last_insert_id(c)
+        else:
+            result = tmp[1]
+        return result
+
 
     def get_last_insert_id(self, cursor=None):
         ret = None
@@ -1168,6 +1229,7 @@ class Database:
             c.execute(self.sql.query['createHandsPlayersTable'])
             c.execute(self.sql.query['createHandsActionsTable'])
             c.execute(self.sql.query['createHudCacheTable'])
+            c.execute(self.sql.query['createSessionsCacheTable'])
             c.execute(self.sql.query['createBackingsTable'])
             c.execute(self.sql.query['createRawHands'])
             c.execute(self.sql.query['createRawTourneys'])
@@ -1534,6 +1596,11 @@ class Database:
             print _("Error rebuilding hudcache:"), str(sys.exc_value)
             print err
     #end def rebuild_hudcache
+    
+    def rebuild_sessionscache(self, h_start=None, v_start=None):
+        """clears sessionscache and rebuilds from the individual handsplayers records"""
+        #Will get to this soon
+        pass
 
     def get_hero_hudcache_start(self):
         """fetches earliest stylekey from hudcache for one of hero's player ids"""
@@ -1625,7 +1692,13 @@ class Database:
 # NEWIMPORT CODE
 ###########################
 
-    def storeHand(self, p):
+    def storeHand(self, p, printdata = False):
+        if printdata:
+            print "######## Hands ##########"
+            import pprint
+            pp = pprint.PrettyPrinter(indent=4)
+            pp.pprint(p)
+            print "###### End Hands ########"
         #stores into table hands:
         q = self.sql.query['store_hand']
 
@@ -1635,7 +1708,7 @@ class Database:
 
         c.execute(q, (
                 p['tableName'],
-                p['gameTypeId'],
+                p['gametypeId'],
                 p['siteHandNo'],
                 p['tourneyId'],
                 p['startTime'],
@@ -1793,10 +1866,12 @@ class Database:
 
     def storeHandsActions(self, hid, pids, hpid, adata, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, adata)
-        if printdata:
-            import pprint
-            pp = pprint.PrettyPrinter(indent=4)
-            pp.pprint(adata)
+
+        # This can be used to generate test data. Currently unused
+        #if printdata:
+        #    import pprint
+        #    pp = pprint.PrettyPrinter(indent=4)
+        #    pp.pprint(adata)
 
         inserts = []
         for a in adata:
@@ -1823,8 +1898,15 @@ class Database:
     def storeHudCache(self, gid, pids, starttime, pdata):
         """Update cached statistics. If update fails because no record exists, do an insert."""
 
+        tz = datetime.utcnow() - datetime.today()
+        tz_offset = tz.seconds/3600
+        tz_day_start_offset = self.day_start + tz_offset
+        
+        d = timedelta(hours=tz_day_start_offset)
+        starttime_offset = starttime - d
+        
         if self.use_date_in_hudcache:
-            styleKey = datetime.strftime(starttime, 'd%y%m%d')
+            styleKey = datetime.strftime(starttime_offset, 'd%y%m%d')
             #styleKey = "d%02d%02d%02d" % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day)
         else:
             # hard-code styleKey as 'A000000' (all-time cache, no key) for now
@@ -1950,6 +2032,127 @@ class Database:
             else:
                 #print "DEBUG: Successfully updated HudCacho using UPDATE"
                 pass
+            
+    def storeSessionsCache(self, pids, startTime, game, pdata):
+        """Update cached sessions. If update fails because no record exists, do an insert"""
+        
+        THRESHOLD = timedelta(seconds=int(self.sessionTimeout * 60))
+        bigBet = int(Decimal(game['bb'])*200)
+        
+        select_sessionscache = self.sql.query['select_sessionscache']
+        select_sessionscache = select_sessionscache.replace('%s', self.sql.query['placeholder'])
+        select_sessionscache_mid = self.sql.query['select_sessionscache_mid']
+        select_sessionscache_mid = select_sessionscache_mid.replace('%s', self.sql.query['placeholder'])
+        select_sessionscache_start = self.sql.query['select_sessionscache_start']
+        select_sessionscache_start = select_sessionscache_start.replace('%s', self.sql.query['placeholder'])
+    
+        update_sessionscache_mid = self.sql.query['update_sessionscache_mid']
+        update_sessionscache_mid = update_sessionscache_mid.replace('%s', self.sql.query['placeholder'])
+        update_sessionscache_start = self.sql.query['update_sessionscache_start']
+        update_sessionscache_start = update_sessionscache_start.replace('%s', self.sql.query['placeholder'])
+        update_sessionscache_end = self.sql.query['update_sessionscache_end']
+        update_sessionscache_end = update_sessionscache_end.replace('%s', self.sql.query['placeholder'])
+        
+        insert_sessionscache = self.sql.query['insert_sessionscache']
+        insert_sessionscache = insert_sessionscache.replace('%s', self.sql.query['placeholder'])
+        merge_sessionscache = self.sql.query['merge_sessionscache']
+        merge_sessionscache = merge_sessionscache.replace('%s', self.sql.query['placeholder'])
+        delete_sessions = self.sql.query['delete_sessions']
+        delete_sessions = delete_sessions.replace('%s', self.sql.query['placeholder'])
+        
+        #Grab playerIds using hero names in HUD_Config.xml
+        try:
+            # derive list of program owner's player ids
+            self.hero = {}                               # name of program owner indexed by site id
+            self.hero_ids = []
+                                                         # make sure at least two values in list
+                                                         # so that tuple generation creates doesn't use
+                                                         # () or (1,) style
+            for site in self.config.get_supported_sites():
+                result = self.get_site_id(site)
+                if result:
+                    site_id = result[0][0]
+                    self.hero[site_id] = self.config.supported_sites[site].screen_name
+                    p_id = self.get_player_id(self.config, site, self.hero[site_id])
+                    if p_id:
+                        self.hero_ids.append(int(p_id))
+
+        except:
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print _("Error aquiring hero ids:"), str(sys.exc_value)
+            print err
+
+        inserts = []
+        for p in pdata:
+            if pids[p] in self.hero_ids:
+                line = [0]*5
+    
+                if (game['type']=='ring'): line[0] = 1 # count ring hands
+                if (game['type']=='tour'): line[1] = 1 # count tour hands
+                if (game['type']=='ring'): line[2] = pdata[p]['totalProfit'] #sum of profit
+                if (game['type']=='ring'): line[3] = float(Decimal(pdata[p]['totalProfit'])/Decimal(bigBet)) #sum of big bets won
+                line[4] = startTime
+                inserts.append(line)
+
+        cursor = self.get_cursor()
+
+        for row in inserts:
+            threshold = []
+            threshold.append(row[-1]-THRESHOLD)
+            threshold.append(row[-1]+THRESHOLD)
+            cursor.execute(select_sessionscache, threshold)
+            num = cursor.rowcount
+            if (num == 1):
+                # Try to do the update first:
+                #print "DEBUG: found 1 record to update"
+                update_mid = row + row[-1:]
+                cursor.execute(select_sessionscache_mid, update_mid[-2:])
+                mid = cursor.rowcount
+                if (mid == 0):
+                    update_startend = row[-1:] + row + threshold
+                    cursor.execute(select_sessionscache_start, update_startend[-3:])
+                    start = cursor.rowcount
+                    if (start == 0):
+                        #print "DEBUG:", start, " start record found. Update stats and start time"
+                        cursor.execute(update_sessionscache_end, update_startend)                 
+                    else:
+                        #print "DEBUG: 1 end record found. Update stats and end time time"
+                        cursor.execute(update_sessionscache_start, update_startend) 
+                else:
+                    #print "DEBUG: update stats mid-session"
+                    cursor.execute(update_sessionscache_mid, update_mid)
+            elif (num > 1):
+                # Multiple matches found - merge them into one session and update:
+                #print "DEBUG:", num, "matches found"
+                cursor.execute(merge_sessionscache, threshold)
+                merge = cursor.fetchone()
+                cursor.execute(delete_sessions, threshold)
+                cursor.execute(insert_sessionscache, merge)
+                update_mid = row + row[-1:]
+                cursor.execute(select_sessionscache_mid, update_mid[-2:])
+                mid = cursor.rowcount
+                if (mid == 0):
+                    update_startend = row[-1:] + row + threshold
+                    cursor.execute(select_sessionscache_start, update_startend[-3:])
+                    start = cursor.rowcount
+                    if (start == 0):
+                        #print "DEBUG:", start, " start record found. Update stats and start time"
+                        cursor.execute(update_sessionscache_end, update_startend)                 
+                    else:
+                        #print "DEBUG: 1 end record found. Update stats and end time time"
+                        cursor.execute(update_sessionscache_start, update_startend) 
+                else:
+                    #print "DEBUG: update stats mid-session"
+                    cursor.execute(update_sessionscache_mid, update_mid)
+            elif (num == 0):
+                # No matches found, insert new session:
+                insert = row + row[-1:]
+                insert = insert[-2:] + insert[:-2]
+                #print "DEBUG: No matches found. Insert record", insert
+                cursor.execute(insert_sessionscache, insert)
+            else:
+                # Something bad happened
+                pass    
 
     def isDuplicate(self, gametypeID, siteHandNo):
         dup = False
@@ -1978,54 +2181,6 @@ class Database:
                                     #FIXME: recognise currency
         return tmp[0]
 
-    def resetPlayerIDs(self):
-        self.pcache = None
-
-    def getSqlPlayerIDs(self, pnames, siteid):
-        result = {}
-        if(self.pcache == None):
-            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key[0], key[1]))
-
-        for player in pnames:
-            result[player] = self.pcache[(player,siteid)]
-            # NOTE: Using the LambdaDict does the same thing as:
-            #if player in self.pcache:
-            #    #print "DEBUG: cachehit"
-            #    pass
-            #else:
-            #    self.pcache[player] = self.insertPlayer(player, siteid)
-            #result[player] = self.pcache[player]
-
-        return result
-
-    def insertPlayer(self, name, site_id):
-        result = None
-        _name = Charset.to_db_utf8(name)
-        c = self.get_cursor()
-        q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
-        q = q.replace('%s', self.sql.query['placeholder'])
-
-        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
-        #Usage:
-        #        INSERT INTO `tags` (`tag`, `count`)
-        #         VALUES ($tag, 1)
-        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
-
-
-        #print "DEBUG: name: %s site: %s" %(name, site_id)
-
-        c.execute (q, (site_id, _name))
-
-        tmp = c.fetchone()
-        if (tmp == None): #new player
-            c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
-                      ,(_name, site_id))
-            #Get last id might be faster here.
-            #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
-            result = self.get_last_insert_id(c)
-        else:
-            result = tmp[1]
-        return result
 
     def insertGameTypes(self, row):
         c = self.get_cursor()

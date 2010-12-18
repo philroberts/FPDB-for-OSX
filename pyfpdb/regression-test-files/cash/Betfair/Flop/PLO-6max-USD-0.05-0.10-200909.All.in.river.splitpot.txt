@@ -3,7 +3,7 @@ PL $0.05/$0.10 Omaha - Sunday, October 18, 20:00:00 GMT 2009
 Table Death 1 6-max (Real Money)
 Seat 2 is the button
 Total number of active players : 6
-Seat 1: Player6 ( $1 )
+Seat 1: Hero ( $1 )
 Seat 2: Player3 ( $9.38 )
 Seat 3: Player2 ( $2.82 )
 Seat 4: Player4 ( $4.13 )
@@ -11,18 +11,18 @@ Seat 5: Player5 ( $28.77 )
 Seat 6: Player1 ( $6.46 )
 Player2 posts small blind [$0.05]
 Player4 posts big blind [$0.10]
-Player6 posts big blind [$0.10]
+Hero posts big blind [$0.10]
 ** Dealing down cards **
-Dealt to Player6 [ 7c, 6c, 5h, Jh ]
+Dealt to Hero [ 7c, 6c, 5h, Jh ]
 Player5 folds
 Player1 calls [$0.10]
-Player6 checks
+Hero checks
 Player3 calls [$0.10]
 Player2 raises to [$0.30]
 Player4 calls [$0.20]
 Player1 calls [$0.20]
-Player6 goes all-in
-Player6 raises to [$1]
+Hero goes all-in
+Hero raises to [$1]
 Player3 calls [$0.90]
 Player2 calls [$0.70]
 Player4 calls [$0.70]
@@ -43,7 +43,7 @@ Player4 goes all-in
 Player4 bets [$3.03]
 Player1 calls [$3.03]
 ** Showdown ** 
-Player6 shows [ 7c, 6c, 5h, Jh ] a straight, Seven to Three
+Hero shows [ 7c, 6c, 5h, Jh ] a straight, Seven to Three
 Player4 shows [ 7d, 8c, 3d, 6h ] a straight flush, Seven to Three
 Player1 shows [ 3h, 4h, Td, 4s ] four of a kind, Fours
 ** Hand Conclusion **

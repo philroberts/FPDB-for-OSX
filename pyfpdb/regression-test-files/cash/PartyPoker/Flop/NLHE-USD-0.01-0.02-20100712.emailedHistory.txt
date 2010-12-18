@@ -1,3 +1,6 @@
+Game #9423586142 starts.
+
+#Game No : 9423586142
 ***** Hand History For Game 9423586142 *****
 0.01/0.02 Texas Hold'em Game Table (NL)  -  Mon Jul 12 13:38:32 EDT 2010
 Table 20BB Min Speed #1775757  (Real Money) -- Seat 1 is the button
@@ -6,7 +9,7 @@ Seat 1: Player1 ($0.95)
 Seat 2: Player2 ($0.57)
 Seat 3: Player3 ($0.86)
 Seat 4: Player4 ($1.71)
-Seat 5: Player5 ($1.76)
+Seat 5: Hero ($1.76)
 Seat 6: Player6 ($0.44)
 Seat 7: Player7 ($0.76)
 Seat 8: Player8 ($0.68)
@@ -14,8 +17,8 @@ Seat 9: Player9 ($0.38)
 Player2 posts small blind (0.01)
 Player3 posts big blind (0.02)
 ** Dealing down cards **
-Dealt to Player5 [ Tc, 9d ]
-Player5 folds
+Dealt to Hero [ Tc, 9d ]
+Hero folds
 Player6 calls (0.02)
 Player8 folds
 Player9 folds
@@ -34,7 +37,7 @@ Player1 balance $0.95, didn't bet (folded)
 Player2 balance $0.55, lost $0.02 (folded)
 Player3 balance $0.96, bet $0.21, collected $0.31, net +$0.1
 Player4 balance $1.71, sits out
-Player5 balance $1.76, didn't bet (folded)
+Hero balance $1.76, didn't bet (folded)
 Player6 balance $0.36, lost $0.08 (folded)
 Player7 balance $0.76, sits out
 Player8 balance $0.68, didn't bet (folded)

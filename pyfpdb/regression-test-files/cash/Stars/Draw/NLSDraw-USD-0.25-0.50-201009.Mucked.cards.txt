@@ -5,27 +5,27 @@ Seat 2: barbus533 ($21.15 in chips)
 Seat 3: @sker86 ($82.60 in chips) 
 Seat 4: nl pokerr ($49.15 in chips) 
 Seat 5: heliodorus ($73.45 in chips) 
-Seat 6: s0rrow ($20 in chips) 
+Seat 6: Hero ($20 in chips) 
 Seat 7: KBH7 ($14 in chips) 
 heliodorus: posts small blind $0.25
-s0rrow: posts big blind $0.50
+Hero: posts big blind $0.50
 *** DEALING HANDS ***
-Dealt to s0rrow [2s 7d 4d 6d 8s]
+Dealt to Hero [2s 7d 4d 6d 8s]
 KBH7: folds 
 Philippus40: folds 
 barbus533: folds 
 @sker86: raises $1.50 to $2
 nl pokerr: folds 
 heliodorus: folds 
-s0rrow: calls $1.50
-s0rrow: stands pat on [2s 7d 4d 6d 8s]
+Hero: calls $1.50
+Hero: stands pat on [2s 7d 4d 6d 8s]
 @sker86: discards 1 card
-s0rrow: checks 
+Hero: checks 
 @sker86: checks 
 *** SHOW DOWN ***
-s0rrow: shows [2s 7d 4d 6d 8s] (Lo: 8,7,6,4,2)
+Hero: shows [2s 7d 4d 6d 8s] (Lo: 8,7,6,4,2)
 @sker86: mucks hand 
-s0rrow collected $4.05 from pot
+Hero collected $4.05 from pot
 *** SUMMARY ***
 Total pot $4.25 | Rake $0.20 
 Seat 1: Philippus40 folded before Flop (didn't bet)
@@ -33,7 +33,7 @@ Seat 2: barbus533 folded before Flop (didn't bet)
 Seat 3: @sker86 mucked [2h 8d 7h 7s 4s]
 Seat 4: nl pokerr (button) folded before Flop (didn't bet)
 Seat 5: heliodorus (small blind) folded before Flop
-Seat 6: s0rrow (big blind) showed [2s 7d 4d 6d 8s] and won ($4.05) with Lo: 8,7,6,4,2
+Seat 6: Hero (big blind) showed [2s 7d 4d 6d 8s] and won ($4.05) with Lo: 8,7,6,4,2
 Seat 7: KBH7 folded before Flop (didn't bet)
 
 

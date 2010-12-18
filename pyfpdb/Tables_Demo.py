@@ -30,6 +30,7 @@ import sys
 import os
 
 #    pyGTK modules
+import pygtk
 import gtk
 import gobject
 
@@ -60,7 +61,7 @@ if __name__=="__main__":
             self.main_window.set_title(_("Fake HUD Main Window"))
             self.main_window.move(table.x + dx, table.y + dy)
             self.main_window.show_all()
-            table.topify(self)
+            table.topify(self.main_window)
             
 #    These are the currently defined signals. Do this in the HUD.
             self.main_window.connect("client_moved", self.client_moved)
@@ -103,9 +104,12 @@ if __name__=="__main__":
         table_kwargs = dict(table_name = table_name)
 
     table = Tables.Table(config, "Full Tilt Poker", **table_kwargs)
+    table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
     print table
 
     fake = fake_hud(table)
+    fake.parent = fake
+
     gobject.timeout_add(1000, table.check_game, fake)
     gobject.timeout_add(100, table.check_table, fake)
     print "calling main"

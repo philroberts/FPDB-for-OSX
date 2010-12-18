@@ -3,23 +3,23 @@ Table 'Gotha II' 8-max
 Seat 1: kobreli ($1.33 in chips) 
 Seat 3: willy32948 ($2.17 in chips) 
 Seat 5: meg100 ($1.71 in chips) 
-Seat 7: s0rrow ($1.60 in chips) 
+Seat 7: Hero ($1.60 in chips) 
 Seat 8: SilkZone ($1.65 in chips) 
 kobreli: posts the ante $0.01
 willy32948: posts the ante $0.01
 meg100: posts the ante $0.01
-s0rrow: posts the ante $0.01
+Hero: posts the ante $0.01
 SilkZone: posts the ante $0.01
 *** 3rd STREET ***
 Dealt to kobreli [Qc]
 Dealt to willy32948 [6h]
 Dealt to meg100 [3s]
-Dealt to s0rrow [Td 2s 9s]
+Dealt to Hero [Td 2s 9s]
 Dealt to SilkZone [3h]
 kobreli: brings in for $0.02
 willy32948: calls $0.02
 meg100: calls $0.02
-s0rrow: folds 
+Hero: folds 
 SilkZone: calls $0.02
 *** 4th STREET ***
 Dealt to kobreli [Qc] [8s]
@@ -52,7 +52,7 @@ Total pot $0.41 | Rake $0.02
 Seat 1: kobreli folded on the 4th Street
 Seat 3: willy32948 folded on the 6th Street
 Seat 5: meg100 folded on the 5th Street
-Seat 7: s0rrow folded on the 3rd Street (didn't bet)
+Seat 7: Hero folded on the 3rd Street (didn't bet)
 Seat 8: SilkZone collected ($0.39)
 
 
@@ -61,59 +61,59 @@ PokerStars Game #35874590575:  Razz Limit ($0.04/$0.08 USD) - 2009/11/26 10:25:2
 Table 'Gotha II' 8-max
 Seat 1: kobreli ($1.30 in chips) 
 Seat 5: meg100 ($1.64 in chips) 
-Seat 7: s0rrow ($1.59 in chips) 
+Seat 7: Hero ($1.59 in chips) 
 Seat 8: SilkZone ($1.89 in chips) 
 kobreli: posts the ante $0.01
 meg100: posts the ante $0.01
-s0rrow: posts the ante $0.01
+Hero: posts the ante $0.01
 SilkZone: posts the ante $0.01
 *** 3rd STREET ***
 Dealt to kobreli [3h]
 Dealt to meg100 [6s]
-Dealt to s0rrow [4c 2h 8h]
+Dealt to Hero [4c 2h 8h]
 Dealt to SilkZone [Jc]
 SilkZone: brings in for $0.02
 kobreli: calls $0.02
 meg100: calls $0.02
-s0rrow: calls $0.02
+Hero: calls $0.02
 *** 4th STREET ***
 Dealt to kobreli [3h] [Ks]
 Dealt to meg100 [6s] [2d]
-Dealt to s0rrow [4c 2h 8h] [7c]
+Dealt to Hero [4c 2h 8h] [7c]
 Dealt to SilkZone [Jc] [3c]
 meg100: checks 
-s0rrow: bets $0.04
+Hero: bets $0.04
 SilkZone: calls $0.04
 kobreli: folds 
 meg100: calls $0.04
 *** 5th STREET ***
 Dealt to meg100 [6s 2d] [5d]
-Dealt to s0rrow [4c 2h 8h 7c] [Ah]
+Dealt to Hero [4c 2h 8h 7c] [Ah]
 Dealt to SilkZone [Jc 3c] [8c]
 meg100: checks 
-s0rrow: bets $0.08
+Hero: bets $0.08
 SilkZone: calls $0.08
 meg100: calls $0.08
 *** 6th STREET ***
 Dealt to meg100 [6s 2d 5d] [Qs]
-Dealt to s0rrow [4c 2h 8h 7c Ah] [2s]
+Dealt to Hero [4c 2h 8h 7c Ah] [2s]
 Dealt to SilkZone [Jc 3c 8c] [Kh]
-s0rrow: checks 
+Hero: checks 
 SilkZone: checks 
 meg100: checks 
 *** RIVER ***
-Dealt to s0rrow [4c 2h 8h 7c Ah 2s] [5h]
-s0rrow: bets $0.08
+Dealt to Hero [4c 2h 8h 7c Ah 2s] [5h]
+Hero: bets $0.08
 HIWAII2 joins the table at seat #6 
 SilkZone: folds 
 meg100: folds 
-Uncalled bet ($0.08) returned to s0rrow
-s0rrow collected $0.46 from pot
+Uncalled bet ($0.08) returned to Hero
+Hero collected $0.46 from pot
 *** SUMMARY ***
 Total pot $0.48 | Rake $0.02 
 Seat 1: kobreli folded on the 4th Street
 Seat 5: meg100 folded on the River
-Seat 7: s0rrow collected ($0.46)
+Seat 7: Hero collected ($0.46)
 Seat 8: SilkZone folded on the River
 
 
@@ -123,22 +123,22 @@ Table 'Gotha II' 8-max
 Seat 1: kobreli ($1.27 in chips) 
 Seat 5: meg100 ($1.49 in chips) 
 Seat 6: HIWAII2 ($1.13 in chips) 
-Seat 7: s0rrow ($1.90 in chips) 
+Seat 7: Hero ($1.90 in chips) 
 Seat 8: SilkZone ($1.74 in chips) 
 kobreli: posts the ante $0.01
 meg100: posts the ante $0.01
 HIWAII2: posts the ante $0.01
-s0rrow: posts the ante $0.01
+Hero: posts the ante $0.01
 SilkZone: posts the ante $0.01
 *** 3rd STREET ***
 Dealt to kobreli [8c]
 Dealt to meg100 [7h]
 Dealt to HIWAII2 [Kh]
-Dealt to s0rrow [9h 2s 7c]
+Dealt to Hero [9h 2s 7c]
 Dealt to SilkZone [6s]
 HIWAII2: brings in for $0.02
 manga130 joins the table at seat #3 
-s0rrow: calls $0.02
+Hero: calls $0.02
 SilkZone: calls $0.02
 kobreli: calls $0.02
 meg100: calls $0.02
@@ -146,48 +146,48 @@ meg100: calls $0.02
 Dealt to kobreli [8c] [8s]
 Dealt to meg100 [7h] [As]
 Dealt to HIWAII2 [Kh] [6h]
-Dealt to s0rrow [9h 2s 7c] [6c]
+Dealt to Hero [9h 2s 7c] [6c]
 Dealt to SilkZone [6s] [9c]
 meg100: checks 
 HIWAII2: checks 
-s0rrow: checks 
+Hero: checks 
 SilkZone: checks 
 kobreli: checks 
 *** 5th STREET ***
 Dealt to kobreli [8c 8s] [3c]
 Dealt to meg100 [7h As] [5d]
 Dealt to HIWAII2 [Kh 6h] [3d]
-Dealt to s0rrow [9h 2s 7c 6c] [Qh]
+Dealt to Hero [9h 2s 7c 6c] [Qh]
 Dealt to SilkZone [6s 9c] [Qs]
 meg100: checks 
 HIWAII2: bets $0.08
-s0rrow: calls $0.08
+Hero: calls $0.08
 SilkZone: folds 
 kobreli: folds 
 meg100: calls $0.08
 *** 6th STREET ***
 Dealt to meg100 [7h As 5d] [5c]
 Dealt to HIWAII2 [Kh 6h 3d] [6d]
-Dealt to s0rrow [9h 2s 7c 6c Qh] [Ad]
-s0rrow: checks 
+Dealt to Hero [9h 2s 7c 6c Qh] [Ad]
+Hero: checks 
 meg100: checks 
 HIWAII2: checks 
 *** RIVER ***
-Dealt to s0rrow [9h 2s 7c 6c Qh Ad] [Ac]
-s0rrow: bets $0.08
+Dealt to Hero [9h 2s 7c 6c Qh Ad] [Ac]
+Hero: bets $0.08
 meg100: folds 
 HIWAII2: raises $0.08 to $0.16
-s0rrow: calls $0.08
+Hero: calls $0.08
 *** SHOW DOWN ***
 HIWAII2: shows [2h 8d Kh 6h 3d 6d 4h] (Lo: 8,6,4,3,2)
-s0rrow: mucks hand 
+Hero: mucks hand 
 HIWAII2 collected $0.68 from pot
 *** SUMMARY ***
 Total pot $0.71 | Rake $0.03 
 Seat 1: kobreli folded on the 5th Street
 Seat 5: meg100 folded on the River
 Seat 6: HIWAII2 showed [2h 8d Kh 6h 3d 6d 4h] and won ($0.68) with Lo: 8,6,4,3,2
-Seat 7: s0rrow mucked [9h 2s 7c 6c Qh Ad Ac]
+Seat 7: Hero mucked [9h 2s 7c 6c Qh Ad Ac]
 Seat 8: SilkZone folded on the 5th Street
 
 
@@ -198,26 +198,26 @@ Seat 1: kobreli ($1.24 in chips)
 Seat 3: manga130 ($0.68 in chips) 
 Seat 5: meg100 ($1.38 in chips) 
 Seat 6: HIWAII2 ($1.54 in chips) 
-Seat 7: s0rrow ($1.63 in chips) 
+Seat 7: Hero ($1.63 in chips) 
 Seat 8: SilkZone ($1.71 in chips) 
 kobreli: posts the ante $0.01
 manga130: posts the ante $0.01
 meg100: posts the ante $0.01
 HIWAII2: posts the ante $0.01
-s0rrow: posts the ante $0.01
+Hero: posts the ante $0.01
 SilkZone: posts the ante $0.01
 *** 3rd STREET ***
 Dealt to kobreli [Kd]
 Dealt to manga130 [Td]
 Dealt to meg100 [Qh]
 Dealt to HIWAII2 [5h]
-Dealt to s0rrow [9s Qd 2s]
+Dealt to Hero [9s Qd 2s]
 Dealt to SilkZone [As]
 kobreli: brings in for $0.02
 manga130: folds 
 meg100: folds 
 HIWAII2: calls $0.02
-s0rrow: folds 
+Hero: folds 
 SilkZone: calls $0.02
 *** 4th STREET ***
 Dealt to kobreli [Kd] [4s]
@@ -235,7 +235,7 @@ Seat 1: kobreli folded on the 4th Street
 Seat 3: manga130 folded on the 3rd Street (didn't bet)
 Seat 5: meg100 folded on the 3rd Street (didn't bet)
 Seat 6: HIWAII2 collected ($0.12)
-Seat 7: s0rrow folded on the 3rd Street (didn't bet)
+Seat 7: Hero folded on the 3rd Street (didn't bet)
 Seat 8: SilkZone folded on the 4th Street
 
 
@@ -246,27 +246,27 @@ Seat 1: kobreli ($1.21 in chips)
 Seat 3: manga130 ($0.67 in chips) 
 Seat 5: meg100 ($1.37 in chips) 
 Seat 6: HIWAII2 ($1.63 in chips) 
-Seat 7: s0rrow ($1.62 in chips) 
+Seat 7: Hero ($1.62 in chips) 
 Seat 8: SilkZone ($1.68 in chips) 
 kobreli: posts the ante $0.01
 manga130: posts the ante $0.01
 meg100: posts the ante $0.01
 HIWAII2: posts the ante $0.01
-s0rrow: posts the ante $0.01
+Hero: posts the ante $0.01
 SilkZone: posts the ante $0.01
 *** 3rd STREET ***
 Dealt to kobreli [Tc]
 Dealt to manga130 [Qd]
 Dealt to meg100 [9h]
 Dealt to HIWAII2 [5s]
-Dealt to s0rrow [7h 9c Th]
+Dealt to Hero [7h 9c Th]
 Dealt to SilkZone [Kh]
 SilkZone: brings in for $0.02
 kobreli: folds 
 manga130: calls $0.02
 meg100: calls $0.02
 HIWAII2: calls $0.02
-s0rrow: folds 
+Hero: folds 
 *** 4th STREET ***
 Dealt to manga130 [Qd] [8s]
 Dealt to meg100 [9h] [Kd]
@@ -304,7 +304,7 @@ Seat 1: kobreli folded on the 3rd Street (didn't bet)
 Seat 3: manga130 folded on the River
 Seat 5: meg100 folded on the 4th Street
 Seat 6: HIWAII2 folded on the River
-Seat 7: s0rrow folded on the 3rd Street (didn't bet)
+Seat 7: Hero folded on the 3rd Street (didn't bet)
 Seat 8: SilkZone collected ($0.98)
 
 
@@ -315,22 +315,22 @@ Seat 1: kobreli ($1.20 in chips)
 Seat 3: manga130 ($0.40 in chips) 
 Seat 5: meg100 ($1.34 in chips) 
 Seat 6: HIWAII2 ($1.28 in chips) 
-Seat 7: s0rrow ($1.61 in chips) 
+Seat 7: Hero ($1.61 in chips) 
 Seat 8: SilkZone ($2.31 in chips) 
 kobreli: posts the ante $0.01
 manga130: posts the ante $0.01
 meg100: posts the ante $0.01
 HIWAII2: posts the ante $0.01
-s0rrow: posts the ante $0.01
+Hero: posts the ante $0.01
 SilkZone: posts the ante $0.01
 *** 3rd STREET ***
 Dealt to kobreli [3d]
 Dealt to manga130 [Qc]
 Dealt to meg100 [Qd]
 Dealt to HIWAII2 [Js]
-Dealt to s0rrow [Th Ah Qh]
+Dealt to Hero [Th Ah Qh]
 Dealt to SilkZone [9d]
-s0rrow: brings in for $0.02
+Hero: brings in for $0.02
 SilkZone: calls $0.02
 kobreli: calls $0.02
 manga130: calls $0.02
@@ -339,11 +339,11 @@ HIWAII2: folds
 *** 4th STREET ***
 Dealt to kobreli [3d] [Ad]
 Dealt to manga130 [Qc] [6d]
-Dealt to s0rrow [Th Ah Qh] [8s]
+Dealt to Hero [Th Ah Qh] [8s]
 Dealt to SilkZone [9d] [7c]
 kobreli: bets $0.04
 manga130: folds 
-s0rrow: folds 
+Hero: folds 
 SilkZone: raises $0.04 to $0.08
 kobreli: raises $0.04 to $0.12
 SilkZone: calls $0.04
@@ -371,7 +371,7 @@ Seat 1: kobreli showed [6h 8h 3d Ad Ac Kh 8c] and lost with Lo: K,8,6,3,A
 Seat 3: manga130 folded on the 4th Street
 Seat 5: meg100 folded on the 3rd Street (didn't bet)
 Seat 6: HIWAII2 folded on the 3rd Street (didn't bet)
-Seat 7: s0rrow folded on the 4th Street
+Seat 7: Hero folded on the 4th Street
 Seat 8: SilkZone showed [2d 4s 9d 7c Ts 5s Tc] and won ($0.67) with Lo: 9,7,5,4,2
 
 
@@ -382,24 +382,24 @@ Seat 1: kobreli ($0.89 in chips)
 Seat 3: manga130 ($0.37 in chips) 
 Seat 5: meg100 ($1.33 in chips) 
 Seat 6: HIWAII2 ($1.27 in chips) 
-Seat 7: s0rrow ($1.58 in chips) 
+Seat 7: Hero ($1.58 in chips) 
 Seat 8: SilkZone ($2.67 in chips) 
 kobreli: posts the ante $0.01
 manga130: posts the ante $0.01
 meg100: posts the ante $0.01
 HIWAII2: posts the ante $0.01
-s0rrow: posts the ante $0.01
+Hero: posts the ante $0.01
 SilkZone: posts the ante $0.01
 *** 3rd STREET ***
 Dealt to kobreli [4s]
 Dealt to manga130 [5h]
 Dealt to meg100 [3h]
 Dealt to HIWAII2 [Qh]
-Dealt to s0rrow [Kd Ad 7d]
+Dealt to Hero [Kd Ad 7d]
 Dealt to SilkZone [9d]
 kobreli said, "this.is.lucky"
 HIWAII2: brings in for $0.02
-s0rrow: folds 
+Hero: folds 
 SilkZone: folds 
 kobreli: calls $0.02
 manga130: folds 
@@ -425,7 +425,7 @@ Seat 1: kobreli collected ($0.19)
 Seat 3: manga130 folded on the 3rd Street (didn't bet)
 Seat 5: meg100 folded on the 5th Street
 Seat 6: HIWAII2 folded on the 4th Street
-Seat 7: s0rrow folded on the 3rd Street (didn't bet)
+Seat 7: Hero folded on the 3rd Street (didn't bet)
 Seat 8: SilkZone folded on the 3rd Street (didn't bet)
 
 
@@ -436,23 +436,23 @@ Seat 1: kobreli ($1.01 in chips)
 Seat 3: manga130 ($0.36 in chips) 
 Seat 5: meg100 ($1.26 in chips) 
 Seat 6: HIWAII2 ($1.24 in chips) 
-Seat 7: s0rrow ($1.57 in chips) 
+Seat 7: Hero ($1.57 in chips) 
 Seat 8: SilkZone ($2.66 in chips) 
 kobreli: posts the ante $0.01
 manga130: posts the ante $0.01
 meg100: posts the ante $0.01
 HIWAII2: posts the ante $0.01
-s0rrow: posts the ante $0.01
+Hero: posts the ante $0.01
 SilkZone: posts the ante $0.01
 *** 3rd STREET ***
 Dealt to kobreli [6s]
 Dealt to manga130 [9d]
 Dealt to meg100 [5c]
 Dealt to HIWAII2 [Qs]
-Dealt to s0rrow [6d 9c 3d]
+Dealt to Hero [6d 9c 3d]
 Dealt to SilkZone [Qc]
 HIWAII2: brings in for $0.02
-s0rrow: raises $0.02 to $0.04
+Hero: raises $0.02 to $0.04
 SilkZone: calls $0.04
 kobreli: calls $0.04
 manga130: folds 
@@ -461,20 +461,20 @@ HIWAII2: folds
 *** 4th STREET ***
 Dealt to kobreli [6s] [7h]
 Dealt to meg100 [5c] [5h]
-Dealt to s0rrow [6d 9c 3d] [8s]
+Dealt to Hero [6d 9c 3d] [8s]
 Dealt to SilkZone [Qc] [2c]
 kobreli: bets $0.04
 meg100: folds 
-s0rrow: raises $0.04 to $0.08
+Hero: raises $0.04 to $0.08
 SilkZone: raises $0.04 to $0.12
 kobreli: calls $0.08
-s0rrow: calls $0.04
+Hero: calls $0.04
 *** 5th STREET ***
 Dealt to kobreli [6s 7h] [2h]
-Dealt to s0rrow [6d 9c 3d 8s] [Jh]
+Dealt to Hero [6d 9c 3d 8s] [Jh]
 Dealt to SilkZone [Qc 2c] [7c]
 kobreli: bets $0.08
-s0rrow: folds 
+Hero: folds 
 SilkZone: calls $0.08
 *** 6th STREET ***
 Dealt to kobreli [6s 7h 2h] [3h]
@@ -498,7 +498,7 @@ Seat 1: kobreli showed [Ac Qd 6s 7h 2h 3h 4c] and won ($1.49) with Lo: 6,4,3,2,A
 Seat 3: manga130 folded on the 3rd Street (didn't bet)
 Seat 5: meg100 folded on the 4th Street
 Seat 6: HIWAII2 folded on the 3rd Street
-Seat 7: s0rrow folded on the 5th Street
+Seat 7: Hero folded on the 5th Street
 Seat 8: SilkZone showed [3s 5d Qc 2c 7c Kd As] and lost with Lo: 7,5,3,2,A
 
 
@@ -509,23 +509,23 @@ Seat 1: kobreli ($1.85 in chips)
 Seat 3: manga130 ($0.35 in chips) 
 Seat 5: meg100 ($1.21 in chips) 
 Seat 6: HIWAII2 ($1.21 in chips) 
-Seat 7: s0rrow ($1.40 in chips) 
+Seat 7: Hero ($1.40 in chips) 
 Seat 8: SilkZone ($2.01 in chips) 
 kobreli: posts the ante $0.01
 manga130: posts the ante $0.01
 meg100: posts the ante $0.01
 HIWAII2: posts the ante $0.01
-s0rrow: posts the ante $0.01
+Hero: posts the ante $0.01
 SilkZone: posts the ante $0.01
 *** 3rd STREET ***
 Dealt to kobreli [As]
 Dealt to manga130 [Ac]
 Dealt to meg100 [Ah]
 Dealt to HIWAII2 [Jd]
-Dealt to s0rrow [6d 4h 3h]
+Dealt to Hero [6d 4h 3h]
 Dealt to SilkZone [2c]
 HIWAII2: brings in for $0.02
-s0rrow: calls $0.02
+Hero: calls $0.02
 SilkZone: calls $0.02
 kobreli: calls $0.02
 manga130: calls $0.02
@@ -534,20 +534,20 @@ meg100: folds
 Dealt to kobreli [As] [6s]
 Dealt to manga130 [Ac] [6h]
 Dealt to HIWAII2 [Jd] [Qc]
-Dealt to s0rrow [6d 4h 3h] [3c]
+Dealt to Hero [6d 4h 3h] [3c]
 Dealt to SilkZone [2c] [Th]
 kobreli: bets $0.04
 manga130: calls $0.04
 HIWAII2: folds 
-s0rrow: calls $0.04
+Hero: calls $0.04
 SilkZone: folds 
 *** 5th STREET ***
 Dealt to kobreli [As 6s] [5c]
 Dealt to manga130 [Ac 6h] [5s]
-Dealt to s0rrow [6d 4h 3h 3c] [9s]
+Dealt to Hero [6d 4h 3h 3c] [9s]
 kobreli: bets $0.08
 manga130: calls $0.08
-s0rrow: folds 
+Hero: folds 
 *** 6th STREET ***
 Dealt to kobreli [As 6s 5c] [5d]
 Dealt to manga130 [Ac 6h 5s] [9h]
@@ -567,7 +567,7 @@ Seat 1: kobreli showed [3d 2s As 6s 5c 5d 2d] and won ($0.80) with Lo: 6,5,3,2,A
 Seat 3: manga130 showed [Ad 8h Ac 6h 5s 9h Kh] and lost with Lo: 9,8,6,5,A
 Seat 5: meg100 folded on the 3rd Street (didn't bet)
 Seat 6: HIWAII2 folded on the 4th Street
-Seat 7: s0rrow folded on the 5th Street
+Seat 7: Hero folded on the 5th Street
 Seat 8: SilkZone folded on the 4th Street
 
 

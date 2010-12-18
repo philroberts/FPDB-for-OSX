@@ -382,7 +382,7 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
         
         #query = query.replace("<gtbigBlind_test>", bbtest)
 
-        #query = query.replace("<orderbyhgameTypeId>", "")
+        #query = query.replace("<orderbyhgametypeId>", "")
         
         # process self.detailFilters (a list of tuples)
         flagtest = ''
