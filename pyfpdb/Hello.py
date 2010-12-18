@@ -32,6 +32,8 @@ import sys
 import pygtk
 import gtk
 import gobject
+import L10n
+_ = L10n.get_translation()
 
 #    FreePokerTools modules
 from Mucked import Aux_Window
