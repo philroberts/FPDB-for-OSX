@@ -108,11 +108,11 @@ class GuiReplayer:
                 self.table[i]={"name":self.MyHand.players[i][1],"stack":Decimal(self.MyHand.players[i][2]),"x":x,"y":y,"chips":0,"status":"live"}               #save coordinates of each player
                 try:
                     self.table[i]['holecards']=self.MyHand.holecards["PREFLOP"][self.MyHand.players[i][1]][1]+' '+self.MyHand.holecards["PREFLOP"][self.MyHand.players[i][1]][2]
-                    print "holecards",self.table[i]['holecards']
+                    print "holecards: ",self.table[i]['holecards']
                 except:
                     self.table[i]['holecards']=''
             except IndexError:  #if seat is empty
-                print "seat",i+1,"out of",self.maxseats,"empty"
+                print "seat ",i+1," out of ",self.maxseats," empty"
 
         self.actions=[]     #create list with all actions
 
