@@ -44,9 +44,11 @@ import Options
 (options, argv) = Options.fpdb_options()
 
 #    get the correct module for the current os
-if os.name == 'posix':
+if sys.platform == 'linux2':
     import XTables as Tables
-elif os.name == 'nt':
+elif sys.platform == 'darwin':
+    import OSXTables as Tables
+else: # This is bad--figure out the values for the various windows flavors
     import WinTables as Tables
 
 import locale

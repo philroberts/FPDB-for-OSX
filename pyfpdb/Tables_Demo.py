@@ -22,12 +22,8 @@ Main program module to test/demo the Tables subclasses.
 
 ########################################################################
 
-import L10n
-_ = L10n.get_translation()
-
 #    Standard Library modules
 import sys
-import os
 
 #    pyGTK modules
 import pygtk
@@ -36,11 +32,15 @@ import gobject
 
 #    fpdb/free poker tools modules
 import Configuration
+import L10n
+_ = L10n.get_translation()
 
 #    get the correct module for the current os
-if os.name == 'posix':
+if sys.platform == 'linux2':
     import XTables as Tables
-elif os.name == 'nt':
+elif sys.platform == 'darwin':
+    import OSXTables as Tables
+else: # This is bad--figure out the values for the various windows flavors
     import WinTables as Tables
 
 config = Configuration.Config()
