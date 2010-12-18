@@ -31,7 +31,7 @@ import os
 import gtk
 
 #    Other Library modules
-from Quartz import CoreGraphics
+from Quartz.CoreGraphics import *
 
 #    FPDB modules
 from TableWindow import Table_Window
@@ -45,39 +45,39 @@ class Table(Table_Window):
 #    self.window, and self.parent (if required).
 
         self.number = None
-        WinList = CoreGraphics.CGWindowListCreate(0,0)
-        WinListDict = CoreGraphics.CGWindowListCreateDescriptionFromArray(WinList)
+        WinList = CGWindowListCreate(0,0)
+        WinListDict = CGWindowListCreateDescriptionFromArray(WinList)
 
         for d in WinListDict:
-            if re.search(self.search_string, d['kCGWindowName'], re.I):
-                title = d['kCGWindowName']
+            if re.search(self.search_string, d[kCGWindowName], re.I):
+                title = d[kCGWindowName]
                 if self.check_bad_words(title): continue
-                self.number = d['kCGWindowNumber']
+                self.number = d[kCGWindowNumber]
                 self.title = title
         if self.number is None:
             return None
   
     def get_geometry(self):
 
-        WinList = CoreGraphics.CGWindowListCreate(0,0)
-        WinListDict = CoreGraphics.CGWindowListCreateDescriptionFromArray(WinList)
+        WinList = CGWindowListCreate(0,0)
+        WinListDict = CGWindowListCreateDescriptionFromArray(WinList)
 
         for d in WinListDict:
-            if d['kCGWindowNumber'] == self.number:
-                return {'x'      : d['kCGWindowBounds']['X'],
-                        'y'      : d['kCGWindowBounds']['Y'],
-                        'width'  : d['kCGWindowBounds']['Width'],
-                        'height' : d['kCGWindowBounds']['Height']
+            if d[CGWindowNumber] == self.number:
+                return {'x'      : d[kCGWindowBounds][X],
+                        'y'      : d[kCGWindowBounds][Y],
+                        'width'  : d[kCGWindowBounds][Width],
+                        'height' : d[kCGWindowBounds][Height]
                        }
         return None
 
     def get_window_title(self):
-        WinList = CoreGraphics.CGWindowListCreate(0,0)
-        WinListDict = CoreGraphics.CGWindowListCreateDescriptionFromArray(WinList)
+        WinList = CGWindowListCreate(0,0)
+        WinListDict = CGWindowListCreateDescriptionFromArray(WinList)
 
         for d in WinListDict:
-            if d['kCGWindowNumber'] == self.number:
-                return d['kCGWindowName']
+            if d[kCGWindowNumber] == self.number:
+                return d[kCGWindowName]
         return None
 
     def topify(self, window):
