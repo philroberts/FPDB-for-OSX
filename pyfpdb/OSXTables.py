@@ -49,7 +49,7 @@ class Table(Table_Window):
         WinListDict = CGWindowListCreateDescriptionFromArray(WinList)
 
         for d in WinListDict:
-            if re.search(self.search_string, d[kCGWindowName], re.I):
+            if re.search(self.search_string, d.get(kCGWindowName, ""), re.I):
                 title = d[kCGWindowName]
                 if self.check_bad_words(title): continue
                 self.number = d[kCGWindowNumber]
