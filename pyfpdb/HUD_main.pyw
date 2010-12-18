@@ -321,7 +321,7 @@ def idle_resize(hud):
         [aw.update_card_positions() for aw in hud.aux_windows]
         hud.resize_windows()
     except:
-        log.exception("Error resizing HUD for table: %s." % hud.table.title)
+        log.exception(_("Error resizing HUD for table: %s.") % hud.table.title)
     finally:
         gtk.gdk.threads_leave()
 
@@ -335,7 +335,7 @@ def idle_kill(hud_main, table):
             del(hud_main.hud_dict[table])
         hud_main.main_window.resize(1, 1)
     except:
-        log.exception("Error killing HUD for table: %s." % table.title)
+        log.exception(_("Error killing HUD for table: %s.") % table.title)
     finally:
         gtk.gdk.threads_leave()
 
@@ -358,7 +358,7 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
         hud_main.hud_dict[temp_key].update(new_hand_id, hud_main.config)
         hud_main.hud_dict[temp_key].reposition_windows()
     except:
-        log.exception("Error creating HUD for hand %s." % new_hand_id)
+        log.exception(_("Error creating HUD for hand %s.") % new_hand_id)
     finally:
         gtk.gdk.threads_leave()
     return False
@@ -369,7 +369,7 @@ def idle_update(hud_main, new_hand_id, table_name, config):
         hud_main.hud_dict[table_name].update(new_hand_id, config)
         [aw.update_gui(new_hand_id) for aw in hud_main.hud_dict[table_name].aux_windows]
     except:
-        log.exception("Error updating HUD for hand %s." % new_hand_id)
+        log.exception(_("Error updating HUD for hand %s.") % new_hand_id)
     finally:
         gtk.gdk.threads_leave()
         return False

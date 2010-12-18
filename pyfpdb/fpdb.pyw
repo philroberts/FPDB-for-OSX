@@ -1094,7 +1094,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         self.add_and_display_tab(gv_tab, _("Tourney Graphs"))
 
     def tabStove(self, widget, data=None):
-        """opens a tab for bulk importing tournament summaries"""
+        """opens a tab for poker stove"""
         thread = GuiStove.GuiStove(self.config, self.window)
         self.threads.append(thread)
         tab = thread.get_vbox()
