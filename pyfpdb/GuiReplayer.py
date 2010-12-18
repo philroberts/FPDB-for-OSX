@@ -226,7 +226,7 @@ class GuiReplayer:
                     rect = gtk.gdk.Rectangle(270,270,100,50)
                     self.area.window.invalidate_rect(rect, True)    #refresh pot area
             self.area.window.process_updates(True)
-        print "draw action",self.action_number,self.actions[self.action_number][1],self.actions[self.action_number][2],self.actions[self.action_number][3]
+        print "draw action: ",self.action_number,self.actions[self.action_number][1],self.actions[self.action_number][2],self.actions[self.action_number][3]
         return True
 
 
