@@ -106,6 +106,7 @@ import GuiPrefs
 import GuiLogView
 import GuiDatabase
 import GuiBulkImport
+import GuiTourneyImport
 import GuiImapFetcher
 import GuiRingPlayerStats
 import GuiTourneyPlayerStats
@@ -121,7 +122,7 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.20.906 plus git"
+VERSION = "0.21-rc1"
 
 
 class fpdb:
@@ -763,6 +764,7 @@ class fpdb:
                 </menu>
                 <menu action="import">
                   <menuitem action="bulkimp"/>
+                  <menuitem action="tourneyimp"/>
                   <menuitem action="imapimport"/>
                   <menuitem action="autoimp"/>
                 </menu>
@@ -805,16 +807,17 @@ class fpdb:
                                  ('Preferences', None, _('Pre_ferences'), _('<control>F'), 'Edit your preferences', self.dia_preferences),
                                  ('import', None, _('_Import')),
                                  ('bulkimp', None, _('_Bulk Import'), _('<control>B'), 'Bulk Import', self.tab_bulk_import),
+                                 ('tourneyimp', None, _('Tournament _Results Import'), _('<control>R'), 'Tournament Results Import', self.tab_tourney_import),
                                  ('imapimport', None, _('_Import through eMail/IMAP'), _('<control>I'), 'Import through eMail/IMAP', self.tab_imap_import),
                                  ('viewers', None, _('_Viewers')),
                                  ('autoimp', None, _('_Auto Import and HUD'), _('<control>A'), 'Auto Import and HUD', self.tab_auto_import),
                                  ('hudConfigurator', None, _('_HUD Configurator'), _('<control>H'), 'HUD Configurator', self.diaHudConfigurator),
                                  ('graphs', None, _('_Graphs'), _('<control>G'), 'Graphs', self.tabGraphViewer),
                                  ('tourneygraphs', None, _('Tourney Graphs'), None, 'TourneyGraphs', self.tabTourneyGraphViewer),
-                                 ('ringplayerstats', None, _('Ring _Player Stats (tabulated view, not on pgsql)'), _('<control>P'), 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
-                                 ('tourneyplayerstats', None, _('_Tourney Player Stats (tabulated view, not on pgsql)'), _('<control>T'), 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
+                                 ('ringplayerstats', None, _('Ring _Player Stats (tabulated view, not on pgsql)'), _('<control>P'), 'Ring Player Stats (tabulated view, not on pgsql)', self.tab_ring_player_stats),
+                                 ('tourneyplayerstats', None, _('_Tourney Stats (tabulated view, not on pgsql)'), _('<control>T'), 'Tourney Stats (tabulated view, not on pgsql)', self.tab_tourney_player_stats),
                                  ('tourneyviewer', None, _('Tourney _Viewer'), None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
-                                 ('posnstats', None, _('P_ositional Stats (tabulated view, not on sqlite)'), _('<control>O'), 'Positional Stats (tabulated view)', self.tab_positional_stats),
+                                 ('posnstats', None, _('P_ositional Stats (tabulated view, not on sqlite)'), _('<control>O'), 'Positional Stats (tabulated view, not on sqlite)', self.tab_positional_stats),
                                  ('sessionstats', None, _('Session Stats'), None, 'Session Stats', self.tab_session_stats),
                                  ('database', None, _('_Database')),
                                  ('maintaindbs', None, _('_Maintain Databases'), None, 'Maintain Databases', self.dia_maintain_dbs),
@@ -996,6 +999,13 @@ class fpdb:
         bulk_tab=new_import_thread.get_vbox()
         self.add_and_display_tab(bulk_tab, _("Bulk Import"))
 
+    def tab_tourney_import(self, widget, data=None):
+        """opens a tab for bulk importing"""
+        new_import_thread = GuiTourneyImport.GuiTourneyImport(self.settings, self.config, self.sql, self.window)
+        self.threads.append(new_import_thread)
+        bulk_tab=new_import_thread.get_vbox()
+        self.add_and_display_tab(bulk_tab, _("Tournament Results Import"))
+
     def tab_imap_import(self, widget, data=None):
         new_thread = GuiImapFetcher.GuiImapFetcher(self.config, self.db, self.sql, self.window)
         self.threads.append(new_thread)
@@ -1013,7 +1023,7 @@ class fpdb:
         new_ps_thread = GuiTourneyPlayerStats.GuiTourneyPlayerStats(self.config, self.db, self.sql, self.window)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
-        self.add_and_display_tab(ps_tab, _("Tourney Player Stats"))
+        self.add_and_display_tab(ps_tab, _("Tourney Stats"))
 
     def tab_tourney_viewer_stats(self, widget, data=None):
         new_thread = GuiTourneyViewer.GuiTourneyViewer(self.config, self.db, self.sql, self.window)
@@ -1243,7 +1253,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         for site in self.config.get_supported_sites(True):    # get site names from config file
             try:
                 self.config.get_site_id(site)                     # and check against list from db
-            except KeyError as exc:
+            except KeyError , exc:
                 log.warning("site %s missing from db" % site)
                 dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Unknown Site")
                 diastring = _("WARNING: Unable to find site  '%s'\n\nPress YES to add this site to the database.") % site

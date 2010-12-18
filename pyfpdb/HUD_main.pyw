@@ -131,22 +131,19 @@ class HUD_main(object):
                 self.main_window.set_icon_stock(gtk.STOCK_HOME)
             self.main_window.show_all()
             gobject.timeout_add(100, self.check_tables)
-                        
+
         except:
             log.error("*** Exception in HUD_main.init() *** ")
             for e in traceback.format_tb(sys.exc_info()[2]):
                 log.error(e)
 
     def client_moved(self, widget, hud):
-        print "hud_main: client moved"
-        print hud, hud.table.name, "moved", hud.table.x, hud.table.y
+        hud.up_update_table_position()
 
     def client_resized(self, widget, hud):
-        print _("hud_main: Client resized")
-        print hud, hud.table.name, hud.table.x, hud.table.y
+        pass
 
     def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
-        print _("hud_main: Client destroyed")
         self.kill_hud(None, hud.table.name)
 
     def game_changed(self, widget, hud):
@@ -358,9 +355,9 @@ class HUD_main(object):
             log.info(_("HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f)")
                      % (t6 - t0,t1 - t0,t2 - t0,t3 - t0,t4 - t0,t5 - t0,t6 - t0))
             self.db_connection.connection.rollback()
-            if type == "tour":
-                tablewindow.check_table_no(None)
-            # Ray!! tablewindow::check_table_no expects a HUD as an argument!
+#            if type == "tour":
+#                tablewindow.check_table_no(None)
+#            # Ray!! tablewindow::check_table_no expects a HUD as an argument!
 if __name__== "__main__":
 
 #    start the HUD_main object

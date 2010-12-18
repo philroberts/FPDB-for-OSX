@@ -1,0 +1,55 @@
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+Stage #1483940000: Holdem  No Limit $0.02 - 2009-06-10 03:10:00 (ET)
+Table: CHILE HWY (Real Money) Seat #7 is the dealer
+Seat 7 - PLAYER7 ($2.13 in chips)
+Seat 9 - Hero ($2.48 in chips)
+Seat 1 - PLAYER1 ($3.98 in chips)
+Seat 2 - PLAYER2 ($0.76 in chips)
+Seat 3 - PLAYER3 ($2.24 in chips)
+Seat 4 - PLAYER4 ($1.94 in chips)
+Seat 5 - PLAYER5 ($0.41 in chips)
+Seat 6 - PLAYER6 ($0.02 in chips)
+Hero - Posts small blind $0.01
+PLAYER1 - Posts big blind $0.02
+*** POCKET CARDS ***
+Dealt to Hero [9c 7c] 
+PLAYER2 - Calls $0.02
+PLAYER3 - Folds
+PLAYER4 - Folds
+PLAYER5 - Folds
+PLAYER6 - Folds
+PLAYER7 - Folds
+Hero - Calls $0.01
+PLAYER1 - Checks
+*** FLOP *** [Qh 8h 7h]
+Hero - Checks
+PLAYER1 - Checks
+PLAYER2 - Checks
+*** TURN *** [Qh 8h 7h] [Ah]
+Hero - Checks
+PLAYER1 - Checks
+PLAYER2 - Checks
+*** RIVER *** [Qh 8h 7h Ah] [Kc]
+Hero - Checks
+PLAYER1 - Checks
+PLAYER2 - Bets $0.06
+Hero - Folds
+PLAYER1 - Folds
+PLAYER2 - returned ($0.06) : not called
+*** SHOW DOWN ***
+PLAYER2 - Does not show
+PLAYER2 Collects $0.06 from main pot
+*** SUMMARY ***
+Total Pot($0.06)
+Board [Qh 8h 7h Ah Kc]
+Seat 1: PLAYER1 (big blind) Folded on the RIVER
+Seat 2: PLAYER2 collected Total ($0.06) HI:($0.06)  [Does not show] 
+Seat 3: PLAYER3 Folded on the POCKET CARDS
+Seat 4: PLAYER4 Folded on the POCKET CARDS
+Seat 5: PLAYER5 Folded on the POCKET CARDS
+Seat 6: PLAYER6 Folded on the POCKET CARDS
+Seat 7: PLAYER7 (dealer) Folded on the POCKET CARDS
+Seat 9: Hero (small blind) Folded on the RIVER
+
+
+

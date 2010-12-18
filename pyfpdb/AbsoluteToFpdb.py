@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2008-2010, Carl Gherardi
-#    
+#
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#    
+#
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
@@ -17,6 +17,8 @@
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
+
+#Note that this filter also supports UltimateBet, they are both owned by the same company and form the Cereus Network
 
 import L10n
 _ = L10n.get_translation()
@@ -36,31 +38,55 @@ class Absolute(HandHistoryConverter):
     codepage = "cp1252"
     siteid   = 8
     HORSEHand = False
-    
-    # Static regexes
-    re_SplitHands  = re.compile(r"\n\n\n+")
-    re_TailSplitHands  = re.compile(r"(\n\n\n+)")
-#Stage #1571362962: Holdem  No Limit $0.02 - 2009-08-05 15:24:06 (ET)
-#Table: TORONTO AVE (Real Money) Seat #6 is the dealer
-#Seat 6 - FETS63 ($0.75 in chips)
-#Board [10s 5d Kh Qh 8c]
 
-    re_GameInfo     = re.compile(ur"""^Stage #(C?[0-9]+):\s+
-                                      (?P<GAME>Holdem|Seven\sCard\sHi\/L|HORSE)
-                                      (?:\s\(1\son\s1\)|)?\s+?
-                                      (?P<LIMIT>No Limit|Pot\sLimit|Normal|)?\s?
-                                      (?P<CURRENCY>\$|\s€|)
-                                      (?P<SB>[.0-9]+)/?(?:\$|\s€|)(?P<BB>[.0-9]+)?
-                                    """, re.MULTILINE|re.VERBOSE)
-    re_HorseGameInfo = re.compile(ur"^Game Type: (?P<LIMIT>Limit) (?P<GAME>Holdem)", re.MULTILINE)
-    # TODO: can set max seats via (1 on 1) to a known 2 .. 
-    re_HandInfo     = re.compile(ur"^Stage #C?(?P<HID>[0-9]+): .*(?P<DATETIME>\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d).*\n(Table: (?P<TABLE>.*) \(Real Money\))?", re.MULTILINE)
-    re_TableFromFilename = re.compile(ur".*IHH([0-9]+) (?P<TABLE>.*) -") # on HORSE STUD games, the table name isn't in the hand info!
-    re_Button       = re.compile(ur"Seat #(?P<BUTTON>[0-9]) is the ?[dead]* dealer$", re.MULTILINE) # TODO: that's not the right way to match for "dead" dealer is it?
-    re_PlayerInfo   = re.compile(ur"^Seat (?P<SEAT>[0-9]) - (?P<PNAME>.*) \((?:\$| €|)(?P<CASH>[0-9]*[.0-9]+) in chips\)", re.MULTILINE)
-    re_Board        = re.compile(ur"\[(?P<CARDS>[^\]]*)\]? *$", re.MULTILINE)
-    
-    
+    # Static regexes
+    re_SplitHands  = re.compile(r"\n\n+")
+    re_TailSplitHands  = re.compile(r"(\nn\n+)")
+    #Stage #1571362962: Holdem  No Limit $0.02 - 2009-08-05 15:24:06 (ET)
+    #Table: TORONTO AVE (Real Money) Seat #6 is the dealer
+    #Seat 6 - FETS63 ($0.75 in chips)
+    #Board [10s 5d Kh Qh 8c]
+
+    re_GameInfo = re.compile( ur"""
+              ^Stage\s+\#C?(?P<HID>[0-9]+):?\s+
+              (?:Tourney\ ID\ (?P<TRNY_ID>\d+)\s+)?
+              (?P<GAME>Holdem|Seven\ Card\ Hi\/L|HORSE)\s+
+              (?P<TRNY_TYPE>\(1\son\s1\)|Single\ Tournament|Multi\ Normal\ Tournament|)\s*
+              (?P<LIMIT>No\ Limit|Pot\ Limit|Normal|)\s?
+              (?P<CURRENCY>\$|\s€|)
+              (?P<SB>[.,0-9]+)/?(?:\$|\s€|)(?P<BB>[.,0-9]+)?
+              \s+-\s+
+              (?P<DATETIME>\d\d\d\d-\d\d-\d\d\ \d\d:\d\d:\d\d)\s+
+              (?: \( (?P<TZ>[A-Z]+) \)\s+ )?
+              .*?
+              (Table:\ (?P<TABLE>.*?)\ \(Real\ Money\))?
+        """, re.MULTILINE|re.VERBOSE|re.DOTALL)
+
+    re_HorseGameInfo = re.compile(
+            ur"^Game Type: (?P<LIMIT>Limit) (?P<GAME>Holdem)",
+            re.MULTILINE)
+
+    re_HandInfo = re_GameInfo
+
+    # on HORSE STUD games, the table name isn't in the hand info!
+    re_RingInfoFromFilename = re.compile(ur".*IHH([0-9]+) (?P<TABLE>.*) -")
+    re_TrnyInfoFromFilename = re.compile(
+            ur"IHH\s?([0-9]+) (?P<TRNY_NAME>.*) "\
+            ur"ID (?P<TRNY_ID>\d+)\s?(\((?P<TABLE>\d+)\))? .* "\
+            ur"(?:\$|\s€|)(?P<BUYIN>[0-9.]+)\s*\+\s*(?:\$|\s€|)(?P<FEE>[0-9.]+)"
+            )
+
+    # TODO: that's not the right way to match for "dead" dealer is it?
+    re_Button = re.compile(ur"Seat #(?P<BUTTON>[0-9]) is the ?[dead]* dealer$", re.MULTILINE)
+
+    re_PlayerInfo = re.compile(
+            ur"^Seat (?P<SEAT>[0-9]) - (?P<PNAME>.*) "\
+            ur"\((?:\$| €|)(?P<CASH>[0-9]*[.,0-9]+) in chips\)",
+            re.MULTILINE)
+
+    re_Board = re.compile(ur"\[(?P<CARDS>[^\]]*)\]? *$", re.MULTILINE)
+
+
     def compilePlayerRegexs(self, hand):
         players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
@@ -69,32 +95,24 @@ class Absolute(HandHistoryConverter):
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             logging.debug("player_re: "+ player_re)
             #(?P<CURRENCY>\$| €|)(?P<BB>[0-9]*[.0-9]+)
-            self.re_PostSB          = re.compile(ur"^%s - Posts small blind (?:\$| €|)(?P<SB>[0-9]*[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_PostBB          = re.compile(ur"^%s - Posts big blind (?:\$| €|)(?P<BB>[0-9]*[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostSB          = re.compile(ur"^%s - Posts small blind (?:\$| €|)(?P<SB>[,.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostBB          = re.compile(ur"^%s - Posts big blind (?:\$| €|)(?P<BB>[.,0-9]+)" % player_re, re.MULTILINE)
             # TODO: Absolute posting when coming in new: %s - Posts $0.02 .. should that be a new Post line? where do we need to add support for that? *confused*
-            self.re_PostBoth        = re.compile(ur"^%s - Posts dead (?:\$| €|)(?P<SBBB>[0-9]*[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_Action          = re.compile(ur"^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[0-9]*[.0-9]+)?" % player_re, re.MULTILINE)
-#            print "^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[0-9]*[.0-9]+)?" % player_re
+            self.re_PostBoth        = re.compile(ur"^%s - Posts dead (?:\$| €|)(?P<SBBB>[,.0-9]+)" % player_re, re.MULTILINE)
+            self.re_Action          = re.compile(ur"^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[,.0-9]+)?" % player_re, re.MULTILINE)
             self.re_ShowdownAction  = re.compile(ur"^%s - Shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
-            self.re_CollectPot      = re.compile(ur"^Seat [0-9]: %s(?: \(dealer\)|)(?: \(big blind\)| \(small blind\)|) (?:won|collected) Total \((?:\$| €|)(?P<POT>[0-9]*[.0-9]+)\)" % player_re, re.MULTILINE)
-            #self.re_PostSB          = re.compile(ur"^%s: posts small blind \[(?:\$| €|) (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
-            #self.re_PostBB          = re.compile(ur"^%s: posts big blind \[(?:\$| €|) (?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
-            #self.re_PostBoth        = re.compile(ur"^%s: posts both blinds \[(?:\$| €|) (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_Antes           = re.compile(ur"^%s - Ante \[(?:\$| €|)(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_CollectPot      = re.compile(ur"^Seat [0-9]: %s(?: \(dealer\)|)(?: \(big blind\)| \(small blind\)|) (?:won|collected) Total \((?:\$| €|)(?P<POT>[,.0-9]+)\)" % player_re, re.MULTILINE)
+            self.re_Antes           = re.compile(ur"^%s - Ante \[(?:\$| €|)(?P<ANTE>[,.0-9]+)" % player_re, re.MULTILINE)
             #self.re_BringIn         = re.compile(ur"^%s posts bring-in (?:\$| €|)(?P<BRINGIN>[.0-9]+)\." % player_re, re.MULTILINE)
             self.re_HeroCards       = re.compile(ur"^Dealt to %s \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
-            #self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.\d]+) (USD|EUR|)\])?" % player_re, re.MULTILINE)
-            #self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds| complete to)(\s\[?(?:\$| €|) ?(?P<BET>\d+\.?\d*)\.?\s?(USD|EUR|)\]?)?" % player_re, re.MULTILINE)
-            #self.re_ShowdownAction  = re.compile(ur"^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
-            #self.re_CollectPot      = re.compile(ur"^%s wins (?:\$| €|) (?P<POT>[.\d]+) (USD|EUR|chips)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
-            #self.re_SitsOut         = re.compile(ur"^%s sits out" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
                 ["ring", "studhi", "fl"],
-                ["ring", "omahahi", "pl"]
+                ["ring", "omahahi", "pl"],
+                ["tour", "hold", "nl"],
                ]
 
     def determineGameType(self, handText):
@@ -102,7 +120,9 @@ class Absolute(HandHistoryConverter):
         'type'       in ('ring', 'tour')
         'limitType'  in ('nl', 'cn', 'pl', 'cp', 'fl')
         'base'       in ('hold', 'stud', 'draw')
-        'category'   in ('holdem', 'omahahi', omahahilo', 'razz', 'studhi', 'studhilo', 'fivedraw', '27_1draw', '27_3draw', 'badugi')
+        'category'   in ('holdem', 'omahahi', omahahilo', 'razz',
+                         'studhi', 'studhilo', 'fivedraw', '27_1draw',
+                         '27_3draw', 'badugi')
         'hilo'       in ('h','l','s')
         'smallBlind' int?
         'bigBlind'   int?
@@ -112,7 +132,7 @@ class Absolute(HandHistoryConverter):
 
         or None if we fail to get the info """
         info = {'type':'ring'}
-        
+
         m = self.re_GameInfo.search(handText)
         if not m:
             tmp = handText[0:100]
@@ -120,15 +140,16 @@ class Absolute(HandHistoryConverter):
             log.error(_("determineGameType: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
-        
+
         mg = m.groupdict()
-        
+        #print "DEBUG: mg: %s" % mg
+
         # translations from captured groups to our info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Normal':'fl', 'Limit':'fl'}
         games = {              # base, category
                    "Holdem" : ('hold','holdem'),
-                    'Omaha' : ('hold','omahahi'), 
-                     'Razz' : ('stud','razz'), 
+                    'Omaha' : ('hold','omahahi'),
+                     'Razz' : ('stud','razz'),
           'Seven Card Hi/L' : ('stud','studhilo'),
               '7 Card Stud' : ('stud','studhi')
                }
@@ -148,45 +169,67 @@ class Absolute(HandHistoryConverter):
         if 'GAME' in mg:
             (info['base'], info['category']) = games[mg['GAME']]
         if 'LIMIT' in mg:
-            info['limitType'] = limits[mg['LIMIT']]            
-        if 'SB' in mg:
-            info['sb'] = mg['SB']
-        else:
-            info['sb'] = str(float(mg['BB']) * 0.5) # TODO: Apparently AP doesn't provide small blind info!? must search to see if it's posted, I guess 
-        if 'BB' in mg:
-            info['bb'] = mg['BB']
+            info['limitType'] = limits[mg['LIMIT']]
         if 'CURRENCY' in mg:
             info['currency'] = currencies[mg['CURRENCY']]
             if info['currency'] == 'T$':
                 info['type'] = 'tour'
+        if 'SB' in mg:
+            mg['SB'] = mg['SB'].replace(',', '')
+            info['sb'] = mg['SB']
+        if 'BB' in mg:
+            info['bb'] = mg['BB']
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         if info['bb'] is None:
+            mg['SB'] = mg['SB'].replace(',', '')
             info['bb'] = mg['SB']
             info['sb'] = str(float(mg['SB']) * 0.5) # TODO: AP does provide Small BET for Limit .. I think? at least 1-on-1 limit they do.. sigh
-                
-        #print info;
-        
+
         return info
 
 
     def readHandInfo(self, hand):
+        is_trny = hand.gametype['type']=='tour'
+
         m = self.re_HandInfo.search(hand.handText)
-        if(m == None):
-            logging.info(_("Didn't match re_HandInfo"))
-            logging.info(hand.handText)
-            return None
+        fname_re = self.re_TrnyInfoFromFilename if is_trny \
+                   else self.re_RingInfoFromFilename
+        fname_info = fname_re.search(self.in_path)
+
+        #print "DEBUG: fname_info.groupdict(): %s" %(fname_info.groupdict())
+
+        if m is None or fname_info is None:
+            if m is None:
+                tmp = hand.handText[0:100]
+                logging.error(_("readHandInfo: Didn't match: '%s'") % tmp)
+                raise FpdbParseError(_("Absolute: Didn't match re_HandInfo: '%s'") % tmp)
+            elif fname_info is None:
+                logging.error(_("readHandInfo: File name didn't match re_*InfoFromFilename"))
+                logging.error(_("File name: %s") % self.in_path)
+                raise FpdbParseError(_("Absolute: Didn't match re_*InfoFromFilename: '%s'") % self.in_path)
+
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid =  m.group('HID')
         if m.group('TABLE'):
             hand.tablename = m.group('TABLE')
         else:
-            t = self.re_TableFromFilename.search(self.in_path)
-            hand.tablename = t.group('TABLE')
-        hand.maxseats = 6     # assume 6-max unless we have proof it's a larger/smaller game, since absolute doesn't give seat max info
-                                # TODO: (1-on-1) does have that info in the game type line
-        if self.HORSEHand:
-            hand.maxseats = 8
+            hand.tablename = fname_info.group('TABLE')
+
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%Y-%m-%d %H:%M:%S")
+
+        if is_trny:
+            hand.fee = fname_info.group('FEE')
+            hand.buyin = fname_info.group('BUYIN')
+            hand.tourNo = m.group('TRNY_ID')
+            hand.tourneyComment = fname_info.group('TRNY_NAME')
+
+        # assume 6-max unless we have proof it's a larger/smaller game, 
+        #since absolute doesn't give seat max info
+        # TODO: (1-on-1) does have that info in the game type line
+        hand.maxseats = 6
+
+        if self.HORSEHand:
+            hand.maxseats = 8  # todo : unless it's heads up!!?
         return
 
     def readPlayerStacks(self, hand):
@@ -195,10 +238,11 @@ class Absolute(HandHistoryConverter):
             seatnum = int(a.group('SEAT'))
             hand.addPlayer(seatnum, a.group('PNAME'), a.group('CASH'))
             if seatnum > 6:
-                hand.maxseats = 10 # absolute does 2/4/6/8/10 games 
-                # TODO: implement lookup list by table-name to determine maxes, then fall back to 6 default/10 here, if there's no entry in the list?
-            
-        
+                hand.maxseats = 9 # absolute does 2/4/6/9 games
+                # TODO: implement lookup list by table-name to determine maxes, 
+                # then fall back to 6 default/10 here, if there's no entry in the list?
+
+
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
@@ -208,7 +252,7 @@ class Absolute(HandHistoryConverter):
                     r"(\*\*\* FLOP \*\*\*(?P<FLOP>.+(?=\*\*\* TURN \*\*\*)|.+))?"
                     r"(\*\*\* TURN \*\*\*(?P<TURN>.+(?=\*\*\* RIVER \*\*\*)|.+))?"
                     r"(\*\*\* RIVER \*\*\*(?P<RIVER>.+))?", hand.handText, re.DOTALL)
-            
+
         elif hand.gametype['base'] == 'stud': # TODO: Not implemented yet
             m =     re.search(r"(?P<ANTES>.+(?=\*\* Dealing down cards \*\*)|.+)"
                            r"(\*\* Dealing down cards \*\*(?P<THIRD>.+(?=\*\*\*\* dealing 4th street \*\*\*\*)|.+))?"
@@ -218,10 +262,12 @@ class Absolute(HandHistoryConverter):
                            r"(\*\*\*\* dealing river \*\*\*\*(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
         hand.addStreets(m)
 
-    def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
-        # If this has been called, street is a street which gets dealt community cards by type hand
-        # but it might be worth checking somehow.
-#        if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
+    def readCommunityCards(self, hand, street):
+        # street has been matched by markStreets, so exists in this hand
+        # If this has been called, street is a street which gets dealt
+        # community cards by type hand but it might be worth checking somehow.
+        # if street in ('FLOP','TURN','RIVER'):
+        #    a list of streets which get dealt community cards (i.e. all but PREFLOP)
         logging.debug("readCommunityCards (%s)" % street)
         m = self.re_Board.search(hand.streets[street])
         cards = m.group('CARDS')
@@ -272,7 +318,7 @@ class Absolute(HandHistoryConverter):
         else:
             #Not involved in hand
             hand.involved = False
-    
+
     def readStudPlayerCards(self, hand, street):
         # lol. see Plymouth.txt
         logging.warning(_("Absolute readStudPlayerCards is only a stub."))
@@ -286,17 +332,21 @@ class Absolute(HandHistoryConverter):
         for action in m:
             logging.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
             if action.group('ATYPE') == 'Raises ' or action.group('ATYPE') == 'All-In(Raise) ':
-                hand.addCallandRaise( street, action.group('PNAME'), action.group('BET') )
+                bet = action.group('BET').replace(',', '')
+                hand.addCallandRaise( street, action.group('PNAME'), bet)
             elif action.group('ATYPE') == 'Calls ':
-                hand.addCall( street, action.group('PNAME'), action.group('BET') )
+                bet = action.group('BET').replace(',', '')
+                hand.addCall( street, action.group('PNAME'), bet)
             elif action.group('ATYPE') == 'Bets ' or action.group('ATYPE') == 'All-In ':
-                hand.addBet( street, action.group('PNAME'), action.group('BET') )
+                bet = action.group('BET').replace(',', '')
+                hand.addBet( street, action.group('PNAME'), bet)
             elif action.group('ATYPE') == 'Folds':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'Checks':
                 hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' complete to': # TODO: not supported yet ?
-                hand.addComplete( street, action.group('PNAME'), action.group('BET'))
+                bet = action.group('BET').replace(',', '')
+                hand.addComplete( street, action.group('PNAME'), bet)
             else:
                 logging.debug(_("Unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)))
 
@@ -306,14 +356,15 @@ class Absolute(HandHistoryConverter):
         logging.debug("readShowdownActions")
         for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
-            cards = [validCard(card) for card in cards.split(' ')]            
+            cards = [validCard(card) for card in cards.split(' ')]
             logging.debug("readShowdownActions %s %s" %(cards, shows.group('PNAME')))
             hand.addShownCards(cards, shows.group('PNAME'))
 
 
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
-            hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
+            pot = m.group('POT').replace(',','')
+            hand.addCollectPot(player=m.group('PNAME'),pot=pot)
 
     def readShownCards(self,hand):
         """Reads lines where hole & board cards are mixed to form a hand (summary lines)"""
@@ -339,7 +390,12 @@ def validCard(card):
 
 if __name__ == "__main__":
     import Configuration
+    import Database
     config =  Configuration.Config(None)
+    # line below this is required
+    # because config.site_ids (site_name to site_id map) is required 
+    # and one is stored and db.
+    db = Database.Database(config)
 
     parser = OptionParser()
     parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"), default="-")
@@ -357,5 +413,5 @@ if __name__ == "__main__":
     LOG_FILENAME = './logging.out'
     logging.basicConfig(filename=LOG_FILENAME,level=options.verbosity)
 
-    e = Absolute(config, in_path = options.ipath, out_path = options.opath, follow = options.follow, autostart=True)
+    e = Absolute(config, in_path = options.ipath, out_path = options.opath, follow = options.follow, autostart=True, sitename="Absolute")
 

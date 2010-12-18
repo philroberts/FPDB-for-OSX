@@ -290,6 +290,18 @@ Left-Drag to Move"
 	        	<location seat="9" x="7" y="88">  </location>
 	        	<location seat="10" x="196" y="69">  </location>
 	        </layout>
+	        <layout fav_seat="0" height="546" max="8" width="792">
+			<location seat="0" x="182" y="69"> </location>
+	        	<location seat="1" x="456" y="74">  </location>
+	        	<location seat="2" x="630" y="81"> </location>
+	        	<location seat="3" x="618" y="352"> </location>
+	        	<location seat="4" x="426" y="380"> </location>
+	        	<location seat="5" x="243" y="382"> </location>
+	        	<location seat="6" x="34" y="351"> </location>
+	        	<location seat="7" x="22" y="82"> </location>
+	        	<location seat="8" x="213" y="74">  </location>
+                </layout>
+
 	        <layout fav_seat="0" height="546" max="2" width="792">
 	        	<location seat="1" x="651" y="288"> </location>
 	        	<location seat="2" x="10" y="288"> </location>
@@ -765,8 +777,8 @@ Left-Drag to Move"
     </aux_windows>
 
     <hhcs>
-        <hhc site="PokerStars" converter="PokerStarsToFpdb"/>
-        <hhc site="Full Tilt Poker" converter="FulltiltToFpdb"/>
+        <hhc site="PokerStars" converter="PokerStarsToFpdb" summaryImporter="PokerStarsSummary"/>
+        <hhc site="Full Tilt Poker" converter="FulltiltToFpdb" summaryImporter="FullTiltPokerSummary"/>
         <hhc site="Everleaf" converter="EverleafToFpdb"/>
         <hhc site="Win2day" converter="Win2dayToFpdb"/>
         <hhc site="Absolute" converter="AbsoluteToFpdb"/>

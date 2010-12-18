@@ -142,17 +142,20 @@ def main(argv=None):
     BetfairErrors     = FpdbError('Betfair')
     OnGameErrors      = FpdbError('OnGame')
     AbsoluteErrors    = FpdbError('Absolute Poker')
+    UltimateBetErrors = FpdbError('Ultimate Bet')
     EverleafErrors    = FpdbError('Everleaf Poker')
     CarbonErrors      = FpdbError('Carbon')
     PKRErrors         = FpdbError('PKR')
     iPokerErrors      = FpdbError('iPoker')
+    Win2dayErrors     = FpdbError('Win2day')
     WinamaxErrors     = FpdbError('Winamax')
 
     ErrorsList = [
                     PokerStarsErrors, FTPErrors, PartyPokerErrors,
                     BetfairErrors, OnGameErrors, AbsoluteErrors,
                     EverleafErrors, CarbonErrors, PKRErrors,
-                    iPokerErrors, WinamaxErrors
+                    iPokerErrors, WinamaxErrors, UltimateBetErrors,
+                    Win2dayErrors,
                 ]
 
     sites = {
@@ -162,10 +165,12 @@ def main(argv=None):
                 'Betfair' : True,
                 'OnGame' : True,
                 'Absolute' : True,
+                'UltimateBet' : True,
                 'Everleaf' : True,
                 'Carbon' : True,
                 'PKR' : False,
                 'iPoker' : True,
+                'Win2day' : True,
                 'Winamax' : True,
             }
 
@@ -184,6 +189,8 @@ def main(argv=None):
         walk_testfiles("regression-test-files/cash/OnGame/", compare, importer, OnGameErrors, "OnGame")
     if sites['Absolute'] == True:
         walk_testfiles("regression-test-files/cash/Absolute/", compare, importer, AbsoluteErrors, "Absolute")
+    if sites['UltimateBet'] == True:
+        walk_testfiles("regression-test-files/cash/UltimateBet/", compare, importer, UltimateBetErrors, "Absolute")
     if sites['Everleaf'] == True:
         walk_testfiles("regression-test-files/cash/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
     if sites['Carbon'] == True:
@@ -194,6 +201,8 @@ def main(argv=None):
         walk_testfiles("regression-test-files/cash/iPoker/", compare, importer, iPokerErrors, "iPoker")
     if sites['Winamax'] == True:
         walk_testfiles("regression-test-files/cash/Winamax/", compare, importer, WinamaxErrors, "Winamax")
+    if sites['Win2day'] == True:
+        walk_testfiles("regression-test-files/cash/Win2day/", compare, importer, Win2dayErrors, "Win2day")
 
     totalerrors = 0
 

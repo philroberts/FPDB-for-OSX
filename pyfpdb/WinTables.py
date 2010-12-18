@@ -59,7 +59,7 @@ class Table(Table_Window):
         for hwnd in titles:
             if titles[hwnd] == "":
                 continue
-            if re.search(self.search_string, titles[hwnd]):
+            if re.search(self.search_string, titles[hwnd], re.I):
                 if self.check_bad_words(titles[hwnd]):
                     continue
                 self.window = hwnd
@@ -67,7 +67,7 @@ class Table(Table_Window):
 
         try:
             if self.window == None:
-                log.error("Window %s not found. Skipping." % self.search_string)
+                log.error(_("Window %s not found. Skipping." % self.search_string))
                 return None
         except AttributeError:
             log.error(_("self.window doesn't exist? why?"))
