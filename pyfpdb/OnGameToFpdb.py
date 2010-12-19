@@ -92,7 +92,7 @@ class OnGame(HandHistoryConverter):
             (%(LS)s)?(?P<SB>[.0-9]+)/
             (%(LS)s)?(?P<BB>[.0-9]+)
             )?
-            """ % substitutions, re.MULTILINE|re.DOTALL|re.VERBOSE)
+            """ % substitutions, re.MULTILINE|re.DOTALL|re.VERBOSE) #TODO: detect play money (identified by "Play money" rather than "Real money" and set currency accordingly
 
     re_TailSplitHands = re.compile(u'(\*\*\*\*\*\sEnd\sof\shand\s[-A-Z\d]+.*\n)(?=\*)')
     re_Button       = re.compile('Button: seat (?P<BUTTON>\d+)', re.MULTILINE)  # Button: seat 2
@@ -136,7 +136,7 @@ class OnGame(HandHistoryConverter):
 
             #lopllopl checks, Eurolll checks, .Lucchess checks.
             #chumley. calls $0.25
-            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( (%(CUR)s)?(?P<BET>[\d\.]+))?( and is all-in)?' % subst)
+            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( (%(CUR)s)?(?P<BET>[\d\.]+))( and is all-in)?' % subst)
             #self.re_Board = re.compile(r"\[board cards (?P<CARDS>.+) \]")
 
             #Uchilka shows [ KC,JD ]
@@ -326,7 +326,7 @@ class OnGame(HandHistoryConverter):
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            acts = action.groupdict()
+            #acts = action.groupdict()
             #log.debug("readaction: acts: %s" %acts)
             if action.group('ATYPE') == ' raises':
                 hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
