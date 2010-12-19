@@ -136,7 +136,7 @@ class OnGame(HandHistoryConverter):
 
             #lopllopl checks, Eurolll checks, .Lucchess checks.
             #chumley. calls $0.25
-            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( (%(CUR)s)?(?P<BET>[\d\.]+))( and is all-in)?' % subst)
+            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( (%(CUR)s)?(?P<BET>[\d\.]+))?( and is all-in)?' % subst)
             #self.re_Board = re.compile(r"\[board cards (?P<CARDS>.+) \]")
 
             #Uchilka shows [ KC,JD ]
