@@ -1,137 +1,137 @@
 ﻿PokerStars Game #14732633821:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:39:16 WET [2010/05/23 17:39:16 ET]
 Table '99999999 II' 2-max Seat #1 is the button
-Seat 1: Player0 ($20 in chips) 
+Seat 1: Hero ($20 in chips) 
 Seat 2: Player1 ($50.50 in chips) 
-Player0: posts small blind $0.25
+Hero: posts small blind $0.25
 Player1: posts big blind $0.50
 *** HOLE CARDS ***
-Dealt to Player0 [2h Th]
-Player0: calls $0.25
+Dealt to Hero [2h Th]
+Hero: calls $0.25
 Player1: checks 
 *** FLOP *** [4c 8c Ac]
 Player1: checks 
-Player0: checks 
+Hero: checks 
 *** TURN *** [4c 8c Ac] [7s]
 Player1: checks 
-Player0: bets $1
+Hero: bets $1
 Player1: folds 
-Uncalled bet ($1) returned to Player0
-Player0 collected $0.95 from pot
-Player0: doesn't show hand 
+Uncalled bet ($1) returned to Hero
+Hero collected $0.95 from pot
+Hero: doesn't show hand 
 *** SUMMARY ***
 Total pot $1 | Rake $0.05 
 Board [4c 8c Ac 7s]
-Seat 1: Player0 (button) (small blind) collected ($0.95)
+Seat 1: Hero (button) (small blind) collected ($0.95)
 Seat 2: Player1 (big blind) folded on the Turn
 
 
 
 PokerStars Game #28140199921:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:39:59 WET [2010/05/23 17:39:59 ET]
 Table '99999999 II' 2-max Seat #2 is the button
-Seat 1: Player0 ($20.45 in chips) 
+Seat 1: Hero ($20.45 in chips) 
 Seat 2: Player1 ($50 in chips) 
 Player1: posts small blind $0.25
-Player0: posts big blind $0.50
+Hero: posts big blind $0.50
 *** HOLE CARDS ***
-Dealt to Player0 [7h Kh]
+Dealt to Hero [7h Kh]
 Player1: raises $1 to $1.50
-Player0: folds 
+Hero: folds 
 Uncalled bet ($1) returned to Player1
 Player1 collected $1 from pot
 Player1: doesn't show hand 
 *** SUMMARY ***
 Total pot $1 | Rake $0 
-Seat 1: Player0 (big blind) folded before Flop
+Seat 1: Hero (big blind) folded before Flop
 Seat 2: Player1 (button) (small blind) collected ($1)
 
 
 
 PokerStars Game #29402240709:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:40:22 WET [2010/05/23 17:40:22 ET]
 Table '99999999 II' 2-max Seat #1 is the button
-Seat 1: Player0 ($19.95 in chips) 
+Seat 1: Hero ($19.95 in chips) 
 Seat 2: Player1 ($50.50 in chips) 
-Player0: posts small blind $0.25
+Hero: posts small blind $0.25
 Player1: posts big blind $0.50
 *** HOLE CARDS ***
-Dealt to Player0 [5c 8c]
-Player0: folds 
+Dealt to Hero [5c 8c]
+Hero: folds 
 Uncalled bet ($0.25) returned to Player1
 Player1 collected $0.50 from pot
 Player1: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.50 | Rake $0 
-Seat 1: Player0 (button) (small blind) folded before Flop
+Seat 1: Hero (button) (small blind) folded before Flop
 Seat 2: Player1 (big blind) collected ($0.50)
 
 
 
 PokerStars Game #31842149327:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:40:29 WET [2010/05/23 17:40:29 ET]
 Table '99999999 II' 2-max Seat #2 is the button
-Seat 1: Player0 ($19.70 in chips) 
+Seat 1: Hero ($19.70 in chips) 
 Seat 2: Player1 ($50.75 in chips) 
 Player1: posts small blind $0.25
-Player0: posts big blind $0.50
+Hero: posts big blind $0.50
 *** HOLE CARDS ***
-Dealt to Player0 [Ks 9c]
+Dealt to Hero [Ks 9c]
 Player1: raises $1 to $1.50
-Player0: calls $1
+Hero: calls $1
 *** FLOP *** [3d As 4s]
-Player0: checks 
+Hero: checks 
 Player1: bets $2
-Player0: calls $2
+Hero: calls $2
 *** TURN *** [3d As 4s] [Jd]
-Player0: checks 
+Hero: checks 
 Player1: checks 
 *** RIVER *** [3d As 4s Jd] [3h]
-Player0: checks 
+Hero: checks 
 Player1: checks 
 *** SHOW DOWN ***
-Player0: shows [Ks 9c] (a pair of Threes)
+Hero: shows [Ks 9c] (a pair of Threes)
 Player1: mucks hand 
-Player0 collected $6.70 from pot
+Hero collected $6.70 from pot
 *** SUMMARY ***
 Total pot $7 | Rake $0.30 
 Board [3d As 4s Jd 3h]
-Seat 1: Player0 (big blind) showed [Ks 9c] and won ($6.70) with a pair of Threes
+Seat 1: Hero (big blind) showed [Ks 9c] and won ($6.70) with a pair of Threes
 Seat 2: Player1 (button) (small blind) mucked [6c 5s]
 
 
 
 PokerStars Game #10697227103:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:41:10 WET [2010/05/23 17:41:10 ET]
 Table '99999999 II' 2-max Seat #1 is the button
-Seat 1: Player0 ($22.90 in chips) 
+Seat 1: Hero ($22.90 in chips) 
 Seat 2: Player1 ($50 in chips) 
-Player0: posts small blind $0.25
+Hero: posts small blind $0.25
 Player1: posts big blind $0.50
 *** HOLE CARDS ***
-Dealt to Player0 [Ts 3d]
-Player0: folds 
+Dealt to Hero [Ts 3d]
+Hero: folds 
 Uncalled bet ($0.25) returned to Player1
 Player1 collected $0.50 from pot
 Player1: doesn't show hand 
 *** SUMMARY ***
 Total pot $0.50 | Rake $0 
-Seat 1: Player0 (button) (small blind) folded before Flop
+Seat 1: Hero (button) (small blind) folded before Flop
 Seat 2: Player1 (big blind) collected ($0.50)
 
 
 
 PokerStars Game #27159326072:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:41:17 WET [2010/05/23 17:41:17 ET]
 Table '99999999 II' 2-max Seat #2 is the button
-Seat 1: Player0 ($22.65 in chips) 
+Seat 1: Hero ($22.65 in chips) 
 Seat 2: Player1 ($50.25 in chips) 
 Player1: posts small blind $0.25
-Player0: posts big blind $0.50
+Hero: posts big blind $0.50
 *** HOLE CARDS ***
-Dealt to Player0 [4h Ks]
+Dealt to Hero [4h Ks]
 Player1: raises $1 to $1.50
-Player0: folds 
+Hero: folds 
 Uncalled bet ($1) returned to Player1
 Player1 collected $1 from pot
 Player1: doesn't show hand 
 *** SUMMARY ***
 Total pot $1 | Rake $0 
-Seat 1: Player0 (big blind) folded before Flop
+Seat 1: Hero (big blind) folded before Flop
 Seat 2: Player1 (button) (small blind) collected ($1)
 
 

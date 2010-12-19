@@ -6,7 +6,7 @@ $0.50/$1 USD 7 Card Stud Hi-Lo - Monday, August 30, 20:20:17 EEST 2010
 Table Table  136403 (Real Money)
 Seat 0 is the button
 Total number of players : 7/8 
-Seat 3: XMAN1 ( $24.95 USD )
+Seat 3: Hero ( $24.95 USD )
 Seat 5: ISqzUSqueal ( $31.02 USD )
 Seat 7: PPPPPositive ( $4.20 USD )
 Seat 8: Unladylike ( $19 USD )
@@ -15,20 +15,20 @@ Seat 2: strandalleen ( $17.55 USD )
 Seat 1: tubby09 ( $24.20 USD )
 tubby09 posts ante [$0.05 USD]
 strandalleen posts ante [$0.05 USD]
-XMAN1 posts ante [$0.05 USD]
+Hero posts ante [$0.05 USD]
 ISqzUSqueal posts ante [$0.05 USD]
 YMAN1 posts ante [$0.05 USD]
 PPPPPositive posts ante [$0.05 USD]
 Unladylike posts ante [$0.05 USD]
 ** Dealing **
-Dealt to XMAN1 [  Td 5s 3c ]
+Dealt to Hero [  Td 5s 3c ]
 YMAN1 opens
 YMAN1 bring-ins [$0.25 USD]
 PPPPPositive completes [$0.50 USD]
 Unladylike folds
 tubby09 folds
 strandalleen calls [$0.50 USD]
-XMAN1 folds
+Hero folds
 ISqzUSqueal folds
 YMAN1 calls [$0.25 USD]
 ** Dealing Fourth street **

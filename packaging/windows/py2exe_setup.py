@@ -68,7 +68,6 @@ import matplotlib
 import shutil
 #from datetime import date
 
-
 def isSystemDLL(pathname):
         #dwmapi appears to be vista-specific file, not XP 
         if os.path.basename(pathname).lower() in ("dwmapi.dll"):
@@ -112,13 +111,14 @@ def copy_file(source,destination):
     shutil.copy( source, destination )
 
 
-fpdbver = '0.20.906'
+fpdbver = '0.21.rc1'
 
 distdir = r'fpdb-' + fpdbver
 rootdir = r'../../' #cwd is normally /packaging/windows
 pydir = rootdir+'pyfpdb/'
 gfxdir = rootdir+'gfx/'
 sys.path.append( pydir )  # allows fpdb modules to be found by options/includes below
+
 
 print "\n" + r"Output will be created in "+distdir
 
@@ -142,15 +142,19 @@ setup(
                   {'script': pydir+'Configuration.py', }
               ],
 
+    console = [   {'script': pydir+'Stove.py', }
+              ],
+
     options = {'py2exe': {
                       'packages'    : ['encodings', 'matplotlib'],
                       'includes'    : ['gio', 'cairo', 'pango', 'pangocairo', 'atk', 'gobject'    
                                       ,'matplotlib.numerix.random_array'
                                       ,'AbsoluteToFpdb',      'BetfairToFpdb'
                                       ,'CarbonToFpdb',        'EverleafToFpdb'
-                                      ,'FulltiltToFpdb',      'OnGameToFpdb'
-                                      ,'PartyPokerToFpdb',    'PokerStarsToFpdb'
-                                      ,'UltimateBetToFpdb',   'Win2dayToFpdb'
+                                      ,'FulltiltToFpdb',      'iPokerToFpdb'
+                                      ,'OnGameToFpdb',        'PartyPokerToFpdb'
+                                      ,'PkrToFpdb',           'PokerStarsToFpdb'
+                                      ,'Win2dayToFpdb',       'WinamaxToFpdb'
                                       ],
                       'excludes'    : ['_tkagg', '_agg2', 'cocoaagg', 'fltkagg'],
                       'dll_excludes': ['libglade-2.0-0.dll', 'libgdk-win32-2.0-0.dll', 'libgobject-2.0-0.dll'

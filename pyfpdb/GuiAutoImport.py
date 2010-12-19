@@ -204,15 +204,18 @@ class GuiAutoImport (threading.Thread):
 #    That is not correct.  It should open another dir for importing while piping the
 #    results to the same pipe.  This means that self.path should be a a list of dirs
 #    to watch.
-        if widget.get_active(): # toggled on
+        if data == "autostart" or (widget == self.startButton and self.startButton.get_active()):
+            self.startButton.set_active(True)
             # - Does the lock acquisition need to be more sophisticated for multiple dirs?
             # (see comment above about what to do if pipe already open)
             # - Ideally we want to release the lock if the auto-import is killed by some
             # kind of exception - is this possible?
-            if self.settings['global_lock'].acquire(False):   # returns false immediately if lock not acquired
+            if self.settings['global_lock'].acquire(wait=False, source="AutoImport"):   # returns false immediately if lock not acquired
                 self.addText(_("\nGlobal lock taken ... Auto Import Started.\n"))
                 self.doAutoImportBool = True
-                widget.set_label(_(u'  _Stop Auto Import  '))
+                self.startButton.set_label(_(u'  _Stop Auto Import  '))
+                while gtk.events_pending(): # change the label NOW don't wait for the pipe to open
+                    gtk.main_iteration(False)
                 if self.pipe_to_hud is None:
                     if Configuration.FROZEN:    # if py2exe, run hud_main.exe
                         path = Configuration.EXEC_PATH
@@ -224,15 +227,14 @@ class GuiAutoImport (threading.Thread):
                             command = 'pythonw "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
                         else:
                             command = 'python "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
-                        # uncomment above line if you want hud_main stdout to work ... and make sure you are running fpdb.py using python.exe not pythonw.exe
                         bs = 0
                     else:
                         command = os.path.join(sys.path[0], 'HUD_main.pyw')
                         command = [command, ] + string.split(self.settings['cl_options'])
                         bs = 1
 
-                    try:
                         print _("opening pipe to HUD")
+                    try:
                         if Configuration.FROZEN or (os.name == "nt" and win32console.GetConsoleWindow()) == 0:
                             self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
                                                                 stdin=subprocess.PIPE,
@@ -242,8 +244,6 @@ class GuiAutoImport (threading.Thread):
                                                                )
                         else:
                             self.pipe_to_hud = subprocess.Popen(command, bufsize=bs, stdin=subprocess.PIPE, universal_newlines=True)
-                        #self.pipe_to_hud.stdout.close()
-                        #self.pipe_to_hud.stderr.close()
                     except:
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
                         #self.addText( "\n*** GuiAutoImport Error opening pipe: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1]))
@@ -268,8 +268,9 @@ class GuiAutoImport (threading.Thread):
             if self.pipe_to_hud.poll() is not None:
                 self.addText(_("\n * Stop Auto Import: HUD already terminated"))
             else:
+                self.pipe_to_hud.terminate()
                 #print >>self.pipe_to_hud.stdin, "\n"
-                self.pipe_to_hud.communicate('\n') # waits for process to terminate
+                # self.pipe_to_hud.communicate('\n') # waits for process to terminate
             self.pipe_to_hud = None
             self.startButton.set_label(_(u'  Start _Auto Import  '))
 

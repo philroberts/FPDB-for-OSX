@@ -1,28 +1,28 @@
 Full Tilt Poker Game #11111111813: Table Fpdb - $2/$4 Ante $0.40 - Limit Stud Hi - 13:14:27 ET - 2010/06/10
 Seat 1: Player4 ($7.40)
-Seat 2: Player13 ($77.20)
-Seat 3: Player1 ($111.80)
+Seat 2: Hero3 ($77.20)
+Seat 3: Hero ($111.80)
 Seat 5: Player5 ($118.70)
 Seat 7: Player6 ($36.30)
-Player1 antes $0.40
+Hero antes $0.40
 Player4 antes $0.40
-Player13 antes $0.40
+Hero3 antes $0.40
 Player5 antes $0.40
 Player6 antes $0.40
 *** 3RD STREET ***
 Dealt to Player4 [9c]
-Dealt to Player13 [8s]
-Dealt to Player1 [Ac 9h] [3s]
+Dealt to Hero3 [8s]
+Dealt to Hero [Ac 9h] [3s]
 Dealt to Player5 [3c]
 Dealt to Player6 [Qs]
 Player5 is low with [3c]
 Player5 brings in for $0.50
 Player6 folds
 Player4 completes it to $2
-Player14 sits down
-Player13 folds
-Player1 folds
-Player14 adds $152
+Hero4 sits down
+Hero3 folds
+Hero folds
+Hero4 adds $152
 Player5 calls $1.50
 *** 4TH STREET ***
 Dealt to Player4 [9c] [9d]
@@ -35,8 +35,8 @@ Player4 wins the pot ($6)
 *** SUMMARY ***
 Total pot $6 | Rake $0
 Seat 1: Player4 collected ($6), mucked
-Seat 2: Player13 folded on 3rd St.
-Seat 3: Player1 folded on 3rd St.
+Seat 2: Hero3 folded on 3rd St.
+Seat 3: Hero folded on 3rd St.
 Seat 5: Player5 folded on 4th St.
 Seat 7: Player6 folded on 3rd St.
 
@@ -44,562 +44,562 @@ Seat 7: Player6 folded on 3rd St.
 
 Full Tilt Poker Game #11111111538: Table Fpdb - $2/$4 Ante $0.40 - Limit Stud Hi - 13:15:56 ET - 2010/06/10
 Seat 1: Player4 ($12.60)
-Seat 2: Player13 ($89.90)
-Seat 3: Player1 ($110.60)
+Seat 2: Hero3 ($89.90)
+Seat 3: Hero ($110.60)
 Seat 5: Player5 ($115.50)
-Seat 6: Player14 ($138.70)
+Seat 6: Hero4 ($138.70)
 Seat 7: Player6 ($35.10)
-Player1 antes $0.40
+Hero antes $0.40
 Player4 antes $0.40
-Player13 antes $0.40
+Hero3 antes $0.40
 Player5 antes $0.40
-Player14 antes $0.40
+Hero4 antes $0.40
 Player6 antes $0.40
 *** 3RD STREET ***
 Dealt to Player4 [Qc]
-Dealt to Player13 [5s]
-Dealt to Player1 [6c 5d] [3d]
+Dealt to Hero3 [5s]
+Dealt to Hero [6c 5d] [3d]
 Dealt to Player5 [9d]
-Dealt to Player14 [8h]
+Dealt to Hero4 [8h]
 Dealt to Player6 [Ts]
-Player1 is low with [3d]
-Player1 brings in for $0.50
+Hero is low with [3d]
+Hero brings in for $0.50
 Player5 folds
-Player14 folds
+Hero4 folds
 Player6 completes it to $2
 Player4 folds
-Player13 folds
-Player1 calls $1.50
+Hero3 folds
+Hero calls $1.50
 *** 4TH STREET ***
-Dealt to Player1 [6c 5d 3d] [7c]
+Dealt to Hero [6c 5d 3d] [7c]
 Dealt to Player6 [Ts] [6d]
 Player6 bets $2
-Player1 calls $2
+Hero calls $2
 *** 5TH STREET ***
-Dealt to Player1 [6c 5d 3d 7c] [Qd]
+Dealt to Hero [6c 5d 3d 7c] [Qd]
 Dealt to Player6 [Ts 6d] [9s]
-Player1 checks
+Hero checks
 Player6 bets $4
-Player1 folds
+Hero folds
 Uncalled bet of $4 returned to Player6
 Player6 mucks
 Player6 wins the pot ($10.40)
 *** SUMMARY ***
 Total pot $10.40 | Rake $0
 Seat 1: Player4 folded on 3rd St.
-Seat 2: Player13 folded on 3rd St.
-Seat 3: Player1 folded on 5th St.
+Seat 2: Hero3 folded on 3rd St.
+Seat 3: Hero folded on 5th St.
 Seat 5: Player5 folded on 3rd St.
-Seat 6: Player14 folded on 3rd St.
+Seat 6: Hero4 folded on 3rd St.
 Seat 7: Player6 collected ($10.40), mucked
 
 
 Full Tilt Poker Game #11111111649: Table Fpdb - $2/$4 Ante $0.40 - Limit Stud Hi - 13:17:24 ET - 2010/06/10
 Seat 1: Player4 ($16.30)
-Seat 2: Player13 ($88.70)
-Seat 3: Player1 ($107.30)
+Seat 2: Hero3 ($88.70)
+Seat 3: Hero ($107.30)
 Seat 5: Player5 ($114.30)
-Seat 6: Player14 ($135.50)
+Seat 6: Hero4 ($135.50)
 Seat 7: Player6 ($40.30)
-Player1 antes $0.40
+Hero antes $0.40
 Player4 antes $0.40
-Player13 antes $0.40
+Hero3 antes $0.40
 Player5 antes $0.40
-Player14 antes $0.40
+Hero4 antes $0.40
 Player6 antes $0.40
 *** 3RD STREET ***
 Dealt to Player4 [9s]
-Dealt to Player13 [9h]
-Dealt to Player1 [8h Kd] [6s]
+Dealt to Hero3 [9h]
+Dealt to Hero [8h Kd] [6s]
 Dealt to Player5 [4c]
-Dealt to Player14 [8d]
+Dealt to Hero4 [8d]
 Dealt to Player6 [6c]
 Player5 is low with [4c]
-Player10 sits down
-Player10 adds $40
+Hero0 sits down
+Hero0 adds $40
 Player5 brings in for $0.50
-Player14 folds
+Hero4 folds
 Player6 folds
 Player4 folds
-Player13 completes it to $2
-Player1 folds
+Hero3 completes it to $2
+Hero folds
 Player5 folds
-Uncalled bet of $1.50 returned to Player13
-Player13 mucks
-Player13 wins the pot ($3.40)
+Uncalled bet of $1.50 returned to Hero3
+Hero3 mucks
+Hero3 wins the pot ($3.40)
 *** SUMMARY ***
 Total pot $3.40 | Rake $0
 Seat 1: Player4 folded on 3rd St.
-Seat 2: Player13 collected ($3.40), mucked
-Seat 3: Player1 folded on 3rd St.
+Seat 2: Hero3 collected ($3.40), mucked
+Seat 3: Hero folded on 3rd St.
 Seat 5: Player5 folded on 3rd St.
-Seat 6: Player14 folded on 3rd St.
+Seat 6: Hero4 folded on 3rd St.
 Seat 7: Player6 folded on 3rd St.
 
 
 
 Full Tilt Poker Game #11111112277: Table Fpdb - $2/$4 Ante $0.40 - Limit Stud Hi - 13:17:41 ET - 2010/06/10
 Seat 1: Player4 ($15.90)
-Seat 2: Player13 ($91.20)
-Seat 3: Player1 ($106.90)
+Seat 2: Hero3 ($91.20)
+Seat 3: Hero ($106.90)
 Seat 5: Player5 ($113.40)
-Seat 6: Player14 ($135.10)
+Seat 6: Hero4 ($135.10)
 Seat 7: Player6 ($39.90)
-Seat 8: Player10 ($40)
-Player1 antes $0.40
+Seat 8: Hero0 ($40)
+Hero antes $0.40
 Player4 antes $0.40
-Player13 antes $0.40
+Hero3 antes $0.40
 Player5 antes $0.40
-Player14 antes $0.40
+Hero4 antes $0.40
 Player6 antes $0.40
-Player10 antes $0.40
+Hero0 antes $0.40
 *** 3RD STREET ***
 Dealt to Player4 [Qs]
-Dealt to Player13 [8s]
-Dealt to Player1 [3h 9c] [Ah]
+Dealt to Hero3 [8s]
+Dealt to Hero [3h 9c] [Ah]
 Dealt to Player5 [Qc]
-Dealt to Player14 [Kc]
+Dealt to Hero4 [Kc]
 Dealt to Player6 [Jh]
-Dealt to Player10 [6d]
-Player10 is low with [6d]
-Player10 brings in for $0.50
+Dealt to Hero0 [6d]
+Hero0 is low with [6d]
+Hero0 brings in for $0.50
 Player4 folds
-Player13 folds
-Player1 folds
+Hero3 folds
+Hero folds
 Player5 completes it to $2
-Player14 raises to $4
+Hero4 raises to $4
 Player6 folds
-Player10 calls $3.50
+Hero0 calls $3.50
 Player5 calls $2
 *** 4TH STREET ***
 Dealt to Player5 [Qc] [3c]
-Dealt to Player14 [Kc] [Kh]
-Dealt to Player10 [6d] [Td]
-Player14 has 15 seconds left to act
-Player14 bets $4
-Player10 folds
+Dealt to Hero4 [Kc] [Kh]
+Dealt to Hero0 [6d] [Td]
+Hero4 has 15 seconds left to act
+Hero4 bets $4
+Hero0 folds
 Player5 folds
-Uncalled bet of $4 returned to Player14
-Player14 mucks
-Player14 wins the pot ($14.80)
+Uncalled bet of $4 returned to Hero4
+Hero4 mucks
+Hero4 wins the pot ($14.80)
 *** SUMMARY ***
 Total pot $14.80 | Rake $0
 Seat 1: Player4 folded on 3rd St.
-Seat 2: Player13 folded on 3rd St.
-Seat 3: Player1 folded on 3rd St.
+Seat 2: Hero3 folded on 3rd St.
+Seat 3: Hero folded on 3rd St.
 Seat 5: Player5 folded on 4th St.
-Seat 6: Player14 collected ($14.80), mucked
+Seat 6: Hero4 collected ($14.80), mucked
 Seat 7: Player6 folded on 3rd St.
-Seat 8: Player10 folded on 4th St.
+Seat 8: Hero0 folded on 4th St.
 
 
 
 Full Tilt Poker Game #11111110428: Table Fpdb - $2/$4 Ante $0.40 - Limit Stud Hi - 13:18:23 ET - 2010/06/10
 Seat 1: Player4 ($15.50)
-Seat 2: Player13 ($90.80)
-Seat 3: Player1 ($106.50)
+Seat 2: Hero3 ($90.80)
+Seat 3: Hero ($106.50)
 Seat 5: Player5 ($109)
-Seat 6: Player14 ($145.50)
+Seat 6: Hero4 ($145.50)
 Seat 7: Player6 ($39.50)
-Seat 8: Player10 ($35.60)
-Player10 antes $0.40
-Player13 antes $0.40
-Player1 antes $0.40
+Seat 8: Hero0 ($35.60)
+Hero0 antes $0.40
+Hero3 antes $0.40
+Hero antes $0.40
 Player4 antes $0.40
 Player5 antes $0.40
-Player14 antes $0.40
+Hero4 antes $0.40
 Player6 antes $0.40
 *** 3RD STREET ***
 Dealt to Player4 [Th]
-Dealt to Player13 [Kc]
-Dealt to Player1 [Kh 9c] [5h]
+Dealt to Hero3 [Kc]
+Dealt to Hero [Kh 9c] [5h]
 Dealt to Player5 [6h]
-Dealt to Player14 [Js]
+Dealt to Hero4 [Js]
 Dealt to Player6 [Ac]
-Dealt to Player10 [Ah]
-Player1 is low with [5h]
-Player1 brings in for $0.50
+Dealt to Hero0 [Ah]
+Hero is low with [5h]
+Hero brings in for $0.50
 Player5 folds
-Player14 folds
+Hero4 folds
 Player6 folds
-Player10 completes it to $2
+Hero0 completes it to $2
 Player4 calls $2
-Player13 folds
-Player1 folds
+Hero3 folds
+Hero folds
 *** 4TH STREET ***
 Dealt to Player4 [Th] [4h]
-Dealt to Player10 [Ah] [3c]
-Player10 bets $2
+Dealt to Hero0 [Ah] [3c]
+Hero0 bets $2
 Player4 calls $2
 *** 5TH STREET ***
 Dealt to Player4 [Th 4h] [9h]
-Dealt to Player10 [Ah 3c] [8h]
-Player10 has 15 seconds left to act
-Player10 bets $4
+Dealt to Hero0 [Ah 3c] [8h]
+Hero0 has 15 seconds left to act
+Hero0 bets $4
 Player4 raises to $8
-Player10 folds
+Hero0 folds
 Uncalled bet of $4 returned to Player4
 Player4 mucks
 Player4 wins the pot ($19.30)
 *** SUMMARY ***
 Total pot $19.30 | Rake $0
 Seat 1: Player4 collected ($19.30), mucked
-Seat 2: Player13 folded on 3rd St.
-Seat 3: Player1 folded on 3rd St.
+Seat 2: Hero3 folded on 3rd St.
+Seat 3: Hero folded on 3rd St.
 Seat 5: Player5 folded on 3rd St.
-Seat 6: Player14 folded on 3rd St.
+Seat 6: Hero4 folded on 3rd St.
 Seat 7: Player6 folded on 3rd St.
-Seat 8: Player10 folded on 5th St.
+Seat 8: Hero0 folded on 5th St.
 
 
 
 Full Tilt Poker Game #11111112961: Table Fpdb - $2/$4 Ante $0.40 - Limit Stud Hi - 13:19:27 ET - 2010/06/10
 Seat 1: Player4 ($26)
-Seat 2: Player13 ($90)
-Seat 3: Player1 ($105.20)
+Seat 2: Hero3 ($90)
+Seat 3: Hero ($105.20)
 Seat 5: Player5 ($108.20)
-Seat 6: Player14 ($144.70)
+Seat 6: Hero4 ($144.70)
 Seat 7: Player6 ($41.50)
-Seat 8: Player10 ($26.80)
+Seat 8: Hero0 ($26.80)
 Player4 antes $0.40
-Player13 antes $0.40
-Player1 antes $0.40
+Hero3 antes $0.40
+Hero antes $0.40
 Player5 antes $0.40
-Player10 antes $0.40
-Player14 antes $0.40
+Hero0 antes $0.40
+Hero4 antes $0.40
 Player6 antes $0.40
 *** 3RD STREET ***
 Dealt to Player4 [9d]
-Dealt to Player13 [Qs]
-Dealt to Player1 [9h 9s] [5c]
+Dealt to Hero3 [Qs]
+Dealt to Hero [9h 9s] [5c]
 Dealt to Player5 [Th]
-Dealt to Player14 [6c]
+Dealt to Hero4 [6c]
 Dealt to Player6 [2d]
-Dealt to Player10 [Qh]
+Dealt to Hero0 [Qh]
 Player6 is low with [2d]
 Player6 brings in for $0.50
-Player10 folds
+Hero0 folds
 Player4 folds
-Player13 folds
-Player1 completes it to $2
+Hero3 folds
+Hero completes it to $2
 Player5 folds
-Player14 folds
+Hero4 folds
 Player6 calls $1.50
 *** 4TH STREET ***
-Dealt to Player1 [9h 9s 5c] [3s]
+Dealt to Hero [9h 9s 5c] [3s]
 Dealt to Player6 [2d] [Ah]
 Player6 checks
-Player1 bets $2
+Hero bets $2
 Player6 calls $2
 *** 5TH STREET ***
-Dealt to Player1 [9h 9s 5c 3s] [Kh]
+Dealt to Hero [9h 9s 5c 3s] [Kh]
 Dealt to Player6 [2d Ah] [Kc]
 Player6 checks
-Player1 bets $4
+Hero bets $4
 Player6 raises to $8
-Player1 calls $4
+Hero calls $4
 *** 6TH STREET ***
-Dealt to Player1 [9h 9s 5c 3s Kh] [5d]
+Dealt to Hero [9h 9s 5c 3s Kh] [5d]
 Dealt to Player6 [2d Ah Kc] [4d]
-Player1 bets $4
+Hero bets $4
 Player6 calls $4
 *** 7TH STREET ***
-Dealt to Player1 [9h 9s 5c 3s Kh 5d] [8s]
-Player1 bets $4
+Dealt to Hero [9h 9s 5c 3s Kh 5d] [8s]
+Hero bets $4
 Player6 calls $4
 *** SHOW DOWN ***
-Player1 shows [9s 9h 5c 3s Kh 5d 8s] two pair, Nines and Fives
+Hero shows [9s 9h 5c 3s Kh 5d 8s] two pair, Nines and Fives
 Player6 shows [Ad Kd 2d Ah Kc 4d 8h] two pair, Aces and Kings
 Player6 wins the pot ($40.80) with two pair, Aces and Kings
 *** SUMMARY ***
 Total pot $42.80 | Rake $2
 Seat 1: Player4 folded on 3rd St.
-Seat 2: Player13 folded on 3rd St.
-Seat 3: Player1 showed [9s 9h 5c 3s Kh 5d 8s] and lost with two pair, Nines and Fives
+Seat 2: Hero3 folded on 3rd St.
+Seat 3: Hero showed [9s 9h 5c 3s Kh 5d 8s] and lost with two pair, Nines and Fives
 Seat 5: Player5 folded on 3rd St.
-Seat 6: Player14 folded on 3rd St.
+Seat 6: Hero4 folded on 3rd St.
 Seat 7: Player6 showed [Ad Kd 2d Ah Kc 4d 8h] and won ($40.80) with two pair, Aces and Kings
-Seat 8: Player10 folded on 3rd St.
+Seat 8: Hero0 folded on 3rd St.
 
 
 
 Full Tilt Poker Game #11111110018: Table Fpdb - $2/$4 Ante $0.40 - Limit Stud Hi - 13:26:21 ET - 2010/06/10
-Seat 1: Player12 ($66.10)
-Seat 2: Player13 ($85.50)
-Seat 3: Player1 ($81.10)
-Seat 4: Player11 ($283.75)
+Seat 1: Hero2 ($66.10)
+Seat 2: Hero3 ($85.50)
+Seat 3: Hero ($81.10)
+Seat 4: Hero1 ($283.75)
 Seat 5: Player5 ($109.40)
-Seat 6: Player14 ($140.20)
+Seat 6: Hero4 ($140.20)
 Seat 7: Player6 ($59.80)
-Seat 8: Player10 ($62.10)
-Player10 antes $0.40
-Player13 antes $0.40
-Player1 antes $0.40
+Seat 8: Hero0 ($62.10)
+Hero0 antes $0.40
+Hero3 antes $0.40
+Hero antes $0.40
 Player5 antes $0.40
-Player14 antes $0.40
-Player12 antes $0.40
-Player11 antes $0.40
+Hero4 antes $0.40
+Hero2 antes $0.40
+Hero1 antes $0.40
 Player6 antes $0.40
 *** 3RD STREET ***
-Dealt to Player12 [Qh]
-Dealt to Player13 [Kd]
-Dealt to Player1 [2d Kc] [5h]
-Dealt to Player11 [9d]
+Dealt to Hero2 [Qh]
+Dealt to Hero3 [Kd]
+Dealt to Hero [2d Kc] [5h]
+Dealt to Hero1 [9d]
 Dealt to Player5 [6d]
-Dealt to Player14 [Ad]
+Dealt to Hero4 [Ad]
 Dealt to Player6 [6h]
-Dealt to Player10 [7h]
-Player1 is low with [5h]
-Player1 brings in for $0.50
-Player11 folds
+Dealt to Hero0 [7h]
+Hero is low with [5h]
+Hero brings in for $0.50
+Hero1 folds
 Player5 folds
-Player14 folds
+Hero4 folds
 Player6 folds
-Player10 folds
-Player12 folds
-Player13 completes it to $2
-Player1 folds
-Uncalled bet of $1.50 returned to Player13
-Player13 mucks
-Player13 wins the pot ($4.20)
+Hero0 folds
+Hero2 folds
+Hero3 completes it to $2
+Hero folds
+Uncalled bet of $1.50 returned to Hero3
+Hero3 mucks
+Hero3 wins the pot ($4.20)
 *** SUMMARY ***
 Total pot $4.20 | Rake $0
-Seat 1: Player12 folded on 3rd St.
-Seat 2: Player13 collected ($4.20), mucked
-Seat 3: Player1 folded on 3rd St.
-Seat 4: Player11 folded on 3rd St.
+Seat 1: Hero2 folded on 3rd St.
+Seat 2: Hero3 collected ($4.20), mucked
+Seat 3: Hero folded on 3rd St.
+Seat 4: Hero1 folded on 3rd St.
 Seat 5: Player5 folded on 3rd St.
-Seat 6: Player14 folded on 3rd St.
+Seat 6: Hero4 folded on 3rd St.
 Seat 7: Player6 folded on 3rd St.
-Seat 8: Player10 folded on 3rd St.
+Seat 8: Hero0 folded on 3rd St.
 
 
 
 Full Tilt Poker Game #11111111146: Table Fpdb - $2/$4 Ante $0.40 - Limit Stud Hi - 13:26:47 ET - 2010/06/10
-Seat 1: Player12 ($65.70)
-Seat 2: Player13 ($88.80)
-Seat 3: Player1 ($80.20)
-Seat 4: Player11 ($283.35)
+Seat 1: Hero2 ($65.70)
+Seat 2: Hero3 ($88.80)
+Seat 3: Hero ($80.20)
+Seat 4: Hero1 ($283.35)
 Seat 5: Player5 ($109)
-Seat 6: Player14 ($139.80)
+Seat 6: Hero4 ($139.80)
 Seat 7: Player6 ($59.40)
-Seat 8: Player10 ($61.70)
-Player10 antes $0.40
-Player1 antes $0.40
-Player13 antes $0.40
+Seat 8: Hero0 ($61.70)
+Hero0 antes $0.40
+Hero antes $0.40
+Hero3 antes $0.40
 Player5 antes $0.40
-Player11 antes $0.40
-Player12 antes $0.40
-Player14 antes $0.40
+Hero1 antes $0.40
+Hero2 antes $0.40
+Hero4 antes $0.40
 Player6 antes $0.40
 *** 3RD STREET ***
-Dealt to Player12 [Qd]
-Dealt to Player13 [5c]
-Dealt to Player1 [4d 3s] [9s]
-Dealt to Player11 [Ks]
+Dealt to Hero2 [Qd]
+Dealt to Hero3 [5c]
+Dealt to Hero [4d 3s] [9s]
+Dealt to Hero1 [Ks]
 Dealt to Player5 [2c]
-Dealt to Player14 [3d]
+Dealt to Hero4 [3d]
 Dealt to Player6 [2h]
-Dealt to Player10 [2d]
+Dealt to Hero0 [2d]
 Player5 is low with [2c]
 Player5 brings in for $0.50
-Player14 folds
+Hero4 folds
 Player6 folds
-Player10 folds
-Player12 folds
-Player13 folds
-Player1 folds
-Player11 completes it to $2
+Hero0 folds
+Hero2 folds
+Hero3 folds
+Hero folds
+Hero1 completes it to $2
 Player5 calls $1.50
 *** 4TH STREET ***
-Dealt to Player11 [Ks] [Ah]
+Dealt to Hero1 [Ks] [Ah]
 Dealt to Player5 [2c] [5s]
-Player11 bets $2
+Hero1 bets $2
 Player5 folds
-Uncalled bet of $2 returned to Player11
-Player11 mucks
-Player11 wins the pot ($7.20)
+Uncalled bet of $2 returned to Hero1
+Hero1 mucks
+Hero1 wins the pot ($7.20)
 *** SUMMARY ***
 Total pot $7.20 | Rake $0
-Seat 1: Player12 folded on 3rd St.
-Seat 2: Player13 folded on 3rd St.
-Seat 3: Player1 folded on 3rd St.
-Seat 4: Player11 collected ($7.20), mucked
+Seat 1: Hero2 folded on 3rd St.
+Seat 2: Hero3 folded on 3rd St.
+Seat 3: Hero folded on 3rd St.
+Seat 4: Hero1 collected ($7.20), mucked
 Seat 5: Player5 folded on 4th St.
-Seat 6: Player14 folded on 3rd St.
+Seat 6: Hero4 folded on 3rd St.
 Seat 7: Player6 folded on 3rd St.
-Seat 8: Player10 folded on 3rd St.
+Seat 8: Hero0 folded on 3rd St.
 
 
 
 Full Tilt Poker Game #11111111633: Table Fpdb - $2/$4 Ante $0.40 - Limit Stud Hi - 13:37:55 ET - 2010/06/10
-Seat 1: Player12 ($72)
+Seat 1: Hero2 ($72)
 Seat 2: Player9 ($40), is sitting out
-Seat 3: Player1 ($89.20)
+Seat 3: Hero ($89.20)
 Seat 4: Player2 ($96.10)
 Seat 5: Player5 ($105.50), is sitting out
-Seat 6: Player14 ($131.70)
+Seat 6: Hero4 ($131.70)
 Seat 7: Player6 ($54.70)
-Seat 8: Player10 ($96.40)
-Player10 antes $0.40
-Player1 antes $0.40
-Player12 antes $0.40
-Player14 antes $0.40
+Seat 8: Hero0 ($96.40)
+Hero0 antes $0.40
+Hero antes $0.40
+Hero2 antes $0.40
+Hero4 antes $0.40
 Player6 antes $0.40
 5 seconds left to act
 Player2 is sitting out
 *** 3RD STREET ***
-Dealt to Player12 [5c]
-Dealt to Player1 [Td 9d] [Kc]
-Dealt to Player14 [5h]
+Dealt to Hero2 [5c]
+Dealt to Hero [Td 9d] [Kc]
+Dealt to Hero4 [5h]
 Dealt to Player6 [4s]
-Dealt to Player10 [7s]
+Dealt to Hero0 [7s]
 Player6 is low with [4s]
 Player2 stands up
 Player6 brings in for $0.50
-Player10 folds
-Player12 folds
-Player1 completes it to $2
-Player14 calls $2
+Hero0 folds
+Hero2 folds
+Hero completes it to $2
+Hero4 calls $2
 Player6 folds
 *** 4TH STREET ***
-Dealt to Player1 [Td 9d Kc] [9s]
-Dealt to Player14 [5h] [9h]
-Player1 bets $2
-Player14 raises to $4
-Player1 calls $2
+Dealt to Hero [Td 9d Kc] [9s]
+Dealt to Hero4 [5h] [9h]
+Hero bets $2
+Hero4 raises to $4
+Hero calls $2
 *** 5TH STREET ***
-Dealt to Player1 [Td 9d Kc 9s] [Tc]
-Dealt to Player14 [5h 9h] [3d]
-Player1 checks
-Player14 checks
+Dealt to Hero [Td 9d Kc 9s] [Tc]
+Dealt to Hero4 [5h 9h] [3d]
+Hero checks
+Hero4 checks
 *** 6TH STREET ***
-Dealt to Player1 [Td 9d Kc 9s Tc] [9c]
-Dealt to Player14 [5h 9h 3d] [Th]
-Player1 bets $4
-Player14 calls $4
+Dealt to Hero [Td 9d Kc 9s Tc] [9c]
+Dealt to Hero4 [5h 9h 3d] [Th]
+Hero bets $4
+Hero4 calls $4
 *** 7TH STREET ***
-Dealt to Player1 [Td 9d Kc 9s Tc 9c] [7h]
-Player1 bets $4
-Player14 calls $4
+Dealt to Hero [Td 9d Kc 9s Tc 9c] [7h]
+Hero bets $4
+Hero4 calls $4
 *** SHOW DOWN ***
-Player1 shows [Td 9d Kc 9s Tc 9c 7h] a full house, Nines full of Tens
-Player14 mucks
-Player1 wins the pot ($29.50) with a full house, Nines full of Tens
+Hero shows [Td 9d Kc 9s Tc 9c 7h] a full house, Nines full of Tens
+Hero4 mucks
+Hero wins the pot ($29.50) with a full house, Nines full of Tens
 *** SUMMARY ***
 Total pot $30.50 | Rake $1
-Seat 1: Player12 folded on 3rd St.
+Seat 1: Hero2 folded on 3rd St.
 Seat 2: Player9 is sitting out
-Seat 3: Player1 showed [Td 9d Kc 9s Tc 9c 7h] and won ($29.50) with a full house, Nines full of Tens
+Seat 3: Hero showed [Td 9d Kc 9s Tc 9c 7h] and won ($29.50) with a full house, Nines full of Tens
 Seat 4: Player2 is sitting out
 Seat 5: Player5 is sitting out
-Seat 6: Player14 mucked [8h 6h 5h 9h 3d Th 3h] - a flush, Ten high
+Seat 6: Hero4 mucked [8h 6h 5h 9h 3d Th 3h] - a flush, Ten high
 Seat 7: Player6 folded on 3rd St.
-Seat 8: Player10 folded on 3rd St.
+Seat 8: Hero0 folded on 3rd St.
 
 
 
 Full Tilt Poker Game #11111113928: Table Fpdb - $2/$4 Ante $0.40 - Limit Stud Hi - 13:39:41 ET - 2010/06/10
-Seat 1: Player12 ($68.70)
+Seat 1: Hero2 ($68.70)
 Seat 2: Player9 ($40), is sitting out
-Seat 3: Player1 ($103.90)
-Seat 6: Player14 ($116.40)
+Seat 3: Hero ($103.90)
+Seat 6: Hero4 ($116.40)
 Seat 7: Player6 ($58.40)
-Seat 8: Player10 ($95.60)
-Player10 antes $0.40
-Player1 antes $0.40
+Seat 8: Hero0 ($95.60)
+Hero0 antes $0.40
+Hero antes $0.40
 Player6 antes $0.40
 Player3 sits down
-Player14 antes $0.40
-Player12 antes $0.40
+Hero4 antes $0.40
+Hero2 antes $0.40
 *** 3RD STREET ***
-Dealt to Player12 [9c]
-Dealt to Player1 [Ts 4h] [9h]
-Dealt to Player14 [7c]
+Dealt to Hero2 [9c]
+Dealt to Hero [Ts 4h] [9h]
+Dealt to Hero4 [7c]
 Dealt to Player6 [7s]
-Dealt to Player10 [2h]
-Player10 is low with [2h]
+Dealt to Hero0 [2h]
+Hero0 is low with [2h]
 Player3 adds $40
-Player10 brings in for $0.50
-Player12 folds
-Player1 completes it to $2
-Player14 folds
+Hero0 brings in for $0.50
+Hero2 folds
+Hero completes it to $2
+Hero4 folds
 Player6 folds
-Player10 folds
-Uncalled bet of $1.50 returned to Player1
-Player1 mucks
-Player1 wins the pot ($3)
+Hero0 folds
+Uncalled bet of $1.50 returned to Hero
+Hero mucks
+Hero wins the pot ($3)
 *** SUMMARY ***
 Total pot $3 | Rake $0
-Seat 1: Player12 folded on 3rd St.
+Seat 1: Hero2 folded on 3rd St.
 Seat 2: Player9 is sitting out
-Seat 3: Player1 collected ($3), mucked
-Seat 6: Player14 folded on 3rd St.
+Seat 3: Hero collected ($3), mucked
+Seat 6: Hero4 folded on 3rd St.
 Seat 7: Player6 folded on 3rd St.
-Seat 8: Player10 folded on 3rd St.
+Seat 8: Hero0 folded on 3rd St.
 
 
 
 
 Full Tilt Poker Game #11111111062: Table Fpdb - $2/$4 Ante $0.40 - Limit Stud Hi - 13:51:45 ET - 2010/06/10
-Seat 1: Player12 ($83.40)
+Seat 1: Hero2 ($83.40)
 Seat 2: Player9 ($24.35)
-Seat 3: Player1 ($147.90)
+Seat 3: Hero ($147.90)
 Seat 4: Player3 ($74.10)
 Seat 5: Player8 ($63.10)
-Seat 6: Player14 ($103)
+Seat 6: Hero4 ($103)
 Seat 7: Player6 ($63.20)
 Seat 8: Player7 ($48.40)
 Player7 antes $0.40
-Player1 antes $0.40
+Hero antes $0.40
 Player8 antes $0.40
 Player3 antes $0.40
 Player9 antes $0.40
-Player12 antes $0.40
-Player14 antes $0.40
+Hero2 antes $0.40
+Hero4 antes $0.40
 Player6 antes $0.40
 *** 3RD STREET ***
-Dealt to Player12 [As]
+Dealt to Hero2 [As]
 Dealt to Player9 [7s]
-Dealt to Player1 [7h 6s] [8d]
+Dealt to Hero [7h 6s] [8d]
 Dealt to Player3 [2d]
 Dealt to Player8 [3c]
-Dealt to Player14 [7c]
+Dealt to Hero4 [7c]
 Dealt to Player6 [8h]
 Dealt to Player7 [Qs]
 Player3 is low with [2d]
 Player3 brings in for $0.50
 Player8 folds
-Player14 folds
+Hero4 folds
 Player6 folds
 Player7 folds
-Player12 completes it to $2
+Hero2 completes it to $2
 Player9 folds
-Player1 calls $2
+Hero calls $2
 Player3 calls $1.50
 *** 4TH STREET ***
-Dealt to Player12 [As] [5d]
-Dealt to Player1 [7h 6s 8d] [Qc]
+Dealt to Hero2 [As] [5d]
+Dealt to Hero [7h 6s 8d] [Qc]
 Dealt to Player3 [2d] [3h]
-Player12 bets $2
-Player1 folds
+Hero2 bets $2
+Hero folds
 Player3 calls $2
 *** 5TH STREET ***
-Dealt to Player12 [As 5d] [4c]
+Dealt to Hero2 [As 5d] [4c]
 Dealt to Player3 [2d 3h] [5s]
-Player12 bets $4
+Hero2 bets $4
 Player3 folds
-Uncalled bet of $4 returned to Player12
-Player12 mucks
-Player12 wins the pot ($13.20)
+Uncalled bet of $4 returned to Hero2
+Hero2 mucks
+Hero2 wins the pot ($13.20)
 *** SUMMARY ***
 Total pot $13.20 | Rake $0
-Seat 1: Player12 collected ($13.20), mucked
+Seat 1: Hero2 collected ($13.20), mucked
 Seat 2: Player9 folded on 3rd St.
-Seat 3: Player1 folded on 4th St.
+Seat 3: Hero folded on 4th St.
 Seat 4: Player3 folded on 5th St.
 Seat 5: Player8 folded on 3rd St.
-Seat 6: Player14 folded on 3rd St.
+Seat 6: Hero4 folded on 3rd St.
 Seat 7: Player6 folded on 3rd St.
 Seat 8: Player7 folded on 3rd St.
 
@@ -607,7 +607,7 @@ Seat 8: Player7 folded on 3rd St.
 
 Full Tilt Poker Game #11111115744: Table Fpdb - $2/$4 Ante $0.40 - Limit Stud Hi - 14:02:17 ET - 2010/06/10
 Seat 2: Player0 ($60)
-Seat 3: Player1 ($129.30)
+Seat 3: Hero ($129.30)
 Seat 4: Player3 ($125.75)
 Seat 5: Player8 ($40.10)
 Seat 7: Player6 ($72)
@@ -615,24 +615,24 @@ Seat 8: Player7 ($32.20)
 Player0 antes $0.40
 Player8 antes $0.40
 Player7 antes $0.40
-Player1 antes $0.40
+Hero antes $0.40
 Player3 antes $0.40
 Player6 antes $0.40
 *** 3RD STREET ***
 Dealt to Player0 [Th]
-Dealt to Player1 [9s Qc] [7d]
+Dealt to Hero [9s Qc] [7d]
 Dealt to Player3 [Qh]
 Dealt to Player8 [Kd]
 Dealt to Player6 [Jd]
 Dealt to Player7 [Jh]
-Player1 is low with [7d]
-Player1 brings in for $0.50
+Hero is low with [7d]
+Hero brings in for $0.50
 Player3 folds
 Player8 folds
 Player6 folds
 Player7 completes it to $2
 Player0 calls $2
-Player1 folds
+Hero folds
 *** 4TH STREET ***
 Dealt to Player0 [Th] [As]
 Dealt to Player7 [Jh] [8c]
@@ -654,7 +654,7 @@ Player0 wins the pot ($10.90)
 *** SUMMARY ***
 Total pot $10.90 | Rake $0
 Seat 2: Player0 collected ($10.90), mucked
-Seat 3: Player1 folded on 3rd St.
+Seat 3: Hero folded on 3rd St.
 Seat 4: Player3 folded on 3rd St.
 Seat 5: Player8 folded on 3rd St.
 Seat 7: Player6 folded on 3rd St.

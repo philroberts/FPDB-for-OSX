@@ -2,30 +2,30 @@
 Table 'Table II' 6-max Seat #3 is the button
 Seat 1: Player1 ($106.80 in chips) 
 Seat 3: Player2 ($34.95 in chips) 
-Seat 4: Player3 ($40 in chips) 
-Player3: posts small blind $0.50
+Seat 4: Hero ($40 in chips) 
+Hero: posts small blind $0.50
 Player1: posts big blind $1
 *** DEALING HANDS ***
-Dealt to Player3 [6s Jh 7d 2h 3s]
+Dealt to Hero [6s Jh 7d 2h 3s]
 Player2: raises $2 to $3
-Player3: calls $2.50
+Hero: calls $2.50
 Player1: calls $2
-Player3: discards 1 card [Jh]
-Dealt to Player3 [6s 7d 2h 3s] [Qs]
+Hero: discards 1 card [Jh]
+Dealt to Hero [6s 7d 2h 3s] [Qs]
 Player1: discards 1 card
 Player2: discards 3 cards
-Player3: bets $5
+Hero: bets $5
 Player1: folds 
 Player2: calls $5
 *** SHOW DOWN ***
-Player3: shows [6s Qs 7d 2h 3s] (high card Queen)
+Hero: shows [6s Qs 7d 2h 3s] (high card Queen)
 Player2: shows [4d Ad Ks Kd 3h] (a pair of Kings)
 Player2 collected $18.10 from pot
 *** SUMMARY ***
 Total pot $19 | Rake $0.90 
 Seat 1: Player1 (big blind) folded after the Draw
 Seat 3: Player2 (button) showed [4d Ad Ks Kd 3h] and won ($18.10) with a pair of Kings
-Seat 4: Player3 (small blind) showed [6s Qs 7d 2h 3s] and lost with high card Queen
+Seat 4: Hero (small blind) showed [6s Qs 7d 2h 3s] and lost with high card Queen
 
 
 

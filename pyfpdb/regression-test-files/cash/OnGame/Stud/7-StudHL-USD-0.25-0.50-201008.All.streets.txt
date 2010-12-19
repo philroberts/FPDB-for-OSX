@@ -1,9 +1,9 @@
 ***** History for hand R5-78227816-62 *****
 Start hand: Sat Aug 28 20:33:38 GMT+0300 2010
 Table: Taegu [78227816] (LIMIT SEVEN_CARD_STUD_HI_LO $0.25/$0.50, ante: $0.05, Real money)
-User: XMAN1
+User: Hero
 Players in round: 8
-Seat 1: XMAN1 ($25)
+Seat 1: Hero ($25)
 Seat 3: boneos56 ($27.78)
 Seat 5: grumset2007 ($3.48)
 Seat 6: mylonas77 ($40.73)
@@ -18,10 +18,10 @@ Lee Clayton posts ante $0.05
 guggi_cool posts ante $0.05
 HangEv posts ante $0.05
 mylonas77 posts ante $0.05
-XMAN1 posts ante $0.05
+Hero posts ante $0.05
 ---
 Dealing pocket cards
-Dealing to XMAN1: [8d, 8s, 4d]
+Dealing to Hero: [8d, 8s, 4d]
 Dealing to boneos56: [-, -, Kd]
 Dealing to grumset2007: [-, -, Ks]
 Dealing to mylonas77: [-, -, 5c]
@@ -29,7 +29,7 @@ Dealing to YMAN1: [-, -, As]
 Dealing to Lee Clayton: [-, -, Js]
 Dealing to guggi_cool: [-, -, 9s]
 Dealing to HangEv: [-, -, 6s]
-XMAN1 small bring in $0.12
+Hero small bring in $0.12
 boneos56 folds
 grumset2007 folds
 mylonas77 calls $0.12
@@ -39,33 +39,33 @@ guggi_cool folds
 HangEv folds
 ---
 Dealing 4th street
-Dealing to XMAN1: [3h]
+Dealing to Hero: [3h]
 Dealing to mylonas77: [2h]
 mylonas77 bets $0.25
-XMAN1 calls $0.25
+Hero calls $0.25
 ---
 Dealing 5th street
-Dealing to XMAN1: [8c]
+Dealing to Hero: [8c]
 Dealing to mylonas77: [Kh]
 mylonas77 bets $0.50
-XMAN1 raises $1 to $1.37
+Hero raises $1 to $1.37
 mylonas77 calls $0.50
 ---
 Dealing 6th street
-Dealing to XMAN1: [4c]
+Dealing to Hero: [4c]
 Dealing to mylonas77: [Qh]
-XMAN1 bets $0.50
+Hero bets $0.50
 mylonas77 calls $0.50
 ---
 Dealing river
-Dealing to XMAN1: [5h]
-XMAN1 bets $0.50
+Dealing to Hero: [5h]
+Hero bets $0.50
 mylonas77 calls $0.50
 ---
 Summary:
-Main pot: $5.14 won by XMAN1 ($4.89)
+Main pot: $5.14 won by Hero ($4.89)
 Rake taken: $0.25
-Seat 1: XMAN1 ($27.47), net: +$2.47, [8d, 8s, 4d, 3h, 8c, 4c, 5h] (FULL_HOUSE EIGHT, FOUR)
+Seat 1: Hero ($27.47), net: +$2.47, [8d, 8s, 4d, 3h, 8c, 4c, 5h] (FULL_HOUSE EIGHT, FOUR)
 Seat 3: boneos56 ($27.73), net: -$0.05
 Seat 5: grumset2007 ($3.43), net: -$0.05
 Seat 6: mylonas77 ($38.31), net: -$2.42

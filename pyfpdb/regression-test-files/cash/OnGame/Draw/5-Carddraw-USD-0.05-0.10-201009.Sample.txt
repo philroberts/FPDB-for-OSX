@@ -1,79 +1,79 @@
 ***** History for hand R5-81962116-232 *****
 Start hand: Mon Sep 13 00:21:02 GMT+0100 2010
 Table: Suez [81962116] (LIMIT FIVE_CARD_DRAW $0.05/$0.10, Real money)
-User: tchazx
+User: Hero
 Button: seat 3
 Players in round: 4
 Seat 8: DamonV2 ($0.07)
-Seat 10: tchazx ($1)
+Seat 10: Hero ($1)
 Seat 1: x Diabolo666 ($11.23)
 Seat 3: velabianca ($0.51)
 DamonV2 posts small blind ($0.02)
-tchazx posts big blind ($0.05)
+Hero posts big blind ($0.05)
 ---
 Dealing pocket cards
-Dealing to tchazx: [Tc, 9h, 7c, Ah, Jh]
+Dealing to Hero: [Tc, 9h, 7c, Ah, Jh]
 x Diabolo666 raises $0.10 to $0.10
 velabianca folds
 DamonV2 folds
-tchazx calls $0.05
+Hero calls $0.05
 ---
-tchazx changed 2 cards
-New hand for tchazx: [8h, 9h, 6s, Ah, Jh]
+Hero changed 2 cards
+New hand for Hero: [8h, 9h, 6s, Ah, Jh]
 x Diabolo666 changed 3 cards
-tchazx checks
+Hero checks
 x Diabolo666 checks
 ---
 Summary:
 Main pot: $0.22 won by x Diabolo666 ($0.21)
 Rake taken: $0.01
 Seat 8: DamonV2 ($0.05), net: -$0.02
-Seat 10: tchazx ($0.90), net: -$0.10, [8h, 9h, 6s, Ah, Jh] (HIGH_CARD ACE)
+Seat 10: Hero ($0.90), net: -$0.10, [8h, 9h, 6s, Ah, Jh] (HIGH_CARD ACE)
 Seat 1: x Diabolo666 ($11.34), net: +$0.11, [2c, Ac, Td, As, Qc] (PAIR ACE)
 Seat 3: velabianca ($0.51)
 ***** End of hand R5-81962116-232 *****
 ***** History for hand R5-81962116-233 *****
 Start hand: Mon Sep 13 00:21:42 GMT+0100 2010
 Table: Suez [81962116] (LIMIT FIVE_CARD_DRAW $0.05/$0.10, Real money)
-User: tchazx
+User: Hero
 Button: seat 8
 Players in round: 5
-Seat 10: tchazx ($0.90)
+Seat 10: Hero ($0.90)
 Seat 1: x Diabolo666 ($11.34)
 Seat 3: velabianca ($0.51)
 Seat 4: grommek ($9.40)
 Seat 8: DamonV2 ($0.05)
-tchazx posts small blind ($0.02)
+Hero posts small blind ($0.02)
 x Diabolo666 posts big blind ($0.05)
 grommek posts big blind ($0.05)
 grommek posts dead blind ($0.02)
 ---
 Dealing pocket cards
-Dealing to tchazx: [Jd, 5s, 8h, 4h, 7d]
+Dealing to Hero: [Jd, 5s, 8h, 4h, 7d]
 velabianca calls $0.05
 grommek checks
 DamonV2 calls $0.05 [all in]
-tchazx calls $0.03
+Hero calls $0.03
 x Diabolo666 checks
 ---
-tchazx changed 1 cards
-New hand for tchazx: [Ah, 5s, 8h, 4h, 7d]
+Hero changed 1 cards
+New hand for Hero: [Ah, 5s, 8h, 4h, 7d]
 x Diabolo666 changed 4 cards
 velabianca changed 2 cards
 grommek changed 3 cards
 DamonV2 changed 2 cards
-tchazx checks
+Hero checks
 x Diabolo666 checks
 velabianca bets $0.10
 grommek folds
-tchazx folds
+Hero folds
 x Diabolo666 folds
 --- 
 ---
 Summary:
 Main pot: $0.27 won by velabianca ($0.26)
 Rake taken: $0.01
-Seat 10: tchazx ($0.85), net: -$0.05
+Seat 10: Hero ($0.85), net: -$0.05
 Seat 1: x Diabolo666 ($11.29), net: -$0.05
 Seat 3: velabianca ($0.72), net: +$0.21, [As, 9s, 6s, 6c, 9h] (TWO_PAIR NINE, SIX)
 Seat 4: grommek ($9.33), net: -$0.07
@@ -82,20 +82,20 @@ Seat 8: DamonV2 ($0), net: -$0.05, [Jh, 2c, Kh, Td, 6h] (HIGH_CARD KING)
 ***** History for hand R5-81962116-234 *****
 Start hand: Mon Sep 13 00:22:36 GMT+0100 2010
 Table: Suez [81962116] (LIMIT FIVE_CARD_DRAW $0.05/$0.10, Real money)
-User: tchazx
+User: Hero
 Button: seat 10
 Players in round: 4
 Seat 1: x Diabolo666 ($11.29)
 Seat 3: velabianca ($0.72)
 Seat 4: grommek ($9.33)
-Seat 10: tchazx ($0.85)
+Seat 10: Hero ($0.85)
 x Diabolo666 posts small blind ($0.02)
 velabianca posts big blind ($0.05)
 ---
 Dealing pocket cards
-Dealing to tchazx: [Kh, 9d, As, 4s, 7c]
+Dealing to Hero: [Kh, 9d, As, 4s, 7c]
 grommek calls $0.05
-tchazx folds
+Hero folds
 x Diabolo666 folds
 velabianca checks
 velabianca changed 3 cards
@@ -110,37 +110,37 @@ Rake taken: $0
 Seat 1: x Diabolo666 ($11.27), net: -$0.02
 Seat 3: velabianca ($0.67), net: -$0.05
 Seat 4: grommek ($9.40), net: +$0.07
-Seat 10: tchazx ($0.85)
+Seat 10: Hero ($0.85)
 ***** End of hand R5-81962116-234 *****
 ***** History for hand R5-81962116-235 *****
 Start hand: Mon Sep 13 00:23:04 GMT+0100 2010
 Table: Suez [81962116] (LIMIT FIVE_CARD_DRAW $0.05/$0.10, Real money)
-User: tchazx
+User: Hero
 Button: seat 1
 Players in round: 4
 Seat 3: velabianca ($0.67)
 Seat 4: grommek ($9.40)
-Seat 10: tchazx ($0.85)
+Seat 10: Hero ($0.85)
 Seat 1: x Diabolo666 ($11.27)
 velabianca posts small blind ($0.02)
 grommek posts big blind ($0.05)
 ---
 Dealing pocket cards
-Dealing to tchazx: [8d, Td, 2s, 3d, Qd]
-tchazx calls $0.05
+Dealing to Hero: [8d, Td, 2s, 3d, Qd]
+Hero calls $0.05
 x Diabolo666 raises $0.10 to $0.10
 velabianca calls $0.08
 grommek calls $0.05
-tchazx calls $0.05
+Hero calls $0.05
 ---
 velabianca changed 2 cards
 grommek changed 2 cards
-tchazx changed 1 cards
-New hand for tchazx: [8d, Td, 8h, 3d, Qd]
+Hero changed 1 cards
+New hand for Hero: [8d, Td, 8h, 3d, Qd]
 x Diabolo666 changed 3 cards
 velabianca checks
 grommek checks
-tchazx checks
+Hero checks
 x Diabolo666 checks
 ---
 Summary:
@@ -148,6 +148,6 @@ Main pot: $0.40 won by velabianca ($0.38)
 Rake taken: $0.02
 Seat 3: velabianca ($0.95), net: +$0.28
 Seat 4: grommek ($9.30), net: -$0.10
-Seat 10: tchazx ($0.75), net: -$0.10
+Seat 10: Hero ($0.75), net: -$0.10
 Seat 1: x Diabolo666 ($11.17), net: -$0.10, [6d, Qc, 4c, Th, Qs] (PAIR QUEEN)
 ***** End of hand R5-81962116-235 *****

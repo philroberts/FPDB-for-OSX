@@ -83,6 +83,7 @@ class Importer:
         self.pos_in_file = {}        # dict to remember how far we have read in the file
         #Set defaults
         self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
+        self.cacheSessions = self.config.get_import_parameters().get("cacheSessions")
 
         # CONFIGURATION OPTIONS
         self.settings.setdefault("minPrint", 30)
@@ -110,6 +111,9 @@ class Importer:
     #Set functions
     def setCallHud(self, value):
         self.callHud = value
+        
+    def setCacheSessions(self, value):
+        self.cacheSessions = value
 
     def setMinPrint(self, value):
         self.settings['minPrint'] = int(value)
@@ -491,14 +495,22 @@ class Importer:
                         if hand is not None and not hand.is_duplicate:
                             hand.updateHudCache(self.database)
                 self.database.commit()
+                
+                # Call sessionsCache update
+                if self.cacheSessions:
+                    for hand in handlist:
+                        if hand is not None and not hand.is_duplicate:
+                            hand.updateSessionsCache(self.database)
+                self.database.commit()
 
                 #pipe the Hands.id out to the HUD
-                for hid in to_hud:
-                    try:
-                        print _("fpdb_import: sending hand to hud"), hand.dbid_hands, "pipe =", self.caller.pipe_to_hud
-                        self.caller.pipe_to_hud.stdin.write("%s" % (hid) + os.linesep)
-                    except IOError, e:
-                        log.error(_("Failed to send hand to HUD: %s") % e)
+                if self.caller:
+                    for hid in to_hud:
+                        try:
+                            print _("fpdb_import: sending hand to hud"), hand.dbid_hands, "pipe =", self.caller.pipe_to_hud
+                            self.caller.pipe_to_hud.stdin.write("%s" % (hid) + os.linesep)
+                        except IOError, e:
+                            log.error(_("Failed to send hand to HUD: %s") % e)
 
                 errors = getattr(hhc, 'numErrors')
                 stored = getattr(hhc, 'numHands')

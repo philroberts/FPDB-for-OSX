@@ -3,16 +3,16 @@ Table 'May IV' 6-max Seat #3 is the button
 Seat 1: Gles65 ($9.60 in chips) 
 Seat 3: Pho3nix.two ($6.60 in chips) 
 Seat 4: k1tt9nM1nd ($10 in chips) 
-Seat 6: s0rrow ($10 in chips) 
+Seat 6: Hero ($10 in chips) 
 k1tt9nM1nd: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [4c 8h]
+Dealt to Hero [4c 8h]
 shaunsaville joins the table at seat #2 
 Gles65: folds 
 Pho3nix.two: folds 
 k1tt9nM1nd: raises $0.20 to $0.30
-s0rrow: folds 
+Hero: folds 
 Uncalled bet ($0.20) returned to k1tt9nM1nd
 k1tt9nM1nd collected $0.20 from pot
 *** SUMMARY ***
@@ -20,7 +20,7 @@ Total pot $0.20 | Rake $0
 Seat 1: Gles65 folded before Flop (didn't bet)
 Seat 3: Pho3nix.two (button) folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd (small blind) collected ($0.20)
-Seat 6: s0rrow (big blind) folded before Flop
+Seat 6: Hero (big blind) folded before Flop
 
 
 
@@ -30,16 +30,16 @@ Seat 1: Gles65 ($9.60 in chips)
 Seat 2: shaunsaville ($2.65 in chips) 
 Seat 3: Pho3nix.two ($6.60 in chips) 
 Seat 4: k1tt9nM1nd ($10.10 in chips) 
-Seat 6: s0rrow ($9.90 in chips) 
-s0rrow: posts small blind $0.05
+Seat 6: Hero ($9.90 in chips) 
+Hero: posts small blind $0.05
 Gles65: posts big blind $0.10
 shaunsaville: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [9s 6h]
+Dealt to Hero [9s 6h]
 shaunsaville: checks 
 Pho3nix.two: calls $0.10
 k1tt9nM1nd: folds 
-s0rrow: folds 
+Hero: folds 
 Gles65: checks 
 *** FLOP *** [Jh 2c Qc]
 Gles65: checks 
@@ -57,7 +57,7 @@ Seat 1: Gles65 (big blind) folded on the Flop
 Seat 2: shaunsaville folded on the Flop
 Seat 3: Pho3nix.two collected ($0.35)
 Seat 4: k1tt9nM1nd (button) folded before Flop (didn't bet)
-Seat 6: s0rrow (small blind) folded before Flop
+Seat 6: Hero (small blind) folded before Flop
 
 
 
@@ -67,15 +67,15 @@ Seat 1: Gles65 ($9.50 in chips)
 Seat 2: shaunsaville ($2.55 in chips) 
 Seat 3: Pho3nix.two ($6.85 in chips) 
 Seat 4: k1tt9nM1nd ($10.10 in chips) 
-Seat 6: s0rrow ($9.85 in chips) 
+Seat 6: Hero ($9.85 in chips) 
 Gles65: posts small blind $0.05
 shaunsaville: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [7h 3s]
+Dealt to Hero [7h 3s]
 Pho3nix.two: calls $0.10
 DSOR65 joins the table at seat #5 
 k1tt9nM1nd: folds 
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 shaunsaville: checks 
 *** FLOP *** [3h 9s Th]
@@ -97,7 +97,7 @@ Seat 1: Gles65 (small blind) folded before Flop
 Seat 2: shaunsaville (big blind) folded on the River
 Seat 3: Pho3nix.two collected ($0.25)
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
-Seat 6: s0rrow (button) folded before Flop (didn't bet)
+Seat 6: Hero (button) folded before Flop (didn't bet)
 
 
 
@@ -108,15 +108,15 @@ Seat 2: shaunsaville ($2.45 in chips)
 Seat 3: Pho3nix.two ($7 in chips) 
 Seat 4: k1tt9nM1nd ($10.10 in chips) 
 Seat 5: DSOR65 ($6 in chips) 
-Seat 6: s0rrow ($9.85 in chips) 
+Seat 6: Hero ($9.85 in chips) 
 shaunsaville: posts small blind $0.05
 Pho3nix.two: posts big blind $0.10
 DSOR65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [9d 3c]
+Dealt to Hero [9d 3c]
 k1tt9nM1nd: raises $0.30 to $0.40
 DSOR65: calls $0.30
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 shaunsaville: raises $2.05 to $2.45 and is all-in
 Pho3nix.two: folds 
@@ -137,7 +137,7 @@ Seat 2: shaunsaville (small blind) showed [5d 5s] and lost with a pair of Fives
 Seat 3: Pho3nix.two (big blind) folded before Flop
 Seat 4: k1tt9nM1nd folded before Flop
 Seat 5: DSOR65 showed [Jd Qs] and won ($5.15) with two pair, Queens and Jacks
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -147,12 +147,12 @@ Seat 1: Gles65 ($9.45 in chips)
 Seat 3: Pho3nix.two ($6.90 in chips) 
 Seat 4: k1tt9nM1nd ($10 in chips) 
 Seat 5: DSOR65 ($8.70 in chips) 
-Seat 6: s0rrow ($9.85 in chips) 
+Seat 6: Hero ($9.85 in chips) 
 k1tt9nM1nd: posts small blind $0.05
 DSOR65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [5h Ts]
-s0rrow: folds 
+Dealt to Hero [5h Ts]
+Hero: folds 
 shaunsaville leaves the table
 Gles65: folds 
 Pho3nix.two: folds 
@@ -170,7 +170,7 @@ Seat 1: Gles65 folded before Flop (didn't bet)
 Seat 3: Pho3nix.two (button) folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd (small blind) collected ($0.60)
 Seat 5: DSOR65 (big blind) folded on the Flop
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -180,34 +180,34 @@ Seat 1: Gles65 ($9.45 in chips)
 Seat 3: Pho3nix.two ($6.90 in chips) 
 Seat 4: k1tt9nM1nd ($10.30 in chips) 
 Seat 5: DSOR65 ($8.40 in chips) 
-Seat 6: s0rrow ($9.85 in chips) 
+Seat 6: Hero ($9.85 in chips) 
 DSOR65: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [3d 3h]
+Dealt to Hero [3d 3h]
 Gles65: folds 
 Pho3nix.two: raises $0.20 to $0.30
 k1tt9nM1nd: folds 
 DSOR65: calls $0.25
-s0rrow: calls $0.20
+Hero: calls $0.20
 *** FLOP *** [9d 9h 2d]
 DSOR65: checks 
-s0rrow: checks 
+Hero: checks 
 Pho3nix.two: bets $0.40
 DSOR65: folds 
-s0rrow: calls $0.40
+Hero: calls $0.40
 *** TURN *** [9d 9h 2d] [8d]
-s0rrow: checks 
+Hero: checks 
 Dragsta03 joins the table at seat #2 
 Pho3nix.two: bets $0.80
-s0rrow: calls $0.80
+Hero: calls $0.80
 *** RIVER *** [9d 9h 2d 8d] [Js]
-s0rrow: checks 
+Hero: checks 
 Pho3nix.two: bets $1
-s0rrow: calls $1
+Hero: calls $1
 *** SHOW DOWN ***
 Pho3nix.two: shows [Ac As] (two pair, Aces and Nines)
-s0rrow: mucks hand 
+Hero: mucks hand 
 Pho3nix.two collected $5.05 from pot
 *** SUMMARY ***
 Total pot $5.30 | Rake $0.25 
@@ -216,7 +216,7 @@ Seat 1: Gles65 folded before Flop (didn't bet)
 Seat 3: Pho3nix.two showed [Ac As] and won ($5.05) with two pair, Aces and Nines
 Seat 4: k1tt9nM1nd (button) folded before Flop (didn't bet)
 Seat 5: DSOR65 (small blind) folded on the Flop
-Seat 6: s0rrow (big blind) mucked [3d 3h]
+Seat 6: Hero (big blind) mucked [3d 3h]
 
 
 
@@ -227,17 +227,17 @@ Seat 2: Dragsta03 ($4 in chips)
 Seat 3: Pho3nix.two ($9.45 in chips) 
 Seat 4: k1tt9nM1nd ($10.30 in chips) 
 Seat 5: DSOR65 ($8.10 in chips) 
-Seat 6: s0rrow ($7.35 in chips) 
-s0rrow: posts small blind $0.05
+Seat 6: Hero ($7.35 in chips) 
+Hero: posts small blind $0.05
 Gles65: posts big blind $0.10
 Dragsta03: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Jd Qs]
+Dealt to Hero [Jd Qs]
 Dragsta03: checks 
 Pho3nix.two: calls $0.10
 k1tt9nM1nd: raises $0.50 to $0.60
 DSOR65: folds 
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Dragsta03: folds 
 Pho3nix.two: folds 
@@ -250,7 +250,7 @@ Seat 2: Dragsta03 folded before Flop
 Seat 3: Pho3nix.two folded before Flop
 Seat 4: k1tt9nM1nd collected ($0.45)
 Seat 5: DSOR65 (button) folded before Flop (didn't bet)
-Seat 6: s0rrow (small blind) folded before Flop
+Seat 6: Hero (small blind) folded before Flop
 
 
 
@@ -261,15 +261,15 @@ Seat 2: Dragsta03 ($3.90 in chips)
 Seat 3: Pho3nix.two ($9.35 in chips) 
 Seat 4: k1tt9nM1nd ($10.65 in chips) 
 Seat 5: DSOR65 ($8.10 in chips) 
-Seat 6: s0rrow ($7.30 in chips) 
+Seat 6: Hero ($7.30 in chips) 
 Gles65: posts small blind $0.05
 Dragsta03: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [9c 8h]
+Dealt to Hero [9c 8h]
 Pho3nix.two: folds 
 k1tt9nM1nd: folds 
 DSOR65: calls $0.10
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Dragsta03: checks 
 *** FLOP *** [Ac Qd 7s]
@@ -289,7 +289,7 @@ Seat 2: Dragsta03 (big blind) folded on the Turn
 Seat 3: Pho3nix.two folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 collected ($0.25)
-Seat 6: s0rrow (button) folded before Flop (didn't bet)
+Seat 6: Hero (button) folded before Flop (didn't bet)
 
 
 
@@ -300,14 +300,14 @@ Seat 2: Dragsta03 ($3.80 in chips)
 Seat 3: Pho3nix.two ($9.35 in chips) 
 Seat 4: k1tt9nM1nd ($10.65 in chips) 
 Seat 5: DSOR65 ($8.25 in chips) 
-Seat 6: s0rrow ($7.30 in chips) 
+Seat 6: Hero ($7.30 in chips) 
 Dragsta03: posts small blind $0.05
 Pho3nix.two: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [3d 6h]
+Dealt to Hero [3d 6h]
 k1tt9nM1nd: folds 
 DSOR65: folds 
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Dragsta03: calls $0.05
 Pho3nix.two: checks 
@@ -332,7 +332,7 @@ Seat 2: Dragsta03 (small blind) showed [7s Ah] and won ($0.20) with high card Ac
 Seat 3: Pho3nix.two (big blind) mucked [7c 3h]
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 folded before Flop (didn't bet)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -343,19 +343,19 @@ Seat 2: Dragsta03 ($3.90 in chips)
 Seat 3: Pho3nix.two ($9.25 in chips) 
 Seat 4: k1tt9nM1nd ($10.65 in chips) 
 Seat 5: DSOR65 ($8.25 in chips) 
-Seat 6: s0rrow ($7.30 in chips) 
+Seat 6: Hero ($7.30 in chips) 
 Pho3nix.two: posts small blind $0.05
 k1tt9nM1nd: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Ah 4h]
+Dealt to Hero [Ah 4h]
 DSOR65: folds 
-s0rrow: raises $0.20 to $0.30
+Hero: raises $0.20 to $0.30
 Gles65: folds 
 Dragsta03: folds 
 Pho3nix.two: folds 
 k1tt9nM1nd: folds 
-Uncalled bet ($0.20) returned to s0rrow
-s0rrow collected $0.25 from pot
+Uncalled bet ($0.20) returned to Hero
+Hero collected $0.25 from pot
 *** SUMMARY ***
 Total pot $0.25 | Rake $0 
 Seat 1: Gles65 folded before Flop (didn't bet)
@@ -363,7 +363,7 @@ Seat 2: Dragsta03 (button) folded before Flop (didn't bet)
 Seat 3: Pho3nix.two (small blind) folded before Flop
 Seat 4: k1tt9nM1nd (big blind) folded before Flop
 Seat 5: DSOR65 folded before Flop (didn't bet)
-Seat 6: s0rrow collected ($0.25)
+Seat 6: Hero collected ($0.25)
 
 
 
@@ -374,12 +374,12 @@ Seat 2: Dragsta03 ($3.90 in chips)
 Seat 3: Pho3nix.two ($9.20 in chips) 
 Seat 4: k1tt9nM1nd ($10.55 in chips) 
 Seat 5: DSOR65 ($8.25 in chips) 
-Seat 6: s0rrow ($7.45 in chips) 
+Seat 6: Hero ($7.45 in chips) 
 k1tt9nM1nd: posts small blind $0.05
 DSOR65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [9s Ac]
-s0rrow: folds 
+Dealt to Hero [9s Ac]
+Hero: folds 
 Gles65: folds 
 Dragsta03: folds 
 Pho3nix.two: raises $0.20 to $0.30
@@ -395,7 +395,7 @@ Seat 2: Dragsta03 folded before Flop (didn't bet)
 Seat 3: Pho3nix.two (button) folded before Flop
 Seat 4: k1tt9nM1nd (small blind) collected ($0.70)
 Seat 5: DSOR65 (big blind) folded before Flop
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -406,31 +406,31 @@ Seat 2: Dragsta03 ($3.90 in chips)
 Seat 3: Pho3nix.two ($8.90 in chips) 
 Seat 4: k1tt9nM1nd ($10.95 in chips) 
 Seat 5: DSOR65 ($8.15 in chips) 
-Seat 6: s0rrow ($7.45 in chips) 
+Seat 6: Hero ($7.45 in chips) 
 DSOR65: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [6s 2c]
+Dealt to Hero [6s 2c]
 Gles65: folds 
 Dragsta03: folds 
 Pho3nix.two: folds 
 Pho3nix.two is sitting out
 k1tt9nM1nd: folds 
 DSOR65: calls $0.05
-s0rrow: checks 
+Hero: checks 
 *** FLOP *** [Kc 2h 7s]
 DSOR65: checks 
-s0rrow: bets $0.20
+Hero: bets $0.20
 DSOR65: calls $0.20
 *** TURN *** [Kc 2h 7s] [5h]
 DSOR65: checks 
-s0rrow: checks 
+Hero: checks 
 *** RIVER *** [Kc 2h 7s 5h] [8c]
 DSOR65: bets $0.70
-s0rrow: calls $0.70
+Hero: calls $0.70
 *** SHOW DOWN ***
 DSOR65: shows [6c Kd] (a pair of Kings)
-s0rrow: mucks hand 
+Hero: mucks hand 
 DSOR65 collected $1.90 from pot
 *** SUMMARY ***
 Total pot $2 | Rake $0.10 
@@ -440,7 +440,7 @@ Seat 2: Dragsta03 folded before Flop (didn't bet)
 Seat 3: Pho3nix.two folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd (button) folded before Flop (didn't bet)
 Seat 5: DSOR65 (small blind) showed [6c Kd] and won ($1.90) with a pair of Kings
-Seat 6: s0rrow (big blind) mucked [6s 2c]
+Seat 6: Hero (big blind) mucked [6s 2c]
 
 
 
@@ -450,32 +450,32 @@ Seat 1: Gles65 ($9.30 in chips)
 Seat 2: Dragsta03 ($3.90 in chips) 
 Seat 4: k1tt9nM1nd ($10.95 in chips) 
 Seat 5: DSOR65 ($9.05 in chips) 
-Seat 6: s0rrow ($6.45 in chips) 
-s0rrow: posts small blind $0.05
+Seat 6: Hero ($6.45 in chips) 
+Hero: posts small blind $0.05
 Gles65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Kc 9c]
+Dealt to Hero [Kc 9c]
 Dragsta03: folds 
 k1tt9nM1nd: folds 
 DSOR65: calls $0.10
-s0rrow: raises $0.20 to $0.30
+Hero: raises $0.20 to $0.30
 Pho3nix.two has returned
 Gles65: folds 
 DSOR65: calls $0.20
 *** FLOP *** [Td 7c Jc]
-s0rrow: bets $0.50
+Hero: bets $0.50
 DSOR65: calls $0.50
 *** TURN *** [Td 7c Jc] [9s]
-s0rrow: checks 
+Hero: checks 
 DSOR65: bets $1
-s0rrow: calls $1
+Hero: calls $1
 *** RIVER *** [Td 7c Jc 9s] [Qs]
-s0rrow: checks 
+Hero: checks 
 DSOR65: checks 
 *** SHOW DOWN ***
-s0rrow: shows [Kc 9c] (a straight, Nine to King)
+Hero: shows [Kc 9c] (a straight, Nine to King)
 DSOR65: mucks hand 
-s0rrow collected $3.55 from pot
+Hero collected $3.55 from pot
 *** SUMMARY ***
 Total pot $3.70 | Rake $0.15 
 Board [Td 7c Jc 9s Qs]
@@ -483,7 +483,7 @@ Seat 1: Gles65 (big blind) folded before Flop
 Seat 2: Dragsta03 folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 (button) mucked [8h Jh]
-Seat 6: s0rrow (small blind) showed [Kc 9c] and won ($3.55) with a straight, Nine to King
+Seat 6: Hero (small blind) showed [Kc 9c] and won ($3.55) with a straight, Nine to King
 
 
 
@@ -494,15 +494,15 @@ Seat 2: Dragsta03 ($3.90 in chips)
 Seat 3: Pho3nix.two ($8.90 in chips) 
 Seat 4: k1tt9nM1nd ($10.95 in chips) 
 Seat 5: DSOR65 ($7.25 in chips) 
-Seat 6: s0rrow ($8.20 in chips) 
+Seat 6: Hero ($8.20 in chips) 
 Gles65: posts small blind $0.05
 Dragsta03: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [8s 9s]
+Dealt to Hero [8s 9s]
 Pho3nix.two: calls $0.10
 k1tt9nM1nd: folds 
 DSOR65: calls $0.10
-s0rrow: raises $0.30 to $0.40
+Hero: raises $0.30 to $0.40
 Gles65: calls $0.35
 Dragsta03: folds 
 Pho3nix.two: calls $0.30
@@ -511,7 +511,7 @@ DSOR65: calls $0.30
 Gles65: checks 
 Pho3nix.two: checks 
 DSOR65: bets $0.40
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Pho3nix.two: calls $0.40
 *** TURN *** [Ah Tc 2d] [Ks]
@@ -528,7 +528,7 @@ Seat 2: Dragsta03 (big blind) folded before Flop
 Seat 3: Pho3nix.two folded on the Turn
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 collected ($2.40)
-Seat 6: s0rrow (button) folded on the Flop
+Seat 6: Hero (button) folded on the Flop
 
 
 
@@ -539,14 +539,14 @@ Seat 2: Dragsta03 ($3.80 in chips)
 Seat 3: Pho3nix.two ($8.10 in chips) 
 Seat 4: k1tt9nM1nd ($10.95 in chips) 
 Seat 5: DSOR65 ($8.85 in chips) 
-Seat 6: s0rrow ($7.80 in chips) 
+Seat 6: Hero ($7.80 in chips) 
 Dragsta03: posts small blind $0.05
 Pho3nix.two: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [7h Kh]
+Dealt to Hero [7h Kh]
 k1tt9nM1nd: folds 
 DSOR65: calls $0.10
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Dragsta03: calls $0.05
 Pho3nix.two: checks 
@@ -570,7 +570,7 @@ Seat 2: Dragsta03 (small blind) folded on the Turn
 Seat 3: Pho3nix.two (big blind) folded on the Turn
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 collected ($0.30)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -580,12 +580,12 @@ Seat 1: Gles65 ($10 in chips)
 Seat 2: Dragsta03 ($3.70 in chips) 
 Seat 4: k1tt9nM1nd ($10.95 in chips) 
 Seat 5: DSOR65 ($9.05 in chips) 
-Seat 6: s0rrow ($7.80 in chips) 
+Seat 6: Hero ($7.80 in chips) 
 k1tt9nM1nd: posts small blind $0.05
 DSOR65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [5d 6h]
-s0rrow: folds 
+Dealt to Hero [5d 6h]
+Hero: folds 
 Gles65: folds 
 Dragsta03: calls $0.10
 k1tt9nM1nd: folds 
@@ -605,7 +605,7 @@ Seat 1: Gles65 folded before Flop (didn't bet)
 Seat 2: Dragsta03 (button) folded on the Turn
 Seat 4: k1tt9nM1nd (small blind) folded before Flop
 Seat 5: DSOR65 (big blind) collected ($0.25)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -615,22 +615,22 @@ Seat 1: Gles65 ($10 in chips)
 Seat 2: Dragsta03 ($3.60 in chips) 
 Seat 4: k1tt9nM1nd ($10.90 in chips) 
 Seat 5: DSOR65 ($9.20 in chips) 
-Seat 6: s0rrow ($7.80 in chips) 
+Seat 6: Hero ($7.80 in chips) 
 DSOR65: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [7d Qd]
+Dealt to Hero [7d Qd]
 Gles65: folds 
 Dragsta03: folds 
 k1tt9nM1nd: folds 
 DSOR65: calls $0.05
-s0rrow: checks 
+Hero: checks 
 *** FLOP *** [Jh 7s Qh]
 DSOR65: checks 
-s0rrow: bets $0.20
+Hero: bets $0.20
 DSOR65: folds 
-Uncalled bet ($0.20) returned to s0rrow
-s0rrow collected $0.20 from pot
+Uncalled bet ($0.20) returned to Hero
+Hero collected $0.20 from pot
 *** SUMMARY ***
 Total pot $0.20 | Rake $0 
 Board [Jh 7s Qh]
@@ -638,7 +638,7 @@ Seat 1: Gles65 folded before Flop (didn't bet)
 Seat 2: Dragsta03 folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd (button) folded before Flop (didn't bet)
 Seat 5: DSOR65 (small blind) folded on the Flop
-Seat 6: s0rrow (big blind) collected ($0.20)
+Seat 6: Hero (big blind) collected ($0.20)
 
 
 
@@ -648,22 +648,22 @@ Seat 1: Gles65 ($10 in chips)
 Seat 2: Dragsta03 ($3.60 in chips) 
 Seat 4: k1tt9nM1nd ($10.90 in chips) 
 Seat 5: DSOR65 ($9.10 in chips) 
-Seat 6: s0rrow ($7.90 in chips) 
-s0rrow: posts small blind $0.05
+Seat 6: Hero ($7.90 in chips) 
+Hero: posts small blind $0.05
 Gles65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [9h Ah]
+Dealt to Hero [9h Ah]
 Dragsta03: folds 
 k1tt9nM1nd: folds 
 DSOR65: calls $0.10
-s0rrow: calls $0.05
+Hero: calls $0.05
 Gles65: checks 
 *** FLOP *** [6c 6h 2c]
-s0rrow: checks 
+Hero: checks 
 Pho3nix.two has returned
 Gles65: bets $0.30
 DSOR65: folds 
-s0rrow: folds 
+Hero: folds 
 Uncalled bet ($0.30) returned to Gles65
 Gles65 collected $0.30 from pot
 Gles65: doesn't show hand 
@@ -674,7 +674,7 @@ Seat 1: Gles65 (big blind) collected ($0.30)
 Seat 2: Dragsta03 folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 (button) folded on the Flop
-Seat 6: s0rrow (small blind) folded on the Flop
+Seat 6: Hero (small blind) folded on the Flop
 
 
 
@@ -684,23 +684,23 @@ Seat 1: Gles65 ($10.20 in chips)
 Seat 2: Dragsta03 ($3.60 in chips) 
 Seat 4: k1tt9nM1nd ($10.90 in chips) 
 Seat 5: DSOR65 ($9 in chips) 
-Seat 6: s0rrow ($7.80 in chips) 
+Seat 6: Hero ($7.80 in chips) 
 Gles65: posts small blind $0.05
 Dragsta03: posts big blind $0.10
 Pho3nix.two: sits out 
 *** HOLE CARDS ***
-Dealt to s0rrow [7h 7s]
+Dealt to Hero [7h 7s]
 k1tt9nM1nd: folds 
 DSOR65: folds 
-s0rrow: raises $0.20 to $0.30
+Hero: raises $0.20 to $0.30
 Gles65: folds 
 Dragsta03: calls $0.20
 *** FLOP *** [8d 9h Jh]
 Dragsta03: checks 
-s0rrow: bets $0.50
+Hero: bets $0.50
 Dragsta03: folds 
-Uncalled bet ($0.50) returned to s0rrow
-s0rrow collected $0.65 from pot
+Uncalled bet ($0.50) returned to Hero
+Hero collected $0.65 from pot
 *** SUMMARY ***
 Total pot $0.65 | Rake $0 
 Board [8d 9h Jh]
@@ -708,7 +708,7 @@ Seat 1: Gles65 (small blind) folded before Flop
 Seat 2: Dragsta03 (big blind) folded on the Flop
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 folded before Flop (didn't bet)
-Seat 6: s0rrow (button) collected ($0.65)
+Seat 6: Hero (button) collected ($0.65)
 
 
 
@@ -717,15 +717,15 @@ Table 'May IV' 6-max Seat #1 is the button
 Seat 1: Gles65 ($10.15 in chips) 
 Seat 4: k1tt9nM1nd ($10.90 in chips) 
 Seat 5: DSOR65 ($9 in chips) 
-Seat 6: s0rrow ($8.15 in chips) 
+Seat 6: Hero ($8.15 in chips) 
 Dragsta03: is sitting out 
 Pho3nix.two will be allowed to play after the button
 Dragsta03 leaves the table
 k1tt9nM1nd: posts small blind $0.05
 DSOR65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Tc 2c]
-s0rrow: folds 
+Dealt to Hero [Tc 2c]
+Hero: folds 
 Gles65: folds 
 Swiss777 joins the table at seat #2 
 k1tt9nM1nd: folds 
@@ -736,7 +736,7 @@ Total pot $0.10 | Rake $0
 Seat 1: Gles65 (button) folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd (small blind) folded before Flop
 Seat 5: DSOR65 (big blind) collected ($0.10)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -745,36 +745,36 @@ Table 'May IV' 6-max Seat #4 is the button
 Seat 1: Gles65 ($10.15 in chips) 
 Seat 4: k1tt9nM1nd ($10.85 in chips) 
 Seat 5: DSOR65 ($9.05 in chips) 
-Seat 6: s0rrow ($8.15 in chips) 
+Seat 6: Hero ($8.15 in chips) 
 DSOR65: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 Swiss777: sits out 
 Pho3nix.two: sits out 
 *** HOLE CARDS ***
-Dealt to s0rrow [4d Js]
+Dealt to Hero [4d Js]
 Gles65: folds 
 k1tt9nM1nd: folds 
 DSOR65: calls $0.05
-s0rrow: checks 
+Hero: checks 
 *** FLOP *** [Qd 2c 5d]
 DSOR65: checks 
-s0rrow: checks 
+Hero: checks 
 *** TURN *** [Qd 2c 5d] [6s]
 DSOR65: checks 
-s0rrow: checks 
+Hero: checks 
 *** RIVER *** [Qd 2c 5d 6s] [3s]
 DSOR65: checks 
-s0rrow: bets $0.30
+Hero: bets $0.30
 DSOR65: folds 
-Uncalled bet ($0.30) returned to s0rrow
-s0rrow collected $0.20 from pot
+Uncalled bet ($0.30) returned to Hero
+Hero collected $0.20 from pot
 *** SUMMARY ***
 Total pot $0.20 | Rake $0 
 Board [Qd 2c 5d 6s 3s]
 Seat 1: Gles65 folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd (button) folded before Flop (didn't bet)
 Seat 5: DSOR65 (small blind) folded on the River
-Seat 6: s0rrow (big blind) collected ($0.20)
+Seat 6: Hero (big blind) collected ($0.20)
 
 
 
@@ -783,16 +783,16 @@ Table 'May IV' 6-max Seat #5 is the button
 Seat 1: Gles65 ($10.15 in chips) 
 Seat 4: k1tt9nM1nd ($10.85 in chips) 
 Seat 5: DSOR65 ($8.95 in chips) 
-Seat 6: s0rrow ($8.25 in chips) 
-s0rrow: posts small blind $0.05
+Seat 6: Hero ($8.25 in chips) 
+Hero: posts small blind $0.05
 Gles65: posts big blind $0.10
 Swiss777: sits out 
 Pho3nix.two: sits out 
 *** HOLE CARDS ***
-Dealt to s0rrow [7h 2h]
+Dealt to Hero [7h 2h]
 k1tt9nM1nd: folds 
 DSOR65: folds 
-s0rrow: folds 
+Hero: folds 
 Uncalled bet ($0.05) returned to Gles65
 Gles65 collected $0.10 from pot
 Gles65: doesn't show hand 
@@ -801,7 +801,7 @@ Total pot $0.10 | Rake $0
 Seat 1: Gles65 (big blind) collected ($0.10)
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 (button) folded before Flop (didn't bet)
-Seat 6: s0rrow (small blind) folded before Flop
+Seat 6: Hero (small blind) folded before Flop
 
 
 
@@ -811,27 +811,27 @@ Seat 1: Gles65 ($10.20 in chips)
 Seat 2: Swiss777 ($10 in chips) 
 Seat 4: k1tt9nM1nd ($10.85 in chips) 
 Seat 5: DSOR65 ($8.95 in chips) 
-Seat 6: s0rrow ($8.20 in chips) 
+Seat 6: Hero ($8.20 in chips) 
 Gles65: posts small blind $0.05
 Swiss777: posts big blind $0.10
 Pho3nix.two: sits out 
 *** HOLE CARDS ***
-Dealt to s0rrow [Qd Qs]
+Dealt to Hero [Qd Qs]
 k1tt9nM1nd: folds 
 DSOR65: folds 
-s0rrow: raises $0.20 to $0.30
+Hero: raises $0.20 to $0.30
 Gles65: raises $0.60 to $0.90
 Swiss777: folds 
-s0rrow: calls $0.60
+Hero: calls $0.60
 *** FLOP *** [8d Ks 3s]
 Gles65: bets $1.30
-s0rrow: calls $1.30
+Hero: calls $1.30
 *** TURN *** [8d Ks 3s] [4s]
 Gles65: checks 
-s0rrow: bets $6 and is all-in
+Hero: bets $6 and is all-in
 Gles65: folds 
-Uncalled bet ($6) returned to s0rrow
-s0rrow collected $4.30 from pot
+Uncalled bet ($6) returned to Hero
+Hero collected $4.30 from pot
 *** SUMMARY ***
 Total pot $4.50 | Rake $0.20 
 Board [8d Ks 3s 4s]
@@ -839,7 +839,7 @@ Seat 1: Gles65 (small blind) folded on the Turn
 Seat 2: Swiss777 (big blind) folded before Flop
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 folded before Flop (didn't bet)
-Seat 6: s0rrow (button) collected ($4.30)
+Seat 6: Hero (button) collected ($4.30)
 
 
 
@@ -850,14 +850,14 @@ Seat 2: Swiss777 ($10 in chips)
 Seat 3: Pho3nix.two ($8 in chips) 
 Seat 4: k1tt9nM1nd ($10.85 in chips) 
 Seat 5: DSOR65 ($8.95 in chips) 
-Seat 6: s0rrow ($10.30 in chips) 
+Seat 6: Hero ($10.30 in chips) 
 Swiss777: posts small blind $0.05
 Pho3nix.two: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qc Ad]
+Dealt to Hero [Qc Ad]
 k1tt9nM1nd: raises $0.30 to $0.40
 DSOR65: calls $0.40
-s0rrow: calls $0.40
+Hero: calls $0.40
 Gles65 has timed out
 Gles65: folds 
 Gles65 is sitting out
@@ -867,20 +867,20 @@ Pho3nix.two: folds
 *** FLOP *** [Td 8c Ac]
 k1tt9nM1nd: bets $1
 DSOR65: calls $1
-s0rrow: calls $1
+Hero: calls $1
 *** TURN *** [Td 8c Ac] [6h]
 k1tt9nM1nd: checks 
 DSOR65: checks 
-s0rrow: checks 
+Hero: checks 
 *** RIVER *** [Td 8c Ac 6h] [Tc]
 k1tt9nM1nd: checks 
 DSOR65: checks 
-s0rrow: checks 
+Hero: checks 
 *** SHOW DOWN ***
 k1tt9nM1nd: shows [Jh As] (two pair, Aces and Tens)
 DSOR65: mucks hand 
-s0rrow: shows [Qc Ad] (two pair, Aces and Tens - Queen kicker)
-s0rrow collected $4.15 from pot
+Hero: shows [Qc Ad] (two pair, Aces and Tens - Queen kicker)
+Hero collected $4.15 from pot
 *** SUMMARY ***
 Total pot $4.35 | Rake $0.20 
 Board [Td 8c Ac 6h Tc]
@@ -889,7 +889,7 @@ Seat 2: Swiss777 (small blind) folded before Flop
 Seat 3: Pho3nix.two (big blind) folded before Flop
 Seat 4: k1tt9nM1nd showed [Jh As] and lost with two pair, Aces and Tens
 Seat 5: DSOR65 mucked [Ks Js]
-Seat 6: s0rrow showed [Qc Ad] and won ($4.15) with two pair, Aces and Tens
+Seat 6: Hero showed [Qc Ad] and won ($4.15) with two pair, Aces and Tens
 
 
 
@@ -900,13 +900,13 @@ Seat 2: Swiss777 ($10 in chips)
 Seat 3: Pho3nix.two ($7.90 in chips) 
 Seat 4: k1tt9nM1nd ($10 in chips) 
 Seat 5: DSOR65 ($7.55 in chips) 
-Seat 6: s0rrow ($13.05 in chips) 
+Seat 6: Hero ($13.05 in chips) 
 Pho3nix.two: posts small blind $0.05
 k1tt9nM1nd: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qh 9h]
+Dealt to Hero [Qh 9h]
 DSOR65: calls $0.10
-s0rrow: calls $0.10
+Hero: calls $0.10
 Gles65 has timed out
 Gles65: folds 
 Gles65 is sitting out
@@ -918,12 +918,12 @@ k1tt9nM1nd: checks
 Pho3nix.two: checks 
 k1tt9nM1nd: checks 
 DSOR65: checks 
-s0rrow: checks 
+Hero: checks 
 *** TURN *** [3c 4s 7h] [Kc]
 Pho3nix.two: checks 
 k1tt9nM1nd: bets $0.40
 DSOR65: folds 
-s0rrow: folds 
+Hero: folds 
 Pho3nix.two: folds 
 Uncalled bet ($0.40) returned to k1tt9nM1nd
 k1tt9nM1nd collected $0.40 from pot
@@ -935,7 +935,7 @@ Seat 2: Swiss777 (button) folded before Flop (didn't bet)
 Seat 3: Pho3nix.two (small blind) folded on the Turn
 Seat 4: k1tt9nM1nd (big blind) collected ($0.40)
 Seat 5: DSOR65 folded on the Turn
-Seat 6: s0rrow folded on the Turn
+Seat 6: Hero folded on the Turn
 
 
 
@@ -946,12 +946,12 @@ Seat 2: Swiss777 ($10 in chips)
 Seat 3: Pho3nix.two ($7.80 in chips) 
 Seat 4: k1tt9nM1nd ($10.30 in chips) 
 Seat 5: DSOR65 ($7.45 in chips) 
-Seat 6: s0rrow ($12.95 in chips) 
+Seat 6: Hero ($12.95 in chips) 
 k1tt9nM1nd: posts small blind $0.05
 DSOR65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [7d Ac]
-s0rrow: folds 
+Dealt to Hero [7d Ac]
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 Pho3nix.two: raises $0.20 to $0.30
@@ -980,7 +980,7 @@ Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 3: Pho3nix.two (button) mucked [Js 8c]
 Seat 4: k1tt9nM1nd (small blind) folded before Flop
 Seat 5: DSOR65 (big blind) showed [5h 5d] and won ($6.55) with a pair of Fives
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -991,29 +991,29 @@ Seat 2: Swiss777 ($10 in chips)
 Seat 3: Pho3nix.two ($4.40 in chips) 
 Seat 4: k1tt9nM1nd ($10.25 in chips) 
 Seat 5: DSOR65 ($10.60 in chips) 
-Seat 6: s0rrow ($12.95 in chips) 
+Seat 6: Hero ($12.95 in chips) 
 DSOR65: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [4c 5c]
+Dealt to Hero [4c 5c]
 Gles65: folds 
 Swiss777: folds 
 Pho3nix.two: folds 
 k1tt9nM1nd: folds 
 DSOR65: calls $0.05
-s0rrow: checks 
+Hero: checks 
 *** FLOP *** [5s 5d 5h]
 DSOR65: checks 
-s0rrow: checks 
+Hero: checks 
 *** TURN *** [5s 5d 5h] [6c]
 DSOR65: bets $0.10
-s0rrow: calls $0.10
+Hero: calls $0.10
 *** RIVER *** [5s 5d 5h 6c] [2h]
 DSOR65: bets $0.10
-s0rrow: raises $0.30 to $0.40
+Hero: raises $0.30 to $0.40
 DSOR65: folds 
-Uncalled bet ($0.30) returned to s0rrow
-s0rrow collected $0.60 from pot
+Uncalled bet ($0.30) returned to Hero
+Hero collected $0.60 from pot
 *** SUMMARY ***
 Total pot $0.60 | Rake $0 
 Board [5s 5d 5h 6c 2h]
@@ -1022,7 +1022,7 @@ Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 3: Pho3nix.two folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd (button) folded before Flop (didn't bet)
 Seat 5: DSOR65 (small blind) folded on the River
-Seat 6: s0rrow (big blind) collected ($0.60)
+Seat 6: Hero (big blind) collected ($0.60)
 
 
 
@@ -1033,16 +1033,16 @@ Seat 2: Swiss777 ($10 in chips)
 Seat 3: Pho3nix.two ($4.40 in chips) 
 Seat 4: k1tt9nM1nd ($10.25 in chips) 
 Seat 5: DSOR65 ($10.30 in chips) 
-Seat 6: s0rrow ($13.25 in chips) 
-s0rrow: posts small blind $0.05
+Seat 6: Hero ($13.25 in chips) 
+Hero: posts small blind $0.05
 Gles65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [4h Qh]
+Dealt to Hero [4h Qh]
 Swiss777: folds 
 Pho3nix.two: calls $0.10
 k1tt9nM1nd: raises $0.40 to $0.50
 DSOR65: folds 
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Pho3nix.two: calls $0.40
 *** FLOP *** [9h 8s 3c]
@@ -1066,7 +1066,7 @@ Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 3: Pho3nix.two showed [Jd 9s] and lost with two pair, Nines and Eights
 Seat 4: k1tt9nM1nd showed [Ac 9d] and won ($8.55) with two pair, Nines and Eights
 Seat 5: DSOR65 (button) folded before Flop (didn't bet)
-Seat 6: s0rrow (small blind) folded before Flop
+Seat 6: Hero (small blind) folded before Flop
 
 
 
@@ -1076,15 +1076,15 @@ Seat 1: Gles65 ($9.90 in chips)
 Seat 2: Swiss777 ($10 in chips) 
 Seat 4: k1tt9nM1nd ($14.40 in chips) 
 Seat 5: DSOR65 ($10.30 in chips) 
-Seat 6: s0rrow ($13.20 in chips) 
+Seat 6: Hero ($13.20 in chips) 
 Gles65: posts small blind $0.05
 Swiss777: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [3c Qc]
+Dealt to Hero [3c Qc]
 k1tt9nM1nd: folds 
 Pho3nix.two leaves the table
 DSOR65: calls $0.10
-s0rrow: folds 
+Hero: folds 
 Gles65: calls $0.05
 Dashornman joins the table at seat #3 
 Swiss777: checks 
@@ -1111,7 +1111,7 @@ Seat 1: Gles65 (small blind) showed [9d Qh] and won ($4.30) with a straight, Eig
 Seat 2: Swiss777 (big blind) folded on the Flop
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 showed [Kc Kh] and lost with a pair of Kings
-Seat 6: s0rrow (button) folded before Flop (didn't bet)
+Seat 6: Hero (button) folded before Flop (didn't bet)
 
 
 
@@ -1122,14 +1122,14 @@ Seat 2: Swiss777 ($10 in chips)
 Seat 3: Dashornman ($10 in chips) 
 Seat 4: k1tt9nM1nd ($14.40 in chips) 
 Seat 5: DSOR65 ($8.10 in chips) 
-Seat 6: s0rrow ($13.20 in chips) 
+Seat 6: Hero ($13.20 in chips) 
 Swiss777: posts small blind $0.05
 Dashornman: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [4c Qh]
+Dealt to Hero [4c Qh]
 k1tt9nM1nd: folds 
 DSOR65: folds 
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 Uncalled bet ($0.05) returned to Dashornman
@@ -1142,7 +1142,7 @@ Seat 2: Swiss777 (small blind) folded before Flop
 Seat 3: Dashornman (big blind) collected ($0.10)
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 folded before Flop (didn't bet)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -1153,34 +1153,34 @@ Seat 2: Swiss777 ($10 in chips)
 Seat 3: Dashornman ($10.05 in chips) 
 Seat 4: k1tt9nM1nd ($14.40 in chips) 
 Seat 5: DSOR65 ($8.10 in chips) 
-Seat 6: s0rrow ($13.20 in chips) 
+Seat 6: Hero ($13.20 in chips) 
 Dashornman: posts small blind $0.05
 k1tt9nM1nd: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qd Qh]
+Dealt to Hero [Qd Qh]
 DSOR65: folds 
-s0rrow: raises $0.20 to $0.30
+Hero: raises $0.20 to $0.30
 Gles65: calls $0.30
 Swiss777: calls $0.30
 Dashornman: folds 
 k1tt9nM1nd: folds 
 *** FLOP *** [4h Td Qs]
-s0rrow: checks 
+Hero: checks 
 Gles65: bets $1
 Swiss777: folds 
-s0rrow: calls $1
+Hero: calls $1
 *** TURN *** [4h Td Qs] [7h]
-s0rrow: checks 
+Hero: checks 
 Gles65: bets $3
-s0rrow: calls $3
+Hero: calls $3
 *** RIVER *** [4h Td Qs 7h] [6c]
-s0rrow: bets $8.90 and is all-in
+Hero: bets $8.90 and is all-in
 Gles65: calls $7.70 and is all-in
-Uncalled bet ($1.20) returned to s0rrow
+Uncalled bet ($1.20) returned to Hero
 *** SHOW DOWN ***
-s0rrow: shows [Qd Qh] (three of a kind, Queens)
+Hero: shows [Qd Qh] (three of a kind, Queens)
 Gles65: shows [Ad Ac] (a pair of Aces)
-s0rrow collected $23.25 from pot
+Hero collected $23.25 from pot
 *** SUMMARY ***
 Total pot $24.45 | Rake $1.20 
 Board [4h Td Qs 7h 6c]
@@ -1189,7 +1189,7 @@ Seat 2: Swiss777 (button) folded on the Flop
 Seat 3: Dashornman (small blind) folded before Flop
 Seat 4: k1tt9nM1nd (big blind) folded before Flop
 Seat 5: DSOR65 folded before Flop (didn't bet)
-Seat 6: s0rrow showed [Qd Qh] and won ($23.25) with three of a kind, Queens
+Seat 6: Hero showed [Qd Qh] and won ($23.25) with three of a kind, Queens
 
 
 
@@ -1200,12 +1200,12 @@ Seat 2: Swiss777 ($10 in chips)
 Seat 3: Dashornman ($10 in chips) 
 Seat 4: k1tt9nM1nd ($14.30 in chips) 
 Seat 5: DSOR65 ($8.10 in chips) 
-Seat 6: s0rrow ($24.45 in chips) 
+Seat 6: Hero ($24.45 in chips) 
 k1tt9nM1nd: posts small blind $0.05
 DSOR65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [4s 9c]
-s0rrow: folds 
+Dealt to Hero [4s 9c]
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 Dashornman: folds 
@@ -1220,7 +1220,7 @@ Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 3: Dashornman (button) folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd (small blind) folded before Flop
 Seat 5: DSOR65 (big blind) collected ($0.10)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -1230,16 +1230,16 @@ Seat 1: Gles65 ($10 in chips)
 Seat 2: Swiss777 ($10 in chips) 
 Seat 4: k1tt9nM1nd ($14.25 in chips) 
 Seat 5: DSOR65 ($8.15 in chips) 
-Seat 6: s0rrow ($24.45 in chips) 
+Seat 6: Hero ($24.45 in chips) 
 DSOR65: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [6d 5h]
+Dealt to Hero [6d 5h]
 Gles65: calls $0.10
 Swiss777: folds 
 k1tt9nM1nd: raises $0.40 to $0.50
 DSOR65: calls $0.45
-s0rrow: folds 
+Hero: folds 
 Gles65: calls $0.40
 *** FLOP *** [3s 6h 8s]
 DSOR65: checks 
@@ -1256,7 +1256,7 @@ Seat 1: Gles65 folded on the Flop
 Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd (button) collected ($1.55)
 Seat 5: DSOR65 (small blind) folded on the Flop
-Seat 6: s0rrow (big blind) folded before Flop
+Seat 6: Hero (big blind) folded before Flop
 
 
 
@@ -1266,15 +1266,15 @@ Seat 1: Gles65 ($9.50 in chips)
 Seat 2: Swiss777 ($10 in chips) 
 Seat 4: k1tt9nM1nd ($15.30 in chips) 
 Seat 5: DSOR65 ($7.65 in chips) 
-Seat 6: s0rrow ($24.35 in chips) 
-s0rrow: posts small blind $0.05
+Seat 6: Hero ($24.35 in chips) 
+Hero: posts small blind $0.05
 Gles65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Td 5h]
+Dealt to Hero [Td 5h]
 Swiss777: folds 
 k1tt9nM1nd: folds 
 DSOR65: folds 
-s0rrow: folds 
+Hero: folds 
 Uncalled bet ($0.05) returned to Gles65
 Gles65 collected $0.10 from pot
 Gles65: doesn't show hand 
@@ -1284,7 +1284,7 @@ Seat 1: Gles65 (big blind) collected ($0.10)
 Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 (button) folded before Flop (didn't bet)
-Seat 6: s0rrow (small blind) folded before Flop
+Seat 6: Hero (small blind) folded before Flop
 
 
 
@@ -1294,16 +1294,16 @@ Seat 1: Gles65 ($9.55 in chips)
 Seat 2: Swiss777 ($10 in chips) 
 Seat 4: k1tt9nM1nd ($15.30 in chips) 
 Seat 5: DSOR65 ($7.65 in chips) 
-Seat 6: s0rrow ($24.30 in chips) 
+Seat 6: Hero ($24.30 in chips) 
 Gles65: posts small blind $0.05
 Swiss777: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Jh 5s]
+Dealt to Hero [Jh 5s]
 k1tt9nM1nd: folds 
 DSOR65 has timed out
 DSOR65: folds 
 DSOR65 is sitting out
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Uncalled bet ($0.05) returned to Swiss777
 Swiss777 collected $0.10 from pot
@@ -1314,7 +1314,7 @@ Seat 1: Gles65 (small blind) folded before Flop
 Seat 2: Swiss777 (big blind) collected ($0.10)
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 folded before Flop (didn't bet)
-Seat 6: s0rrow (button) folded before Flop (didn't bet)
+Seat 6: Hero (button) folded before Flop (didn't bet)
 
 
 
@@ -1323,12 +1323,12 @@ Table 'May IV' 6-max Seat #1 is the button
 Seat 1: Gles65 ($9.50 in chips) 
 Seat 2: Swiss777 ($10.05 in chips) 
 Seat 4: k1tt9nM1nd ($15.30 in chips) 
-Seat 6: s0rrow ($24.30 in chips) 
+Seat 6: Hero ($24.30 in chips) 
 Swiss777: posts small blind $0.05
 k1tt9nM1nd: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Kd 8s]
-s0rrow: folds 
+Dealt to Hero [Kd 8s]
+Hero: folds 
 DSOR65 has returned
 Gles65: folds 
 Swiss777: folds 
@@ -1339,7 +1339,7 @@ Total pot $0.10 | Rake $0
 Seat 1: Gles65 (button) folded before Flop (didn't bet)
 Seat 2: Swiss777 (small blind) folded before Flop
 Seat 4: k1tt9nM1nd (big blind) collected ($0.10)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -1349,12 +1349,12 @@ Seat 1: Gles65 ($9.50 in chips)
 Seat 2: Swiss777 ($10 in chips) 
 Seat 4: k1tt9nM1nd ($15.35 in chips) 
 Seat 5: DSOR65 ($7.65 in chips) 
-Seat 6: s0rrow ($24.30 in chips) 
+Seat 6: Hero ($24.30 in chips) 
 k1tt9nM1nd: posts small blind $0.05
 DSOR65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [6d Qc]
-s0rrow: folds 
+Dealt to Hero [6d Qc]
+Hero: folds 
 Gles65: folds 
 Swiss777: raises $0.30 to $0.40
 k1tt9nM1nd: folds 
@@ -1382,7 +1382,7 @@ Seat 1: Gles65 folded before Flop (didn't bet)
 Seat 2: Swiss777 (button) showed [9d 9s] and won ($4.65) with two pair, Nines and Fours
 Seat 4: k1tt9nM1nd (small blind) folded before Flop
 Seat 5: DSOR65 (big blind) showed [8d Jc] and lost with two pair, Eights and Fours
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -1392,12 +1392,12 @@ Seat 1: Gles65 ($9.50 in chips)
 Seat 2: Swiss777 ($12.25 in chips) 
 Seat 4: k1tt9nM1nd ($15.30 in chips) 
 Seat 5: DSOR65 ($5.25 in chips) 
-Seat 6: s0rrow ($24.30 in chips) 
+Seat 6: Hero ($24.30 in chips) 
 DSOR65: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 StifflerPL: sits out 
 *** HOLE CARDS ***
-Dealt to s0rrow [Js 9c]
+Dealt to Hero [Js 9c]
 Gles65 has timed out
 Gles65: folds 
 Gles65 is sitting out
@@ -1405,7 +1405,7 @@ Gles65 has returned
 Swiss777: folds 
 k1tt9nM1nd: raises $0.20 to $0.30
 DSOR65: calls $0.25
-s0rrow: folds 
+Hero: folds 
 *** FLOP *** [4s Jc 4c]
 DSOR65: checks 
 k1tt9nM1nd: checks 
@@ -1421,7 +1421,7 @@ Seat 1: Gles65 folded before Flop (didn't bet)
 Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd (button) folded on the Turn
 Seat 5: DSOR65 (small blind) collected ($0.70)
-Seat 6: s0rrow (big blind) folded before Flop
+Seat 6: Hero (big blind) folded before Flop
 
 
 
@@ -1432,28 +1432,28 @@ Seat 2: Swiss777 ($12.25 in chips)
 Seat 3: StifflerPL ($10 in chips) 
 Seat 4: k1tt9nM1nd ($15 in chips) 
 Seat 5: DSOR65 ($5.65 in chips) 
-Seat 6: s0rrow ($24.20 in chips) 
-s0rrow: posts small blind $0.05
+Seat 6: Hero ($24.20 in chips) 
+Hero: posts small blind $0.05
 Gles65: posts big blind $0.10
 StifflerPL: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Ah 7d]
+Dealt to Hero [Ah 7d]
 Swiss777: folds 
 StifflerPL: checks 
 k1tt9nM1nd: folds 
 DSOR65: folds 
-s0rrow: calls $0.05
+Hero: calls $0.05
 Gles65: checks 
 *** FLOP *** [5d Td Ac]
-s0rrow: checks 
+Hero: checks 
 Gles65: checks 
 StifflerPL: checks 
 *** TURN *** [5d Td Ac] [4s]
-s0rrow: bets $0.20
+Hero: bets $0.20
 Gles65: folds 
 StifflerPL: folds 
-Uncalled bet ($0.20) returned to s0rrow
-s0rrow collected $0.30 from pot
+Uncalled bet ($0.20) returned to Hero
+Hero collected $0.30 from pot
 *** SUMMARY ***
 Total pot $0.30 | Rake $0 
 Board [5d Td Ac 4s]
@@ -1462,7 +1462,7 @@ Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 3: StifflerPL folded on the Turn
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 (button) folded before Flop (didn't bet)
-Seat 6: s0rrow (small blind) collected ($0.30)
+Seat 6: Hero (small blind) collected ($0.30)
 
 
 
@@ -1473,31 +1473,31 @@ Seat 2: Swiss777 ($12.25 in chips)
 Seat 3: StifflerPL ($9.90 in chips) 
 Seat 4: k1tt9nM1nd ($15 in chips) 
 Seat 5: DSOR65 ($5.65 in chips) 
-Seat 6: s0rrow ($24.40 in chips) 
+Seat 6: Hero ($24.40 in chips) 
 Gles65: posts small blind $0.05
 Swiss777: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [9s 7s]
+Dealt to Hero [9s 7s]
 StifflerPL: folds 
 k1tt9nM1nd: folds 
 DSOR65: calls $0.10
-s0rrow: raises $0.20 to $0.30
+Hero: raises $0.20 to $0.30
 Gles65: calls $0.25
 Swiss777: folds 
 DSOR65: calls $0.20
 *** FLOP *** [3c Qc Js]
 Gles65: checks 
 DSOR65: checks 
-s0rrow: bets $0.60
+Hero: bets $0.60
 Gles65: calls $0.60
 DSOR65: folds 
 *** TURN *** [3c Qc Js] [Kd]
 Gles65: checks 
-s0rrow: bets $1.50
+Hero: bets $1.50
 Gles65: calls $1.50
 *** RIVER *** [3c Qc Js Kd] [3s]
 Gles65: bets $7 and is all-in
-s0rrow: folds 
+Hero: folds 
 Uncalled bet ($7) returned to Gles65
 Gles65 collected $4.95 from pot
 Gles65: doesn't show hand 
@@ -1509,7 +1509,7 @@ Seat 2: Swiss777 (big blind) folded before Flop
 Seat 3: StifflerPL folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 folded on the Flop
-Seat 6: s0rrow (button) folded on the River
+Seat 6: Hero (button) folded on the River
 
 
 
@@ -1520,14 +1520,14 @@ Seat 2: Swiss777 ($12.15 in chips)
 Seat 3: StifflerPL ($9.90 in chips) 
 Seat 4: k1tt9nM1nd ($15 in chips) 
 Seat 5: DSOR65 ($5.35 in chips) 
-Seat 6: s0rrow ($22 in chips) 
+Seat 6: Hero ($22 in chips) 
 Swiss777: posts small blind $0.05
 StifflerPL: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qh 4h]
+Dealt to Hero [Qh 4h]
 k1tt9nM1nd: folds 
 DSOR65: calls $0.10
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 StifflerPL: checks 
@@ -1551,7 +1551,7 @@ Seat 2: Swiss777 (small blind) folded before Flop
 Seat 3: StifflerPL (big blind) collected ($0.65)
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 folded on the River
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -1562,13 +1562,13 @@ Seat 2: Swiss777 ($12.10 in chips)
 Seat 3: StifflerPL ($10.25 in chips) 
 Seat 4: k1tt9nM1nd ($15 in chips) 
 Seat 5: DSOR65 ($5.05 in chips) 
-Seat 6: s0rrow ($22 in chips) 
+Seat 6: Hero ($22 in chips) 
 StifflerPL: posts small blind $0.05
 k1tt9nM1nd: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qh 5d]
+Dealt to Hero [Qh 5d]
 DSOR65: calls $0.10
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Swiss777: raises $0.40 to $0.50
 StifflerPL: folds 
@@ -1584,7 +1584,7 @@ Seat 2: Swiss777 (button) folded before Flop
 Seat 3: StifflerPL (small blind) folded before Flop
 Seat 4: k1tt9nM1nd (big blind) folded before Flop
 Seat 5: DSOR65 collected ($1.15)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -1595,12 +1595,12 @@ Seat 2: Swiss777 ($11.60 in chips)
 Seat 3: StifflerPL ($10.20 in chips) 
 Seat 4: k1tt9nM1nd ($14.90 in chips) 
 Seat 5: DSOR65 ($5.70 in chips) 
-Seat 6: s0rrow ($22 in chips) 
+Seat 6: Hero ($22 in chips) 
 k1tt9nM1nd: posts small blind $0.05
 DSOR65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Kd 5c]
-s0rrow: folds 
+Dealt to Hero [Kd 5c]
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 StifflerPL: folds 
@@ -1614,7 +1614,7 @@ Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 3: StifflerPL (button) folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd (small blind) folded before Flop
 Seat 5: DSOR65 (big blind) collected ($0.10)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -1625,23 +1625,23 @@ Seat 2: Swiss777 ($11.60 in chips)
 Seat 3: StifflerPL ($10.20 in chips) 
 Seat 4: k1tt9nM1nd ($14.85 in chips) 
 Seat 5: DSOR65 ($5.75 in chips) 
-Seat 6: s0rrow ($22 in chips) 
+Seat 6: Hero ($22 in chips) 
 DSOR65: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [3c Jc]
+Dealt to Hero [3c Jc]
 Gles65: folds 
 Swiss777: folds 
 StifflerPL: calls $0.10
 k1tt9nM1nd: folds 
 DSOR65: calls $0.05
-s0rrow: checks 
+Hero: checks 
 *** FLOP *** [Ah Ts 2d]
 DSOR65: checks 
-s0rrow: checks 
+Hero: checks 
 StifflerPL: bets $0.20
 DSOR65: folds 
-s0rrow: folds 
+Hero: folds 
 Uncalled bet ($0.20) returned to StifflerPL
 StifflerPL collected $0.30 from pot
 StifflerPL: doesn't show hand 
@@ -1653,7 +1653,7 @@ Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 3: StifflerPL collected ($0.30)
 Seat 4: k1tt9nM1nd (button) folded before Flop (didn't bet)
 Seat 5: DSOR65 (small blind) folded on the Flop
-Seat 6: s0rrow (big blind) folded on the Flop
+Seat 6: Hero (big blind) folded on the Flop
 
 
 
@@ -1664,16 +1664,16 @@ Seat 2: Swiss777 ($11.60 in chips)
 Seat 3: StifflerPL ($10.40 in chips) 
 Seat 4: k1tt9nM1nd ($14.85 in chips) 
 Seat 5: DSOR65 ($5.65 in chips) 
-Seat 6: s0rrow ($21.90 in chips) 
-s0rrow: posts small blind $0.05
+Seat 6: Hero ($21.90 in chips) 
+Hero: posts small blind $0.05
 Gles65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Kh 4d]
+Dealt to Hero [Kh 4d]
 Swiss777: folds 
 StifflerPL: folds 
 k1tt9nM1nd: folds 
 DSOR65: folds 
-s0rrow: folds 
+Hero: folds 
 Uncalled bet ($0.05) returned to Gles65
 Gles65 collected $0.10 from pot
 Gles65: doesn't show hand 
@@ -1684,7 +1684,7 @@ Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 3: StifflerPL folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 (button) folded before Flop (didn't bet)
-Seat 6: s0rrow (small blind) folded before Flop
+Seat 6: Hero (small blind) folded before Flop
 
 
 
@@ -1695,19 +1695,19 @@ Seat 2: Swiss777 ($11.60 in chips)
 Seat 3: StifflerPL ($10.40 in chips) 
 Seat 4: k1tt9nM1nd ($14.85 in chips) 
 Seat 5: DSOR65 ($5.65 in chips) 
-Seat 6: s0rrow ($21.85 in chips) 
+Seat 6: Hero ($21.85 in chips) 
 Gles65: posts small blind $0.05
 Swiss777: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Ac 5h]
+Dealt to Hero [Ac 5h]
 StifflerPL: folds 
 k1tt9nM1nd: folds 
 DSOR65: folds 
-s0rrow: raises $0.20 to $0.30
+Hero: raises $0.20 to $0.30
 Gles65: folds 
 Swiss777: folds 
-Uncalled bet ($0.20) returned to s0rrow
-s0rrow collected $0.25 from pot
+Uncalled bet ($0.20) returned to Hero
+Hero collected $0.25 from pot
 *** SUMMARY ***
 Total pot $0.25 | Rake $0 
 Seat 1: Gles65 (small blind) folded before Flop
@@ -1715,7 +1715,7 @@ Seat 2: Swiss777 (big blind) folded before Flop
 Seat 3: StifflerPL folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 folded before Flop (didn't bet)
-Seat 6: s0rrow (button) collected ($0.25)
+Seat 6: Hero (button) collected ($0.25)
 
 
 
@@ -1726,14 +1726,14 @@ Seat 2: Swiss777 ($11.50 in chips)
 Seat 3: StifflerPL ($10.40 in chips) 
 Seat 4: k1tt9nM1nd ($14.85 in chips) 
 Seat 5: DSOR65 ($5.65 in chips) 
-Seat 6: s0rrow ($22 in chips) 
+Seat 6: Hero ($22 in chips) 
 Swiss777: posts small blind $0.05
 StifflerPL: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [3s Js]
+Dealt to Hero [3s Js]
 k1tt9nM1nd: folds 
 DSOR65: folds 
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 Uncalled bet ($0.05) returned to StifflerPL
@@ -1747,7 +1747,7 @@ Seat 2: Swiss777 (small blind) folded before Flop
 Seat 3: StifflerPL (big blind) collected ($0.10)
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 folded before Flop (didn't bet)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -1757,12 +1757,12 @@ Seat 1: Gles65 ($11.95 in chips)
 Seat 2: Swiss777 ($11.45 in chips) 
 Seat 4: k1tt9nM1nd ($14.85 in chips) 
 Seat 5: DSOR65 ($5.65 in chips) 
-Seat 6: s0rrow ($22 in chips) 
+Seat 6: Hero ($22 in chips) 
 k1tt9nM1nd: posts small blind $0.05
 DSOR65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [6h 9h]
-s0rrow: folds 
+Dealt to Hero [6h 9h]
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 k1tt9nM1nd: folds 
@@ -1774,7 +1774,7 @@ Seat 1: Gles65 folded before Flop (didn't bet)
 Seat 2: Swiss777 (button) folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd (small blind) folded before Flop
 Seat 5: DSOR65 (big blind) collected ($0.10)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -1784,23 +1784,23 @@ Seat 1: Gles65 ($11.95 in chips)
 Seat 2: Swiss777 ($11.45 in chips) 
 Seat 4: k1tt9nM1nd ($14.80 in chips) 
 Seat 5: DSOR65 ($5.70 in chips) 
-Seat 6: s0rrow ($22 in chips) 
+Seat 6: Hero ($22 in chips) 
 DSOR65: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Kc 9s]
+Dealt to Hero [Kc 9s]
 Gles65: folds 
 Swiss777: folds 
 k1tt9nM1nd: raises $0.20 to $0.30
 DSOR65: calls $0.25
-s0rrow: calls $0.20
+Hero: calls $0.20
 *** FLOP *** [6h Ad 5h]
 ChrVo joins the table at seat #3 
 DSOR65: checks 
-s0rrow: checks 
+Hero: checks 
 k1tt9nM1nd: bets $0.70
 DSOR65: folds 
-s0rrow: folds 
+Hero: folds 
 Uncalled bet ($0.70) returned to k1tt9nM1nd
 k1tt9nM1nd collected $0.90 from pot
 *** SUMMARY ***
@@ -1810,7 +1810,7 @@ Seat 1: Gles65 folded before Flop (didn't bet)
 Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd (button) collected ($0.90)
 Seat 5: DSOR65 (small blind) folded on the Flop
-Seat 6: s0rrow (big blind) folded on the Flop
+Seat 6: Hero (big blind) folded on the Flop
 
 
 
@@ -1821,17 +1821,17 @@ Seat 2: Swiss777 ($11.45 in chips)
 Seat 3: ChrVo ($10 in chips) 
 Seat 4: k1tt9nM1nd ($15.40 in chips) 
 Seat 5: DSOR65 ($5.40 in chips) 
-Seat 6: s0rrow ($21.70 in chips) 
-s0rrow: posts small blind $0.05
+Seat 6: Hero ($21.70 in chips) 
+Hero: posts small blind $0.05
 Gles65: posts big blind $0.10
 ChrVo: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [9c Ts]
+Dealt to Hero [9c Ts]
 Swiss777: folds 
 ChrVo: checks 
 k1tt9nM1nd: folds 
 DSOR65: calls $0.10
-s0rrow: folds 
+Hero: folds 
 Gles65: checks 
 *** FLOP *** [8s Ks 4c]
 Gles65: checks 
@@ -1853,7 +1853,7 @@ Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 3: ChrVo folded on the Turn
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 (button) collected ($0.35)
-Seat 6: s0rrow (small blind) folded before Flop
+Seat 6: Hero (small blind) folded before Flop
 
 
 
@@ -1864,21 +1864,21 @@ Seat 2: Swiss777 ($11.45 in chips)
 Seat 3: ChrVo ($9.90 in chips) 
 Seat 4: k1tt9nM1nd ($15.40 in chips) 
 Seat 5: DSOR65 ($5.65 in chips) 
-Seat 6: s0rrow ($21.65 in chips) 
+Seat 6: Hero ($21.65 in chips) 
 Gles65: posts small blind $0.05
 Swiss777: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qs 9h]
+Dealt to Hero [Qs 9h]
 ChrVo: calls $0.10
 k1tt9nM1nd: folds 
 DSOR65: folds 
-s0rrow: raises $0.20 to $0.30
+Hero: raises $0.20 to $0.30
 Gles65: folds 
 Swiss777: folds 
 ChrVo: calls $0.20
 *** FLOP *** [8h Ad Kh]
 ChrVo: bets $0.60
-s0rrow: folds 
+Hero: folds 
 Uncalled bet ($0.60) returned to ChrVo
 ChrVo collected $0.75 from pot
 ChrVo: doesn't show hand 
@@ -1890,7 +1890,7 @@ Seat 2: Swiss777 (big blind) folded before Flop
 Seat 3: ChrVo collected ($0.75)
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 folded before Flop (didn't bet)
-Seat 6: s0rrow (button) folded on the Flop
+Seat 6: Hero (button) folded on the Flop
 
 
 
@@ -1901,14 +1901,14 @@ Seat 2: Swiss777 ($11.35 in chips)
 Seat 3: ChrVo ($10.35 in chips) 
 Seat 4: k1tt9nM1nd ($15.40 in chips) 
 Seat 5: DSOR65 ($5.65 in chips) 
-Seat 6: s0rrow ($21.35 in chips) 
+Seat 6: Hero ($21.35 in chips) 
 Swiss777: posts small blind $0.05
 ChrVo: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Ks Jc]
+Dealt to Hero [Ks Jc]
 k1tt9nM1nd: folds 
 DSOR65: folds 
-s0rrow: folds 
+Hero: folds 
 Gles65 has timed out
 Gles65: folds 
 Gles65 is sitting out
@@ -1924,7 +1924,7 @@ Seat 2: Swiss777 (small blind) folded before Flop
 Seat 3: ChrVo (big blind) collected ($0.10)
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
 Seat 5: DSOR65 folded before Flop (didn't bet)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -1935,13 +1935,13 @@ Seat 2: Swiss777 ($11.30 in chips)
 Seat 3: ChrVo ($10.40 in chips) 
 Seat 4: k1tt9nM1nd ($15.40 in chips) 
 Seat 5: DSOR65 ($5.65 in chips) 
-Seat 6: s0rrow ($21.35 in chips) 
+Seat 6: Hero ($21.35 in chips) 
 ChrVo: posts small blind $0.05
 k1tt9nM1nd: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qs Js]
+Dealt to Hero [Qs Js]
 DSOR65: folds 
-s0rrow: raises $0.20 to $0.30
+Hero: raises $0.20 to $0.30
 DSOR65 leaves the table
 Gles65: calls $0.30
 Swiss777: folds 
@@ -1949,18 +1949,18 @@ ChrVo: calls $0.25
 k1tt9nM1nd: folds 
 *** FLOP *** [Ad Qd 3h]
 ChrVo: bets $0.50
-s0rrow: calls $0.50
+Hero: calls $0.50
 Gles65: folds 
 *** TURN *** [Ad Qd 3h] [Ts]
 ChrVo: bets $1.30
-s0rrow: calls $1.30
+Hero: calls $1.30
 *** RIVER *** [Ad Qd 3h Ts] [3s]
 ChrVo: bets $3.30
-s0rrow: calls $3.30
+Hero: calls $3.30
 *** SHOW DOWN ***
 ChrVo: shows [8d Kd] (a pair of Threes)
-s0rrow: shows [Qs Js] (two pair, Queens and Threes)
-s0rrow collected $10.65 from pot
+Hero: shows [Qs Js] (two pair, Queens and Threes)
+Hero collected $10.65 from pot
 *** SUMMARY ***
 Total pot $11.20 | Rake $0.55 
 Board [Ad Qd 3h Ts 3s]
@@ -1969,7 +1969,7 @@ Seat 2: Swiss777 (button) folded before Flop (didn't bet)
 Seat 3: ChrVo (small blind) showed [8d Kd] and lost with a pair of Threes
 Seat 4: k1tt9nM1nd (big blind) folded before Flop
 Seat 5: DSOR65 folded before Flop (didn't bet)
-Seat 6: s0rrow showed [Qs Js] and won ($10.65) with two pair, Queens and Threes
+Seat 6: Hero showed [Qs Js] and won ($10.65) with two pair, Queens and Threes
 
 
 
@@ -1979,16 +1979,16 @@ Seat 1: Gles65 ($11.50 in chips)
 Seat 2: Swiss777 ($11.30 in chips) 
 Seat 3: ChrVo ($5 in chips) 
 Seat 4: k1tt9nM1nd ($15.30 in chips) 
-Seat 6: s0rrow ($26.60 in chips) 
+Seat 6: Hero ($26.60 in chips) 
 k1tt9nM1nd: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Ac 5h]
+Dealt to Hero [Ac 5h]
 Gles65: folds 
 Swiss777: raises $0.30 to $0.40
 ChrVo: folds 
 k1tt9nM1nd: folds 
-s0rrow: folds 
+Hero: folds 
 Uncalled bet ($0.30) returned to Swiss777
 Swiss777 collected $0.25 from pot
 Swiss777: doesn't show hand 
@@ -1998,7 +1998,7 @@ Seat 1: Gles65 folded before Flop (didn't bet)
 Seat 2: Swiss777 collected ($0.25)
 Seat 3: ChrVo (button) folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd (small blind) folded before Flop
-Seat 6: s0rrow (big blind) folded before Flop
+Seat 6: Hero (big blind) folded before Flop
 
 
 
@@ -2008,29 +2008,29 @@ Seat 1: Gles65 ($11.50 in chips)
 Seat 2: Swiss777 ($11.45 in chips) 
 Seat 3: ChrVo ($5 in chips) 
 Seat 4: k1tt9nM1nd ($15.25 in chips) 
-Seat 6: s0rrow ($26.50 in chips) 
-s0rrow: posts small blind $0.05
+Seat 6: Hero ($26.50 in chips) 
+Hero: posts small blind $0.05
 Gles65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [As Kc]
+Dealt to Hero [As Kc]
 Swiss777: folds 
 ChrVo: raises $0.20 to $0.30
 k1tt9nM1nd: folds 
-s0rrow: raises $0.70 to $1
+Hero: raises $0.70 to $1
 Gles65: folds 
 ChrVo: calls $0.70
 *** FLOP *** [4s 2c 2s]
-s0rrow: checks 
+Hero: checks 
 ChrVo: bets $1.70
-s0rrow: raises $2.40 to $4.10
+Hero: raises $2.40 to $4.10
 ChrVo: calls $2.30 and is all-in
-Uncalled bet ($0.10) returned to s0rrow
+Uncalled bet ($0.10) returned to Hero
 *** TURN *** [4s 2c 2s] [Js]
 *** RIVER *** [4s 2c 2s Js] [4c]
 *** SHOW DOWN ***
-s0rrow: shows [As Kc] (two pair, Fours and Deuces)
+Hero: shows [As Kc] (two pair, Fours and Deuces)
 ChrVo: shows [Ah 3h] (two pair, Fours and Deuces)
-s0rrow collected $4.80 from pot
+Hero collected $4.80 from pot
 ChrVo collected $4.80 from pot
 ChrVo leaves the table
 *** SUMMARY ***
@@ -2040,7 +2040,7 @@ Seat 1: Gles65 (big blind) folded before Flop
 Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 3: ChrVo showed [Ah 3h] and won ($4.80) with two pair, Fours and Deuces
 Seat 4: k1tt9nM1nd (button) folded before Flop (didn't bet)
-Seat 6: s0rrow (small blind) showed [As Kc] and won ($4.80) with two pair, Fours and Deuces
+Seat 6: Hero (small blind) showed [As Kc] and won ($4.80) with two pair, Fours and Deuces
 
 
 
@@ -2049,23 +2049,23 @@ Table 'May IV' 6-max Seat #6 is the button
 Seat 1: Gles65 ($11.40 in chips) 
 Seat 2: Swiss777 ($11.45 in chips) 
 Seat 4: k1tt9nM1nd ($15.25 in chips) 
-Seat 6: s0rrow ($26.30 in chips) 
+Seat 6: Hero ($26.30 in chips) 
 Gles65: posts small blind $0.05
 Swiss777: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qd Js]
+Dealt to Hero [Qd Js]
 k1tt9nM1nd: folds 
-s0rrow: raises $0.20 to $0.30
+Hero: raises $0.20 to $0.30
 Gles65: folds 
 Swiss777: folds 
-Uncalled bet ($0.20) returned to s0rrow
-s0rrow collected $0.25 from pot
+Uncalled bet ($0.20) returned to Hero
+Hero collected $0.25 from pot
 *** SUMMARY ***
 Total pot $0.25 | Rake $0 
 Seat 1: Gles65 (small blind) folded before Flop
 Seat 2: Swiss777 (big blind) folded before Flop
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
-Seat 6: s0rrow (button) collected ($0.25)
+Seat 6: Hero (button) collected ($0.25)
 
 
 
@@ -2074,12 +2074,12 @@ Table 'May IV' 6-max Seat #1 is the button
 Seat 1: Gles65 ($11.35 in chips) 
 Seat 2: Swiss777 ($11.35 in chips) 
 Seat 4: k1tt9nM1nd ($15.25 in chips) 
-Seat 6: s0rrow ($26.45 in chips) 
+Seat 6: Hero ($26.45 in chips) 
 Swiss777: posts small blind $0.05
 k1tt9nM1nd: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [6d 3d]
-s0rrow: folds 
+Dealt to Hero [6d 3d]
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 Uncalled bet ($0.05) returned to k1tt9nM1nd
@@ -2089,7 +2089,7 @@ Total pot $0.10 | Rake $0
 Seat 1: Gles65 (button) folded before Flop (didn't bet)
 Seat 2: Swiss777 (small blind) folded before Flop
 Seat 4: k1tt9nM1nd (big blind) collected ($0.10)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -2098,20 +2098,20 @@ Table 'May IV' 6-max Seat #2 is the button
 Seat 1: Gles65 ($11.35 in chips) 
 Seat 2: Swiss777 ($11.30 in chips) 
 Seat 4: k1tt9nM1nd ($15.30 in chips) 
-Seat 6: s0rrow ($26.45 in chips) 
+Seat 6: Hero ($26.45 in chips) 
 k1tt9nM1nd: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [2c 5s]
+Dealt to Hero [2c 5s]
 Gles65: calls $0.10
 Swiss777: folds 
 k1tt9nM1nd: folds 
-s0rrow: checks 
+Hero: checks 
 *** FLOP *** [Js Ac 4c]
 Patman01 joins the table at seat #5 
-s0rrow: checks 
+Hero: checks 
 Gles65: bets $0.20
-s0rrow: folds 
+Hero: folds 
 Uncalled bet ($0.20) returned to Gles65
 Sr Radío joins the table at seat #3 
 Gles65 collected $0.25 from pot
@@ -2122,7 +2122,7 @@ Board [Js Ac 4c]
 Seat 1: Gles65 collected ($0.25)
 Seat 2: Swiss777 (button) folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd (small blind) folded before Flop
-Seat 6: s0rrow (big blind) folded on the Flop
+Seat 6: Hero (big blind) folded on the Flop
 
 
 
@@ -2131,16 +2131,16 @@ Table 'May IV' 6-max Seat #4 is the button
 Seat 1: Gles65 ($11.50 in chips) 
 Seat 2: Swiss777 ($11.30 in chips) 
 Seat 4: k1tt9nM1nd ($15.25 in chips) 
-Seat 6: s0rrow ($26.35 in chips) 
+Seat 6: Hero ($26.35 in chips) 
 Patman01 will be allowed to play after the button
-s0rrow: posts small blind $0.05
+Hero: posts small blind $0.05
 Gles65: posts big blind $0.10
 Sr Radío: sits out 
 *** HOLE CARDS ***
-Dealt to s0rrow [7c As]
+Dealt to Hero [7c As]
 Swiss777: raises $0.30 to $0.40
 k1tt9nM1nd: raises $0.90 to $1.30
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 Uncalled bet ($0.90) returned to k1tt9nM1nd
@@ -2150,7 +2150,7 @@ Total pot $0.95 | Rake $0
 Seat 1: Gles65 (big blind) folded before Flop
 Seat 2: Swiss777 folded before Flop
 Seat 4: k1tt9nM1nd (button) collected ($0.95)
-Seat 6: s0rrow (small blind) folded before Flop
+Seat 6: Hero (small blind) folded before Flop
 
 
 
@@ -2159,15 +2159,15 @@ Table 'May IV' 6-max Seat #6 is the button
 Seat 1: Gles65 ($11.40 in chips) 
 Seat 2: Swiss777 ($10.90 in chips) 
 Seat 4: k1tt9nM1nd ($15.80 in chips) 
-Seat 6: s0rrow ($26.30 in chips) 
+Seat 6: Hero ($26.30 in chips) 
 Gles65: posts small blind $0.05
 Swiss777: posts big blind $0.10
 Sr Radío: sits out 
 Patman01: sits out 
 *** HOLE CARDS ***
-Dealt to s0rrow [3h 5d]
+Dealt to Hero [3h 5d]
 k1tt9nM1nd: folds 
-s0rrow: folds 
+Hero: folds 
 Gles65: calls $0.05
 Swiss777: checks 
 *** FLOP *** [8s 6c Qh]
@@ -2185,7 +2185,7 @@ Board [8s 6c Qh Th]
 Seat 1: Gles65 (small blind) collected ($0.20)
 Seat 2: Swiss777 (big blind) folded on the Turn
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
-Seat 6: s0rrow (button) folded before Flop (didn't bet)
+Seat 6: Hero (button) folded before Flop (didn't bet)
 
 
 
@@ -2195,14 +2195,14 @@ Seat 1: Gles65 ($11.50 in chips)
 Seat 2: Swiss777 ($10.80 in chips) 
 Seat 3: Sr Radío ($2 in chips) 
 Seat 4: k1tt9nM1nd ($15.80 in chips) 
-Seat 6: s0rrow ($26.30 in chips) 
+Seat 6: Hero ($26.30 in chips) 
 Swiss777: posts small blind $0.05
 Sr Radío: posts big blind $0.10
 Patman01: sits out 
 *** HOLE CARDS ***
-Dealt to s0rrow [Jh 6d]
+Dealt to Hero [Jh 6d]
 k1tt9nM1nd: folds 
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 Uncalled bet ($0.05) returned to Sr Radío
@@ -2214,7 +2214,7 @@ Seat 1: Gles65 (button) folded before Flop (didn't bet)
 Seat 2: Swiss777 (small blind) folded before Flop
 Seat 3: Sr Radío (big blind) collected ($0.10)
 Seat 4: k1tt9nM1nd folded before Flop (didn't bet)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -2224,13 +2224,13 @@ Seat 1: Gles65 ($11.50 in chips)
 Seat 2: Swiss777 ($10.75 in chips) 
 Seat 3: Sr Radío ($2.05 in chips) 
 Seat 4: k1tt9nM1nd ($15.80 in chips) 
-Seat 6: s0rrow ($26.30 in chips) 
+Seat 6: Hero ($26.30 in chips) 
 Sr Radío: posts small blind $0.05
 k1tt9nM1nd: posts big blind $0.10
 Patman01: sits out 
 *** HOLE CARDS ***
-Dealt to s0rrow [7c Qh]
-s0rrow: folds 
+Dealt to Hero [7c Qh]
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 Sr Radío: calls $0.05
@@ -2256,7 +2256,7 @@ Seat 1: Gles65 folded before Flop (didn't bet)
 Seat 2: Swiss777 (button) folded before Flop (didn't bet)
 Seat 3: Sr Radío (small blind) showed [Js 8s] and lost with a pair of Threes
 Seat 4: k1tt9nM1nd (big blind) showed [2c 2s] and won ($0.60) with two pair, Threes and Deuces
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -2267,12 +2267,12 @@ Seat 2: Swiss777 ($10.75 in chips)
 Seat 3: Sr Radío ($2 in chips) 
 Seat 4: k1tt9nM1nd ($16.10 in chips) 
 Seat 5: Patman01 ($10 in chips) 
-Seat 6: s0rrow ($26.30 in chips) 
+Seat 6: Hero ($26.30 in chips) 
 k1tt9nM1nd: posts small blind $0.05
 Patman01: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qd 7c]
-s0rrow: folds 
+Dealt to Hero [Qd 7c]
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 Sr Radío: raises $0.15 to $0.25
@@ -2288,7 +2288,7 @@ Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 3: Sr Radío (button) collected ($0.25)
 Seat 4: k1tt9nM1nd (small blind) folded before Flop
 Seat 5: Patman01 (big blind) folded before Flop
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -2299,27 +2299,27 @@ Seat 2: Swiss777 ($10.75 in chips)
 Seat 3: Sr Radío ($2.15 in chips) 
 Seat 4: k1tt9nM1nd ($16.05 in chips) 
 Seat 5: Patman01 ($10 in chips) 
-Seat 6: s0rrow ($26.30 in chips) 
+Seat 6: Hero ($26.30 in chips) 
 Patman01: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Qh 8h]
+Dealt to Hero [Qh 8h]
 Gles65: folds 
 Swiss777: folds 
 Sr Radío: folds 
 k1tt9nM1nd: folds 
 Patman01: calls $0.05
-s0rrow: checks 
+Hero: checks 
 *** FLOP *** [9d Qs 3h]
 k1tt9nM1nd leaves the table
 Patman01: checks 
-s0rrow: checks 
+Hero: checks 
 *** TURN *** [9d Qs 3h] [Kc]
 Patman01: checks 
-s0rrow: bets $0.20
+Hero: bets $0.20
 Patman01: folds 
-Uncalled bet ($0.20) returned to s0rrow
-s0rrow collected $0.20 from pot
+Uncalled bet ($0.20) returned to Hero
+Hero collected $0.20 from pot
 *** SUMMARY ***
 Total pot $0.20 | Rake $0 
 Board [9d Qs 3h Kc]
@@ -2328,7 +2328,7 @@ Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 3: Sr Radío folded before Flop (didn't bet)
 Seat 4: k1tt9nM1nd (button) folded before Flop (didn't bet)
 Seat 5: Patman01 (small blind) folded on the Turn
-Seat 6: s0rrow (big blind) collected ($0.20)
+Seat 6: Hero (big blind) collected ($0.20)
 
 
 
@@ -2338,15 +2338,15 @@ Seat 1: Gles65 ($11.50 in chips)
 Seat 2: Swiss777 ($10.75 in chips) 
 Seat 3: Sr Radío ($2.15 in chips) 
 Seat 5: Patman01 ($10 in chips) 
-Seat 6: s0rrow ($26.40 in chips) 
-s0rrow: posts small blind $0.05
+Seat 6: Hero ($26.40 in chips) 
+Hero: posts small blind $0.05
 Gles65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [7h 8d]
+Dealt to Hero [7h 8d]
 Swiss777: raises $0.30 to $0.40
 Sr Radío: folds 
 Patman01: folds 
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Uncalled bet ($0.30) returned to Swiss777
 Swiss777 collected $0.25 from pot
@@ -2357,7 +2357,7 @@ Seat 1: Gles65 (big blind) folded before Flop
 Seat 2: Swiss777 collected ($0.25)
 Seat 3: Sr Radío folded before Flop (didn't bet)
 Seat 5: Patman01 (button) folded before Flop (didn't bet)
-Seat 6: s0rrow (small blind) folded before Flop
+Seat 6: Hero (small blind) folded before Flop
 
 
 
@@ -2367,14 +2367,14 @@ Seat 1: Gles65 ($11.40 in chips)
 Seat 2: Swiss777 ($10.90 in chips) 
 Seat 3: Sr Radío ($2.15 in chips) 
 Seat 5: Patman01 ($10 in chips) 
-Seat 6: s0rrow ($26.35 in chips) 
+Seat 6: Hero ($26.35 in chips) 
 Gles65: posts small blind $0.05
 Swiss777: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [4d 6h]
+Dealt to Hero [4d 6h]
 Sr Radío: raises $0.15 to $0.25
 Patman01: folds 
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 Uncalled bet ($0.15) returned to Sr Radío
@@ -2386,7 +2386,7 @@ Seat 1: Gles65 (small blind) folded before Flop
 Seat 2: Swiss777 (big blind) folded before Flop
 Seat 3: Sr Radío collected ($0.25)
 Seat 5: Patman01 folded before Flop (didn't bet)
-Seat 6: s0rrow (button) folded before Flop (didn't bet)
+Seat 6: Hero (button) folded before Flop (didn't bet)
 
 
 
@@ -2396,13 +2396,13 @@ Seat 1: Gles65 ($11.35 in chips)
 Seat 2: Swiss777 ($10.80 in chips) 
 Seat 3: Sr Radío ($2.30 in chips) 
 Seat 5: Patman01 ($10 in chips) 
-Seat 6: s0rrow ($26.35 in chips) 
+Seat 6: Hero ($26.35 in chips) 
 Swiss777: posts small blind $0.05
 Sr Radío: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Ts 5c]
+Dealt to Hero [Ts 5c]
 Patman01: folds 
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 Uncalled bet ($0.05) returned to Sr Radío
@@ -2414,7 +2414,7 @@ Seat 1: Gles65 (button) folded before Flop (didn't bet)
 Seat 2: Swiss777 (small blind) folded before Flop
 Seat 3: Sr Radío (big blind) collected ($0.10)
 Seat 5: Patman01 folded before Flop (didn't bet)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -2424,12 +2424,12 @@ Seat 1: Gles65 ($11.35 in chips)
 Seat 2: Swiss777 ($10.75 in chips) 
 Seat 3: Sr Radío ($2.35 in chips) 
 Seat 5: Patman01 ($10 in chips) 
-Seat 6: s0rrow ($26.35 in chips) 
+Seat 6: Hero ($26.35 in chips) 
 Sr Radío: posts small blind $0.05
 Patman01: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [9h Ts]
-s0rrow: folds 
+Dealt to Hero [9h Ts]
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 Sr Radío: folds 
@@ -2442,7 +2442,7 @@ Seat 1: Gles65 folded before Flop (didn't bet)
 Seat 2: Swiss777 (button) folded before Flop (didn't bet)
 Seat 3: Sr Radío (small blind) folded before Flop
 Seat 5: Patman01 (big blind) collected ($0.10)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -2452,11 +2452,11 @@ Seat 1: Gles65 ($11.35 in chips)
 Seat 2: Swiss777 ($10.75 in chips) 
 Seat 3: Sr Radío ($2.30 in chips) 
 Seat 5: Patman01 ($10.05 in chips) 
-Seat 6: s0rrow ($26.35 in chips) 
+Seat 6: Hero ($26.35 in chips) 
 Patman01: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [4s Qd]
+Dealt to Hero [4s Qd]
 espanol63 joins the table at seat #4 
 Gles65 has timed out
 Gles65: folds 
@@ -2465,7 +2465,7 @@ Swiss777: folds
 Gles65 has returned
 Sr Radío: raises $0.15 to $0.25
 Patman01: folds 
-s0rrow: folds 
+Hero: folds 
 Uncalled bet ($0.15) returned to Sr Radío
 Sr Radío collected $0.25 from pot
 Sr Radío: doesn't show hand 
@@ -2475,7 +2475,7 @@ Seat 1: Gles65 folded before Flop (didn't bet)
 Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 3: Sr Radío (button) collected ($0.25)
 Seat 5: Patman01 (small blind) folded before Flop
-Seat 6: s0rrow (big blind) folded before Flop
+Seat 6: Hero (big blind) folded before Flop
 
 
 
@@ -2485,25 +2485,25 @@ Seat 1: Gles65 ($11.35 in chips)
 Seat 2: Swiss777 ($10.75 in chips) 
 Seat 3: Sr Radío ($2.45 in chips) 
 Seat 5: Patman01 ($10 in chips) 
-Seat 6: s0rrow ($26.25 in chips) 
-s0rrow: posts small blind $0.05
+Seat 6: Hero ($26.25 in chips) 
+Hero: posts small blind $0.05
 Gles65: posts big blind $0.10
 espanol63: sits out 
 *** HOLE CARDS ***
-Dealt to s0rrow [9d Qc]
+Dealt to Hero [9d Qc]
 Swiss777: folds 
 Sr Radío: folds 
 Patman01: folds 
-s0rrow: calls $0.05
+Hero: calls $0.05
 Gles65: checks 
 *** FLOP *** [9h 5c Jd]
-s0rrow: checks 
+Hero: checks 
 Gles65: checks 
 *** TURN *** [9h 5c Jd] [5d]
-s0rrow: bets $0.30
+Hero: bets $0.30
 Gles65: folds 
-Uncalled bet ($0.30) returned to s0rrow
-s0rrow collected $0.20 from pot
+Uncalled bet ($0.30) returned to Hero
+Hero collected $0.20 from pot
 *** SUMMARY ***
 Total pot $0.20 | Rake $0 
 Board [9h 5c Jd 5d]
@@ -2511,7 +2511,7 @@ Seat 1: Gles65 (big blind) folded on the Turn
 Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 3: Sr Radío folded before Flop (didn't bet)
 Seat 5: Patman01 (button) folded before Flop (didn't bet)
-Seat 6: s0rrow (small blind) collected ($0.20)
+Seat 6: Hero (small blind) collected ($0.20)
 
 
 
@@ -2521,15 +2521,15 @@ Seat 1: Gles65 ($11.25 in chips)
 Seat 2: Swiss777 ($10.75 in chips) 
 Seat 3: Sr Radío ($2.45 in chips) 
 Seat 5: Patman01 ($10 in chips) 
-Seat 6: s0rrow ($26.35 in chips) 
+Seat 6: Hero ($26.35 in chips) 
 Gles65: posts small blind $0.05
 Swiss777: posts big blind $0.10
 espanol63: sits out 
 *** HOLE CARDS ***
-Dealt to s0rrow [3s 2d]
+Dealt to Hero [3s 2d]
 Sr Radío: folds 
 Patman01: folds 
-s0rrow: folds 
+Hero: folds 
 Gles65: calls $0.05
 Swiss777: checks 
 *** FLOP *** [Ad 7h Jh]
@@ -2552,7 +2552,7 @@ Seat 1: Gles65 (small blind) showed [9c Kc] and won ($0.20) with a pair of Seven
 Seat 2: Swiss777 (big blind) mucked [8d 6s]
 Seat 3: Sr Radío folded before Flop (didn't bet)
 Seat 5: Patman01 folded before Flop (didn't bet)
-Seat 6: s0rrow (button) folded before Flop (didn't bet)
+Seat 6: Hero (button) folded before Flop (didn't bet)
 
 
 
@@ -2562,14 +2562,14 @@ Seat 1: Gles65 ($11.35 in chips)
 Seat 2: Swiss777 ($10.65 in chips) 
 Seat 4: espanol63 ($10 in chips) 
 Seat 5: Patman01 ($10 in chips) 
-Seat 6: s0rrow ($26.35 in chips) 
+Seat 6: Hero ($26.35 in chips) 
 Swiss777: posts small blind $0.05
 Sr Radío: is sitting out 
 espanol63: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [8c Qd]
+Dealt to Hero [8c Qd]
 Patman01: folds 
-s0rrow: folds 
+Hero: folds 
 Sr Radío has returned
 Sr Radío leaves the table
 Gles65: raises $0.30 to $0.40
@@ -2597,7 +2597,7 @@ Seat 1: Gles65 (button) collected ($3.70)
 Seat 2: Swiss777 (small blind) folded before Flop
 Seat 4: espanol63 (big blind) folded on the River
 Seat 5: Patman01 folded before Flop (didn't bet)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -2607,30 +2607,30 @@ Seat 1: Gles65 ($13.15 in chips)
 Seat 2: Swiss777 ($10.60 in chips) 
 Seat 4: espanol63 ($8.10 in chips) 
 Seat 5: Patman01 ($10 in chips) 
-Seat 6: s0rrow ($26.35 in chips) 
+Seat 6: Hero ($26.35 in chips) 
 Andrey_UKRNA will be allowed to play after the button
 espanol63: posts small blind $0.05
 Patman01: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [5s 5d]
-s0rrow: raises $0.20 to $0.30
+Dealt to Hero [5s 5d]
+Hero: raises $0.20 to $0.30
 Gles65: raises $0.60 to $0.90
 Swiss777: folds 
 espanol63: folds 
 Patman01: folds 
-s0rrow: calls $0.60
+Hero: calls $0.60
 *** FLOP *** [Tc Td Ad]
-s0rrow: checks 
+Hero: checks 
 Gles65: checks 
 *** TURN *** [Tc Td Ad] [7h]
-s0rrow: checks 
+Hero: checks 
 Gles65: bets $1.20
-s0rrow: calls $1.20
+Hero: calls $1.20
 *** RIVER *** [Tc Td Ad 7h] [6s]
-s0rrow: checks 
+Hero: checks 
 Gles65: checks 
 *** SHOW DOWN ***
-s0rrow: shows [5s 5d] (two pair, Tens and Fives)
+Hero: shows [5s 5d] (two pair, Tens and Fives)
 Gles65: shows [Jh Js] (two pair, Jacks and Tens)
 Gles65 collected $4.15 from pot
 *** SUMMARY ***
@@ -2640,7 +2640,7 @@ Seat 1: Gles65 showed [Jh Js] and won ($4.15) with two pair, Jacks and Tens
 Seat 2: Swiss777 (button) folded before Flop (didn't bet)
 Seat 4: espanol63 (small blind) folded before Flop
 Seat 5: Patman01 (big blind) folded before Flop
-Seat 6: s0rrow showed [5s 5d] and lost with two pair, Tens and Fives
+Seat 6: Hero showed [5s 5d] and lost with two pair, Tens and Fives
 
 
 
@@ -2651,33 +2651,33 @@ Seat 2: Swiss777 ($10.60 in chips)
 Seat 3: Andrey_UKRNA ($6 in chips) 
 Seat 4: espanol63 ($8.05 in chips) 
 Seat 5: Patman01 ($10 in chips) 
-Seat 6: s0rrow ($24.25 in chips) 
+Seat 6: Hero ($24.25 in chips) 
 Patman01: posts small blind $0.05
-s0rrow: posts big blind $0.10
+Hero: posts big blind $0.10
 Andrey_UKRNA: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [Kc 4h]
+Dealt to Hero [Kc 4h]
 Gles65: folds 
 Swiss777: folds 
 Andrey_UKRNA: checks 
 espanol63: folds 
 Patman01: folds 
-s0rrow: checks 
+Hero: checks 
 *** FLOP *** [3h 6d 5c]
-s0rrow: bets $0.20
+Hero: bets $0.20
 Andrey_UKRNA: raises $0.20 to $0.40
-s0rrow: calls $0.20
+Hero: calls $0.20
 *** TURN *** [3h 6d 5c] [Ts]
-s0rrow: checks 
+Hero: checks 
 Andrey_UKRNA: bets $0.40
-s0rrow: calls $0.40
+Hero: calls $0.40
 *** RIVER *** [3h 6d 5c Ts] [Ks]
-s0rrow: checks 
+Hero: checks 
 Andrey_UKRNA: bets $0.40
-s0rrow: calls $0.40
+Hero: calls $0.40
 *** SHOW DOWN ***
 Andrey_UKRNA: shows [2s 4d] (a straight, Deuce to Six)
-s0rrow: mucks hand 
+Hero: mucks hand 
 Andrey_UKRNA collected $2.55 from pot
 *** SUMMARY ***
 Total pot $2.65 | Rake $0.10 
@@ -2687,7 +2687,7 @@ Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 3: Andrey_UKRNA showed [2s 4d] and won ($2.55) with a straight, Deuce to Six
 Seat 4: espanol63 (button) folded before Flop (didn't bet)
 Seat 5: Patman01 (small blind) folded before Flop
-Seat 6: s0rrow (big blind) mucked [Kc 4h]
+Seat 6: Hero (big blind) mucked [Kc 4h]
 
 
 
@@ -2698,26 +2698,26 @@ Seat 2: Swiss777 ($10.60 in chips)
 Seat 3: Andrey_UKRNA ($7.25 in chips) 
 Seat 4: espanol63 ($8.05 in chips) 
 Seat 5: Patman01 ($10 in chips) 
-Seat 6: s0rrow ($22.95 in chips) 
-s0rrow: posts small blind $0.05
+Seat 6: Hero ($22.95 in chips) 
+Hero: posts small blind $0.05
 Gles65: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [7d 7h]
+Dealt to Hero [7d 7h]
 Swiss777: folds 
 Andrey_UKRNA: folds 
 espanol63: folds 
 Patman01: folds 
-s0rrow: raises $0.20 to $0.30
+Hero: raises $0.20 to $0.30
 Gles65: raises $0.60 to $0.90
-s0rrow: calls $0.60
+Hero: calls $0.60
 *** FLOP *** [4d 5s Qc]
-s0rrow: checks 
+Hero: checks 
 Gles65: checks 
 *** TURN *** [4d 5s Qc] [3c]
-s0rrow: bets $1.60
+Hero: bets $1.60
 Gles65: folds 
-Uncalled bet ($1.60) returned to s0rrow
-s0rrow collected $1.75 from pot
+Uncalled bet ($1.60) returned to Hero
+Hero collected $1.75 from pot
 *** SUMMARY ***
 Total pot $1.80 | Rake $0.05 
 Board [4d 5s Qc 3c]
@@ -2726,7 +2726,7 @@ Seat 2: Swiss777 folded before Flop (didn't bet)
 Seat 3: Andrey_UKRNA folded before Flop (didn't bet)
 Seat 4: espanol63 folded before Flop (didn't bet)
 Seat 5: Patman01 (button) folded before Flop (didn't bet)
-Seat 6: s0rrow (small blind) collected ($1.75)
+Seat 6: Hero (small blind) collected ($1.75)
 
 
 
@@ -2737,15 +2737,15 @@ Seat 2: Swiss777 ($10.60 in chips)
 Seat 3: Andrey_UKRNA ($7.25 in chips) 
 Seat 4: espanol63 ($8.05 in chips) 
 Seat 5: Patman01 ($10 in chips) 
-Seat 6: s0rrow ($23.80 in chips) 
+Seat 6: Hero ($23.80 in chips) 
 Gles65: posts small blind $0.05
 Swiss777: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [4h 2c]
+Dealt to Hero [4h 2c]
 Andrey_UKRNA: folds 
 espanol63: raises $0.30 to $0.40
 Patman01: folds 
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 Uncalled bet ($0.30) returned to espanol63
@@ -2758,7 +2758,7 @@ Seat 2: Swiss777 (big blind) folded before Flop
 Seat 3: Andrey_UKRNA folded before Flop (didn't bet)
 Seat 4: espanol63 collected ($0.25)
 Seat 5: Patman01 folded before Flop (didn't bet)
-Seat 6: s0rrow (button) folded before Flop (didn't bet)
+Seat 6: Hero (button) folded before Flop (didn't bet)
 
 
 
@@ -2769,14 +2769,14 @@ Seat 2: Swiss777 ($10.50 in chips)
 Seat 3: Andrey_UKRNA ($7.25 in chips) 
 Seat 4: espanol63 ($8.20 in chips) 
 Seat 5: Patman01 ($10 in chips) 
-Seat 6: s0rrow ($23.80 in chips) 
+Seat 6: Hero ($23.80 in chips) 
 Swiss777: posts small blind $0.05
 Andrey_UKRNA: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [8h Tc]
+Dealt to Hero [8h Tc]
 espanol63: calls $0.10
 Patman01: raises $0.20 to $0.30
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Swiss777: folds 
 Andrey_UKRNA: folds 
@@ -2804,7 +2804,7 @@ Seat 2: Swiss777 (small blind) folded before Flop
 Seat 3: Andrey_UKRNA (big blind) folded before Flop
 Seat 4: espanol63 showed [3d 3c] and lost with a pair of Threes
 Seat 5: Patman01 showed [8s 8d] and won ($2.85) with a pair of Eights
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 
@@ -2815,13 +2815,13 @@ Seat 2: Swiss777 ($10.45 in chips)
 Seat 3: Andrey_UKRNA ($7.15 in chips) 
 Seat 4: espanol63 ($6.80 in chips) 
 Seat 5: Patman01 ($11.45 in chips) 
-Seat 6: s0rrow ($23.80 in chips) 
+Seat 6: Hero ($23.80 in chips) 
 Andrey_UKRNA: posts small blind $0.05
 espanol63: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to s0rrow [9h 2d]
+Dealt to Hero [9h 2d]
 Patman01: folds 
-s0rrow: folds 
+Hero: folds 
 Gles65: folds 
 Swiss777: raises $0.30 to $0.40
 Andrey_UKRNA: folds 
@@ -2837,7 +2837,7 @@ Seat 2: Swiss777 (button) collected ($0.25)
 Seat 3: Andrey_UKRNA (small blind) folded before Flop
 Seat 4: espanol63 (big blind) folded before Flop
 Seat 5: Patman01 folded before Flop (didn't bet)
-Seat 6: s0rrow folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
 
 
 

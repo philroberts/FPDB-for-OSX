@@ -1,6 +1,6 @@
 PokerStars Game #30506593746:  7 Card Stud Limit ($0.04/$0.08) - 2009/07/16 2:36:31 CET [2009/07/15 20:36:31 ET]
 Table 'Laomedon' 8-max
-Seat 1: Player1 ($1.81 in chips) 
+Seat 1: Hero ($1.81 in chips) 
 Seat 2: Player2 ($2.46 in chips) 
 Seat 3: Player3 ($1.67 in chips) 
 Seat 4: Player4 ($0.35 in chips) 
@@ -8,7 +8,7 @@ Seat 5: Player5 ($1.75 in chips)
 Seat 6: Player6 ($2.92 in chips) 
 Seat 7: Player7 ($1.54 in chips) 
 Seat 8: Player8 ($0.71 in chips) 
-Player1: posts the ante $0.01
+Hero: posts the ante $0.01
 Player2: posts the ante $0.01
 Player3: posts the ante $0.01
 Player4: posts the ante $0.01
@@ -17,7 +17,7 @@ Player6: posts the ante $0.01
 Player7: posts the ante $0.01
 Player8: posts the ante $0.01
 *** 3rd STREET ***
-Dealt to Player1 [Ac Kc 8c]
+Dealt to Hero [Ac Kc 8c]
 Dealt to Player2 [Tc]
 Dealt to Player3 [6c]
 Dealt to Player4 [Js]
@@ -28,13 +28,13 @@ Dealt to Player8 [Kh]
 Player6: brings in for $0.02
 Player7: calls $0.02
 Player8: calls $0.02
-Player1: calls $0.02
+Hero: calls $0.02
 Player2: calls $0.02
 Player3: calls $0.02
 Player4: calls $0.02
 Player5: calls $0.02
 *** 4th STREET ***
-Dealt to Player1 [Ac Kc 8c] [9c]
+Dealt to Hero [Ac Kc 8c] [9c]
 Dealt to Player2 [Tc] [7d]
 Dealt to Player3 [6c] [7h]
 Dealt to Player4 [Js] [2c]
@@ -43,7 +43,7 @@ Dealt to Player6 [2d] [7c]
 Dealt to Player7 [Jh] [4c]
 Dealt to Player8 [Kh] [3d]
 Player8: checks 
-Player1: checks 
+Hero: checks 
 Player2: checks 
 Player3: checks 
 Player4: checks 
@@ -51,7 +51,7 @@ Player5: checks
 Player6: checks 
 Player7: checks 
 *** 5th STREET ***
-Dealt to Player1 [Ac Kc 8c 9c] [9d]
+Dealt to Hero [Ac Kc 8c 9c] [9d]
 Dealt to Player2 [Tc 7d] [8d]
 Dealt to Player3 [6c 7h] [3s]
 Dealt to Player4 [Js 2c] [9s]
@@ -59,7 +59,7 @@ Dealt to Player5 [Jd 4h] [9h]
 Dealt to Player6 [2d 7c] [6d]
 Dealt to Player7 [Jh 4c] [5d]
 Dealt to Player8 [Kh 3d] [8s]
-Player1: checks 
+Hero: checks 
 Player2: checks 
 Player3: checks 
 Player4: checks 
@@ -68,7 +68,7 @@ Player6: checks
 Player7: checks 
 Player8: checks 
 *** 6th STREET ***
-Dealt to Player1 [Ac Kc 8c 9c 9d] [Th]
+Dealt to Hero [Ac Kc 8c 9c 9d] [Th]
 Dealt to Player2 [Tc 7d 8d] [3c]
 Dealt to Player3 [6c 7h 3s] [Qh]
 Dealt to Player4 [Js 2c 9s] [8h]
@@ -76,7 +76,7 @@ Dealt to Player5 [Jd 4h 9h] [2s]
 Dealt to Player6 [2d 7c 6d] [5h]
 Dealt to Player7 [Jh 4c 5d] [Td]
 Dealt to Player8 [Kh 3d 8s] [6s]
-Player1: checks 
+Hero: checks 
 Player2: checks 
 Player3: checks 
 Player4: checks 
@@ -85,7 +85,7 @@ Player6: checks
 Player7: checks 
 Player8: checks 
 *** RIVER *** [6h]
-Player1: checks 
+Hero: checks 
 Player2: checks 
 Player3: bets $0.08
 Player4: folds 
@@ -93,7 +93,7 @@ Player5: calls $0.08
 Player6: calls $0.08
 Player7: folds 
 Player8: calls $0.08
-Player1: folds 
+Hero: folds 
 Player2: folds 
 *** SHOW DOWN ***
 Player3: shows [7s Qs 6c 7h 3s Qh] (two pair, Queens and Sevens)
@@ -104,7 +104,7 @@ Player3 collected $0.54 from pot
 *** SUMMARY ***
 Total pot $0.56 | Rake $0.02 
 Board [6h]
-Seat 1: Player1 folded on the River
+Seat 1: Hero folded on the River
 Seat 2: Player2 folded on the River
 Seat 3: Player3 showed [7s Qs 6c 7h 3s Qh] and won ($0.54) with two pair, Queens and Sevens
 Seat 4: Player4 folded on the River

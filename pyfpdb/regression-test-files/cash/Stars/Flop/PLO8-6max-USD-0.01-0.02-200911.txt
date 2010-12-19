@@ -4,30 +4,30 @@ Seat 1: EricSteph261 ($11.27 in chips)
 Seat 2: UnderMeSensi ($3.33 in chips) 
 Seat 3: supermeXXX ($1.19 in chips) 
 Seat 4: xgz520 ($1.81 in chips) 
-Seat 5: s0rrow ($3 in chips) 
+Seat 5: Hero ($3 in chips) 
 Seat 6: tiger48475 ($5 in chips) 
 xgz520: posts small blind $0.01
-s0rrow: posts big blind $0.02
+Hero: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to s0rrow [2h 2c 3s 9h]
+Dealt to Hero [2h 2c 3s 9h]
 tiger48475: folds 
 EricSteph261: folds 
 UnderMeSensi: raises $0.05 to $0.07
 supermeXXX: folds 
 xgz520: folds 
-s0rrow: calls $0.05
+Hero: calls $0.05
 *** FLOP *** [Jd 5c Kc]
-s0rrow: checks 
+Hero: checks 
 UnderMeSensi: checks 
 *** TURN *** [Jd 5c Kc] [4c]
-s0rrow: checks 
+Hero: checks 
 UnderMeSensi: bets $0.08
-s0rrow: calls $0.08
+Hero: calls $0.08
 *** RIVER *** [Jd 5c Kc 4c] [Th]
-s0rrow: checks 
+Hero: checks 
 UnderMeSensi: bets $0.31
 EricSteph261 is sitting out
-s0rrow: folds 
+Hero: folds 
 Uncalled bet ($0.31) returned to UnderMeSensi
 UnderMeSensi collected $0.31 from pot
 UnderMeSensi: doesn't show hand 
@@ -38,7 +38,7 @@ Seat 1: EricSteph261 folded before Flop (didn't bet)
 Seat 2: UnderMeSensi collected ($0.31)
 Seat 3: supermeXXX (button) folded before Flop (didn't bet)
 Seat 4: xgz520 (small blind) folded before Flop
-Seat 5: s0rrow (big blind) folded on the River
+Seat 5: Hero (big blind) folded on the River
 Seat 6: tiger48475 folded before Flop (didn't bet)
 
 
@@ -48,16 +48,16 @@ Table 'Gaby II' 6-max Seat #4 is the button
 Seat 2: UnderMeSensi ($3.49 in chips) 
 Seat 3: supermeXXX ($1.19 in chips) 
 Seat 4: xgz520 ($1.80 in chips) 
-Seat 5: s0rrow ($2.85 in chips) 
+Seat 5: Hero ($2.85 in chips) 
 Seat 6: tiger48475 ($5 in chips) 
-s0rrow: posts small blind $0.01
+Hero: posts small blind $0.01
 tiger48475: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to s0rrow [4d 3s 8d Jd]
+Dealt to Hero [4d 3s 8d Jd]
 UnderMeSensi: raises $0.05 to $0.07
 supermeXXX: folds 
 xgz520: folds 
-s0rrow: folds 
+Hero: folds 
 tiger48475: folds 
 Uncalled bet ($0.05) returned to UnderMeSensi
 xgz520 leaves the table
@@ -68,7 +68,7 @@ Total pot $0.05 | Rake $0
 Seat 2: UnderMeSensi collected ($0.05)
 Seat 3: supermeXXX folded before Flop (didn't bet)
 Seat 4: xgz520 (button) folded before Flop (didn't bet)
-Seat 5: s0rrow (small blind) folded before Flop
+Seat 5: Hero (small blind) folded before Flop
 Seat 6: tiger48475 (big blind) folded before Flop
 
 
@@ -77,20 +77,20 @@ PokerStars Game #35875034981:  Omaha Hi/Lo Pot Limit ($0.01/$0.02 USD) - 2009/11
 Table 'Gaby II' 6-max Seat #5 is the button
 Seat 2: UnderMeSensi ($3.52 in chips) 
 Seat 3: supermeXXX ($1.19 in chips) 
-Seat 5: s0rrow ($2.84 in chips) 
+Seat 5: Hero ($2.84 in chips) 
 Seat 6: tiger48475 ($5 in chips) 
 tiger48475: posts small blind $0.01
 UnderMeSensi: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to s0rrow [Qh 6c Th 9c]
+Dealt to Hero [Qh 6c Th 9c]
 supermeXXX: raises $0.04 to $0.06
-s0rrow: calls $0.06
+Hero: calls $0.06
 tiger48475: folds 
 UnderMeSensi: calls $0.04
 *** FLOP *** [5h 4d 2d]
 UnderMeSensi: checks 
 supermeXXX: bets $0.10
-s0rrow: folds 
+Hero: folds 
 UnderMeSensi: calls $0.10
 *** TURN *** [5h 4d 2d] [Jd]
 UnderMeSensi: checks 
@@ -109,7 +109,7 @@ Total pot $0.39 | Rake $0
 Board [5h 4d 2d Jd 6h]
 Seat 2: UnderMeSensi (big blind) showed [7c 6s 7h As] and won ($0.10) with HI: a pair of Sevens; LO: 6,5,4,2,A
 Seat 3: supermeXXX showed [Ah 2h Kh 2s] and won ($0.29) with HI: three of a kind, Deuces; LO: 6,5,4,2,A
-Seat 5: s0rrow (button) folded on the Flop
+Seat 5: Hero (button) folded on the Flop
 Seat 6: tiger48475 (small blind) folded before Flop
 
 
@@ -118,32 +118,32 @@ PokerStars Game #35875059163:  Omaha Hi/Lo Pot Limit ($0.01/$0.02 USD) - 2009/11
 Table 'Gaby II' 6-max Seat #6 is the button
 Seat 2: UnderMeSensi ($3.46 in chips) 
 Seat 3: supermeXXX ($1.32 in chips) 
-Seat 5: s0rrow ($2.78 in chips) 
+Seat 5: Hero ($2.78 in chips) 
 Seat 6: tiger48475 ($5 in chips) 
 UnderMeSensi: posts small blind $0.01
 supermeXXX: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to s0rrow [Ts Qs 9d 7c]
-s0rrow: raises $0.04 to $0.06
+Dealt to Hero [Ts Qs 9d 7c]
+Hero: raises $0.04 to $0.06
 tiger48475: folds 
 UnderMeSensi: calls $0.05
 diyi69 joins the table at seat #4 
 supermeXXX: folds 
 *** FLOP *** [3h Ah 5d]
 UnderMeSensi: checks 
-s0rrow: checks 
+Hero: checks 
 *** TURN *** [3h Ah 5d] [Kc]
 UnderMeSensi: checks 
-s0rrow: bets $0.14
+Hero: bets $0.14
 UnderMeSensi: folds 
-Uncalled bet ($0.14) returned to s0rrow
-s0rrow collected $0.14 from pot
+Uncalled bet ($0.14) returned to Hero
+Hero collected $0.14 from pot
 *** SUMMARY ***
 Total pot $0.14 | Rake $0 
 Board [3h Ah 5d Kc]
 Seat 2: UnderMeSensi (small blind) folded on the Turn
 Seat 3: supermeXXX (big blind) folded before Flop
-Seat 5: s0rrow collected ($0.14)
+Seat 5: Hero collected ($0.14)
 Seat 6: tiger48475 (button) folded before Flop (didn't bet)
 
 
@@ -153,13 +153,13 @@ Table 'Gaby II' 6-max Seat #2 is the button
 Seat 2: UnderMeSensi ($3.40 in chips) 
 Seat 3: supermeXXX ($1.30 in chips) 
 Seat 4: diyi69 ($1 in chips) 
-Seat 5: s0rrow ($2.86 in chips) 
+Seat 5: Hero ($2.86 in chips) 
 Seat 6: tiger48475 ($5 in chips) 
 supermeXXX: posts small blind $0.01
 diyi69: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to s0rrow [8s 6d 7s 2s]
-s0rrow: folds 
+Dealt to Hero [8s 6d 7s 2s]
+Hero: folds 
 tiger48475: folds 
 UnderMeSensi: folds 
 supermeXXX: calls $0.01
@@ -178,7 +178,7 @@ Board [As Js 5h]
 Seat 2: UnderMeSensi (button) folded before Flop (didn't bet)
 Seat 3: supermeXXX (small blind) collected ($0.04)
 Seat 4: diyi69 (big blind) folded on the Flop
-Seat 5: s0rrow folded before Flop (didn't bet)
+Seat 5: Hero folded before Flop (didn't bet)
 Seat 6: tiger48475 folded before Flop (didn't bet)
 
 
@@ -187,21 +187,21 @@ PokerStars Game #35875131707:  Omaha Hi/Lo Pot Limit ($0.01/$0.02 USD) - 2009/11
 Table 'Gaby II' 6-max Seat #3 is the button
 Seat 2: UnderMeSensi ($3.40 in chips) 
 Seat 3: supermeXXX ($1.32 in chips) 
-Seat 5: s0rrow ($2.86 in chips) 
+Seat 5: Hero ($2.86 in chips) 
 Seat 6: tiger48475 ($5 in chips) 
-s0rrow: posts small blind $0.01
+Hero: posts small blind $0.01
 tiger48475: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to s0rrow [7c As 4d 4h]
+Dealt to Hero [7c As 4d 4h]
 UnderMeSensi: calls $0.02
 supermeXXX: folds 
-s0rrow: calls $0.01
+Hero: calls $0.01
 tiger48475: checks 
 *** FLOP *** [Ks 9d Ts]
-s0rrow: checks 
+Hero: checks 
 tiger48475: bets $0.06
 UnderMeSensi: calls $0.06
-s0rrow: folds 
+Hero: folds 
 *** TURN *** [Ks 9d Ts] [7h]
 tiger48475: checks 
 EricSteph261 has returned
@@ -218,7 +218,7 @@ Total pot $0.18 | Rake $0
 Board [Ks 9d Ts 7h 4s]
 Seat 2: UnderMeSensi collected ($0.18)
 Seat 3: supermeXXX (button) folded before Flop (didn't bet)
-Seat 5: s0rrow (small blind) folded on the Flop
+Seat 5: Hero (small blind) folded on the Flop
 Seat 6: tiger48475 (big blind) folded on the River
 
 
@@ -228,42 +228,42 @@ Table 'Gaby II' 6-max Seat #5 is the button
 Seat 1: EricSteph261 ($11.27 in chips) 
 Seat 2: UnderMeSensi ($3.50 in chips) 
 Seat 3: supermeXXX ($1.32 in chips) 
-Seat 5: s0rrow ($2.84 in chips) 
+Seat 5: Hero ($2.84 in chips) 
 Seat 6: tiger48475 ($5 in chips) 
 tiger48475: posts small blind $0.01
 EricSteph261: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to s0rrow [Jc 3h 2s Qc]
+Dealt to Hero [Jc 3h 2s Qc]
 UnderMeSensi: calls $0.02
 supermeXXX: calls $0.02
-s0rrow: raises $0.08 to $0.10
+Hero: raises $0.08 to $0.10
 tiger48475: folds 
 EricSteph261: folds 
 UnderMeSensi: calls $0.08
 supermeXXX: folds 
 *** FLOP *** [Ac 5s Js]
 UnderMeSensi: checks 
-s0rrow: bets $0.20
+Hero: bets $0.20
 UnderMeSensi: calls $0.20
 *** TURN *** [Ac 5s Js] [8c]
 UnderMeSensi: checks 
-s0rrow: bets $0.50
+Hero: bets $0.50
 UnderMeSensi: calls $0.50
 *** RIVER *** [Ac 5s Js 8c] [Jd]
 UnderMeSensi: bets $1.60
-s0rrow: calls $1.60
+Hero: calls $1.60
 *** SHOW DOWN ***
 UnderMeSensi: shows [7s 9s Jh 3c] (HI: three of a kind, Jacks; LO: 8,7,5,3,A)
-s0rrow: shows [Jc 3h 2s Qc] (HI: three of a kind, Jacks - Ace+Queen kicker; LO: 8,5,3,2,A)
-s0rrow collected $2.33 from pot
-s0rrow collected $2.32 from pot
+Hero: shows [Jc 3h 2s Qc] (HI: three of a kind, Jacks - Ace+Queen kicker; LO: 8,5,3,2,A)
+Hero collected $2.33 from pot
+Hero collected $2.32 from pot
 *** SUMMARY ***
 Total pot $4.85 | Rake $0.20 
 Board [Ac 5s Js 8c Jd]
 Seat 1: EricSteph261 (big blind) folded before Flop
 Seat 2: UnderMeSensi showed [7s 9s Jh 3c] and lost with HI: three of a kind, Jacks; LO: 8,7,5,3,A
 Seat 3: supermeXXX folded before Flop
-Seat 5: s0rrow (button) showed [Jc 3h 2s Qc] and won ($4.65) with HI: three of a kind, Jacks; LO: 8,5,3,2,A
+Seat 5: Hero (button) showed [Jc 3h 2s Qc] and won ($4.65) with HI: three of a kind, Jacks; LO: 8,5,3,2,A
 Seat 6: tiger48475 (small blind) folded before Flop
 
 
@@ -273,33 +273,33 @@ Table 'Gaby II' 6-max Seat #6 is the button
 Seat 1: EricSteph261 ($11.25 in chips) 
 Seat 2: UnderMeSensi ($1.10 in chips) 
 Seat 3: supermeXXX ($1.30 in chips) 
-Seat 5: s0rrow ($5.09 in chips) 
+Seat 5: Hero ($5.09 in chips) 
 Seat 6: tiger48475 ($5 in chips) 
 EricSteph261: posts small blind $0.01
 UnderMeSensi: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to s0rrow [7s 3c 3h 8d]
+Dealt to Hero [7s 3c 3h 8d]
 supermeXXX: folds 
-s0rrow: raises $0.02 to $0.04
+Hero: raises $0.02 to $0.04
 tiger48475: calls $0.04
 EricSteph261: calls $0.03
 UnderMeSensi: calls $0.02
 *** FLOP *** [8c 3s 4s]
 EricSteph261: checks 
 UnderMeSensi: checks 
-s0rrow: bets $0.14
+Hero: bets $0.14
 tiger48475: folds 
 EricSteph261: folds 
 UnderMeSensi: folds 
-Uncalled bet ($0.14) returned to s0rrow
-s0rrow collected $0.16 from pot
+Uncalled bet ($0.14) returned to Hero
+Hero collected $0.16 from pot
 *** SUMMARY ***
 Total pot $0.16 | Rake $0 
 Board [8c 3s 4s]
 Seat 1: EricSteph261 (small blind) folded on the Flop
 Seat 2: UnderMeSensi (big blind) folded on the Flop
 Seat 3: supermeXXX folded before Flop (didn't bet)
-Seat 5: s0rrow collected ($0.16)
+Seat 5: Hero collected ($0.16)
 Seat 6: tiger48475 (button) folded on the Flop
 
 
@@ -309,13 +309,13 @@ Table 'Gaby II' 6-max Seat #1 is the button
 Seat 1: EricSteph261 ($11.21 in chips) 
 Seat 2: UnderMeSensi ($1.06 in chips) 
 Seat 3: supermeXXX ($1.30 in chips) 
-Seat 5: s0rrow ($5.21 in chips) 
+Seat 5: Hero ($5.21 in chips) 
 Seat 6: tiger48475 ($5 in chips) 
 UnderMeSensi: posts small blind $0.01
 supermeXXX: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to s0rrow [Ks Qd Kd Kc]
-s0rrow: raises $0.04 to $0.06
+Dealt to Hero [Ks Qd Kd Kc]
+Hero: raises $0.04 to $0.06
 tiger48475: folds 
 EricSteph261: calls $0.06
 UnderMeSensi: calls $0.05
@@ -323,24 +323,24 @@ supermeXXX: calls $0.04
 *** FLOP *** [2d Jh 5h]
 UnderMeSensi: checks 
 supermeXXX: checks 
-s0rrow: checks 
+Hero: checks 
 EricSteph261: checks 
 *** TURN *** [2d Jh 5h] [Js]
 UnderMeSensi: checks 
 supermeXXX: checks 
-s0rrow: checks 
+Hero: checks 
 EricSteph261: checks 
 *** RIVER *** [2d Jh 5h Js] [7s]
 UnderMeSensi: checks 
 supermeXXX: checks 
-s0rrow: checks 
+Hero: checks 
 EricSteph261: checks 
 *** SHOW DOWN ***
 UnderMeSensi: shows [5d 6c As 9d] (HI: two pair, Jacks and Fives; LO: 7,6,5,2,A)
 supermeXXX: shows [6s Th 7c Ac] (HI: two pair, Jacks and Sevens; LO: 7,6,5,2,A)
-s0rrow: shows [Ks Qd Kd Kc] (HI: two pair, Kings and Jacks)
+Hero: shows [Ks Qd Kd Kc] (HI: two pair, Kings and Jacks)
 EricSteph261: shows [4s 9c 3d 2c] (HI: two pair, Jacks and Deuces; LO: 7,5,4,3,2)
-s0rrow collected $0.12 from pot
+Hero collected $0.12 from pot
 EricSteph261 collected $0.12 from pot
 *** SUMMARY ***
 Total pot $0.24 | Rake $0 
@@ -348,7 +348,7 @@ Board [2d Jh 5h Js 7s]
 Seat 1: EricSteph261 (button) showed [4s 9c 3d 2c] and won ($0.12) with HI: two pair, Jacks and Deuces; LO: 7,5,4,3,2
 Seat 2: UnderMeSensi (small blind) showed [5d 6c As 9d] and lost with HI: two pair, Jacks and Fives; LO: 7,6,5,2,A
 Seat 3: supermeXXX (big blind) showed [6s Th 7c Ac] and lost with HI: two pair, Jacks and Sevens; LO: 7,6,5,2,A
-Seat 5: s0rrow showed [Ks Qd Kd Kc] and won ($0.12) with HI: two pair, Kings and Jacks
+Seat 5: Hero showed [Ks Qd Kd Kc] and won ($0.12) with HI: two pair, Kings and Jacks
 Seat 6: tiger48475 folded before Flop (didn't bet)
 
 
@@ -358,12 +358,12 @@ Table 'Gaby II' 6-max Seat #2 is the button
 Seat 1: EricSteph261 ($11.27 in chips) 
 Seat 2: UnderMeSensi ($1 in chips) 
 Seat 3: supermeXXX ($1.24 in chips) 
-Seat 5: s0rrow ($5.27 in chips) 
+Seat 5: Hero ($5.27 in chips) 
 Seat 6: tiger48475 ($5 in chips) 
 supermeXXX: posts small blind $0.01
-s0rrow: posts big blind $0.02
+Hero: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to s0rrow [Jd Kc 6h Jc]
+Dealt to Hero [Jd Kc 6h Jc]
 tiger48475: folds 
 EricSteph261: calls $0.02
 UnderMeSensi is disconnected 
@@ -371,10 +371,10 @@ UnderMeSensi has timed out while disconnected
 UnderMeSensi: folds 
 UnderMeSensi is sitting out
 supermeXXX: calls $0.01
-s0rrow: checks 
+Hero: checks 
 *** FLOP *** [8d 7s Qh]
 supermeXXX: bets $0.02
-s0rrow: folds 
+Hero: folds 
 EricSteph261: calls $0.02
 *** TURN *** [8d 7s Qh] [As]
 supermeXXX: bets $0.04
@@ -393,7 +393,7 @@ Board [8d 7s Qh As 5d]
 Seat 1: EricSteph261 showed [Jh 2d 5s 6c] and won ($0.09) with HI: a pair of Fives; LO: 7,6,5,2,A
 Seat 2: UnderMeSensi (button) folded before Flop (didn't bet)
 Seat 3: supermeXXX (small blind) showed [Kh Qd 9s Th] and won ($0.09) with HI: a pair of Queens
-Seat 5: s0rrow (big blind) folded on the Flop
+Seat 5: Hero (big blind) folded on the Flop
 Seat 6: tiger48475 folded before Flop (didn't bet)
 
 
@@ -402,33 +402,33 @@ PokerStars Game #35875293439:  Omaha Hi/Lo Pot Limit ($0.01/$0.02 USD) - 2009/11
 Table 'Gaby II' 6-max Seat #3 is the button
 Seat 1: EricSteph261 ($11.28 in chips) 
 Seat 3: supermeXXX ($1.25 in chips) 
-Seat 5: s0rrow ($5.25 in chips) 
+Seat 5: Hero ($5.25 in chips) 
 Seat 6: tiger48475 ($5 in chips) 
-s0rrow: posts small blind $0.01
+Hero: posts small blind $0.01
 tiger48475: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to s0rrow [9c 8h 8s 3c]
+Dealt to Hero [9c 8h 8s 3c]
 EricSteph261: calls $0.02
 supermeXXX: calls $0.02
-s0rrow: calls $0.01
+Hero: calls $0.01
 tiger48475: checks 
 *** FLOP *** [Ah 2d Qc]
-s0rrow: checks 
+Hero: checks 
 tiger48475: checks 
 EricSteph261: checks 
 supermeXXX: checks 
 *** TURN *** [Ah 2d Qc] [3d]
-s0rrow: checks 
+Hero: checks 
 tiger48475: checks 
 EricSteph261: checks 
 supermeXXX: checks 
 *** RIVER *** [Ah 2d Qc 3d] [6s]
-s0rrow: checks 
+Hero: checks 
 tiger48475: checks 
 EricSteph261: checks 
 supermeXXX: checks 
 *** SHOW DOWN ***
-s0rrow: shows [9c 8h 8s 3c] (HI: a pair of Eights; LO: 8,6,3,2,A)
+Hero: shows [9c 8h 8s 3c] (HI: a pair of Eights; LO: 8,6,3,2,A)
 tiger48475: shows [3s 5s Ts Th] (HI: a pair of Tens; LO: 6,5,3,2,A)
 EricSteph261: shows [As Ks Jh 7h] (HI: a pair of Aces; LO: 7,6,3,2,A)
 supermeXXX: mucks hand 
@@ -439,7 +439,7 @@ Total pot $0.08 | Rake $0
 Board [Ah 2d Qc 3d 6s]
 Seat 1: EricSteph261 showed [As Ks Jh 7h] and won ($0.04) with HI: a pair of Aces; LO: 7,6,3,2,A
 Seat 3: supermeXXX (button) mucked [9h 9s 4c Kc]
-Seat 5: s0rrow (small blind) showed [9c 8h 8s 3c] and lost with HI: a pair of Eights; LO: 8,6,3,2,A
+Seat 5: Hero (small blind) showed [9c 8h 8s 3c] and lost with HI: a pair of Eights; LO: 8,6,3,2,A
 Seat 6: tiger48475 (big blind) showed [3s 5s Ts Th] and won ($0.04) with HI: a pair of Tens; LO: 6,5,3,2,A
 
 
@@ -448,14 +448,14 @@ PokerStars Game #35875328026:  Omaha Hi/Lo Pot Limit ($0.01/$0.02 USD) - 2009/11
 Table 'Gaby II' 6-max Seat #5 is the button
 Seat 1: EricSteph261 ($11.30 in chips) 
 Seat 3: supermeXXX ($1.23 in chips) 
-Seat 5: s0rrow ($5.23 in chips) 
+Seat 5: Hero ($5.23 in chips) 
 Seat 6: tiger48475 ($5.02 in chips) 
 tiger48475: posts small blind $0.01
 EricSteph261: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to s0rrow [Qd 6h 8s 6c]
+Dealt to Hero [Qd 6h 8s 6c]
 supermeXXX: calls $0.02
-s0rrow: folds 
+Hero: folds 
 tiger48475: calls $0.01
 EricSteph261: checks 
 *** FLOP *** [Kc Ac 5s]
@@ -478,7 +478,7 @@ Total pot $0.06 | Rake $0
 Board [Kc Ac 5s 3h Qh]
 Seat 1: EricSteph261 (big blind) folded on the River
 Seat 3: supermeXXX folded on the River
-Seat 5: s0rrow (button) folded before Flop (didn't bet)
+Seat 5: Hero (button) folded before Flop (didn't bet)
 Seat 6: tiger48475 (small blind) collected ($0.06)
 
 
@@ -486,34 +486,34 @@ Seat 6: tiger48475 (small blind) collected ($0.06)
 PokerStars Game #35875356253:  Omaha Hi/Lo Pot Limit ($0.01/$0.02 USD) - 2009/11/26 10:47:00 ET
 Table 'Gaby II' 6-max Seat #6 is the button
 Seat 3: supermeXXX ($1.21 in chips) 
-Seat 5: s0rrow ($5.23 in chips) 
+Seat 5: Hero ($5.23 in chips) 
 Seat 6: tiger48475 ($5.06 in chips) 
 supermeXXX: posts small blind $0.01
-s0rrow: posts big blind $0.02
+Hero: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to s0rrow [8h Jd 5d 8d]
+Dealt to Hero [8h Jd 5d 8d]
 tiger48475: folds 
 supermeXXX: calls $0.01
-s0rrow: checks 
+Hero: checks 
 *** FLOP *** [Ks 9s 6c]
 supermeXXX: bets $0.02
-s0rrow: calls $0.02
+Hero: calls $0.02
 *** TURN *** [Ks 9s 6c] [Qc]
 supermeXXX: bets $0.02
-s0rrow: calls $0.02
+Hero: calls $0.02
 *** RIVER *** [Ks 9s 6c Qc] [Ad]
 supermeXXX: checks 
-s0rrow: checks 
+Hero: checks 
 *** SHOW DOWN ***
 supermeXXX: shows [Tc 7d 8c 3s] (HI: high card Ace)
-s0rrow: shows [8h Jd 5d 8d] (HI: a pair of Eights)
-s0rrow collected $0.12 from pot
+Hero: shows [8h Jd 5d 8d] (HI: a pair of Eights)
+Hero collected $0.12 from pot
 No low hand qualified
 *** SUMMARY ***
 Total pot $0.12 | Rake $0 
 Board [Ks 9s 6c Qc Ad]
 Seat 3: supermeXXX (small blind) showed [Tc 7d 8c 3s] and lost with HI: high card Ace
-Seat 5: s0rrow (big blind) showed [8h Jd 5d 8d] and won ($0.12) with HI: a pair of Eights
+Seat 5: Hero (big blind) showed [8h Jd 5d 8d] and won ($0.12) with HI: a pair of Eights
 Seat 6: tiger48475 (button) folded before Flop (didn't bet)
 
 
@@ -521,36 +521,36 @@ Seat 6: tiger48475 (button) folded before Flop (didn't bet)
 PokerStars Game #35875379792:  Omaha Hi/Lo Pot Limit ($0.01/$0.02 USD) - 2009/11/26 10:47:39 ET
 Table 'Gaby II' 6-max Seat #3 is the button
 Seat 3: supermeXXX ($1.15 in chips) 
-Seat 5: s0rrow ($5.29 in chips) 
+Seat 5: Hero ($5.29 in chips) 
 Seat 6: tiger48475 ($5.06 in chips) 
-s0rrow: posts small blind $0.01
+Hero: posts small blind $0.01
 tiger48475: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to s0rrow [9c 5h 3s Th]
+Dealt to Hero [9c 5h 3s Th]
 supermeXXX: calls $0.02
-s0rrow: calls $0.01
+Hero: calls $0.01
 tiger48475: checks 
 *** FLOP *** [Jc 3h Jd]
-s0rrow: checks 
+Hero: checks 
 tiger48475: checks 
 supermeXXX: checks 
 *** TURN *** [Jc 3h Jd] [6d]
-s0rrow: checks 
+Hero: checks 
 tiger48475: bets $0.06
 supermeXXX: folds 
 EricSteph261 has returned
-s0rrow: calls $0.06
+Hero: calls $0.06
 *** RIVER *** [Jc 3h Jd 6d] [5c]
-s0rrow: checks 
+Hero: checks 
 tiger48475: bets $0.14
-s0rrow: folds 
+Hero: folds 
 Uncalled bet ($0.14) returned to tiger48475
 tiger48475 collected $0.18 from pot
 *** SUMMARY ***
 Total pot $0.18 | Rake $0 
 Board [Jc 3h Jd 6d 5c]
 Seat 3: supermeXXX (button) folded on the Turn
-Seat 5: s0rrow (small blind) folded on the River
+Seat 5: Hero (small blind) folded on the River
 Seat 6: tiger48475 (big blind) collected ($0.18)
 
 
@@ -559,14 +559,14 @@ PokerStars Game #35875409365:  Omaha Hi/Lo Pot Limit ($0.01/$0.02 USD) - 2009/11
 Table 'Gaby II' 6-max Seat #5 is the button
 Seat 1: EricSteph261 ($11.28 in chips) 
 Seat 3: supermeXXX ($1.13 in chips) 
-Seat 5: s0rrow ($5.21 in chips) 
+Seat 5: Hero ($5.21 in chips) 
 Seat 6: tiger48475 ($5.16 in chips) 
 tiger48475: posts small blind $0.01
 EricSteph261: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to s0rrow [6h 3c Th 2s]
+Dealt to Hero [6h 3c Th 2s]
 supermeXXX: calls $0.02
-s0rrow: calls $0.02
+Hero: calls $0.02
 tiger48475: calls $0.01
 EricSteph261 has timed out
 EricSteph261: checks 
@@ -576,11 +576,11 @@ EricSteph261 has timed out
 EricSteph261: folds 
 EricSteph261 is sitting out
 supermeXXX: calls $0.06
-s0rrow: calls $0.06
+Hero: calls $0.06
 *** TURN *** [9d 5s Jh] [Ks]
 tiger48475: checks 
 supermeXXX: bets $0.10
-s0rrow: folds 
+Hero: folds 
 tiger48475: calls $0.10
 *** RIVER *** [9d 5s Jh Ks] [9s]
 tiger48475: checks 
@@ -595,7 +595,7 @@ Total pot $0.46 | Rake $0
 Board [9d 5s Jh Ks 9s]
 Seat 1: EricSteph261 (big blind) folded on the Flop
 Seat 3: supermeXXX mucked [Qd Tc 5h Ts]
-Seat 5: s0rrow (button) folded on the Turn
+Seat 5: Hero (button) folded on the Turn
 Seat 6: tiger48475 (small blind) showed [6s 9h 9c Ad] and won ($0.46) with HI: four of a kind, Nines
 
 

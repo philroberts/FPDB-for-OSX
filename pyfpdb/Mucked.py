@@ -25,17 +25,17 @@ Mucked cards display for FreePokerTools HUD.
 #    to do
 
 #    Standard Library modules
-import sys
-import pprint
+#import sys
+#import pprint
 
 #    pyGTK modules
-import pygtk
+#import pygtk
 import gtk
 import gobject
 
 #    FreePokerTools modules
-import Configuration
-import Database
+#import Configuration
+#import Database
 import Card
 
 class Aux_Window(object):
@@ -415,9 +415,12 @@ class Aux_Seats(Aux_Window):
 #   Methods likely to be of use for any Seat_Window implementation
     def destroy(self):
         """Destroy all of the seat windows."""
-        for i in self.m_windows.keys():
-            self.m_windows[i].destroy()
-            del(self.m_windows[i])
+        try:
+            for i in self.m_windows.keys():
+                self.m_windows[i].destroy()
+                del(self.m_windows[i])
+        except AttributeError:
+            pass
 
 #   Methods likely to be useful for mucked card windows (or similar) only
     def hide(self):
