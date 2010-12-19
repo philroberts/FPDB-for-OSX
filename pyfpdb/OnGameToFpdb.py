@@ -42,11 +42,12 @@ class OnGame(HandHistoryConverter):
     siteId   = 5 # Needs to match id entry in Sites database
 
     mixes = { } # Legal mixed games
-    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": u"\xe2\x82\xac", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
+    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": u"\u20ac", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : u"\$|\xe2\x82\xac|"        # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : u"\$|\xe2\x82\xac|\u20ac"        # legal currency symbols - Euro(cp1252, utf-8)
                     }
+    currencies = { u'\u20ac':'EUR', u'\xe2\x82\xac':'EUR', '$':'USD', '':'T$' }
 
     limits = { 'NO_LIMIT':'nl', 'LIMIT':'fl'}
 
@@ -89,7 +90,7 @@ class OnGame(HandHistoryConverter):
             (
             (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit)\s
             (?P<GAME>TEXAS_HOLDEM|OMAHA_HI|SEVEN_CARD_STUD|SEVEN_CARD_STUD_HI_LO|RAZZ|FIVE_CARD_DRAW)\s
-            (%(LS)s)?(?P<SB>[.0-9]+)/
+            (?P<CURRENCY>%(LS)s|)?(?P<SB>[.0-9]+)/
             (%(LS)s)?(?P<BB>[.0-9]+)
             )?
             """ % substitutions, re.MULTILINE|re.DOTALL|re.VERBOSE)
@@ -174,7 +175,8 @@ class OnGame(HandHistoryConverter):
         mg = m.groupdict()
 
         info['type'] = 'ring'
-        info['currency'] = 'USD'
+        if 'CURRENCY' in mg:
+            info['currency'] = self.currencies[mg['CURRENCY']]
 
         if 'LIMIT' in mg:
             if mg['LIMIT'] in self.limits:
