@@ -240,8 +240,8 @@ class PartyPoker(HandHistoryConverter):
             info['sb'] = "%.2f" % (sb)
             info['currency'] = self.currencies[mg['CURRENCY']]
         else:
-            info['sb'] = clearMoneyString(mg['SB'])
-            info['bb'] = clearMoneyString(mg['BB'])
+            info['sb'] = self.clearMoneyString(mg['SB'])
+            info['bb'] = self.clearMoneyString(mg['BB'])
             info['currency'] = 'T$'
 
         return info
@@ -361,10 +361,10 @@ class PartyPoker(HandHistoryConverter):
             if a.group('CASH') > '0':
                 #record max known stack for use with players with unknown stack
                 maxKnownStack = max(a.group('CASH'),maxKnownStack)
-                hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), clearMoneyString(a.group('CASH')))
+                hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), self.clearMoneyString(a.group('CASH')))
             else:
                 #zero stacked players are added later
-                zeroStackPlayers.append([int(a.group('SEAT')), a.group('PNAME'), clearMoneyString(a.group('CASH'))])
+                zeroStackPlayers.append([int(a.group('SEAT')), a.group('PNAME'), self.clearMoneyString(a.group('CASH'))])
         if hand.gametype['type'] == 'ring':
             #finds first vacant seat after an exact seat
             def findFirstEmptySeat(startSeat):
@@ -384,7 +384,7 @@ class PartyPoker(HandHistoryConverter):
             #if a zero stacked player is just joined the table in this very hand then set his stack to maxKnownStack
             for p in zeroStackPlayers:
                 if p[1] in match_JoiningPlayers:
-                    p[2] = clearMoneyString(maxKnownStack)
+                    p[2] = self.clearMoneyString(maxKnownStack)
                 hand.addPlayer(p[0],p[1],p[2])
 
             seatedPlayers = list([(f[1]) for f in hand.players])
@@ -401,7 +401,7 @@ class PartyPoker(HandHistoryConverter):
                     occupiedSeats = list([(f[0]) for f in hand.players])
                     occupiedSeats.sort()
                     newPlayerSeat = findFirstEmptySeat(previousBBPosterSeat)
-                    hand.addPlayer(newPlayerSeat,player,clearMoneyString(maxKnownStack))
+                    hand.addPlayer(newPlayerSeat,player,self.clearMoneyString(maxKnownStack))
 
     def markStreets(self, hand):
         m =  re.search(
@@ -491,7 +491,7 @@ class PartyPoker(HandHistoryConverter):
         for action in m:
             acts = action.groupdict()
             playerName = action.group('PNAME')
-            amount = clearMoneyString(action.group('BET')) if action.group('BET') else None
+            amount = self.clearMoneyString(action.group('BET')) if action.group('BET') else None
             actionType = action.group('ATYPE')
 
             if actionType == 'is all-In':
@@ -530,7 +530,7 @@ class PartyPoker(HandHistoryConverter):
 
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
-            hand.addCollectPot(player=m.group('PNAME'),pot=clearMoneyString(m.group('POT')))
+            hand.addCollectPot(player=m.group('PNAME'),pot=self.clearMoneyString(m.group('POT')))
 
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
@@ -553,10 +553,6 @@ class PartyPoker(HandHistoryConverter):
                 return "%s.+Table\s#%s" % (TableName[0], table_number)
         else:
             return table_name
-
-def clearMoneyString(money):
-    "Renders 'numbers' like '1 200' and '2,000'"
-    return money.replace(' ', '').replace(',', '')
 
 def renderCards(string):
     "Splits strings like ' Js, 4d '"
