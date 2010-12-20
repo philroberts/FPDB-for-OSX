@@ -222,6 +222,8 @@ class Winamax(HandHistoryConverter):
             if key == 'HID1':
                 # Need to remove non-alphanumerics for MySQL
                 hand.handid = "1%.9d%s%s"%(int(info['HID2']),info['HID1'],info['HID3'])
+                if len (hand.handid) > 19:
+                    hand.handid = "%s" % info['HID1']
             if key == 'TOURNO':
                 hand.tourNo = info[key]
             if key == 'TABLE':
