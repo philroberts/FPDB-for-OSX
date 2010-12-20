@@ -1699,6 +1699,10 @@ class Database:
             pp = pprint.PrettyPrinter(indent=4)
             pp.pprint(p)
             print _("###### End Hands ########")
+
+        # Tablename can have odd charachers
+        p['tableName'] = Charset.to_db_utf8(p['tableName'])
+
         #stores into table hands:
         q = self.sql.query['store_hand']
 
