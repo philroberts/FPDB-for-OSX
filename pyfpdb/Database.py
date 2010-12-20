@@ -2094,7 +2094,7 @@ class Database:
                 if (game['type']=='ring'): line[0] = 1 # count ring hands
                 if (game['type']=='tour'): line[1] = 1 # count tour hands
                 if (game['type']=='ring'): line[2] = pdata[p]['totalProfit'] #sum of profit
-                if (game['type']=='ring'): line[3] = float(Decimal(pdata[p]['totalProfit'])/Decimal(bigBet)) #sum of big bets won
+                if (game['type']=='ring'): line[3] = 0 #float(Decimal(pdata[p]['totalProfit'])/Decimal(bigBet)) #sum of big bets won
                 line[4] = startTime
                 inserts.append(line)
 
