@@ -207,8 +207,8 @@ class Fulltilt(HandHistoryConverter):
             info['limitType'] = 'cn'
         else:
             info['limitType'] = limits[mg['LIMIT']]
-        info['sb'] = mg['SB']
-        info['bb'] = mg['BB']
+        info['sb'] = self.clearMoneyString(mg['SB'])
+        info['bb'] = self.clearMoneyString(mg['BB'])
         if mg['GAME'] is not None:
             (info['base'], info['category']) = games[mg['GAME']]
         if mg['CURRENCY'] is not None:
@@ -340,15 +340,15 @@ class Fulltilt(HandHistoryConverter):
     def readBlinds(self, hand):
         try:
             m = self.re_PostSB.search(hand.handText)
-            hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
+            hand.addBlind(m.group('PNAME'), 'small blind', self.clearMoneyString(m.group('SB')))
         except: # no small blind
             hand.addBlind(None, None, None)
         for a in self.re_PostDead.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
+            hand.addBlind(a.group('PNAME'), 'secondsb', self.clearMoneyString(a.group('SB')))
         for a in self.re_PostBB.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+            hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
         for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
+            hand.addBlind(a.group('PNAME'), 'small & big blinds', self.clearMoneyString(a.group('SBBB')))
 
     def readAntes(self, hand):
         logging.debug(_("reading antes"))
@@ -529,10 +529,10 @@ class Fulltilt(HandHistoryConverter):
 
         # Additional info can be stored in the tourney object
         if mg['BUYIN'] is not None:
-            tourney.buyin = 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))
+            tourney.buyin = 100*Decimal(self.clearMoneyString(mg['BUYIN']))
             tourney.fee = 0 
         if mg['FEE'] is not None:
-            tourney.fee = 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))
+            tourney.fee = 100*Decimal(self.clearMoneyString(mg['FEE']))
         if mg['TOURNAMENT_NAME'] is not None:
             # Tournament Name can have a trailing space at the end (depending on the tournament description)
             tourney.tourneyName = mg['TOURNAMENT_NAME'].rstrip()
@@ -576,25 +576,25 @@ class Fulltilt(HandHistoryConverter):
             mg = m.groupdict()
             if tourney.isMatrix :
                 if mg['BUYIN'] is not None:
-                    tourney.subTourneyBuyin = 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))
+                    tourney.subTourneyBuyin = 100*Decimal(self.clearMoneyString(mg['BUYIN']))
                     tourney.subTourneyFee = 0
                 if mg['FEE'] is not None:
-                    tourney.subTourneyFee = 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))
+                    tourney.subTourneyFee = 100*Decimal(self.clearMoneyString(mg['FEE']))
             else :
                 if mg['BUYIN'] is not None:
                     if tourney.buyin is None:
-                        tourney.buyin = 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))
+                        tourney.buyin = 100*Decimal(clearMoneyString(mg['BUYIN']))
                     else :
-                        if 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN'])) != tourney.buyin:
+                        if 100*Decimal(clearMoneyString(mg['BUYIN'])) != tourney.buyin:
                             log.error(_("Conflict between buyins read in topline (%s) and in BuyIn field (%s)") % (tourney.buyin, 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))) )
-                            tourney.subTourneyBuyin = 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))
+                            tourney.subTourneyBuyin = 100*Decimal(clearMoneyString(mg['BUYIN']))
                 if mg['FEE'] is not None:
                     if tourney.fee is None:
-                        tourney.fee = 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))
+                        tourney.fee = 100*Decimal(clearMoneyString(mg['FEE']))
                     else :
-                        if 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE'])) != tourney.fee:
-                            log.error(_("Conflict between fees read in topline (%s) and in BuyIn field (%s)") % (tourney.fee, 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))) )
-                            tourney.subTourneyFee = 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))
+                        if 100*Decimal(clearMoneyString(mg['FEE'])) != tourney.fee:
+                            log.error(_("Conflict between fees read in topline (%s) and in BuyIn field (%s)") % (tourney.fee, 100*Decimal(clearMoneyString(mg['FEE']))) )
+                            tourney.subTourneyFee = 100*Decimal(clearMoneyString(mg['FEE']))
 
         if tourney.buyin is None:
             log.info(_("Unable to affect a buyin to this tournament : assume it's a freeroll"))
@@ -663,10 +663,10 @@ class Fulltilt(HandHistoryConverter):
                     tourney.koCounts.update( { tourney.hero : Decimal(mg['COUNT_KO']) } )
 
         # Deal with money amounts
-        tourney.koBounty    = 100*Decimal(re.sub(u',', u'', "%s" % tourney.koBounty))
-        tourney.prizepool   = 100*Decimal(re.sub(u',', u'', "%s" % tourney.prizepool))
-        tourney.rebuyCost   = 100*Decimal(re.sub(u',', u'', "%s" % tourney.rebuyCost))
-        tourney.addOnCost   = 100*Decimal(re.sub(u',', u'', "%s" % tourney.addOnCost))
+        tourney.koBounty    = 100*Decimal(clearMoneyString(tourney.koBounty))
+        tourney.prizepool   = 100*Decimal(clearMoneyString(tourney.prizepool))
+        tourney.rebuyCost   = 100*Decimal(clearMoneyString(tourney.rebuyCost))
+        tourney.addOnCost   = 100*Decimal(clearMoneyString(tourney.addOnCost))
         
         # Calculate payin amounts and update winnings -- not possible to take into account nb of rebuys, addons or Knockouts for other players than hero on FTP
         for p in tourney.players :
@@ -692,7 +692,7 @@ class Fulltilt(HandHistoryConverter):
                     rank = Decimal(a.group('RANK'))
 
                 if a.group('WINNING') is not None:
-                    winnings = 100*Decimal(re.sub(u',', u'', "%s" % a.group('WINNING')))
+                    winnings = 100*Decimal(clearMoneyString(a.group('WINNING')))
                 else:
                     winnings = "0"
 
