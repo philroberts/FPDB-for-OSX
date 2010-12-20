@@ -37,7 +37,7 @@ class Fulltilt(HandHistoryConverter):
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",       # legal ISO currency codes
                             'LS' : u"\$|\u20AC|\xe2\x82\xac|",  # legal currency symbols - Euro(cp1252, utf-8)
-                           'TAB' : u"-\u2013\s\da-zA-Z"
+                           'TAB' : u"-\u2013'\s\da-zA-Z"
                     }
 
     # Static regexes
