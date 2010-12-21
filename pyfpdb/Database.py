@@ -1694,11 +1694,15 @@ class Database:
 
     def storeHand(self, p, printdata = False):
         if printdata:
-            print "######## Hands ##########"
+            print _("######## Hands ##########")
             import pprint
             pp = pprint.PrettyPrinter(indent=4)
             pp.pprint(p)
-            print "###### End Hands ########"
+            print _("###### End Hands ########")
+
+        # Tablename can have odd charachers
+        p['tableName'] = Charset.to_db_utf8(p['tableName'])
+
         #stores into table hands:
         q = self.sql.query['store_hand']
 
