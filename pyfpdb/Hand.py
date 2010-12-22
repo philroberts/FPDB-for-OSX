@@ -403,7 +403,7 @@ db: a connected Database object"""
                 print "DEBUG: unknown action: '%s'" % act
 
         #print self
-        #self.writeHand()
+        self.writeHand()
 
         #hhc.readShowdownActions(self)
         #hc.readShownCards(self)
@@ -1002,7 +1002,7 @@ class HoldemOmahaHand(Hand):
         log.debug(self.actions['PREFLOP'])
         for player in [x for x in self.players if x[1] in players_who_act_preflop]:
             #Only print stacks of players who do something preflop
-            print >>fh, ("Seat %s: %s ($%s in chips) " %(player[0], player[1], player[2]))
+            print >>fh, ("Seat %s: %s ($%.2f in chips) " %(player[0], player[1], float(player[2])))
 
         if self.actions['BLINDSANTES']:
             for act in self.actions['BLINDSANTES']:
