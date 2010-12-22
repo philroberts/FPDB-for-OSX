@@ -298,15 +298,20 @@ db: a connected Database object"""
                     WHERE
                         hp.handId = %s
                         and p.id = hp.playerId
+                    ORDER BY
+                        hp.seatno
                 """
         q = q.replace('%s', db.sql.query['placeholder'])
 
         # PlayerStacks
         c.execute(q, (handId,))
         for (seat, winnings, name, chips, card1, card2, card3, card4, position) in c.fetchall():
+            #print "DEBUG: addPlayer(%s, %s, %s)" %(seat,name,str(chips))
             self.addPlayer(seat,name,str(chips))
+            #print "DEBUG: card1: %s" % card1
             cardlist = map(Card.valueSuitFromCard, [card1, card2, card3, card4])
             cardlist = [card1, card2, card3, card4]
+            #print "DEUBG: cardlist: '%s'" % cardlist
             self.addHoleCards('PREFLOP', name, closed=cardlist, shown=False, mucked=False, dealt=True)
             if winnings > 0:
                 self.addCollectPot(name, str(winnings))
@@ -327,7 +332,8 @@ db: a connected Database object"""
         #       MySQL maybe: cursorclass=MySQLdb.cursors.DictCursor
         res = c.fetchone()
         self.tablename = res['tableName']
-        self.startTime = res['startTime'] # automatically a datetime
+        self.handid    = res['siteHandNo']
+        self.startTime = datetime.datetime.strptime(res['startTime'], "%Y-%m-%d %H:%M:%S+00:00")
         #res['tourneyId']
         #gametypeId
         #res['importTime']  # Don't really care about this
@@ -335,6 +341,8 @@ db: a connected Database object"""
         self.maxseats = res['maxSeats']
         #res['rush']
         cards = map(Card.valueSuitFromCard, [res['boardcard1'], res['boardcard2'], res['boardcard3'], res['boardcard4'], res['boardcard5']])
+        #print "DEBUG: res['boardcard1']: %s" % res['boardcard1']
+        #print "DEBUG: cards: %s" % cards
         if cards[0]:
             self.setCommunityCards('FLOP', cards[0:3])
         if cards[3]:
@@ -376,9 +384,10 @@ db: a connected Database object"""
             act = row['actionId']
             # allin True/False if row['allIn'] == 0
             bet = row['bet']
-            print "DEBUG: name: '%s' street: '%s' act: '%s' bet: '%s'" %(name, street, act, bet)
             street = self.allStreets[int(street)+1]
+            #print "DEBUG: name: '%s' street: '%s' act: '%s' bet: '%s'" %(name, street, act, bet)
             if   act == 2: # Small Blind
+                print "DEBUG: addBlind(%s, 'small blind', %s" %(name, str(bet))
                 self.addBlind(name, 'small blind', str(bet))
             elif act == 4: # Big Blind
                 self.addBlind(name, 'big blind', str(bet))
@@ -392,6 +401,9 @@ db: a connected Database object"""
                 self.addCheck(street, name)
             else:
                 print "DEBUG: unknown action: '%s'" % act
+
+        #print self
+        #self.writeHand()
 
         #hhc.readShowdownActions(self)
         #hc.readShownCards(self)
