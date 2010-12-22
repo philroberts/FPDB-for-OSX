@@ -309,10 +309,16 @@ db: a connected Database object"""
             #print "DEBUG: addPlayer(%s, %s, %s)" %(seat,name,str(chips))
             self.addPlayer(seat,name,str(chips))
             #print "DEBUG: card1: %s" % card1
-            cardlist = map(Card.valueSuitFromCard, [card1, card2, card3, card4])
-            cardlist = [card1, card2, card3, card4]
+            # map() should work, but is returning integers... FIXME later
+            #cardlist = map(Card.valueSuitFromCard, [card1, card2, card3, card4])
+            cardlist = [Card.valueSuitFromCard(card1), Card.valueSuitFromCard(card2), Card.valueSuitFromCard(card3), Card.valueSuitFromCard(card4)]
             #print "DEUBG: cardlist: '%s'" % cardlist
-            self.addHoleCards('PREFLOP', name, closed=cardlist, shown=False, mucked=False, dealt=True)
+            if cardlist[0] == '':
+                pass
+            elif self.gametype['category'] == 'holdem':
+                self.addHoleCards('PREFLOP', name, closed=cardlist[0:2], shown=False, mucked=False, dealt=True)
+            elif self.gametype['category'] == 'omaha':
+                self.addHoleCards('PREFLOP', name, closed=cardlist, shown=False, mucked=False, dealt=True)
             if winnings > 0:
                 self.addCollectPot(name, str(winnings))
             if position == 'B':
