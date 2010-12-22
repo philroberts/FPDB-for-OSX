@@ -249,7 +249,7 @@ class GuiReplayer:
         be replaced by a function to select a hand from the db in the not so distant future.
         This code has been shamelessly stolen from Carl
         """
-        if True:
+        if False:
             settings = {}
             settings.update(self.conf.get_db_parameters())
             settings.update(self.conf.get_import_parameters())
@@ -276,7 +276,7 @@ class GuiReplayer:
             # for the Hand.__init__
 
             ####### Shift this section in Database.py for all to use ######
-            handid = 40
+            handid = 2
             q = self.sql.query['get_gameinfo_from_hid']
             q = q.replace('%s', self.sql.query['placeholder'])
 
@@ -295,6 +295,7 @@ class GuiReplayer:
                 print "DEBUG: Create stud hand here"
             elif gametype['base'] == 'draw':
                 print "DEBUG: Create draw hand here"
+            return h
 
     def temp(self):
         pass
