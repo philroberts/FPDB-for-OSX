@@ -408,13 +408,12 @@ db: a connected Database object"""
             else:
                 print "DEBUG: unknown action: '%s'" % act
 
-        #print self
+        self.totalPot()
+        self.rake = self.totalpot - self.totalcollected
         self.writeHand()
 
         #hhc.readShowdownActions(self)
         #hc.readShownCards(self)
-        #h.totalPot()
-        #h.rake = h.totalpot - h.totalcollected
 
 
     def addPlayer(self, seat, name, chips):
