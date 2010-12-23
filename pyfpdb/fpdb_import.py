@@ -624,4 +624,4 @@ class ProgressBar:
 
 
 if __name__ == "__main__":
-    print _("CLI for fpdb_import is now available as CliFpdb.py")
+    print _("CLI for importing hands is GuiBulkImport.py")
