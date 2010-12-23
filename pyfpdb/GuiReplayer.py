@@ -31,6 +31,9 @@ import gtk
 import math
 import gobject
 
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
+
 
 class GuiReplayer:
     def __init__(self, config, querylist, mainwin, options = None, debug=True):
@@ -104,8 +107,6 @@ class GuiReplayer:
 
         self.MyHand = self.importhand()
         self.table = Table(self.area, self.MyHand).table
-
-        self.maxseats=self.MyHand.maxseats
 
         if self.MyHand.gametype['currency']=="USD":    #TODO: check if there are others ..
             self.currency="$"
@@ -291,23 +292,18 @@ class Table:
     def __init__(self, darea, hand):
         self.darea = darea
         self.hand = hand
+        self.players = []
         #self.pixmap = gtk.gdk.Pixmap(darea, width, height, depth=-1)
 
+        # tmp var while refactoring
         self.table = {}
-        for i in range(0, hand.maxseats):     # radius: 200, center: 250,250
-            x= int (round(250+200*math.cos(2*i*math.pi/hand.maxseats)))
-            y= int (round(250+200*math.sin(2*i*math.pi/hand.maxseats)))
-            try:
-                self.table[i]={"name":self.hand.players[i][1],"stack":Decimal(self.hand.players[i][2]),"x":x,"y":y,"chips":0,"status":"live"}               #save coordinates of each player
-                try:
-                    self.table[i]['holecards']=self.hand.holecards["PREFLOP"][self.hand.players[i][1]][1]+' '+self.hand.holecards["PREFLOP"][self.hand.players[i][1]][2]
-                    print "holecards: ",self.table[i]['holecards']
-                except:
-                    self.table[i]['holecards']=''
-            except IndexError:  #if seat is empty
-                print "seat ",i+1," out of ", hand.maxseats," empty"
+        i = 0
+        for seat, name, chips in hand.players:
+            self.players.append(Player(hand, name, chips, seat))
+            self.table[i] = self.players[i].get_hash()
+            i += 1
 
-        print "DEBUG: table: %s" % self.table
+        pp.pprint(self.table)
 
     def draw(self):
         draw_players()
@@ -315,13 +311,25 @@ class Table:
         draw_community_cards()
 
 class Player:
-    def __init__(self, name, stack, position):
-        self.active   = True
-        self.stack    = stack
-        self.position = position
-        self.name     = name
-        x             = 0
-        y             = 0
+    def __init__(self, hand, name, stack, seat):
+        self.status    = 'live'
+        self.stack     = Decimal(stack)
+        self.chips     = 0
+        self.seat      = seat
+        self.name      = name
+        self.holecards = hand.join_holecards(name)
+        self.x         = int (round(250+200*math.cos(2*self.seat*math.pi/hand.maxseats)))
+        self.y         = int (round(250+200*math.sin(2*self.seat*math.pi/hand.maxseats)))
+
+    def get_hash(self):
+        return { 'chips': 0,
+                 'holecards': self.holecards,
+                 'name': self.name,
+                 'stack': self.stack,
+                 'status': self.status,
+                 'x': self.x,
+                 'y': self.y,
+                }
 
     def draw(self):
         draw_name()
