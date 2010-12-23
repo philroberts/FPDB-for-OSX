@@ -100,7 +100,10 @@ class GuiReplayer:
 
         self.replayBox.pack_start(self.area)
 
+        gobject.timeout_add(1000,self.draw_action)
+
         self.MyHand = self.importhand()
+        self.table = Table(self.area, self.MyHand).table
 
         self.maxseats=self.MyHand.maxseats
 
@@ -108,21 +111,6 @@ class GuiReplayer:
             self.currency="$"
         elif self.MyHand.gametype['currency']=="EUR":
             self.currency="€"
-
-
-        self.table={}     #create table with positions, player names, status (live/folded), stacks and chips on table
-        for i in range(0,self.maxseats):     # radius: 200, center: 250,250
-            x= int (round(250+200*math.cos(2*i*math.pi/self.maxseats)))
-            y= int (round(250+200*math.sin(2*i*math.pi/self.maxseats)))
-            try:
-                self.table[i]={"name":self.MyHand.players[i][1],"stack":Decimal(self.MyHand.players[i][2]),"x":x,"y":y,"chips":0,"status":"live"}               #save coordinates of each player
-                try:
-                    self.table[i]['holecards']=self.MyHand.holecards["PREFLOP"][self.MyHand.players[i][1]][1]+' '+self.MyHand.holecards["PREFLOP"][self.MyHand.players[i][1]][2]
-                    print "holecards: ",self.table[i]['holecards']
-                except:
-                    self.table[i]['holecards']=''
-            except IndexError:  #if seat is empty
-                print "seat ",i+1," out of ",self.maxseats," empty"
 
         self.actions=[]     #create list with all actions
 
@@ -133,7 +121,6 @@ class GuiReplayer:
         self.action_number=0
         self.action_level=0
         self.pot=0
-        gobject.timeout_add(1000,self.draw_action)
 
 
     def area_expose(self, area, event):
@@ -276,7 +263,7 @@ class GuiReplayer:
             # for the Hand.__init__
 
             ####### Shift this section in Database.py for all to use ######
-            handid = 2
+            handid = 1
             q = self.sql.query['get_gameinfo_from_hid']
             q = q.replace('%s', self.sql.query['placeholder'])
 
@@ -299,6 +286,62 @@ class GuiReplayer:
 
     def temp(self):
         pass
+
+class Table:
+    def __init__(self, darea, hand):
+        self.darea = darea
+        self.hand = hand
+        #self.pixmap = gtk.gdk.Pixmap(darea, width, height, depth=-1)
+
+        self.table = {}
+        for i in range(0, hand.maxseats):     # radius: 200, center: 250,250
+            x= int (round(250+200*math.cos(2*i*math.pi/hand.maxseats)))
+            y= int (round(250+200*math.sin(2*i*math.pi/hand.maxseats)))
+            try:
+                self.table[i]={"name":self.hand.players[i][1],"stack":Decimal(self.hand.players[i][2]),"x":x,"y":y,"chips":0,"status":"live"}               #save coordinates of each player
+                try:
+                    self.table[i]['holecards']=self.hand.holecards["PREFLOP"][self.hand.players[i][1]][1]+' '+self.hand.holecards["PREFLOP"][self.hand.players[i][1]][2]
+                    print "holecards: ",self.table[i]['holecards']
+                except:
+                    self.table[i]['holecards']=''
+            except IndexError:  #if seat is empty
+                print "seat ",i+1," out of ", hand.maxseats," empty"
+
+        print "DEBUG: table: %s" % self.table
+
+    def draw(self):
+        draw_players()
+        draw_pot()
+        draw_community_cards()
+
+class Player:
+    def __init__(self, name, stack, position):
+        self.active   = True
+        self.stack    = stack
+        self.position = position
+        self.name     = name
+        x             = 0
+        y             = 0
+
+    def draw(self):
+        draw_name()
+        draw_stack()
+        draw_cards()
+
+class Pot:
+    def __init__(self, hand):
+        self.total = 0.0
+
+    def draw(self):
+        pass
+
+class CommunityCards:
+    def __init__(self, hand):
+        self.pixbuf = self.gen_pixbuf_from_file(PATH_TO_THE_FILE)
+
+    def draw(self):
+        pass
+
 
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""
