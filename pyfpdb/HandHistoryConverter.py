@@ -675,6 +675,11 @@ or None if we fail to get the info """
 # PokerStars: WCOOP 2nd Chance 02: $1,050 NLHE - Tournament 307521826 Table 1 - Blinds $30/$60
         return "%s.+Table (\d+)" % (tournament, )
 
+    @staticmethod
+    def clearMoneyString(money):
+        "Renders 'numbers' like '1 200' and '2,000'"
+        return money.replace(' ', '').replace(',', '')
+
 def getTableTitleRe(config, sitename, *args, **kwargs):
     "Returns string to search in windows titles for current site"
     return getSiteHhc(config, sitename).getTableTitleRe(*args, **kwargs)

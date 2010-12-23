@@ -31,6 +31,9 @@ import gtk
 import math
 import gobject
 
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
+
 
 class GuiReplayer:
     def __init__(self, config, querylist, mainwin, options = None, debug=True):
@@ -100,29 +103,15 @@ class GuiReplayer:
 
         self.replayBox.pack_start(self.area)
 
-        self.MyHand = self.importhand()
+        gobject.timeout_add(1000,self.draw_action)
 
-        self.maxseats=self.MyHand.maxseats
+        self.MyHand = self.importhand()
+        self.table = Table(self.area, self.MyHand).table
 
         if self.MyHand.gametype['currency']=="USD":    #TODO: check if there are others ..
             self.currency="$"
         elif self.MyHand.gametype['currency']=="EUR":
             self.currency="€"
-
-
-        self.table={}     #create table with positions, player names, status (live/folded), stacks and chips on table
-        for i in range(0,self.maxseats):     # radius: 200, center: 250,250
-            x= int (round(250+200*math.cos(2*i*math.pi/self.maxseats)))
-            y= int (round(250+200*math.sin(2*i*math.pi/self.maxseats)))
-            try:
-                self.table[i]={"name":self.MyHand.players[i][1],"stack":Decimal(self.MyHand.players[i][2]),"x":x,"y":y,"chips":0,"status":"live"}               #save coordinates of each player
-                try:
-                    self.table[i]['holecards']=self.MyHand.holecards["PREFLOP"][self.MyHand.players[i][1]][1]+' '+self.MyHand.holecards["PREFLOP"][self.MyHand.players[i][1]][2]
-                    print "holecards: ",self.table[i]['holecards']
-                except:
-                    self.table[i]['holecards']=''
-            except IndexError:  #if seat is empty
-                print "seat ",i+1," out of ",self.maxseats," empty"
 
         self.actions=[]     #create list with all actions
 
@@ -133,7 +122,6 @@ class GuiReplayer:
         self.action_number=0
         self.action_level=0
         self.pot=0
-        gobject.timeout_add(1000,self.draw_action)
 
 
     def area_expose(self, area, event):
@@ -249,7 +237,7 @@ class GuiReplayer:
         be replaced by a function to select a hand from the db in the not so distant future.
         This code has been shamelessly stolen from Carl
         """
-        if True:
+        if False:
             settings = {}
             settings.update(self.conf.get_db_parameters())
             settings.update(self.conf.get_import_parameters())
@@ -276,7 +264,7 @@ class GuiReplayer:
             # for the Hand.__init__
 
             ####### Shift this section in Database.py for all to use ######
-            handid = 40
+            handid = 1
             q = self.sql.query['get_gameinfo_from_hid']
             q = q.replace('%s', self.sql.query['placeholder'])
 
@@ -295,9 +283,73 @@ class GuiReplayer:
                 print "DEBUG: Create stud hand here"
             elif gametype['base'] == 'draw':
                 print "DEBUG: Create draw hand here"
+            return h
 
     def temp(self):
         pass
+
+class Table:
+    def __init__(self, darea, hand):
+        self.darea = darea
+        self.hand = hand
+        self.players = []
+        #self.pixmap = gtk.gdk.Pixmap(darea, width, height, depth=-1)
+
+        # tmp var while refactoring
+        self.table = {}
+        i = 0
+        for seat, name, chips in hand.players:
+            self.players.append(Player(hand, name, chips, seat))
+            self.table[i] = self.players[i].get_hash()
+            i += 1
+
+        pp.pprint(self.table)
+
+    def draw(self):
+        draw_players()
+        draw_pot()
+        draw_community_cards()
+
+class Player:
+    def __init__(self, hand, name, stack, seat):
+        self.status    = 'live'
+        self.stack     = Decimal(stack)
+        self.chips     = 0
+        self.seat      = seat
+        self.name      = name
+        self.holecards = hand.join_holecards(name)
+        self.x         = int (round(250+200*math.cos(2*self.seat*math.pi/hand.maxseats)))
+        self.y         = int (round(250+200*math.sin(2*self.seat*math.pi/hand.maxseats)))
+
+    def get_hash(self):
+        return { 'chips': 0,
+                 'holecards': self.holecards,
+                 'name': self.name,
+                 'stack': self.stack,
+                 'status': self.status,
+                 'x': self.x,
+                 'y': self.y,
+                }
+
+    def draw(self):
+        draw_name()
+        draw_stack()
+        draw_cards()
+
+class Pot:
+    def __init__(self, hand):
+        self.total = 0.0
+
+    def draw(self):
+        pass
+
+class CommunityCards:
+    def __init__(self, hand):
+        self.pixbuf = self.gen_pixbuf_from_file(PATH_TO_THE_FILE)
+
+    def draw(self):
+        pass
+
 
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""
