@@ -244,9 +244,8 @@ class Database:
     # create index indexname on tablename (col);
 
 
-    def __init__(self, c, sql = None, autoconnect = True, create_db=False):
+    def __init__(self, c, sql = None, autoconnect = True):
         #log = Configuration.get_logger("logging.conf", "db", log_dir=c.dir_log)
-        print "create DB=",create_db
         log.debug(_("Creating Database instance, sql = %s") % sql)
         self.config = c
         self.__connected = False
@@ -308,7 +307,7 @@ class Database:
 
             self.saveActions = False if self.import_options['saveActions'] == False else True
 
-            if self.is_connected() and not create_db:
+            if self.is_connected():
                 self.get_sites()
                 self.connection.rollback()  # make sure any locks taken so far are released
     #end def __init__
