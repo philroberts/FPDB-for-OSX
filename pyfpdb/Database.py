@@ -308,7 +308,8 @@ class Database:
             self.saveActions = False if self.import_options['saveActions'] == False else True
 
             if self.is_connected():
-                self.get_sites()
+                if not self.wrongDbVersion:
+                    self.get_sites()
                 self.connection.rollback()  # make sure any locks taken so far are released
     #end def __init__
 
