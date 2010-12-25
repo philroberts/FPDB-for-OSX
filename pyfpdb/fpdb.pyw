@@ -880,7 +880,7 @@ class fpdb:
         self.sql = SQL.Sql(db_server = self.settings['db-server'])
         err_msg = None
         try:
-            self.db = Database.Database(self.config, sql = self.sql)
+            self.db = Database.Database(self.config, sql = self.sql, create_db=create_db)
             if self.db.get_backend_name() == 'SQLite':
                 # tell sqlite users where the db file is
                 print (_("Connected to SQLite: %s") % self.db.db_path)
