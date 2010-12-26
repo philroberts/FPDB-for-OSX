@@ -28,7 +28,8 @@ RDEPEND="
 	graph? ( dev-python/numpy
 		dev-python/matplotlib[gtk] )
 	dev-python/python-xlib
-	dev-python/pytz"
+	dev-python/pytz
+	x11-apps/xwininfo"
 DEPEND="${RDEPEND}"
 
 src_install() {
