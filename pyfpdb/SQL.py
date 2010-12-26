@@ -1796,7 +1796,7 @@ class Sql:
                            cast(hp2.street4Raises as <signed>integer)               AS raise_4
                     FROM
                          Hands h
-                         INNER JOIN Hands h2         ON (h2.id > %s AND   h2.tableName = h.tableName)
+                         INNER JOIN Hands h2         ON (h2.id >= %s AND   h2.tableName = h.tableName)
                          INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)         /* players in this hand */
                          INNER JOIN HandsPlayers hp2 ON (hp2.playerId+0 = hp.playerId+0 AND (hp2.handId = h2.id+0))  /* other hands by these players */
                          INNER JOIN Players p        ON (p.id = hp2.PlayerId+0)
@@ -1899,7 +1899,7 @@ class Sql:
                            cast(hp2.street3Raises as <signed>integer)               AS raise_3,
                            cast(hp2.street4Raises as <signed>integer)               AS raise_4
                          FROM Hands h                                                  /* this hand */
-                         INNER JOIN Hands h2         ON (    h2.id > %s           /* other hands */
+                         INNER JOIN Hands h2         ON (    h2.id >= %s           /* other hands */
                                                          AND h2.tableName = h.tableName)
                          INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)        /* players in this hand */
                          INNER JOIN HandsPlayers hp2 ON (    hp2.playerId+0 = hp.playerId+0
@@ -2004,7 +2004,7 @@ class Sql:
                            cast(hp2.street3Raises as <signed>integer)               AS raise_3,
                            cast(hp2.street4Raises as <signed>integer)               AS raise_4
                          FROM Hands h                                                  /* this hand */
-                         INNER JOIN Hands h2         ON (    h2.id > %s           /* other hands */
+                         INNER JOIN Hands h2         ON (    h2.id >= %s           /* other hands */
                                                          AND h2.tableName = h.tableName)
                          INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)        /* players in this hand */
                          INNER JOIN HandsPlayers hp2 ON (    hp2.playerId+0 = hp.playerId+0
