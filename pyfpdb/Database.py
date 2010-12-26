@@ -1210,6 +1210,7 @@ class Database:
         self.create_tables()
         self.createAllIndexes()
         self.commit()
+        self.get_sites()
         print _("Finished recreating tables")
         log.info(_("Finished recreating tables"))
     #end def recreate_tables
