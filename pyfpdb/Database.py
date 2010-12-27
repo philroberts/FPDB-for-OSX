@@ -60,13 +60,10 @@ import Configuration
 #    Other library modules
 try:
     import sqlalchemy.pool as pool
-    #use_pool = True
-    # Forcing to False so we can use connection.row_factory
-    use_pool = False
+    use_pool = True
 except ImportError:
     log.info(_("Not using sqlalchemy connection pool."))
     use_pool = False
-
 
 try:
     from numpy import var
@@ -308,7 +305,8 @@ class Database:
             self.saveActions = False if self.import_options['saveActions'] == False else True
 
             if self.is_connected():
-                self.get_sites()
+                if not self.wrongDbVersion:
+                    self.get_sites()
                 self.connection.rollback()  # make sure any locks taken so far are released
     #end def __init__
 
@@ -449,8 +447,7 @@ class Database:
             self.db_path = database
             log.info(_("Connecting to SQLite: %(database)s") % {'database':self.db_path})
             if os.path.exists(database) or create:
-                self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES)
-                self.connection.row_factory = sqlite3.Row
+                self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES )
                 self.__connected = True
                 sqlite3.register_converter("bool", lambda x: bool(int(x)))
                 sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
@@ -1209,6 +1206,7 @@ class Database:
         self.create_tables()
         self.createAllIndexes()
         self.commit()
+        self.get_sites()
         print _("Finished recreating tables")
         log.info(_("Finished recreating tables"))
     #end def recreate_tables
