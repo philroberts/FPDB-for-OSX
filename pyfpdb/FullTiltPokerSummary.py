@@ -46,7 +46,9 @@ class FullTiltPokerSummary(TourneySummary):
 
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : "\$|\xe2\x82\xac|"        # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : "\$|\xe2\x82\xac|",       # legal currency symbols - Euro(cp1252, utf-8)
+                           'TAB' : u"-\u2013'\s\da-zA-Z",    # legal characters for tablename
+                           'NUM' : u".,\d",                  # legal characters in number format
                     }
 
     re_SplitTourneys = re.compile("^Full Tilt Poker Tournament Summary")
@@ -62,7 +64,7 @@ class FullTiltPokerSummary(TourneySummary):
                         (Buy-In\sChips:\s(?P<CHIPS>\d+)\s+)?
                         (?P<ENTRIES>[0-9]+)\sEntries\s+
                         (\$?(?P<ADDED>[.\d]+)\sadded\sto\sthe\sprize\spool\sby\sPokerStars\.com\s+)?
-                        (Total\sPrize\sPool:\s\$?(?P<PRIZEPOOL>[.0-9]+)\s+)?
+                        (Total\sPrize\sPool:\s\$?(?P<PRIZEPOOL>[%(NUM)s]+)\s+)?
                         (Target\sTournament\s.*)?
                         Tournament\sstarted:\s
                         (?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s??(?P<TZ>[A-Z]+)\s
