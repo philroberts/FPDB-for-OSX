@@ -11,9 +11,8 @@ Section: games
 Priority: extra
 Depends: ${python:Depends}, python-gtk2, python-matplotlib,
 	python-support, python-xlib,
-	mysql-server | postgresql | python-pysqlite2,
-	python-psycopg2 | python-mysqldb
-Suggests: wine
+	python-pysqlite2
+Suggests: wine, postgresql | mysql-server, python-psycopg2 | python-mysqldb
 Description: free poker database with HUD
  FPDB is a statistics tool for online poker. It supports most sites
  and several games. Most prominent feature is its heads-up display
