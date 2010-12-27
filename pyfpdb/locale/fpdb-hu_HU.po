@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2010-11-29 21:40+CET\n"
-"PO-Revision-Date: 2010-11-10 10:26+0100\n"
+"PO-Revision-Date: 2010-12-01 19:54+0100\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -40,26 +40,23 @@ msgstr "Nem sikerült felismerni a játéktípust innen: '%s'"
 
 #: AbsoluteToFpdb.py:204
 msgid "readHandInfo: Didn't match: '%s'"
-msgstr ""
+msgstr "readHandInfo: Nem illeszkedik: '%s'"
 
 #: AbsoluteToFpdb.py:205
-#, fuzzy
 msgid "Absolute: Didn't match re_HandInfo: '%s'"
-msgstr "re_HandInfo nem illeszkedik"
+msgstr "Absolute: re_HandInfo nem illeszkedik: '%s'"
 
 #: AbsoluteToFpdb.py:207
-#, fuzzy
 msgid "readHandInfo: File name didn't match re_*InfoFromFilename"
-msgstr "A fájlnév nem illeszkedik re_*InfoFromFilename-re"
+msgstr "readHandInfo: A fájlnév nem illeszkedik re_*InfoFromFilename-re"
 
 #: AbsoluteToFpdb.py:208
 msgid "File name: %s"
 msgstr "Fájlnév: %s"
 
 #: AbsoluteToFpdb.py:209
-#, fuzzy
 msgid "Absolute: Didn't match re_*InfoFromFilename: '%s'"
-msgstr "A fájlnév nem illeszkedik re_*InfoFromFilename-re"
+msgstr "Absolute: nem illeszkedik re_*InfoFromFilename-re: '%s'"
 
 #: AbsoluteToFpdb.py:278 EverleafToFpdb.py:215 FulltiltToFpdb.py:346
 #: OnGameToFpdb.py:303 PokerStarsToFpdb.py:352 Win2dayToFpdb.py:203
@@ -1651,41 +1648,37 @@ msgid "Tournament Results"
 msgstr "Versenyeredmények"
 
 #: GuiTourneyImport.py:72 GuiTourneyImport.py:290
-#, fuzzy
 msgid ""
 "GuiTourneyImport.load done: Stored: %d\tErrors: %d in %s seconds - %.0f/sec"
 msgstr ""
-"GuiBulkImport.load kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d "
-"\tHibák: %d %s másodperc alatt - %.0f/mp"
+"GuiTourneyImport.load kész: Tárolva: %d\tHibák: %d; %s másodperc alatt - "
+"%.0f/mp"
 
 #: GuiTourneyImport.py:175 fpdb_import.py:223
 msgid "Attempted to add non-directory '%s' as an import directory"
 msgstr "Nem könyvtár ('%s') megadása importálási könyvtárként"
 
 #: GuiTourneyImport.py:191
-#, fuzzy
 msgid "Tourney Summary Import started at %s - %d files to import."
-msgstr "Elindítva: %s -- %d fájl importálása. Indexek: %s"
+msgstr "Verseny összegzés import elindítva ekkor: %s - %d fájl importálása."
 
 #: GuiTourneyImport.py:217
-#, fuzzy
 msgid "TourneyImport: Removing text < 100 characters from end of file"
-msgstr "50 karakternél rövidebb szöveg eltávolítása"
+msgstr ""
+"TourneyImport: 100 karakternél rövidebb szöveg eltávolítása a fájl végéről"
 
 #: GuiTourneyImport.py:221
-#, fuzzy
 msgid "TourneyImport: Removing text < 100 characters from start of file"
-msgstr "50 karakternél rövidebb szöveg eltávolítása"
+msgstr ""
+"TourneyImport: 100 karakternél rövidebb szöveg eltávolítása a fájl elejéről"
 
 #: GuiTourneyImport.py:231
-#, fuzzy
 msgid "Finished importing %s/%s tournament summaries"
-msgstr "%s/%s PS összefoglaló importálása kész"
+msgstr "%s/%s verseny összegzés importálása befejezve"
 
 #: GuiTourneyImport.py:252
-#, fuzzy
 msgid "GTI.readFile: '%s'"
-msgstr "'%s' követése"
+msgstr "GTI.readFile: '%s'"
 
 #: GuiTourneyImport.py:271 ImapFetcher.py:176
 msgid "Need to define a converter"
@@ -1693,7 +1686,7 @@ msgstr "Meg kell adni egy konvertert"
 
 #: GuiTourneyImport.py:278
 msgid "Need a filename to import"
-msgstr ""
+msgstr "Importálandó fájlnév megadása szükséges"
 
 #: GuiTourneyPlayerStats.py:75
 msgid "_Refresh Stats"
@@ -3306,14 +3299,12 @@ msgid "<control>B"
 msgstr "<control>I"
 
 #: fpdb.pyw:810
-#, fuzzy
 msgid "<control>R"
-msgstr "<control>L"
+msgstr "<control>R"
 
 #: fpdb.pyw:810
-#, fuzzy
 msgid "Tournament _Results Import"
-msgstr "Versenyeredmények"
+msgstr "Ve_rsenyeredmények importálása"
 
 #: fpdb.pyw:811
 msgid "<control>I"
@@ -3368,9 +3359,8 @@ msgid "<control>T"
 msgstr "<control>T"
 
 #: fpdb.pyw:818
-#, fuzzy
 msgid "_Tourney Stats (tabulated view, not on pgsql)"
-msgstr "Versenyjá_tékos statisztikák (táblázat; Postgre-vel nem)"
+msgstr "Versenystatisztikák (táblázat; Postgre-vel nem)"
 
 #: fpdb.pyw:819
 msgid "Tourney _Viewer"
@@ -3539,9 +3529,8 @@ msgid "Bulk Import"
 msgstr "Importálás"
 
 #: fpdb.pyw:1007
-#, fuzzy
 msgid "Tournament Results Import"
-msgstr "Versenyeredmények"
+msgstr "Versenyeredmények importálása"
 
 #: fpdb.pyw:1013
 msgid "eMail Import"
@@ -3552,7 +3541,6 @@ msgid "Ring Player Stats"
 msgstr "Készpénzes statisztikák"
 
 #: fpdb.pyw:1026
-#, fuzzy
 msgid "Tourney Stats"
 msgstr "Versenystatisztikák"
 
