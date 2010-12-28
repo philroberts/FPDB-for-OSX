@@ -371,11 +371,12 @@ class DerivedStats():
             self.hands['playersAtStreet%d' % i] = len(p_in) # nb playersAtStreet0 is set, but not saved
             #
             # we know who remains, so can set streetxSeen for them
-            # nb do NOT process for i=0 as column does not exist!
-            # this code replaces seen() - more info log 66
+            # This hard-coded for i=1,2,3,4 because those are the only columns
+            # in the db! this code replaces seen() - more info log 66
             #
-            for player_not_folded in p_in:
-                self.handsplayers[player_not_folded]['street%sSeen' % i] = (i > 0)
+            if i in (1,2,3,4):
+                for player_not_folded in p_in:
+                    self.handsplayers[player_not_folded]['street%sSeen' % i] = True
         #
         # The remaining players in p_in reached showdown (including all-ins
         # because they never did a "fold" action in pfba() above)
