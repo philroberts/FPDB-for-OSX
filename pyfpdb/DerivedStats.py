@@ -58,6 +58,11 @@ class DerivedStats():
             self.handsplayers[player[1]]['foldedSbToSteal']     = False
             self.handsplayers[player[1]]['foldedBbToSteal']     = False
             self.handsplayers[player[1]]['tourneyTypeId']       = None
+            self.handsplayers[player[1]]['street1Seen']         = False
+            self.handsplayers[player[1]]['street2Seen']         = False
+            self.handsplayers[player[1]]['street3Seen']         = False
+            self.handsplayers[player[1]]['street4Seen']         = False
+
             
             for i in range(5): 
                 self.handsplayers[player[1]]['street%dCalls' % i] = 0
@@ -152,10 +157,11 @@ class DerivedStats():
             else:
                 self.handsplayers[player[1]]['tourneysPlayersIds'] = None
 
+        #### seen now processed in playersAtStreetX()
         # XXX: enumerate(list, start=x) is python 2.6 syntax; 'start'
         #for i, street in enumerate(hand.actionStreets[2:], start=1):
-        for i, street in enumerate(hand.actionStreets[2:]):
-            self.seen(self.hand, i+1)
+        #for i, street in enumerate(hand.actionStreets[2:]):
+        #    self.seen(self.hand, i+1)
 
         for i, street in enumerate(hand.actionStreets[1:]):
             self.aggr(self.hand, i)
@@ -298,6 +304,7 @@ class DerivedStats():
 
         # FIXME?? - This isn't couting people that are all in - at least showdown needs to reflect this
         #     ... new code below hopefully fixes this
+        # partly fixed, allins are now set as seeing streets because they never do a fold action
 
         self.hands['playersAtStreet1']  = 0
         self.hands['playersAtStreet2']  = 0
@@ -324,17 +331,15 @@ class DerivedStats():
         # actionStreets[1] is 'DEAL', 'THIRD', 'PREFLOP', so any player dealt cards
         # must act on this street if dealt cards. Almost certainly broken for the 'all-in blind' case
         # and right now i don't care - CG
+
         p_in = set([x[0] for x in hand.actions[hand.actionStreets[1]]])
 
         #
         # discover who folded on each street and remove them from p_in
         #
         # i values as follows 0=BLINDSANTES 1=PREFLOP 2=FLOP 3=TURN 4=RIVER
-        #   (for flop games)
         #
-        # At the beginning of the loop p_in contains the players with cards
-        # at the start of that street.
-        # p_in is reduced each street to become a list of players still-in
+        # p_in is reduced each time to become a list of players still-in
         # e.g. when i=1 (preflop) all players who folded during preflop
         # are found by pfba() and eliminated from p_in.
         # Therefore at the end of the loop, p_in contains players remaining
@@ -344,10 +349,9 @@ class DerivedStats():
         # note that i is 1 in advance of the actual street numbers in the db
         #
         # if p_in reduces to 1 player, we must bomb-out immediately
-        # because the hand is over, this will ensure playersAtStreetx
+        # because the hand is over, this will ensure playersAtxxxx
         # is accurate.
         #
-                    
         for (i, street) in enumerate(hand.actionStreets):
             if (i-1) in (1,2,3,4):
                 # p_in stores players with cards at start of this street,
@@ -363,11 +367,15 @@ class DerivedStats():
             #
             actions = hand.actions[street]
             p_in = p_in - self.pfba(actions, l=('folds',))
-            #
-            # if everyone folded, we are done, so exit this method immediately
-            #
             if len(p_in) == 1: return None
-
+            self.hands['playersAtStreet%d' % i] = len(p_in) # nb playersAtStreet0 is set, but not saved
+            #
+            # we know who remains, so can set streetxSeen for them
+            # nb do NOT process for i=0 as column does not exist!
+            # this code replaces seen() - more info log 66
+            #
+            for player_not_folded in p_in:
+                self.handsplayers[player_not_folded]['street%sSeen' % i] = (i > 0)
         #
         # The remaining players in p_in reached showdown (including all-ins
         # because they never did a "fold" action in pfba() above)
