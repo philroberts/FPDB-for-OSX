@@ -40,7 +40,6 @@ class DerivedStats():
             self.handsplayers[player[1]]['winnings']    = 0
             self.handsplayers[player[1]]['rake']        = 0
             self.handsplayers[player[1]]['totalProfit'] = 0
-            self.handsplayers[player[1]]['street4Seen'] = False
             self.handsplayers[player[1]]['street4Aggr'] = False
             self.handsplayers[player[1]]['wonWhenSeenStreet1'] = 0.0
             self.handsplayers[player[1]]['sawShowdown'] = False
@@ -352,13 +351,30 @@ class DerivedStats():
         # because the hand is over, this will ensure playersAtxxxx
         # is accurate.
         #
+        
+        print ("p_in ***", str(p_in))
+#        for (i, street) in enumerate(hand.actionStreets):
+#            actions = hand.actions[street]
+#            p_in = p_in - self.pfba(actions, l=('folds',))
+#            print ("i, street, actions, p_in",i, street, actions, p_in)
+#            if len(p_in) == 1: return None
+#            self.hands['playersAtStreet%d' % i] = len(p_in) # nb playersAtStreet0 is set, but not saved
+#            #
+#            # we know who remains, so can set streetxSeen for them
+#            # This hard-coded for i=1,2,3,4 because those are the only columns
+#            # in the db! this code replaces seen() - more info log 66
+#            #
+#            if i in (1,2,3,4):
+#                for player_not_folded in p_in:
+#                    self.handsplayers[player_not_folded]['street%sSeen' % i] = True
+                    
         for (i, street) in enumerate(hand.actionStreets):
             if (i-1) in (1,2,3,4):
                 # p_in stores players with cards at start of this street,
                 # so can set streetxSeen & playersAtStreetx with this information
                 # This hard-coded for i-1 =1,2,3,4 because those are the only columns
-                # in the db! this code section also replaces seen() - more info log 66
-                # nb i=2=flop=street1Seen, hence i-1 term needed
+                # in the db! this code replaces seen() - more info log 66
+                # nb i=2=flop=street1Seen, hence i-1
                 self.hands['playersAtStreet%d' % (i-1)] = len(p_in)
                 for player_with_cards in p_in:
                     self.handsplayers[player_with_cards]['street%sSeen' % (i-1)] = True
@@ -367,20 +383,17 @@ class DerivedStats():
             #
             actions = hand.actions[street]
             p_in = p_in - self.pfba(actions, l=('folds',))
+            print ("i, street, actions, p_in",i, street, actions, p_in)
+            #
+            # if everyone folded, we are done, so exit this method immediately
+            #
             if len(p_in) == 1: return None
-            self.hands['playersAtStreet%d' % i] = len(p_in) # nb playersAtStreet0 is set, but not saved
-            #
-            # we know who remains, so can set streetxSeen for them
-            # This hard-coded for i=1,2,3,4 because those are the only columns
-            # in the db! this code replaces seen() - more info log 66
-            #
-            if i in (1,2,3,4):
-                for player_not_folded in p_in:
-                    self.handsplayers[player_not_folded]['street%sSeen' % i] = True
+
         #
         # The remaining players in p_in reached showdown (including all-ins
         # because they never did a "fold" action in pfba() above)
         #
+        print ("p_in ===", str(p_in))
         self.hands['playersAtShowdown'] = len(p_in)
         for showdown_player in p_in:
             self.handsplayers[showdown_player]['sawShowdown'] = True
