@@ -823,7 +823,7 @@ class fpdb:
                                  ('tourneyviewer', None, _('Tourney _Viewer'), None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
                                  ('posnstats', None, _('P_ositional Stats (tabulated view, not on sqlite)'), _('<control>O'), 'Positional Stats (tabulated view, not on sqlite)', self.tab_positional_stats),
                                  ('sessionstats', None, _('Session Stats'), None, 'Session Stats', self.tab_session_stats),
-                                 ('replayer', None, _('Hand _Replayer'), None, 'Hand Replayer', self.tab_replayer),
+                                 ('replayer', None, _('Hand _Replayer (not working yet)'), None, 'Hand Replayer', self.tab_replayer),
                                  ('database', None, _('_Database')),
                                  ('maintaindbs', None, _('_Maintain Databases'), None, 'Maintain Databases', self.dia_maintain_dbs),
                                  ('createtabs', None, _('Create or Recreate _Tables'), None, 'Create or Recreate Tables ', self.dia_recreate_tables),
