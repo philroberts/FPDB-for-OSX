@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-12-28 15:32+CET\n"
+"POT-Creation-Date: 2010-12-28 16:12+CET\n"
 "PO-Revision-Date: 2010-09-09 13:33+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1682,7 +1682,7 @@ msgid ""
 msgstr ""
 
 #: GuiStove.py:60
-msgid "Thank you\n"
+msgid "Thank you"
 msgstr ""
 
 #: GuiTourneyGraphViewer.py:178
@@ -3353,8 +3353,8 @@ msgstr ""
 msgid "Tourney Graphs"
 msgstr "Type de Tournoi"
 
-#: fpdb.pyw:820 fpdb.pyw:1101
-msgid "Stove"
+#: fpdb.pyw:820
+msgid "Stove (preview)"
 msgstr ""
 
 #: fpdb.pyw:821
@@ -3390,7 +3390,7 @@ msgid "Session Stats"
 msgstr "Stats de Session"
 
 #: fpdb.pyw:826
-msgid "Hand _Replayer"
+msgid "Hand _Replayer (not working yet)"
 msgstr ""
 
 #: fpdb.pyw:827
@@ -3597,6 +3597,10 @@ msgstr "Aide"
 #: fpdb.pyw:1087
 msgid "Graphs"
 msgstr "Graphs"
+
+#: fpdb.pyw:1101
+msgid "Stove"
+msgstr ""
 
 #: fpdb.pyw:1174
 msgid ""
