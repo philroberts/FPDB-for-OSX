@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2010-12-28 16:12+CET\n"
-"PO-Revision-Date: 2010-12-28 16:10+0100\n"
+"PO-Revision-Date: 2010-12-28 17:16+0100\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -3397,9 +3397,8 @@ msgid "Session Stats"
 msgstr "Session statisztikák"
 
 #: fpdb.pyw:826
-#, fuzzy
 msgid "Hand _Replayer (not working yet)"
-msgstr "Leosztás _visszajátszása"
+msgstr "Leosztás _visszajátszása (még nem működik)"
 
 #: fpdb.pyw:827
 msgid "_Database"
@@ -3650,7 +3649,7 @@ msgstr "Grafikonok"
 
 #: fpdb.pyw:1101
 msgid "Stove"
-msgstr ""
+msgstr "EV kalkulátor"
 
 #: fpdb.pyw:1174
 msgid ""
