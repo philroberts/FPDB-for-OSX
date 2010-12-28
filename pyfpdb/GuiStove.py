@@ -55,9 +55,9 @@ class GuiStove():
 
         if DEBUG == False:
             warning_string = _("Stove is a GUI mockup of a EV calculation page, and completely non functional.\n")
-            warning_string = _("Unless you are interested in developing this feature, please ignore this page.\n")
-            warning_string = _("If you are interested in developing the code further see GuiStove.py and Stove.py\n")
-            warning_string = _("Thank you\n")
+            warning_string += _("Unless you are interested in developing this feature, please ignore this page.\n")
+            warning_string += _("If you are interested in developing the code further see GuiStove.py and Stove.py\n")
+            warning_string += _("Thank you")
             self.warning_box(warning_string)
 
 
