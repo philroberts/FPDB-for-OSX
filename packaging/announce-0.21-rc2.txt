@@ -1,0 +1,89 @@
+Hello everyone,
+The new release candidate 0.21-rc2 is now available for download as source or as packages/installers for Debian, Gentoo, Ubuntu and Windows.
+This version brings many improvements and bugfixes, updating is recommended for users of snapshots and rc1. If you're using a stable version like 0.20 or 0.20.1 please consider trying this version and report any bugs, and in particular regressions, so we can fix them. This might be the last RC before the next stable.
+
+So... what is FPDB?
+===================
+FPDB (Free Poker Database) is a free/open source suite of steadily growing tools to track and analyse your online poker game. FPDB is able to import the hand histories that poker sites write to your computer, store additional data from each hand in a database for use in later analysis.
+
+FPDB is ambitious, intending to support all games. Currently we support flop based games (Hold’em, Omaha, Omaha Hi/Lo), stud games (7 Card Stud, 7 Card Stud Hi/Lo, and Razz) and draw games (Triple Draw Lowball, 5 Card Draw) on several poker sites.
+
+FPDB provides a Heads Up Display (HUD), Profit Grapher and Stats viewers with a list of features that is growing.
+
+What's changed
+==============
+Approx. 200 changesets (excl. merges) have gone in since 0.21-rc1. Some of the improvements are:
+* Various changes to the HUD to make it more reliable, especially in tournaments
+* Initial preview of PokerEval/Stove - this is just a preview, it is not meant for productive use yet
+* HUD now works on Mac OSX (note that it's not as "smooth" as on Linux&Windows)
+* Improved handling of timezones
+* Tournament support for Winamax
+* Initial support for Party.FR
+* Groundwork for much better session support (not user-visible yet)
+* Some improvements to error handling
+* Some new command line parameters
+* Support for EUR games on some sites that didn't have it before
+* Various other small things and under-the-hood work
+
+Where to get it
+===============
+Please note that you will have to either recreate your database or use a new one if you're updating from 0.21-rc1 or older.
+Config files from 0.20 and later should work. Please report if you have problems with config files from that version or later.
+To download: http://sourceforge.net/projects/fpdb/files/fpdb/Snapshots/
+To be notified by email of new versions you can subscribe to our announce mailing list here: https://lists.sourceforge.net/lists/listinfo/fpdb-announce
+
+Links
+=====
+Link to FPDB website (wiki) http://fpdb.wiki.sourceforge.net/
+Features page: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Features
+Installation instructions are available from: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Installation
+Getting Started Instructions: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Getting_Started
+FAQ: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=FAQ
+Screenshots: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Screenshots
+
+How to help
+===========
+Join us in IRC and say you want to do something :)
+
+How to get help
+===============
+Please also see the "Bug reports" section below to enable us to help you.
+These are listed in order of usefulness - the 2+2 thread in particular is rather chaotic so if we miss your post feel free to bring it up again
+1) Chat/IRC
+One of the developers is usually around, but it is IRC. Dont get discouraged because we didn't answer within 10 minutes, once we do you've probably got our full attention.
+This link takes you to a website where you can talk to us directly, alternatively use an IRC client to connect to #fpdb on freenode: http://webchat.freenode.net/?channels=fpdb
+2) Mailing List
+Visit http://lists.sourceforge.net/lists/listinfo/fpdb-main to subscribe to the development&support mailing list and send us an email
+3) The monster 2+2 forum thread (registration reqd).
+http://forumserver.twoplustwo.com/16...2009-a-273001/ Please dont let the size of the thread phase you. It is monitored and sends email notifications to the developers. (Note: If you play poker and don't frequent the 2+2 forums, you may want to become better acquainted. Its a bit daunting at first, but well worth the effort)
+
+Bug reports
+===========
+When you do report issues, please help us help you. We usually need at least the following information:
+- Operating system and version (e.g. Ubuntu 10.10 or Windows XP)
+- Database type (MySQL, SQLite, PostgreSQL)
+- Install method (exe, tarball, deb, git, ebuild)
+- Fpdb version
+- Site name and gametype (e.g. Razz SnG)
+You can find many of these details for easy copy&paste in the Help menu under About.
+
+Known Bugs
+==========
+Windows 7 file names for EUR Stars hand histories crashes fpdb.
+HUD:
+* Position of HUD overlay based on favourite position is off after you get moved in a tournament.
+* No HUD support for mixed games.
+* HUD doesn't handle tournament table changes well. Work around by closing the HUD for that table and letting it regenerate.
+* To close down the HUD, always use the "stop autoimport" button from the main FPDB application. Closing the "HUD main window" directly may cause temporary loss of control of other applications (including the poker client). Control is normally returned at the next hud update cycle or if FPDB is stopped.
+* Windows 7 and Windows Vista require that fpdb.pyw be 'Run as Admin' - the HUD will not run using the run_fpdb.bat startup script.
+
+Thanks
+======
+An open source project lives and dies around the communities of people it attracts to help out.
+First of all thanks to all the free/libre projects on whom we depend (in no particular order): Python, SQLite, mysql-python, MySQL, psycopg2, PostgreSQL, numpy, matplotlib, GTK/Cairo, PyGTK/PyCairo, python-xlib, pytz, X11&tools and pokereval/pypokereval/stove. Additionally most of us use free/libre software such as Gentoo Linux, Debian GNU/Linux, Ubuntu Linux, Arch Linux, git, gedit, kate, eclipse etc., thanks to all these people and everyone who's gone unnamed, too.
+Thanks too:
+Devs and contributors - Steffen123, Sqlcoder, Eric Blade, Eratosthenes, Bostik, MCT, Grindi, PassThePeas, Gimick, Kangaderoo, ChazDazzle.
+Special shoutout to Eleatic Stranger who has written an initial converter for Carbon poker, without ever having played on the site!
+Documentation: RSOAndrew, Buggernaut, ChazDazzle
+Testers and everyone answering forum questions - xaviax, Dog, uncooper etc. You know who you are.
+Hand History donations: Quite a few people on this list now. Every donation for alternate sites and various corner cases is appreciated. 
