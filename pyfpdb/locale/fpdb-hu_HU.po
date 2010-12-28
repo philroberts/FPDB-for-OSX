@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2010-12-28 15:32+CET\n"
-"PO-Revision-Date: 2010-12-01 19:54+0100\n"
+"PO-Revision-Date: 2010-12-28 16:10+0100\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -382,9 +382,8 @@ msgid "Finished recreating tables"
 msgstr "A táblák újra létrehozása befejeződött"
 
 #: Database.py:1252
-#, fuzzy
 msgid "***Error creating tables: "
-msgstr "*** Hiba a táblák eldobása közben: "
+msgstr "*** Hiba a táblák létrehozása közben: "
 
 #: Database.py:1262
 msgid "*** Error unable to get databasecursor"
@@ -411,9 +410,8 @@ msgid "Unknown database: MySQL, Postgres and SQLite supported"
 msgstr "Ismeretlen adatbázis: a MySQL, a Postgres és az SQLite támogatott"
 
 #: Database.py:1344
-#, fuzzy
 msgid "Error creating indexes: "
-msgstr "pg index létrehozása "
+msgstr "Hiba az indexek létrehozása közben: "
 
 #: Database.py:1371
 msgid "Dropping sqlite index "
@@ -492,16 +490,15 @@ msgstr "Hiba lock_for_insert közben:"
 
 #: Database.py:1699
 msgid "######## Hands ##########"
-msgstr ""
+msgstr "######## Leosztások ##########"
 
 #: Database.py:1703
 msgid "###### End Hands ########"
-msgstr ""
+msgstr "###### Leosztások vége ########"
 
 #: Database.py:2088
-#, fuzzy
 msgid "Error aquiring hero ids:"
-msgstr "Hiba analyze közben:"
+msgstr "Hiba a játékosazonosítók meghatározása közben:"
 
 #: Database.py:2217
 msgid "queue empty too long - writer stopping ..."
@@ -1497,9 +1494,8 @@ msgstr ""
 "bet vagy raise vs fold"
 
 #: GuiRingPlayerStats.py:55
-#, fuzzy
 msgid "Continuation Bet post-flop"
-msgstr "folytató nyitás flopon"
+msgstr "folytató nyitás flop után"
 
 #: GuiRingPlayerStats.py:56
 msgid "% Raise First In\\% Raise when first to bet"
@@ -1613,9 +1609,8 @@ msgid "Detailed Filters"
 msgstr "Részletes szűrők"
 
 #: GuiRingPlayerStats.py:712
-#, fuzzy
 msgid "Hand Filters:"
-msgstr "és mások"
+msgstr "Leosztás szűrők:"
 
 #: GuiRingPlayerStats.py:725
 msgid "between"
@@ -1640,22 +1635,28 @@ msgstr "Kezdőkezekre bontva a fenti limiteknél"
 #: GuiSessionViewer.py:158
 msgid "Session Viewer is proof of concept code only, and contains many bugs.\n"
 msgstr ""
+"A session nézet csak megvalósíthatósági próbálkozás, és sok hibát "
+"tartalmaz.\n"
 
 #: GuiSessionViewer.py:159
 msgid ""
 "Feel free to use the viewer, but there is no guarantee that the data is "
 "accurate.\n"
 msgstr ""
+"Használd nyugodtan a nézetet, de nincs rá garancia, hogy az adatok "
+"pontosak.\n"
 
 #: GuiSessionViewer.py:160
 msgid ""
 "If you are interested in developing the code further please contact us via "
 "the usual channels.\n"
 msgstr ""
+"Ha szeretnél segíteni a kód továbbfejlesztésében, akkor vedd fel velünk a "
+"kapcsolatot a szokásos csatornákon.\n"
 
 #: GuiSessionViewer.py:161
 msgid "Thankyou"
-msgstr ""
+msgstr "Köszönjük"
 
 #: GuiSessionViewer.py:164 GuiStove.py:64 fpdb.pyw:1283
 msgid "FPDB WARNING"
@@ -1673,23 +1674,26 @@ msgstr "Sessionök"
 msgid ""
 "Stove is a GUI mockup of a EV calculation page, and completely non "
 "functional.\n"
-msgstr ""
+msgstr "Az EV kalkulátor egy GUI vázlat, és még teljesen nem funkcionális.\n"
 
 #: GuiStove.py:58
 msgid ""
 "Unless you are interested in developing this feature, please ignore this "
 "page.\n"
 msgstr ""
+"Kérlek hagyd figyelmen kívül ezt az oldalt, hacsaknem érdekel a funkció "
+"továbbfejlesztése.\n"
 
 #: GuiStove.py:59
 msgid ""
 "If you are interested in developing the code further see GuiStove.py and "
 "Stove.py\n"
 msgstr ""
+"Viszont ha érdekel, akkor nézz bele a GuiStove.py és Stove.py fájlokba\n"
 
 #: GuiStove.py:60
 msgid "Thank you\n"
-msgstr ""
+msgstr "Köszönjük\n"
 
 #: GuiTourneyGraphViewer.py:178
 msgid "Tournaments"
@@ -1793,22 +1797,20 @@ msgid "Table \"%s\" no longer exists\n"
 msgstr "\"%s\" nevű asztal már nem létezik\n"
 
 #: HUD_main.pyw:326
-#, fuzzy
 msgid "Error resizing HUD for table: %s."
-msgstr "*** Hiba a táblák létrehozása közben: "
+msgstr "Hiba a HUD átméretezése közben ezen az asztalon: %s."
 
 #: HUD_main.pyw:340
 msgid "Error killing HUD for table: %s."
-msgstr ""
+msgstr "Hiba a HUD kilövése közben ezen az asztalon: %s."
 
 #: HUD_main.pyw:363
-#, fuzzy
 msgid "Error creating HUD for hand %s."
-msgstr "Hiba az indexek létrehozása közben: "
+msgstr "Hiba a HUD létrehozása közben erre a leosztásra: %s."
 
 #: HUD_main.pyw:374
 msgid "Error updating HUD for hand %s."
-msgstr ""
+msgstr "Hiba a HUD frissítése közben erre a leosztásra: %s."
 
 #: HUD_run_me.py:45
 msgid "HUD_main starting\n"
@@ -2175,7 +2177,7 @@ msgstr "join_holcards: holecards(%s): %s"
 
 #: Hand.py:1579
 msgid "join_holecards: Player '%s' appears not to have been dealt a card"
-msgstr ""
+msgstr "join_holecards: a '%s' játékos úgy tűnik, hogy nem kapott lapot"
 
 #: Hand.py:1669
 msgid "DEBUG: call Pot.end() before printing pot total"
@@ -2507,9 +2509,8 @@ msgid "Module name for Hand History Converter"
 msgstr "Modulnév a Leosztástörténet Konvertáló számára"
 
 #: Options.py:46
-#, fuzzy
 msgid "A sitename"
-msgstr "Felhasználónév"
+msgstr "Terem neve"
 
 #: Options.py:50
 msgid "Error logging level:"
@@ -2533,24 +2534,23 @@ msgstr "Ennyi leosztásonként daraboljon. Alapértelmezetten 100"
 
 #: Options.py:66
 msgid "X location to open window"
-msgstr ""
+msgstr "A megnyitandó ablak X koordinátájá"
 
 #: Options.py:68
 msgid "Y location to open Window"
-msgstr ""
+msgstr "A megnyitandó ablak Y koordinátájá"
 
 #: Options.py:70
-#, fuzzy
 msgid "Auto-start Auto-import"
-msgstr "  _Auto Import indítása  "
+msgstr "Auto Import automatikus indítása"
 
 #: Options.py:72
 msgid "Start Minimized"
-msgstr ""
+msgstr "Indítás lecsukva"
 
 #: Options.py:74
 msgid "Start Hidden"
-msgstr ""
+msgstr "Indítás rejtve"
 
 #: Options.py:116
 msgid "press enter to end"
@@ -2764,7 +2764,7 @@ msgstr ""
 
 #: Stove.py:261
 msgid "No board given. Using Monte-Carlo simulation..."
-msgstr ""
+msgstr "Nincsenek közös lapok. Monte-Carlo módszer használata..."
 
 #: Tables_Demo.py:61
 msgid "Fake HUD Main Window"
@@ -3362,7 +3362,7 @@ msgstr "Verseny grafikonok"
 
 #: fpdb.pyw:820 fpdb.pyw:1101
 msgid "Stove"
-msgstr ""
+msgstr "EV kalkulátor"
 
 #: fpdb.pyw:821
 msgid "<control>P"
@@ -3398,7 +3398,7 @@ msgstr "Session statisztikák"
 
 #: fpdb.pyw:826
 msgid "Hand _Replayer"
-msgstr ""
+msgstr "Leosztás _visszajátszása"
 
 #: fpdb.pyw:827
 msgid "_Database"
@@ -3575,9 +3575,8 @@ msgid "Positional Stats"
 msgstr "Pozíciós statisztikák"
 
 #: fpdb.pyw:1059
-#, fuzzy
 msgid "Hand Replayer"
-msgstr "Leosztás szűrők:"
+msgstr "Leosztás _visszajátszása"
 
 #: fpdb.pyw:1063
 msgid ""
@@ -3812,6 +3811,7 @@ msgstr "Importálás"
 #: fpdb_import.py:627
 msgid "CLI for importing hands is GuiBulkImport.py"
 msgstr ""
+"Parancssorból a GuiBulkImport.py segítségével tudsz leosztásokat importálni"
 
 #: interlocks.py:52
 msgid "lock already held by:"
