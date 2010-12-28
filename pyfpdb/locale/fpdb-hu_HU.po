@@ -3397,6 +3397,7 @@ msgid "Session Stats"
 msgstr "Session statisztikák"
 
 #: fpdb.pyw:826
+#, fuzzy
 msgid "Hand _Replayer (not working yet)"
 msgstr "Leosztás _visszajátszása"
 
