@@ -1007,7 +1007,8 @@ class Sql:
         if db_server == 'mysql':
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                         id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-                        handsPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
+                        handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         street SMALLINT NOT NULL,
                         actionNo SMALLINT NOT NULL,
                         streetActionNo SMALLINT NOT NULL,
@@ -1022,7 +1023,8 @@ class Sql:
         elif db_server == 'postgresql':
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                         id BIGSERIAL, PRIMARY KEY (id),
-                        handsPlayerId BIGINT, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
+                        handId BIGINT NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                        playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         street SMALLINT,
                         actionNo SMALLINT,
                         streetActionNo SMALLINT,
@@ -1036,7 +1038,8 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                         id INTEGER PRIMARY KEY,
-                        handsPlayerId BIGINT,
+                        handId INT NOT NULL,
+                        playerId INT NOT NULL,
                         street SMALLINT,
                         actionNo SMALLINT,
                         streetActionNo SMALLINT,
@@ -1046,9 +1049,7 @@ class Sql:
                         amountCalled INT,
                         numDiscarded SMALLINT,
                         cardsDiscarded TEXT,
-                        allIn BOOLEAN,
-                        FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
-                        FOREIGN KEY (actionId) REFERENCES Actions(id) ON DELETE CASCADE
+                        allIn BOOLEAN
                         )""" 
 
 
@@ -4323,7 +4324,7 @@ class Sql:
         self.query['handsPlayersTTypeId_joiner'] = " OR TourneysPlayersId+0="
         self.query['handsPlayersTTypeId_joiner_id'] = " OR id="
 
-        self.query['store_hand'] = """INSERT INTO Hands (
+        self.query['store_hand'] = """insert into Hands (
                                             tablename,
                                             gametypeid,
                                             sitehandno,
@@ -4355,13 +4356,13 @@ class Sql:
                                             street4Pot,
                                             showdownPot
                                              )
-                                             VALUES
+                                             values
                                               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
 
-        self.query['store_hands_players'] = """INSERT INTO HandsPlayers (
+        self.query['store_hands_players'] = """insert into HandsPlayers (
                 handId,
                 playerId,
                 startCash,
@@ -4458,7 +4459,7 @@ class Sql:
                 street3Raises,
                 street4Raises
                )
-               VALUES (
+               values (
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
@@ -4480,8 +4481,9 @@ class Sql:
                     %s, %s, %s, %s, %s
                 )"""
 
-        self.query['store_hands_actions'] = """INSERT INTO HandsActions (
-                        handsPlayerId,
+        self.query['store_hands_actions'] = """insert into HandsActions (
+                        handId,
+                        playerId,
                         street,
                         actionNo,
                         streetActionNo,
@@ -4493,10 +4495,10 @@ class Sql:
                         cardsDiscarded,
                         allIn
                )
-               VALUES (
+               values (
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s
+                    %s, %s
                 )"""
         
         ################################

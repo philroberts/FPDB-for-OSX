@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 147
+DB_VERSION = 148
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -125,7 +125,8 @@ class Database:
                   {'tab':'Gametypes',       'col':'siteId',            'drop':0}
                 , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
                 #, {'tab':'Hands',           'col':'siteHandNo',        'drop':0}  unique indexes not dropped
-                , {'tab':'HandsActions',    'col':'handsPlayerId',     'drop':0}
+                , {'tab':'HandsActions',    'col':'handId',            'drop':1}
+                , {'tab':'HandsActions',    'col':'playerId',          'drop':1}
                 , {'tab':'HandsActions',    'col':'actionId',          'drop':1}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':1}
@@ -150,7 +151,8 @@ class Database:
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
-                , {'tab':'HandsActions',    'col':'handsPlayerId',     'drop':0}
+                , {'tab':'HandsActions',    'col':'handId',            'drop':0}
+                , {'tab':'HandsActions',    'col':'playerId',          'drop':0}
                 , {'tab':'HandsActions',    'col':'actionId',          'drop':1}
                 , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
@@ -174,7 +176,8 @@ class Database:
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
-                    , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
@@ -184,7 +187,8 @@ class Database:
                       {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
@@ -1755,7 +1759,6 @@ class Database:
             pp.pprint(pdata)
 
         inserts = []
-        hpid = {}
         for p in pdata:
             inserts.append( (hid,
                              pids[p],
@@ -1860,17 +1863,9 @@ class Database:
         #print "DEBUG: inserts: %s" %inserts
         #print "DEBUG: q: %s" % q
         c = self.get_cursor()
+        c.executemany(q, inserts)
 
-        if self.import_options['saveActions']:
-            for r in inserts:
-                c.execute(q, r)
-                hpid[(r[0], r[1])] = self.get_last_insert_id(c)
-        else:
-            c.executemany(q, inserts)
-
-        return hpid
-
-    def storeHandsActions(self, hid, pids, hpid, adata, printdata = False):
+    def storeHandsActions(self, hid, pids, adata, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, adata)
 
         # This can be used to generate test data. Currently unused
@@ -1881,8 +1876,8 @@ class Database:
 
         inserts = []
         for a in adata:
-            inserts.append( (hpid[(hid, pids[adata[a]['player']])],
-                            #self.getHandsPlayerId(self.hid, pids[adata[a]['player']]),
+            inserts.append( (hid,
+                             pids[adata[a]['player']],
                              adata[a]['street'],
                              adata[a]['actionNo'],
                              adata[a]['streetActionNo'],

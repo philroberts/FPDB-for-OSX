@@ -266,11 +266,11 @@ db: a connected Database object"""
             hh['seats'] = len(self.dbid_pids)
 
             self.dbid_hands = db.storeHand(hh, printdata = printtest)
-            self.dbid_hpid = db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, 
-                                                  self.stats.getHandsPlayers(), printdata = printtest)
+            db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.stats.getHandsPlayers(),
+                                 printdata = printtest)
             if self.saveActions:
-                db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.dbid_hpid,
-                                     self.stats.getHandsActions(), printdata = printtest)
+                db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.stats.getHandsActions(),
+                                     printdata = printtest)
         else:
             log.info(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
             self.is_duplicate = True  # i.e. don't update hudcache
