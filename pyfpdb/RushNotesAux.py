@@ -133,7 +133,7 @@ class RushNotes(Aux_Window):
             debugfile.write(self.hud.table.name+"\n")
             debugfile.write(str(self.hud.stat_dict.keys())+"\n")     
 
-        if self.hud.table.name not in {"Mach 10", "Lightning", "Celerity", "Flash", "Zoom"}
+        if self.hud.table.name not in ("Mach 10", "Lightning", "Celerity", "Flash", "Zoom"):
             return
         #
         # Grab a list of player id's
