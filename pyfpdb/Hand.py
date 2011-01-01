@@ -247,7 +247,7 @@ dealt   whether they were seen in a 'dealt to' line
             db.commit()
     #end def prepInsert
 
-    def insert(self, db, printtest = False):
+    def insert(self, db, hp_data = None, ha_data = None, insert_data=False, printtest = False):
         """ Function to insert Hand into database
 Should not commit, and do minimal selects. Callers may want to cache commits
 db: a connected Database object"""
@@ -273,15 +273,18 @@ db: a connected Database object"""
 
             self.dbid_hands = db.storeHand(hh, printdata = printtest)
             
-            db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, hp,
-                                 printdata = printtest)
+            hp_inserts = db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, hp,
+                                               insert=insert_data, hp_bulk = hp_data, printdata = printtest)
+            
             if self.saveActions:
-                db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.stats.getHandsActions(),
-                                     printdata = printtest)
+                ha_inserts = db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.stats.getHandsActions(),
+                                                   insert=insert_data, ha_bulk = ha_data, printdata = printtest)
         else:
             log.info(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
             self.is_duplicate = True  # i.e. don't update hudcache
             raise FpdbHandDuplicate(hh['siteHandNo'])
+        
+        return hp_inserts, ha_inserts
 
     def updateHudCache(self, db):
         db.storeHudCache(self.dbid_gt, self.dbid_pids, self.startTime, self.stats.getHandsPlayers())

@@ -1752,7 +1752,7 @@ class Database:
         return self.get_last_insert_id(c)
     # def storeHand
 
-    def storeHandsPlayers(self, hid, pids, pdata, printdata = False):
+    def storeHandsPlayers(self, hid, pids, pdata, hp_bulk = None, insert = False, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
         if printdata:
             import pprint
@@ -1858,15 +1858,16 @@ class Database:
                              pdata[p]['street4Raises']
                             ) )
 
-        q = self.sql.query['store_hands_players']
-        q = q.replace('%s', self.sql.query['placeholder'])
+        if insert:
+            hp_bulk += inserts
+            q = self.sql.query['store_hands_players']
+            q = q.replace('%s', self.sql.query['placeholder'])
+            c = self.get_cursor()
+            c.executemany(q, hp_bulk)
+            
+        return inserts
 
-        #print "DEBUG: inserts: %s" %inserts
-        #print "DEBUG: q: %s" % q
-        c = self.get_cursor()
-        c.executemany(q, inserts)
-
-    def storeHandsActions(self, hid, pids, adata, printdata = False):
+    def storeHandsActions(self, hid, pids, adata, ha_bulk = None, insert = False, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, adata)
 
         # This can be used to generate test data. Currently unused
@@ -1891,11 +1892,14 @@ class Database:
                              adata[a]['allIn']
                             ) )
 
-        q = self.sql.query['store_hands_actions']
-        q = q.replace('%s', self.sql.query['placeholder'])
+        if insert:
+            ha_bulk += inserts
+            q = self.sql.query['store_hands_actions']
+            q = q.replace('%s', self.sql.query['placeholder'])
+            c = self.get_cursor()
+            c.executemany(q, ha_bulk)
 
-        c = self.get_cursor()
-        c.executemany(q, inserts)
+        return inserts
 
     def storeHudCache(self, gid, pids, starttime, pdata):
         """Update cached statistics. If update fails because no record exists, do an insert."""

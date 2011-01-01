@@ -473,12 +473,19 @@ class Importer:
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
                 to_hud = []
+                hp_bulk = []
+                ha_bulk = []
+                i = 0
 
                 for hand in handlist:
                     if hand is not None:
                         hand.prepInsert(self.database)
                         try:
-                            hand.insert(self.database, printtest = self.settings['testData'])
+                            hp_inserts, ha_inserts = hand.insert(self.database, hp_data = hp_bulk, 
+                                                                 ha_data = ha_bulk, insert_data = len(handlist)==i,
+                                                                 printtest = self.settings['testData'])
+                            hp_bulk += hp_inserts
+                            ha_bulk += ha_inserts
                         except Exceptions.FpdbHandDuplicate:
                             duplicates += 1
                         else:
