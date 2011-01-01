@@ -36,10 +36,11 @@ The existing notes file will be altered by this function
 ### http://www.faqs.org/docs/diveintopython/kgp_search.html
 
 #debugmode will write logfiles for the __init__ and update_data methods
-debugmode = False
+debugmode = True
 
 #    Standard Library modules
 import os
+import sys
 from xml.dom import minidom 
 from datetime import datetime
 from time import *
@@ -49,6 +50,48 @@ from Mucked import Aux_Window
 from Mucked import Seat_Window
 from Mucked import Aux_Seats
 import Stats
+
+#
+# overload minidom methods to fix bug where \n is parsed as " ".  
+# described here: http://bugs.python.org/issue7139
+#
+
+def _write_data(writer, data, isAttrib=False):
+    "Writes datachars to writer."
+    if isAttrib:
+        data = data.replace("\r", "&#xD;").replace("\n", "&#xA;")
+        data = data.replace("\t", "&#x9;")
+    writer.write(data)
+minidom._write_data = _write_data
+
+def writexml(self, writer, indent="", addindent="", newl=""):
+    # indent = current indentation
+    # addindent = indentation to add to higher levels
+    # newl = newline string
+    writer.write(indent+"<" + self.tagName)
+
+    attrs = self._get_attributes()
+    a_names = attrs.keys()
+    a_names.sort()
+
+    for a_name in a_names:
+        writer.write(" %s=\"" % a_name)
+        _write_data(writer, attrs[a_name].value, isAttrib=True)
+        writer.write("\"")
+    if self.childNodes:
+        writer.write(">%s"%(newl))
+        for node in self.childNodes:
+            node.writexml(writer,indent+addindent,addindent,newl)
+        writer.write("%s</%s>%s" % (indent,self.tagName,newl))
+    else:
+        writer.write("/>%s"%(newl))
+# For an introduction to overriding instance methods, see
+#   http://irrepupavel.com/documents/python/instancemethod/
+instancemethod = type(minidom.Element.writexml)
+minidom.Element.writexml = instancemethod(
+    writexml, None, minidom.Element)
+
+
 
 class RushNotes(Aux_Window):
 
@@ -65,9 +108,14 @@ class RushNotes(Aux_Window):
         heroname = site_params_dict['screen_name']
         sitename = site_params_dict['site_name']
         notepath = site_params_dict['site_path']  # this is a temporary hijack of site-path
-        notepath = r"/home/steve/.wine/drive_c/Program Files/Full Tilt Poker/"
         self.heroid = self.hud.db_connection.get_player_id(self.config, sitename, heroname)
         self.notefile = notepath + "/" + heroname + ".xml"
+        
+        if not os.path.isfile(self.notefile):
+            self.active = False
+            return
+        else:
+            self.active = True
 
         #
         # read in existing notefile and backup with date/time in name
@@ -121,7 +169,8 @@ class RushNotes(Aux_Window):
         #this method called once for every hand processed
         # self.hud.stat_dict contains the stats information for this hand
         
-
+        if not self.active:
+            return
         
         if (debugmode):
             debugfile=open("~Rushdebug.data", "a")
@@ -156,13 +205,15 @@ class RushNotes(Aux_Window):
             pfr=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'pfr')[3] + " ")
             three_B=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'three_B')[3] + " ")
             cbet=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'cbet')[3] + " ")
+            fbbsteal=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'f_BB_steal')[3] + " ")
+
             steal=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'steal')[3] + " ")
             ffreq1=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'ffreq1')[3] + " ")
             agg_freq=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'agg_freq')[3] + " ")
             BBper100=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'BBper100')[3] + " ")
         
-            xmlqueuedict[playername] = "~fpdb~" + n + vpip + pfr + three_B + cbet + steal + ffreq1 + agg_freq + BBper100 + "~ends~"
-        
+            xmlqueuedict[playername] = "~fpdb~" + n + vpip + pfr + three_B + fbbsteal + "\n" + steal + cbet + ffreq1 + "\n" + agg_freq + BBper100 + "~ends~"
+
         if (debugmode):
             now = datetime.now()
             debugfile.write(now.strftime("%Y%m%d%H%M%S")+" villain data has been processed" + "\n")
@@ -214,3 +265,8 @@ class RushNotes(Aux_Window):
             now = datetime.now()
             debugfile.write(now.strftime("%Y%m%d%H%M%S")+" dom written, process finished"+ "\n")
             debugfile.close()
+
+
+
+
+

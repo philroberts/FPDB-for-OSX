@@ -36,6 +36,48 @@ import os
 import sys
 from xml.dom import minidom 
 
+#
+# overload minidom methods to fix bug where \n is parsed as " ".  
+# described here: http://bugs.python.org/issue7139
+#
+
+def _write_data(writer, data, isAttrib=False):
+    "Writes datachars to writer."
+    if isAttrib:
+        data = data.replace("\r", "&#xD;").replace("\n", "&#xA;")
+        data = data.replace("\t", "&#x9;")
+    writer.write(data)
+minidom._write_data = _write_data
+
+def writexml(self, writer, indent="", addindent="", newl=""):
+    # indent = current indentation
+    # addindent = indentation to add to higher levels
+    # newl = newline string
+    writer.write(indent+"<" + self.tagName)
+
+    attrs = self._get_attributes()
+    a_names = attrs.keys()
+    a_names.sort()
+
+    for a_name in a_names:
+        writer.write(" %s=\"" % a_name)
+        _write_data(writer, attrs[a_name].value, isAttrib=True)
+        writer.write("\"")
+    if self.childNodes:
+        writer.write(">%s"%(newl))
+        for node in self.childNodes:
+            node.writexml(writer,indent+addindent,addindent,newl)
+        writer.write("%s</%s>%s" % (indent,self.tagName,newl))
+    else:
+        writer.write("/>%s"%(newl))
+# For an introduction to overriding instance methods, see
+#   http://irrepupavel.com/documents/python/instancemethod/
+instancemethod = type(minidom.Element.writexml)
+minidom.Element.writexml = instancemethod(
+    writexml, None, minidom.Element)
+
+
+
 statqueue=0
 statupdated=0
 statadded=0
