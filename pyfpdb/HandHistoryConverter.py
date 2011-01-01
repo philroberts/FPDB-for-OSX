@@ -673,7 +673,7 @@ or None if we fail to get the info """
         "Returns string to search window title for tournament table no."
 # Full Tilt:  $30 + $3 Tournament (181398949), Table 1 - 600/1200 Ante 100 - Limit Razz
 # PokerStars: WCOOP 2nd Chance 02: $1,050 NLHE - Tournament 307521826 Table 1 - Blinds $30/$60
-        return "%s.+Table (\d+)" % (tournament, )
+        return "%s.+(?:Table|Torneo) (\d+)" % (tournament, )
 
     @staticmethod
     def clearMoneyString(money):
