@@ -123,7 +123,7 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.21-rc1 plus git"
+VERSION = "0.21_rc2 plus git"
 
 
 class fpdb:
@@ -817,13 +817,13 @@ class fpdb:
                                  ('hudConfigurator', None, _('_HUD Configurator'), _('<control>H'), 'HUD Configurator', self.diaHudConfigurator),
                                  ('graphs', None, _('_Graphs'), _('<control>G'), 'Graphs', self.tabGraphViewer),
                                  ('tourneygraphs', None, _('Tourney Graphs'), None, 'TourneyGraphs', self.tabTourneyGraphViewer),
-                                 ('stove', None, _('Stove'), None, 'Stove', self.tabStove),
+                                 ('stove', None, _('Stove (preview)'), None, 'Stove', self.tabStove),
                                  ('ringplayerstats', None, _('Ring _Player Stats (tabulated view, not on pgsql)'), _('<control>P'), 'Ring Player Stats (tabulated view, not on pgsql)', self.tab_ring_player_stats),
                                  ('tourneyplayerstats', None, _('_Tourney Stats (tabulated view, not on pgsql)'), _('<control>T'), 'Tourney Stats (tabulated view, not on pgsql)', self.tab_tourney_player_stats),
                                  ('tourneyviewer', None, _('Tourney _Viewer'), None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
                                  ('posnstats', None, _('P_ositional Stats (tabulated view, not on sqlite)'), _('<control>O'), 'Positional Stats (tabulated view, not on sqlite)', self.tab_positional_stats),
                                  ('sessionstats', None, _('Session Stats'), None, 'Session Stats', self.tab_session_stats),
-                                 ('replayer', None, _('Hand _Replayer'), None, 'Hand Replayer', self.tab_replayer),
+                                 ('replayer', None, _('Hand _Replayer (not working yet)'), None, 'Hand Replayer', self.tab_replayer),
                                  ('database', None, _('_Database')),
                                  ('maintaindbs', None, _('_Maintain Databases'), None, 'Maintain Databases', self.dia_maintain_dbs),
                                  ('createtabs', None, _('Create or Recreate _Tables'), None, 'Create or Recreate Tables ', self.dia_recreate_tables),

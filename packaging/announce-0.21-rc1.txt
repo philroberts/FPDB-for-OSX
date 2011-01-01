@@ -1,0 +1,93 @@
+Hello everyone,
+The new release candidate 0.21-rc1 is now available for download as source or as packages/installers for Debian, Gentoo, Ubuntu and Windows.
+This version brings many improvements and bugfixes, updating is recommended for users of snapshots. If you're using a stable version like 0.20 or 0.20.1 please consider trying this version and report any bugs, and in particular regressions, so we can fix them. There've been many many bugfixes and quite a few new features (details further down, download links at the end of this post).
+
+So... what is FPDB?
+===================
+FPDB (Free Poker Database) is a free/open source suite of steadily growing tools to track and analyse your online poker game. FPDB is able to import the hand histories that poker sites write to your computer, store additional data from each hand in a database for use in later analysis.
+
+FPDB is ambitious, intending to support all games. Currently we support flop based games (Hold’em, Omaha, Omaha Hi/Lo), stud games (7 Card Stud, 7 Card Stud Hi/Lo, and Razz) and draw games (Triple Draw Lowball, 5 Card Draw) on several poker sites.
+
+FPDB provides a Heads Up Display (HUD), Profit Grapher and Stats viewers with a list of features that is growing.
+
+What's changed
+==============
+448 changesets (excl. merges) have gone in since 0.20.906.
+* Stat fixes: Steal, 3bet, cbet all made more accurate. Should work for Stud, Draw and Flop games
+* New site support: Winamax.
+* Draw support for FTP (preliminary - still need hand histories for A-5 lowball)
+* Improved Player Stats view for Razz - http://sourceforge.net/apps/wordpres...art-card-list/
+* Additional BB option in the grapher for cash games - http://sourceforge.net/apps/wordpres...-improvements/
+* Tournament results import ability for Stars
+* Tournament results graphing. - http://sourceforge.net/apps/wordpres...esults-graphs/
+* Many, many bug fixes.
+* Better support for timezones.
+* The OnGame converter had a significant refresh. Betfair users should now use the OnGame importer.
+* The Merge/Carbon converter received a significant update.
+* Stars.fr and Stars.it hand histories now import correctly (including the new AAMS id on Stars.it)
+* Stars cap games should no longer crash.
+* Street-by-street actions are now stored for imported hands
+* Bulk import now has a file by file progress bar.
+* HUD auto closes when client is closed on all systems
+* HUD follows when the client is dragged on all systems
+
+Where to get it
+===============
+Please note that you will have to either recreate your database or use a new one if you're updating from 0.20.906 or older.
+Config files from 0.20 and later should work. Please report if you have problems with config files from that version or later.
+To download: http://sourceforge.net/projects/fpdb...pdb/Snapshots/
+To be notified by email of new versions you can subscribe to our announce mailing list here: https://lists.sourceforge.net/lists/.../fpdb-announce
+
+Links
+=====
+Link to FPDB website (wiki) http://fpdb.wiki.sourceforge.net/
+Features page: http://sourceforge.net/apps/mediawik...title=Features
+Installation instructions are available from: http://sourceforge.net/apps/mediawik...e=Installation
+Getting Started Instructions: http://sourceforge.net/apps/mediawik...etting_Started
+FAQ: http://sourceforge.net/apps/mediawik...sked_Questions
+Screenshots: http://sourceforge.net/apps/mediawik...le=Screenshots
+
+How to help
+===========
+Tournament results are getting attention in the development tree at the moment, if you have an interest in assisting this, for the next release please send some summary files or emails to fpdb-main@lists.sourceforge.net. By this I mean files that are created automatically by some sites for each tourney. Other sites send email summaries automatically or on request, we need those too. If you are going to send through those summaries, please avoid copy&paste as email has a habit of converting the original text into something else. Please either forward the email or zip the file and attach to an email before sending.
+
+How to get help
+===============
+Please see the "Bug reports" section below to enable us to help you
+1) Chat/IRC
+One of the developers is usually around, it is IRC - we may take a while to actually respond - dont get discouraged because we didn't answer within 10 minutes, once we do you've probably got our full attention.
+This link takes you to a website where you can talk to us directly, alternatively use an IRC client to connect to #fpdb on freenode: http://webchat.freenode.net/?channels=fpdb
+2) Mailing List
+Visit http://lists.sourceforge.net/lists/listinfo/fpdb-main to subscribe and send us an email
+3) The monster 2+2 forum thread (registration reqd).
+http://forumserver.twoplustwo.com/16...2009-a-273001/ Please dont let the size of the thread phase you. It is monitored and sends email notifications to the developers. (Note: If you play poker and don't frequent the 2+2 forums, you may want to become better acquainted. Its a bit daunting at first, but well worth the effort)
+
+Bug reports
+===========
+When you do report issues, please help us help you. We usually need at least the following information:
+- Operating system and version (e.g. Ubuntu 10.10 or Windows XP)
+- Database type (MySQL, SQLite, PostgreSQL)
+- Install method (exe, tarball, deb, git)
+- Fpdb version
+- Site name and gametype (e.g. Razz SnG)
+You can find many of these details for easy copy&paste in the Help menu under About.
+
+Known Bugs
+==========
+Windows 7 file names for EUR Stars hand histories crashes fpdb.
+HUD:
+* Position of HUD overlay based on favourite position is off after you get moved in a tournament.
+* No HUD support for mixed games.
+* HUD doesn't handle tournament table changes well. Work around by closing the HUD for that table and letting it regenerate.
+* To close down the HUD, always use the "stop autoimport" button from the main FPDB application. Closing the "HUD main window" directly may cause temporary loss of control of other applications (including the poker client). Control is normally returned at the next hud update cycle or if FPDB is stopped.
+* Windows 7 and Windows Vista require that fpdb.pyw be 'Run as Admin' - the HUD will not run using the run_fpdb.bat startup script.
+
+Thanks
+======
+An open source project lives and dies around the communities of people it attracts to help out.
+Thanks too:
+Devs and contributors - Steffen123, Sqlcoder, Eric Blade, Eratosthenes, Bostik, MCT, Grindi, PassThePeas, Gimick, Kangaderoo, ChazDazzle.
+Special shoutout to Eleatic Stranger who has written an initial converter for Carbon poker, without ever having played on the site!
+Documentation: RSOAndrew, Buggernaut, ChazDazzle
+Testers and everyone answering forum questions - xaviax, Dog, uncooper etc. You know who you are.
+Hand History donations: Quite a few people on this list now. Every donation for alternate sites and various corner cases is appreciated. 
