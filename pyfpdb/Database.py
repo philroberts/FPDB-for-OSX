@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 148
+DB_VERSION = 149
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -1718,10 +1718,11 @@ class Database:
 
         c.execute(q, (
                 p['tableName'],
-                p['gametypeId'],
                 p['siteHandNo'],
                 p['tourneyId'],
-                p['startTime'],
+                p['gametypeId'],
+                p['sessionId'],                
+                p['startTime'],                
                 datetime.utcnow(), #importtime
                 p['seats'],
                 p['maxSeats'],
@@ -2035,10 +2036,9 @@ class Database:
                 pass
             
     def storeSessionsCache(self, pids, startTime, game, pdata):
-        """Update cached sessions. If update fails because no record exists, do an insert"""
+        """Update cached sessions. If no record exists, do an insert"""
         
         THRESHOLD = timedelta(seconds=int(self.sessionTimeout * 60))
-        bigBet = int(Decimal(game['bb'])*200)
         
         select_sessionscache = self.sql.query['select_sessionscache']
         select_sessionscache = select_sessionscache.replace('%s', self.sql.query['placeholder'])
@@ -2060,6 +2060,9 @@ class Database:
         merge_sessionscache = merge_sessionscache.replace('%s', self.sql.query['placeholder'])
         delete_sessions = self.sql.query['delete_sessions']
         delete_sessions = delete_sessions.replace('%s', self.sql.query['placeholder'])
+        
+        update_hands_sessionid = self.sql.query['update_hands_sessionid']
+        update_hands_sessionid = update_hands_sessionid.replace('%s', self.sql.query['placeholder'])
         
         #Grab playerIds using hero names in HUD_Config.xml
         try:
@@ -2090,30 +2093,35 @@ class Database:
     
                 if (game['type']=='ring'): line[0] = 1 # count ring hands
                 if (game['type']=='tour'): line[1] = 1 # count tour hands
-                if (game['type']=='ring'): line[2] = pdata[p]['totalProfit'] #sum of profit
-                if (game['type']=='ring'): line[3] = 0 #float(Decimal(pdata[p]['totalProfit'])/Decimal(bigBet)) #sum of big bets won
+                if (game['type']=='ring' and game['currency']=='USD'): line[2] = pdata[p]['totalProfit'] #sum of ring profit in USD
+                if (game['type']=='ring' and game['currency']=='EUR'): line[3] = pdata[p]['totalProfit'] #sum of ring profit in EUR
                 line[4] = startTime
                 inserts.append(line)
 
         cursor = self.get_cursor()
+        id = None
 
         for row in inserts:
             threshold = []
+            session_records = []
             threshold.append(row[-1]-THRESHOLD)
             threshold.append(row[-1]+THRESHOLD)
             cursor.execute(select_sessionscache, threshold)
-            num = cursor.rowcount
+            for r in cursor:
+                if r: session_records.append(r[0])
+            num = len(session_records)
             if (num == 1):
+                id = session_records[0] #grab the sessionId
                 # Try to do the update first:
                 #print "DEBUG: found 1 record to update"
                 update_mid = row + row[-1:]
                 cursor.execute(select_sessionscache_mid, update_mid[-2:])
-                mid = cursor.rowcount
-                if (mid == 0):
+                mid = cursor.fetchone()
+                if mid:
                     update_startend = row[-1:] + row + threshold
                     cursor.execute(select_sessionscache_start, update_startend[-3:])
-                    start = cursor.rowcount
-                    if (start == 0):
+                    start = cursor.fetchone()
+                    if start:
                         #print "DEBUG:", start, " start record found. Update stats and start time"
                         cursor.execute(update_sessionscache_end, update_startend)                 
                     else:
@@ -2123,37 +2131,36 @@ class Database:
                     #print "DEBUG: update stats mid-session"
                     cursor.execute(update_sessionscache_mid, update_mid)
             elif (num > 1):
+                session_ids = [session_records[0][0], session_records[1][0]]
+                session_ids.sort()
                 # Multiple matches found - merge them into one session and update:
-                #print "DEBUG:", num, "matches found"
-                cursor.execute(merge_sessionscache, threshold)
+                # - Obtain the session start and end times for the new combined session
+                cursor.execute(merge_sessionscache, session_ids)
                 merge = cursor.fetchone()
-                cursor.execute(delete_sessions, threshold)
+                # - Delete the old records
+                for id in session_ids:
+                    cursor.execute(delete_sessions, id)
+                # - Insert the new updated record
                 cursor.execute(insert_sessionscache, merge)
+                # - Obtain the new sessionId and write over the old ids in Hands
+                id = self.get_last_insert_id(cursor) #grab the sessionId
+                update_hands = [id] + session_ids
+                cursor.execute(update_hands_sessionid, update_hands)
+                # - Update the newly combined record in SessionsCache with data from this hand
                 update_mid = row + row[-1:]
-                cursor.execute(select_sessionscache_mid, update_mid[-2:])
-                mid = cursor.rowcount
-                if (mid == 0):
-                    update_startend = row[-1:] + row + threshold
-                    cursor.execute(select_sessionscache_start, update_startend[-3:])
-                    start = cursor.rowcount
-                    if (start == 0):
-                        #print "DEBUG:", start, " start record found. Update stats and start time"
-                        cursor.execute(update_sessionscache_end, update_startend)                 
-                    else:
-                        #print "DEBUG: 1 end record found. Update stats and end time time"
-                        cursor.execute(update_sessionscache_start, update_startend) 
-                else:
-                    #print "DEBUG: update stats mid-session"
-                    cursor.execute(update_sessionscache_mid, update_mid)
+                cursor.execute(update_sessionscache_mid, update_mid)
             elif (num == 0):
                 # No matches found, insert new session:
                 insert = row + row[-1:]
                 insert = insert[-2:] + insert[:-2]
                 #print "DEBUG: No matches found. Insert record", insert
                 cursor.execute(insert_sessionscache, insert)
+                id = self.get_last_insert_id(cursor) #grab the sessionId
             else:
                 # Something bad happened
-                pass    
+                pass
+        
+        return id  
 
     def isDuplicate(self, gametypeID, siteHandNo):
         dup = False

@@ -115,14 +115,14 @@ def compare_hands_file(filename, importer, errors):
                     pass
                 else:
                     # Stats don't match. 
-                    if datum == "gametypeId":
+                    if datum == "gametypeId" or datum == 'sessionId':
                         # Not an error. gametypeIds are dependent on the order added to the db.
                         #print "DEBUG: Skipping mismatched gamtypeId"
                         pass
                     else:
                         errors.error_report(filename, hand, datum, ghash, testhash, None)
             except KeyError, e:
-                errors.error_report(filename, False, "KeyError: '%s'" % stat, False, False, p)
+                errors.error_report(filename, False, "KeyError: '%s'" % datum, False, False, None)
 
 
 def compare(leaf, importer, errors, site):

@@ -83,7 +83,6 @@ class Importer:
         self.pos_in_file = {}        # dict to remember how far we have read in the file
         #Set defaults
         self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
-        self.cacheSessions = self.config.get_import_parameters().get("cacheSessions")
 
         # CONFIGURATION OPTIONS
         self.settings.setdefault("minPrint", 30)
@@ -494,13 +493,6 @@ class Importer:
                     for hand in handlist:
                         if hand is not None and not hand.is_duplicate:
                             hand.updateHudCache(self.database)
-                self.database.commit()
-                
-                # Call sessionsCache update
-                if self.cacheSessions:
-                    for hand in handlist:
-                        if hand is not None and not hand.is_duplicate:
-                            hand.updateSessionsCache(self.database)
                 self.database.commit()
 
                 #pipe the Hands.id out to the HUD

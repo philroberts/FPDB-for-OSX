@@ -57,6 +57,7 @@ class Hand(object):
         #log.debug( _("Hand.init(): handText is ") + str(handText) )
         self.config = config
         self.saveActions = self.config.get_import_parameters().get('saveActions')
+        self.cacheSessions = self.config.get_import_parameters().get("cacheSessions")
         #log = Configuration.get_logger("logging.conf", "db", log_dir=self.config.dir_log)
         self.sitename = sitename
         self.siteId = self.config.get_site_id(sitename)
@@ -264,9 +265,15 @@ db: a connected Database object"""
             hh['gametypeId'] = self.dbid_gt
             # seats TINYINT NOT NULL,
             hh['seats'] = len(self.dbid_pids)
+            
+            hp = self.stats.getHandsPlayers()
+            
+            if self.cacheSessions:
+                hh['sessionId'] = db.storeSessionsCache(self.dbid_pids, self.startTime, self.gametype, hp)            
 
             self.dbid_hands = db.storeHand(hh, printdata = printtest)
-            db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.stats.getHandsPlayers(),
+            
+            db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, hp,
                                  printdata = printtest)
             if self.saveActions:
                 db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.stats.getHandsActions(),
