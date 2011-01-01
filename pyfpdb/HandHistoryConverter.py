@@ -632,7 +632,7 @@ or None if we fail to get the info """
         elif givenTimezone == 'IST': # India Standard Time
             pass
         elif givenTimezone == 'CCT': # China Coast Time
-            pass
+            givenTZ = timezone('Australia/West')
         elif givenTimezone == 'JST': # Japan Standard Time
             pass
         elif givenTimezone == 'AWST': # Australian Western Standard Time
