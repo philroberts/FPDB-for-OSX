@@ -211,7 +211,7 @@ class HandInternal(DerivedStats):
     def isDuplicate(self, session):
         """Checks if current hand already exists in db
         
-        siteHandNo ans gameTypeId have to be setted
+        siteHandNo ans gametypeId have to be setted
         """
         return session.query(HandInternal).filter_by(
                 siteHandNo=self.siteHandNo, gametypeId=self.gametypeId).count()!=0

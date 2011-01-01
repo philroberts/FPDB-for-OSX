@@ -479,12 +479,14 @@ class Import:
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
         self.hhBulkPath = node.getAttribute("hhBulkPath")
         self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=False)
+        self.cacheSessions = string_to_bool(node.getAttribute("cacheSessions"), default=False)
+        self.sessionTimeout = string_to_bool(node.getAttribute("sessionTimeout"), default=30)
         self.fastStoreHudCache = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
         self.saveStarsHH = string_to_bool(node.getAttribute("saveStarsHH"), default=False)
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
-            % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.fastStoreHudCache)
+            % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.cacheSessions, self.sessionTimeout, self.fastStoreHudCache)
 
 class HudUI:
     def __init__(self, node):
@@ -1259,6 +1261,12 @@ class Config:
 
         try:    imp['saveActions']     = self.imp.saveActions
         except:  imp['saveActions']     = False
+        
+        try:    imp['cacheSessions']     = self.imp.cacheSessions
+        except:  imp['cacheSessions']     = False
+        
+        try:    imp['sessionTimeout']     = self.imp.sessionTimeout
+        except:  imp['sessionTimeout']     = 30
 
         try:    imp['saveStarsHH'] = self.imp.saveStarsHH
         except:  imp['saveStarsHH'] = False

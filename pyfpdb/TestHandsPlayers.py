@@ -28,6 +28,9 @@ import Configuration
 import Database
 import SQL
 import fpdb_import
+import Options
+import datetime
+import pytz
 
 
 class FpdbError:
@@ -59,6 +62,69 @@ class FpdbError:
             idx = f.find('regression')
             print "(%3d) : %s" %(self.histogram[f], f[idx:])
 
+def compare_handsplayers_file(filename, importer, errors):
+    hashfilename = filename + '.hp'
+
+    in_fh = codecs.open(hashfilename, 'r', 'utf8')
+    whole_file = in_fh.read()
+    in_fh.close()
+
+    testhash = eval(whole_file)
+
+    hhc = importer.getCachedHHC()
+    handlist = hhc.getProcessedHands()
+    #We _really_ only want to deal with a single hand here.
+    for hand in handlist:
+        ghash = hand.stats.getHandsPlayers()
+        for p in ghash:
+            #print "DEBUG: player: '%s'" % p
+            pstat = ghash[p]
+            teststat = testhash[p]
+
+            for stat in pstat:
+                #print "pstat[%s][%s]: %s == %s" % (p, stat, pstat[stat], teststat[stat])
+                try:
+                    if pstat[stat] == teststat[stat]:
+                        # The stats match - continue
+                        pass
+                    else:
+                        # Stats don't match - Doh!
+                        errors.error_report(filename, hand, stat, ghash, testhash, p)
+                except KeyError, e:
+                    errors.error_report(filename, False, "KeyError: '%s'" % stat, False, False, p)
+
+def compare_hands_file(filename, importer, errors):
+    hashfilename = filename + '.hands'
+
+    in_fh = codecs.open(hashfilename, 'r', 'utf8')
+    whole_file = in_fh.read()
+    in_fh.close()
+
+    testhash = eval(whole_file)
+
+    hhc = importer.getCachedHHC()
+    handlist = hhc.getProcessedHands()
+
+    for hand in handlist:
+        ghash = hand.stats.getHands()
+        for datum in ghash:
+            #print "DEBUG: hand: '%s'" % datum
+            try:
+                if ghash[datum] == testhash[datum]:
+                    # The stats match - continue
+                    pass
+                else:
+                    # Stats don't match. 
+                    if datum == "gametypeId":
+                        # Not an error. gametypeIds are dependent on the order added to the db.
+                        #print "DEBUG: Skipping mismatched gamtypeId"
+                        pass
+                    else:
+                        errors.error_report(filename, hand, datum, ghash, testhash, None)
+            except KeyError, e:
+                errors.error_report(filename, False, "KeyError: '%s'" % stat, False, False, p)
+
+
 def compare(leaf, importer, errors, site):
     filename = leaf
     #print "DEBUG: fileanme: %s" % filename
@@ -69,39 +135,13 @@ def compare(leaf, importer, errors, site):
         importer.addBulkImportImportFileOrDir(filename, site=site)
         (stored, dups, partial, errs, ttime) = importer.runImport()
 
-        if os.path.isfile(filename + '.hp') and errs < 1:
-            # Compare them
-            hashfilename = filename + '.hp'
-
-            in_fh = codecs.open(hashfilename, 'r', 'utf8')
-            whole_file = in_fh.read()
-            in_fh.close()
-
-            testhash = eval(whole_file)
-
-            hhc = importer.getCachedHHC()
-            handlist = hhc.getProcessedHands()
-            #We _really_ only want to deal with a single hand here.
-            for hand in handlist:
-                ghash = hand.stats.getHandsPlayers()
-                for p in ghash:
-                    #print "DEBUG: player: '%s'" % p
-                    pstat = ghash[p]
-                    teststat = testhash[p]
-
-                    for stat in pstat:
-                        #print "pstat[%s][%s]: %s == %s" % (p, stat, pstat[stat], teststat[stat])
-                        try:
-                            if pstat[stat] == teststat[stat]:
-                                # The stats match - continue
-                                pass
-                            else:
-                                # Stats don't match - Doh!
-                                errors.error_report(filename, hand, stat, ghash, testhash, p)
-                        except KeyError, e:
-                            errors.error_report(filename, False, "KeyError: '%s'" % stat, False, False, p)
         if errs > 0:
             errors.error_report(filename, False, "Parse", False, False, False)
+        else:
+            if os.path.isfile(filename + '.hp'):
+                compare_handsplayers_file(filename, importer, errors)
+            if os.path.isfile(filename + '.hands'):
+                compare_hands_file(filename, importer, errors)
 
         importer.clearFileList()
 
@@ -117,9 +157,27 @@ def walk_testfiles(dir, function, importer, errors, site):
         else:
             compare(nfile, importer, errors, site)
 
+def usage():
+    print "USAGE:"
+    sys.exit(0)
+
 def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
+
+    (options, argv) = Options.fpdb_options()
+
+    test_all_sites = True
+
+    if options.usage == True:
+        usage()
+
+    if options.sitename:
+        options.sitename = Options.site_alias(options.sitename)
+        if options.sitename == False:
+            usage()
+        print "Only regression testing '%s' files" % (options.sitename)
+        test_all_sites = False
 
     config = Configuration.Config(file = "HUD_config.test.xml")
     db = Database.Database(config)
@@ -159,20 +217,26 @@ def main(argv=None):
                 ]
 
     sites = {
-                'PokerStars' : True,
-                'Full Tilt Poker' : True,
-                'PartyPoker' : True,
-                'Betfair' : True,
-                'OnGame' : True,
-                'Absolute' : True,
-                'UltimateBet' : True,
-                'Everleaf' : True,
-                'Carbon' : True,
-                'PKR' : False,
-                'iPoker' : True,
-                'Win2day' : True,
-                'Winamax' : True,
+                'PokerStars' : False,
+                'Full Tilt Poker' : False,
+                'PartyPoker' : False,
+                'Betfair' : False,
+                'OnGame' : False,
+                'Absolute' : False,
+                'UltimateBet' : False,
+                'Everleaf' : False,
+                'Carbon' : False,
+                #'PKR' : False,
+                'iPoker' : False,
+                'Win2day' : False,
+                'Winamax' : False,
             }
+
+    if test_all_sites == True:
+        for s in sites:
+            sites[s] = True
+    else:
+        sites[options.sitename] = True
 
     if sites['PokerStars'] == True:
         walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
@@ -195,12 +259,13 @@ def main(argv=None):
         walk_testfiles("regression-test-files/cash/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
     if sites['Carbon'] == True:
         walk_testfiles("regression-test-files/cash/Carbon/", compare, importer, CarbonErrors, "Carbon")
-    if sites['PKR'] == True:
-        walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
+    #if sites['PKR'] == True:
+    #    walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
     if sites['iPoker'] == True:
         walk_testfiles("regression-test-files/cash/iPoker/", compare, importer, iPokerErrors, "iPoker")
     if sites['Winamax'] == True:
         walk_testfiles("regression-test-files/cash/Winamax/", compare, importer, WinamaxErrors, "Winamax")
+        walk_testfiles("regression-test-files/tour/Winamax/", compare, importer, WinamaxErrors, "Winamax")
     if sites['Win2day'] == True:
         walk_testfiles("regression-test-files/cash/Win2day/", compare, importer, Win2dayErrors, "Win2day")
 

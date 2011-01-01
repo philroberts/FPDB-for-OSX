@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 #note: this should work on other architectures too, please send me your experiences
 
-IUSE="graph mysql postgres sqlite linguas_hu"
+IUSE="graph mysql postgres sqlite linguas_de linguas_hu linguas_fr"
 RDEPEND="
 	mysql? ( virtual/mysql
 		dev-python/mysql-python )
@@ -28,7 +28,8 @@ RDEPEND="
 	graph? ( dev-python/numpy
 		dev-python/matplotlib[gtk] )
 	dev-python/python-xlib
-	dev-python/pytz"
+	dev-python/pytz
+	x11-apps/xwininfo"
 DEPEND="${RDEPEND}"
 
 src_install() {

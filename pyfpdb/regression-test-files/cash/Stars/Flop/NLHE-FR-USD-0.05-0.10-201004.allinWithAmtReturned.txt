@@ -1,33 +1,33 @@
 PokerStars Game #42875758685:  Hold'em No Limit ($0.05/$0.10 USD) - 2010/04/19 0:19:11 WET [2010/04/18 19:19:11 ET]
 Table 'gimick VI' 9-max Seat #4 is the button
 Seat 3: Player1 ($5.55 in chips) 
-Seat 4: Player0 ($2.40 in chips) 
+Seat 4: Hero ($2.40 in chips) 
 Seat 8: Player2 ($3.90 in chips) 
 Player2: posts small blind $0.05
 Player1: posts big blind $0.10
 *** HOLE CARDS ***
-Dealt to Player0 [7d 8d]
-Player0: raises $0.30 to $0.40
+Dealt to Hero [7d 8d]
+Hero: raises $0.30 to $0.40
 Player2: calls $0.35
 Player1: folds 
 *** FLOP *** [2h 2d Qd]
 Player2: checks 
-Player0: bets $0.60
+Hero: bets $0.60
 Player2: raises $0.60 to $1.20
-Player0: calls $0.60
+Hero: calls $0.60
 *** TURN *** [2h 2d Qd] [5d]
 Player2: bets $0.90
-Player0: calls $0.80 and is all-in
+Hero: calls $0.80 and is all-in
 Uncalled bet ($0.10) returned to Player2
 *** RIVER *** [2h 2d Qd 5d] [4d]
 *** SHOW DOWN ***
 Player2: shows [9d As] (a flush, Queen high)
-Player0: shows [7d 8d] (a flush, Queen high - lower cards)
+Hero: shows [7d 8d] (a flush, Queen high - lower cards)
 Player2 collected $4.70 from pot
 *** SUMMARY ***
 Total pot $4.90 | Rake $0.20 
 Board [2h 2d Qd 5d 4d]
 Seat 3: Player1 (big blind) folded before Flop
-Seat 4: Player0 (button) showed [7d 8d] and lost with a flush, Queen high
+Seat 4: Hero (button) showed [7d 8d] and lost with a flush, Queen high
 Seat 8: Player2 (small blind) showed [9d As] and won ($4.70) with a flush, Queen high
 

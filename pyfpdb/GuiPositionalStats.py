@@ -397,7 +397,7 @@ class GuiPositionalStats (threading.Thread):
             query = query.replace("<selectgt.bigBlind>", bigblindselect)
             query = query.replace("<groupbygt.bigBlind>", "")
             query = query.replace("<hcgametypeId>", "-1")
-            query = query.replace("<hgameTypeId>", "-1")
+            query = query.replace("<hgametypeId>", "-1")
         else:
             if self.db.backend == self.MYSQL_INNODB:
                 bigblindselect = """concat('$', trim(leading ' ' from
@@ -416,7 +416,7 @@ class GuiPositionalStats (threading.Thread):
             query = query.replace("<selectgt.bigBlind>", bigblindselect)
             query = query.replace("<groupbygt.bigBlind>", ",gt.bigBlind")
             query = query.replace("<hcgametypeId>", "hc.gametypeId")
-            query = query.replace("<hgameTypeId>", "h.gameTypeId")
+            query = query.replace("<hgametypeId>", "h.gametypeId")
 
         # Filter on dates
         query = query.replace("<datestest>", " between '" + dates[0] + "' and '" + dates[1] + "'")

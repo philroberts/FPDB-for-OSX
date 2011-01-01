@@ -37,8 +37,6 @@ try:
     from matplotlib.finance import candlestick2
 
     from numpy import diff, nonzero, sum, cumsum, max, min, append
-#    from matplotlib.dates import  DateFormatter, WeekdayLocator, HourLocator, \
-#     DayLocator, MONDAY, timezone
 
 except ImportError, inst:
     print _("""Failed to load numpy and/or matplotlib in Session Viewer""")
@@ -157,15 +155,10 @@ class GuiSessionViewer (threading.Thread):
         # make sure Hand column is not displayed
         #[x for x in self.columns if x[0] == 'hand'][0][1] = False
         if DEBUG == False:
-            warning_string = """
-Session Viewer is proof of concept code only, and contains many bugs.
-
-Feel free to use the viewer, but there is no guarantee that the data is accurate.
-
-If you are interested in developing the code further please contact us via the usual channels.
-
-Thankyou
-"""
+            warning_string = _("Session Viewer is proof of concept code only, and contains many bugs.\n")
+            warning_string += _("Feel free to use the viewer, but there is no guarantee that the data is accurate.\n")
+            warning_string += _("If you are interested in developing the code further please contact us via the usual channels.\n")
+            warning_string += _("Thankyou")
             self.warning_box(warning_string)
 
     def warning_box(self, str, diatitle=_("FPDB WARNING")):
@@ -265,8 +258,9 @@ Thankyou
     #end def fillStatsFrame(self, vbox):
 
     def generateDatasets(self, playerids, sitenos, limits, seats):
-        THRESHOLD = 1800                    # Minimum number of seconds between consecutive hands before being considered a new session
-        PADDING   = 5                       # Additional time in minutes to add to a session, session startup, shutdown etc (FiXME: user configurable)
+        print "DEBUG: Starting generateDatasets"
+        THRESHOLD = 1800     # Min # of secs between consecutive hands before being considered a new session
+        PADDING   = 5        # Additional time in minutes to add to a session, session startup, shutdown etc
 
         # Get a list of all handids and their timestampts
         #FIXME: Query still need to filter on blind levels
@@ -284,10 +278,15 @@ Thankyou
         self.db.cursor.execute(q)
         hands = self.db.cursor.fetchall()
 
+        hands.insert(0, (hands[0][0], 0, 0, 0, 0))
+
         # Take that list and create an array of the time between hands
         times = map(lambda x:long(x[0]), hands)
         handids = map(lambda x:int(x[1]), hands)
         winnings = map(lambda x:float(x[4]), hands)
+        #print "DEBUG: times   : %s" % times
+        #print "DEBUG: handids : %s" % handids
+        #print "DEBUG: winnings: %s" % winnings
         #print "DEBUG: len(times) %s" %(len(times))
         diffs = diff(times)                      # This array is the difference in starttime between consecutive hands
         diffs2 = append(diffs,THRESHOLD + 1)     # Append an additional session to the end of the diffs, so the next line
@@ -318,8 +317,9 @@ Thankyou
         cum_sum = cum_sum/100
         sid = 1
         # Take all results and format them into a list for feeding into gui model.
+        #print "DEBUG: range(len(index[0]): %s" % range(len(index[0]))
         for i in range(len(index[0])):
-            hds = index[0][i] - first_idx + 1                                        # Number of hands in session
+            hds = index[0][i] - first_idx                                       # Number of hands in session
             if hds > 0:
                 stime = strftime("%d/%m/%Y %H:%M", localtime(times[first_idx]))      # Formatted start time
                 etime = strftime("%d/%m/%Y %H:%M", localtime(times[index[0][i]]))   # Formatted end time
@@ -328,12 +328,14 @@ Thankyou
                     minutesplayed = 1
                 minutesplayed = minutesplayed + PADDING
                 hph = hds*60/minutesplayed # Hands per hour
-                won = sum(winnings[first_idx:index[0][i]])/100.0
-                hwm = max(cum_sum[first_idx:index[0][i]])
-                lwm = min(cum_sum[first_idx:index[0][i]])
+                end_idx = first_idx+hds+1
+                won = sum(winnings[first_idx:end_idx])/100.0
+                #print "DEBUG: winnings[%s:%s]: %s" % (first_idx, end_idx, winnings[first_idx:end_idx])
+                hwm = max(cum_sum[first_idx:end_idx])
+                lwm = min(cum_sum[first_idx:end_idx])
                 open = (sum(winnings[:first_idx]))/100
-                close = (sum(winnings[:index[0][i]]))/100
-                #print "DEBUG: range: (%s, %s) - (min, max): (%s, %s) - (open,close): (%s, %s)" %(first_idx, index[0][i], lwm, hwm, open, close)
+                close = (sum(winnings[:end_idx]))/100
+                #print "DEBUG: range: (%s, %s) - (min, max): (%s, %s) - (open,close): (%s, %s)" %(first_idx, end_idx, lwm, hwm, open, close)
             
                 results.append([sid, hds, stime, etime, hph, won])
                 opens.append(open)
@@ -374,17 +376,17 @@ Thankyou
     def generateGraph(self, opens, closes, highs, lows):
         self.clearGraphData()
 
-#        print "DEBUG:"
-#        print "highs = %s" % highs
-#        print "lows = %s" % lows
-#        print "opens = %s" % opens
-#        print "closes = %s" % closes
-#        print "len(highs): %s == len(lows): %s" %(len(highs), len(lows))
-#        print "len(opens): %s == len(closes): %s" %(len(opens), len(closes))
-#
-#        for i in range(len(highs)):
-#            print "DEBUG: (%s, %s, %s, %s)" %(lows[i], opens[i], closes[i], highs[i])
-#            print "DEBUG: diffs h/l: %s o/c: %s" %(lows[i] - highs[i], opens[i] - closes[i])
+        #print "DEBUG:"
+        #print "\thighs = %s" % highs
+        #print "\tlows = %s" % lows
+        #print "\topens = %s" % opens
+        #print "\tcloses = %s" % closes
+        #print "\tlen(highs): %s == len(lows): %s" %(len(highs), len(lows))
+        #print "\tlen(opens): %s == len(closes): %s" %(len(opens), len(closes))
+
+        #for i in range(len(highs)):
+        #    print "DEBUG: (%s, %s, %s, %s)" %(lows[i], opens[i], closes[i], highs[i])
+        #    print "DEBUG: diffs h/l: %s o/c: %s" %(lows[i] - highs[i], opens[i] - closes[i])
 
         self.ax = self.fig.add_subplot(111)
 

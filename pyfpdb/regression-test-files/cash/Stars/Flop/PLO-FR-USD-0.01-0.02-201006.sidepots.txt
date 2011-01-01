@@ -2,7 +2,7 @@
 PokerStars Game #14311270221:  Omaha Pot Limit ($0.01/$0.02 USD) - 2010/06/07 20:13:12 WET [2010/06/07 15:13:12 ET]
 Table '99999999I' 9-max Seat #3 is the button
 Seat 2: Player5 ($0.58 in chips) 
-Seat 3: Player1 ($0.65 in chips) 
+Seat 3: Hero ($0.65 in chips) 
 Seat 6: Player4 ($1.92 in chips) 
 Seat 7: Player6 ($2.81 in chips) 
 Seat 8: Player3 ($2.50 in chips) 
@@ -13,11 +13,11 @@ Player6: posts big blind $0.02
 Player3: posts big blind $0.02
 Player2: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player1 [8d As 2h Ks]
+Dealt to Hero [8d As 2h Ks]
 Player3: checks 
 Player2: checks 
 Player5: raises $0.02 to $0.04
-Player1: raises $0.02 to $0.06
+Hero: raises $0.02 to $0.06
 Player4: calls $0.05
 Player6: folds 
 Player3: calls $0.04
@@ -28,7 +28,7 @@ Player4: checks
 Player3: checks 
 Player2: bets $0.31
 Player5: folds 
-Player1: folds 
+Hero: folds 
 Player4: folds 
 Player3: folds 
 Uncalled bet ($0.31) returned to Player2
@@ -37,7 +37,7 @@ Player2 collected $0.31 from pot
 Total pot $0.32 | Rake $0.01 
 Board [Qh 7c Qs]
 Seat 2: Player5 folded on the Flop
-Seat 3: Player1 (button) folded on the Flop
+Seat 3: Hero (button) folded on the Flop
 Seat 6: Player4 (small blind) folded on the Flop
 Seat 7: Player6 (big blind) folded before Flop
 Seat 8: Player3 folded on the Flop
@@ -48,7 +48,7 @@ Seat 9: Player2 collected ($0.31)
 PokerStars Game #22865231671:  Omaha Pot Limit ($0.01/$0.02 USD) - 2010/06/07 20:14:17 WET [2010/06/07 15:14:17 ET]
 Table '99999999I' 9-max Seat #6 is the button
 Seat 2: Player5 ($0.52 in chips) 
-Seat 3: Player1 ($0.59 in chips) 
+Seat 3: Hero ($0.59 in chips) 
 Seat 5: Player0 ($0.90 in chips) 
 Seat 6: Player4 ($1.86 in chips) 
 Seat 7: Player6 ($2.79 in chips) 
@@ -58,22 +58,22 @@ Player6: posts small blind $0.01
 Player3: posts big blind $0.02
 Player0: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player1 [6d 3c 5s As]
+Dealt to Hero [6d 3c 5s As]
 Player2: calls $0.02
 Player5: calls $0.02
-Player1: calls $0.02
+Hero: calls $0.02
 Player0: raises $0.06 to $0.08
 Player4: calls $0.08
 Player6: folds 
 Player3: folds 
 Player2: calls $0.06
 Player5: calls $0.06
-Player1: raises $0.06 to $0.14
+Hero: raises $0.06 to $0.14
 Player0: raises $0.55 to $0.69
 Player4: calls $0.61
 Player2: raises $0.36 to $1.05 and is all-in
 Player5: folds 
-Player1: calls $0.45 and is all-in
+Hero: calls $0.45 and is all-in
 Player0: calls $0.21 and is all-in
 Player4: calls $0.36
 *** FLOP *** [6c Kc Qc]
@@ -85,13 +85,13 @@ Player4: shows [9c 9d 7d 7h] (a pair of Nines)
 Player2 collected $0.29 from side pot-2 
 Player0: shows [Ks Ad 7s Tc] (a straight, Ten to Ace)
 Player0 collected $0.88 from side pot-1 
-Player1: shows [6d 3c 5s As] (a pair of Sixes)
+Hero: shows [6d 3c 5s As] (a pair of Sixes)
 Player0 collected $2.35 from main pot
 *** SUMMARY ***
 Total pot $3.70 Main pot $2.35. Side pot-1 $0.88. Side pot-2 $0.29. | Rake $0.18 
 Board [6c Kc Qc Jc 4c]
 Seat 2: Player5 folded before Flop
-Seat 3: Player1 showed [6d 3c 5s As] and lost with a pair of Sixes
+Seat 3: Hero showed [6d 3c 5s As] and lost with a pair of Sixes
 Seat 5: Player0 showed [Ks Ad 7s Tc] and won ($3.23) with a straight, Ten to Ace
 Seat 6: Player4 (button) showed [9c 9d 7d 7h] and lost with a pair of Nines
 Seat 7: Player6 (small blind) folded before Flop
@@ -103,7 +103,7 @@ Seat 9: Player2 showed [Js Ah 5d 9h] and won ($0.29) with a pair of Jacks
 PokerStars Game #60920749213:  Omaha Pot Limit ($0.01/$0.02 USD) - 2010/06/07 20:15:29 WET [2010/06/07 15:15:29 ET]
 Table '99999999I' 9-max Seat #7 is the button
 Seat 2: Player5 ($0.44 in chips) 
-Seat 3: Player1 ($0.80 in chips) 
+Seat 3: Hero ($0.80 in chips) 
 Seat 5: Player0 ($3.23 in chips) 
 Seat 6: Player4 ($0.81 in chips) 
 Seat 7: Player6 ($2.78 in chips) 
@@ -112,9 +112,9 @@ Seat 9: Player2 ($0.29 in chips)
 Player3: posts small blind $0.01
 Player2: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to Player1 [2c 4c 3s 7c]
+Dealt to Hero [2c 4c 3s 7c]
 Player5: calls $0.02
-Player1: calls $0.02
+Hero: calls $0.02
 Player0: calls $0.02
 Player4: folds 
 Player6: calls $0.02
@@ -123,30 +123,30 @@ Player2: checks
 *** FLOP *** [7h 8s 4s]
 Player2: checks 
 Player5: bets $0.02
-Player1: raises $0.02 to $0.04
+Hero: raises $0.02 to $0.04
 Player0: raises $0.14 to $0.18
 Player6: calls $0.18
 Player2: raises $0.09 to $0.27 and is all-in
 Player5: calls $0.25
-Player1: raises $0.51 to $0.78 and is all-in
+Hero: raises $0.51 to $0.78 and is all-in
 Player0: calls $0.60
 Player6: folds 
 Player5: calls $0.15 and is all-in
 *** TURN *** [7h 8s 4s] [2s]
 *** RIVER *** [7h 8s 4s 2s] [2h]
 *** SHOW DOWN ***
-Player1: shows [2c 4c 3s 7c] (a full house, Deuces full of Sevens)
+Hero: shows [2c 4c 3s 7c] (a full house, Deuces full of Sevens)
 Player0: shows [6h 3h Tc 9c] (a pair of Deuces)
-Player1 collected $0.69 from side pot-2 
+Hero collected $0.69 from side pot-2 
 Player5: shows [3d 5c 8h 7s] (two pair, Eights and Sevens)
-Player1 collected $0.42 from side pot-1 
+Hero collected $0.42 from side pot-1 
 Player2: shows [5s 7d Kd 9h] (two pair, Sevens and Deuces)
-Player1 collected $1.31 from main pot
+Hero collected $1.31 from main pot
 *** SUMMARY ***
 Total pot $2.54 Main pot $1.31. Side pot-1 $0.42. Side pot-2 $0.69. | Rake $0.12 
 Board [7h 8s 4s 2s 2h]
 Seat 2: Player5 showed [3d 5c 8h 7s] and lost with two pair, Eights and Sevens
-Seat 3: Player1 showed [2c 4c 3s 7c] and won ($2.42) with a full house, Deuces full of Sevens
+Seat 3: Hero showed [2c 4c 3s 7c] and won ($2.42) with a full house, Deuces full of Sevens
 Seat 5: Player0 showed [6h 3h Tc 9c] and lost with a pair of Deuces
 Seat 6: Player4 folded before Flop (didn't bet)
 Seat 7: Player6 (button) folded on the Flop

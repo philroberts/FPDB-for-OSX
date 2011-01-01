@@ -41,6 +41,9 @@ def fpdb_options():
     parser.add_option("-k", "--konverter",
                       dest="hhc", default="PokerStarsToFpdb",
                       help=_("Module name for Hand History Converter"))
+    parser.add_option("-s", "--sitename",
+                      dest="sitename", default=None,
+                      help=_("A sitename"))
     parser.add_option("-l", "--logging",
                       dest = "log_level", 
                       choices = ('DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL', 'EMPTY'),
@@ -59,10 +62,50 @@ def fpdb_options():
                     help=_("File to be split is a PokerStars or Full Tilt Poker archive file"))
     parser.add_option("-n", "--numhands", dest="hands", default="100", type="int",
                     help=_("How many hands do you want saved to each file. Default is 100"))
+    parser.add_option("--xloc", dest="xloc", default=None, type="int",
+                      help=_("X location to open window"))
+    parser.add_option("--yloc", dest="yloc", default=None, type="int",
+                      help=_("Y location to open Window"))
+    parser.add_option("--autoimport", action="store_true", dest="autoimport",
+                      help=_("Auto-start Auto-import"))
+    parser.add_option("--minimized", action="store_true", dest="minimized",
+                      help=_("Start Minimized"))
+    parser.add_option("--hidden", action="store_true", dest="hidden",
+                      help=_("Start Hidden"))
 
 
     (options, argv) = parser.parse_args()
     return (options, argv)
+
+def site_alias(alias):
+    """Function for converting various site aliases to the FPDB name"""
+    tmp = alias
+    aliases = {
+                "PokerStars"     : "PokerStars",
+                "Full Tilt Poker": "Full Tilt Poker",
+                "PartyPoker"     : "PartyPoker",
+                "Betfair"        : "Betfair",
+                "OnGame"         : "OnGame",
+                "Absolute"       : "Absolute",
+                "UltimateBet"    : "UltimateBet",
+                "Everleaf"       : "Everleaf",
+                "Carbon"         : "Carbon",
+                "iPoker"         : "iPoker",
+                "Winamax"        : "Winamax",
+                "Win2day"        : "Win2day",
+                "Stars"          : "PokerStars",
+                "FTP"            : "Full Tilt Poker",
+                "Party"          : "PartyPoker",
+                "AP"             : "Absolute",
+                "UB"             : "UltimateBet",
+              }
+    try:
+        tmp = aliases[alias]
+    except KeyError, e:
+        tmp = False
+        print _("Alias '%s' unknown" % alias)
+
+    return tmp
 
 if __name__== "__main__":
     (options, argv) = fpdb_options()

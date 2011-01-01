@@ -632,7 +632,7 @@ or None if we fail to get the info """
         elif givenTimezone == 'IST': # India Standard Time
             pass
         elif givenTimezone == 'CCT': # China Coast Time
-            pass
+            givenTZ = timezone('Australia/West')
         elif givenTimezone == 'JST': # Japan Standard Time
             pass
         elif givenTimezone == 'AWST': # Australian Western Standard Time
@@ -664,7 +664,7 @@ or None if we fail to get the info """
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         "Returns string to search in windows titles"
         if type=="tour":
-            return "%s.+Table.+%s" % (tournament, table_number)
+            return "%s.+Table %s" % (tournament, table_number)
         else:
             return table_name
 
@@ -674,6 +674,11 @@ or None if we fail to get the info """
 # Full Tilt:  $30 + $3 Tournament (181398949), Table 1 - 600/1200 Ante 100 - Limit Razz
 # PokerStars: WCOOP 2nd Chance 02: $1,050 NLHE - Tournament 307521826 Table 1 - Blinds $30/$60
         return "%s.+Table (\d+)" % (tournament, )
+
+    @staticmethod
+    def clearMoneyString(money):
+        "Renders 'numbers' like '1 200' and '2,000'"
+        return money.replace(' ', '').replace(',', '')
 
 def getTableTitleRe(config, sitename, *args, **kwargs):
     "Returns string to search in windows titles for current site"

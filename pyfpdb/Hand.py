@@ -261,11 +261,11 @@ db: a connected Database object"""
 
         if not db.isDuplicate(self.dbid_gt, hh['siteHandNo']):
             # Hands - Summary information of hand indexed by handId - gameinfo
-            hh['gameTypeId'] = self.dbid_gt
+            hh['gametypeId'] = self.dbid_gt
             # seats TINYINT NOT NULL,
             hh['seats'] = len(self.dbid_pids)
 
-            self.dbid_hands = db.storeHand(hh)
+            self.dbid_hands = db.storeHand(hh, printdata = printtest)
             self.dbid_hpid = db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, 
                                                   self.stats.getHandsPlayers(), printdata = printtest)
             if self.saveActions:
@@ -278,146 +278,143 @@ db: a connected Database object"""
 
     def updateHudCache(self, db):
         db.storeHudCache(self.dbid_gt, self.dbid_pids, self.startTime, self.stats.getHandsPlayers())
+        
+    def updateSessionsCache(self, db):
+        db.storeSessionsCache(self.dbid_pids, self.startTime, self.gametype, self.stats.getHandsPlayers())
 
-    def select(self, handId):
+    def select(self, db, handId):
         """ Function to create Hand object from database """
-        c = cnxn.cursor()
-
-        # We need at least sitename, gametype, handid
-        # for the Hand.__init__
-        c.execute("""SELECT
-                        s.name,
-                        g.category,
-                        g.base,
-                        g.type,
-                        g.limitType,
-                        g.hilo,
-                        round(g.smallBlind / 100.0,2),
-                        round(g.bigBlind / 100.0,2),
-                        round(g.smallBet / 100.0,2),
-                        round(g.bigBet / 100.0,2),
-                        s.currency,
-                        h.boardcard1,
-                        h.boardcard2,
-                        h.boardcard3,
-                        h.boardcard4,
-                        h.boardcard5
-                    FROM
-                        hands as h,
-                        sites as s,
-                        gametypes as g,
-                        handsplayers as hp,
-                        players as p
-                    WHERE
-                        h.id = %(handid)s
-                    and g.id = h.gametypeid
-                    and hp.handid = h.id
-                    and p.id = hp.playerid
-                    and s.id = p.siteid
-                    limit 1""", {'handid':handid})
-        #TODO: siteid should be in hands table - we took the scenic route through players here.
-        res = c.fetchone()
-        gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
-        c = Configuration.Config()
-        h = HoldemOmahaHand(config = c, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
-        cards = map(Card.valueSuitFromCard, res[11:16] )
-        if cards[0]:
-            h.setCommunityCards('FLOP', cards[0:3])
-        if cards[3]:
-            h.setCommunityCards('TURN', [cards[3]])
-        if cards[4]:
-            h.setCommunityCards('RIVER', [cards[4]])
-        #[Card.valueSuitFromCard(x) for x in cards]
-
-        # HandInfo : HID, TABLE
-        # BUTTON - why is this treated specially in Hand?
-        # answer: it is written out in hand histories
-        # still, I think we should record all the active seat positions in a seat_order array
-        c.execute("""SELECT
-                        h.sitehandno as hid,
-                        h.tablename as table,
-                        h.startTime as startTime
-                    FROM
-                        hands as h
-                    WHERE h.id = %(handid)s
-                    """, {'handid':handid})
-        res = c.fetchone()
-        h.handid = res[0]
-        h.tablename = res[1]
-        h.startTime = res[2] # automatically a datetime
-
-        # PlayerStacks
-        c.execute("""SELECT
+        c = db.get_cursor()
+        q = """SELECT
                         hp.seatno,
                         round(hp.winnings / 100.0,2) as winnings,
                         p.name,
-                        round(hp.startcash / 100.0,2) as chips,
-                        hp.card1,hp.card2,
+                        round(hp.startCash / 100.0,2) as chips,
+                        hp.card1,hp.card2,hp.card3,hp.card4,
                         hp.position
                     FROM
-                        handsplayers as hp,
-                        players as p
+                        HandsPlayers as hp,
+                        Players as p
                     WHERE
-                        hp.handid = %(handid)s
-                        and p.id = hp.playerid
-                """, {'handid':handid})
-        for (seat, winnings, name, chips, card1,card2, position) in c.fetchall():
-            h.addPlayer(seat,name,chips)
-            if card1 and card2:
-                h.addHoleCards(map(Card.valueSuitFromCard, (card1,card2)), name, dealt=True)
-            if winnings > 0:
-                h.addCollectPot(name, winnings)
-            if position == 'B':
-                h.buttonpos = seat
-
-
-        # actions
-        c.execute("""SELECT
-                        (ha.street,ha.actionno) as actnum,
-                        p.name,
-                        ha.street,
-                        ha.action,
-                        ha.allin,
-                        round(ha.amount / 100.0,2)
-                    FROM
-                        handsplayers as hp,
-                        handsactions as ha,
-                        players as p
-                    WHERE
-                        hp.handid = %(handid)s
-                        and ha.handsplayerid = hp.id
-                        and p.id = hp.playerid
+                        hp.handId = %s
+                        and p.id = hp.playerId
                     ORDER BY
-                        ha.street,ha.actionno
-                    """, {'handid':handid})
-        res = c.fetchall()
-        for (actnum,player, streetnum, act, allin, amount) in res:
-            act=act.strip()
-            street = h.allStreets[streetnum+1]
-            if act==u'blind':
-                h.addBlind(player, 'big blind', amount)
-                # TODO: The type of blind is not recorded in the DB.
-                # TODO: preflop street name anomalies in Hand
-            elif act==u'fold':
-                h.addFold(street,player)
-            elif act==u'call':
-                h.addCall(street,player,amount)
-            elif act==u'bet':
-                h.addBet(street,player,amount)
-            elif act==u'check':
-                h.addCheck(street,player)
-            elif act==u'unbet':
+                        hp.seatno
+                """
+        q = q.replace('%s', db.sql.query['placeholder'])
+
+        # PlayerStacks
+        c.execute(q, (handId,))
+        for (seat, winnings, name, chips, card1, card2, card3, card4, position) in c.fetchall():
+            #print "DEBUG: addPlayer(%s, %s, %s)" %(seat,name,str(chips))
+            self.addPlayer(seat,name,str(chips))
+            #print "DEBUG: card1: %s" % card1
+            # map() should work, but is returning integers... FIXME later
+            #cardlist = map(Card.valueSuitFromCard, [card1, card2, card3, card4])
+            cardlist = [Card.valueSuitFromCard(card1), Card.valueSuitFromCard(card2), Card.valueSuitFromCard(card3), Card.valueSuitFromCard(card4)]
+            #print "DEUBG: cardlist: '%s'" % cardlist
+            if cardlist[0] == '':
                 pass
+            elif self.gametype['category'] == 'holdem':
+                self.addHoleCards('PREFLOP', name, closed=cardlist[0:2], shown=False, mucked=False, dealt=True)
+            elif self.gametype['category'] == 'omaha':
+                self.addHoleCards('PREFLOP', name, closed=cardlist, shown=False, mucked=False, dealt=True)
+            if winnings > 0:
+                self.addCollectPot(name, str(winnings))
+            if position == 'B':
+                self.buttonpos = seat
+
+
+        # HandInfo
+        q = """SELECT *
+                    FROM Hands
+                    WHERE id = %s
+            """
+        q = q.replace('%s', db.sql.query['placeholder'])
+        c.execute(q, (handId,))
+
+        # NOTE: This relies on row_factory = sqlite3.Row (set in connect() params)
+        #       Need to find MySQL and Postgres equivalents
+        #       MySQL maybe: cursorclass=MySQLdb.cursors.DictCursor
+        res = c.fetchone()
+        self.tablename = res['tableName']
+        self.handid    = res['siteHandNo']
+        self.startTime = datetime.datetime.strptime(res['startTime'], "%Y-%m-%d %H:%M:%S+00:00")
+        #res['tourneyId']
+        #gametypeId
+        #res['importTime']  # Don't really care about this
+        #res['seats']
+        self.maxseats = res['maxSeats']
+        #res['rush']
+        cards = map(Card.valueSuitFromCard, [res['boardcard1'], res['boardcard2'], res['boardcard3'], res['boardcard4'], res['boardcard5']])
+        #print "DEBUG: res['boardcard1']: %s" % res['boardcard1']
+        #print "DEBUG: cards: %s" % cards
+        if cards[0]:
+            self.setCommunityCards('FLOP', cards[0:3])
+        if cards[3]:
+            self.setCommunityCards('TURN', [cards[3]])
+        if cards[4]:
+            self.setCommunityCards('RIVER', [cards[4]])
+        # playersVpi | playersAtStreet1 | playersAtStreet2 | playersAtStreet3 |
+        # playersAtStreet4 | playersAtShowdown | street0Raises | street1Raises |
+        # street2Raises | street3Raises | street4Raises | street1Pot | street2Pot |
+        # street3Pot | street4Pot | showdownPot | comment | commentTs | texture
+
+
+        # Actions
+        q = """SELECT
+                      ha.actionNo,
+                      p.name,
+                      ha.street,
+                      ha.actionId,
+                      ha.allIn,
+                      round(ha.amount / 100.0,2) as bet
+                FROM
+                      HandsActions as ha,
+                      HandsPlayers as hp,
+                      Players as p,
+                      Hands as h
+                WHERE
+                      h.id = %s
+                      and ha.handsPlayerId = hp.id
+                      and hp.playerId = p.id
+                      AND h.id = hp.handId
+                ORDER BY
+                      ha.id ASC
+;           """
+        q = q.replace('%s', db.sql.query['placeholder'])
+        c.execute(q, (handId,))
+        for row in c.fetchall():
+            name = row['name']
+            street = row['street']
+            act = row['actionId']
+            # allin True/False if row['allIn'] == 0
+            bet = row['bet']
+            street = self.allStreets[int(street)+1]
+            #print "DEBUG: name: '%s' street: '%s' act: '%s' bet: '%s'" %(name, street, act, bet)
+            if   act == 2: # Small Blind
+                print "DEBUG: addBlind(%s, 'small blind', %s" %(name, str(bet))
+                self.addBlind(name, 'small blind', str(bet))
+            elif act == 4: # Big Blind
+                self.addBlind(name, 'big blind', str(bet))
+            elif act == 6: # Call
+                self.addCall(street, name, str(bet))
+            elif act == 8: # Bet
+                self.addBet(street, name, str(bet))
+            elif act == 10: # Fold
+                self.addFold(street, name)
+            elif act == 11: # Check
+                self.addCheck(street, name)
             else:
-                print act, player, streetnum, allin, amount
-            # TODO : other actions
+                print "DEBUG: unknown action: '%s'" % act
+
+        self.totalPot()
+        self.rake = self.totalpot - self.totalcollected
+        self.writeHand()
 
         #hhc.readShowdownActions(self)
         #hc.readShownCards(self)
-        h.totalPot()
-        h.rake = h.totalpot - h.totalcollected
 
-        return h
 
     def addPlayer(self, seat, name, chips):
         """\
@@ -850,10 +847,11 @@ class HoldemOmahaHand(Hand):
             hhc.readOther(self)
             #print "\nHand:\n"+str(self)
         elif builtFrom == "DB":
-            if handid is not None:
-                self.select(handid) # Will need a handId
-            else:
-                log.warning(_("HoldemOmahaHand.__init__:Can't assemble hand from db without a handid"))
+            #if handid is not None:
+            #    self.select(handid) # Will need a handId
+            #else:
+            #    log.warning(_("HoldemOmahaHand.__init__:Can't assemble hand from db without a handid"))
+            print "DEBUG: HoldemOmaha hand initialised for select()"
         else:
             log.warning(_("HoldemOmahaHand.__init__:Neither HHC nor DB+handid provided"))
             pass
@@ -1009,7 +1007,7 @@ class HoldemOmahaHand(Hand):
         log.debug(self.actions['PREFLOP'])
         for player in [x for x in self.players if x[1] in players_who_act_preflop]:
             #Only print stacks of players who do something preflop
-            print >>fh, ("Seat %s: %s ($%s in chips) " %(player[0], player[1], player[2]))
+            print >>fh, ("Seat %s: %s ($%.2f in chips) " %(player[0], player[1], float(player[2])))
 
         if self.actions['BLINDSANTES']:
             for act in self.actions['BLINDSANTES']:
@@ -1577,6 +1575,11 @@ Add a complete on [street] by [player] to [amountTo]
             else:
                 log.warning(_("join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should be impossible for anyone who is not a hero"))
                 log.warning(_("join_holcards: holecards(%s): %s") %(player, holecards))
+            if holecards == [u'0x', u'0x']:
+                log.warning(_("join_holecards: Player '%s' appears not to have been dealt a card"))
+                # If a player is listed but not dealt a card in a cash game this can occur
+                # Noticed in FTP Razz hand. Return 3 empty cards in this case
+                holecards = [u'0x', u'0x', u'0x']
             return holecards
 
 

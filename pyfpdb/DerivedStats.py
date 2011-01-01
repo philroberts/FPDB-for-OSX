@@ -135,7 +135,7 @@ class DerivedStats():
         #print "DEBUG: vpip: %s" %(self.hands['playersVpi'])
         self.playersAtStreetX(hand) # Gives playersAtStreet1..4 and Showdown
         #print "DEBUG: playersAtStreet 1:'%s' 2:'%s' 3:'%s' 4:'%s'" %(self.hands['playersAtStreet1'],self.hands['playersAtStreet2'],self.hands['playersAtStreet3'],self.hands['playersAtStreet4'])
-        self.streetXRaises(hand) # Empty function currently
+        self.streetXRaises(hand)
 
     def assembleHandsPlayers(self, hand):
         #street0VPI/vpip already called in Hand

@@ -45,7 +45,7 @@ class InterProcessLockBase:
 
     def acquire_impl(self, wait): abstract
         
-    def acquire(self, wait=False, retry_time=1, source=None):
+    def acquire(self, source, wait=False, retry_time=1):
         if source == None:
             source="Unknown"
         if self._has_lock:             # make sure 2nd acquire in same process fails

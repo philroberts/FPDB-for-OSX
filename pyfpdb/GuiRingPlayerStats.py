@@ -52,7 +52,7 @@ onlinehelp = {'Game':_('Type of Game'),
               'PF3':_('% Pre Flop Re-Raise / 3Bet'),
               'AggFac':_('Aggression Factor\n'),
               'AggFreq':_('Aggression Frequency\nBet or Raise vs Fold'),
-              'ContBet':_('Continuation Bet on the flop'),
+              'ContBet':_('Continuation Bet post-flop'),
               'RFI':_('% Raise First In\% Raise when first to bet'),
               'Steals':_('% First to raise pre-flop\nand steal blinds'),
               'Saw_F':_('% Saw Flop vs hands dealt'),
@@ -75,10 +75,6 @@ onlinehelp = {'Game':_('Type of Game'),
 class DemoTips(TreeViewTooltips):
 
     def __init__(self, customer_column):
-        # customer_column is an instance of gtk.TreeViewColumn and
-        # is being used in the gtk.TreeView to show customer names.
-        # self.cust_col = customer_column
-
         # call base class init
         TreeViewTooltips.__init__(self)
 
@@ -91,11 +87,6 @@ class DemoTips(TreeViewTooltips):
         return (display)
 
     def location(self, x, y, w, h):
-        # rename me to "location" so I override the base class
-        # method.  This will demonstrate being able to change
-        # where the tooltip window popups, relative to the
-        # pointer.
-
         # this will place the tooltip above and to the right
         return x + 30, y - (h + 10)
         
@@ -661,18 +652,18 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         query = query.replace("<gtbigBlind_test>", bbtest)
 
         if holecards:  # re-use level variables for hole card query
-            query = query.replace("<hgameTypeId>", "hp.startcards")
-            query = query.replace("<orderbyhgameTypeId>"
+            query = query.replace("<hgametypeId>", "hp.startcards")
+            query = query.replace("<orderbyhgametypeId>"
                                  , ",case when floor((hp.startcards-1)/13) >= mod((hp.startcards-1),13) then hp.startcards + 0.1 "
                                    +    " else 13*mod((hp.startcards-1),13) + floor((hp.startcards-1)/13) + 1 "
                                    +    " end desc ")
         else:
-            query = query.replace("<orderbyhgameTypeId>", "")
+            query = query.replace("<orderbyhgametypeId>", "")
             groupLevels = "show" not in str(limits)
             if groupLevels:
-                query = query.replace("<hgameTypeId>", "p.name")  # need to use p.name for sqlite posn stats to work
+                query = query.replace("<hgametypeId>", "p.name")  # need to use p.name for sqlite posn stats to work
             else:
-                query = query.replace("<hgameTypeId>", "h.gameTypeId")
+                query = query.replace("<hgametypeId>", "h.gametypeId")
 
         # process self.detailFilters (a list of tuples)
         flagtest = ''

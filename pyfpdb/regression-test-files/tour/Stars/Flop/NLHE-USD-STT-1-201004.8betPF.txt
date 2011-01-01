@@ -2,7 +2,7 @@ PokerStars Game #74759586758: Tournament #589688686, $1.00+$0.15 USD Hold'em No 
 Table '589688686 1' 10-max Seat #4 is the button
 Seat 1: Player3 (1400 in chips) 
 Seat 2: Player5 (1470 in chips) 
-Seat 3: Player0 (1820 in chips) 
+Seat 3: Hero (1820 in chips) 
 Seat 4: Player2 (1620 in chips) 
 Seat 5: Player6 (560 in chips) 
 Seat 6: Player7 (1500 in chips) 
@@ -13,46 +13,46 @@ Seat 10: Player9 (2130 in chips)
 Player6: posts small blind 10
 Player7: posts big blind 20
 *** HOLE CARDS ***
-Dealt to Player0 [8c Tc]
+Dealt to Hero [8c Tc]
 Player8: calls 20
 Player4: folds 
 Player1: folds 
 Player9: folds 
 Player3: folds 
 Player5: calls 20
-Player0: calls 20
+Hero: calls 20
 Player2: raises 20 to 40
 Player6: calls 30
 Player7: folds 
 Player8: calls 20
 Player5: calls 20
-Player0: raises 20 to 60
+Hero: raises 20 to 60
 Player2: raises 20 to 80
 Player6: calls 40
 Player8: calls 40
 Player5: folds 
-Player0: raises 20 to 100
+Hero: raises 20 to 100
 Player2: raises 20 to 120
 Player6: calls 40
 Player8: calls 40
-Player0: raises 20 to 140
+Hero: raises 20 to 140
 Player2: raises 1480 to 1620 and is all-in
 Player6: folds 
 Player8: folds 
-Player0: calls 1480
+Hero: calls 1480
 *** FLOP *** [8d 7d Qs]
 *** TURN *** [8d 7d Qs] [Qc]
 *** RIVER *** [8d 7d Qs Qc] [7c]
 *** SHOW DOWN ***
-Player0: shows [8c Tc] (two pair, Queens and Eights)
+Hero: shows [8c Tc] (two pair, Queens and Eights)
 Player2: shows [3d Ad] (two pair, Queens and Sevens)
-Player0 collected 3540 from pot
+Hero collected 3540 from pot
 *** SUMMARY ***
 Total pot 3540 | Rake 0 
 Board [8d 7d Qs Qc 7c]
 Seat 1: Player3 folded before Flop (didn't bet)
 Seat 2: Player5 folded before Flop
-Seat 3: Player0 showed [8c Tc] and won (3540) with two pair, Queens and Eights
+Seat 3: Hero showed [8c Tc] and won (3540) with two pair, Queens and Eights
 Seat 4: Player2 (button) showed [3d Ad] and lost with two pair, Queens and Sevens
 Seat 5: Player6 (small blind) folded before Flop
 Seat 6: Player7 (big blind) folded before Flop

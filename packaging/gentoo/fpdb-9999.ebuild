@@ -14,7 +14,7 @@ LICENSE="AGPL-3"
 SLOT="0"
 KEYWORDS=""
 
-IUSE="graph mysql postgres sqlite linguas_de linguas_hu"
+IUSE="graph mysql postgres sqlite linguas_de linguas_hu linguas_fr"
 RDEPEND="
 	mysql? ( virtual/mysql
 		dev-python/mysql-python )

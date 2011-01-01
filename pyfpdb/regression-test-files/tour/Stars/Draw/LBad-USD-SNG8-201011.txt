@@ -1,0 +1,4469 @@
+﻿PokerStars Game #52588201462: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level I (20/40) - 2010/11/12 20:42:34 CET [2010/11/12 14:42:34 ET]
+Table '330855877 1' 8-max Seat #1 is the button
+Seat 1: Player7 (1500 in chips) 
+Seat 2: Player3 (1500 in chips) 
+Seat 3: Player5 (1500 in chips) 
+Seat 4: Player6 (1500 in chips) 
+Seat 5: Player1 (1500 in chips) 
+Seat 6: Player0 (1500 in chips) 
+Seat 7: Player4 (1500 in chips) 
+Seat 8: Player2 (1500 in chips) 
+Player3: posts small blind 10
+Player5: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Player5 [3h 3c Qc 9d]
+Player6: calls 20
+Player1: folds 
+Player0 has timed out
+Player0: folds 
+Player0 is sitting out
+Player4: folds 
+Player2: folds 
+Player7: folds 
+Player3: calls 10
+Player5: checks 
+*** FIRST DRAW ***
+Player3: stands pat 
+Player5: discards 2 cards [3c Qc]
+Dealt to Player5 [3h 9d] [2c Ah]
+Player6: discards 1 card
+Player3: checks 
+Player5: bets 20
+Player6: calls 20
+Player3: folds 
+*** SECOND DRAW ***
+Player5: discards 1 card [3h]
+Dealt to Player5 [9d 2c Ah] [9h]
+Player6: discards 1 card
+Player5: checks 
+Player6: checks 
+*** THIRD DRAW ***
+Player5: discards 1 card [9h]
+Dealt to Player5 [9d 2c Ah] [5h]
+Player6: discards 1 card
+Player5: checks 
+Player6: checks 
+*** SHOW DOWN ***
+Player5: shows [5h 2c Ah 9d] (3-card: 9,2,A)
+Player6: shows [3s 4d 8c Kc] (3-card: 8,4,3)
+Player6 collected 100 from pot
+*** SUMMARY ***
+Total pot 100 | Rake 0 
+Seat 1: Player7 (button) folded before the Draw (didn't bet)
+Seat 2: Player3 (small blind) folded after the 1st Draw
+Seat 3: Player5 (big blind) showed [5h 2c Ah 9d] and lost with a 3-card: 9,2,A
+Seat 4: Player6 showed [3s 4d 8c Kc] and won (100) with a 3-card: 8,4,3
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 folded before the Draw (didn't bet)
+Seat 8: Player2 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52588301675: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level I (20/40) - 2010/11/12 20:44:28 CET [2010/11/12 14:44:28 ET]
+Table '330855877 1' 8-max Seat #2 is the button
+Seat 1: Player7 (1500 in chips) 
+Seat 2: Player3 (1480 in chips) 
+Seat 3: Player5 (1460 in chips) 
+Seat 4: Player6 (1560 in chips) 
+Seat 5: Player1 (1500 in chips) 
+Seat 6: Player0 (1500 in chips) is sitting out
+Seat 7: Player4 (1500 in chips) 
+Seat 8: Player2 (1500 in chips) 
+Player5: posts small blind 10
+Player6: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Player5 [6h 3h Tc 4c]
+Player1: folds 
+Player0: folds 
+Player4: folds 
+Player2: folds 
+Player7: folds 
+Player3: calls 20
+Player5: calls 10
+Player6: checks 
+*** FIRST DRAW ***
+Player5: discards 2 cards [6h Tc]
+Dealt to Player5 [3h 4c] [3d Ts]
+Player6: discards 2 cards
+Player3: discards 2 cards
+Player5: checks 
+Player6: checks 
+Player3: bets 20
+Player5: folds 
+Player6: calls 20
+*** SECOND DRAW ***
+Player6: discards 1 card
+Player3: discards 1 card
+Player6: bets 40
+Player3: raises 40 to 80
+Player6: raises 40 to 120
+Player3: calls 40
+*** THIRD DRAW ***
+Player6: stands pat 
+Player3: discards 1 card
+Player6: bets 40
+Player3: calls 40
+*** SHOW DOWN ***
+Player6: shows [5s 8c 2d 4h] (Badugi: 8,5,4,2)
+Player3: mucks hand 
+Player6 collected 420 from pot
+*** SUMMARY ***
+Total pot 420 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 2: Player3 (button) mucked [Ad Jc Qs Ah]
+Seat 3: Player5 (small blind) folded after the 1st Draw
+Seat 4: Player6 (big blind) showed [5s 8c 2d 4h] and won (420) with a Badugi: 8,5,4,2
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 folded before the Draw (didn't bet)
+Seat 8: Player2 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52588385937: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level I (20/40) - 2010/11/12 20:46:02 CET [2010/11/12 14:46:02 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 1: Player7 (1500 in chips) 
+Seat 2: Player3 (1280 in chips) 
+Seat 3: Player5 (1440 in chips) 
+Seat 4: Player6 (1780 in chips) 
+Seat 5: Player1 (1500 in chips) 
+Seat 6: Player0 (1500 in chips) is sitting out
+Seat 7: Player4 (1500 in chips) 
+Seat 8: Player2 (1500 in chips) 
+Player6: posts small blind 10
+Player1: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Player5 [Ac 7d Kh Jd]
+Player0: folds 
+Player4: folds 
+Player2: folds 
+Player7: folds 
+Player3: calls 20
+Player5: folds 
+Player6: calls 10
+Player1: checks 
+*** FIRST DRAW ***
+Player6: discards 1 card
+Player1: discards 1 card
+Player3: discards 1 card
+Player6: checks 
+Player1: checks 
+Player3: bets 20
+Player6: calls 20
+Player1: folds 
+*** SECOND DRAW ***
+Player6: discards 1 card
+Player3: discards 1 card
+Player6: bets 40
+Player3: calls 40
+*** THIRD DRAW ***
+Player6: discards 1 card
+Player3: discards 1 card
+Player6: bets 40
+Player3: calls 40
+*** SHOW DOWN ***
+Player6: shows [2h 3s 2d 5h] (3-card: 5,3,2)
+Player3: mucks hand 
+Player6 collected 260 from pot
+*** SUMMARY ***
+Total pot 260 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 2: Player3 mucked [6s 6c 8s 4d]
+Seat 3: Player5 (button) folded before the Draw (didn't bet)
+Seat 4: Player6 (small blind) showed [2h 3s 2d 5h] and won (260) with a 3-card: 5,3,2
+Seat 5: Player1 (big blind) folded after the 1st Draw
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 folded before the Draw (didn't bet)
+Seat 8: Player2 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52588453597: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level I (20/40) - 2010/11/12 20:47:18 CET [2010/11/12 14:47:18 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 1: Player7 (1500 in chips) 
+Seat 2: Player3 (1160 in chips) 
+Seat 3: Player5 (1440 in chips) 
+Seat 4: Player6 (1920 in chips) 
+Seat 5: Player1 (1480 in chips) 
+Seat 6: Player0 (1500 in chips) is sitting out
+Seat 7: Player4 (1500 in chips) 
+Seat 8: Player2 (1500 in chips) 
+Player1: posts small blind 10
+Player0: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Player5 [5h Js 3h 8s]
+Player4: calls 20
+Player2: folds 
+Player7: folds 
+Player3: folds 
+Player5: folds 
+Player6: folds 
+Player1: calls 10
+Player0: folds 
+*** FIRST DRAW ***
+Player1: discards 2 cards
+Player4: discards 2 cards
+Player1: checks 
+Player4: checks 
+*** SECOND DRAW ***
+Player1: discards 2 cards
+Player4: discards 1 card
+Player1: checks 
+Player4: checks 
+*** THIRD DRAW ***
+Player1: discards 2 cards
+Player4: discards 1 card
+Player1: checks 
+Player4: checks 
+*** SHOW DOWN ***
+Player1: shows [5d 3c 3s 4s] (3-card: 5,4,3)
+Player4: mucks hand 
+Player1 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 2: Player3 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 (button) folded before the Draw (didn't bet)
+Seat 5: Player1 (small blind) showed [5d 3c 3s 4s] and won (60) with a 3-card: 5,4,3
+Seat 6: Player0 (big blind) folded before the Draw
+Seat 7: Player4 mucked [Ac 7s 8c 2h]
+Seat 8: Player2 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52588496813: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level I (20/40) - 2010/11/12 20:48:07 CET [2010/11/12 14:48:07 ET]
+Table '330855877 1' 8-max Seat #5 is the button
+Seat 1: Player7 (1500 in chips) 
+Seat 2: Player3 (1160 in chips) 
+Seat 3: Player5 (1440 in chips) 
+Seat 4: Player6 (1920 in chips) 
+Seat 5: Player1 (1520 in chips) 
+Seat 6: Player0 (1480 in chips) is sitting out
+Seat 7: Player4 (1480 in chips) 
+Seat 8: Player2 (1500 in chips) 
+Player0: posts small blind 10
+Player4: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Player5 [2d 3s 2s 7d]
+Player2: folds 
+Player7: folds 
+Player3: calls 20
+Player5: calls 20
+Player6: folds 
+Player1: folds 
+Player0: folds 
+Player4: checks 
+*** FIRST DRAW ***
+Player4: discards 3 cards
+Player3: discards 2 cards
+Player5: discards 2 cards [2s 7d]
+Dealt to Player5 [2d 3s] [4h 6s]
+Player4: checks 
+Player3: bets 20
+Player5: raises 20 to 40
+Player4: calls 40
+Player3: calls 20
+*** SECOND DRAW ***
+Player4: discards 1 card
+Player3: discards 1 card
+Player5: stands pat on [2d 3s 4h 6s]
+Player4: checks 
+Player3: checks 
+Player5: bets 40
+Player4: calls 40
+Player3: calls 40
+*** THIRD DRAW ***
+Player4: discards 1 card
+Player3: discards 1 card
+Player5: stands pat on [2d 3s 4h 6s]
+Player4: folds 
+Player3: checks 
+Player5: bets 40
+Player3: calls 40
+*** SHOW DOWN ***
+Player5: shows [2d 3s 4h 6s] (3-card: 4,3,2)
+Player3: mucks hand 
+Player5 collected 390 from pot
+*** SUMMARY ***
+Total pot 390 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 2: Player3 mucked [6d 5s 6h 5c]
+Seat 3: Player5 showed [2d 3s 4h 6s] and won (390) with a 3-card: 4,3,2
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 (button) folded before the Draw (didn't bet)
+Seat 6: Player0 (small blind) folded before the Draw
+Seat 7: Player4 (big blind) folded after the 3rd Draw
+Seat 8: Player2 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52588572718: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level I (20/40) - 2010/11/12 20:49:32 CET [2010/11/12 14:49:32 ET]
+Table '330855877 1' 8-max Seat #6 is the button
+Seat 1: Player7 (1500 in chips) 
+Seat 2: Player3 (1020 in chips) 
+Seat 3: Player5 (1690 in chips) 
+Seat 4: Player6 (1920 in chips) 
+Seat 5: Player1 (1520 in chips) 
+Seat 6: Player0 (1470 in chips) is sitting out
+Seat 7: Player4 (1380 in chips) 
+Seat 8: Player2 (1500 in chips) 
+Player4: posts small blind 10
+Player2: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Player5 [3h 4d 6d 8c]
+Player7: folds 
+Player3: raises 20 to 40
+Player4 said, "what the hec k"
+Player5: folds 
+Player6: raises 20 to 60
+Player4 said, "lol"
+Player1: folds 
+Player0: folds 
+Player4: calls 50
+Player2: folds 
+Player3: raises 20 to 80
+Betting is capped
+Player6: calls 20
+Player4: calls 20
+*** FIRST DRAW ***
+Player4: discards 1 card
+Player3: discards 1 card
+Player6: stands pat 
+Player4: checks 
+Player3: checks 
+Player6: bets 20
+Player4: calls 20
+Player3: calls 20
+*** SECOND DRAW ***
+Player4: discards 1 card
+Player3: discards 1 card
+Player6: stands pat 
+Player5 said, "in the middle of dinner, not paying enough attention clearly lol"
+Player4: checks 
+Player3: checks 
+Player6: bets 40
+Player4: calls 40
+Player3: calls 40
+*** THIRD DRAW ***
+Player4: discards 1 card
+Player3: discards 1 card
+Player6: stands pat 
+Player4: folds 
+Player3: checks 
+Player6: bets 40
+Player3: folds 
+Uncalled bet (40) returned to Player6
+Player6 collected 440 from pot
+*** SUMMARY ***
+Total pot 440 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 2: Player3 folded after the 3rd Draw
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 collected (440)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 (button) folded before the Draw (didn't bet)
+Seat 7: Player4 (small blind) folded after the 3rd Draw
+Seat 8: Player2 (big blind) folded before the Draw
+
+
+
+PokerStars Game #52588630062: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level I (20/40) - 2010/11/12 20:50:36 CET [2010/11/12 14:50:36 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 1: Player7 (1500 in chips) 
+Seat 2: Player3 (880 in chips) 
+Seat 3: Player5 (1690 in chips) 
+Seat 4: Player6 (2220 in chips) 
+Seat 5: Player1 (1520 in chips) 
+Seat 6: Player0 (1470 in chips) is sitting out
+Seat 7: Player4 (1240 in chips) 
+Seat 8: Player2 (1480 in chips) 
+Player2: posts small blind 10
+Player7: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Player5 [5c 7d 6s Qd]
+Player3: raises 20 to 40
+Player5: folds 
+Player6: folds 
+Player1: folds 
+Player0: folds 
+Player4: folds 
+Player2: folds 
+Player7: calls 20
+*** FIRST DRAW ***
+Player7: discards 2 cards
+Player3: discards 2 cards
+Player7: checks 
+Player3: bets 20
+Player7: calls 20
+*** SECOND DRAW ***
+Player7: discards 2 cards
+Player3: discards 1 card
+Player7: checks 
+Player3: bets 40
+Player7: calls 40
+*** THIRD DRAW ***
+Player7: discards 1 card
+Player3: stands pat 
+Player7: checks 
+Player3: bets 40
+Player7: calls 40
+*** SHOW DOWN ***
+Player3: shows [Ac Kd 6c Kc] (2-card: K,A)
+Player7: shows [4s 2h Qs 7c] (3-card: 7,4,2)
+Player7 collected 290 from pot
+*** SUMMARY ***
+Total pot 290 | Rake 0 
+Seat 1: Player7 (big blind) showed [4s 2h Qs 7c] and won (290) with a 3-card: 7,4,2
+Seat 2: Player3 showed [Ac Kd 6c Kc] and lost with a 2-card: K,A
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+Seat 8: Player2 (small blind) folded before the Draw
+
+
+
+PokerStars Game #52588680305: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level I (20/40) - 2010/11/12 20:51:32 CET [2010/11/12 14:51:32 ET]
+Table '330855877 1' 8-max Seat #8 is the button
+Seat 1: Player7 (1650 in chips) 
+Seat 2: Player3 (740 in chips) 
+Seat 3: Player5 (1690 in chips) 
+Seat 4: Player6 (2220 in chips) 
+Seat 5: Player1 (1520 in chips) 
+Seat 6: Player0 (1470 in chips) is sitting out
+Seat 7: Player4 (1240 in chips) 
+Seat 8: Player2 (1470 in chips) 
+Player7: posts small blind 10
+Player3: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Player5 [4s Td 7h Ac]
+Player0 has returned
+Player5: calls 20
+Player6: raises 20 to 40
+Player1: folds 
+Player0: folds 
+Player4: calls 40
+Player2: folds 
+Player7: folds 
+Player3: raises 20 to 60
+Player5: calls 40
+Player6: calls 20
+Player4: calls 20
+*** FIRST DRAW ***
+Player3: discards 2 cards
+Player5: discards 1 card [Td]
+Dealt to Player5 [4s 7h Ac] [9h]
+Player6: stands pat 
+Player4: discards 1 card
+Player3: bets 20
+Player5: folds 
+Player6: raises 20 to 40
+Player4: calls 40
+Player3: raises 20 to 60
+Player6: calls 20
+Player4: calls 20
+*** SECOND DRAW ***
+Player3: discards 2 cards
+Player6: stands pat 
+Player4: discards 1 card
+Player3: bets 40
+Player6: raises 40 to 80
+Player4: calls 80
+Player3: raises 40 to 120
+Player6: calls 40
+Player4: calls 40
+*** THIRD DRAW ***
+Player3: discards 2 cards
+Player6: stands pat 
+Player4: discards 1 card
+Player3: checks 
+Player6: bets 40
+Player4: folds 
+Player3: calls 40
+*** SHOW DOWN ***
+Player6: shows [4h 8d 9c 2s] (Badugi: 9,8,4,2)
+Player3: mucks hand 
+Player6 collected 870 from pot
+*** SUMMARY ***
+Total pot 870 | Rake 0 
+Seat 1: Player7 (small blind) folded before the Draw
+Seat 2: Player3 (big blind) mucked [Kd Kc 3c Jd]
+Seat 3: Player5 folded after the 1st Draw
+Seat 4: Player6 showed [4h 8d 9c 2s] and won (870) with a Badugi: 9,8,4,2
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 folded after the 3rd Draw
+Seat 8: Player2 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52588764022: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level II (30/60) - 2010/11/12 20:53:08 CET [2010/11/12 14:53:08 ET]
+Table '330855877 1' 8-max Seat #1 is the button
+Seat 1: Player7 (1640 in chips) 
+Seat 2: Player3 (460 in chips) 
+Seat 3: Player5 (1630 in chips) 
+Seat 4: Player6 (2810 in chips) 
+Seat 5: Player1 (1520 in chips) 
+Seat 6: Player0 (1470 in chips) 
+Seat 7: Player4 (1000 in chips) 
+Seat 8: Player2 (1470 in chips) 
+Player3: posts small blind 15
+Player5: posts big blind 30
+*** DEALING HANDS ***
+Dealt to Player5 [Ts Qd 2h 8h]
+Player6: folds 
+Player1: folds 
+Player0: folds 
+Player4: folds 
+Player2: folds 
+Player7: folds 
+Player3: raises 30 to 60
+Player5: calls 30
+*** FIRST DRAW ***
+Player4 said, "perfect low hand and can't get 1 spade"
+Player3: stands pat 
+Player5: discards 2 cards [Qd 8h]
+Dealt to Player5 [Ts 2h] [4c 5d]
+Player3: bets 30
+Player5: raises 30 to 60
+Player3: raises 30 to 90
+Player5: calls 30
+*** SECOND DRAW ***
+Player3: stands pat 
+Player5: stands pat on [Ts 2h 4c 5d]
+Player3: bets 60
+Player5: raises 60 to 120
+Player3: raises 60 to 180
+Player5: calls 60
+*** THIRD DRAW ***
+Player3: stands pat 
+Player5: stands pat on [Ts 2h 4c 5d]
+Player3: bets 60
+Player5: calls 60
+*** SHOW DOWN ***
+Player3: shows [Td 8c 9d Qh] (3-card: Q,9,8)
+Player5: shows [Ts 4c 2h 5d] (Badugi: T,5,4,2)
+Player5 collected 780 from pot
+*** SUMMARY ***
+Total pot 780 | Rake 0 
+Seat 1: Player7 (button) folded before the Draw (didn't bet)
+Seat 2: Player3 (small blind) showed [Td 8c 9d Qh] and lost with a 3-card: Q,9,8
+Seat 3: Player5 (big blind) showed [Ts 4c 2h 5d] and won (780) with a Badugi: T,5,4,2
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 folded before the Draw (didn't bet)
+Seat 8: Player2 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52588831927: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level II (30/60) - 2010/11/12 20:54:25 CET [2010/11/12 14:54:25 ET]
+Table '330855877 1' 8-max Seat #2 is the button
+Seat 1: Player7 (1640 in chips) 
+Seat 2: Player3 (70 in chips) 
+Seat 3: Player5 (2020 in chips) 
+Seat 4: Player6 (2810 in chips) 
+Seat 5: Player1 (1520 in chips) 
+Seat 6: Player0 (1470 in chips) 
+Seat 7: Player4 (1000 in chips) 
+Seat 8: Player2 (1470 in chips) 
+Player5: posts small blind 15
+Player6: posts big blind 30
+*** DEALING HANDS ***
+Dealt to Player5 [Ac Th 5d Tc]
+Player1: folds 
+Player0: folds 
+Player4: calls 30
+Player5 said, "nh buddy"
+Player2: raises 30 to 60
+Player7: calls 60
+Player3 has timed out while disconnected
+Player3: folds 
+Player3 is sitting out
+Player5: folds 
+Player6: folds 
+Player4: calls 30
+*** FIRST DRAW ***
+Player4: discards 2 cards
+Player2: discards 1 card
+Player7: discards 2 cards
+Player4: checks 
+Player2: bets 30
+Player7: folds 
+Player4: calls 30
+*** SECOND DRAW ***
+Player4: discards 2 cards
+Player2: discards 1 card
+Player4: checks 
+Player2: bets 60
+Player4: calls 60
+*** THIRD DRAW ***
+Player4: discards 1 card
+Player2: discards 1 card
+Player4: checks 
+Player2: bets 60
+Player4: folds 
+Uncalled bet (60) returned to Player2
+Player2 collected 405 from pot
+*** SUMMARY ***
+Total pot 405 | Rake 0 
+Seat 1: Player7 folded after the 1st Draw
+Seat 2: Player3 (button) folded before the Draw (didn't bet)
+Seat 3: Player5 (small blind) folded before the Draw
+Seat 4: Player6 (big blind) folded before the Draw
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 folded after the 3rd Draw
+Seat 8: Player2 collected (405)
+
+
+
+PokerStars Game #52588887248: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level II (30/60) - 2010/11/12 20:55:37 CET [2010/11/12 14:55:37 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 1: Player7 (1580 in chips) 
+Seat 2: Player3 (70 in chips) is sitting out
+Seat 3: Player5 (2005 in chips) 
+Seat 4: Player6 (2780 in chips) 
+Seat 5: Player1 (1520 in chips) 
+Seat 6: Player0 (1470 in chips) 
+Seat 7: Player4 (850 in chips) 
+Seat 8: Player2 (1725 in chips) 
+Player6: posts small blind 15
+Player1: posts big blind 30
+*** DEALING HANDS ***
+Dealt to Player5 [8s Kd 5s Ks]
+Player0: folds 
+Player4: folds 
+Player2: raises 30 to 60
+Player7: raises 30 to 90
+Player3: folds 
+Player5: folds 
+Player6: folds 
+Player1: calls 60
+Player2: folds 
+*** FIRST DRAW ***
+Player1: discards 2 cards
+Player7: stands pat 
+Player1: checks 
+Player7: bets 30
+Player1: folds 
+Uncalled bet (30) returned to Player7
+Player7 collected 255 from pot
+Player7: doesn't show hand 
+*** SUMMARY ***
+Total pot 255 | Rake 0 
+Seat 1: Player7 collected (255)
+Seat 2: Player3 folded before the Draw (didn't bet)
+Seat 3: Player5 (button) folded before the Draw (didn't bet)
+Seat 4: Player6 (small blind) folded before the Draw
+Seat 5: Player1 (big blind) folded after the 1st Draw
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 folded before the Draw (didn't bet)
+Seat 8: Player2 folded before the Draw
+
+
+
+PokerStars Game #52588913917: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level II (30/60) - 2010/11/12 20:56:21 CET [2010/11/12 14:56:21 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 1: Player7 (1745 in chips) 
+Seat 2: Player3 (70 in chips) is sitting out
+Seat 3: Player5 (2005 in chips) 
+Seat 4: Player6 (2765 in chips) 
+Seat 5: Player1 (1430 in chips) 
+Seat 6: Player0 (1470 in chips) 
+Seat 7: Player4 (850 in chips) 
+Seat 8: Player2 (1665 in chips) 
+Player1: posts small blind 15
+Player0: posts big blind 30
+*** DEALING HANDS ***
+Dealt to Player5 [Kd Kh 6c 6h]
+Player4: calls 30
+Player2: raises 30 to 60
+Player7: calls 60
+Player3: folds 
+Player5: folds 
+Player6: folds 
+Player1: folds 
+Player0: folds 
+Player4: calls 30
+*** FIRST DRAW ***
+Player4: discards 2 cards
+Player2: discards 1 card
+Player7: discards 1 card
+Player4: checks 
+Player2: bets 30
+Player7: raises 30 to 60
+Player4: calls 60
+Player2: raises 30 to 90
+Player7: raises 30 to 120
+Betting is capped
+Player4: calls 60
+Player2: calls 30
+*** SECOND DRAW ***
+Player4: discards 1 card
+Player2: discards 1 card
+Player7: stands pat 
+Player4: checks 
+Player2: checks 
+Player7: bets 60
+Player4: calls 60
+Player2: calls 60
+*** THIRD DRAW ***
+Player4: discards 1 card
+Player2: discards 1 card
+Player7: stands pat 
+Player4: folds 
+Player2: checks 
+Player7: bets 60
+Player2: folds 
+Uncalled bet (60) returned to Player7
+Player7 collected 765 from pot
+Player7: doesn't show hand 
+*** SUMMARY ***
+Total pot 765 | Rake 0 
+Seat 1: Player7 collected (765)
+Seat 2: Player3 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 (button) folded before the Draw (didn't bet)
+Seat 5: Player1 (small blind) folded before the Draw
+Seat 6: Player0 (big blind) folded before the Draw
+Seat 7: Player4 folded after the 3rd Draw
+Seat 8: Player2 folded after the 3rd Draw
+
+
+
+PokerStars Game #52588957153: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level II (30/60) - 2010/11/12 20:57:33 CET [2010/11/12 14:57:33 ET]
+Table '330855877 1' 8-max Seat #5 is the button
+Seat 1: Player7 (2270 in chips) 
+Seat 2: Player3 (70 in chips) is sitting out
+Seat 3: Player5 (2005 in chips) 
+Seat 4: Player6 (2765 in chips) 
+Seat 5: Player1 (1415 in chips) 
+Seat 6: Player0 (1440 in chips) 
+Seat 7: Player4 (610 in chips) 
+Seat 8: Player2 (1425 in chips) 
+Player0: posts small blind 15
+Player4: posts big blind 30
+*** DEALING HANDS ***
+Dealt to Player5 [Jc 3c 6c Th]
+Player2: raises 30 to 60
+Player7: folds 
+Player3: folds 
+Player5: folds 
+Player6: folds 
+Player1: folds 
+Player0: folds 
+Player4: calls 30
+*** FIRST DRAW ***
+Player4: discards 2 cards
+Player2: discards 1 card
+Player4: checks 
+Player2: bets 30
+Player4: calls 30
+*** SECOND DRAW ***
+Player4: discards 1 card
+Player2: discards 1 card
+Player4: checks 
+Player2: bets 60
+Player4: calls 60
+*** THIRD DRAW ***
+Player4: discards 1 card
+Player2: discards 1 card
+Player4: checks 
+Player2: bets 60
+Player4: calls 60
+*** SHOW DOWN ***
+Player2: shows [Ah 4d 2c 5d] (3-card: 4,2,A)
+Player4: mucks hand 
+Player2 collected 435 from pot
+*** SUMMARY ***
+Total pot 435 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 2: Player3 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 (button) folded before the Draw (didn't bet)
+Seat 6: Player0 (small blind) folded before the Draw
+Seat 7: Player4 (big blind) mucked [3h 5s Js Ac]
+Seat 8: Player2 showed [Ah 4d 2c 5d] and won (435) with a 3-card: 4,2,A
+
+
+
+PokerStars Game #52588993950: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level II (30/60) - 2010/11/12 20:58:34 CET [2010/11/12 14:58:34 ET]
+Table '330855877 1' 8-max Seat #6 is the button
+Seat 1: Player7 (2270 in chips) 
+Seat 2: Player3 (70 in chips) is sitting out
+Seat 3: Player5 (2005 in chips) 
+Seat 4: Player6 (2765 in chips) 
+Seat 5: Player1 (1415 in chips) 
+Seat 6: Player0 (1425 in chips) 
+Seat 7: Player4 (400 in chips) 
+Seat 8: Player2 (1650 in chips) 
+Player4: posts small blind 15
+Player2: posts big blind 30
+*** DEALING HANDS ***
+Dealt to Player5 [4h As Ad Jd]
+Player7: folds 
+Player3: folds 
+Player5: folds 
+Player6: folds 
+Player1: raises 30 to 60
+Player0: folds 
+Player4: folds 
+Player2: folds 
+Uncalled bet (30) returned to Player1
+Player1 collected 75 from pot
+*** SUMMARY ***
+Total pot 75 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 2: Player3 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 collected (75)
+Seat 6: Player0 (button) folded before the Draw (didn't bet)
+Seat 7: Player4 (small blind) folded before the Draw
+Seat 8: Player2 (big blind) folded before the Draw
+
+
+
+PokerStars Game #52589009291: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level II (30/60) - 2010/11/12 20:58:59 CET [2010/11/12 14:58:59 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 1: Player7 (2270 in chips) 
+Seat 2: Player3 (70 in chips) is sitting out
+Seat 3: Player5 (2005 in chips) 
+Seat 4: Player6 (2765 in chips) 
+Seat 5: Player1 (1460 in chips) 
+Seat 6: Player0 (1425 in chips) 
+Seat 7: Player4 (385 in chips) 
+Seat 8: Player2 (1620 in chips) 
+Player2: posts small blind 15
+Player7: posts big blind 30
+*** DEALING HANDS ***
+Dealt to Player5 [8h 2h 7d Qd]
+Player3: folds 
+Player5: folds 
+Player6: folds 
+Player1: calls 30
+Player0: folds 
+Player4: folds 
+Player2: raises 30 to 60
+Player7: folds 
+Player1: calls 30
+*** FIRST DRAW ***
+Player2: stands pat 
+Player1: discards 1 card
+Player2: bets 30
+Player1: calls 30
+*** SECOND DRAW ***
+Player2: stands pat 
+Player1: discards 1 card
+Player2: bets 60
+Player1: folds 
+Uncalled bet (60) returned to Player2
+Player2 collected 210 from pot
+*** SUMMARY ***
+Total pot 210 | Rake 0 
+Seat 1: Player7 (big blind) folded before the Draw
+Seat 2: Player3 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded after the 2nd Draw
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+Seat 8: Player2 (small blind) collected (210)
+
+
+
+PokerStars Game #52589031233: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level II (30/60) - 2010/11/12 20:59:35 CET [2010/11/12 14:59:35 ET]
+Table '330855877 1' 8-max Seat #8 is the button
+Seat 1: Player7 (2240 in chips) 
+Seat 2: Player3 (70 in chips) is sitting out
+Seat 3: Player5 (2005 in chips) 
+Seat 4: Player6 (2765 in chips) 
+Seat 5: Player1 (1370 in chips) 
+Seat 6: Player0 (1425 in chips) 
+Seat 7: Player4 (385 in chips) 
+Seat 8: Player2 (1740 in chips) 
+Player7: posts small blind 15
+Player3: posts big blind 30
+*** DEALING HANDS ***
+Dealt to Player5 [3s 2s Kd 3d]
+Player5: calls 30
+Player6: folds 
+Player1: folds 
+Player0: folds 
+Player4: calls 30
+Player2: calls 30
+Player7: folds 
+Player3: folds 
+*** FIRST DRAW ***
+Player5: discards 2 cards [3s Kd]
+Dealt to Player5 [2s 3d] [2c 6d]
+Player4: discards 2 cards
+Player2: discards 2 cards
+Player5: checks 
+Player4: checks 
+Player2: checks 
+*** SECOND DRAW ***
+Player5: discards 2 cards [2s 6d]
+Dealt to Player5 [3d 2c] [Qs Td]
+Player4: discards 1 card
+Player2: discards 1 card
+Player5: checks 
+Player4: checks 
+Player2: checks 
+*** THIRD DRAW ***
+Player5: discards 2 cards [Qs Td]
+Dealt to Player5 [3d 2c] [4h 8c]
+Player4: stands pat 
+Player2: discards 1 card
+Player5: checks 
+Player4: bets 60
+Player2: folds 
+Player5: calls 60
+*** SHOW DOWN ***
+Player4: shows [7s 2d Jc 9h] (Badugi: J,9,7,2)
+Player5: mucks hand 
+Player4 collected 255 from pot
+*** SUMMARY ***
+Total pot 255 | Rake 0 
+Seat 1: Player7 (small blind) folded before the Draw
+Seat 2: Player3 (big blind) folded before the Draw
+Seat 3: Player5 mucked [2c 4h 8c 3d]
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 showed [7s 2d Jc 9h] and won (255) with a Badugi: J,9,7,2
+Seat 8: Player2 (button) folded after the 3rd Draw
+
+
+
+PokerStars Game #52589095598: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level II (30/60) - 2010/11/12 21:01:08 CET [2010/11/12 15:01:08 ET]
+Table '330855877 1' 8-max Seat #1 is the button
+Seat 1: Player7 (2225 in chips) 
+Seat 2: Player3 (40 in chips) is sitting out
+Seat 3: Player5 (1915 in chips) 
+Seat 4: Player6 (2765 in chips) 
+Seat 5: Player1 (1370 in chips) 
+Seat 6: Player0 (1425 in chips) 
+Seat 7: Player4 (550 in chips) 
+Seat 8: Player2 (1710 in chips) 
+Player3: posts small blind 15
+Player5: posts big blind 30
+*** DEALING HANDS ***
+Dealt to Player5 [Qs Ac 5s 9c]
+Player6: folds 
+Player1: folds 
+Player0: calls 30
+Player4: folds 
+Player2: raises 30 to 60
+Player7: folds 
+Player3: folds 
+Player5: folds 
+Player0: calls 30
+*** FIRST DRAW ***
+Player0: discards 1 card
+Player2: discards 2 cards
+Player0: bets 30
+Player2: raises 30 to 60
+Player0: raises 30 to 90
+Player2: raises 30 to 120
+Betting is capped
+Player0: calls 30
+*** SECOND DRAW ***
+Player0: stands pat 
+Player2: discards 1 card
+Player0: bets 60
+Player2: calls 60
+*** THIRD DRAW ***
+Player0: stands pat 
+Player2: discards 1 card
+Player0: checks 
+Player2: bets 60
+Player0: calls 60
+*** SHOW DOWN ***
+Player2: shows [6c 2h 4c As] (3-card: 4,2,A)
+Player0: shows [5c Jd 2s 7h] (Badugi: J,7,5,2)
+Player0 collected 645 from pot
+*** SUMMARY ***
+Total pot 645 | Rake 0 
+Seat 1: Player7 (button) folded before the Draw (didn't bet)
+Seat 2: Player3 (small blind) folded before the Draw
+Seat 3: Player5 (big blind) folded before the Draw
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 showed [5c Jd 2s 7h] and won (645) with a Badugi: J,7,5,2
+Seat 7: Player4 folded before the Draw (didn't bet)
+Seat 8: Player2 showed [6c 2h 4c As] and lost with a 3-card: 4,2,A
+
+
+
+PokerStars Game #52589138604: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level II (30/60) - 2010/11/12 21:02:02 CET [2010/11/12 15:02:02 ET]
+Table '330855877 1' 8-max Seat #2 is the button
+Seat 1: Player7 (2225 in chips) 
+Seat 2: Player3 (25 in chips) is sitting out
+Seat 3: Player5 (1885 in chips) 
+Seat 4: Player6 (2765 in chips) 
+Seat 5: Player1 (1370 in chips) 
+Seat 6: Player0 (1770 in chips) 
+Seat 7: Player4 (550 in chips) 
+Seat 8: Player2 (1410 in chips) 
+Player5: posts small blind 15
+Player6: posts big blind 30
+*** DEALING HANDS ***
+Dealt to Player5 [6c 4c Js 8d]
+Player1: folds 
+Player0: folds 
+Player4: raises 30 to 60
+Player2: raises 30 to 90
+Player7: folds 
+Player3: folds 
+Player5: folds 
+Player6: folds 
+Player4: raises 30 to 120
+Betting is capped
+Player2: calls 30
+*** FIRST DRAW ***
+Player4: stands pat 
+Player2: discards 2 cards
+Player4: bets 30
+Player2: raises 30 to 60
+Player4: raises 30 to 90
+Player2: raises 30 to 120
+Betting is capped
+Player4: calls 30
+*** SECOND DRAW ***
+Player4: stands pat 
+Player2: discards 1 card
+Player4: bets 60
+Player2: raises 60 to 120
+Player4: calls 60
+*** THIRD DRAW ***
+Player4: stands pat 
+Player2: stands pat 
+Player4: checks 
+Player2: bets 60
+Player4: calls 60
+*** SHOW DOWN ***
+Player2: shows [6h 2c Qs 3h] (3-card: Q,3,2)
+Player4: shows [7h 8c 3d 2s] (Badugi: 8,7,3,2)
+Player4 collected 885 from pot
+*** SUMMARY ***
+Total pot 885 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 2: Player3 (button) folded before the Draw (didn't bet)
+Seat 3: Player5 (small blind) folded before the Draw
+Seat 4: Player6 (big blind) folded before the Draw
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 showed [7h 8c 3d 2s] and won (885) with a Badugi: 8,7,3,2
+Seat 8: Player2 showed [6h 2c Qs 3h] and lost with a 3-card: Q,3,2
+
+
+
+PokerStars Game #52589187491: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level III (50/100) - 2010/11/12 21:02:57 CET [2010/11/12 15:02:57 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 1: Player7 (2225 in chips) 
+Seat 2: Player3 (25 in chips) is sitting out
+Seat 3: Player5 (1870 in chips) 
+Seat 4: Player6 (2735 in chips) 
+Seat 5: Player1 (1370 in chips) 
+Seat 6: Player0 (1770 in chips) 
+Seat 7: Player4 (1015 in chips) 
+Seat 8: Player2 (990 in chips) 
+Player6: posts small blind 25
+Player1: posts big blind 50
+*** DEALING HANDS ***
+Dealt to Player5 [6d 5h Ts 7c]
+Player0: folds 
+Player4: folds 
+Player2: folds 
+Player7: raises 50 to 100
+Player3: folds 
+Player5: folds 
+Player6: folds 
+Player1: folds 
+Uncalled bet (50) returned to Player7
+Player7 collected 125 from pot
+Player7: doesn't show hand 
+*** SUMMARY ***
+Total pot 125 | Rake 0 
+Seat 1: Player7 collected (125)
+Seat 2: Player3 folded before the Draw (didn't bet)
+Seat 3: Player5 (button) folded before the Draw (didn't bet)
+Seat 4: Player6 (small blind) folded before the Draw
+Seat 5: Player1 (big blind) folded before the Draw
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 folded before the Draw (didn't bet)
+Seat 8: Player2 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52589216844: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level III (50/100) - 2010/11/12 21:03:30 CET [2010/11/12 15:03:30 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 1: Player7 (2300 in chips) 
+Seat 2: Player3 (25 in chips) is sitting out
+Seat 3: Player5 (1870 in chips) 
+Seat 4: Player6 (2710 in chips) 
+Seat 5: Player1 (1320 in chips) 
+Seat 6: Player0 (1770 in chips) 
+Seat 7: Player4 (1015 in chips) 
+Seat 8: Player2 (990 in chips) 
+Player1: posts small blind 25
+Player0: posts big blind 50
+*** DEALING HANDS ***
+Dealt to Player5 [6c Kd 9c 8d]
+Player4: folds 
+Player2: folds 
+Player7: calls 50
+Player3: folds 
+Player5: folds 
+Player6: folds 
+Player1: folds 
+Player0: checks 
+*** FIRST DRAW ***
+Player0: discards 3 cards
+Player7: discards 1 card
+Player0: checks 
+Player7: bets 50
+Player0: folds 
+Uncalled bet (50) returned to Player7
+Player7 collected 125 from pot
+Player7: doesn't show hand 
+*** SUMMARY ***
+Total pot 125 | Rake 0 
+Seat 1: Player7 collected (125)
+Seat 2: Player3 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 (button) folded before the Draw (didn't bet)
+Seat 5: Player1 (small blind) folded before the Draw
+Seat 6: Player0 (big blind) folded after the 1st Draw
+Seat 7: Player4 folded before the Draw (didn't bet)
+Seat 8: Player2 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52589246185: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level III (50/100) - 2010/11/12 21:04:01 CET [2010/11/12 15:04:01 ET]
+Table '330855877 1' 8-max Seat #5 is the button
+Seat 1: Player7 (2375 in chips) 
+Seat 2: Player3 (25 in chips) is sitting out
+Seat 3: Player5 (1870 in chips) 
+Seat 4: Player6 (2710 in chips) 
+Seat 5: Player1 (1295 in chips) 
+Seat 6: Player0 (1720 in chips) 
+Seat 7: Player4 (1015 in chips) 
+Seat 8: Player2 (990 in chips) 
+Player0: posts small blind 25
+Player4: posts big blind 50
+*** DEALING HANDS ***
+Dealt to Player5 [Qs 4c 8s Jd]
+Player2: folds 
+Player7: folds 
+Player3: folds 
+Player5: folds 
+Player6: calls 50
+Player1: calls 50
+Player0: folds 
+Player4: checks 
+*** FIRST DRAW ***
+Player4: discards 2 cards
+Player6: discards 1 card
+Player1: discards 2 cards
+Player4: bets 50
+Player6: calls 50
+Player1: folds 
+*** SECOND DRAW ***
+Player4: stands pat 
+Player6: discards 1 card
+Player4: bets 100
+Player6: calls 100
+*** THIRD DRAW ***
+Player4: stands pat 
+Player6: discards 1 card
+Player4: bets 100
+Player6: folds 
+Uncalled bet (100) returned to Player4
+Player4 collected 475 from pot
+Player4: shows [Ad 6h 7s 5c] (Badugi: 7,6,5,A)
+*** SUMMARY ***
+Total pot 475 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 2: Player3 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 folded after the 3rd Draw
+Seat 5: Player1 (button) folded after the 1st Draw
+Seat 6: Player0 (small blind) folded before the Draw
+Seat 7: Player4 (big blind) collected (475)
+Seat 8: Player2 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52589367975: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level III (50/100) - 2010/11/12 21:06:12 CET [2010/11/12 15:06:12 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 1: Player7 (2375 in chips) 
+Seat 2: Player3 (25 in chips) is sitting out
+Seat 3: Player5 (1870 in chips) 
+Seat 4: Player6 (2510 in chips) 
+Seat 5: Player1 (1245 in chips) 
+Seat 6: Player0 (1595 in chips) 
+Seat 7: Player4 (1990 in chips) 
+Seat 8: Player2 (390 in chips) 
+Player2: posts small blind 25
+Player7: posts big blind 50
+*** DEALING HANDS ***
+Dealt to Player5 [2c 9h Jh 5c]
+Player3: folds 
+Player5 is connected 
+Player5: folds 
+Player6: folds 
+Player1: folds 
+Player0: calls 50
+Player4: folds 
+Player2: raises 50 to 100
+Player7: raises 50 to 150
+Player0: folds 
+Player2: raises 50 to 200
+Betting is capped
+Player7: calls 50
+*** FIRST DRAW ***
+Player2: discards 2 cards
+Player7: stands pat 
+Player2: bets 50
+Player7: raises 50 to 100
+Player2: raises 50 to 150
+Player7: raises 50 to 200
+Betting is capped
+Player2: calls 40 and is all-in
+Uncalled bet (10) returned to Player7
+*** SECOND DRAW ***
+Player2: discards 2 cards
+Player7: stands pat 
+*** THIRD DRAW ***
+Player2: discards 1 card
+Player7: stands pat 
+*** SHOW DOWN ***
+Player2: shows [5h Kh Ad 6s] (3-card: 6,5,A)
+Player7: shows [4d 3s 2h Ac] (Badugi: 4,3,2,A)
+Player7 collected 830 from pot
+Player2 finished the tournament in 8th place
+*** SUMMARY ***
+Total pot 830 | Rake 0 
+Seat 1: Player7 (big blind) showed [4d 3s 2h Ac] and won (830) with a Badugi: 4,3,2,A
+Seat 2: Player3 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+Seat 8: Player2 (small blind) showed [5h Kh Ad 6s] and lost with a 3-card: 6,5,A
+
+
+
+PokerStars Game #52589452703: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level III (50/100) - 2010/11/12 21:07:42 CET [2010/11/12 15:07:42 ET]
+Table '330855877 1' 8-max Seat #1 is the button
+Seat 1: Player7 (2815 in chips) 
+Seat 2: Player3 (25 in chips) is sitting out
+Seat 3: Player5 (1870 in chips) 
+Seat 4: Player6 (2510 in chips) 
+Seat 5: Player1 (1245 in chips) 
+Seat 6: Player0 (1545 in chips) 
+Seat 7: Player4 (1990 in chips) 
+Player3: posts small blind 25 and is all-in
+Player5: posts big blind 50
+*** DEALING HANDS ***
+Dealt to Player5 [7s Js 5s 3h]
+Player6: folds 
+Player1: folds 
+Player0: folds 
+Player4: folds 
+Player7: raises 50 to 100
+Player3: folds 
+Player5: folds 
+Uncalled bet (50) returned to Player7
+Player4 said, "vnh"
+Player7 collected 125 from pot
+Player3 finished the tournament in 7th place
+Player7: doesn't show hand 
+*** SUMMARY ***
+Total pot 125 | Rake 0 
+Seat 1: Player7 (button) collected (125)
+Seat 2: Player3 (small blind) folded before the Draw
+Seat 3: Player5 (big blind) folded before the Draw
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52589470315: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level III (50/100) - 2010/11/12 21:08:01 CET [2010/11/12 15:08:01 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 1: Player7 (2890 in chips) 
+Seat 3: Player5 (1820 in chips) 
+Seat 4: Player6 (2510 in chips) 
+Seat 5: Player1 (1245 in chips) 
+Seat 6: Player0 (1545 in chips) 
+Seat 7: Player4 (1990 in chips) 
+Player6: posts small blind 25
+Player1: posts big blind 50
+*** DEALING HANDS ***
+Dealt to Player5 [9s 3d 9d 2h]
+Player0: calls 50
+Player4: folds 
+Player7: folds 
+Player5: calls 50
+Player6: calls 25
+Player1: checks 
+*** FIRST DRAW ***
+Player6: discards 1 card
+Player1: discards 1 card
+Player0: discards 1 card
+Player5: discards 1 card [9d]
+Dealt to Player5 [9s 3d 2h] [Jh]
+Player6: checks 
+Player1: checks 
+Player0: bets 50
+Player5: calls 50
+Player6: calls 50
+Player1: calls 50
+*** SECOND DRAW ***
+Player6: discards 1 card
+Player1: discards 1 card
+Player0: stands pat 
+Player5: discards 1 card [Jh]
+Dealt to Player5 [9s 3d 2h] [8h]
+Player6: checks 
+Player1: checks 
+Player0: bets 100
+Player5: folds 
+Player6: calls 100
+Player1: raises 100 to 200
+Player0: calls 100
+Player6: folds 
+*** THIRD DRAW ***
+Player1: stands pat 
+Player0: stands pat 
+Player1: bets 100
+Player0: calls 100
+*** SHOW DOWN ***
+Player1: shows [4s 2d Ac 7h] (Badugi: 7,4,2,A)
+Player0: mucks hand 
+Player1 collected 1100 from pot
+*** SUMMARY ***
+Total pot 1100 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 (button) folded after the 2nd Draw
+Seat 4: Player6 (small blind) folded after the 2nd Draw
+Seat 5: Player1 (big blind) showed [4s 2d Ac 7h] and won (1100) with a Badugi: 7,4,2,A
+Seat 6: Player0 mucked [5d As 4h 8c]
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52589529760: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level III (50/100) - 2010/11/12 21:09:04 CET [2010/11/12 15:09:04 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 1: Player7 (2890 in chips) 
+Seat 3: Player5 (1720 in chips) 
+Seat 4: Player6 (2310 in chips) 
+Seat 5: Player1 (1945 in chips) 
+Seat 6: Player0 (1145 in chips) 
+Seat 7: Player4 (1990 in chips) 
+Player1: posts small blind 25
+Player0: posts big blind 50
+*** DEALING HANDS ***
+Dealt to Player5 [4c 8h 5d 8d]
+Player4: folds 
+Player7: folds 
+Player5: calls 50
+Player6: calls 50
+Player1: calls 25
+Player0: checks 
+*** FIRST DRAW ***
+Player1: discards 1 card
+Player0: discards 2 cards
+Player5: discards 1 card [8d]
+Dealt to Player5 [4c 8h 5d] [4s]
+Player6: discards 1 card
+Player1: checks 
+Player0: checks 
+Player5: checks 
+Player6: checks 
+*** SECOND DRAW ***
+Player1: discards 1 card
+Player0: stands pat 
+Player5: discards 1 card [4c]
+Dealt to Player5 [8h 5d 4s] [Kh]
+Player6: discards 1 card
+Player1: checks 
+Player0: checks 
+Player5: checks 
+Player6: checks 
+*** THIRD DRAW ***
+Player1: discards 1 card
+Player0: stands pat 
+Player5: discards 1 card [Kh]
+Dealt to Player5 [8h 5d 4s] [5h]
+Player6: discards 1 card
+Player1: checks 
+Player0: checks 
+Player5: checks 
+Player6: checks 
+*** SHOW DOWN ***
+Player1: shows [6h Qc As 7d] (Badugi: Q,7,6,A)
+Player0: shows [5s 8c Jh 4d] (Badugi: J,8,5,4)
+Player5: mucks hand 
+Player6: mucks hand 
+Player0 collected 200 from pot
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 mucked [5h 8h 5d 4s]
+Seat 4: Player6 (button) mucked [3c Ad 8s 6s]
+Seat 5: Player1 (small blind) showed [6h Qc As 7d] and lost with a Badugi: Q,7,6,A
+Seat 6: Player0 (big blind) showed [5s 8c Jh 4d] and won (200) with a Badugi: J,8,5,4
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52589586705: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level III (50/100) - 2010/11/12 21:10:06 CET [2010/11/12 15:10:06 ET]
+Table '330855877 1' 8-max Seat #5 is the button
+Seat 1: Player7 (2890 in chips) 
+Seat 3: Player5 (1670 in chips) 
+Seat 4: Player6 (2260 in chips) 
+Seat 5: Player1 (1895 in chips) 
+Seat 6: Player0 (1295 in chips) 
+Seat 7: Player4 (1990 in chips) 
+Player0: posts small blind 25
+Player4: posts big blind 50
+*** DEALING HANDS ***
+Dealt to Player5 [8s 7d 7s Ah]
+Player7: folds 
+Player5: folds 
+Player6: calls 50
+Player1: calls 50
+Player0: folds 
+Player4: checks 
+*** FIRST DRAW ***
+Player4: discards 3 cards
+Player6: discards 1 card
+Player1: discards 2 cards
+Player4: checks 
+Player6: checks 
+Player1: checks 
+*** SECOND DRAW ***
+Player4: stands pat 
+Player6: discards 1 card
+Player1: discards 2 cards
+Player4: checks 
+Player6: checks 
+Player1: checks 
+*** THIRD DRAW ***
+Player4: stands pat 
+Player6: discards 1 card
+Player1: discards 1 card
+Player4: checks 
+Player6: bets 100
+Player1: folds 
+Player4: calls 100
+*** SHOW DOWN ***
+Player6: shows [3c 7h 2d 4s] (Badugi: 7,4,3,2)
+Player4: mucks hand 
+Player6 collected 375 from pot
+*** SUMMARY ***
+Total pot 375 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 showed [3c 7h 2d 4s] and won (375) with a Badugi: 7,4,3,2
+Seat 5: Player1 (button) folded after the 3rd Draw
+Seat 6: Player0 (small blind) folded before the Draw
+Seat 7: Player4 (big blind) mucked [Qd 2h 5s 9c]
+
+
+
+PokerStars Game #52589626048: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level III (50/100) - 2010/11/12 21:10:49 CET [2010/11/12 15:10:49 ET]
+Table '330855877 1' 8-max Seat #6 is the button
+Seat 1: Player7 (2890 in chips) 
+Seat 3: Player5 (1670 in chips) 
+Seat 4: Player6 (2485 in chips) 
+Seat 5: Player1 (1845 in chips) 
+Seat 6: Player0 (1270 in chips) 
+Seat 7: Player4 (1840 in chips) 
+Player4: posts small blind 25
+Player7: posts big blind 50
+*** DEALING HANDS ***
+Dealt to Player5 [3d 4s Kd Kh]
+Player5: folds 
+Player6: calls 50
+Player1: calls 50
+Player0: folds 
+Player4: folds 
+Player7: checks 
+*** FIRST DRAW ***
+Player7: discards 2 cards
+Player6: discards 1 card
+Player1: discards 1 card
+Player7: checks 
+Player6: bets 50
+Player1: calls 50
+Player7: folds 
+*** SECOND DRAW ***
+Player6: stands pat 
+Player1: discards 1 card
+Player6: bets 100
+Player1: folds 
+Uncalled bet (100) returned to Player6
+Player6 collected 275 from pot
+Player6: doesn't show hand 
+*** SUMMARY ***
+Total pot 275 | Rake 0 
+Seat 1: Player7 (big blind) folded after the 1st Draw
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 collected (275)
+Seat 5: Player1 folded after the 2nd Draw
+Seat 6: Player0 (button) folded before the Draw (didn't bet)
+Seat 7: Player4 (small blind) folded before the Draw
+
+
+
+PokerStars Game #52589660940: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level III (50/100) - 2010/11/12 21:11:26 CET [2010/11/12 15:11:26 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 1: Player7 (2840 in chips) 
+Seat 3: Player5 (1670 in chips) 
+Seat 4: Player6 (2660 in chips) 
+Seat 5: Player1 (1745 in chips) 
+Seat 6: Player0 (1270 in chips) 
+Seat 7: Player4 (1815 in chips) 
+Player7: posts small blind 25
+Player5: posts big blind 50
+*** DEALING HANDS ***
+Dealt to Player5 [4d Th Kd Jd]
+Player6: folds 
+Player1: folds 
+Player0: folds 
+Player4: calls 50
+Player7: calls 25
+Player5: checks 
+*** FIRST DRAW ***
+Player7: discards 2 cards
+Player5: discards 2 cards [Kd Jd]
+Dealt to Player5 [4d Th] [6h 9h]
+Player4: discards 1 card
+Player7: checks 
+Player5: checks 
+Player4: checks 
+*** SECOND DRAW ***
+Player7: discards 1 card
+Player5: discards 2 cards [Th 9h]
+Dealt to Player5 [4d 6h] [9s 9d]
+Player4: discards 1 card
+Player7: bets 100
+Player5: folds 
+Player4: folds 
+Uncalled bet (100) returned to Player7
+Player7 collected 150 from pot
+Player7: doesn't show hand 
+*** SUMMARY ***
+Total pot 150 | Rake 0 
+Seat 1: Player7 (small blind) collected (150)
+Seat 3: Player5 (big blind) folded after the 2nd Draw
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 (button) folded after the 2nd Draw
+
+
+
+PokerStars Game #52589698302: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level III (50/100) - 2010/11/12 21:12:07 CET [2010/11/12 15:12:07 ET]
+Table '330855877 1' 8-max Seat #1 is the button
+Seat 1: Player7 (2940 in chips) 
+Seat 3: Player5 (1620 in chips) 
+Seat 4: Player6 (2660 in chips) 
+Seat 5: Player1 (1745 in chips) 
+Seat 6: Player0 (1270 in chips) 
+Seat 7: Player4 (1765 in chips) 
+Player5: posts small blind 25
+Player6: posts big blind 50
+*** DEALING HANDS ***
+Dealt to Player5 [2c Kd Tc 2h]
+Player1: folds 
+Player0: folds 
+Player4: calls 50
+Player7: folds 
+Player5: folds 
+Player6: checks 
+*** FIRST DRAW ***
+Player6: discards 3 cards
+Player4: discards 1 card
+Player6: bets 50
+Player4: calls 50
+*** SECOND DRAW ***
+Player6: discards 1 card
+Player4: stands pat 
+Player6: checks 
+Player4: checks 
+*** THIRD DRAW ***
+Player6: discards 1 card
+Player4: stands pat 
+Player6: checks 
+Player4: bets 100
+Player6: folds 
+Uncalled bet (100) returned to Player4
+Player4 collected 225 from pot
+Player4: doesn't show hand 
+*** SUMMARY ***
+Total pot 225 | Rake 0 
+Seat 1: Player7 (button) folded before the Draw (didn't bet)
+Seat 3: Player5 (small blind) folded before the Draw
+Seat 4: Player6 (big blind) folded after the 3rd Draw
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 collected (225)
+
+
+
+PokerStars Game #52589741481: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level IV (100/200) - 2010/11/12 21:12:54 CET [2010/11/12 15:12:54 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 1: Player7 (2940 in chips) 
+Seat 3: Player5 (1595 in chips) 
+Seat 4: Player6 (2560 in chips) 
+Seat 5: Player1 (1745 in chips) 
+Seat 6: Player0 (1270 in chips) 
+Seat 7: Player4 (1890 in chips) 
+Player6: posts small blind 50
+Player1: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Player5 [Jh 3s 9h 4d]
+Player0: folds 
+Player4: folds 
+Player7: folds 
+Player5: folds 
+Player6: calls 50
+Player1: checks 
+*** FIRST DRAW ***
+Player6: discards 2 cards
+Player1: discards 1 card
+Player6: checks 
+Player1: checks 
+*** SECOND DRAW ***
+Player6: discards 2 cards
+Player1: discards 1 card
+Player6: checks 
+Player1: checks 
+*** THIRD DRAW ***
+Player6: discards 2 cards
+Player1: discards 1 card
+Player6: checks 
+Player1: checks 
+*** SHOW DOWN ***
+Player6: shows [8d 5c 3h 4h] (3-card: 8,5,3)
+Player1: shows [9s 5s 2c 7h] (3-card: 7,5,2)
+Player1 collected 200 from pot
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 (button) folded before the Draw (didn't bet)
+Seat 4: Player6 (small blind) showed [8d 5c 3h 4h] and lost with a 3-card: 8,5,3
+Seat 5: Player1 (big blind) showed [9s 5s 2c 7h] and won (200) with a 3-card: 7,5,2
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52589776671: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level IV (100/200) - 2010/11/12 21:13:33 CET [2010/11/12 15:13:33 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 1: Player7 (2940 in chips) 
+Seat 3: Player5 (1595 in chips) 
+Seat 4: Player6 (2460 in chips) 
+Seat 5: Player1 (1845 in chips) 
+Seat 6: Player0 (1270 in chips) 
+Seat 7: Player4 (1890 in chips) 
+Player1: posts small blind 50
+Player0: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Player5 [5h 5d 8c 2s]
+Player4: folds 
+Player7: calls 100
+Player5: calls 100
+Player6: folds 
+Player1: folds 
+Player0: checks 
+*** FIRST DRAW ***
+Player0: discards 2 cards
+Player7: discards 1 card
+Player5: discards 1 card [5h]
+Dealt to Player5 [5d 8c 2s] [8s]
+Player0: checks 
+Player7: checks 
+Player5: checks 
+*** SECOND DRAW ***
+Player0: discards 1 card
+Player7: discards 1 card
+Player5: discards 1 card [8s]
+Dealt to Player5 [5d 8c 2s] [9s]
+Player0: checks 
+Player7: checks 
+Player5: checks 
+*** THIRD DRAW ***
+Player0: discards 1 card
+Player7: discards 1 card
+Player5: discards 1 card [9s]
+Dealt to Player5 [5d 8c 2s] [3h]
+Player0: checks 
+Player7: checks 
+Player5: bets 200
+Player0: folds 
+Player7: folds 
+Uncalled bet (200) returned to Player5
+Player5 collected 350 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 350 | Rake 0 
+Seat 1: Player7 folded after the 3rd Draw
+Seat 3: Player5 collected (350)
+Seat 4: Player6 (button) folded before the Draw (didn't bet)
+Seat 5: Player1 (small blind) folded before the Draw
+Seat 6: Player0 (big blind) folded after the 3rd Draw
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52589826090: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level IV (100/200) - 2010/11/12 21:14:26 CET [2010/11/12 15:14:26 ET]
+Table '330855877 1' 8-max Seat #5 is the button
+Seat 1: Player7 (2840 in chips) 
+Seat 3: Player5 (1845 in chips) 
+Seat 4: Player6 (2460 in chips) 
+Seat 5: Player1 (1795 in chips) 
+Seat 6: Player0 (1170 in chips) 
+Seat 7: Player4 (1890 in chips) 
+Player0: posts small blind 50
+Player4: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Player5 [Td 3c 3h Qs]
+Player7: folds 
+Player5: folds 
+Player6: folds 
+Player1: raises 100 to 200
+Player0: folds 
+Player4: folds 
+Uncalled bet (100) returned to Player1
+Player1 collected 250 from pot
+*** SUMMARY ***
+Total pot 250 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 (button) collected (250)
+Seat 6: Player0 (small blind) folded before the Draw
+Seat 7: Player4 (big blind) folded before the Draw
+
+
+
+PokerStars Game #52589842780: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level IV (100/200) - 2010/11/12 21:14:44 CET [2010/11/12 15:14:44 ET]
+Table '330855877 1' 8-max Seat #6 is the button
+Seat 1: Player7 (2840 in chips) 
+Seat 3: Player5 (1845 in chips) 
+Seat 4: Player6 (2460 in chips) 
+Seat 5: Player1 (1945 in chips) 
+Seat 6: Player0 (1120 in chips) 
+Seat 7: Player4 (1790 in chips) 
+Player4: posts small blind 50
+Player7: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Player5 [4d Kc 3s 5h]
+Player5: calls 100
+Player6: folds 
+Player1: folds 
+Player0: folds 
+Player4: calls 50
+Player7: checks 
+*** FIRST DRAW ***
+Player4: discards 2 cards
+Player7: discards 2 cards
+Player5: discards 1 card [Kc]
+Dealt to Player5 [4d 3s 5h] [Qd]
+Player4: checks 
+Player7: checks 
+Player5: bets 100
+Player4: folds 
+Player7: folds 
+Uncalled bet (100) returned to Player5
+Player5 collected 300 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 1: Player7 (big blind) folded after the 1st Draw
+Seat 3: Player5 collected (300)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 (button) folded before the Draw (didn't bet)
+Seat 7: Player4 (small blind) folded after the 1st Draw
+
+
+
+PokerStars Game #52589886743: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level IV (100/200) - 2010/11/12 21:15:32 CET [2010/11/12 15:15:32 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 1: Player7 (2740 in chips) 
+Seat 3: Player5 (2045 in chips) 
+Seat 4: Player6 (2460 in chips) 
+Seat 5: Player1 (1945 in chips) 
+Seat 6: Player0 (1120 in chips) 
+Seat 7: Player4 (1690 in chips) 
+Player7: posts small blind 50
+Player5: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Player5 [2c 4s 5c 8d]
+Player6: folds 
+Player1: folds 
+Player0: folds 
+Player4: folds 
+Player7: raises 100 to 200
+Player5: calls 100
+*** FIRST DRAW ***
+Player7: discards 1 card
+Player5: discards 1 card [5c]
+Dealt to Player5 [2c 4s 8d] [8c]
+Player7: checks 
+Player5: checks 
+*** SECOND DRAW ***
+Player7: discards 1 card
+Player5: discards 1 card [8c]
+Dealt to Player5 [2c 4s 8d] [Ah]
+Player7: checks 
+Player5: bets 200
+Player7: calls 200
+*** THIRD DRAW ***
+Player7: discards 1 card
+Player5: stands pat on [2c 4s 8d Ah]
+Player7: checks 
+Player5: bets 200
+Player7: calls 200
+*** SHOW DOWN ***
+Player5: shows [2c 4s Ah 8d] (Badugi: 8,4,2,A)
+Player7: mucks hand 
+Player5 collected 1200 from pot
+*** SUMMARY ***
+Total pot 1200 | Rake 0 
+Seat 1: Player7 (small blind) mucked [3s 2h 4c Th]
+Seat 3: Player5 (big blind) showed [2c 4s Ah 8d] and won (1200) with a Badugi: 8,4,2,A
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52589930769: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level IV (100/200) - 2010/11/12 21:16:19 CET [2010/11/12 15:16:19 ET]
+Table '330855877 1' 8-max Seat #1 is the button
+Seat 1: Player7 (2140 in chips) 
+Seat 3: Player5 (2645 in chips) 
+Seat 4: Player6 (2460 in chips) 
+Seat 5: Player1 (1945 in chips) 
+Seat 6: Player0 (1120 in chips) 
+Seat 7: Player4 (1690 in chips) 
+Player5: posts small blind 50
+Player6: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Player5 [2h Kh 5h 8s]
+Player1: folds 
+Player0: folds 
+Player4: calls 100
+Player7: folds 
+Player5: folds 
+Player6: checks 
+*** FIRST DRAW ***
+Player6: discards 4 cards
+Player4: discards 1 card
+Player6: checks 
+Player4: bets 100
+Player6: calls 100
+*** SECOND DRAW ***
+Player6: discards 1 card
+Player4: stands pat 
+Player6: checks 
+Player4: bets 200
+Player6: calls 200
+*** THIRD DRAW ***
+Player6: discards 1 card
+Player4: stands pat 
+Player6: checks 
+Player4: checks 
+*** SHOW DOWN ***
+Player6: shows [2c 6h 6d 3s] (3-card: 6,3,2)
+Player4: shows [5c Ah Qd 6s] (Badugi: Q,6,5,A)
+Player4 collected 850 from pot
+*** SUMMARY ***
+Total pot 850 | Rake 0 
+Seat 1: Player7 (button) folded before the Draw (didn't bet)
+Seat 3: Player5 (small blind) folded before the Draw
+Seat 4: Player6 (big blind) showed [2c 6h 6d 3s] and lost with a 3-card: 6,3,2
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 showed [5c Ah Qd 6s] and won (850) with a Badugi: Q,6,5,A
+
+
+
+PokerStars Game #52589973495: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level IV (100/200) - 2010/11/12 21:17:05 CET [2010/11/12 15:17:05 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 1: Player7 (2140 in chips) 
+Seat 3: Player5 (2595 in chips) 
+Seat 4: Player6 (2060 in chips) 
+Seat 5: Player1 (1945 in chips) 
+Seat 6: Player0 (1120 in chips) 
+Seat 7: Player4 (2140 in chips) 
+Player6: posts small blind 50
+Player1: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Player5 [Qs 9d Ts 8c]
+Player0: folds 
+Player4: folds 
+Player7: folds 
+Player5: folds 
+Player6: calls 50
+Player1: checks 
+*** FIRST DRAW ***
+Player6: discards 2 cards
+Player1: discards 2 cards
+Player6: bets 100
+Player1: folds 
+Uncalled bet (100) returned to Player6
+Player6 collected 200 from pot
+Player6: doesn't show hand 
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 (button) folded before the Draw (didn't bet)
+Seat 4: Player6 (small blind) collected (200)
+Seat 5: Player1 (big blind) folded after the 1st Draw
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52589997593: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level IV (100/200) - 2010/11/12 21:17:31 CET [2010/11/12 15:17:31 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 1: Player7 (2140 in chips) 
+Seat 3: Player5 (2595 in chips) 
+Seat 4: Player6 (2160 in chips) 
+Seat 5: Player1 (1845 in chips) 
+Seat 6: Player0 (1120 in chips) 
+Seat 7: Player4 (2140 in chips) 
+Player1: posts small blind 50
+Player0: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Player5 [7d 6d Kc 2h]
+Player4: folds 
+Player7: folds 
+Player5: folds 
+Player6: folds 
+Player1: raises 100 to 200
+Player0: calls 100
+*** FIRST DRAW ***
+Player1: discards 2 cards
+Player0: discards 2 cards
+Player1: bets 100
+Player0: calls 100
+*** SECOND DRAW ***
+Player1: discards 1 card
+Player0: discards 2 cards
+Player1: bets 200
+Player0: raises 200 to 400
+Player1: calls 200
+*** THIRD DRAW ***
+Player1: discards 1 card
+Player0: stands pat 
+Player1: checks 
+Player0: checks 
+*** SHOW DOWN ***
+Player1: shows [3d 4c 4h 7s] (3-card: 7,4,3)
+Player0: shows [As 9d 3c Th] (Badugi: T,9,3,A)
+Player0 collected 1400 from pot
+*** SUMMARY ***
+Total pot 1400 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 (button) folded before the Draw (didn't bet)
+Seat 5: Player1 (small blind) showed [3d 4c 4h 7s] and lost with a 3-card: 7,4,3
+Seat 6: Player0 (big blind) showed [As 9d 3c Th] and won (1400) with a Badugi: T,9,3,A
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52590044444: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level IV (100/200) - 2010/11/12 21:18:22 CET [2010/11/12 15:18:22 ET]
+Table '330855877 1' 8-max Seat #5 is the button
+Seat 1: Player7 (2140 in chips) 
+Seat 3: Player5 (2595 in chips) 
+Seat 4: Player6 (2160 in chips) 
+Seat 5: Player1 (1145 in chips) 
+Seat 6: Player0 (1820 in chips) 
+Seat 7: Player4 (2140 in chips) 
+Player0: posts small blind 50
+Player4: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Player5 [Ks Jc 2s 8d]
+Player7: folds 
+Player5: folds 
+Player6: folds 
+Player1: raises 100 to 200
+Player0: folds 
+Player4: folds 
+Uncalled bet (100) returned to Player1
+Player1 collected 250 from pot
+*** SUMMARY ***
+Total pot 250 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 (button) collected (250)
+Seat 6: Player0 (small blind) folded before the Draw
+Seat 7: Player4 (big blind) folded before the Draw
+
+
+
+PokerStars Game #52590064012: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level IV (100/200) - 2010/11/12 21:18:44 CET [2010/11/12 15:18:44 ET]
+Table '330855877 1' 8-max Seat #6 is the button
+Seat 1: Player7 (2140 in chips) 
+Seat 3: Player5 (2595 in chips) 
+Seat 4: Player6 (2160 in chips) 
+Seat 5: Player1 (1295 in chips) 
+Seat 6: Player0 (1770 in chips) 
+Seat 7: Player4 (2040 in chips) 
+Player4: posts small blind 50
+Player7: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Player5 [8c 4d Kd 6h]
+Player5: folds 
+Player6: folds 
+Player1: folds 
+Player0: calls 100
+Player4: folds 
+Player7: checks 
+*** FIRST DRAW ***
+Player7: discards 2 cards
+Player0: discards 1 card
+Player7: checks 
+Player0: bets 100
+Player7: calls 100
+*** SECOND DRAW ***
+Player7: discards 1 card
+Player0: stands pat 
+Player7: checks 
+Player0: bets 200
+Player7: folds 
+Uncalled bet (200) returned to Player0
+Player0 collected 450 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 450 | Rake 0 
+Seat 1: Player7 (big blind) folded after the 2nd Draw
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 (button) collected (450)
+Seat 7: Player4 (small blind) folded before the Draw
+
+
+
+PokerStars Game #52590088589: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level IV (100/200) - 2010/11/12 21:19:10 CET [2010/11/12 15:19:10 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 1: Player7 (1940 in chips) 
+Seat 3: Player5 (2595 in chips) 
+Seat 4: Player6 (2160 in chips) 
+Seat 5: Player1 (1295 in chips) 
+Seat 6: Player0 (2020 in chips) 
+Seat 7: Player4 (1990 in chips) 
+Player7: posts small blind 50
+Player5: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Player5 [6h 5s 7h 8s]
+Player6: folds 
+Player1: raises 100 to 200
+Player0: folds 
+Player4: folds 
+Player7: folds 
+Player5: folds 
+Uncalled bet (100) returned to Player1
+Player1 collected 250 from pot
+*** SUMMARY ***
+Total pot 250 | Rake 0 
+Seat 1: Player7 (small blind) folded before the Draw
+Seat 3: Player5 (big blind) folded before the Draw
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 collected (250)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52590106516: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level IV (100/200) - 2010/11/12 21:19:30 CET [2010/11/12 15:19:30 ET]
+Table '330855877 1' 8-max Seat #1 is the button
+Seat 1: Player7 (1890 in chips) 
+Seat 3: Player5 (2495 in chips) 
+Seat 4: Player6 (2160 in chips) 
+Seat 5: Player1 (1445 in chips) 
+Seat 6: Player0 (2020 in chips) 
+Seat 7: Player4 (1990 in chips) 
+Player5: posts small blind 50
+Player6: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Player5 [7d 3s As 2s]
+Player1: folds 
+Player0: folds 
+Player4: folds 
+Player7: folds 
+Player5: calls 50
+Player6: checks 
+*** FIRST DRAW ***
+Player5: discards 2 cards [3s 2s]
+Dealt to Player5 [7d As] [Kh 9d]
+Player6: discards 3 cards
+Player5: bets 100
+Player6: folds 
+Uncalled bet (100) returned to Player5
+Player5 collected 200 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Seat 1: Player7 (button) folded before the Draw (didn't bet)
+Seat 3: Player5 (small blind) collected (200)
+Seat 4: Player6 (big blind) folded after the 1st Draw
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52590138351: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level IV (100/200) - 2010/11/12 21:20:05 CET [2010/11/12 15:20:05 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 1: Player7 (1890 in chips) 
+Seat 3: Player5 (2595 in chips) 
+Seat 4: Player6 (2060 in chips) 
+Seat 5: Player1 (1445 in chips) 
+Seat 6: Player0 (2020 in chips) 
+Seat 7: Player4 (1990 in chips) 
+Player6: posts small blind 50
+Player1: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Player5 [Jd 4c Qh 9d]
+Player0: calls 100
+Player4: calls 100
+Player7: folds 
+Player5: folds 
+Player6: calls 50
+Player1: checks 
+*** FIRST DRAW ***
+Player6: discards 2 cards
+Player1: discards 2 cards
+Player0: discards 1 card
+Player4: stands pat 
+Player6: checks 
+Player1: checks 
+Player0: checks 
+Player4: bets 100
+Player6: calls 100
+Player1: calls 100
+Player0: calls 100
+*** SECOND DRAW ***
+Player6: discards 1 card
+Player1: discards 1 card
+Player0: discards 1 card
+Player4: stands pat 
+Player6: checks 
+Player1: checks 
+Player0: checks 
+Player4: bets 200
+Player6: calls 200
+Player1: calls 200
+Player0: folds 
+*** THIRD DRAW ***
+Player6: discards 1 card
+Player1: discards 1 card
+Player4: stands pat 
+Player6: checks 
+Player1: checks 
+Player4: checks 
+*** SHOW DOWN ***
+Player6: shows [2s 4d 3d Ah] (3-card: 3,2,A)
+Player1: mucks hand 
+Player4: shows [6d 7c 3h 9s] (Badugi: 9,7,6,3)
+Player4 collected 1400 from pot
+*** SUMMARY ***
+Total pot 1400 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 (button) folded before the Draw (didn't bet)
+Seat 4: Player6 (small blind) showed [2s 4d 3d Ah] and lost with a 3-card: 3,2,A
+Seat 5: Player1 (big blind) mucked [As 2c Ks 4h]
+Seat 6: Player0 folded after the 2nd Draw
+Seat 7: Player4 showed [6d 7c 3h 9s] and won (1400) with a Badugi: 9,7,6,3
+
+
+
+PokerStars Game #52590193733: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level IV (100/200) - 2010/11/12 21:21:05 CET [2010/11/12 15:21:05 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 1: Player7 (1890 in chips) 
+Seat 3: Player5 (2595 in chips) 
+Seat 4: Player6 (1660 in chips) 
+Seat 5: Player1 (1045 in chips) 
+Seat 6: Player0 (1820 in chips) 
+Seat 7: Player4 (2990 in chips) 
+Player1: posts small blind 50
+Player0: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Player5 [Th Jh Kh Js]
+Player4: calls 100
+Player7: calls 100
+Player5: folds 
+Player6: folds 
+Player1: calls 50
+Player0: checks 
+*** FIRST DRAW ***
+Player1: discards 1 card
+Player0: discards 2 cards
+Player4: discards 1 card
+Player7: discards 1 card
+Player1: checks 
+Player0: checks 
+Player4: checks 
+Player7: checks 
+*** SECOND DRAW ***
+Player1: discards 1 card
+Player0: discards 2 cards
+Player4: discards 1 card
+Player7: discards 1 card
+Player1: checks 
+Player0: checks 
+Player4: checks 
+Player7: checks 
+*** THIRD DRAW ***
+Player1: discards 1 card
+Player0: discards 2 cards
+Player4: discards 1 card
+Player7: discards 1 card
+Player1: checks 
+Player0: checks 
+Player4: checks 
+Player7: checks 
+*** SHOW DOWN ***
+Player1: shows [5c Qh As 7h] (3-card: 7,5,A)
+Player0: mucks hand 
+Player4: shows [3h 4d 6c Ah] (3-card: 6,4,A)
+Player7: shows [Ad 4c Jc 5s] (3-card: 5,4,A)
+Player7 collected 400 from pot
+*** SUMMARY ***
+Total pot 400 | Rake 0 
+Seat 1: Player7 showed [Ad 4c Jc 5s] and won (400) with a 3-card: 5,4,A
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 (button) folded before the Draw (didn't bet)
+Seat 5: Player1 (small blind) showed [5c Qh As 7h] and lost with a 3-card: 7,5,A
+Seat 6: Player0 (big blind) mucked [2d 4s 6d 8c]
+Seat 7: Player4 showed [3h 4d 6c Ah] and lost with a 3-card: 6,4,A
+
+
+
+PokerStars Game #52590241976: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level IV (100/200) - 2010/11/12 21:21:58 CET [2010/11/12 15:21:58 ET]
+Table '330855877 1' 8-max Seat #5 is the button
+Seat 1: Player7 (2190 in chips) 
+Seat 3: Player5 (2595 in chips) 
+Seat 4: Player6 (1660 in chips) 
+Seat 5: Player1 (945 in chips) 
+Seat 6: Player0 (1720 in chips) 
+Seat 7: Player4 (2890 in chips) 
+Player0: posts small blind 50
+Player4: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Player5 [4c 9d Jh Js]
+Player7: folds 
+Player5: folds 
+Player6: folds 
+Player1: raises 100 to 200
+Player0: folds 
+Player4: calls 100
+*** FIRST DRAW ***
+Player4: discards 1 card
+Player1: stands pat 
+Player4: checks 
+Player1: bets 100
+Player4: calls 100
+*** SECOND DRAW ***
+Player4: discards 1 card
+Player1: stands pat 
+Player4: folds 
+Player1 collected 650 from pot
+*** SUMMARY ***
+Total pot 650 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 (button) collected (650)
+Seat 6: Player0 (small blind) folded before the Draw
+Seat 7: Player4 (big blind) folded after the 2nd Draw
+
+
+
+PokerStars Game #52590262652: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level IV (100/200) - 2010/11/12 21:22:20 CET [2010/11/12 15:22:20 ET]
+Table '330855877 1' 8-max Seat #6 is the button
+Seat 1: Player7 (2190 in chips) 
+Seat 3: Player5 (2595 in chips) 
+Seat 4: Player6 (1660 in chips) 
+Seat 5: Player1 (1295 in chips) 
+Seat 6: Player0 (1670 in chips) 
+Seat 7: Player4 (2590 in chips) 
+Player4: posts small blind 50
+Player7: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Player5 [4d Jd 9c Qc]
+Player5: folds 
+Player6: folds 
+Player1: folds 
+Player0: folds 
+Player4: folds 
+Uncalled bet (50) returned to Player7
+Player7 collected 100 from pot
+Player7: doesn't show hand 
+*** SUMMARY ***
+Total pot 100 | Rake 0 
+Seat 1: Player7 (big blind) collected (100)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 (button) folded before the Draw (didn't bet)
+Seat 7: Player4 (small blind) folded before the Draw
+
+
+
+PokerStars Game #52590285362: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:22:45 CET [2010/11/12 15:22:45 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 1: Player7 (2240 in chips) 
+Seat 3: Player5 (2595 in chips) 
+Seat 4: Player6 (1660 in chips) 
+Seat 5: Player1 (1295 in chips) 
+Seat 6: Player0 (1670 in chips) 
+Seat 7: Player4 (2540 in chips) 
+Player7: posts small blind 75
+Player5: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [Ah Kc 4c 3c]
+Player6: folds 
+Player1: folds 
+Player0: folds 
+Player4: folds 
+Player7: folds 
+Uncalled bet (75) returned to Player5
+Player5 collected 150 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 150 | Rake 0 
+Seat 1: Player7 (small blind) folded before the Draw
+Seat 3: Player5 (big blind) collected (150)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52590301102: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:23:02 CET [2010/11/12 15:23:02 ET]
+Table '330855877 1' 8-max Seat #1 is the button
+Seat 1: Player7 (2165 in chips) 
+Seat 3: Player5 (2670 in chips) 
+Seat 4: Player6 (1660 in chips) 
+Seat 5: Player1 (1295 in chips) 
+Seat 6: Player0 (1670 in chips) 
+Seat 7: Player4 (2540 in chips) 
+Player5: posts small blind 75
+Player6: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [7s Td 3c Ts]
+Player1: folds 
+Player0: calls 150
+Player4: folds 
+Player7: folds 
+Player5: calls 75
+Player6: checks 
+*** FIRST DRAW ***
+Player5: discards 2 cards [Td Ts]
+Dealt to Player5 [7s 3c] [8d 5h]
+Player6: discards 1 card
+Player0: discards 2 cards
+Player5: bets 150
+Player6: folds 
+Player0: folds 
+Uncalled bet (150) returned to Player5
+Player5 collected 450 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 450 | Rake 0 
+Seat 1: Player7 (button) folded before the Draw (didn't bet)
+Seat 3: Player5 (small blind) collected (450)
+Seat 4: Player6 (big blind) folded after the 1st Draw
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded after the 1st Draw
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52590349116: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:23:54 CET [2010/11/12 15:23:54 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 1: Player7 (2165 in chips) 
+Seat 3: Player5 (2970 in chips) 
+Seat 4: Player6 (1510 in chips) 
+Seat 5: Player1 (1295 in chips) 
+Seat 6: Player0 (1520 in chips) 
+Seat 7: Player4 (2540 in chips) 
+Player6: posts small blind 75
+Player1: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [Th 4c Ah Qs]
+Player0: folds 
+Player4: folds 
+Player7: folds 
+Player5: calls 150
+Player6: calls 75
+Player1: raises 150 to 300
+Player5: calls 150
+Player6: calls 150
+*** FIRST DRAW ***
+Player6: discards 1 card
+Player1: discards 1 card
+Player5: discards 2 cards [Th Qs]
+Dealt to Player5 [4c Ah] [5c 4s]
+Player6: checks 
+Player1: bets 150
+Player5: calls 150
+Player6: calls 150
+*** SECOND DRAW ***
+Player6: discards 1 card
+Player1: stands pat 
+Player5: discards 1 card [4c]
+Dealt to Player5 [Ah 5c 4s] [Ks]
+Player6: checks 
+Player1: bets 300
+Player5: folds 
+Player6: calls 300
+*** THIRD DRAW ***
+Player6: discards 1 card
+Player1: stands pat 
+Player6: checks 
+Player1: bets 300
+Player6: folds 
+Uncalled bet (300) returned to Player1
+Player1 collected 1950 from pot
+*** SUMMARY ***
+Total pot 1950 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 (button) folded after the 2nd Draw
+Seat 4: Player6 (small blind) folded after the 3rd Draw
+Seat 5: Player1 (big blind) collected (1950)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52590439661: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:25:34 CET [2010/11/12 15:25:34 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 1: Player7 (2165 in chips) 
+Seat 3: Player5 (2520 in chips) 
+Seat 4: Player6 (760 in chips) 
+Seat 5: Player1 (2495 in chips) 
+Seat 6: Player0 (1520 in chips) 
+Seat 7: Player4 (2540 in chips) 
+Player1: posts small blind 75
+Player0: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [9h 4c 7s Qs]
+Player4: folds 
+Player7: folds 
+Player5: folds 
+Player6: raises 150 to 300
+Player1: folds 
+Player0: folds 
+Uncalled bet (150) returned to Player6
+Player6 collected 375 from pot
+Player6: doesn't show hand 
+*** SUMMARY ***
+Total pot 375 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 (button) collected (375)
+Seat 5: Player1 (small blind) folded before the Draw
+Seat 6: Player0 (big blind) folded before the Draw
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52590456255: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:25:52 CET [2010/11/12 15:25:52 ET]
+Table '330855877 1' 8-max Seat #5 is the button
+Seat 1: Player7 (2165 in chips) 
+Seat 3: Player5 (2520 in chips) 
+Seat 4: Player6 (985 in chips) 
+Seat 5: Player1 (2420 in chips) 
+Seat 6: Player0 (1370 in chips) 
+Seat 7: Player4 (2540 in chips) 
+Player0: posts small blind 75
+Player4: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [8s Qc 3d 6c]
+Player7: folds 
+Player5: calls 150
+Player6: calls 150
+Player1: calls 150
+Player0: folds 
+Player4: checks 
+*** FIRST DRAW ***
+Player4: discards 2 cards
+Player5: discards 1 card [Qc]
+Dealt to Player5 [8s 3d 6c] [Jc]
+Player6: discards 1 card
+Player1: discards 1 card
+Player4: checks 
+Player5: checks 
+Player6: bets 150
+Player1: folds 
+Player4: folds 
+Player5: calls 150
+*** SECOND DRAW ***
+Player5: discards 1 card [Jc]
+Dealt to Player5 [8s 3d 6c] [8c]
+Player6: discards 1 card
+Player5: checks 
+Player6: bets 300
+Player5: calls 300
+*** THIRD DRAW ***
+Player5: discards 1 card [8c]
+Dealt to Player5 [8s 3d 6c] [Qs]
+Player6: discards 1 card
+Player5: checks 
+Player6: bets 300
+Player5: calls 300
+*** SHOW DOWN ***
+Player6: shows [2h Ah 2d 5s] (3-card: 5,2,A)
+Player5: mucks hand 
+Player6 collected 2175 from pot
+*** SUMMARY ***
+Total pot 2175 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 mucked [8s Qs 3d 6c]
+Seat 4: Player6 showed [2h Ah 2d 5s] and won (2175) with a 3-card: 5,2,A
+Seat 5: Player1 (button) folded after the 1st Draw
+Seat 6: Player0 (small blind) folded before the Draw
+Seat 7: Player4 (big blind) folded after the 1st Draw
+
+
+
+PokerStars Game #52590514659: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:26:56 CET [2010/11/12 15:26:56 ET]
+Table '330855877 1' 8-max Seat #6 is the button
+Seat 1: Player7 (2165 in chips) 
+Seat 3: Player5 (1620 in chips) 
+Seat 4: Player6 (2260 in chips) 
+Seat 5: Player1 (2270 in chips) 
+Seat 6: Player0 (1295 in chips) 
+Seat 7: Player4 (2390 in chips) 
+Player4: posts small blind 75
+Player7: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [Th Jd 9c 9h]
+Player5: folds 
+Player6: folds 
+Player1: folds 
+Player0: calls 150
+Player4: folds 
+Player7: checks 
+*** FIRST DRAW ***
+Player7: discards 1 card
+Player0: discards 2 cards
+Player7: checks 
+Player0: checks 
+*** SECOND DRAW ***
+Player7: discards 1 card
+Player0: discards 2 cards
+Player7: checks 
+Player0: bets 300
+Player7: calls 300
+*** THIRD DRAW ***
+Player7: discards 1 card
+Player0: stands pat 
+Player7: checks 
+Player0: bets 300
+Player7: folds 
+Uncalled bet (300) returned to Player0
+Player0 collected 975 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 975 | Rake 0 
+Seat 1: Player7 (big blind) folded after the 3rd Draw
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 (button) collected (975)
+Seat 7: Player4 (small blind) folded before the Draw
+
+
+
+PokerStars Game #52590552651: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:27:37 CET [2010/11/12 15:27:37 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 1: Player7 (1715 in chips) 
+Seat 3: Player5 (1620 in chips) 
+Seat 4: Player6 (2260 in chips) 
+Seat 5: Player1 (2270 in chips) 
+Seat 6: Player0 (1820 in chips) 
+Seat 7: Player4 (2315 in chips) 
+Player7: posts small blind 75
+Player5: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [7s Ad Th 2h]
+Player6: folds 
+Player1: folds 
+Player0: folds 
+Player4: folds 
+Player7: folds 
+Uncalled bet (75) returned to Player5
+Player5 collected 150 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 150 | Rake 0 
+Seat 1: Player7 (small blind) folded before the Draw
+Seat 3: Player5 (big blind) collected (150)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52590563477: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:27:49 CET [2010/11/12 15:27:49 ET]
+Table '330855877 1' 8-max Seat #1 is the button
+Seat 1: Player7 (1640 in chips) 
+Seat 3: Player5 (1695 in chips) 
+Seat 4: Player6 (2260 in chips) 
+Seat 5: Player1 (2270 in chips) 
+Seat 6: Player0 (1820 in chips) 
+Seat 7: Player4 (2315 in chips) 
+Player5: posts small blind 75
+Player6: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [4h Ts Qh Td]
+Player1: folds 
+Player0: folds 
+Player4: raises 150 to 300
+Player7: folds 
+Player5: folds 
+Player6: calls 150
+*** FIRST DRAW ***
+Player6: discards 1 card
+Player4: stands pat 
+Player6: checks 
+Player4: bets 150
+Player6: calls 150
+*** SECOND DRAW ***
+Player6: discards 1 card
+Player4: stands pat 
+Player6: checks 
+Player4: bets 300
+Player6: calls 300
+*** THIRD DRAW ***
+Player6: discards 1 card
+Player4: stands pat 
+Player6: checks 
+Player4: bets 300
+Player6: folds 
+Uncalled bet (300) returned to Player4
+Player4 collected 1575 from pot
+Player4: shows [6c 5h 8s 4d] (Badugi: 8,6,5,4)
+*** SUMMARY ***
+Total pot 1575 | Rake 0 
+Seat 1: Player7 (button) folded before the Draw (didn't bet)
+Seat 3: Player5 (small blind) folded before the Draw
+Seat 4: Player6 (big blind) folded after the 3rd Draw
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 collected (1575)
+
+
+
+PokerStars Game #52590596993: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:28:26 CET [2010/11/12 15:28:26 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 1: Player7 (1640 in chips) 
+Seat 3: Player5 (1620 in chips) 
+Seat 4: Player6 (1510 in chips) 
+Seat 5: Player1 (2270 in chips) 
+Seat 6: Player0 (1820 in chips) 
+Seat 7: Player4 (3140 in chips) 
+Player6: posts small blind 75
+Player1: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [4d Ac 9h Ks]
+Player0: folds 
+Player4: folds 
+Player7: folds 
+Player5: raises 150 to 300
+Player6: folds 
+Player1: calls 150
+*** FIRST DRAW ***
+Player1: discards 2 cards
+Player5: discards 1 card [Ks]
+Dealt to Player5 [4d Ac 9h] [Kc]
+Player1: checks 
+Player5: bets 150
+Player1: calls 150
+*** SECOND DRAW ***
+Player1: discards 2 cards
+Player5: discards 1 card [Kc]
+Dealt to Player5 [4d Ac 9h] [3s]
+Player1: checks 
+Player5: bets 300
+Player1: folds 
+Uncalled bet (300) returned to Player5
+Player5 collected 975 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 975 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 (button) collected (975)
+Seat 4: Player6 (small blind) folded before the Draw
+Seat 5: Player1 (big blind) folded after the 2nd Draw
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52590627634: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:29:00 CET [2010/11/12 15:29:00 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 1: Player7 (1640 in chips) 
+Seat 3: Player5 (2145 in chips) 
+Seat 4: Player6 (1435 in chips) 
+Seat 5: Player1 (1820 in chips) 
+Seat 6: Player0 (1820 in chips) 
+Seat 7: Player4 (3140 in chips) 
+Player1: posts small blind 75
+Player0: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [As Qc 2s 8d]
+Player4: folds 
+Player7: folds 
+Player5: folds 
+Player6: folds 
+Player1: calls 75
+Player0: checks 
+*** FIRST DRAW ***
+Player1: discards 2 cards
+Player0: discards 2 cards
+Player1: checks 
+Player0: bets 150
+Player1: folds 
+Uncalled bet (150) returned to Player0
+Player0 collected 300 from pot
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 (button) folded before the Draw (didn't bet)
+Seat 5: Player1 (small blind) folded after the 1st Draw
+Seat 6: Player0 (big blind) collected (300)
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52590662538: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:29:39 CET [2010/11/12 15:29:39 ET]
+Table '330855877 1' 8-max Seat #5 is the button
+Seat 1: Player7 (1640 in chips) 
+Seat 3: Player5 (2145 in chips) 
+Seat 4: Player6 (1435 in chips) 
+Seat 5: Player1 (1670 in chips) 
+Seat 6: Player0 (1970 in chips) 
+Seat 7: Player4 (3140 in chips) 
+Player0: posts small blind 75
+Player4: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [9d 7c 6d 5s]
+Player7: folds 
+Player5: folds 
+Player6: folds 
+Player1: raises 150 to 300
+Player0: folds 
+Player4: folds 
+Uncalled bet (150) returned to Player1
+Player1 collected 375 from pot
+*** SUMMARY ***
+Total pot 375 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 (button) collected (375)
+Seat 6: Player0 (small blind) folded before the Draw
+Seat 7: Player4 (big blind) folded before the Draw
+
+
+
+PokerStars Game #52590678076: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:29:56 CET [2010/11/12 15:29:56 ET]
+Table '330855877 1' 8-max Seat #6 is the button
+Seat 1: Player7 (1640 in chips) 
+Seat 3: Player5 (2145 in chips) 
+Seat 4: Player6 (1435 in chips) 
+Seat 5: Player1 (1895 in chips) 
+Seat 6: Player0 (1895 in chips) 
+Seat 7: Player4 (2990 in chips) 
+Player4: posts small blind 75
+Player7: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [Kh 5h 4c 7h]
+Player5: folds 
+Player6: folds 
+Player1: folds 
+Player0: folds 
+Player4: calls 75
+Player7: checks 
+*** FIRST DRAW ***
+Player4: discards 1 card
+Player7: discards 2 cards
+Player4: checks 
+Player7: checks 
+*** SECOND DRAW ***
+Player4: discards 1 card
+Player7: discards 2 cards
+Player4: checks 
+Player7: checks 
+*** THIRD DRAW ***
+Player4: discards 1 card
+Player7: discards 1 card
+Player4: checks 
+Player7: checks 
+*** SHOW DOWN ***
+Player4: shows [3s 4d 5c Ad] (3-card: 5,3,A)
+Player7: mucks hand 
+Player4 collected 300 from pot
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 1: Player7 (big blind) mucked [8d 6s Ah Th]
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 (button) folded before the Draw (didn't bet)
+Seat 7: Player4 (small blind) showed [3s 4d 5c Ad] and won (300) with a 3-card: 5,3,A
+
+
+
+PokerStars Game #52590715000: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:30:34 CET [2010/11/12 15:30:34 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 1: Player7 (1490 in chips) 
+Seat 3: Player5 (2145 in chips) 
+Seat 4: Player6 (1435 in chips) 
+Seat 5: Player1 (1895 in chips) 
+Seat 6: Player0 (1895 in chips) 
+Seat 7: Player4 (3140 in chips) 
+Player7: posts small blind 75
+Player5: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [Qh Qs 4s 6c]
+Player6: folds 
+Player1: folds 
+Player0: folds 
+Player4: folds 
+Player7: folds 
+Uncalled bet (75) returned to Player5
+Player5 collected 150 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 150 | Rake 0 
+Seat 1: Player7 (small blind) folded before the Draw
+Seat 3: Player5 (big blind) collected (150)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52590734867: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:30:56 CET [2010/11/12 15:30:56 ET]
+Table '330855877 1' 8-max Seat #1 is the button
+Seat 1: Player7 (1415 in chips) 
+Seat 3: Player5 (2220 in chips) 
+Seat 4: Player6 (1435 in chips) 
+Seat 5: Player1 (1895 in chips) 
+Seat 6: Player0 (1895 in chips) 
+Seat 7: Player4 (3140 in chips) 
+Player5: posts small blind 75
+Player6: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [Td 3d Tc 3h]
+Player1: folds 
+Player0: calls 150
+Player4: folds 
+Player7: folds 
+Player5: folds 
+Player6: checks 
+*** FIRST DRAW ***
+Player6: discards 2 cards
+Player0: discards 2 cards
+Player6: bets 150
+Player0: calls 150
+*** SECOND DRAW ***
+Player6: discards 1 card
+Player0: discards 1 card
+Player6: bets 300
+Player0: calls 300
+*** THIRD DRAW ***
+Player6: stands pat 
+Player0: discards 1 card
+Player6: bets 300
+Player0: folds 
+Uncalled bet (300) returned to Player6
+Player6 collected 1275 from pot
+Player6: doesn't show hand 
+*** SUMMARY ***
+Total pot 1275 | Rake 0 
+Seat 1: Player7 (button) folded before the Draw (didn't bet)
+Seat 3: Player5 (small blind) folded before the Draw
+Seat 4: Player6 (big blind) collected (1275)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded after the 3rd Draw
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52590768353: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:31:32 CET [2010/11/12 15:31:32 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 1: Player7 (1415 in chips) 
+Seat 3: Player5 (2145 in chips) 
+Seat 4: Player6 (2110 in chips) 
+Seat 5: Player1 (1895 in chips) 
+Seat 6: Player0 (1295 in chips) 
+Seat 7: Player4 (3140 in chips) 
+Player6: posts small blind 75
+Player1: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [8s Tc 9d Qs]
+Player0: calls 150
+Player4: folds 
+Player7: folds 
+Player5: folds 
+Player6: folds 
+Player1: checks 
+*** FIRST DRAW ***
+Player1: discards 3 cards
+Player0: discards 1 card
+Player1: checks 
+Player0: bets 150
+Player1: folds 
+Uncalled bet (150) returned to Player0
+Player0 collected 375 from pot
+*** SUMMARY ***
+Total pot 375 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 (button) folded before the Draw (didn't bet)
+Seat 4: Player6 (small blind) folded before the Draw
+Seat 5: Player1 (big blind) folded after the 1st Draw
+Seat 6: Player0 collected (375)
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52590796905: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:32:03 CET [2010/11/12 15:32:03 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 1: Player7 (1415 in chips) 
+Seat 3: Player5 (2145 in chips) 
+Seat 4: Player6 (2035 in chips) 
+Seat 5: Player1 (1745 in chips) 
+Seat 6: Player0 (1520 in chips) 
+Seat 7: Player4 (3140 in chips) 
+Player1: posts small blind 75
+Player0: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [7h 7s 5s Qh]
+Player4: folds 
+Player7: folds 
+Player5: folds 
+Player6: raises 150 to 300
+Player1: folds 
+Player0: folds 
+Uncalled bet (150) returned to Player6
+Player6 collected 375 from pot
+Player6: doesn't show hand 
+*** SUMMARY ***
+Total pot 375 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 (button) collected (375)
+Seat 5: Player1 (small blind) folded before the Draw
+Seat 6: Player0 (big blind) folded before the Draw
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52590822865: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level V (150/300) - 2010/11/12 21:32:31 CET [2010/11/12 15:32:31 ET]
+Table '330855877 1' 8-max Seat #5 is the button
+Seat 1: Player7 (1415 in chips) 
+Seat 3: Player5 (2145 in chips) 
+Seat 4: Player6 (2260 in chips) 
+Seat 5: Player1 (1670 in chips) 
+Seat 6: Player0 (1370 in chips) 
+Seat 7: Player4 (3140 in chips) 
+Player0: posts small blind 75
+Player4: posts big blind 150
+*** DEALING HANDS ***
+Dealt to Player5 [6c 5s Ad Js]
+Player7: folds 
+Player5: raises 150 to 300
+Player6: raises 150 to 450
+Player1: folds 
+Player0: folds 
+Player4: folds 
+Player5: calls 150
+*** FIRST DRAW ***
+Player5: discards 1 card [Js]
+Dealt to Player5 [6c 5s Ad] [Qc]
+Player6: stands pat 
+Player5: checks 
+Player6: bets 150
+Player5: folds 
+Uncalled bet (150) returned to Player6
+Player6 collected 1125 from pot
+Player6: doesn't show hand 
+*** SUMMARY ***
+Total pot 1125 | Rake 0 
+Seat 1: Player7 folded before the Draw (didn't bet)
+Seat 3: Player5 folded after the 1st Draw
+Seat 4: Player6 collected (1125)
+Seat 5: Player1 (button) folded before the Draw (didn't bet)
+Seat 6: Player0 (small blind) folded before the Draw
+Seat 7: Player4 (big blind) folded before the Draw
+
+
+
+PokerStars Game #52590876302: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:33:30 CET [2010/11/12 15:33:30 ET]
+Table '330855877 1' 8-max Seat #6 is the button
+Seat 1: Player7 (1415 in chips) 
+Seat 3: Player5 (1695 in chips) 
+Seat 4: Player6 (2935 in chips) 
+Seat 5: Player1 (1670 in chips) 
+Seat 6: Player0 (1295 in chips) 
+Seat 7: Player4 (2990 in chips) 
+Player4: posts small blind 100
+Player7: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [3s 6c Kc 4s]
+Player5: folds 
+Player6: folds 
+Player1: raises 200 to 400
+Player0: calls 400
+Player4: folds 
+Player7: calls 200
+*** FIRST DRAW ***
+Player7: discards 2 cards
+Player1: discards 2 cards
+Player0: discards 1 card
+Player7: checks 
+Player1: checks 
+Player0: checks 
+*** SECOND DRAW ***
+Player7: discards 2 cards
+Player1: discards 2 cards
+Player0: discards 1 card
+Player7: bets 400
+Player1: folds 
+Player0: raises 400 to 800
+Player7: raises 215 to 1015 and is all-in
+Player0: calls 95 and is all-in
+Uncalled bet (120) returned to Player7
+*** THIRD DRAW ***
+Player7: discards 1 card
+Player0: stands pat 
+*** SHOW DOWN ***
+Player7: shows [As Tc 4d 3h] (Badugi: T,4,3,A)
+Player0: shows [7c 2s Ad 5h] (Badugi: 7,5,2,A)
+Player0 collected 3090 from pot
+*** SUMMARY ***
+Total pot 3090 | Rake 0 
+Seat 1: Player7 (big blind) showed [As Tc 4d 3h] and lost with a Badugi: T,4,3,A
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded after the 2nd Draw
+Seat 6: Player0 (button) showed [7c 2s Ad 5h] and won (3090) with a Badugi: 7,5,2,A
+Seat 7: Player4 (small blind) folded before the Draw
+
+
+
+PokerStars Game #52590922982: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:34:20 CET [2010/11/12 15:34:20 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 1: Player7 (120 in chips) 
+Seat 3: Player5 (1695 in chips) 
+Seat 4: Player6 (2935 in chips) 
+Seat 5: Player1 (1270 in chips) 
+Seat 6: Player0 (3090 in chips) 
+Seat 7: Player4 (2890 in chips) 
+Player7: posts small blind 100
+Player5: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [6s Ks 2s 4d]
+Player6: folds 
+Player1: folds 
+Player0: folds 
+Player4: folds 
+Player0 is sitting out
+Player7: calls 20 and is all-in
+Uncalled bet (80) returned to Player5
+*** FIRST DRAW ***
+Player7: discards 2 cards
+Player5: discards 2 cards [6s Ks]
+Dealt to Player5 [2s 4d] [Ts Js]
+*** SECOND DRAW ***
+Player7: discards 1 card
+Player5: discards 2 cards [Ts Js]
+Dealt to Player5 [2s 4d] [8h 7c]
+*** THIRD DRAW ***
+Player7: discards 1 card
+Player5: stands pat on [2s 4d 8h 7c]
+*** SHOW DOWN ***
+Player7: shows [5c Ah 5s 3d] (3-card: 5,3,A)
+Player5: shows [8h 7c 2s 4d] (Badugi: 8,7,4,2)
+Player5 collected 240 from pot
+Player7 finished the tournament in 6th place
+*** SUMMARY ***
+Total pot 240 | Rake 0 
+Seat 1: Player7 (small blind) showed [5c Ah 5s 3d] and lost with a 3-card: 5,3,A
+Seat 3: Player5 (big blind) showed [8h 7c 2s 4d] and won (240) with a Badugi: 8,7,4,2
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 5: Player1 folded before the Draw (didn't bet)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52590953608: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:34:54 CET [2010/11/12 15:34:54 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 3: Player5 (1815 in chips) 
+Seat 4: Player6 (2935 in chips) 
+Seat 5: Player1 (1270 in chips) 
+Seat 6: Player0 (3090 in chips) is sitting out
+Seat 7: Player4 (2890 in chips) 
+Player6: posts small blind 100
+Player1: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [3s 8h 6s 7c]
+Player0: folds 
+Player4: folds 
+Player5: raises 200 to 400
+Player6: folds 
+Player1: calls 200
+*** FIRST DRAW ***
+Player1: discards 2 cards
+Player5: discards 1 card [6s]
+Dealt to Player5 [3s 8h 7c] [5s]
+Player1: checks 
+Player5: bets 200
+Player1: calls 200
+*** SECOND DRAW ***
+Player1: discards 1 card
+Player5: discards 1 card [5s]
+Dealt to Player5 [3s 8h 7c] [2s]
+Player1: checks 
+Player5: checks 
+*** THIRD DRAW ***
+Player1: discards 1 card
+Player5: discards 1 card [3s]
+Dealt to Player5 [8h 7c 2s] [Td]
+Player0 has returned
+Player1: bets 400
+Player5: raises 400 to 800
+Player1: calls 270 and is all-in
+Uncalled bet (130) returned to Player5
+*** SHOW DOWN ***
+Player5: shows [Td 8h 2s 7c] (Badugi: T,8,7,2)
+Player1: shows [4c 6c 5h As] (3-card: 5,4,A)
+Player5 collected 2640 from pot
+Player1 finished the tournament in 5th place
+*** SUMMARY ***
+Total pot 2640 | Rake 0 
+Seat 3: Player5 (button) showed [Td 8h 2s 7c] and won (2640) with a Badugi: T,8,7,2
+Seat 4: Player6 (small blind) folded before the Draw
+Seat 5: Player1 (big blind) showed [4c 6c 5h As] and lost with a 3-card: 5,4,A
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52590995347: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:35:39 CET [2010/11/12 15:35:39 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 3: Player5 (3185 in chips) 
+Seat 4: Player6 (2835 in chips) 
+Seat 6: Player0 (3090 in chips) 
+Seat 7: Player4 (2890 in chips) 
+Player0: posts small blind 100
+Player4: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [4s 6d 8h Th]
+Player5: folds 
+Player6: folds 
+Player0: folds 
+Uncalled bet (100) returned to Player4
+Player4 collected 200 from pot
+Player4: shows [5d 7s 3h Js] (3-card: 7,5,3)
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 (button) folded before the Draw (didn't bet)
+Seat 6: Player0 (small blind) folded before the Draw
+Seat 7: Player4 (big blind) collected (200)
+
+
+
+PokerStars Game #52591008742: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:35:53 CET [2010/11/12 15:35:53 ET]
+Table '330855877 1' 8-max Seat #6 is the button
+Seat 3: Player5 (3185 in chips) 
+Seat 4: Player6 (2835 in chips) 
+Seat 6: Player0 (2990 in chips) 
+Seat 7: Player4 (2990 in chips) 
+Player4: posts small blind 100
+Player5: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [6d Kh 8h 6c]
+Player6: folds 
+Player0 has timed out
+Player0: folds 
+Player0 is sitting out
+Player4: folds 
+Uncalled bet (100) returned to Player5
+Player5 collected 200 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Seat 3: Player5 (big blind) collected (200)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 6: Player0 (button) folded before the Draw (didn't bet)
+Seat 7: Player4 (small blind) folded before the Draw
+
+
+
+PokerStars Game #52591035951: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:36:23 CET [2010/11/12 15:36:23 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 3: Player5 (3285 in chips) 
+Seat 4: Player6 (2835 in chips) 
+Seat 6: Player0 (2990 in chips) is sitting out
+Seat 7: Player4 (2890 in chips) 
+Player5: posts small blind 100
+Player6: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [2c Jc Ks 5h]
+Player0: folds 
+Player4: folds 
+Player5: calls 100
+Player6: checks 
+*** FIRST DRAW ***
+Player5: discards 2 cards [Jc Ks]
+Dealt to Player5 [2c 5h] [8d 2h]
+Player6: discards 2 cards
+Player5: checks 
+Player6: checks 
+*** SECOND DRAW ***
+Player5: discards 1 card [2h]
+Dealt to Player5 [2c 5h 8d] [7d]
+Player6: discards 1 card
+Player5: checks 
+Player6: checks 
+*** THIRD DRAW ***
+Player5: discards 1 card [8d]
+Dealt to Player5 [2c 5h 7d] [8c]
+Player6: discards 1 card
+Player5: checks 
+Player6: checks 
+*** SHOW DOWN ***
+Player5: shows [2c 8c 7d 5h] (3-card: 7,5,2)
+Player6: mucks hand 
+Player5 collected 400 from pot
+*** SUMMARY ***
+Total pot 400 | Rake 0 
+Seat 3: Player5 (small blind) showed [2c 8c 7d 5h] and won (400) with a 3-card: 7,5,2
+Seat 4: Player6 (big blind) mucked [2s Td Ah Js]
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52591070441: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:37:01 CET [2010/11/12 15:37:01 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 3: Player5 (3485 in chips) 
+Seat 4: Player6 (2635 in chips) 
+Seat 6: Player0 (2990 in chips) is sitting out
+Seat 7: Player4 (2890 in chips) 
+Player6: posts small blind 100
+Player0: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [7s 4h Ad Th]
+Player4: folds 
+Player5: raises 200 to 400
+Player6: folds 
+Player0: folds 
+Uncalled bet (200) returned to Player5
+Player5 collected 500 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 500 | Rake 0 
+Seat 3: Player5 (button) collected (500)
+Seat 4: Player6 (small blind) folded before the Draw
+Seat 6: Player0 (big blind) folded before the Draw
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52591082784: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:37:14 CET [2010/11/12 15:37:14 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 3: Player5 (3785 in chips) 
+Seat 4: Player6 (2535 in chips) 
+Seat 6: Player0 (2790 in chips) is sitting out
+Seat 7: Player4 (2890 in chips) 
+Player0: posts small blind 100
+Player4: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [3d Tc 9d 3h]
+Player5: folds 
+Player6: folds 
+Player0: folds 
+Uncalled bet (100) returned to Player4
+Player4 collected 200 from pot
+Player4: doesn't show hand 
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 (button) folded before the Draw (didn't bet)
+Seat 6: Player0 (small blind) folded before the Draw
+Seat 7: Player4 (big blind) collected (200)
+
+
+
+PokerStars Game #52591090875: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:37:23 CET [2010/11/12 15:37:23 ET]
+Table '330855877 1' 8-max Seat #6 is the button
+Seat 3: Player5 (3785 in chips) 
+Seat 4: Player6 (2535 in chips) 
+Seat 6: Player0 (2690 in chips) is sitting out
+Seat 7: Player4 (2990 in chips) 
+Player4: posts small blind 100
+Player5: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [3h As 3d 5c]
+Player0 has returned
+Player6: folds 
+Player0: calls 200
+Player4: folds 
+Player5: checks 
+*** FIRST DRAW ***
+Player5: discards 1 card [3h]
+Dealt to Player5 [As 3d 5c] [7d]
+Player0: discards 1 card
+Player5: checks 
+Player0: checks 
+*** SECOND DRAW ***
+Player5: discards 1 card [7d]
+Dealt to Player5 [As 3d 5c] [Ts]
+Player0: discards 1 card
+Player5: checks 
+Player0: bets 400
+Player5: folds 
+Uncalled bet (400) returned to Player0
+Player0 collected 500 from pot
+*** SUMMARY ***
+Total pot 500 | Rake 0 
+Seat 3: Player5 (big blind) folded after the 2nd Draw
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 6: Player0 (button) collected (500)
+Seat 7: Player4 (small blind) folded before the Draw
+
+
+
+PokerStars Game #52591129415: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:38:05 CET [2010/11/12 15:38:05 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 3: Player5 (3585 in chips) 
+Seat 4: Player6 (2535 in chips) 
+Seat 6: Player0 (2990 in chips) 
+Seat 7: Player4 (2890 in chips) 
+Player5: posts small blind 100
+Player6: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [Kc Kd 2c 4s]
+Player0: folds 
+Player4: folds 
+Player5: calls 100
+Player6: checks 
+*** FIRST DRAW ***
+Player5: discards 2 cards [Kc Kd]
+Dealt to Player5 [2c 4s] [2d 5h]
+Player6: discards 1 card
+Player5: bets 200
+Player6: calls 200
+*** SECOND DRAW ***
+Player5: discards 1 card [2d]
+Dealt to Player5 [2c 4s 5h] [3d]
+Player6: discards 1 card
+Player5: bets 400
+Player6: calls 400
+*** THIRD DRAW ***
+Player5: stands pat on [2c 4s 5h 3d]
+Player6: discards 1 card
+Player5: bets 400
+Player6: folds 
+Uncalled bet (400) returned to Player5
+Player5 collected 1600 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 1600 | Rake 0 
+Seat 3: Player5 (small blind) collected (1600)
+Seat 4: Player6 (big blind) folded after the 3rd Draw
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52591161869: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:38:41 CET [2010/11/12 15:38:41 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 3: Player5 (4385 in chips) 
+Seat 4: Player6 (1735 in chips) 
+Seat 6: Player0 (2990 in chips) 
+Seat 7: Player4 (2890 in chips) 
+Player6: posts small blind 100
+Player0: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [Tc 2c Qs 6h]
+Player4: calls 200
+Player5: folds 
+Player6: calls 100
+Player0: checks 
+*** FIRST DRAW ***
+Player6: discards 3 cards
+Player0: discards 1 card
+Player4: discards 1 card
+Player6: checks 
+Player0: checks 
+Player4: checks 
+*** SECOND DRAW ***
+Player6: discards 1 card
+Player0: discards 1 card
+Player4: discards 1 card
+Player6: checks 
+Player0: checks 
+Player4: bets 400
+Player6: calls 400
+Player0: folds 
+*** THIRD DRAW ***
+Player6: discards 1 card
+Player4: stands pat 
+Player6: checks 
+Player4: bets 400
+Player6: folds 
+Uncalled bet (400) returned to Player4
+Player4 collected 1400 from pot
+Player4: shows [4s 8d 6c 2h] (Badugi: 8,6,4,2)
+*** SUMMARY ***
+Total pot 1400 | Rake 0 
+Seat 3: Player5 (button) folded before the Draw (didn't bet)
+Seat 4: Player6 (small blind) folded after the 3rd Draw
+Seat 6: Player0 (big blind) folded after the 2nd Draw
+Seat 7: Player4 collected (1400)
+
+
+
+PokerStars Game #52591211333: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:39:35 CET [2010/11/12 15:39:35 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 3: Player5 (4385 in chips) 
+Seat 4: Player6 (1135 in chips) 
+Seat 6: Player0 (2790 in chips) 
+Seat 7: Player4 (3690 in chips) 
+Player0: posts small blind 100
+Player4: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [Ts 3d 9h 8c]
+Player5: folds 
+Player6: folds 
+Player0: calls 100
+Player4: checks 
+*** FIRST DRAW ***
+Player0: discards 2 cards
+Player4: discards 2 cards
+Player0: checks 
+Player4: checks 
+*** SECOND DRAW ***
+Player0: discards 2 cards
+Player4: discards 2 cards
+Player0: checks 
+Player4: checks 
+*** THIRD DRAW ***
+Player0: discards 1 card
+Player4: stands pat 
+Player0: checks 
+Player4: checks 
+*** SHOW DOWN ***
+Player0: shows [2c 4h 3s 7s] (3-card: 4,3,2)
+Player4: shows [5c 9s Jd 6h] (Badugi: J,9,6,5)
+Player4 collected 400 from pot
+*** SUMMARY ***
+Total pot 400 | Rake 0 
+Seat 3: Player5 folded before the Draw (didn't bet)
+Seat 4: Player6 (button) folded before the Draw (didn't bet)
+Seat 6: Player0 (small blind) showed [2c 4h 3s 7s] and lost with a 3-card: 4,3,2
+Seat 7: Player4 (big blind) showed [5c 9s Jd 6h] and won (400) with a Badugi: J,9,6,5
+
+
+
+PokerStars Game #52591247004: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:40:15 CET [2010/11/12 15:40:15 ET]
+Table '330855877 1' 8-max Seat #6 is the button
+Seat 3: Player5 (4385 in chips) 
+Seat 4: Player6 (1135 in chips) 
+Seat 6: Player0 (2590 in chips) 
+Seat 7: Player4 (3890 in chips) 
+Player4: posts small blind 100
+Player5: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [4h Kh Jc Td]
+Player6: raises 200 to 400
+Player0: folds 
+Player4: folds 
+Player5: folds 
+Uncalled bet (200) returned to Player6
+Player6 collected 500 from pot
+Player6: doesn't show hand 
+*** SUMMARY ***
+Total pot 500 | Rake 0 
+Seat 3: Player5 (big blind) folded before the Draw
+Seat 4: Player6 collected (500)
+Seat 6: Player0 (button) folded before the Draw (didn't bet)
+Seat 7: Player4 (small blind) folded before the Draw
+
+
+
+PokerStars Game #52591257745: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:40:27 CET [2010/11/12 15:40:27 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 3: Player5 (4185 in chips) 
+Seat 4: Player6 (1435 in chips) 
+Seat 6: Player0 (2590 in chips) 
+Seat 7: Player4 (3790 in chips) 
+Player5: posts small blind 100
+Player6: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [4h 2c 2s Th]
+Player0: folds 
+Player4: folds 
+Player5: raises 200 to 400
+Player6: folds 
+Uncalled bet (200) returned to Player5
+Player5 collected 400 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 400 | Rake 0 
+Seat 3: Player5 (small blind) collected (400)
+Seat 4: Player6 (big blind) folded before the Draw
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52591271673: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:40:42 CET [2010/11/12 15:40:42 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 3: Player5 (4385 in chips) 
+Seat 4: Player6 (1235 in chips) 
+Seat 6: Player0 (2590 in chips) 
+Seat 7: Player4 (3790 in chips) 
+Player6: posts small blind 100
+Player0: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [Kd 9c 4s 9h]
+Player4: folds 
+Player5: folds 
+Player6: raises 200 to 400
+Player0: folds 
+Uncalled bet (200) returned to Player6
+Player6 collected 400 from pot
+Player6: doesn't show hand 
+*** SUMMARY ***
+Total pot 400 | Rake 0 
+Seat 3: Player5 (button) folded before the Draw (didn't bet)
+Seat 4: Player6 (small blind) collected (400)
+Seat 6: Player0 (big blind) folded before the Draw
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52591282230: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:40:54 CET [2010/11/12 15:40:54 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 3: Player5 (4385 in chips) 
+Seat 4: Player6 (1435 in chips) 
+Seat 6: Player0 (2390 in chips) 
+Seat 7: Player4 (3790 in chips) 
+Player0: posts small blind 100
+Player4: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [4s 5d 8c 4h]
+Player5: raises 200 to 400
+Player6: raises 200 to 600
+Player0: folds 
+Player4: folds 
+Player5: calls 200
+*** FIRST DRAW ***
+Player5: discards 1 card [4h]
+Dealt to Player5 [4s 5d 8c] [Js]
+Player6: discards 1 card
+Player5: checks 
+Player6: bets 200
+Player5: calls 200
+*** SECOND DRAW ***
+Player5: discards 1 card [Js]
+Dealt to Player5 [4s 5d 8c] [9h]
+Player6: discards 1 card
+Player5: bets 400
+Player6: raises 235 to 635 and is all-in
+Player5: calls 235
+*** THIRD DRAW ***
+Player5: stands pat on [4s 5d 8c 9h]
+Player6: stands pat 
+*** SHOW DOWN ***
+Player5: shows [4s 5d 8c 9h] (Badugi: 9,8,5,4)
+Player6: shows [Ah 7c 3d 2s] (Badugi: 7,3,2,A)
+Player6 collected 3170 from pot
+Player5 said, "nh"
+*** SUMMARY ***
+Total pot 3170 | Rake 0 
+Seat 3: Player5 showed [4s 5d 8c 9h] and lost with a Badugi: 9,8,5,4
+Seat 4: Player6 (button) showed [Ah 7c 3d 2s] and won (3170) with a Badugi: 7,3,2,A
+Seat 6: Player0 (small blind) folded before the Draw
+Seat 7: Player4 (big blind) folded before the Draw
+
+
+
+PokerStars Game #52591316765: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:41:33 CET [2010/11/12 15:41:33 ET]
+Table '330855877 1' 8-max Seat #6 is the button
+Seat 3: Player5 (2950 in chips) 
+Seat 4: Player6 (3170 in chips) 
+Seat 6: Player0 (2290 in chips) 
+Seat 7: Player4 (3590 in chips) 
+Player4: posts small blind 100
+Player5: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [7s 9s Jh 2s]
+Player6 said, "ty"
+Player6: folds 
+Player0: folds 
+Player4: calls 100
+Player5: checks 
+*** FIRST DRAW ***
+Player4: discards 2 cards
+Player5: discards 3 cards [7s 9s Jh]
+Dealt to Player5 [2s] [7d 6c 2d]
+Player4: checks 
+Player5: checks 
+*** SECOND DRAW ***
+Player4: discards 1 card
+Player5: discards 1 card [2d]
+Dealt to Player5 [2s 7d 6c] [4d]
+Player4: checks 
+Player5: checks 
+*** THIRD DRAW ***
+Player4: stands pat 
+Player5: discards 1 card [7d]
+Dealt to Player5 [2s 6c 4d] [Ad]
+Player4: bets 400
+Player5: folds 
+Uncalled bet (400) returned to Player4
+Player4 collected 400 from pot
+Player4: doesn't show hand 
+*** SUMMARY ***
+Total pot 400 | Rake 0 
+Seat 3: Player5 (big blind) folded after the 3rd Draw
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 6: Player0 (button) folded before the Draw (didn't bet)
+Seat 7: Player4 (small blind) collected (400)
+
+
+
+PokerStars Game #52591354430: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:42:15 CET [2010/11/12 15:42:15 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 3: Player5 (2750 in chips) 
+Seat 4: Player6 (3170 in chips) 
+Seat 6: Player0 (2290 in chips) 
+Seat 7: Player4 (3790 in chips) 
+Player5: posts small blind 100
+Player6: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [Ks 3h Ts Kh]
+Player0: folds 
+Player4: folds 
+Player5: folds 
+Uncalled bet (100) returned to Player6
+Player6 collected 200 from pot
+Player6: doesn't show hand 
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Seat 3: Player5 (small blind) folded before the Draw
+Seat 4: Player6 (big blind) collected (200)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52591364613: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VI (200/400) - 2010/11/12 21:42:26 CET [2010/11/12 15:42:26 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 3: Player5 (2650 in chips) 
+Seat 4: Player6 (3270 in chips) 
+Seat 6: Player0 (2290 in chips) 
+Seat 7: Player4 (3790 in chips) 
+Player6: posts small blind 100
+Player0: posts big blind 200
+*** DEALING HANDS ***
+Dealt to Player5 [Tc 3h Kc Js]
+Player4: folds 
+Player5: folds 
+Player6: folds 
+Uncalled bet (100) returned to Player0
+Player0 collected 200 from pot
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Seat 3: Player5 (button) folded before the Draw (didn't bet)
+Seat 4: Player6 (small blind) folded before the Draw
+Seat 6: Player0 (big blind) collected (200)
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52591378220: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:42:42 CET [2010/11/12 15:42:42 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 3: Player5 (2650 in chips) 
+Seat 4: Player6 (3170 in chips) 
+Seat 6: Player0 (2390 in chips) 
+Seat 7: Player4 (3790 in chips) 
+Player0: posts small blind 150
+Player4: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [Qd 3h 9h Ad]
+Player5: calls 300
+Player6: folds 
+Player0: calls 150
+Player4: checks 
+*** FIRST DRAW ***
+Player0: discards 2 cards
+Player4: discards 1 card
+Player5: discards 2 cards [Qd 9h]
+Dealt to Player5 [3h Ad] [6s 9s]
+Player0: checks 
+Player4: checks 
+Player5: checks 
+*** SECOND DRAW ***
+Player0: discards 2 cards
+Player4: discards 1 card
+Player5: discards 1 card [9s]
+Dealt to Player5 [3h Ad 6s] [Jc]
+Player0: checks 
+Player4: checks 
+Player5: bets 600
+Player0: folds 
+Player4: calls 600
+*** THIRD DRAW ***
+Player4: stands pat 
+Player5: discards 1 card [Jc]
+Dealt to Player5 [3h Ad 6s] [Jd]
+Player4: checks 
+Player5: bets 600
+Player4: calls 600
+*** SHOW DOWN ***
+Player5: shows [6s 3h Jd Ad] (3-card: 6,3,A)
+Player4: shows [2d 4c Js 8h] (Badugi: J,8,4,2)
+Player4 collected 3300 from pot
+*** SUMMARY ***
+Total pot 3300 | Rake 0 
+Seat 3: Player5 showed [6s 3h Jd Ad] and lost with a 3-card: 6,3,A
+Seat 4: Player6 (button) folded before the Draw (didn't bet)
+Seat 6: Player0 (small blind) folded after the 2nd Draw
+Seat 7: Player4 (big blind) showed [2d 4c Js 8h] and won (3300) with a Badugi: J,8,4,2
+
+
+
+PokerStars Game #52591454516: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:44:07 CET [2010/11/12 15:44:07 ET]
+Table '330855877 1' 8-max Seat #6 is the button
+Seat 3: Player5 (1150 in chips) 
+Seat 4: Player6 (3170 in chips) 
+Seat 6: Player0 (2090 in chips) 
+Seat 7: Player4 (5590 in chips) 
+Player4: posts small blind 150
+Player5: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [7d Kd 5h Qc]
+Player6: folds 
+Player0: folds 
+Player4: folds 
+Uncalled bet (150) returned to Player5
+Player5 collected 300 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 3: Player5 (big blind) collected (300)
+Seat 4: Player6 folded before the Draw (didn't bet)
+Seat 6: Player0 (button) folded before the Draw (didn't bet)
+Seat 7: Player4 (small blind) folded before the Draw
+
+
+
+PokerStars Game #52591463432: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:44:17 CET [2010/11/12 15:44:17 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 3: Player5 (1300 in chips) 
+Seat 4: Player6 (3170 in chips) 
+Seat 6: Player0 (2090 in chips) 
+Seat 7: Player4 (5440 in chips) 
+Player5: posts small blind 150
+Player6: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [Js 2h 9d Ts]
+Player0: folds 
+Player5 said, "damn i had you beat after the 2nd draw lol"
+Player4: folds 
+Player5: folds 
+Uncalled bet (150) returned to Player6
+Player6 collected 300 from pot
+Player6: doesn't show hand 
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 3: Player5 (small blind) folded before the Draw
+Seat 4: Player6 (big blind) collected (300)
+Seat 6: Player0 folded before the Draw (didn't bet)
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52591477382: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:44:32 CET [2010/11/12 15:44:32 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 3: Player5 (1150 in chips) 
+Seat 4: Player6 (3320 in chips) 
+Seat 6: Player0 (2090 in chips) 
+Seat 7: Player4 (5440 in chips) 
+Player6: posts small blind 150
+Player0: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [9s 2d Ts 7d]
+Player4: folds 
+Player5: folds 
+Player6: calls 150
+Player0: checks 
+*** FIRST DRAW ***
+Player6: discards 2 cards
+Player0: discards 1 card
+Player6: checks 
+Player0: checks 
+*** SECOND DRAW ***
+Player6: discards 2 cards
+Player0: discards 1 card
+Player6: checks 
+Player0: bets 600
+Player6: raises 600 to 1200
+Player0: raises 590 to 1790 and is all-in
+Player6: calls 590
+*** THIRD DRAW ***
+Player6: stands pat 
+Player0: stands pat 
+*** SHOW DOWN ***
+Player6: shows [2s 4c 8h 6d] (Badugi: 8,6,4,2)
+Player0: shows [6h Ad 8s 5c] (Badugi: 8,6,5,A)
+Player6 collected 4180 from pot
+Player0 finished the tournament in 4th place
+*** SUMMARY ***
+Total pot 4180 | Rake 0 
+Seat 3: Player5 (button) folded before the Draw (didn't bet)
+Seat 4: Player6 (small blind) showed [2s 4c 8h 6d] and won (4180) with a Badugi: 8,6,4,2
+Seat 6: Player0 (big blind) showed [6h Ad 8s 5c] and lost with a Badugi: 8,6,5,A
+Seat 7: Player4 folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52591524439: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:45:25 CET [2010/11/12 15:45:25 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 3: Player5 (1150 in chips) 
+Seat 4: Player6 (5410 in chips) 
+Seat 7: Player4 (5440 in chips) 
+Player4: posts small blind 150
+Player5: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [8h Ah 4s 9d]
+Player6: folds 
+Player4: folds 
+Uncalled bet (150) returned to Player5
+Player5 collected 300 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 3: Player5 (big blind) collected (300)
+Seat 4: Player6 (button) folded before the Draw (didn't bet)
+Seat 7: Player4 (small blind) folded before the Draw
+
+
+
+PokerStars Game #52591532410: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:45:33 CET [2010/11/12 15:45:33 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 3: Player5 (1300 in chips) 
+Seat 4: Player6 (5410 in chips) 
+Seat 7: Player4 (5290 in chips) 
+Player5: posts small blind 150
+Player6: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [Td 7s 8d 9c]
+Player4: folds 
+Player5: calls 150
+Player6: checks 
+*** FIRST DRAW ***
+Player5: discards 1 card [Td]
+Dealt to Player5 [7s 8d 9c] [7d]
+Player6: discards 2 cards
+Player5: checks 
+Player6: checks 
+*** SECOND DRAW ***
+Player5: discards 1 card [7d]
+Dealt to Player5 [7s 8d 9c] [3c]
+Player6: discards 1 card
+Player5: checks 
+Player6: checks 
+*** THIRD DRAW ***
+Player5: discards 1 card [9c]
+Dealt to Player5 [7s 8d 3c] [9d]
+Player6: discards 1 card
+Player5: checks 
+Player6: checks 
+*** SHOW DOWN ***
+Player5: shows [3c 7s 8d 9d] (3-card: 8,7,3)
+Player6: shows [Ah 6h 7c 5d] (3-card: 7,5,A)
+Player6 collected 600 from pot
+*** SUMMARY ***
+Total pot 600 | Rake 0 
+Seat 3: Player5 (small blind) showed [3c 7s 8d 9d] and lost with a 3-card: 8,7,3
+Seat 4: Player6 (big blind) showed [Ah 6h 7c 5d] and won (600) with a 3-card: 7,5,A
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52591566407: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:46:11 CET [2010/11/12 15:46:11 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 3: Player5 (1000 in chips) 
+Seat 4: Player6 (5710 in chips) 
+Seat 7: Player4 (5290 in chips) 
+Player6: posts small blind 150
+Player4: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [7c Th 5c 8c]
+Player5: folds 
+Player6: folds 
+Uncalled bet (150) returned to Player4
+Player4 collected 300 from pot
+Player4: doesn't show hand 
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 3: Player5 (button) folded before the Draw (didn't bet)
+Seat 4: Player6 (small blind) folded before the Draw
+Seat 7: Player4 (big blind) collected (300)
+
+
+
+PokerStars Game #52591577102: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:46:23 CET [2010/11/12 15:46:23 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 3: Player5 (1000 in chips) 
+Seat 4: Player6 (5560 in chips) 
+Seat 7: Player4 (5440 in chips) 
+Player4: posts small blind 150
+Player5: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [8h 5c 3h 3s]
+Player6: folds 
+Player4: folds 
+Uncalled bet (150) returned to Player5
+Player5 collected 300 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 3: Player5 (big blind) collected (300)
+Seat 4: Player6 (button) folded before the Draw (didn't bet)
+Seat 7: Player4 (small blind) folded before the Draw
+
+
+
+PokerStars Game #52591584097: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:46:31 CET [2010/11/12 15:46:31 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 3: Player5 (1150 in chips) 
+Seat 4: Player6 (5560 in chips) 
+Seat 7: Player4 (5290 in chips) 
+Player5: posts small blind 150
+Player6: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [As 2s 9c 3s]
+Player4: folds 
+Player5: calls 150
+Player6: checks 
+*** FIRST DRAW ***
+Player5: discards 2 cards [2s 3s]
+Dealt to Player5 [As 9c] [3d 3h]
+Player6: discards 1 card
+Player5: checks 
+Player6: checks 
+*** SECOND DRAW ***
+Player5: discards 1 card [3h]
+Dealt to Player5 [As 9c 3d] [6h]
+Player6: discards 1 card
+Player5: bets 600
+Player6: raises 600 to 1200
+Player5: calls 250 and is all-in
+Uncalled bet (350) returned to Player6
+*** THIRD DRAW ***
+Player5: stands pat on [As 9c 3d 6h]
+Player6: stands pat 
+*** SHOW DOWN ***
+Player5: shows [As 3d 9c 6h] (Badugi: 9,6,3,A)
+Player6: shows [Qs 4d 5h 7c] (Badugi: Q,7,5,4)
+Player5 collected 2300 from pot
+*** SUMMARY ***
+Total pot 2300 | Rake 0 
+Seat 3: Player5 (small blind) showed [As 3d 9c 6h] and won (2300) with a Badugi: 9,6,3,A
+Seat 4: Player6 (big blind) showed [Qs 4d 5h 7c] and lost with a Badugi: Q,7,5,4
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52591619991: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:47:10 CET [2010/11/12 15:47:10 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 3: Player5 (2300 in chips) 
+Seat 4: Player6 (4410 in chips) 
+Seat 7: Player4 (5290 in chips) 
+Player6: posts small blind 150
+Player4: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [6h 8h 5d 9c]
+Player5: folds 
+Player6: calls 150
+Player4: checks 
+*** FIRST DRAW ***
+Player6: discards 2 cards
+Player4: discards 2 cards
+Player6: checks 
+Player4: checks 
+*** SECOND DRAW ***
+Player6: discards 2 cards
+Player4: discards 2 cards
+Player6: checks 
+Player4: checks 
+*** THIRD DRAW ***
+Player6: discards 1 card
+Player4: discards 1 card
+Player6: checks 
+Player4: checks 
+*** SHOW DOWN ***
+Player6: shows [5s 3h 6d 3c] (3-card: 6,5,3)
+Player4: mucks hand 
+Player6 collected 600 from pot
+*** SUMMARY ***
+Total pot 600 | Rake 0 
+Seat 3: Player5 (button) folded before the Draw (didn't bet)
+Seat 4: Player6 (small blind) showed [5s 3h 6d 3c] and won (600) with a 3-card: 6,5,3
+Seat 7: Player4 (big blind) mucked [6s 3d Jc 2s]
+
+
+
+PokerStars Game #52591653969: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:47:47 CET [2010/11/12 15:47:47 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 3: Player5 (2300 in chips) 
+Seat 4: Player6 (4710 in chips) 
+Seat 7: Player4 (4990 in chips) 
+Player4: posts small blind 150
+Player5: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [3d 9c Js Ad]
+Player6: folds 
+Player4: folds 
+Uncalled bet (150) returned to Player5
+Player5 collected 300 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 3: Player5 (big blind) collected (300)
+Seat 4: Player6 (button) folded before the Draw (didn't bet)
+Seat 7: Player4 (small blind) folded before the Draw
+
+
+
+PokerStars Game #52591661332: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:47:56 CET [2010/11/12 15:47:56 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 3: Player5 (2450 in chips) 
+Seat 4: Player6 (4710 in chips) 
+Seat 7: Player4 (4840 in chips) 
+Player5: posts small blind 150
+Player6: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [Qs 9s 7c 3s]
+Player4: folds 
+Player5: raises 300 to 600
+Player6: folds 
+Uncalled bet (300) returned to Player5
+Player5 collected 600 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 600 | Rake 0 
+Seat 3: Player5 (small blind) collected (600)
+Seat 4: Player6 (big blind) folded before the Draw
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52591673779: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:48:09 CET [2010/11/12 15:48:09 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 3: Player5 (2750 in chips) 
+Seat 4: Player6 (4410 in chips) 
+Seat 7: Player4 (4840 in chips) 
+Player6: posts small blind 150
+Player4: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [3h 3s Qc Jd]
+Player5: folds 
+Player6: calls 150
+Player4: checks 
+*** FIRST DRAW ***
+Player6: discards 2 cards
+Player4: discards 2 cards
+Player6: checks 
+Player4: checks 
+*** SECOND DRAW ***
+Player6: discards 2 cards
+Player4: discards 1 card
+Player6: bets 600
+Player4: calls 600
+*** THIRD DRAW ***
+Player6: discards 1 card
+Player4: discards 1 card
+Player6: checks 
+Player4: checks 
+*** SHOW DOWN ***
+Player6: shows [7d 4c Ah 7s] (3-card: 7,4,A)
+Player4: mucks hand 
+Player6 collected 1800 from pot
+*** SUMMARY ***
+Total pot 1800 | Rake 0 
+Seat 3: Player5 (button) folded before the Draw (didn't bet)
+Seat 4: Player6 (small blind) showed [7d 4c Ah 7s] and won (1800) with a 3-card: 7,4,A
+Seat 7: Player4 (big blind) mucked [5h 8d 8c Ad]
+
+
+
+PokerStars Game #52591700168: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:48:38 CET [2010/11/12 15:48:38 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 3: Player5 (2750 in chips) 
+Seat 4: Player6 (5310 in chips) 
+Seat 7: Player4 (3940 in chips) 
+Player4: posts small blind 150
+Player5: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [4h Tc Qh Ah]
+Player6: folds 
+Player4: folds 
+Uncalled bet (150) returned to Player5
+Player5 collected 300 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 3: Player5 (big blind) collected (300)
+Seat 4: Player6 (button) folded before the Draw (didn't bet)
+Seat 7: Player4 (small blind) folded before the Draw
+
+
+
+PokerStars Game #52591706497: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:48:45 CET [2010/11/12 15:48:45 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 3: Player5 (2900 in chips) 
+Seat 4: Player6 (5310 in chips) 
+Seat 7: Player4 (3790 in chips) 
+Player5: posts small blind 150
+Player6: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [Jh 4h Ts Qs]
+Player4: folds 
+Player5: folds 
+Uncalled bet (150) returned to Player6
+Player6 collected 300 from pot
+Player6: doesn't show hand 
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 3: Player5 (small blind) folded before the Draw
+Seat 4: Player6 (big blind) collected (300)
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52591717589: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:48:58 CET [2010/11/12 15:48:58 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 3: Player5 (2750 in chips) 
+Seat 4: Player6 (5460 in chips) 
+Seat 7: Player4 (3790 in chips) 
+Player6: posts small blind 150
+Player4: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [8d 4h Jc 3s]
+Player5: raises 300 to 600
+Player6: folds 
+Player4: calls 300
+*** FIRST DRAW ***
+Player4: discards 2 cards
+Player5: discards 1 card [Jc]
+Dealt to Player5 [8d 4h 3s] [5h]
+Player4: checks 
+Player5: bets 300
+Player4: calls 300
+*** SECOND DRAW ***
+Player4: discards 1 card
+Player5: discards 1 card [5h]
+Dealt to Player5 [8d 4h 3s] [Kc]
+Player4: checks 
+Player5: bets 600
+Player4: calls 600
+*** THIRD DRAW ***
+Player4: discards 1 card
+Player5: discards 1 card [Kc]
+Dealt to Player5 [8d 4h 3s] [9d]
+Player4: checks 
+Player5: checks 
+*** SHOW DOWN ***
+Player4: shows [4d 2h 6d 7s] (3-card: 7,4,2)
+Player5: mucks hand 
+Player4 collected 3150 from pot
+*** SUMMARY ***
+Total pot 3150 | Rake 0 
+Seat 3: Player5 (button) mucked [8d 4h 9d 3s]
+Seat 4: Player6 (small blind) folded before the Draw
+Seat 7: Player4 (big blind) showed [4d 2h 6d 7s] and won (3150) with a 3-card: 7,4,2
+
+
+
+PokerStars Game #52591758704: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:49:44 CET [2010/11/12 15:49:44 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 3: Player5 (1250 in chips) 
+Seat 4: Player6 (5310 in chips) 
+Seat 7: Player4 (5440 in chips) 
+Player4: posts small blind 150
+Player5: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [Ac 4d Js 8h]
+Player6: calls 300
+Player4: calls 150
+Player5: checks 
+*** FIRST DRAW ***
+Player4: discards 1 card
+Player5: discards 1 card [Js]
+Dealt to Player5 [Ac 4d 8h] [7d]
+Player6: discards 1 card
+Player4: checks 
+Player5: checks 
+Player6: checks 
+*** SECOND DRAW ***
+Player4: discards 1 card
+Player5: discards 1 card [7d]
+Dealt to Player5 [Ac 4d 8h] [Ts]
+Player6: discards 1 card
+Player4: checks 
+Player5: bets 600
+Player6: calls 600
+Player4: calls 600
+*** THIRD DRAW ***
+Player4: discards 1 card
+Player5: stands pat on [Ac 4d 8h Ts]
+Player6: discards 1 card
+Player4: folds 
+Player5: bets 350 and is all-in
+Player6: folds 
+Uncalled bet (350) returned to Player5
+Player5 collected 2700 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 2700 | Rake 0 
+Seat 3: Player5 (big blind) collected (2700)
+Seat 4: Player6 (button) folded after the 3rd Draw
+Seat 7: Player4 (small blind) folded after the 3rd Draw
+
+
+
+PokerStars Game #52591810120: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:50:41 CET [2010/11/12 15:50:41 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 3: Player5 (3050 in chips) 
+Seat 4: Player6 (4410 in chips) 
+Seat 7: Player4 (4540 in chips) 
+Player5: posts small blind 150
+Player6: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [Qc Qh 3d 9h]
+Player4: folds 
+Player5: folds 
+Uncalled bet (150) returned to Player6
+Player6 collected 300 from pot
+Player6: doesn't show hand 
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 3: Player5 (small blind) folded before the Draw
+Seat 4: Player6 (big blind) collected (300)
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52591820423: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:50:53 CET [2010/11/12 15:50:53 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 3: Player5 (2900 in chips) 
+Seat 4: Player6 (4560 in chips) 
+Seat 7: Player4 (4540 in chips) 
+Player6: posts small blind 150
+Player4: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [6h Jd 2d 7h]
+Player5: folds 
+Player6: calls 150
+Player4: checks 
+*** FIRST DRAW ***
+Player6: discards 2 cards
+Player4: discards 1 card
+Player6: checks 
+Player4: checks 
+*** SECOND DRAW ***
+Player6: discards 1 card
+Player4: discards 1 card
+Player6: checks 
+Player4: checks 
+*** THIRD DRAW ***
+Player6: discards 1 card
+Player4: discards 1 card
+Player6: checks 
+Player4: checks 
+*** SHOW DOWN ***
+Player6: shows [3c 4c 8d Ah] (3-card: 8,3,A)
+Player4: shows [5s 4d 9s Ac] (3-card: 5,4,A)
+Player4 collected 600 from pot
+*** SUMMARY ***
+Total pot 600 | Rake 0 
+Seat 3: Player5 (button) folded before the Draw (didn't bet)
+Seat 4: Player6 (small blind) showed [3c 4c 8d Ah] and lost with a 3-card: 8,3,A
+Seat 7: Player4 (big blind) showed [5s 4d 9s Ac] and won (600) with a 3-card: 5,4,A
+
+
+
+PokerStars Game #52591842763: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:51:18 CET [2010/11/12 15:51:18 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 3: Player5 (2900 in chips) 
+Seat 4: Player6 (4260 in chips) 
+Seat 7: Player4 (4840 in chips) 
+Player4: posts small blind 150
+Player5: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [8d 5d Ac 7h]
+Player6: folds 
+Player4: folds 
+Uncalled bet (150) returned to Player5
+Player5 collected 300 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 3: Player5 (big blind) collected (300)
+Seat 4: Player6 (button) folded before the Draw (didn't bet)
+Seat 7: Player4 (small blind) folded before the Draw
+
+
+
+PokerStars Game #52591850446: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:51:26 CET [2010/11/12 15:51:26 ET]
+Table '330855877 1' 8-max Seat #7 is the button
+Seat 3: Player5 (3050 in chips) 
+Seat 4: Player6 (4260 in chips) 
+Seat 7: Player4 (4690 in chips) 
+Player5: posts small blind 150
+Player6: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [As Jc 5d 7s]
+Player4: folds 
+Player5: raises 300 to 600
+Player6: calls 300
+*** FIRST DRAW ***
+Player5: discards 2 cards [Jc 7s]
+Dealt to Player5 [As 5d] [4d 2d]
+Player6: discards 1 card
+Player5: bets 300
+Player6: raises 300 to 600
+Player5: calls 300
+*** SECOND DRAW ***
+Player5: discards 2 cards [4d 5d]
+Dealt to Player5 [As 2d] [Ad 7c]
+Player6: stands pat 
+Player5: checks 
+Player6: bets 600
+Player5: calls 600
+*** THIRD DRAW ***
+Player5: discards 1 card [Ad]
+Dealt to Player5 [As 2d 7c] [Ah]
+Player6: stands pat 
+Player5: checks 
+Player6: bets 600
+Player5: folds 
+Uncalled bet (600) returned to Player6
+Player6 collected 3600 from pot
+Player6: doesn't show hand 
+*** SUMMARY ***
+Total pot 3600 | Rake 0 
+Seat 3: Player5 (small blind) folded after the 3rd Draw
+Seat 4: Player6 (big blind) collected (3600)
+Seat 7: Player4 (button) folded before the Draw (didn't bet)
+
+
+
+PokerStars Game #52591899650: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:52:21 CET [2010/11/12 15:52:21 ET]
+Table '330855877 1' 8-max Seat #3 is the button
+Seat 3: Player5 (1250 in chips) 
+Seat 4: Player6 (6060 in chips) 
+Seat 7: Player4 (4690 in chips) 
+Player6: posts small blind 150
+Player4: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [3s As Th Qh]
+Player5: folds 
+Player6: folds 
+Uncalled bet (150) returned to Player4
+Player4 collected 300 from pot
+Player4: doesn't show hand 
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 3: Player5 (button) folded before the Draw (didn't bet)
+Seat 4: Player6 (small blind) folded before the Draw
+Seat 7: Player4 (big blind) collected (300)
+
+
+
+PokerStars Game #52591910608: Tournament #330855877, $1.00+$0.20 USD Badugi Limit - Level VII (300/600) - 2010/11/12 21:52:34 CET [2010/11/12 15:52:34 ET]
+Table '330855877 1' 8-max Seat #4 is the button
+Seat 3: Player5 (1250 in chips) 
+Seat 4: Player6 (5910 in chips) 
+Seat 7: Player4 (4840 in chips) 
+Player4: posts small blind 150
+Player5: posts big blind 300
+*** DEALING HANDS ***
+Dealt to Player5 [8c 4h 5d Js]
+Player6: calls 300
+Player4: folds 
+Player5: raises 300 to 600
+Player6: raises 300 to 900
+Player5: raises 300 to 1200
+Betting is capped
+Player6: calls 300
+*** FIRST DRAW ***
+Player5: discards 1 card [Js]
+Dealt to Player5 [8c 4h 5d] [3d]
+Player6: discards 1 card
+Player5: bets 50 and is all-in
+Player6: calls 50
+*** SECOND DRAW ***
+Player5: discards 1 card [5d]
+Dealt to Player5 [8c 4h 3d] [6c]
+Player6: discards 1 card
+*** THIRD DRAW ***
+Player5: stands pat on [8c 4h 3d 6c]
+Player6: discards 1 card
+*** SHOW DOWN ***
+Player5: shows [8c 4h 6c 3d] (3-card: 6,4,3)
+Player6: shows [Td 6h 4s Ac] (Badugi: T,6,4,A)
+Player6 collected 2650 from pot
+Player5 finished the tournament in 3rd place and received $1.60.
+*** SUMMARY ***
+Total pot 2650 | Rake 0 
+Seat 3: Player5 (big blind) showed [8c 4h 6c 3d] and lost with a 3-card: 6,4,3
+Seat 4: Player6 (button) showed [Td 6h 4s Ac] and won (2650) with a Badugi: T,6,4,A
+Seat 7: Player4 (small blind) folded before the Draw
+
+
+
+
