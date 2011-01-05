@@ -326,16 +326,55 @@ class DerivedStats():
         # and right now i don't care - CG
         p_in = set([x[0] for x in hand.actions[hand.actionStreets[1]]])
 
+        #
+        # discover who folded on each street and remove them from p_in
+        #
+        # i values as follows 0=BLINDSANTES 1=PREFLOP 2=FLOP 3=TURN 4=RIVER
+        #   (for flop games)
+        #
+        # At the beginning of the loop p_in contains the players with cards
+        # at the start of that street.
+        # p_in is reduced each street to become a list of players still-in
+        # e.g. when i=1 (preflop) all players who folded during preflop
+        # are found by pfba() and eliminated from p_in.
+        # Therefore at the end of the loop, p_in contains players remaining
+        # at the end of the action on that street, and can therefore be set
+        # as the value for the number of players who saw the next street
+        #
+        # note that i is 1 in advance of the actual street numbers in the db
+        #
+        # if p_in reduces to 1 player, we must bomb-out immediately
+        # because the hand is over, this will ensure playersAtStreetx
+        # is accurate.
+        #
+                    
         for (i, street) in enumerate(hand.actionStreets):
+            if (i-1) in (1,2,3,4):
+                # p_in stores players with cards at start of this street,
+                # so can set streetxSeen & playersAtStreetx with this information
+                # This hard-coded for i-1 =1,2,3,4 because those are the only columns
+                # in the db! this code section also replaces seen() - more info log 66
+                # nb i=2=flop=street1Seen, hence i-1 term needed
+                self.hands['playersAtStreet%d' % (i-1)] = len(p_in)
+                for player_with_cards in p_in:
+                    self.handsplayers[player_with_cards]['street%sSeen' % (i-1)] = True
+            #
+            # find out who folded, and eliminate them from p_in
+            #
             actions = hand.actions[street]
             p_in = p_in - self.pfba(actions, l=('folds',))
-            self.hands['playersAtStreet%d' % (i-1)] = len(p_in)
-        
-        self.hands['playersAtShowdown'] = len(p_in)
+            #
+            # if everyone folded, we are done, so exit this method immediately
+            #
+            if len(p_in) == 1: return None
 
-        if self.hands['playersAtShowdown'] > 1:
-            for player in p_in:
-                self.handsplayers[player]['sawShowdown'] = True
+        #
+        # The remaining players in p_in reached showdown (including all-ins
+        # because they never did a "fold" action in pfba() above)
+        #
+        self.hands['playersAtShowdown'] = len(p_in)
+        for showdown_player in p_in:
+            self.handsplayers[showdown_player]['sawShowdown'] = True
 
     def streetXRaises(self, hand):
         # self.actions[street] is a list of all actions in a tuple, contining the action as the second element
@@ -446,17 +485,6 @@ class DerivedStats():
                 elif initial_raiser is not None and pname in checkers:
                     self.handsplayers[pname]['street%dCheckCallRaiseChance' % (i+1)] = True
                     self.handsplayers[pname]['street%dCheckCallRaiseDone' % (i+1)] = act!='folds'
-
-    def seen(self, hand, i):
-        pas = set()
-        for act in hand.actions[hand.actionStreets[i+1]]:
-            pas.add(act[0])
-
-        for player in hand.players:
-            if player[1] in pas:
-                self.handsplayers[player[1]]['street%sSeen' % i] = True
-            else:
-                self.handsplayers[player[1]]['street%sSeen' % i] = False
 
     def aggr(self, hand, i):
         aggrers = set()
