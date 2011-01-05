@@ -57,7 +57,7 @@ class FullTiltPokerSummary(TourneySummary):
 
     re_TourneyInfo = re.compile(u"""
                         \s.*
-                        (?P<TYPE>Tournament|Sit\s\&\sGo|\(Rebuy\))\s\((?P<TOURNO>[0-9]+)\)(\s+)?
+                        (?P<TYPE>Tournament|Sit\s\&\sGo|\(Rebuy\)|)\s\((?P<TOURNO>[0-9]+)\)(\s+)?
                         (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s+
                         (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+
                         (Buy-In:\s\$(?P<BUYIN>[.\d]+)(\s\+\s\$(?P<FEE>[.\d]+))?\s+)?
@@ -86,14 +86,14 @@ class FullTiltPokerSummary(TourneySummary):
     codepage = ["utf-16", "cp1252", "utf-8"]
 
     def parseSummary(self):
-        m = self.re_TourneyInfo.search(self.summaryText)
+        m = self.re_TourneyInfo.search(self.summaryText[:2000])
         if m == None:
             tmp = self.summaryText[0:200]
             log.error(_("parseSummary: Unable to recognise Tourney Info: '%s'") % tmp)
             log.error(_("parseSummary: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise Tourney Info: '%s'") % tmp)
 
-        print "DEBUG: m.groupdict(): %s" % m.groupdict()
+        #print "DEBUG: m.groupdict(): %s" % m.groupdict()
 
         mg = m.groupdict()
         if 'TOURNO'    in mg: self.tourNo = mg['TOURNO']
@@ -128,7 +128,7 @@ class FullTiltPokerSummary(TourneySummary):
         m = self.re_Player.finditer(self.summaryText)
         for a in m:
             mg = a.groupdict()
-            print "DEBUG: a.groupdict(): %s" % mg
+            #print "DEBUG: a.groupdict(): %s" % mg
             name = mg['NAME']
             rank = mg['RANK']
             winnings = 0
