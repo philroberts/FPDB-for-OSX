@@ -102,8 +102,15 @@ if not os.path.isfile((sys.argv[1]+".queue")):
     print "Nothing queued, quitting"
     quit()
 
-print "reading from: ", sys.argv[1]
-print "merging with: ", sys.argv[1]+".queue"
+print "***************************************************************"
+print "IMPORTANT: *** Before running this merge: ***"
+print "Closedown the FullTiltClient and wait for it to completely stop"
+print "If FullTiltClient was running, run the merge again once it"
+print "has stopped completely"
+print "***************************************************************"
+print
+print "read from: ", sys.argv[1]
+print "merge with: ", sys.argv[1]+".queue"
 
 #read queue and turn into a dict
 queuedict = {}
@@ -158,7 +165,13 @@ mergednotes.close()
 
 xmlnotefile.unlink
 
-print "new file has been written to: ", sys.argv[1]+".merged"
+print "Merged file has been written to: ", sys.argv[1]+".merged"
+print ""
 print "number in queue: ", statqueue
 print "existing players updated: ", statupdated
 print "new players added: ", statadded
+print "\n"
+print "Use a viewer to check the contents of the merge file."
+print "If you are happy, carry out the following steps:"
+print "1 Rename or delete the existing notes file (normally <heroname>.xml"
+print "2 Rename the .merged file to become the new notes file"

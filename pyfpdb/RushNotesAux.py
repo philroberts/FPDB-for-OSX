@@ -36,7 +36,7 @@ The existing notes file will be altered by this function
 ### http://www.faqs.org/docs/diveintopython/kgp_search.html
 
 #debugmode will write logfiles for the __init__ and update_data methods
-debugmode = True
+debugmode = False
 
 #    Standard Library modules
 import os
@@ -210,9 +210,14 @@ class RushNotes(Aux_Window):
             steal=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'steal')[3] + " ")
             ffreq1=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'ffreq1')[3] + " ")
             agg_freq=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'agg_freq')[3] + " ")
-            BBper100=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'BBper100')[3] + " ")
+            BBper100=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'BBper100')[3])
+            if BBper100[6] == "-": BBper100=BBper100[0:6] + "(" + BBper100[7:] + ")"
         
-            xmlqueuedict[playername] = "~fpdb~" + n + vpip + pfr + three_B + fbbsteal + "\n" + steal + cbet + ffreq1 + "\n" + agg_freq + BBper100 + "~ends~"
+            xmlqueuedict[playername] = ("~fpdb~" + "\n" + 
+                                        n + vpip + pfr + three_B + fbbsteal + "\n" + 
+                                        steal + cbet + ffreq1 + "\n" + 
+                                        agg_freq + BBper100 + "\n" + 
+                                        "~ends~")
 
         if (debugmode):
             now = datetime.now()
