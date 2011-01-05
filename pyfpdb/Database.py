@@ -2107,25 +2107,23 @@ class Database:
 
         for row in inserts:
             threshold = []
-            session_records = []
             threshold.append(row[-1]-THRESHOLD)
             threshold.append(row[-1]+THRESHOLD)
             cursor.execute(select_sessionscache, threshold)
-            for r in cursor:
-                if r: session_records.append(r[0])
+            session_records = cursor.fetchall()
             num = len(session_records)
             if (num == 1):
-                id = session_records[0] #grab the sessionId
+                id = session_records[0][0] #grab the sessionId
                 # Try to do the update first:
                 #print "DEBUG: found 1 record to update"
                 update_mid = row + row[-1:]
                 cursor.execute(select_sessionscache_mid, update_mid[-2:])
-                mid = cursor.fetchone()
-                if mid:
+                mid = len(cursor.fetchall())
+                if (mid == 0):
                     update_startend = row[-1:] + row + threshold
                     cursor.execute(select_sessionscache_start, update_startend[-3:])
-                    start = cursor.fetchone()
-                    if start:
+                    start = len(cursor.fetchall())
+                    if (start == 0):
                         #print "DEBUG:", start, " start record found. Update stats and start time"
                         cursor.execute(update_sessionscache_end, update_startend)                 
                     else:
@@ -2164,7 +2162,7 @@ class Database:
                 # Something bad happened
                 pass
         
-        return id  
+        return id 
 
     def isDuplicate(self, gametypeID, siteHandNo):
         dup = False
