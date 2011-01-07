@@ -2169,7 +2169,7 @@ class Database:
             dup = True
         return dup
 
-    def getGameTypeId(self, siteid, game):
+    def getGameTypeId(self, siteid, game, printdata = False):
         c = self.get_cursor()
         #FIXME: Fixed for NL at the moment
         c.execute(self.sql.query['getGametypeNL'], (siteid, game['type'], game['category'], game['limitType'], game['currency'],
@@ -2181,14 +2181,22 @@ class Database:
                 hilo = "s"
             elif game['category'] in ['razz','27_3draw','badugi', '27_1draw']:
                 hilo = "l"
+            #FIXME: recognise currency
+            #TODO: this wont work for non-standard structures
             tmp  = self.insertGameTypes( (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
                                     int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
-                                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200)) ) #TODO: this wont work for non-standard structures
-                                    #FIXME: recognise currency
+                                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200)), printdata = printdata)
         return tmp[0]
 
 
-    def insertGameTypes(self, row):
+    def insertGameTypes(self, row, printdata = False):
+        if printdata:
+            print _("######## Gametype ##########")
+            import pprint
+            pp = pprint.PrettyPrinter(indent=4)
+            pp.pprint(row)
+            print _("###### End Gametype ########")
+
         c = self.get_cursor()
         c.execute( self.sql.query['insertGameTypes'], row )
         return [self.get_last_insert_id(c)]

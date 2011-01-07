@@ -477,7 +477,7 @@ class Importer:
 
                 for hand in handlist:
                     if hand is not None:
-                        hand.prepInsert(self.database)
+                        hand.prepInsert(self.database, printtest = self.settings['testData'])
                         try:
                             hand.insert(self.database, printtest = self.settings['testData'])
                         except Exceptions.FpdbHandDuplicate:

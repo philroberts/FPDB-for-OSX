@@ -226,7 +226,7 @@ dealt   whether they were seen in a 'dealt to' line
 
         self.holecards[street][player] = [open, closed]
 
-    def prepInsert(self, db):
+    def prepInsert(self, db, printtest = False):
         #####
         # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
         # These functions are intended for prep insert eventually
@@ -235,7 +235,7 @@ dealt   whether they were seen in a 'dealt to' line
         self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
 
         #Gametypes
-        self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype)
+        self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype, printdata = printtest)
 
         if self.tourNo!=None:
             self.tourneyTypeId = db.createTourneyType(self)
