@@ -68,7 +68,6 @@ class GuiBulkImport():
 
                 #    get the import settings from the gui and save in the importer
                 self.importer.setHandCount(int(self.spin_hands.get_text()))
-                self.importer.setMinPrint(int(self.spin_hands.get_text()))
                 self.importer.setQuiet(self.chk_st_st.get_active())
                 self.importer.setFailOnError(self.chk_fail.get_active())
                 self.importer.setThreads(int(self.spin_threads.get_text()))
@@ -344,8 +343,6 @@ def main(argv=None):
                     help=_("Conversion filter (*Full Tilt Poker, PokerStars, Everleaf, Absolute)"))
     parser.add_option("-x", "--failOnError", action="store_true", default=False,
                     help=_("If this option is passed it quits when it encounters any error"))
-    parser.add_option("-m", "--minPrint", "--status", dest="minPrint", default="0", type="int",
-                    help=_("How often to print a one-line status report (0 (default) means never)"))
     parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False,
                     help=_("Print some useful one liners"))
     parser.add_option("-s", "--starsarchive", action="store_true", dest="starsArchive", default=False,
@@ -369,7 +366,6 @@ def main(argv=None):
     config = Configuration.Config()
 
     settings = {}
-    settings['minPrint'] = options.minPrint
     if os.name == 'nt': settings['os'] = 'windows'
     else:               settings['os'] = 'linuxmac'
 
