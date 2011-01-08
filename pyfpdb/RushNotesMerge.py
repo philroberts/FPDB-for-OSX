@@ -7,7 +7,7 @@
 Merge .queue file with hero's note to generate fresh .merge file
 
 normal usage 
-$> ./pyfpdb/RushNotesMerge.py "/home/steve/.wine/drive_c/Program Files/Full Tilt Poker/heroname.xml"
+$> ./pyfpdb/RushNotesMerge.py "/home/foo/.wine/drive_c/Program Files/Full Tilt Poker/heroname.xml"
 
 The generated file can then replace heroname.xml (if all is well).
 
@@ -37,7 +37,7 @@ import sys
 from xml.dom import minidom 
 
 #
-# overload minidom methods to fix bug where \n is parsed as " ".  
+# overload minidom methods to fix bug where \n is parsed as " ".
 # described here: http://bugs.python.org/issue7139
 #
 
@@ -92,14 +92,20 @@ try:
     sys.argv[1] <> ""
 except: 
     print "A parameter is required, quitting now"
+    print "normal usage is something like:"
+    print '$> ./pyfpdb/RushNotesMerge.py "/home/foo/.wine/drive_c/Program Files/Full Tilt Poker/myhero.xml"'
     quit()
 
 if not os.path.isfile(sys.argv[1]):
     print "Hero notes file not found, quitting"
+    print "normal usage is something like:"
+    print '$> ./pyfpdb/RushNotesMerge.py "/home/foo/.wine/drive_c/Program Files/Full Tilt Poker/myhero.xml"'
     quit()
 
 if not os.path.isfile((sys.argv[1]+".queue")):
-    print "Nothing queued, quitting"
+    print "Nothing found to merge, quitting"
+    print "Did the HUD not get started during the last session?"
+    print "Has the HUD been stopped and started without merging?"
     quit()
 
 print "***************************************************************"

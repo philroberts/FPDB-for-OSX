@@ -26,16 +26,14 @@ The existing notes file will be altered by this function
 
 ########################################################################
 
-##########for each hand processed, attempts to update hero.xml player notes for FullTilt
+##########for each hand processed, attempts to create update for player notes in FullTilt
 ##########based upon the AW howto notes written by Ray E. Barker (nutomatic) at fpdb.sourceforge.net
+##########Huge thanks to Ray for his guidance and encouragement to create this !!
 
-#to do
-### think about seeding
-### multiple huds firing at the same xml
-### same player / two levels / only one xml
-### http://www.faqs.org/docs/diveintopython/kgp_search.html
-
+#
 #debugmode will write logfiles for the __init__ and update_data methods
+# writes into ./pyfpdb/~Rushdebug.*
+#
 debugmode = False
 
 #    Standard Library modules
@@ -50,9 +48,10 @@ from Mucked import Aux_Window
 from Mucked import Seat_Window
 from Mucked import Aux_Seats
 import Stats
+import Card
 
 #
-# overload minidom methods to fix bug where \n is parsed as " ".  
+# overload minidom methods to fix bug where \n is parsed as " ".
 # described here: http://bugs.python.org/issue7139
 #
 
@@ -110,7 +109,8 @@ class RushNotes(Aux_Window):
         notepath = site_params_dict['site_path']  # this is a temporary hijack of site-path
         self.heroid = self.hud.db_connection.get_player_id(self.config, sitename, heroname)
         self.notefile = notepath + "/" + heroname + ".xml"
-        
+        self.rushtables = ("Mach 10", "Lightning", "Celerity", "Flash", "Zoom")
+
         if not os.path.isfile(self.notefile):
             self.active = False
             return
@@ -129,28 +129,27 @@ class RushNotes(Aux_Window):
         outputfile.close()
         xmlnotefile.unlink
 
+        #
         # Create a fresh queue file with skeleton XML
-        #        
+        #
         self.queuefile = self.notefile + ".queue"
-        queuedom = minidom.Document()  
-        # Create the minidom document
+        queuedom = minidom.Document()
 
-# Create the <wml> base element
         pld=queuedom.createElement("PLAYERDATA")
         queuedom.appendChild(pld)
 
         nts=queuedom.createElement("NOTES")
         pld.appendChild(nts)
-        
+
         nte = queuedom.createElement("NOTE")
         nte = queuedom.createTextNode("\n")
-        nts.insertBefore(nte,None)   
-             
+        nts.insertBefore(nte,None)
+
         outputfile = open(self.queuefile, 'w')
         queuedom.writexml(outputfile)
         outputfile.close()
         queuedom.unlink
-        
+
         if (debugmode):
             #initialise logfiles
             debugfile=open("~Rushdebug.init", "w")
@@ -159,19 +158,19 @@ class RushNotes(Aux_Window):
             debugfile.write("para="+str(params)+"\n")
             debugfile.write("hero="+heroname+" "+str(self.heroid)+"\n")
             debugfile.write("back="+notefilebackup+"\n")
-            debugfile.write("queu="+self.queuefile+"\n")            
+            debugfile.write("queu="+self.queuefile+"\n")
             debugfile.close()
-            
+
             open("~Rushdebug.data", "w").close()
-            
+
 
     def update_data(self, new_hand_id, db_connection):
         #this method called once for every hand processed
         # self.hud.stat_dict contains the stats information for this hand
-        
+
         if not self.active:
             return
-        
+
         if (debugmode):
             debugfile=open("~Rushdebug.data", "a")
             debugfile.write(new_hand_id+"\n")
@@ -179,10 +178,11 @@ class RushNotes(Aux_Window):
             debugfile.write(now.strftime("%Y%m%d%H%M%S")+ " update_data begins"+ "\n")
             debugfile.write("hero="+str(self.heroid)+"\n")
             #debugfile.write(str(self.hud.stat_dict)+"\n")
-            debugfile.write(self.hud.table.name+"\n")
-            debugfile.write(str(self.hud.stat_dict.keys())+"\n")     
+            debugfile.write("table="+self.hud.table.name+"\n")
+            debugfile.write("players="+str(self.hud.stat_dict.keys())+"\n")
+            debugfile.write("db="+str(db_connection)+"\n")
 
-        if self.hud.table.name not in ("Mach 10", "Lightning", "Celerity", "Flash", "Zoom"):
+        if self.hud.table.name not in self.rushtables:
             return
         #
         # Grab a list of player id's
@@ -212,18 +212,74 @@ class RushNotes(Aux_Window):
             agg_freq=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'agg_freq')[3] + " ")
             BBper100=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'BBper100')[3])
             if BBper100[6] == "-": BBper100=BBper100[0:6] + "(" + BBper100[7:] + ")"
-        
-            xmlqueuedict[playername] = ("~fpdb~" + "\n" + 
-                                        n + vpip + pfr + three_B + fbbsteal + "\n" + 
-                                        steal + cbet + ffreq1 + "\n" + 
-                                        agg_freq + BBper100 + "\n" + 
+
+
+            #
+            # grab villain known starting hands
+            # only those where they VPIP'd, so limp in the BB will not be shown
+            # sort by hand strength.  Output will show position too,
+            #  so KK.1 is KK from late posn etc.
+            # ignore non-rush hands (check against known rushtablenames)
+            #  cards decoding is hard-coded for holdem, so that's tuff atm
+            # three categories of known hands are shown:
+            #    agression preflop hands
+            #    non-aggression preflop hands
+            #    bigblind called to defend hands
+            #
+            # This isn't perfect, but it isn't too bad a starting point
+            #
+
+            PFcall="PFcall"
+            PFaggr="PFaggr"
+            PFdefend="PFdefend"
+
+            c = db_connection.get_cursor()
+            c.execute(("SELECT handId, position, startCards, street0Aggr, tableName " +
+                        "FROM hands, handsPlayers " +
+                        "WHERE handsplayers.handId = hands.id " +
+                        "AND street0VPI = 1 " +
+                        "AND startCards > 0 " +
+                        "AND playerId = %d " +
+                        "ORDER BY startCards DESC " +
+                        ";")
+                         % int(playerid))
+
+            for (qid, qposition, qstartcards, qstreet0Aggr, qtablename) in c.fetchall():
+                if (debugmode):
+                    debugfile.write("pid, hid, pos, cards, aggr, table player"+
+                                    str(playerid)+"/"+str(qid)+"/"+str(qposition)+"/"+
+                                    str(qstartcards)+"/"+str(qstreet0Aggr)+"/"+
+                                    str(qtablename)+"/"+str(playername)+
+                                    "\n")
+
+                humancards = Card.decodeStartHandValue("holdem", qstartcards)
+                
+                if qtablename not in self.rushtables:
+                    pass
+                elif qposition == "B" and qstreet0Aggr == False:
+                    PFdefend=PFdefend+"/"+humancards
+                elif qstreet0Aggr == True:
+                    PFaggr=PFaggr+"/"+humancards+"."+qposition
+                else:
+                    PFcall=PFcall+"/"+humancards+"."+qposition
+            c.close
+
+            #
+            # build up final text package (top/tail with ~fpdb~ ~ends~
+            # for later search/replace by Merge module
+            #
+            xmlqueuedict[playername] = ("~fpdb~" + "\n" +
+                                        n + vpip + pfr + three_B + fbbsteal + "\n" +
+                                        steal + cbet + ffreq1 + "\n" +
+                                        agg_freq + BBper100 + "\n" +
+                                        PFcall+"\n"+PFaggr+"\n"+PFdefend +"\n"
                                         "~ends~")
 
         if (debugmode):
             now = datetime.now()
             debugfile.write(now.strftime("%Y%m%d%H%M%S")+" villain data has been processed" + "\n")
             debugfile.write(str(xmlqueuedict)+"\n")
-        
+
         #
         # delaying processing of xml until now.  Grab current queuefile contents and
         # read each existing NOTE element in turn, if matched to a player in xmlqueuedict
@@ -244,26 +300,26 @@ class RushNotes(Aux_Window):
         if len(xmlqueuedict) > 0:
             playerdata=xmlnotefile.lastChild #move to the PLAYERDATA node (assume last one in the list)
             notesnode=playerdata.childNodes[0] #Find NOTES node 
-        
+
             for newplayer in xmlqueuedict:
                 newentry = xmlnotefile.createElement("NOTE")
                 newentry.setAttribute("PlayerId", newplayer)
-                newentry.setAttribute("Text", xmlqueuedict[newplayer])              
+                newentry.setAttribute("Text", xmlqueuedict[newplayer])
                 notesnode.insertBefore(newentry,None)
                 newentry = xmlnotefile.createTextNode("\n")
                 notesnode.insertBefore(newentry,None)
-                                
+
         if (debugmode):
             now = datetime.now()
             debugfile.write(now.strftime("%Y%m%d%H%M%S")+" xml pre-processing complete"+ "\n")
-            
+
         #
         # OverWrite existing xml file with updated DOM and cleanup
         #
         updatednotes = open(self.queuefile, 'w')
         xmlnotefile.writexml(updatednotes)
         updatednotes.close()
-        
+
         xmlnotefile.unlink
 
         if (debugmode):

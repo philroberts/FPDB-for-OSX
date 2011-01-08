@@ -12,24 +12,40 @@ RushNotesMerge - stand alone process to merge the existing ftp notes, together w
                 the output file can then be renamed to become the new ftp notes file
 
 Important info:
-The Merge process can only be run when ftp client is shutdown - otherwise ftp overwrites the xml on exit.
+The Merge process can only be run when ftp client is shutdown
+ - otherwise ftp overwrites the xml on exit.
 
-Restarting the autoimport will empty the notes"queue" so avoid restarting autoimport until the previous
-notes "queue" has been merged.
+Restarting the autoimport will empty the notes"queue" so avoid restarting
+ autoimport until the previous notes "queue" has been merged.  You will
+ lose all the queued notes, but these will be regenerated the next time
+ the villian is at your table, so it isn't the end of the world.
 
-Existing ftp notes _SHOULD_ be preserved, but this isn't guaranteed, you have been warned
-Existing colour codings should be preserved, this process should not change colourcodings.
+Existing ftp notes _SHOULD_ be preserved, but this isn't guaranteed, 
+ you have been warned!
+ 
+Existing colour codings should be preserved, 
+ this process does not change or set colourcodings.
 
-Copies of the live ftp notes file are preserved everytime RushNotesAux is started, just in case.
+Copies of the live ftp notes file should be preserved everytime
+  RushNotesAux (i.e. the HUD is started)
 
-The AW is hard-coded with just the table names of Micro Rush Poker, and should ignore all other hands.
+The AW is hard-coded with just the table names of Micro Rush Poker, 
+  and should ignore all other hands.
 
+What might not work?
+--------------------
+
+This isn't tested with Windows, and probably won't work, feedback welcome.
+Hasn't been tested for co-existance with other sites, feedback welcome.
+Whenever FTP change their notes file format, this will all break rather spectacularly,
+    you have been warned!
+    
 Getting started:
 ---------------
 
 1. Set the Hero aggregation to alltime.  hero_stat_range="A" 
- This overcomes a sqlite "bug" which has nothing to do with auxillary windows - not doing this 
- will slow processing down to about 1 hand per minute.
+ This overcomes a sqlite "bug" which has nothing to do with auxillary windows
+  not doing this will slow processing down to about 1 hand per minute.
 
 2. Set the site_path to be the folder containing the FTP notes xml file
 (on wine this is normally site_path="/home/blah/.wine/Program Files/Full Tilt Poker/")
@@ -43,12 +59,17 @@ Wire-up the aux process:
 
 or whatever works for you.
 
-Start Autoimport, and rearrange the on-screen stats out of the way
-    (killing the HUD kills the AW updates)
 
 Play some poker
+---------------
+
+Start Autoimport, and rearrange the on-screen stats out of the way
+    (the full HUD must run, killing the HUD kills the AW updates)
+
+Play whatever you want
 
 Stop the autoimport
+
 Exit the Full tilt poker client (ensure it has fully stopped with ps -A)
 
 execute the following:
@@ -59,14 +80,20 @@ A revised notes file (blah.merge) should automagically appear in the full tilt r
 If you are happy with it, replace the existing (myname.xml file)
 
 
+Since the updates aren't real time, it would be ok to play the rush
+    session with fpdb inactive, but before quitting any of the tables, 
+    start the HUD and wait for it to catch-up processing all the hands played.
+
+
 Summary
-------
+-------
 
 This is very rough and ready, but it does what I set-out to achieve.  
 
-All feedback welcome, and if this is useful as a basis for general notes processing, then thats great.
+All feedback welcome, and if this is useful as a basis for general notes
+ processing in future, then thats great.
 
-As I find bugs and make improvements, I will push to the git branch.
+As I find bugs and make improvements, I will push to git.
 
 
 Much more information below:
@@ -136,12 +163,13 @@ It is hoped that due to the relatively large hand volume and relatively small
 although there will obviously be a number of players with no fpdb note. 
 
 The aggregation parameters used for the notes are based upon the HUD parameters.
+ (with the exception of the hand-ranges, which uses its' own criteria (see source)
 
-Stopping and starting the HUD will erase the previously created notes holding file.
+Stopping and starting the HUD will erase the previously created notes queue file.
 
 The HUD must run, so the individual player popups need to be manually relocated.
 
-Although hard-coded for micro RUSH tablenames, the auxilliary window  will
+Although hard-coded for micro RUSH tablenames, the auxilliary window  could
 probably happily update notes of all cash and tournament players.
 
 Process overview
