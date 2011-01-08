@@ -7,8 +7,6 @@
     'importTime': None,
     'maxSeats': 6,
     'playersAtShowdown': 0,
-    'playersAtStreet-1': 6,
-    'playersAtStreet0': 1,
     'playersAtStreet1': 0,
     'playersAtStreet2': 0,
     'playersAtStreet3': 0,
