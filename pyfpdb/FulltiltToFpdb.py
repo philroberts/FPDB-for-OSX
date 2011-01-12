@@ -367,7 +367,11 @@ class Fulltilt(HandHistoryConverter):
             logging.warning(_("No bringin found, handid =%s") % hand.handid)
 
     def readButton(self, hand):
-        hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
+        try:
+            hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
+        except AttributeError, e:
+            # FTP has no indication that a hand is cancelled.
+            raise FpdbParseError(_("FTP: readButton: Failed to detect button (hand #%s cancelled?)") % hand.handid)
 
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
