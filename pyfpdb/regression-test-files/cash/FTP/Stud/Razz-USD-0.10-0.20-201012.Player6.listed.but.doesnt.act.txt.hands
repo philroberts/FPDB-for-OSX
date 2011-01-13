@@ -14,7 +14,7 @@
     'playersAtStreet3': 1,
     'playersAtStreet4': 1,
     'playersVpi': 2,
-    'seats': 8,
+    'seats': 7,
     'showdownPot': 0,
     'siteHandNo': u'26190500040',
     'startTime': datetime.datetime(2010, 12, 7, 9, 19, tzinfo=pytz.utc),
