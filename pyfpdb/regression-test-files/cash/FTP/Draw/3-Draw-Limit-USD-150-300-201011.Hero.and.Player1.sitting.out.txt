@@ -1,0 +1,27 @@
+FullTiltPoker Game #25314791161: Table Squaw Tea (6 max) - $150/$300 - Limit 2-7 Triple Draw - 8:19:00 ET - 2010/11/06
+
+Seat 1: Hero ($5,208), is sitting out
+Seat 2: Player1 ($6,795.50), is sitting out
+Seat 3: Player2 ($4,368)
+Seat 5: Player3 ($3,625)
+Seat 6: Player4 ($12,705)
+Player4 posts the small blind of $75
+Player2 posts the big blind of $150
+The button is in seat #5
+*** HOLE CARDS ***
+Player3 folds
+Player4 has 15 seconds left to act
+Player4 folds
+Uncalled bet of $75 returned to Player2
+Player2 mucks
+Player2 wins the pot ($150)
+*** SUMMARY ***
+Duration 24s
+Total pot $150 | Rake $0
+Seat 1: Hero is sitting out
+Seat 2: Player1 is sitting out
+Seat 3: Player2 (big blind) collected ($150)
+Seat 5: Player3 (button) didn't bet (folded)
+Seat 6: Player4 (small blind) folded before the draw
+
+

@@ -62,6 +62,43 @@ class FpdbError:
             idx = f.find('regression')
             print "(%3d) : %s" %(self.histogram[f], f[idx:])
 
+def compare_gametypes_file(filename, importer, errors):
+    hashfilename = filename + '.gt'
+
+    in_fh = codecs.open(hashfilename, 'r', 'utf8')
+    whole_file = in_fh.read()
+    in_fh.close()
+
+    testhash = eval(whole_file)
+
+    hhc = importer.getCachedHHC()
+    handlist = hhc.getProcessedHands()
+
+    lookup = {
+                0:'siteId',
+                1:'currency',
+                2:'type',
+                3:'base',
+                4:'game',
+                5:'limit',
+                6:'hilo',
+                7:'Small Blind',
+                8:'Big Blind',
+                9:'Small Bet',
+                10:'Big Bet',
+            }
+
+    for hand in handlist:
+        ghash = hand.gametyperow
+        for i in range(len(ghash)):
+            print "DEBUG: about to compare: '%s' and '%s'" %(ghash[i], testhash[i])
+            if ghash[i] == testhash[i]:
+                # The stats match - continue
+                pass
+            else:
+                errors.error_report(filename, hand, lookup[i], ghash, testhash, None)
+    pass
+
 def compare_handsplayers_file(filename, importer, errors):
     hashfilename = filename + '.hp'
 
@@ -142,6 +179,8 @@ def compare(leaf, importer, errors, site):
                 compare_handsplayers_file(filename, importer, errors)
             if os.path.isfile(filename + '.hands'):
                 compare_hands_file(filename, importer, errors)
+            if os.path.isfile(filename + '.gt'):
+                compare_gametypes_file(filename, importer, errors)
 
         importer.clearFileList()
 

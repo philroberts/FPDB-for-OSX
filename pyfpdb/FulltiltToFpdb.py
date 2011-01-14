@@ -76,8 +76,8 @@ class Fulltilt(HandHistoryConverter):
                                          (\s\((?P<TURBO>Turbo)\))?)|(?P<UNREADABLE_INFO>.+))
                                     ''' % substitutions, re.VERBOSE)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
-    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s](?P<CASH>[,.0-9]+)\)$' % substitutions, re.MULTILINE)
-    re_TourneysPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s]?(?P<CASH>[,.0-9]+)\)(, is sitting out)?$' % substitutions, re.MULTILINE)
+    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s]?(?P<CASH>[%(NUM)s]+)\)(?P<SITOUT>, is sitting out)?$' % substitutions, re.MULTILINE)
+    re_SummarySitout = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) is sitting out?$' % substitutions, re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
     #static regex for tourney purpose
@@ -150,7 +150,7 @@ class Fulltilt(HandHistoryConverter):
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
             self.re_Action           = re.compile(r"^%(PLAYERS)s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds)( [%(LS)s]?(?P<BET>[%(NUM)s]+))?" % self.substitutions, re.MULTILINE)
             self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
-            self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %(PLAYERS)s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \([%(LS)s]?(?P<POT>[%(NUM)s]+)\)(, mucked| with.*)" % self.substitutions, re.MULTILINE)
+            self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %(PLAYERS)s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \([%(LS)s]?(?P<POT>[%(NUM)s]+)\)(, mucked| with.*)?" % self.substitutions, re.MULTILINE)
             self.re_SitsOut          = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(?P<ACT>showed|mucked) \[(?P<CARDS>.*)\].*" % player_re, re.MULTILINE)
 
@@ -298,13 +298,24 @@ class Fulltilt(HandHistoryConverter):
         # Split hand text for FTP, as the regex matches the player names incorrectly
         # in the summary section
         pre, post = hand.handText.split('SUMMARY')
-        if hand.gametype['type'] == "ring" :
-            m = self.re_PlayerInfo.finditer(pre)
-        else:   #if hand.gametype['type'] == "tour"
-            m = self.re_TourneysPlayerInfo.finditer(pre)
+        m = self.re_PlayerInfo.finditer(pre)
+        plist = {}
 
+        # Get list of players in header.
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            plist[a.group('PNAME')] = [int(a.group('SEAT')), a.group('CASH')]
+
+        if hand.gametype['type'] == "ring" :
+            # Remove any listed as sitting out in the summary as start of hand info unreliable
+            n = self.re_SummarySitout.finditer(post)
+            for b in n:
+                del plist[b.group('PNAME')]
+                print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
+
+        # Add remaining players
+        for a in plist:
+            seat, stack = plist[a]
+            hand.addPlayer(seat, a, stack)
 
 
     def markStreets(self, hand):
@@ -367,7 +378,11 @@ class Fulltilt(HandHistoryConverter):
             logging.warning(_("No bringin found, handid =%s") % hand.handid)
 
     def readButton(self, hand):
-        hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
+        try:
+            hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
+        except AttributeError, e:
+            # FTP has no indication that a hand is cancelled.
+            raise FpdbParseError(_("FTP: readButton: Failed to detect button (hand #%s cancelled?)") % hand.handid)
 
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
