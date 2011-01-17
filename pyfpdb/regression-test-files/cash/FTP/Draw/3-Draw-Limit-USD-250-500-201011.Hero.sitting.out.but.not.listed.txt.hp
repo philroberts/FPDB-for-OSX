@@ -271,7 +271,7 @@
                     'street4CheckCallRaiseDone': False,
                     'street4Raises': 0,
                     'street4Seen': False,
-                    'totalProfit': -25000,
+                    'totalProfit': 37500,
                     'tourneyTypeId': None,
                     'tourneysPlayersIds': None,
                     'winnings': 62500,
