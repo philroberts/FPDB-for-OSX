@@ -41,6 +41,28 @@ class Fulltilt(HandHistoryConverter):
                            'NUM' : u".,\d",                     # legal characters in number format
                     }
 
+    Lim_Blinds = {  '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),     '0.20': ('0.05', '0.10'),
+                        '0.40': ('0.10', '0.20'),    '0.50': ('0.10', '0.25'),
+                        '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
+                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
+                        '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
+                        '6.00': ('1.00', '3.00'),       '6': ('1.00', '3.00'),
+                        '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
+                       '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
+                       '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
+                       '30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
+                       '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
+                       '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
+                       '80.00': ('20.00', '40.00'),    '80': ('20.00', '40.00'),
+                      '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
+                      '200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
+                      '300.00': ('75.00', '150.00'),  '300': ('75.00', '150.00'),
+                      '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
+                      '500.00': ('125.00', '250.00'), '500': ('125.00', '250.00'),
+                      '800.00': ('200.00', '400.00'), '800': ('200.00', '400.00'),
+                     '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00')
+                  }
+
     # Static regexes
     re_GameInfo     = re.compile(u'''.*\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
@@ -203,18 +225,34 @@ class Fulltilt(HandHistoryConverter):
                    'Badugi' : ('draw','badugi'),
                }
         currencies = { u'€':'EUR', '$':'USD', '':'T$' }
+
+        if 'SB' in mg:
+            info['sb'] = self.clearMoneyString(mg['SB'])
+
+        if 'BB' in mg:
+            info['bb'] = self.clearMoneyString(mg['BB'])
+
+        if mg['TOURNO'] is None:  info['type'] = "ring"
+        else:                     info['type'] = "tour"
+
         if mg['CAP']:
             info['limitType'] = 'cn'
         else:
             info['limitType'] = limits[mg['LIMIT']]
-        info['sb'] = self.clearMoneyString(mg['SB'])
-        info['bb'] = self.clearMoneyString(mg['BB'])
+
+        if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring':
+            try:
+                info['sb'] = self.Lim_Blinds[mg['BB']][0]
+                info['bb'] = self.Lim_Blinds[mg['BB']][1]
+            except KeyError:
+                log.error(_("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB']))
+                log.error(_("determineGameType: Raising FpdbParseError"))
+                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+
         if mg['GAME'] is not None:
             (info['base'], info['category']) = games[mg['GAME']]
         if mg['CURRENCY'] is not None:
             info['currency'] = currencies[mg['CURRENCY']]
-        if mg['TOURNO'] is None:  info['type'] = "ring"
-        else:                     info['type'] = "tour"
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
 
