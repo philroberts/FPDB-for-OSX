@@ -198,6 +198,10 @@ def walk_testfiles(dir, function, importer, errors, site):
 
 def usage():
     print "USAGE:"
+    print "Run all tests:"
+    print "\t./TestHandsPlayers.py"
+    print "Run tests for a sinlge site:"
+    print "\t./TestHandsPlayers -s <Sitename>"
     sys.exit(0)
 
 def main(argv=None):
