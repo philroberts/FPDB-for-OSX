@@ -478,6 +478,7 @@ class Importer:
                 i = 0
 
                 for hand in handlist:
+                    i += 1
                     if hand is not None:
                         hand.prepInsert(self.database)
                         try:
