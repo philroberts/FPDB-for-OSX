@@ -69,7 +69,6 @@ class GuiBulkImport():
                 #    get the import settings from the gui and save in the importer
                 self.importer.setHandCount(int(self.spin_hands.get_text()))
                 self.importer.setQuiet(self.chk_st_st.get_active())
-                self.importer.setFailOnError(self.chk_fail.get_active())
                 self.importer.setThreads(int(self.spin_threads.get_text()))
                 self.importer.setHandsInDB(self.n_hands_in_db)
                 cb_model = self.cb_dropindexes.get_model()
@@ -88,6 +87,12 @@ class GuiBulkImport():
                 else:
                     self.importer.setDropHudCache("auto")
                 sitename = self.cbfilter.get_model()[self.cbfilter.get_active()][0]
+                #self.importer.setFailOnError(self.chk_fail.get_active())
+                if self.is_archive.get_active():
+                    if sitename == "PokerStars":
+                        self.importer.setStarsArchive(True)
+                    if sitename == "Full Tilt Poker":
+                        self.importer.setFTPArchive(True)
 
                 for selection in selected:
                     self.importer.addBulkImportImportFileOrDir(selection, site = sitename)
@@ -199,9 +204,9 @@ class GuiBulkImport():
             self.spin_threads.set_sensitive(False)
 
 #    checkbox - fail on error?
-        self.chk_fail = gtk.CheckButton(_('Fail on error'))
-        self.table.attach(self.chk_fail, 0, 1, 1, 2, xpadding=10, ypadding=0, yoptions=gtk.SHRINK)
-        self.chk_fail.show()
+        self.is_archive = gtk.CheckButton(_('Archive File'))
+        self.table.attach(self.is_archive, 0, 1, 1, 2, xpadding=10, ypadding=0, yoptions=gtk.SHRINK)
+        self.is_archive.show()
 
 #    label - hands
         self.lab_hands = gtk.Label(_("Hands/file:"))
