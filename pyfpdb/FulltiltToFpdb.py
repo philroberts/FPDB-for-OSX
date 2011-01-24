@@ -81,8 +81,8 @@ class Fulltilt(HandHistoryConverter):
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
                                     ((Table|Match)\s)?
                                     (?P<PLAY>Play\sChip\s|PC)?
-                                    (?P<TABLE>[%(TAB)s]+\s?)
-                                    (?P<ENTRYID>,\sEntry\s\#\d+\s)?
+                                    ((?P<TABLE>[%(TAB)s]+)(\s|,))
+                                    (?P<ENTRYID>\sEntry\s\#\d+\s)?
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
                                     [%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[.0-9]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[.0-9]+\sCap\s)?
