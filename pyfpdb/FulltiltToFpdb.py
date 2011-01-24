@@ -77,11 +77,12 @@ class Fulltilt(HandHistoryConverter):
                                  ''' % substitutions, re.VERBOSE)
     re_SplitHands   = re.compile(r"\n\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
-    re_HandInfo     = re.compile(r'''.*\#(?P<HID>[0-9]+):\s
+    re_HandInfo     = re.compile(u'''.*\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
-                                    (Table|Match)\s 
+                                    ((Table|Match)\s)?
                                     (?P<PLAY>Play\sChip\s|PC)?
-                                    (?P<TABLE>[%(TAB)s]+)\s
+                                    (?P<TABLE>[%(TAB)s]+\s?)
+                                    (?P<ENTRYID>,\sEntry\s\#\d+\s)?
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
                                     [%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[.0-9]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[.0-9]+\sCap\s)?
@@ -262,6 +263,8 @@ class Fulltilt(HandHistoryConverter):
             tmp = hand.handText[0:100]
             log.error(_("readHandInfo: Unable to recognise handinfo from: '%s'") % tmp)
             raise FpdbParseError(_("No match in readHandInfo."))
+
+        #print "DEBUG: m.groupdict: %s" % m.groupdict()
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
 
