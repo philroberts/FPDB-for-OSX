@@ -349,15 +349,13 @@ db: a connected Database object"""
         #       Need to find MySQL and Postgres equivalents
         #       MySQL maybe: cursorclass=MySQLdb.cursors.DictCursor
         res = c.fetchone()
+
+        #res['tourneyId'] #res['seats'] #res['rush']
         self.tablename = res['tableName']
         self.handid    = res['siteHandNo']
         self.startTime = datetime.datetime.strptime(res['startTime'], "%Y-%m-%d %H:%M:%S+00:00")
-        #res['tourneyId']
-        #gametypeId
-        #res['importTime']  # Don't really care about this
-        #res['seats']
         self.maxseats = res['maxSeats']
-        #res['rush']
+
         cards = map(Card.valueSuitFromCard, [res['boardcard1'], res['boardcard2'], res['boardcard3'], res['boardcard4'], res['boardcard5']])
         #print "DEBUG: res['boardcard1']: %s" % res['boardcard1']
         #print "DEBUG: cards: %s" % cards
@@ -1140,6 +1138,9 @@ class DrawHand(Hand):
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
+            # markStreets in Draw may match without dealing cards
+            if self.streets['DEAL'] == None:
+                raise FpdbParseError(_("DrawHand.__init__: street 'DEAL' is empty. Hand cancelled?"))
             hhc.readBlinds(self)
             hhc.readAntes(self)
             hhc.readButton(self)
