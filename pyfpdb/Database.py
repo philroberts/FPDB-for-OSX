@@ -305,7 +305,8 @@ class Database:
             self.saveActions = False if self.import_options['saveActions'] == False else True
 
             if self.is_connected():
-                self.get_sites()
+                if not self.wrongDbVersion:
+                    self.get_sites()
                 self.connection.rollback()  # make sure any locks taken so far are released
     #end def __init__
 
@@ -1205,6 +1206,7 @@ class Database:
         self.create_tables()
         self.createAllIndexes()
         self.commit()
+        self.get_sites()
         print _("Finished recreating tables")
         log.info(_("Finished recreating tables"))
     #end def recreate_tables
@@ -1694,11 +1696,15 @@ class Database:
 
     def storeHand(self, p, printdata = False):
         if printdata:
-            print "######## Hands ##########"
+            print _("######## Hands ##########")
             import pprint
             pp = pprint.PrettyPrinter(indent=4)
             pp.pprint(p)
-            print "###### End Hands ########"
+            print _("###### End Hands ########")
+
+        # Tablename can have odd charachers
+        p['tableName'] = Charset.to_db_utf8(p['tableName'])
+
         #stores into table hands:
         q = self.sql.query['store_hand']
 
@@ -2090,7 +2096,7 @@ class Database:
                 if (game['type']=='ring'): line[0] = 1 # count ring hands
                 if (game['type']=='tour'): line[1] = 1 # count tour hands
                 if (game['type']=='ring'): line[2] = pdata[p]['totalProfit'] #sum of profit
-                if (game['type']=='ring'): line[3] = float(Decimal(pdata[p]['totalProfit'])/Decimal(bigBet)) #sum of big bets won
+                if (game['type']=='ring'): line[3] = 0 #float(Decimal(pdata[p]['totalProfit'])/Decimal(bigBet)) #sum of big bets won
                 line[4] = startTime
                 inserts.append(line)
 
@@ -2163,7 +2169,7 @@ class Database:
             dup = True
         return dup
 
-    def getGameTypeId(self, siteid, game):
+    def getGameTypeId(self, siteid, game, printdata = False):
         c = self.get_cursor()
         #FIXME: Fixed for NL at the moment
         c.execute(self.sql.query['getGametypeNL'], (siteid, game['type'], game['category'], game['limitType'], game['currency'],
@@ -2175,14 +2181,22 @@ class Database:
                 hilo = "s"
             elif game['category'] in ['razz','27_3draw','badugi', '27_1draw']:
                 hilo = "l"
+            #FIXME: recognise currency
+            #TODO: this wont work for non-standard structures
             tmp  = self.insertGameTypes( (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
                                     int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
-                                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200)) ) #TODO: this wont work for non-standard structures
-                                    #FIXME: recognise currency
+                                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200)), printdata = printdata)
         return tmp[0]
 
 
-    def insertGameTypes(self, row):
+    def insertGameTypes(self, row, printdata = False):
+        if printdata:
+            print _("######## Gametype ##########")
+            import pprint
+            pp = pprint.PrettyPrinter(indent=4)
+            pp.pprint(row)
+            print _("###### End Gametype ########")
+
         c = self.get_cursor()
         c.execute( self.sql.query['insertGameTypes'], row )
         return [self.get_last_insert_id(c)]

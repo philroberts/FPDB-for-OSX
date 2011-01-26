@@ -37,30 +37,54 @@ class Fulltilt(HandHistoryConverter):
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",       # legal ISO currency codes
                             'LS' : u"\$|\u20AC|\xe2\x82\xac|",  # legal currency symbols - Euro(cp1252, utf-8)
-                           'TAB' : u"-\u2013\s\da-zA-Z"
+                           'TAB' : u"-\u2013'\s\da-zA-Z",       # legal characters for tablename
+                           'NUM' : u".,\d",                     # legal characters in number format
                     }
+
+    Lim_Blinds = {  '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),     '0.20': ('0.05', '0.10'),
+                        '0.40': ('0.10', '0.20'),    '0.50': ('0.10', '0.25'),
+                        '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
+                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
+                        '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
+                        '6.00': ('1.00', '3.00'),       '6': ('1.00', '3.00'),
+                        '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
+                       '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
+                       '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
+                       '30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
+                       '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
+                       '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
+                       '80.00': ('20.00', '40.00'),    '80': ('20.00', '40.00'),
+                      '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
+                      '200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
+                      '300.00': ('75.00', '150.00'),  '300': ('75.00', '150.00'),
+                      '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
+                      '500.00': ('125.00', '250.00'), '500': ('125.00', '250.00'),
+                      '800.00': ('200.00', '400.00'), '800': ('200.00', '400.00'),
+                     '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00')
+                  }
 
     # Static regexes
     re_GameInfo     = re.compile(u'''.*\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
                                     .+
                                     -\s(?P<CURRENCY>[%(LS)s]|)?
-                                    (?P<SB>[.0-9]+)/
-                                    [%(LS)s]?(?P<BB>[.0-9]+)\s
-                                    (Ante\s\$?(?P<ANTE>[.0-9]+)\s)?-\s
-                                    [%(LS)s]?(?P<CAP>[.0-9]+\sCap\s)?
+                                    (?P<SB>[%(NUM)s]+)/
+                                    [%(LS)s]?(?P<BB>[%(NUM)s]+)\s
+                                    (Ante\s\$?(?P<ANTE>[%(NUM)s]+)\s)?-\s
+                                    [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
                                     (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi))
                                  ''' % substitutions, re.VERBOSE)
     re_SplitHands   = re.compile(r"\n\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
-    re_HandInfo     = re.compile(r'''.*\#(?P<HID>[0-9]+):\s
+    re_HandInfo     = re.compile(u'''.*\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
-                                    (Table|Match)\s 
+                                    ((Table|Match)\s)?
                                     (?P<PLAY>Play\sChip\s|PC)?
-                                    (?P<TABLE>[%(TAB)s]+)\s
+                                    ((?P<TABLE>[%(TAB)s]+)(\s|,))
+                                    (?P<ENTRYID>\sEntry\s\#\d+\s)?
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
-                                    [%(LS)s]?(?P<SB>[.0-9]+)/[%(LS)s]?(?P<BB>[.0-9]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[.0-9]+)\s)?-\s
+                                    [%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[.0-9]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[.0-9]+\sCap\s)?
                                     (?P<GAMETYPE>[-\da-zA-Z\/\'\s]+)\s-\s
                                     (?P<DATETIME>.*$)
@@ -75,8 +99,8 @@ class Fulltilt(HandHistoryConverter):
                                          (\s\((?P<TURBO>Turbo)\))?)|(?P<UNREADABLE_INFO>.+))
                                     ''' % substitutions, re.VERBOSE)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
-    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s](?P<CASH>[,.0-9]+)\)$' % substitutions, re.MULTILINE)
-    re_TourneysPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s]?(?P<CASH>[,.0-9]+)\)(, is sitting out)?$' % substitutions, re.MULTILINE)
+    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s]?(?P<CASH>[%(NUM)s]+)\)(?P<SITOUT>, is sitting out)?$' % substitutions, re.MULTILINE)
+    re_SummarySitout = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) is sitting out?$' % substitutions, re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
     #static regex for tourney purpose
@@ -140,16 +164,16 @@ class Fulltilt(HandHistoryConverter):
             self.substitutions['PLAYERS'] = player_re
 
             logging.debug("player_re: " + player_re)
-            self.re_PostSB           = re.compile(r"^%(PLAYERS)s posts the small blind of [%(LS)s]?(?P<SB>[.0-9]+)" % self.substitutions, re.MULTILINE)
-            self.re_PostDead         = re.compile(r"^%(PLAYERS)s posts a dead small blind of [%(LS)s]?(?P<SB>[.0-9]+)" % self.substitutions, re.MULTILINE)
-            self.re_PostBB           = re.compile(r"^%(PLAYERS)s posts (the big blind of )?[%(LS)s]?(?P<BB>[.0-9]+)" % self.substitutions, re.MULTILINE)
-            self.re_Antes            = re.compile(r"^%(PLAYERS)s antes [%(LS)s]?(?P<ANTE>[.0-9]+)" % self.substitutions, re.MULTILINE)
-            self.re_BringIn          = re.compile(r"^%(PLAYERS)s brings in for [%(LS)s]?(?P<BRINGIN>[.0-9]+)" % self.substitutions, re.MULTILINE)
-            self.re_PostBoth         = re.compile(r"^%(PLAYERS)s posts small \& big blinds \[[%(LS)s]? (?P<SBBB>[.0-9]+)" % self.substitutions, re.MULTILINE)
+            self.re_PostSB           = re.compile(r"^%(PLAYERS)s posts the small blind of [%(LS)s]?(?P<SB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
+            self.re_PostDead         = re.compile(r"^%(PLAYERS)s posts a dead small blind of [%(LS)s]?(?P<SB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
+            self.re_PostBB           = re.compile(r"^%(PLAYERS)s posts (the big blind of )?[%(LS)s]?(?P<BB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
+            self.re_Antes            = re.compile(r"^%(PLAYERS)s antes [%(LS)s]?(?P<ANTE>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
+            self.re_BringIn          = re.compile(r"^%(PLAYERS)s brings in for [%(LS)s]?(?P<BRINGIN>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
+            self.re_PostBoth         = re.compile(r"^%(PLAYERS)s posts small \& big blinds \[[%(LS)s]? (?P<SBBB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
-            self.re_Action           = re.compile(r"^%(PLAYERS)s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds)( [%(LS)s]?(?P<BET>[.,\d]+))?" % self.substitutions, re.MULTILINE)
+            self.re_Action           = re.compile(r"^%(PLAYERS)s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds)( [%(LS)s]?(?P<BET>[%(NUM)s]+))?" % self.substitutions, re.MULTILINE)
             self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
-            self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %(PLAYERS)s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \([%(LS)s]?(?P<POT>[.,\d]+)\)(, mucked| with.*)" % self.substitutions, re.MULTILINE)
+            self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %(PLAYERS)s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \([%(LS)s]?(?P<POT>[%(NUM)s]+)\)(, mucked| with.*)?" % self.substitutions, re.MULTILINE)
             self.re_SitsOut          = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(?P<ACT>showed|mucked) \[(?P<CARDS>.*)\].*" % player_re, re.MULTILINE)
 
@@ -202,18 +226,34 @@ class Fulltilt(HandHistoryConverter):
                    'Badugi' : ('draw','badugi'),
                }
         currencies = { u'€':'EUR', '$':'USD', '':'T$' }
+
+        if 'SB' in mg:
+            info['sb'] = self.clearMoneyString(mg['SB'])
+
+        if 'BB' in mg:
+            info['bb'] = self.clearMoneyString(mg['BB'])
+
+        if mg['TOURNO'] is None:  info['type'] = "ring"
+        else:                     info['type'] = "tour"
+
         if mg['CAP']:
             info['limitType'] = 'cn'
         else:
             info['limitType'] = limits[mg['LIMIT']]
-        info['sb'] = mg['SB']
-        info['bb'] = mg['BB']
+
+        if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring':
+            try:
+                info['sb'] = self.Lim_Blinds[mg['BB']][0]
+                info['bb'] = self.Lim_Blinds[mg['BB']][1]
+            except KeyError:
+                log.error(_("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB']))
+                log.error(_("determineGameType: Raising FpdbParseError"))
+                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+
         if mg['GAME'] is not None:
             (info['base'], info['category']) = games[mg['GAME']]
         if mg['CURRENCY'] is not None:
             info['currency'] = currencies[mg['CURRENCY']]
-        if mg['TOURNO'] is None:  info['type'] = "ring"
-        else:                     info['type'] = "tour"
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
 
@@ -223,6 +263,8 @@ class Fulltilt(HandHistoryConverter):
             tmp = hand.handText[0:100]
             log.error(_("readHandInfo: Unable to recognise handinfo from: '%s'") % tmp)
             raise FpdbParseError(_("No match in readHandInfo."))
+
+        #print "DEBUG: m.groupdict: %s" % m.groupdict()
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
 
@@ -297,13 +339,24 @@ class Fulltilt(HandHistoryConverter):
         # Split hand text for FTP, as the regex matches the player names incorrectly
         # in the summary section
         pre, post = hand.handText.split('SUMMARY')
-        if hand.gametype['type'] == "ring" :
-            m = self.re_PlayerInfo.finditer(pre)
-        else:   #if hand.gametype['type'] == "tour"
-            m = self.re_TourneysPlayerInfo.finditer(pre)
+        m = self.re_PlayerInfo.finditer(pre)
+        plist = {}
 
+        # Get list of players in header.
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            plist[a.group('PNAME')] = [int(a.group('SEAT')), a.group('CASH')]
+
+        if hand.gametype['type'] == "ring" :
+            # Remove any listed as sitting out in the summary as start of hand info unreliable
+            n = self.re_SummarySitout.finditer(post)
+            for b in n:
+                del plist[b.group('PNAME')]
+                print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
+
+        # Add remaining players
+        for a in plist:
+            seat, stack = plist[a]
+            hand.addPlayer(seat, a, stack)
 
 
     def markStreets(self, hand):
@@ -339,15 +392,15 @@ class Fulltilt(HandHistoryConverter):
     def readBlinds(self, hand):
         try:
             m = self.re_PostSB.search(hand.handText)
-            hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
+            hand.addBlind(m.group('PNAME'), 'small blind', self.clearMoneyString(m.group('SB')))
         except: # no small blind
             hand.addBlind(None, None, None)
         for a in self.re_PostDead.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
+            hand.addBlind(a.group('PNAME'), 'secondsb', self.clearMoneyString(a.group('SB')))
         for a in self.re_PostBB.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+            hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
         for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
+            hand.addBlind(a.group('PNAME'), 'small & big blinds', self.clearMoneyString(a.group('SBBB')))
 
     def readAntes(self, hand):
         logging.debug(_("reading antes"))
@@ -366,7 +419,11 @@ class Fulltilt(HandHistoryConverter):
             logging.warning(_("No bringin found, handid =%s") % hand.handid)
 
     def readButton(self, hand):
-        hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
+        try:
+            hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
+        except AttributeError, e:
+            # FTP has no indication that a hand is cancelled.
+            raise FpdbParseError(_("FTP: readButton: Failed to detect button (hand #%s cancelled?)") % hand.handid)
 
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
@@ -528,10 +585,10 @@ class Fulltilt(HandHistoryConverter):
 
         # Additional info can be stored in the tourney object
         if mg['BUYIN'] is not None:
-            tourney.buyin = 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))
+            tourney.buyin = 100*Decimal(self.clearMoneyString(mg['BUYIN']))
             tourney.fee = 0 
         if mg['FEE'] is not None:
-            tourney.fee = 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))
+            tourney.fee = 100*Decimal(self.clearMoneyString(mg['FEE']))
         if mg['TOURNAMENT_NAME'] is not None:
             # Tournament Name can have a trailing space at the end (depending on the tournament description)
             tourney.tourneyName = mg['TOURNAMENT_NAME'].rstrip()
@@ -575,25 +632,25 @@ class Fulltilt(HandHistoryConverter):
             mg = m.groupdict()
             if tourney.isMatrix :
                 if mg['BUYIN'] is not None:
-                    tourney.subTourneyBuyin = 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))
+                    tourney.subTourneyBuyin = 100*Decimal(self.clearMoneyString(mg['BUYIN']))
                     tourney.subTourneyFee = 0
                 if mg['FEE'] is not None:
-                    tourney.subTourneyFee = 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))
+                    tourney.subTourneyFee = 100*Decimal(self.clearMoneyString(mg['FEE']))
             else :
                 if mg['BUYIN'] is not None:
                     if tourney.buyin is None:
-                        tourney.buyin = 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))
+                        tourney.buyin = 100*Decimal(clearMoneyString(mg['BUYIN']))
                     else :
-                        if 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN'])) != tourney.buyin:
+                        if 100*Decimal(clearMoneyString(mg['BUYIN'])) != tourney.buyin:
                             log.error(_("Conflict between buyins read in topline (%s) and in BuyIn field (%s)") % (tourney.buyin, 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))) )
-                            tourney.subTourneyBuyin = 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))
+                            tourney.subTourneyBuyin = 100*Decimal(clearMoneyString(mg['BUYIN']))
                 if mg['FEE'] is not None:
                     if tourney.fee is None:
-                        tourney.fee = 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))
+                        tourney.fee = 100*Decimal(clearMoneyString(mg['FEE']))
                     else :
-                        if 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE'])) != tourney.fee:
-                            log.error(_("Conflict between fees read in topline (%s) and in BuyIn field (%s)") % (tourney.fee, 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))) )
-                            tourney.subTourneyFee = 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))
+                        if 100*Decimal(clearMoneyString(mg['FEE'])) != tourney.fee:
+                            log.error(_("Conflict between fees read in topline (%s) and in BuyIn field (%s)") % (tourney.fee, 100*Decimal(clearMoneyString(mg['FEE']))) )
+                            tourney.subTourneyFee = 100*Decimal(clearMoneyString(mg['FEE']))
 
         if tourney.buyin is None:
             log.info(_("Unable to affect a buyin to this tournament : assume it's a freeroll"))
@@ -662,10 +719,10 @@ class Fulltilt(HandHistoryConverter):
                     tourney.koCounts.update( { tourney.hero : Decimal(mg['COUNT_KO']) } )
 
         # Deal with money amounts
-        tourney.koBounty    = 100*Decimal(re.sub(u',', u'', "%s" % tourney.koBounty))
-        tourney.prizepool   = 100*Decimal(re.sub(u',', u'', "%s" % tourney.prizepool))
-        tourney.rebuyCost   = 100*Decimal(re.sub(u',', u'', "%s" % tourney.rebuyCost))
-        tourney.addOnCost   = 100*Decimal(re.sub(u',', u'', "%s" % tourney.addOnCost))
+        tourney.koBounty    = 100*Decimal(clearMoneyString(tourney.koBounty))
+        tourney.prizepool   = 100*Decimal(clearMoneyString(tourney.prizepool))
+        tourney.rebuyCost   = 100*Decimal(clearMoneyString(tourney.rebuyCost))
+        tourney.addOnCost   = 100*Decimal(clearMoneyString(tourney.addOnCost))
         
         # Calculate payin amounts and update winnings -- not possible to take into account nb of rebuys, addons or Knockouts for other players than hero on FTP
         for p in tourney.players :
@@ -691,7 +748,7 @@ class Fulltilt(HandHistoryConverter):
                     rank = Decimal(a.group('RANK'))
 
                 if a.group('WINNING') is not None:
-                    winnings = 100*Decimal(re.sub(u',', u'', "%s" % a.group('WINNING')))
+                    winnings = 100*Decimal(clearMoneyString(a.group('WINNING')))
                 else:
                     winnings = "0"
 

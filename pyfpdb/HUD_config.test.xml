@@ -581,6 +581,7 @@ Left-Drag to Move"
     </hhcs>
 
     <supported_databases>
+        <!--<database db_name="fpdbtest" db_server="mysql" db_ip="localhost" db_user="fpdb" db_pass="fpdb"></database>-->
         <database db_ip="localhost" db_name="fpdb" db_pass="fpdb" db_server="sqlite" db_user="fpdb"/>
     </supported_databases>
 

@@ -1,0 +1,2234 @@
+﻿PokerStars Game #46598630750: Tournament #288463329, 50FPP Hold'em Limit - Level I (20/40) - 2010/07/10 22:09:50 CET [2010/07/10 16:09:50 ET]
+Table '288463329 7' 9-max Seat #9 is the button
+Seat 1: Player3 (840 in chips) 
+Seat 2: Player13 (2210 in chips) 
+Seat 3: Player1 (480 in chips) 
+Seat 4: Player5 (1500 in chips) 
+Seat 5: Player12 (1530 in chips) 
+Seat 6: Player8 (1560 in chips) 
+Seat 7: Player9 (1500 in chips) 
+Seat 8: Player0 (1630 in chips) 
+Seat 9: Player6 (2310 in chips) 
+Player3: posts small blind 10
+Player13: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Player9 [8c 5s]
+Player1: folds 
+Player5: folds 
+Player12: folds 
+Player8: calls 20
+Player9: folds 
+Player0: folds 
+Player6: calls 20
+Player3: calls 10
+Player13: checks 
+*** FLOP *** [9d 9c 6h]
+Player3: checks 
+Player13: checks 
+Player8: bets 20
+Player6: folds 
+Player3: folds 
+Player13: folds 
+Uncalled bet (20) returned to Player8
+Player8 collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | Rake 0 
+Board [9d 9c 6h]
+Seat 1: Player3 (small blind) folded on the Flop
+Seat 2: Player13 (big blind) folded on the Flop
+Seat 3: Player1 folded before Flop (didn't bet)
+Seat 4: Player5 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 collected (80)
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 (button) folded on the Flop
+
+
+
+PokerStars Game #46598669406: Tournament #288463329, 50FPP Hold'em Limit - Level I (20/40) - 2010/07/10 22:10:50 CET [2010/07/10 16:10:50 ET]
+Table '288463329 7' 9-max Seat #1 is the button
+Seat 1: Player3 (820 in chips) 
+Seat 2: Player13 (2190 in chips) 
+Seat 3: Player1 (480 in chips) 
+Seat 4: Player5 (1500 in chips) 
+Seat 5: Player12 (1530 in chips) 
+Seat 6: Player8 (1620 in chips) 
+Seat 7: Player9 (1500 in chips) 
+Seat 8: Player0 (1630 in chips) 
+Seat 9: Player6 (2290 in chips) 
+Player13: posts small blind 10
+Player1: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Player9 [7d 5c]
+Player5: folds 
+Player12: folds 
+Player8: folds 
+Player9: folds 
+Player0: folds 
+Player6: raises 20 to 40
+Player3: folds 
+Player13: calls 30
+Player1: raises 20 to 60
+Player6: raises 20 to 80
+Betting is capped
+Player13: calls 40
+Player1: calls 20
+*** FLOP *** [4c Ts As]
+Player13: checks 
+Player1: bets 20
+Player6: calls 20
+Player13: raises 20 to 40
+Player1: raises 20 to 60
+Player6: calls 40
+Player13: raises 20 to 80
+Betting is capped
+Player1: calls 20
+Player6: calls 20
+*** TURN *** [4c Ts As] [Td]
+Player13: bets 40
+Player1: raises 40 to 80
+Player6: calls 80
+Player13: calls 40
+*** RIVER *** [4c Ts As Td] [Qs]
+Player13: bets 40
+Player1: raises 40 to 80
+Player6: raises 40 to 120
+Player13: raises 40 to 160
+Betting is capped
+Player1: calls 80
+Player6: calls 40
+*** SHOW DOWN ***
+Player13: shows [Ks 4s] (a flush, Ace high)
+Player1: mucks hand 
+Player6: shows [Qd Qc] (a full house, Queens full of Tens)
+Player6 collected 1200 from pot
+*** SUMMARY ***
+Total pot 1200 | Rake 0 
+Board [4c Ts As Td Qs]
+Seat 1: Player3 (button) folded before Flop (didn't bet)
+Seat 2: Player13 (small blind) showed [Ks 4s] and lost with a flush, Ace high
+Seat 3: Player1 (big blind) mucked [Jc Js]
+Seat 4: Player5 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 folded before Flop (didn't bet)
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 showed [Qd Qc] and won (1200) with a full house, Queens full of Tens
+
+
+
+PokerStars Game #46598747716: Tournament #288463329, 50FPP Hold'em Limit - Level I (20/40) - 2010/07/10 22:12:50 CET [2010/07/10 16:12:50 ET]
+Table '288463329 7' 9-max Seat #2 is the button
+Seat 1: Player3 (820 in chips) 
+Seat 2: Player13 (1790 in chips) 
+Seat 3: Player1 (80 in chips) 
+Seat 4: Player5 (1500 in chips) 
+Seat 5: Player12 (1530 in chips) 
+Seat 6: Player8 (1620 in chips) 
+Seat 7: Player9 (1500 in chips) 
+Seat 8: Player0 (1630 in chips) 
+Seat 9: Player6 (3090 in chips) 
+Player1: posts small blind 10
+Player5: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Player9 [As 4c]
+Player12: calls 20
+Player8: folds 
+Player9: folds 
+Player0: folds 
+Player6: calls 20
+Player3: folds 
+Player13: calls 20
+Player1: raises 20 to 40
+Player5: calls 20
+Player12: calls 20
+Player6: calls 20
+Player13: calls 20
+*** FLOP *** [Ah 5s 6h]
+Player1: bets 20
+Player5: raises 20 to 40
+Player12: folds 
+Player6: folds 
+Player13: calls 40
+Player1: calls 20 and is all-in
+*** TURN *** [Ah 5s 6h] [7c]
+Player5: bets 40
+Player13: calls 40
+*** RIVER *** [Ah 5s 6h 7c] [4h]
+Player5: bets 40
+Player13: raises 40 to 80
+Player5: calls 40
+*** SHOW DOWN ***
+Player13: shows [3d Jd] (a straight, Three to Seven)
+Player5: mucks hand 
+Player13 collected 240 from side pot
+Player1: mucks hand 
+Player13 collected 320 from main pot
+*** SUMMARY ***
+Total pot 560 Main pot 320. Side pot 240. | Rake 0 
+Board [Ah 5s 6h 7c 4h]
+Seat 1: Player3 folded before Flop (didn't bet)
+Seat 2: Player13 (button) showed [3d Jd] and won (560) with a straight, Three to Seven
+Seat 3: Player1 (small blind) mucked [Tc 9c]
+Seat 4: Player5 (big blind) mucked [9h 6s]
+Seat 5: Player12 folded on the Flop
+Seat 6: Player8 folded before Flop (didn't bet)
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 folded on the Flop
+
+
+
+PokerStars Game #46598814080: Tournament #288463329, 50FPP Hold'em Limit - Level I (20/40) - 2010/07/10 22:14:35 CET [2010/07/10 16:14:35 ET]
+Table '288463329 7' 9-max Seat #4 is the button
+Seat 1: Player3 (820 in chips) 
+Seat 2: Player13 (2150 in chips) 
+Seat 4: Player5 (1300 in chips) 
+Seat 5: Player12 (1490 in chips) 
+Seat 6: Player8 (1620 in chips) 
+Seat 7: Player9 (1500 in chips) 
+Seat 8: Player0 (1630 in chips) 
+Seat 9: Player6 (3050 in chips) 
+Player12: posts small blind 10
+Player8: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Player9 [4c Jh]
+Player9: folds 
+Player0: folds 
+Player6: raises 20 to 40
+Player3: folds 
+Player13: calls 40
+Player5: folds 
+Player12: folds 
+Player8: calls 20
+*** FLOP *** [Ad Tc Jd]
+Player8: checks 
+Player6: bets 20
+Player13: calls 20
+Player8: folds 
+*** TURN *** [Ad Tc Jd] [2c]
+Player6: bets 40
+Player13: raises 40 to 80
+Player6: raises 40 to 120
+Player13: raises 40 to 160
+Betting is capped
+Player6: calls 40
+*** RIVER *** [Ad Tc Jd 2c] [7h]
+Player6: bets 40
+Player13: raises 40 to 80
+Player6: raises 40 to 120
+Player13: raises 40 to 160
+Betting is capped
+Player6: calls 40
+*** SHOW DOWN ***
+Player13: shows [2s Jc] (two pair, Jacks and Deuces)
+Player6: shows [Ac Ah] (three of a kind, Aces)
+Player6 collected 810 from pot
+*** SUMMARY ***
+Total pot 810 | Rake 0 
+Board [Ad Tc Jd 2c 7h]
+Seat 1: Player3 folded before Flop (didn't bet)
+Seat 2: Player13 showed [2s Jc] and lost with two pair, Jacks and Deuces
+Seat 4: Player5 (button) folded before Flop (didn't bet)
+Seat 5: Player12 (small blind) folded before Flop
+Seat 6: Player8 (big blind) folded on the Flop
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 showed [Ac Ah] and won (810) with three of a kind, Aces
+
+
+
+PokerStars Game #46598871341: Tournament #288463329, 50FPP Hold'em Limit - Level II (30/60) - 2010/07/10 22:16:05 CET [2010/07/10 16:16:05 ET]
+Table '288463329 7' 9-max Seat #5 is the button
+Seat 1: Player3 (820 in chips) 
+Seat 2: Player13 (1770 in chips) 
+Seat 4: Player5 (1300 in chips) 
+Seat 5: Player12 (1480 in chips) 
+Seat 6: Player8 (1580 in chips) 
+Seat 7: Player9 (1500 in chips) 
+Seat 8: Player0 (1630 in chips) 
+Seat 9: Player6 (3480 in chips) 
+Player8: posts small blind 15
+Player9: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Player9 [Qs 2s]
+Player0: folds 
+Player6: calls 30
+Player3: folds 
+Player13: raises 30 to 60
+Player5: folds 
+Player12: calls 60
+Player8: raises 30 to 90
+Player9: folds 
+Player6: folds 
+Player13: raises 30 to 120
+Betting is capped
+Player12: calls 60
+Player8: calls 30
+*** FLOP *** [Qd 7d 9c]
+Player8: checks 
+Player2 is connected 
+Player13: bets 30
+Player12: calls 30
+Player8: calls 30
+*** TURN *** [Qd 7d 9c] [3s]
+Player8: checks 
+Player13: bets 60
+Player12: calls 60
+Player8: folds 
+*** RIVER *** [Qd 7d 9c 3s] [5h]
+Player13: checks 
+Player12: checks 
+*** SHOW DOWN ***
+Player13: shows [4s 4c] (a pair of Fours)
+Player12: shows [Td Ts] (a pair of Tens)
+Player12 collected 630 from pot
+*** SUMMARY ***
+Total pot 630 | Rake 0 
+Board [Qd 7d 9c 3s 5h]
+Seat 1: Player3 folded before Flop (didn't bet)
+Seat 2: Player13 showed [4s 4c] and lost with a pair of Fours
+Seat 4: Player5 folded before Flop (didn't bet)
+Seat 5: Player12 (button) showed [Td Ts] and won (630) with a pair of Tens
+Seat 6: Player8 (small blind) folded on the Turn
+Seat 7: Player9 (big blind) folded before Flop
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 folded before Flop
+
+
+
+PokerStars Game #46598947576: Tournament #288463329, 50FPP Hold'em Limit - Level II (30/60) - 2010/07/10 22:18:07 CET [2010/07/10 16:18:07 ET]
+Table '288463329 7' 9-max Seat #6 is the button
+Seat 1: Player3 (820 in chips) 
+Seat 2: Player13 (1560 in chips) 
+Seat 3: Player2 (2650 in chips) 
+Seat 4: Player5 (1300 in chips) 
+Seat 5: Player12 (1900 in chips) 
+Seat 6: Player8 (1430 in chips) 
+Seat 7: Player9 (1470 in chips) 
+Seat 8: Player0 (1630 in chips) 
+Seat 9: Player6 (3450 in chips) 
+Player9: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Player9 [3h 4s]
+Player6: calls 30
+Player3: folds 
+Player13: raises 30 to 60
+Player2: folds 
+Player5: calls 60
+Player12: folds 
+Player8: folds 
+Player9: folds 
+Player0: calls 30
+Player6: calls 30
+*** FLOP *** [8d 5c Th]
+Player0: checks 
+Player6: checks 
+Player13: bets 30
+Player5: raises 30 to 60
+Player0: calls 60
+Player6: calls 60
+Player13: calls 30
+*** TURN *** [8d 5c Th] [7d]
+Player0: checks 
+Player6: bets 60
+Player13: calls 60
+Player5: raises 60 to 120
+Player0: calls 120
+Player6: calls 60
+Player13: calls 60
+*** RIVER *** [8d 5c Th 7d] [Jh]
+Player0: checks 
+Player6: bets 60
+Player13: folds 
+Player5: calls 60
+Player0: folds 
+*** SHOW DOWN ***
+Player6: shows [Qh 9s] (a straight, Eight to Queen)
+Player5: mucks hand 
+Player6 collected 1095 from pot
+*** SUMMARY ***
+Total pot 1095 | Rake 0 
+Board [8d 5c Th 7d Jh]
+Seat 1: Player3 folded before Flop (didn't bet)
+Seat 2: Player13 folded on the River
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player5 mucked [Td Kc]
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 (button) folded before Flop (didn't bet)
+Seat 7: Player9 (small blind) folded before Flop
+Seat 8: Player0 (big blind) folded on the River
+Seat 9: Player6 showed [Qh 9s] and won (1095) with a straight, Eight to Queen
+
+
+
+PokerStars Game #46599006901: Tournament #288463329, 50FPP Hold'em Limit - Level II (30/60) - 2010/07/10 22:19:42 CET [2010/07/10 16:19:42 ET]
+Table '288463329 7' 9-max Seat #7 is the button
+Seat 1: Player3 (820 in chips) 
+Seat 2: Player13 (1320 in chips) 
+Seat 3: Player2 (2650 in chips) 
+Seat 4: Player5 (1000 in chips) 
+Seat 5: Player12 (1900 in chips) 
+Seat 6: Player8 (1430 in chips) 
+Seat 7: Player9 (1455 in chips) 
+Seat 8: Player0 (1390 in chips) 
+Seat 9: Player6 (4245 in chips) 
+Player0: posts small blind 15
+Player6: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Player9 [Qs 5s]
+Player3: raises 30 to 60
+Player13 has timed out
+Player13: folds 
+Player13 is sitting out
+Player2: folds 
+Player5: folds 
+Player13 has returned
+Player12: calls 60
+Player8: folds 
+Player9: folds 
+Player0: folds 
+Player6: calls 30
+*** FLOP *** [8h 4h 6d]
+Player6: checks 
+Player3: checks 
+Player12: checks 
+*** TURN *** [8h 4h 6d] [5d]
+Player6: checks 
+Player3: checks 
+Player12: checks 
+*** RIVER *** [8h 4h 6d 5d] [3c]
+Player6: checks 
+Player3: checks 
+Player12: checks 
+*** SHOW DOWN ***
+Player6: shows [Td Kc] (high card King)
+Player3: shows [Ac Jc] (high card Ace)
+Player12: shows [Kd As] (high card Ace - King kicker)
+Player12 collected 195 from pot
+*** SUMMARY ***
+Total pot 195 | Rake 0 
+Board [8h 4h 6d 5d 3c]
+Seat 1: Player3 showed [Ac Jc] and lost with high card Ace
+Seat 2: Player13 folded before Flop (didn't bet)
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player5 folded before Flop (didn't bet)
+Seat 5: Player12 showed [Kd As] and won (195) with high card Ace
+Seat 6: Player8 folded before Flop (didn't bet)
+Seat 7: Player9 (button) folded before Flop (didn't bet)
+Seat 8: Player0 (small blind) folded before Flop
+Seat 9: Player6 (big blind) showed [Td Kc] and lost with high card King
+
+
+
+PokerStars Game #46599058946: Tournament #288463329, 50FPP Hold'em Limit - Level II (30/60) - 2010/07/10 22:21:08 CET [2010/07/10 16:21:08 ET]
+Table '288463329 7' 9-max Seat #8 is the button
+Seat 1: Player3 (760 in chips) 
+Seat 2: Player13 (1320 in chips) 
+Seat 3: Player2 (2650 in chips) 
+Seat 4: Player5 (1000 in chips) 
+Seat 5: Player12 (2035 in chips) 
+Seat 6: Player8 (1430 in chips) 
+Seat 7: Player9 (1455 in chips) 
+Seat 8: Player0 (1375 in chips) 
+Seat 9: Player6 (4185 in chips) 
+Player6: posts small blind 15
+Player3: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Player9 [6h 6s]
+Player13 has timed out
+Player13: folds 
+Player13 is sitting out
+Player2: raises 30 to 60
+Player5: folds 
+Player12: folds 
+Player8: calls 60
+Player9: calls 60
+Player0: folds 
+Player6: calls 45
+Player3: calls 30
+*** FLOP *** [Kd 7d 4s]
+Player6: checks 
+Player3: checks 
+Player2: bets 30
+Player8: folds 
+Player9: calls 30
+Player6: folds 
+Player3: folds 
+*** TURN *** [Kd 7d 4s] [3c]
+Player2: bets 60
+Player9: folds 
+Uncalled bet (60) returned to Player2
+Player2 collected 360 from pot
+Player2: doesn't show hand 
+*** SUMMARY ***
+Total pot 360 | Rake 0 
+Board [Kd 7d 4s 3c]
+Seat 1: Player3 (big blind) folded on the Flop
+Seat 2: Player13 folded before Flop (didn't bet)
+Seat 3: Player2 collected (360)
+Seat 4: Player5 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 folded on the Flop
+Seat 7: Player9 folded on the Turn
+Seat 8: Player0 (button) folded before Flop (didn't bet)
+Seat 9: Player6 (small blind) folded on the Flop
+
+
+
+PokerStars Game #46599109116: Tournament #288463329, 50FPP Hold'em Limit - Level II (30/60) - 2010/07/10 22:22:31 CET [2010/07/10 16:22:31 ET]
+Table '288463329 7' 9-max Seat #9 is the button
+Seat 1: Player3 (700 in chips) 
+Seat 2: Player13 (1320 in chips) is sitting out
+Seat 3: Player2 (2920 in chips) 
+Seat 4: Player5 (1000 in chips) 
+Seat 5: Player12 (2035 in chips) 
+Seat 6: Player8 (1370 in chips) 
+Seat 7: Player9 (1365 in chips) 
+Seat 8: Player0 (1375 in chips) 
+Seat 9: Player6 (4125 in chips) 
+Player3: posts small blind 15
+Player13: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Player9 [Kh 8d]
+Player2: folds 
+Player5: calls 30
+Player12: raises 30 to 60
+Player8: raises 30 to 90
+Player9: folds 
+Player0: folds 
+Player6: folds 
+Player3: folds 
+Player13: folds 
+Player5: calls 60
+Player12: calls 30
+*** FLOP *** [3d 9d Ad]
+Player5: checks 
+Player13 has returned
+Player12: checks 
+Player8: checks 
+*** TURN *** [3d 9d Ad] [3s]
+Player5: bets 60
+Player12: calls 60
+Player8: calls 60
+*** RIVER *** [3d 9d Ad 3s] [6s]
+Player5: checks 
+Player12: bets 60
+Player8: calls 60
+Player5: folds 
+*** SHOW DOWN ***
+Player12: shows [Ac Kd] (two pair, Aces and Threes)
+Player8: mucks hand 
+Player12 collected 615 from pot
+*** SUMMARY ***
+Total pot 615 | Rake 0 
+Board [3d 9d Ad 3s 6s]
+Seat 1: Player3 (small blind) folded before Flop
+Seat 2: Player13 (big blind) folded before Flop
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player5 folded on the River
+Seat 5: Player12 showed [Ac Kd] and won (615) with two pair, Aces and Threes
+Seat 6: Player8 mucked [Td Ts]
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46599158526: Tournament #288463329, 50FPP Hold'em Limit - Level II (30/60) - 2010/07/10 22:23:51 CET [2010/07/10 16:23:51 ET]
+Table '288463329 7' 9-max Seat #1 is the button
+Seat 1: Player3 (685 in chips) 
+Seat 2: Player13 (1290 in chips) 
+Seat 3: Player2 (2920 in chips) 
+Seat 4: Player5 (850 in chips) 
+Seat 5: Player12 (2440 in chips) 
+Seat 6: Player8 (1160 in chips) 
+Seat 7: Player9 (1365 in chips) 
+Seat 8: Player0 (1375 in chips) 
+Seat 9: Player6 (4125 in chips) 
+Player13: posts small blind 15
+Player2: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Player9 [6d Kd]
+Player5: folds 
+Player12: folds 
+Player8: folds 
+Player9: folds 
+Player0: folds 
+Player6: calls 30
+Player3: folds 
+Player13: raises 30 to 60
+Player2: calls 30
+Player6: calls 30
+*** FLOP *** [5s Th 4c]
+Player13: bets 30
+Player2 is disconnected 
+Player2 has timed out while disconnected
+Player2: folds 
+Player2 is sitting out
+Player6: calls 30
+*** TURN *** [5s Th 4c] [3d]
+Player13: bets 60
+Player6: calls 60
+*** RIVER *** [5s Th 4c 3d] [2c]
+Player13: bets 60
+Player6: raises 60 to 120
+Player13: calls 60
+*** SHOW DOWN ***
+Player6: shows [Ah 8c] (a straight, Ace to Five)
+Player13: shows [Ad 9d] (a straight, Ace to Five)
+Player13 collected 300 from pot
+Player6 collected 300 from pot
+*** SUMMARY ***
+Total pot 600 | Rake 0 
+Board [5s Th 4c 3d 2c]
+Seat 1: Player3 (button) folded before Flop (didn't bet)
+Seat 2: Player13 (small blind) showed [Ad 9d] and won (300) with a straight, Ace to Five
+Seat 3: Player2 (big blind) folded on the Flop
+Seat 4: Player5 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 folded before Flop (didn't bet)
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 showed [Ah 8c] and won (300) with a straight, Ace to Five
+
+
+
+PokerStars Game #46599249017: Tournament #288463329, 50FPP Hold'em Limit - Level II (30/60) - 2010/07/10 22:26:18 CET [2010/07/10 16:26:18 ET]
+Table '288463329 7' 9-max Seat #2 is the button
+Seat 1: Player3 (685 in chips) 
+Seat 2: Player13 (1320 in chips) 
+Seat 3: Player2 (2860 in chips) is sitting out
+Seat 4: Player5 (850 in chips) 
+Seat 5: Player12 (2440 in chips) 
+Seat 6: Player8 (1160 in chips) 
+Seat 7: Player9 (1365 in chips) 
+Seat 8: Player0 (1375 in chips) 
+Seat 9: Player6 (4155 in chips) 
+Player2: posts small blind 15
+Player5: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Player9 [2d 7h]
+Player12: folds 
+Player8: raises 30 to 60
+Player9: folds 
+Player0: raises 30 to 90
+Player6: folds 
+Player3: calls 90
+Player13: raises 30 to 120
+Betting is capped
+Player2: folds 
+Player5: calls 90
+Player8: calls 60
+Player0: calls 30
+Player3: calls 30
+*** FLOP *** [5h 6c 4c]
+Player5: bets 30
+Player8: calls 30
+Player0: calls 30
+Player3: raises 30 to 60
+Player13: raises 30 to 90
+Player5: raises 30 to 120
+Betting is capped
+Player8: folds 
+Player0: calls 90
+Player3: calls 60
+Player13: calls 30
+*** TURN *** [5h 6c 4c] [3d]
+Player5: bets 60
+Player0: folds 
+Player3: raises 60 to 120
+Player13: calls 120
+Player5: calls 60
+*** RIVER *** [5h 6c 4c 3d] [2s]
+Player5: checks 
+Player3: bets 60
+Player13: calls 60
+Player5: calls 60
+*** SHOW DOWN ***
+Player3: shows [7c Qc] (a straight, Three to Seven)
+Player13: mucks hand 
+Player5: mucks hand 
+Player3 collected 1665 from pot
+*** SUMMARY ***
+Total pot 1665 | Rake 0 
+Board [5h 6c 4c 3d 2s]
+Seat 1: Player3 showed [7c Qc] and won (1665) with a straight, Three to Seven
+Seat 2: Player13 (button) mucked [9s 9h]
+Seat 3: Player2 (small blind) folded before Flop
+Seat 4: Player5 (big blind) mucked [Jh 6h]
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 folded on the Flop
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded on the Turn
+Seat 9: Player6 folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46599343420: Tournament #288463329, 50FPP Hold'em Limit - Level II (30/60) - 2010/07/10 22:28:52 CET [2010/07/10 16:28:52 ET]
+Table '288463329 7' 9-max Seat #3 is the button
+Seat 1: Player3 (1930 in chips) 
+Seat 2: Player13 (900 in chips) 
+Seat 3: Player2 (2845 in chips) is sitting out
+Seat 4: Player5 (430 in chips) 
+Seat 5: Player12 (2440 in chips) 
+Seat 6: Player8 (1010 in chips) 
+Seat 7: Player9 (1365 in chips) 
+Seat 8: Player0 (1135 in chips) 
+Seat 9: Player6 (4155 in chips) 
+Player5: posts small blind 15
+Player12: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Player9 [4h 5h]
+Player8: folds 
+Player9: calls 30
+Player0: folds 
+Player6: folds 
+Player3: calls 30
+Player13: calls 30
+Player2: folds 
+Player5: raises 30 to 60
+Player12: calls 30
+Player9: calls 30
+Player3: calls 30
+Player13: calls 30
+*** FLOP *** [Tc Th 6d]
+Player5: checks 
+Player12: checks 
+Player9: checks 
+Player3: checks 
+Player13: bets 30
+Player5: folds 
+Player12: calls 30
+Player9: folds 
+Player3: folds 
+*** TURN *** [Tc Th 6d] [Qs]
+Player12: checks 
+Player13: bets 60
+Player12: folds 
+Uncalled bet (60) returned to Player13
+Player13 collected 360 from pot
+*** SUMMARY ***
+Total pot 360 | Rake 0 
+Board [Tc Th 6d Qs]
+Seat 1: Player3 folded on the Flop
+Seat 2: Player13 collected (360)
+Seat 3: Player2 (button) folded before Flop (didn't bet)
+Seat 4: Player5 (small blind) folded on the Flop
+Seat 5: Player12 (big blind) folded on the Turn
+Seat 6: Player8 folded before Flop (didn't bet)
+Seat 7: Player9 folded on the Flop
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46599390583: Tournament #288463329, 50FPP Hold'em Limit - Level III (50/100) - 2010/07/10 22:30:09 CET [2010/07/10 16:30:09 ET]
+Table '288463329 7' 9-max Seat #4 is the button
+Seat 1: Player3 (1870 in chips) 
+Seat 2: Player13 (1170 in chips) 
+Seat 3: Player2 (2845 in chips) is sitting out
+Seat 4: Player5 (370 in chips) 
+Seat 5: Player12 (2350 in chips) 
+Seat 6: Player8 (1010 in chips) 
+Seat 7: Player9 (1305 in chips) 
+Seat 8: Player0 (1135 in chips) 
+Seat 9: Player6 (4155 in chips) 
+Player12: posts small blind 25
+Player8: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Player9 [Qd 5h]
+Player9: folds 
+Player2 is connected 
+Player0: folds 
+Player6: calls 50
+Player3: folds 
+Player13: calls 50
+Player2: folds 
+Player5: raises 50 to 100
+Player12: folds 
+Player8: folds 
+Player6: calls 50
+Player13: calls 50
+*** FLOP *** [4c Ac 7c]
+Player6: bets 50
+Player13: calls 50
+Player5: raises 50 to 100
+Player6: calls 50
+Player13: calls 50
+*** TURN *** [4c Ac 7c] [9h]
+Player6: bets 100
+Player13: calls 100
+Player5: raises 70 to 170 and is all-in
+Player6: calls 70
+Player13: calls 70
+*** RIVER *** [4c Ac 7c 9h] [5c]
+Player6: bets 100
+Player13: folds 
+Uncalled bet (100) returned to Player6
+*** SHOW DOWN ***
+Player6: shows [Kc 7s] (a flush, Ace high)
+Player5: shows [8s 8d] (a pair of Eights)
+Player6 collected 1185 from pot
+*** SUMMARY ***
+Total pot 1185 | Rake 0 
+Board [4c Ac 7c 9h 5c]
+Seat 1: Player3 folded before Flop (didn't bet)
+Seat 2: Player13 folded on the River
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player5 (button) showed [8s 8d] and lost with a pair of Eights
+Seat 5: Player12 (small blind) folded before Flop
+Seat 6: Player8 (big blind) folded before Flop
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 showed [Kc 7s] and won (1185) with a flush, Ace high
+
+
+
+PokerStars Game #46599459989: Tournament #288463329, 50FPP Hold'em Limit - Level III (50/100) - 2010/07/10 22:32:03 CET [2010/07/10 16:32:03 ET]
+Table '288463329 7' 9-max Seat #5 is the button
+Seat 1: Player3 (1870 in chips) 
+Seat 2: Player13 (800 in chips) 
+Seat 3: Player2 (2845 in chips) is sitting out
+Seat 5: Player12 (2325 in chips) 
+Seat 6: Player8 (960 in chips) 
+Seat 7: Player9 (1305 in chips) 
+Seat 8: Player0 (1135 in chips) 
+Seat 9: Player6 (4970 in chips) 
+Player8: posts small blind 25
+Player9: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Player9 [Jd 4h]
+Player0: folds 
+Player6: folds 
+Player3: calls 50
+Player13: calls 50
+Player2: folds 
+Player12: calls 50
+Player8: calls 25
+Player9: checks 
+*** FLOP *** [6d Ac Qs]
+Player10 is connected 
+Player8: checks 
+Player9: checks 
+Player3: bets 50
+Player13: calls 50
+Player12: folds 
+Player8: raises 50 to 100
+Player9: folds 
+Player3: calls 50
+Player13: calls 50
+*** TURN *** [6d Ac Qs] [8c]
+Player8: bets 100
+Player3: calls 100
+Player13: raises 100 to 200
+Player8: calls 100
+Player3: calls 100
+*** RIVER *** [6d Ac Qs 8c] [Kc]
+Player8: checks 
+Player3: checks 
+Player13: bets 100
+Player8: calls 100
+Player3: calls 100
+*** SHOW DOWN ***
+Player13: shows [Qh 8h] (two pair, Queens and Eights)
+Player8: shows [Ah 6h] (two pair, Aces and Sixes)
+Player3: mucks hand 
+Player8 collected 1450 from pot
+*** SUMMARY ***
+Total pot 1450 | Rake 0 
+Board [6d Ac Qs 8c Kc]
+Seat 1: Player3 mucked [2h As]
+Seat 2: Player13 showed [Qh 8h] and lost with two pair, Queens and Eights
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 5: Player12 (button) folded on the Flop
+Seat 6: Player8 (small blind) showed [Ah 6h] and won (1450) with two pair, Aces and Sixes
+Seat 7: Player9 (big blind) folded on the Flop
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46599528164: Tournament #288463329, 50FPP Hold'em Limit - Level III (50/100) - 2010/07/10 22:33:55 CET [2010/07/10 16:33:55 ET]
+Table '288463329 7' 9-max Seat #6 is the button
+Seat 1: Player3 (1420 in chips) 
+Seat 2: Player13 (350 in chips) 
+Seat 3: Player2 (2845 in chips) is sitting out
+Seat 4: Player10 (990 in chips) 
+Seat 5: Player12 (2275 in chips) 
+Seat 6: Player8 (1960 in chips) 
+Seat 7: Player9 (1255 in chips) 
+Seat 8: Player0 (1135 in chips) 
+Seat 9: Player6 (4970 in chips) 
+Player9: posts small blind 25
+Player0: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Player9 [Jd Td]
+Player6: folds 
+Player3: calls 50
+Player13: calls 50
+Player2: folds 
+Player10: calls 50
+Player12: folds 
+Player8: raises 50 to 100
+Player2 has returned
+Player9: folds 
+Player0: folds 
+Player3: calls 50
+Player13: calls 50
+Player10: calls 50
+*** FLOP *** [6s Js 4c]
+Player3: bets 50
+Player13: calls 50
+Player10: calls 50
+Player8: calls 50
+*** TURN *** [6s Js 4c] [4h]
+Player3: bets 100
+Player13: calls 100
+Player10: folds 
+Player8: raises 100 to 200
+Player3: calls 100
+Player13: calls 100 and is all-in
+*** RIVER *** [6s Js 4c 4h] [Jc]
+Player3: checks 
+Player8: bets 100
+Player3: folds 
+Uncalled bet (100) returned to Player8
+*** SHOW DOWN ***
+Player8: shows [Ah Th] (two pair, Jacks and Fours)
+Player13: shows [Ks Qc] (two pair, Jacks and Fours - lower kicker)
+Player8 collected 1275 from pot
+Player7 is connected 
+*** SUMMARY ***
+Total pot 1275 | Rake 0 
+Board [6s Js 4c 4h Jc]
+Seat 1: Player3 folded on the River
+Seat 2: Player13 showed [Ks Qc] and lost with two pair, Jacks and Fours
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player10 folded on the Turn
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 (button) showed [Ah Th] and won (1275) with two pair, Jacks and Fours
+Seat 7: Player9 (small blind) folded before Flop
+Seat 8: Player0 (big blind) folded before Flop
+Seat 9: Player6 folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46599589658: Tournament #288463329, 50FPP Hold'em Limit - Level III (50/100) - 2010/07/10 22:35:36 CET [2010/07/10 16:35:36 ET]
+Table '288463329 7' 9-max Seat #7 is the button
+Seat 1: Player3 (1070 in chips) 
+Seat 2: Player7 (2820 in chips) 
+Seat 3: Player2 (2845 in chips) 
+Seat 4: Player10 (840 in chips) 
+Seat 5: Player12 (2275 in chips) 
+Seat 6: Player8 (2885 in chips) 
+Seat 7: Player9 (1230 in chips) 
+Seat 8: Player0 (1085 in chips) 
+Seat 9: Player6 (4970 in chips) 
+Player0: posts small blind 25
+Player6: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Player9 [Jh 5c]
+Player3: folds 
+Player7: folds 
+Player2: folds 
+Player10: calls 50
+Player12: folds 
+Player8: folds 
+Player9: folds 
+Player0: calls 25
+Player6: checks 
+*** FLOP *** [Kc 7h Ah]
+Player0: bets 50
+Player6: raises 50 to 100
+Player10: folds 
+Player0: raises 50 to 150
+Player6: calls 50
+*** TURN *** [Kc 7h Ah] [Qh]
+Player0: bets 100
+Player6: calls 100
+*** RIVER *** [Kc 7h Ah Qh] [Jc]
+Player0: bets 100
+Player6: calls 100
+*** SHOW DOWN ***
+Player0: shows [Ks 7s] (two pair, Kings and Sevens)
+Player6: mucks hand 
+Player0 collected 850 from pot
+*** SUMMARY ***
+Total pot 850 | Rake 0 
+Board [Kc 7h Ah Qh Jc]
+Seat 1: Player3 folded before Flop (didn't bet)
+Seat 2: Player7 folded before Flop (didn't bet)
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player10 folded on the Flop
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 folded before Flop (didn't bet)
+Seat 7: Player9 (button) folded before Flop (didn't bet)
+Seat 8: Player0 (small blind) showed [Ks 7s] and won (850) with two pair, Kings and Sevens
+Seat 9: Player6 (big blind) mucked [Ad 2h]
+
+
+
+PokerStars Game #46599622496: Tournament #288463329, 50FPP Hold'em Limit - Level III (50/100) - 2010/07/10 22:36:30 CET [2010/07/10 16:36:30 ET]
+Table '288463329 7' 9-max Seat #8 is the button
+Seat 1: Player3 (1070 in chips) 
+Seat 2: Player7 (2820 in chips) 
+Seat 3: Player2 (2845 in chips) 
+Seat 4: Player10 (790 in chips) 
+Seat 5: Player12 (2275 in chips) 
+Seat 6: Player8 (2885 in chips) 
+Seat 7: Player9 (1230 in chips) 
+Seat 8: Player0 (1535 in chips) 
+Seat 9: Player6 (4570 in chips) 
+Player6: posts small blind 25
+Player3: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Player9 [3d Th]
+Player7: folds 
+Player2: raises 50 to 100
+Player10: folds 
+Player12: calls 100
+Player8: folds 
+Player9: folds 
+Player0: folds 
+Player6: folds 
+Player3: calls 50
+*** FLOP *** [4d 8s 3s]
+Player3: checks 
+Player2: checks 
+Player12: checks 
+*** TURN *** [4d 8s 3s] [8h]
+Player3: checks 
+Player2: checks 
+Player12: checks 
+*** RIVER *** [4d 8s 3s 8h] [5c]
+Player3: checks 
+Player2: checks 
+Player12: checks 
+*** SHOW DOWN ***
+Player3: shows [Td Kh] (a pair of Eights)
+Player2: shows [Kc Jc] (a pair of Eights - King+Jack kicker)
+Player12: mucks hand 
+Player2 collected 325 from pot
+*** SUMMARY ***
+Total pot 325 | Rake 0 
+Board [4d 8s 3s 8h 5c]
+Seat 1: Player3 (big blind) showed [Td Kh] and lost with a pair of Eights
+Seat 2: Player7 folded before Flop (didn't bet)
+Seat 3: Player2 showed [Kc Jc] and won (325) with a pair of Eights
+Seat 4: Player10 folded before Flop (didn't bet)
+Seat 5: Player12 mucked [7d Kd]
+Seat 6: Player8 folded before Flop (didn't bet)
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 (button) folded before Flop (didn't bet)
+Seat 9: Player6 (small blind) folded before Flop
+
+
+
+PokerStars Game #46599663736: Tournament #288463329, 50FPP Hold'em Limit - Level III (50/100) - 2010/07/10 22:37:38 CET [2010/07/10 16:37:38 ET]
+Table '288463329 7' 9-max Seat #9 is the button
+Seat 1: Player3 (970 in chips) 
+Seat 2: Player7 (2820 in chips) 
+Seat 3: Player2 (3070 in chips) 
+Seat 4: Player10 (790 in chips) 
+Seat 5: Player12 (2175 in chips) 
+Seat 6: Player8 (2885 in chips) 
+Seat 7: Player9 (1230 in chips) 
+Seat 8: Player0 (1535 in chips) 
+Seat 9: Player6 (4545 in chips) 
+Player3: posts small blind 25
+Player7: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Player9 [3h 6h]
+Player2: raises 50 to 100
+Player10: folds 
+Player12: folds 
+Player8: calls 100
+Player9: folds 
+Player0: folds 
+Player6: calls 100
+Player3: raises 50 to 150
+Player7: folds 
+Player2: calls 50
+Player8: calls 50
+Player6: calls 50
+*** FLOP *** [5c 6d 4s]
+Player3: bets 50
+Player2: folds 
+Player8: folds 
+Player6: folds 
+Uncalled bet (50) returned to Player3
+Player3 collected 650 from pot
+*** SUMMARY ***
+Total pot 650 | Rake 0 
+Board [5c 6d 4s]
+Seat 1: Player3 (small blind) collected (650)
+Seat 2: Player7 (big blind) folded before Flop
+Seat 3: Player2 folded on the Flop
+Seat 4: Player10 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 folded on the Flop
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 (button) folded on the Flop
+
+
+
+PokerStars Game #46599696638: Tournament #288463329, 50FPP Hold'em Limit - Level III (50/100) - 2010/07/10 22:38:32 CET [2010/07/10 16:38:32 ET]
+Table '288463329 7' 9-max Seat #1 is the button
+Seat 1: Player3 (1470 in chips) 
+Seat 2: Player7 (2770 in chips) 
+Seat 3: Player2 (2920 in chips) 
+Seat 4: Player10 (790 in chips) 
+Seat 5: Player12 (2175 in chips) 
+Seat 6: Player8 (2735 in chips) 
+Seat 7: Player9 (1230 in chips) 
+Seat 8: Player0 (1535 in chips) 
+Seat 9: Player6 (4395 in chips) 
+Player7: posts small blind 25
+Player2: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Player9 [8c Qd]
+Player10: folds 
+Player12: folds 
+Player8: folds 
+Player9: folds 
+Player0: folds 
+Player6: folds 
+Player3: folds 
+Player7: calls 25
+Player2: checks 
+*** FLOP *** [5c 4d 6h]
+Player7: bets 50
+Player2: calls 50
+*** TURN *** [5c 4d 6h] [Jd]
+Player7: bets 100
+Player2: calls 100
+*** RIVER *** [5c 4d 6h Jd] [As]
+Player7: bets 100
+Player2: folds 
+Uncalled bet (100) returned to Player7
+Player7 collected 400 from pot
+*** SUMMARY ***
+Total pot 400 | Rake 0 
+Board [5c 4d 6h Jd As]
+Seat 1: Player3 (button) folded before Flop (didn't bet)
+Seat 2: Player7 (small blind) collected (400)
+Seat 3: Player2 (big blind) folded on the River
+Seat 4: Player10 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 folded before Flop (didn't bet)
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46599727681: Tournament #288463329, 50FPP Hold'em Limit - Level III (50/100) - 2010/07/10 22:39:23 CET [2010/07/10 16:39:23 ET]
+Table '288463329 7' 9-max Seat #2 is the button
+Seat 1: Player3 (1470 in chips) 
+Seat 2: Player7 (2970 in chips) 
+Seat 3: Player2 (2720 in chips) 
+Seat 4: Player10 (790 in chips) 
+Seat 5: Player12 (2175 in chips) 
+Seat 6: Player8 (2735 in chips) 
+Seat 7: Player9 (1230 in chips) 
+Seat 8: Player0 (1535 in chips) 
+Seat 9: Player6 (4395 in chips) 
+Player2: posts small blind 25
+Player10: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Player9 [As 6s]
+Player12: folds 
+Player8: calls 50
+Player9: calls 50
+Player0: calls 50
+Player6: folds 
+Player3: calls 50
+Player7: folds 
+Player2: folds 
+Player10: checks 
+*** FLOP *** [2d Qd 3h]
+Player10: checks 
+Player8: checks 
+Player9: checks 
+Player0: bets 50
+Player3: folds 
+Player10: folds 
+Player8: folds 
+Player9: folds 
+Uncalled bet (50) returned to Player0
+Player0 collected 275 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 275 | Rake 0 
+Board [2d Qd 3h]
+Seat 1: Player3 folded on the Flop
+Seat 2: Player7 (button) folded before Flop (didn't bet)
+Seat 3: Player2 (small blind) folded before Flop
+Seat 4: Player10 (big blind) folded on the Flop
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 folded on the Flop
+Seat 7: Player9 folded on the Flop
+Seat 8: Player0 collected (275)
+Seat 9: Player6 folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46599762689: Tournament #288463329, 50FPP Hold'em Limit - Level III (50/100) - 2010/07/10 22:40:21 CET [2010/07/10 16:40:21 ET]
+Table '288463329 7' 9-max Seat #3 is the button
+Seat 1: Player3 (1420 in chips) 
+Seat 2: Player7 (2970 in chips) 
+Seat 3: Player2 (2695 in chips) 
+Seat 4: Player10 (740 in chips) 
+Seat 5: Player12 (2175 in chips) 
+Seat 6: Player8 (2685 in chips) 
+Seat 7: Player9 (1180 in chips) 
+Seat 8: Player0 (1760 in chips) 
+Seat 9: Player6 (4395 in chips) 
+Player10: posts small blind 25
+Player12: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Player9 [6h 2s]
+Player8: calls 50
+Player9: folds 
+Player0: folds 
+Player6: folds 
+Player3: raises 50 to 100
+Player7: folds 
+Player2: raises 50 to 150
+Player10: folds 
+Player12: folds 
+Player8: calls 100
+Player3: calls 50
+*** FLOP *** [6c 9s Tc]
+Player8: checks 
+Player3: bets 50
+Player2: raises 50 to 100
+Player8: folds 
+Player3: calls 50
+*** TURN *** [6c 9s Tc] [Ts]
+Player3: bets 100
+Player2: calls 100
+*** RIVER *** [6c 9s Tc Ts] [5d]
+Player3: bets 100
+Player2: raises 100 to 200
+Player3: calls 100
+*** SHOW DOWN ***
+Player2: shows [Jh Jc] (two pair, Jacks and Tens)
+Player3: shows [8s 8c] (two pair, Tens and Eights)
+Player2 collected 1325 from pot
+*** SUMMARY ***
+Total pot 1325 | Rake 0 
+Board [6c 9s Tc Ts 5d]
+Seat 1: Player3 showed [8s 8c] and lost with two pair, Tens and Eights
+Seat 2: Player7 folded before Flop (didn't bet)
+Seat 3: Player2 (button) showed [Jh Jc] and won (1325) with two pair, Jacks and Tens
+Seat 4: Player10 (small blind) folded before Flop
+Seat 5: Player12 (big blind) folded before Flop
+Seat 6: Player8 folded on the Flop
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46599795557: Tournament #288463329, 50FPP Hold'em Limit - Level III (50/100) - 2010/07/10 22:41:15 CET [2010/07/10 16:41:15 ET]
+Table '288463329 7' 9-max Seat #4 is the button
+Seat 1: Player3 (870 in chips) 
+Seat 2: Player7 (2970 in chips) 
+Seat 3: Player2 (3470 in chips) 
+Seat 4: Player10 (715 in chips) 
+Seat 5: Player12 (2125 in chips) 
+Seat 6: Player8 (2535 in chips) 
+Seat 7: Player9 (1180 in chips) 
+Seat 8: Player0 (1760 in chips) 
+Seat 9: Player6 (4395 in chips) 
+Player12: posts small blind 25
+Player8: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Player9 [Ks 6s]
+Player9: folds 
+Player0: calls 50
+Player6: calls 50
+Player3: folds 
+Player7: folds 
+Player2: folds 
+Player10: folds 
+Player12: calls 25
+Player8: checks 
+*** FLOP *** [Jd 8s Kd]
+Player12: bets 50
+Player8: folds 
+Player0: folds 
+Player6: calls 50
+*** TURN *** [Jd 8s Kd] [8h]
+Player12: bets 100
+Player6: calls 100
+*** RIVER *** [Jd 8s Kd 8h] [9d]
+Player12: checks 
+Player6: checks 
+*** SHOW DOWN ***
+Player12: shows [Qh Kc] (two pair, Kings and Eights)
+Player6: mucks hand 
+Player12 collected 500 from pot
+*** SUMMARY ***
+Total pot 500 | Rake 0 
+Board [Jd 8s Kd 8h 9d]
+Seat 1: Player3 folded before Flop (didn't bet)
+Seat 2: Player7 folded before Flop (didn't bet)
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player10 (button) folded before Flop (didn't bet)
+Seat 5: Player12 (small blind) showed [Qh Kc] and won (500) with two pair, Kings and Eights
+Seat 6: Player8 (big blind) folded on the Flop
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded on the Flop
+Seat 9: Player6 mucked [3c 3s]
+
+
+
+PokerStars Game #46599841171: Tournament #288463329, 50FPP Hold'em Limit - Level III (50/100) - 2010/07/10 22:42:29 CET [2010/07/10 16:42:29 ET]
+Table '288463329 7' 9-max Seat #5 is the button
+Seat 1: Player3 (870 in chips) 
+Seat 2: Player7 (2970 in chips) 
+Seat 3: Player2 (3470 in chips) 
+Seat 4: Player10 (715 in chips) 
+Seat 5: Player12 (2425 in chips) 
+Seat 6: Player8 (2485 in chips) 
+Seat 7: Player9 (1180 in chips) 
+Seat 8: Player0 (1710 in chips) 
+Seat 9: Player6 (4195 in chips) 
+Player8: posts small blind 25
+Player9: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Player9 [Qs 6c]
+Player0: folds 
+Player6: folds 
+Player3: calls 50
+Player7: folds 
+Player2: folds 
+Player10: folds 
+Player12: folds 
+Player8: calls 25
+Player9: checks 
+*** FLOP *** [Qh Kd As]
+Player8: checks 
+Player9: checks 
+Player3: checks 
+*** TURN *** [Qh Kd As] [Kc]
+Player8: checks 
+Player9: bets 100
+Player3: calls 100
+Player8: folds 
+*** RIVER *** [Qh Kd As Kc] [Qc]
+Player9: bets 100
+Player3: calls 100
+*** SHOW DOWN ***
+Player9: shows [Qs 6c] (a full house, Queens full of Kings)
+Player3: shows [Jc Td] (a straight, Ten to Ace)
+Player9 collected 550 from pot
+*** SUMMARY ***
+Total pot 550 | Rake 0 
+Board [Qh Kd As Kc Qc]
+Seat 1: Player3 showed [Jc Td] and lost with a straight, Ten to Ace
+Seat 2: Player7 folded before Flop (didn't bet)
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player10 folded before Flop (didn't bet)
+Seat 5: Player12 (button) folded before Flop (didn't bet)
+Seat 6: Player8 (small blind) folded on the Turn
+Seat 7: Player9 (big blind) showed [Qs 6c] and won (550) with a full house, Queens full of Kings
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46599871049: Tournament #288463329, 50FPP Hold'em Limit - Level III (50/100) - 2010/07/10 22:43:18 CET [2010/07/10 16:43:18 ET]
+Table '288463329 7' 9-max Seat #6 is the button
+Seat 1: Player3 (620 in chips) 
+Seat 2: Player7 (2970 in chips) 
+Seat 3: Player2 (3470 in chips) 
+Seat 4: Player10 (715 in chips) 
+Seat 5: Player12 (2425 in chips) 
+Seat 6: Player8 (2435 in chips) 
+Seat 7: Player9 (1480 in chips) 
+Seat 8: Player0 (1710 in chips) 
+Seat 9: Player6 (4195 in chips) 
+Player9: posts small blind 25
+Player0: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Player9 [Td 6d]
+Player6: raises 50 to 100
+Player3: folds 
+Player7: calls 100
+Player2: folds 
+Player10: calls 100
+Player12: folds 
+Player8: folds 
+Player9: folds 
+Player0: calls 50
+*** FLOP *** [5s Ks Jc]
+Player0: checks 
+Player6: bets 50
+Player7: folds 
+Player10: calls 50
+Player0: calls 50
+*** TURN *** [5s Ks Jc] [3c]
+Player0: checks 
+Player6: bets 100
+Player10: folds 
+Player0: calls 100
+*** RIVER *** [5s Ks Jc 3c] [2s]
+Player0: checks 
+Player6: bets 100
+Player0: folds 
+Uncalled bet (100) returned to Player6
+Player6 collected 775 from pot
+Player6: doesn't show hand 
+*** SUMMARY ***
+Total pot 775 | Rake 0 
+Board [5s Ks Jc 3c 2s]
+Seat 1: Player3 folded before Flop (didn't bet)
+Seat 2: Player7 folded on the Flop
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player10 folded on the Turn
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 (button) folded before Flop (didn't bet)
+Seat 7: Player9 (small blind) folded before Flop
+Seat 8: Player0 (big blind) folded on the River
+Seat 9: Player6 collected (775)
+
+
+
+PokerStars Game #46599917632: Tournament #288463329, 50FPP Hold'em Limit - Level III (50/100) - 2010/07/10 22:44:34 CET [2010/07/10 16:44:34 ET]
+Table '288463329 7' 9-max Seat #7 is the button
+Seat 1: Player3 (620 in chips) 
+Seat 2: Player7 (2870 in chips) 
+Seat 3: Player2 (3470 in chips) 
+Seat 4: Player10 (565 in chips) 
+Seat 5: Player12 (2425 in chips) 
+Seat 6: Player8 (2435 in chips) 
+Seat 7: Player9 (1455 in chips) 
+Seat 8: Player0 (1460 in chips) 
+Seat 9: Player6 (4720 in chips) 
+Player0: posts small blind 25
+Player6: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Player9 [Kd Ts]
+Player3: folds 
+Player7: folds 
+Player2: folds 
+Player10: raises 50 to 100
+Player12: calls 100
+Player8: folds 
+Player9: folds 
+Player0: folds 
+Player6: folds 
+*** FLOP *** [Ah 9d 2c]
+Player10: bets 50
+Player12: folds 
+Uncalled bet (50) returned to Player10
+Player10 collected 275 from pot
+Player10: doesn't show hand 
+*** SUMMARY ***
+Total pot 275 | Rake 0 
+Board [Ah 9d 2c]
+Seat 1: Player3 folded before Flop (didn't bet)
+Seat 2: Player7 folded before Flop (didn't bet)
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player10 collected (275)
+Seat 5: Player12 folded on the Flop
+Seat 6: Player8 folded before Flop (didn't bet)
+Seat 7: Player9 (button) folded before Flop (didn't bet)
+Seat 8: Player0 (small blind) folded before Flop
+Seat 9: Player6 (big blind) folded before Flop
+
+
+
+PokerStars Game #46599933486: Tournament #288463329, 50FPP Hold'em Limit - Level III (50/100) - 2010/07/10 22:44:59 CET [2010/07/10 16:44:59 ET]
+Table '288463329 7' 9-max Seat #8 is the button
+Seat 1: Player3 (620 in chips) 
+Seat 2: Player7 (2870 in chips) 
+Seat 3: Player2 (3470 in chips) 
+Seat 4: Player10 (740 in chips) 
+Seat 5: Player12 (2325 in chips) 
+Seat 6: Player8 (2435 in chips) 
+Seat 7: Player9 (1455 in chips) 
+Seat 8: Player0 (1435 in chips) 
+Seat 9: Player6 (4670 in chips) 
+Player6: posts small blind 25
+Player3: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Player9 [4d Kh]
+Player7 has timed out
+Player7: folds 
+Player7 is sitting out
+Player2: folds 
+Player10: calls 50
+Player12: calls 50
+Player7 has returned
+Player8: folds 
+Player9: folds 
+Player0: calls 50
+Player6: calls 25
+Player3: checks 
+*** FLOP *** [Jc 6s 2s]
+Player6: checks 
+Player3: checks 
+Player10: bets 50
+Player12: calls 50
+Player0: calls 50
+Player6: folds 
+Player3: folds 
+*** TURN *** [Jc 6s 2s] [5c]
+Player10: bets 100
+Player12: calls 100
+Player0: folds 
+*** RIVER *** [Jc 6s 2s 5c] [7s]
+Player10: checks 
+Player12: bets 100
+Player10: calls 100
+*** SHOW DOWN ***
+Player12: shows [6d 7d] (two pair, Sevens and Sixes)
+Player10: mucks hand 
+Player12 collected 800 from pot
+*** SUMMARY ***
+Total pot 800 | Rake 0 
+Board [Jc 6s 2s 5c 7s]
+Seat 1: Player3 (big blind) folded on the Flop
+Seat 2: Player7 folded before Flop (didn't bet)
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player10 mucked [Jh Ts]
+Seat 5: Player12 showed [6d 7d] and won (800) with two pair, Sevens and Sixes
+Seat 6: Player8 folded before Flop (didn't bet)
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 (button) folded on the Turn
+Seat 9: Player6 (small blind) folded on the Flop
+
+
+
+PokerStars Game #46599992927: Tournament #288463329, 50FPP Hold'em Limit - Level IV (100/200) - 2010/07/10 22:46:35 CET [2010/07/10 16:46:35 ET]
+Table '288463329 7' 9-max Seat #9 is the button
+Seat 1: Player3 (570 in chips) 
+Seat 2: Player7 (2870 in chips) 
+Seat 3: Player2 (3470 in chips) 
+Seat 4: Player10 (440 in chips) 
+Seat 5: Player12 (2825 in chips) 
+Seat 6: Player8 (2435 in chips) 
+Seat 7: Player9 (1455 in chips) 
+Seat 8: Player0 (1335 in chips) 
+Seat 9: Player6 (4620 in chips) 
+Player3: posts small blind 50
+Player7: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player9 [Kc 3h]
+Player2: calls 100
+Player10: folds 
+Player12: folds 
+Player8: calls 100
+Player9: folds 
+Player0: folds 
+Player6: folds 
+Player3: folds 
+Player7: checks 
+*** FLOP *** [9s 2s 7d]
+Player7: checks 
+Player2: bets 100
+Player8: folds 
+Player7: folds 
+Uncalled bet (100) returned to Player2
+Player2 collected 350 from pot
+Player2: doesn't show hand 
+*** SUMMARY ***
+Total pot 350 | Rake 0 
+Board [9s 2s 7d]
+Seat 1: Player3 (small blind) folded before Flop
+Seat 2: Player7 (big blind) folded on the Flop
+Seat 3: Player2 collected (350)
+Seat 4: Player10 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 folded on the Flop
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46600015636: Tournament #288463329, 50FPP Hold'em Limit - Level IV (100/200) - 2010/07/10 22:47:12 CET [2010/07/10 16:47:12 ET]
+Table '288463329 7' 9-max Seat #2 is the button
+Seat 2: Player7 (2770 in chips) 
+Seat 3: Player2 (3720 in chips) 
+Seat 4: Player10 (440 in chips) 
+Seat 5: Player12 (2825 in chips) 
+Seat 6: Player8 (2335 in chips) 
+Seat 7: Player9 (1455 in chips) 
+Seat 8: Player0 (1335 in chips) 
+Seat 9: Player6 (4620 in chips) 
+Player2: posts small blind 50
+Player10: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player9 [8h 2s]
+Player12: folds 
+Player8: folds 
+Player9: folds 
+Player0: folds 
+Player6: folds 
+Player7: folds 
+Player2: folds 
+Uncalled bet (50) returned to Player10
+Player10 collected 100 from pot
+Player10: doesn't show hand 
+*** SUMMARY ***
+Total pot 100 | Rake 0 
+Seat 2: Player7 (button) folded before Flop (didn't bet)
+Seat 3: Player2 (small blind) folded before Flop
+Seat 4: Player10 (big blind) collected (100)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 folded before Flop (didn't bet)
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46600028216: Tournament #288463329, 50FPP Hold'em Limit - Level IV (100/200) - 2010/07/10 22:47:33 CET [2010/07/10 16:47:33 ET]
+Table '288463329 7' 9-max Seat #3 is the button
+Seat 2: Player7 (2770 in chips) 
+Seat 3: Player2 (3670 in chips) 
+Seat 4: Player10 (490 in chips) 
+Seat 5: Player12 (2825 in chips) 
+Seat 6: Player8 (2335 in chips) 
+Seat 7: Player9 (1455 in chips) 
+Seat 8: Player0 (1335 in chips) 
+Seat 9: Player6 (4620 in chips) 
+Player10: posts small blind 50
+Player12: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player9 [Kh Ks]
+Player8: folds 
+Player9: raises 100 to 200
+Player0: folds 
+Player6: folds 
+Player11 is connected 
+Player7: folds 
+Player2: folds 
+Player10: folds 
+Player12: calls 100
+*** FLOP *** [5h 6c 7c]
+Player12: checks 
+Player9: bets 100
+Player12: calls 100
+*** TURN *** [5h 6c 7c] [Kc]
+Player12: checks 
+Player9: bets 200
+Player12: calls 200
+*** RIVER *** [5h 6c 7c Kc] [3c]
+Player12: checks 
+Player9: checks 
+*** SHOW DOWN ***
+Player12: shows [9h 9c] (a flush, King high)
+Player9: mucks hand 
+Player12 collected 1050 from pot
+*** SUMMARY ***
+Total pot 1050 | Rake 0 
+Board [5h 6c 7c Kc 3c]
+Seat 2: Player7 folded before Flop (didn't bet)
+Seat 3: Player2 (button) folded before Flop (didn't bet)
+Seat 4: Player10 (small blind) folded before Flop
+Seat 5: Player12 (big blind) showed [9h 9c] and won (1050) with a flush, King high
+Seat 6: Player8 folded before Flop (didn't bet)
+Seat 7: Player9 mucked [Kh Ks]
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46600059721: Tournament #288463329, 50FPP Hold'em Limit - Level IV (100/200) - 2010/07/10 22:48:23 CET [2010/07/10 16:48:23 ET]
+Table '288463329 7' 9-max Seat #4 is the button
+Seat 1: Player11 (3640 in chips) 
+Seat 2: Player7 (2770 in chips) 
+Seat 3: Player2 (3670 in chips) 
+Seat 4: Player10 (440 in chips) 
+Seat 5: Player12 (3375 in chips) 
+Seat 6: Player8 (2335 in chips) 
+Seat 7: Player9 (955 in chips) 
+Seat 8: Player0 (1335 in chips) 
+Seat 9: Player6 (4620 in chips) 
+Player12: posts small blind 50
+Player8: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player9 [Th 7c]
+Player9: folds 
+Player0: calls 100
+Player6: folds 
+Player11: folds 
+Player7: folds 
+Player2: folds 
+Player10: folds 
+Player12: calls 50
+Player8: checks 
+*** FLOP *** [8h 2c 5h]
+Player12: checks 
+Player8: checks 
+Player0: checks 
+*** TURN *** [8h 2c 5h] [7d]
+Player12: bets 200
+Player8: calls 200
+Player0: folds 
+*** RIVER *** [8h 2c 5h 7d] [Kd]
+Player12: checks 
+Player8: checks 
+*** SHOW DOWN ***
+Player12: shows [As 6h] (high card Ace)
+Player8: shows [6s 8s] (a pair of Eights)
+Player8 collected 700 from pot
+*** SUMMARY ***
+Total pot 700 | Rake 0 
+Board [8h 2c 5h 7d Kd]
+Seat 1: Player11 folded before Flop (didn't bet)
+Seat 2: Player7 folded before Flop (didn't bet)
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player10 (button) folded before Flop (didn't bet)
+Seat 5: Player12 (small blind) showed [As 6h] and lost with high card Ace
+Seat 6: Player8 (big blind) showed [6s 8s] and won (700) with a pair of Eights
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded on the Turn
+Seat 9: Player6 folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46600086407: Tournament #288463329, 50FPP Hold'em Limit - Level IV (100/200) - 2010/07/10 22:49:07 CET [2010/07/10 16:49:07 ET]
+Table '288463329 7' 9-max Seat #5 is the button
+Seat 1: Player11 (3640 in chips) 
+Seat 2: Player7 (2770 in chips) 
+Seat 3: Player2 (3670 in chips) 
+Seat 4: Player10 (440 in chips) 
+Seat 5: Player12 (3075 in chips) 
+Seat 6: Player8 (2735 in chips) 
+Seat 7: Player9 (955 in chips) 
+Seat 8: Player0 (1235 in chips) 
+Seat 9: Player6 (4620 in chips) 
+Player8: posts small blind 50
+Player9: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player9 [8h 6s]
+Player0: folds 
+Player6: folds 
+Player11: folds 
+Player7: folds 
+Player2: folds 
+Player10: calls 100
+Player12: calls 100
+Player8: calls 50
+Player9: checks 
+*** FLOP *** [Ah Ks As]
+Player8: checks 
+Player9: checks 
+Player10: checks 
+Player12: checks 
+*** TURN *** [Ah Ks As] [7d]
+Player8: bets 200
+Player9: folds 
+Player10: folds 
+Player2 is sitting out
+Player12: folds 
+Uncalled bet (200) returned to Player8
+Player8 collected 400 from pot
+*** SUMMARY ***
+Total pot 400 | Rake 0 
+Board [Ah Ks As 7d]
+Seat 1: Player11 folded before Flop (didn't bet)
+Seat 2: Player7 folded before Flop (didn't bet)
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player10 folded on the Turn
+Seat 5: Player12 (button) folded on the Turn
+Seat 6: Player8 (small blind) collected (400)
+Seat 7: Player9 (big blind) folded on the Turn
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46600119824: Tournament #288463329, 50FPP Hold'em Limit - Level IV (100/200) - 2010/07/10 22:50:01 CET [2010/07/10 16:50:01 ET]
+Table '288463329 7' 9-max Seat #6 is the button
+Seat 1: Player11 (3640 in chips) 
+Seat 2: Player7 (2770 in chips) 
+Seat 3: Player2 (3670 in chips) is sitting out
+Seat 4: Player10 (340 in chips) 
+Seat 5: Player12 (2975 in chips) 
+Seat 6: Player8 (3035 in chips) 
+Seat 7: Player9 (855 in chips) 
+Seat 8: Player0 (1235 in chips) 
+Seat 9: Player6 (4620 in chips) 
+Player9: posts small blind 50
+Player0: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player9 [Kc Jh]
+Player6: folds 
+Player2 is connected 
+Player2 has returned
+Player11: calls 100
+Player7: folds 
+Player2: folds 
+Player10: folds 
+Player12: folds 
+Player8: folds 
+Player9: calls 50
+Player0: checks 
+*** FLOP *** [3s 7s Qs]
+Player9: checks 
+Player0: bets 100
+Player11: calls 100
+Player9: folds 
+*** TURN *** [3s 7s Qs] [Qd]
+Player0: bets 200
+Player11: calls 200
+*** RIVER *** [3s 7s Qs Qd] [9c]
+Player0: bets 200
+Player11: calls 200
+*** SHOW DOWN ***
+Player0: shows [Ts 2s] (a flush, Queen high)
+Player11: mucks hand 
+Player0 collected 1300 from pot
+*** SUMMARY ***
+Total pot 1300 | Rake 0 
+Board [3s 7s Qs Qd 9c]
+Seat 1: Player11 mucked [Ah 7d]
+Seat 2: Player7 folded before Flop (didn't bet)
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player10 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 (button) folded before Flop (didn't bet)
+Seat 7: Player9 (small blind) folded on the Flop
+Seat 8: Player0 (big blind) showed [Ts 2s] and won (1300) with a flush, Queen high
+Seat 9: Player6 folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46600165961: Tournament #288463329, 50FPP Hold'em Limit - Level IV (100/200) - 2010/07/10 22:51:15 CET [2010/07/10 16:51:15 ET]
+Table '288463329 7' 9-max Seat #7 is the button
+Seat 1: Player11 (3040 in chips) 
+Seat 2: Player7 (2770 in chips) 
+Seat 3: Player2 (3670 in chips) 
+Seat 4: Player10 (340 in chips) 
+Seat 5: Player12 (2975 in chips) 
+Seat 6: Player8 (3035 in chips) 
+Seat 7: Player9 (755 in chips) 
+Seat 8: Player0 (1935 in chips) 
+Seat 9: Player6 (4620 in chips) 
+Player0: posts small blind 50
+Player6: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player9 [9c 3s]
+Player11: calls 100
+Player7: folds 
+Player2: raises 100 to 200
+Player10: folds 
+Player12: folds 
+Player8: folds 
+Player9: folds 
+Player0: folds 
+Player6: folds 
+Player11: calls 100
+*** FLOP *** [5c 6h 8d]
+Player11: bets 100
+Player2: calls 100
+*** TURN *** [5c 6h 8d] [9s]
+Player11: bets 200
+Player2: folds 
+Uncalled bet (200) returned to Player11
+Player11 collected 750 from pot
+Player11: doesn't show hand 
+*** SUMMARY ***
+Total pot 750 | Rake 0 
+Board [5c 6h 8d 9s]
+Seat 1: Player11 collected (750)
+Seat 2: Player7 folded before Flop (didn't bet)
+Seat 3: Player2 folded on the Turn
+Seat 4: Player10 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 folded before Flop (didn't bet)
+Seat 7: Player9 (button) folded before Flop (didn't bet)
+Seat 8: Player0 (small blind) folded before Flop
+Seat 9: Player6 (big blind) folded before Flop
+
+
+
+PokerStars Game #46600198139: Tournament #288463329, 50FPP Hold'em Limit - Level IV (100/200) - 2010/07/10 22:52:07 CET [2010/07/10 16:52:07 ET]
+Table '288463329 7' 9-max Seat #8 is the button
+Seat 1: Player11 (3490 in chips) 
+Seat 2: Player7 (2770 in chips) 
+Seat 3: Player2 (3370 in chips) 
+Seat 4: Player10 (340 in chips) 
+Seat 5: Player12 (2975 in chips) 
+Seat 6: Player8 (3035 in chips) 
+Seat 7: Player9 (755 in chips) 
+Seat 8: Player0 (1885 in chips) 
+Seat 9: Player6 (4520 in chips) 
+Player6: posts small blind 50
+Player11: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player9 [Qh Qs]
+Player7: folds 
+Player2: folds 
+Player10: folds 
+Player12: folds 
+Player8: calls 100
+Player9: raises 100 to 200
+Player0: folds 
+Player6: folds 
+Player11: calls 100
+Player8: calls 100
+*** FLOP *** [9s Ac 9d]
+Player11: bets 100
+Player8: folds 
+Player9: calls 100
+*** TURN *** [9s Ac 9d] [6c]
+Player11: bets 200
+Player9: folds 
+Uncalled bet (200) returned to Player11
+Player11 collected 850 from pot
+*** SUMMARY ***
+Total pot 850 | Rake 0 
+Board [9s Ac 9d 6c]
+Seat 1: Player11 (big blind) collected (850)
+Seat 2: Player7 folded before Flop (didn't bet)
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player10 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 folded on the Flop
+Seat 7: Player9 folded on the Turn
+Seat 8: Player0 (button) folded before Flop (didn't bet)
+Seat 9: Player6 (small blind) folded before Flop
+
+
+
+PokerStars Game #46600237077: Tournament #288463329, 50FPP Hold'em Limit - Level IV (100/200) - 2010/07/10 22:53:10 CET [2010/07/10 16:53:10 ET]
+Table '288463329 7' 9-max Seat #9 is the button
+Seat 1: Player11 (4040 in chips) 
+Seat 2: Player7 (2770 in chips) 
+Seat 3: Player2 (3370 in chips) 
+Seat 4: Player10 (340 in chips) 
+Seat 5: Player12 (2975 in chips) 
+Seat 6: Player8 (2835 in chips) 
+Seat 7: Player9 (455 in chips) 
+Seat 8: Player0 (1885 in chips) 
+Seat 9: Player6 (4470 in chips) 
+Player11: posts small blind 50
+Player7: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player9 [5c 7s]
+Player2: folds 
+Player10: folds 
+Player12: calls 100
+Player8: folds 
+Player9: folds 
+Player0: folds 
+Player6: calls 100
+Player11: raises 100 to 200
+Player7: folds 
+Player12: calls 100
+Player6: calls 100
+*** FLOP *** [9h 3c 2c]
+Player11: bets 100
+Player12: calls 100
+Player6: folds 
+*** TURN *** [9h 3c 2c] [Kh]
+Player11: checks 
+Player12: checks 
+*** RIVER *** [9h 3c 2c Kh] [7h]
+Player11: checks 
+Player12: checks 
+*** SHOW DOWN ***
+Player11: shows [As Qs] (high card Ace)
+Player12: shows [4d 4c] (a pair of Fours)
+Player12 collected 900 from pot
+Player2 is disconnected 
+*** SUMMARY ***
+Total pot 900 | Rake 0 
+Board [9h 3c 2c Kh 7h]
+Seat 1: Player11 (small blind) showed [As Qs] and lost with high card Ace
+Seat 2: Player7 (big blind) folded before Flop
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player10 folded before Flop (didn't bet)
+Seat 5: Player12 showed [4d 4c] and won (900) with a pair of Fours
+Seat 6: Player8 folded before Flop (didn't bet)
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 (button) folded on the Flop
+
+
+
+PokerStars Game #46600267960: Tournament #288463329, 50FPP Hold'em Limit - Level IV (100/200) - 2010/07/10 22:54:00 CET [2010/07/10 16:54:00 ET]
+Table '288463329 7' 9-max Seat #1 is the button
+Seat 1: Player11 (3740 in chips) 
+Seat 2: Player7 (2670 in chips) 
+Seat 3: Player2 (3370 in chips) 
+Seat 4: Player10 (340 in chips) 
+Seat 5: Player12 (3575 in chips) 
+Seat 6: Player8 (2835 in chips) 
+Seat 7: Player9 (455 in chips) 
+Seat 8: Player0 (1885 in chips) 
+Seat 9: Player6 (4270 in chips) 
+Player7: posts small blind 50
+Player2: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player9 [Th 5d]
+Player2 is connected 
+Player10: folds 
+Player12: folds 
+Player8: calls 100
+Player9: folds 
+Player0: folds 
+Player6: folds 
+Player11: folds 
+Player7: raises 100 to 200
+Player2: folds 
+Player8: calls 100
+*** FLOP *** [6c 8c Qh]
+Player7: bets 100
+Player8: raises 100 to 200
+Player7: raises 100 to 300
+Player8: calls 100
+*** TURN *** [6c 8c Qh] [Kc]
+Player7: bets 200
+Player8: calls 200
+*** RIVER *** [6c 8c Qh Kc] [3s]
+Player7: bets 200
+Player8: calls 200
+*** SHOW DOWN ***
+Player7: shows [Ah Js] (high card Ace)
+Player8: shows [Kd Qd] (two pair, Kings and Queens)
+Player8 collected 1900 from pot
+*** SUMMARY ***
+Total pot 1900 | Rake 0 
+Board [6c 8c Qh Kc 3s]
+Seat 1: Player11 (button) folded before Flop (didn't bet)
+Seat 2: Player7 (small blind) showed [Ah Js] and lost with high card Ace
+Seat 3: Player2 (big blind) folded before Flop
+Seat 4: Player10 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 showed [Kd Qd] and won (1900) with two pair, Kings and Queens
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46600303616: Tournament #288463329, 50FPP Hold'em Limit - Level IV (100/200) - 2010/07/10 22:54:57 CET [2010/07/10 16:54:57 ET]
+Table '288463329 7' 9-max Seat #2 is the button
+Seat 1: Player11 (3740 in chips) 
+Seat 2: Player7 (1770 in chips) 
+Seat 3: Player2 (3270 in chips) 
+Seat 4: Player10 (340 in chips) 
+Seat 5: Player12 (3575 in chips) 
+Seat 6: Player8 (3835 in chips) 
+Seat 7: Player9 (455 in chips) 
+Seat 8: Player0 (1885 in chips) 
+Seat 9: Player6 (4270 in chips) 
+Player2: posts small blind 50
+Player10: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player9 [5c 9c]
+Player12: folds 
+Player8: raises 100 to 200
+Player9: folds 
+Player0: folds 
+Player6: calls 200
+Player11: folds 
+Player7: folds 
+Player2: folds 
+Player10: calls 100
+*** FLOP *** [Th Ks 2s]
+Player10: checks 
+Player8: checks 
+Player6: bets 100
+Player10: calls 100
+Player8: calls 100
+*** TURN *** [Th Ks 2s] [Tc]
+Player10: checks 
+Player8: bets 200
+Player6: calls 200
+Player10: calls 40 and is all-in
+*** RIVER *** [Th Ks 2s Tc] [8c]
+Player8: bets 200
+Player6: calls 200
+*** SHOW DOWN ***
+Player8: shows [As Qh] (a pair of Tens)
+Player6: shows [9d Kd] (two pair, Kings and Tens)
+Player6 collected 720 from side pot
+Player10: mucks hand 
+Player6 collected 1070 from main pot
+*** SUMMARY ***
+Total pot 1790 Main pot 1070. Side pot 720. | Rake 0 
+Board [Th Ks 2s Tc 8c]
+Seat 1: Player11 folded before Flop (didn't bet)
+Seat 2: Player7 (button) folded before Flop (didn't bet)
+Seat 3: Player2 (small blind) folded before Flop
+Seat 4: Player10 (big blind) mucked [Jh 9s]
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 showed [As Qh] and lost with a pair of Tens
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 showed [9d Kd] and won (1790) with two pair, Kings and Tens
+
+
+
+PokerStars Game #46600333290: Tournament #288463329, 50FPP Hold'em Limit - Level IV (100/200) - 2010/07/10 22:55:59 CET [2010/07/10 16:55:59 ET]
+Table '288463329 7' 9-max Seat #3 is the button
+Seat 1: Player11 (3740 in chips) 
+Seat 2: Player7 (1770 in chips) 
+Seat 3: Player2 (3220 in chips) 
+Seat 5: Player12 (3575 in chips) 
+Seat 6: Player8 (3135 in chips) 
+Seat 7: Player9 (455 in chips) 
+Seat 8: Player0 (1885 in chips) 
+Seat 9: Player6 (5360 in chips) 
+Player12: posts small blind 50
+Player8: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player9 [2s 8d]
+Player9: folds 
+Player0: folds 
+Player6: folds 
+Player11: calls 100
+Player7: folds 
+Player2: folds 
+Player12: calls 50
+Player8: checks 
+*** FLOP *** [Ks 2c 4c]
+Player12: checks 
+Player8: bets 100
+Player11: folds 
+Player12: calls 100
+*** TURN *** [Ks 2c 4c] [As]
+Player12: checks 
+Player8: bets 200
+Player12: folds 
+Uncalled bet (200) returned to Player8
+Player8 collected 500 from pot
+*** SUMMARY ***
+Total pot 500 | Rake 0 
+Board [Ks 2c 4c As]
+Seat 1: Player11 folded on the Flop
+Seat 2: Player7 folded before Flop (didn't bet)
+Seat 3: Player2 (button) folded before Flop (didn't bet)
+Seat 5: Player12 (small blind) folded on the Turn
+Seat 6: Player8 (big blind) collected (500)
+Seat 7: Player9 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 folded before Flop (didn't bet)
+
+
+
+PokerStars Game #46600358516: Tournament #288463329, 50FPP Hold'em Limit - Level IV (100/200) - 2010/07/10 22:56:52 CET [2010/07/10 16:56:52 ET]
+Table '288463329 7' 9-max Seat #5 is the button
+Seat 1: Player11 (3640 in chips) 
+Seat 2: Player7 (1770 in chips) 
+Seat 3: Player2 (3220 in chips) 
+Seat 4: Player4 (1005 in chips) is sitting out
+Seat 5: Player12 (3375 in chips) 
+Seat 6: Player8 (3435 in chips) 
+Seat 7: Player9 (455 in chips) 
+Seat 8: Player0 (1885 in chips) 
+Seat 9: Player6 (5360 in chips) 
+Player8: posts small blind 50
+Player9: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player9 [4h Qs]
+Player0: folds 
+Player6: raises 100 to 200
+Player11: folds 
+Player7: folds 
+Player2: folds 
+Player4: folds 
+Player12: folds 
+Player8: calls 150
+Player9: folds 
+*** FLOP *** [Kd Jd Kh]
+Player8: checks 
+Player6: bets 100
+Player8: calls 100
+*** TURN *** [Kd Jd Kh] [9h]
+Player8: bets 200
+Player6: raises 200 to 400
+Player8: folds 
+Uncalled bet (200) returned to Player6
+Player6 collected 1100 from pot
+Player6: doesn't show hand 
+*** SUMMARY ***
+Total pot 1100 | Rake 0 
+Board [Kd Jd Kh 9h]
+Seat 1: Player11 folded before Flop (didn't bet)
+Seat 2: Player7 folded before Flop (didn't bet)
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player4 folded before Flop (didn't bet)
+Seat 5: Player12 (button) folded before Flop (didn't bet)
+Seat 6: Player8 (small blind) folded on the Turn
+Seat 7: Player9 (big blind) folded before Flop
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player6 collected (1100)
+
+
+
+PokerStars Game #46600381096: Tournament #288463329, 50FPP Hold'em Limit - Level IV (100/200) - 2010/07/10 22:57:39 CET [2010/07/10 16:57:39 ET]
+Table '288463329 7' 9-max Seat #6 is the button
+Seat 1: Player11 (3640 in chips) 
+Seat 2: Player7 (1770 in chips) 
+Seat 3: Player2 (3220 in chips) 
+Seat 4: Player4 (1005 in chips) is sitting out
+Seat 5: Player12 (3375 in chips) 
+Seat 6: Player8 (2935 in chips) 
+Seat 7: Player9 (355 in chips) 
+Seat 8: Player0 (1885 in chips) 
+Seat 9: Player6 (5960 in chips) 
+Player9: posts small blind 50
+Player0: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player9 [Th Qs]
+Player6: folds 
+Player11: calls 100
+Player7: folds 
+Player2: folds 
+Player4: folds 
+Player12: folds 
+Player8: calls 100
+Player9: calls 50
+Player0: checks 
+*** FLOP *** [3d Td 5h]
+Player9: checks 
+Player0: checks 
+Player11: bets 100
+Player8: folds 
+Player9: calls 100
+Player0: calls 100
+*** TURN *** [3d Td 5h] [Ac]
+Player9: bets 155 and is all-in
+Player0: calls 155
+Player11: calls 155
+*** RIVER *** [3d Td 5h Ac] [Jd]
+Player0: bets 200
+Player11: folds 
+Uncalled bet (200) returned to Player0
+*** SHOW DOWN ***
+Player0: shows [Jh 3s] (two pair, Jacks and Threes)
+Player9: shows [Th Qs] (a pair of Tens)
+Player0 collected 1165 from pot
+Player8 is sitting out
+*** SUMMARY ***
+Total pot 1165 | Rake 0 
+Board [3d Td 5h Ac Jd]
+Seat 1: Player11 folded on the River
+Seat 2: Player7 folded before Flop (didn't bet)
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player4 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player8 (button) folded on the Flop
+Seat 7: Player9 (small blind) showed [Th Qs] and lost with a pair of Tens
+Seat 8: Player0 (big blind) showed [Jh 3s] and won (1165) with two pair, Jacks and Threes
+Seat 9: Player6 folded before Flop (didn't bet)
+
+
+
+

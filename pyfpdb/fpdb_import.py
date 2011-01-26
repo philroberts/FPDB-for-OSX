@@ -86,7 +86,6 @@ class Importer:
         self.cacheSessions = self.config.get_import_parameters().get("cacheSessions")
 
         # CONFIGURATION OPTIONS
-        self.settings.setdefault("minPrint", 30)
         self.settings.setdefault("handCount", 0)
         #self.settings.setdefault("allowHudcacheRebuild", True) # NOT USED NOW
         #self.settings.setdefault("forceThreads", 2)            # NOT USED NOW
@@ -114,9 +113,6 @@ class Importer:
         
     def setCacheSessions(self, value):
         self.cacheSessions = value
-
-    def setMinPrint(self, value):
-        self.settings['minPrint'] = int(value)
 
     def setHandCount(self, value):
         self.settings['handCount'] = int(value)
@@ -477,7 +473,7 @@ class Importer:
 
                 for hand in handlist:
                     if hand is not None:
-                        hand.prepInsert(self.database)
+                        hand.prepInsert(self.database, printtest = self.settings['testData'])
                         try:
                             hand.insert(self.database, printtest = self.settings['testData'])
                         except Exceptions.FpdbHandDuplicate:
@@ -624,4 +620,4 @@ class ProgressBar:
 
 
 if __name__ == "__main__":
-    print _("CLI for fpdb_import is now available as CliFpdb.py")
+    print _("CLI for importing hands is GuiBulkImport.py")

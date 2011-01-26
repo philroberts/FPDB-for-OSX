@@ -25,13 +25,19 @@ import os
 import sys
 
 import Charset
+import Stove
 
 DEBUG = False
 
 class GuiStove():
 
     def __init__(self, config, parent, debug=True):
-        """Constructor for GraphViewer"""
+        """Constructor for GuiStove"""
+        self.stove = Stove.Stove()
+        self.ev = None
+        self.boardtext = ""
+        self.herorange = ""
+        self.villainrange = ""
         self.conf = config
         self.parent = parent
 
@@ -54,15 +60,10 @@ class GuiStove():
         self.mainHBox.show_all()
 
         if DEBUG == False:
-            warning_string = _("""
-Stove is a GUI mockup of a EV calculation page, and completely non functional.
-
-Unless you are interested in developing this feature, please ignore this page.
-
-If you are interested in developing the code further see GuiStove.py and Stove.py
-
-Thankyou
-""")
+            warning_string = _("Stove is a GUI mockup of a EV calculation page, and completely non functional.\n")
+            warning_string += _("Unless you are interested in developing this feature, please ignore this page.\n")
+            warning_string += _("If you are interested in developing the code further see GuiStove.py and Stove.py\n")
+            warning_string += _("Thank you")
             self.warning_box(warning_string)
 
 
@@ -145,7 +146,7 @@ Thankyou
         gamehbox.add(in_frame)
         gamehbox.add(out_frame)
 
-        outstring = """
+        self.outstring = """
 No board given. Using Monte-Carlo simulation...
 Enumerated 2053443 possible plays.
 Your hand: (Ad Ac)
@@ -161,11 +162,11 @@ Against the range: {
  69.91%    15.83%    14.26%
 
 """
-        self.outputlabel = gtk.Label(outstring)
+        self.outputlabel = gtk.Label(self.outstring)
         out_frame.add(self.outputlabel)
 
         # Input Frame
-        table = gtk.Table(4, 4, True)
+        table = gtk.Table(4, 5, True)
         label = gtk.Label("Board:")
         board = gtk.Entry()
         board.connect("changed", self.set_board_flop, board)
@@ -207,17 +208,36 @@ Against the range: {
         table.attach(btn4, 2, 3, 2, 3, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
         table.attach(btn5, 3, 4, 2, 3, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
         
-        #table.attach(label, i, i+1, j, j+1,)
+        btn6 = gtk.Button("Results")
+        btn6.connect("pressed", self.update_flop_output_pane, btn6)
+        table.attach(btn6, 0, 1, 3, 4, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
+
         in_frame.add(table)
 
-    def set_board_flop(self, caller, string):
-        print "DEBUG: called set_board_flop: '%s' '%s'" %(caller ,string)
+    def set_output_label(self, string):
+        self.outputlabel.set_text(string)
 
-    def set_hero_cards_flop(self, caller, string):
+    def set_board_flop(self, caller, widget):
+        print "DEBUG: called set_board_flop: '%s' '%s'" %(caller ,widget)
+        self.boardtext = widget.get_text()
+
+    def set_hero_cards_flop(self, caller, widget):
         print "DEBUG: called set_hero_cards_flop"
+        self.herorange = widget.get_text()
 
-    def set_villain_cards_flop(self, caller, string):
+    def set_villain_cards_flop(self, caller, widget):
         print "DEBUG: called set_villain_cards_flop"
+        self.villainrange = widget.get_text()
+
+    def update_flop_output_pane(self, caller, widget):
+        print "DEBUG: called update_flop_output_pane"
+        self.stove.set_board_string(self.boardtext)
+        self.stove.set_hero_cards_string(self.herorange)
+        self.stove.set_villain_range_string(self.villainrange)
+        print "DEBUG: odds_for_range"
+        self.ev = Stove.odds_for_range(self.stove)
+        print "DEBUG: set_output_label"
+        self.set_output_label(self.ev.output)
 
 
 

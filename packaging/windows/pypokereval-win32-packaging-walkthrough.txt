@@ -1,0 +1,159 @@
+pypokereval packaging for fpdb project
+--------------------------------------
+
+Created by Gimick on 11th December 2010 
+Content is available under the the GNU Affero General Public License version 3
+
+Background
+----------
+
+The walktrough builds an unoffical python installer package for pypokereval.
+
+In a previous walkthrough, the pypokereval dll(pyd) was built from source.
+In this walkthrough, we are going to generate a windows package which will allow 
+the sources to be installed through distutils onto a client computer
+
+The current situation is that there is no windows build or windows installer provided
+by the package authors.
+
+Until a package is available, the fpdb project needs some method of providing a windows
+installation for the pypokereval module.  This walkthrough will therefore be obsolete once
+an official package becomes available.
+
+Actually, for windows fpdb users, the majority will use a pre-built fpdb executable (which contains the  
+pypokereval package)  Therefore, pypokereval installation will only be needed for two groups of people:
+ i) anyone wanting to build an fpdb package using py2exe
+ ii) anyone wanting to run fpdb on windows from source
+
+Credits
+-------
+
+To loic@dachary.org at pokersource http://pokersource.sourceforge.net/
+To donn.ingle@gmail.com for the tutorial here ... http://wiki.python.org/moin/Distutils/Tutorial
+Official python reference here ... http://docs.python.org/distutils/index.html
+
+Assumptions
+-----------
+
+The underlying dll(pyd) and pokereval library is built for win32 x86 platform only, so we will assume
+32bit only in this walkthrough.  Contributions for a x86-64 build are most welcome.
+
+Similarly, the underlying package is built against the python 2-6 library and is valid only for that version.
+The underlying package was not built with sse enabled, and therefore should work for legacy systems.
+
+
+1. Install pre-requisites
+-------------------------
+
+System used for building is winXP home
+
+1.1/ Install python runtime from here ... 
+
+Python 2.6.5 ... http://www.python.org/ftp/python/2.6.5/python-2.6.5.msi
+
+1.2/ Grab pypokereval stuff from fpdb project here ...
+
+pypokereval ... http://sourceforge.net/projects/fpdb/files/fpdb/pypoker-eval-win32/dev/pypokereval-138-win32-py265-fpdb-1.1.exe/download
+
+1.3/ Double click the pypokereval-138-win32-py265-fpdb-1.1.exe and extract the folder to the desktop
+
+
+2. Prepare a folder containing the items needing packaging
+----------------------------------------------------------
+
+dos>cd desktop
+dos>mkdir temp
+dos>cd temp
+dos>mkdir pokereval
+dos>cd pokereval
+
+dos>copy ..\..\pypokereval-138-win32-py265-fpdb-1.1\_pokereval_2_6.pyd
+dos>copy ..\..\pypokereval-138-win32-py265-fpdb-1.1\pokereval.py
+
+dos>mkdir utils
+dos>cd utils
+dos>copy ..\..\..\pypokereval-138-win32-py265-fpdb-1.1\test.py
+dos>cd ..
+
+The next step is to rename the pokereval.py file to __init__.py.  The reason for doing this
+is that site-packages require an __init__ file to be found when the module is imported at runtime
+Inserting a dummy __init__.py which simply imports pokereval does not work, the reason being that the 
+PokerEval class is not seen by the caller.  Syntax such as "from pokereval import PokerEval"
+does not work unless the pokereval.py (which defines the PokerEval class) is renamed to __init__.py.
+
+dos> rename pokereval.py __init__.py
+
+3. Prepare the additional packaging files
+-----------------------------------------
+
+dos>cd desktop
+dos>cd temp
+
+3.1/ setup.py
+-------------
+
+dos> edit setup.py
+
+Include the following python code:
+
+#==================================================
+
+from distutils.core import setup
+
+filelist = ["utils/*", "_pokereval_2_6.pyd"]
+
+setup(name = "pokereval",
+version = "138",
+description = "pypokereval installer (unofficial)",
+author = "project fpdb",
+author_email = "Fpdb-main@lists.sourceforge.net",
+url = "fpdb.sourceforge.net",
+packages = ['pokereval'],
+package_data = {'pokereval' : filelist },
+long_description = """An unofficial and experimental installer for pypokereval v138
+Built for 32bit windows and python v2.6.5
+pokereval official project page is at http://www.pokersource.info/"""
+)
+
+#==================================================
+
+3.2 / review directory tree
+---------------------------
+
+The following structure should now exist.
+
+temp
+  |--setup.py
+  |--pokereval
+       |--_pokereval_2_6.pyd
+       |--__init__.py
+       |--utils
+            |--test.py
+        
+
+3.3 Build
+---------
+
+Navigate to the desktop/temp directory
+
+dos>c:\Python26\python.exe setup.py bdist_wininst --plat-name=win32 --user-access-control force
+
+Note: UAC auto seems to cause lockup on my win7 system
+
+3.4 Complete
+------------
+
+The executable file pokereval-138.win32.exe will be in the newly-created dist folder.
+
+3.5 Install and test
+--------------------
+
+Double click to install
+Navigate to c:\python26\lib\site-packages\pokereval\test
+
+execute dos>c:\Python26\python.exe test.py
+
+Output should scroll down the screen
+
+
+

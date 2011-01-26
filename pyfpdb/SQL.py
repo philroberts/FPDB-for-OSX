@@ -1451,6 +1451,34 @@ class Sql:
                 and   (p.siteId = %s or %s = -1)
             """
 
+        self.query['get_gameinfo_from_hid'] = """
+                SELECT
+                        s.name,
+                        g.category,
+                        g.base,
+                        g.type,
+                        g.limitType,
+                        g.hilo,
+                        round(g.smallBlind / 100.0,2),
+                        round(g.bigBlind / 100.0,2),
+                        round(g.smallBet / 100.0,2),
+                        round(g.bigBet / 100.0,2),
+                        g.currency
+                    FROM
+                        Hands as h,
+                        Sites as s,
+                        Gametypes as g,
+                        HandsPlayers as hp,
+                        Players as p
+                    WHERE
+                        h.id = %s
+                    and g.id = h.gametypeid
+                    and hp.handid = h.id
+                    and p.id = hp.playerid
+                    and s.id = p.siteid
+                    limit 1
+            """
+
         self.query['get_stats_from_hand'] = """
                 SELECT hc.playerId                      AS player_id,
                     hp.seatNo                           AS seat,
@@ -1768,7 +1796,7 @@ class Sql:
                            cast(hp2.street4Raises as <signed>integer)               AS raise_4
                     FROM
                          Hands h
-                         INNER JOIN Hands h2         ON (h2.id > %s AND   h2.tableName = h.tableName)
+                         INNER JOIN Hands h2         ON (h2.id >= %s AND   h2.tableName = h.tableName)
                          INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)         /* players in this hand */
                          INNER JOIN HandsPlayers hp2 ON (hp2.playerId+0 = hp.playerId+0 AND (hp2.handId = h2.id+0))  /* other hands by these players */
                          INNER JOIN Players p        ON (p.id = hp2.PlayerId+0)
@@ -1871,7 +1899,7 @@ class Sql:
                            cast(hp2.street3Raises as <signed>integer)               AS raise_3,
                            cast(hp2.street4Raises as <signed>integer)               AS raise_4
                          FROM Hands h                                                  /* this hand */
-                         INNER JOIN Hands h2         ON (    h2.id > %s           /* other hands */
+                         INNER JOIN Hands h2         ON (    h2.id >= %s           /* other hands */
                                                          AND h2.tableName = h.tableName)
                          INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)        /* players in this hand */
                          INNER JOIN HandsPlayers hp2 ON (    hp2.playerId+0 = hp.playerId+0
@@ -1976,7 +2004,7 @@ class Sql:
                            cast(hp2.street3Raises as <signed>integer)               AS raise_3,
                            cast(hp2.street4Raises as <signed>integer)               AS raise_4
                          FROM Hands h                                                  /* this hand */
-                         INNER JOIN Hands h2         ON (    h2.id > %s           /* other hands */
+                         INNER JOIN Hands h2         ON (    h2.id >= %s           /* other hands */
                                                          AND h2.tableName = h.tableName)
                          INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)        /* players in this hand */
                          INNER JOIN HandsPlayers hp2 ON (    hp2.playerId+0 = hp.playerId+0
@@ -2218,7 +2246,7 @@ class Sql:
                                        (sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer))) +
                                        (sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) )
                                                                                                     AS aggfrq
-                            ,100.0*(sum(cast(hp.street1CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street4CBDone as <signed>integer))) 
+                            ,100.0*(sum(cast(hp.street1CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street3CBDone as <signed>integer)) + sum(cast(hp.street4CBDone as <signed>integer))) 
                                        / (sum(cast(hp.street1CBChance as <signed>integer))+ sum(cast(hp.street2CBChance as <signed>integer))+ sum(cast(hp.street3CBChance as <signed>integer))+ sum(cast(hp.street4CBChance as <signed>integer))) 
                                                                                                     AS conbet
                             ,sum(hp.totalProfit)/100.0                                              AS net
@@ -2339,7 +2367,7 @@ class Sql:
                                        (sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer))) +
                                        (sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) )
                                                                                                     AS aggfrq
-                            ,100.0*(sum(cast(hp.street1CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street4CBDone as <signed>integer))) 
+                            ,100.0*(sum(cast(hp.street1CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street3CBDone as <signed>integer)) + sum(cast(hp.street4CBDone as <signed>integer))) 
                                        / (sum(cast(hp.street1CBChance as <signed>integer))+ sum(cast(hp.street2CBChance as <signed>integer))+ sum(cast(hp.street3CBChance as <signed>integer))+ sum(cast(hp.street4CBChance as <signed>integer))) 
                                                                                                     AS conbet
                             ,sum(hp.totalProfit)/100.0                                              AS net
@@ -2461,7 +2489,7 @@ class Sql:
                                        (sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer))) +
                                        (sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) )
                                                                                                     AS aggfrq
-                            ,100.0*(sum(cast(hp.street1CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street4CBDone as <signed>integer))) 
+                            ,100.0*(sum(cast(hp.street1CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street3CBDone as <signed>integer)) + sum(cast(hp.street4CBDone as <signed>integer))) 
                                        / (sum(cast(hp.street1CBChance as <signed>integer))+ sum(cast(hp.street2CBChance as <signed>integer))+ sum(cast(hp.street3CBChance as <signed>integer))+ sum(cast(hp.street4CBChance as <signed>integer))) 
                                                                                                     AS conbet
                             ,sum(hp.totalProfit)/100.0                                              AS net

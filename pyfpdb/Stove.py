@@ -142,6 +142,7 @@ class SumEV:
         self.n_wins = 0
         self.n_ties = 0
         self.n_losses = 0
+        self.output = ""
 
     def add(self, ev):
         self.n_hands += ev.n_hands
@@ -153,13 +154,15 @@ class SumEV:
         win_pct = 100 * (float(self.n_wins) / float(self.n_hands))
         lose_pct = 100 * (float(self.n_losses) / float(self.n_hands))
         tie_pct = 100 * (float(self.n_ties) / float(self.n_hands))
-        print 'Enumerated %d possible plays.' % self.n_hands
-        print 'Your hand: (%s %s)' % (hand.c1, hand.c2)
-        print 'Against the range: %s\n' % cards_from_range(h_range)
-        print '  Win       Lose       Tie'
-        print ' %5.2f%%    %5.2f%%    %5.2f%%' % (win_pct, lose_pct, tie_pct)
+        self.output = """
+Enumerated %d possible plays.
+Your hand: (%s %s)
+Against the range: %s
+  Win       Lose       Tie
+ %5.2f%%    %5.2f%%    %5.2f%%
+""" % (self.n_hands, hand.c1, hand.c2, cards_from_range(h_range), win_pct, lose_pct, tie_pct)
 
-
+        print self.output
 
 
 # Expands hand abbreviations such as JJ and AK to full hand ranges.
@@ -272,6 +275,7 @@ def odds_for_range(holder):
         sev.add(e)
 
     sev.show(holder.hand, holder.h_range.get())
+    return sev
 
 def usage(me):
     print """Texas Hold'Em odds calculator

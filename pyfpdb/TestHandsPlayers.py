@@ -62,6 +62,43 @@ class FpdbError:
             idx = f.find('regression')
             print "(%3d) : %s" %(self.histogram[f], f[idx:])
 
+def compare_gametypes_file(filename, importer, errors):
+    hashfilename = filename + '.gt'
+
+    in_fh = codecs.open(hashfilename, 'r', 'utf8')
+    whole_file = in_fh.read()
+    in_fh.close()
+
+    testhash = eval(whole_file)
+
+    hhc = importer.getCachedHHC()
+    handlist = hhc.getProcessedHands()
+
+    lookup = {
+                0:'siteId',
+                1:'currency',
+                2:'type',
+                3:'base',
+                4:'game',
+                5:'limit',
+                6:'hilo',
+                7:'Small Blind',
+                8:'Big Blind',
+                9:'Small Bet',
+                10:'Big Bet',
+            }
+
+    for hand in handlist:
+        ghash = hand.gametyperow
+        for i in range(len(ghash)):
+            print "DEBUG: about to compare: '%s' and '%s'" %(ghash[i], testhash[i])
+            if ghash[i] == testhash[i]:
+                # The stats match - continue
+                pass
+            else:
+                errors.error_report(filename, hand, lookup[i], ghash, testhash, None)
+    pass
+
 def compare_handsplayers_file(filename, importer, errors):
     hashfilename = filename + '.hp'
 
@@ -142,6 +179,8 @@ def compare(leaf, importer, errors, site):
                 compare_handsplayers_file(filename, importer, errors)
             if os.path.isfile(filename + '.hands'):
                 compare_hands_file(filename, importer, errors)
+            if os.path.isfile(filename + '.gt'):
+                compare_gametypes_file(filename, importer, errors)
 
         importer.clearFileList()
 
@@ -157,6 +196,14 @@ def walk_testfiles(dir, function, importer, errors, site):
         else:
             compare(nfile, importer, errors, site)
 
+def usage():
+    print "USAGE:"
+    print "Run all tests:"
+    print "\t./TestHandsPlayers.py"
+    print "Run tests for a sinlge site:"
+    print "\t./TestHandsPlayers -s <Sitename>"
+    sys.exit(0)
+
 def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
@@ -166,11 +213,12 @@ def main(argv=None):
     test_all_sites = True
 
     if options.usage == True:
-        #Print usage examples and exit
-        print "USAGE:"
-        sys.exit(0)
+        usage()
 
     if options.sitename:
+        options.sitename = Options.site_alias(options.sitename)
+        if options.sitename == False:
+            usage()
         print "Only regression testing '%s' files" % (options.sitename)
         test_all_sites = False
 
