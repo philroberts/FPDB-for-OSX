@@ -62,6 +62,10 @@ class Fulltilt(HandHistoryConverter):
                       '800.00': ('200.00', '400.00'), '800': ('200.00', '400.00'),
                      '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00'),
                      '2000.00': ('500.00', '1000.00'),'2000': ('500.00', '1000.00'),
+                     '3000.00': ('750.00', '1500.00'),'3000': ('750.00', '1500.00'),
+                     '4000.00': ('1000.00', '2000.00'),'4000': ('1000.00', '2000.00'),
+                     '5000.00': ('1250.00', '2500.00'),'5000': ('1250.00', '2500.00'),
+                     '6000.00': ('1500.00', '3000.00'),'6000': ('1500.00', '3000.00'),
                   }
 
     # Static regexes
@@ -198,11 +202,6 @@ class Fulltilt(HandHistoryConverter):
                ]
 
     def determineGameType(self, handText):
-        # Full Tilt Poker Game #10777181585: Table Deerfly (deep 6) - $0.01/$0.02 - Pot Limit Omaha Hi - 2:24:44 ET - 2009/02/22
-        # Full Tilt Poker Game #10773265574: Table Butte (6 max) - $0.01/$0.02 - Pot Limit Hold'em - 21:33:46 ET - 2009/02/21
-        # Full Tilt Poker Game #9403951181: Table CR - tay - $0.05/$0.10 - No Limit Hold'em - 9:40:20 ET - 2008/12/09
-        # Full Tilt Poker Game #10809877615: Table Danville - $0.50/$1 Ante $0.10 - Limit Razz - 21:47:27 ET - 2009/02/23
-        # Full Tilt Poker.fr Game #23057874034: Table Douai–Lens (6 max) - €0.01/€0.02 - No Limit Hold'em - 21:59:17 CET - 2010/08/13
         info = {'type':'ring'}
         
         m = self.re_GameInfo.search(handText)
@@ -244,12 +243,12 @@ class Fulltilt(HandHistoryConverter):
 
         if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring':
             try:
-                info['sb'] = self.Lim_Blinds[mg['BB']][0]
-                info['bb'] = self.Lim_Blinds[mg['BB']][1]
+                info['sb'] = self.Lim_Blinds[self.clearMoneyString(mg['BB'])][0]
+                info['bb'] = self.Lim_Blinds[self.clearMoneyString(mg['BB'])][1]
             except KeyError:
-                log.error(_("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB']))
+                log.error(_("determineGameType: Lim_Blinds has no lookup for '%s'" % self.clearMoneyString(mg['BB'])))
                 log.error(_("determineGameType: Raising FpdbParseError"))
-                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % self.clearMoneyString(mg['BB']))
 
         if mg['GAME'] is not None:
             (info['base'], info['category']) = games[mg['GAME']]
