@@ -89,7 +89,7 @@ class Winamax(HandHistoryConverter):
             buyIn:\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\,]+)?\s\+?\s(?P<BIRAKE>[%(LS)s\d\,]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Gratuit|Ticket\suniquement)?\s
             (level:\s(?P<LEVEL>\d+))?
             .*)?
-            \s-\sHandId:\s\#(?P<HID1>\d+)-(?P<HID2>\d+)-(?P<HID3>\d+).*\s
+            \s-\sHandId:\s\#(?P<HID1>\d+)-(?P<HID2>\d+)-(?P<HID3>\d+).*\s  # REB says: HID3 is the correct hand number
             (?P<GAME>Holdem|Omaha)\s
             (?P<LIMIT>no\slimit|pot\slimit)\s
             \(
@@ -219,15 +219,19 @@ class Winamax(HandHistoryConverter):
                 # TODO: Manually adjust time against OFFSET
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "CET", "UTC")
-            if key == 'HID1':
-                # Need to remove non-alphanumerics for MySQL
-                hand.handid = "1%.9d%s%s"%(int(info['HID2']),info['HID1'],info['HID3'])
-                if len (hand.handid) > 19:
-                    hand.handid = "%s" % info['HID1']
+#            if key == 'HID1':
+#                # Need to remove non-alphanumerics for MySQL
+#                hand.handid = "1%.9d%s%s"%(int(info['HID2']),info['HID1'],info['HID3'])
+#                if len (hand.handid) > 19:
+#                    hand.handid = "%s" % info['HID1']
+            if key == 'HID3':
+                hand.handid = int(info['HID3'])   # correct hand no (REB)
             if key == 'TOURNO':
                 hand.tourNo = info[key]
             if key == 'TABLE':
                 hand.tablename = info[key]
+            if key == 'MAXPLAYER' and info[key] != None:
+                hand.maxseats = int(info[key])
 
             if key == 'BUYIN':
                 if hand.tourNo!=None:
@@ -280,7 +284,7 @@ class Winamax(HandHistoryConverter):
 
         # TODO: These
         hand.buttonpos = 1
-        hand.maxseats = 10    # Set to None - Hand.py will guessMaxSeats()
+#        hand.maxseats = 10    # Set to None - Hand.py will guessMaxSeats()
         hand.mixed = None
 
     def readPlayerStacks(self, hand):
