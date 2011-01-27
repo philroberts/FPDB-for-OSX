@@ -339,7 +339,7 @@ class Fulltilt(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         # Split hand text for FTP, as the regex matches the player names incorrectly
         # in the summary section
-        pre, post = hand.handText.split('SUMMARY')
+        pre, post = hand.handText.split('*** SUMMARY ***')
         m = self.re_PlayerInfo.finditer(pre)
         plist = {}
 
