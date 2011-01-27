@@ -60,7 +60,8 @@ class Fulltilt(HandHistoryConverter):
                       '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
                       '500.00': ('125.00', '250.00'), '500': ('125.00', '250.00'),
                       '800.00': ('200.00', '400.00'), '800': ('200.00', '400.00'),
-                     '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00')
+                     '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00'),
+                     '2000.00': ('500.00', '1000.00'),'2000': ('500.00', '1000.00'),
                   }
 
     # Static regexes
@@ -351,7 +352,7 @@ class Fulltilt(HandHistoryConverter):
             n = self.re_SummarySitout.finditer(post)
             for b in n:
                 del plist[b.group('PNAME')]
-                print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
+                #print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
 
         # Add remaining players
         for a in plist:
