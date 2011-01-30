@@ -282,9 +282,9 @@ class Winamax(HandHistoryConverter):
             if key == 'LEVEL':
                 hand.level = info[key]
 
-        # TODO: These
-        hand.buttonpos = 1
-#        hand.maxseats = 10    # Set to None - Hand.py will guessMaxSeats()
+        m =  self.re_Button.search(hand.handText)
+        hand.buttonpos = m.groupdict().get('BUTTON', None)
+
         hand.mixed = None
 
     def readPlayerStacks(self, hand):
