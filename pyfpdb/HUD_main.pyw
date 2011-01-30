@@ -357,8 +357,8 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
         for m in hud_main.hud_dict[temp_key].aux_windows:
             m.create()
             m.update_gui(new_hand_id)
-#        hud_main.hud_dict[temp_key].update(new_hand_id, hud_main.config)
-#        hud_main.hud_dict[temp_key].reposition_windows()
+        hud_main.hud_dict[temp_key].update(new_hand_id, hud_main.config)
+        hud_main.hud_dict[temp_key].reposition_windows()
     except:
         log.exception(_("Error creating HUD for hand %s.") % new_hand_id)
     finally:
