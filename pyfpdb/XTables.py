@@ -67,6 +67,19 @@ class Table(Table_Window):
             return None
         (self.window, self.parent) = self.get_window_from_xid(self.number)
 
+#    def get_window_from_xid(self, id):
+#        for outside in root.query_tree().children:
+#            if outside.id == id:
+#                return (outside, outside.query_tree().parent)
+#            for inside in outside.query_tree().children:
+#                if inside.id == id:  # GNOME, Xfce
+#                    return (inside, inside.query_tree().parent)
+#                for wayinside in inside.query_tree().children:
+#                    if wayinside.id == id:  # KDE
+#                        parent = wayinside.query_tree().parent
+#                        return (wayinside, parent.query_tree().parent)
+#        return (None, None)
+
     def get_window_from_xid(self, id):
         for top_level in root.query_tree().children:
             if top_level.id == id:
@@ -107,16 +120,8 @@ class Table(Table_Window):
 #    as the argument. This should keep the HUD window on top of the table window, as if 
 #    the hud window was a dialog belonging to the table.
 
-#    X doesn't like calling the foreign_new function in XTables.
-#    Nope don't know why. Moving it here seems to make X happy.
-        if self.gdkhandle is None:
-            self.gdkhandle = gtk.gdk.window_foreign_new(int(self.number))
-
-#   This is the gdkhandle for the HUD window
+#    This is the gdkhandle for the HUD window
         gdkwindow = gtk.gdk.window_foreign_new(window.window.xid)
-
-#    Then call set_transient_for on the gdk handle of the HUD window
-#    with the gdk handle of the table window as the argument.
         gdkwindow.set_transient_for(self.gdkhandle)
 
 def treewalk(parent):
