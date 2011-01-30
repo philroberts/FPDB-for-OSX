@@ -27,8 +27,8 @@ Approx. 200 changesets (excl. merges) have gone in since 0.21-rc1. Some of the i
 
 Where to get it
 ===============
-Please note that you will have to either recreate your database or use a new one if you're updating from 0.21-rc1 or older.
-Config files from 0.20 and later should work. Please report if you have problems with config files from that version or later.
+Please note that you will have to either recreate your database or use a new one if you're updating from 0.21-rc1 or older. Config files from 0.20 and later should work. Please report if you have problems with config files from that version or later.
+You can find checksums (MD5 and SHA512) in the download folder.
 To download: http://sourceforge.net/projects/fpdb/files/fpdb/Snapshots/
 To be notified by email of new versions you can subscribe to our announce mailing list here: https://lists.sourceforge.net/lists/listinfo/fpdb-announce
 
