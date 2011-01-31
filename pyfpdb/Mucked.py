@@ -25,17 +25,12 @@ Mucked cards display for FreePokerTools HUD.
 #    to do
 
 #    Standard Library modules
-#import sys
-#import pprint
 
 #    pyGTK modules
-#import pygtk
 import gtk
 import gobject
 
 #    FreePokerTools modules
-#import Configuration
-#import Database
 import Card
 
 class Aux_Window(object):
@@ -390,8 +385,9 @@ class Aux_Seats(Aux_Window):
             self.m_windows[i] = self.aw_window_type(self)
             self.m_windows[i].set_decorated(False)
             self.m_windows[i].set_property("skip-taskbar-hint", True)
-            self.m_windows[i].set_transient_for(self.hud.main_window)  # FIXME: shouldn't this be the table window??
             self.m_windows[i].set_focus_on_map(False)
+            self.m_windows[i].set_focus(None)
+            self.m_windows[i].set_accept_focus(False)
             self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
             self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
@@ -401,6 +397,8 @@ class Aux_Seats(Aux_Window):
 #    the create_contents method is supplied by the subclass
             self.create_contents(self.m_windows[i], i)
 
+            self.m_windows[i].realize()
+            self.hud.table.topify(self.m_windows[i])
             self.m_windows[i].show_all()
             if self.uses_timer:
                 self.m_windows[i].hide()
