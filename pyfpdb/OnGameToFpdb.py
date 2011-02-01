@@ -68,25 +68,10 @@ class OnGame(HandHistoryConverter):
     # ***** End of hand R5-75443872-57 *****
     re_SplitHands = re.compile(u'\*\*\*\*\*\sEnd\sof\shand\s[-A-Z\d]+.*\n(?=\*)')
 
-    # ***** History for hand R5-75443872-57 *****
-    # Start hand: Wed Aug 18 19:29:10 GMT+0100 2010
-    # Table: someplace [75443872] (LIMIT TEXAS_HOLDEM 0.50/1, Real money)
-#***** History for hand R5-78042004-262 *****
-#Start hand: Fri Aug 27 21:40:46 GMT+0100 2010
-#Table: Bamako [78042004] (LIMIT TEXAS_HOLDEM $0.25/$0.50, Real money)
-#User: sagi34
-#{ u'BB': None
-#, u'DATETIME': u'Fri Aug 27 22:38:26 GMT+0100 2010\\n'
-#, u'GAME': None
-#, u'HID': u'R5-78042004-346'
-#, u'TABLE': u'Bamako'
-#, u'LIMIT': None
-#, u'SB': None
-#}
     re_HandInfo = re.compile(u"""
             \*\*\*\*\*\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+).*
             Start\shand:\s(?P<DATETIME>.*)
-            Table:\s(?P<TABLE>[\'\w\s]+)\s\[\d+\]\s\(
+            Table:\s(?P<TABLE>[-\'\w\s]+)\s\[\d+\]\s\(
             (
             (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit)\s
             (?P<GAME>TEXAS_HOLDEM|OMAHA_HI|SEVEN_CARD_STUD|SEVEN_CARD_STUD_HI_LO|RAZZ|FIVE_CARD_DRAW)\s

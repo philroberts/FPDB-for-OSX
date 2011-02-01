@@ -68,9 +68,7 @@ class GuiBulkImport():
 
                 #    get the import settings from the gui and save in the importer
                 self.importer.setHandCount(int(self.spin_hands.get_text()))
-                self.importer.setMinPrint(int(self.spin_hands.get_text()))
                 self.importer.setQuiet(self.chk_st_st.get_active())
-                self.importer.setFailOnError(self.chk_fail.get_active())
                 self.importer.setThreads(int(self.spin_threads.get_text()))
                 self.importer.setHandsInDB(self.n_hands_in_db)
                 cb_model = self.cb_dropindexes.get_model()
@@ -89,6 +87,12 @@ class GuiBulkImport():
                 else:
                     self.importer.setDropHudCache("auto")
                 sitename = self.cbfilter.get_model()[self.cbfilter.get_active()][0]
+                #self.importer.setFailOnError(self.chk_fail.get_active())
+                if self.is_archive.get_active():
+                    if sitename == "PokerStars":
+                        self.importer.setStarsArchive(True)
+                    if sitename == "Full Tilt Poker":
+                        self.importer.setFTPArchive(True)
 
                 for selection in selected:
                     self.importer.addBulkImportImportFileOrDir(selection, site = sitename)
@@ -200,9 +204,9 @@ class GuiBulkImport():
             self.spin_threads.set_sensitive(False)
 
 #    checkbox - fail on error?
-        self.chk_fail = gtk.CheckButton(_('Fail on error'))
-        self.table.attach(self.chk_fail, 0, 1, 1, 2, xpadding=10, ypadding=0, yoptions=gtk.SHRINK)
-        self.chk_fail.show()
+        self.is_archive = gtk.CheckButton(_('Archive File'))
+        self.table.attach(self.is_archive, 0, 1, 1, 2, xpadding=10, ypadding=0, yoptions=gtk.SHRINK)
+        self.is_archive.show()
 
 #    label - hands
         self.lab_hands = gtk.Label(_("Hands/file:"))
@@ -344,8 +348,6 @@ def main(argv=None):
                     help=_("Conversion filter (*Full Tilt Poker, PokerStars, Everleaf, Absolute)"))
     parser.add_option("-x", "--failOnError", action="store_true", default=False,
                     help=_("If this option is passed it quits when it encounters any error"))
-    parser.add_option("-m", "--minPrint", "--status", dest="minPrint", default="0", type="int",
-                    help=_("How often to print a one-line status report (0 (default) means never)"))
     parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False,
                     help=_("Print some useful one liners"))
     parser.add_option("-s", "--starsarchive", action="store_true", dest="starsArchive", default=False,
@@ -369,7 +371,6 @@ def main(argv=None):
     config = Configuration.Config()
 
     settings = {}
-    settings['minPrint'] = options.minPrint
     if os.name == 'nt': settings['os'] = 'windows'
     else:               settings['os'] = 'linuxmac'
 

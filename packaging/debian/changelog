@@ -1,3 +1,9 @@
+free-poker-tools (0.21~rc2) unstable; urgency=low
+
+  * Second 0.21 release-candidate
+
+ -- Mika Bostrom <bostik@iki.fi>  Tue, 28 Dec 2010 18:37:47 +0200
+
 free-poker-tools (0.21~rc1) unstable; urgency=low
 
   * First 0.21 release candidate

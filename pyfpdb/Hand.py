@@ -226,7 +226,7 @@ dealt   whether they were seen in a 'dealt to' line
 
         self.holecards[street][player] = [open, closed]
 
-    def prepInsert(self, db):
+    def prepInsert(self, db, printtest = False):
         #####
         # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
         # These functions are intended for prep insert eventually
@@ -235,7 +235,19 @@ dealt   whether they were seen in a 'dealt to' line
         self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
 
         #Gametypes
-        self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype)
+        hilo = "h"
+        if self.gametype['category'] in ['studhilo', 'omahahilo']:
+            hilo = "s"
+        elif self.gametype['category'] in ['razz','27_3draw','badugi', '27_1draw']:
+            hilo = "l"
+
+        self.gametyperow = (self.siteId, self.gametype['currency'], self.gametype['type'], self.gametype['base'],
+                                    self.gametype['category'], self.gametype['limitType'], hilo,
+                                    int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
+                                    int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200))
+        # Note: the above data is calculated in db.getGameTypeId
+        #       Only being calculated above so we can grab the testdata
+        self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype, printdata = printtest)
 
         if self.tourNo!=None:
             self.tourneyTypeId = db.createTourneyType(self)
@@ -337,15 +349,13 @@ db: a connected Database object"""
         #       Need to find MySQL and Postgres equivalents
         #       MySQL maybe: cursorclass=MySQLdb.cursors.DictCursor
         res = c.fetchone()
+
+        #res['tourneyId'] #res['seats'] #res['rush']
         self.tablename = res['tableName']
         self.handid    = res['siteHandNo']
         self.startTime = datetime.datetime.strptime(res['startTime'], "%Y-%m-%d %H:%M:%S+00:00")
-        #res['tourneyId']
-        #gametypeId
-        #res['importTime']  # Don't really care about this
-        #res['seats']
         self.maxseats = res['maxSeats']
-        #res['rush']
+
         cards = map(Card.valueSuitFromCard, [res['boardcard1'], res['boardcard2'], res['boardcard3'], res['boardcard4'], res['boardcard5']])
         #print "DEBUG: res['boardcard1']: %s" % res['boardcard1']
         #print "DEBUG: cards: %s" % cards
@@ -500,7 +510,6 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
         # Player in the big blind posts
         #   - this is a call of 1 sb and a raise to 1 bb
         #
-
         log.debug("addBlind: %s posts %s, %s" % (player, blindtype, amount))
         if player is not None:
             amount = re.sub(u',', u'', amount) #some sites have commas
@@ -520,9 +529,16 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
                 self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
                 self.pot.addCommonMoney(player, Decimal(self.sb))
 
-            self.bets['PREFLOP'][player].append(Decimal(amount))
+            street = 'BLAH'
+
+            if self.gametype['base'] == 'hold':
+                street = 'PREFLOP'
+            elif self.gametype['base'] == 'draw':
+                street = 'DEAL'
+
+            self.bets[street][player].append(Decimal(amount))
             self.pot.addMoney(player, Decimal(amount))
-            self.lastBet['PREFLOP'] = Decimal(amount)
+            self.lastBet[street] = Decimal(amount)
             self.posted = self.posted + [[player,blindtype]]
 
 
@@ -1122,6 +1138,9 @@ class DrawHand(Hand):
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
+            # markStreets in Draw may match without dealing cards
+            if self.streets['DEAL'] == None:
+                raise FpdbParseError(_("DrawHand.__init__: street 'DEAL' is empty. Hand cancelled?"))
             hhc.readBlinds(self)
             hhc.readAntes(self)
             hhc.readButton(self)
@@ -1141,34 +1160,6 @@ class DrawHand(Hand):
             hhc.readOther(self)
         elif builtFrom == "DB":
             self.select("dummy") # Will need a handId
-
-    # Draw games (at least Badugi has blinds - override default Holdem addBlind
-    def addBlind(self, player, blindtype, amount):
-        # if player is None, it's a missing small blind.
-        # The situation we need to cover are:
-        # Player in small blind posts
-        #   - this is a bet of 1 sb, as yet uncalled.
-        # Player in the big blind posts
-        #   - this is a call of 1 sb and a raise to 1 bb
-        #
-
-        log.debug("addBlind: %s posts %s, %s" % (player, blindtype, amount))
-        if player is not None:
-            self.bets['DEAL'][player].append(Decimal(amount))
-            self.stacks[player] -= Decimal(amount)
-            #print "DEBUG %s posts, stack %s" % (player, self.stacks[player])
-            act = (player, blindtype, Decimal(amount), self.stacks[player]==0)
-            self.actions['BLINDSANTES'].append(act)
-            self.pot.addMoney(player, Decimal(amount))
-            if blindtype == 'big blind':
-                self.lastBet['DEAL'] = Decimal(amount)
-            elif blindtype == 'both':
-                # extra small blind is 'dead'
-                amount = Decimal(amount)/3
-                amount += amount
-                self.lastBet['DEAL'] = Decimal(amount)
-        self.posted = self.posted + [[player,blindtype]]
-        #print "DEBUG: self.posted: %s" %(self.posted)
 
     def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False):
         if player == self.hero: # we have hero's cards just update shown/mucked

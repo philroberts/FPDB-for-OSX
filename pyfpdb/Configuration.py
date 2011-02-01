@@ -231,6 +231,8 @@ class Layout:
 
         self.max    = int( node.getAttribute('max') )
         if node.hasAttribute('fav_seat'): self.fav_seat = int( node.getAttribute('fav_seat') )
+        if node.hasAttribute('name'): self.name = node.getAttribute('name')
+        else: self.name = None
         self.width    = int( node.getAttribute('width') )
         self.height   = int( node.getAttribute('height') )
 
@@ -244,7 +246,11 @@ class Layout:
                 self.common = (int( location_node.getAttribute('x') ), int( location_node.getAttribute('y')))
 
     def __str__(self):
-        temp = "    Layout = %d max, width= %d, height = %d" % (self.max, self.width, self.height)
+        if hasattr(self, 'name'):
+            name = self.name + ",   "
+        else:
+            name = ""
+        temp = "    Layout = %s%d max, width= %d, height = %d" % (name, self.max, self.width, self.height)
         if hasattr(self, 'fav_seat'): temp = temp + ", fav_seat = %d\n" % self.fav_seat
         else: temp = temp + "\n"
         if hasattr(self, "common"):
@@ -1485,7 +1491,7 @@ if __name__== "__main__":
     print "----------- END POPUP WINDOW FORMATS -----------"
 
     print "\n----------- IMPORT -----------"
-    print c.imp
+#    print c.imp    # Need to add an str method for imp to print
     print "----------- END IMPORT -----------"
 
     c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))

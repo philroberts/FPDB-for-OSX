@@ -258,7 +258,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         if self.ftpArchive == True:
             log.debug(_("Converting ftpArchive format to readable"))
             # Remove  ******************** # 1 *************************
-            m = re.compile('\*{20}\s#\s\d+\s\*{25}\s+', re.MULTILINE)
+            m = re.compile('\*{20}\s#\s\d+\s\*{20,25}\s+', re.MULTILINE)
             self.obs = m.sub('', self.obs)
 
         if self.obs is None or self.obs == "":
@@ -673,7 +673,7 @@ or None if we fail to get the info """
         "Returns string to search window title for tournament table no."
 # Full Tilt:  $30 + $3 Tournament (181398949), Table 1 - 600/1200 Ante 100 - Limit Razz
 # PokerStars: WCOOP 2nd Chance 02: $1,050 NLHE - Tournament 307521826 Table 1 - Blinds $30/$60
-        return "%s.+Table (\d+)" % (tournament, )
+        return "%s.+(?:Table|Torneo) (\d+)" % (tournament, )
 
     @staticmethod
     def clearMoneyString(money):

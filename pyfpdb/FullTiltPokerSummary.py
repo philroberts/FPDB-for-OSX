@@ -57,12 +57,12 @@ class FullTiltPokerSummary(TourneySummary):
 
     re_TourneyInfo = re.compile(u"""
                         \s.*
-                        (?P<TYPE>Tournament|Sit\s\&\sGo|\(Rebuy\))\s\((?P<TOURNO>[0-9]+)\)(\s+)?
+                        (?P<TYPE>Tournament|Sit\s\&\sGo|\(Rebuy\)|)\s\((?P<TOURNO>[0-9]+)\)(\s+)?
                         (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s+
                         (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+
-                        (Buy-In:\s\$(?P<BUYIN>[.\d]+)(\s\+\s\$(?P<FEE>[.\d]+))?\s+)?
-                        (Add-On:\s\$(?P<ADDON>[.\d]+)\s+)?
-                        (Rebuy:\s\$(?P<REBUYAMT>[.\d]+)\s+)?
+                        (Buy-In:\s[%(LS)s](?P<BUYIN>[.\d]+)(\s\+\s[%(LS)s](?P<FEE>[.\d]+))?\s+)?
+                        (Add-On:\s[%(LS)s](?P<ADDON>[.\d]+)\s+)?
+                        (Rebuy:\s[%(LS)s](?P<REBUYAMT>[.\d]+)\s+)?
                         ((?P<PNAME>.{2,15})\sperformed\s(?P<PREBUYS>\d+)\sRebuys\s+)?
                         (Buy-In\sChips:\s(?P<CHIPS>\d+)\s+)?
                         (Add-On\sChips:\s(?P<ADDONCHIPS>\d+)\s+)?
@@ -70,8 +70,8 @@ class FullTiltPokerSummary(TourneySummary):
                         (?P<ENTRIES>[0-9]+)\sEntries\s+
                         (Total\sAdd-Ons:\s(?P<ADDONS>\d+)\s+)?
                         (Total\sRebuys:\s(?P<REBUYS>\d+)\s+)?
-                        (\$?(?P<ADDED>[.\d]+)\sadded\sto\sthe\sprize\spool\sby\sPokerStars\.com\s+)?
-                        (Total\sPrize\sPool:\s\$?(?P<PRIZEPOOL>[%(NUM)s]+)\s+)?
+                        ([%(LS)s]?(?P<ADDED>[.\d]+)\sadded\sto\sthe\sprize\spool\sby\sPokerStars\.com\s+)?
+                        (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[%(NUM)s]+)\s+)?
                         (Target\sTournament\s.*)?
                         Tournament\sstarted:\s
                         (?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s??(?P<TZ>[A-Z]+)\s
@@ -79,21 +79,21 @@ class FullTiltPokerSummary(TourneySummary):
 
     re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP)""" % substitutions)
 
-    re_Player = re.compile(u"""(?P<RANK>[\d]+):\s(?P<NAME>[^,\r\n]{2,15})(,(\s)?\$(?P<WINNINGS>[.\d]+))?""")
+    re_Player = re.compile(u"""(?P<RANK>[\d]+):\s(?P<NAME>[^,\r\n]{2,15})(,(\s)?[%(LS)s](?P<WINNINGS>[.\d]+))?""")
 
     re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
 
     codepage = ["utf-16", "cp1252", "utf-8"]
 
     def parseSummary(self):
-        m = self.re_TourneyInfo.search(self.summaryText)
+        m = self.re_TourneyInfo.search(self.summaryText[:2000])
         if m == None:
             tmp = self.summaryText[0:200]
             log.error(_("parseSummary: Unable to recognise Tourney Info: '%s'") % tmp)
             log.error(_("parseSummary: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise Tourney Info: '%s'") % tmp)
 
-        print "DEBUG: m.groupdict(): %s" % m.groupdict()
+        #print "DEBUG: m.groupdict(): %s" % m.groupdict()
 
         mg = m.groupdict()
         if 'TOURNO'    in mg: self.tourNo = mg['TOURNO']
@@ -128,7 +128,7 @@ class FullTiltPokerSummary(TourneySummary):
         m = self.re_Player.finditer(self.summaryText)
         for a in m:
             mg = a.groupdict()
-            print "DEBUG: a.groupdict(): %s" % mg
+            #print "DEBUG: a.groupdict(): %s" % mg
             name = mg['NAME']
             rank = mg['RANK']
             winnings = 0

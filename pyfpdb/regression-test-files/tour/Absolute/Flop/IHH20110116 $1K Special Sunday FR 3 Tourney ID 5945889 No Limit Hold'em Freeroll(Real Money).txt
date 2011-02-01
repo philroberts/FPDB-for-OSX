@@ -1,0 +1,4277 @@
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+Stage #525691746 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 10 - 2011-01-16 17:03:29 (ET)
+Table: 15 (Real Money) Seat #9 is the dealer
+Seat 1 - SHUSWAPER (1,440 in chips)
+Seat 2 - MARSHMAN5984 (1,380 in chips)
+Seat 3 - METOLIGIST (1,470 in chips)
+Seat 4 - EKDIKEO (1,500 in chips)
+Seat 5 - 57MAVERICK (1,495 in chips)
+Seat 6 - 89YOTA (1,500 in chips)
+Seat 7 - DOKTORRRR (1,485 in chips)
+Seat 8 - ZALDIVAR (1,745 in chips)
+Seat 9 - GREGORY37 (1,485 in chips)
+SHUSWAPER - Posts small blind 5
+MARSHMAN5984 - Posts big blind 10
+*** POCKET CARDS ***
+Dealt to EKDIKEO [8h 2s] 
+METOLIGIST - Folds
+EKDIKEO - Folds
+57MAVERICK - Folds
+89YOTA - Folds
+DOKTORRRR - Folds
+ZALDIVAR - Folds
+GREGORY37 - Folds
+SHUSWAPER - Calls 5
+MARSHMAN5984 - Checks
+*** FLOP *** [9h 7h 2h]
+SHUSWAPER - Bets 20
+MARSHMAN5984 - Raises 200 to 200
+SHUSWAPER - Folds
+MARSHMAN5984 - returned (180) : not called
+*** SHOW DOWN ***
+MARSHMAN5984 - Does not show
+MARSHMAN5984 Collects 60 from main pot
+*** SUMMARY ***
+Total Pot(60)
+Board [9h 7h 2h]
+Seat 1: SHUSWAPER (small blind) Folded on the FLOP
+Seat 2: MARSHMAN5984 (big blind) collected Total (60) HI:(60)  [Does not show] 
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 5: 57MAVERICK Folded on the POCKET CARDS
+Seat 6: 89YOTA Folded on the POCKET CARDS
+Seat 7: DOKTORRRR Folded on the POCKET CARDS
+Seat 8: ZALDIVAR Folded on the POCKET CARDS
+Seat 9: GREGORY37 (dealer) Folded on the POCKET CARDS
+
+
+
+Stage #525693411 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 10 - 2011-01-16 17:04:11 (ET)
+Table: 15 (Real Money) Seat #1 is the dealer
+Seat 1 - SHUSWAPER (1,410 in chips)
+Seat 2 - MARSHMAN5984 (1,410 in chips)
+Seat 3 - METOLIGIST (1,470 in chips)
+Seat 4 - EKDIKEO (1,500 in chips)
+Seat 5 - 57MAVERICK (1,495 in chips)
+Seat 6 - 89YOTA (1,500 in chips)
+Seat 7 - DOKTORRRR (1,485 in chips)
+Seat 8 - ZALDIVAR (1,745 in chips)
+Seat 9 - GREGORY37 (1,485 in chips)
+MARSHMAN5984 - Posts small blind 5
+METOLIGIST - Posts big blind 10
+*** POCKET CARDS ***
+Dealt to EKDIKEO [4c 8c] 
+EKDIKEO - Folds
+57MAVERICK - Folds
+89YOTA - Folds
+DOKTORRRR - Folds
+ZALDIVAR - Folds
+GREGORY37 - Folds
+SHUSWAPER - Folds
+MARSHMAN5984 - Calls 5
+METOLIGIST - Raises 30 to 40
+MARSHMAN5984 - Calls 30
+*** FLOP *** [9s 6c 9d]
+MARSHMAN5984 - Checks
+METOLIGIST - Bets 40
+MARSHMAN5984 - Folds
+METOLIGIST - returned (40) : not called
+*** SHOW DOWN ***
+METOLIGIST - Does not show
+METOLIGIST Collects 80 from main pot
+*** SUMMARY ***
+Total Pot(80)
+Board [9s 6c 9d]
+Seat 1: SHUSWAPER (dealer) Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 (small blind) Folded on the FLOP
+Seat 3: METOLIGIST (big blind) collected Total (80) HI:(80)  [Does not show] 
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 5: 57MAVERICK Folded on the POCKET CARDS
+Seat 6: 89YOTA Folded on the POCKET CARDS
+Seat 7: DOKTORRRR Folded on the POCKET CARDS
+Seat 8: ZALDIVAR Folded on the POCKET CARDS
+Seat 9: GREGORY37 Folded on the POCKET CARDS
+
+
+
+Stage #525696070 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 10 - 2011-01-16 17:05:20 (ET)
+Table: 15 (Real Money) Seat #2 is the dealer
+Seat 1 - SHUSWAPER (1,410 in chips)
+Seat 2 - MARSHMAN5984 (1,370 in chips)
+Seat 3 - METOLIGIST (1,510 in chips)
+Seat 4 - EKDIKEO (1,500 in chips)
+Seat 5 - 57MAVERICK (1,495 in chips)
+Seat 6 - 89YOTA (1,500 in chips)
+Seat 7 - DOKTORRRR (1,485 in chips)
+Seat 8 - ZALDIVAR (1,745 in chips)
+Seat 9 - GREGORY37 (1,485 in chips)
+METOLIGIST - Posts small blind 5
+EKDIKEO - Posts big blind 10
+*** POCKET CARDS ***
+Dealt to EKDIKEO [4d 8h] 
+57MAVERICK - Folds
+89YOTA - Folds
+DOKTORRRR - Folds
+ZALDIVAR - Folds
+GREGORY37 - Calls 10
+SHUSWAPER - Calls 10
+MARSHMAN5984 - Calls 10
+METOLIGIST - Calls 5
+EKDIKEO - Checks
+*** FLOP *** [6s 2h 9h]
+METOLIGIST - Checks
+EKDIKEO - Checks
+GREGORY37 - Checks
+SHUSWAPER - Bets 30
+MARSHMAN5984 - Folds
+METOLIGIST - Folds
+EKDIKEO - Folds
+GREGORY37 - Folds
+SHUSWAPER - returned (30) : not called
+*** SHOW DOWN ***
+SHUSWAPER - Does not show
+SHUSWAPER Collects 50 from main pot
+*** SUMMARY ***
+Total Pot(50)
+Board [6s 2h 9h]
+Seat 1: SHUSWAPER collected Total (50) HI:(50)  [Does not show] 
+Seat 2: MARSHMAN5984 (dealer) Folded on the FLOP
+Seat 3: METOLIGIST (small blind) Folded on the FLOP
+Seat 4: EKDIKEO (big blind) Folded on the FLOP
+Seat 5: 57MAVERICK Folded on the POCKET CARDS
+Seat 6: 89YOTA Folded on the POCKET CARDS
+Seat 7: DOKTORRRR Folded on the POCKET CARDS
+Seat 8: ZALDIVAR Folded on the POCKET CARDS
+Seat 9: GREGORY37 Folded on the FLOP
+
+
+
+Stage #525698034 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 10 - 2011-01-16 17:06:11 (ET)
+Table: 15 (Real Money) Seat #3 is the dealer
+Seat 1 - SHUSWAPER (1,450 in chips)
+Seat 2 - MARSHMAN5984 (1,360 in chips)
+Seat 3 - METOLIGIST (1,500 in chips)
+Seat 4 - EKDIKEO (1,490 in chips)
+Seat 5 - 57MAVERICK (1,495 in chips)
+Seat 6 - 89YOTA (1,500 in chips)
+Seat 7 - DOKTORRRR (1,485 in chips)
+Seat 8 - ZALDIVAR (1,745 in chips)
+Seat 9 - GREGORY37 (1,475 in chips)
+EKDIKEO - Posts small blind 5
+57MAVERICK - Posts big blind 10
+*** POCKET CARDS ***
+Dealt to EKDIKEO [9h 2h] 
+89YOTA - Folds
+DOKTORRRR - Folds
+ZALDIVAR - Folds
+GREGORY37 - Folds
+SHUSWAPER - Folds
+MARSHMAN5984 - Calls 10
+METOLIGIST - Folds
+EKDIKEO - Calls 5
+57MAVERICK - Folds
+*** FLOP *** [5s Qh 9d]
+EKDIKEO - Bets 30
+MARSHMAN5984 - Folds
+EKDIKEO - returned (30) : not called
+*** SHOW DOWN ***
+EKDIKEO - Does not show
+EKDIKEO Collects 30 from main pot
+*** SUMMARY ***
+Total Pot(30)
+Board [5s Qh 9d]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 Folded on the FLOP
+Seat 3: METOLIGIST (dealer) Folded on the POCKET CARDS
+Seat 4: EKDIKEO (small blind) collected Total (30) HI:(30)  [Does not show] 
+Seat 5: 57MAVERICK (big blind) Folded on the POCKET CARDS
+Seat 6: 89YOTA Folded on the POCKET CARDS
+Seat 7: DOKTORRRR Folded on the POCKET CARDS
+Seat 8: ZALDIVAR Folded on the POCKET CARDS
+Seat 9: GREGORY37 Folded on the POCKET CARDS
+
+
+
+Stage #525699786 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 10 - 2011-01-16 17:06:56 (ET)
+Table: 15 (Real Money) Seat #4 is the dealer
+Seat 1 - SHUSWAPER (1,450 in chips)
+Seat 2 - MARSHMAN5984 (1,350 in chips)
+Seat 3 - METOLIGIST (1,500 in chips)
+Seat 4 - EKDIKEO (1,510 in chips)
+Seat 5 - 57MAVERICK (1,485 in chips)
+Seat 6 - 89YOTA (1,500 in chips)
+Seat 7 - DOKTORRRR (1,485 in chips)
+Seat 8 - ZALDIVAR (1,745 in chips)
+Seat 9 - GREGORY37 (1,475 in chips)
+57MAVERICK - Posts small blind 5
+89YOTA - Posts big blind 10
+*** POCKET CARDS ***
+Dealt to EKDIKEO [9s 6s] 
+DOKTORRRR - Folds
+ZALDIVAR - Raises 25 to 25
+GREGORY37 - Calls 25
+SHUSWAPER - Folds
+MARSHMAN5984 - Folds
+METOLIGIST - Calls 25
+EKDIKEO - Folds
+57MAVERICK - Folds
+89YOTA - Folds
+*** FLOP *** [4c 5d 7s]
+ZALDIVAR - Checks
+GREGORY37 - Checks
+METOLIGIST - Checks
+*** TURN *** [4c 5d 7s] [3c]
+ZALDIVAR - Checks
+GREGORY37 - Bets 90
+METOLIGIST - Folds
+ZALDIVAR - Folds
+GREGORY37 - returned (90) : not called
+*** SHOW DOWN ***
+GREGORY37 - Does not show
+GREGORY37 Collects 90 from main pot
+*** SUMMARY ***
+Total Pot(90)
+Board [4c 5d 7s 3c]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 Folded on the POCKET CARDS
+Seat 3: METOLIGIST Folded on the TURN
+Seat 4: EKDIKEO (dealer) Folded on the POCKET CARDS
+Seat 5: 57MAVERICK (small blind) Folded on the POCKET CARDS
+Seat 6: 89YOTA (big blind) Folded on the POCKET CARDS
+Seat 7: DOKTORRRR Folded on the POCKET CARDS
+Seat 8: ZALDIVAR Folded on the TURN
+Seat 9: GREGORY37 collected Total (90) HI:(90)  [Does not show] 
+
+
+
+Stage #525701524 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 10 - 2011-01-16 17:07:41 (ET)
+Table: 15 (Real Money) Seat #5 is the dealer
+Seat 1 - SHUSWAPER (1,450 in chips)
+Seat 2 - MARSHMAN5984 (1,350 in chips)
+Seat 3 - METOLIGIST (1,475 in chips)
+Seat 4 - EKDIKEO (1,510 in chips)
+Seat 5 - 57MAVERICK (1,480 in chips)
+Seat 6 - 89YOTA (1,490 in chips)
+Seat 7 - DOKTORRRR (1,485 in chips)
+Seat 8 - ZALDIVAR (1,720 in chips)
+Seat 9 - GREGORY37 (1,540 in chips)
+89YOTA - Posts small blind 5
+DOKTORRRR - Posts big blind 10
+*** POCKET CARDS ***
+Dealt to EKDIKEO [6s Qh] 
+ZALDIVAR - Folds
+GREGORY37 - Calls 10
+SHUSWAPER - Folds
+MARSHMAN5984 - Folds
+METOLIGIST - Folds
+EKDIKEO - Folds
+57MAVERICK - Folds
+89YOTA - Folds
+DOKTORRRR - Checks
+*** FLOP *** [7d Qd Jh]
+DOKTORRRR - Checks
+GREGORY37 - Bets 25
+DOKTORRRR - Folds
+GREGORY37 - returned (25) : not called
+*** SHOW DOWN ***
+GREGORY37 - Does not show
+GREGORY37 Collects 25 from main pot
+*** SUMMARY ***
+Total Pot(25)
+Board [7d Qd Jh]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 Folded on the POCKET CARDS
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 5: 57MAVERICK (dealer) Folded on the POCKET CARDS
+Seat 6: 89YOTA (small blind) Folded on the POCKET CARDS
+Seat 7: DOKTORRRR (big blind) Folded on the FLOP
+Seat 8: ZALDIVAR Folded on the POCKET CARDS
+Seat 9: GREGORY37 collected Total (25) HI:(25)  [Does not show] 
+
+
+
+Stage #525703808 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 10 - 2011-01-16 17:08:41 (ET)
+Table: 15 (Real Money) Seat #6 is the dealer
+Seat 1 - SHUSWAPER (1,450 in chips)
+Seat 2 - MARSHMAN5984 (1,350 in chips)
+Seat 3 - METOLIGIST (1,475 in chips)
+Seat 4 - EKDIKEO (1,510 in chips)
+Seat 5 - 57MAVERICK (1,480 in chips)
+Seat 6 - 89YOTA (1,485 in chips)
+Seat 7 - DOKTORRRR (1,475 in chips)
+Seat 8 - ZALDIVAR (1,720 in chips)
+Seat 9 - GREGORY37 (1,555 in chips)
+DOKTORRRR - Posts small blind 5
+ZALDIVAR - Posts big blind 10
+*** POCKET CARDS ***
+Dealt to EKDIKEO [6c 7h] 
+GREGORY37 - Folds
+SHUSWAPER - Calls 10
+MARSHMAN5984 - Raises 100 to 100
+METOLIGIST - Folds
+EKDIKEO - Folds
+57MAVERICK - Folds
+89YOTA - Folds
+DOKTORRRR - Folds
+ZALDIVAR - Folds
+SHUSWAPER - Folds
+MARSHMAN5984 - returned (90) : not called
+*** SHOW DOWN ***
+MARSHMAN5984 - Does not show
+MARSHMAN5984 Collects 35 from main pot
+*** SUMMARY ***
+Total Pot(35)
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 collected Total (35) 
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 5: 57MAVERICK Folded on the POCKET CARDS
+Seat 6: 89YOTA (dealer) Folded on the POCKET CARDS
+Seat 7: DOKTORRRR (small blind) Folded on the POCKET CARDS
+Seat 8: ZALDIVAR (big blind) Folded on the POCKET CARDS
+Seat 9: GREGORY37 Folded on the POCKET CARDS
+
+
+
+Stage #525704781 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 10 - 2011-01-16 17:09:05 (ET)
+Table: 15 (Real Money) Seat #7 is the dealer
+Seat 1 - SHUSWAPER (1,440 in chips)
+Seat 2 - MARSHMAN5984 (1,375 in chips)
+Seat 3 - METOLIGIST (1,475 in chips)
+Seat 4 - EKDIKEO (1,510 in chips)
+Seat 5 - 57MAVERICK (1,480 in chips)
+Seat 6 - 89YOTA (1,485 in chips)
+Seat 7 - DOKTORRRR (1,470 in chips)
+Seat 8 - ZALDIVAR (1,710 in chips)
+Seat 9 - GREGORY37 (1,555 in chips)
+ZALDIVAR - Posts small blind 5
+GREGORY37 - Posts big blind 10
+*** POCKET CARDS ***
+Dealt to EKDIKEO [5d 10c] 
+SHUSWAPER - Folds
+MARSHMAN5984 - Folds
+METOLIGIST - Folds
+EKDIKEO - Folds
+57MAVERICK - Folds
+89YOTA - Folds
+DOKTORRRR - Folds
+ZALDIVAR - Raises 25 to 30
+GREGORY37 - Calls 20
+*** FLOP *** [10h 9c 7c]
+ZALDIVAR - Bets 35
+GREGORY37 - Folds
+ZALDIVAR - returned (35) : not called
+*** SHOW DOWN ***
+ZALDIVAR - Does not show
+ZALDIVAR Collects 60 from main pot
+*** SUMMARY ***
+Total Pot(60)
+Board [10h 9c 7c]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 Folded on the POCKET CARDS
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 5: 57MAVERICK Folded on the POCKET CARDS
+Seat 6: 89YOTA Folded on the POCKET CARDS
+Seat 7: DOKTORRRR (dealer) Folded on the POCKET CARDS
+Seat 8: ZALDIVAR (small blind) collected Total (60) HI:(60)  [Does not show] 
+Seat 9: GREGORY37 (big blind) Folded on the FLOP
+
+
+
+Stage #525707040 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 10 - 2011-01-16 17:10:05 (ET)
+Table: 15 (Real Money) Seat #8 is the dealer
+Seat 1 - SHUSWAPER (1,440 in chips)
+Seat 2 - MARSHMAN5984 (1,375 in chips)
+Seat 3 - METOLIGIST (1,475 in chips)
+Seat 4 - EKDIKEO (1,510 in chips)
+Seat 5 - 57MAVERICK (1,480 in chips)
+Seat 6 - 89YOTA (1,485 in chips)
+Seat 7 - DOKTORRRR (1,470 in chips)
+Seat 8 - ZALDIVAR (1,740 in chips)
+Seat 9 - GREGORY37 (1,525 in chips)
+GREGORY37 - Posts small blind 5
+SHUSWAPER - Posts big blind 10
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Ah 8h] 
+MARSHMAN5984 - Calls 10
+METOLIGIST - Folds
+EKDIKEO - Raises 45 to 45
+57MAVERICK - Folds
+89YOTA - Folds
+DOKTORRRR - Folds
+ZALDIVAR - Folds
+GREGORY37 - Calls 40
+SHUSWAPER - Folds
+MARSHMAN5984 - Calls 35
+*** FLOP *** [4d 10s 3d]
+GREGORY37 - Checks
+MARSHMAN5984 - Bets 35
+EKDIKEO - Calls 35
+GREGORY37 - All-In(Raise) 1,480 to 1,480
+MARSHMAN5984 - Folds
+EKDIKEO - Folds
+GREGORY37 - returned (1,445) : not called
+*** SHOW DOWN ***
+GREGORY37 - Does not show
+GREGORY37 Collects 250 from main pot
+*** SUMMARY ***
+Total Pot(250)
+Board [4d 10s 3d]
+Seat 1: SHUSWAPER (big blind) Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 Folded on the FLOP
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO Folded on the FLOP
+Seat 5: 57MAVERICK Folded on the POCKET CARDS
+Seat 6: 89YOTA Folded on the POCKET CARDS
+Seat 7: DOKTORRRR Folded on the POCKET CARDS
+Seat 8: ZALDIVAR (dealer) Folded on the POCKET CARDS
+Seat 9: GREGORY37 (small blind) collected Total (250) All-In HI:(250)  [Does not show] 
+
+
+
+Stage #525708893 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 10 - 2011-01-16 17:10:53 (ET)
+Table: 15 (Real Money) Seat #9 is the dealer
+Seat 1 - SHUSWAPER (1,430 in chips)
+Seat 2 - MARSHMAN5984 (1,295 in chips)
+Seat 3 - METOLIGIST (1,475 in chips)
+Seat 4 - EKDIKEO (1,430 in chips)
+Seat 5 - 57MAVERICK (1,480 in chips)
+Seat 6 - 89YOTA (1,485 in chips)
+Seat 7 - DOKTORRRR (1,470 in chips)
+Seat 8 - ZALDIVAR (1,740 in chips)
+Seat 9 - GREGORY37 (1,695 in chips)
+SHUSWAPER - Posts small blind 5
+MARSHMAN5984 - Posts big blind 10
+*** POCKET CARDS ***
+Dealt to EKDIKEO [As 4d] 
+METOLIGIST - Folds
+EKDIKEO - Folds
+57MAVERICK - Calls 10
+89YOTA - Folds
+DOKTORRRR - Folds
+ZALDIVAR - Folds
+GREGORY37 - Folds
+SHUSWAPER - Raises 25 to 30
+MARSHMAN5984 - Folds
+57MAVERICK - Folds
+SHUSWAPER - returned (20) : not called
+*** SHOW DOWN ***
+SHUSWAPER - Does not show
+SHUSWAPER Collects 30 from main pot
+*** SUMMARY ***
+Total Pot(30)
+Seat 1: SHUSWAPER (small blind) collected Total (30) 
+Seat 2: MARSHMAN5984 (big blind) Folded on the POCKET CARDS
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 5: 57MAVERICK Folded on the POCKET CARDS
+Seat 6: 89YOTA Folded on the POCKET CARDS
+Seat 7: DOKTORRRR Folded on the POCKET CARDS
+Seat 8: ZALDIVAR Folded on the POCKET CARDS
+Seat 9: GREGORY37 (dealer) Folded on the POCKET CARDS
+
+
+
+Stage #525710205 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 10 - 2011-01-16 17:11:29 (ET)
+Table: 15 (Real Money) Seat #1 is the dealer
+Seat 1 - SHUSWAPER (1,450 in chips)
+Seat 2 - MARSHMAN5984 (1,285 in chips)
+Seat 3 - METOLIGIST (1,475 in chips)
+Seat 4 - EKDIKEO (1,430 in chips)
+Seat 5 - 57MAVERICK (1,470 in chips)
+Seat 6 - 89YOTA (1,485 in chips)
+Seat 7 - DOKTORRRR (1,470 in chips)
+Seat 8 - ZALDIVAR (1,740 in chips)
+Seat 9 - GREGORY37 (1,695 in chips)
+MARSHMAN5984 - Posts small blind 5
+METOLIGIST - Posts big blind 10
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Jc Kc] 
+EKDIKEO - Raises 35 to 35
+57MAVERICK - Folds
+89YOTA - Folds
+DOKTORRRR - Folds
+ZALDIVAR - Calls 35
+GREGORY37 - Folds
+SHUSWAPER - Folds
+MARSHMAN5984 - Calls 30
+METOLIGIST - Calls 25
+*** FLOP *** [2d 3d Qh]
+MARSHMAN5984 - Checks
+METOLIGIST - Checks
+EKDIKEO - Checks
+ZALDIVAR - Bets 90
+MARSHMAN5984 - Folds
+METOLIGIST - Folds
+EKDIKEO - Folds
+ZALDIVAR - returned (90) : not called
+*** SHOW DOWN ***
+ZALDIVAR - Does not show
+ZALDIVAR Collects 140 from main pot
+*** SUMMARY ***
+Total Pot(140)
+Board [2d 3d Qh]
+Seat 1: SHUSWAPER (dealer) Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 (small blind) Folded on the FLOP
+Seat 3: METOLIGIST (big blind) Folded on the FLOP
+Seat 4: EKDIKEO Folded on the FLOP
+Seat 5: 57MAVERICK Folded on the POCKET CARDS
+Seat 6: 89YOTA Folded on the POCKET CARDS
+Seat 7: DOKTORRRR Folded on the POCKET CARDS
+Seat 8: ZALDIVAR collected Total (140) HI:(140)  [Does not show] 
+Seat 9: GREGORY37 Folded on the POCKET CARDS
+
+
+
+Stage #525712437 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 20 - 2011-01-16 17:12:29 (ET)
+Table: 15 (Real Money) Seat #2 is the dealer
+Seat 1 - SHUSWAPER (1,450 in chips)
+Seat 2 - MARSHMAN5984 (1,250 in chips)
+Seat 3 - METOLIGIST (1,440 in chips)
+Seat 4 - EKDIKEO (1,395 in chips)
+Seat 5 - 57MAVERICK (1,470 in chips)
+Seat 7 - DOKTORRRR (1,470 in chips)
+Seat 8 - ZALDIVAR (1,845 in chips)
+Seat 9 - GREGORY37 (1,695 in chips)
+METOLIGIST - Posts small blind 10
+EKDIKEO - Posts big blind 20
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Kc Ah] 
+57MAVERICK - Folds
+DOKTORRRR - Raises 60 to 60
+ZALDIVAR - Folds
+GREGORY37 - Folds
+SHUSWAPER - Folds
+MARSHMAN5984 - Calls 60
+METOLIGIST - Calls 50
+EKDIKEO - Raises 280 to 300
+DOKTORRRR - Calls 240
+MARSHMAN5984 - Folds
+METOLIGIST - Calls 240
+*** FLOP *** [9s Jh Js]
+METOLIGIST - Checks
+EKDIKEO - Checks
+DOKTORRRR - All-In 1,170
+METOLIGIST - All-In 1,140
+EKDIKEO - Folds
+DOKTORRRR - returned (30) : not called
+*** TURN *** [9s Jh Js] [8c]
+*** RIVER *** [9s Jh Js 8c] [3d]
+*** SHOW DOWN ***
+METOLIGIST - Shows [Jc As] (Three of a kind, jacks) 
+DOKTORRRR - Shows [7h 7d] (Two Pair, jacks and sevens) 
+METOLIGIST Collects 3,240 from main pot
+*** SUMMARY ***
+Total Pot(3,240)
+Board [9s Jh Js 8c 3d]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 (dealer) Folded on the POCKET CARDS
+Seat 3: METOLIGIST (small blind) won Total (3,240) All-In HI:(3,240) with Three of a kind, jacks [Jc As - B:Js,B:Jh,P:Jc,P:As,B:9s] 
+Seat 4: EKDIKEO (big blind) Folded on the FLOP
+Seat 5: 57MAVERICK Folded on the POCKET CARDS
+Seat 7: DOKTORRRR HI:lost with Two Pair, jacks and sevens [7h 7d - B:Js,B:Jh,P:7h,P:7d,B:9s] 
+Seat 8: ZALDIVAR Folded on the POCKET CARDS
+Seat 9: GREGORY37 Folded on the POCKET CARDS
+
+
+
+Stage #525715794 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 20 - 2011-01-16 17:13:59 (ET)
+Table: 15 (Real Money) Seat #3 is the dealer
+Seat 1 - SHUSWAPER (1,450 in chips)
+Seat 2 - MARSHMAN5984 (1,190 in chips)
+Seat 3 - METOLIGIST (3,240 in chips)
+Seat 4 - EKDIKEO (1,095 in chips)
+Seat 5 - 57MAVERICK (1,470 in chips)
+Seat 6 - BRIANB49 (2,502 in chips)
+Seat 7 - DOKTORRRR (30 in chips)
+Seat 8 - ZALDIVAR (1,845 in chips)
+Seat 9 - GREGORY37 (1,695 in chips)
+EKDIKEO - Posts small blind 10
+57MAVERICK - Posts big blind 20
+*** POCKET CARDS ***
+Dealt to EKDIKEO [3s 4d] 
+BRIANB49 - Calls 20
+DOKTORRRR - Folds
+ZALDIVAR - Calls 20
+GREGORY37 - Calls 20
+SHUSWAPER - Folds
+MARSHMAN5984 - Folds
+METOLIGIST - Calls 20
+EKDIKEO - Folds
+57MAVERICK - Checks
+*** FLOP *** [7h Kd 6s]
+57MAVERICK - Checks
+BRIANB49 - Checks
+ZALDIVAR - Checks
+GREGORY37 - Checks
+METOLIGIST - Bets 40
+57MAVERICK - Raises 100 to 100
+BRIANB49 - Folds
+ZALDIVAR - Folds
+GREGORY37 - Folds
+METOLIGIST - Calls 60
+*** TURN *** [7h Kd 6s] [7s]
+57MAVERICK - Checks
+METOLIGIST - Bets 40
+57MAVERICK - Calls 40
+*** RIVER *** [7h Kd 6s 7s] [As]
+57MAVERICK - Bets 160
+METOLIGIST - Folds
+57MAVERICK - returned (160) : not called
+*** SHOW DOWN ***
+57MAVERICK - Does not show
+57MAVERICK Collects 390 from main pot
+*** SUMMARY ***
+Total Pot(390)
+Board [7h Kd 6s 7s As]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 Folded on the POCKET CARDS
+Seat 3: METOLIGIST (dealer) Folded on the RIVER
+Seat 4: EKDIKEO (small blind) Folded on the POCKET CARDS
+Seat 5: 57MAVERICK (big blind) collected Total (390) HI:(390)  [Does not show] 
+Seat 6: BRIANB49 Folded on the FLOP
+Seat 7: DOKTORRRR Folded on the POCKET CARDS
+Seat 8: ZALDIVAR Folded on the FLOP
+Seat 9: GREGORY37 Folded on the FLOP
+
+
+
+Stage #525719110 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 20 - 2011-01-16 17:15:29 (ET)
+Table: 15 (Real Money) Seat #4 is the dealer
+Seat 1 - SHUSWAPER (1,450 in chips)
+Seat 2 - MARSHMAN5984 (1,190 in chips)
+Seat 3 - METOLIGIST (3,080 in chips)
+Seat 4 - EKDIKEO (1,085 in chips)
+Seat 5 - 57MAVERICK (1,700 in chips)
+Seat 6 - BRIANB49 (2,482 in chips)
+Seat 7 - DOKTORRRR (30 in chips)
+Seat 8 - ZALDIVAR (1,825 in chips)
+Seat 9 - GREGORY37 (1,675 in chips)
+57MAVERICK - Posts small blind 10
+BRIANB49 - Posts big blind 20
+*** POCKET CARDS ***
+Dealt to EKDIKEO [4c Jd] 
+DOKTORRRR - All-In(Raise) 30 to 30
+ZALDIVAR - Folds
+GREGORY37 - Raises 120 to 120
+SHUSWAPER - Folds
+MARSHMAN5984 - Folds
+METOLIGIST - Folds
+EKDIKEO - Folds
+57MAVERICK - Folds
+BRIANB49 - Folds
+GREGORY37 - returned (90) : not called
+*** FLOP *** [3c Ks 9c]
+*** TURN *** [3c Ks 9c] [10h]
+*** RIVER *** [3c Ks 9c 10h] [Kc]
+*** SHOW DOWN ***
+DOKTORRRR - Shows [Js Qc] (Straight, nine to king) 
+GREGORY37 - Shows [Ac 10s] (Two Pair, kings and tens) 
+DOKTORRRR Collects 90 from main pot
+*** SUMMARY ***
+Total Pot(90)
+Board [3c Ks 9c 10h Kc]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 Folded on the POCKET CARDS
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO (dealer) Folded on the POCKET CARDS
+Seat 5: 57MAVERICK (small blind) Folded on the POCKET CARDS
+Seat 6: BRIANB49 (big blind) Folded on the POCKET CARDS
+Seat 7: DOKTORRRR won Total (90) All-In HI:(90) with Straight, nine to king [Js Qc - B:Ks,P:Qc,P:Js,B:10h,B:9c] 
+Seat 8: ZALDIVAR Folded on the POCKET CARDS
+Seat 9: GREGORY37 HI:lost with Two Pair, kings and tens [Ac 10s - B:Ks,B:Kc,P:10s,B:10h,P:Ac] 
+
+
+
+Stage #525720634 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 20 - 2011-01-16 17:16:11 (ET)
+Table: 15 (Real Money) Seat #5 is the dealer
+Seat 1 - SHUSWAPER (1,450 in chips)
+Seat 2 - MARSHMAN5984 (1,190 in chips)
+Seat 3 - METOLIGIST (3,080 in chips)
+Seat 4 - EKDIKEO (1,085 in chips)
+Seat 5 - 57MAVERICK (1,690 in chips)
+Seat 6 - BRIANB49 (2,462 in chips)
+Seat 7 - DOKTORRRR (90 in chips)
+Seat 8 - ZALDIVAR (1,825 in chips)
+Seat 9 - GREGORY37 (1,645 in chips)
+BRIANB49 - Posts small blind 10
+DOKTORRRR - Posts big blind 20
+*** POCKET CARDS ***
+Dealt to EKDIKEO [10s Ks] 
+ZALDIVAR - Folds
+GREGORY37 - Folds
+SHUSWAPER - Calls 20
+MARSHMAN5984 - Calls 20
+METOLIGIST - Folds
+EKDIKEO - Raises 110 to 110
+57MAVERICK - Calls 110
+BRIANB49 - Folds
+DOKTORRRR - Folds
+SHUSWAPER - Folds
+MARSHMAN5984 - Calls 90
+*** FLOP *** [4d 10h 10d]
+MARSHMAN5984 - Checks
+EKDIKEO - Bets 210
+57MAVERICK - Raises 420 to 420
+MARSHMAN5984 - Folds
+EKDIKEO - Raises 520 to 730
+57MAVERICK - Calls 310
+*** TURN *** [4d 10h 10d] [Kd]
+EKDIKEO - All-In 245
+57MAVERICK - Calls 245
+*** RIVER *** [4d 10h 10d Kd] [2d]
+*** SHOW DOWN ***
+EKDIKEO - Shows [10s Ks] (Full house, tens full of kings) 
+57MAVERICK - Shows [As Ac] (Two Pair, aces and tens) 
+EKDIKEO Collects 2,330 from main pot
+*** SUMMARY ***
+Total Pot(2,330)
+Board [4d 10h 10d Kd 2d]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 Folded on the FLOP
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO won Total (2,330) All-In HI:(2,330) with Full house, tens full of kings [10s Ks - P:10s,B:10h,B:10d,P:Ks,B:Kd] 
+Seat 5: 57MAVERICK (dealer) HI:lost with Two Pair, aces and tens [As Ac - P:As,P:Ac,B:10h,B:10d,B:Kd] 
+Seat 6: BRIANB49 (small blind) Folded on the POCKET CARDS
+Seat 7: DOKTORRRR (big blind) Folded on the POCKET CARDS
+Seat 8: ZALDIVAR Folded on the POCKET CARDS
+Seat 9: GREGORY37 Folded on the POCKET CARDS
+
+
+
+Stage #525723564 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 20 - 2011-01-16 17:17:32 (ET)
+Table: 15 (Real Money) Seat #6 is the dealer
+Seat 1 - SHUSWAPER (1,430 in chips)
+Seat 2 - MARSHMAN5984 (1,080 in chips)
+Seat 3 - METOLIGIST (3,080 in chips)
+Seat 4 - EKDIKEO (2,330 in chips)
+Seat 5 - 57MAVERICK (605 in chips)
+Seat 6 - BRIANB49 (2,452 in chips)
+Seat 7 - DOKTORRRR (70 in chips)
+Seat 8 - ZALDIVAR (1,825 in chips)
+Seat 9 - GREGORY37 (1,645 in chips)
+DOKTORRRR - Posts small blind 10
+ZALDIVAR - Posts big blind 20
+*** POCKET CARDS ***
+Dealt to EKDIKEO [5h Jh] 
+GREGORY37 - Folds
+SHUSWAPER - Calls 20
+MARSHMAN5984 - Folds
+METOLIGIST - Folds
+EKDIKEO - Folds
+57MAVERICK - Folds
+BRIANB49 - Folds
+DOKTORRRR - All-In(Raise) 60 to 70
+ZALDIVAR - Raises 210 to 230
+SHUSWAPER - Folds
+ZALDIVAR - returned (160) : not called
+*** FLOP *** [2c Ac 3h]
+*** TURN *** [2c Ac 3h] [7h]
+*** RIVER *** [2c Ac 3h 7h] [4s]
+*** SHOW DOWN ***
+DOKTORRRR - Shows [Ad Kc] (One pair, aces) 
+ZALDIVAR - Shows [Qh Qs] (One pair, queens) 
+DOKTORRRR Collects 160 from main pot
+*** SUMMARY ***
+Total Pot(160)
+Board [2c Ac 3h 7h 4s]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 Folded on the POCKET CARDS
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 5: 57MAVERICK Folded on the POCKET CARDS
+Seat 6: BRIANB49 (dealer) Folded on the POCKET CARDS
+Seat 7: DOKTORRRR (small blind) won Total (160) All-In HI:(160) with One pair, aces [Ad Kc - P:Ad,B:Ac,P:Kc,B:7h,B:4s] 
+Seat 8: ZALDIVAR (big blind) HI:lost with One pair, queens [Qh Qs - P:Qs,P:Qh,B:Ac,B:7h,B:4s] 
+Seat 9: GREGORY37 Folded on the POCKET CARDS
+
+
+
+Stage #525725332 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 20 - 2011-01-16 17:18:20 (ET)
+Table: 15 (Real Money) Seat #7 is the dealer
+Seat 1 - SHUSWAPER (1,410 in chips)
+Seat 2 - MARSHMAN5984 (1,080 in chips)
+Seat 3 - METOLIGIST (3,080 in chips)
+Seat 4 - EKDIKEO (2,330 in chips)
+Seat 5 - 57MAVERICK (605 in chips)
+Seat 6 - BRIANB49 (2,452 in chips)
+Seat 7 - DOKTORRRR (160 in chips)
+Seat 8 - ZALDIVAR (1,755 in chips)
+Seat 9 - GREGORY37 (1,645 in chips)
+ZALDIVAR - Posts small blind 10
+GREGORY37 - Posts big blind 20
+*** POCKET CARDS ***
+Dealt to EKDIKEO [4d Ac] 
+SHUSWAPER - Folds
+MARSHMAN5984 - Raises 80 to 80
+METOLIGIST - Folds
+EKDIKEO - Folds
+57MAVERICK - Folds
+BRIANB49 - Folds
+DOKTORRRR - All-In(Raise) 160 to 160
+ZALDIVAR - Folds
+GREGORY37 - Folds
+MARSHMAN5984 - Calls 80
+*** FLOP *** [Qs 2d Kc]
+*** TURN *** [Qs 2d Kc] [Kh]
+*** RIVER *** [Qs 2d Kc Kh] [7s]
+*** SHOW DOWN ***
+MARSHMAN5984 - Shows [Ah Jd] (One pair, kings) 
+DOKTORRRR - Shows [Jh 8s] (One pair, kings) 
+MARSHMAN5984 Collects 350 from main pot
+*** SUMMARY ***
+Total Pot(350)
+Board [Qs 2d Kc Kh 7s]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 won Total (350) HI:(350) with One pair, kings(ace kicker) [Ah Jd - B:Kh,B:Kc,P:Ah,B:Qs,P:Jd] 
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 5: 57MAVERICK Folded on the POCKET CARDS
+Seat 6: BRIANB49 Folded on the POCKET CARDS
+Seat 7: DOKTORRRR (dealer) HI:lost with One pair, kings [Jh 8s - B:Kh,B:Kc,B:Qs,P:Jh,P:8s] 
+Seat 8: ZALDIVAR (small blind) Folded on the POCKET CARDS
+Seat 9: GREGORY37 (big blind) Folded on the POCKET CARDS
+
+
+
+Stage #525727179 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 20 - 2011-01-16 17:19:11 (ET)
+Table: 15 (Real Money) Seat #8 is the dealer
+Seat 1 - SHUSWAPER (1,410 in chips)
+Seat 2 - MARSHMAN5984 (1,270 in chips)
+Seat 3 - METOLIGIST (3,080 in chips)
+Seat 4 - EKDIKEO (2,330 in chips)
+Seat 5 - 57MAVERICK (605 in chips)
+Seat 6 - BRIANB49 (2,452 in chips)
+Seat 8 - ZALDIVAR (1,745 in chips)
+Seat 9 - GREGORY37 (1,625 in chips)
+GREGORY37 - Posts small blind 10
+SHUSWAPER - Posts big blind 20
+*** POCKET CARDS ***
+Dealt to EKDIKEO [5d 2c] 
+MARSHMAN5984 - Calls 20
+METOLIGIST - Raises 60 to 60
+EKDIKEO - Folds
+57MAVERICK - Folds
+BRIANB49 - Folds
+ZALDIVAR - Folds
+GREGORY37 - Folds
+SHUSWAPER - Calls 40
+MARSHMAN5984 - Calls 40
+*** FLOP *** [2d Js Qs]
+SHUSWAPER - Checks
+MARSHMAN5984 - Checks
+METOLIGIST - Bets 60
+SHUSWAPER - Calls 60
+MARSHMAN5984 - Calls 60
+*** TURN *** [2d Js Qs] [8c]
+SHUSWAPER - Checks
+MARSHMAN5984 - Checks
+METOLIGIST - Checks
+*** RIVER *** [2d Js Qs 8c] [7s]
+SHUSWAPER - Checks
+MARSHMAN5984 - Bets 100
+METOLIGIST - Folds
+SHUSWAPER - Folds
+MARSHMAN5984 - returned (100) : not called
+*** SHOW DOWN ***
+MARSHMAN5984 - Does not show
+MARSHMAN5984 Collects 370 from main pot
+*** SUMMARY ***
+Total Pot(370)
+Board [2d Js Qs 8c 7s]
+Seat 1: SHUSWAPER (big blind) Folded on the RIVER
+Seat 2: MARSHMAN5984 collected Total (370) HI:(370)  [Does not show] 
+Seat 3: METOLIGIST Folded on the RIVER
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 5: 57MAVERICK Folded on the POCKET CARDS
+Seat 6: BRIANB49 Folded on the POCKET CARDS
+Seat 8: ZALDIVAR (dealer) Folded on the POCKET CARDS
+Seat 9: GREGORY37 (small blind) Folded on the POCKET CARDS
+
+
+
+Stage #525729656 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 20 - 2011-01-16 17:20:20 (ET)
+Table: 15 (Real Money) Seat #9 is the dealer
+Seat 1 - SHUSWAPER (1,290 in chips)
+Seat 2 - MARSHMAN5984 (1,520 in chips)
+Seat 3 - METOLIGIST (2,960 in chips)
+Seat 4 - EKDIKEO (2,330 in chips)
+Seat 5 - 57MAVERICK (605 in chips)
+Seat 6 - BRIANB49 (2,452 in chips)
+Seat 7 - MAKMOJARTU (6,405 in chips)
+Seat 8 - ZALDIVAR (1,745 in chips)
+Seat 9 - GREGORY37 (1,615 in chips)
+SHUSWAPER - Posts small blind 10
+MARSHMAN5984 - Posts big blind 20
+*** POCKET CARDS ***
+Dealt to EKDIKEO [2h Jh] 
+METOLIGIST - Folds
+EKDIKEO - Folds
+57MAVERICK - Folds
+BRIANB49 - Folds
+MAKMOJARTU - Calls 20
+ZALDIVAR - Folds
+GREGORY37 - Calls 20
+SHUSWAPER - Calls 10
+MARSHMAN5984 - Checks
+*** FLOP *** [As Kc 3d]
+SHUSWAPER - Checks
+MARSHMAN5984 - Checks
+MAKMOJARTU - Checks
+GREGORY37 - Checks
+*** TURN *** [As Kc 3d] [Kh]
+SHUSWAPER - Checks
+MARSHMAN5984 - Checks
+MAKMOJARTU - Checks
+GREGORY37 - Checks
+*** RIVER *** [As Kc 3d Kh] [5h]
+SHUSWAPER - Checks
+MARSHMAN5984 - Checks
+MAKMOJARTU - Checks
+GREGORY37 - Checks
+*** SHOW DOWN ***
+SHUSWAPER - Shows [8s Qs] (One pair, kings) 
+MARSHMAN5984 - Shows [5s 6d] (Two Pair, kings and fives) 
+MAKMOJARTU - Mucks
+GREGORY37 - Mucks
+MARSHMAN5984 Collects 80 from main pot
+*** SUMMARY ***
+Total Pot(80)
+Board [As Kc 3d Kh 5h]
+Seat 1: SHUSWAPER (small blind) HI:lost with One pair, kings [8s Qs - B:Kh,B:Kc,B:As,P:Qs,P:8s] 
+Seat 2: MARSHMAN5984 (big blind) won Total (80) HI:(80) with Two Pair, kings and fives [5s 6d - B:Kh,B:Kc,P:5s,B:5h,B:As] 
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 5: 57MAVERICK Folded on the POCKET CARDS
+Seat 6: BRIANB49 Folded on the POCKET CARDS
+Seat 7: MAKMOJARTU HI: [Mucked] [8d Jd] 
+Seat 8: ZALDIVAR Folded on the POCKET CARDS
+Seat 9: GREGORY37 (dealer) HI: [Mucked] [10s 2s] 
+
+
+
+Stage #525733007 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 20 - 2011-01-16 17:21:53 (ET)
+Table: 15 (Real Money) Seat #1 is the dealer
+Seat 1 - SHUSWAPER (1,270 in chips)
+Seat 2 - MARSHMAN5984 (1,580 in chips)
+Seat 3 - METOLIGIST (2,960 in chips)
+Seat 4 - EKDIKEO (2,330 in chips)
+Seat 5 - 57MAVERICK (605 in chips)
+Seat 6 - BRIANB49 (2,452 in chips)
+Seat 7 - MAKMOJARTU (6,385 in chips)
+Seat 8 - ZALDIVAR (1,745 in chips)
+Seat 9 - GREGORY37 (1,595 in chips)
+MARSHMAN5984 - Posts small blind 10
+METOLIGIST - Posts big blind 20
+*** POCKET CARDS ***
+Dealt to EKDIKEO [9s 2h] 
+EKDIKEO - Folds
+57MAVERICK - Folds
+BRIANB49 - Folds
+MAKMOJARTU - Calls 20
+ZALDIVAR - Raises 55 to 55
+GREGORY37 - Folds
+SHUSWAPER - Calls 55
+MARSHMAN5984 - Calls 45
+METOLIGIST - Calls 35
+MAKMOJARTU - Calls 35
+*** FLOP *** [3d 5d Jc]
+MARSHMAN5984 - Bets 100
+METOLIGIST - Folds
+MAKMOJARTU - Folds
+ZALDIVAR - Calls 100
+SHUSWAPER - Folds
+*** TURN *** [3d 5d Jc] [Jd]
+MARSHMAN5984 - Bets 100
+ZALDIVAR - Calls 100
+*** RIVER *** [3d 5d Jc Jd] [6c]
+MARSHMAN5984 - Bets 100
+ZALDIVAR - Calls 100
+*** SHOW DOWN ***
+MARSHMAN5984 - Shows [10h Jh] (Three of a kind, jacks) 
+ZALDIVAR - Mucks
+MARSHMAN5984 Collects 875 from main pot
+*** SUMMARY ***
+Total Pot(875)
+Board [3d 5d Jc Jd 6c]
+Seat 1: SHUSWAPER (dealer) Folded on the FLOP
+Seat 2: MARSHMAN5984 (small blind) won Total (875) HI:(875) with Three of a kind, jacks [10h Jh - P:Jh,B:Jd,B:Jc,P:10h,B:6c] 
+Seat 3: METOLIGIST (big blind) Folded on the FLOP
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 5: 57MAVERICK Folded on the POCKET CARDS
+Seat 6: BRIANB49 Folded on the POCKET CARDS
+Seat 7: MAKMOJARTU Folded on the FLOP
+Seat 8: ZALDIVAR HI: [Mucked] [6d 7s] 
+Seat 9: GREGORY37 Folded on the POCKET CARDS
+
+
+
+Stage #525735258 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 20 - 2011-01-16 17:22:56 (ET)
+Table: 15 (Real Money) Seat #2 is the dealer
+Seat 1 - SHUSWAPER (1,215 in chips)
+Seat 2 - MARSHMAN5984 (2,100 in chips)
+Seat 3 - METOLIGIST (2,905 in chips)
+Seat 4 - EKDIKEO (2,330 in chips)
+Seat 5 - 57MAVERICK (605 in chips)
+Seat 6 - BRIANB49 (2,452 in chips)
+Seat 7 - MAKMOJARTU (6,330 in chips)
+Seat 8 - ZALDIVAR (1,390 in chips)
+Seat 9 - GREGORY37 (1,595 in chips)
+METOLIGIST - Posts small blind 10
+EKDIKEO - Posts big blind 20
+*** POCKET CARDS ***
+Dealt to EKDIKEO [3s 4h] 
+57MAVERICK - Folds
+BRIANB49 - Folds
+MAKMOJARTU - Calls 20
+ZALDIVAR - Folds
+GREGORY37 - Folds
+SHUSWAPER - Folds
+MARSHMAN5984 - Calls 20
+METOLIGIST - Calls 10
+EKDIKEO - Checks
+*** FLOP *** [10c 10s As]
+METOLIGIST - Bets 60
+EKDIKEO - Folds
+MAKMOJARTU - Folds
+MARSHMAN5984 - Folds
+METOLIGIST - returned (60) : not called
+*** SHOW DOWN ***
+METOLIGIST - Does not show
+METOLIGIST Collects 80 from main pot
+*** SUMMARY ***
+Total Pot(80)
+Board [10c 10s As]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 (dealer) Folded on the FLOP
+Seat 3: METOLIGIST (small blind) collected Total (80) HI:(80)  [Does not show] 
+Seat 4: EKDIKEO (big blind) Folded on the FLOP
+Seat 5: 57MAVERICK Folded on the POCKET CARDS
+Seat 6: BRIANB49 Folded on the POCKET CARDS
+Seat 7: MAKMOJARTU Folded on the FLOP
+Seat 8: ZALDIVAR Folded on the POCKET CARDS
+Seat 9: GREGORY37 Folded on the POCKET CARDS
+
+
+
+Stage #525737389 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 20 - 2011-01-16 17:23:56 (ET)
+Table: 15 (Real Money) Seat #3 is the dealer
+Seat 1 - SHUSWAPER (1,215 in chips)
+Seat 2 - MARSHMAN5984 (2,080 in chips)
+Seat 3 - METOLIGIST (2,965 in chips)
+Seat 4 - EKDIKEO (2,310 in chips)
+Seat 5 - 57MAVERICK (605 in chips)
+Seat 6 - BRIANB49 (2,452 in chips)
+Seat 7 - MAKMOJARTU (6,310 in chips)
+Seat 8 - ZALDIVAR (1,390 in chips)
+Seat 9 - GREGORY37 (1,595 in chips)
+EKDIKEO - Posts small blind 10
+57MAVERICK - Posts big blind 20
+*** POCKET CARDS ***
+Dealt to EKDIKEO [7c 5d] 
+BRIANB49 - Folds
+MAKMOJARTU - Folds
+ZALDIVAR - Raises 70 to 70
+GREGORY37 - Folds
+SHUSWAPER - Folds
+MARSHMAN5984 - Folds
+METOLIGIST - Folds
+EKDIKEO - Folds
+57MAVERICK - Folds
+ZALDIVAR - returned (50) : not called
+*** SHOW DOWN ***
+ZALDIVAR - Does not show
+ZALDIVAR Collects 50 from main pot
+*** SUMMARY ***
+Total Pot(50)
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 Folded on the POCKET CARDS
+Seat 3: METOLIGIST (dealer) Folded on the POCKET CARDS
+Seat 4: EKDIKEO (small blind) Folded on the POCKET CARDS
+Seat 5: 57MAVERICK (big blind) Folded on the POCKET CARDS
+Seat 6: BRIANB49 Folded on the POCKET CARDS
+Seat 7: MAKMOJARTU Folded on the POCKET CARDS
+Seat 8: ZALDIVAR collected Total (50) 
+Seat 9: GREGORY37 Folded on the POCKET CARDS
+
+
+
+Stage #525738596 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 30 - 2011-01-16 17:24:29 (ET)
+Table: 15 (Real Money) Seat #4 is the dealer
+Seat 1 - SHUSWAPER (1,215 in chips)
+Seat 2 - MARSHMAN5984 (2,080 in chips)
+Seat 3 - METOLIGIST (2,965 in chips)
+Seat 4 - EKDIKEO (2,300 in chips)
+Seat 5 - 57MAVERICK (585 in chips)
+Seat 6 - BRIANB49 (2,452 in chips)
+Seat 7 - MAKMOJARTU (6,310 in chips)
+Seat 8 - ZALDIVAR (1,420 in chips)
+Seat 9 - GREGORY37 (1,595 in chips)
+57MAVERICK - Posts small blind 15
+BRIANB49 - Posts big blind 30
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Js 6s] 
+MAKMOJARTU - Folds
+ZALDIVAR - Raises 60 to 60
+GREGORY37 - Folds
+SHUSWAPER - Folds
+MARSHMAN5984 - Folds
+METOLIGIST - Calls 60
+EKDIKEO - Folds
+57MAVERICK - Folds
+BRIANB49 - Calls 30
+*** FLOP *** [Kd 8c As]
+BRIANB49 - Checks
+ZALDIVAR - Bets 120
+METOLIGIST - Calls 120
+BRIANB49 - Calls 120
+*** TURN *** [Kd 8c As] [6d]
+BRIANB49 - Checks
+ZALDIVAR - Checks
+METOLIGIST - Checks
+*** RIVER *** [Kd 8c As 6d] [4h]
+BRIANB49 - Bets 555
+ZALDIVAR - Folds
+METOLIGIST - Folds
+BRIANB49 - returned (555) : not called
+*** SHOW DOWN ***
+BRIANB49 - Does not show
+BRIANB49 Collects 555 from main pot
+*** SUMMARY ***
+Total Pot(555)
+Board [Kd 8c As 6d 4h]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 Folded on the POCKET CARDS
+Seat 3: METOLIGIST Folded on the RIVER
+Seat 4: EKDIKEO (dealer) Folded on the POCKET CARDS
+Seat 5: 57MAVERICK (small blind) Folded on the POCKET CARDS
+Seat 6: BRIANB49 (big blind) collected Total (555) HI:(555)  [Does not show] 
+Seat 7: MAKMOJARTU Folded on the POCKET CARDS
+Seat 8: ZALDIVAR Folded on the RIVER
+Seat 9: GREGORY37 Folded on the POCKET CARDS
+
+
+
+Stage #525740727 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 30 - 2011-01-16 17:25:29 (ET)
+Table: 15 (Real Money) Seat #5 is the dealer
+Seat 1 - SHUSWAPER (1,215 in chips)
+Seat 2 - MARSHMAN5984 (2,080 in chips)
+Seat 3 - METOLIGIST (2,785 in chips)
+Seat 4 - EKDIKEO (2,300 in chips)
+Seat 5 - 57MAVERICK (570 in chips)
+Seat 6 - BRIANB49 (2,827 in chips)
+Seat 7 - MAKMOJARTU (6,310 in chips)
+Seat 8 - ZALDIVAR (1,240 in chips)
+Seat 9 - GREGORY37 (1,595 in chips)
+BRIANB49 - Posts small blind 15
+MAKMOJARTU - Posts big blind 30
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Jd 8c] 
+ZALDIVAR - Folds
+GREGORY37 - Calls 30
+SHUSWAPER - Folds
+MARSHMAN5984 - Folds
+METOLIGIST - Folds
+EKDIKEO - Folds
+57MAVERICK - Folds
+BRIANB49 - Calls 15
+MAKMOJARTU - Checks
+*** FLOP *** [Qc 4s 3s]
+BRIANB49 - Checks
+MAKMOJARTU - Checks
+GREGORY37 - Bets 240
+BRIANB49 - Folds
+MAKMOJARTU - Folds
+GREGORY37 - returned (240) : not called
+*** SHOW DOWN ***
+GREGORY37 - Does not show
+GREGORY37 Collects 90 from main pot
+*** SUMMARY ***
+Total Pot(90)
+Board [Qc 4s 3s]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 Folded on the POCKET CARDS
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 5: 57MAVERICK (dealer) Folded on the POCKET CARDS
+Seat 6: BRIANB49 (small blind) Folded on the FLOP
+Seat 7: MAKMOJARTU (big blind) Folded on the FLOP
+Seat 8: ZALDIVAR Folded on the POCKET CARDS
+Seat 9: GREGORY37 collected Total (90) HI:(90)  [Does not show] 
+
+
+
+Stage #525742134 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 30 - 2011-01-16 17:26:08 (ET)
+Table: 15 (Real Money) Seat #6 is the dealer
+Seat 1 - SHUSWAPER (1,215 in chips)
+Seat 2 - MARSHMAN5984 (2,080 in chips)
+Seat 3 - METOLIGIST (2,785 in chips)
+Seat 4 - EKDIKEO (2,300 in chips)
+Seat 5 - 57MAVERICK (570 in chips)
+Seat 6 - BRIANB49 (2,797 in chips)
+Seat 7 - MAKMOJARTU (6,280 in chips)
+Seat 8 - ZALDIVAR (1,240 in chips)
+Seat 9 - GREGORY37 (1,655 in chips)
+MAKMOJARTU - Posts small blind 15
+ZALDIVAR - Posts big blind 30
+*** POCKET CARDS ***
+Dealt to EKDIKEO [3s 2h] 
+GREGORY37 - Folds
+SHUSWAPER - Folds
+MARSHMAN5984 - Folds
+METOLIGIST - Folds
+EKDIKEO - Folds
+57MAVERICK - Calls 30
+BRIANB49 - Calls 30
+MAKMOJARTU - Calls 15
+ZALDIVAR - Raises 160 to 190
+57MAVERICK - All-In(Raise) 540 to 570
+BRIANB49 - Folds
+MAKMOJARTU - Folds
+ZALDIVAR - Calls 380
+*** FLOP *** [8c Qs Jh]
+*** TURN *** [8c Qs Jh] [3h]
+*** RIVER *** [8c Qs Jh 3h] [Kd]
+*** SHOW DOWN ***
+57MAVERICK - Shows [Ad Jd] (One pair, jacks) 
+ZALDIVAR - Shows [Ks 10d] (One pair, kings) 
+ZALDIVAR Collects 1,200 from main pot
+*** SUMMARY ***
+Total Pot(1,200)
+Board [8c Qs Jh 3h Kd]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: MARSHMAN5984 Folded on the POCKET CARDS
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 5: 57MAVERICK HI:lost with One pair, jacks [Ad Jd - B:Jh,P:Jd,P:Ad,B:Kd,B:Qs] 
+Seat 6: BRIANB49 (dealer) Folded on the POCKET CARDS
+Seat 7: MAKMOJARTU (small blind) Folded on the POCKET CARDS
+Seat 8: ZALDIVAR (big blind) won Total (1,200) HI:(1,200) with One pair, kings [Ks 10d - P:Ks,B:Kd,B:Qs,B:Jh,P:10d] 
+Seat 9: GREGORY37 Folded on the POCKET CARDS
+
+
+
+Stage #525744427 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 30 - 2011-01-16 17:27:14 (ET)
+Table: 15 (Real Money) Seat #7 is the dealer
+Seat 1 - SHUSWAPER (1,215 in chips)
+Seat 2 - MARSHMAN5984 (2,080 in chips)
+Seat 3 - METOLIGIST (2,785 in chips)
+Seat 4 - EKDIKEO (2,300 in chips)
+Seat 6 - BRIANB49 (2,767 in chips)
+Seat 7 - MAKMOJARTU (6,250 in chips)
+Seat 8 - ZALDIVAR (1,870 in chips)
+Seat 9 - GREGORY37 (1,655 in chips)
+ZALDIVAR - Posts small blind 15
+GREGORY37 - Posts big blind 30
+*** POCKET CARDS ***
+Dealt to EKDIKEO [3h 4c] 
+SHUSWAPER - Raises 90 to 90
+MARSHMAN5984 - Calls 90
+METOLIGIST - Folds
+EKDIKEO - Folds
+BRIANB49 - Folds
+MAKMOJARTU - Calls 90
+ZALDIVAR - Folds
+GREGORY37 - Calls 60
+*** FLOP *** [Ah 6s 7h]
+GREGORY37 - Checks
+SHUSWAPER - Bets 200
+MARSHMAN5984 - Calls 200
+MAKMOJARTU - All-In(Raise) 6,160 to 6,160
+GREGORY37 - Folds
+SHUSWAPER - All-In 925
+MARSHMAN5984 - All-In 1,790
+MAKMOJARTU - returned (4,170) : not called
+*** TURN *** [Ah 6s 7h] [Qc]
+*** RIVER *** [Ah 6s 7h Qc] [8h]
+*** SHOW DOWN ***
+SHUSWAPER - Shows [Ad Kh] (One pair, aces) 
+MARSHMAN5984 - Shows [8s 9h] (One pair, eights) 
+MAKMOJARTU - Shows [As Ks] (One pair, aces) 
+MAKMOJARTU Collects 1,730 from side pot-1
+SHUSWAPER Collects 1,875 from main pot
+MAKMOJARTU Collects 1,875 from main pot
+*** SUMMARY ***
+Total Pot(5,480:3,750,1,730)
+Board [Ah 6s 7h Qc 8h]
+Seat 1: SHUSWAPER won Total (1,875) All-In HI:(1,875) with One pair, aces [Ad Kh - B:Ah,P:Ad,P:Kh,B:Qc,B:8h] 
+Seat 2: MARSHMAN5984 HI:lost with One pair, eights [8s 9h - P:8s,B:8h,B:Ah,B:Qc,P:9h] 
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 6: BRIANB49 Folded on the POCKET CARDS
+Seat 7: MAKMOJARTU (dealer) won Total (3,605) All-In HI:(3,605) with One pair, aces [As Ks - P:As,B:Ah,P:Ks,B:Qc,B:8h] 
+Seat 8: ZALDIVAR (small blind) Folded on the POCKET CARDS
+Seat 9: GREGORY37 (big blind) Folded on the FLOP
+
+
+
+Stage #525746373 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 30 - 2011-01-16 17:28:08 (ET)
+Table: 15 (Real Money) Seat #8 is the dealer
+Seat 1 - SHUSWAPER (1,875 in chips)
+Seat 3 - METOLIGIST (2,785 in chips)
+Seat 4 - EKDIKEO (2,300 in chips)
+Seat 5 - LEEDOG4200 (2,346 in chips)
+Seat 6 - BRIANB49 (2,767 in chips)
+Seat 7 - MAKMOJARTU (7,775 in chips)
+Seat 8 - ZALDIVAR (1,855 in chips)
+Seat 9 - GREGORY37 (1,565 in chips)
+GREGORY37 - Posts small blind 15
+SHUSWAPER - Posts big blind 30
+*** POCKET CARDS ***
+Dealt to EKDIKEO [8d Ks] 
+METOLIGIST - Folds
+EKDIKEO - Folds
+LEEDOG4200 - Folds
+BRIANB49 - Raises 90 to 90
+MAKMOJARTU - Calls 90
+ZALDIVAR - Folds
+GREGORY37 - Calls 75
+SHUSWAPER - Calls 60
+*** FLOP *** [Ah 9d 9s]
+GREGORY37 - Checks
+SHUSWAPER - Checks
+BRIANB49 - Bets 180
+MAKMOJARTU - Folds
+GREGORY37 - Folds
+SHUSWAPER - All-In(Raise) 1,785 to 1,785
+BRIANB49 - Folds
+SHUSWAPER - returned (1,605) : not called
+*** SHOW DOWN ***
+SHUSWAPER - Does not show
+SHUSWAPER Collects 720 from main pot
+*** SUMMARY ***
+Total Pot(720)
+Board [Ah 9d 9s]
+Seat 1: SHUSWAPER (big blind) collected Total (720) All-In HI:(720)  [Does not show] 
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 5: LEEDOG4200 Folded on the POCKET CARDS
+Seat 6: BRIANB49 Folded on the FLOP
+Seat 7: MAKMOJARTU Folded on the FLOP
+Seat 8: ZALDIVAR (dealer) Folded on the POCKET CARDS
+Seat 9: GREGORY37 (small blind) Folded on the FLOP
+
+
+
+Stage #525748785 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 30 - 2011-01-16 17:29:17 (ET)
+Table: 15 (Real Money) Seat #9 is the dealer
+Seat 1 - SHUSWAPER (2,325 in chips)
+Seat 3 - METOLIGIST (2,785 in chips)
+Seat 4 - EKDIKEO (2,300 in chips)
+Seat 5 - LEEDOG4200 (2,346 in chips)
+Seat 6 - BRIANB49 (2,497 in chips)
+Seat 7 - MAKMOJARTU (7,685 in chips)
+Seat 8 - ZALDIVAR (1,855 in chips)
+Seat 9 - GREGORY37 (1,475 in chips)
+SHUSWAPER - Posts small blind 15
+METOLIGIST - Posts big blind 30
+*** POCKET CARDS ***
+Dealt to EKDIKEO [3d 8d] 
+EKDIKEO - Folds
+LEEDOG4200 - Folds
+BRIANB49 - Calls 30
+MAKMOJARTU - Folds
+ZALDIVAR - Calls 30
+GREGORY37 - Calls 30
+SHUSWAPER - Calls 15
+METOLIGIST - Raises 90 to 120
+BRIANB49 - Calls 90
+ZALDIVAR - Calls 90
+GREGORY37 - Calls 90
+SHUSWAPER - Calls 90
+*** FLOP *** [8h 6c 5d]
+SHUSWAPER - Checks
+METOLIGIST - Bets 90
+BRIANB49 - Folds
+ZALDIVAR - Raises 300 to 300
+GREGORY37 - Calls 300
+SHUSWAPER - Folds
+METOLIGIST - Folds
+*** TURN *** [8h 6c 5d] [7d]
+ZALDIVAR - Checks
+GREGORY37 - All-In 1,055
+ZALDIVAR - Folds
+GREGORY37 - returned (1,055) : not called
+*** SHOW DOWN ***
+GREGORY37 - Does not show
+GREGORY37 Collects 1,290 from main pot
+*** SUMMARY ***
+Total Pot(1,290)
+Board [8h 6c 5d 7d]
+Seat 1: SHUSWAPER (small blind) Folded on the FLOP
+Seat 3: METOLIGIST (big blind) Folded on the FLOP
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 5: LEEDOG4200 Folded on the POCKET CARDS
+Seat 6: BRIANB49 Folded on the FLOP
+Seat 7: MAKMOJARTU Folded on the POCKET CARDS
+Seat 8: ZALDIVAR Folded on the TURN
+Seat 9: GREGORY37 (dealer) collected Total (1,290) All-In HI:(1,290)  [Does not show] 
+
+
+
+Stage #525751417 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 30 - 2011-01-16 17:30:32 (ET)
+Table: 15 (Real Money) Seat #1 is the dealer
+Seat 1 - SHUSWAPER (2,205 in chips)
+Seat 3 - METOLIGIST (2,575 in chips)
+Seat 4 - EKDIKEO (2,300 in chips)
+Seat 5 - LEEDOG4200 (2,346 in chips)
+Seat 6 - BRIANB49 (2,377 in chips)
+Seat 7 - MAKMOJARTU (7,685 in chips)
+Seat 8 - ZALDIVAR (1,435 in chips)
+Seat 9 - GREGORY37 (2,345 in chips)
+METOLIGIST - Posts small blind 15
+EKDIKEO - Posts big blind 30
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Qd 8c] 
+LEEDOG4200 - Folds
+BRIANB49 - Folds
+MAKMOJARTU - Calls 30
+ZALDIVAR - Folds
+GREGORY37 - Folds
+SHUSWAPER - Folds
+METOLIGIST - Calls 15
+EKDIKEO - Checks
+*** FLOP *** [2d 2h Qs]
+METOLIGIST - Checks
+EKDIKEO - Checks
+MAKMOJARTU - Checks
+*** TURN *** [2d 2h Qs] [Ac]
+METOLIGIST - Checks
+EKDIKEO - Checks
+MAKMOJARTU - Checks
+*** RIVER *** [2d 2h Qs Ac] [Ks]
+METOLIGIST - Checks
+EKDIKEO - Checks
+MAKMOJARTU - Bets 120
+METOLIGIST - Folds
+EKDIKEO - Folds
+MAKMOJARTU - returned (120) : not called
+*** SHOW DOWN ***
+MAKMOJARTU - Does not show
+MAKMOJARTU Collects 90 from main pot
+*** SUMMARY ***
+Total Pot(90)
+Board [2d 2h Qs Ac Ks]
+Seat 1: SHUSWAPER (dealer) Folded on the POCKET CARDS
+Seat 3: METOLIGIST (small blind) Folded on the RIVER
+Seat 4: EKDIKEO (big blind) Folded on the RIVER
+Seat 5: LEEDOG4200 Folded on the POCKET CARDS
+Seat 6: BRIANB49 Folded on the POCKET CARDS
+Seat 7: MAKMOJARTU collected Total (90) HI:(90)  [Does not show] 
+Seat 8: ZALDIVAR Folded on the POCKET CARDS
+Seat 9: GREGORY37 Folded on the POCKET CARDS
+
+
+
+Stage #525753868 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 30 - 2011-01-16 17:31:41 (ET)
+Table: 15 (Real Money) Seat #3 is the dealer
+Seat 1 - SHUSWAPER (2,205 in chips)
+Seat 2 - ECHOES_1 (1,720 in chips)
+Seat 3 - METOLIGIST (2,545 in chips)
+Seat 4 - EKDIKEO (2,270 in chips)
+Seat 5 - LEEDOG4200 (2,346 in chips)
+Seat 6 - BRIANB49 (2,377 in chips)
+Seat 7 - MAKMOJARTU (7,745 in chips)
+Seat 8 - ZALDIVAR (1,435 in chips)
+Seat 9 - GREGORY37 (2,345 in chips)
+EKDIKEO - Posts small blind 15
+LEEDOG4200 - Posts big blind 30
+*** POCKET CARDS ***
+Dealt to EKDIKEO [2c 9d] 
+BRIANB49 - Folds
+MAKMOJARTU - Folds
+ZALDIVAR - Folds
+GREGORY37 - Calls 30
+SHUSWAPER - Raises 60 to 60
+ECHOES_1 - Folds
+METOLIGIST - Folds
+EKDIKEO - Folds
+LEEDOG4200 - Folds
+GREGORY37 - Calls 30
+*** FLOP *** [5h 3h 10s]
+GREGORY37 - Checks
+SHUSWAPER - Bets 120
+GREGORY37 - Calls 120
+*** TURN *** [5h 3h 10s] [9s]
+GREGORY37 - Checks
+SHUSWAPER - Checks
+*** RIVER *** [5h 3h 10s 9s] [4h]
+GREGORY37 - Checks
+SHUSWAPER - Checks
+*** SHOW DOWN ***
+GREGORY37 - Shows [7s 3s] (One pair, threes) 
+SHUSWAPER - Mucks
+GREGORY37 Collects 405 from main pot
+*** SUMMARY ***
+Total Pot(405)
+Board [5h 3h 10s 9s 4h]
+Seat 1: SHUSWAPER HI: [Mucked] [Jh Ac] 
+Seat 2: ECHOES_1 Folded on the POCKET CARDS
+Seat 3: METOLIGIST (dealer) Folded on the POCKET CARDS
+Seat 4: EKDIKEO (small blind) Folded on the POCKET CARDS
+Seat 5: LEEDOG4200 (big blind) Folded on the POCKET CARDS
+Seat 6: BRIANB49 Folded on the POCKET CARDS
+Seat 7: MAKMOJARTU Folded on the POCKET CARDS
+Seat 8: ZALDIVAR Folded on the POCKET CARDS
+Seat 9: GREGORY37 won Total (405) HI:(405) with One pair, threes [7s 3s - P:3s,B:3h,B:10s,B:9s,P:7s] 
+
+
+
+Stage #525755366 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 30 - 2011-01-16 17:32:23 (ET)
+Table: 15 (Real Money) Seat #4 is the dealer
+Seat 1 - SHUSWAPER (2,025 in chips)
+Seat 2 - ECHOES_1 (1,720 in chips)
+Seat 3 - METOLIGIST (2,545 in chips)
+Seat 4 - EKDIKEO (2,255 in chips)
+Seat 5 - LEEDOG4200 (2,316 in chips)
+Seat 6 - BRIANB49 (2,377 in chips)
+Seat 7 - MAKMOJARTU (7,745 in chips)
+Seat 8 - ZALDIVAR (1,435 in chips)
+Seat 9 - GREGORY37 (2,570 in chips)
+LEEDOG4200 - Posts small blind 15
+BRIANB49 - Posts big blind 30
+*** POCKET CARDS ***
+Dealt to EKDIKEO [6d 3s] 
+MAKMOJARTU - Folds
+ZALDIVAR - Folds
+GREGORY37 - Folds
+SHUSWAPER - Folds
+ECHOES_1 - Folds
+METOLIGIST - Folds
+EKDIKEO - Folds
+LEEDOG4200 - Folds
+*** SHOW DOWN ***
+BRIANB49 - Does not show
+BRIANB49 Collects 45 from main pot
+*** SUMMARY ***
+Total Pot(45)
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: ECHOES_1 Folded on the POCKET CARDS
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO (dealer) Folded on the POCKET CARDS
+Seat 5: LEEDOG4200 (small blind) Folded on the POCKET CARDS
+Seat 6: BRIANB49 (big blind) collected Total (45) 
+Seat 7: MAKMOJARTU Folded on the POCKET CARDS
+Seat 8: ZALDIVAR Folded on the POCKET CARDS
+Seat 9: GREGORY37 Folded on the POCKET CARDS
+
+
+
+Stage #525756146 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 30 - 2011-01-16 17:32:44 (ET)
+Table: 15 (Real Money) Seat #5 is the dealer
+Seat 1 - SHUSWAPER (2,025 in chips)
+Seat 2 - ECHOES_1 (1,720 in chips)
+Seat 3 - METOLIGIST (2,545 in chips)
+Seat 4 - EKDIKEO (2,255 in chips)
+Seat 5 - LEEDOG4200 (2,301 in chips)
+Seat 6 - BRIANB49 (2,392 in chips)
+Seat 7 - MAKMOJARTU (7,745 in chips)
+Seat 8 - ZALDIVAR (1,435 in chips)
+Seat 9 - GREGORY37 (2,570 in chips)
+BRIANB49 - Posts small blind 15
+MAKMOJARTU - Posts big blind 30
+*** POCKET CARDS ***
+Dealt to EKDIKEO [10c Kc] 
+ZALDIVAR - Folds
+GREGORY37 - Raises 105 to 105
+SHUSWAPER - Folds
+ECHOES_1 - Folds
+METOLIGIST - Folds
+EKDIKEO - Calls 105
+LEEDOG4200 - Folds
+BRIANB49 - Calls 90
+MAKMOJARTU - Folds
+*** FLOP *** [Ac Kd 5d]
+BRIANB49 - Checks
+GREGORY37 - Bets 345
+EKDIKEO - Folds
+BRIANB49 - Folds
+GREGORY37 - returned (345) : not called
+*** SHOW DOWN ***
+GREGORY37 - Does not show
+GREGORY37 Collects 345 from main pot
+*** SUMMARY ***
+Total Pot(345)
+Board [Ac Kd 5d]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: ECHOES_1 Folded on the POCKET CARDS
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO Folded on the FLOP
+Seat 5: LEEDOG4200 (dealer) Folded on the POCKET CARDS
+Seat 6: BRIANB49 (small blind) Folded on the FLOP
+Seat 7: MAKMOJARTU (big blind) Folded on the POCKET CARDS
+Seat 8: ZALDIVAR Folded on the POCKET CARDS
+Seat 9: GREGORY37 collected Total (345) HI:(345)  [Does not show] 
+
+
+
+Stage #525758487 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 30 - 2011-01-16 17:33:50 (ET)
+Table: 15 (Real Money) Seat #6 is the dealer
+Seat 1 - SHUSWAPER (2,025 in chips)
+Seat 2 - ECHOES_1 (1,720 in chips)
+Seat 3 - METOLIGIST (2,545 in chips)
+Seat 4 - EKDIKEO (2,150 in chips)
+Seat 5 - LEEDOG4200 (2,301 in chips)
+Seat 6 - BRIANB49 (2,287 in chips)
+Seat 7 - MAKMOJARTU (7,715 in chips)
+Seat 8 - ZALDIVAR (1,435 in chips)
+Seat 9 - GREGORY37 (2,810 in chips)
+MAKMOJARTU - Posts small blind 15
+ZALDIVAR - Posts big blind 30
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Ac 6c] 
+GREGORY37 - Calls 30
+SHUSWAPER - Folds
+ECHOES_1 - Folds
+METOLIGIST - Folds
+EKDIKEO - Calls 30
+LEEDOG4200 - Folds
+BRIANB49 - Folds
+MAKMOJARTU - Calls 15
+ZALDIVAR - Checks
+*** FLOP *** [10s 3s Kd]
+MAKMOJARTU - Checks
+ZALDIVAR - Bets 75
+GREGORY37 - Calls 75
+EKDIKEO - Folds
+MAKMOJARTU - Folds
+*** TURN *** [10s 3s Kd] [Kh]
+ZALDIVAR - Checks
+GREGORY37 - Checks
+*** RIVER *** [10s 3s Kd Kh] [2d]
+ZALDIVAR - Bets 222
+GREGORY37 - Folds
+ZALDIVAR - returned (222) : not called
+*** SHOW DOWN ***
+ZALDIVAR - Does not show
+ZALDIVAR Collects 270 from main pot
+*** SUMMARY ***
+Total Pot(270)
+Board [10s 3s Kd Kh 2d]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: ECHOES_1 Folded on the POCKET CARDS
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO Folded on the FLOP
+Seat 5: LEEDOG4200 Folded on the POCKET CARDS
+Seat 6: BRIANB49 (dealer) Folded on the POCKET CARDS
+Seat 7: MAKMOJARTU (small blind) Folded on the FLOP
+Seat 8: ZALDIVAR (big blind) collected Total (270) HI:(270)  [Does not show] 
+Seat 9: GREGORY37 Folded on the RIVER
+
+
+
+Stage #525761305 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 30 - 2011-01-16 17:35:08 (ET)
+Table: 15 (Real Money) Seat #7 is the dealer
+Seat 1 - SHUSWAPER (2,025 in chips)
+Seat 2 - ECHOES_1 (1,720 in chips)
+Seat 3 - METOLIGIST (2,545 in chips)
+Seat 4 - EKDIKEO (2,120 in chips)
+Seat 5 - LEEDOG4200 (2,301 in chips)
+Seat 6 - BRIANB49 (2,287 in chips)
+Seat 7 - MAKMOJARTU (7,685 in chips)
+Seat 8 - ZALDIVAR (1,600 in chips)
+Seat 9 - GREGORY37 (2,705 in chips)
+ZALDIVAR - Posts small blind 15
+GREGORY37 - Posts big blind 30
+*** POCKET CARDS ***
+Dealt to EKDIKEO [9d 9c] 
+SHUSWAPER - Calls 30
+ECHOES_1 - Raises 60 to 60
+METOLIGIST - Folds
+EKDIKEO - Raises 255 to 255
+LEEDOG4200 - Folds
+BRIANB49 - Folds
+MAKMOJARTU - Folds
+ZALDIVAR - Folds
+GREGORY37 - Folds
+SHUSWAPER - Folds
+ECHOES_1 - Calls 195
+*** FLOP *** [8d Qd 7c]
+ECHOES_1 - Checks
+EKDIKEO - Bets 352
+ECHOES_1 - Folds
+EKDIKEO - returned (352) : not called
+*** SHOW DOWN ***
+EKDIKEO - Does not show
+EKDIKEO Collects 585 from main pot
+*** SUMMARY ***
+Total Pot(585)
+Board [8d Qd 7c]
+Seat 1: SHUSWAPER Folded on the POCKET CARDS
+Seat 2: ECHOES_1 Folded on the FLOP
+Seat 3: METOLIGIST Folded on the POCKET CARDS
+Seat 4: EKDIKEO collected Total (585) HI:(585)  [Does not show] 
+Seat 5: LEEDOG4200 Folded on the POCKET CARDS
+Seat 6: BRIANB49 Folded on the POCKET CARDS
+Seat 7: MAKMOJARTU (dealer) Folded on the POCKET CARDS
+Seat 8: ZALDIVAR (small blind) Folded on the POCKET CARDS
+Seat 9: GREGORY37 (big blind) Folded on the POCKET CARDS
+
+
+
+Stage #525763484 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 40 - 2011-01-16 17:36:11 (ET)
+Table: 15 (Real Money) Seat #8 is the dealer
+Seat 1 - SHUSWAPER (1,995 in chips)
+Seat 2 - ECHOES_1 (1,465 in chips)
+Seat 3 - METOLIGIST (2,545 in chips)
+Seat 4 - EKDIKEO (2,450 in chips)
+Seat 5 - LEEDOG4200 (2,301 in chips)
+Seat 6 - BRIANB49 (2,287 in chips)
+Seat 7 - MAKMOJARTU (7,685 in chips)
+Seat 8 - ZALDIVAR (1,585 in chips)
+Seat 9 - GREGORY37 (2,675 in chips)
+GREGORY37 - Posts small blind 20
+SHUSWAPER - Posts big blind 40
+*** POCKET CARDS ***
+Dealt to EKDIKEO [9c Jh] 
+ECHOES_1 - Folds
+METOLIGIST - Raises 120 to 120
+EKDIKEO - Folds
+LEEDOG4200 - Folds
+BRIANB49 - Folds
+MAKMOJARTU - Folds
+ZALDIVAR - Calls 120
+GREGORY37 - Folds
+SHUSWAPER - Folds
+*** FLOP *** [Ac 6s 8d]
+METOLIGIST - Bets 160
+ZALDIVAR - Calls 160
+*** TURN *** [Ac 6s 8d] [Qd]
+METOLIGIST - Bets 440
+ZALDIVAR - All-In(Raise) 1,305 to 1,305
+METOLIGIST - Calls 865
+*** RIVER *** [Ac 6s 8d Qd] [9s]
+*** SHOW DOWN ***
+METOLIGIST - Shows [Qc Ad] (Two Pair, aces and queens) 
+ZALDIVAR - Shows [9d Kd] (One pair, nines) 
+METOLIGIST Collects 3,230 from main pot
+*** SUMMARY ***
+Total Pot(3,230)
+Board [Ac 6s 8d Qd 9s]
+Seat 1: SHUSWAPER (big blind) Folded on the POCKET CARDS
+Seat 2: ECHOES_1 Folded on the POCKET CARDS
+Seat 3: METOLIGIST won Total (3,230) HI:(3,230) with Two Pair, aces and queens [Qc Ad - P:Ad,B:Ac,B:Qd,P:Qc,B:9s] 
+Seat 4: EKDIKEO Folded on the POCKET CARDS
+Seat 5: LEEDOG4200 Folded on the POCKET CARDS
+Seat 6: BRIANB49 Folded on the POCKET CARDS
+Seat 7: MAKMOJARTU Folded on the POCKET CARDS
+Seat 8: ZALDIVAR (dealer) HI:lost with One pair, nines [9d Kd - B:9s,P:9d,B:Ac,P:Kd,B:Qd] 
+Seat 9: GREGORY37 (small blind) Folded on the POCKET CARDS
+
+
+
+Stage #525765958 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 40 - 2011-01-16 17:37:23 (ET)
+Table: 37 (Real Money) Seat #5 is the dealer
+Seat 1 - EKDIKEO (2,450 in chips)
+Seat 2 - GMONEY420024 (3,339 in chips)
+Seat 3 - STACKS (1,900 in chips)
+Seat 4 - EOFNORTH (1,755 in chips)
+Seat 5 - FLHTCIRIDER (2,225 in chips)
+Seat 6 - GAYBOX (1,133 in chips)
+Seat 7 - DADOFMENY (3,805 in chips)
+Seat 8 - MJ_FOX (294 in chips)
+Seat 9 - CUBICDUCHESS (1,351 in chips)
+GAYBOX - Posts small blind 20
+DADOFMENY - Posts big blind 40
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Jc 5s] 
+MJ_FOX - Folds
+CUBICDUCHESS - Folds
+EKDIKEO - Folds
+GMONEY420024 - Folds
+STACKS - Calls 40
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Calls 20
+DADOFMENY - Checks
+*** FLOP *** [8h Qh Kh]
+GAYBOX - Checks
+DADOFMENY - Checks
+STACKS - Checks
+*** TURN *** [8h Qh Kh] [9d]
+GAYBOX - Bets 120
+DADOFMENY - Folds
+STACKS - Folds
+GAYBOX - returned (120) : not called
+*** SHOW DOWN ***
+GAYBOX - Does not show
+GAYBOX Collects 120 from main pot
+*** SUMMARY ***
+Total Pot(120)
+Board [8h Qh Kh 9d]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: GMONEY420024 Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the TURN
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER (dealer) Folded on the POCKET CARDS
+Seat 6: GAYBOX (small blind) collected Total (120) HI:(120)  [Does not show] 
+Seat 7: DADOFMENY (big blind) Folded on the TURN
+Seat 8: MJ_FOX Folded on the POCKET CARDS
+Seat 9: CUBICDUCHESS Folded on the POCKET CARDS
+
+
+
+Stage #525767242 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 40 - 2011-01-16 17:38:02 (ET)
+Table: 37 (Real Money) Seat #6 is the dealer
+Seat 1 - EKDIKEO (2,450 in chips)
+Seat 2 - GMONEY420024 (3,339 in chips)
+Seat 3 - STACKS (1,860 in chips)
+Seat 4 - EOFNORTH (1,755 in chips)
+Seat 5 - FLHTCIRIDER (2,225 in chips)
+Seat 6 - GAYBOX (1,213 in chips)
+Seat 7 - DADOFMENY (3,765 in chips)
+Seat 8 - MJ_FOX (294 in chips)
+Seat 9 - CUBICDUCHESS (1,351 in chips)
+DADOFMENY - Posts small blind 20
+MJ_FOX - Posts big blind 40
+*** POCKET CARDS ***
+Dealt to EKDIKEO [7s 8c] 
+CUBICDUCHESS - Folds
+EKDIKEO - Folds
+GMONEY420024 - Calls 40
+STACKS - Raises 320 to 320
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+DADOFMENY - Folds
+MJ_FOX - Folds
+GMONEY420024 - Folds
+STACKS - returned (280) : not called
+*** SHOW DOWN ***
+STACKS - Does not show
+STACKS Collects 140 from main pot
+*** SUMMARY ***
+Total Pot(140)
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: GMONEY420024 Folded on the POCKET CARDS
+Seat 3: STACKS collected Total (140) 
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX (dealer) Folded on the POCKET CARDS
+Seat 7: DADOFMENY (small blind) Folded on the POCKET CARDS
+Seat 8: MJ_FOX (big blind) Folded on the POCKET CARDS
+Seat 9: CUBICDUCHESS Folded on the POCKET CARDS
+
+
+
+Stage #525768102 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 40 - 2011-01-16 17:38:26 (ET)
+Table: 37 (Real Money) Seat #7 is the dealer
+Seat 1 - EKDIKEO (2,450 in chips)
+Seat 2 - GMONEY420024 (3,299 in chips)
+Seat 3 - STACKS (1,960 in chips)
+Seat 4 - EOFNORTH (1,755 in chips)
+Seat 5 - FLHTCIRIDER (2,225 in chips)
+Seat 6 - GAYBOX (1,213 in chips)
+Seat 7 - DADOFMENY (3,745 in chips)
+Seat 8 - MJ_FOX (254 in chips)
+Seat 9 - CUBICDUCHESS (1,351 in chips)
+MJ_FOX - Posts small blind 20
+CUBICDUCHESS - Posts big blind 40
+*** POCKET CARDS ***
+Dealt to EKDIKEO [8h 6d] 
+EKDIKEO - Folds
+GMONEY420024 - Calls 40
+STACKS - Calls 40
+EOFNORTH - Raises 120 to 120
+FLHTCIRIDER - Folds
+GAYBOX - Calls 120
+DADOFMENY - Folds
+MJ_FOX - Folds
+CUBICDUCHESS - Calls 80
+GMONEY420024 - Calls 80
+STACKS - Calls 80
+*** FLOP *** [4d 7s 9d]
+CUBICDUCHESS - Checks
+GMONEY420024 - Checks
+STACKS - Checks
+EOFNORTH - Bets 350
+GAYBOX - All-In(Raise) 1,093 to 1,093
+CUBICDUCHESS - Folds
+GMONEY420024 - Folds
+STACKS - Folds
+EOFNORTH - Folds
+GAYBOX - returned (743) : not called
+*** SHOW DOWN ***
+GAYBOX - Does not show
+GAYBOX Collects 1,320 from main pot
+*** SUMMARY ***
+Total Pot(1,320)
+Board [4d 7s 9d]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: GMONEY420024 Folded on the FLOP
+Seat 3: STACKS Folded on the FLOP
+Seat 4: EOFNORTH Folded on the FLOP
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX collected Total (1,320) All-In HI:(1,320)  [Does not show] 
+Seat 7: DADOFMENY (dealer) Folded on the POCKET CARDS
+Seat 8: MJ_FOX (small blind) Folded on the POCKET CARDS
+Seat 9: CUBICDUCHESS (big blind) Folded on the FLOP
+
+
+
+Stage #525769749 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 40 - 2011-01-16 17:39:14 (ET)
+Table: 37 (Real Money) Seat #8 is the dealer
+Seat 1 - EKDIKEO (2,450 in chips)
+Seat 2 - GMONEY420024 (3,179 in chips)
+Seat 3 - STACKS (1,840 in chips)
+Seat 4 - EOFNORTH (1,285 in chips)
+Seat 5 - FLHTCIRIDER (2,225 in chips)
+Seat 6 - GAYBOX (2,063 in chips)
+Seat 7 - DADOFMENY (3,745 in chips)
+Seat 8 - MJ_FOX (234 in chips)
+Seat 9 - CUBICDUCHESS (1,231 in chips)
+CUBICDUCHESS - Posts small blind 20
+EKDIKEO - Posts big blind 40
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Ad 9d] 
+GMONEY420024 - Calls 40
+STACKS - Folds
+EOFNORTH - Calls 40
+FLHTCIRIDER - Calls 40
+GAYBOX - Calls 40
+DADOFMENY - Folds
+MJ_FOX - Folds
+CUBICDUCHESS - Calls 20
+EKDIKEO - Checks
+*** FLOP *** [2s Qh 10s]
+CUBICDUCHESS - Checks
+EKDIKEO - Checks
+GMONEY420024 - Bets 40
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Calls 40
+CUBICDUCHESS - Calls 40
+EKDIKEO - Folds
+*** TURN *** [2s Qh 10s] [9h]
+CUBICDUCHESS - Checks
+GMONEY420024 - Bets 40
+GAYBOX - Raises 80 to 80
+CUBICDUCHESS - Calls 80
+GMONEY420024 - Calls 40
+*** RIVER *** [2s Qh 10s 9h] [Kc]
+CUBICDUCHESS - Checks
+GMONEY420024 - Checks
+GAYBOX - Bets 600
+CUBICDUCHESS - Folds
+GMONEY420024 - Calls 600
+*** SHOW DOWN ***
+GAYBOX - Shows [10h Kh] (Two Pair, kings and tens) 
+GMONEY420024 - Mucks
+GAYBOX Collects 1,800 from main pot
+*** SUMMARY ***
+Total Pot(1,800)
+Board [2s Qh 10s 9h Kc]
+Seat 1: EKDIKEO (big blind) Folded on the FLOP
+Seat 2: GMONEY420024 HI: [Mucked] [Qd Ah] 
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the FLOP
+Seat 5: FLHTCIRIDER Folded on the FLOP
+Seat 6: GAYBOX won Total (1,800) HI:(1,800) with Two Pair, kings and tens [10h Kh - P:Kh,B:Kc,B:10s,P:10h,B:Qh] 
+Seat 7: DADOFMENY Folded on the POCKET CARDS
+Seat 8: MJ_FOX (dealer) Folded on the POCKET CARDS
+Seat 9: CUBICDUCHESS (small blind) Folded on the RIVER
+
+
+
+Stage #525772172 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 40 - 2011-01-16 17:40:26 (ET)
+Table: 37 (Real Money) Seat #9 is the dealer
+Seat 1 - EKDIKEO (2,410 in chips)
+Seat 2 - GMONEY420024 (2,419 in chips)
+Seat 3 - STACKS (1,840 in chips)
+Seat 4 - EOFNORTH (1,245 in chips)
+Seat 5 - FLHTCIRIDER (2,185 in chips)
+Seat 6 - GAYBOX (3,103 in chips)
+Seat 7 - DADOFMENY (3,745 in chips)
+Seat 8 - MJ_FOX (234 in chips)
+Seat 9 - CUBICDUCHESS (1,071 in chips)
+EKDIKEO - Posts small blind 20
+GMONEY420024 - Posts big blind 40
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Kh 6s] 
+STACKS - Raises 120 to 120
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+DADOFMENY - Folds
+MJ_FOX - Folds
+CUBICDUCHESS - Calls 120
+EKDIKEO - Folds
+GMONEY420024 - Calls 80
+*** FLOP *** [6d 4s Jc]
+GMONEY420024 - Checks
+STACKS - Checks
+CUBICDUCHESS - Checks
+*** TURN *** [6d 4s Jc] [As]
+GMONEY420024 - Checks
+STACKS - Checks
+CUBICDUCHESS - Checks
+*** RIVER *** [6d 4s Jc As] [Qs]
+GMONEY420024 - Checks
+STACKS - Bets 120
+CUBICDUCHESS - Folds
+GMONEY420024 - Folds
+STACKS - returned (120) : not called
+*** SHOW DOWN ***
+STACKS - Does not show
+STACKS Collects 380 from main pot
+*** SUMMARY ***
+Total Pot(380)
+Board [6d 4s Jc As Qs]
+Seat 1: EKDIKEO (small blind) Folded on the POCKET CARDS
+Seat 2: GMONEY420024 (big blind) Folded on the RIVER
+Seat 3: STACKS collected Total (380) HI:(380)  [Does not show] 
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: DADOFMENY Folded on the POCKET CARDS
+Seat 8: MJ_FOX Folded on the POCKET CARDS
+Seat 9: CUBICDUCHESS (dealer) Folded on the RIVER
+
+
+
+Stage #525774147 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 40 - 2011-01-16 17:41:26 (ET)
+Table: 37 (Real Money) Seat #1 is the dealer
+Seat 1 - EKDIKEO (2,390 in chips)
+Seat 2 - GMONEY420024 (2,299 in chips)
+Seat 3 - STACKS (2,100 in chips)
+Seat 4 - EOFNORTH (1,245 in chips)
+Seat 5 - FLHTCIRIDER (2,185 in chips)
+Seat 6 - GAYBOX (3,103 in chips)
+Seat 7 - DADOFMENY (3,745 in chips)
+Seat 8 - MJ_FOX (234 in chips)
+Seat 9 - CUBICDUCHESS (951 in chips)
+GMONEY420024 - Posts small blind 20
+STACKS - Posts big blind 40
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Kd Qh] 
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Calls 40
+DADOFMENY - Folds
+MJ_FOX - Folds
+CUBICDUCHESS - Calls 40
+EKDIKEO - Raises 220 to 220
+GMONEY420024 - Folds
+STACKS - Folds
+GAYBOX - Calls 180
+CUBICDUCHESS - Calls 180
+*** FLOP *** [8d 2s 10c]
+GAYBOX - Checks
+CUBICDUCHESS - Checks
+EKDIKEO - Checks
+*** TURN *** [8d 2s 10c] [3h]
+GAYBOX - Checks
+CUBICDUCHESS - Checks
+EKDIKEO - Checks
+*** RIVER *** [8d 2s 10c 3h] [3d]
+GAYBOX - Checks
+CUBICDUCHESS - Checks
+EKDIKEO - Checks
+*** SHOW DOWN ***
+GAYBOX - Shows [Ac 6c] (One pair, threes) 
+CUBICDUCHESS - Mucks
+EKDIKEO - Mucks
+GAYBOX Collects 720 from main pot
+*** SUMMARY ***
+Total Pot(720)
+Board [8d 2s 10c 3h 3d]
+Seat 1: EKDIKEO (dealer) HI: [Mucked] [Kd Qh] 
+Seat 2: GMONEY420024 (small blind) Folded on the POCKET CARDS
+Seat 3: STACKS (big blind) Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX won Total (720) HI:(720) with One pair, threes(ace kicker) [Ac 6c - B:3h,B:3d,P:Ac,B:10c,B:8d] 
+Seat 7: DADOFMENY Folded on the POCKET CARDS
+Seat 8: MJ_FOX Folded on the POCKET CARDS
+Seat 9: CUBICDUCHESS HI: [Mucked] [4c 5c] 
+
+
+
+Stage #525775807 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 40 - 2011-01-16 17:42:17 (ET)
+Table: 37 (Real Money) Seat #2 is the dealer
+Seat 1 - EKDIKEO (2,170 in chips)
+Seat 2 - GMONEY420024 (2,279 in chips)
+Seat 3 - STACKS (2,060 in chips)
+Seat 4 - EOFNORTH (1,245 in chips)
+Seat 5 - FLHTCIRIDER (2,185 in chips)
+Seat 6 - GAYBOX (3,603 in chips)
+Seat 7 - DADOFMENY (3,745 in chips)
+Seat 8 - MJ_FOX (234 in chips)
+Seat 9 - CUBICDUCHESS (731 in chips)
+STACKS - Posts small blind 20
+EOFNORTH - Posts big blind 40
+*** POCKET CARDS ***
+Dealt to EKDIKEO [5d Js] 
+FLHTCIRIDER - Calls 40
+GAYBOX - Calls 40
+DADOFMENY - Folds
+MJ_FOX - Folds
+CUBICDUCHESS - Calls 40
+EKDIKEO - Folds
+GMONEY420024 - Folds
+STACKS - Calls 20
+EOFNORTH - Checks
+*** FLOP *** [Ks Qs Kh]
+STACKS - Checks
+EOFNORTH - Checks
+FLHTCIRIDER - Checks
+GAYBOX - Checks
+CUBICDUCHESS - Checks
+*** TURN *** [Ks Qs Kh] [Jc]
+STACKS - Checks
+EOFNORTH - Checks
+FLHTCIRIDER - Checks
+GAYBOX - Bets 40
+CUBICDUCHESS - Folds
+STACKS - Calls 40
+EOFNORTH - Folds
+FLHTCIRIDER - Calls 40
+*** RIVER *** [Ks Qs Kh Jc] [Jh]
+STACKS - Bets 120
+FLHTCIRIDER - Folds
+GAYBOX - Calls 120
+*** SHOW DOWN ***
+STACKS - Shows [Qh Kc] (Full house, kings full of queens) 
+GAYBOX - Mucks
+STACKS Collects 560 from main pot
+*** SUMMARY ***
+Total Pot(560)
+Board [Ks Qs Kh Jc Jh]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: GMONEY420024 (dealer) Folded on the POCKET CARDS
+Seat 3: STACKS (small blind) won Total (560) HI:(560) with Full house, kings full of queens [Qh Kc - B:Ks,B:Kh,P:Kc,B:Qs,P:Qh] 
+Seat 4: EOFNORTH (big blind) Folded on the TURN
+Seat 5: FLHTCIRIDER Folded on the RIVER
+Seat 6: GAYBOX HI: [Mucked] [Ac 3c] 
+Seat 7: DADOFMENY Folded on the POCKET CARDS
+Seat 8: MJ_FOX Folded on the POCKET CARDS
+Seat 9: CUBICDUCHESS Folded on the TURN
+
+
+
+Stage #525778765 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 40 - 2011-01-16 17:43:41 (ET)
+Table: 37 (Real Money) Seat #3 is the dealer
+Seat 1 - EKDIKEO (2,170 in chips)
+Seat 2 - GMONEY420024 (2,279 in chips)
+Seat 3 - STACKS (2,420 in chips)
+Seat 4 - EOFNORTH (1,205 in chips)
+Seat 5 - FLHTCIRIDER (2,105 in chips)
+Seat 6 - GAYBOX (3,403 in chips)
+Seat 7 - DADOFMENY (3,745 in chips)
+Seat 8 - MJ_FOX (234 in chips)
+Seat 9 - CUBICDUCHESS (691 in chips)
+EOFNORTH - Posts small blind 20
+FLHTCIRIDER - Posts big blind 40
+*** POCKET CARDS ***
+Dealt to EKDIKEO [10h Js] 
+GAYBOX - Folds
+DADOFMENY - Raises 120 to 120
+MJ_FOX - Folds
+CUBICDUCHESS - Folds
+EKDIKEO - Folds
+GMONEY420024 - Calls 120
+STACKS - Folds
+EOFNORTH - Calls 100
+FLHTCIRIDER - Folds
+*** FLOP *** [2c 8h 6h]
+EOFNORTH - Checks
+DADOFMENY - Checks
+GMONEY420024 - Bets 40
+EOFNORTH - Raises 520 to 520
+DADOFMENY - Folds
+GMONEY420024 - Raises 960 to 1,000
+EOFNORTH - All-In(Raise) 565 to 1,085
+GMONEY420024 - Calls 85
+*** TURN *** [2c 8h 6h] [5h]
+*** RIVER *** [2c 8h 6h 5h] [Kc]
+*** SHOW DOWN ***
+GMONEY420024 - Shows [8d Ah] (One pair, eights) 
+EOFNORTH - Shows [9h 9d] (One pair, nines) 
+EOFNORTH Collects 2,570 from main pot
+*** SUMMARY ***
+Total Pot(2,570)
+Board [2c 8h 6h 5h Kc]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: GMONEY420024 HI:lost with One pair, eights [8d Ah - B:8h,P:8d,P:Ah,B:Kc,B:6h] 
+Seat 3: STACKS (dealer) Folded on the POCKET CARDS
+Seat 4: EOFNORTH (small blind) won Total (2,570) All-In HI:(2,570) with One pair, nines [9h 9d - P:9h,P:9d,B:Kc,B:8h,B:6h] 
+Seat 5: FLHTCIRIDER (big blind) Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: DADOFMENY Folded on the FLOP
+Seat 8: MJ_FOX Folded on the POCKET CARDS
+Seat 9: CUBICDUCHESS Folded on the POCKET CARDS
+
+
+
+Stage #525780645 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 40 - 2011-01-16 17:44:38 (ET)
+Table: 37 (Real Money) Seat #4 is the dealer
+Seat 1 - EKDIKEO (2,170 in chips)
+Seat 2 - GMONEY420024 (1,074 in chips)
+Seat 3 - STACKS (2,420 in chips)
+Seat 4 - EOFNORTH (2,570 in chips)
+Seat 5 - FLHTCIRIDER (2,065 in chips)
+Seat 6 - GAYBOX (3,403 in chips)
+Seat 7 - DADOFMENY (3,625 in chips)
+Seat 8 - MJ_FOX (234 in chips)
+Seat 9 - CUBICDUCHESS (691 in chips)
+FLHTCIRIDER - Posts small blind 20
+GAYBOX - Posts big blind 40
+*** POCKET CARDS ***
+Dealt to EKDIKEO [8h 4h] 
+DADOFMENY - Folds
+MJ_FOX - Folds
+CUBICDUCHESS - Calls 40
+EKDIKEO - Folds
+GMONEY420024 - Folds
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Raises 60 to 80
+GAYBOX - Calls 40
+CUBICDUCHESS - Calls 40
+*** FLOP *** [7s 3s Kd]
+FLHTCIRIDER - Bets 240
+GAYBOX - Calls 240
+CUBICDUCHESS - Folds
+*** TURN *** [7s 3s Kd] [5h]
+FLHTCIRIDER - Bets 480
+GAYBOX - Calls 480
+*** RIVER *** [7s 3s Kd 5h] [Ad]
+FLHTCIRIDER - All-In 1,265
+GAYBOX - Folds
+FLHTCIRIDER - returned (1,265) : not called
+*** SHOW DOWN ***
+FLHTCIRIDER - Does not show
+FLHTCIRIDER Collects 1,680 from main pot
+*** SUMMARY ***
+Total Pot(1,680)
+Board [7s 3s Kd 5h Ad]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: GMONEY420024 Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH (dealer) Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER (small blind) collected Total (1,680) All-In HI:(1,680)  [Does not show] 
+Seat 6: GAYBOX (big blind) Folded on the RIVER
+Seat 7: DADOFMENY Folded on the POCKET CARDS
+Seat 8: MJ_FOX Folded on the POCKET CARDS
+Seat 9: CUBICDUCHESS Folded on the FLOP
+
+
+
+Stage #525783161 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 40 - 2011-01-16 17:45:53 (ET)
+Table: 37 (Real Money) Seat #5 is the dealer
+Seat 1 - EKDIKEO (2,170 in chips)
+Seat 2 - GMONEY420024 (1,074 in chips)
+Seat 3 - STACKS (2,420 in chips)
+Seat 4 - EOFNORTH (2,570 in chips)
+Seat 5 - FLHTCIRIDER (2,945 in chips)
+Seat 6 - GAYBOX (2,603 in chips)
+Seat 7 - DADOFMENY (3,625 in chips)
+Seat 8 - MJ_FOX (234 in chips)
+Seat 9 - CUBICDUCHESS (611 in chips)
+GAYBOX - Posts small blind 20
+DADOFMENY - Posts big blind 40
+*** POCKET CARDS ***
+Dealt to EKDIKEO [3s 5h] 
+MJ_FOX - Calls 40
+CUBICDUCHESS - Calls 40
+EKDIKEO - Folds
+GMONEY420024 - Folds
+STACKS - Raises 220 to 220
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+DADOFMENY - Folds
+MJ_FOX - Folds
+CUBICDUCHESS - Folds
+STACKS - returned (180) : not called
+*** SHOW DOWN ***
+STACKS - Does not show
+STACKS Collects 180 from main pot
+*** SUMMARY ***
+Total Pot(180)
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: GMONEY420024 Folded on the POCKET CARDS
+Seat 3: STACKS collected Total (180) 
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER (dealer) Folded on the POCKET CARDS
+Seat 6: GAYBOX (small blind) Folded on the POCKET CARDS
+Seat 7: DADOFMENY (big blind) Folded on the POCKET CARDS
+Seat 8: MJ_FOX Folded on the POCKET CARDS
+Seat 9: CUBICDUCHESS Folded on the POCKET CARDS
+
+
+
+Stage #525784465 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 40 - 2011-01-16 17:46:32 (ET)
+Table: 37 (Real Money) Seat #6 is the dealer
+Seat 1 - EKDIKEO (2,170 in chips)
+Seat 2 - GMONEY420024 (1,074 in chips)
+Seat 3 - STACKS (2,560 in chips)
+Seat 4 - EOFNORTH (2,570 in chips)
+Seat 5 - FLHTCIRIDER (2,945 in chips)
+Seat 6 - GAYBOX (2,583 in chips)
+Seat 7 - DADOFMENY (3,585 in chips)
+Seat 8 - MJ_FOX (194 in chips)
+Seat 9 - CUBICDUCHESS (571 in chips)
+DADOFMENY - Posts small blind 20
+MJ_FOX - Posts big blind 40
+*** POCKET CARDS ***
+Dealt to EKDIKEO [6d Jh] 
+CUBICDUCHESS - Folds
+EKDIKEO - Folds
+GMONEY420024 - Folds
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+DADOFMENY - Folds
+*** SHOW DOWN ***
+MJ_FOX - Does not show
+MJ_FOX Collects 60 from main pot
+*** SUMMARY ***
+Total Pot(60)
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: GMONEY420024 Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX (dealer) Folded on the POCKET CARDS
+Seat 7: DADOFMENY (small blind) Folded on the POCKET CARDS
+Seat 8: MJ_FOX (big blind) collected Total (60) 
+Seat 9: CUBICDUCHESS Folded on the POCKET CARDS
+
+
+
+Stage #525785070 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 40 - 2011-01-16 17:46:50 (ET)
+Table: 37 (Real Money) Seat #7 is the dealer
+Seat 1 - EKDIKEO (2,170 in chips)
+Seat 2 - GMONEY420024 (1,074 in chips)
+Seat 3 - STACKS (2,560 in chips)
+Seat 4 - EOFNORTH (2,570 in chips)
+Seat 5 - FLHTCIRIDER (2,945 in chips)
+Seat 6 - GAYBOX (2,583 in chips)
+Seat 7 - DADOFMENY (3,565 in chips)
+Seat 8 - MJ_FOX (214 in chips)
+Seat 9 - CUBICDUCHESS (571 in chips)
+MJ_FOX - Posts small blind 20
+CUBICDUCHESS - Posts big blind 40
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Ad 4h] 
+EKDIKEO - Folds
+GMONEY420024 - Folds
+STACKS - Folds
+EOFNORTH - Calls 40
+FLHTCIRIDER - Folds
+GAYBOX - Calls 40
+DADOFMENY - Folds
+MJ_FOX - Folds
+CUBICDUCHESS - Checks
+*** FLOP *** [5h 2c Jh]
+CUBICDUCHESS - Checks
+EOFNORTH - Bets 110
+GAYBOX - Folds
+CUBICDUCHESS - Folds
+EOFNORTH - returned (110) : not called
+*** SHOW DOWN ***
+EOFNORTH - Does not show
+EOFNORTH Collects 140 from main pot
+*** SUMMARY ***
+Total Pot(140)
+Board [5h 2c Jh]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: GMONEY420024 Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH collected Total (140) HI:(140)  [Does not show] 
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the FLOP
+Seat 7: DADOFMENY (dealer) Folded on the POCKET CARDS
+Seat 8: MJ_FOX (small blind) Folded on the POCKET CARDS
+Seat 9: CUBICDUCHESS (big blind) Folded on the FLOP
+
+
+
+Stage #525786459 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 40 - 2011-01-16 17:47:32 (ET)
+Table: 37 (Real Money) Seat #8 is the dealer
+Seat 1 - EKDIKEO (2,170 in chips)
+Seat 2 - GMONEY420024 (1,074 in chips)
+Seat 3 - STACKS (2,560 in chips)
+Seat 4 - EOFNORTH (2,670 in chips)
+Seat 5 - FLHTCIRIDER (2,945 in chips)
+Seat 6 - GAYBOX (2,543 in chips)
+Seat 7 - DADOFMENY (3,565 in chips)
+Seat 8 - MJ_FOX (194 in chips)
+Seat 9 - CUBICDUCHESS (531 in chips)
+CUBICDUCHESS - Posts small blind 20
+EKDIKEO - Posts big blind 40
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Ad 3c] 
+GMONEY420024 - Calls 40
+STACKS - Raises 98 to 98
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+DADOFMENY - Raises 156 to 156
+MJ_FOX - Folds
+CUBICDUCHESS - Folds
+EKDIKEO - Folds
+GMONEY420024 - Folds
+STACKS - Calls 58
+*** FLOP *** [6h 9c 8s]
+STACKS - Bets 40
+DADOFMENY - All-In(Raise) 3,409 to 3,409
+STACKS - Folds (Fold & Show [5c 5d]) 
+DADOFMENY - returned (3,369) : not called
+*** SHOW DOWN ***
+DADOFMENY - Does not show
+DADOFMENY Collects 492 from main pot
+*** SUMMARY ***
+Total Pot(492)
+Board [6h 9c 8s]
+Seat 1: EKDIKEO (big blind) Folded on the POCKET CARDS
+Seat 2: GMONEY420024 Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the FLOP
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: DADOFMENY collected Total (492) All-In HI:(492)  [Does not show] 
+Seat 8: MJ_FOX (dealer) Folded on the POCKET CARDS
+Seat 9: CUBICDUCHESS (small blind) Folded on the POCKET CARDS
+
+
+
+Stage #525788155 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 60 - 2011-01-16 17:48:23 (ET)
+Table: 37 (Real Money) Seat #9 is the dealer
+Seat 1 - EKDIKEO (2,130 in chips)
+Seat 2 - GMONEY420024 (1,034 in chips)
+Seat 3 - STACKS (2,364 in chips)
+Seat 4 - EOFNORTH (2,670 in chips)
+Seat 5 - FLHTCIRIDER (2,945 in chips)
+Seat 6 - GAYBOX (2,543 in chips)
+Seat 7 - DADOFMENY (3,861 in chips)
+Seat 8 - MJ_FOX (194 in chips)
+Seat 9 - CUBICDUCHESS (511 in chips)
+EKDIKEO - Posts small blind 30
+GMONEY420024 - Posts big blind 60
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Qh Qc] 
+STACKS - Folds
+EOFNORTH - Calls 60
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+DADOFMENY - Folds
+MJ_FOX - Folds
+CUBICDUCHESS - All-In(Raise) 511 to 511
+EKDIKEO - Raises 932 to 962
+GMONEY420024 - Folds
+EOFNORTH - Folds
+EKDIKEO - returned (451) : not called
+*** FLOP *** [7s 2c 9h]
+*** TURN *** [7s 2c 9h] [Ks]
+*** RIVER *** [7s 2c 9h Ks] [5d]
+*** SHOW DOWN ***
+EKDIKEO - Shows [Qh Qc] (One pair, queens) 
+CUBICDUCHESS - Shows [Jh Jc] (One pair, jacks) 
+EKDIKEO Collects 1,142 from main pot
+*** SUMMARY ***
+Total Pot(1,142)
+Board [7s 2c 9h Ks 5d]
+Seat 1: EKDIKEO (small blind) won Total (1,142) HI:(1,142) with One pair, queens [Qh Qc - P:Qh,P:Qc,B:Ks,B:9h,B:7s] 
+Seat 2: GMONEY420024 (big blind) Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: DADOFMENY Folded on the POCKET CARDS
+Seat 8: MJ_FOX Folded on the POCKET CARDS
+Seat 9: CUBICDUCHESS (dealer) HI:lost with One pair, jacks [Jh Jc - P:Jh,P:Jc,B:Ks,B:9h,B:7s] 
+
+
+
+Stage #525790512 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 60 - 2011-01-16 17:49:35 (ET)
+Table: 37 (Real Money) Seat #1 is the dealer
+Seat 1 - EKDIKEO (2,761 in chips)
+Seat 2 - GMONEY420024 (974 in chips)
+Seat 3 - STACKS (2,364 in chips)
+Seat 4 - EOFNORTH (2,610 in chips)
+Seat 5 - FLHTCIRIDER (2,945 in chips)
+Seat 6 - GAYBOX (2,543 in chips)
+Seat 7 - DADOFMENY (3,861 in chips)
+Seat 8 - MJ_FOX (194 in chips)
+GMONEY420024 - Posts small blind 30
+STACKS - Posts big blind 60
+*** POCKET CARDS ***
+Dealt to EKDIKEO [9d As] 
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+DADOFMENY - Folds
+MJ_FOX - All-In(Raise) 194 to 194
+EKDIKEO - Raises 328 to 328
+GMONEY420024 - Folds
+STACKS - Folds
+EKDIKEO - returned (134) : not called
+*** FLOP *** [Qc Ac Qh]
+*** TURN *** [Qc Ac Qh] [5s]
+*** RIVER *** [Qc Ac Qh 5s] [6c]
+*** SHOW DOWN ***
+EKDIKEO - Shows [9d As] (Two Pair, aces and queens) 
+MJ_FOX - Shows [Ad 3d] (Two Pair, aces and queens) 
+EKDIKEO Collects 478 from main pot
+*** SUMMARY ***
+Total Pot(478)
+Board [Qc Ac Qh 5s 6c]
+Seat 1: EKDIKEO (dealer) won Total (478) HI:(478) with Two Pair, aces and queens(nine kicker) [9d As - P:As,B:Ac,B:Qh,B:Qc,P:9d] 
+Seat 2: GMONEY420024 (small blind) Folded on the POCKET CARDS
+Seat 3: STACKS (big blind) Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: DADOFMENY Folded on the POCKET CARDS
+Seat 8: MJ_FOX HI:lost with Two Pair, aces and queens [Ad 3d - P:Ad,B:Ac,B:Qh,B:Qc,B:6c] 
+
+
+
+Stage #525792001 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 60 - 2011-01-16 17:50:20 (ET)
+Table: 37 (Real Money) Seat #2 is the dealer
+Seat 1 - EKDIKEO (3,045 in chips)
+Seat 2 - GMONEY420024 (944 in chips)
+Seat 3 - STACKS (2,304 in chips)
+Seat 4 - EOFNORTH (2,610 in chips)
+Seat 5 - FLHTCIRIDER (2,945 in chips)
+Seat 6 - GAYBOX (2,543 in chips)
+Seat 7 - DADOFMENY (3,861 in chips)
+Seat 9 - EARS04 (8,008 in chips)
+STACKS - Posts small blind 30
+EOFNORTH - Posts big blind 60
+*** POCKET CARDS ***
+Dealt to EKDIKEO [2d 4s] 
+FLHTCIRIDER - Calls 60
+GAYBOX - Folds
+DADOFMENY - Folds
+EARS04 - Calls 60
+EKDIKEO - Folds
+GMONEY420024 - Folds
+STACKS - Calls 30
+EOFNORTH - Checks
+*** FLOP *** [4d 5c 2h]
+STACKS - Bets 120
+EOFNORTH - Folds
+FLHTCIRIDER - Raises 600 to 600
+EARS04 - Folds
+STACKS - Folds (Fold & Show [3s 8c]) 
+FLHTCIRIDER - returned (480) : not called
+*** SHOW DOWN ***
+FLHTCIRIDER - Does not show
+FLHTCIRIDER Collects 480 from main pot
+*** SUMMARY ***
+Total Pot(480)
+Board [4d 5c 2h]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: GMONEY420024 (dealer) Folded on the POCKET CARDS
+Seat 3: STACKS (small blind) Folded on the FLOP
+Seat 4: EOFNORTH (big blind) Folded on the FLOP
+Seat 5: FLHTCIRIDER collected Total (480) HI:(480)  [Does not show] 
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: DADOFMENY Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the FLOP
+
+
+
+Stage #525793392 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 60 - 2011-01-16 17:51:02 (ET)
+Table: 37 (Real Money) Seat #3 is the dealer
+Seat 1 - EKDIKEO (3,045 in chips)
+Seat 2 - GMONEY420024 (944 in chips)
+Seat 3 - STACKS (2,124 in chips)
+Seat 4 - EOFNORTH (2,550 in chips)
+Seat 5 - FLHTCIRIDER (3,245 in chips)
+Seat 6 - GAYBOX (2,543 in chips)
+Seat 7 - DADOFMENY (3,861 in chips)
+Seat 9 - EARS04 (7,948 in chips)
+EOFNORTH - Posts small blind 30
+FLHTCIRIDER - Posts big blind 60
+*** POCKET CARDS ***
+Dealt to EKDIKEO [4s Qh] 
+GAYBOX - Calls 60
+DADOFMENY - Folds
+EARS04 - Folds
+EKDIKEO - Folds
+GMONEY420024 - Folds
+STACKS - Folds
+EOFNORTH - Calls 30
+FLHTCIRIDER - Checks
+*** FLOP *** [8d 10s Js]
+EOFNORTH - Checks
+FLHTCIRIDER - Checks
+GAYBOX - Bets 180
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - returned (180) : not called
+*** SHOW DOWN ***
+GAYBOX - Does not show
+GAYBOX Collects 180 from main pot
+*** SUMMARY ***
+Total Pot(180)
+Board [8d 10s Js]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: GMONEY420024 Folded on the POCKET CARDS
+Seat 3: STACKS (dealer) Folded on the POCKET CARDS
+Seat 4: EOFNORTH (small blind) Folded on the FLOP
+Seat 5: FLHTCIRIDER (big blind) Folded on the FLOP
+Seat 6: GAYBOX collected Total (180) HI:(180)  [Does not show] 
+Seat 7: DADOFMENY Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525794461 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 60 - 2011-01-16 17:51:35 (ET)
+Table: 37 (Real Money) Seat #4 is the dealer
+Seat 1 - EKDIKEO (3,045 in chips)
+Seat 2 - GMONEY420024 (944 in chips)
+Seat 3 - STACKS (2,124 in chips)
+Seat 4 - EOFNORTH (2,490 in chips)
+Seat 5 - FLHTCIRIDER (3,185 in chips)
+Seat 6 - GAYBOX (2,663 in chips)
+Seat 7 - DADOFMENY (3,861 in chips)
+Seat 9 - EARS04 (7,948 in chips)
+FLHTCIRIDER - Posts small blind 30
+GAYBOX - Posts big blind 60
+*** POCKET CARDS ***
+Dealt to EKDIKEO [5h 3h] 
+DADOFMENY - Folds
+EARS04 - Folds
+EKDIKEO - Folds
+GMONEY420024 - Folds
+STACKS - Raises 120 to 120
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Calls 60
+*** FLOP *** [5s As 7s]
+GAYBOX - Checks
+STACKS - Bets 120
+GAYBOX - Calls 120
+*** TURN *** [5s As 7s] [3s]
+GAYBOX - Checks
+STACKS - Bets 180
+GAYBOX - Raises 360 to 360
+STACKS - Calls 180
+*** RIVER *** [5s As 7s 3s] [Js]
+GAYBOX - Checks
+STACKS - Checks
+*** SHOW DOWN ***
+GAYBOX - Shows [8h 8c] (Flush, ace high) 
+STACKS - Shows [9s 9h] (Flush, ace high) 
+STACKS Collects 1,230 from main pot
+*** SUMMARY ***
+Total Pot(1,230)
+Board [5s As 7s 3s Js]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: GMONEY420024 Folded on the POCKET CARDS
+Seat 3: STACKS won Total (1,230) HI:(1,230) with Flush, ace high [9s 9h - B:As,B:Js,P:9s,B:7s,B:5s] 
+Seat 4: EOFNORTH (dealer) Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER (small blind) Folded on the POCKET CARDS
+Seat 6: GAYBOX (big blind) HI:lost with Flush, ace high [8h 8c - B:As,B:Js,B:7s,B:5s,B:3s] 
+Seat 7: DADOFMENY Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525796026 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 60 - 2011-01-16 17:52:23 (ET)
+Table: 37 (Real Money) Seat #5 is the dealer
+Seat 1 - EKDIKEO (3,045 in chips)
+Seat 2 - GMONEY420024 (944 in chips)
+Seat 3 - STACKS (2,754 in chips)
+Seat 4 - EOFNORTH (2,490 in chips)
+Seat 5 - FLHTCIRIDER (3,155 in chips)
+Seat 6 - GAYBOX (2,063 in chips)
+Seat 7 - DADOFMENY (3,861 in chips)
+Seat 8 - ANDRON_1982 (1,360 in chips)
+Seat 9 - EARS04 (7,948 in chips)
+GAYBOX - Posts small blind 30
+DADOFMENY - Posts big blind 60
+*** POCKET CARDS ***
+Dealt to EKDIKEO [3h 3d] 
+ANDRON_1982 - Folds
+EARS04 - Folds
+EKDIKEO - Raises 210 to 210
+GMONEY420024 - Folds
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+DADOFMENY - Folds
+EKDIKEO - returned (150) : not called
+*** SHOW DOWN ***
+EKDIKEO - Does not show
+EKDIKEO Collects 150 from main pot
+*** SUMMARY ***
+Total Pot(150)
+Seat 1: EKDIKEO collected Total (150) 
+Seat 2: GMONEY420024 Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER (dealer) Folded on the POCKET CARDS
+Seat 6: GAYBOX (small blind) Folded on the POCKET CARDS
+Seat 7: DADOFMENY (big blind) Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525797537 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 60 - 2011-01-16 17:53:08 (ET)
+Table: 37 (Real Money) Seat #6 is the dealer
+Seat 1 - EKDIKEO (3,135 in chips)
+Seat 2 - GMONEY420024 (944 in chips)
+Seat 3 - STACKS (2,754 in chips)
+Seat 4 - EOFNORTH (2,490 in chips)
+Seat 5 - FLHTCIRIDER (3,155 in chips)
+Seat 6 - GAYBOX (2,033 in chips)
+Seat 7 - DADOFMENY (3,801 in chips)
+Seat 8 - ANDRON_1982 (1,360 in chips)
+Seat 9 - EARS04 (7,948 in chips)
+DADOFMENY - Posts small blind 30
+ANDRON_1982 - Posts big blind 60
+*** POCKET CARDS ***
+Dealt to EKDIKEO [5d 9d] 
+EARS04 - Folds
+EKDIKEO - Folds
+GMONEY420024 - Calls 60
+STACKS - Raises 180 to 180
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+DADOFMENY - Folds
+ANDRON_1982 - Folds
+GMONEY420024 - Calls 120
+*** FLOP *** [6c Jc 3d]
+GMONEY420024 - Checks
+STACKS - Checks
+*** TURN *** [6c Jc 3d] [Jd]
+GMONEY420024 - Checks
+STACKS - Checks
+*** RIVER *** [6c Jc 3d Jd] [8c]
+GMONEY420024 - Checks
+STACKS - Checks
+*** SHOW DOWN ***
+GMONEY420024 - Shows [Ah 4s] (One pair, jacks) 
+STACKS - Shows [Kd Ad] (One pair, jacks) 
+STACKS Collects 450 from main pot
+*** SUMMARY ***
+Total Pot(450)
+Board [6c Jc 3d Jd 8c]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: GMONEY420024 HI:lost with One pair, jacks [Ah 4s - B:Jd,B:Jc,P:Ah,B:8c,B:6c] 
+Seat 3: STACKS won Total (450) HI:(450) with One pair, jacks(king kicker) [Kd Ad - B:Jd,B:Jc,P:Ad,P:Kd,B:8c] 
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX (dealer) Folded on the POCKET CARDS
+Seat 7: DADOFMENY (small blind) Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 (big blind) Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525798704 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 60 - 2011-01-16 17:53:44 (ET)
+Table: 37 (Real Money) Seat #7 is the dealer
+Seat 1 - EKDIKEO (3,135 in chips)
+Seat 2 - GMONEY420024 (764 in chips)
+Seat 3 - STACKS (3,024 in chips)
+Seat 4 - EOFNORTH (2,490 in chips)
+Seat 5 - FLHTCIRIDER (3,155 in chips)
+Seat 6 - GAYBOX (2,033 in chips)
+Seat 7 - DADOFMENY (3,771 in chips)
+Seat 8 - ANDRON_1982 (1,300 in chips)
+Seat 9 - EARS04 (7,948 in chips)
+ANDRON_1982 - Posts small blind 30
+EARS04 - Posts big blind 60
+*** POCKET CARDS ***
+Dealt to EKDIKEO [3s 3c] 
+EKDIKEO - Calls 60
+GMONEY420024 - Calls 60
+STACKS - Folds
+EOFNORTH - Calls 60
+FLHTCIRIDER - Folds
+GAYBOX - Calls 60
+DADOFMENY - Calls 60
+ANDRON_1982 - All-In(Raise) 1,270 to 1,300
+EARS04 - Folds
+EKDIKEO - Folds
+GMONEY420024 - All-In 704
+EOFNORTH - Folds
+GAYBOX - Calls 1,240
+DADOFMENY - Folds
+*** FLOP *** [5c 2c 6d]
+*** TURN *** [5c 2c 6d] [Jc]
+*** RIVER *** [5c 2c 6d Jc] [Ks]
+*** SHOW DOWN ***
+GMONEY420024 - Shows [Qh As] (ace high) 
+GAYBOX - Shows [Qs Qc] (One pair, queens) 
+ANDRON_1982 - Shows [Kc Ad] (One pair, kings) 
+ANDRON_1982 Collects 1,072 from side pot-1
+ANDRON_1982 Collects 2,532 from main pot
+*** SUMMARY ***
+Total Pot(3,604:2,532,1,072)
+Board [5c 2c 6d Jc Ks]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: GMONEY420024 HI:lost with ace high [Qh As - P:As,B:Ks,P:Qh,B:Jc,B:6d] 
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX HI:lost with One pair, queens [Qs Qc - P:Qs,P:Qc,B:Ks,B:Jc,B:6d] 
+Seat 7: DADOFMENY (dealer) Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 (small blind) won Total (3,604) All-In HI:(3,604) with One pair, kings [Kc Ad - B:Ks,P:Kc,P:Ad,B:Jc,B:6d] 
+Seat 9: EARS04 (big blind) Folded on the POCKET CARDS
+
+
+
+Stage #525800506 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 60 - 2011-01-16 17:54:44 (ET)
+Table: 37 (Real Money) Seat #8 is the dealer
+Seat 1 - EKDIKEO (3,075 in chips)
+Seat 3 - STACKS (3,024 in chips)
+Seat 4 - EOFNORTH (2,430 in chips)
+Seat 5 - FLHTCIRIDER (3,155 in chips)
+Seat 6 - GAYBOX (733 in chips)
+Seat 7 - DADOFMENY (3,711 in chips)
+Seat 8 - ANDRON_1982 (3,604 in chips)
+Seat 9 - EARS04 (7,888 in chips)
+EARS04 - Posts small blind 30
+EKDIKEO - Posts big blind 60
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Ad Jd] 
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+DADOFMENY - Folds
+ANDRON_1982 - Raises 210 to 210
+EARS04 - Folds
+EKDIKEO - Calls 150
+*** FLOP *** [4c 8s 5h]
+EKDIKEO - Checks
+ANDRON_1982 - Checks
+*** TURN *** [4c 8s 5h] [2h]
+EKDIKEO - Checks
+ANDRON_1982 - Bets 120
+EKDIKEO - Folds
+ANDRON_1982 - returned (120) : not called
+*** SHOW DOWN ***
+ANDRON_1982 - Does not show
+ANDRON_1982 Collects 450 from main pot
+*** SUMMARY ***
+Total Pot(450)
+Board [4c 8s 5h 2h]
+Seat 1: EKDIKEO (big blind) Folded on the TURN
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: DADOFMENY Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 (dealer) collected Total (450) HI:(450)  [Does not show] 
+Seat 9: EARS04 (small blind) Folded on the POCKET CARDS
+
+
+
+Stage #525808155 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 60 - 2011-01-16 18:01:22 (ET)
+Table: 37 (Real Money) Seat #9 is the dealer
+Seat 1 - EKDIKEO (2,865 in chips)
+Seat 3 - STACKS (3,024 in chips)
+Seat 4 - EOFNORTH (2,430 in chips)
+Seat 5 - FLHTCIRIDER (3,155 in chips)
+Seat 6 - GAYBOX (733 in chips)
+Seat 7 - DADOFMENY (3,711 in chips)
+Seat 8 - ANDRON_1982 (3,844 in chips)
+Seat 9 - EARS04 (7,858 in chips)
+EKDIKEO - Posts small blind 30
+STACKS - Posts big blind 60
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Ac 3d] 
+EOFNORTH - Calls 60
+FLHTCIRIDER - Calls 60
+GAYBOX - Folds
+DADOFMENY - Raises 330 to 330
+ANDRON_1982 - Folds
+EARS04 - Folds
+EKDIKEO - Folds
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+DADOFMENY - returned (270) : not called
+*** SHOW DOWN ***
+DADOFMENY - Does not show
+DADOFMENY Collects 270 from main pot
+*** SUMMARY ***
+Total Pot(270)
+Seat 1: EKDIKEO (small blind) Folded on the POCKET CARDS
+Seat 3: STACKS (big blind) Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: DADOFMENY collected Total (270) 
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+Seat 9: EARS04 (dealer) Folded on the POCKET CARDS
+
+
+
+Stage #525809632 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 60 - 2011-01-16 18:02:07 (ET)
+Table: 37 (Real Money) Seat #1 is the dealer
+Seat 1 - EKDIKEO (2,835 in chips)
+Seat 3 - STACKS (2,964 in chips)
+Seat 4 - EOFNORTH (2,370 in chips)
+Seat 5 - FLHTCIRIDER (3,095 in chips)
+Seat 6 - GAYBOX (733 in chips)
+Seat 7 - DADOFMENY (3,921 in chips)
+Seat 8 - ANDRON_1982 (3,844 in chips)
+Seat 9 - EARS04 (7,858 in chips)
+STACKS - Posts small blind 30
+EOFNORTH - Posts big blind 60
+*** POCKET CARDS ***
+Dealt to EKDIKEO [6c 6s] 
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+DADOFMENY - Folds
+ANDRON_1982 - Raises 120 to 120
+EARS04 - Folds
+EKDIKEO - Calls 120
+STACKS - Calls 90
+EOFNORTH - Calls 60
+*** FLOP *** [Jc 5d 2d]
+STACKS - Bets 120
+EOFNORTH - Folds
+ANDRON_1982 - Calls 120
+EKDIKEO - Folds
+*** TURN *** [Jc 5d 2d] [Qh]
+STACKS - Checks
+ANDRON_1982 - Checks
+*** RIVER *** [Jc 5d 2d Qh] [3c]
+STACKS - Bets 120
+ANDRON_1982 - Calls 120
+*** SHOW DOWN ***
+STACKS - Shows [Js 9d] (One pair, jacks) 
+ANDRON_1982 - Mucks
+STACKS Collects 960 from main pot
+*** SUMMARY ***
+Total Pot(960)
+Board [Jc 5d 2d Qh 3c]
+Seat 1: EKDIKEO (dealer) Folded on the FLOP
+Seat 3: STACKS (small blind) won Total (960) HI:(960) with One pair, jacks [Js 9d - P:Js,B:Jc,B:Qh,P:9d,B:5d] 
+Seat 4: EOFNORTH (big blind) Folded on the FLOP
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: DADOFMENY Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 HI: [Mucked] [7h 7d] 
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525812098 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 60 - 2011-01-16 18:03:22 (ET)
+Table: 37 (Real Money) Seat #3 is the dealer
+Seat 1 - EKDIKEO (2,715 in chips)
+Seat 3 - STACKS (3,564 in chips)
+Seat 4 - EOFNORTH (2,250 in chips)
+Seat 5 - FLHTCIRIDER (3,095 in chips)
+Seat 6 - GAYBOX (733 in chips)
+Seat 7 - DADOFMENY (3,921 in chips)
+Seat 8 - ANDRON_1982 (3,484 in chips)
+Seat 9 - EARS04 (7,858 in chips)
+EOFNORTH - Posts small blind 30
+FLHTCIRIDER - Posts big blind 60
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Jh 10c] 
+GAYBOX - Folds
+DADOFMENY - Folds
+ANDRON_1982 - Raises 210 to 210
+EARS04 - Folds
+EKDIKEO - Folds
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+ANDRON_1982 - returned (150) : not called
+*** SHOW DOWN ***
+ANDRON_1982 - Does not show
+ANDRON_1982 Collects 150 from main pot
+*** SUMMARY ***
+Total Pot(150)
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 3: STACKS (dealer) Folded on the POCKET CARDS
+Seat 4: EOFNORTH (small blind) Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER (big blind) Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: DADOFMENY Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 collected Total (150) 
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525812682 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 60 - 2011-01-16 18:03:40 (ET)
+Table: 37 (Real Money) Seat #4 is the dealer
+Seat 1 - EKDIKEO (2,715 in chips)
+Seat 3 - STACKS (3,564 in chips)
+Seat 4 - EOFNORTH (2,220 in chips)
+Seat 5 - FLHTCIRIDER (3,035 in chips)
+Seat 6 - GAYBOX (733 in chips)
+Seat 7 - DADOFMENY (3,921 in chips)
+Seat 8 - ANDRON_1982 (3,574 in chips)
+Seat 9 - EARS04 (7,858 in chips)
+FLHTCIRIDER - Posts small blind 30
+GAYBOX - Posts big blind 60
+*** POCKET CARDS ***
+Dealt to EKDIKEO [4s Jd] 
+DADOFMENY - Folds
+ANDRON_1982 - Folds
+EARS04 - Folds
+EKDIKEO - Folds
+STACKS - Calls 60
+EOFNORTH - Calls 60
+FLHTCIRIDER - Calls 30
+GAYBOX - Folds
+*** FLOP *** [8h 5s Qd]
+FLHTCIRIDER - Checks
+STACKS - Checks
+EOFNORTH - Checks
+*** TURN *** [8h 5s Qd] [8c]
+FLHTCIRIDER - Checks
+STACKS - Checks
+EOFNORTH - Checks
+*** RIVER *** [8h 5s Qd 8c] [Ah]
+FLHTCIRIDER - Checks
+STACKS - Checks
+EOFNORTH - Checks
+*** SHOW DOWN ***
+FLHTCIRIDER - Shows [Jc Ks] (One pair, eights) 
+STACKS - Mucks
+EOFNORTH - Mucks
+FLHTCIRIDER Collects 240 from main pot
+*** SUMMARY ***
+Total Pot(240)
+Board [8h 5s Qd 8c Ah]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 3: STACKS HI: [Mucked] [6h 4h] 
+Seat 4: EOFNORTH (dealer) HI: [Mucked] [9d 7s] 
+Seat 5: FLHTCIRIDER (small blind) won Total (240) HI:(240) with One pair, eights(king kicker) [Jc Ks - B:8h,B:8c,B:Ah,P:Ks,B:Qd] 
+Seat 6: GAYBOX (big blind) Folded on the POCKET CARDS
+Seat 7: DADOFMENY Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525814311 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 60 - 2011-01-16 18:04:28 (ET)
+Table: 37 (Real Money) Seat #5 is the dealer
+Seat 1 - EKDIKEO (2,715 in chips)
+Seat 2 - NELSON3949 (3,888 in chips)
+Seat 3 - STACKS (3,504 in chips)
+Seat 4 - EOFNORTH (2,160 in chips)
+Seat 5 - FLHTCIRIDER (3,215 in chips)
+Seat 6 - GAYBOX (673 in chips)
+Seat 7 - DADOFMENY (3,921 in chips)
+Seat 8 - ANDRON_1982 (3,574 in chips)
+Seat 9 - EARS04 (7,858 in chips)
+GAYBOX - Posts small blind 30
+DADOFMENY - Posts big blind 60
+*** POCKET CARDS ***
+Dealt to EKDIKEO [9c 10d] 
+ANDRON_1982 - Folds
+EARS04 - Calls 60
+EKDIKEO - Folds
+NELSON3949 - Folds
+STACKS - Calls 60
+EOFNORTH - Folds
+FLHTCIRIDER - Calls 60
+GAYBOX - Folds
+DADOFMENY - Checks
+*** FLOP *** [Qc 8d 2s]
+DADOFMENY - Checks
+EARS04 - Checks
+STACKS - Checks
+FLHTCIRIDER - Bets 60
+DADOFMENY - Folds
+EARS04 - Folds
+STACKS - Folds
+FLHTCIRIDER - returned (60) : not called
+*** SHOW DOWN ***
+FLHTCIRIDER - Does not show
+FLHTCIRIDER Collects 270 from main pot
+*** SUMMARY ***
+Total Pot(270)
+Board [Qc 8d 2s]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: NELSON3949 Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the FLOP
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER (dealer) collected Total (270) HI:(270)  [Does not show] 
+Seat 6: GAYBOX (small blind) Folded on the POCKET CARDS
+Seat 7: DADOFMENY (big blind) Folded on the FLOP
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the FLOP
+
+
+
+Stage #525815821 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 60 - 2011-01-16 18:05:13 (ET)
+Table: 37 (Real Money) Seat #6 is the dealer
+Seat 1 - EKDIKEO (2,715 in chips)
+Seat 2 - NELSON3949 (3,888 in chips)
+Seat 3 - STACKS (3,444 in chips)
+Seat 4 - EOFNORTH (2,160 in chips)
+Seat 5 - FLHTCIRIDER (3,425 in chips)
+Seat 6 - GAYBOX (643 in chips)
+Seat 7 - DADOFMENY (3,861 in chips)
+Seat 8 - ANDRON_1982 (3,574 in chips)
+Seat 9 - EARS04 (7,798 in chips)
+DADOFMENY - Posts small blind 30
+ANDRON_1982 - Posts big blind 60
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Qd 8h] 
+EARS04 - Folds
+EKDIKEO - Folds
+NELSON3949 - Folds
+STACKS - Folds
+EOFNORTH - Raises 180 to 180
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+DADOFMENY - Folds
+ANDRON_1982 - Folds
+EOFNORTH - returned (120) : not called
+*** SHOW DOWN ***
+EOFNORTH - Does not show
+EOFNORTH Collects 150 from main pot
+*** SUMMARY ***
+Total Pot(150)
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: NELSON3949 Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH collected Total (150) 
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX (dealer) Folded on the POCKET CARDS
+Seat 7: DADOFMENY (small blind) Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 (big blind) Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525817123 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 60 - 2011-01-16 18:05:52 (ET)
+Table: 37 (Real Money) Seat #7 is the dealer
+Seat 1 - EKDIKEO (2,715 in chips)
+Seat 2 - NELSON3949 (3,888 in chips)
+Seat 3 - STACKS (3,444 in chips)
+Seat 4 - EOFNORTH (2,250 in chips)
+Seat 5 - FLHTCIRIDER (3,425 in chips)
+Seat 6 - GAYBOX (643 in chips)
+Seat 7 - DADOFMENY (3,831 in chips)
+Seat 8 - ANDRON_1982 (3,514 in chips)
+Seat 9 - EARS04 (7,798 in chips)
+ANDRON_1982 - Posts small blind 30
+EARS04 - Posts big blind 60
+*** POCKET CARDS ***
+Dealt to EKDIKEO [10d 8d] 
+EKDIKEO - Folds
+NELSON3949 - Calls 60
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+DADOFMENY - Raises 120 to 120
+ANDRON_1982 - Folds
+EARS04 - Calls 60
+NELSON3949 - Calls 60
+*** FLOP *** [Ah 7c Js]
+EARS04 - Checks
+NELSON3949 - Checks
+DADOFMENY - Bets 390
+EARS04 - Folds
+NELSON3949 - Calls 390
+*** TURN *** [Ah 7c Js] [4h]
+NELSON3949 - Checks
+DADOFMENY - All-In 3,321
+NELSON3949 - Calls 3,321
+*** RIVER *** [Ah 7c Js 4h] [6d]
+*** SHOW DOWN ***
+NELSON3949 - Shows [As 7s] (Two Pair, aces and sevens) 
+DADOFMENY - Shows [9d Ad] (One pair, aces) 
+NELSON3949 Collects 7,812 from main pot
+*** SUMMARY ***
+Total Pot(7,812)
+Board [Ah 7c Js 4h 6d]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: NELSON3949 won Total (7,812) HI:(7,812) with Two Pair, aces and sevens [As 7s - P:As,B:Ah,P:7s,B:7c,B:Js] 
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: DADOFMENY (dealer) HI:lost with One pair, aces [9d Ad - B:Ah,P:Ad,B:Js,P:9d,B:7c] 
+Seat 8: ANDRON_1982 (small blind) Folded on the POCKET CARDS
+Seat 9: EARS04 (big blind) Folded on the FLOP
+
+
+
+Stage #525819322 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:06:58 (ET)
+Table: 37 (Real Money) Seat #8 is the dealer
+Seat 1 - EKDIKEO (2,715 in chips)
+Seat 2 - NELSON3949 (7,869 in chips)
+Seat 3 - STACKS (3,444 in chips)
+Seat 4 - EOFNORTH (2,250 in chips)
+Seat 5 - FLHTCIRIDER (3,425 in chips)
+Seat 6 - GAYBOX (643 in chips)
+Seat 8 - ANDRON_1982 (3,484 in chips)
+Seat 9 - EARS04 (7,678 in chips)
+EARS04 - Posts small blind 50
+EKDIKEO - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [10s 8c] 
+NELSON3949 - Folds
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+ANDRON_1982 - Folds
+EARS04 - Calls 50
+EKDIKEO - Checks
+*** FLOP *** [As 10d 5h]
+EARS04 - Checks
+EKDIKEO - Bets 200
+EARS04 - Folds
+EKDIKEO - returned (200) : not called
+*** SHOW DOWN ***
+EKDIKEO - Does not show
+EKDIKEO Collects 200 from main pot
+*** SUMMARY ***
+Total Pot(200)
+Board [As 10d 5h]
+Seat 1: EKDIKEO (big blind) collected Total (200) HI:(200)  [Does not show] 
+Seat 2: NELSON3949 Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 (dealer) Folded on the POCKET CARDS
+Seat 9: EARS04 (small blind) Folded on the FLOP
+
+
+
+Stage #525820455 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:07:34 (ET)
+Table: 37 (Real Money) Seat #9 is the dealer
+Seat 1 - EKDIKEO (2,815 in chips)
+Seat 2 - NELSON3949 (7,869 in chips)
+Seat 3 - STACKS (3,444 in chips)
+Seat 4 - EOFNORTH (2,250 in chips)
+Seat 5 - FLHTCIRIDER (3,425 in chips)
+Seat 6 - GAYBOX (643 in chips)
+Seat 8 - ANDRON_1982 (3,484 in chips)
+Seat 9 - EARS04 (7,578 in chips)
+EKDIKEO - Posts small blind 50
+NELSON3949 - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Kd 9c] 
+STACKS - Folds
+EOFNORTH - Raises 300 to 300
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+ANDRON_1982 - Calls 300
+EARS04 - Folds
+EKDIKEO - Folds
+NELSON3949 - Folds
+*** FLOP *** [10s 7d 7c]
+EOFNORTH - Checks
+ANDRON_1982 - Bets 400
+EOFNORTH - Folds
+ANDRON_1982 - returned (400) : not called
+*** SHOW DOWN ***
+ANDRON_1982 - Does not show
+ANDRON_1982 Collects 750 from main pot
+*** SUMMARY ***
+Total Pot(750)
+Board [10s 7d 7c]
+Seat 1: EKDIKEO (small blind) Folded on the POCKET CARDS
+Seat 2: NELSON3949 (big blind) Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the FLOP
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 collected Total (750) HI:(750)  [Does not show] 
+Seat 9: EARS04 (dealer) Folded on the POCKET CARDS
+
+
+
+Stage #525821999 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:08:22 (ET)
+Table: 37 (Real Money) Seat #1 is the dealer
+Seat 1 - EKDIKEO (2,765 in chips)
+Seat 2 - NELSON3949 (7,769 in chips)
+Seat 3 - STACKS (3,444 in chips)
+Seat 4 - EOFNORTH (1,950 in chips)
+Seat 5 - FLHTCIRIDER (3,425 in chips)
+Seat 6 - GAYBOX (643 in chips)
+Seat 8 - ANDRON_1982 (3,934 in chips)
+Seat 9 - EARS04 (7,578 in chips)
+NELSON3949 - Posts small blind 50
+STACKS - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [3s 2h] 
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+ANDRON_1982 - Folds
+EARS04 - Folds
+EKDIKEO - Folds
+NELSON3949 - Calls 50
+STACKS - Checks
+*** FLOP *** [10d 4c 8h]
+NELSON3949 - Bets 100
+STACKS - Folds
+NELSON3949 - returned (100) : not called
+*** SHOW DOWN ***
+NELSON3949 - Does not show
+NELSON3949 Collects 200 from main pot
+*** SUMMARY ***
+Total Pot(200)
+Board [10d 4c 8h]
+Seat 1: EKDIKEO (dealer) Folded on the POCKET CARDS
+Seat 2: NELSON3949 (small blind) collected Total (200) HI:(200)  [Does not show] 
+Seat 3: STACKS (big blind) Folded on the FLOP
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525822950 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:08:52 (ET)
+Table: 37 (Real Money) Seat #2 is the dealer
+Seat 1 - EKDIKEO (2,765 in chips)
+Seat 2 - NELSON3949 (7,869 in chips)
+Seat 3 - STACKS (3,344 in chips)
+Seat 4 - EOFNORTH (1,950 in chips)
+Seat 5 - FLHTCIRIDER (3,425 in chips)
+Seat 6 - GAYBOX (643 in chips)
+Seat 8 - ANDRON_1982 (3,934 in chips)
+Seat 9 - EARS04 (7,578 in chips)
+STACKS - Posts small blind 50
+EOFNORTH - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Jh Kd] 
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+ANDRON_1982 - Folds
+EARS04 - Calls 100
+EKDIKEO - Raises 450 to 450
+NELSON3949 - Folds
+STACKS - Folds
+EOFNORTH - Folds
+EARS04 - Folds
+EKDIKEO - returned (350) : not called
+*** SHOW DOWN ***
+EKDIKEO - Does not show
+EKDIKEO Collects 350 from main pot
+*** SUMMARY ***
+Total Pot(350)
+Seat 1: EKDIKEO collected Total (350) 
+Seat 2: NELSON3949 (dealer) Folded on the POCKET CARDS
+Seat 3: STACKS (small blind) Folded on the POCKET CARDS
+Seat 4: EOFNORTH (big blind) Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525823836 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:09:19 (ET)
+Table: 37 (Real Money) Seat #3 is the dealer
+Seat 1 - EKDIKEO (3,015 in chips)
+Seat 2 - NELSON3949 (7,869 in chips)
+Seat 3 - STACKS (3,294 in chips)
+Seat 4 - EOFNORTH (1,850 in chips)
+Seat 5 - FLHTCIRIDER (3,425 in chips)
+Seat 6 - GAYBOX (643 in chips)
+Seat 8 - ANDRON_1982 (3,934 in chips)
+Seat 9 - EARS04 (7,478 in chips)
+EOFNORTH - Posts small blind 50
+FLHTCIRIDER - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [3d Kc] 
+GAYBOX - Folds
+ANDRON_1982 - Folds
+EARS04 - Folds
+EKDIKEO - Folds
+NELSON3949 - Calls 100
+STACKS - Calls 100
+EOFNORTH - Calls 50
+FLHTCIRIDER - Checks
+*** FLOP *** [6c 10s 5s]
+EOFNORTH - Checks
+FLHTCIRIDER - Checks
+NELSON3949 - Bets 100
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+NELSON3949 - returned (100) : not called
+*** SHOW DOWN ***
+NELSON3949 - Does not show
+NELSON3949 Collects 400 from main pot
+*** SUMMARY ***
+Total Pot(400)
+Board [6c 10s 5s]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: NELSON3949 collected Total (400) HI:(400)  [Does not show] 
+Seat 3: STACKS (dealer) Folded on the FLOP
+Seat 4: EOFNORTH (small blind) Folded on the FLOP
+Seat 5: FLHTCIRIDER (big blind) Folded on the FLOP
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525825164 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:10:01 (ET)
+Table: 37 (Real Money) Seat #4 is the dealer
+Seat 1 - EKDIKEO (3,015 in chips)
+Seat 2 - NELSON3949 (8,169 in chips)
+Seat 3 - STACKS (3,194 in chips)
+Seat 4 - EOFNORTH (1,750 in chips)
+Seat 5 - FLHTCIRIDER (3,325 in chips)
+Seat 6 - GAYBOX (643 in chips)
+Seat 7 - TOONPLAYER (1,640 in chips)
+Seat 8 - ANDRON_1982 (3,934 in chips)
+Seat 9 - EARS04 (7,478 in chips)
+FLHTCIRIDER - Posts small blind 50
+GAYBOX - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [5c 4c] 
+TOONPLAYER - Raises 350 to 350
+ANDRON_1982 - Folds
+EARS04 - Folds
+EKDIKEO - Folds
+NELSON3949 - Folds
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+TOONPLAYER - returned (250) : not called
+*** SHOW DOWN ***
+TOONPLAYER - Does not show
+TOONPLAYER Collects 250 from main pot
+*** SUMMARY ***
+Total Pot(250)
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: NELSON3949 Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH (dealer) Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER (small blind) Folded on the POCKET CARDS
+Seat 6: GAYBOX (big blind) Folded on the POCKET CARDS
+Seat 7: TOONPLAYER collected Total (250) 
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525826001 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:10:28 (ET)
+Table: 37 (Real Money) Seat #5 is the dealer
+Seat 1 - EKDIKEO (3,015 in chips)
+Seat 2 - NELSON3949 (8,169 in chips)
+Seat 3 - STACKS (3,194 in chips)
+Seat 4 - EOFNORTH (1,750 in chips)
+Seat 5 - FLHTCIRIDER (3,275 in chips)
+Seat 6 - GAYBOX (543 in chips)
+Seat 7 - TOONPLAYER (1,790 in chips)
+Seat 8 - ANDRON_1982 (3,934 in chips)
+Seat 9 - EARS04 (7,478 in chips)
+GAYBOX - Posts small blind 50
+TOONPLAYER - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [4s 8d] 
+ANDRON_1982 - Folds
+EARS04 - Folds
+EKDIKEO - Folds
+NELSON3949 - Folds
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Raises 200 to 200
+GAYBOX - Folds
+TOONPLAYER - Calls 100
+*** FLOP *** [5h 9d 6c]
+TOONPLAYER - Checks
+FLHTCIRIDER - Bets 100
+TOONPLAYER - Folds
+FLHTCIRIDER - returned (100) : not called
+*** SHOW DOWN ***
+FLHTCIRIDER - Does not show
+FLHTCIRIDER Collects 450 from main pot
+*** SUMMARY ***
+Total Pot(450)
+Board [5h 9d 6c]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: NELSON3949 Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER (dealer) collected Total (450) HI:(450)  [Does not show] 
+Seat 6: GAYBOX (small blind) Folded on the POCKET CARDS
+Seat 7: TOONPLAYER (big blind) Folded on the FLOP
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525827332 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:11:10 (ET)
+Table: 37 (Real Money) Seat #6 is the dealer
+Seat 1 - EKDIKEO (3,015 in chips)
+Seat 2 - NELSON3949 (8,169 in chips)
+Seat 3 - STACKS (3,194 in chips)
+Seat 4 - EOFNORTH (1,750 in chips)
+Seat 5 - FLHTCIRIDER (3,525 in chips)
+Seat 6 - GAYBOX (493 in chips)
+Seat 7 - TOONPLAYER (1,590 in chips)
+Seat 8 - ANDRON_1982 (3,934 in chips)
+Seat 9 - EARS04 (7,478 in chips)
+TOONPLAYER - Posts small blind 50
+ANDRON_1982 - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Jc 5d] 
+EARS04 - Folds
+EKDIKEO - Folds
+NELSON3949 - Folds
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+TOONPLAYER - Folds
+*** SHOW DOWN ***
+ANDRON_1982 - Does not show
+ANDRON_1982 Collects 150 from main pot
+*** SUMMARY ***
+Total Pot(150)
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: NELSON3949 Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX (dealer) Folded on the POCKET CARDS
+Seat 7: TOONPLAYER (small blind) Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 (big blind) collected Total (150) 
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525828022 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:11:31 (ET)
+Table: 37 (Real Money) Seat #7 is the dealer
+Seat 1 - EKDIKEO (3,015 in chips)
+Seat 2 - NELSON3949 (8,169 in chips)
+Seat 3 - STACKS (3,194 in chips)
+Seat 4 - EOFNORTH (1,750 in chips)
+Seat 5 - FLHTCIRIDER (3,525 in chips)
+Seat 6 - GAYBOX (493 in chips)
+Seat 7 - TOONPLAYER (1,540 in chips)
+Seat 8 - ANDRON_1982 (3,984 in chips)
+Seat 9 - EARS04 (7,478 in chips)
+ANDRON_1982 - Posts small blind 50
+EARS04 - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Qh 9d] 
+EKDIKEO - Folds
+NELSON3949 - Folds
+STACKS - Folds
+EOFNORTH - Raises 200 to 200
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+TOONPLAYER - Folds
+ANDRON_1982 - Folds
+EARS04 - Calls 100
+*** FLOP *** [Qc 7c 2h]
+EARS04 - Checks
+EOFNORTH - Bets 225
+EARS04 - Raises 450 to 450
+EOFNORTH - Folds
+EARS04 - returned (225) : not called
+*** SHOW DOWN ***
+EARS04 - Does not show
+EARS04 Collects 900 from main pot
+*** SUMMARY ***
+Total Pot(900)
+Board [Qc 7c 2h]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: NELSON3949 Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the FLOP
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: TOONPLAYER (dealer) Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 (small blind) Folded on the POCKET CARDS
+Seat 9: EARS04 (big blind) collected Total (900) HI:(900)  [Does not show] 
+
+
+
+Stage #525829252 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:12:07 (ET)
+Table: 37 (Real Money) Seat #8 is the dealer
+Seat 1 - EKDIKEO (3,015 in chips)
+Seat 2 - NELSON3949 (8,169 in chips)
+Seat 3 - STACKS (3,194 in chips)
+Seat 4 - EOFNORTH (1,325 in chips)
+Seat 5 - FLHTCIRIDER (3,525 in chips)
+Seat 6 - GAYBOX (493 in chips)
+Seat 7 - TOONPLAYER (1,540 in chips)
+Seat 8 - ANDRON_1982 (3,934 in chips)
+Seat 9 - EARS04 (7,953 in chips)
+EARS04 - Posts small blind 50
+EKDIKEO - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [10d 10s] 
+NELSON3949 - Calls 100
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+TOONPLAYER - Folds
+ANDRON_1982 - Folds
+EARS04 - Calls 50
+EKDIKEO - Raises 300 to 400
+NELSON3949 - Calls 300
+EARS04 - Folds
+*** FLOP *** [Kh Qh 9c]
+EKDIKEO - Checks
+NELSON3949 - Bets 400
+EKDIKEO - Folds
+NELSON3949 - returned (400) : not called
+*** SHOW DOWN ***
+NELSON3949 - Does not show
+NELSON3949 Collects 900 from main pot
+*** SUMMARY ***
+Total Pot(900)
+Board [Kh Qh 9c]
+Seat 1: EKDIKEO (big blind) Folded on the FLOP
+Seat 2: NELSON3949 collected Total (900) HI:(900)  [Does not show] 
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: TOONPLAYER Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 (dealer) Folded on the POCKET CARDS
+Seat 9: EARS04 (small blind) Folded on the POCKET CARDS
+
+
+
+Stage #525830440 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:12:43 (ET)
+Table: 37 (Real Money) Seat #9 is the dealer
+Seat 1 - EKDIKEO (2,615 in chips)
+Seat 2 - NELSON3949 (8,669 in chips)
+Seat 3 - STACKS (3,194 in chips)
+Seat 4 - EOFNORTH (1,325 in chips)
+Seat 5 - FLHTCIRIDER (3,525 in chips)
+Seat 6 - GAYBOX (493 in chips)
+Seat 7 - TOONPLAYER (1,540 in chips)
+Seat 8 - ANDRON_1982 (3,934 in chips)
+Seat 9 - EARS04 (7,853 in chips)
+EKDIKEO - Posts small blind 50
+NELSON3949 - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Kh 9c] 
+STACKS - Calls 100
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+TOONPLAYER - Folds
+ANDRON_1982 - Folds
+EARS04 - Calls 100
+EKDIKEO - Calls 50
+NELSON3949 - Checks
+*** FLOP *** [Ac 6d 9s]
+EKDIKEO - Checks
+NELSON3949 - Checks
+STACKS - Checks
+EARS04 - Bets 200
+EKDIKEO - Folds
+NELSON3949 - Folds
+STACKS - Folds
+EARS04 - returned (200) : not called
+*** SHOW DOWN ***
+EARS04 - Does not show
+EARS04 Collects 400 from main pot
+*** SUMMARY ***
+Total Pot(400)
+Board [Ac 6d 9s]
+Seat 1: EKDIKEO (small blind) Folded on the FLOP
+Seat 2: NELSON3949 (big blind) Folded on the FLOP
+Seat 3: STACKS Folded on the FLOP
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: TOONPLAYER Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+Seat 9: EARS04 (dealer) collected Total (400) HI:(400)  [Does not show] 
+
+
+
+Stage #525833102 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:13:49 (ET)
+Table: 37 (Real Money) Seat #1 is the dealer
+Seat 1 - EKDIKEO (2,515 in chips)
+Seat 2 - NELSON3949 (8,569 in chips)
+Seat 3 - STACKS (3,094 in chips)
+Seat 4 - EOFNORTH (1,325 in chips)
+Seat 5 - FLHTCIRIDER (3,525 in chips)
+Seat 6 - GAYBOX (493 in chips)
+Seat 7 - TOONPLAYER (1,540 in chips)
+Seat 8 - ANDRON_1982 (3,934 in chips)
+Seat 9 - EARS04 (8,153 in chips)
+NELSON3949 - Posts small blind 50
+STACKS - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [10h 4c] 
+EOFNORTH - Folds
+FLHTCIRIDER - Calls 100
+GAYBOX - Folds
+TOONPLAYER - Folds
+ANDRON_1982 - Folds
+EARS04 - Folds
+EKDIKEO - Folds
+NELSON3949 - Calls 50
+STACKS - Checks
+*** FLOP *** [5s 7s 2h]
+NELSON3949 - Checks
+STACKS - Checks
+FLHTCIRIDER - Checks
+*** TURN *** [5s 7s 2h] [8c]
+NELSON3949 - Checks
+STACKS - Checks
+FLHTCIRIDER - Checks
+*** RIVER *** [5s 7s 2h 8c] [6c]
+NELSON3949 - Bets 300
+STACKS - Folds
+FLHTCIRIDER - Folds
+NELSON3949 - returned (300) : not called
+*** SHOW DOWN ***
+NELSON3949 - Does not show
+NELSON3949 Collects 300 from main pot
+*** SUMMARY ***
+Total Pot(300)
+Board [5s 7s 2h 8c 6c]
+Seat 1: EKDIKEO (dealer) Folded on the POCKET CARDS
+Seat 2: NELSON3949 (small blind) collected Total (300) HI:(300)  [Does not show] 
+Seat 3: STACKS (big blind) Folded on the RIVER
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the RIVER
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: TOONPLAYER Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525834942 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:14:46 (ET)
+Table: 37 (Real Money) Seat #2 is the dealer
+Seat 1 - EKDIKEO (2,515 in chips)
+Seat 2 - NELSON3949 (8,769 in chips)
+Seat 3 - STACKS (2,994 in chips)
+Seat 4 - EOFNORTH (1,325 in chips)
+Seat 5 - FLHTCIRIDER (3,425 in chips)
+Seat 6 - GAYBOX (493 in chips)
+Seat 7 - TOONPLAYER (1,540 in chips)
+Seat 8 - ANDRON_1982 (3,934 in chips)
+Seat 9 - EARS04 (8,153 in chips)
+STACKS - Posts small blind 50
+EOFNORTH - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Jc 9h] 
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+TOONPLAYER - Folds
+ANDRON_1982 - Folds
+EARS04 - Folds
+EKDIKEO - Raises 350 to 350
+NELSON3949 - Calls 350
+STACKS - Folds
+EOFNORTH - Calls 250
+*** FLOP *** [6s 10s Jd]
+EOFNORTH - All-In 975
+EKDIKEO - Calls 975
+NELSON3949 - Folds
+*** TURN *** [6s 10s Jd] [3d]
+*** RIVER *** [6s 10s Jd 3d] [8c]
+*** SHOW DOWN ***
+EKDIKEO - Shows [Jc 9h] (One pair, jacks) 
+EOFNORTH - Shows [8h Jh] (Two Pair, jacks and eights) 
+EOFNORTH Collects 3,050 from main pot
+*** SUMMARY ***
+Total Pot(3,050)
+Board [6s 10s Jd 3d 8c]
+Seat 1: EKDIKEO HI:lost with One pair, jacks [Jc 9h - B:Jd,P:Jc,B:10s,P:9h,B:8c] 
+Seat 2: NELSON3949 (dealer) Folded on the FLOP
+Seat 3: STACKS (small blind) Folded on the POCKET CARDS
+Seat 4: EOFNORTH (big blind) won Total (3,050) All-In HI:(3,050) with Two Pair, jacks and eights [8h Jh - P:Jh,B:Jd,P:8h,B:8c,B:10s] 
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: TOONPLAYER Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525836643 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:15:40 (ET)
+Table: 37 (Real Money) Seat #3 is the dealer
+Seat 1 - EKDIKEO (1,190 in chips)
+Seat 2 - NELSON3949 (8,419 in chips)
+Seat 3 - STACKS (2,944 in chips)
+Seat 4 - EOFNORTH (3,050 in chips)
+Seat 5 - FLHTCIRIDER (3,425 in chips)
+Seat 6 - GAYBOX (493 in chips)
+Seat 7 - TOONPLAYER (1,540 in chips)
+Seat 8 - ANDRON_1982 (3,934 in chips)
+Seat 9 - EARS04 (8,153 in chips)
+EOFNORTH - Posts small blind 50
+FLHTCIRIDER - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [4c Jc] 
+GAYBOX - Folds
+TOONPLAYER - Folds
+ANDRON_1982 - Folds
+EARS04 - Folds
+EKDIKEO - Folds
+NELSON3949 - Calls 100
+STACKS - Folds
+EOFNORTH - Calls 50
+FLHTCIRIDER - Checks
+*** FLOP *** [2d 4d 3d]
+EOFNORTH - Checks
+FLHTCIRIDER - Checks
+NELSON3949 - Bets 300
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+NELSON3949 - returned (300) : not called
+*** SHOW DOWN ***
+NELSON3949 - Shows [8h 8c] (One pair, eights) 
+NELSON3949 Collects 300 from main pot
+*** SUMMARY ***
+Total Pot(300)
+Board [2d 4d 3d]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: NELSON3949 collected Total (300) HI:(300) with One pair, eights [8h 8c - P:8h,P:8c,B:4d,B:3d,B:2d] 
+Seat 3: STACKS (dealer) Folded on the POCKET CARDS
+Seat 4: EOFNORTH (small blind) Folded on the FLOP
+Seat 5: FLHTCIRIDER (big blind) Folded on the FLOP
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: TOONPLAYER Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525837627 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:16:10 (ET)
+Table: 37 (Real Money) Seat #4 is the dealer
+Seat 1 - EKDIKEO (1,190 in chips)
+Seat 2 - NELSON3949 (8,619 in chips)
+Seat 3 - STACKS (2,944 in chips)
+Seat 4 - EOFNORTH (2,950 in chips)
+Seat 5 - FLHTCIRIDER (3,325 in chips)
+Seat 6 - GAYBOX (493 in chips)
+Seat 7 - TOONPLAYER (1,540 in chips)
+Seat 8 - ANDRON_1982 (3,934 in chips)
+Seat 9 - EARS04 (8,153 in chips)
+FLHTCIRIDER - Posts small blind 50
+GAYBOX - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [6d 2c] 
+TOONPLAYER - Folds
+ANDRON_1982 - Folds
+EARS04 - Folds
+EKDIKEO - Folds
+NELSON3949 - Folds
+STACKS - Raises 500 to 500
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+STACKS - returned (400) : not called
+*** SHOW DOWN ***
+STACKS - Does not show
+STACKS Collects 250 from main pot
+*** SUMMARY ***
+Total Pot(250)
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: NELSON3949 Folded on the POCKET CARDS
+Seat 3: STACKS collected Total (250) 
+Seat 4: EOFNORTH (dealer) Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER (small blind) Folded on the POCKET CARDS
+Seat 6: GAYBOX (big blind) Folded on the POCKET CARDS
+Seat 7: TOONPLAYER Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525838297 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:16:31 (ET)
+Table: 37 (Real Money) Seat #5 is the dealer
+Seat 1 - EKDIKEO (1,190 in chips)
+Seat 2 - NELSON3949 (8,619 in chips)
+Seat 3 - STACKS (3,094 in chips)
+Seat 4 - EOFNORTH (2,950 in chips)
+Seat 5 - FLHTCIRIDER (3,275 in chips)
+Seat 6 - GAYBOX (393 in chips)
+Seat 7 - TOONPLAYER (1,540 in chips)
+Seat 8 - ANDRON_1982 (3,934 in chips)
+Seat 9 - EARS04 (8,153 in chips)
+GAYBOX - Posts small blind 50
+TOONPLAYER - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [3s 10s] 
+ANDRON_1982 - Folds
+EARS04 - Folds
+EKDIKEO - Folds
+NELSON3949 - Folds
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+*** SHOW DOWN ***
+TOONPLAYER - Does not show
+TOONPLAYER Collects 150 from main pot
+*** SUMMARY ***
+Total Pot(150)
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: NELSON3949 Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER (dealer) Folded on the POCKET CARDS
+Seat 6: GAYBOX (small blind) Folded on the POCKET CARDS
+Seat 7: TOONPLAYER (big blind) collected Total (150) 
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+Seat 9: EARS04 Folded on the POCKET CARDS
+
+
+
+Stage #525838691 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 100 - 2011-01-16 18:16:43 (ET)
+Table: 37 (Real Money) Seat #6 is the dealer
+Seat 1 - EKDIKEO (1,190 in chips)
+Seat 2 - NELSON3949 (8,619 in chips)
+Seat 3 - STACKS (3,094 in chips)
+Seat 4 - EOFNORTH (2,950 in chips)
+Seat 5 - FLHTCIRIDER (3,275 in chips)
+Seat 6 - GAYBOX (343 in chips)
+Seat 7 - TOONPLAYER (1,590 in chips)
+Seat 8 - ANDRON_1982 (3,934 in chips)
+Seat 9 - EARS04 (8,153 in chips)
+TOONPLAYER - Posts small blind 50
+ANDRON_1982 - Posts big blind 100
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Jh 10h] 
+EARS04 - Calls 100
+EKDIKEO - Folds
+NELSON3949 - Calls 100
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+TOONPLAYER - Calls 50
+ANDRON_1982 - Checks
+*** FLOP *** [Kd 8h 8d]
+TOONPLAYER - Checks
+ANDRON_1982 - Checks
+EARS04 - Checks
+NELSON3949 - Bets 300
+TOONPLAYER - Calls 300
+ANDRON_1982 - Folds
+EARS04 - Folds
+*** TURN *** [Kd 8h 8d] [5h]
+TOONPLAYER - Checks
+NELSON3949 - Bets 400
+TOONPLAYER - Calls 400
+*** RIVER *** [Kd 8h 8d 5h] [7s]
+TOONPLAYER - Checks
+NELSON3949 - All-In 7,819
+TOONPLAYER - Folds
+NELSON3949 - returned (7,819) : not called
+*** SHOW DOWN ***
+NELSON3949 - Does not show
+NELSON3949 Collects 1,800 from main pot
+*** SUMMARY ***
+Total Pot(1,800)
+Board [Kd 8h 8d 5h 7s]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: NELSON3949 collected Total (1,800) All-In HI:(1,800)  [Does not show] 
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX (dealer) Folded on the POCKET CARDS
+Seat 7: TOONPLAYER (small blind) Folded on the RIVER
+Seat 8: ANDRON_1982 (big blind) Folded on the FLOP
+Seat 9: EARS04 Folded on the FLOP
+
+
+
+Stage #525843550 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 150 - 2011-01-16 18:18:46 (ET)
+Table: 37 (Real Money) Seat #7 is the dealer
+Seat 1 - EKDIKEO (1,190 in chips)
+Seat 2 - NELSON3949 (9,619 in chips)
+Seat 3 - STACKS (3,094 in chips)
+Seat 4 - EOFNORTH (2,950 in chips)
+Seat 5 - FLHTCIRIDER (3,275 in chips)
+Seat 6 - GAYBOX (343 in chips)
+Seat 7 - TOONPLAYER (790 in chips)
+Seat 8 - ANDRON_1982 (3,834 in chips)
+ANDRON_1982 - Posts small blind 75
+EKDIKEO - Posts big blind 150
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Qh 9c] 
+NELSON3949 - Folds
+STACKS - Calls 150
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+TOONPLAYER - Folds
+ANDRON_1982 - Folds
+EKDIKEO - Checks
+*** FLOP *** [3h 8s 5d]
+EKDIKEO - Checks
+STACKS - Checks
+*** TURN *** [3h 8s 5d] [3c]
+EKDIKEO - Checks
+STACKS - Checks
+*** RIVER *** [3h 8s 5d 3c] [Kc]
+EKDIKEO - Checks
+STACKS - Bets 187
+EKDIKEO - Folds
+STACKS - returned (187) : not called
+*** SHOW DOWN ***
+STACKS - Does not show
+STACKS Collects 375 from main pot
+*** SUMMARY ***
+Total Pot(375)
+Board [3h 8s 5d 3c Kc]
+Seat 1: EKDIKEO (big blind) Folded on the RIVER
+Seat 2: NELSON3949 Folded on the POCKET CARDS
+Seat 3: STACKS collected Total (375) HI:(375)  [Does not show] 
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: TOONPLAYER (dealer) Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 (small blind) Folded on the POCKET CARDS
+
+
+
+Stage #525845503 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 150 - 2011-01-16 18:19:37 (ET)
+Table: 37 (Real Money) Seat #8 is the dealer
+Seat 1 - EKDIKEO (1,040 in chips)
+Seat 2 - NELSON3949 (9,619 in chips)
+Seat 3 - STACKS (3,319 in chips)
+Seat 4 - EOFNORTH (2,950 in chips)
+Seat 5 - FLHTCIRIDER (3,275 in chips)
+Seat 6 - GAYBOX (343 in chips)
+Seat 7 - TOONPLAYER (790 in chips)
+Seat 8 - ANDRON_1982 (3,759 in chips)
+EKDIKEO - Posts small blind 75
+NELSON3949 - Posts big blind 150
+*** POCKET CARDS ***
+Dealt to EKDIKEO [Jd 3s] 
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+TOONPLAYER - All-In(Raise) 790 to 790
+ANDRON_1982 - Folds
+EKDIKEO - Folds
+NELSON3949 - Folds
+TOONPLAYER - returned (640) : not called
+*** SHOW DOWN ***
+TOONPLAYER - Does not show
+TOONPLAYER Collects 375 from main pot
+*** SUMMARY ***
+Total Pot(375)
+Seat 1: EKDIKEO (small blind) Folded on the POCKET CARDS
+Seat 2: NELSON3949 (big blind) Folded on the POCKET CARDS
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the POCKET CARDS
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: TOONPLAYER collected Total (375) All-In 
+Seat 8: ANDRON_1982 (dealer) Folded on the POCKET CARDS
+
+
+
+Stage #525846667 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 150 - 2011-01-16 18:20:07 (ET)
+Table: 37 (Real Money) Seat #1 is the dealer
+Seat 1 - EKDIKEO (965 in chips)
+Seat 2 - NELSON3949 (9,469 in chips)
+Seat 3 - STACKS (3,319 in chips)
+Seat 4 - EOFNORTH (2,950 in chips)
+Seat 5 - FLHTCIRIDER (3,275 in chips)
+Seat 6 - GAYBOX (343 in chips)
+Seat 7 - TOONPLAYER (1,015 in chips)
+Seat 8 - ANDRON_1982 (3,759 in chips)
+NELSON3949 - Posts small blind 75
+STACKS - Posts big blind 150
+*** POCKET CARDS ***
+Dealt to EKDIKEO [8h Ad] 
+EOFNORTH - Folds
+FLHTCIRIDER - Calls 150
+GAYBOX - Folds
+TOONPLAYER - Folds
+ANDRON_1982 - Folds
+EKDIKEO - Folds
+NELSON3949 - Calls 75
+STACKS - Checks
+*** FLOP *** [8c Jd 10d]
+NELSON3949 - Checks
+STACKS - Checks
+FLHTCIRIDER - Checks
+*** TURN *** [8c Jd 10d] [10h]
+NELSON3949 - Bets 300
+STACKS - Folds
+FLHTCIRIDER - Folds
+NELSON3949 - returned (300) : not called
+*** SHOW DOWN ***
+NELSON3949 - Does not show
+NELSON3949 Collects 450 from main pot
+*** SUMMARY ***
+Total Pot(450)
+Board [8c Jd 10d 10h]
+Seat 1: EKDIKEO (dealer) Folded on the POCKET CARDS
+Seat 2: NELSON3949 (small blind) collected Total (450) HI:(450)  [Does not show] 
+Seat 3: STACKS (big blind) Folded on the TURN
+Seat 4: EOFNORTH Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER Folded on the TURN
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: TOONPLAYER Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+
+
+
+Stage #525848580 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 150 - 2011-01-16 18:20:58 (ET)
+Table: 37 (Real Money) Seat #2 is the dealer
+Seat 1 - EKDIKEO (965 in chips)
+Seat 2 - NELSON3949 (9,769 in chips)
+Seat 3 - STACKS (3,169 in chips)
+Seat 4 - EOFNORTH (2,950 in chips)
+Seat 5 - FLHTCIRIDER (3,125 in chips)
+Seat 6 - GAYBOX (343 in chips)
+Seat 7 - TOONPLAYER (1,015 in chips)
+Seat 8 - ANDRON_1982 (3,759 in chips)
+STACKS - Posts small blind 75
+EOFNORTH - Posts big blind 150
+*** POCKET CARDS ***
+Dealt to EKDIKEO [6c 6h] 
+FLHTCIRIDER - Raises 300 to 300
+GAYBOX - Folds
+TOONPLAYER - Folds
+ANDRON_1982 - Calls 300
+EKDIKEO - Folds
+NELSON3949 - Folds
+STACKS - Folds
+EOFNORTH - Calls 150
+*** FLOP *** [Ah 6d 7s]
+EOFNORTH - Checks
+FLHTCIRIDER - Bets 150
+ANDRON_1982 - Calls 150
+EOFNORTH - Calls 150
+*** TURN *** [Ah 6d 7s] [3d]
+EOFNORTH - Checks
+FLHTCIRIDER - Checks
+ANDRON_1982 - Bets 450
+EOFNORTH - Calls 450
+FLHTCIRIDER - Folds
+*** RIVER *** [Ah 6d 7s 3d] [8d]
+EOFNORTH - Checks
+ANDRON_1982 - Checks
+*** SHOW DOWN ***
+EOFNORTH - Shows [5h As] (One pair, aces) 
+ANDRON_1982 - Mucks
+EOFNORTH Collects 2,325 from main pot
+*** SUMMARY ***
+Total Pot(2,325)
+Board [Ah 6d 7s 3d 8d]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: NELSON3949 (dealer) Folded on the POCKET CARDS
+Seat 3: STACKS (small blind) Folded on the POCKET CARDS
+Seat 4: EOFNORTH (big blind) won Total (2,325) HI:(2,325) with One pair, aces [5h As - P:As,B:Ah,B:8d,B:7s,B:6d] 
+Seat 5: FLHTCIRIDER Folded on the TURN
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: TOONPLAYER Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 HI: [Mucked] [10s Ks] 
+
+
+
+Stage #525850516 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 150 - 2011-01-16 18:21:49 (ET)
+Table: 37 (Real Money) Seat #3 is the dealer
+Seat 1 - EKDIKEO (965 in chips)
+Seat 2 - NELSON3949 (9,769 in chips)
+Seat 3 - STACKS (3,094 in chips)
+Seat 4 - EOFNORTH (4,375 in chips)
+Seat 5 - FLHTCIRIDER (2,675 in chips)
+Seat 6 - GAYBOX (343 in chips)
+Seat 7 - TOONPLAYER (1,015 in chips)
+Seat 8 - ANDRON_1982 (2,859 in chips)
+EOFNORTH - Posts small blind 75
+FLHTCIRIDER - Posts big blind 150
+*** POCKET CARDS ***
+Dealt to EKDIKEO [4d 2s] 
+GAYBOX - Folds
+TOONPLAYER - Folds
+ANDRON_1982 - Folds
+EKDIKEO - Folds
+NELSON3949 - Folds
+STACKS - Folds
+EOFNORTH - Calls 75
+FLHTCIRIDER - Checks
+*** FLOP *** [2d 3h 5h]
+EOFNORTH - Bets 150
+FLHTCIRIDER - Calls 150
+*** TURN *** [2d 3h 5h] [6h]
+EOFNORTH - Bets 150
+FLHTCIRIDER - Calls 150
+*** RIVER *** [2d 3h 5h 6h] [6s]
+EOFNORTH - Bets 300
+FLHTCIRIDER - Calls 300
+*** SHOW DOWN ***
+EOFNORTH - Shows [7h 6c] (Three of a kind, sixes) 
+FLHTCIRIDER - Shows [3c 4h] (Straight, two to six) 
+FLHTCIRIDER Collects 1,500 from main pot
+*** SUMMARY ***
+Total Pot(1,500)
+Board [2d 3h 5h 6h 6s]
+Seat 1: EKDIKEO Folded on the POCKET CARDS
+Seat 2: NELSON3949 Folded on the POCKET CARDS
+Seat 3: STACKS (dealer) Folded on the POCKET CARDS
+Seat 4: EOFNORTH (small blind) HI:lost with Three of a kind, sixes [7h 6c - B:6s,B:6h,P:6c,P:7h,B:5h] 
+Seat 5: FLHTCIRIDER (big blind) won Total (1,500) HI:(1,500) with Straight, two to six [3c 4h - B:6s,B:5h,P:4h,B:3h,B:2d] 
+Seat 6: GAYBOX Folded on the POCKET CARDS
+Seat 7: TOONPLAYER Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+
+
+
+Stage #525852393 Tourney ID 5945889 Holdem Multi Normal Tournament No Limit 150 - 2011-01-16 18:22:37 (ET)
+Table: 37 (Real Money) Seat #4 is the dealer
+Seat 1 - EKDIKEO (965 in chips)
+Seat 2 - NELSON3949 (9,769 in chips)
+Seat 3 - STACKS (3,094 in chips)
+Seat 4 - EOFNORTH (3,625 in chips)
+Seat 5 - FLHTCIRIDER (3,425 in chips)
+Seat 6 - GAYBOX (343 in chips)
+Seat 7 - TOONPLAYER (1,015 in chips)
+Seat 8 - ANDRON_1982 (2,859 in chips)
+FLHTCIRIDER - Posts small blind 75
+GAYBOX - Posts big blind 150
+*** POCKET CARDS ***
+Dealt to EKDIKEO [10s 9h] 
+TOONPLAYER - Folds
+ANDRON_1982 - Folds
+EKDIKEO - All-In(Raise) 965 to 965
+NELSON3949 - Calls 965
+STACKS - Folds
+EOFNORTH - Folds
+FLHTCIRIDER - Folds
+GAYBOX - Folds
+*** FLOP *** [2s 6d 4c]
+*** TURN *** [2s 6d 4c] [5h]
+*** RIVER *** [2s 6d 4c 5h] [9d]
+*** SHOW DOWN ***
+EKDIKEO - Shows [10s 9h] (One pair, nines) 
+NELSON3949 - Shows [Qh Qc] (One pair, queens) 
+NELSON3949 Collects 2,155 from main pot
+*** SUMMARY ***
+Total Pot(2,155)
+Board [2s 6d 4c 5h 9d]
+Seat 1: EKDIKEO HI:lost with One pair, nines [10s 9h - P:9h,B:9d,P:10s,B:6d,B:5h] 
+Seat 2: NELSON3949 won Total (2,155) HI:(2,155) with One pair, queens [Qh Qc - P:Qh,P:Qc,B:9d,B:6d,B:5h] 
+Seat 3: STACKS Folded on the POCKET CARDS
+Seat 4: EOFNORTH (dealer) Folded on the POCKET CARDS
+Seat 5: FLHTCIRIDER (small blind) Folded on the POCKET CARDS
+Seat 6: GAYBOX (big blind) Folded on the POCKET CARDS
+Seat 7: TOONPLAYER Folded on the POCKET CARDS
+Seat 8: ANDRON_1982 Folded on the POCKET CARDS
+
+
+
