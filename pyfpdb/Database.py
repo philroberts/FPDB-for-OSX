@@ -1861,8 +1861,8 @@ class Database:
         q = self.sql.query['store_hands_players']
         q = q.replace('%s', self.sql.query['placeholder'])
 
-        print "DEBUG: inserts: %s" %inserts
-        print "DEBUG: q: %s" % q
+        #print "DEBUG: inserts: %s" %inserts
+        #print "DEBUG: q: %s" % q
         c = self.get_cursor()
 
         if self.import_options['saveActions']:
