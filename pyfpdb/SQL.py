@@ -640,6 +640,10 @@ class Sql:
                         street0_3BDone BOOLEAN,
                         street0_4BChance BOOLEAN,
                         street0_4BDone BOOLEAN,
+                        street0_FoldTo3BChance BOOLEAN,
+                        street0_FoldTo3BDone BOOLEAN,
+                        street0_FoldTo4BChance BOOLEAN,
+                        street0_FoldTo4BDone BOOLEAN,
                         other3BStreet0 BOOLEAN,
                         other4BStreet0 BOOLEAN,
 
@@ -757,6 +761,10 @@ class Sql:
                         street0_3BDone BOOLEAN,
                         street0_4BChance BOOLEAN,
                         street0_4BDone BOOLEAN,
+                        street0_FoldTo3BChance BOOLEAN,
+                        street0_FoldTo3BDone BOOLEAN,
+                        street0_FoldTo4BChance BOOLEAN,
+                        street0_FoldTo4BDone BOOLEAN,
                         other3BStreet0 BOOLEAN,
                         other4BStreet0 BOOLEAN,
 
@@ -873,6 +881,10 @@ class Sql:
                         street0_3BDone INT,
                         street0_4BChance INT,
                         street0_4BDone INT,
+                        street0_FoldTo3BChance INT,
+                        street0_FoldTo3BDone INT,
+                        street0_FoldTo4BChance INT,
+                        street0_FoldTo4BDone INT,
                         other3BStreet0 INT,
                         other4BStreet0 INT,
 
@@ -1079,6 +1091,11 @@ class Sql:
                         street0_3BDone INT,
                         street0_4BChance INT,
                         street0_4BDone INT,
+                        street0_FoldTo3BChance INT,
+                        street0_FoldTo3BDone INT,
+                        street0_FoldTo4BChance INT,
+                        street0_FoldTo4BDone INT,
+
                         other3BStreet0 INT,
                         other4BStreet0 INT,
 
@@ -1180,6 +1197,10 @@ class Sql:
                         street0_3BDone INT,
                         street0_4BChance INT,
                         street0_4BDone INT,
+                        street0_FoldTo3BChance INT,
+                        street0_FoldTo3BDone INT,
+                        street0_FoldTo4BChance INT,
+                        street0_FoldTo4BDone INT,
                         other3BStreet0 INT,
                         other4BStreet0 INT,
 
@@ -1279,6 +1300,10 @@ class Sql:
                         street0_3BDone INT,
                         street0_4BChance INT,
                         street0_4BDone INT,
+                        street0_FoldTo3BChance INT,
+                        street0_FoldTo3BDone INT,
+                        street0_FoldTo4BChance INT,
+                        street0_FoldTo4BDone INT,
                         other3BStreet0 INT,
                         other4BStreet0 INT,
 
@@ -1488,6 +1513,8 @@ class Sql:
                     sum(hc.street0Aggr)                 AS pfr,
                     sum(hc.street0_3BChance)            AS TB_opp_0,
                     sum(hc.street0_3BDone)              AS TB_0,
+                    sum(hc.street0_FoldTo3BChance)      AS FTB_opp_0,
+                    sum(hc.street0_FoldTo3BDone)        AS FTB_0,
                     sum(hc.street1Seen)                 AS saw_f,
                     sum(hc.street1Seen)                 AS saw_1,
                     sum(hc.street2Seen)                 AS saw_2,
@@ -1599,6 +1626,8 @@ class Sql:
                        sum(hc.street0Aggr)                 AS pfr,
                        sum(hc.street0_3BChance)            AS TB_opp_0,
                        sum(hc.street0_3BDone)              AS TB_0,
+                       sum(hc.street0_FoldTo3BChance)      AS FTB_opp_0,
+                       sum(hc.street0_FoldTo3BDone)        AS FTB_0,
                        sum(hc.street1Seen)                 AS saw_f,
                        sum(hc.street1Seen)                 AS saw_1,
                        sum(hc.street2Seen)                 AS saw_2,
@@ -1727,6 +1756,8 @@ class Sql:
                            cast(hp2.street0Aggr as <signed>integer)                 AS pfr,
                            cast(hp2.street0_3BChance as <signed>integer)            AS TB_opp_0,
                            cast(hp2.street0_3BDone as <signed>integer)              AS TB_0,
+                           cast(hp2.street0_FoldTo3BChance as <signed>integer)      AS FTB_opp_0,
+                           cast(hp2.street0_FoldTo3BDone as <signed>integer)        AS FTB_0,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_f,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_1,
                            cast(hp2.street2Seen as <signed>integer)                 AS saw_2,
@@ -1831,6 +1862,8 @@ class Sql:
                            cast(hp2.street0Aggr as <signed>integer)                 AS pfr,
                            cast(hp2.street0_3BChance as <signed>integer)            AS TB_opp_0,
                            cast(hp2.street0_3BDone as <signed>integer)              AS TB_0,
+                           cast(hp2.street0_FoldTo3BChance as <signed>integer)      AS FTB_opp_0,
+                           cast(hp2.street0_FoldTo3BDone as <signed>integer)        AS FTB_0,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_f,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_1,
                            cast(hp2.street2Seen as <signed>integer)                 AS saw_2,
@@ -1936,6 +1969,8 @@ class Sql:
                            cast(hp2.street0Aggr as <signed>integer)                 AS pfr,
                            cast(hp2.street0_3BChance as <signed>integer)            AS TB_opp_0,
                            cast(hp2.street0_3BDone as <signed>integer)              AS TB_0,
+                           cast(hp2.street0_FoldTo3BChance as <signed>integer)      AS TB_opp_0,
+                           cast(hp2.street0_FoldTo3BDone as <signed>integer)        AS TB_0,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_f,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_1,
                            cast(hp2.street2Seen as <signed>integer)                 AS saw_2,
@@ -2170,7 +2205,7 @@ class Sql:
                                       from Gametypes gt
                                       WHERE type = 'ring'
                                       order by type, limitType DESC, bb_or_buyin DESC"""
-
+# FIXME: fold to 3bet don't added
         if db_server == 'mysql':
             self.query['playerDetailedStats'] = """
                      select  <hgametypeId>                                                          AS hgametypeid
@@ -3279,6 +3314,10 @@ class Sql:
                 ,street0_3BDone
                 ,street0_4BChance
                 ,street0_4BDone
+                ,street0_FoldTo3BChance
+                ,street0_FoldTo3BDone
+                ,street0_FoldTo4BChance
+                ,street0_FoldTo4BDone
                 ,other3BStreet0
                 ,other4BStreet0
                 ,street1Seen
@@ -3378,6 +3417,10 @@ class Sql:
                       ,sum(street0_3BDone)
                       ,sum(street0_4BChance)
                       ,sum(street0_4BDone)
+                      ,sum(street0_FoldTo3BChance)
+                      ,sum(street0_FoldTo3BDone)
+                      ,sum(street0_FoldTo4BChance)
+                      ,sum(street0_FoldTo4BDone)
                       ,sum(other3BStreet0)
                       ,sum(other4BStreet0)
                       ,sum(street1Seen)
@@ -3477,6 +3520,10 @@ class Sql:
                 ,street0_3BDone
                 ,street0_4BChance
                 ,street0_4BDone
+                ,street0_FoldTo3BChance
+                ,street0_FoldTo3BDone
+                ,street0_FoldTo4BChance
+                ,street0_FoldTo4BDone
                 ,other3BStreet0
                 ,other4BStreet0      
                 ,street1Seen
@@ -3576,6 +3623,10 @@ class Sql:
                       ,sum(CAST(street0_3BDone as integer))
                       ,sum(CAST(street0_4BChance as integer))
                       ,sum(CAST(street0_4BDone as integer))
+                      ,sum(CAST(street0_FoldTo3BChance as integer))
+                      ,sum(CAST(street0_FoldTo3BDone as integer))
+                      ,sum(CAST(street0_FoldTo4BChance as integer))
+                      ,sum(CAST(street0_FoldTo4BDone as integer))
                       ,sum(CAST(other3BStreet0 as integer))
                       ,sum(CAST(other4BStreet0 as integer))
                       ,sum(CAST(street1Seen as integer))
@@ -3675,6 +3726,10 @@ class Sql:
                 ,street0_3BDone
                 ,street0_4BChance
                 ,street0_4BDone
+                ,street0_FoldTo3BChance
+                ,street0_FoldTo3BDone
+                ,street0_FoldTo4BChance
+                ,street0_FoldTo4BDone
                 ,other3BStreet0
                 ,other4BStreet0
                 ,street1Seen
@@ -3774,6 +3829,10 @@ class Sql:
                       ,sum(CAST(street0_3BDone as integer))
                       ,sum(CAST(street0_4BChance as integer))
                       ,sum(CAST(street0_4BDone as integer))
+                      ,sum(CAST(street0_FoldTo3BChance as integer))
+                      ,sum(CAST(street0_FoldTo3BDone as integer))
+                      ,sum(CAST(street0_FoldTo4BChance as integer))
+                      ,sum(CAST(street0_FoldTo4BDone as integer))
                       ,sum(CAST(other3BStreet0 as integer))
                       ,sum(CAST(other4BStreet0 as integer))
                       ,sum(CAST(street1Seen as integer))
@@ -3868,6 +3927,10 @@ class Sql:
                 street0_3BDone,
                 street0_4BChance,
                 street0_4BDone,
+                street0_FoldTo3BChance,
+                street0_FoldTo3BDone,
+                street0_FoldTo4BChance,
+                street0_FoldTo4BDone,
                 other3BStreet0,
                 other4BStreet0,
                 street1Seen,
@@ -3956,7 +4019,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s, %s)"""
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s)"""
 
         self.query['update_hudcache'] = """
             UPDATE HudCache SET
@@ -3967,6 +4031,10 @@ class Sql:
             street0_3BDone=street0_3BDone+%s,
             street0_4BChance=street0_4BChance+%s,
             street0_4BDone=street0_4BDone+%s,
+            street0_FoldTo3BChance=street0_FoldTo3BChance+%s,
+            street0_FoldTo3BDone=street0_FoldTo3BDone+%s,
+            street0_FoldTo4BChance=street0_FoldTo4BChance+%s,
+            street0_FoldTo4BDone=street0_FoldTo4BDone+%s,
             other3BStreet0=other3BStreet0+%s,
             other4BStreet0=other4BStreet0+%s,
             street1Seen=street1Seen+%s,
@@ -4418,6 +4486,10 @@ class Sql:
                 street0_3BDone,
                 street0_4BChance,
                 street0_4BDone,
+                street0_FoldTo3BChance,
+                street0_FoldTo3BDone,
+                street0_FoldTo4BChance,
+                street0_FoldTo4BDone,
                 other3BStreet0,
                 other4BStreet0,
                 otherRaisedStreet0,
@@ -4477,7 +4549,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s, %s
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s
                 )"""
 
         self.query['store_hands_actions'] = """INSERT INTO HandsActions (

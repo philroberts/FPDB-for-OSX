@@ -116,7 +116,7 @@ import GuiGraphViewer
 import GuiTourneyGraphViewer
 import GuiSessionViewer
 import GuiReplayer
-import GuiStove
+#import GuiStove
 import SQL
 import Database
 import Configuration

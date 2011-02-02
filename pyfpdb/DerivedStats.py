@@ -48,8 +48,12 @@ class DerivedStats():
             self.handsplayers[player[1]]['position']            = 2
             self.handsplayers[player[1]]['street0_3BChance']    = False
             self.handsplayers[player[1]]['street0_3BDone']      = False
-            self.handsplayers[player[1]]['street0_4BChance']    = False #FIXME: this might not actually be implemented
-            self.handsplayers[player[1]]['street0_4BDone']      = False #FIXME: this might not actually be implemented
+            self.handsplayers[player[1]]['street0_4BChance']    = False 
+            self.handsplayers[player[1]]['street0_4BDone']      = False 
+            self.handsplayers[player[1]]['street0_FoldTo3BChance']= False
+            self.handsplayers[player[1]]['street0_FoldTo3BDone']= False
+            self.handsplayers[player[1]]['street0_FoldTo4BChance']= False 
+            self.handsplayers[player[1]]['street0_FoldTo4BDone']= False 
             self.handsplayers[player[1]]['raiseFirstInChance']  = False
             self.handsplayers[player[1]]['raisedFirstIn']       = False
             self.handsplayers[player[1]]['foldBbToStealChance'] = False
@@ -441,11 +445,19 @@ class DerivedStats():
         bet_level = 1 # bet_level after 3-bet is equal to 3
         for action in hand.actions[hand.actionStreets[1]]:
             # FIXME: fill other(3|4)BStreet0 - i have no idea what does it mean
-            pname, aggr = action[0], action[1] in ('raises', 'bets')
+            pname, act, aggr = action[0], action[1], action[1] in ('raises', 'bets')
+            if aggr and bet_level == 1:    
+                first_agressor = pname
+            if aggr and bet_level == 2:
+                self.handsplayers[pname]['street0_3BDone'] = True
+                second_agressor = pname
+            self.handsplayers[pname]['street0_4BDone'] = aggr and bet_level == 3 and pname == second_agressor
             self.handsplayers[pname]['street0_3BChance'] = self.handsplayers[pname]['street0_3BChance'] or bet_level == 2
-            self.handsplayers[pname]['street0_4BChance'] = bet_level == 3
-            self.handsplayers[pname]['street0_3BDone'] =  self.handsplayers[pname]['street0_3BDone'] or (aggr and self.handsplayers[pname]['street0_3BChance'])
-            self.handsplayers[pname]['street0_4BDone'] =  aggr and (self.handsplayers[pname]['street0_4BChance'])
+            self.handsplayers[pname]['street0_4BChance'] = self.handsplayers[pname]['street0_4BChance'] or bet_level == 3 and pname == first_agressor
+            self.handsplayers[pname]['street0_FoldTo3BChance'] = self.handsplayers[pname]['street0_FoldTo3BChance'] or (bet_level == 3 and pname == first_agressor)
+            self.handsplayers[pname]['street0_FoldTo4BChance'] = self.handsplayers[pname]['street0_FoldTo4BChance'] or (bet_level == 4 and pname == second_agressor)
+            self.handsplayers[pname]['street0_FoldTo3BDone'] =  act == 'folds' and bet_level == 3 and pname == first_agressor
+            self.handsplayers[pname]['street0_FoldTo4BDone'] =  act == 'folds' and bet_level == 4 and pname == second_agressor
             if aggr:
                 bet_level += 1
 
