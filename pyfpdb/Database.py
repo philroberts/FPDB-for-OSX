@@ -254,6 +254,7 @@ class Database:
         self.db_server = db_params['db-server']
         self.database = db_params['db-databaseName']
         self.host = db_params['db-host']
+        self.db_port = db_params['db-port']
         self.db_path = ''
         gen = c.get_general_params()
         self.day_start = 0
@@ -349,6 +350,7 @@ class Database:
         try:
             self.connect(backend=db['db-backend'],
                          host=db['db-host'],
+                         port=db['db-port'],
                          database=db['db-databaseName'],
                          user=db['db-user'],
                          password=db['db-password'])
@@ -363,14 +365,17 @@ class Database:
         self.db_server = db_params['db-server']
         self.database = db_params['db-databaseName']
         self.host = db_params['db-host']
+        self.db_port = db_params['db-port']
 
-    def connect(self, backend=None, host=None, database=None,
-                user=None, password=None, create=False):
+    def connect(self, backend=None, host=None, port=None,
+                database=None, user=None, password=None,
+                create=False):
         """Connects a database with the given parameters"""
         if backend is None:
             raise FpdbError('Database backend not defined')
         self.backend = backend
         self.host = host
+        self.port = port
         self.user = user
         self.password = password
         self.database = database
@@ -382,7 +387,8 @@ class Database:
             if use_pool:
                 MySQLdb = pool.manage(MySQLdb, pool_size=5)
             try:
-                self.connection = MySQLdb.connect(host=host, user=user, passwd=password, db=database, use_unicode=True)
+                self.connection = MySQLdb.connect(host=host, port=port, user=user,
+                        passwd=password, db=database, use_unicode=True)
                 self.__connected = True
             #TODO: Add port option
             except MySQLdb.Error, ex:
@@ -416,6 +422,7 @@ class Database:
             if not self.is_connected():
                 try:
                     self.connection = psycopg2.connect(host = host,
+                                               port = port,
                                                user = user,
                                                password = password,
                                                database = database)
