@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 147
+DB_VERSION = 148
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -1813,6 +1813,10 @@ class Database:
                              pdata[p]['street0_3BDone'],
                              pdata[p]['street0_4BChance'],
                              pdata[p]['street0_4BDone'],
+                             pdata[p]['street0_FoldTo3BChance'],
+                             pdata[p]['street0_FoldTo3BDone'],
+                             pdata[p]['street0_FoldTo4BChance'],
+                             pdata[p]['street0_FoldTo4BDone'],
                              pdata[p]['other3BStreet0'],
                              pdata[p]['other4BStreet0'],
                              pdata[p]['otherRaisedStreet0'],
@@ -1926,7 +1930,7 @@ class Database:
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
         inserts = []
         for p in pdata:
-            line = [0]*85
+            line = [0]*89
 
             line[0] = 1 # HDs
             if pdata[p]['street0VPI']:                  line[1] = 1
@@ -1935,86 +1939,90 @@ class Database:
             if pdata[p]['street0_3BDone']:              line[4] = 1
             if pdata[p]['street0_4BChance']:            line[5] = 1
             if pdata[p]['street0_4BDone']:              line[6] = 1
-            if pdata[p]['other3BStreet0']:              line[7] = 1
-            if pdata[p]['other4BStreet0']:              line[8] = 1
-            if pdata[p]['street1Seen']:                 line[9] = 1
-            if pdata[p]['street2Seen']:                 line[10] = 1
-            if pdata[p]['street3Seen']:                 line[11] = 1
-            if pdata[p]['street4Seen']:                 line[12] = 1
-            if pdata[p]['sawShowdown']:                 line[13] = 1
-            if pdata[p]['street1Aggr']:                 line[14] = 1
-            if pdata[p]['street2Aggr']:                 line[15] = 1
-            if pdata[p]['street3Aggr']:                 line[16] = 1
-            if pdata[p]['street4Aggr']:                 line[17] = 1
-            if pdata[p]['otherRaisedStreet0']:          line[18] = 1
-            if pdata[p]['otherRaisedStreet1']:          line[19] = 1
-            if pdata[p]['otherRaisedStreet2']:          line[20] = 1
-            if pdata[p]['otherRaisedStreet3']:          line[21] = 1
-            if pdata[p]['otherRaisedStreet4']:          line[22] = 1
-            if pdata[p]['foldToOtherRaisedStreet0']:    line[23] = 1
-            if pdata[p]['foldToOtherRaisedStreet1']:    line[24] = 1
-            if pdata[p]['foldToOtherRaisedStreet2']:    line[25] = 1
-            if pdata[p]['foldToOtherRaisedStreet3']:    line[26] = 1
-            if pdata[p]['foldToOtherRaisedStreet4']:    line[27] = 1
-            line[28] = pdata[p]['wonWhenSeenStreet1']
-            line[29] = pdata[p]['wonWhenSeenStreet2']
-            line[30] = pdata[p]['wonWhenSeenStreet3']
-            line[31] = pdata[p]['wonWhenSeenStreet4']
-            line[32] = pdata[p]['wonAtSD']
-            if pdata[p]['raiseFirstInChance']:          line[33] = 1
-            if pdata[p]['raisedFirstIn']:               line[34] = 1
-            if pdata[p]['foldBbToStealChance']:         line[35] = 1
-            if pdata[p]['foldedBbToSteal']:             line[36] = 1
-            if pdata[p]['foldSbToStealChance']:         line[37] = 1
-            if pdata[p]['foldedSbToSteal']:             line[38] = 1
-            if pdata[p]['street1CBChance']:             line[39] = 1
-            if pdata[p]['street1CBDone']:               line[40] = 1
-            if pdata[p]['street2CBChance']:             line[41] = 1
-            if pdata[p]['street2CBDone']:               line[42] = 1
-            if pdata[p]['street3CBChance']:             line[43] = 1
-            if pdata[p]['street3CBDone']:               line[44] = 1
-            if pdata[p]['street4CBChance']:             line[45] = 1
-            if pdata[p]['street4CBDone']:               line[46] = 1
-            if pdata[p]['foldToStreet1CBChance']:       line[47] = 1
-            if pdata[p]['foldToStreet1CBDone']:         line[48] = 1
-            if pdata[p]['foldToStreet2CBChance']:       line[49] = 1
-            if pdata[p]['foldToStreet2CBDone']:         line[50] = 1
-            if pdata[p]['foldToStreet3CBChance']:       line[51] = 1
-            if pdata[p]['foldToStreet3CBDone']:         line[52] = 1
-            if pdata[p]['foldToStreet4CBChance']:       line[53] = 1
-            if pdata[p]['foldToStreet4CBDone']:         line[54] = 1
-            line[55] = pdata[p]['totalProfit']
-            if pdata[p]['street1CheckCallRaiseChance']: line[56] = 1
-            if pdata[p]['street1CheckCallRaiseDone']:   line[57] = 1
-            if pdata[p]['street2CheckCallRaiseChance']: line[58] = 1
-            if pdata[p]['street2CheckCallRaiseDone']:   line[59] = 1
-            if pdata[p]['street3CheckCallRaiseChance']: line[60] = 1
-            if pdata[p]['street3CheckCallRaiseDone']:   line[61] = 1
-            if pdata[p]['street4CheckCallRaiseChance']: line[62] = 1
-            if pdata[p]['street4CheckCallRaiseDone']:   line[63] = 1
-            if pdata[p]['street0Calls']:                line[64] = 1
-            if pdata[p]['street1Calls']:                line[65] = 1
-            if pdata[p]['street2Calls']:                line[66] = 1
-            if pdata[p]['street3Calls']:                line[67] = 1
-            if pdata[p]['street4Calls']:                line[68] = 1
-            if pdata[p]['street0Bets']:                 line[69] = 1
-            if pdata[p]['street1Bets']:                 line[70] = 1
-            if pdata[p]['street2Bets']:                 line[71] = 1
-            if pdata[p]['street3Bets']:                 line[72] = 1
-            if pdata[p]['street4Bets']:                 line[73] = 1
-            if pdata[p]['street0Raises']:               line[74] = 1
-            if pdata[p]['street1Raises']:               line[75] = 1
-            if pdata[p]['street2Raises']:               line[76] = 1
-            if pdata[p]['street3Raises']:               line[77] = 1
-            if pdata[p]['street4Raises']:               line[78] = 1
+            if pdata[p]['street0_FoldTo3BChance']:      line[7] = 1
+            if pdata[p]['street0_FoldTo3BDone']:        line[8] = 1
+            if pdata[p]['street0_FoldTo4BChance']:      line[9] = 1
+            if pdata[p]['street0_FoldTo4BDone']:        line[10] = 1
+            if pdata[p]['other3BStreet0']:              line[11] = 1
+            if pdata[p]['other4BStreet0']:              line[12] = 1
+            if pdata[p]['street1Seen']:                 line[13] = 1
+            if pdata[p]['street2Seen']:                 line[14] = 1
+            if pdata[p]['street3Seen']:                 line[15] = 1
+            if pdata[p]['street4Seen']:                 line[16] = 1
+            if pdata[p]['sawShowdown']:                 line[17] = 1
+            if pdata[p]['street1Aggr']:                 line[18] = 1
+            if pdata[p]['street2Aggr']:                 line[19] = 1
+            if pdata[p]['street3Aggr']:                 line[20] = 1
+            if pdata[p]['street4Aggr']:                 line[21] = 1
+            if pdata[p]['otherRaisedStreet0']:          line[22] = 1
+            if pdata[p]['otherRaisedStreet1']:          line[23] = 1
+            if pdata[p]['otherRaisedStreet2']:          line[24] = 1
+            if pdata[p]['otherRaisedStreet3']:          line[25] = 1
+            if pdata[p]['otherRaisedStreet4']:          line[26] = 1
+            if pdata[p]['foldToOtherRaisedStreet0']:    line[27] = 1
+            if pdata[p]['foldToOtherRaisedStreet1']:    line[28] = 1
+            if pdata[p]['foldToOtherRaisedStreet2']:    line[29] = 1
+            if pdata[p]['foldToOtherRaisedStreet3']:    line[30] = 1
+            if pdata[p]['foldToOtherRaisedStreet4']:    line[31] = 1
+            line[32] = pdata[p]['wonWhenSeenStreet1']
+            line[33] = pdata[p]['wonWhenSeenStreet2']
+            line[34] = pdata[p]['wonWhenSeenStreet3']
+            line[35] = pdata[p]['wonWhenSeenStreet4']
+            line[36] = pdata[p]['wonAtSD']
+            if pdata[p]['raiseFirstInChance']:          line[37] = 1
+            if pdata[p]['raisedFirstIn']:               line[38] = 1
+            if pdata[p]['foldBbToStealChance']:         line[39] = 1
+            if pdata[p]['foldedBbToSteal']:             line[40] = 1
+            if pdata[p]['foldSbToStealChance']:         line[41] = 1
+            if pdata[p]['foldedSbToSteal']:             line[42] = 1
+            if pdata[p]['street1CBChance']:             line[43] = 1
+            if pdata[p]['street1CBDone']:               line[44] = 1
+            if pdata[p]['street2CBChance']:             line[45] = 1
+            if pdata[p]['street2CBDone']:               line[46] = 1
+            if pdata[p]['street3CBChance']:             line[47] = 1
+            if pdata[p]['street3CBDone']:               line[48] = 1
+            if pdata[p]['street4CBChance']:             line[49] = 1
+            if pdata[p]['street4CBDone']:               line[50] = 1
+            if pdata[p]['foldToStreet1CBChance']:       line[51] = 1
+            if pdata[p]['foldToStreet1CBDone']:         line[52] = 1
+            if pdata[p]['foldToStreet2CBChance']:       line[53] = 1
+            if pdata[p]['foldToStreet2CBDone']:         line[54] = 1
+            if pdata[p]['foldToStreet3CBChance']:       line[55] = 1
+            if pdata[p]['foldToStreet3CBDone']:         line[56] = 1
+            if pdata[p]['foldToStreet4CBChance']:       line[57] = 1
+            if pdata[p]['foldToStreet4CBDone']:         line[58] = 1
+            line[59] = pdata[p]['totalProfit']
+            if pdata[p]['street1CheckCallRaiseChance']: line[60] = 1
+            if pdata[p]['street1CheckCallRaiseDone']:   line[61] = 1
+            if pdata[p]['street2CheckCallRaiseChance']: line[62] = 1
+            if pdata[p]['street2CheckCallRaiseDone']:   line[63] = 1
+            if pdata[p]['street3CheckCallRaiseChance']: line[64] = 1
+            if pdata[p]['street3CheckCallRaiseDone']:   line[65] = 1
+            if pdata[p]['street4CheckCallRaiseChance']: line[66] = 1
+            if pdata[p]['street4CheckCallRaiseDone']:   line[67] = 1
+            if pdata[p]['street0Calls']:                line[68] = 1
+            if pdata[p]['street1Calls']:                line[69] = 1
+            if pdata[p]['street2Calls']:                line[70] = 1
+            if pdata[p]['street3Calls']:                line[71] = 1
+            if pdata[p]['street4Calls']:                line[72] = 1
+            if pdata[p]['street0Bets']:                 line[73] = 1
+            if pdata[p]['street1Bets']:                 line[74] = 1
+            if pdata[p]['street2Bets']:                 line[75] = 1
+            if pdata[p]['street3Bets']:                 line[76] = 1
+            if pdata[p]['street4Bets']:                 line[77] = 1
+            if pdata[p]['street0Raises']:               line[78] = 1
+            if pdata[p]['street1Raises']:               line[79] = 1
+            if pdata[p]['street2Raises']:               line[80] = 1
+            if pdata[p]['street3Raises']:               line[81] = 1
+            if pdata[p]['street4Raises']:               line[82] = 1
 
-            line[79] = gid    # gametypeId
-            line[80] = pids[p]    # playerId
-            line[81] = len(pids)    # activeSeats
+            line[83] = gid    # gametypeId
+            line[84] = pids[p]    # playerId
+            line[85] = len(pids)    # activeSeats
             pos = {'B':'B', 'S':'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }
-            line[82] = pos[pdata[p]['position']]
-            line[83] = pdata[p]['tourneyTypeId']
-            line[84] = styleKey    # styleKey
+            line[86] = pos[pdata[p]['position']]
+            line[87] = pdata[p]['tourneyTypeId']
+            line[88] = styleKey    # styleKey
             inserts.append(line)
 
 
