@@ -219,13 +219,15 @@ class Winamax(HandHistoryConverter):
                 # TODO: Manually adjust time against OFFSET
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "CET", "UTC")
-#            if key == 'HID1':
-#                # Need to remove non-alphanumerics for MySQL
+            if key == 'HID1':
+                # Need to remove non-alphanumerics for MySQL
 #                hand.handid = "1%.9d%s%s"%(int(info['HID2']),info['HID1'],info['HID3'])
-#                if len (hand.handid) > 19:
-#                    hand.handid = "%s" % info['HID1']
-            if key == 'HID3':
-                hand.handid = int(info['HID3'])   # correct hand no (REB)
+                hand.handid = "%s%s%s"%(int(info['HID2']),info['HID1'],info['HID3'])
+                if len (hand.handid) > 19:
+                    hand.handid = "%s%s" % (int(info['HID21']), int(info['HID3']))
+                    
+#            if key == 'HID3':
+#                hand.handid = int(info['HID3'])   # correct hand no (REB)
             if key == 'TOURNO':
                 hand.tourNo = info[key]
             if key == 'TABLE':
