@@ -30,6 +30,7 @@ The generated file can then replace heroname.xml (if all is well).
 
 ########################################################################
 
+#TODO gettextify
 
 #    Standard Library modules
 import os
