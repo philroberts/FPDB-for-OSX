@@ -446,21 +446,35 @@ class DerivedStats():
         for action in hand.actions[hand.actionStreets[1]]:
             # FIXME: fill other(3|4)BStreet0 - i have no idea what does it mean
             pname, act, aggr = action[0], action[1], action[1] in ('raises', 'bets')
-            if aggr and bet_level == 1:    
-                first_agressor = pname
-            if aggr and bet_level == 2:
-                self.handsplayers[pname]['street0_3BDone'] = True
-                second_agressor = pname
-            self.handsplayers[pname]['street0_4BDone'] = aggr and bet_level == 3 and pname == second_agressor
-            self.handsplayers[pname]['street0_3BChance'] = self.handsplayers[pname]['street0_3BChance'] or bet_level == 2
-            self.handsplayers[pname]['street0_4BChance'] = self.handsplayers[pname]['street0_4BChance'] or bet_level == 3 and pname == first_agressor
-            self.handsplayers[pname]['street0_FoldTo3BChance'] = self.handsplayers[pname]['street0_FoldTo3BChance'] or (bet_level == 3 and pname == first_agressor)
-            self.handsplayers[pname]['street0_FoldTo4BChance'] = self.handsplayers[pname]['street0_FoldTo4BChance'] or (bet_level == 4 and pname == second_agressor)
-            self.handsplayers[pname]['street0_FoldTo3BDone'] =  act == 'folds' and bet_level == 3 and pname == first_agressor
-            self.handsplayers[pname]['street0_FoldTo4BDone'] =  act == 'folds' and bet_level == 4 and pname == second_agressor
-            if aggr:
-                bet_level += 1
-
+            if bet_level == 1:
+                if aggr:
+                    first_agressor = pname
+                    bet_level += 1
+                continue
+            elif bet_level == 2:
+                self.handsplayers[pname]['street0_3BChance'] = True
+                if aggr:
+                    self.handsplayers[pname]['street0_3BDone'] = True
+                    second_agressor = pname
+                    bet_level += 1
+                continue
+            elif bet_level == 3:
+                if pname == first_agressor:
+                    self.handsplayers[pname]['street0_4BChance'] = True
+                    self.handsplayers[pname]['street0_FoldTo3BChance'] = True
+                    if aggr:
+                        self.handsplayers[pname]['street0_4BDone'] = True
+                        bet_level += 1
+                    elif act == 'folds':
+                        self.handsplayers[pname]['street0_FoldTo3BDone'] = True
+                        break
+                continue
+            elif bet_level == 4:
+                if pname == second_agressor: 
+                    self.handsplayers[pname]['street0_FoldTo4BChance'] = True
+                    if act == 'folds':
+                        self.handsplayers[pname]['street0_FoldTo4BDone'] = True
+                    break
 
     def calcCBets(self, hand):
         """Fill streetXCBChance, streetXCBDone, foldToStreetXCBDone, foldToStreetXCBChance
