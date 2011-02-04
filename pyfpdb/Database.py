@@ -1937,100 +1937,99 @@ class Database:
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
         inserts = []
         for p in pdata:
-            #NOTE: Insert new stats at right place because SQL needs strict order
-            line = []
+            line = [0]*89
 
-            line.append(1)  # HDs
-            line.append(pdata[p]['street0VPI'])
-            line.append(pdata[p]['street0Aggr'])                 
-            line.append(pdata[p]['street0_3BChance'])            
-            line.append(pdata[p]['street0_3BDone'])              
-            line.append(pdata[p]['street0_4BChance'])            
-            line.append(pdata[p]['street0_4BDone'])              
-            line.append(pdata[p]['street0_FoldTo3BChance'])      
-            line.append(pdata[p]['street0_FoldTo3BDone'])        
-            line.append(pdata[p]['street0_FoldTo4BChance'])      
-            line.append(pdata[p]['street0_FoldTo4BDone'])        
-            line.append(pdata[p]['other3BStreet0'])              
-            line.append(pdata[p]['other4BStreet0'])              
-            line.append(pdata[p]['street1Seen'])                 
-            line.append(pdata[p]['street2Seen'])                 
-            line.append(pdata[p]['street3Seen'])                 
-            line.append(pdata[p]['street4Seen'])                 
-            line.append(pdata[p]['sawShowdown'])                 
-            line.append(pdata[p]['street1Aggr'])                 
-            line.append(pdata[p]['street2Aggr'])                 
-            line.append(pdata[p]['street3Aggr'])                 
-            line.append(pdata[p]['street4Aggr'])                 
-            line.append(pdata[p]['otherRaisedStreet0'])          
-            line.append(pdata[p]['otherRaisedStreet1'])          
-            line.append(pdata[p]['otherRaisedStreet2'])          
-            line.append(pdata[p]['otherRaisedStreet3'])          
-            line.append(pdata[p]['otherRaisedStreet4'])          
-            line.append(pdata[p]['foldToOtherRaisedStreet0'])    
-            line.append(pdata[p]['foldToOtherRaisedStreet1'])    
-            line.append(pdata[p]['foldToOtherRaisedStreet2'])    
-            line.append(pdata[p]['foldToOtherRaisedStreet3'])    
-            line.append(pdata[p]['foldToOtherRaisedStreet4'])    
-            line.append(pdata[p]['wonWhenSeenStreet1'])
-            line.append(pdata[p]['wonWhenSeenStreet2'])
-            line.append(pdata[p]['wonWhenSeenStreet3'])
-            line.append(pdata[p]['wonWhenSeenStreet4'])
-            line.append(pdata[p]['wonAtSD'])
-            line.append(pdata[p]['raiseFirstInChance'])          
-            line.append(pdata[p]['raisedFirstIn'])               
-            line.append(pdata[p]['foldBbToStealChance'])         
-            line.append(pdata[p]['foldedBbToSteal'])             
-            line.append(pdata[p]['foldSbToStealChance'])         
-            line.append(pdata[p]['foldedSbToSteal'])             
-            line.append(pdata[p]['street1CBChance'])             
-            line.append(pdata[p]['street1CBDone'])               
-            line.append(pdata[p]['street2CBChance'])             
-            line.append(pdata[p]['street2CBDone'])               
-            line.append(pdata[p]['street3CBChance'])             
-            line.append(pdata[p]['street3CBDone'])               
-            line.append(pdata[p]['street4CBChance'])             
-            line.append(pdata[p]['street4CBDone'])               
-            line.append(pdata[p]['foldToStreet1CBChance'])       
-            line.append(pdata[p]['foldToStreet1CBDone'])         
-            line.append(pdata[p]['foldToStreet2CBChance'])       
-            line.append(pdata[p]['foldToStreet2CBDone'])         
-            line.append(pdata[p]['foldToStreet3CBChance'])       
-            line.append(pdata[p]['foldToStreet3CBDone'])         
-            line.append(pdata[p]['foldToStreet4CBChance'])       
-            line.append(pdata[p]['foldToStreet4CBDone'])         
-            line.append(pdata[p]['totalProfit'])
-            line.append(pdata[p]['street1CheckCallRaiseChance']) 
-            line.append(pdata[p]['street1CheckCallRaiseDone'])   
-            line.append(pdata[p]['street2CheckCallRaiseChance']) 
-            line.append(pdata[p]['street2CheckCallRaiseDone'])   
-            line.append(pdata[p]['street3CheckCallRaiseChance']) 
-            line.append(pdata[p]['street3CheckCallRaiseDone'])   
-            line.append(pdata[p]['street4CheckCallRaiseChance']) 
-            line.append(pdata[p]['street4CheckCallRaiseDone'])   
-            line.append(pdata[p]['street0Calls'])                
-            line.append(pdata[p]['street1Calls'])                
-            line.append(pdata[p]['street2Calls'])                
-            line.append(pdata[p]['street3Calls'])                
-            line.append(pdata[p]['street4Calls'])                
-            line.append(pdata[p]['street0Bets'])                 
-            line.append(pdata[p]['street1Bets'])                 
-            line.append(pdata[p]['street2Bets'])                 
-            line.append(pdata[p]['street3Bets'])                 
-            line.append(pdata[p]['street4Bets'])                 
-            line.append(pdata[p]['street0Raises'])               
-            line.append(pdata[p]['street1Raises'])               
-            line.append(pdata[p]['street2Raises'])               
-            line.append(pdata[p]['street3Raises'])               
-            line.append(pdata[p]['street4Raises'])               
+            line[0] = 1 # HDs
+            if pdata[p]['street0VPI']:                  line[1] = 1
+            if pdata[p]['street0Aggr']:                 line[2] = 1
+            if pdata[p]['street0_3BChance']:            line[3] = 1
+            if pdata[p]['street0_3BDone']:              line[4] = 1
+            if pdata[p]['street0_4BChance']:            line[5] = 1
+            if pdata[p]['street0_4BDone']:              line[6] = 1
+            if pdata[p]['street0_FoldTo3BChance']:      line[7] = 1
+            if pdata[p]['street0_FoldTo3BDone']:        line[8] = 1
+            if pdata[p]['street0_FoldTo4BChance']:      line[9] = 1
+            if pdata[p]['street0_FoldTo4BDone']:        line[10] = 1
+            if pdata[p]['other3BStreet0']:              line[11] = 1
+            if pdata[p]['other4BStreet0']:              line[12] = 1
+            if pdata[p]['street1Seen']:                 line[13] = 1
+            if pdata[p]['street2Seen']:                 line[14] = 1
+            if pdata[p]['street3Seen']:                 line[15] = 1
+            if pdata[p]['street4Seen']:                 line[16] = 1
+            if pdata[p]['sawShowdown']:                 line[17] = 1
+            if pdata[p]['street1Aggr']:                 line[18] = 1
+            if pdata[p]['street2Aggr']:                 line[19] = 1
+            if pdata[p]['street3Aggr']:                 line[20] = 1
+            if pdata[p]['street4Aggr']:                 line[21] = 1
+            if pdata[p]['otherRaisedStreet0']:          line[22] = 1
+            if pdata[p]['otherRaisedStreet1']:          line[23] = 1
+            if pdata[p]['otherRaisedStreet2']:          line[24] = 1
+            if pdata[p]['otherRaisedStreet3']:          line[25] = 1
+            if pdata[p]['otherRaisedStreet4']:          line[26] = 1
+            if pdata[p]['foldToOtherRaisedStreet0']:    line[27] = 1
+            if pdata[p]['foldToOtherRaisedStreet1']:    line[28] = 1
+            if pdata[p]['foldToOtherRaisedStreet2']:    line[29] = 1
+            if pdata[p]['foldToOtherRaisedStreet3']:    line[30] = 1
+            if pdata[p]['foldToOtherRaisedStreet4']:    line[31] = 1
+            line[32] = pdata[p]['wonWhenSeenStreet1']
+            line[33] = pdata[p]['wonWhenSeenStreet2']
+            line[34] = pdata[p]['wonWhenSeenStreet3']
+            line[35] = pdata[p]['wonWhenSeenStreet4']
+            line[36] = pdata[p]['wonAtSD']
+            if pdata[p]['raiseFirstInChance']:          line[37] = 1
+            if pdata[p]['raisedFirstIn']:               line[38] = 1
+            if pdata[p]['foldBbToStealChance']:         line[39] = 1
+            if pdata[p]['foldedBbToSteal']:             line[40] = 1
+            if pdata[p]['foldSbToStealChance']:         line[41] = 1
+            if pdata[p]['foldedSbToSteal']:             line[42] = 1
+            if pdata[p]['street1CBChance']:             line[43] = 1
+            if pdata[p]['street1CBDone']:               line[44] = 1
+            if pdata[p]['street2CBChance']:             line[45] = 1
+            if pdata[p]['street2CBDone']:               line[46] = 1
+            if pdata[p]['street3CBChance']:             line[47] = 1
+            if pdata[p]['street3CBDone']:               line[48] = 1
+            if pdata[p]['street4CBChance']:             line[49] = 1
+            if pdata[p]['street4CBDone']:               line[50] = 1
+            if pdata[p]['foldToStreet1CBChance']:       line[51] = 1
+            if pdata[p]['foldToStreet1CBDone']:         line[52] = 1
+            if pdata[p]['foldToStreet2CBChance']:       line[53] = 1
+            if pdata[p]['foldToStreet2CBDone']:         line[54] = 1
+            if pdata[p]['foldToStreet3CBChance']:       line[55] = 1
+            if pdata[p]['foldToStreet3CBDone']:         line[56] = 1
+            if pdata[p]['foldToStreet4CBChance']:       line[57] = 1
+            if pdata[p]['foldToStreet4CBDone']:         line[58] = 1
+            line[59] = pdata[p]['totalProfit']
+            if pdata[p]['street1CheckCallRaiseChance']: line[60] = 1
+            if pdata[p]['street1CheckCallRaiseDone']:   line[61] = 1
+            if pdata[p]['street2CheckCallRaiseChance']: line[62] = 1
+            if pdata[p]['street2CheckCallRaiseDone']:   line[63] = 1
+            if pdata[p]['street3CheckCallRaiseChance']: line[64] = 1
+            if pdata[p]['street3CheckCallRaiseDone']:   line[65] = 1
+            if pdata[p]['street4CheckCallRaiseChance']: line[66] = 1
+            if pdata[p]['street4CheckCallRaiseDone']:   line[67] = 1
+            if pdata[p]['street0Calls']:                line[68] = 1
+            if pdata[p]['street1Calls']:                line[69] = 1
+            if pdata[p]['street2Calls']:                line[70] = 1
+            if pdata[p]['street3Calls']:                line[71] = 1
+            if pdata[p]['street4Calls']:                line[72] = 1
+            if pdata[p]['street0Bets']:                 line[73] = 1
+            if pdata[p]['street1Bets']:                 line[74] = 1
+            if pdata[p]['street2Bets']:                 line[75] = 1
+            if pdata[p]['street3Bets']:                 line[76] = 1
+            if pdata[p]['street4Bets']:                 line[77] = 1
+            if pdata[p]['street0Raises']:               line[78] = 1
+            if pdata[p]['street1Raises']:               line[79] = 1
+            if pdata[p]['street2Raises']:               line[80] = 1
+            if pdata[p]['street3Raises']:               line[81] = 1
+            if pdata[p]['street4Raises']:               line[82] = 1
 
-            line.append(gid)          # gametypeId
-            line.append(pids[p])      # playerId
-            line.append(len(pids))    # activeSeats
+            line[83] = gid    # gametypeId
+            line[84] = pids[p]    # playerId
+            line[85] = len(pids)    # activeSeats
             pos = {'B':'B', 'S':'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }
-            line.append(pos[pdata[p]['position']])
-            line.append(pdata[p]['tourneyTypeId'])
-            line.append(styleKey)    # styleKey
+            line[86] = pos[pdata[p]['position']]
+            line[87] = pdata[p]['tourneyTypeId']
+            line[88] = styleKey    # styleKey
             inserts.append(line)
 
 
