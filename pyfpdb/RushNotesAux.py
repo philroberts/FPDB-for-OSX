@@ -34,7 +34,7 @@ The existing notes file will be altered by this function
 #debugmode will write logfiles for the __init__ and update_data methods
 # writes into ./pyfpdb/~Rushdebug.*
 #
-debugmode = True
+debugmode = False
 
 #    Standard Library modules
 import os
