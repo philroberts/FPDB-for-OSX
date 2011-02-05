@@ -796,6 +796,12 @@ Left-Drag to Move"
     <raw_tourneys save="none" compression="none"/>
 
     <supported_databases>
+        <!-- If you have multiple versions of database engine, or you
+             have the database listening on non-standard port, you can
+             add the option: db_port="PORTNUMBER"
+             NOTE: This only applies to users of MySQL and PostgreSQL,
+             sqlite users can happily ignore.
+        -->
         <!-- <database db_name="fpdb" db_server="mysql" db_ip="localhost" db_user="fpdb" db_pass="YOUR MYSQL PASSWORD"></database> -->
         <database db_ip="localhost" db_server="sqlite" db_name="fpdb.db3" db_user="fpdb" db_pass="fpdb"/>
     </supported_databases>

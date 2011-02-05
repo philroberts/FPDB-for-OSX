@@ -116,7 +116,10 @@ import GuiGraphViewer
 import GuiTourneyGraphViewer
 import GuiSessionViewer
 import GuiReplayer
-import GuiStove
+try:
+    import GuiStove
+except:
+    print "GuiStove disabled"
 import SQL
 import Database
 import Configuration
