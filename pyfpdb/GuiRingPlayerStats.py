@@ -339,7 +339,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
     #end def createStatsTable
 
     def reset_style_render_func(self, treeviewcolumn, cell, model, iter):
-        cell.set_property('foreground', 'black')
+        cell.set_property('foreground', None)
     #end def reset_style_render_func
 
     def ledger_style_render_func(self, tvcol, cell, model, iter):
