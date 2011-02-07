@@ -314,9 +314,9 @@ class OnGame(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             #acts = action.groupdict()
-            #log.debug("readaction: acts: %s" %acts)
+            #print "readaction: acts: %s" %acts
             if action.group('ATYPE') == ' raises':
-                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' bets':
