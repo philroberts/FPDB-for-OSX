@@ -49,7 +49,8 @@ class PartyPoker(HandHistoryConverter):
     currencies = {"\$": "USD", "$": "USD", u"\xe2\x82\xac": "EUR", u"\u20ac": "EUR", '': "T$"}
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR",            # legal ISO currency codes
-                            'LS' : "\$|\u20AC|\xe2\x82\xac|"    # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : u"\$|\u20ac|\xe2\x82\xac|",    # Currency symbols - Euro(cp1252, utf-8)
+                           'NUM' : u".,\d",
                     }
 
     # Static regexes
@@ -81,7 +82,7 @@ class PartyPoker(HandHistoryConverter):
     re_PlayerInfo   = re.compile(u"""
           Seat\s(?P<SEAT>\d+):\s
           (?P<PNAME>.*)\s
-          \(\s*[%(LS)s]?(?P<CASH>[0-9,.]+)\s*(?:%(LEGAL_ISO)s|)\s*\)
+          \(\s*[%(LS)s]?(?P<CASH>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s|)\s*\)
           """ % substitutions, re.VERBOSE| re.UNICODE)
 
     re_HandInfo     = re.compile("""

@@ -15,9 +15,12 @@ import L10n
 _ = L10n.get_translation()
 
 import sys, random
+import re
 import pokereval
 
 SUITS = ['h', 'd', 's', 'c']
+
+CONNECTORS = ['32', '43', '54', '65', '76', '87', '98', 'T9', 'JT', 'QJ', 'KQ', 'AK']
 
 ANY = 0
 SUITED = 1
@@ -65,14 +68,7 @@ class Stove:
         hands_in_range = string.strip().split(',')
         for h in hands_in_range:
             _h = h.strip()
-            if len(_h) > 3:
-                cc = _h.split()
-                r1 = cc[0]
-                r2 = cc[1]
-                vp = Cards(r1, r2)
-                h_range.add(vp)
-            else:
-                h_range.expand(expand_hands(_h, self.hand, self.board))
+            h_range.expand(expand_hands(_h, self.hand, self.board))
 
         self.h_range = h_range
 
@@ -83,7 +79,7 @@ class Cards:
         self.c2 = c2
 
     def get(self):
-        return [c1, c2]
+        return [self.c1, self.c2]
 
 class Board:
     def __init__(self, b1=None, b2=None, b3=None, b4=None, b5=None):
@@ -127,7 +123,7 @@ class Range:
     def get(self):
         return sorted(self.__hands)
 
-        
+
 
 class EV:
     def __init__(self, plays, win, tie, lose):
@@ -175,6 +171,35 @@ def expand_hands(abbrev, hand, board):
     known_cards.update(set([hand.c2, hand.c2]))
     known_cards.update(set([board.b1, board.b2, board.b3, board.b4, board.b5]))
 
+    re.search('[2-9TJQKA]{2}(s|o)',abbrev)
+
+    if re.search('^[2-9TJQKA]{2}(s|o)$',abbrev): #AKs or AKo
+        return standard_expand(abbrev, hand, known_cards)
+    elif re.search('^[2-9TJQKA]{2}(s|o)\+$',abbrev): #76s+ or 76o+
+        return iterative_expand(abbrev, hand, known_cards)
+    #elif: AhXh
+    #elif: Ah6h+A
+
+def iterative_expand(abbrev, hand, known_cards):
+    r1 = abbrev[0]
+    r2 = abbrev[1]
+
+    h_range = []
+    considered = set()
+
+    idx = CONNECTORS.index('%s%s' % (r1, r2))
+
+    ltr = abbrev[2]
+
+    h_range = []
+    for h in CONNECTORS[idx:]:
+        abr = "%s%s" % (h, ltr)
+        h_range += standard_expand(abr, hand, known_cards)
+
+    return h_range
+
+
+def standard_expand(abbrev, hand, known_cards):
     # Card ranks may be different
     r1 = abbrev[0]
     r2 = abbrev[1]
@@ -228,7 +253,7 @@ def odds_for_hand(hand1, hand2, board, iterations):
         board = board,
         iterations = iterations
         )
-    
+
     plays = int(res['info'][0])
     eval = res['eval'][0]
 

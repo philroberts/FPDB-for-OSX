@@ -1511,10 +1511,10 @@ class Sql:
                     sum(hc.HDs)                         AS n,
                     sum(hc.street0VPI)                  AS vpip,
                     sum(hc.street0Aggr)                 AS pfr,
-                    sum(hc.street0_3BChance)            AS 3B_opp_0,
-                    sum(hc.street0_3BDone)              AS 3B_0,
-                    sum(hc.street0_4BChance)            AS 4B_opp_0,
-                    sum(hc.street0_4BDone)              AS 4B_0,
+                    sum(hc.street0_3BChance)            AS TB_opp_0,
+                    sum(hc.street0_3BDone)              AS TB_0,
+                    sum(hc.street0_4BChance)            AS FB_opp_0,
+                    sum(hc.street0_4BDone)              AS FB_0,
                     sum(hc.street0_FoldTo3BChance)      AS F3B_opp_0,
                     sum(hc.street0_FoldTo3BDone)        AS F3B_0,
                     sum(hc.street0_FoldTo4BChance)      AS F4B_opp_0,
@@ -1628,10 +1628,10 @@ class Sql:
                        sum(hc.HDs)                         AS n,
                        sum(hc.street0VPI)                  AS vpip,
                        sum(hc.street0Aggr)                 AS pfr,
-                       sum(hc.street0_3BChance)            AS 3B_opp_0,
-                       sum(hc.street0_3BDone)              AS 3B_0,
-                       sum(hc.street0_4BChance)            AS 4B_opp_0,
-                       sum(hc.street0_4BDone)              AS 4B_0,
+                       sum(hc.street0_3BChance)            AS TB_opp_0,
+                       sum(hc.street0_3BDone)              AS TB_0,
+                       sum(hc.street0_4BChance)            AS FB_opp_0,
+                       sum(hc.street0_4BDone)              AS FB_0,
                        sum(hc.street0_FoldTo3BChance)      AS F3B_opp_0,
                        sum(hc.street0_FoldTo3BDone)        AS F3B_0,
                        sum(hc.street0_FoldTo4BChance)      AS F4B_opp_0,
@@ -1762,10 +1762,10 @@ class Sql:
                            1                                                        AS n,
                            cast(hp2.street0VPI as <signed>integer)                  AS vpip,
                            cast(hp2.street0Aggr as <signed>integer)                 AS pfr,
-                           cast(hp2.street0_3BChance as <signed>integer)            AS 3B_opp_0,
-                           cast(hp2.street0_3BDone as <signed>integer)              AS 3B_0,
-                           cast(hp2.street0_4BChance as <signed>integer)            AS 4B_opp_0,
-                           cast(hp2.street0_4BDone as <signed>integer)              AS 4B_0,
+                           cast(hp2.street0_3BChance as <signed>integer)            AS TB_opp_0,
+                           cast(hp2.street0_3BDone as <signed>integer)              AS TB_0,
+                           cast(hp2.street0_4BChance as <signed>integer)            AS FB_opp_0,
+                           cast(hp2.street0_4BDone as <signed>integer)              AS FB_0,
                            cast(hp2.street0_FoldTo3BChance as <signed>integer)      AS F3B_opp_0,
                            cast(hp2.street0_FoldTo3BDone as <signed>integer)        AS F3B_0,
                            cast(hp2.street0_FoldTo4BChance as <signed>integer)      AS F4B_opp_0,
@@ -1872,14 +1872,14 @@ class Sql:
                            1                                                        AS n,
                            cast(hp2.street0VPI as <signed>integer)                  AS vpip,
                            cast(hp2.street0Aggr as <signed>integer)                 AS pfr,
-                           cast(hp2.street0_3BChance as <signed>integer)            AS 3B_opp_0,
-                           cast(hp2.street0_3BDone as <signed>integer)              AS 3B_0,
-                           cast(hp2.street0_4BChance as <signed>integer)            AS 4B_opp_0,
-                           cast(hp2.street0_4BDone as <signed>integer)              AS 4B_0,
-                           cast(hp2.street0_FoldTo3BChance as <signed>integer)      AS 3TB_opp_0,
-                           cast(hp2.street0_FoldTo3BDone as <signed>integer)        AS 3TB_0,
-                           cast(hp2.street0_FoldTo4BChance as <signed>integer)      AS 4TB_opp_0,
-                           cast(hp2.street0_FoldTo4BDone as <signed>integer)        AS 4TB_0,
+                           cast(hp2.street0_3BChance as <signed>integer)            AS TB_opp_0,
+                           cast(hp2.street0_3BDone as <signed>integer)              AS TB_0,
+                           cast(hp2.street0_4BChance as <signed>integer)            AS FB_opp_0,
+                           cast(hp2.street0_4BDone as <signed>integer)              AS FB_0,
+                           cast(hp2.street0_FoldTo3BChance as <signed>integer)      AS TTB_opp_0,
+                           cast(hp2.street0_FoldTo3BDone as <signed>integer)        AS TTB_0,
+                           cast(hp2.street0_FoldTo4BChance as <signed>integer)      AS FTB_opp_0,
+                           cast(hp2.street0_FoldTo4BDone as <signed>integer)        AS FTB_0,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_f,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_1,
                            cast(hp2.street2Seen as <signed>integer)                 AS saw_2,
@@ -1983,14 +1983,14 @@ class Sql:
                            1                                                        AS n,
                            cast(hp2.street0VPI as <signed>integer)                  AS vpip,
                            cast(hp2.street0Aggr as <signed>integer)                 AS pfr,
-                           cast(hp2.street0_3BChance as <signed>integer)            AS 3B_opp_0,
-                           cast(hp2.street0_3BDone as <signed>integer)              AS 3B_0,
-                           cast(hp2.street0_4BChance as <signed>integer)            AS 4B_opp_0,
-                           cast(hp2.street0_4BDone as <signed>integer)              AS 4B_0,
-                           cast(hp2.street0_FoldTo3BChance as <signed>integer)      AS F3B_opp_0,
-                           cast(hp2.street0_FoldTo3BDone as <signed>integer)        AS F3B_0,
-                           cast(hp2.street0_FoldTo4BChance as <signed>integer)      AS F4B_opp_0,
-                           cast(hp2.street0_FoldTo4BDone as <signed>integer)        AS F4B_0,
+                           cast(hp2.street0_3BChance as <signed>integer)            AS TB_opp_0,
+                           cast(hp2.street0_3BDone as <signed>integer)              AS TB_0,
+                           cast(hp2.street0_4BChance as <signed>integer)            AS FB_opp_0,
+                           cast(hp2.street0_4BDone as <signed>integer)              AS FB_0,
+                           cast(hp2.street0_FoldTo3BChance as <signed>integer)      AS TB_opp_0,
+                           cast(hp2.street0_FoldTo3BDone as <signed>integer)        AS TB_0,
+                           cast(hp2.street0_FoldTo4BChance as <signed>integer)      AS FB_opp_0,
+                           cast(hp2.street0_FoldTo4BDone as <signed>integer)        AS FB_0,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_f,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_1,
                            cast(hp2.street2Seen as <signed>integer)                 AS saw_2,
@@ -2294,7 +2294,7 @@ class Sql:
                              end                                                                    AS pofafq
                             ,case when sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)) = 0 then -999
                                  else (sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer)))
-                                     /(sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)))
+                                     /(0.0+sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)))
                              end                                                                    AS aggfac
                             ,100.0*(sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) 
                                        / ((sum(cast(hp.foldToOtherRaisedStreet1 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet2 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet3 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet4 as <signed>integer))) +
@@ -2415,7 +2415,7 @@ class Sql:
                              end                                                                    AS pofafq
                             ,case when sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)) = 0 then -999
                                  else (sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer)))
-                                     /(sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)))
+                                     /(0.0+sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)))
                              end                                                                    AS aggfac
                             ,100.0*(sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) 
                                        / ((sum(cast(hp.foldToOtherRaisedStreet1 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet2 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet3 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet4 as <signed>integer))) +
@@ -2537,7 +2537,7 @@ class Sql:
                              end                                                                    AS pofafq
                             ,case when sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)) = 0 then -999
                                  else (sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer)))
-                                     /(sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)))
+                                     /(0.0+sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)))
                              end                                                                    AS aggfac
                             ,100.0*(sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) 
                                        / ((sum(cast(hp.foldToOtherRaisedStreet1 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet2 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet3 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet4 as <signed>integer))) +
