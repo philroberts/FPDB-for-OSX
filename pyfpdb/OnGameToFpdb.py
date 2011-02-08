@@ -49,7 +49,7 @@ class OnGame(HandHistoryConverter):
                     }
     currencies = { u'\u20ac':'EUR', u'\xe2\x82\xac':'EUR', '$':'USD', '':'T$' }
 
-    limits = { 'NO_LIMIT':'nl', 'LIMIT':'fl'}
+    limits = { 'NO_LIMIT':'nl', 'POT_LIMIT':'pl', 'LIMIT':'fl'}
 
     games = {                          # base, category
                           "TEXAS_HOLDEM" : ('hold','holdem'),
@@ -73,7 +73,7 @@ class OnGame(HandHistoryConverter):
             Start\shand:\s(?P<DATETIME>.*)
             Table:\s(?P<TABLE>[-\'\w\s]+)\s\[\d+\]\s\(
             (
-            (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit)\s
+            (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit|POT_LIMIT)\s
             (?P<GAME>TEXAS_HOLDEM|OMAHA_HI|SEVEN_CARD_STUD|SEVEN_CARD_STUD_HI_LO|RAZZ|FIVE_CARD_DRAW)\s
             (?P<CURRENCY>%(LS)s|)?(?P<SB>[.0-9]+)/
             (%(LS)s)?(?P<BB>[.0-9]+)
@@ -140,6 +140,7 @@ class OnGame(HandHistoryConverter):
     def readSupportedGames(self):
         return [
                 ["ring", "hold", "fl"],
+                ["ring", "hold", "pl"],
                 ["ring", "hold", "nl"],
                 ["ring", "stud", "fl"],
                 ["ring", "draw", "fl"],
@@ -158,6 +159,7 @@ class OnGame(HandHistoryConverter):
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
+        #print "DEBUG: mg: %s" % mg
 
         info['type'] = 'ring'
         if 'CURRENCY' in mg:
