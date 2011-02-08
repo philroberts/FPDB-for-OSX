@@ -75,23 +75,51 @@ class Table(Table_Window):
                 if w.id == id:
                     return (w, top_level)
 
+    #def get_geometry(self):
+        #try:
+            #my_geo = self.window.get_geometry()
+            #if self.parent is None:
+                #return {'x'      : my_geo.x,
+                        #'y'      : my_geo.y,
+                        #'width'  : my_geo.width,
+                        #'height' : my_geo.height
+                       #}
+            #else:
+                #pa_geo = self.parent.get_geometry()
+                #return {'x'      : my_geo.x + pa_geo.x,
+                        #'y'      : my_geo.y + pa_geo.y,
+                        #'width'  : my_geo.width,
+                        #'height' : my_geo.height
+                       #}
+        #except:
+            #return None
+
     def get_geometry(self):
+        geo_re = '''
+                Absolute\supper-left\sX: \s+ (?P<X>\d+)   # x
+                .+
+                Absolute\supper-left\sY: \s+ (?P<Y>\d+)   # y
+                .+
+                Width: \s+ (?P<W>\d+)                   # width
+                .+
+                Height: \s+ (?P<H>\d+)                  # height
+            '''
+        des_re = 'No such window with id'
+
+        listing = os.popen("xwininfo -id %d -stats" % (self.number)).read()
+
+        mo = re.search(des_re, listing)
+        if mo is not None:
+            return None      # table has been destroyed
+
+        mo = re.search(geo_re, listing, re.VERBOSE|re.DOTALL)
         try:
-            my_geo = self.window.get_geometry()
-            if self.parent is None:
-                return {'x'      : my_geo.x,
-                        'y'      : my_geo.y,
-                        'width'  : my_geo.width,
-                        'height' : my_geo.height
-                       }
-            else:
-                pa_geo = self.parent.get_geometry()
-                return {'x'      : my_geo.x + pa_geo.x,
-                        'y'      : my_geo.y + pa_geo.y,
-                        'width'  : my_geo.width,
-                        'height' : my_geo.height
-                       }
-        except:
+            return {'x'        : int(mo.groupdict()['X']),
+                    'y'        : int(mo.groupdict()['Y']),
+                    'width'    : int(mo.groupdict()['W']),
+                    'height'   : int(mo.groupdict()['H'])
+                   }
+        except AttributeError:
             return None
 
     def get_window_title(self):
