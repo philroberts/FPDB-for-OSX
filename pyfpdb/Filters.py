@@ -420,12 +420,15 @@ class Filters(threading.Thread):
         self.limits[limit] = w.get_active()
         log.debug(_("self.limit[%s] set to %s") %(limit, self.limits[limit]))
         if limit.isdigit() or (len(limit) > 2 and (limit[-2:] == 'nl' or limit[-2:] == 'fl' or limit[-2:] == 'pl')):
+            # turning a leaf limit on with 'None' checked turns 'None' off
             if self.limits[limit]:
                 if self.cbNoLimits is not None:
                     self.cbNoLimits.set_active(False)
+            # turning a leaf limit off with 'All' checked turns 'All' off
             else:
                 if self.cbAllLimits is not None:
                     self.cbAllLimits.set_active(False)
+            # turning off a leaf limit turns off the corresponding fl. nl, or pl
             if not self.limits[limit]:
                 if limit.isdigit():
                     if self.cbFL is not None:
@@ -438,24 +441,28 @@ class Filters(threading.Thread):
                         self.cbPL.set_active(False)
         elif limit == "all":
             if self.limits[limit]:
-                #for cb in self.cbLimits.values():
-                #    cb.set_active(True)
-                if self.cbFL is not None:
-                    self.cbFL.set_active(True)
-                if self.cbNL is not None:
-                    self.cbNL.set_active(True)
-                if self.cbPL is not None:
-                    self.cbPL.set_active(True)
+                if self.num_limit_types == 1:
+                    for cb in self.cbLimits.values():
+                        cb.set_active(True)
+                else:
+                    if self.cbFL is not None:
+                        self.cbFL.set_active(True)
+                    if self.cbNL is not None:
+                        self.cbNL.set_active(True)
+                    if self.cbPL is not None:
+                        self.cbPL.set_active(True)
         elif limit == "none":
             if self.limits[limit]:
-                for cb in self.cbLimits.values():
-                    cb.set_active(False)
-                if self.cbNL is not None:
-                    self.cbNL.set_active(False)
-                if self.cbFL is not None:
-                    self.cbFL.set_active(False)
-                if self.cbPL is not None:
-                    self.cbPL.set_active(False)
+                if self.num_limit_types == 1:
+                    for cb in self.cbLimits.values():
+                        cb.set_active(False)
+                else:
+                    if self.cbNL is not None:
+                        self.cbNL.set_active(False)
+                    if self.cbFL is not None:
+                        self.cbFL.set_active(False)
+                    if self.cbPL is not None:
+                        self.cbPL.set_active(False)
         elif limit == "fl":
             if not self.limits[limit]:
                 # only toggle all fl limits off if they are all currently on
@@ -765,11 +772,11 @@ class Filters(threading.Thread):
 
                 dest = vbox3  # for ring/tour buttons
                 if "LimitType" in display and display["LimitType"] == True:
-                    num_limit_types = 0
-                    if self.found['fl']:  num_limit_types = num_limit_types + 1
-                    if self.found['pl']:  num_limit_types = num_limit_types + 1
-                    if self.found['nl']:  num_limit_types = num_limit_types + 1
-                    if num_limit_types > 1:
+                    self.num_limit_types = 0
+                    if self.found['fl']:  self.num_limit_types = self.num_limit_types + 1
+                    if self.found['pl']:  self.num_limit_types = self.num_limit_types + 1
+                    if self.found['nl']:  self.num_limit_types = self.num_limit_types + 1
+                    if self.num_limit_types > 1:
                        if self.found['fl']:
                            hbox = gtk.HBox(False, 0)
                            vbox3.pack_start(hbox, False, False, 0)

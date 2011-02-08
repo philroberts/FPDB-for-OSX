@@ -105,8 +105,6 @@ if not os.path.isfile(sys.argv[1]):
 
 if not os.path.isfile((sys.argv[1]+".queue")):
     print "Nothing found to merge, quitting"
-    print "Did the HUD not get started during the last session?"
-    print "Has the HUD been stopped and started without merging?"
     quit()
 
 print "***************************************************************"
@@ -117,7 +115,7 @@ print "has stopped completely"
 print "***************************************************************"
 print
 print "read from: ", sys.argv[1]
-print "merge with: ", sys.argv[1]+".queue"
+print "updated with: ", sys.argv[1]+".queue"
 
 #read queue and turn into a dict
 queuedict = {}
@@ -172,7 +170,7 @@ mergednotes.close()
 
 xmlnotefile.unlink
 
-print "Merged file has been written to: ", sys.argv[1]+".merged"
+print "written to: ", sys.argv[1]+".merged"
 print ""
 print "number in queue: ", statqueue
 print "existing players updated: ", statupdated
@@ -180,5 +178,7 @@ print "new players added: ", statadded
 print "\n"
 print "Use a viewer to check the contents of the merge file."
 print "If you are happy, carry out the following steps:"
-print "1 Rename or delete the existing notes file (normally <heroname>.xml"
+print "1 Rename or delete the existing notes file (normally <heroname>.xml)"
 print "2 Rename the .merged file to become the new notes file"
+print "3 Delete the .queue file (it will be created at the next rush autoimport)"
+
