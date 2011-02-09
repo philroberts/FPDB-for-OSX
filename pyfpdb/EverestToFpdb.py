@@ -63,9 +63,9 @@ class Everest(HandHistoryConverter):
     #re_Antes = ???
     #re_BringIn = ???
     re_HeroCards = re.compile(r'<cards type="HOLE" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
-    re_Action = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT)" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?/>', re.MULTILINE)
+    re_Action = re.compile(r'<(?P<ATYPE>FOLD|BET) position="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?\/>', re.MULTILINE)
     re_ShowdownAction = re.compile(r'<cards type="SHOWN" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
-    re_CollectPot = re.compile(r'<winner amount="(?P<POT>[.0-9]+)" uncalled="(true|false)" potnumber="[0-9]+" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
+    re_CollectPot = re.compile(r'<WIN position="(?P<PSEAT>[0-9])" amount="(?P<POT>[.0-9]+)" pot="[0-9]+"', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_ShownCards = re.compile(r'<cards type="(SHOWN|MUCKED)" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
 
@@ -200,25 +200,34 @@ class Everest(HandHistoryConverter):
                               mucked=False, dealt=True)
 
     def readAction(self, hand, street):
-        logging.debug("readAction (%s)" % street)
+        print "DEBUG: readAction (%s)" % street
         m = self.re_Action.finditer(hand.streets[street])
+        curr_pot = Decimal('0')
         for action in m:
-            logging.debug("%s %s" % (action.group('ATYPE'),
-                                     action.groupdict()))
+            print " DEBUG: %s %s" % (action.group('ATYPE'), action.groupdict())
             player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
-            if action.group('ATYPE') == 'RAISE':
-                hand.addCallandRaise(street, player, action.group('BET'))
-            elif action.group('ATYPE') == 'CALL':
-                hand.addCall(street, player, action.group('BET'))
-            elif action.group('ATYPE') == 'BET':
+            if action.group('ATYPE') == 'BET':
+                #Gah! BET can mean check, bet, call or raise...
+                if Decimal(action.group('BET')) > 0 and curr_pot == 0:
+                    # Open
+                    curr_pot = Decimal(action.group('BET'))
+                    hand.addBet(street, player, action.group('BET'))
+                elif Decimal(action.group('BET')) > 0 and curr_pot > 0:
+                    # Raise or call
+                    if Decimal(action.group('BET')) > curr_pot:
+                        # Raise
+                        curr_pot = Decimal(action.group('BET'))
+                        hand.addCallandRaise(street, player, action.group('BET'))
+                    elif Decimal(action.group('BET')) <= curr_pot:
+                        # Call
+                        hand.addCall(street, player, action.group('BET'))
+                if action.group('BET') == '0':
+                    hand.addCheck(street, player)
                 hand.addBet(street, player, action.group('BET'))
             elif action.group('ATYPE') in ('FOLD', 'SIT_OUT'):
                 hand.addFold(street, player)
-            elif action.group('ATYPE') == 'CHECK':
-                hand.addCheck(street, player)
-            elif action.group('ATYPE') == 'ALL_IN':
-                hand.addAllIn(street, player, action.group('BET'))
             else:
+                print "Unimplemented readAction: %s %s" % (action.group('PSEAT'),action.group('ATYPE'),)
                 logging.debug(_("Unimplemented readAction: %s %s"
                               % (action.group('PSEAT'),action.group('ATYPE'),)))
 
@@ -231,7 +240,9 @@ class Everest(HandHistoryConverter):
 
     def readCollectPot(self, hand):
         for m in self.re_CollectPot.finditer(hand.handText):
-            pots[int(m.group('PSEAT'))] += Decimal(m.group('POT'))
+            player = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
+            print "DEBUG: %s collects %s" % (player, m.group('POT'))
+            hand.addCollectPot(player, m.group('POT'))
 
     def readShownCards(self, hand):
         for m in self.re_ShownCards.finditer(hand.handText):
