@@ -59,9 +59,7 @@ class Everest(HandHistoryConverter):
     # The following are also static regexes: there is no need to call
     # compilePlayerRegexes (which does nothing), since players are identified
     # not by name but by seat number
-    re_PostSB = re.compile(r'<event sequence="[0-9]+" type="(SMALL_BLIND|RETURN_BLIND)" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])" amount="(?P<SB>[.0-9]+)"/>', re.MULTILINE)
-    re_PostBB = re.compile(r'<event sequence="[0-9]+" type="(BIG_BLIND|INITIAL_BLIND)" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])" amount="(?P<BB>[.0-9]+)"/>', re.MULTILINE)
-    re_PostBoth = re.compile(r'<event sequence="[0-9]+" type="(RETURN_BLIND)" player="(?P<PSEAT>[0-9])" amount="(?P<SBBB>[.0-9]+)"/>', re.MULTILINE)
+    re_PostXB = re.compile(r'<BLIND position="(?P<PSEAT>[0-9]+)" amount="(?P<XB>[0-9]+)" penalty="(?P<PENALTY>[0-9]+)"\/>', re.MULTILINE)
     #re_Antes = ???
     #re_BringIn = ???
     re_HeroCards = re.compile(r'<cards type="HOLE" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
@@ -75,10 +73,9 @@ class Everest(HandHistoryConverter):
         pass
 
     def playerNameFromSeatNo(self, seatNo, hand):
-        # This special function is required because Carbon Poker records
-        # actions by seat number, not by the player's name
+        # Actions recorded by seat number, not by the player's name
         for p in hand.players:
-            if p[0] == int(seatNo):
+            if p[0] == seatNo:
                 return p[1]
 
     def readSupportedGames(self):
@@ -157,7 +154,6 @@ class Everest(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
-            print "DEBUG: adding %s %s %s" % (a.group('SEAT'), a.group('PNAME'), a.group('CASH'))
             hand.addPlayer(a.group('SEAT'), a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
@@ -174,7 +170,6 @@ class Everest(HandHistoryConverter):
 
     def readCommunityCards(self, hand, street):
         m = self.re_Board.search(hand.streets[street])
-        print "DEBUG: hand.streets[street]: %s" % hand.streets[street]
         if street == 'FLOP':
             hand.setCommunityCards(street, m.group('CARDS').split(','))
         elif street in ('TURN','RIVER'):
@@ -187,25 +182,11 @@ class Everest(HandHistoryConverter):
         pass # ???
 
     def readBlinds(self, hand):
-        for a in self.re_PostSB.finditer(hand.handText):
-            #print "DEBUG: found sb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('SB'))
-            hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),'small blind', a.group('SB'))
-
-        for a in self.re_PostBB.finditer(hand.handText):
-            #print "DEBUG: found bb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('BB'))
-            hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'big blind', a.group('BB'))
-        for a in self.re_PostBoth.finditer(hand.handText):
-            bb = Decimal(self.info['bb'])
-            amount = Decimal(a.group('SBBB'))
-            if amount < bb:
-                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'),
-                              hand), 'small blind', a.group('SBBB'))
-            elif amount == bb:
-                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'),
-                              hand), 'big blind', a.group('SBBB'))
-            else:
-                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'),
-                              hand), 'both', a.group('SBBB'))
+        for a in self.re_PostXB.finditer(hand.handText):
+            if Decimal(a.group('XB'))/100 == Decimal(self.info['sb']):
+                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),'small blind', a.group('XB'))
+            elif Decimal(a.group('XB'))/100 == Decimal(self.info['bb']):
+                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),'big blind', a.group('XB'))
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
