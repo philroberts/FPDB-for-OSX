@@ -276,8 +276,15 @@ class Winamax(HandHistoryConverter):
                                 hand.isKO = False
 
                             info['BIRAKE'] = info['BIRAKE'].strip(u'$€')
-                            hand.buyin = int(100*Decimal(info['BIAMT']))
-                            hand.fee = int(100*Decimal(info['BIRAKE']))
+                            rake_factor = 1
+                            bi_factor = 1
+                            if info['BIAMT'].find(".") == -1:
+                                bi_factor = 100
+                            if info['BIRAKE'].find(".") == -1:
+                                rake_factor = 100
+
+                            hand.buyin = bi_factor*info['BIAMT']
+                            hand.fee = rake_factor*info['BIRAKE']
                         else:
                             hand.buyin = int(Decimal(info['BIAMT']))
                             hand.fee = 0
