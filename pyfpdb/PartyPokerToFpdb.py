@@ -330,13 +330,19 @@ class PartyPoker(HandHistoryConverter):
                     # FIXME: there is no such property in Hand class
                     self.isSNG = True
             if key == 'BUYIN':
-                # FIXME: it's dirty hack T_T
-                # code below assumes that tournament rake is equal to zero
-                if info[key] == None:
-                    hand.buyin = '$0+$0'
-                else:
-                    cur = info[key][0] if info[key][0] not in '0123456789' else ''
-                    hand.buyin = info[key] + '+%s0' % cur
+                if hand.tourNo != None:
+                    hand.buyin = 0
+                    hand.fee = 0
+                    hand.buyinCurrency = "FREE"
+                    hand.isKO = False
+                    if info[key].find("$")!=-1:
+                        hand.buyinCurrency="USD"
+                    elif info[key].find(u"€")!=-1:
+                        hand.buyinCurrency="EUR"
+                    else:
+                        raise FpdbParseError(_("Failed to detect currency. HID: %s: '%s'" % (hand.handid, info[key])))
+                    info[key] = info[key].strip(u'$€')
+                    hand.buyin = int(100*Decimal(info[key]))
             if key == 'LEVEL':
                 hand.level = info[key]
             if key == 'PLAY' and info['PLAY'] != 'Real':
