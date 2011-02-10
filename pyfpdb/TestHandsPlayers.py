@@ -245,6 +245,7 @@ def main(argv=None):
     AbsoluteErrors    = FpdbError('Absolute Poker')
     UltimateBetErrors = FpdbError('Ultimate Bet')
     EverleafErrors    = FpdbError('Everleaf Poker')
+    EverestErrors     = FpdbError('Everest Poker')
     CarbonErrors      = FpdbError('Carbon')
     PKRErrors         = FpdbError('PKR')
     iPokerErrors      = FpdbError('iPoker')
@@ -256,7 +257,7 @@ def main(argv=None):
                     BetfairErrors, OnGameErrors, AbsoluteErrors,
                     EverleafErrors, CarbonErrors, PKRErrors,
                     iPokerErrors, WinamaxErrors, UltimateBetErrors,
-                    Win2dayErrors,
+                    Win2dayErrors, EverestErrors,
                 ]
 
     sites = {
@@ -273,6 +274,7 @@ def main(argv=None):
                 'iPoker' : False,
                 'Win2day' : False,
                 'Winamax' : False,
+                'Everest' : False,
             }
 
     if test_all_sites == True:
