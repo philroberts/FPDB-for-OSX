@@ -93,6 +93,7 @@ def site_alias(alias):
                 "iPoker"         : "iPoker",
                 "Winamax"        : "Winamax",
                 "Win2day"        : "Win2day",
+                "Everest"        : "Everest",
                 "Stars"          : "PokerStars",
                 "FTP"            : "Full Tilt Poker",
                 "Party"          : "PartyPoker",
