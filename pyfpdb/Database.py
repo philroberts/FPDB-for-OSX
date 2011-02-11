@@ -634,6 +634,18 @@ class Database:
         return c.fetchone()[0]
     #end def getTourneyCount
 
+    def getSiteTourneyNos(self, site):
+        c = self.connection.cursor()
+        # FIXME: Take site and actually fetch siteId from that
+        # Fixed to Winamax atm
+        q = self.sql.query['getSiteTourneyNos']
+        q = q.replace('%s', self.sql.query['placeholder'])
+        c.execute(q, (14,))
+        alist = []
+        for row in c.fetchall():
+            alist.append(row)
+        return alist
+
     def get_actual_seat(self, hand_id, name):
         c = self.connection.cursor()
         c.execute(self.sql.query['get_actual_seat'], (hand_id, name))
