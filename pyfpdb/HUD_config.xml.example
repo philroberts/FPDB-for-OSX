@@ -24,6 +24,9 @@
         <col col_name="vpip"       disp_all="True"  disp_posn="True"  col_title="VPIP"     xalignment="1.0" field_format="%3.1f" field_type="str" />
         <col col_name="pfr"        disp_all="True"  disp_posn="True"  col_title="PFR"      xalignment="1.0" field_format="%3.1f" field_type="str" />
         <col col_name="pf3"        disp_all="True"  disp_posn="True"  col_title="PF3"      xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="pf4"        disp_all="True"  disp_posn="True"  col_title="PF4"      xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="pff3"       disp_all="True"  disp_posn="True"  col_title="PFF3"     xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="pff4"       disp_all="True"  disp_posn="True"  col_title="PFF4"     xalignment="1.0" field_format="%3.1f" field_type="str" />
         <col col_name="aggfac"     disp_all="True"  disp_posn="True"  col_title="AggFac"   xalignment="1.0" field_format="%2.2f" field_type="str" />
         <col col_name="aggfrq"     disp_all="True"  disp_posn="True"  col_title="AggFreq"  xalignment="1.0" field_format="%3.1f" field_type="str" />
         <col col_name="conbet"     disp_all="True"  disp_posn="True"  col_title="ContBet"  xalignment="1.0" field_format="%3.1f" field_type="str" />

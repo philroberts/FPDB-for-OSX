@@ -2225,7 +2225,6 @@ class Sql:
                                       from Gametypes gt
                                       WHERE type = 'ring'
                                       order by type, limitType DESC, bb_or_buyin DESC"""
-# FIXME: fold to 3bet don't added
         if db_server == 'mysql':
             self.query['playerDetailedStats'] = """
                      select  <hgametypeId>                                                          AS hgametypeid
@@ -2244,6 +2243,16 @@ class Sql:
                             ,case when sum(cast(hp.street0_3Bchance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0_3Bdone as <signed>integer))/sum(cast(hp.street0_3Bchance as <signed>integer))
                              end                                                                    AS pf3
+                            ,case when sum(cast(hp.street0_4Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_4Bdone as <signed>integer))/sum(cast(hp.street0_4Bchance as <signed>integer))
+                             end                                                                    AS pf4
+                            ,case when sum(cast(hp.street0_FoldTo3Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_FoldTo3Bdone as <signed>integer))/sum(cast(hp.street0_FoldTo3Bchance as <signed>integer))
+                             end                                                                    AS pff3
+                            ,case when sum(cast(hp.street0_FoldTo4Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_FoldTo4Bdone as <signed>integer))/sum(cast(hp.street0_FoldTo4Bchance as <signed>integer))
+                             end                                                                    AS pff4
+
                             ,case when sum(cast(hp.raiseFirstInChance as <signed>integer)) = 0 then -999
                                   else 100.0 * sum(cast(hp.raisedFirstIn as <signed>integer)) / 
                                        sum(cast(hp.raiseFirstInChance as <signed>integer))
@@ -2365,6 +2374,15 @@ class Sql:
                             ,case when sum(cast(hp.street0_3Bchance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0_3Bdone as <signed>integer))/sum(cast(hp.street0_3Bchance as <signed>integer))
                              end                                                                    AS pf3
+                            ,case when sum(cast(hp.street0_4Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_4Bdone as <signed>integer))/sum(cast(hp.street0_4Bchance as <signed>integer))
+                             end                                                                    AS pf4
+                            ,case when sum(cast(hp.street0_FoldTo3Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_FoldTo3Bdone as <signed>integer))/sum(cast(hp.street0_FoldTo3Bchance as <signed>integer))
+                             end                                                                    AS pff3
+                            ,case when sum(cast(hp.street0_FoldTo4Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_FoldTo4Bdone as <signed>integer))/sum(cast(hp.street0_FoldTo4Bchance as <signed>integer))
+                             end                                                                    AS pff4
                             ,case when sum(cast(hp.raiseFirstInChance as <signed>integer)) = 0 then -999
                                   else 100.0 * sum(cast(hp.raisedFirstIn as <signed>integer)) / 
                                        sum(cast(hp.raiseFirstInChance as <signed>integer))
@@ -2487,6 +2505,15 @@ class Sql:
                             ,case when sum(cast(hp.street0_3Bchance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0_3Bdone as <signed>integer))/sum(cast(hp.street0_3Bchance as <signed>integer))
                              end                                                                    AS pf3
+                            ,case when sum(cast(hp.street0_4Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_4Bdone as <signed>integer))/sum(cast(hp.street0_4Bchance as <signed>integer))
+                             end                                                                    AS pf4
+                            ,case when sum(cast(hp.street0_FoldTo3Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_FoldTo3Bdone as <signed>integer))/sum(cast(hp.street0_FoldTo3Bchance as <signed>integer))
+                             end                                                                    AS pff3
+                            ,case when sum(cast(hp.street0_FoldTo4Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_FoldTo4Bdone as <signed>integer))/sum(cast(hp.street0_FoldTo4Bchance as <signed>integer))
+                             end                                                                    AS pff4
                             ,case when sum(cast(hp.raiseFirstInChance as <signed>integer)) = 0 then -999
                                   else 100.0 * sum(cast(hp.raisedFirstIn as <signed>integer)) / 
                                        sum(cast(hp.raiseFirstInChance as <signed>integer))
@@ -2592,6 +2619,7 @@ class Sql:
                               ,s.name
                       """
 
+        #FIXME: 3/4bet and foldTo don't added four tournaments yet
         if db_server == 'mysql':
             self.query['tourneyPlayerDetailedStats'] = """
                       select s.name                                                                 AS siteName
@@ -2715,6 +2743,9 @@ class Sql:
                      ,stats.vpip
                      ,stats.pfr
                      ,stats.pf3
+                     ,stats.pf4
+                     ,stats.pff3
+                     ,stats.pff4
                      ,stats.steals
                      ,stats.saw_f
                      ,stats.sawsd
@@ -2745,6 +2776,15 @@ class Sql:
                            ,case when sum(street0_3Bchance) = 0 then '0'
                                  else format(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),1)
                             end                                                             AS pf3
+                           ,case when sum(street0_4Bchance) = 0 then '0'
+                                 else format(100.0*sum(street0_4Bdone)/sum(street0_4Bchance),1)
+                            end                                                             AS pf4
+                           ,case when sum(street0_FoldTo3Bchance) = 0 then '0'
+                                 else format(100.0*sum(street0_FoldTo3Bdone)/sum(street0_FoldTo3Bchance),1)
+                            end                                                             AS pff3
+                           ,case when sum(street0_FoldTo4Bchance) = 0 then '0'
+                                 else format(100.0*sum(street0_FoldTo4Bdone)/sum(street0_FoldTo4Bchance),1)
+                            end                                                             AS pff4
                            ,case when sum(raiseFirstInChance) = 0 then '-'
                                  else format(100.0*sum(raisedFirstIn)/sum(raiseFirstInChance),1)
                             end                                                             AS steals
@@ -2821,6 +2861,9 @@ class Sql:
                       ,stats.vpip
                       ,stats.pfr
                       ,stats.pf3
+                      ,stats.pf4
+                      ,stats.pff3
+                      ,stats.pff4
                       ,stats.steals
                       ,stats.saw_f
                       ,stats.sawsd
@@ -2935,6 +2978,9 @@ class Sql:
                      ,stats.vpip
                      ,stats.pfr
                      ,stats.pf3
+                     ,stats.pf4
+                     ,stats.pff3
+                     ,stats.pff4
                      ,stats.steals
                      ,stats.saw_f
                      ,stats.sawsd
@@ -2973,6 +3019,15 @@ class Sql:
                            ,case when sum(street0_3Bchance) = 0 then '0'
                                  else format(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),1)
                             end                                                             AS pf3
+                           ,case when sum(street0_4Bchance) = 0 then '0'
+                                 else format(100.0*sum(street0_4Bdone)/sum(street0_4Bchance),1)
+                            end                                                             AS pf4
+                           ,case when sum(street0_FoldTo3Bchance) = 0 then '0'
+                                 else format(100.0*sum(street0_FoldTo3Bdone)/sum(street0_FoldTo3Bchance),1)
+                            end                                                             AS pff3
+                           ,case when sum(street0_FoldTo4Bchance) = 0 then '0'
+                                 else format(100.0*sum(street0_FoldTo4Bdone)/sum(street0_FoldTo4Bchance),1)
+                            end                                                             AS pff4
                            ,case when sum(raiseFirstInChance) = 0 then '-'
                                  else format(100.0*sum(raisedFirstIn)/sum(raiseFirstInChance),1)
                             end                                                             AS steals
@@ -3071,6 +3126,9 @@ class Sql:
                       ,stats.vpip
                       ,stats.pfr
                       ,stats.pf3
+                      ,stats.pf4
+                      ,stats.pff3
+                      ,stats.pff4
                       ,stats.steals
                       ,stats.saw_f
                       ,stats.sawsd
@@ -3109,6 +3167,15 @@ class Sql:
                            ,case when sum(street0_3Bchance) = 0 then '0'
                                  else to_char(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),'90D0')
                             end                                                             AS pf3
+                           ,case when sum(street0_4Bchance) = 0 then '0'
+                                 else to_char(100.0*sum(street0_4Bdone)/sum(street0_4Bchance),'90D0')
+                            end                                                             AS pf4
+                           ,case when sum(street0_FoldTo3Bchance) = 0 then '0'
+                                 else to_char(100.0*sum(street0_FoldTo3Bdone)/sum(street0_FoldTo3Bchance),'90D0')
+                            end                                                             AS pff3
+                           ,case when sum(street0_FoldTo4Bchance) = 0 then '0'
+                                 else to_char(100.0*sum(street0_FoldTo4Bdone)/sum(street0_FoldTo4Bchance),'90D0')
+                            end                                                             AS pff4
                            ,case when sum(raiseFirstInChance) = 0 then '-'
                                  else to_char(100.0*sum(raisedFirstIn)/sum(raiseFirstInChance),'90D0')
                             end                                                             AS steals
