@@ -4342,6 +4342,13 @@ class Sql:
                                         WHERE s.name=%s AND t.siteTourneyNo=%s
         """
 
+        self.query['getSiteTourneyNos'] = """SELECT t.siteTourneyNo
+                                        FROM Tourneys t
+                                        INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
+                                        INNER JOIN Sites s ON (tt.siteId = s.id)
+                                        WHERE tt.siteId=%s
+        """
+
         self.query['getTourneyPlayerInfo'] = """SELECT tp.*
                                         FROM Tourneys t
                                         INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
