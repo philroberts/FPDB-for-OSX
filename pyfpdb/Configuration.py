@@ -483,6 +483,7 @@ class Import:
         self.interval    = node.getAttribute("interval")
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
+        self.ResultsDirectory = node.getAttribute("ResultsDirectory")
         self.hhBulkPath = node.getAttribute("hhBulkPath")
         self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=False)
         self.cacheSessions = string_to_bool(node.getAttribute("cacheSessions"), default=False)
@@ -491,8 +492,8 @@ class Import:
         self.saveStarsHH = string_to_bool(node.getAttribute("saveStarsHH"), default=False)
 
     def __str__(self):
-        return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
-            % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.cacheSessions, self.sessionTimeout, self.fastStoreHudCache)
+        return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\nResultsDirectory = %s" \
+            % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.cacheSessions, self.sessionTimeout, self.fastStoreHudCache, self.ResultsDirectory)
 
 class HudUI:
     def __init__(self, node):
@@ -1260,6 +1261,14 @@ class Config:
         # hhArchiveBase is the temp store for part-processed hand histories - should be redundant eventually
         try:    imp['hhArchiveBase']    = self.imp.hhArchiveBase
         except:  imp['hhArchiveBase']    = "~/.fpdb/HandHistories/"
+
+        # ResultsDirectory is the local cache for downloaded results
+        # NOTE: try: except: doesn'tseem to be triggering
+        #       using if instead
+        if self.imp.ResultsDirectory != '':
+            imp['ResultsDirectory']    = self.imp.ResultsDirectory
+        else:
+            imp['ResultsDirectory']    = "~/.fpdb/Results/"
 
         # hhBulkPath is the default location for bulk imports (if set)
         try:    imp['hhBulkPath']    = self.imp.hhBulkPath
