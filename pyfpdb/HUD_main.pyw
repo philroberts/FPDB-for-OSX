@@ -116,7 +116,7 @@ class HUD_main(object):
                 self.main_window.set_icon_stock(gtk.STOCK_HOME)
             if not options.hidden:
                 self.main_window.show_all()
-            gobject.timeout_add(100, self.check_tables)
+#            gobject.timeout_add(100, self.check_tables)
 
         except:
             log.exception("Error initializing main_window")
