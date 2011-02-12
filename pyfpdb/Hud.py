@@ -495,9 +495,9 @@ class Hud:
 #
 #        return True
 
-#    def up_update_table_position(self):
-##    callback for table moved
-#
+    def up_update_table_position(self):
+#    callback for table moved
+
 ##    move the stat windows
 #        adj = self.adj_seats(self.hand, self.config)
 #        loc = self.config.get_locations(self.table.site, self.max)
@@ -506,10 +506,10 @@ class Hud:
 #            w.relocate(x, y)
 ##    move the main window
 #        self.main_window.move(self.table.x + self.site_params['xshift'], self.table.y + self.site_params['yshift'])
-##    and move any auxs
-#        for aux in self.aux_windows:
-#            aux.update_card_positions()
-#        return True
+#    and move any auxs
+        for aux in self.aux_windows:
+            aux.update_card_positions()
+        return True
 
 #    def on_button_press(self, widget, event):
 #        if event.button == 1: # if primary button, start movement
@@ -576,6 +576,11 @@ class Hud:
 ##    save the config object back to the file
 #        print _("Updating config file")
 #        self.config.save()
+
+    def save_layout(self, *args):
+#    ask each aux to save its layout back to the config object
+        [aux.save_layout() for aux in self.aux_windows]
+        self.config.save()
 
     def adj_seats(self, hand, config):
     # determine how to adjust seating arrangements, if a "preferred seat" is set in the hud layout configuration
