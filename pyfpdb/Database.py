@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 148
+DB_VERSION = 149
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -1814,12 +1814,15 @@ class Database:
                              pdata[p]['street0_3BDone'],
                              pdata[p]['street0_4BChance'],
                              pdata[p]['street0_4BDone'],
+                             pdata[p]['street0_C4BChance'],
+                             pdata[p]['street0_C4BDone'],
                              pdata[p]['street0_FoldTo3BChance'],
                              pdata[p]['street0_FoldTo3BDone'],
                              pdata[p]['street0_FoldTo4BChance'],
                              pdata[p]['street0_FoldTo4BDone'],
-                             pdata[p]['other3BStreet0'],
-                             pdata[p]['other4BStreet0'],
+                             pdata[p]['street0_SqueezeChance'],
+                             pdata[p]['street0_SqueezeDone'],
+                             pdata[p]['success_Steal'],
                              pdata[p]['otherRaisedStreet0'],
                              pdata[p]['otherRaisedStreet1'],
                              pdata[p]['otherRaisedStreet2'],
@@ -1941,12 +1944,15 @@ class Database:
             line.append(pdata[p]['street0_3BDone'])              
             line.append(pdata[p]['street0_4BChance'])            
             line.append(pdata[p]['street0_4BDone'])              
+            line.append(pdata[p]['street0_C4BChance'])              
+            line.append(pdata[p]['street0_C4BDone'])              
             line.append(pdata[p]['street0_FoldTo3BChance'])      
             line.append(pdata[p]['street0_FoldTo3BDone'])        
             line.append(pdata[p]['street0_FoldTo4BChance'])      
             line.append(pdata[p]['street0_FoldTo4BDone'])        
-            line.append(pdata[p]['other3BStreet0'])              
-            line.append(pdata[p]['other4BStreet0'])              
+            line.append(pdata[p]['street0_SqueezeChance'])        
+            line.append(pdata[p]['street0_SqueezeDone'])        
+            line.append(pdata[p]['success_Steal'])        
             line.append(pdata[p]['street1Seen'])                 
             line.append(pdata[p]['street2Seen'])                 
             line.append(pdata[p]['street3Seen'])                 
