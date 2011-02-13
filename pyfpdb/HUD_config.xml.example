@@ -24,6 +24,9 @@
         <col col_name="vpip"       disp_all="True"  disp_posn="True"  col_title="VPIP"     xalignment="1.0" field_format="%3.1f" field_type="str" />
         <col col_name="pfr"        disp_all="True"  disp_posn="True"  col_title="PFR"      xalignment="1.0" field_format="%3.1f" field_type="str" />
         <col col_name="pf3"        disp_all="True"  disp_posn="True"  col_title="PF3"      xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="pf4"        disp_all="True"  disp_posn="True"  col_title="PF4"      xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="pff3"       disp_all="True"  disp_posn="True"  col_title="PFF3"     xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="pff4"       disp_all="True"  disp_posn="True"  col_title="PFF4"     xalignment="1.0" field_format="%3.1f" field_type="str" />
         <col col_name="aggfac"     disp_all="True"  disp_posn="True"  col_title="AggFac"   xalignment="1.0" field_format="%2.2f" field_type="str" />
         <col col_name="aggfrq"     disp_all="True"  disp_posn="True"  col_title="AggFreq"  xalignment="1.0" field_format="%3.1f" field_type="str" />
         <col col_name="conbet"     disp_all="True"  disp_posn="True"  col_title="ContBet"  xalignment="1.0" field_format="%3.1f" field_type="str" />
@@ -743,8 +746,14 @@ Left-Drag to Move"
             <pu_stat pu_stat_name="n"> </pu_stat>
             <pu_stat pu_stat_name="vpip"> </pu_stat>
             <pu_stat pu_stat_name="pfr"> </pu_stat>
-            <pu_stat pu_stat_name="three_B_0"> </pu_stat>
+            <pu_stat pu_stat_name="three_B"> </pu_stat>
+            <pu_stat pu_stat_name="four_B"> </pu_stat>
+            <pu_stat pu_stat_name="cfour_B"> </pu_stat>
+            <pu_stat pu_stat_name="squeeze"> </pu_stat>
+            <pu_stat pu_stat_name="f_3bet"> </pu_stat>
+            <pu_stat pu_stat_name="f_4bet"> </pu_stat>
             <pu_stat pu_stat_name="steal"> </pu_stat>
+            <pu_stat pu_stat_name="s_steal"> </pu_stat>
             <pu_stat pu_stat_name="f_steal"> </pu_stat>
             <pu_stat pu_stat_name="f_BB_steal"> </pu_stat>
             <pu_stat pu_stat_name="f_SB_steal"> </pu_stat>

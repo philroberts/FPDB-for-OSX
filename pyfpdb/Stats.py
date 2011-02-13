@@ -378,6 +378,21 @@ def steal(stat_dict, player):
     except:
         return (stat, 'NA', 'st=NA', 'steal=NA', '(0/0)', '% steal attempted')
 
+def s_steal(stat_dict, player):
+    """   Success Steal %."""
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['suc_st'])/float(stat_dict[player]['steal'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                's_st=%3.1f%%'    % (100.0*stat),
+                's_steal=%3.1f%%' % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['suc_st'], stat_dict[player]['steal']),
+                _('% success steal')
+                )
+    except:
+        return (stat, 'NA', 'st=NA', 's_steal=NA', '(0/0)', '% success steal')
+
 def f_SB_steal(stat_dict, player):
     """    Folded SB to steal."""
     stat = 0.0
@@ -465,16 +480,55 @@ def four_B(stat_dict, player):
         return (stat,
                 '%3.1f'         % (100.0*stat),
                 '4B=%3.1f%%'    % (100.0*stat),
-                '4B_pf=%3.1f%%' % (100.0*stat),
+                '4B=%3.1f%%' % (100.0*stat),
                 '(%d/%d)'       % (stat_dict[player]['fb_0'], stat_dict[player]['fb_opp_0']),
                 _('% 4 Bet preflop/4rd'))
     except:
         return (stat,
                 'NA',
                 '4B=NA',
-                '4B_pf=NA',
+                '4B=NA',
                 '(0/0)',
                 _('% 4 Bet preflop/4rd'))
+
+def cfour_B(stat_dict, player):
+    """   Cold Four bet preflop/4rd."""
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['cfb_0'])/float(stat_dict[player]['cfb_opp_0'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                'C4B=%3.1f%%'    % (100.0*stat),
+                'C4B_pf=%3.1f%%' % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['cfb_0'], stat_dict[player]['cfb_opp_0']),
+                _('% Cold 4 Bet preflop/4rd'))
+    except:
+        return (stat,
+                'NA',
+                'C4B=NA',
+                'C4B_pf=NA',
+                '(0/0)',
+                _('% Cold 4 Bet preflop/4rd'))
+
+def squeeze(stat_dict, player):
+    """ Squeeze bet preflop."""
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['sqz_0'])/float(stat_dict[player]['sqz_opp_0'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                'SQZ=%3.1f%%'    % (100.0*stat),
+                'SQZ_pf=%3.1f%%' % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['sqz_0'], stat_dict[player]['sqz_opp_0']),
+                _('% Squeeze preflop'))
+    except:
+        return (stat,
+                'NA',
+                'SQZ=NA',
+                'SQZ_pf=NA',
+                '(0/0)',
+                _('% Squeeze preflop'))
+
 
 def f_3bet(stat_dict, player):
     """ Fold to 3bet preflop. """
