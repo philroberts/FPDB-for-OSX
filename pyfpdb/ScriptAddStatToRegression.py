@@ -76,7 +76,7 @@ def main(argv=None):
     print "WARNING:"
     print "This script will modify many files in the regression test suite"
     print "As is safety precaution, you need to edit the file manually to run it"
-    #walk_testfiles('regression-test-files/', 'street0_C4BChance', False)
+    #walk_testfiles('regression-test-files/', 'zzzzzzz', False)
 
 if __name__ == '__main__':
     main()
