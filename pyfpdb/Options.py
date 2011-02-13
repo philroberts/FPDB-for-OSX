@@ -55,7 +55,9 @@ def fpdb_options():
                     help=_("Print some useful one liners"))
     # The following options are used for SplitHandHistory.py
     parser.add_option("-f", "--file", dest="filename", metavar="FILE", default=None,
-                    help=_("Input file in quiet mode"))
+                    help=_("Input file"))
+    parser.add_option("-D", "--directory", dest="directory", metavar="FILE", default=None,
+                    help=_("Input directory"))
     parser.add_option("-o", "--outpath", dest="outpath", metavar="FILE", default=None,
                     help=_("Input out path in quiet mode"))
     parser.add_option("-a", "--archive", action="store_true", dest="archive", default=False,
