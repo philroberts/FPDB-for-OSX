@@ -577,7 +577,7 @@ Left-Drag to Move"
         <hhc site="Carbon" converter="CarbonToFpdb"/>
         <hhc site="PKR" converter="PkrToFpdb"/>
         <hhc site="iPoker" converter="iPokerToFpdb"/>
-        <hhc site="Winamax" converter="WinamaxToFpdb"/>
+        <hhc site="Winamax" converter="WinamaxToFpdb" summaryImporter="WinamaxSummary"/>
     </hhcs>
 
     <supported_databases>

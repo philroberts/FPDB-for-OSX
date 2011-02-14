@@ -50,10 +50,15 @@ class DerivedStats():
             self.handsplayers[player[1]]['street0_3BDone']      = False
             self.handsplayers[player[1]]['street0_4BChance']    = False 
             self.handsplayers[player[1]]['street0_4BDone']      = False 
+            self.handsplayers[player[1]]['street0_C4BChance']   = False 
+            self.handsplayers[player[1]]['street0_C4BDone']     = False 
             self.handsplayers[player[1]]['street0_FoldTo3BChance']= False
             self.handsplayers[player[1]]['street0_FoldTo3BDone']= False
             self.handsplayers[player[1]]['street0_FoldTo4BChance']= False 
             self.handsplayers[player[1]]['street0_FoldTo4BDone']= False 
+            self.handsplayers[player[1]]['street0_SqueezeChance']= False 
+            self.handsplayers[player[1]]['street0_SqueezeDone'] = False 
+            self.handsplayers[player[1]]['success_Steal']       = False 
             self.handsplayers[player[1]]['raiseFirstInChance']  = False
             self.handsplayers[player[1]]['raisedFirstIn']       = False
             self.handsplayers[player[1]]['foldBbToStealChance'] = False
@@ -417,8 +422,10 @@ class DerivedStats():
             #print "\naction:", action[0], posn, type(posn), steal_attempt, act
             if posn == 'B':
                 #NOTE: Stud games will never hit this section
-                self.handsplayers[pname]['foldBbToStealChance'] = steal_attempt
-                self.handsplayers[pname]['foldedBbToSteal'] = steal_attempt and act == 'folds'
+                if steal_attempt:
+                    self.handsplayers[pname]['foldBbToStealChance'] = True
+                    self.handsplayers[pname]['foldedBbToSteal'] = act == 'folds'
+                    self.handsplayers[stealer]['success_Steal'] = act == 'folds'
                 break
             elif posn == 'S':
                 self.handsplayers[pname]['foldSbToStealChance'] = steal_attempt
@@ -434,6 +441,7 @@ class DerivedStats():
                     raised = True
                     if posn in steal_positions:
                         steal_attempt = True
+                        stealer = pname
                 if act == 'calls':
                     break
             
@@ -443,8 +451,8 @@ class DerivedStats():
     def calc34BetStreet0(self, hand):
         """Fills street0_(3|4)B(Chance|Done), other(3|4)BStreet0"""
         bet_level = 1 # bet_level after 3-bet is equal to 3
+        squeeze_chance = 0
         for action in hand.actions[hand.actionStreets[1]]:
-            # FIXME: fill other(3|4)BStreet0 - i have no idea what does it mean
             pname, act, aggr = action[0], action[1], action[1] in ('raises', 'bets')
             if bet_level == 1:
                 if aggr:
@@ -453,8 +461,13 @@ class DerivedStats():
                 continue
             elif bet_level == 2:
                 self.handsplayers[pname]['street0_3BChance'] = True
+                self.handsplayers[pname]['street0_SqueezeChance'] = squeeze_chance
+                if not squeeze_chance and act == 'calls':
+                    squeeze_chance = 1
+                    continue
                 if aggr:
                     self.handsplayers[pname]['street0_3BDone'] = True
+                    self.handsplayers[pname]['street0_SqueezeDone'] = squeeze_chance
                     second_agressor = pname
                     bet_level += 1
                 continue
@@ -468,6 +481,11 @@ class DerivedStats():
                     elif act == 'folds':
                         self.handsplayers[pname]['street0_FoldTo3BDone'] = True
                         break
+                else:
+                    self.handsplayers[pname]['street0_C4BChance'] = True
+                    if aggr:
+                        self.handsplayers[pname]['street0_C4BDone'] = True
+                        bet_level += 1
                 continue
             elif bet_level == 4:
                 if pname == second_agressor: 

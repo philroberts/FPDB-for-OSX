@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 148
+DB_VERSION = 149
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -254,7 +254,6 @@ class Database:
         self.db_server = db_params['db-server']
         self.database = db_params['db-databaseName']
         self.host = db_params['db-host']
-        self.db_port = db_params['db-port']
         self.db_path = ''
         gen = c.get_general_params()
         self.day_start = 0
@@ -350,7 +349,6 @@ class Database:
         try:
             self.connect(backend=db['db-backend'],
                          host=db['db-host'],
-                         port=db['db-port'],
                          database=db['db-databaseName'],
                          user=db['db-user'],
                          password=db['db-password'])
@@ -365,17 +363,14 @@ class Database:
         self.db_server = db_params['db-server']
         self.database = db_params['db-databaseName']
         self.host = db_params['db-host']
-        self.db_port = db_params['db-port']
 
-    def connect(self, backend=None, host=None, port=None,
-                database=None, user=None, password=None,
-                create=False):
+    def connect(self, backend=None, host=None, database=None,
+                user=None, password=None, create=False):
         """Connects a database with the given parameters"""
         if backend is None:
             raise FpdbError('Database backend not defined')
         self.backend = backend
         self.host = host
-        self.port = port
         self.user = user
         self.password = password
         self.database = database
@@ -387,8 +382,7 @@ class Database:
             if use_pool:
                 MySQLdb = pool.manage(MySQLdb, pool_size=5)
             try:
-                self.connection = MySQLdb.connect(host=host, port=port, user=user,
-                        passwd=password, db=database, use_unicode=True)
+                self.connection = MySQLdb.connect(host=host, user=user, passwd=password, db=database, use_unicode=True)
                 self.__connected = True
             #TODO: Add port option
             except MySQLdb.Error, ex:
@@ -422,7 +416,6 @@ class Database:
             if not self.is_connected():
                 try:
                     self.connection = psycopg2.connect(host = host,
-                                               port = port,
                                                user = user,
                                                password = password,
                                                database = database)
@@ -640,6 +633,18 @@ class Database:
         c.execute(self.sql.query['getTourneyTypeCount'])
         return c.fetchone()[0]
     #end def getTourneyCount
+
+    def getSiteTourneyNos(self, site):
+        c = self.connection.cursor()
+        # FIXME: Take site and actually fetch siteId from that
+        # Fixed to Winamax atm
+        q = self.sql.query['getSiteTourneyNos']
+        q = q.replace('%s', self.sql.query['placeholder'])
+        c.execute(q, (14,))
+        alist = []
+        for row in c.fetchall():
+            alist.append(row)
+        return alist
 
     def get_actual_seat(self, hand_id, name):
         c = self.connection.cursor()
@@ -1821,12 +1826,15 @@ class Database:
                              pdata[p]['street0_3BDone'],
                              pdata[p]['street0_4BChance'],
                              pdata[p]['street0_4BDone'],
+                             pdata[p]['street0_C4BChance'],
+                             pdata[p]['street0_C4BDone'],
                              pdata[p]['street0_FoldTo3BChance'],
                              pdata[p]['street0_FoldTo3BDone'],
                              pdata[p]['street0_FoldTo4BChance'],
                              pdata[p]['street0_FoldTo4BDone'],
-                             pdata[p]['other3BStreet0'],
-                             pdata[p]['other4BStreet0'],
+                             pdata[p]['street0_SqueezeChance'],
+                             pdata[p]['street0_SqueezeDone'],
+                             pdata[p]['success_Steal'],
                              pdata[p]['otherRaisedStreet0'],
                              pdata[p]['otherRaisedStreet1'],
                              pdata[p]['otherRaisedStreet2'],
@@ -1948,12 +1956,15 @@ class Database:
             line.append(pdata[p]['street0_3BDone'])              
             line.append(pdata[p]['street0_4BChance'])            
             line.append(pdata[p]['street0_4BDone'])              
+            line.append(pdata[p]['street0_C4BChance'])              
+            line.append(pdata[p]['street0_C4BDone'])              
             line.append(pdata[p]['street0_FoldTo3BChance'])      
             line.append(pdata[p]['street0_FoldTo3BDone'])        
             line.append(pdata[p]['street0_FoldTo4BChance'])      
             line.append(pdata[p]['street0_FoldTo4BDone'])        
-            line.append(pdata[p]['other3BStreet0'])              
-            line.append(pdata[p]['other4BStreet0'])              
+            line.append(pdata[p]['street0_SqueezeChance'])        
+            line.append(pdata[p]['street0_SqueezeDone'])        
+            line.append(pdata[p]['success_Steal'])        
             line.append(pdata[p]['street1Seen'])                 
             line.append(pdata[p]['street2Seen'])                 
             line.append(pdata[p]['street3Seen'])                 
