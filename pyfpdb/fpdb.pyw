@@ -119,7 +119,7 @@ import GuiReplayer
 try:
     import GuiStove
 except:
-    print "GuiStove disabled"
+    print _("GuiStove not found. If you want to use it please install pypoker-eval.")
 import SQL
 import Database
 import Configuration

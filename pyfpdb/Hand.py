@@ -1140,7 +1140,7 @@ class DrawHand(Hand):
             hhc.markStreets(self)
             # markStreets in Draw may match without dealing cards
             if self.streets['DEAL'] == None:
-                raise FpdbParseError(_("DrawHand.__init__: street 'DEAL' is empty. Hand cancelled? '%s'" % self.handid))
+                raise FpdbParseError(_("DrawHand.__init__: street 'DEAL' is empty. Hand cancelled? HandID: '%s'" % self.handid))
             hhc.readBlinds(self)
             hhc.readAntes(self)
             hhc.readButton(self)
