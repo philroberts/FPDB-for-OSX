@@ -3550,6 +3550,7 @@ class Sql:
                       ,sum(street0_3BChance)
                       ,sum(street0_3BDone)
                       ,sum(street0_4BChance)
+                      ,sum(street0_4BDone)
                       ,sum(street0_C4BChance)
                       ,sum(street0_C4BDone)
                       ,sum(street0_FoldTo3BChance)
