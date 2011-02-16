@@ -338,7 +338,14 @@ class PokerStars(HandHistoryConverter):
                            r"(\*\*\* 6th STREET \*\*\*(?P<SIXTH>.+(?=\*\*\* RIVER \*\*\*)|.+))?"
                            r"(\*\*\* RIVER \*\*\*(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
         elif hand.gametype['base'] in ("draw"):
-            m =  re.search(r"(?P<PREDEAL>.+(?=\*\*\* DEALING HANDS \*\*\*)|.+)"
+            if hand.gametype['category'] in ('27_1draw', 'fivedraw'):
+                # There is no marker between deal and draw in Stars single draw games
+                # This unfortunately affects the accounting.
+                m =  re.search(r"(?P<PREDEAL>.+(?=\*\*\* DEALING HANDS \*\*\*)|.+)"
+                           r"(\*\*\* DEALING HANDS \*\*\*(?P<DEAL>.+(?=(: stands pat on|: discards))|.+))?"
+                           r"((: stands pat on|: discards)(?P<DRAWONE>.+))?", hand.handText,re.DOTALL)
+            else:
+                m =  re.search(r"(?P<PREDEAL>.+(?=\*\*\* DEALING HANDS \*\*\*)|.+)"
                            r"(\*\*\* DEALING HANDS \*\*\*(?P<DEAL>.+(?=\*\*\* FIRST DRAW \*\*\*)|.+))?"
                            r"(\*\*\* FIRST DRAW \*\*\*(?P<DRAWONE>.+(?=\*\*\* SECOND DRAW \*\*\*)|.+))?"
                            r"(\*\*\* SECOND DRAW \*\*\*(?P<DRAWTWO>.+(?=\*\*\* THIRD DRAW \*\*\*)|.+))?"
