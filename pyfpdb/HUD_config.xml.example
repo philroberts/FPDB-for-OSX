@@ -528,6 +528,18 @@ Left-Drag to Move"
                 <location seat="8" x="0" y="181">  </location>
                 <location seat="9" x="70" y="53">  </location>
             </layout>
+            <layout max="10" width="792" height="546" fav_seat="0">
+                <location seat="1" x="684" y="61">  </location>
+                <location seat="2" x="689" y="239"> </location>
+                <location seat="3" x="692" y="346"> </location>
+                <location seat="4" x="586" y="393"> </location>
+                <location seat="5" x="421" y="440"> </location>
+                <location seat="6" x="267" y="440"> </location>
+                <location seat="7" x="0"   y="361"> </location>
+                <location seat="8" x="0"   y="280">  </location>
+                <location seat="9" x="121" y="280">  </location>
+                <location seat="10" x="46"  y="30">  </location>
+            </layout>
         </site>
 
         <site HH_path="C:/Program Files/PKR/HandHistory/YOUR SCREEN NAME HERE/" converter="PkrToFpdb" decoder="everleaf_decode_table" enabled="False" screen_name="YOUR SCREEN NAME HERE" site_name="PKR" site_path="C:/Program Files/PKR/" supported_games="holdem" table_finder="PKR.exe">

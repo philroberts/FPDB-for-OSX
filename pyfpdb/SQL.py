@@ -346,6 +346,7 @@ class Sql:
                             siteHandNo BIGINT NOT NULL,
                             tourneyId INT UNSIGNED, 
                             gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                            sessionId INT UNSIGNED, 
                             startTime DATETIME NOT NULL,
                             importTime DATETIME NOT NULL,
                             seats TINYINT NOT NULL,
@@ -383,6 +384,7 @@ class Sql:
                             siteHandNo BIGINT NOT NULL,
                             tourneyId INT,
                             gametypeId INT NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                            sessionId INT,
                             startTime timestamp without time zone NOT NULL,
                             importTime timestamp without time zone NOT NULL,
                             seats SMALLINT NOT NULL,
@@ -419,6 +421,7 @@ class Sql:
                             siteHandNo INT NOT NULL,
                             tourneyId INT,
                             gametypeId INT NOT NULL,
+                            sessionId INT,
                             startTime REAL NOT NULL,
                             importTime REAL NOT NULL,
                             seats INT NOT NULL,
@@ -1028,7 +1031,8 @@ class Sql:
         if db_server == 'mysql':
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                         id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-                        handsPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
+                        handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         street SMALLINT NOT NULL,
                         actionNo SMALLINT NOT NULL,
                         streetActionNo SMALLINT NOT NULL,
@@ -1043,7 +1047,8 @@ class Sql:
         elif db_server == 'postgresql':
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                         id BIGSERIAL, PRIMARY KEY (id),
-                        handsPlayerId BIGINT, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
+                        handId BIGINT NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                        playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         street SMALLINT,
                         actionNo SMALLINT,
                         streetActionNo SMALLINT,
@@ -1057,7 +1062,8 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                         id INTEGER PRIMARY KEY,
-                        handsPlayerId BIGINT,
+                        handId INT NOT NULL,
+                        playerId INT NOT NULL,
                         street SMALLINT,
                         actionNo SMALLINT,
                         streetActionNo SMALLINT,
@@ -1067,9 +1073,7 @@ class Sql:
                         amountCalled INT,
                         numDiscarded SMALLINT,
                         cardsDiscarded TEXT,
-                        allIn BOOLEAN,
-                        FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
-                        FOREIGN KEY (actionId) REFERENCES Actions(id) ON DELETE CASCADE
+                        allIn BOOLEAN
                         )""" 
 
 
@@ -1410,8 +1414,8 @@ class Sql:
                         sessionEnd DATETIME NOT NULL,
                         ringHDs INT NOT NULL,
                         tourHDs INT NOT NULL,
-                        totalProfit INT NOT NULL,
-                        bigBets FLOAT UNSIGNED NOT NULL)
+                        ringProfitUSD INT NOT NULL,
+                        ringProfitEUR INT NOT NULL)
 
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
@@ -1421,8 +1425,8 @@ class Sql:
                         sessionEnd REAL NOT NULL,
                         ringHDs INT NOT NULL,
                         tourHDs INT NOT NULL,
-                        totalProfit INT NOT NULL,
-                        bigBets FLOAT NOT NULL)
+                        ringProfitUSD INT NOT NULL,
+                        ringProfitEUR INT NOT NULL)
                         """
         elif db_server == 'sqlite':
             self.query['createSessionsCacheTable'] = """CREATE TABLE SessionsCache (
@@ -1431,8 +1435,8 @@ class Sql:
                         sessionEnd REAL NOT NULL,
                         ringHDs INT NOT NULL,
                         tourHDs INT NOT NULL,
-                        totalProfit INT NOT NULL,
-                        bigBets REAL UNSIGNED NOT NULL)
+                        ringProfitUSD INT NOT NULL,
+                        ringProfitEUR INT NOT NULL)
                         """
 
         if db_server == 'mysql':
@@ -4293,12 +4297,13 @@ class Sql:
         ####################################
             
         self.query['select_sessionscache'] = """
-            SELECT sessionStart,
+            SELECT id,
+                sessionStart,
                 sessionEnd,
                 ringHDs,
                 tourHDs,
-                totalProfit,
-                bigBets
+                ringProfitUSD,
+                ringProfitEUR
             FROM SessionsCache
         WHERE sessionEnd>=%s
         AND sessionStart<=%s"""
@@ -4308,8 +4313,8 @@ class Sql:
                 sessionEnd,
                 ringHDs,
                 tourHDs,
-                totalProfit,
-                bigBets
+                ringProfitUSD,
+                ringProfitEUR
             FROM SessionsCache
         WHERE sessionEnd>=%s
         AND sessionStart<=%s"""
@@ -4319,8 +4324,8 @@ class Sql:
                 sessionEnd,
                 ringHDs,
                 tourHDs,
-                totalProfit,
-                bigBets
+                ringProfitUSD,
+                ringProfitEUR
             FROM SessionsCache
         WHERE sessionStart>%s
         AND sessionEnd>=%s
@@ -4330,8 +4335,8 @@ class Sql:
             UPDATE SessionsCache SET
             ringHDs=ringHDs+%s,
             tourHDs=tourHDs+%s,
-            totalProfit=totalProfit+%s,
-            bigBets=bigBets+%s
+            ringProfitUSD=ringProfitUSD+%s,
+            ringProfitEUR=ringProfitEUR+%s
         WHERE sessionStart<=%s
         AND sessionEnd>=%s"""
 
@@ -4340,8 +4345,8 @@ class Sql:
             sessionStart=%s,
             ringHDs=ringHDs+%s,
             tourHDs=tourHDs+%s,
-            totalProfit=totalProfit+%s,
-            bigBets=bigBets+%s
+            ringProfitUSD=ringProfitUSD+%s,
+            ringProfitEUR=ringProfitEUR+%s
         WHERE sessionStart>%s
         AND sessionEnd>=%s
         AND sessionStart<=%s"""
@@ -4351,8 +4356,8 @@ class Sql:
             sessionEnd=%s,
             ringHDs=ringHDs+%s,
             tourHDs=tourHDs+%s,
-            totalProfit=totalProfit+%s,
-            bigBets=bigBets+%s
+            ringProfitUSD=ringProfitUSD+%s,
+            ringProfitEUR=ringProfitEUR+%s
         WHERE sessionEnd<%s
         AND sessionEnd>=%s
         AND sessionStart<=%s"""
@@ -4363,20 +4368,27 @@ class Sql:
                 sessionEnd,
                 ringHDs,
                 tourHDs,
-                totalProfit,
-                bigBets)
+                ringProfitUSD,
+                ringProfitEUR)
             VALUES (%s, %s, %s, %s, %s, %s)"""
         
         self.query['merge_sessionscache'] = """
-            SELECT min(sessionStart), max(sessionEnd), sum(ringHDs), sum(tourHDs), sum(totalProfit), sum(bigBets)
+            SELECT min(sessionStart), max(sessionEnd), sum(ringHDs), sum(tourHDs), sum(ringProfitUSD), sum(ringProfitEUR)
             FROM SessionsCache
-        WHERE sessionEnd>=%s
-        AND sessionStart<=%s"""
+        WHERE (case when id=%s or id=%s then 1 else 0 end)=1"""
         
         self.query['delete_sessions'] = """
             DELETE FROM SessionsCache
-        WHERE sessionEnd>=%s
-        AND sessionStart<=%s"""
+        WHERE id=%s"""
+        
+        self.query['update_hands_sessionid'] = """
+            UPDATE Hands SET
+            sessionId=%s
+        WHERE (case when sessionId=%s or sessionId=%s then 1 else 0 end)=1"""
+        
+        ####################################
+        # Database management queries
+        ####################################
 
         if db_server == 'mysql':
             self.query['analyze'] = """
@@ -4566,11 +4578,12 @@ class Sql:
         self.query['handsPlayersTTypeId_joiner'] = " OR TourneysPlayersId+0="
         self.query['handsPlayersTTypeId_joiner_id'] = " OR id="
 
-        self.query['store_hand'] = """INSERT INTO Hands (
+        self.query['store_hand'] = """insert into Hands (
                                             tablename,
-                                            gametypeid,
                                             sitehandno,
                                             tourneyId,
+                                            gametypeid,
+                                            sessionId,
                                             startTime,
                                             importtime,
                                             seats,
@@ -4598,13 +4611,13 @@ class Sql:
                                             street4Pot,
                                             showdownPot
                                              )
-                                             VALUES
-                                              (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                             values
+                                              (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                               %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
 
-        self.query['store_hands_players'] = """INSERT INTO HandsPlayers (
+        self.query['store_hands_players'] = """insert into HandsPlayers (
                 handId,
                 playerId,
                 startCash,
@@ -4708,7 +4721,7 @@ class Sql:
                 street3Raises,
                 street4Raises
                )
-               VALUES (
+               values (
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
@@ -4732,8 +4745,9 @@ class Sql:
                     %s, %s
                 )"""
 
-        self.query['store_hands_actions'] = """INSERT INTO HandsActions (
-                        handsPlayerId,
+        self.query['store_hands_actions'] = """insert into HandsActions (
+                        handId,
+                        playerId,
                         street,
                         actionNo,
                         streetActionNo,
@@ -4745,10 +4759,10 @@ class Sql:
                         cardsDiscarded,
                         allIn
                )
-               VALUES (
+               values (
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s
+                    %s, %s
                 )"""
         
         ################################

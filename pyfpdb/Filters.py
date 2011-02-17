@@ -66,8 +66,18 @@ class Filters(threading.Thread):
         if 'day_start' in gen:
             self.day_start = float(gen['day_start'])
 
+
+        self.sw = gtk.ScrolledWindow()
+        self.sw.set_border_width(0)
+        self.sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.sw.set_size_request(370, 300)
+
+
         # Outer Packing box
         self.mainVBox = gtk.VBox(False, 0)
+        self.sw.add_with_viewport(self.mainVBox)
+        self.sw.show()
+        print "DEBUG: New packing box created!"
 
         self.found = {'nl':False, 'fl':False, 'pl':False, 'ring':False, 'tour':False}
         self.label = {}
@@ -245,7 +255,7 @@ class Filters(threading.Thread):
 
     def get_vbox(self):
         """returns the vbox of this thread"""
-        return self.mainVBox
+        return self.sw
     #end def get_vbox
 
     def getNumHands(self):
