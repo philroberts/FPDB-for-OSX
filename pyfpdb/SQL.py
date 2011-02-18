@@ -2470,6 +2470,18 @@ class Sql:
                                            end
                                           )
                              end                                                                    AS steals
+                            ,case when sum(cast(hp.success_Steal as <signed>integer)) = 0 then -999
+                                  else 100.0 * 
+                                       sum(cast(hp.success_Steal as <signed>integer))
+                                           / 
+                                       sum(case hp.position
+                                           when 'S' then cast(hp.raisedFirstIn as <signed>integer)
+                                           when '0' then cast(hp.raisedFirstIn as <signed>integer)
+                                           when '1' then cast(hp.raisedFirstIn as <signed>integer)
+                                           else 0
+                                           end
+                                          )
+                             end                                                                    AS suc_steal
                             ,100.0*sum(cast(hp.street1Seen as <signed>integer))/count(1)            AS saw_f
                             ,100.0*sum(cast(hp.sawShowdown as <signed>integer))/count(1)            AS sawsd
                             ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
@@ -2601,6 +2613,18 @@ class Sql:
                                            end
                                           )
                              end                                                                    AS steals
+                            ,case when sum(cast(hp.success_Steal as <signed>integer)) = 0 then -999
+                                  else 100.0 * 
+                                       sum(cast(hp.success_Steal as <signed>integer))
+                                           / 
+                                       sum(case hp.position
+                                           when 'S' then cast(hp.raisedFirstIn as <signed>integer)
+                                           when '0' then cast(hp.raisedFirstIn as <signed>integer)
+                                           when '1' then cast(hp.raisedFirstIn as <signed>integer)
+                                           else 0
+                                           end
+                                          )
+                             end                                                                    AS suc_steal
                             ,100.0*sum(cast(hp.street1Seen as <signed>integer))/count(1)            AS saw_f
                             ,100.0*sum(cast(hp.sawShowdown as <signed>integer))/count(1)            AS sawsd
                             ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
