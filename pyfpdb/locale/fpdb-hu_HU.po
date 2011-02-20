@@ -1723,7 +1723,7 @@ msgstr ""
 
 #: GuiStove.py:66
 msgid "Thank you"
-msgstr "Köszönjük\n"
+msgstr "Köszönjük"
 
 #: GuiTourneyGraphViewer.py:178
 msgid "Tournaments"
