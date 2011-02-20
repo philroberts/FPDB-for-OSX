@@ -1,12 +1,12 @@
 # Hungarian fpdb language file
 # Copyright (C) 2010
-# Ferenc Erki <erkiferenc@gmail.com>, 2010.
+# Ferenc Erki <erkiferenc@gmail.com>, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2011-02-16 08:43+CET\n"
-"PO-Revision-Date: 2010-12-28 17:16+0100\n"
+"PO-Revision-Date: 2011-02-20 21:27+0100\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -503,14 +503,12 @@ msgid "Error aquiring hero ids:"
 msgstr "Hiba a játékosazonosítók meghatározása közben:"
 
 #: Database.py:2222
-#, fuzzy
 msgid "######## Gametype ##########"
-msgstr "######## Leosztások ##########"
+msgstr "######## Játéktípusok ##########"
 
 #: Database.py:2226
-#, fuzzy
 msgid "###### End Gametype ########"
-msgstr "###### Leosztások vége ########"
+msgstr "###### Játéktípusok vége ########"
 
 #: Database.py:2253
 msgid "queue empty too long - writer stopping ..."
@@ -579,10 +577,8 @@ msgid "press enter to continue"
 msgstr "nyomj ENTER-t a folytatáshoz"
 
 #: EverestToFpdb.py:107
-#, fuzzy
 msgid "Unable to recognise handinfo from: '%s'"
-msgstr ""
-"readHandInfo: Nem sikerült felismerni a leosztásinformációkat innen: '%s'"
+msgstr "Nem sikerült felismerni a leosztásinformációkat innen: '%s'"
 
 #: EverleafToFpdb.py:265
 msgid "Everleaf readStudPlayerCards is only a stub."
@@ -773,6 +769,8 @@ msgstr "Nyitó hívás nem található, leosztásazonosító = %s"
 #: FulltiltToFpdb.py:430
 msgid "FTP: readButton: Failed to detect button (hand #%s cancelled?)"
 msgstr ""
+"FTP: readButton: Nem sikerült az osztó felismerése (#%s leosztás "
+"megszakítva?)"
 
 #: FulltiltToFpdb.py:484
 msgid "FullTilt: DEBUG: unimplemented readAction: '%s' '%s'"
@@ -932,7 +930,7 @@ msgstr "Szálak száma:"
 
 #: GuiBulkImport.py:207
 msgid "Archive File"
-msgstr ""
+msgstr "Archív fájl"
 
 #: GuiBulkImport.py:212
 msgid "Hands/file:"
@@ -1502,19 +1500,16 @@ msgid "% Pre Flop Re-Raise / 3Bet"
 msgstr "preflop visszaemelés / 3bet"
 
 #: GuiRingPlayerStats.py:53
-#, fuzzy
 msgid "% Pre Flop Re-Raise / 4Bet"
-msgstr "preflop visszaemelés / 3bet"
+msgstr "preflop 4bet"
 
 #: GuiRingPlayerStats.py:54
-#, fuzzy
 msgid "% Pre Flop Fold To Re-Raise / F3Bet"
-msgstr "preflop visszaemelés / 3bet"
+msgstr "preflop dobás 3bet-re"
 
 #: GuiRingPlayerStats.py:55
-#, fuzzy
 msgid "% Pre Flop Fold To Re-Raise / F4Bet"
-msgstr "preflop visszaemelés / 3bet"
+msgstr "preflop dobás 4bet-re"
 
 #: GuiRingPlayerStats.py:56
 msgid "Aggression Factor\n"
@@ -1557,7 +1552,6 @@ msgid "Went To Show Down When Saw Flop"
 msgstr "terítésig megy, ha flopot nézett"
 
 #: GuiRingPlayerStats.py:64
-#, fuzzy
 msgid "% Won some money at showdown"
 msgstr "pénzt nyer terítéskor %"
 
@@ -2561,9 +2555,8 @@ msgid "Input file"
 msgstr "Bemeneti fájl"
 
 #: Options.py:60
-#, fuzzy
 msgid "Input directory"
-msgstr "Bemeneti fájl"
+msgstr "Bemeneti könyvtár"
 
 #: Options.py:62
 msgid "Input out path in quiet mode"
@@ -2699,7 +2692,7 @@ msgstr "lopási kísérlet %"
 
 #: Stats.py:391
 msgid "% success steal"
-msgstr ""
+msgstr "sikeres lopás %"
 
 #: Stats.py:406 Stats.py:413
 msgid "% folded SB to steal"
@@ -2714,33 +2707,28 @@ msgid "% folded blind to steal"
 msgstr "dob lopásra %"
 
 #: Stats.py:466 Stats.py:473
-#, fuzzy
 msgid "% 3 Bet preflop/3rd"
-msgstr "3/4-bet preflop/3. utcán %"
+msgstr "3-bet preflop/3. utcán %"
 
 #: Stats.py:485 Stats.py:492
-#, fuzzy
 msgid "% 4 Bet preflop/4rd"
-msgstr "3/4-bet preflop/3. utcán %"
+msgstr "4-bet preflop/3. utcán %"
 
 #: Stats.py:504 Stats.py:511
-#, fuzzy
 msgid "% Cold 4 Bet preflop/4rd"
-msgstr "3/4-bet preflop/3. utcán %"
+msgstr "hideg 4-bet preflop/3. utcán %"
 
 #: Stats.py:523 Stats.py:530
 msgid "% Squeeze preflop"
-msgstr ""
+msgstr "squeeze preflop %"
 
 #: Stats.py:543 Stats.py:550
-#, fuzzy
 msgid "% Fold to 3 Bet preflop"
-msgstr "3/4-bet preflop/3. utcán %"
+msgstr "dob 3-betre preflop %"
 
 #: Stats.py:562 Stats.py:569
-#, fuzzy
 msgid "% Fold to 4 Bet preflop"
-msgstr "3/4-bet preflop/3. utcán %"
+msgstr "dob 4-betre preflop %"
 
 #: Stats.py:583 Stats.py:590
 msgid "% won$/saw flop/4th"
@@ -3138,6 +3126,8 @@ msgstr ""
 #: fpdb.pyw:122
 msgid "GuiStove not found. If you want to use it please install pypoker-eval."
 msgstr ""
+"GuiStove nem található. Ha szeretnéd használni, kérlek telepítsd a pypoker-"
+"eval-t."
 
 #: fpdb.pyw:244
 msgid ""
