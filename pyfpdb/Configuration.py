@@ -467,12 +467,13 @@ class HHC:
 class Popup:
     def __init__(self, node):
         self.name  = node.getAttribute("pu_name")
+        self.pu_class = node.getAttribute("pu_class")
         self.pu_stats    = []
         for stat_node in node.getElementsByTagName('pu_stat'):
             self.pu_stats.append(stat_node.getAttribute("pu_stat_name"))
 
     def __str__(self):
-        temp = "Popup = " + self.name + "\n"
+        temp = "Popup = " + self.name + "  Class = " + self.pu_class + "\n"
         for stat in self.pu_stats:
             temp = temp + " " + stat
         return temp + "\n"

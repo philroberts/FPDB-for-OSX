@@ -4,7 +4,7 @@
 
 Create and manage the hud overlays.
 """
-#    Copyright 2008-2010  Ray E. Barker
+#    Copyright 2008-2011  Ray E. Barker
 
 #
 #    This program is free software; you can redistribute it and/or modify
