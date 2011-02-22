@@ -40,6 +40,9 @@ from TableWindow import Table_Window
 disp = Xlib.display.Display()
 root = disp.screen().root
 
+c = Configuration.Config(file=options.config, dbname=options.dbname)
+log = Configuration.get_logger("logging.conf", "hud", log_dir=c.dir_log, log_file='HUD-log.txt')
+
 class Table(Table_Window):
 
     def find_table_parameters(self):
@@ -61,6 +64,8 @@ class Table(Table_Window):
                 if self.check_bad_words(title): continue
                 self.number = int( mo.groupdict()["XID"], 0 )
                 self.title = title
+                if self.number is None:
+                    log.error("Could not retrieve XID from table xwininfo. xwininfo is %s" % listing)
                 break
 
         if self.number is None:
