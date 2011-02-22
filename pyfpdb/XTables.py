@@ -35,12 +35,13 @@ import Xlib.display
 
 #    FPDB modules
 from TableWindow import Table_Window
+import Configuration
 
 #    We might as well do this once and make them globals
 disp = Xlib.display.Display()
 root = disp.screen().root
 
-c = Configuration.Config(file=options.config, dbname=options.dbname)
+c = Configuration.Config()
 log = Configuration.get_logger("logging.conf", "hud", log_dir=c.dir_log, log_file='HUD-log.txt')
 
 class Table(Table_Window):
@@ -59,6 +60,7 @@ class Table(Table_Window):
         self.number = None
         for listing in os.popen('xwininfo -root -tree').readlines():
             if re.search(self.search_string, listing, re.I):
+                log.info(listing)
                 mo = re.match(reg, listing, re.VERBOSE)
                 title  = re.sub('\"', '', mo.groupdict()["TITLE"])
                 if self.check_bad_words(title): continue
