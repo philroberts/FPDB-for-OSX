@@ -91,7 +91,7 @@ def compare_gametypes_file(filename, importer, errors):
     for hand in handlist:
         ghash = hand.gametyperow
         for i in range(len(ghash)):
-            print "DEBUG: about to compare: '%s' and '%s'" %(ghash[i], testhash[i])
+            #print "DEBUG: about to compare: '%s' and '%s'" %(ghash[i], testhash[i])
             if ghash[i] == testhash[i]:
                 # The stats match - continue
                 pass
