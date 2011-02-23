@@ -77,7 +77,7 @@ class Filters(threading.Thread):
         self.mainVBox = gtk.VBox(False, 0)
         self.sw.add_with_viewport(self.mainVBox)
         self.sw.show()
-        print "DEBUG: New packing box created!"
+        print _("DEBUG: New packing box created!")
 
         self.found = {'nl':False, 'fl':False, 'pl':False, 'ring':False, 'tour':False}
         self.label = {}

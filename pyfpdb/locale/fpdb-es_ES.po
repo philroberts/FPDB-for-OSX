@@ -1,14 +1,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fpdb\n"
-"POT-Creation-Date: 2011-02-18 01:11+CET\n"
+"POT-Creation-Date: 2011-02-23 16:58+CET\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Javier Sánchez <donoban@gmail.com>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-Country: SPAIN\n"
 
@@ -624,7 +624,11 @@ msgstr "Anillo"
 msgid "Tourney"
 msgstr "Torneo"
 
-#: Filters.py:106 TourneyFilters.py:107
+#: Filters.py:80
+msgid "DEBUG: New packing box created!"
+msgstr ""
+
+#: Filters.py:106 TourneyFilters.py:114
 msgid "Either 0 or more than one site matched (%s) - EEK"
 msgstr ""
 
@@ -679,6 +683,23 @@ msgstr ""
 #: Filters.py:716 Filters.py:805
 msgid "No games returned from database"
 msgstr ""
+
+#: Filters.py:827
+msgid "Graphing Options:"
+msgstr ""
+
+#: Filters.py:839
+msgid "Show Graph In:"
+msgstr ""
+
+#: Filters.py:859
+msgid "Showdown Winnings"
+msgstr ""
+
+#: Filters.py:867
+#, fuzzy
+msgid "Non-Showdown Winnings"
+msgstr "Non-showdown: $%.2f"
 
 #: Filters.py:984
 msgid "From:"
@@ -2771,7 +2792,7 @@ msgstr ""
 msgid "Tourney Type"
 msgstr ""
 
-#: TourneyFilters.py:79
+#: TourneyFilters.py:86
 msgid "setting numTourneys:"
 msgstr ""
 
@@ -2959,6 +2980,14 @@ msgstr ""
 
 #: WinamaxToFpdb.py:318
 msgid "Failed to add streets. handtext=%s"
+msgstr ""
+
+#: XTables.py:70
+msgid "Could not retrieve XID from table xwininfo. xwininfo is %s"
+msgstr ""
+
+#: XTables.py:74
+msgid "No match in XTables for table '%s'."
 msgstr ""
 
 #: fpdb.pyw:38
