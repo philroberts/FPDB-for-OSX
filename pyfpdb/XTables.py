@@ -71,6 +71,7 @@ class Table(Table_Window):
                 break
 
         if self.number is None:
+            log.error("No match in XTables for table '%s'." % self.search_string)
             return None
         (self.window, self.parent) = self.get_window_from_xid(self.number)
 
