@@ -241,8 +241,8 @@ class RushNotes(Aux_Window):
 
             c = db_connection.get_cursor()
             c.execute(("SELECT handId, position, startCards, street0Aggr, tableName " +
-                        "FROM hands, handsPlayers " +
-                        "WHERE handsplayers.handId = hands.id " +
+                        "FROM Hands, HandsPlayers " +
+                        "WHERE HandsPlayers.handId = Hands.id " +
                         "AND street0VPI = 1 " +
                         "AND startCards > 0 " +
                         "AND playerId = %d " +
