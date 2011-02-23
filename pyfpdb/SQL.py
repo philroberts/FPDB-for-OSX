@@ -346,6 +346,7 @@ class Sql:
                             siteHandNo BIGINT NOT NULL,
                             tourneyId INT UNSIGNED, 
                             gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                            sessionId INT UNSIGNED, 
                             startTime DATETIME NOT NULL,
                             importTime DATETIME NOT NULL,
                             seats TINYINT NOT NULL,
@@ -383,6 +384,7 @@ class Sql:
                             siteHandNo BIGINT NOT NULL,
                             tourneyId INT,
                             gametypeId INT NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                            sessionId INT,
                             startTime timestamp without time zone NOT NULL,
                             importTime timestamp without time zone NOT NULL,
                             seats SMALLINT NOT NULL,
@@ -419,6 +421,7 @@ class Sql:
                             siteHandNo INT NOT NULL,
                             tourneyId INT,
                             gametypeId INT NOT NULL,
+                            sessionId INT,
                             startTime REAL NOT NULL,
                             importTime REAL NOT NULL,
                             seats INT NOT NULL,
@@ -639,13 +642,16 @@ class Sql:
                         street0_3BChance BOOLEAN,
                         street0_3BDone BOOLEAN,
                         street0_4BChance BOOLEAN,
+                        street0_C4BChance BOOLEAN,
                         street0_4BDone BOOLEAN,
+                        street0_C4BDone BOOLEAN,
                         street0_FoldTo3BChance BOOLEAN,
                         street0_FoldTo3BDone BOOLEAN,
                         street0_FoldTo4BChance BOOLEAN,
                         street0_FoldTo4BDone BOOLEAN,
-                        other3BStreet0 BOOLEAN,
-                        other4BStreet0 BOOLEAN,
+                        street0_SqueezeChance BOOLEAN,
+                        street0_SqueezeDone BOOLEAN,
+                        success_Steal BOOLEAN,
 
                         street1Seen BOOLEAN,
                         street2Seen BOOLEAN,
@@ -761,12 +767,15 @@ class Sql:
                         street0_3BDone BOOLEAN,
                         street0_4BChance BOOLEAN,
                         street0_4BDone BOOLEAN,
+                        street0_C4BChance BOOLEAN,
+                        street0_C4BDone BOOLEAN,
                         street0_FoldTo3BChance BOOLEAN,
                         street0_FoldTo3BDone BOOLEAN,
                         street0_FoldTo4BChance BOOLEAN,
                         street0_FoldTo4BDone BOOLEAN,
-                        other3BStreet0 BOOLEAN,
-                        other4BStreet0 BOOLEAN,
+                        street0_SqueezeChance BOOLEAN,
+                        street0_SqueezeDone BOOLEAN,
+                        success_Steal BOOLEAN,
 
                         street1Seen BOOLEAN,
                         street2Seen BOOLEAN,
@@ -881,12 +890,15 @@ class Sql:
                         street0_3BDone INT,
                         street0_4BChance INT,
                         street0_4BDone INT,
+                        street0_C4BChance INT,
+                        street0_C4BDone INT,
                         street0_FoldTo3BChance INT,
                         street0_FoldTo3BDone INT,
                         street0_FoldTo4BChance INT,
                         street0_FoldTo4BDone INT,
-                        other3BStreet0 INT,
-                        other4BStreet0 INT,
+                        street0_SqueezeChance INT,
+                        street0_SqueezeDone INT,
+                        success_Steal INT,
 
                         street1Seen INT,
                         street2Seen INT,
@@ -1019,7 +1031,8 @@ class Sql:
         if db_server == 'mysql':
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                         id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-                        handsPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
+                        handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         street SMALLINT NOT NULL,
                         actionNo SMALLINT NOT NULL,
                         streetActionNo SMALLINT NOT NULL,
@@ -1034,7 +1047,8 @@ class Sql:
         elif db_server == 'postgresql':
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                         id BIGSERIAL, PRIMARY KEY (id),
-                        handsPlayerId BIGINT, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
+                        handId BIGINT NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                        playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         street SMALLINT,
                         actionNo SMALLINT,
                         streetActionNo SMALLINT,
@@ -1048,7 +1062,8 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                         id INTEGER PRIMARY KEY,
-                        handsPlayerId BIGINT,
+                        handId INT NOT NULL,
+                        playerId INT NOT NULL,
                         street SMALLINT,
                         actionNo SMALLINT,
                         streetActionNo SMALLINT,
@@ -1058,9 +1073,7 @@ class Sql:
                         amountCalled INT,
                         numDiscarded SMALLINT,
                         cardsDiscarded TEXT,
-                        allIn BOOLEAN,
-                        FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
-                        FOREIGN KEY (actionId) REFERENCES Actions(id) ON DELETE CASCADE
+                        allIn BOOLEAN
                         )""" 
 
 
@@ -1091,13 +1104,16 @@ class Sql:
                         street0_3BDone INT,
                         street0_4BChance INT,
                         street0_4BDone INT,
+                        street0_C4BChance INT,
+                        street0_C4BDone INT,
                         street0_FoldTo3BChance INT,
                         street0_FoldTo3BDone INT,
                         street0_FoldTo4BChance INT,
                         street0_FoldTo4BDone INT,
+                        street0_SqueezeChance INT,
+                        street0_SqueezeDone INT,
+                        success_Steal INT,
 
-                        other3BStreet0 INT,
-                        other4BStreet0 INT,
 
                         street1Seen INT,
                         street2Seen INT,
@@ -1197,12 +1213,15 @@ class Sql:
                         street0_3BDone INT,
                         street0_4BChance INT,
                         street0_4BDone INT,
+                        street0_C4BChance INT,
+                        street0_C4BDone INT,
                         street0_FoldTo3BChance INT,
                         street0_FoldTo3BDone INT,
                         street0_FoldTo4BChance INT,
                         street0_FoldTo4BDone INT,
-                        other3BStreet0 INT,
-                        other4BStreet0 INT,
+                        street0_SqueezeChance INT,
+                        street0_SqueezeDone INT,
+                        success_Steal INT,
 
                         street1Seen INT,
                         street2Seen INT,
@@ -1300,12 +1319,15 @@ class Sql:
                         street0_3BDone INT,
                         street0_4BChance INT,
                         street0_4BDone INT,
+                        street0_C4BChance INT,
+                        street0_C4BDone INT,
                         street0_FoldTo3BChance INT,
                         street0_FoldTo3BDone INT,
                         street0_FoldTo4BChance INT,
                         street0_FoldTo4BDone INT,
-                        other3BStreet0 INT,
-                        other4BStreet0 INT,
+                        street0_SqueezeChance INT,
+                        street0_SqueezeDone INT,
+                        success_Steal INT,
 
                         street1Seen INT,
                         street2Seen INT,
@@ -1392,8 +1414,8 @@ class Sql:
                         sessionEnd DATETIME NOT NULL,
                         ringHDs INT NOT NULL,
                         tourHDs INT NOT NULL,
-                        totalProfit INT NOT NULL,
-                        bigBets FLOAT UNSIGNED NOT NULL)
+                        ringProfitUSD INT NOT NULL,
+                        ringProfitEUR INT NOT NULL)
 
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
@@ -1403,8 +1425,8 @@ class Sql:
                         sessionEnd REAL NOT NULL,
                         ringHDs INT NOT NULL,
                         tourHDs INT NOT NULL,
-                        totalProfit INT NOT NULL,
-                        bigBets FLOAT NOT NULL)
+                        ringProfitUSD INT NOT NULL,
+                        ringProfitEUR INT NOT NULL)
                         """
         elif db_server == 'sqlite':
             self.query['createSessionsCacheTable'] = """CREATE TABLE SessionsCache (
@@ -1413,8 +1435,8 @@ class Sql:
                         sessionEnd REAL NOT NULL,
                         ringHDs INT NOT NULL,
                         tourHDs INT NOT NULL,
-                        totalProfit INT NOT NULL,
-                        bigBets REAL UNSIGNED NOT NULL)
+                        ringProfitUSD INT NOT NULL,
+                        ringProfitEUR INT NOT NULL)
                         """
 
         if db_server == 'mysql':
@@ -1515,10 +1537,15 @@ class Sql:
                     sum(hc.street0_3BDone)              AS TB_0,
                     sum(hc.street0_4BChance)            AS FB_opp_0,
                     sum(hc.street0_4BDone)              AS FB_0,
+                    sum(hc.street0_C4BChance)           AS CFB_opp_0,
+                    sum(hc.street0_C4BDone)             AS CFB_0,
                     sum(hc.street0_FoldTo3BChance)      AS F3B_opp_0,
                     sum(hc.street0_FoldTo3BDone)        AS F3B_0,
                     sum(hc.street0_FoldTo4BChance)      AS F4B_opp_0,
                     sum(hc.street0_FoldTo4BDone)        AS F4B_0,
+                    sum(hc.street0_SqueezeChance)       AS SQZ_opp_0,
+                    sum(hc.street0_SqueezeDone)         AS SQZ_0,
+                    sum(hc.success_Steal)               AS SUC_ST,
                     sum(hc.street1Seen)                 AS saw_f,
                     sum(hc.street1Seen)                 AS saw_1,
                     sum(hc.street2Seen)                 AS saw_2,
@@ -1632,10 +1659,15 @@ class Sql:
                        sum(hc.street0_3BDone)              AS TB_0,
                        sum(hc.street0_4BChance)            AS FB_opp_0,
                        sum(hc.street0_4BDone)              AS FB_0,
+                       sum(hc.street0_C4BChance)           AS CFB_opp_0,
+                       sum(hc.street0_C4BDone)             AS CFB_0,
                        sum(hc.street0_FoldTo3BChance)      AS F3B_opp_0,
                        sum(hc.street0_FoldTo3BDone)        AS F3B_0,
                        sum(hc.street0_FoldTo4BChance)      AS F4B_opp_0,
                        sum(hc.street0_FoldTo4BDone)        AS F4B_0,
+                       sum(hc.street0_SqueezeChance)       AS SQZ_opp_0,
+                       sum(hc.street0_SqueezeDone)         AS SQZ_0,
+                       sum(hc.success_Steal)               AS SUC_ST,
                        sum(hc.street1Seen)                 AS saw_f,
                        sum(hc.street1Seen)                 AS saw_1,
                        sum(hc.street2Seen)                 AS saw_2,
@@ -1766,10 +1798,15 @@ class Sql:
                            cast(hp2.street0_3BDone as <signed>integer)              AS TB_0,
                            cast(hp2.street0_4BChance as <signed>integer)            AS FB_opp_0,
                            cast(hp2.street0_4BDone as <signed>integer)              AS FB_0,
+                           cast(hp2.street0_C4BChance as <signed>integer)           AS CFB_opp_0,
+                           cast(hp2.street0_C4BDone as <signed>integer)             AS CFB_0,
                            cast(hp2.street0_FoldTo3BChance as <signed>integer)      AS F3B_opp_0,
                            cast(hp2.street0_FoldTo3BDone as <signed>integer)        AS F3B_0,
                            cast(hp2.street0_FoldTo4BChance as <signed>integer)      AS F4B_opp_0,
                            cast(hp2.street0_FoldTo4BDone as <signed>integer)        AS F4B_0,
+                           cast(hp2.street0_SqueezeChance as <signed>integer)       AS SQZ_opp_0,
+                           cast(hp2.street0_SqueezeDone as <signed>integer)         AS SQZ_0,
+                           cast(hp2.success_Steal as <signed>integer)               AS SUC_ST,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_f,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_1,
                            cast(hp2.street2Seen as <signed>integer)                 AS saw_2,
@@ -1876,10 +1913,15 @@ class Sql:
                            cast(hp2.street0_3BDone as <signed>integer)              AS TB_0,
                            cast(hp2.street0_4BChance as <signed>integer)            AS FB_opp_0,
                            cast(hp2.street0_4BDone as <signed>integer)              AS FB_0,
-                           cast(hp2.street0_FoldTo3BChance as <signed>integer)      AS TTB_opp_0,
-                           cast(hp2.street0_FoldTo3BDone as <signed>integer)        AS TTB_0,
-                           cast(hp2.street0_FoldTo4BChance as <signed>integer)      AS FTB_opp_0,
-                           cast(hp2.street0_FoldTo4BDone as <signed>integer)        AS FTB_0,
+                           cast(hp2.street0_C4BChance as <signed>integer)           AS CFB_opp_0,
+                           cast(hp2.street0_C4BDone as <signed>integer)             AS CFB_0,
+                           cast(hp2.street0_FoldTo3BChance as <signed>integer)      AS F3B_opp_0,
+                           cast(hp2.street0_FoldTo3BDone as <signed>integer)        AS F3B_0,
+                           cast(hp2.street0_FoldTo4BChance as <signed>integer)      AS F4B_opp_0,
+                           cast(hp2.street0_FoldTo4BDone as <signed>integer)        AS F4B_0,
+                           cast(hp2.street0_SqueezeChance as <signed>integer)       AS SQZ_opp_0,
+                           cast(hp2.street0_SqueezeDone as <signed>integer)         AS SQZ_0,
+                           cast(hp2.success_Steal as <signed>integer)               AS SUC_ST,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_f,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_1,
                            cast(hp2.street2Seen as <signed>integer)                 AS saw_2,
@@ -1987,10 +2029,15 @@ class Sql:
                            cast(hp2.street0_3BDone as <signed>integer)              AS TB_0,
                            cast(hp2.street0_4BChance as <signed>integer)            AS FB_opp_0,
                            cast(hp2.street0_4BDone as <signed>integer)              AS FB_0,
-                           cast(hp2.street0_FoldTo3BChance as <signed>integer)      AS TB_opp_0,
-                           cast(hp2.street0_FoldTo3BDone as <signed>integer)        AS TB_0,
-                           cast(hp2.street0_FoldTo4BChance as <signed>integer)      AS FB_opp_0,
-                           cast(hp2.street0_FoldTo4BDone as <signed>integer)        AS FB_0,
+                           cast(hp2.street0_C4BChance as <signed>integer)           AS CFB_opp_0,
+                           cast(hp2.street0_C4BDone as <signed>integer)             AS CFB_0,
+                           cast(hp2.street0_FoldTo3BChance as <signed>integer)      AS F3B_opp_0,
+                           cast(hp2.street0_FoldTo3BDone as <signed>integer)        AS F3B_0,
+                           cast(hp2.street0_FoldTo4BChance as <signed>integer)      AS F4B_opp_0,
+                           cast(hp2.street0_FoldTo4BDone as <signed>integer)        AS F4B_0,
+                           cast(hp2.street0_SqueezeChance as <signed>integer)       AS SQZ_opp_0,
+                           cast(hp2.street0_SqueezeDone as <signed>integer)         AS SQZ_0,
+                           cast(hp2.success_Steal as <signed>integer)               AS SUC_ST,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_f,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_1,
                            cast(hp2.street2Seen as <signed>integer)                 AS saw_2,
@@ -2225,7 +2272,7 @@ class Sql:
                                       from Gametypes gt
                                       WHERE type = 'ring'
                                       order by type, limitType DESC, bb_or_buyin DESC"""
-# FIXME: fold to 3bet don't added
+        #FIXME: Some stats not added to DetailedStats
         if db_server == 'mysql':
             self.query['playerDetailedStats'] = """
                      select  <hgametypeId>                                                          AS hgametypeid
@@ -2244,6 +2291,16 @@ class Sql:
                             ,case when sum(cast(hp.street0_3Bchance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0_3Bdone as <signed>integer))/sum(cast(hp.street0_3Bchance as <signed>integer))
                              end                                                                    AS pf3
+                            ,case when sum(cast(hp.street0_4Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_4Bdone as <signed>integer))/sum(cast(hp.street0_4Bchance as <signed>integer))
+                             end                                                                    AS pf4
+                            ,case when sum(cast(hp.street0_FoldTo3Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_FoldTo3Bdone as <signed>integer))/sum(cast(hp.street0_FoldTo3Bchance as <signed>integer))
+                             end                                                                    AS pff3
+                            ,case when sum(cast(hp.street0_FoldTo4Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_FoldTo4Bdone as <signed>integer))/sum(cast(hp.street0_FoldTo4Bchance as <signed>integer))
+                             end                                                                    AS pff4
+
                             ,case when sum(cast(hp.raiseFirstInChance as <signed>integer)) = 0 then -999
                                   else 100.0 * sum(cast(hp.raisedFirstIn as <signed>integer)) / 
                                        sum(cast(hp.raiseFirstInChance as <signed>integer))
@@ -2271,6 +2328,18 @@ class Sql:
                                            end
                                           )
                              end                                                                    AS steals
+                            ,case when sum(cast(hp.success_Steal as <signed>integer)) = 0 then -999
+                                  else 100.0 * 
+                                       sum(cast(hp.success_Steal as <signed>integer))
+                                           / 
+                                       sum(case hp.position
+                                           when 'S' then cast(hp.raisedFirstIn as <signed>integer)
+                                           when '0' then cast(hp.raisedFirstIn as <signed>integer)
+                                           when '1' then cast(hp.raisedFirstIn as <signed>integer)
+                                           else 0
+                                           end
+                                          )
+                             end                                                                    AS suc_steal
                             ,100.0*sum(cast(hp.street1Seen as <signed>integer))/count(1)            AS saw_f
                             ,100.0*sum(cast(hp.sawShowdown as <signed>integer))/count(1)            AS sawsd
                             ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
@@ -2365,6 +2434,15 @@ class Sql:
                             ,case when sum(cast(hp.street0_3Bchance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0_3Bdone as <signed>integer))/sum(cast(hp.street0_3Bchance as <signed>integer))
                              end                                                                    AS pf3
+                            ,case when sum(cast(hp.street0_4Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_4Bdone as <signed>integer))/sum(cast(hp.street0_4Bchance as <signed>integer))
+                             end                                                                    AS pf4
+                            ,case when sum(cast(hp.street0_FoldTo3Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_FoldTo3Bdone as <signed>integer))/sum(cast(hp.street0_FoldTo3Bchance as <signed>integer))
+                             end                                                                    AS pff3
+                            ,case when sum(cast(hp.street0_FoldTo4Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_FoldTo4Bdone as <signed>integer))/sum(cast(hp.street0_FoldTo4Bchance as <signed>integer))
+                             end                                                                    AS pff4
                             ,case when sum(cast(hp.raiseFirstInChance as <signed>integer)) = 0 then -999
                                   else 100.0 * sum(cast(hp.raisedFirstIn as <signed>integer)) / 
                                        sum(cast(hp.raiseFirstInChance as <signed>integer))
@@ -2392,6 +2470,18 @@ class Sql:
                                            end
                                           )
                              end                                                                    AS steals
+                            ,case when sum(cast(hp.success_Steal as <signed>integer)) = 0 then -999
+                                  else 100.0 * 
+                                       sum(cast(hp.success_Steal as <signed>integer))
+                                           / 
+                                       sum(case hp.position
+                                           when 'S' then cast(hp.raisedFirstIn as <signed>integer)
+                                           when '0' then cast(hp.raisedFirstIn as <signed>integer)
+                                           when '1' then cast(hp.raisedFirstIn as <signed>integer)
+                                           else 0
+                                           end
+                                          )
+                             end                                                                    AS suc_steal
                             ,100.0*sum(cast(hp.street1Seen as <signed>integer))/count(1)            AS saw_f
                             ,100.0*sum(cast(hp.sawShowdown as <signed>integer))/count(1)            AS sawsd
                             ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
@@ -2487,6 +2577,15 @@ class Sql:
                             ,case when sum(cast(hp.street0_3Bchance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0_3Bdone as <signed>integer))/sum(cast(hp.street0_3Bchance as <signed>integer))
                              end                                                                    AS pf3
+                            ,case when sum(cast(hp.street0_4Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_4Bdone as <signed>integer))/sum(cast(hp.street0_4Bchance as <signed>integer))
+                             end                                                                    AS pf4
+                            ,case when sum(cast(hp.street0_FoldTo3Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_FoldTo3Bdone as <signed>integer))/sum(cast(hp.street0_FoldTo3Bchance as <signed>integer))
+                             end                                                                    AS pff3
+                            ,case when sum(cast(hp.street0_FoldTo4Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_FoldTo4Bdone as <signed>integer))/sum(cast(hp.street0_FoldTo4Bchance as <signed>integer))
+                             end                                                                    AS pff4
                             ,case when sum(cast(hp.raiseFirstInChance as <signed>integer)) = 0 then -999
                                   else 100.0 * sum(cast(hp.raisedFirstIn as <signed>integer)) / 
                                        sum(cast(hp.raiseFirstInChance as <signed>integer))
@@ -2514,6 +2613,18 @@ class Sql:
                                            end
                                           )
                              end                                                                    AS steals
+                            ,case when sum(cast(hp.success_Steal as <signed>integer)) = 0 then -999
+                                  else 100.0 * 
+                                       sum(cast(hp.success_Steal as <signed>integer))
+                                           / 
+                                       sum(case hp.position
+                                           when 'S' then cast(hp.raisedFirstIn as <signed>integer)
+                                           when '0' then cast(hp.raisedFirstIn as <signed>integer)
+                                           when '1' then cast(hp.raisedFirstIn as <signed>integer)
+                                           else 0
+                                           end
+                                          )
+                             end                                                                    AS suc_steal
                             ,100.0*sum(cast(hp.street1Seen as <signed>integer))/count(1)            AS saw_f
                             ,100.0*sum(cast(hp.sawShowdown as <signed>integer))/count(1)            AS sawsd
                             ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
@@ -2592,6 +2703,7 @@ class Sql:
                               ,s.name
                       """
 
+        #FIXME: 3/4bet and foldTo don't added four tournaments yet
         if db_server == 'mysql':
             self.query['tourneyPlayerDetailedStats'] = """
                       select s.name                                                                 AS siteName
@@ -2715,6 +2827,9 @@ class Sql:
                      ,stats.vpip
                      ,stats.pfr
                      ,stats.pf3
+                     ,stats.pf4
+                     ,stats.pff3
+                     ,stats.pff4
                      ,stats.steals
                      ,stats.saw_f
                      ,stats.sawsd
@@ -2745,6 +2860,15 @@ class Sql:
                            ,case when sum(street0_3Bchance) = 0 then '0'
                                  else format(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),1)
                             end                                                             AS pf3
+                           ,case when sum(street0_4Bchance) = 0 then '0'
+                                 else format(100.0*sum(street0_4Bdone)/sum(street0_4Bchance),1)
+                            end                                                             AS pf4
+                           ,case when sum(street0_FoldTo3Bchance) = 0 then '0'
+                                 else format(100.0*sum(street0_FoldTo3Bdone)/sum(street0_FoldTo3Bchance),1)
+                            end                                                             AS pff3
+                           ,case when sum(street0_FoldTo4Bchance) = 0 then '0'
+                                 else format(100.0*sum(street0_FoldTo4Bdone)/sum(street0_FoldTo4Bchance),1)
+                            end                                                             AS pff4
                            ,case when sum(raiseFirstInChance) = 0 then '-'
                                  else format(100.0*sum(raisedFirstIn)/sum(raiseFirstInChance),1)
                             end                                                             AS steals
@@ -2821,6 +2945,9 @@ class Sql:
                       ,stats.vpip
                       ,stats.pfr
                       ,stats.pf3
+                      ,stats.pf4
+                      ,stats.pff3
+                      ,stats.pff4
                       ,stats.steals
                       ,stats.saw_f
                       ,stats.sawsd
@@ -2935,6 +3062,9 @@ class Sql:
                      ,stats.vpip
                      ,stats.pfr
                      ,stats.pf3
+                     ,stats.pf4
+                     ,stats.pff3
+                     ,stats.pff4
                      ,stats.steals
                      ,stats.saw_f
                      ,stats.sawsd
@@ -2973,6 +3103,15 @@ class Sql:
                            ,case when sum(street0_3Bchance) = 0 then '0'
                                  else format(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),1)
                             end                                                             AS pf3
+                           ,case when sum(street0_4Bchance) = 0 then '0'
+                                 else format(100.0*sum(street0_4Bdone)/sum(street0_4Bchance),1)
+                            end                                                             AS pf4
+                           ,case when sum(street0_FoldTo3Bchance) = 0 then '0'
+                                 else format(100.0*sum(street0_FoldTo3Bdone)/sum(street0_FoldTo3Bchance),1)
+                            end                                                             AS pff3
+                           ,case when sum(street0_FoldTo4Bchance) = 0 then '0'
+                                 else format(100.0*sum(street0_FoldTo4Bdone)/sum(street0_FoldTo4Bchance),1)
+                            end                                                             AS pff4
                            ,case when sum(raiseFirstInChance) = 0 then '-'
                                  else format(100.0*sum(raisedFirstIn)/sum(raiseFirstInChance),1)
                             end                                                             AS steals
@@ -3071,6 +3210,9 @@ class Sql:
                       ,stats.vpip
                       ,stats.pfr
                       ,stats.pf3
+                      ,stats.pf4
+                      ,stats.pff3
+                      ,stats.pff4
                       ,stats.steals
                       ,stats.saw_f
                       ,stats.sawsd
@@ -3109,6 +3251,15 @@ class Sql:
                            ,case when sum(street0_3Bchance) = 0 then '0'
                                  else to_char(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),'90D0')
                             end                                                             AS pf3
+                           ,case when sum(street0_4Bchance) = 0 then '0'
+                                 else to_char(100.0*sum(street0_4Bdone)/sum(street0_4Bchance),'90D0')
+                            end                                                             AS pf4
+                           ,case when sum(street0_FoldTo3Bchance) = 0 then '0'
+                                 else to_char(100.0*sum(street0_FoldTo3Bdone)/sum(street0_FoldTo3Bchance),'90D0')
+                            end                                                             AS pff3
+                           ,case when sum(street0_FoldTo4Bchance) = 0 then '0'
+                                 else to_char(100.0*sum(street0_FoldTo4Bdone)/sum(street0_FoldTo4Bchance),'90D0')
+                            end                                                             AS pff4
                            ,case when sum(raiseFirstInChance) = 0 then '-'
                                  else to_char(100.0*sum(raisedFirstIn)/sum(raiseFirstInChance),'90D0')
                             end                                                             AS steals
@@ -3334,12 +3485,15 @@ class Sql:
                 ,street0_3BDone
                 ,street0_4BChance
                 ,street0_4BDone
+                ,street0_C4BChance
+                ,street0_C4BDone
                 ,street0_FoldTo3BChance
                 ,street0_FoldTo3BDone
                 ,street0_FoldTo4BChance
                 ,street0_FoldTo4BDone
-                ,other3BStreet0
-                ,other4BStreet0
+                ,street0_SqueezeChance
+                ,street0_SqueezeDone
+                ,success_Steal
                 ,street1Seen
                 ,street2Seen
                 ,street3Seen
@@ -3437,12 +3591,15 @@ class Sql:
                       ,sum(street0_3BDone)
                       ,sum(street0_4BChance)
                       ,sum(street0_4BDone)
+                      ,sum(street0_C4BChance)
+                      ,sum(street0_C4BDone)
                       ,sum(street0_FoldTo3BChance)
                       ,sum(street0_FoldTo3BDone)
                       ,sum(street0_FoldTo4BChance)
                       ,sum(street0_FoldTo4BDone)
-                      ,sum(other3BStreet0)
-                      ,sum(other4BStreet0)
+                      ,sum(street0_SqueezeChance)
+                      ,sum(street0_SqueezeDone)
+                      ,sum(success_Steal)
                       ,sum(street1Seen)
                       ,sum(street2Seen)
                       ,sum(street3Seen)
@@ -3540,12 +3697,15 @@ class Sql:
                 ,street0_3BDone
                 ,street0_4BChance
                 ,street0_4BDone
+                ,street0_C4BChance
+                ,street0_C4BDone
                 ,street0_FoldTo3BChance
                 ,street0_FoldTo3BDone
                 ,street0_FoldTo4BChance
                 ,street0_FoldTo4BDone
-                ,other3BStreet0
-                ,other4BStreet0      
+                ,street0_SqueezeChance
+                ,street0_SqueezeDone
+                ,success_Steal
                 ,street1Seen
                 ,street2Seen
                 ,street3Seen
@@ -3643,12 +3803,15 @@ class Sql:
                       ,sum(CAST(street0_3BDone as integer))
                       ,sum(CAST(street0_4BChance as integer))
                       ,sum(CAST(street0_4BDone as integer))
+                      ,sum(CAST(street0_C4BChance as integer))
+                      ,sum(CAST(street0_C4BDone as integer))
                       ,sum(CAST(street0_FoldTo3BChance as integer))
                       ,sum(CAST(street0_FoldTo3BDone as integer))
                       ,sum(CAST(street0_FoldTo4BChance as integer))
                       ,sum(CAST(street0_FoldTo4BDone as integer))
-                      ,sum(CAST(other3BStreet0 as integer))
-                      ,sum(CAST(other4BStreet0 as integer))
+                      ,sum(CAST(street0_SqueezeChance as integer))
+                      ,sum(CAST(street0_SqueezeDone as integer))
+                      ,sum(CAST(success_Steal as integer))
                       ,sum(CAST(street1Seen as integer))
                       ,sum(CAST(street2Seen as integer))
                       ,sum(CAST(street3Seen as integer))
@@ -3746,12 +3909,15 @@ class Sql:
                 ,street0_3BDone
                 ,street0_4BChance
                 ,street0_4BDone
+                ,street0_C4BChance
+                ,street0_C4BDone
                 ,street0_FoldTo3BChance
                 ,street0_FoldTo3BDone
                 ,street0_FoldTo4BChance
                 ,street0_FoldTo4BDone
-                ,other3BStreet0
-                ,other4BStreet0
+                ,street0_SqueezeChance
+                ,street0_SqueezeDone
+                ,success_Steal
                 ,street1Seen
                 ,street2Seen
                 ,street3Seen
@@ -3849,12 +4015,15 @@ class Sql:
                       ,sum(CAST(street0_3BDone as integer))
                       ,sum(CAST(street0_4BChance as integer))
                       ,sum(CAST(street0_4BDone as integer))
+                      ,sum(CAST(street0_C4BChance as integer))
+                      ,sum(CAST(street0_C4BDone as integer))
                       ,sum(CAST(street0_FoldTo3BChance as integer))
                       ,sum(CAST(street0_FoldTo3BDone as integer))
                       ,sum(CAST(street0_FoldTo4BChance as integer))
                       ,sum(CAST(street0_FoldTo4BDone as integer))
-                      ,sum(CAST(other3BStreet0 as integer))
-                      ,sum(CAST(other4BStreet0 as integer))
+                      ,sum(CAST(street0_SqueezeChance as integer))
+                      ,sum(CAST(street0_SqueezeDone as integer))
+                      ,sum(CAST(success_Steal as integer))
                       ,sum(CAST(street1Seen as integer))
                       ,sum(CAST(street2Seen as integer))
                       ,sum(CAST(street3Seen as integer))
@@ -3947,12 +4116,15 @@ class Sql:
                 street0_3BDone,
                 street0_4BChance,
                 street0_4BDone,
+                street0_C4BChance,
+                street0_C4BDone,
                 street0_FoldTo3BChance,
                 street0_FoldTo3BDone,
                 street0_FoldTo4BChance,
                 street0_FoldTo4BDone,
-                other3BStreet0,
-                other4BStreet0,
+                street0_SqueezeChance,
+                street0_SqueezeDone,
+                success_Steal,
                 street1Seen,
                 street2Seen,
                 street3Seen,
@@ -4040,7 +4212,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s)"""
+                    %s, %s, %s, %s, %s,
+                    %s, %s)"""
 
         self.query['update_hudcache'] = """
             UPDATE HudCache SET
@@ -4051,12 +4224,15 @@ class Sql:
             street0_3BDone=street0_3BDone+%s,
             street0_4BChance=street0_4BChance+%s,
             street0_4BDone=street0_4BDone+%s,
+            street0_C4BChance=street0_C4BChance+%s,
+            street0_C4BDone=street0_C4BDone+%s,
             street0_FoldTo3BChance=street0_FoldTo3BChance+%s,
             street0_FoldTo3BDone=street0_FoldTo3BDone+%s,
             street0_FoldTo4BChance=street0_FoldTo4BChance+%s,
             street0_FoldTo4BDone=street0_FoldTo4BDone+%s,
-            other3BStreet0=other3BStreet0+%s,
-            other4BStreet0=other4BStreet0+%s,
+            street0_SqueezeChance=street0_SqueezeChance+%s,
+            street0_SqueezeDone=street0_SqueezeDone+%s,
+            success_Steal=success_Steal+%s,
             street1Seen=street1Seen+%s,
             street2Seen=street2Seen+%s,
             street3Seen=street3Seen+%s,
@@ -4145,12 +4321,13 @@ class Sql:
         ####################################
             
         self.query['select_sessionscache'] = """
-            SELECT sessionStart,
+            SELECT id,
+                sessionStart,
                 sessionEnd,
                 ringHDs,
                 tourHDs,
-                totalProfit,
-                bigBets
+                ringProfitUSD,
+                ringProfitEUR
             FROM SessionsCache
         WHERE sessionEnd>=%s
         AND sessionStart<=%s"""
@@ -4160,8 +4337,8 @@ class Sql:
                 sessionEnd,
                 ringHDs,
                 tourHDs,
-                totalProfit,
-                bigBets
+                ringProfitUSD,
+                ringProfitEUR
             FROM SessionsCache
         WHERE sessionEnd>=%s
         AND sessionStart<=%s"""
@@ -4171,8 +4348,8 @@ class Sql:
                 sessionEnd,
                 ringHDs,
                 tourHDs,
-                totalProfit,
-                bigBets
+                ringProfitUSD,
+                ringProfitEUR
             FROM SessionsCache
         WHERE sessionStart>%s
         AND sessionEnd>=%s
@@ -4182,8 +4359,8 @@ class Sql:
             UPDATE SessionsCache SET
             ringHDs=ringHDs+%s,
             tourHDs=tourHDs+%s,
-            totalProfit=totalProfit+%s,
-            bigBets=bigBets+%s
+            ringProfitUSD=ringProfitUSD+%s,
+            ringProfitEUR=ringProfitEUR+%s
         WHERE sessionStart<=%s
         AND sessionEnd>=%s"""
 
@@ -4192,8 +4369,8 @@ class Sql:
             sessionStart=%s,
             ringHDs=ringHDs+%s,
             tourHDs=tourHDs+%s,
-            totalProfit=totalProfit+%s,
-            bigBets=bigBets+%s
+            ringProfitUSD=ringProfitUSD+%s,
+            ringProfitEUR=ringProfitEUR+%s
         WHERE sessionStart>%s
         AND sessionEnd>=%s
         AND sessionStart<=%s"""
@@ -4203,8 +4380,8 @@ class Sql:
             sessionEnd=%s,
             ringHDs=ringHDs+%s,
             tourHDs=tourHDs+%s,
-            totalProfit=totalProfit+%s,
-            bigBets=bigBets+%s
+            ringProfitUSD=ringProfitUSD+%s,
+            ringProfitEUR=ringProfitEUR+%s
         WHERE sessionEnd<%s
         AND sessionEnd>=%s
         AND sessionStart<=%s"""
@@ -4215,20 +4392,27 @@ class Sql:
                 sessionEnd,
                 ringHDs,
                 tourHDs,
-                totalProfit,
-                bigBets)
+                ringProfitUSD,
+                ringProfitEUR)
             VALUES (%s, %s, %s, %s, %s, %s)"""
         
         self.query['merge_sessionscache'] = """
-            SELECT min(sessionStart), max(sessionEnd), sum(ringHDs), sum(tourHDs), sum(totalProfit), sum(bigBets)
+            SELECT min(sessionStart), max(sessionEnd), sum(ringHDs), sum(tourHDs), sum(ringProfitUSD), sum(ringProfitEUR)
             FROM SessionsCache
-        WHERE sessionEnd>=%s
-        AND sessionStart<=%s"""
+        WHERE (case when id=%s or id=%s then 1 else 0 end)=1"""
         
         self.query['delete_sessions'] = """
             DELETE FROM SessionsCache
-        WHERE sessionEnd>=%s
-        AND sessionStart<=%s"""
+        WHERE id=%s"""
+        
+        self.query['update_hands_sessionid'] = """
+            UPDATE Hands SET
+            sessionId=%s
+        WHERE (case when sessionId=%s or sessionId=%s then 1 else 0 end)=1"""
+        
+        ####################################
+        # Database management queries
+        ####################################
 
         if db_server == 'mysql':
             self.query['analyze'] = """
@@ -4342,6 +4526,13 @@ class Sql:
                                         WHERE s.name=%s AND t.siteTourneyNo=%s
         """
 
+        self.query['getSiteTourneyNos'] = """SELECT t.siteTourneyNo
+                                        FROM Tourneys t
+                                        INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
+                                        INNER JOIN Sites s ON (tt.siteId = s.id)
+                                        WHERE tt.siteId=%s
+        """
+
         self.query['getTourneyPlayerInfo'] = """SELECT tp.*
                                         FROM Tourneys t
                                         INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
@@ -4411,11 +4602,12 @@ class Sql:
         self.query['handsPlayersTTypeId_joiner'] = " OR TourneysPlayersId+0="
         self.query['handsPlayersTTypeId_joiner_id'] = " OR id="
 
-        self.query['store_hand'] = """INSERT INTO Hands (
+        self.query['store_hand'] = """insert into Hands (
                                             tablename,
-                                            gametypeid,
                                             sitehandno,
                                             tourneyId,
+                                            gametypeid,
+                                            sessionId,
                                             startTime,
                                             importtime,
                                             seats,
@@ -4443,13 +4635,13 @@ class Sql:
                                             street4Pot,
                                             showdownPot
                                              )
-                                             VALUES
-                                              (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                             values
+                                              (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                               %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
 
-        self.query['store_hands_players'] = """INSERT INTO HandsPlayers (
+        self.query['store_hands_players'] = """insert into HandsPlayers (
                 handId,
                 playerId,
                 startCash,
@@ -4506,12 +4698,15 @@ class Sql:
                 street0_3BDone,
                 street0_4BChance,
                 street0_4BDone,
+                street0_C4BChance,
+                street0_C4BDone,
                 street0_FoldTo3BChance,
                 street0_FoldTo3BDone,
                 street0_FoldTo4BChance,
                 street0_FoldTo4BDone,
-                other3BStreet0,
-                other4BStreet0,
+                street0_SqueezeChance,
+                street0_SqueezeDone,
+                success_Steal,
                 otherRaisedStreet0,
                 otherRaisedStreet1,
                 otherRaisedStreet2,
@@ -4550,7 +4745,7 @@ class Sql:
                 street3Raises,
                 street4Raises
                )
-               VALUES (
+               values (
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
@@ -4570,11 +4765,13 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s
+                    %s, %s, %s, %s, %s,
+                    %s, %s
                 )"""
 
-        self.query['store_hands_actions'] = """INSERT INTO HandsActions (
-                        handsPlayerId,
+        self.query['store_hands_actions'] = """insert into HandsActions (
+                        handId,
+                        playerId,
                         street,
                         actionNo,
                         streetActionNo,
@@ -4586,10 +4783,10 @@ class Sql:
                         cardsDiscarded,
                         allIn
                )
-               VALUES (
+               values (
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s
+                    %s, %s
                 )"""
         
         ################################

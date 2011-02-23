@@ -57,6 +57,7 @@ class Hand(object):
         #log.debug( _("Hand.init(): handText is ") + str(handText) )
         self.config = config
         self.saveActions = self.config.get_import_parameters().get('saveActions')
+        self.cacheSessions = self.config.get_import_parameters().get("cacheSessions")
         #log = Configuration.get_logger("logging.conf", "db", log_dir=self.config.dir_log)
         self.sitename = sitename
         self.siteId = self.config.get_site_id(sitename)
@@ -258,7 +259,7 @@ dealt   whether they were seen in a 'dealt to' line
             db.commit()
     #end def prepInsert
 
-    def insert(self, db, printtest = False):
+    def insert(self, db, hp_data = None, ha_data = None, insert_data=False, printtest = False):
         """ Function to insert Hand into database
 Should not commit, and do minimal selects. Callers may want to cache commits
 db: a connected Database object"""
@@ -276,17 +277,26 @@ db: a connected Database object"""
             hh['gametypeId'] = self.dbid_gt
             # seats TINYINT NOT NULL,
             hh['seats'] = len(self.dbid_pids)
+            
+            hp = self.stats.getHandsPlayers()
+            
+            if self.cacheSessions:
+                hh['sessionId'] = db.storeSessionsCache(self.dbid_pids, self.startTime, self.gametype, hp)            
 
             self.dbid_hands = db.storeHand(hh, printdata = printtest)
-            self.dbid_hpid = db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, 
-                                                  self.stats.getHandsPlayers(), printdata = printtest)
+            
+            hp_inserts = db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, hp,
+                                               insert=insert_data, hp_bulk = hp_data, printdata = printtest)
+            
             if self.saveActions:
-                db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.dbid_hpid,
-                                     self.stats.getHandsActions(), printdata = printtest)
+                ha_inserts = db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.stats.getHandsActions(),
+                                                   insert=insert_data, ha_bulk = ha_data, printdata = printtest)
         else:
             log.info(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
             self.is_duplicate = True  # i.e. don't update hudcache
             raise FpdbHandDuplicate(hh['siteHandNo'])
+        
+        return hp_inserts, ha_inserts
 
     def updateHudCache(self, db):
         db.storeHudCache(self.dbid_gt, self.dbid_pids, self.startTime, self.stats.getHandsPlayers())
@@ -1140,7 +1150,7 @@ class DrawHand(Hand):
             hhc.markStreets(self)
             # markStreets in Draw may match without dealing cards
             if self.streets['DEAL'] == None:
-                raise FpdbParseError(_("DrawHand.__init__: street 'DEAL' is empty. Hand cancelled? '%s'" % self.handid))
+                raise FpdbParseError(_("DrawHand.__init__: street 'DEAL' is empty. Hand cancelled? HandID: '%s'" % self.handid))
             hhc.readBlinds(self)
             hhc.readAntes(self)
             hhc.readButton(self)

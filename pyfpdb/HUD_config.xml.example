@@ -24,6 +24,9 @@
         <col col_name="vpip"       disp_all="True"  disp_posn="True"  col_title="VPIP"     xalignment="1.0" field_format="%3.1f" field_type="str" />
         <col col_name="pfr"        disp_all="True"  disp_posn="True"  col_title="PFR"      xalignment="1.0" field_format="%3.1f" field_type="str" />
         <col col_name="pf3"        disp_all="True"  disp_posn="True"  col_title="PF3"      xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="pf4"        disp_all="True"  disp_posn="True"  col_title="PF4"      xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="pff3"       disp_all="True"  disp_posn="True"  col_title="PFF3"     xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="pff4"       disp_all="True"  disp_posn="True"  col_title="PFF4"     xalignment="1.0" field_format="%3.1f" field_type="str" />
         <col col_name="aggfac"     disp_all="True"  disp_posn="True"  col_title="AggFac"   xalignment="1.0" field_format="%2.2f" field_type="str" />
         <col col_name="aggfrq"     disp_all="True"  disp_posn="True"  col_title="AggFreq"  xalignment="1.0" field_format="%3.1f" field_type="str" />
         <col col_name="conbet"     disp_all="True"  disp_posn="True"  col_title="ContBet"  xalignment="1.0" field_format="%3.1f" field_type="str" />
@@ -525,6 +528,18 @@ Left-Drag to Move"
                 <location seat="8" x="0" y="181">  </location>
                 <location seat="9" x="70" y="53">  </location>
             </layout>
+            <layout max="10" width="792" height="546" fav_seat="0">
+                <location seat="1" x="684" y="61">  </location>
+                <location seat="2" x="689" y="239"> </location>
+                <location seat="3" x="692" y="346"> </location>
+                <location seat="4" x="586" y="393"> </location>
+                <location seat="5" x="421" y="440"> </location>
+                <location seat="6" x="267" y="440"> </location>
+                <location seat="7" x="0"   y="361"> </location>
+                <location seat="8" x="0"   y="280">  </location>
+                <location seat="9" x="121" y="280">  </location>
+                <location seat="10" x="46"  y="30">  </location>
+            </layout>
         </site>
 
         <site HH_path="C:/Program Files/PKR/HandHistory/YOUR SCREEN NAME HERE/" converter="PkrToFpdb" decoder="everleaf_decode_table" enabled="False" screen_name="YOUR SCREEN NAME HERE" site_name="PKR" site_path="C:/Program Files/PKR/" supported_games="holdem" table_finder="PKR.exe">
@@ -564,6 +579,42 @@ Left-Drag to Move"
         </site>
 
         <site HH_path="C:/Program Files/Winamax/HandHistory/YOUR SCREEN NAME HERE/" converter="WinamaxToFpdb" decoder="everleaf_decode_table" enabled="False" screen_name="YOUR SCREEN NAME HERE" site_name="Winamax" site_path="C:/Program Files/Winamax/" supported_games="holdem" table_finder="Winamax.exe">
+            <layout fav_seat="0" height="547" max="8" width="794">
+                <location seat="1" x="640" y="64">  </location>
+                <location seat="2" x="650" y="230"> </location>
+                <location seat="3" x="650" y="385"> </location>
+                <location seat="4" x="588" y="425"> </location>
+                <location seat="5" x="92" y="425"> </location>
+                <location seat="6" x="0" y="373"> </location>
+                <location seat="7" x="0" y="223"> </location>
+                <location seat="8" x="25" y="50">  </location>
+            </layout>
+            <layout fav_seat="0" height="547" max="6" width="794">
+                <location seat="1" x="640" y="58"> </location>
+                <location seat="2" x="654" y="288"> </location>
+                <location seat="3" x="615" y="424"> </location>
+                <location seat="4" x="70" y="421"> </location>
+                <location seat="5" x="0" y="280"> </location>
+                <location seat="6" x="70" y="58"> </location>
+            </layout>
+            <layout fav_seat="0" height="547" max="2" width="794">
+                <location seat="1" x="651" y="288"> </location>
+                <location seat="2" x="10" y="288"> </location>
+            </layout>
+            <layout fav_seat="0" height="547" max="9" width="794">
+                <location seat="1" x="634" y="38">  </location>
+                <location seat="2" x="667" y="184"> </location>
+                <location seat="3" x="667" y="321"> </location>
+                <location seat="4" x="667" y="445"> </location>
+                <location seat="5" x="337" y="459"> </location>
+                <location seat="6" x="0" y="400"> </location>
+                <location seat="7" x="0" y="322"> </location>
+                <location seat="8" x="0" y="181">  </location>
+                <location seat="9" x="70" y="53">  </location>
+            </layout>
+        </site>
+
+        <site HH_path="C:/Program Files/Everest/HandHistory/YOUR SCREEN NAME HERE/" converter="EverestToFpdb" decoder="everleaf_decode_table" enabled="False" screen_name="YOUR SCREEN NAME HERE" site_name="Everest" site_path="C:/Program Files/Everest/" supported_games="holdem" table_finder="Everest.exe">
             <layout fav_seat="0" height="547" max="8" width="794">
                 <location seat="1" x="640" y="64">  </location>
                 <location seat="2" x="650" y="230"> </location>
@@ -707,8 +758,14 @@ Left-Drag to Move"
             <pu_stat pu_stat_name="n"> </pu_stat>
             <pu_stat pu_stat_name="vpip"> </pu_stat>
             <pu_stat pu_stat_name="pfr"> </pu_stat>
-            <pu_stat pu_stat_name="three_B_0"> </pu_stat>
+            <pu_stat pu_stat_name="three_B"> </pu_stat>
+            <pu_stat pu_stat_name="four_B"> </pu_stat>
+            <pu_stat pu_stat_name="cfour_B"> </pu_stat>
+            <pu_stat pu_stat_name="squeeze"> </pu_stat>
+            <pu_stat pu_stat_name="f_3bet"> </pu_stat>
+            <pu_stat pu_stat_name="f_4bet"> </pu_stat>
             <pu_stat pu_stat_name="steal"> </pu_stat>
+            <pu_stat pu_stat_name="s_steal"> </pu_stat>
             <pu_stat pu_stat_name="f_steal"> </pu_stat>
             <pu_stat pu_stat_name="f_BB_steal"> </pu_stat>
             <pu_stat pu_stat_name="f_SB_steal"> </pu_stat>
@@ -789,6 +846,7 @@ Left-Drag to Move"
         <hhc site="PKR" converter="PkrToFpdb"/>
         <hhc site="iPoker" converter="iPokerToFpdb"/>
         <hhc site="Winamax" converter="WinamaxToFpdb"/>
+        <hhc site="Everest" converter="EverestToFpdb"/>
     </hhcs>
 
     <raw_hands save="none" compression="none"/>
@@ -796,12 +854,6 @@ Left-Drag to Move"
     <raw_tourneys save="none" compression="none"/>
 
     <supported_databases>
-        <!-- If you have multiple versions of database engine, or you
-             have the database listening on non-standard port, you can
-             add the option: db_port="PORTNUMBER"
-             NOTE: This only applies to users of MySQL and PostgreSQL,
-             sqlite users can happily ignore.
-        -->
         <!-- <database db_name="fpdb" db_server="mysql" db_ip="localhost" db_user="fpdb" db_pass="YOUR MYSQL PASSWORD"></database> -->
         <database db_ip="localhost" db_server="sqlite" db_name="fpdb.db3" db_user="fpdb" db_pass="fpdb"/>
     </supported_databases>

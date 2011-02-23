@@ -66,8 +66,18 @@ class Filters(threading.Thread):
         if 'day_start' in gen:
             self.day_start = float(gen['day_start'])
 
+
+        self.sw = gtk.ScrolledWindow()
+        self.sw.set_border_width(0)
+        self.sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.sw.set_size_request(370, 300)
+
+
         # Outer Packing box
         self.mainVBox = gtk.VBox(False, 0)
+        self.sw.add_with_viewport(self.mainVBox)
+        self.sw.show()
+        print "DEBUG: New packing box created!"
 
         self.found = {'nl':False, 'fl':False, 'pl':False, 'ring':False, 'tour':False}
         self.label = {}
@@ -245,7 +255,7 @@ class Filters(threading.Thread):
 
     def get_vbox(self):
         """returns the vbox of this thread"""
-        return self.mainVBox
+        return self.sw
     #end def get_vbox
 
     def getNumHands(self):
@@ -814,7 +824,7 @@ class Filters(threading.Thread):
     def fillGraphOpsFrame(self, vbox):
         top_hbox = gtk.HBox(False, 0)
         vbox.pack_start(top_hbox, False, False, 0)
-        title = gtk.Label("Graphing Options:")
+        title = gtk.Label(_("Graphing Options:"))
         title.set_alignment(xalign=0.0, yalign=0.5)
         top_hbox.pack_start(title, expand=True, padding=3)
         showb = gtk.Button(label="hide", stock=None, use_underline=True)
@@ -826,7 +836,7 @@ class Filters(threading.Thread):
         vbox.pack_start(hbox1, False, False, 0)
         hbox1.show()
 
-        label = gtk.Label("Show Graph In:")
+        label = gtk.Label(_("Show Graph In:"))
         label.set_alignment(xalign=0.0, yalign=0.5)
         hbox1.pack_start(label, True, True, 0)
         label.show()
@@ -846,7 +856,7 @@ class Filters(threading.Thread):
         vbox.pack_start(vbox1, False, False, 0)
         vbox1.show()
 
-        button = gtk.CheckButton("Showdown Winnings", False)
+        button = gtk.CheckButton(_("Showdown Winnings"), False)
         vbox1.pack_start(button, True, True, 0)
         # wouldn't it be awesome if there was a way to remember the state of things like
         # this and be able to set it to what it was last time?
@@ -854,7 +864,7 @@ class Filters(threading.Thread):
         button.connect("toggled", self.__set_graphopscheck_select, "showdown")
         button.show()
 
-        button = gtk.CheckButton("Non-Showdown Winnings", False)
+        button = gtk.CheckButton(_("Non-Showdown Winnings"), False)
         vbox1.pack_start(button, True, True, 0)
         # ditto as 8 lines up :)
         #button.set_active(True)

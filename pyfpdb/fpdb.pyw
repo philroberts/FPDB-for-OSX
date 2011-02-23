@@ -119,7 +119,7 @@ import GuiReplayer
 try:
     import GuiStove
 except:
-    print "GuiStove disabled"
+    print _("GuiStove not found. If you want to use it please install pypoker-eval.")
 import SQL
 import Database
 import Configuration
@@ -259,8 +259,7 @@ class fpdb:
                , ('PyGTK',            '.'.join([str(x) for x in gtk.pygtk_version]))
                , ('matplotlib',       matplotlib_version)
                , ('numpy',            numpy_version)
-               , ('sqlite3',          sqlite3_version)
-               , ('sqlite',           sqlite_version)
+               , ('sqlite',          sqlite_version)
                , ('fpdb version',     VERSION)
                , ('database used',    self.settings['db-server'])
                ]

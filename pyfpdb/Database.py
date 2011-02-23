@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 148
+DB_VERSION = 149
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -125,7 +125,8 @@ class Database:
                   {'tab':'Gametypes',       'col':'siteId',            'drop':0}
                 , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
                 #, {'tab':'Hands',           'col':'siteHandNo',        'drop':0}  unique indexes not dropped
-                , {'tab':'HandsActions',    'col':'handsPlayerId',     'drop':0}
+                , {'tab':'HandsActions',    'col':'handId',            'drop':1}
+                , {'tab':'HandsActions',    'col':'playerId',          'drop':1}
                 , {'tab':'HandsActions',    'col':'actionId',          'drop':1}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':1}
@@ -150,7 +151,8 @@ class Database:
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
-                , {'tab':'HandsActions',    'col':'handsPlayerId',     'drop':0}
+                , {'tab':'HandsActions',    'col':'handId',            'drop':0}
+                , {'tab':'HandsActions',    'col':'playerId',          'drop':0}
                 , {'tab':'HandsActions',    'col':'actionId',          'drop':1}
                 , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
@@ -174,7 +176,8 @@ class Database:
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
-                    , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
@@ -184,7 +187,8 @@ class Database:
                       {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
@@ -254,7 +258,6 @@ class Database:
         self.db_server = db_params['db-server']
         self.database = db_params['db-databaseName']
         self.host = db_params['db-host']
-        self.db_port = db_params['db-port']
         self.db_path = ''
         gen = c.get_general_params()
         self.day_start = 0
@@ -350,7 +353,6 @@ class Database:
         try:
             self.connect(backend=db['db-backend'],
                          host=db['db-host'],
-                         port=db['db-port'],
                          database=db['db-databaseName'],
                          user=db['db-user'],
                          password=db['db-password'])
@@ -365,17 +367,14 @@ class Database:
         self.db_server = db_params['db-server']
         self.database = db_params['db-databaseName']
         self.host = db_params['db-host']
-        self.db_port = db_params['db-port']
 
-    def connect(self, backend=None, host=None, port=None,
-                database=None, user=None, password=None,
-                create=False):
+    def connect(self, backend=None, host=None, database=None,
+                user=None, password=None, create=False):
         """Connects a database with the given parameters"""
         if backend is None:
             raise FpdbError('Database backend not defined')
         self.backend = backend
         self.host = host
-        self.port = port
         self.user = user
         self.password = password
         self.database = database
@@ -387,8 +386,7 @@ class Database:
             if use_pool:
                 MySQLdb = pool.manage(MySQLdb, pool_size=5)
             try:
-                self.connection = MySQLdb.connect(host=host, port=port, user=user,
-                        passwd=password, db=database, use_unicode=True)
+                self.connection = MySQLdb.connect(host=host, user=user, passwd=password, db=database, use_unicode=True)
                 self.__connected = True
             #TODO: Add port option
             except MySQLdb.Error, ex:
@@ -422,7 +420,6 @@ class Database:
             if not self.is_connected():
                 try:
                     self.connection = psycopg2.connect(host = host,
-                                               port = port,
                                                user = user,
                                                password = password,
                                                database = database)
@@ -640,6 +637,18 @@ class Database:
         c.execute(self.sql.query['getTourneyTypeCount'])
         return c.fetchone()[0]
     #end def getTourneyCount
+
+    def getSiteTourneyNos(self, site):
+        c = self.connection.cursor()
+        # FIXME: Take site and actually fetch siteId from that
+        # Fixed to Winamax atm
+        q = self.sql.query['getSiteTourneyNos']
+        q = q.replace('%s', self.sql.query['placeholder'])
+        c.execute(q, (14,))
+        alist = []
+        for row in c.fetchall():
+            alist.append(row)
+        return alist
 
     def get_actual_seat(self, hand_id, name):
         c = self.connection.cursor()
@@ -1722,10 +1731,11 @@ class Database:
 
         c.execute(q, (
                 p['tableName'],
-                p['gametypeId'],
                 p['siteHandNo'],
                 p['tourneyId'],
-                p['startTime'],
+                p['gametypeId'],
+                p['sessionId'],                
+                p['startTime'],                
                 datetime.utcnow(), #importtime
                 p['seats'],
                 p['maxSeats'],
@@ -1755,7 +1765,7 @@ class Database:
         return self.get_last_insert_id(c)
     # def storeHand
 
-    def storeHandsPlayers(self, hid, pids, pdata, printdata = False):
+    def storeHandsPlayers(self, hid, pids, pdata, hp_bulk = None, insert = False, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
         if printdata:
             import pprint
@@ -1763,7 +1773,6 @@ class Database:
             pp.pprint(pdata)
 
         inserts = []
-        hpid = {}
         for p in pdata:
             inserts.append( (hid,
                              pids[p],
@@ -1821,12 +1830,15 @@ class Database:
                              pdata[p]['street0_3BDone'],
                              pdata[p]['street0_4BChance'],
                              pdata[p]['street0_4BDone'],
+                             pdata[p]['street0_C4BChance'],
+                             pdata[p]['street0_C4BDone'],
                              pdata[p]['street0_FoldTo3BChance'],
                              pdata[p]['street0_FoldTo3BDone'],
                              pdata[p]['street0_FoldTo4BChance'],
                              pdata[p]['street0_FoldTo4BDone'],
-                             pdata[p]['other3BStreet0'],
-                             pdata[p]['other4BStreet0'],
+                             pdata[p]['street0_SqueezeChance'],
+                             pdata[p]['street0_SqueezeDone'],
+                             pdata[p]['success_Steal'],
                              pdata[p]['otherRaisedStreet0'],
                              pdata[p]['otherRaisedStreet1'],
                              pdata[p]['otherRaisedStreet2'],
@@ -1866,23 +1878,16 @@ class Database:
                              pdata[p]['street4Raises']
                             ) )
 
-        q = self.sql.query['store_hands_players']
-        q = q.replace('%s', self.sql.query['placeholder'])
+        if insert:
+            hp_bulk += inserts
+            q = self.sql.query['store_hands_players']
+            q = q.replace('%s', self.sql.query['placeholder'])
+            c = self.get_cursor()
+            c.executemany(q, hp_bulk)
+            
+        return inserts
 
-        #print "DEBUG: inserts: %s" %inserts
-        #print "DEBUG: q: %s" % q
-        c = self.get_cursor()
-
-        if self.import_options['saveActions']:
-            for r in inserts:
-                c.execute(q, r)
-                hpid[(r[0], r[1])] = self.get_last_insert_id(c)
-        else:
-            c.executemany(q, inserts)
-
-        return hpid
-
-    def storeHandsActions(self, hid, pids, hpid, adata, printdata = False):
+    def storeHandsActions(self, hid, pids, adata, ha_bulk = None, insert = False, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, adata)
 
         # This can be used to generate test data. Currently unused
@@ -1893,8 +1898,8 @@ class Database:
 
         inserts = []
         for a in adata:
-            inserts.append( (hpid[(hid, pids[adata[a]['player']])],
-                            #self.getHandsPlayerId(self.hid, pids[adata[a]['player']]),
+            inserts.append( (hid,
+                             pids[adata[a]['player']],
                              adata[a]['street'],
                              adata[a]['actionNo'],
                              adata[a]['streetActionNo'],
@@ -1907,11 +1912,14 @@ class Database:
                              adata[a]['allIn']
                             ) )
 
-        q = self.sql.query['store_hands_actions']
-        q = q.replace('%s', self.sql.query['placeholder'])
+        if insert:
+            ha_bulk += inserts
+            q = self.sql.query['store_hands_actions']
+            q = q.replace('%s', self.sql.query['placeholder'])
+            c = self.get_cursor()
+            c.executemany(q, ha_bulk)
 
-        c = self.get_cursor()
-        c.executemany(q, inserts)
+        return inserts
 
     def storeHudCache(self, gid, pids, starttime, pdata):
         """Update cached statistics. If update fails because no record exists, do an insert."""
@@ -1948,12 +1956,15 @@ class Database:
             line.append(pdata[p]['street0_3BDone'])              
             line.append(pdata[p]['street0_4BChance'])            
             line.append(pdata[p]['street0_4BDone'])              
+            line.append(pdata[p]['street0_C4BChance'])              
+            line.append(pdata[p]['street0_C4BDone'])              
             line.append(pdata[p]['street0_FoldTo3BChance'])      
             line.append(pdata[p]['street0_FoldTo3BDone'])        
             line.append(pdata[p]['street0_FoldTo4BChance'])      
             line.append(pdata[p]['street0_FoldTo4BDone'])        
-            line.append(pdata[p]['other3BStreet0'])              
-            line.append(pdata[p]['other4BStreet0'])              
+            line.append(pdata[p]['street0_SqueezeChance'])        
+            line.append(pdata[p]['street0_SqueezeDone'])        
+            line.append(pdata[p]['success_Steal'])        
             line.append(pdata[p]['street1Seen'])                 
             line.append(pdata[p]['street2Seen'])                 
             line.append(pdata[p]['street3Seen'])                 
@@ -2057,10 +2068,9 @@ class Database:
                 pass
             
     def storeSessionsCache(self, pids, startTime, game, pdata):
-        """Update cached sessions. If update fails because no record exists, do an insert"""
+        """Update cached sessions. If no record exists, do an insert"""
         
         THRESHOLD = timedelta(seconds=int(self.sessionTimeout * 60))
-        bigBet = int(Decimal(game['bb'])*200)
         
         select_sessionscache = self.sql.query['select_sessionscache']
         select_sessionscache = select_sessionscache.replace('%s', self.sql.query['placeholder'])
@@ -2082,6 +2092,9 @@ class Database:
         merge_sessionscache = merge_sessionscache.replace('%s', self.sql.query['placeholder'])
         delete_sessions = self.sql.query['delete_sessions']
         delete_sessions = delete_sessions.replace('%s', self.sql.query['placeholder'])
+        
+        update_hands_sessionid = self.sql.query['update_hands_sessionid']
+        update_hands_sessionid = update_hands_sessionid.replace('%s', self.sql.query['placeholder'])
         
         #Grab playerIds using hero names in HUD_Config.xml
         try:
@@ -2112,29 +2125,32 @@ class Database:
     
                 if (game['type']=='ring'): line[0] = 1 # count ring hands
                 if (game['type']=='tour'): line[1] = 1 # count tour hands
-                if (game['type']=='ring'): line[2] = pdata[p]['totalProfit'] #sum of profit
-                if (game['type']=='ring'): line[3] = 0 #float(Decimal(pdata[p]['totalProfit'])/Decimal(bigBet)) #sum of big bets won
+                if (game['type']=='ring' and game['currency']=='USD'): line[2] = pdata[p]['totalProfit'] #sum of ring profit in USD
+                if (game['type']=='ring' and game['currency']=='EUR'): line[3] = pdata[p]['totalProfit'] #sum of ring profit in EUR
                 line[4] = startTime
                 inserts.append(line)
 
         cursor = self.get_cursor()
+        id = None
 
         for row in inserts:
             threshold = []
             threshold.append(row[-1]-THRESHOLD)
             threshold.append(row[-1]+THRESHOLD)
             cursor.execute(select_sessionscache, threshold)
-            num = cursor.rowcount
+            session_records = cursor.fetchall()
+            num = len(session_records)
             if (num == 1):
+                id = session_records[0][0] #grab the sessionId
                 # Try to do the update first:
                 #print "DEBUG: found 1 record to update"
                 update_mid = row + row[-1:]
                 cursor.execute(select_sessionscache_mid, update_mid[-2:])
-                mid = cursor.rowcount
+                mid = len(cursor.fetchall())
                 if (mid == 0):
                     update_startend = row[-1:] + row + threshold
                     cursor.execute(select_sessionscache_start, update_startend[-3:])
-                    start = cursor.rowcount
+                    start = len(cursor.fetchall())
                     if (start == 0):
                         #print "DEBUG:", start, " start record found. Update stats and start time"
                         cursor.execute(update_sessionscache_end, update_startend)                 
@@ -2145,37 +2161,36 @@ class Database:
                     #print "DEBUG: update stats mid-session"
                     cursor.execute(update_sessionscache_mid, update_mid)
             elif (num > 1):
+                session_ids = [session_records[0][0], session_records[1][0]]
+                session_ids.sort()
                 # Multiple matches found - merge them into one session and update:
-                #print "DEBUG:", num, "matches found"
-                cursor.execute(merge_sessionscache, threshold)
+                # - Obtain the session start and end times for the new combined session
+                cursor.execute(merge_sessionscache, session_ids)
                 merge = cursor.fetchone()
-                cursor.execute(delete_sessions, threshold)
+                # - Delete the old records
+                for id in session_ids:
+                    cursor.execute(delete_sessions, id)
+                # - Insert the new updated record
                 cursor.execute(insert_sessionscache, merge)
+                # - Obtain the new sessionId and write over the old ids in Hands
+                id = self.get_last_insert_id(cursor) #grab the sessionId
+                update_hands = [id] + session_ids
+                cursor.execute(update_hands_sessionid, update_hands)
+                # - Update the newly combined record in SessionsCache with data from this hand
                 update_mid = row + row[-1:]
-                cursor.execute(select_sessionscache_mid, update_mid[-2:])
-                mid = cursor.rowcount
-                if (mid == 0):
-                    update_startend = row[-1:] + row + threshold
-                    cursor.execute(select_sessionscache_start, update_startend[-3:])
-                    start = cursor.rowcount
-                    if (start == 0):
-                        #print "DEBUG:", start, " start record found. Update stats and start time"
-                        cursor.execute(update_sessionscache_end, update_startend)                 
-                    else:
-                        #print "DEBUG: 1 end record found. Update stats and end time time"
-                        cursor.execute(update_sessionscache_start, update_startend) 
-                else:
-                    #print "DEBUG: update stats mid-session"
-                    cursor.execute(update_sessionscache_mid, update_mid)
+                cursor.execute(update_sessionscache_mid, update_mid)
             elif (num == 0):
                 # No matches found, insert new session:
                 insert = row + row[-1:]
                 insert = insert[-2:] + insert[:-2]
                 #print "DEBUG: No matches found. Insert record", insert
                 cursor.execute(insert_sessionscache, insert)
+                id = self.get_last_insert_id(cursor) #grab the sessionId
             else:
                 # Something bad happened
-                pass    
+                pass
+        
+        return id 
 
     def isDuplicate(self, gametypeID, siteHandNo):
         dup = False

@@ -122,6 +122,10 @@ class GuiAutoImport (threading.Thread):
         self.startButton.connect("clicked", self.startClicked, "start clicked")
         hbox.pack_start(self.startButton, expand=False, fill=False)
 
+        self.DetectButton = gtk.Button(_("Detect Directories"))
+        self.DetectButton.connect("clicked", self.detect_hh_dirs, "detect")
+        #hbox.pack_start(self.DetectButton, expand=False, fill=False)
+
 
         lbl2 = gtk.Label()
         hbox.pack_start(lbl2, expand=True, fill=False)
@@ -190,6 +194,31 @@ class GuiAutoImport (threading.Thread):
 
         return False
 
+    def detect_hh_dirs(self, widget, data):
+        """Attempt to find user hand history directories for enabled sites"""
+        the_sites = self.config.get_supported_sites()
+        for site in the_sites:
+            params = self.config.get_site_parameters(site)
+            if params['enabled'] == True:
+                print "DEBUG: Detecting hh directory for site: '%s'" % site
+                if os.name == 'posix':
+                    if self.posix_detect_hh_dirs(site):
+                        #data[1].set_text(dia_chooser.get_filename())
+                        self.input_settings[site][0]
+                        pass
+                elif os.name == 'nt':
+                    # Sorry
+                    pass
+
+    def posix_detect_hh_dirs(self, site):
+        defaults = {
+                    'PokerStars': '~/.wine/drive_c/Program Files/PokerStars/HandHistory',
+                   }
+        if site == 'PokerStars':
+            directory = os.path.expanduser(defaults[site])
+            for file in [file for file in os.listdir(directory) if not file in [".",".."]]:
+                print file
+        return False
 
     def startClicked(self, widget, data):
         """runs when user clicks start on auto import tab"""

@@ -81,9 +81,9 @@ class GuiTourneyGraphViewer (threading.Thread):
                           }
 
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
-        self.filters.registerButton1Name(_("Refresh _Graph"))
+        self.filters.registerButton1Name(_("Refresh"))
         self.filters.registerButton1Callback(self.generateGraph)
-        self.filters.registerButton2Name(_("_Export to File"))
+        self.filters.registerButton2Name(_("Export to File"))
         self.filters.registerButton2Callback(self.exportGraph)
 
         self.mainHBox = gtk.HBox(False, 0)

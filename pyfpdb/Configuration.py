@@ -415,13 +415,12 @@ class Database:
         self.db_name   = node.getAttribute("db_name")
         self.db_desc   = node.getAttribute("db_desc")
         self.db_server = node.getAttribute("db_server").lower()
-        self.db_ip     = node.getAttribute("db_ip")
-        self.db_port   = node.getAttribute("db_port")
+        self.db_ip    = node.getAttribute("db_ip")
         self.db_user   = node.getAttribute("db_user")
         self.db_pass   = node.getAttribute("db_pass")
         self.db_selected = string_to_bool(node.getAttribute("default"), default=False)
-        log.debug("Database db_name:'%(name)s'  db_server:'%(server)s'  db_ip:'%(ip)s'  db_port:'%(port)s'  db_user:'%(user)s'  db_pass (not logged)  selected:'%(sel)s'" \
-                % { 'name':self.db_name, 'server':self.db_server, 'ip':self.db_ip, 'port':self.db_port, 'user':self.db_user, 'sel':self.db_selected} )
+        log.debug("Database db_name:'%(name)s'  db_server:'%(server)s'  db_ip:'%(ip)s'  db_user:'%(user)s'  db_pass (not logged)  selected:'%(sel)s'" \
+                % { 'name':self.db_name, 'server':self.db_server, 'ip':self.db_ip, 'user':self.db_user, 'sel':self.db_selected} )
 
     def __str__(self):
         temp = 'Database = ' + self.db_name + '\n'
@@ -484,6 +483,7 @@ class Import:
         self.interval    = node.getAttribute("interval")
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
+        self.ResultsDirectory = node.getAttribute("ResultsDirectory")
         self.hhBulkPath = node.getAttribute("hhBulkPath")
         self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=False)
         self.cacheSessions = string_to_bool(node.getAttribute("cacheSessions"), default=False)
@@ -492,8 +492,8 @@ class Import:
         self.saveStarsHH = string_to_bool(node.getAttribute("saveStarsHH"), default=False)
 
     def __str__(self):
-        return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
-            % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.cacheSessions, self.sessionTimeout, self.fastStoreHudCache)
+        return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\nResultsDirectory = %s" \
+            % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.cacheSessions, self.sessionTimeout, self.fastStoreHudCache, self.ResultsDirectory)
 
 class HudUI:
     def __init__(self, node):
@@ -1066,9 +1066,6 @@ class Config:
         try:    db['db-host'] = self.supported_databases[name].db_ip
         except: pass
 
-        try:    db['db-port'] = self.supported_databases[name].db_port
-        except KeyError: pass
-
         try:    db['db-user'] = self.supported_databases[name].db_user
         except: pass
 
@@ -1082,16 +1079,15 @@ class Config:
 
         return db
 
-    def set_db_parameters(self, db_name = 'fpdb', db_ip = None, db_port = None,
-                            db_user = None, db_pass = None, db_desc = None,
-                            db_server = None, default = "False"):
+    def set_db_parameters(self, db_name = 'fpdb', db_ip = None, db_user = None,
+                          db_pass = None, db_desc = None, db_server = None,
+                          default = "False"):
         db_node = self.get_db_node(db_name)
         default = default.lower()
         defaultb = string_to_bool(default, False)
         if db_node != None:
             if db_desc   is not None: db_node.setAttribute("db_desc", db_desc)
             if db_ip     is not None: db_node.setAttribute("db_ip", db_ip)
-            if db_port   is not None: db_node.setAttribute("db_port", db_port)
             if db_user   is not None: db_node.setAttribute("db_user", db_user)
             if db_pass   is not None: db_node.setAttribute("db_pass", db_pass)
             if db_server is not None: db_node.setAttribute("db_server", db_server)
@@ -1105,7 +1101,6 @@ class Config:
         if self.supported_databases.has_key(db_name):
             if db_desc   is not None: self.supported_databases[db_name].dp_desc   = db_desc
             if db_ip     is not None: self.supported_databases[db_name].dp_ip     = db_ip
-            if db_port   is not None: self.supported_databases[db_name].dp_port   = db_port
             if db_user   is not None: self.supported_databases[db_name].dp_user   = db_user
             if db_pass   is not None: self.supported_databases[db_name].dp_pass   = db_pass
             if db_server is not None: self.supported_databases[db_name].dp_server = db_server
@@ -1160,7 +1155,6 @@ class Config:
         if self.supported_databases.has_key(db_name):
             if db_desc   is not None: self.supported_databases[db_name].dp_desc   = db_desc
             if db_ip     is not None: self.supported_databases[db_name].dp_ip     = db_ip
-            if db_port   is not None: self.supported_databases[db_name].dp_port   = db_port
             if db_user   is not None: self.supported_databases[db_name].dp_user   = db_user
             if db_pass   is not None: self.supported_databases[db_name].dp_pass   = db_pass
             if db_server is not None: self.supported_databases[db_name].dp_server = db_server
@@ -1267,6 +1261,14 @@ class Config:
         # hhArchiveBase is the temp store for part-processed hand histories - should be redundant eventually
         try:    imp['hhArchiveBase']    = self.imp.hhArchiveBase
         except:  imp['hhArchiveBase']    = "~/.fpdb/HandHistories/"
+
+        # ResultsDirectory is the local cache for downloaded results
+        # NOTE: try: except: doesn'tseem to be triggering
+        #       using if instead
+        if self.imp.ResultsDirectory != '':
+            imp['ResultsDirectory']    = self.imp.ResultsDirectory
+        else:
+            imp['ResultsDirectory']    = "~/.fpdb/Results/"
 
         # hhBulkPath is the default location for bulk imports (if set)
         try:    imp['hhBulkPath']    = self.imp.hhBulkPath
