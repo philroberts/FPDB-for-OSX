@@ -57,7 +57,7 @@ class Filters(threading.Thread):
                           ,'groupstitle':_('Grouping:'), 'posnshow':_('Show Position Stats')
                           ,'datestitle':_('Date:')
                           ,'groupsall':_('All Players')
-                          ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'ring':_('Ring'), 'tour':_('Tourney')
+                          ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'limitsCN':'CAP', 'ring':_('Ring'), 'tour':_('Tourney')
                           }
 
         gen = self.conf.get_general_params()
@@ -79,7 +79,7 @@ class Filters(threading.Thread):
         self.sw.show()
         print _("DEBUG: New packing box created!")
 
-        self.found = {'nl':False, 'fl':False, 'pl':False, 'ring':False, 'tour':False}
+        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'ring':False, 'tour':False}
         self.label = {}
         self.callback = {}
 
@@ -154,6 +154,7 @@ class Filters(threading.Thread):
         self.cbFL = None
         self.cbNL = None
         self.cbPL = None
+        self.cbCN = None
         self.rb = {}     # radio buttons for ring/tour
         self.type = None # ring/tour
         self.types = {}  # list of all ring/tour values
@@ -429,7 +430,7 @@ class Filters(threading.Thread):
         #print "__set_limit_select:  limit =", limit, w.get_active()
         self.limits[limit] = w.get_active()
         log.debug(_("self.limit[%s] set to %s") %(limit, self.limits[limit]))
-        if limit.isdigit() or (len(limit) > 2 and (limit[-2:] == 'nl' or limit[-2:] == 'fl' or limit[-2:] == 'pl')):
+        if limit.isdigit() or (len(limit) > 2 and (limit[-2:] == 'nl' or limit[-2:] == 'fl' or limit[-2:] == 'pl' or limit[-2:] == 'cn')):
             # turning a leaf limit on with 'None' checked turns 'None' off
             if self.limits[limit]:
                 if self.cbNoLimits is not None:
@@ -438,7 +439,7 @@ class Filters(threading.Thread):
             else:
                 if self.cbAllLimits is not None:
                     self.cbAllLimits.set_active(False)
-            # turning off a leaf limit turns off the corresponding fl. nl, or pl
+            # turning off a leaf limit turns off the corresponding fl. nl, cn or pl
             if not self.limits[limit]:
                 if limit.isdigit():
                     if self.cbFL is not None:
@@ -446,6 +447,9 @@ class Filters(threading.Thread):
                 elif (len(limit) > 2 and (limit[-2:] == 'nl')):
                     if self.cbNL is not None:
                         self.cbNL.set_active(False)
+                elif (len(limit) > 2 and (limit[-2:] == 'cn')):
+                    if self.cbCN is not None:
+                        self.cbCN.set_active(False)
                 else:
                     if self.cbPL is not None:
                         self.cbPL.set_active(False)
@@ -461,6 +465,8 @@ class Filters(threading.Thread):
                         self.cbNL.set_active(True)
                     if self.cbPL is not None:
                         self.cbPL.set_active(True)
+                    if self.cbCN is not None:
+                        self.cbCN.set_active(True)
         elif limit == "none":
             if self.limits[limit]:
                 if self.num_limit_types == 1:
@@ -473,6 +479,8 @@ class Filters(threading.Thread):
                         self.cbFL.set_active(False)
                     if self.cbPL is not None:
                         self.cbPL.set_active(False)
+                    if self.cbCN is not None:
+                        self.cbCN.set_active(False)
         elif limit == "fl":
             if not self.limits[limit]:
                 # only toggle all fl limits off if they are all currently on
@@ -542,6 +550,29 @@ class Filters(threading.Thread):
                 t = cb.get_children()[0].get_text()
                 if "pl" in t and len(t) > 2:
                     if self.limits[limit] or all_nl_on:
+                        cb.set_active(self.limits[limit])
+                    found[self.types[t]] = True
+            if self.limits[limit]:
+                if not found[self.type]:
+                    if self.type == 'ring':
+                        if 'tour' in self.rb:
+                            self.rb['tour'].set_active(True)
+                    elif self.type == 'tour':
+                        if 'ring' in self.rb:
+                            self.rb['ring'].set_active(True)
+        elif limit == "cn":
+            if not self.limits[limit]:
+                all_cn_on = True
+                for cb in self.cbLimits.values():
+                    t = cb.get_children()[0].get_text()
+                    if "cn" in t and len(t) > 2:
+                        if not cb.get_active():
+                            all_cn_on = False
+            found = {'ring':False, 'tour':False}
+            for cb in self.cbLimits.values():
+                t = cb.get_children()[0].get_text()
+                if "cn" in t and len(t) > 2:
+                    if self.limits[limit] or all_cn_on:
                         cb.set_active(self.limits[limit])
                     found[self.types[t]] = True
             if self.limits[limit]:
@@ -733,7 +764,7 @@ class Filters(threading.Thread):
         self.cursor.execute(self.sql.query['getCashLimits'])
         # selects  limitType, bigBlind
         result = self.db.cursor.fetchall()
-        self.found = {'nl':False, 'fl':False, 'pl':False, 'ring':False, 'tour':False}
+        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'ring':False, 'tour':False}
 
         if len(result) >= 1:
             hbox = gtk.HBox(True, 0)
@@ -758,6 +789,9 @@ class Filters(threading.Thread):
                     elif line[1] == 'pl':
                         name = str(line[2])+line[1]
                         self.found['pl'] = True
+                    elif line[1] == 'cn':
+                        name = str(line[2])+line[1]
+                        self.found['cn'] = True
                     else:
                         name = str(line[2])+line[1]
                         self.found['nl'] = True
@@ -786,6 +820,7 @@ class Filters(threading.Thread):
                     if self.found['fl']:  self.num_limit_types = self.num_limit_types + 1
                     if self.found['pl']:  self.num_limit_types = self.num_limit_types + 1
                     if self.found['nl']:  self.num_limit_types = self.num_limit_types + 1
+                    if self.found['cn']:  self.num_limit_types = self.num_limit_types + 1
                     if self.num_limit_types > 1:
                        if self.found['fl']:
                            hbox = gtk.HBox(False, 0)
@@ -799,6 +834,10 @@ class Filters(threading.Thread):
                            hbox = gtk.HBox(False, 0)
                            vbox3.pack_start(hbox, False, False, 0)
                            self.cbPL = self.createLimitLine(hbox, 'pl', self.filterText['limitsPL'])
+                       if self.found['cn']:
+                           hbox = gtk.HBox(False, 0)
+                           vbox3.pack_start(hbox, False, False, 0)
+                           self.cbCN = self.createLimitLine(hbox, 'cn', self.filterText['limitsCN'])
                        dest = vbox2  # for ring/tour buttons
         else:
             print _("INFO: No games returned from database")
