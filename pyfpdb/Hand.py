@@ -490,7 +490,7 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
         amount = amount.replace(u',', u'') #some sites have commas
         Ai = Decimal(amount)
         Bp = self.lastBet[street]
-        Bc = reduce(operator.add, self.bets[street][player], 0)
+        Bc = sum(self.bets[street][player])
         C = Bp - Bc
         if Ai <= C:
             self.addCall(street, player, amount)
@@ -587,7 +587,7 @@ Add a raise by amountBy on [street] by [player]
         self.checkPlayerExists(player)
         Rb = Decimal(amountBy)
         Bp = self.lastBet[street]
-        Bc = reduce(operator.add, self.bets[street][player], 0)
+        Bc = sum(self.bets[street][player])
         C = Bp - Bc
         Rt = Bp + Rb
 
@@ -604,7 +604,7 @@ For sites which by "raises x" mean "calls and raises putting a total of x in the
         amount = amount.replace(u',', u'') #some sites have commas
         CRb = Decimal(amount)
         Bp = self.lastBet[street]
-        Bc = reduce(operator.add, self.bets[street][player], 0)
+        Bc = sum(self.bets[street][player])
         C = Bp - Bc
         Rb = CRb - C
         Rt = Bp + Rb
@@ -619,7 +619,7 @@ Add a raise on [street] by [player] to [amountTo]
         self.checkPlayerExists(player)
         amountTo = amountTo.replace(u',', u'') #some sites have commas
         Bp = self.lastBet[street]
-        Bc = reduce(operator.add, self.bets[street][player], 0)
+        Bc = sum(self.bets[street][player])
         Rt = Decimal(amountTo)
         C = Bp - Bc
         Rb = Rt - C - Bc
@@ -1380,7 +1380,7 @@ Add a complete on [street] by [player] to [amountTo]
         amountTo = amountTo.replace(u',', u'') #some sites have commas
         self.checkPlayerExists(player)
         Bp = self.lastBet['THIRD']
-        Bc = reduce(operator.add, self.bets[street][player], 0)
+        Bc = sum(self.bets[street][player])
         Rt = Decimal(amountTo)
         C = Bp - Bc
         Rb = Rt - C
