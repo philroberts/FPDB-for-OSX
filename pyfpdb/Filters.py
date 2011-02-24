@@ -830,11 +830,16 @@ class Filters(threading.Thread):
         top_hbox.pack_start(title, expand=True, padding=3)
         showb = gtk.Button(label="hide", stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'games')
+        showb.connect('clicked', self.__toggle_box, 'graphops')
         top_hbox.pack_start(showb, expand=False, padding=1)
 
+        vbox1 = gtk.VBox(False, 0)
+        vbox.pack_start(vbox1, False, False, 0)
+        vbox1.show()
+        self.boxes['graphops'] = vbox1
+
         hbox1 = gtk.HBox(False, 0)
-        vbox.pack_start(hbox1, False, False, 0)
+        vbox1.pack_start(hbox1, False, False, 0)
         hbox1.show()
 
         label = gtk.Label(_("Show Graph In:"))
@@ -852,10 +857,6 @@ class Filters(threading.Thread):
         hbox1.pack_start(button, True, True, 0)
         button.connect("toggled", self.__set_displayin_select, "BB")
         button.show()
-
-        vbox1 = gtk.VBox(False, 0)
-        vbox.pack_start(vbox1, False, False, 0)
-        vbox1.show()
 
         button = gtk.CheckButton(_("Showdown Winnings"), False)
         vbox1.pack_start(button, True, True, 0)
