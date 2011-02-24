@@ -761,8 +761,9 @@ class Filters(threading.Thread):
         showb = gtk.Button(label="hide", stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
         showb.connect('clicked', self.__toggle_box, 'limits')
+        top_hbox.pack_start(showb, expand=False, padding=1)
 
-        vbox1 = gtk.VBox(False, 0)
+        vbox1 = gtk.VBox(False, 15)
         vbox.pack_start(vbox1, False, False, 0)
         self.boxes['limits'] = vbox1
 
