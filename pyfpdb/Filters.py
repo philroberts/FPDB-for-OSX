@@ -469,10 +469,7 @@ class Filters(threading.Thread):
                         self.cbCN.set_active(True)
         elif limit == "none":
             if self.limits[limit]:
-                if self.num_limit_types == 1:
-                    for cb in self.cbLimits.values():
-                        cb.set_active(False)
-                else:
+                if self.num_limit_types > 1:
                     if self.cbNL is not None:
                         self.cbNL.set_active(False)
                     if self.cbFL is not None:
@@ -481,6 +478,13 @@ class Filters(threading.Thread):
                         self.cbPL.set_active(False)
                     if self.cbCN is not None:
                         self.cbCN.set_active(False)
+            #
+            #   Finally, clean-up all individual limit checkboxes
+            #       needed because the overall limit checkbox may 
+            #       not be set, or num_limit_types == 1
+            #
+                for cb in self.cbLimits.values():
+                        cb.set_active(False)
         elif limit == "fl":
             if not self.limits[limit]:
                 # only toggle all fl limits off if they are all currently on
