@@ -454,7 +454,7 @@ class Database:
                 self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES )
                 self.__connected = True
                 sqlite3.register_converter("bool", lambda x: bool(int(x)))
-                sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
+                sqlite3.register_adapter(bool, lambda x: 1 if x else 0)
                 self.connection.create_function("floor", 1, math.floor)
                 tmp = sqlitemath()
                 self.connection.create_function("mod", 2, tmp.mod)
