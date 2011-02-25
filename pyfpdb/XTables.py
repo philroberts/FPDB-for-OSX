@@ -67,11 +67,11 @@ class Table(Table_Window):
                 self.number = int( mo.groupdict()["XID"], 0 )
                 self.title = title
                 if self.number is None:
-                    log.error(_("Could not retrieve XID from table xwininfo. xwininfo is %s") % listing)
+                    log.warning(_("Could not retrieve XID from table xwininfo. xwininfo is %s") % listing)
                 break
 
         if self.number is None:
-            log.error(_("No match in XTables for table '%s'.") % self.search_string)
+            log.warning(_("No match in XTables for table '%s'.") % self.search_string)
             return None
         (self.window, self.parent) = self.get_window_from_xid(self.number)
 
