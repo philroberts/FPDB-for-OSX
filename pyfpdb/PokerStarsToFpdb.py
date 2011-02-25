@@ -25,7 +25,7 @@ _ = L10n.get_translation()
 
 import sys
 from HandHistoryConverter import *
-from decimal import Decimal
+from decimal_wrapper import Decimal
 
 # PokerStars HH Format
 

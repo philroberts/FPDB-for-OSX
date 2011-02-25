@@ -25,7 +25,7 @@ import sys
 import traceback
 import os
 import os.path
-from decimal import Decimal
+from decimal_wrapper import Decimal
 import operator
 import time,datetime
 from copy import deepcopy

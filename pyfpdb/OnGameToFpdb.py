@@ -31,7 +31,7 @@ log = logging.getLogger("parser")
 
 import Configuration
 from HandHistoryConverter import *
-from decimal import Decimal
+from decimal_wrapper import Decimal
 
 # OnGame HH Format
 

@@ -18,7 +18,7 @@
 import L10n
 _ = L10n.get_translation()
 
-from decimal import Decimal
+from decimal_wrapper import Decimal
 import datetime
 from BeautifulSoup import BeautifulSoup
 
