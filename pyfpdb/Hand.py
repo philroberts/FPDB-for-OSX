@@ -445,7 +445,7 @@ chips   (string) the chips the player has at the start of the hand (can be None)
 If a player has None chips he won't be added."""
         log.debug("addPlayer: %s %s (%s)" % (seat, name, chips))
         if chips is not None:
-            chips = re.sub(u',', u'', chips) #some sites have commas
+            chips = chips.replace(u',', u'') #some sites have commas
             self.players.append([seat, name, chips])
             self.stacks[name] = Decimal(chips)
             self.pot.addPlayer(name)
@@ -487,7 +487,7 @@ If a player has None chips he won't be added."""
 For sites (currently only Carbon Poker) which record "all in" as a special action, which can mean either "calls and is all in" or "raises all in".
 """
         self.checkPlayerExists(player)
-        amount = re.sub(u',', u'', amount) #some sites have commas
+        amount = amount.replace(u',', u'') #some sites have commas
         Ai = Decimal(amount)
         Bp = self.lastBet[street]
         Bc = reduce(operator.add, self.bets[street][player], 0)
@@ -503,13 +503,14 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
     def addAnte(self, player, ante):
         log.debug("%s %s antes %s" % ('BLINDSANTES', player, ante))
         if player is not None:
-            ante = re.sub(u',', u'', ante) #some sites have commas
-            self.bets['BLINDSANTES'][player].append(Decimal(ante))
-            self.stacks[player] -= Decimal(ante)
-            act = (player, 'ante', Decimal(ante), self.stacks[player]==0)
+            ante = ante.replace(u',', u'') #some sites have commas
+            ante = Decimal(ante)
+            self.bets['BLINDSANTES'][player].append(ante)
+            self.stacks[player] -= ante
+            act = (player, 'ante', ante, self.stacks[player]==0)
             self.actions['BLINDSANTES'].append(act)
-#            self.pot.addMoney(player, Decimal(ante))
-            self.pot.addCommonMoney(player, Decimal(ante))
+#            self.pot.addMoney(player, ante)
+            self.pot.addCommonMoney(player, ante)
 #I think the antes should be common money, don't have enough hand history to check
 
     def addBlind(self, player, blindtype, amount):
@@ -522,22 +523,25 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
         #
         log.debug("addBlind: %s posts %s, %s" % (player, blindtype, amount))
         if player is not None:
-            amount = re.sub(u',', u'', amount) #some sites have commas
-            self.stacks[player] -= Decimal(amount)
-            act = (player, blindtype, Decimal(amount), self.stacks[player]==0)
+            amount = amount.replace(u',', u'') #some sites have commas
+            amount = Decimal(amount)
+            self.stacks[player] -= amount
+            act = (player, blindtype, amount, self.stacks[player]==0)
             self.actions['BLINDSANTES'].append(act)
 
             if blindtype == 'both':
                 # work with the real amount. limit games are listed as $1, $2, where
                 # the SB 0.50 and the BB is $1, after the turn the minimum bet amount is $2....
-                amount = self.bb
-                self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
-                self.pot.addCommonMoney(player, Decimal(self.sb))
+                amount = Decimal(self.bb)
+                sb = Decimal(self.sb)
+                self.bets['BLINDSANTES'][player].append(sb)
+                self.pot.addCommonMoney(player, sb)
 
             if blindtype == 'secondsb':
                 amount = Decimal(0)
-                self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
-                self.pot.addCommonMoney(player, Decimal(self.sb))
+                sb = Decimal(self.sb)
+                self.bets['BLINDSANTES'][player].append(sb)
+                self.pot.addCommonMoney(player, sb)
 
             street = 'BLAH'
 
@@ -546,27 +550,28 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
             elif self.gametype['base'] == 'draw':
                 street = 'DEAL'
 
-            self.bets[street][player].append(Decimal(amount))
-            self.pot.addMoney(player, Decimal(amount))
-            self.lastBet[street] = Decimal(amount)
+            self.bets[street][player].append(amount)
+            self.pot.addMoney(player, amount)
+            self.lastBet[street] = amount
             self.posted = self.posted + [[player,blindtype]]
 
 
 
     def addCall(self, street, player=None, amount=None):
         if amount:
-            amount = re.sub(u',', u'', amount) #some sites have commas
+            amount = amount.replace(u',', u'') #some sites have commas
         log.debug(_("%s %s calls %s") %(street, player, amount))
         # Potentially calculate the amount of the call if not supplied
         # corner cases include if player would be all in
         if amount is not None:
-            self.bets[street][player].append(Decimal(amount))
-            #self.lastBet[street] = Decimal(amount)
-            self.stacks[player] -= Decimal(amount)
+            amount = Decimal(amount)
+            self.bets[street][player].append(amount)
+            #self.lastBet[street] = amount
+            self.stacks[player] -= amount
             #print "DEBUG %s calls %s, stack %s" % (player, amount, self.stacks[player])
-            act = (player, 'calls', Decimal(amount), self.stacks[player]==0)
+            act = (player, 'calls', amount, self.stacks[player] == 0)
             self.actions[street].append(act)
-            self.pot.addMoney(player, Decimal(amount))
+            self.pot.addMoney(player, amount)
 
     def addRaiseBy(self, street, player, amountBy):
         """\
@@ -583,7 +588,7 @@ Add a raise by amountBy on [street] by [player]
         # then: C = Bp - Bc (amount to call)
         #      Rt = Bp + Rb (raise to)
         #
-        amountBy = re.sub(u',', u'', amountBy) #some sites have commas
+        amountBy = amountBy.replace(u',', u'') #some sites have commas
         self.checkPlayerExists(player)
         Rb = Decimal(amountBy)
         Bp = self.lastBet[street]
@@ -601,7 +606,7 @@ Add a raise by amountBy on [street] by [player]
         """\
 For sites which by "raises x" mean "calls and raises putting a total of x in the por". """
         self.checkPlayerExists(player)
-        amount = re.sub(u',', u'', amount) #some sites have commas
+        amount = amount.replace(u',', u'') #some sites have commas
         CRb = Decimal(amount)
         Bp = self.lastBet[street]
         Bc = reduce(operator.add, self.bets[street][player], 0)
@@ -617,7 +622,7 @@ Add a raise on [street] by [player] to [amountTo]
 """
         #CG - No idea if this function has been test/verified
         self.checkPlayerExists(player)
-        amountTo = re.sub(u',', u'', amountTo) #some sites have commas
+        amountTo = amountTo.replace(u',', u'') #some sites have commas
         Bp = self.lastBet[street]
         Bc = reduce(operator.add, self.bets[street][player], 0)
         Rt = Decimal(amountTo)
@@ -638,15 +643,16 @@ Add a raise on [street] by [player] to [amountTo]
 
     def addBet(self, street, player, amount):
         log.debug(_("%s %s bets %s") %(street, player, amount))
-        amount = re.sub(u',', u'', amount) #some sites have commas
+        amount = amount.replace(u',', u'') #some sites have commas
+        amount = Decimal(amount)
         self.checkPlayerExists(player)
-        self.bets[street][player].append(Decimal(amount))
-        self.stacks[player] -= Decimal(amount)
+        self.bets[street][player].append(amount)
+        self.stacks[player] -= amount
         #print "DEBUG %s bets %s, stack %s" % (player, amount, self.stacks[player])
-        act = (player, 'bets', Decimal(amount), self.stacks[player]==0)
+        act = (player, 'bets', amount, self.stacks[player]==0)
         self.actions[street].append(act)
-        self.lastBet[street] = Decimal(amount)
-        self.pot.addMoney(player, Decimal(amount))
+        self.lastBet[street] = amount
+        self.pot.addMoney(player, amount)
 
 
     def addStandsPat(self, street, player):
@@ -1377,7 +1383,7 @@ closed    likewise, but known only to player
 Add a complete on [street] by [player] to [amountTo]
 """
         log.debug(_("%s %s completes %s") % (street, player, amountTo))
-        amountTo = re.sub(u',', u'', amountTo) #some sites have commas
+        amountTo = amountTo.replace(u',', u'') #some sites have commas
         self.checkPlayerExists(player)
         Bp = self.lastBet['THIRD']
         Bc = reduce(operator.add, self.bets[street][player], 0)
@@ -1395,12 +1401,13 @@ Add a complete on [street] by [player] to [amountTo]
     def addBringIn(self, player, bringin):
         if player is not None:
             log.debug(_("Bringin: %s, %s") % (player , bringin))
-            self.bets['THIRD'][player].append(Decimal(bringin))
-            self.stacks[player] -= Decimal(bringin)
-            act = (player, 'bringin', Decimal(bringin), self.stacks[player]==0)
+            bringin = Decimal(bringin)
+            self.bets['THIRD'][player].append(bringin)
+            self.stacks[player] -= bringin
+            act = (player, 'bringin', bringin, self.stacks[player]==0)
             self.actions['THIRD'].append(act)
-            self.lastBet['THIRD'] = Decimal(bringin)
-            self.pot.addMoney(player, Decimal(bringin))
+            self.lastBet['THIRD'] = bringin
+            self.pot.addMoney(player, bringin)
 
     def getStreetTotals(self):
         # street1Pot INT,                  /* pot size at flop/street4 */
