@@ -4,7 +4,7 @@
 
 Mucked cards display for FreePokerTools HUD.
 """
-#    Copyright 2008-2010,  Ray E. Barker
+#    Copyright 2008-2011,  Ray E. Barker
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@ import gobject
 
 #    FreePokerTools modules
 import Card
+import Popup
 
 class Aux_Window(object):
     def __init__(self, hud, params, config):
@@ -330,9 +331,10 @@ class Stud_cards:
 
 class Seat_Window(gtk.Window):
     """Subclass gtk.Window for the seat windows."""
-    def __init__(self, aw = None):
+    def __init__(self, aw = None, seat = None):
         super(Seat_Window, self).__init__()
         self.aw = aw
+        self.seat = seat
 
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the event boxes."""
@@ -342,11 +344,15 @@ class Seat_Window(gtk.Window):
             pass
 
         elif event.button == 2:   # middle button event -- show pop up
-            pass
+            pu_to_run = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup].pu_class
+            Popup.__dict__[pu_to_run](seat = widget.aw_seat,
+                                      stat_dict = widget.stat_dict,
+                                      win = widget.get_ancestor(gtk.Window),
+                                      pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup])
 
         elif event.button == 1:   # left button event -- drag the window
             try:
-                widget.get_ancestor(gtk.Window).begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
+                self.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
             except AttributeError:  # in case get_ancestor returns None
                 pass
 
@@ -402,7 +408,7 @@ class Aux_Seats(Aux_Window):
                 self.m_windows[i] = self.create_common(x, y)
             else:
                 (x, y) = loc[self.adj[i]]
-                self.m_windows[i] = self.aw_window_type(self)
+                self.m_windows[i] = self.aw_window_type(self, i)
                 self.m_windows[i].set_decorated(False)
                 self.m_windows[i].set_property("skip-taskbar-hint", True)
                 self.m_windows[i].set_focus_on_map(False)
@@ -478,7 +484,7 @@ class Flop_Mucked(Aux_Seats):
 
     def create_common(self, x, y):
         "Create the window for the board cards and do the initial population."
-        w = self.aw_window_type(self)
+        w = self.aw_window_type(self, "common")
         w.set_decorated(False)
         w.set_property("skip-taskbar-hint", True)
         w.set_focus_on_map(False)

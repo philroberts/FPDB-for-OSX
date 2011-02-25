@@ -1,0 +1,87 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""Popup.py
+
+Popup windows for the HUD.
+"""
+#    Copyright 2011,  Ray E. Barker
+#    
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation; either version 3 of the License, or
+#    (at your option) any later version.
+#    
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#    GNU General Public License for more details.
+#    
+#    You should have received a copy of the GNU General Public License
+#    along with this program; if not, write to the Free Software
+#    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+########################################################################
+
+#    to do
+
+#    Standard Library modules
+
+#    pyGTK modules
+import gtk
+import pango
+
+#    FreePokerTools modules
+import Stats
+
+class Popup(gtk.Window):
+
+    def __init__(self, seat = None, stat_dict = None, win = None, pop = None):
+        self.seat = seat
+        self.stat_dict = stat_dict
+        self.win = win
+        self.pop = pop
+        super(Popup, self).__init__()
+
+#    Most (all?) popups want a label and eb, so let's create them here
+        self.eb = gtk.EventBox()
+        self.lab = gtk.Label()
+        self.add(self.eb)
+        self.eb.add(self.lab)
+        self.lab.modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
+        self.lab.modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
+
+#    They will also usually want to be undecorated, default colors, etc.
+        self.set_decorated(False)
+        self.set_property("skip-taskbar-hint", True)
+        self.set_focus_on_map(False)
+        self.set_focus(None)
+        self.set_transient_for(win)
+        self.connect("button_press_event", self.button_press_cb)
+        self.create()
+
+#    Every popup window needs one of these
+    def button_press_cb(self, widget, event, *args):
+        """Handle button clicks on the popup window."""
+#    Any button click gets rid of popup.
+        self.destroy_pop()
+
+#    Override these methods to make a popup
+    def create(self):   pass
+    def destroy_pop(self):
+        self.destroy()
+
+class default(Popup):
+
+    def create(self):
+        player_id = None
+        for id in self.stat_dict.keys():
+            if self.seat == self.stat_dict[id]['seat']:
+                player_id = id
+        if player_id is None:
+            self.destroy_pop()
+        text = ""
+        for stat in self.pop.pu_stats:
+            number = Stats.do_stat(self.stat_dict, player = int(player_id), stat = stat)
+            text += number[3] + "\n"
+        self.lab.set_text(text)
+        self.show_all()
