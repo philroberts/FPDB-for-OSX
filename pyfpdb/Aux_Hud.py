@@ -4,7 +4,7 @@
 
 Mucked cards display for FreePokerTools HUD.
 """
-#    Copyright 2008-2010,  Ray E. Barker
+#    Copyright 2011,  Ray E. Barker
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -34,19 +34,22 @@ import pango
 #    FreePokerTools modules
 import Mucked
 import Stats
+import Popup
+
 class Stat_Window(Mucked.Seat_Window):
     """Simple window class for stat windows."""
 
     def create_contents(self, i):
         self.grid = gtk.Table(rows = self.aw.nrows, columns = self.aw.ncols, homogeneous = False)
         self.add(self.grid)
-
         self.grid.modify_bg(gtk.STATE_NORMAL, self.aw.bgcolor)
         self.modify_bg(gtk.STATE_NORMAL, self.aw.bgcolor)
+
         self.stat_box = [ [None]*self.aw.ncols for i in range(self.aw.nrows) ]
+
         for r in xrange(self.aw.nrows):
             for c in xrange(self.aw.ncols):
-                self.stat_box[r][c] = Simple_stat(self.aw.stats[r][c])
+                self.stat_box[r][c] = Simple_stat(self.aw.stats[r][c], seat =  self.seat, popup = self.aw.popups[r][c])
                 self.grid.attach(self.stat_box[r][c].widget, c, c+1, r, r+1, xpadding = self.aw.xpad, ypadding = self.aw.ypad)
                 self.stat_box[r][c].set_color(self.aw.fgcolor, self.aw.bgcolor)
                 self.stat_box[r][c].set_font(self.aw.font)
@@ -86,11 +89,24 @@ class Simple_HUD(Mucked.Aux_Seats):
         self.aw_mw_type = Simple_table_mw
 
 #    layout is handled by superclass!
-        self.stats = [ [None]*self.ncols for i in range(self.nrows) ]
+#    retrieve the contents of the game element for future use
+#    do this here so that subclasses don't have to bother
+        self.stats  = [ [None]*self.ncols for i in range(self.nrows) ]
+        self.popups = [ [None]*self.ncols for i in range(self.nrows) ]
+        self.tips   = [ [None]*self.ncols for i in range(self.nrows) ]
         for stat in self.game.stats:
             self.stats[self.config.supported_games[self.poker_game].stats[stat].row] \
                       [self.config.supported_games[self.poker_game].stats[stat].col] = \
                       self.config.supported_games[self.poker_game].stats[stat].stat_name
+
+            self.popups[self.config.supported_games[self.poker_game].stats[stat].row] \
+                      [self.config.supported_games[self.poker_game].stats[stat].col] = \
+                      self.config.supported_games[self.poker_game].stats[stat].popup
+#                       Popup.__dict__.get(self.config.supported_games[self.poker_game].stats[stat].popup, "default")
+                 
+            self.tips[self.config.supported_games[self.poker_game].stats[stat].row] \
+                      [self.config.supported_games[self.poker_game].stats[stat].col] = \
+                      self.config.supported_games[self.poker_game].stats[stat].tip
 
     def create_contents(self, container, i):
         container.create_contents(i)
@@ -104,14 +120,20 @@ class Simple_HUD(Mucked.Aux_Seats):
 
 class Simple_stat(object):
     """A simple class for displaying a single stat."""
-    def __init__(self, stat):
+    def __init__(self, stat, seat, popup):
         self.stat = stat
         self.eb = Simple_eb();
+        self.eb.aw_seat = seat
+        self.eb.aw_popup = popup
+        self.eb.stat_dict = None
         self.lab = Simple_label(self.stat)
         self.eb.add(self.lab)
         self.widget = self.eb
+        self.stat_dict = None
 
     def update(self, player_id, stat_dict):
+        self.stat_dict = stat_dict     # So the Simple_stat obj always has a fresh stat_dict
+        self.eb.stat_dict = stat_dict
         self.lab.set_text( str(Stats.do_stat(stat_dict, player_id, self.stat)[1]) )
 
     def set_color(self, fg, bg):
@@ -180,7 +202,7 @@ class Simple_table_mw(Mucked.Seat_Window):
         self.hud.table.topify(self)
 
     def button_press_cb(self, widget, event, *args):
-        """Handle button clicks in the event boxes."""
+        """Handle button clicks in the main window event box."""
 
         if event.button == 3:   # right button event does nothing for now
             widget.popup(None, None, None, event.button, event.time)
