@@ -1401,6 +1401,7 @@ Add a complete on [street] by [player] to [amountTo]
     def addBringIn(self, player, bringin):
         if player is not None:
             log.debug(_("Bringin: %s, %s") % (player , bringin))
+            bringin = bringin.replace(u',', u'') #some sites have commas
             bringin = Decimal(bringin)
             self.bets['THIRD'][player].append(bringin)
             self.stacks[player] -= bringin
