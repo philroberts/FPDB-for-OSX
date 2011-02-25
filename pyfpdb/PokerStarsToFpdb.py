@@ -131,34 +131,29 @@ class PokerStars(HandHistoryConverter):
     # revised re including timezone (not currently used):
     #re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+) \(?(?P<TZ>[A-Z0-9]+)""", re.MULTILINE)
 
-    def compilePlayerRegexs(self,  hand):
-        players = set([player[1] for player in hand.players])
-        if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
-            # we need to recompile the player regexs.
-# TODO: should probably rename re_HeroCards and corresponding method,
-#    since they are used to find all cards on lines starting with "Dealt to:"
-#    They still identify the hero.
-            self.compiledPlayers = players
-            player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
-            subst = {'PLYR': player_re, 'CUR': self.sym[hand.gametype['currency']]}
-            log.debug("player_re: " + player_re)
-            self.re_PostSB           = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[.0-9]+)" %  subst, re.MULTILINE)
-            self.re_PostBB           = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[.0-9]+)" %  subst, re.MULTILINE)
-            self.re_Antes            = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % subst, re.MULTILINE)
-            self.re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % subst, re.MULTILINE)
-            self.re_PostBoth         = re.compile(r"^%(PLYR)s: posts small \& big blinds %(CUR)s(?P<SBBB>[.0-9]+)" %  subst, re.MULTILINE)
-            self.re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % subst, re.MULTILINE)
-            self.re_Action           = re.compile(r"""
+    # These used to be compiled per player, but regression tests say
+    # we don't have to, and it makes life faster.
+    short_subst = {'PLYR': r'(?P<PNAME>.+?)', 'CUR': '\$?'}
+    re_PostSB           = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[.0-9]+)" %  short_subst, re.MULTILINE)
+    re_PostBB           = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[.0-9]+)" %  short_subst, re.MULTILINE)
+    re_Antes            = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % short_subst, re.MULTILINE)
+    re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % short_subst, re.MULTILINE)
+    re_PostBoth         = re.compile(r"^%(PLYR)s: posts small \& big blinds %(CUR)s(?P<SBBB>[.0-9]+)" %  short_subst, re.MULTILINE)
+    re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % short_subst, re.MULTILINE)
+    re_Action           = re.compile(r"""
                         ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
                         (\s(%(CUR)s)?(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
                         \s*(and\sis\sall.in)?
                         (and\shas\sreached\sthe\s[%(CUR)s\d\.]+\scap)?
                         (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?\s*$"""
-                         %  subst, re.MULTILINE|re.VERBOSE)
-            self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
-            self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s (\(button\) |\(small blind\) |\(big blind\) |\(button\) \(small blind\) |\(button\) \(big blind\) )?(collected|showed \[.*\] and won) \(%(CUR)s(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  subst, re.MULTILINE)
-            self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
-            self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
+                         %  short_subst, re.MULTILINE|re.VERBOSE)
+    re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" % short_subst['PLYR'], re.MULTILINE)
+    re_sitsOut          = re.compile("^%s sits out" %  short_subst['PLYR'], re.MULTILINE)
+    re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\].*" %  short_subst['PLYR'], re.MULTILINE)
+    re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s (\(button\) |\(small blind\) |\(big blind\) |\(button\) \(small blind\) |\(button\) \(big blind\) )?(collected|showed \[.*\] and won) \(%(CUR)s(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  short_subst, re.MULTILINE)
+
+    def compilePlayerRegexs(self,  hand):
+        pass
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
