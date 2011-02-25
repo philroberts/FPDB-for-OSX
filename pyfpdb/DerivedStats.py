@@ -58,6 +58,8 @@ class DerivedStats():
             self.handsplayers[player[1]]['street0_FoldTo4BDone']= False 
             self.handsplayers[player[1]]['street0_SqueezeChance']= False 
             self.handsplayers[player[1]]['street0_SqueezeDone'] = False 
+            self.handsplayers[player[1]]['raiseToStealChance']  = False 
+            self.handsplayers[player[1]]['raiseToStealDone']    = False 
             self.handsplayers[player[1]]['success_Steal']       = False 
             self.handsplayers[player[1]]['raiseFirstInChance']  = False
             self.handsplayers[player[1]]['raisedFirstIn']       = False
@@ -425,12 +427,16 @@ class DerivedStats():
                 #NOTE: Stud games will never hit this section
                 if steal_attempt:
                     self.handsplayers[pname]['foldBbToStealChance'] = True
+                    self.handsplayers[pname]['raiseToStealChance'] = True
                     self.handsplayers[pname]['foldedBbToSteal'] = act == 'folds'
+                    self.handsplayers[pname]['raiseToStealDone'] = act == 'raises'
                     self.handsplayers[stealer]['success_Steal'] = act == 'folds'
                 break
             elif posn == 'S':
+                self.handsplayers[pname]['raiseToStealChance'] = steal_attempt
                 self.handsplayers[pname]['foldSbToStealChance'] = steal_attempt
                 self.handsplayers[pname]['foldedSbToSteal'] = steal_attempt and act == 'folds'
+                self.handsplayers[pname]['raiseToStealDone'] = steal_attempt and act == 'raises'
 
             if steal_attempt and act != 'folds':
                 break
