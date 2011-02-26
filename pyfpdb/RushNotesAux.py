@@ -109,9 +109,9 @@ class RushNotes(Aux_Window):
         notepath = site_params_dict['site_path']  # this is a temporary hijack of site-path
         self.heroid = self.hud.db_connection.get_player_id(self.config, sitename, heroname)
         self.notefile = notepath + "/" + heroname + ".xml"
-        self.rushtables = ("Mach 10", "Lightning", "Celerity", "Flash", "Zoom")
+        self.rushtables = ("Mach 10", "Lightning", "Celerity", "Flash", "Zoom", "Apollo")
 
-        if not os.path.isfile(self.notefile):
+        if not (os.path.isfile(self.notefile)):
             self.active = False
             return
         else:
@@ -130,29 +130,34 @@ class RushNotes(Aux_Window):
         xmlnotefile.unlink
 
         #
-        # Create a fresh queue file with skeleton XML
+        # if queue file does not exist create a fresh queue file with skeleton XML
+        # This is possibly not totally safe, if multiple threads arrive
+        # here at the same time, but the consequences are not serious
         #
+
         self.queuefile = self.notefile + ".queue"
-        queuedom = minidom.Document()
+        if not (os.path.isfile(self.queuefile)):
 
-        pld=queuedom.createElement("PLAYERDATA")
-        queuedom.appendChild(pld)
+            queuedom = minidom.Document()
 
-        nts=queuedom.createElement("NOTES")
-        pld.appendChild(nts)
+            pld=queuedom.createElement("PLAYERDATA")
+            queuedom.appendChild(pld)
 
-        nte = queuedom.createElement("NOTE")
-        nte = queuedom.createTextNode("\n")
-        nts.insertBefore(nte,None)
+            nts=queuedom.createElement("NOTES")
+            pld.appendChild(nts)
 
-        outputfile = open(self.queuefile, 'w')
-        queuedom.writexml(outputfile)
-        outputfile.close()
-        queuedom.unlink
+            nte = queuedom.createElement("NOTE")
+            nte = queuedom.createTextNode("\n")
+            nts.insertBefore(nte,None)
+
+            outputfile = open(self.queuefile, 'w')
+            queuedom.writexml(outputfile)
+            outputfile.close()
+            queuedom.unlink
 
         if (debugmode):
             #initialise logfiles
-            debugfile=open("~Rushdebug.init", "w")
+            debugfile=open("~Rushdebug.init", "a")
             debugfile.write("conf="+str(config)+"\n")
             debugfile.write("spdi="+str(site_params_dict)+"\n")
             debugfile.write("para="+str(params)+"\n")
@@ -160,8 +165,6 @@ class RushNotes(Aux_Window):
             debugfile.write("back="+notefilebackup+"\n")
             debugfile.write("queu="+self.queuefile+"\n")
             debugfile.close()
-
-            open("~Rushdebug.data", "w").close()
 
 
     def update_data(self, new_hand_id, db_connection):
@@ -204,15 +207,18 @@ class RushNotes(Aux_Window):
             vpip=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'vpip')[3] + " ")
             pfr=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'pfr')[3] + " ")
             three_B=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'three_B')[3] + " ")
+            four_B=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'four_B')[3] + " ")            
             cbet=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'cbet')[3] + " ")
+            
             fbbsteal=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'f_BB_steal')[3] + " ")
-
+            f_3bet=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'f_3bet')[3] + " ")
+            f_4bet=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'f_4bet')[3] + " ")
+                        
             steal=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'steal')[3] + " ")
             ffreq1=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'ffreq1')[3] + " ")
             agg_freq=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'agg_freq')[3] + " ")
             BBper100=str(Stats.do_stat(self.hud.stat_dict, player = playerid, stat = 'BBper100')[3])
             if BBper100[6] == "-": BBper100=BBper100[0:6] + "(" + BBper100[7:] + ")"
-
 
             #
             # grab villain known starting hands
@@ -235,8 +241,8 @@ class RushNotes(Aux_Window):
 
             c = db_connection.get_cursor()
             c.execute(("SELECT handId, position, startCards, street0Aggr, tableName " +
-                        "FROM hands, handsPlayers " +
-                        "WHERE handsplayers.handId = hands.id " +
+                        "FROM Hands, HandsPlayers " +
+                        "WHERE HandsPlayers.handId = Hands.id " +
                         "AND street0VPI = 1 " +
                         "AND startCards > 0 " +
                         "AND playerId = %d " +
@@ -269,10 +275,13 @@ class RushNotes(Aux_Window):
             # for later search/replace by Merge module
             #
             xmlqueuedict[playername] = ("~fpdb~" + "\n" +
-                                        n + vpip + pfr + three_B + fbbsteal + "\n" +
-                                        steal + cbet + ffreq1 + "\n" +
+                                        n + vpip + pfr + "\n" +
+                                        steal + cbet + fbbsteal + ffreq1 + "\n" +
+                                        three_B + four_B + f_3bet + f_4bet + "\n" +
                                         agg_freq + BBper100 + "\n" +
-                                        PFcall+"\n"+PFaggr+"\n"+PFdefend +"\n"
+                                        PFcall+"\n"+
+                                        PFaggr+"\n"+
+                                        PFdefend +"\n"+
                                         "~ends~")
 
         if (debugmode):

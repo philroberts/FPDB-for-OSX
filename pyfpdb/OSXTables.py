@@ -53,7 +53,8 @@ class Table(Table_Window):
                 title = d[kCGWindowName]
                 if self.check_bad_words(title): continue
                 self.number = int(d[kCGWindowNumber])
-                self.title = title; return self.title
+                self.title = title
+                return self.title
         if self.number is None:
             return None
   

@@ -57,7 +57,7 @@ class Filters(threading.Thread):
                           ,'groupstitle':_('Grouping:'), 'posnshow':_('Show Position Stats')
                           ,'datestitle':_('Date:')
                           ,'groupsall':_('All Players')
-                          ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'ring':_('Ring'), 'tour':_('Tourney')
+                          ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'limitsCN':'CAP', 'ring':_('Ring'), 'tour':_('Tourney')
                           }
 
         gen = self.conf.get_general_params()
@@ -66,10 +66,20 @@ class Filters(threading.Thread):
         if 'day_start' in gen:
             self.day_start = float(gen['day_start'])
 
+
+        self.sw = gtk.ScrolledWindow()
+        self.sw.set_border_width(0)
+        self.sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.sw.set_size_request(370, 300)
+
+
         # Outer Packing box
         self.mainVBox = gtk.VBox(False, 0)
+        self.sw.add_with_viewport(self.mainVBox)
+        self.sw.show()
+        print _("DEBUG: New packing box created!")
 
-        self.found = {'nl':False, 'fl':False, 'pl':False, 'ring':False, 'tour':False}
+        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'ring':False, 'tour':False}
         self.label = {}
         self.callback = {}
 
@@ -144,10 +154,13 @@ class Filters(threading.Thread):
         self.cbFL = None
         self.cbNL = None
         self.cbPL = None
+        self.cbCN = None
         self.rb = {}     # radio buttons for ring/tour
         self.type = None # ring/tour
         self.types = {}  # list of all ring/tour values
+        self.num_limit_types = 0
 
+        self.num_limit_types = 0
         self.fillLimitsFrame(vbox, self.display)
         limitsFrame.add(vbox)
 
@@ -245,7 +258,7 @@ class Filters(threading.Thread):
 
     def get_vbox(self):
         """returns the vbox of this thread"""
-        return self.mainVBox
+        return self.sw
     #end def get_vbox
 
     def getNumHands(self):
@@ -419,13 +432,16 @@ class Filters(threading.Thread):
         #print "__set_limit_select:  limit =", limit, w.get_active()
         self.limits[limit] = w.get_active()
         log.debug(_("self.limit[%s] set to %s") %(limit, self.limits[limit]))
-        if limit.isdigit() or (len(limit) > 2 and (limit[-2:] == 'nl' or limit[-2:] == 'fl' or limit[-2:] == 'pl')):
+        if limit.isdigit() or (len(limit) > 2 and (limit[-2:] == 'nl' or limit[-2:] == 'fl' or limit[-2:] == 'pl' or limit[-2:] == 'cn')):
+            # turning a leaf limit on with 'None' checked turns 'None' off
             if self.limits[limit]:
                 if self.cbNoLimits is not None:
                     self.cbNoLimits.set_active(False)
+            # turning a leaf limit off with 'All' checked turns 'All' off
             else:
                 if self.cbAllLimits is not None:
                     self.cbAllLimits.set_active(False)
+            # turning off a leaf limit turns off the corresponding fl. nl, cn or pl
             if not self.limits[limit]:
                 if limit.isdigit():
                     if self.cbFL is not None:
@@ -433,29 +449,44 @@ class Filters(threading.Thread):
                 elif (len(limit) > 2 and (limit[-2:] == 'nl')):
                     if self.cbNL is not None:
                         self.cbNL.set_active(False)
+                elif (len(limit) > 2 and (limit[-2:] == 'cn')):
+                    if self.cbCN is not None:
+                        self.cbCN.set_active(False)
                 else:
                     if self.cbPL is not None:
                         self.cbPL.set_active(False)
         elif limit == "all":
             if self.limits[limit]:
-                #for cb in self.cbLimits.values():
-                #    cb.set_active(True)
-                if self.cbFL is not None:
-                    self.cbFL.set_active(True)
-                if self.cbNL is not None:
-                    self.cbNL.set_active(True)
-                if self.cbPL is not None:
-                    self.cbPL.set_active(True)
+                if self.num_limit_types == 1:
+                    for cb in self.cbLimits.values():
+                        cb.set_active(True)
+                else:
+                    if self.cbFL is not None:
+                        self.cbFL.set_active(True)
+                    if self.cbNL is not None:
+                        self.cbNL.set_active(True)
+                    if self.cbPL is not None:
+                        self.cbPL.set_active(True)
+                    if self.cbCN is not None:
+                        self.cbCN.set_active(True)
         elif limit == "none":
             if self.limits[limit]:
+                if self.num_limit_types > 1:
+                    if self.cbNL is not None:
+                        self.cbNL.set_active(False)
+                    if self.cbFL is not None:
+                        self.cbFL.set_active(False)
+                    if self.cbPL is not None:
+                        self.cbPL.set_active(False)
+                    if self.cbCN is not None:
+                        self.cbCN.set_active(False)
+            #
+            #   Finally, clean-up all individual limit checkboxes
+            #       needed because the overall limit checkbox may 
+            #       not be set, or num_limit_types == 1
+            #
                 for cb in self.cbLimits.values():
-                    cb.set_active(False)
-                if self.cbNL is not None:
-                    self.cbNL.set_active(False)
-                if self.cbFL is not None:
-                    self.cbFL.set_active(False)
-                if self.cbPL is not None:
-                    self.cbPL.set_active(False)
+                        cb.set_active(False)
         elif limit == "fl":
             if not self.limits[limit]:
                 # only toggle all fl limits off if they are all currently on
@@ -525,6 +556,29 @@ class Filters(threading.Thread):
                 t = cb.get_children()[0].get_text()
                 if "pl" in t and len(t) > 2:
                     if self.limits[limit] or all_nl_on:
+                        cb.set_active(self.limits[limit])
+                    found[self.types[t]] = True
+            if self.limits[limit]:
+                if not found[self.type]:
+                    if self.type == 'ring':
+                        if 'tour' in self.rb:
+                            self.rb['tour'].set_active(True)
+                    elif self.type == 'tour':
+                        if 'ring' in self.rb:
+                            self.rb['ring'].set_active(True)
+        elif limit == "cn":
+            if not self.limits[limit]:
+                all_cn_on = True
+                for cb in self.cbLimits.values():
+                    t = cb.get_children()[0].get_text()
+                    if "cn" in t and len(t) > 2:
+                        if not cb.get_active():
+                            all_cn_on = False
+            found = {'ring':False, 'tour':False}
+            for cb in self.cbLimits.values():
+                t = cb.get_children()[0].get_text()
+                if "cn" in t and len(t) > 2:
+                    if self.limits[limit] or all_cn_on:
                         cb.set_active(self.limits[limit])
                     found[self.types[t]] = True
             if self.limits[limit]:
@@ -708,15 +762,16 @@ class Filters(threading.Thread):
         showb = gtk.Button(label="hide", stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
         showb.connect('clicked', self.__toggle_box, 'limits')
+        top_hbox.pack_start(showb, expand=False, padding=1)
 
-        vbox1 = gtk.VBox(False, 0)
+        vbox1 = gtk.VBox(False, 15)
         vbox.pack_start(vbox1, False, False, 0)
         self.boxes['limits'] = vbox1
 
         self.cursor.execute(self.sql.query['getCashLimits'])
         # selects  limitType, bigBlind
         result = self.db.cursor.fetchall()
-        self.found = {'nl':False, 'fl':False, 'pl':False, 'ring':False, 'tour':False}
+        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'ring':False, 'tour':False}
 
         if len(result) >= 1:
             hbox = gtk.HBox(True, 0)
@@ -741,6 +796,9 @@ class Filters(threading.Thread):
                     elif line[1] == 'pl':
                         name = str(line[2])+line[1]
                         self.found['pl'] = True
+                    elif line[1] == 'cn':
+                        name = str(line[2])+line[1]
+                        self.found['cn'] = True
                     else:
                         name = str(line[2])+line[1]
                         self.found['nl'] = True
@@ -765,11 +823,12 @@ class Filters(threading.Thread):
 
                 dest = vbox3  # for ring/tour buttons
                 if "LimitType" in display and display["LimitType"] == True:
-                    num_limit_types = 0
-                    if self.found['fl']:  num_limit_types = num_limit_types + 1
-                    if self.found['pl']:  num_limit_types = num_limit_types + 1
-                    if self.found['nl']:  num_limit_types = num_limit_types + 1
-                    if num_limit_types > 1:
+                    self.num_limit_types = 0
+                    if self.found['fl']:  self.num_limit_types = self.num_limit_types + 1
+                    if self.found['pl']:  self.num_limit_types = self.num_limit_types + 1
+                    if self.found['nl']:  self.num_limit_types = self.num_limit_types + 1
+                    if self.found['cn']:  self.num_limit_types = self.num_limit_types + 1
+                    if self.num_limit_types > 1:
                        if self.found['fl']:
                            hbox = gtk.HBox(False, 0)
                            vbox3.pack_start(hbox, False, False, 0)
@@ -782,6 +841,10 @@ class Filters(threading.Thread):
                            hbox = gtk.HBox(False, 0)
                            vbox3.pack_start(hbox, False, False, 0)
                            self.cbPL = self.createLimitLine(hbox, 'pl', self.filterText['limitsPL'])
+                       if self.found['cn']:
+                           hbox = gtk.HBox(False, 0)
+                           vbox3.pack_start(hbox, False, False, 0)
+                           self.cbCN = self.createLimitLine(hbox, 'cn', self.filterText['limitsCN'])
                        dest = vbox2  # for ring/tour buttons
         else:
             print _("INFO: No games returned from database")
@@ -807,19 +870,24 @@ class Filters(threading.Thread):
     def fillGraphOpsFrame(self, vbox):
         top_hbox = gtk.HBox(False, 0)
         vbox.pack_start(top_hbox, False, False, 0)
-        title = gtk.Label("Graphing Options:")
+        title = gtk.Label(_("Graphing Options:"))
         title.set_alignment(xalign=0.0, yalign=0.5)
         top_hbox.pack_start(title, expand=True, padding=3)
         showb = gtk.Button(label="hide", stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'games')
+        showb.connect('clicked', self.__toggle_box, 'graphops')
         top_hbox.pack_start(showb, expand=False, padding=1)
 
+        vbox1 = gtk.VBox(False, 0)
+        vbox.pack_start(vbox1, False, False, 0)
+        vbox1.show()
+        self.boxes['graphops'] = vbox1
+
         hbox1 = gtk.HBox(False, 0)
-        vbox.pack_start(hbox1, False, False, 0)
+        vbox1.pack_start(hbox1, False, False, 0)
         hbox1.show()
 
-        label = gtk.Label("Show Graph In:")
+        label = gtk.Label(_("Show Graph In:"))
         label.set_alignment(xalign=0.0, yalign=0.5)
         hbox1.pack_start(label, True, True, 0)
         label.show()
@@ -835,11 +903,7 @@ class Filters(threading.Thread):
         button.connect("toggled", self.__set_displayin_select, "BB")
         button.show()
 
-        vbox1 = gtk.VBox(False, 0)
-        vbox.pack_start(vbox1, False, False, 0)
-        vbox1.show()
-
-        button = gtk.CheckButton("Showdown Winnings", False)
+        button = gtk.CheckButton(_("Showdown Winnings"), False)
         vbox1.pack_start(button, True, True, 0)
         # wouldn't it be awesome if there was a way to remember the state of things like
         # this and be able to set it to what it was last time?
@@ -847,7 +911,7 @@ class Filters(threading.Thread):
         button.connect("toggled", self.__set_graphopscheck_select, "showdown")
         button.show()
 
-        button = gtk.CheckButton("Non-Showdown Winnings", False)
+        button = gtk.CheckButton(_("Non-Showdown Winnings"), False)
         vbox1.pack_start(button, True, True, 0)
         # ditto as 8 lines up :)
         #button.set_active(True)
@@ -1092,3 +1156,4 @@ def main(argv=None):
 
 if __name__ == '__main__':
    sys.exit(main())
+

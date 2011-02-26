@@ -49,7 +49,8 @@ class PartyPoker(HandHistoryConverter):
     currencies = {"\$": "USD", "$": "USD", u"\xe2\x82\xac": "EUR", u"\u20ac": "EUR", '': "T$"}
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR",            # legal ISO currency codes
-                            'LS' : "\$|\u20AC|\xe2\x82\xac|"    # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : u"\$|\u20ac|\xe2\x82\xac|",    # Currency symbols - Euro(cp1252, utf-8)
+                           'NUM' : u".,\d",
                     }
 
     # Static regexes
@@ -81,7 +82,7 @@ class PartyPoker(HandHistoryConverter):
     re_PlayerInfo   = re.compile(u"""
           Seat\s(?P<SEAT>\d+):\s
           (?P<PNAME>.*)\s
-          \(\s*[%(LS)s]?(?P<CASH>[0-9,.]+)\s*(?:%(LEGAL_ISO)s|)\s*\)
+          \(\s*[%(LS)s]?(?P<CASH>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s|)\s*\)
           """ % substitutions, re.VERBOSE| re.UNICODE)
 
     re_HandInfo     = re.compile("""
@@ -329,13 +330,19 @@ class PartyPoker(HandHistoryConverter):
                     # FIXME: there is no such property in Hand class
                     self.isSNG = True
             if key == 'BUYIN':
-                # FIXME: it's dirty hack T_T
-                # code below assumes that tournament rake is equal to zero
-                if info[key] == None:
-                    hand.buyin = '$0+$0'
-                else:
-                    cur = info[key][0] if info[key][0] not in '0123456789' else ''
-                    hand.buyin = info[key] + '+%s0' % cur
+                if hand.tourNo != None:
+                    hand.buyin = 0
+                    hand.fee = 0
+                    hand.buyinCurrency = "FREE"
+                    hand.isKO = False
+                    if info[key].find("$")!=-1:
+                        hand.buyinCurrency="USD"
+                    elif info[key].find(u"€")!=-1:
+                        hand.buyinCurrency="EUR"
+                    else:
+                        raise FpdbParseError(_("Failed to detect currency. HID: %s: '%s'" % (hand.handid, info[key])))
+                    info[key] = info[key].strip(u'$€')
+                    hand.buyin = int(100*Decimal(info[key]))
             if key == 'LEVEL':
                 hand.level = info[key]
             if key == 'PLAY' and info['PLAY'] != 'Real':
