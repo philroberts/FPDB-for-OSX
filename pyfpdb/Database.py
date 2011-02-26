@@ -38,12 +38,7 @@ import sys
 import traceback
 from datetime import datetime, date, time, timedelta
 from time import time, strftime, sleep
-
-try:
-    from cdecimal import *
-except ImportError:
-    from decimal import *
-
+from decimal_wrapper import Decimal
 import string
 import re
 import Queue
