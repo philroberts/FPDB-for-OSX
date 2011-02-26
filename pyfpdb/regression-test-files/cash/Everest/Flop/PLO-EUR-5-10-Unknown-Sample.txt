@@ -1,0 +1,34 @@
+<SESSION time="1291146443" tableName="Toulouse-2" id="1069.21.2" type="ring" money="€" screenName="Hero" game="omaha-hi" gametype="pot-limit"/>
+<HAND time="1291155932" id="6351562000" index="0" blinds="5 €/10 €" stakes="10 €/10 €">
+  <SEAT position="0" name="Hero" balance="100000"/>
+  <SEAT position="4" name="Villain" balance="50000"/>
+  <DEALER position="0"/>
+  <BLIND position="0" amount="500" penalty="0"/>
+  <BLIND position="4" amount="1000" penalty="0"/>
+  <HOLE position="4">--</HOLE>
+  <HOLE position="0">8h</HOLE>
+  <HOLE position="4">--</HOLE>
+  <HOLE position="0">2c</HOLE>
+  <HOLE position="4">--</HOLE>
+  <HOLE position="0">Qc</HOLE>
+  <HOLE position="4">--</HOLE>
+  <HOLE position="0">Ah</HOLE>
+  <BET position="0" amount="2500"/>
+  <BET position="4" amount="2000"/>
+  <SWEEP rake="150" tax="100">5750</SWEEP>
+  <COMMUNITY>6s, 8c, Jh</COMMUNITY>
+  <BET position="4" amount="6000"/>
+  <BET position="0" amount="6000"/>
+  <SWEEP rake="150" tax="100">17750</SWEEP>
+  <COMMUNITY>6h</COMMUNITY>
+  <BET position="4" amount="0"/>
+  <BET position="0" amount="0"/>
+  <SWEEP rake="150" tax="100">17750</SWEEP>
+  <COMMUNITY>4c</COMMUNITY>
+  <BET position="4" amount="18000"/>
+  <FOLD position="0"/>
+  <PUSH position="4" amount="18000"/>
+  <SWEEP rake="150" tax="100">17750</SWEEP>
+  <XSHOW position="4"/>
+  <WIN position="4" amount="17750" pot="0" potAmount="17750"/>
+</HAND>

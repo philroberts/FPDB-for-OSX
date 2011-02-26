@@ -84,8 +84,8 @@ class PokerStars(HandHistoryConverter):
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
-          PokerStars\sGame\s\#(?P<HID>[0-9]+):\s+
-          (Tournament\s\#                # open paren of tournament info
+          PokerStars(\sHome)?\sGame\s\#(?P<HID>[0-9]+):\s+
+          (\{.*\}\s+)?(Tournament\s\#                # open paren of tournament info
           (?P<TOURNO>\d+),\s
           # here's how I plan to use LS
           (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
@@ -338,7 +338,14 @@ class PokerStars(HandHistoryConverter):
                            r"(\*\*\* 6th STREET \*\*\*(?P<SIXTH>.+(?=\*\*\* RIVER \*\*\*)|.+))?"
                            r"(\*\*\* RIVER \*\*\*(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
         elif hand.gametype['base'] in ("draw"):
-            m =  re.search(r"(?P<PREDEAL>.+(?=\*\*\* DEALING HANDS \*\*\*)|.+)"
+            if hand.gametype['category'] in ('27_1draw', 'fivedraw'):
+                # There is no marker between deal and draw in Stars single draw games
+                # This unfortunately affects the accounting.
+                m =  re.search(r"(?P<PREDEAL>.+(?=\*\*\* DEALING HANDS \*\*\*)|.+)"
+                           r"(\*\*\* DEALING HANDS \*\*\*(?P<DEAL>.+(?=(: stands pat on|: discards))|.+))?"
+                           r"((: stands pat on|: discards)(?P<DRAWONE>.+))?", hand.handText,re.DOTALL)
+            else:
+                m =  re.search(r"(?P<PREDEAL>.+(?=\*\*\* DEALING HANDS \*\*\*)|.+)"
                            r"(\*\*\* DEALING HANDS \*\*\*(?P<DEAL>.+(?=\*\*\* FIRST DRAW \*\*\*)|.+))?"
                            r"(\*\*\* FIRST DRAW \*\*\*(?P<DRAWONE>.+(?=\*\*\* SECOND DRAW \*\*\*)|.+))?"
                            r"(\*\*\* SECOND DRAW \*\*\*(?P<DRAWTWO>.+(?=\*\*\* THIRD DRAW \*\*\*)|.+))?"

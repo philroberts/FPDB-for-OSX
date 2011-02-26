@@ -80,6 +80,7 @@ class FullTiltPokerSummary(TourneySummary):
     re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP)""" % substitutions)
 
     re_Player = re.compile(u"""(?P<RANK>[\d]+):\s(?P<NAME>[^,\r\n]{2,15})(,(\s)?[%(LS)s](?P<WINNINGS>[.\d]+))?""")
+    re_Finished = re.compile(u"""(?P<NAME>[^,\r\n]{2,15}) finished in (?P<RANK>[\d]+)\S\S place""")
 
     re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
 
@@ -126,6 +127,7 @@ class FullTiltPokerSummary(TourneySummary):
         elif mg['CURRENCY'] == "FPP": self.currency="PSFP"
 
         m = self.re_Player.finditer(self.summaryText)
+        playercount = 0
         for a in m:
             mg = a.groupdict()
             #print "DEBUG: a.groupdict(): %s" % mg
@@ -136,4 +138,14 @@ class FullTiltPokerSummary(TourneySummary):
             if 'WINNINGS' in mg and mg['WINNINGS'] != None:
                 winnings = int(100*Decimal(mg['WINNINGS']))
             self.addPlayer(rank, name, winnings, self.currency, None, None, None)
+            playercount += 1
 
+        # Some files dont contain the normals lines, and only contain the line
+        # <PLAYER> finished in XXXXrd place
+        if playercount == 0:
+            m = self.re_Finished.finditer(self.summaryText)
+            for a in m:
+                winnings = 0
+                name = a.group('NAME')
+                rank = a.group('RANK')
+                self.addPlayer(rank, name, winnings, self.currency, None, None, None)

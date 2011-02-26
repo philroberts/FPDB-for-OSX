@@ -291,6 +291,7 @@ class GuiGraphViewer (threading.Thread):
         lims = [int(x) for x in limits if x.isdigit()]
         potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
         nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
+        capnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'cn']
         limittest = "and ( (gt.limitType = 'fl' and gt.bigBlind in "
                  # and ( (limit and bb in()) or (nolimit and bb in ()) )
         if lims:
@@ -311,6 +312,14 @@ class GuiGraphViewer (threading.Thread):
         limittest = limittest + " or (gt.limitType = 'nl' and gt.bigBlind in "
         if nolims:
             blindtest = str(tuple(nolims))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            limittest = limittest + blindtest + ' ) '
+        else:
+            limittest = limittest + '(-1) ) '
+        limittest = limittest + " or (gt.limitType = 'cn' and gt.bigBlind in "
+        if capnolims:
+            blindtest = str(tuple(capnolims))
             blindtest = blindtest.replace("L", "")
             blindtest = blindtest.replace(",)",")")
             limittest = limittest + blindtest + ' ) )'

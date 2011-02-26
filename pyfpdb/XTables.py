@@ -35,10 +35,14 @@ import Xlib.display
 
 #    FPDB modules
 from TableWindow import Table_Window
+import Configuration
 
 #    We might as well do this once and make them globals
 disp = Xlib.display.Display()
 root = disp.screen().root
+
+c = Configuration.Config()
+log = Configuration.get_logger("logging.conf", "hud", log_dir=c.dir_log, log_file='HUD-log.txt')
 
 class Table(Table_Window):
 
@@ -56,14 +60,18 @@ class Table(Table_Window):
         self.number = None
         for listing in os.popen('xwininfo -root -tree').readlines():
             if re.search(self.search_string, listing, re.I):
+                log.info(listing)
                 mo = re.match(reg, listing, re.VERBOSE)
                 title  = re.sub('\"', '', mo.groupdict()["TITLE"])
                 if self.check_bad_words(title): continue
                 self.number = int( mo.groupdict()["XID"], 0 )
                 self.title = title
+                if self.number is None:
+                    log.warning(_("Could not retrieve XID from table xwininfo. xwininfo is %s") % listing)
                 break
 
         if self.number is None:
+            log.warning(_("No match in XTables for table '%s'.") % self.search_string)
             return None
         (self.window, self.parent) = self.get_window_from_xid(self.number)
 
@@ -88,23 +96,51 @@ class Table(Table_Window):
                 if w.id == id:
                     return (w, top_level)
 
+    #def get_geometry(self):
+        #try:
+            #my_geo = self.window.get_geometry()
+            #if self.parent is None:
+                #return {'x'      : my_geo.x,
+                        #'y'      : my_geo.y,
+                        #'width'  : my_geo.width,
+                        #'height' : my_geo.height
+                       #}
+            #else:
+                #pa_geo = self.parent.get_geometry()
+                #return {'x'      : my_geo.x + pa_geo.x,
+                        #'y'      : my_geo.y + pa_geo.y,
+                        #'width'  : my_geo.width,
+                        #'height' : my_geo.height
+                       #}
+        #except:
+            #return None
+
     def get_geometry(self):
+        geo_re = '''
+                Absolute\supper-left\sX: \s+ (?P<X>\d+)   # x
+                .+
+                Absolute\supper-left\sY: \s+ (?P<Y>\d+)   # y
+                .+
+                Width: \s+ (?P<W>\d+)                   # width
+                .+
+                Height: \s+ (?P<H>\d+)                  # height
+            '''
+        des_re = 'No such window with id'
+
+        listing = os.popen("xwininfo -id %d -stats" % (self.number)).read()
+
+        mo = re.search(des_re, listing)
+        if mo is not None:
+            return None      # table has been destroyed
+
+        mo = re.search(geo_re, listing, re.VERBOSE|re.DOTALL)
         try:
-            my_geo = self.window.get_geometry()
-            if self.parent is None:
-                return {'x'      : my_geo.x,
-                        'y'      : my_geo.y,
-                        'width'  : my_geo.width,
-                        'height' : my_geo.height
-                       }
-            else:
-                pa_geo = self.parent.get_geometry()
-                return {'x'      : my_geo.x + pa_geo.x,
-                        'y'      : my_geo.y + pa_geo.y,
-                        'width'  : my_geo.width,
-                        'height' : my_geo.height
-                       }
-        except:
+            return {'x'        : int(mo.groupdict()['X']),
+                    'y'        : int(mo.groupdict()['Y']),
+                    'width'    : int(mo.groupdict()['W']),
+                    'height'   : int(mo.groupdict()['H'])
+                   }
+        except AttributeError:
             return None
 
     def get_window_title(self):
@@ -129,4 +165,3 @@ def treewalk(parent):
         for ww in treewalk(w):
             yield ww
         yield w
-

@@ -15,11 +15,6 @@ Important info:
 The Merge process can only be run when ftp client is shutdown
  - otherwise ftp overwrites the xml on exit.
 
-Restarting the autoimport will empty the notes"queue" so avoid restarting
- autoimport until the previous notes "queue" has been merged.  You will
- lose all the queued notes, but these will be regenerated the next time
- the villian is at your table, so it isn't the end of the world.
-
 Existing ftp notes _SHOULD_ be preserved, but this isn't guaranteed, 
  you have been warned!
  
@@ -27,7 +22,8 @@ Existing colour codings should be preserved,
  this process does not change or set colourcodings.
 
 Copies of the live ftp notes file should be preserved everytime
-  RushNotesAux (i.e. the HUD is started)
+  RushNotesAux (i.e. the HUD is started).  If you play at different
+  rush tables, the backup will be created several times.
 
 The AW is hard-coded with just the table names of Micro Rush Poker, 
   and should ignore all other hands.
@@ -35,7 +31,7 @@ The AW is hard-coded with just the table names of Micro Rush Poker,
 What might not work?
 --------------------
 
-This isn't tested with Windows, and probably won't work, feedback welcome.
+This should work with windows sourcecode version, but will not work with the exe download.
 Hasn't been tested for co-existance with other sites, feedback welcome.
 Whenever FTP change their notes file format, this will all break rather spectacularly,
     you have been warned!
@@ -77,7 +73,7 @@ execute the following:
 ./pyfpdb/RushNotesMerge.py "/home/foo/.wine/drive_c/Program Files/Full Tilt Poker/myname.xml"
 
 A revised notes file (blah.merge) should automagically appear in the full tilt root directory.
-If you are happy with it, replace the existing (myname.xml file)
+If you are happy with it, replace the existing (myname.xml file) and delete the .queue file.
 
 
 Since the updates aren't real time, it would be ok to play the rush
@@ -176,7 +172,7 @@ Process overview
 ----------------
 
 1/ The HUD process is started.  
-1.1/ when the first hand is received, h fresh holding file is created, and 
+1.1/ when the first hand is received, a queue file is created if not already there, and 
 a copy of the current live xml note file is created as a security backup.
 2/ For every hand played, the auxillary window is called
 3/ Based upon the players in the hand, fpdb will be interrogated
@@ -191,4 +187,4 @@ existing notes, but this cannot be guaranteed.
 they replace the existing note file.
 9/ Note that this process never updates the live notes file in situ, but
 there is a risk that something goes wrong, and that existing notes could be destroyed.
-
+10/ the queue file can be deleted to reduce re-processing next time.

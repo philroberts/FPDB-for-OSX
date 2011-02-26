@@ -52,8 +52,9 @@ class Table(Table_Window):
             if re.search(self.search_string, d.get(kCGWindowName, ""), re.I):
                 title = d[kCGWindowName]
                 if self.check_bad_words(title): continue
-                self.number = d[kCGWindowNumber]
+                self.number = int(d[kCGWindowNumber])
                 self.title = title
+                return self.title
         if self.number is None:
             return None
   
@@ -63,11 +64,11 @@ class Table(Table_Window):
         WinListDict = CGWindowListCreateDescriptionFromArray(WinList)
 
         for d in WinListDict:
-            if d[CGWindowNumber] == self.number:
-                return {'x'      : d[kCGWindowBounds][X],
-                        'y'      : d[kCGWindowBounds][Y],
-                        'width'  : d[kCGWindowBounds][Width],
-                        'height' : d[kCGWindowBounds][Height]
+            if d[kCGWindowNumber] == self.number:
+                return {'x'      : int(d[kCGWindowBounds]['X']),
+                        'y'      : int(d[kCGWindowBounds]['Y']),
+                        'width'  : int(d[kCGWindowBounds]['Width']),
+                        'height' : int(d[kCGWindowBounds]['Height'])
                        }
         return None
 
@@ -86,5 +87,5 @@ class Table(Table_Window):
 #    the hud window was a dialog belonging to the table.
 
 #    This is the gdkhandle for the HUD window
-        gdkwindow = gtk.gdk.window_foreign_new(window.number)
-        gdkwindow.set_transient_for(self.gdkhandle)
+        gdkwindow = gtk.gdk.window_foreign_new(window.window.xid)
+        gdkwindow.set_transient_for(window.window)

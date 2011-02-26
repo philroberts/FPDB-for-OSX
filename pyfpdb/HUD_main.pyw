@@ -23,6 +23,9 @@
 
 Main for FreePokerTools HUD.
 """
+import L10n
+_ = L10n.get_translation()
+
 #    Standard Library modules
 import sys
 import os
@@ -50,21 +53,6 @@ elif sys.platform == 'darwin':
     import OSXTables as Tables
 else: # This is bad--figure out the values for the various windows flavors
     import WinTables as Tables
-
-import locale
-lang = locale.getdefaultlocale()[0][0:2]
-print "lang:", lang
-if lang == "en":
-    def _(string):
-        return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string):
-            return string
 
 # get config and set up logger
 c = Configuration.Config(file=options.config, dbname=options.dbname)
@@ -128,7 +116,7 @@ class HUD_main(object):
                 self.main_window.set_icon_stock(gtk.STOCK_HOME)
             if not options.hidden:
                 self.main_window.show_all()
-#            gobject.timeout_add(100, self.check_tables)
+            gobject.timeout_add(800, self.check_tables)
 
         except:
             log.exception("Error initializing main_window")
