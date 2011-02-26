@@ -351,10 +351,7 @@ class Seat_Window(gtk.Window):
                                       pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup])
 
         elif event.button == 1:   # left button event -- drag the window
-            try:
-                self.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
-            except AttributeError:  # in case get_ancestor returns None
-                pass
+            self.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
 
 class Aux_Seats(Aux_Window):
     """A super class to display an aux_window at each seat."""
