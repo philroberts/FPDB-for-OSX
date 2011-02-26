@@ -1,9 +1,16 @@
+This is a list of download links of Windows packages for Python 2.7 of our dependencies.
+
+
+These are as of 26Feb2011:
+matplotlib 1.0.1 ... http://sourceforge.net/projects/matplotlib/files/matplotlib/matplotlib-1.0.1/
+pygtk 2.22 ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.22/
+pycairo 1.8.10 ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pycairo/1.8/
+pyGobject X ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pygobject/2.26/
+
+
+The below are from Aug2010, and should probably be updated to newer versions:
 Python 2.7 ... http://python.org/ftp/python/2.7/python-2.7.msi
 pywin 214 ... https://sourceforge.net/projects/pywin32/files/pywin32/Build%20214/pywin32-214.win32-py2.7.exe/download
-matplotlib X ... not available as py27 as of 16aug2010: https://sourceforge.net/projects/matplotlib/files/matplotlib/
-pygtk X ... not available as py27 as of 16aug2010: http://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/
-pycairo X ... not available as py27 as of 16aug2010: http://ftp.gnome.org/pub/GNOME/binaries/win32/pycairo/
-pyGobject X ... not available as py27 as of 16aug2010: http://ftp.gnome.org/pub/GNOME/binaries/win32/pygobject/
 py2exe 0.6.9 ... https://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/py2exe-0.6.9.win32-py2.7.exe/download
 psycopg2 ... http://www.stickpeople.com/projects/python/win-psycopg/psycopg2-2.2.2.win32-py2.7-pg8.4.4-release.exe
 

@@ -26,7 +26,7 @@ import os
 import os.path
 import xml.dom.minidom
 import codecs
-from decimal import Decimal
+from decimal_wrapper import Decimal
 import operator
 from xml.dom.minidom import Node
 

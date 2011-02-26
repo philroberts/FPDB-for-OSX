@@ -38,7 +38,7 @@ import sys
 import traceback
 from datetime import datetime, date, time, timedelta
 from time import time, strftime, sleep
-from decimal import Decimal
+from decimal_wrapper import Decimal
 import string
 import re
 import Queue

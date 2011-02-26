@@ -17,7 +17,7 @@
 
 #fpdb modules
 import Card
-from decimal import Decimal
+from decimal_wrapper import Decimal
 
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:

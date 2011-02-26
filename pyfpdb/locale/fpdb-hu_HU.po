@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2011-02-23 16:58+CET\n"
-"PO-Revision-Date: 2011-02-20 21:27+0100\n"
+"PO-Revision-Date: 2011-02-24 12:08+0100\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -654,7 +654,7 @@ msgstr "Versenyek"
 
 #: Filters.py:80
 msgid "DEBUG: New packing box created!"
-msgstr ""
+msgstr "DEBUG: Új csoportosító doboz létrehozva!"
 
 #: Filters.py:106 TourneyFilters.py:114
 msgid "Either 0 or more than one site matched (%s) - EEK"
@@ -714,20 +714,19 @@ msgstr "Nem található játék az adatbázisban"
 
 #: Filters.py:827
 msgid "Graphing Options:"
-msgstr ""
+msgstr "Grafikon opciók:"
 
 #: Filters.py:839
 msgid "Show Graph In:"
-msgstr ""
+msgstr "Profit:"
 
 #: Filters.py:859
 msgid "Showdown Winnings"
-msgstr ""
+msgstr "Nyeremény mutatással"
 
 #: Filters.py:867
-#, fuzzy
 msgid "Non-Showdown Winnings"
-msgstr "Mutatás nélkül: $%.2f"
+msgstr "Nyeremény mutatás nélkül"
 
 #: Filters.py:984
 msgid "From:"
@@ -842,9 +841,8 @@ msgid "  Start _Auto Import  "
 msgstr "  _Auto Import indítása  "
 
 #: GuiAutoImport.py:125
-#, fuzzy
 msgid "Detect Directories"
-msgstr "'%s' könyvtár létrehozva"
+msgstr "Könyvtárak felismerése"
 
 #: GuiAutoImport.py:144
 msgid "Auto Import Ready."
@@ -3117,10 +3115,11 @@ msgstr "Nem sikerült az utcák hozzáadása. handtext=%s"
 #: XTables.py:70
 msgid "Could not retrieve XID from table xwininfo. xwininfo is %s"
 msgstr ""
+"Nem sikerült az XID meghatározása az asztal xwininfo-jából. Az xwininfo: %s"
 
 #: XTables.py:74
 msgid "No match in XTables for table '%s'."
-msgstr ""
+msgstr "Nincs találat az XTables-ben ehhez az asztalhoz: '%s'"
 
 #: fpdb.pyw:38
 msgid " - press return to continue\n"
