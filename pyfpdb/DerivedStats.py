@@ -457,7 +457,7 @@ class DerivedStats():
     def calc34BetStreet0(self, hand):
         """Fills street0_(3|4)B(Chance|Done), other(3|4)BStreet0"""
         bet_level = 1 # bet_level after 3-bet is equal to 3
-        squeeze_chance = 0
+        squeeze_chance = False
         for action in hand.actions[hand.actionStreets[1]]:
             pname, act, aggr = action[0], action[1], action[1] in ('raises', 'bets')
             if bet_level == 1:
@@ -469,7 +469,7 @@ class DerivedStats():
                 self.handsplayers[pname]['street0_3BChance'] = True
                 self.handsplayers[pname]['street0_SqueezeChance'] = squeeze_chance
                 if not squeeze_chance and act == 'calls':
-                    squeeze_chance = 1
+                    squeeze_chance = True
                     continue
                 if aggr:
                     self.handsplayers[pname]['street0_3BDone'] = True
