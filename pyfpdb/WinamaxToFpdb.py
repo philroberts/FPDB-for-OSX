@@ -236,8 +236,6 @@ class Winamax(HandHistoryConverter):
                 # TODO: long-term solution for table naming on Winamax.
                 if hand.tablename.endswith(u'No Limit Hold\'em'):
                     hand.tablename = hand.tablename[:-len(u'No Limit Hold\'em')] + u'NLHE'
-                else:
-                    print '%s does not end with NLHE' % hand.tablename
             if key == 'MAXPLAYER' and info[key] != None:
                 hand.maxseats = int(info[key])
 
