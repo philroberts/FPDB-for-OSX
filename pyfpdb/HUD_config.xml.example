@@ -263,7 +263,7 @@ Left-Drag to Move"
                   bgcolor="#000000"
                   converter="EverleafToFpdb"
                   decoder="everleaf_decode_table"
-                  enabled="False"
+                  enabled="True"
                   fgcolor="#EEEEEE"
                   hudopacity="0.75"
                   screen_name="PlayerName"
@@ -282,16 +282,16 @@ Left-Drag to Move"
 	        </layout>
 	        <layout fav_seat="0" height="546" max="10" width="792">
 			<location seat="0" x="182" y="69"> </location>
-	        	<location seat="1" x="456" y="74">  </location>
-	        	<location seat="2" x="630" y="81"> </location>
-	        	<location seat="3" x="637" y="208"> </location>
-	        	<location seat="4" x="629" y="347"> </location>
-	        	<location seat="5" x="412" y="377"> </location>
-	        	<location seat="6" x="232" y="377"> </location>
-	        	<location seat="7" x="21" y="349"> </location>
-	        	<location seat="8" x="4" y="208">  </location>
-	        	<location seat="9" x="7" y="88">  </location>
-	        	<location seat="10" x="196" y="69">  </location>
+	        	<location seat="1" x="485" y="66">  </location>
+	        	<location seat="2" x="661" y="79"> </location>
+	        	<location seat="3" x="675" y="210"> </location>
+	        	<location seat="4" x="644" y="346"> </location>
+	        	<location seat="5" x="449" y="375"> </location>
+	        	<location seat="6" x="253" y="374"> </location>
+	        	<location seat="7" x="46" y="348"> </location>
+	        	<location seat="8" x="23" y="204">  </location>
+	        	<location seat="9" x="38" y="79">  </location>
+	        	<location seat="10" x="226" y="67">  </location>
 	        </layout>
 	        <layout fav_seat="0" height="546" max="8" width="792">
 			<location seat="0" x="182" y="69"> </location>
@@ -312,7 +312,7 @@ Left-Drag to Move"
 	      
 	    </site>
 
-        <site enabled="False"
+        <site enabled="True"
               site_name="Win2day"
               table_finder="Win2day.exe"
               screen_name="YOUR SCREEN NAME HERE"
@@ -357,7 +357,7 @@ Left-Drag to Move"
         </site>
 
 
-        <site enabled="False"
+        <site enabled="True"
               site_name="Absolute"
               table_finder="AbsolutePoker.exe"
               screen_name="YOUR SCREEN NAME HERE"
@@ -402,7 +402,7 @@ Left-Drag to Move"
         </site>
 
 
-        <site enabled="False"
+        <site enabled="True"
               site_name="PartyPoker"
               table_finder="PartyGaming.exe"
               screen_name="YOUR SCREEN NAME HERE"
@@ -494,7 +494,7 @@ Left-Drag to Move"
             </layout>
         </site>
 
-        <site HH_path="C:/Program Files/OnGame Sking/HandHistory/YOUR SCREEN NAME HERE/" converter="OnGameToFpdb" decoder="everleaf_decode_table" enabled="False" screen_name="YOUR SCREEN NAME HERE" site_name="OnGame" site_path="C:/Program Files/OnGame/" supported_games="holdem" table_finder="OnGame.exe">
+        <site HH_path="C:/Program Files/OnGame Sking/HandHistory/YOUR SCREEN NAME HERE/" converter="OnGameToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="OnGame" site_path="C:/Program Files/OnGame/" supported_games="holdem" table_finder="OnGame.exe">
             <layout fav_seat="0" height="547" max="8" width="794">
                 <location seat="1" x="640" y="64">  </location>
                 <location seat="2" x="650" y="230"> </location>
@@ -542,7 +542,7 @@ Left-Drag to Move"
             </layout>
         </site>
 
-        <site HH_path="C:/Program Files/PKR/HandHistory/YOUR SCREEN NAME HERE/" converter="PkrToFpdb" decoder="everleaf_decode_table" enabled="False" screen_name="YOUR SCREEN NAME HERE" site_name="PKR" site_path="C:/Program Files/PKR/" supported_games="holdem" table_finder="PKR.exe">
+        <site HH_path="C:/Program Files/PKR/HandHistory/YOUR SCREEN NAME HERE/" converter="PkrToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="PKR" site_path="C:/Program Files/PKR/" supported_games="holdem" table_finder="PKR.exe">
             <layout fav_seat="0" height="547" max="8" width="794">
                 <location seat="1" x="640" y="64">  </location>
                 <location seat="2" x="650" y="230"> </location>
@@ -578,7 +578,7 @@ Left-Drag to Move"
             </layout>
         </site>
 
-        <site HH_path="C:/Program Files/Winamax/HandHistory/YOUR SCREEN NAME HERE/" converter="WinamaxToFpdb" decoder="everleaf_decode_table" enabled="False" screen_name="YOUR SCREEN NAME HERE" site_name="Winamax" site_path="C:/Program Files/Winamax/" supported_games="holdem" table_finder="Winamax.exe">
+        <site HH_path="C:/Program Files/Winamax/HandHistory/YOUR SCREEN NAME HERE/" converter="WinamaxToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="Winamax" site_path="C:/Program Files/Winamax/" supported_games="holdem" table_finder="Winamax.exe">
             <layout fav_seat="0" height="547" max="8" width="794">
                 <location seat="1" x="640" y="64">  </location>
                 <location seat="2" x="650" y="230"> </location>
@@ -614,7 +614,7 @@ Left-Drag to Move"
             </layout>
         </site>
 
-        <site HH_path="C:/Program Files/Everest/HandHistory/YOUR SCREEN NAME HERE/" converter="EverestToFpdb" decoder="everleaf_decode_table" enabled="False" screen_name="YOUR SCREEN NAME HERE" site_name="Everest" site_path="C:/Program Files/Everest/" supported_games="holdem" table_finder="Everest.exe">
+        <site HH_path="C:/Program Files/Everest/HandHistory/YOUR SCREEN NAME HERE/" converter="EverestToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="Everest" site_path="C:/Program Files/Everest/" supported_games="holdem" table_finder="Everest.exe">
             <layout fav_seat="0" height="547" max="8" width="794">
                 <location seat="1" x="640" y="64">  </location>
                 <location seat="2" x="650" y="230"> </location>

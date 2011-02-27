@@ -651,6 +651,9 @@ class Sql:
                         street0_FoldTo4BDone BOOLEAN,
                         street0_SqueezeChance BOOLEAN,
                         street0_SqueezeDone BOOLEAN,
+
+                        raiseToStealChance BOOLEAN,
+                        raiseToStealDone BOOLEAN,
                         success_Steal BOOLEAN,
 
                         street1Seen BOOLEAN,
@@ -775,6 +778,9 @@ class Sql:
                         street0_FoldTo4BDone BOOLEAN,
                         street0_SqueezeChance BOOLEAN,
                         street0_SqueezeDone BOOLEAN,
+
+                        raiseToStealChance BOOLEAN,
+                        raiseToStealDone BOOLEAN,
                         success_Steal BOOLEAN,
 
                         street1Seen BOOLEAN,
@@ -898,6 +904,9 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
+
+                        raiseToStealChance INT,
+                        raiseToStealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -1112,6 +1121,9 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
+
+                        raiseToStealChance INT,
+                        raiseToStealDone INT,
                         success_Steal INT,
 
 
@@ -1221,6 +1233,9 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
+
+                        raiseToStealChance INT,
+                        raiseToStealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -1327,6 +1342,9 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
+
+                        raiseToStealChance INT,
+                        raiseToStealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -1545,6 +1563,8 @@ class Sql:
                     sum(hc.street0_FoldTo4BDone)        AS F4B_0,
                     sum(hc.street0_SqueezeChance)       AS SQZ_opp_0,
                     sum(hc.street0_SqueezeDone)         AS SQZ_0,
+                    sum(hc.raiseToStealChance)          AS RTS_opp,
+                    sum(hc.raiseToStealDone)            AS RTS,
                     sum(hc.success_Steal)               AS SUC_ST,
                     sum(hc.street1Seen)                 AS saw_f,
                     sum(hc.street1Seen)                 AS saw_1,
@@ -1667,6 +1687,8 @@ class Sql:
                        sum(hc.street0_FoldTo4BDone)        AS F4B_0,
                        sum(hc.street0_SqueezeChance)       AS SQZ_opp_0,
                        sum(hc.street0_SqueezeDone)         AS SQZ_0,
+                       sum(hc.raiseToStealChance)          AS RTS_opp,
+                       sum(hc.raiseToStealDone)            AS RTS,
                        sum(hc.success_Steal)               AS SUC_ST,
                        sum(hc.street1Seen)                 AS saw_f,
                        sum(hc.street1Seen)                 AS saw_1,
@@ -1806,6 +1828,8 @@ class Sql:
                            cast(hp2.street0_FoldTo4BDone as <signed>integer)        AS F4B_0,
                            cast(hp2.street0_SqueezeChance as <signed>integer)       AS SQZ_opp_0,
                            cast(hp2.street0_SqueezeDone as <signed>integer)         AS SQZ_0,
+                           cast(hp2.raiseToStealChance as <signed>integer)          AS RTS_opp,
+                           cast(hp2.raiseToStealDone as <signed>integer)            AS RTS,
                            cast(hp2.success_Steal as <signed>integer)               AS SUC_ST,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_f,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_1,
@@ -1921,6 +1945,8 @@ class Sql:
                            cast(hp2.street0_FoldTo4BDone as <signed>integer)        AS F4B_0,
                            cast(hp2.street0_SqueezeChance as <signed>integer)       AS SQZ_opp_0,
                            cast(hp2.street0_SqueezeDone as <signed>integer)         AS SQZ_0,
+                           cast(hp2.raiseToStealChance as <signed>integer)          AS RTS_opp,
+                           cast(hp2.raiseToStealDone as <signed>integer)            AS RTS,
                            cast(hp2.success_Steal as <signed>integer)               AS SUC_ST,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_f,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_1,
@@ -2037,6 +2063,8 @@ class Sql:
                            cast(hp2.street0_FoldTo4BDone as <signed>integer)        AS F4B_0,
                            cast(hp2.street0_SqueezeChance as <signed>integer)       AS SQZ_opp_0,
                            cast(hp2.street0_SqueezeDone as <signed>integer)         AS SQZ_0,
+                           cast(hp2.raiseToStealChance as <signed>integer)          AS RTS_opp,
+                           cast(hp2.raiseToStealDone as <signed>integer)            AS RTS,
                            cast(hp2.success_Steal as <signed>integer)               AS SUC_ST,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_f,
                            cast(hp2.street1Seen as <signed>integer)                 AS saw_1,
@@ -2272,7 +2300,7 @@ class Sql:
                                       from Gametypes gt
                                       WHERE type = 'ring'
                                       order by type, limitType DESC, bb_or_buyin DESC"""
-        #FIXME: Some stats not added to DetailedStats
+        #FIXME: Some stats not added to DetailedStats (miss raise to steal)
         if db_server == 'mysql':
             self.query['playerDetailedStats'] = """
                      select  <hgametypeId>                                                          AS hgametypeid
@@ -3493,6 +3521,8 @@ class Sql:
                 ,street0_FoldTo4BDone
                 ,street0_SqueezeChance
                 ,street0_SqueezeDone
+                ,raiseToStealChance
+                ,raiseToStealDone
                 ,success_Steal
                 ,street1Seen
                 ,street2Seen
@@ -3599,6 +3629,8 @@ class Sql:
                       ,sum(street0_FoldTo4BDone)
                       ,sum(street0_SqueezeChance)
                       ,sum(street0_SqueezeDone)
+                      ,sum(raiseToStealChance)
+                      ,sum(raiseToStealDone)
                       ,sum(success_Steal)
                       ,sum(street1Seen)
                       ,sum(street2Seen)
@@ -3705,6 +3737,8 @@ class Sql:
                 ,street0_FoldTo4BDone
                 ,street0_SqueezeChance
                 ,street0_SqueezeDone
+                ,raiseToStealChance
+                ,raiseToStealDone
                 ,success_Steal
                 ,street1Seen
                 ,street2Seen
@@ -3811,6 +3845,8 @@ class Sql:
                       ,sum(CAST(street0_FoldTo4BDone as integer))
                       ,sum(CAST(street0_SqueezeChance as integer))
                       ,sum(CAST(street0_SqueezeDone as integer))
+                      ,sum(CAST(raiseToStealChance as integer))
+                      ,sum(CAST(raiseToStealDone as integer))
                       ,sum(CAST(success_Steal as integer))
                       ,sum(CAST(street1Seen as integer))
                       ,sum(CAST(street2Seen as integer))
@@ -3917,6 +3953,8 @@ class Sql:
                 ,street0_FoldTo4BDone
                 ,street0_SqueezeChance
                 ,street0_SqueezeDone
+                ,raiseToStealChance
+                ,raiseToStealDone
                 ,success_Steal
                 ,street1Seen
                 ,street2Seen
@@ -4023,6 +4061,8 @@ class Sql:
                       ,sum(CAST(street0_FoldTo4BDone as integer))
                       ,sum(CAST(street0_SqueezeChance as integer))
                       ,sum(CAST(street0_SqueezeDone as integer))
+                      ,sum(CAST(raiseToStealChance as integer))
+                      ,sum(CAST(raiseToStealDone as integer))
                       ,sum(CAST(success_Steal as integer))
                       ,sum(CAST(street1Seen as integer))
                       ,sum(CAST(street2Seen as integer))
@@ -4124,6 +4164,8 @@ class Sql:
                 street0_FoldTo4BDone,
                 street0_SqueezeChance,
                 street0_SqueezeDone,
+                raiseToStealChance,
+                raiseToStealDone,
                 success_Steal,
                 street1Seen,
                 street2Seen,
@@ -4213,7 +4255,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s)"""
+                    %s, %s, %s, %s)"""
 
         self.query['update_hudcache'] = """
             UPDATE HudCache SET
@@ -4232,6 +4274,8 @@ class Sql:
             street0_FoldTo4BDone=street0_FoldTo4BDone+%s,
             street0_SqueezeChance=street0_SqueezeChance+%s,
             street0_SqueezeDone=street0_SqueezeDone+%s,
+            raiseToStealChance=raiseToStealChance+%s,
+            raiseToStealDone=raiseToStealDone+%s,
             success_Steal=success_Steal+%s,
             street1Seen=street1Seen+%s,
             street2Seen=street2Seen+%s,
@@ -4706,6 +4750,8 @@ class Sql:
                 street0_FoldTo4BDone,
                 street0_SqueezeChance,
                 street0_SqueezeDone,
+                raiseToStealChance,
+                raiseToStealDone,
                 success_Steal,
                 otherRaisedStreet0,
                 otherRaisedStreet1,
@@ -4766,7 +4812,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s
+                    %s, %s, %s, %s
                 )"""
 
         self.query['store_hands_actions'] = """insert into HandsActions (

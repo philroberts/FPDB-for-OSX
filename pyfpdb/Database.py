@@ -38,12 +38,7 @@ import sys
 import traceback
 from datetime import datetime, date, time, timedelta
 from time import time, strftime, sleep
-
-try:
-    from cdecimal import *
-except ImportError:
-    from decimal import *
-
+from decimal_wrapper import Decimal
 import string
 import re
 import Queue
@@ -78,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 149
+DB_VERSION = 150
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -1843,6 +1838,8 @@ class Database:
                              pdata[p]['street0_FoldTo4BDone'],
                              pdata[p]['street0_SqueezeChance'],
                              pdata[p]['street0_SqueezeDone'],
+                             pdata[p]['raiseToStealChance'],
+                             pdata[p]['raiseToStealDone'],
                              pdata[p]['success_Steal'],
                              pdata[p]['otherRaisedStreet0'],
                              pdata[p]['otherRaisedStreet1'],
@@ -1969,6 +1966,8 @@ class Database:
             line.append(pdata[p]['street0_FoldTo4BDone'])        
             line.append(pdata[p]['street0_SqueezeChance'])        
             line.append(pdata[p]['street0_SqueezeDone'])        
+            line.append(pdata[p]['raiseToStealChance'])        
+            line.append(pdata[p]['raiseToStealDone'])        
             line.append(pdata[p]['success_Steal'])        
             line.append(pdata[p]['street1Seen'])                 
             line.append(pdata[p]['street2Seen'])                 

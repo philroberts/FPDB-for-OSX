@@ -29,7 +29,7 @@ import logging
 
 import Configuration
 from HandHistoryConverter import *
-from decimal import Decimal
+from decimal_wrapper import Decimal
 import time
 
 # Winamax HH Format
@@ -233,6 +233,9 @@ class Winamax(HandHistoryConverter):
                 hand.tourNo = info[key]
             if key == 'TABLE':
                 hand.tablename = info[key]
+                # TODO: long-term solution for table naming on Winamax.
+                if hand.tablename.endswith(u'No Limit Hold\'em'):
+                    hand.tablename = hand.tablename[:-len(u'No Limit Hold\'em')] + u'NLHE'
             if key == 'MAXPLAYER' and info[key] != None:
                 hand.maxseats = int(info[key])
 
@@ -276,15 +279,13 @@ class Winamax(HandHistoryConverter):
                                 hand.isKO = False
 
                             info['BIRAKE'] = info['BIRAKE'].strip(u'$€')
-                            rake_factor = 1
-                            bi_factor = 1
-                            if info['BIAMT'].find(".") == -1:
-                                bi_factor = 100
-                            if info['BIRAKE'].find(".") == -1:
-                                rake_factor = 100
 
-                            hand.buyin = bi_factor*info['BIAMT']
-                            hand.fee = rake_factor*info['BIRAKE']
+                            # TODO: Is this correct? Old code tried to
+                            # conditionally multiply by 100, but we
+                            # want hand.buyin in 100ths of
+                            # dollars/euros (so hand.buyin = 90 for $0.90 BI).
+                            hand.buyin = int(100 * Decimal(info['BIAMT']))
+                            hand.fee = int(100 * Decimal(info['BIRAKE']))
                         else:
                             hand.buyin = int(Decimal(info['BIAMT']))
                             hand.fee = 0

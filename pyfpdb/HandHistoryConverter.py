@@ -26,14 +26,20 @@ import os
 import os.path
 import xml.dom.minidom
 import codecs
-from decimal import Decimal
+from decimal_wrapper import Decimal
 import operator
 from xml.dom.minidom import Node
 
 import time
 import datetime
-from pytz import timezone
-import pytz
+
+try:
+    from pytz import timezone
+    import pytz
+except ImportError:
+    print _("ImportError: Unable to import PYTZ library.  Please install PYTZ from http://pypi.python.org/pypi/pytz/")
+    raw_input(_("Press ENTER to continue."))
+    exit()   
 
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:

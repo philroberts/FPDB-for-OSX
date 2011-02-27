@@ -530,6 +530,26 @@ def squeeze(stat_dict, player):
                 _('% Squeeze preflop'))
 
 
+def raiseToSteal(stat_dict, player):
+    """ Raise to Steal."""
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['rts'])/float(stat_dict[player]['rts_opp'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                'RST=%3.1f%%'    % (100.0*stat),
+                'RST_pf=%3.1f%%' % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['rts'], stat_dict[player]['rts_opp']),
+                _('% Raise to Steal'))
+    except:
+        return (stat,
+                'NA',
+                'RST=NA',
+                'RST_pf=NA',
+                '(0/0)',
+                _('% Raise to Steal'))
+
+
 def f_3bet(stat_dict, player):
     """ Fold to 3bet preflop. """
     stat = 0.0
