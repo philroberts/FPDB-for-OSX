@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2011-02-27 05:51+CET\n"
-"PO-Revision-Date: 2011-02-24 12:08+0100\n"
+"PO-Revision-Date: 2011-02-27 18:23+0100\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -770,9 +770,8 @@ msgid "Unable to locate currency"
 msgstr "Nem található a pénznem"
 
 #: FulltiltToFpdb.py:211
-#, fuzzy
 msgid "determineGameType: Raising FpdbParseError for file '%s'"
-msgstr "determineGameType: FpdbParseError"
+msgstr "determineGameType: FpdbParseError a '%s' fájlnál"
 
 #: FulltiltToFpdb.py:252 PkrToFpdb.py:155 PokerStarsToFpdb.py:213
 msgid "Lim_Blinds has no lookup for '%s'"
@@ -1290,7 +1289,7 @@ msgid ""
 "Failed to load libs for graphing, graphing will not function. Please\n"
 "                 install numpy and matplotlib if you want to use graphs."
 msgstr ""
-"Nem sikerült a grafikonokhoz szükséges libraryl betöltése.\n"
+"Nem sikerült a grafikonokhoz szükséges libraryk betöltése.\n"
 "A grafikonokhoz telepítsd a numpy-t és a matplotlib-et."
 
 #: GuiGraphViewer.py:51 GuiTourneyGraphViewer.py:51
@@ -2251,6 +2250,8 @@ msgid ""
 "ImportError: Unable to import PYTZ library.  Please install PYTZ from http://"
 "pypi.python.org/pypi/pytz/"
 msgstr ""
+"ImportError: Nem sikerült a PYTZ library betöltése.  Kérlek telepítsd innen: "
+"http://pypi.python.org/pypi/pytz/"
 
 #: HandHistoryConverter.py:41 fpdb.pyw:46 fpdb.pyw:58 fpdb.pyw:80
 msgid "Press ENTER to continue."
@@ -2762,9 +2763,8 @@ msgid "% Squeeze preflop"
 msgstr "squeeze preflop %"
 
 #: Stats.py:543 Stats.py:550
-#, fuzzy
 msgid "% Raise to Steal"
-msgstr "kisvakból dob lopásra %"
+msgstr "emel lopásra %"
 
 #: Stats.py:563 Stats.py:570
 msgid "% Fold to 3 Bet preflop"
@@ -2869,9 +2869,8 @@ msgid "No board given. Using Monte-Carlo simulation..."
 msgstr "Nincsenek közös lapok. Monte-Carlo módszer használata..."
 
 #: TableWindow.py:145
-#, fuzzy
 msgid "Can't find table %s"
-msgstr "%s fájl nem található"
+msgstr "%s asztal nem található"
 
 #: Tables_Demo.py:61
 msgid "Fake HUD Main Window"
