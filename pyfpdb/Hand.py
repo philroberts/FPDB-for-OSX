@@ -25,7 +25,7 @@ import sys
 import traceback
 import os
 import os.path
-from decimal import Decimal
+from decimal_wrapper import Decimal
 import operator
 import time,datetime
 from copy import deepcopy
@@ -271,6 +271,7 @@ db: a connected Database object"""
         # End prep functions
         #####
         hh = self.stats.getHands()
+        hp_inserts, ha_inserts = [], []
 
         if not db.isDuplicate(self.dbid_gt, hh['siteHandNo']):
             # Hands - Summary information of hand indexed by handId - gameinfo
