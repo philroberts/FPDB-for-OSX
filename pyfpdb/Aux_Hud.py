@@ -53,6 +53,7 @@ class Stat_Window(Mucked.Seat_Window):
                 self.grid.attach(self.stat_box[r][c].widget, c, c+1, r, r+1, xpadding = self.aw.xpad, ypadding = self.aw.ypad)
                 self.stat_box[r][c].set_color(self.aw.fgcolor, self.aw.bgcolor)
                 self.stat_box[r][c].set_font(self.aw.font)
+                self.stat_box[r][c].widget.connect("button_press_event", self.button_press_cb)
 
     def update_contents(self, i):
         if i == "common": return
@@ -61,7 +62,6 @@ class Stat_Window(Mucked.Seat_Window):
         for r in xrange(self.aw.nrows):
             for c in xrange(self.aw.ncols):
                 self.stat_box[r][c].update(player_id, self.aw.hud.stat_dict)
-                self.stat_box[r][c].widget.connect("button_press_event", self.button_press_cb)
 
 class Simple_HUD(Mucked.Aux_Seats):
     """A simple HUD class based on the Aux_Window interface."""
@@ -161,13 +161,12 @@ class Simple_table_mw(Mucked.Seat_Window):
         super(Simple_table_mw, self).__init__(aw)
         self.hud = hud
 
-        self.set_skip_taskbar_hint(True)  # invisible to taskbar
-        self.set_gravity(gtk.gdk.GRAVITY_STATIC)
-        self.set_decorated(False)    # kill titlebars
-#        self.set_opacity(self.colors["hudopacity"])  # set it to configured hud opacity
-        self.set_focus(None)
-        self.set_focus_on_map(False)
-        self.set_accept_focus(False)
+#        self.set_skip_taskbar_hint(True)  # invisible to taskbar
+#        self.set_gravity(gtk.gdk.GRAVITY_STATIC)
+#        self.set_decorated(False)    # kill titlebars
+#        self.set_focus(None)
+#        self.set_focus_on_map(False)
+#        self.set_accept_focus(False)
         self.connect("configure_event", self.aw.configure_event_cb, "common")
 
         eb = gtk.EventBox()

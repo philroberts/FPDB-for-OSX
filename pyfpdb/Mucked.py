@@ -335,6 +335,13 @@ class Seat_Window(gtk.Window):
         super(Seat_Window, self).__init__()
         self.aw = aw
         self.seat = seat
+        self.set_skip_taskbar_hint(True)  # invisible to taskbar
+        self.set_gravity(gtk.gdk.GRAVITY_STATIC)
+        self.set_decorated(False)    # kill titlebars
+        self.set_focus(None)
+        self.set_focus_on_map(False)
+        self.set_accept_focus(False)
+        self.connect("configure_event", self.aw.configure_event_cb, self.seat)
 
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the event boxes."""
