@@ -542,7 +542,7 @@ Left-Drag to Move"
             </layout>
         </site>
 
-        <site HH_path="C:/Program Files/PKR/HandHistory/YOUR SCREEN NAME HERE/" converter="PkrToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="PKR" site_path="C:/Program Files/PKR/" supported_games="holdem" table_finder="PKR.exe">
+        <site HH_path="C:/Program Files/PKR/HandHistory/YOUR SCREEN NAME HERE/" converter="PkrToFpdb" decoder="everleaf_decode_table" enabled="False" screen_name="YOUR SCREEN NAME HERE" site_name="PKR" site_path="C:/Program Files/PKR/" supported_games="holdem" table_finder="PKR.exe">
             <layout fav_seat="0" height="547" max="8" width="794">
                 <location seat="1" x="640" y="64">  </location>
                 <location seat="2" x="650" y="230"> </location>

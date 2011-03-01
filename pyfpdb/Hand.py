@@ -271,6 +271,7 @@ db: a connected Database object"""
         # End prep functions
         #####
         hh = self.stats.getHands()
+        hp_inserts, ha_inserts = [], []
 
         if not db.isDuplicate(self.dbid_gt, hh['siteHandNo']):
             # Hands - Summary information of hand indexed by handId - gameinfo
