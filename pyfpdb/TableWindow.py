@@ -146,7 +146,7 @@ class Table_Window(object):
             if self.number is not None: break
             trys += 1
             if trys > 4:
-                log.error("Can't find table %s" % table_name)
+                log.error(_("Can't find table %s") % table_name)
                 return None
 
         geo = self.get_geometry()
