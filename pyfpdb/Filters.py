@@ -160,7 +160,6 @@ class Filters(threading.Thread):
         self.types = {}  # list of all ring/tour values
         self.num_limit_types = 0
 
-        self.num_limit_types = 0
         self.fillLimitsFrame(vbox, self.display)
         limitsFrame.add(vbox)
 
