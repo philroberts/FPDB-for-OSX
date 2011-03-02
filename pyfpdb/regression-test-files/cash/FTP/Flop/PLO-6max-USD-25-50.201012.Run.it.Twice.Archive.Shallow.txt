@@ -1,0 +1,60 @@
+﻿FullTiltPoker Game #26063988000: Table Teddy (6 max, shallow) - $25/$50 - Pot Limit Omaha Hi - 18:15:00 ET - 2010/12/01
+
+Seat 1: Player1 ($1,000)
+Seat 3: Player3 ($3,423)
+Seat 4: Player4 ($1,611)
+Seat 6: Hero ($1,835.50)
+Hero posts the small blind of $25
+Player1 posts the big blind of $50
+The button is in seat #4
+*** HOLE CARDS ***
+Dealt to Hero [9s Jc 8c 7s]
+Player3 raises to $112.50
+Player4 folds
+Hero has 15 seconds left to act
+Hero has requested TIME
+Hero raises to $387.50
+Player1 folds
+Player3 calls $275
+*** FLOP *** [6c Qh 3c]
+Hero has 15 seconds left to act
+Hero has requested TIME
+Hero bets $825
+Player3 has 15 seconds left to act
+Player3 raises to $3,035.50, and is all in
+Hero calls $623, and is all in
+Players agree to Run It Twice
+Player3 shows [2s 9c Ac 5s]
+Hero shows [9s Jc 8c 7s]
+Uncalled bet of $1,587.50 returned to Player3
+*** TURN 1 *** [6c Qh 3c] [3d]
+*** RIVER 1 *** [6c Qh 3c 3d] [Th]
+*** TURN 2 *** [6c Qh 3c] [9h]
+*** RIVER 2 *** [6c Qh 3c 9h] [6h]
+*** SHOW DOWN 1 ***
+Player3 shows a pair of Threes
+Hero shows a pair of Threes
+*** SHOW DOWN 2 ***
+Player3 shows two pair, Nines and Sixes
+Hero shows two pair, Nines and Sixes
+Player3 wins pot 1 ($1,859) with a pair of Threes
+Player3 wins pot 2 ($1,859) with two pair, Nines and Sixes
+*** SUMMARY ***
+Duration 65s
+Total pot $3,721 | Rake $3
+*** SUMMARY 1 ***
+Pot 1 $1,859
+Board: [6c Qh 3c 3d Th]
+Seat 1: Player1 (big blind) folded before the Flop
+Seat 3: Player3 showed [2s 9c Ac 5s] and won ($1,859) with a pair of Threes
+Seat 4: Player4 (button) didn't bet (folded)
+Seat 6: Hero (small blind) showed [9s Jc 8c 7s] and lost with a pair of Threes
+*** SUMMARY 2 ***
+Pot 2 $1,859
+Board: [6c Qh 3c 9h 6h]
+Seat 1: Player1 (big blind) folded before the Flop
+Seat 3: Player3 showed [2s 9c Ac 5s] and won ($1,859) with two pair, Nines and Sixes
+Seat 4: Player4 (button) didn't bet (folded)
+Seat 6: Hero (small blind) showed [9s Jc 8c 7s] and lost with two pair, Nines and Sixes
+
+
