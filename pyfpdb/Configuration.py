@@ -834,7 +834,7 @@ class Config:
         try:
             example_doc = xml.dom.minidom.parse(example_file)
         except:
-            log.error(_("Error parsing example file %s. See error log file.") % (example_file))
+            log.error(_("Error parsing example configuration file %s. See error log file.") % (example_file))
             return nodes_added
 
         for cnode in doc.getElementsByTagName("FreePokerToolsConfig"):
