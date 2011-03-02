@@ -464,6 +464,7 @@ class Database:
                     log.warning(_("Some database functions will not work without NumPy support"))
                 self.cursor = self.connection.cursor()
                 self.cursor.execute('PRAGMA temp_store=2')  # use memory for temp tables/indexes
+                self.cursor.execute('PRAGMA journal_mode=WAL')  # use memory for temp tables/indexes
                 self.cursor.execute('PRAGMA synchronous=0') # don't wait for file writes to finish
             else:
                 raise FpdbError("sqlite database "+database+" does not exist")
