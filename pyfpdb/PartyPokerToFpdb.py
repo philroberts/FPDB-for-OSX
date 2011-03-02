@@ -330,6 +330,12 @@ class PartyPoker(HandHistoryConverter):
                     # FIXME: there is no such property in Hand class
                     self.isSNG = True
             if key == 'BUYIN':
+                if info[key] == None:
+                    # Freeroll tourney
+                    hand.buyin = 0
+                    hand.fee = 0
+                    hand.buyinCurrency = "FREE"
+                    hand.isKO = False
                 if hand.tourNo != None:
                     hand.buyin = 0
                     hand.fee = 0
