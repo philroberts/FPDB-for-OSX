@@ -1002,7 +1002,7 @@ msgstr "Suppression HudCache"
 
 #: GuiBulkImport.py:295 GuiTourneyImport.py:135 fpdb.pyw:814
 msgid "_Bulk Import"
-msgstr ""
+msgstr "_Bulk Importation"
 
 #: GuiBulkImport.py:297 GuiTourneyImport.py:137
 msgid "Import clicked"
@@ -1312,13 +1312,12 @@ msgid ""
 msgstr ""
 
 #: GuiGraphViewer.py:85 GuiTourneyGraphViewer.py:84
-#, fuzzy
 msgid "Refresh _Graph"
-msgstr "_Rafraîchir le Graphique"
+msgstr "Rafraîchir le _Graphique"
 
 #: GuiGraphViewer.py:87 GuiTourneyGraphViewer.py:86
 msgid "_Export to File"
-msgstr "_Exporter le Fichier"
+msgstr "_Exporter le Graphique"
 
 #: GuiGraphViewer.py:135 GuiGraphViewer.py:251 GuiSessionViewer.py:372
 #: GuiTourneyGraphViewer.py:134 GuiTourneyGraphViewer.py:232
@@ -1364,11 +1363,11 @@ msgstr ""
 
 #: GuiGraphViewer.py:222
 msgid "Showdown: $%.2f"
-msgstr "Abattage: $%.2f"
+msgstr "Avec Abattage: $%.2f"
 
 #: GuiGraphViewer.py:223
 msgid "Non-showdown: $%.2f"
-msgstr "Sans-abattage: $%.2f"
+msgstr "Sans abattage: $%.2f"
 
 #: GuiGraphViewer.py:234
 msgid ""
@@ -1380,11 +1379,11 @@ msgstr ""
 
 #: GuiGraphViewer.py:236
 msgid "Showdown (%s): %.2f"
-msgstr "Abattage (%s): %.2f"
+msgstr "Avec Abattage (%s): %.2f"
 
 #: GuiGraphViewer.py:238
 msgid "Non-showdown (%s): %.2f"
-msgstr "Sans-abattage (%s): %.2f"
+msgstr "Sans abattage (%s): %.2f"
 
 #: GuiGraphViewer.py:365 GuiTourneyGraphViewer.py:276
 msgid "Please choose the directory you wish to export to:"
@@ -1807,9 +1806,8 @@ msgid "Need a filename to import"
 msgstr ""
 
 #: GuiTourneyPlayerStats.py:75
-#, fuzzy
 msgid "_Refresh Stats"
-msgstr "Rafraîchir"
+msgstr "_Rafraîchir statistiques"
 
 #: GuiTourneyViewer.py:40
 msgid "Enter the tourney number you want to display:"
@@ -3373,7 +3371,7 @@ msgstr ""
 
 #: fpdb.pyw:808
 msgid "_Main"
-msgstr ""
+msgstr "_Maintenance"
 
 #: fpdb.pyw:809 fpdb.pyw:840
 msgid "_Quit"
@@ -3385,7 +3383,7 @@ msgstr ""
 
 #: fpdb.pyw:810
 msgid "_Load Profile (broken)"
-msgstr "Rechager Profi_Le (cassé)"
+msgstr "Recharger Profi_Le (cassé)"
 
 #: fpdb.pyw:811
 msgid "<control>S"
@@ -3393,7 +3391,7 @@ msgstr ""
 
 #: fpdb.pyw:811
 msgid "_Save Profile (todo)"
-msgstr "_Sauvegarde Profile"
+msgstr "_Sauvegarder Profile"
 
 #: fpdb.pyw:812
 msgid "<control>F"
@@ -3405,7 +3403,7 @@ msgstr "Pré_férences"
 
 #: fpdb.pyw:813
 msgid "_Import"
-msgstr "_Importer"
+msgstr "_Importation"
 
 #: fpdb.pyw:814
 msgid "<control>B"
@@ -3429,7 +3427,7 @@ msgstr ""
 
 #: fpdb.pyw:817
 msgid "_Viewers"
-msgstr "_Visualiser"
+msgstr "_Visualisation"
 
 #: fpdb.pyw:818
 msgid "<control>A"
@@ -3453,7 +3451,7 @@ msgstr ""
 
 #: fpdb.pyw:820
 msgid "_Graphs"
-msgstr "_Graphiques"
+msgstr "_Graphiques cash game"
 
 #: fpdb.pyw:821 fpdb.pyw:1096
 #, fuzzy
@@ -3695,24 +3693,24 @@ msgid ""
 "txt and mit.txt in the fpdb installation directory."
 msgstr ""
 "Fpdb à besoin de traducteurs!\n"
-"Si vous parlez une autre langue et que vous avez 5 minutes ou plus à nous consacrer "
+"Si vous parlez une autre langue et que vous avez 5 minutes ou plus à nous consacrer, "
 "contactez moi par email  steffen@schaumburger.info\n"
 "\n"
 "Bienvenue avec Fpdb!\n"
 "Pour être informé des nouvelles versions et mises à jours, https://lists.sourceforge."
 "net/lists/listinfo/fpdb-announce et inscrivez vous.\n"
-"Si vous voulez suivre le développement plus étroitemen, https://lists."
+"Si vous voulez suivre le développement plus étroitement, https://lists."
 "sourceforge.net/lists/listinfo/fpdb-main et inscrivez vous.\n"
 "\n"
 "Ce programme est actuellement dans un état alpha, donc notre format de base de données est "
 "parfois changé.\n"
-"Vous devriez donc toujours garder vos fichiers d'histoire de vos mains car vous devrez ré-"
+"Vous devriez donc toujours garder vos fichiers d'historiques de vos mains car vous devrez ré-"
 "importer après une mise à jour, le cas échéant.\n"
 "\n"
 "Pour la documentation visitez s'il vous plaît le wiki sur le site web suivant http://fpdb.sourceforge."
 "net/.\n"
 "Si vous avez besoin  d'aide cliquez sur Contact - ou bien trouvez de l aide sur le site web.\n"
-"Notez s'il vous plaît que default.conf n'est plus nécessaire, ni utilisé"
+"Notez s'il vous plaît que default.conf n'est plus nécessaire, ni utilisé. "
 "La configuration est maintenant dans HUD_config.xml.\n"
 "\n"
 "Ce programme est free/libre open source sous license partielle avec "
