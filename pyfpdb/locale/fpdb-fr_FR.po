@@ -728,12 +728,11 @@ msgstr "Voir le graphique en"
 
 #: Filters.py:906
 msgid "Showdown Winnings"
-msgstr "Showdown gagnants"
+msgstr "Graph avec abattage final "
 
 #: Filters.py:914
-#, fuzzy
 msgid "Non-Showdown Winnings"
-msgstr "Gagnant sans aller à l'abattage"
+msgstr "Graph sans abattage final"
 
 #: Filters.py:1031
 msgid "From:"
