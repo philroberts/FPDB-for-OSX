@@ -163,8 +163,8 @@ def get_logger(file_name, config = "config", fallback = False, log_dir=None, log
     log = logging.basicConfig(filename=file, level=logging.INFO)
     log = logging.getLogger()
     # but it looks like default is no output :-(  maybe because all the calls name a module?
-    log.debug(_("Default logger initialised for ")+file)
-    print _("Default logger intialised for ")+file
+    log.debug(_("Default logger initialised for %s") % file)
+    print(_("Default logger initialised for %s") % file)
     return log
 
 def check_dir(path, create = True):
