@@ -228,7 +228,7 @@ class GuiGraphViewer (threading.Thread):
                 #TODO: Do something useful like alert user
                 #print "No hands returned by graph query"
             else:
-                self.ax.set_title(_("Profit graph for ring games"+names),fontsize=12)
+                self.ax.set_title((_("Profit graph for ring games")+names),fontsize=12)
 
                 #Draw plot
                 self.ax.plot(green, color='green', label=_('Hands: %d\nProfit (%s): %.2f') %(len(green),graphops['dspin'], green[-1]))
