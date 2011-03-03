@@ -370,7 +370,7 @@ class Hud:
         self.label = label
         menu.show_all()
         self.main_window.show_all()
-        self.topify_window(self.main_window)
+#        self.topify_window(self.main_window)
 
     def change_max_seats(self, widget):
         if self.max != widget.ms:
@@ -645,6 +645,9 @@ class Hud:
                                                player_id = 'fake',
                                                font = self.font)
 
+        self.topify_window(self.main_window)
+        for i in xrange(1, self.max + 1):
+            self.topify_window(self.stat_windows[i].window, self.main_window)
         self.stats = []
         game = config.supported_games[self.poker_game]
 
@@ -710,13 +713,18 @@ class Hud:
                 window.window.show_all()
             unhidewindow = False
 
-    def topify_window(self, window):
+    def topify_window(self, window, parentwindow=None):
         window.set_focus_on_map(False)
         window.set_accept_focus(False)
+#        print "topify_window", window, parentwindow
 
         if not self.table.gdkhandle:
             self.table.gdkhandle = gtk.gdk.window_foreign_new(int(self.table.number)) # gtk handle to poker window
-        window.window.set_transient_for(self.table.gdkhandle)
+        if parentwindow is not None:
+            window.window.set_transient_for(parentwindow.window)
+        else:
+            window.window.set_transient_for(self.table.gdkhandle)
+        window.set_destroy_with_parent(True)
 
 class Stat_Window:
 
@@ -791,6 +799,8 @@ class Stat_Window:
         self.window.set_focus_on_map(False)
         self.window.set_accept_focus(False)
 
+        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_UTILITY)
+
         grid = gtk.Table(rows = game.rows, columns = game.cols, homogeneous = False)
         self.grid = grid
         self.window.add(grid)
@@ -845,20 +855,10 @@ class Stat_Window:
 
 
         self.window.move(self.x, self.y)
-        self.window.realize() # window must be realized before it has a gdkwindow so we can attach it to the table window..
-        self.topify_window(self.window)
-
         self.window.hide()
+        self.window.realize() # window must be realized before it has a gdkwindow so we can attach it to the table window..
+#        self.topify_window(self.window)
 
-    def topify_window(self, window):
-        window.set_focus_on_map(False)
-        window.set_accept_focus(False)
-
-        if not self.table.gdkhandle:
-            self.table.gdkhandle = gtk.gdk.window_foreign_new(int(self.table.number)) # gtk handle to poker window
-#        window.window.reparent(self.table.gdkhandle, 0, 0)
-        window.window.set_transient_for(self.table.gdkhandle)
-#        window.present()
 
 def destroy(*args):             # call back for terminating the main eventloop
     gtk.main_quit()
