@@ -52,6 +52,7 @@ if sys.platform == 'linux2':
 elif sys.platform == 'darwin':
     import OSXTables as Tables
 else: # This is bad--figure out the values for the various windows flavors
+    is_windows = True
     import WinTables as Tables
 
 # get config and set up logger
@@ -126,7 +127,9 @@ class HUD_main(object):
         hud.up_update_table_position()
 
     def client_resized(self, widget, hud):
-        gobject.idle_add(idle_resize, hud)
+#   Don't forget to get rid of this.
+        if not is_windows:
+            gigobject.idle_add(idle_resize, hud)
 
     def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
         self.kill_hud(None, hud.table.key)
