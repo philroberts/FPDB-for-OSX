@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fpdb\n"
-"POT-Creation-Date: 2011-02-27 05:51+CET\n"
+"POT-Creation-Date: 2011-02-27 23:57+CET\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Javier Sánchez <donoban@gmail.com>\n"
 "Language-Team: \n"
@@ -3042,7 +3042,7 @@ msgstr ""
 
 #: fpdb.pyw:244
 msgid ""
-"Copyright 2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, "
+"Copyright 2008-2011, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, "
 "sqlcoder, Bostik, and others"
 msgstr ""
 

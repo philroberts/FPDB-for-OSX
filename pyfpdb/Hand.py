@@ -359,11 +359,17 @@ db: a connected Database object"""
         # NOTE: This relies on row_factory = sqlite3.Row (set in connect() params)
         #       Need to find MySQL and Postgres equivalents
         #       MySQL maybe: cursorclass=MySQLdb.cursors.DictCursor
-        res = c.fetchone()
+        #res = c.fetchone()
+
+        # Using row_factory is global, and affects the rest of fpdb. The following 2 line achieves
+        # a similar result
+        res = [dict(line) for line in [zip([ column[0] for column in c.description], row) for row in c.fetchall()]]
+        res = res[0]
 
         #res['tourneyId'] #res['seats'] #res['rush']
         self.tablename = res['tableName']
         self.handid    = res['siteHandNo']
+        #print "DBEUG: res['startTime']: %s" % res['startTime']
         self.startTime = datetime.datetime.strptime(res['startTime'], "%Y-%m-%d %H:%M:%S+00:00")
         self.maxseats = res['maxSeats']
 
@@ -396,16 +402,19 @@ db: a connected Database object"""
                       Players as p,
                       Hands as h
                 WHERE
-                      h.id = %s
-                      and ha.handsPlayerId = hp.id
-                      and hp.playerId = p.id
+                          h.id = %s
+                      AND ha.handId = h.id
+                      AND ha.playerId = hp.playerid
+                      AND hp.playerId = p.id
                       AND h.id = hp.handId
                 ORDER BY
                       ha.id ASC
-;           """
+"""
+
         q = q.replace('%s', db.sql.query['placeholder'])
         c.execute(q, (handId,))
-        for row in c.fetchall():
+        res = [dict(line) for line in [zip([ column[0] for column in c.description], row) for row in c.fetchall()]]
+        for row in res:
             name = row['name']
             street = row['street']
             act = row['actionId']
@@ -414,7 +423,6 @@ db: a connected Database object"""
             street = self.allStreets[int(street)+1]
             #print "DEBUG: name: '%s' street: '%s' act: '%s' bet: '%s'" %(name, street, act, bet)
             if   act == 2: # Small Blind
-                print "DEBUG: addBlind(%s, 'small blind', %s" %(name, str(bet))
                 self.addBlind(name, 'small blind', str(bet))
             elif act == 4: # Big Blind
                 self.addBlind(name, 'big blind', str(bet))
@@ -426,6 +434,8 @@ db: a connected Database object"""
                 self.addFold(street, name)
             elif act == 11: # Check
                 self.addCheck(street, name)
+            elif act == 7: # Raise
+                self.addRaiseBy(street, name, str(bet))
             else:
                 print "DEBUG: unknown action: '%s'" % act
 
