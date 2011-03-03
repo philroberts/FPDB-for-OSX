@@ -1169,7 +1169,7 @@ class Database:
         for idx in self.indexes[self.backend]:
             if idx['drop'] == 1:
                 if self.backend == self.MYSQL_INNODB:
-                    print _("Creating mysql index %s %s") % (idx['tab'], idx['col'])
+                    print _("Creating MySQL index %s %s") % (idx['tab'], idx['col'])
                     try:
                         s = "alter table %s add index %s(%s)" % (idx['tab'],idx['col'],idx['col'])
                         c.execute(s)
@@ -1178,7 +1178,7 @@ class Database:
                 elif self.backend == self.PGSQL:
     #                pass
                     # mod to use tab_col for index name?
-                    print _("Creating pg index "), idx['tab'], idx['col']
+                    print _("Creating PostgreSQL index "), idx['tab'], idx['col']
                     try:
                         s = "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
                         c.execute(s)
@@ -1423,22 +1423,22 @@ class Database:
                 if cons:
                     pass
                 else:
-                    print _("creating foreign key "), fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
+                    print _("Creating foreign key "), fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
                     try:
                         c.execute("alter table " + fk['fktab'] + " add foreign key ("
                                   + fk['fkcol'] + ") references " + fk['rtab'] + "("
                                   + fk['rcol'] + ")")
                     except:
-                        print _("    create foreign key failed: ") + str(sys.exc_info())
+                        print _("Create foreign key failed: ") + str(sys.exc_info())
             elif self.backend == self.PGSQL:
-                print _("creating foreign key "), fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
+                print _("Creating foreign key "), fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
                 try:
                     c.execute("alter table " + fk['fktab'] + " add constraint "
                               + fk['fktab'] + '_' + fk['fkcol'] + '_fkey'
                               + " foreign key (" + fk['fkcol']
                               + ") references " + fk['rtab'] + "(" + fk['rcol'] + ")")
                 except:
-                    print _("   create foreign key failed: ") + str(sys.exc_info())
+                    print _("Create foreign key failed: ") + str(sys.exc_info())
             else:
                 print _("Only MySQL and Postgres supported so far")
 
