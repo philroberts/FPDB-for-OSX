@@ -845,7 +845,6 @@ msgid "Time between imports in seconds:"
 msgstr "Temps entre les imports en secondes"
 
 #: GuiAutoImport.py:121 GuiAutoImport.py:193 GuiAutoImport.py:303
-#, fuzzy
 msgid "  Start _Auto Import  "
 msgstr "  Démarrage _Autoimport  "
 
@@ -1002,7 +1001,7 @@ msgstr "Suppression HudCache"
 
 #: GuiBulkImport.py:295 GuiTourneyImport.py:135 fpdb.pyw:814
 msgid "_Bulk Import"
-msgstr "_Bulk Importation"
+msgstr "_Bulk Importation historiques mains"
 
 #: GuiBulkImport.py:297 GuiTourneyImport.py:137
 msgid "Import clicked"
@@ -3399,7 +3398,7 @@ msgstr ""
 
 #: fpdb.pyw:812
 msgid "Pre_ferences"
-msgstr "Pré_férences"
+msgstr "Pré_férences fpdb"
 
 #: fpdb.pyw:813
 msgid "_Import"
@@ -3423,7 +3422,7 @@ msgstr ""
 
 #: fpdb.pyw:816
 msgid "_Import through eMail/IMAP"
-msgstr ""
+msgstr "_Importer par eMail/IMAP"
 
 #: fpdb.pyw:817
 msgid "_Viewers"
@@ -3435,7 +3434,7 @@ msgstr ""
 
 #: fpdb.pyw:818
 msgid "_Auto Import and HUD"
-msgstr "_Auto Import et HUD"
+msgstr "_Auto Import et lancement HUD"
 
 #: fpdb.pyw:819
 msgid "<control>H"
@@ -3451,16 +3450,15 @@ msgstr ""
 
 #: fpdb.pyw:820
 msgid "_Graphs"
-msgstr "_Graphiques cash game"
+msgstr "_Graphiques joueur cash game"
 
 #: fpdb.pyw:821 fpdb.pyw:1096
-#, fuzzy
 msgid "Tourney Graphs"
-msgstr "Graphiques des Tournois"
+msgstr "Graphiques joueur Tournois"
 
 #: fpdb.pyw:822
 msgid "Stove (preview)"
-msgstr ""
+msgstr "Evaluateur d'équité (en developpement)"
 
 #: fpdb.pyw:823
 msgid "<control>P"
@@ -3468,7 +3466,7 @@ msgstr ""
 
 #: fpdb.pyw:823
 msgid "Ring _Player Stats (tabulated view, not on pgsql)"
-msgstr ""
+msgstr "Stats _Player cash-game (tabulated view, not on pgsql)"
 
 #: fpdb.pyw:824
 msgid "<control>T"
@@ -3476,7 +3474,7 @@ msgstr ""
 
 #: fpdb.pyw:824
 msgid "_Tourney Stats (tabulated view, not on pgsql)"
-msgstr ""
+msgstr "Stats Player _Tournoi (tabulated view, not on pgsql)"
 
 #: fpdb.pyw:825
 msgid "Tourney _Viewer"
@@ -3487,8 +3485,8 @@ msgid "<control>O"
 msgstr ""
 
 #: fpdb.pyw:826
-msgid "p_Ositional Stats (tabulated view, not on sqlite)"
-msgstr ""
+msgid "P_ositional Stats (tabulated view, not on sqlite)"
+msgstr "Stats de p_Osition (tabulated view, not on sqlite)"
 
 #: fpdb.pyw:827 fpdb.pyw:1055
 msgid "Session Stats"
@@ -3496,7 +3494,7 @@ msgstr "Stats de Session"
 
 #: fpdb.pyw:828
 msgid "Hand _Replayer (not working yet)"
-msgstr ""
+msgstr "_Rejoueur de mains (non fonctionnel)"
 
 #: fpdb.pyw:829
 msgid "_Database"
@@ -3520,7 +3518,7 @@ msgstr "Reconstruction Indices BDD"
 
 #: fpdb.pyw:834
 msgid "_Statistics"
-msgstr "_Statistiques"
+msgstr "_Statistiques base de données"
 
 #: fpdb.pyw:835
 msgid "Dump Database to Textfile (takes ALOT of time)"
@@ -3646,7 +3644,6 @@ msgid "Ring Player Stats"
 msgstr "Stats Joueur Cash-Game"
 
 #: fpdb.pyw:1037
-#, fuzzy
 msgid "Tourney Stats"
 msgstr "Stats Joueur Tournoi"
 
@@ -3714,7 +3711,7 @@ msgstr ""
 "La configuration est maintenant dans HUD_config.xml.\n"
 "\n"
 "Ce programme est free/libre open source sous license partielle avec "
-"AGPL3, et partielle avec GPL2 ou moins.\n"
+"AGPL3, et partielle avec GPL2 ou supérieure.\n"
 "Le paquet d'installation sous windows inclus le code autorisé conformément à la licence de MIT.\n"
 "Vous pouvez trouver les textes de licence complets dans agpl-3.0.txt, gpl-2.0.txt, gpl-3.0."
 "txt et mit.txt dans le répertoire d'installation de fpdb."
