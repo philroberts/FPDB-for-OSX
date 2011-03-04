@@ -1621,6 +1621,10 @@ msgstr ""
 "Mesure d'incertitude\n"
 "Le Plus bas, le plus stable des sommes gagnées"
 
+#: GuiRingPlayerStats.py:143
+msgid "_Filters"
+msgstr "_Filtres statistiques"
+
 #: GuiRingPlayerStats.py:341 GuiSessionViewer.py:257
 #: GuiTourneyPlayerStats.py:243
 msgid "Stats page displayed in %4.2f seconds"
