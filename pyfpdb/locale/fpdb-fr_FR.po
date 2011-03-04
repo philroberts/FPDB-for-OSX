@@ -732,6 +732,15 @@ msgstr "à:"
 msgid " Clear Dates "
 msgstr " Effacer les Dates "
 
+#: Filters.py:1068
+msgid "show"
+msgstr "voir"
+
+#: Filters.py:1071
+msgid "hide"
+msgstr "masquer"
+
+
 #: Filters.py:1077 fpdb.pyw:719
 msgid "Pick a date"
 msgstr "Choisir une date"
