@@ -3165,6 +3165,8 @@ msgid ""
 "Cannot open Database Maintenance window because other windows have been "
 "opened. Re-start fpdb to use this option."
 msgstr ""
+"Impossible d'ouvrir la fenêtre de Maintenance BDD parce que d'autres fenêtres"
+"ont été ouvertes. Re-démarrer Fpdb pour utiliser cette option."
 
 #: fpdb.pyw:347
 msgid "Number of Hands: "
@@ -3198,24 +3200,27 @@ msgstr "Configurateur HUD - choisissez une catégorie"
 msgid ""
 "Please select the game category for which you want to configure HUD stats:"
 msgstr ""
+"Choisissez la catégorie de jeu pour laquelle vous voulez configurer les stats HUD :"
 
 #: fpdb.pyw:417
 msgid "HUD Configurator - please choose your stats"
-msgstr ""
+msgstr "HUD Configuration - Choisissez vos stats"
 
 #: fpdb.pyw:423
 msgid "Please choose the stats you wish to use in the below table."
-msgstr ""
+msgstr "Choisissez les stats que vous voulez utiliser sur la table."
 
 #: fpdb.pyw:427
 msgid "Note that you may not select any stat more than once or it will crash."
-msgstr ""
+msgstr "Notez que vous ne pouvez pas choisir une même stat plusieurs fois sinon il buggera."
 
 #: fpdb.pyw:431
 msgid ""
 "It is not currently possible to select \"empty\" or anything else to that "
 "end."
 msgstr ""
+"Il n'est pas actuellement possible de choisir \"empty\" ou autre chose à cette"
+"fin."
 
 #: fpdb.pyw:435
 msgid ""
@@ -3229,13 +3234,15 @@ msgstr "Confirmer effacement et recréation tables"
 
 #: fpdb.pyw:543
 msgid "Please confirm that you want to (re-)create the tables."
-msgstr "Veuillez confirmer que vous voulez recrééer les tables"
+msgstr "Veuillez confirmer que vous voulez recréer les tables"
 
 #: fpdb.pyw:544
 msgid ""
 " If there already are tables in the database %s on %s they will be deleted "
 "and you will have to re-import your histories.\n"
 msgstr ""
+" S'il y a déjà des tables dans la base de données %s dans %s, elles seront effacées "
+"Et vous devrez re-importer vos historiques.\n"
 
 #: fpdb.pyw:545
 msgid "This may take a while."
@@ -3247,7 +3254,7 @@ msgstr "L'utilisateur a annulé la reconstruction des tables"
 
 #: fpdb.pyw:577
 msgid "Please confirm that you want to re-create the HUD cache."
-msgstr "Veuillez confirmer que vous voulez recrééer le cache HUD."
+msgstr "Veuillez confirmer que vous voulez recréer le cache HUD."
 
 #: fpdb.pyw:585
 msgid " Hero's cache starts: "
@@ -3293,6 +3300,7 @@ msgstr "L'utilisateur a annulé la reconstruction des indices de BDD"
 msgid ""
 "Unimplemented: Save Profile (try saving a HUD layout, that should do it)"
 msgstr ""
+"Non mis en oeuvre : Sauvegarde Profil (essayez de sauvegarder la disposition HUD)"
 
 #: fpdb.pyw:808
 msgid "_Main"
