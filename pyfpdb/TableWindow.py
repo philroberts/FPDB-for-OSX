@@ -34,8 +34,12 @@ import gtk
 import gobject
 
 #    FreePokerTools modules
+import Configuration
 from HandHistoryConverter import getTableTitleRe
 from HandHistoryConverter import getTableNoRe
+
+c = Configuration.Config()
+log = Configuration.get_logger("logging.conf", "hud", log_dir=c.dir_log, log_file='HUD-log.txt')
 
 #    Global used for figuring out the current game being played from the title.
 #    The dict key is a tuple of (limit type, category) for the game. 

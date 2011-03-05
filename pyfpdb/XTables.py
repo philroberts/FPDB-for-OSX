@@ -128,7 +128,7 @@ class Table(Table_Window):
         des_re = 'No such window with id'
 
         listing = os.popen("xwininfo -id %d -stats" % (self.number)).read()
-
+        if listing == "": return
         mo = re.search(des_re, listing)
         if mo is not None:
             return None      # table has been destroyed

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-02-27 05:51+CET\n"
+"POT-Creation-Date: 2011-02-27 23:57+CET\n"
 "PO-Revision-Date: 2010-09-09 13:33+0100\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3195,7 +3195,7 @@ msgstr ""
 
 #: fpdb.pyw:244
 msgid ""
-"Copyright 2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, "
+"Copyright 2008-2011, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, "
 "sqlcoder, Bostik, and others"
 msgstr ""
 
