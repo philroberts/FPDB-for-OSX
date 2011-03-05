@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #Created by Mika Bostrom, released into the public domain as far as legally possible.

@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2011-02-27 05:51+CET\n"
+"POT-Creation-Date: 2011-02-27 23:57+CET\n"
 "PO-Revision-Date: 2010-08-30 00:57+0200\n"
 "Last-Translator: Steffen Schaumburg <steffen@schaumburger.info>\n"
 "Language-Team: Fpdb\n"
@@ -3099,7 +3099,7 @@ msgstr ""
 
 #: fpdb.pyw:38
 msgid " - press return to continue\n"
-msgstr " - drücken Sie Enter um fortzufahren"
+msgstr " - drücken Sie Enter um fortzufahren\n"
 
 #: fpdb.pyw:45
 msgid ""
@@ -3133,8 +3133,9 @@ msgid "GuiStove not found. If you want to use it please install pypoker-eval."
 msgstr ""
 
 #: fpdb.pyw:244
+#, fuzzy
 msgid ""
-"Copyright 2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, "
+"Copyright 2008-2011, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, "
 "sqlcoder, Bostik, and others"
 msgstr ""
 "Copyright 2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, "

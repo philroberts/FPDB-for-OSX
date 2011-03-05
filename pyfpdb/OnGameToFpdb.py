@@ -73,7 +73,7 @@ class OnGame(HandHistoryConverter):
     re_HandInfo = re.compile(u"""
             \*\*\*\*\*\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+).*
             Start\shand:\s(?P<DATETIME>.*)
-            Table:\s(\[SPEED\]\s)?(?P<TABLE>[-\'\w\s]+)\s\[\d+\]\s\(
+            Table:\s(\[SPEED\]\s)?(?P<TABLE>[-\'\w\s\.]+)\s\[\d+\]\s\(
             (
             (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit|POT_LIMIT)\s
             (?P<GAME>TEXAS_HOLDEM|OMAHA_HI|SEVEN_CARD_STUD|SEVEN_CARD_STUD_HI_LO|RAZZ|FIVE_CARD_DRAW)\s

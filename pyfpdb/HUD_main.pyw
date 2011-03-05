@@ -266,7 +266,7 @@ class HUD_main(object):
                 cards = self.get_cards(new_hand_id)
                 table_kwargs = dict(table_name=table_name, tournament=tour_number, table_number=tab_number)
                 tablewindow = Tables.Table(self.config, site_name, **table_kwargs)
-                if tablewindow is None:
+                if tablewindow.number is None:
 #        If no client window is found on the screen, complain and continue
                     if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
