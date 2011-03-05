@@ -74,7 +74,7 @@ class Fulltilt(HandHistoryConverter):
                                     (Ante\s\$?(?P<ANTE>[%(NUM)s]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
-                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|Omaha|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi))
+                                    (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi))
                                  ''' % substitutions, re.VERBOSE)
     re_SplitHands   = re.compile(r"\n\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
@@ -114,7 +114,7 @@ class Fulltilt(HandHistoryConverter):
                                     (\((?P<TURBO1>Turbo)\)\s)?
                                     \((?P<TOURNO>\d+)\)\s
                                     ((?P<MATCHNO>Match\s\d)\s)?
-                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|Omaha|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi))\s
+                                    (?P<GAME>(Hold\'em|Omaha(\sHi/Lo|\sH/L|\sHi|)|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi))\s
                                     (\((?P<TURBO2>Turbo)\)\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?
                                 ''' % substitutions, re.VERBOSE)
@@ -198,11 +198,6 @@ class Fulltilt(HandHistoryConverter):
                ]
 
     def determineGameType(self, handText):
-        # Full Tilt Poker Game #10777181585: Table Deerfly (deep 6) - $0.01/$0.02 - Pot Limit Omaha Hi - 2:24:44 ET - 2009/02/22
-        # Full Tilt Poker Game #10773265574: Table Butte (6 max) - $0.01/$0.02 - Pot Limit Hold'em - 21:33:46 ET - 2009/02/21
-        # Full Tilt Poker Game #9403951181: Table CR - tay - $0.05/$0.10 - No Limit Hold'em - 9:40:20 ET - 2008/12/09
-        # Full Tilt Poker Game #10809877615: Table Danville - $0.50/$1 Ante $0.10 - Limit Razz - 21:47:27 ET - 2009/02/23
-        # Full Tilt Poker.fr Game #23057874034: Table Douai–Lens (6 max) - €0.01/€0.02 - No Limit Hold'em - 21:59:17 CET - 2010/08/13
         info = {'type':'ring'}
         
         m = self.re_GameInfo.search(handText)
@@ -220,6 +215,7 @@ class Fulltilt(HandHistoryConverter):
                  'Omaha Hi' : ('hold','omahahi'), 
                     'Omaha' : ('hold','omahahi'),
                 'Omaha H/L' : ('hold','omahahilo'),
+              'Omaha Hi/Lo' : ('hold','omahahilo'),
                      'Razz' : ('stud','razz'), 
                   'Stud Hi' : ('stud','studhi'), 
                  'Stud H/L' : ('stud','studhilo'),
