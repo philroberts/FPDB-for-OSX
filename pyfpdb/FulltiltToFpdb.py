@@ -74,7 +74,7 @@ class Fulltilt(HandHistoryConverter):
                                     (Ante\s\$?(?P<ANTE>[%(NUM)s]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
-                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi))
+                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|Omaha|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi))
                                  ''' % substitutions, re.VERBOSE)
     re_SplitHands   = re.compile(r"\n\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
@@ -114,7 +114,7 @@ class Fulltilt(HandHistoryConverter):
                                     (\((?P<TURBO1>Turbo)\)\s)?
                                     \((?P<TOURNO>\d+)\)\s
                                     ((?P<MATCHNO>Match\s\d)\s)?
-                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi))\s
+                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|Omaha|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi))\s
                                     (\((?P<TURBO2>Turbo)\)\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?
                                 ''' % substitutions, re.VERBOSE)
@@ -218,6 +218,7 @@ class Fulltilt(HandHistoryConverter):
         games = {              # base, category
                   "Hold'em" : ('hold','holdem'), 
                  'Omaha Hi' : ('hold','omahahi'), 
+                    'Omaha' : ('hold','omahahi'),
                 'Omaha H/L' : ('hold','omahahilo'),
                      'Razz' : ('stud','razz'), 
                   'Stud Hi' : ('stud','studhi'), 
@@ -361,6 +362,10 @@ class Fulltilt(HandHistoryConverter):
         for a in plist:
             seat, stack = plist[a]
             hand.addPlayer(seat, a, stack)
+
+        if plist == {}:
+            #No players! The hand is either missing stacks or everyone is sitting out
+            raise FpdbParseError(_("FTP: readPlayerStacks: No players detected (hand #%s)") % hand.handid)
 
 
     def markStreets(self, hand):

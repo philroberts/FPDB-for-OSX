@@ -120,7 +120,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         settings.update(self.conf.get_default_paths())
 
         # text used on screen stored here so that it can be configured
-        self.filterText = {'handhead':'Hand Breakdown for all levels listed above'
+        self.filterText = {'handhead':_('Hand Breakdown for all levels listed above')
                           }
 
         filters_display = { "Heroes"    : True,
@@ -140,9 +140,9 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                           }
 
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
-        self.filters.registerButton1Name("_Filters")
+        self.filters.registerButton1Name(_("_Filters"))
         self.filters.registerButton1Callback(self.showDetailFilter)
-        self.filters.registerButton2Name("_Refresh Stats")
+        self.filters.registerButton2Name(_("_Refresh Stats"))
         self.filters.registerButton2Callback(self.refreshStats)
 
         # ToDo: store in config
