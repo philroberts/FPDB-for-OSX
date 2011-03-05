@@ -38,7 +38,7 @@ import sys
 import traceback
 from datetime import datetime, date, time, timedelta
 from time import time, strftime, sleep
-from decimal import Decimal
+from decimal_wrapper import Decimal
 import string
 import re
 import Queue
@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 147
+DB_VERSION = 150
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -125,7 +125,8 @@ class Database:
                   {'tab':'Gametypes',       'col':'siteId',            'drop':0}
                 , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
                 #, {'tab':'Hands',           'col':'siteHandNo',        'drop':0}  unique indexes not dropped
-                , {'tab':'HandsActions',    'col':'handsPlayerId',     'drop':0}
+                , {'tab':'HandsActions',    'col':'handId',            'drop':1}
+                , {'tab':'HandsActions',    'col':'playerId',          'drop':1}
                 , {'tab':'HandsActions',    'col':'actionId',          'drop':1}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':1}
@@ -150,7 +151,8 @@ class Database:
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
-                , {'tab':'HandsActions',    'col':'handsPlayerId',     'drop':0}
+                , {'tab':'HandsActions',    'col':'handId',            'drop':0}
+                , {'tab':'HandsActions',    'col':'playerId',          'drop':0}
                 , {'tab':'HandsActions',    'col':'actionId',          'drop':1}
                 , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
@@ -174,7 +176,8 @@ class Database:
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
-                    , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
@@ -184,7 +187,8 @@ class Database:
                       {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
@@ -450,7 +454,7 @@ class Database:
                 self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES )
                 self.__connected = True
                 sqlite3.register_converter("bool", lambda x: bool(int(x)))
-                sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
+                sqlite3.register_adapter(bool, lambda x: 1 if x else 0)
                 self.connection.create_function("floor", 1, math.floor)
                 tmp = sqlitemath()
                 self.connection.create_function("mod", 2, tmp.mod)
@@ -460,6 +464,7 @@ class Database:
                     log.warning(_("Some database functions will not work without NumPy support"))
                 self.cursor = self.connection.cursor()
                 self.cursor.execute('PRAGMA temp_store=2')  # use memory for temp tables/indexes
+                self.cursor.execute('PRAGMA journal_mode=WAL')  # use memory for temp tables/indexes
                 self.cursor.execute('PRAGMA synchronous=0') # don't wait for file writes to finish
             else:
                 raise FpdbError("sqlite database "+database+" does not exist")
@@ -633,6 +638,18 @@ class Database:
         c.execute(self.sql.query['getTourneyTypeCount'])
         return c.fetchone()[0]
     #end def getTourneyCount
+
+    def getSiteTourneyNos(self, site):
+        c = self.connection.cursor()
+        # FIXME: Take site and actually fetch siteId from that
+        # Fixed to Winamax atm
+        q = self.sql.query['getSiteTourneyNos']
+        q = q.replace('%s', self.sql.query['placeholder'])
+        c.execute(q, (14,))
+        alist = []
+        for row in c.fetchall():
+            alist.append(row)
+        return alist
 
     def get_actual_seat(self, hand_id, name):
         c = self.connection.cursor()
@@ -1152,7 +1169,7 @@ class Database:
         for idx in self.indexes[self.backend]:
             if idx['drop'] == 1:
                 if self.backend == self.MYSQL_INNODB:
-                    print _("Creating mysql index %s %s") % (idx['tab'], idx['col'])
+                    print _("Creating MySQL index %s %s") % (idx['tab'], idx['col'])
                     try:
                         s = "alter table %s add index %s(%s)" % (idx['tab'],idx['col'],idx['col'])
                         c.execute(s)
@@ -1161,7 +1178,7 @@ class Database:
                 elif self.backend == self.PGSQL:
     #                pass
                     # mod to use tab_col for index name?
-                    print _("Creating pg index "), idx['tab'], idx['col']
+                    print _("Creating PostgreSQL index "), idx['tab'], idx['col']
                     try:
                         s = "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
                         c.execute(s)
@@ -1406,22 +1423,22 @@ class Database:
                 if cons:
                     pass
                 else:
-                    print _("creating foreign key "), fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
+                    print _("Creating foreign key "), fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
                     try:
                         c.execute("alter table " + fk['fktab'] + " add foreign key ("
                                   + fk['fkcol'] + ") references " + fk['rtab'] + "("
                                   + fk['rcol'] + ")")
                     except:
-                        print _("    create foreign key failed: ") + str(sys.exc_info())
+                        print _("Create foreign key failed: ") + str(sys.exc_info())
             elif self.backend == self.PGSQL:
-                print _("creating foreign key "), fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
+                print _("Creating foreign key "), fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
                 try:
                     c.execute("alter table " + fk['fktab'] + " add constraint "
                               + fk['fktab'] + '_' + fk['fkcol'] + '_fkey'
                               + " foreign key (" + fk['fkcol']
                               + ") references " + fk['rtab'] + "(" + fk['rcol'] + ")")
                 except:
-                    print _("   create foreign key failed: ") + str(sys.exc_info())
+                    print _("Create foreign key failed: ") + str(sys.exc_info())
             else:
                 print _("Only MySQL and Postgres supported so far")
 
@@ -1507,6 +1524,7 @@ class Database:
         c.execute("INSERT INTO Sites (name,code) VALUES ('PKR', 'PK')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('iPoker', 'IP')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('Winamax', 'WM')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Everest', 'EP')")
         #Fill Actions
         c.execute("INSERT INTO Actions (name,code) VALUES ('ante', 'A')")
         c.execute("INSERT INTO Actions (name,code) VALUES ('small blind', 'SB')")
@@ -1714,10 +1732,11 @@ class Database:
 
         c.execute(q, (
                 p['tableName'],
-                p['gametypeId'],
                 p['siteHandNo'],
                 p['tourneyId'],
-                p['startTime'],
+                p['gametypeId'],
+                p['sessionId'],                
+                p['startTime'],                
                 datetime.utcnow(), #importtime
                 p['seats'],
                 p['maxSeats'],
@@ -1747,7 +1766,7 @@ class Database:
         return self.get_last_insert_id(c)
     # def storeHand
 
-    def storeHandsPlayers(self, hid, pids, pdata, printdata = False):
+    def storeHandsPlayers(self, hid, pids, pdata, hp_bulk = None, insert = False, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
         if printdata:
             import pprint
@@ -1755,7 +1774,6 @@ class Database:
             pp.pprint(pdata)
 
         inserts = []
-        hpid = {}
         for p in pdata:
             inserts.append( (hid,
                              pids[p],
@@ -1813,8 +1831,17 @@ class Database:
                              pdata[p]['street0_3BDone'],
                              pdata[p]['street0_4BChance'],
                              pdata[p]['street0_4BDone'],
-                             pdata[p]['other3BStreet0'],
-                             pdata[p]['other4BStreet0'],
+                             pdata[p]['street0_C4BChance'],
+                             pdata[p]['street0_C4BDone'],
+                             pdata[p]['street0_FoldTo3BChance'],
+                             pdata[p]['street0_FoldTo3BDone'],
+                             pdata[p]['street0_FoldTo4BChance'],
+                             pdata[p]['street0_FoldTo4BDone'],
+                             pdata[p]['street0_SqueezeChance'],
+                             pdata[p]['street0_SqueezeDone'],
+                             pdata[p]['raiseToStealChance'],
+                             pdata[p]['raiseToStealDone'],
+                             pdata[p]['success_Steal'],
                              pdata[p]['otherRaisedStreet0'],
                              pdata[p]['otherRaisedStreet1'],
                              pdata[p]['otherRaisedStreet2'],
@@ -1854,23 +1881,16 @@ class Database:
                              pdata[p]['street4Raises']
                             ) )
 
-        q = self.sql.query['store_hands_players']
-        q = q.replace('%s', self.sql.query['placeholder'])
+        if insert:
+            hp_bulk += inserts
+            q = self.sql.query['store_hands_players']
+            q = q.replace('%s', self.sql.query['placeholder'])
+            c = self.get_cursor()
+            c.executemany(q, hp_bulk)
+            
+        return inserts
 
-        #print "DEBUG: inserts: %s" %inserts
-        #print "DEBUG: q: %s" % q
-        c = self.get_cursor()
-
-        if self.import_options['saveActions']:
-            for r in inserts:
-                c.execute(q, r)
-                hpid[(r[0], r[1])] = self.get_last_insert_id(c)
-        else:
-            c.executemany(q, inserts)
-
-        return hpid
-
-    def storeHandsActions(self, hid, pids, hpid, adata, printdata = False):
+    def storeHandsActions(self, hid, pids, adata, ha_bulk = None, insert = False, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, adata)
 
         # This can be used to generate test data. Currently unused
@@ -1881,8 +1901,8 @@ class Database:
 
         inserts = []
         for a in adata:
-            inserts.append( (hpid[(hid, pids[adata[a]['player']])],
-                            #self.getHandsPlayerId(self.hid, pids[adata[a]['player']]),
+            inserts.append( (hid,
+                             pids[adata[a]['player']],
                              adata[a]['street'],
                              adata[a]['actionNo'],
                              adata[a]['streetActionNo'],
@@ -1895,11 +1915,14 @@ class Database:
                              adata[a]['allIn']
                             ) )
 
-        q = self.sql.query['store_hands_actions']
-        q = q.replace('%s', self.sql.query['placeholder'])
+        if insert:
+            ha_bulk += inserts
+            q = self.sql.query['store_hands_actions']
+            q = q.replace('%s', self.sql.query['placeholder'])
+            c = self.get_cursor()
+            c.executemany(q, ha_bulk)
 
-        c = self.get_cursor()
-        c.executemany(q, inserts)
+        return inserts
 
     def storeHudCache(self, gid, pids, starttime, pdata):
         """Update cached statistics. If update fails because no record exists, do an insert."""
@@ -1926,95 +1949,105 @@ class Database:
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
         inserts = []
         for p in pdata:
-            line = [0]*85
+            #NOTE: Insert new stats at right place because SQL needs strict order
+            line = []
 
-            line[0] = 1 # HDs
-            if pdata[p]['street0VPI']:                  line[1] = 1
-            if pdata[p]['street0Aggr']:                 line[2] = 1
-            if pdata[p]['street0_3BChance']:            line[3] = 1
-            if pdata[p]['street0_3BDone']:              line[4] = 1
-            if pdata[p]['street0_4BChance']:            line[5] = 1
-            if pdata[p]['street0_4BDone']:              line[6] = 1
-            if pdata[p]['other3BStreet0']:              line[7] = 1
-            if pdata[p]['other4BStreet0']:              line[8] = 1
-            if pdata[p]['street1Seen']:                 line[9] = 1
-            if pdata[p]['street2Seen']:                 line[10] = 1
-            if pdata[p]['street3Seen']:                 line[11] = 1
-            if pdata[p]['street4Seen']:                 line[12] = 1
-            if pdata[p]['sawShowdown']:                 line[13] = 1
-            if pdata[p]['street1Aggr']:                 line[14] = 1
-            if pdata[p]['street2Aggr']:                 line[15] = 1
-            if pdata[p]['street3Aggr']:                 line[16] = 1
-            if pdata[p]['street4Aggr']:                 line[17] = 1
-            if pdata[p]['otherRaisedStreet0']:          line[18] = 1
-            if pdata[p]['otherRaisedStreet1']:          line[19] = 1
-            if pdata[p]['otherRaisedStreet2']:          line[20] = 1
-            if pdata[p]['otherRaisedStreet3']:          line[21] = 1
-            if pdata[p]['otherRaisedStreet4']:          line[22] = 1
-            if pdata[p]['foldToOtherRaisedStreet0']:    line[23] = 1
-            if pdata[p]['foldToOtherRaisedStreet1']:    line[24] = 1
-            if pdata[p]['foldToOtherRaisedStreet2']:    line[25] = 1
-            if pdata[p]['foldToOtherRaisedStreet3']:    line[26] = 1
-            if pdata[p]['foldToOtherRaisedStreet4']:    line[27] = 1
-            line[28] = pdata[p]['wonWhenSeenStreet1']
-            line[29] = pdata[p]['wonWhenSeenStreet2']
-            line[30] = pdata[p]['wonWhenSeenStreet3']
-            line[31] = pdata[p]['wonWhenSeenStreet4']
-            line[32] = pdata[p]['wonAtSD']
-            if pdata[p]['raiseFirstInChance']:          line[33] = 1
-            if pdata[p]['raisedFirstIn']:               line[34] = 1
-            if pdata[p]['foldBbToStealChance']:         line[35] = 1
-            if pdata[p]['foldedBbToSteal']:             line[36] = 1
-            if pdata[p]['foldSbToStealChance']:         line[37] = 1
-            if pdata[p]['foldedSbToSteal']:             line[38] = 1
-            if pdata[p]['street1CBChance']:             line[39] = 1
-            if pdata[p]['street1CBDone']:               line[40] = 1
-            if pdata[p]['street2CBChance']:             line[41] = 1
-            if pdata[p]['street2CBDone']:               line[42] = 1
-            if pdata[p]['street3CBChance']:             line[43] = 1
-            if pdata[p]['street3CBDone']:               line[44] = 1
-            if pdata[p]['street4CBChance']:             line[45] = 1
-            if pdata[p]['street4CBDone']:               line[46] = 1
-            if pdata[p]['foldToStreet1CBChance']:       line[47] = 1
-            if pdata[p]['foldToStreet1CBDone']:         line[48] = 1
-            if pdata[p]['foldToStreet2CBChance']:       line[49] = 1
-            if pdata[p]['foldToStreet2CBDone']:         line[50] = 1
-            if pdata[p]['foldToStreet3CBChance']:       line[51] = 1
-            if pdata[p]['foldToStreet3CBDone']:         line[52] = 1
-            if pdata[p]['foldToStreet4CBChance']:       line[53] = 1
-            if pdata[p]['foldToStreet4CBDone']:         line[54] = 1
-            line[55] = pdata[p]['totalProfit']
-            if pdata[p]['street1CheckCallRaiseChance']: line[56] = 1
-            if pdata[p]['street1CheckCallRaiseDone']:   line[57] = 1
-            if pdata[p]['street2CheckCallRaiseChance']: line[58] = 1
-            if pdata[p]['street2CheckCallRaiseDone']:   line[59] = 1
-            if pdata[p]['street3CheckCallRaiseChance']: line[60] = 1
-            if pdata[p]['street3CheckCallRaiseDone']:   line[61] = 1
-            if pdata[p]['street4CheckCallRaiseChance']: line[62] = 1
-            if pdata[p]['street4CheckCallRaiseDone']:   line[63] = 1
-            if pdata[p]['street0Calls']:                line[64] = 1
-            if pdata[p]['street1Calls']:                line[65] = 1
-            if pdata[p]['street2Calls']:                line[66] = 1
-            if pdata[p]['street3Calls']:                line[67] = 1
-            if pdata[p]['street4Calls']:                line[68] = 1
-            if pdata[p]['street0Bets']:                 line[69] = 1
-            if pdata[p]['street1Bets']:                 line[70] = 1
-            if pdata[p]['street2Bets']:                 line[71] = 1
-            if pdata[p]['street3Bets']:                 line[72] = 1
-            if pdata[p]['street4Bets']:                 line[73] = 1
-            if pdata[p]['street0Raises']:               line[74] = 1
-            if pdata[p]['street1Raises']:               line[75] = 1
-            if pdata[p]['street2Raises']:               line[76] = 1
-            if pdata[p]['street3Raises']:               line[77] = 1
-            if pdata[p]['street4Raises']:               line[78] = 1
+            line.append(1)  # HDs
+            line.append(pdata[p]['street0VPI'])
+            line.append(pdata[p]['street0Aggr'])                 
+            line.append(pdata[p]['street0_3BChance'])            
+            line.append(pdata[p]['street0_3BDone'])              
+            line.append(pdata[p]['street0_4BChance'])            
+            line.append(pdata[p]['street0_4BDone'])              
+            line.append(pdata[p]['street0_C4BChance'])              
+            line.append(pdata[p]['street0_C4BDone'])              
+            line.append(pdata[p]['street0_FoldTo3BChance'])      
+            line.append(pdata[p]['street0_FoldTo3BDone'])        
+            line.append(pdata[p]['street0_FoldTo4BChance'])      
+            line.append(pdata[p]['street0_FoldTo4BDone'])        
+            line.append(pdata[p]['street0_SqueezeChance'])        
+            line.append(pdata[p]['street0_SqueezeDone'])        
+            line.append(pdata[p]['raiseToStealChance'])        
+            line.append(pdata[p]['raiseToStealDone'])        
+            line.append(pdata[p]['success_Steal'])        
+            line.append(pdata[p]['street1Seen'])                 
+            line.append(pdata[p]['street2Seen'])                 
+            line.append(pdata[p]['street3Seen'])                 
+            line.append(pdata[p]['street4Seen'])                 
+            line.append(pdata[p]['sawShowdown'])                 
+            line.append(pdata[p]['street1Aggr'])                 
+            line.append(pdata[p]['street2Aggr'])                 
+            line.append(pdata[p]['street3Aggr'])                 
+            line.append(pdata[p]['street4Aggr'])                 
+            line.append(pdata[p]['otherRaisedStreet0'])          
+            line.append(pdata[p]['otherRaisedStreet1'])          
+            line.append(pdata[p]['otherRaisedStreet2'])          
+            line.append(pdata[p]['otherRaisedStreet3'])          
+            line.append(pdata[p]['otherRaisedStreet4'])          
+            line.append(pdata[p]['foldToOtherRaisedStreet0'])    
+            line.append(pdata[p]['foldToOtherRaisedStreet1'])    
+            line.append(pdata[p]['foldToOtherRaisedStreet2'])    
+            line.append(pdata[p]['foldToOtherRaisedStreet3'])    
+            line.append(pdata[p]['foldToOtherRaisedStreet4'])    
+            line.append(pdata[p]['wonWhenSeenStreet1'])
+            line.append(pdata[p]['wonWhenSeenStreet2'])
+            line.append(pdata[p]['wonWhenSeenStreet3'])
+            line.append(pdata[p]['wonWhenSeenStreet4'])
+            line.append(pdata[p]['wonAtSD'])
+            line.append(pdata[p]['raiseFirstInChance'])          
+            line.append(pdata[p]['raisedFirstIn'])               
+            line.append(pdata[p]['foldBbToStealChance'])         
+            line.append(pdata[p]['foldedBbToSteal'])             
+            line.append(pdata[p]['foldSbToStealChance'])         
+            line.append(pdata[p]['foldedSbToSteal'])             
+            line.append(pdata[p]['street1CBChance'])             
+            line.append(pdata[p]['street1CBDone'])               
+            line.append(pdata[p]['street2CBChance'])             
+            line.append(pdata[p]['street2CBDone'])               
+            line.append(pdata[p]['street3CBChance'])             
+            line.append(pdata[p]['street3CBDone'])               
+            line.append(pdata[p]['street4CBChance'])             
+            line.append(pdata[p]['street4CBDone'])               
+            line.append(pdata[p]['foldToStreet1CBChance'])       
+            line.append(pdata[p]['foldToStreet1CBDone'])         
+            line.append(pdata[p]['foldToStreet2CBChance'])       
+            line.append(pdata[p]['foldToStreet2CBDone'])         
+            line.append(pdata[p]['foldToStreet3CBChance'])       
+            line.append(pdata[p]['foldToStreet3CBDone'])         
+            line.append(pdata[p]['foldToStreet4CBChance'])       
+            line.append(pdata[p]['foldToStreet4CBDone'])         
+            line.append(pdata[p]['totalProfit'])
+            line.append(pdata[p]['street1CheckCallRaiseChance']) 
+            line.append(pdata[p]['street1CheckCallRaiseDone'])   
+            line.append(pdata[p]['street2CheckCallRaiseChance']) 
+            line.append(pdata[p]['street2CheckCallRaiseDone'])   
+            line.append(pdata[p]['street3CheckCallRaiseChance']) 
+            line.append(pdata[p]['street3CheckCallRaiseDone'])   
+            line.append(pdata[p]['street4CheckCallRaiseChance']) 
+            line.append(pdata[p]['street4CheckCallRaiseDone'])   
+            line.append(pdata[p]['street0Calls'])                
+            line.append(pdata[p]['street1Calls'])                
+            line.append(pdata[p]['street2Calls'])                
+            line.append(pdata[p]['street3Calls'])                
+            line.append(pdata[p]['street4Calls'])                
+            line.append(pdata[p]['street0Bets'])                 
+            line.append(pdata[p]['street1Bets'])                 
+            line.append(pdata[p]['street2Bets'])                 
+            line.append(pdata[p]['street3Bets'])                 
+            line.append(pdata[p]['street4Bets'])                 
+            line.append(pdata[p]['street0Raises'])               
+            line.append(pdata[p]['street1Raises'])               
+            line.append(pdata[p]['street2Raises'])               
+            line.append(pdata[p]['street3Raises'])               
+            line.append(pdata[p]['street4Raises'])               
 
-            line[79] = gid    # gametypeId
-            line[80] = pids[p]    # playerId
-            line[81] = len(pids)    # activeSeats
+            line.append(gid)          # gametypeId
+            line.append(pids[p])      # playerId
+            line.append(len(pids))    # activeSeats
             pos = {'B':'B', 'S':'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }
-            line[82] = pos[pdata[p]['position']]
-            line[83] = pdata[p]['tourneyTypeId']
-            line[84] = styleKey    # styleKey
+            line.append(pos[pdata[p]['position']])
+            line.append(pdata[p]['tourneyTypeId'])
+            line.append(styleKey)    # styleKey
             inserts.append(line)
 
 
@@ -2040,10 +2073,9 @@ class Database:
                 pass
             
     def storeSessionsCache(self, pids, startTime, game, pdata):
-        """Update cached sessions. If update fails because no record exists, do an insert"""
+        """Update cached sessions. If no record exists, do an insert"""
         
         THRESHOLD = timedelta(seconds=int(self.sessionTimeout * 60))
-        bigBet = int(Decimal(game['bb'])*200)
         
         select_sessionscache = self.sql.query['select_sessionscache']
         select_sessionscache = select_sessionscache.replace('%s', self.sql.query['placeholder'])
@@ -2065,6 +2097,9 @@ class Database:
         merge_sessionscache = merge_sessionscache.replace('%s', self.sql.query['placeholder'])
         delete_sessions = self.sql.query['delete_sessions']
         delete_sessions = delete_sessions.replace('%s', self.sql.query['placeholder'])
+        
+        update_hands_sessionid = self.sql.query['update_hands_sessionid']
+        update_hands_sessionid = update_hands_sessionid.replace('%s', self.sql.query['placeholder'])
         
         #Grab playerIds using hero names in HUD_Config.xml
         try:
@@ -2095,29 +2130,32 @@ class Database:
     
                 if (game['type']=='ring'): line[0] = 1 # count ring hands
                 if (game['type']=='tour'): line[1] = 1 # count tour hands
-                if (game['type']=='ring'): line[2] = pdata[p]['totalProfit'] #sum of profit
-                if (game['type']=='ring'): line[3] = 0 #float(Decimal(pdata[p]['totalProfit'])/Decimal(bigBet)) #sum of big bets won
+                if (game['type']=='ring' and game['currency']=='USD'): line[2] = pdata[p]['totalProfit'] #sum of ring profit in USD
+                if (game['type']=='ring' and game['currency']=='EUR'): line[3] = pdata[p]['totalProfit'] #sum of ring profit in EUR
                 line[4] = startTime
                 inserts.append(line)
 
         cursor = self.get_cursor()
+        id = None
 
         for row in inserts:
             threshold = []
             threshold.append(row[-1]-THRESHOLD)
             threshold.append(row[-1]+THRESHOLD)
             cursor.execute(select_sessionscache, threshold)
-            num = cursor.rowcount
+            session_records = cursor.fetchall()
+            num = len(session_records)
             if (num == 1):
+                id = session_records[0][0] #grab the sessionId
                 # Try to do the update first:
                 #print "DEBUG: found 1 record to update"
                 update_mid = row + row[-1:]
                 cursor.execute(select_sessionscache_mid, update_mid[-2:])
-                mid = cursor.rowcount
+                mid = len(cursor.fetchall())
                 if (mid == 0):
                     update_startend = row[-1:] + row + threshold
                     cursor.execute(select_sessionscache_start, update_startend[-3:])
-                    start = cursor.rowcount
+                    start = len(cursor.fetchall())
                     if (start == 0):
                         #print "DEBUG:", start, " start record found. Update stats and start time"
                         cursor.execute(update_sessionscache_end, update_startend)                 
@@ -2128,37 +2166,36 @@ class Database:
                     #print "DEBUG: update stats mid-session"
                     cursor.execute(update_sessionscache_mid, update_mid)
             elif (num > 1):
+                session_ids = [session_records[0][0], session_records[1][0]]
+                session_ids.sort()
                 # Multiple matches found - merge them into one session and update:
-                #print "DEBUG:", num, "matches found"
-                cursor.execute(merge_sessionscache, threshold)
+                # - Obtain the session start and end times for the new combined session
+                cursor.execute(merge_sessionscache, session_ids)
                 merge = cursor.fetchone()
-                cursor.execute(delete_sessions, threshold)
+                # - Delete the old records
+                for id in session_ids:
+                    cursor.execute(delete_sessions, id)
+                # - Insert the new updated record
                 cursor.execute(insert_sessionscache, merge)
+                # - Obtain the new sessionId and write over the old ids in Hands
+                id = self.get_last_insert_id(cursor) #grab the sessionId
+                update_hands = [id] + session_ids
+                cursor.execute(update_hands_sessionid, update_hands)
+                # - Update the newly combined record in SessionsCache with data from this hand
                 update_mid = row + row[-1:]
-                cursor.execute(select_sessionscache_mid, update_mid[-2:])
-                mid = cursor.rowcount
-                if (mid == 0):
-                    update_startend = row[-1:] + row + threshold
-                    cursor.execute(select_sessionscache_start, update_startend[-3:])
-                    start = cursor.rowcount
-                    if (start == 0):
-                        #print "DEBUG:", start, " start record found. Update stats and start time"
-                        cursor.execute(update_sessionscache_end, update_startend)                 
-                    else:
-                        #print "DEBUG: 1 end record found. Update stats and end time time"
-                        cursor.execute(update_sessionscache_start, update_startend) 
-                else:
-                    #print "DEBUG: update stats mid-session"
-                    cursor.execute(update_sessionscache_mid, update_mid)
+                cursor.execute(update_sessionscache_mid, update_mid)
             elif (num == 0):
                 # No matches found, insert new session:
                 insert = row + row[-1:]
                 insert = insert[-2:] + insert[:-2]
                 #print "DEBUG: No matches found. Insert record", insert
                 cursor.execute(insert_sessionscache, insert)
+                id = self.get_last_insert_id(cursor) #grab the sessionId
             else:
                 # Something bad happened
-                pass    
+                pass
+        
+        return id 
 
     def isDuplicate(self, gametypeID, siteHandNo):
         dup = False
@@ -2169,7 +2206,7 @@ class Database:
             dup = True
         return dup
 
-    def getGameTypeId(self, siteid, game):
+    def getGameTypeId(self, siteid, game, printdata = False):
         c = self.get_cursor()
         #FIXME: Fixed for NL at the moment
         c.execute(self.sql.query['getGametypeNL'], (siteid, game['type'], game['category'], game['limitType'], game['currency'],
@@ -2181,14 +2218,22 @@ class Database:
                 hilo = "s"
             elif game['category'] in ['razz','27_3draw','badugi', '27_1draw']:
                 hilo = "l"
+            #FIXME: recognise currency
+            #TODO: this wont work for non-standard structures
             tmp  = self.insertGameTypes( (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
                                     int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
-                                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200)) ) #TODO: this wont work for non-standard structures
-                                    #FIXME: recognise currency
+                                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200)), printdata = printdata)
         return tmp[0]
 
 
-    def insertGameTypes(self, row):
+    def insertGameTypes(self, row, printdata = False):
+        if printdata:
+            print _("######## Gametype ##########")
+            import pprint
+            pp = pprint.PrettyPrinter(indent=4)
+            pp.pprint(row)
+            print _("###### End Gametype ########")
+
         c = self.get_cursor()
         c.execute( self.sql.query['insertGameTypes'], row )
         return [self.get_last_insert_id(c)]

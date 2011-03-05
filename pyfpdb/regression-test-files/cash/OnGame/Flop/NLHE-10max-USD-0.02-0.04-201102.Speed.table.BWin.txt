@@ -1,0 +1,48 @@
+***** History for hand R5-22678800-36 *****
+Start hand: Sun Feb 13 14:14:04 GMT+0100 2011
+Table: [SPEED] Dijon [22678800] (NO_LIMIT TEXAS_HOLDEM €0.02/€0.04, Real money)
+User: Hero
+Button: seat 10
+Players in round: 6
+Seat 2: Player2 (€2.26)
+Seat 3: Hero (€4)
+Seat 5: Player5 (€1.60)
+Seat 7: Player7 (€1.35)
+Seat 8: Player8 (€1.70)
+Seat 10: Player10 (€3.66)
+Player2 posts small blind (€0.02)
+Hero posts big blind (€0.04)
+---
+Dealing pocket cards
+Dealing to Hero: [7d, Td]
+Player5 folds
+Player7 folds
+Player8 calls €0.04
+Player10 calls €0.04
+Player2 calls €0.02
+Hero checks
+--- Dealing flop [Jc, 4d, Qs]
+Player2 checks
+Hero checks
+Player8 checks
+Player10 checks
+--- Dealing turn [Js]
+Player2 checks
+Hero bets €0.10
+Player8 calls €0.10
+Player10 folds
+Player2 folds
+--- Dealing river [Ts]
+Hero checks
+Player8 checks
+---
+Summary:
+Main pot: €0.36 won by Hero (€0.35)
+Rake taken: €0.01
+Seat 2: Player2 (€2.22), net: -€0.04
+Seat 3: Hero (€4.21), net: +€0.21, [7d, Td] (TWO_PAIR JACK, TEN)
+Seat 5: Player5 (€1.60)
+Seat 7: Player7 (€1.35)
+Seat 8: Player8 (€1.56), net: -€0.14
+Seat 10: Player10 (€3.62), net: -€0.04
+***** End of hand R5-22678800-36 *****

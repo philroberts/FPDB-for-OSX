@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #Copyright 2008-2010 Steffen Schaumburg
@@ -83,10 +83,8 @@ class Importer:
         self.pos_in_file = {}        # dict to remember how far we have read in the file
         #Set defaults
         self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
-        self.cacheSessions = self.config.get_import_parameters().get("cacheSessions")
 
         # CONFIGURATION OPTIONS
-        self.settings.setdefault("minPrint", 30)
         self.settings.setdefault("handCount", 0)
         #self.settings.setdefault("allowHudcacheRebuild", True) # NOT USED NOW
         #self.settings.setdefault("forceThreads", 2)            # NOT USED NOW
@@ -114,9 +112,6 @@ class Importer:
         
     def setCacheSessions(self, value):
         self.cacheSessions = value
-
-    def setMinPrint(self, value):
-        self.settings['minPrint'] = int(value)
 
     def setHandCount(self, value):
         self.settings['handCount'] = int(value)
@@ -474,12 +469,20 @@ class Importer:
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
                 to_hud = []
+                hp_bulk = []
+                ha_bulk = []
+                i = 0
 
                 for hand in handlist:
+                    i += 1
                     if hand is not None:
-                        hand.prepInsert(self.database)
+                        hand.prepInsert(self.database, printtest = self.settings['testData'])
                         try:
-                            hand.insert(self.database, printtest = self.settings['testData'])
+                            hp_inserts, ha_inserts = hand.insert(self.database, hp_data = hp_bulk, 
+                                                                 ha_data = ha_bulk, insert_data = len(handlist)==i,
+                                                                 printtest = self.settings['testData'])
+                            hp_bulk += hp_inserts
+                            ha_bulk += ha_inserts
                         except Exceptions.FpdbHandDuplicate:
                             duplicates += 1
                         else:
@@ -494,13 +497,6 @@ class Importer:
                     for hand in handlist:
                         if hand is not None and not hand.is_duplicate:
                             hand.updateHudCache(self.database)
-                self.database.commit()
-                
-                # Call sessionsCache update
-                if self.cacheSessions:
-                    for hand in handlist:
-                        if hand is not None and not hand.is_duplicate:
-                            hand.updateSessionsCache(self.database)
                 self.database.commit()
 
                 #pipe the Hands.id out to the HUD

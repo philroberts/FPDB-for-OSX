@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: iso-8859-15
 #
 # stove.py
@@ -9,14 +9,18 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, version 3 of the License.
 #
+# TODO gettextify usage print
 
 import L10n
 _ = L10n.get_translation()
 
 import sys, random
+import re
 import pokereval
 
 SUITS = ['h', 'd', 's', 'c']
+
+CONNECTORS = ['32', '43', '54', '65', '76', '87', '98', 'T9', 'JT', 'QJ', 'KQ', 'AK']
 
 ANY = 0
 SUITED = 1
@@ -64,14 +68,7 @@ class Stove:
         hands_in_range = string.strip().split(',')
         for h in hands_in_range:
             _h = h.strip()
-            if len(_h) > 3:
-                cc = _h.split()
-                r1 = cc[0]
-                r2 = cc[1]
-                vp = Cards(r1, r2)
-                h_range.add(vp)
-            else:
-                h_range.expand(expand_hands(_h, self.hand, self.board))
+            h_range.expand(expand_hands(_h, self.hand, self.board))
 
         self.h_range = h_range
 
@@ -82,7 +79,7 @@ class Cards:
         self.c2 = c2
 
     def get(self):
-        return [c1, c2]
+        return [self.c1, self.c2]
 
 class Board:
     def __init__(self, b1=None, b2=None, b3=None, b4=None, b5=None):
@@ -126,7 +123,7 @@ class Range:
     def get(self):
         return sorted(self.__hands)
 
-        
+
 
 class EV:
     def __init__(self, plays, win, tie, lose):
@@ -142,6 +139,7 @@ class SumEV:
         self.n_wins = 0
         self.n_ties = 0
         self.n_losses = 0
+        self.output = ""
 
     def add(self, ev):
         self.n_hands += ev.n_hands
@@ -153,13 +151,15 @@ class SumEV:
         win_pct = 100 * (float(self.n_wins) / float(self.n_hands))
         lose_pct = 100 * (float(self.n_losses) / float(self.n_hands))
         tie_pct = 100 * (float(self.n_ties) / float(self.n_hands))
-        print 'Enumerated %d possible plays.' % self.n_hands
-        print 'Your hand: (%s %s)' % (hand.c1, hand.c2)
-        print 'Against the range: %s\n' % cards_from_range(h_range)
-        print '  Win       Lose       Tie'
-        print ' %5.2f%%    %5.2f%%    %5.2f%%' % (win_pct, lose_pct, tie_pct)
+        self.output = """
+Enumerated %d possible plays.
+Your hand: (%s %s)
+Against the range: %s
+  Win       Lose       Tie
+ %5.2f%%    %5.2f%%    %5.2f%%
+""" % (self.n_hands, hand.c1, hand.c2, cards_from_range(h_range), win_pct, lose_pct, tie_pct)
 
-
+        print self.output
 
 
 # Expands hand abbreviations such as JJ and AK to full hand ranges.
@@ -171,6 +171,35 @@ def expand_hands(abbrev, hand, board):
     known_cards.update(set([hand.c2, hand.c2]))
     known_cards.update(set([board.b1, board.b2, board.b3, board.b4, board.b5]))
 
+    re.search('[2-9TJQKA]{2}(s|o)',abbrev)
+
+    if re.search('^[2-9TJQKA]{2}(s|o)$',abbrev): #AKs or AKo
+        return standard_expand(abbrev, hand, known_cards)
+    elif re.search('^[2-9TJQKA]{2}(s|o)\+$',abbrev): #76s+ or 76o+
+        return iterative_expand(abbrev, hand, known_cards)
+    #elif: AhXh
+    #elif: Ah6h+A
+
+def iterative_expand(abbrev, hand, known_cards):
+    r1 = abbrev[0]
+    r2 = abbrev[1]
+
+    h_range = []
+    considered = set()
+
+    idx = CONNECTORS.index('%s%s' % (r1, r2))
+
+    ltr = abbrev[2]
+
+    h_range = []
+    for h in CONNECTORS[idx:]:
+        abr = "%s%s" % (h, ltr)
+        h_range += standard_expand(abr, hand, known_cards)
+
+    return h_range
+
+
+def standard_expand(abbrev, hand, known_cards):
     # Card ranks may be different
     r1 = abbrev[0]
     r2 = abbrev[1]
@@ -224,7 +253,7 @@ def odds_for_hand(hand1, hand2, board, iterations):
         board = board,
         iterations = iterations
         )
-    
+
     plays = int(res['info'][0])
     eval = res['eval'][0]
 
@@ -272,6 +301,7 @@ def odds_for_range(holder):
         sev.add(e)
 
     sev.show(holder.hand, holder.h_range.get())
+    return sev
 
 def usage(me):
     print """Texas Hold'Em odds calculator

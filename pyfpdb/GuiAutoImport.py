@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #Copyright 2008-2010 Steffen Schaumburg
@@ -59,7 +59,6 @@ class GuiAutoImport (threading.Thread):
 
         self.importer = fpdb_import.Importer(self, self.settings, self.config, self.sql)
         self.importer.setCallHud(True)
-        self.importer.setMinPrint(settings['minPrint'])
         self.importer.setQuiet(False)
         self.importer.setFailOnError(False)
         self.importer.setHandCount(0)
@@ -122,6 +121,10 @@ class GuiAutoImport (threading.Thread):
         self.startButton = gtk.ToggleButton(_("  Start _Auto Import  "))
         self.startButton.connect("clicked", self.startClicked, "start clicked")
         hbox.pack_start(self.startButton, expand=False, fill=False)
+
+        self.DetectButton = gtk.Button(_("Detect Directories"))
+        self.DetectButton.connect("clicked", self.detect_hh_dirs, "detect")
+        #hbox.pack_start(self.DetectButton, expand=False, fill=False)
 
 
         lbl2 = gtk.Label()
@@ -191,6 +194,31 @@ class GuiAutoImport (threading.Thread):
 
         return False
 
+    def detect_hh_dirs(self, widget, data):
+        """Attempt to find user hand history directories for enabled sites"""
+        the_sites = self.config.get_supported_sites()
+        for site in the_sites:
+            params = self.config.get_site_parameters(site)
+            if params['enabled'] == True:
+                print "DEBUG: Detecting hh directory for site: '%s'" % site
+                if os.name == 'posix':
+                    if self.posix_detect_hh_dirs(site):
+                        #data[1].set_text(dia_chooser.get_filename())
+                        self.input_settings[site][0]
+                        pass
+                elif os.name == 'nt':
+                    # Sorry
+                    pass
+
+    def posix_detect_hh_dirs(self, site):
+        defaults = {
+                    'PokerStars': '~/.wine/drive_c/Program Files/PokerStars/HandHistory',
+                   }
+        if site == 'PokerStars':
+            directory = os.path.expanduser(defaults[site])
+            for file in [file for file in os.listdir(directory) if not file in [".",".."]]:
+                print file
+        return False
 
     def startClicked(self, widget, data):
         """runs when user clicks start on auto import tab"""
@@ -338,14 +366,11 @@ if __name__== "__main__":
 
     parser = OptionParser()
     parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True, help="don't start gui")
-    parser.add_option("-m", "--minPrint", "--status", dest="minPrint", default="0", type="int",
-                    help=_("How often to print a one-line status report (0 (default) means never)"))
     (options, argv) = parser.parse_args()
 
     config = Configuration.Config()
 
     settings = {}
-    settings['minPrint'] = options.minPrint
     if os.name == 'nt': settings['os'] = 'windows'
     else:               settings['os'] = 'linuxmac'
 

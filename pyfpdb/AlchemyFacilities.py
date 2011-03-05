@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #Copyright 2009-2010 Grigorij Indigirkin
@@ -17,7 +17,7 @@
 
 #TODO: gettextify if file is used again
 
-from decimal import Decimal
+from decimal_wrapper import Decimal
 
 from sqlalchemy import types
 from sqlalchemy.orm.exc import NoResultFound 

@@ -62,6 +62,43 @@ class FpdbError:
             idx = f.find('regression')
             print "(%3d) : %s" %(self.histogram[f], f[idx:])
 
+def compare_gametypes_file(filename, importer, errors):
+    hashfilename = filename + '.gt'
+
+    in_fh = codecs.open(hashfilename, 'r', 'utf8')
+    whole_file = in_fh.read()
+    in_fh.close()
+
+    testhash = eval(whole_file)
+
+    hhc = importer.getCachedHHC()
+    handlist = hhc.getProcessedHands()
+
+    lookup = {
+                0:'siteId',
+                1:'currency',
+                2:'type',
+                3:'base',
+                4:'game',
+                5:'limit',
+                6:'hilo',
+                7:'Small Blind',
+                8:'Big Blind',
+                9:'Small Bet',
+                10:'Big Bet',
+            }
+
+    for hand in handlist:
+        ghash = hand.gametyperow
+        for i in range(len(ghash)):
+            #print "DEBUG: about to compare: '%s' and '%s'" %(ghash[i], testhash[i])
+            if ghash[i] == testhash[i]:
+                # The stats match - continue
+                pass
+            else:
+                errors.error_report(filename, hand, lookup[i], ghash, testhash, None)
+    pass
+
 def compare_handsplayers_file(filename, importer, errors):
     hashfilename = filename + '.hp'
 
@@ -88,8 +125,11 @@ def compare_handsplayers_file(filename, importer, errors):
                         # The stats match - continue
                         pass
                     else:
-                        # Stats don't match - Doh!
-                        errors.error_report(filename, hand, stat, ghash, testhash, p)
+                        if stat == 'tourneyTypeId' or stat == 'tourneysPlayersIds':
+                            # Not and error
+                            pass
+                        else:
+                            errors.error_report(filename, hand, stat, ghash, testhash, p)
                 except KeyError, e:
                     errors.error_report(filename, False, "KeyError: '%s'" % stat, False, False, p)
 
@@ -115,14 +155,14 @@ def compare_hands_file(filename, importer, errors):
                     pass
                 else:
                     # Stats don't match. 
-                    if datum == "gametypeId":
+                    if datum == "gametypeId" or datum == 'sessionId' or datum == 'tourneyId':
                         # Not an error. gametypeIds are dependent on the order added to the db.
                         #print "DEBUG: Skipping mismatched gamtypeId"
                         pass
                     else:
                         errors.error_report(filename, hand, datum, ghash, testhash, None)
             except KeyError, e:
-                errors.error_report(filename, False, "KeyError: '%s'" % stat, False, False, p)
+                errors.error_report(filename, False, "KeyError: '%s'" % datum, False, False, None)
 
 
 def compare(leaf, importer, errors, site):
@@ -142,6 +182,8 @@ def compare(leaf, importer, errors, site):
                 compare_handsplayers_file(filename, importer, errors)
             if os.path.isfile(filename + '.hands'):
                 compare_hands_file(filename, importer, errors)
+            if os.path.isfile(filename + '.gt'):
+                compare_gametypes_file(filename, importer, errors)
 
         importer.clearFileList()
 
@@ -150,15 +192,28 @@ def compare(leaf, importer, errors, site):
 def walk_testfiles(dir, function, importer, errors, site):
     """Walks a directory, and executes a callback on each file """
     dir = os.path.abspath(dir)
-    for file in [file for file in os.listdir(dir) if not file in [".",".."]]:
-        nfile = os.path.join(dir,file)
-        if os.path.isdir(nfile):
-            walk_testfiles(nfile, compare, importer, errors, site)
+    try:
+        for file in [file for file in os.listdir(dir) if not file in [".",".."]]:
+            nfile = os.path.join(dir,file)
+            if os.path.isdir(nfile):
+                walk_testfiles(nfile, compare, importer, errors, site)
+            else:
+                function(nfile, importer, errors, site)
+    except OSError as (errno, strerror):
+        if errno == 20:
+            # Error 20 is 'not a directory'
+            function(dir, importer, errors, site)
         else:
-            compare(nfile, importer, errors, site)
+            raise OSError(errno, strerror)
 
 def usage():
     print "USAGE:"
+    print "Run all tests:"
+    print "\t./TestHandsPlayers.py"
+    print "Run tests for a sinlge site:"
+    print "\t./TestHandsPlayers -s <Sitename>"
+    print "Run tests for a sinlge file in a site:"
+    print "\t./TestHandsPlayers -s <Sitename> -f <filname>"
     sys.exit(0)
 
 def main(argv=None):
@@ -172,11 +227,17 @@ def main(argv=None):
     if options.usage == True:
         usage()
 
+    single_file_test = False
+
     if options.sitename:
         options.sitename = Options.site_alias(options.sitename)
         if options.sitename == False:
             usage()
-        print "Only regression testing '%s' files" % (options.sitename)
+        if options.filename:
+            print "Testing single hand: '%s'" % options.filename
+            single_file_test = True
+        else:
+            print "Only regression testing '%s' files" % (options.sitename)
         test_all_sites = False
 
     config = Configuration.Config(file = "HUD_config.test.xml")
@@ -202,6 +263,7 @@ def main(argv=None):
     AbsoluteErrors    = FpdbError('Absolute Poker')
     UltimateBetErrors = FpdbError('Ultimate Bet')
     EverleafErrors    = FpdbError('Everleaf Poker')
+    EverestErrors     = FpdbError('Everest Poker')
     CarbonErrors      = FpdbError('Carbon')
     PKRErrors         = FpdbError('PKR')
     iPokerErrors      = FpdbError('iPoker')
@@ -213,7 +275,7 @@ def main(argv=None):
                     BetfairErrors, OnGameErrors, AbsoluteErrors,
                     EverleafErrors, CarbonErrors, PKRErrors,
                     iPokerErrors, WinamaxErrors, UltimateBetErrors,
-                    Win2dayErrors,
+                    Win2dayErrors, EverestErrors,
                 ]
 
     sites = {
@@ -230,6 +292,7 @@ def main(argv=None):
                 'iPoker' : False,
                 'Win2day' : False,
                 'Winamax' : False,
+                'Everest' : False,
             }
 
     if test_all_sites == True:
@@ -238,36 +301,62 @@ def main(argv=None):
     else:
         sites[options.sitename] = True
 
-    if sites['PokerStars'] == True:
+    if sites['PokerStars'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
         walk_testfiles("regression-test-files/tour/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
-    if sites['Full Tilt Poker'] == True:
+    elif sites['PokerStars'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, PokerStarsErrors, "PokerStars")
+
+    if sites['Full Tilt Poker'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
         walk_testfiles("regression-test-files/tour/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
-    if sites['PartyPoker'] == True:
+    elif sites['Full Tilt Poker'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, FTPErrors, "Full Tilt Poker")
+    if sites['PartyPoker'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
         walk_testfiles("regression-test-files/tour/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
-    if sites['Betfair'] == True:
+    elif sites['PartyPoker'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, PartyPokerErrors, "PartyPoker")
+    if sites['Betfair'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Betfair/", compare, importer, BetfairErrors, "Betfair")
-    if sites['OnGame'] == True:
+    elif sites['Betfair'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, BetfairErrors, "Betfair")
+    if sites['OnGame'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/OnGame/", compare, importer, OnGameErrors, "OnGame")
-    if sites['Absolute'] == True:
+    elif sites['OnGame'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, OnGameErrors, "OnGame")
+    if sites['Absolute'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Absolute/", compare, importer, AbsoluteErrors, "Absolute")
-    if sites['UltimateBet'] == True:
+        walk_testfiles("regression-test-files/tour/Absolute/", compare, importer, AbsoluteErrors, "Absolute")
+    elif sites['Absolute'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, AbsoluteErrors, "Absolute")
+    if sites['UltimateBet'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/UltimateBet/", compare, importer, UltimateBetErrors, "Absolute")
-    if sites['Everleaf'] == True:
+    elif sites['UltimateBet'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, UltimateBetErrors, "Absolute")
+    if sites['Everleaf'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
-    if sites['Carbon'] == True:
+    elif sites['Everleaf'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, EverleafErrors, "Everleaf")
+    if sites['Carbon'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Carbon/", compare, importer, CarbonErrors, "Carbon")
-    #if sites['PKR'] == True:
+    elif sites['Carbon'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, CarbonErrors, "Carbon")
+    #if sites['PKR'] == True and not single_file_test:
     #    walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
-    if sites['iPoker'] == True:
+    if sites['iPoker'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/iPoker/", compare, importer, iPokerErrors, "iPoker")
-    if sites['Winamax'] == True:
+    elif sites['iPoker'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, iPokerErrors, "iPoker")
+    if sites['Winamax'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Winamax/", compare, importer, WinamaxErrors, "Winamax")
         walk_testfiles("regression-test-files/tour/Winamax/", compare, importer, WinamaxErrors, "Winamax")
-    if sites['Win2day'] == True:
+    elif sites['Winamax'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, WinamaxErrors, "Winamax")
+    if sites['Win2day'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Win2day/", compare, importer, Win2dayErrors, "Win2day")
+    elif sites['Win2day'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, Win2dayErrors, "Win2day")
 
     totalerrors = 0
 

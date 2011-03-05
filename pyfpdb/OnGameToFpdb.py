@@ -31,7 +31,7 @@ log = logging.getLogger("parser")
 
 import Configuration
 from HandHistoryConverter import *
-from decimal import Decimal
+from decimal_wrapper import Decimal
 
 # OnGame HH Format
 
@@ -49,7 +49,7 @@ class OnGame(HandHistoryConverter):
                     }
     currencies = { u'\u20ac':'EUR', u'\xe2\x82\xac':'EUR', '$':'USD', '':'T$' }
 
-    limits = { 'NO_LIMIT':'nl', 'LIMIT':'fl'}
+    limits = { 'NO_LIMIT':'nl', 'POT_LIMIT':'pl', 'LIMIT':'fl'}
 
     games = {                          # base, category
                           "TEXAS_HOLDEM" : ('hold','holdem'),
@@ -68,32 +68,19 @@ class OnGame(HandHistoryConverter):
     # ***** End of hand R5-75443872-57 *****
     re_SplitHands = re.compile(u'\*\*\*\*\*\sEnd\sof\shand\s[-A-Z\d]+.*\n(?=\*)')
 
-    # ***** History for hand R5-75443872-57 *****
-    # Start hand: Wed Aug 18 19:29:10 GMT+0100 2010
-    # Table: someplace [75443872] (LIMIT TEXAS_HOLDEM 0.50/1, Real money)
-#***** History for hand R5-78042004-262 *****
-#Start hand: Fri Aug 27 21:40:46 GMT+0100 2010
-#Table: Bamako [78042004] (LIMIT TEXAS_HOLDEM $0.25/$0.50, Real money)
-#User: sagi34
-#{ u'BB': None
-#, u'DATETIME': u'Fri Aug 27 22:38:26 GMT+0100 2010\\n'
-#, u'GAME': None
-#, u'HID': u'R5-78042004-346'
-#, u'TABLE': u'Bamako'
-#, u'LIMIT': None
-#, u'SB': None
-#}
+    #TODO: detect play money
+    # "Play money" rather than "Real money" and set currency accordingly
     re_HandInfo = re.compile(u"""
             \*\*\*\*\*\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+).*
             Start\shand:\s(?P<DATETIME>.*)
-            Table:\s(?P<TABLE>[\'\w\s]+)\s\[\d+\]\s\(
+            Table:\s(\[SPEED\]\s)?(?P<TABLE>[-\'\w\s\.]+)\s\[\d+\]\s\(
             (
-            (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit)\s
+            (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit|POT_LIMIT)\s
             (?P<GAME>TEXAS_HOLDEM|OMAHA_HI|SEVEN_CARD_STUD|SEVEN_CARD_STUD_HI_LO|RAZZ|FIVE_CARD_DRAW)\s
             (?P<CURRENCY>%(LS)s|)?(?P<SB>[.0-9]+)/
             (%(LS)s)?(?P<BB>[.0-9]+)
             )?
-            """ % substitutions, re.MULTILINE|re.DOTALL|re.VERBOSE) #TODO: detect play money (identified by "Play money" rather than "Real money" and set currency accordingly
+            """ % substitutions, re.MULTILINE|re.DOTALL|re.VERBOSE)
 
     re_TailSplitHands = re.compile(u'(\*\*\*\*\*\sEnd\sof\shand\s[-A-Z\d]+.*\n)(?=\*)')
     re_Button       = re.compile('Button: seat (?P<BUTTON>\d+)', re.MULTILINE)  # Button: seat 2
@@ -155,6 +142,7 @@ class OnGame(HandHistoryConverter):
     def readSupportedGames(self):
         return [
                 ["ring", "hold", "fl"],
+                ["ring", "hold", "pl"],
                 ["ring", "hold", "nl"],
                 ["ring", "stud", "fl"],
                 ["ring", "draw", "fl"],
@@ -173,6 +161,7 @@ class OnGame(HandHistoryConverter):
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
+        #print "DEBUG: mg: %s" % mg
 
         info['type'] = 'ring'
         if 'CURRENCY' in mg:
@@ -329,9 +318,9 @@ class OnGame(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             #acts = action.groupdict()
-            #log.debug("readaction: acts: %s" %acts)
+            #print "readaction: acts: %s" %acts
             if action.group('ATYPE') == ' raises':
-                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' bets':

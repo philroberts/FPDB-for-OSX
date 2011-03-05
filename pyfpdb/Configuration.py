@@ -163,8 +163,8 @@ def get_logger(file_name, config = "config", fallback = False, log_dir=None, log
     log = logging.basicConfig(filename=file, level=logging.INFO)
     log = logging.getLogger()
     # but it looks like default is no output :-(  maybe because all the calls name a module?
-    log.debug(_("Default logger initialised for ")+file)
-    print _("Default logger intialised for ")+file
+    log.debug(_("Default logger initialised for %s") % file)
+    print(_("Default logger initialised for %s") % file)
     return log
 
 def check_dir(path, create = True):
@@ -231,6 +231,8 @@ class Layout:
 
         self.max    = int( node.getAttribute('max') )
         if node.hasAttribute('fav_seat'): self.fav_seat = int( node.getAttribute('fav_seat') )
+        if node.hasAttribute('name'): self.name = node.getAttribute('name')
+        else: self.name = None
         self.width    = int( node.getAttribute('width') )
         self.height   = int( node.getAttribute('height') )
 
@@ -244,7 +246,11 @@ class Layout:
                 self.common = (int( location_node.getAttribute('x') ), int( location_node.getAttribute('y')))
 
     def __str__(self):
-        temp = "    Layout = %d max, width= %d, height = %d" % (self.max, self.width, self.height)
+        if hasattr(self, 'name'):
+            name = self.name + ",   "
+        else:
+            name = ""
+        temp = "    Layout = %s%d max, width= %d, height = %d" % (name, self.max, self.width, self.height)
         if hasattr(self, 'fav_seat'): temp = temp + ", fav_seat = %d\n" % self.fav_seat
         else: temp = temp + "\n"
         if hasattr(self, "common"):
@@ -477,6 +483,7 @@ class Import:
         self.interval    = node.getAttribute("interval")
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
+        self.ResultsDirectory = node.getAttribute("ResultsDirectory")
         self.hhBulkPath = node.getAttribute("hhBulkPath")
         self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=False)
         self.cacheSessions = string_to_bool(node.getAttribute("cacheSessions"), default=False)
@@ -485,8 +492,8 @@ class Import:
         self.saveStarsHH = string_to_bool(node.getAttribute("saveStarsHH"), default=False)
 
     def __str__(self):
-        return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
-            % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.cacheSessions, self.sessionTimeout, self.fastStoreHudCache)
+        return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\nResultsDirectory = %s" \
+            % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.cacheSessions, self.sessionTimeout, self.fastStoreHudCache, self.ResultsDirectory)
 
 class HudUI:
     def __init__(self, node):
@@ -827,7 +834,7 @@ class Config:
         try:
             example_doc = xml.dom.minidom.parse(example_file)
         except:
-            log.error(_("Error parsing example file %s. See error log file.") % (example_file))
+            log.error(_("Error parsing example configuration file %s. See error log file.") % (example_file))
             return nodes_added
 
         for cnode in doc.getElementsByTagName("FreePokerToolsConfig"):
@@ -1255,6 +1262,14 @@ class Config:
         try:    imp['hhArchiveBase']    = self.imp.hhArchiveBase
         except:  imp['hhArchiveBase']    = "~/.fpdb/HandHistories/"
 
+        # ResultsDirectory is the local cache for downloaded results
+        # NOTE: try: except: doesn'tseem to be triggering
+        #       using if instead
+        if self.imp.ResultsDirectory != '':
+            imp['ResultsDirectory']    = self.imp.ResultsDirectory
+        else:
+            imp['ResultsDirectory']    = "~/.fpdb/Results/"
+
         # hhBulkPath is the default location for bulk imports (if set)
         try:    imp['hhBulkPath']    = self.imp.hhBulkPath
         except:  imp['hhBulkPath']    = ""
@@ -1485,7 +1500,7 @@ if __name__== "__main__":
     print "----------- END POPUP WINDOW FORMATS -----------"
 
     print "\n----------- IMPORT -----------"
-    print c.imp
+#    print c.imp    # Need to add an str method for imp to print
     print "----------- END IMPORT -----------"
 
     c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))

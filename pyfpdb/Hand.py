@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #Copyright 2008-2010 Carl Gherardi
@@ -25,7 +25,7 @@ import sys
 import traceback
 import os
 import os.path
-from decimal import Decimal
+from decimal_wrapper import Decimal
 import operator
 import time,datetime
 from copy import deepcopy
@@ -57,6 +57,7 @@ class Hand(object):
         #log.debug( _("Hand.init(): handText is ") + str(handText) )
         self.config = config
         self.saveActions = self.config.get_import_parameters().get('saveActions')
+        self.cacheSessions = self.config.get_import_parameters().get("cacheSessions")
         #log = Configuration.get_logger("logging.conf", "db", log_dir=self.config.dir_log)
         self.sitename = sitename
         self.siteId = self.config.get_site_id(sitename)
@@ -226,7 +227,7 @@ dealt   whether they were seen in a 'dealt to' line
 
         self.holecards[street][player] = [open, closed]
 
-    def prepInsert(self, db):
+    def prepInsert(self, db, printtest = False):
         #####
         # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
         # These functions are intended for prep insert eventually
@@ -235,7 +236,19 @@ dealt   whether they were seen in a 'dealt to' line
         self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
 
         #Gametypes
-        self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype)
+        hilo = "h"
+        if self.gametype['category'] in ['studhilo', 'omahahilo']:
+            hilo = "s"
+        elif self.gametype['category'] in ['razz','27_3draw','badugi', '27_1draw']:
+            hilo = "l"
+
+        self.gametyperow = (self.siteId, self.gametype['currency'], self.gametype['type'], self.gametype['base'],
+                                    self.gametype['category'], self.gametype['limitType'], hilo,
+                                    int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
+                                    int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200))
+        # Note: the above data is calculated in db.getGameTypeId
+        #       Only being calculated above so we can grab the testdata
+        self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype, printdata = printtest)
 
         if self.tourNo!=None:
             self.tourneyTypeId = db.createTourneyType(self)
@@ -246,7 +259,7 @@ dealt   whether they were seen in a 'dealt to' line
             db.commit()
     #end def prepInsert
 
-    def insert(self, db, printtest = False):
+    def insert(self, db, hp_data = None, ha_data = None, insert_data=False, printtest = False):
         """ Function to insert Hand into database
 Should not commit, and do minimal selects. Callers may want to cache commits
 db: a connected Database object"""
@@ -258,23 +271,33 @@ db: a connected Database object"""
         # End prep functions
         #####
         hh = self.stats.getHands()
+        hp_inserts, ha_inserts = [], []
 
         if not db.isDuplicate(self.dbid_gt, hh['siteHandNo']):
             # Hands - Summary information of hand indexed by handId - gameinfo
             hh['gametypeId'] = self.dbid_gt
             # seats TINYINT NOT NULL,
             hh['seats'] = len(self.dbid_pids)
+            
+            hp = self.stats.getHandsPlayers()
+            
+            if self.cacheSessions:
+                hh['sessionId'] = db.storeSessionsCache(self.dbid_pids, self.startTime, self.gametype, hp)            
 
             self.dbid_hands = db.storeHand(hh, printdata = printtest)
-            self.dbid_hpid = db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, 
-                                                  self.stats.getHandsPlayers(), printdata = printtest)
+            
+            hp_inserts = db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, hp,
+                                               insert=insert_data, hp_bulk = hp_data, printdata = printtest)
+            
             if self.saveActions:
-                db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.dbid_hpid,
-                                     self.stats.getHandsActions(), printdata = printtest)
+                ha_inserts = db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.stats.getHandsActions(),
+                                                   insert=insert_data, ha_bulk = ha_data, printdata = printtest)
         else:
             log.info(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
             self.is_duplicate = True  # i.e. don't update hudcache
             raise FpdbHandDuplicate(hh['siteHandNo'])
+        
+        return hp_inserts, ha_inserts
 
     def updateHudCache(self, db):
         db.storeHudCache(self.dbid_gt, self.dbid_pids, self.startTime, self.stats.getHandsPlayers())
@@ -336,16 +359,20 @@ db: a connected Database object"""
         # NOTE: This relies on row_factory = sqlite3.Row (set in connect() params)
         #       Need to find MySQL and Postgres equivalents
         #       MySQL maybe: cursorclass=MySQLdb.cursors.DictCursor
-        res = c.fetchone()
+        #res = c.fetchone()
+
+        # Using row_factory is global, and affects the rest of fpdb. The following 2 line achieves
+        # a similar result
+        res = [dict(line) for line in [zip([ column[0] for column in c.description], row) for row in c.fetchall()]]
+        res = res[0]
+
+        #res['tourneyId'] #res['seats'] #res['rush']
         self.tablename = res['tableName']
         self.handid    = res['siteHandNo']
+        #print "DBEUG: res['startTime']: %s" % res['startTime']
         self.startTime = datetime.datetime.strptime(res['startTime'], "%Y-%m-%d %H:%M:%S+00:00")
-        #res['tourneyId']
-        #gametypeId
-        #res['importTime']  # Don't really care about this
-        #res['seats']
         self.maxseats = res['maxSeats']
-        #res['rush']
+
         cards = map(Card.valueSuitFromCard, [res['boardcard1'], res['boardcard2'], res['boardcard3'], res['boardcard4'], res['boardcard5']])
         #print "DEBUG: res['boardcard1']: %s" % res['boardcard1']
         #print "DEBUG: cards: %s" % cards
@@ -375,16 +402,19 @@ db: a connected Database object"""
                       Players as p,
                       Hands as h
                 WHERE
-                      h.id = %s
-                      and ha.handsPlayerId = hp.id
-                      and hp.playerId = p.id
+                          h.id = %s
+                      AND ha.handId = h.id
+                      AND ha.playerId = hp.playerid
+                      AND hp.playerId = p.id
                       AND h.id = hp.handId
                 ORDER BY
                       ha.id ASC
-;           """
+"""
+
         q = q.replace('%s', db.sql.query['placeholder'])
         c.execute(q, (handId,))
-        for row in c.fetchall():
+        res = [dict(line) for line in [zip([ column[0] for column in c.description], row) for row in c.fetchall()]]
+        for row in res:
             name = row['name']
             street = row['street']
             act = row['actionId']
@@ -393,7 +423,6 @@ db: a connected Database object"""
             street = self.allStreets[int(street)+1]
             #print "DEBUG: name: '%s' street: '%s' act: '%s' bet: '%s'" %(name, street, act, bet)
             if   act == 2: # Small Blind
-                print "DEBUG: addBlind(%s, 'small blind', %s" %(name, str(bet))
                 self.addBlind(name, 'small blind', str(bet))
             elif act == 4: # Big Blind
                 self.addBlind(name, 'big blind', str(bet))
@@ -405,6 +434,8 @@ db: a connected Database object"""
                 self.addFold(street, name)
             elif act == 11: # Check
                 self.addCheck(street, name)
+            elif act == 7: # Raise
+                self.addRaiseBy(street, name, str(bet))
             else:
                 print "DEBUG: unknown action: '%s'" % act
 
@@ -425,7 +456,7 @@ chips   (string) the chips the player has at the start of the hand (can be None)
 If a player has None chips he won't be added."""
         log.debug("addPlayer: %s %s (%s)" % (seat, name, chips))
         if chips is not None:
-            chips = re.sub(u',', u'', chips) #some sites have commas
+            chips = chips.replace(u',', u'') #some sites have commas
             self.players.append([seat, name, chips])
             self.stacks[name] = Decimal(chips)
             self.pot.addPlayer(name)
@@ -467,10 +498,10 @@ If a player has None chips he won't be added."""
 For sites (currently only Carbon Poker) which record "all in" as a special action, which can mean either "calls and is all in" or "raises all in".
 """
         self.checkPlayerExists(player)
-        amount = re.sub(u',', u'', amount) #some sites have commas
+        amount = amount.replace(u',', u'') #some sites have commas
         Ai = Decimal(amount)
         Bp = self.lastBet[street]
-        Bc = reduce(operator.add, self.bets[street][player], 0)
+        Bc = sum(self.bets[street][player])
         C = Bp - Bc
         if Ai <= C:
             self.addCall(street, player, amount)
@@ -483,13 +514,14 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
     def addAnte(self, player, ante):
         log.debug("%s %s antes %s" % ('BLINDSANTES', player, ante))
         if player is not None:
-            ante = re.sub(u',', u'', ante) #some sites have commas
-            self.bets['BLINDSANTES'][player].append(Decimal(ante))
-            self.stacks[player] -= Decimal(ante)
-            act = (player, 'ante', Decimal(ante), self.stacks[player]==0)
+            ante = ante.replace(u',', u'') #some sites have commas
+            ante = Decimal(ante)
+            self.bets['BLINDSANTES'][player].append(ante)
+            self.stacks[player] -= ante
+            act = (player, 'ante', ante, self.stacks[player]==0)
             self.actions['BLINDSANTES'].append(act)
-#            self.pot.addMoney(player, Decimal(ante))
-            self.pot.addCommonMoney(player, Decimal(ante))
+#            self.pot.addMoney(player, ante)
+            self.pot.addCommonMoney(player, ante)
 #I think the antes should be common money, don't have enough hand history to check
 
     def addBlind(self, player, blindtype, amount):
@@ -500,47 +532,57 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
         # Player in the big blind posts
         #   - this is a call of 1 sb and a raise to 1 bb
         #
-
         log.debug("addBlind: %s posts %s, %s" % (player, blindtype, amount))
         if player is not None:
-            amount = re.sub(u',', u'', amount) #some sites have commas
-            self.stacks[player] -= Decimal(amount)
-            act = (player, blindtype, Decimal(amount), self.stacks[player]==0)
+            amount = amount.replace(u',', u'') #some sites have commas
+            amount = Decimal(amount)
+            self.stacks[player] -= amount
+            act = (player, blindtype, amount, self.stacks[player]==0)
             self.actions['BLINDSANTES'].append(act)
 
             if blindtype == 'both':
                 # work with the real amount. limit games are listed as $1, $2, where
                 # the SB 0.50 and the BB is $1, after the turn the minimum bet amount is $2....
-                amount = self.bb
-                self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
-                self.pot.addCommonMoney(player, Decimal(self.sb))
+                amount = Decimal(self.bb)
+                sb = Decimal(self.sb)
+                self.bets['BLINDSANTES'][player].append(sb)
+                self.pot.addCommonMoney(player, sb)
 
             if blindtype == 'secondsb':
                 amount = Decimal(0)
-                self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
-                self.pot.addCommonMoney(player, Decimal(self.sb))
+                sb = Decimal(self.sb)
+                self.bets['BLINDSANTES'][player].append(sb)
+                self.pot.addCommonMoney(player, sb)
 
-            self.bets['PREFLOP'][player].append(Decimal(amount))
-            self.pot.addMoney(player, Decimal(amount))
-            self.lastBet['PREFLOP'] = Decimal(amount)
+            street = 'BLAH'
+
+            if self.gametype['base'] == 'hold':
+                street = 'PREFLOP'
+            elif self.gametype['base'] == 'draw':
+                street = 'DEAL'
+
+            self.bets[street][player].append(amount)
+            self.pot.addMoney(player, amount)
+            self.lastBet[street] = amount
             self.posted = self.posted + [[player,blindtype]]
 
 
 
     def addCall(self, street, player=None, amount=None):
         if amount:
-            amount = re.sub(u',', u'', amount) #some sites have commas
+            amount = amount.replace(u',', u'') #some sites have commas
         log.debug(_("%s %s calls %s") %(street, player, amount))
         # Potentially calculate the amount of the call if not supplied
         # corner cases include if player would be all in
         if amount is not None:
-            self.bets[street][player].append(Decimal(amount))
-            #self.lastBet[street] = Decimal(amount)
-            self.stacks[player] -= Decimal(amount)
+            amount = Decimal(amount)
+            self.bets[street][player].append(amount)
+            #self.lastBet[street] = amount
+            self.stacks[player] -= amount
             #print "DEBUG %s calls %s, stack %s" % (player, amount, self.stacks[player])
-            act = (player, 'calls', Decimal(amount), self.stacks[player]==0)
+            act = (player, 'calls', amount, self.stacks[player] == 0)
             self.actions[street].append(act)
-            self.pot.addMoney(player, Decimal(amount))
+            self.pot.addMoney(player, amount)
 
     def addRaiseBy(self, street, player, amountBy):
         """\
@@ -557,11 +599,11 @@ Add a raise by amountBy on [street] by [player]
         # then: C = Bp - Bc (amount to call)
         #      Rt = Bp + Rb (raise to)
         #
-        amountBy = re.sub(u',', u'', amountBy) #some sites have commas
+        amountBy = amountBy.replace(u',', u'') #some sites have commas
         self.checkPlayerExists(player)
         Rb = Decimal(amountBy)
         Bp = self.lastBet[street]
-        Bc = reduce(operator.add, self.bets[street][player], 0)
+        Bc = sum(self.bets[street][player])
         C = Bp - Bc
         Rt = Bp + Rb
 
@@ -575,10 +617,10 @@ Add a raise by amountBy on [street] by [player]
         """\
 For sites which by "raises x" mean "calls and raises putting a total of x in the por". """
         self.checkPlayerExists(player)
-        amount = re.sub(u',', u'', amount) #some sites have commas
+        amount = amount.replace(u',', u'') #some sites have commas
         CRb = Decimal(amount)
         Bp = self.lastBet[street]
-        Bc = reduce(operator.add, self.bets[street][player], 0)
+        Bc = sum(self.bets[street][player])
         C = Bp - Bc
         Rb = CRb - C
         Rt = Bp + Rb
@@ -591,9 +633,9 @@ Add a raise on [street] by [player] to [amountTo]
 """
         #CG - No idea if this function has been test/verified
         self.checkPlayerExists(player)
-        amountTo = re.sub(u',', u'', amountTo) #some sites have commas
+        amountTo = amountTo.replace(u',', u'') #some sites have commas
         Bp = self.lastBet[street]
-        Bc = reduce(operator.add, self.bets[street][player], 0)
+        Bc = sum(self.bets[street][player])
         Rt = Decimal(amountTo)
         C = Bp - Bc
         Rb = Rt - C - Bc
@@ -612,15 +654,16 @@ Add a raise on [street] by [player] to [amountTo]
 
     def addBet(self, street, player, amount):
         log.debug(_("%s %s bets %s") %(street, player, amount))
-        amount = re.sub(u',', u'', amount) #some sites have commas
+        amount = amount.replace(u',', u'') #some sites have commas
+        amount = Decimal(amount)
         self.checkPlayerExists(player)
-        self.bets[street][player].append(Decimal(amount))
-        self.stacks[player] -= Decimal(amount)
+        self.bets[street][player].append(amount)
+        self.stacks[player] -= amount
         #print "DEBUG %s bets %s, stack %s" % (player, amount, self.stacks[player])
-        act = (player, 'bets', Decimal(amount), self.stacks[player]==0)
+        act = (player, 'bets', amount, self.stacks[player]==0)
         self.actions[street].append(act)
-        self.lastBet[street] = Decimal(amount)
-        self.pot.addMoney(player, Decimal(amount))
+        self.lastBet[street] = amount
+        self.pot.addMoney(player, amount)
 
 
     def addStandsPat(self, street, player):
@@ -1122,6 +1165,9 @@ class DrawHand(Hand):
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
+            # markStreets in Draw may match without dealing cards
+            if self.streets['DEAL'] == None:
+                raise FpdbParseError(_("DrawHand.__init__: street 'DEAL' is empty. Hand cancelled? HandID: '%s'" % self.handid))
             hhc.readBlinds(self)
             hhc.readAntes(self)
             hhc.readButton(self)
@@ -1141,34 +1187,6 @@ class DrawHand(Hand):
             hhc.readOther(self)
         elif builtFrom == "DB":
             self.select("dummy") # Will need a handId
-
-    # Draw games (at least Badugi has blinds - override default Holdem addBlind
-    def addBlind(self, player, blindtype, amount):
-        # if player is None, it's a missing small blind.
-        # The situation we need to cover are:
-        # Player in small blind posts
-        #   - this is a bet of 1 sb, as yet uncalled.
-        # Player in the big blind posts
-        #   - this is a call of 1 sb and a raise to 1 bb
-        #
-
-        log.debug("addBlind: %s posts %s, %s" % (player, blindtype, amount))
-        if player is not None:
-            self.bets['DEAL'][player].append(Decimal(amount))
-            self.stacks[player] -= Decimal(amount)
-            #print "DEBUG %s posts, stack %s" % (player, self.stacks[player])
-            act = (player, blindtype, Decimal(amount), self.stacks[player]==0)
-            self.actions['BLINDSANTES'].append(act)
-            self.pot.addMoney(player, Decimal(amount))
-            if blindtype == 'big blind':
-                self.lastBet['DEAL'] = Decimal(amount)
-            elif blindtype == 'both':
-                # extra small blind is 'dead'
-                amount = Decimal(amount)/3
-                amount += amount
-                self.lastBet['DEAL'] = Decimal(amount)
-        self.posted = self.posted + [[player,blindtype]]
-        #print "DEBUG: self.posted: %s" %(self.posted)
 
     def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False):
         if player == self.hero: # we have hero's cards just update shown/mucked
@@ -1376,10 +1394,10 @@ closed    likewise, but known only to player
 Add a complete on [street] by [player] to [amountTo]
 """
         log.debug(_("%s %s completes %s") % (street, player, amountTo))
-        amountTo = re.sub(u',', u'', amountTo) #some sites have commas
+        amountTo = amountTo.replace(u',', u'') #some sites have commas
         self.checkPlayerExists(player)
         Bp = self.lastBet['THIRD']
-        Bc = reduce(operator.add, self.bets[street][player], 0)
+        Bc = sum(self.bets[street][player])
         Rt = Decimal(amountTo)
         C = Bp - Bc
         Rb = Rt - C
@@ -1394,12 +1412,14 @@ Add a complete on [street] by [player] to [amountTo]
     def addBringIn(self, player, bringin):
         if player is not None:
             log.debug(_("Bringin: %s, %s") % (player , bringin))
-            self.bets['THIRD'][player].append(Decimal(bringin))
-            self.stacks[player] -= Decimal(bringin)
-            act = (player, 'bringin', Decimal(bringin), self.stacks[player]==0)
+            bringin = bringin.replace(u',', u'') #some sites have commas
+            bringin = Decimal(bringin)
+            self.bets['THIRD'][player].append(bringin)
+            self.stacks[player] -= bringin
+            act = (player, 'bringin', bringin, self.stacks[player]==0)
             self.actions['THIRD'].append(act)
-            self.lastBet['THIRD'] = Decimal(bringin)
-            self.pot.addMoney(player, Decimal(bringin))
+            self.lastBet['THIRD'] = bringin
+            self.pot.addMoney(player, bringin)
 
     def getStreetTotals(self):
         # street1Pot INT,                  /* pot size at flop/street4 */

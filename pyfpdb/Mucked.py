@@ -335,6 +335,9 @@ class Stud_cards:
 
 class Seat_Window(gtk.Window):
     """Subclass gtk.Window for the seat windows."""
+    def __init__(self, aw = None):
+        super(Seat_Window, self).__init__()
+        self.aw = aw
 
 class Aux_Seats(Aux_Window):
     """A super class to display an aux_window at each seat."""
@@ -347,6 +350,8 @@ class Aux_Seats(Aux_Window):
         self.displayed = False   # the seat windows are displayed
         self.uses_timer = False  # the Aux_seats object uses a timer to control hiding
         self.timer_on = False    # bool = Ture if the timeout for removing the cards is on
+
+        self.aw_window_type = Seat_Window
 
 #    placeholders that should be overridden--so we don't throw errors
     def create_contents(self): pass
@@ -382,10 +387,10 @@ class Aux_Seats(Aux_Window):
                 (x, y) = self.params['layout'][self.hud.max].common
             else:
                 (x, y) = loc[self.adj[i]]
-            self.m_windows[i] = Seat_Window()
+            self.m_windows[i] = self.aw_window_type(self)
             self.m_windows[i].set_decorated(False)
             self.m_windows[i].set_property("skip-taskbar-hint", True)
-            self.m_windows[i].set_transient_for(self.hud.main_window)
+            self.m_windows[i].set_transient_for(self.hud.main_window)  # FIXME: shouldn't this be the table window??
             self.m_windows[i].set_focus_on_map(False)
             self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
             self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)

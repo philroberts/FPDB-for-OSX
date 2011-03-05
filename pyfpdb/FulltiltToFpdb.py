@@ -41,6 +41,29 @@ class Fulltilt(HandHistoryConverter):
                            'NUM' : u".,\d",                     # legal characters in number format
                     }
 
+    Lim_Blinds = {  '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),     '0.20': ('0.05', '0.10'),
+                        '0.40': ('0.10', '0.20'),    '0.50': ('0.10', '0.25'),
+                        '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
+                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
+                        '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
+                        '6.00': ('1.00', '3.00'),       '6': ('1.00', '3.00'),
+                        '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
+                       '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
+                       '16.00': ('4.00', '8.00'),      '16': ('4.00', '8.00'),
+                       '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
+                       '30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
+                       '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
+                       '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
+                       '80.00': ('20.00', '40.00'),    '80': ('20.00', '40.00'),
+                      '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
+                      '200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
+                      '300.00': ('75.00', '150.00'),  '300': ('75.00', '150.00'),
+                      '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
+                      '500.00': ('125.00', '250.00'), '500': ('125.00', '250.00'),
+                      '800.00': ('200.00', '400.00'), '800': ('200.00', '400.00'),
+                     '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00')
+                  }
+
     # Static regexes
     re_GameInfo     = re.compile(u'''.*\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
@@ -55,17 +78,18 @@ class Fulltilt(HandHistoryConverter):
                                  ''' % substitutions, re.VERBOSE)
     re_SplitHands   = re.compile(r"\n\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
-    re_HandInfo     = re.compile(r'''.*\#(?P<HID>[0-9]+):\s
+    re_HandInfo     = re.compile(u'''.*\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
-                                    (Table|Match)\s 
+                                    ((Table|Match)\s)?
                                     (?P<PLAY>Play\sChip\s|PC)?
-                                    (?P<TABLE>[%(TAB)s]+)\s
+                                    ((?P<TABLE>[%(TAB)s]+)(\s|,))
+                                    (?P<ENTRYID>\sEntry\s\#\d+\s)?
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
                                     [%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[.0-9]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[.0-9]+\sCap\s)?
                                     (?P<GAMETYPE>[-\da-zA-Z\/\'\s]+)\s-\s
                                     (?P<DATETIME>.*$)
-                                    (?P<PARTIAL>\(partial\))?\n
+                                    (?P<PARTIAL>\(partial\))?\s
                                     (?:.*?\n(?P<CANCELLED>Hand\s\#(?P=HID)\shas\sbeen\scanceled))?
                                  ''' % substitutions, re.MULTILINE|re.VERBOSE)
     re_TourneyExtraInfo  = re.compile('''(((?P<TOURNEY_NAME>[^$]+)?
@@ -76,8 +100,8 @@ class Fulltilt(HandHistoryConverter):
                                          (\s\((?P<TURBO>Turbo)\))?)|(?P<UNREADABLE_INFO>.+))
                                     ''' % substitutions, re.VERBOSE)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
-    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s](?P<CASH>[,.0-9]+)\)$' % substitutions, re.MULTILINE)
-    re_TourneysPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s]?(?P<CASH>[,.0-9]+)\)(, is sitting out)?$' % substitutions, re.MULTILINE)
+    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s]?(?P<CASH>[%(NUM)s]+)\)(?P<SITOUT>, is sitting out)?$' % substitutions, re.MULTILINE)
+    re_SummarySitout = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}?) (\(button\) )?is sitting out?$' % substitutions, re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
     #static regex for tourney purpose
@@ -124,7 +148,7 @@ class Fulltilt(HandHistoryConverter):
     re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>HA|HORSE|HOSE)\s\-\s', re.VERBOSE)
     re_Max          = re.compile("(?P<MAX>\d+)( max)?", re.MULTILINE)
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
-    re_DateTime     = re.compile("""((?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s(?P<TZ>\w+)\s-\s(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})|(?P<H2>[0-9]+):(?P<MIN2>[0-9]+)\s(?P<TZ2>\w+)\s-\s\w+\,\s(?P<M2>\w+)\s(?P<D2>\d+)\,\s(?P<Y2>[0-9]{4}))""", re.MULTILINE)
+    re_DateTime     = re.compile("""((?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s(?P<TZ>\w+)\s-\s(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})|(?P<H2>[0-9]+):(?P<MIN2>[0-9]+)\s(?P<TZ2>\w+)\s-\s\w+\,\s(?P<M2>\w+)\s(?P<D2>\d+)\,\s(?P<Y2>[0-9]{4}))(?P<PARTIAL>\s\(partial\))?""", re.MULTILINE)
 
 
 
@@ -150,7 +174,7 @@ class Fulltilt(HandHistoryConverter):
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
             self.re_Action           = re.compile(r"^%(PLAYERS)s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds)( [%(LS)s]?(?P<BET>[%(NUM)s]+))?" % self.substitutions, re.MULTILINE)
             self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
-            self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %(PLAYERS)s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \([%(LS)s]?(?P<POT>[%(NUM)s]+)\)(, mucked| with.*)" % self.substitutions, re.MULTILINE)
+            self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %(PLAYERS)s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \([%(LS)s]?(?P<POT>[%(NUM)s]+)\)(, mucked| with.*)?" % self.substitutions, re.MULTILINE)
             self.re_SitsOut          = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(?P<ACT>showed|mucked) \[(?P<CARDS>.*)\].*" % player_re, re.MULTILINE)
 
@@ -184,8 +208,8 @@ class Fulltilt(HandHistoryConverter):
         m = self.re_GameInfo.search(handText)
         if not m:
             tmp = handText[0:100]
+            log.error(_("determineGameType: Raising FpdbParseError for file '%s'") % self.in_path)
             log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
-            log.error(_("determineGameType: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
         mg = m.groupdict()
 
@@ -203,18 +227,34 @@ class Fulltilt(HandHistoryConverter):
                    'Badugi' : ('draw','badugi'),
                }
         currencies = { u'€':'EUR', '$':'USD', '':'T$' }
+
+        if 'SB' in mg:
+            info['sb'] = self.clearMoneyString(mg['SB'])
+
+        if 'BB' in mg:
+            info['bb'] = self.clearMoneyString(mg['BB'])
+
+        if mg['TOURNO'] is None:  info['type'] = "ring"
+        else:                     info['type'] = "tour"
+
         if mg['CAP']:
             info['limitType'] = 'cn'
         else:
             info['limitType'] = limits[mg['LIMIT']]
-        info['sb'] = self.clearMoneyString(mg['SB'])
-        info['bb'] = self.clearMoneyString(mg['BB'])
+
+        if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring':
+            try:
+                info['sb'] = self.Lim_Blinds[mg['BB']][0]
+                info['bb'] = self.Lim_Blinds[mg['BB']][1]
+            except KeyError:
+                log.error(_("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB']))
+                log.error(_("determineGameType: Raising FpdbParseError"))
+                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+
         if mg['GAME'] is not None:
             (info['base'], info['category']) = games[mg['GAME']]
         if mg['CURRENCY'] is not None:
             info['currency'] = currencies[mg['CURRENCY']]
-        if mg['TOURNO'] is None:  info['type'] = "ring"
-        else:                     info['type'] = "tour"
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
 
@@ -224,6 +264,8 @@ class Fulltilt(HandHistoryConverter):
             tmp = hand.handText[0:100]
             log.error(_("readHandInfo: Unable to recognise handinfo from: '%s'") % tmp)
             raise FpdbParseError(_("No match in readHandInfo."))
+
+        #print "DEBUG: m.groupdict: %s" % m.groupdict()
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
 
@@ -242,10 +284,13 @@ class Fulltilt(HandHistoryConverter):
                     datetimestr = "%s/%s/%s %s:%s" % (a.group('Y2'), a.group('M2'),a.group('D2'),a.group('H2'),a.group('MIN2'))
                     timezone = a.group('TZ2')
                     hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%B/%d %H:%M")
+                if a.group('PARTIAL'):
+                    raise FpdbParseError(hid=m.group('HID'))
 
             hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, timezone, "UTC")
 
         if m.group("CANCELLED") or m.group("PARTIAL"):
+            # It would appear this can't be triggered as DATETIME is a bit greedy
             raise FpdbParseError(hid=m.group('HID'))
 
         if m.group('TABLEATTRIBUTES'):
@@ -297,14 +342,25 @@ class Fulltilt(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         # Split hand text for FTP, as the regex matches the player names incorrectly
         # in the summary section
-        pre, post = hand.handText.split('SUMMARY')
-        if hand.gametype['type'] == "ring" :
-            m = self.re_PlayerInfo.finditer(pre)
-        else:   #if hand.gametype['type'] == "tour"
-            m = self.re_TourneysPlayerInfo.finditer(pre)
+        pre, post = hand.handText.split('*** SUMMARY ***')
+        m = self.re_PlayerInfo.finditer(pre)
+        plist = {}
 
+        # Get list of players in header.
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            plist[a.group('PNAME')] = [int(a.group('SEAT')), a.group('CASH')]
+
+        if hand.gametype['type'] == "ring" :
+            # Remove any listed as sitting out in the summary as start of hand info unreliable
+            n = self.re_SummarySitout.finditer(post)
+            for b in n:
+                del plist[b.group('PNAME')]
+                #print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
+
+        # Add remaining players
+        for a in plist:
+            seat, stack = plist[a]
+            hand.addPlayer(seat, a, stack)
 
 
     def markStreets(self, hand):
@@ -323,8 +379,8 @@ class Fulltilt(HandHistoryConverter):
                            r"(\*\*\* 7TH STREET \*\*\*(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
         elif hand.gametype['base'] in ("draw"):
             m =  re.search(r"(?P<PREDEAL>.+(?=\*\*\* HOLE CARDS \*\*\*)|.+)"
-                           r"(\*\*\* HOLE CARDS \*\*\*(?P<DEAL>.+(?=\*\*\* FIRST DRAW \*\*\*)|.+))?"
-                           r"(\*\*\* FIRST DRAW \*\*\*(?P<DRAWONE>.+(?=\*\*\* SECOND DRAW \*\*\*)|.+))?"
+                           r"(\*\*\* HOLE CARDS \*\*\*(?P<DEAL>.+(?=(\*\*\* FIRST DRAW \*\*\*|\*\*\* DRAW \*\*\*))|.+))?"
+                           r"((\*\*\* FIRST DRAW \*\*\*|\*\*\* DRAW \*\*\*)(?P<DRAWONE>.+(?=\*\*\* SECOND DRAW \*\*\*)|.+))?"
                            r"(\*\*\* SECOND DRAW \*\*\*(?P<DRAWTWO>.+(?=\*\*\* THIRD DRAW \*\*\*)|.+))?"
                            r"(\*\*\* THIRD DRAW \*\*\*(?P<DRAWTHREE>.+))?", hand.handText,re.DOTALL)
 
@@ -367,7 +423,11 @@ class Fulltilt(HandHistoryConverter):
             logging.warning(_("No bringin found, handid =%s") % hand.handid)
 
     def readButton(self, hand):
-        hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
+        try:
+            hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
+        except AttributeError, e:
+            # FTP has no indication that a hand is cancelled.
+            raise FpdbParseError(_("FTP: readButton: Failed to detect button (hand #%s cancelled?)") % hand.handid)
 
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause

@@ -29,7 +29,7 @@ import logging
 
 import Configuration
 from HandHistoryConverter import *
-from decimal import Decimal
+from decimal_wrapper import Decimal
 import time
 
 # Winamax HH Format
@@ -89,7 +89,7 @@ class Winamax(HandHistoryConverter):
             buyIn:\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\,]+)?\s\+?\s(?P<BIRAKE>[%(LS)s\d\,]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Gratuit|Ticket\suniquement)?\s
             (level:\s(?P<LEVEL>\d+))?
             .*)?
-            \s-\sHandId:\s\#(?P<HID1>\d+)-(?P<HID2>\d+)-(?P<HID3>\d+).*\s
+            \s-\sHandId:\s\#(?P<HID1>\d+)-(?P<HID2>\d+)-(?P<HID3>\d+).*\s  # REB says: HID3 is the correct hand number
             (?P<GAME>Holdem|Omaha)\s
             (?P<LIMIT>no\slimit|pot\slimit)\s
             \(
@@ -107,6 +107,7 @@ class Winamax(HandHistoryConverter):
     re_TailSplitHands = re.compile(r'\n\s*\n')
     re_Button       = re.compile(r'Seat\s#(?P<BUTTON>\d+)\sis\sthe\sbutton')
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
+    re_Total        = re.compile(r"Total pot (?P<TOTAL>[\.\d]+).*(No rake|Rake (?P<RAKE>[\.\d]+))" % substitutions)
 
     # 2010/09/21 03:10:51 UTC
     re_DateTime = re.compile("""
@@ -211,23 +212,30 @@ class Winamax(HandHistoryConverter):
                 a = self.re_DateTime.search(info[key])
                 if a:
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'),a.group('M'), a.group('D'), a.group('H'),a.group('MIN'),a.group('S'))
-                    tzoffset = str(-time.timezone/3600)
                 else:
                     datetimestr = "2010/Jan/01 01:01:01"
                     log.error(_("readHandInfo: DATETIME not matched: '%s'" % info[key]))
-#                    print "DEBUG: readHandInfo: DATETIME not matched: '%s'" % info[key]
-                # TODO: Manually adjust time against OFFSET
-                hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+                    #print "DEBUG: readHandInfo: DATETIME not matched: '%s'" % info[key]
+                hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "CET", "UTC")
             if key == 'HID1':
                 # Need to remove non-alphanumerics for MySQL
-                hand.handid = "1%.9d%s%s"%(int(info['HID2']),info['HID1'],info['HID3'])
+#                hand.handid = "1%.9d%s%s"%(int(info['HID2']),info['HID1'],info['HID3'])
+                hand.handid = "%s%s%s"%(int(info['HID2']),info['HID1'],info['HID3'])
                 if len (hand.handid) > 19:
-                    hand.handid = "%s" % info['HID1']
+                    hand.handid = "%s%s" % (int(info['HID2']), int(info['HID3']))
+                    
+#            if key == 'HID3':
+#                hand.handid = int(info['HID3'])   # correct hand no (REB)
             if key == 'TOURNO':
                 hand.tourNo = info[key]
             if key == 'TABLE':
                 hand.tablename = info[key]
+                # TODO: long-term solution for table naming on Winamax.
+                if hand.tablename.endswith(u'No Limit Hold\'em'):
+                    hand.tablename = hand.tablename[:-len(u'No Limit Hold\'em')] + u'NLHE'
+            if key == 'MAXPLAYER' and info[key] != None:
+                hand.maxseats = int(info[key])
 
             if key == 'BUYIN':
                 if hand.tourNo!=None:
@@ -269,8 +277,13 @@ class Winamax(HandHistoryConverter):
                                 hand.isKO = False
 
                             info['BIRAKE'] = info['BIRAKE'].strip(u'$€')
-                            hand.buyin = int(100*Decimal(info['BIAMT']))
-                            hand.fee = int(100*Decimal(info['BIRAKE']))
+
+                            # TODO: Is this correct? Old code tried to
+                            # conditionally multiply by 100, but we
+                            # want hand.buyin in 100ths of
+                            # dollars/euros (so hand.buyin = 90 for $0.90 BI).
+                            hand.buyin = int(100 * Decimal(info['BIAMT']))
+                            hand.fee = int(100 * Decimal(info['BIRAKE']))
                         else:
                             hand.buyin = int(Decimal(info['BIAMT']))
                             hand.fee = 0
@@ -278,9 +291,9 @@ class Winamax(HandHistoryConverter):
             if key == 'LEVEL':
                 hand.level = info[key]
 
-        # TODO: These
-        hand.buttonpos = 1
-        hand.maxseats = 10    # Set to None - Hand.py will guessMaxSeats()
+        m =  self.re_Button.search(hand.handText)
+        hand.buttonpos = m.groupdict().get('BUTTON', None)
+
         hand.mixed = None
 
     def readPlayerStacks(self, hand):
@@ -416,10 +429,6 @@ class Winamax(HandHistoryConverter):
         # Return any uncalled bet.
         committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
         #print "DEBUG: committed: %s" % committed
-        #ERROR below. lastbet is correct in most cases, but wrong when
-        #             additional money is committed to the pot in cash games
-        #             due to an additional sb being posted. (Speculate that
-        #             posting sb+bb is also potentially wrong)
         returned = {}
         lastbet = committed[-1][0] - committed[-2][0]
         if lastbet > 0: # uncalled
@@ -430,15 +439,30 @@ class Winamax(HandHistoryConverter):
 
         collectees = []
 
+        tp = self.re_Total.search(hand.handText)
+        rake = tp.group('RAKE')
+        if rake == None:
+            rake = 0
         for m in self.re_CollectPot.finditer(hand.handText):
             collectees.append([m.group('PNAME'), m.group('POT')])
 
-        for plyr, p in collectees:
-            if plyr in returned.keys() and Decimal(p) - returned[plyr] == 0:
-                p = Decimal(p) - returned[plyr]
-            if p > 0:
-                print "DEBUG: addCollectPot(%s,%s)" %(plyr, p)
-                hand.addCollectPot(player=plyr,pot=p)
+        #print "DEBUG: Total pot: %s" % tp.groupdict()
+        #print "DEBUG: According to pot: %s" % total
+        #print "DEBUG: Rake: %s" % rake
+
+        if len(collectees) == 1:
+            plyr, p = collectees[0]
+            # p may be wrong, use calculated total - rake
+            p = total - Decimal(rake)
+            #print "DEBUG: len1: addCollectPot(%s,%s)" %(plyr, p)
+            hand.addCollectPot(player=plyr,pot=p)
+        else:
+            for plyr, p in collectees:
+                if plyr in returned.keys():
+                    p = Decimal(p) - returned[plyr]
+                if p > 0:
+                    #print "DEBUG: addCollectPot(%s,%s)" %(plyr, p)
+                    hand.addCollectPot(player=plyr,pot=p)
 
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):

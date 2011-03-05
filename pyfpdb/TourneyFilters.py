@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #Copyright 2010 Steffen Schaumburg
@@ -56,8 +56,15 @@ class TourneyFilters(Filters.Filters):
         if 'day_start' in gen:
             self.day_start = float(gen['day_start'])
 
+        self.sw = gtk.ScrolledWindow()
+        self.sw.set_border_width(0)
+        self.sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.sw.set_size_request(370, 300)
+
         # Outer Packing box
         self.mainVBox = gtk.VBox(False, 0)
+        self.sw.add_with_viewport(self.mainVBox)
+        self.sw.show()
 
         self.label = {}
         self.callback = {}

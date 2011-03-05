@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #Copyright 2009-2010 Grigorij Indigirkin
@@ -23,7 +23,7 @@ This package contains all classes to be mapped and mappers themselves
 
 import logging
 import re
-from decimal import Decimal
+from decimal_wrapper import Decimal
 from sqlalchemy.orm import mapper, relation, reconstructor
 from sqlalchemy.sql import select
 from collections import defaultdict

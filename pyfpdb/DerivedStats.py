@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #Copyright 2008-2010 Carl Gherardi
@@ -17,7 +17,7 @@
 
 #fpdb modules
 import Card
-from decimal import Decimal
+from decimal_wrapper import Decimal
 
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
@@ -30,58 +30,78 @@ class DerivedStats():
         self.hands        = {}
         self.handsplayers = {}
         self.handsactions = {}
+        self._initStats = DerivedStats._buildStatsInitializer()
+
+    @staticmethod
+    def _buildStatsInitializer():
+        init = {}
+        #Init vars that may not be used, but still need to be inserted.
+        # All stud street4 need this when importing holdem
+        init['winnings']    = 0
+        init['rake']        = 0
+        init['totalProfit'] = 0
+        init['street4Aggr'] = False
+        init['wonWhenSeenStreet1'] = 0.0
+        init['sawShowdown'] = False
+        init['wonAtSD']     = 0.0
+        init['startCards']  = 0
+        init['position']            = 2
+        init['street0_3BChance']    = False
+        init['street0_3BDone']      = False
+        init['street0_4BChance']    = False
+        init['street0_4BDone']      = False
+        init['street0_C4BChance']   = False
+        init['street0_C4BDone']     = False
+        init['street0_FoldTo3BChance']= False
+        init['street0_FoldTo3BDone']= False
+        init['street0_FoldTo4BChance']= False
+        init['street0_FoldTo4BDone']= False
+        init['street0_SqueezeChance']= False
+        init['street0_SqueezeDone'] = False
+        init['success_Steal']       = False
+        init['raiseToStealChance']  = False
+        init['raiseToStealDone']  = False
+        init['raiseFirstInChance']  = False
+        init['raisedFirstIn']       = False
+        init['foldBbToStealChance'] = False
+        init['foldSbToStealChance'] = False
+        init['foldedSbToSteal']     = False
+        init['foldedBbToSteal']     = False
+        init['tourneyTypeId']       = None
+        init['street1Seen']         = False
+        init['street2Seen']         = False
+        init['street3Seen']         = False
+        init['street4Seen']         = False
+
+
+        for i in range(5):
+            init['street%dCalls' % i] = 0
+            init['street%dBets' % i] = 0
+            init['street%dRaises' % i] = 0
+        for i in range(1,5):
+            init['street%dCBChance' %i] = False
+            init['street%dCBDone' %i] = False
+            init['street%dCheckCallRaiseChance' %i] = False
+            init['street%dCheckCallRaiseDone' %i]   = False
+            init['otherRaisedStreet%d' %i]          = False
+            init['foldToOtherRaisedStreet%d' %i]    = False
+
+        #FIXME - Everything below this point is incomplete.
+        init['other3BStreet0']              = False
+        init['other4BStreet0']              = False
+        init['otherRaisedStreet0']          = False
+        init['foldToOtherRaisedStreet0']    = False
+        for i in range(1,5):
+            init['foldToStreet%dCBChance' %i]       = False
+            init['foldToStreet%dCBDone' %i]         = False
+        init['wonWhenSeenStreet2'] = 0.0
+        init['wonWhenSeenStreet3'] = 0.0
+        init['wonWhenSeenStreet4'] = 0.0
+        return init
 
     def getStats(self, hand):
-        
         for player in hand.players:
-            self.handsplayers[player[1]] = {}
-            #Init vars that may not be used, but still need to be inserted.
-            # All stud street4 need this when importing holdem
-            self.handsplayers[player[1]]['winnings']    = 0
-            self.handsplayers[player[1]]['rake']        = 0
-            self.handsplayers[player[1]]['totalProfit'] = 0
-            self.handsplayers[player[1]]['street4Seen'] = False
-            self.handsplayers[player[1]]['street4Aggr'] = False
-            self.handsplayers[player[1]]['wonWhenSeenStreet1'] = 0.0
-            self.handsplayers[player[1]]['sawShowdown'] = False
-            self.handsplayers[player[1]]['wonAtSD']     = 0.0
-            self.handsplayers[player[1]]['startCards']  = 0
-            self.handsplayers[player[1]]['position']            = 2
-            self.handsplayers[player[1]]['street0_3BChance']    = False
-            self.handsplayers[player[1]]['street0_3BDone']      = False
-            self.handsplayers[player[1]]['street0_4BChance']    = False #FIXME: this might not actually be implemented
-            self.handsplayers[player[1]]['street0_4BDone']      = False #FIXME: this might not actually be implemented
-            self.handsplayers[player[1]]['raiseFirstInChance']  = False
-            self.handsplayers[player[1]]['raisedFirstIn']       = False
-            self.handsplayers[player[1]]['foldBbToStealChance'] = False
-            self.handsplayers[player[1]]['foldSbToStealChance'] = False
-            self.handsplayers[player[1]]['foldedSbToSteal']     = False
-            self.handsplayers[player[1]]['foldedBbToSteal']     = False
-            self.handsplayers[player[1]]['tourneyTypeId']       = None
-            
-            for i in range(5): 
-                self.handsplayers[player[1]]['street%dCalls' % i] = 0
-                self.handsplayers[player[1]]['street%dBets' % i] = 0
-                self.handsplayers[player[1]]['street%dRaises' % i] = 0
-            for i in range(1,5):
-                self.handsplayers[player[1]]['street%dCBChance' %i] = False
-                self.handsplayers[player[1]]['street%dCBDone' %i] = False
-                self.handsplayers[player[1]]['street%dCheckCallRaiseChance' %i] = False
-                self.handsplayers[player[1]]['street%dCheckCallRaiseDone' %i]   = False
-                self.handsplayers[player[1]]['otherRaisedStreet%d' %i]          = False
-                self.handsplayers[player[1]]['foldToOtherRaisedStreet%d' %i]    = False
-            
-            #FIXME - Everything below this point is incomplete.
-            self.handsplayers[player[1]]['other3BStreet0']              = False
-            self.handsplayers[player[1]]['other4BStreet0']              = False
-            self.handsplayers[player[1]]['otherRaisedStreet0']          = False
-            self.handsplayers[player[1]]['foldToOtherRaisedStreet0']    = False
-            for i in range(1,5):
-                self.handsplayers[player[1]]['foldToStreet%dCBChance' %i]       = False
-                self.handsplayers[player[1]]['foldToStreet%dCBDone' %i]         = False
-            self.handsplayers[player[1]]['wonWhenSeenStreet2'] = 0.0
-            self.handsplayers[player[1]]['wonWhenSeenStreet3'] = 0.0
-            self.handsplayers[player[1]]['wonWhenSeenStreet4'] = 0.0
+            self.handsplayers[player[1]] = self._initStats.copy()
 
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
@@ -102,6 +122,7 @@ class DerivedStats():
         self.hands['tableName']  = hand.tablename
         self.hands['siteHandNo'] = hand.handid
         self.hands['gametypeId'] = None                     # Leave None, handled later after checking db
+        self.hands['sessionId']  = None                     # Leave None, added later if caching sessions
         self.hands['startTime']  = hand.startTime           # format this!
         self.hands['importTime'] = None
         self.hands['seats']      = self.countPlayers(hand) 
@@ -152,10 +173,11 @@ class DerivedStats():
             else:
                 self.handsplayers[player[1]]['tourneysPlayersIds'] = None
 
+        #### seen now processed in playersAtStreetX()
         # XXX: enumerate(list, start=x) is python 2.6 syntax; 'start'
         #for i, street in enumerate(hand.actionStreets[2:], start=1):
-        for i, street in enumerate(hand.actionStreets[2:]):
-            self.seen(self.hand, i+1)
+        #for i, street in enumerate(hand.actionStreets[2:]):
+        #    self.seen(self.hand, i+1)
 
         for i, street in enumerate(hand.actionStreets[1:]):
             self.aggr(self.hand, i)
@@ -298,6 +320,7 @@ class DerivedStats():
 
         # FIXME?? - This isn't couting people that are all in - at least showdown needs to reflect this
         #     ... new code below hopefully fixes this
+        # partly fixed, allins are now set as seeing streets because they never do a fold action
 
         self.hands['playersAtStreet1']  = 0
         self.hands['playersAtStreet2']  = 0
@@ -324,18 +347,58 @@ class DerivedStats():
         # actionStreets[1] is 'DEAL', 'THIRD', 'PREFLOP', so any player dealt cards
         # must act on this street if dealt cards. Almost certainly broken for the 'all-in blind' case
         # and right now i don't care - CG
+
         p_in = set([x[0] for x in hand.actions[hand.actionStreets[1]]])
 
+        #
+        # discover who folded on each street and remove them from p_in
+        #
+        # i values as follows 0=BLINDSANTES 1=PREFLOP 2=FLOP 3=TURN 4=RIVER
+        #   (for flop games)
+        #
+        # At the beginning of the loop p_in contains the players with cards
+        # at the start of that street.
+        # p_in is reduced each street to become a list of players still-in
+        # e.g. when i=1 (preflop) all players who folded during preflop
+        # are found by pfba() and eliminated from p_in.
+        # Therefore at the end of the loop, p_in contains players remaining
+        # at the end of the action on that street, and can therefore be set
+        # as the value for the number of players who saw the next street
+        #
+        # note that i is 1 in advance of the actual street numbers in the db
+        #
+        # if p_in reduces to 1 player, we must bomb-out immediately
+        # because the hand is over, this will ensure playersAtStreetx
+        # is accurate.
+        #
+                    
         for (i, street) in enumerate(hand.actionStreets):
+            if (i-1) in (1,2,3,4):
+                # p_in stores players with cards at start of this street,
+                # so can set streetxSeen & playersAtStreetx with this information
+                # This hard-coded for i-1 =1,2,3,4 because those are the only columns
+                # in the db! this code section also replaces seen() - more info log 66
+                # nb i=2=flop=street1Seen, hence i-1 term needed
+                self.hands['playersAtStreet%d' % (i-1)] = len(p_in)
+                for player_with_cards in p_in:
+                    self.handsplayers[player_with_cards]['street%sSeen' % (i-1)] = True
+            #
+            # find out who folded, and eliminate them from p_in
+            #
             actions = hand.actions[street]
             p_in = p_in - self.pfba(actions, l=('folds',))
-            self.hands['playersAtStreet%d' % (i-1)] = len(p_in)
-        
-        self.hands['playersAtShowdown'] = len(p_in)
+            #
+            # if everyone folded, we are done, so exit this method immediately
+            #
+            if len(p_in) == 1: return None
 
-        if self.hands['playersAtShowdown'] > 1:
-            for player in p_in:
-                self.handsplayers[player]['sawShowdown'] = True
+        #
+        # The remaining players in p_in reached showdown (including all-ins
+        # because they never did a "fold" action in pfba() above)
+        #
+        self.hands['playersAtShowdown'] = len(p_in)
+        for showdown_player in p_in:
+            self.handsplayers[showdown_player]['sawShowdown'] = True
 
     def streetXRaises(self, hand):
         # self.actions[street] is a list of all actions in a tuple, contining the action as the second element
@@ -367,12 +430,18 @@ class DerivedStats():
             #print "\naction:", action[0], posn, type(posn), steal_attempt, act
             if posn == 'B':
                 #NOTE: Stud games will never hit this section
-                self.handsplayers[pname]['foldBbToStealChance'] = steal_attempt
-                self.handsplayers[pname]['foldedBbToSteal'] = steal_attempt and act == 'folds'
+                if steal_attempt:
+                    self.handsplayers[pname]['foldBbToStealChance'] = True
+                    self.handsplayers[pname]['raiseToStealChance'] = True
+                    self.handsplayers[pname]['foldedBbToSteal'] = act == 'folds'
+                    self.handsplayers[pname]['raiseToStealDone'] = act == 'raises'
+                    self.handsplayers[stealer]['success_Steal'] = act == 'folds'
                 break
             elif posn == 'S':
+                self.handsplayers[pname]['raiseToStealChance'] = steal_attempt
                 self.handsplayers[pname]['foldSbToStealChance'] = steal_attempt
                 self.handsplayers[pname]['foldedSbToSteal'] = steal_attempt and act == 'folds'
+                self.handsplayers[pname]['raiseToStealDone'] = steal_attempt and act == 'raises'
 
             if steal_attempt and act != 'folds':
                 break
@@ -384,6 +453,7 @@ class DerivedStats():
                     raised = True
                     if posn in steal_positions:
                         steal_attempt = True
+                        stealer = pname
                 if act == 'calls':
                     break
             
@@ -393,16 +463,48 @@ class DerivedStats():
     def calc34BetStreet0(self, hand):
         """Fills street0_(3|4)B(Chance|Done), other(3|4)BStreet0"""
         bet_level = 1 # bet_level after 3-bet is equal to 3
+        squeeze_chance = False
         for action in hand.actions[hand.actionStreets[1]]:
-            # FIXME: fill other(3|4)BStreet0 - i have no idea what does it mean
-            pname, aggr = action[0], action[1] in ('raises', 'bets')
-            self.handsplayers[pname]['street0_3BChance'] = self.handsplayers[pname]['street0_3BChance'] or bet_level == 2
-            self.handsplayers[pname]['street0_4BChance'] = bet_level == 3
-            self.handsplayers[pname]['street0_3BDone'] =  self.handsplayers[pname]['street0_3BDone'] or (aggr and self.handsplayers[pname]['street0_3BChance'])
-            self.handsplayers[pname]['street0_4BDone'] =  aggr and (self.handsplayers[pname]['street0_4BChance'])
-            if aggr:
-                bet_level += 1
-
+            pname, act, aggr = action[0], action[1], action[1] in ('raises', 'bets')
+            if bet_level == 1:
+                if aggr:
+                    first_agressor = pname
+                    bet_level += 1
+                continue
+            elif bet_level == 2:
+                self.handsplayers[pname]['street0_3BChance'] = True
+                self.handsplayers[pname]['street0_SqueezeChance'] = squeeze_chance
+                if not squeeze_chance and act == 'calls':
+                    squeeze_chance = True
+                    continue
+                if aggr:
+                    self.handsplayers[pname]['street0_3BDone'] = True
+                    self.handsplayers[pname]['street0_SqueezeDone'] = squeeze_chance
+                    second_agressor = pname
+                    bet_level += 1
+                continue
+            elif bet_level == 3:
+                if pname == first_agressor:
+                    self.handsplayers[pname]['street0_4BChance'] = True
+                    self.handsplayers[pname]['street0_FoldTo3BChance'] = True
+                    if aggr:
+                        self.handsplayers[pname]['street0_4BDone'] = True
+                        bet_level += 1
+                    elif act == 'folds':
+                        self.handsplayers[pname]['street0_FoldTo3BDone'] = True
+                        break
+                else:
+                    self.handsplayers[pname]['street0_C4BChance'] = True
+                    if aggr:
+                        self.handsplayers[pname]['street0_C4BDone'] = True
+                        bet_level += 1
+                continue
+            elif bet_level == 4:
+                if pname == second_agressor: 
+                    self.handsplayers[pname]['street0_FoldTo4BChance'] = True
+                    if act == 'folds':
+                        self.handsplayers[pname]['street0_FoldTo4BDone'] = True
+                    break
 
     def calcCBets(self, hand):
         """Fill streetXCBChance, streetXCBDone, foldToStreetXCBDone, foldToStreetXCBChance
@@ -446,17 +548,6 @@ class DerivedStats():
                 elif initial_raiser is not None and pname in checkers:
                     self.handsplayers[pname]['street%dCheckCallRaiseChance' % (i+1)] = True
                     self.handsplayers[pname]['street%dCheckCallRaiseDone' % (i+1)] = act!='folds'
-
-    def seen(self, hand, i):
-        pas = set()
-        for act in hand.actions[hand.actionStreets[i+1]]:
-            pas.add(act[0])
-
-        for player in hand.players:
-            if player[1] in pas:
-                self.handsplayers[player[1]]['street%sSeen' % i] = True
-            else:
-                self.handsplayers[player[1]]['street%sSeen' % i] = False
 
     def aggr(self, hand, i):
         aggrers = set()

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #Copyright 2008-2010 Steffen Schaumburg
@@ -224,6 +224,9 @@ class GuiGraphViewer (threading.Thread):
                 self.graphBox.add(self.canvas)
                 self.canvas.show()
                 self.canvas.draw()
+
+                #TODO: Do something useful like alert user
+                #print "No hands returned by graph query"
             else:
                 self.ax.set_title(_("Profit graph for ring games"+names),fontsize=12)
 
@@ -288,6 +291,7 @@ class GuiGraphViewer (threading.Thread):
         lims = [int(x) for x in limits if x.isdigit()]
         potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
         nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
+        capnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'cn']
         limittest = "and ( (gt.limitType = 'fl' and gt.bigBlind in "
                  # and ( (limit and bb in()) or (nolimit and bb in ()) )
         if lims:
@@ -308,6 +312,14 @@ class GuiGraphViewer (threading.Thread):
         limittest = limittest + " or (gt.limitType = 'nl' and gt.bigBlind in "
         if nolims:
             blindtest = str(tuple(nolims))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            limittest = limittest + blindtest + ' ) '
+        else:
+            limittest = limittest + '(-1) ) '
+        limittest = limittest + " or (gt.limitType = 'cn' and gt.bigBlind in "
+        if capnolims:
+            blindtest = str(tuple(capnolims))
             blindtest = blindtest.replace("L", "")
             blindtest = blindtest.replace(",)",")")
             limittest = limittest + blindtest + ' ) )'
@@ -337,10 +349,7 @@ class GuiGraphViewer (threading.Thread):
         if len(winnings) == 0:
             return (None, None, None)
 
-        #Insert a 0th entry into winnings so graph starts 'zerod'
-        winnings.insert(0, (0,0,0))
-
-        green = map(lambda x: float(x[1]), winnings)
+        green = map(lambda x:float(x[1]), winnings)
         blue  = map(lambda x: float(x[1]) if x[2] == True  else 0.0, winnings)
         red   = map(lambda x: float(x[1]) if x[2] == False else 0.0, winnings)
         greenline = cumsum(green)
