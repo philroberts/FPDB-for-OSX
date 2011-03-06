@@ -1564,6 +1564,8 @@ msgid ""
 "Flop Aggression\n"
 "% Bet or Raise after seeing Flop"
 msgstr ""
+"Aggression au flop\n"
+"% Bet or Raise après avoir vu le Flop"
 
 #: GuiRingPlayerStats.py:66
 msgid ""
@@ -1664,7 +1666,7 @@ msgstr "ErreurImport: %s"
 
 #: GuiSessionViewer.py:81
 msgid "Hand Breakdown for all levels listed above"
-msgstr ""
+msgstr "Répartition des mains pour tous les niveaux ci-dessus"
 
 #: GuiSessionViewer.py:158
 msgid "Session Viewer is proof of concept code only, and contains many bugs.\n"
