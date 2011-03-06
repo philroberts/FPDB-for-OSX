@@ -56,15 +56,17 @@ class Table(Table_Window):
         """Finds poker client window with the given table name."""
         titles = {}
         win32gui.EnumWindows(win_enum_handler, titles)
-        for hwnd in titles:           
+        for hwnd in titles:
             if titles[hwnd] == "":
                 continue
             if re.search(self.search_string, titles[hwnd], re.I):
                 if self.check_bad_words(titles[hwnd]):
                     continue
-                if not win32gui.IsWindowVisible(hwnd): # if window not visible, probably not a table
+                # if window not visible, probably not a table
+                if not win32gui.IsWindowVisible(hwnd): 
                     continue
-                if win32gui.GetParent(hwnd) != 0: # if window is a child of another window, probably not a table
+                # if window is a child of another window, probably not a table
+                if win32gui.GetParent(hwnd) != 0:
                     continue
                 HasNoOwner = win32gui.GetWindow(hwnd, win32con.GW_OWNER) == 0
                 WindowStyle = win32gui.GetWindowLong(hwnd, win32con.GWL_EXSTYLE)
@@ -72,7 +74,7 @@ class Table(Table_Window):
                     continue
                 if not HasNoOwner and WindowStyle & win32con.WS_EX_APPWINDOW == 0:
                     continue
-                
+
                 self.window = hwnd
                 break
 
