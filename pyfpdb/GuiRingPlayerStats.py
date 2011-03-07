@@ -140,9 +140,9 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                           }
 
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
-        self.filters.registerButton1Name("_Filters")
+        self.filters.registerButton1Name(_("_Filters"))
         self.filters.registerButton1Callback(self.showDetailFilter)
-        self.filters.registerButton2Name("_Refresh Stats")
+        self.filters.registerButton2Name(_("_Refresh Stats"))
         self.filters.registerButton2Callback(self.refreshStats)
 
         # ToDo: store in config
