@@ -336,7 +336,7 @@ class PartyPoker(HandHistoryConverter):
                     hand.fee = 0
                     hand.buyinCurrency = "FREE"
                     hand.isKO = False
-                if hand.tourNo != None:
+                elif hand.tourNo != None:
                     hand.buyin = 0
                     hand.fee = 0
                     hand.buyinCurrency = "FREE"
