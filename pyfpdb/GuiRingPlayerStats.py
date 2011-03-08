@@ -120,7 +120,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         settings.update(self.conf.get_default_paths())
 
         # text used on screen stored here so that it can be configured
-        self.filterText = {'handhead':'Hand Breakdown for all levels listed above'
+        self.filterText = {'handhead':_('Hand Breakdown for all levels listed above')
                           }
 
         filters_display = { "Heroes"    : True,
