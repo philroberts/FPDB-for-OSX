@@ -630,7 +630,7 @@ class Filters(threading.Thread):
         lbl_title = gtk.Label(self.filterText['playerstitle'])
         lbl_title.set_alignment(xalign=0.0, yalign=0.5)
         top_hbox.pack_start(lbl_title, expand=True, padding=3)
-        showb = gtk.Button(label="refresh", stock=None, use_underline=True)
+        showb = gtk.Button(label=_("Refresh"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
         showb.connect('clicked', self.__refresh, 'players')
 
@@ -676,7 +676,7 @@ class Filters(threading.Thread):
         lbl_title.set_alignment(xalign=0.0, yalign=0.5)
         top_hbox.pack_start(lbl_title, expand=True, padding=3)
 
-        showb = gtk.Button(label="hide", stock=None, use_underline=True)
+        showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
         showb.connect('clicked', self.__toggle_box, 'sites')
         showb.show()
@@ -705,7 +705,7 @@ class Filters(threading.Thread):
         lbl_title = gtk.Label(self.filterText['tourneyTypesTitle'])
         lbl_title.set_alignment(xalign=0.0, yalign=0.5)
         top_hbox.pack_start(lbl_title, expand=True, padding=3)
-        showb = gtk.Button(label="hide", stock=None, use_underline=True)
+        showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
         showb.connect('clicked', self.__toggle_box, 'tourneyTypes')
         top_hbox.pack_start(showb, expand=False, padding=1)
@@ -731,7 +731,7 @@ class Filters(threading.Thread):
         lbl_title = gtk.Label(self.filterText['gamestitle'])
         lbl_title.set_alignment(xalign=0.0, yalign=0.5)
         top_hbox.pack_start(lbl_title, expand=True, padding=3)
-        showb = gtk.Button(label="hide", stock=None, use_underline=True)
+        showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
         showb.connect('clicked', self.__toggle_box, 'games')
         top_hbox.pack_start(showb, expand=False, padding=1)
@@ -758,7 +758,7 @@ class Filters(threading.Thread):
         lbl_title = gtk.Label(self.filterText['limitstitle'])
         lbl_title.set_alignment(xalign=0.0, yalign=0.5)
         top_hbox.pack_start(lbl_title, expand=True, padding=3)
-        showb = gtk.Button(label="hide", stock=None, use_underline=True)
+        showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
         showb.connect('clicked', self.__toggle_box, 'limits')
         top_hbox.pack_start(showb, expand=False, padding=1)
@@ -872,7 +872,7 @@ class Filters(threading.Thread):
         title = gtk.Label(_("Graphing Options:"))
         title.set_alignment(xalign=0.0, yalign=0.5)
         top_hbox.pack_start(title, expand=True, padding=3)
-        showb = gtk.Button(label="hide", stock=None, use_underline=True)
+        showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
         showb.connect('clicked', self.__toggle_box, 'graphops')
         top_hbox.pack_start(showb, expand=False, padding=1)
@@ -923,7 +923,7 @@ class Filters(threading.Thread):
         lbl_title = gtk.Label(self.filterText['seatstitle'])
         lbl_title.set_alignment(xalign=0.0, yalign=0.5)
         hbox.pack_start(lbl_title, expand=True, padding=3)
-        showb = gtk.Button(label="hide", stock=None, use_underline=True)
+        showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
         showb.connect('clicked', self.__toggle_box, 'seats')
         hbox.pack_start(showb, expand=False, padding=1)
@@ -957,7 +957,7 @@ class Filters(threading.Thread):
         lbl_title = gtk.Label(self.filterText['groupstitle'])
         lbl_title.set_alignment(xalign=0.0, yalign=0.5)
         hbox.pack_start(lbl_title, expand=True, padding=3)
-        showb = gtk.Button(label="hide", stock=None, use_underline=True)
+        showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
         showb.connect('clicked', self.__toggle_box, 'groups')
         hbox.pack_start(showb, expand=False, padding=1)
@@ -1015,7 +1015,7 @@ class Filters(threading.Thread):
         lbl_title = gtk.Label(self.filterText['datestitle'])
         lbl_title.set_alignment(xalign=0.0, yalign=0.5)
         top_hbox.pack_start(lbl_title, expand=True, padding=3)
-        showb = gtk.Button(label="hide", stock=None, use_underline=True)
+        showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
         showb.connect('clicked', self.__toggle_box, 'dates')
         top_hbox.pack_start(showb, expand=False, padding=1)
@@ -1065,10 +1065,10 @@ class Filters(threading.Thread):
     def __toggle_box(self, widget, entry):
         if self.boxes[entry].props.visible:
             self.boxes[entry].hide()
-            widget.set_label("show")
+            widget.set_label(_("show"))
         else:
             self.boxes[entry].show()
-            widget.set_label("hide")
+            widget.set_label(_("hide"))
     #end def __toggle_box
 
     def __calendar_dialog(self, widget, entry):

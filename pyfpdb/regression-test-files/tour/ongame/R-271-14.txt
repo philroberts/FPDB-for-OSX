@@ -1,0 +1,949 @@
+***** History for hand T5-17298370-1 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 20:58:38 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 9
+Players in round: 10
+Seat 10: purdey02 (1500)
+Seat 1: SADAMARDICO (1500)
+Seat 2: maximef37 (1500)
+Seat 3: Sar1 (1500)
+Seat 4: DJOMEYTHET (1500)
+Seat 5: besac025 (1500)
+Seat 6: sylduc (1500)
+Seat 7: WARIO KASH (1500)
+Seat 8: badbeatmaker (1500)
+Seat 9: lasvegas84 (1500)
+purdey02 posts small blind (10)
+SADAMARDICO posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [Tc, 4h]
+maximef37 folds
+Sar1 folds
+DJOMEYTHET folds
+besac025 folds
+sylduc folds
+WARIO KASH raises 120 to 120
+badbeatmaker raises 1500 to 1500 [all in]
+lasvegas84 folds
+purdey02 folds
+SADAMARDICO calls 1480 [all in]
+WARIO KASH calls 1380 [all in]
+--- 
+--- Dealing flop [9s, 4s, 8h]
+--- Dealing turn [5h]
+--- Dealing river [7h]
+---
+Summary:
+Main pot: 4510 won by WARIO KASH (4510)
+Rake taken: €0
+Seat 10: purdey02 (1490), net: -10
+Seat 1: SADAMARDICO (0), net: -1500, [Ah, 7d] (PAIR SEVEN)
+Seat 2: maximef37 (1500)
+Seat 3: Sar1 (1500)
+Seat 4: DJOMEYTHET (1500)
+Seat 5: besac025 (1500)
+Seat 6: sylduc (1500)
+Seat 7: WARIO KASH (4510), net: +3010, [Ac, 9c] (PAIR NINE)
+Seat 8: badbeatmaker (0), net: -1500, [5d, Kd] (PAIR FIVE)
+Seat 9: lasvegas84 (1500)
+***** End of hand T5-17298370-1 *****
+***** History for hand T5-17298370-2 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:01:58 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 10
+Players in round: 8
+Seat 2: maximef37 (1500)
+Seat 3: Sar1 (1500)
+Seat 4: DJOMEYTHET (1500)
+Seat 5: besac025 (1500)
+Seat 6: sylduc (1500)
+Seat 7: WARIO KASH (4510)
+Seat 9: lasvegas84 (1500)
+Seat 10: purdey02 (1490)
+maximef37 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [7s, Th]
+Sar1 calls 20
+DJOMEYTHET raises 40 to 40
+besac025 folds
+sylduc folds
+WARIO KASH folds
+lasvegas84 folds
+purdey02 folds
+maximef37 folds
+Sar1 calls 20
+--- Dealing flop [Ah, 2h, Ts]
+Sar1 checks
+DJOMEYTHET checks
+--- Dealing turn [5s]
+Sar1 checks
+DJOMEYTHET bets 100
+Sar1 calls 100
+--- Dealing river [3s]
+Sar1 checks
+DJOMEYTHET checks
+---
+Summary:
+Main pot: 300 won by Sar1 (300)
+Rake taken: €0
+Seat 2: maximef37 (1480), net: -20
+Seat 3: Sar1 (1660), net: +160, [7d, 7c] (PAIR SEVEN)
+Seat 4: DJOMEYTHET (1360), net: -140
+Seat 5: besac025 (1500)
+Seat 6: sylduc (1500)
+Seat 7: WARIO KASH (4510)
+Seat 9: lasvegas84 (1500)
+Seat 10: purdey02 (1490)
+***** End of hand T5-17298370-2 *****
+***** History for hand T5-17298370-3 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:03:05 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 1
+Players in round: 9
+Seat 2: maximef37 (1480)
+Seat 3: Sar1 (1660)
+Seat 4: DJOMEYTHET (1360)
+Seat 5: besac025 (1500)
+Seat 6: sylduc (1500)
+Seat 7: WARIO KASH (4510)
+Seat 8: MONTBLANC93 (1500)
+Seat 9: lasvegas84 (1500)
+Seat 10: purdey02 (1490)
+maximef37 posts small blind (10)
+Sar1 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [4d, Th]
+DJOMEYTHET calls 20
+besac025 folds
+sylduc folds
+WARIO KASH raises 120 to 120
+MONTBLANC93 raises 220 to 220
+lasvegas84 folds
+purdey02 folds
+maximef37 folds
+Sar1 folds
+DJOMEYTHET calls 200
+WARIO KASH calls 100
+--- Dealing flop [Ts, Ah, Qd]
+DJOMEYTHET checks
+WARIO KASH bets 600
+MONTBLANC93 raises 1200 to 1200
+DJOMEYTHET calls 1140 [all in]
+WARIO KASH raises 3690 to 4290 [all in]
+MONTBLANC93 calls 80 [all in]
+--- Dealing flop [Ts, Ah, Qd]
+--- Dealing turn [5h]
+--- Dealing river [Js]
+---
+Summary:
+Main pot: 4110 won by WARIO KASH (4110)
+Side pot 1: 280 won by WARIO KASH (280)
+Rake taken: €0
+Seat 2: maximef37 (1470), net: -10
+Seat 3: Sar1 (1640), net: -20
+Seat 4: DJOMEYTHET (0), net: -1360, [Jd, 9h] (PAIR JACK)
+Seat 5: besac025 (1500)
+Seat 6: sylduc (1500)
+Seat 7: WARIO KASH (7400), net: +2890, [Kd, Ad] (STRAIGHT ACE)
+Seat 8: MONTBLANC93 (0), net: -1500, [Ac, As] (THREE_OF_A_KIND ACE)
+Seat 9: lasvegas84 (1500)
+Seat 10: purdey02 (1490)
+***** End of hand T5-17298370-3 *****
+***** History for hand T5-17298370-4 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:04:35 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 2
+Players in round: 8
+Seat 3: Sar1 (1640)
+Seat 5: besac025 (1500)
+Seat 6: sylduc (1500)
+Seat 7: WARIO KASH (7400)
+Seat 9: lasvegas84 (1500)
+Seat 10: purdey02 (1490)
+Seat 1: Thenus009 (1500)
+Seat 2: maximef37 (1470)
+Sar1 posts small blind (15)
+besac025 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [Js, 3h]
+sylduc folds
+WARIO KASH calls 30
+lasvegas84 folds
+purdey02 folds
+Thenus009 folds
+maximef37 folds
+Sar1 raises 105 to 120
+besac025 folds
+WARIO KASH folds
+---
+Summary:
+Main pot: 90 won by Sar1 (90)
+Rake taken: €0
+Seat 3: Sar1 (1700), net: +60
+Seat 5: besac025 (1470), net: -30
+Seat 6: sylduc (1500)
+Seat 7: WARIO KASH (7370), net: -30
+Seat 9: lasvegas84 (1500)
+Seat 10: purdey02 (1490)
+Seat 1: Thenus009 (1500)
+Seat 2: maximef37 (1470)
+***** End of hand T5-17298370-4 *****
+***** History for hand T5-17298370-5 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:05:02 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 3
+Players in round: 9
+Seat 5: besac025 (1470)
+Seat 6: sylduc (1500)
+Seat 7: WARIO KASH (7370)
+Seat 8: Turnlast_ (1510)
+Seat 9: lasvegas84 (1500)
+Seat 10: purdey02 (1490)
+Seat 1: Thenus009 (1500)
+Seat 2: maximef37 (1470)
+Seat 3: Sar1 (1700)
+besac025 posts small blind (15)
+sylduc posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [5h, 6d]
+WARIO KASH folds
+Turnlast_ raises 1510 to 1510 [all in]
+lasvegas84 folds
+purdey02 folds
+Thenus009 folds
+maximef37 folds
+Sar1 folds
+besac025 folds
+sylduc folds
+---
+Summary:
+Main pot: 75 won by Turnlast_ (75)
+Rake taken: €0
+Seat 5: besac025 (1455), net: -15
+Seat 6: sylduc (1470), net: -30
+Seat 7: WARIO KASH (7370)
+Seat 8: Turnlast_ (1555), net: +45
+Seat 9: lasvegas84 (1500)
+Seat 10: purdey02 (1490)
+Seat 1: Thenus009 (1500)
+Seat 2: maximef37 (1470)
+Seat 3: Sar1 (1700)
+***** End of hand T5-17298370-5 *****
+***** History for hand T5-17298370-6 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:05:29 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 5
+Players in round: 10
+Seat 6: sylduc (1470)
+Seat 7: WARIO KASH (7370)
+Seat 8: Turnlast_ (1555)
+Seat 9: lasvegas84 (1500)
+Seat 10: purdey02 (1490)
+Seat 1: Thenus009 (1500)
+Seat 2: maximef37 (1470)
+Seat 3: Sar1 (1700)
+Seat 4: cissou18 (1500)
+Seat 5: besac025 (1455)
+sylduc posts small blind (15)
+WARIO KASH posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [4h, 7c]
+Turnlast_ calls 30
+lasvegas84 folds
+purdey02 raises 1490 to 1490 [all in]
+Thenus009 raises 1500 to 1500 [all in]
+maximef37 folds
+Sar1 folds
+cissou18 folds
+besac025 folds
+sylduc folds
+WARIO KASH folds
+Turnlast_ folds
+--- 
+--- Dealing flop [Tc, 6d, 4c]
+--- Dealing turn [2h]
+--- Dealing river [3h]
+---
+Summary:
+Main pot: 3055 won by purdey02 (3055)
+Rake taken: €0
+Seat 6: sylduc (1455), net: -15
+Seat 7: WARIO KASH (7340), net: -30
+Seat 8: Turnlast_ (1525), net: -30
+Seat 9: lasvegas84 (1500)
+Seat 10: purdey02 (3055), net: +1565, [Kh, Ah] (HIGH_CARD ACE)
+Seat 1: Thenus009 (10), net: -1490, [Kd, 9s] (HIGH_CARD KING)
+Seat 2: maximef37 (1470)
+Seat 3: Sar1 (1700)
+Seat 4: cissou18 (1500)
+Seat 5: besac025 (1455)
+***** End of hand T5-17298370-6 *****
+***** History for hand T5-17298370-7 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:06:10 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 6
+Players in round: 10
+Seat 7: WARIO KASH (7340)
+Seat 8: Turnlast_ (1525)
+Seat 9: lasvegas84 (1500)
+Seat 10: purdey02 (3055)
+Seat 1: Thenus009 (10)
+Seat 2: maximef37 (1470)
+Seat 3: Sar1 (1700)
+Seat 4: cissou18 (1500)
+Seat 5: besac025 (1455)
+Seat 6: sylduc (1455)
+WARIO KASH posts small blind (15)
+Turnlast_ posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [5h, 9s]
+lasvegas84 folds
+purdey02 folds
+Thenus009 calls 10 [all in]
+maximef37 folds
+Sar1 folds
+cissou18 folds
+besac025 folds
+sylduc folds
+WARIO KASH calls 15
+Turnlast_ checks
+--- Dealing flop [2h, Qs, Jc]
+WARIO KASH checks
+Turnlast_ bets 75
+WARIO KASH folds
+--- Dealing flop [2h, Qs, Jc]
+--- Dealing turn [2d]
+--- Dealing river [Th]
+---
+Summary:
+Main pot: 30 won by Turnlast_ (30)
+Side pot 1: 40 won by Turnlast_ (40)
+Rake taken: €0
+Seat 7: WARIO KASH (7310), net: -30
+Seat 8: Turnlast_ (1565), net: +40, [6c, Js] (TWO_PAIR JACK, TWO)
+Seat 9: lasvegas84 (1500)
+Seat 10: purdey02 (3055)
+Seat 1: Thenus009 (0), net: -10, [5d, Td] (TWO_PAIR TEN, TWO)
+Seat 2: maximef37 (1470)
+Seat 3: Sar1 (1700)
+Seat 4: cissou18 (1500)
+Seat 5: besac025 (1455)
+Seat 6: sylduc (1455)
+***** End of hand T5-17298370-7 *****
+***** History for hand T5-17298370-8 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:07:07 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 7
+Players in round: 9
+Seat 8: Turnlast_ (1565)
+Seat 9: lasvegas84 (1500)
+Seat 10: purdey02 (3055)
+Seat 2: maximef37 (1470)
+Seat 3: Sar1 (1700)
+Seat 4: cissou18 (1500)
+Seat 5: besac025 (1455)
+Seat 6: sylduc (1455)
+Seat 7: WARIO KASH (7310)
+Turnlast_ posts small blind (15)
+lasvegas84 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [Td, Kd]
+purdey02 folds
+maximef37 folds
+Sar1 folds
+cissou18 folds
+besac025 raises 60 to 60
+sylduc folds
+WARIO KASH folds
+Turnlast_ calls 45
+lasvegas84 folds
+--- Dealing flop [4c, Jd, 8d]
+Turnlast_ checks
+besac025 bets 150
+Turnlast_ calls 150
+--- Dealing turn [Kh]
+Turnlast_ checks
+besac025 bets 450
+Turnlast_ folds
+---
+Summary:
+Main pot: 450 won by besac025 (450)
+Rake taken: €0
+Seat 8: Turnlast_ (1355), net: -210
+Seat 9: lasvegas84 (1470), net: -30
+Seat 10: purdey02 (3055)
+Seat 2: maximef37 (1470)
+Seat 3: Sar1 (1700)
+Seat 4: cissou18 (1500)
+Seat 5: besac025 (1695), net: +240
+Seat 6: sylduc (1455)
+Seat 7: WARIO KASH (7310)
+***** End of hand T5-17298370-8 *****
+***** History for hand T5-17298370-9 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:08:19 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 8
+Players in round: 10
+Seat 9: lasvegas84 (1470)
+Seat 10: purdey02 (3055)
+Seat 1: olimellau (5900)
+Seat 2: maximef37 (1470)
+Seat 3: Sar1 (1700)
+Seat 4: cissou18 (1500)
+Seat 5: besac025 (1695)
+Seat 6: sylduc (1455)
+Seat 7: WARIO KASH (7310)
+Seat 8: Turnlast_ (1355)
+lasvegas84 posts small blind (15)
+purdey02 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [8s, 9c]
+olimellau calls 30
+maximef37 folds
+Sar1 folds
+cissou18 folds
+besac025 folds
+sylduc folds
+WARIO KASH calls 30
+Turnlast_ folds
+lasvegas84 folds
+purdey02 checks
+--- Dealing flop [Ts, 5d, Jc]
+purdey02 checks
+olimellau bets 30
+WARIO KASH raises 90 to 90
+purdey02 folds
+olimellau calls 60
+--- Dealing turn [Jd]
+olimellau checks
+WARIO KASH bets 135
+olimellau calls 135
+--- Dealing river [As]
+olimellau checks
+WARIO KASH checks
+---
+Summary:
+Main pot: 555 won by WARIO KASH (555)
+Rake taken: €0
+Seat 9: lasvegas84 (1455), net: -15
+Seat 10: purdey02 (3025), net: -30
+Seat 1: olimellau (5645), net: -255, [9s, Qh] (PAIR JACK)
+Seat 2: maximef37 (1470)
+Seat 3: Sar1 (1700)
+Seat 4: cissou18 (1500)
+Seat 5: besac025 (1695)
+Seat 6: sylduc (1455)
+Seat 7: WARIO KASH (7610), net: +300, [6d, 6s] (TWO_PAIR JACK, SIX)
+Seat 8: Turnlast_ (1355)
+***** End of hand T5-17298370-9 *****
+***** History for hand T5-17298370-10 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:09:54 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 9
+Players in round: 10
+Seat 10: purdey02 (3025)
+Seat 1: olimellau (5645)
+Seat 2: maximef37 (1470)
+Seat 3: Sar1 (1700)
+Seat 4: cissou18 (1500)
+Seat 5: besac025 (1695)
+Seat 6: sylduc (1455)
+Seat 7: WARIO KASH (7610)
+Seat 8: Turnlast_ (1355)
+Seat 9: lasvegas84 (1455)
+purdey02 posts small blind (15)
+olimellau posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [As, Ts]
+maximef37 folds
+Sar1 folds
+cissou18 folds
+besac025 raises 60 to 60
+sylduc folds
+WARIO KASH folds
+Turnlast_ calls 60
+lasvegas84 folds
+purdey02 folds
+olimellau calls 30
+--- Dealing flop [7h, Qd, 2s]
+olimellau checks
+besac025 checks
+Turnlast_ bets 195
+olimellau folds
+besac025 raises 390 to 390
+Turnlast_ calls 195
+--- Dealing turn [3s]
+besac025 bets 1245 [all in]
+Turnlast_ calls 905 [all in]
+--- Dealing turn [3s]
+--- Dealing river [Th]
+---
+Summary:
+Main pot: 2785 won by besac025 (2785)
+Rake taken: €0
+Seat 10: purdey02 (3010), net: -15
+Seat 1: olimellau (5585), net: -60
+Seat 2: maximef37 (1470)
+Seat 3: Sar1 (1700)
+Seat 4: cissou18 (1500)
+Seat 5: besac025 (3125), net: +1430, [As, Ts] (PAIR TEN)
+Seat 6: sylduc (1455)
+Seat 7: WARIO KASH (7610)
+Seat 8: Turnlast_ (0), net: -1355, [7d, 9c] (PAIR SEVEN)
+Seat 9: lasvegas84 (1455)
+***** End of hand T5-17298370-10 *****
+***** History for hand T5-17298370-11 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:11:50 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 10
+Players in round: 9
+Seat 1: olimellau (5585)
+Seat 2: maximef37 (1470)
+Seat 3: Sar1 (1700)
+Seat 4: cissou18 (1500)
+Seat 5: besac025 (3125)
+Seat 6: sylduc (1455)
+Seat 7: WARIO KASH (7610)
+Seat 9: lasvegas84 (1455)
+Seat 10: purdey02 (3010)
+olimellau posts small blind (25)
+maximef37 posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [Tc, Qh]
+Sar1 folds
+cissou18 folds
+besac025 calls 50
+sylduc folds
+WARIO KASH calls 50
+lasvegas84 folds
+purdey02 folds
+olimellau calls 25
+maximef37 checks
+--- Dealing flop [Td, Qd, Js]
+olimellau checks
+maximef37 checks
+besac025 checks
+WARIO KASH bets 150
+olimellau folds
+maximef37 calls 150
+besac025 calls 150
+--- Dealing turn [6c]
+maximef37 checks
+besac025 checks
+WARIO KASH bets 300
+maximef37 folds
+besac025 calls 300
+--- Dealing river [Jh]
+besac025 checks
+WARIO KASH checks
+---
+Summary:
+Main pot: 1250 won by besac025 (1250)
+Rake taken: €0
+Seat 1: olimellau (5535), net: -50
+Seat 2: maximef37 (1270), net: -200
+Seat 3: Sar1 (1700)
+Seat 4: cissou18 (1500)
+Seat 5: besac025 (3875), net: +750, [Tc, Qh] (TWO_PAIR QUEEN, JACK)
+Seat 6: sylduc (1455)
+Seat 7: WARIO KASH (7110), net: -500
+Seat 9: lasvegas84 (1455)
+Seat 10: purdey02 (3010)
+***** End of hand T5-17298370-11 *****
+***** History for hand T5-17298370-12 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:13:32 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 1
+Players in round: 10
+Seat 2: maximef37 (1270)
+Seat 3: Sar1 (1700)
+Seat 4: cissou18 (1500)
+Seat 5: besac025 (3875)
+Seat 6: sylduc (1455)
+Seat 7: WARIO KASH (7110)
+Seat 8: benok (2340)
+Seat 9: lasvegas84 (1455)
+Seat 10: purdey02 (3010)
+Seat 1: olimellau (5535)
+maximef37 posts small blind (25)
+Sar1 posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [Tc, 8d]
+cissou18 folds
+besac025 folds
+sylduc folds
+WARIO KASH calls 50
+benok folds
+lasvegas84 folds
+purdey02 folds
+olimellau folds
+maximef37 raises 225 to 250
+Sar1 folds
+WARIO KASH folds
+---
+Summary:
+Main pot: 150 won by maximef37 (150)
+Rake taken: €0
+Seat 2: maximef37 (1370), net: +100
+Seat 3: Sar1 (1650), net: -50
+Seat 4: cissou18 (1500)
+Seat 5: besac025 (3875)
+Seat 6: sylduc (1455)
+Seat 7: WARIO KASH (7060), net: -50
+Seat 8: benok (2340)
+Seat 9: lasvegas84 (1455)
+Seat 10: purdey02 (3010)
+Seat 1: olimellau (5535)
+***** End of hand T5-17298370-12 *****
+***** History for hand T5-17298370-13 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:14:15 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 2
+Players in round: 10
+Seat 3: Sar1 (1650)
+Seat 4: cissou18 (1500)
+Seat 5: besac025 (3875)
+Seat 6: sylduc (1455)
+Seat 7: WARIO KASH (7060)
+Seat 8: benok (2340)
+Seat 9: lasvegas84 (1455)
+Seat 10: purdey02 (3010)
+Seat 1: olimellau (5535)
+Seat 2: maximef37 (1370)
+Sar1 posts small blind (25)
+cissou18 posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [8c, 6h]
+besac025 folds
+sylduc folds
+WARIO KASH calls 50
+benok raises 200 to 200
+lasvegas84 folds
+purdey02 folds
+olimellau calls 200
+maximef37 folds
+Sar1 folds
+cissou18 folds
+WARIO KASH folds
+--- Dealing flop [Th, 9d, Ks]
+benok checks
+olimellau bets 200
+benok folds
+---
+Summary:
+Main pot: 525 won by olimellau (525)
+Rake taken: €0
+Seat 3: Sar1 (1625), net: -25
+Seat 4: cissou18 (1450), net: -50
+Seat 5: besac025 (3875)
+Seat 6: sylduc (1455)
+Seat 7: WARIO KASH (7010), net: -50
+Seat 8: benok (2140), net: -200
+Seat 9: lasvegas84 (1455)
+Seat 10: purdey02 (3010)
+Seat 1: olimellau (5860), net: +325
+Seat 2: maximef37 (1370)
+***** End of hand T5-17298370-13 *****
+***** History for hand T5-17298370-14 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:15:03 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 3
+Players in round: 10
+Seat 4: cissou18 (1450)
+Seat 5: besac025 (3875)
+Seat 6: sylduc (1455)
+Seat 7: WARIO KASH (7010)
+Seat 8: benok (2140)
+Seat 9: lasvegas84 (1455)
+Seat 10: purdey02 (3010)
+Seat 1: olimellau (5860)
+Seat 2: maximef37 (1370)
+Seat 3: Sar1 (1625)
+cissou18 posts small blind (25)
+besac025 posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [Js, 2s]
+sylduc folds
+WARIO KASH raises 125 to 125
+benok folds
+lasvegas84 folds
+purdey02 folds
+olimellau folds
+maximef37 folds
+Sar1 calls 125
+cissou18 folds
+besac025 folds
+--- Dealing flop [6d, 2h, 7d]
+WARIO KASH bets 600
+Sar1 folds
+---
+Summary:
+Main pot: 325 won by WARIO KASH (325)
+Rake taken: €0
+Seat 4: cissou18 (1425), net: -25
+Seat 5: besac025 (3825), net: -50
+Seat 6: sylduc (1455)
+Seat 7: WARIO KASH (7210), net: +200
+Seat 8: benok (2140)
+Seat 9: lasvegas84 (1455)
+Seat 10: purdey02 (3010)
+Seat 1: olimellau (5860)
+Seat 2: maximef37 (1370)
+Seat 3: Sar1 (1500), net: -125
+***** End of hand T5-17298370-14 *****
+***** History for hand T5-17298370-15 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:15:56 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 4
+Players in round: 10
+Seat 5: besac025 (3825)
+Seat 6: sylduc (1455)
+Seat 7: WARIO KASH (7210)
+Seat 8: benok (2140)
+Seat 9: lasvegas84 (1455)
+Seat 10: purdey02 (3010)
+Seat 1: olimellau (5860)
+Seat 2: maximef37 (1370)
+Seat 3: Sar1 (1500)
+Seat 4: cissou18 (1425)
+besac025 posts small blind (25)
+sylduc posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [Ad, 5d]
+WARIO KASH folds
+benok calls 50
+lasvegas84 folds
+purdey02 calls 50
+olimellau calls 50
+maximef37 folds
+Sar1 folds
+cissou18 folds
+besac025 calls 25
+sylduc checks
+--- Dealing flop [7h, Js, 3c]
+besac025 checks
+sylduc checks
+benok checks
+purdey02 checks
+olimellau checks
+--- Dealing turn [7c]
+besac025 checks
+sylduc checks
+benok checks
+purdey02 checks
+olimellau checks
+--- Dealing river [6s]
+besac025 checks
+sylduc checks
+benok checks
+purdey02 checks
+olimellau checks
+---
+Summary:
+Main pot: 250 won by besac025 (250)
+Rake taken: €0
+Seat 5: besac025 (4025), net: +200, [Ad, 5d] (PAIR SEVEN)
+Seat 6: sylduc (1405), net: -50
+Seat 7: WARIO KASH (7210)
+Seat 8: benok (2090), net: -50
+Seat 9: lasvegas84 (1455)
+Seat 10: purdey02 (2960), net: -50
+Seat 1: olimellau (5810), net: -50
+Seat 2: maximef37 (1370)
+Seat 3: Sar1 (1500)
+Seat 4: cissou18 (1425)
+***** End of hand T5-17298370-15 *****
+***** History for hand T5-17298370-16 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:17:11 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 5
+Players in round: 10
+Seat 6: sylduc (1405)
+Seat 7: WARIO KASH (7210)
+Seat 8: benok (2090)
+Seat 9: lasvegas84 (1455)
+Seat 10: purdey02 (2960)
+Seat 1: olimellau (5810)
+Seat 2: maximef37 (1370)
+Seat 3: Sar1 (1500)
+Seat 4: cissou18 (1425)
+Seat 5: besac025 (4025)
+sylduc posts small blind (40)
+WARIO KASH posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [Kc, 3d]
+benok raises 160 to 160
+lasvegas84 folds
+purdey02 calls 160
+olimellau calls 160
+maximef37 folds
+Sar1 folds
+cissou18 folds
+besac025 folds
+sylduc folds
+WARIO KASH calls 80
+--- Dealing flop [9s, 9d, 6c]
+WARIO KASH checks
+benok bets 160
+purdey02 calls 160
+olimellau calls 160
+WARIO KASH calls 160
+--- Dealing turn [4c]
+WARIO KASH checks
+benok checks
+purdey02 checks
+olimellau bets 360
+WARIO KASH folds
+benok raises 1770 to 1770 [all in]
+purdey02 folds
+olimellau calls 1410
+--- Dealing turn [4c]
+--- Dealing river [Qs]
+---
+Summary:
+Main pot: 4860 won by olimellau (4860)
+Rake taken: €0
+Seat 6: sylduc (1365), net: -40
+Seat 7: WARIO KASH (6890), net: -320
+Seat 8: benok (0), net: -2090, [Ah, Jd] (PAIR NINE)
+Seat 9: lasvegas84 (1455)
+Seat 10: purdey02 (2640), net: -320
+Seat 1: olimellau (8580), net: +2770, [9h, Qd] (FULL_HOUSE NINE, QUEEN)
+Seat 2: maximef37 (1370)
+Seat 3: Sar1 (1500)
+Seat 4: cissou18 (1425)
+Seat 5: besac025 (4025)
+***** End of hand T5-17298370-16 *****
+***** History for hand T5-17298370-17 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:18:33 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 6
+Players in round: 9
+Seat 7: WARIO KASH (6890)
+Seat 9: lasvegas84 (1455)
+Seat 10: purdey02 (2640)
+Seat 1: olimellau (8580)
+Seat 2: maximef37 (1370)
+Seat 3: Sar1 (1500)
+Seat 4: cissou18 (1425)
+Seat 5: besac025 (4025)
+Seat 6: sylduc (1365)
+WARIO KASH posts small blind (40)
+lasvegas84 posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [Ks, 9h]
+purdey02 folds
+olimellau calls 80
+maximef37 folds
+Sar1 folds
+cissou18 folds
+besac025 calls 80
+sylduc folds
+WARIO KASH raises 360 to 400
+lasvegas84 folds
+olimellau calls 320
+besac025 folds
+--- Dealing flop [Kc, 6s, 7s]
+WARIO KASH bets 960
+olimellau folds
+---
+Summary:
+Main pot: 960 won by WARIO KASH (960)
+Rake taken: €0
+Seat 7: WARIO KASH (7450), net: +560
+Seat 9: lasvegas84 (1375), net: -80
+Seat 10: purdey02 (2640)
+Seat 1: olimellau (8180), net: -400
+Seat 2: maximef37 (1370)
+Seat 3: Sar1 (1500)
+Seat 4: cissou18 (1425)
+Seat 5: besac025 (3945), net: -80
+Seat 6: sylduc (1365)
+***** End of hand T5-17298370-17 *****
+***** History for hand T5-17298370-18 (TOURNAMENT: "Kitz Poker Trophy qualif", R-271-14, buy-in: €0) *****
+Start hand: Wed Dec 22 21:19:19 GMT+0100 2010
+Table: Table #66 [17298370] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 7
+Players in round: 9
+Seat 9: lasvegas84 (1375)
+Seat 10: purdey02 (2640)
+Seat 1: olimellau (8180)
+Seat 2: maximef37 (1370)
+Seat 3: Sar1 (1500)
+Seat 4: cissou18 (1425)
+Seat 5: besac025 (3945)
+Seat 6: sylduc (1365)
+Seat 7: WARIO KASH (7450)
+lasvegas84 posts small blind (40)
+purdey02 posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [Ac, Kc]
+olimellau calls 80
+maximef37 folds
+Sar1 folds
+cissou18 folds
+besac025 raises 320 to 320
+sylduc folds
+WARIO KASH folds
+lasvegas84 folds
+purdey02 folds
+olimellau calls 240
+--- Dealing flop [Jc, 8s, 7s]
+olimellau checks
+besac025 bets 560
+olimellau raises 1120 to 1120
+besac025 raises 3065 to 3625 [all in]
+olimellau calls 2505
+--- Dealing flop [Jc, 8s, 7s]
+--- Dealing turn [2s]
+--- Dealing river [Ts]
+---
+Summary:
+Main pot: 8010 won by olimellau (8010)
+Rake taken: €0
+Seat 9: lasvegas84 (1335), net: -40
+Seat 10: purdey02 (2560), net: -80
+Seat 1: olimellau (12245), net: +4065, [Js, 4s] (FLUSH JACK)
+Seat 2: maximef37 (1370)
+Seat 3: Sar1 (1500)
+Seat 4: cissou18 (1425)
+Seat 5: besac025 (0), net: -3945, [Ac, Kc] (HIGH_CARD ACE)
+Seat 6: sylduc (1365)
+Seat 7: WARIO KASH (7450)
+***** End of hand T5-17298370-18 *****

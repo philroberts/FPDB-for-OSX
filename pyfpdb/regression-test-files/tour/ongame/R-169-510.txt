@@ -1,0 +1,1174 @@
+***** History for hand T5-17701176-1 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:28:36 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 1
+Players in round: 10
+Seat 2: bibzah2727 (1500)
+Seat 3: TFOUTOOA (1500)
+Seat 4: eddydonc54 (1500)
+Seat 5: JOB13200 (1500)
+Seat 6: Calebute (1500)
+Seat 7: sebastian (1500)
+Seat 8: besac025 (1500)
+Seat 9: PascalN (1500)
+Seat 10: NANAT62 (1500)
+Seat 1: pepitox (1500)
+bibzah2727 posts small blind (10)
+TFOUTOOA posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [8s, 5c]
+eddydonc54 calls 20
+JOB13200 folds
+Calebute folds
+sebastian folds
+besac025 folds
+PascalN folds
+NANAT62 folds
+pepitox folds
+bibzah2727 calls 10
+TFOUTOOA checks
+--- Dealing flop [6d, 2c, Tc]
+bibzah2727 checks
+TFOUTOOA checks
+eddydonc54 bets 200
+bibzah2727 folds
+TFOUTOOA folds
+---
+Summary:
+Main pot: 60 won by eddydonc54 (60)
+Rake taken: €0
+Seat 2: bibzah2727 (1480), net: -20
+Seat 3: TFOUTOOA (1480), net: -20
+Seat 4: eddydonc54 (1540), net: +40
+Seat 5: JOB13200 (1500)
+Seat 6: Calebute (1500)
+Seat 7: sebastian (1500)
+Seat 8: besac025 (1500)
+Seat 9: PascalN (1500)
+Seat 10: NANAT62 (1500)
+Seat 1: pepitox (1500)
+***** End of hand T5-17701176-1 *****
+***** History for hand T5-17701176-2 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:31:53 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 2
+Players in round: 10
+Seat 3: TFOUTOOA (1480)
+Seat 4: eddydonc54 (1540)
+Seat 5: JOB13200 (1500)
+Seat 6: Calebute (1500)
+Seat 7: sebastian (1500)
+Seat 8: besac025 (1500)
+Seat 9: PascalN (1500)
+Seat 10: NANAT62 (1500)
+Seat 1: pepitox (1500)
+Seat 2: bibzah2727 (1480)
+TFOUTOOA posts small blind (10)
+eddydonc54 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [Ks, 8s]
+JOB13200 calls 20
+Calebute folds
+sebastian calls 20
+besac025 folds
+PascalN folds
+NANAT62 folds
+pepitox raises 120 to 120
+bibzah2727 folds
+TFOUTOOA folds
+eddydonc54 folds
+JOB13200 calls 100
+sebastian calls 100
+--- Dealing flop [Td, 7c, Qd]
+JOB13200 checks
+sebastian checks
+pepitox bets 390
+JOB13200 raises 780 to 780
+sebastian folds
+pepitox calls 390
+--- Dealing turn [Kc]
+JOB13200 bets 600 [all in]
+pepitox calls 600 [all in]
+--- Dealing turn [Kc]
+--- Dealing river [2d]
+---
+Summary:
+Main pot: 3150 won by JOB13200 (3150)
+Rake taken: €0
+Seat 3: TFOUTOOA (1470), net: -10
+Seat 4: eddydonc54 (1520), net: -20
+Seat 5: JOB13200 (3150), net: +1650, [9d, Qc] (PAIR QUEEN)
+Seat 6: Calebute (1500)
+Seat 7: sebastian (1380), net: -120
+Seat 8: besac025 (1500)
+Seat 9: PascalN (1500)
+Seat 10: NANAT62 (1500)
+Seat 1: pepitox (0), net: -1500, [Ah, Th] (PAIR TEN)
+Seat 2: bibzah2727 (1480)
+***** End of hand T5-17701176-2 *****
+***** History for hand T5-17701176-3 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:33:58 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 3
+Players in round: 9
+Seat 4: eddydonc54 (1520)
+Seat 5: JOB13200 (3150)
+Seat 6: Calebute (1500)
+Seat 7: sebastian (1380)
+Seat 8: besac025 (1500)
+Seat 9: PascalN (1500)
+Seat 10: NANAT62 (1500)
+Seat 2: bibzah2727 (1480)
+Seat 3: TFOUTOOA (1470)
+eddydonc54 posts small blind (10)
+JOB13200 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [As, Ac]
+Calebute folds
+sebastian raises 1380 to 1380 [all in]
+besac025 raises 1500 to 1500 [all in]
+PascalN folds
+NANAT62 calls 1500 [all in]
+bibzah2727 folds
+TFOUTOOA folds
+eddydonc54 folds
+JOB13200 folds
+--- 
+--- Dealing flop [2s, Qd, 9c]
+--- Dealing turn [Ks]
+--- Dealing river [8s]
+---
+Summary:
+Main pot: 4170 won by besac025 (4170)
+Side pot 1: 240 won by besac025 (240)
+Rake taken: €0
+Seat 4: eddydonc54 (1510), net: -10
+Seat 5: JOB13200 (3130), net: -20
+Seat 6: Calebute (1500)
+Seat 7: sebastian (0), net: -1380, [8d, Th] (PAIR EIGHT)
+Seat 8: besac025 (4410), net: +2910, [As, Ac] (PAIR ACE)
+Seat 9: PascalN (1500)
+Seat 10: NANAT62 (0), net: -1500, [Jc, Kc] (PAIR KING)
+Seat 2: bibzah2727 (1480)
+Seat 3: TFOUTOOA (1470)
+***** End of hand T5-17701176-3 *****
+***** History for hand T5-17701176-4 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:34:46 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 4
+Players in round: 8
+Seat 5: JOB13200 (3130)
+Seat 6: Calebute (1500)
+Seat 8: besac025 (4410)
+Seat 9: PascalN (1500)
+Seat 1: karmelo59 (1300)
+Seat 2: bibzah2727 (1480)
+Seat 3: TFOUTOOA (1470)
+Seat 4: eddydonc54 (1510)
+JOB13200 posts small blind (10)
+Calebute posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [9h, 6c]
+besac025 folds
+PascalN calls 20
+karmelo59 folds
+bibzah2727 folds
+TFOUTOOA folds
+eddydonc54 calls 20
+JOB13200 calls 10
+Calebute checks
+--- Dealing flop [Ad, Qd, Kc]
+JOB13200 checks
+Calebute checks
+PascalN bets 20
+eddydonc54 calls 20
+JOB13200 folds
+Calebute calls 20
+--- Dealing turn [Jd]
+Calebute checks
+PascalN bets 20
+eddydonc54 raises 110 to 110
+Calebute folds
+PascalN calls 90
+--- Dealing river [9s]
+PascalN bets 50
+eddydonc54 calls 50
+---
+Summary:
+Main pot: 460 won by eddydonc54 (460)
+Rake taken: €0
+Seat 5: JOB13200 (3110), net: -20
+Seat 6: Calebute (1460), net: -40
+Seat 8: besac025 (4410)
+Seat 9: PascalN (1300), net: -200, [Ac, Ks] (TWO_PAIR ACE, KING)
+Seat 1: karmelo59 (1300)
+Seat 2: bibzah2727 (1480)
+Seat 3: TFOUTOOA (1470)
+Seat 4: eddydonc54 (1770), net: +260, [Td, Js] (STRAIGHT ACE)
+***** End of hand T5-17701176-4 *****
+***** History for hand T5-17701176-5 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:36:19 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 5
+Players in round: 10
+Seat 6: Calebute (1460)
+Seat 7: Onemax (2030)
+Seat 8: besac025 (4410)
+Seat 9: PascalN (1300)
+Seat 10: saphir (1280)
+Seat 1: karmelo59 (1300)
+Seat 2: bibzah2727 (1480)
+Seat 3: TFOUTOOA (1470)
+Seat 4: eddydonc54 (1770)
+Seat 5: JOB13200 (3110)
+Calebute posts small blind (10)
+Onemax posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [2s, 6c]
+besac025 folds
+PascalN calls 20
+saphir calls 20
+karmelo59 folds
+bibzah2727 folds
+TFOUTOOA calls 20
+eddydonc54 calls 20
+JOB13200 folds
+Calebute calls 10
+Onemax checks
+--- Dealing flop [Kh, Qd, Th]
+Calebute checks
+Onemax checks
+PascalN checks
+saphir bets 120
+TFOUTOOA raises 350 to 350
+eddydonc54 folds
+Calebute folds
+Onemax folds
+PascalN folds
+saphir raises 1140 to 1260 [all in]
+TFOUTOOA calls 910
+--- Dealing flop [Kh, Qd, Th]
+--- Dealing turn [5d]
+--- Dealing river [6s]
+---
+Summary:
+Main pot: 2640 won by TFOUTOOA (2640)
+Rake taken: €0
+Seat 6: Calebute (1440), net: -20
+Seat 7: Onemax (2010), net: -20
+Seat 8: besac025 (4410)
+Seat 9: PascalN (1280), net: -20
+Seat 10: saphir (0), net: -1280, [Ts, Qs] (TWO_PAIR QUEEN, TEN)
+Seat 1: karmelo59 (1300)
+Seat 2: bibzah2727 (1480)
+Seat 3: TFOUTOOA (2830), net: +1360, [Ks, Tc] (TWO_PAIR KING, TEN)
+Seat 4: eddydonc54 (1750), net: -20
+Seat 5: JOB13200 (3110)
+***** End of hand T5-17701176-5 *****
+***** History for hand T5-17701176-6 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:38:43 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 6
+Players in round: 9
+Seat 7: Onemax (2010)
+Seat 8: besac025 (4410)
+Seat 9: PascalN (1280)
+Seat 1: karmelo59 (1300)
+Seat 2: bibzah2727 (1480)
+Seat 3: TFOUTOOA (2830)
+Seat 4: eddydonc54 (1750)
+Seat 5: JOB13200 (3110)
+Seat 6: Calebute (1440)
+Onemax posts small blind (15)
+besac025 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [5s, 2s]
+PascalN calls 30
+karmelo59 raises 1300 to 1300 [all in]
+bibzah2727 folds
+TFOUTOOA folds
+eddydonc54 folds
+JOB13200 folds
+Calebute folds
+Onemax folds
+besac025 folds
+PascalN folds
+---
+Summary:
+Main pot: 105 won by karmelo59 (105)
+Rake taken: €0
+Seat 7: Onemax (1995), net: -15
+Seat 8: besac025 (4380), net: -30
+Seat 9: PascalN (1250), net: -30
+Seat 1: karmelo59 (1375), net: +75
+Seat 2: bibzah2727 (1480)
+Seat 3: TFOUTOOA (2830)
+Seat 4: eddydonc54 (1750)
+Seat 5: JOB13200 (3110)
+Seat 6: Calebute (1440)
+***** End of hand T5-17701176-6 *****
+***** History for hand T5-17701176-7 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:39:29 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 7
+Players in round: 9
+Seat 8: besac025 (4380)
+Seat 9: PascalN (1250)
+Seat 1: karmelo59 (1375)
+Seat 2: bibzah2727 (1480)
+Seat 3: TFOUTOOA (2830)
+Seat 4: eddydonc54 (1750)
+Seat 5: JOB13200 (3110)
+Seat 6: Calebute (1440)
+Seat 7: Onemax (1995)
+besac025 posts small blind (15)
+PascalN posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [Jd, 9d]
+karmelo59 calls 30
+bibzah2727 calls 30
+TFOUTOOA raises 120 to 120
+eddydonc54 folds
+JOB13200 folds
+Calebute folds
+Onemax raises 495 to 495
+besac025 folds
+PascalN folds
+karmelo59 folds
+bibzah2727 folds
+TFOUTOOA calls 375
+--- Dealing flop [2h, 6h, 2c]
+TFOUTOOA checks
+Onemax bets 1500 [all in]
+TFOUTOOA folds
+---
+Summary:
+Main pot: 1095 won by Onemax (1095)
+Rake taken: €0
+Seat 8: besac025 (4365), net: -15
+Seat 9: PascalN (1220), net: -30
+Seat 1: karmelo59 (1345), net: -30
+Seat 2: bibzah2727 (1450), net: -30
+Seat 3: TFOUTOOA (2335), net: -495
+Seat 4: eddydonc54 (1750)
+Seat 5: JOB13200 (3110)
+Seat 6: Calebute (1440)
+Seat 7: Onemax (2595), net: +600
+***** End of hand T5-17701176-7 *****
+***** History for hand T5-17701176-8 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:41:11 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 8
+Players in round: 10
+Seat 9: PascalN (1220)
+Seat 10: crazyfrof40 (290)
+Seat 1: karmelo59 (1345)
+Seat 2: bibzah2727 (1450)
+Seat 3: TFOUTOOA (2335)
+Seat 4: eddydonc54 (1750)
+Seat 5: JOB13200 (3110)
+Seat 6: Calebute (1440)
+Seat 7: Onemax (2595)
+Seat 8: besac025 (4365)
+PascalN posts small blind (15)
+crazyfrof40 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [7s, Jh]
+karmelo59 folds
+bibzah2727 calls 30
+TFOUTOOA folds
+eddydonc54 folds
+JOB13200 folds
+Calebute raises 75 to 75
+Onemax folds
+besac025 folds
+PascalN folds
+crazyfrof40 calls 45
+bibzah2727 calls 45
+--- Dealing flop [8c, 9d, Ts]
+crazyfrof40 checks
+bibzah2727 bets 1375 [all in]
+Calebute folds
+crazyfrof40 calls 215 [all in]
+--- Dealing flop [8c, 9d, Ts]
+--- Dealing turn [8d]
+--- Dealing river [Tc]
+---
+Summary:
+Main pot: 670 won by bibzah2727 (670)
+Rake taken: €0
+Seat 9: PascalN (1205), net: -15
+Seat 10: crazyfrof40 (0), net: -290, [Ad, 9c] (TWO_PAIR TEN, NINE)
+Seat 1: karmelo59 (1345)
+Seat 2: bibzah2727 (1830), net: +380, [7d, Td] (FULL_HOUSE TEN, EIGHT)
+Seat 3: TFOUTOOA (2335)
+Seat 4: eddydonc54 (1750)
+Seat 5: JOB13200 (3110)
+Seat 6: Calebute (1365), net: -75
+Seat 7: Onemax (2595)
+Seat 8: besac025 (4365)
+***** End of hand T5-17701176-8 *****
+***** History for hand T5-17701176-9 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:42:11 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 9
+Players in round: 9
+Seat 1: karmelo59 (1345)
+Seat 2: bibzah2727 (1830)
+Seat 3: TFOUTOOA (2335)
+Seat 4: eddydonc54 (1750)
+Seat 5: JOB13200 (3110)
+Seat 6: Calebute (1365)
+Seat 7: Onemax (2595)
+Seat 8: besac025 (4365)
+Seat 9: PascalN (1205)
+karmelo59 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [7d, 9h]
+bibzah2727 folds
+TFOUTOOA calls 30
+eddydonc54 folds
+JOB13200 folds
+Calebute calls 30
+Onemax raises 95 to 95
+besac025 folds
+PascalN folds
+karmelo59 folds
+TFOUTOOA calls 65
+Calebute calls 65
+--- Dealing flop [8h, 6d, Th]
+TFOUTOOA checks
+Calebute bets 90
+Onemax folds
+TFOUTOOA folds
+---
+Summary:
+Main pot: 315 won by Calebute (315)
+Rake taken: €0
+Seat 1: karmelo59 (1315), net: -30
+Seat 2: bibzah2727 (1830)
+Seat 3: TFOUTOOA (2240), net: -95
+Seat 4: eddydonc54 (1750)
+Seat 5: JOB13200 (3110)
+Seat 6: Calebute (1585), net: +220
+Seat 7: Onemax (2500), net: -95
+Seat 8: besac025 (4365)
+Seat 9: PascalN (1205)
+***** End of hand T5-17701176-9 *****
+***** History for hand T5-17701176-10 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:43:50 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 10
+Players in round: 9
+Seat 1: karmelo59 (1315)
+Seat 2: bibzah2727 (1830)
+Seat 3: TFOUTOOA (2240)
+Seat 4: eddydonc54 (1750)
+Seat 5: JOB13200 (3110)
+Seat 6: Calebute (1585)
+Seat 7: Onemax (2500)
+Seat 8: besac025 (4365)
+Seat 9: PascalN (1205)
+karmelo59 posts small blind (15)
+bibzah2727 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [9c, 5s]
+TFOUTOOA folds
+eddydonc54 calls 30
+JOB13200 folds
+Calebute folds
+Onemax folds
+besac025 folds
+PascalN calls 30
+karmelo59 calls 15
+bibzah2727 checks
+--- Dealing flop [8h, 7s, Ah]
+karmelo59 checks
+bibzah2727 checks
+eddydonc54 checks
+PascalN bets 60
+karmelo59 calls 60
+bibzah2727 folds
+eddydonc54 folds
+--- Dealing turn [Td]
+karmelo59 checks
+PascalN checks
+--- Dealing river [6s]
+karmelo59 checks
+PascalN bets 240
+karmelo59 calls 240
+---
+Summary:
+Main pot: 720 won by PascalN (720)
+Rake taken: €0
+Seat 1: karmelo59 (985), net: -330
+Seat 2: bibzah2727 (1800), net: -30
+Seat 3: TFOUTOOA (2240)
+Seat 4: eddydonc54 (1720), net: -30
+Seat 5: JOB13200 (3110)
+Seat 6: Calebute (1585)
+Seat 7: Onemax (2500)
+Seat 8: besac025 (4365)
+Seat 9: PascalN (1595), net: +390, [2c, Ad] (PAIR ACE)
+***** End of hand T5-17701176-10 *****
+***** History for hand T5-17701176-11 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:45:25 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 1
+Players in round: 10
+Seat 2: bibzah2727 (1800)
+Seat 3: TFOUTOOA (2240)
+Seat 4: eddydonc54 (1720)
+Seat 5: JOB13200 (3110)
+Seat 6: Calebute (1585)
+Seat 7: Onemax (2500)
+Seat 8: besac025 (4365)
+Seat 9: PascalN (1595)
+Seat 10: LELENSOIS (1110)
+Seat 1: karmelo59 (985)
+bibzah2727 posts small blind (25)
+TFOUTOOA posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [Ts, 5h]
+eddydonc54 folds
+JOB13200 raises 300 to 300
+Calebute folds
+Onemax folds
+besac025 folds
+PascalN folds
+LELENSOIS folds
+karmelo59 raises 985 to 985 [all in]
+bibzah2727 folds
+TFOUTOOA folds
+JOB13200 calls 685
+--- 
+--- Dealing flop [Qs, 6d, As]
+--- Dealing turn [Kd]
+--- Dealing river [2h]
+---
+Summary:
+Main pot: 2045 won by JOB13200 (2045)
+Rake taken: €0
+Seat 2: bibzah2727 (1775), net: -25
+Seat 3: TFOUTOOA (2190), net: -50
+Seat 4: eddydonc54 (1720)
+Seat 5: JOB13200 (4170), net: +1060, [Qd, Ad] (TWO_PAIR ACE, QUEEN)
+Seat 6: Calebute (1585)
+Seat 7: Onemax (2500)
+Seat 8: besac025 (4365)
+Seat 9: PascalN (1595)
+Seat 10: LELENSOIS (1110)
+Seat 1: karmelo59 (0), net: -985, [Ac, Jd] (PAIR ACE)
+***** End of hand T5-17701176-11 *****
+***** History for hand T5-17701176-12 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:46:33 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 2
+Players in round: 9
+Seat 3: TFOUTOOA (2190)
+Seat 4: eddydonc54 (1720)
+Seat 5: JOB13200 (4170)
+Seat 6: Calebute (1585)
+Seat 7: Onemax (2500)
+Seat 8: besac025 (4365)
+Seat 9: PascalN (1595)
+Seat 10: LELENSOIS (1110)
+Seat 2: bibzah2727 (1775)
+TFOUTOOA posts small blind (25)
+eddydonc54 posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [4c, Ad]
+JOB13200 folds
+Calebute folds
+Onemax raises 500 to 500
+besac025 folds
+PascalN folds
+LELENSOIS folds
+bibzah2727 folds
+TFOUTOOA folds
+eddydonc54 folds
+---
+Summary:
+Main pot: 125 won by Onemax (125)
+Rake taken: €0
+Seat 3: TFOUTOOA (2165), net: -25
+Seat 4: eddydonc54 (1670), net: -50
+Seat 5: JOB13200 (4170)
+Seat 6: Calebute (1585)
+Seat 7: Onemax (2575), net: +75
+Seat 8: besac025 (4365)
+Seat 9: PascalN (1595)
+Seat 10: LELENSOIS (1110)
+Seat 2: bibzah2727 (1775)
+***** End of hand T5-17701176-12 *****
+***** History for hand T5-17701176-13 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:47:11 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 3
+Players in round: 10
+Seat 4: eddydonc54 (1670)
+Seat 5: JOB13200 (4170)
+Seat 6: Calebute (1585)
+Seat 7: Onemax (2575)
+Seat 8: besac025 (4365)
+Seat 9: PascalN (1595)
+Seat 10: LELENSOIS (1110)
+Seat 1: quick71 (5275)
+Seat 2: bibzah2727 (1775)
+Seat 3: TFOUTOOA (2165)
+eddydonc54 posts small blind (25)
+JOB13200 posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [9d, Td]
+Calebute folds
+Onemax folds
+besac025 calls 50
+PascalN calls 50
+LELENSOIS folds
+quick71 calls 50
+bibzah2727 folds
+TFOUTOOA folds
+eddydonc54 raises 125 to 150
+JOB13200 folds
+besac025 calls 100
+PascalN folds
+quick71 folds
+--- Dealing flop [Qh, 4c, 5s]
+eddydonc54 bets 50
+besac025 calls 50
+--- Dealing turn [Jh]
+eddydonc54 bets 275
+besac025 calls 275
+--- Dealing river [Tc]
+eddydonc54 checks
+besac025 checks
+---
+Summary:
+Main pot: 1100 won by eddydonc54 (1100)
+Rake taken: €0
+Seat 4: eddydonc54 (2295), net: +625, [As, Ad] (PAIR ACE)
+Seat 5: JOB13200 (4120), net: -50
+Seat 6: Calebute (1585)
+Seat 7: Onemax (2575)
+Seat 8: besac025 (3890), net: -475
+Seat 9: PascalN (1545), net: -50
+Seat 10: LELENSOIS (1110)
+Seat 1: quick71 (5225), net: -50
+Seat 2: bibzah2727 (1775)
+Seat 3: TFOUTOOA (2165)
+***** End of hand T5-17701176-13 *****
+***** History for hand T5-17701176-14 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:48:53 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 4
+Players in round: 10
+Seat 5: JOB13200 (4120)
+Seat 6: Calebute (1585)
+Seat 7: Onemax (2575)
+Seat 8: besac025 (3890)
+Seat 9: PascalN (1545)
+Seat 10: LELENSOIS (1110)
+Seat 1: quick71 (5225)
+Seat 2: bibzah2727 (1775)
+Seat 3: TFOUTOOA (2165)
+Seat 4: eddydonc54 (2295)
+JOB13200 posts small blind (25)
+Calebute posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [Js, Tc]
+Onemax folds
+besac025 folds
+PascalN calls 50
+LELENSOIS folds
+quick71 folds
+bibzah2727 calls 50
+TFOUTOOA folds
+eddydonc54 calls 50
+JOB13200 folds
+Calebute checks
+--- Dealing flop [5d, Td, Jd]
+Calebute checks
+PascalN bets 250
+bibzah2727 folds
+eddydonc54 folds
+Calebute folds
+---
+Summary:
+Main pot: 225 won by PascalN (225)
+Rake taken: €0
+Seat 5: JOB13200 (4095), net: -25
+Seat 6: Calebute (1535), net: -50
+Seat 7: Onemax (2575)
+Seat 8: besac025 (3890)
+Seat 9: PascalN (1720), net: +175
+Seat 10: LELENSOIS (1110)
+Seat 1: quick71 (5225)
+Seat 2: bibzah2727 (1725), net: -50
+Seat 3: TFOUTOOA (2165)
+Seat 4: eddydonc54 (2245), net: -50
+***** End of hand T5-17701176-14 *****
+***** History for hand T5-17701176-15 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:49:45 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 5
+Players in round: 10
+Seat 6: Calebute (1535)
+Seat 7: Onemax (2575)
+Seat 8: besac025 (3890)
+Seat 9: PascalN (1720)
+Seat 10: LELENSOIS (1110)
+Seat 1: quick71 (5225)
+Seat 2: bibzah2727 (1725)
+Seat 3: TFOUTOOA (2165)
+Seat 4: eddydonc54 (2245)
+Seat 5: JOB13200 (4095)
+Calebute posts small blind (25)
+Onemax posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [Jh, Jc]
+besac025 raises 250 to 250
+PascalN folds
+LELENSOIS raises 1110 to 1110 [all in]
+quick71 folds
+bibzah2727 folds
+TFOUTOOA folds
+eddydonc54 folds
+JOB13200 calls 1110
+Calebute folds
+Onemax folds
+besac025 calls 860
+--- Dealing flop [Ah, 9h, 8s]
+besac025 checks
+JOB13200 bets 2985 [all in]
+besac025 folds
+--- Dealing flop [Ah, 9h, 8s]
+--- Dealing turn [As]
+--- Dealing river [Ad]
+---
+Summary:
+Main pot: 3405 won by JOB13200 (3405)
+Rake taken: €0
+Seat 6: Calebute (1510), net: -25
+Seat 7: Onemax (2525), net: -50
+Seat 8: besac025 (2780), net: -1110
+Seat 9: PascalN (1720)
+Seat 10: LELENSOIS (0), net: -1110, [Js, Qh] (THREE_OF_A_KIND ACE)
+Seat 1: quick71 (5225)
+Seat 2: bibzah2727 (1725)
+Seat 3: TFOUTOOA (2165)
+Seat 4: eddydonc54 (2245)
+Seat 5: JOB13200 (6390), net: +2295, [7s, Ac] (FOUR_OF_A_KIND ACE)
+***** End of hand T5-17701176-15 *****
+***** History for hand T5-17701176-16 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:50:37 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 6
+Players in round: 9
+Seat 7: Onemax (2525)
+Seat 8: besac025 (2780)
+Seat 9: PascalN (1720)
+Seat 1: quick71 (5225)
+Seat 2: bibzah2727 (1725)
+Seat 3: TFOUTOOA (2165)
+Seat 4: eddydonc54 (2245)
+Seat 5: JOB13200 (6390)
+Seat 6: Calebute (1510)
+Onemax posts small blind (25)
+besac025 posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [As, 2s]
+PascalN calls 50
+quick71 folds
+bibzah2727 calls 50
+TFOUTOOA folds
+eddydonc54 folds
+JOB13200 folds
+Calebute calls 50
+Onemax calls 25
+besac025 checks
+--- Dealing flop [2h, 7d, Tc]
+Onemax checks
+besac025 checks
+PascalN checks
+bibzah2727 bets 50
+Calebute raises 100 to 100
+Onemax folds
+besac025 folds
+PascalN folds
+bibzah2727 calls 50
+--- Dealing turn [8s]
+bibzah2727 bets 50
+Calebute calls 50
+--- Dealing river [5s]
+bibzah2727 bets 50
+Calebute calls 50
+---
+Summary:
+Main pot: 650 won by Calebute (650)
+Rake taken: €0
+Seat 7: Onemax (2475), net: -50
+Seat 8: besac025 (2730), net: -50
+Seat 9: PascalN (1670), net: -50
+Seat 1: quick71 (5225)
+Seat 2: bibzah2727 (1475), net: -250, [9s, 8h] (PAIR EIGHT)
+Seat 3: TFOUTOOA (2165)
+Seat 4: eddydonc54 (2245)
+Seat 5: JOB13200 (6390)
+Seat 6: Calebute (1910), net: +400, [Td, Qs] (PAIR TEN)
+***** End of hand T5-17701176-16 *****
+***** History for hand T5-17701176-17 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:52:02 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 7
+Players in round: 10
+Seat 8: besac025 (2730)
+Seat 9: PascalN (1670)
+Seat 10: mandora (3415)
+Seat 1: quick71 (5225)
+Seat 2: bibzah2727 (1475)
+Seat 3: TFOUTOOA (2165)
+Seat 4: eddydonc54 (2245)
+Seat 5: JOB13200 (6390)
+Seat 6: Calebute (1910)
+Seat 7: Onemax (2475)
+besac025 posts small blind (25)
+PascalN posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [8s, 4c]
+mandora folds
+quick71 raises 350 to 350
+bibzah2727 folds
+TFOUTOOA folds
+eddydonc54 folds
+JOB13200 folds
+Calebute folds
+Onemax folds
+besac025 folds
+PascalN folds
+---
+Summary:
+Main pot: 125 won by quick71 (125)
+Rake taken: €0
+Seat 8: besac025 (2705), net: -25
+Seat 9: PascalN (1620), net: -50
+Seat 10: mandora (3415)
+Seat 1: quick71 (5300), net: +75
+Seat 2: bibzah2727 (1475)
+Seat 3: TFOUTOOA (2165)
+Seat 4: eddydonc54 (2245)
+Seat 5: JOB13200 (6390)
+Seat 6: Calebute (1910)
+Seat 7: Onemax (2475)
+***** End of hand T5-17701176-17 *****
+***** History for hand T5-17701176-18 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:52:41 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 8
+Players in round: 10
+Seat 9: PascalN (1620)
+Seat 10: mandora (3415)
+Seat 1: quick71 (5300)
+Seat 2: bibzah2727 (1475)
+Seat 3: TFOUTOOA (2165)
+Seat 4: eddydonc54 (2245)
+Seat 5: JOB13200 (6390)
+Seat 6: Calebute (1910)
+Seat 7: Onemax (2475)
+Seat 8: besac025 (2705)
+PascalN posts small blind (40)
+mandora posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [4d, Ac]
+quick71 calls 80
+bibzah2727 folds
+TFOUTOOA folds
+eddydonc54 folds
+JOB13200 folds
+Calebute folds
+Onemax folds
+besac025 calls 80
+PascalN calls 40
+mandora checks
+--- Dealing flop [7d, 9h, 3d]
+PascalN bets 80
+mandora calls 80
+quick71 calls 80
+besac025 folds
+--- Dealing turn [2c]
+PascalN checks
+mandora checks
+quick71 bets 200
+PascalN calls 200
+mandora folds
+--- Dealing river [Jd]
+PascalN checks
+quick71 checks
+---
+Summary:
+Main pot: 960 won by PascalN (960)
+Rake taken: €0
+Seat 9: PascalN (2220), net: +600, [2d, 5d] (FLUSH JACK)
+Seat 10: mandora (3255), net: -160
+Seat 1: quick71 (4940), net: -360
+Seat 2: bibzah2727 (1475)
+Seat 3: TFOUTOOA (2165)
+Seat 4: eddydonc54 (2245)
+Seat 5: JOB13200 (6390)
+Seat 6: Calebute (1910)
+Seat 7: Onemax (2475)
+Seat 8: besac025 (2625), net: -80
+***** End of hand T5-17701176-18 *****
+***** History for hand T5-17701176-19 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:54:08 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 9
+Players in round: 10
+Seat 10: mandora (3255)
+Seat 1: quick71 (4940)
+Seat 2: bibzah2727 (1475)
+Seat 3: TFOUTOOA (2165)
+Seat 4: eddydonc54 (2245)
+Seat 5: JOB13200 (6390)
+Seat 6: Calebute (1910)
+Seat 7: Onemax (2475)
+Seat 8: besac025 (2625)
+Seat 9: PascalN (2220)
+mandora posts small blind (40)
+quick71 posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [As, 5c]
+bibzah2727 calls 80
+TFOUTOOA folds
+eddydonc54 folds
+JOB13200 folds
+Calebute folds
+Onemax folds
+besac025 folds
+PascalN calls 80
+mandora calls 40
+quick71 checks
+--- Dealing flop [7s, Kd, 9h]
+mandora checks
+quick71 bets 120
+bibzah2727 calls 120
+PascalN calls 120
+mandora folds
+--- Dealing turn [8h]
+quick71 bets 120
+bibzah2727 calls 120
+PascalN calls 120
+--- Dealing river [2s]
+quick71 checks
+bibzah2727 bets 1155 [all in]
+PascalN folds
+quick71 folds
+---
+Summary:
+Main pot: 1040 won by bibzah2727 (1040)
+Rake taken: €0
+Seat 10: mandora (3175), net: -80
+Seat 1: quick71 (4620), net: -320
+Seat 2: bibzah2727 (2195), net: +720
+Seat 3: TFOUTOOA (2165)
+Seat 4: eddydonc54 (2245)
+Seat 5: JOB13200 (6390)
+Seat 6: Calebute (1910)
+Seat 7: Onemax (2475)
+Seat 8: besac025 (2625)
+Seat 9: PascalN (1900), net: -320
+***** End of hand T5-17701176-19 *****
+***** History for hand T5-17701176-20 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:55:32 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 10
+Players in round: 10
+Seat 1: quick71 (4620)
+Seat 2: bibzah2727 (2195)
+Seat 3: TFOUTOOA (2165)
+Seat 4: eddydonc54 (2245)
+Seat 5: JOB13200 (6390)
+Seat 6: Calebute (1910)
+Seat 7: Onemax (2475)
+Seat 8: besac025 (2625)
+Seat 9: PascalN (1900)
+Seat 10: mandora (3175)
+quick71 posts small blind (40)
+bibzah2727 posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [7c, 4h]
+TFOUTOOA folds
+eddydonc54 raises 160 to 160
+JOB13200 folds
+Calebute folds
+Onemax folds
+besac025 folds
+PascalN calls 160
+mandora calls 160
+quick71 folds
+bibzah2727 calls 80
+--- Dealing flop [Qh, 3c, Kd]
+bibzah2727 checks
+eddydonc54 bets 680
+PascalN folds
+mandora folds
+bibzah2727 folds
+---
+Summary:
+Main pot: 680 won by eddydonc54 (680)
+Rake taken: €0
+Seat 1: quick71 (4580), net: -40
+Seat 2: bibzah2727 (2035), net: -160
+Seat 3: TFOUTOOA (2165)
+Seat 4: eddydonc54 (2765), net: +520
+Seat 5: JOB13200 (6390)
+Seat 6: Calebute (1910)
+Seat 7: Onemax (2475)
+Seat 8: besac025 (2625)
+Seat 9: PascalN (1740), net: -160
+Seat 10: mandora (3015), net: -160
+***** End of hand T5-17701176-20 *****
+***** History for hand T5-17701176-21 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:56:53 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 1
+Players in round: 10
+Seat 2: bibzah2727 (2035)
+Seat 3: TFOUTOOA (2165)
+Seat 4: eddydonc54 (2765)
+Seat 5: JOB13200 (6390)
+Seat 6: Calebute (1910)
+Seat 7: Onemax (2475)
+Seat 8: besac025 (2625)
+Seat 9: PascalN (1740)
+Seat 10: mandora (3015)
+Seat 1: quick71 (4580)
+bibzah2727 posts small blind (40)
+TFOUTOOA posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [Qs, 6d]
+eddydonc54 folds
+JOB13200 folds
+Calebute raises 160 to 160
+Onemax raises 475 to 475
+besac025 folds
+PascalN folds
+mandora folds
+quick71 folds
+bibzah2727 folds
+TFOUTOOA folds
+Calebute folds
+---
+Summary:
+Main pot: 440 won by Onemax (440)
+Rake taken: €0
+Seat 2: bibzah2727 (1995), net: -40
+Seat 3: TFOUTOOA (2085), net: -80
+Seat 4: eddydonc54 (2765)
+Seat 5: JOB13200 (6390)
+Seat 6: Calebute (1750), net: -160
+Seat 7: Onemax (2755), net: +280
+Seat 8: besac025 (2625)
+Seat 9: PascalN (1740)
+Seat 10: mandora (3015)
+Seat 1: quick71 (4580)
+***** End of hand T5-17701176-21 *****
+***** History for hand T5-17701176-22 (TOURNAMENT: "Freeroll [€100 offerts]", R-169-510, buy-in: €0) *****
+Start hand: Mon Dec 27 09:57:37 GMT+0100 2010
+Table: Table #13 [17701176] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 2
+Players in round: 10
+Seat 3: TFOUTOOA (2085)
+Seat 4: eddydonc54 (2765)
+Seat 5: JOB13200 (6390)
+Seat 6: Calebute (1750)
+Seat 7: Onemax (2755)
+Seat 8: besac025 (2625)
+Seat 9: PascalN (1740)
+Seat 10: mandora (3015)
+Seat 1: quick71 (4580)
+Seat 2: bibzah2727 (1995)
+TFOUTOOA posts small blind (40)
+eddydonc54 posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [Qd, 8d]
+JOB13200 folds
+Calebute folds
+Onemax folds
+besac025 calls 80
+PascalN folds
+mandora folds
+quick71 calls 80
+bibzah2727 folds
+TFOUTOOA calls 40
+eddydonc54 checks
+--- Dealing flop [3h, 8c, 4d]
+TFOUTOOA checks
+eddydonc54 bets 320
+besac025 raises 640 to 640
+quick71 folds
+TFOUTOOA folds
+eddydonc54 raises 1520 to 1840
+besac025 raises 1905 to 2545 [all in]
+eddydonc54 calls 705
+--- Dealing flop [3h, 8c, 4d]
+--- Dealing turn [Js]
+--- Dealing river [Ad]
+---
+Summary:
+Main pot: 5410 won by eddydonc54 (5410)
+Rake taken: €0
+Seat 3: TFOUTOOA (2005), net: -80
+Seat 4: eddydonc54 (5550), net: +2785, [8h, Jc] (TWO_PAIR JACK, EIGHT)
+Seat 5: JOB13200 (6390)
+Seat 6: Calebute (1750)
+Seat 7: Onemax (2755)
+Seat 8: besac025 (0), net: -2625, [Qd, 8d] (PAIR EIGHT)
+Seat 9: PascalN (1740)
+Seat 10: mandora (3015)
+Seat 1: quick71 (4500), net: -80
+Seat 2: bibzah2727 (1995)
+***** End of hand T5-17701176-22 *****

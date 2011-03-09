@@ -1,0 +1,1913 @@
+***** History for hand T5-17781999-1 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:28:36 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 4
+Players in round: 10
+Seat 5: ZZZZZ (1500)
+Seat 6: thyann12 (1500)
+Seat 7: Eiizan13 (1500)
+Seat 8: lavalise13 (1500)
+Seat 9: mopper (1500)
+Seat 10: kingdude (1500)
+Seat 1: berna27 (1500)
+Seat 2: Vitola29 (1500)
+Seat 3: besac025 (1500)
+Seat 4: HRBATYK (1500)
+ZZZZZ posts small blind (10)
+thyann12 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [6c, 3d]
+Eiizan13 raises 50 to 50
+lavalise13 folds
+mopper raises 180 to 180
+kingdude folds
+berna27 folds
+Vitola29 folds
+besac025 folds
+HRBATYK calls 180
+ZZZZZ folds
+thyann12 raises 1480 to 1500 [all in]
+Eiizan13 calls 1450 [all in]
+mopper calls 1320 [all in]
+HRBATYK calls 1320 [all in]
+--- 
+--- Dealing flop [Ad, Js, 2c]
+--- Dealing turn [Jd]
+--- Dealing river [4s]
+---
+Summary:
+Main pot: 6010 won by Eiizan13 (6010)
+Rake taken: €0
+Seat 5: ZZZZZ (1490), net: -10
+Seat 6: thyann12 (0), net: -1500, [Jc, Qd] (THREE_OF_A_KIND JACK)
+Seat 7: Eiizan13 (6010), net: +4510, [2h, 2s] (FULL_HOUSE TWO, JACK)
+Seat 8: lavalise13 (1500)
+Seat 9: mopper (0), net: -1500, [Td, Ah] (TWO_PAIR ACE, JACK)
+Seat 10: kingdude (1500)
+Seat 1: berna27 (1500)
+Seat 2: Vitola29 (1500)
+Seat 3: besac025 (1500)
+Seat 4: HRBATYK (0), net: -1500, [7c, Ts] (PAIR JACK)
+***** End of hand T5-17781999-1 *****
+***** History for hand T5-17781999-2 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:30:37 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 5
+Players in round: 7
+Seat 7: Eiizan13 (6010)
+Seat 8: lavalise13 (1500)
+Seat 10: kingdude (1500)
+Seat 1: berna27 (1500)
+Seat 2: Vitola29 (1500)
+Seat 3: besac025 (1500)
+Seat 5: ZZZZZ (1490)
+Eiizan13 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [7h, 3d]
+lavalise13 folds
+kingdude calls 20
+berna27 calls 20
+Vitola29 folds
+besac025 folds
+ZZZZZ folds
+Eiizan13 checks
+--- Dealing flop [9d, Th, 3h]
+Eiizan13 checks
+kingdude checks
+berna27 checks
+--- Dealing turn [6h]
+Eiizan13 checks
+kingdude checks
+berna27 checks
+--- Dealing river [4c]
+Eiizan13 checks
+kingdude bets 100
+berna27 folds
+Eiizan13 folds
+---
+Summary:
+Main pot: 60 won by kingdude (60)
+Rake taken: €0
+Seat 7: Eiizan13 (5990), net: -20
+Seat 8: lavalise13 (1500)
+Seat 10: kingdude (1540), net: +40
+Seat 1: berna27 (1480), net: -20
+Seat 2: Vitola29 (1500)
+Seat 3: besac025 (1500)
+Seat 5: ZZZZZ (1490)
+***** End of hand T5-17781999-2 *****
+***** History for hand T5-17781999-3 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:31:50 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 6
+Players in round: 9
+Seat 7: Eiizan13 (5990)
+Seat 8: lavalise13 (1500)
+Seat 9: VEGAS80 (1500)
+Seat 10: kingdude (1540)
+Seat 1: berna27 (1480)
+Seat 2: Vitola29 (1500)
+Seat 3: besac025 (1500)
+Seat 4: moumoune (1500)
+Seat 5: ZZZZZ (1490)
+Eiizan13 posts small blind (10)
+lavalise13 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [4s, 2s]
+VEGAS80 calls 20
+kingdude calls 20
+berna27 calls 20
+Vitola29 folds
+besac025 folds
+moumoune folds
+ZZZZZ calls 20
+Eiizan13 raises 30 to 40
+lavalise13 folds
+VEGAS80 calls 20
+kingdude calls 20
+berna27 calls 20
+ZZZZZ calls 20
+--- Dealing flop [9d, 6h, Jd]
+Eiizan13 bets 50
+VEGAS80 calls 50
+kingdude calls 50
+berna27 calls 50
+ZZZZZ calls 50
+--- Dealing turn [3c]
+Eiizan13 bets 470
+VEGAS80 folds
+kingdude folds
+berna27 folds
+ZZZZZ folds
+---
+Summary:
+Main pot: 470 won by Eiizan13 (470)
+Rake taken: €0
+Seat 7: Eiizan13 (6370), net: +380
+Seat 8: lavalise13 (1480), net: -20
+Seat 9: VEGAS80 (1410), net: -90
+Seat 10: kingdude (1450), net: -90
+Seat 1: berna27 (1390), net: -90
+Seat 2: Vitola29 (1500)
+Seat 3: besac025 (1500)
+Seat 4: moumoune (1500)
+Seat 5: ZZZZZ (1400), net: -90
+***** End of hand T5-17781999-3 *****
+***** History for hand T5-17781999-4 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:33:32 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 7
+Players in round: 10
+Seat 8: lavalise13 (1480)
+Seat 9: VEGAS80 (1410)
+Seat 10: kingdude (1450)
+Seat 1: berna27 (1390)
+Seat 2: Vitola29 (1500)
+Seat 3: besac025 (1500)
+Seat 4: moumoune (1500)
+Seat 5: ZZZZZ (1400)
+Seat 6: SeismicsWave (1500)
+Seat 7: Eiizan13 (6370)
+lavalise13 posts small blind (10)
+VEGAS80 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [Qh, 6d]
+kingdude calls 20
+berna27 folds
+Vitola29 folds
+besac025 folds
+moumoune raises 1500 to 1500 [all in]
+ZZZZZ folds
+SeismicsWave folds
+Eiizan13 folds
+lavalise13 folds
+VEGAS80 folds
+kingdude calls 1430 [all in]
+--- 
+--- Dealing flop [9s, Ad, 8d]
+--- Dealing turn [Kh]
+--- Dealing river [7c]
+---
+Summary:
+Main pot: 2930 won by moumoune (2930)
+Rake taken: €0
+Seat 8: lavalise13 (1470), net: -10
+Seat 9: VEGAS80 (1390), net: -20
+Seat 10: kingdude (0), net: -1450, [Th, Ts] (PAIR TEN)
+Seat 1: berna27 (1390)
+Seat 2: Vitola29 (1500)
+Seat 3: besac025 (1500)
+Seat 4: moumoune (2980), net: +1480, [Qs, Qc] (PAIR QUEEN)
+Seat 5: ZZZZZ (1400)
+Seat 6: SeismicsWave (1500)
+Seat 7: Eiizan13 (6370)
+***** End of hand T5-17781999-4 *****
+***** History for hand T5-17781999-5 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:34:19 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 8
+Players in round: 9
+Seat 9: VEGAS80 (1390)
+Seat 1: berna27 (1390)
+Seat 2: Vitola29 (1500)
+Seat 3: besac025 (1500)
+Seat 4: moumoune (2980)
+Seat 5: ZZZZZ (1400)
+Seat 6: SeismicsWave (1500)
+Seat 7: Eiizan13 (6370)
+Seat 8: lavalise13 (1470)
+VEGAS80 posts small blind (10)
+berna27 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [7c, Kh]
+Vitola29 folds
+besac025 folds
+moumoune folds
+ZZZZZ folds
+SeismicsWave folds
+Eiizan13 folds
+lavalise13 folds
+VEGAS80 calls 10
+berna27 checks
+--- Dealing flop [4d, 9c, Jh]
+VEGAS80 checks
+berna27 bets 20
+VEGAS80 calls 20
+--- Dealing turn [2s]
+VEGAS80 checks
+berna27 bets 20
+VEGAS80 calls 20
+--- Dealing river [As]
+VEGAS80 checks
+berna27 bets 125
+VEGAS80 folds
+---
+Summary:
+Main pot: 120 won by berna27 (120)
+Rake taken: €0
+Seat 9: VEGAS80 (1330), net: -60
+Seat 1: berna27 (1450), net: +60
+Seat 2: Vitola29 (1500)
+Seat 3: besac025 (1500)
+Seat 4: moumoune (2980)
+Seat 5: ZZZZZ (1400)
+Seat 6: SeismicsWave (1500)
+Seat 7: Eiizan13 (6370)
+Seat 8: lavalise13 (1470)
+***** End of hand T5-17781999-5 *****
+***** History for hand T5-17781999-6 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:35:04 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 9
+Players in round: 9
+Seat 1: berna27 (1450)
+Seat 2: Vitola29 (1500)
+Seat 3: besac025 (1500)
+Seat 4: moumoune (2980)
+Seat 5: ZZZZZ (1400)
+Seat 6: SeismicsWave (1500)
+Seat 7: Eiizan13 (6370)
+Seat 8: lavalise13 (1470)
+Seat 9: VEGAS80 (1330)
+berna27 posts small blind (15)
+Vitola29 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [3h, 4d]
+besac025 folds
+moumoune calls 30
+ZZZZZ calls 30
+SeismicsWave folds
+Eiizan13 raises 60 to 60
+lavalise13 folds
+VEGAS80 raises 1330 to 1330 [all in]
+berna27 folds
+Vitola29 folds
+moumoune folds
+ZZZZZ folds
+Eiizan13 calls 1270
+--- 
+--- Dealing flop [3d, Th, Js]
+--- Dealing turn [Jh]
+--- Dealing river [Ts]
+---
+Summary:
+Main pot: 2765 won by Eiizan13 (1383), VEGAS80 (1382)
+Rake taken: €0
+Seat 1: berna27 (1435), net: -15
+Seat 2: Vitola29 (1470), net: -30
+Seat 3: besac025 (1500)
+Seat 4: moumoune (2950), net: -30
+Seat 5: ZZZZZ (1370), net: -30
+Seat 6: SeismicsWave (1500)
+Seat 7: Eiizan13 (6423), net: +53, [8c, Ac] (TWO_PAIR JACK, TEN)
+Seat 8: lavalise13 (1470)
+Seat 9: VEGAS80 (1382), net: +52, [6h, Ah] (TWO_PAIR JACK, TEN)
+***** End of hand T5-17781999-6 *****
+***** History for hand T5-17781999-7 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:35:56 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 1
+Players in round: 10
+Seat 2: Vitola29 (1470)
+Seat 3: besac025 (1500)
+Seat 4: moumoune (2950)
+Seat 5: ZZZZZ (1370)
+Seat 6: SeismicsWave (1500)
+Seat 7: Eiizan13 (6423)
+Seat 8: lavalise13 (1470)
+Seat 9: VEGAS80 (1382)
+Seat 10: Loren1 (1500)
+Seat 1: berna27 (1435)
+Vitola29 posts small blind (15)
+besac025 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [8h, Ad]
+moumoune folds
+ZZZZZ calls 30
+SeismicsWave folds
+Eiizan13 raises 60 to 60
+lavalise13 folds
+VEGAS80 calls 60
+Loren1 calls 60
+berna27 folds
+Vitola29 folds
+besac025 calls 30
+ZZZZZ calls 30
+--- Dealing flop [4c, 9d, Kd]
+besac025 checks
+ZZZZZ checks
+Eiizan13 bets 30
+VEGAS80 folds
+Loren1 calls 30
+besac025 calls 30
+ZZZZZ folds
+--- Dealing turn [Js]
+besac025 checks
+Eiizan13 bets 30
+Loren1 calls 30
+besac025 folds
+--- Dealing river [3d]
+Eiizan13 bets 150
+Loren1 folds
+---
+Summary:
+Main pot: 465 won by Eiizan13 (465)
+Rake taken: €0
+Seat 2: Vitola29 (1455), net: -15
+Seat 3: besac025 (1410), net: -90
+Seat 4: moumoune (2950)
+Seat 5: ZZZZZ (1310), net: -60
+Seat 6: SeismicsWave (1500)
+Seat 7: Eiizan13 (6768), net: +345
+Seat 8: lavalise13 (1470)
+Seat 9: VEGAS80 (1322), net: -60
+Seat 10: Loren1 (1380), net: -120
+Seat 1: berna27 (1435)
+***** End of hand T5-17781999-7 *****
+***** History for hand T5-17781999-8 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:37:31 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 2
+Players in round: 10
+Seat 3: besac025 (1410)
+Seat 4: moumoune (2950)
+Seat 5: ZZZZZ (1310)
+Seat 6: SeismicsWave (1500)
+Seat 7: Eiizan13 (6768)
+Seat 8: lavalise13 (1470)
+Seat 9: VEGAS80 (1322)
+Seat 10: Loren1 (1380)
+Seat 1: berna27 (1435)
+Seat 2: Vitola29 (1455)
+besac025 posts small blind (15)
+moumoune posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [Qd, 8c]
+ZZZZZ folds
+SeismicsWave folds
+Eiizan13 folds
+lavalise13 folds
+VEGAS80 calls 30
+Loren1 calls 30
+berna27 folds
+Vitola29 calls 30
+besac025 calls 15
+moumoune checks
+--- Dealing flop [As, 8h, 5d]
+besac025 checks
+moumoune checks
+VEGAS80 checks
+Loren1 checks
+Vitola29 checks
+--- Dealing turn [Kd]
+besac025 checks
+moumoune bets 75
+VEGAS80 folds
+Loren1 folds
+Vitola29 calls 75
+besac025 folds
+--- Dealing river [5s]
+moumoune bets 300
+Vitola29 calls 300
+---
+Summary:
+Main pot: 900 won by moumoune (900)
+Rake taken: €0
+Seat 3: besac025 (1380), net: -30
+Seat 4: moumoune (3445), net: +495, [Ac, 8d] (TWO_PAIR ACE, EIGHT)
+Seat 5: ZZZZZ (1310)
+Seat 6: SeismicsWave (1500)
+Seat 7: Eiizan13 (6768)
+Seat 8: lavalise13 (1470)
+Seat 9: VEGAS80 (1292), net: -30
+Seat 10: Loren1 (1350), net: -30
+Seat 1: berna27 (1435)
+Seat 2: Vitola29 (1050), net: -405
+***** End of hand T5-17781999-8 *****
+***** History for hand T5-17781999-9 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:39:39 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 3
+Players in round: 9
+Seat 4: moumoune (3445)
+Seat 5: ZZZZZ (1310)
+Seat 6: SeismicsWave (1500)
+Seat 7: Eiizan13 (6768)
+Seat 8: lavalise13 (1470)
+Seat 10: Loren1 (1350)
+Seat 1: berna27 (1435)
+Seat 2: Vitola29 (1050)
+Seat 3: besac025 (1380)
+moumoune posts small blind (15)
+ZZZZZ posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [Tc, Ks]
+SeismicsWave folds
+Eiizan13 calls 30
+lavalise13 folds
+Loren1 calls 30
+berna27 calls 30
+Vitola29 calls 30
+besac025 calls 30
+moumoune calls 15
+ZZZZZ checks
+--- Dealing flop [Kh, 9h, Kc]
+moumoune checks
+ZZZZZ checks
+Eiizan13 bets 30
+Loren1 folds
+berna27 calls 30
+Vitola29 folds
+besac025 calls 30
+moumoune folds
+ZZZZZ calls 30
+--- Dealing turn [4d]
+ZZZZZ checks
+Eiizan13 bets 330
+berna27 folds
+besac025 raises 660 to 660
+ZZZZZ folds
+Eiizan13 raises 1980 to 2310
+besac025 calls 660 [all in]
+--- Dealing turn [4d]
+--- Dealing river [Jd]
+---
+Summary:
+Main pot: 2970 won by besac025 (2970)
+Rake taken: €0
+Seat 4: moumoune (3415), net: -30
+Seat 5: ZZZZZ (1250), net: -60
+Seat 6: SeismicsWave (1500)
+Seat 7: Eiizan13 (5388), net: -1380, [9d, Ac] (TWO_PAIR KING, NINE)
+Seat 8: lavalise13 (1470)
+Seat 10: Loren1 (1320), net: -30
+Seat 1: berna27 (1375), net: -60
+Seat 2: Vitola29 (1020), net: -30
+Seat 3: besac025 (2970), net: +1590, [Tc, Ks] (THREE_OF_A_KIND KING)
+***** End of hand T5-17781999-9 *****
+***** History for hand T5-17781999-10 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:41:44 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 4
+Players in round: 10
+Seat 5: ZZZZZ (1250)
+Seat 6: SeismicsWave (1500)
+Seat 7: Eiizan13 (5388)
+Seat 8: lavalise13 (1470)
+Seat 9: LAROG62 (4410)
+Seat 10: Loren1 (1320)
+Seat 1: berna27 (1375)
+Seat 2: Vitola29 (1020)
+Seat 3: besac025 (2970)
+Seat 4: moumoune (3415)
+ZZZZZ posts small blind (25)
+SeismicsWave posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [Kc, Qd]
+Eiizan13 folds
+lavalise13 folds
+LAROG62 calls 50
+Loren1 folds
+berna27 calls 50
+Vitola29 folds
+besac025 calls 50
+moumoune folds
+ZZZZZ calls 25
+SeismicsWave checks
+--- Dealing flop [6h, 9c, 2c]
+ZZZZZ checks
+SeismicsWave checks
+LAROG62 checks
+berna27 bets 50
+besac025 calls 50
+ZZZZZ calls 50
+SeismicsWave folds
+LAROG62 calls 50
+--- Dealing turn [Jh]
+ZZZZZ bets 50
+LAROG62 folds
+berna27 calls 50
+besac025 calls 50
+--- Dealing river [6d]
+ZZZZZ bets 50
+berna27 folds
+besac025 folds
+---
+Summary:
+Main pot: 600 won by ZZZZZ (600)
+Rake taken: €0
+Seat 5: ZZZZZ (1700), net: +450
+Seat 6: SeismicsWave (1450), net: -50
+Seat 7: Eiizan13 (5388)
+Seat 8: lavalise13 (1470)
+Seat 9: LAROG62 (4310), net: -100
+Seat 10: Loren1 (1320)
+Seat 1: berna27 (1225), net: -150
+Seat 2: Vitola29 (1020)
+Seat 3: besac025 (2820), net: -150
+Seat 4: moumoune (3415)
+***** End of hand T5-17781999-10 *****
+***** History for hand T5-17781999-11 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:43:20 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 5
+Players in round: 10
+Seat 6: SeismicsWave (1450)
+Seat 7: Eiizan13 (5388)
+Seat 8: lavalise13 (1470)
+Seat 9: LAROG62 (4310)
+Seat 10: Loren1 (1320)
+Seat 1: berna27 (1225)
+Seat 2: Vitola29 (1020)
+Seat 3: besac025 (2820)
+Seat 4: moumoune (3415)
+Seat 5: ZZZZZ (1700)
+SeismicsWave posts small blind (25)
+Eiizan13 posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [4c, Jc]
+lavalise13 calls 50
+LAROG62 folds
+Loren1 calls 50
+berna27 calls 50
+Vitola29 folds
+besac025 folds
+moumoune raises 3415 to 3415 [all in]
+ZZZZZ folds
+SeismicsWave folds
+Eiizan13 raises 5338 to 5388 [all in]
+lavalise13 folds
+Loren1 folds
+berna27 folds
+--- 
+--- Dealing flop [3s, 7c, 4d]
+--- Dealing turn [Js]
+--- Dealing river [Qh]
+---
+Summary:
+Main pot: 7005 won by moumoune (7005)
+Rake taken: €0
+Seat 6: SeismicsWave (1425), net: -25
+Seat 7: Eiizan13 (1973), net: -3415, [8h, 8c] (PAIR EIGHT)
+Seat 8: lavalise13 (1420), net: -50
+Seat 9: LAROG62 (4310)
+Seat 10: Loren1 (1270), net: -50
+Seat 1: berna27 (1175), net: -50
+Seat 2: Vitola29 (1020)
+Seat 3: besac025 (2820)
+Seat 4: moumoune (7005), net: +3590, [Jd, Ac] (PAIR JACK)
+Seat 5: ZZZZZ (1700)
+***** End of hand T5-17781999-11 *****
+***** History for hand T5-17781999-12 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:44:26 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 6
+Players in round: 10
+Seat 7: Eiizan13 (1973)
+Seat 8: lavalise13 (1420)
+Seat 9: LAROG62 (4310)
+Seat 10: Loren1 (1270)
+Seat 1: berna27 (1175)
+Seat 2: Vitola29 (1020)
+Seat 3: besac025 (2820)
+Seat 4: moumoune (7005)
+Seat 5: ZZZZZ (1700)
+Seat 6: SeismicsWave (1425)
+Eiizan13 posts small blind (25)
+lavalise13 posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [Ks, 5s]
+LAROG62 calls 50
+Loren1 calls 50
+berna27 calls 50
+Vitola29 calls 50
+besac025 folds
+moumoune folds
+ZZZZZ folds
+SeismicsWave folds
+Eiizan13 calls 25
+lavalise13 checks
+--- Dealing flop [2d, 4h, 2h]
+Eiizan13 checks
+lavalise13 checks
+LAROG62 bets 50
+Loren1 calls 50
+berna27 folds
+Vitola29 folds
+Eiizan13 folds
+lavalise13 calls 50
+--- Dealing turn [5d]
+lavalise13 checks
+LAROG62 bets 50
+Loren1 folds
+lavalise13 calls 50
+--- Dealing river [Ad]
+lavalise13 bets 50
+LAROG62 folds
+---
+Summary:
+Main pot: 550 won by lavalise13 (550)
+Rake taken: €0
+Seat 7: Eiizan13 (1923), net: -50
+Seat 8: lavalise13 (1820), net: +400
+Seat 9: LAROG62 (4160), net: -150
+Seat 10: Loren1 (1170), net: -100
+Seat 1: berna27 (1125), net: -50
+Seat 2: Vitola29 (970), net: -50
+Seat 3: besac025 (2820)
+Seat 4: moumoune (7005)
+Seat 5: ZZZZZ (1700)
+Seat 6: SeismicsWave (1425)
+***** End of hand T5-17781999-12 *****
+***** History for hand T5-17781999-13 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:46:48 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 7
+Players in round: 10
+Seat 8: lavalise13 (1820)
+Seat 9: LAROG62 (4160)
+Seat 10: Loren1 (1170)
+Seat 1: berna27 (1125)
+Seat 2: Vitola29 (970)
+Seat 3: besac025 (2820)
+Seat 4: moumoune (7005)
+Seat 5: ZZZZZ (1700)
+Seat 6: SeismicsWave (1425)
+Seat 7: Eiizan13 (1923)
+lavalise13 posts small blind (40)
+LAROG62 posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [3h, Jc]
+Loren1 folds
+berna27 folds
+Vitola29 calls 80
+besac025 folds
+moumoune raises 400 to 400
+ZZZZZ folds
+SeismicsWave folds
+Eiizan13 raises 1923 to 1923 [all in]
+lavalise13 folds
+LAROG62 folds
+Vitola29 calls 890 [all in]
+moumoune calls 1523
+--- 
+--- Dealing flop [Ac, Kh, 5c]
+--- Dealing turn [Jd]
+--- Dealing river [Tc]
+---
+Summary:
+Main pot: 3030 won by moumoune (3030)
+Side pot 1: 1906 won by moumoune (1906)
+Rake taken: €0
+Seat 8: lavalise13 (1780), net: -40
+Seat 9: LAROG62 (4080), net: -80
+Seat 10: Loren1 (1170)
+Seat 1: berna27 (1125)
+Seat 2: Vitola29 (0), net: -970, [9d, Ad] (PAIR ACE)
+Seat 3: besac025 (2820)
+Seat 4: moumoune (10018), net: +3013, [Ts, Ks] (TWO_PAIR KING, TEN)
+Seat 5: ZZZZZ (1700)
+Seat 6: SeismicsWave (1425)
+Seat 7: Eiizan13 (0), net: -1923, [5d, Kd] (TWO_PAIR KING, FIVE)
+***** End of hand T5-17781999-13 *****
+***** History for hand T5-17781999-14 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:47:56 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 8
+Players in round: 8
+Seat 9: LAROG62 (4080)
+Seat 10: Loren1 (1170)
+Seat 1: berna27 (1125)
+Seat 3: besac025 (2820)
+Seat 4: moumoune (10018)
+Seat 5: ZZZZZ (1700)
+Seat 6: SeismicsWave (1425)
+Seat 8: lavalise13 (1780)
+LAROG62 posts small blind (40)
+Loren1 posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [Ks, Kd]
+berna27 calls 80
+besac025 raises 480 to 480
+moumoune folds
+ZZZZZ folds
+SeismicsWave folds
+lavalise13 folds
+LAROG62 folds
+Loren1 folds
+berna27 raises 1045 to 1125 [all in]
+besac025 calls 645
+--- 
+--- Dealing flop [Ac, 2d, Jc]
+--- Dealing turn [8d]
+--- Dealing river [8c]
+---
+Summary:
+Main pot: 2370 won by berna27 (2370)
+Rake taken: €0
+Seat 9: LAROG62 (4040), net: -40
+Seat 10: Loren1 (1090), net: -80
+Seat 1: berna27 (2370), net: +1245, [9c, Qc] (FLUSH ACE)
+Seat 3: besac025 (1695), net: -1125, [Ks, Kd] (TWO_PAIR KING, EIGHT)
+Seat 4: moumoune (10018)
+Seat 5: ZZZZZ (1700)
+Seat 6: SeismicsWave (1425)
+Seat 8: lavalise13 (1780)
+***** End of hand T5-17781999-14 *****
+***** History for hand T5-17781999-15 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:48:30 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 9
+Players in round: 10
+Seat 10: Loren1 (1090)
+Seat 1: berna27 (2370)
+Seat 2: john74 (4212)
+Seat 3: besac025 (1695)
+Seat 4: moumoune (10018)
+Seat 5: ZZZZZ (1700)
+Seat 6: SeismicsWave (1425)
+Seat 7: MAXO (2220)
+Seat 8: lavalise13 (1780)
+Seat 9: LAROG62 (4040)
+Loren1 posts small blind (40)
+berna27 posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [As, 9d]
+john74 calls 80
+besac025 raises 1695 to 1695 [all in]
+moumoune folds
+ZZZZZ folds
+SeismicsWave folds
+MAXO folds
+lavalise13 folds
+LAROG62 folds
+Loren1 folds
+berna27 folds
+john74 folds
+---
+Summary:
+Main pot: 280 won by besac025 (280)
+Rake taken: €0
+Seat 10: Loren1 (1050), net: -40
+Seat 1: berna27 (2290), net: -80
+Seat 2: john74 (4132), net: -80
+Seat 3: besac025 (1895), net: +200
+Seat 4: moumoune (10018)
+Seat 5: ZZZZZ (1700)
+Seat 6: SeismicsWave (1425)
+Seat 7: MAXO (2220)
+Seat 8: lavalise13 (1780)
+Seat 9: LAROG62 (4040)
+***** End of hand T5-17781999-15 *****
+***** History for hand T5-17781999-16 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:48:52 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 10
+Players in round: 10
+Seat 1: berna27 (2290)
+Seat 2: john74 (4132)
+Seat 3: besac025 (1895)
+Seat 4: moumoune (10018)
+Seat 5: ZZZZZ (1700)
+Seat 6: SeismicsWave (1425)
+Seat 7: MAXO (2220)
+Seat 8: lavalise13 (1780)
+Seat 9: LAROG62 (4040)
+Seat 10: Loren1 (1050)
+berna27 posts small blind (40)
+john74 posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [Qh, 5d]
+besac025 folds
+moumoune folds
+ZZZZZ folds
+SeismicsWave folds
+MAXO folds
+lavalise13 folds
+LAROG62 raises 240 to 240
+Loren1 folds
+berna27 calls 200
+john74 calls 160
+--- Dealing flop [Jc, 2s, 3h]
+berna27 checks
+john74 bets 80
+LAROG62 calls 80
+berna27 calls 80
+--- Dealing turn [2c]
+berna27 checks
+john74 bets 80
+LAROG62 calls 80
+berna27 folds
+--- Dealing river [7d]
+john74 checks
+LAROG62 bets 1120
+john74 folds
+---
+Summary:
+Main pot: 1120 won by LAROG62 (1120)
+Rake taken: €0
+Seat 1: berna27 (1970), net: -320
+Seat 2: john74 (3732), net: -400
+Seat 3: besac025 (1895)
+Seat 4: moumoune (10018)
+Seat 5: ZZZZZ (1700)
+Seat 6: SeismicsWave (1425)
+Seat 7: MAXO (2220)
+Seat 8: lavalise13 (1780)
+Seat 9: LAROG62 (4760), net: +720
+Seat 10: Loren1 (1050)
+***** End of hand T5-17781999-16 *****
+***** History for hand T5-17781999-17 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:49:42 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 1
+Players in round: 10
+Seat 2: john74 (3732)
+Seat 3: besac025 (1895)
+Seat 4: moumoune (10018)
+Seat 5: ZZZZZ (1700)
+Seat 6: SeismicsWave (1425)
+Seat 7: MAXO (2220)
+Seat 8: lavalise13 (1780)
+Seat 9: LAROG62 (4760)
+Seat 10: Loren1 (1050)
+Seat 1: berna27 (1970)
+john74 posts small blind (40)
+besac025 posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [6s, 7d]
+moumoune folds
+ZZZZZ folds
+SeismicsWave folds
+MAXO folds
+lavalise13 folds
+LAROG62 calls 80
+Loren1 folds
+berna27 folds
+john74 calls 40
+besac025 checks
+--- Dealing flop [Jc, Ks, 9h]
+john74 bets 80
+besac025 folds
+LAROG62 calls 80
+--- Dealing turn [Jh]
+john74 bets 80
+LAROG62 calls 80
+--- Dealing river [8h]
+john74 bets 80
+LAROG62 raises 800 to 800
+john74 calls 720
+---
+Summary:
+Main pot: 2160 won by LAROG62 (2160)
+Rake taken: €0
+Seat 2: john74 (2692), net: -1040
+Seat 3: besac025 (1815), net: -80
+Seat 4: moumoune (10018)
+Seat 5: ZZZZZ (1700)
+Seat 6: SeismicsWave (1425)
+Seat 7: MAXO (2220)
+Seat 8: lavalise13 (1780)
+Seat 9: LAROG62 (5880), net: +1120, [Ah, 7h] (FLUSH ACE)
+Seat 10: Loren1 (1050)
+Seat 1: berna27 (1970)
+***** End of hand T5-17781999-17 *****
+***** History for hand T5-17781999-18 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:50:55 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 2
+Players in round: 10
+Seat 3: besac025 (1815)
+Seat 4: moumoune (10018)
+Seat 5: ZZZZZ (1700)
+Seat 6: SeismicsWave (1425)
+Seat 7: MAXO (2220)
+Seat 8: lavalise13 (1780)
+Seat 9: LAROG62 (5880)
+Seat 10: Loren1 (1050)
+Seat 1: berna27 (1970)
+Seat 2: john74 (2692)
+besac025 posts small blind (40)
+moumoune posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [Ks, Qd]
+ZZZZZ calls 80
+SeismicsWave folds
+MAXO folds
+lavalise13 folds
+LAROG62 folds
+Loren1 calls 80
+berna27 calls 80
+john74 calls 80
+besac025 calls 40
+moumoune checks
+--- Dealing flop [Jd, 4s, 3h]
+besac025 checks
+moumoune checks
+ZZZZZ checks
+Loren1 checks
+berna27 checks
+john74 checks
+--- Dealing turn [Ad]
+besac025 checks
+moumoune checks
+ZZZZZ bets 80
+Loren1 calls 80
+berna27 calls 80
+john74 calls 80
+besac025 folds
+moumoune calls 80
+--- Dealing river [As]
+moumoune checks
+ZZZZZ bets 1540 [all in]
+Loren1 folds
+berna27 folds
+john74 folds
+moumoune folds
+---
+Summary:
+Main pot: 880 won by ZZZZZ (880)
+Rake taken: €0
+Seat 3: besac025 (1735), net: -80
+Seat 4: moumoune (9858), net: -160
+Seat 5: ZZZZZ (2420), net: +720
+Seat 6: SeismicsWave (1425)
+Seat 7: MAXO (2220)
+Seat 8: lavalise13 (1780)
+Seat 9: LAROG62 (5880)
+Seat 10: Loren1 (890), net: -160
+Seat 1: berna27 (1810), net: -160
+Seat 2: john74 (2532), net: -160
+***** End of hand T5-17781999-18 *****
+***** History for hand T5-17781999-19 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:53:03 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 60/120, TC)
+User: besac025
+Button: seat 3
+Players in round: 9
+Seat 4: moumoune (9858)
+Seat 5: ZZZZZ (2420)
+Seat 6: SeismicsWave (1425)
+Seat 8: lavalise13 (1780)
+Seat 9: LAROG62 (5880)
+Seat 10: Loren1 (890)
+Seat 1: berna27 (1810)
+Seat 2: john74 (2532)
+Seat 3: besac025 (1735)
+moumoune posts small blind (60)
+ZZZZZ posts big blind (120)
+---
+Dealing pocket cards
+Dealing to besac025: [Ts, 4h]
+SeismicsWave folds
+lavalise13 calls 120
+LAROG62 folds
+Loren1 folds
+berna27 folds
+john74 calls 120
+besac025 folds
+moumoune folds
+ZZZZZ checks
+--- Dealing flop [6h, 9c, 3s]
+ZZZZZ checks
+lavalise13 bets 420
+john74 folds
+ZZZZZ folds
+---
+Summary:
+Main pot: 420 won by lavalise13 (420)
+Rake taken: €0
+Seat 4: moumoune (9798), net: -60
+Seat 5: ZZZZZ (2300), net: -120
+Seat 6: SeismicsWave (1425)
+Seat 8: lavalise13 (2080), net: +300
+Seat 9: LAROG62 (5880)
+Seat 10: Loren1 (890)
+Seat 1: berna27 (1810)
+Seat 2: john74 (2412), net: -120
+Seat 3: besac025 (1735)
+***** End of hand T5-17781999-19 *****
+***** History for hand T5-17781999-20 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:54:26 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 60/120, TC)
+User: besac025
+Button: seat 4
+Players in round: 10
+Seat 5: ZZZZZ (2300)
+Seat 6: SeismicsWave (1425)
+Seat 7: mirthorn (6275)
+Seat 8: lavalise13 (2080)
+Seat 9: LAROG62 (5880)
+Seat 10: Loren1 (890)
+Seat 1: berna27 (1810)
+Seat 2: john74 (2412)
+Seat 3: besac025 (1735)
+Seat 4: moumoune (9798)
+ZZZZZ posts small blind (60)
+SeismicsWave posts big blind (120)
+---
+Dealing pocket cards
+Dealing to besac025: [9h, 7c]
+mirthorn folds
+lavalise13 folds
+LAROG62 calls 120
+Loren1 folds
+berna27 calls 120
+john74 calls 120
+besac025 folds
+moumoune calls 120
+ZZZZZ folds
+SeismicsWave checks
+--- Dealing flop [5h, 6c, Ah]
+SeismicsWave checks
+LAROG62 checks
+berna27 checks
+john74 checks
+moumoune checks
+--- Dealing turn [8h]
+SeismicsWave bets 120
+LAROG62 folds
+berna27 calls 120
+john74 calls 120
+moumoune folds
+--- Dealing river [Td]
+SeismicsWave bets 120
+berna27 calls 120
+john74 calls 120
+---
+Summary:
+Main pot: 1380 won by SeismicsWave (1380)
+Rake taken: €0
+Seat 5: ZZZZZ (2240), net: -60
+Seat 6: SeismicsWave (2445), net: +1020, [Tc, As] (TWO_PAIR ACE, TEN)
+Seat 7: mirthorn (6275)
+Seat 8: lavalise13 (2080)
+Seat 9: LAROG62 (5760), net: -120
+Seat 10: Loren1 (890)
+Seat 1: berna27 (1450), net: -360
+Seat 2: john74 (2052), net: -360
+Seat 3: besac025 (1735)
+Seat 4: moumoune (9678), net: -120
+***** End of hand T5-17781999-20 *****
+***** History for hand T5-17781999-21 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:56:07 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 60/120, TC)
+User: besac025
+Button: seat 5
+Players in round: 10
+Seat 6: SeismicsWave (2445)
+Seat 7: mirthorn (6275)
+Seat 8: lavalise13 (2080)
+Seat 9: LAROG62 (5760)
+Seat 10: Loren1 (890)
+Seat 1: berna27 (1450)
+Seat 2: john74 (2052)
+Seat 3: besac025 (1735)
+Seat 4: moumoune (9678)
+Seat 5: ZZZZZ (2240)
+SeismicsWave posts small blind (60)
+mirthorn posts big blind (120)
+---
+Dealing pocket cards
+Dealing to besac025: [Ks, 7h]
+lavalise13 folds
+LAROG62 folds
+Loren1 folds
+berna27 calls 120
+john74 calls 120
+besac025 folds
+moumoune raises 600 to 600
+ZZZZZ folds
+SeismicsWave folds
+mirthorn folds
+berna27 raises 1330 to 1450 [all in]
+john74 folds
+moumoune calls 850
+--- 
+--- Dealing flop [Qs, 9d, 5c]
+--- Dealing turn [Js]
+--- Dealing river [8s]
+---
+Summary:
+Main pot: 3200 won by berna27 (3200)
+Rake taken: €0
+Seat 6: SeismicsWave (2385), net: -60
+Seat 7: mirthorn (6155), net: -120
+Seat 8: lavalise13 (2080)
+Seat 9: LAROG62 (5760)
+Seat 10: Loren1 (890)
+Seat 1: berna27 (3200), net: +1750, [Qd, Ah] (PAIR QUEEN)
+Seat 2: john74 (1932), net: -120
+Seat 3: besac025 (1735)
+Seat 4: moumoune (8228), net: -1450, [Ac, 9s] (PAIR NINE)
+Seat 5: ZZZZZ (2240)
+***** End of hand T5-17781999-21 *****
+***** History for hand T5-17781999-22 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:57:18 GMT+0100 2010
+Table: Table #38 [17781999] (NO_LIMIT TEXAS_HOLDEM 60/120, TC)
+User: besac025
+Button: seat 6
+Players in round: 10
+Seat 7: mirthorn (6155)
+Seat 8: lavalise13 (2080)
+Seat 9: LAROG62 (5760)
+Seat 10: Loren1 (890)
+Seat 1: berna27 (3200)
+Seat 2: john74 (1932)
+Seat 3: besac025 (1735)
+Seat 4: moumoune (8228)
+Seat 5: ZZZZZ (2240)
+Seat 6: SeismicsWave (2385)
+mirthorn posts small blind (60)
+lavalise13 posts big blind (120)
+---
+Dealing pocket cards
+Dealing to besac025: [8h, 8s]
+LAROG62 folds
+Loren1 folds
+berna27 folds
+john74 raises 1932 to 1932 [all in]
+besac025 folds
+moumoune folds
+ZZZZZ calls 1932
+SeismicsWave folds
+mirthorn calls 1872
+lavalise13 folds
+--- Dealing flop [Js, As, 2d]
+mirthorn bets 4223 [all in]
+ZZZZZ calls 308 [all in]
+--- Dealing flop [Js, As, 2d]
+--- Dealing turn [3c]
+--- Dealing river [9s]
+---
+Summary:
+Main pot: 5916 won by ZZZZZ (5916)
+Side pot 1: 616 won by ZZZZZ (616)
+Rake taken: €0
+Seat 7: mirthorn (3915), net: -2240, [Ac, Tc] (PAIR ACE)
+Seat 8: lavalise13 (1960), net: -120
+Seat 9: LAROG62 (5760)
+Seat 10: Loren1 (890)
+Seat 1: berna27 (3200)
+Seat 2: john74 (0), net: -1932, [5h, 5d] (PAIR FIVE)
+Seat 3: besac025 (1735)
+Seat 4: moumoune (8228)
+Seat 5: ZZZZZ (6532), net: +4292, [Ah, Ks] (PAIR ACE)
+Seat 6: SeismicsWave (2385)
+***** End of hand T5-17781999-22 *****
+***** History for hand T5-17782010-29 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:59:12 GMT+0100 2010
+Table: Table #27 [17782010] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 7
+Players in round: 10
+Seat 8: FCB8 (2925)
+Seat 9: jultondu54 (6155)
+Seat 10: jerykn (2280)
+Seat 1: lozere48 (4180)
+Seat 2: besac025 (1735)
+Seat 3: storm7 (6220)
+Seat 4: FFab57 (775)
+Seat 5: KINGMISOBO (5330)
+Seat 6: josiane1962 (6415)
+Seat 7: granleon142 (2010)
+FCB8 posts small blind (80)
+jultondu54 posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [Tc, Js]
+jerykn folds
+lozere48 folds
+besac025 folds
+storm7 folds
+FFab57 folds
+KINGMISOBO folds
+josiane1962 folds
+granleon142 calls 160
+FCB8 folds
+jultondu54 checks
+--- Dealing flop [3s, 7d, 3d]
+jultondu54 checks
+granleon142 checks
+--- Dealing turn [As]
+jultondu54 checks
+granleon142 bets 400
+jultondu54 folds
+---
+Summary:
+Main pot: 400 won by granleon142 (400)
+Rake taken: €0
+Seat 8: FCB8 (2845), net: -80
+Seat 9: jultondu54 (5995), net: -160
+Seat 10: jerykn (2280)
+Seat 1: lozere48 (4180)
+Seat 2: besac025 (1735)
+Seat 3: storm7 (6220)
+Seat 4: FFab57 (775)
+Seat 5: KINGMISOBO (5330)
+Seat 6: josiane1962 (6415)
+Seat 7: granleon142 (2250), net: +240
+***** End of hand T5-17782010-29 *****
+***** History for hand T5-17782010-30 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 09:59:54 GMT+0100 2010
+Table: Table #27 [17782010] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 8
+Players in round: 10
+Seat 9: jultondu54 (5995)
+Seat 10: jerykn (2280)
+Seat 1: lozere48 (4180)
+Seat 2: besac025 (1735)
+Seat 3: storm7 (6220)
+Seat 4: FFab57 (775)
+Seat 5: KINGMISOBO (5330)
+Seat 6: josiane1962 (6415)
+Seat 7: granleon142 (2250)
+Seat 8: FCB8 (2845)
+jultondu54 posts small blind (80)
+jerykn posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [8d, Qs]
+lozere48 folds
+besac025 folds
+storm7 folds
+FFab57 calls 160
+KINGMISOBO folds
+josiane1962 folds
+granleon142 folds
+FCB8 calls 160
+jultondu54 calls 80
+jerykn checks
+--- Dealing flop [Kc, Ah, 2c]
+jultondu54 checks
+jerykn bets 2120 [all in]
+FFab57 folds
+FCB8 folds
+jultondu54 folds
+---
+Summary:
+Main pot: 640 won by jerykn (640)
+Rake taken: €0
+Seat 9: jultondu54 (5835), net: -160
+Seat 10: jerykn (2760), net: +480
+Seat 1: lozere48 (4180)
+Seat 2: besac025 (1735)
+Seat 3: storm7 (6220)
+Seat 4: FFab57 (615), net: -160
+Seat 5: KINGMISOBO (5330)
+Seat 6: josiane1962 (6415)
+Seat 7: granleon142 (2250)
+Seat 8: FCB8 (2685), net: -160
+***** End of hand T5-17782010-30 *****
+***** History for hand T5-17782010-31 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 10:00:47 GMT+0100 2010
+Table: Table #27 [17782010] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 9
+Players in round: 9
+Seat 10: jerykn (2760)
+Seat 1: lozere48 (4180)
+Seat 2: besac025 (1735)
+Seat 3: storm7 (6220)
+Seat 4: FFab57 (615)
+Seat 5: KINGMISOBO (5330)
+Seat 7: granleon142 (2250)
+Seat 8: FCB8 (2685)
+Seat 9: jultondu54 (5835)
+jerykn posts small blind (80)
+lozere48 posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [Tc, 8d]
+besac025 folds
+storm7 folds
+FFab57 raises 615 to 615 [all in]
+KINGMISOBO folds
+granleon142 folds
+FCB8 folds
+jultondu54 folds
+jerykn folds
+lozere48 folds
+---
+Summary:
+Main pot: 400 won by FFab57 (400)
+Rake taken: €0
+Seat 10: jerykn (2680), net: -80
+Seat 1: lozere48 (4020), net: -160
+Seat 2: besac025 (1735)
+Seat 3: storm7 (6220)
+Seat 4: FFab57 (855), net: +240
+Seat 5: KINGMISOBO (5330)
+Seat 7: granleon142 (2250)
+Seat 8: FCB8 (2685)
+Seat 9: jultondu54 (5835)
+***** End of hand T5-17782010-31 *****
+***** History for hand T5-17782010-32 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 10:01:06 GMT+0100 2010
+Table: Table #27 [17782010] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 10
+Players in round: 9
+Seat 1: lozere48 (4020)
+Seat 2: besac025 (1735)
+Seat 3: storm7 (6220)
+Seat 4: FFab57 (855)
+Seat 5: KINGMISOBO (5330)
+Seat 7: granleon142 (2250)
+Seat 8: FCB8 (2685)
+Seat 9: jultondu54 (5835)
+Seat 10: jerykn (2680)
+lozere48 posts small blind (80)
+besac025 posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [Qc, 2d]
+storm7 folds
+FFab57 folds
+KINGMISOBO folds
+granleon142 folds
+FCB8 calls 160
+jultondu54 folds
+jerykn folds
+lozere48 folds
+besac025 checks
+--- Dealing flop [5d, 9d, Ah]
+besac025 checks
+FCB8 checks
+--- Dealing turn [Kd]
+besac025 checks
+FCB8 checks
+--- Dealing river [3d]
+besac025 bets 160
+FCB8 calls 160
+---
+Summary:
+Main pot: 720 won by besac025 (720)
+Rake taken: €0
+Seat 1: lozere48 (3940), net: -80
+Seat 2: besac025 (2135), net: +400, [Qc, 2d] (FLUSH KING)
+Seat 3: storm7 (6220)
+Seat 4: FFab57 (855)
+Seat 5: KINGMISOBO (5330)
+Seat 7: granleon142 (2250)
+Seat 8: FCB8 (2365), net: -320
+Seat 9: jultondu54 (5835)
+Seat 10: jerykn (2680)
+***** End of hand T5-17782010-32 *****
+***** History for hand T5-17782010-33 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 10:02:08 GMT+0100 2010
+Table: Table #27 [17782010] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 1
+Players in round: 9
+Seat 2: besac025 (2135)
+Seat 3: storm7 (6220)
+Seat 4: FFab57 (855)
+Seat 5: KINGMISOBO (5330)
+Seat 7: granleon142 (2250)
+Seat 8: FCB8 (2365)
+Seat 9: jultondu54 (5835)
+Seat 10: jerykn (2680)
+Seat 1: lozere48 (3940)
+besac025 posts small blind (80)
+storm7 posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [4c, 9c]
+FFab57 folds
+KINGMISOBO raises 400 to 400
+granleon142 calls 400
+FCB8 folds
+jultondu54 raises 5835 to 5835 [all in]
+jerykn folds
+lozere48 folds
+besac025 folds
+storm7 folds
+KINGMISOBO calls 4930 [all in]
+granleon142 folds
+--- 
+--- Dealing flop [Qs, 3d, Th]
+--- Dealing turn [5c]
+--- Dealing river [Jc]
+---
+Summary:
+Main pot: 11300 won by KINGMISOBO (11300)
+Rake taken: €0
+Seat 2: besac025 (2055), net: -80
+Seat 3: storm7 (6060), net: -160
+Seat 4: FFab57 (855)
+Seat 5: KINGMISOBO (11300), net: +5970, [Kh, Kc] (PAIR KING)
+Seat 7: granleon142 (1850), net: -400
+Seat 8: FCB8 (2365)
+Seat 9: jultondu54 (505), net: -5330, [Ac, Ts] (PAIR TEN)
+Seat 10: jerykn (2680)
+Seat 1: lozere48 (3940)
+***** End of hand T5-17782010-33 *****
+***** History for hand T5-17782010-34 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 10:03:07 GMT+0100 2010
+Table: Table #27 [17782010] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 2
+Players in round: 10
+Seat 3: storm7 (6060)
+Seat 4: FFab57 (855)
+Seat 5: KINGMISOBO (11300)
+Seat 6: electra333 (1060)
+Seat 7: granleon142 (1850)
+Seat 8: FCB8 (2365)
+Seat 9: jultondu54 (505)
+Seat 10: jerykn (2680)
+Seat 1: lozere48 (3940)
+Seat 2: besac025 (2055)
+storm7 posts small blind (80)
+FFab57 posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [9c, Ks]
+KINGMISOBO folds
+electra333 folds
+granleon142 calls 160
+FCB8 folds
+jultondu54 folds
+jerykn folds
+lozere48 folds
+besac025 calls 160
+storm7 calls 80
+FFab57 checks
+--- Dealing flop [4d, Qs, 7d]
+storm7 checks
+FFab57 checks
+granleon142 bets 160
+besac025 folds
+storm7 folds
+FFab57 calls 160
+--- Dealing turn [6d]
+FFab57 checks
+granleon142 bets 400
+FFab57 raises 535 to 535 [all in]
+granleon142 calls 135
+--- Dealing turn [6d]
+--- Dealing river [5s]
+---
+Summary:
+Main pot: 2030 won by granleon142 (2030)
+Rake taken: €0
+Seat 3: storm7 (5900), net: -160
+Seat 4: FFab57 (0), net: -855, [Ts, Ad] (HIGH_CARD ACE)
+Seat 5: KINGMISOBO (11300)
+Seat 6: electra333 (1060)
+Seat 7: granleon142 (3025), net: +1175, [6c, As] (PAIR SIX)
+Seat 8: FCB8 (2365)
+Seat 9: jultondu54 (505)
+Seat 10: jerykn (2680)
+Seat 1: lozere48 (3940)
+Seat 2: besac025 (1895), net: -160
+***** End of hand T5-17782010-34 *****
+***** History for hand T5-17782010-35 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 10:04:38 GMT+0100 2010
+Table: Table #27 [17782010] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 3
+Players in round: 9
+Seat 5: KINGMISOBO (11300)
+Seat 6: electra333 (1060)
+Seat 7: granleon142 (3025)
+Seat 8: FCB8 (2365)
+Seat 9: jultondu54 (505)
+Seat 10: jerykn (2680)
+Seat 1: lozere48 (3940)
+Seat 2: besac025 (1895)
+Seat 3: storm7 (5900)
+KINGMISOBO posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [2c, 8h]
+electra333 folds
+granleon142 folds
+FCB8 calls 200
+jultondu54 folds
+jerykn folds
+lozere48 folds
+besac025 folds
+storm7 folds
+KINGMISOBO raises 400 to 600
+FCB8 calls 400
+--- Dealing flop [8d, As, Qd]
+KINGMISOBO bets 600
+FCB8 folds
+---
+Summary:
+Main pot: 1200 won by KINGMISOBO (1200)
+Rake taken: €0
+Seat 5: KINGMISOBO (11900), net: +600
+Seat 6: electra333 (1060)
+Seat 7: granleon142 (3025)
+Seat 8: FCB8 (1765), net: -600
+Seat 9: jultondu54 (505)
+Seat 10: jerykn (2680)
+Seat 1: lozere48 (3940)
+Seat 2: besac025 (1895)
+Seat 3: storm7 (5900)
+***** End of hand T5-17782010-35 *****
+***** History for hand T5-17782010-36 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 10:06:10 GMT+0100 2010
+Table: Table #27 [17782010] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 4
+Players in round: 9
+Seat 5: KINGMISOBO (11900)
+Seat 6: electra333 (1060)
+Seat 7: granleon142 (3025)
+Seat 8: FCB8 (1765)
+Seat 9: jultondu54 (505)
+Seat 10: jerykn (2680)
+Seat 1: lozere48 (3940)
+Seat 2: besac025 (1895)
+Seat 3: storm7 (5900)
+KINGMISOBO posts small blind (100)
+electra333 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [6h, 7s]
+granleon142 folds
+FCB8 folds
+jultondu54 folds
+jerykn folds
+lozere48 folds
+besac025 folds
+storm7 calls 200
+KINGMISOBO calls 100
+electra333 checks
+--- Dealing flop [5c, Qd, 3c]
+KINGMISOBO checks
+electra333 checks
+storm7 bets 600
+KINGMISOBO folds
+electra333 folds
+---
+Summary:
+Main pot: 600 won by storm7 (600)
+Rake taken: €0
+Seat 5: KINGMISOBO (11700), net: -200
+Seat 6: electra333 (860), net: -200
+Seat 7: granleon142 (3025)
+Seat 8: FCB8 (1765)
+Seat 9: jultondu54 (505)
+Seat 10: jerykn (2680)
+Seat 1: lozere48 (3940)
+Seat 2: besac025 (1895)
+Seat 3: storm7 (6300), net: +400
+***** End of hand T5-17782010-36 *****
+***** History for hand T5-17782010-37 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 10:06:48 GMT+0100 2010
+Table: Table #27 [17782010] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 5
+Players in round: 10
+Seat 6: electra333 (860)
+Seat 7: granleon142 (3025)
+Seat 8: FCB8 (1765)
+Seat 9: jultondu54 (505)
+Seat 10: jerykn (2680)
+Seat 1: lozere48 (3940)
+Seat 2: besac025 (1895)
+Seat 3: storm7 (6300)
+Seat 4: kalifa12 (1245)
+Seat 5: KINGMISOBO (11700)
+electra333 posts small blind (100)
+granleon142 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [Ks, Tc]
+FCB8 calls 200
+jultondu54 folds
+jerykn folds
+lozere48 folds
+besac025 folds
+storm7 folds
+kalifa12 folds
+KINGMISOBO folds
+electra333 calls 100
+granleon142 checks
+--- Dealing flop [7h, Ts, 5d]
+electra333 checks
+granleon142 checks
+FCB8 checks
+--- Dealing turn [8s]
+electra333 checks
+granleon142 checks
+FCB8 checks
+--- Dealing river [9s]
+electra333 checks
+granleon142 checks
+FCB8 bets 600
+electra333 folds
+granleon142 calls 600
+---
+Summary:
+Main pot: 1800 won by granleon142 (1800)
+Rake taken: €0
+Seat 6: electra333 (660), net: -200
+Seat 7: granleon142 (4025), net: +1000, [6d, 9h] (STRAIGHT TEN)
+Seat 8: FCB8 (965), net: -800, [8c, 9d] (TWO_PAIR NINE, EIGHT)
+Seat 9: jultondu54 (505)
+Seat 10: jerykn (2680)
+Seat 1: lozere48 (3940)
+Seat 2: besac025 (1895)
+Seat 3: storm7 (6300)
+Seat 4: kalifa12 (1245)
+Seat 5: KINGMISOBO (11700)
+***** End of hand T5-17782010-37 *****
+***** History for hand T5-17782010-38 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 10:08:24 GMT+0100 2010
+Table: Table #27 [17782010] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 6
+Players in round: 10
+Seat 7: granleon142 (4025)
+Seat 8: FCB8 (965)
+Seat 9: jultondu54 (505)
+Seat 10: jerykn (2680)
+Seat 1: lozere48 (3940)
+Seat 2: besac025 (1895)
+Seat 3: storm7 (6300)
+Seat 4: kalifa12 (1245)
+Seat 5: KINGMISOBO (11700)
+Seat 6: electra333 (660)
+granleon142 posts small blind (100)
+FCB8 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [Ks, 9s]
+jultondu54 raises 400 to 400
+jerykn folds
+lozere48 folds
+besac025 folds
+storm7 folds
+kalifa12 folds
+KINGMISOBO folds
+electra333 calls 400
+granleon142 folds
+FCB8 calls 200
+--- Dealing flop [8s, As, 2d]
+FCB8 bets 565 [all in]
+jultondu54 calls 105 [all in]
+electra333 calls 260 [all in]
+--- Dealing flop [8s, As, 2d]
+--- Dealing turn [Qh]
+--- Dealing river [9h]
+---
+Summary:
+Main pot: 1615 won by electra333 (1615)
+Side pot 1: 310 won by electra333 (310)
+Rake taken: €0
+Seat 7: granleon142 (3925), net: -100
+Seat 8: FCB8 (305), net: -660, [3s, 4c] (HIGH_CARD ACE)
+Seat 9: jultondu54 (0), net: -505, [6h, Jh] (HIGH_CARD ACE)
+Seat 10: jerykn (2680)
+Seat 1: lozere48 (3940)
+Seat 2: besac025 (1895)
+Seat 3: storm7 (6300)
+Seat 4: kalifa12 (1245)
+Seat 5: KINGMISOBO (11700)
+Seat 6: electra333 (1925), net: +1265, [9d, Qd] (TWO_PAIR QUEEN, NINE)
+***** End of hand T5-17782010-38 *****
+***** History for hand T5-17782010-39 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 10:09:49 GMT+0100 2010
+Table: Table #27 [17782010] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 7
+Players in round: 9
+Seat 8: FCB8 (305)
+Seat 10: jerykn (2680)
+Seat 1: lozere48 (3940)
+Seat 2: besac025 (1895)
+Seat 3: storm7 (6300)
+Seat 4: kalifa12 (1245)
+Seat 5: KINGMISOBO (11700)
+Seat 6: electra333 (1925)
+Seat 7: granleon142 (3925)
+FCB8 posts small blind (100)
+jerykn posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [Ac, Qc]
+lozere48 folds
+besac025 raises 400 to 400
+storm7 folds
+kalifa12 folds
+KINGMISOBO folds
+electra333 folds
+granleon142 folds
+FCB8 folds
+jerykn folds
+---
+Summary:
+Main pot: 500 won by besac025 (500)
+Rake taken: €0
+Seat 8: FCB8 (205), net: -100
+Seat 10: jerykn (2480), net: -200
+Seat 1: lozere48 (3940)
+Seat 2: besac025 (2195), net: +300
+Seat 3: storm7 (6300)
+Seat 4: kalifa12 (1245)
+Seat 5: KINGMISOBO (11700)
+Seat 6: electra333 (1925)
+Seat 7: granleon142 (3925)
+***** End of hand T5-17782010-39 *****
+***** History for hand T5-17782010-40 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 10:10:13 GMT+0100 2010
+Table: Table #27 [17782010] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 8
+Players in round: 9
+Seat 10: jerykn (2480)
+Seat 1: lozere48 (3940)
+Seat 2: besac025 (2195)
+Seat 3: storm7 (6300)
+Seat 4: kalifa12 (1245)
+Seat 5: KINGMISOBO (11700)
+Seat 6: electra333 (1925)
+Seat 7: granleon142 (3925)
+Seat 8: FCB8 (205)
+jerykn posts small blind (100)
+lozere48 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [8d, Td]
+besac025 folds
+storm7 calls 200
+kalifa12 folds
+KINGMISOBO calls 200
+electra333 folds
+granleon142 calls 200
+FCB8 folds
+jerykn folds
+lozere48 checks
+--- Dealing flop [2h, Qs, Ad]
+lozere48 checks
+storm7 checks
+KINGMISOBO checks
+granleon142 checks
+--- Dealing turn [8c]
+lozere48 checks
+storm7 checks
+KINGMISOBO bets 500
+granleon142 folds
+lozere48 folds
+storm7 folds
+---
+Summary:
+Main pot: 900 won by KINGMISOBO (900)
+Rake taken: €0
+Seat 10: jerykn (2380), net: -100
+Seat 1: lozere48 (3740), net: -200
+Seat 2: besac025 (2195)
+Seat 3: storm7 (6100), net: -200
+Seat 4: kalifa12 (1245)
+Seat 5: KINGMISOBO (12400), net: +700
+Seat 6: electra333 (1925)
+Seat 7: granleon142 (3725), net: -200
+Seat 8: FCB8 (205)
+***** End of hand T5-17782010-40 *****
+***** History for hand T5-17782010-41 (TOURNAMENT: "Freeroll tournois live", R-274-73, buy-in: €0) *****
+Start hand: Mon Dec 27 10:11:09 GMT+0100 2010
+Table: Table #27 [17782010] (NO_LIMIT TEXAS_HOLDEM 100/200, ante: 20, TC)
+User: besac025
+Button: seat 10
+Players in round: 10
+Seat 1: lozere48 (3740)
+Seat 2: besac025 (2195)
+Seat 3: storm7 (6100)
+Seat 4: kalifa12 (1245)
+Seat 5: KINGMISOBO (12400)
+Seat 6: electra333 (1925)
+Seat 7: granleon142 (3725)
+Seat 8: FCB8 (205)
+Seat 9: labuche (5665)
+Seat 10: jerykn (2380)
+lozere48 posts ante 20
+besac025 posts ante 20
+storm7 posts ante 20
+kalifa12 posts ante 20
+KINGMISOBO posts ante 20
+electra333 posts ante 20
+granleon142 posts ante 20
+FCB8 posts ante 20
+labuche posts ante 20
+jerykn posts ante 20
+lozere48 posts small blind (100)
+besac025 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [Kd, Ad]
+storm7 raises 400 to 400
+kalifa12 folds
+KINGMISOBO folds
+electra333 folds
+granleon142 calls 400
+FCB8 calls 185 [all in]
+labuche folds
+jerykn folds
+lozere48 folds
+besac025 calls 200
+--- Dealing flop [6h, 9c, 7s]
+besac025 bets 1775 [all in]
+storm7 raises 5680 to 5680 [all in]
+granleon142 folds
+--- Dealing flop [6h, 9c, 7s]
+--- Dealing turn [8s]
+--- Dealing river [Qh]
+---
+Summary:
+Main pot: 1040 won by storm7 (1040)
+Side pot 1: 4195 won by storm7 (4195)
+Rake taken: €0
+Seat 1: lozere48 (3620), net: -120
+Seat 2: besac025 (0), net: -2195, [Kd, Ad] (HIGH_CARD ACE)
+Seat 3: storm7 (9140), net: +3040, [Tc, Td] (STRAIGHT TEN)
+Seat 4: kalifa12 (1225), net: -20
+Seat 5: KINGMISOBO (12380), net: -20
+Seat 6: electra333 (1905), net: -20
+Seat 7: granleon142 (3305), net: -420
+Seat 8: FCB8 (0), net: -205, [Jc, 9h] (PAIR NINE)
+Seat 9: labuche (5645), net: -20
+Seat 10: jerykn (2360), net: -20
+***** End of hand T5-17782010-41 *****

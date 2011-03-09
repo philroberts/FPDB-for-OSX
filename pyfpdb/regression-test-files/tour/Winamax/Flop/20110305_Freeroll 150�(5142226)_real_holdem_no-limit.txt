@@ -1,0 +1,599 @@
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 0 - HandId: #22085692498641681-1-1299346216 - Holdem no limit (10/20) - 2011/03/05 18:30:16 UTC
+Table: 'Freeroll 150€(5142226)#784' 6-max (real money) Seat #3 is the button
+Seat 1: besancon2500 (3000)
+Seat 2: KeanZ (3000)
+Seat 3: Djuzaam (3000)
+Seat 4: MANU1963 (3000)
+Seat 5: MALBAKONE (3000)
+Seat 6: fashion13 (3000)
+*** ANTE/BLINDS *** 
+MANU1963 posts small blind 10
+MALBAKONE posts big blind 20
+Dealt to besancon2500 [8c 3h]
+*** PRE-FLOP *** 
+fashion13 folds
+besancon2500 folds
+KeanZ folds
+Djuzaam raises 2980 to 3000 and is all-in
+MANU1963 calls 2990 and is all-in
+MALBAKONE folds
+*** FLOP *** [Qd 6d 5s]
+*** TURN *** [Qd 6d 5s][5h]
+*** RIVER *** [Qd 6d 5s 5h][Ac]
+*** SHOW DOWN ***
+MANU1963 shows [Kh 8h] (One pair : 5)
+Djuzaam shows [3s 3d] (Two pairs : 5 and 3)
+Djuzaam collected 6020 from pot
+*** SUMMARY ***
+Total pot 6.02k | No rake
+Board: [Qd 6d 5s 5h Ac]
+Seat 1: besancon2500 folded on the pre-flop
+Seat 2: KeanZ folded on the pre-flop
+Seat 3: Djuzaam (button) showed [3s 3d] and won 6020 with Two pairs : 5 and 3
+Seat 4: MANU1963 (small blind) showed [Kh 8h] and lost with One pair : 5
+Seat 5: MALBAKONE (big blind) folded on the pre-flop
+Seat 6: fashion13 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 0 - HandId: #22085692498641681-2-1299346321 - Holdem no limit (10/20) - 2011/03/05 18:32:01 UTC
+Table: 'Freeroll 150€(5142226)#784' 6-max (real money) Seat #4 is the button
+Seat 1: besancon2500 (3000)
+Seat 2: KeanZ (3000)
+Seat 3: Djuzaam (6020)
+Seat 4: Flush67 (3030)
+Seat 5: MALBAKONE (2980)
+Seat 6: fashion13 (3000)
+*** ANTE/BLINDS *** 
+MALBAKONE posts small blind 10
+fashion13 posts big blind 20
+Dealt to besancon2500 [4h 8h]
+*** PRE-FLOP *** 
+besancon2500 raises 20 to 40
+KeanZ folds
+Djuzaam raises 5980 to 6020 and is all-in
+MALBAKONE folds
+fashion13 folds
+besancon2500 folds
+Djuzaam collected 6090 from pot
+*** SUMMARY ***
+Total pot 6.09k | No rake
+Seat 1: besancon2500 folded on the pre-flop
+Seat 2: KeanZ folded on the pre-flop
+Seat 3: Djuzaam won 6090
+Seat 4: Flush67 (button) folded
+Seat 5: MALBAKONE (small blind) folded on the pre-flop
+Seat 6: fashion13 (big blind) folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 0 - HandId: #22085692498641681-3-1299346339 - Holdem no limit (10/20) - 2011/03/05 18:32:19 UTC
+Table: 'Freeroll 150€(5142226)#784' 6-max (real money) Seat #5 is the button
+Seat 1: besancon2500 (2960)
+Seat 2: KeanZ (3000)
+Seat 3: Djuzaam (6090)
+Seat 4: Flush67 (3030)
+Seat 5: MALBAKONE (2970)
+Seat 6: fashion13 (2980)
+*** ANTE/BLINDS *** 
+fashion13 posts small blind 10
+besancon2500 posts big blind 20
+Dealt to besancon2500 [Th 8h]
+*** PRE-FLOP *** 
+KeanZ folds
+Djuzaam calls 20
+Flush67 folds
+MALBAKONE folds
+fashion13 folds
+besancon2500 raises 40 to 60
+Djuzaam calls 40
+*** FLOP *** [4d 3s Ah]
+besancon2500 bets 130
+Djuzaam raises 170 to 300
+besancon2500 folds
+Djuzaam collected 560 from pot
+*** SUMMARY ***
+Total pot 560 | No rake
+Board: [4d 3s Ah]
+Seat 1: besancon2500 (big blind) folded on the flop
+Seat 2: KeanZ folded on the pre-flop
+Seat 3: Djuzaam won 560
+Seat 4: Flush67 folded on the pre-flop
+Seat 5: MALBAKONE (button) folded on the pre-flop
+Seat 6: fashion13 (small blind) folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 0 - HandId: #22085692498641681-4-1299346378 - Holdem no limit (10/20) - 2011/03/05 18:32:58 UTC
+Table: 'Freeroll 150€(5142226)#784' 6-max (real money) Seat #6 is the button
+Seat 1: besancon2500 (2770)
+Seat 2: KeanZ (3000)
+Seat 3: Djuzaam (6290)
+Seat 4: Flush67 (3030)
+Seat 5: MALBAKONE (2970)
+Seat 6: fashion13 (2970)
+*** ANTE/BLINDS *** 
+besancon2500 posts small blind 10
+KeanZ posts big blind 20
+Dealt to besancon2500 [3s 6s]
+*** PRE-FLOP *** 
+Djuzaam folds
+Flush67 folds
+MALBAKONE folds
+fashion13 folds
+besancon2500 raises 20 to 40
+KeanZ folds
+besancon2500 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | No rake
+Seat 1: besancon2500 (small blind) won 60
+Seat 2: KeanZ (big blind) folded on the pre-flop
+Seat 3: Djuzaam folded on the pre-flop
+Seat 4: Flush67 folded on the pre-flop
+Seat 5: MALBAKONE folded on the pre-flop
+Seat 6: fashion13 (button) folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 0 - HandId: #22085692498641681-5-1299346391 - Holdem no limit (10/20) - 2011/03/05 18:33:11 UTC
+Table: 'Freeroll 150€(5142226)#784' 6-max (real money) Seat #1 is the button
+Seat 1: besancon2500 (2790)
+Seat 2: KeanZ (2980)
+Seat 3: Djuzaam (6290)
+Seat 4: Flush67 (3030)
+Seat 5: MALBAKONE (2970)
+Seat 6: fashion13 (2970)
+*** ANTE/BLINDS *** 
+KeanZ posts small blind 10
+Djuzaam posts big blind 20
+Dealt to besancon2500 [3d 5s]
+*** PRE-FLOP *** 
+Flush67 folds
+MALBAKONE folds
+fashion13 folds
+besancon2500 folds
+KeanZ folds
+Djuzaam collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | No rake
+Seat 1: besancon2500 (button) folded on the pre-flop
+Seat 2: KeanZ (small blind) folded on the pre-flop
+Seat 3: Djuzaam (big blind) won 30
+Seat 4: Flush67 folded on the pre-flop
+Seat 5: MALBAKONE folded on the pre-flop
+Seat 6: fashion13 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 1 - HandId: #22085692498641681-6-1299346404 - Holdem no limit (15/30) - 2011/03/05 18:33:24 UTC
+Table: 'Freeroll 150€(5142226)#784' 6-max (real money) Seat #2 is the button
+Seat 1: besancon2500 (2790)
+Seat 2: KeanZ (2970)
+Seat 3: Djuzaam (6300)
+Seat 4: Flush67 (3030)
+Seat 5: MALBAKONE (2970)
+Seat 6: fashion13 (2970)
+*** ANTE/BLINDS *** 
+Djuzaam posts small blind 15
+Flush67 posts big blind 30
+Dealt to besancon2500 [Js 5d]
+*** PRE-FLOP *** 
+MALBAKONE folds
+fashion13 folds
+besancon2500 folds
+KeanZ folds
+Djuzaam folds
+Flush67 collected 45 from pot
+*** SUMMARY ***
+Total pot 45 | No rake
+Seat 1: besancon2500 folded on the pre-flop
+Seat 2: KeanZ (button) folded on the pre-flop
+Seat 3: Djuzaam (small blind) folded on the pre-flop
+Seat 4: Flush67 (big blind) won 45
+Seat 5: MALBAKONE folded on the pre-flop
+Seat 6: fashion13 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 1 - HandId: #22085692498641681-7-1299346416 - Holdem no limit (15/30) - 2011/03/05 18:33:36 UTC
+Table: 'Freeroll 150€(5142226)#784' 6-max (real money) Seat #3 is the button
+Seat 1: besancon2500 (2790)
+Seat 2: KeanZ (2970)
+Seat 3: Djuzaam (6285)
+Seat 4: Flush67 (3045)
+Seat 5: MALBAKONE (2970)
+Seat 6: fashion13 (2970)
+*** ANTE/BLINDS *** 
+Flush67 posts small blind 15
+MALBAKONE posts big blind 30
+Dealt to besancon2500 [As Kh]
+*** PRE-FLOP *** 
+fashion13 folds
+besancon2500 raises 30 to 60
+KeanZ folds
+Djuzaam folds
+Flush67 folds
+MALBAKONE folds
+besancon2500 collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 1: besancon2500 won 105
+Seat 2: KeanZ folded on the pre-flop
+Seat 3: Djuzaam (button) folded on the pre-flop
+Seat 4: Flush67 (small blind) folded on the pre-flop
+Seat 5: MALBAKONE (big blind) folded on the pre-flop
+Seat 6: fashion13 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 1 - HandId: #22085692498641681-8-1299346430 - Holdem no limit (15/30) - 2011/03/05 18:33:50 UTC
+Table: 'Freeroll 150€(5142226)#784' 6-max (real money) Seat #4 is the button
+Seat 1: besancon2500 (2835)
+Seat 2: KeanZ (2970)
+Seat 3: Djuzaam (6285)
+Seat 4: Flush67 (3030)
+Seat 5: MALBAKONE (2940)
+Seat 6: fashion13 (2970)
+*** ANTE/BLINDS *** 
+MALBAKONE posts small blind 15
+fashion13 posts big blind 30
+Dealt to besancon2500 [3s 5s]
+*** PRE-FLOP *** 
+besancon2500 raises 30 to 60
+KeanZ folds
+Djuzaam folds
+Flush67 folds
+MALBAKONE folds
+fashion13 folds
+besancon2500 collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | No rake
+Seat 1: besancon2500 won 105
+Seat 2: KeanZ folded on the pre-flop
+Seat 3: Djuzaam folded on the pre-flop
+Seat 4: Flush67 (button) folded on the pre-flop
+Seat 5: MALBAKONE (small blind) folded on the pre-flop
+Seat 6: fashion13 (big blind) folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 1 - HandId: #22085692498641245-4-1299346444 - Holdem no limit (15/30) - 2011/03/05 18:34:04 UTC
+Table: 'Freeroll 150€(5142226)#348' 6-max (real money) Seat #6 is the button
+Seat 1: philcoura (8930)
+Seat 2: yokat (6135)
+Seat 3: AXELEO (3000)
+Seat 4: besancon2500 (2880)
+Seat 5: fashion13 (2940)
+Seat 6: tchoup31100 (2965)
+*** ANTE/BLINDS *** 
+philcoura posts small blind 15
+yokat posts big blind 30
+*** PRE-FLOP *** 
+AXELEO folds
+tchoup31100 folds
+philcoura calls 15
+yokat raises 30 to 60
+philcoura folds
+yokat collected 90 from pot
+*** SUMMARY ***
+Total pot 90 | No rake
+Seat 1: philcoura (small blind) folded on the pre-flop
+Seat 2: yokat (big blind) won 90
+Seat 3: AXELEO folded on the pre-flop
+Seat 4: besancon2500 folded
+Seat 5: fashion13 folded
+Seat 6: tchoup31100 (button) folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 1 - HandId: #22085692498641245-5-1299346472 - Holdem no limit (15/30) - 2011/03/05 18:34:32 UTC
+Table: 'Freeroll 150€(5142226)#348' 6-max (real money) Seat #1 is the button
+Seat 1: philcoura (8900)
+Seat 2: yokat (6165)
+Seat 3: AXELEO (3000)
+Seat 4: besancon2500 (2880)
+Seat 5: fashion13 (2940)
+Seat 6: tchoup31100 (2965)
+*** ANTE/BLINDS *** 
+yokat posts small blind 15
+AXELEO posts big blind 30
+Dealt to besancon2500 [9c 8c]
+*** PRE-FLOP *** 
+besancon2500 raises 30 to 60
+fashion13 folds
+tchoup31100 calls 60
+philcoura calls 60
+yokat calls 45
+AXELEO calls 30
+*** FLOP *** [7d 3h Ac]
+yokat checks
+AXELEO checks
+besancon2500 checks
+tchoup31100 checks
+philcoura checks
+*** TURN *** [7d 3h Ac][Ks]
+yokat bets 300
+AXELEO folds
+besancon2500 folds
+tchoup31100 folds
+philcoura calls 300
+*** RIVER *** [7d 3h Ac Ks][Ah]
+yokat bets 150
+philcoura raises 870 to 1020
+yokat calls 870
+*** SHOW DOWN ***
+yokat shows [Kh 7h] (Two pairs : Aces and Kings)
+philcoura shows [Ad 3c] (Full of Aces and 3)
+philcoura collected 2940 from pot
+*** SUMMARY ***
+Total pot 2.94k | No rake
+Board: [7d 3h Ac Ks Ah]
+Seat 1: philcoura (button) showed [Ad 3c] and won 2940 with Full of Aces and 3
+Seat 2: yokat (small blind) showed [Kh 7h] and lost with Two pairs : Aces and Kings
+Seat 3: AXELEO (big blind) folded on the turn
+Seat 4: besancon2500 folded on the turn
+Seat 5: fashion13 folded on the pre-flop
+Seat 6: tchoup31100 folded on the turn
+
+
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 2 - HandId: #22085692498641245-6-1299346613 - Holdem no limit (20/40) - 2011/03/05 18:36:53 UTC
+Table: 'Freeroll 150€(5142226)#348' 6-max (real money) Seat #2 is the button
+Seat 1: philcoura (10460)
+Seat 2: yokat (4785)
+Seat 3: AXELEO (2940)
+Seat 4: besancon2500 (2820)
+Seat 5: fashion13 (2940)
+Seat 6: tchoup31100 (2905)
+*** ANTE/BLINDS *** 
+AXELEO posts small blind 20
+besancon2500 posts big blind 40
+Dealt to besancon2500 [8s Ks]
+*** PRE-FLOP *** 
+fashion13 folds
+tchoup31100 calls 40
+philcoura calls 40
+yokat calls 40
+AXELEO calls 20
+besancon2500 checks
+*** FLOP *** [9h 2h Kd]
+AXELEO checks
+besancon2500 bets 150
+tchoup31100 folds
+philcoura folds
+yokat calls 150
+AXELEO folds
+*** TURN *** [9h 2h Kd][Jh]
+besancon2500 bets 500
+yokat folds
+besancon2500 collected 1000 from pot
+*** SUMMARY ***
+Total pot 1k | No rake
+Board: [9h 2h Kd Jh]
+Seat 1: philcoura folded on the flop
+Seat 2: yokat (button) folded on the turn
+Seat 3: AXELEO (small blind) folded on the flop
+Seat 4: besancon2500 (big blind) won 1000
+Seat 5: fashion13 folded on the pre-flop
+Seat 6: tchoup31100 folded on the flop
+
+
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 2 - HandId: #22085692498641245-7-1299346692 - Holdem no limit (20/40) - 2011/03/05 18:38:12 UTC
+Table: 'Freeroll 150€(5142226)#348' 6-max (real money) Seat #3 is the button
+Seat 1: philcoura (10420)
+Seat 2: yokat (4595)
+Seat 3: AXELEO (2900)
+Seat 4: besancon2500 (3130)
+Seat 5: fashion13 (2940)
+Seat 6: tchoup31100 (2865)
+*** ANTE/BLINDS *** 
+besancon2500 posts small blind 20
+fashion13 posts big blind 40
+Dealt to besancon2500 [Ts Ad]
+*** PRE-FLOP *** 
+tchoup31100 folds
+philcoura folds
+yokat calls 40
+AXELEO calls 40
+besancon2500 raises 160 to 200
+fashion13 folds
+yokat calls 160
+AXELEO calls 160
+*** FLOP *** [8h 3h 6s]
+besancon2500 bets 320
+yokat folds
+AXELEO calls 320
+*** TURN *** [8h 3h 6s][Qc]
+besancon2500 checks
+AXELEO bets 2380 and is all-in
+besancon2500 raises 230 to 2610 and is all-in
+*** RIVER *** [8h 3h 6s Qc][7s]
+*** SHOW DOWN ***
+AXELEO shows [3c 7c] (Two pairs : 7 and 3)
+besancon2500 shows [Ts Ad] (High card : Ace)
+besancon2500 collected 230 from side pot 1
+AXELEO collected 6040 from main pot
+*** SUMMARY ***
+Total pot 6.27k | No rake
+Board: [8h 3h 6s Qc 7s]
+Seat 1: philcoura folded on the pre-flop
+Seat 2: yokat folded on the flop
+Seat 3: AXELEO (button) showed [3c 7c] and won 6040 with Two pairs : 7 and 3
+Seat 4: besancon2500 (small blind) showed [Ts Ad] and won 230 with High card : Ace
+Seat 5: fashion13 (big blind) folded on the pre-flop
+Seat 6: tchoup31100 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 2 - HandId: #22085692498641245-8-1299346758 - Holdem no limit (20/40) - 2011/03/05 18:39:18 UTC
+Table: 'Freeroll 150€(5142226)#348' 6-max (real money) Seat #4 is the button
+Seat 1: philcoura (10420)
+Seat 2: yokat (4395)
+Seat 3: AXELEO (6040)
+Seat 4: besancon2500 (230)
+Seat 5: fashion13 (2900)
+Seat 6: tchoup31100 (2865)
+*** ANTE/BLINDS *** 
+fashion13 posts small blind 20
+tchoup31100 posts big blind 40
+Dealt to besancon2500 [Ks 4d]
+*** PRE-FLOP *** 
+philcoura calls 40
+yokat folds
+AXELEO raises 6000 to 6040 and is all-in
+besancon2500 folds
+fashion13 folds
+tchoup31100 folds
+philcoura folds
+AXELEO collected 6140 from pot
+*** SUMMARY ***
+Total pot 6.14k | No rake
+Seat 1: philcoura folded on the pre-flop
+Seat 2: yokat folded on the pre-flop
+Seat 3: AXELEO won 6140
+Seat 4: besancon2500 (button) folded on the pre-flop
+Seat 5: fashion13 (small blind) folded on the pre-flop
+Seat 6: tchoup31100 (big blind) folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 3 - HandId: #22085692498641245-9-1299346802 - Holdem no limit (30/60) - 2011/03/05 18:40:02 UTC
+Table: 'Freeroll 150€(5142226)#348' 6-max (real money) Seat #5 is the button
+Seat 1: philcoura (10380)
+Seat 2: yokat (4395)
+Seat 3: AXELEO (6140)
+Seat 4: besancon2500 (230)
+Seat 5: fashion13 (2880)
+Seat 6: tchoup31100 (2825)
+*** ANTE/BLINDS *** 
+tchoup31100 posts small blind 30
+philcoura posts big blind 60
+Dealt to besancon2500 [2s Kc]
+*** PRE-FLOP *** 
+yokat raises 180 to 240
+AXELEO folds
+besancon2500 folds
+fashion13 folds
+tchoup31100 folds
+philcoura calls 180
+*** FLOP *** [7s Jc 5s]
+philcoura bets 60
+yokat calls 60
+*** TURN *** [7s Jc 5s][2h]
+philcoura bets 210
+yokat calls 210
+*** RIVER *** [7s Jc 5s 2h][5c]
+philcoura bets 390
+yokat folds
+philcoura collected 1440 from pot
+*** SUMMARY ***
+Total pot 1.44k | No rake
+Board: [7s Jc 5s 2h 5c]
+Seat 1: philcoura (big blind) won 1440
+Seat 2: yokat folded on the river
+Seat 3: AXELEO folded on the pre-flop
+Seat 4: besancon2500 folded on the pre-flop
+Seat 5: fashion13 (button) folded on the pre-flop
+Seat 6: tchoup31100 (small blind) folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 3 - HandId: #22085692498641245-10-1299346856 - Holdem no limit (30/60) - 2011/03/05 18:40:56 UTC
+Table: 'Freeroll 150€(5142226)#348' 6-max (real money) Seat #6 is the button
+Seat 1: philcoura (10920)
+Seat 2: yokat (3885)
+Seat 3: AXELEO (6140)
+Seat 4: besancon2500 (230)
+Seat 5: fashion13 (2880)
+Seat 6: tchoup31100 (2795)
+*** ANTE/BLINDS *** 
+philcoura posts small blind 30
+yokat posts big blind 60
+Dealt to besancon2500 [Kh 2c]
+*** PRE-FLOP *** 
+AXELEO folds
+besancon2500 folds
+fashion13 calls 60
+tchoup31100 folds
+philcoura calls 30
+yokat raises 780 to 840
+fashion13 raises 780 to 1620
+philcoura raises 9300 to 10920 and is all-in
+yokat calls 3045 and is all-in
+fashion13 calls 1260 and is all-in
+*** FLOP *** [5d 8s Ts]
+*** TURN *** [5d 8s Ts][Ks]
+*** RIVER *** [5d 8s Ts Ks][2s]
+*** SHOW DOWN ***
+fashion13 shows [9s Qs] (Flush King high)
+yokat shows [7c 7s] (Flush King high)
+philcoura shows [2h 2d] (Trips of 2)
+philcoura collected 7035 from side pot 2
+yokat collected 2010 from side pot 1
+fashion13 collected 8640 from main pot
+*** SUMMARY ***
+Total pot 17.68k | No rake
+Board: [5d 8s Ts Ks 2s]
+Seat 1: philcoura (small blind) showed [2h 2d] and won 7035 with Trips of 2
+Seat 2: yokat (big blind) showed [7c 7s] and won 2010 with Flush King high
+Seat 3: AXELEO folded on the pre-flop
+Seat 4: besancon2500 folded on the pre-flop
+Seat 5: fashion13 showed [9s Qs] and won 8640 with Flush King high
+Seat 6: tchoup31100 (button) folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 3 - HandId: #22085692498641245-11-1299346922 - Holdem no limit (30/60) - 2011/03/05 18:42:02 UTC
+Table: 'Freeroll 150€(5142226)#348' 6-max (real money) Seat #1 is the button
+Seat 1: philcoura (7035)
+Seat 2: yokat (2010)
+Seat 3: AXELEO (6140)
+Seat 4: besancon2500 (230)
+Seat 5: fashion13 (8640)
+Seat 6: tchoup31100 (2795)
+*** ANTE/BLINDS *** 
+yokat posts small blind 30
+AXELEO posts big blind 60
+Dealt to besancon2500 [4h 4s]
+*** PRE-FLOP *** 
+besancon2500 raises 170 to 230 and is all-in
+fashion13 folds
+tchoup31100 folds
+philcoura folds
+yokat folds
+AXELEO folds
+besancon2500 collected 320 from pot
+*** SUMMARY ***
+Total pot 320 | No rake
+Seat 1: philcoura (button) folded on the pre-flop
+Seat 2: yokat (small blind) folded on the pre-flop
+Seat 3: AXELEO (big blind) folded on the pre-flop
+Seat 4: besancon2500 won 320
+Seat 5: fashion13 folded on the pre-flop
+Seat 6: tchoup31100 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 150€" buyIn: Gratuit level: 4 - HandId: #22085692498641245-12-1299346953 - Holdem no limit (40/80) - 2011/03/05 18:42:33 UTC
+Table: 'Freeroll 150€(5142226)#348' 6-max (real money) Seat #2 is the button
+Seat 1: philcoura (7035)
+Seat 2: yokat (1980)
+Seat 3: AXELEO (6080)
+Seat 4: besancon2500 (320)
+Seat 5: fashion13 (8640)
+Seat 6: tchoup31100 (2795)
+*** ANTE/BLINDS *** 
+AXELEO posts small blind 40
+besancon2500 posts big blind 80
+Dealt to besancon2500 [8s 3s]
+*** PRE-FLOP *** 
+fashion13 calls 80
+tchoup31100 folds
+philcoura folds
+yokat raises 1900 to 1980 and is all-in
+AXELEO folds
+besancon2500 calls 240 and is all-in
+fashion13 folds
+*** FLOP *** [Ah 9h 2s]
+*** TURN *** [Ah 9h 2s][2h]
+*** RIVER *** [Ah 9h 2s 2h][4h]
+*** SHOW DOWN ***
+besancon2500 shows [8s 3s] (One pair : 2)
+yokat shows [4d As] (Two pairs : Aces and 4)
+yokat collected 2420 from pot
+*** SUMMARY ***
+Total pot 2.42k | No rake
+Board: [Ah 9h 2s 2h 4h]
+Seat 1: philcoura folded on the pre-flop
+Seat 2: yokat (button) showed [4d As] and won 2420 with Two pairs : Aces and 4
+Seat 3: AXELEO (small blind) folded on the pre-flop
+Seat 4: besancon2500 (big blind) showed [8s 3s] and lost with One pair : 2
+Seat 5: fashion13 folded on the pre-flop
+Seat 6: tchoup31100 folded on the pre-flop
+
+

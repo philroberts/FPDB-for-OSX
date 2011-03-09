@@ -1,0 +1,3559 @@
+***** History for hand T5-18949598-1 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:28:29 GMT+0100 2011
+Table: Table #84 [18949598] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 3
+Players in round: 10
+Seat 4: besac025 (1500)
+Seat 5: jejenath (1500)
+Seat 6: RoceBane (1500)
+Seat 7: GarciaLorca (1500)
+Seat 8: Elvakesdes (1500)
+Seat 9: zepekenyo (1500)
+Seat 10: hophophop92 (1500)
+Seat 1: zaza20 (1500)
+Seat 2: darkste13 (1500)
+Seat 3: POLO72 (1500)
+besac025 posts small blind (10)
+jejenath posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [Tc, 3h]
+RoceBane folds
+GarciaLorca folds
+Elvakesdes folds
+zepekenyo folds
+hophophop92 folds
+zaza20 folds
+darkste13 calls 20
+POLO72 calls 20
+besac025 calls 10
+jejenath checks
+--- Dealing flop [As, Qh, 2d]
+besac025 checks
+jejenath checks
+darkste13 bets 40
+POLO72 folds
+besac025 folds
+jejenath folds
+---
+Summary:
+Main pot: 80 won by darkste13 (80)
+Rake taken: €0
+Seat 4: besac025 (1480), net: -20
+Seat 5: jejenath (1480), net: -20
+Seat 6: RoceBane (1500)
+Seat 7: GarciaLorca (1500)
+Seat 8: Elvakesdes (1500)
+Seat 9: zepekenyo (1500)
+Seat 10: hophophop92 (1500)
+Seat 1: zaza20 (1500)
+Seat 2: darkste13 (1560), net: +60
+Seat 3: POLO72 (1480), net: -20
+***** End of hand T5-18949598-1 *****
+***** History for hand T5-18949598-2 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:31:14 GMT+0100 2011
+Table: Table #84 [18949598] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 4
+Players in round: 10
+Seat 5: jejenath (1480)
+Seat 6: RoceBane (1500)
+Seat 7: GarciaLorca (1500)
+Seat 8: Elvakesdes (1500)
+Seat 9: zepekenyo (1500)
+Seat 10: hophophop92 (1500)
+Seat 1: zaza20 (1500)
+Seat 2: darkste13 (1560)
+Seat 3: POLO72 (1480)
+Seat 4: besac025 (1480)
+jejenath posts small blind (10)
+RoceBane posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [2s, 6c]
+GarciaLorca folds
+Elvakesdes folds
+zepekenyo folds
+hophophop92 folds
+zaza20 folds
+darkste13 folds
+POLO72 calls 20
+besac025 folds
+jejenath calls 10
+RoceBane checks
+--- Dealing flop [Js, Qc, Kd]
+jejenath checks
+RoceBane checks
+POLO72 bets 20
+jejenath folds
+RoceBane folds
+---
+Summary:
+Main pot: 60 won by POLO72 (60)
+Rake taken: €0
+Seat 5: jejenath (1460), net: -20
+Seat 6: RoceBane (1480), net: -20
+Seat 7: GarciaLorca (1500)
+Seat 8: Elvakesdes (1500)
+Seat 9: zepekenyo (1500)
+Seat 10: hophophop92 (1500)
+Seat 1: zaza20 (1500)
+Seat 2: darkste13 (1560)
+Seat 3: POLO72 (1520), net: +40
+Seat 4: besac025 (1480)
+***** End of hand T5-18949598-2 *****
+***** History for hand T5-18949598-3 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:31:53 GMT+0100 2011
+Table: Table #84 [18949598] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 5
+Players in round: 9
+Seat 6: RoceBane (1480)
+Seat 7: GarciaLorca (1500)
+Seat 8: Elvakesdes (1500)
+Seat 9: zepekenyo (1500)
+Seat 1: zaza20 (1500)
+Seat 2: darkste13 (1560)
+Seat 3: POLO72 (1520)
+Seat 4: besac025 (1480)
+Seat 5: jejenath (1460)
+RoceBane posts small blind (10)
+GarciaLorca posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [Tc, Qc]
+Elvakesdes folds
+zepekenyo folds
+zaza20 folds
+darkste13 calls 20
+POLO72 calls 20
+besac025 calls 20
+jejenath raises 100 to 100
+RoceBane folds
+GarciaLorca folds
+darkste13 calls 80
+POLO72 calls 80
+besac025 calls 80
+--- Dealing flop [3c, Kc, 9d]
+darkste13 bets 220
+POLO72 folds
+besac025 raises 1380 to 1380 [all in]
+jejenath calls 1360 [all in]
+darkste13 calls 1160
+--- Dealing flop [3c, Kc, 9d]
+--- Dealing turn [7c]
+--- Dealing river [2c]
+---
+Summary:
+Main pot: 4510 won by besac025 (4510)
+Side pot 1: 40 won by besac025 (40)
+Rake taken: €0
+Seat 6: RoceBane (1470), net: -10
+Seat 7: GarciaLorca (1480), net: -20
+Seat 8: Elvakesdes (1500)
+Seat 9: zepekenyo (1500)
+Seat 1: zaza20 (1500)
+Seat 2: darkste13 (80), net: -1480, [Td, Kd] (PAIR KING)
+Seat 3: POLO72 (1420), net: -100
+Seat 4: besac025 (4550), net: +3070, [Tc, Qc] (FLUSH KING)
+Seat 5: jejenath (0), net: -1460, [Qd, Ks] (PAIR KING)
+***** End of hand T5-18949598-3 *****
+***** History for hand T5-18949598-4 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:32:55 GMT+0100 2011
+Table: Table #84 [18949598] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 6
+Players in round: 9
+Seat 7: GarciaLorca (1480)
+Seat 8: Elvakesdes (1500)
+Seat 9: zepekenyo (1500)
+Seat 10: ADR1105 (1500)
+Seat 1: zaza20 (1500)
+Seat 2: darkste13 (80)
+Seat 3: POLO72 (1420)
+Seat 4: besac025 (4550)
+Seat 6: RoceBane (1470)
+GarciaLorca posts small blind (10)
+Elvakesdes posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [6h, 7d]
+zepekenyo folds
+ADR1105 calls 20
+zaza20 folds
+darkste13 raises 80 to 80 [all in]
+POLO72 folds
+besac025 folds
+RoceBane folds
+GarciaLorca folds
+Elvakesdes calls 60
+ADR1105 calls 60
+--- Dealing flop [Td, Ac, 5s]
+Elvakesdes bets 250
+ADR1105 calls 250
+--- Dealing turn [Kh]
+Elvakesdes checks
+ADR1105 bets 750
+Elvakesdes folds
+--- Dealing turn [Kh]
+--- Dealing river [9c]
+---
+Summary:
+Main pot: 250 won by ADR1105 (250)
+Side pot 1: 500 won by ADR1105 (500)
+Rake taken: €0
+Seat 7: GarciaLorca (1470), net: -10
+Seat 8: Elvakesdes (1170), net: -330
+Seat 9: zepekenyo (1500)
+Seat 10: ADR1105 (1920), net: +420, [As, 4d] (PAIR ACE)
+Seat 1: zaza20 (1500)
+Seat 2: darkste13 (0), net: -80, [8h, 4h] (HIGH_CARD ACE)
+Seat 3: POLO72 (1420)
+Seat 4: besac025 (4550)
+Seat 6: RoceBane (1470)
+***** End of hand T5-18949598-4 *****
+***** History for hand T5-18949598-5 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:34:03 GMT+0100 2011
+Table: Table #84 [18949598] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 7
+Players in round: 9
+Seat 8: Elvakesdes (1170)
+Seat 9: zepekenyo (1500)
+Seat 10: ADR1105 (1920)
+Seat 1: zaza20 (1500)
+Seat 3: POLO72 (1420)
+Seat 4: besac025 (4550)
+Seat 5: y_trunck80 (1480)
+Seat 6: RoceBane (1470)
+Seat 7: GarciaLorca (1470)
+Elvakesdes posts small blind (10)
+zepekenyo posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [9c, 3c]
+ADR1105 calls 20
+zaza20 folds
+POLO72 raises 100 to 100
+besac025 folds
+y_trunck80 folds
+RoceBane folds
+GarciaLorca folds
+Elvakesdes folds
+zepekenyo folds
+ADR1105 folds
+---
+Summary:
+Main pot: 70 won by POLO72 (70)
+Rake taken: €0
+Seat 8: Elvakesdes (1160), net: -10
+Seat 9: zepekenyo (1480), net: -20
+Seat 10: ADR1105 (1900), net: -20
+Seat 1: zaza20 (1500)
+Seat 3: POLO72 (1470), net: +50
+Seat 4: besac025 (4550)
+Seat 5: y_trunck80 (1480)
+Seat 6: RoceBane (1470)
+Seat 7: GarciaLorca (1470)
+***** End of hand T5-18949598-5 *****
+***** History for hand T5-18949598-6 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:34:49 GMT+0100 2011
+Table: Table #84 [18949598] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 8
+Players in round: 10
+Seat 9: zepekenyo (1480)
+Seat 10: ADR1105 (1900)
+Seat 1: zaza20 (1500)
+Seat 2: macody53 (1690)
+Seat 3: POLO72 (1470)
+Seat 4: besac025 (4550)
+Seat 5: y_trunck80 (1480)
+Seat 6: RoceBane (1470)
+Seat 7: GarciaLorca (1470)
+Seat 8: Elvakesdes (1160)
+zepekenyo posts small blind (15)
+ADR1105 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [Ts, Kd]
+zaza20 folds
+macody53 raises 60 to 60
+POLO72 folds
+besac025 folds
+y_trunck80 folds
+RoceBane folds
+GarciaLorca folds
+Elvakesdes raises 225 to 225
+zepekenyo folds
+ADR1105 folds
+macody53 folds
+---
+Summary:
+Main pot: 165 won by Elvakesdes (165)
+Rake taken: €0
+Seat 9: zepekenyo (1465), net: -15
+Seat 10: ADR1105 (1870), net: -30
+Seat 1: zaza20 (1500)
+Seat 2: macody53 (1630), net: -60
+Seat 3: POLO72 (1470)
+Seat 4: besac025 (4550)
+Seat 5: y_trunck80 (1480)
+Seat 6: RoceBane (1470)
+Seat 7: GarciaLorca (1470)
+Seat 8: Elvakesdes (1265), net: +105
+***** End of hand T5-18949598-6 *****
+***** History for hand T5-18949598-7 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:36:31 GMT+0100 2011
+Table: Table #84 [18949598] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 9
+Players in round: 9
+Seat 10: ADR1105 (1870)
+Seat 1: zaza20 (1500)
+Seat 2: macody53 (1630)
+Seat 3: POLO72 (1470)
+Seat 4: besac025 (4550)
+Seat 6: RoceBane (1470)
+Seat 7: GarciaLorca (1470)
+Seat 8: Elvakesdes (1265)
+Seat 9: zepekenyo (1465)
+ADR1105 posts small blind (15)
+zaza20 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [4d, Kh]
+macody53 folds
+POLO72 raises 105 to 105
+besac025 folds
+RoceBane folds
+GarciaLorca folds
+Elvakesdes folds
+zepekenyo folds
+ADR1105 folds
+zaza20 folds
+---
+Summary:
+Main pot: 75 won by POLO72 (75)
+Rake taken: €0
+Seat 10: ADR1105 (1855), net: -15
+Seat 1: zaza20 (1470), net: -30
+Seat 2: macody53 (1630)
+Seat 3: POLO72 (1515), net: +45
+Seat 4: besac025 (4550)
+Seat 6: RoceBane (1470)
+Seat 7: GarciaLorca (1470)
+Seat 8: Elvakesdes (1265)
+Seat 9: zepekenyo (1465)
+***** End of hand T5-18949598-7 *****
+***** History for hand T5-18949598-8 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:36:59 GMT+0100 2011
+Table: Table #84 [18949598] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 10
+Players in round: 10
+Seat 1: zaza20 (1470)
+Seat 2: macody53 (1630)
+Seat 3: POLO72 (1515)
+Seat 4: besac025 (4550)
+Seat 5: coco76 (1470)
+Seat 6: RoceBane (1470)
+Seat 7: GarciaLorca (1470)
+Seat 8: Elvakesdes (1265)
+Seat 9: zepekenyo (1465)
+Seat 10: ADR1105 (1855)
+zaza20 posts small blind (15)
+macody53 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [Kh, 6c]
+POLO72 calls 30
+besac025 folds
+coco76 folds
+RoceBane folds
+GarciaLorca folds
+Elvakesdes raises 180 to 180
+zepekenyo folds
+ADR1105 folds
+zaza20 folds
+macody53 folds
+POLO72 folds
+---
+Summary:
+Main pot: 105 won by Elvakesdes (105)
+Rake taken: €0
+Seat 1: zaza20 (1455), net: -15
+Seat 2: macody53 (1600), net: -30
+Seat 3: POLO72 (1485), net: -30
+Seat 4: besac025 (4550)
+Seat 5: coco76 (1470)
+Seat 6: RoceBane (1470)
+Seat 7: GarciaLorca (1470)
+Seat 8: Elvakesdes (1340), net: +75
+Seat 9: zepekenyo (1465)
+Seat 10: ADR1105 (1855)
+***** End of hand T5-18949598-8 *****
+***** History for hand T5-18949598-9 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:37:48 GMT+0100 2011
+Table: Table #84 [18949598] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 1
+Players in round: 10
+Seat 2: macody53 (1600)
+Seat 3: POLO72 (1485)
+Seat 4: besac025 (4550)
+Seat 5: coco76 (1470)
+Seat 6: RoceBane (1470)
+Seat 7: GarciaLorca (1470)
+Seat 8: Elvakesdes (1340)
+Seat 9: zepekenyo (1465)
+Seat 10: ADR1105 (1855)
+Seat 1: zaza20 (1455)
+macody53 posts small blind (15)
+POLO72 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [Kd, Kc]
+besac025 calls 30
+coco76 folds
+RoceBane folds
+GarciaLorca calls 30
+Elvakesdes calls 30
+zepekenyo folds
+ADR1105 calls 30
+zaza20 folds
+macody53 calls 15
+POLO72 checks
+--- Dealing flop [9d, 3h, Js]
+macody53 checks
+POLO72 bets 45
+besac025 raises 90 to 90
+GarciaLorca folds
+Elvakesdes folds
+ADR1105 raises 405 to 405
+macody53 folds
+POLO72 folds
+besac025 raises 4430 to 4520 [all in]
+ADR1105 calls 1420 [all in]
+--- Dealing flop [9d, 3h, Js]
+--- Dealing turn [5h]
+--- Dealing river [7s]
+---
+Summary:
+Main pot: 3875 won by ADR1105 (3875)
+Rake taken: €0
+Seat 2: macody53 (1570), net: -30
+Seat 3: POLO72 (1410), net: -75
+Seat 4: besac025 (2695), net: -1855, [Kd, Kc] (PAIR KING)
+Seat 5: coco76 (1470)
+Seat 6: RoceBane (1470)
+Seat 7: GarciaLorca (1440), net: -30
+Seat 8: Elvakesdes (1310), net: -30
+Seat 9: zepekenyo (1465)
+Seat 10: ADR1105 (3875), net: +2020, [3c, 3d] (THREE_OF_A_KIND THREE)
+Seat 1: zaza20 (1455)
+***** End of hand T5-18949598-9 *****
+***** History for hand T5-18949598-10 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:39:06 GMT+0100 2011
+Table: Table #84 [18949598] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 2
+Players in round: 10
+Seat 3: POLO72 (1410)
+Seat 4: besac025 (2695)
+Seat 5: coco76 (1470)
+Seat 6: RoceBane (1470)
+Seat 7: GarciaLorca (1440)
+Seat 8: Elvakesdes (1310)
+Seat 9: zepekenyo (1465)
+Seat 10: ADR1105 (3875)
+Seat 1: zaza20 (1455)
+Seat 2: macody53 (1570)
+POLO72 posts small blind (15)
+besac025 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [4h, Qh]
+coco76 folds
+RoceBane folds
+GarciaLorca raises 90 to 90
+Elvakesdes folds
+zepekenyo folds
+ADR1105 calls 90
+zaza20 folds
+macody53 folds
+POLO72 calls 75
+besac025 calls 60
+--- Dealing flop [8c, 6c, Kd]
+POLO72 bets 375
+besac025 folds
+GarciaLorca folds
+ADR1105 folds
+---
+Summary:
+Main pot: 360 won by POLO72 (360)
+Rake taken: €0
+Seat 3: POLO72 (1680), net: +270
+Seat 4: besac025 (2605), net: -90
+Seat 5: coco76 (1470)
+Seat 6: RoceBane (1470)
+Seat 7: GarciaLorca (1350), net: -90
+Seat 8: Elvakesdes (1310)
+Seat 9: zepekenyo (1465)
+Seat 10: ADR1105 (3785), net: -90
+Seat 1: zaza20 (1455)
+Seat 2: macody53 (1570)
+***** End of hand T5-18949598-10 *****
+***** History for hand T5-18949649-10 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:42:52 GMT+0100 2011
+Table: Table #33 [18949649] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 8
+Players in round: 10
+Seat 9: horimono (3325)
+Seat 10: tartuf76 (1490)
+Seat 1: pibale (1300)
+Seat 2: danys (6535)
+Seat 3: fatal29 (1725)
+Seat 4: SYL1 (1365)
+Seat 5: RABOLIOT56 (3625)
+Seat 6: Stefane13 (1440)
+Seat 7: besac025 (2605)
+Seat 8: T-Hung (1405)
+horimono posts small blind (25)
+tartuf76 posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [4h, Jd]
+pibale calls 50
+danys folds
+fatal29 folds
+SYL1 calls 50
+RABOLIOT56 folds
+Stefane13 calls 50
+besac025 folds
+T-Hung raises 1405 to 1405 [all in]
+horimono folds
+tartuf76 folds
+pibale folds
+SYL1 folds
+Stefane13 folds
+---
+Summary:
+Main pot: 275 won by T-Hung (275)
+Rake taken: €0
+Seat 9: horimono (3300), net: -25
+Seat 10: tartuf76 (1440), net: -50
+Seat 1: pibale (1250), net: -50
+Seat 2: danys (6535)
+Seat 3: fatal29 (1725)
+Seat 4: SYL1 (1315), net: -50
+Seat 5: RABOLIOT56 (3625)
+Seat 6: Stefane13 (1390), net: -50
+Seat 7: besac025 (2605)
+Seat 8: T-Hung (1630), net: +225
+***** End of hand T5-18949649-10 *****
+***** History for hand T5-18949649-11 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:43:42 GMT+0100 2011
+Table: Table #33 [18949649] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 9
+Players in round: 10
+Seat 10: tartuf76 (1440)
+Seat 1: pibale (1250)
+Seat 2: danys (6535)
+Seat 3: fatal29 (1725)
+Seat 4: SYL1 (1315)
+Seat 5: RABOLIOT56 (3625)
+Seat 6: Stefane13 (1390)
+Seat 7: besac025 (2605)
+Seat 8: T-Hung (1630)
+Seat 9: horimono (3300)
+tartuf76 posts small blind (25)
+pibale posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [Td, Ks]
+danys folds
+fatal29 calls 50
+SYL1 folds
+RABOLIOT56 folds
+Stefane13 folds
+besac025 raises 100 to 100
+T-Hung folds
+horimono calls 100
+tartuf76 folds
+pibale calls 50
+fatal29 calls 50
+--- Dealing flop [5c, 4h, 6d]
+pibale checks
+fatal29 checks
+besac025 checks
+horimono bets 500
+pibale folds
+fatal29 calls 500
+besac025 folds
+--- Dealing turn [7c]
+fatal29 checks
+horimono bets 500
+fatal29 calls 500
+--- Dealing river [8s]
+fatal29 checks
+horimono bets 500
+fatal29 folds
+---
+Summary:
+Main pot: 2425 won by horimono (2425)
+Rake taken: €0
+Seat 10: tartuf76 (1415), net: -25
+Seat 1: pibale (1150), net: -100
+Seat 2: danys (6535)
+Seat 3: fatal29 (625), net: -1100
+Seat 4: SYL1 (1315)
+Seat 5: RABOLIOT56 (3625)
+Seat 6: Stefane13 (1390)
+Seat 7: besac025 (2505), net: -100
+Seat 8: T-Hung (1630)
+Seat 9: horimono (4625), net: +1325
+***** End of hand T5-18949649-11 *****
+***** History for hand T5-18949649-12 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:45:50 GMT+0100 2011
+Table: Table #33 [18949649] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 10
+Players in round: 10
+Seat 1: pibale (1150)
+Seat 2: danys (6535)
+Seat 3: fatal29 (625)
+Seat 4: SYL1 (1315)
+Seat 5: RABOLIOT56 (3625)
+Seat 6: Stefane13 (1390)
+Seat 7: besac025 (2505)
+Seat 8: T-Hung (1630)
+Seat 9: horimono (4625)
+Seat 10: tartuf76 (1415)
+pibale posts small blind (25)
+danys posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [9d, 2d]
+fatal29 folds
+SYL1 folds
+RABOLIOT56 folds
+Stefane13 calls 50
+besac025 folds
+T-Hung raises 1630 to 1630 [all in]
+horimono folds
+tartuf76 folds
+pibale folds
+danys folds
+Stefane13 folds
+---
+Summary:
+Main pot: 175 won by T-Hung (175)
+Rake taken: €0
+Seat 1: pibale (1125), net: -25
+Seat 2: danys (6485), net: -50
+Seat 3: fatal29 (625)
+Seat 4: SYL1 (1315)
+Seat 5: RABOLIOT56 (3625)
+Seat 6: Stefane13 (1340), net: -50
+Seat 7: besac025 (2505)
+Seat 8: T-Hung (1755), net: +125
+Seat 9: horimono (4625)
+Seat 10: tartuf76 (1415)
+***** End of hand T5-18949649-12 *****
+***** History for hand T5-18949649-13 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:46:59 GMT+0100 2011
+Table: Table #33 [18949649] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 1
+Players in round: 10
+Seat 2: danys (6485)
+Seat 3: fatal29 (625)
+Seat 4: SYL1 (1315)
+Seat 5: RABOLIOT56 (3625)
+Seat 6: Stefane13 (1340)
+Seat 7: besac025 (2505)
+Seat 8: T-Hung (1755)
+Seat 9: horimono (4625)
+Seat 10: tartuf76 (1415)
+Seat 1: pibale (1125)
+danys posts small blind (40)
+fatal29 posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [4s, 8c]
+SYL1 folds
+RABOLIOT56 raises 160 to 160
+Stefane13 folds
+besac025 folds
+T-Hung folds
+horimono folds
+tartuf76 folds
+pibale folds
+danys calls 120
+fatal29 calls 80
+--- Dealing flop [7s, 8s, Qs]
+danys checks
+fatal29 bets 465 [all in]
+RABOLIOT56 folds
+danys folds
+---
+Summary:
+Main pot: 480 won by fatal29 (480)
+Rake taken: €0
+Seat 2: danys (6325), net: -160
+Seat 3: fatal29 (945), net: +320
+Seat 4: SYL1 (1315)
+Seat 5: RABOLIOT56 (3465), net: -160
+Seat 6: Stefane13 (1340)
+Seat 7: besac025 (2505)
+Seat 8: T-Hung (1755)
+Seat 9: horimono (4625)
+Seat 10: tartuf76 (1415)
+Seat 1: pibale (1125)
+***** End of hand T5-18949649-13 *****
+***** History for hand T5-18949649-14 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:48:03 GMT+0100 2011
+Table: Table #33 [18949649] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 2
+Players in round: 10
+Seat 3: fatal29 (945)
+Seat 4: SYL1 (1315)
+Seat 5: RABOLIOT56 (3465)
+Seat 6: Stefane13 (1340)
+Seat 7: besac025 (2505)
+Seat 8: T-Hung (1755)
+Seat 9: horimono (4625)
+Seat 10: tartuf76 (1415)
+Seat 1: pibale (1125)
+Seat 2: danys (6325)
+fatal29 posts small blind (40)
+SYL1 posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [2s, Th]
+RABOLIOT56 raises 480 to 480
+Stefane13 folds
+besac025 folds
+T-Hung folds
+horimono folds
+tartuf76 folds
+pibale raises 1125 to 1125 [all in]
+danys calls 1125
+fatal29 calls 905 [all in]
+SYL1 folds
+RABOLIOT56 raises 2985 to 3465 [all in]
+danys calls 2340
+--- 
+--- Dealing flop [2c, 6s, 9s]
+--- Dealing turn [8s]
+--- Dealing river [7h]
+---
+Summary:
+Main pot: 3860 won by danys (1930), RABOLIOT56 (1930)
+Side pot 1: 540 won by danys (270), RABOLIOT56 (270)
+Side pot 2: 4680 won by danys (2340), RABOLIOT56 (2340)
+Rake taken: €0
+Seat 3: fatal29 (0), net: -945, [Ks, Kh] (PAIR KING)
+Seat 4: SYL1 (1235), net: -80
+Seat 5: RABOLIOT56 (4540), net: +1075, [Ad, Tc] (STRAIGHT TEN)
+Seat 6: Stefane13 (1340)
+Seat 7: besac025 (2505)
+Seat 8: T-Hung (1755)
+Seat 9: horimono (4625)
+Seat 10: tartuf76 (1415)
+Seat 1: pibale (0), net: -1125, [Js, Jc] (PAIR JACK)
+Seat 2: danys (7400), net: +1075, [Ts, Kc] (STRAIGHT TEN)
+***** End of hand T5-18949649-14 *****
+***** History for hand T5-18949590-16 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:50:31 GMT+0100 2011
+Table: Table #92 [18949590] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 1
+Players in round: 10
+Seat 2: choupy7777 (3560)
+Seat 3: ABLAKAJAKA (3255)
+Seat 4: toti18 (2365)
+Seat 5: besac025 (2505)
+Seat 6: christian&31 (1315)
+Seat 7: riko (2900)
+Seat 8: poul82 (3130)
+Seat 9: Trigger1 (1215)
+Seat 10: Noosby_ (3310)
+Seat 1: x_KIKI (1350)
+choupy7777 posts small blind (40)
+ABLAKAJAKA posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [9d, 5c]
+toti18 folds
+besac025 folds
+christian&31 folds
+riko raises 2900 to 2900 [all in]
+poul82 folds
+Trigger1 calls 1215 [all in]
+Noosby_ folds
+x_KIKI folds
+choupy7777 folds
+ABLAKAJAKA folds
+--- 
+--- Dealing flop [Qs, Td, Jd]
+--- Dealing turn [4c]
+--- Dealing river [6d]
+---
+Summary:
+Main pot: 2550 won by riko (2550)
+Rake taken: €0
+Seat 2: choupy7777 (3520), net: -40
+Seat 3: ABLAKAJAKA (3175), net: -80
+Seat 4: toti18 (2365)
+Seat 5: besac025 (2505)
+Seat 6: christian&31 (1315)
+Seat 7: riko (4235), net: +1335, [Kh, Ad] (STRAIGHT ACE)
+Seat 8: poul82 (3130)
+Seat 9: Trigger1 (0), net: -1215, [7d, 7s] (PAIR SEVEN)
+Seat 10: Noosby_ (3310)
+Seat 1: x_KIKI (1350)
+***** End of hand T5-18949590-16 *****
+***** History for hand T5-18949590-17 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:51:50 GMT+0100 2011
+Table: Table #92 [18949590] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 2
+Players in round: 9
+Seat 3: ABLAKAJAKA (3175)
+Seat 4: toti18 (2365)
+Seat 5: besac025 (2505)
+Seat 6: christian&31 (1315)
+Seat 7: riko (4235)
+Seat 8: poul82 (3130)
+Seat 10: Noosby_ (3310)
+Seat 1: x_KIKI (1350)
+Seat 2: choupy7777 (3520)
+ABLAKAJAKA posts small blind (40)
+toti18 posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [Kd, Jc]
+besac025 calls 80
+christian&31 folds
+riko folds
+poul82 calls 80
+Noosby_ calls 80
+x_KIKI folds
+choupy7777 folds
+ABLAKAJAKA folds
+toti18 checks
+--- Dealing flop [8s, Qc, 4s]
+toti18 checks
+besac025 checks
+poul82 bets 80
+Noosby_ calls 80
+toti18 folds
+besac025 folds
+--- Dealing turn [7d]
+poul82 bets 80
+Noosby_ folds
+---
+Summary:
+Main pot: 520 won by poul82 (520)
+Rake taken: €0
+Seat 3: ABLAKAJAKA (3135), net: -40
+Seat 4: toti18 (2285), net: -80
+Seat 5: besac025 (2425), net: -80
+Seat 6: christian&31 (1315)
+Seat 7: riko (4235)
+Seat 8: poul82 (3490), net: +360
+Seat 10: Noosby_ (3150), net: -160
+Seat 1: x_KIKI (1350)
+Seat 2: choupy7777 (3520)
+***** End of hand T5-18949590-17 *****
+***** History for hand T5-18949590-18 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:53:08 GMT+0100 2011
+Table: Table #92 [18949590] (NO_LIMIT TEXAS_HOLDEM 60/120, TC)
+User: besac025
+Button: seat 3
+Players in round: 10
+Seat 4: toti18 (2285)
+Seat 5: besac025 (2425)
+Seat 6: christian&31 (1315)
+Seat 7: riko (4235)
+Seat 8: poul82 (3490)
+Seat 9: pascalou80 (4090)
+Seat 10: Noosby_ (3150)
+Seat 1: x_KIKI (1350)
+Seat 2: choupy7777 (3520)
+Seat 3: ABLAKAJAKA (3135)
+toti18 posts small blind (60)
+besac025 posts big blind (120)
+---
+Dealing pocket cards
+Dealing to besac025: [5s, 6c]
+christian&31 raises 1315 to 1315 [all in]
+riko calls 1315
+poul82 folds
+pascalou80 folds
+Noosby_ folds
+x_KIKI folds
+choupy7777 folds
+ABLAKAJAKA folds
+toti18 folds
+besac025 folds
+--- 
+--- Dealing flop [8h, Qc, 7d]
+--- Dealing turn [8c]
+--- Dealing river [3c]
+---
+Summary:
+Main pot: 2810 won by riko (2810)
+Rake taken: €0
+Seat 4: toti18 (2225), net: -60
+Seat 5: besac025 (2305), net: -120
+Seat 6: christian&31 (0), net: -1315, [Kc, Ad] (PAIR EIGHT)
+Seat 7: riko (5730), net: +1495, [Qs, Ah] (TWO_PAIR QUEEN, EIGHT)
+Seat 8: poul82 (3490)
+Seat 9: pascalou80 (4090)
+Seat 10: Noosby_ (3150)
+Seat 1: x_KIKI (1350)
+Seat 2: choupy7777 (3520)
+Seat 3: ABLAKAJAKA (3135)
+***** End of hand T5-18949590-18 *****
+***** History for hand T5-18949637-26 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:55:03 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 60/120, TC)
+User: besac025
+Button: seat 5
+Players in round: 10
+Seat 6: PASCALD (13250)
+Seat 7: Mungo92 (1395)
+Seat 8: MagicMaestro (1380)
+Seat 9: benetlolo (8535)
+Seat 10: nikof (2000)
+Seat 1: COLONEL38 (2575)
+Seat 2: kuicky69 (1265)
+Seat 3: besac025 (2305)
+Seat 4: buga (1255)
+Seat 5: kikobrasil99 (5660)
+PASCALD posts small blind (60)
+Mungo92 posts big blind (120)
+---
+Dealing pocket cards
+Dealing to besac025: [5d, 4d]
+MagicMaestro folds
+benetlolo folds
+nikof folds
+COLONEL38 folds
+kuicky69 folds
+besac025 folds
+buga folds
+kikobrasil99 raises 5660 to 5660 [all in]
+PASCALD folds
+Mungo92 folds
+---
+Summary:
+Main pot: 300 won by kikobrasil99 (300)
+Rake taken: €0
+Seat 6: PASCALD (13190), net: -60
+Seat 7: Mungo92 (1275), net: -120
+Seat 8: MagicMaestro (1380)
+Seat 9: benetlolo (8535)
+Seat 10: nikof (2000)
+Seat 1: COLONEL38 (2575)
+Seat 2: kuicky69 (1265)
+Seat 3: besac025 (2305)
+Seat 4: buga (1255)
+Seat 5: kikobrasil99 (5840), net: +180
+***** End of hand T5-18949637-26 *****
+***** History for hand T5-18949637-27 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:55:30 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 60/120, TC)
+User: besac025
+Button: seat 6
+Players in round: 10
+Seat 7: Mungo92 (1275)
+Seat 8: MagicMaestro (1380)
+Seat 9: benetlolo (8535)
+Seat 10: nikof (2000)
+Seat 1: COLONEL38 (2575)
+Seat 2: kuicky69 (1265)
+Seat 3: besac025 (2305)
+Seat 4: buga (1255)
+Seat 5: kikobrasil99 (5840)
+Seat 6: PASCALD (13190)
+Mungo92 posts small blind (60)
+MagicMaestro posts big blind (120)
+---
+Dealing pocket cards
+Dealing to besac025: [Ts, 5s]
+benetlolo folds
+nikof folds
+COLONEL38 folds
+kuicky69 folds
+besac025 calls 120
+buga folds
+kikobrasil99 folds
+PASCALD calls 120
+Mungo92 folds
+MagicMaestro checks
+--- Dealing flop [5d, 4d, 8s]
+MagicMaestro checks
+besac025 bets 2185 [all in]
+PASCALD calls 2185
+MagicMaestro folds
+--- Dealing flop [5d, 4d, 8s]
+--- Dealing turn [Td]
+--- Dealing river [9d]
+---
+Summary:
+Main pot: 4790 won by besac025 (4790)
+Rake taken: €0
+Seat 7: Mungo92 (1215), net: -60
+Seat 8: MagicMaestro (1260), net: -120
+Seat 9: benetlolo (8535)
+Seat 10: nikof (2000)
+Seat 1: COLONEL38 (2575)
+Seat 2: kuicky69 (1265)
+Seat 3: besac025 (4790), net: +2485, [Ts, 5s] (TWO_PAIR TEN, FIVE)
+Seat 4: buga (1255)
+Seat 5: kikobrasil99 (5840)
+Seat 6: PASCALD (10885), net: -2305, [Qs, 8h] (PAIR EIGHT)
+***** End of hand T5-18949637-27 *****
+***** History for hand T5-18949637-28 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:56:01 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 60/120, TC)
+User: besac025
+Button: seat 7
+Players in round: 10
+Seat 8: MagicMaestro (1260)
+Seat 9: benetlolo (8535)
+Seat 10: nikof (2000)
+Seat 1: COLONEL38 (2575)
+Seat 2: kuicky69 (1265)
+Seat 3: besac025 (4790)
+Seat 4: buga (1255)
+Seat 5: kikobrasil99 (5840)
+Seat 6: PASCALD (10885)
+Seat 7: Mungo92 (1215)
+MagicMaestro posts small blind (60)
+benetlolo posts big blind (120)
+---
+Dealing pocket cards
+Dealing to besac025: [2h, Qh]
+nikof folds
+COLONEL38 folds
+kuicky69 folds
+besac025 folds
+buga folds
+kikobrasil99 calls 120
+PASCALD folds
+Mungo92 folds
+MagicMaestro folds
+benetlolo checks
+--- Dealing flop [6s, 3c, Qd]
+benetlolo checks
+kikobrasil99 checks
+--- Dealing turn [8h]
+benetlolo checks
+kikobrasil99 checks
+--- Dealing river [Ts]
+benetlolo checks
+kikobrasil99 checks
+---
+Summary:
+Main pot: 300 won by kikobrasil99 (300)
+Rake taken: €0
+Seat 8: MagicMaestro (1200), net: -60
+Seat 9: benetlolo (8415), net: -120, [Kd, 7d] (HIGH_CARD KING)
+Seat 10: nikof (2000)
+Seat 1: COLONEL38 (2575)
+Seat 2: kuicky69 (1265)
+Seat 3: besac025 (4790)
+Seat 4: buga (1255)
+Seat 5: kikobrasil99 (6020), net: +180, [3d, 7c] (PAIR THREE)
+Seat 6: PASCALD (10885)
+Seat 7: Mungo92 (1215)
+***** End of hand T5-18949637-28 *****
+***** History for hand T5-18949637-29 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:56:47 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 60/120, TC)
+User: besac025
+Button: seat 8
+Players in round: 10
+Seat 9: benetlolo (8415)
+Seat 10: nikof (2000)
+Seat 1: COLONEL38 (2575)
+Seat 2: kuicky69 (1265)
+Seat 3: besac025 (4790)
+Seat 4: buga (1255)
+Seat 5: kikobrasil99 (6020)
+Seat 6: PASCALD (10885)
+Seat 7: Mungo92 (1215)
+Seat 8: MagicMaestro (1200)
+benetlolo posts small blind (60)
+nikof posts big blind (120)
+---
+Dealing pocket cards
+Dealing to besac025: [7c, Qh]
+COLONEL38 folds
+kuicky69 folds
+besac025 folds
+buga folds
+kikobrasil99 calls 120
+PASCALD calls 120
+Mungo92 folds
+MagicMaestro folds
+benetlolo calls 60
+nikof checks
+--- Dealing flop [9c, Kd, 5h]
+benetlolo checks
+nikof checks
+kikobrasil99 checks
+PASCALD checks
+--- Dealing turn [Td]
+benetlolo checks
+nikof checks
+kikobrasil99 checks
+PASCALD checks
+--- Dealing river [6s]
+benetlolo checks
+nikof checks
+kikobrasil99 bets 5900 [all in]
+PASCALD folds
+benetlolo folds
+nikof folds
+---
+Summary:
+Main pot: 480 won by kikobrasil99 (480)
+Rake taken: €0
+Seat 9: benetlolo (8295), net: -120
+Seat 10: nikof (1880), net: -120
+Seat 1: COLONEL38 (2575)
+Seat 2: kuicky69 (1265)
+Seat 3: besac025 (4790)
+Seat 4: buga (1255)
+Seat 5: kikobrasil99 (6380), net: +360
+Seat 6: PASCALD (10765), net: -120
+Seat 7: Mungo92 (1215)
+Seat 8: MagicMaestro (1200)
+***** End of hand T5-18949637-29 *****
+***** History for hand T5-18949637-30 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:57:47 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 60/120, TC)
+User: besac025
+Button: seat 9
+Players in round: 9
+Seat 10: nikof (1880)
+Seat 1: COLONEL38 (2575)
+Seat 3: besac025 (4790)
+Seat 4: buga (1255)
+Seat 5: kikobrasil99 (6380)
+Seat 6: PASCALD (10765)
+Seat 7: Mungo92 (1215)
+Seat 8: MagicMaestro (1200)
+Seat 9: benetlolo (8295)
+nikof posts small blind (60)
+COLONEL38 posts big blind (120)
+---
+Dealing pocket cards
+Dealing to besac025: [2h, Js]
+besac025 folds
+buga folds
+kikobrasil99 calls 120
+PASCALD calls 120
+Mungo92 folds
+MagicMaestro folds
+benetlolo folds
+nikof calls 60
+COLONEL38 checks
+--- Dealing flop [Jd, Ad, 6s]
+nikof checks
+COLONEL38 checks
+kikobrasil99 checks
+PASCALD checks
+--- Dealing turn [3d]
+nikof folds
+COLONEL38 checks
+kikobrasil99 checks
+PASCALD checks
+--- Dealing river [9h]
+COLONEL38 checks
+kikobrasil99 checks
+PASCALD checks
+---
+Summary:
+Main pot: 480 won by kikobrasil99 (480)
+Rake taken: €0
+Seat 10: nikof (1760), net: -120
+Seat 1: COLONEL38 (2455), net: -120, [5h, 8h] (HIGH_CARD ACE)
+Seat 3: besac025 (4790)
+Seat 4: buga (1255)
+Seat 5: kikobrasil99 (6740), net: +360, [Th, 9s] (PAIR NINE)
+Seat 6: PASCALD (10645), net: -120
+Seat 7: Mungo92 (1215)
+Seat 8: MagicMaestro (1200)
+Seat 9: benetlolo (8295)
+***** End of hand T5-18949637-30 *****
+***** History for hand T5-18949637-31 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 16:59:18 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 10
+Players in round: 10
+Seat 1: COLONEL38 (2455)
+Seat 2: sylvain_22 (1265)
+Seat 3: besac025 (4790)
+Seat 4: buga (1255)
+Seat 5: kikobrasil99 (6740)
+Seat 6: PASCALD (10645)
+Seat 7: Mungo92 (1215)
+Seat 8: MagicMaestro (1200)
+Seat 9: benetlolo (8295)
+Seat 10: nikof (1760)
+COLONEL38 posts small blind (80)
+sylvain_22 posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [Qc, 2d]
+besac025 folds
+buga folds
+kikobrasil99 calls 160
+PASCALD folds
+Mungo92 folds
+MagicMaestro folds
+benetlolo folds
+nikof folds
+COLONEL38 calls 80
+sylvain_22 checks
+--- Dealing flop [5d, 2c, 7d]
+COLONEL38 checks
+sylvain_22 checks
+kikobrasil99 checks
+--- Dealing turn [9c]
+COLONEL38 checks
+sylvain_22 checks
+kikobrasil99 checks
+--- Dealing river [9s]
+COLONEL38 checks
+sylvain_22 checks
+kikobrasil99 checks
+---
+Summary:
+Main pot: 480 won by COLONEL38 (480)
+Rake taken: €0
+Seat 1: COLONEL38 (2775), net: +320, [4c, 5c] (TWO_PAIR NINE, FIVE)
+Seat 2: sylvain_22 (1105), net: -160
+Seat 3: besac025 (4790)
+Seat 4: buga (1255)
+Seat 5: kikobrasil99 (6580), net: -160
+Seat 6: PASCALD (10645)
+Seat 7: Mungo92 (1215)
+Seat 8: MagicMaestro (1200)
+Seat 9: benetlolo (8295)
+Seat 10: nikof (1760)
+***** End of hand T5-18949637-31 *****
+***** History for hand T5-18949637-32 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:00:18 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 1
+Players in round: 10
+Seat 2: sylvain_22 (1105)
+Seat 3: besac025 (4790)
+Seat 4: buga (1255)
+Seat 5: kikobrasil99 (6580)
+Seat 6: PASCALD (10645)
+Seat 7: Mungo92 (1215)
+Seat 8: MagicMaestro (1200)
+Seat 9: benetlolo (8295)
+Seat 10: nikof (1760)
+Seat 1: COLONEL38 (2775)
+sylvain_22 posts small blind (80)
+besac025 posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [6h, 7h]
+buga folds
+kikobrasil99 calls 160
+PASCALD folds
+Mungo92 folds
+MagicMaestro folds
+benetlolo folds
+nikof raises 1760 to 1760 [all in]
+COLONEL38 folds
+sylvain_22 folds
+besac025 folds
+kikobrasil99 calls 1600
+--- 
+--- Dealing flop [2c, 9s, Ts]
+--- Dealing turn [8d]
+--- Dealing river [5c]
+---
+Summary:
+Main pot: 3760 won by nikof (3760)
+Rake taken: €0
+Seat 2: sylvain_22 (1025), net: -80
+Seat 3: besac025 (4630), net: -160
+Seat 4: buga (1255)
+Seat 5: kikobrasil99 (4820), net: -1760, [Jd, 9d] (PAIR NINE)
+Seat 6: PASCALD (10645)
+Seat 7: Mungo92 (1215)
+Seat 8: MagicMaestro (1200)
+Seat 9: benetlolo (8295)
+Seat 10: nikof (3760), net: +2000, [Th, Td] (THREE_OF_A_KIND TEN)
+Seat 1: COLONEL38 (2775)
+***** End of hand T5-18949637-32 *****
+***** History for hand T5-18949637-33 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:01:22 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 2
+Players in round: 10
+Seat 3: besac025 (4630)
+Seat 4: buga (1255)
+Seat 5: kikobrasil99 (4820)
+Seat 6: PASCALD (10645)
+Seat 7: Mungo92 (1215)
+Seat 8: MagicMaestro (1200)
+Seat 9: benetlolo (8295)
+Seat 10: nikof (3760)
+Seat 1: COLONEL38 (2775)
+Seat 2: sylvain_22 (1025)
+besac025 posts small blind (80)
+buga posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [9c, As]
+kikobrasil99 calls 160
+PASCALD folds
+Mungo92 folds
+MagicMaestro folds
+benetlolo folds
+nikof raises 3760 to 3760 [all in]
+COLONEL38 folds
+sylvain_22 folds
+besac025 folds
+buga folds
+kikobrasil99 calls 3600
+--- 
+--- Dealing flop [Tc, 7c, 5h]
+--- Dealing turn [4c]
+--- Dealing river [Qd]
+---
+Summary:
+Main pot: 7760 won by nikof (7760)
+Rake taken: €0
+Seat 3: besac025 (4550), net: -80
+Seat 4: buga (1095), net: -160
+Seat 5: kikobrasil99 (1060), net: -3760, [3d, Ah] (HIGH_CARD ACE)
+Seat 6: PASCALD (10645)
+Seat 7: Mungo92 (1215)
+Seat 8: MagicMaestro (1200)
+Seat 9: benetlolo (8295)
+Seat 10: nikof (7760), net: +4000, [7d, Ad] (PAIR SEVEN)
+Seat 1: COLONEL38 (2775)
+Seat 2: sylvain_22 (1025)
+***** End of hand T5-18949637-33 *****
+***** History for hand T5-18949637-34 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:01:58 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 3
+Players in round: 10
+Seat 4: buga (1095)
+Seat 5: kikobrasil99 (1060)
+Seat 6: PASCALD (10645)
+Seat 7: Mungo92 (1215)
+Seat 8: MagicMaestro (1200)
+Seat 9: benetlolo (8295)
+Seat 10: nikof (7760)
+Seat 1: COLONEL38 (2775)
+Seat 2: sylvain_22 (1025)
+Seat 3: besac025 (4550)
+buga posts small blind (80)
+kikobrasil99 posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [5s, Qd]
+PASCALD calls 160
+Mungo92 folds
+MagicMaestro folds
+benetlolo folds
+nikof raises 7760 to 7760 [all in]
+COLONEL38 folds
+sylvain_22 folds
+besac025 folds
+buga folds
+kikobrasil99 folds
+PASCALD calls 7600
+--- 
+--- Dealing flop [Ks, 2s, 6d]
+--- Dealing turn [4h]
+--- Dealing river [3c]
+---
+Summary:
+Main pot: 15760 won by nikof (15760)
+Rake taken: €0
+Seat 4: buga (1015), net: -80
+Seat 5: kikobrasil99 (900), net: -160
+Seat 6: PASCALD (2885), net: -7760, [Kh, Ad] (PAIR KING)
+Seat 7: Mungo92 (1215)
+Seat 8: MagicMaestro (1200)
+Seat 9: benetlolo (8295)
+Seat 10: nikof (15760), net: +8000, [Ah, Ac] (PAIR ACE)
+Seat 1: COLONEL38 (2775)
+Seat 2: sylvain_22 (1025)
+Seat 3: besac025 (4550)
+***** End of hand T5-18949637-34 *****
+***** History for hand T5-18949637-35 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:02:38 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 4
+Players in round: 10
+Seat 5: kikobrasil99 (900)
+Seat 6: PASCALD (2885)
+Seat 7: Mungo92 (1215)
+Seat 8: MagicMaestro (1200)
+Seat 9: benetlolo (8295)
+Seat 10: nikof (15760)
+Seat 1: COLONEL38 (2775)
+Seat 2: sylvain_22 (1025)
+Seat 3: besac025 (4550)
+Seat 4: buga (1015)
+kikobrasil99 posts small blind (80)
+PASCALD posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [Qh, Ah]
+Mungo92 folds
+MagicMaestro folds
+benetlolo folds
+nikof folds
+COLONEL38 folds
+sylvain_22 folds
+besac025 raises 960 to 960
+buga folds
+kikobrasil99 calls 820 [all in]
+PASCALD folds
+--- 
+--- Dealing flop [Ts, 3s, 4s]
+--- Dealing turn [Jh]
+--- Dealing river [Td]
+---
+Summary:
+Main pot: 1960 won by kikobrasil99 (1960)
+Rake taken: €0
+Seat 5: kikobrasil99 (1960), net: +1060, [Th, 6h] (THREE_OF_A_KIND TEN)
+Seat 6: PASCALD (2725), net: -160
+Seat 7: Mungo92 (1215)
+Seat 8: MagicMaestro (1200)
+Seat 9: benetlolo (8295)
+Seat 10: nikof (15760)
+Seat 1: COLONEL38 (2775)
+Seat 2: sylvain_22 (1025)
+Seat 3: besac025 (3650), net: -900, [Qh, Ah] (PAIR TEN)
+Seat 4: buga (1015)
+***** End of hand T5-18949637-35 *****
+***** History for hand T5-18949637-36 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:03:17 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 5
+Players in round: 10
+Seat 6: PASCALD (2725)
+Seat 7: Mungo92 (1215)
+Seat 8: MagicMaestro (1200)
+Seat 9: benetlolo (8295)
+Seat 10: nikof (15760)
+Seat 1: COLONEL38 (2775)
+Seat 2: sylvain_22 (1025)
+Seat 3: besac025 (3650)
+Seat 4: buga (1015)
+Seat 5: kikobrasil99 (1960)
+PASCALD posts small blind (80)
+Mungo92 posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [Ad, As]
+MagicMaestro folds
+benetlolo folds
+nikof calls 160
+COLONEL38 folds
+sylvain_22 folds
+besac025 raises 960 to 960
+buga folds
+kikobrasil99 raises 1960 to 1960 [all in]
+PASCALD calls 1880
+Mungo92 folds
+nikof folds
+besac025 raises 2690 to 3650 [all in]
+PASCALD calls 765 [all in]
+--- 
+--- Dealing flop [Th, 8h, 6s]
+--- Dealing turn [Ts]
+--- Dealing river [2c]
+---
+Summary:
+Main pot: 6200 won by besac025 (6200)
+Side pot 1: 1530 won by besac025 (1530)
+Rake taken: €0
+Seat 6: PASCALD (0), net: -2725, [9c, Jd] (PAIR TEN)
+Seat 7: Mungo92 (1055), net: -160
+Seat 8: MagicMaestro (1200)
+Seat 9: benetlolo (8295)
+Seat 10: nikof (15600), net: -160
+Seat 1: COLONEL38 (2775)
+Seat 2: sylvain_22 (1025)
+Seat 3: besac025 (8655), net: +5005, [Ad, As] (TWO_PAIR ACE, TEN)
+Seat 4: buga (1015)
+Seat 5: kikobrasil99 (0), net: -1960, [3h, 3c] (TWO_PAIR TEN, THREE)
+***** End of hand T5-18949637-36 *****
+***** History for hand T5-18949637-37 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:04:11 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 6
+Players in round: 8
+Seat 7: Mungo92 (1055)
+Seat 8: MagicMaestro (1200)
+Seat 9: benetlolo (8295)
+Seat 10: nikof (15600)
+Seat 1: COLONEL38 (2775)
+Seat 2: sylvain_22 (1025)
+Seat 3: besac025 (8655)
+Seat 4: buga (1015)
+Mungo92 posts small blind (80)
+MagicMaestro posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [6s, Qc]
+benetlolo raises 320 to 320
+nikof folds
+COLONEL38 folds
+sylvain_22 folds
+besac025 folds
+buga folds
+Mungo92 folds
+MagicMaestro folds
+---
+Summary:
+Main pot: 400 won by benetlolo (400)
+Rake taken: €0
+Seat 7: Mungo92 (975), net: -80
+Seat 8: MagicMaestro (1040), net: -160
+Seat 9: benetlolo (8535), net: +240
+Seat 10: nikof (15600)
+Seat 1: COLONEL38 (2775)
+Seat 2: sylvain_22 (1025)
+Seat 3: besac025 (8655)
+Seat 4: buga (1015)
+***** End of hand T5-18949637-37 *****
+***** History for hand T5-18949637-38 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:04:28 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 7
+Players in round: 9
+Seat 8: MagicMaestro (1040)
+Seat 9: benetlolo (8535)
+Seat 10: nikof (15600)
+Seat 1: COLONEL38 (2775)
+Seat 2: sylvain_22 (1025)
+Seat 3: besac025 (8655)
+Seat 4: buga (1015)
+Seat 5: poluxux (8020)
+Seat 7: Mungo92 (975)
+MagicMaestro posts small blind (100)
+benetlolo posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [Qc, 9c]
+nikof folds
+COLONEL38 folds
+sylvain_22 folds
+besac025 calls 200
+buga folds
+poluxux folds
+Mungo92 folds
+MagicMaestro folds
+benetlolo raises 800 to 1000
+besac025 folds
+---
+Summary:
+Main pot: 500 won by benetlolo (500)
+Rake taken: €0
+Seat 8: MagicMaestro (940), net: -100
+Seat 9: benetlolo (8835), net: +300, [Th, As] (HIGH_CARD ACE)
+Seat 10: nikof (15600)
+Seat 1: COLONEL38 (2775)
+Seat 2: sylvain_22 (1025)
+Seat 3: besac025 (8455), net: -200
+Seat 4: buga (1015)
+Seat 5: poluxux (8020)
+Seat 7: Mungo92 (975)
+***** End of hand T5-18949637-38 *****
+***** History for hand T5-18949637-39 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:04:57 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 8
+Players in round: 9
+Seat 9: benetlolo (8835)
+Seat 10: nikof (15600)
+Seat 1: COLONEL38 (2775)
+Seat 2: sylvain_22 (1025)
+Seat 3: besac025 (8455)
+Seat 4: buga (1015)
+Seat 5: poluxux (8020)
+Seat 7: Mungo92 (975)
+Seat 8: MagicMaestro (940)
+benetlolo posts small blind (100)
+nikof posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [3s, 9s]
+COLONEL38 folds
+sylvain_22 folds
+besac025 folds
+buga folds
+poluxux folds
+Mungo92 folds
+MagicMaestro folds
+benetlolo calls 100
+nikof checks
+--- Dealing flop [9h, Qs, Qd]
+benetlolo checks
+nikof checks
+--- Dealing turn [7c]
+benetlolo bets 200
+nikof calls 200
+--- Dealing river [6h]
+benetlolo bets 200
+nikof calls 200
+---
+Summary:
+Main pot: 1200 won by nikof (1200)
+Rake taken: €0
+Seat 9: benetlolo (8235), net: -600, [Ah, 2h] (PAIR QUEEN)
+Seat 10: nikof (16200), net: +600, [5s, 7d] (TWO_PAIR QUEEN, SEVEN)
+Seat 1: COLONEL38 (2775)
+Seat 2: sylvain_22 (1025)
+Seat 3: besac025 (8455)
+Seat 4: buga (1015)
+Seat 5: poluxux (8020)
+Seat 7: Mungo92 (975)
+Seat 8: MagicMaestro (940)
+***** End of hand T5-18949637-39 *****
+***** History for hand T5-18949637-40 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:05:25 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 9
+Players in round: 10
+Seat 10: nikof (16200)
+Seat 1: COLONEL38 (2775)
+Seat 2: sylvain_22 (1025)
+Seat 3: besac025 (8455)
+Seat 4: buga (1015)
+Seat 5: poluxux (8020)
+Seat 6: romainb62 (30252)
+Seat 7: Mungo92 (975)
+Seat 8: MagicMaestro (940)
+Seat 9: benetlolo (8235)
+nikof posts small blind (100)
+COLONEL38 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [8h, Ad]
+sylvain_22 folds
+besac025 folds
+buga folds
+poluxux calls 200
+romainb62 calls 200
+Mungo92 folds
+MagicMaestro folds
+benetlolo calls 200
+nikof calls 100
+COLONEL38 checks
+--- Dealing flop [9s, 3s, 3h]
+nikof checks
+COLONEL38 checks
+poluxux checks
+romainb62 checks
+benetlolo bets 200
+nikof folds
+COLONEL38 folds
+poluxux folds
+romainb62 folds
+---
+Summary:
+Main pot: 1000 won by benetlolo (1000)
+Rake taken: €0
+Seat 10: nikof (16000), net: -200
+Seat 1: COLONEL38 (2575), net: -200
+Seat 2: sylvain_22 (1025)
+Seat 3: besac025 (8455)
+Seat 4: buga (1015)
+Seat 5: poluxux (7820), net: -200
+Seat 6: romainb62 (30052), net: -200
+Seat 7: Mungo92 (975)
+Seat 8: MagicMaestro (940)
+Seat 9: benetlolo (9035), net: +800, [2d, 3d] (THREE_OF_A_KIND THREE)
+***** End of hand T5-18949637-40 *****
+***** History for hand T5-18949637-41 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:06:15 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 10
+Players in round: 10
+Seat 1: COLONEL38 (2575)
+Seat 2: sylvain_22 (1025)
+Seat 3: besac025 (8455)
+Seat 4: buga (1015)
+Seat 5: poluxux (7820)
+Seat 6: romainb62 (30052)
+Seat 7: Mungo92 (975)
+Seat 8: MagicMaestro (940)
+Seat 9: benetlolo (9035)
+Seat 10: nikof (16000)
+COLONEL38 posts small blind (100)
+sylvain_22 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [5d, 3d]
+besac025 folds
+buga folds
+poluxux folds
+romainb62 folds
+Mungo92 folds
+MagicMaestro folds
+benetlolo folds
+nikof folds
+COLONEL38 raises 300 to 400
+sylvain_22 folds
+---
+Summary:
+Main pot: 400 won by COLONEL38 (400)
+Rake taken: €0
+Seat 1: COLONEL38 (2775), net: +200
+Seat 2: sylvain_22 (825), net: -200
+Seat 3: besac025 (8455)
+Seat 4: buga (1015)
+Seat 5: poluxux (7820)
+Seat 6: romainb62 (30052)
+Seat 7: Mungo92 (975)
+Seat 8: MagicMaestro (940)
+Seat 9: benetlolo (9035)
+Seat 10: nikof (16000)
+***** End of hand T5-18949637-41 *****
+***** History for hand T5-18949637-42 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:06:37 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 1
+Players in round: 10
+Seat 2: sylvain_22 (825)
+Seat 3: besac025 (8455)
+Seat 4: buga (1015)
+Seat 5: poluxux (7820)
+Seat 6: romainb62 (30052)
+Seat 7: Mungo92 (975)
+Seat 8: MagicMaestro (940)
+Seat 9: benetlolo (9035)
+Seat 10: nikof (16000)
+Seat 1: COLONEL38 (2775)
+sylvain_22 posts small blind (100)
+besac025 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [Ac, 9c]
+buga folds
+poluxux folds
+romainb62 calls 200
+Mungo92 folds
+MagicMaestro folds
+benetlolo folds
+nikof folds
+COLONEL38 calls 200
+sylvain_22 folds
+besac025 checks
+--- Dealing flop [Kd, 6h, Jc]
+besac025 checks
+romainb62 bets 200
+COLONEL38 calls 200
+besac025 folds
+--- Dealing turn [3d]
+romainb62 bets 200
+COLONEL38 calls 200
+--- Dealing river [8c]
+romainb62 bets 200
+COLONEL38 folds
+---
+Summary:
+Main pot: 1500 won by romainb62 (1500)
+Rake taken: €0
+Seat 2: sylvain_22 (725), net: -100
+Seat 3: besac025 (8255), net: -200
+Seat 4: buga (1015)
+Seat 5: poluxux (7820)
+Seat 6: romainb62 (30952), net: +900
+Seat 7: Mungo92 (975)
+Seat 8: MagicMaestro (940)
+Seat 9: benetlolo (9035)
+Seat 10: nikof (16000)
+Seat 1: COLONEL38 (2175), net: -600
+***** End of hand T5-18949637-42 *****
+***** History for hand T5-18949637-43 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:07:23 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 2
+Players in round: 10
+Seat 3: besac025 (8255)
+Seat 4: buga (1015)
+Seat 5: poluxux (7820)
+Seat 6: romainb62 (30952)
+Seat 7: Mungo92 (975)
+Seat 8: MagicMaestro (940)
+Seat 9: benetlolo (9035)
+Seat 10: nikof (16000)
+Seat 1: COLONEL38 (2175)
+Seat 2: sylvain_22 (725)
+besac025 posts small blind (100)
+buga posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [6h, 7d]
+poluxux calls 200
+romainb62 folds
+Mungo92 folds
+MagicMaestro folds
+benetlolo calls 200
+nikof folds
+COLONEL38 folds
+sylvain_22 folds
+besac025 folds
+buga checks
+--- Dealing flop [6c, 5s, Ad]
+buga checks
+poluxux bets 7620 [all in]
+benetlolo folds
+buga folds
+---
+Summary:
+Main pot: 700 won by poluxux (700)
+Rake taken: €0
+Seat 3: besac025 (8155), net: -100
+Seat 4: buga (815), net: -200
+Seat 5: poluxux (8320), net: +500
+Seat 6: romainb62 (30952)
+Seat 7: Mungo92 (975)
+Seat 8: MagicMaestro (940)
+Seat 9: benetlolo (8835), net: -200
+Seat 10: nikof (16000)
+Seat 1: COLONEL38 (2175)
+Seat 2: sylvain_22 (725)
+***** End of hand T5-18949637-43 *****
+***** History for hand T5-18949637-44 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:07:51 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 3
+Players in round: 10
+Seat 4: buga (815)
+Seat 5: poluxux (8320)
+Seat 6: romainb62 (30952)
+Seat 7: Mungo92 (975)
+Seat 8: MagicMaestro (940)
+Seat 9: benetlolo (8835)
+Seat 10: nikof (16000)
+Seat 1: COLONEL38 (2175)
+Seat 2: sylvain_22 (725)
+Seat 3: besac025 (8155)
+buga posts small blind (100)
+poluxux posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [Ad, Ac]
+romainb62 folds
+Mungo92 folds
+MagicMaestro folds
+benetlolo folds
+nikof folds
+COLONEL38 folds
+sylvain_22 folds
+besac025 raises 1000 to 1000
+buga folds
+poluxux folds
+---
+Summary:
+Main pot: 500 won by besac025 (500)
+Rake taken: €0
+Seat 4: buga (715), net: -100
+Seat 5: poluxux (8120), net: -200
+Seat 6: romainb62 (30952)
+Seat 7: Mungo92 (975)
+Seat 8: MagicMaestro (940)
+Seat 9: benetlolo (8835)
+Seat 10: nikof (16000)
+Seat 1: COLONEL38 (2175)
+Seat 2: sylvain_22 (725)
+Seat 3: besac025 (8455), net: +300
+***** End of hand T5-18949637-44 *****
+***** History for hand T5-18949637-45 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:08:30 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 4
+Players in round: 10
+Seat 5: poluxux (8120)
+Seat 6: romainb62 (30952)
+Seat 7: Mungo92 (975)
+Seat 8: MagicMaestro (940)
+Seat 9: benetlolo (8835)
+Seat 10: nikof (16000)
+Seat 1: COLONEL38 (2175)
+Seat 2: sylvain_22 (725)
+Seat 3: besac025 (8455)
+Seat 4: buga (715)
+poluxux posts small blind (100)
+romainb62 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [Qs, Kc]
+Mungo92 folds
+MagicMaestro folds
+benetlolo raises 600 to 600
+nikof folds
+COLONEL38 folds
+sylvain_22 folds
+besac025 folds
+buga folds
+poluxux folds
+romainb62 calls 400
+--- Dealing flop [5d, Kd, Kh]
+romainb62 checks
+benetlolo bets 8235 [all in]
+romainb62 calls 8235
+--- Dealing flop [5d, Kd, Kh]
+--- Dealing turn [7d]
+--- Dealing river [8s]
+---
+Summary:
+Main pot: 17770 won by benetlolo (17770)
+Rake taken: €0
+Seat 5: poluxux (8020), net: -100
+Seat 6: romainb62 (22117), net: -8835, [5c, 5s] (FULL_HOUSE FIVE, KING)
+Seat 7: Mungo92 (975)
+Seat 8: MagicMaestro (940)
+Seat 9: benetlolo (17770), net: +8935, [7s, 7h] (FULL_HOUSE SEVEN, KING)
+Seat 10: nikof (16000)
+Seat 1: COLONEL38 (2175)
+Seat 2: sylvain_22 (725)
+Seat 3: besac025 (8455)
+Seat 4: buga (715)
+***** End of hand T5-18949637-45 *****
+***** History for hand T5-18949637-46 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:09:13 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 5
+Players in round: 10
+Seat 6: romainb62 (22117)
+Seat 7: Mungo92 (975)
+Seat 8: MagicMaestro (940)
+Seat 9: benetlolo (17770)
+Seat 10: nikof (16000)
+Seat 1: COLONEL38 (2175)
+Seat 2: sylvain_22 (725)
+Seat 3: besac025 (8455)
+Seat 4: buga (715)
+Seat 5: poluxux (8020)
+romainb62 posts small blind (100)
+Mungo92 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [5h, Kh]
+MagicMaestro folds
+benetlolo folds
+nikof folds
+COLONEL38 folds
+sylvain_22 folds
+besac025 folds
+buga folds
+poluxux folds
+romainb62 calls 100
+Mungo92 checks
+--- Dealing flop [7s, 8d, Ts]
+romainb62 bets 200
+Mungo92 folds
+---
+Summary:
+Main pot: 400 won by romainb62 (400)
+Rake taken: €0
+Seat 6: romainb62 (22317), net: +200
+Seat 7: Mungo92 (775), net: -200
+Seat 8: MagicMaestro (940)
+Seat 9: benetlolo (17770)
+Seat 10: nikof (16000)
+Seat 1: COLONEL38 (2175)
+Seat 2: sylvain_22 (725)
+Seat 3: besac025 (8455)
+Seat 4: buga (715)
+Seat 5: poluxux (8020)
+***** End of hand T5-18949637-46 *****
+***** History for hand T5-18949637-47 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:09:44 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 6
+Players in round: 10
+Seat 7: Mungo92 (775)
+Seat 8: MagicMaestro (940)
+Seat 9: benetlolo (17770)
+Seat 10: nikof (16000)
+Seat 1: COLONEL38 (2175)
+Seat 2: sylvain_22 (725)
+Seat 3: besac025 (8455)
+Seat 4: buga (715)
+Seat 5: poluxux (8020)
+Seat 6: romainb62 (22317)
+Mungo92 posts small blind (100)
+MagicMaestro posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [Jh, Ad]
+benetlolo calls 200
+nikof calls 200
+COLONEL38 calls 200
+sylvain_22 folds
+besac025 calls 200
+buga folds
+poluxux folds
+romainb62 folds
+Mungo92 folds
+MagicMaestro checks
+--- Dealing flop [8s, 6s, 8h]
+MagicMaestro checks
+benetlolo checks
+nikof bets 800
+COLONEL38 folds
+besac025 folds
+MagicMaestro folds
+benetlolo folds
+---
+Summary:
+Main pot: 1100 won by nikof (1100)
+Rake taken: €0
+Seat 7: Mungo92 (675), net: -100
+Seat 8: MagicMaestro (740), net: -200
+Seat 9: benetlolo (17570), net: -200
+Seat 10: nikof (16900), net: +900
+Seat 1: COLONEL38 (1975), net: -200
+Seat 2: sylvain_22 (725)
+Seat 3: besac025 (8255), net: -200
+Seat 4: buga (715)
+Seat 5: poluxux (8020)
+Seat 6: romainb62 (22317)
+***** End of hand T5-18949637-47 *****
+***** History for hand T5-18949637-48 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:10:45 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, ante: 20, TC)
+User: besac025
+Button: seat 7
+Players in round: 10
+Seat 8: MagicMaestro (740)
+Seat 9: benetlolo (17570)
+Seat 10: nikof (16900)
+Seat 1: COLONEL38 (1975)
+Seat 2: sylvain_22 (725)
+Seat 3: besac025 (8255)
+Seat 4: buga (715)
+Seat 5: poluxux (8020)
+Seat 6: romainb62 (22317)
+Seat 7: Mungo92 (675)
+MagicMaestro posts ante 20
+benetlolo posts ante 20
+nikof posts ante 20
+COLONEL38 posts ante 20
+sylvain_22 posts ante 20
+besac025 posts ante 20
+buga posts ante 20
+poluxux posts ante 20
+romainb62 posts ante 20
+Mungo92 posts ante 20
+MagicMaestro posts small blind (100)
+benetlolo posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [Kh, 7d]
+nikof folds
+COLONEL38 folds
+sylvain_22 folds
+besac025 folds
+buga folds
+poluxux folds
+romainb62 folds
+Mungo92 folds
+MagicMaestro folds
+---
+Summary:
+Main pot: 400 won by benetlolo (400)
+Rake taken: €0
+Seat 8: MagicMaestro (620), net: -120
+Seat 9: benetlolo (17850), net: +280, [Jc, Td] (HIGH_CARD JACK)
+Seat 10: nikof (16880), net: -20
+Seat 1: COLONEL38 (1955), net: -20
+Seat 2: sylvain_22 (705), net: -20
+Seat 3: besac025 (8235), net: -20
+Seat 4: buga (695), net: -20
+Seat 5: poluxux (8000), net: -20
+Seat 6: romainb62 (22297), net: -20
+Seat 7: Mungo92 (655), net: -20
+***** End of hand T5-18949637-48 *****
+***** History for hand T5-18949637-49 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:11:08 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, ante: 20, TC)
+User: besac025
+Button: seat 8
+Players in round: 10
+Seat 9: benetlolo (17850)
+Seat 10: nikof (16880)
+Seat 1: COLONEL38 (1955)
+Seat 2: sylvain_22 (705)
+Seat 3: besac025 (8235)
+Seat 4: buga (695)
+Seat 5: poluxux (8000)
+Seat 6: romainb62 (22297)
+Seat 7: Mungo92 (655)
+Seat 8: MagicMaestro (620)
+benetlolo posts ante 20
+nikof posts ante 20
+COLONEL38 posts ante 20
+sylvain_22 posts ante 20
+besac025 posts ante 20
+buga posts ante 20
+poluxux posts ante 20
+romainb62 posts ante 20
+Mungo92 posts ante 20
+MagicMaestro posts ante 20
+benetlolo posts small blind (100)
+nikof posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [As, 3s]
+COLONEL38 folds
+sylvain_22 folds
+besac025 folds
+buga folds
+poluxux folds
+romainb62 folds
+Mungo92 folds
+MagicMaestro folds
+benetlolo folds
+---
+Summary:
+Main pot: 400 won by nikof (400)
+Rake taken: €0
+Seat 9: benetlolo (17730), net: -120
+Seat 10: nikof (17160), net: +280
+Seat 1: COLONEL38 (1935), net: -20
+Seat 2: sylvain_22 (685), net: -20
+Seat 3: besac025 (8215), net: -20
+Seat 4: buga (675), net: -20
+Seat 5: poluxux (7980), net: -20
+Seat 6: romainb62 (22277), net: -20
+Seat 7: Mungo92 (635), net: -20
+Seat 8: MagicMaestro (600), net: -20
+***** End of hand T5-18949637-49 *****
+***** History for hand T5-18949637-50 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:11:23 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, ante: 20, TC)
+User: besac025
+Button: seat 9
+Players in round: 10
+Seat 10: nikof (17160)
+Seat 1: COLONEL38 (1935)
+Seat 2: sylvain_22 (685)
+Seat 3: besac025 (8215)
+Seat 4: buga (675)
+Seat 5: poluxux (7980)
+Seat 6: romainb62 (22277)
+Seat 7: Mungo92 (635)
+Seat 8: MagicMaestro (600)
+Seat 9: benetlolo (17730)
+nikof posts ante 20
+COLONEL38 posts ante 20
+sylvain_22 posts ante 20
+besac025 posts ante 20
+buga posts ante 20
+poluxux posts ante 20
+romainb62 posts ante 20
+Mungo92 posts ante 20
+MagicMaestro posts ante 20
+benetlolo posts ante 20
+nikof posts small blind (100)
+COLONEL38 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [8c, Kd]
+sylvain_22 folds
+besac025 folds
+buga folds
+poluxux folds
+romainb62 folds
+Mungo92 folds
+MagicMaestro folds
+benetlolo folds
+nikof folds
+---
+Summary:
+Main pot: 400 won by COLONEL38 (400)
+Rake taken: €0
+Seat 10: nikof (17040), net: -120
+Seat 1: COLONEL38 (2215), net: +280, [6d, 5c] (HIGH_CARD SIX)
+Seat 2: sylvain_22 (665), net: -20
+Seat 3: besac025 (8195), net: -20
+Seat 4: buga (655), net: -20
+Seat 5: poluxux (7960), net: -20
+Seat 6: romainb62 (22257), net: -20
+Seat 7: Mungo92 (615), net: -20
+Seat 8: MagicMaestro (580), net: -20
+Seat 9: benetlolo (17710), net: -20
+***** End of hand T5-18949637-50 *****
+***** History for hand T5-18949637-51 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:11:59 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, ante: 20, TC)
+User: besac025
+Button: seat 10
+Players in round: 10
+Seat 1: COLONEL38 (2215)
+Seat 2: sylvain_22 (665)
+Seat 3: besac025 (8195)
+Seat 4: buga (655)
+Seat 5: poluxux (7960)
+Seat 6: romainb62 (22257)
+Seat 7: Mungo92 (615)
+Seat 8: MagicMaestro (580)
+Seat 9: benetlolo (17710)
+Seat 10: nikof (17040)
+COLONEL38 posts ante 20
+sylvain_22 posts ante 20
+besac025 posts ante 20
+buga posts ante 20
+poluxux posts ante 20
+romainb62 posts ante 20
+Mungo92 posts ante 20
+MagicMaestro posts ante 20
+benetlolo posts ante 20
+nikof posts ante 20
+COLONEL38 posts small blind (100)
+sylvain_22 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [Th, Js]
+besac025 folds
+buga folds
+poluxux folds
+romainb62 calls 200
+Mungo92 folds
+MagicMaestro folds
+benetlolo calls 200
+nikof folds
+COLONEL38 calls 100
+sylvain_22 checks
+--- Dealing flop [Qs, 2h, 9c]
+COLONEL38 checks
+sylvain_22 checks
+romainb62 bets 200
+benetlolo calls 200
+COLONEL38 calls 200
+sylvain_22 folds
+--- Dealing turn [5s]
+COLONEL38 checks
+romainb62 bets 200
+benetlolo calls 200
+COLONEL38 calls 200
+--- Dealing river [4h]
+COLONEL38 checks
+romainb62 bets 200
+benetlolo folds
+COLONEL38 folds
+---
+Summary:
+Main pot: 2200 won by romainb62 (2200)
+Rake taken: €0
+Seat 1: COLONEL38 (1595), net: -620
+Seat 2: sylvain_22 (445), net: -220
+Seat 3: besac025 (8175), net: -20
+Seat 4: buga (635), net: -20
+Seat 5: poluxux (7940), net: -20
+Seat 6: romainb62 (23837), net: +1580
+Seat 7: Mungo92 (595), net: -20
+Seat 8: MagicMaestro (560), net: -20
+Seat 9: benetlolo (17090), net: -620
+Seat 10: nikof (17020), net: -20
+***** End of hand T5-18949637-51 *****
+***** History for hand T5-18949637-52 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:12:43 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, ante: 20, TC)
+User: besac025
+Button: seat 1
+Players in round: 10
+Seat 2: sylvain_22 (445)
+Seat 3: besac025 (8175)
+Seat 4: buga (635)
+Seat 5: poluxux (7940)
+Seat 6: romainb62 (23837)
+Seat 7: Mungo92 (595)
+Seat 8: MagicMaestro (560)
+Seat 9: benetlolo (17090)
+Seat 10: nikof (17020)
+Seat 1: COLONEL38 (1595)
+sylvain_22 posts ante 20
+besac025 posts ante 20
+buga posts ante 20
+poluxux posts ante 20
+romainb62 posts ante 20
+Mungo92 posts ante 20
+MagicMaestro posts ante 20
+benetlolo posts ante 20
+nikof posts ante 20
+COLONEL38 posts ante 20
+sylvain_22 posts small blind (100)
+besac025 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [7d, Jh]
+buga folds
+poluxux folds
+romainb62 folds
+Mungo92 folds
+MagicMaestro folds
+benetlolo folds
+nikof raises 600 to 600
+COLONEL38 folds
+sylvain_22 folds
+besac025 folds
+---
+Summary:
+Main pot: 700 won by nikof (700)
+Rake taken: €0
+Seat 2: sylvain_22 (325), net: -120
+Seat 3: besac025 (7955), net: -220
+Seat 4: buga (615), net: -20
+Seat 5: poluxux (7920), net: -20
+Seat 6: romainb62 (23817), net: -20
+Seat 7: Mungo92 (575), net: -20
+Seat 8: MagicMaestro (540), net: -20
+Seat 9: benetlolo (17070), net: -20
+Seat 10: nikof (17500), net: +480
+Seat 1: COLONEL38 (1575), net: -20
+***** End of hand T5-18949637-52 *****
+***** History for hand T5-18949637-53 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:13:07 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, ante: 20, TC)
+User: besac025
+Button: seat 2
+Players in round: 10
+Seat 3: besac025 (7955)
+Seat 4: buga (615)
+Seat 5: poluxux (7920)
+Seat 6: romainb62 (23817)
+Seat 7: Mungo92 (575)
+Seat 8: MagicMaestro (540)
+Seat 9: benetlolo (17070)
+Seat 10: nikof (17500)
+Seat 1: COLONEL38 (1575)
+Seat 2: sylvain_22 (325)
+besac025 posts ante 20
+buga posts ante 20
+poluxux posts ante 20
+romainb62 posts ante 20
+Mungo92 posts ante 20
+MagicMaestro posts ante 20
+benetlolo posts ante 20
+nikof posts ante 20
+COLONEL38 posts ante 20
+sylvain_22 posts ante 20
+besac025 posts small blind (100)
+buga posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [7c, 6h]
+poluxux folds
+romainb62 calls 200
+Mungo92 folds
+MagicMaestro folds
+benetlolo folds
+nikof folds
+COLONEL38 folds
+sylvain_22 folds
+besac025 calls 100
+buga checks
+--- Dealing flop [Ad, Qs, 3h]
+besac025 bets 200
+buga folds
+romainb62 calls 200
+--- Dealing turn [8d]
+besac025 checks
+romainb62 checks
+--- Dealing river [4d]
+besac025 checks
+romainb62 bets 300
+besac025 folds
+---
+Summary:
+Main pot: 1200 won by romainb62 (1200)
+Rake taken: €0
+Seat 3: besac025 (7535), net: -420
+Seat 4: buga (395), net: -220
+Seat 5: poluxux (7900), net: -20
+Seat 6: romainb62 (24597), net: +780
+Seat 7: Mungo92 (555), net: -20
+Seat 8: MagicMaestro (520), net: -20
+Seat 9: benetlolo (17050), net: -20
+Seat 10: nikof (17480), net: -20
+Seat 1: COLONEL38 (1555), net: -20
+Seat 2: sylvain_22 (305), net: -20
+***** End of hand T5-18949637-53 *****
+***** History for hand T5-18949637-54 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:14:03 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, ante: 20, TC)
+User: besac025
+Button: seat 3
+Players in round: 9
+Seat 4: buga (395)
+Seat 5: poluxux (7900)
+Seat 6: romainb62 (24597)
+Seat 8: MagicMaestro (520)
+Seat 9: benetlolo (17050)
+Seat 10: nikof (17480)
+Seat 1: COLONEL38 (1555)
+Seat 2: sylvain_22 (305)
+Seat 3: besac025 (7535)
+buga posts ante 20
+poluxux posts ante 20
+romainb62 posts ante 20
+MagicMaestro posts ante 20
+benetlolo posts ante 20
+nikof posts ante 20
+COLONEL38 posts ante 20
+sylvain_22 posts ante 20
+besac025 posts ante 20
+buga posts small blind (100)
+poluxux posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [Tc, 4s]
+romainb62 calls 200
+MagicMaestro folds
+benetlolo folds
+nikof raises 600 to 600
+COLONEL38 folds
+sylvain_22 folds
+besac025 folds
+buga folds
+poluxux folds
+romainb62 folds
+---
+Summary:
+Main pot: 880 won by nikof (880)
+Rake taken: €0
+Seat 4: buga (275), net: -120
+Seat 5: poluxux (7680), net: -220
+Seat 6: romainb62 (24377), net: -220
+Seat 8: MagicMaestro (500), net: -20
+Seat 9: benetlolo (17030), net: -20
+Seat 10: nikof (18140), net: +660
+Seat 1: COLONEL38 (1535), net: -20
+Seat 2: sylvain_22 (285), net: -20
+Seat 3: besac025 (7515), net: -20
+***** End of hand T5-18949637-54 *****
+***** History for hand T5-18949637-55 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:14:20 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, ante: 20, TC)
+User: besac025
+Button: seat 4
+Players in round: 9
+Seat 5: poluxux (7680)
+Seat 6: romainb62 (24377)
+Seat 8: MagicMaestro (500)
+Seat 9: benetlolo (17030)
+Seat 10: nikof (18140)
+Seat 1: COLONEL38 (1535)
+Seat 2: sylvain_22 (285)
+Seat 3: besac025 (7515)
+Seat 4: buga (275)
+poluxux posts ante 20
+romainb62 posts ante 20
+MagicMaestro posts ante 20
+benetlolo posts ante 20
+nikof posts ante 20
+COLONEL38 posts ante 20
+sylvain_22 posts ante 20
+besac025 posts ante 20
+buga posts ante 20
+poluxux posts small blind (100)
+romainb62 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [5s, 6d]
+MagicMaestro folds
+benetlolo calls 200
+nikof calls 200
+COLONEL38 folds
+sylvain_22 folds
+besac025 folds
+buga raises 255 to 255 [all in]
+poluxux calls 155
+romainb62 calls 55
+benetlolo calls 55
+nikof calls 55
+--- Dealing flop [5d, 2c, Kd]
+poluxux checks
+romainb62 checks
+benetlolo checks
+nikof checks
+--- Dealing turn [8d]
+poluxux checks
+romainb62 checks
+benetlolo checks
+nikof checks
+--- Dealing river [6h]
+poluxux checks
+romainb62 checks
+benetlolo checks
+nikof folds
+---
+Summary:
+Main pot: 1455 won by buga (1455)
+Rake taken: €0
+Seat 5: poluxux (7405), net: -275
+Seat 6: romainb62 (24102), net: -275
+Seat 8: MagicMaestro (480), net: -20
+Seat 9: benetlolo (16755), net: -275
+Seat 10: nikof (17865), net: -275
+Seat 1: COLONEL38 (1515), net: -20
+Seat 2: sylvain_22 (265), net: -20
+Seat 3: besac025 (7495), net: -20
+Seat 4: buga (1455), net: +1180, [8c, 3d] (PAIR EIGHT)
+***** End of hand T5-18949637-55 *****
+***** History for hand T5-18949637-56 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:15:43 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, ante: 20, TC)
+User: besac025
+Button: seat 5
+Players in round: 10
+Seat 6: romainb62 (24102)
+Seat 7: minou59 (1785)
+Seat 8: MagicMaestro (480)
+Seat 9: benetlolo (16755)
+Seat 10: nikof (17865)
+Seat 1: COLONEL38 (1515)
+Seat 2: sylvain_22 (265)
+Seat 3: besac025 (7495)
+Seat 4: buga (1455)
+Seat 5: poluxux (7405)
+romainb62 posts ante 20
+minou59 posts ante 20
+MagicMaestro posts ante 20
+benetlolo posts ante 20
+nikof posts ante 20
+COLONEL38 posts ante 20
+sylvain_22 posts ante 20
+besac025 posts ante 20
+buga posts ante 20
+poluxux posts ante 20
+romainb62 posts small blind (100)
+minou59 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [2c, 5d]
+MagicMaestro folds
+benetlolo folds
+nikof folds
+COLONEL38 folds
+sylvain_22 folds
+besac025 folds
+buga calls 200
+poluxux folds
+romainb62 calls 100
+minou59 checks
+--- Dealing flop [6c, 8s, 4c]
+romainb62 bets 200
+minou59 folds
+buga folds
+---
+Summary:
+Main pot: 800 won by romainb62 (800)
+Rake taken: €0
+Seat 6: romainb62 (24682), net: +580
+Seat 7: minou59 (1565), net: -220
+Seat 8: MagicMaestro (460), net: -20
+Seat 9: benetlolo (16735), net: -20
+Seat 10: nikof (17845), net: -20
+Seat 1: COLONEL38 (1495), net: -20
+Seat 2: sylvain_22 (245), net: -20
+Seat 3: besac025 (7475), net: -20
+Seat 4: buga (1235), net: -220
+Seat 5: poluxux (7385), net: -20
+***** End of hand T5-18949637-56 *****
+***** History for hand T5-18949637-57 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:16:25 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 100/200, ante: 20, TC)
+User: besac025
+Button: seat 6
+Players in round: 10
+Seat 7: minou59 (1565)
+Seat 8: MagicMaestro (460)
+Seat 9: benetlolo (16735)
+Seat 10: nikof (17845)
+Seat 1: COLONEL38 (1495)
+Seat 2: sylvain_22 (245)
+Seat 3: besac025 (7475)
+Seat 4: buga (1235)
+Seat 5: poluxux (7385)
+Seat 6: romainb62 (24682)
+minou59 posts ante 20
+MagicMaestro posts ante 20
+benetlolo posts ante 20
+nikof posts ante 20
+COLONEL38 posts ante 20
+sylvain_22 posts ante 20
+besac025 posts ante 20
+buga posts ante 20
+poluxux posts ante 20
+romainb62 posts ante 20
+minou59 posts small blind (100)
+MagicMaestro posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [5h, 5c]
+benetlolo folds
+nikof folds
+COLONEL38 folds
+sylvain_22 folds
+besac025 calls 200
+buga raises 1215 to 1215 [all in]
+poluxux raises 7365 to 7365 [all in]
+romainb62 folds
+minou59 folds
+MagicMaestro folds
+besac025 folds
+--- 
+--- Dealing flop [7d, 4d, 6c]
+--- Dealing turn [Ks]
+--- Dealing river [4c]
+---
+Summary:
+Main pot: 3130 won by poluxux (3130)
+Rake taken: €0
+Seat 7: minou59 (1445), net: -120
+Seat 8: MagicMaestro (240), net: -220
+Seat 9: benetlolo (16715), net: -20
+Seat 10: nikof (17825), net: -20
+Seat 1: COLONEL38 (1475), net: -20
+Seat 2: sylvain_22 (225), net: -20
+Seat 3: besac025 (7255), net: -220
+Seat 4: buga (0), net: -1235, [Qd, Js] (PAIR FOUR)
+Seat 5: poluxux (9280), net: +1895, [Th, As] (PAIR FOUR)
+Seat 6: romainb62 (24662), net: -20
+***** End of hand T5-18949637-57 *****
+***** History for hand T5-18949637-58 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:17:18 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 125/250, ante: 25, TC)
+User: besac025
+Button: seat 7
+Players in round: 9
+Seat 8: MagicMaestro (240)
+Seat 9: benetlolo (16715)
+Seat 10: nikof (17825)
+Seat 1: COLONEL38 (1475)
+Seat 2: sylvain_22 (225)
+Seat 3: besac025 (7255)
+Seat 5: poluxux (9280)
+Seat 6: romainb62 (24662)
+Seat 7: minou59 (1445)
+MagicMaestro posts ante 25
+benetlolo posts ante 25
+nikof posts ante 25
+COLONEL38 posts ante 25
+sylvain_22 posts ante 25
+besac025 posts ante 25
+poluxux posts ante 25
+romainb62 posts ante 25
+minou59 posts ante 25
+MagicMaestro posts small blind (125)
+benetlolo posts big blind (250)
+---
+Dealing pocket cards
+Dealing to besac025: [9h, 3d]
+nikof folds
+COLONEL38 folds
+sylvain_22 folds
+besac025 folds
+poluxux raises 500 to 500
+romainb62 calls 500
+minou59 folds
+MagicMaestro folds
+benetlolo folds
+--- Dealing flop [8h, Qs, 2s]
+poluxux checks
+romainb62 bets 250
+poluxux raises 8755 to 8755 [all in]
+romainb62 calls 8505
+--- Dealing flop [8h, Qs, 2s]
+--- Dealing turn [9c]
+--- Dealing river [8s]
+---
+Summary:
+Main pot: 19110 won by poluxux (19110)
+Rake taken: €0
+Seat 8: MagicMaestro (90), net: -150
+Seat 9: benetlolo (16440), net: -275
+Seat 10: nikof (17800), net: -25
+Seat 1: COLONEL38 (1450), net: -25
+Seat 2: sylvain_22 (200), net: -25
+Seat 3: besac025 (7230), net: -25
+Seat 5: poluxux (19110), net: +9830, [Ks, Kh] (TWO_PAIR KING, EIGHT)
+Seat 6: romainb62 (15382), net: -9280, [Qh, Ac] (TWO_PAIR QUEEN, EIGHT)
+Seat 7: minou59 (1420), net: -25
+***** End of hand T5-18949637-58 *****
+***** History for hand T5-18949637-59 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:17:53 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 125/250, ante: 25, TC)
+User: besac025
+Button: seat 8
+Players in round: 10
+Seat 9: benetlolo (16440)
+Seat 10: nikof (17800)
+Seat 1: COLONEL38 (1450)
+Seat 2: sylvain_22 (200)
+Seat 3: besac025 (7230)
+Seat 4: obiwan72x (2700)
+Seat 5: poluxux (19110)
+Seat 6: romainb62 (15382)
+Seat 7: minou59 (1420)
+Seat 8: MagicMaestro (90)
+benetlolo posts ante 25
+nikof posts ante 25
+COLONEL38 posts ante 25
+sylvain_22 posts ante 25
+besac025 posts ante 25
+obiwan72x posts ante 25
+poluxux posts ante 25
+romainb62 posts ante 25
+minou59 posts ante 25
+MagicMaestro posts ante 25
+benetlolo posts small blind (125)
+nikof posts big blind (250)
+---
+Dealing pocket cards
+Dealing to besac025: [6c, Ts]
+COLONEL38 calls 250
+sylvain_22 folds
+besac025 folds
+obiwan72x folds
+poluxux folds
+romainb62 folds
+minou59 folds
+MagicMaestro folds
+benetlolo raises 875 to 1000
+nikof folds
+COLONEL38 raises 1175 to 1425 [all in]
+benetlolo calls 425
+--- 
+--- Dealing flop [Qh, 6d, 4c]
+--- Dealing turn [4h]
+--- Dealing river [Ac]
+---
+Summary:
+Main pot: 3350 won by benetlolo (3350)
+Rake taken: €0
+Seat 9: benetlolo (18340), net: +1900, [Th, Tc] (TWO_PAIR TEN, FOUR)
+Seat 10: nikof (17525), net: -275
+Seat 1: COLONEL38 (0), net: -1450, [Ks, 7s] (PAIR FOUR)
+Seat 2: sylvain_22 (175), net: -25
+Seat 3: besac025 (7205), net: -25
+Seat 4: obiwan72x (2675), net: -25
+Seat 5: poluxux (19085), net: -25
+Seat 6: romainb62 (15357), net: -25
+Seat 7: minou59 (1395), net: -25
+Seat 8: MagicMaestro (65), net: -25
+***** End of hand T5-18949637-59 *****
+***** History for hand T5-18949637-60 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:18:45 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 125/250, ante: 25, TC)
+User: besac025
+Button: seat 9
+Players in round: 9
+Seat 10: nikof (17525)
+Seat 2: sylvain_22 (175)
+Seat 3: besac025 (7205)
+Seat 4: obiwan72x (2675)
+Seat 5: poluxux (19085)
+Seat 6: romainb62 (15357)
+Seat 7: minou59 (1395)
+Seat 8: MagicMaestro (65)
+Seat 9: benetlolo (18340)
+nikof posts ante 25
+sylvain_22 posts ante 25
+besac025 posts ante 25
+obiwan72x posts ante 25
+poluxux posts ante 25
+romainb62 posts ante 25
+minou59 posts ante 25
+MagicMaestro posts ante 25
+benetlolo posts ante 25
+nikof posts small blind (125)
+sylvain_22 posts small blind (150) [all in]
+---
+Dealing pocket cards
+Dealing to besac025: [3d, 9d]
+besac025 folds
+obiwan72x folds
+poluxux folds
+romainb62 calls 250
+minou59 folds
+MagicMaestro folds
+benetlolo folds
+nikof calls 125
+--- Dealing flop [Jh, Tc, Qs]
+nikof bets 625
+romainb62 calls 625
+--- Dealing turn [6h]
+nikof bets 1625
+romainb62 calls 1625
+--- Dealing river [5h]
+nikof checks
+romainb62 bets 5375
+nikof raises 15000 to 15000 [all in]
+romainb62 calls 7457 [all in]
+---
+Summary:
+Main pot: 675 won by romainb62 (675)
+Side pot 1: 30364 won by romainb62 (30364)
+Rake taken: €0
+Seat 10: nikof (2168), net: -15357, [Qh, 9s] (PAIR QUEEN)
+Seat 2: sylvain_22 (0), net: -175
+Seat 3: besac025 (7180), net: -25
+Seat 4: obiwan72x (2650), net: -25
+Seat 5: poluxux (19060), net: -25
+Seat 6: romainb62 (31039), net: +15682, [Qd, 5s] (TWO_PAIR QUEEN, FIVE)
+Seat 7: minou59 (1370), net: -25
+Seat 8: MagicMaestro (40), net: -25
+Seat 9: benetlolo (18315), net: -25
+***** End of hand T5-18949637-60 *****
+***** History for hand T5-18949637-61 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:20:02 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 125/250, ante: 25, TC)
+User: besac025
+Button: seat 10
+Players in round: 8
+Seat 3: besac025 (7180)
+Seat 4: obiwan72x (2650)
+Seat 5: poluxux (19060)
+Seat 6: romainb62 (31039)
+Seat 7: minou59 (1370)
+Seat 8: MagicMaestro (40)
+Seat 9: benetlolo (18315)
+Seat 10: nikof (2168)
+besac025 posts ante 25
+obiwan72x posts ante 25
+poluxux posts ante 25
+romainb62 posts ante 25
+minou59 posts ante 25
+MagicMaestro posts ante 25
+benetlolo posts ante 25
+nikof posts ante 25
+besac025 posts big blind (250)
+---
+Dealing pocket cards
+Dealing to besac025: [5c, 3s]
+obiwan72x folds
+poluxux folds
+romainb62 calls 250
+minou59 folds
+MagicMaestro folds
+benetlolo folds
+nikof folds
+besac025 checks
+--- Dealing flop [Js, Th, 9s]
+besac025 checks
+romainb62 bets 250
+besac025 folds
+---
+Summary:
+Main pot: 700 won by romainb62 (700)
+Rake taken: €0
+Seat 3: besac025 (6905), net: -275
+Seat 4: obiwan72x (2625), net: -25
+Seat 5: poluxux (19035), net: -25
+Seat 6: romainb62 (31464), net: +425
+Seat 7: minou59 (1345), net: -25
+Seat 8: MagicMaestro (15), net: -25
+Seat 9: benetlolo (18290), net: -25
+Seat 10: nikof (2143), net: -25
+***** End of hand T5-18949637-61 *****
+***** History for hand T5-18949637-62 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:20:47 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 125/250, ante: 25, TC)
+User: besac025
+Button: seat 2
+Players in round: 9
+Seat 3: besac025 (6905)
+Seat 4: obiwan72x (2625)
+Seat 5: poluxux (19035)
+Seat 6: romainb62 (31464)
+Seat 7: minou59 (1345)
+Seat 8: MagicMaestro (15)
+Seat 9: benetlolo (18290)
+Seat 10: nikof (2143)
+Seat 1: toff0087 (1130)
+besac025 posts ante 25
+obiwan72x posts ante 25
+poluxux posts ante 25
+romainb62 posts ante 25
+minou59 posts ante 25
+MagicMaestro posts ante 15
+benetlolo posts ante 25
+nikof posts ante 25
+toff0087 posts ante 25
+besac025 posts small blind (125)
+obiwan72x posts big blind (250)
+---
+Dealing pocket cards
+Dealing to besac025: [2d, Kh]
+poluxux folds
+romainb62 folds
+minou59 folds
+benetlolo raises 1000 to 1000
+nikof folds
+toff0087 folds
+besac025 folds
+obiwan72x folds
+--- 
+--- Dealing flop [7s, 3h, 8s]
+--- Dealing turn [6d]
+--- Dealing river [Ad]
+---
+Summary:
+Main pot: 135 won by benetlolo (135)
+Side pot 1: 705 won by benetlolo (705)
+Rake taken: €0
+Seat 3: besac025 (6755), net: -150
+Seat 4: obiwan72x (2350), net: -275
+Seat 5: poluxux (19010), net: -25
+Seat 6: romainb62 (31439), net: -25
+Seat 7: minou59 (1320), net: -25
+Seat 8: MagicMaestro (0), net: -15, [5s, Ah] (PAIR ACE)
+Seat 9: benetlolo (18855), net: +565, [Th, As] (PAIR ACE)
+Seat 10: nikof (2118), net: -25
+Seat 1: toff0087 (1105), net: -25
+***** End of hand T5-18949637-62 *****
+***** History for hand T5-18949637-63 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:21:20 GMT+0100 2011
+Table: Table #45 [18949637] (NO_LIMIT TEXAS_HOLDEM 125/250, ante: 25, TC)
+User: besac025
+Button: seat 3
+Players in round: 9
+Seat 4: obiwan72x (2350)
+Seat 5: poluxux (19010)
+Seat 6: romainb62 (31439)
+Seat 7: minou59 (1320)
+Seat 9: benetlolo (18855)
+Seat 10: nikof (2118)
+Seat 1: toff0087 (1105)
+Seat 2: ralfont (2255)
+Seat 3: besac025 (6755)
+obiwan72x posts ante 25
+poluxux posts ante 25
+romainb62 posts ante 25
+minou59 posts ante 25
+benetlolo posts ante 25
+nikof posts ante 25
+toff0087 posts ante 25
+ralfont posts ante 25
+besac025 posts ante 25
+obiwan72x posts small blind (125)
+poluxux posts big blind (250)
+---
+Dealing pocket cards
+Dealing to besac025: [4c, 4h]
+romainb62 calls 250
+minou59 folds
+benetlolo raises 1500 to 1500
+nikof raises 2093 to 2093 [all in]
+toff0087 folds
+ralfont folds
+besac025 folds
+obiwan72x folds
+poluxux raises 18735 to 18985 [all in]
+romainb62 folds
+benetlolo calls 17330 [all in]
+--- 
+--- Dealing flop [Ac, 4d, 7d]
+--- Dealing turn [Jd]
+--- Dealing river [2s]
+---
+Summary:
+Main pot: 6879 won by poluxux (6879)
+Side pot 1: 33474 won by poluxux (33474)
+Rake taken: €0
+Seat 4: obiwan72x (2200), net: -150
+Seat 5: poluxux (40508), net: +21498, [Ah, Kd] (PAIR ACE)
+Seat 6: romainb62 (31164), net: -275
+Seat 7: minou59 (1295), net: -25
+Seat 9: benetlolo (0), net: -18855, [Td, Ts] (PAIR TEN)
+Seat 10: nikof (0), net: -2118, [6h, As] (PAIR ACE)
+Seat 1: toff0087 (1080), net: -25
+Seat 2: ralfont (2230), net: -25
+Seat 3: besac025 (6730), net: -25
+***** End of hand T5-18949637-63 *****
+***** History for hand T5-18949596-63 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:22:38 GMT+0100 2011
+Table: Table #86 [18949596] (NO_LIMIT TEXAS_HOLDEM 150/300, ante: 30, TC)
+User: besac025
+Button: seat 8
+Players in round: 10
+Seat 9: minouwin (7355)
+Seat 10: tomyKartneur (10)
+Seat 1: guyguy09 (8545)
+Seat 2: matlem (2660)
+Seat 3: thikoti (8754)
+Seat 4: numa007 (8400)
+Seat 5: besac025 (6730)
+Seat 6: dgdail88 (870)
+Seat 7: BARBICHETTE (15660)
+Seat 8: natha (3905)
+minouwin posts ante 30
+tomyKartneur posts ante 10
+guyguy09 posts ante 30
+matlem posts ante 30
+thikoti posts ante 30
+numa007 posts ante 30
+besac025 posts ante 30
+dgdail88 posts ante 30
+BARBICHETTE posts ante 30
+natha posts ante 30
+minouwin posts small blind (150)
+---
+Dealing pocket cards
+Dealing to besac025: [7h, 8c]
+guyguy09 folds
+matlem folds
+thikoti calls 300
+numa007 folds
+besac025 folds
+dgdail88 folds
+BARBICHETTE calls 300
+natha folds
+minouwin folds
+--- Dealing flop [Kh, 6h, 5c]
+thikoti checks
+BARBICHETTE checks
+--- Dealing turn [4d]
+thikoti checks
+BARBICHETTE checks
+--- Dealing river [8h]
+thikoti bets 300
+BARBICHETTE raises 1950 to 1950
+thikoti calls 1650
+---
+Summary:
+Main pot: 100 won by BARBICHETTE (100)
+Side pot 1: 4830 won by BARBICHETTE (4830)
+Rake taken: €0
+Seat 9: minouwin (7175), net: -180
+Seat 10: tomyKartneur (0), net: -10
+Seat 1: guyguy09 (8515), net: -30
+Seat 2: matlem (2630), net: -30
+Seat 3: thikoti (6474), net: -2280
+Seat 4: numa007 (8370), net: -30
+Seat 5: besac025 (6700), net: -30
+Seat 6: dgdail88 (840), net: -30
+Seat 7: BARBICHETTE (18310), net: +2650, [Th, Ah] (FLUSH ACE)
+Seat 8: natha (3875), net: -30
+***** End of hand T5-18949596-63 *****
+***** History for hand T5-18949596-64 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:23:29 GMT+0100 2011
+Table: Table #86 [18949596] (NO_LIMIT TEXAS_HOLDEM 150/300, ante: 30, TC)
+User: besac025
+Button: seat 9
+Players in round: 9
+Seat 1: guyguy09 (8515)
+Seat 2: matlem (2630)
+Seat 3: thikoti (6474)
+Seat 4: numa007 (8370)
+Seat 5: besac025 (6700)
+Seat 6: dgdail88 (840)
+Seat 7: BARBICHETTE (18310)
+Seat 8: natha (3875)
+Seat 9: minouwin (7175)
+guyguy09 posts ante 30
+matlem posts ante 30
+thikoti posts ante 30
+numa007 posts ante 30
+besac025 posts ante 30
+dgdail88 posts ante 30
+BARBICHETTE posts ante 30
+natha posts ante 30
+minouwin posts ante 30
+guyguy09 posts big blind (300)
+---
+Dealing pocket cards
+Dealing to besac025: [Tc, Kd]
+matlem folds
+thikoti folds
+numa007 folds
+besac025 raises 600 to 600
+dgdail88 folds
+BARBICHETTE folds
+natha folds
+minouwin folds
+guyguy09 folds
+---
+Summary:
+Main pot: 870 won by besac025 (870)
+Rake taken: €0
+Seat 1: guyguy09 (8185), net: -330
+Seat 2: matlem (2600), net: -30
+Seat 3: thikoti (6444), net: -30
+Seat 4: numa007 (8340), net: -30
+Seat 5: besac025 (7240), net: +540
+Seat 6: dgdail88 (810), net: -30
+Seat 7: BARBICHETTE (18280), net: -30
+Seat 8: natha (3845), net: -30
+Seat 9: minouwin (7145), net: -30
+***** End of hand T5-18949596-64 *****
+***** History for hand T5-18949596-65 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:23:45 GMT+0100 2011
+Table: Table #86 [18949596] (NO_LIMIT TEXAS_HOLDEM 150/300, ante: 30, TC)
+User: besac025
+Button: seat 10
+Players in round: 9
+Seat 1: guyguy09 (8185)
+Seat 2: matlem (2600)
+Seat 3: thikoti (6444)
+Seat 4: numa007 (8340)
+Seat 5: besac025 (7240)
+Seat 6: dgdail88 (810)
+Seat 7: BARBICHETTE (18280)
+Seat 8: natha (3845)
+Seat 9: minouwin (7145)
+guyguy09 posts ante 30
+matlem posts ante 30
+thikoti posts ante 30
+numa007 posts ante 30
+besac025 posts ante 30
+dgdail88 posts ante 30
+BARBICHETTE posts ante 30
+natha posts ante 30
+minouwin posts ante 30
+guyguy09 posts small blind (150)
+matlem posts big blind (300)
+---
+Dealing pocket cards
+Dealing to besac025: [Jc, 7s]
+thikoti calls 300
+numa007 folds
+besac025 folds
+dgdail88 folds
+BARBICHETTE folds
+natha folds
+minouwin folds
+guyguy09 folds
+matlem checks
+--- Dealing flop [Ac, 8c, 6s]
+matlem checks
+thikoti bets 300
+matlem folds
+---
+Summary:
+Main pot: 1020 won by thikoti (1020)
+Rake taken: €0
+Seat 1: guyguy09 (8005), net: -180
+Seat 2: matlem (2270), net: -330
+Seat 3: thikoti (7134), net: +690
+Seat 4: numa007 (8310), net: -30
+Seat 5: besac025 (7210), net: -30
+Seat 6: dgdail88 (780), net: -30
+Seat 7: BARBICHETTE (18250), net: -30
+Seat 8: natha (3815), net: -30
+Seat 9: minouwin (7115), net: -30
+***** End of hand T5-18949596-65 *****
+***** History for hand T5-18949596-66 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:24:10 GMT+0100 2011
+Table: Table #86 [18949596] (NO_LIMIT TEXAS_HOLDEM 150/300, ante: 30, TC)
+User: besac025
+Button: seat 1
+Players in round: 9
+Seat 2: matlem (2270)
+Seat 3: thikoti (7134)
+Seat 4: numa007 (8310)
+Seat 5: besac025 (7210)
+Seat 6: dgdail88 (780)
+Seat 7: BARBICHETTE (18250)
+Seat 8: natha (3815)
+Seat 9: minouwin (7115)
+Seat 1: guyguy09 (8005)
+matlem posts ante 30
+thikoti posts ante 30
+numa007 posts ante 30
+besac025 posts ante 30
+dgdail88 posts ante 30
+BARBICHETTE posts ante 30
+natha posts ante 30
+minouwin posts ante 30
+guyguy09 posts ante 30
+matlem posts small blind (150)
+thikoti posts big blind (300)
+---
+Dealing pocket cards
+Dealing to besac025: [7d, 7c]
+numa007 calls 300
+besac025 raises 900 to 900
+dgdail88 folds
+BARBICHETTE calls 900
+natha folds
+minouwin folds
+guyguy09 folds
+matlem folds
+thikoti calls 600
+numa007 folds
+--- Dealing flop [9h, Ac, 6s]
+thikoti checks
+besac025 bets 6280 [all in]
+BARBICHETTE folds
+thikoti folds
+---
+Summary:
+Main pot: 3420 won by besac025 (3420)
+Rake taken: €0
+Seat 2: matlem (2090), net: -180
+Seat 3: thikoti (6204), net: -930
+Seat 4: numa007 (7980), net: -330
+Seat 5: besac025 (9700), net: +2490
+Seat 6: dgdail88 (750), net: -30
+Seat 7: BARBICHETTE (17320), net: -930
+Seat 8: natha (3785), net: -30
+Seat 9: minouwin (7085), net: -30
+Seat 1: guyguy09 (7975), net: -30
+***** End of hand T5-18949596-66 *****
+***** History for hand T5-18949596-67 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:25:04 GMT+0100 2011
+Table: Table #86 [18949596] (NO_LIMIT TEXAS_HOLDEM 150/300, ante: 30, TC)
+User: besac025
+Button: seat 2
+Players in round: 10
+Seat 3: thikoti (6204)
+Seat 4: numa007 (7980)
+Seat 5: besac025 (9700)
+Seat 6: dgdail88 (750)
+Seat 7: BARBICHETTE (17320)
+Seat 8: natha (3785)
+Seat 9: minouwin (7085)
+Seat 10: pasbon (7325)
+Seat 1: guyguy09 (7975)
+Seat 2: matlem (2090)
+thikoti posts ante 30
+numa007 posts ante 30
+besac025 posts ante 30
+dgdail88 posts ante 30
+BARBICHETTE posts ante 30
+natha posts ante 30
+minouwin posts ante 30
+pasbon posts ante 30
+guyguy09 posts ante 30
+matlem posts ante 30
+thikoti posts small blind (150)
+numa007 posts big blind (300)
+---
+Dealing pocket cards
+Dealing to besac025: [Jd, 9h]
+besac025 folds
+dgdail88 folds
+BARBICHETTE calls 300
+natha folds
+minouwin raises 1200 to 1200
+pasbon folds
+guyguy09 folds
+matlem folds
+thikoti folds
+numa007 folds
+BARBICHETTE calls 900
+--- Dealing flop [Qh, 3s, Jh]
+BARBICHETTE checks
+minouwin bets 1650
+BARBICHETTE folds
+---
+Summary:
+Main pot: 3150 won by minouwin (3150)
+Rake taken: €0
+Seat 3: thikoti (6024), net: -180
+Seat 4: numa007 (7650), net: -330
+Seat 5: besac025 (9670), net: -30
+Seat 6: dgdail88 (720), net: -30
+Seat 7: BARBICHETTE (16090), net: -1230
+Seat 8: natha (3755), net: -30
+Seat 9: minouwin (9005), net: +1920
+Seat 10: pasbon (7295), net: -30
+Seat 1: guyguy09 (7945), net: -30
+Seat 2: matlem (2060), net: -30
+***** End of hand T5-18949596-67 *****
+***** History for hand T5-18949596-68 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:25:45 GMT+0100 2011
+Table: Table #86 [18949596] (NO_LIMIT TEXAS_HOLDEM 150/300, ante: 30, TC)
+User: besac025
+Button: seat 3
+Players in round: 10
+Seat 4: numa007 (7650)
+Seat 5: besac025 (9670)
+Seat 6: dgdail88 (720)
+Seat 7: BARBICHETTE (16090)
+Seat 8: natha (3755)
+Seat 9: minouwin (9005)
+Seat 10: pasbon (7295)
+Seat 1: guyguy09 (7945)
+Seat 2: matlem (2060)
+Seat 3: thikoti (6024)
+numa007 posts ante 30
+besac025 posts ante 30
+dgdail88 posts ante 30
+BARBICHETTE posts ante 30
+natha posts ante 30
+minouwin posts ante 30
+pasbon posts ante 30
+guyguy09 posts ante 30
+matlem posts ante 30
+thikoti posts ante 30
+numa007 posts small blind (150)
+besac025 posts big blind (300)
+---
+Dealing pocket cards
+Dealing to besac025: [4c, Ts]
+dgdail88 folds
+BARBICHETTE calls 300
+natha folds
+minouwin folds
+pasbon folds
+guyguy09 folds
+matlem folds
+thikoti folds
+numa007 calls 150
+besac025 checks
+--- Dealing flop [8s, Jh, 5d]
+numa007 checks
+besac025 checks
+BARBICHETTE bets 600
+numa007 folds
+besac025 folds
+---
+Summary:
+Main pot: 1200 won by BARBICHETTE (1200)
+Rake taken: €0
+Seat 4: numa007 (7320), net: -330
+Seat 5: besac025 (9340), net: -330
+Seat 6: dgdail88 (690), net: -30
+Seat 7: BARBICHETTE (16960), net: +870
+Seat 8: natha (3725), net: -30
+Seat 9: minouwin (8975), net: -30
+Seat 10: pasbon (7265), net: -30
+Seat 1: guyguy09 (7915), net: -30
+Seat 2: matlem (2030), net: -30
+Seat 3: thikoti (5994), net: -30
+***** End of hand T5-18949596-68 *****
+***** History for hand T5-18949596-69 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:26:31 GMT+0100 2011
+Table: Table #86 [18949596] (NO_LIMIT TEXAS_HOLDEM 150/300, ante: 30, TC)
+User: besac025
+Button: seat 4
+Players in round: 10
+Seat 5: besac025 (9340)
+Seat 6: dgdail88 (690)
+Seat 7: BARBICHETTE (16960)
+Seat 8: natha (3725)
+Seat 9: minouwin (8975)
+Seat 10: pasbon (7265)
+Seat 1: guyguy09 (7915)
+Seat 2: matlem (2030)
+Seat 3: thikoti (5994)
+Seat 4: numa007 (7320)
+besac025 posts ante 30
+dgdail88 posts ante 30
+BARBICHETTE posts ante 30
+natha posts ante 30
+minouwin posts ante 30
+pasbon posts ante 30
+guyguy09 posts ante 30
+matlem posts ante 30
+thikoti posts ante 30
+numa007 posts ante 30
+besac025 posts small blind (150)
+dgdail88 posts big blind (300)
+---
+Dealing pocket cards
+Dealing to besac025: [9c, 6d]
+BARBICHETTE calls 300
+natha folds
+minouwin folds
+pasbon calls 300
+guyguy09 folds
+matlem folds
+thikoti folds
+numa007 folds
+besac025 folds
+dgdail88 checks
+--- Dealing flop [Jc, 7c, 7h]
+dgdail88 checks
+BARBICHETTE checks
+pasbon checks
+--- Dealing turn [5d]
+dgdail88 checks
+BARBICHETTE bets 1350
+pasbon folds
+dgdail88 folds
+---
+Summary:
+Main pot: 1350 won by BARBICHETTE (1350)
+Rake taken: €0
+Seat 5: besac025 (9160), net: -180
+Seat 6: dgdail88 (360), net: -330
+Seat 7: BARBICHETTE (17980), net: +1020, [7s, As] (THREE_OF_A_KIND SEVEN)
+Seat 8: natha (3695), net: -30
+Seat 9: minouwin (8945), net: -30
+Seat 10: pasbon (6935), net: -330
+Seat 1: guyguy09 (7885), net: -30
+Seat 2: matlem (2000), net: -30
+Seat 3: thikoti (5964), net: -30
+Seat 4: numa007 (7290), net: -30
+***** End of hand T5-18949596-69 *****
+***** History for hand T5-18949596-70 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:27:33 GMT+0100 2011
+Table: Table #86 [18949596] (NO_LIMIT TEXAS_HOLDEM 150/300, ante: 30, TC)
+User: besac025
+Button: seat 5
+Players in round: 10
+Seat 6: dgdail88 (360)
+Seat 7: BARBICHETTE (17980)
+Seat 8: natha (3695)
+Seat 9: minouwin (8945)
+Seat 10: pasbon (6935)
+Seat 1: guyguy09 (7885)
+Seat 2: matlem (2000)
+Seat 3: thikoti (5964)
+Seat 4: numa007 (7290)
+Seat 5: besac025 (9160)
+dgdail88 posts ante 30
+BARBICHETTE posts ante 30
+natha posts ante 30
+minouwin posts ante 30
+pasbon posts ante 30
+guyguy09 posts ante 30
+matlem posts ante 30
+thikoti posts ante 30
+numa007 posts ante 30
+besac025 posts ante 30
+dgdail88 posts small blind (150)
+BARBICHETTE posts big blind (300)
+---
+Dealing pocket cards
+Dealing to besac025: [9d, 6c]
+natha folds
+minouwin folds
+pasbon raises 1500 to 1500
+guyguy09 folds
+matlem folds
+thikoti folds
+numa007 folds
+besac025 folds
+dgdail88 folds
+BARBICHETTE calls 1200
+--- Dealing flop [Th, 6s, 8s]
+BARBICHETTE checks
+pasbon bets 1500
+BARBICHETTE raises 16450 to 16450 [all in]
+pasbon calls 3905 [all in]
+--- Dealing flop [Th, 6s, 8s]
+--- Dealing turn [Qh]
+--- Dealing river [Tc]
+---
+Summary:
+Main pot: 14260 won by BARBICHETTE (14260)
+Rake taken: €0
+Seat 6: dgdail88 (180), net: -180
+Seat 7: BARBICHETTE (25305), net: +7325, [2c, 2d] (TWO_PAIR TEN, TWO)
+Seat 8: natha (3665), net: -30
+Seat 9: minouwin (8915), net: -30
+Seat 10: pasbon (0), net: -6935, [As, Js] (PAIR TEN)
+Seat 1: guyguy09 (7855), net: -30
+Seat 2: matlem (1970), net: -30
+Seat 3: thikoti (5934), net: -30
+Seat 4: numa007 (7260), net: -30
+Seat 5: besac025 (9130), net: -30
+***** End of hand T5-18949596-70 *****
+***** History for hand T5-18949596-71 (TOURNAMENT: "Freeroll tournois live", R-274-110, buy-in: €0) *****
+Start hand: Sat Jan 8 17:28:27 GMT+0100 2011
+Table: Table #86 [18949596] (NO_LIMIT TEXAS_HOLDEM 150/300, ante: 30, TC)
+User: besac025
+Button: seat 6
+Players in round: 9
+Seat 7: BARBICHETTE (25305)
+Seat 8: natha (3665)
+Seat 9: minouwin (8915)
+Seat 1: guyguy09 (7855)
+Seat 2: matlem (1970)
+Seat 3: thikoti (5934)
+Seat 4: numa007 (7260)
+Seat 5: besac025 (9130)
+Seat 6: dgdail88 (180)
+BARBICHETTE posts ante 30
+natha posts ante 30
+minouwin posts ante 30
+guyguy09 posts ante 30
+matlem posts ante 30
+thikoti posts ante 30
+numa007 posts ante 30
+besac025 posts ante 30
+dgdail88 posts ante 30
+BARBICHETTE posts small blind (150)
+natha posts big blind (300)
+---
+Dealing pocket cards
+Dealing to besac025: [Ks, 8s]
+minouwin folds
+guyguy09 folds
+matlem folds
+thikoti folds
+numa007 folds
+besac025 raises 600 to 600
+dgdail88 folds
+BARBICHETTE calls 450
+natha folds
+--- Dealing flop [2h, 9s, 8d]
+BARBICHETTE checks
+besac025 bets 1350
+BARBICHETTE raises 24675 to 24675 [all in]
+besac025 calls 7150 [all in]
+--- Dealing flop [2h, 9s, 8d]
+--- Dealing turn [5d]
+--- Dealing river [Qc]
+---
+Summary:
+Main pot: 18770 won by BARBICHETTE (18770)
+Rake taken: €0
+Seat 7: BARBICHETTE (34945), net: +9640, [9c, Qh] (TWO_PAIR QUEEN, NINE)
+Seat 8: natha (3335), net: -330
+Seat 9: minouwin (8885), net: -30
+Seat 1: guyguy09 (7825), net: -30
+Seat 2: matlem (1940), net: -30
+Seat 3: thikoti (5904), net: -30
+Seat 4: numa007 (7230), net: -30
+Seat 5: besac025 (0), net: -9130, [Ks, 8s] (PAIR EIGHT)
+Seat 6: dgdail88 (150), net: -30
+***** End of hand T5-18949596-71 *****
