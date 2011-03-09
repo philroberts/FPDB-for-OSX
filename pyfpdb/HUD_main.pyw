@@ -120,14 +120,14 @@ class HUD_main(object):
             gobject.timeout_add(800, self.check_tables)
 
         except:
-            log.exception("Error initializing main_window")
+            log.exception(_("Error initializing main_window"))
             gtk.main_quit()   # we're hosed, just terminate
 
     def client_moved(self, widget, hud):
         hud.up_update_table_position()
 
     def client_resized(self, widget, hud):
-#   Don't forget to get rid of this.
+#TODO   Don't forget to get rid of this.
         if not is_windows:
             gigobject.idle_add(idle_resize, hud)
 
