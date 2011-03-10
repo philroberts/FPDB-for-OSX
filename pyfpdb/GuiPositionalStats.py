@@ -60,7 +60,7 @@ class GuiPositionalStats (threading.Thread):
                           }
 
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
-        self.filters.registerButton1Name("Refresh")
+        self.filters.registerButton1Name(_("Refresh"))
         self.filters.registerButton1Callback(self.refreshStats)
 
         # ToDo: store in config

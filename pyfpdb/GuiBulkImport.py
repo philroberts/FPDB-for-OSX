@@ -203,7 +203,7 @@ class GuiBulkImport():
         if not self.allowThreads:
             self.spin_threads.set_sensitive(False)
 
-#    checkbox - fail on error?
+#    checkbox - archive file?
         self.is_archive = gtk.CheckButton(_('Archive File'))
         self.table.attach(self.is_archive, 0, 1, 1, 2, xpadding=10, ypadding=0, yoptions=gtk.SHRINK)
         self.is_archive.show()

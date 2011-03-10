@@ -313,7 +313,7 @@ class GuiAutoImport (threading.Thread):
     #enabling and disabling sites from this interface not possible
     #expects a box to layout the line horizontally
     def createSiteLine(self, hbox1, hbox2, site, iconpath, hhpath, filter_name, active = True):
-        label = gtk.Label("%s auto-import:" % site)
+        label = gtk.Label(_("%s auto-import:") % site)
         hbox1.pack_start(label, False, False, 3)
         label.show()
 
