@@ -24,32 +24,25 @@ Py2exe script for fpdb.
 ########################################################################
 
 #TODO:   
-#        get rid of all the uneeded libraries (e.g., pyQT)
 #        think about an installer
-
-# done:  change GuiAutoImport so that it knows to start HUD_main.exe, when appropriate
-#        include the lib needed to handle png files in mucked
 
 #HOW TO USE this script:
 #
+#- edit the fpdbver variable in this script  (this value will be used to create the distribution folder name)
 #- cd to the folder where this script is stored, usually ...packaging/windows
 #- Run the script with python "py2exe_setup.py py2exe"
 #- You will frequently get messages about missing .dll files.just assume other
 #  person will have them? we have copyright issues including some dll's
-#- If it works, you'll have a new dir  fpdb-YYYYMMDD-exe  which should
+#- If it works, you'll have a new dir  fpdb-version  which should
 #  contain 2 dirs; gfx and pyfpdb and run_fpdb.bat
-#- [ This bit is now automated:
-#    Last, you must copy the etc/, lib/ and share/ folders from your
-#    gtk/bin/ (just /gtk/?) folder to the pyfpdb folder. (the whole folders, 
-#    not just the contents) ]
-#- You can (should) then prune the etc/, lib/ and share/ folders to 
-#  remove components we don't need. (see output at end of program run)
 
 #  See walkthrough in packaging directory for versions used
+#  Very useful guide here : http://www.no-ack.org/2010/09/complete-guide-to-py2exe-for-pygtk.html
 
 # steffeN: Doesnt seem necessary to gettext-ify this, but feel free to if you disagree
 # Gimick: restructure to allow script to run from packaging/windows directory, and not to write to source pyfpdb
 
+fpdbver = '0.22'
 
 import os
 import sys
@@ -59,6 +52,10 @@ try:
     sys.argv[1] <> ""
 except: 
     print "A parameter is required, quitting now"
+    quit()
+
+if sys.argv[1] <> "py2exe":
+    print "Parameter 1 is not valid, quitting now"
     quit()
 
 from distutils.core import setup
@@ -75,12 +72,15 @@ def isSystemDLL(pathname):
         return origIsSystemDLL(pathname)
 
 def test_and_remove(top):
+    #print "Attempting to delete:", top
     if os.path.exists(top):
         if os.path.isdir(top):
             remove_tree(top)
         else:
             print "Unexpected file '"+top+"' found. Exiting."
             exit()
+    else:
+        "oops folder not found"
         
 def remove_tree(top):
     # Delete everything reachable from the directory named in 'top',
@@ -89,8 +89,8 @@ def remove_tree(top):
     # could delete all your disk files.
     # sc: Nicked this from somewhere, added the if statement to try 
     #     make it a bit safer
-    if top in ('build','dist',distdir) and os.path.basename(os.getcwd()) == 'windows':
-        #print "removing directory '"+top+"' ..."
+    if (top in ('build','dist') or top.startswith(distdir)) and os.path.basename(os.getcwd()) == 'windows':
+        print "removing directory '"+top+"' ..."
         for root, dirs, files in os.walk(top, topdown=False):
             for name in files:
                 os.remove(os.path.join(root, name))
@@ -110,8 +110,6 @@ def copy_file(source,destination):
     print "*** Copying " + source + " to " + destination + " ***"
     shutil.copy( source, destination )
 
-
-fpdbver = '0.21'
 
 distdir = r'fpdb-' + fpdbver
 rootdir = r'../../' #cwd is normally /packaging/windows
@@ -172,9 +170,6 @@ setup(
                  ] + matplotlib.get_py2exe_datafiles()
 )
 
-#                 ,(distdir, [rootdir+'run_fpdb.bat'])
-#                 ,(distdir+r'\gfx', glob.glob(gfxdir+'*.*'))
-#                 ] + 
 print "*** py2exe build phase complete ***"
 
 # copy zone info and fpdb translation folders
@@ -185,7 +180,7 @@ copy_tree (pydir+r'locale', os.path.join(r'dist', 'locale'))
 copy_tree (gfxdir, os.path.join(distdir, 'gfx'))
 copy_file (rootdir+'run_fpdb.bat', distdir)
 
-print "*** Renaming dist folder as distribution pyfpdb folder ***"
+print "*** Renaming dist folder as pyfpdb folder ***"
 dest = os.path.join(distdir, 'pyfpdb')
 os.rename( 'dist', dest )
 
@@ -196,30 +191,34 @@ while not os.path.exists(gtk_dir):
     gtk_dir = sys.stdin.readline().rstrip()
 
 print "*** copying GTK runtime ***"
-dest = os.path.join(distdir, 'pyfpdb')
+dest = os.path.join(distdir, 'pyfpdb', )
 copy_file(os.path.join(gtk_dir, 'bin', 'libgdk-win32-2.0-0.dll'), dest )
 copy_file(os.path.join(gtk_dir, 'bin', 'libgobject-2.0-0.dll'), dest)
 copy_tree(os.path.join(gtk_dir, 'etc'), os.path.join(dest, 'etc'))
 copy_tree(os.path.join(gtk_dir, 'lib'), os.path.join(dest, 'lib'))
 copy_tree(os.path.join(gtk_dir, 'share'), os.path.join(dest, 'share'))
 
-print "*** All done! ***"
+print "*** Activating MS-Windows GTK theme ***"
+gtkrc = open(os.path.join(distdir, 'pyfpdb', 'etc', 'gtk-2.0', 'gtkrc'), 'w')
+print >>gtkrc, 'gtk-theme-name = "MS-Windows"'
+gtkrc.close()
+
+print "*** deleting temporary build folder ***"
 test_and_remove('build')
-print distdir+" is in the pyfpdb dir"
-print """
-The following dirs can probably removed to make the final package smaller:
 
-pyfpdb/lib/glib-2.0
-pyfpdb/lib/gtk-2.0/include
-pyfpdb/lib/pkgconfig
-pyfpdb/share/aclocal
-pyfpdb/share/doc
-pyfpdb/share/glib-2.0
-pyfpdb/share/gtk-2.0
-pyfpdb/share/gtk-doc
-pyfpdb/share/locale
-pyfpdb/share/man
-pyfpdb/share/themes/Default
+print "*** deleting folders to shrink package size ***"
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'lib', 'glib-2.0'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'lib', 'gtk-2.0','include'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'lib', 'pkgconfig'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'aclocal'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'doc'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'glib-2.0'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'gtk-2.0'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'gtk-doc'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'locale'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'man'))
 
-Use 7-zip to zip up the distribution and create a self extracting archive and that's it!
-"""
+print "***++++++++++++++++++++++++++++++++++++++++++++++"
+print "All done!"
+print "The distribution folder "+distdir+" is in the pyfpdb dir"
+print "***++++++++++++++++++++++++++++++++++++++++++++++"
