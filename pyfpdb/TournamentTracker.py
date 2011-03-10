@@ -3,7 +3,7 @@
 """TourneyTracker.py
     Based on HUD_main .. who knows if we want to actually use this or not
 """
-# Copyright (c) 2009-2010 Eric Blade, and the FPDB team.
+# Copyright (c) 2009-2011 Eric Blade, and the FPDB team.
 
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by

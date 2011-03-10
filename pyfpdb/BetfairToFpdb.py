@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2008-2010, Carl Gherardi
+#    Copyright 2008-2011, Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -73,7 +73,7 @@ class Betfair(HandHistoryConverter):
         m = self.re_GameInfo.search(handText)
         if not m:
             tmp = handText[0:100]
-            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
             log.error(_("determineGameType: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
@@ -157,7 +157,7 @@ class Betfair(HandHistoryConverter):
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
-            logging.debug(_("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN'))))
+            logging.debug(_("Player bringing in: %s for %s") % (m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         else:
             logging.warning(_("No bringin found"))
@@ -196,7 +196,7 @@ class Betfair(HandHistoryConverter):
             elif action.group('ATYPE') == 'checks':
                 hand.addCheck( street, action.group('PNAME'))
             else:
-                sys.stderr.write( _("DEBUG: unimplemented readAction: '%s' '%s'") %(action.group('PNAME'),action.group('ATYPE'),))
+                sys.stderr.write(_("DEBUG: ") + _("unimplemented readAction: '%s' '%s'") % (action.group('PNAME'),action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#Copyright 2008-2010 Steffen Schaumburg
+#Copyright 2008-2011 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.

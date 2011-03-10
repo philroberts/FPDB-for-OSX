@@ -3,7 +3,7 @@
 #
 # stove.py
 # Simple Hold'em equity calculator
-# Copyright (C) 2007-2008 Mika Boström <bostik@iki.fi>
+# Copyright (C) 2007-2011 Mika Boström <bostik@iki.fi>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2008-2010, Carl Gherardi
+#    Copyright 2008-2011, Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -203,8 +203,8 @@ class Fulltilt(HandHistoryConverter):
         m = self.re_GameInfo.search(handText)
         if not m:
             tmp = handText[0:100]
+            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
             log.error(_("determineGameType: Raising FpdbParseError for file '%s'") % self.in_path)
-            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
         mg = m.groupdict()
 
@@ -244,7 +244,7 @@ class Fulltilt(HandHistoryConverter):
                 info['sb'] = self.Lim_Blinds[mg['BB']][0]
                 info['bb'] = self.Lim_Blinds[mg['BB']][1]
             except KeyError:
-                log.error(_("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB']))
+                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
                 log.error(_("determineGameType: Raising FpdbParseError"))
                 raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
 
@@ -259,8 +259,9 @@ class Fulltilt(HandHistoryConverter):
         m =  self.re_HandInfo.search(hand.handText)
         if m is None:
             tmp = hand.handText[0:100]
-            log.error(_("readHandInfo: Unable to recognise handinfo from: '%s'") % tmp)
-            raise FpdbParseError(_("No match in readHandInfo."))
+            log.error(_("Unable to recognise handinfo from: '%s'") % tmp)
+            log.error(_("readHandInfo: Raising FpdbParseError"))
+            raise FpdbParseError(_("Unable to recognise handinfo from: '%s'"))
 
         #print "DEBUG: m.groupdict: %s" % m.groupdict()
         hand.handid = m.group('HID')
