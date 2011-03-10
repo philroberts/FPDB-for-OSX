@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-03-10 04:14+CET\n"
+"POT-Creation-Date: 2011-03-10 05:10+CET\n"
 "PO-Revision-Date: 2011-03-09 15:37+0000\n"
 "Last-Translator: kibbitzer <thomas.joannes@gmail.com>\n"
 "Language-Team: French (France) <>\n"
@@ -16,30 +16,26 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 
-#: AbsoluteToFpdb.py:139 BetfairToFpdb.py:76 CarbonToFpdb.py:130
-#: EverestToFpdb.py:101 EverleafToFpdb.py:110 FulltiltToFpdb.py:212
-#: OnGameToFpdb.py:159 PartyPokerToFpdb.py:197 PkrToFpdb.py:128
-#: PokerStarsToFpdb.py:185 Win2dayToFpdb.py:95 WinamaxToFpdb.py:172
-#: iPokerToFpdb.py:122
-msgid "determineGameType: Unable to recognise gametype from: '%s'"
-msgstr "determineGameType: Impossible de reconnaître le type de jeu de: '%s'"
-
-#: AbsoluteToFpdb.py:140 BetfairToFpdb.py:77 CarbonToFpdb.py:131
-#: EverestToFpdb.py:102 EverleafToFpdb.py:111 FulltiltToFpdb.py:252
-#: OnGameToFpdb.py:160 OnGameToFpdb.py:176 PartyPokerToFpdb.py:198
-#: PkrToFpdb.py:129 PkrToFpdb.py:154 PokerStarsToFpdb.py:186
-#: PokerStarsToFpdb.py:212 Win2dayToFpdb.py:96 WinamaxToFpdb.py:173
-#: WinamaxToFpdb.py:191 iPokerToFpdb.py:123
-msgid "determineGameType: Raising FpdbParseError"
-msgstr "determineGameType: Une erreur d'analyse de Fpdb est survenue"
-
-#: AbsoluteToFpdb.py:141 BetfairToFpdb.py:78 CarbonToFpdb.py:132
-#: EverestToFpdb.py:103 EverleafToFpdb.py:112 FulltiltToFpdb.py:213
-#: OnGameToFpdb.py:161 PartyPokerToFpdb.py:199 PkrToFpdb.py:130
-#: PokerStarsToFpdb.py:187 Win2dayToFpdb.py:97 WinamaxToFpdb.py:174
-#: iPokerToFpdb.py:124
+#: AbsoluteToFpdb.py:139 AbsoluteToFpdb.py:141 BetfairToFpdb.py:76
+#: BetfairToFpdb.py:78 CarbonToFpdb.py:130 CarbonToFpdb.py:132
+#: EverestToFpdb.py:101 EverestToFpdb.py:103 EverleafToFpdb.py:110
+#: EverleafToFpdb.py:112 FulltiltToFpdb.py:211 FulltiltToFpdb.py:213
+#: OnGameToFpdb.py:159 OnGameToFpdb.py:161 PartyPokerToFpdb.py:197
+#: PartyPokerToFpdb.py:199 PkrToFpdb.py:128 PkrToFpdb.py:130
+#: PokerStarsToFpdb.py:185 PokerStarsToFpdb.py:187 Win2dayToFpdb.py:95
+#: Win2dayToFpdb.py:97 WinamaxToFpdb.py:172 WinamaxToFpdb.py:174
+#: iPokerToFpdb.py:122 iPokerToFpdb.py:124
 msgid "Unable to recognise gametype from: '%s'"
 msgstr "Impossible de reconnaître le type de jeu de: '%s'"
+
+#: AbsoluteToFpdb.py:140 BetfairToFpdb.py:77 CarbonToFpdb.py:131
+#: EverestToFpdb.py:102 EverestToFpdb.py:107 EverleafToFpdb.py:111
+#: FulltiltToFpdb.py:252 OnGameToFpdb.py:160 OnGameToFpdb.py:176
+#: PartyPokerToFpdb.py:198 PkrToFpdb.py:129 PkrToFpdb.py:154
+#: PokerStarsToFpdb.py:186 PokerStarsToFpdb.py:212 Win2dayToFpdb.py:96
+#: WinamaxToFpdb.py:173 WinamaxToFpdb.py:191 iPokerToFpdb.py:123
+msgid "determineGameType: Raising FpdbParseError"
+msgstr "determineGameType: Une erreur d'analyse de Fpdb est survenue"
 
 #: AbsoluteToFpdb.py:204
 msgid "readHandInfo: Didn't match: '%s'"
@@ -62,13 +58,13 @@ msgstr "Nom de fichier: '%s'"
 msgid "Absolute: Didn't match re_*InfoFromFilename: '%s'"
 msgstr "Absolute: Ne correspond pas à re_*IntoFromFileName: '%s'"
 
-#: AbsoluteToFpdb.py:278 EverleafToFpdb.py:218 FulltiltToFpdb.py:415
+#: AbsoluteToFpdb.py:278 EverleafToFpdb.py:218 FulltiltToFpdb.py:416
 #: OnGameToFpdb.py:294 PokerStarsToFpdb.py:357 Win2dayToFpdb.py:203
 #: WinamaxToFpdb.py:360
 msgid "reading antes"
 msgstr "lecture antes"
 
-#: AbsoluteToFpdb.py:287 BetfairToFpdb.py:160 FulltiltToFpdb.py:425
+#: AbsoluteToFpdb.py:287 BetfairToFpdb.py:160 FulltiltToFpdb.py:426
 msgid "Player bringing in: %s for %s"
 msgstr "Le Bring-In du joueur est: %s pour %s"
 
@@ -84,26 +80,26 @@ msgstr "Pas de petite blinde"
 msgid "Absolute readStudPlayerCards is only a stub."
 msgstr "Absolute readStudPlayerCards est un bout de programme temporaire."
 
-#: AbsoluteToFpdb.py:351 CarbonToFpdb.py:267 EverestToFpdb.py:233
-#: EverestToFpdb.py:234 EverleafToFpdb.py:288
+#: AbsoluteToFpdb.py:351 CarbonToFpdb.py:267 EverestToFpdb.py:234
+#: EverestToFpdb.py:235 EverleafToFpdb.py:288
 #, fuzzy
 msgid "Unimplemented readAction: %s %s"
 msgstr "readAction non implémenté: '%s' '%s'"
 
 #: AbsoluteToFpdb.py:401 BetfairToFpdb.py:222 CarbonToFpdb.py:298
-#: EverleafToFpdb.py:326 FulltiltToFpdb.py:783 PartyPokerToFpdb.py:578
+#: EverleafToFpdb.py:326 FulltiltToFpdb.py:784 PartyPokerToFpdb.py:577
 #: PokerStarsToFpdb.py:467 Win2dayToFpdb.py:368 iPokerToFpdb.py:291
 msgid "parse input hand history"
 msgstr "analyse de l'historique des mains"
 
 #: AbsoluteToFpdb.py:402 BetfairToFpdb.py:223 CarbonToFpdb.py:299
-#: EverleafToFpdb.py:327 FulltiltToFpdb.py:784 PartyPokerToFpdb.py:579
+#: EverleafToFpdb.py:327 FulltiltToFpdb.py:785 PartyPokerToFpdb.py:578
 #: PokerStarsToFpdb.py:468 Win2dayToFpdb.py:369 iPokerToFpdb.py:292
 msgid "output translation to"
 msgstr "traduction envoyée vers"
 
 #: AbsoluteToFpdb.py:403 BetfairToFpdb.py:224 CarbonToFpdb.py:300
-#: EverleafToFpdb.py:328 FulltiltToFpdb.py:785 PartyPokerToFpdb.py:580
+#: EverleafToFpdb.py:328 FulltiltToFpdb.py:786 PartyPokerToFpdb.py:579
 #: PokerStarsToFpdb.py:469 Win2dayToFpdb.py:370 iPokerToFpdb.py:293
 msgid "follow (tail -f) the input"
 msgstr "suivre (tail -f) la sortie"
@@ -116,13 +112,13 @@ msgstr "Impossible de trouver le fichier %s"
 msgid "Output being written to"
 msgstr "Enregistrement du résultat dans"
 
-#: BetfairToFpdb.py:108 CarbonToFpdb.py:163 EverestToFpdb.py:144
+#: BetfairToFpdb.py:108 CarbonToFpdb.py:163 EverestToFpdb.py:145
 #: EverleafToFpdb.py:145 iPokerToFpdb.py:156 iPokerToFpdb.py:158
 msgid "Didn't match re_HandInfo"
 msgstr "Ne correspond pas à  re_HandInfo"
 
-#: BetfairToFpdb.py:109 CarbonToFpdb.py:165 EverestToFpdb.py:146
-#: FulltiltToFpdb.py:267 PokerStarsToFpdb.py:223
+#: BetfairToFpdb.py:109 CarbonToFpdb.py:165 EverestToFpdb.py:147
+#: PokerStarsToFpdb.py:223
 msgid "No match in readHandInfo."
 msgstr "Pas de correspondance dans readHandInfo"
 
@@ -134,10 +130,20 @@ msgstr "readPlayerStacks: Moins de 2 joueurs trouvés dans une main"
 msgid "No bringin found"
 msgstr "Bring-In non trouvé"
 
+#: BetfairToFpdb.py:199 Filters.py:80 GuiAutoImport.py:203
+#: GuiPositionalStats.py:137 GuiStove.py:221 GuiStove.py:225 GuiStove.py:229
+#: GuiStove.py:233 GuiStove.py:237 GuiStove.py:239 Hand.py:482 Hand.py:1690
+#: ImapFetcher.py:44 ImapFetcher.py:53 OnGameToFpdb.py:210 OnGameToFpdb.py:337
+#: PokerStarsToFpdb.py:439 Win2dayToFpdb.py:341 WinamaxToFpdb.py:406
+#: test_Database.py:50 test_Database.py:51
+msgid "DEBUG: "
+msgstr ""
+
 #: BetfairToFpdb.py:199 OnGameToFpdb.py:337 PokerStarsToFpdb.py:439
-#: WinamaxToFpdb.py:406
-msgid "DEBUG: unimplemented readAction: '%s' '%s'"
-msgstr "DEBUG: readAction non implémenté: '%s' '%s'"
+#: Win2dayToFpdb.py:341 WinamaxToFpdb.py:406
+#, fuzzy
+msgid "unimplemented readAction: '%s' '%s'"
+msgstr "readAction non implémenté: '%s' '%s'"
 
 #: Card.py:431
 msgid "fpdb card encoding(same as pokersource)"
@@ -588,7 +594,7 @@ msgstr "get_stats a duré:  %4.3f seconds"
 msgid "press enter to continue"
 msgstr "appuyez sur entrée pour continuer"
 
-#: EverestToFpdb.py:107
+#: EverestToFpdb.py:108 FulltiltToFpdb.py:266 FulltiltToFpdb.py:268
 msgid "Unable to recognise handinfo from: '%s'"
 msgstr "Impossible de reconnaître handinfo de: '¨%s'"
 
@@ -670,7 +676,8 @@ msgid "Tourney"
 msgstr "Tournoi"
 
 #: Filters.py:80
-msgid "DEBUG: New packing box created!"
+#, fuzzy
+msgid "New packing box created!"
 msgstr "DEBUG: Nouvelle boîte de stockage créée !"
 
 #: Filters.py:106 TourneyFilters.py:114
@@ -799,71 +806,71 @@ msgstr "parseSummary: Impossible de trouver la devise"
 msgid "Unable to locate currency"
 msgstr "Impossible de trouver la devise"
 
-#: FulltiltToFpdb.py:211
+#: FulltiltToFpdb.py:212
 msgid "determineGameType: Raising FpdbParseError for file '%s'"
 msgstr ""
 "determineGameType: Une erreur d'analyse Fpdb du fichier '%s' est survenue"
 
 #: FulltiltToFpdb.py:251 FulltiltToFpdb.py:253 PkrToFpdb.py:153
-#: PokerStarsToFpdb.py:211
-#, fuzzy
-msgid "determineGameType: Lim_Blinds has no lookup for '%s'"
+#: PkrToFpdb.py:155 PokerStarsToFpdb.py:211 PokerStarsToFpdb.py:213
+msgid "Lim_Blinds has no lookup for '%s'"
 msgstr "Lim_Blinds ne retourne rien pour '%s'"
 
-#: FulltiltToFpdb.py:266
-msgid "readHandInfo: Unable to recognise handinfo from: '%s'"
-msgstr "readHandInfo: Impossible d'identifier handinfo de: '%s'"
+#: FulltiltToFpdb.py:267
+#, fuzzy
+msgid "readHandInfo: Raising FpdbParseError"
+msgstr "parseSummary: Une erreur d'analyse de Fpdb est survenue"
 
-#: FulltiltToFpdb.py:368
+#: FulltiltToFpdb.py:369
 #, fuzzy
 msgid "FTP: readPlayerStacks: No players detected (hand #%s)"
 msgstr "readPlayerStacks: Moins de 2 joueurs trouvés dans une main"
 
-#: FulltiltToFpdb.py:428
+#: FulltiltToFpdb.py:429
 msgid "No bringin found, handid =%s"
 msgstr "Pas de Bring-In trouvé, handid =%s"
 
-#: FulltiltToFpdb.py:435
+#: FulltiltToFpdb.py:436
 msgid "FTP: readButton: Failed to detect button (hand #%s cancelled?)"
 msgstr ""
 "FTP: readButton: Impossible de déterminer le bouton (main #%s annulée ?)"
 
-#: FulltiltToFpdb.py:489
+#: FulltiltToFpdb.py:490
 msgid "FullTilt: DEBUG: unimplemented readAction: '%s' '%s'"
 msgstr "FullTilt: DEBUG: readAction non implémenté: '%s' '%s'"
 
-#: FulltiltToFpdb.py:565
+#: FulltiltToFpdb.py:566
 msgid "determineTourneyType : Parsing NOK"
 msgstr "determineTourneyType : Analyse incorrecte"
 
-#: FulltiltToFpdb.py:623
+#: FulltiltToFpdb.py:624
 msgid "Unable to get a valid Tournament ID -- File rejected"
 msgstr "Impossible d'avoir un ID de tournoi valide -- Fichier rejeté"
 
-#: FulltiltToFpdb.py:654
+#: FulltiltToFpdb.py:655
 msgid "Conflict between buyins read in topline (%s) and in BuyIn field (%s)"
 msgstr ""
 "Conflit entre le buyin dans la ligne du haut (%s) et le champ BuyIn (%s)"
 
-#: FulltiltToFpdb.py:661
+#: FulltiltToFpdb.py:662
 msgid "Conflict between fees read in topline (%s) and in BuyIn field (%s)"
 msgstr ""
 "Conflit entre les frais dans la ligne du haut (%s) et le champ BuyIn (%s)"
 
-#: FulltiltToFpdb.py:665
+#: FulltiltToFpdb.py:666
 msgid "Unable to affect a buyin to this tournament : assume it's a freeroll"
 msgstr ""
 "Impossible d'affecter un buyin à ce tournoi : considérer en tant que freeroll"
 
-#: FulltiltToFpdb.py:766
+#: FulltiltToFpdb.py:767
 msgid "FullTilt: Player finishing stats unreadable : %s"
 msgstr "FullTilt: Statistiques de classement final du joueur illisibles : %s"
 
-#: FulltiltToFpdb.py:775
+#: FulltiltToFpdb.py:776
 msgid "FullTilt: %s not found in tourney.ranks ..."
 msgstr "FullTilt: %s non trouvé dans tourney.ranks..."
 
-#: FulltiltToFpdb.py:777
+#: FulltiltToFpdb.py:778
 msgid "FullTilt: Bad parsing : finish position incoherent : %s / %s"
 msgstr "FullTilt: Mauvaise analyse : classement final incohérent : %s / %s"
 
@@ -894,6 +901,11 @@ msgstr "  _Auto-importation En cours  "
 #: GuiAutoImport.py:191
 msgid "  Stop _Auto Import  "
 msgstr "  Arrêt _Auto-Importation  "
+
+#: GuiAutoImport.py:203
+#, fuzzy
+msgid "Detecting hh directory for site: '%s'"
+msgstr "Création du répertoire: '%s'"
 
 #: GuiAutoImport.py:242
 msgid ""
@@ -1544,7 +1556,8 @@ msgid "Text"
 msgstr ""
 
 #: GuiPositionalStats.py:137
-msgid "DEBUG: activesite set to %s"
+#, fuzzy
+msgid "activesite set to %s"
 msgstr "DEBUG: Site actif mis à %s"
 
 #: GuiPositionalStats.py:323
@@ -1997,27 +2010,20 @@ msgstr ""
 
 #: GuiStove.py:221
 #, fuzzy
-msgid "DEBUG: called set_board_flop: '%s' '%s'"
+msgid "called set_board_flop: '%s' '%s'"
 msgstr "DEBUG: readAction non implémenté: '%s' '%s'"
 
 #: GuiStove.py:225
-msgid "DEBUG: called set_hero_cards_flop"
-msgstr ""
+#, fuzzy
+msgid "called set_hero_cards_flop"
+msgstr "DEBUG: readAction non implémenté: '%s' '%s'"
 
 #: GuiStove.py:229
-msgid "DEBUG: called set_villain_cards_flop"
+msgid "called set_villain_cards_flop"
 msgstr ""
 
 #: GuiStove.py:233
-msgid "DEBUG: called update_flop_output_pane"
-msgstr ""
-
-#: GuiStove.py:237
-msgid "DEBUG: odds_for_range"
-msgstr ""
-
-#: GuiStove.py:239
-msgid "DEBUG: set_output_label"
+msgid "called update_flop_output_pane"
 msgstr ""
 
 #: GuiTourneyGraphViewer.py:178
@@ -2497,17 +2503,15 @@ msgid "markstreets didn't match - Assuming hand %s was cancelled"
 msgstr "Les tours choisis ne correspondent pas - La main %s a été annulée"
 
 #: Hand.py:478
-msgid "FpdbParseError: markStreets appeared to fail: First 100 chars: '%s'"
+#, fuzzy
+msgid "markStreets appeared to fail: First 100 chars: '%s'"
 msgstr ""
 "Erreur d'analyse de Fpdb : Les tours choisis semblent pas convenir: Les "
 "premiers 100 caractères: '%s'"
 
-#: Hand.py:482
-msgid "DEBUG: checkPlayerExists %s fail on hand number %s"
-msgstr ": checkPlayerExists %s d'échecs sur la main numéro %s"
-
-#: Hand.py:483
-msgid "checkPlayerExists: '%s fail on hand number %s"
+#: Hand.py:482 Hand.py:483
+#, fuzzy
+msgid "checkPlayerExists: %s fail on hand number %s"
 msgstr "eckPlayerExists: '%s' d'échecs sur la main numéro %s"
 
 #: Hand.py:574
@@ -2590,11 +2594,13 @@ msgid "Pot.end(): Major failure while calculating pot: '%s'"
 msgstr ""
 
 #: Hand.py:1690
-msgid "DEBUG: call Pot.end() before printing pot total"
+#, fuzzy
+msgid "call Pot.end() before printing pot total"
 msgstr "DEBUG: appel de Pot.end() avant impression du total de pot"
 
 #: Hand.py:1692
-msgid "FpdbError in printing Hand object"
+#, fuzzy
+msgid "Error in printing Hand object"
 msgstr "Erreur de Fpdb à l'impression de l'objet Hand"
 
 #: HandHistoryConverter.py:40
@@ -2872,11 +2878,13 @@ msgid "(btw, the key was %s and statd is %s"
 msgstr "(quoiqu'il en soit, la clé était %s, et le statd est %s"
 
 #: ImapFetcher.py:44 ImapFetcher.py:53
-msgid "DEBUG: re_SplitTourneys isn't matching"
+#, fuzzy
+msgid "re_SplitTourneys isn't matching"
 msgstr "DEBUG: re_SplitTourneys ne correspond pas"
 
 #: ImapFetcher.py:67
-msgid "response to logging in:"
+#, fuzzy
+msgid "response to logging in: "
 msgstr "résultat de l'identification:"
 
 #: ImapFetcher.py:83
@@ -2905,11 +2913,8 @@ msgstr "Importation de %s/%s résumés PS terminée"
 msgid "No Name"
 msgstr "Pas de Nom"
 
-#: OnGameToFpdb.py:175 WinamaxToFpdb.py:190
-msgid "determineGameType: limit not found in self.limits(%s). hand: '%s'"
-msgstr "determineGameType: limite non trouvée dans self.limits(%s). Main: '%s'"
-
-#: OnGameToFpdb.py:177 WinamaxToFpdb.py:192
+#: OnGameToFpdb.py:175 OnGameToFpdb.py:177 WinamaxToFpdb.py:190
+#: WinamaxToFpdb.py:192
 msgid "limit not found in self.limits(%s). hand: '%s'"
 msgstr "Limite non trouvée dans self.limits(%s). Main: '%s'"
 
@@ -2918,11 +2923,7 @@ msgstr "Limite non trouvée dans self.limits(%s). Main: '%s'"
 msgid "readHandInfo: DATETIME not matched: '%s'"
 msgstr "ReadHandInfo: Pas de correspondance: '%s'"
 
-#: OnGameToFpdb.py:210 Win2dayToFpdb.py:341
-msgid "DEBUG: "
-msgstr ""
-
-#: OnGameToFpdb.py:264 PartyPokerToFpdb.py:366 PokerStarsToFpdb.py:312
+#: OnGameToFpdb.py:264 PartyPokerToFpdb.py:365 PokerStarsToFpdb.py:312
 #: Win2dayToFpdb.py:162 WinamaxToFpdb.py:329
 msgid "readButton: not found"
 msgstr "readButton: non trouvé"
@@ -3022,43 +3023,39 @@ msgstr "appuyer sur entrée pour finir"
 msgid "You need to manually enter the playername"
 msgstr "Vous devez entrer le nom de joueur manuellement"
 
-#: PartyPokerToFpdb.py:213
+#: PartyPokerToFpdb.py:212
 msgid "Cannot fetch field '%s'"
 msgstr "Impossible de récupérer le champ '%s'"
 
-#: PartyPokerToFpdb.py:217
+#: PartyPokerToFpdb.py:216
 msgid "Unknown limit '%s'"
 msgstr "Limite inconnue '%s'"
 
-#: PartyPokerToFpdb.py:222
+#: PartyPokerToFpdb.py:221
 msgid "Unknown game type '%s'"
 msgstr "Type de jeu inconnu '%s'"
 
-#: PartyPokerToFpdb.py:256
+#: PartyPokerToFpdb.py:255
 #, fuzzy
 msgid "Cannot read HID for current hand: %s"
 msgstr "Impossible de lire Handinfo pour cette main"
 
-#: PartyPokerToFpdb.py:261
+#: PartyPokerToFpdb.py:260
 msgid "Cannot read Handinfo for current hand"
 msgstr "Impossible de lire Handinfo pour cette main"
 
-#: PartyPokerToFpdb.py:266
+#: PartyPokerToFpdb.py:265
 msgid "Cannot read GameType for current hand"
 msgstr "Impossible de lire le GameType pour cette main"
 
-#: PartyPokerToFpdb.py:349
+#: PartyPokerToFpdb.py:348
 #, fuzzy
 msgid "Failed to detect currency. HID: %s: '%s'"
 msgstr "Impossible de trouver la devise"
 
-#: PartyPokerToFpdb.py:537
+#: PartyPokerToFpdb.py:536
 msgid "Unimplemented readAction: '%s' '%s'"
 msgstr "readAction non implémenté: '%s' '%s'"
-
-#: PkrToFpdb.py:155 PokerStarsToFpdb.py:213
-msgid "Lim_Blinds has no lookup for '%s'"
-msgstr "Lim_Blinds ne retourne rien pour '%s'"
 
 #: PokerStarsToFpdb.py:265
 #, fuzzy
@@ -3533,11 +3530,6 @@ msgid ""
 msgstr ""
 "Ce module à été développé et testé avec la version 2.8.18 de gtk.  Vous "
 "utilisez la version %d.%d.%d.  Votre programme de fidélité peut varier."
-
-#: Win2dayToFpdb.py:341
-#, fuzzy
-msgid "unimplemented readAction: '%s' '%s'"
-msgstr "readAction non implémenté: '%s' '%s'"
 
 #: WinTables.py:81
 #, fuzzy
@@ -4417,11 +4409,13 @@ msgid "lock already held by:"
 msgstr "Verrou déjà détenu par:"
 
 #: test_Database.py:50
-msgid "DEBUG: Testing variance function"
+#, fuzzy
+msgid "Testing variance function"
 msgstr "DEBUG: Test de la fonction variance"
 
 #: test_Database.py:51
-msgid "DEBUG: result: %s expecting: 0.666666 (result-expecting ~= 0.0): %s"
+#, fuzzy
+msgid "result: %s expecting: 0.666666 (result-expecting ~= 0.0): %s"
 msgstr "DEBUG: resultat: %s attendu: 0.666666 (resultat-attente ~= 0.0): %s"
 
 #: windows_make_bats.py:30
@@ -4441,6 +4435,27 @@ msgstr ""
 "\n"
 "pas de répertoire gtk trouvé à cet endroit - installez gtk ou modifiez le "
 "chemin manuellement\n"
+
+#~ msgid "determineGameType: Unable to recognise gametype from: '%s'"
+#~ msgstr ""
+#~ "determineGameType: Impossible de reconnaître le type de jeu de: '%s'"
+
+#~ msgid "DEBUG: unimplemented readAction: '%s' '%s'"
+#~ msgstr "DEBUG: readAction non implémenté: '%s' '%s'"
+
+#, fuzzy
+#~ msgid "determineGameType: Lim_Blinds has no lookup for '%s'"
+#~ msgstr "Lim_Blinds ne retourne rien pour '%s'"
+
+#~ msgid "readHandInfo: Unable to recognise handinfo from: '%s'"
+#~ msgstr "readHandInfo: Impossible d'identifier handinfo de: '%s'"
+
+#~ msgid "DEBUG: checkPlayerExists %s fail on hand number %s"
+#~ msgstr ": checkPlayerExists %s d'échecs sur la main numéro %s"
+
+#~ msgid "determineGameType: limit not found in self.limits(%s). hand: '%s'"
+#~ msgstr ""
+#~ "determineGameType: limite non trouvée dans self.limits(%s). Main: '%s'"
 
 #, fuzzy
 #~ msgid "DEBUG: readHandInfo: DATETIME not matched: '%s'"
