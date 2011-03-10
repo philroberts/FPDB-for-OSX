@@ -200,7 +200,7 @@ class GuiAutoImport (threading.Thread):
         for site in the_sites:
             params = self.config.get_site_parameters(site)
             if params['enabled'] == True:
-                print "DEBUG: Detecting hh directory for site: '%s'" % site
+                print (_("DEBUG: ") + _("Detecting hh directory for site: '%s'") % site)
                 if os.name == 'posix':
                     if self.posix_detect_hh_dirs(site):
                         #data[1].set_text(dia_chooser.get_filename())

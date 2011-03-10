@@ -475,12 +475,12 @@ If a player has None chips he won't be added."""
             tmp = self.handText[0:100]
             log.error(_("markstreets didn't match - Assuming hand %s was cancelled") % self.handid)
             self.cancelled = True
-            raise FpdbParseError(_("FpdbParseError: markStreets appeared to fail: First 100 chars: '%s'") % tmp)
+            raise FpdbParseError(_("markStreets appeared to fail: First 100 chars: '%s'") % tmp)
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
-            print (_("DEBUG: checkPlayerExists %s fail on hand number %s") % (player, self.handid))
-            raise FpdbParseError(_("checkPlayerExists: '%s fail on hand number %s") % (player, self.handid))
+            print (_("DEBUG: ") + _("checkPlayerExists: %s fail on hand number %s") % (player, self.handid))
+            raise FpdbParseError(_("checkPlayerExists: %s fail on hand number %s") % (player, self.handid))
 
     def setCommunityCards(self, street, cards):
         log.debug("setCommunityCards %s %s" %(street,  cards))
@@ -1687,9 +1687,9 @@ class Pot(object):
         if self.sym is None:
             self.sym = "C"
         if self.total is None:
-            print _("DEBUG: call Pot.end() before printing pot total")
+            print (_("DEBUG: ") + _("call Pot.end() before printing pot total"))
             # NB if I'm sure end() is idempotent, call it here.
-            raise FpdbParseError(_("FpdbError in printing Hand object"))
+            raise FpdbParseError(_("Error in printing Hand object"))
 
         ret = "Total pot %s%.2f" % (self.sym, self.total)
         if len(self.pots) < 2:
