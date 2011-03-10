@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2011-03-10 05:10+CET\n"
+"POT-Creation-Date: 2011-03-10 06:16+CET\n"
 "PO-Revision-Date: 2011-02-27 18:23+0100\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -37,13 +37,10 @@ msgstr "Nem sikerült felismerni a játéktípust innen: '%s'"
 msgid "determineGameType: Raising FpdbParseError"
 msgstr "determineGameType: FpdbParseError"
 
-#: AbsoluteToFpdb.py:204
-msgid "readHandInfo: Didn't match: '%s'"
-msgstr "readHandInfo: Nem illeszkedik: '%s'"
-
-#: AbsoluteToFpdb.py:205
-msgid "Absolute: Didn't match re_HandInfo: '%s'"
-msgstr "Absolute: re_HandInfo nem illeszkedik: '%s'"
+#: AbsoluteToFpdb.py:204 AbsoluteToFpdb.py:205
+#, fuzzy
+msgid "Didn't match re_HandInfo: '%s'"
+msgstr "re_HandInfo nem illeszkedik"
 
 #: AbsoluteToFpdb.py:207
 msgid "readHandInfo: File name didn't match re_*InfoFromFilename"
@@ -54,7 +51,8 @@ msgid "File name: %s"
 msgstr "Fájlnév: %s"
 
 #: AbsoluteToFpdb.py:209
-msgid "Absolute: Didn't match re_*InfoFromFilename: '%s'"
+#, fuzzy
+msgid "Didn't match re_*InfoFromFilename: '%s'"
 msgstr "Absolute: nem illeszkedik re_*InfoFromFilename-re: '%s'"
 
 #: AbsoluteToFpdb.py:278 EverleafToFpdb.py:218 FulltiltToFpdb.py:416
@@ -623,11 +621,11 @@ msgstr "_Limitek"
 msgid "Show Number of _Players"
 msgstr "_Játékosok száma"
 
-#: Filters.py:54 TourneyFilters.py:51
+#: Filters.py:54 TourneyFilters.py:53
 msgid "And:"
 msgstr "Max:"
 
-#: Filters.py:54 TourneyFilters.py:51
+#: Filters.py:54 TourneyFilters.py:53
 msgid "Between:"
 msgstr "Min:"
 
@@ -635,11 +633,11 @@ msgstr "Min:"
 msgid "Games:"
 msgstr "Játékok:"
 
-#: Filters.py:55 TourneyFilters.py:50
+#: Filters.py:55 TourneyFilters.py:52
 msgid "Hero:"
 msgstr "Játékos:"
 
-#: Filters.py:55 TourneyFilters.py:50
+#: Filters.py:55 TourneyFilters.py:52
 msgid "Sites:"
 msgstr "Termek:"
 
@@ -647,7 +645,7 @@ msgstr "Termek:"
 msgid "Limits:"
 msgstr "Limitek:"
 
-#: Filters.py:56 TourneyFilters.py:50
+#: Filters.py:56 TourneyFilters.py:52
 msgid "Number of Players:"
 msgstr "Játékosok száma:"
 
@@ -659,7 +657,7 @@ msgstr "Csoportosítás:"
 msgid "Show Position Stats"
 msgstr "Pozíciók"
 
-#: Filters.py:58 TourneyFilters.py:51
+#: Filters.py:58 TourneyFilters.py:53
 msgid "Date:"
 msgstr "Dátum:"
 
@@ -680,7 +678,7 @@ msgstr "Versenyek"
 msgid "New packing box created!"
 msgstr "DEBUG: Új csoportosító doboz létrehozva!"
 
-#: Filters.py:106 TourneyFilters.py:114
+#: Filters.py:106 TourneyFilters.py:116
 msgid "Either 0 or more than one site matched (%s) - EEK"
 msgstr "Vagy egynél több, vagy egy terem sem illeszkedik (%s) - EEK"
 
@@ -3319,11 +3317,11 @@ msgstr "%s nevű asztal nincs meg, kihagyás.\n"
 msgid "tournament tracker starting\n"
 msgstr "versenykövető indítása\n"
 
-#: TourneyFilters.py:52
+#: TourneyFilters.py:54
 msgid "Tourney Type"
 msgstr "Verseny típusa"
 
-#: TourneyFilters.py:86
+#: TourneyFilters.py:88
 msgid "setting numTourneys:"
 msgstr "numTourneys beállítása:"
 
@@ -4407,6 +4405,12 @@ msgstr ""
 "\n"
 "Nem találhatóak a GTK könyvtárak az útvonaladban - telepítsd a GTK-t, vagy "
 "állítsd be kézzel az útvonalat\n"
+
+#~ msgid "readHandInfo: Didn't match: '%s'"
+#~ msgstr "readHandInfo: Nem illeszkedik: '%s'"
+
+#~ msgid "Absolute: Didn't match re_HandInfo: '%s'"
+#~ msgstr "Absolute: re_HandInfo nem illeszkedik: '%s'"
 
 #~ msgid "determineGameType: Unable to recognise gametype from: '%s'"
 #~ msgstr ""

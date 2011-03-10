@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-03-10 05:10+CET\n"
+"POT-Creation-Date: 2011-03-10 06:16+CET\n"
 "PO-Revision-Date: 2011-03-04 18:18+0000\n"
 "Last-Translator: Lexej <alexej@glyvin.com>\n"
 "Language-Team: Russian (Russia) <>\n"
@@ -38,13 +38,10 @@ msgstr "Невозможно определить тип игры: '%s'"
 msgid "determineGameType: Raising FpdbParseError"
 msgstr "determineGameType: FpdbParseError"
 
-#: AbsoluteToFpdb.py:204
-msgid "readHandInfo: Didn't match: '%s'"
-msgstr "readHandInfo: нет соответствия: '%s'"
-
-#: AbsoluteToFpdb.py:205
-msgid "Absolute: Didn't match re_HandInfo: '%s'"
-msgstr "Absolute: re_HandInfo не соответствует: '%s'"
+#: AbsoluteToFpdb.py:204 AbsoluteToFpdb.py:205
+#, fuzzy
+msgid "Didn't match re_HandInfo: '%s'"
+msgstr "re_HandInfo не соответствует"
 
 #: AbsoluteToFpdb.py:207
 msgid "readHandInfo: File name didn't match re_*InfoFromFilename"
@@ -55,7 +52,8 @@ msgid "File name: %s"
 msgstr "Имя файла: %s"
 
 #: AbsoluteToFpdb.py:209
-msgid "Absolute: Didn't match re_*InfoFromFilename: '%s'"
+#, fuzzy
+msgid "Didn't match re_*InfoFromFilename: '%s'"
 msgstr "Absolute: Не соответствует re_*InfoFromFilename: '%s'"
 
 #: AbsoluteToFpdb.py:278 EverleafToFpdb.py:218 FulltiltToFpdb.py:416
@@ -596,11 +594,11 @@ msgstr ""
 msgid "Show Number of _Players"
 msgstr ""
 
-#: Filters.py:54 TourneyFilters.py:51
+#: Filters.py:54 TourneyFilters.py:53
 msgid "And:"
 msgstr ""
 
-#: Filters.py:54 TourneyFilters.py:51
+#: Filters.py:54 TourneyFilters.py:53
 msgid "Between:"
 msgstr ""
 
@@ -608,11 +606,11 @@ msgstr ""
 msgid "Games:"
 msgstr ""
 
-#: Filters.py:55 TourneyFilters.py:50
+#: Filters.py:55 TourneyFilters.py:52
 msgid "Hero:"
 msgstr "Херо:"
 
-#: Filters.py:55 TourneyFilters.py:50
+#: Filters.py:55 TourneyFilters.py:52
 msgid "Sites:"
 msgstr ""
 
@@ -620,7 +618,7 @@ msgstr ""
 msgid "Limits:"
 msgstr ""
 
-#: Filters.py:56 TourneyFilters.py:50
+#: Filters.py:56 TourneyFilters.py:52
 msgid "Number of Players:"
 msgstr ""
 
@@ -632,7 +630,7 @@ msgstr ""
 msgid "Show Position Stats"
 msgstr ""
 
-#: Filters.py:58 TourneyFilters.py:51
+#: Filters.py:58 TourneyFilters.py:53
 msgid "Date:"
 msgstr "Дата:"
 
@@ -652,7 +650,7 @@ msgstr "Турнир"
 msgid "New packing box created!"
 msgstr ""
 
-#: Filters.py:106 TourneyFilters.py:114
+#: Filters.py:106 TourneyFilters.py:116
 msgid "Either 0 or more than one site matched (%s) - EEK"
 msgstr ""
 
@@ -3144,11 +3142,11 @@ msgstr ""
 msgid "tournament tracker starting\n"
 msgstr ""
 
-#: TourneyFilters.py:52
+#: TourneyFilters.py:54
 msgid "Tourney Type"
 msgstr ""
 
-#: TourneyFilters.py:86
+#: TourneyFilters.py:88
 msgid "setting numTourneys:"
 msgstr ""
 
@@ -4138,6 +4136,12 @@ msgid ""
 "no gtk directories found in your path - install gtk or edit the path "
 "manually\n"
 msgstr ""
+
+#~ msgid "readHandInfo: Didn't match: '%s'"
+#~ msgstr "readHandInfo: нет соответствия: '%s'"
+
+#~ msgid "Absolute: Didn't match re_HandInfo: '%s'"
+#~ msgstr "Absolute: re_HandInfo не соответствует: '%s'"
 
 #~ msgid "determineGameType: Unable to recognise gametype from: '%s'"
 #~ msgstr "determineGameType: Невозможно определить тип игры: '%s'"

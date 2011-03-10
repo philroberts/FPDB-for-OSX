@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-03-10 05:10+CET\n"
+"POT-Creation-Date: 2011-03-10 06:16+CET\n"
 "PO-Revision-Date: 2011-03-09 15:37+0000\n"
 "Last-Translator: kibbitzer <thomas.joannes@gmail.com>\n"
 "Language-Team: French (France) <>\n"
@@ -37,13 +37,10 @@ msgstr "Impossible de reconnaître le type de jeu de: '%s'"
 msgid "determineGameType: Raising FpdbParseError"
 msgstr "determineGameType: Une erreur d'analyse de Fpdb est survenue"
 
-#: AbsoluteToFpdb.py:204
-msgid "readHandInfo: Didn't match: '%s'"
-msgstr "ReadHandInfo: Pas de correspondance: '%s'"
-
-#: AbsoluteToFpdb.py:205
-msgid "Absolute: Didn't match re_HandInfo: '%s'"
-msgstr "Absolute: Pas de correspondance avec re_HandInfo: '%s'"
+#: AbsoluteToFpdb.py:204 AbsoluteToFpdb.py:205
+#, fuzzy
+msgid "Didn't match re_HandInfo: '%s'"
+msgstr "Ne correspond pas à  re_HandInfo"
 
 #: AbsoluteToFpdb.py:207
 msgid "readHandInfo: File name didn't match re_*InfoFromFilename"
@@ -55,7 +52,8 @@ msgid "File name: %s"
 msgstr "Nom de fichier: '%s'"
 
 #: AbsoluteToFpdb.py:209
-msgid "Absolute: Didn't match re_*InfoFromFilename: '%s'"
+#, fuzzy
+msgid "Didn't match re_*InfoFromFilename: '%s'"
 msgstr "Absolute: Ne correspond pas à re_*IntoFromFileName: '%s'"
 
 #: AbsoluteToFpdb.py:278 EverleafToFpdb.py:218 FulltiltToFpdb.py:416
@@ -623,11 +621,11 @@ msgstr "Montre _Limites"
 msgid "Show Number of _Players"
 msgstr "Montre le nombre de _Joueurs"
 
-#: Filters.py:54 TourneyFilters.py:51
+#: Filters.py:54 TourneyFilters.py:53
 msgid "And:"
 msgstr "Et:"
 
-#: Filters.py:54 TourneyFilters.py:51
+#: Filters.py:54 TourneyFilters.py:53
 msgid "Between:"
 msgstr "Entre:"
 
@@ -635,11 +633,11 @@ msgstr "Entre:"
 msgid "Games:"
 msgstr "Parties:"
 
-#: Filters.py:55 TourneyFilters.py:50
+#: Filters.py:55 TourneyFilters.py:52
 msgid "Hero:"
 msgstr "Héros:"
 
-#: Filters.py:55 TourneyFilters.py:50
+#: Filters.py:55 TourneyFilters.py:52
 msgid "Sites:"
 msgstr "Sites:"
 
@@ -647,7 +645,7 @@ msgstr "Sites:"
 msgid "Limits:"
 msgstr "Limites"
 
-#: Filters.py:56 TourneyFilters.py:50
+#: Filters.py:56 TourneyFilters.py:52
 msgid "Number of Players:"
 msgstr "Nombre de Joueurs :"
 
@@ -659,7 +657,7 @@ msgstr "Regroupement:"
 msgid "Show Position Stats"
 msgstr "Montre les stats par position"
 
-#: Filters.py:58 TourneyFilters.py:51
+#: Filters.py:58 TourneyFilters.py:53
 msgid "Date:"
 msgstr "Date:"
 
@@ -680,7 +678,7 @@ msgstr "Tournoi"
 msgid "New packing box created!"
 msgstr "DEBUG: Nouvelle boîte de stockage créée !"
 
-#: Filters.py:106 TourneyFilters.py:114
+#: Filters.py:106 TourneyFilters.py:116
 msgid "Either 0 or more than one site matched (%s) - EEK"
 msgstr "0 ou plus d'un site correspondant (%s) - EEK"
 
@@ -3347,11 +3345,11 @@ msgstr "nom de table %s non trouvé, ignore.\n"
 msgid "tournament tracker starting\n"
 msgstr "démarrage du tracker de tournoi\n"
 
-#: TourneyFilters.py:52
+#: TourneyFilters.py:54
 msgid "Tourney Type"
 msgstr "Type de Tournoi"
 
-#: TourneyFilters.py:86
+#: TourneyFilters.py:88
 msgid "setting numTourneys:"
 msgstr "Paramètre numTourneys:"
 
@@ -4435,6 +4433,12 @@ msgstr ""
 "\n"
 "pas de répertoire gtk trouvé à cet endroit - installez gtk ou modifiez le "
 "chemin manuellement\n"
+
+#~ msgid "readHandInfo: Didn't match: '%s'"
+#~ msgstr "ReadHandInfo: Pas de correspondance: '%s'"
+
+#~ msgid "Absolute: Didn't match re_HandInfo: '%s'"
+#~ msgstr "Absolute: Pas de correspondance avec re_HandInfo: '%s'"
 
 #~ msgid "determineGameType: Unable to recognise gametype from: '%s'"
 #~ msgstr ""

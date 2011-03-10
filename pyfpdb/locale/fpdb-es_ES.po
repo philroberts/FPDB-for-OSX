@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fpdb\n"
-"POT-Creation-Date: 2011-03-10 05:10+CET\n"
+"POT-Creation-Date: 2011-03-10 06:16+CET\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Javier Sánchez <donoban@gmail.com>\n"
 "Language-Team: \n"
@@ -33,12 +33,8 @@ msgstr "Incapaz de reconocer el tipo de juego para: '%s'"
 msgid "determineGameType: Raising FpdbParseError"
 msgstr "determineGameType: Lanzando FpdbParseError"
 
-#: AbsoluteToFpdb.py:204
-msgid "readHandInfo: Didn't match: '%s'"
-msgstr "readHandInfo: No coinciden: '%s'"
-
-#: AbsoluteToFpdb.py:205
-msgid "Absolute: Didn't match re_HandInfo: '%s'"
+#: AbsoluteToFpdb.py:204 AbsoluteToFpdb.py:205
+msgid "Didn't match re_HandInfo: '%s'"
 msgstr ""
 
 #: AbsoluteToFpdb.py:207
@@ -50,7 +46,7 @@ msgid "File name: %s"
 msgstr "Nombre de archivo: %s"
 
 #: AbsoluteToFpdb.py:209
-msgid "Absolute: Didn't match re_*InfoFromFilename: '%s'"
+msgid "Didn't match re_*InfoFromFilename: '%s'"
 msgstr ""
 
 #: AbsoluteToFpdb.py:278 EverleafToFpdb.py:218 FulltiltToFpdb.py:416
@@ -590,11 +586,11 @@ msgstr "Mostrar _límites"
 msgid "Show Number of _Players"
 msgstr "Mostrar número de _jugadores"
 
-#: Filters.py:54 TourneyFilters.py:51
+#: Filters.py:54 TourneyFilters.py:53
 msgid "And:"
 msgstr "Y:"
 
-#: Filters.py:54 TourneyFilters.py:51
+#: Filters.py:54 TourneyFilters.py:53
 msgid "Between:"
 msgstr "Entre:"
 
@@ -602,11 +598,11 @@ msgstr "Entre:"
 msgid "Games:"
 msgstr "Juegos:"
 
-#: Filters.py:55 TourneyFilters.py:50
+#: Filters.py:55 TourneyFilters.py:52
 msgid "Hero:"
 msgstr "Hero:"
 
-#: Filters.py:55 TourneyFilters.py:50
+#: Filters.py:55 TourneyFilters.py:52
 msgid "Sites:"
 msgstr "Sitios:"
 
@@ -614,7 +610,7 @@ msgstr "Sitios:"
 msgid "Limits:"
 msgstr "Límites:"
 
-#: Filters.py:56 TourneyFilters.py:50
+#: Filters.py:56 TourneyFilters.py:52
 msgid "Number of Players:"
 msgstr "Número de jugadores:"
 
@@ -626,7 +622,7 @@ msgstr ""
 msgid "Show Position Stats"
 msgstr "Mostrar stadísticas posicionales"
 
-#: Filters.py:58 TourneyFilters.py:51
+#: Filters.py:58 TourneyFilters.py:53
 msgid "Date:"
 msgstr "Fecha:"
 
@@ -646,7 +642,7 @@ msgstr "Torneo"
 msgid "New packing box created!"
 msgstr ""
 
-#: Filters.py:106 TourneyFilters.py:114
+#: Filters.py:106 TourneyFilters.py:116
 msgid "Either 0 or more than one site matched (%s) - EEK"
 msgstr ""
 
@@ -3164,11 +3160,11 @@ msgstr ""
 msgid "tournament tracker starting\n"
 msgstr ""
 
-#: TourneyFilters.py:52
+#: TourneyFilters.py:54
 msgid "Tourney Type"
 msgstr ""
 
-#: TourneyFilters.py:86
+#: TourneyFilters.py:88
 msgid "setting numTourneys:"
 msgstr ""
 
@@ -4164,6 +4160,9 @@ msgid ""
 "no gtk directories found in your path - install gtk or edit the path "
 "manually\n"
 msgstr ""
+
+#~ msgid "readHandInfo: Didn't match: '%s'"
+#~ msgstr "readHandInfo: No coinciden: '%s'"
 
 #~ msgid "determineGameType: Unable to recognise gametype from: '%s'"
 #~ msgstr "determineGameType: Incapaz de reconocer el tipo de juego para: '%s'"
