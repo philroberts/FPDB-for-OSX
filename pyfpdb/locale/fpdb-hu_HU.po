@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2011-03-10 02:53+CET\n"
+"POT-Creation-Date: 2011-03-10 04:14+CET\n"
 "PO-Revision-Date: 2011-02-27 18:23+0100\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -67,6 +67,10 @@ msgstr "Absolute: nem illeszkedik re_*InfoFromFilename-re: '%s'"
 msgid "reading antes"
 msgstr "antek olvasása"
 
+#: AbsoluteToFpdb.py:287 BetfairToFpdb.py:160 FulltiltToFpdb.py:425
+msgid "Player bringing in: %s for %s"
+msgstr "Nyitó hívás: %s hív %s-t"
+
 #: AbsoluteToFpdb.py:290 EverleafToFpdb.py:230
 msgid "No bringin found."
 msgstr "Nyitó hívás nem található."
@@ -78,6 +82,12 @@ msgstr "Nincs kisvak"
 #: AbsoluteToFpdb.py:324
 msgid "Absolute readStudPlayerCards is only a stub."
 msgstr "Az Absolute terem readStudPlayerCards funkciója csak egy csonk."
+
+#: AbsoluteToFpdb.py:351 CarbonToFpdb.py:267 EverestToFpdb.py:233
+#: EverestToFpdb.py:234 EverleafToFpdb.py:288
+#, fuzzy
+msgid "Unimplemented readAction: %s %s"
+msgstr "Nem ismert readAction: '%s' '%s'"
 
 #: AbsoluteToFpdb.py:401 BetfairToFpdb.py:222 CarbonToFpdb.py:298
 #: EverleafToFpdb.py:326 FulltiltToFpdb.py:783 PartyPokerToFpdb.py:578
@@ -357,6 +367,11 @@ msgstr ""
 msgid "warning: index %s_%s_idx not dropped %s, continuing ..."
 msgstr "figyelem: a(z) %s_%s_idx index nem lett eldobva: %s, folytatás ..."
 
+#: Database.py:1119
+#, fuzzy
+msgid "prepare import took %s seconds"
+msgstr "Vacuum %.1f másodpercig tartott"
+
 #: Database.py:1150 Database.py:1158 Database.py:1426 Database.py:1434
 msgid "Creating foreign key "
 msgstr "idegen kulcs létrehozása "
@@ -379,6 +394,11 @@ msgstr "pg index létrehozása "
 #: Database.py:1186 Database.py:1337 Database.py:1346 Database.py:1354
 msgid "Create index failed: "
 msgstr "Index létrehozása nem sikerült: "
+
+#: Database.py:1194
+#, fuzzy
+msgid "After import took %s seconds"
+msgstr "Analyze %.1f másodpercig tartott"
 
 #: Database.py:1227 Database.py:1228
 msgid "Finished recreating tables"
@@ -576,6 +596,10 @@ msgstr "Nem sikerült felismerni a leosztásinformációkat innen: '%s'"
 #: EverleafToFpdb.py:265
 msgid "Everleaf readStudPlayerCards is only a stub."
 msgstr "Az Everleaf terem readStudPlayerCards funkciója csak egy csonk."
+
+#: EverleafToFpdb.py:297
+msgid "readShowdownActions %s %s"
+msgstr ""
 
 #: Filters.py:53
 msgid "All"
@@ -779,8 +803,10 @@ msgstr "Nem található a pénznem"
 msgid "determineGameType: Raising FpdbParseError for file '%s'"
 msgstr "determineGameType: FpdbParseError a '%s' fájlnál"
 
-#: FulltiltToFpdb.py:253 PkrToFpdb.py:155 PokerStarsToFpdb.py:213
-msgid "Lim_Blinds has no lookup for '%s'"
+#: FulltiltToFpdb.py:251 FulltiltToFpdb.py:253 PkrToFpdb.py:153
+#: PokerStarsToFpdb.py:211
+#, fuzzy
+msgid "determineGameType: Lim_Blinds has no lookup for '%s'"
 msgstr "Lim_Blinds nem tartalmazza ezt: '%s'"
 
 #: FulltiltToFpdb.py:266
@@ -792,10 +818,6 @@ msgstr ""
 #, fuzzy
 msgid "FTP: readPlayerStacks: No players detected (hand #%s)"
 msgstr "readPlayerStacks: Kettőnél kevesebb játékost találtam egy leosztásban"
-
-#: FulltiltToFpdb.py:425
-msgid "Player bringing in: %s for %s"
-msgstr "Nyitó hívás: %s hív %s-t"
 
 #: FulltiltToFpdb.py:428
 msgid "No bringin found, handid =%s"
@@ -1232,6 +1254,10 @@ msgstr "Adatbázis leírás"
 msgid "Host Computer"
 msgstr "Kiszolgáló"
 
+#: GuiDatabase.py:481
+msgid "addDB.run: response is %s accept is %s"
+msgstr ""
+
 #: GuiDatabase.py:495
 msgid "start creating new db"
 msgstr "új adatbázis létrehozásának indítása"
@@ -1283,6 +1309,11 @@ msgstr "check_fields: párbeszéd nyitása"
 #: GuiDatabase.py:578
 msgid "Do you want to try again?"
 msgstr "Meg akarod próbálni újból?"
+
+#: GuiDatabase.py:582
+#, fuzzy
+msgid "check_fields: ret is %s cancel is %s"
+msgstr "check_fields: OK visszaadása, mint %s, újrapróbálás, mint %s"
 
 #: GuiDatabase.py:585
 msgid "check_fields: destroy dialog"
@@ -2432,7 +2463,7 @@ msgstr "KEZDŐKÉZ"
 msgid "TOURNEYS PLAYER IDS"
 msgstr "VERSENYJÁTÉKOS AZONOSÍTÓK"
 
-#: Hand.py:221 Hand.py:1387
+#: Hand.py:221 Hand.py:1388
 msgid "[ERROR] Tried to add holecards for unknown player: %s"
 msgstr "[ERROR] Kezdőkéz hozzáadása ismeretlen játékoshoz: %s"
 
@@ -2507,63 +2538,19 @@ msgstr ""
 "HoldemOmahaHand.__init__: sem a HHC, sem az adatbázis+leosztásaonosító nem "
 "lett megadva"
 
-#: Hand.py:1255
-msgid "*** DEALING HANDS ***"
-msgstr "*** OSZTÁS ***"
+#: Hand.py:1170
+msgid "DrawHand.__init__: street 'DEAL' is empty. Hand cancelled? HandID: '%s'"
+msgstr ""
 
-#: Hand.py:1260
-msgid "Dealt to %s: [%s]"
-msgstr "%s kapja: [%s]"
-
-#: Hand.py:1265
-msgid "*** FIRST DRAW ***"
-msgstr "*** ELSŐ CSERE ***"
-
-#: Hand.py:1275
-msgid "*** SECOND DRAW ***"
-msgstr "*** MÁSODIK CSERE ***"
-
-#: Hand.py:1285
-msgid "*** THIRD DRAW ***"
-msgstr "*** HARMADIK CSERE ***"
-
-#: Hand.py:1295 Hand.py:1516
-msgid "*** SHOW DOWN ***"
-msgstr "*** MUTATÁS ***"
-
-#: Hand.py:1310 Hand.py:1531
-msgid "*** SUMMARY ***"
-msgstr "*** ÖSSZEGZÉS ***"
-
-#: Hand.py:1396
+#: Hand.py:1397
 msgid "%s %s completes %s"
 msgstr "%s utcán %s játékos kiegészít erre: %s"
 
-#: Hand.py:1414
+#: Hand.py:1415
 msgid "Bringin: %s, %s"
 msgstr "Nyitó hívás: %s, %s"
 
-#: Hand.py:1456
-msgid "*** 3RD STREET ***"
-msgstr "*** HARMADIK UTCA ***"
-
-#: Hand.py:1470
-msgid "*** 4TH STREET ***"
-msgstr "*** NEGYEDIK UTCA ***"
-
-#: Hand.py:1482
-msgid "*** 5TH STREET ***"
-msgstr "*** ÖTÖDIK UTCA ***"
-
-#: Hand.py:1494
-msgid "*** 6TH STREET ***"
-msgstr "*** HATODIK UTCA ***"
-
-#: Hand.py:1504
-msgid "*** RIVER ***"
-msgstr "*** RIVER ***"
-
-#: Hand.py:1596
+#: Hand.py:1597
 msgid ""
 "join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should "
 "be impossible for anyone who is not a hero"
@@ -2571,19 +2558,23 @@ msgstr ""
 "join_holecards: a kézbe kapott lapok száma vagy < 4, 4 or 7 - 5 és 6 "
 "mindenki számára lehetetlen, aki nem hős"
 
-#: Hand.py:1597
+#: Hand.py:1598
 msgid "join_holcards: holecards(%s): %s"
 msgstr "join_holcards: holecards(%s): %s"
 
-#: Hand.py:1599
+#: Hand.py:1600
 msgid "join_holecards: Player '%s' appears not to have been dealt a card"
 msgstr "join_holecards: a '%s' játékos úgy tűnik, hogy nem kapott lapot"
 
-#: Hand.py:1689
+#: Hand.py:1676 Hand.py:1677
+msgid "Pot.end(): Major failure while calculating pot: '%s'"
+msgstr ""
+
+#: Hand.py:1690
 msgid "DEBUG: call Pot.end() before printing pot total"
 msgstr "DEBUG: Pot.end() hívása a teljes kassza kiírása előtt"
 
-#: Hand.py:1691
+#: Hand.py:1692
 msgid "FpdbError in printing Hand object"
 msgstr "FpdbError egy Hand objektum kiírása közben"
 
@@ -2654,6 +2645,12 @@ msgstr "Nem történt beolvasás."
 #: HandHistoryConverter.py:279
 msgid "Removing text < 50 characters"
 msgstr "50 karakternél rövidebb szöveg eltávolítása"
+
+#: HandHistoryConverter.py:307 HandHistoryConverter.py:308
+#: HandHistoryConverter.py:314
+#, fuzzy
+msgid "Unsupported game type: %s"
+msgstr "Ismeretlen játéktípus: '%s'"
 
 #: HandHistoryConverter.py:487
 msgid "HH Sanity Check: output and input files are the same, check config"
@@ -2872,6 +2869,11 @@ msgstr "IMAP üzenetek letöltése befejezve, kapcsolat lezárása"
 msgid "No Tournament summaries found."
 msgstr "Nem található verseny összefoglaló."
 
+#: ImapFetcher.py:111
+#, fuzzy
+msgid "Errors: %s"
+msgstr "hiba: %s"
+
 #: ImapFetcher.py:159
 msgid "Finished importing %s/%s PS summaries"
 msgstr "%s/%s PS összefoglaló importálása kész"
@@ -2888,6 +2890,15 @@ msgstr ""
 #: OnGameToFpdb.py:177 WinamaxToFpdb.py:192
 msgid "limit not found in self.limits(%s). hand: '%s'"
 msgstr "limit nem található ebben: self.limits(%s). leosztás: '%s'"
+
+#: OnGameToFpdb.py:209 OnGameToFpdb.py:210 WinamaxToFpdb.py:217
+#, fuzzy
+msgid "readHandInfo: DATETIME not matched: '%s'"
+msgstr "readHandInfo: Nem illeszkedik: '%s'"
+
+#: OnGameToFpdb.py:210 Win2dayToFpdb.py:341
+msgid "DEBUG: "
+msgstr ""
 
 #: OnGameToFpdb.py:264 PartyPokerToFpdb.py:366 PokerStarsToFpdb.py:312
 #: Win2dayToFpdb.py:162 WinamaxToFpdb.py:329
@@ -2972,6 +2983,10 @@ msgstr "Indítás lecsukva"
 msgid "Start Hidden"
 msgstr "Indítás rejtve"
 
+#: Options.py:109
+msgid "Alias '%s' unknown"
+msgstr ""
+
 #: Options.py:119
 msgid "press enter to end"
 msgstr "nyomj ENTER-t a befejezéshez"
@@ -2992,6 +3007,11 @@ msgstr "Ismeretlen limit: '%s'"
 msgid "Unknown game type '%s'"
 msgstr "Ismeretlen játéktípus: '%s'"
 
+#: PartyPokerToFpdb.py:256
+#, fuzzy
+msgid "Cannot read HID for current hand: %s"
+msgstr "HID nem olvasható az aktuális leosztásból"
+
 #: PartyPokerToFpdb.py:261
 msgid "Cannot read Handinfo for current hand"
 msgstr "Handinfo nem olvasható az aktuális leosztásból"
@@ -3000,13 +3020,17 @@ msgstr "Handinfo nem olvasható az aktuális leosztásból"
 msgid "Cannot read GameType for current hand"
 msgstr "GameType nem olvasható az aktuális leosztásból"
 
+#: PartyPokerToFpdb.py:349
+#, fuzzy
+msgid "Failed to detect currency. HID: %s: '%s'"
+msgstr "nem sikerült a pénznem meghatározása"
+
 #: PartyPokerToFpdb.py:537
 msgid "Unimplemented readAction: '%s' '%s'"
 msgstr "Nem ismert readAction: '%s' '%s'"
 
-#: PokerStarsToFpdb.py:211
-#, fuzzy
-msgid "determineGameType: Lim_Blinds has no lookup for '%s'"
+#: PkrToFpdb.py:155 PokerStarsToFpdb.py:213
+msgid "Lim_Blinds has no lookup for '%s'"
 msgstr "Lim_Blinds nem tartalmazza ezt: '%s'"
 
 #: PokerStarsToFpdb.py:265
@@ -3017,6 +3041,14 @@ msgstr "nem sikerült a pénznem meghatározása"
 #: SplitHandHistory.py:76
 msgid "File not found"
 msgstr "Fájl nem található"
+
+#: SplitHandHistory.py:86
+msgid "%s processed"
+msgstr ""
+
+#: SplitHandHistory.py:105
+msgid "Nope, will not work (fileno=%d)"
+msgstr ""
 
 #: SplitHandHistory.py:126
 msgid "Unexpected error processing file"
@@ -3476,6 +3508,11 @@ msgstr ""
 "Ez a modul a gtk 2.8.18 verziójával lett fejlesztve és tesztelve.  Te most a "
 "%d.%d.%d verziót használod.  Lehet, hogy máshogy fog működni."
 
+#: Win2dayToFpdb.py:341
+#, fuzzy
+msgid "unimplemented readAction: '%s' '%s'"
+msgstr "Nem ismert readAction: '%s' '%s'"
+
 #: WinTables.py:81
 msgid "Window %s not found. Skipping."
 msgstr "A(z) %s nevű ablak nincs meg. Kihagyás."
@@ -3488,9 +3525,36 @@ msgstr "self.window nem létezik? miért?"
 msgid "failed to detect currency"
 msgstr "nem sikerült a pénznem meghatározása"
 
+#: WinamaxToFpdb.py:300
+msgid "readplayerstacks: re is '%s'"
+msgstr ""
+
 #: WinamaxToFpdb.py:317
 msgid "Failed to add streets. handtext=%s"
 msgstr "Nem sikerült az utcák hozzáadása. handtext=%s"
+
+#: WinamaxToFpdb.py:327
+#, fuzzy
+msgid "readButton: button on pos %d"
+msgstr "readButton: nem található"
+
+#: WinamaxToFpdb.py:379
+#, fuzzy
+msgid "No hole cards found for %s"
+msgstr "Nincs játékosazonosító"
+
+#: WinamaxToFpdb.py:385
+#, fuzzy
+msgid "Hero cards %s: %s"
+msgstr "A hiba a következő: %s"
+
+#: WinamaxToFpdb.py:412
+msgid "add show actions %s"
+msgstr ""
+
+#: WinamaxToFpdb.py:469
+msgid "Read shown cards: %s"
+msgstr ""
 
 #: XTables.py:70
 msgid "Could not retrieve XID from table xwininfo. xwininfo is %s"
@@ -4316,6 +4380,11 @@ msgid "CLI for importing hands is GuiBulkImport.py"
 msgstr ""
 "Parancssorból a GuiBulkImport.py segítségével tudsz leosztásokat importálni"
 
+#: iPokerToFpdb.py:261
+#, fuzzy
+msgid "Unimplemented readAction: %s"
+msgstr "Nem ismert readAction: '%s' '%s'"
+
 #: interlocks.py:52
 msgid "lock already held by:"
 msgstr "a zárolást már elvégezte:"
@@ -4346,6 +4415,50 @@ msgstr ""
 "\n"
 "Nem találhatóak a GTK könyvtárak az útvonaladban - telepítsd a GTK-t, vagy "
 "állítsd be kézzel az útvonalat\n"
+
+#, fuzzy
+#~ msgid "DEBUG: readHandInfo: DATETIME not matched: '%s'"
+#~ msgstr "readHandInfo: Nem illeszkedik: '%s'"
+
+#~ msgid "*** DEALING HANDS ***"
+#~ msgstr "*** OSZTÁS ***"
+
+#~ msgid "Dealt to %s: [%s]"
+#~ msgstr "%s kapja: [%s]"
+
+#~ msgid "*** FIRST DRAW ***"
+#~ msgstr "*** ELSŐ CSERE ***"
+
+#, fuzzy
+#~ msgid "Dealt to %s [%s] [%s]"
+#~ msgstr "%s kapja: [%s]"
+
+#~ msgid "*** SECOND DRAW ***"
+#~ msgstr "*** MÁSODIK CSERE ***"
+
+#~ msgid "*** THIRD DRAW ***"
+#~ msgstr "*** HARMADIK CSERE ***"
+
+#~ msgid "*** SHOW DOWN ***"
+#~ msgstr "*** MUTATÁS ***"
+
+#~ msgid "*** SUMMARY ***"
+#~ msgstr "*** ÖSSZEGZÉS ***"
+
+#~ msgid "*** 3RD STREET ***"
+#~ msgstr "*** HARMADIK UTCA ***"
+
+#~ msgid "*** 4TH STREET ***"
+#~ msgstr "*** NEGYEDIK UTCA ***"
+
+#~ msgid "*** 5TH STREET ***"
+#~ msgstr "*** ÖTÖDIK UTCA ***"
+
+#~ msgid "*** 6TH STREET ***"
+#~ msgstr "*** HATODIK UTCA ***"
+
+#~ msgid "*** RIVER ***"
+#~ msgstr "*** RIVER ***"
 
 #~ msgid "Default logger intialised for "
 #~ msgstr "Alapértelmezett naplózó előkészítve ehhez: "
@@ -4405,9 +4518,6 @@ msgstr ""
 #~ msgstr ""
 #~ "HoldemOmahaHand.__init__: nem lehet a leosztást összeállítani az "
 #~ "adatbázisból a leosztás azonosítója nélkül"
-
-#~ msgid "Cannot read HID for current hand"
-#~ msgstr "HID nem olvasható az aktuális leosztásból"
 
 #~ msgid "CLI for fpdb_import is now available as CliFpdb.py"
 #~ msgstr ""
@@ -4522,9 +4632,6 @@ msgstr ""
 
 #~ msgid "Stats.do_stat result = %s"
 #~ msgstr "Stats.do_stat eredménye = %s"
-
-#~ msgid "error: %s"
-#~ msgstr "hiba: %s"
 
 #~ msgid "Found unknown table = %s"
 #~ msgstr "Ismeretlen asztal = %s"

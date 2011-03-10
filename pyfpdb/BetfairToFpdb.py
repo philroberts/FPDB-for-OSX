@@ -157,7 +157,7 @@ class Betfair(HandHistoryConverter):
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
-            logging.debug(_("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN'))))
+            logging.debug(_("Player bringing in: %s for %s") % (m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         else:
             logging.warning(_("No bringin found"))

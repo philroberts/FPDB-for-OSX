@@ -258,7 +258,7 @@ or None if we fail to get the info """
                 #print "DEBUG: addBringIn(%s, %s)" %(action.group('PNAME'),  action.group('BET'))
                 hand.addBringIn(action.group('PNAME'), action.group('BET'))
             else:
-                logging.error(_("Unimplemented readAction: %s" % (ag)))
+                logging.error(_("Unimplemented readAction: %s") % (ag))
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):

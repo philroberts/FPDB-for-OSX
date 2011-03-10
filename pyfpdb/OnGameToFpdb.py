@@ -206,8 +206,8 @@ class OnGame(HandHistoryConverter):
                     tzoffset = a.group('OFFSET')
                 else:
                     datetimestr = "2010/Jan/01 01:01:01"
-                    log.error(_("readHandInfo: DATETIME not matched: '%s'" % info[key]))
-                    print "DEBUG: readHandInfo: DATETIME not matched: '%s'" % info[key]
+                    log.error(_("readHandInfo: DATETIME not matched: '%s'") % info[key])
+                    print (_("DEBUG: ") + _("readHandInfo: DATETIME not matched: '%s'") % info[key])
                 # TODO: Manually adjust time against OFFSET
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%b/%d %H:%M:%S") # also timezone at end, e.g. " ET"
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, tzoffset, "UTC")

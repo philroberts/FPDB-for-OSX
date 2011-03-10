@@ -285,7 +285,7 @@ or None if we fail to get the info """
             elif action.group('ATYPE') == ' complete to':
                 hand.addComplete( street, action.group('PNAME'), action.group('BET'))
             else:
-                logging.debug(_("Unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)))
+                logging.debug(_("Unimplemented readAction: %s %s") % (action.group('PNAME'),action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):
@@ -294,7 +294,7 @@ or None if we fail to get the info """
         for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
             cards = cards.split(', ')
-            logging.debug(_("readShowdownActions %s %s" %(cards, shows.group('PNAME'))))
+            logging.debug(_("readShowdownActions %s %s") % (cards, shows.group('PNAME')))
             hand.addShownCards(cards, shows.group('PNAME'))
 
 

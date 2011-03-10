@@ -108,7 +108,7 @@ def run(config, db):
         else:
             print _("No Tournament summaries found.")
 
-        print _("Errors: %s" % errors)
+        print (_("Errors: %s") % errors)
 
 def readFile(filename, options):
     codepage = ["utf8"]

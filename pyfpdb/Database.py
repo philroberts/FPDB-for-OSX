@@ -1116,7 +1116,7 @@ class Database:
             self.connection.set_isolation_level(1)   # go back to normal isolation level
         self.commit() # seems to clear up errors if there were any in postgres
         ptime = time() - stime
-        print _("prepare import took %s seconds" % ptime)
+        print (_("prepare import took %s seconds") % ptime)
     #end def prepareBulkImport
 
     def afterBulkImport(self):
@@ -1191,7 +1191,7 @@ class Database:
             self.connection.set_isolation_level(1)   # go back to normal isolation level
         self.commit()   # seems to clear up errors if there were any in postgres
         atime = time() - stime
-        print (_("After import took %s seconds" % atime))
+        print (_("After import took %s seconds") % atime)
     #end def afterBulkImport
 
     def drop_referential_integrity(self):

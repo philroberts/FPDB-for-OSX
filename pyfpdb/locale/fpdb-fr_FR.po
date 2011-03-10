@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-03-10 02:53+CET\n"
+"POT-Creation-Date: 2011-03-10 04:14+CET\n"
 "PO-Revision-Date: 2011-03-09 15:37+0000\n"
 "Last-Translator: kibbitzer <thomas.joannes@gmail.com>\n"
 "Language-Team: French (France) <>\n"
@@ -68,6 +68,10 @@ msgstr "Absolute: Ne correspond pas à re_*IntoFromFileName: '%s'"
 msgid "reading antes"
 msgstr "lecture antes"
 
+#: AbsoluteToFpdb.py:287 BetfairToFpdb.py:160 FulltiltToFpdb.py:425
+msgid "Player bringing in: %s for %s"
+msgstr "Le Bring-In du joueur est: %s pour %s"
+
 #: AbsoluteToFpdb.py:290 EverleafToFpdb.py:230
 msgid "No bringin found."
 msgstr "Pas de Bring-In trouvé."
@@ -79,6 +83,12 @@ msgstr "Pas de petite blinde"
 #: AbsoluteToFpdb.py:324
 msgid "Absolute readStudPlayerCards is only a stub."
 msgstr "Absolute readStudPlayerCards est un bout de programme temporaire."
+
+#: AbsoluteToFpdb.py:351 CarbonToFpdb.py:267 EverestToFpdb.py:233
+#: EverestToFpdb.py:234 EverleafToFpdb.py:288
+#, fuzzy
+msgid "Unimplemented readAction: %s %s"
+msgstr "readAction non implémenté: '%s' '%s'"
 
 #: AbsoluteToFpdb.py:401 BetfairToFpdb.py:222 CarbonToFpdb.py:298
 #: EverleafToFpdb.py:326 FulltiltToFpdb.py:783 PartyPokerToFpdb.py:578
@@ -357,6 +367,11 @@ msgstr "attention: suppression de l'index %s_%s_idx a échoué: %s, continue ...
 msgid "warning: index %s_%s_idx not dropped %s, continuing ..."
 msgstr "attention: index %s_%s_idx non supprimé: %s, continue ..."
 
+#: Database.py:1119
+#, fuzzy
+msgid "prepare import took %s seconds"
+msgstr "Le nettoyage a pris %.1f secondes"
+
 #: Database.py:1150 Database.py:1158 Database.py:1426 Database.py:1434
 msgid "Creating foreign key "
 msgstr "Création de la clé distante "
@@ -379,6 +394,11 @@ msgstr "Création de l'index pg"
 #: Database.py:1186 Database.py:1337 Database.py:1346 Database.py:1354
 msgid "Create index failed: "
 msgstr "La création de l'index a échoué: "
+
+#: Database.py:1194
+#, fuzzy
+msgid "After import took %s seconds"
+msgstr "L'analyse a pris %.1f secondes"
 
 #: Database.py:1227 Database.py:1228
 msgid "Finished recreating tables"
@@ -576,6 +596,10 @@ msgstr "Impossible de reconnaître handinfo de: '¨%s'"
 msgid "Everleaf readStudPlayerCards is only a stub."
 msgstr ""
 "Everleaf readStudPlayerCards est seulement un bout de programme temporaire."
+
+#: EverleafToFpdb.py:297
+msgid "readShowdownActions %s %s"
+msgstr ""
 
 #: Filters.py:53
 msgid "All"
@@ -780,8 +804,10 @@ msgid "determineGameType: Raising FpdbParseError for file '%s'"
 msgstr ""
 "determineGameType: Une erreur d'analyse Fpdb du fichier '%s' est survenue"
 
-#: FulltiltToFpdb.py:253 PkrToFpdb.py:155 PokerStarsToFpdb.py:213
-msgid "Lim_Blinds has no lookup for '%s'"
+#: FulltiltToFpdb.py:251 FulltiltToFpdb.py:253 PkrToFpdb.py:153
+#: PokerStarsToFpdb.py:211
+#, fuzzy
+msgid "determineGameType: Lim_Blinds has no lookup for '%s'"
 msgstr "Lim_Blinds ne retourne rien pour '%s'"
 
 #: FulltiltToFpdb.py:266
@@ -792,10 +818,6 @@ msgstr "readHandInfo: Impossible d'identifier handinfo de: '%s'"
 #, fuzzy
 msgid "FTP: readPlayerStacks: No players detected (hand #%s)"
 msgstr "readPlayerStacks: Moins de 2 joueurs trouvés dans une main"
-
-#: FulltiltToFpdb.py:425
-msgid "Player bringing in: %s for %s"
-msgstr "Le Bring-In du joueur est: %s pour %s"
 
 #: FulltiltToFpdb.py:428
 msgid "No bringin found, handid =%s"
@@ -1233,6 +1255,10 @@ msgstr "Description de BDD"
 msgid "Host Computer"
 msgstr "Ordinateur hôte"
 
+#: GuiDatabase.py:481
+msgid "addDB.run: response is %s accept is %s"
+msgstr ""
+
 #: GuiDatabase.py:495
 msgid "start creating new db"
 msgstr "Début de création de nouvelle BDD"
@@ -1284,6 +1310,11 @@ msgstr "check_fields: ouverture dialogue"
 #: GuiDatabase.py:578
 msgid "Do you want to try again?"
 msgstr "Voulez-vous réessayer ?"
+
+#: GuiDatabase.py:582
+#, fuzzy
+msgid "check_fields: ret is %s cancel is %s"
+msgstr "check_fields: retourne %s ok, %s réessayer"
 
 #: GuiDatabase.py:585
 msgid "check_fields: destroy dialog"
@@ -2452,7 +2483,7 @@ msgstr "CARTES PRIVATIVES"
 msgid "TOURNEYS PLAYER IDS"
 msgstr "IDS DE TOURNOI DES JOUEURS"
 
-#: Hand.py:221 Hand.py:1387
+#: Hand.py:221 Hand.py:1388
 msgid "[ERROR] Tried to add holecards for unknown player: %s"
 msgstr ""
 "[ERREUR] Tentative d'ajout de cartes privatives pour un joueur inconnu: %s"
@@ -2526,63 +2557,19 @@ msgstr "*** Chaîne de jeu:"
 msgid "HoldemOmahaHand.__init__:Neither HHC nor DB+handid provided"
 msgstr "HoldemOmahaHand.__init__:Ni HHC ni BDD+Id de main fournis"
 
-#: Hand.py:1255
-msgid "*** DEALING HANDS ***"
-msgstr "*** DISTRIBUTIONS DES MAINS ***"
+#: Hand.py:1170
+msgid "DrawHand.__init__: street 'DEAL' is empty. Hand cancelled? HandID: '%s'"
+msgstr ""
 
-#: Hand.py:1260
-msgid "Dealt to %s: [%s]"
-msgstr "Distribué à %s: [%s]"
-
-#: Hand.py:1265
-msgid "*** FIRST DRAW ***"
-msgstr "*** PREMIER TIRAGE ***"
-
-#: Hand.py:1275
-msgid "*** SECOND DRAW ***"
-msgstr "*** SECOND TIRAGE ***"
-
-#: Hand.py:1285
-msgid "*** THIRD DRAW ***"
-msgstr "*** TROISIÈME TIRAGE ***"
-
-#: Hand.py:1295 Hand.py:1516
-msgid "*** SHOW DOWN ***"
-msgstr "*** ABATTAGE ***"
-
-#: Hand.py:1310 Hand.py:1531
-msgid "*** SUMMARY ***"
-msgstr "*** RÉSUMÉ ***"
-
-#: Hand.py:1396
+#: Hand.py:1397
 msgid "%s %s completes %s"
 msgstr "%s %s entiers %s"
 
-#: Hand.py:1414
+#: Hand.py:1415
 msgid "Bringin: %s, %s"
 msgstr "Bringin: %s, %s"
 
-#: Hand.py:1456
-msgid "*** 3RD STREET ***"
-msgstr "*** 3ÈME RUE ***"
-
-#: Hand.py:1470
-msgid "*** 4TH STREET ***"
-msgstr "*** 4ÈME RUE ***"
-
-#: Hand.py:1482
-msgid "*** 5TH STREET ***"
-msgstr "*** 5ÈME RUE ***"
-
-#: Hand.py:1494
-msgid "*** 6TH STREET ***"
-msgstr "*** 6ÈME RUE ***"
-
-#: Hand.py:1504
-msgid "*** RIVER ***"
-msgstr "*** RIVIÈRE ***"
-
-#: Hand.py:1596
+#: Hand.py:1597
 msgid ""
 "join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should "
 "be impossible for anyone who is not a hero"
@@ -2590,19 +2577,23 @@ msgstr ""
 "join_holecards:le # de cartes privatives devrait être < 4 ou égal à 4 ou à 7 "
 "- 5 et 6 devrait être impossible pour quiconque n'est pas le héros"
 
-#: Hand.py:1597
+#: Hand.py:1598
 msgid "join_holcards: holecards(%s): %s"
 msgstr "join_holecards: cartes privatives(%s): %s"
 
-#: Hand.py:1599
+#: Hand.py:1600
 msgid "join_holecards: Player '%s' appears not to have been dealt a card"
 msgstr "join_holecards: Le joueur '%s' semble ne pas avoir reçu de cartes"
 
-#: Hand.py:1689
+#: Hand.py:1676 Hand.py:1677
+msgid "Pot.end(): Major failure while calculating pot: '%s'"
+msgstr ""
+
+#: Hand.py:1690
 msgid "DEBUG: call Pot.end() before printing pot total"
 msgstr "DEBUG: appel de Pot.end() avant impression du total de pot"
 
-#: Hand.py:1691
+#: Hand.py:1692
 msgid "FpdbError in printing Hand object"
 msgstr "Erreur de Fpdb à l'impression de l'objet Hand"
 
@@ -2674,6 +2665,12 @@ msgstr "Ne trouve aucune mains."
 #: HandHistoryConverter.py:279
 msgid "Removing text < 50 characters"
 msgstr "Suppression de texte < 50 caractères"
+
+#: HandHistoryConverter.py:307 HandHistoryConverter.py:308
+#: HandHistoryConverter.py:314
+#, fuzzy
+msgid "Unsupported game type: %s"
+msgstr "Type de jeu inconnu '%s'"
 
 #: HandHistoryConverter.py:487
 msgid "HH Sanity Check: output and input files are the same, check config"
@@ -2895,6 +2892,11 @@ msgstr ""
 msgid "No Tournament summaries found."
 msgstr "Aucun résumé de tournoi trouvé."
 
+#: ImapFetcher.py:111
+#, fuzzy
+msgid "Errors: %s"
+msgstr "l'erreur est %s"
+
 #: ImapFetcher.py:159
 msgid "Finished importing %s/%s PS summaries"
 msgstr "Importation de %s/%s résumés PS terminée"
@@ -2910,6 +2912,15 @@ msgstr "determineGameType: limite non trouvée dans self.limits(%s). Main: '%s'"
 #: OnGameToFpdb.py:177 WinamaxToFpdb.py:192
 msgid "limit not found in self.limits(%s). hand: '%s'"
 msgstr "Limite non trouvée dans self.limits(%s). Main: '%s'"
+
+#: OnGameToFpdb.py:209 OnGameToFpdb.py:210 WinamaxToFpdb.py:217
+#, fuzzy
+msgid "readHandInfo: DATETIME not matched: '%s'"
+msgstr "ReadHandInfo: Pas de correspondance: '%s'"
+
+#: OnGameToFpdb.py:210 Win2dayToFpdb.py:341
+msgid "DEBUG: "
+msgstr ""
 
 #: OnGameToFpdb.py:264 PartyPokerToFpdb.py:366 PokerStarsToFpdb.py:312
 #: Win2dayToFpdb.py:162 WinamaxToFpdb.py:329
@@ -2999,6 +3010,10 @@ msgstr "Démarrer Réduit"
 msgid "Start Hidden"
 msgstr "Démarrer Caché"
 
+#: Options.py:109
+msgid "Alias '%s' unknown"
+msgstr ""
+
 #: Options.py:119
 msgid "press enter to end"
 msgstr "appuyer sur entrée pour finir"
@@ -3019,6 +3034,11 @@ msgstr "Limite inconnue '%s'"
 msgid "Unknown game type '%s'"
 msgstr "Type de jeu inconnu '%s'"
 
+#: PartyPokerToFpdb.py:256
+#, fuzzy
+msgid "Cannot read HID for current hand: %s"
+msgstr "Impossible de lire Handinfo pour cette main"
+
 #: PartyPokerToFpdb.py:261
 msgid "Cannot read Handinfo for current hand"
 msgstr "Impossible de lire Handinfo pour cette main"
@@ -3027,13 +3047,17 @@ msgstr "Impossible de lire Handinfo pour cette main"
 msgid "Cannot read GameType for current hand"
 msgstr "Impossible de lire le GameType pour cette main"
 
+#: PartyPokerToFpdb.py:349
+#, fuzzy
+msgid "Failed to detect currency. HID: %s: '%s'"
+msgstr "Impossible de trouver la devise"
+
 #: PartyPokerToFpdb.py:537
 msgid "Unimplemented readAction: '%s' '%s'"
 msgstr "readAction non implémenté: '%s' '%s'"
 
-#: PokerStarsToFpdb.py:211
-#, fuzzy
-msgid "determineGameType: Lim_Blinds has no lookup for '%s'"
+#: PkrToFpdb.py:155 PokerStarsToFpdb.py:213
+msgid "Lim_Blinds has no lookup for '%s'"
 msgstr "Lim_Blinds ne retourne rien pour '%s'"
 
 #: PokerStarsToFpdb.py:265
@@ -3044,6 +3068,14 @@ msgstr "Impossible de trouver la devise"
 #: SplitHandHistory.py:76
 msgid "File not found"
 msgstr "Fichier non trouvé"
+
+#: SplitHandHistory.py:86
+msgid "%s processed"
+msgstr ""
+
+#: SplitHandHistory.py:105
+msgid "Nope, will not work (fileno=%d)"
+msgstr ""
 
 #: SplitHandHistory.py:126
 msgid "Unexpected error processing file"
@@ -3502,6 +3534,11 @@ msgstr ""
 "Ce module à été développé et testé avec la version 2.8.18 de gtk.  Vous "
 "utilisez la version %d.%d.%d.  Votre programme de fidélité peut varier."
 
+#: Win2dayToFpdb.py:341
+#, fuzzy
+msgid "unimplemented readAction: '%s' '%s'"
+msgstr "readAction non implémenté: '%s' '%s'"
+
 #: WinTables.py:81
 #, fuzzy
 msgid "Window %s not found. Skipping."
@@ -3515,9 +3552,36 @@ msgstr "self.window n'existe pas ? Pourquoi ?"
 msgid "failed to detect currency"
 msgstr "Impossible de trouver la devise"
 
+#: WinamaxToFpdb.py:300
+msgid "readplayerstacks: re is '%s'"
+msgstr ""
+
 #: WinamaxToFpdb.py:317
 msgid "Failed to add streets. handtext=%s"
 msgstr "Impossible d'ajouter les rues. Texte de main=%s"
+
+#: WinamaxToFpdb.py:327
+#, fuzzy
+msgid "readButton: button on pos %d"
+msgstr "readButton: non trouvé"
+
+#: WinamaxToFpdb.py:379
+#, fuzzy
+msgid "No hole cards found for %s"
+msgstr "Pas d'Ids de joueur trouvés"
+
+#: WinamaxToFpdb.py:385
+#, fuzzy
+msgid "Hero cards %s: %s"
+msgstr "l'erreur est %s"
+
+#: WinamaxToFpdb.py:412
+msgid "add show actions %s"
+msgstr ""
+
+#: WinamaxToFpdb.py:469
+msgid "Read shown cards: %s"
+msgstr ""
 
 #: XTables.py:70
 msgid "Could not retrieve XID from table xwininfo. xwininfo is %s"
@@ -4343,6 +4407,11 @@ msgstr "Importation"
 msgid "CLI for importing hands is GuiBulkImport.py"
 msgstr "Le CLI pour l'importation de la main est GuiBulkImport.py"
 
+#: iPokerToFpdb.py:261
+#, fuzzy
+msgid "Unimplemented readAction: %s"
+msgstr "readAction non implémenté: '%s' '%s'"
+
 #: interlocks.py:52
 msgid "lock already held by:"
 msgstr "Verrou déjà détenu par:"
@@ -4372,6 +4441,50 @@ msgstr ""
 "\n"
 "pas de répertoire gtk trouvé à cet endroit - installez gtk ou modifiez le "
 "chemin manuellement\n"
+
+#, fuzzy
+#~ msgid "DEBUG: readHandInfo: DATETIME not matched: '%s'"
+#~ msgstr "ReadHandInfo: Pas de correspondance: '%s'"
+
+#~ msgid "*** DEALING HANDS ***"
+#~ msgstr "*** DISTRIBUTIONS DES MAINS ***"
+
+#~ msgid "Dealt to %s: [%s]"
+#~ msgstr "Distribué à %s: [%s]"
+
+#~ msgid "*** FIRST DRAW ***"
+#~ msgstr "*** PREMIER TIRAGE ***"
+
+#, fuzzy
+#~ msgid "Dealt to %s [%s] [%s]"
+#~ msgstr "Distribué à %s: [%s]"
+
+#~ msgid "*** SECOND DRAW ***"
+#~ msgstr "*** SECOND TIRAGE ***"
+
+#~ msgid "*** THIRD DRAW ***"
+#~ msgstr "*** TROISIÈME TIRAGE ***"
+
+#~ msgid "*** SHOW DOWN ***"
+#~ msgstr "*** ABATTAGE ***"
+
+#~ msgid "*** SUMMARY ***"
+#~ msgstr "*** RÉSUMÉ ***"
+
+#~ msgid "*** 3RD STREET ***"
+#~ msgstr "*** 3ÈME RUE ***"
+
+#~ msgid "*** 4TH STREET ***"
+#~ msgstr "*** 4ÈME RUE ***"
+
+#~ msgid "*** 5TH STREET ***"
+#~ msgstr "*** 5ÈME RUE ***"
+
+#~ msgid "*** 6TH STREET ***"
+#~ msgstr "*** 6ÈME RUE ***"
+
+#~ msgid "*** RIVER ***"
+#~ msgstr "*** RIVIÈRE ***"
 
 #~ msgid "Default logger intialised for "
 #~ msgstr "Logger par défaut initialisé pour"

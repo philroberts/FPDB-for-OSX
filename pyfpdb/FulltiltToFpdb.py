@@ -248,9 +248,9 @@ class Fulltilt(HandHistoryConverter):
                 info['sb'] = self.Lim_Blinds[mg['BB']][0]
                 info['bb'] = self.Lim_Blinds[mg['BB']][1]
             except KeyError:
-                log.error(_("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB']))
+                log.error(_("determineGameType: Lim_Blinds has no lookup for '%s'") % mg['BB'])
                 log.error(_("determineGameType: Raising FpdbParseError"))
-                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+                raise FpdbParseError(_("determineGameType: Lim_Blinds has no lookup for '%s'") % mg['BB'])
 
         if mg['GAME'] is not None:
             (info['base'], info['category']) = games[mg['GAME']]

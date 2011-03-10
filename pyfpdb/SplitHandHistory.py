@@ -73,7 +73,7 @@ class SplitHandHistory:
             try:
                 infile = codecs.open(self.in_path, 'r', kodec)
             except IOError:
-                print _('File not found')
+                print (_('File not found'))
                 sys.exit(2)
         
         #Split with do_hands_per_file if archive and paragraphs if a regular hh
@@ -83,7 +83,7 @@ class SplitHandHistory:
                 nn += 1
                 check = self.do_hands_per_file(infile, nn)
                 if check is None:
-                    print _('%s processed' % self.in_path)
+                    print (_('%s processed') % self.in_path)
                     break
         else:
             filenum = 0
@@ -102,11 +102,11 @@ class SplitHandHistory:
                     
     def new_file(self, fileno=-1):
         if fileno < 1:
-            print _('Nope, will not work (fileno=%d)' % fileno)
+            print (_('Nope, will not work (fileno=%d)') % fileno)
             sys.exit(2)
         basename = os.path.splitext(os.path.basename(self.in_path))[0]
         name = os.path.join(self.out_path, basename+'-%06d.txt' % fileno)
-        print '-> %s' % name
+        print ('-> %s' % name)
         newfile = file(name, 'w')
         return newfile
         

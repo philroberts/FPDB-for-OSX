@@ -106,7 +106,7 @@ def site_alias(alias):
         tmp = aliases[alias]
     except KeyError, e:
         tmp = False
-        print _("Alias '%s' unknown" % alias)
+        print (_("Alias '%s' unknown") % alias)
 
     return tmp
 

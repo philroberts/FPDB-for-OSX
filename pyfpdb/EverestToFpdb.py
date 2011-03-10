@@ -230,9 +230,9 @@ class Everest(HandHistoryConverter):
             elif action.group('ATYPE') in ('FOLD', 'SIT_OUT'):
                 hand.addFold(street, player)
             else:
-                print (_("Unimplemented readAction: %s %s" % (action.group('PSEAT'),action.group('ATYPE'),)))
-                logging.debug(_("Unimplemented readAction: %s %s"
-                              % (action.group('PSEAT'),action.group('ATYPE'),)))
+                print (_("Unimplemented readAction: %s %s") % (action.group('PSEAT'),action.group('ATYPE')))
+                logging.debug(_("Unimplemented readAction: %s %s")
+                              % (action.group('PSEAT'),action.group('ATYPE')))
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):
