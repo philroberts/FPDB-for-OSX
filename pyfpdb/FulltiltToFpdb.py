@@ -208,8 +208,8 @@ class Fulltilt(HandHistoryConverter):
         m = self.re_GameInfo.search(handText)
         if not m:
             tmp = handText[0:100]
+            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
             log.error(_("determineGameType: Raising FpdbParseError for file '%s'") % self.in_path)
-            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
         mg = m.groupdict()
 
