@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2010 Steffen Schaumburg
+#Copyright 2010-2011 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -70,7 +70,7 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
         self.main_hbox = gtk.HPaned()
 
         self.filters = TourneyFilters.TourneyFilters(self.db, self.conf, self.sql, display = filters_display)
-        #self.filters.registerButton1Name("_Filters")
+        #self.filters.registerButton1Name(_("_Filters"))
         #self.filters.registerButton1Callback(self.showDetailFilter)
         self.filters.registerButton2Name(_("_Refresh Stats"))
         self.filters.registerButton2Callback(self.refreshStats)
@@ -79,24 +79,24 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
         # ToDo: create popup to adjust column config
         # columns to display, keys match column name returned by sql, values in tuple are:
         #     is column displayed, column heading, xalignment, formatting, celltype
-        self.columns = [ ["siteName",       True,  "Site",    0.0, "%s", "str"]
-                       #,["tourney",        False, "Tourney", 0.0, "%s", "str"]   # true not allowed for this line
-                       , ["category",       True,  "Cat.",   0.0, "%s", "str"]
-                       , ["limitType",      True,  "Limit",   0.0, "%s", "str"]
-                       , ["currency",       True,  "Curr.",   0.0, "%s", "str"]
-                       , ["buyIn",          True,  "BuyIn",   1.0, "%3.2f", "str"]
-                       , ["fee",            True,  "Fee",     1.0, "%3.2f", "str"]
-                       , ["playerName",     False, "Name",    0.0, "%s", "str"]   # true not allowed for this line (set in code)
-                       , ["tourneyCount",   True,  "#",       1.0, "%1.0f", "str"]
-                       , ["itm",            True,  "ITM%",    1.0, "%3.2f", "str"]
-                       , ["_1st",           False, "1st",     1.0, "%1.0f", "str"]
-                       , ["_2nd",           True,  "2nd",     1.0, "%1.0f", "str"]
-                       , ["_3rd",           True,  "3rd",     1.0, "%1.0f", "str"]
-                       , ["unknownRank",    True,  "Rank?",   1.0, "%1.0f", "str"]
-                       , ["spent",          True,  "Spent",   1.0, "%3.2f", "str"]
-                       , ["won",            True,  "Won",     1.0, "%3.2f", "str"]
-                       , ["roi",            True,  "ROI%",    1.0, "%3.0f", "str"]
-                       , ["profitPerTourney", True,"$/Tour",  1.0, "%3.2f", "str"]]
+        self.columns = [ ["siteName",       True,  _("Site"),    0.0, "%s", "str"]
+                       #,["tourney",        False, _("Tourney"), 0.0, "%s", "str"]   # true not allowed for this line
+                       , ["category",       True,  _("Cat."),    0.0, "%s", "str"]
+                       , ["limitType",      True,  _("Limit"),   0.0, "%s", "str"]
+                       , ["currency",       True,  _("Curr."),   0.0, "%s", "str"]
+                       , ["buyIn",          True,  _("BuyIn"),   1.0, "%3.2f", "str"]
+                       , ["fee",            True,  _("Fee"),     1.0, "%3.2f", "str"]
+                       , ["playerName",     False, _("Name"),    0.0, "%s", "str"]   # true not allowed for this line (set in code)
+                       , ["tourneyCount",   True,  _("#"),       1.0, "%1.0f", "str"]
+                       , ["itm",            True,  _("ITM%"),    1.0, "%3.2f", "str"]
+                       , ["_1st",           False, _("1st"),     1.0, "%1.0f", "str"]
+                       , ["_2nd",           True,  _("2nd"),     1.0, "%1.0f", "str"]
+                       , ["_3rd",           True,  _("3rd"),     1.0, "%1.0f", "str"]
+                       , ["unknownRank",    True,  _("Rank?"),   1.0, "%1.0f", "str"]
+                       , ["spent",          True,  _("Spent"),   1.0, "%3.2f", "str"]
+                       , ["won",            True,  _("Won"),     1.0, "%3.2f", "str"]
+                       , ["roi",            True,  _("ROI%"),    1.0, "%3.0f", "str"]
+                       , ["profitPerTourney", True,_("$/Tour"),  1.0, "%3.2f", "str"]]
                        
         self.stats_frame = gtk.Frame()
         self.stats_frame.show()

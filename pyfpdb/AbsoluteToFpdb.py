@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2008-2010, Carl Gherardi
+#    Copyright 2008-2011, Carl Gherardi
 #
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -136,7 +136,7 @@ class Absolute(HandHistoryConverter):
         m = self.re_GameInfo.search(handText)
         if not m:
             tmp = handText[0:100]
-            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
             log.error(_("determineGameType: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
@@ -201,12 +201,12 @@ class Absolute(HandHistoryConverter):
         if m is None or fname_info is None:
             if m is None:
                 tmp = hand.handText[0:100]
-                logging.error(_("readHandInfo: Didn't match: '%s'") % tmp)
-                raise FpdbParseError(_("Absolute: Didn't match re_HandInfo: '%s'") % tmp)
+                logging.error(_("Didn't match re_HandInfo: '%s'") % tmp)
+                raise FpdbParseError("Absolute: " + _("Didn't match re_HandInfo: '%s'") % tmp)
             elif fname_info is None:
                 logging.error(_("readHandInfo: File name didn't match re_*InfoFromFilename"))
                 logging.error(_("File name: %s") % self.in_path)
-                raise FpdbParseError(_("Absolute: Didn't match re_*InfoFromFilename: '%s'") % self.in_path)
+                raise FpdbParseError("Absolute: " + _("Didn't match re_*InfoFromFilename: '%s'") % self.in_path)
 
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid =  m.group('HID')
@@ -284,7 +284,7 @@ class Absolute(HandHistoryConverter):
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
-            logging.debug(_("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN'))))
+            logging.debug(_("Player bringing in: %s for %s") % (m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         else:
             logging.warning(_("No bringin found."))
@@ -348,7 +348,7 @@ class Absolute(HandHistoryConverter):
                 bet = action.group('BET').replace(',', '')
                 hand.addComplete( street, action.group('PNAME'), bet)
             else:
-                logging.debug(_("Unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)))
+                logging.debug(_("Unimplemented readAction: %s %s") % (action.group('PNAME'),action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):

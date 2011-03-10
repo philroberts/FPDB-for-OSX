@@ -1,7 +1,7 @@
 ﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2008-2010, Carl Gherardi
+#    Copyright 2008-2011, Carl Gherardi
 #
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -107,7 +107,7 @@ or None if we fail to get the info """
         m = self.re_GameInfo.search(handText)
         if not m:
             tmp = handText[0:100]
-            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
             log.error(_("determineGameType: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
@@ -285,7 +285,7 @@ or None if we fail to get the info """
             elif action.group('ATYPE') == ' complete to':
                 hand.addComplete( street, action.group('PNAME'), action.group('BET'))
             else:
-                logging.debug(_("Unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)))
+                logging.debug(_("Unimplemented readAction: %s %s") % (action.group('PNAME'),action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):
@@ -294,7 +294,7 @@ or None if we fail to get the info """
         for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
             cards = cards.split(', ')
-            logging.debug(_("readShowdownActions %s %s" %(cards, shows.group('PNAME'))))
+            logging.debug(_("readShowdownActions %s %s") % (cards, shows.group('PNAME')))
             hand.addShownCards(cards, shows.group('PNAME'))
 
 

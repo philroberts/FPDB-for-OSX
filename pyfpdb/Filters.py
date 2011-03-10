@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2010 Steffen Schaumburg
+#Copyright 2008-2011 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -77,7 +77,7 @@ class Filters(threading.Thread):
         self.mainVBox = gtk.VBox(False, 0)
         self.sw.add_with_viewport(self.mainVBox)
         self.sw.show()
-        print _("DEBUG: New packing box created!")
+        print(_("DEBUG: ") + _("New packing box created!"))
 
         self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'ring':False, 'tour':False}
         self.label = {}

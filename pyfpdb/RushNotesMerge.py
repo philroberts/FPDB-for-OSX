@@ -13,7 +13,7 @@ The generated file can then replace heroname.xml (if all is well).
 
 
 """
-#    Copyright 2010,  "Gimick" of the FPDB project  fpdb.sourceforge.net
+#    Copyright 2010-2011,  "Gimick" of the FPDB project  fpdb.sourceforge.net
 #
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
