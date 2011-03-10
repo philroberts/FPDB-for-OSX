@@ -197,7 +197,6 @@ class PartyPoker(HandHistoryConverter):
             log.error(_("Unable to recognise gametype from: '%s'") % tmp)
             log.error(_("determineGameType: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
-            return None
 
         mg = m.groupdict()
         # translations from captured groups to fpdb info strings
