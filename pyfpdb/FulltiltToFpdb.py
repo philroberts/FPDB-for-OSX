@@ -248,9 +248,9 @@ class Fulltilt(HandHistoryConverter):
                 info['sb'] = self.Lim_Blinds[mg['BB']][0]
                 info['bb'] = self.Lim_Blinds[mg['BB']][1]
             except KeyError:
-                log.error(_("determineGameType: Lim_Blinds has no lookup for '%s'") % mg['BB'])
+                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
                 log.error(_("determineGameType: Raising FpdbParseError"))
-                raise FpdbParseError(_("determineGameType: Lim_Blinds has no lookup for '%s'") % mg['BB'])
+                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
 
         if mg['GAME'] is not None:
             (info['base'], info['category']) = games[mg['GAME']]
@@ -263,8 +263,9 @@ class Fulltilt(HandHistoryConverter):
         m =  self.re_HandInfo.search(hand.handText)
         if m is None:
             tmp = hand.handText[0:100]
-            log.error(_("readHandInfo: Unable to recognise handinfo from: '%s'") % tmp)
-            raise FpdbParseError(_("No match in readHandInfo."))
+            log.error(_("Unable to recognise handinfo from: '%s'") % tmp)
+            log.error(_("readHandInfo: Raising FpdbParseError"))
+            raise FpdbParseError(_("Unable to recognise handinfo from: '%s'"))
 
         #print "DEBUG: m.groupdict: %s" % m.groupdict()
         hand.handid = m.group('HID')

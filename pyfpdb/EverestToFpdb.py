@@ -104,6 +104,7 @@ class Everest(HandHistoryConverter):
 
         if not m2:
             tmp = handText[0:100]
+            log.error(_("determineGameType: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise handinfo from: '%s'") % tmp)
 
         self.info = {}

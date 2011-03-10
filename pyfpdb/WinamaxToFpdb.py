@@ -187,7 +187,7 @@ class Winamax(HandHistoryConverter):
                 info['limitType'] = self.limits[mg['LIMIT']]
             else:
                 tmp = handText[0:100]
-                log.error(_("determineGameType: limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
+                log.error(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
                 log.error(_("determineGameType: Raising FpdbParseError"))
                 raise FpdbParseError(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
         if 'GAME' in mg:
