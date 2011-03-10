@@ -457,11 +457,11 @@ class fpdb:
                     if columnNumber==0:
                         pass
                     else:
-                        label=gtk.Label(_("column %d" % columnNumber))
+                        label=gtk.Label(_("column %d") % columnNumber)
                         table.attach(child=label, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
                         label.show()
                 elif columnNumber==0:
-                    label=gtk.Label(_("row %d" % rowNumber))
+                    label=gtk.Label(_("row %d") % rowNumber)
                     table.attach(child=label, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
                     label.show()
                 else:

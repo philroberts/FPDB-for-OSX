@@ -208,7 +208,7 @@ class PokerStars(HandHistoryConverter):
                 info['sb'] = self.Lim_Blinds[mg['BB']][0]
                 info['bb'] = self.Lim_Blinds[mg['BB']][1]
             except KeyError:
-                log.error(_("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB']))
+                log.error(_("determineGameType: Lim_Blinds has no lookup for '%s'") % mg['BB'])
                 log.error(_("determineGameType: Raising FpdbParseError"))
                 raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
 
@@ -261,8 +261,8 @@ class PokerStars(HandHistoryConverter):
                         elif info[key].find("FPP")!=-1:
                             hand.buyinCurrency="PSFP"
                         else:
-                            #FIXME: handle other currencies, FPP, play money
-                            raise FpdbParseError(_("Failed to detect currency: '%s'" % info[key]))
+                            #FIXME: handle other currencies, play money
+                            raise FpdbParseError(_("Failed to detect currency: '%s'") % info[key])
 
                         info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
                         
