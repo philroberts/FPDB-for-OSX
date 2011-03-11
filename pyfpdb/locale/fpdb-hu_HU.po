@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2011-03-10 05:10+CET\n"
+"POT-Creation-Date: 2011-03-11 07:14+CET\n"
 "PO-Revision-Date: 2011-03-11 01:33+0100\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -132,9 +132,10 @@ msgstr "Nyitó hívás nem található"
 msgid "DEBUG: "
 msgstr "DEBUG: "
 
-#: BetfairToFpdb.py:199 OnGameToFpdb.py:337 PokerStarsToFpdb.py:439
-#: Win2dayToFpdb.py:341 WinamaxToFpdb.py:406
-msgid "unimplemented readAction: '%s' '%s'"
+#: BetfairToFpdb.py:199 OnGameToFpdb.py:337 PartyPokerToFpdb.py:536
+#: PokerStarsToFpdb.py:439
+#, fuzzy
+msgid "Unimplemented readAction: '%s' '%s'"
 msgstr "Nem ismert readAction: '%s' '%s'"
 
 #: Card.py:431
@@ -3451,7 +3452,6 @@ msgstr ""
 "%d.%d.%d verziót használod.  Lehet, hogy máshogy fog működni."
 
 #: Win2dayToFpdb.py:341 WinamaxToFpdb.py:406
-#, fuzzy
 msgid "unimplemented readAction: '%s' '%s'"
 msgstr "Nem ismert readAction: '%s' '%s'"
 
