@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-03-10 06:16+CET\n"
+"POT-Creation-Date: 2011-03-11 07:06+CET\n"
 "PO-Revision-Date: 2011-03-09 15:37+0000\n"
 "Last-Translator: kibbitzer <thomas.joannes@gmail.com>\n"
 "Language-Team: French (France) <>\n"
@@ -107,15 +107,12 @@ msgid "Could not find file %s"
 msgstr "Impossible de trouver le fichier %s"
 
 #: Anonymise.py:55
-msgid "Output being written to"
+#, fuzzy
+msgid "Output being written to %s"
 msgstr "Enregistrement du résultat dans"
 
-#: BetfairToFpdb.py:108 CarbonToFpdb.py:163 EverestToFpdb.py:145
-#: EverleafToFpdb.py:145 iPokerToFpdb.py:156 iPokerToFpdb.py:158
-msgid "Didn't match re_HandInfo"
-msgstr "Ne correspond pas à  re_HandInfo"
-
-#: BetfairToFpdb.py:109 CarbonToFpdb.py:165 EverestToFpdb.py:147
+#: BetfairToFpdb.py:108 BetfairToFpdb.py:109 CarbonToFpdb.py:163
+#: CarbonToFpdb.py:165 EverestToFpdb.py:145 EverestToFpdb.py:147
 #: PokerStarsToFpdb.py:223
 msgid "No match in readHandInfo."
 msgstr "Pas de correspondance dans readHandInfo"
@@ -137,10 +134,9 @@ msgstr "Bring-In non trouvé"
 msgid "DEBUG: "
 msgstr ""
 
-#: BetfairToFpdb.py:199 OnGameToFpdb.py:337 PokerStarsToFpdb.py:439
-#: Win2dayToFpdb.py:341 WinamaxToFpdb.py:406
-#, fuzzy
-msgid "unimplemented readAction: '%s' '%s'"
+#: BetfairToFpdb.py:199 OnGameToFpdb.py:337 PartyPokerToFpdb.py:536
+#: PokerStarsToFpdb.py:439
+msgid "Unimplemented readAction: '%s' '%s'"
 msgstr "readAction non implémenté: '%s' '%s'"
 
 #: Card.py:431
@@ -556,45 +552,49 @@ msgstr ""
 msgid "***Error sending finish: "
 msgstr "***Erreur lors de l'envoi de fin: "
 
-#: Database.py:2401
+#: Database.py:2405
 msgid "invalid source in Database.createOrUpdateTourney"
 msgstr "source invalide dans Database.createOrUpdateTourney"
 
-#: Database.py:2414
+#: Database.py:2418
 msgid "invalid source in Database.createOrUpdateTourneysPlayers"
 msgstr "source invalide dans Database.createOrUpdateTourneysPlayers"
 
-#: Database.py:2540
+#: Database.py:2554
 msgid "HandToWrite.init error: "
 msgstr "HandToWrite.init erreur: "
 
-#: Database.py:2590
+#: Database.py:2604
 msgid "HandToWrite.set_all error: "
 msgstr "HandToWrite.set_all erreur: "
 
-#: Database.py:2621
+#: Database.py:2635
 msgid "nutOmatic is id_player = %d"
 msgstr "nutOmatic est id_player = %d"
 
-#: Database.py:2629
+#: Database.py:2643
 msgid "query plan: "
 msgstr "plan de requête: "
 
-#: Database.py:2638
+#: Database.py:2652
 msgid "cards ="
 msgstr "cartes ="
 
-#: Database.py:2641
+#: Database.py:2655
 msgid "get_stats took:  %4.3f seconds"
 msgstr "get_stats a duré:  %4.3f seconds"
 
-#: Database.py:2643
+#: Database.py:2657
 msgid "press enter to continue"
 msgstr "appuyez sur entrée pour continuer"
 
 #: EverestToFpdb.py:108 FulltiltToFpdb.py:266 FulltiltToFpdb.py:268
 msgid "Unable to recognise handinfo from: '%s'"
 msgstr "Impossible de reconnaître handinfo de: '¨%s'"
+
+#: EverleafToFpdb.py:145 iPokerToFpdb.py:156 iPokerToFpdb.py:158
+msgid "Didn't match re_HandInfo"
+msgstr "Ne correspond pas à  re_HandInfo"
 
 #: EverleafToFpdb.py:265
 msgid "Everleaf readStudPlayerCards is only a stub."
@@ -3051,10 +3051,6 @@ msgstr "Impossible de lire le GameType pour cette main"
 msgid "Failed to detect currency. HID: %s: '%s'"
 msgstr "Impossible de trouver la devise"
 
-#: PartyPokerToFpdb.py:536
-msgid "Unimplemented readAction: '%s' '%s'"
-msgstr "readAction non implémenté: '%s' '%s'"
-
 #: PokerStarsToFpdb.py:265
 #, fuzzy
 msgid "Failed to detect currency: '%s'"
@@ -3528,6 +3524,11 @@ msgid ""
 msgstr ""
 "Ce module à été développé et testé avec la version 2.8.18 de gtk.  Vous "
 "utilisez la version %d.%d.%d.  Votre programme de fidélité peut varier."
+
+#: Win2dayToFpdb.py:341 WinamaxToFpdb.py:406
+#, fuzzy
+msgid "unimplemented readAction: '%s' '%s'"
+msgstr "readAction non implémenté: '%s' '%s'"
 
 #: WinTables.py:81
 #, fuzzy

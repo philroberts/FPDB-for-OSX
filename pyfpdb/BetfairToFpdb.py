@@ -105,7 +105,7 @@ class Betfair(HandHistoryConverter):
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if(m == None):
-            log.error(_("Didn't match re_HandInfo"))
+            log.error(_("No match in readHandInfo."))
             raise FpdbParseError(_("No match in readHandInfo."))
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid = m.group('HID')
@@ -196,7 +196,7 @@ class Betfair(HandHistoryConverter):
             elif action.group('ATYPE') == 'checks':
                 hand.addCheck( street, action.group('PNAME'))
             else:
-                sys.stderr.write(_("DEBUG: ") + _("unimplemented readAction: '%s' '%s'") % (action.group('PNAME'),action.group('ATYPE')))
+                sys.stderr.write(_("DEBUG: ") + _("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'),action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):

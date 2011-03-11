@@ -142,7 +142,7 @@ class Everest(HandHistoryConverter):
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if m is None:
-            logging.info(_("Didn't match re_HandInfo"))
+            logging.info(_("No match in readHandInfo."))
             logging.info(hand.handText)
             raise FpdbParseError(_("No match in readHandInfo."))
         hand.handid = m.group('HID')
