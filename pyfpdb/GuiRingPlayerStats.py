@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2010 Steffen Schaumburg
+#Copyright 2008-2011 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -120,7 +120,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         settings.update(self.conf.get_default_paths())
 
         # text used on screen stored here so that it can be configured
-        self.filterText = {'handhead':'Hand Breakdown for all levels listed above'
+        self.filterText = {'handhead':_('Hand Breakdown for all levels listed above')
                           }
 
         filters_display = { "Heroes"    : True,
@@ -140,9 +140,9 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                           }
 
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
-        self.filters.registerButton1Name("_Filters")
+        self.filters.registerButton1Name(_("_Filters"))
         self.filters.registerButton1Callback(self.showDetailFilter)
-        self.filters.registerButton2Name("_Refresh Stats")
+        self.filters.registerButton2Name(_("_Refresh Stats"))
         self.filters.registerButton2Callback(self.refreshStats)
 
         # ToDo: store in config

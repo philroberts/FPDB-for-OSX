@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2010 Steffen Schaumburg
+#Copyright 2008-2011 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -47,7 +47,7 @@ for messageNumber in searchData[0].split(" "):
     if response!="OK":
         raise error #TODO: show error message
     if headerData[1].find("Subject: PokerStars Tournament History Request - Last x")!=1:
-        neededMessages.append((messageNumber, "PS")
+        neededMessages.append(messageNumber, "PS")
         
 tourneys=[]
 if len(neededMessages)==0:
@@ -57,7 +57,7 @@ for messageData in neededMessages:
     if response!="OK":
         raise error #TODO: show error message
     if messageData[0]=="PS":
-        tourneys.append(PokerStarsSummaries.PokerStarsSummaries(bodyData)
+        tourneys.append(PokerStarsSummaries.PokerStarsSummaries(bodyData))
 
 for tourney in tourneys:
     print "tourney:",tourney

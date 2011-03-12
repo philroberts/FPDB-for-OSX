@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2008-2010, Carl Gherardi
+#    Copyright 2008-2011, Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -74,7 +74,7 @@ class Fulltilt(HandHistoryConverter):
                                     (Ante\s\$?(?P<ANTE>[%(NUM)s]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
-                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi))
+                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|Omaha|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi))
                                  ''' % substitutions, re.VERBOSE)
     re_SplitHands   = re.compile(r"\n\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
@@ -114,7 +114,7 @@ class Fulltilt(HandHistoryConverter):
                                     (\((?P<TURBO1>Turbo)\)\s)?
                                     \((?P<TOURNO>\d+)\)\s
                                     ((?P<MATCHNO>Match\s\d)\s)?
-                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi))\s
+                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|Omaha|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi))\s
                                     (\((?P<TURBO2>Turbo)\)\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?
                                 ''' % substitutions, re.VERBOSE)
@@ -208,8 +208,8 @@ class Fulltilt(HandHistoryConverter):
         m = self.re_GameInfo.search(handText)
         if not m:
             tmp = handText[0:100]
+            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
             log.error(_("determineGameType: Raising FpdbParseError for file '%s'") % self.in_path)
-            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
         mg = m.groupdict()
 
@@ -218,6 +218,7 @@ class Fulltilt(HandHistoryConverter):
         games = {              # base, category
                   "Hold'em" : ('hold','holdem'), 
                  'Omaha Hi' : ('hold','omahahi'), 
+                    'Omaha' : ('hold','omahahi'),
                 'Omaha H/L' : ('hold','omahahilo'),
                      'Razz' : ('stud','razz'), 
                   'Stud Hi' : ('stud','studhi'), 
@@ -247,7 +248,7 @@ class Fulltilt(HandHistoryConverter):
                 info['sb'] = self.Lim_Blinds[mg['BB']][0]
                 info['bb'] = self.Lim_Blinds[mg['BB']][1]
             except KeyError:
-                log.error(_("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB']))
+                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
                 log.error(_("determineGameType: Raising FpdbParseError"))
                 raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
 
@@ -262,8 +263,9 @@ class Fulltilt(HandHistoryConverter):
         m =  self.re_HandInfo.search(hand.handText)
         if m is None:
             tmp = hand.handText[0:100]
-            log.error(_("readHandInfo: Unable to recognise handinfo from: '%s'") % tmp)
-            raise FpdbParseError(_("No match in readHandInfo."))
+            log.error(_("Unable to recognise handinfo from: '%s'") % tmp)
+            log.error(_("readHandInfo: Raising FpdbParseError"))
+            raise FpdbParseError(_("Unable to recognise handinfo from: '%s'"))
 
         #print "DEBUG: m.groupdict: %s" % m.groupdict()
         hand.handid = m.group('HID')
@@ -361,6 +363,10 @@ class Fulltilt(HandHistoryConverter):
         for a in plist:
             seat, stack = plist[a]
             hand.addPlayer(seat, a, stack)
+
+        if plist == {}:
+            #No players! The hand is either missing stacks or everyone is sitting out
+            raise FpdbParseError(_("FTP: readPlayerStacks: No players detected (hand #%s)") % hand.handid)
 
 
     def markStreets(self, hand):

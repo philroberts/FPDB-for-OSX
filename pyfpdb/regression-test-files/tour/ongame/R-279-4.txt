@@ -1,0 +1,2055 @@
+***** History for hand T5-17943964-1 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 20:58:33 GMT+0100 2010
+Table: Table #248 [17943964] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 6
+Players in round: 10
+Seat 7: skro37 (1500)
+Seat 8: jojo2707 (1500)
+Seat 9: YESIL68 (1500)
+Seat 10: BULLDOGS (1500)
+Seat 1: NAVETTE13 (1500)
+Seat 2: alkazar (1500)
+Seat 3: zaze (1500)
+Seat 4: besac025 (1500)
+Seat 5: patrick4 (1500)
+Seat 6: billyh40 (1500)
+skro37 posts small blind (10)
+jojo2707 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [Qd, 7d]
+YESIL68 folds
+BULLDOGS calls 20
+NAVETTE13 folds
+alkazar folds
+zaze folds
+besac025 calls 20
+patrick4 folds
+billyh40 calls 20
+skro37 folds
+jojo2707 checks
+--- Dealing flop [Ac, 9s, 5s]
+jojo2707 bets 20
+BULLDOGS calls 20
+besac025 folds
+billyh40 raises 125 to 125
+jojo2707 calls 105
+BULLDOGS folds
+--- Dealing turn [Ts]
+jojo2707 bets 60
+billyh40 raises 250 to 250
+jojo2707 raises 440 to 500
+billyh40 calls 250
+--- Dealing river [Jd]
+jojo2707 bets 350
+billyh40 folds
+---
+Summary:
+Main pot: 1360 won by jojo2707 (1360)
+Rake taken: €0
+Seat 7: skro37 (1490), net: -10
+Seat 8: jojo2707 (2215), net: +715
+Seat 9: YESIL68 (1500)
+Seat 10: BULLDOGS (1460), net: -40
+Seat 1: NAVETTE13 (1500)
+Seat 2: alkazar (1500)
+Seat 3: zaze (1500)
+Seat 4: besac025 (1480), net: -20
+Seat 5: patrick4 (1500)
+Seat 6: billyh40 (855), net: -645
+***** End of hand T5-17943964-1 *****
+***** History for hand T5-17943964-2 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:03:49 GMT+0100 2010
+Table: Table #248 [17943964] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 7
+Players in round: 10
+Seat 8: jojo2707 (2215)
+Seat 9: YESIL68 (1500)
+Seat 10: BULLDOGS (1460)
+Seat 1: NAVETTE13 (1500)
+Seat 2: alkazar (1500)
+Seat 3: zaze (1500)
+Seat 4: besac025 (1480)
+Seat 5: patrick4 (1500)
+Seat 6: billyh40 (855)
+Seat 7: skro37 (1490)
+jojo2707 posts small blind (10)
+YESIL68 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [Td, 8c]
+BULLDOGS calls 20
+NAVETTE13 folds
+alkazar calls 20
+zaze folds
+besac025 folds
+patrick4 folds
+billyh40 calls 20
+skro37 folds
+jojo2707 calls 10
+YESIL68 checks
+--- Dealing flop [6c, 2d, 7h]
+jojo2707 checks
+YESIL68 checks
+BULLDOGS bets 20
+alkazar calls 20
+billyh40 raises 835 to 835 [all in]
+jojo2707 folds
+YESIL68 folds
+BULLDOGS calls 815
+alkazar folds
+--- Dealing flop [6c, 2d, 7h]
+--- Dealing turn [6h]
+--- Dealing river [Qs]
+---
+Summary:
+Main pot: 1790 won by billyh40 (1790)
+Rake taken: €0
+Seat 8: jojo2707 (2195), net: -20
+Seat 9: YESIL68 (1480), net: -20
+Seat 10: BULLDOGS (605), net: -855, [3d, 3c] (TWO_PAIR SIX, THREE)
+Seat 1: NAVETTE13 (1500)
+Seat 2: alkazar (1460), net: -40
+Seat 3: zaze (1500)
+Seat 4: besac025 (1480)
+Seat 5: patrick4 (1500)
+Seat 6: billyh40 (1790), net: +935, [6s, 4d] (THREE_OF_A_KIND SIX)
+Seat 7: skro37 (1490)
+***** End of hand T5-17943964-2 *****
+***** History for hand T5-17943964-3 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:05:04 GMT+0100 2010
+Table: Table #248 [17943964] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 8
+Players in round: 10
+Seat 9: YESIL68 (1480)
+Seat 10: BULLDOGS (605)
+Seat 1: NAVETTE13 (1500)
+Seat 2: alkazar (1460)
+Seat 3: zaze (1500)
+Seat 4: besac025 (1480)
+Seat 5: patrick4 (1500)
+Seat 6: billyh40 (1790)
+Seat 7: skro37 (1490)
+Seat 8: jojo2707 (2195)
+YESIL68 posts small blind (15)
+BULLDOGS posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [Ks, Kd]
+NAVETTE13 folds
+alkazar calls 30
+zaze folds
+besac025 raises 165 to 165
+patrick4 folds
+billyh40 folds
+skro37 folds
+jojo2707 folds
+YESIL68 folds
+BULLDOGS calls 135
+alkazar calls 135
+--- Dealing flop [8s, Qc, 4s]
+BULLDOGS bets 440 [all in]
+alkazar calls 440
+besac025 raises 1315 to 1315 [all in]
+alkazar calls 855 [all in]
+--- Dealing flop [8s, Qc, 4s]
+--- Dealing turn [9c]
+--- Dealing river [7h]
+---
+Summary:
+Main pot: 1830 won by besac025 (1830)
+Side pot 1: 1710 won by besac025 (1710)
+Rake taken: €0
+Seat 9: YESIL68 (1465), net: -15
+Seat 10: BULLDOGS (0), net: -605, [9s, Jh] (PAIR NINE)
+Seat 1: NAVETTE13 (1500)
+Seat 2: alkazar (0), net: -1460, [8c, Jc] (PAIR EIGHT)
+Seat 3: zaze (1500)
+Seat 4: besac025 (3560), net: +2080, [Ks, Kd] (PAIR KING)
+Seat 5: patrick4 (1500)
+Seat 6: billyh40 (1790)
+Seat 7: skro37 (1490)
+Seat 8: jojo2707 (2195)
+***** End of hand T5-17943964-3 *****
+***** History for hand T5-17943985-9 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:08:17 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 7
+Players in round: 10
+Seat 8: BlAcKhAwK (2885)
+Seat 9: bobby71000 (2885)
+Seat 10: besac025 (3560)
+Seat 1: CyRILLOS78 (1775)
+Seat 2: jaber2 (2990)
+Seat 3: carail (1500)
+Seat 4: husk (1380)
+Seat 5: cypat (1470)
+Seat 6: juniorgaty (2515)
+Seat 7: STIW (3535)
+BlAcKhAwK posts small blind (15)
+bobby71000 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [Jh, Qs]
+besac025 folds
+CyRILLOS78 raises 60 to 60
+jaber2 calls 60
+carail folds
+husk folds
+cypat folds
+juniorgaty calls 60
+STIW calls 60
+BlAcKhAwK calls 45
+bobby71000 calls 30
+--- Dealing flop [Kd, 2c, 8d]
+BlAcKhAwK bets 30
+bobby71000 calls 30
+CyRILLOS78 folds
+jaber2 calls 30
+juniorgaty calls 30
+STIW calls 30
+--- Dealing turn [9s]
+BlAcKhAwK checks
+bobby71000 checks
+jaber2 checks
+juniorgaty checks
+STIW checks
+--- Dealing river [8s]
+BlAcKhAwK bets 150
+bobby71000 folds
+jaber2 calls 150
+juniorgaty folds
+STIW folds
+---
+Summary:
+Main pot: 810 won by jaber2 (810)
+Rake taken: €0
+Seat 8: BlAcKhAwK (2645), net: -240, [2s, 4h] (TWO_PAIR EIGHT, TWO)
+Seat 9: bobby71000 (2795), net: -90
+Seat 10: besac025 (3560)
+Seat 1: CyRILLOS78 (1715), net: -60
+Seat 2: jaber2 (3560), net: +570, [Ah, 2d] (TWO_PAIR EIGHT, TWO)
+Seat 3: carail (1500)
+Seat 4: husk (1380)
+Seat 5: cypat (1470)
+Seat 6: juniorgaty (2425), net: -90
+Seat 7: STIW (3445), net: -90
+***** End of hand T5-17943985-9 *****
+***** History for hand T5-17943985-10 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:10:10 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 15/30, TC)
+User: besac025
+Button: seat 8
+Players in round: 10
+Seat 9: bobby71000 (2795)
+Seat 10: besac025 (3560)
+Seat 1: CyRILLOS78 (1715)
+Seat 2: jaber2 (3560)
+Seat 3: carail (1500)
+Seat 4: husk (1380)
+Seat 5: cypat (1470)
+Seat 6: juniorgaty (2425)
+Seat 7: STIW (3445)
+Seat 8: BlAcKhAwK (2645)
+bobby71000 posts small blind (15)
+besac025 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to besac025: [4d, Kd]
+CyRILLOS78 folds
+jaber2 folds
+carail folds
+husk calls 30
+cypat raises 1470 to 1470 [all in]
+juniorgaty folds
+STIW folds
+BlAcKhAwK folds
+bobby71000 folds
+besac025 folds
+husk folds
+---
+Summary:
+Main pot: 105 won by cypat (105)
+Rake taken: €0
+Seat 9: bobby71000 (2780), net: -15
+Seat 10: besac025 (3530), net: -30
+Seat 1: CyRILLOS78 (1715)
+Seat 2: jaber2 (3560)
+Seat 3: carail (1500)
+Seat 4: husk (1350), net: -30
+Seat 5: cypat (1545), net: +75
+Seat 6: juniorgaty (2425)
+Seat 7: STIW (3445)
+Seat 8: BlAcKhAwK (2645)
+***** End of hand T5-17943985-10 *****
+***** History for hand T5-17943985-11 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:11:00 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 9
+Players in round: 10
+Seat 10: besac025 (3530)
+Seat 1: CyRILLOS78 (1715)
+Seat 2: jaber2 (3560)
+Seat 3: carail (1500)
+Seat 4: husk (1350)
+Seat 5: cypat (1545)
+Seat 6: juniorgaty (2425)
+Seat 7: STIW (3445)
+Seat 8: BlAcKhAwK (2645)
+Seat 9: bobby71000 (2780)
+besac025 posts small blind (25)
+CyRILLOS78 posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [Ah, 5s]
+jaber2 folds
+carail folds
+husk folds
+cypat folds
+juniorgaty folds
+STIW calls 50
+BlAcKhAwK calls 50
+bobby71000 calls 50
+besac025 calls 25
+CyRILLOS78 checks
+--- Dealing flop [3d, 7s, Qh]
+besac025 checks
+CyRILLOS78 checks
+STIW checks
+BlAcKhAwK checks
+bobby71000 checks
+--- Dealing turn [Ad]
+besac025 checks
+CyRILLOS78 checks
+STIW checks
+BlAcKhAwK checks
+bobby71000 checks
+--- Dealing river [Jh]
+besac025 bets 50
+CyRILLOS78 folds
+STIW calls 50
+BlAcKhAwK folds
+bobby71000 folds
+---
+Summary:
+Main pot: 350 won by STIW (350)
+Rake taken: €0
+Seat 10: besac025 (3430), net: -100, [Ah, 5s] (PAIR ACE)
+Seat 1: CyRILLOS78 (1665), net: -50
+Seat 2: jaber2 (3560)
+Seat 3: carail (1500)
+Seat 4: husk (1350)
+Seat 5: cypat (1545)
+Seat 6: juniorgaty (2425)
+Seat 7: STIW (3695), net: +250, [As, 9h] (PAIR ACE)
+Seat 8: BlAcKhAwK (2595), net: -50
+Seat 9: bobby71000 (2730), net: -50
+***** End of hand T5-17943985-11 *****
+***** History for hand T5-17943985-12 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:12:58 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 10
+Players in round: 10
+Seat 1: CyRILLOS78 (1665)
+Seat 2: jaber2 (3560)
+Seat 3: carail (1500)
+Seat 4: husk (1350)
+Seat 5: cypat (1545)
+Seat 6: juniorgaty (2425)
+Seat 7: STIW (3695)
+Seat 8: BlAcKhAwK (2595)
+Seat 9: bobby71000 (2730)
+Seat 10: besac025 (3430)
+CyRILLOS78 posts small blind (25)
+jaber2 posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [2d, 6s]
+carail folds
+husk calls 50
+cypat folds
+juniorgaty folds
+STIW calls 50
+BlAcKhAwK raises 100 to 100
+bobby71000 calls 100
+besac025 folds
+CyRILLOS78 calls 75
+jaber2 folds
+husk calls 50
+STIW calls 50
+--- Dealing flop [Ks, 9c, 4d]
+CyRILLOS78 bets 50
+husk calls 50
+STIW calls 50
+BlAcKhAwK calls 50
+bobby71000 calls 50
+--- Dealing turn [7h]
+CyRILLOS78 bets 50
+husk calls 50
+STIW calls 50
+BlAcKhAwK calls 50
+bobby71000 calls 50
+--- Dealing river [Qc]
+CyRILLOS78 bets 1050
+husk calls 1050
+STIW folds
+BlAcKhAwK folds
+bobby71000 folds
+---
+Summary:
+Main pot: 3150 won by husk (3150)
+Rake taken: €0
+Seat 1: CyRILLOS78 (415), net: -1250, [Qs, Jd] (PAIR QUEEN)
+Seat 2: jaber2 (3510), net: -50
+Seat 3: carail (1500)
+Seat 4: husk (3250), net: +1900, [Kd, 8d] (PAIR KING)
+Seat 5: cypat (1545)
+Seat 6: juniorgaty (2425)
+Seat 7: STIW (3495), net: -200
+Seat 8: BlAcKhAwK (2395), net: -200
+Seat 9: bobby71000 (2530), net: -200
+Seat 10: besac025 (3430)
+***** End of hand T5-17943985-12 *****
+***** History for hand T5-17943985-13 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:14:24 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 1
+Players in round: 10
+Seat 2: jaber2 (3510)
+Seat 3: carail (1500)
+Seat 4: husk (3250)
+Seat 5: cypat (1545)
+Seat 6: juniorgaty (2425)
+Seat 7: STIW (3495)
+Seat 8: BlAcKhAwK (2395)
+Seat 9: bobby71000 (2530)
+Seat 10: besac025 (3430)
+Seat 1: CyRILLOS78 (415)
+jaber2 posts small blind (25)
+carail posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [9c, 6c]
+husk calls 50
+cypat calls 50
+juniorgaty folds
+STIW calls 50
+BlAcKhAwK folds
+bobby71000 folds
+besac025 folds
+CyRILLOS78 raises 415 to 415 [all in]
+jaber2 folds
+carail folds
+husk calls 365
+cypat raises 1495 to 1545 [all in]
+STIW calls 1495
+husk calls 1130
+--- Dealing flop [9h, Ts, 3d]
+husk checks
+STIW checks
+--- Dealing turn [4c]
+husk bets 50
+STIW calls 50
+--- Dealing river [4h]
+husk checks
+STIW checks
+---
+Summary:
+Main pot: 1735 won by CyRILLOS78 (1735)
+Side pot 1: 3390 won by husk (3390)
+Side pot 2: 100 won by husk (100)
+Rake taken: €0
+Seat 2: jaber2 (3485), net: -25
+Seat 3: carail (1450), net: -50
+Seat 4: husk (5145), net: +1895, [Kh, Ac] (PAIR FOUR)
+Seat 5: cypat (0), net: -1545
+Seat 6: juniorgaty (2425)
+Seat 7: STIW (1900), net: -1595
+Seat 8: BlAcKhAwK (2395)
+Seat 9: bobby71000 (2530)
+Seat 10: besac025 (3430)
+Seat 1: CyRILLOS78 (1735), net: +1320, [Qh, Td] (TWO_PAIR TEN, FOUR)
+***** End of hand T5-17943985-13 *****
+***** History for hand T5-17943985-14 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:15:54 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 25/50, TC)
+User: besac025
+Button: seat 2
+Players in round: 9
+Seat 3: carail (1450)
+Seat 4: husk (5145)
+Seat 6: juniorgaty (2425)
+Seat 7: STIW (1900)
+Seat 8: BlAcKhAwK (2395)
+Seat 9: bobby71000 (2530)
+Seat 10: besac025 (3430)
+Seat 1: CyRILLOS78 (1735)
+Seat 2: jaber2 (3485)
+carail posts small blind (25)
+husk posts big blind (50)
+---
+Dealing pocket cards
+Dealing to besac025: [9h, 7d]
+juniorgaty folds
+STIW calls 50
+BlAcKhAwK calls 50
+bobby71000 folds
+besac025 folds
+CyRILLOS78 folds
+jaber2 folds
+carail folds
+husk checks
+--- Dealing flop [Ts, 3c, 6h]
+husk checks
+STIW checks
+BlAcKhAwK checks
+--- Dealing turn [Jc]
+husk bets 50
+STIW calls 50
+BlAcKhAwK calls 50
+--- Dealing river [6c]
+husk bets 50
+STIW raises 500 to 500
+BlAcKhAwK folds
+husk calls 450
+---
+Summary:
+Main pot: 1325 won by STIW (1325)
+Rake taken: €0
+Seat 3: carail (1425), net: -25
+Seat 4: husk (4545), net: -600
+Seat 6: juniorgaty (2425)
+Seat 7: STIW (2625), net: +725, [6d, Ac] (THREE_OF_A_KIND SIX)
+Seat 8: BlAcKhAwK (2295), net: -100
+Seat 9: bobby71000 (2530)
+Seat 10: besac025 (3430)
+Seat 1: CyRILLOS78 (1735)
+Seat 2: jaber2 (3485)
+***** End of hand T5-17943985-14 *****
+***** History for hand T5-17943985-15 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:17:35 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 3
+Players in round: 10
+Seat 4: husk (4545)
+Seat 5: klubb (2080)
+Seat 6: juniorgaty (2425)
+Seat 7: STIW (2625)
+Seat 8: BlAcKhAwK (2295)
+Seat 9: bobby71000 (2530)
+Seat 10: besac025 (3430)
+Seat 1: CyRILLOS78 (1735)
+Seat 2: jaber2 (3485)
+Seat 3: carail (1425)
+husk posts small blind (40)
+klubb posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [Jc, Qd]
+juniorgaty folds
+STIW calls 80
+BlAcKhAwK folds
+bobby71000 calls 80
+besac025 folds
+CyRILLOS78 folds
+jaber2 folds
+carail folds
+husk folds
+klubb checks
+--- Dealing flop [2h, Ah, Kc]
+klubb checks
+STIW checks
+bobby71000 checks
+--- Dealing turn [7c]
+klubb checks
+STIW bets 300
+bobby71000 folds
+klubb folds
+---
+Summary:
+Main pot: 280 won by STIW (280)
+Rake taken: €0
+Seat 4: husk (4505), net: -40
+Seat 5: klubb (2000), net: -80
+Seat 6: juniorgaty (2425)
+Seat 7: STIW (2825), net: +200
+Seat 8: BlAcKhAwK (2295)
+Seat 9: bobby71000 (2450), net: -80
+Seat 10: besac025 (3430)
+Seat 1: CyRILLOS78 (1735)
+Seat 2: jaber2 (3485)
+Seat 3: carail (1425)
+***** End of hand T5-17943985-15 *****
+***** History for hand T5-17943985-16 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:19:07 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 4
+Players in round: 10
+Seat 5: klubb (2000)
+Seat 6: juniorgaty (2425)
+Seat 7: STIW (2825)
+Seat 8: BlAcKhAwK (2295)
+Seat 9: bobby71000 (2450)
+Seat 10: besac025 (3430)
+Seat 1: CyRILLOS78 (1735)
+Seat 2: jaber2 (3485)
+Seat 3: carail (1425)
+Seat 4: husk (4505)
+klubb posts small blind (40)
+juniorgaty posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [2s, 9c]
+STIW calls 80
+BlAcKhAwK raises 480 to 480
+bobby71000 folds
+besac025 folds
+CyRILLOS78 folds
+jaber2 folds
+carail folds
+husk calls 480
+klubb folds
+juniorgaty folds
+STIW folds
+--- Dealing flop [3h, Ac, 4d]
+BlAcKhAwK checks
+husk bets 80
+BlAcKhAwK calls 80
+--- Dealing turn [Qh]
+BlAcKhAwK checks
+husk checks
+--- Dealing river [5s]
+BlAcKhAwK bets 1735 [all in]
+husk calls 1735
+---
+Summary:
+Main pot: 4790 won by husk (4790)
+Rake taken: €0
+Seat 5: klubb (1960), net: -40
+Seat 6: juniorgaty (2345), net: -80
+Seat 7: STIW (2745), net: -80
+Seat 8: BlAcKhAwK (0), net: -2295, [Jd, 7h] (HIGH_CARD ACE)
+Seat 9: bobby71000 (2450)
+Seat 10: besac025 (3430)
+Seat 1: CyRILLOS78 (1735)
+Seat 2: jaber2 (3485)
+Seat 3: carail (1425)
+Seat 4: husk (7000), net: +2495, [Kd, 5h] (PAIR FIVE)
+***** End of hand T5-17943985-16 *****
+***** History for hand T5-17943985-17 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:20:47 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 40/80, TC)
+User: besac025
+Button: seat 5
+Players in round: 9
+Seat 6: juniorgaty (2345)
+Seat 7: STIW (2745)
+Seat 9: bobby71000 (2450)
+Seat 10: besac025 (3430)
+Seat 1: CyRILLOS78 (1735)
+Seat 2: jaber2 (3485)
+Seat 3: carail (1425)
+Seat 4: husk (7000)
+Seat 5: klubb (1960)
+juniorgaty posts small blind (40)
+STIW posts big blind (80)
+---
+Dealing pocket cards
+Dealing to besac025: [4h, 2h]
+bobby71000 calls 80
+besac025 folds
+CyRILLOS78 raises 160 to 160
+jaber2 folds
+carail folds
+husk folds
+klubb folds
+juniorgaty folds
+STIW calls 80
+bobby71000 calls 80
+--- Dealing flop [9d, Qd, 3c]
+STIW checks
+bobby71000 bets 80
+CyRILLOS78 raises 160 to 160
+STIW calls 160
+bobby71000 calls 80
+--- Dealing turn [Ks]
+STIW checks
+bobby71000 checks
+CyRILLOS78 bets 80
+STIW calls 80
+bobby71000 calls 80
+--- Dealing river [3d]
+STIW checks
+bobby71000 bets 1240
+CyRILLOS78 folds
+STIW folds
+---
+Summary:
+Main pot: 1240 won by bobby71000 (1240)
+Rake taken: €0
+Seat 6: juniorgaty (2305), net: -40
+Seat 7: STIW (2345), net: -400
+Seat 9: bobby71000 (3290), net: +840
+Seat 10: besac025 (3430)
+Seat 1: CyRILLOS78 (1335), net: -400
+Seat 2: jaber2 (3485)
+Seat 3: carail (1425)
+Seat 4: husk (7000)
+Seat 5: klubb (1960)
+***** End of hand T5-17943985-17 *****
+***** History for hand T5-17943985-18 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:23:01 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 60/120, TC)
+User: besac025
+Button: seat 6
+Players in round: 10
+Seat 7: STIW (2345)
+Seat 8: BdaWinner (1380)
+Seat 9: bobby71000 (3290)
+Seat 10: besac025 (3430)
+Seat 1: CyRILLOS78 (1335)
+Seat 2: jaber2 (3485)
+Seat 3: carail (1425)
+Seat 4: husk (7000)
+Seat 5: klubb (1960)
+Seat 6: juniorgaty (2305)
+STIW posts small blind (60)
+BdaWinner posts big blind (120)
+---
+Dealing pocket cards
+Dealing to besac025: [3c, Ah]
+bobby71000 folds
+besac025 folds
+CyRILLOS78 folds
+jaber2 calls 120
+carail folds
+husk folds
+klubb calls 120
+juniorgaty calls 120
+STIW folds
+BdaWinner raises 1260 to 1380 [all in]
+jaber2 calls 1260
+klubb folds
+juniorgaty folds
+--- 
+--- Dealing flop [7s, 4s, 7c]
+--- Dealing turn [Kc]
+--- Dealing river [Jh]
+---
+Summary:
+Main pot: 3060 won by jaber2 (3060)
+Rake taken: €0
+Seat 7: STIW (2285), net: -60
+Seat 8: BdaWinner (0), net: -1380, [Ad, 3h] (PAIR SEVEN)
+Seat 9: bobby71000 (3290)
+Seat 10: besac025 (3430)
+Seat 1: CyRILLOS78 (1335)
+Seat 2: jaber2 (5165), net: +1680, [8s, 8c] (TWO_PAIR EIGHT, SEVEN)
+Seat 3: carail (1425)
+Seat 4: husk (7000)
+Seat 5: klubb (1840), net: -120
+Seat 6: juniorgaty (2185), net: -120
+***** End of hand T5-17943985-18 *****
+***** History for hand T5-17943985-19 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:24:03 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 60/120, TC)
+User: besac025
+Button: seat 7
+Players in round: 9
+Seat 9: bobby71000 (3290)
+Seat 10: besac025 (3430)
+Seat 1: CyRILLOS78 (1335)
+Seat 2: jaber2 (5165)
+Seat 3: carail (1425)
+Seat 4: husk (7000)
+Seat 5: klubb (1840)
+Seat 6: juniorgaty (2185)
+Seat 7: STIW (2285)
+bobby71000 posts big blind (120)
+---
+Dealing pocket cards
+Dealing to besac025: [8d, Qd]
+besac025 folds
+CyRILLOS78 folds
+jaber2 folds
+carail folds
+husk folds
+klubb calls 120
+juniorgaty calls 120
+STIW calls 120
+bobby71000 checks
+--- Dealing flop [4d, 3c, 9c]
+bobby71000 bets 120
+klubb calls 120
+juniorgaty calls 120
+STIW folds
+--- Dealing turn [Tc]
+bobby71000 checks
+klubb checks
+juniorgaty bets 300
+bobby71000 folds
+klubb calls 300
+--- Dealing river [9h]
+klubb checks
+juniorgaty checks
+---
+Summary:
+Main pot: 1440 won by klubb (1440)
+Rake taken: €0
+Seat 9: bobby71000 (3050), net: -240
+Seat 10: besac025 (3430)
+Seat 1: CyRILLOS78 (1335)
+Seat 2: jaber2 (5165)
+Seat 3: carail (1425)
+Seat 4: husk (7000)
+Seat 5: klubb (2740), net: +900, [Qs, Qh] (TWO_PAIR QUEEN, NINE)
+Seat 6: juniorgaty (1645), net: -540
+Seat 7: STIW (2165), net: -120
+***** End of hand T5-17943985-19 *****
+***** History for hand T5-17943985-20 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:25:55 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 60/120, TC)
+User: besac025
+Button: seat 8
+Players in round: 9
+Seat 9: bobby71000 (3050)
+Seat 10: besac025 (3430)
+Seat 1: CyRILLOS78 (1335)
+Seat 2: jaber2 (5165)
+Seat 3: carail (1425)
+Seat 4: husk (7000)
+Seat 5: klubb (2740)
+Seat 6: juniorgaty (1645)
+Seat 7: STIW (2165)
+bobby71000 posts small blind (60)
+besac025 posts big blind (120)
+---
+Dealing pocket cards
+Dealing to besac025: [3c, 8s]
+CyRILLOS78 folds
+jaber2 calls 120
+carail folds
+husk calls 120
+klubb calls 120
+juniorgaty raises 1645 to 1645 [all in]
+STIW folds
+bobby71000 folds
+besac025 folds
+jaber2 folds
+husk calls 1525
+klubb folds
+--- 
+--- Dealing flop [Kh, 3h, 7c]
+--- Dealing turn [Kd]
+--- Dealing river [7s]
+---
+Summary:
+Main pot: 3710 won by juniorgaty (3710)
+Rake taken: €0
+Seat 9: bobby71000 (2990), net: -60
+Seat 10: besac025 (3310), net: -120
+Seat 1: CyRILLOS78 (1335)
+Seat 2: jaber2 (5045), net: -120
+Seat 3: carail (1425)
+Seat 4: husk (5355), net: -1645, [4d, 4h] (TWO_PAIR KING, SEVEN)
+Seat 5: klubb (2620), net: -120
+Seat 6: juniorgaty (3710), net: +2065, [Ac, 9s] (TWO_PAIR KING, SEVEN)
+Seat 7: STIW (2165)
+***** End of hand T5-17943985-20 *****
+***** History for hand T5-17943985-21 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:27:29 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 60/120, TC)
+User: besac025
+Button: seat 9
+Players in round: 10
+Seat 10: besac025 (3310)
+Seat 1: CyRILLOS78 (1335)
+Seat 2: jaber2 (5045)
+Seat 3: carail (1425)
+Seat 4: husk (5355)
+Seat 5: klubb (2620)
+Seat 6: juniorgaty (3710)
+Seat 7: STIW (2165)
+Seat 8: MIKE21WIN (4095)
+Seat 9: bobby71000 (2990)
+besac025 posts small blind (60)
+CyRILLOS78 posts big blind (120)
+---
+Dealing pocket cards
+Dealing to besac025: [5s, Tc]
+jaber2 folds
+carail folds
+husk folds
+klubb folds
+juniorgaty raises 3710 to 3710 [all in]
+STIW folds
+MIKE21WIN folds
+bobby71000 folds
+besac025 folds
+CyRILLOS78 folds
+---
+Summary:
+Main pot: 300 won by juniorgaty (300)
+Rake taken: €0
+Seat 10: besac025 (3250), net: -60
+Seat 1: CyRILLOS78 (1215), net: -120
+Seat 2: jaber2 (5045)
+Seat 3: carail (1425)
+Seat 4: husk (5355)
+Seat 5: klubb (2620)
+Seat 6: juniorgaty (3890), net: +180
+Seat 7: STIW (2165)
+Seat 8: MIKE21WIN (4095)
+Seat 9: bobby71000 (2990)
+***** End of hand T5-17943985-21 *****
+***** History for hand T5-17943985-22 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:28:18 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 60/120, TC)
+User: besac025
+Button: seat 10
+Players in round: 10
+Seat 1: CyRILLOS78 (1215)
+Seat 2: jaber2 (5045)
+Seat 3: carail (1425)
+Seat 4: husk (5355)
+Seat 5: klubb (2620)
+Seat 6: juniorgaty (3890)
+Seat 7: STIW (2165)
+Seat 8: MIKE21WIN (4095)
+Seat 9: bobby71000 (2990)
+Seat 10: besac025 (3250)
+CyRILLOS78 posts small blind (60)
+jaber2 posts big blind (120)
+---
+Dealing pocket cards
+Dealing to besac025: [Qs, 3h]
+carail folds
+husk folds
+klubb folds
+juniorgaty raises 3890 to 3890 [all in]
+STIW folds
+MIKE21WIN folds
+bobby71000 folds
+besac025 folds
+CyRILLOS78 folds
+jaber2 folds
+---
+Summary:
+Main pot: 300 won by juniorgaty (300)
+Rake taken: €0
+Seat 1: CyRILLOS78 (1155), net: -60
+Seat 2: jaber2 (4925), net: -120
+Seat 3: carail (1425)
+Seat 4: husk (5355)
+Seat 5: klubb (2620)
+Seat 6: juniorgaty (4070), net: +180
+Seat 7: STIW (2165)
+Seat 8: MIKE21WIN (4095)
+Seat 9: bobby71000 (2990)
+Seat 10: besac025 (3250)
+***** End of hand T5-17943985-22 *****
+***** History for hand T5-17943985-23 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:28:49 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 1
+Players in round: 10
+Seat 2: jaber2 (4925)
+Seat 3: carail (1425)
+Seat 4: husk (5355)
+Seat 5: klubb (2620)
+Seat 6: juniorgaty (4070)
+Seat 7: STIW (2165)
+Seat 8: MIKE21WIN (4095)
+Seat 9: bobby71000 (2990)
+Seat 10: besac025 (3250)
+Seat 1: CyRILLOS78 (1155)
+jaber2 posts small blind (80)
+carail posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [Jh, Jc]
+husk folds
+klubb folds
+juniorgaty calls 160
+STIW folds
+MIKE21WIN folds
+bobby71000 calls 160
+besac025 raises 800 to 800
+CyRILLOS78 raises 1155 to 1155 [all in]
+jaber2 folds
+carail folds
+juniorgaty calls 995
+bobby71000 calls 995
+besac025 calls 355
+--- Dealing flop [Tc, 4h, 6c]
+juniorgaty checks
+bobby71000 checks
+besac025 checks
+--- Dealing turn [Ks]
+juniorgaty bets 2915 [all in]
+bobby71000 folds
+besac025 folds
+--- Dealing turn [Ks]
+--- Dealing river [Kh]
+---
+Summary:
+Main pot: 4860 won by CyRILLOS78 (4860)
+Rake taken: €0
+Seat 2: jaber2 (4845), net: -80
+Seat 3: carail (1265), net: -160
+Seat 4: husk (5355)
+Seat 5: klubb (2620)
+Seat 6: juniorgaty (2915), net: -1155, [Qc, 9c] (PAIR KING)
+Seat 7: STIW (2165)
+Seat 8: MIKE21WIN (4095)
+Seat 9: bobby71000 (1835), net: -1155
+Seat 10: besac025 (2095), net: -1155
+Seat 1: CyRILLOS78 (4860), net: +3705, [Qd, Kc] (THREE_OF_A_KIND KING)
+***** End of hand T5-17943985-23 *****
+***** History for hand T5-17943985-24 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:29:50 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 2
+Players in round: 10
+Seat 3: carail (1265)
+Seat 4: husk (5355)
+Seat 5: klubb (2620)
+Seat 6: juniorgaty (2915)
+Seat 7: STIW (2165)
+Seat 8: MIKE21WIN (4095)
+Seat 9: bobby71000 (1835)
+Seat 10: besac025 (2095)
+Seat 1: CyRILLOS78 (4860)
+Seat 2: jaber2 (4845)
+carail posts small blind (80)
+husk posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [2d, 2s]
+klubb folds
+juniorgaty folds
+STIW folds
+MIKE21WIN folds
+bobby71000 calls 160
+besac025 calls 160
+CyRILLOS78 folds
+jaber2 calls 160
+carail folds
+husk checks
+--- Dealing flop [3h, 8c, Qh]
+husk checks
+bobby71000 checks
+besac025 checks
+jaber2 checks
+--- Dealing turn [8s]
+husk checks
+bobby71000 checks
+besac025 checks
+jaber2 checks
+--- Dealing river [6c]
+husk checks
+bobby71000 checks
+besac025 bets 160
+jaber2 calls 160
+husk folds
+bobby71000 folds
+---
+Summary:
+Main pot: 1040 won by jaber2 (1040)
+Rake taken: €0
+Seat 3: carail (1185), net: -80
+Seat 4: husk (5195), net: -160
+Seat 5: klubb (2620)
+Seat 6: juniorgaty (2915)
+Seat 7: STIW (2165)
+Seat 8: MIKE21WIN (4095)
+Seat 9: bobby71000 (1675), net: -160
+Seat 10: besac025 (1775), net: -320, [2d, 2s] (TWO_PAIR EIGHT, TWO)
+Seat 1: CyRILLOS78 (4860)
+Seat 2: jaber2 (5565), net: +720, [7h, 7s] (TWO_PAIR EIGHT, SEVEN)
+***** End of hand T5-17943985-24 *****
+***** History for hand T5-17943985-25 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:31:29 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 3
+Players in round: 10
+Seat 4: husk (5195)
+Seat 5: klubb (2620)
+Seat 6: juniorgaty (2915)
+Seat 7: STIW (2165)
+Seat 8: MIKE21WIN (4095)
+Seat 9: bobby71000 (1675)
+Seat 10: besac025 (1775)
+Seat 1: CyRILLOS78 (4860)
+Seat 2: jaber2 (5565)
+Seat 3: carail (1185)
+husk posts small blind (80)
+klubb posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [Th, Qh]
+juniorgaty raises 2915 to 2915 [all in]
+STIW folds
+MIKE21WIN folds
+bobby71000 folds
+besac025 calls 1775 [all in]
+CyRILLOS78 folds
+jaber2 folds
+carail folds
+husk folds
+klubb folds
+--- 
+--- Dealing flop [2d, 3d, Ac]
+--- Dealing turn [3h]
+--- Dealing river [Td]
+---
+Summary:
+Main pot: 3790 won by besac025 (3790)
+Rake taken: €0
+Seat 4: husk (5115), net: -80
+Seat 5: klubb (2460), net: -160
+Seat 6: juniorgaty (1140), net: -1775, [6s, 6c] (TWO_PAIR SIX, THREE)
+Seat 7: STIW (2165)
+Seat 8: MIKE21WIN (4095)
+Seat 9: bobby71000 (1675)
+Seat 10: besac025 (3790), net: +2015, [Th, Qh] (TWO_PAIR TEN, THREE)
+Seat 1: CyRILLOS78 (4860)
+Seat 2: jaber2 (5565)
+Seat 3: carail (1185)
+***** End of hand T5-17943985-25 *****
+***** History for hand T5-17943985-26 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:32:18 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 4
+Players in round: 10
+Seat 5: klubb (2460)
+Seat 6: juniorgaty (1140)
+Seat 7: STIW (2165)
+Seat 8: MIKE21WIN (4095)
+Seat 9: bobby71000 (1675)
+Seat 10: besac025 (3790)
+Seat 1: CyRILLOS78 (4860)
+Seat 2: jaber2 (5565)
+Seat 3: carail (1185)
+Seat 4: husk (5115)
+klubb posts small blind (80)
+juniorgaty posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [9d, Ah]
+STIW calls 160
+MIKE21WIN folds
+bobby71000 folds
+besac025 folds
+CyRILLOS78 raises 960 to 960
+jaber2 folds
+carail folds
+husk folds
+klubb folds
+juniorgaty raises 980 to 1140 [all in]
+STIW calls 980
+CyRILLOS78 calls 180
+--- Dealing flop [7h, 9h, 2h]
+STIW bets 1025 [all in]
+CyRILLOS78 calls 1025
+--- Dealing flop [7h, 9h, 2h]
+--- Dealing turn [7d]
+--- Dealing river [7c]
+---
+Summary:
+Main pot: 3500 won by STIW (3500)
+Side pot 1: 2050 won by STIW (2050)
+Rake taken: €0
+Seat 5: klubb (2380), net: -80
+Seat 6: juniorgaty (0), net: -1140, [4d, Qc] (THREE_OF_A_KIND SEVEN)
+Seat 7: STIW (5550), net: +3385, [As, 9s] (FULL_HOUSE SEVEN, NINE)
+Seat 8: MIKE21WIN (4095)
+Seat 9: bobby71000 (1675)
+Seat 10: besac025 (3790)
+Seat 1: CyRILLOS78 (2695), net: -2165, [6s, 6h] (FULL_HOUSE SEVEN, SIX)
+Seat 2: jaber2 (5565)
+Seat 3: carail (1185)
+Seat 4: husk (5115)
+***** End of hand T5-17943985-26 *****
+***** History for hand T5-17943985-27 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:33:26 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 80/160, TC)
+User: besac025
+Button: seat 5
+Players in round: 9
+Seat 7: STIW (5550)
+Seat 8: MIKE21WIN (4095)
+Seat 9: bobby71000 (1675)
+Seat 10: besac025 (3790)
+Seat 1: CyRILLOS78 (2695)
+Seat 2: jaber2 (5565)
+Seat 3: carail (1185)
+Seat 4: husk (5115)
+Seat 5: klubb (2380)
+STIW posts big blind (160)
+---
+Dealing pocket cards
+Dealing to besac025: [7d, 5h]
+MIKE21WIN raises 320 to 320
+bobby71000 raises 560 to 560
+besac025 folds
+CyRILLOS78 raises 2695 to 2695 [all in]
+jaber2 folds
+carail folds
+husk calls 2695
+klubb folds
+STIW folds
+MIKE21WIN folds
+bobby71000 calls 1115 [all in]
+--- 
+--- Dealing flop [5s, 4h, Th]
+--- Dealing turn [8s]
+--- Dealing river [9h]
+---
+Summary:
+Main pot: 5505 won by bobby71000 (5505)
+Side pot 1: 2040 won by CyRILLOS78 (2040)
+Rake taken: €0
+Seat 7: STIW (5390), net: -160
+Seat 8: MIKE21WIN (3775), net: -320
+Seat 9: bobby71000 (5505), net: +3830, [8d, 8h] (THREE_OF_A_KIND EIGHT)
+Seat 10: besac025 (3790)
+Seat 1: CyRILLOS78 (2040), net: -655, [Ad, Js] (HIGH_CARD ACE)
+Seat 2: jaber2 (5565)
+Seat 3: carail (1185)
+Seat 4: husk (2420), net: -2695, [As, 2d] (HIGH_CARD ACE)
+Seat 5: klubb (2380)
+***** End of hand T5-17943985-27 *****
+***** History for hand T5-17943985-28 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:34:41 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 6
+Players in round: 9
+Seat 7: STIW (5390)
+Seat 8: MIKE21WIN (3775)
+Seat 9: bobby71000 (5505)
+Seat 10: besac025 (3790)
+Seat 1: CyRILLOS78 (2040)
+Seat 2: jaber2 (5565)
+Seat 3: carail (1185)
+Seat 4: husk (2420)
+Seat 5: klubb (2380)
+STIW posts small blind (100)
+MIKE21WIN posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [7c, Jh]
+bobby71000 folds
+besac025 folds
+CyRILLOS78 raises 1000 to 1000
+jaber2 folds
+carail folds
+husk folds
+klubb folds
+STIW folds
+MIKE21WIN folds
+---
+Summary:
+Main pot: 500 won by CyRILLOS78 (500)
+Rake taken: €0
+Seat 7: STIW (5290), net: -100
+Seat 8: MIKE21WIN (3575), net: -200
+Seat 9: bobby71000 (5505)
+Seat 10: besac025 (3790)
+Seat 1: CyRILLOS78 (2340), net: +300
+Seat 2: jaber2 (5565)
+Seat 3: carail (1185)
+Seat 4: husk (2420)
+Seat 5: klubb (2380)
+***** End of hand T5-17943985-28 *****
+***** History for hand T5-17943985-29 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:35:23 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 7
+Players in round: 10
+Seat 8: MIKE21WIN (3575)
+Seat 9: bobby71000 (5505)
+Seat 10: besac025 (3790)
+Seat 1: CyRILLOS78 (2340)
+Seat 2: jaber2 (5565)
+Seat 3: carail (1185)
+Seat 4: husk (2420)
+Seat 5: klubb (2380)
+Seat 6: x_KAYA (1145)
+Seat 7: STIW (5290)
+MIKE21WIN posts small blind (100)
+bobby71000 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [4s, 2d]
+besac025 folds
+CyRILLOS78 raises 600 to 600
+jaber2 folds
+carail folds
+husk folds
+klubb folds
+x_KAYA folds
+STIW folds
+MIKE21WIN calls 500
+bobby71000 calls 400
+--- Dealing flop [5s, Td, 7s]
+MIKE21WIN bets 1800
+bobby71000 calls 1800
+CyRILLOS78 folds
+--- Dealing turn [7c]
+MIKE21WIN bets 1175 [all in]
+bobby71000 calls 1175
+--- Dealing turn [7c]
+--- Dealing river [6c]
+---
+Summary:
+Main pot: 7750 won by MIKE21WIN (7750)
+Rake taken: €0
+Seat 8: MIKE21WIN (7750), net: +4175, [Ts, Ah] (TWO_PAIR TEN, SEVEN)
+Seat 9: bobby71000 (1930), net: -3575, [Tc, 9s] (TWO_PAIR TEN, SEVEN)
+Seat 10: besac025 (3790)
+Seat 1: CyRILLOS78 (1740), net: -600
+Seat 2: jaber2 (5565)
+Seat 3: carail (1185)
+Seat 4: husk (2420)
+Seat 5: klubb (2380)
+Seat 6: x_KAYA (1145)
+Seat 7: STIW (5290)
+***** End of hand T5-17943985-29 *****
+***** History for hand T5-17943985-30 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:36:31 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 8
+Players in round: 10
+Seat 9: bobby71000 (1930)
+Seat 10: besac025 (3790)
+Seat 1: CyRILLOS78 (1740)
+Seat 2: jaber2 (5565)
+Seat 3: carail (1185)
+Seat 4: husk (2420)
+Seat 5: klubb (2380)
+Seat 6: x_KAYA (1145)
+Seat 7: STIW (5290)
+Seat 8: MIKE21WIN (7750)
+bobby71000 posts small blind (100)
+besac025 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [2c, 4h]
+CyRILLOS78 folds
+jaber2 folds
+carail folds
+husk calls 200
+klubb folds
+x_KAYA folds
+STIW calls 200
+MIKE21WIN folds
+bobby71000 calls 100
+besac025 checks
+--- Dealing flop [7d, Kd, Qd]
+bobby71000 checks
+besac025 checks
+husk bets 200
+STIW calls 200
+bobby71000 folds
+besac025 folds
+--- Dealing turn [9h]
+husk checks
+STIW checks
+--- Dealing river [3c]
+husk checks
+STIW checks
+---
+Summary:
+Main pot: 1200 won by STIW (1200)
+Rake taken: €0
+Seat 9: bobby71000 (1730), net: -200
+Seat 10: besac025 (3590), net: -200
+Seat 1: CyRILLOS78 (1740)
+Seat 2: jaber2 (5565)
+Seat 3: carail (1185)
+Seat 4: husk (2020), net: -400, [Qh, Ah] (PAIR QUEEN)
+Seat 5: klubb (2380)
+Seat 6: x_KAYA (1145)
+Seat 7: STIW (6090), net: +800, [3h, Ks] (TWO_PAIR KING, THREE)
+Seat 8: MIKE21WIN (7750)
+***** End of hand T5-17943985-30 *****
+***** History for hand T5-17943985-31 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:37:39 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 9
+Players in round: 10
+Seat 10: besac025 (3590)
+Seat 1: CyRILLOS78 (1740)
+Seat 2: jaber2 (5565)
+Seat 3: carail (1185)
+Seat 4: husk (2020)
+Seat 5: klubb (2380)
+Seat 6: x_KAYA (1145)
+Seat 7: STIW (6090)
+Seat 8: MIKE21WIN (7750)
+Seat 9: bobby71000 (1730)
+besac025 posts small blind (100)
+CyRILLOS78 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [2s, Kc]
+jaber2 folds
+carail folds
+husk folds
+klubb folds
+x_KAYA folds
+STIW calls 200
+MIKE21WIN raises 400 to 400
+bobby71000 folds
+besac025 folds
+CyRILLOS78 raises 1300 to 1500
+STIW folds
+MIKE21WIN raises 2200 to 2600
+CyRILLOS78 calls 240 [all in]
+--- 
+--- Dealing flop [Th, 5c, 9d]
+--- Dealing turn [9c]
+--- Dealing river [7h]
+---
+Summary:
+Main pot: 3780 won by MIKE21WIN (3780)
+Rake taken: €0
+Seat 10: besac025 (3490), net: -100
+Seat 1: CyRILLOS78 (0), net: -1740, [Jd, Qd] (PAIR NINE)
+Seat 2: jaber2 (5565)
+Seat 3: carail (1185)
+Seat 4: husk (2020)
+Seat 5: klubb (2380)
+Seat 6: x_KAYA (1145)
+Seat 7: STIW (5890), net: -200
+Seat 8: MIKE21WIN (9790), net: +2040, [Ad, Qc] (PAIR NINE)
+Seat 9: bobby71000 (1730)
+***** End of hand T5-17943985-31 *****
+***** History for hand T5-17943985-32 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:38:46 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 10
+Players in round: 9
+Seat 2: jaber2 (5565)
+Seat 3: carail (1185)
+Seat 4: husk (2020)
+Seat 5: klubb (2380)
+Seat 6: x_KAYA (1145)
+Seat 7: STIW (5890)
+Seat 8: MIKE21WIN (9790)
+Seat 9: bobby71000 (1730)
+Seat 10: besac025 (3490)
+jaber2 posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [2s, 7h]
+carail folds
+husk calls 200
+klubb folds
+x_KAYA folds
+STIW calls 200
+MIKE21WIN folds
+bobby71000 folds
+besac025 folds
+jaber2 checks
+--- Dealing flop [Kc, 6c, 7d]
+jaber2 checks
+husk checks
+STIW bets 200
+jaber2 calls 200
+husk folds
+--- Dealing turn [Jd]
+jaber2 checks
+STIW bets 200
+jaber2 calls 200
+--- Dealing river [4c]
+jaber2 checks
+STIW bets 200
+jaber2 calls 200
+---
+Summary:
+Main pot: 1800 won by STIW (1800)
+Rake taken: €0
+Seat 2: jaber2 (4765), net: -800
+Seat 3: carail (1185)
+Seat 4: husk (1820), net: -200
+Seat 5: klubb (2380)
+Seat 6: x_KAYA (1145)
+Seat 7: STIW (6890), net: +1000, [Ks, Ac] (PAIR KING)
+Seat 8: MIKE21WIN (9790)
+Seat 9: bobby71000 (1730)
+Seat 10: besac025 (3490)
+***** End of hand T5-17943985-32 *****
+***** History for hand T5-17943985-33 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:40:02 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 100/200, TC)
+User: besac025
+Button: seat 1
+Players in round: 9
+Seat 2: jaber2 (4765)
+Seat 3: carail (1185)
+Seat 4: husk (1820)
+Seat 5: klubb (2380)
+Seat 6: x_KAYA (1145)
+Seat 7: STIW (6890)
+Seat 8: MIKE21WIN (9790)
+Seat 9: bobby71000 (1730)
+Seat 10: besac025 (3490)
+jaber2 posts small blind (100)
+carail posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [Jh, 4h]
+husk calls 200
+klubb folds
+x_KAYA folds
+STIW folds
+MIKE21WIN calls 200
+bobby71000 calls 200
+besac025 folds
+jaber2 folds
+carail checks
+--- Dealing flop [8c, 9d, 7d]
+carail checks
+husk checks
+MIKE21WIN checks
+bobby71000 checks
+--- Dealing turn [9h]
+carail checks
+husk checks
+MIKE21WIN checks
+bobby71000 bets 200
+carail folds
+husk calls 200
+MIKE21WIN raises 400 to 400
+bobby71000 calls 200
+husk calls 200
+--- Dealing river [Kd]
+husk bets 200
+MIKE21WIN calls 200
+bobby71000 calls 200
+---
+Summary:
+Main pot: 2700 won by husk (2700)
+Rake taken: €0
+Seat 2: jaber2 (4665), net: -100
+Seat 3: carail (985), net: -200
+Seat 4: husk (3720), net: +1900, [Qs, Kc] (TWO_PAIR KING, NINE)
+Seat 5: klubb (2380)
+Seat 6: x_KAYA (1145)
+Seat 7: STIW (6890)
+Seat 8: MIKE21WIN (8990), net: -800
+Seat 9: bobby71000 (930), net: -800
+Seat 10: besac025 (3490)
+***** End of hand T5-17943985-33 *****
+***** History for hand T5-17943985-34 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:42:51 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 100/200, ante: 20, TC)
+User: besac025
+Button: seat 2
+Players in round: 10
+Seat 3: carail (985)
+Seat 4: husk (3720)
+Seat 5: klubb (2380)
+Seat 6: x_KAYA (1145)
+Seat 7: STIW (6890)
+Seat 8: MIKE21WIN (8990)
+Seat 9: bobby71000 (930)
+Seat 10: besac025 (3490)
+Seat 1: electra333 (3640)
+Seat 2: jaber2 (4665)
+carail posts ante 20
+husk posts ante 20
+klubb posts ante 20
+x_KAYA posts ante 20
+STIW posts ante 20
+MIKE21WIN posts ante 20
+bobby71000 posts ante 20
+besac025 posts ante 20
+electra333 posts ante 20
+jaber2 posts ante 20
+carail posts small blind (100)
+husk posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [5h, 8c]
+klubb folds
+x_KAYA folds
+STIW calls 200
+MIKE21WIN calls 200
+bobby71000 raises 910 to 910 [all in]
+besac025 folds
+electra333 folds
+jaber2 folds
+carail folds
+husk folds
+STIW calls 710
+MIKE21WIN folds
+--- 
+--- Dealing flop [Ah, As, 6d]
+--- Dealing turn [2s]
+--- Dealing river [4h]
+---
+Summary:
+Main pot: 2520 won by bobby71000 (2520)
+Rake taken: €0
+Seat 3: carail (865), net: -120
+Seat 4: husk (3500), net: -220
+Seat 5: klubb (2360), net: -20
+Seat 6: x_KAYA (1125), net: -20
+Seat 7: STIW (5960), net: -930, [Jc, Tc] (PAIR ACE)
+Seat 8: MIKE21WIN (8770), net: -220
+Seat 9: bobby71000 (2520), net: +1590, [Ts, Qd] (PAIR ACE)
+Seat 10: besac025 (3470), net: -20
+Seat 1: electra333 (3620), net: -20
+Seat 2: jaber2 (4645), net: -20
+***** End of hand T5-17943985-34 *****
+***** History for hand T5-17943985-35 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:44:08 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 100/200, ante: 20, TC)
+User: besac025
+Button: seat 3
+Players in round: 10
+Seat 4: husk (3500)
+Seat 5: klubb (2360)
+Seat 6: x_KAYA (1125)
+Seat 7: STIW (5960)
+Seat 8: MIKE21WIN (8770)
+Seat 9: bobby71000 (2520)
+Seat 10: besac025 (3470)
+Seat 1: electra333 (3620)
+Seat 2: jaber2 (4645)
+Seat 3: carail (865)
+husk posts ante 20
+klubb posts ante 20
+x_KAYA posts ante 20
+STIW posts ante 20
+MIKE21WIN posts ante 20
+bobby71000 posts ante 20
+besac025 posts ante 20
+electra333 posts ante 20
+jaber2 posts ante 20
+carail posts ante 20
+husk posts small blind (100)
+klubb posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [9s, Ah]
+x_KAYA folds
+STIW calls 200
+MIKE21WIN folds
+bobby71000 folds
+besac025 folds
+electra333 folds
+jaber2 folds
+carail folds
+husk folds
+klubb checks
+--- Dealing flop [Jh, 9d, 4c]
+klubb bets 700
+STIW folds
+---
+Summary:
+Main pot: 700 won by klubb (700)
+Rake taken: €0
+Seat 4: husk (3380), net: -120
+Seat 5: klubb (2840), net: +480
+Seat 6: x_KAYA (1105), net: -20
+Seat 7: STIW (5740), net: -220
+Seat 8: MIKE21WIN (8750), net: -20
+Seat 9: bobby71000 (2500), net: -20
+Seat 10: besac025 (3450), net: -20
+Seat 1: electra333 (3600), net: -20
+Seat 2: jaber2 (4625), net: -20
+Seat 3: carail (845), net: -20
+***** End of hand T5-17943985-35 *****
+***** History for hand T5-17943985-36 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:45:06 GMT+0100 2010
+Table: Table #227 [17943985] (NO_LIMIT TEXAS_HOLDEM 100/200, ante: 20, TC)
+User: besac025
+Button: seat 4
+Players in round: 9
+Seat 5: klubb (2840)
+Seat 6: x_KAYA (1105)
+Seat 7: STIW (5740)
+Seat 8: MIKE21WIN (8750)
+Seat 10: besac025 (3450)
+Seat 1: electra333 (3600)
+Seat 2: jaber2 (4625)
+Seat 3: carail (845)
+Seat 4: husk (3380)
+klubb posts ante 20
+x_KAYA posts ante 20
+STIW posts ante 20
+MIKE21WIN posts ante 20
+besac025 posts ante 20
+electra333 posts ante 20
+jaber2 posts ante 20
+carail posts ante 20
+husk posts ante 20
+klubb posts small blind (100)
+x_KAYA posts big blind (200)
+---
+Dealing pocket cards
+Dealing to besac025: [8s, 3d]
+STIW calls 200
+MIKE21WIN folds
+besac025 folds
+electra333 folds
+jaber2 folds
+carail folds
+husk calls 200
+klubb folds
+x_KAYA checks
+--- Dealing flop [Qh, 9h, 2s]
+x_KAYA checks
+STIW checks
+husk bets 200
+x_KAYA folds
+STIW calls 200
+--- Dealing turn [8h]
+STIW checks
+husk checks
+--- Dealing river [9d]
+STIW checks
+husk bets 200
+STIW calls 200
+---
+Summary:
+Main pot: 1680 won by husk (1680)
+Rake taken: €0
+Seat 5: klubb (2720), net: -120
+Seat 6: x_KAYA (885), net: -220
+Seat 7: STIW (5120), net: -620
+Seat 8: MIKE21WIN (8730), net: -20
+Seat 10: besac025 (3430), net: -20
+Seat 1: electra333 (3580), net: -20
+Seat 2: jaber2 (4605), net: -20
+Seat 3: carail (825), net: -20
+Seat 4: husk (4440), net: +1060, [4d, Qs] (TWO_PAIR QUEEN, NINE)
+***** End of hand T5-17943985-36 *****
+***** History for hand T5-17944034-72 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:46:22 GMT+0100 2010
+Table: Table #178 [17944034] (NO_LIMIT TEXAS_HOLDEM 100/200, ante: 20, TC)
+User: besac025
+Button: seat 10
+Players in round: 9
+Seat 1: shienyos (775)
+Seat 2: lymar680 (30)
+Seat 3: lola532010 (700)
+Seat 4: KA40 (8725)
+Seat 5: besac025 (3430)
+Seat 6: lattahia (5525)
+Seat 7: gringoman (55)
+Seat 8: amndine_y (10000)
+Seat 9: mixupredator (35)
+shienyos posts ante 20
+lymar680 posts ante 20
+lola532010 posts ante 20
+KA40 posts ante 20
+besac025 posts ante 20
+lattahia posts ante 20
+gringoman posts ante 20
+amndine_y posts ante 20
+mixupredator posts ante 20
+shienyos posts small blind (100)
+lymar680 posts small blind (10) [all in]
+---
+Dealing pocket cards
+Dealing to besac025: [6c, Qd]
+lola532010 folds
+KA40 calls 200
+besac025 folds
+lattahia calls 200
+gringoman folds
+amndine_y calls 200
+mixupredator folds
+shienyos folds
+--- Dealing flop [Jd, 5d, 3d]
+KA40 checks
+lattahia bets 200
+amndine_y calls 200
+KA40 folds
+--- Dealing turn [Td]
+lattahia checks
+amndine_y checks
+--- Dealing river [6h]
+lattahia checks
+amndine_y checks
+---
+Summary:
+Main pot: 230 won by amndine_y (230)
+Side pot 1: 1060 won by amndine_y (1060)
+Rake taken: €0
+Seat 1: shienyos (655), net: -120
+Seat 2: lymar680 (0), net: -30, [2h, 9c] (HIGH_CARD JACK)
+Seat 3: lola532010 (680), net: -20
+Seat 4: KA40 (8505), net: -220
+Seat 5: besac025 (3410), net: -20
+Seat 6: lattahia (5105), net: -420, [Ts, Qc] (PAIR TEN)
+Seat 7: gringoman (35), net: -20
+Seat 8: amndine_y (10870), net: +870, [2c, 4c] (STRAIGHT SIX)
+Seat 9: mixupredator (15), net: -20
+***** End of hand T5-17944034-72 *****
+***** History for hand T5-17944034-73 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:47:01 GMT+0100 2010
+Table: Table #178 [17944034] (NO_LIMIT TEXAS_HOLDEM 125/250, ante: 25, TC)
+User: besac025
+Button: seat 1
+Players in round: 9
+Seat 3: lola532010 (680)
+Seat 4: KA40 (8505)
+Seat 5: besac025 (3410)
+Seat 6: lattahia (5105)
+Seat 7: gringoman (35)
+Seat 8: amndine_y (10870)
+Seat 9: mixupredator (15)
+Seat 10: Bkriss (325)
+Seat 1: shienyos (655)
+lola532010 posts ante 25
+KA40 posts ante 25
+besac025 posts ante 25
+lattahia posts ante 25
+gringoman posts ante 25
+amndine_y posts ante 25
+mixupredator posts ante 15
+Bkriss posts ante 25
+shienyos posts ante 25
+lola532010 posts big blind (250)
+---
+Dealing pocket cards
+Dealing to besac025: [9s, 8h]
+KA40 calls 250
+besac025 folds
+lattahia folds
+gringoman folds
+amndine_y folds
+Bkriss folds
+shienyos folds
+lola532010 checks
+--- Dealing flop [3h, Qc, 3s]
+lola532010 checks
+KA40 bets 250
+lola532010 folds
+--- Dealing flop [3h, Qc, 3s]
+--- Dealing turn [5d]
+--- Dealing river [Qs]
+---
+Summary:
+Main pot: 135 won by KA40 (135)
+Side pot 1: 580 won by KA40 (580)
+Rake taken: €0
+Seat 3: lola532010 (405), net: -275
+Seat 4: KA40 (8945), net: +440, [Jd, Qh] (FULL_HOUSE QUEEN, THREE)
+Seat 5: besac025 (3385), net: -25
+Seat 6: lattahia (5080), net: -25
+Seat 7: gringoman (10), net: -25
+Seat 8: amndine_y (10845), net: -25
+Seat 9: mixupredator (0), net: -15, [9c, 4c] (TWO_PAIR QUEEN, THREE)
+Seat 10: Bkriss (300), net: -25
+Seat 1: shienyos (630), net: -25
+***** End of hand T5-17944034-73 *****
+***** History for hand T5-17944034-74 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:47:24 GMT+0100 2010
+Table: Table #178 [17944034] (NO_LIMIT TEXAS_HOLDEM 125/250, ante: 25, TC)
+User: besac025
+Button: seat 2
+Players in round: 8
+Seat 3: lola532010 (405)
+Seat 4: KA40 (8945)
+Seat 5: besac025 (3385)
+Seat 6: lattahia (5080)
+Seat 7: gringoman (10)
+Seat 8: amndine_y (10845)
+Seat 10: Bkriss (300)
+Seat 1: shienyos (630)
+lola532010 posts ante 25
+KA40 posts ante 25
+besac025 posts ante 25
+lattahia posts ante 25
+gringoman posts ante 10
+amndine_y posts ante 25
+Bkriss posts ante 25
+shienyos posts ante 25
+lola532010 posts small blind (125)
+KA40 posts big blind (250)
+---
+Dealing pocket cards
+Dealing to besac025: [4h, 8d]
+besac025 folds
+lattahia folds
+amndine_y calls 250
+Bkriss folds
+shienyos folds
+lola532010 folds
+KA40 checks
+--- Dealing flop [8s, 5h, Qs]
+KA40 checks
+amndine_y checks
+--- Dealing turn [Kc]
+KA40 checks
+amndine_y checks
+--- Dealing river [9h]
+KA40 checks
+amndine_y checks
+---
+Summary:
+Main pot: 80 won by gringoman (80)
+Side pot 1: 730 won by KA40 (365), amndine_y (365)
+Rake taken: €0
+Seat 3: lola532010 (255), net: -150
+Seat 4: KA40 (9035), net: +90, [Tc, 2c] (HIGH_CARD KING)
+Seat 5: besac025 (3360), net: -25
+Seat 6: lattahia (5055), net: -25
+Seat 7: gringoman (80), net: +70, [Js, 9s] (PAIR NINE)
+Seat 8: amndine_y (10935), net: +90, [7h, Th] (HIGH_CARD KING)
+Seat 10: Bkriss (275), net: -25
+Seat 1: shienyos (605), net: -25
+***** End of hand T5-17944034-74 *****
+***** History for hand T5-17944034-75 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:48:03 GMT+0100 2010
+Table: Table #178 [17944034] (NO_LIMIT TEXAS_HOLDEM 125/250, ante: 25, TC)
+User: besac025
+Button: seat 3
+Players in round: 10
+Seat 4: KA40 (9035)
+Seat 5: besac025 (3360)
+Seat 6: lattahia (5055)
+Seat 7: gringoman (80)
+Seat 8: amndine_y (10935)
+Seat 9: wallyd (60)
+Seat 10: Bkriss (275)
+Seat 1: shienyos (605)
+Seat 2: HELENE8687 (1315)
+Seat 3: lola532010 (255)
+KA40 posts ante 25
+besac025 posts ante 25
+lattahia posts ante 25
+gringoman posts ante 25
+amndine_y posts ante 25
+wallyd posts ante 25
+Bkriss posts ante 25
+shienyos posts ante 25
+HELENE8687 posts ante 25
+lola532010 posts ante 25
+KA40 posts small blind (125)
+besac025 posts big blind (250)
+---
+Dealing pocket cards
+Dealing to besac025: [Qs, Js]
+lattahia raises 500 to 500
+gringoman folds
+amndine_y calls 500
+wallyd folds
+Bkriss folds
+shienyos folds
+HELENE8687 folds
+lola532010 folds
+KA40 calls 375
+besac025 calls 250
+--- Dealing flop [Tc, Kh, 5h]
+KA40 bets 1625
+besac025 folds
+lattahia folds
+amndine_y folds
+---
+Summary:
+Main pot: 2250 won by KA40 (2250)
+Rake taken: €0
+Seat 4: KA40 (10760), net: +1725
+Seat 5: besac025 (2835), net: -525
+Seat 6: lattahia (4530), net: -525
+Seat 7: gringoman (55), net: -25
+Seat 8: amndine_y (10410), net: -525
+Seat 9: wallyd (35), net: -25
+Seat 10: Bkriss (250), net: -25
+Seat 1: shienyos (580), net: -25
+Seat 2: HELENE8687 (1290), net: -25
+Seat 3: lola532010 (230), net: -25
+***** End of hand T5-17944034-75 *****
+***** History for hand T5-17944034-76 (TOURNAMENT: "Tournoi gratuit 10 000€", R-279-4, buy-in: €0) *****
+Start hand: Wed Dec 29 21:48:40 GMT+0100 2010
+Table: Table #178 [17944034] (NO_LIMIT TEXAS_HOLDEM 125/250, ante: 25, TC)
+User: besac025
+Button: seat 4
+Players in round: 10
+Seat 5: besac025 (2835)
+Seat 6: lattahia (4530)
+Seat 7: gringoman (55)
+Seat 8: amndine_y (10410)
+Seat 9: wallyd (35)
+Seat 10: Bkriss (250)
+Seat 1: shienyos (580)
+Seat 2: HELENE8687 (1290)
+Seat 3: lola532010 (230)
+Seat 4: KA40 (10760)
+besac025 posts ante 25
+lattahia posts ante 25
+gringoman posts ante 25
+amndine_y posts ante 25
+wallyd posts ante 25
+Bkriss posts ante 25
+shienyos posts ante 25
+HELENE8687 posts ante 25
+lola532010 posts ante 25
+KA40 posts ante 25
+besac025 posts small blind (125)
+lattahia posts big blind (250)
+---
+Dealing pocket cards
+Dealing to besac025: [6d, 4d]
+gringoman folds
+amndine_y folds
+wallyd folds
+Bkriss folds
+shienyos folds
+HELENE8687 folds
+lola532010 folds
+KA40 raises 500 to 500
+besac025 calls 375
+lattahia calls 250
+--- Dealing flop [8s, Ks, Jc]
+besac025 checks
+lattahia checks
+KA40 checks
+--- Dealing turn [Td]
+besac025 bets 875
+lattahia folds
+KA40 calls 875
+--- Dealing river [4h]
+besac025 bets 1435 [all in]
+KA40 calls 1435
+---
+Summary:
+Main pot: 6370 won by KA40 (6370)
+Rake taken: €0
+Seat 5: besac025 (0), net: -2835, [6d, 4d] (PAIR FOUR)
+Seat 6: lattahia (4005), net: -525
+Seat 7: gringoman (30), net: -25
+Seat 8: amndine_y (10385), net: -25
+Seat 9: wallyd (10), net: -25
+Seat 10: Bkriss (225), net: -25
+Seat 1: shienyos (555), net: -25
+Seat 2: HELENE8687 (1265), net: -25
+Seat 3: lola532010 (205), net: -25
+Seat 4: KA40 (14295), net: +3535, [Js, Jd] (THREE_OF_A_KIND JACK)
+***** End of hand T5-17944034-76 *****

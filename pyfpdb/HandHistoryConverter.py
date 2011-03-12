@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2010 Carl Gherardi
+#Copyright 2008-2011 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -304,14 +304,14 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             elif gametype['base'] == 'draw':
                 hand = Hand.DrawHand(self.config, self, self.sitename, gametype, handText)
         else:
-            log.error(_("Unsupported game type: %s" % gametype))
-            raise FpdbParseError(_("Unsupported game type: %s" % gametype))
+            log.error(_("Unsupported game type: %s") % gametype)
+            raise FpdbParseError(_("Unsupported game type: %s") % gametype)
 
         if hand:
             #hand.writeHand(self.out_fh)
             return hand
         else:
-            log.error(_("Unsupported game type: %s" % gametype))
+            log.error(_("Unsupported game type: %s") % gametype)
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
 
 

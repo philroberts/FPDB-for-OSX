@@ -4,7 +4,7 @@
 
 Create and manage the database objects.
 """
-#    Copyright 2008-2010, Ray E. Barker
+#    Copyright 2008-2011, Ray E. Barker
 #
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -1116,7 +1116,7 @@ class Database:
             self.connection.set_isolation_level(1)   # go back to normal isolation level
         self.commit() # seems to clear up errors if there were any in postgres
         ptime = time() - stime
-        print _("prepare import took %s seconds" % ptime)
+        print (_("prepare import took %s seconds") % ptime)
     #end def prepareBulkImport
 
     def afterBulkImport(self):
@@ -1191,7 +1191,7 @@ class Database:
             self.connection.set_isolation_level(1)   # go back to normal isolation level
         self.commit()   # seems to clear up errors if there were any in postgres
         atime = time() - stime
-        print (_("After import took %s seconds" % atime))
+        print (_("After import took %s seconds") % atime)
     #end def afterBulkImport
 
     def drop_referential_integrity(self):
@@ -2360,8 +2360,9 @@ class Database:
 
     def createOrUpdateTourney(self, hand, source):#note: this method is used on Hand and TourneySummary objects
         cursor = self.get_cursor()
-        cursor.execute (self.sql.query['getTourneyByTourneyNo'].replace('%s', self.sql.query['placeholder']),
-                        (hand.siteId, hand.tourNo))
+        q = self.sql.query['getTourneyByTourneyNo'].replace('%s', self.sql.query['placeholder'])
+        cursor.execute(q, (hand.siteId, hand.tourNo))
+
         columnNames=[desc[0] for desc in cursor.description]
         result=cursor.fetchone()
 
@@ -2386,9 +2387,12 @@ class Database:
                     #    if (resultDict[ev] < hand.startTime):
                     #        hand.startTime=resultDict[ev]
                 if updateDb:
-                    cursor.execute (self.sql.query['updateTourney'].replace('%s', self.sql.query['placeholder']),
-                           (hand.entries, hand.prizepool, hand.startTime, hand.endTime, hand.tourneyName,
-                            hand.matrixIdProcessed, hand.totalRebuyCount, hand.totalAddOnCount, hand.comment, hand.commentTs, tourneyId))
+                    q = self.sql.query['updateTourney'].replace('%s', self.sql.query['placeholder'])
+                    row = (hand.entries, hand.prizepool, hand.startTime, hand.endTime, hand.tourneyName,
+                            hand.matrixIdProcessed, hand.totalRebuyCount, hand.totalAddOnCount, hand.comment,
+                            hand.commentTs, tourneyId
+                          )
+                    cursor.execute(q, row)
         else:
             if source=="HHC":
                 cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
@@ -2437,9 +2441,19 @@ class Database:
                         elif getattr(hand, handAttribute)[player]!=None and resultDict[ev]==None:#object has this value but DB doesnt, so update DB
                             updateDb=True
                     if updateDb:
-                        cursor.execute (self.sql.query['updateTourneysPlayer'].replace('%s', self.sql.query['placeholder']),
-                               (hand.ranks[player], hand.winnings[player], hand.winningsCurrency[player],
-                                 hand.rebuyCounts[player], hand.addOnCounts[player], hand.koCounts[player], tourneysPlayersIds[player[1]]))
+                        q = self.sql.query['updateTourneysPlayer'].replace('%s', self.sql.query['placeholder'])
+                        inputs = (hand.ranks[player],
+                                  hand.winnings[player],
+                                  hand.winningsCurrency[player],
+                                  hand.rebuyCounts[player],
+                                  hand.addOnCounts[player],
+                                  hand.koCounts[player],
+                                  tourneysPlayersIds[player[1]]
+                                 )
+                        #print q
+                        #pp = pprint.PrettyPrinter(indent=4)
+                        #pp.pprint(inputs)
+                        cursor.execute(q, inputs)
             else:
                 if source=="HHC":
                     cursor.execute (self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),

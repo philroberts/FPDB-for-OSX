@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#    Copyright 2008-2010, Carl Gherardi
+#    Copyright 2008-2011, Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -156,7 +156,7 @@ class OnGame(HandHistoryConverter):
         m = self.re_HandInfo.search(handText)
         if not m:
             tmp = handText[0:100]
-            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
             log.error(_("determineGameType: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
@@ -172,7 +172,7 @@ class OnGame(HandHistoryConverter):
                 info['limitType'] = self.limits[mg['LIMIT']]
             else:
                 tmp = handText[0:100]
-                log.error(_("determineGameType: limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
+                log.error(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
                 log.error(_("determineGameType: Raising FpdbParseError"))
                 raise FpdbParseError(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
         if 'GAME' in mg:
@@ -206,8 +206,8 @@ class OnGame(HandHistoryConverter):
                     tzoffset = a.group('OFFSET')
                 else:
                     datetimestr = "2010/Jan/01 01:01:01"
-                    log.error(_("readHandInfo: DATETIME not matched: '%s'" % info[key]))
-                    print "DEBUG: readHandInfo: DATETIME not matched: '%s'" % info[key]
+                    log.error(_("readHandInfo: DATETIME not matched: '%s'") % info[key])
+                    print (_("DEBUG: ") + _("readHandInfo: DATETIME not matched: '%s'") % info[key])
                 # TODO: Manually adjust time against OFFSET
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%b/%d %H:%M:%S") # also timezone at end, e.g. " ET"
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, tzoffset, "UTC")
@@ -334,7 +334,7 @@ class OnGame(HandHistoryConverter):
             elif action.group('ATYPE') == ' stands pat':
                 hand.addStandsPat( street, action.group('PNAME'))
             else:
-                print _("DEBUG: unimplemented readAction: '%s' '%s'") %(action.group('PNAME'),action.group('ATYPE'),)
+                print (_("DEBUG: ") + _("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):

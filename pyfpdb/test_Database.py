@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2010 Carl Gherardi
+#Copyright 2008-2011 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -47,8 +47,8 @@ def testSQLiteVarianceFunction():
     cur.execute("SELECT variance(i) from test")
     result = cur.fetchone()[0]
 
-    print _("DEBUG: Testing variance function")
-    print _("DEBUG: result: %s expecting: 0.666666 (result-expecting ~= 0.0): %s") % (result, (result - 0.66666))
+    print (_("DEBUG: ") + _("Testing variance function"))
+    print (_("DEBUG: ") + _("result: %s expecting: 0.666666 (result-expecting ~= 0.0): %s") % (result, (result - 0.66666)))
     cur.execute("DROP TABLE test")
     assert (result - 0.66666) <= 0.0001
 
