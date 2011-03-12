@@ -1519,6 +1519,7 @@ class Database:
         c.execute("INSERT INTO Sites (name,code) VALUES ('Betfair', 'BF')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('Absolute', 'AB')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('PartyPoker', 'PP')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('PacificPoker', 'P8')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('Partouche', 'PA')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('Carbon', 'CA')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('PKR', 'PK')")

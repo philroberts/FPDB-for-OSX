@@ -172,6 +172,8 @@ def compare(leaf, importer, errors, site):
     # Test if this is a hand history file
     if filename.endswith('.txt'):
         # test if there is a .hp version of the file
+        print "Site: %s" % site
+        print "Filename: %s" % filename
         importer.addBulkImportImportFileOrDir(filename, site=site)
         (stored, dups, partial, errs, ttime) = importer.runImport()
 
@@ -213,7 +215,7 @@ def usage():
     print "Run tests for a sinlge site:"
     print "\t./TestHandsPlayers -s <Sitename>"
     print "Run tests for a sinlge file in a site:"
-    print "\t./TestHandsPlayers -s <Sitename> -f <filname>"
+    print "\t./TestHandsPlayers -s <Sitename> -f <filename>"
     sys.exit(0)
 
 def main(argv=None):
@@ -255,6 +257,7 @@ def main(argv=None):
     importer.setCallHud(False)
     importer.setFakeCacheHHC(True)
 
+    PacificPokerErrors= FpdbError('PacificPoker')
     PokerStarsErrors  = FpdbError('PokerStars')
     FTPErrors         = FpdbError('Full Tilt Poker')
     PartyPokerErrors  = FpdbError('Party Poker')
@@ -271,7 +274,7 @@ def main(argv=None):
     WinamaxErrors     = FpdbError('Winamax')
 
     ErrorsList = [
-                    PokerStarsErrors, FTPErrors, PartyPokerErrors,
+                    PacificPokerErrors, PokerStarsErrors, FTPErrors, PartyPokerErrors,
                     BetfairErrors, OnGameErrors, AbsoluteErrors,
                     EverleafErrors, CarbonErrors, PKRErrors,
                     iPokerErrors, WinamaxErrors, UltimateBetErrors,
@@ -279,6 +282,7 @@ def main(argv=None):
                 ]
 
     sites = {
+                'PacificPoker' : False,
                 'PokerStars' : False,
                 'Full Tilt Poker' : False,
                 'PartyPoker' : False,
@@ -300,6 +304,11 @@ def main(argv=None):
             sites[s] = True
     else:
         sites[options.sitename] = True
+
+    if sites['PacificPoker'] == True and not single_file_test:
+        walk_testfiles("regression-test-files/cash/PacificPoker/", compare, importer, PacificPokerErrors, "PacificPoker")
+    elif sites['PacificPoker'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, PacificPokerErrors, "PacificPoker")
 
     if sites['PokerStars'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
