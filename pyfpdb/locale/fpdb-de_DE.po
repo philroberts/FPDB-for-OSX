@@ -3870,7 +3870,9 @@ msgstr "Status: Verbunden mit %s-Datenbank namens %s auf Host: %s"
 msgid ""
 "\n"
 "Global lock taken by %s"
-msgstr "Globaler Lock durch %s ergriffen"
+msgstr""
+"\n"
+"Globaler Lock durch %s ergriffen"
 
 #: fpdb.pyw:961
 msgid ""

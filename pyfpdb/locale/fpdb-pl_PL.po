@@ -3466,13 +3466,17 @@ msgstr "Liczba rozdań: "
 msgid ""
 "\n"
 "Number of Tourneys: "
-msgstr "Liczba turniejów: "
+msgstr ""
+"\n"
+"Liczba turniejów: "
 
 #: fpdb.pyw:349
 msgid ""
 "\n"
 "Number of TourneyTypes: "
-msgstr "Liczba rodzajów turnieju: "
+msgstr ""
+"\n"
+"Liczba rodzajów turnieju: "
 
 #: fpdb.pyw:350
 msgid "Database Statistics"
@@ -3551,7 +3555,7 @@ msgid ""
 "and you will have to re-import your histories.\n"
 msgstr ""
 " Jeżeli już istnieją tabele w bazie danych %s na %s zostaną one usunięte i "
-"będziesz musiał ponownie zaimportować historię rozdań."
+"będziesz musiał ponownie zaimportować historię rozdań.\n"
 
 #: fpdb.pyw:547
 msgid "This may take a while."
@@ -3963,7 +3967,9 @@ msgstr ""
 msgid ""
 "\n"
 "Any major error will be reported there _only_.\n"
-msgstr "Błędy o dużym znaczeniu będą kierowane tylko tam.\n"
+msgstr ""
+"\n"
+"Błędy o dużym znaczeniu będą kierowane tylko tam.\n"
 
 #: fpdb.pyw:1208
 msgid "fpdb starting ..."

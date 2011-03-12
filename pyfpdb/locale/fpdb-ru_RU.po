@@ -3922,8 +3922,7 @@ msgstr ""
 "пройдите по ссылке https://lists.sourceforge.net/lists/listinfo/fpdb-"
 "announce и подпишитесь на уведомления.\n"
 " Если Вы хотите следить за разработкой более пристально, подпишитесь здесь "
-"https://lists.sourceforge.net/lists/listinfo/fpdb-main.\n"
-"\n"
+"https://lists.sourceforge.net/lists/listinfo/fpdb-main."
 
 #: fpdb.pyw:1084
 msgid "Help"
