@@ -219,8 +219,8 @@ class PokerStars(HandHistoryConverter):
         m  = self.re_HandInfo.search(hand.handText,re.DOTALL)
         m2 = self.re_GameInfo.search(hand.handText)
         if m is None or m2 is None:
-            log.error("Didn't match re_HandInfo")
-            raise FpdbParseError(_("No match in readHandInfo."))
+            log.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
 
         info.update(m.groupdict())
         info.update(m2.groupdict())
@@ -262,7 +262,7 @@ class PokerStars(HandHistoryConverter):
                             hand.buyinCurrency="PSFP"
                         else:
                             #FIXME: handle other currencies, play money
-                            raise FpdbParseError(_("Failed to detect currency: '%s'") % info[key])
+                            raise FpdbParseError(_("Failed to detect currency. Hand ID: %s: '%s'") % (hand.handid, info[key]))
 
                         info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
                         

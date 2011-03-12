@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-03-11 07:06+CET\n"
+"POT-Creation-Date: 2011-03-12 21:23+CET\n"
 "PO-Revision-Date: 2011-03-04 18:18+0000\n"
 "Last-Translator: Lexej <alexej@glyvin.com>\n"
 "Language-Team: Russian (Russia) <>\n"
@@ -38,13 +38,18 @@ msgstr "Невозможно определить тип игры: '%s'"
 msgid "determineGameType: Raising FpdbParseError"
 msgstr "determineGameType: FpdbParseError"
 
-#: AbsoluteToFpdb.py:204 AbsoluteToFpdb.py:205
+#: AbsoluteToFpdb.py:204 AbsoluteToFpdb.py:205 BetfairToFpdb.py:108
+#: BetfairToFpdb.py:109 CarbonToFpdb.py:163 CarbonToFpdb.py:165
+#: EverestToFpdb.py:145 EverestToFpdb.py:147 EverleafToFpdb.py:145
+#: PokerStarsToFpdb.py:222 PokerStarsToFpdb.py:223 iPokerToFpdb.py:156
+#: iPokerToFpdb.py:158
 #, fuzzy
-msgid "Didn't match re_HandInfo: '%s'"
-msgstr "re_HandInfo не соответствует"
+msgid "No match in readHandInfo: '%s'"
+msgstr "Нет соответствия в readHandInfo."
 
 #: AbsoluteToFpdb.py:207
-msgid "readHandInfo: File name didn't match re_*InfoFromFilename"
+#, fuzzy
+msgid "File name didn't match re_*InfoFromFilename"
 msgstr "readHandInfo: имя файла не соответствует re_*InfoFromFilename"
 
 #: AbsoluteToFpdb.py:208
@@ -78,25 +83,25 @@ msgstr "Нет малого блайнда"
 msgid "Absolute readStudPlayerCards is only a stub."
 msgstr "Absolute readStudPlayerCards это заглушка."
 
-#: AbsoluteToFpdb.py:351 CarbonToFpdb.py:267 EverestToFpdb.py:234
-#: EverestToFpdb.py:235 EverleafToFpdb.py:288
-#, fuzzy
-msgid "Unimplemented readAction: %s %s"
-msgstr "DEBUG: не выполнена readAction: '%s' '%s'"
+#: AbsoluteToFpdb.py:351 BetfairToFpdb.py:199 CarbonToFpdb.py:267
+#: EverestToFpdb.py:234 EverestToFpdb.py:235 OnGameToFpdb.py:337
+#: PartyPokerToFpdb.py:536 PokerStarsToFpdb.py:439
+msgid "Unimplemented readAction: '%s' '%s'"
+msgstr ""
 
-#: AbsoluteToFpdb.py:401 BetfairToFpdb.py:222 CarbonToFpdb.py:298
+#: AbsoluteToFpdb.py:401 BetfairToFpdb.py:222 CarbonToFpdb.py:297
 #: EverleafToFpdb.py:326 FulltiltToFpdb.py:784 PartyPokerToFpdb.py:577
 #: PokerStarsToFpdb.py:467 Win2dayToFpdb.py:368 iPokerToFpdb.py:291
 msgid "parse input hand history"
 msgstr "разбор файлов истории"
 
-#: AbsoluteToFpdb.py:402 BetfairToFpdb.py:223 CarbonToFpdb.py:299
+#: AbsoluteToFpdb.py:402 BetfairToFpdb.py:223 CarbonToFpdb.py:298
 #: EverleafToFpdb.py:327 FulltiltToFpdb.py:785 PartyPokerToFpdb.py:578
 #: PokerStarsToFpdb.py:468 Win2dayToFpdb.py:369 iPokerToFpdb.py:292
 msgid "output translation to"
 msgstr "перенаправить перевод"
 
-#: AbsoluteToFpdb.py:403 BetfairToFpdb.py:224 CarbonToFpdb.py:300
+#: AbsoluteToFpdb.py:403 BetfairToFpdb.py:224 CarbonToFpdb.py:299
 #: EverleafToFpdb.py:328 FulltiltToFpdb.py:786 PartyPokerToFpdb.py:579
 #: PokerStarsToFpdb.py:469 Win2dayToFpdb.py:370 iPokerToFpdb.py:293
 msgid "follow (tail -f) the input"
@@ -110,12 +115,6 @@ msgstr "Не удалось найти файл %s"
 #, fuzzy
 msgid "Output being written to %s"
 msgstr "Вывод будет записан в файл "
-
-#: BetfairToFpdb.py:108 BetfairToFpdb.py:109 CarbonToFpdb.py:163
-#: CarbonToFpdb.py:165 EverestToFpdb.py:145 EverestToFpdb.py:147
-#: PokerStarsToFpdb.py:223
-msgid "No match in readHandInfo."
-msgstr "Нет соответствия в readHandInfo."
 
 #: BetfairToFpdb.py:123
 msgid "readPlayerStacks: Less than 2 players found in a hand"
@@ -132,11 +131,6 @@ msgstr "Bring-In не найден"
 #: PokerStarsToFpdb.py:439 Win2dayToFpdb.py:341 WinamaxToFpdb.py:406
 #: test_Database.py:50 test_Database.py:51
 msgid "DEBUG: "
-msgstr ""
-
-#: BetfairToFpdb.py:199 OnGameToFpdb.py:337 PartyPokerToFpdb.py:536
-#: PokerStarsToFpdb.py:439
-msgid "Unimplemented readAction: '%s' '%s'"
 msgstr ""
 
 #: Card.py:431
@@ -230,14 +224,8 @@ msgstr ""
 msgid "Configuration file %s not found.  Using defaults."
 msgstr ""
 
-#: Configuration.py:714
+#: Configuration.py:714 Configuration.py:715
 msgid "Reading configuration file %s"
-msgstr ""
-
-#: Configuration.py:715
-msgid ""
-"\n"
-"Reading configuration file %s\n"
 msgstr ""
 
 #: Configuration.py:721
@@ -566,13 +554,14 @@ msgstr ""
 msgid "Unable to recognise handinfo from: '%s'"
 msgstr ""
 
-#: EverleafToFpdb.py:145 iPokerToFpdb.py:156 iPokerToFpdb.py:158
-msgid "Didn't match re_HandInfo"
-msgstr "re_HandInfo не соответствует"
-
 #: EverleafToFpdb.py:265
 msgid "Everleaf readStudPlayerCards is only a stub."
 msgstr ""
+
+#: EverleafToFpdb.py:288
+#, fuzzy
+msgid "Unimplemented readAction: %s %s"
+msgstr "DEBUG: не выполнена readAction: '%s' '%s'"
 
 #: EverleafToFpdb.py:297
 msgid "readShowdownActions %s %s"
@@ -602,17 +591,17 @@ msgstr ""
 msgid "Between:"
 msgstr ""
 
-#: Filters.py:55
-msgid "Games:"
+#: Filters.py:55 GuiPrefs.py:33
+msgid "Games"
+msgstr ""
+
+#: Filters.py:55 GuiPrefs.py:33
+msgid "Sites"
 msgstr ""
 
 #: Filters.py:55 TourneyFilters.py:52
 msgid "Hero:"
 msgstr "Херо:"
-
-#: Filters.py:55 TourneyFilters.py:52
-msgid "Sites:"
-msgstr ""
 
 #: Filters.py:56
 msgid "Limits:"
@@ -787,7 +776,7 @@ msgstr ""
 
 #: FulltiltToFpdb.py:267
 #, fuzzy
-msgid "readHandInfo: Raising FpdbParseError"
+msgid "Raising FpdbParseError"
 msgstr "determineGameType: FpdbParseError"
 
 #: FulltiltToFpdb.py:369
@@ -1201,7 +1190,7 @@ msgid "Host Computer"
 msgstr ""
 
 #: GuiDatabase.py:481
-msgid "addDB.run: response is %s accept is %s"
+msgid "addDB.run: response is %s, accept is %s"
 msgstr ""
 
 #: GuiDatabase.py:495
@@ -1278,99 +1267,99 @@ msgstr ""
 
 #: GuiGraphViewer.py:49 GuiTourneyGraphViewer.py:49
 msgid ""
-"Failed to load libs for graphing, graphing will not function. Please\n"
-"                 install numpy and matplotlib if you want to use graphs."
+"Failed to load libs for graphing, graphing will not function. Please install "
+"numpy and matplotlib if you want to use graphs."
 msgstr ""
 
-#: GuiGraphViewer.py:51 GuiTourneyGraphViewer.py:51
+#: GuiGraphViewer.py:50 GuiTourneyGraphViewer.py:50
 msgid ""
-"This is of no consequence for other parts of the program, e.g. import \n"
-"         and HUD are NOT affected by this problem."
+"This is of no consequence for other parts of the program, e.g. import and "
+"HUD are NOT affected by this problem."
 msgstr ""
 
-#: GuiGraphViewer.py:85 GuiTourneyGraphViewer.py:84
+#: GuiGraphViewer.py:83 GuiTourneyGraphViewer.py:82
 msgid "Refresh _Graph"
 msgstr ""
 
-#: GuiGraphViewer.py:87 GuiTourneyGraphViewer.py:86
+#: GuiGraphViewer.py:85 GuiTourneyGraphViewer.py:84
 msgid "_Export to File"
 msgstr ""
 
-#: GuiGraphViewer.py:135 GuiGraphViewer.py:251 GuiSessionViewer.py:372
-#: GuiTourneyGraphViewer.py:134 GuiTourneyGraphViewer.py:232
+#: GuiGraphViewer.py:133 GuiGraphViewer.py:249 GuiSessionViewer.py:372
+#: GuiTourneyGraphViewer.py:132 GuiTourneyGraphViewer.py:230
 msgid "***Error: "
 msgstr ""
 
-#: GuiGraphViewer.py:168 GuiPositionalStats.py:168 GuiRingPlayerStats.py:270
-#: GuiSessionViewer.py:212 GuiTourneyGraphViewer.py:159
+#: GuiGraphViewer.py:166 GuiPositionalStats.py:168 GuiRingPlayerStats.py:270
+#: GuiSessionViewer.py:212 GuiTourneyGraphViewer.py:157
 #: GuiTourneyPlayerStats.py:268
 msgid "No sites selected - defaulting to PokerStars"
 msgstr ""
 
-#: GuiGraphViewer.py:173 GuiPositionalStats.py:171 GuiRingPlayerStats.py:273
-#: GuiSessionViewer.py:215 GuiTourneyGraphViewer.py:164
+#: GuiGraphViewer.py:171 GuiPositionalStats.py:171 GuiRingPlayerStats.py:273
+#: GuiSessionViewer.py:215 GuiTourneyGraphViewer.py:162
 #: GuiTourneyPlayerStats.py:271
 msgid "No player ids found"
 msgstr ""
 
-#: GuiGraphViewer.py:178 GuiPositionalStats.py:174 GuiRingPlayerStats.py:276
+#: GuiGraphViewer.py:176 GuiPositionalStats.py:174 GuiRingPlayerStats.py:276
 #: GuiSessionViewer.py:218
 msgid "No limits found"
 msgstr ""
 
-#: GuiGraphViewer.py:188 GuiTourneyGraphViewer.py:174
+#: GuiGraphViewer.py:186 GuiTourneyGraphViewer.py:172
 msgid "Graph generated in: %s"
 msgstr ""
 
-#: GuiGraphViewer.py:193
+#: GuiGraphViewer.py:191
 msgid "Hands"
 msgstr ""
 
-#: GuiGraphViewer.py:198 GuiTourneyGraphViewer.py:182
+#: GuiGraphViewer.py:196 GuiTourneyGraphViewer.py:180
 msgid "No Data for Player(s) Found"
 msgstr ""
 
-#: GuiGraphViewer.py:221
+#: GuiGraphViewer.py:219
 msgid ""
 "Hands: %d\n"
 "Profit: $%.2f"
 msgstr ""
 
-#: GuiGraphViewer.py:222
+#: GuiGraphViewer.py:220
 msgid "Showdown: $%.2f"
 msgstr ""
 
-#: GuiGraphViewer.py:223
+#: GuiGraphViewer.py:221
 msgid "Non-showdown: $%.2f"
 msgstr ""
 
-#: GuiGraphViewer.py:231
+#: GuiGraphViewer.py:229
 msgid "Profit graph for ring games"
 msgstr ""
 
-#: GuiGraphViewer.py:234
+#: GuiGraphViewer.py:232
 msgid ""
 "Hands: %d\n"
 "Profit (%s): %.2f"
 msgstr ""
 
-#: GuiGraphViewer.py:236
+#: GuiGraphViewer.py:234
 msgid "Showdown (%s): %.2f"
 msgstr ""
 
-#: GuiGraphViewer.py:238
+#: GuiGraphViewer.py:236
 msgid "Non-showdown (%s): %.2f"
 msgstr ""
 
-#: GuiGraphViewer.py:365 GuiTourneyGraphViewer.py:276
+#: GuiGraphViewer.py:363 GuiTourneyGraphViewer.py:274
 msgid "Please choose the directory you wish to export to:"
 msgstr ""
 
-#: GuiGraphViewer.py:378 GuiTourneyGraphViewer.py:289
+#: GuiGraphViewer.py:376 GuiTourneyGraphViewer.py:287
 msgid "Closed, no graph exported"
 msgstr ""
 
-#: GuiGraphViewer.py:396 GuiTourneyGraphViewer.py:307
+#: GuiGraphViewer.py:394 GuiTourneyGraphViewer.py:305
 msgid "Graph created"
 msgstr ""
 
@@ -1499,14 +1488,6 @@ msgstr ""
 msgid "Import"
 msgstr "Автоимпорт"
 
-#: GuiPrefs.py:33
-msgid "Games"
-msgstr ""
-
-#: GuiPrefs.py:33
-msgid "Sites"
-msgstr ""
-
 #: GuiPrefs.py:34
 msgid "Popup Windows"
 msgstr ""
@@ -1577,7 +1558,7 @@ msgid "Setting"
 msgstr ""
 
 #: GuiPrefs.py:78
-msgid "Value  (double-click to change)"
+msgid "Value (double-click to change)"
 msgstr ""
 
 #: GuiPrefs.py:178
@@ -1845,11 +1826,11 @@ msgid "Flop"
 msgstr ""
 
 #: GuiStove.py:134
-msgid "Gametype:"
+msgid "Gametype"
 msgstr ""
 
 #: GuiStove.py:137
-msgid "Players:"
+msgid "Players"
 msgstr ""
 
 #: GuiStove.py:143
@@ -1894,17 +1875,17 @@ msgstr ""
 msgid "called update_flop_output_pane"
 msgstr ""
 
-#: GuiTourneyGraphViewer.py:178
+#: GuiTourneyGraphViewer.py:176
 msgid "Tournaments"
 msgstr ""
 
-#: GuiTourneyGraphViewer.py:205 GuiTourneyGraphViewer.py:218
+#: GuiTourneyGraphViewer.py:203 GuiTourneyGraphViewer.py:216
 msgid ""
 "Tournaments: %d\n"
 "Profit: $%.2f"
 msgstr ""
 
-#: GuiTourneyGraphViewer.py:215
+#: GuiTourneyGraphViewer.py:213
 msgid "Tournament Results"
 msgstr ""
 
@@ -2067,8 +2048,8 @@ msgstr ""
 msgid "hud_main: Game changed."
 msgstr ""
 
-#: HUD_main.pyw:144
-msgid "Terminating normally."
+#: HUD_main.pyw:144 fpdb.pyw:971
+msgid "Quitting normally"
 msgstr ""
 
 #: HUD_main.pyw:205
@@ -2851,12 +2832,8 @@ msgstr ""
 msgid "Cannot read GameType for current hand"
 msgstr ""
 
-#: PartyPokerToFpdb.py:348
-msgid "Failed to detect currency. HID: %s: '%s'"
-msgstr ""
-
-#: PokerStarsToFpdb.py:265
-msgid "Failed to detect currency: '%s'"
+#: PartyPokerToFpdb.py:348 PokerStarsToFpdb.py:265 WinamaxToFpdb.py:263
+msgid "Failed to detect currency. Hand ID: %s: '%s'"
 msgstr ""
 
 #: SplitHandHistory.py:76
@@ -3138,6 +3115,10 @@ msgstr ""
 msgid "tournament tracker starting\n"
 msgstr ""
 
+#: TourneyFilters.py:52
+msgid "Sites:"
+msgstr ""
+
 #: TourneyFilters.py:54
 msgid "Tourney Type"
 msgstr ""
@@ -3331,10 +3312,6 @@ msgstr ""
 
 #: WinTables.py:84
 msgid "self.window doesn't exist? why?"
-msgstr ""
-
-#: WinamaxToFpdb.py:263
-msgid "failed to detect currency"
 msgstr ""
 
 #: WinamaxToFpdb.py:300
@@ -3867,10 +3844,6 @@ msgid ""
 "Failed to get global lock, it is currently held by %s"
 msgstr ""
 
-#: fpdb.pyw:971
-msgid "Quitting normally"
-msgstr ""
-
 #: fpdb.pyw:996
 msgid "Global lock released.\n"
 msgstr ""
@@ -4137,6 +4110,13 @@ msgid ""
 "no gtk directories found in your path - install gtk or edit the path "
 "manually\n"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Didn't match re_HandInfo: '%s'"
+#~ msgstr "re_HandInfo не соответствует"
+
+#~ msgid "Didn't match re_HandInfo"
+#~ msgstr "re_HandInfo не соответствует"
 
 #~ msgid "readHandInfo: Didn't match: '%s'"
 #~ msgstr "readHandInfo: нет соответствия: '%s'"

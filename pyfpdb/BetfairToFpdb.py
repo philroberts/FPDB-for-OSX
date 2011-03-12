@@ -105,8 +105,8 @@ class Betfair(HandHistoryConverter):
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if(m == None):
-            log.error(_("No match in readHandInfo."))
-            raise FpdbParseError(_("No match in readHandInfo."))
+            log.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')

@@ -160,9 +160,9 @@ or None if we fail to get the info """
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if m is None:
-            logging.info(_("No match in readHandInfo."))
+            logging.info(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
             logging.info(hand.handText)
-            raise FpdbParseError(_("No match in readHandInfo."))
+            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
         logging.debug("HID %s-%s, Table %s" % (m.group('HID1'),
                       m.group('HID2'), m.group('TABLE')[:-1]))
         hand.handid = m.group('HID1') + m.group('HID2')
@@ -264,8 +264,7 @@ or None if we fail to get the info """
             elif action.group('ATYPE') == 'ALL_IN':
                 hand.addAllIn(street, player, action.group('BET'))
             else:
-                logging.debug(_("Unimplemented readAction: %s %s")
-                              % (action.group('PSEAT'),action.group('ATYPE')))
+                logging.debug(_("Unimplemented readAction: '%s' '%s'") % (action.group('PSEAT'),action.group('ATYPE')))
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):

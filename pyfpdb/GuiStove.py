@@ -131,10 +131,10 @@ class GuiStove():
         flop_games_cb = self.create_combo_box(games)
         players_cb = self.create_combo_box(players)
 
-        label = gtk.Label(_("Gametype:"))
+        label = gtk.Label(_("Gametype")+":")
         ddhbox.add(label)
         ddhbox.add(flop_games_cb)
-        label = gtk.Label(_("Players:"))
+        label = gtk.Label(_("Players")+":")
         ddhbox.add(label)
         ddhbox.add(players_cb)
 

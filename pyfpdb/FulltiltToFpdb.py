@@ -264,7 +264,7 @@ class Fulltilt(HandHistoryConverter):
         if m is None:
             tmp = hand.handText[0:100]
             log.error(_("Unable to recognise handinfo from: '%s'") % tmp)
-            log.error(_("readHandInfo: Raising FpdbParseError"))
+            log.error("readHandInfo: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise handinfo from: '%s'"))
 
         #print "DEBUG: m.groupdict: %s" % m.groupdict()

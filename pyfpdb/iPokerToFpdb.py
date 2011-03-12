@@ -153,9 +153,9 @@ or None if we fail to get the info """
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if m is None:
-            logging.error(_("Didn't match re_HandInfo"))
+            logging.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
             logging.info(hand.handText)
-            raise FpdbParseError(_("Didn't match re_HandInfo"))
+            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
         mg = m.groupdict()
         #print "DEBUG: m.groupdict(): %s" % mg
         hand.handid = m.group('HID')

@@ -201,10 +201,10 @@ class Absolute(HandHistoryConverter):
         if m is None or fname_info is None:
             if m is None:
                 tmp = hand.handText[0:100]
-                logging.error(_("Didn't match re_HandInfo: '%s'") % tmp)
-                raise FpdbParseError("Absolute: " + _("Didn't match re_HandInfo: '%s'") % tmp)
+                logging.error(_("No match in readHandInfo: '%s'") % tmp)
+                raise FpdbParseError("Absolute: " + _("No match in readHandInfo: '%s'") % tmp)
             elif fname_info is None:
-                logging.error(_("readHandInfo: File name didn't match re_*InfoFromFilename"))
+                logging.error(_("File name didn't match re_*InfoFromFilename"))
                 logging.error(_("File name: %s") % self.in_path)
                 raise FpdbParseError("Absolute: " + _("Didn't match re_*InfoFromFilename: '%s'") % self.in_path)
 
@@ -348,7 +348,7 @@ class Absolute(HandHistoryConverter):
                 bet = action.group('BET').replace(',', '')
                 hand.addComplete( street, action.group('PNAME'), bet)
             else:
-                logging.debug(_("Unimplemented readAction: %s %s") % (action.group('PNAME'),action.group('ATYPE')))
+                logging.debug(_("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'),action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):

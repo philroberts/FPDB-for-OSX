@@ -141,7 +141,7 @@ class HUD_main(object):
         self.kill_hud(None, hud.table.key)
 
     def destroy(self, *args):             # call back for terminating the main eventloop
-        log.info(_("Terminating normally."))
+        log.info(_("Quitting normally"))
         gtk.main_quit()
 
     def kill_hud(self, event, table):
