@@ -134,14 +134,14 @@ Step 4 Get the fpdb GIT tree
 
 Numpy needs special handling, as by default it will install an optimised version for the SSE level of your CPU (SSE3, SSE2 or noSSE).  This means that the completed package will not run on an older CPU.  
 
-For this reason, do not just run the installer.  We will force a nosse version, to minimise problems on
+For this reason, do not just run the installer downloaded.  We will force a nosse version, to minimise problems on
 older client PC's
 
 5.3.1/ download the package to the Desktop
  
 numpy 1.5.1 ... http://sourceforge.net/projects/numpy/files/NumPy/1.5.1/numpy-1.5.1-win32-superpack-python2.7.exe/download
 
-5.3.3/ You are normally wanting to build a package which works on all CPU's, so install for noSSE as follows:
+5.3.3/ If you are wanting to build a package which works on all CPU's, install noSSE as follows:
 
 dos> cd Desktop
 dos> numpy-1.5.1-win32-superpack-python2.7.exe /arch nosse
@@ -159,11 +159,6 @@ Completed
 Step 6 Run py2exe to generate fpdb.exe
 --------------------------------------
 
-6.0/ Set version number of build folder
-dos> cd Desktop\fpdb\packaging\windows
-dos> write py2exe_setup.py
-change the value of fpdbver and save file
-
 6.1/ Run the script to create the fpdb.exe bundle
 
 dos> cd Desktop\fpdb\packaging\windows
@@ -172,7 +167,7 @@ dos> c:\python27\python.exe py2exe_setup.py py2exe
 wait a while, watch lots of copying and whatever.
 
 6.2/ You should next get prompted for the GTK folder.
-Enter c:\GTK
+c:\GTK
 
 6.3/ If there are no errors reported, it has probably worked, we will test soon.
 
@@ -210,16 +205,27 @@ Step 9 Initial run
 Observe that the msvcp90.dll was provided by the python runtime package, so we don't have to install the separate package from Microsoft.  End-users will, however need the dependency.
 
 
-Step 11 deleted
+Step 11 pruning
 ---------------
 
-Has been deleted
+11.1/ The generated folder is 100+MB and can be pruned by removing the following directories:
+
+pyfpdb/lib/glib-2.0
+pyfpdb/lib/pkgconfig
+pyfpdb/share/aclocal
+pyfpdb/share/doc
+pyfpdb/share/glib-2.0
+pyfpdb/share/gtk-2.0
+pyfpdb/share/gtk-doc
+pyfpdb/share/locale
+pyfpdb/share/man
 
 
 Step 12 rename folder 
 ---------------------
 
-If needed, rename the folder to something meaningful to the community.
+If needed, rename the folder to something meaningful to the community.  If you have built for NoSSE, append anyCPU to the directory name.
+
 
 Step 13 Compress to executable archive
 --------------------------------------
@@ -228,4 +234,8 @@ Step 13 Compress to executable archive
 13.2/ Rightclick on fpdb executable folder, select 7zip Add to archive... select SFX archive option switch
 13.3/ Test the created exe file
 
+Step 14 If you need to build again for a different SSE level
+------------------------------------------------------------
+
+Go back to step 5 and run again.
 
