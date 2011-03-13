@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#    Copyright 2008-2010,  Ray E. Barker
+#    Copyright 2008-2011,  Ray E. Barker
 #
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -52,6 +52,7 @@ if sys.platform == 'linux2':
 elif sys.platform == 'darwin':
     import OSXTables as Tables
 else: # This is bad--figure out the values for the various windows flavors
+    is_windows = True
     import WinTables as Tables
 
 # get config and set up logger
@@ -65,16 +66,16 @@ class HUD_main(object):
     def __init__(self, db_name='fpdb'):
         self.db_name = db_name
         self.config = c
-        log.info("HUD_main starting: using db name = %s" % (db_name))
+        log.info(_("HUD_main starting: using db name = %s") % (db_name))
 
         try:
             if not options.errorsToConsole:
                 fileName = os.path.join(self.config.dir_log, 'HUD-errors.txt')
-                log.info("Note: error output is being diverted to:" + fileName)
-                log.info("Any major error will be reported there _only_.")
+                log.info(_("Note: error output is being diverted to:") + fileName)
+                log.info(_("Any major error will be reported there _only_."))
                 errorFile = open(fileName, 'w', 0)
                 sys.stderr = errorFile
-                sys.stderr.write("HUD_main: starting ...\n")
+                log.info(_("HUD_main: starting ...\n"))
 
             self.hud_dict = {}
             self.hud_params = self.config.get_hud_ui_parameters()
@@ -103,7 +104,7 @@ class HUD_main(object):
             self.main_window.connect("table_changed", self.table_changed)
             self.main_window.connect("destroy", self.destroy)
             self.vb = gtk.VBox()
-            self.label = gtk.Label('Closing this window will exit from the HUD.')
+            self.label = gtk.Label(_('Closing this window will exit from the HUD.'))
             self.vb.add(self.label)
             self.main_window.add(self.vb)
             self.main_window.set_title("HUD Main Window")
@@ -119,26 +120,28 @@ class HUD_main(object):
             gobject.timeout_add(800, self.check_tables)
 
         except:
-            log.exception("Error initializing main_window")
+            log.exception(_("Error initializing main_window"))
             gtk.main_quit()   # we're hosed, just terminate
 
     def client_moved(self, widget, hud):
         hud.up_update_table_position()
 
     def client_resized(self, widget, hud):
-        gobject.idle_add(idle_resize, hud)
+#TODO   Don't forget to get rid of this.
+        if not is_windows:
+            gigobject.idle_add(idle_resize, hud)
 
     def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
         self.kill_hud(None, hud.table.key)
 
     def game_changed(self, widget, hud):
-        print "hud_main: Game changed."
+        print _("hud_main: Game changed.")
 
     def table_changed(self, widget, hud):
         self.kill_hud(None, hud.table.key)
 
     def destroy(self, *args):             # call back for terminating the main eventloop
-        log.info("Terminating normally.")
+        log.info(_("Quitting normally"))
         gtk.main_quit()
 
     def kill_hud(self, event, table):
@@ -199,7 +202,7 @@ class HUD_main(object):
         while 1:    # wait for a new hand number on stdin
             new_hand_id = sys.stdin.readline()
             new_hand_id = string.rstrip(new_hand_id)
-            log.debug("Received hand no %s" % new_hand_id)
+            log.debug(_("Received hand no %s") % new_hand_id)
             if new_hand_id == "":           # blank line means quit
                 self.destroy()
                 break # this thread is not always killed immediately with gtk.main_quit()
@@ -223,12 +226,12 @@ class HUD_main(object):
 
 #        get basic info about the new hand from the db
 #        if there is a db error, complain, skip hand, and proceed
-            log.info("HUD_main.read_stdin: hand processing starting ...")
+            log.info(_("HUD_main.read_stdin: hand processing starting ..."))
             try:
                 (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
             except Exception:
-                log.exception("db error: skipping %s" % new_hand_id)
+                log.exception(_("db error: skipping %s") % new_hand_id)
                 continue
 
             if type == "tour":   # hand is from a tournament
@@ -247,8 +250,8 @@ class HUD_main(object):
                 try:
                     self.hud_dict[temp_key].stat_dict = stat_dict
                 except KeyError:    # HUD instance has been killed off, key is stale
-                    log.error('hud_dict[%s] was not found\n' % temp_key)
-                    log.error('will not send hand\n')
+                    log.error(_('hud_dict[%s] was not found\n') % temp_key)
+                    log.error(_('will not send hand\n'))
                     # Unlocks table, copied from end of function
                     self.db_connection.connection.rollback()
                     return
@@ -270,7 +273,7 @@ class HUD_main(object):
 #        If no client window is found on the screen, complain and continue
                     if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
-                    log.error("HUD create: table name %s not found, skipping." % table_name)
+                    log.error(_("HUD create: table name %s not found, skipping.") % table_name)
                 else:
                     tablewindow.key = temp_key
                     tablewindow.max = max

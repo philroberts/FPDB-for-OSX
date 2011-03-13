@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2010 Steffen Schaumburg
+#Copyright 2008-2011 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -94,14 +94,14 @@ class GuiStove():
         return combobox
 
     def createDrawTab(self):
-        tab_title = "Draw"
+        tab_title = _("Draw")
         label = gtk.Label(tab_title)
 
         ddbox = gtk.VBox(False, 0)
         self.notebook.append_page(ddbox, label)
 
     def createStudTab(self):
-        tab_title = "Stud"
+        tab_title = _("Stud")
         label = gtk.Label(tab_title)
 
         ddbox = gtk.VBox(False, 0)
@@ -112,7 +112,7 @@ class GuiStove():
         #                 / gamehbox / in_frame / table /
         #                            / out_frame
 
-        tab_title = "Flop"
+        tab_title = _("Flop")
         label = gtk.Label(tab_title)
 
         ddbox = gtk.VBox(False, 0)
@@ -131,17 +131,17 @@ class GuiStove():
         flop_games_cb = self.create_combo_box(games)
         players_cb = self.create_combo_box(players)
 
-        label = gtk.Label("Gametype:")
+        label = gtk.Label(_("Gametype")+":")
         ddhbox.add(label)
         ddhbox.add(flop_games_cb)
-        label = gtk.Label("Players:")
+        label = gtk.Label(_("Players")+":")
         ddhbox.add(label)
         ddhbox.add(players_cb)
 
         # Frames for Stove input and output
 
-        in_frame = gtk.Frame("Input:")
-        out_frame = gtk.Frame("Output:")
+        in_frame = gtk.Frame(_("Input:"))
+        out_frame = gtk.Frame(_("Output:"))
 
         gamehbox.add(in_frame)
         gamehbox.add(out_frame)
@@ -167,7 +167,7 @@ Against the range: {
 
         # Input Frame
         table = gtk.Table(4, 5, True)
-        label = gtk.Label("Board:")
+        label = gtk.Label(_("Board:"))
         board = gtk.Entry()
         board.connect("changed", self.set_board_flop, board)
 
@@ -179,7 +179,7 @@ Against the range: {
         table.attach(btn1, 2, 3, 0, 1, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
 
 
-        label = gtk.Label("Player1:")
+        label = gtk.Label(_("Player1:"))
         board = gtk.Entry()
         board.connect("changed", self.set_hero_cards_flop, board)
         btn2 = gtk.Button()
@@ -194,7 +194,7 @@ Against the range: {
         table.attach(btn3, 3, 4, 1, 2, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
 
 
-        label = gtk.Label("Player2:")
+        label = gtk.Label(_("Player2:"))
         board = gtk.Entry()
         board.connect("changed", self.set_villain_cards_flop, board)
         btn4 = gtk.Button()
@@ -208,7 +208,7 @@ Against the range: {
         table.attach(btn4, 2, 3, 2, 3, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
         table.attach(btn5, 3, 4, 2, 3, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
         
-        btn6 = gtk.Button("Results")
+        btn6 = gtk.Button(_("Results"))
         btn6.connect("pressed", self.update_flop_output_pane, btn6)
         table.attach(btn6, 0, 1, 3, 4, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
 
@@ -218,25 +218,25 @@ Against the range: {
         self.outputlabel.set_text(string)
 
     def set_board_flop(self, caller, widget):
-        print "DEBUG: called set_board_flop: '%s' '%s'" %(caller ,widget)
+        print (_("DEBUG: ") + _("called set_board_flop: '%s' '%s'") % (caller ,widget))
         self.boardtext = widget.get_text()
 
     def set_hero_cards_flop(self, caller, widget):
-        print "DEBUG: called set_hero_cards_flop"
+        print (_("DEBUG: ") + _("called set_hero_cards_flop"))
         self.herorange = widget.get_text()
 
     def set_villain_cards_flop(self, caller, widget):
-        print "DEBUG: called set_villain_cards_flop"
+        print (_("DEBUG: ") + _("called set_villain_cards_flop"))
         self.villainrange = widget.get_text()
 
     def update_flop_output_pane(self, caller, widget):
-        print "DEBUG: called update_flop_output_pane"
+        print (_("DEBUG: ") + _("called update_flop_output_pane"))
         self.stove.set_board_string(self.boardtext)
         self.stove.set_hero_cards_string(self.herorange)
         self.stove.set_villain_range_string(self.villainrange)
-        print "DEBUG: odds_for_range"
+        print (_("DEBUG: ") + ("odds_for_range"))
         self.ev = Stove.odds_for_range(self.stove)
-        print "DEBUG: set_output_label"
+        print (_("DEBUG: ") + ("set_output_label"))
         self.set_output_label(self.ev.output)
 
 

@@ -8,7 +8,7 @@ The class queries the poker client window for data of interest, such as
 size and location. It also controls the signals to alert the HUD when the
 client has been resized, destroyed, etc.
 """
-#    Copyright 2008 - 2010, Ray E. Barker
+#    Copyright 2008 - 2011, Ray E. Barker
 
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by

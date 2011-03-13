@@ -4,7 +4,7 @@
 
 Main program module to test/demo the Tables subclasses.
 """
-#    Copyright 2008-2010, Ray E. Barker
+#    Copyright 2008-2011, Ray E. Barker
 
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by

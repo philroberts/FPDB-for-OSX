@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2010 Carl Gherardi
+#Copyright 2008-2011 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -28,18 +28,18 @@ import gobject
 
 import Configuration
 
-rewrite = { 'general' : 'General',                   'supported_databases' : 'Databases'
-          , 'import'  : 'Import',                    'hud_ui' : 'HUD'
-          , 'supported_sites' : 'Sites',             'supported_games' : 'Games'
-          , 'popup_windows' : 'Popup Windows',       'pu' : 'Window'
-          , 'pu_name' : 'Popup Name',                'pu_stat' : 'Stat'
-          , 'pu_stat_name' : 'Stat Name'
-          , 'aux_windows' : 'Auxiliary Windows',     'aw stud_mucked' : 'stud_mucked'
-          , 'aw mucked' : 'mucked',                  'hhcs' : 'Hand History Converters'
-          , 'gui_cash_stats' : 'Ring Player Stats',  'field_type' : 'Field Type'
-          , 'col_title' : 'Column Heading',          'xalignment' : 'Left/Right Align'
-          , 'disp_all' : 'Show in Summaries',        'disp_posn' : 'Show in Position Stats'
-          , 'col_name' : 'Stat Name',                'field_format' : 'Format'
+rewrite = { 'general' : _('General'),                   'supported_databases' : _('Databases')
+          , 'import'  : _('Import'),                    'hud_ui' : _('HUD')
+          , 'supported_sites' : _('Sites'),             'supported_games' : _('Games')
+          , 'popup_windows' : _('Popup Windows'),       'pu' : _('Window')
+          , 'pu_name' : _('Popup Name'),                'pu_stat' : _('Stat')
+          , 'pu_stat_name' : _('Stat Name')
+          , 'aux_windows' : _('Auxiliary Windows'),     'aw stud_mucked' : _('stud_mucked')
+          , 'aw mucked' : _('mucked'),                  'hhcs' : _('Hand History Converters')
+          , 'gui_cash_stats' : _('Ring Player Stats'),  'field_type' : _('Field Type')
+          , 'col_title' : _('Column Heading'),          'xalignment' : _('Left/Right Align')
+          , 'disp_all' : _('Show in Summaries'),        'disp_posn' : _('Show in Position Stats')
+          , 'col_name' : _('Stat Name'),                'field_format' : _('Format')
           }
 
 class GuiPrefs:
@@ -75,7 +75,7 @@ class GuiPrefs:
         configColumn.pack_start(cRender, True)
         configColumn.add_attribute(cRender, 'text', 1)
 
-        configColumn = gtk.TreeViewColumn(_("Value  (double-click to change)"))
+        configColumn = gtk.TreeViewColumn(_("Value (double-click to change)"))
         self.configView.append_column(configColumn)
         cRender = gtk.CellRendererText()
         configColumn.pack_start(cRender, True)

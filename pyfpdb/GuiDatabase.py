@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2010 Carl Gherardi
+#Copyright 2008-2011 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -478,7 +478,7 @@ class AddDB(gtk.Dialog):
 
     def run(self):
         response = super(AddDB,self).run()
-        log.debug(_("addDB.run: response is %s accept is %s" % (str(response), str(int(gtk.RESPONSE_ACCEPT)))))
+        log.debug(_("addDB.run: response is %s, accept is %s") % (str(response), str(int(gtk.RESPONSE_ACCEPT))))
 
         ok,retry = False,True
         while response == gtk.RESPONSE_ACCEPT:
@@ -579,7 +579,7 @@ class AddDB(gtk.Dialog):
             dia.vbox.add(l)
             dia.show_all()
             ret = dia.run()
-            log.debug(_("check_fields: ret is %s cancel is %s" % (str(ret), str(int(gtk.RESPONSE_CANCEL)))))
+            log.debug(_("check_fields: ret is %s cancel is %s") % (str(ret), str(int(gtk.RESPONSE_CANCEL))))
             if ret == gtk.RESPONSE_YES:
                 try_again = True
             log.debug(_("check_fields: destroy dialog"))

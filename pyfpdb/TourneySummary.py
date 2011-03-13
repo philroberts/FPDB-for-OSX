@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2009-2010 Stephane Alessio
+#Copyright 2009-2011 Stephane Alessio
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -245,13 +245,13 @@ class TourneySummary(object):
 Adds a player to the tourney, and initialises data structures indexed by player.
 rank        (int) indicating the finishing rank (can be -1 if unknown)
 name        (string) player name
-winnings    (decimal) the money the player ended the tourney with (can be 0, or -1 if unknown)
+winnings    (int) the money the player ended the tourney with (can be 0, or -1 if unknown)
 """
         log.debug(_("addPlayer: rank:%s - name : '%s' - Winnings (%s)") % (rank, name, winnings))
         self.players.append(name)
         if rank:
-            self.ranks.update( { name : Decimal(rank) } )
-            self.winnings.update( { name : Decimal(winnings) } )
+            self.ranks.update( { name : rank } )
+            self.winnings.update( { name : winnings } )
             self.winningsCurrency.update( { name : winningsCurrency } )
         else:
             self.ranks.update( { name : None } )

@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 """Configuration.py
 
-Handles HUD configuration files.
+Handles fpdb/fpdb-hud configuration files.
 """
-#    Copyright 2008-2010,  Ray E. Barker
+#    Copyright 2008-2011,  Ray E. Barker
 
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -712,7 +712,7 @@ class Config:
         while added > 0 and n < 2:
             n = n + 1
             log.info(_("Reading configuration file %s") % file)
-            print _("\nReading configuration file %s\n") % file
+            print (("\n"+_("Reading configuration file %s")+"\n") % file)
             try:
                 doc = xml.dom.minidom.parse(file)
                 self.doc = doc

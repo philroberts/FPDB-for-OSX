@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2010 Carl Gherardi
+#Copyright 2008-2011 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -46,10 +46,8 @@ try:
     from numpy import arange, cumsum
     from pylab import *
 except ImportError, inst:
-    print _("""Failed to load libs for graphing, graphing will not function. Please
-                 install numpy and matplotlib if you want to use graphs.""")
-    print _("""This is of no consequence for other parts of the program, e.g. import 
-         and HUD are NOT affected by this problem.""")
+    print _("""Failed to load libs for graphing, graphing will not function. Please install numpy and matplotlib if you want to use graphs.""")
+    print _("""This is of no consequence for other parts of the program, e.g. import and HUD are NOT affected by this problem.""")
     print "ImportError: %s" % inst.args
 
 class GuiTourneyGraphViewer (threading.Thread):
