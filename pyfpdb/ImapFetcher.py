@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2010 Steffen Schaumburg
+#Copyright 2010-2011 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -41,7 +41,7 @@ def splitPokerStarsSummaries(summaryText): #TODO: this needs to go to PSS.py
     splitSummaries = re.split(re_SplitTourneys, summaryText)
 
     if len(splitSummaries) <= 1:
-        print _("DEBUG: re_SplitTourneys isn't matching")
+        print (_("DEBUG: ") + _("re_SplitTourneys isn't matching"))
 
     return splitSummaries
 
@@ -50,7 +50,7 @@ def splitFullTiltSummaries(summaryText):#TODO: this needs to go to FTPS.py
     splitSummaries = re.split(re_SplitTourneys, summaryText)
 
     if len(splitSummaries) <= 1:
-        print _("DEBUG: re_SplitTourneys isn't matching")
+        print(_("DEBUG: ") + _("re_SplitTourneys isn't matching"))
 
     return splitSummaries
 
@@ -64,7 +64,7 @@ def run(config, db):
         else:
             server = IMAP4(config.host)
         response = server.login(config.username, config.password) #TODO catch authentication error
-        print _("response to logging in:"),response
+        print(_("response to logging in: "), response)
         #print "server.list():",server.list() #prints list of folders
 
         response = server.select(config.folder)
@@ -108,7 +108,7 @@ def run(config, db):
         else:
             print _("No Tournament summaries found.")
 
-        print _("Errors: %s" % errors)
+        print (_("Errors: %s") % errors)
 
 def readFile(filename, options):
     codepage = ["utf8"]

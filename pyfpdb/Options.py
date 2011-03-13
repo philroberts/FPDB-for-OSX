@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2010 Ray E. Barker
+#Copyright 2008-2011 Ray E. Barker
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -106,7 +106,7 @@ def site_alias(alias):
         tmp = aliases[alias]
     except KeyError, e:
         tmp = False
-        print _("Alias '%s' unknown" % alias)
+        print (_("Alias '%s' unknown") % alias)
 
     return tmp
 

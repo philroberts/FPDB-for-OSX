@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2010, Carl Gherardi
+#    Copyright 2010-2011, Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -119,7 +119,7 @@ or None if we fail to get the info """
                 return self.info
             except AttributeError:
                 tmp = handText[0:100]
-                log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+                log.error(_("Unable to recognise gametype from: '%s'") % tmp)
                 log.error(_("determineGameType: Raising FpdbParseError"))
                 raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
@@ -153,9 +153,9 @@ or None if we fail to get the info """
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if m is None:
-            logging.error(_("Didn't match re_HandInfo"))
+            logging.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
             logging.info(hand.handText)
-            raise FpdbParseError(_("Didn't match re_HandInfo"))
+            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
         mg = m.groupdict()
         #print "DEBUG: m.groupdict(): %s" % mg
         hand.handid = m.group('HID')
@@ -258,7 +258,7 @@ or None if we fail to get the info """
                 #print "DEBUG: addBringIn(%s, %s)" %(action.group('PNAME'),  action.group('BET'))
                 hand.addBringIn(action.group('PNAME'), action.group('BET'))
             else:
-                logging.error(_("Unimplemented readAction: %s" % (ag)))
+                logging.error(_("Unimplemented readAction: %s") % (ag))
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):

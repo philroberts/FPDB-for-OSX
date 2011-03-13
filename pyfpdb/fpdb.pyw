@@ -362,7 +362,9 @@ class fpdb:
                                  (gtk.STOCK_OK, gtk.RESPONSE_ACCEPT,
                                   gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
         
-        label=gtk.Label(_("Please select the game category for which you want to configure HUD stats:"))
+        label=gtk.Label(_("Note that this dialogue will overwrite an existing config if one has been made already. ") + 
+                _("Abort now if you don't want that.") + "\n" + 
+                _("Please select the game category for which you want to configure HUD stats and the number of rows and columns:"))
         diaSelections.vbox.add(label)
         label.show()
         
@@ -379,7 +381,7 @@ class fpdb:
         comboRows.connect("changed", self.hudConfiguratorComboSelection)
         diaSelections.vbox.add(comboRows)
         for i in range(1,8):
-            comboRows.append_text(str(i)+" rows")
+            comboRows.append_text(_("%d rows") % i)
         comboRows.set_active(0)
         comboRows.show()
         
@@ -387,7 +389,7 @@ class fpdb:
         comboColumns.connect("changed", self.hudConfiguratorComboSelection)
         diaSelections.vbox.add(comboColumns)
         for i in range(1,8):
-            comboColumns.append_text(str(i)+" columns")
+            comboColumns.append_text("%d columns" % i)
         comboColumns.set_active(0)
         comboColumns.show()
         
@@ -445,7 +447,7 @@ class fpdb:
             if attr.startswith('__'): continue
             if attr in ("Charset", "Configuration", "Database", "GInitiallyUnowned", "gtk", "pygtk",
                         "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict",
-                        "h", "re", "re_Percent", "re_Places", ): continue
+                        "h", "re", "re_Percent", "re_Places", "L10n", "log", "encoder", "codecs", "_", "sys", "logging"): continue
             statDict[attr]=eval("Stats.%s.__doc__" % (attr))
         
         for rowNumber in range(self.hudConfiguratorRows+1):
@@ -455,11 +457,11 @@ class fpdb:
                     if columnNumber==0:
                         pass
                     else:
-                        label=gtk.Label("column "+str(columnNumber))
+                        label=gtk.Label(_("column %d") % columnNumber)
                         table.attach(child=label, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
                         label.show()
                 elif columnNumber==0:
-                    label=gtk.Label("row "+str(rowNumber))
+                    label=gtk.Label(_("row %d") % rowNumber)
                     table.attach(child=label, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
                     label.show()
                 else:
@@ -573,7 +575,7 @@ class fpdb:
 
     def dia_recreate_hudcache(self, widget, data=None):
         if self.obtain_global_lock("dia_recreate_hudcache"):
-            self.dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
+            self.dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format=_("Confirm recreating HUD cache"))
             diastring = _("Please confirm that you want to re-create the HUD cache.")
             self.dia_confirm.format_secondary_text(diastring)
             # disable windowclose, do not want the the underlying processing interrupted mid-process

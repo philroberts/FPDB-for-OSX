@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2010 Carl Gherardi
+#Copyright 2008-2011 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -35,10 +35,10 @@ log = logging.getLogger("logview")
 
 MAX_LINES = 100000         # max lines to display in window
 EST_CHARS_PER_LINE = 150   # used to guesstimate number of lines in log file
-LOGFILES = [ [ 'Fpdb Errors', 'fpdb-errors.txt', False ]  # label, filename, start value
-           , [ 'Fpdb Log',    'fpdb-log.txt',    True ]
-           , [ 'HUD Errors',  'HUD-errors.txt',  False ]
-           , [ 'HUD Log',     'HUD-log.txt',     False ]
+LOGFILES = [ [ _('Fpdb Errors'), 'fpdb-errors.txt', False ]  # label, filename, start value
+           , [ _('Fpdb Log'),    'fpdb-log.txt',    True ]
+           , [ _('HUD Errors'),  'HUD-errors.txt',  False ]
+           , [ _('HUD Log'),     'HUD-log.txt',     False ]
            ]
 
 class GuiLogView:
@@ -95,10 +95,10 @@ class GuiLogView:
         self.vbox.show()
         self.dia.set_focus(self.listview)
 
-        col = self.addColumn("Date/Time", 0)
-        col = self.addColumn("Module", 1)
-        col = self.addColumn("Level", 2)
-        col = self.addColumn("Text", 3)
+        col = self.addColumn(_("Date/Time"), 0)
+        col = self.addColumn(_("Module"), 1)
+        col = self.addColumn(_("Level"), 2)
+        col = self.addColumn(_("Text"), 3)
 
         self.loadLog()
         self.vbox.show_all()

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2009-2010, Grigorij Indigirkin
+#    Copyright 2009-2011, Grigorij Indigirkin
 #
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -194,10 +194,9 @@ class PartyPoker(HandHistoryConverter):
         m_20BBmin = self.re_20BBmin.search(handText)
         if m is None:
             tmp = handText[0:100]
-            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
             log.error(_("determineGameType: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
-            return None
 
         mg = m.groupdict()
         # translations from captured groups to fpdb info strings
@@ -253,7 +252,7 @@ class PartyPoker(HandHistoryConverter):
         try:
             info.update(self.re_Hid.search(hand.handText).groupdict())
         except AttributeError, e:
-            raise FpdbParseError(_("Cannot read HID for current hand: %s" % e))
+            raise FpdbParseError(_("Cannot read HID for current hand: %s") % e)
 
         try:
             info.update(self.re_HandInfo.search(hand.handText,re.DOTALL).groupdict())
@@ -336,7 +335,7 @@ class PartyPoker(HandHistoryConverter):
                     hand.fee = 0
                     hand.buyinCurrency = "FREE"
                     hand.isKO = False
-                if hand.tourNo != None:
+                elif hand.tourNo != None:
                     hand.buyin = 0
                     hand.fee = 0
                     hand.buyinCurrency = "FREE"
@@ -346,7 +345,7 @@ class PartyPoker(HandHistoryConverter):
                     elif info[key].find(u"€")!=-1:
                         hand.buyinCurrency="EUR"
                     else:
-                        raise FpdbParseError(_("Failed to detect currency. HID: %s: '%s'" % (hand.handid, info[key])))
+                        raise FpdbParseError(_("Failed to detect currency. Hand ID: %s: '%s'") % (hand.handid, info[key]))
                     info[key] = info[key].strip(u'$€')
                     hand.buyin = int(100*Decimal(info[key]))
             if key == 'LEVEL':

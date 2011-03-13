@@ -4,7 +4,7 @@
 
 Test if gtk is working.
 """
-#    Copyright 2008-2010, Ray E. Barker
+#    Copyright 2008-2011, Ray E. Barker
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -24,9 +24,6 @@ Test if gtk is working.
 
 import sys
 import os
-import Configuration
-
-config_path = Configuration.get_default_config_path()
 
 try:
     import gobject as _gobject
@@ -70,7 +67,7 @@ try:
                      (gtk.STOCK_CLOSE, gtk.RESPONSE_OK))
     dia.set_default_size(500, 300)
 
-    l = gtk.Label("GTK is working!\nConfig location: %s" %config_path)
+    l = gtk.Label("GTK is working!\n")
     dia.vbox.add(l)
     l.show()
 
