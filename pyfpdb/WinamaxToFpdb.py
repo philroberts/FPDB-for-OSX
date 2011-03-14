@@ -247,7 +247,7 @@ class Winamax(HandHistoryConverter):
                         if k in info.keys() and info[k]:
                             info[k] = info[k].replace(',','.')
 
-                    if info[key] == 'Gratuit':
+                    if info[key] == 'Gratuit' or info[key] == 'Freeroll':
                         hand.buyin = 0
                         hand.fee = 0
                         hand.buyinCurrency = "FREE"
@@ -259,7 +259,7 @@ class Winamax(HandHistoryConverter):
                         elif info[key].find("FPP")!=-1:
                             hand.buyinCurrency="PSFP"
                         else:
-                            #FIXME: handle other currencies, FPP, play money
+                            #FIXME: handle other currencies (are there other currencies?)
                             raise FpdbParseError(_("failed to detect currency"))
 
                         info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
