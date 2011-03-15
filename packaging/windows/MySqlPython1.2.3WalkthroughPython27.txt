@@ -1,0 +1,125 @@
+Create MySqlPython version 1.2.3 windows installer for Python26
+
+This walkthrough is derived from excellent installation instructions released under GNU Free Documentation License 1.2.  The original work is here ... http://www.bcspcsonline.com/wiki/index.php?title=MySQL-5.1.34_Python-2.6_Module_Build_Instructions  The Wiki author appears to be "Irondesk"
+
+This version by Gimick on 29th June 2010
+Content is available under GNU Free Documentation License 1.2
+
+Premamble
+---------
+
+
+The FPDB exe needs to build against the MySql-Python project.  Unfortunately, for python 2.6 there is no official installer for windows, and none is ever likely to be provided.
+
+Community builds are available, but to reduce third-party dependencies, we will build our own here.
+
+Step 0 Get a fresh XP installation
+----------------------------------
+
+0.1/ Using XPhome 32bit
+
+
+Step 1, VisualStudio 2008 express install
+-----------------------------------------
+
+1.1/ Get the ISO CD from here ... http://www.microsoft.com/express/Downloads/#2008-All
+
+1.2/ Run and install Visual C++ only, don't bother with the additional packages offered
+
+This package will run 30 days before registration is needed
+
+
+Step 2, setup Mysql Server
+--------------------------
+
+2.1/ Install MySQL server runtime ... http://downloads.mysql.com/archives/mysql-5.1/mysql-5.1.34-win32.msi
+
+Choose Typical, choose configure, choose Standard Configuration, choose all defaults, supply admin username/password.
+
+
+Step 3, more installs
+----------------------
+
+3.1/ install the following in sequence (accept all default options) there should be no errors !
+
+Python 2.7 ... http://python.org/ftp/python/2.7/python-2.7.msi
+7zip 914 ... http://sourceforge.net/projects/sevenzip/files/7-Zip/9.14/7z914.exe/download
+
+
+Step 4, grab Mysql server Source
+--------------------------------
+
+4.1/ Download ... http://downloads.mysql.com/archives/mysql-5.1/mysql-noinstall-5.1.34-win32.zip
+4.2/ Unpacking Desktop\mysqlsource (use 7zip)
+4.3/ Copy the following source directories to the MySql installation:
+ 
+dos> xcopy Desktop\mysqlsource\mysql-5.1.34-win32\data\* "c:\Program Files\MySQL\MySQL Server 5.1\data" /I/E/F/H
+dos> xcopy Desktop\mysqlsource\mysql-5.1.34-win32\Embedded\* "c:\Program Files\MySQL\MySQL Server 5.1\Embedded" /I/E/F/H
+dos> xcopy Desktop\mysqlsource\mysql-5.1.34-win32\include\* "c:\Program Files\MySQL\MySQL Server 5.1\include" /I/E/F/H
+dos> xcopy Desktop\mysqlsource\mysql-5.1.34-win32\lib\* "c:\Program Files\MySQL\MySQL Server 5.1\lib" /I/E/F/H
+dos> xcopy Desktop\mysqlsource\mysql-5.1.34-win32\mysql-test\* "c:\Program Files\MySQL\MySQL Server 5.1\mysql-test" /I/E/F/H
+dos> xcopy Desktop\mysqlsource\mysql-5.1.34-win32\sql-bench\* "c:\Program Files\MySQL\MySQL Server 5.1\sql-bench" /I/E/F/H
+
+4.4/ You can delete Destop\mysqlsource, is no longer needed.
+
+
+Step 5, grab Mysql-python source
+--------------------------------
+
+5.1/ get download 
+MySql for python ... http://sourceforge.net/projects/mysql-python/files/mysql-python/1.2.3/MySQL-python-1.2.3.tar.gz/download
+
+5.2/ extract MySQL-python-1.2.3 directory to the Desktop using 7zip
+(note: use 7zip,  open the gz, then open the tar, then extract the directory found inside there)
+
+Desktop\MySQL-python-1.2.3 should now exist
+
+
+Step 6, get python build tools
+------------------------------
+
+6.1/ get Easy Setup installer
+Easy setup installer ... http://peak.telecommunity.com/dist/ez_setup.py
+
+6.2/ Check the DEFAULT VERSION specified in Easy Setup and get the corresponding setuptools  (version c11 in this case)
+Setuptools version 11 ... http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
+
+6.3/ Put both of these files into Desktop\MySQL-python-1.2.3, overwriting any existing files
+
+
+Step 7, install the build tool
+------------------------------
+
+dos> cd Desktop\MySQL-python-1.2.3
+dos> c:\Python27\python.exe ez_setup.py setuptools-0.6c11-py2.7.egg
+
+
+Step 8, Tweak the configuration
+-------------------------------
+
+dos> cd Desktop\MySQL-python-1.2.3
+
+8.1/ dos> write site.cfg
+
+Change registry_key = SOFTWARE\MySQL AB\MySQL Server 5.0
+ to registry_key = SOFTWARE\MySQL AB\MySQL Server 5.1
+
+
+Step 9, build
+-------------
+
+dos> cd Desktop\MySQL-python-1.2.3
+
+9.1/ dos> c:\python27\python.exe setup.py build
+
+* Note: You will probably get a bunch of warnings and maybe a manifest error status 31, these are ok as long as there are no errors in compiling or linking.
+* Note: This will generate the "MySQL-python-1.2.3/build" folder 
+
+9.2/ dos> c:\python27\python.exe setup.py bdist_wininst
+
+
+Step 10, done
+-------------
+
+10.1/ the \dist directory will contain MySQL-python-1.2.3.win32-py2.7.exe !!!!!
+10.2/ upload this file to sourceforge
