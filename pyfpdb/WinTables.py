@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Routines for detecting and handling poker client windows for MS Windows.
 """
-#    Copyright 2008 - 2011, Ray E. Barker
+#    Copyright 2008 - 2010, Ray E. Barker
 
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -56,15 +56,17 @@ class Table(Table_Window):
         """Finds poker client window with the given table name."""
         titles = {}
         win32gui.EnumWindows(win_enum_handler, titles)
-        for hwnd in titles:           
+        for hwnd in titles:
             if titles[hwnd] == "":
                 continue
             if re.search(self.search_string, titles[hwnd], re.I):
                 if self.check_bad_words(titles[hwnd]):
                     continue
-                if not win32gui.IsWindowVisible(hwnd): # if window not visible, probably not a table
+                # if window not visible, probably not a table
+                if not win32gui.IsWindowVisible(hwnd): 
                     continue
-                if win32gui.GetParent(hwnd) != 0: # if window is a child of another window, probably not a table
+                # if window is a child of another window, probably not a table
+                if win32gui.GetParent(hwnd) != 0:
                     continue
                 HasNoOwner = win32gui.GetWindow(hwnd, win32con.GW_OWNER) == 0
                 WindowStyle = win32gui.GetWindowLong(hwnd, win32con.GWL_EXSTYLE)
@@ -72,13 +74,13 @@ class Table(Table_Window):
                     continue
                 if not HasNoOwner and WindowStyle & win32con.WS_EX_APPWINDOW == 0:
                     continue
-                
+
                 self.window = hwnd
                 break
 
         try:
             if self.window == None:
-                log.error(_("Window %s not found. Skipping.") % self.search_string)
+                log.error(_("Window %s not found. Skipping." % self.search_string))
                 return None
         except AttributeError:
             log.error(_("self.window doesn't exist? why?"))
