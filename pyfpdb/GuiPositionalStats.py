@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2010 Steffen Schaumburg
+#Copyright 2008-2011 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -60,7 +60,7 @@ class GuiPositionalStats (threading.Thread):
                           }
 
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
-        self.filters.registerButton1Name("Refresh")
+        self.filters.registerButton1Name(_("Refresh"))
         self.filters.registerButton1Callback(self.refreshStats)
 
         # ToDo: store in config
@@ -134,7 +134,7 @@ class GuiPositionalStats (threading.Thread):
     def toggleCallback(self, widget, data=None):
 #        print "%s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()])
         self.activesite = data
-        print _("DEBUG: activesite set to %s") %(self.activesite)
+        print (_("DEBUG: ") + _("activesite set to %s") % (self.activesite))
 
     def refreshStats(self, widget, data):
         try: self.stats_vbox.destroy()

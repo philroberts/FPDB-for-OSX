@@ -9,7 +9,7 @@ This will allow a rudimentary "HUD" in rush games
 
 The existing notes file will be altered by this function
 """
-#    Copyright 2010,  "Gimick" of the FPDB project  fpdb.sourceforge.net
+#    Copyright 2010-2011,  "Gimick" of the FPDB project  fpdb.sourceforge.net
 #
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by

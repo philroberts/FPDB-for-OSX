@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2010 Steffen Schaumburg
+#Copyright 2008-2011 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -203,7 +203,7 @@ class GuiBulkImport():
         if not self.allowThreads:
             self.spin_threads.set_sensitive(False)
 
-#    checkbox - fail on error?
+#    checkbox - archive file?
         self.is_archive = gtk.CheckButton(_('Archive File'))
         self.table.attach(self.is_archive, 0, 1, 1, 2, xpadding=10, ypadding=0, yoptions=gtk.SHRINK)
         self.is_archive.show()

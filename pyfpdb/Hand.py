@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2010 Carl Gherardi
+#Copyright 2008-2011 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -475,12 +475,12 @@ If a player has None chips he won't be added."""
             tmp = self.handText[0:100]
             log.error(_("markstreets didn't match - Assuming hand %s was cancelled") % self.handid)
             self.cancelled = True
-            raise FpdbParseError(_("FpdbParseError: markStreets appeared to fail: First 100 chars: '%s'") % tmp)
+            raise FpdbParseError(_("markStreets appeared to fail: First 100 chars: '%s'") % tmp)
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
-            print (_("DEBUG: checkPlayerExists %s fail on hand number %s") % (player, self.handid))
-            raise FpdbParseError(_("checkPlayerExists: '%s fail on hand number %s") % (player, self.handid))
+            print (_("DEBUG: ") + _("checkPlayerExists: %s fail on hand number %s") % (player, self.handid))
+            raise FpdbParseError(_("checkPlayerExists: %s fail on hand number %s") % (player, self.handid))
 
     def setCommunityCards(self, street, cards):
         log.debug("setCommunityCards %s %s" %(street,  cards))
@@ -1167,7 +1167,7 @@ class DrawHand(Hand):
             hhc.markStreets(self)
             # markStreets in Draw may match without dealing cards
             if self.streets['DEAL'] == None:
-                raise FpdbParseError(_("DrawHand.__init__: street 'DEAL' is empty. Hand cancelled? HandID: '%s'" % self.handid))
+                raise FpdbParseError(_("DrawHand.__init__: street 'DEAL' is empty. Hand cancelled? HandID: '%s'") % self.handid)
             hhc.readBlinds(self)
             hhc.readAntes(self)
             hhc.readButton(self)
@@ -1239,60 +1239,61 @@ class DrawHand(Hand):
 
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
+        # HH output should not be translated
         super(DrawHand, self).writeHand(fh)
 
         players_who_act_ondeal = set(([x[0] for x in self.actions['DEAL']]+[x[0] for x in self.actions['BLINDSANTES']]))
 
         for player in [x for x in self.players if x[1] in players_who_act_ondeal]:
             #Only print stacks of players who do something on deal
-            print >>fh, _("Seat %s: %s (%s%s in chips) " %(player[0], player[1], self.sym, player[2]))
+            print >>fh, (("Seat %s: %s (%s%s in chips) ") % (player[0], player[1], self.sym, player[2]))
 
         if 'BLINDSANTES' in self.actions:
             for act in self.actions['BLINDSANTES']:
-                print >>fh, _("%s: %s %s %s%s" %(act[0], act[1], act[2], self.sym, act[3]))
+                print >>fh, ("%s: %s %s %s%s" % (act[0], act[1], act[2], self.sym, act[3]))
 
         if 'DEAL' in self.actions:
-            print >>fh, _("*** DEALING HANDS ***")
+            print >>fh, ("*** DEALING HANDS ***")
             for player in [x[1] for x in self.players if x[1] in players_who_act_ondeal]:
                 if 'DEAL' in self.holecards:
                     if self.holecards['DEAL'].has_key(player):
                         (nc,oc) = self.holecards['DEAL'][player]
-                        print >>fh, _("Dealt to %s: [%s]") % (player, " ".join(nc))
+                        print >>fh, ("Dealt to %s: [%s]") % (player, " ".join(nc))
             for act in self.actions['DEAL']:
                 print >>fh, self.actionString(act, 'DEAL')
 
         if 'DRAWONE' in self.actions:
-            print >>fh, _("*** FIRST DRAW ***")
+            print >>fh, ("*** FIRST DRAW ***")
             for act in self.actions['DRAWONE']:
                 print >>fh, self.actionString(act, 'DRAWONE')
                 if act[0] == self.hero and act[1] == 'discards':
                     (nc,oc) = self.holecardsAsSet('DRAWONE', act[0])
                     dc = self.discards['DRAWONE'][act[0]]
                     kc = oc - dc
-                    print >>fh, _("Dealt to %s [%s] [%s]" % (act[0], " ".join(kc), " ".join(nc)))
+                    print >>fh, (("Dealt to %s [%s] [%s]") % (act[0], " ".join(kc), " ".join(nc)))
 
         if 'DRAWTWO' in self.actions:
-            print >>fh, _("*** SECOND DRAW ***")
+            print >>fh, ("*** SECOND DRAW ***")
             for act in self.actions['DRAWTWO']:
                 print >>fh, self.actionString(act, 'DRAWTWO')
                 if act[0] == self.hero and act[1] == 'discards':
                     (nc,oc) = self.holecardsAsSet('DRAWONE', act[0])
                     dc = self.discards['DRAWTWO'][act[0]]
                     kc = oc - dc
-                    print >>fh, _("Dealt to %s [%s] [%s]" % (act[0], " ".join(kc), " ".join(nc)))
+                    print >>fh, (("Dealt to %s [%s] [%s]") % (act[0], " ".join(kc), " ".join(nc)))
 
         if 'DRAWTHREE' in self.actions:
-            print >>fh, _("*** THIRD DRAW ***")
+            print >>fh, ("*** THIRD DRAW ***")
             for act in self.actions['DRAWTHREE']:
                 print >>fh, self.actionString(act, 'DRAWTHREE')
                 if act[0] == self.hero and act[1] == 'discards':
                     (nc,oc) = self.holecardsAsSet('DRAWONE', act[0])
                     dc = self.discards['DRAWTHREE'][act[0]]
                     kc = oc - dc
-                    print >>fh, _("Dealt to %s [%s] [%s]" % (act[0], " ".join(kc), " ".join(nc)))
+                    print >>fh, (("Dealt to %s [%s] [%s]") % (act[0], " ".join(kc), " ".join(nc)))
 
         if 'SHOWDOWN' in self.actions:
-            print >>fh, _("*** SHOW DOWN ***")
+            print >>fh, ("*** SHOW DOWN ***")
             #TODO: Complete SHOWDOWN
 
         # Current PS format has the lines:
@@ -1303,11 +1304,11 @@ class DrawHand(Hand):
         # Immediately before the summary.
         # The current importer uses those lines for importing winning rather than the summary
         for name in self.pot.returned:
-            print >>fh, _("Uncalled bet (%s%s) returned to %s" %(self.sym, self.pot.returned[name],name))
+            print >>fh, ("Uncalled bet (%s%s) returned to %s" % (self.sym, self.pot.returned[name],name))
         for entry in self.collected:
-            print >>fh, _("%s collected %s%s from x pot" %(entry[0], self.sym, entry[1]))
+            print >>fh, ("%s collected %s%s from x pot" % (entry[0], self.sym, entry[1]))
 
-        print >>fh, _("*** SUMMARY ***")
+        print >>fh, ("*** SUMMARY ***")
         print >>fh, "%s | Rake %s%.2f" % (self.pot, self.sym, self.rake)
         print >>fh, "\n\n"
 
@@ -1432,29 +1433,29 @@ Add a complete on [street] by [player] to [amountTo]
 
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-
+        # HH output should not be translated
         super(StudHand, self).writeHand(fh)
 
         players_who_post_antes = set([x[0] for x in self.actions['BLINDSANTES']])
 
         for player in [x for x in self.players if x[1] in players_who_post_antes]:
             #Only print stacks of players who do something preflop
-            print >>fh, _("Seat %s: %s (%s%s in chips)" %(player[0], player[1], self.sym, player[2]))
+            print >>fh, ("Seat %s: %s (%s%s in chips)" %(player[0], player[1], self.sym, player[2]))
 
         if 'BLINDSANTES' in self.actions:
             for act in self.actions['BLINDSANTES']:
-                print >>fh, _("%s: posts the ante %s%s" %(act[0], self.sym, act[3]))
+                print >>fh, ("%s: posts the ante %s%s" %(act[0], self.sym, act[3]))
 
         if 'THIRD' in self.actions:
             dealt = 0
-            #~ print >>fh, _("*** 3RD STREET ***")
+            #~ print >>fh, ("*** 3RD STREET ***")
             for player in [x[1] for x in self.players if x[1] in players_who_post_antes]:
                 if self.holecards['THIRD'].has_key(player):
                     (open,  closed) = self.holecards['THIRD'][player]
                     dealt+=1
                     if dealt==1:
-                        print >>fh, _("*** 3RD STREET ***")
-#                    print >>fh, _("Dealt to %s:%s%s") % (player, " [" + " ".join(closed) + "] " if closed else " ", "[" + " ".join(open) + "]" if open else "")
+                        print >>fh, ("*** 3RD STREET ***")
+#                    print >>fh, ("Dealt to %s:%s%s") % (player, " [" + " ".join(closed) + "] " if closed else " ", "[" + " ".join(open) + "]" if open else "")
                     print >>fh, self.writeHoleCards('THIRD', player)
             for act in self.actions['THIRD']:
                 #FIXME: Need some logic here for bringin vs completes
@@ -1462,36 +1463,36 @@ Add a complete on [street] by [player] to [amountTo]
 
         if 'FOURTH' in self.actions:
             dealt = 0
-            #~ print >>fh, _("*** 4TH STREET ***")
+            #~ print >>fh, ("*** 4TH STREET ***")
             for player in [x[1] for x in self.players if x[1] in players_who_post_antes]:
                 if player in self.holecards['FOURTH']:
                     dealt+=1
                     if dealt==1:
-                        print >>fh, _("*** 4TH STREET ***")
+                        print >>fh, ("*** 4TH STREET ***")
                     print >>fh, self.writeHoleCards('FOURTH', player)
             for act in self.actions['FOURTH']:
                 print >>fh, self.actionString(act)
 
         if 'FIFTH' in self.actions:
             dealt = 0
-            #~ print >>fh, _("*** 5TH STREET ***")
+            #~ print >>fh, ("*** 5TH STREET ***")
             for player in [x[1] for x in self.players if x[1] in players_who_post_antes]:
                 if self.holecards['FIFTH'].has_key(player):
                     dealt+=1
                     if dealt==1:
-                        print >>fh, _("*** 5TH STREET ***")
+                        print >>fh, ("*** 5TH STREET ***")
                     print >>fh, self.writeHoleCards('FIFTH', player)
             for act in self.actions['FIFTH']:
                 print >>fh, self.actionString(act)
 
         if 'SIXTH' in self.actions:
             dealt = 0
-            #~ print >>fh, _("*** 6TH STREET ***")
+            #~ print >>fh, ("*** 6TH STREET ***")
             for player in [x[1] for x in self.players if x[1] in players_who_post_antes]:
                 if self.holecards['SIXTH'].has_key(player):
                     dealt += 1
                     if dealt == 1:
-                        print >>fh, _("*** 6TH STREET ***")
+                        print >>fh, ("*** 6TH STREET ***")
                     print >>fh, self.writeHoleCards('SIXTH', player)
             for act in self.actions['SIXTH']:
                 print >>fh, self.actionString(act)
@@ -1501,7 +1502,7 @@ Add a complete on [street] by [player] to [amountTo]
             # Then we have no 'dealt to' lines, no action lines, but still 7th street should appear.
             # The only way I can see to know whether to print this line is by knowing the state of the hand
             # i.e. are all but one players folded; is there an allin showdown; and all that.
-            print >>fh, _("*** RIVER ***")
+            print >>fh, ("*** RIVER ***")
             for player in [x[1] for x in self.players if x[1] in players_who_post_antes]:
                 if self.holecards['SEVENTH'].has_key(player):
                     if self.writeHoleCards('SEVENTH', player):
@@ -1513,7 +1514,7 @@ Add a complete on [street] by [player] to [amountTo]
         # The logic for a showdown is: at the end of river action there are at least two players in the hand
         # we probably don't need a showdown section in pseudo stars format for our filtering purposes
         if 'SHOWDOWN' in self.actions:
-            print >>fh, _("*** SHOW DOWN ***")
+            print >>fh, ("*** SHOW DOWN ***")
             # TODO: print showdown lines.
 
         # Current PS format has the lines:
@@ -1524,11 +1525,11 @@ Add a complete on [street] by [player] to [amountTo]
         # Immediately before the summary.
         # The current importer uses those lines for importing winning rather than the summary
         for name in self.pot.returned:
-            print >>fh, _("Uncalled bet (%s%s) returned to %s" %(self.sym, self.pot.returned[name],name))
+            print >>fh, ("Uncalled bet (%s%s) returned to %s" %(self.sym, self.pot.returned[name],name))
         for entry in self.collected:
-            print >>fh, _("%s collected %s%s from x pot" %(entry[0], self.sym, entry[1]))
+            print >>fh, ("%s collected %s%s from x pot" %(entry[0], self.sym, entry[1]))
 
-        print >>fh, _("*** SUMMARY ***")
+        print >>fh, ("*** SUMMARY ***")
         print >>fh, "%s | Rake %s%.2f" % (self.pot, self.sym, self.rake)
 # TODO: side pots
 
@@ -1536,23 +1537,23 @@ Add a complete on [street] by [player] to [amountTo]
         for s in self.board.values():
             board += s
         if board:   # sometimes hand ends preflop without a board
-            print >>fh, _("Board [%s]" % (" ".join(board)))
+            print >>fh, ("Board [%s]" % (" ".join(board)))
 
         for player in [x for x in self.players if x[1] in players_who_post_antes]:
             seatnum = player[0]
             name = player[1]
             if name in self.collectees and name in self.shown:
-                print >>fh, _("Seat %d: %s showed [%s] and won (%s%s)" % (seatnum, name, self.join_holecards(name), self.sym, self.collectees[name]))
+                print >>fh, ("Seat %d: %s showed [%s] and won (%s%s)" % (seatnum, name, self.join_holecards(name), self.sym, self.collectees[name]))
             elif name in self.collectees:
-                print >>fh, _("Seat %d: %s collected (%s%s)" % (seatnum, name, self.sym, self.collectees[name]))
+                print >>fh, ("Seat %d: %s collected (%s%s)" % (seatnum, name, self.sym, self.collectees[name]))
             elif name in self.shown:
-                print >>fh, _("Seat %d: %s showed [%s]" % (seatnum, name, self.join_holecards(name)))
+                print >>fh, ("Seat %d: %s showed [%s]" % (seatnum, name, self.join_holecards(name)))
             elif name in self.mucked:
-                print >>fh, _("Seat %d: %s mucked [%s]" % (seatnum, name, self.join_holecards(name)))
+                print >>fh, ("Seat %d: %s mucked [%s]" % (seatnum, name, self.join_holecards(name)))
             elif name in self.folded:
-                print >>fh, _("Seat %d: %s folded" % (seatnum, name))
+                print >>fh, ("Seat %d: %s folded" % (seatnum, name))
             else:
-                print >>fh, _("Seat %d: %s mucked" % (seatnum, name))
+                print >>fh, ("Seat %d: %s mucked" % (seatnum, name))
 
         print >>fh, "\n\n"
 
@@ -1672,8 +1673,8 @@ class Pot(object):
                 self.pots += [sum([min(v,v1) for (v,k) in commitsall])]
                 commitsall = [((v-v1),k) for (v,k) in commitsall if v-v1 >0]
         except IndexError, e:
-            log.error(_("Pot.end(): Major failure while calculating pot: '%s'" % e))
-            raise FpdbParseError(_("Pot.end(): Major failure while calculating pot: '%s'" % e))
+            log.error(_("Pot.end(): Major failure while calculating pot: '%s'") % e)
+            raise FpdbParseError(_("Pot.end(): Major failure while calculating pot: '%s'") % e)
 
         # TODO: I think rake gets taken out of the pots.
         # so it goes:
@@ -1686,9 +1687,9 @@ class Pot(object):
         if self.sym is None:
             self.sym = "C"
         if self.total is None:
-            print _("DEBUG: call Pot.end() before printing pot total")
+            print (_("DEBUG: ") + _("call Pot.end() before printing pot total"))
             # NB if I'm sure end() is idempotent, call it here.
-            raise FpdbParseError(_("FpdbError in printing Hand object"))
+            raise FpdbParseError(_("Error in printing Hand object"))
 
         ret = "Total pot %s%.2f" % (self.sym, self.total)
         if len(self.pots) < 2:
@@ -1696,5 +1697,3 @@ class Pot(object):
         ret += " Main pot %s%.2f" % (self.sym, self.pots[0])
 
         return ret + ''.join([ (" Side pot %s%.2f." % (self.sym, self.pots[x]) ) for x in xrange(1, len(self.pots)) ])
-
-

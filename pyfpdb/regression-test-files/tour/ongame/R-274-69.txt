@@ -1,0 +1,148 @@
+***** History for hand T5-17631959-1 (TOURNAMENT: "Freeroll tournois live", R-274-69, buy-in: €0) *****
+Start hand: Sat Dec 25 21:18:38 GMT+0100 2010
+Table: Table #29 [17631959] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 8
+Players in round: 10
+Seat 9: besac025 (1500)
+Seat 10: Chanel777 (1500)
+Seat 1: sergio92 (1500)
+Seat 2: luciano12 (1500)
+Seat 3: purdey02 (1500)
+Seat 4: jojo46_x (1500)
+Seat 5: slbseia (1500)
+Seat 6: TIT42 (1500)
+Seat 7: Pauleta62 (1500)
+Seat 8: FOUINIBABY (1500)
+besac025 posts small blind (10)
+Chanel777 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [Qc, 7h]
+sergio92 calls 20
+luciano12 folds
+purdey02 folds
+jojo46_x folds
+slbseia raises 120 to 120
+TIT42 folds
+Pauleta62 folds
+FOUINIBABY raises 1500 to 1500 [all in]
+besac025 folds
+Chanel777 folds
+sergio92 folds
+slbseia calls 1380 [all in]
+--- 
+--- Dealing flop [Tc, 6s, Jc]
+--- Dealing turn [2h]
+--- Dealing river [Kc]
+---
+Summary:
+Main pot: 3050 won by FOUINIBABY (3050)
+Rake taken: €0
+Seat 9: besac025 (1490), net: -10
+Seat 10: Chanel777 (1480), net: -20
+Seat 1: sergio92 (1480), net: -20
+Seat 2: luciano12 (1500)
+Seat 3: purdey02 (1500)
+Seat 4: jojo46_x (1500)
+Seat 5: slbseia (0), net: -1500, [8d, 8s] (PAIR EIGHT)
+Seat 6: TIT42 (1500)
+Seat 7: Pauleta62 (1500)
+Seat 8: FOUINIBABY (3050), net: +1550, [Ah, Js] (PAIR JACK)
+***** End of hand T5-17631959-1 *****
+***** History for hand T5-17631959-2 (TOURNAMENT: "Freeroll tournois live", R-274-69, buy-in: €0) *****
+Start hand: Sat Dec 25 21:21:24 GMT+0100 2010
+Table: Table #29 [17631959] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 9
+Players in round: 9
+Seat 10: Chanel777 (1480)
+Seat 1: sergio92 (1480)
+Seat 2: luciano12 (1500)
+Seat 3: purdey02 (1500)
+Seat 4: jojo46_x (1500)
+Seat 6: TIT42 (1500)
+Seat 7: Pauleta62 (1500)
+Seat 8: FOUINIBABY (3050)
+Seat 9: besac025 (1490)
+Chanel777 posts small blind (10)
+sergio92 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [5c, 2c]
+luciano12 calls 20
+purdey02 folds
+jojo46_x folds
+TIT42 folds
+Pauleta62 raises 1500 to 1500 [all in]
+FOUINIBABY folds
+besac025 folds
+Chanel777 folds
+sergio92 folds
+luciano12 calls 1480 [all in]
+--- 
+--- Dealing flop [Ah, 9h, 2d]
+--- Dealing turn [8d]
+--- Dealing river [8s]
+---
+Summary:
+Main pot: 3030 won by Pauleta62 (3030)
+Rake taken: €0
+Seat 10: Chanel777 (1470), net: -10
+Seat 1: sergio92 (1460), net: -20
+Seat 2: luciano12 (0), net: -1500, [Td, Jh] (PAIR EIGHT)
+Seat 3: purdey02 (1500)
+Seat 4: jojo46_x (1500)
+Seat 6: TIT42 (1500)
+Seat 7: Pauleta62 (3030), net: +1530, [Kd, Qc] (PAIR EIGHT)
+Seat 8: FOUINIBABY (3050)
+Seat 9: besac025 (1490)
+***** End of hand T5-17631959-2 *****
+***** History for hand T5-17631959-3 (TOURNAMENT: "Freeroll tournois live", R-274-69, buy-in: €0) *****
+Start hand: Sat Dec 25 21:22:20 GMT+0100 2010
+Table: Table #29 [17631959] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: besac025
+Button: seat 10
+Players in round: 9
+Seat 1: sergio92 (1460)
+Seat 3: purdey02 (1500)
+Seat 4: jojo46_x (1500)
+Seat 5: louna29860 (1500)
+Seat 6: TIT42 (1500)
+Seat 7: Pauleta62 (3030)
+Seat 8: FOUINIBABY (3050)
+Seat 9: besac025 (1490)
+Seat 10: Chanel777 (1470)
+sergio92 posts small blind (10)
+purdey02 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to besac025: [9s, 7s]
+jojo46_x folds
+louna29860 folds
+TIT42 calls 20
+Pauleta62 folds
+FOUINIBABY raises 3050 to 3050 [all in]
+besac025 calls 1490 [all in]
+Chanel777 folds
+sergio92 folds
+purdey02 folds
+TIT42 folds
+--- 
+--- Dealing flop [Js, Kh, 2c]
+--- Dealing turn [9d]
+--- Dealing river [Tc]
+---
+Summary:
+Main pot: 3030 won by FOUINIBABY (3030)
+Rake taken: €0
+Seat 1: sergio92 (1450), net: -10
+Seat 3: purdey02 (1480), net: -20
+Seat 4: jojo46_x (1500)
+Seat 5: louna29860 (1500)
+Seat 6: TIT42 (1480), net: -20
+Seat 7: Pauleta62 (3030)
+Seat 8: FOUINIBABY (4590), net: +1540, [Jh, Jd] (THREE_OF_A_KIND JACK)
+Seat 9: besac025 (0), net: -1490, [9s, 7s] (PAIR NINE)
+Seat 10: Chanel777 (1470)
+***** End of hand T5-17631959-3 *****

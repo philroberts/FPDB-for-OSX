@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Test program to see if XTables.py will correctly id the poker client.
 """
-#    Copyright 2010, Ray E. Barker
+#    Copyright 2010-2011, Ray E. Barker
 
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by

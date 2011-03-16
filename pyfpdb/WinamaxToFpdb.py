@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#    Copyright 2008-2010, Carl Gherardi
+#    Copyright 2008-2011, Carl Gherardi
 #
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -169,7 +169,7 @@ class Winamax(HandHistoryConverter):
         m = self.re_HandInfo.search(handText)
         if not m:
             tmp = handText[0:100]
-            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
             log.error(_("determineGameType: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
@@ -187,7 +187,7 @@ class Winamax(HandHistoryConverter):
                 info['limitType'] = self.limits[mg['LIMIT']]
             else:
                 tmp = handText[0:100]
-                log.error(_("determineGameType: limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
+                log.error(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
                 log.error(_("determineGameType: Raising FpdbParseError"))
                 raise FpdbParseError(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
         if 'GAME' in mg:
@@ -214,7 +214,7 @@ class Winamax(HandHistoryConverter):
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'),a.group('M'), a.group('D'), a.group('H'),a.group('MIN'),a.group('S'))
                 else:
                     datetimestr = "2010/Jan/01 01:01:01"
-                    log.error(_("readHandInfo: DATETIME not matched: '%s'" % info[key]))
+                    log.error(_("readHandInfo: DATETIME not matched: '%s'") % info[key])
                     #print "DEBUG: readHandInfo: DATETIME not matched: '%s'" % info[key]
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "CET", "UTC")
@@ -297,7 +297,7 @@ class Winamax(HandHistoryConverter):
         hand.mixed = None
 
     def readPlayerStacks(self, hand):
-        log.debug(_("readplayerstacks: re is '%s'" % self.re_PlayerInfo))
+        log.debug(_("readplayerstacks: re is '%s'") % self.re_PlayerInfo)
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
@@ -324,7 +324,7 @@ class Winamax(HandHistoryConverter):
         m = self.re_Button.search(hand.handText)
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
-            log.debug(_('readButton: button on pos %d'%hand.buttonpos))
+            log.debug(_('readButton: button on pos %d') % hand.buttonpos)
         else:
             log.warning(_('readButton: not found'))
 
@@ -376,13 +376,13 @@ class Winamax(HandHistoryConverter):
             if street in hand.streets.keys():
                 m = self.re_HeroCards.finditer(hand.streets[street])
             if m == []:
-                log.debug(_("No hole cards found for %s"%street))
+                log.debug(_("No hole cards found for %s") % street)
             for found in m:
                 hand.hero = found.group('PNAME')
                 newcards = found.group('CARDS').split(' ')
 #                print "DEBUG: addHoleCards(%s, %s, %s)" %(street, hand.hero, newcards)
                 hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
-                log.debug(_("Hero cards %s: %s"%(hand.hero, newcards)))
+                log.debug(_("Hero cards %s: %s") % (hand.hero, newcards))
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
@@ -403,13 +403,13 @@ class Winamax(HandHistoryConverter):
             elif action.group('ATYPE') == ' stands pat':
                 hand.addStandsPat( street, action.group('PNAME'))
             else:
-                log.fatal(_("DEBUG: unimplemented readAction: '%s' '%s'")) %(action.group('PNAME'),action.group('ATYPE'),)
+                log.fatal(_("DEBUG: ") + _("unimplemented readAction: '%s' '%s'") % (action.group('PNAME'),action.group('ATYPE')))
 #            print "Processed %s"%acts
 #            print "committed=",hand.pot.committed
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):
-            log.debug(_("add show actions %s"%shows))
+            log.debug(_("add show actions %s") % shows)
             cards = shows.group('CARDS')
             cards = cards.split(' ')
 #            print "DEBUG: addShownCards(%s, %s)" %(cards, shows.group('PNAME'))
@@ -466,7 +466,7 @@ class Winamax(HandHistoryConverter):
 
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
-            log.debug(_("Read shown cards: %s"%m.group(0)))
+            log.debug(_("Read shown cards: %s") % m.group(0))
             cards = m.group('CARDS')
             cards = cards.split(' ') # needs to be a list, not a set--stud needs the order
             (shown, mucked) = (False, False)
