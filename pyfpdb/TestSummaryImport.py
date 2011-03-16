@@ -138,14 +138,14 @@ def main(argv=None):
     #CarbonErrors      = FpdbError('Carbon')
     #PKRErrors         = FpdbError('PKR')
     #iPokerErrors      = FpdbError('iPoker')
-    #WinamaxErrors     = FpdbError('Winamax')
+    WinamaxErrors     = FpdbError('Winamax')
 
     ErrorsList = [
-                    PokerStarsErrors, 
-                    FTPErrors, #PartyPokerErrors,
+                    PokerStarsErrors, FTPErrors, WinamaxErrors,
+                    #PartyPokerErrors,
                     #BetfairErrors, OnGameErrors, AbsoluteErrors,
                     #EverleafErrors, CarbonErrors, PKRErrors,
-                    #iPokerErrors, WinamaxErrors, UltimateBetErrors,
+                    #iPokerErrors, UltimateBetErrors,
                 ]
 
     sites = {
@@ -160,7 +160,7 @@ def main(argv=None):
                 #'Carbon' : True,
                 #'PKR' : False,
                 #'iPoker' : True,
-                #'Winamax' : True,
+                'Winamax' : True,
             }
 
     if sites['PokerStars'] == True:
@@ -187,8 +187,8 @@ def main(argv=None):
     #    walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
     #if sites['iPoker'] == True:
     #    walk_testfiles("regression-test-files/cash/iPoker/", compare, importer, iPokerErrors, "iPoker")
-    #if sites['Winamax'] == True:
-    #    walk_testfiles("regression-test-files/cash/Winamax/", compare, importer, WinamaxErrors, "Winamax")
+    if sites['Winamax'] == True:
+        walk_testfiles("regression-test-files/summaries/Winamax/", compare, importer, WinamaxErrors, "Winamax")
 
     totalerrors = 0
 
