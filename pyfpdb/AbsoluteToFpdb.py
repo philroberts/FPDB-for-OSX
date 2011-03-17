@@ -55,8 +55,9 @@ class Absolute(HandHistoryConverter):
               (?P<LIMIT>No\ Limit|Pot\ Limit|Normal|)\s?
               (?P<CURRENCY>\$|\s€|)
               (?P<SB>[.,0-9]+)/?(?:\$|\s€|)(?P<BB>[.,0-9]+)?
-              \s+-\s+
-              (?P<DATETIME>\d\d\d\d-\d\d-\d\d\ \d\d:\d\d:\d\d)\s+
+              \s+
+              ((?P<TTYPE>(Turbo))\s+)?-\s+
+              ((?P<DATETIME>\d\d\d\d-\d\d-\d\d\ \d\d:\d\d:\d\d)(\.\d+)?)\s+
               (?: \( (?P<TZ>[A-Z]+) \)\s+ )?
               .*?
               (Table:\ (?P<TABLE>.*?)\ \(Real\ Money\))?
