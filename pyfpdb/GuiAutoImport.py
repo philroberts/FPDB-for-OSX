@@ -223,15 +223,16 @@ class GuiAutoImport (threading.Thread):
     def startClicked(self, widget, data):
         """runs when user clicks start on auto import tab"""
 
-#    Check to see if we have an open file handle to the HUD and open one if we do not.
-#    bufsize = 1 means unbuffered
-#    We need to close this file handle sometime.
+        # Check to see if we have an open file handle to the HUD and open one if we do not.
+        # bufsize = 1 means unbuffered
+        # We need to close this file handle sometime.
 
-#    TODO:  Allow for importing from multiple dirs - REB 29AUG2008
-#    As presently written this function does nothing if there is already a pipe open.
-#    That is not correct.  It should open another dir for importing while piping the
-#    results to the same pipe.  This means that self.path should be a a list of dirs
-#    to watch.
+        # TODO:  Allow for importing from multiple dirs - REB 29AUG2008
+        # As presently written this function does nothing if there is already a pipe open.
+        # That is not correct.  It should open another dir for importing while piping the
+        # results to the same pipe.  This means that self.path should be a a list of dirs
+        # to watch.
+        
         if data == "autostart" or (widget == self.startButton and self.startButton.get_active()):
             self.startButton.set_active(True)
             # - Does the lock acquisition need to be more sophisticated for multiple dirs?
