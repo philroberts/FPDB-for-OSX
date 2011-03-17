@@ -890,7 +890,8 @@ class fpdb:
         log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
         print (_("Logfile is %s\n") % os.path.join(self.config.dir_log, self.config.log_file))
         if self.config.example_copy:
-            self.info_box(_("Config file has been created at:\n%s.\n") % self.config.file
+            self.info_box(_("Config file"),
+                          _("has been created at:\n%s.\n") % self.config.file
                            + _("Edit your screen_name and hand history path in the supported_sites section of the Preferences window (Main menu) before trying to import hands."))
         self.settings = {}
         self.settings['global_lock'] = self.lock
