@@ -5,7 +5,7 @@
 
 Py2exe script for fpdb.
 """
-#    Copyright 2009-2011,  Ray E. Barker
+#    Copyright 2009-2010,  Ray E. Barker
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ import py2exe
 import glob
 import matplotlib
 import shutil
-#from datetime import date
+import cdecimal
 
 def isSystemDLL(pathname):
         #dwmapi appears to be vista-specific file, not XP 
@@ -111,7 +111,7 @@ def copy_file(source,destination):
     shutil.copy( source, destination )
 
 
-fpdbver = '0.21.rc1'
+fpdbver = '0.21'
 
 distdir = r'fpdb-' + fpdbver
 rootdir = r'../../' #cwd is normally /packaging/windows
@@ -178,7 +178,7 @@ setup(
 print "*** py2exe build phase complete ***"
 
 # copy zone info and fpdb translation folders
-copy_tree (r'c:\python26\Lib\site-packages\pytz\zoneinfo', os.path.join(r'dist', 'zoneinfo'))
+copy_tree (r'c:\python27\Lib\site-packages\pytz\zoneinfo', os.path.join(r'dist', 'zoneinfo'))
 copy_tree (pydir+r'locale', os.path.join(r'dist', 'locale'))
 
 # create distribution folder and populate with gfx + bat
