@@ -1,0 +1,62 @@
+Full Tilt Poker Game #1088791321: Table Vero (6 max) - $200/$400 - Limit Omaha Hi/Lo - 0:03:34 ET - 2006/10/11
+Seat 1: zbubop ($10,676)
+Seat 2: AllenCunningham ($6,025)
+Seat 3: TexasLimitDonk ($6,816)
+Seat 4: Mike Matusow ($10,689), is sitting out
+Seat 5: Erick Lindgren ($4,339.50)
+Seat 6: Shoe Lab ($15,968.50)
+Erick Lindgren posts the small blind of $100
+Shoe Lab posts the big blind of $200
+
+The button is in seat #3
+*** HOLE CARDS ***
+tyler13jack (Observer): mark karr HAHAHAHAAHA
+zbubop calls $200
+Skylerjade (Observer): HAHAHAHA YOUR SIK CROW
+AllenCunningham raises to $400
+TexasLimitDonk folds
+Right is Tight (Observer): phil is just nasty
+Skylerjade (Observer): he does though
+Erick Lindgren folds
+GE1K0 (Observer): u ok there cunningham?
+Crow1974 (Observer): i said looks
+Shoe Lab calls $200
+zbubop calls $200
+*** FLOP *** [7h 8s 3s]
+Crow1974 (Observer): in that pic
+Shoe Lab checks
+eagle604 (Observer): did they win?
+zbubop checks
+Crow1974 (Observer): not in real life
+AllenCunningham bets $200
+Skylerjade (Observer): My girlfirend thinks hes hott in real life
+Shoe Lab folds
+zbubop calls $200
+*** TURN *** [7h 8s 3s] [4s]
+crobbins92020 (Observer): he isn't that weird...got a ride home first class..w/ drinks
+zbubop checks
+crobbins92020 (Observer): lol
+AllenCunningham bets $400
+Pavel Datsyuk (Observer): hes got a dif expression at a diff table
+zbubop raises to $800
+AllenCunningham calls $400
+*** RIVER *** [7h 8s 3s 4s] [Ah]
+zbubop bets $400
+AllenCunningham calls $400
+*** SHOW DOWN ***
+zbubop shows [3c 9h As Qs] (a flush, Ace high)
+*** SHOW DOWN ***
+ (8,7,4,3,A)
+AllenCunningham shows [7d 2c Ks Ad] (two pair, Aces and Sevens)
+ (7,4,3,2,A)
+zbubop wins the high pot ($2,048.50) with a flush, Ace high
+AllenCunningham wins the low pot ($2,048.50) with 7,4,3,2,A
+*** SUMMARY ***
+Total pot $4,100 | Rake $3
+Board: [7h 8s 3s 4s Ah]
+Seat 1: zbubop showed [3c 9h As Qs] and won ($2,048.50) with HI: a flush, Ace high; LO: 8,7,4,3,A
+Seat 2: AllenCunningham showed [7d 2c Ks Ad] and won ($2,048.50) with HI: two pair, Aces and Sevens; LO: 7,4,3,2,A
+Seat 3: TexasLimitDonk (button) didn't bet (folded)
+Seat 4: Mike Matusow is sitting out
+Seat 5: Erick Lindgren (small blind) folded before the Flop
+Seat 6: Shoe Lab (big blind) folded on the Flop
