@@ -1,0 +1,210 @@
+pypokereval build for windows stepbystep guide
+----------------------------------------------
+
+Created by Gimick on 3rd December 2010 
+Updated for py27 by Gimick 27th Feb 2011
+
+This walkthrough is derived with the assistance of EricBlade and the build notes
+supplied by Loic Dachary <loic@dachary.org> http://dachary.org/
+
+Content is available under the the GNU Affero General Public License version 3
+
+
+0. Build environ
+----------------
+
+We are building against the 2008 runtime because Python 2.7
+   has the same dependency (msvcr90.dll version 9.0.21022.8)
+
+Using winXPhome 32 bit
+
+1 Visual studio
+---------------
+
+1.1/ Get the ISO CD from here ... http://www.microsoft.com/express/Downloads/#2008-All
+
+1.2/ Run and install Visual C++ only, don't bother with the additional packages offered
+
+This package will run 30 days before registration is needed
+
+2. Python runtime
+-----------------
+
+2.1/ Install python runtime from here ... 
+
+Python 2.7 ... http://python.org/ftp/python/2.7/python-2.7.msi
+
+3. Source install
+-----------------
+
+3.1/ grab sources from here
+
+pypoker-eval v138 ... http://download.gna.org/pokersource/sources/pypoker-eval-138.0.tar.gz
+poker-eval v138 ... http://download.gna.org/pokersource/sources/poker-eval-138.0.tar.gz
+
+3.2/   unpack and place the pypoker-eval-138 directory in c:\
+3.2.1/ rename to pypoker-eval
+
+3.3/ unpack and place the poker-eval-138 directory in c:\
+3.3.1/ rename to poker-eval
+
+Important: the build will fail with bizarre missing header files if the project is placed
+ in a directory containing a space character - you have been warned!
+
+4. Update source file
+---------------------
+
+4.1/ dos> write c:/pypoker-eval/pypokereval.c
+
+change this:
+
+#define VERSION_NAME(W) W##2_4
+#define PYTHON_VERSION "2_4"
+
+to be this:
+
+#define VERSION_NAME(W) W##2_7
+#define PYTHON_VERSION "2_7"
+
+- - - - - - 
+
+Move this block of code:
+
+#ifdef _DEBUG // for Windows python23_d.lib is not in distribution... ugly but works
+ #undef _DEBUG
+ #include <Python.h>
+ #define _DEBUG
+#else
+ #include <Python.h>
+#endif
+
+To be after this line:
+
+#include "enumdefs.h"
+
+4.2/ save and exit
+
+- - - - - 
+
+4.3/ dos> write c:/pypoker-eval/pokereval.py
+
+Comment-out this line:
+
+_pokereval = __import__('_pokereval_' + sys.version[0] + '_' + sys.version[2])
+
+Insert this one in its' place:
+
+import _pokereval_2_7 as _pokereval
+
+
+4.4/ save and exit
+
+
+5. Build pre-preparation
+------------------------
+
+(Here we are converting the two project definition files to 2008)
+
+5.1 navigate to directory c:/poker-eval
+5.1.1 double click poker-eval.vcproj
+5.1.2 Visual studio will launch and make a conversion - accept all defaults
+5.1.3 exit and save
+
+5.2 navigate to directory c:/pypoker-eval
+5.2.1 double click pypoker-eval.vcproj
+5.2.2 Visual studio will launch and make a conversion - accept all defaults
+5.2.3 exit
+
+6. build preparation
+--------------------
+
+6.2 navigate to directory c:/pypoker-eval
+6.2.1 double click pypoker-eval.vcproj - visual studio should launch
+
+6.2.3 Select Build...configuration manager...
+  Select "active solution configuration" to "Release"
+  (The configuration for both projects will change to "Release")
+
+6.2.3 Close the configuration manager
+
+6.2.4 In the solution explorer window, hilight pythonpoker-eval / right mouse / properties...
+
+6.2.5 In the pythonpoker-eval properties dialog, 
+
+change references to "python24" to "python27" in the following:
+
+ =  C/C++/Additional Include Directories/
+ =  linker/general/Additional library directories
+ =  linker/input/Additional Dependencies
+
+Change the following
+
+ =  linker/generate debug info - set to No
+
+6.2.6 Apply all changes to the properties dialog and close
+
+6.3 Exit from visual studio
+
+7. Build poker eval
+-------------------
+
+7.1 navigate to directory c:/poker-eval
+7.1.1 double click poker-eval.vcproj
+7.1.2 Visual studio will launch
+
+7.2 In the solution explorer window, hilight poker-eval / right mouse / build
+
+7.3 There should be no errors
+
+7.4 Exit from visual studio
+
+
+8. Build pypoker eval
+---------------------
+
+8.1 navigate to directory c:/pypoker-eval
+8.1.1 double click pypoker-eval.vcproj
+8.1.2 Visual studio will launch
+
+8.2 In the solution explorer window, hilight pythonpoker-eval / right mouse / build
+
+8.3 There should be no errors (but a few warnings)
+
+8.4 Exit from visual studio
+
+9. Wrap-up
+----------
+
+9.1 Navigate to c:/pypoker-eval/release 
+9.2 the output file is pypokereval.dll
+9.3 rename this file to _pokereval_2_7.pyd
+
+9.4 create a zip file containing :
+
+_pokereval_2_7.pyd from releases
+test.py from pypoker-eval-138.0
+pokereval.py from pypoker-eval-138.0
+poker-eval.vcproj from c:\poker-eval
+pypoker-eval.vcproj from c:\pypoker-eval
+pypokereval.c from c:\pypoker-eval
+
+Remember to include the version (138), python 27 and win32 in the package filename
+
+10. Testing
+-----------
+
+Python 2.7 must be installed
+
+10.1 Extract the zip file created in 9.4 into a new directory
+10.2 Change directory to the directory in 10.1
+10.3 execute dos> c:\Python27\python.exe test.py
+10.4 hand-output should scroll down the screen
+10.5 start the python interpreter
+10.6 >>> import pokereval
+10.7 No errors should be seen
+
+11. Packaging
+-------------
+
+Please follow pypokereval-win32-packaging-walkthrough.txt in the same directory as this walkthrough.
+
