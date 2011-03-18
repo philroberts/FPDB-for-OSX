@@ -52,7 +52,7 @@ class Filters(threading.Thread):
         # text used on screen stored here so that it can be configured
         self.filterText = {'limitsall':_('All'), 'limitsnone':_('None'), 'limitsshow':_('Show _Limits')
                           ,'seatsbetween':_('Between:'), 'seatsand':_('And:'), 'seatsshow':_('Show Number of _Players')
-                          ,'playerstitle':_('Hero:'), 'sitestitle':_('Sites:'), 'gamestitle':_('Games:')
+                          ,'playerstitle':_('Hero:'), 'sitestitle':(_('Sites')+':'), 'gamestitle':(_('Games')+':')
                           ,'limitstitle':_('Limits:'), 'seatstitle':_('Number of Players:')
                           ,'groupstitle':_('Grouping:'), 'posnshow':_('Show Position Stats')
                           ,'datestitle':_('Date:')

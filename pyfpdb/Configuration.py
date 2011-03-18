@@ -55,7 +55,10 @@ log = logging.getLogger("config")
 def get_default_config_path():
     """Returns the path where the fpdb config file _should_ be stored."""
     if os.name == 'posix':
-        config_path = os.path.join(os.path.expanduser("~"), '.fpdb')
+        if (os.uname()[0]=="Darwin"):
+            config_path = os.path.join(os.getenv("HOME"), ".fpdb")
+        else:
+            config_path = os.path.join(os.path.expanduser("~"), '.fpdb')
     elif os.name == 'nt':
         config_path = os.path.join(unicode(os.environ[u"APPDATA"], "latin-1"), u"fpdb")
         #print u"path after joining in get_default_config_path:",config_path
@@ -712,7 +715,7 @@ class Config:
         while added > 0 and n < 2:
             n = n + 1
             log.info(_("Reading configuration file %s") % file)
-            print _("\nReading configuration file %s\n") % file
+            print (("\n"+_("Reading configuration file %s")+"\n") % file)
             try:
                 doc = xml.dom.minidom.parse(file)
                 self.doc = doc

@@ -260,7 +260,7 @@ class Winamax(HandHistoryConverter):
                             hand.buyinCurrency="PSFP"
                         else:
                             #FIXME: handle other currencies (are there other currencies?)
-                            raise FpdbParseError(_("failed to detect currency"))
+                            raise FpdbParseError(_("Failed to detect currency. Hand ID: %s: '%s'") % (hand.handid, info[key]))
 
                         info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
 

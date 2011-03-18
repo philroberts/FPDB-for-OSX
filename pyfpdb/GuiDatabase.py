@@ -478,7 +478,7 @@ class AddDB(gtk.Dialog):
 
     def run(self):
         response = super(AddDB,self).run()
-        log.debug(_("addDB.run: response is %s accept is %s") % (str(response), str(int(gtk.RESPONSE_ACCEPT))))
+        log.debug(_("addDB.run: response is %s, accept is %s") % (str(response), str(int(gtk.RESPONSE_ACCEPT))))
 
         ok,retry = False,True
         while response == gtk.RESPONSE_ACCEPT:
