@@ -60,6 +60,7 @@ class WinamaxSummary(TourneySummary):
     re_Prizepool = re.compile(u"""<div class="title2">.+: (?P<PRIZEPOOL>[0-9,]+)""")
 
     re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
+    re_Ticket = re.compile(u""" / Ticket (?P<VALUE>[0-9.]+)&euro;""")
 
     codepage = ["utf-8"]
 
@@ -103,13 +104,23 @@ class WinamaxSummary(TourneySummary):
             self.gametype['category'] = self.games[mg['GAME']][1]
 
         for m in self.re_Player.finditer(str(tl[0])):
+            winnings = 0
             mg = m.groupdict()
-            #print mg
-            winnings = mg['WINNINGS'].strip(u'€').replace(u',','.')
-            winnings = int(100*Decimal(winnings))
             rank     = mg['RANK']
             name     = mg['PNAME']
-            #print "DEBUG: %s: %s" %(name, winnings)
+            #print "DEUBG: mg: '%s'" % mg
+            is_satellite = self.re_Ticket.search(mg['WINNINGS'])
+            if is_satellite:
+                # Ticket
+                winnings = convert_to_decimal(is_satellite.groupdict()['VALUE'])
+                # For stallites, any ticket means 1st
+                if winnings > 0:
+                    rank = 1
+            else:
+                winnings = convert_to_decimal(mg['WINNINGS'])
+
+            winnings = int(100*Decimal(winnings))
+            #print "DEBUG: %s) %s: %s"  %(rank, name, winnings)
             self.addPlayer(rank, name, winnings, self.currency, None, None, None)
 
 
@@ -117,3 +128,11 @@ class WinamaxSummary(TourneySummary):
             mg = m.groupdict()
             #print mg
             self.tourNo = mg['TOURNO']
+
+def convert_to_decimal(string):
+    dec = string.strip(u'€&euro;\u20ac')
+    dec = dec.replace(u',','.')
+    dec = dec.replace(u' ','')
+    dec = Decimal(dec)
+    return dec
+

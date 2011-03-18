@@ -98,7 +98,7 @@ def twoStartCardString(card):
         if x == y:  ret = s[x] + s[y]
         elif x > y: ret = s[x] + s[y] + 's'
         else:       ret = s[y] + s[x] + 'o'
-    print "twoStartCardString(", card ,") = " + ret
+    #print "twoStartCardString(", card ,") = " + ret
     return ret
 
 def fourStartCards(value1, suit1, value2, suit2, value3, suit3, value4, suit4):

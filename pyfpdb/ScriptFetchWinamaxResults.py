@@ -16,6 +16,8 @@
 #In the "official" distribution you can find the license in agpl-3.0.txt
 
 """A script for fetching Winamax tourney results"""
+import L10n
+_ = L10n.get_translation()
 
 import Configuration
 import Database
