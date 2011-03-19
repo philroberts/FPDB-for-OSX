@@ -83,6 +83,7 @@ def site_alias(alias):
     """Function for converting various site aliases to the FPDB name"""
     tmp = alias
     aliases = {
+                "PacificPoker"   : "PacificPoker",
                 "PokerStars"     : "PokerStars",
                 "Full Tilt Poker": "Full Tilt Poker",
                 "PartyPoker"     : "PartyPoker",
