@@ -370,6 +370,7 @@ class Site(object):
             (10, 'Partouche',      'PA'),
             (11, 'Carbon',         'CA'),
             (12, 'PKR',            'PK'),
+            (13, 'PacificPoker',            'P8'),
         ]
     INITIAL_DATA_KEYS = ('id', 'name', 'code')
 
