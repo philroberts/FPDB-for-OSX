@@ -201,7 +201,6 @@ class fpdb:
         # although not perfect, it seems to be the least instrusive.
         baseNormStyle = eventBox.get_style().base[gtk.STATE_INSENSITIVE]
         if baseNormStyle:
-            print baseNormStyle
             eventBox.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.color_parse(str(baseNormStyle)))
 
         if nb.get_n_pages() > 0:
