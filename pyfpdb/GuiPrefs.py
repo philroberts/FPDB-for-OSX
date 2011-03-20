@@ -75,7 +75,7 @@ class GuiPrefs:
         configColumn.pack_start(cRender, True)
         configColumn.add_attribute(cRender, 'text', 1)
 
-        configColumn = gtk.TreeViewColumn(_("Value  (double-click to change)"))
+        configColumn = gtk.TreeViewColumn(_("Value (double-click to change)"))
         self.configView.append_column(configColumn)
         cRender = gtk.CellRendererText()
         configColumn.pack_start(cRender, True)

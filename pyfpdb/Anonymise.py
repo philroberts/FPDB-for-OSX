@@ -52,7 +52,7 @@ else:
 m = hhc.re_PlayerInfo.finditer(filecontents)
 
 outfile = options.filename+".anon"
-print _("Output being written to"), outfile
+print (_("Output being written to %s") % outfile)
 
 savestdout = sys.stdout
 fsock = open(outfile,"w")

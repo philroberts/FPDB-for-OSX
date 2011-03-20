@@ -142,7 +142,7 @@ or None if we fail to get the info """
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if(m == None):
-            logging.info(_("Didn't match re_HandInfo"))
+            logging.info(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
             logging.info(hand.handText)
             return None
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))

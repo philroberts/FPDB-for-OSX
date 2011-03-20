@@ -80,12 +80,23 @@ class HUD_main(object):
             self.hud_dict = {}
             self.hud_params = self.config.get_hud_ui_parameters()
 
-    #    a thread to read stdin
+            # a thread to read stdin
             gobject.threads_init()                        # this is required
             thread.start_new_thread(self.read_stdin, ())  # starts the thread
 
-    #    a main window
+            # a main window
             self.main_window = gtk.Window()
+            
+            if os.name == 'nt': # Check for admin rights, don't start auto import if we don't have them
+                if (os.sys.getwindowsversion()[0] >= 6):
+                    import ctypes
+                    if not ctypes.windll.shell32.IsUserAnAdmin():
+                        dia = gtk.MessageDialog(parent=self.main_window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_ERROR, buttons=(gtk.BUTTONS_OK), message_format=_("No admin rights for HUD"))
+                        dia.format_secondary_text(_("Please right click fpdb.exe and HUD_main.exe, select properties, and set them both to run as admin.")+" "+_("You will need to restart fpdb afterwards."))
+                        response = dia.run()
+                        dia.destroy()
+                        return
+            
             if options.minimized:
                 self.main_window.iconify()
             if options.hidden:
@@ -141,7 +152,7 @@ class HUD_main(object):
         self.kill_hud(None, hud.table.key)
 
     def destroy(self, *args):             # call back for terminating the main eventloop
-        log.info(_("Terminating normally."))
+        log.info(_("Quitting normally"))
         gtk.main_quit()
 
     def kill_hud(self, event, table):
