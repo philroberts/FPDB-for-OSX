@@ -1327,26 +1327,6 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         return response
 
     def validate_config(self):
-        # can this be removed now?
-        if self.config.get_import_parameters().get('saveStarsHH'):
-            hhbase = self.config.get_import_parameters().get("hhArchiveBase")
-            hhbase = os.path.expanduser(hhbase)
-            #hhdir = os.path.join(hhbase,site)
-            hhdir = hhbase
-            if not os.path.isdir(hhdir):
-                diapath = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Setup hh dir")
-                diastring = _("WARNING: Unable to find output hand history directory %s\n\n Press YES to create this directory, or NO to select a new one.") % hhdir
-                diapath.format_secondary_text(diastring)
-                response = diapath.run()
-                diapath.destroy()
-                if response == gtk.RESPONSE_YES:
-                    try:
-                        os.makedirs(hhdir)
-                    except:
-                        self.warning_box(_("WARNING: Unable to create hand output directory. Importing is not likely to work until this is fixed."))
-                elif response == gtk.RESPONSE_NO:
-                    self.select_hhArchiveBase()
-
         # check if sites in config file are in DB
         for site in self.config.get_supported_sites(True):    # get site names from config file
             try:
