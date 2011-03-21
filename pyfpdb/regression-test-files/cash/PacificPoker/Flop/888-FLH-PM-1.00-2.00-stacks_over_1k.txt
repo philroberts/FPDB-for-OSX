@@ -1,0 +1,2666 @@
+#Game No : 440726740
+***** Cassava Hand History for Game 440726740 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:02:03
+Table Rubtsovsk (Practice Play)
+Seat 8 is the button
+Total number of players : 8
+Seat 1: micheal19 ( 291.60 )
+Seat 2: panchut ( 36.55 )
+Seat 3: leinavanua ( 58.75 )
+Seat 5: tito474 ( 39,483.56 )
+Seat 6: VadzimS ( 954.78 )
+Seat 7: aldy597 ( 40 )
+Seat 8: ben1939 ( 64 )
+Seat 9: loxfordkid ( 1,734.09 )
+loxfordkid posts small blind [0.50]
+micheal19 posts big blind [1]
+aldy597 posts big blind [1]
+** Dealing down cards **
+panchut calls [1]
+leinavanua calls [1]
+tito474 calls [1]
+VadzimS folds
+aldy597 raises [1]
+ben1939 calls [2]
+loxfordkid calls [1.50]
+micheal19 raises [2]
+panchut calls [2]
+leinavanua folds
+tito474 calls [2]
+aldy597 raises [2]
+ben1939 calls [2]
+loxfordkid calls [2]
+micheal19 calls [1]
+panchut calls [1]
+tito474 calls [1]
+** Dealing flop ** [ 4d, 6d, Jd ]
+loxfordkid checks
+micheal19 checks
+panchut checks
+tito474 checks
+aldy597 checks
+ben1939 bets [1]
+loxfordkid calls [1]
+micheal19 calls [1]
+panchut calls [1]
+tito474 calls [1]
+aldy597 calls [1]
+** Dealing turn ** [ 8h ]
+loxfordkid bets [2]
+micheal19 calls [2]
+panchut calls [2]
+tito474 folds
+aldy597 raises [4]
+ben1939 calls [4]
+loxfordkid calls [2]
+micheal19 calls [2]
+panchut calls [2]
+** Dealing river ** [ Th ]
+loxfordkid bets [2]
+micheal19 calls [2]
+panchut calls [2]
+aldy597 raises [4]
+ben1939 calls [4]
+loxfordkid calls [2]
+micheal19 calls [2]
+panchut calls [2]
+** Summary **
+aldy597 shows [ Ad, 7s ]
+ben1939 shows [ 6h, Kd ]
+loxfordkid shows [ Js, 4h ]
+micheal19 mucks [ Ts, Qh ]
+panchut mucks [ Tc, 3s ]
+loxfordkid collected [ 69.75 ]
+
+
+
+#Game No : 440726931
+***** Cassava Hand History for Game 440726931 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:05:10
+Table Rubtsovsk (Practice Play)
+Seat 9 is the button
+Total number of players : 7
+Seat 1: micheal19 ( 278.60 )
+Seat 2: panchut ( 23.55 )
+Seat 3: leinavanua ( 57.75 )
+Seat 5: tito474 ( 39,478.56 )
+Seat 7: aldy597 ( 27 )
+Seat 8: ben1939 ( 51 )
+Seat 9: loxfordkid ( 1,790.84 )
+micheal19 posts small blind [0.50]
+panchut posts big blind [1]
+** Dealing down cards **
+leinavanua calls [1]
+tito474 calls [1]
+aldy597 raises [2]
+ben1939 raises [3]
+loxfordkid calls [3]
+micheal19 raises [3.50]
+panchut calls [3]
+leinavanua calls [3]
+tito474 calls [3]
+aldy597 calls [2]
+ben1939 calls [1]
+loxfordkid calls [1]
+** Dealing flop ** [ 5c, Kd, 3d ]
+micheal19 bets [1]
+panchut calls [1]
+leinavanua calls [1]
+tito474 raises [2]
+aldy597 raises [3]
+ben1939 raises [4]
+loxfordkid folds
+micheal19 calls [3]
+panchut calls [3]
+leinavanua folds
+tito474 calls [2]
+aldy597 calls [1]
+** Dealing turn ** [ 4s ]
+micheal19 bets [2]
+panchut calls [2]
+tito474 raises [4]
+aldy597 raises [6]
+ben1939 raises [8]
+micheal19 calls [6]
+panchut calls [6]
+tito474 calls [4]
+aldy597 calls [2]
+** Dealing river ** [ 2d ]
+micheal19 bets [2]
+panchut calls [2]
+tito474 calls [2]
+aldy597 raises [4]
+ben1939 calls [4]
+micheal19 raises [4]
+panchut calls [4]
+tito474 calls [4]
+aldy597 raises [4]
+ben1939 calls [4]
+micheal19 calls [2]
+panchut calls [1.55]
+tito474 calls [2]
+** Summary **
+aldy597 shows [ 9d, 7h ]
+ben1939 shows [ 4d, Ah ]
+micheal19 shows [ Ad, Kc ]
+panchut mucks [ 5d, 8h ]
+tito474 mucks [ Kh, 5h ]
+ben1939 collected [ 62.75 ]
+micheal19 collected [ 62.75 ]
+ben1939 collected [ 0.90 ]
+micheal19 collected [ 0.90 ]
+
+
+
+#Game No : 440727062
+***** Cassava Hand History for Game 440727062 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:07:43
+Table Rubtsovsk (Practice Play)
+Seat 1 is the button
+Total number of players : 8
+Seat 1: micheal19 ( 318.25 )
+Seat 3: leinavanua ( 52.75 )
+Seat 4: Borr_09 ( 50 )
+Seat 5: tito474 ( 39,454.56 )
+Seat 6: VadzimS ( 954.78 )
+Seat 7: aldy597 ( 3 )
+Seat 8: ben1939 ( 90.65 )
+Seat 9: smir794 ( 1,000 )
+leinavanua posts small blind [0.50]
+Borr_09 posts big blind [1]
+smir794 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 4c, Kc ]
+tito474 calls [1]
+VadzimS raises [2]
+aldy597 folds
+ben1939 calls [2]
+smir794 calls [1]
+micheal19 raises [3]
+leinavanua calls [2.50]
+Borr_09 folds
+tito474 calls [2]
+VadzimS raises [2]
+ben1939 calls [2]
+smir794 folds
+micheal19 calls [1]
+leinavanua calls [1]
+tito474 calls [1]
+** Dealing flop ** [ Ts, 6c, Td ]
+leinavanua checks
+tito474 bets [1]
+VadzimS raises [2]
+ben1939 folds
+micheal19 calls [2]
+leinavanua folds
+tito474 raises [2]
+VadzimS raises [2]
+micheal19 calls [2]
+tito474 calls [1]
+** Dealing turn ** [ 6h ]
+tito474 bets [2]
+VadzimS raises [4]
+micheal19 calls [4]
+tito474 raises [4]
+VadzimS raises [4]
+micheal19 calls [4]
+tito474 calls [2]
+** Dealing river ** [ 5h ]
+tito474 bets [2]
+VadzimS raises [4]
+micheal19 folds
+tito474 raises [4]
+VadzimS raises [4]
+tito474 calls [2]
+** Summary **
+VadzimS shows [ 8s, 6s ]
+tito474 shows [ Tc, Qh ]
+tito474 collected [ 73.75 ]
+
+
+
+#Game No : 440727219
+***** Cassava Hand History for Game 440727219 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:10:44
+Table Rubtsovsk (Practice Play)
+Seat 3 is the button
+Total number of players : 8
+Seat 1: micheal19 ( 302.25 )
+Seat 3: leinavanua ( 48.75 )
+Seat 4: Borr_09 ( 49 )
+Seat 5: tito474 ( 39,504.31 )
+Seat 6: VadzimS ( 930.78 )
+Seat 7: aldy597 ( 764 )
+Seat 8: ben1939 ( 86.65 )
+Seat 9: smir794 ( 998 )
+Borr_09 posts small blind [0.50]
+tito474 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 8h, 8d ]
+VadzimS raises [2]
+aldy597 calls [2]
+ben1939 calls [2]
+smir794 calls [2]
+micheal19 folds
+leinavanua folds
+Borr_09 calls [1.50]
+tito474 calls [1]
+** Dealing flop ** [ 9h, 6d, 6s ]
+Borr_09 checks
+tito474 checks
+VadzimS checks
+aldy597 checks
+ben1939 bets [1]
+smir794 raises [2]
+Borr_09 calls [2]
+tito474 calls [2]
+VadzimS calls [2]
+aldy597 raises [3]
+ben1939 calls [2]
+smir794 raises [2]
+Borr_09 calls [2]
+tito474 calls [2]
+VadzimS calls [2]
+aldy597 calls [1]
+ben1939 calls [1]
+** Dealing turn ** [ Qh ]
+Borr_09 checks
+tito474 bets [2]
+VadzimS raises [4]
+aldy597 raises [6]
+ben1939 folds
+smir794 raises [8]
+Borr_09 folds
+tito474 calls [6]
+VadzimS calls [4]
+aldy597 calls [2]
+** Dealing river ** [ 7d ]
+tito474 checks
+VadzimS checks
+aldy597 bets [2]
+smir794 raises [4]
+tito474 folds
+VadzimS folds
+aldy597 raises [4]
+smir794 raises [4]
+aldy597 calls [2]
+** Summary **
+smir794 shows [ Qd, 6c ]
+aldy597 mucks [ 7c, 3s ]
+smir794 collected [ 82.75 ]
+
+
+
+#Game No : 440727452
+***** Cassava Hand History for Game 440727452 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:14:55
+Table Rubtsovsk (Practice Play)
+Seat 4 is the button
+Total number of players : 9
+Seat 1: micheal19 ( 302.25 )
+Seat 2: reinaalgar ( 635.40 )
+Seat 3: leinavanua ( 48.75 )
+Seat 4: Borr_09 ( 43 )
+Seat 5: tito474 ( 39,490.31 )
+Seat 6: VadzimS ( 916.78 )
+Seat 7: aldy597 ( 742 )
+Seat 8: ben1939 ( 80.65 )
+Seat 9: smir794 ( 1,058.75 )
+tito474 posts small blind [0.50]
+VadzimS posts big blind [1]
+reinaalgar posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 2s, 6h ]
+aldy597 raises [2]
+ben1939 calls [2]
+smir794 calls [2]
+micheal19 calls [2]
+reinaalgar calls [1]
+leinavanua folds
+Borr_09 folds
+tito474 folds
+VadzimS calls [1]
+** Dealing flop ** [ 9s, Jd, 8h ]
+VadzimS checks
+aldy597 checks
+ben1939 checks
+smir794 checks
+micheal19 checks
+reinaalgar bets [1]
+VadzimS calls [1]
+aldy597 raises [2]
+ben1939 calls [2]
+smir794 calls [2]
+micheal19 raises [3]
+reinaalgar calls [2]
+VadzimS calls [2]
+aldy597 raises [2]
+ben1939 calls [2]
+smir794 calls [2]
+micheal19 calls [1]
+reinaalgar calls [1]
+VadzimS calls [1]
+** Dealing turn ** [ Qd ]
+VadzimS checks
+aldy597 bets [2]
+ben1939 calls [2]
+smir794 calls [2]
+micheal19 calls [2]
+reinaalgar calls [2]
+VadzimS folds
+** Dealing river ** [ 4h ]
+aldy597 bets [2]
+ben1939 folds
+smir794 calls [2]
+micheal19 folds
+reinaalgar calls [2]
+** Summary **
+aldy597 shows [ 9c, Ts ]
+smir794 shows [ As, Td ]
+reinaalgar mucks [ 6s, Qc ]
+aldy597 collected [ 25.63 ]
+smir794 collected [ 25.62 ]
+
+
+
+#Game No : 440727581
+***** Cassava Hand History for Game 440727581 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:17:21
+Table Rubtsovsk (Practice Play)
+Seat 5 is the button
+Total number of players : 8
+Seat 1: micheal19 ( 294.25 )
+Seat 2: reinaalgar ( 625.40 )
+Seat 3: leinavanua ( 48.75 )
+Seat 4: Borr_09 ( 43 )
+Seat 5: tito474 ( 39,489.81 )
+Seat 7: aldy597 ( 757.63 )
+Seat 8: ben1939 ( 72.65 )
+Seat 9: smir794 ( 1,074.37 )
+aldy597 posts small blind [0.50]
+ben1939 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 3d, 4c ]
+smir794 calls [1]
+micheal19 calls [1]
+reinaalgar folds
+leinavanua calls [1]
+Borr_09 folds
+tito474 raises [2]
+aldy597 raises [2.50]
+ben1939 folds
+smir794 calls [2]
+micheal19 calls [2]
+leinavanua calls [2]
+tito474 calls [1]
+** Dealing flop ** [ Qd, Ah, 2c ]
+aldy597 bets [1]
+smir794 raises [2]
+micheal19 folds
+leinavanua calls [2]
+tito474 raises [3]
+aldy597 raises [3]
+smir794 calls [2]
+leinavanua calls [2]
+tito474 calls [1]
+** Dealing turn ** [ 9c ]
+aldy597 bets [2]
+smir794 raises [4]
+leinavanua folds
+tito474 calls [4]
+aldy597 raises [4]
+smir794 raises [4]
+tito474 calls [4]
+aldy597 calls [2]
+** Dealing river ** [ 5s ]
+aldy597 bets [2]
+smir794 raises [4]
+tito474 raises [6]
+aldy597 raises [6]
+smir794 calls [4]
+tito474 calls [2]
+** Summary **
+aldy597 shows [ 8h, 7h ]
+smir794 shows [ As, 4s ]
+tito474 shows [ Kh, Ad ]
+tito474 collected [ 78.75 ]
+
+
+
+#Game No : 440727713
+***** Cassava Hand History for Game 440727713 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:19:33
+Table Rubtsovsk (Practice Play)
+Seat 7 is the button
+Total number of players : 9
+Seat 1: micheal19 ( 291.25 )
+Seat 2: reinaalgar ( 625.40 )
+Seat 3: leinavanua ( 41.75 )
+Seat 4: Borr_09 ( 43 )
+Seat 5: tito474 ( 39,545.56 )
+Seat 6: Equester15 ( 15.50 )
+Seat 7: aldy597 ( 734.63 )
+Seat 8: ben1939 ( 71.65 )
+Seat 9: smir794 ( 1,051.37 )
+ben1939 posts small blind [0.50]
+smir794 posts big blind [1]
+Equester15 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 7s, 8d ]
+micheal19 raises [2]
+reinaalgar calls [2]
+leinavanua folds
+Borr_09 folds
+tito474 calls [2]
+Equester15 raises [2]
+aldy597 raises [4]
+ben1939 calls [3.50]
+smir794 calls [3]
+micheal19 calls [2]
+reinaalgar calls [2]
+tito474 calls [2]
+Equester15 calls [1]
+** Dealing flop ** [ 4c, 5s, 2s ]
+ben1939 checks
+smir794 checks
+micheal19 checks
+reinaalgar bets [1]
+tito474 calls [1]
+Equester15 raises [2]
+aldy597 raises [3]
+ben1939 folds
+smir794 raises [4]
+micheal19 folds
+reinaalgar calls [3]
+tito474 calls [3]
+Equester15 calls [2]
+aldy597 calls [1]
+** Dealing turn ** [ 2h ]
+smir794 bets [2]
+reinaalgar folds
+tito474 calls [2]
+Equester15 raises [4]
+aldy597 raises [6]
+smir794 calls [4]
+tito474 calls [4]
+Equester15 raises [3.50]
+aldy597 calls [1.50]
+smir794 calls [1.50]
+tito474 calls [1.50]
+** Dealing river ** [ 3d ]
+smir794 bets [2]
+tito474 raises [4]
+aldy597 raises [6]
+smir794 calls [4]
+tito474 raises [4]
+aldy597 calls [2]
+smir794 calls [2]
+** Summary **
+tito474 shows [ 7c, 6c ]
+Equester15 mucks [ 5d, Tc ]
+aldy597 mucks [ Qh, 4h ]
+smir794 mucks [ 9c, 9s ]
+tito474 collected [ 76.75 ]
+tito474 collected [ 24 ]
+
+
+
+#Game No : 440727880
+***** Cassava Hand History for Game 440727880 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:22:17
+Table Rubtsovsk (Practice Play)
+Seat 9 is the button
+Total number of players : 7
+Seat 1: micheal19 ( 287.25 )
+Seat 2: reinaalgar ( 617.40 )
+Seat 3: leinavanua ( 41.75 )
+Seat 4: Borr_09 ( 43 )
+Seat 5: tito474 ( 39,622.81 )
+Seat 7: aldy597 ( 711.13 )
+Seat 9: smir794 ( 1,027.87 )
+micheal19 posts small blind [0.50]
+reinaalgar posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 3h, As ]
+leinavanua folds
+Borr_09 folds
+tito474 calls [1]
+aldy597 raises [2]
+smir794 calls [2]
+micheal19 folds
+reinaalgar calls [1]
+tito474 calls [1]
+** Dealing flop ** [ 2h, Qd, Kd ]
+reinaalgar bets [1]
+tito474 raises [2]
+aldy597 raises [3]
+smir794 calls [3]
+reinaalgar calls [2]
+tito474 calls [1]
+** Dealing turn ** [ Ks ]
+reinaalgar bets [2]
+tito474 calls [2]
+aldy597 raises [4]
+smir794 raises [6]
+reinaalgar raises [6]
+tito474 folds
+aldy597 calls [4]
+smir794 calls [2]
+** Dealing river ** [ 6d ]
+reinaalgar bets [2]
+aldy597 calls [2]
+smir794 calls [2]
+** Summary **
+reinaalgar shows [ Kc, 3s ]
+aldy597 mucks [ Jc, 4c ]
+smir794 mucks [ 9s, Qh ]
+reinaalgar collected [ 51.25 ]
+
+
+
+#Game No : 440727969
+***** Cassava Hand History for Game 440727969 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:23:45
+Table Rubtsovsk (Practice Play)
+Seat 2 is the button
+Total number of players : 7
+Seat 2: reinaalgar ( 653.65 )
+Seat 3: leinavanua ( 41.75 )
+Seat 4: Borr_09 ( 43 )
+Seat 5: tito474 ( 39,615.81 )
+Seat 6: leetuan ( 40 )
+Seat 7: aldy597 ( 696.13 )
+Seat 9: smir794 ( 1,012.87 )
+leinavanua posts small blind [0.50]
+Borr_09 posts big blind [1]
+leetuan posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 7s, 4s ]
+tito474 folds
+leetuan raises [1]
+aldy597 folds
+smir794 calls [2]
+reinaalgar calls [2]
+leinavanua folds
+Borr_09 calls [1]
+** Dealing flop ** [ 4h, Qc, 3c ]
+Borr_09 checks
+leetuan bets [1]
+smir794 calls [1]
+reinaalgar calls [1]
+Borr_09 calls [1]
+** Dealing turn ** [ 6c ]
+Borr_09 checks
+leetuan bets [2]
+smir794 calls [2]
+reinaalgar calls [2]
+Borr_09 folds
+** Dealing river ** [ Th ]
+leetuan bets [2]
+smir794 calls [2]
+reinaalgar folds
+** Summary **
+leetuan shows [ 3s, Qd ]
+smir794 mucks [ 9d, As ]
+leetuan collected [ 21.25 ]
+
+
+
+#Game No : 440728032
+***** Cassava Hand History for Game 440728032 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:24:58
+Table Rubtsovsk (Practice Play)
+Seat 3 is the button
+Total number of players : 6
+Seat 2: reinaalgar ( 648.65 )
+Seat 3: leinavanua ( 41.25 )
+Seat 4: Borr_09 ( 40 )
+Seat 5: cutthroat25 ( 10,423.68 )
+Seat 6: leetuan ( 54.25 )
+Seat 9: smir794 ( 1,005.87 )
+Borr_09 posts small blind [0.50]
+cutthroat25 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 5d, As ]
+leetuan raises [2]
+smir794 folds
+reinaalgar calls [2]
+leinavanua calls [2]
+Borr_09 folds
+cutthroat25 calls [1]
+** Dealing flop ** [ 8s, Kc, 7d ]
+cutthroat25 checks
+leetuan bets [1]
+reinaalgar calls [1]
+leinavanua calls [1]
+cutthroat25 calls [1]
+** Dealing turn ** [ 6s ]
+cutthroat25 checks
+leetuan bets [2]
+reinaalgar raises [4]
+leinavanua calls [4]
+cutthroat25 calls [4]
+leetuan raises [4]
+reinaalgar calls [2]
+leinavanua folds
+cutthroat25 calls [2]
+** Dealing river ** [ 3s ]
+cutthroat25 checks
+leetuan bets [2]
+reinaalgar calls [2]
+cutthroat25 folds
+** Summary **
+leetuan shows [ Ah, 5c ]
+reinaalgar shows [ 7c, 6h ]
+reinaalgar collected [ 37.25 ]
+
+
+
+#Game No : 440728107
+***** Cassava Hand History for Game 440728107 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:26:25
+Table Rubtsovsk (Practice Play)
+Seat 4 is the button
+Total number of players : 6
+Seat 2: reinaalgar ( 674.90 )
+Seat 3: leinavanua ( 34.25 )
+Seat 4: Borr_09 ( 39.50 )
+Seat 5: cutthroat25 ( 10,414.68 )
+Seat 6: leetuan ( 43.25 )
+Seat 9: smir794 ( 1,005.87 )
+cutthroat25 posts small blind [0.50]
+leetuan posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 4h, 5h ]
+smir794 calls [1]
+reinaalgar calls [1]
+leinavanua calls [1]
+Borr_09 calls [1]
+cutthroat25 calls [0.50]
+leetuan checks
+** Dealing flop ** [ Jc, 3c, As ]
+cutthroat25 checks
+leetuan bets [1]
+smir794 calls [1]
+reinaalgar folds
+leinavanua calls [1]
+Borr_09 calls [1]
+cutthroat25 calls [1]
+** Dealing turn ** [ 2c ]
+cutthroat25 checks
+leetuan bets [2]
+smir794 calls [2]
+leinavanua calls [2]
+Borr_09 raises [4]
+cutthroat25 calls [4]
+leetuan raises [4]
+smir794 folds
+leinavanua calls [4]
+Borr_09 calls [2]
+cutthroat25 calls [2]
+** Dealing river ** [ 7s ]
+cutthroat25 checks
+leetuan bets [2]
+leinavanua folds
+Borr_09 raises [4]
+cutthroat25 folds
+leetuan raises [4]
+Borr_09 raises [4]
+leetuan calls [2]
+** Summary **
+Borr_09 shows [ 4h, 5h ]
+leetuan mucks [ Ad, 6h ]
+Borr_09 collected [ 51.75 ]
+
+
+
+#Game No : 440728192
+***** Cassava Hand History for Game 440728192 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:28:07
+Table Rubtsovsk (Practice Play)
+Seat 5 is the button
+Total number of players : 6
+Seat 2: reinaalgar ( 673.90 )
+Seat 3: leinavanua ( 26.25 )
+Seat 4: Borr_09 ( 75.25 )
+Seat 5: cutthroat25 ( 10,406.68 )
+Seat 6: leetuan ( 27.25 )
+Seat 9: smir794 ( 1,001.87 )
+leetuan posts small blind [0.50]
+smir794 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 7d, Jd ]
+reinaalgar calls [1]
+leinavanua folds
+Borr_09 folds
+cutthroat25 calls [1]
+leetuan calls [0.50]
+smir794 checks
+** Dealing flop ** [ 6c, 2c, 6s ]
+leetuan checks
+smir794 checks
+reinaalgar bets [1]
+cutthroat25 calls [1]
+leetuan calls [1]
+smir794 calls [1]
+** Dealing turn ** [ As ]
+leetuan checks
+smir794 checks
+reinaalgar bets [2]
+cutthroat25 calls [2]
+leetuan calls [2]
+smir794 calls [2]
+** Dealing river ** [ 5s ]
+leetuan checks
+smir794 checks
+reinaalgar bets [2]
+cutthroat25 folds
+leetuan folds
+smir794 folds
+** Summary **
+reinaalgar collected [ 15.05 ]
+
+
+
+#Game No : 440728300
+***** Cassava Hand History for Game 440728300 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:30:26
+Table Rubtsovsk (Practice Play)
+Seat 6 is the button
+Total number of players : 7
+Seat 1: nutuleo ( 10.50 )
+Seat 2: reinaalgar ( 684.95 )
+Seat 3: leinavanua ( 26.25 )
+Seat 4: Borr_09 ( 75.25 )
+Seat 5: cutthroat25 ( 10,402.68 )
+Seat 6: leetuan ( 23.25 )
+Seat 9: smir794 ( 997.87 )
+smir794 posts small blind [0.50]
+nutuleo posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 4h, Jh ]
+reinaalgar calls [1]
+leinavanua folds
+Borr_09 folds
+cutthroat25 raises [2]
+leetuan calls [2]
+smir794 folds
+nutuleo raises [2]
+reinaalgar calls [2]
+cutthroat25 calls [1]
+leetuan raises [2]
+nutuleo calls [1]
+reinaalgar calls [1]
+cutthroat25 calls [1]
+** Dealing flop ** [ 4s, 7d, Ad ]
+nutuleo checks
+reinaalgar bets [1]
+cutthroat25 calls [1]
+leetuan raises [2]
+nutuleo calls [2]
+reinaalgar calls [1]
+cutthroat25 calls [1]
+** Dealing turn ** [ 9s ]
+nutuleo checks
+reinaalgar bets [2]
+cutthroat25 calls [2]
+leetuan raises [4]
+nutuleo calls [4]
+reinaalgar raises [4]
+cutthroat25 calls [4]
+leetuan raises [4]
+nutuleo calls [0.50]
+reinaalgar calls [2]
+cutthroat25 calls [2]
+** Dealing river ** [ Kh ]
+reinaalgar bets [2]
+cutthroat25 calls [2]
+leetuan calls [2]
+** Summary **
+reinaalgar shows [ 4d, 9d ]
+cutthroat25 mucks [ Ts, Kd ]
+leetuan mucks [ Tc, Qh ]
+nutuleo mucks [ 4c, 6d ]
+reinaalgar collected [ 41.25 ]
+reinaalgar collected [ 16.50 ]
+
+
+
+#Game No : 440728378
+***** Cassava Hand History for Game 440728378 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:32:02
+Table Rubtsovsk (Practice Play)
+Seat 9 is the button
+Total number of players : 6
+Seat 2: reinaalgar ( 726.70 )
+Seat 3: leinavanua ( 26.25 )
+Seat 4: Borr_09 ( 75.25 )
+Seat 5: cutthroat25 ( 10,386.68 )
+Seat 6: leetuan ( 7.25 )
+Seat 9: smir794 ( 997.37 )
+reinaalgar posts small blind [0.50]
+leinavanua posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ Qs, 2h ]
+Borr_09 folds
+cutthroat25 calls [1]
+leetuan calls [1]
+smir794 calls [1]
+reinaalgar calls [0.50]
+leinavanua checks
+** Dealing flop ** [ Jh, 5s, As ]
+reinaalgar checks
+leinavanua checks
+cutthroat25 checks
+leetuan bets [1]
+smir794 calls [1]
+reinaalgar folds
+leinavanua calls [1]
+cutthroat25 folds
+** Dealing turn ** [ Ts ]
+leinavanua checks
+leetuan bets [2]
+smir794 calls [2]
+leinavanua calls [2]
+** Dealing river ** [ 3h ]
+leinavanua checks
+leetuan bets [2]
+smir794 calls [2]
+leinavanua calls [2]
+** Summary **
+leetuan shows [ 9h, 2s ]
+smir794 shows [ Js, 6h ]
+leinavanua mucks [ 4c, 5d ]
+smir794 collected [ 18.85 ]
+
+
+
+#Game No : 440728443
+***** Cassava Hand History for Game 440728443 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:33:27
+Table Rubtsovsk (Practice Play)
+Seat 2 is the button
+Total number of players : 6
+Seat 2: reinaalgar ( 725.70 )
+Seat 3: leinavanua ( 20.25 )
+Seat 4: Borr_09 ( 75.25 )
+Seat 5: cutthroat25 ( 10,385.68 )
+Seat 6: leetuan ( 1.25 )
+Seat 9: smir794 ( 1,010.22 )
+leinavanua posts small blind [0.50]
+Borr_09 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ Jc, Ac ]
+cutthroat25 calls [1]
+leetuan raises [1.25]
+smir794 folds
+reinaalgar calls [1.25]
+leinavanua folds
+Borr_09 calls [0.25]
+cutthroat25 calls [0.25]
+** Dealing flop ** [ Jh, Ts, 6h ]
+Borr_09 bets [1]
+cutthroat25 calls [1]
+reinaalgar calls [1]
+** Dealing turn ** [ Kc ]
+Borr_09 bets [2]
+cutthroat25 calls [2]
+reinaalgar calls [2]
+** Dealing river ** [ 4d ]
+Borr_09 bets [2]
+cutthroat25 folds
+reinaalgar calls [2]
+** Summary **
+Borr_09 shows [ Jc, Ac ]
+leetuan shows [ Js, Td ]
+reinaalgar mucks [ Qs, 3d ]
+leetuan collected [ 5.08 ]
+Borr_09 collected [ 12.35 ]
+
+
+
+#Game No : 440728490
+***** Cassava Hand History for Game 440728490 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:34:21
+Table Rubtsovsk (Practice Play)
+Seat 3 is the button
+Total number of players : 5
+Seat 2: reinaalgar ( 719.45 )
+Seat 4: Borr_09 ( 81.35 )
+Seat 5: cutthroat25 ( 10,381.43 )
+Seat 6: leetuan ( 5.08 )
+Seat 9: smir794 ( 1,010.22 )
+Borr_09 posts small blind [0.50]
+cutthroat25 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 3d, Ad ]
+leetuan folds
+smir794 calls [1]
+reinaalgar folds
+Borr_09 calls [0.50]
+cutthroat25 checks
+** Dealing flop ** [ Td, Ks, 2s ]
+Borr_09 bets [1]
+cutthroat25 calls [1]
+smir794 calls [1]
+** Dealing turn ** [ 5c ]
+Borr_09 checks
+cutthroat25 checks
+smir794 bets [2]
+Borr_09 calls [2]
+cutthroat25 folds
+** Dealing river ** [ 9s ]
+Borr_09 checks
+smir794 bets [2]
+Borr_09 calls [2]
+** Summary **
+smir794 shows [ 5h, Kh ]
+Borr_09 mucks [ 3d, Ad ]
+smir794 collected [ 13.15 ]
+
+
+
+#Game No : 440728535
+***** Cassava Hand History for Game 440728535 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:35:16
+Table Rubtsovsk (Practice Play)
+Seat 4 is the button
+Total number of players : 6
+Seat 1: azzadown64 ( 10 )
+Seat 2: reinaalgar ( 719.45 )
+Seat 4: Borr_09 ( 75.35 )
+Seat 5: cutthroat25 ( 10,379.43 )
+Seat 6: leetuan ( 248.51 )
+Seat 9: smir794 ( 1,017.37 )
+cutthroat25 posts small blind [0.50]
+leetuan posts big blind [1]
+azzadown64 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 2s, Td ]
+smir794 calls [1]
+azzadown64 checks
+reinaalgar calls [1]
+Borr_09 folds
+cutthroat25 calls [0.50]
+leetuan raises [1]
+smir794 calls [1]
+azzadown64 calls [1]
+reinaalgar calls [1]
+cutthroat25 calls [1]
+** Dealing flop ** [ 7d, 3s, 6d ]
+cutthroat25 bets [1]
+leetuan raises [2]
+smir794 raises [3]
+azzadown64 folds
+reinaalgar folds
+cutthroat25 calls [2]
+leetuan raises [2]
+smir794 calls [1]
+cutthroat25 calls [1]
+** Dealing turn ** [ 8c ]
+cutthroat25 checks
+leetuan bets [2]
+smir794 calls [2]
+cutthroat25 calls [2]
+** Dealing river ** [ 8s ]
+cutthroat25 bets [2]
+leetuan calls [2]
+smir794 raises [4]
+cutthroat25 raises [4]
+leetuan calls [4]
+smir794 calls [2]
+** Summary **
+cutthroat25 shows [ 5s, 8d ]
+leetuan mucks [ Qc, 5c ]
+smir794 mucks [ 9d, 9c ]
+cutthroat25 collected [ 44.75 ]
+
+
+
+#Game No : 440728620
+***** Cassava Hand History for Game 440728620 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:37:23
+Table Rubtsovsk (Practice Play)
+Seat 5 is the button
+Total number of players : 8
+Seat 1: capelo53 ( 28,000.98 )
+Seat 2: reinaalgar ( 717.45 )
+Seat 3: Juliojesusmg ( 1,000 )
+Seat 4: Borr_09 ( 75.35 )
+Seat 5: cutthroat25 ( 10,410.18 )
+Seat 6: leetuan ( 234.51 )
+Seat 8: ben1939 ( 67.65 )
+Seat 9: smir794 ( 1,003.37 )
+leetuan posts small blind [0.50]
+ben1939 posts big blind [1]
+capelo53 posts big blind [1]
+Juliojesusmg posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ Ks, 2h ]
+smir794 calls [1]
+capelo53 checks
+reinaalgar calls [1]
+Juliojesusmg raises [1]
+Borr_09 folds
+cutthroat25 raises [3]
+leetuan calls [2.50]
+ben1939 folds
+smir794 calls [2]
+capelo53 raises [3]
+reinaalgar calls [3]
+Juliojesusmg calls [2]
+cutthroat25 calls [1]
+leetuan calls [1]
+smir794 calls [1]
+** Dealing flop ** [ 6h, Ah, 5d ]
+leetuan checks
+smir794 bets [1]
+capelo53 folds
+reinaalgar folds
+Juliojesusmg raises [2]
+cutthroat25 calls [2]
+leetuan calls [2]
+smir794 calls [1]
+** Dealing turn ** [ Qd ]
+leetuan checks
+smir794 checks
+Juliojesusmg bets [2]
+cutthroat25 calls [2]
+leetuan calls [2]
+smir794 calls [2]
+** Dealing river ** [ 3h ]
+leetuan checks
+smir794 checks
+Juliojesusmg bets [2]
+cutthroat25 folds
+leetuan calls [2]
+smir794 calls [2]
+** Summary **
+Juliojesusmg shows [ Qc, 3c ]
+leetuan mucks [ Ts, 5s ]
+smir794 mucks [ 6d, Js ]
+Juliojesusmg collected [ 45.75 ]
+
+
+
+#Game No : 440728705
+***** Cassava Hand History for Game 440728705 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:39:28
+Table Rubtsovsk (Practice Play)
+Seat 8 is the button
+Total number of players : 6
+Seat 1: capelo53 ( 27,996.98 )
+Seat 2: wowoweeeeee ( 15 )
+Seat 3: Juliojesusmg ( 1,035.75 )
+Seat 4: Borr_09 ( 75.35 )
+Seat 8: ben1939 ( 66.65 )
+Seat 9: smir794 ( 993.37 )
+smir794 posts small blind [0.50]
+capelo53 posts big blind [1]
+wowoweeeeee posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 2h, 7c ]
+wowoweeeeee raises [1]
+Juliojesusmg raises [3]
+Borr_09 folds
+ben1939 calls [3]
+smir794 calls [2.50]
+capelo53 folds
+wowoweeeeee raises [2]
+Juliojesusmg calls [1]
+ben1939 calls [1]
+smir794 calls [1]
+** Dealing flop ** [ Qc, Qs, Ad ]
+smir794 bets [1]
+wowoweeeeee raises [2]
+Juliojesusmg calls [2]
+ben1939 folds
+smir794 raises [2]
+wowoweeeeee raises [2]
+Juliojesusmg calls [2]
+smir794 calls [1]
+** Dealing turn ** [ 9d ]
+smir794 checks
+wowoweeeeee bets [2]
+Juliojesusmg raises [4]
+smir794 raises [6]
+wowoweeeeee raises [5]
+Juliojesusmg calls [3]
+smir794 calls [1]
+** Dealing river ** [ Td ]
+smir794 bets [2]
+Juliojesusmg calls [2]
+** Summary **
+smir794 shows [ As, 9h ]
+wowoweeeeee mucks [ Kh, 7h ]
+Juliojesusmg mucks [ 3d, 5c ]
+smir794 collected [ 48.75 ]
+smir794 collected [ 4 ]
+
+
+
+#Game No : 440728768
+***** Cassava Hand History for Game 440728768 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:40:45
+Table Rubtsovsk (Practice Play)
+Seat 9 is the button
+Total number of players : 5
+Seat 1: capelo53 ( 27,995.98 )
+Seat 3: Juliojesusmg ( 1,018.75 )
+Seat 4: Borr_09 ( 75.35 )
+Seat 8: ben1939 ( 62.65 )
+Seat 9: smir794 ( 1,029.12 )
+capelo53 posts small blind [0.50]
+Juliojesusmg posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 8d, 8s ]
+Borr_09 calls [1]
+ben1939 calls [1]
+smir794 calls [1]
+capelo53 calls [0.50]
+Juliojesusmg raises [1]
+Borr_09 calls [1]
+ben1939 calls [1]
+smir794 calls [1]
+capelo53 calls [1]
+** Dealing flop ** [ Ks, Ad, 2c ]
+capelo53 checks
+Juliojesusmg bets [1]
+Borr_09 calls [1]
+ben1939 folds
+smir794 calls [1]
+capelo53 calls [1]
+** Dealing turn ** [ 6h ]
+capelo53 checks
+Juliojesusmg bets [2]
+Borr_09 folds
+smir794 calls [2]
+capelo53 calls [2]
+** Dealing river ** [ 2h ]
+capelo53 checks
+Juliojesusmg bets [2]
+smir794 calls [2]
+capelo53 calls [2]
+** Summary **
+Juliojesusmg shows [ 3d, 4s ]
+smir794 shows [ Kd, 7d ]
+capelo53 mucks [ 9s, 9h ]
+smir794 collected [ 24.75 ]
+
+
+
+#Game No : 440728824
+***** Cassava Hand History for Game 440728824 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:41:55
+Table Rubtsovsk (Practice Play)
+Seat 1 is the button
+Total number of players : 5
+Seat 1: capelo53 ( 27,988.98 )
+Seat 4: Borr_09 ( 72.35 )
+Seat 5: leinavanua ( 40 )
+Seat 8: ben1939 ( 60.65 )
+Seat 9: smir794 ( 1,046.87 )
+Borr_09 posts small blind [0.50]
+leinavanua posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 8d, 8c ]
+ben1939 calls [1]
+smir794 folds
+capelo53 calls [1]
+Borr_09 calls [0.50]
+leinavanua checks
+** Dealing flop ** [ 4c, 3d, Ah ]
+Borr_09 checks
+leinavanua checks
+ben1939 checks
+capelo53 checks
+** Dealing turn ** [ Qh ]
+Borr_09 checks
+leinavanua checks
+ben1939 checks
+capelo53 bets [2]
+Borr_09 folds
+leinavanua folds
+ben1939 folds
+** Summary **
+capelo53 collected [ 3.65 ]
+
+
+
+#Game No : 440728861
+***** Cassava Hand History for Game 440728861 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:42:49
+Table Rubtsovsk (Practice Play)
+Seat 4 is the button
+Total number of players : 5
+Seat 1: capelo53 ( 27,991.63 )
+Seat 4: Borr_09 ( 71.35 )
+Seat 5: leinavanua ( 39 )
+Seat 8: ben1939 ( 59.65 )
+Seat 9: smir794 ( 1,046.87 )
+leinavanua posts small blind [0.50]
+ben1939 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 7d, 7s ]
+smir794 folds
+capelo53 calls [1]
+Borr_09 calls [1]
+leinavanua folds
+ben1939 raises [1]
+capelo53 raises [2]
+Borr_09 raises [3]
+ben1939 calls [2]
+capelo53 calls [1]
+** Dealing flop ** [ 9h, Jh, Jd ]
+ben1939 bets [1]
+capelo53 calls [1]
+Borr_09 raises [2]
+ben1939 raises [2]
+capelo53 raises [3]
+Borr_09 calls [2]
+ben1939 calls [1]
+** Dealing turn ** [ 4s ]
+ben1939 checks
+capelo53 checks
+Borr_09 checks
+** Dealing river ** [ 4d ]
+ben1939 checks
+capelo53 checks
+Borr_09 checks
+** Summary **
+ben1939 shows [ Ah, Ks ]
+capelo53 shows [ As, Qh ]
+Borr_09 shows [ 7d, 7s ]
+Borr_09 collected [ 23.25 ]
+
+
+
+#Game No : 440728921
+***** Cassava Hand History for Game 440728921 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:44:10
+Table Rubtsovsk (Practice Play)
+Seat 5 is the button
+Total number of players : 5
+Seat 1: capelo53 ( 27,983.63 )
+Seat 4: Borr_09 ( 86.60 )
+Seat 5: leinavanua ( 38.50 )
+Seat 8: ben1939 ( 51.65 )
+Seat 9: smir794 ( 1,046.87 )
+ben1939 posts small blind [0.50]
+smir794 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ Qd, 2s ]
+capelo53 calls [1]
+Borr_09 folds
+leinavanua folds
+ben1939 calls [0.50]
+smir794 checks
+** Dealing flop ** [ 4h, 7h, Jh ]
+ben1939 checks
+smir794 checks
+capelo53 checks
+** Dealing turn ** [ Jd ]
+ben1939 checks
+smir794 checks
+capelo53 checks
+** Dealing river ** [ 7d ]
+ben1939 checks
+smir794 checks
+capelo53 checks
+** Summary **
+ben1939 shows [ 3c, 3s ]
+smir794 shows [ Td, Ac ]
+capelo53 mucks [ 2h, 9s ]
+smir794 collected [ 2.70 ]
+
+
+
+#Game No : 440728963
+***** Cassava Hand History for Game 440728963 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:45:05
+Table Rubtsovsk (Practice Play)
+Seat 8 is the button
+Total number of players : 4
+Seat 1: capelo53 ( 27,982.63 )
+Seat 4: Borr_09 ( 86.60 )
+Seat 8: ben1939 ( 50.65 )
+Seat 9: smir794 ( 1,048.57 )
+smir794 posts small blind [0.50]
+capelo53 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 4c, 5s ]
+Borr_09 calls [1]
+ben1939 calls [1]
+smir794 calls [0.50]
+capelo53 checks
+** Dealing flop ** [ Jc, 3h, Th ]
+smir794 checks
+capelo53 checks
+Borr_09 checks
+ben1939 checks
+** Dealing turn ** [ 5d ]
+smir794 checks
+capelo53 checks
+Borr_09 bets [2]
+ben1939 calls [2]
+smir794 calls [2]
+capelo53 calls [2]
+** Dealing river ** [ 7d ]
+smir794 checks
+capelo53 checks
+Borr_09 bets [2]
+ben1939 folds
+smir794 calls [2]
+capelo53 calls [2]
+** Summary **
+Borr_09 shows [ 4c, 5s ]
+smir794 shows [ 7h, Kh ]
+capelo53 shows [ 4h, Tc ]
+capelo53 collected [ 16.95 ]
+
+
+
+#Game No : 440729020
+***** Cassava Hand History for Game 440729020 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:46:11
+Table Rubtsovsk (Practice Play)
+Seat 9 is the button
+Total number of players : 6
+Seat 1: capelo53 ( 27,994.58 )
+Seat 2: Tigran64 ( 2,518 )
+Seat 3: Juliojesusmg ( 1,011.75 )
+Seat 4: Borr_09 ( 81.60 )
+Seat 8: ben1939 ( 47.65 )
+Seat 9: smir794 ( 1,043.57 )
+capelo53 posts small blind [0.50]
+Tigran64 folds
+Juliojesusmg posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 9h, Qd ]
+Borr_09 folds
+ben1939 calls [1]
+smir794 calls [1]
+capelo53 calls [0.50]
+Juliojesusmg raises [1]
+ben1939 calls [1]
+smir794 calls [1]
+capelo53 calls [1]
+** Dealing flop ** [ Jc, Th, 7h ]
+capelo53 checks
+Juliojesusmg bets [1]
+ben1939 raises [2]
+smir794 folds
+capelo53 calls [2]
+Juliojesusmg calls [1]
+** Dealing turn ** [ 3h ]
+capelo53 checks
+Juliojesusmg bets [2]
+ben1939 raises [4]
+capelo53 raises [6]
+Juliojesusmg calls [4]
+ben1939 raises [4]
+capelo53 calls [2]
+Juliojesusmg calls [2]
+** Dealing river ** [ 3c ]
+capelo53 checks
+Juliojesusmg bets [2]
+ben1939 raises [4]
+capelo53 raises [6]
+Juliojesusmg calls [4]
+ben1939 calls [2]
+** Summary **
+capelo53 shows [ Kh, 2h ]
+Juliojesusmg mucks [ 6d, 4d ]
+ben1939 mucks [ 5h, Qh ]
+capelo53 collected [ 54.75 ]
+
+
+
+#Game No : 440729108
+***** Cassava Hand History for Game 440729108 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:47:48
+Table Rubtsovsk (Practice Play)
+Seat 1 is the button
+Total number of players : 7
+Seat 1: capelo53 ( 28,031.33 )
+Seat 3: Juliojesusmg ( 993.75 )
+Seat 4: Borr_09 ( 81.60 )
+Seat 5: aspence3 ( 8,002.38 )
+Seat 6: nutuleo ( 40 )
+Seat 8: ben1939 ( 29.65 )
+Seat 9: smir794 ( 1,041.57 )
+Juliojesusmg posts small blind [0.50]
+Borr_09 posts big blind [1]
+aspence3 posts big blind [1]
+nutuleo posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ Jc, 5h ]
+aspence3 checks
+nutuleo raises [1]
+ben1939 calls [2]
+smir794 folds
+capelo53 folds
+Juliojesusmg calls [1.50]
+Borr_09 folds
+aspence3 folds
+** Dealing flop ** [ Ad, Th, 8s ]
+Juliojesusmg bets [1]
+nutuleo calls [1]
+ben1939 calls [1]
+** Dealing turn ** [ Ac ]
+Juliojesusmg bets [2]
+nutuleo folds
+ben1939 calls [2]
+** Dealing river ** [ 2d ]
+Juliojesusmg bets [2]
+ben1939 folds
+** Summary **
+Juliojesusmg collected [ 14.10 ]
+
+
+
+#Game No : 440729192
+***** Cassava Hand History for Game 440729192 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:49:14
+Table Rubtsovsk (Practice Play)
+Seat 3 is the button
+Total number of players : 7
+Seat 1: capelo53 ( 28,031.33 )
+Seat 2: Tigran64 ( 2,518 )
+Seat 3: Juliojesusmg ( 1,002.85 )
+Seat 4: Borr_09 ( 80.60 )
+Seat 6: nutuleo ( 37 )
+Seat 8: ben1939 ( 24.65 )
+Seat 9: smir794 ( 1,041.57 )
+Borr_09 posts small blind [0.50]
+nutuleo posts big blind [1]
+Tigran64 posts dead blind [0.50 + 1]
+** Dealing down cards **
+Dealt to Borr_09 [ 5d, Tc ]
+ben1939 folds
+smir794 folds
+capelo53 calls [1]
+Tigran64 checks
+Juliojesusmg calls [1]
+Borr_09 folds
+nutuleo raises [1]
+capelo53 calls [1]
+Tigran64 calls [1]
+Juliojesusmg calls [1]
+** Dealing flop ** [ Ts, 9h, 2c ]
+nutuleo checks
+capelo53 checks
+Tigran64 checks
+Juliojesusmg bets [1]
+nutuleo raises [2]
+capelo53 calls [2]
+Tigran64 calls [2]
+Juliojesusmg raises [2]
+nutuleo raises [2]
+capelo53 calls [2]
+Tigran64 calls [2]
+Juliojesusmg calls [1]
+** Dealing turn ** [ 2h ]
+nutuleo bets [2]
+capelo53 calls [2]
+Tigran64 calls [2]
+Juliojesusmg calls [2]
+** Dealing river ** [ 3s ]
+nutuleo checks
+capelo53 checks
+Tigran64 checks
+Juliojesusmg bets [2]
+nutuleo folds
+capelo53 folds
+Tigran64 calls [2]
+** Summary **
+Juliojesusmg shows [ Js, 3c ]
+Tigran64 shows [ Ks, 3d ]
+Tigran64 collected [ 35.75 ]
+
+
+
+#Game No : 440729283
+***** Cassava Hand History for Game 440729283 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:50:52
+Table Rubtsovsk (Practice Play)
+Seat 6 is the button
+Total number of players : 5
+Seat 1: capelo53 ( 28,023.33 )
+Seat 2: Tigran64 ( 2,543.25 )
+Seat 6: nutuleo ( 29 )
+Seat 9: smir794 ( 1,041.57 )
+Seat 10: eltrapy ( 425.70 )
+smir794 posts small blind [0.50]
+eltrapy posts big blind [1]
+** Dealing down cards **
+capelo53 folds
+Tigran64 calls [1]
+nutuleo raises [2]
+smir794 folds
+eltrapy calls [1]
+Tigran64 calls [1]
+** Dealing flop ** [ 4c, 4d, 6s ]
+eltrapy checks
+Tigran64 checks
+nutuleo bets [1]
+eltrapy calls [1]
+Tigran64 calls [1]
+** Dealing turn ** [ 9s ]
+eltrapy checks
+Tigran64 checks
+nutuleo bets [2]
+eltrapy folds
+Tigran64 calls [2]
+** Dealing river ** [ 8d ]
+Tigran64 checks
+nutuleo bets [2]
+Tigran64 folds
+** Summary **
+nutuleo collected [ 12.68 ]
+
+
+
+#Game No : 440729333
+***** Cassava Hand History for Game 440729333 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:51:47
+Table Rubtsovsk (Practice Play)
+Seat 9 is the button
+Total number of players : 6
+Seat 1: capelo53 ( 28,023.33 )
+Seat 2: Tigran64 ( 2,538.25 )
+Seat 6: nutuleo ( 36.68 )
+Seat 8: ben1939 ( 859.85 )
+Seat 9: smir794 ( 1,041.07 )
+Seat 10: eltrapy ( 422.70 )
+eltrapy posts small blind [0.50]
+capelo53 posts big blind [1]
+ben1939 posts big blind [1]
+** Dealing down cards **
+Tigran64 calls [1]
+nutuleo raises [2]
+ben1939 calls [1]
+smir794 folds
+eltrapy calls [1.50]
+capelo53 calls [1]
+Tigran64 raises [2]
+nutuleo raises [2]
+ben1939 calls [2]
+eltrapy calls [2]
+capelo53 calls [2]
+Tigran64 calls [1]
+** Dealing flop ** [ 6d, 7c, 7s ]
+eltrapy checks
+capelo53 checks
+Tigran64 checks
+nutuleo bets [1]
+ben1939 folds
+eltrapy calls [1]
+capelo53 folds
+Tigran64 calls [1]
+** Dealing turn ** [ Ah ]
+eltrapy checks
+Tigran64 checks
+nutuleo bets [2]
+eltrapy folds
+Tigran64 calls [2]
+** Dealing river ** [ Tc ]
+Tigran64 checks
+nutuleo checks
+** Summary **
+Tigran64 shows [ 9c, Qc ]
+nutuleo mucks [ 8c, 2s ]
+Tigran64 collected [ 25.75 ]
+
+
+
+#Game No : 440729401
+***** Cassava Hand History for Game 440729401 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:53:06
+Table Rubtsovsk (Practice Play)
+Seat 10 is the button
+Total number of players : 6
+Seat 1: capelo53 ( 28,019.33 )
+Seat 2: Tigran64 ( 2,557 )
+Seat 6: nutuleo ( 29.68 )
+Seat 8: ben1939 ( 855.85 )
+Seat 9: smir794 ( 1,041.07 )
+Seat 10: eltrapy ( 417.70 )
+capelo53 posts small blind [0.50]
+Tigran64 posts big blind [1]
+** Dealing down cards **
+nutuleo raises [2]
+ben1939 calls [2]
+smir794 calls [2]
+eltrapy calls [2]
+capelo53 folds
+Tigran64 raises [2]
+nutuleo raises [2]
+ben1939 calls [2]
+smir794 calls [2]
+eltrapy calls [2]
+Tigran64 calls [1]
+** Dealing flop ** [ 2d, 5d, Ah ]
+Tigran64 bets [1]
+nutuleo raises [2]
+ben1939 folds
+smir794 calls [2]
+eltrapy calls [2]
+Tigran64 raises [2]
+nutuleo raises [2]
+smir794 calls [2]
+eltrapy calls [2]
+Tigran64 calls [1]
+** Dealing turn ** [ Ac ]
+Tigran64 bets [2]
+nutuleo raises [4]
+smir794 raises [6]
+eltrapy raises [8]
+Tigran64 calls [6]
+nutuleo calls [4]
+smir794 calls [2]
+** Dealing river ** [ 8h ]
+Tigran64 checks
+nutuleo checks
+smir794 bets [2]
+eltrapy raises [4]
+Tigran64 folds
+nutuleo calls [4]
+smir794 raises [4]
+eltrapy raises [4]
+nutuleo calls [4]
+smir794 calls [2]
+** Summary **
+eltrapy shows [ Jh, Ad ]
+nutuleo mucks [ Ks, 6s ]
+smir794 mucks [ Qc, 9s ]
+eltrapy collected [ 91.25 ]
+
+
+
+#Game No : 440729460
+***** Cassava Hand History for Game 440729460 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:54:26
+Table Rubtsovsk (Practice Play)
+Seat 1 is the button
+Total number of players : 6
+Seat 1: capelo53 ( 28,018.83 )
+Seat 2: Tigran64 ( 2,541 )
+Seat 6: nutuleo ( 5.68 )
+Seat 8: ben1939 ( 851.85 )
+Seat 9: smir794 ( 1,017.07 )
+Seat 10: eltrapy ( 484.95 )
+Tigran64 posts small blind [0.50]
+nutuleo posts big blind [1]
+** Dealing down cards **
+ben1939 calls [1]
+smir794 calls [1]
+eltrapy calls [1]
+capelo53 calls [1]
+Tigran64 calls [0.50]
+nutuleo raises [1]
+ben1939 raises [2]
+smir794 calls [2]
+eltrapy folds
+capelo53 raises [3]
+Tigran64 calls [3]
+nutuleo calls [2]
+ben1939 calls [1]
+smir794 calls [1]
+** Dealing flop ** [ 2d, 4d, 7d ]
+Tigran64 checks
+nutuleo bets [1]
+ben1939 raises [2]
+smir794 folds
+capelo53 calls [2]
+Tigran64 calls [2]
+nutuleo calls [0.68]
+** Dealing turn ** [ 8c ]
+Tigran64 checks
+ben1939 checks
+capelo53 checks
+** Dealing river ** [ 7c ]
+Tigran64 bets [2]
+ben1939 calls [2]
+capelo53 calls [2]
+** Summary **
+Tigran64 shows [ Ac, 7h ]
+nutuleo mucks [ As, 8d ]
+ben1939 mucks [ Ah, 4c ]
+capelo53 mucks [ 8s, 6s ]
+Tigran64 collected [ 26.47 ]
+Tigran64 collected [ 6.96 ]
+
+
+
+#Game No : 440729538
+***** Cassava Hand History for Game 440729538 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:55:44
+Table Rubtsovsk (Practice Play)
+Seat 2 is the button
+Total number of players : 5
+Seat 1: capelo53 ( 28,010.83 )
+Seat 2: Tigran64 ( 2,566.43 )
+Seat 8: ben1939 ( 843.85 )
+Seat 9: smir794 ( 1,013.07 )
+Seat 10: eltrapy ( 483.95 )
+ben1939 posts small blind [0.50]
+smir794 posts big blind [1]
+** Dealing down cards **
+eltrapy calls [1]
+capelo53 calls [1]
+Tigran64 folds
+ben1939 calls [0.50]
+smir794 checks
+** Dealing flop ** [ 9d, 4d, 8d ]
+ben1939 checks
+smir794 bets [1]
+eltrapy calls [1]
+capelo53 calls [1]
+ben1939 calls [1]
+** Dealing turn ** [ 9h ]
+ben1939 checks
+smir794 bets [2]
+eltrapy folds
+capelo53 calls [2]
+ben1939 folds
+** Dealing river ** [ Kd ]
+smir794 bets [2]
+capelo53 calls [2]
+** Summary **
+smir794 shows [ 4s, 8c ]
+capelo53 shows [ 3d, 6h ]
+capelo53 collected [ 15.05 ]
+
+
+
+#Game No : 440729591
+***** Cassava Hand History for Game 440729591 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:56:42
+Table Rubtsovsk (Practice Play)
+Seat 8 is the button
+Total number of players : 7
+Seat 1: capelo53 ( 28,019.88 )
+Seat 2: Tigran64 ( 2,566.43 )
+Seat 4: Borr_09 ( 80.10 )
+Seat 5: sintetico990 ( 40 )
+Seat 8: ben1939 ( 841.85 )
+Seat 9: smir794 ( 1,007.07 )
+Seat 10: eltrapy ( 481.95 )
+smir794 posts small blind [0.50]
+eltrapy posts big blind [1]
+Borr_09 posts dead blind [0.50 + 1]
+sintetico990 folds
+** Dealing down cards **
+Dealt to Borr_09 [ 6h, Ks ]
+capelo53 calls [1]
+Tigran64 calls [1]
+Borr_09 checks
+ben1939 raises [2]
+smir794 calls [1.50]
+eltrapy calls [1]
+capelo53 calls [1]
+Tigran64 calls [1]
+Borr_09 calls [1]
+** Dealing flop ** [ 6d, 7d, Td ]
+smir794 checks
+eltrapy checks
+capelo53 checks
+Tigran64 bets [1]
+Borr_09 folds
+ben1939 calls [1]
+smir794 calls [1]
+eltrapy calls [1]
+capelo53 calls [1]
+** Dealing turn ** [ Tc ]
+smir794 checks
+eltrapy checks
+capelo53 checks
+Tigran64 bets [2]
+ben1939 folds
+smir794 calls [2]
+eltrapy folds
+capelo53 calls [2]
+** Dealing river ** [ 6c ]
+smir794 checks
+capelo53 checks
+Tigran64 bets [2]
+smir794 calls [2]
+capelo53 calls [2]
+** Summary **
+Tigran64 shows [ 4d, 5d ]
+smir794 mucks [ Jd, 3c ]
+capelo53 mucks [ 7s, 2s ]
+Tigran64 collected [ 28.25 ]
+
+
+
+#Game No : 440729682
+***** Cassava Hand History for Game 440729682 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:58:23
+Table Rubtsovsk (Practice Play)
+Seat 9 is the button
+Total number of players : 6
+Seat 1: capelo53 ( 28,012.88 )
+Seat 2: Tigran64 ( 2,587.68 )
+Seat 4: Borr_09 ( 77.60 )
+Seat 8: ben1939 ( 838.85 )
+Seat 9: smir794 ( 1,000.07 )
+Seat 10: eltrapy ( 478.95 )
+eltrapy posts small blind [0.50]
+capelo53 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ Ts, 9c ]
+Tigran64 raises [2]
+Borr_09 calls [2]
+ben1939 calls [2]
+smir794 calls [2]
+eltrapy calls [1.50]
+capelo53 calls [1]
+** Dealing flop ** [ 2d, Ad, 7c ]
+eltrapy checks
+capelo53 checks
+Tigran64 checks
+Borr_09 checks
+ben1939 bets [1]
+smir794 calls [1]
+eltrapy folds
+capelo53 folds
+Tigran64 folds
+Borr_09 folds
+** Dealing turn ** [ 9h ]
+ben1939 checks
+smir794 checks
+** Dealing river ** [ Kh ]
+ben1939 checks
+smir794 bets [2]
+ben1939 calls [2]
+** Summary **
+smir794 shows [ Td, 7d ]
+ben1939 mucks [ Th, 2h ]
+smir794 collected [ 16.95 ]
+
+
+
+#Game No : 440729742
+***** Cassava Hand History for Game 440729742 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 11:59:27
+Table Rubtsovsk (Practice Play)
+Seat 10 is the button
+Total number of players : 6
+Seat 1: capelo53 ( 28,010.88 )
+Seat 2: Tigran64 ( 2,585.68 )
+Seat 4: Borr_09 ( 75.60 )
+Seat 8: ben1939 ( 833.85 )
+Seat 9: smir794 ( 1,012.02 )
+Seat 10: eltrapy ( 476.95 )
+capelo53 posts small blind [0.50]
+Tigran64 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ Kd, 9d ]
+Borr_09 raises [2]
+ben1939 calls [2]
+smir794 calls [2]
+eltrapy calls [2]
+capelo53 calls [1.50]
+Tigran64 calls [1]
+** Dealing flop ** [ Qh, 8s, Tc ]
+capelo53 checks
+Tigran64 checks
+Borr_09 bets [1]
+ben1939 calls [1]
+smir794 folds
+eltrapy folds
+capelo53 calls [1]
+Tigran64 calls [1]
+** Dealing turn ** [ 6h ]
+capelo53 checks
+Tigran64 checks
+Borr_09 bets [2]
+ben1939 calls [2]
+capelo53 calls [2]
+Tigran64 calls [2]
+** Dealing river ** [ 9h ]
+capelo53 checks
+Tigran64 checks
+Borr_09 checks
+ben1939 bets [2]
+capelo53 calls [2]
+Tigran64 folds
+Borr_09 calls [2]
+** Summary **
+ben1939 shows [ Ah, 7s ]
+capelo53 shows [ 7d, Ad ]
+Borr_09 mucks [ Kd, 9d ]
+capelo53 collected [ 14.38 ]
+ben1939 collected [ 14.37 ]
+
+
+
+#Game No : 440729795
+***** Cassava Hand History for Game 440729795 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:00:30
+Table Rubtsovsk (Practice Play)
+Seat 1 is the button
+Total number of players : 6
+Seat 1: capelo53 ( 28,018.26 )
+Seat 2: Tigran64 ( 2,580.68 )
+Seat 4: Borr_09 ( 68.60 )
+Seat 8: ben1939 ( 841.22 )
+Seat 9: smir794 ( 1,010.02 )
+Seat 10: eltrapy ( 474.95 )
+Tigran64 posts small blind [0.50]
+Borr_09 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ Kh, Jh ]
+ben1939 folds
+smir794 calls [1]
+eltrapy calls [1]
+capelo53 calls [1]
+Tigran64 calls [0.50]
+Borr_09 checks
+** Dealing flop ** [ 8d, 5h, 4s ]
+Tigran64 checks
+Borr_09 checks
+smir794 checks
+eltrapy checks
+capelo53 checks
+** Dealing turn ** [ Ks ]
+Tigran64 checks
+Borr_09 bets [2]
+smir794 raises [4]
+eltrapy calls [4]
+capelo53 calls [4]
+Tigran64 folds
+Borr_09 calls [2]
+** Dealing river ** [ 9c ]
+Borr_09 checks
+smir794 bets [2]
+eltrapy folds
+capelo53 folds
+Borr_09 calls [2]
+** Summary **
+smir794 shows [ 5d, Kc ]
+Borr_09 mucks [ Kh, Jh ]
+smir794 collected [ 23.75 ]
+
+
+
+#Game No : 440729846
+***** Cassava Hand History for Game 440729846 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:01:32
+Table Rubtsovsk (Practice Play)
+Seat 2 is the button
+Total number of players : 6
+Seat 1: capelo53 ( 28,013.26 )
+Seat 2: Tigran64 ( 2,579.68 )
+Seat 4: Borr_09 ( 61.60 )
+Seat 8: ben1939 ( 841.22 )
+Seat 9: smir794 ( 1,026.77 )
+Seat 10: eltrapy ( 469.95 )
+Borr_09 posts small blind [0.50]
+ben1939 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 8d, Jd ]
+smir794 calls [1]
+eltrapy raises [2]
+capelo53 calls [2]
+Tigran64 calls [2]
+Borr_09 calls [1.50]
+ben1939 calls [1]
+smir794 calls [1]
+** Dealing flop ** [ 9d, 9h, 5c ]
+Borr_09 checks
+ben1939 checks
+smir794 checks
+eltrapy checks
+capelo53 checks
+Tigran64 checks
+** Dealing turn ** [ Js ]
+Borr_09 checks
+ben1939 checks
+smir794 checks
+eltrapy bets [2]
+capelo53 calls [2]
+Tigran64 folds
+Borr_09 calls [2]
+ben1939 folds
+smir794 calls [2]
+** Dealing river ** [ Jc ]
+Borr_09 bets [2]
+smir794 raises [4]
+eltrapy raises [6]
+capelo53 folds
+Borr_09 raises [6]
+smir794 calls [4]
+eltrapy calls [2]
+** Summary **
+Borr_09 shows [ 8d, Jd ]
+smir794 mucks [ 5d, Kc ]
+eltrapy mucks [ 7h, 7d ]
+Borr_09 collected [ 42.75 ]
+
+
+
+#Game No : 440729904
+***** Cassava Hand History for Game 440729904 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:02:45
+Table Rubtsovsk (Practice Play)
+Seat 4 is the button
+Total number of players : 6
+Seat 1: capelo53 ( 28,009.26 )
+Seat 2: Tigran64 ( 2,577.68 )
+Seat 4: Borr_09 ( 92.35 )
+Seat 8: ben1939 ( 839.22 )
+Seat 9: smir794 ( 1,014.77 )
+Seat 10: eltrapy ( 457.95 )
+ben1939 posts small blind [0.50]
+smir794 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ Kd, 9c ]
+eltrapy raises [2]
+capelo53 folds
+Tigran64 calls [2]
+Borr_09 folds
+ben1939 calls [1.50]
+smir794 folds
+** Dealing flop ** [ 2s, 7c, Qh ]
+ben1939 checks
+eltrapy checks
+Tigran64 checks
+** Dealing turn ** [ Qs ]
+ben1939 checks
+eltrapy bets [2]
+Tigran64 calls [2]
+ben1939 calls [2]
+** Dealing river ** [ 2c ]
+ben1939 checks
+eltrapy bets [2]
+Tigran64 calls [2]
+ben1939 calls [2]
+** Summary **
+eltrapy shows [ Tc, Th ]
+Tigran64 mucks [ 6d, 6h ]
+ben1939 mucks [ 3s, 9s ]
+eltrapy collected [ 17.90 ]
+
+
+
+#Game No : 440729971
+***** Cassava Hand History for Game 440729971 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:03:55
+Table Rubtsovsk (Practice Play)
+Seat 8 is the button
+Total number of players : 6
+Seat 1: capelo53 ( 28,009.26 )
+Seat 2: Tigran64 ( 2,571.68 )
+Seat 4: Borr_09 ( 92.35 )
+Seat 8: ben1939 ( 833.22 )
+Seat 9: smir794 ( 1,013.77 )
+Seat 10: eltrapy ( 469.85 )
+smir794 posts small blind [0.50]
+eltrapy posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 5c, As ]
+capelo53 calls [1]
+Tigran64 folds
+Borr_09 calls [1]
+ben1939 folds
+smir794 raises [1.50]
+eltrapy folds
+capelo53 raises [2]
+Borr_09 folds
+smir794 raises [2]
+capelo53 calls [1]
+** Dealing flop ** [ 6d, 7d, 6s ]
+smir794 bets [1]
+capelo53 calls [1]
+** Dealing turn ** [ 7c ]
+smir794 bets [2]
+capelo53 calls [2]
+** Dealing river ** [ Jc ]
+smir794 bets [2]
+capelo53 calls [2]
+** Summary **
+smir794 shows [ Ac, Ks ]
+capelo53 shows [ Js, 9c ]
+capelo53 collected [ 18.85 ]
+
+
+
+#Game No : 440730012
+***** Cassava Hand History for Game 440730012 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:04:38
+Table Rubtsovsk (Practice Play)
+Seat 9 is the button
+Total number of players : 4
+Seat 1: capelo53 ( 28,019.11 )
+Seat 2: Tigran64 ( 2,571.68 )
+Seat 4: Borr_09 ( 91.35 )
+Seat 9: smir794 ( 1,004.77 )
+capelo53 posts small blind [0.50]
+Tigran64 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ Kh, 5d ]
+Borr_09 folds
+smir794 calls [1]
+capelo53 calls [0.50]
+Tigran64 checks
+** Dealing flop ** [ Qs, 6s, 8d ]
+capelo53 checks
+Tigran64 bets [1]
+smir794 calls [1]
+capelo53 folds
+** Dealing turn ** [ Kd ]
+Tigran64 bets [2]
+smir794 calls [2]
+** Dealing river ** [ 6d ]
+Tigran64 bets [2]
+smir794 calls [2]
+** Summary **
+Tigran64 shows [ 9d, Qd ]
+smir794 mucks [ As, 5s ]
+Tigran64 collected [ 12.20 ]
+
+
+
+#Game No : 440730046
+***** Cassava Hand History for Game 440730046 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:05:15
+Table Rubtsovsk (Practice Play)
+Seat 1 is the button
+Total number of players : 4
+Seat 1: capelo53 ( 28,018.11 )
+Seat 2: Tigran64 ( 2,577.88 )
+Seat 4: Borr_09 ( 91.35 )
+Seat 9: smir794 ( 998.77 )
+Tigran64 posts small blind [0.50]
+Borr_09 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 4c, 7h ]
+smir794 calls [1]
+capelo53 calls [1]
+Tigran64 calls [0.50]
+Borr_09 checks
+** Dealing flop ** [ 6d, 9d, 5h ]
+Tigran64 checks
+Borr_09 checks
+smir794 checks
+capelo53 checks
+** Dealing turn ** [ 4h ]
+Tigran64 bets [2]
+Borr_09 calls [2]
+smir794 calls [2]
+capelo53 calls [2]
+** Dealing river ** [ 8c ]
+Tigran64 checks
+Borr_09 bets [2]
+smir794 calls [2]
+capelo53 calls [2]
+Tigran64 calls [2]
+** Summary **
+Borr_09 shows [ 4c, 7h ]
+smir794 shows [ 7c, Qh ]
+capelo53 mucks [ 9c, 5c ]
+Tigran64 mucks [ Qd, 4s ]
+Borr_09 collected [ 9.43 ]
+smir794 collected [ 9.42 ]
+
+
+
+#Game No : 440730092
+***** Cassava Hand History for Game 440730092 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:06:10
+Table Rubtsovsk (Practice Play)
+Seat 2 is the button
+Total number of players : 4
+Seat 1: capelo53 ( 28,013.11 )
+Seat 2: Tigran64 ( 2,572.88 )
+Seat 4: Borr_09 ( 95.78 )
+Seat 9: smir794 ( 1,003.19 )
+Borr_09 posts small blind [0.50]
+smir794 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 4s, 2c ]
+capelo53 calls [1]
+Tigran64 calls [1]
+Borr_09 calls [0.50]
+smir794 checks
+** Dealing flop ** [ As, 8d, Ts ]
+Borr_09 checks
+smir794 checks
+capelo53 checks
+Tigran64 checks
+** Dealing turn ** [ 3h ]
+Borr_09 checks
+smir794 checks
+capelo53 checks
+Tigran64 checks
+** Dealing river ** [ 7c ]
+Borr_09 checks
+smir794 checks
+capelo53 bets [2]
+Tigran64 folds
+Borr_09 folds
+smir794 folds
+** Summary **
+capelo53 collected [ 3.65 ]
+
+
+
+#Game No : 440730145
+***** Cassava Hand History for Game 440730145 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:07:03
+Table Rubtsovsk (Practice Play)
+Seat 4 is the button
+Total number of players : 5
+Seat 1: capelo53 ( 28,015.76 )
+Seat 2: Tigran64 ( 2,571.88 )
+Seat 3: Juliojesusmg ( 992.85 )
+Seat 4: Borr_09 ( 94.78 )
+Seat 9: smir794 ( 1,002.19 )
+smir794 posts small blind [0.50]
+capelo53 posts big blind [1]
+Juliojesusmg posts dead blind [0.50 + 1]
+** Dealing down cards **
+Dealt to Borr_09 [ 7s, 8d ]
+Tigran64 raises [2]
+Juliojesusmg calls [1]
+Borr_09 folds
+smir794 calls [1.50]
+capelo53 calls [1]
+** Dealing flop ** [ Jc, 9h, 8h ]
+smir794 checks
+capelo53 checks
+Tigran64 bets [1]
+Juliojesusmg calls [1]
+smir794 calls [1]
+capelo53 folds
+** Dealing turn ** [ 4c ]
+smir794 checks
+Tigran64 bets [2]
+Juliojesusmg calls [2]
+smir794 calls [2]
+** Dealing river ** [ 4d ]
+smir794 checks
+Tigran64 bets [2]
+Juliojesusmg calls [2]
+smir794 calls [2]
+** Summary **
+Tigran64 shows [ Ac, As ]
+Juliojesusmg mucks [ 6s, 3c ]
+smir794 mucks [ Kd, Js ]
+Tigran64 collected [ 22.25 ]
+
+
+
+#Game No : 440730187
+***** Cassava Hand History for Game 440730187 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:07:50
+Table Rubtsovsk (Practice Play)
+Seat 9 is the button
+Total number of players : 5
+Seat 1: capelo53 ( 28,013.76 )
+Seat 2: Tigran64 ( 2,587.13 )
+Seat 3: Juliojesusmg ( 985.35 )
+Seat 4: Borr_09 ( 94.78 )
+Seat 9: smir794 ( 995.19 )
+capelo53 posts small blind [0.50]
+Tigran64 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 5h, Kh ]
+Juliojesusmg raises [2]
+Borr_09 folds
+smir794 folds
+capelo53 calls [1.50]
+Tigran64 calls [1]
+** Dealing flop ** [ Kd, 2d, Js ]
+capelo53 checks
+Tigran64 checks
+Juliojesusmg bets [1]
+capelo53 raises [2]
+Tigran64 calls [2]
+Juliojesusmg raises [2]
+capelo53 raises [2]
+Tigran64 calls [2]
+Juliojesusmg calls [1]
+** Dealing turn ** [ Qs ]
+capelo53 bets [2]
+Tigran64 calls [2]
+Juliojesusmg raises [4]
+capelo53 raises [4]
+Tigran64 calls [4]
+Juliojesusmg raises [4]
+capelo53 calls [2]
+Tigran64 calls [2]
+** Dealing river ** [ 7h ]
+capelo53 bets [2]
+Tigran64 calls [2]
+Juliojesusmg raises [4]
+capelo53 raises [4]
+Tigran64 calls [4]
+Juliojesusmg raises [4]
+capelo53 calls [2]
+Tigran64 calls [2]
+** Summary **
+Juliojesusmg shows [ Th, 9h ]
+capelo53 mucks [ As, Jc ]
+Tigran64 mucks [ 8c, Qc ]
+Juliojesusmg collected [ 64.75 ]
+
+
+
+#Game No : 440730254
+***** Cassava Hand History for Game 440730254 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:09:03
+Table Rubtsovsk (Practice Play)
+Seat 1 is the button
+Total number of players : 4
+Seat 1: capelo53 ( 27,991.76 )
+Seat 2: Tigran64 ( 2,565.13 )
+Seat 4: Borr_09 ( 94.78 )
+Seat 9: smir794 ( 995.19 )
+Tigran64 posts small blind [0.50]
+Borr_09 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 6h, 4s ]
+smir794 calls [1]
+capelo53 calls [1]
+Tigran64 raises [1.50]
+Borr_09 folds
+smir794 calls [1]
+capelo53 calls [1]
+** Dealing flop ** [ Kh, Td, 7s ]
+Tigran64 checks
+smir794 checks
+capelo53 bets [1]
+Tigran64 calls [1]
+smir794 calls [1]
+** Dealing turn ** [ Kc ]
+Tigran64 checks
+smir794 checks
+capelo53 bets [2]
+Tigran64 calls [2]
+smir794 calls [2]
+** Dealing river ** [ 8s ]
+Tigran64 checks
+smir794 checks
+capelo53 bets [2]
+Tigran64 folds
+smir794 calls [2]
+** Summary **
+capelo53 shows [ Js, Qd ]
+smir794 shows [ 2c, 7c ]
+smir794 collected [ 18.85 ]
+
+
+
+#Game No : 440730286
+***** Cassava Hand History for Game 440730286 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:09:49
+Table Rubtsovsk (Practice Play)
+Seat 2 is the button
+Total number of players : 5
+Seat 1: capelo53 ( 27,984.76 )
+Seat 2: Tigran64 ( 2,560.13 )
+Seat 4: Borr_09 ( 93.78 )
+Seat 5: socawarrior3 ( 40 )
+Seat 8: ben1939 ( 833.22 )
+Borr_09 posts small blind [0.50]
+socawarrior3 posts big blind [1]
+ben1939 posts dead blind [0.50 + 1]
+** Dealing down cards **
+Dealt to Borr_09 [ Ts, 7h ]
+ben1939 checks
+capelo53 calls [1]
+Tigran64 folds
+Borr_09 folds
+socawarrior3 raises [1]
+ben1939 calls [1]
+capelo53 calls [1]
+** Dealing flop ** [ 3d, Qd, 9d ]
+socawarrior3 bets [1]
+ben1939 calls [1]
+capelo53 calls [1]
+** Dealing turn ** [ 4d ]
+socawarrior3 bets [2]
+ben1939 calls [2]
+capelo53 folds
+** Dealing river ** [ 4h ]
+socawarrior3 bets [2]
+ben1939 folds
+** Summary **
+socawarrior3 collected [ 13.15 ]
+
+
+
+#Game No : 440730355
+***** Cassava Hand History for Game 440730355 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:11:01
+Table Rubtsovsk (Practice Play)
+Seat 4 is the button
+Total number of players : 5
+Seat 1: capelo53 ( 27,981.76 )
+Seat 2: Tigran64 ( 2,560.13 )
+Seat 4: Borr_09 ( 93.28 )
+Seat 5: socawarrior3 ( 48.15 )
+Seat 8: ben1939 ( 827.72 )
+socawarrior3 posts small blind [0.50]
+ben1939 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 9h, Qh ]
+capelo53 calls [1]
+Tigran64 raises [2]
+Borr_09 calls [2]
+socawarrior3 calls [1.50]
+ben1939 calls [1]
+capelo53 calls [1]
+** Dealing flop ** [ Kd, 2c, 2s ]
+socawarrior3 checks
+ben1939 bets [1]
+capelo53 folds
+Tigran64 calls [1]
+Borr_09 folds
+socawarrior3 calls [1]
+** Dealing turn ** [ Tc ]
+socawarrior3 checks
+ben1939 bets [2]
+Tigran64 calls [2]
+socawarrior3 folds
+** Dealing river ** [ 5h ]
+ben1939 bets [2]
+Tigran64 folds
+** Summary **
+ben1939 collected [ 16 ]
+
+
+
+#Game No : 440730413
+***** Cassava Hand History for Game 440730413 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:12:01
+Table Rubtsovsk (Practice Play)
+Seat 5 is the button
+Total number of players : 5
+Seat 1: capelo53 ( 27,979.76 )
+Seat 2: Tigran64 ( 2,555.13 )
+Seat 4: Borr_09 ( 91.28 )
+Seat 5: socawarrior3 ( 45.15 )
+Seat 8: ben1939 ( 838.72 )
+ben1939 posts small blind [0.50]
+capelo53 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ As, Ts ]
+Tigran64 folds
+Borr_09 raises [2]
+socawarrior3 calls [2]
+ben1939 calls [1.50]
+capelo53 calls [1]
+** Dealing flop ** [ 8s, 5c, 7c ]
+ben1939 checks
+capelo53 checks
+Borr_09 bets [1]
+socawarrior3 calls [1]
+ben1939 raises [2]
+capelo53 folds
+Borr_09 calls [1]
+socawarrior3 calls [1]
+** Dealing turn ** [ 5h ]
+ben1939 bets [2]
+Borr_09 calls [2]
+socawarrior3 calls [2]
+** Dealing river ** [ 9s ]
+ben1939 bets [2]
+Borr_09 calls [2]
+socawarrior3 folds
+** Summary **
+ben1939 shows [ 8d, 8c ]
+Borr_09 mucks [ As, Ts ]
+ben1939 collected [ 22.75 ]
+
+
+
+#Game No : 440730469
+***** Cassava Hand History for Game 440730469 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:13:09
+Table Rubtsovsk (Practice Play)
+Seat 8 is the button
+Total number of players : 4
+Seat 1: capelo53 ( 27,977.76 )
+Seat 2: Tigran64 ( 2,555.13 )
+Seat 4: Borr_09 ( 83.28 )
+Seat 8: ben1939 ( 853.47 )
+capelo53 posts small blind [0.50]
+Tigran64 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ Qh, 8s ]
+Borr_09 folds
+ben1939 calls [1]
+capelo53 calls [0.50]
+Tigran64 raises [1]
+ben1939 calls [1]
+capelo53 calls [1]
+** Dealing flop ** [ 2c, 6c, Jc ]
+capelo53 checks
+Tigran64 bets [1]
+ben1939 calls [1]
+capelo53 calls [1]
+** Dealing turn ** [ Kd ]
+capelo53 checks
+Tigran64 bets [2]
+ben1939 calls [2]
+capelo53 calls [2]
+** Dealing river ** [ Kc ]
+capelo53 checks
+Tigran64 bets [2]
+ben1939 calls [2]
+capelo53 calls [2]
+** Summary **
+Tigran64 shows [ Jh, Js ]
+ben1939 mucks [ Ad, 6h ]
+capelo53 mucks [ 3h, 2h ]
+Tigran64 collected [ 19.80 ]
+
+
+
+#Game No : 440730514
+***** Cassava Hand History for Game 440730514 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:13:56
+Table Rubtsovsk (Practice Play)
+Seat 1 is the button
+Total number of players : 4
+Seat 1: capelo53 ( 27,970.76 )
+Seat 2: Tigran64 ( 2,567.93 )
+Seat 4: Borr_09 ( 83.28 )
+Seat 8: ben1939 ( 846.47 )
+Tigran64 posts small blind [0.50]
+Borr_09 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 5s, Jd ]
+ben1939 folds
+capelo53 calls [1]
+Tigran64 folds
+Borr_09 raises [1]
+capelo53 calls [1]
+** Dealing flop ** [ 7h, 4d, 2d ]
+Borr_09 bets [1]
+capelo53 calls [1]
+** Dealing turn ** [ 7c ]
+Borr_09 bets [2]
+capelo53 raises [4]
+Borr_09 calls [2]
+** Dealing river ** [ Js ]
+Borr_09 bets [2]
+capelo53 raises [4]
+Borr_09 raises [4]
+capelo53 raises [4]
+Borr_09 calls [2]
+** Summary **
+capelo53 shows [ Tc, 7s ]
+Borr_09 mucks [ 5s, Jd ]
+capelo53 collected [ 29.25 ]
+
+
+
+#Game No : 440730545
+***** Cassava Hand History for Game 440730545 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:14:31
+Table Rubtsovsk (Practice Play)
+Seat 4 is the button
+Total number of players : 3
+Seat 1: capelo53 ( 27,985.01 )
+Seat 4: Borr_09 ( 68.28 )
+Seat 8: ben1939 ( 846.47 )
+ben1939 posts small blind [0.50]
+capelo53 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ Ks, 8d ]
+Borr_09 calls [1]
+ben1939 folds
+capelo53 checks
+** Dealing flop ** [ 5s, 3s, 3h ]
+capelo53 checks
+Borr_09 checks
+** Dealing turn ** [ 7d ]
+capelo53 bets [2]
+Borr_09 folds
+** Summary **
+capelo53 collected [ 2.50 ]
+
+
+
+#Game No : 440730565
+***** Cassava Hand History for Game 440730565 *****
+0.50/1 Blinds Fix Limit Holdem - *** 08 03 2011 12:14:54
+Table Rubtsovsk (Practice Play)
+Seat 8 is the button
+Total number of players : 3
+Seat 1: capelo53 ( 27,986.51 )
+Seat 4: Borr_09 ( 67.28 )
+Seat 8: ben1939 ( 845.97 )
+capelo53 posts small blind [0.50]
+Borr_09 posts big blind [1]
+** Dealing down cards **
+Dealt to Borr_09 [ 9d, 6s ]
+ben1939 calls [1]
+capelo53 calls [0.50]
+Borr_09 checks
+** Dealing flop ** [ 6h, 9h, 9c ]
+capelo53 checks
+Borr_09 bets [1]
+ben1939 calls [1]
+capelo53 calls [1]
+** Dealing turn ** [ Kc ]
+capelo53 checks
+Borr_09 bets [2]
+ben1939 calls [2]
+capelo53 folds
+** Dealing river ** [ Ts ]
+Borr_09 bets [2]
+ben1939 calls [2]
+** Summary **
+Borr_09 shows [ 9d, 6s ]
+ben1939 mucks [ Tc, 8d ]
+Borr_09 collected [ 13.15 ]
+
+
+
