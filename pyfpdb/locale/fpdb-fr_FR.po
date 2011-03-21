@@ -714,7 +714,7 @@ msgstr "Min # Mains:"
 #: Filters.py:679 Filters.py:708 Filters.py:734 Filters.py:761 Filters.py:875
 #: Filters.py:926 Filters.py:960 Filters.py:1018 Filters.py:1071
 msgid "hide"
-msgstr ""
+msgstr " - "
 
 #: Filters.py:724
 msgid "INFO: No tourney types returned from database"
@@ -762,7 +762,7 @@ msgstr " Effacer les Dates "
 
 #: Filters.py:1068
 msgid "show"
-msgstr ""
+msgstr " + "
 
 #: Filters.py:1076 fpdb.pyw:721
 msgid "Pick a date"
@@ -1410,7 +1410,7 @@ msgstr "Sans abattage: $%.2f"
 
 #: GuiGraphViewer.py:229
 msgid "Profit graph for ring games"
-msgstr ""
+msgstr "Graphique des Gains en cash game "
 
 #: GuiGraphViewer.py:232
 msgid ""
