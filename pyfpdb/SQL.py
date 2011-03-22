@@ -107,6 +107,15 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['createSettingsTable'] = """CREATE TABLE Settings
             (version INTEGER NOT NULL) """
+            
+        ################################
+        # Create InsertLock
+        ################################
+        if db_server == 'mysql':
+            self.query['createLockTable'] = """CREATE TABLE InsertLock (
+                        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        locked BOOLEAN NOT NULL DEFAULT FALSE)
+                        ENGINE=INNODB"""
 
         ################################
         # Create RawHands (this table is all but identical with RawTourneys)
@@ -4501,6 +4510,25 @@ class Sql:
             self.query['analyze'] = "analyze"
         elif db_server == 'sqlite':
             self.query['analyze'] = "analyze"
+            
+        if db_server == 'mysql':
+            self.query['selectLock'] = """
+                        SELECT locked 
+                        FROM InsertLock 
+                        WHERE locked=True 
+                        LOCK IN SHARE MODE"""
+            
+        if db_server == 'mysql':
+            self.query['switchLock'] = """
+                        UPDATE InsertLock SET
+                        locked=%s
+                        WHERE id=%s"""
+                        
+        if db_server == 'mysql':               
+            self.query['missedLock'] = """
+                        UPDATE InsertLock SET
+                        missed=missed+%s
+                        WHERE id=%s"""
 
         if db_server == 'mysql':
             self.query['lockForInsert'] = """

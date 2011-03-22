@@ -273,6 +273,7 @@ class Database:
         self.db_path = ''
         gen = c.get_general_params()
         self.day_start = 0
+        self._has_lock = False
         
         if 'day_start' in gen:
             self.day_start = float(gen['day_start'])
@@ -1718,6 +1719,34 @@ class Database:
 # Start of Hand Writing routines. Idea is to provide a mixture of routines to store Hand data
 # however the calling prog requires. Main aims:
 # - existing static routines from fpdb_simple just modified
+
+    def setThreadId(self, threadid):
+        self.threadId = threadid
+    
+    def acquireLock(self, wait=True, retry_time=.01):
+        while not self._has_lock:
+            cursor = self.get_cursor()
+            cursor.execute(self.sql.query['selectLock'])
+            record = cursor.fetchall()
+            self.commit()
+            if not len(record):
+                cursor.execute(self.sql.query['switchLock'], (True, self.threadId))
+                self.commit()
+                self._has_lock = True
+                return True
+            else:
+                cursor.execute(self.sql.query['missedLock'], (1, self.threadId))
+                self.commit()
+                if not wait:
+                    return False
+                sleep(retry_time)
+    
+    def releaseLock(self):
+        if self._has_lock:
+            cursor = self.get_cursor()
+            num = cursor.execute(self.sql.query['switchLock'], (False, self.threadId))
+            self.commit()
+            self._has_lock = False
 
     def lock_for_insert(self):
         """Lock tables in MySQL to try to speed inserts up"""
