@@ -119,16 +119,17 @@ class DerivedStats():
         return self.handsactions
 
     def assembleHands(self, hand):
-        self.hands['tableName']  = hand.tablename
-        self.hands['siteHandNo'] = hand.handid
-        self.hands['gametypeId'] = None                     # Leave None, handled later after checking db
-        self.hands['sessionId']  = None                     # Leave None, added later if caching sessions
-        self.hands['startTime']  = hand.startTime           # format this!
-        self.hands['importTime'] = None
-        self.hands['seats']      = self.countPlayers(hand) 
-        self.hands['maxSeats']   = hand.maxseats
-        self.hands['texture']    = None                     # No calculation done for this yet.
-        self.hands['tourneyId']  = hand.tourneyId
+        self.hands['tableName']     = hand.tablename
+        self.hands['siteHandNo']    = hand.handid
+        self.hands['gametypeId']    = None                    # Leave None, handled later after checking db
+        self.hands['sessionId']     = None                    # Leave None, added later if caching sessions
+        self.hands['gameSessionId'] = None                    # Leave None, added later if caching sessions
+        self.hands['startTime']     = hand.startTime          # format this!
+        self.hands['importTime']    = None
+        self.hands['seats']         = self.countPlayers(hand) 
+        self.hands['maxSeats']      = hand.maxseats
+        self.hands['texture']       = None                    # No calculation done for this yet.
+        self.hands['tourneyId']     = hand.tourneyId
 
         # This (i think...) is correct for both stud and flop games, as hand.board['street'] disappears, and
         # those values remain default in stud.

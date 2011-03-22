@@ -25,7 +25,6 @@ import datetime
 
 from Exceptions import FpdbParseError
 from HandHistoryConverter import *
-import PokerStarsToFpdb
 from TourneySummary import *
 
 class FullTiltPokerSummary(TourneySummary):
