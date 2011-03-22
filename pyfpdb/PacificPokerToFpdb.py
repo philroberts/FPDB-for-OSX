@@ -412,7 +412,7 @@ class PacificPoker(HandHistoryConverter):
             acts = action.groupdict()
             #print "DEBUG: acts: %s" %acts
             if action.group('ATYPE') == ' raises':
-                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET').replace(',','') )
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET').replace(',','') )
             elif action.group('ATYPE') == ' calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET').replace(',','') )
             elif action.group('ATYPE') == ' bets':
