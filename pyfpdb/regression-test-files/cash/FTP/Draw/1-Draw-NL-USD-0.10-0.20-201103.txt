@@ -1,0 +1,47 @@
+Full Tilt Poker Game #29178537030: Table Broadridge (6 max) - $0.10/$0.20 Ante $0.05 - No Limit 2-7 Single Draw - 01:27:48 ET - 2011/03/20
+Seat 1: mrsjoanmac ($20.28)
+Seat 2: Thanks4Coming ($22.22)
+Seat 3: Hero ($9.95)
+Seat 4: N804SY ($17.75), is sitting out
+Seat 5: Wayren ($24.81)
+Seat 6: Sonny090 ($47.65)
+Thanks4Coming antes $0.05
+mrsjoanmac antes $0.05
+Wayren antes $0.05
+Sonny090 antes $0.05
+Hero antes $0.05
+Wayren posts the small blind of $0.10
+Sonny090 posts the big blind of $0.20
+The button is in seat #4
+*** HOLE CARDS ***
+Dealt to Hero [4s Ah Ts 8h 5c]
+mrsjoanmac folds
+Thanks4Coming folds
+Hero has 15 seconds left to act
+Hero raises to $0.60
+Wayren calls $0.50
+Sonny090 calls $0.40
+*** DRAW *** (Pot: $2.05)
+Wayren discards 1 card
+Sonny090 discards 1 card
+Hero discards 2 cards [Ah Ts]
+Wayren is dealt 1 card
+Sonny090 is dealt 1 card
+Dealt to Hero [4s 8h 5c] [Qc 5s]
+Wayren checks
+Sonny090 bets $0.80
+Hero folds
+Wayren calls $0.80
+*** SHOW DOWN ***
+Sonny090 shows [Td 9d 8c 7h 3h] T,9,8,7,3
+Wayren shows [9s 8s 6c 4h 3d] 9,8,6,4,3
+Wayren wins the pot ($3.47) with 9,8,6,4,3
+mrsjoanmac is sitting out
+*** SUMMARY ***
+Total pot $3.65 | Rake $0.18
+Seat 1: mrsjoanmac folded before the Draw
+Seat 2: Thanks4Coming folded before the Draw
+Seat 3: Hero folded after the Draw
+Seat 4: N804SY (button) is sitting out
+Seat 5: Wayren (small blind) showed [9s 8s 6c 4h 3d] and won ($3.47) with 9,8,6,4,3
+Seat 6: Sonny090 (big blind) showed [Td 9d 8c 7h 3h] and lost with T,9,8,7,3
