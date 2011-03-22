@@ -488,16 +488,16 @@ class Popup:
 
 class Import:
     def __init__(self, node):
-        self.node = node
-        self.interval    = node.getAttribute("interval")
-        self.callFpdbHud   = node.getAttribute("callFpdbHud")
-        self.ResultsDirectory = node.getAttribute("ResultsDirectory")
-        self.hhBulkPath = node.getAttribute("hhBulkPath")
-        self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=False)
-        self.cacheSessions = string_to_bool(node.getAttribute("cacheSessions"), default=False)
-        self.sessionTimeout = string_to_bool(node.getAttribute("sessionTimeout"), default=30)
-        self.fastStoreHudCache = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
-        self.saveStarsHH = string_to_bool(node.getAttribute("saveStarsHH"), default=False)
+        self.node               = node
+        self.interval           = node.getAttribute("interval")
+        self.sessionTimeout     = node.getAttribute("sessionTimeout")
+        self.ResultsDirectory   = node.getAttribute("ResultsDirectory")
+        self.hhBulkPath         = node.getAttribute("hhBulkPath")
+        self.saveActions        = string_to_bool(node.getAttribute("saveActions")      , default=False)
+        self.cacheSessions      = string_to_bool(node.getAttribute("cacheSessions")    , default=False)
+        self.callFpdbHud        = string_to_bool(node.getAttribute("callFpdbHud")      , default=False)
+        self.fastStoreHudCache  = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
+        self.saveStarsHH        = string_to_bool(node.getAttribute("saveStarsHH")      , default=False)
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    saveActions = %s\n    fastStoreHudCache = %s\nResultsDirectory = %s" \
