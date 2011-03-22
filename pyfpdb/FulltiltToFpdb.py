@@ -423,7 +423,7 @@ class Fulltilt(HandHistoryConverter):
             logging.debug(_("Player bringing in: %s for %s") %(m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         else:
-            logging.warning(_("No bringin found, handid =%s") % hand.handid)
+            logging.debug(_("No bringin found, handid =%s") % hand.handid)
 
     def readButton(self, hand):
         try:
