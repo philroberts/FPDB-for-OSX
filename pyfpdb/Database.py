@@ -1949,11 +1949,9 @@ class Database:
         insert_hudcache = insert_hudcache.replace('%s', self.sql.query['placeholder'])
 
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
-        inserts = []
         for p in pdata:
             #NOTE: Insert new stats at right place because SQL needs strict order
             line = []
-
             line.append(1)  # HDs
             line.append(pdata[p]['street0VPI'])
             line.append(pdata[p]['street0Aggr'])                 
@@ -2042,7 +2040,8 @@ class Database:
             line.append(pdata[p]['street2Raises'])               
             line.append(pdata[p]['street3Raises'])               
             line.append(pdata[p]['street4Raises'])               
-
+            
+            hc, hcs = {}, []
             hc['gametypeId'] = gid
             hc['playerId'] = pids[p]
             hc['activeSeats'] = len(pids)
