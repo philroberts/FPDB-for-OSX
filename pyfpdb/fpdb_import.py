@@ -35,9 +35,6 @@ import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("importer")
 
-import pygtk
-import gtk
-
 #    fpdb/FreePokerTools modules
 import Database
 import Configuration
@@ -261,6 +258,7 @@ class Importer:
                 pass
             else:
                 print _("waiting for writers to finish ...")
+                import gtk, pygtk
                 #for t in threading.enumerate():
                 #    print "    "+str(t)
                 #self.writeq.join()
@@ -457,6 +455,7 @@ class Importer:
                 self.pos_in_file[file] = 0
             hhc = obj( self.config, in_path = file, index = idx, starsArchive = self.settings['starsArchive'], ftpArchive = self.settings['ftpArchive'], sitename = site )
             if hhc.getStatus():
+                if self.caller: hhc.progressNotify()
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
                 to_hud = []

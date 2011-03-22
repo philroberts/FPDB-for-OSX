@@ -50,8 +50,6 @@ import Hand
 from Exceptions import FpdbParseError
 import Configuration
 
-import pygtk
-import gtk
 
 class HandHistoryConverter():
 
@@ -128,9 +126,6 @@ If in follow mode, wait for more data to turn up.
 Otherwise, finish at EOF.
 
 """
-        while gtk.events_pending():
-            gtk.main_iteration(False)
-
         starttime = time.time()
         if not self.sanityCheck():
             log.warning(_("Failed sanity check"))
@@ -182,7 +177,12 @@ Otherwise, finish at EOF.
         finally:
             if self.out_fh != sys.stdout:
                 self.out_fh.close()
-
+                
+    def progressNotify(self):
+        "A callback to the interface while events are pending"
+        import gtk, pygtk
+        while gtk.events_pending():
+            gtk.main_iteration(False)
 
     def tailHands(self):
         """Generator of handTexts from a tailed file:
