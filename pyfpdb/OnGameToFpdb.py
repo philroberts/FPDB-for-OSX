@@ -42,12 +42,12 @@ class OnGame(HandHistoryConverter):
     siteId   = 5 # Needs to match id entry in Sites database
 
     mixes = { } # Legal mixed games
-    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": u"\u20ac", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
+    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": u"\u20ac", "GBP": u"\xa3"}         # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : u"\$|\xe2\x82\xac|\u20ac"        # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : u"\$|\\u20AC"        # legal currency symbols - Euro(cp1252, utf-8)
                     }
-    currencies = { u'\u20ac':'EUR', u'\xe2\x82\xac':'EUR', '$':'USD', '':'T$' }
+    currencies = { u'\u20AC':'EUR', '$':'USD', '':'T$' }
 
     limits = { 'NO_LIMIT':'nl', 'POT_LIMIT':'pl', 'LIMIT':'fl'}
 

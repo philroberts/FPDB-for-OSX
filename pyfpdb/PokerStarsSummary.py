@@ -45,7 +45,7 @@ class PokerStarsSummary(TourneySummary):
 
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : u"\$|\xe2\x82\xac|\u20AC|" # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : u"\$|\u20AC|" # legal currency symbols - Euro(cp1252, utf-8)
                     }
 
     re_SplitTourneys = re.compile("PokerStars Tournament ")
