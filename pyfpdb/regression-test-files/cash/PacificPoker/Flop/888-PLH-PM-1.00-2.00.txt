@@ -1,0 +1,645 @@
+#Game No : 360044776
+***** Cassava Hand History for Game 360044776 *****
+1/2 Blinds Pot Limit Holdem - *** 03 02 2011 19:56:35
+Table Alagoinhas (Practice Play)
+Seat 9 is the button
+Total number of players : 7
+Seat 1: corobi14 ( 1,168.50 )
+Seat 2: micuccim ( 198 )
+Seat 3: cami999 ( 200 )
+Seat 5: scottscc ( 210.25 )
+Seat 7: pardies14 ( 758.60 )
+Seat 8: CCsTHEMOMENT ( 37 )
+Seat 9: cdewayne ( 196 )
+corobi14 posts small blind [1]
+micuccim posts big blind [2]
+** Dealing down cards **
+cami999 calls [2]
+scottscc calls [2]
+pardies14 calls [2]
+CCsTHEMOMENT folds
+cdewayne calls [2]
+corobi14 calls [1]
+micuccim checks
+** Dealing flop ** [ 3d, As, 8c ]
+corobi14 checks
+micuccim checks
+cami999 checks
+scottscc checks
+pardies14 checks
+cdewayne checks
+** Dealing turn ** [ 5d ]
+corobi14 checks
+micuccim checks
+cami999 checks
+scottscc bets [8]
+pardies14 folds
+cdewayne folds
+corobi14 calls [8]
+micuccim folds
+cami999 calls [8]
+** Dealing river ** [ 4h ]
+corobi14 checks
+cami999 checks
+scottscc checks
+** Summary **
+corobi14 shows [ Ts, Td ]
+cami999 mucks [ 3h, 9d ]
+scottscc mucks [ Kd, 4c ]
+corobi14 collected [ 34.20 ]
+
+
+
+#Game No : 360044907
+***** Cassava Hand History for Game 360044907 *****
+1/2 Blinds Pot Limit Holdem - *** 03 02 2011 19:57:14
+Table Alagoinhas (Practice Play)
+Seat 1 is the button
+Total number of players : 9
+Seat 1: corobi14 ( 1,192.70 )
+Seat 2: micuccim ( 196 )
+Seat 3: cami999 ( 200 )
+Seat 4: Borr_09 ( 200 )
+Seat 5: scottscc ( 200.25 )
+Seat 7: pardies14 ( 756.60 )
+Seat 8: CCsTHEMOMENT ( 37 )
+Seat 9: cdewayne ( 194 )
+Seat 10: anthony104 ( 200 )
+micuccim posts small blind [1]
+cami999 posts big blind [2]
+Borr_09 posts big blind [2]
+anthony104 posts big blind [2]
+** Dealing down cards **
+Dealt to Borr_09 [ 6d, 2s ]
+Borr_09 checks
+scottscc calls [2]
+pardies14 calls [2]
+CCsTHEMOMENT calls [2]
+cdewayne calls [2]
+anthony104 checks
+corobi14 calls [2]
+micuccim raises [3]
+cami999 calls [2]
+Borr_09 folds
+scottscc calls [2]
+pardies14 calls [2]
+CCsTHEMOMENT calls [2]
+cdewayne calls [2]
+anthony104 calls [2]
+corobi14 calls [2]
+** Dealing flop ** [ 3c, 4c, Ts ]
+micuccim bets [2]
+cami999 calls [2]
+scottscc calls [2]
+pardies14 calls [2]
+CCsTHEMOMENT raises [33]
+cdewayne folds
+anthony104 folds
+corobi14 calls [33]
+micuccim calls [31]
+cami999 folds
+scottscc folds
+pardies14 calls [31]
+** Dealing turn ** [ 7c ]
+micuccim checks
+pardies14 checks
+corobi14 bets [127.50]
+micuccim folds
+pardies14 folds
+** Dealing river ** [ 9h ]
+** Summary **
+corobi14 shows [ Ac, Tc ]
+CCsTHEMOMENT shows [ 5c, 6h ]
+corobi14 collected [ 167 ]
+
+
+
+#Game No : 360045081
+***** Cassava Hand History for Game 360045081 *****
+1/2 Blinds Pot Limit Holdem - *** 03 02 2011 19:59:07
+Table Alagoinhas (Practice Play)
+Seat 2 is the button
+Total number of players : 7
+Seat 1: corobi14 ( 1,322.70 )
+Seat 2: micuccim ( 159 )
+Seat 3: cami999 ( 200 )
+Seat 4: Borr_09 ( 198 )
+Seat 7: pardies14 ( 719.60 )
+Seat 9: cdewayne ( 190 )
+Seat 10: anthony104 ( 196 )
+cami999 posts small blind [1]
+Borr_09 posts big blind [2]
+** Dealing down cards **
+Dealt to Borr_09 [ Js, 4s ]
+pardies14 calls [2]
+cdewayne calls [2]
+anthony104 calls [2]
+corobi14 calls [2]
+micuccim calls [2]
+cami999 calls [1]
+Borr_09 checks
+** Dealing flop ** [ Qh, 5c, Td ]
+cami999 checks
+Borr_09 checks
+pardies14 checks
+cdewayne checks
+anthony104 checks
+corobi14 checks
+micuccim checks
+** Dealing turn ** [ 7h ]
+cami999 checks
+Borr_09 checks
+pardies14 checks
+cdewayne checks
+anthony104 checks
+corobi14 checks
+micuccim checks
+** Dealing river ** [ Kc ]
+cami999 bets [14]
+Borr_09 folds
+pardies14 folds
+cdewayne folds
+anthony104 folds
+corobi14 calls [14]
+micuccim folds
+** Summary **
+cami999 shows [ Ks, Jc ]
+corobi14 shows [ As, Kh ]
+corobi14 collected [ 39.90 ]
+
+
+
+#Game No : 360045183
+***** Cassava Hand History for Game 360045183 *****
+1/2 Blinds Pot Limit Holdem - *** 03 02 2011 20:00:13
+Table Alagoinhas (Practice Play)
+Seat 3 is the button
+Total number of players : 8
+Seat 1: corobi14 ( 1,346.60 )
+Seat 2: micuccim ( 157 )
+Seat 3: cami999 ( 200 )
+Seat 4: Borr_09 ( 196 )
+Seat 5: seba5233 ( 200 )
+Seat 7: pardies14 ( 717.60 )
+Seat 9: cdewayne ( 188 )
+Seat 10: anthony104 ( 194 )
+Borr_09 posts small blind [1]
+seba5233 posts big blind [2]
+** Dealing down cards **
+Dealt to Borr_09 [ 2s, Jd ]
+pardies14 calls [2]
+cdewayne calls [2]
+anthony104 calls [2]
+corobi14 calls [2]
+micuccim calls [2]
+cami999 calls [2]
+Borr_09 calls [1]
+seba5233 raises [2]
+pardies14 calls [2]
+cdewayne folds
+anthony104 calls [2]
+corobi14 calls [2]
+micuccim calls [2]
+cami999 calls [2]
+Borr_09 calls [2]
+** Dealing flop ** [ 9h, Ah, 8s ]
+Borr_09 checks
+seba5233 bets [6]
+pardies14 folds
+anthony104 folds
+corobi14 calls [6]
+micuccim folds
+cami999 calls [6]
+Borr_09 folds
+** Dealing turn ** [ 5s ]
+seba5233 bets [24]
+corobi14 folds
+cami999 folds
+** Summary **
+seba5233 collected [ 45.60 ]
+
+
+
+#Game No : 360045273
+***** Cassava Hand History for Game 360045273 *****
+1/2 Blinds Pot Limit Holdem - *** 03 02 2011 20:01:22
+Table Alagoinhas (Practice Play)
+Seat 4 is the button
+Total number of players : 9
+Seat 1: corobi14 ( 1,336.60 )
+Seat 2: micuccim ( 153 )
+Seat 3: cami999 ( 200 )
+Seat 4: Borr_09 ( 192 )
+Seat 5: seba5233 ( 235.60 )
+Seat 7: pardies14 ( 713.60 )
+Seat 8: punoperu ( 200 )
+Seat 9: cdewayne ( 186 )
+Seat 10: anthony104 ( 198 )
+seba5233 posts small blind [1]
+pardies14 posts big blind [2]
+punoperu posts big blind [2]
+** Dealing down cards **
+Dealt to Borr_09 [ 4s, 5h ]
+punoperu checks
+cdewayne calls [2]
+anthony104 calls [2]
+corobi14 calls [2]
+micuccim folds
+cami999 calls [2]
+Borr_09 folds
+seba5233 raises [3]
+pardies14 calls [2]
+punoperu calls [2]
+cdewayne calls [2]
+anthony104 calls [2]
+corobi14 calls [2]
+cami999 calls [2]
+** Dealing flop ** [ 7h, 9s, Tc ]
+seba5233 bets [6]
+pardies14 calls [6]
+punoperu raises [12]
+cdewayne calls [12]
+anthony104 folds
+corobi14 calls [12]
+cami999 folds
+seba5233 calls [6]
+pardies14 calls [6]
+** Dealing turn ** [ 7c ]
+seba5233 checks
+pardies14 checks
+punoperu checks
+cdewayne checks
+corobi14 bets [66]
+seba5233 folds
+pardies14 calls [66]
+punoperu folds
+cdewayne calls [66]
+** Dealing river ** [ Kc ]
+pardies14 checks
+cdewayne checks
+corobi14 bets [143]
+pardies14 calls [143]
+cdewayne calls [104]
+** Summary **
+corobi14 shows [ As, 7s ]
+pardies14 mucks [ Js, Jc ]
+cdewayne mucks [ Qc, Ks ]
+corobi14 collected [ 595 ]
+corobi14 collected [ 78 ]
+
+
+
+#Game No : 360045402
+***** Cassava Hand History for Game 360045402 *****
+1/2 Blinds Pot Limit Holdem - *** 03 02 2011 20:02:49
+Table Alagoinhas (Practice Play)
+Seat 5 is the button
+Total number of players : 8
+Seat 1: corobi14 ( 1,784.60 )
+Seat 2: micuccim ( 153 )
+Seat 3: cami999 ( 200 )
+Seat 4: Borr_09 ( 192 )
+Seat 5: seba5233 ( 219.60 )
+Seat 7: pardies14 ( 488.60 )
+Seat 8: punoperu ( 184 )
+Seat 10: anthony104 ( 194 )
+pardies14 posts small blind [1]
+punoperu posts big blind [2]
+** Dealing down cards **
+Dealt to Borr_09 [ Jh, 2h ]
+anthony104 calls [2]
+corobi14 calls [2]
+micuccim calls [2]
+cami999 calls [2]
+Borr_09 calls [2]
+seba5233 calls [2]
+pardies14 calls [1]
+punoperu checks
+** Dealing flop ** [ 8c, 9s, Kh ]
+pardies14 checks
+punoperu bets [8]
+anthony104 calls [8]
+corobi14 folds
+micuccim calls [8]
+cami999 calls [8]
+Borr_09 folds
+seba5233 calls [8]
+pardies14 folds
+** Dealing turn ** [ 5h ]
+punoperu checks
+anthony104 checks
+micuccim checks
+cami999 checks
+seba5233 checks
+** Dealing river ** [ Js ]
+punoperu checks
+anthony104 checks
+micuccim bets [56]
+cami999 folds
+seba5233 folds
+punoperu folds
+anthony104 folds
+** Summary **
+micuccim collected [ 53.20 ]
+
+
+
+#Game No : 360045515
+***** Cassava Hand History for Game 360045515 *****
+1/2 Blinds Pot Limit Holdem - *** 03 02 2011 20:04:10
+Table Alagoinhas (Practice Play)
+Seat 7 is the button
+Total number of players : 7
+Seat 1: corobi14 ( 1,782.60 )
+Seat 2: micuccim ( 196.20 )
+Seat 4: Borr_09 ( 190 )
+Seat 5: seba5233 ( 209.60 )
+Seat 7: pardies14 ( 486.60 )
+Seat 8: punoperu ( 174 )
+Seat 10: anthony104 ( 184 )
+punoperu posts small blind [1]
+anthony104 posts big blind [2]
+** Dealing down cards **
+Dealt to Borr_09 [ Jd, 5d ]
+corobi14 calls [2]
+micuccim calls [2]
+Borr_09 calls [2]
+seba5233 calls [2]
+pardies14 calls [2]
+punoperu calls [1]
+anthony104 checks
+** Dealing flop ** [ 5s, Qh, 9d ]
+punoperu checks
+anthony104 checks
+corobi14 checks
+micuccim checks
+Borr_09 bets [14]
+seba5233 folds
+pardies14 folds
+punoperu folds
+anthony104 folds
+corobi14 folds
+micuccim calls [14]
+** Dealing turn ** [ Td ]
+micuccim checks
+Borr_09 bets [40]
+micuccim folds
+** Summary **
+Borr_09 collected [ 39.90 ]
+
+
+
+#Game No : 360045627
+***** Cassava Hand History for Game 360045627 *****
+1/2 Blinds Pot Limit Holdem - *** 03 02 2011 20:05:13
+Table Alagoinhas (Practice Play)
+Seat 10 is the button
+Total number of players : 7
+Seat 1: corobi14 ( 1,780.60 )
+Seat 2: micuccim ( 180.20 )
+Seat 4: Borr_09 ( 213.90 )
+Seat 5: seba5233 ( 207.60 )
+Seat 7: pardies14 ( 484.60 )
+Seat 9: cdewayne ( 200 )
+Seat 10: anthony104 ( 182 )
+corobi14 posts small blind [1]
+micuccim posts big blind [2]
+cdewayne posts dead blind [1 + 2]
+** Dealing down cards **
+Dealt to Borr_09 [ 2s, 2d ]
+Borr_09 raises [4]
+seba5233 calls [4]
+pardies14 calls [4]
+cdewayne calls [2]
+anthony104 calls [4]
+corobi14 calls [3]
+micuccim calls [2]
+** Dealing flop ** [ Ks, 9c, 8d ]
+corobi14 checks
+micuccim checks
+Borr_09 checks
+seba5233 checks
+pardies14 checks
+cdewayne checks
+anthony104 checks
+** Dealing turn ** [ 2c ]
+corobi14 checks
+micuccim checks
+Borr_09 bets [20]
+seba5233 calls [20]
+pardies14 calls [20]
+cdewayne folds
+anthony104 calls [20]
+corobi14 folds
+micuccim raises [149]
+Borr_09 calls [129]
+seba5233 calls [129]
+pardies14 calls [129]
+anthony104 calls [129]
+** Dealing river ** [ Ad ]
+micuccim checks
+Borr_09 bets [60.90]
+seba5233 folds
+pardies14 calls [60.90]
+anthony104 folds
+micuccim folds
+** Summary **
+Borr_09 shows [ 2s, 2d ]
+pardies14 shows [ 8c, 9d ]
+Borr_09 collected [ 892.80 ]
+
+
+
+#Game No : 360045794
+***** Cassava Hand History for Game 360045794 *****
+1/2 Blinds Pot Limit Holdem - *** 03 02 2011 20:07:18
+Table Alagoinhas (Practice Play)
+Seat 1 is the button
+Total number of players : 8
+Seat 1: corobi14 ( 1,776.60 )
+Seat 2: micuccim ( 27.20 )
+Seat 4: Borr_09 ( 892.80 )
+Seat 5: seba5233 ( 54.60 )
+Seat 7: pardies14 ( 270.70 )
+Seat 8: rudie214 ( 200 )
+Seat 9: cdewayne ( 195 )
+Seat 10: anthony104 ( 200 )
+micuccim posts small blind [1]
+Borr_09 posts big blind [2]
+rudie214 posts big blind [2]
+** Dealing down cards **
+Dealt to Borr_09 [ Jh, Ts ]
+seba5233 folds
+pardies14 calls [2]
+rudie214 checks
+cdewayne calls [2]
+anthony104 calls [2]
+corobi14 folds
+micuccim raises [13]
+Borr_09 calls [12]
+pardies14 calls [12]
+rudie214 folds
+cdewayne calls [12]
+anthony104 calls [12]
+** Dealing flop ** [ 3s, Jd, 8h ]
+micuccim bets [13.20]
+Borr_09 calls [13.20]
+pardies14 calls [13.20]
+cdewayne calls [13.20]
+anthony104 calls [13.20]
+** Dealing turn ** [ 8s ]
+Borr_09 checks
+pardies14 checks
+cdewayne checks
+anthony104 checks
+** Dealing river ** [ 2h ]
+Borr_09 checks
+pardies14 checks
+cdewayne checks
+anthony104 checks
+** Summary **
+Borr_09 shows [ Jh, Ts ]
+pardies14 mucks [ Td, 4c ]
+cdewayne mucks [ 9d, 7s ]
+anthony104 mucks [ Qh, Ah ]
+micuccim mucks [ 3d, Kd ]
+Borr_09 collected [ 135 ]
+
+
+
+#Game No : 360045891
+***** Cassava Hand History for Game 360045891 *****
+1/2 Blinds Pot Limit Holdem - *** 03 02 2011 20:08:29
+Table Alagoinhas (Practice Play)
+Seat 4 is the button
+Total number of players : 6
+Seat 1: corobi14 ( 1,776.60 )
+Seat 4: Borr_09 ( 1,000.60 )
+Seat 5: seba5233 ( 54.60 )
+Seat 7: pardies14 ( 243.50 )
+Seat 9: cdewayne ( 167.80 )
+Seat 10: anthony104 ( 172.80 )
+seba5233 posts small blind [1]
+pardies14 posts big blind [2]
+** Dealing down cards **
+Dealt to Borr_09 [ 5s, Ad ]
+cdewayne calls [2]
+anthony104 calls [2]
+corobi14 calls [2]
+Borr_09 calls [2]
+seba5233 raises [6.50]
+pardies14 calls [5.50]
+cdewayne calls [5.50]
+anthony104 calls [5.50]
+corobi14 folds
+Borr_09 calls [5.50]
+** Dealing flop ** [ 2h, Ac, 8d ]
+seba5233 bets [19.75]
+pardies14 folds
+cdewayne folds
+anthony104 folds
+Borr_09 raises [39.50]
+seba5233 calls [19.75]
+** Dealing turn ** [ 9s ]
+seba5233 checks
+Borr_09 bets [50]
+seba5233 calls [7.60]
+** Dealing river ** [ 6c ]
+** Summary **
+Borr_09 shows [ 5s, Ad ]
+seba5233 shows [ 3c, 3h ]
+Borr_09 collected [ 130.70 ]
+
+
+
+#Game No : 360046048
+***** Cassava Hand History for Game 360046048 *****
+1/2 Blinds Pot Limit Holdem - *** 03 02 2011 20:09:58
+Table Alagoinhas (Practice Play)
+Seat 7 is the button
+Total number of players : 6
+Seat 1: corobi14 ( 1,774.60 )
+Seat 3: silviogl ( 200 )
+Seat 4: Borr_09 ( 1,076.70 )
+Seat 7: pardies14 ( 236 )
+Seat 9: cdewayne ( 160.30 )
+Seat 10: anthony104 ( 165.30 )
+cdewayne posts small blind [1]
+anthony104 posts big blind [2]
+silviogl folds
+** Dealing down cards **
+Dealt to Borr_09 [ Qd, 3c ]
+corobi14 calls [2]
+Borr_09 calls [2]
+pardies14 calls [2]
+cdewayne calls [1]
+anthony104 checks
+** Dealing flop ** [ 4d, Jd, Td ]
+cdewayne checks
+anthony104 checks
+corobi14 checks
+Borr_09 checks
+pardies14 checks
+** Dealing turn ** [ 9s ]
+cdewayne checks
+anthony104 checks
+corobi14 checks
+Borr_09 checks
+pardies14 checks
+** Dealing river ** [ 9c ]
+cdewayne checks
+anthony104 bets [10]
+corobi14 calls [10]
+Borr_09 folds
+pardies14 folds
+cdewayne folds
+** Summary **
+anthony104 shows [ 9h, Ah ]
+corobi14 mucks [ Ts, Qh ]
+anthony104 collected [ 28.50 ]
+
+
+
+#Game No : 360046146
+***** Cassava Hand History for Game 360046146 *****
+1/2 Blinds Pot Limit Holdem - *** 03 02 2011 20:11:03
+Table Alagoinhas (Practice Play)
+Seat 9 is the button
+Total number of players : 5
+Seat 1: corobi14 ( 1,762.60 )
+Seat 4: Borr_09 ( 1,074.70 )
+Seat 8: bigboppa74 ( 200 )
+Seat 9: cdewayne ( 158.30 )
+Seat 10: anthony104 ( 200 )
+anthony104 posts small blind [1]
+corobi14 posts big blind [2]
+bigboppa74 posts big blind [2]
+** Dealing down cards **
+Dealt to Borr_09 [ Jh, Jd ]
+Borr_09 calls [2]
+bigboppa74 checks
+cdewayne calls [2]
+anthony104 calls [1]
+corobi14 checks
+** Dealing flop ** [ 2c, 2d, Kd ]
+anthony104 checks
+corobi14 checks
+Borr_09 bets [10]
+bigboppa74 calls [10]
+cdewayne folds
+anthony104 folds
+corobi14 folds
+** Dealing turn ** [ 2h ]
+Borr_09 bets [30]
+bigboppa74 calls [30]
+** Dealing river ** [ 6s ]
+Borr_09 bets [90]
+bigboppa74 raises [158]
+Borr_09 calls [68]
+** Summary **
+Borr_09 shows [ Jh, Jd ]
+bigboppa74 shows [ 6c, 8d ]
+Borr_09 collected [ 404 ]
+
+
+

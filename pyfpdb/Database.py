@@ -1519,6 +1519,7 @@ class Database:
         c.execute("INSERT INTO Sites (name,code) VALUES ('Betfair', 'BF')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('Absolute', 'AB')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('PartyPoker', 'PP')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('PacificPoker', 'P8')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('Partouche', 'PA')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('Carbon', 'CA')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('PKR', 'PK')")
@@ -2054,6 +2055,14 @@ class Database:
         cursor = self.get_cursor()
 
         for row in inserts:
+            #convert all True/False values to numeric 0/1
+            # needed because columns in hudcache are not BOOL they are INT
+            # and are being summed if an existing hudcache entry exists
+            # psycopg2 module does not automatically convert these to numeric.
+            # mantis bug #93
+            for ind in range(len(row)):
+                if row[ind] == True: row[ind] = 1
+                if row[ind] == False: row[ind] = 0                
             # Try to do the update first:
             num = cursor.execute(update_hudcache, row)
             #print "DEBUG: values: %s" % row[-6:]

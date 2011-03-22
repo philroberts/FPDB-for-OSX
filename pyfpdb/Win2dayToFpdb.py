@@ -31,14 +31,14 @@ class Win2day(HandHistoryConverter):
 
     sitename = "Win2day"
     filetype = "text"
-    codepage = "cp1252"
+    codepage = "utf-8"
     siteID   = 4
 
     # Static regexes
     #<HISTORY ID="102271403" SESSION="session31237702.xml" TABLE="Innsbruck 3" GAME="GAME_THM" GAMETYPE="GAMETYPE_REAL" GAMEKIND="GAMEKIND_CASH" TABLECURRENCY="EUR" LIMIT="NL" STAKES="0.25/0.50" DATE="1246909773" WIN="0.00" LOSS="0.50">
     
     #'^<HISTORY ID="(?P<HID>[0-9]+)" SESSION="session[0-9]+\.xml" TABLE="(?P<TABLE>[- a-zA-Z0-9]+)" GAME="(?P<GAME>[_A-Z]+)" GAMETYPE="[_a-zA-Z]+" GAMEKIND="[_a-zA-Z]+" TABLECURRENCY="(?P<CURRENCY>[A-Z]+)" LIMIT="(?P<LIMIT>NL|PL)" STAKES="(?P<SB>[.0-9]+)/(?P<BB>[.0-9]+)" DATE="(?P<DATETIME>[0-9]+)" WIN="[.0-9]+" LOSS="[.0-9]+">$'
-    re_GameInfo     = re.compile('^<HISTORY ID="(?P<HID>[0-9]+)" SESSION="session[0-9]+\.xml" TABLE="(?P<TABLE>[- a-zA-Z0-9]+)" GAME="(?P<GAME>[_A-Z]+)" GAMETYPE="[_a-zA-Z]+" GAMEKIND="[_a-zA-Z]+" TABLECURRENCY="(?P<CURRENCY>[A-Z]+)" LIMIT="(?P<LIMIT>NL|PL)" STAKES="(?P<SB>[.0-9]+)/(?P<BB>[.0-9]+)" DATE="(?P<DATETIME>[0-9]+)" WIN="[.0-9]+" LOSS="[.0-9]+">', re.MULTILINE)
+    re_GameInfo     = re.compile('<HISTORY ID="(?P<HID>[0-9]+)" SESSION="session[0-9]+\.xml" TABLE="(?P<TABLE>[- a-zA-Z0-9\xc0-\xfc/.]+)" GAME="(?P<GAME>[_A-Z]+)" GAMETYPE="[_a-zA-Z]+" GAMEKIND="[_a-zA-Z]+" TABLECURRENCY="(?P<CURRENCY>[A-Z]+)" LIMIT="(?P<LIMIT>NL|PL)" STAKES="(?P<SB>[.0-9]+)/(?P<BB>[.0-9]+)" DATE="(?P<DATETIME>[0-9]+)" WIN="[.0-9]+" LOSS="[.0-9]+">', re.MULTILINE)
     re_SplitHands   = re.compile('</HISTORY>')
     re_HandInfo     = re.compile("^Table \'(?P<TABLE>[- a-zA-Z]+)\'(?P<TABLEATTRIBUTES>.+?$)?", re.MULTILINE)
     re_Button       = re.compile('<ACTION TYPE="HAND_DEAL" PLAYER="(?P<BUTTON>[^"]+)">\n<CARD LINK="[0-9b]+"></CARD>\n<CARD LINK="[0-9b]+"></CARD></ACTION>\n<ACTION TYPE="ACTION_', re.MULTILINE)
@@ -91,7 +91,7 @@ class Win2day(HandHistoryConverter):
         
         m = self.re_GameInfo.search(handText)
         if not m:
-            tmp = handText[0:100]
+            tmp = handText[0:1000]
             log.error(_("Unable to recognise gametype from: '%s'") % tmp)
             log.error(_("determineGameType: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)

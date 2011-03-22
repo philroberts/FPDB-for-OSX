@@ -28,7 +28,7 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6', '2.7') and '-r' no
     #print "old path =", os.environ['PATH']
     dirs = re.split(os.pathsep, os.environ['PATH'])
     # remove any trailing / or \ chars from dirs:
-    dirs = [re.sub('[\\/]$','',p) for p in dirs]
+    dirs = [re.sub('[\\/]$', '', p) for p in dirs]
     # remove any dirs containing 'python' apart from those ending in 'python25', 'python26' or 'python':
     dirs = [p for p in dirs if not re.search('python', p, re.I) or re.search('python25$', p, re.I) or re.search('python26$', p, re.I) or re.search('python27$', p, re.I)]
     tmppath = ";".join(dirs)
@@ -37,10 +37,10 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6', '2.7') and '-r' no
         os.environ['PATH'] = tmppath
         print "Python " + sys.version[0:3] + _(' - press return to continue\n')
         sys.stdin.readline()
-        if os.name=='nt':
-            os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
+        if os.name == 'nt':
+            os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ)
         else:
-            os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
+            os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ)
     else:
         print _("\npython 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n")
         raw_input(_("Press ENTER to continue."))
@@ -67,7 +67,8 @@ import string
 cl_options = string.join(sys.argv[1:])
 (options, argv) = Options.fpdb_options()
 
-import logging, logging.config
+import logging
+import logging.config
 log = logging.getLogger("fpdb")
 
 try:
@@ -126,7 +127,7 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.21 plus git"
+VERSION = "0.22 plus git"
 
 
 class fpdb:
@@ -141,9 +142,9 @@ class fpdb:
 
     def add_tab(self, new_page, new_tab_name):
         """adds a tab, namely creates the button and displays it and appends all the relevant arrays"""
-        for name in self.nb_tab_names: #todo: check this is valid
+        for name in self.nb_tab_names:  # todo: check this is valid
             if name == new_tab_name:
-                return # if tab already exists, just go to it
+                return  # if tab already exists, just go to it
 
         used_before = False
         for i, name in enumerate(self.tab_names):
@@ -187,6 +188,21 @@ class fpdb:
         tabBox.pack_start(tabLabel, False)
         eventBox.add(tabBox)
 
+        # fixme: force background state to fix problem where STATE_ACTIVE
+        # tab labels are black in some gtk themes, and therefore unreadable
+        # This behaviour is probably a bug in libwimp.dll or pygtk, but
+        # need to force background to avoid issues with menu labels being
+        # unreadable
+        #
+        #   gtk.STATE_ACTIVE is a displayed, but not selected tab
+        #   gtk.STATE_NORMAL is a displayed, selected, focussed tab
+        #   gtk.STATE_INSENSITIVE is an inactive tab
+        # Insensitive/base is chosen as the background colour, because 
+        # although not perfect, it seems to be the least instrusive.
+        baseNormStyle = eventBox.get_style().base[gtk.STATE_INSENSITIVE]
+        if baseNormStyle:
+            eventBox.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.color_parse(str(baseNormStyle)))
+
         if nb.get_n_pages() > 0:
             tabButton = gtk.Button()
 
@@ -205,9 +221,9 @@ class fpdb:
         image = gtk.Image()
         image.set_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_SMALL_TOOLBAR)
         gtk.Button.set_relief(button, gtk.RELIEF_NONE)
-        settings = gtk.Widget.get_settings(button);
-        (w,h) = gtk.icon_size_lookup_for_settings(settings, gtk.ICON_SIZE_SMALL_TOOLBAR);
-        gtk.Widget.set_size_request(button, w + 4, h + 4);
+        settings = gtk.Widget.get_settings(button)
+        (w, h) = gtk.icon_size_lookup_for_settings(settings, gtk.ICON_SIZE_SMALL_TOOLBAR)
+        gtk.Widget.set_size_request(button, w + 4, h + 4)
         image.show()
         iconBox.pack_start(image, True, False, 0)
         button.add(iconBox)
@@ -245,7 +261,7 @@ class fpdb:
         dia.set_comments(_("You are free to change, and distribute original or changed versions of fpdb within the rules set out by the license"))
         dia.set_license(_("Please see fpdb's start screen for license information"))
         dia.set_website("http://fpdb.sourceforge.net/")
-        
+
         dia.set_authors(['Steffen', 'Eratosthenes', 'Carl Gherardi',
             'Eric Blade', '_mt', 'sqlcoder', 'Bostik', _('and others')])
         dia.set_program_name("Free Poker Database (FPDB)")
@@ -253,27 +269,27 @@ class fpdb:
         db_version = ""
         #if self.db is not None:
         #    db_version = self.db.get_version()
-        nums = [ (_('Operating System'), os.name)
-               , ('Python',           sys.version[0:3])
-               , ('GTK+',             '.'.join([str(x) for x in gtk.gtk_version]))
-               , ('PyGTK',            '.'.join([str(x) for x in gtk.pygtk_version]))
-               , ('matplotlib',       matplotlib_version)
-               , ('numpy',            numpy_version)
-               , ('sqlite',          sqlite_version)
-               , ('fpdb version',     VERSION)
-               , ('database used',    self.settings['db-server'])
+        nums = [(_('Operating System'), os.name),
+                ('Python',           sys.version[0:3]),
+                ('GTK+',             '.'.join([str(x) for x in gtk.gtk_version])),
+                ('PyGTK',            '.'.join([str(x) for x in gtk.pygtk_version])),
+                ('matplotlib',       matplotlib_version),
+                ('numpy',            numpy_version),
+                ('sqlite',          sqlite_version),
+                ('fpdb version',     VERSION),
+                ('database used',    self.settings['db-server'])
                ]
         versions = gtk.TextBuffer()
         w = 20  # width used for module names and version numbers
-        versions.set_text( '\n'.join( [x[0].rjust(w)+'  '+ x[1].ljust(w) for x in nums] ) )
+        versions.set_text('\n'.join([x[0].rjust(w) + '  ' + x[1].ljust(w) for x in nums]))
         view = gtk.TextView(versions)
         view.set_editable(False)
         view.set_justification(gtk.JUSTIFY_CENTER)
         view.modify_font(pango.FontDescription('monospace 10'))
         view.show()
         dia.vbox.pack_end(view, True, True, 2)
-        
-        l = gtk.Label(_("Your config file is: ")+self.config.file)
+
+        l = gtk.Label(_("Your config file is: ") + self.config.file)
         l.set_alignment(0.5, 0.5)
         l.show()
         dia.vbox.pack_end(l, True, True, 2)
@@ -282,7 +298,7 @@ class fpdb:
         l.set_alignment(0.5, 0.5)
         l.show()
         dia.vbox.pack_end(l, True, True, 2)
-        
+
         dia.run()
         dia.destroy()
         log.debug(_("Threads: "))
@@ -332,10 +348,10 @@ class fpdb:
                     # save updated config
                     self.config.save()
                     self.load_profile()
-                    for name in self.config.supported_databases: #db_ip/db_user/db_pass/db_server
-                        log.info('fpdb: name,desc='+name+','+self.config.supported_databases[name].db_desc)
+                    for name in self.config.supported_databases:  # db_ip/db_user/db_pass/db_server
+                        log.info('fpdb: name,desc=' + name + ',' + self.config.supported_databases[name].db_desc)
                 else:
-                    log.info(_('guidb response was ')+str(response))
+                    log.info(_('guidb response was ') + str(response))
 
                 self.release_global_lock()
 
@@ -344,74 +360,75 @@ class fpdb:
             self.warning_box(_("Cannot open Database Maintenance window because other windows have been opened. Re-start fpdb to use this option."))
 
     def dia_database_stats(self, widget, data=None):
-        self.warning_box(str=_("Number of Hands: ")+str(self.db.getHandCount())+
-                    _("\nNumber of Tourneys: ")+str(self.db.getTourneyCount())+
-                    _("\nNumber of TourneyTypes: ")+str(self.db.getTourneyTypeCount()),
+        self.warning_box(str=_("Number of Hands: ") + str(self.db.getHandCount()) +
+                    _("\nNumber of Tourneys: ") + str(self.db.getTourneyCount()) +
+                    _("\nNumber of TourneyTypes: ") + str(self.db.getTourneyTypeCount()),
                     diatitle=_("Database Statistics"))
     #end def dia_database_stats
 
     def diaHudConfigurator(self, widget, data=None):
         """Opens dialog to set parameters (game category, row count, column count for HUD stat configurator"""
-        self.hudConfiguratorRows=None
-        self.hudConfiguratorColumns=None
-        self.hudConfiguratorGame=None
-        
+        self.hudConfiguratorRows = None
+        self.hudConfiguratorColumns = None
+        self.hudConfiguratorGame = None
+
         diaSelections = gtk.Dialog(_("HUD Configurator - choose category"),
                                  self.window,
                                  gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                  (gtk.STOCK_OK, gtk.RESPONSE_ACCEPT,
                                   gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
-        
-        label=gtk.Label(_("Note that this dialogue will overwrite an existing config if one has been made already. ") + 
-                _("Abort now if you don't want that.") + "\n" + 
-                _("Please select the game category for which you want to configure HUD stats and the number of rows and columns:"))
+
+        label = gtk.Label(_("Please select the game category for which you want to configure HUD stats:"))
         diaSelections.vbox.add(label)
         label.show()
-        
+
         comboGame = gtk.combo_box_new_text()
         comboGame.connect("changed", self.hudConfiguratorComboSelection)
         diaSelections.vbox.add(comboGame)
-        games=self.config.get_supported_games()
+        games = self.config.get_supported_games()
         for game in games:
             comboGame.append_text(game)
         comboGame.set_active(0)
         comboGame.show()
-        
+
         comboRows = gtk.combo_box_new_text()
         comboRows.connect("changed", self.hudConfiguratorComboSelection)
         diaSelections.vbox.add(comboRows)
-        for i in range(1,8):
-            comboRows.append_text(_("%d rows") % i)
+        for i in range(1, 8):
+            comboRows.append_text(str(i) + " rows")
         comboRows.set_active(0)
         comboRows.show()
-        
+
         comboColumns = gtk.combo_box_new_text()
         comboColumns.connect("changed", self.hudConfiguratorComboSelection)
         diaSelections.vbox.add(comboColumns)
-        for i in range(1,8):
-            comboColumns.append_text("%d columns" % i)
+        for i in range(1, 8):
+            comboColumns.append_text(str(i) + " columns")
         comboColumns.set_active(0)
         comboColumns.show()
-        
-        response=diaSelections.run()
+
+        response = diaSelections.run()
         diaSelections.destroy()
-        
-        if response == gtk.RESPONSE_ACCEPT and self.hudConfiguratorRows!=None and self.hudConfiguratorColumns!=None and self.hudConfiguratorGame!=None:
+
+        if (response == gtk.RESPONSE_ACCEPT and
+            self.hudConfiguratorRows != None and
+            self.hudConfiguratorColumns != None and
+            self.hudConfiguratorGame != None):
             #print "clicked ok and selected:", self.hudConfiguratorGame,"with", str(self.hudConfiguratorRows), "rows and", str(self.hudConfiguratorColumns), "columns"
             self.diaHudConfiguratorTable()
     #end def diaHudConfigurator
 
     def hudConfiguratorComboSelection(self, widget):
         #TODO: remove this and handle it directly in diaHudConfigurator
-        result=widget.get_active_text()
+        result = widget.get_active_text()
         if result.endswith(" rows"):
-            self.hudConfiguratorRows=int(result[0])
+            self.hudConfiguratorRows = int(result[0])
         elif result.endswith(" columns"):
-            self.hudConfiguratorColumns=int(result[0])
+            self.hudConfiguratorColumns = int(result[0])
         else:
-            self.hudConfiguratorGame=result
+            self.hudConfiguratorGame = result
     #end def hudConfiguratorComboSelection
-    
+
     def diaHudConfiguratorTable(self):
         """shows dialogue with Table of ComboBoxes to allow choosing of HUD stats"""
         #TODO: add notices to hud configurator: no duplicates, no empties, display options
@@ -421,92 +438,103 @@ class fpdb:
                                  gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                  (gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT,
                                   gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
-        
-        label=gtk.Label(_("Please choose the stats you wish to use in the below table."))
+
+        label = gtk.Label(_("Please choose the stats you wish to use in the below table."))
         diaHudTable.vbox.add(label)
         label.show()
-        
-        label=gtk.Label(_("Note that you may not select any stat more than once or it will crash."))
+
+        label = gtk.Label(_("Note that you may not select any stat more than once or it will crash."))
         diaHudTable.vbox.add(label)
         label.show()
-        
-        label=gtk.Label(_("It is not currently possible to select \"empty\" or anything else to that end."))
+
+        label = gtk.Label(_("It is not currently possible to select \"empty\" or anything else to that end."))
         diaHudTable.vbox.add(label)
         label.show()
-        
-        label=gtk.Label(_("To configure things like colouring you will still have to use the Preferences dialogue or manually edit your HUD_config.xml."))
+
+        label = gtk.Label(_("To configure things like colouring you will still have to use the Preferences dialogue or manually edit your HUD_config.xml."))
         diaHudTable.vbox.add(label)
         label.show()
-        
-        self.hudConfiguratorTableContents=[]
-        table= gtk.Table(rows=self.hudConfiguratorRows+1, columns=self.hudConfiguratorColumns+1, homogeneous=True)
-        
-        statDir=dir(Stats)
-        statDict={}
+
+        self.hudConfiguratorTableContents = []
+        table = gtk.Table(rows=self.hudConfiguratorRows + 1, columns=self.hudConfiguratorColumns + 1, homogeneous=True)
+
+        statDir = dir(Stats)
+        statDict = {}
         for attr in statDir:
-            if attr.startswith('__'): continue
+            if attr.startswith('__'):
+                continue
             if attr in ("Charset", "Configuration", "Database", "GInitiallyUnowned", "gtk", "pygtk",
                         "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict",
-                        "h", "re", "re_Percent", "re_Places", "L10n", "log", "encoder", "codecs", "_", "sys", "logging"): continue
-            statDict[attr]=eval("Stats.%s.__doc__" % (attr))
-        
-        for rowNumber in range(self.hudConfiguratorRows+1):
-            newRow=[]
-            for columnNumber in range(self.hudConfiguratorColumns+1):
-                if rowNumber==0:
-                    if columnNumber==0:
+                        "h", "re", "re_Percent", "re_Places", ):
+                continue
+            statDict[attr] = eval("Stats.%s.__doc__" % (attr))
+
+        for rowNumber in range(self.hudConfiguratorRows + 1):
+            newRow = []
+            for columnNumber in range(self.hudConfiguratorColumns + 1):
+                if rowNumber == 0:
+                    if columnNumber == 0:
                         pass
                     else:
-                        label=gtk.Label(_("column %d") % columnNumber)
-                        table.attach(child=label, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
+                        label = gtk.Label("column " + str(columnNumber))
+                        table.attach(child=label, left_attach=columnNumber,
+                                     right_attach=columnNumber + 1,
+                                     top_attach=rowNumber,
+                                     bottom_attach=rowNumber + 1)
                         label.show()
-                elif columnNumber==0:
-                    label=gtk.Label(_("row %d") % rowNumber)
-                    table.attach(child=label, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
+                elif columnNumber == 0:
+                    label = gtk.Label("row " + str(rowNumber))
+                    table.attach(child=label, left_attach=columnNumber,
+                                 right_attach=columnNumber + 1,
+                                 top_attach=rowNumber,
+                                 bottom_attach=rowNumber + 1)
                     label.show()
                 else:
                     comboBox = gtk.combo_box_new_text()
-                    
+
                     for stat in statDict.keys():
                         comboBox.append_text(stat)
                     comboBox.set_active(0)
-                    
+
                     newRow.append(comboBox)
-                    table.attach(child=comboBox, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
-                    
+                    table.attach(child=comboBox, left_attach=columnNumber,
+                                 right_attach=columnNumber + 1,
+                                 top_attach=rowNumber,
+                                 bottom_attach=rowNumber + 1)
+
                     comboBox.show()
-            if rowNumber!=0:
+            if rowNumber != 0:
                 self.hudConfiguratorTableContents.append(newRow)
         diaHudTable.vbox.add(table)
         table.show()
-        
-        response=diaHudTable.run()
+
+        response = diaHudTable.run()
         diaHudTable.destroy()
-        
+
         if response == gtk.RESPONSE_ACCEPT:
             self.storeNewHudStatConfig()
     #end def diaHudConfiguratorTable
-    
+
     def storeNewHudStatConfig(self):
         """stores selections made in diaHudConfiguratorTable"""
         self.obtain_global_lock("diaHudConfiguratorTable")
-        statTable=[]
+        statTable = []
         for row in self.hudConfiguratorTableContents:
-            newRow=[]
+            newRow = []
             for column in row:
                 newField = column.get_active_text()
                 newRow.append(newField)
             statTable.append(newRow)
-                
-        self.config.editStats(self.hudConfiguratorGame,statTable)
-        self.config.save() #TODO: make it not store in horrible formatting
+
+        self.config.editStats(self.hudConfiguratorGame, statTable)
+        self.config.save()  # TODO: make it not store in horrible formatting
         self.release_global_lock()
     #end def storeNewHudStatConfig
-    
+
     def dia_dump_db(self, widget, data=None):
         filename = "database-dump.sql"
         result = self.db.dumpDatabase()
-        
+
         dumpFile = open(filename, 'w')
         dumpFile.write(result)
         dumpFile.close()
@@ -545,7 +573,7 @@ class fpdb:
             diastring = _("Please confirm that you want to (re-)create the tables.") \
                         + (_(" If there already are tables in the database %s on %s they will be deleted and you will have to re-import your histories.\n") % (self.db.database, self.db.host)) \
                         + _("This may take a while.")
-            dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
+            dia_confirm.format_secondary_text(diastring)  # todo: make above string with bold for db, host and deleted
             # disable windowclose, do not want the the underlying processing interrupted mid-process
             dia_confirm.set_deletable(False)
 
@@ -575,7 +603,7 @@ class fpdb:
 
     def dia_recreate_hudcache(self, widget, data=None):
         if self.obtain_global_lock("dia_recreate_hudcache"):
-            self.dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format=_("Confirm recreating HUD cache"))
+            self.dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
             diastring = _("Please confirm that you want to re-create the HUD cache.")
             self.dia_confirm.format_secondary_text(diastring)
             # disable windowclose, do not want the the underlying processing interrupted mid-process
@@ -583,7 +611,7 @@ class fpdb:
 
             hb1 = gtk.HBox(True, 1)
             self.h_start_date = gtk.Entry(max=12)
-            self.h_start_date.set_text( self.db.get_hero_hudcache_start() )
+            self.h_start_date.set_text(self.db.get_hero_hudcache_start())
             lbl = gtk.Label(_(" Hero's cache starts: "))
             btn = gtk.Button()
             btn.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
@@ -597,7 +625,7 @@ class fpdb:
 
             hb2 = gtk.HBox(True, 1)
             self.start_date = gtk.Entry(max=12)
-            self.start_date.set_text( self.db.get_hero_hudcache_start() )
+            self.start_date.set_text(self.db.get_hero_hudcache_start())
             lbl = gtk.Label(_(" Villains' cache starts: "))
             btn = gtk.Button()
             btn.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
@@ -617,7 +645,7 @@ class fpdb:
                 while gtk.events_pending():
                     gtk.main_iteration_do(False)
 
-                self.db.rebuild_hudcache( self.h_start_date.get_text(), self.start_date.get_text() )
+                self.db.rebuild_hudcache(self.h_start_date.get_text(), self.start_date.get_text())
             elif response == gtk.RESPONSE_NO:
                 print _('User cancelled rebuilding hud cache')
 
@@ -627,11 +655,11 @@ class fpdb:
 
     def dia_rebuild_indexes(self, widget, data=None):
         if self.obtain_global_lock("dia_rebuild_indexes"):
-            self.dia_confirm = gtk.MessageDialog(parent=self.window
-                                                ,flags=gtk.DIALOG_DESTROY_WITH_PARENT
-                                                ,type=gtk.MESSAGE_WARNING
-                                                ,buttons=(gtk.BUTTONS_YES_NO)
-                                                ,message_format=_("Confirm rebuilding database indexes"))
+            self.dia_confirm = gtk.MessageDialog(parent=self.window,
+                                                 flags=gtk.DIALOG_DESTROY_WITH_PARENT,
+                                                 type=gtk.MESSAGE_WARNING,
+                                                 buttons=(gtk.BUTTONS_YES_NO),
+                                                 message_format=_("Confirm rebuilding database indexes"))
             diastring = _("Please confirm that you want to rebuild the database indexes.")
             self.dia_confirm.format_secondary_text(diastring)
             # disable windowclose, do not want the the underlying processing interrupted mid-process
@@ -694,7 +722,6 @@ class fpdb:
         end_iter = self.logbuffer.get_end_iter()
         self.logbuffer.insert(end_iter, text)
         self.logview.scroll_to_mark(self.logbuffer.get_insert(), 0)
-
 
     def process_close_messages(self):
         # check for close messages
@@ -849,29 +876,28 @@ class fpdb:
         window.add_accel_group(accel_group)
         return menubar
     #end def get_menu
-    
 
-    def load_profile(self, create_db = False):
+    def load_profile(self, create_db=False):
         """Loads profile from the provided path name."""
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
         if self.config.file_error:
             self.warning_box(_("There is an error in your config file\n") + self.config.file
-                              + _("\n\nError is:  ") + str(self.config.file_error)
-                            , diatitle=_("CONFIG FILE ERROR"))
+                              + _("\n\nError is:  ") + str(self.config.file_error),
+                              diatitle=_("CONFIG FILE ERROR"))
             sys.exit()
 
         log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
         print (_("Logfile is %s\n") % os.path.join(self.config.dir_log, self.config.log_file))
         if self.config.example_copy:
-            self.info_box(_("Config file")
-                         , _("has been created at:\n%s.\n") % self.config.file
+            self.info_box(_("Config file"),
+                          _("has been created at:\n%s.\n") % self.config.file
                            + _("Edit your screen_name and hand history path in the supported_sites section of the Preferences window (Main menu) before trying to import hands."))
         self.settings = {}
         self.settings['global_lock'] = self.lock
-        if (os.sep=="/"):
-            self.settings['os']="linuxmac"
+        if (os.sep == "/"):
+            self.settings['os'] = "linuxmac"
         else:
-            self.settings['os']="windows"
+            self.settings['os'] = "windows"
 
         self.settings.update({'cl_options': cl_options})
         self.settings.update(self.config.get_db_parameters())
@@ -881,10 +907,10 @@ class fpdb:
         if self.db is not None and self.db.is_connected():
             self.db.disconnect()
 
-        self.sql = SQL.Sql(db_server = self.settings['db-server'])
+        self.sql = SQL.Sql(db_server=self.settings['db-server'])
         err_msg = None
         try:
-            self.db = Database.Database(self.config, sql = self.sql)
+            self.db = Database.Database(self.config, sql=self.sql)
             if self.db.get_backend_name() == 'SQLite':
                 # tell sqlite users where the db file is
                 print (_("Connected to SQLite: %s") % self.db.db_path)
@@ -921,7 +947,8 @@ class fpdb:
 #            sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
 
         if self.db is not None and self.db.wrongDbVersion:
-            diaDbVersionWarning = gtk.Dialog(title=_("Strong Warning - Invalid database version"), parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
+            diaDbVersionWarning = gtk.Dialog(title=_("Strong Warning - Invalid database version"),
+                                             parent=None, flags=0, buttons=(gtk.STOCK_OK, gtk.RESPONSE_OK))
 
             label = gtk.Label(_("An invalid DB version or missing tables have been detected."))
             diaDbVersionWarning.vbox.add(label)
@@ -946,14 +973,14 @@ class fpdb:
 
         if self.db is not None and self.db.is_connected():
             self.status_bar.set_text(_("Status: Connected to %s database named %s on host %s")
-                                     % (self.db.get_backend_name(),self.db.database, self.db.host))
+                                     % (self.db.get_backend_name(), self.db.database, self.db.host))
             # rollback to make sure any locks are cleared:
             self.db.rollback()
 
         self.validate_config()
 
     def obtain_global_lock(self, source):
-        ret = self.lock.acquire(source=source) # will return false if lock is already held
+        ret = self.lock.acquire(source=source)  # will return false if lock is already held
         if ret:
             print (_("\nGlobal lock taken by %s") % source)
             self.lockTakenBy=source
@@ -971,14 +998,14 @@ class fpdb:
             print _("Quitting normally")
             self.quitting = True
         # TODO: check if current settings differ from profile, if so offer to save or abort
-        
+
         if self.db is not None:
             if self.db.backend == self.db.MYSQL_INNODB:
                 try:
                     import _mysql_exceptions
                     if self.db is not None and self.db.is_connected():
                         self.db.disconnect()
-                except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
+                except _mysql_exceptions.OperationalError:  # oh, damn, we're already disconnected
                     pass
             else:
                 if self.db is not None and self.db.is_connected():
@@ -987,12 +1014,12 @@ class fpdb:
             pass
         self.statusIcon.set_visible(False)
 
-        self.window.destroy() # explicitly destroy to allow child windows to close cleanly
+        self.window.destroy()  # explicitly destroy to allow child windows to close cleanly
         gtk.main_quit()
 
     def release_global_lock(self):
         self.lock.release()
-        self.lockTakenBy=None
+        self.lockTakenBy = None
         print _("Global lock released.\n")
 
     def tab_auto_import(self, widget, data=None):
@@ -1025,7 +1052,7 @@ class fpdb:
         tab=new_thread.get_vbox()
         self.add_and_display_tab(tab, _("eMail Import"))
     #end def tab_import_imap_summaries
-    
+
     def tab_ring_player_stats(self, widget, data=None):
         new_ps_thread = GuiRingPlayerStats.GuiRingPlayerStats(self.config, self.sql, self.window)
         self.threads.append(new_ps_thread)
@@ -1112,7 +1139,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         self.quitting = False
         self.visible = False
         self.threads = []     # objects used by tabs - no need for threads, gtk handles it
-        self.closeq = Queue.Queue(20)  # used to signal ending of a thread (only logviewer for now)       
+        self.closeq = Queue.Queue(20)  # used to signal ending of a thread (only logviewer for now)
         
         # create window, move it to specific location on command line
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
@@ -1121,7 +1148,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
                 options.xloc = 0
             if options.yloc is None:
                 options.yloc = 0
-            self.window.move(options.xloc,options.yloc)
+            self.window.move(options.xloc, options.yloc)
         
         # connect to required events
         self.window.connect("delete_event", self.delete_event)
@@ -1131,8 +1158,10 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         self.window.set_border_width(1)
         defx, defy = 900, 720
         sx, sy = gtk.gdk.screen_width(), gtk.gdk.screen_height()
-        if sx < defx:  defx = sx
-        if sy < defy:  defy = sy
+        if sx < defx:
+            defx = sx
+        if sy < defy:
+            defy = sy
         self.window.set_default_size(defx, defy)
         self.window.set_resizable(True)
 
@@ -1164,13 +1193,13 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         if options.minimized:
             self.window.iconify()
         if options.hidden:
-            self.window.hide()        
+            self.window.hide()
 
         if not options.hidden:
             self.window.show()
             self.visible = True     # Flip on
             
-        self.load_profile(create_db = True)
+        self.load_profile(create_db=True)
 
         # setup error logging
         if not options.errorsToConsole:
@@ -1183,7 +1212,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         # set up tray-icon and menu
         self.statusIcon = gtk.StatusIcon()
         # use getcwd() here instead of sys.path[0] so that py2exe works:
-        cards = os.path.join(os.getcwd(), '..','gfx','fpdb-cards.png')
+        cards = os.path.join(os.getcwd(), '..', 'gfx', 'fpdb-cards.png')
         if os.path.exists(cards):
             self.statusIcon.set_from_file(cards)
             self.window.set_icon_from_file(cards)
@@ -1197,7 +1226,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         self.statusIcon.connect('activate', self.statusicon_activate)
         self.statusMenu = gtk.Menu()
 
-        # set default menu options        
+        # set default menu options
         self.addImageToTrayMenu(gtk.STOCK_ABOUT, self.dia_about)
         self.addImageToTrayMenu(gtk.STOCK_QUIT, self.quit)
 
@@ -1257,7 +1286,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         # Tell GTK not to propagate this signal any further
         return True
 
-    def statusicon_menu(self, widget, button, time, data = None):
+    def statusicon_menu(self, widget, button, time, data=None):
         # we don't need to pass data here, since we do keep track of most all
         # our variables .. the example code that i looked at for this
         # didn't use any long scope variables.. which might be an alright
@@ -1268,7 +1297,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
                 data.popup(None, None, None, 3, time)
         pass
 
-    def statusicon_activate(self, widget, data = None):
+    def statusicon_activate(self, widget, data=None):
         # Let's allow the tray icon to toggle window visibility, the way
         # most other apps work
         if self.visible:
@@ -1277,15 +1306,17 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
             self.window.present()
 
     def info_box(self, str1, str2):
-        diapath = gtk.MessageDialog( parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_INFO
-                                   , buttons=(gtk.BUTTONS_OK), message_format=str1 )
+        diapath = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_INFO,
+                                    buttons=(gtk.BUTTONS_OK), message_format=str1)
         diapath.format_secondary_text(str2)
         response = diapath.run()
         diapath.destroy()
         return response
 
     def warning_box(self, str, diatitle=_("FPDB WARNING")):
-        diaWarning = gtk.Dialog(title=diatitle, parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
+        diaWarning = gtk.Dialog(title=diatitle, parent=self.window,
+                                flags=gtk.DIALOG_DESTROY_WITH_PARENT,
+                                buttons=(gtk.STOCK_OK, gtk.RESPONSE_OK))
 
         label = gtk.Label(str)
         diaWarning.vbox.add(label)
@@ -1296,31 +1327,11 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         return response
 
     def validate_config(self):
-        # can this be removed now?
-        if self.config.get_import_parameters().get('saveStarsHH'):
-            hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
-            hhbase    = os.path.expanduser(hhbase)
-            #hhdir     = os.path.join(hhbase,site)
-            hhdir       = hhbase
-            if not os.path.isdir(hhdir):
-                diapath = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Setup hh dir")
-                diastring = _("WARNING: Unable to find output hand history directory %s\n\n Press YES to create this directory, or NO to select a new one.") % hhdir
-                diapath.format_secondary_text(diastring)
-                response = diapath.run()
-                diapath.destroy()
-                if response == gtk.RESPONSE_YES:
-                    try:
-                        os.makedirs(hhdir)
-                    except:
-                        self.warning_box(_("WARNING: Unable to create hand output directory. Importing is not likely to work until this is fixed."))
-                elif response == gtk.RESPONSE_NO:
-                    self.select_hhArchiveBase()
-
         # check if sites in config file are in DB
         for site in self.config.get_supported_sites(True):    # get site names from config file
             try:
                 self.config.get_site_id(site)                     # and check against list from db
-            except KeyError , exc:
+            except KeyError, exc:
                 log.warning("site %s missing from db" % site)
                 dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Unknown Site")
                 diastring = _("WARNING: Unable to find site  '%s'\n\nPress YES to add this site to the database.") % site
@@ -1331,15 +1342,15 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
                     self.add_site(site)
 
     def add_site(self, site):
-        dia = gtk.Dialog( title="Add Site", parent=self.window
-                        , flags=gtk.DIALOG_DESTROY_WITH_PARENT
-                        , buttons=(gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT
-                                  ,gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
+        dia = gtk.Dialog(title="Add Site", parent=self.window,
+                         flags=gtk.DIALOG_DESTROY_WITH_PARENT,
+                         buttons=(gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT,
+                                  gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
                         )
 
         h = gtk.HBox()
         dia.vbox.pack_start(h, padding=5)  # sets horizontal padding
-        label = gtk.Label( _("\nEnter short code for %s\n(up to 3 characters):\n") % site )
+        label = gtk.Label(_("\nEnter short code for %s\n(up to 3 characters):\n") % site)
         h.pack_start(label, padding=20)     # sets horizontal padding
         #label.set_alignment(1.0, 0.5)
         
@@ -1349,8 +1360,8 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         e_code.set_width_chars(5)
         h.pack_start(e_code, True, False, padding=5)
 
-        label = gtk.Label( "" )
-        dia.vbox.add(label) # create space below entry, maybe padding arg above makes this redundant?
+        label = gtk.Label("")
+        dia.vbox.add(label)  # create space below entry, maybe padding arg above makes this redundant?
 
         dia.show_all()
         response = dia.run()

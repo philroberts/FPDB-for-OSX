@@ -444,13 +444,6 @@ class Importer:
             log.info((_("Converting %s") % file) + " (" + str(q.qsize()) + ")")
         else:
             log.info(_("Converting %s") % file)
-        hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
-        hhbase    = os.path.expanduser(hhbase)
-        hhdir     = os.path.join(hhbase,site)
-        try:
-            out_path     = os.path.join(hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
-        except:
-            out_path     = os.path.join(hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
 
         filter_name = filter.replace("ToFpdb", "")
 
@@ -462,9 +455,7 @@ class Importer:
                 idx = self.pos_in_file[file]
             else:
                 self.pos_in_file[file] = 0
-            hhc = obj( self.config, in_path = file, out_path = out_path, index = idx
-                     , starsArchive = self.settings['starsArchive'], ftpArchive = self.settings['ftpArchive'],
-                       sitename = site )
+            hhc = obj( self.config, in_path = file, index = idx, starsArchive = self.settings['starsArchive'], ftpArchive = self.settings['ftpArchive'], sitename = site )
             if hhc.getStatus():
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()

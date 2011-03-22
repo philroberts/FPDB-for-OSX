@@ -55,7 +55,10 @@ log = logging.getLogger("config")
 def get_default_config_path():
     """Returns the path where the fpdb config file _should_ be stored."""
     if os.name == 'posix':
-        config_path = os.path.join(os.path.expanduser("~"), '.fpdb')
+        if (os.uname()[0]=="Darwin"):
+            config_path = os.path.join(os.getenv("HOME"), ".fpdb")
+        else:
+            config_path = os.path.join(os.path.expanduser("~"), '.fpdb')
     elif os.name == 'nt':
         config_path = os.path.join(unicode(os.environ[u"APPDATA"], "latin-1"), u"fpdb")
         #print u"path after joining in get_default_config_path:",config_path
@@ -75,7 +78,6 @@ def get_exec_path():
 
 def get_config(file_name, fallback = True):
     """Looks in cwd and in self.default_config_path for a config file."""
-
     # look for example file even if not used here, path is returned to caller
     config_found,example_found,example_copy = False,False,False
     config_path, example_path = None,None
@@ -85,17 +87,17 @@ def get_config(file_name, fallback = True):
         config_path = os.path.join(exec_dir, 'pyfpdb', file_name)
     else:
         config_path = os.path.join(exec_dir, file_name)
-#    print "config_path=", config_path
+        #print "config_path=", config_path
     if os.path.exists(config_path):    # there is a file in the cwd
         config_found = True            # so we use it
     else: # no file in the cwd, look where it should be in the first place
         default_dir = get_default_config_path()
         config_path = os.path.join(default_dir, file_name)
-#        print "config path 2=", config_path
+        #print "config path 2=", config_path
         if os.path.exists(config_path):
             config_found = True
-
-# Example configuration for debian package
+    
+    # Example configuration for debian package
     if os.name == 'posix':
         # If we're on linux, try to copy example from the place
         # debian package puts it; get_default_config_path() creates
@@ -109,7 +111,14 @@ def get_config(file_name, fallback = True):
                 msg = _("Config file has been created at %s.\n") % config_path
                 logging.info(msg)
             except IOError:
-                pass
+                try:
+                    example_path = file_name + '.example'
+                    shutil.copyfile(example_path, config_path)
+                    example_copy = True
+                    msg = _("Config file has been created at %s.\n") % config_path
+                    logging.info(msg)
+                except IOError:
+                    pass
 
 #    OK, fall back to the .example file, should be in the start dir
     elif os.path.exists(file_name + ".example"):
@@ -482,7 +491,6 @@ class Import:
         self.node = node
         self.interval    = node.getAttribute("interval")
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
-        self.hhArchiveBase = node.getAttribute("hhArchiveBase")
         self.ResultsDirectory = node.getAttribute("ResultsDirectory")
         self.hhBulkPath = node.getAttribute("hhBulkPath")
         self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=False)
@@ -492,8 +500,8 @@ class Import:
         self.saveStarsHH = string_to_bool(node.getAttribute("saveStarsHH"), default=False)
 
     def __str__(self):
-        return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\nResultsDirectory = %s" \
-            % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.cacheSessions, self.sessionTimeout, self.fastStoreHudCache, self.ResultsDirectory)
+        return "    interval = %s\n    callFpdbHud = %s\n    saveActions = %s\n    fastStoreHudCache = %s\nResultsDirectory = %s" \
+            % (self.interval, self.callFpdbHud, self.saveActions, self.cacheSessions, self.sessionTimeout, self.fastStoreHudCache, self.ResultsDirectory)
 
 class HudUI:
     def __init__(self, node):
@@ -712,7 +720,7 @@ class Config:
         while added > 0 and n < 2:
             n = n + 1
             log.info(_("Reading configuration file %s") % file)
-            print _("\nReading configuration file %s\n") % file
+            print (("\n"+_("Reading configuration file %s")+"\n") % file)
             try:
                 doc = xml.dom.minidom.parse(file)
                 self.doc = doc
@@ -857,9 +865,6 @@ class Config:
             self.save()
 
         return nodes_added
-
-    def set_hhArchiveBase(self, path):
-        self.imp.node.setAttribute("hhArchiveBase", path)
 
     def find_default_conf(self):
         if os.name == 'posix':
@@ -1257,10 +1262,6 @@ class Config:
 
         try:    imp['interval']        = self.imp.interval
         except:  imp['interval']        = 10
-
-        # hhArchiveBase is the temp store for part-processed hand histories - should be redundant eventually
-        try:    imp['hhArchiveBase']    = self.imp.hhArchiveBase
-        except:  imp['hhArchiveBase']    = "~/.fpdb/HandHistories/"
 
         # ResultsDirectory is the local cache for downloaded results
         # NOTE: try: except: doesn'tseem to be triggering

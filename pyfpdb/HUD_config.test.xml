@@ -2,7 +2,7 @@
 
 <FreePokerToolsConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FreePokerToolsConfig.xsd">
 
-    <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="True" cacheSessions="True" sessionTimeout="30"></import>
+    <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" saveActions="True" cacheSessions="True" sessionTimeout="30"></import>
 
 <!-- These values determine what stats are displayed in the HUD
 
@@ -389,6 +389,49 @@ Left-Drag to Move"
             </layout>
         </site>
 
+        <site enabled="True"
+              site_name="PacificPoker"
+              table_finder="poker.exe"
+              screen_name="Hero"
+              site_path="C:/Games/Poker/PacificPoker"
+              HH_path="C:/Users/rwielinga/AppData/Roaming/PacificPoker/HandHistory/Hero/"
+              decoder="everleaf_decode_table"
+              converter="PacificPokerToFpdb"
+              supported_games="holdem">
+            <layout fav_seat="0" height="547" max="8" width="794">
+                <location seat="1" x="640" y="64">  </location>
+                <location seat="2" x="650" y="230"> </location>
+                <location seat="3" x="650" y="385"> </location>
+                <location seat="4" x="588" y="425"> </location>
+                <location seat="5" x="92" y="425"> </location>
+                <location seat="6" x="0" y="373"> </location>
+                <location seat="7" x="0" y="223"> </location>
+                <location seat="8" x="25" y="50">  </location>
+            </layout>
+            <layout fav_seat="0" height="547" max="6" width="794">
+                <location seat="1" x="640" y="58"> </location>
+                <location seat="2" x="654" y="288"> </location>
+                <location seat="3" x="615" y="424"> </location>
+                <location seat="4" x="70" y="421"> </location>
+                <location seat="5" x="0" y="280"> </location>
+                <location seat="6" x="70" y="58"> </location>
+            </layout>
+            <layout fav_seat="0" height="547" max="2" width="794">
+                <location seat="1" x="651" y="288"> </location>
+                <location seat="2" x="10"  y="288"> </location>
+            </layout>
+            <layout fav_seat="0" height="547" max="9" width="794">
+                <location seat="1" x="634" y="38">  </location>
+                <location seat="2" x="667" y="184"> </location>
+                <location seat="3" x="667" y="321"> </location>
+                <location seat="4" x="667" y="445"> </location>
+                <location seat="5" x="337" y="459"> </location>
+                <location seat="6" x="0" y="400"> </location>
+                <location seat="7" x="0" y="322"> </location>
+                <location seat="8" x="0" y="181">  </location>
+                <location seat="9" x="70" y="53">  </location>
+            </layout>
+        </site>
 
         <site enabled="True"
               site_name="Betfair"
@@ -754,6 +797,7 @@ Left-Drag to Move"
         <hhc site="Win2day" converter="Win2dayToFpdb"/>
         <hhc site="Absolute" converter="AbsoluteToFpdb"/>
         <hhc site="PartyPoker" converter="PartyPokerToFpdb"/>
+        <hhc site="PacificPoker" converter="PacificPokerToFpdb"/>
         <hhc site="Betfair" converter="BetfairToFpdb"/>
         <hhc site="OnGame" converter="OnGameToFpdb"/>
         <hhc site="Carbon" converter="CarbonToFpdb"/>

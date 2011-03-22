@@ -345,7 +345,7 @@ class PartyPoker(HandHistoryConverter):
                     elif info[key].find(u"€")!=-1:
                         hand.buyinCurrency="EUR"
                     else:
-                        raise FpdbParseError(_("Failed to detect currency. HID: %s: '%s'") % (hand.handid, info[key]))
+                        raise FpdbParseError(_("Failed to detect currency. Hand ID: %s: '%s'") % (hand.handid, info[key]))
                     info[key] = info[key].strip(u'$€')
                     hand.buyin = int(100*Decimal(info[key]))
             if key == 'LEVEL':

@@ -12,7 +12,7 @@
              config_difficulty="expert"
              />
 
-    <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="True" cacheSessions="False" sessionTimeout="30"></import>
+    <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" saveActions="True" cacheSessions="False" sessionTimeout="30"></import>
 
     <gui_cash_stats>
         <col col_name="game"       disp_all="True"  disp_posn="True"  col_title="Game"     xalignment="0.0" field_format="%s"    field_type="str" />
