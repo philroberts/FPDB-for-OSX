@@ -4404,6 +4404,44 @@ class Sql:
         ####################################
         # Queries to rebuild/modify sessionscache
         ####################################
+        
+        self.query['clearSessionsCache'] = """DELETE FROM SessionsCache"""
+        
+        self.query['rebuildSessionsCache'] = """
+                    SELECT Hands.id as id,
+                    Hands.startTime as startTime,
+                    HandsPlayers.playerId as playerId,
+                    Hands.gametypeId as gametypeId,
+                    Gametypes.type as game,
+                    HandsPlayers.totalProfit as totalProfit,
+                    Tourneys.tourneyTypeId as tourneyTypeId
+                    FROM Gametypes, HandsPlayers, Hands
+                    LEFT JOIN Tourneys ON Hands.tourneyId = Tourneys.tourneyTypeId
+                    WHERE HandsPlayers.handId = Hands.id
+                    AND   Hands.gametypeId = Gametypes.id
+                    AND (case when HandsPlayers.playerId = <where_clause> then 1 else 0 end) = 1
+                    ORDER BY Hands.startTime ASC"""
+                    
+        self.query['rebuildSessionsCacheSum'] = """
+                    SELECT Tourneys.id as id,
+                    Tourneys.startTime as startTime,
+                    TourneysPlayers.playerId,
+                    TourneyTypes.id as tourneyTypeId,
+                    TourneysPlayers.winnings as winnings,
+                    TourneysPlayers.winningsCurrency as winningsCurrency,
+                    TourneyTypes.currency as buyinCurrency,
+                    TourneyTypes.buyIn as buyIn,
+                    TourneyTypes.fee as fee,
+                    case when TourneyTypes.rebuy then TourneyTypes.rebuyCost else 0 end as rebuyCost,
+                    case when TourneyTypes.rebuy then TourneyTypes.rebuyFee else 0 end as rebuyFee,
+                    case when TourneyTypes.addOn then TourneyTypes.addOnCost else 0 end as addOnCost,
+                    case when TourneyTypes.addOn then TourneyTypes.addOnFee else 0 end as addOnFee,
+                    case when TourneyTypes.knockout then TourneyTypes.koBounty else 0 end as koBounty
+                    FROM  Tourneys, TourneyTypes, TourneysPlayers
+                    WHERE Tourneys.tourneyTypeId = TourneyTypes.id
+                    AND   Tourneys.id = TourneysPlayers.tourneyId
+                    AND (case when TourneysPlayers.playerId = <where_clause> then 1 else 0 end) = 1
+                    ORDER BY Tourneys.startTime ASC"""
             
         self.query['select_prepSC'] = """
                     SELECT sessionId as id,

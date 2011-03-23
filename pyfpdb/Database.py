@@ -1637,10 +1637,86 @@ class Database:
             print err
     #end def rebuild_hudcache
     
-    def rebuild_sessionscache(self, h_start=None, v_start=None):
-        """clears sessionscache and rebuilds from the individual handsplayers records"""
-        #Will get to this soon
-        pass
+    def rebuild_sessionscache(self):
+        """clears sessionscache and rebuilds from the individual records"""
+        heros = []
+        for site in self.config.get_supported_sites():
+            result = self.get_site_id(site)
+            if result:
+                site_id = result[0][0]
+                hero = self.config.supported_sites[site].screen_name
+                p_id = self.get_player_id(self.config, site, hero)
+                if p_id:
+                    heros.append(int(p_id))
+                    
+        rebuildSessionsCache    = self.sql.query['rebuildSessionsCache']
+        rebuildSessionsCacheSum = self.sql.query['rebuildSessionsCacheSum']
+        
+        if len(heros) == 0:
+            where         = '0'
+            where_summary = '0'
+        elif len(heros) > 0:
+            where         = str(heros[0])
+            where_summary = str(heros[0])
+            if len(heros) > 1:
+                for i in heros:
+                    if i != heros[0]:
+                        where = where + ' OR HandsPlayers.playerId = %s' % str(i)
+                        where_summary = where_summary + ' OR TourneysPlayers.playerId = %s' % str(i)
+        rebuildSessionsCache    = rebuildSessionsCache.replace('<where_clause>', where)
+        rebuildSessionsCacheSum = rebuildSessionsCacheSum.replace('<where_clause>', where_summary)
+        
+        c = self.get_cursor()
+        c.execute(self.sql.query['clearSessionsCache'])
+        self.commit()
+        
+        sc, gsc = {'bk': []}, {'bk': []}
+        c.execute(rebuildSessionsCache)
+        tmp = c.fetchone()
+        while True:
+            pids, game, pdata = {}, {}, {}
+            pdata['pname'] = {}
+            id                              = tmp[0]
+            startTime                       = tmp[1]
+            pids['pname']                   = tmp[2]
+            gid                             = tmp[3]
+            game['type']                    = tmp[4]
+            pdata['pname']['totalProfit']   = tmp[5]
+            pdata['pname']['tourneyTypeId'] = tmp[6]
+            tmp = c.fetchone()
+            sc  = self.prepSessionsCache (id, pids, startTime, sc , heros, tmp == None)
+            gsc = self.storeSessionsCache(id, pids, startTime, game, gid, pdata, sc, gsc, None, heros, tmp == None)
+            if tmp == None:
+                for i, id in sc.iteritems():
+                    if i!='bk':
+                        sid =  id['id']
+                        gid =  gsc[i]['id']
+                        c.execute("UPDATE Hands SET sessionId = %s, gameSessionId = %s WHERE id = %s", (sid, gid, i))
+                break
+        self.commit()
+        
+        sc, gsc = {'bk': []}, {'bk': []}
+        c.execute(rebuildSessionsCacheSum)        
+        tmp = c.fetchone()
+        while True:
+            pids, game, info = {}, {}, {}
+            id                                = tmp[0]
+            startTime                         = tmp[1]
+            pids['pname']                     = tmp[2]
+            game['type']                      = 'summary'
+            info['tourneyTypeId']             = tmp[3]
+            info['winnings']                  = {}
+            info['winnings']['pname']         = tmp[4]
+            info['winningsCurrency']          = {}
+            info['winningsCurrency']['pname'] = tmp[5]
+            info['buyinCurrency']             = tmp[6]
+            info['buyin']                     = tmp[7]
+            info['fee']                       = tmp[8]
+            tmp = c.fetchone()    
+            sc  = self.prepSessionsCache (id, pids, startTime, sc , heros, tmp == None)
+            gsc = self.storeSessionsCache(id, pids, startTime, game, None, info, sc, gsc, None, heros, tmp == None)
+            if tmp == None:
+                break
 
     def get_hero_hudcache_start(self):
         """fetches earliest stylekey from hudcache for one of hero's player ids"""
@@ -2279,9 +2355,9 @@ class Database:
                     hand['type'] = 'tour'
                     hand['tourneys'] = 1
                     hand['tourneyTypeId'] = pdata['tourneyTypeId']
-                    hand['totalProfit'] = pdata['winnings'][p]
                     if pdata['buyinCurrency'] == pdata['winningsCurrency'][p]:
-                        hand['totalProfit'] - (pdata['buyin'] + pdata['fee'])
+                          hand['totalProfit'] = pdata['winnings'][p] - (pdata['buyin'] + pdata['fee'])
+                    else: hand['totalProfit'] = pdata['winnings'][p]
                 elif (game['type']=='ring'):
                     hand['type'] = game['type']
                     hand['hands'] = 1
