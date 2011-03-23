@@ -259,24 +259,24 @@ dealt   whether they were seen in a 'dealt to' line
             next = id +1
         return next
 
-    def insertHands(self, db, hbulk, doinsert = False):
+    def insertHands(self, db, hbulk, doinsert = False, printtest = False):
         """ Function to insert Hand into database
             Should not commit, and do minimal selects. Callers may want to cache commits
             db: a connected Database object"""
         self.hands['gameTypeId'] = self.dbid_gt
         self.hands['seats'] = len(self.dbid_pids)
-        hbulk = db.storeHand(self.hands, hbulk, doinsert)
+        hbulk = db.storeHand(self.hands, hbulk, doinsert, printtest)
         return hbulk
 
-    def insertHandsPlayers(self, db, hpbulk, doinsert = False):
+    def insertHandsPlayers(self, db, hpbulk, doinsert = False, printtest = False):
         """ Function to inserts HandsPlayers into database"""
-        hpbulk = db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.handsplayers, hpbulk, doinsert)
+        hpbulk = db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.handsplayers, hpbulk, doinsert, printtest)
         return hpbulk
     
-    def insertHandsActions(self, db, habulk, doinsert = False):
+    def insertHandsActions(self, db, habulk, doinsert = False, printtest = False):
         """ Function to inserts HandsActions into database"""
         handsactions = self.stats.getHandsActions()
-        habulk = db.storeHandsActions(self.dbid_hands, self.dbid_pids, handsactions, habulk, doinsert)
+        habulk = db.storeHandsActions(self.dbid_hands, self.dbid_pids, handsactions, habulk, doinsert, printtest)
         return habulk
 
     def updateHudCache(self, db, hcbulk, doinsert = False):

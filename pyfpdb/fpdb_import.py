@@ -476,7 +476,7 @@ class Importer:
                     try:
                         id = hand.getHandId(self.database, id)
                         sc, gsc = hand.updateSessionsCache(self.database, sc, gsc, None, doinsert)
-                        hbulk = hand.insertHands(self.database, hbulk, doinsert)
+                        hbulk = hand.insertHands(self.database, hbulk, doinsert, self.settings['testData'])
                         hcbulk = hand.updateHudCache(self.database, hcbulk, doinsert)
                         ihands.append(hand)
                         to_hud.append(id)
@@ -488,8 +488,8 @@ class Importer:
                 for i in range(len(ihands)):
                     doinsert = len(ihands)==i+1
                     hand = ihands[i]
-                    hpbulk = hand.insertHandsPlayers(self.database, hpbulk, doinsert)
-                    habulk = hand.insertHandsActions(self.database, habulk, doinsert)
+                    hpbulk = hand.insertHandsPlayers(self.database, hpbulk, doinsert, self.settings['testData'])
+                    habulk = hand.insertHandsActions(self.database, habulk, doinsert, self.settings['testData'])
                 self.database.commit()
 
                 #pipe the Hands.id out to the HUD

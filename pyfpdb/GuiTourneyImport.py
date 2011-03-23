@@ -229,7 +229,7 @@ class SummaryImporter:
                 doinsert = len(summaryTexts)==j
                 try:
                     conv = obj(db=self.database, config=self.config, siteName=site, summaryText=summaryText, builtFrom = "IMAP")
-                    sc, gsc = conv.updateSessionsCache(sc, gsc, self.tz, doinsert)
+                    sc, gsc = conv.updateSessionsCache(sc, gsc, None, doinsert)
                 except FpdbParseError, e:
                     errors += 1
                 print _("Finished importing %s/%s tournament summaries") %(j, len(summaryTexts))

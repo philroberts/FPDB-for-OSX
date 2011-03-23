@@ -1760,8 +1760,14 @@ class Database:
 # NEWIMPORT CODE
 ###########################
 
-    def storeHand(self, hdata, hbulk, doinsert = False):
-        #stores into table hands:
+    def storeHand(self, hdata, hbulk, doinsert = False, printdata = False):
+        if printdata:
+            print _("######## Hands ##########")
+            import pprint
+            pp = pprint.PrettyPrinter(indent=4)
+            pp.pprint(hdata)
+            print _("###### End Hands ########")
+            
         # Tablename can have odd charachers
         hdata['tableName'] = Charset.to_db_utf8(hdata['tableName'])
         
@@ -1813,8 +1819,12 @@ class Database:
             self.commit()
         return hbulk
 
-    def storeHandsPlayers(self, hid, pids, pdata, hpbulk, doinsert = False):
+    def storeHandsPlayers(self, hid, pids, pdata, hpbulk, doinsert = False, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
+        if printdata:
+            import pprint
+            pp = pprint.PrettyPrinter(indent=4)
+            pp.pprint(pdata)
 
         for p in pdata:
             hpbulk.append( ( hid,
@@ -1930,8 +1940,14 @@ class Database:
             c.executemany(q, hpbulk)
         return hpbulk
 
-    def storeHandsActions(self, hid, pids, adata, habulk, doinsert = False):
+    def storeHandsActions(self, hid, pids, adata, habulk, doinsert = False, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, adata)
+
+        # This can be used to generate test data. Currently unused
+        #if printdata:
+        #    import pprint
+        #    pp = pprint.PrettyPrinter(indent=4)
+        #    pp.pprint(adata)
         
         for a in adata:
             habulk.append( (hid,
@@ -2262,8 +2278,10 @@ class Database:
                 if (game['type']=='summary'):
                     hand['type'] = 'tour'
                     hand['tourneys'] = 1
-                    hand['tourneyTypeId'] = pdata.tourneyTypeId
-                    hand['totalProfit'] = pdata.winnings[p] - (pdata.buyin + pdata.fee)
+                    hand['tourneyTypeId'] = pdata['tourneyTypeId']
+                    hand['totalProfit'] = pdata['winnings'][p]
+                    if pdata['buyinCurrency'] == pdata['winningsCurrency'][p]:
+                        hand['totalProfit'] - (pdata['buyin'] + pdata['fee'])
                 elif (game['type']=='ring'):
                     hand['type'] = game['type']
                     hand['hands'] = 1
