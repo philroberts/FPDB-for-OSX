@@ -475,7 +475,7 @@ class Importer:
                     hand = phands[i]
                     try:
                         id = hand.getHandId(self.database, id)
-                        sc, gsc = hand.updateSessionsCache(self.database, sc, gsc, self.tz, doinsert)
+                        sc, gsc = hand.updateSessionsCache(self.database, sc, gsc, None, doinsert)
                         hbulk = hand.insertHands(self.database, hbulk, doinsert)
                         hcbulk = hand.updateHudCache(self.database, hcbulk, doinsert)
                         ihands.append(hand)

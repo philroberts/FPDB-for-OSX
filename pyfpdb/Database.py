@@ -2231,6 +2231,10 @@ class Database:
     
     def storeSessionsCache(self, hid, pids, startTime, game, gid, pdata, sc, gsc, tz, heros, doinsert = False):
         """Update cached sessions. If no record exists, do an insert"""
+        if not tz:
+            tz_dt = datetime.utcnow() - datetime.today()
+            tz = tz_dt.seconds/3600
+            
         THRESHOLD = timedelta(seconds=int(self.sessionTimeout * 60))
         local = startTime + timedelta(hours=int(tz))
         date = "d%02d%02d%02d" % (local.year - 2000, local.month, local.day)
