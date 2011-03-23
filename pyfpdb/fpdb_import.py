@@ -453,6 +453,7 @@ class Importer:
                       ,sitename     = site )
             
             if hhc.getStatus():
+                if self.caller: hhc.progressNotify()
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
                 (hbulk, hpbulk, habulk, hcbulk, phands, ihands) = ([], [], [], [], [], [])
