@@ -172,10 +172,7 @@ class Fulltilt(HandHistoryConverter):
             self.re_BringIn          = re.compile(r"^%(PLAYERS)s brings in for [%(LS)s]?(?P<BRINGIN>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_PostBoth         = re.compile(r"^%(PLAYERS)s posts small \& big blinds \[[%(LS)s]? (?P<SBBB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
-            self.re_Action           = re.compile(r"""
-                                     ^%(PLAYERS)s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds| discards| stands pat)
-                                     ( [%(LS)s]?(?P<BET>[%(NUM)s]+))?
-                                     (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?""" % self.substitutions, re.MULTILINE)
+            self.re_Action           = re.compile(r"^%(PLAYERS)s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds| discards| stands pat)( [%(LS)s]?(?P<BET>[%(NUM)s]+))?(\son|\scards?)?(\s\[(?P<CARDS>.+?)\])?" % self.substitutions, re.MULTILINE)
             self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %(PLAYERS)s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \([%(LS)s]?(?P<POT>[%(NUM)s]+)\)(, mucked| with.*)?" % self.substitutions, re.MULTILINE)
             self.re_SitsOut          = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
@@ -487,9 +484,9 @@ class Fulltilt(HandHistoryConverter):
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' discards':
-                hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('DISCARDED'))
+                hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('CARDS'))
             elif action.group('ATYPE') == ' stands pat':
-                hand.addStandsPat( street, action.group('PNAME'))
+                hand.addStandsPat( street, action.group('PNAME'), action.group('CARDS'))
             else:
                 print _("FullTilt: DEBUG: unimplemented readAction: '%s' '%s'") %(action.group('PNAME'),action.group('ATYPE'),)
 

@@ -214,10 +214,10 @@ class DerivedStats():
 
         for player in hand.players:
             hcs = hand.join_holecards(player[1], asList=True)
-            hcs = hcs + [u'0x', u'0x', u'0x', u'0x', u'0x']
-            #for i, card in enumerate(hcs[:7], 1): #Python 2.6 syntax
+            hcs = hcs + [u'0x']*18
+            #for i, card in enumerate(hcs[:20, 1): #Python 2.6 syntax
             #    self.handsplayers[player[1]]['card%s' % i] = Card.encodeCard(card)
-            for i, card in enumerate(hcs[:7]):
+            for i, card in enumerate(hcs[:20]):
                 self.handsplayers[player[1]]['card%s' % (i+1)] = Card.encodeCard(card)
             self.handsplayers[player[1]]['startCards'] = Card.calcStartCards(hand, player[1])
 

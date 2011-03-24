@@ -661,10 +661,13 @@ Add a raise on [street] by [player] to [amountTo]
         self.pot.addMoney(player, amount)
 
 
-    def addStandsPat(self, street, player):
+    def addStandsPat(self, street, player, cards):
         self.checkPlayerExists(player)
         act = (player, 'stands pat')
         self.actions[street].append(act)
+        if cards:
+            cards = cards.split(' ')
+            self.addHoleCards(street, player, open=[], closed=cards)
 
 
     def addFold(self, street, player):
@@ -1224,7 +1227,14 @@ class DrawHand(Hand):
     def join_holecards(self, player, asList=False):
         """With asList = True it returns the set cards for a player including down cards if they aren't know"""
         # FIXME: This should actually return
-        holecards = [u'0x', u'0x', u'0x', u'0x', u'0x']
+        holecards = [u'0x']*20
+        
+        for i, street in enumerate(self.holeStreets):
+            if player in self.holecards[street].keys():
+                allhole = self.holecards[street][player][0] + self.holecards[street][player][1]
+                for c in range(len(allhole)):
+                    idx = c + (i*5)
+                    holecards[idx] = allhole[c]
 
         if asList == False:
             return " ".join(holecards)

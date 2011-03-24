@@ -145,7 +145,8 @@ class PokerStars(HandHistoryConverter):
                         (\s(%(CUR)s)?(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
                         \s*(and\sis\sall.in)?
                         (and\shas\sreached\sthe\s[%(CUR)s\d\.]+\scap)?
-                        (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?\s*$"""
+                        (\son|\scards?)?
+                        (\s\[(?P<CARDS>.+?)\])?\s*$"""
                          %  short_subst, re.MULTILINE|re.VERBOSE)
     re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" % short_subst['PLYR'], re.MULTILINE)
     re_sitsOut          = re.compile("^%s sits out" %  short_subst['PLYR'], re.MULTILINE)
@@ -432,9 +433,9 @@ class PokerStars(HandHistoryConverter):
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' discards':
-                hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('DISCARDED'))
+                hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('CARDS'))
             elif action.group('ATYPE') == ' stands pat':
-                hand.addStandsPat( street, action.group('PNAME'))
+                hand.addStandsPat( street, action.group('PNAME'), action.group('CARDS'))
             else:
                 print (_("DEBUG: ") + _("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'),action.group('ATYPE')))
 

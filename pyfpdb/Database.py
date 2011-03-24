@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 151
+DB_VERSION = 152
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -1915,6 +1915,19 @@ class Database:
                              pdata[p]['card5'],
                              pdata[p]['card6'],
                              pdata[p]['card7'],
+                             pdata[p]['card8'],
+                             pdata[p]['card9'],
+                             pdata[p]['card10'],
+                             pdata[p]['card11'],
+                             pdata[p]['card12'],
+                             pdata[p]['card13'],
+                             pdata[p]['card14'],
+                             pdata[p]['card15'],
+                             pdata[p]['card16'],
+                             pdata[p]['card17'],
+                             pdata[p]['card18'],
+                             pdata[p]['card19'],
+                             pdata[p]['card20'],
                              pdata[p]['winnings'],
                              pdata[p]['rake'],
                              pdata[p]['totalProfit'],
