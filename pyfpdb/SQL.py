@@ -3401,7 +3401,7 @@ class Sql:
             <limit_test>
             <game_test>
             AND   hp.tourneysPlayersId IS NULL
-            GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
+            GROUP BY h.startTime, hp.handId, hp.sawShowdown, ( hp.totalProfit / ( gt.bigBlind  * 2 ) ) * 100
             ORDER BY h.startTime"""
 
         self.query['getRingProfitAllHandsPlayerIdSiteInDollars'] = """
