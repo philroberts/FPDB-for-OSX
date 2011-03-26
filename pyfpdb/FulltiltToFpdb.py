@@ -37,7 +37,7 @@ class Fulltilt(HandHistoryConverter):
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",       # legal ISO currency codes
                             'LS' : u"\$|\u20AC|\xe2\x82\xac|",  # legal currency symbols - Euro(cp1252, utf-8)
-                           'TAB' : u"-\u2013'\s\da-zA-Z",       # legal characters for tablename
+                           'TAB' : u"-\u2013'\s\da-zA-Z#",       # legal characters for tablename
                            'NUM' : u".,\d",                     # legal characters in number format
                     }
 
@@ -74,7 +74,7 @@ class Fulltilt(HandHistoryConverter):
                                     (Ante\s\$?(?P<ANTE>[%(NUM)s]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
-                                    (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi))
+                                    (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw))
                                  ''' % substitutions, re.VERBOSE)
     re_SplitHands   = re.compile(r"\n\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
@@ -222,6 +222,7 @@ class Fulltilt(HandHistoryConverter):
           '2-7 Triple Draw' : ('draw','27_3draw'),
               '5 Card Draw' : ('draw','fivedraw'),
                    'Badugi' : ('draw','badugi'),
+          '2-7 Single Draw' : ('draw','27_1draw')
                }
         currencies = { u'€':'EUR', '$':'USD', '':'T$' }
 
@@ -422,7 +423,7 @@ class Fulltilt(HandHistoryConverter):
             logging.debug(_("Player bringing in: %s for %s") %(m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         else:
-            logging.warning(_("No bringin found, handid =%s") % hand.handid)
+            logging.debug(_("No bringin found, handid =%s") % hand.handid)
 
     def readButton(self, hand):
         try:

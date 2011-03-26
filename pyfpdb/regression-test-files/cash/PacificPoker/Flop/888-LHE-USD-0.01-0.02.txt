@@ -1,0 +1,41 @@
+#Game No : 311162661
+***** Cassava Hand History for Game 311162661 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:31:55
+Table Guarapuava (Real Money)
+Seat 2 is the button
+Total number of players : 4
+Seat 2: Barrydos ( $2.13 )
+Seat 4: wanagu22 ( $0.39 )
+Seat 9: SkiNNeR14 ( $0.04 )
+Seat 10: pokergallo ( $2.27 )
+wanagu22 posts small blind [$0.01]
+SkiNNeR14 posts big blind [$0.02]
+** Dealing down cards **
+pokergallo calls [$0.02]
+Barrydos calls [$0.02]
+wanagu22 calls [$0.01]
+SkiNNeR14 raises [$0.02]
+pokergallo calls [$0.02]
+Barrydos calls [$0.02]
+wanagu22 calls [$0.02]
+** Dealing flop ** [ 4d, 5h, 9d ]
+wanagu22 bets [$0.02]
+pokergallo calls [$0.02]
+Barrydos calls [$0.02]
+** Dealing turn ** [ 5c ]
+wanagu22 bets [$0.04]
+pokergallo calls [$0.04]
+Barrydos raises [$0.08]
+wanagu22 calls [$0.04]
+pokergallo calls [$0.04]
+** Dealing river ** [ 6c ]
+wanagu22 bets [$0.04]
+pokergallo folds
+Barrydos calls [$0.04]
+** Summary **
+wanagu22 shows [ 7d, 5d ]
+SkiNNeR14 shows [ As, 5s ]
+Barrydos mucks [ 4s, Ac ]
+SkiNNeR14 collected [ $0.16 ]
+wanagu22 collected [ $0.36 ]
+

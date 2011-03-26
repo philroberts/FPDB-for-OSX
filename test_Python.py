@@ -24,7 +24,7 @@ Test if python is working.
 
 import sys
 
-print "\npython is working!"
+print "\npython is indeed working!"
 print "\npress return to finish"
 
 sys.stdin.readline()
