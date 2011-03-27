@@ -1,0 +1,1894 @@
+Everleaf Gaming Game #242839234
+***** Hand history for game #242839234 *****
+Blinds 500/1000 NL Hold'em - 2011/02/18 - 06:22:21
+Table 1
+Seat 1 is the button
+Total number of players: 10
+Seat 1: Player1 (  16476 Chips )
+Seat 2: Player2 (  11400 Chips )
+Seat 3: Player3 (  17400 Chips )
+Seat 4: Player4 (  20440 Chips )
+Seat 5: Player5 (  5936 Chips )
+Seat 6: Player6 (  25988 Chips )
+Seat 7: Player7 (  17132 Chips )
+Seat 8: Player8 (  67564 Chips )
+Seat 9: Player9 (  15550 Chips )
+Seat 10: Hero (  16114 Chips )
+Player1: posts ante [ 100 Chips]
+Player2: posts ante [ 100 Chips]
+Player3: posts ante [ 100 Chips]
+Player4: posts ante [ 100 Chips]
+Player5: posts ante [ 100 Chips]
+Player6: posts ante [ 100 Chips]
+Player7: posts ante [ 100 Chips]
+Player8: posts ante [ 100 Chips]
+Player9: posts ante [ 100 Chips]
+Hero: posts ante [ 100 Chips]
+Player2: posts small blind [ 500 Chips]
+Player3: posts big blind [ 1000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 5s, 5c ]
+Player4 calls [ 1,000 Chips]
+Player5 has disconnected and has been given a further 20 seconds to react
+Player5 has disconnected and has been given a further 20 seconds to react
+Player8: bryan ohio?
+Player5 folds
+Player6 folds
+Player7 folds
+Player8 folds
+Player9 folds
+Hero calls [ 1,000 Chips]
+Player1 calls [ 1,000 Chips]
+Player3: yes
+Player2 folds
+Player3 checks
+** Dealing Flop ** [ Ks, 8s, 6c ]
+Player8: i have a buddy from there 
+Player3: bets [ 5,500 Chips]
+Player4 folds
+Player3: last name
+Player8: know any Apt's?
+Hero folds
+Player1 folds
+Player3 does not show cards
+Player3 wins 5500 chips from main pot
+
+
+
+Everleaf Gaming Game #242839303
+***** Hand history for game #242839303 *****
+Blinds 600/1200 NL Hold'em - 2011/02/18 - 06:24:13
+Table 1
+Seat 2 is the button
+Total number of players: 10
+Seat 1: Player1 (  15376 Chips )
+Seat 2: Player2 (  10800 Chips )
+Seat 3: Player3 (  21800 Chips )
+Seat 4: Player4 (  19340 Chips )
+Seat 5: Player5 (  5836 Chips )
+Seat 6: Player6 (  25888 Chips )
+Seat 7: Player7 (  17032 Chips )
+Seat 8: Player8 (  67464 Chips )
+Seat 9: Player9 (  15450 Chips )
+Seat 10: Hero (  15014 Chips )
+Player1: posts ante [ 125 Chips]
+Player2: posts ante [ 125 Chips]
+Player3: posts ante [ 125 Chips]
+Player4: posts ante [ 125 Chips]
+Player5: posts ante [ 125 Chips]
+Player6: posts ante [ 125 Chips]
+Player7: posts ante [ 125 Chips]
+Player8: posts ante [ 125 Chips]
+Player9: posts ante [ 125 Chips]
+Hero: posts ante [ 125 Chips]
+Player3: posts small blind [ 600 Chips]
+Player4: posts big blind [ 1200 Chips]
+** Dealing down cards **
+Dealt to Hero [ 3d, 3s ]
+Player5 folds
+Player6 folds
+Player7 folds
+Player8 folds
+Player9 folds
+Hero folds
+Player1 folds
+Player2 folds
+Player3 folds
+Player4 does not show cards
+Player4 wins 2450 chips from main pot
+
+
+
+Everleaf Gaming Game #242839331
+***** Hand history for game #242839331 *****
+Blinds 600/1200 NL Hold'em - 2011/02/18 - 06:24:56
+Table 1
+Seat 3 is the button
+Total number of players: 10
+Seat 1: Player1 (  15251 Chips )
+Seat 2: Player2 (  10675 Chips )
+Seat 3: Player3 (  21075 Chips )
+Seat 4: Player4 (  21065 Chips )
+Seat 5: Player5 (  5711 Chips )
+Seat 6: Player6 (  25763 Chips )
+Seat 7: Player7 (  16907 Chips )
+Seat 8: Player8 (  67339 Chips )
+Seat 9: Player9 (  15325 Chips )
+Seat 10: Hero (  14889 Chips )
+Player1: posts ante [ 125 Chips]
+Player2: posts ante [ 125 Chips]
+Player3: posts ante [ 125 Chips]
+Player4: posts ante [ 125 Chips]
+Player5: posts ante [ 125 Chips]
+Player6: posts ante [ 125 Chips]
+Player7: posts ante [ 125 Chips]
+Player8: posts ante [ 125 Chips]
+Player9: posts ante [ 125 Chips]
+Hero: posts ante [ 125 Chips]
+Player4: posts small blind [ 600 Chips]
+Player5: posts big blind [ 1200 Chips]
+** Dealing down cards **
+Dealt to Hero [ 2c, Jh ]
+Player8: Apt?
+Player6 folds
+Player7 folds
+Player8 folds
+Player9 raises [ 15,200 Chips]
+Hero folds
+Player1 calls [ 15,126 Chips]
+Player2 folds
+Player3 folds
+Player4 folds
+Player5 calls [ 4,386 Chips]
+** Dealing Flop ** [ 9d, 7c, Ad ]
+** Dealing Turn ** [ 6s ]
+** Dealing River ** [ 8c ]
+Player1 shows [ Tc, Td ] a straight, ten high
+Player5 shows [ Jd, Qd ] high card ace
+Player9 shows [ Js, Kc ] high card ace
+Player1 wins 18608 chips from main pot with a straight, ten high [ Td, 9d, 8c, 7c, 6s ]
+Player1 wins 19080 chips from side pot with a straight, ten high [ Td, 9d, 8c, 7c, 6s ]
+
+
+
+Everleaf Gaming Game #242839355
+***** Hand history for game #242839355 *****
+Blinds 600/1200 NL Hold'em - 2011/02/18 - 06:25:40
+Table 1
+Seat 4 is the button
+Total number of players: 9
+Seat 1: Player1 (  37688 Chips )
+Seat 2: Player2 (  10550 Chips )
+Seat 3: Player3 (  20950 Chips )
+Seat 4: Player4 (  20340 Chips )
+Seat 6: Player6 (  25638 Chips )
+Seat 7: Player7 (  16782 Chips )
+Seat 8: Player8 (  67214 Chips )
+Seat 9: Player9 (  74 Chips )
+Seat 10: Hero (  14764 Chips )
+Player1: posts ante [ 125 Chips]
+Player2: posts ante [ 125 Chips]
+Player3: posts ante [ 125 Chips]
+Player4: posts ante [ 125 Chips]
+Player6: posts ante [ 125 Chips]
+Player7: posts ante [ 125 Chips]
+Player8: posts ante [ 125 Chips]
+Player9: posts ante [ 74 Chips]
+Hero: posts ante [ 125 Chips]
+Player6: posts big blind [ 1200 Chips]
+** Dealing down cards **
+Dealt to Hero [ 3h, Kd ]
+Player7 raises [ 2,400 Chips]
+Player8 folds
+Hero folds
+Player1 calls [ 2,400 Chips]
+Player2 folds
+Player3 folds
+Player4 folds
+Player6 calls [ 1,200 Chips]
+** Dealing Flop ** [ 4c, 5c, Td ]
+Player6 checks
+Player7: bets [ 3,400 Chips]
+Player1 calls [ 3,400 Chips]
+Player6 folds
+** Dealing Turn ** [ Jh ]
+Player7: bets [ 3,100 Chips]
+Player1 calls [ 3,100 Chips]
+** Dealing River ** [ Qc ]
+Player7: bets [ 7,757 Chips]
+Player1 folds
+Player7 shows [ Kc, Ks ] a pair of kings
+Player9 shows [ Js, 7s ] a pair of jacks
+Player7 wins 666 chips from main pot with a pair of kings [ Kc, Ks, Qc, Jh, Td ]
+Player7 wins 20608 chips from side pot with a pair of kings [ Kc, Ks, Qc, Jh, Td ]
+
+
+
+Everleaf Gaming Game #242839393
+***** Hand history for game #242839393 *****
+Blinds 600/1200 NL Hold'em - 2011/02/18 - 06:26:52
+Table 1
+Seat 4 is the button
+Total number of players: 8
+Seat 1: Player1 (  28663 Chips )
+Seat 2: Player2 (  10425 Chips )
+Seat 3: Player3 (  20825 Chips )
+Seat 4: Player4 (  20215 Chips )
+Seat 6: Player6 (  23113 Chips )
+Seat 7: Player7 (  29031 Chips )
+Seat 8: Player8 (  67089 Chips )
+Seat 10: Hero (  14639 Chips )
+Player1: posts ante [ 125 Chips]
+Player2: posts ante [ 125 Chips]
+Player3: posts ante [ 125 Chips]
+Player4: posts ante [ 125 Chips]
+Player6: posts ante [ 125 Chips]
+Player7: posts ante [ 125 Chips]
+Player8: posts ante [ 125 Chips]
+Hero: posts ante [ 125 Chips]
+Player6: posts small blind [ 600 Chips]
+Player7: posts big blind [ 1200 Chips]
+** Dealing down cards **
+Dealt to Hero [ 4d, Qs ]
+Player8 folds
+Hero folds
+Player1 calls [ 1,200 Chips]
+Player2 folds
+Player3 folds
+Player4 folds
+Player6 calls [ 600 Chips]
+Player7 checks
+** Dealing Flop ** [ 2h, Jh, 9d ]
+Player8: i take it u dont know them 
+Player6 checks
+Player7 checks
+Player1: bets [ 4,600 Chips]
+Player6 folds
+Player7 folds
+Player1 does not show cards
+Player1 wins 4600 chips from main pot
+
+
+
+Everleaf Gaming Game #242839422
+***** Hand history for game #242839422 *****
+Blinds 600/1200 NL Hold'em - 2011/02/18 - 06:27:41
+Table 1
+Seat 6 is the button
+Total number of players: 8
+Seat 1: Player1 (  31938 Chips )
+Seat 2: Player2 (  10300 Chips )
+Seat 3: Player3 (  20700 Chips )
+Seat 4: Player4 (  20090 Chips )
+Seat 6: Player6 (  21788 Chips )
+Seat 7: Player7 (  27706 Chips )
+Seat 8: Player8 (  66964 Chips )
+Seat 10: Hero (  14514 Chips )
+Player1: posts ante [ 125 Chips]
+Player2: posts ante [ 125 Chips]
+Player3: posts ante [ 125 Chips]
+Player4: posts ante [ 125 Chips]
+Player6: posts ante [ 125 Chips]
+Player7: posts ante [ 125 Chips]
+Player8: posts ante [ 125 Chips]
+Hero: posts ante [ 125 Chips]
+Player7: posts small blind [ 600 Chips]
+Player8: posts big blind [ 1200 Chips]
+** Dealing down cards **
+Dealt to Hero [ 6d, 5s ]
+Hero folds
+Player1 folds
+Player2 folds
+Player3: heard of the name
+Player3 folds
+Player4 folds
+Player6 folds
+Player7 calls [ 600 Chips]
+Player8: cant remember his parents first names 
+Player8 raises [ 2,400 Chips]
+Player7 folds
+Player8 does not show cards
+Player8 wins 3400 chips from main pot
+
+
+
+Everleaf Gaming Game #242839443
+***** Hand history for game #242839443 *****
+Blinds 800/1600 NL Hold'em - 2011/02/18 - 06:28:17
+Table 1
+Seat 7 is the button
+Total number of players: 8
+Seat 1: Player1 (  31813 Chips )
+Seat 2: Player2 (  10175 Chips )
+Seat 3: Player3 (  20575 Chips )
+Seat 4: Player4 (  19965 Chips )
+Seat 6: Player6 (  21663 Chips )
+Seat 7: Player7 (  26381 Chips )
+Seat 8: Player8 (  69039 Chips )
+Seat 10: Hero (  14389 Chips )
+Player1: posts ante [ 150 Chips]
+Player2: posts ante [ 150 Chips]
+Player3: posts ante [ 150 Chips]
+Player4: posts ante [ 150 Chips]
+Player6: posts ante [ 150 Chips]
+Player7: posts ante [ 150 Chips]
+Player8: posts ante [ 150 Chips]
+Hero: posts ante [ 150 Chips]
+Player8: posts small blind [ 800 Chips]
+Hero: posts big blind [ 1600 Chips]
+** Dealing down cards **
+Dealt to Hero [ 5c, 9c ]
+Player1 folds
+Player2 folds
+Player3: seems like they were from pioneer
+Player3 folds
+Player4 folds
+Player6 folds
+Player8: dad built bridges
+Player7 folds
+Player8: mom works at big bear
+Player8 folds
+Hero does not show cards
+Hero wins 2800 chips from main pot
+
+
+
+Everleaf Gaming Game #242839456
+***** Hand history for game #242839456 *****
+Blinds 800/1600 NL Hold'em - 2011/02/18 - 06:28:47
+Table 1
+Seat 8 is the button
+Total number of players: 8
+Seat 1: Player1 (  31663 Chips )
+Seat 2: Player2 (  10025 Chips )
+Seat 3: Player3 (  20425 Chips )
+Seat 4: Player4 (  19815 Chips )
+Seat 6: Player6 (  21513 Chips )
+Seat 7: Player7 (  26231 Chips )
+Seat 8: Player8 (  68089 Chips )
+Seat 10: Hero (  16239 Chips )
+Player1: posts ante [ 150 Chips]
+Player2: posts ante [ 150 Chips]
+Player3: posts ante [ 150 Chips]
+Player4: posts ante [ 150 Chips]
+Player6: posts ante [ 150 Chips]
+Player7: posts ante [ 150 Chips]
+Player8: posts ante [ 150 Chips]
+Hero: posts ante [ 150 Chips]
+Hero: posts small blind [ 800 Chips]
+Player1: posts big blind [ 1600 Chips]
+** Dealing down cards **
+Dealt to Hero [ 8s, Jc ]
+Player2 folds
+Player3: big bear 
+Player3 folds
+Player4 calls [ 1,600 Chips]
+Player6 folds
+Player7 folds
+Player8: she is manager of the deli i think
+Player8 folds
+Player3: never heard of it
+Hero folds
+Player1 checks
+** Dealing Flop ** [ 8d, 4s, 4h ]
+Player1 checks
+Player4: bets [ 1,600 Chips]
+Player8: grocery store in town there 
+Player1 folds
+Player4 does not show cards
+Player4 wins 5200 chips from main pot
+
+
+
+Everleaf Gaming Game #242839486
+***** Hand history for game #242839486 *****
+Blinds 800/1600 NL Hold'em - 2011/02/18 - 06:29:40
+Table 1
+Seat 10 is the button
+Total number of players: 8
+Seat 1: Player1 (  29913 Chips )
+Seat 2: Player2 (  9875 Chips )
+Seat 3: Player3 (  20275 Chips )
+Seat 4: Player4 (  23265 Chips )
+Seat 6: Player6 (  21363 Chips )
+Seat 7: Player7 (  26081 Chips )
+Seat 8: Player8 (  67939 Chips )
+Seat 10: Hero (  15289 Chips )
+Player1: posts ante [ 150 Chips]
+Player2: posts ante [ 150 Chips]
+Player3: posts ante [ 150 Chips]
+Player4: posts ante [ 150 Chips]
+Player6: posts ante [ 150 Chips]
+Player7: posts ante [ 150 Chips]
+Player8: posts ante [ 150 Chips]
+Hero: posts ante [ 150 Chips]
+Player1: posts small blind [ 800 Chips]
+Player2: posts big blind [ 1600 Chips]
+** Dealing down cards **
+Dealt to Hero [ As, 2c ]
+Player3: lol not in bryan
+Player3 calls [ 1,600 Chips]
+Player4 calls [ 1,600 Chips]
+Player8: what is the store called ?
+Player6 calls [ 1,600 Chips]
+Player7 folds
+Player8 folds
+Hero folds
+Player1 calls [ 800 Chips]
+Player2 checks
+** Dealing Flop ** [ 3s, 7s, Ac ]
+Player3: chief
+Player1 checks
+Player8: might be it 
+Player2: bets [ 1,600 Chips]
+Player8: not kroger 
+Player3 folds
+Player4 calls [ 1,600 Chips]
+Player6 folds
+Player1 folds
+** Dealing Turn ** [ 5c ]
+Player2 checks
+Player4: bets [ 1,600 Chips]
+Player2 calls [ 1,600 Chips]
+** Dealing River ** [ Kh ]
+Player2: bets [ 1,600 Chips]
+Player4 folds
+Player2 does not show cards
+Player2 wins 15600 chips from main pot
+
+
+
+Everleaf Gaming Game #242839527
+***** Hand history for game #242839527 *****
+Blinds 800/1600 NL Hold'em - 2011/02/18 - 06:31:00
+Table 1
+Seat 1 is the button
+Total number of players: 8
+Seat 1: Player1 (  28163 Chips )
+Seat 2: Player2 (  20525 Chips )
+Seat 3: Player3 (  18525 Chips )
+Seat 4: Player4 (  18315 Chips )
+Seat 6: Player6 (  19613 Chips )
+Seat 7: Player7 (  25931 Chips )
+Seat 8: Player8 (  67789 Chips )
+Seat 10: Hero (  15139 Chips )
+Player1: posts ante [ 150 Chips]
+Player2: posts ante [ 150 Chips]
+Player3: posts ante [ 150 Chips]
+Player4: posts ante [ 150 Chips]
+Player6: posts ante [ 150 Chips]
+Player7: posts ante [ 150 Chips]
+Player8: posts ante [ 150 Chips]
+Hero: posts ante [ 150 Chips]
+Player2: posts small blind [ 800 Chips]
+Player3: posts big blind [ 1600 Chips]
+** Dealing down cards **
+Dealt to Hero [ 6h, Kc ]
+Player4 calls [ 1,600 Chips]
+Player6 folds
+Player7 folds
+Player8 folds
+Hero folds
+Player1 calls [ 1,600 Chips]
+Player2 folds
+Player3 checks
+** Dealing Flop ** [ Ac, Qd, Ah ]
+Player3 checks
+Player4: bets [ 1,600 Chips]
+Player1 folds
+Player3 calls [ 1,600 Chips]
+** Dealing Turn ** [ Ts ]
+Player3: bets [ 3,200 Chips]
+Player4 raises [ 14,965 Chips]
+Player3 calls [ 11,765 Chips]
+** Dealing River ** [ 5h ]
+Player3 shows [ Kd, Jd ] a straight, ace high
+Player4 shows [ As, Qh ] a full house, aces full of queens
+Player4 wins 39930 chips from main pot with a full house, aces full of queens [ As, Ac, Ah, Qh, Qd ]
+
+
+
+Everleaf Gaming Game #242839563
+***** Hand history for game #242839563 *****
+Blinds 800/1600 NL Hold'em - 2011/02/18 - 06:32:03
+Table 1
+Seat 2 is the button
+Total number of players: 8
+Seat 1: Player1 (  26413 Chips )
+Seat 2: Player2 (  19575 Chips )
+Seat 3: Player3 (  210 Chips )
+Seat 4: Player4 (  39930 Chips )
+Seat 6: Player6 (  19463 Chips )
+Seat 7: Player7 (  25781 Chips )
+Seat 8: Player8 (  67639 Chips )
+Seat 10: Hero (  14989 Chips )
+Player1: posts ante [ 150 Chips]
+Player2: posts ante [ 150 Chips]
+Player3: posts ante [ 150 Chips]
+Player4: posts ante [ 150 Chips]
+Player6: posts ante [ 150 Chips]
+Player7: posts ante [ 150 Chips]
+Player8: posts ante [ 150 Chips]
+Hero: posts ante [ 150 Chips]
+Player3: posts small blind [ 60 Chips]
+Player4: posts big blind [ 1600 Chips]
+** Dealing down cards **
+Dealt to Hero [ 4c, Qh ]
+Player6 folds
+Player7 folds
+Player8 folds
+Hero folds
+Player1 folds
+Player2 folds
+** Dealing Flop ** [ Qs, 9c, Qc ]
+** Dealing Turn ** [ 6h ]
+** Dealing River ** [ Ts ]
+Player3 shows [ 4h, Jc ] a pair of queens
+Player4 shows [ 4d, Jh ] a pair of queens
+Player3 wins 660 chips from main pot with a pair of queens [ Qs, Qc, Jc, Ts, 9c ]
+Player4 wins 660 chips from main pot with a pair of queens [ Qs, Qc, Jh, Ts, 9c ]
+
+
+
+Everleaf Gaming Game #242839578
+***** Hand history for game #242839578 *****
+Blinds 800/1600 NL Hold'em - 2011/02/18 - 06:32:31
+Table 1
+Seat 3 is the button
+Total number of players: 8
+Seat 1: Player1 (  26263 Chips )
+Seat 2: Player2 (  19425 Chips )
+Seat 3: Player3 (  660 Chips )
+Seat 4: Player4 (  40380 Chips )
+Seat 6: Player6 (  19313 Chips )
+Seat 7: Player7 (  25631 Chips )
+Seat 8: Player8 (  67489 Chips )
+Seat 10: Hero (  14839 Chips )
+Player1: posts ante [ 150 Chips]
+Player2: posts ante [ 150 Chips]
+Player3: posts ante [ 150 Chips]
+Player4: posts ante [ 150 Chips]
+Player6: posts ante [ 150 Chips]
+Player7: posts ante [ 150 Chips]
+Player8: posts ante [ 150 Chips]
+Hero: posts ante [ 150 Chips]
+Player4: posts small blind [ 800 Chips]
+Player6: posts big blind [ 1600 Chips]
+** Dealing down cards **
+Dealt to Hero [ 9h, Jd ]
+Player7 calls [ 1,600 Chips]
+Player8 folds
+Hero folds
+Player1 calls [ 1,600 Chips]
+Player2 folds
+Player3 calls [ 510 Chips]
+Player4 calls [ 800 Chips]
+Player6 checks
+** Dealing Flop ** [ 5s, 6c, Td ]
+Player4: bets [ 1,600 Chips]
+Player6 folds
+Player7 calls [ 1,600 Chips]
+Player1 folds
+** Dealing Turn ** [ 3s ]
+Player4: bets [ 1,600 Chips]
+Player7 calls [ 1,600 Chips]
+** Dealing River ** [ 7s ]
+Player4: bets [ 1,600 Chips]
+Player7 raises [ 19,310 Chips]
+Player4 folds
+Player7 shows [ 3c, 3d ] three of a kind, threes
+Player3 shows [ Jh, 9c ] high card jack
+Player7 wins 3750 chips from main pot with three of a kind, threes [ Td, 7s, 3c, 3d, 3s ]
+Player7 wins 13960 chips from side pot with three of a kind, threes [ Td, 7s, 3c, 3d, 3s ]
+
+
+
+Everleaf Gaming Game #242839617
+***** Hand history for game #242839617 *****
+Blinds 1000/2000 NL Hold'em - 2011/02/18 - 06:33:36
+Table 1
+Seat 4 is the button
+Total number of players: 7
+Seat 1: Player1 (  24513 Chips )
+Seat 2: Player2 (  19275 Chips )
+Seat 4: Player4 (  33830 Chips )
+Seat 6: Player6 (  17563 Chips )
+Seat 7: Player7 (  36791 Chips )
+Seat 8: Player8 (  67339 Chips )
+Seat 10: Hero (  14689 Chips )
+Player1: posts ante [ 200 Chips]
+Player2: posts ante [ 200 Chips]
+Player4: posts ante [ 200 Chips]
+Player6: posts ante [ 200 Chips]
+Player7: posts ante [ 200 Chips]
+Player8: posts ante [ 200 Chips]
+Hero: posts ante [ 200 Chips]
+Player6: posts small blind [ 1,000 Chips]
+Player7: posts big blind [ 2000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 2s, 4c ]
+Player8 calls [ 2,000 Chips]
+Hero folds
+Player1 folds
+Player2 folds
+Player4 calls [ 2,000 Chips]
+Player6 folds
+Player7 checks
+** Dealing Flop ** [ 3d, 6s, 7c ]
+Player7 checks
+Player8: bets [ 4,000 Chips]
+Player4 calls [ 4,000 Chips]
+Player7 folds
+** Dealing Turn ** [ Kh ]
+Player8: bets [ 8,000 Chips]
+Player4 folds
+Player8 does not show cards
+Player8 wins 16400 chips from main pot
+
+
+
+Everleaf Gaming Game #242839643
+***** Hand history for game #242839643 *****
+Blinds 1000/2000 NL Hold'em - 2011/02/18 - 06:34:25
+Table 1
+Seat 6 is the button
+Total number of players: 7
+Seat 1: Player1 (  24313 Chips )
+Seat 2: Player2 (  19075 Chips )
+Seat 4: Player4 (  27630 Chips )
+Seat 6: Player6 (  16363 Chips )
+Seat 7: Player7 (  34591 Chips )
+Seat 8: Player8 (  77539 Chips )
+Seat 10: Hero (  14489 Chips )
+Player1: posts ante [ 200 Chips]
+Player2: posts ante [ 200 Chips]
+Player4: posts ante [ 200 Chips]
+Player6: posts ante [ 200 Chips]
+Player7: posts ante [ 200 Chips]
+Player8: posts ante [ 200 Chips]
+Hero: posts ante [ 200 Chips]
+Player7: posts small blind [ 1,000 Chips]
+Player8: posts big blind [ 2000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 5c, Ts ]
+Hero folds
+Player1 folds
+Player2 folds
+Player4 calls [ 2,000 Chips]
+Player6 folds
+Player7 calls [ 1,000 Chips]
+Player8 checks
+** Dealing Flop ** [ 5s, 5d, 8c ]
+Player7: bets [ 2,000 Chips]
+Player8 folds
+Player4 calls [ 2,000 Chips]
+** Dealing Turn ** [ Qd ]
+Player7: bets [ 2,000 Chips]
+Player4 folds
+Player7 does not show cards
+Player7 wins 11400 chips from main pot
+
+
+
+Everleaf Gaming Game #242839671
+***** Hand history for game #242839671 *****
+Blinds 1000/2000 NL Hold'em - 2011/02/18 - 06:35:04
+Table 1
+Seat 7 is the button
+Total number of players: 7
+Seat 1: Player1 (  24113 Chips )
+Seat 2: Player2 (  18875 Chips )
+Seat 4: Player4 (  23430 Chips )
+Seat 6: Player6 (  16163 Chips )
+Seat 7: Player7 (  41791 Chips )
+Seat 8: Player8 (  75339 Chips )
+Seat 10: Hero (  14289 Chips )
+Player1: posts ante [ 200 Chips]
+Player2: posts ante [ 200 Chips]
+Player4: posts ante [ 200 Chips]
+Player6: posts ante [ 200 Chips]
+Player7: posts ante [ 200 Chips]
+Player8: posts ante [ 200 Chips]
+Hero: posts ante [ 200 Chips]
+Player8: posts small blind [ 1,000 Chips]
+Hero: posts big blind [ 2000 Chips]
+** Dealing down cards **
+Dealt to Hero [ Ac, 4d ]
+Player1 folds
+Player2 folds
+Player4 folds
+Player6 folds
+Player7 folds
+Player8 raises [ 15,000 Chips]
+Hero folds
+Player8 does not show cards
+Player8 wins 5400 chips from main pot
+
+
+
+Everleaf Gaming Game #242839688
+***** Hand history for game #242839688 *****
+Blinds 1000/2000 NL Hold'em - 2011/02/18 - 06:35:28
+Table 1
+Seat 8 is the button
+Total number of players: 7
+Seat 1: Player1 (  23913 Chips )
+Seat 2: Player2 (  18675 Chips )
+Seat 4: Player4 (  23230 Chips )
+Seat 6: Player6 (  15963 Chips )
+Seat 7: Player7 (  41591 Chips )
+Seat 8: Player8 (  78539 Chips )
+Seat 10: Hero (  12089 Chips )
+Player1: posts ante [ 200 Chips]
+Player2: posts ante [ 200 Chips]
+Player4: posts ante [ 200 Chips]
+Player6: posts ante [ 200 Chips]
+Player7: posts ante [ 200 Chips]
+Player8: posts ante [ 200 Chips]
+Hero: posts ante [ 200 Chips]
+Hero: posts small blind [ 1,000 Chips]
+Player1: posts big blind [ 2000 Chips]
+** Dealing down cards **
+Dealt to Hero [ Ac, 6c ]
+Player2 folds
+Player4 folds
+Player6 calls [ 2,000 Chips]
+Player7 folds
+Player8 raises [ 6,000 Chips]
+Hero folds
+Player1 calls [ 4,000 Chips]
+Player6 calls [ 4,000 Chips]
+** Dealing Flop ** [ 8h, 7c, Ad ]
+Player1 checks
+Player6 checks
+Player8: bets [ 10,000 Chips]
+Player1 folds
+Player6 folds
+Player8 does not show cards
+Player8 wins 20400 chips from main pot
+
+
+
+Everleaf Gaming Game #242839713
+***** Hand history for game #242839713 *****
+Blinds 1000/2000 NL Hold'em - 2011/02/18 - 06:36:12
+Table 1
+Seat 10 is the button
+Total number of players: 7
+Seat 1: Player1 (  17713 Chips )
+Seat 2: Player2 (  18475 Chips )
+Seat 4: Player4 (  23030 Chips )
+Seat 6: Player6 (  9763 Chips )
+Seat 7: Player7 (  41391 Chips )
+Seat 8: Player8 (  92739 Chips )
+Seat 10: Hero (  10889 Chips )
+Player1: posts ante [ 200 Chips]
+Player2: posts ante [ 200 Chips]
+Player4: posts ante [ 200 Chips]
+Player6: posts ante [ 200 Chips]
+Player7: posts ante [ 200 Chips]
+Player8: posts ante [ 200 Chips]
+Hero: posts ante [ 200 Chips]
+Player1: posts small blind [ 1,000 Chips]
+Player2: posts big blind [ 2000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 5c, 5d ]
+Player4 folds
+Player6 folds
+Player7 calls [ 2,000 Chips]
+Player8 folds
+Hero raises [ 10,689 Chips]
+Player1 folds
+Player2 folds
+Player7 calls [ 8,689 Chips]
+** Dealing Flop ** [ 7s, 6c, Kc ]
+** Dealing Turn ** [ 2d ]
+** Dealing River ** [ 3h ]
+Player7 shows [ Jc, Ad ] high card ace
+Hero shows [ 5c, 5d ] a pair of fives
+Hero wins 25778 chips from main pot with a pair of fives [ Kc, 7s, 6c, 5c, 5d ]
+
+
+
+Everleaf Gaming Game #242839743
+***** Hand history for game #242839743 *****
+Blinds 1000/2000 NL Hold'em - 2011/02/18 - 06:36:59
+Table 1
+Seat 1 is the button
+Total number of players: 7
+Seat 1: Player1 (  16513 Chips )
+Seat 2: Player2 (  16275 Chips )
+Seat 4: Player4 (  22830 Chips )
+Seat 6: Player6 (  9563 Chips )
+Seat 7: Player7 (  30502 Chips )
+Seat 8: Player8 (  92539 Chips )
+Seat 10: Hero (  25778 Chips )
+Player1: posts ante [ 200 Chips]
+Player2: posts ante [ 200 Chips]
+Player4: posts ante [ 200 Chips]
+Player6: posts ante [ 200 Chips]
+Player7: posts ante [ 200 Chips]
+Player8: posts ante [ 200 Chips]
+Hero: posts ante [ 200 Chips]
+Player2: posts small blind [ 1,000 Chips]
+Player4: posts big blind [ 2000 Chips]
+** Dealing down cards **
+Dealt to Hero [ Kd, 9d ]
+Player6 raises [ 9,363 Chips]
+Player7 folds
+Player8 folds
+Hero folds
+Player1 folds
+Player2 folds
+Player4 calls [ 7,363 Chips]
+** Dealing Flop ** [ 2h, Qd, 5d ]
+** Dealing Turn ** [ Td ]
+** Dealing River ** [ 5h ]
+Player4 shows [ Tc, 8h ] two pairs, tens and fives
+Player6 shows [ As, 7d ] a pair of fives
+Player4 wins 21126 chips from main pot with two pairs, tens and fives [ Qd, Tc, Td, 5d, 5h ]
+
+
+
+Everleaf Gaming Game #242839772
+***** Hand history for game #242839772 *****
+Blinds 1000/2000 NL Hold'em - 2011/02/18 - 06:37:49
+Table 1
+Seat 2 is the button
+Total number of players: 6
+Seat 1: Player1 (  16313 Chips )
+Seat 2: Player2 (  15075 Chips )
+Seat 4: Player4 (  34393 Chips )
+Seat 7: Player7 (  30302 Chips )
+Seat 8: Player8 (  92339 Chips )
+Seat 10: Hero (  25578 Chips )
+Player1: posts ante [ 200 Chips]
+Player2: posts ante [ 200 Chips]
+Player4: posts ante [ 200 Chips]
+Player7: posts ante [ 200 Chips]
+Player8: posts ante [ 200 Chips]
+Hero: posts ante [ 200 Chips]
+Player4: posts small blind [ 1,000 Chips]
+Player7: posts big blind [ 2000 Chips]
+** Dealing down cards **
+Dealt to Hero [ Kc, 6c ]
+Player8 folds
+Hero folds
+Player1 folds
+Player2 folds
+Player4 calls [ 1,000 Chips]
+Player7 checks
+** Dealing Flop ** [ Jh, Qc, Ac ]
+Player4: bets [ 2,000 Chips]
+Player7 calls [ 2,000 Chips]
+** Dealing Turn ** [ Qh ]
+Player4: bets [ 2,000 Chips]
+Player7 calls [ 2,000 Chips]
+** Dealing River ** [ Td ]
+Player4: bets [ 13,200 Chips]
+Player7 folds
+Player4 does not show cards
+Player4 wins 13200 chips from main pot
+
+
+
+Everleaf Gaming Game #242839797
+***** Hand history for game #242839797 *****
+Blinds 1200/2400 NL Hold'em - 2011/02/18 - 06:38:31
+Table 1
+Seat 4 is the button
+Total number of players: 6
+Seat 1: Player1 (  16113 Chips )
+Seat 2: Player2 (  14875 Chips )
+Seat 4: Player4 (  41393 Chips )
+Seat 7: Player7 (  24102 Chips )
+Seat 8: Player8 (  92139 Chips )
+Seat 10: Hero (  25378 Chips )
+Player1: posts ante [ 200 Chips]
+Player2: posts ante [ 200 Chips]
+Player4: posts ante [ 200 Chips]
+Player7: posts ante [ 200 Chips]
+Player8: posts ante [ 200 Chips]
+Hero: posts ante [ 200 Chips]
+Player7: posts small blind [ 1,200 Chips]
+Player8: posts big blind [ 2400 Chips]
+** Dealing down cards **
+Dealt to Hero [ 7h, Qs ]
+Hero folds
+Player1 folds
+Player2 folds
+Player4 folds
+Player7 calls [ 1,200 Chips]
+Player8 checks
+** Dealing Flop ** [ 9h, Qd, As ]
+Player7: bets [ 2,400 Chips]
+Player8 calls [ 2,400 Chips]
+** Dealing Turn ** [ 6c ]
+Player7: bets [ 2,400 Chips]
+Player8 raises [ 4,800 Chips]
+Player7 calls [ 2,400 Chips]
+** Dealing River ** [ 5d ]
+Player7 checks
+Player8: bets [ 12,000 Chips]
+Player7 folds
+Player8 does not show cards
+Player8 wins 20400 chips from main pot
+
+
+
+Everleaf Gaming Game #242839827
+***** Hand history for game #242839827 *****
+Blinds 1200/2400 NL Hold'em - 2011/02/18 - 06:39:18
+Table 1
+Seat 7 is the button
+Total number of players: 6
+Seat 1: Player1 (  15913 Chips )
+Seat 2: Player2 (  14675 Chips )
+Seat 4: Player4 (  41193 Chips )
+Seat 7: Player7 (  14302 Chips )
+Seat 8: Player8 (  102739 Chips )
+Seat 10: Hero (  25178 Chips )
+Player1: posts ante [ 200 Chips]
+Player2: posts ante [ 200 Chips]
+Player4: posts ante [ 200 Chips]
+Player7: posts ante [ 200 Chips]
+Player8: posts ante [ 200 Chips]
+Hero: posts ante [ 200 Chips]
+Player8: posts small blind [ 1,200 Chips]
+Hero: posts big blind [ 2400 Chips]
+** Dealing down cards **
+Dealt to Hero [ 7d, Qc ]
+Player1 folds
+Player2 folds
+Player4 folds
+Player7 folds
+Player8 raises [ 20,800 Chips]
+Hero folds
+Player8 does not show cards
+Player8 wins 6000 chips from main pot
+
+
+
+Everleaf Gaming Game #242839847
+***** Hand history for game #242839847 *****
+Blinds 1200/2400 NL Hold'em - 2011/02/18 - 06:39:44
+Table 1
+Seat 8 is the button
+Total number of players: 6
+Seat 1: Player1 (  15713 Chips )
+Seat 2: Player2 (  14475 Chips )
+Seat 4: Player4 (  40993 Chips )
+Seat 7: Player7 (  14102 Chips )
+Seat 8: Player8 (  106139 Chips )
+Seat 10: Hero (  22578 Chips )
+Player1: posts ante [ 200 Chips]
+Player2: posts ante [ 200 Chips]
+Player4: posts ante [ 200 Chips]
+Player7: posts ante [ 200 Chips]
+Player8: posts ante [ 200 Chips]
+Hero: posts ante [ 200 Chips]
+Hero: posts small blind [ 1,200 Chips]
+Player1: posts big blind [ 2400 Chips]
+** Dealing down cards **
+Dealt to Hero [ 8s, 6c ]
+Player2 folds
+Player4 folds
+Player7 folds
+Player8 raises [ 19,200 Chips]
+Hero folds
+Player1 folds
+Player8 does not show cards
+Player8 wins 7200 chips from main pot
+
+
+
+Everleaf Gaming Game #242839866
+***** Hand history for game #242839866 *****
+Blinds 1200/2400 NL Hold'em - 2011/02/18 - 06:40:13
+Table 1
+Seat 10 is the button
+Total number of players: 6
+Seat 1: Player1 (  13113 Chips )
+Seat 2: Player2 (  14275 Chips )
+Seat 4: Player4 (  40793 Chips )
+Seat 7: Player7 (  13902 Chips )
+Seat 8: Player8 (  110739 Chips )
+Seat 10: Hero (  21178 Chips )
+Player1: posts ante [ 200 Chips]
+Player2: posts ante [ 200 Chips]
+Player4: posts ante [ 200 Chips]
+Player7: posts ante [ 200 Chips]
+Player8: posts ante [ 200 Chips]
+Hero: posts ante [ 200 Chips]
+Player1: posts small blind [ 1,200 Chips]
+Player2: posts big blind [ 2400 Chips]
+** Dealing down cards **
+Dealt to Hero [ 6h, Jh ]
+Player4 folds
+Player7 raises [ 8,400 Chips]
+Player8 folds
+Hero folds
+Player1 folds
+Player2 folds
+Player7 does not show cards
+Player7 wins 7200 chips from main pot
+
+
+
+Everleaf Gaming Game #242839886
+***** Hand history for game #242839886 *****
+Blinds 1200/2400 NL Hold'em - 2011/02/18 - 06:40:42
+Table 1
+Seat 1 is the button
+Total number of players: 6
+Seat 1: Player1 (  11713 Chips )
+Seat 2: Player2 (  11675 Chips )
+Seat 4: Player4 (  40593 Chips )
+Seat 7: Player7 (  18502 Chips )
+Seat 8: Player8 (  110539 Chips )
+Seat 10: Hero (  20978 Chips )
+Player1: posts ante [ 200 Chips]
+Player2: posts ante [ 200 Chips]
+Player4: posts ante [ 200 Chips]
+Player7: posts ante [ 200 Chips]
+Player8: posts ante [ 200 Chips]
+Hero: posts ante [ 200 Chips]
+Player2: posts small blind [ 1,200 Chips]
+Player4: posts big blind [ 2400 Chips]
+** Dealing down cards **
+Dealt to Hero [ 6d, 2h ]
+Player7 folds
+Player8 folds
+Hero folds
+Player1 folds
+Player2 calls [ 1,200 Chips]
+Player4 checks
+** Dealing Flop ** [ 4c, 7d, Js ]
+Player2 checks
+Player4: bets [ 2,400 Chips]
+Player2 folds
+Player4 does not show cards
+Player4 wins 6000 chips from main pot
+
+
+
+Everleaf Gaming Game #242839913
+***** Hand history for game #242839913 *****
+Blinds 1200/2400 NL Hold'em - 2011/02/18 - 06:41:15
+Table 1
+Seat 2 is the button
+Total number of players: 6
+Seat 1: Player1 (  11513 Chips )
+Seat 2: Player2 (  9075 Chips )
+Seat 4: Player4 (  43993 Chips )
+Seat 7: Player7 (  18302 Chips )
+Seat 8: Player8 (  110339 Chips )
+Seat 10: Hero (  20778 Chips )
+Player1: posts ante [ 200 Chips]
+Player2: posts ante [ 200 Chips]
+Player4: posts ante [ 200 Chips]
+Player7: posts ante [ 200 Chips]
+Player8: posts ante [ 200 Chips]
+Hero: posts ante [ 200 Chips]
+Player4: posts small blind [ 1,200 Chips]
+Player7: posts big blind [ 2400 Chips]
+** Dealing down cards **
+Dealt to Hero [ Qd, 2d ]
+Player8 folds
+Hero folds
+Player1 folds
+Player2 folds
+Player4 calls [ 1,200 Chips]
+Player7 raises [ 2,400 Chips]
+Player4 raises [ 4,800 Chips]
+Player7 raises [ 13,302 Chips]
+Player4 calls [ 10,902 Chips]
+** Dealing Flop ** [ 3d, Tc, 4c ]
+** Dealing Turn ** [ 3h ]
+** Dealing River ** [ 8s ]
+Player4 shows [ 7d, Kd ] a pair of threes
+Player7 shows [ 9s, 9c ] two pairs, nines and threes
+Player7 wins 37404 chips from main pot with two pairs, nines and threes [ Tc, 9s, 9c, 3d, 3h ]
+
+
+
+Everleaf Gaming Game #242839930
+***** Hand history for game #242839930 *****
+Blinds 1200/2400 NL Hold'em - 2011/02/18 - 06:41:49
+Table 1
+Seat 4 is the button
+Total number of players: 6
+Seat 1: Player1 (  11313 Chips )
+Seat 2: Player2 (  8875 Chips )
+Seat 4: Player4 (  25691 Chips )
+Seat 7: Player7 (  37404 Chips )
+Seat 8: Player8 (  110139 Chips )
+Seat 10: Hero (  20578 Chips )
+Player1: posts ante [ 200 Chips]
+Player2: posts ante [ 200 Chips]
+Player4: posts ante [ 200 Chips]
+Player7: posts ante [ 200 Chips]
+Player8: posts ante [ 200 Chips]
+Hero: posts ante [ 200 Chips]
+Player7: posts small blind [ 1,200 Chips]
+Player8: posts big blind [ 2400 Chips]
+** Dealing down cards **
+Dealt to Hero [ Qs, 9h ]
+Hero folds
+Player1 folds
+Player2 folds
+Player4 calls [ 2,400 Chips]
+Player7 calls [ 1,200 Chips]
+Player8 checks
+** Dealing Flop ** [ Ts, Ks, Ah ]
+Player7: bets [ 8,400 Chips]
+Player8 folds
+Player4 calls [ 8,400 Chips]
+** Dealing Turn ** [ 8c ]
+Player7: bets [ 25,200 Chips]
+Player4 calls [ 14,691 Chips]
+** Dealing River ** [ 6d ]
+Player4 shows [ 4s, As ] a pair of aces
+Player7 shows [ Tc, Ac ] two pairs, aces and tens
+Player7 wins 54582 chips from main pot with two pairs, aces and tens [ Ac, Ah, Ks, Tc, Ts ]
+
+
+
+Everleaf Gaming Game #242839963
+***** Hand history for game #242839963 *****
+Blinds 1200/2400 NL Hold'em - 2011/02/18 - 06:42:36
+Table 1
+Seat 7 is the button
+Total number of players: 5
+Seat 1: Player1 (  11113 Chips )
+Seat 2: Player2 (  8675 Chips )
+Seat 7: Player7 (  66295 Chips )
+Seat 8: Player8 (  107539 Chips )
+Seat 10: Hero (  20378 Chips )
+Player1: posts ante [ 200 Chips]
+Player2: posts ante [ 200 Chips]
+Player7: posts ante [ 200 Chips]
+Player8: posts ante [ 200 Chips]
+Hero: posts ante [ 200 Chips]
+Player8: posts small blind [ 1,200 Chips]
+Hero: posts big blind [ 2400 Chips]
+** Dealing down cards **
+Dealt to Hero [ 9c, 2d ]
+Player1 folds
+Player2 folds
+Player7 folds
+Player8 raises [ 13,200 Chips]
+Hero folds
+Player8 does not show cards
+Player8 wins 5800 chips from main pot
+
+
+
+Everleaf Gaming Game #242839981
+***** Hand history for game #242839981 *****
+Blinds 1500/3000 NL Hold'em - 2011/02/18 - 06:43:02
+Table 1
+Seat 8 is the button
+Total number of players: 5
+Seat 1: Player1 (  10913 Chips )
+Seat 2: Player2 (  8475 Chips )
+Seat 7: Player7 (  66095 Chips )
+Seat 8: Player8 (  110739 Chips )
+Seat 10: Hero (  17778 Chips )
+Player1: posts ante [ 300 Chips]
+Player2: posts ante [ 300 Chips]
+Player7: posts ante [ 300 Chips]
+Player8: posts ante [ 300 Chips]
+Hero: posts ante [ 300 Chips]
+Hero: posts small blind [ 1,500 Chips]
+Player1: posts big blind [ 3000 Chips]
+** Dealing down cards **
+Dealt to Hero [ Ks, Qh ]
+Player2 folds
+Player7 calls [ 3,000 Chips]
+Player8 raises [ 9,000 Chips]
+Hero folds
+Player1 raises [ 7,613 Chips]
+Player7 calls [ 7,613 Chips]
+Player8 calls [ 1,613 Chips]
+** Dealing Flop ** [ 2d, Qs, Tc ]
+Player7: bets [ 9,000 Chips]
+Player8 calls [ 9,000 Chips]
+** Dealing Turn ** [ 6h ]
+Player7: bets [ 19,000 Chips]
+Player8 folds
+** Dealing River ** [ 4s ]
+Player1 shows [ Qc, Kh ] a pair of queens
+Player7 shows [ Qd, Td ] two pairs, queens and tens
+Player7 wins 34839 chips from main pot with two pairs, queens and tens [ Qd, Qs, Td, Tc, 6h ]
+Player7 wins 18000 chips from side pot with two pairs, queens and tens [ Qd, Qs, Td, Tc, 6h ]
+
+
+
+Everleaf Gaming Game #242840011
+***** Hand history for game #242840011 *****
+Blinds 1500/3000 NL Hold'em - 2011/02/18 - 06:43:48
+Table 1
+Seat 10 is the button
+Total number of players: 4
+Seat 2: Player2 (  8175 Chips )
+Seat 7: Player7 (  99021 Chips )
+Seat 8: Player8 (  90826 Chips )
+Seat 10: Hero (  15978 Chips )
+Player2: posts ante [ 300 Chips]
+Player7: posts ante [ 300 Chips]
+Player8: posts ante [ 300 Chips]
+Hero: posts ante [ 300 Chips]
+Player2: posts big blind [ 3000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 9h, Jc ]
+Player7 folds
+Player8 raises [ 9,000 Chips]
+Hero folds
+Player2 calls [ 4,875 Chips]
+** Dealing Flop ** [ 3d, 2h, 6c ]
+** Dealing Turn ** [ Js ]
+** Dealing River ** [ As ]
+Player2 shows [ 8s, 8c ] a pair of eights
+Player8 shows [ 5d, 8d ] high card ace
+Player2 wins 16950 chips from main pot with a pair of eights [ As, Js, 8s, 8c, 6c ]
+
+
+
+Everleaf Gaming Game #242840031
+***** Hand history for game #242840031 *****
+Blinds 1500/3000 NL Hold'em - 2011/02/18 - 06:44:14
+Table 1
+Seat 10 is the button
+Total number of players: 4
+Seat 2: Player2 (  16950 Chips )
+Seat 7: Player7 (  98721 Chips )
+Seat 8: Player8 (  82651 Chips )
+Seat 10: Hero (  15678 Chips )
+Player2: posts ante [ 300 Chips]
+Player7: posts ante [ 300 Chips]
+Player8: posts ante [ 300 Chips]
+Hero: posts ante [ 300 Chips]
+Player2: posts small blind [ 1,500 Chips]
+Player7: posts big blind [ 3000 Chips]
+** Dealing down cards **
+Dealt to Hero [ Ks, 8c ]
+Player8 folds
+Hero folds
+Player2 folds
+Player7 does not show cards
+Player7 wins 4200 chips from main pot
+
+
+
+Everleaf Gaming Game #242840051
+***** Hand history for game #242840051 *****
+Blinds 1500/3000 NL Hold'em - 2011/02/18 - 06:44:41
+Table 1
+Seat 2 is the button
+Total number of players: 4
+Seat 2: Player2 (  15150 Chips )
+Seat 7: Player7 (  101121 Chips )
+Seat 8: Player8 (  82351 Chips )
+Seat 10: Hero (  15378 Chips )
+Player2: posts ante [ 300 Chips]
+Player7: posts ante [ 300 Chips]
+Player8: posts ante [ 300 Chips]
+Hero: posts ante [ 300 Chips]
+Player7: posts small blind [ 1,500 Chips]
+Player8: posts big blind [ 3000 Chips]
+** Dealing down cards **
+Dealt to Hero [ Jd, 6h ]
+Hero folds
+Player2 folds
+Player7 calls [ 1,500 Chips]
+Player8 raises [ 6,000 Chips]
+Player7 calls [ 6,000 Chips]
+** Dealing Flop ** [ Tc, 3c, Ks ]
+Player7 checks
+Player8: bets [ 9,000 Chips]
+Player7 calls [ 9,000 Chips]
+** Dealing Turn ** [ 7s ]
+Player7 checks
+Player8: bets [ 15,000 Chips]
+Player7 calls [ 15,000 Chips]
+** Dealing River ** [ Th ]
+Player7 checks
+Player8: bets [ 49,051 Chips]
+Player7 calls [ 49,051 Chips]
+Player8 shows [ 4h, 2h ] a pair of tens
+Player7 shows [ Kh, 7h ] two pairs, kings and tens
+Player7 wins 165302 chips from main pot with two pairs, kings and tens [ Kh, Ks, Tc, Th, 7s ]
+
+
+
+Everleaf Gaming Game #242840084
+***** Hand history for game #242840084 *****
+Blinds 1500/3000 NL Hold'em - 2011/02/18 - 06:45:24
+Table 1
+Seat 7 is the button
+Total number of players: 3
+Seat 2: Player2 (  14850 Chips )
+Seat 7: Player7 (  184072 Chips )
+Seat 10: Hero (  15078 Chips )
+Player2: posts ante [ 300 Chips]
+Player7: posts ante [ 300 Chips]
+Hero: posts ante [ 300 Chips]
+Hero: posts big blind [ 3000 Chips]
+** Dealing down cards **
+Dealt to Hero [ Jc, 9s ]
+Player2 folds
+Player7 raises [ 6,000 Chips]
+Hero folds
+Player7 does not show cards
+Player7 wins 6900 chips from main pot
+
+
+
+Everleaf Gaming Game #242840096
+***** Hand history for game #242840096 *****
+Blinds 1500/3000 NL Hold'em - 2011/02/18 - 06:45:41
+Table 1
+Seat 7 is the button
+Total number of players: 3
+Seat 2: Player2 (  14550 Chips )
+Seat 7: Player7 (  187672 Chips )
+Seat 10: Hero (  11778 Chips )
+Player2: posts ante [ 300 Chips]
+Player7: posts ante [ 300 Chips]
+Hero: posts ante [ 300 Chips]
+Hero: posts small blind [ 1,500 Chips]
+Player2: posts big blind [ 3000 Chips]
+** Dealing down cards **
+Dealt to Hero [ Ks, 3h ]
+Player7 folds
+Hero raises [ 7,500 Chips]
+Player2 calls [ 6,000 Chips]
+** Dealing Flop ** [ 7s, 7c, Kd ]
+Hero: bets [ 2,478 Chips]
+Player2 folds
+Hero does not show cards
+Hero wins 18900 chips from main pot
+
+
+
+Everleaf Gaming Game #242840109
+***** Hand history for game #242840109 *****
+Blinds 1500/3000 NL Hold'em - 2011/02/18 - 06:46:02
+Table 1
+Seat 10 is the button
+Total number of players: 3
+Seat 2: Player2 (  5250 Chips )
+Seat 7: Player7 (  187372 Chips )
+Seat 10: Hero (  21378 Chips )
+Player2: posts ante [ 300 Chips]
+Player7: posts ante [ 300 Chips]
+Hero: posts ante [ 300 Chips]
+Player2: posts small blind [ 1,500 Chips]
+Player7: posts big blind [ 3000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 5s, Qd ]
+Hero folds
+Player2 calls [ 1,500 Chips]
+Player7 raises [ 3,000 Chips]
+Player2 calls [ 1,950 Chips]
+** Dealing Flop ** [ 3d, 8d, 9h ]
+** Dealing Turn ** [ Jd ]
+** Dealing River ** [ Js ]
+Player2 shows [ Td, Ac ] a pair of jacks
+Player7 shows [ Ks, 5d ] a pair of jacks
+Player2 wins 10800 chips from main pot with a pair of jacks [ Ac, Jd, Js, Td, 9h ] with kicker [ A ]
+
+
+
+Everleaf Gaming Game #242840119
+***** Hand history for game #242840119 *****
+Blinds 1500/3000 NL Hold'em - 2011/02/18 - 06:46:21
+Table 1
+Seat 2 is the button
+Total number of players: 3
+Seat 2: Player2 (  10800 Chips )
+Seat 7: Player7 (  182122 Chips )
+Seat 10: Hero (  21078 Chips )
+Player2: posts ante [ 300 Chips]
+Player7: posts ante [ 300 Chips]
+Hero: posts ante [ 300 Chips]
+Player7: posts small blind [ 1,500 Chips]
+Hero: posts big blind [ 3000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 5s, 4h ]
+Player2 folds
+Player7 raises [ 4,500 Chips]
+Hero folds
+Player7 does not show cards
+Player7 wins 6900 chips from main pot
+
+
+
+Everleaf Gaming Game #242840132
+***** Hand history for game #242840132 *****
+Blinds 1500/3000 NL Hold'em - 2011/02/18 - 06:46:35
+Table 1
+Seat 7 is the button
+Total number of players: 3
+Seat 2: Player2 (  10500 Chips )
+Seat 7: Player7 (  185722 Chips )
+Seat 10: Hero (  17778 Chips )
+Player2: posts ante [ 300 Chips]
+Player7: posts ante [ 300 Chips]
+Hero: posts ante [ 300 Chips]
+Hero: posts small blind [ 1,500 Chips]
+Player2: posts big blind [ 3000 Chips]
+** Dealing down cards **
+Dealt to Hero [ Ts, 8s ]
+Player7 raises [ 6,000 Chips]
+Hero folds
+Player2 folds
+Player7 does not show cards
+Player7 wins 8400 chips from main pot
+
+
+
+Everleaf Gaming Game #242840141
+***** Hand history for game #242840141 *****
+Blinds 1500/3000 NL Hold'em - 2011/02/18 - 06:46:50
+Table 1
+Seat 10 is the button
+Total number of players: 3
+Seat 2: Player2 (  7200 Chips )
+Seat 7: Player7 (  190822 Chips )
+Seat 10: Hero (  15978 Chips )
+Player2: posts ante [ 300 Chips]
+Player7: posts ante [ 300 Chips]
+Hero: posts ante [ 300 Chips]
+Player2: posts small blind [ 1,500 Chips]
+Player7: posts big blind [ 3000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 5d, 6h ]
+Hero folds
+Player2 folds
+Player7 does not show cards
+Player7 wins 3900 chips from main pot
+
+
+
+Everleaf Gaming Game #242840152
+***** Hand history for game #242840152 *****
+Blinds 1500/3000 NL Hold'em - 2011/02/18 - 06:47:04
+Table 1
+Seat 2 is the button
+Total number of players: 3
+Seat 2: Player2 (  5400 Chips )
+Seat 7: Player7 (  192922 Chips )
+Seat 10: Hero (  15678 Chips )
+Player2: posts ante [ 300 Chips]
+Player7: posts ante [ 300 Chips]
+Hero: posts ante [ 300 Chips]
+Player7: posts small blind [ 1,500 Chips]
+Hero: posts big blind [ 3000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 6c, 4h ]
+Player2 raises [ 5,100 Chips]
+Player7 folds
+Hero calls [ 2,100 Chips]
+** Dealing Flop ** [ As, Td, 2s ]
+** Dealing Turn ** [ Ts ]
+** Dealing River ** [ Jd ]
+Player2 shows [ 4d, 4s ] two pairs, tens and fours
+Hero shows [ 6c, 4h ] a pair of tens
+Player2 wins 12600 chips from main pot with two pairs, tens and fours [ As, Td, Ts, 4d, 4s ]
+
+
+
+Everleaf Gaming Game #242840165
+***** Hand history for game #242840165 *****
+Blinds 1500/3000 NL Hold'em - 2011/02/18 - 06:47:23
+Table 1
+Seat 7 is the button
+Total number of players: 3
+Seat 2: Player2 (  12600 Chips )
+Seat 7: Player7 (  191122 Chips )
+Seat 10: Hero (  10278 Chips )
+Player2: posts ante [ 300 Chips]
+Player7: posts ante [ 300 Chips]
+Hero: posts ante [ 300 Chips]
+Hero: posts small blind [ 1,500 Chips]
+Player2: posts big blind [ 3000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 5s, Qc ]
+Player7 folds
+Hero raises [ 8,478 Chips]
+Player2 folds
+Hero does not show cards
+Hero wins 6900 chips from main pot
+
+
+
+Everleaf Gaming Game #242840178
+***** Hand history for game #242840178 *****
+Blinds 1500/3000 NL Hold'em - 2011/02/18 - 06:47:42
+Table 1
+Seat 10 is the button
+Total number of players: 3
+Seat 2: Player2 (  9300 Chips )
+Seat 7: Player7 (  190822 Chips )
+Seat 10: Hero (  13878 Chips )
+Player2: posts ante [ 300 Chips]
+Player7: posts ante [ 300 Chips]
+Hero: posts ante [ 300 Chips]
+Player2: posts small blind [ 1,500 Chips]
+Player7: posts big blind [ 3000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 5h, 2c ]
+Hero folds
+Player2 calls [ 1,500 Chips]
+Player7 checks
+** Dealing Flop ** [ 8d, 9c, Qc ]
+Player2 checks
+Player7 checks
+** Dealing Turn ** [ Kd ]
+Player2 checks
+Player7 checks
+** Dealing River ** [ 6d ]
+Player2 checks
+Player7 checks
+Player7 shows [ 5c, Ts ] high card king
+Player2 shows [ Ad, Jc ] high card ace
+Player2 wins 6900 chips from main pot with high card ace [ Ad, Kd, Qc, Jc, 9c ]
+
+
+
+Everleaf Gaming Game #242840197
+***** Hand history for game #242840197 *****
+Blinds 2000/4000 NL Hold'em - 2011/02/18 - 06:48:11
+Table 1
+Seat 2 is the button
+Total number of players: 3
+Seat 2: Player2 (  12900 Chips )
+Seat 7: Player7 (  187522 Chips )
+Seat 10: Hero (  13578 Chips )
+Player2: posts ante [ 400 Chips]
+Player7: posts ante [ 400 Chips]
+Hero: posts ante [ 400 Chips]
+Player7: posts small blind [ 2,000 Chips]
+Hero: posts big blind [ 4000 Chips]
+** Dealing down cards **
+Dealt to Hero [ Jd, Ah ]
+Player2 folds
+Player7 calls [ 2,000 Chips]
+Hero raises [ 9,178 Chips]
+Player7 calls [ 9,178 Chips]
+** Dealing Flop ** [ 4c, Kc, Qh ]
+** Dealing Turn ** [ 2s ]
+** Dealing River ** [ Qs ]
+Player7 shows [ 5c, Js ] a pair of queens
+Hero shows [ Jd, Ah ] a pair of queens
+Hero wins 27556 chips from main pot with a pair of queens [ Ah, Kc, Qh, Qs, Jd ] with kicker [ A ]
+
+
+
+Everleaf Gaming Game #242840210
+***** Hand history for game #242840210 *****
+Blinds 2000/4000 NL Hold'em - 2011/02/18 - 06:48:31
+Table 1
+Seat 7 is the button
+Total number of players: 3
+Seat 2: Player2 (  12500 Chips )
+Seat 7: Player7 (  173944 Chips )
+Seat 10: Hero (  27556 Chips )
+Player2: posts ante [ 400 Chips]
+Player7: posts ante [ 400 Chips]
+Hero: posts ante [ 400 Chips]
+Hero: posts small blind [ 2,000 Chips]
+Player2: posts big blind [ 4000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 6d, 7h ]
+Player7 calls [ 4,000 Chips]
+Hero folds
+Player2 checks
+** Dealing Flop ** [ Td, 5h, 9c ]
+Player2 checks
+Player7: bets [ 4,000 Chips]
+Player2 folds
+Player7 does not show cards
+Player7 wins 11200 chips from main pot
+
+
+
+Everleaf Gaming Game #242840222
+***** Hand history for game #242840222 *****
+Blinds 2000/4000 NL Hold'em - 2011/02/18 - 06:48:50
+Table 1
+Seat 10 is the button
+Total number of players: 3
+Seat 2: Player2 (  8100 Chips )
+Seat 7: Player7 (  180744 Chips )
+Seat 10: Hero (  25156 Chips )
+Player2: posts ante [ 400 Chips]
+Player7: posts ante [ 400 Chips]
+Hero: posts ante [ 400 Chips]
+Player2: posts small blind [ 2,000 Chips]
+Player7: posts big blind [ 4000 Chips]
+** Dealing down cards **
+Dealt to Hero [ Jd, 4d ]
+Hero folds
+Player2 folds
+Player7 does not show cards
+Player7 wins 5200 chips from main pot
+
+
+
+Everleaf Gaming Game #242840232
+***** Hand history for game #242840232 *****
+Blinds 2000/4000 NL Hold'em - 2011/02/18 - 06:49:02
+Table 1
+Seat 2 is the button
+Total number of players: 3
+Seat 2: Player2 (  5700 Chips )
+Seat 7: Player7 (  183544 Chips )
+Seat 10: Hero (  24756 Chips )
+Player2: posts ante [ 400 Chips]
+Player7: posts ante [ 400 Chips]
+Hero: posts ante [ 400 Chips]
+Player7: posts small blind [ 2,000 Chips]
+Hero: posts big blind [ 4000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 4c, Js ]
+Player2 folds
+Player7 calls [ 2,000 Chips]
+Hero checks
+** Dealing Flop ** [ Qd, Ts, 8c ]
+Player7 checks
+Hero checks
+** Dealing Turn ** [ 7d ]
+Player7: bets [ 4,000 Chips]
+Hero folds
+Player7 does not show cards
+Player7 wins 9200 chips from main pot
+
+
+
+Everleaf Gaming Game #242840244
+***** Hand history for game #242840244 *****
+Blinds 2000/4000 NL Hold'em - 2011/02/18 - 06:49:24
+Table 1
+Seat 7 is the button
+Total number of players: 3
+Seat 2: Player2 (  5300 Chips )
+Seat 7: Player7 (  188344 Chips )
+Seat 10: Hero (  20356 Chips )
+Player2: posts ante [ 400 Chips]
+Player7: posts ante [ 400 Chips]
+Hero: posts ante [ 400 Chips]
+Hero: posts small blind [ 2,000 Chips]
+Player2: posts big blind [ 4000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 3c, 8h ]
+Player7 folds
+Hero folds
+Player2 does not show cards
+Player2 wins 5200 chips from main pot
+
+
+
+Everleaf Gaming Game #242840253
+***** Hand history for game #242840253 *****
+Blinds 2000/4000 NL Hold'em - 2011/02/18 - 06:49:36
+Table 1
+Seat 10 is the button
+Total number of players: 3
+Seat 2: Player2 (  8100 Chips )
+Seat 7: Player7 (  187944 Chips )
+Seat 10: Hero (  17956 Chips )
+Player2: posts ante [ 400 Chips]
+Player7: posts ante [ 400 Chips]
+Hero: posts ante [ 400 Chips]
+Player2: posts small blind [ 2,000 Chips]
+Player7: posts big blind [ 4000 Chips]
+** Dealing down cards **
+Dealt to Hero [ Tc, 9c ]
+Hero raises [ 17,556 Chips]
+Player2 calls [ 5,700 Chips]
+Player7 calls [ 13,556 Chips]
+** Dealing Flop ** [ Td, Qc, Qs ]
+** Dealing Turn ** [ 3d ]
+** Dealing River ** [ Jd ]
+Player2 shows [ 2h, 2c ] two pairs, queens and twos
+Player7 shows [ 8s, 8c ] two pairs, queens and eights
+Hero shows [ Tc, 9c ] two pairs, queens and tens
+Hero wins 24300 chips from main pot with two pairs, queens and tens [ Qc, Qs, Jd, Tc, Td ]
+Hero wins 19712 chips from side pot with two pairs, queens and tens [ Qc, Qs, Jd, Tc, Td ]
+
+
+
+Everleaf Gaming Game #242840265
+***** Hand history for game #242840265 *****
+Blinds 2000/4000 NL Hold'em - 2011/02/18 - 06:49:55
+Table 1
+Seat 7 is the button
+Total number of players: 2
+Seat 7: Player7 (  169988 Chips )
+Seat 10: Hero (  44012 Chips )
+Player7: posts ante [ 400 Chips]
+Hero: posts ante [ 400 Chips]
+Player7: posts small blind [ 2,000 Chips]
+Hero: posts big blind [ 4000 Chips]
+** Dealing down cards **
+Dealt to Hero [ Kd, 6c ]
+Player7 calls [ 2,000 Chips]
+Hero checks
+** Dealing Flop ** [ 3h, Ts, 3s ]
+Hero checks
+Player7: bets [ 4,000 Chips]
+Hero folds
+Player7 does not show cards
+Player7 wins 8800 chips from main pot
+
+
+
+Everleaf Gaming Game #242840277
+***** Hand history for game #242840277 *****
+Blinds 2000/4000 NL Hold'em - 2011/02/18 - 06:50:12
+Table 1
+Seat 10 is the button
+Total number of players: 2
+Seat 7: Player7 (  174388 Chips )
+Seat 10: Hero (  39612 Chips )
+Player7: posts ante [ 400 Chips]
+Hero: posts ante [ 400 Chips]
+Hero: posts small blind [ 2,000 Chips]
+Player7: posts big blind [ 4000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 5s, 7c ]
+Hero folds
+Player7 does not show cards
+Player7 wins 4800 chips from main pot
+
+
+
+Everleaf Gaming Game #242840285
+***** Hand history for game #242840285 *****
+Blinds 2000/4000 NL Hold'em - 2011/02/18 - 06:50:21
+Table 1
+Seat 7 is the button
+Total number of players: 2
+Seat 7: Player7 (  176788 Chips )
+Seat 10: Hero (  37212 Chips )
+Player7: posts ante [ 400 Chips]
+Hero: posts ante [ 400 Chips]
+Player7: posts small blind [ 2,000 Chips]
+Hero: posts big blind [ 4000 Chips]
+** Dealing down cards **
+Dealt to Hero [ Qs, 5s ]
+Player7 calls [ 2,000 Chips]
+Hero checks
+** Dealing Flop ** [ 4h, Th, 5c ]
+Hero checks
+Player7: bets [ 4,000 Chips]
+Hero folds
+Player7 does not show cards
+Player7 wins 8800 chips from main pot
+
+
+
+Everleaf Gaming Game #242840301
+***** Hand history for game #242840301 *****
+Blinds 2000/4000 NL Hold'em - 2011/02/18 - 06:50:48
+Table 1
+Seat 10 is the button
+Total number of players: 2
+Seat 7: Player7 (  181188 Chips )
+Seat 10: Hero (  32812 Chips )
+Player7: posts ante [ 400 Chips]
+Hero: posts ante [ 400 Chips]
+Hero: posts small blind [ 2,000 Chips]
+Player7: posts big blind [ 4000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 3d, Js ]
+Hero folds
+Player7 does not show cards
+Player7 wins 4800 chips from main pot
+
+
+
+Everleaf Gaming Game #242840309
+***** Hand history for game #242840309 *****
+Blinds 2000/4000 NL Hold'em - 2011/02/18 - 06:50:57
+Table 1
+Seat 7 is the button
+Total number of players: 2
+Seat 7: Player7 (  183588 Chips )
+Seat 10: Hero (  30412 Chips )
+Player7: posts ante [ 400 Chips]
+Hero: posts ante [ 400 Chips]
+Player7: posts small blind [ 2,000 Chips]
+Hero: posts big blind [ 4000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 9d, Kh ]
+Player7 calls [ 2,000 Chips]
+Hero raises [ 8,000 Chips]
+Player7 folds
+Hero does not show cards
+Hero wins 8800 chips from main pot
+
+
+
+Everleaf Gaming Game #242840322
+***** Hand history for game #242840322 *****
+Blinds 2000/4000 NL Hold'em - 2011/02/18 - 06:51:15
+Table 1
+Seat 10 is the button
+Total number of players: 2
+Seat 7: Player7 (  179188 Chips )
+Seat 10: Hero (  34812 Chips )
+Player7: posts ante [ 400 Chips]
+Hero: posts ante [ 400 Chips]
+Hero: posts small blind [ 2,000 Chips]
+Player7: posts big blind [ 4000 Chips]
+** Dealing down cards **
+Dealt to Hero [ Th, 5h ]
+Hero calls [ 2,000 Chips]
+Player7 checks
+** Dealing Flop ** [ 7h, Jc, 6d ]
+Player7 checks
+Hero checks
+** Dealing Turn ** [ 8c ]
+Player7: bets [ 4,000 Chips]
+Hero folds
+Player7 does not show cards
+Player7 wins 8800 chips from main pot
+
+
+
+Everleaf Gaming Game #242840348
+***** Hand history for game #242840348 *****
+Blinds 2000/4000 NL Hold'em - 2011/02/18 - 06:51:52
+Table 1
+Seat 7 is the button
+Total number of players: 2
+Seat 7: Player7 (  183588 Chips )
+Seat 10: Hero (  30412 Chips )
+Player7: posts ante [ 400 Chips]
+Hero: posts ante [ 400 Chips]
+Player7: posts small blind [ 2,000 Chips]
+Hero: posts big blind [ 4000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 3h, Th ]
+Player7 calls [ 2,000 Chips]
+Hero checks
+** Dealing Flop ** [ 4c, 6c, 6h ]
+Hero checks
+Player7: bets [ 4,000 Chips]
+Hero folds
+Player7 does not show cards
+Player7 wins 8800 chips from main pot
+
+
+
+Everleaf Gaming Game #242840365
+***** Hand history for game #242840365 *****
+Blinds 2000/4000 NL Hold'em - 2011/02/18 - 06:52:19
+Table 1
+Seat 10 is the button
+Total number of players: 2
+Seat 7: Player7 (  187988 Chips )
+Seat 10: Hero (  26012 Chips )
+Player7: posts ante [ 400 Chips]
+Hero: posts ante [ 400 Chips]
+Hero: posts small blind [ 2,000 Chips]
+Player7: posts big blind [ 4000 Chips]
+** Dealing down cards **
+Dealt to Hero [ 8c, Qs ]
+Hero raises [ 10,000 Chips]
+Player7 raises [ 32,000 Chips]
+Hero calls [ 13,612 Chips]
+** Dealing Flop ** [ 4d, 6d, 8s ]
+** Dealing Turn ** [ Tc ]
+** Dealing River ** [ 7c ]
+Player7 shows [ Jc, Jh ] a pair of jacks
+Hero shows [ 8c, Qs ] a pair of eights
+Player7 wins 52024 chips from main pot with a pair of jacks [ Jc, Jh, Tc, 8s, 7c ]
+
+
+
+

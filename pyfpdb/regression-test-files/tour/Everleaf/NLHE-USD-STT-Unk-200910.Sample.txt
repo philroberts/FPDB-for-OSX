@@ -1,0 +1,349 @@
+Everleaf Gaming Game #108001000
+***** Hand history for game #108001000 *****
+Blinds 75/150 NL Hold'em - 2009/10/03 - 02:49:09
+Table 3
+Seat 7 is the button
+Total number of players: 10
+Seat 1: Player1 ( 2353 )
+Seat 2: Player2 ( 1370 )
+Seat 3: Hero ( 2055 )
+Seat 4: Player4 ( 2360 )
+Seat 5: Player5 ( 3695 )
+Seat 6: Player6 ( 1622 )
+Seat 7: Player7 ( 4670 )
+Seat 8: Player8 ( 1695 )
+Seat 9: Player9 ( 2775 )
+Seat 10: Player10 ( 1905 )
+Player8: posts small blind [$ 75]
+Player9: posts big blind [$ 150]
+** Dealing down cards **
+Dealt to Hero [ 4h, Th ]
+Player10 folds
+Player1 folds
+Player2 folds
+Hero folds
+Player4 raises [$ 525]
+Player5 folds
+Player6 folds
+Player7 folds
+Player8 folds
+Player9 folds
+Player4 does not show cards
+Player4 wins 375 chips from main pot
+
+
+
+
+Everleaf Gaming Game #108001110
+***** Hand history for game #108001110 *****
+Blinds 100/200 NL Hold'em - 2009/10/03 - 02:50:26
+Table 3
+Seat 8 is the button
+Total number of players: 10
+Seat 1: Player1 ( 2353 )
+Seat 2: Player2 ( 1370 )
+Seat 3: Hero ( 2055 )
+Seat 4: Player4 ( 2585 )
+Seat 5: Player5 ( 3695 )
+Seat 6: Player6 ( 1622 )
+Seat 7: Player7 ( 4670 )
+Seat 8: Player8 ( 1620 )
+Seat 9: Player9 ( 2625 )
+Seat 10: Player10 ( 1905 )
+Player9: posts small blind [$ 100]
+Player10: posts big blind [$ 200]
+** Dealing down cards **
+Dealt to Hero [ 5s, 8c ]
+Player1 folds
+Player2 raises [$ 700]
+Hero folds
+Player4 folds
+Player5 calls [$ 700]
+Player6 raises [$ 1622]
+Player7 folds
+Player8 folds
+Player9 folds
+Player10 folds
+Player2 calls [$ 670]
+Player5 calls [$ 922]
+** Dealing Flop ** [ 4d, 9d, Kc ]
+** Dealing Turn ** [ 3c ]
+** Dealing River ** [ 3h ]
+Player6 wins 4410 chips from main pot with two pairs, kings and threes [ Kd, Kc, Jd, 3c, 3h ]
+Player6 wins 504 chips from side pot with two pairs, kings and threes [ Kd, Kc, Jd, 3c, 3h ]
+
+
+
+Everleaf Gaming Game #108001206
+***** Hand history for game #108001206 *****
+Blinds 100/200 NL Hold'em - 2009/10/03 - 02:51:35
+Table 3
+Seat 9 is the button
+Total number of players: 9
+Seat 1: Player1 ( 2353 )
+Seat 3: Hero ( 2055 )
+Seat 4: Player4 ( 2585 )
+Seat 5: Player5 ( 2073 )
+Seat 6: Player6 ( 4914 )
+Seat 7: Player7 ( 4670 )
+Seat 8: Player8 ( 1620 )
+Seat 9: Player9 ( 2525 )
+Seat 10: Player10 ( 1705 )
+Player10: posts small blind [$ 100]
+Player1: posts big blind [$ 200]
+** Dealing down cards **
+Dealt to Hero [ Qc, Tc ]
+Hero folds
+Player4 folds
+Player5 folds
+Player6 folds
+Player7 folds
+Player8 folds
+Player9 folds
+Player10 raises [$ 300]
+Player1 calls [$ 200]
+** Dealing Flop ** [ Ks, 9d, 7d ]
+Player10: bets [$ 1305]
+Player1 calls [$ 1305]
+** Dealing Turn ** [ 5s ]
+** Dealing River ** [ 3c ]
+Player10 wins 3410 chips from main pot with a straight, nine high [ 9d, 8s, 7d, 6c, 5s ]
+
+
+
+Everleaf Gaming Game #108001281
+***** Hand history for game #108001281 *****
+Blinds 100/200 NL Hold'em - 2009/10/03 - 02:52:33
+Table 3
+Seat 10 is the button
+Total number of players: 9
+Seat 1: Player1 ( 648 )
+Seat 3: Hero ( 2055 )
+Seat 4: Player4 ( 2585 )
+Seat 5: Player5 ( 2073 )
+Seat 6: Player6 ( 4914 )
+Seat 7: Player7 ( 4670 )
+Seat 8: Player8 ( 1620 )
+Seat 9: Player9 ( 2525 )
+Seat 10: Player10 ( 3410 )
+Player1: posts small blind [$ 100]
+Hero: posts big blind [$ 200]
+** Dealing down cards **
+Dealt to Hero [ 7c, 5s ]
+Player4 folds
+Player5 calls [$ 200]
+Player6 folds
+Player7 folds
+Player8 folds
+Player9 folds
+Player10 folds
+Player1 raises [$ 548]
+Hero folds
+Player5 calls [$ 448]
+** Dealing Flop ** [ Ad, 6s, As ]
+** Dealing Turn ** [ 2c ]
+** Dealing River ** [ 7h ]
+Player5 wins 1496 chips from main pot with two pairs, aces and sevens [ Ad, As, Qd, 7d, 7h ]
+
+
+
+Everleaf Gaming Game #108001377
+***** Hand history for game #108001377 *****
+Blinds 100/200 NL Hold'em - 2009/10/03 - 02:53:37
+Table 3
+Seat 10 is the button
+Total number of players: 8
+Seat 3: Hero ( 1855 )
+Seat 4: Player4 ( 2585 )
+Seat 5: Player5 ( 2921 )
+Seat 6: Player6 ( 4914 )
+Seat 7: Player7 ( 4670 )
+Seat 8: Player8 ( 1620 )
+Seat 9: Player9 ( 2525 )
+Seat 10: Player10 ( 3410 )
+Hero: posts small blind [$ 100]
+Player4: posts big blind [$ 200]
+** Dealing down cards **
+Dealt to Hero [ Jd, 8c ]
+Player5 raises [$ 2921]
+Player6 folds
+Player7 folds
+Player8 folds
+Player9 folds
+Player10 folds
+Hero folds
+Player4 folds
+Player5 does not show cards
+Player5 wins 500 chips from main pot
+
+
+
+Everleaf Gaming Game #108001462
+***** Hand history for game #108001462 *****
+Blinds 100/200 NL Hold'em - 2009/10/03 - 02:54:33
+Table 3
+Seat 3 is the button
+Total number of players: 8
+Seat 3: Hero ( 1755 )
+Seat 4: Player4 ( 2385 )
+Seat 5: Player5 ( 3221 )
+Seat 6: Player6 ( 4914 )
+Seat 7: Player7 ( 4670 )
+Seat 8: Player8 ( 1620 )
+Seat 9: Player9 ( 2525 )
+Seat 10: Player10 ( 3410 )
+Player4: posts small blind [$ 100]
+Player5: posts big blind [$ 200]
+** Dealing down cards **
+Dealt to Hero [ 4d, 5h ]
+Player6 folds
+Player7 folds
+Player8 calls [$ 200]
+Player9 calls [$ 200]
+Player10 raises [$ 3410]
+Hero folds
+Player4 folds
+Player5 folds
+Player8 folds
+Player9 folds
+Player10 does not show cards
+Player10 wins 900 chips from main pot
+
+
+
+Everleaf Gaming Game #108001559
+***** Hand history for game #108001559 *****
+Blinds 100/200 NL Hold'em - 2009/10/03 - 02:55:44
+Table 3
+Seat 4 is the button
+Total number of players: 8
+Seat 3: Hero ( 1755 )
+Seat 4: Player4 ( 2285 )
+Seat 5: Player5 ( 3021 )
+Seat 6: Player6 ( 4914 )
+Seat 7: Player7 ( 4670 )
+Seat 8: Player8 ( 1420 )
+Seat 9: Player9 ( 2325 )
+Seat 10: Player10 ( 4110 )
+Player5: posts small blind [$ 100]
+Player6: posts big blind [$ 200]
+** Dealing down cards **
+Dealt to Hero [ 4h, 5d ]
+Player7 folds
+Player8 raises [$ 400]
+Player9 calls [$ 400]
+Player10 folds
+Hero folds
+Player4 folds
+Player5 calls [$ 300]
+Player6 folds
+** Dealing Flop ** [ Td, Ad, Ks ]
+Player5 checks
+Player8: bets [$ 200]
+Player9 raises [$ 1925]
+Player5 folds
+Player8 calls [$ 820]
+** Dealing Turn ** [ Kd ]
+** Dealing River ** [ 5h ]
+Player9 wins 3440 chips from main pot with two pairs, aces and kings [ Ah, Ad, Ks, Kd, Qc ] with kicker [ Qh ]
+
+
+
+Everleaf Gaming Game #108001673
+***** Hand history for game #108001673 *****
+Blinds 100/200 NL Hold'em - 2009/10/03 - 02:57:09
+Table 3
+Seat 5 is the button
+Total number of players: 7
+Seat 3: Hero ( 1755 )
+Seat 4: Player4 ( 2285 )
+Seat 5: Player5 ( 2621 )
+Seat 6: Player6 ( 4714 )
+Seat 7: Player7 ( 4670 )
+Seat 9: Player9 ( 4345 )
+Seat 10: Player10 ( 4110 )
+Player6: posts small blind [$ 100]
+Player7: posts big blind [$ 200]
+** Dealing down cards **
+Dealt to Hero [ Ad, 6h ]
+Player9 folds
+Player10 folds
+Hero raises [$ 700]
+Player4 folds
+Player5 folds
+Player6 folds
+Player7 folds
+Hero does not show cards
+Hero wins 500 chips from main pot
+
+
+
+Everleaf Gaming Game #108001736
+***** Hand history for game #108001736 *****
+Blinds 100/200 NL Hold'em - 2009/10/03 - 02:57:56
+Table 3
+Seat 6 is the button
+Total number of players: 7
+Seat 3: Hero ( 2055 )
+Seat 4: Player4 ( 2285 )
+Seat 5: Player5 ( 2621 )
+Seat 6: Player6 ( 4614 )
+Seat 7: Player7 ( 4470 )
+Seat 9: Player9 ( 4345 )
+Seat 10: Player10 ( 4110 )
+Player7: posts small blind [$ 100]
+Player9: posts big blind [$ 200]
+** Dealing down cards **
+Dealt to Hero [ 9s, Kh ]
+Player10 folds
+Hero folds
+Player4 folds
+Player5 calls [$ 200]
+Player6 raises [$ 400]
+Player7 folds
+Player9 folds
+Player5 calls [$ 200]
+** Dealing Flop ** [ 7h, 8d, Ts ]
+Player5 checks
+Player6: bets [$ 200]
+Player5 folds
+Player6 does not show cards
+Player6 wins 1100 chips from main pot
+
+
+
+Everleaf Gaming Game #108000928
+***** Hand history for game #108000928 *****
+Blinds 75/150 NL Hold'em - 2009/10/03 - 02:48:18
+Table 3
+Seat 6 is the button
+Total number of players: 10
+Seat 1: Player1 ( 2353 )
+Seat 2: Player2 ( 1370 )
+Seat 3: Hero ( 1830 )
+Seat 4: Player4 ( 2360 )
+Seat 5: Player5 ( 3695 )
+Seat 6: Player6 ( 1622 )
+Seat 7: Player7 ( 4745 )
+Seat 8: Player8 ( 1845 )
+Seat 9: Player9 ( 2775 )
+Seat 10: Player10 ( 1905 )
+Player7: posts small blind [$ 75]
+Player8: posts big blind [$ 150]
+** Dealing down cards **
+Dealt to Hero [ 7s, 7c ]
+Player9 folds
+Player10 folds
+Player1 folds
+Player2 folds
+Hero raises [$ 525]
+Player4 folds
+Player5 folds
+Player6 folds
+Player7 folds
+Player8 folds
+Hero does not show cards
+Hero wins 375 chips from main pot
+
+
+
