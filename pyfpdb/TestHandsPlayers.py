@@ -345,6 +345,7 @@ def main(argv=None):
         walk_testfiles(options.filename, compare, importer, UltimateBetErrors, "Absolute")
     if sites['Everleaf'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
+        walk_testfiles("regression-test-files/tour/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
     elif sites['Everleaf'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, EverleafErrors, "Everleaf")
     if sites['Carbon'] == True and not single_file_test:
