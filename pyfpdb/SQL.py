@@ -287,11 +287,11 @@ class Sql:
 
         if db_server == 'mysql':
             self.query['createPlayersTable'] = """CREATE TABLE Players (
-                            id INT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-                            name VARCHAR(32) CHARACTER SET utf8 NOT NULL,
-                            siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
-                            comment text,
-                            commentTs DATETIME)
+                        id INT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        name VARCHAR(32) NOT NULL,
+                        siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                        comment text,
+                        commentTs DATETIME)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createPlayersTable'] = """CREATE TABLE Players (
