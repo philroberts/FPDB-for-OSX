@@ -456,7 +456,7 @@ class Importer:
                 if self.caller: hhc.progressNotify()
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
-                (hbulk, hpbulk, habulk, hcbulk, phands, ihands) = ([], [], [], [], [], [])
+                (hbulk, hpbulk, habulk, hcbulk, phands, ihands, to_hud) = ([], [], [], [], [], [], [])
                 sc, gsc = {'bk': []}, {'bk': []}
                 
                 ####Lock Placeholder####
