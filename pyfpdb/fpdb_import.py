@@ -170,7 +170,7 @@ class Importer:
     def addImportFile(self, filename, site = "default", filter = "passthrough"):
         #TODO: test it is a valid file -> put that in config!!
         #print "addimportfile: filename is a", filename.__class__
-        # filename now comes in as unicode
+        # filename not guaranteed to be unicode
         if filename in self.filelist or not os.path.exists(filename):
             return
         self.filelist[filename] = [site] + [filter]
@@ -196,11 +196,10 @@ class Importer:
         if os.path.isdir(inputPath):
             for subdir in os.walk(inputPath):
                 for file in subdir[2]:
-                    self.addImportFile(unicode(os.path.join(subdir[0], file),'utf-8'),
-                                       site=site, filter=filter)
+                    self.addImportFile(os.path.join(subdir[0], file), site=site, filter=filter)
         else:
-            
-            self.addImportFile(unicode(inputPath,'utf-8'), site=site, filter=filter)
+            self.addImportFile(inputPath, site=site, filter=filter)
+
     #Add a directory of files to filelist
     #Only one import directory per site supported.
     #dirlist is a hash of lists:
@@ -456,7 +455,7 @@ class Importer:
                 if self.caller: hhc.progressNotify()
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
-                (hbulk, hpbulk, habulk, hcbulk, phands, ihands) = ([], [], [], [], [], [])
+                (hbulk, hpbulk, habulk, hcbulk, phands, ihands, to_hud) = ([], [], [], [], [], [], [])
                 sc, gsc = {'bk': []}, {'bk': []}
                 
                 ####Lock Placeholder####

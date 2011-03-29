@@ -35,7 +35,7 @@ class Everest(HandHistoryConverter):
     siteID   = 15
 
     substitutions = {
-                        'LS' : u"\$|\u20ac|",
+                        'LS' : u"\$|\xe2\x82\xac|\u20ac|",
                        'TAB' : u"-\u2013'\s\da-zA-Z",       # legal characters for tablename
                     }
 

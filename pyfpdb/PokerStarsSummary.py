@@ -45,7 +45,7 @@ class PokerStarsSummary(TourneySummary):
 
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : u"\$|\u20AC|" # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : u"\$|\xe2\x82\xac|\u20AC|" # legal currency symbols - Euro(cp1252, utf-8)
                     }
 
     re_SplitTourneys = re.compile("PokerStars Tournament ")
@@ -68,7 +68,7 @@ class PokerStarsSummary(TourneySummary):
 
     re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP)""" % substitutions)
 
-    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s)?(\$(?P<WINNINGS>[0-9]+\.[0-9]+))?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(\s+)?""")
+    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s)?([%(LS)s](?P<WINNINGS>[0-9]+\.[0-9]+))?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(\s+)?""" % substitutions)
 
     re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
 

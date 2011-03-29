@@ -45,7 +45,7 @@ class FullTiltPokerSummary(TourneySummary):
 
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : u"\$|\u20AC|",       # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : "\$|\xe2\x82\xac|",       # legal currency symbols - Euro(cp1252, utf-8)
                            'TAB' : u"-\u2013'\s\da-zA-Z",    # legal characters for tablename
                            'NUM' : u".,\d",                  # legal characters in number format
                     }
