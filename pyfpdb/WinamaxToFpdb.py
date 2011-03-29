@@ -52,10 +52,10 @@ class Winamax(HandHistoryConverter):
     siteId   = 14 # Needs to match id entry in Sites database
 
     mixes = { } # Legal mixed games
-    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": u"\u20AC", "GBP": u"\xa3"}         # ADD Euro, Sterling, etc HERE
+    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : u"\$|\u20AC|"        # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : "\$|\xe2\x82\xac|"        # legal currency symbols - Euro(cp1252, utf-8)
                     }
 
     limits = { 'no limit':'nl', 'pot limit' : 'pl','LIMIT':'fl'}
