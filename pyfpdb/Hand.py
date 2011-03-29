@@ -306,9 +306,9 @@ dealt   whether they were seen in a 'dealt to' line
             sc = db.prepSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, sc, self.heros, doinsert)
             gsc = db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.gametype
                                            ,self.dbid_gt, self.handsplayers, sc, gsc, tz, self.heros, doinsert)
-            if doinsert:
-                self.hands['sc'] = sc
-                self.hands['gsc'] = gsc
+        if doinsert and sc['bk'] and gsc['bk']:
+            self.hands['sc'] = sc
+            self.hands['gsc'] = gsc
         else:
             self.hands['sc'] = None
             self.hands['gsc'] = None

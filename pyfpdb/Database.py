@@ -1890,7 +1890,7 @@ class Database:
         if doinsert:
             for h in hbulk:
                 id = h.pop()
-                if (hdata['sc'] != None and hdata['sc']['bk']) and hdata['gsc']['bk']:
+                if hdata['sc'] and hdata['gsc']:
                     h[4] = hdata['sc'][id]['id']
                     h[5] = hdata['gsc'][id]['id']
             q = self.sql.query['store_hand']
