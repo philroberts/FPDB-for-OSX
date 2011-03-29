@@ -223,13 +223,18 @@ class SummaryImporter:
             print "Found %s summaries" %(len(summaryTexts))
             errors = 0
             imported = 0
+            ####Lock Placeholder####
             for j, summaryText in enumerate(summaryTexts, start=1):
+                sc, gsc = {'bk': []}, {'bk': []}
+                doinsert = len(summaryTexts)==j
                 try:
-                    conv = obj(db=None, config=self.config, siteName=site, summaryText=summaryText, builtFrom = "IMAP")
+                    conv = obj(db=self.database, config=self.config, siteName=site, summaryText=summaryText, builtFrom = "IMAP")
+                    sc, gsc = conv.updateSessionsCache(sc, gsc, None, doinsert)
                 except FpdbParseError, e:
                     errors += 1
                 print _("Finished importing %s/%s tournament summaries") %(j, len(summaryTexts))
                 imported = j
+            ####Lock Placeholder####
         return (imported - errors, errors)
 
     def clearFileList(self):
