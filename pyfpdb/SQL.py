@@ -1516,10 +1516,10 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['createSessionsCacheTable'] = """CREATE TABLE SessionsCache (
                         id INTEGER PRIMARY KEY,
-                        sessionStart REAL NOT NULL,
-                        sessionEnd REAL NOT NULL,
-                        gameStart REAL NOT NULL,
-                        gameEnd REAL NOT NULL,
+                        sessionStart timestamp NOT NULL,
+                        sessionEnd timestamp NOT NULL,
+                        gameStart timestamp NOT NULL,
+                        gameEnd timestamp NOT NULL,
                         sessionId INT,
                         date TEXT NOT NULL, /* 1st char is style (A/T/H/S), other 6 are the key */
                         type TEXT,
