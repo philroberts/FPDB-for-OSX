@@ -399,7 +399,12 @@ class Database:
             if use_pool:
                 MySQLdb = pool.manage(MySQLdb, pool_size=5)
             try:
-                self.connection = MySQLdb.connect(host=host, user=user, passwd=password, db=database, use_unicode=True)
+                self.connection = MySQLdb.connect(host=host
+                                                 ,user=user
+                                                 ,passwd=password
+                                                 ,db=database
+                                                 ,charset='utf8'
+                                                 ,use_unicode=True)
                 self.__connected = True
             #TODO: Add port option
             except MySQLdb.Error, ex:
