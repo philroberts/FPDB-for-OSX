@@ -228,13 +228,27 @@ dealt   whether they were seen in a 'dealt to' line
 
         self.holecards[street][player] = [open, closed]
 
-    def prepInsert(self, db):
+    def prepInsert(self, db, printtest = False):
         #####
         # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
         # These functions are intended for prep insert eventually
         #####
         self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
-        self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype)
+        self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype, printdata = printtest)
+        #Gametypes
+        hilo = "h"
+        if self.gametype['category'] in ['studhilo', 'omahahilo']:
+            hilo = "s"
+        elif self.gametype['category'] in ['razz','27_3draw','badugi', '27_1draw']:
+            hilo = "l"
+
+        self.gametyperow = (self.siteId, self.gametype['currency'], self.gametype['type'], self.gametype['base'],
+                                    self.gametype['category'], self.gametype['limitType'], hilo,
+                                    int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
+                                    int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200))
+        # Note: the above data is calculated in db.getGameTypeId
+        #       Only being calculated above so we can grab the testdata
+        self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype, printdata = printtest)
         
         if self.tourNo!=None:
             self.tourneyTypeId = db.createTourneyType(self)
