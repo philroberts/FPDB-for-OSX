@@ -96,8 +96,6 @@ class Everleaf(HandHistoryConverter):
     'bigBet'
     'currency'  in ('USD', 'EUR', 'T$', <countrycode>)
 or None if we fail to get the info """
-        #(TODO: which parts are optional/required?)
-
         # Blinds $0.50/$1 PL Omaha - 2008/12/07 - 21:59:48
         # Blinds $0.05/$0.10 NL Hold'em - 2009/02/21 - 11:21:57
         # $0.25/$0.50 7 Card Stud - 2008/12/05 - 21:43:59
@@ -169,11 +167,6 @@ or None if we fail to get the info """
             #           https://www.poker4ever.com/tourney/%TOURNEY_NUMBER%
 
         # Believe Everleaf time is GMT/UTC, no transation necessary
-        # Stars format (Nov 10 2008): 2008/11/07 12:38:49 CET [2008/11/07 7:38:49 ET]
-        # or                        : 2008/11/07 12:38:49 ET
-        # Not getting it in my HH files yet, so using
-        # 2008/11/10 3:58:52 ET
-        #TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%Y/%m/%d - %H:%M:%S")
         return
 
@@ -192,9 +185,6 @@ or None if we fail to get the info """
 
 
     def markStreets(self, hand):
-        # PREFLOP = ** Dealing down cards **
-        # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
-        #m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \])?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\* \[ (?P<TURN1>\S\S) \])?(?P<TURN>.*?\*\*)?( Dealing River \*\* \[ (?P<RIVER1>\S\S) \])?(?P<RIVER>.*)', hand.handText,re.DOTALL)
         if hand.gametype['base'] == 'hold':
             m =  re.search(r"\*\* Dealing down cards \*\*(?P<PREFLOP>.+(?=\*\* Dealing Flop \*\*)|.+)"
                        r"(\*\* Dealing Flop \*\*(?P<FLOP> \[ \S\S, \S\S, \S\S \].+(?=\*\* Dealing Turn \*\*)|.+))?"
