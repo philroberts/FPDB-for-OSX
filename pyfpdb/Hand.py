@@ -102,7 +102,7 @@ class Hand(object):
         self.seating = []
         self.players = []
         self.posted = []
-        self.tourneysPlayersIds = []
+        self.tourneysPlayersIds = {}
 
         # Collections indexed by street names
         self.bets = {}
@@ -277,7 +277,7 @@ dealt   whether they were seen in a 'dealt to' line
         """ Function to insert Hand into database
             Should not commit, and do minimal selects. Callers may want to cache commits
             db: a connected Database object"""
-        self.hands['gameTypeId'] = self.dbid_gt
+        self.hands['gametypeId'] = self.dbid_gt
         self.hands['seats'] = len(self.dbid_pids)
         hbulk = db.storeHand(self.hands, hbulk, doinsert, printtest)
         return hbulk
