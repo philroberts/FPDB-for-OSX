@@ -102,7 +102,7 @@ class Hand(object):
         self.seating = []
         self.players = []
         self.posted = []
-        self.tourneysPlayersIds = []
+        self.tourneysPlayersIds = {}
 
         # Collections indexed by street names
         self.bets = {}
