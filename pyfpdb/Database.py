@@ -1855,7 +1855,7 @@ class Database:
         hbulk.append( [ hdata['tableName'],
                         hdata['siteHandNo'],
                         hdata['tourneyId'],
-                        hdata['gameTypeId'],
+                        hdata['gametypeId'],
                         hdata['sessionId'],
                         hdata['gameSessionId'], 
                         hdata['startTime'],                
