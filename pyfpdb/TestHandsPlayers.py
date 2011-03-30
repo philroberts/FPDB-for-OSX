@@ -32,6 +32,8 @@ import Options
 import datetime
 import pytz
 
+DEBUG = False
+
 
 class FpdbError:
     def __init__(self, sitename):
@@ -172,8 +174,8 @@ def compare(leaf, importer, errors, site):
     # Test if this is a hand history file
     if filename.endswith('.txt'):
         # test if there is a .hp version of the file
-        print "Site: %s" % site
-        print "Filename: %s" % filename
+        if DEBUG: print "Site: %s" % site
+        if DEBUG: print "Filename: %s" % filename
         importer.addBulkImportImportFileOrDir(filename, site=site)
         (stored, dups, partial, errs, ttime) = importer.runImport()
 
