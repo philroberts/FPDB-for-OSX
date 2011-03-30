@@ -399,7 +399,12 @@ class Database:
             if use_pool:
                 MySQLdb = pool.manage(MySQLdb, pool_size=5)
             try:
-                self.connection = MySQLdb.connect(host=host, user=user, passwd=password, db=database, use_unicode=True)
+                self.connection = MySQLdb.connect(host=host
+                                                 ,user=user
+                                                 ,passwd=password
+                                                 ,db=database
+                                                 ,charset='utf8'
+                                                 ,use_unicode=True)
                 self.__connected = True
             #TODO: Add port option
             except MySQLdb.Error, ex:
@@ -1885,7 +1890,7 @@ class Database:
         if doinsert:
             for h in hbulk:
                 id = h.pop()
-                if (hdata['sc'] != None and hdata['sc']['bk']) and hdata['gsc']['bk']:
+                if hdata['sc'] and hdata['gsc']:
                     h[4] = hdata['sc'][id]['id']
                     h[5] = hdata['gsc'][id]['id']
             q = self.sql.query['store_hand']
