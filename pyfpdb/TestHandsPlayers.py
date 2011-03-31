@@ -21,8 +21,6 @@
 import sys
 import os
 import codecs
-import pprint
-import PokerStarsToFpdb
 from Hand import *
 import Configuration
 import Database
@@ -31,6 +29,8 @@ import fpdb_import
 import Options
 import datetime
 import pytz
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
 
 DEBUG = False
 
@@ -149,6 +149,9 @@ def compare_hands_file(filename, importer, errors):
 
     for hand in handlist:
         ghash = hand.stats.getHands()
+        # Delete unused data from hash
+        del ghash['gsc']
+        del ghash['sc']
         for datum in ghash:
             #print "DEBUG: hand: '%s'" % datum
             try:
