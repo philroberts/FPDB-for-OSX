@@ -72,7 +72,7 @@ class OnGame(HandHistoryConverter):
     # "Play money" rather than "Real money" and set currency accordingly
     re_HandInfo = re.compile(u"""
             \*\*\*\*\*\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+)
-            (\s\(TOURNAMENT:\s"NL\sHoldem",\s(?P<TID>[-A-Z\d]+),\sbuy-in:\s[%(LS)s](?P<BUYIN>\d+))?
+            (\s\(TOURNAMENT:\s"[a-zA-Z ]+",\s(?P<TID>[-A-Z\d]+),\sbuy-in:\s[%(LS)s](?P<BUYIN>\d+))?
             .*
             Start\shand:\s(?P<DATETIME>.*)
             Table:\s(\[SPEED\]\s)?(?P<TABLE>[-\'\w\#\s\.]+)\s\[\d+\]\s\(
