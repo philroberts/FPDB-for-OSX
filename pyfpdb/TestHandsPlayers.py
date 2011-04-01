@@ -152,6 +152,7 @@ def compare_hands_file(filename, importer, errors):
         # Delete unused data from hash
         del ghash['gsc']
         del ghash['sc']
+        del ghash['id']
         for datum in ghash:
             #print "DEBUG: hand: '%s'" % datum
             try:
@@ -337,6 +338,7 @@ def main(argv=None):
         walk_testfiles(options.filename, compare, importer, BetfairErrors, "Betfair")
     if sites['OnGame'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/OnGame/", compare, importer, OnGameErrors, "OnGame")
+        walk_testfiles("regression-test-files/tour/ongame/", compare, importer, OnGameErrors, "OnGame")
     elif sites['OnGame'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, OnGameErrors, "OnGame")
     if sites['Absolute'] == True and not single_file_test:
