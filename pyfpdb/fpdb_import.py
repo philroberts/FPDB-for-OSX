@@ -493,7 +493,7 @@ class Importer:
                 self.database.commit()
 
                 #pipe the Hands.id out to the HUD
-                if self.caller:
+                if self.callHud:
                     for hid in to_hud:
                         try:
                             print _("fpdb_import: sending hand to hud"), hand.dbid_hands, "pipe =", self.caller.pipe_to_hud
