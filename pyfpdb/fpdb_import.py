@@ -460,7 +460,7 @@ class Importer:
                 
                 ####Lock Placeholder####
                 for hand in handlist:
-                    hand.prepInsert(self.database)
+                    hand.prepInsert(self.database, printtest = self.settings['testData'])
                     self.database.commit()
                     phands.append(hand)
                 ####Lock Placeholder####
