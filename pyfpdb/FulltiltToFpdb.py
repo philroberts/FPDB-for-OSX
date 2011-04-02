@@ -61,7 +61,9 @@ class Fulltilt(HandHistoryConverter):
                       '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
                       '500.00': ('125.00', '250.00'), '500': ('125.00', '250.00'),
                       '800.00': ('200.00', '400.00'), '800': ('200.00', '400.00'),
-                     '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00')
+                     '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00'),
+                     '2000.00': ('500.00', '750.00'),'2000': ('500.00', '1000.00'),
+                     '3000.00': ('750.00', '1500.00'),'3000': ('750.00', '1500.00'),
                   }
 
     # Static regexes
@@ -242,8 +244,9 @@ class Fulltilt(HandHistoryConverter):
 
         if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring':
             try:
-                info['sb'] = self.Lim_Blinds[mg['BB']][0]
-                info['bb'] = self.Lim_Blinds[mg['BB']][1]
+                bb = self.clearMoneyString(mg['BB'])
+                info['sb'] = self.Lim_Blinds[bb][0]
+                info['bb'] = self.Lim_Blinds[bb][1]
             except KeyError:
                 log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
                 log.error(_("determineGameType: Raising FpdbParseError"))
