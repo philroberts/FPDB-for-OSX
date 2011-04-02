@@ -38,7 +38,7 @@ class PokerStars(HandHistoryConverter):
     codepage = ("utf8", "cp1252")
     siteId   = 2 # Needs to match id entry in Sites database
 
-    mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'} # Legal mixed games
+    mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose', 'Mixed Hold\'em': 'mholdem'} # Legal mixed games
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3", "play": ""}         # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",      # legal ISO currency codes
@@ -90,7 +90,7 @@ class PokerStars(HandHistoryConverter):
           # here's how I plan to use LS
           (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
           # close paren of tournament info
-          (?P<MIXED>HORSE|8\-Game|HOSE|Mixed PLH/PLO)?\s?\(?
+          (?P<MIXED>HORSE|8\-Game|HOSE|Mixed\sPLH/PLO|Mixed\sHold\'em)?\s?\(?
           (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
           (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\)?,?\s
           (-\s)?
