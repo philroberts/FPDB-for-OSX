@@ -145,16 +145,10 @@ class Fulltilt(HandHistoryConverter):
 ##Total Prize Pool: 1,500 Play Chips
 
 # These regexes are for FTP only
-    re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>HA|HORSE|HOSE)\s\-\s', re.VERBOSE)
+    re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>7\-Game|8\-Game|9\-Game|10\-Game|HA|HEROS|HO|HOE|HORSE|HOSE|OA|OE|SE)\s\-\s', re.VERBOSE)
     re_Max          = re.compile("(?P<MAX>\d+)( max)?", re.MULTILINE)
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
     re_DateTime     = re.compile("""((?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s(?P<TZ>\w+)\s-\s(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})|(?P<H2>[0-9]+):(?P<MIN2>[0-9]+)\s(?P<TZ2>\w+)\s-\s\w+\,\s(?P<M2>\w+)\s(?P<D2>\d+)\,\s(?P<Y2>[0-9]{4}))(?P<PARTIAL>\s\(partial\))?""", re.MULTILINE)
-
-
-
-
-    mixes = { 'HORSE': 'horse', '7-Game': '7game', 'HOSE': 'hose', 'HA': 'ha'}
-
 
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
@@ -224,6 +218,21 @@ class Fulltilt(HandHistoryConverter):
                    'Badugi' : ('draw','badugi'),
           '2-7 Single Draw' : ('draw','27_1draw')
                }
+        mixes = { 
+                   '7-Game' : '7game',
+                   '8-Game' : '8game',
+                   '9-Game' : '9game',
+                  '10-Game' : '10game',
+                       'HA' : 'ha',
+                    'HEROS' : 'heros',
+                       'HO' : 'ho',
+                      'HOE' : 'hoe',
+                    'HORSE' : 'horse',
+                     'HOSE' : 'hose',
+                       'OA' : 'oa',
+                       'OE' : 'oe',
+                       'SE' : 'se'
+            }
         currencies = { u'€':'EUR', '$':'USD', '':'T$' }
 
         if 'SB' in mg:
@@ -254,6 +263,9 @@ class Fulltilt(HandHistoryConverter):
         if mg['CURRENCY'] is not None:
             info['currency'] = currencies[mg['CURRENCY']]
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
+        m = self.re_Mixed.search(self.in_path)
+        if m: info['mix'] = mixes[m.groupdict()['MIXED']]
+
         return info
 
     def readHandInfo(self, hand):
@@ -526,13 +538,6 @@ class Fulltilt(HandHistoryConverter):
         if mo == 2: return 2
         if mo <= 6: return 6
         return 9
-
-    def readOther(self, hand):
-        m = self.re_Mixed.search(self.in_path)
-        if m is None:
-            hand.mixed = None
-        else:
-            hand.mixed = self.mixes[m.groupdict()['MIXED']]
 
     def readSummaryInfo(self, summaryInfoList):
         self.status = True

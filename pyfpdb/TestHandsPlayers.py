@@ -160,7 +160,11 @@ def compare_hands_file(filename, importer, errors):
                     pass
                 else:
                     # Stats don't match. 
-                    if datum == "gametypeId" or datum == 'sessionId' or datum == 'tourneyId' or datum == 'gameSessionId':
+                    if (datum == "gametypeId" 
+                        or datum == 'sessionId' 
+                        or datum == 'tourneyId' 
+                        or datum == 'gameSessionId'
+                        or datum == 'fileId'):
                         # Not an error. gametypeIds are dependent on the order added to the db.
                         #print "DEBUG: Skipping mismatched gamtypeId"
                         pass

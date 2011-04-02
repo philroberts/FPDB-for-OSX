@@ -273,12 +273,13 @@ dealt   whether they were seen in a 'dealt to' line
             next = id +1
         return next
 
-    def insertHands(self, db, hbulk, doinsert = False, printtest = False):
+    def insertHands(self, db, hbulk, fileId, doinsert = False, printtest = False):
         """ Function to insert Hand into database
             Should not commit, and do minimal selects. Callers may want to cache commits
             db: a connected Database object"""
         self.hands['gametypeId'] = self.dbid_gt
         self.hands['seats'] = len(self.dbid_pids)
+        self.hands['fileId'] = fileId
         hbulk = db.storeHand(self.hands, hbulk, doinsert, printtest)
         return hbulk
 

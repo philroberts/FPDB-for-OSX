@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 152
+DB_VERSION = 153
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -124,6 +124,7 @@ class Database:
               , [ # indexes for postgres (list index 3)
                   {'tab':'Gametypes',       'col':'siteId',            'drop':0}
                 , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
+                , {'tab':'Hands',           'col':'fileId',            'drop':0} # mct 22/3/09
                 #, {'tab':'Hands',           'col':'siteHandNo',        'drop':0}  unique indexes not dropped
                 , {'tab':'HandsActions',    'col':'handId',            'drop':1}
                 , {'tab':'HandsActions',    'col':'playerId',          'drop':1}
@@ -151,6 +152,7 @@ class Database:
                 ]
               , [ # indexes for sqlite (list index 4)
                   {'tab':'Hands',           'col':'gametypeId',        'drop':0}
+                , {'tab':'Hands',           'col':'fileId',            'drop':0}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
@@ -179,6 +181,7 @@ class Database:
                   , [ ] # no db with index 1
                   , [ # foreign keys for mysql (index 2)
                       {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                    , {'fktab':'Hands',        'fkcol':'fileId',        'rtab':'Files',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
@@ -194,6 +197,7 @@ class Database:
                     ]
                   , [ # foreign keys for postgres (index 3)
                       {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                    , {'fktab':'Hands',        'fkcol':'fileId',        'rtab':'Files',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
@@ -332,7 +336,7 @@ class Database:
 
         tables=self.cursor.execute(self.sql.query['list_tables'])
         tables=self.cursor.fetchall()
-        for table in (u'Actions', u'Autorates', u'Backings', u'Gametypes', u'Hands', u'HandsActions', u'HandsPlayers', u'HudCache', u'SessionsCache', u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
+        for table in (u'Actions', u'Autorates', u'Backings', u'Gametypes', u'Hands', u'HandsActions', u'HandsPlayers', u'Files', u'HudCache', u'SessionsCache', u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
             print "table:", table
             result+="###################\nTable "+table+"\n###################\n"
             rows=self.cursor.execute(self.sql.query['get'+table])
@@ -1257,6 +1261,7 @@ class Database:
             c.execute(self.sql.query['createActionsTable'])
             c.execute(self.sql.query['createSitesTable'])
             c.execute(self.sql.query['createGametypesTable'])
+            c.execute(self.sql.query['createFilesTable'])
             c.execute(self.sql.query['createPlayersTable'])
             c.execute(self.sql.query['createAutoratesTable'])
             c.execute(self.sql.query['createHandsTable'])
@@ -1857,7 +1862,8 @@ class Database:
                         hdata['tourneyId'],
                         hdata['gametypeId'],
                         hdata['sessionId'],
-                        hdata['gameSessionId'], 
+                        hdata['gameSessionId'],
+                        hdata['fileId'],
                         hdata['startTime'],                
                         datetime.utcnow(), #importtime
                         hdata['seats'],
@@ -2500,7 +2506,53 @@ class Database:
             self.commit()
             
         return gsc
+
+    def getGameTypeId(self, siteid, game, printdata = False):
+        c = self.get_cursor()
+        #FIXME: Fixed for NL at the moment
+        c.execute(self.sql.query['getGametypeNL'], (siteid, game['type'], game['category'], game['limitType'], game['currency'],
+                                                    game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100)))
+        tmp = c.fetchone()
+        if (tmp == None):
+            hilo = "h"
+            if game['category'] in ['studhilo', 'omahahilo']:
+                hilo = "s"
+            elif game['category'] in ['razz','27_3draw','badugi', '27_1draw']:
+                hilo = "l"
+            #FIXME: recognise currency
+            #TODO: this wont work for non-standard structures
+            tmp  = self.insertGameTypes( (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
+                                    game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
+                                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200)), printdata = printdata)
+        return tmp[0]
+
+
+    def insertGameTypes(self, row, printdata = False):
+        if printdata:
+            print _("######## Gametype ##########")
+            import pprint
+            pp = pprint.PrettyPrinter(indent=4)
+            pp.pprint(row)
+            print _("###### End Gametype ########")
+
+        c = self.get_cursor()
+        c.execute( self.sql.query['insertGameTypes'], row )
+        return [self.get_last_insert_id(c)]
     
+    def storeFile(self, fdata):
+        q = self.sql.query['store_file']
+        q = q.replace('%s', self.sql.query['placeholder'])
+        c = self.get_cursor()
+        c.execute(q, fdata)
+        id = self.get_last_insert_id(c)
+        return id
+        
+    def updateFile(self, fdata):
+        q = self.sql.query['update_file']
+        q = q.replace('%s', self.sql.query['placeholder'])
+        c = self.get_cursor()
+        c.execute(q, fdata)
+
     def getHeroIds(self, pids, sitename):
         #Grab playerIds using hero names in HUD_Config.xml
         try:
@@ -2549,40 +2601,6 @@ class Database:
         if len(result) > 0:
             dup = True
         return dup
-
-    def getGameTypeId(self, siteid, game, printdata = False):
-        c = self.get_cursor()
-        #FIXME: Fixed for NL at the moment
-        c.execute(self.sql.query['getGametypeNL'], (siteid, game['type'], game['category'], game['limitType'], game['currency'],
-                        int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100)))
-        tmp = c.fetchone()
-        if (tmp == None):
-            hilo = "h"
-            if game['category'] in ['studhilo', 'omahahilo']:
-                hilo = "s"
-            elif game['category'] in ['razz','27_3draw','badugi', '27_1draw']:
-                hilo = "l"
-            #FIXME: recognise currency
-            #TODO: this wont work for non-standard structures
-            tmp  = self.insertGameTypes( (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
-                                    int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
-                                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200)), printdata = printdata)
-        return tmp[0]
-
-
-    def insertGameTypes(self, row, printdata = False):
-        if printdata:
-            print _("######## Gametype ##########")
-            import pprint
-            pp = pprint.PrettyPrinter(indent=4)
-            pp.pprint(row)
-            print _("###### End Gametype ########")
-
-        c = self.get_cursor()
-        c.execute( self.sql.query['insertGameTypes'], row )
-        return [self.get_last_insert_id(c)]
-
-
 
 #################################
 # Finish of NEWIMPORT CODE

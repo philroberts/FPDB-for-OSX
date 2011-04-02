@@ -245,6 +245,7 @@ class Sql:
                         category varchar(9) NOT NULL,
                         limitType char(2) NOT NULL,
                         hiLo char(1) NOT NULL,
+                        mix varchar(9) NOT NULL,
                         smallBlind int,
                         bigBlind int,
                         smallBet int NOT NULL,
@@ -260,6 +261,7 @@ class Sql:
                         category varchar(9),
                         limitType char(2),
                         hiLo char(1),
+                        mix char(9),
                         smallBlind int,
                         bigBlind int,
                         smallBet int,
@@ -274,6 +276,7 @@ class Sql:
                         category TEXT,
                         limitType TEXT,
                         hiLo TEXT,
+                        mix TEXT,
                         smallBlind INTEGER,
                         bigBlind INTEGER,
                         smallBet INTEGER,
@@ -356,7 +359,8 @@ class Sql:
                             tourneyId INT UNSIGNED, 
                             gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                             sessionId INT UNSIGNED,
-                            gameSessionId INT UNSIGNED, 
+                            gameSessionId INT UNSIGNED,
+                            fileId INT(10) UNSIGNED NOT NULL, FOREIGN KEY (fileId) REFERENCES Files(id), 
                             startTime DATETIME NOT NULL,
                             importTime DATETIME NOT NULL,
                             seats TINYINT NOT NULL,
@@ -396,6 +400,7 @@ class Sql:
                             gametypeId INT NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                             sessionId INT,
                             gameSessionId INT,
+                            fileId BIGINT NOT NULL, FOREIGN KEY (fileId) REFERENCES Files(id),
                             startTime timestamp without time zone NOT NULL,
                             importTime timestamp without time zone NOT NULL,
                             seats SMALLINT NOT NULL,
@@ -434,6 +439,7 @@ class Sql:
                             gametypeId INT NOT NULL,
                             sessionId INT,
                             gameSessionId INT,
+                            fileId INT NOT NULL,
                             startTime REAL NOT NULL,
                             importTime REAL NOT NULL,
                             seats INT NOT NULL,
@@ -1135,7 +1141,61 @@ class Sql:
                         cardsDiscarded TEXT,
                         allIn BOOLEAN
                         )""" 
-
+                        
+        ################################
+        # Create Files
+        ################################
+        
+        if db_server == 'mysql':
+            self.query['createFilesTable'] = """CREATE TABLE Files (
+                        id INT(10) UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        file text NOT NULL,
+                        site VARCHAR(32),
+                        type VARCHAR(7),
+                        startTime DATETIME NOT NULL,
+                        lastUpdate DATETIME NOT NULL,
+                        endTime DATETIME,
+                        hands INT,
+                        stored INT,
+                        dups INT,
+                        partial INT,
+                        errs INT,
+                        ttime100 INT,
+                        finished BOOLEAN)
+                        ENGINE=INNODB"""
+        elif db_server == 'postgresql':
+            self.query['createFilesTable'] = """CREATE TABLE Files (
+                        id BIGSERIAL, PRIMARY KEY (id),
+                        file TEXT NOT NULL,
+                        site VARCHAR(32),
+                        type VARCHAR(7),timestamp without time zone
+                        startTime timestamp without time zone NOT NULL,
+                        lastUpdate timestamp without time zone NOT NULL,
+                        endTime timestamp without time zone,
+                        hands INT,
+                        stored INT,
+                        dups INT,
+                        partial INT,
+                        errs INT,
+                        ttime100 INT,
+                        finished BOOLEAN)"""
+        elif db_server == 'sqlite':
+            self.query['createFilesTable'] = """CREATE TABLE Files (
+                        id INTEGER PRIMARY KEY,
+                        file TEXT NOT NULL,
+                        site VARCHAR(32),
+                        type VARCHAR(7),
+                        startTime timestamp NOT NULL,
+                        lastUpdate timestamp NOT NULL,
+                        endTime timestamp,
+                        hands INT,
+                        stored INT,
+                        dups INT,
+                        partial INT,
+                        errs INT,
+                        ttime100 INT,
+                        finished BOOLEAN
+                        )""" 
 
         ################################
         # Create HudCache
@@ -1498,10 +1558,10 @@ class Sql:
         elif db_server == 'postgresql':
             self.query['createSessionsCacheTable'] = """CREATE TABLE SessionsCache (
                         id BIGSERIAL, PRIMARY KEY (id),
-                        sessionStart REAL NOT NULL,
-                        sessionEnd REAL NOT NULL,
-                        gameStart REAL NOT NULL,
-                        gameEnd REAL NOT NULL,
+                        sessionStart timestamp without time zone NOT NULL,
+                        sessionEnd timestamp without time zone NOT NULL,
+                        gameStart timestamp without time zone NOT NULL,
+                        gameEnd timestamp without time zone NOT NULL,
                         sessionId INT,
                         date CHAR(7) NOT NULL, /* 1st char is style (A/T/H/S), other 6 are the key */
                         type char(7),
@@ -3481,7 +3541,7 @@ class Sql:
             <limit_test>
             <game_test>
             AND   hp.tourneysPlayersId IS NULL
-            GROUP BY h.startTime, hp.handId, hp.sawShowdown, ( hp.totalProfit / ( gt.bigBlind  * 2 ) ) * 100
+            GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
             ORDER BY h.startTime"""
 
         self.query['getRingProfitAllHandsPlayerIdSiteInDollars'] = """
@@ -4645,14 +4705,15 @@ class Sql:
                                            AND   category=%s
                                            AND   limitType=%s
                                            AND   currency=%s
+                                           AND   mix=%s
                                            AND   smallBlind=%s
                                            AND   bigBlind=%s
         """
 
         self.query['insertGameTypes'] = """INSERT INTO Gametypes
                                               (siteId, currency, type, base, category, limitType
-                                              ,hiLo, smallBlind, bigBlind, smallBet, bigBet)
-                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                              ,hiLo, mix, smallBlind, bigBlind, smallBet, bigBet)
+                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
         self.query['isAlreadyInDB'] = """SELECT id FROM Hands 
                                          WHERE gametypeId=%s AND siteHandNo=%s
@@ -4792,6 +4853,7 @@ class Sql:
                                             gametypeid,
                                             sessionId,
                                             gameSessionId,
+                                            fileId,
                                             startTime,
                                             importtime,
                                             seats,
@@ -4822,7 +4884,7 @@ class Sql:
                                              values
                                               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
 
         self.query['store_hands_players'] = """insert into HandsPlayers (
@@ -4990,6 +5052,42 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s
                 )"""
+
+        ################################
+        # queries for Files Table
+        ################################
+        
+        self.query['store_file'] = """  insert into Files (
+                        file,
+                        site,
+                        startTime,
+                        lastUpdate,
+                        hands,
+                        stored,
+                        dups,
+                        partial,
+                        errs,
+                        ttime100,
+                        finished)
+               values (
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s
+                )"""
+        
+        self.query['update_file'] = """
+                    UPDATE Files SET
+                    type=%s,
+                    lastUpdate=%s,
+                    endTime=%s,
+                    hands=hands+%s,
+                    stored=stored+%s,
+                    dups=dups+%s,
+                    partial=partial+%s,
+                    errs=errs+%s,
+                    ttime100=ttime100+%s,
+                    finished=%s
+                    WHERE id=%s"""
         
         ################################
         # Counts for DB stats window

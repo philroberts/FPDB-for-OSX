@@ -37,8 +37,6 @@ class PokerStars(HandHistoryConverter):
     filetype = "text"
     codepage = ("utf8", "cp1252")
     siteId   = 2 # Needs to match id entry in Sites database
-
-    mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'} # Legal mixed games
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3", "play": ""}         # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",      # legal ISO currency codes
@@ -80,6 +78,15 @@ class PokerStars(HandHistoryConverter):
               'Single Draw 2-7 Lowball' : ('draw','27_1draw'),
                           '5 Card Draw' : ('draw','fivedraw')
                }
+    mixes = {
+                                 'HORSE': 'horse',
+                                '8-Game': '8game',
+                                  'HOSE': 'hose',
+                         'Mixed PLH/PLO': 'plh_plo',
+                       'Mixed Omaha H/L': 'plo_lo',
+                         "Mixed Hold'em": 'lh_nlh',
+                           'Triple Stud': '3stud'
+               } # Legal mixed games
     currencies = { u'€':'EUR', '$':'USD', '':'T$' }
 
     # Static regexes
@@ -90,7 +97,7 @@ class PokerStars(HandHistoryConverter):
           # here's how I plan to use LS
           (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
           # close paren of tournament info
-          (?P<MIXED>HORSE|8\-Game|HOSE|Mixed PLH/PLO)?\s?\(?
+          (?P<MIXED>HORSE|8\-Game|HOSE|Mixed Omaha H/L|Mixed Hold\'em|Mixed PLH/PLO|Triple Stud)?\s?\(?
           (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
           (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\)?,?\s
           (-\s)?
@@ -198,7 +205,9 @@ class PokerStars(HandHistoryConverter):
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
             info['currency'] = self.currencies[mg['CURRENCY']]
-
+        if 'MIXED' in mg:
+            if mg['MIXED'] is not None: info['mix'] = self.mixes[mg['MIXED']]
+                
         if 'TOURNO' in mg and mg['TOURNO'] is None:
             info['type'] = 'ring'
         else:
@@ -299,8 +308,6 @@ class PokerStars(HandHistoryConverter):
             if key == 'MAX' and info[key] != None:
                 hand.maxseats = int(info[key])
 
-            if key == 'MIXED':
-                hand.mixed = self.mixes[info[key]] if info[key] is not None else None
             if key == 'PLAY' and info['PLAY'] is not None:
 #                hand.currency = 'play' # overrides previously set value
                 hand.gametype['currency'] = 'play'
