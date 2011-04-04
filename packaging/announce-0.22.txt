@@ -50,7 +50,7 @@ Where to get it
 ===============
 Please note that you will have to either recreate your database or use a new one if you're updating from 0.21-rc2 or older. Config files from 0.20 and later should work. Please report if you have problems with config files from that version or later.
 You can find checksums (MD5 and SHA512) in the download folder.
-To download: http://sourceforge.net/projects/fpdb/files/fpdb/Snapshots/
+To download: http://sourceforge.net/projects/fpdb/files/fpdb/0.22/
 
 Links
 =====
@@ -73,7 +73,8 @@ Please also see the "Bug reports" section below to enable us to help you.
 These are listed in order of usefulness - the 2+2 thread in particular is rather chaotic so if we miss your post feel free to bring it up again
 1) Chat/IRC
 One of the developers is usually around, but it is IRC. Dont get discouraged because we didn't answer within 10 minutes, once we do you've probably got our full attention.
-This link takes you to a website where you can talk to us directly, alternatively use an IRC client to connect to #fpdb on freenode: http://webchat.freenode.net/?channels=fpdb
+This link takes you to a website where you can talk to us directly: http://webchat.freenode.net/?channels=fpdb
+Alternatively use can use any IRC client to connect to #fpdb on freenode.net
 2) Mailing List
 Visit http://lists.sourceforge.net/lists/listinfo/fpdb-main to subscribe to the development&support mailing list and send us an email
 3) The monster 2+2 forum thread (registration reqd).
@@ -81,27 +82,23 @@ http://forumserver.twoplustwo.com/16...2009-a-273001/ Please dont let the size o
 
 Bug reports
 ===========
-When you do report issues, please help us help you. We usually need at least the following information:
+When you do report issues, try to make it easier for us help you. We usually need at least the following information:
 - Operating system and version (e.g. Ubuntu 10.10 or Windows XP)
 - Database type (MySQL, SQLite, PostgreSQL)
 - Install method (exe, tarball, deb, git, ebuild)
 - Fpdb version
-- Site name and gametype (e.g. Razz SnG)
+- Site name and gametype (e.g. $10 Pokerstars Razz SnG)
 You can find many of these details for easy copy&paste in the Help menu under About.
 
 Important known problems
 ========================
 Hud will not work if using postgres database - fixed in 0.23
-When upgrading, the database must be recreated and all hand histories bulk imported
 PKR is not working correctly
 
 Special information for Windows installations
 =============================================
-First-time installs will need to download and install the C++ runtime
-executable from Microsoft.
-Windows 7 and windows Vista users will need to set fpdb.exe and
-hud.exe to run as administrator (see
-http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Install_in_Windows)
+First-time installs will need to download and install the C++ runtime executable from Microsoft.
+Windows 7 and windows Vista users will need to set fpdb.exe and hud_main.exe to run as administrator (see http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Install_in_Windows)
 
 Contributors
 ============
