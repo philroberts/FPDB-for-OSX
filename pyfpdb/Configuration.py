@@ -123,7 +123,7 @@ def get_config(file_name, fallback = True):
 #    OK, fall back to the .example file, should be in the start dir
     elif os.path.exists(file_name + ".example"):
         try:
-            print ""
+            #print ""
             example_path = file_name + ".example"
             check_dir(default_dir)
             if not config_found and fallback:
@@ -173,7 +173,7 @@ def get_logger(file_name, config = "config", fallback = False, log_dir=None, log
     log = logging.getLogger()
     # but it looks like default is no output :-(  maybe because all the calls name a module?
     log.debug(_("Default logger initialised for %s") % file)
-    print(_("Default logger initialised for %s") % file)
+    #print(_("Default logger initialised for %s") % file)
     return log
 
 def check_dir(path, create = True):
@@ -314,7 +314,7 @@ class Site:
         self.layout       = {}
         self.emails       = {}
 
-        print _("Loading site"), self.site_name
+        #print _("Loading site"), self.site_name
 
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
@@ -488,16 +488,16 @@ class Popup:
 
 class Import:
     def __init__(self, node):
-        self.node = node
-        self.interval    = node.getAttribute("interval")
-        self.callFpdbHud   = node.getAttribute("callFpdbHud")
-        self.ResultsDirectory = node.getAttribute("ResultsDirectory")
-        self.hhBulkPath = node.getAttribute("hhBulkPath")
-        self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=False)
-        self.cacheSessions = string_to_bool(node.getAttribute("cacheSessions"), default=False)
-        self.sessionTimeout = string_to_bool(node.getAttribute("sessionTimeout"), default=30)
-        self.fastStoreHudCache = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
-        self.saveStarsHH = string_to_bool(node.getAttribute("saveStarsHH"), default=False)
+        self.node               = node
+        self.interval           = node.getAttribute("interval")
+        self.sessionTimeout     = node.getAttribute("sessionTimeout")
+        self.ResultsDirectory   = node.getAttribute("ResultsDirectory")
+        self.hhBulkPath         = node.getAttribute("hhBulkPath")
+        self.saveActions        = string_to_bool(node.getAttribute("saveActions")      , default=False)
+        self.cacheSessions      = string_to_bool(node.getAttribute("cacheSessions")    , default=False)
+        self.callFpdbHud        = string_to_bool(node.getAttribute("callFpdbHud")      , default=False)
+        self.fastStoreHudCache  = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
+        self.saveStarsHH        = string_to_bool(node.getAttribute("saveStarsHH")      , default=False)
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    saveActions = %s\n    fastStoreHudCache = %s\nResultsDirectory = %s" \
@@ -631,7 +631,7 @@ class RawHands:
         if node==None:
             self.save="error"
             self.compression="none"
-            print _("missing config section raw_hands")
+            #print _("missing config section raw_hands")
         else:
             save=node.getAttribute("save")
             if save in ("none", "error", "all"):
@@ -657,7 +657,7 @@ class RawTourneys:
         if node==None:
             self.save="error"
             self.compression="none"
-            print _("missing config section raw_tourneys")
+            #print _("missing config section raw_tourneys")
         else:
             save=node.getAttribute("save")
             if save in ("none", "error", "all"):
@@ -720,7 +720,7 @@ class Config:
         while added > 0 and n < 2:
             n = n + 1
             log.info(_("Reading configuration file %s") % file)
-            print (("\n"+_("Reading configuration file %s")+"\n") % file)
+            #print (("\n"+_("Reading configuration file %s")+"\n") % file)
             try:
                 doc = xml.dom.minidom.parse(file)
                 self.doc = doc
@@ -829,7 +829,7 @@ class Config:
         for raw_tourneys_node in doc.getElementsByTagName('raw_tourneys'):
             self.raw_tourneys = RawTourneys(raw_tourneys_node)
         
-        print ""
+        #print ""
     #end def __init__
 
     def add_missing_elements(self, doc, example_file):

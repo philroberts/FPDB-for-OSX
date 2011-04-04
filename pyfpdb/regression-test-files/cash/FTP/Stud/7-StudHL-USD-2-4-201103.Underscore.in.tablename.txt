@@ -1,0 +1,55 @@
+Full Tilt Poker Game #29408130000: Table XGod_Of_WarX - $2/$4 Ante $0.40 - Limit Stud H/L - 01:12:00 ET - 2011/03/28
+Seat 1: Player1 ($17.70)
+Seat 2: Hero ($82.30)
+Seat 3: Player3 ($81.70)
+Seat 5: Player5 ($95.45)
+Seat 6: Player6 ($43.60), is sitting out
+Seat 7: Player7 ($435.15)
+Seat 8: Player8 ($20.60)
+Player5 antes $0.40
+Player7 antes $0.40
+Player1 antes $0.40
+Hero antes $0.40
+Player8 antes $0.40
+Player3 antes $0.40
+*** 3RD STREET ***
+Dealt to Player1 [3c]
+Dealt to Hero [5d Ah] [Ad]
+Dealt to Player3 [7h]
+Dealt to Player5 [4c]
+Dealt to Player7 [8h]
+Dealt to Player8 [5s]
+Player1 is low with [3c]
+Player1 brings in for $0.50
+Hero completes it to $2
+Player3 folds
+Player5 calls $2
+Player7 folds
+Player7 is sitting out
+Player8 folds
+Player1 folds
+*** 4TH STREET ***
+Dealt to Hero [5d Ah Ad] [6h]
+Dealt to Player5 [4c] [7c]
+Hero bets $2
+Player5 calls $2
+*** 5TH STREET ***
+Dealt to Hero [5d Ah Ad 6h] [5c]
+Dealt to Player5 [4c 7c] [Tc]
+Hero bets $4
+Player5 folds
+Uncalled bet of $4 returned to Hero
+Hero mucks
+Hero wins the pot ($10.90)
+*** SUMMARY ***
+Total pot $10.90 | Rake $0
+Seat 1: Player1 folded on 3rd St.
+Seat 2: Hero collected ($10.90), mucked
+Seat 3: Player3 folded on 3rd St.
+Seat 5: Player5 folded on 5th St.
+Seat 6: Player6 is sitting out
+Seat 7: Player7 folded on 3rd St.
+Seat 8: Player8 folded on 3rd St.
+
+
+

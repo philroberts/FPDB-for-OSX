@@ -37,7 +37,7 @@ class Fulltilt(HandHistoryConverter):
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",       # legal ISO currency codes
                             'LS' : u"\$|\u20AC|\xe2\x82\xac|",  # legal currency symbols - Euro(cp1252, utf-8)
-                           'TAB' : u"-\u2013'\s\da-zA-Z",       # legal characters for tablename
+                           'TAB' : u"-\u2013'\s\da-zA-Z#_",     # legal characters for tablename
                            'NUM' : u".,\d",                     # legal characters in number format
                     }
 
@@ -61,7 +61,9 @@ class Fulltilt(HandHistoryConverter):
                       '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
                       '500.00': ('125.00', '250.00'), '500': ('125.00', '250.00'),
                       '800.00': ('200.00', '400.00'), '800': ('200.00', '400.00'),
-                     '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00')
+                     '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00'),
+                     '2000.00': ('500.00', '750.00'),'2000': ('500.00', '1000.00'),
+                     '3000.00': ('750.00', '1500.00'),'3000': ('750.00', '1500.00'),
                   }
 
     # Static regexes
@@ -172,7 +174,7 @@ class Fulltilt(HandHistoryConverter):
             self.re_BringIn          = re.compile(r"^%(PLAYERS)s brings in for [%(LS)s]?(?P<BRINGIN>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_PostBoth         = re.compile(r"^%(PLAYERS)s posts small \& big blinds \[[%(LS)s]? (?P<SBBB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
-            self.re_Action           = re.compile(r"^%(PLAYERS)s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds)( [%(LS)s]?(?P<BET>[%(NUM)s]+))?" % self.substitutions, re.MULTILINE)
+            self.re_Action           = re.compile(r"^%(PLAYERS)s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds| discards| stands pat)( [%(LS)s]?(?P<BET>[%(NUM)s]+))?(\son|\scards?)?(\s\[(?P<CARDS>.+?)\])?" % self.substitutions, re.MULTILINE)
             self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %(PLAYERS)s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \([%(LS)s]?(?P<POT>[%(NUM)s]+)\)(, mucked| with.*)?" % self.substitutions, re.MULTILINE)
             self.re_SitsOut          = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
@@ -242,8 +244,9 @@ class Fulltilt(HandHistoryConverter):
 
         if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring':
             try:
-                info['sb'] = self.Lim_Blinds[mg['BB']][0]
-                info['bb'] = self.Lim_Blinds[mg['BB']][1]
+                bb = self.clearMoneyString(mg['BB'])
+                info['sb'] = self.Lim_Blinds[bb][0]
+                info['bb'] = self.Lim_Blinds[bb][1]
             except KeyError:
                 log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
                 log.error(_("determineGameType: Raising FpdbParseError"))
@@ -483,6 +486,10 @@ class Fulltilt(HandHistoryConverter):
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
+            elif action.group('ATYPE') == ' discards':
+                hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('CARDS'))
+            elif action.group('ATYPE') == ' stands pat':
+                hand.addStandsPat( street, action.group('PNAME'), action.group('CARDS'))
             else:
                 print _("FullTilt: DEBUG: unimplemented readAction: '%s' '%s'") %(action.group('PNAME'),action.group('ATYPE'),)
 

@@ -3,6 +3,7 @@
     'boardcard3': 26,
     'boardcard4': 9,
     'boardcard5': 52,
+    'gameSessionId': 1,
     'gametypeId': 1,
     'importTime': None,
     'maxSeats': 10,

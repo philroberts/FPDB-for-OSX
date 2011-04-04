@@ -25,7 +25,6 @@ import datetime
 
 from Exceptions import FpdbParseError
 from HandHistoryConverter import *
-import PokerStarsToFpdb
 from TourneySummary import *
 
 class FullTiltPokerSummary(TourneySummary):
@@ -45,10 +44,10 @@ class FullTiltPokerSummary(TourneySummary):
                }
 
     substitutions = {
-                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : "\$|\xe2\x82\xac|",       # legal currency symbols - Euro(cp1252, utf-8)
-                           'TAB' : u"-\u2013'\s\da-zA-Z",    # legal characters for tablename
-                           'NUM' : u".,\d",                  # legal characters in number format
+                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",      # legal ISO currency codes
+                            'LS' : u"\$|\xe2\x82\xac|\u20ac|", # legal currency symbols - Euro(cp1252, utf-8)
+                           'TAB' : u"-\u2013'\s\da-zA-Z",      # legal characters for tablename
+                           'NUM' : u".,\d",                    # legal characters in number format
                     }
 
     re_SplitTourneys = re.compile("^Full Tilt Poker Tournament Summary")
