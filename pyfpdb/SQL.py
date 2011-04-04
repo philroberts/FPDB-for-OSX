@@ -372,6 +372,7 @@ class Sql:
                             boardcard4 smallint,
                             boardcard5 smallint,
                             texture smallint,
+                            runIt BOOLEAN,
                             playersVpi SMALLINT NOT NULL,         /* num of players vpi */
                             playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4 */
                             playersAtStreet2 SMALLINT NOT NULL,
@@ -412,6 +413,7 @@ class Sql:
                             boardcard4 smallint,
                             boardcard5 smallint,
                             texture smallint,
+                            runIt BOOLEAN,
                             playersVpi SMALLINT NOT NULL,         /* num of players vpi */
                             playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4 */
                             playersAtStreet2 SMALLINT NOT NULL,
@@ -451,6 +453,7 @@ class Sql:
                             boardcard4 INT,
                             boardcard5 INT,
                             texture INT,
+                            runIt BOOLEAN,
                             playersVpi INT NOT NULL,         /* num of players vpi */
                             playersAtStreet1 INT NOT NULL,   /* num of players seeing flop/street4 */
                             playersAtStreet2 INT NOT NULL,
@@ -469,6 +472,42 @@ class Sql:
                             showdownPot INT,                /* pot size at sd/street7 */
                             comment TEXT,
                             commentTs REAL)"""
+                            
+        ################################
+        # Create Hands
+        ################################
+
+        if db_server == 'mysql':
+            self.query['createBoardsTable'] = """CREATE TABLE Boards (
+                            id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                            handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                            boardId smallint,
+                            boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
+                            boardcard2 smallint,
+                            boardcard3 smallint,
+                            boardcard4 smallint,
+                            boardcard5 smallint)
+                        ENGINE=INNODB"""
+        elif db_server == 'postgresql':
+            self.query['createBoardsTable'] = """CREATE TABLE Boards (
+                            id BIGSERIAL, PRIMARY KEY (id),
+                            handId BIGINT NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                            boardId smallint,
+                            boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
+                            boardcard2 smallint,
+                            boardcard3 smallint,
+                            boardcard4 smallint,
+                            boardcard5 smallint)"""
+        elif db_server == 'sqlite':
+            self.query['createBoardsTable'] = """CREATE TABLE Boards (
+                            id INTEGER PRIMARY KEY,
+                            handId INT NOT NULL,
+                            boardId INT,
+                            boardcard1 INT,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
+                            boardcard2 INT,
+                            boardcard3 INT,
+                            boardcard4 INT,
+                            boardcard5 INT)"""
 
 
         ################################
@@ -4865,6 +4904,7 @@ class Sql:
                                             boardcard3,
                                             boardcard4,
                                             boardcard5,
+                                            runIt,
                                             playersAtStreet1,
                                             playersAtStreet2,
                                             playersAtStreet3,
@@ -4884,7 +4924,8 @@ class Sql:
                                              values
                                               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                               %s)"""
 
 
         self.query['store_hands_players'] = """insert into HandsPlayers (
@@ -5049,6 +5090,20 @@ class Sql:
                )
                values (
                     %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s
+                )"""
+                
+        self.query['store_boards'] = """insert into Boards (
+                        handId,
+                        boardId,
+                        boardcard1,
+                        boardcard2,
+                        boardcard3,
+                        boardcard4,
+                        boardcard5
+               )
+               values (
                     %s, %s, %s, %s, %s,
                     %s, %s
                 )"""

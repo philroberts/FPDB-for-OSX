@@ -77,6 +77,7 @@ class Hand(object):
         self.maxseats = None
         self.counted_seats = 0
         self.buttonpos = 0
+        self.runItTimes = 0
 
         #tourney stuff
         self.tourNo = None
@@ -887,9 +888,8 @@ class HoldemOmahaHand(Hand):
             hhc.readHeroCards(self)
             hhc.readShowdownActions(self)
             # Read actions in street order
-            for street in self.communityStreets:
-                if self.streets[street]:
-                    hhc.readCommunityCards(self, street)
+            for street, text in self.streets.iteritems():
+                if text: hhc.readCommunityCards(self, street)
             for street in self.actionStreets:
                 if self.streets[street]:
                     hhc.readAction(self, street)
