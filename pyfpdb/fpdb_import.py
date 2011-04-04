@@ -495,7 +495,7 @@ class Importer:
                         hbulk = hand.insertHands(self.database, hbulk, fileId, doinsert, self.settings['testData'])
                         hcbulk = hand.updateHudCache(self.database, hcbulk, doinsert)
                         ihands.append(hand)
-                        to_hud.append(id)
+                        to_hud.append(hand.dbid_hands)
                     except Exceptions.FpdbHandDuplicate:
                         duplicates += 1
                 self.database.commit()
@@ -512,7 +512,7 @@ class Importer:
                 if self.caller:
                     for hid in to_hud:
                         try:
-                            print _("fpdb_import: sending hand to hud"), hand.dbid_hands, "pipe =", self.caller.pipe_to_hud
+                            print _("fpdb_import: sending hand to hud"), hid, "pipe =", self.caller.pipe_to_hud
                             self.caller.pipe_to_hud.stdin.write("%s" % (hid) + os.linesep)
                         except IOError, e:
                             log.error(_("Failed to send hand to HUD: %s") % e)

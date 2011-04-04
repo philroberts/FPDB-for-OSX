@@ -2109,6 +2109,7 @@ class Database:
         insert_hudcache = insert_hudcache.replace('%s', self.sql.query['placeholder'])
 
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
+        hcs = []
         for p in pdata:
             #NOTE: Insert new stats at right place because SQL needs strict order
             line = []
@@ -2201,7 +2202,7 @@ class Database:
             line.append(pdata[p]['street3Raises'])               
             line.append(pdata[p]['street4Raises'])               
             
-            hc, hcs = {}, []
+            hc = {}
             hc['gametypeId'] = gid
             hc['playerId'] = pids[p]
             hc['activeSeats'] = len(pids)
@@ -2221,6 +2222,7 @@ class Database:
         for h in hcs:
             match = False
             for b in hcbulk:
+                #print h['game']==b['game'], h['game'], b['game']
                 if  h['game']==b['game']:
                     b['line'] = [sum(l) for l in zip(b['line'], h['line'])]
                     match = True
@@ -2228,14 +2230,9 @@ class Database:
         
         if doinsert:
             inserts = []
-            exists = []
-            updates = []
+            c = self.get_cursor()
             for hc in hcbulk:
                 row = hc['line'] + hc['game']
-                if hc['game'] in exists: 
-                    updates.append(row)
-                    continue
-                c = self.get_cursor()
                 num = c.execute(update_hudcache, row)
                 # Try to do the update first. Do insert it did not work
                 if ((self.backend == self.PGSQL and c.statusmessage != "UPDATE 1")
@@ -2246,11 +2243,11 @@ class Database:
                     #num = c.execute(insert_hudcache, row)
                     #print "DEBUG: Successfully(?: %s) updated HudCacho using INSERT" % num
                 else:
-                    exists.append(hc['game'])
                     #print "DEBUG: Successfully updated HudCacho using UPDATE"
-            if inserts: c.executemany(insert_hudcache, inserts)
-            if updates: c.executemany(update_hudcache, updates)
-                
+                    pass
+            if inserts:
+                c.executemany(insert_hudcache, inserts)
+                             
         return hcbulk
             
     def prepSessionsCache(self, hid, pids, startTime, sc, heros, doinsert = False):
