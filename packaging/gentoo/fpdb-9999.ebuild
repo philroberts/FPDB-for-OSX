@@ -17,7 +17,7 @@ SLOT="0"
 KEYWORDS=""
 #note: fpdb has only been tested on x86 and amd64, but should work on other arches, too
 
-IUSE="graph mysql postgres sqlite linguas_de linguas_es linguas_fr linguas_hu linguas_pl linguas_ru"
+IUSE="graph mysql postgres sqlite linguas_de linguas_es linguas_fr linguas_hu linguas_it linguas_pl linguas_ru"
 RDEPEND="
 	mysql? ( virtual/mysql
 		dev-python/mysql-python )
@@ -56,6 +56,10 @@ src_install() {
 
 	if use linguas_hu; then
 		msgfmt pyfpdb/locale/fpdb-hu_HU.po -o pyfpdb/locale/hu.mo || die "failed to create Hungarian mo file"
+	fi
+
+	if use linguas_it; then
+		msgfmt pyfpdb/locale/fpdb-it_IT.po -o pyfpdb/locale/it.mo || die "failed to create Italian mo file"
 	fi
 
 	if use linguas_pl; then
