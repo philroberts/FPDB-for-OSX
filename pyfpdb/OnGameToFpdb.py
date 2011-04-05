@@ -161,7 +161,7 @@ class OnGame(HandHistoryConverter):
         if not m:
             tmp = handText[0:100]
             log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error(_("determineGameType: Raising FpdbParseError"))
+            log.error("determineGameType: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
@@ -180,7 +180,7 @@ class OnGame(HandHistoryConverter):
             else:
                 tmp = handText[0:100]
                 log.error(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
-                log.error(_("determineGameType: Raising FpdbParseError"))
+                log.error("determineGameType: " + _("Raising FpdbParseError"))
                 raise FpdbParseError(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]

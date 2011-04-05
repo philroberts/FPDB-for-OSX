@@ -74,7 +74,7 @@ class Betfair(HandHistoryConverter):
         if not m:
             tmp = handText[0:100]
             log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error(_("determineGameType: Raising FpdbParseError"))
+            log.error("determineGameType: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
@@ -196,7 +196,7 @@ class Betfair(HandHistoryConverter):
             elif action.group('ATYPE') == 'checks':
                 hand.addCheck( street, action.group('PNAME'))
             else:
-                sys.stderr.write(_("DEBUG: ") + _("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'),action.group('ATYPE')))
+                sys.stderr.write(_("DEBUG: ") + _("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):
