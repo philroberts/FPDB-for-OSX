@@ -731,6 +731,7 @@ class Sql:
                         street3Seen BOOLEAN,
                         street4Seen BOOLEAN,
                         sawShowdown BOOLEAN,
+                        showed      BOOLEAN,
 
                         street1Aggr BOOLEAN,
                         street2Aggr BOOLEAN,
@@ -871,6 +872,7 @@ class Sql:
                         street3Seen BOOLEAN,
                         street4Seen BOOLEAN,
                         sawShowdown BOOLEAN,
+                        showed      BOOLEAN,
 
                         street1Aggr BOOLEAN,
                         street2Aggr BOOLEAN,
@@ -1010,6 +1012,7 @@ class Sql:
                         street3Seen INT,
                         street4Seen INT,
                         sawShowdown INT,
+                        showed      INT,
 
                         street1Aggr INT,
                         street2Aggr INT,
@@ -4963,6 +4966,7 @@ class Sql:
                 street3Seen,
                 street4Seen,
                 sawShowdown,
+                showed,
                 wonAtSD,
                 street0Aggr,
                 street1Aggr,
@@ -5071,7 +5075,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s
+                    %s, %s, %s
                 )"""
 
         self.query['store_hands_actions'] = """insert into HandsActions (

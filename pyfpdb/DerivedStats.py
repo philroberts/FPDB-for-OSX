@@ -43,6 +43,7 @@ class DerivedStats():
         init['street4Aggr'] = False
         init['wonWhenSeenStreet1'] = 0.0
         init['sawShowdown'] = False
+        init['showed']      = False
         init['wonAtSD']     = 0.0
         init['startCards']  = 0
         init['position']            = 2
@@ -187,6 +188,8 @@ class DerivedStats():
                 self.handsplayers[player[1]]['tourneysPlayersIds'] = hand.tourneysPlayersIds[player[1]]
             else:
                 self.handsplayers[player[1]]['tourneysPlayersIds'] = None
+            if player[1] in hand.shown:
+                self.handsplayers[player[1]]['showed'] = True
 
         #### seen now processed in playersAtStreetX()
         # XXX: enumerate(list, start=x) is python 2.6 syntax; 'start'
