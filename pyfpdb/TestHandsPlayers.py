@@ -21,8 +21,6 @@
 import sys
 import os
 import codecs
-import pprint
-import PokerStarsToFpdb
 from Hand import *
 import Configuration
 import Database
@@ -31,6 +29,10 @@ import fpdb_import
 import Options
 import datetime
 import pytz
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
+
+DEBUG = False
 
 
 class FpdbError:
@@ -147,6 +149,10 @@ def compare_hands_file(filename, importer, errors):
 
     for hand in handlist:
         ghash = hand.stats.getHands()
+        # Delete unused data from hash
+        del ghash['gsc']
+        del ghash['sc']
+        del ghash['id']
         for datum in ghash:
             #print "DEBUG: hand: '%s'" % datum
             try:
@@ -155,7 +161,7 @@ def compare_hands_file(filename, importer, errors):
                     pass
                 else:
                     # Stats don't match. 
-                    if datum == "gametypeId" or datum == 'sessionId' or datum == 'tourneyId':
+                    if datum == "gametypeId" or datum == 'sessionId' or datum == 'tourneyId' or datum == 'gameSessionId':
                         # Not an error. gametypeIds are dependent on the order added to the db.
                         #print "DEBUG: Skipping mismatched gamtypeId"
                         pass
@@ -172,8 +178,8 @@ def compare(leaf, importer, errors, site):
     # Test if this is a hand history file
     if filename.endswith('.txt'):
         # test if there is a .hp version of the file
-        print "Site: %s" % site
-        print "Filename: %s" % filename
+        if DEBUG: print "Site: %s" % site
+        if DEBUG: print "Filename: %s" % filename
         importer.addBulkImportImportFileOrDir(filename, site=site)
         (stored, dups, partial, errs, ttime) = importer.runImport()
 
@@ -332,6 +338,7 @@ def main(argv=None):
         walk_testfiles(options.filename, compare, importer, BetfairErrors, "Betfair")
     if sites['OnGame'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/OnGame/", compare, importer, OnGameErrors, "OnGame")
+        walk_testfiles("regression-test-files/tour/ongame/", compare, importer, OnGameErrors, "OnGame")
     elif sites['OnGame'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, OnGameErrors, "OnGame")
     if sites['Absolute'] == True and not single_file_test:
@@ -345,6 +352,7 @@ def main(argv=None):
         walk_testfiles(options.filename, compare, importer, UltimateBetErrors, "Absolute")
     if sites['Everleaf'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
+        walk_testfiles("regression-test-files/tour/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
     elif sites['Everleaf'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, EverleafErrors, "Everleaf")
     if sites['Carbon'] == True and not single_file_test:

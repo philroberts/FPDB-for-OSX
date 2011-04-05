@@ -170,7 +170,7 @@ class Importer:
     def addImportFile(self, filename, site = "default", filter = "passthrough"):
         #TODO: test it is a valid file -> put that in config!!
         #print "addimportfile: filename is a", filename.__class__
-        # filename now comes in as unicode
+        # filename not guaranteed to be unicode
         if filename in self.filelist or not os.path.exists(filename):
             return
         self.filelist[filename] = [site] + [filter]
@@ -196,11 +196,10 @@ class Importer:
         if os.path.isdir(inputPath):
             for subdir in os.walk(inputPath):
                 for file in subdir[2]:
-                    self.addImportFile(unicode(os.path.join(subdir[0], file),'utf-8'),
-                                       site=site, filter=filter)
+                    self.addImportFile(os.path.join(subdir[0], file), site=site, filter=filter)
         else:
-            
-            self.addImportFile(unicode(inputPath,'utf-8'), site=site, filter=filter)
+            self.addImportFile(inputPath, site=site, filter=filter)
+
     #Add a directory of files to filelist
     #Only one import directory per site supported.
     #dirlist is a hash of lists:
@@ -242,7 +241,7 @@ class Importer:
         #print "dropInd =", self.settings['dropIndexes'], "  dropHudCache =", self.settings['dropHudCache']
 
         if self.settings['threads'] <= 0:
-            (totstored, totdups, totpartial, toterrors) = self.importFiles(self.database, None)
+            (totstored, totdups, totpartial, toterrors) = self.importFiles(None)
         else:
             # create queue (will probably change to deque at some point):
             self.writeq = Queue.Queue( self.settings['writeQSize'] )
@@ -254,7 +253,7 @@ class Importer:
                 t.setDaemon(True)
                 t.start()
             # read hands and write to q:
-            (totstored, totdups, totpartial, toterrors) = self.importFiles(self.database, self.writeq)
+            (totstored, totdups, totpartial, toterrors) = self.importFiles(self.writeq)
 
             if self.writeq.empty():
                 print _("writers finished already")
@@ -286,7 +285,7 @@ class Importer:
         return (totstored, totdups, totpartial, toterrors, endtime-starttime)
     # end def runImport
 
-    def importFiles(self, db, q):
+    def importFiles(self, q):
         """"Read filenames in self.filelist and pass to import_file_dict().
             Uses a separate database connection if created as a thread (caller
             passes None or no param as db)."""
@@ -304,7 +303,7 @@ class Importer:
             
             ProgressDialog.progress_update()
             
-            (stored, duplicates, partial, errors, ttime) = self.import_file_dict(db, file
+            (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file
                                                ,self.filelist[file][0], self.filelist[file][1], q)
             totstored += stored
             totdups += duplicates
@@ -395,7 +394,7 @@ class Importer:
                                 self.caller.addText("\n"+os.path.basename(file))
                         except KeyError: # TODO: What error happens here?
                             pass
-                        (stored, duplicates, partial, errors, ttime) = self.import_file_dict(self.database, file, self.filelist[file][0], self.filelist[file][1], None)
+                        (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1], None)
                         try:
                             if not os.path.isdir(file): # Note: This assumes that whatever calls us has an "addText" func
                                 self.caller.addText(" %d stored, %d duplicates, %d partial, %d errors (time = %f)" % (stored, duplicates, partial, errors, ttime))
@@ -426,72 +425,75 @@ class Importer:
         #rulog.close()
 
     # This is now an internal function that should not be called directly.
-    def import_file_dict(self, db, file, site, filter, q=None):
-        #print "import_file_dict"
+    def import_file_dict(self, file, site, filter, q=None):
 
         if os.path.isdir(file):
             self.addToDirList[file] = [site] + [filter]
             return (0,0,0,0,0)
 
-        conv = None
         (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, time())
-
-        # sc: is there any need to decode this? maybe easier to skip it than guess at the encoding?
-        #file =  file.decode("utf-8") #(Configuration.LOCALE_ENCODING)
 
         # Load filter, process file, pass returned filename to import_fpdb_file
         if self.settings['threads'] > 0 and self.writeq is not None:
-            log.info((_("Converting %s") % file) + " (" + str(q.qsize()) + ")")
-        else:
-            log.info(_("Converting %s") % file)
-
+              log.info((_("Converting %s") % file) + " (" + str(q.qsize()) + ")")
+        else: log.info(_("Converting %s") % file)
+            
         filter_name = filter.replace("ToFpdb", "")
-
         mod = __import__(filter)
         obj = getattr(mod, filter_name, None)
         if callable(obj):
-            idx = 0
-            if file in self.pos_in_file:
-                idx = self.pos_in_file[file]
-            else:
-                self.pos_in_file[file] = 0
-            hhc = obj( self.config, in_path = file, index = idx, starsArchive = self.settings['starsArchive'], ftpArchive = self.settings['ftpArchive'], sitename = site )
+            
+            if file in self.pos_in_file:  idx = self.pos_in_file[file]
+            else: self.pos_in_file[file], idx = 0, 0
+                
+            hhc = obj( self.config, in_path = file, index = idx
+                      ,starsArchive = self.settings['starsArchive']
+                      ,ftpArchive   = self.settings['ftpArchive']
+                      ,sitename     = site )
+            
             if hhc.getStatus():
+                if self.caller: hhc.progressNotify()
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
-                to_hud = []
-                hp_bulk = []
-                ha_bulk = []
-                i = 0
-
+                (hbulk, hpbulk, habulk, hcbulk, phands, ihands, to_hud) = ([], [], [], [], [], [], [])
+                sc, gsc = {'bk': []}, {'bk': []}
+                
+                ####Lock Placeholder####
                 for hand in handlist:
-                    i += 1
-                    if hand is not None:
-                        hand.prepInsert(self.database, printtest = self.settings['testData'])
-                        try:
-                            hp_inserts, ha_inserts = hand.insert(self.database, hp_data = hp_bulk, 
-                                                                 ha_data = ha_bulk, insert_data = len(handlist)==i,
-                                                                 printtest = self.settings['testData'])
-                            hp_bulk += hp_inserts
-                            ha_bulk += ha_inserts
-                        except Exceptions.FpdbHandDuplicate:
-                            duplicates += 1
-                        else:
-                            if self.callHud and hand.dbid_hands != 0:
-                                to_hud.append(hand.dbid_hands)
-                    else: # TODO: Treat empty as an error, or just ignore?
-                        log.error(_("Hand processed but empty"))
-
-                # Call hudcache update if not in bulk import mode
-                # FIXME: Need to test for bulk import that isn't rebuilding the cache
-                if self.callHud:
-                    for hand in handlist:
-                        if hand is not None and not hand.is_duplicate:
-                            hand.updateHudCache(self.database)
+                    hand.prepInsert(self.database, printtest = self.settings['testData'])
+                    self.database.commit()
+                    phands.append(hand)
+                ####Lock Placeholder####
+                
+                for hand in phands:
+                    hand.assembleHand()
+                
+                ####Lock Placeholder####
+                id = self.database.nextHandId()
+                for i in range(len(phands)):
+                    doinsert = len(phands)==i+1
+                    hand = phands[i]
+                    try:
+                        id = hand.getHandId(self.database, id)
+                        sc, gsc = hand.updateSessionsCache(self.database, sc, gsc, None, doinsert)
+                        hbulk = hand.insertHands(self.database, hbulk, doinsert, self.settings['testData'])
+                        hcbulk = hand.updateHudCache(self.database, hcbulk, doinsert)
+                        ihands.append(hand)
+                        to_hud.append(id)
+                    except Exceptions.FpdbHandDuplicate:
+                        duplicates += 1
+                self.database.commit()
+                ####Lock Placeholder####
+                
+                for i in range(len(ihands)):
+                    doinsert = len(ihands)==i+1
+                    hand = ihands[i]
+                    hpbulk = hand.insertHandsPlayers(self.database, hpbulk, doinsert, self.settings['testData'])
+                    habulk = hand.insertHandsActions(self.database, habulk, doinsert, self.settings['testData'])
                 self.database.commit()
 
                 #pipe the Hands.id out to the HUD
-                if self.caller:
+                if self.callHud:
                     for hid in to_hud:
                         try:
                             print _("fpdb_import: sending hand to hud"), hand.dbid_hands, "pipe =", self.caller.pipe_to_hud

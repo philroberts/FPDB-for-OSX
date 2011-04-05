@@ -35,10 +35,16 @@ class Win2day(HandHistoryConverter):
     siteID   = 4
 
     # Static regexes
-    #<HISTORY ID="102271403" SESSION="session31237702.xml" TABLE="Innsbruck 3" GAME="GAME_THM" GAMETYPE="GAMETYPE_REAL" GAMEKIND="GAMEKIND_CASH" TABLECURRENCY="EUR" LIMIT="NL" STAKES="0.25/0.50" DATE="1246909773" WIN="0.00" LOSS="0.50">
-    
-    #'^<HISTORY ID="(?P<HID>[0-9]+)" SESSION="session[0-9]+\.xml" TABLE="(?P<TABLE>[- a-zA-Z0-9]+)" GAME="(?P<GAME>[_A-Z]+)" GAMETYPE="[_a-zA-Z]+" GAMEKIND="[_a-zA-Z]+" TABLECURRENCY="(?P<CURRENCY>[A-Z]+)" LIMIT="(?P<LIMIT>NL|PL)" STAKES="(?P<SB>[.0-9]+)/(?P<BB>[.0-9]+)" DATE="(?P<DATETIME>[0-9]+)" WIN="[.0-9]+" LOSS="[.0-9]+">$'
-    re_GameInfo     = re.compile('<HISTORY ID="(?P<HID>[0-9]+)" SESSION="session[0-9]+\.xml" TABLE="(?P<TABLE>[- a-zA-Z0-9\xc0-\xfc/.]+)" GAME="(?P<GAME>[_A-Z]+)" GAMETYPE="[_a-zA-Z]+" GAMEKIND="[_a-zA-Z]+" TABLECURRENCY="(?P<CURRENCY>[A-Z]+)" LIMIT="(?P<LIMIT>NL|PL)" STAKES="(?P<SB>[.0-9]+)/(?P<BB>[.0-9]+)" DATE="(?P<DATETIME>[0-9]+)" WIN="[.0-9]+" LOSS="[.0-9]+">', re.MULTILINE)
+    re_GameInfo     = re.compile("""<HISTORY\sID="(?P<HID>[0-9]+)"\sSESSION="session[0-9]+\.xml"\s
+                                    TABLE="(?P<TABLE>[-\sa-zA-Z0-9\xc0-\xfc/.]+)"\s
+                                    GAME="(?P<GAME>[_A-Z]+)"\sGAMETYPE="[_a-zA-Z]+"\sGAMEKIND="[_a-zA-Z]+"\s
+                                    TABLECURRENCY="(?P<CURRENCY>[A-Z]+)"\s
+                                    LIMIT="(?P<LIMIT>NL|PL)"\s
+                                    STAKES="(?P<SB>[.0-9]+)/(?P<BB>[.0-9]+)"\s
+                                    DATE="(?P<DATETIME>[0-9]+)"\s
+                                    (TABLETOURNEYID=""\s)?
+                                    WIN="[.0-9]+"\sLOSS="[.0-9]+"
+                                    """, re.MULTILINE| re.VERBOSE)
     re_SplitHands   = re.compile('</HISTORY>')
     re_HandInfo     = re.compile("^Table \'(?P<TABLE>[- a-zA-Z]+)\'(?P<TABLEATTRIBUTES>.+?$)?", re.MULTILINE)
     re_Button       = re.compile('<ACTION TYPE="HAND_DEAL" PLAYER="(?P<BUTTON>[^"]+)">\n<CARD LINK="[0-9b]+"></CARD>\n<CARD LINK="[0-9b]+"></CARD></ACTION>\n<ACTION TYPE="ACTION_', re.MULTILINE)
@@ -97,6 +103,7 @@ class Win2day(HandHistoryConverter):
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
+        #print "DEBUG: mg: %s" % mg
         
         # translations from captured groups to our info strings
         #limits = { 'NL':'nl', 'PL':'pl', 'Limit':'fl' }
