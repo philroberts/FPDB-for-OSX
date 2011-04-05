@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-04-05 08:40+CEST\n"
-"PO-Revision-Date: 2011-04-04 21:58+0000\n"
+"POT-Creation-Date: 2011-04-05 11:30+CEST\n"
+"PO-Revision-Date: 2011-04-05 09:26+0000\n"
 "Last-Translator: seppone1991 <seppone1991@gmail.com>\n"
 "Language-Team: Italian (Italy) <>\n"
 "Language: it_IT\n"
@@ -200,35 +200,28 @@ msgstr "Un numero errato nell' xalignement è stato ignorato"
 
 #: Configuration.py:640 Configuration.py:647 Configuration.py:666
 #: Configuration.py:673
-#, fuzzy
 msgid "Invalid config value for %s, defaulting to %s"
-msgstr "Valore di configurazione non valido per raw_hands.save.Errore."
+msgstr "Valore di configurazione invalido per %s,messo di default a %s"
 
 #: Configuration.py:691 Configuration.py:692
-#, fuzzy
 msgid "Configuration file %s not found. Using defaults."
-msgstr "File di configurazione %s non trovato. Uso file di default"
+msgstr "File di configurazione %s non trovato.File config di default in uso."
 
 #: Configuration.py:722
 msgid "Reading configuration file %s"
 msgstr "Lettura file di configurazione %s"
 
 #: Configuration.py:729
-#, fuzzy
 msgid "Error parsing %s."
-msgstr "Errore di conversione di '%s'"
+msgstr "Errore di analisi %s"
 
 #: Configuration.py:729 Configuration.py:845
-#, fuzzy
 msgid "See error log file."
-msgstr "Errore di analisi %s. Vedi file log di errore."
+msgstr "Vedi file log di errore"
 
 #: Configuration.py:845
-#, fuzzy
 msgid "Error parsing example configuration file %s."
-msgstr ""
-"Errore di analisi file configurazione di esempio %s.Guarda il file di log "
-"errori."
+msgstr "Errore analisi file di configurazione di esempio %s"
 
 #: Database.py:65
 msgid "Not using sqlalchemy connection pool."
@@ -247,36 +240,28 @@ msgid "*** WARNING UNKNOWN MYSQL ERROR:"
 msgstr "***ATTENZIONE ERRORE SCONOSCIUTO DI MYSQL"
 
 #: Database.py:470
-#, fuzzy
 msgid "Connecting to SQLite: %s"
-msgstr "Connesso a SQLite: %s"
+msgstr "Connessione a SQLite: %s"
 
 #: Database.py:482
 msgid "Some database functions will not work without NumPy support"
 msgstr "Alcune funzioni del database possono non funzionare senza NumPy"
 
 #: Database.py:513
-#, fuzzy
 msgid "Outdated or too new database version (%s)."
-msgstr ""
-"Versione del database obsoleta o troppo nuova(%s)-Si prega di ricreare le "
-"tabelle dall'apposita sezione"
+msgstr "Versione database obsoleta o troppo aggiornata (%s)"
 
 #: Database.py:513 Database.py:523 Database.py:524
-#, fuzzy
 msgid "Please recreate tables."
-msgstr "Crea o Ricrea _Tabelle"
+msgstr "Si prega di ricreare le tabelle."
 
 #: Database.py:518 Database.py:519
-#, fuzzy
 msgid "Recreating tables."
-msgstr "Ricreazione tabelle completata"
+msgstr "Ricreazione tabelle in corso."
 
 #: Database.py:518 Database.py:519 Database.py:523 Database.py:524
-#, fuzzy
 msgid "Failed to read settings table."
-msgstr ""
-"Impossibile leggere la tabella delle impostazioni - Ricreando le tabelle"
+msgstr "Lettura impostazioni tavolo fallita"
 
 #: Database.py:545
 msgid "commit %s failed: info=%s value=%s"
@@ -755,9 +740,8 @@ msgid "Unable to locate currency"
 msgstr "Impossibile individuare valuta"
 
 #: FulltiltToFpdb.py:209
-#, fuzzy
 msgid "Raising FpdbParseError for file '%s'"
-msgstr "determineGameType: Errore di analisi di Fpdb per il file '%s'"
+msgstr "Errore di analisi Fpdb per il file %s"
 
 #: FulltiltToFpdb.py:251 FulltiltToFpdb.py:253 PacificPokerToFpdb.py:204
 #: PacificPokerToFpdb.py:206 PkrToFpdb.py:153 PkrToFpdb.py:155
@@ -766,18 +750,16 @@ msgid "Lim_Blinds has no lookup for '%s'"
 msgstr "Lim_Blinds non ha trovato alcun risultato per '%s'"
 
 #: FulltiltToFpdb.py:369
-#, fuzzy
 msgid "readPlayerStacks: No players detected (hand #%s)"
-msgstr "FTP: readPlayersStacks: Nessun giocatore rilevato (mano#%s)"
+msgstr "readPlayerStacks: Nessun giocatore rilevato (mano #%s)"
 
 #: FulltiltToFpdb.py:429
 msgid "No bringin found, handid =%s"
 msgstr "Bring-in non trovato,hand ID=%s"
 
 #: FulltiltToFpdb.py:436
-#, fuzzy
 msgid "readButton: Failed to detect button (hand #%s cancelled?)"
-msgstr "FTP:readButton:Bottone non trovate(hand#%s cancella?)"
+msgstr "readButton: Riconoscimento Button fallito (mano #%s cancellata?)"
 
 #: FulltiltToFpdb.py:570
 msgid "determineTourneyType : Parsing NOK"
@@ -805,20 +787,16 @@ msgstr ""
 "Incapace attribuire un buyin a questo torneo:Si assume che sia un freeroll"
 
 #: FulltiltToFpdb.py:771
-#, fuzzy
 msgid "Player finishing stats unreadable : %s"
-msgstr "FullTilt: Statistiche di classifica finale illeggibili: %s"
+msgstr "Stats finali del giocatore illegibili: %s"
 
 #: FulltiltToFpdb.py:780
-#, fuzzy
 msgid "%s not found in tourney.ranks ..."
-msgstr "FullTilt: %s non trovato dentro tourney.ranks"
+msgstr "%s non trovato in tourney.ranks"
 
 #: FulltiltToFpdb.py:782
-#, fuzzy
 msgid "Bad parsing : finish position incoherent : %s / %s"
-msgstr ""
-"FullTilt:Analisi incorretta:la posizione finale non  corrisponde:%s / %s"
+msgstr "Analisi errata: posizione finale incoerente: %s / %s"
 
 #: GuiAutoImport.py:90
 msgid "Time between imports in seconds:"
@@ -1438,9 +1416,8 @@ msgid "Mail Folder"
 msgstr "Cartella mail"
 
 #: GuiImapFetcher.py:110
-#, fuzzy
 msgid "Mail Server"
-msgstr "Mailserver"
+msgstr "Mail Server"
 
 #: GuiImapFetcher.py:110
 msgid "Use SSL"
@@ -2915,14 +2892,13 @@ msgstr "Inserisci manualmente il nome del giocatore"
 
 #: PacificPokerToFpdb.py:258 PartyPokerToFpdb.py:348 PokerStarsToFpdb.py:266
 #: WinamaxToFpdb.py:263
-#, fuzzy
 msgid "Failed to detect currency."
-msgstr "Rilevazione fallita.ID Mano: %s: '%s'"
+msgstr "Impossibile individuare valuta."
 
 #: PacificPokerToFpdb.py:258 PartyPokerToFpdb.py:348 PokerStarsToFpdb.py:266
 #: WinamaxToFpdb.py:263
 msgid "Hand ID: %s: '%s'"
-msgstr ""
+msgstr "ID Mano: %s: '%s'"
 
 #: PacificPokerToFpdb.py:325
 msgid "No match in markStreets"
@@ -4248,78 +4224,3 @@ msgstr ""
 "\n"
 "nessuna cartella gtk trovata in questo percorso - installa gtk o modifica il "
 "percorso manualmente\n"
-
-#~ msgid "determineGameType: Raising FpdbParseError"
-#~ msgstr "Determina il tipo di gioco: Fpdb errore-di-analisi"
-
-#~ msgid "parseSummary: Unable to recognise Tourney Info: '%s'"
-#~ msgstr "parseSummary: Impossibile riconoscere le info del Torneo : '%s'"
-
-#~ msgid "parseSummary: Raising FpdbParseError"
-#~ msgstr "parseSummary: Errore di analisi di Fpdb"
-
-#~ msgid "parseSummary: Unable to locate currency"
-#~ msgstr "parseSummary: Impossibile individuare valuta"
-
-#~ msgid "unimplemented readAction: '%s' '%s'"
-#~ msgstr "readAction non implementata: '%s' '%s'"
-
-#~ msgid "Unimplemented readAction: %s %s"
-#~ msgstr "readAction non implementata: %s %s"
-
-#~ msgid "Unimplemented readAction: %s"
-#~ msgstr "readAction non implementata: %s"
-
-#~ msgid "Failed to detect currency. Hand ID: %s: '%s'"
-#~ msgstr "Rilevazione fallita.ID Mano: %s: '%s'"
-
-#~ msgid "DEBUG: unimplemented readAction: '%s' '%s'"
-#~ msgstr "DEBUG:readAction non implementata: '%s' '%s'"
-
-#, fuzzy
-#~ msgid "DEBUG:"
-#~ msgstr "DEBUG: "
-
-#~ msgid "FullTilt: DEBUG: unimplemented readAction: '%s' '%s'"
-#~ msgstr "FullTilt: DEBUG: readAction non implementata: '%s' '%s'"
-
-#~ msgid "Failed to read settings table - please recreate tables"
-#~ msgstr ""
-#~ "Impossibile leggere la tabella delle impostazioni - Si prega di ricreare "
-#~ "le tabelle"
-
-#~ msgid "Connecting to SQLite: %(database)s"
-#~ msgstr "Connessione a SQLite: %(database)s"
-
-#~ msgid ""
-#~ "Invalid config value for raw_hands.compression, defaulting to \"none\""
-#~ msgstr ""
-#~ "Valore di con figurazione non valido per raw_hands.compression.Errore"
-
-#~ msgid "Invalid config value for raw_tourneys.save, defaulting to \"error\""
-#~ msgstr ""
-#~ "Valore di configurazione non valido per la sezione raw_tourneys.save."
-#~ "Errore."
-
-#~ msgid ""
-#~ "Invalid config value for raw_tourneys.compression, defaulting to \"none\""
-#~ msgstr ""
-#~ "Valore di configurazione non valido per raw_tourneys.compression.Errore"
-
-#~ msgid "Loading site"
-#~ msgstr "Caricamento sito"
-
-#~ msgid "missing config section raw_hands"
-#~ msgstr "configurazione mancante della sezione raw_hands "
-
-#~ msgid "missing config section raw_tourneys"
-#~ msgstr "configurazione mancante per la sezione raw_tourneys "
-
-#~ msgid "Error aquiring hero ids:"
-#~ msgstr "Errore di acquisizione ID dell hero:"
-
-#~ msgid "Hand.insert(): hid #: %s is a duplicate"
-#~ msgstr "Hand.insert():hid#:%s è un duplicato"
-
-#~ msgid "Hand processed but empty"
-#~ msgstr "Mano processata ma è vuota"
