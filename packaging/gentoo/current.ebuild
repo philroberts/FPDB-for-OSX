@@ -10,14 +10,14 @@ inherit eutils games
 
 DESCRIPTION="A free/open source tracker/HUD for use with online poker"
 HOMEPAGE="http://fpdb.wiki.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/Snapshots/${P}.tar.bz2"
+SRC_URI="mirror://sourceforge/${PN}/${PV}/${P}.tar.bz2"
 
 LICENSE="AGPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-#note: this should work on other architectures too, please send me your experiences
+#note: fpdb has only been tested on x86 and amd64, but should work on other arches, too
 
-IUSE="graph mysql postgres sqlite linguas_de linguas_hu linguas_fr"
+IUSE="graph mysql postgres sqlite linguas_de linguas_es linguas_fr linguas_hu linguas_it linguas_pl linguas_ru"
 RDEPEND="
 	mysql? ( virtual/mysql
 		dev-python/mysql-python )
@@ -39,8 +39,32 @@ src_install() {
 	doins -r gfx || die "failed to install gfx directory"
 	doins -r pyfpdb || die "failed to install pyfpdb directory"
 
+	if use linguas_de; then
+		msgfmt pyfpdb/locale/fpdb-de_DE.po -o pyfpdb/locale/de.mo || die "failed to create German mo file"
+	fi
+
+	if use linguas_es; then
+		msgfmt pyfpdb/locale/fpdb-es_ES.po -o pyfpdb/locale/es.mo || die "failed to create Spanish mo file"
+	fi
+
+	if use linguas_fr; then
+		msgfmt pyfpdb/locale/fpdb-fr_FR.po -o pyfpdb/locale/fr.mo || die "failed to create French mo file"
+	fi
+
 	if use linguas_hu; then
-		msgfmt pyfpdb/locale/fpdb-hu_HU.po -o pyfpdb/locale/hu.mo || die "failed to create hungarian mo file"
+		msgfmt pyfpdb/locale/fpdb-hu_HU.po -o pyfpdb/locale/hu.mo || die "failed to create Hungarian mo file"
+	fi
+
+	if use linguas_it; then
+		msgfmt pyfpdb/locale/fpdb-it_IT.po -o pyfpdb/locale/it.mo || die "failed to create Italian mo file"
+	fi
+
+	if use linguas_pl; then
+		msgfmt pyfpdb/locale/fpdb-pl_PL.po -o pyfpdb/locale/pl.mo || die "failed to create Polish mo file"
+	fi
+
+	if use linguas_ru; then
+		msgfmt pyfpdb/locale/fpdb-ru_RU.po -o pyfpdb/locale/ru.mo || die "failed to create Russian mo file"
 	fi
 
 	domo pyfpdb/locale/*.mo || die "failed to install mo files"
@@ -51,7 +75,7 @@ src_install() {
 	doexe run_fpdb.py || die "failed to install executable run_fpdb.py"
 
 	dodir "${GAMES_BINDIR}"
-	dosym "${GAMES_DATADIR}"/${PN}/run_fpdb.py "${GAMES_BINDIR}"/${PN}  || die "failed to create symlink for starting fpdb"
+	dosym "${GAMES_DATADIR}"/${PN}/run_fpdb.py "${GAMES_BINDIR}"/${PN} || die "failed to create symlink for starting fpdb"
 
 	newicon gfx/fpdb-icon.png ${PN}.png || die "failed to install fpdb icon"
 	make_desktop_entry ${PN}  || die "failed to create desktop entry"

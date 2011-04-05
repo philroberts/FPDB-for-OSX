@@ -170,7 +170,7 @@ class Winamax(HandHistoryConverter):
         if not m:
             tmp = handText[0:100]
             log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error(_("determineGameType: Raising FpdbParseError"))
+            log.error("determineGameType: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
@@ -188,7 +188,7 @@ class Winamax(HandHistoryConverter):
             else:
                 tmp = handText[0:100]
                 log.error(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
-                log.error(_("determineGameType: Raising FpdbParseError"))
+                log.error("determineGameType: " + _("Raising FpdbParseError"))
                 raise FpdbParseError(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
@@ -260,7 +260,7 @@ class Winamax(HandHistoryConverter):
                             hand.buyinCurrency="PSFP"
                         else:
                             #FIXME: handle other currencies (are there other currencies?)
-                            raise FpdbParseError(_("Failed to detect currency. Hand ID: %s: '%s'") % (hand.handid, info[key]))
+                            raise FpdbParseError(_("Failed to detect currency.") + " " + _("Hand ID: %s: '%s'") % (hand.handid, info[key]))
 
                         info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
 
@@ -403,7 +403,7 @@ class Winamax(HandHistoryConverter):
             elif action.group('ATYPE') == ' stands pat':
                 hand.addStandsPat( street, action.group('PNAME'))
             else:
-                log.fatal(_("DEBUG: ") + _("unimplemented readAction: '%s' '%s'") % (action.group('PNAME'),action.group('ATYPE')))
+                log.fatal(_("DEBUG: ") + _("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
 #            print "Processed %s"%acts
 #            print "committed=",hand.pot.committed
 

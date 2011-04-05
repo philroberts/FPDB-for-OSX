@@ -1,0 +1,381 @@
+﻿PokerStars Game #60348646994: Tournament #382394766, 300+20 Hold'em No Limit - Level I (10/20) - 2011/04/05 4:00:18 CET [2011/04/04 22:00:18 ET]
+Table '382394766 1' 9-max Seat #1 is the button
+Seat 1: olii22 (1500 in chips) 
+Seat 2: Jerry4rt (1500 in chips) 
+Seat 3: pokermom2121 (1500 in chips) 
+Seat 4: thegoodnews (1500 in chips) 
+Seat 5: ColdChipz (1500 in chips) 
+Seat 6: steffen780 (1500 in chips) 
+Seat 7: neto coinete (1500 in chips) 
+Seat 8: scratch228 (1500 in chips) 
+Seat 9: LinColn368 (1500 in chips) 
+Jerry4rt: posts small blind 10
+pokermom2121: posts big blind 20
+*** HOLE CARDS ***
+Dealt to steffen780 [8h 6s]
+thegoodnews: folds 
+ColdChipz: calls 20
+steffen780: folds 
+neto coinete: raises 80 to 100
+scratch228: raises 1400 to 1500 and is all-in
+LinColn368: calls 1500 and is all-in
+olii22: folds 
+Jerry4rt: folds 
+pokermom2121: folds 
+ColdChipz: folds 
+neto coinete: calls 1400 and is all-in
+*** FLOP *** [3s 4h 7h]
+ColdChipz said, "surprise surprise"
+*** TURN *** [3s 4h 7h] [2h]
+*** RIVER *** [3s 4h 7h 2h] [3h]
+*** SHOW DOWN ***
+neto coinete: shows [As Kc] (a pair of Threes)
+scratch228: shows [Tc Td] (two pair, Tens and Threes)
+LinColn368: shows [6c 4c] (two pair, Fours and Threes)
+scratch228 collected 4550 from pot
+neto coinete finished the tournament in 8th place
+LinColn368 finished the tournament in 8th place
+*** SUMMARY ***
+Total pot 4550 | Rake 0 
+Board [3s 4h 7h 2h 3h]
+Seat 1: olii22 (button) folded before Flop (didn't bet)
+Seat 2: Jerry4rt (small blind) folded before Flop
+Seat 3: pokermom2121 (big blind) folded before Flop
+Seat 4: thegoodnews folded before Flop (didn't bet)
+Seat 5: ColdChipz folded before Flop
+Seat 6: steffen780 folded before Flop (didn't bet)
+Seat 7: neto coinete showed [As Kc] and lost with a pair of Threes
+Seat 8: scratch228 showed [Tc Td] and won (4550) with two pair, Tens and Threes
+Seat 9: LinColn368 showed [6c 4c] and lost with two pair, Fours and Threes
+
+
+
+PokerStars Game #60348679778: Tournament #382394766, 300+20 Hold'em No Limit - Level I (10/20) - 2011/04/05 4:01:29 CET [2011/04/04 22:01:29 ET]
+Table '382394766 1' 9-max Seat #2 is the button
+Seat 1: olii22 (1500 in chips) 
+Seat 2: Jerry4rt (1490 in chips) 
+Seat 3: pokermom2121 (1480 in chips) 
+Seat 4: thegoodnews (1500 in chips) 
+Seat 5: ColdChipz (1480 in chips) 
+Seat 6: steffen780 (1500 in chips) 
+Seat 8: scratch228 (4550 in chips) 
+pokermom2121: posts small blind 10
+thegoodnews: posts big blind 20
+*** HOLE CARDS ***
+Dealt to steffen780 [5d 2s]
+ColdChipz: folds 
+steffen780: calls 20
+scratch228: raises 100 to 120
+olii22: raises 100 to 220
+Jerry4rt: folds 
+pokermom2121: folds 
+thegoodnews: calls 200
+steffen780: folds 
+scratch228: calls 100
+*** FLOP *** [6s 3s 9s]
+thegoodnews: checks 
+scratch228: bets 400
+olii22: calls 400
+thegoodnews: raises 880 to 1280 and is all-in
+scratch228: calls 880
+olii22: calls 880 and is all-in
+*** TURN *** [6s 3s 9s] [2c]
+*** RIVER *** [6s 3s 9s 2c] [5c]
+*** SHOW DOWN ***
+thegoodnews: shows [8c Js] (high card Jack)
+scratch228: shows [6c 6h] (three of a kind, Sixes)
+olii22: shows [7h Qc] (high card Queen)
+scratch228 collected 4530 from pot
+olii22 finished the tournament in 6th place
+thegoodnews finished the tournament in 6th place
+*** SUMMARY ***
+Total pot 4530 | Rake 0 
+Board [6s 3s 9s 2c 5c]
+Seat 1: olii22 showed [7h Qc] and lost with high card Queen
+Seat 2: Jerry4rt (button) folded before Flop (didn't bet)
+Seat 3: pokermom2121 (small blind) folded before Flop
+Seat 4: thegoodnews (big blind) showed [8c Js] and lost with high card Jack
+Seat 5: ColdChipz folded before Flop (didn't bet)
+Seat 6: steffen780 folded before Flop
+Seat 8: scratch228 showed [6c 6h] and won (4530) with three of a kind, Sixes
+
+
+
+PokerStars Game #60348723543: Tournament #382394766, 300+20 Hold'em No Limit - Level I (10/20) - 2011/04/05 4:02:51 CET [2011/04/04 22:02:51 ET]
+Table '382394766 1' 9-max Seat #3 is the button
+Seat 2: Jerry4rt (1490 in chips) 
+Seat 3: pokermom2121 (1470 in chips) 
+Seat 5: ColdChipz (1480 in chips) 
+Seat 6: steffen780 (1480 in chips) 
+Seat 8: scratch228 (7580 in chips) 
+ColdChipz: posts small blind 10
+steffen780: posts big blind 20
+*** HOLE CARDS ***
+Dealt to steffen780 [Ac 7s]
+scratch228: calls 20
+Jerry4rt: folds 
+pokermom2121: calls 20
+ColdChipz: calls 10
+steffen780: raises 100 to 120
+ColdChipz said, "yep"
+scratch228: calls 100
+pokermom2121: calls 100
+ColdChipz: folds 
+*** FLOP *** [5d Ks 3h]
+steffen780: checks 
+scratch228: checks 
+pokermom2121: checks 
+*** TURN *** [5d Ks 3h] [Kd]
+steffen780: bets 220
+scratch228: calls 220
+pokermom2121: calls 220
+*** RIVER *** [5d Ks 3h Kd] [Tc]
+steffen780: bets 1140 and is all-in
+scratch228: folds 
+pokermom2121: calls 1130 and is all-in
+Uncalled bet (10) returned to steffen780
+*** SHOW DOWN ***
+steffen780: shows [Ac 7s] (a pair of Kings)
+pokermom2121: shows [7h Kc] (three of a kind, Kings)
+pokermom2121 collected 3300 from pot
+*** SUMMARY ***
+Total pot 3300 | Rake 0 
+Board [5d Ks 3h Kd Tc]
+Seat 2: Jerry4rt folded before Flop (didn't bet)
+Seat 3: pokermom2121 (button) showed [7h Kc] and won (3300) with three of a kind, Kings
+Seat 5: ColdChipz (small blind) folded before Flop
+Seat 6: steffen780 (big blind) showed [Ac 7s] and lost with a pair of Kings
+Seat 8: scratch228 folded on the River
+
+
+
+PokerStars Game #60348767993: Tournament #382394766, 300+20 Hold'em No Limit - Level I (10/20) - 2011/04/05 4:04:11 CET [2011/04/04 22:04:11 ET]
+Table '382394766 1' 9-max Seat #5 is the button
+Seat 2: Jerry4rt (1490 in chips) 
+Seat 3: pokermom2121 (3300 in chips) 
+Seat 5: ColdChipz (1460 in chips) 
+Seat 6: steffen780 (10 in chips) 
+Seat 8: scratch228 (7240 in chips) 
+steffen780: posts small blind 10 and is all-in
+scratch228: posts big blind 20
+*** HOLE CARDS ***
+Dealt to steffen780 [2s Ks]
+Jerry4rt: raises 400 to 420
+pokermom2121: calls 420
+ColdChipz: folds 
+scratch228: folds 
+*** FLOP *** [Kd 4s 7s]
+Jerry4rt: bets 1070 and is all-in
+pokermom2121: folds 
+Uncalled bet (1070) returned to Jerry4rt
+*** TURN *** [Kd 4s 7s] [8d]
+*** RIVER *** [Kd 4s 7s 8d] [8h]
+*** SHOW DOWN ***
+Jerry4rt: shows [Td Ts] (two pair, Tens and Eights)
+Jerry4rt collected 830 from side pot
+steffen780: shows [2s Ks] (two pair, Kings and Eights)
+steffen780 collected 40 from main pot
+*** SUMMARY ***
+Total pot 870 Main pot 40. Side pot 830. | Rake 0 
+Board [Kd 4s 7s 8d 8h]
+Seat 2: Jerry4rt showed [Td Ts] and won (830) with two pair, Tens and Eights
+Seat 3: pokermom2121 folded on the Flop
+Seat 5: ColdChipz (button) folded before Flop (didn't bet)
+Seat 6: steffen780 (small blind) showed [2s Ks] and won (40) with two pair, Kings and Eights
+Seat 8: scratch228 (big blind) folded before Flop
+
+
+
+PokerStars Game #60348792090: Tournament #382394766, 300+20 Hold'em No Limit - Level I (10/20) - 2011/04/05 4:04:54 CET [2011/04/04 22:04:54 ET]
+Table '382394766 1' 9-max Seat #6 is the button
+Seat 2: Jerry4rt (1900 in chips) 
+Seat 3: pokermom2121 (2880 in chips) 
+Seat 5: ColdChipz (1460 in chips) 
+Seat 6: steffen780 (40 in chips) 
+Seat 8: scratch228 (7220 in chips) 
+scratch228: posts small blind 10
+Jerry4rt: posts big blind 20
+*** HOLE CARDS ***
+Dealt to steffen780 [Js Kh]
+pokermom2121: folds 
+ColdChipz: calls 20
+steffen780: raises 20 to 40 and is all-in
+scratch228: calls 30
+Jerry4rt: calls 20
+ColdChipz: calls 20
+*** FLOP *** [7s 8c Kc]
+scratch228: checks 
+Jerry4rt: checks 
+ColdChipz: checks 
+*** TURN *** [7s 8c Kc] [Ks]
+scratch228: checks 
+Jerry4rt: bets 200
+ColdChipz: folds 
+scratch228: folds 
+Uncalled bet (200) returned to Jerry4rt
+*** RIVER *** [7s 8c Kc Ks] [Td]
+*** SHOW DOWN ***
+Jerry4rt: shows [5s 5d] (two pair, Kings and Fives)
+steffen780: shows [Js Kh] (three of a kind, Kings)
+steffen780 collected 160 from pot
+*** SUMMARY ***
+Total pot 160 | Rake 0 
+Board [7s 8c Kc Ks Td]
+Seat 2: Jerry4rt (big blind) showed [5s 5d] and lost with two pair, Kings and Fives
+Seat 3: pokermom2121 folded before Flop (didn't bet)
+Seat 5: ColdChipz folded on the Turn
+Seat 6: steffen780 (button) showed [Js Kh] and won (160) with three of a kind, Kings
+Seat 8: scratch228 (small blind) folded on the Turn
+
+
+
+PokerStars Game #60348824266: Tournament #382394766, 300+20 Hold'em No Limit - Level I (10/20) - 2011/04/05 4:05:51 CET [2011/04/04 22:05:51 ET]
+Table '382394766 1' 9-max Seat #8 is the button
+Seat 2: Jerry4rt (1860 in chips) 
+Seat 3: pokermom2121 (2880 in chips) 
+Seat 5: ColdChipz (1420 in chips) 
+Seat 6: steffen780 (160 in chips) 
+Seat 8: scratch228 (7180 in chips) 
+Jerry4rt: posts small blind 10
+pokermom2121: posts big blind 20
+*** HOLE CARDS ***
+Dealt to steffen780 [Th 8s]
+ColdChipz: folds 
+steffen780: raises 140 to 160 and is all-in
+scratch228: folds 
+Jerry4rt: folds 
+pokermom2121: calls 140
+*** FLOP *** [Qd 8h 8c]
+*** TURN *** [Qd 8h 8c] [Ad]
+*** RIVER *** [Qd 8h 8c Ad] [7h]
+*** SHOW DOWN ***
+pokermom2121: shows [4s Ks] (a pair of Eights)
+steffen780: shows [Th 8s] (three of a kind, Eights)
+steffen780 collected 330 from pot
+*** SUMMARY ***
+Total pot 330 | Rake 0 
+Board [Qd 8h 8c Ad 7h]
+Seat 2: Jerry4rt (small blind) folded before Flop
+Seat 3: pokermom2121 (big blind) showed [4s Ks] and lost with a pair of Eights
+Seat 5: ColdChipz folded before Flop (didn't bet)
+Seat 6: steffen780 showed [Th 8s] and won (330) with three of a kind, Eights
+Seat 8: scratch228 (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Game #60348839497: Tournament #382394766, 300+20 Hold'em No Limit - Level I (10/20) - 2011/04/05 4:06:18 CET [2011/04/04 22:06:18 ET]
+Table '382394766 1' 9-max Seat #2 is the button
+Seat 2: Jerry4rt (1850 in chips) 
+Seat 3: pokermom2121 (2720 in chips) 
+Seat 5: ColdChipz (1420 in chips) 
+Seat 6: steffen780 (330 in chips) 
+Seat 8: scratch228 (7180 in chips) 
+pokermom2121: posts small blind 10
+ColdChipz: posts big blind 20
+*** HOLE CARDS ***
+Dealt to steffen780 [8c 6c]
+steffen780: raises 310 to 330 and is all-in
+scratch228: calls 330
+Jerry4rt: folds 
+pokermom2121: folds 
+ColdChipz: folds 
+*** FLOP *** [Jc 5s 7c]
+*** TURN *** [Jc 5s 7c] [Qd]
+*** RIVER *** [Jc 5s 7c Qd] [6s]
+*** SHOW DOWN ***
+steffen780: shows [8c 6c] (a pair of Sixes)
+scratch228: shows [Tc Kc] (high card King)
+steffen780 collected 690 from pot
+*** SUMMARY ***
+Total pot 690 | Rake 0 
+Board [Jc 5s 7c Qd 6s]
+Seat 2: Jerry4rt (button) folded before Flop (didn't bet)
+Seat 3: pokermom2121 (small blind) folded before Flop
+Seat 5: ColdChipz (big blind) folded before Flop
+Seat 6: steffen780 showed [8c 6c] and won (690) with a pair of Sixes
+Seat 8: scratch228 showed [Tc Kc] and lost with high card King
+
+
+
+PokerStars Game #60348854448: Tournament #382394766, 300+20 Hold'em No Limit - Level I (10/20) - 2011/04/05 4:06:45 CET [2011/04/04 22:06:45 ET]
+Table '382394766 1' 9-max Seat #3 is the button
+Seat 2: Jerry4rt (1850 in chips) 
+Seat 3: pokermom2121 (2710 in chips) 
+Seat 5: ColdChipz (1400 in chips) 
+Seat 6: steffen780 (690 in chips) 
+Seat 8: scratch228 (6850 in chips) 
+ColdChipz: posts small blind 10
+steffen780: posts big blind 20
+*** HOLE CARDS ***
+Dealt to steffen780 [4d 2h]
+scratch228: folds 
+Jerry4rt: folds 
+pokermom2121: calls 20
+ColdChipz: calls 10
+steffen780: checks 
+*** FLOP *** [Kh Kd Kc]
+ColdChipz: checks 
+steffen780: checks 
+pokermom2121: checks 
+*** TURN *** [Kh Kd Kc] [8c]
+ColdChipz: checks 
+steffen780: checks 
+pokermom2121: bets 140
+ColdChipz: calls 140
+steffen780: calls 140
+*** RIVER *** [Kh Kd Kc 8c] [Ts]
+ColdChipz: checks 
+steffen780: checks 
+pokermom2121: checks 
+*** SHOW DOWN ***
+ColdChipz: shows [7d Ac] (three of a kind, Kings)
+steffen780: mucks hand 
+pokermom2121: shows [9c 8s] (a full house, Kings full of Eights)
+pokermom2121 collected 480 from pot
+*** SUMMARY ***
+Total pot 480 | Rake 0 
+Board [Kh Kd Kc 8c Ts]
+Seat 2: Jerry4rt folded before Flop (didn't bet)
+Seat 3: pokermom2121 (button) showed [9c 8s] and won (480) with a full house, Kings full of Eights
+Seat 5: ColdChipz (small blind) showed [7d Ac] and lost with three of a kind, Kings
+Seat 6: steffen780 (big blind) mucked [4d 2h]
+Seat 8: scratch228 folded before Flop (didn't bet)
+
+
+
+PokerStars Game #60348883363: Tournament #382394766, 300+20 Hold'em No Limit - Level I (10/20) - 2011/04/05 4:07:37 CET [2011/04/04 22:07:37 ET]
+Table '382394766 1' 9-max Seat #5 is the button
+Seat 2: Jerry4rt (1850 in chips) 
+Seat 3: pokermom2121 (3030 in chips) 
+Seat 5: ColdChipz (1240 in chips) 
+Seat 6: steffen780 (530 in chips) 
+Seat 8: scratch228 (6850 in chips) 
+steffen780: posts small blind 10
+scratch228: posts big blind 20
+*** HOLE CARDS ***
+Dealt to steffen780 [As Qs]
+Jerry4rt: folds 
+pokermom2121: folds 
+ColdChipz: calls 20
+steffen780: raises 510 to 530 and is all-in
+scratch228: folds 
+ColdChipz: calls 510
+*** FLOP *** [3d Tc 7s]
+*** TURN *** [3d Tc 7s] [2h]
+*** RIVER *** [3d Tc 7s 2h] [4s]
+*** SHOW DOWN ***
+steffen780: shows [As Qs] (high card Ace)
+ColdChipz: shows [7c Ad] (a pair of Sevens)
+ColdChipz collected 1080 from pot
+steffen780 finished the tournament in 5th place
+*** SUMMARY ***
+Total pot 1080 | Rake 0 
+Board [3d Tc 7s 2h 4s]
+Seat 2: Jerry4rt folded before Flop (didn't bet)
+Seat 3: pokermom2121 folded before Flop (didn't bet)
+Seat 5: ColdChipz (button) showed [7c Ad] and won (1080) with a pair of Sevens
+Seat 6: steffen780 (small blind) showed [As Qs] and lost with high card Ace
+Seat 8: scratch228 (big blind) folded before Flop
+
+
+

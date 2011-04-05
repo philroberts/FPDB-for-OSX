@@ -128,7 +128,7 @@ or None if we fail to get the info """
             except AttributeError:
                 tmp = handText[0:100]
                 log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-                log.error(_("determineGameType: Raising FpdbParseError"))
+                log.error("determineGameType: " + _("Raising FpdbParseError"))
                 raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         self.info = {}
@@ -264,7 +264,7 @@ or None if we fail to get the info """
             elif action.group('ATYPE') == 'ALL_IN':
                 hand.addAllIn(street, player, action.group('BET'))
             else:
-                logging.debug(_("Unimplemented readAction: '%s' '%s'") % (action.group('PSEAT'),action.group('ATYPE')))
+                logging.debug(_("Unimplemented readAction: '%s' '%s'") % (action.group('PSEAT'), action.group('ATYPE')))
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):

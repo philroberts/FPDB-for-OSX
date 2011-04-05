@@ -107,7 +107,7 @@ class GuiImapFetcher (threading.Thread):
     
     def displayConfig(self):
         box=gtk.HBox(homogeneous=True)
-        for text in (_("Site"), _("Fetch Type"), _("Mailserver"), _("Username"), _("Password"), _("Mail Folder"), _("Use SSL")):
+        for text in (_("Site"), _("Fetch Type"), _("Mail Server"), _("Username"), _("Password"), _("Mail Folder"), _("Use SSL")):
             label=gtk.Label(text)
             box.add(label)
         self.mainVBox.pack_start(box, expand=False)

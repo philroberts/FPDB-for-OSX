@@ -1,0 +1,2046 @@
+Game # 2137873579 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 4.00 in seat 1)
+ReyyyJr                     (EUR 4.99 in seat 2)
+kobi59                      (EUR 2.03 in seat 3)
+aceto01                     (EUR 4.71 in seat 4)
+marcol                      (EUR 2.63 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     aceto01
+Small Blind:                marcol      (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         2d - 4h - 6s - Qs
+
+akilim                      Fold        
+ReyyyJr                     Call        (0.04)
+kobi59                      Raise       (0.18)
+aceto01                     Call        (0.18)
+marcol                      Fold        
+F4UXR34L                    Fold        
+ReyyyJr                     Call        (0.14)
+
+Flop                        Jh - Th - 3c
+
+ReyyyJr                     Check       
+kobi59                      Bet         (0.12)
+aceto01                     Call        (0.12)
+ReyyyJr                     Call        (0.12)
+
+Turn                        Jh - Th - 3c - 6c
+
+ReyyyJr                     Check       
+kobi59                      Check       
+aceto01                     Check       
+
+River                       Jh - Th - 3c - 6c - Qc
+
+ReyyyJr                     Check       
+kobi59                      Check       
+aceto01                     Bet         (0.96)
+ReyyyJr                     Call        (0.96)
+kobi59                      Fold        
+
+aceto01 shows:              Ac - 5c - 2c - As (a flush, Ace high)
+
+ReyyyJr didn't show hand (3d - Js - Kd - 8s)
+
+aceto01 wins:               EUR 2.74 (with a flush, Ace high)
+Rake:                       EUR 0.14
+
+Game ended 2011-03-21 16:43:44 GMT
+
+Game # 2137877928 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 4.00 in seat 1)
+ReyyyJr                     (EUR 3.73 in seat 2)
+kobi59                      (EUR 1.73 in seat 3)
+aceto01                     (EUR 6.19 in seat 4)
+marcol                      (EUR 2.61 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     marcol
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+
+F4UXR34L was dealt:         Td - 6c - As - 5d
+
+ReyyyJr                     Raise       (0.14)
+kobi59                      Fold        
+aceto01                     Call        (0.14)
+marcol                      Call        (0.14)
+F4UXR34L                    Fold        
+akilim                      Call        (0.10)
+
+Flop                        3d - Ts - 7s
+
+akilim                      Bet         (0.43)
+ReyyyJr                     Fold        
+aceto01                     Call        (0.43)
+marcol                      Fold        
+
+Turn                        3d - Ts - 7s - Qh
+
+akilim                      Bet         (1.08)
+aceto01                     Call        (1.08)
+
+River                       3d - Ts - 7s - Qh - 7d
+
+akilim                      All-In      (2.35)
+aceto01                     Call        (2.35)
+
+akilim shows:               Qd - 4d - Qs - 5s (a full house, Queens full of Sevens)
+aceto01 shows:              9s - 7h - Kh - 6s (three of a kind, Sevens)
+
+akilim wins:                EUR 7.89 (with a full house, Queens full of Sevens)
+Rake:                       EUR 0.41
+
+Game ended 2011-03-21 16:45:00 GMT
+
+Game # 2137878328 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.89 in seat 1)
+ReyyyJr                     (EUR 3.59 in seat 2)
+kobi59                      (EUR 1.73 in seat 3)
+aceto01                     (EUR 2.19 in seat 4)
+marcol                      (EUR 2.47 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  ReyyyJr     (0.04)
+
+F4UXR34L was dealt:         7c - 3c - 8h - 4s
+
+kobi59                      Call        (0.04)
+aceto01                     Call        (0.04)
+marcol                      Call        (0.04)
+F4UXR34L                    Fold        
+akilim                      Call        (0.02)
+ReyyyJr                     Check       
+
+Flop                        5c - Kc - Kd
+
+akilim                      Check       
+ReyyyJr                     Check       
+kobi59                      Check       
+aceto01                     Check       
+marcol                      Bet         (0.20)
+akilim                      Fold        
+ReyyyJr                     Fold        
+kobi59                      Fold        
+aceto01                     Fold        
+marcol                      Payback     (0.20)
+
+marcol didn't show hand
+
+marcol wins:                EUR 0.18
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:45:43 GMT
+
+Game # 2137878558 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.85 in seat 1)
+ReyyyJr                     (EUR 3.55 in seat 2)
+kobi59                      (EUR 1.69 in seat 3)
+aceto01                     (EUR 2.15 in seat 4)
+marcol                      (EUR 2.61 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                ReyyyJr     (0.02)
+Big Blind:                  kobi59      (0.04)
+
+F4UXR34L was dealt:         4d - Qd - 4c - 7c
+
+aceto01                     Raise       (0.14)
+marcol                      Call        (0.14)
+F4UXR34L                    Fold        
+akilim                      Fold        
+ReyyyJr                     Fold        
+kobi59                      Fold        
+
+Flop                        9h - Jh - 9c
+
+aceto01                     Check       
+marcol                      Check       
+
+Turn                        9h - Jh - 9c - 2h
+
+aceto01                     Bet         (0.34)
+marcol                      Fold        
+aceto01                     Payback     (0.34)
+
+aceto01 didn't show hand
+
+aceto01 wins:               EUR 0.32
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:46:28 GMT
+
+Game # 2137882780 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.85 in seat 1)
+ReyyyJr                     (EUR 3.53 in seat 2)
+kobi59                      (EUR 1.65 in seat 3)
+aceto01                     (EUR 2.33 in seat 4)
+marcol                      (EUR 2.47 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     ReyyyJr
+Small Blind:                kobi59      (0.02)
+Big Blind:                  aceto01     (0.04)
+
+F4UXR34L was dealt:         4c - 7c - 2s - Jd
+
+marcol                      Call        (0.04)
+F4UXR34L                    Fold        
+akilim                      Raise       (0.14)
+ReyyyJr                     Fold        
+kobi59                      Fold        
+aceto01                     Call        (0.10)
+marcol                      Call        (0.10)
+
+Flop                        Kh - 5d - 3h
+
+aceto01                     Bet         (0.44)
+marcol                      Fold        
+akilim                      Call        (0.44)
+
+Turn                        Kh - 5d - 3h - 8d
+
+aceto01                     Bet         (1.32)
+akilim                      Raise       (5.28)
+aceto01                     All-In      (0.43)
+akilim                      Payback     (3.53)
+
+River                       Kh - 5d - 3h - 8d - Ah
+
+aceto01 shows:              Qs - 5c - 7s - Kc (two pairs, Kings and Fives)
+akilim shows:               Ac - Jc - 2c - As (three of a kind, Aces)
+
+akilim wins:                EUR 4.58 (with three of a kind, Aces)
+Rake:                       EUR 0.24
+
+Game ended 2011-03-21 16:47:28 GMT
+
+Game # 2137883139 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 10.10 in seat 1)
+ReyyyJr                     (EUR 3.53 in seat 2)
+kobi59                      (EUR 1.63 in seat 3)
+aceto01                     (EUR 0.00 in seat 4)
+marcol                      (EUR 2.33 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     kobi59
+Small Blind:                marcol      (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         4c - Qc - 7d - 3s
+
+akilim                      Raise       (0.11)
+ReyyyJr                     Call        (0.11)
+kobi59                      Call        (0.11)
+marcol                      Call        (0.09)
+F4UXR34L                    Fold        
+
+Flop                        7c - Ah - 6c
+
+marcol                      Bet         (0.24)
+akilim                      Call        (0.24)
+ReyyyJr                     Call        (0.24)
+kobi59                      Call        (0.24)
+
+Turn                        7c - Ah - 6c - 5h
+
+marcol                      Check       
+akilim                      Check       
+ReyyyJr                     Check       
+kobi59                      Bet         (0.38)
+marcol                      Call        (0.38)
+akilim                      Call        (0.38)
+ReyyyJr                     Call        (0.38)
+
+River                       7c - Ah - 6c - 5h - 9d
+
+marcol                      Check       
+akilim                      Bet         (1.48)
+ReyyyJr                     Call        (1.48)
+kobi59                      All-In      (0.90)
+marcol                      Fold        
+
+akilim shows:               Kd - Ad - 8s - 6s (a straight, Nine high)
+
+ReyyyJr didn't show hand (8h - Qs - As - Jh)
+
+akilim wins:                EUR 1.10 side pot (with a straight, Nine high)
+
+kobi59 shows:               Ts - Kc - 9s - 8d (a straight, Ten high)
+
+kobi59 wins:                EUR 5.38 main pot (with a straight, Ten high)
+Rake:                       EUR 0.34
+
+Game ended 2011-03-21 16:49:16 GMT
+
+Game # 2137883628 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 8.99 in seat 1)
+ReyyyJr                     (EUR 1.32 in seat 2)
+kobi59                      (EUR 5.38 in seat 3)
+nananinee                   (EUR 4.00 in seat 4)
+marcol                      (EUR 1.60 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     marcol
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+
+F4UXR34L was dealt:         4h - 6s - 3h - Tc
+
+ReyyyJr                     Call        (0.04)
+kobi59                      Call        (0.04)
+marcol                      Call        (0.04)
+F4UXR34L                    Fold        
+akilim                      Check       
+
+Flop                        2d - Ac - 4d
+
+akilim                      Check       
+ReyyyJr                     Bet         (0.18)
+kobi59                      Call        (0.18)
+marcol                      Fold        
+akilim                      Fold        
+
+Turn                        2d - Ac - 4d - 9c
+
+ReyyyJr                     Bet         (0.54)
+kobi59                      Raise       (1.08)
+ReyyyJr                     All-In      (0.56)
+kobi59                      Call        (0.02)
+
+River                       2d - Ac - 4d - 9c - 8d
+
+ReyyyJr shows:              9d - 9s - 2s - 4c (three of a kind, Nines)
+kobi59 shows:               Ad - As - 5s - 6h (three of a kind, Aces)
+
+kobi59 wins:                EUR 2.61 (with three of a kind, Aces)
+Rake:                       EUR 0.13
+
+Game ended 2011-03-21 16:50:22 GMT
+
+Game # 2137886946 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 8.95 in seat 1)
+ReyyyJr                     (EUR 0.00 in seat 2)
+kobi59                      (EUR 6.67 in seat 3)
+nananinee                   (EUR 4.00 in seat 4)
+marcol                      (EUR 1.56 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  kobi59      (0.04)
+
+F4UXR34L was dealt:         3c - 2s - Qs - 8h
+
+marcol                      Call        (0.04)
+F4UXR34L                    Fold        
+akilim                      Fold        
+kobi59                      Raise       (0.10)
+marcol                      Call        (0.10)
+
+Flop                        8s - 7d - 9s
+
+kobi59                      Bet         (0.22)
+marcol                      Raise       (0.44)
+kobi59                      Call        (0.22)
+
+Turn                        8s - 7d - 9s - As
+
+kobi59                      Check       
+marcol                      All-In      (0.98)
+kobi59                      Fold        
+marcol                      Payback     (0.98)
+
+marcol didn't show hand
+
+marcol wins:                EUR 1.13
+Rake:                       EUR 0.05
+
+Game ended 2011-03-21 16:51:20 GMT
+
+Game # 2137887205 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 8.93 in seat 1)
+ReyyyJr                     (EUR 4.00 in seat 2)
+kobi59                      (EUR 6.09 in seat 3)
+nananinee                   (EUR 4.00 in seat 4)
+marcol                      (EUR 2.11 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                marcol      (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         Qc - 5h - Qd - 4d
+
+akilim                      Fold        
+marcol                      Call        (0.02)
+F4UXR34L                    Check       
+
+Flop                        7s - 4c - Jh
+
+marcol                      Check       
+F4UXR34L                    Check       
+
+Turn                        7s - 4c - Jh - Jc
+
+marcol                      Bet         (0.04)
+F4UXR34L                    Fold        
+marcol                      Payback     (0.04)
+
+marcol didn't show hand
+
+marcol wins:                EUR 0.08
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:51:57 GMT
+
+Game # 2137887352 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 8.93 in seat 1)
+ReyyyJr                     (EUR 4.00 in seat 2)
+nananinee                   (EUR 4.00 in seat 4)
+marcol                      (EUR 2.15 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     marcol
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+
+F4UXR34L was dealt:         2s - 9h - 5d - 3s
+
+marcol                      Fold        
+F4UXR34L                    Fold        
+akilim                      Payback     (0.02)
+
+akilim didn't show hand
+
+akilim wins:                EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:52:06 GMT
+
+Game # 2137887389 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 8.95 in seat 1)
+ReyyyJr                     (EUR 4.00 in seat 2)
+nananinee                   (EUR 4.00 in seat 4)
+marcol                      (EUR 2.15 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  ReyyyJr     (0.04)
+
+F4UXR34L was dealt:         6d - 5c - 5s - 8s
+
+marcol                      Call        (0.04)
+F4UXR34L                    Fold        
+akilim                      Fold        
+ReyyyJr                     Raise       (0.10)
+marcol                      Call        (0.10)
+
+Flop                        Ts - 2d - Js
+
+ReyyyJr                     Check       
+marcol                      Bet         (0.30)
+ReyyyJr                     Raise       (1.20)
+marcol                      Call        (0.90)
+
+Turn                        Ts - 2d - Js - 3h
+
+ReyyyJr                     Bet         (1.35)
+marcol                      All-In      (0.81)
+ReyyyJr                     Payback     (0.54)
+
+River                       Ts - 2d - Js - 3h - 8c
+
+ReyyyJr shows:              Tc - 3s - Th - 7c (three of a kind, Tens)
+marcol shows:               8h - Qs - Qh - 6c (a pair of Queens)
+
+ReyyyJr wins:               EUR 4.11 (with three of a kind, Tens)
+Rake:                       EUR 0.21
+
+Game ended 2011-03-21 16:53:12 GMT
+
+Game # 2137893735 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 8.93 in seat 1)
+ReyyyJr                     (EUR 5.96 in seat 2)
+NutRage                     (EUR 4.00 in seat 3)
+nananinee                   (EUR 4.00 in seat 4)
+marcol                      (EUR 2.00 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                ReyyyJr     (0.02)
+Big Blind:                  NutRage     (0.04)
+
+F4UXR34L was dealt:         4h - 9d - Qs - Td
+
+marcol                      Call        (0.04)
+F4UXR34L                    Fold        
+akilim                      Fold        
+ReyyyJr                     Call        (0.02)
+NutRage                     Raise       (0.12)
+marcol                      Call        (0.12)
+ReyyyJr                     Call        (0.12)
+
+Flop                        6h - 7c - Qc
+
+ReyyyJr                     Check       
+NutRage                     Check       
+marcol                      Bet         (0.48)
+ReyyyJr                     Call        (0.48)
+NutRage                     Fold        
+
+Turn                        6h - 7c - Qc - 7h
+
+ReyyyJr                     Check       
+marcol                      All-In      (1.36)
+ReyyyJr                     Call        (1.36)
+
+River                       6h - 7c - Qc - 7h - Ah
+
+ReyyyJr shows:              9c - As - 5h - 4s (two pairs, Aces and Sevens)
+marcol shows:               8s - 4d - Ks - Qd (two pairs, Queens and Sevens)
+
+ReyyyJr wins:               EUR 3.96 (with two pairs, Aces and Sevens)
+Rake:                       EUR 0.20
+
+Game ended 2011-03-21 16:54:17 GMT
+
+Game # 2137894058 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 8.93 in seat 1)
+ReyyyJr                     (EUR 7.92 in seat 2)
+NutRage                     (EUR 3.84 in seat 3)
+nananinee                   (EUR 4.00 in seat 4)
+marcol                      (EUR 0.00 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     ReyyyJr
+Small Blind:                NutRage     (0.02)
+Big Blind:                  nananinee   (0.04)
+
+F4UXR34L was dealt:         9s - Qd - 9c - As
+
+F4UXR34L                    Fold        
+akilim                      Raise       (0.11)
+ReyyyJr                     Call        (0.11)
+NutRage                     Raise       (0.32)
+nananinee                   Fold        
+akilim                      Call        (0.23)
+ReyyyJr                     Call        (0.23)
+
+Flop                        6d - 3h - Th
+
+NutRage                     Bet         (0.60)
+akilim                      Call        (0.60)
+ReyyyJr                     Call        (0.60)
+
+Turn                        6d - 3h - Th - Kh
+
+NutRage                     Check       
+akilim                      Check       
+ReyyyJr                     Check       
+
+River                       6d - 3h - Th - Kh - Ks
+
+NutRage                     Check       
+akilim                      Check       
+ReyyyJr                     Bet         (1.43)
+NutRage                     Fold        
+akilim                      Call        (1.43)
+
+ReyyyJr shows:              Qh - 8c - Jd - 7h (a flush, King high)
+
+akilim didn't show hand (Ad - Ac - Qs - Jh)
+
+ReyyyJr wins:               EUR 5.44 (with a flush, King high)
+Rake:                       EUR 0.28
+
+Game ended 2011-03-21 16:56:02 GMT
+
+Game # 2137894547 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 6.56 in seat 1)
+ReyyyJr                     (EUR 10.99 in seat 2)
+NutRage                     (EUR 4.00 in seat 3)
+nananinee                   (EUR 3.96 in seat 4)
+marcol                      (EUR 0.80 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     NutRage
+Small Blind:                nananinee   (0.02)
+Big Blind:                  marcol      (0.04)
+
+F4UXR34L was dealt:         Ac - 2h - Jd - 6c
+
+F4UXR34L                    Fold        
+akilim                      Fold        
+ReyyyJr                     Fold        
+NutRage                     Raise       (0.11)
+nananinee                   Fold        
+marcol                      Call        (0.07)
+
+Flop                        7d - 7h - Ah
+
+marcol                      Bet         (0.04)
+NutRage                     Call        (0.04)
+
+Turn                        7d - 7h - Ah - 8h
+
+marcol                      Bet         (0.04)
+NutRage                     Call        (0.04)
+
+River                       7d - 7h - Ah - 8h - 2d
+
+marcol                      Bet         (0.04)
+NutRage                     Call        (0.04)
+
+marcol shows:               6h - 6d - 9s - As (two pairs, Aces and Sevens)
+NutRage shows:              Qc - Ad - 4c - 3s (two pairs, Aces and Sevens, with Queen as kicker)
+
+NutRage wins:               EUR 0.46 (with two pairs, Aces and Sevens, with Queen as kicker)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:56:41 GMT
+
+Game # 2137894729 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 6.56 in seat 1)
+ReyyyJr                     (EUR 10.99 in seat 2)
+NutRage                     (EUR 4.23 in seat 3)
+nananinee                   (EUR 3.94 in seat 4)
+marcol                      (EUR 0.57 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     nananinee
+Small Blind:                marcol      (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         4d - Jd - 4c - Th
+
+akilim                      Fold        
+ReyyyJr                     Call        (0.04)
+NutRage                     Fold        
+nananinee                   Fold        
+marcol                      Call        (0.02)
+F4UXR34L                    Check       
+
+Flop                        6c - 5h - 8s
+
+marcol                      Check       
+F4UXR34L                    Check       
+ReyyyJr                     Bet         (0.12)
+marcol                      Fold        
+F4UXR34L                    Fold        
+ReyyyJr                     Payback     (0.12)
+
+ReyyyJr didn't show hand
+
+ReyyyJr wins:               EUR 0.12
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:57:16 GMT
+
+Game # 2137898913 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 6.56 in seat 1)
+ReyyyJr                     (EUR 11.07 in seat 2)
+NutRage                     (EUR 4.23 in seat 3)
+nananinee                   (EUR 3.94 in seat 4)
+marcol                      (EUR 0.53 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     marcol
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+
+F4UXR34L was dealt:         2d - Jd - Tc - 6s
+
+ReyyyJr                     Fold        
+NutRage                     Raise       (0.14)
+nananinee                   Fold        
+marcol                      Fold        
+F4UXR34L                    Fold        
+akilim                      Fold        
+NutRage                     Payback     (0.10)
+
+NutRage didn't show hand
+
+NutRage wins:               EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:57:34 GMT
+
+Game # 2137899017 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 6.52 in seat 1)
+ReyyyJr                     (EUR 11.07 in seat 2)
+NutRage                     (EUR 4.29 in seat 3)
+nananinee                   (EUR 3.94 in seat 4)
+marcol                      (EUR 0.53 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  ReyyyJr     (0.04)
+
+F4UXR34L was dealt:         4h - As - 9h - 8c
+
+NutRage                     Raise       (0.14)
+nananinee                   Fold        
+marcol                      Call        (0.14)
+F4UXR34L                    Fold        
+akilim                      Fold        
+ReyyyJr                     Call        (0.10)
+
+Flop                        8s - Ks - 2c
+
+ReyyyJr                     Check       
+NutRage                     Bet         (0.24)
+marcol                      All-In      (0.39)
+ReyyyJr                     Call        (0.39)
+NutRage                     Call        (0.15)
+
+Turn                        8s - Ks - 2c - Ac
+
+ReyyyJr                     Check       
+NutRage                     Check       
+
+River                       8s - Ks - 2c - Ac - 5h
+
+ReyyyJr                     Bet         (1.61)
+NutRage                     Fold        
+ReyyyJr                     Payback     (1.61)
+
+ReyyyJr shows:              4s - 3s - 4d - Ad (a straight, Five high)
+marcol shows:               5s - Kh - 6h - 2d (two pairs, Kings and Fives)
+
+ReyyyJr wins:               EUR 1.53 (with a straight, Five high)
+Rake:                       EUR 0.08
+
+Game ended 2011-03-21 16:58:32 GMT
+
+Game # 2137899379 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 6.50 in seat 1)
+ReyyyJr                     (EUR 12.07 in seat 2)
+NutRage                     (EUR 4.00 in seat 3)
+nananinee                   (EUR 3.94 in seat 4)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                ReyyyJr     (0.02)
+Big Blind:                  NutRage     (0.04)
+
+F4UXR34L was dealt:         6h - 7c - Ks - Ah
+
+nananinee                   Fold        
+F4UXR34L                    Fold        
+akilim                      Raise       (0.11)
+ReyyyJr                     Fold        
+NutRage                     Raise       (0.31)
+akilim                      Call        (0.24)
+
+Flop                        6d - Qs - Kc
+
+NutRage                     Check       
+akilim                      Bet         (0.54)
+NutRage                     Call        (0.54)
+
+Turn                        6d - Qs - Kc - Js
+
+NutRage                     Check       
+akilim                      Check       
+
+River                       6d - Qs - Kc - Js - 9d
+
+NutRage                     Check       
+akilim                      Bet         (1.35)
+NutRage                     Fold        
+akilim                      Payback     (1.35)
+
+akilim didn't show hand
+
+akilim wins:                EUR 1.71
+Rake:                       EUR 0.09
+
+Game ended 2011-03-21 16:59:49 GMT
+
+Game # 2137899716 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.32 in seat 1)
+ReyyyJr                     (EUR 12.05 in seat 2)
+NutRage                     (EUR 4.00 in seat 3)
+nananinee                   (EUR 3.94 in seat 4)
+Rooney7                     (EUR 2.00 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     ReyyyJr
+Small Blind:                NutRage     (0.02)
+Big Blind:                  nananinee   (0.04)
+Blind out of turn:          Rooney7     (0.04)
+
+F4UXR34L was dealt:         6c - Qc - 5c - 2s
+
+Rooney7                     Check       
+F4UXR34L                    Fold        
+akilim                      Fold        
+ReyyyJr                     Call        (0.04)
+NutRage                     Fold        
+nananinee                   Check       
+
+Flop                        Ks - 6s - Ah
+
+nananinee                   Check       
+Rooney7                     Bet         (0.14)
+ReyyyJr                     Call        (0.14)
+nananinee                   Fold        
+
+Turn                        Ks - 6s - Ah - 9s
+
+Rooney7                     Check       
+ReyyyJr                     Check       
+
+River                       Ks - 6s - Ah - 9s - 8s
+
+Rooney7                     Check       
+ReyyyJr                     Check       
+
+Rooney7 shows:              2h - Kc - Qd - Kd (three of a kind, Kings)
+
+ReyyyJr didn't show hand (Qs - 7d - Ad - 9h)
+
+Rooney7 wins:               EUR 0.40 (with three of a kind, Kings)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:00:50 GMT
+
+Game # 2137905028 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.32 in seat 1)
+ReyyyJr                     (EUR 11.87 in seat 2)
+NutRage                     (EUR 4.00 in seat 3)
+nananinee                   (EUR 3.90 in seat 4)
+Rooney7                     (EUR 2.22 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     NutRage
+Small Blind:                nananinee   (0.02)
+Big Blind:                  Rooney7     (0.04)
+
+F4UXR34L was dealt:         6h - Kc - 7s - Th
+
+F4UXR34L                    Fold        
+akilim                      Raise       (0.11)
+ReyyyJr                     Call        (0.11)
+NutRage                     Fold        
+nananinee                   Fold        
+Rooney7                     Fold        
+
+Flop                        7h - Td - Jd
+
+akilim                      Bet         (0.21)
+ReyyyJr                     Call        (0.21)
+
+Turn                        7h - Td - Jd - 7c
+
+akilim                      Bet         (0.35)
+ReyyyJr                     Call        (0.35)
+
+River                       7h - Td - Jd - 7c - Jc
+
+akilim                      Check       
+ReyyyJr                     Check       
+
+akilim shows:               Ks - 6d - Kh - 5s (two pairs, Kings and Jacks)
+
+ReyyyJr didn't show hand (4h - 2s - Tc - Qc)
+
+akilim wins:                EUR 1.33 (with two pairs, Kings and Jacks)
+Rake:                       EUR 0.07
+
+Game ended 2011-03-21 17:01:36 GMT
+
+Game # 2137905268 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.98 in seat 1)
+ReyyyJr                     (EUR 11.20 in seat 2)
+NutRage                     (EUR 4.00 in seat 3)
+nananinee                   (EUR 3.88 in seat 4)
+Rooney7                     (EUR 2.18 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     nananinee
+Small Blind:                Rooney7     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         3c - 6d - Ks - As
+
+akilim                      Fold        
+ReyyyJr                     Fold        
+NutRage                     Fold        
+nananinee                   Fold        
+Rooney7                     Call        (0.02)
+F4UXR34L                    Check       
+
+Flop                        8c - Qd - 4c
+
+Rooney7                     Bet         (0.06)
+F4UXR34L                    Fold        
+Rooney7                     Payback     (0.06)
+
+Rooney7 didn't show hand
+
+Rooney7 wins:               EUR 0.08
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:02:06 GMT
+
+Game # 2137905426 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.98 in seat 1)
+ReyyyJr                     (EUR 11.20 in seat 2)
+NutRage                     (EUR 4.00 in seat 3)
+nananinee                   (EUR 3.88 in seat 4)
+Rooney7                     (EUR 2.22 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     Rooney7
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+
+F4UXR34L was dealt:         2d - Ah - 8c - 7h
+
+ReyyyJr                     Fold        
+NutRage                     Fold        
+nananinee                   Fold        
+Rooney7                     Raise       (0.14)
+F4UXR34L                    Fold        
+akilim                      Fold        
+Rooney7                     Payback     (0.10)
+
+Rooney7 didn't show hand
+
+Rooney7 wins:               EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:02:25 GMT
+
+Game # 2137905538 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.94 in seat 1)
+ReyyyJr                     (EUR 11.20 in seat 2)
+NutRage                     (EUR 4.00 in seat 3)
+nananinee                   (EUR 3.88 in seat 4)
+Rooney7                     (EUR 2.28 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  ReyyyJr     (0.04)
+
+F4UXR34L was dealt:         Th - 4d - 8h - Kd
+
+NutRage                     Fold        
+nananinee                   Fold        
+Rooney7                     Raise       (0.11)
+F4UXR34L                    Fold        
+akilim                      Fold        
+ReyyyJr                     Call        (0.07)
+
+Flop                        Ac - 7s - 9h
+
+ReyyyJr                     Check       
+Rooney7                     Bet         (0.18)
+ReyyyJr                     Call        (0.18)
+
+Turn                        Ac - 7s - 9h - Ad
+
+ReyyyJr                     Check       
+Rooney7                     Bet         (0.34)
+ReyyyJr                     Fold        
+Rooney7                     Payback     (0.34)
+
+Rooney7 didn't show hand
+
+Rooney7 wins:               EUR 0.57
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 17:03:36 GMT
+
+Game # 2137910932 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.92 in seat 1)
+ReyyyJr                     (EUR 10.91 in seat 2)
+NutRage                     (EUR 4.00 in seat 3)
+nananinee                   (EUR 3.88 in seat 4)
+Rooney7                     (EUR 2.56 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                ReyyyJr     (0.02)
+Big Blind:                  NutRage     (0.04)
+
+F4UXR34L was dealt:         8d - Ac - Ks - 5s
+
+nananinee                   Fold        
+Rooney7                     Fold        
+F4UXR34L                    Fold        
+akilim                      Raise       (0.11)
+ReyyyJr                     Call        (0.09)
+NutRage                     Call        (0.07)
+
+Flop                        Js - 8h - Jc
+
+ReyyyJr                     Check       
+NutRage                     Check       
+akilim                      Check       
+
+Turn                        Js - 8h - Jc - Ts
+
+ReyyyJr                     Bet         (0.04)
+NutRage                     Call        (0.04)
+akilim                      Call        (0.04)
+
+River                       Js - 8h - Jc - Ts - Kc
+
+ReyyyJr                     Check       
+NutRage                     Check       
+akilim                      Check       
+
+ReyyyJr shows:              Qd - 7s - 8s - 3d (two pairs, Jacks and Eights)
+NutRage shows:              3c - Qc - Ah - Kd (a straight, Ace high)
+
+akilim didn't show hand (4d - Td - 6c - Ad)
+
+NutRage wins:               EUR 0.43 (with a straight, Ace high)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:04:28 GMT
+
+Game # 2137911226 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.77 in seat 1)
+ReyyyJr                     (EUR 10.76 in seat 2)
+NutRage                     (EUR 4.28 in seat 3)
+nananinee                   (EUR 3.88 in seat 4)
+Rooney7                     (EUR 2.56 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     ReyyyJr
+Small Blind:                NutRage     (0.02)
+Big Blind:                  nananinee   (0.04)
+
+F4UXR34L was dealt:         Js - Jc - 5s - 6d
+
+Rooney7                     Raise       (0.11)
+F4UXR34L                    Fold        
+akilim                      Fold        
+ReyyyJr                     Call        (0.11)
+NutRage                     Fold        
+nananinee                   Fold        
+
+Flop                        9h - Ac - Kd
+
+Rooney7                     Check       
+ReyyyJr                     Check       
+
+Turn                        9h - Ac - Kd - 4h
+
+Rooney7                     Bet         (0.21)
+ReyyyJr                     Call        (0.21)
+
+River                       9h - Ac - Kd - 4h - 7c
+
+Rooney7                     Check       
+ReyyyJr                     Check       
+
+Rooney7 shows:              Qs - Kh - Tc - 9c (two pairs, Kings and Nines)
+
+ReyyyJr didn't show hand (8d - 5c - Ah - 5d)
+
+Rooney7 wins:               EUR 0.67 (with two pairs, Kings and Nines)
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 17:05:29 GMT
+
+Game # 2137911581 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.77 in seat 1)
+ReyyyJr                     (EUR 10.44 in seat 2)
+NutRage                     (EUR 4.26 in seat 3)
+nananinee                   (EUR 3.84 in seat 4)
+Rooney7                     (EUR 2.91 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     NutRage
+Small Blind:                nananinee   (0.02)
+Big Blind:                  Rooney7     (0.04)
+
+F4UXR34L was dealt:         Kd - 7s - 5d - Tc
+
+F4UXR34L                    Fold        
+akilim                      Fold        
+ReyyyJr                     Fold        
+NutRage                     Fold        
+nananinee                   Fold        
+Rooney7                     Payback     (0.02)
+
+Rooney7 didn't show hand
+
+Rooney7 wins:               EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:05:40 GMT
+
+Game # 2137911633 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.77 in seat 1)
+ReyyyJr                     (EUR 10.44 in seat 2)
+NutRage                     (EUR 4.26 in seat 3)
+nananinee                   (EUR 3.82 in seat 4)
+Rooney7                     (EUR 2.93 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     nananinee
+Small Blind:                Rooney7     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         3s - 8c - 8h - Td
+
+akilim                      Fold        
+ReyyyJr                     Raise       (0.14)
+NutRage                     Fold        
+nananinee                   Fold        
+Rooney7                     Fold        
+F4UXR34L                    Fold        
+ReyyyJr                     Payback     (0.10)
+
+ReyyyJr didn't show hand
+
+ReyyyJr wins:               EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:06:04 GMT
+
+Game # 2137915764 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.77 in seat 1)
+ReyyyJr                     (EUR 10.50 in seat 2)
+NutRage                     (EUR 4.26 in seat 3)
+nananinee                   (EUR 3.82 in seat 4)
+Rooney7                     (EUR 2.91 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     Rooney7
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+
+F4UXR34L was dealt:         4h - 3s - Jc - Ac
+
+ReyyyJr                     Call        (0.04)
+NutRage                     Fold        
+nananinee                   Fold        
+Rooney7                     Fold        
+F4UXR34L                    Fold        
+akilim                      Check       
+
+Flop                        Tc - 7h - 3d
+
+akilim                      Check       
+ReyyyJr                     Check       
+
+Turn                        Tc - 7h - 3d - 9c
+
+akilim                      Bet         (0.07)
+ReyyyJr                     Fold        
+akilim                      Payback     (0.07)
+
+akilim didn't show hand
+
+akilim wins:                EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:06:50 GMT
+
+Game # 2137916021 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.83 in seat 1)
+ReyyyJr                     (EUR 10.46 in seat 2)
+NutRage                     (EUR 4.26 in seat 3)
+nananinee                   (EUR 3.82 in seat 4)
+Rooney7                     (EUR 2.91 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  ReyyyJr     (0.04)
+
+F4UXR34L was dealt:         5s - 8d - 4c - Kd
+
+NutRage                     Fold        
+Rooney7                     Raise       (0.11)
+F4UXR34L                    Fold        
+akilim                      Fold        
+ReyyyJr                     Raise       (0.31)
+Rooney7                     Call        (0.24)
+
+Flop                        Jh - 2s - 6d
+
+ReyyyJr                     Check       
+Rooney7                     Check       
+
+Turn                        Jh - 2s - 6d - Jc
+
+ReyyyJr                     Bet         (0.36)
+Rooney7                     Fold        
+ReyyyJr                     Payback     (0.36)
+
+ReyyyJr didn't show hand
+
+ReyyyJr wins:               EUR 0.69
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 17:07:23 GMT
+
+Game # 2137916208 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.81 in seat 1)
+ReyyyJr                     (EUR 10.80 in seat 2)
+NutRage                     (EUR 4.26 in seat 3)
+nananinee                   (EUR 3.82 in seat 4)
+Rooney7                     (EUR 2.56 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                ReyyyJr     (0.02)
+Big Blind:                  NutRage     (0.04)
+
+F4UXR34L was dealt:         Th - 3s - 7s - As
+
+Rooney7                     Fold        
+F4UXR34L                    Fold        
+akilim                      Raise       (0.11)
+ReyyyJr                     Call        (0.09)
+NutRage                     Call        (0.07)
+
+Flop                        Ts - 5d - 4d
+
+ReyyyJr                     Bet         (0.33)
+NutRage                     Fold        
+akilim                      Fold        
+ReyyyJr                     Payback     (0.33)
+
+ReyyyJr didn't show hand
+
+ReyyyJr wins:               EUR 0.31
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:07:52 GMT
+
+Game # 2137916377 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.70 in seat 1)
+ReyyyJr                     (EUR 11.00 in seat 2)
+NutRage                     (EUR 4.15 in seat 3)
+nananinee                   (EUR 3.82 in seat 4)
+Rooney7                     (EUR 2.56 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     ReyyyJr
+Small Blind:                NutRage     (0.02)
+Big Blind:                  Rooney7     (0.04)
+
+F4UXR34L was dealt:         5s - 9h - Js - 2h
+
+F4UXR34L                    Fold        
+akilim                      Call        (0.04)
+ReyyyJr                     Call        (0.04)
+NutRage                     Fold        
+Rooney7                     Check       
+
+Flop                        7d - Qs - 8c
+
+Rooney7                     Check       
+akilim                      Bet         (0.10)
+ReyyyJr                     Raise       (0.44)
+Rooney7                     Fold        
+akilim                      Call        (0.34)
+
+Turn                        7d - Qs - 8c - 3d
+
+akilim                      Check       
+ReyyyJr                     Bet         (1.02)
+akilim                      Fold        
+ReyyyJr                     Payback     (1.02)
+
+ReyyyJr didn't show hand
+
+ReyyyJr wins:               EUR 0.97
+Rake:                       EUR 0.05
+
+Game ended 2011-03-21 17:09:28 GMT
+
+Game # 2137922927 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.22 in seat 1)
+ReyyyJr                     (EUR 11.49 in seat 2)
+NutRage                     (EUR 4.13 in seat 3)
+Rooney7                     (EUR 2.52 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     NutRage
+Small Blind:                Rooney7     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         8s - Th - 5h - 2c
+
+akilim                      Fold        
+ReyyyJr                     Call        (0.04)
+NutRage                     Raise       (0.14)
+Rooney7                     Fold        
+F4UXR34L                    Fold        
+ReyyyJr                     Call        (0.10)
+
+Flop                        4h - Qd - 3h
+
+ReyyyJr                     Check       
+NutRage                     Bet         (0.25)
+ReyyyJr                     Call        (0.25)
+
+Turn                        4h - Qd - 3h - Qs
+
+ReyyyJr                     Check       
+NutRage                     Check       
+
+River                       4h - Qd - 3h - Qs - Td
+
+ReyyyJr                     Bet         (0.84)
+NutRage                     Fold        
+ReyyyJr                     Payback     (0.84)
+
+ReyyyJr didn't show hand
+
+ReyyyJr wins:               EUR 0.80
+Rake:                       EUR 0.04
+
+Game ended 2011-03-21 17:10:59 GMT
+
+Game # 2137923428 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.22 in seat 1)
+ReyyyJr                     (EUR 11.90 in seat 2)
+NutRage                     (EUR 4.00 in seat 3)
+genip                       (EUR 2.00 in seat 4)
+Rooney7                     (EUR 2.50 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     Rooney7
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+
+F4UXR34L was dealt:         Qh - 9c - 2d - Kd
+
+ReyyyJr                     Fold        
+NutRage                     Call        (0.04)
+Rooney7                     Call        (0.04)
+F4UXR34L                    Fold        
+akilim                      Check       
+
+Flop                        6c - Ah - 2s
+
+akilim                      Check       
+NutRage                     Bet         (0.10)
+Rooney7                     Fold        
+akilim                      Call        (0.10)
+
+Turn                        6c - Ah - 2s - 6d
+
+akilim                      Check       
+NutRage                     Check       
+
+River                       6c - Ah - 2s - 6d - Qd
+
+akilim                      Check       
+NutRage                     Check       
+
+akilim shows:               Kh - 4d - As - 9h (two pairs, Aces and Sixes)
+
+NutRage didn't show hand (3s - 8s - Ac - 2c)
+
+akilim wins:                EUR 0.32 (with two pairs, Aces and Sixes)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:12:19 GMT
+
+Game # 2137926868 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.40 in seat 1)
+ReyyyJr                     (EUR 11.90 in seat 2)
+NutRage                     (EUR 4.00 in seat 3)
+genip                       (EUR 2.00 in seat 4)
+Rooney7                     (EUR 2.46 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  ReyyyJr     (0.04)
+Blind out of turn:          genip       (0.04)
+
+F4UXR34L was dealt:         9c - 4d - 7h - 7s
+
+NutRage                     Fold        
+genip                       Check       
+Rooney7                     Fold        
+F4UXR34L                    Fold        
+akilim                      Fold        
+ReyyyJr                     Check       
+
+Flop                        8c - Qs - 3s
+
+ReyyyJr                     Check       
+genip                       Check       
+
+Turn                        8c - Qs - 3s - Jh
+
+ReyyyJr                     Bet         (0.04)
+genip                       Call        (0.04)
+
+River                       8c - Qs - 3s - Jh - 8d
+
+ReyyyJr                     Bet         (0.18)
+genip                       Fold        
+ReyyyJr                     Payback     (0.18)
+
+ReyyyJr didn't show hand
+
+ReyyyJr wins:               EUR 0.18
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:12:56 GMT
+
+Game # 2137927069 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.38 in seat 1)
+ReyyyJr                     (EUR 12.00 in seat 2)
+NutRage                     (EUR 4.00 in seat 3)
+genip                       (EUR 1.92 in seat 4)
+Rooney7                     (EUR 2.46 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                ReyyyJr     (0.02)
+Big Blind:                  NutRage     (0.04)
+
+F4UXR34L was dealt:         Td - 9s - 3h - 7d
+
+genip                       Raise       (0.08)
+Rooney7                     Raise       (0.30)
+F4UXR34L                    Fold        
+akilim                      Fold        
+ReyyyJr                     Call        (0.28)
+NutRage                     Fold        
+genip                       Call        (0.22)
+
+Flop                        9d - 3s - Jc
+
+ReyyyJr                     Check       
+genip                       Bet         (0.94)
+Rooney7                     Fold        
+ReyyyJr                     Raise       (1.88)
+genip                       All-In      (0.68)
+ReyyyJr                     Payback     (0.26)
+
+Turn                        9d - 3s - Jc - 2h
+River                       9d - 3s - Jc - 2h - 6h
+
+ReyyyJr shows:              Tc - Qh - Qd - Jh (a pair of Queens)
+genip shows:                5d - 3c - Ad - 3d (three of a kind, Threes)
+
+genip wins:                 EUR 3.98 (with three of a kind, Threes)
+Rake:                       EUR 0.20
+
+Game ended 2011-03-21 17:14:06 GMT
+
+Game # 2137927470 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 7.38 in seat 1)
+ReyyyJr                     (EUR 10.08 in seat 2)
+NutRage                     (EUR 4.00 in seat 3)
+genip                       (EUR 3.98 in seat 4)
+Rooney7                     (EUR 2.16 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     ReyyyJr
+Small Blind:                NutRage     (0.02)
+Big Blind:                  genip       (0.04)
+
+F4UXR34L was dealt:         Jh - 4h - 8c - Js
+
+Rooney7                     Raise       (0.14)
+F4UXR34L                    Fold        
+akilim                      Call        (0.14)
+ReyyyJr                     Call        (0.14)
+NutRage                     Fold        
+genip                       Call        (0.10)
+
+Flop                        3h - 3c - 8h
+
+genip                       Check       
+Rooney7                     Check       
+akilim                      Bet         (0.29)
+ReyyyJr                     Fold        
+genip                       Call        (0.29)
+Rooney7                     Fold        
+
+Turn                        3h - 3c - 8h - 9h
+
+genip                       Check       
+akilim                      Bet         (0.58)
+genip                       Call        (0.58)
+
+River                       3h - 3c - 8h - 9h - 4s
+
+genip                       Check       
+akilim                      Bet         (1.16)
+genip                       Call        (1.16)
+
+akilim shows:               3d - Qs - Qh - 5d (three of a kind, Threes)
+genip shows:                5h - 6s - Ad - 7h (a flush, Nine high)
+
+genip wins:                 EUR 4.41 (with a flush, Nine high)
+Rake:                       EUR 0.23
+
+Game ended 2011-03-21 17:15:03 GMT
+
+Game # 2137930781 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 5.21 in seat 1)
+ReyyyJr                     (EUR 9.94 in seat 2)
+NutRage                     (EUR 4.00 in seat 3)
+genip                       (EUR 6.22 in seat 4)
+Rooney7                     (EUR 2.02 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     NutRage
+Small Blind:                genip       (0.02)
+Big Blind:                  Rooney7     (0.04)
+
+F4UXR34L was dealt:         3d - 8c - Kc - Ts
+
+F4UXR34L                    Fold        
+akilim                      Fold        
+ReyyyJr                     Raise       (0.14)
+NutRage                     Fold        
+genip                       Call        (0.12)
+Rooney7                     Call        (0.10)
+
+Flop                        Qs - Qd - 7h
+
+genip                       Check       
+Rooney7                     Check       
+ReyyyJr                     Bet         (0.42)
+genip                       Fold        
+Rooney7                     Fold        
+ReyyyJr                     Payback     (0.42)
+
+ReyyyJr didn't show hand
+
+ReyyyJr wins:               EUR 0.40
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:15:35 GMT
+
+Game # 2137930949 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+akilim                      (EUR 5.21 in seat 1)
+ReyyyJr                     (EUR 10.20 in seat 2)
+NutRage                     (EUR 4.00 in seat 3)
+genip                       (EUR 6.08 in seat 4)
+Rooney7                     (EUR 1.88 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     genip
+Small Blind:                Rooney7     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         3c - 5c - Jc - 7s
+
+akilim                      Call        (0.04)
+ReyyyJr                     Call        (0.04)
+NutRage                     Raise       (0.22)
+genip                       Fold        
+Rooney7                     Fold        
+F4UXR34L                    Fold        
+akilim                      Fold        
+ReyyyJr                     Call        (0.18)
+
+Flop                        9h - Th - 6s
+
+ReyyyJr                     Check       
+NutRage                     Bet         (0.40)
+ReyyyJr                     Fold        
+NutRage                     Payback     (0.40)
+
+NutRage didn't show hand
+
+NutRage wins:               EUR 0.52
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:16:17 GMT
+
+Game # 2137931205 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+smorek99                    (EUR 0.00 in seat 1)
+ReyyyJr                     (EUR 9.98 in seat 2)
+NutRage                     (EUR 4.30 in seat 3)
+genip                       (EUR 6.08 in seat 4)
+Rooney7                     (EUR 1.86 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     Rooney7
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  ReyyyJr     (0.04)
+
+F4UXR34L was dealt:         4s - 6c - Qs - 4h
+
+NutRage                     Raise       (0.14)
+genip                       Fold        
+Rooney7                     Call        (0.14)
+F4UXR34L                    Fold        
+ReyyyJr                     Fold        
+
+Flop                        Ks - 5c - 2d
+
+NutRage                     Bet         (0.25)
+Rooney7                     Call        (0.25)
+
+Turn                        Ks - 5c - 2d - Ac
+
+NutRage                     Check       
+Rooney7                     Bet         (0.63)
+NutRage                     Fold        
+Rooney7                     Payback     (0.63)
+
+Rooney7 didn't show hand
+
+Rooney7 wins:               EUR 0.80
+Rake:                       EUR 0.04
+
+Game ended 2011-03-21 17:16:59 GMT
+
+Game # 2137931420 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+smorek99                    (EUR 4.00 in seat 1)
+ReyyyJr                     (EUR 9.94 in seat 2)
+NutRage                     (EUR 4.00 in seat 3)
+genip                       (EUR 6.08 in seat 4)
+Rooney7                     (EUR 2.27 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                ReyyyJr     (0.02)
+Big Blind:                  NutRage     (0.04)
+
+F4UXR34L was dealt:         5h - 9s - Qs - Jd
+
+genip                       Fold        
+Rooney7                     Raise       (0.11)
+F4UXR34L                    Fold        
+ReyyyJr                     Call        (0.09)
+NutRage                     Call        (0.07)
+
+Flop                        8d - 6c - 9c
+
+ReyyyJr                     Check       
+NutRage                     Bet         (0.24)
+Rooney7                     Call        (0.24)
+ReyyyJr                     Call        (0.24)
+
+Turn                        8d - 6c - 9c - 6d
+
+ReyyyJr                     Check       
+NutRage                     Bet         (0.56)
+Rooney7                     Call        (0.56)
+ReyyyJr                     Fold        
+
+River                       8d - 6c - 9c - 6d - 2c
+
+NutRage                     Bet         (1.62)
+Rooney7                     Fold        
+NutRage                     Payback     (1.62)
+
+NutRage didn't show hand
+
+NutRage wins:               EUR 2.07
+Rake:                       EUR 0.10
+
+Game ended 2011-03-21 17:18:11 GMT
+
+Game # 2137936812 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+smorek99                    (EUR 4.00 in seat 1)
+ReyyyJr                     (EUR 9.59 in seat 2)
+NutRage                     (EUR 5.16 in seat 3)
+genip                       (EUR 6.08 in seat 4)
+Rooney7                     (EUR 1.36 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     ReyyyJr
+Small Blind:                NutRage     (0.02)
+Big Blind:                  genip       (0.04)
+
+F4UXR34L was dealt:         6h - Td - 7s - Ah
+
+Rooney7                     Fold        
+F4UXR34L                    Fold        
+ReyyyJr                     Fold        
+NutRage                     Raise       (0.10)
+genip                       Call        (0.08)
+
+Flop                        9h - 7c - Ts
+
+NutRage                     Check       
+genip                       Check       
+
+Turn                        9h - 7c - Ts - 6c
+
+NutRage                     Check       
+genip                       Check       
+
+River                       9h - 7c - Ts - 6c - 5h
+
+NutRage                     Check       
+genip                       Check       
+
+NutRage shows:              Kd - 2h - Ad - Kh (a pair of Kings)
+
+genip didn't show hand (Jd - Qs - Jc - 2d)
+
+NutRage wins:               EUR 0.22 (with a pair of Kings)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:19:02 GMT
+
+Game # 2137937090 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+smorek99                    (EUR 4.00 in seat 1)
+ReyyyJr                     (EUR 9.59 in seat 2)
+NutRage                     (EUR 5.26 in seat 3)
+genip                       (EUR 5.96 in seat 4)
+Rooney7                     (EUR 1.36 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     NutRage
+Small Blind:                genip       (0.02)
+Big Blind:                  Rooney7     (0.04)
+
+F4UXR34L was dealt:         3d - Qs - Jc - 2h
+
+F4UXR34L                    Fold        
+ReyyyJr                     Raise       (0.14)
+NutRage                     Fold        
+genip                       Call        (0.12)
+Rooney7                     Call        (0.10)
+
+Flop                        9s - Qd - 7c
+
+genip                       Check       
+Rooney7                     Check       
+ReyyyJr                     Bet         (0.42)
+genip                       Fold        
+Rooney7                     Fold        
+ReyyyJr                     Payback     (0.42)
+
+ReyyyJr didn't show hand
+
+ReyyyJr wins:               EUR 0.40
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:19:32 GMT
+
+Game # 2137937250 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+smorek99                    (EUR 4.00 in seat 1)
+ReyyyJr                     (EUR 9.85 in seat 2)
+NutRage                     (EUR 5.26 in seat 3)
+genip                       (EUR 5.82 in seat 4)
+Rooney7                     (EUR 1.22 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     genip
+Small Blind:                Rooney7     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         9c - 3s - Qd - Kc
+
+ReyyyJr                     Fold        
+NutRage                     Raise       (0.14)
+genip                       Fold        
+Rooney7                     Raise       (0.36)
+F4UXR34L                    Fold        
+NutRage                     Call        (0.24)
+
+Flop                        Ks - 4h - Kd
+
+Rooney7                     Bet         (0.80)
+NutRage                     Fold        
+Rooney7                     Payback     (0.80)
+
+Rooney7 didn't show hand
+
+Rooney7 wins:               EUR 0.76
+Rake:                       EUR 0.04
+
+Game ended 2011-03-21 17:20:17 GMT
+
+Game # 2137937492 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+smorek99                    (EUR 4.00 in seat 1)
+ReyyyJr                     (EUR 9.85 in seat 2)
+NutRage                     (EUR 4.88 in seat 3)
+genip                       (EUR 5.82 in seat 4)
+Rooney7                     (EUR 1.60 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     Rooney7
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  smorek99    (0.04)
+
+F4UXR34L was dealt:         Ks - Jd - 8d - 2d
+
+ReyyyJr                     Call        (0.04)
+NutRage                     Raise       (0.14)
+genip                       Call        (0.14)
+Rooney7                     Fold        
+F4UXR34L                    Fold        
+smorek99                    Call        (0.10)
+ReyyyJr                     Call        (0.10)
+
+Flop                        7h - 8c - 6d
+
+smorek99                    Check       
+ReyyyJr                     Check       
+NutRage                     Bet         (0.43)
+genip                       Fold        
+smorek99                    Call        (0.43)
+ReyyyJr                     Raise       (0.86)
+NutRage                     Raise       (3.16)
+smorek99                    Fold        
+ReyyyJr                     All-In      (8.85)
+NutRage                     All-In      (1.15)
+ReyyyJr                     Payback     (4.97)
+
+Turn                        7h - 8c - 6d - 5d
+River                       7h - 8c - 6d - 5d - 7c
+
+ReyyyJr shows:              9c - 4s - Tc - Td (a straight, Ten high)
+NutRage shows:              6s - 8s - 6h - 9s (a full house, Sixes full of Sevens)
+
+NutRage wins:               EUR 9.97 (with a full house, Sixes full of Sevens)
+Rake:                       EUR 0.52
+
+Game ended 2011-03-21 17:21:32 GMT
+
+Game # 2137946897 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+smorek99                    (EUR 4.00 in seat 1)
+ReyyyJr                     (EUR 4.97 in seat 2)
+NutRage                     (EUR 9.97 in seat 3)
+genip                       (EUR 5.68 in seat 4)
+Rooney7                     (EUR 1.60 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                smorek99    (0.02)
+Big Blind:                  ReyyyJr     (0.04)
+
+F4UXR34L was dealt:         6c - Qh - 7s - 5c
+
+NutRage                     Fold        
+genip                       Call        (0.04)
+Rooney7                     Fold        
+F4UXR34L                    Fold        
+smorek99                    Call        (0.02)
+ReyyyJr                     Raise       (0.12)
+genip                       Fold        
+smorek99                    Call        (0.12)
+
+Flop                        3h - Ah - Kd
+
+smorek99                    Check       
+ReyyyJr                     Bet         (0.18)
+smorek99                    Fold        
+ReyyyJr                     Payback     (0.18)
+
+ReyyyJr didn't show hand
+
+ReyyyJr wins:               EUR 0.34
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:22:25 GMT
+
+Game # 2137947158 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+smorek99                    (EUR 4.00 in seat 1)
+ReyyyJr                     (EUR 5.15 in seat 2)
+NutRage                     (EUR 9.97 in seat 3)
+genip                       (EUR 5.64 in seat 4)
+Rooney7                     (EUR 1.60 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     smorek99
+Small Blind:                ReyyyJr     (0.02)
+Big Blind:                  NutRage     (0.04)
+
+F4UXR34L was dealt:         8s - Th - 2h - 2c
+
+genip                       Call        (0.04)
+Rooney7                     Call        (0.04)
+F4UXR34L                    Fold        
+smorek99                    Fold        
+ReyyyJr                     Call        (0.02)
+NutRage                     Check       
+
+Flop                        7h - Td - 3c
+
+ReyyyJr                     Check       
+NutRage                     Check       
+genip                       Check       
+Rooney7                     Bet         (0.12)
+ReyyyJr                     Call        (0.12)
+NutRage                     Fold        
+genip                       Call        (0.12)
+
+Turn                        7h - Td - 3c - 8h
+
+ReyyyJr                     Check       
+genip                       Check       
+Rooney7                     Check       
+
+River                       7h - Td - 3c - 8h - 7c
+
+ReyyyJr                     Bet         (0.52)
+genip                       Fold        
+Rooney7                     Fold        
+ReyyyJr                     Payback     (0.52)
+
+ReyyyJr didn't show hand
+
+ReyyyJr wins:               EUR 0.50
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:23:21 GMT
+
+Game # 2137947446 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Ishiwaki"
+
+Players(max 6):
+smorek99                    (EUR 4.00 in seat 1)
+ReyyyJr                     (EUR 5.49 in seat 2)
+NutRage                     (EUR 9.93 in seat 3)
+genip                       (EUR 5.48 in seat 4)
+Rooney7                     (EUR 1.44 in seat 5)
+F4UXR34L                    (EUR 4.00 in seat 6)
+
+Dealer:                     ReyyyJr
+Small Blind:                NutRage     (0.02)
+Big Blind:                  genip       (0.04)
+
+F4UXR34L was dealt:         7h - Ts - 7c - 6h
+
+Rooney7                     Call        (0.04)
+F4UXR34L                    Fold        
+smorek99                    Call        (0.04)
+ReyyyJr                     Fold        
+NutRage                     Call        (0.02)
+genip                       Check       
+
+Flop                        Jd - 9c - 3d
+
+NutRage                     Check       
+genip                       Check       
+Rooney7                     Check       
+smorek99                    Check       
+
+Turn                        Jd - 9c - 3d - Jh
+
+NutRage                     Check       
+genip                       Check       
+Rooney7                     Check       
+smorek99                    Bet         (0.16)
+NutRage                     Fold        
+genip                       Fold        
+Rooney7                     Fold        
+smorek99                    Payback     (0.16)
+
+smorek99 didn't show hand
+
+smorek99 wins:              EUR 0.16
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:24:28 GMT
+

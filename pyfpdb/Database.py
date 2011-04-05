@@ -467,7 +467,7 @@ class Database:
                     os.mkdir(self.config.dir_database)
                 database = os.path.join(self.config.dir_database, database)
             self.db_path = database
-            log.info(_("Connecting to SQLite: %(database)s") % {'database':self.db_path})
+            log.info(_("Connecting to SQLite: %s") % self.db_path)
             if os.path.exists(database) or create:
                 self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES )
                 self.__connected = True
@@ -510,19 +510,18 @@ class Database:
             self.cursor.execute("SELECT * FROM Settings")
             settings = self.cursor.fetchone()
             if settings[0] != DB_VERSION:
-                log.error(_("outdated or too new database version (%s) - please recreate tables")
-                              % (settings[0]))
+                log.error((_("Outdated or too new database version (%s).") % (settings[0])) + " " + _("Please recreate tables."))
                 self.wrongDbVersion = True
         except:# _mysql_exceptions.ProgrammingError:
             if database !=  ":memory:":
                 if create:
-                    print _("Failed to read settings table - recreating tables")
-                    log.info(_("Failed to read settings table - recreating tables"))
+                    print (_("Failed to read settings table.") + " - " + _("Recreating tables."))
+                    log.info(_("Failed to read settings table.") + " - " + _("Recreating tables."))
                     self.recreate_tables()
                     self.check_version(database=database, create=False)
                 else:
-                    print _("Failed to read settings table - please recreate tables")
-                    log.info(_("Failed to read settings table - please recreate tables"))
+                    print (_("Failed to read settings table.") + " - " + _("Please recreate tables."))
+                    log.info(_("Failed to read settings table.") + " - " + _("Please recreate tables."))
                     self.wrongDbVersion = True
             else:
                 self.wrongDbVersion = True
