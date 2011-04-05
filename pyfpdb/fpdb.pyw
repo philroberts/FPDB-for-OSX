@@ -265,11 +265,16 @@ class fpdb:
         dia.set_authors(['Steffen', 'Eratosthenes', 'Carl Gherardi',
             'Eric Blade', '_mt', 'sqlcoder', 'Bostik', _('and others')])
         dia.set_program_name("Free Poker Database (FPDB)")
-
-        db_version = ""
-        #if self.db is not None:
-        #    db_version = self.db.get_version()
-        nums = [(_('Operating System'), os.name),
+        
+        if (os.name=="posix"):
+            os_text=str(os.uname())
+        elif (os.name=="nt"):
+            import platform
+            os_text=("Windows" + " " + str(platform.win32_ver()))
+        else:
+            os_text="Unknown"
+        
+        nums = [(_('Operating System'), os_text),
                 ('Python',           sys.version[0:3]),
                 ('GTK+',             '.'.join([str(x) for x in gtk.gtk_version])),
                 ('PyGTK',            '.'.join([str(x) for x in gtk.pygtk_version])),
@@ -281,7 +286,7 @@ class fpdb:
                ]
         versions = gtk.TextBuffer()
         w = 20  # width used for module names and version numbers
-        versions.set_text('\n'.join([x[0].rjust(w) + '  ' + x[1].ljust(w) for x in nums]))
+        versions.set_text('\n'.join([x[0].rjust(w) + ': ' + x[1].ljust(w) for x in nums]))
         view = gtk.TextView(versions)
         view.set_editable(False)
         view.set_justification(gtk.JUSTIFY_CENTER)
