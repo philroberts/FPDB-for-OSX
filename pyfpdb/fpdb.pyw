@@ -745,7 +745,16 @@ class fpdb:
             for site_number in range(0, len(available_site_names)):
                 #print "site %s enabled=%s name=%s" % (available_site_names[site_number], check_buttons[site_number].get_active(), entries[site_number].get_text())
                 self.config.edit_site(available_site_names[site_number], str(check_buttons[site_number].get_active()), entries[site_number].get_text())
-                self.config.save()
+            
+            self.config.save()
+            
+            if len(self.nb_tab_names) == 1:
+                # only main tab open, reload profile
+                self.load_profile()
+                dia.destroy()
+            else:
+                dia.destroy()  # destroy prefs before raising warning, otherwise parent is dia rather than self.window
+                self.warning_box(_("Updated preferences have not been loaded because windows are open. Re-start fpdb to load them."))
         dia.destroy()
 
     def addLogText(self, text):
