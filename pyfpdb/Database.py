@@ -524,12 +524,12 @@ class Database:
         except:# _mysql_exceptions.ProgrammingError:
             if database !=  ":memory:":
                 if create:
-                    print _("Failed to read settings table - recreating tables")
+                    #print _("Failed to read settings table - recreating tables")
                     log.info(_("Failed to read settings table - recreating tables"))
                     self.recreate_tables()
                     self.check_version(database=database, create=False)
                 else:
-                    print _("Failed to read settings table - please recreate tables")
+                    #print _("Failed to read settings table - please recreate tables")
                     log.info(_("Failed to read settings table - please recreate tables"))
                     self.wrongDbVersion = True
             else:
@@ -1250,7 +1250,7 @@ class Database:
         self.createAllIndexes()
         self.commit()
         self.get_sites()
-        print _("Finished recreating tables")
+        #print _("Finished recreating tables")
         log.info(_("Finished recreating tables"))
     #end def recreate_tables
 
