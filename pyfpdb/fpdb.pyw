@@ -378,6 +378,10 @@ class fpdb:
                                  (gtk.STOCK_OK, gtk.RESPONSE_ACCEPT,
                                   gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
 
+        label = gtk.Label(_("Note that this does not existing settings, but overwrites them."))
+        diaSelections.vbox.add(label)
+        label.show()
+
         label = gtk.Label(_("Please select the game category for which you want to configure HUD stats:"))
         diaSelections.vbox.add(label)
         label.show()
@@ -712,16 +716,18 @@ class fpdb:
         label = gtk.Label(_(" "))
         dia.vbox.add(label)
         
-        table = gtk.Table(rows=len(available_site_names)+1, columns=2, homogeneous=False)
+        column_headers=[_("Site"), _("Screen Name"), _("History Path")] #TODO , _("Summary Path"), _("HUD")] 
+        #HUD column will contain a button that shows favseat and HUD locations. Make it possible to load screenshot to arrange HUD windowlets.
+        table = gtk.Table(rows=len(available_site_names)+1, columns=len(column_headers), homogeneous=False)
         dia.vbox.add(table)
         
-        label = gtk.Label(_("Site"))
-        table.attach(label, 0, 1, 0, 1)
-        label = gtk.Label(_("Screen Name"))
-        table.attach(label, 1, 2, 0, 1)
+        for header_number in range (0, len(column_headers)):
+            label = gtk.Label(column_headers[header_number])
+            table.attach(label, header_number, header_number+1, 0, 1)
         
         check_buttons=[]
-        entries=[]
+        screen_names=[]
+        history_paths=[]
         y_pos=1
         for site_number in range(0, len(available_site_names)):
             check_button = gtk.CheckButton(label=available_site_names[site_number])
@@ -732,7 +738,12 @@ class fpdb:
             entry = gtk.Entry()
             entry.set_text(self.config.supported_sites[available_site_names[site_number]].screen_name)
             table.attach(entry, 1, 2, y_pos, y_pos+1)
-            entries.append(entry)
+            screen_names.append(entry)
+            
+            entry = gtk.Entry()
+            entry.set_text(self.config.supported_sites[available_site_names[site_number]].HH_path)
+            table.attach(entry, 2, 3, y_pos, y_pos+1)
+            history_paths.append(entry)
             
             y_pos+=1
         
@@ -740,8 +751,8 @@ class fpdb:
         response = dia.run()
         if (response == gtk.RESPONSE_ACCEPT):
             for site_number in range(0, len(available_site_names)):
-                #print "site %s enabled=%s name=%s" % (available_site_names[site_number], check_buttons[site_number].get_active(), entries[site_number].get_text())
-                self.config.edit_site(available_site_names[site_number], str(check_buttons[site_number].get_active()), entries[site_number].get_text())
+                #print "site %s enabled=%s name=%s" % (available_site_names[site_number], check_buttons[site_number].get_active(), screen_names[site_number].get_text(), history_paths[site_number].get_text())
+                self.config.edit_site(available_site_names[site_number], str(check_buttons[site_number].get_active()), screen_names[site_number].get_text(), history_paths[site_number].get_text())
             
             self.config.save()
             self.reload_config(dia)
