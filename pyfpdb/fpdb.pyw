@@ -311,7 +311,7 @@ class fpdb:
             log.debug("........." + str(t.__class__))
 
     def dia_preferences(self, widget, data=None):
-        dia = gtk.Dialog(_("Preferences"),
+        dia = gtk.Dialog(_("Advanced Preferences"),
                          self.window,
                          gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                          (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
@@ -456,7 +456,7 @@ class fpdb:
         diaHudTable.vbox.add(label)
         label.show()
 
-        label = gtk.Label(_("To configure things like colouring you will still have to use the Preferences dialogue or manually edit your HUD_config.xml."))
+        label = gtk.Label(_("To configure things like colouring you will still have to use the Advanced Preferences dialogue or manually edit your HUD_config.xml."))
         diaHudTable.vbox.add(label)
         label.show()
 
@@ -795,7 +795,7 @@ class fpdb:
                   <menuitem action="LoadProf"/>
                   <menuitem action="SaveProf"/>
                   <menuitem action="hudConfigurator"/>
-                  <menuitem action="Preferences"/>
+                  <menuitem action="advanced_preferences"/>
                   <separator/>
                   <menuitem action="Quit"/>
                 </menu>
@@ -843,7 +843,7 @@ class fpdb:
                                  ('Quit', gtk.STOCK_QUIT, _('_Quit'), None, 'Quit the Program', self.quit),
                                  ('LoadProf', None, _('_Load Profile (broken)'), _('<control>L'), 'Load your profile', self.dia_load_profile),
                                  ('SaveProf', None, _('_Save Profile (todo)'), _('<control>S'), 'Save your profile', self.dia_save_profile),
-                                 ('Preferences', None, _('Pre_ferences'), _('<control>F'), 'Edit your preferences', self.dia_preferences),
+                                 ('advanced_preferences', None, _('Advanced Pre_ferences'), _('<control>F'), 'Edit your preferences', self.dia_preferences),
                                  ('import', None, _('_Import')),
                                  ('bulkimp', None, _('_Bulk Import'), _('<control>B'), 'Bulk Import', self.tab_bulk_import),
                                  ('tourneyimp', None, _('Tournament _Results Import'), _('<control>R'), 'Tournament Results Import', self.tab_tourney_import),
@@ -896,7 +896,7 @@ class fpdb:
         if self.config.example_copy:
             self.info_box(_("Config file"),
                           _("has been created at:\n%s.\n") % self.config.file
-                           + _("Edit your screen_name and hand history path in the supported_sites section of the Preferences window (Main menu) before trying to import hands."))
+                           + _("Edit your screen_name and hand history path in the supported_sites section of the Advanced Preferences window (Main menu) before trying to import hands."))
         self.settings = {}
         self.settings['global_lock'] = self.lock
         if (os.sep == "/"):
