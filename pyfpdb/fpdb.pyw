@@ -310,7 +310,7 @@ class fpdb:
         for t in self.threads:
             log.debug("........." + str(t.__class__))
 
-    def dia_preferences(self, widget, data=None):
+    def dia_advanced_preferences(self, widget, data=None):
         dia = gtk.Dialog(_("Advanced Preferences"),
                          self.window,
                          gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
@@ -699,6 +699,55 @@ class fpdb:
         #if lock_set:
         #    self.release_global_lock()
 
+    def dia_site_preferences(self, widget, data=None):
+        dia = gtk.Dialog(_("Site Preferences"), self.window,
+                gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                (gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT, gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
+        label = gtk.Label(_("Please select which sites you play on and enter your usernames."))
+        dia.vbox.add(label)
+        
+        site_names = self.config.site_ids
+        available_site_names=[]
+        for site_name in site_names:
+            try:
+                tmp = self.config.supported_sites[site_name].enabled
+                available_site_names.append(site_name)
+            except KeyError:
+                pass
+        
+        table = gtk.Table(rows=len(available_site_names)+1, columns=2, homogeneous=False)
+        dia.vbox.add(table)
+        
+        label = gtk.Label(_("Site"))
+        table.attach(label, 0, 1, 0, 1)
+        label = gtk.Label(_("Screen Name"))
+        table.attach(label, 1, 2, 0, 1)
+        
+        check_buttons=[]
+        entries=[]
+        y_pos=1
+        for site_number in range(0, len(available_site_names)):
+            check_button = gtk.CheckButton(label=available_site_names[site_number])
+            check_button.set_active(self.config.supported_sites[available_site_names[site_number]].enabled)
+            table.attach(check_button, 0, 1, y_pos, y_pos+1)
+            check_buttons.append(check_button)
+            
+            entry = gtk.Entry()
+            entry.set_text(self.config.supported_sites[available_site_names[site_number]].screen_name)
+            table.attach(entry, 1, 2, y_pos, y_pos+1)
+            entries.append(entry)
+            
+            y_pos+=1
+        
+        dia.show_all()
+        response = dia.run()
+        if (response == gtk.RESPONSE_ACCEPT):
+            for site_number in range(0, len(available_site_names)):
+                #print "site %s enabled=%s name=%s" % (available_site_names[site_number], check_buttons[site_number].get_active(), entries[site_number].get_text())
+                self.config.edit_site(available_site_names[site_number], str(check_buttons[site_number].get_active()), entries[site_number].get_text())
+                self.config.save()
+        dia.destroy()
+
     def addLogText(self, text):
         end_iter = self.logbuffer.get_end_iter()
         self.logbuffer.insert(end_iter, text)
@@ -769,6 +818,7 @@ class fpdb:
               <menubar name="MenuBar">
                 <menu action="main">
                   <menuitem action="SaveProf"/>
+                  <menuitem action="site_preferences"/>
                   <menuitem action="hud_preferences"/>
                   <menuitem action="advanced_preferences"/>
                   <separator/>
@@ -816,8 +866,9 @@ class fpdb:
         # Create actions
         actiongroup.add_actions([('main', None, _('_Main')),
                                  ('Quit', gtk.STOCK_QUIT, _('_Quit'), None, 'Quit the Program', self.quit),
-                                 ('SaveProf', None, _('Save Profile (todo)'), _('<control>S'), 'Save your profile', self.dia_save_profile),
-                                 ('advanced_preferences', None, _('_Advanced Preferences'), _('<control>F'), 'Edit your preferences', self.dia_preferences),
+                                 ('SaveProf', None, _('Save Profile (todo)'), None, 'Save your profile', self.dia_save_profile),
+                                 ('site_preferences', None, _('_Site Preferences'), None, 'Site Preferences', self.dia_site_preferences),
+                                 ('advanced_preferences', None, _('_Advanced Preferences'), _('<control>F'), 'Edit your preferences', self.dia_advanced_preferences),
                                  ('import', None, _('_Import')),
                                  ('bulkimp', None, _('_Bulk Import'), _('<control>B'), 'Bulk Import', self.tab_bulk_import),
                                  ('tourneyimp', None, _('Tournament _Results Import'), _('<control>R'), 'Tournament Results Import', self.tab_tourney_import),

@@ -991,7 +991,12 @@ class Config:
             location_node.setAttribute("x", str( locations[i-1][0] ))
             location_node.setAttribute("y", str( locations[i-1][1] ))
             self.supported_sites[site_name].layout[max].location[i] = ( locations[i-1][0], locations[i-1][1] )
-
+    
+    def edit_site(self, site_name, enabled, screen_name):
+        site_node = self.get_site_node(site_name)
+        site_node.setAttribute("enabled", enabled)
+        site_node.setAttribute("screen_name", screen_name)
+    
     def editStats(self, gameName, statArray):
         """replaces stat selection for the given gameName with the given statArray"""
         gameNode = self.getGameNode(gameName)
@@ -1032,7 +1037,7 @@ class Config:
                 newStat.setAttribute("tip", "tip1")
                 
                 gameNode.appendChild(newStat)
-        statNodes = gameNode.getElementsByTagName("stat")
+        statNodes = gameNode.getElementsByTagName("stat") #TODO remove this line?
     #end def editStats
 
     def edit_aux_layout(self, aux_name, max, width = None, height = None, locations = None):

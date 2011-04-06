@@ -495,9 +495,9 @@ class Database:
             self.check_version(database=database, create=create)
 
     def get_sites(self):
-            self.cursor.execute("SELECT name,id FROM Sites")
-            sites = self.cursor.fetchall()
-            self.config.set_site_ids(sites)
+        self.cursor.execute("SELECT name,id FROM Sites")
+        sites = self.cursor.fetchall()
+        self.config.set_site_ids(sites)
 
     def add_site(self, site, site_code):
         self.cursor.execute("INSERT INTO Sites "

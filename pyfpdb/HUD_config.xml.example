@@ -259,7 +259,7 @@ Left-Drag to Move"
             </layout>
         </site>
 
-	    <site HH_path="C:\Users\WindowsUserName\Documents\EverleafSiteName\HandHistory\PlayerName"
+	    <site HH_path="C:\Users\WindowsUserName\Documents\EverleafSiteName\HandHistory\YOUR SCREEN NAME HERE"
                   bgcolor="#000000"
                   converter="EverleafToFpdb"
                   decoder="everleaf_decode_table"
