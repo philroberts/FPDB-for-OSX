@@ -371,13 +371,14 @@ class fpdb:
                     diatitle=_("Database Statistics"))
     #end def dia_database_stats
 
-    def diaHudConfigurator(self, widget, data=None):
-        """Opens dialog to set parameters (game category, row count, column count for HUD stat configurator"""
-        self.hudConfiguratorRows = None
-        self.hudConfiguratorColumns = None
-        self.hudConfiguratorGame = None
+    def dia_hud_preferences(self, widget, data=None):
+        """Opens dialog to set parameters (game category, row count, column count) for HUD preferences"""
+        #Note: No point in working on this until the new HUD configuration system is in place
+        self.hud_preferences_rows = None
+        self.hud_preferences_columns = None
+        self.hud_preferences_game = None
 
-        diaSelections = gtk.Dialog(_("HUD Configurator - choose category"),
+        diaSelections = gtk.Dialog(_("HUD Preferences - choose category"),
                                  self.window,
                                  gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                  (gtk.STOCK_OK, gtk.RESPONSE_ACCEPT,
@@ -388,7 +389,7 @@ class fpdb:
         label.show()
 
         comboGame = gtk.combo_box_new_text()
-        comboGame.connect("changed", self.hudConfiguratorComboSelection)
+        comboGame.connect("changed", self.hud_preferences_combo_selection)
         diaSelections.vbox.add(comboGame)
         games = self.config.get_supported_games()
         for game in games:
@@ -397,7 +398,7 @@ class fpdb:
         comboGame.show()
 
         comboRows = gtk.combo_box_new_text()
-        comboRows.connect("changed", self.hudConfiguratorComboSelection)
+        comboRows.connect("changed", self.hud_preferences_combo_selection)
         diaSelections.vbox.add(comboRows)
         for i in range(1, 8):
             comboRows.append_text(str(i) + " rows")
@@ -405,7 +406,7 @@ class fpdb:
         comboRows.show()
 
         comboColumns = gtk.combo_box_new_text()
-        comboColumns.connect("changed", self.hudConfiguratorComboSelection)
+        comboColumns.connect("changed", self.hud_preferences_combo_selection)
         diaSelections.vbox.add(comboColumns)
         for i in range(1, 8):
             comboColumns.append_text(str(i) + " columns")
@@ -416,29 +417,27 @@ class fpdb:
         diaSelections.destroy()
 
         if (response == gtk.RESPONSE_ACCEPT and
-            self.hudConfiguratorRows != None and
-            self.hudConfiguratorColumns != None and
-            self.hudConfiguratorGame != None):
-            #print "clicked ok and selected:", self.hudConfiguratorGame,"with", str(self.hudConfiguratorRows), "rows and", str(self.hudConfiguratorColumns), "columns"
-            self.diaHudConfiguratorTable()
-    #end def diaHudConfigurator
+            self.hud_preferences_rows != None and
+            self.hud_preferences_columns != None and
+            self.hud_preferences_game != None):
+            self.dia_hud_preferences_table()
+    #end def dia_hud_preferences
 
-    def hudConfiguratorComboSelection(self, widget):
-        #TODO: remove this and handle it directly in diaHudConfigurator
+    def hud_preferences_combo_selection(self, widget):
+        #TODO: remove this and handle it directly in dia_hud_preferences
         result = widget.get_active_text()
         if result.endswith(" rows"):
-            self.hudConfiguratorRows = int(result[0])
+            self.hud_preferences_rows = int(result[0])
         elif result.endswith(" columns"):
-            self.hudConfiguratorColumns = int(result[0])
+            self.hud_preferences_columns = int(result[0])
         else:
-            self.hudConfiguratorGame = result
-    #end def hudConfiguratorComboSelection
+            self.hud_preferences_game = result
+    #end def hud_preferences_combo_selection
 
-    def diaHudConfiguratorTable(self):
+    def dia_hud_preferences_table(self):
         """shows dialogue with Table of ComboBoxes to allow choosing of HUD stats"""
-        #TODO: add notices to hud configurator: no duplicates, no empties, display options
         #TODO: show explanation of what each stat means
-        diaHudTable = gtk.Dialog(_("HUD Configurator - please choose your stats"),
+        diaHudTable = gtk.Dialog(_("HUD Preferences - please choose your stats"),
                                  self.window,
                                  gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                  (gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT,
@@ -460,8 +459,8 @@ class fpdb:
         diaHudTable.vbox.add(label)
         label.show()
 
-        self.hudConfiguratorTableContents = []
-        table = gtk.Table(rows=self.hudConfiguratorRows + 1, columns=self.hudConfiguratorColumns + 1, homogeneous=True)
+        self.hud_preferences_table_contents = []
+        table = gtk.Table(rows=self.hud_preferences_rows + 1, columns=self.hud_preferences_columns + 1, homogeneous=True)
 
         statDir = dir(Stats)
         statDict = {}
@@ -474,9 +473,9 @@ class fpdb:
                 continue
             statDict[attr] = eval("Stats.%s.__doc__" % (attr))
 
-        for rowNumber in range(self.hudConfiguratorRows + 1):
+        for rowNumber in range(self.hud_preferences_rows + 1):
             newRow = []
-            for columnNumber in range(self.hudConfiguratorColumns + 1):
+            for columnNumber in range(self.hud_preferences_columns + 1):
                 if rowNumber == 0:
                     if columnNumber == 0:
                         pass
@@ -509,7 +508,7 @@ class fpdb:
 
                     comboBox.show()
             if rowNumber != 0:
-                self.hudConfiguratorTableContents.append(newRow)
+                self.hud_preferences_table_contents.append(newRow)
         diaHudTable.vbox.add(table)
         table.show()
 
@@ -518,20 +517,20 @@ class fpdb:
 
         if response == gtk.RESPONSE_ACCEPT:
             self.storeNewHudStatConfig()
-    #end def diaHudConfiguratorTable
+    #end def dia_hud_preferences_table
 
     def storeNewHudStatConfig(self):
-        """stores selections made in diaHudConfiguratorTable"""
-        self.obtain_global_lock("diaHudConfiguratorTable")
+        """stores selections made in dia_hud_preferences_table"""
+        self.obtain_global_lock("dia_hud_preferences")
         statTable = []
-        for row in self.hudConfiguratorTableContents:
+        for row in self.hud_preferences_table_contents:
             newRow = []
             for column in row:
                 newField = column.get_active_text()
                 newRow.append(newField)
             statTable.append(newRow)
 
-        self.config.editStats(self.hudConfiguratorGame, statTable)
+        self.config.editStats(self.hud_preferences_game, statTable)
         self.config.save()  # TODO: make it not store in horrible formatting
         self.release_global_lock()
     #end def storeNewHudStatConfig
@@ -794,7 +793,7 @@ class fpdb:
                 <menu action="main">
                   <menuitem action="LoadProf"/>
                   <menuitem action="SaveProf"/>
-                  <menuitem action="hudConfigurator"/>
+                  <menuitem action="hud_preferences"/>
                   <menuitem action="advanced_preferences"/>
                   <separator/>
                   <menuitem action="Quit"/>
@@ -807,7 +806,7 @@ class fpdb:
                 </menu>
                 <menu action="viewers">
                   <menuitem action="autoimp"/>
-                  <menuitem action="hudConfigurator"/>
+                  <menuitem action="hud_preferences"/>
                   <menuitem action="graphs"/>
                   <menuitem action="tourneygraphs"/>
                   <menuitem action="ringplayerstats"/>
@@ -850,7 +849,7 @@ class fpdb:
                                  ('imapimport', None, _('_Import through eMail/IMAP'), _('<control>I'), 'Import through eMail/IMAP', self.tab_imap_import),
                                  ('viewers', None, _('_Viewers')),
                                  ('autoimp', None, _('_Auto Import and HUD'), _('<control>A'), 'Auto Import and HUD', self.tab_auto_import),
-                                 ('hudConfigurator', None, _('_HUD Configurator'), _('<control>H'), 'HUD Configurator', self.diaHudConfigurator),
+                                 ('hud_preferences', None, _('_HUD Preferences'), _('<control>H'), 'HUD Preferences', self.dia_hud_preferences),
                                  ('graphs', None, _('_Graphs'), _('<control>G'), 'Graphs', self.tabGraphViewer),
                                  ('tourneygraphs', None, _('Tourney Graphs'), None, 'TourneyGraphs', self.tabTourneyGraphViewer),
                                  ('stove', None, _('Stove (preview)'), None, 'Stove', self.tabStove),
