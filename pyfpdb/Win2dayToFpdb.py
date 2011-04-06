@@ -292,7 +292,7 @@ class Win2day(HandHistoryConverter):
 
     def readStudPlayerCards(self, hand, street):
         # See comments of reference implementation in FullTiltToFpdb.py
-        logging.debug("readStudPlayerCards")
+        # logging.debug("readStudPlayerCards")
         m = self.re_HeroCards.finditer(hand.streets[street])
         for player in m:
             #~ logging.debug(player.groupdict())
