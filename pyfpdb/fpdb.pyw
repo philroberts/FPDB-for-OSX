@@ -544,29 +544,6 @@ class fpdb:
         dumpFile.close()
     #end def dia_database_stats
 
-    def dia_load_profile(self, widget, data=None):
-        """Dialogue to select a file to load a profile from"""
-        if self.obtain_global_lock("fpdb.dia_load_profile"):  # returns true if successful
-            #try:
-            #    chooser = gtk.FileChooserDialog(title="Please select a profile file to load",
-            #            action=gtk.FILE_CHOOSER_ACTION_OPEN,
-            #            buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
-            #    chooser.set_filename(self.profile)
-
-            #    response = chooser.run()
-            #    chooser.destroy()
-            #    if response == gtk.RESPONSE_OK:
-            #        self.load_profile(chooser.get_filename())
-            #    elif response == gtk.RESPONSE_CANCEL:
-            #        print 'User cancelled loading profile'
-            #except:
-            #    pass
-            #try:
-            self.load_profile()
-            #except:
-            #    pass
-            self.release_global_lock()
-
     def dia_recreate_tables(self, widget, data=None):
         """Dialogue that asks user to confirm that he wants to delete and recreate the tables"""
         if self.obtain_global_lock("fpdb.dia_recreate_tables"):  # returns true if successful
@@ -791,7 +768,6 @@ class fpdb:
             <ui>
               <menubar name="MenuBar">
                 <menu action="main">
-                  <menuitem action="LoadProf"/>
                   <menuitem action="SaveProf"/>
                   <menuitem action="hud_preferences"/>
                   <menuitem action="advanced_preferences"/>
@@ -840,9 +816,8 @@ class fpdb:
         # Create actions
         actiongroup.add_actions([('main', None, _('_Main')),
                                  ('Quit', gtk.STOCK_QUIT, _('_Quit'), None, 'Quit the Program', self.quit),
-                                 ('LoadProf', None, _('_Load Profile (broken)'), _('<control>L'), 'Load your profile', self.dia_load_profile),
-                                 ('SaveProf', None, _('_Save Profile (todo)'), _('<control>S'), 'Save your profile', self.dia_save_profile),
-                                 ('advanced_preferences', None, _('Advanced Pre_ferences'), _('<control>F'), 'Edit your preferences', self.dia_preferences),
+                                 ('SaveProf', None, _('Save Profile (todo)'), _('<control>S'), 'Save your profile', self.dia_save_profile),
+                                 ('advanced_preferences', None, _('_Advanced Preferences'), _('<control>F'), 'Edit your preferences', self.dia_preferences),
                                  ('import', None, _('_Import')),
                                  ('bulkimp', None, _('_Bulk Import'), _('<control>B'), 'Bulk Import', self.tab_bulk_import),
                                  ('tourneyimp', None, _('Tournament _Results Import'), _('<control>R'), 'Tournament Results Import', self.tab_tourney_import),
