@@ -254,13 +254,8 @@ or None if we fail to get the info """
             #Not involved in hand
             hand.involved = False
 
-
     def readStudPlayerCards(self, hand, street):
-        # lol. see Plymouth.txt
-        logging.warning(_("Everleaf readStudPlayerCards is only a stub."))
-        #~ if street in ('THIRD', 'FOURTH',  'FIFTH',  'SIXTH'):
-            #~ hand.addPlayerCards(player = player.group('PNAME'), street = street,  closed = [],  open = [])
-
+        logging.warning(_("Absolute cannot read all stud/razz hands yet."))
 
     def readAction(self, hand, street):
         logging.debug("readAction (%s)" % street)

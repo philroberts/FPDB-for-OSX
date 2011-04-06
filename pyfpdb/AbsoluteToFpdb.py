@@ -321,11 +321,7 @@ class Absolute(HandHistoryConverter):
             hand.involved = False
 
     def readStudPlayerCards(self, hand, street):
-        # lol. see Plymouth.txt
-        logging.warning(_("Absolute readStudPlayerCards is only a stub."))
-        #~ if street in ('THIRD', 'FOURTH',  'FIFTH',  'SIXTH'):
-            #~ hand.addPlayerCards(player = player.group('PNAME'), street = street,  closed = [],  open = [])
-
+        logging.warning(_("Absolute cannot read all stud/razz hands yet."))
 
     def readAction(self, hand, street):
         logging.debug("readAction (%s)" % street)
