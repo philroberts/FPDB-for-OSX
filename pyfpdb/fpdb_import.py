@@ -476,7 +476,7 @@ class Importer:
                 
                 ####Lock Placeholder####
                 for hand in handlist:
-                    hand.prepInsert(self.database)
+                    hand.prepInsert(self.database, printtest = self.settings['testData'])
                     self.database.commit()
                     phands.append(hand)
                 ####Lock Placeholder####
@@ -509,7 +509,7 @@ class Importer:
                 self.database.commit()
 
                 #pipe the Hands.id out to the HUD
-                if self.caller:
+                if self.callHud:
                     for hid in to_hud:
                         try:
                             print _("fpdb_import: sending hand to hud"), hid, "pipe =", self.caller.pipe_to_hud
