@@ -1,0 +1,86 @@
+#Game No : 361198949
+***** Cassava Hand History for Game 361198949 *****
+1/2 Blinds No Limit Holdem - *** 17 02 2011 15:29:25
+Table Barueri (Practice Play)
+Seat 5 is the button
+Total number of players : 6
+Seat 1: rensi66 ( 198 )
+Seat 3: Champs2011 ( 514 )
+Seat 5: orcogro2 ( 411 )
+Seat 7: genu74 ( 1,283.15 )
+Seat 9: tosas23 ( 251 )
+Seat 10: manit2522 ( 311 )
+genu74 posts small blind [1]
+tosas23 posts big blind [2]
+** Dealing down cards **
+manit2522 raises [40]
+rensi66 calls [40]
+Champs2011 calls [40]
+orcogro2 folds
+genu74 calls [39]
+tosas23 folds
+** Dealing flop ** [ 5d, 5c, Jd ]
+genu74 checks
+manit2522 bets [200]
+rensi66 calls [158]
+Champs2011 calls [200]
+genu74 calls [200]
+** Dealing turn ** [ Kd ]
+genu74 checks
+manit2522 bets [71]
+Champs2011 calls [71]
+genu74 calls [71]
+** Dealing river ** [ 7d ]
+genu74 checks
+Champs2011 bets [203]
+genu74 folds
+** Summary **
+rensi66 shows [ Qc, Qd ]
+Champs2011 shows [ Tc, 9d ]
+manit2522 shows [ Td, Jh ]
+rensi66 collected [ 790 ]
+manit2522 collected [ 339 ]
+
+
+
+#Game No : 361199073
+***** Cassava Hand History for Game 361199073 *****
+1/2 Blinds No Limit Holdem - *** 17 02 2011 15:30:18
+Table Barueri (Practice Play)
+Seat 7 is the button
+Total number of players : 6
+Seat 1: rensi66 ( 790 )
+Seat 3: Champs2011 ( 203 )
+Seat 5: Borr_09 ( 200 )
+Seat 7: genu74 ( 972.15 )
+Seat 9: tosas23 ( 249 )
+Seat 10: manit2522 ( 339 )
+tosas23 posts small blind [1]
+manit2522 posts big blind [2]
+Borr_09 posts big blind [2]
+** Dealing down cards **
+Dealt to Borr_09 [ Kh, 7d ]
+rensi66 calls [2]
+Champs2011 raises [4]
+Borr_09 calls [2]
+genu74 calls [4]
+tosas23 calls [3]
+manit2522 calls [2]
+rensi66 calls [2]
+** Dealing flop ** [ 4s, Jc, Ad ]
+tosas23 checks
+manit2522 bets [200]
+rensi66 folds
+Champs2011 calls [199]
+Borr_09 folds
+genu74 folds
+tosas23 folds
+** Dealing turn ** [ Th ]
+** Dealing river ** [ 3s ]
+** Summary **
+Champs2011 shows [ Qh, Qd ]
+manit2522 shows [ 9s, Ac ]
+manit2522 collected [ 418 ]
+
+
+

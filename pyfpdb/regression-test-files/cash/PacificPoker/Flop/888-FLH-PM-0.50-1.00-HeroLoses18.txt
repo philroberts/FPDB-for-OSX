@@ -1,0 +1,77 @@
+#Game No : 441790927
+***** Cassava Hand History for Game 441790927 *****
+0.50/1 Blinds Fix Limit Holdem - *** 21 03 2011 19:41:31
+Table Jerusalem (Practice Play)
+Seat 9 is the button
+Total number of players : 8
+Seat 1: player01 ( 9,966.25 )
+Seat 2: player02 ( 1,074.50 )
+Seat 3: player03 ( 121.75 )
+Seat 5: player04 ( 40 )
+Seat 6: Hero ( 85 )
+Seat 7: player05 ( 1,035.25 )
+Seat 8: player06 ( 100 )
+Seat 9: player07 ( 8.12 )
+player01 posts small blind [0.50]
+player02 posts big blind [1]
+player04 posts big blind [1]
+player06 posts big blind [1]
+** Dealing down cards **
+Dealt to Hero [ 9d, 2d ]
+player03 folds
+player04 raises [1]
+Hero calls [2]
+player05 raises [3]
+player06 calls [2]
+player07 calls [3]
+player01 folds
+player02 calls [2]
+player04 raises [2]
+Hero calls [2]
+player05 calls [1]
+player06 calls [1]
+player07 calls [1]
+player02 calls [1]
+** Dealing flop ** [ Td, 4s, Ad ]
+player02 checks
+player04 bets [1]
+Hero raises [2]
+player05 raises [3]
+player06 calls [3]
+player07 calls [3]
+player02 calls [3]
+player04 raises [3]
+Hero calls [2]
+player05 calls [1]
+player06 calls [1]
+player07 calls [1]
+player02 calls [1]
+** Dealing turn ** [ Th ]
+player02 checks
+player04 bets [2]
+Hero calls [2]
+player05 raises [4]
+player06 folds
+player07 calls [0.12]
+player02 calls [4]
+player04 raises [4]
+Hero raises [6]
+player05 calls [4]
+player02 calls [4]
+player04 calls [2]
+** Dealing river ** [ As ]
+player02 checks
+player04 checks
+Hero checks
+player05 bets [2]
+player02 calls [2]
+player04 calls [2]
+Hero calls [2]
+** Summary **
+player05 shows [ 7s, 7c ]
+player07 shows [ 4d, 7d ]
+player02 shows [ Js, 7h ]
+player04 shows [ Jh, Ks ]
+Hero mucks [ 9d, 2d ]
+player04 collected [ 47.85 ]
+player04 collected [ 39.52 ]

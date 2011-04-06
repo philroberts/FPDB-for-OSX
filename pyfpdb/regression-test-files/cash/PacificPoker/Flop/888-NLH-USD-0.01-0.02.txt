@@ -1,0 +1,1355 @@
+#Game No : 79911308
+***** Cassava Hand History for Game 79911308 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:04:49
+Table Plovdiv (Real Money)
+Seat 1 is the button
+Total number of players : 6
+Seat 1: spywebs ( $2.06 )
+Seat 2: bocce09 ( $2 )
+Seat 3: LILLER1969 ( $2 )
+Seat 4: Jfaw14 ( $1.01 )
+Seat 7: Bluvertje ( $5.45 )
+Seat 10: 88Ozzie88 ( $0.37 )
+bocce09 posts small blind [$0.01]
+LILLER1969 posts big blind [$0.02]
+** Dealing down cards **
+Jfaw14 calls [$0.02]
+Bluvertje folds
+88Ozzie88 folds
+spywebs calls [$0.02]
+bocce09 folds
+LILLER1969 checks
+** Dealing flop ** [ 9s, Ts, 4d ]
+LILLER1969 checks
+Jfaw14 checks
+spywebs bets [$0.07]
+LILLER1969 calls [$0.07]
+Jfaw14 folds
+** Dealing turn ** [ 8s ]
+LILLER1969 checks
+spywebs checks
+** Dealing river ** [ 5c ]
+LILLER1969 checks
+spywebs checks
+** Summary **
+LILLER1969 shows [ Js, 8d ]
+spywebs shows [ Kh, 9c ]
+spywebs collected [ $0.20 ]
+
+
+
+#Game No : 79911427
+***** Cassava Hand History for Game 79911427 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:04:56
+Table Plovdiv (Real Money)
+Seat 2 is the button
+Total number of players : 8
+Seat 1: spywebs ( $2.17 )
+Seat 2: bocce09 ( $2 )
+Seat 3: LILLER1969 ( $1.91 )
+Seat 4: Jfaw14 ( $0.99 )
+Seat 5: Ignition2011 ( $2.80 )
+Seat 7: Bluvertje ( $5.45 )
+Seat 9: Borr_09 ( $0.40 )
+Seat 10: 88Ozzie88 ( $0.37 )
+LILLER1969 posts small blind [$0.01]
+Jfaw14 posts big blind [$0.02]
+Ignition2011 posts big blind [$0.02]
+Borr_09 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 5s, 8c ]
+Ignition2011 checks
+Bluvertje calls [$0.02]
+Borr_09 checks
+88Ozzie88 folds
+spywebs folds
+bocce09 folds
+LILLER1969 calls [$0.01]
+Jfaw14 checks
+** Dealing flop ** [ 4s, Qs, 6c ]
+LILLER1969 checks
+Jfaw14 checks
+Ignition2011 checks
+Bluvertje checks
+Borr_09 checks
+** Dealing turn ** [ 3s ]
+LILLER1969 checks
+Jfaw14 checks
+Ignition2011 bets [$0.32]
+Bluvertje folds
+Borr_09 folds
+LILLER1969 folds
+Jfaw14 folds
+** Summary **
+Ignition2011 collected [ $0.10 ]
+
+
+
+#Game No : 79911607
+***** Cassava Hand History for Game 79911607 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:06:49
+Table Plovdiv (Real Money)
+Seat 3 is the button
+Total number of players : 8
+Seat 1: spywebs ( $2.17 )
+Seat 2: bocce09 ( $2 )
+Seat 3: LILLER1969 ( $1.89 )
+Seat 5: Ignition2011 ( $2.88 )
+Seat 6: AlexVTA ( $2 )
+Seat 7: Bluvertje ( $5.43 )
+Seat 9: Borr_09 ( $0.38 )
+Seat 10: 88Ozzie88 ( $0.37 )
+Ignition2011 posts small blind [$0.01]
+AlexVTA posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ Td, 9c ]
+Bluvertje calls [$0.02]
+Borr_09 folds
+88Ozzie88 folds
+spywebs folds
+bocce09 folds
+LILLER1969 folds
+Ignition2011 folds
+AlexVTA checks
+** Dealing flop ** [ Qh, Ac, 6c ]
+AlexVTA bets [$0.02]
+Bluvertje folds
+** Summary **
+AlexVTA collected [ $0.05 ]
+
+
+
+#Game No : 79911668
+***** Cassava Hand History for Game 79911668 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:07:26
+Table Plovdiv (Real Money)
+Seat 5 is the button
+Total number of players : 8
+Seat 1: spywebs ( $2.17 )
+Seat 2: bocce09 ( $2 )
+Seat 3: LILLER1969 ( $1.89 )
+Seat 5: Ignition2011 ( $2.87 )
+Seat 6: AlexVTA ( $2.03 )
+Seat 7: Bluvertje ( $5.41 )
+Seat 9: Borr_09 ( $0.38 )
+Seat 10: 88Ozzie88 ( $0.37 )
+AlexVTA posts small blind [$0.01]
+Bluvertje posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 3c, As ]
+Borr_09 folds
+88Ozzie88 folds
+spywebs calls [$0.02]
+bocce09 folds
+LILLER1969 folds
+Ignition2011 folds
+AlexVTA calls [$0.01]
+Bluvertje checks
+** Dealing flop ** [ 9h, 2d, 7d ]
+AlexVTA checks
+Bluvertje checks
+spywebs bets [$0.06]
+AlexVTA folds
+Bluvertje folds
+** Summary **
+spywebs collected [ $0.06 ]
+
+
+
+#Game No : 79911760
+***** Cassava Hand History for Game 79911760 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:08:21
+Table Plovdiv (Real Money)
+Seat 6 is the button
+Total number of players : 8
+Seat 1: spywebs ( $2.21 )
+Seat 2: bocce09 ( $2 )
+Seat 3: LILLER1969 ( $1.89 )
+Seat 5: Ignition2011 ( $2.87 )
+Seat 6: AlexVTA ( $2.01 )
+Seat 7: Bluvertje ( $5.39 )
+Seat 9: Borr_09 ( $0.38 )
+Seat 10: 88Ozzie88 ( $0.37 )
+Bluvertje posts small blind [$0.01]
+Borr_09 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 9s, 5h ]
+88Ozzie88 folds
+spywebs folds
+bocce09 folds
+LILLER1969 folds
+Ignition2011 calls [$0.02]
+AlexVTA folds
+Bluvertje calls [$0.01]
+Borr_09 checks
+** Dealing flop ** [ 5d, Ac, Ad ]
+Bluvertje checks
+Borr_09 bets [$0.02]
+Ignition2011 folds
+Bluvertje folds
+** Summary **
+Borr_09 collected [ $0.06 ]
+
+
+
+#Game No : 79911869
+***** Cassava Hand History for Game 79911869 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:09:23
+Table Plovdiv (Real Money)
+Seat 9 is the button
+Total number of players : 6
+Seat 1: spywebs ( $2.21 )
+Seat 2: bocce09 ( $2 )
+Seat 5: Ignition2011 ( $2.85 )
+Seat 6: AlexVTA ( $2.01 )
+Seat 9: Borr_09 ( $0.42 )
+Seat 10: 88Ozzie88 ( $0.37 )
+88Ozzie88 posts small blind [$0.01]
+spywebs posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ Jc, 2d ]
+bocce09 raises [$0.07]
+Ignition2011 calls [$0.07]
+AlexVTA folds
+Borr_09 folds
+88Ozzie88 folds
+spywebs calls [$0.05]
+** Dealing flop ** [ 9s, Th, 4h ]
+spywebs checks
+bocce09 checks
+Ignition2011 checks
+** Dealing turn ** [ 6h ]
+spywebs checks
+bocce09 checks
+Ignition2011 bets [$0.26]
+spywebs folds
+bocce09 folds
+** Summary **
+Ignition2011 collected [ $0.21 ]
+
+
+
+#Game No : 79911958
+***** Cassava Hand History for Game 79911958 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:10:08
+Table Plovdiv (Real Money)
+Seat 10 is the button
+Total number of players : 7
+Seat 1: spywebs ( $2.14 )
+Seat 2: bocce09 ( $2 )
+Seat 4: Jfaw14 ( $0.97 )
+Seat 5: Ignition2011 ( $2.99 )
+Seat 6: AlexVTA ( $2.01 )
+Seat 9: Borr_09 ( $0.42 )
+Seat 10: 88Ozzie88 ( $0.36 )
+spywebs posts small blind [$0.01]
+bocce09 posts big blind [$0.02]
+Jfaw14 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ Tc, 7h ]
+Jfaw14 checks
+Ignition2011 folds
+AlexVTA folds
+Borr_09 folds
+88Ozzie88 folds
+spywebs calls [$0.01]
+bocce09 checks
+** Dealing flop ** [ 4c, 9d, 2s ]
+spywebs checks
+bocce09 bets [$0.06]
+Jfaw14 calls [$0.06]
+spywebs calls [$0.06]
+** Dealing turn ** [ Jh ]
+spywebs checks
+bocce09 checks
+Jfaw14 bets [$0.18]
+spywebs folds
+bocce09 calls [$0.18]
+** Dealing river ** [ Qh ]
+bocce09 checks
+Jfaw14 bets [$0.30]
+bocce09 folds
+** Summary **
+Jfaw14 collected [ $0.57 ]
+
+
+
+#Game No : 79912065
+***** Cassava Hand History for Game 79912065 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:11:05
+Table Plovdiv (Real Money)
+Seat 1 is the button
+Total number of players : 7
+Seat 1: spywebs ( $2.06 )
+Seat 2: bocce09 ( $2 )
+Seat 4: Jfaw14 ( $1.28 )
+Seat 5: Ignition2011 ( $2.99 )
+Seat 6: AlexVTA ( $2.01 )
+Seat 9: Borr_09 ( $0.42 )
+Seat 10: 88Ozzie88 ( $0.36 )
+bocce09 posts small blind [$0.01]
+Jfaw14 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 5s, 8c ]
+Ignition2011 calls [$0.02]
+AlexVTA folds
+Borr_09 folds
+88Ozzie88 folds
+spywebs calls [$0.02]
+bocce09 calls [$0.01]
+Jfaw14 checks
+** Dealing flop ** [ Kd, 2h, 8h ]
+bocce09 bets [$0.08]
+Jfaw14 calls [$0.08]
+Ignition2011 folds
+spywebs folds
+** Dealing turn ** [ Jd ]
+bocce09 bets [$0.18]
+Jfaw14 folds
+** Summary **
+bocce09 collected [ $0.23 ]
+
+
+
+#Game No : 79912119
+***** Cassava Hand History for Game 79912119 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:11:41
+Table Plovdiv (Real Money)
+Seat 2 is the button
+Total number of players : 7
+Seat 1: spywebs ( $2.04 )
+Seat 2: bocce09 ( $2.13 )
+Seat 4: Jfaw14 ( $1.18 )
+Seat 5: Ignition2011 ( $2.97 )
+Seat 6: AlexVTA ( $2.01 )
+Seat 9: Borr_09 ( $0.42 )
+Seat 10: 88Ozzie88 ( $0.36 )
+Jfaw14 posts small blind [$0.01]
+Ignition2011 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 7h, 6c ]
+AlexVTA folds
+Borr_09 folds
+88Ozzie88 folds
+spywebs calls [$0.02]
+bocce09 folds
+Jfaw14 calls [$0.01]
+Ignition2011 checks
+** Dealing flop ** [ Jc, 8s, 7s ]
+Jfaw14 checks
+Ignition2011 checks
+spywebs checks
+** Dealing turn ** [ 7d ]
+Jfaw14 checks
+Ignition2011 checks
+spywebs bets [$0.06]
+Jfaw14 folds
+Ignition2011 folds
+** Summary **
+spywebs collected [ $0.06 ]
+
+
+
+#Game No : 79912193
+***** Cassava Hand History for Game 79912193 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:12:22
+Table Plovdiv (Real Money)
+Seat 4 is the button
+Total number of players : 8
+Seat 1: spywebs ( $2.08 )
+Seat 2: bocce09 ( $2.13 )
+Seat 3: LILLER1969 ( $1.89 )
+Seat 4: Jfaw14 ( $1.16 )
+Seat 5: Ignition2011 ( $2.95 )
+Seat 6: AlexVTA ( $2.01 )
+Seat 9: Borr_09 ( $0.42 )
+Seat 10: 88Ozzie88 ( $0.36 )
+Ignition2011 posts small blind [$0.01]
+AlexVTA posts big blind [$0.02]
+LILLER1969 posts dead blind [$0.01 + $0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 2h, 4s ]
+Borr_09 folds
+88Ozzie88 folds
+spywebs calls [$0.02]
+bocce09 folds
+LILLER1969 checks
+Jfaw14 calls [$0.02]
+Ignition2011 folds
+AlexVTA checks
+** Dealing flop ** [ Th, 2d, 5h ]
+AlexVTA checks
+spywebs bets [$0.10]
+LILLER1969 folds
+Jfaw14 calls [$0.10]
+AlexVTA folds
+** Dealing turn ** [ 8s ]
+spywebs bets [$0.30]
+Jfaw14 calls [$0.30]
+** Dealing river ** [ Qh ]
+spywebs bets [$0.25]
+Jfaw14 raises [$0.74]
+spywebs folds
+** Summary **
+Jfaw14 collected [ $1.32 ]
+
+
+
+#Game No : 79912396
+***** Cassava Hand History for Game 79912396 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:14:15
+Table Plovdiv (Real Money)
+Seat 5 is the button
+Total number of players : 9
+Seat 1: spywebs ( $1.41 )
+Seat 2: bocce09 ( $2.13 )
+Seat 3: LILLER1969 ( $1.86 )
+Seat 4: Jfaw14 ( $1.81 )
+Seat 5: Ignition2011 ( $2.94 )
+Seat 6: AlexVTA ( $1.99 )
+Seat 7: wwmm7468 ( $0.80 )
+Seat 9: Borr_09 ( $0.42 )
+Seat 10: 88Ozzie88 ( $0.36 )
+AlexVTA posts small blind [$0.01]
+wwmm7468 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 5c, 6h ]
+Borr_09 folds
+88Ozzie88 folds
+spywebs calls [$0.02]
+bocce09 folds
+LILLER1969 folds
+Jfaw14 calls [$0.02]
+Ignition2011 calls [$0.02]
+AlexVTA folds
+wwmm7468 checks
+** Dealing flop ** [ 4h, Ks, Td ]
+wwmm7468 checks
+spywebs checks
+Jfaw14 bets [$0.09]
+Ignition2011 calls [$0.09]
+wwmm7468 folds
+spywebs folds
+** Dealing turn ** [ Qd ]
+Jfaw14 bets [$0.13]
+Ignition2011 raises [$0.26]
+Jfaw14 calls [$0.13]
+** Dealing river ** [ 5s ]
+Jfaw14 checks
+Ignition2011 bets [$0.59]
+Jfaw14 folds
+** Summary **
+Ignition2011 did not show his hand
+Ignition2011 collected [ $0.75 ]
+
+
+
+#Game No : 79912556
+***** Cassava Hand History for Game 79912556 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:15:44
+Table Plovdiv (Real Money)
+Seat 6 is the button
+Total number of players : 9
+Seat 1: spywebs ( $1.39 )
+Seat 2: bocce09 ( $2.13 )
+Seat 3: LILLER1969 ( $1.86 )
+Seat 4: Jfaw14 ( $1.44 )
+Seat 5: Ignition2011 ( $3.32 )
+Seat 6: AlexVTA ( $1.98 )
+Seat 7: wwmm7468 ( $0.78 )
+Seat 9: Borr_09 ( $0.42 )
+Seat 10: 88Ozzie88 ( $0.36 )
+wwmm7468 posts small blind [$0.01]
+Borr_09 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ Jc, Tc ]
+88Ozzie88 folds
+spywebs folds
+bocce09 folds
+LILLER1969 calls [$0.02]
+Jfaw14 calls [$0.02]
+Ignition2011 folds
+AlexVTA folds
+wwmm7468 folds
+Borr_09 checks
+** Dealing flop ** [ 9d, Td, Qd ]
+Borr_09 checks
+LILLER1969 checks
+Jfaw14 bets [$0.16]
+Borr_09 folds
+LILLER1969 folds
+** Summary **
+Jfaw14 did not show his hand
+Jfaw14 collected [ $0.07 ]
+
+
+
+#Game No : 79912709
+***** Cassava Hand History for Game 79912709 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:17:11
+Table Plovdiv (Real Money)
+Seat 7 is the button
+Total number of players : 8
+Seat 1: spywebs ( $1.39 )
+Seat 2: bocce09 ( $2.13 )
+Seat 4: Jfaw14 ( $1.49 )
+Seat 5: Ignition2011 ( $3.32 )
+Seat 6: AlexVTA ( $1.98 )
+Seat 7: wwmm7468 ( $0.77 )
+Seat 9: Borr_09 ( $0.40 )
+Seat 10: 88Ozzie88 ( $0.36 )
+Borr_09 posts small blind [$0.01]
+88Ozzie88 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 7h, As ]
+spywebs folds
+bocce09 raises [$0.07]
+Jfaw14 folds
+Ignition2011 folds
+AlexVTA folds
+wwmm7468 folds
+Borr_09 folds
+88Ozzie88 folds
+** Summary **
+bocce09 did not show his hand
+bocce09 collected [ $0.05 ]
+
+
+
+#Game No : 79912762
+***** Cassava Hand History for Game 79912762 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:17:35
+Table Plovdiv (Real Money)
+Seat 9 is the button
+Total number of players : 8
+Seat 1: spywebs ( $1.39 )
+Seat 2: bocce09 ( $2.16 )
+Seat 4: Jfaw14 ( $1.49 )
+Seat 5: Ignition2011 ( $3.32 )
+Seat 6: AlexVTA ( $1.98 )
+Seat 7: wwmm7468 ( $0.77 )
+Seat 9: Borr_09 ( $0.39 )
+Seat 10: 88Ozzie88 ( $0.34 )
+88Ozzie88 posts small blind [$0.01]
+spywebs posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ Qc, 2c ]
+bocce09 raises [$0.07]
+Jfaw14 calls [$0.07]
+Ignition2011 folds
+AlexVTA folds
+wwmm7468 folds
+Borr_09 folds
+88Ozzie88 folds
+spywebs raises [$0.29]
+bocce09 folds
+Jfaw14 folds
+** Summary **
+spywebs did not show his hand
+spywebs collected [ $0.22 ]
+
+
+
+#Game No : 79912860
+***** Cassava Hand History for Game 79912860 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:18:27
+Table Plovdiv (Real Money)
+Seat 10 is the button
+Total number of players : 7
+Seat 1: spywebs ( $1.54 )
+Seat 2: bocce09 ( $2.09 )
+Seat 5: Ignition2011 ( $3.32 )
+Seat 6: AlexVTA ( $1.98 )
+Seat 7: wwmm7468 ( $0.77 )
+Seat 9: Borr_09 ( $0.39 )
+Seat 10: 88Ozzie88 ( $0.33 )
+spywebs posts small blind [$0.01]
+bocce09 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 6c, 8h ]
+Ignition2011 calls [$0.02]
+AlexVTA calls [$0.02]
+wwmm7468 calls [$0.02]
+Borr_09 folds
+88Ozzie88 calls [$0.02]
+spywebs calls [$0.01]
+bocce09 checks
+** Dealing flop ** [ Ks, Jh, 3h ]
+spywebs checks
+bocce09 checks
+Ignition2011 checks
+AlexVTA bets [$0.02]
+wwmm7468 calls [$0.02]
+88Ozzie88 calls [$0.02]
+spywebs calls [$0.02]
+bocce09 folds
+Ignition2011 folds
+** Dealing turn ** [ 3s ]
+spywebs checks
+AlexVTA bets [$0.06]
+wwmm7468 calls [$0.06]
+88Ozzie88 folds
+spywebs folds
+** Dealing river ** [ Qh ]
+AlexVTA bets [$0.04]
+wwmm7468 calls [$0.04]
+** Summary **
+AlexVTA shows [ Qd, Jc ]
+wwmm7468 mucks [ Td, Qs ]
+AlexVTA collected [ $0.38 ]
+
+
+
+#Game No : 79913041
+***** Cassava Hand History for Game 79913041 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:20:08
+Table Plovdiv (Real Money)
+Seat 1 is the button
+Total number of players : 8
+Seat 1: spywebs ( $1.50 )
+Seat 2: bocce09 ( $2.07 )
+Seat 4: Jfaw14 ( $1.42 )
+Seat 5: Ignition2011 ( $3.30 )
+Seat 6: AlexVTA ( $2.22 )
+Seat 7: wwmm7468 ( $0.63 )
+Seat 9: Borr_09 ( $0.39 )
+Seat 10: 88Ozzie88 ( $0.29 )
+bocce09 posts small blind [$0.01]
+Jfaw14 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ Jc, 8s ]
+Ignition2011 raises [$0.08]
+AlexVTA folds
+wwmm7468 folds
+Borr_09 folds
+88Ozzie88 folds
+spywebs folds
+bocce09 folds
+Jfaw14 calls [$0.06]
+** Dealing flop ** [ Ts, 2c, Jh ]
+Jfaw14 checks
+Ignition2011 bets [$0.17]
+Jfaw14 folds
+** Summary **
+Ignition2011 did not show his hand
+Ignition2011 collected [ $0.16 ]
+
+
+
+#Game No : 79913108
+***** Cassava Hand History for Game 79913108 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:20:46
+Table Plovdiv (Real Money)
+Seat 2 is the button
+Total number of players : 8
+Seat 1: spywebs ( $1.50 )
+Seat 2: bocce09 ( $2.06 )
+Seat 4: Jfaw14 ( $1.34 )
+Seat 5: Ignition2011 ( $3.38 )
+Seat 6: AlexVTA ( $2.22 )
+Seat 7: wwmm7468 ( $0.63 )
+Seat 9: Borr_09 ( $0.39 )
+Seat 10: 88Ozzie88 ( $0.29 )
+Jfaw14 posts small blind [$0.01]
+Ignition2011 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ Qh, 3s ]
+AlexVTA folds
+wwmm7468 folds
+Borr_09 folds
+88Ozzie88 folds
+spywebs folds
+bocce09 folds
+Jfaw14 folds
+** Summary **
+Ignition2011 did not show his hand
+Ignition2011 collected [ $0.03 ]
+
+
+
+#Game No : 79913148
+***** Cassava Hand History for Game 79913148 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:21:04
+Table Plovdiv (Real Money)
+Seat 4 is the button
+Total number of players : 8
+Seat 1: spywebs ( $1.50 )
+Seat 2: bocce09 ( $2.06 )
+Seat 4: Jfaw14 ( $1.33 )
+Seat 5: Ignition2011 ( $3.39 )
+Seat 6: AlexVTA ( $2.22 )
+Seat 7: wwmm7468 ( $0.63 )
+Seat 9: Borr_09 ( $0.39 )
+Seat 10: 88Ozzie88 ( $0.29 )
+Ignition2011 posts small blind [$0.01]
+AlexVTA posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 3d, 7s ]
+wwmm7468 folds
+Borr_09 folds
+88Ozzie88 folds
+spywebs calls [$0.02]
+bocce09 folds
+Jfaw14 folds
+Ignition2011 folds
+AlexVTA checks
+** Dealing flop ** [ Qh, As, 3s ]
+AlexVTA checks
+spywebs checks
+** Dealing turn ** [ 7h ]
+AlexVTA checks
+spywebs bets [$0.05]
+AlexVTA folds
+** Summary **
+spywebs collected [ $0.05 ]
+
+
+
+#Game No : 79913252
+***** Cassava Hand History for Game 79913252 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:21:55
+Table Plovdiv (Real Money)
+Seat 5 is the button
+Total number of players : 8
+Seat 1: spywebs ( $1.53 )
+Seat 2: bocce09 ( $2.06 )
+Seat 3: Icyman14 ( $2 )
+Seat 5: Ignition2011 ( $3.38 )
+Seat 6: AlexVTA ( $2.20 )
+Seat 7: wwmm7468 ( $0.63 )
+Seat 9: Borr_09 ( $0.39 )
+Seat 10: 88Ozzie88 ( $0.29 )
+AlexVTA posts small blind [$0.01]
+wwmm7468 posts big blind [$0.02]
+Icyman14 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ Js, 3c ]
+Borr_09 calls [$0.02]
+88Ozzie88 folds
+spywebs raises [$0.11]
+bocce09 folds
+Icyman14 folds
+Ignition2011 calls [$0.11]
+AlexVTA folds
+wwmm7468 folds
+Borr_09 folds
+** Dealing flop ** [ 7c, 5d, Tc ]
+spywebs bets [$0.14]
+Ignition2011 calls [$0.14]
+** Dealing turn ** [ 9s ]
+spywebs checks
+Ignition2011 bets [$0.28]
+spywebs raises [$1.28]
+Ignition2011 calls [$1]
+** Dealing river ** [ 2h ]
+** Summary **
+spywebs shows [ Qh, As ]
+Ignition2011 shows [ Th, Ad ]
+Ignition2011 collected [ $2.94 ]
+
+
+
+#Game No : 79913381
+***** Cassava Hand History for Game 79913381 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:23:08
+Table Plovdiv (Real Money)
+Seat 6 is the button
+Total number of players : 8
+Seat 1: spywebs ( $1.20 )
+Seat 2: bocce09 ( $2.06 )
+Seat 3: Icyman14 ( $2 )
+Seat 5: Ignition2011 ( $4.79 )
+Seat 6: AlexVTA ( $2.19 )
+Seat 7: wwmm7468 ( $0.61 )
+Seat 9: Borr_09 ( $0.37 )
+Seat 10: 88Ozzie88 ( $0.29 )
+wwmm7468 posts small blind [$0.01]
+Borr_09 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 2s, Kd ]
+88Ozzie88 folds
+spywebs folds
+bocce09 folds
+Icyman14 folds
+Ignition2011 folds
+AlexVTA folds
+wwmm7468 folds
+** Summary **
+Borr_09 did not show his hand
+Borr_09 collected [ $0.03 ]
+
+
+
+#Game No : 79913418
+***** Cassava Hand History for Game 79913418 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:23:24
+Table Plovdiv (Real Money)
+Seat 7 is the button
+Total number of players : 8
+Seat 1: spywebs ( $1.20 )
+Seat 2: bocce09 ( $2.06 )
+Seat 3: Icyman14 ( $2 )
+Seat 5: Ignition2011 ( $4.79 )
+Seat 6: AlexVTA ( $2.19 )
+Seat 7: wwmm7468 ( $0.60 )
+Seat 9: Borr_09 ( $0.38 )
+Seat 10: 88Ozzie88 ( $0.29 )
+Borr_09 posts small blind [$0.01]
+88Ozzie88 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 6d, Qs ]
+spywebs calls [$0.02]
+bocce09 folds
+Icyman14 folds
+Ignition2011 folds
+AlexVTA folds
+wwmm7468 raises [$0.06]
+Borr_09 folds
+88Ozzie88 folds
+spywebs calls [$0.04]
+** Dealing flop ** [ 5h, 3d, 5s ]
+spywebs checks
+wwmm7468 bets [$0.11]
+spywebs calls [$0.11]
+** Dealing turn ** [ 7d ]
+spywebs checks
+wwmm7468 bets [$0.18]
+spywebs folds
+** Summary **
+wwmm7468 did not show his hand
+wwmm7468 collected [ $0.35 ]
+
+
+
+#Game No : 79913506
+***** Cassava Hand History for Game 79913506 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:24:16
+Table Plovdiv (Real Money)
+Seat 9 is the button
+Total number of players : 8
+Seat 1: spywebs ( $1.03 )
+Seat 2: bocce09 ( $2.06 )
+Seat 3: Icyman14 ( $2 )
+Seat 5: Ignition2011 ( $4.79 )
+Seat 6: AlexVTA ( $2.19 )
+Seat 7: wwmm7468 ( $0.78 )
+Seat 9: Borr_09 ( $0.37 )
+Seat 10: 88Ozzie88 ( $0.27 )
+88Ozzie88 posts small blind [$0.01]
+spywebs posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 2h, 3h ]
+bocce09 folds
+Icyman14 folds
+Ignition2011 folds
+AlexVTA folds
+wwmm7468 folds
+Borr_09 folds
+88Ozzie88 folds
+** Summary **
+spywebs did not show his hand
+spywebs collected [ $0.03 ]
+
+
+
+#Game No : 79913536
+***** Cassava Hand History for Game 79913536 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:24:30
+Table Plovdiv (Real Money)
+Seat 10 is the button
+Total number of players : 8
+Seat 1: spywebs ( $1.04 )
+Seat 2: bocce09 ( $2.06 )
+Seat 3: Icyman14 ( $2 )
+Seat 5: Ignition2011 ( $4.79 )
+Seat 6: AlexVTA ( $2.19 )
+Seat 7: wwmm7468 ( $0.78 )
+Seat 9: Borr_09 ( $0.37 )
+Seat 10: 88Ozzie88 ( $0.26 )
+spywebs posts small blind [$0.01]
+bocce09 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 5h, 9h ]
+Icyman14 folds
+Ignition2011 folds
+AlexVTA folds
+wwmm7468 folds
+Borr_09 calls [$0.02]
+88Ozzie88 folds
+spywebs calls [$0.01]
+bocce09 checks
+** Dealing flop ** [ 5d, Jh, Qd ]
+spywebs checks
+bocce09 checks
+Borr_09 bets [$0.02]
+spywebs raises [$0.12]
+bocce09 folds
+Borr_09 calls [$0.10]
+** Dealing turn ** [ 2d ]
+spywebs checks
+Borr_09 checks
+** Dealing river ** [ 7d ]
+spywebs bets [$0.15]
+Borr_09 folds
+** Summary **
+spywebs did not show his hand
+spywebs collected [ $0.29 ]
+
+
+
+#Game No : 79913633
+***** Cassava Hand History for Game 79913633 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:25:26
+Table Plovdiv (Real Money)
+Seat 1 is the button
+Total number of players : 7
+Seat 1: spywebs ( $1.19 )
+Seat 2: bocce09 ( $2.04 )
+Seat 3: Icyman14 ( $2 )
+Seat 6: AlexVTA ( $2.19 )
+Seat 7: wwmm7468 ( $0.78 )
+Seat 9: Borr_09 ( $0.23 )
+Seat 10: 88Ozzie88 ( $0.26 )
+bocce09 posts small blind [$0.01]
+Icyman14 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ Jc, 6s ]
+AlexVTA raises [$2.19]
+wwmm7468 folds
+Borr_09 folds
+88Ozzie88 folds
+spywebs folds
+bocce09 folds
+Icyman14 folds
+** Summary **
+AlexVTA did not show his hand
+AlexVTA collected [ $0.05 ]
+
+
+
+#Game No : 79913689
+***** Cassava Hand History for Game 79913689 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:25:57
+Table Plovdiv (Real Money)
+Seat 2 is the button
+Total number of players : 7
+Seat 1: spywebs ( $1.19 )
+Seat 2: bocce09 ( $2.03 )
+Seat 3: Icyman14 ( $2 )
+Seat 6: AlexVTA ( $2.22 )
+Seat 7: wwmm7468 ( $0.78 )
+Seat 9: Borr_09 ( $0.23 )
+Seat 10: 88Ozzie88 ( $0.26 )
+Icyman14 posts small blind [$0.01]
+AlexVTA posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 5h, Kc ]
+wwmm7468 calls [$0.02]
+Borr_09 folds
+88Ozzie88 folds
+spywebs calls [$0.02]
+bocce09 folds
+Icyman14 calls [$0.01]
+AlexVTA checks
+** Dealing flop ** [ 7d, 6c, 9d ]
+Icyman14 checks
+AlexVTA checks
+wwmm7468 checks
+spywebs checks
+** Dealing turn ** [ Td ]
+Icyman14 bets [$0.06]
+AlexVTA folds
+wwmm7468 folds
+spywebs folds
+** Summary **
+Icyman14 did not show his hand
+Icyman14 collected [ $0.08 ]
+
+
+
+#Game No : 79913761
+***** Cassava Hand History for Game 79913761 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:26:43
+Table Plovdiv (Real Money)
+Seat 3 is the button
+Total number of players : 7
+Seat 1: spywebs ( $1.17 )
+Seat 2: bocce09 ( $2.03 )
+Seat 3: Icyman14 ( $2.06 )
+Seat 6: AlexVTA ( $2.20 )
+Seat 7: wwmm7468 ( $0.76 )
+Seat 9: Borr_09 ( $0.23 )
+Seat 10: 88Ozzie88 ( $0.26 )
+AlexVTA posts small blind [$0.01]
+wwmm7468 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 4h, Qd ]
+Borr_09 folds
+88Ozzie88 folds
+spywebs calls [$0.02]
+bocce09 folds
+Icyman14 folds
+AlexVTA folds
+wwmm7468 checks
+** Dealing flop ** [ 8d, Ac, Tc ]
+wwmm7468 checks
+spywebs checks
+** Dealing turn ** [ Ks ]
+wwmm7468 checks
+spywebs bets [$0.05]
+wwmm7468 folds
+** Summary **
+spywebs did not show his hand
+spywebs collected [ $0.05 ]
+
+
+
+#Game No : 79913815
+***** Cassava Hand History for Game 79913815 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:27:11
+Table Plovdiv (Real Money)
+Seat 6 is the button
+Total number of players : 7
+Seat 1: spywebs ( $1.20 )
+Seat 2: bocce09 ( $2.03 )
+Seat 3: Icyman14 ( $2.06 )
+Seat 6: AlexVTA ( $2.19 )
+Seat 7: wwmm7468 ( $0.74 )
+Seat 9: Borr_09 ( $0.23 )
+Seat 10: 88Ozzie88 ( $0.26 )
+wwmm7468 posts small blind [$0.01]
+Borr_09 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 5c, 9s ]
+88Ozzie88 folds
+spywebs folds
+bocce09 folds
+Icyman14 calls [$0.02]
+AlexVTA folds
+wwmm7468 raises [$0.07]
+Borr_09 folds
+Icyman14 calls [$0.06]
+** Dealing flop ** [ 9d, 6h, Qs ]
+wwmm7468 bets [$0.09]
+Icyman14 folds
+** Summary **
+wwmm7468 did not show his hand
+wwmm7468 collected [ $0.17 ]
+
+
+
+#Game No : 79913888
+***** Cassava Hand History for Game 79913888 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:27:47
+Table Plovdiv (Real Money)
+Seat 7 is the button
+Total number of players : 7
+Seat 1: spywebs ( $1.20 )
+Seat 2: bocce09 ( $2.03 )
+Seat 3: Icyman14 ( $2 )
+Seat 6: AlexVTA ( $2.19 )
+Seat 7: wwmm7468 ( $0.83 )
+Seat 9: Borr_09 ( $0.21 )
+Seat 10: 88Ozzie88 ( $0.26 )
+Borr_09 posts small blind [$0.01]
+88Ozzie88 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 7d, 6c ]
+spywebs calls [$0.02]
+bocce09 folds
+Icyman14 calls [$0.02]
+AlexVTA folds
+wwmm7468 folds
+Borr_09 folds
+88Ozzie88 checks
+** Dealing flop ** [ Kc, Qd, 2c ]
+88Ozzie88 checks
+spywebs bets [$0.03]
+Icyman14 calls [$0.03]
+88Ozzie88 calls [$0.03]
+** Dealing turn ** [ 5c ]
+88Ozzie88 checks
+spywebs bets [$0.08]
+Icyman14 folds
+88Ozzie88 folds
+** Summary **
+spywebs collected [ $0.15 ]
+
+
+
+#Game No : 79913999
+***** Cassava Hand History for Game 79913999 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:28:50
+Table Plovdiv (Real Money)
+Seat 9 is the button
+Total number of players : 7
+Seat 1: spywebs ( $1.30 )
+Seat 2: bocce09 ( $2.03 )
+Seat 3: Icyman14 ( $2 )
+Seat 6: AlexVTA ( $2.19 )
+Seat 7: wwmm7468 ( $0.83 )
+Seat 9: Borr_09 ( $0.20 )
+Seat 10: 88Ozzie88 ( $0.21 )
+88Ozzie88 posts small blind [$0.01]
+spywebs posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 6h, 5s ]
+bocce09 folds
+Icyman14 folds
+AlexVTA raises [$0.04]
+wwmm7468 folds
+Borr_09 folds
+88Ozzie88 folds
+spywebs folds
+** Summary **
+AlexVTA collected [ $0.05 ]
+
+
+
+#Game No : 79914031
+***** Cassava Hand History for Game 79914031 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:29:05
+Table Plovdiv (Real Money)
+Seat 10 is the button
+Total number of players : 7
+Seat 1: spywebs ( $1.28 )
+Seat 2: bocce09 ( $2.03 )
+Seat 3: Icyman14 ( $2 )
+Seat 6: AlexVTA ( $2.22 )
+Seat 7: wwmm7468 ( $0.83 )
+Seat 9: Borr_09 ( $0.20 )
+Seat 10: 88Ozzie88 ( $0.20 )
+spywebs posts small blind [$0.01]
+bocce09 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 3s, Kc ]
+Icyman14 folds
+AlexVTA calls [$0.02]
+wwmm7468 folds
+Borr_09 folds
+88Ozzie88 folds
+spywebs calls [$0.01]
+bocce09 checks
+** Dealing flop ** [ Ks, Tc, 7d ]
+spywebs checks
+bocce09 checks
+AlexVTA checks
+** Dealing turn ** [ Kh ]
+spywebs checks
+bocce09 checks
+AlexVTA checks
+** Dealing river ** [ 3h ]
+spywebs checks
+bocce09 checks
+AlexVTA checks
+** Summary **
+spywebs shows [ 5h, 8s ]
+bocce09 shows [ 7s, 4d ]
+AlexVTA mucks [ As, 9s ]
+bocce09 collected [ $0.06 ]
+
+
+
+#Game No : 79914134
+***** Cassava Hand History for Game 79914134 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:30:06
+Table Plovdiv (Real Money)
+Seat 1 is the button
+Total number of players : 8
+Seat 1: spywebs ( $1.26 )
+Seat 2: bocce09 ( $2.07 )
+Seat 3: Icyman14 ( $2 )
+Seat 4: vvkw23 ( $0.40 )
+Seat 6: AlexVTA ( $2.20 )
+Seat 7: wwmm7468 ( $0.83 )
+Seat 9: Borr_09 ( $0.20 )
+Seat 10: 88Ozzie88 ( $0.20 )
+bocce09 posts small blind [$0.01]
+Icyman14 posts big blind [$0.02]
+vvkw23 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ Qc, 9c ]
+vvkw23 checks
+AlexVTA folds
+wwmm7468 folds
+Borr_09 calls [$0.02]
+88Ozzie88 calls [$0.02]
+spywebs calls [$0.02]
+bocce09 folds
+Icyman14 checks
+** Dealing flop ** [ Kh, 7c, Js ]
+Icyman14 checks
+vvkw23 checks
+Borr_09 checks
+88Ozzie88 checks
+spywebs bets [$0.11]
+Icyman14 folds
+vvkw23 folds
+Borr_09 folds
+88Ozzie88 folds
+** Summary **
+spywebs collected [ $0.11 ]
+
+
+
+#Game No : 79914226
+***** Cassava Hand History for Game 79914226 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:30:56
+Table Plovdiv (Real Money)
+Seat 2 is the button
+Total number of players : 8
+Seat 1: spywebs ( $1.35 )
+Seat 2: bocce09 ( $2.06 )
+Seat 3: Icyman14 ( $2 )
+Seat 4: vvkw23 ( $0.38 )
+Seat 6: AlexVTA ( $2.20 )
+Seat 7: wwmm7468 ( $0.83 )
+Seat 9: Borr_09 ( $0.18 )
+Seat 10: 88Ozzie88 ( $0.18 )
+Icyman14 posts small blind [$0.01]
+vvkw23 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ Qs, 2s ]
+AlexVTA folds
+wwmm7468 folds
+Borr_09 folds
+88Ozzie88 folds
+spywebs folds
+bocce09 folds
+Icyman14 folds
+** Summary **
+vvkw23 collected [ $0.03 ]
+
+
+
+#Game No : 79914258
+***** Cassava Hand History for Game 79914258 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:31:08
+Table Plovdiv (Real Money)
+Seat 3 is the button
+Total number of players : 9
+Seat 1: spywebs ( $1.35 )
+Seat 2: bocce09 ( $2.06 )
+Seat 3: Icyman14 ( $2 )
+Seat 4: vvkw23 ( $0.39 )
+Seat 5: ARTEM_RAZMOL ( $0.40 )
+Seat 6: AlexVTA ( $2.20 )
+Seat 7: wwmm7468 ( $0.83 )
+Seat 9: Borr_09 ( $0.18 )
+Seat 10: 88Ozzie88 ( $0.18 )
+vvkw23 posts small blind [$0.01]
+ARTEM_RAZMOL posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 8c, 4h ]
+AlexVTA folds
+wwmm7468 folds
+Borr_09 folds
+88Ozzie88 folds
+spywebs folds
+bocce09 folds
+Icyman14 raises [$0.08]
+vvkw23 folds
+ARTEM_RAZMOL folds
+** Summary **
+Icyman14 did not show his hand
+Icyman14 collected [ $0.05 ]
+
+
+
+#Game No : 79914302
+***** Cassava Hand History for Game 79914302 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:31:33
+Table Plovdiv (Real Money)
+Seat 4 is the button
+Total number of players : 9
+Seat 1: spywebs ( $1.35 )
+Seat 2: bocce09 ( $2.06 )
+Seat 3: Icyman14 ( $2.03 )
+Seat 4: vvkw23 ( $0.38 )
+Seat 5: ARTEM_RAZMOL ( $0.38 )
+Seat 6: AlexVTA ( $2.20 )
+Seat 7: wwmm7468 ( $0.83 )
+Seat 9: Borr_09 ( $0.18 )
+Seat 10: 88Ozzie88 ( $0.18 )
+ARTEM_RAZMOL posts small blind [$0.01]
+AlexVTA posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ 4c, 6d ]
+wwmm7468 folds
+Borr_09 folds
+88Ozzie88 folds
+spywebs folds
+bocce09 folds
+Icyman14 folds
+vvkw23 calls [$0.02]
+ARTEM_RAZMOL folds
+AlexVTA checks
+** Dealing flop ** [ 3h, Js, 2h ]
+AlexVTA checks
+vvkw23 checks
+** Dealing turn ** [ Kh ]
+AlexVTA checks
+vvkw23 checks
+** Dealing river ** [ 9h ]
+AlexVTA checks
+vvkw23 checks
+** Summary **
+AlexVTA shows [ 6s, Td ]
+vvkw23 shows [ Ad, 8s ]
+vvkw23 collected [ $0.05 ]
+
+
+
+#Game No : 79914386
+***** Cassava Hand History for Game 79914386 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 13:32:20
+Table Plovdiv (Real Money)
+Seat 5 is the button
+Total number of players : 9
+Seat 1: spywebs ( $1.35 )
+Seat 2: bocce09 ( $2.06 )
+Seat 3: Icyman14 ( $2.03 )
+Seat 4: vvkw23 ( $0.41 )
+Seat 5: ARTEM_RAZMOL ( $0.37 )
+Seat 6: AlexVTA ( $2.18 )
+Seat 7: wwmm7468 ( $0.83 )
+Seat 9: Borr_09 ( $0.18 )
+Seat 10: 88Ozzie88 ( $0.18 )
+AlexVTA posts small blind [$0.01]
+wwmm7468 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ Jh, 8h ]
+Borr_09 calls [$0.02]
+88Ozzie88 folds
+spywebs folds
+bocce09 folds
+Icyman14 calls [$0.02]
+vvkw23 calls [$0.02]
+ARTEM_RAZMOL folds
+AlexVTA calls [$0.01]
+wwmm7468 checks
+** Dealing flop ** [ 6h, 4h, Js ]
+AlexVTA checks
+wwmm7468 checks
+Borr_09 checks
+Icyman14 checks
+vvkw23 checks
+** Dealing turn ** [ Th ]
+AlexVTA bets [$0.02]
+wwmm7468 calls [$0.02]
+Borr_09 raises [$0.08]
+Icyman14 folds
+vvkw23 folds
+AlexVTA folds
+wwmm7468 calls [$0.06]
+** Dealing river ** [ 5h ]
+wwmm7468 checks
+Borr_09 bets [$0.08]
+wwmm7468 calls [$0.08]
+** Summary **
+wwmm7468 shows [ Ah, 6c ]
+Borr_09 shows [ Jh, 8h ]
+wwmm7468 collected [ $0.42 ]
+
+
+

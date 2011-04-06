@@ -68,7 +68,7 @@ class PokerStarsSummary(TourneySummary):
 
     re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP)""" % substitutions)
 
-    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s)?(\$(?P<WINNINGS>[0-9]+\.[0-9]+))?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(\s+)?""")
+    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s)?([%(LS)s](?P<WINNINGS>[0-9]+\.[0-9]+))?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(\s+)?""" % substitutions)
 
     re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
 
@@ -78,8 +78,8 @@ class PokerStarsSummary(TourneySummary):
         m = self.re_TourneyInfo.search(self.summaryText)
         if m == None:
             tmp = self.summaryText[0:200]
-            log.error(_("parseSummary: Unable to recognise Tourney Info: '%s'") % tmp)
-            log.error(_("parseSummary: Raising FpdbParseError"))
+            log.error("parseSummary: " + _("Unable to recognise Tourney Info: '%s'") % tmp)
+            log.error("parseSummary: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise Tourney Info: '%s'") % tmp)
 
         #print "DEBUG: m.groupdict(): %s" % m.groupdict()
@@ -104,8 +104,8 @@ class PokerStarsSummary(TourneySummary):
 
         m = self.re_Currency.search(self.summaryText)
         if m == None:
-            log.error(_("parseSummary: Unable to locate currency"))
-            log.error(_("parseSummary: Raising FpdbParseError"))
+            log.error("parseSummary: " + _("Unable to locate currency"))
+            log.error("parseSummary: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to locate currency"))
         #print "DEBUG: m.groupdict(): %s" % m.groupdict()
 

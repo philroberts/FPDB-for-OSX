@@ -50,9 +50,6 @@ import Hand
 from Exceptions import FpdbParseError
 import Configuration
 
-import pygtk
-import gtk
-
 class HandHistoryConverter():
 
     READ_CHUNK_SIZE = 10000 # bytes to read at a time from file in tail mode
@@ -128,9 +125,6 @@ If in follow mode, wait for more data to turn up.
 Otherwise, finish at EOF.
 
 """
-        while gtk.events_pending():
-            gtk.main_iteration(False)
-
         starttime = time.time()
         if not self.sanityCheck():
             log.warning(_("Failed sanity check"))
@@ -182,7 +176,12 @@ Otherwise, finish at EOF.
         finally:
             if self.out_fh != sys.stdout:
                 self.out_fh.close()
-
+                
+    def progressNotify(self):
+        "A callback to the interface while events are pending"
+        import gtk, pygtk
+        while gtk.events_pending():
+            gtk.main_iteration(False)
 
     def tailHands(self):
         """Generator of handTexts from a tailed file:
@@ -460,24 +459,8 @@ or None if we fail to get the info """
 
     def sanityCheck(self):
         """Check we aren't going to do some stupid things"""
-        #TODO: the hhbase stuff needs to be in fpdb_import
         sane = False
         base_w = False
-        #~ #Check if hhbase exists and is writable
-        #~ #Note: Will not try to create the base HH directory
-        #~ if not (os.access(self.hhbase, os.W_OK) and os.path.isdir(self.hhbase)):
-            #~ print "HH Sanity Check: Directory hhbase '" + self.hhbase + "' doesn't exist or is not writable"
-        #~ else:
-            #~ #Check if hhdir exists and is writable
-            #~ if not os.path.isdir(self.hhdir):
-                #~ # In first pass, dir may not exist. Attempt to create dir
-                #~ print "Creating directory: '%s'" % (self.hhdir)
-                #~ os.mkdir(self.hhdir)
-                #~ sane = True
-            #~ elif os.access(self.hhdir, os.W_OK):
-                #~ sane = True
-            #~ else:
-                #~ print "HH Sanity Check: Directory hhdir '" + self.hhdir + "' or its parent directory are not writable"
 
         # Make sure input and output files are different or we'll overwrite the source file
         if True: # basically.. I don't know

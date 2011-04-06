@@ -119,16 +119,17 @@ class DerivedStats():
         return self.handsactions
 
     def assembleHands(self, hand):
-        self.hands['tableName']  = hand.tablename
-        self.hands['siteHandNo'] = hand.handid
-        self.hands['gametypeId'] = None                     # Leave None, handled later after checking db
-        self.hands['sessionId']  = None                     # Leave None, added later if caching sessions
-        self.hands['startTime']  = hand.startTime           # format this!
-        self.hands['importTime'] = None
-        self.hands['seats']      = self.countPlayers(hand) 
-        self.hands['maxSeats']   = hand.maxseats
-        self.hands['texture']    = None                     # No calculation done for this yet.
-        self.hands['tourneyId']  = hand.tourneyId
+        self.hands['tableName']     = hand.tablename
+        self.hands['siteHandNo']    = hand.handid
+        self.hands['gametypeId']    = None                    # Leave None, handled later after checking db
+        self.hands['sessionId']     = None                    # Leave None, added later if caching sessions
+        self.hands['gameSessionId'] = None                    # Leave None, added later if caching sessions
+        self.hands['startTime']     = hand.startTime          # format this!
+        self.hands['importTime']    = None
+        self.hands['seats']         = self.countPlayers(hand) 
+        self.hands['maxSeats']      = hand.maxseats
+        self.hands['texture']       = None                    # No calculation done for this yet.
+        self.hands['tourneyId']     = hand.tourneyId
 
         # This (i think...) is correct for both stud and flop games, as hand.board['street'] disappears, and
         # those values remain default in stud.
@@ -213,10 +214,10 @@ class DerivedStats():
 
         for player in hand.players:
             hcs = hand.join_holecards(player[1], asList=True)
-            hcs = hcs + [u'0x', u'0x', u'0x', u'0x', u'0x']
-            #for i, card in enumerate(hcs[:7], 1): #Python 2.6 syntax
+            hcs = hcs + [u'0x']*18
+            #for i, card in enumerate(hcs[:20, 1): #Python 2.6 syntax
             #    self.handsplayers[player[1]]['card%s' % i] = Card.encodeCard(card)
-            for i, card in enumerate(hcs[:7]):
+            for i, card in enumerate(hcs[:20]):
                 self.handsplayers[player[1]]['card%s' % (i+1)] = Card.encodeCard(card)
             self.handsplayers[player[1]]['startCards'] = Card.calcStartCards(hand, player[1])
 

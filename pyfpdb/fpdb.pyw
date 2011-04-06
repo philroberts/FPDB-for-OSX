@@ -201,7 +201,6 @@ class fpdb:
         # although not perfect, it seems to be the least instrusive.
         baseNormStyle = eventBox.get_style().base[gtk.STATE_INSENSITIVE]
         if baseNormStyle:
-            print baseNormStyle
             eventBox.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.color_parse(str(baseNormStyle)))
 
         if nb.get_n_pages() > 0:
@@ -266,11 +265,16 @@ class fpdb:
         dia.set_authors(['Steffen', 'Eratosthenes', 'Carl Gherardi',
             'Eric Blade', '_mt', 'sqlcoder', 'Bostik', _('and others')])
         dia.set_program_name("Free Poker Database (FPDB)")
-
-        db_version = ""
-        #if self.db is not None:
-        #    db_version = self.db.get_version()
-        nums = [(_('Operating System'), os.name),
+        
+        if (os.name=="posix"):
+            os_text=str(os.uname())
+        elif (os.name=="nt"):
+            import platform
+            os_text=("Windows" + " " + str(platform.win32_ver()))
+        else:
+            os_text="Unknown"
+        
+        nums = [(_('Operating System'), os_text),
                 ('Python',           sys.version[0:3]),
                 ('GTK+',             '.'.join([str(x) for x in gtk.gtk_version])),
                 ('PyGTK',            '.'.join([str(x) for x in gtk.pygtk_version])),
@@ -282,7 +286,7 @@ class fpdb:
                ]
         versions = gtk.TextBuffer()
         w = 20  # width used for module names and version numbers
-        versions.set_text('\n'.join([x[0].rjust(w) + '  ' + x[1].ljust(w) for x in nums]))
+        versions.set_text('\n'.join([x[0].rjust(w) + ': ' + x[1].ljust(w) for x in nums]))
         view = gtk.TextView(versions)
         view.set_editable(False)
         view.set_justification(gtk.JUSTIFY_CENTER)
@@ -1328,26 +1332,6 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         return response
 
     def validate_config(self):
-        # can this be removed now?
-        if self.config.get_import_parameters().get('saveStarsHH'):
-            hhbase = self.config.get_import_parameters().get("hhArchiveBase")
-            hhbase = os.path.expanduser(hhbase)
-            #hhdir = os.path.join(hhbase,site)
-            hhdir = hhbase
-            if not os.path.isdir(hhdir):
-                diapath = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Setup hh dir")
-                diastring = _("WARNING: Unable to find output hand history directory %s\n\n Press YES to create this directory, or NO to select a new one.") % hhdir
-                diapath.format_secondary_text(diastring)
-                response = diapath.run()
-                diapath.destroy()
-                if response == gtk.RESPONSE_YES:
-                    try:
-                        os.makedirs(hhdir)
-                    except:
-                        self.warning_box(_("WARNING: Unable to create hand output directory. Importing is not likely to work until this is fixed."))
-                elif response == gtk.RESPONSE_NO:
-                    self.select_hhArchiveBase()
-
         # check if sites in config file are in DB
         for site in self.config.get_supported_sites(True):    # get site names from config file
             try:

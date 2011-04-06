@@ -42,10 +42,10 @@ class OnGame(HandHistoryConverter):
     siteId   = 5 # Needs to match id entry in Sites database
 
     mixes = { } # Legal mixed games
-    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": u"\u20ac", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
+    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": u"\u20ac", "GBP": "\xa3"}
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : u"\$|\xe2\x82\xac|\u20ac"        # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : u"\$|\xe2\x82\xac|\u20ac" # legal currency symbols - Euro(cp1252, utf-8)
                     }
     currencies = { u'\u20ac':'EUR', u'\xe2\x82\xac':'EUR', '$':'USD', '':'T$' }
 
@@ -71,9 +71,11 @@ class OnGame(HandHistoryConverter):
     #TODO: detect play money
     # "Play money" rather than "Real money" and set currency accordingly
     re_HandInfo = re.compile(u"""
-            \*\*\*\*\*\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+).*
+            \*\*\*\*\*\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+)
+            (\s\(TOURNAMENT:\s"[a-zA-Z ]+",\s(?P<TID>[-A-Z\d]+),\sbuy-in:\s[%(LS)s](?P<BUYIN>\d+))?
+            .*
             Start\shand:\s(?P<DATETIME>.*)
-            Table:\s(\[SPEED\]\s)?(?P<TABLE>[-\'\w\s\.]+)\s\[\d+\]\s\(
+            Table:\s(\[SPEED\]\s)?(?P<TABLE>[-\'\w\#\s\.]+)\s\[\d+\]\s\(
             (
             (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit|POT_LIMIT)\s
             (?P<GAME>TEXAS_HOLDEM|OMAHA_HI|SEVEN_CARD_STUD|SEVEN_CARD_STUD_HI_LO|RAZZ|FIVE_CARD_DRAW)\s
@@ -99,6 +101,7 @@ class OnGame(HandHistoryConverter):
     #Seat 1: .Lucchess ($4.17 in chips) 
     #Seat 1: phantomaas ($27.11)
     #Seat 5: mleo17 ($9.37)
+    #Seat 2: Montferat (1500)
     re_PlayerInfo = re.compile(u'Seat (?P<SEAT>[0-9]+):\s(?P<PNAME>.*)\s\((%(LS)s)?(?P<CASH>[.0-9]+)\)' % substitutions)
 
     def compilePlayerRegexs(self, hand):
@@ -146,6 +149,7 @@ class OnGame(HandHistoryConverter):
                 ["ring", "hold", "nl"],
                 ["ring", "stud", "fl"],
                 ["ring", "draw", "fl"],
+                ["tour", "hold", "nl"],
                ]
 
     def determineGameType(self, handText):
@@ -157,13 +161,16 @@ class OnGame(HandHistoryConverter):
         if not m:
             tmp = handText[0:100]
             log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error(_("determineGameType: Raising FpdbParseError"))
+            log.error("determineGameType: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
 
         info['type'] = 'ring'
+        if mg['TID'] != None:
+            info['type'] = 'tour'
+
         if 'CURRENCY' in mg:
             info['currency'] = self.currencies[mg['CURRENCY']]
 
@@ -173,7 +180,7 @@ class OnGame(HandHistoryConverter):
             else:
                 tmp = handText[0:100]
                 log.error(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
-                log.error(_("determineGameType: Raising FpdbParseError"))
+                log.error("determineGameType: " + _("Raising FpdbParseError"))
                 raise FpdbParseError(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
@@ -216,6 +223,10 @@ class OnGame(HandHistoryConverter):
                 # Need to remove non-alphanumerics for MySQL
                 hand.handid = hand.handid.replace('R','')
                 hand.handid = hand.handid.replace('-','')
+            if key == 'TID':
+                hand.tourNo = info[key]
+            if key == 'BUYIN':
+                hand.buyin = info[key]
             if key == 'TABLE':
                 hand.tablename = info[key]
 

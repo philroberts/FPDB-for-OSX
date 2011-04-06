@@ -47,7 +47,7 @@ class Hand(object):
 #    Class Variables
     UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K', 'S':'s', 'C':'c', 'H':'h', 'D':'d'}
     LCS = {'H':'h', 'D':'d', 'C':'c', 'S':'s'}
-    SYMBOL = {'USD': '$', 'EUR': u'$', 'GBP': '$', 'T$': '', 'play': ''}
+    SYMBOL = {'USD': '$', 'CAD': '$', 'EUR': u'$', 'GBP': '$', 'T$': '', 'play': ''}
     MS = {'horse' : 'HORSE', '8game' : '8-Game', 'hose'  : 'HOSE', 'ha': 'HA'}
     ACTION = {'ante': 1, 'small blind': 2, 'secondsb': 3, 'big blind': 4, 'both': 5, 'calls': 6, 'raises': 7,
               'bets': 8, 'stands pat': 9, 'folds': 10, 'checks': 11, 'discards': 12, 'bringin': 13, 'completes': 14}
@@ -57,6 +57,7 @@ class Hand(object):
         #log.debug( _("Hand.init(): handText is ") + str(handText) )
         self.config = config
         self.saveActions = self.config.get_import_parameters().get('saveActions')
+        self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
         self.cacheSessions = self.config.get_import_parameters().get("cacheSessions")
         #log = Configuration.get_logger("logging.conf", "db", log_dir=self.config.dir_log)
         self.sitename = sitename
@@ -101,7 +102,7 @@ class Hand(object):
         self.seating = []
         self.players = []
         self.posted = []
-        self.tourneysPlayersIds = []
+        self.tourneysPlayersIds = {}
 
         # Collections indexed by street names
         self.bets = {}
@@ -232,9 +233,8 @@ dealt   whether they were seen in a 'dealt to' line
         # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
         # These functions are intended for prep insert eventually
         #####
-        # Players - base playerid and siteid tuple
         self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
-
+        self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype, printdata = printtest)
         #Gametypes
         hilo = "h"
         if self.gametype['category'] in ['studhilo', 'omahahilo']:
@@ -249,61 +249,70 @@ dealt   whether they were seen in a 'dealt to' line
         # Note: the above data is calculated in db.getGameTypeId
         #       Only being calculated above so we can grab the testdata
         self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype, printdata = printtest)
-
+        
         if self.tourNo!=None:
             self.tourneyTypeId = db.createTourneyType(self)
-            db.commit()
             self.tourneyId = db.createOrUpdateTourney(self, "HHC")
-            db.commit()
             self.tourneysPlayersIds = db.createOrUpdateTourneysPlayers(self, "HHC")
-            db.commit()
-    #end def prepInsert
-
-    def insert(self, db, hp_data = None, ha_data = None, insert_data=False, printtest = False):
-        """ Function to insert Hand into database
-Should not commit, and do minimal selects. Callers may want to cache commits
-db: a connected Database object"""
-
-
+        #db.commit() #commit these transactions'  
+        
+    def assembleHand(self):
         self.stats.getStats(self)
-
-        #####
-        # End prep functions
-        #####
-        hh = self.stats.getHands()
-        hp_inserts, ha_inserts = [], []
-
-        if not db.isDuplicate(self.dbid_gt, hh['siteHandNo']):
-            # Hands - Summary information of hand indexed by handId - gameinfo
-            hh['gametypeId'] = self.dbid_gt
-            # seats TINYINT NOT NULL,
-            hh['seats'] = len(self.dbid_pids)
-            
-            hp = self.stats.getHandsPlayers()
-            
-            if self.cacheSessions:
-                hh['sessionId'] = db.storeSessionsCache(self.dbid_pids, self.startTime, self.gametype, hp)            
-
-            self.dbid_hands = db.storeHand(hh, printdata = printtest)
-            
-            hp_inserts = db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, hp,
-                                               insert=insert_data, hp_bulk = hp_data, printdata = printtest)
-            
-            if self.saveActions:
-                ha_inserts = db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.stats.getHandsActions(),
-                                                   insert=insert_data, ha_bulk = ha_data, printdata = printtest)
-        else:
-            log.info(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
+        self.hands = self.stats.getHands()
+        self.handsplayers = self.stats.getHandsPlayers()
+        
+    def getHandId(self, db, id):    
+        if db.isDuplicate(self.dbid_gt, self.hands['siteHandNo']):
+            #log.info(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
             self.is_duplicate = True  # i.e. don't update hudcache
-            raise FpdbHandDuplicate(hh['siteHandNo'])
-        
-        return hp_inserts, ha_inserts
+            next = id
+            raise FpdbHandDuplicate(self.hands['siteHandNo'])
+        else:
+            self.dbid_hands = id
+            self.hands['id'] = self.dbid_hands
+            next = id +1
+        return next
 
-    def updateHudCache(self, db):
-        db.storeHudCache(self.dbid_gt, self.dbid_pids, self.startTime, self.stats.getHandsPlayers())
+    def insertHands(self, db, hbulk, doinsert = False, printtest = False):
+        """ Function to insert Hand into database
+            Should not commit, and do minimal selects. Callers may want to cache commits
+            db: a connected Database object"""
+        self.hands['gametypeId'] = self.dbid_gt
+        self.hands['seats'] = len(self.dbid_pids)
+        hbulk = db.storeHand(self.hands, hbulk, doinsert, printtest)
+        return hbulk
+
+    def insertHandsPlayers(self, db, hpbulk, doinsert = False, printtest = False):
+        """ Function to inserts HandsPlayers into database"""
+        hpbulk = db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.handsplayers, hpbulk, doinsert, printtest)
+        return hpbulk
+    
+    def insertHandsActions(self, db, habulk, doinsert = False, printtest = False):
+        """ Function to inserts HandsActions into database"""
+        handsactions = self.stats.getHandsActions()
+        habulk = db.storeHandsActions(self.dbid_hands, self.dbid_pids, handsactions, habulk, doinsert, printtest)
+        return habulk
+
+    def updateHudCache(self, db, hcbulk, doinsert = False):
+        """ Function to update the HudCache"""
+        if self.callHud:
+            hcbulk = db.storeHudCache(self.dbid_gt, self.dbid_pids, self.startTime, self.handsplayers, hcbulk, doinsert)
+        return hcbulk
         
-    def updateSessionsCache(self, db):
-        db.storeSessionsCache(self.dbid_pids, self.startTime, self.gametype, self.stats.getHandsPlayers())
+    def updateSessionsCache(self, db, sc, gsc, tz, doinsert = False):
+        """ Function to update the SessionsCache"""
+        if self.cacheSessions:
+            self.heros = db.getHeroIds(self.dbid_pids, self.sitename)
+            sc = db.prepSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, sc, self.heros, doinsert)
+            gsc = db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.gametype
+                                           ,self.dbid_gt, self.handsplayers, sc, gsc, tz, self.heros, doinsert)
+        if doinsert and sc['bk'] and gsc['bk']:
+            self.hands['sc'] = sc
+            self.hands['gsc'] = gsc
+        else:
+            self.hands['sc'] = None
+            self.hands['gsc'] = None
+        return sc, gsc
 
     def select(self, db, handId):
         """ Function to create Hand object from database """
@@ -666,10 +675,13 @@ Add a raise on [street] by [player] to [amountTo]
         self.pot.addMoney(player, amount)
 
 
-    def addStandsPat(self, street, player):
+    def addStandsPat(self, street, player, cards):
         self.checkPlayerExists(player)
         act = (player, 'stands pat')
         self.actions[street].append(act)
+        if cards:
+            cards = cards.split(' ')
+            self.addHoleCards(street, player, open=[], closed=cards)
 
 
     def addFold(self, street, player):
@@ -1229,7 +1241,14 @@ class DrawHand(Hand):
     def join_holecards(self, player, asList=False):
         """With asList = True it returns the set cards for a player including down cards if they aren't know"""
         # FIXME: This should actually return
-        holecards = [u'0x', u'0x', u'0x', u'0x', u'0x']
+        holecards = [u'0x']*20
+        
+        for i, street in enumerate(self.holeStreets):
+            if player in self.holecards[street].keys():
+                allhole = self.holecards[street][player][1] + self.holecards[street][player][0]
+                for c in range(len(allhole)):
+                    idx = c + (i*5)
+                    holecards[idx] = allhole[c]
 
         if asList == False:
             return " ".join(holecards)

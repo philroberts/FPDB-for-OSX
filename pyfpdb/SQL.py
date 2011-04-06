@@ -107,6 +107,15 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['createSettingsTable'] = """CREATE TABLE Settings
             (version INTEGER NOT NULL) """
+            
+        ################################
+        # Create InsertLock
+        ################################
+        if db_server == 'mysql':
+            self.query['createLockTable'] = """CREATE TABLE InsertLock (
+                        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        locked BOOLEAN NOT NULL DEFAULT FALSE)
+                        ENGINE=INNODB"""
 
         ################################
         # Create RawHands (this table is all but identical with RawTourneys)
@@ -278,11 +287,11 @@ class Sql:
 
         if db_server == 'mysql':
             self.query['createPlayersTable'] = """CREATE TABLE Players (
-                            id INT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-                            name VARCHAR(32) CHARACTER SET utf8 NOT NULL,
-                            siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
-                            comment text,
-                            commentTs DATETIME)
+                        id INT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        name VARCHAR(32) NOT NULL,
+                        siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                        comment text,
+                        commentTs DATETIME)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createPlayersTable'] = """CREATE TABLE Players (
@@ -346,7 +355,8 @@ class Sql:
                             siteHandNo BIGINT NOT NULL,
                             tourneyId INT UNSIGNED, 
                             gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-                            sessionId INT UNSIGNED, 
+                            sessionId INT UNSIGNED,
+                            gameSessionId INT UNSIGNED, 
                             startTime DATETIME NOT NULL,
                             importTime DATETIME NOT NULL,
                             seats TINYINT NOT NULL,
@@ -385,6 +395,7 @@ class Sql:
                             tourneyId INT,
                             gametypeId INT NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                             sessionId INT,
+                            gameSessionId INT,
                             startTime timestamp without time zone NOT NULL,
                             importTime timestamp without time zone NOT NULL,
                             seats SMALLINT NOT NULL,
@@ -422,6 +433,7 @@ class Sql:
                             tourneyId INT,
                             gametypeId INT NOT NULL,
                             sessionId INT,
+                            gameSessionId INT,
                             startTime REAL NOT NULL,
                             importTime REAL NOT NULL,
                             seats INT NOT NULL,
@@ -621,6 +633,19 @@ class Sql:
                         card5 smallint,
                         card6 smallint,
                         card7 smallint,
+                        card8 smallint,  /* cards 8-20 for draw hands */
+                        card9 smallint,
+                        card10 smallint,
+                        card11 smallint,
+                        card12 smallint,
+                        card13 smallint,
+                        card14 smallint,
+                        card15 smallint,
+                        card16 smallint,
+                        card17 smallint,
+                        card18 smallint,
+                        card19 smallint,
+                        card20 smallint,
                         startCards smallint,
                     
                         ante INT,
@@ -748,6 +773,19 @@ class Sql:
                         card5 smallint,
                         card6 smallint,
                         card7 smallint,
+                        card8 smallint,  /* cards 8-20 for draw hands */
+                        card9 smallint,
+                        card10 smallint,
+                        card11 smallint,
+                        card12 smallint,
+                        card13 smallint,
+                        card14 smallint,
+                        card15 smallint,
+                        card16 smallint,
+                        card17 smallint,
+                        card18 smallint,
+                        card19 smallint,
+                        card20 smallint, 
                         startCards smallint,
 
                         ante INT,
@@ -874,6 +912,19 @@ class Sql:
                         card5 INT,
                         card6 INT,
                         card7 INT,
+                        card8 INT,  /* cards 8-20 for draw hands */
+                        card9 INT,
+                        card10 INT,
+                        card11 INT,
+                        card12 INT,
+                        card13 INT,
+                        card14 INT,
+                        card15 INT,
+                        card16 INT,
+                        card17 INT,
+                        card18 INT,
+                        card19 INT,
+                        card20 INT,
                         startCards INT,
                     
                         ante INT,
@@ -1430,32 +1481,61 @@ class Sql:
                         id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         sessionStart DATETIME NOT NULL,
                         sessionEnd DATETIME NOT NULL,
-                        ringHDs INT NOT NULL,
-                        tourHDs INT NOT NULL,
-                        ringProfitUSD INT NOT NULL,
-                        ringProfitEUR INT NOT NULL)
-
-                        ENGINE=INNODB"""
+                        gameStart DATETIME NOT NULL,
+                        gameEnd DATETIME NOT NULL,
+                        sessionId BIGINT,
+                        date CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
+                        type char(7) NOT NULL,
+                        gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                        tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        hands INT NOT NULL,
+                        tourneys INT NOT NULL,
+                        totalProfit INT)
+                        ENGINE=INNODB
+                        """
+                        
         elif db_server == 'postgresql':
             self.query['createSessionsCacheTable'] = """CREATE TABLE SessionsCache (
                         id BIGSERIAL, PRIMARY KEY (id),
                         sessionStart REAL NOT NULL,
                         sessionEnd REAL NOT NULL,
-                        ringHDs INT NOT NULL,
-                        tourHDs INT NOT NULL,
-                        ringProfitUSD INT NOT NULL,
-                        ringProfitEUR INT NOT NULL)
+                        gameStart REAL NOT NULL,
+                        gameEnd REAL NOT NULL,
+                        sessionId INT,
+                        date CHAR(7) NOT NULL, /* 1st char is style (A/T/H/S), other 6 are the key */
+                        type char(7),
+                        gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                        tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        hands INT,
+                        tourneys INT,
+                        totalProfit INT)
                         """
+                        
         elif db_server == 'sqlite':
             self.query['createSessionsCacheTable'] = """CREATE TABLE SessionsCache (
                         id INTEGER PRIMARY KEY,
-                        sessionStart REAL NOT NULL,
-                        sessionEnd REAL NOT NULL,
-                        ringHDs INT NOT NULL,
-                        tourHDs INT NOT NULL,
-                        ringProfitUSD INT NOT NULL,
-                        ringProfitEUR INT NOT NULL)
+                        sessionStart timestamp NOT NULL,
+                        sessionEnd timestamp NOT NULL,
+                        gameStart timestamp NOT NULL,
+                        gameEnd timestamp NOT NULL,
+                        sessionId INT,
+                        date TEXT NOT NULL, /* 1st char is style (A/T/H/S), other 6 are the key */
+                        type TEXT,
+                        gametypeId INT,
+                        tourneyTypeId INT,
+                        playerId INT,
+                        hands INT,
+                        tourneys INT,
+                        totalProfit INT)
                         """
+                        
+        self.query['addSessionIdIndex'] = """CREATE INDEX index_SessionId ON SessionsCache (sessionId)"""
+        
+        self.query['addHandsSessionIdIndex'] = """CREATE INDEX index_handsSessionId ON Hands (sessionId)"""
+        
+        self.query['addHandsGameSessionIdIndex'] = """CREATE INDEX index_handsGameSessionId ON Hands (gameSessionId)"""
 
         if db_server == 'mysql':
             self.query['addTourneyIndex'] = """ALTER TABLE Tourneys ADD UNIQUE INDEX siteTourneyNo(siteTourneyNo, tourneyTypeId)"""
@@ -1479,7 +1559,7 @@ class Sql:
             self.query['addPlayersIndex'] = """CREATE UNIQUE INDEX name ON Players (name, siteId)"""
 
         if db_server == 'mysql':
-            self.query['addTPlayersIndex'] = """ALTER TABLE TourneysPlayers ADD UNIQUE INDEX tourneyId(tourneyId, playerId)"""
+            self.query['addTPlayersIndex'] = """ALTER TABLE TourneysPlayers ADD UNIQUE INDEX _tourneyId(tourneyId, playerId)"""
         elif db_server == 'postgresql':
             self.query['addTPlayersIndex'] = """CREATE UNIQUE INDEX tourneyId ON TourneysPlayers (tourneyId, playerId)"""
         elif db_server == 'sqlite':
@@ -3401,7 +3481,7 @@ class Sql:
             <limit_test>
             <game_test>
             AND   hp.tourneysPlayersId IS NULL
-            GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
+            GROUP BY h.startTime, hp.handId, hp.sawShowdown, ( hp.totalProfit / ( gt.bigBlind  * 2 ) ) * 100
             ORDER BY h.startTime"""
 
         self.query['getRingProfitAllHandsPlayerIdSiteInDollars'] = """
@@ -4142,7 +4222,7 @@ class Sql:
 """
 
         self.query['insert_hudcache'] = """
-            INSERT INTO HudCache (
+            insert into HudCache (
                 gametypeId,
                 playerId,
                 activeSeats,
@@ -4237,7 +4317,7 @@ class Sql:
                 street2Raises,
                 street3Raises,
                 street4Raises)
-            VALUES (%s, %s, %s, %s, %s,
+            values (%s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
@@ -4363,96 +4443,136 @@ class Sql:
         ####################################
         # Queries to rebuild/modify sessionscache
         ####################################
+        
+        self.query['clearSessionsCache'] = """DELETE FROM SessionsCache"""
+        
+        self.query['rebuildSessionsCache'] = """
+                    SELECT Hands.id as id,
+                    Hands.startTime as startTime,
+                    HandsPlayers.playerId as playerId,
+                    Hands.gametypeId as gametypeId,
+                    Gametypes.type as game,
+                    HandsPlayers.totalProfit as totalProfit,
+                    Tourneys.tourneyTypeId as tourneyTypeId
+                    FROM Gametypes, HandsPlayers, Hands
+                    LEFT JOIN Tourneys ON Hands.tourneyId = Tourneys.tourneyTypeId
+                    WHERE HandsPlayers.handId = Hands.id
+                    AND   Hands.gametypeId = Gametypes.id
+                    AND (case when HandsPlayers.playerId = <where_clause> then 1 else 0 end) = 1
+                    ORDER BY Hands.startTime ASC"""
+                    
+        self.query['rebuildSessionsCacheSum'] = """
+                    SELECT Tourneys.id as id,
+                    Tourneys.startTime as startTime,
+                    TourneysPlayers.playerId,
+                    TourneyTypes.id as tourneyTypeId,
+                    TourneysPlayers.winnings as winnings,
+                    TourneysPlayers.winningsCurrency as winningsCurrency,
+                    TourneyTypes.currency as buyinCurrency,
+                    TourneyTypes.buyIn as buyIn,
+                    TourneyTypes.fee as fee,
+                    case when TourneyTypes.rebuy then TourneyTypes.rebuyCost else 0 end as rebuyCost,
+                    case when TourneyTypes.rebuy then TourneyTypes.rebuyFee else 0 end as rebuyFee,
+                    case when TourneyTypes.addOn then TourneyTypes.addOnCost else 0 end as addOnCost,
+                    case when TourneyTypes.addOn then TourneyTypes.addOnFee else 0 end as addOnFee,
+                    case when TourneyTypes.knockout then TourneyTypes.koBounty else 0 end as koBounty
+                    FROM  Tourneys, TourneyTypes, TourneysPlayers
+                    WHERE Tourneys.tourneyTypeId = TourneyTypes.id
+                    AND   Tourneys.id = TourneysPlayers.tourneyId
+                    AND (case when TourneysPlayers.playerId = <where_clause> then 1 else 0 end) = 1
+                    ORDER BY Tourneys.startTime ASC"""
             
-        self.query['select_sessionscache'] = """
-            SELECT id,
-                sessionStart,
-                sessionEnd,
-                ringHDs,
-                tourHDs,
-                ringProfitUSD,
-                ringProfitEUR
-            FROM SessionsCache
-        WHERE sessionEnd>=%s
-        AND sessionStart<=%s"""
-        
-        self.query['select_sessionscache_mid'] = """
-            SELECT sessionStart,
-                sessionEnd,
-                ringHDs,
-                tourHDs,
-                ringProfitUSD,
-                ringProfitEUR
-            FROM SessionsCache
-        WHERE sessionEnd>=%s
-        AND sessionStart<=%s"""
-        
-        self.query['select_sessionscache_start'] = """
-            SELECT sessionStart,
-                sessionEnd,
-                ringHDs,
-                tourHDs,
-                ringProfitUSD,
-                ringProfitEUR
-            FROM SessionsCache
-        WHERE sessionStart>%s
-        AND sessionEnd>=%s
-        AND sessionStart<=%s"""
-        
-        self.query['update_sessionscache_mid'] = """
-            UPDATE SessionsCache SET
-            ringHDs=ringHDs+%s,
-            tourHDs=tourHDs+%s,
-            ringProfitUSD=ringProfitUSD+%s,
-            ringProfitEUR=ringProfitEUR+%s
-        WHERE sessionStart<=%s
-        AND sessionEnd>=%s"""
-
-        self.query['update_sessionscache_start'] = """
-            UPDATE SessionsCache SET
-            sessionStart=%s,
-            ringHDs=ringHDs+%s,
-            tourHDs=tourHDs+%s,
-            ringProfitUSD=ringProfitUSD+%s,
-            ringProfitEUR=ringProfitEUR+%s
-        WHERE sessionStart>%s
-        AND sessionEnd>=%s
-        AND sessionStart<=%s"""
-    
-        self.query['update_sessionscache_end'] = """
-            UPDATE SessionsCache SET
-            sessionEnd=%s,
-            ringHDs=ringHDs+%s,
-            tourHDs=tourHDs+%s,
-            ringProfitUSD=ringProfitUSD+%s,
-            ringProfitEUR=ringProfitEUR+%s
-        WHERE sessionEnd<%s
-        AND sessionEnd>=%s
-        AND sessionStart<=%s"""
-        
-        self.query['insert_sessionscache'] = """
-            INSERT INTO SessionsCache (
-                sessionStart,
-                sessionEnd,
-                ringHDs,
-                tourHDs,
-                ringProfitUSD,
-                ringProfitEUR)
-            VALUES (%s, %s, %s, %s, %s, %s)"""
-        
-        self.query['merge_sessionscache'] = """
-            SELECT min(sessionStart), max(sessionEnd), sum(ringHDs), sum(tourHDs), sum(ringProfitUSD), sum(ringProfitEUR)
-            FROM SessionsCache
-        WHERE (case when id=%s or id=%s then 1 else 0 end)=1"""
-        
-        self.query['delete_sessions'] = """
-            DELETE FROM SessionsCache
-        WHERE id=%s"""
-        
-        self.query['update_hands_sessionid'] = """
-            UPDATE Hands SET
-            sessionId=%s
-        WHERE (case when sessionId=%s or sessionId=%s then 1 else 0 end)=1"""
+        self.query['select_prepSC'] = """
+                    SELECT sessionId as id,
+                    sessionStart,
+                    sessionEnd,
+                    count(sessionId) as count
+                    FROM SessionsCache
+                    WHERE sessionEnd>=%s
+                    AND sessionStart<=%s
+                    GROUP BY sessionId, sessionStart, sessionEnd"""
+                    
+        self.query['update_prepSC'] = """
+                    UPDATE SessionsCache SET 
+                    sessionStart=%s,
+                    sessionEnd=%s
+                    WHERE sessionId=%s"""
+                    
+        self.query['update_SC'] = """
+                    UPDATE SessionsCache SET 
+                    sessionStart=%s,
+                    sessionEnd=%s,
+                    gameStart=%s,
+                    gameEnd=%s,
+                    hands=hands+%s,
+                    tourneys=tourneys+%s, 
+                    totalProfit=totalProfit+%s
+                    WHERE id=%s"""
+                    
+        self.query['select_SC'] = """
+                    SELECT id,
+                    sessionStart,
+                    sessionEnd,
+                    gameStart,
+                    gameEnd,
+                    sessionId,
+                    date,
+                    type,
+                    gametypeId,
+                    tourneyTypeId,
+                    playerId,
+                    hands,
+                    tourneys,
+                    totalProfit
+                    FROM SessionsCache
+                    WHERE gameEnd>=%s
+                    AND gameStart<=%s
+                    AND date=%s
+                    AND type=%s
+                    AND (case when gametypeId is NULL then 1 else 
+                        (case when gametypeId=%s then 1 else 0 end) end)=1
+                    AND (case when tourneyTypeId is NULL then 1 else 
+                        (case when tourneyTypeId=%s then 1 else 0 end) end)=1
+                    AND playerId=%s"""
+                    
+        self.query['insert_SC'] = """
+                    insert into SessionsCache (
+                    sessionStart,
+                    sessionEnd,
+                    gameStart,
+                    gameEnd,
+                    sessionId,
+                    date,
+                    type,
+                    gametypeId,
+                    tourneyTypeId,
+                    playerId,
+                    hands,
+                    tourneys,
+                    totalProfit)
+                    values (%s, %s, %s, %s, %s, %s, %s, 
+                            %s, %s, %s, %s, %s, %s)"""
+                            
+        self.query['update_Hands_gsid'] = """
+                    UPDATE Hands SET
+                    gameSessionId=%s
+                    WHERE gameSessionId=%s"""
+                            
+        self.query['update_Hands_sid'] = """
+                    UPDATE Hands SET
+                    sessionId=%s
+                    WHERE sessionId=%s"""
+                    
+        self.query['update_SC_sid'] = """
+                    UPDATE SessionsCache SET
+                    sessionStart=%s,
+                    sessionEnd=%s,
+                    sessionId=%s
+                    WHERE sessionId=%s"""
+                    
+        self.query['delete_SC'] = """
+                    DELETE FROM SessionsCache
+                    WHERE id=%s"""
         
         ####################################
         # Database management queries
@@ -4467,6 +4587,25 @@ class Sql:
             self.query['analyze'] = "analyze"
         elif db_server == 'sqlite':
             self.query['analyze'] = "analyze"
+            
+        if db_server == 'mysql':
+            self.query['selectLock'] = """
+                        SELECT locked 
+                        FROM InsertLock 
+                        WHERE locked=True 
+                        LOCK IN SHARE MODE"""
+            
+        if db_server == 'mysql':
+            self.query['switchLock'] = """
+                        UPDATE InsertLock SET
+                        locked=%s
+                        WHERE id=%s"""
+                        
+        if db_server == 'mysql':               
+            self.query['missedLock'] = """
+                        UPDATE InsertLock SET
+                        missed=missed+%s
+                        WHERE id=%s"""
 
         if db_server == 'mysql':
             self.query['lockForInsert'] = """
@@ -4652,6 +4791,7 @@ class Sql:
                                             tourneyId,
                                             gametypeid,
                                             sessionId,
+                                            gameSessionId,
                                             startTime,
                                             importtime,
                                             seats,
@@ -4682,7 +4822,7 @@ class Sql:
                                              values
                                               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
 
         self.query['store_hands_players'] = """insert into HandsPlayers (
@@ -4698,6 +4838,19 @@ class Sql:
                 card5,
                 card6,
                 card7,
+                card8,
+                card9,
+                card10,
+                card11,
+                card12,
+                card13,
+                card14,
+                card15,
+                card16,
+                card17,
+                card18,
+                card19,
+                card20,
                 winnings,
                 rake,
                 totalProfit,
@@ -4812,7 +4965,10 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s
                 )"""
 
         self.query['store_hands_actions'] = """insert into HandsActions (

@@ -287,6 +287,24 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
         if player not in [p[1] for p in self.players]:
             print "checkPlayerExists", player, "fail"
             raise FpdbParseError
+        
+    def updateSessionsCache(self, sc, gsc, tz, doinsert):
+        self.heros = self.db.getHeroIds(self.dbid_pids, self.siteName)
+        sc = self.db.prepSessionsCache(self.tourNo, self.dbid_pids, self.startTime, sc , self.heros, doinsert)
+        
+        gsc = self.db.storeSessionsCache(self.tourNo, self.dbid_pids, self.startTime, {'type': 'summary'} 
+                                        ,None, self.assembleInfo(), sc, gsc, tz, self.heros, doinsert)
+        return sc, gsc
+    
+    def assembleInfo(self):
+        info = {}
+        info['tourneyTypeId']    = self.tourneyTypeId
+        info['winnings']         = self.winnings
+        info['winningsCurrency'] = self.winningsCurrency
+        info['buyinCurrency']    = self.buyinCurrency
+        info['buyin']            = self.buyin
+        info['fee']              = self.fee
+        return info
 
     def writeSummary(self, fh=sys.__stdout__):
         print >>fh, "Override me"
