@@ -4,16 +4,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-04-06 23:56+CEST\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: Free Poker Database\n"
+"POT-Creation-Date: 2011-04-06 23:46+CEST\n"
+"PO-Revision-Date: 2011-04-06 15:20+0000\n"
+"Last-Translator: jipeng <sjp00544@gmail.com>\n"
+"Language-Team: Chinese (China) <>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
-"Content-Transfer-Encoding: ENCODING\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-
+"Plural-Forms: nplurals=1; plural=0\n"
 
 #: AbsoluteToFpdb.py:140 AbsoluteToFpdb.py:142 BetfairToFpdb.py:76
 #: BetfairToFpdb.py:78 CarbonToFpdb.py:130 CarbonToFpdb.py:132
@@ -26,7 +27,7 @@ msgstr ""
 #: WinamaxToFpdb.py:172 WinamaxToFpdb.py:174 iPokerToFpdb.py:122
 #: iPokerToFpdb.py:124
 msgid "Unable to recognise gametype from: '%s'"
-msgstr ""
+msgstr "无法识别的游戏类型：‘%s’"
 
 #: AbsoluteToFpdb.py:141 BetfairToFpdb.py:77 CarbonToFpdb.py:131
 #: EverestToFpdb.py:102 EverestToFpdb.py:107 EverleafToFpdb.py:114
@@ -54,7 +55,7 @@ msgstr ""
 
 #: AbsoluteToFpdb.py:209
 msgid "File name: %s"
-msgstr ""
+msgstr "文件名：%s"
 
 #: AbsoluteToFpdb.py:210
 msgid "Didn't match re_*InfoFromFilename: '%s'"
@@ -64,7 +65,7 @@ msgstr ""
 #: OnGameToFpdb.py:305 PacificPokerToFpdb.py:347 PokerStarsToFpdb.py:358
 #: Win2dayToFpdb.py:210 WinamaxToFpdb.py:360
 msgid "reading antes"
-msgstr ""
+msgstr "读取赌注"
 
 #: AbsoluteToFpdb.py:288 BetfairToFpdb.py:160 FulltiltToFpdb.py:426
 msgid "Player bringing in: %s for %s"
@@ -95,14 +96,14 @@ msgstr ""
 #: PartyPokerToFpdb.py:575 PokerStarsToFpdb.py:468 Win2dayToFpdb.py:375
 #: iPokerToFpdb.py:291
 msgid "parse input hand history"
-msgstr ""
+msgstr "处理输入历史记录"
 
 #: AbsoluteToFpdb.py:403 BetfairToFpdb.py:223 CarbonToFpdb.py:298
 #: EverleafToFpdb.py:322 FulltiltToFpdb.py:789 PacificPokerToFpdb.py:459
 #: PartyPokerToFpdb.py:576 PokerStarsToFpdb.py:469 Win2dayToFpdb.py:376
 #: iPokerToFpdb.py:292
 msgid "output translation to"
-msgstr ""
+msgstr "输出翻译结果到"
 
 #: AbsoluteToFpdb.py:404 BetfairToFpdb.py:224 CarbonToFpdb.py:299
 #: EverleafToFpdb.py:323 FulltiltToFpdb.py:790 PacificPokerToFpdb.py:460
@@ -113,7 +114,7 @@ msgstr ""
 
 #: Anonymise.py:49
 msgid "Could not find file %s"
-msgstr ""
+msgstr "文件%s无法找到"
 
 #: Anonymise.py:55
 msgid "Output being written to %s"
@@ -140,39 +141,34 @@ msgstr ""
 
 #: Card.py:401
 msgid "fpdb card encoding(same as pokersource)"
-msgstr ""
+msgstr "fpdb卡片编码（与poker源码相同）"
 
 #: Charset.py:45 Charset.py:60 Charset.py:75 Charset.py:86 Charset.py:94
-msgid ""
-"Could not convert: \"%s\"\n"
-msgstr ""
+msgid "Could not convert: \"%s\"\n"
+msgstr "无法转换：“%s”\n"
 
 #: Charset.py:48 Charset.py:63 Charset.py:78
-msgid ""
-"Could not encode: \"%s\"\n"
-msgstr ""
+msgid "Could not encode: \"%s\"\n"
+msgstr "无法解码：“%s”\n"
 
 #: Configuration.py:111 Configuration.py:118 Configuration.py:133
-msgid ""
-"Config file has been created at %s.\n"
-msgstr ""
+msgid "Config file has been created at %s.\n"
+msgstr "配置文件建立在%s\n"
 
 #: Configuration.py:132
 msgid ""
 "No %s found\n"
 "  in %s\n"
 "  or %s\n"
-msgstr ""
+msgstr "在%s或者%s上无法找到%s\n"
 
 #: Configuration.py:137 Configuration.py:138
-msgid ""
-"Error copying .example config file, cannot fall back. Exiting.\n"
-msgstr ""
+msgid "Error copying .example config file, cannot fall back. Exiting.\n"
+msgstr "复制.example配置文件时发生错误，无法执行回滚，程序退出\n"
 
 #: Configuration.py:142 Configuration.py:143
-msgid ""
-"No %s found, cannot fall back. Exiting.\n"
-msgstr ""
+msgid "No %s found, cannot fall back. Exiting.\n"
+msgstr "%s无法找到，无法执行回滚，程序退出\n"
 
 #: Configuration.py:175
 msgid "Default logger initialised for %s"
@@ -180,11 +176,14 @@ msgstr ""
 
 #: Configuration.py:187 Database.py:465 Database.py:466
 msgid "Creating directory: '%s'"
-msgstr ""
+msgstr "创建目录：‘%s’"
 
 #: Configuration.py:213
-msgid "Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're not on a Mac, please report this problem."
+msgid ""
+"Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're "
+"not on a Mac, please report this problem."
 msgstr ""
+"默认字符集编码为US-ASCII，替换为CP1252--如果你不是Mac使用者，请报告这个问题"
 
 #: Configuration.py:537
 msgid "config.general: adding %s = %s"
@@ -205,7 +204,7 @@ msgstr ""
 
 #: Configuration.py:722
 msgid "Reading configuration file %s"
-msgstr ""
+msgstr "读取配置文件 %s"
 
 #: Configuration.py:729
 msgid "Error parsing %s."
@@ -221,7 +220,7 @@ msgstr ""
 
 #: Database.py:65
 msgid "Not using sqlalchemy connection pool."
-msgstr ""
+msgstr "请不要使用sqlalchemy连接池"
 
 #: Database.py:72
 msgid "Not using numpy to define variance in sqlite."
@@ -397,7 +396,8 @@ msgid "Dropping sqlite index "
 msgstr ""
 
 #: Database.py:1418
-msgid "Fpdb only supports MySQL, Postgres and SQLITE, what are you trying to use?"
+msgid ""
+"Fpdb only supports MySQL, Postgres and SQLITE, what are you trying to use?"
 msgstr ""
 
 #: Database.py:1432 Database.py:1472
@@ -875,7 +875,9 @@ msgid "Importing..."
 msgstr ""
 
 #: GuiBulkImport.py:113
-msgid "GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec"
+msgid ""
+"GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: "
+"%d in %s seconds - %.0f/sec"
 msgstr ""
 
 #: GuiBulkImport.py:127
@@ -967,15 +969,19 @@ msgid "Print some useful one liners"
 msgstr ""
 
 #: GuiBulkImport.py:354
-msgid "Do the required conversion for Stars Archive format (ie. as provided by support"
+msgid ""
+"Do the required conversion for Stars Archive format (ie. as provided by "
+"support"
 msgstr ""
 
 #: GuiBulkImport.py:356
-msgid "Do the required conversion for FTP Archive format (ie. as provided by support"
+msgid ""
+"Do the required conversion for FTP Archive format (ie. as provided by support"
 msgstr ""
 
 #: GuiBulkImport.py:358
-msgid "Output the pprinted version of the HandsPlayer hash for regresion testing"
+msgid ""
+"Output the pprinted version of the HandsPlayer hash for regresion testing"
 msgstr ""
 
 #: GuiBulkImport.py:363 GuiTourneyImport.py:272 ImapFetcher.py:172
@@ -987,7 +993,8 @@ msgid "PokerStars converter: ./GuiBulkImport.py -c PokerStars -f filename"
 msgstr ""
 
 #: GuiBulkImport.py:365
-msgid "Full Tilt  converter: ./GuiBulkImport.py -c \"Full Tilt Poker\" -f filename"
+msgid ""
+"Full Tilt  converter: ./GuiBulkImport.py -c \"Full Tilt Poker\" -f filename"
 msgstr ""
 
 #: GuiBulkImport.py:366
@@ -1007,7 +1014,9 @@ msgid "-q is deprecated. Just use \"-f filename\" instead"
 msgstr ""
 
 #: GuiBulkImport.py:408
-msgid "GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec"
+msgid ""
+"GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d "
+"in %s seconds - %.0f/sec"
 msgstr ""
 
 #: GuiDatabase.py:107
@@ -1083,7 +1092,8 @@ msgid "         not connected but no exception"
 msgstr ""
 
 #: GuiDatabase.py:373 fpdb.pyw:923
-msgid "MySQL Server reports: Access denied. Are your permissions set correctly?"
+msgid ""
+"MySQL Server reports: Access denied. Are your permissions set correctly?"
 msgstr ""
 
 #: GuiDatabase.py:377 fpdb.pyw:925
@@ -1095,7 +1105,8 @@ msgid "Please check that the MySQL service has been started"
 msgstr ""
 
 #: GuiDatabase.py:382 fpdb.pyw:928
-msgid "PostgreSQL Server reports: Access denied. Are your permissions set correctly?"
+msgid ""
+"PostgreSQL Server reports: Access denied. Are your permissions set correctly?"
 msgstr ""
 
 #: GuiDatabase.py:385 fpdb.pyw:930
@@ -1211,11 +1222,15 @@ msgid "Log Viewer"
 msgstr ""
 
 #: GuiGraphViewer.py:49 GuiTourneyGraphViewer.py:49
-msgid "Failed to load libs for graphing, graphing will not function. Please install numpy and matplotlib if you want to use graphs."
+msgid ""
+"Failed to load libs for graphing, graphing will not function. Please install "
+"numpy and matplotlib if you want to use graphs."
 msgstr ""
 
 #: GuiGraphViewer.py:50 GuiTourneyGraphViewer.py:50
-msgid "This is of no consequence for other parts of the program, e.g. import and HUD are NOT affected by this problem."
+msgid ""
+"This is of no consequence for other parts of the program, e.g. import and "
+"HUD are NOT affected by this problem."
 msgstr ""
 
 #: GuiGraphViewer.py:83 GuiTourneyGraphViewer.py:82
@@ -1329,11 +1344,14 @@ msgid "Finished import without error."
 msgstr ""
 
 #: GuiImapFetcher.py:97
-msgid "Login to mailserver failed: please check mailserver, username and password"
+msgid ""
+"Login to mailserver failed: please check mailserver, username and password"
 msgstr ""
 
 #: GuiImapFetcher.py:100
-msgid "Could not connect to mailserver: check mailserver and use SSL settings and internet connectivity"
+msgid ""
+"Could not connect to mailserver: check mailserver and use SSL settings and "
+"internet connectivity"
 msgstr ""
 
 #: GuiImapFetcher.py:110
@@ -1555,8 +1573,7 @@ msgid "% Pre Flop Fold To Re-Raise / F4Bet"
 msgstr ""
 
 #: GuiRingPlayerStats.py:56
-msgid ""
-"Aggression Factor\n"
+msgid "Aggression Factor\n"
 msgstr ""
 
 #: GuiRingPlayerStats.py:57
@@ -1696,18 +1713,19 @@ msgid "ImportError: %s"
 msgstr ""
 
 #: GuiSessionViewer.py:158
-msgid ""
-"Session Viewer is proof of concept code only, and contains many bugs.\n"
+msgid "Session Viewer is proof of concept code only, and contains many bugs.\n"
 msgstr ""
 
 #: GuiSessionViewer.py:159
 msgid ""
-"Feel free to use the viewer, but there is no guarantee that the data is accurate.\n"
+"Feel free to use the viewer, but there is no guarantee that the data is "
+"accurate.\n"
 msgstr ""
 
 #: GuiSessionViewer.py:160
 msgid ""
-"If you are interested in developing the code further please contact us via the usual channels.\n"
+"If you are interested in developing the code further please contact us via "
+"the usual channels.\n"
 msgstr ""
 
 #: GuiSessionViewer.py:161
@@ -1728,17 +1746,20 @@ msgstr ""
 
 #: GuiStove.py:63
 msgid ""
-"Stove is a GUI mockup of a EV calculation page, and completely non functional.\n"
+"Stove is a GUI mockup of a EV calculation page, and completely non "
+"functional.\n"
 msgstr ""
 
 #: GuiStove.py:64
 msgid ""
-"Unless you are interested in developing this feature, please ignore this page.\n"
+"Unless you are interested in developing this feature, please ignore this "
+"page.\n"
 msgstr ""
 
 #: GuiStove.py:65
 msgid ""
-"If you are interested in developing the code further see GuiStove.py and Stove.py\n"
+"If you are interested in developing the code further see GuiStove.py and "
+"Stove.py\n"
 msgstr ""
 
 #: GuiStove.py:66
@@ -1820,7 +1841,8 @@ msgid "Tournament Results"
 msgstr ""
 
 #: GuiTourneyImport.py:72 GuiTourneyImport.py:295
-msgid "GuiTourneyImport.load done: Stored: %d\tErrors: %d in %s seconds - %.0f/sec"
+msgid ""
+"GuiTourneyImport.load done: Stored: %d\tErrors: %d in %s seconds - %.0f/sec"
 msgstr ""
 
 #: GuiTourneyImport.py:175 fpdb_import.py:221
@@ -1928,11 +1950,15 @@ msgid "Display _Player"
 msgstr ""
 
 #: GuiTourneyViewer.py:68
-msgid "Tournament not found - please ensure you imported it and selected the correct site"
+msgid ""
+"Tournament not found - please ensure you imported it and selected the "
+"correct site"
 msgstr ""
 
 #: GuiTourneyViewer.py:96
-msgid "Player or tourney not found - please ensure you imported it and selected the correct site"
+msgid ""
+"Player or tourney not found - please ensure you imported it and selected the "
+"correct site"
 msgstr ""
 
 #: GuiTourneyViewer.py:110
@@ -1956,8 +1982,7 @@ msgid "Any major error will be reported there _only_."
 msgstr ""
 
 #: HUD_main.pyw:78
-msgid ""
-"HUD_main: starting ...\n"
+msgid "HUD_main: starting ...\n"
 msgstr ""
 
 #: HUD_main.pyw:94
@@ -1965,7 +1990,9 @@ msgid "No admin rights for HUD"
 msgstr ""
 
 #: HUD_main.pyw:95
-msgid "Please right click fpdb.exe and HUD_main.exe, select properties, and set them both to run as admin."
+msgid ""
+"Please right click fpdb.exe and HUD_main.exe, select properties, and set "
+"them both to run as admin."
 msgstr ""
 
 #: HUD_main.pyw:95
@@ -2001,13 +2028,11 @@ msgid "db error: skipping %s"
 msgstr ""
 
 #: HUD_main.pyw:264
-msgid ""
-"hud_dict[%s] was not found\n"
+msgid "hud_dict[%s] was not found\n"
 msgstr ""
 
 #: HUD_main.pyw:265
-msgid ""
-"will not send hand\n"
+msgid "will not send hand\n"
 msgstr ""
 
 #: HUD_main.pyw:287
@@ -2015,8 +2040,7 @@ msgid "HUD create: table name %s not found, skipping."
 msgstr ""
 
 #: HUD_main.pyw:296
-msgid ""
-"Table \"%s\" no longer exists\n"
+msgid "Table \"%s\" no longer exists\n"
 msgstr ""
 
 #: HUD_main.pyw:328
@@ -2036,13 +2060,11 @@ msgid "Error updating HUD for hand %s."
 msgstr ""
 
 #: HUD_run_me.py:45
-msgid ""
-"HUD_main starting\n"
+msgid "HUD_main starting\n"
 msgstr ""
 
 #: HUD_run_me.py:51 TournamentTracker.py:306
-msgid ""
-"Using db name = %s\n"
+msgid "Using db name = %s\n"
 msgstr ""
 
 #: HUD_run_me.py:66
@@ -2294,11 +2316,14 @@ msgid "addShownCards %s hole=%s all=%s"
 msgstr ""
 
 #: Hand.py:828
-msgid "*** ERROR - HAND: calling writeGameLine with unexpected STARTTIME value, expecting datetime.date object, received:"
+msgid ""
+"*** ERROR - HAND: calling writeGameLine with unexpected STARTTIME value, "
+"expecting datetime.date object, received:"
 msgstr ""
 
 #: Hand.py:829
-msgid "*** Make sure your HandHistoryConverter is setting hand.startTime properly!"
+msgid ""
+"*** Make sure your HandHistoryConverter is setting hand.startTime properly!"
 msgstr ""
 
 #: Hand.py:830
@@ -2322,7 +2347,9 @@ msgid "Bringin: %s, %s"
 msgstr ""
 
 #: Hand.py:1616
-msgid "join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should be impossible for anyone who is not a hero"
+msgid ""
+"join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should "
+"be impossible for anyone who is not a hero"
 msgstr ""
 
 #: Hand.py:1617
@@ -2346,7 +2373,9 @@ msgid "Error in printing Hand object"
 msgstr ""
 
 #: HandHistoryConverter.py:40
-msgid "ImportError: Unable to import PYTZ library.  Please install PYTZ from http://pypi.python.org/pypi/pytz/"
+msgid ""
+"ImportError: Unable to import PYTZ library.  Please install PYTZ from http://"
+"pypi.python.org/pypi/pytz/"
 msgstr ""
 
 #: HandHistoryConverter.py:41 fpdb.pyw:46 fpdb.pyw:58 fpdb.pyw:81
@@ -2570,8 +2599,7 @@ msgid "Updating config file"
 msgstr ""
 
 #: Hud.py:586
-msgid ""
-"No layout found for %d-max games for site %s\n"
+msgid "No layout found for %d-max games for site %s\n"
 msgstr ""
 
 #: Hud.py:600
@@ -2585,8 +2613,7 @@ msgid "error is %s"
 msgstr ""
 
 #: Hud.py:608
-msgid ""
-"Error finding actual seat.\n"
+msgid "Error finding actual seat.\n"
 msgstr ""
 
 #: Hud.py:624
@@ -2594,7 +2621,10 @@ msgid "Creating hud from hand "
 msgstr ""
 
 #: Hud.py:676
-msgid "KeyError at the start of the for loop in update in hud_main. How this can possibly happen is totally beyond my comprehension. Your HUD may be about to get really weird. -Eric"
+msgid ""
+"KeyError at the start of the for loop in update in hud_main. How this can "
+"possibly happen is totally beyond my comprehension. Your HUD may be about to "
+"get really weird. -Eric"
 msgstr ""
 
 #: Hud.py:677
@@ -2664,7 +2694,8 @@ msgid "Specifies a configuration file."
 msgstr ""
 
 #: Options.py:40
-msgid "Indicates program was restarted with a different path (only allowed once)."
+msgid ""
+"Indicates program was restarted with a different path (only allowed once)."
 msgstr ""
 
 #: Options.py:43
@@ -2974,7 +3005,8 @@ msgstr ""
 
 #: Stats.py:996
 msgid ""
-"(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)\n"
+"(add _0 to name to display with 0 decimal places, _1 to display with 1, "
+"etc)\n"
 msgstr ""
 
 #: Stove.py:290
@@ -2994,7 +3026,9 @@ msgid "enter table name to find: "
 msgstr ""
 
 #: TournamentTracker.py:39
-msgid "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
+msgid ""
+"Note: error output is being diverted to fpdb-error-log.txt and HUD-error."
+"txt. Any major error will be reported there _only_."
 msgstr ""
 
 #: TournamentTracker.py:100
@@ -3030,8 +3064,7 @@ msgid "db error: skipping "
 msgstr ""
 
 #: TournamentTracker.py:265
-msgid ""
-"Database error %s in hand %d. Skipping.\n"
+msgid "Database error %s in hand %d. Skipping.\n"
 msgstr ""
 
 #: TournamentTracker.py:274
@@ -3039,18 +3072,15 @@ msgid "could not find tournament: skipping"
 msgstr ""
 
 #: TournamentTracker.py:275
-msgid ""
-"Could not find tournament %d in hand %d. Skipping.\n"
+msgid "Could not find tournament %d in hand %d. Skipping.\n"
 msgstr ""
 
 #: TournamentTracker.py:298
-msgid ""
-"table name %s not found, skipping.\n"
+msgid "table name %s not found, skipping.\n"
 msgstr ""
 
 #: TournamentTracker.py:305
-msgid ""
-"tournament tracker starting\n"
+msgid "tournament tracker starting\n"
 msgstr ""
 
 #: TourneyFilters.py:52
@@ -3234,7 +3264,9 @@ msgid "incrementPlayerWinnings: name : '%s' - Add Winnings (%s)"
 msgstr ""
 
 #: TreeViewTooltips.py:108
-msgid "This module was developed and tested with version 2.8.18 of gtk.  You are using version %d.%d.%d.  Your milage may vary."
+msgid ""
+"This module was developed and tested with version 2.8.18 of gtk.  You are "
+"using version %d.%d.%d.  Your milage may vary."
 msgstr ""
 
 #: WinTables.py:83
@@ -3282,8 +3314,7 @@ msgid "No match in XTables for table '%s'."
 msgstr ""
 
 #: fpdb.pyw:38
-msgid ""
-" - press return to continue\n"
+msgid " - press return to continue\n"
 msgstr ""
 
 #: fpdb.pyw:45
@@ -3293,11 +3324,16 @@ msgid ""
 msgstr ""
 
 #: fpdb.pyw:57
-msgid "We appear to be running in Windows, but the Windows Python Extensions are not loading. Please install the PYWIN32 package from http://sourceforge.net/projects/pywin32/"
+msgid ""
+"We appear to be running in Windows, but the Windows Python Extensions are "
+"not loading. Please install the PYWIN32 package from http://sourceforge.net/"
+"projects/pywin32/"
 msgstr ""
 
 #: fpdb.pyw:80
-msgid "Unable to load PyGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org."
+msgid ""
+"Unable to load PyGTK modules required for GUI. Please install PyCairo, "
+"PyGObject, and PyGTK from www.pygtk.org."
 msgstr ""
 
 #: fpdb.pyw:123
@@ -3305,11 +3341,15 @@ msgid "GuiStove not found. If you want to use it please install pypoker-eval."
 msgstr ""
 
 #: fpdb.pyw:260
-msgid "Copyright 2008-2011, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, sqlcoder, Bostik, and others"
+msgid ""
+"Copyright 2008-2011, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, "
+"sqlcoder, Bostik, and others"
 msgstr ""
 
 #: fpdb.pyw:261
-msgid "You are free to change, and distribute original or changed versions of fpdb within the rules set out by the license"
+msgid ""
+"You are free to change, and distribute original or changed versions of fpdb "
+"within the rules set out by the license"
 msgstr ""
 
 #: fpdb.pyw:262
@@ -3337,7 +3377,9 @@ msgid "Threads: "
 msgstr ""
 
 #: fpdb.pyw:332
-msgid "Updated preferences have not been loaded because windows are open. Re-start fpdb to load them."
+msgid ""
+"Updated preferences have not been loaded because windows are open. Re-start "
+"fpdb to load them."
 msgstr ""
 
 #: fpdb.pyw:342
@@ -3353,7 +3395,9 @@ msgid "guidb response was "
 msgstr ""
 
 #: fpdb.pyw:365
-msgid "Cannot open Database Maintenance window because other windows have been opened. Re-start fpdb to use this option."
+msgid ""
+"Cannot open Database Maintenance window because other windows have been "
+"opened. Re-start fpdb to use this option."
 msgstr ""
 
 #: fpdb.pyw:368
@@ -3381,7 +3425,8 @@ msgid "HUD Configurator - choose category"
 msgstr ""
 
 #: fpdb.pyw:386
-msgid "Please select the game category for which you want to configure HUD stats:"
+msgid ""
+"Please select the game category for which you want to configure HUD stats:"
 msgstr ""
 
 #: fpdb.pyw:441
@@ -3397,11 +3442,15 @@ msgid "Note that you may not select any stat more than once or it will crash."
 msgstr ""
 
 #: fpdb.pyw:455
-msgid "It is not currently possible to select \"empty\" or anything else to that end."
+msgid ""
+"It is not currently possible to select \"empty\" or anything else to that "
+"end."
 msgstr ""
 
 #: fpdb.pyw:459
-msgid "To configure things like colouring you will still have to use the Preferences dialogue or manually edit your HUD_config.xml."
+msgid ""
+"To configure things like colouring you will still have to use the "
+"Preferences dialogue or manually edit your HUD_config.xml."
 msgstr ""
 
 #: fpdb.pyw:577
@@ -3414,7 +3463,8 @@ msgstr ""
 
 #: fpdb.pyw:579
 msgid ""
-" If there already are tables in the database %s on %s they will be deleted and you will have to re-import your histories.\n"
+" If there already are tables in the database %s on %s they will be deleted "
+"and you will have to re-import your histories.\n"
 msgstr ""
 
 #: fpdb.pyw:580
@@ -3470,7 +3520,8 @@ msgid "User cancelled rebuilding db indexes"
 msgstr ""
 
 #: fpdb.pyw:787
-msgid "Unimplemented: Save Profile (try saving a HUD layout, that should do it)"
+msgid ""
+"Unimplemented: Save Profile (try saving a HUD layout, that should do it)"
 msgstr ""
 
 #: fpdb.pyw:842
@@ -3642,8 +3693,7 @@ msgid "A_bout, License, Copying"
 msgstr ""
 
 #: fpdb.pyw:889
-msgid ""
-"There is an error in your config file\n"
+msgid "There is an error in your config file\n"
 msgstr ""
 
 #: fpdb.pyw:890
@@ -3658,8 +3708,7 @@ msgid "CONFIG FILE ERROR"
 msgstr ""
 
 #: fpdb.pyw:895
-msgid ""
-"Logfile is %s\n"
+msgid "Logfile is %s\n"
 msgstr ""
 
 #: fpdb.pyw:897
@@ -3673,7 +3722,9 @@ msgid ""
 msgstr ""
 
 #: fpdb.pyw:899
-msgid "Edit your screen_name and hand history path in the supported_sites section of the Preferences window (Main menu) before trying to import hands."
+msgid ""
+"Edit your screen_name and hand history path in the supported_sites section "
+"of the Preferences window (Main menu) before trying to import hands."
 msgstr ""
 
 #: fpdb.pyw:921
@@ -3689,11 +3740,15 @@ msgid "An invalid DB version or missing tables have been detected."
 msgstr ""
 
 #: fpdb.pyw:962
-msgid "This error is not necessarily fatal but it is strongly recommended that you recreate the tables by using the Database menu."
+msgid ""
+"This error is not necessarily fatal but it is strongly recommended that you "
+"recreate the tables by using the Database menu."
 msgstr ""
 
 #: fpdb.pyw:966
-msgid "Not doing this will likely lead to misbehaviour including fpdb crashes, corrupt data etc."
+msgid ""
+"Not doing this will likely lead to misbehaviour including fpdb crashes, "
+"corrupt data etc."
 msgstr ""
 
 #: fpdb.pyw:980
@@ -3713,8 +3768,7 @@ msgid ""
 msgstr ""
 
 #: fpdb.pyw:1028
-msgid ""
-"Global lock released.\n"
+msgid "Global lock released.\n"
 msgstr ""
 
 #: fpdb.pyw:1035
@@ -3752,22 +3806,31 @@ msgstr ""
 #: fpdb.pyw:1099
 msgid ""
 "Fpdb needs translators!\n"
-"If you speak another language and have a few minutes or more to spare get in touch by emailing steffen@schaumburger.info\n"
+"If you speak another language and have a few minutes or more to spare get in "
+"touch by emailing steffen@schaumburger.info\n"
 "\n"
 "Welcome to Fpdb!\n"
-"To be notified of new snapshots and releases go to https://lists.sourceforge.net/lists/listinfo/fpdb-announce and subscribe.\n"
-"If you want to follow development more closely go to https://lists.sourceforge.net/lists/listinfo/fpdb-main and subscribe.\n"
+"To be notified of new snapshots and releases go to https://lists.sourceforge."
+"net/lists/listinfo/fpdb-announce and subscribe.\n"
+"If you want to follow development more closely go to https://lists."
+"sourceforge.net/lists/listinfo/fpdb-main and subscribe.\n"
 "\n"
-"This program is currently in an alpha-state, so our database format is still sometimes changed.\n"
-"You should therefore always keep your hand history files so that you can re-import after an update, if necessary.\n"
+"This program is currently in an alpha-state, so our database format is still "
+"sometimes changed.\n"
+"You should therefore always keep your hand history files so that you can re-"
+"import after an update, if necessary.\n"
 "\n"
-"For documentation please visit our website/wiki at http://fpdb.sourceforge.net/.\n"
+"For documentation please visit our website/wiki at http://fpdb.sourceforge."
+"net/.\n"
 "If you need help click on Contact - Get Help on our website.\n"
-"Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml.\n"
+"Please note that default.conf is no longer needed nor used, all "
+"configuration now happens in HUD_config.xml.\n"
 "\n"
-"This program is free/libre open source software licensed partially under the AGPL3, and partially under GPL2 or later.\n"
+"This program is free/libre open source software licensed partially under the "
+"AGPL3, and partially under GPL2 or later.\n"
 "The Windows installer package includes code licensed under the MIT license.\n"
-"You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt and mit.txt in the fpdb installation directory."
+"You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0."
+"txt and mit.txt in the fpdb installation directory."
 msgstr ""
 
 #: fpdb.pyw:1116
@@ -3785,7 +3848,8 @@ msgstr ""
 #: fpdb.pyw:1212
 msgid ""
 "\n"
-"Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in: %s"
+"Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt "
+"in: %s"
 msgstr ""
 
 #: fpdb.pyw:1213
@@ -3825,7 +3889,9 @@ msgid "Database ID for %s not found"
 msgstr ""
 
 #: fpdb_import.py:186
-msgid "[ERROR] More than 1 Database ID found for %s - Multiple currencies not implemented yet"
+msgid ""
+"[ERROR] More than 1 Database ID found for %s - Multiple currencies not "
+"implemented yet"
 msgstr ""
 
 #: fpdb_import.py:231
@@ -3877,7 +3943,9 @@ msgid "Unknown filter filter_name:'%s' in filter:'%s'"
 msgstr ""
 
 #: fpdb_import.py:528
-msgid "Error No.%s please send the hand causing this to fpdb-main@lists.sourceforge.net so we can fix the problem."
+msgid ""
+"Error No.%s please send the hand causing this to fpdb-main@lists.sourceforge."
+"net so we can fix the problem."
 msgstr ""
 
 #: fpdb_import.py:529
@@ -3885,7 +3953,9 @@ msgid "Filename:"
 msgstr ""
 
 #: fpdb_import.py:530
-msgid "Here is the first line of the hand so you can identify it. Please mention that the error was a ValueError:"
+msgid ""
+"Here is the first line of the hand so you can identify it. Please mention "
+"that the error was a ValueError:"
 msgstr ""
 
 #: fpdb_import.py:532
@@ -3921,6 +3991,6 @@ msgstr ""
 #: windows_make_bats.py:57
 msgid ""
 "\n"
-"no gtk directories found in your path - install gtk or edit the path manually\n"
+"no gtk directories found in your path - install gtk or edit the path "
+"manually\n"
 msgstr ""
-
