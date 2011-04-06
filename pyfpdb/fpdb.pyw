@@ -323,13 +323,7 @@ class fpdb:
         if response == gtk.RESPONSE_ACCEPT:
             # save updated config
             self.config.save()
-            if len(self.nb_tab_names) == 1:
-                # only main tab open, reload profile
-                self.load_profile()
-                dia.destroy()
-            else:
-                dia.destroy()  # destroy prefs before raising warning, otherwise parent is dia rather than self.window
-                self.warning_box(_("Updated preferences have not been loaded because windows are open. Re-start fpdb to load them."))
+            self.reload_config(dia)
         else:
             dia.destroy()
 
@@ -715,6 +709,9 @@ class fpdb:
             except KeyError:
                 pass
         
+        label = gtk.Label(_(" "))
+        dia.vbox.add(label)
+        
         table = gtk.Table(rows=len(available_site_names)+1, columns=2, homogeneous=False)
         dia.vbox.add(table)
         
@@ -747,16 +744,20 @@ class fpdb:
                 self.config.edit_site(available_site_names[site_number], str(check_buttons[site_number].get_active()), entries[site_number].get_text())
             
             self.config.save()
+            self.reload_config(dia)
             
-            if len(self.nb_tab_names) == 1:
-                # only main tab open, reload profile
-                self.load_profile()
-                dia.destroy()
-            else:
-                dia.destroy()  # destroy prefs before raising warning, otherwise parent is dia rather than self.window
-                self.warning_box(_("Updated preferences have not been loaded because windows are open. Re-start fpdb to load them."))
         dia.destroy()
-
+    
+    def reload_config(self, dia):
+        if len(self.nb_tab_names) == 1:
+            # only main tab open, reload profile
+            self.load_profile()
+            dia.destroy() # destroy prefs before raising warning, otherwise parent is dia rather than self.window
+            self.warning_box(_("If you had previously opened any tabs they cannot use the new settings without restart.")+" "+_("Re-start fpdb to load them."))
+        else:
+            dia.destroy() # destroy prefs before raising warning, otherwise parent is dia rather than self.window
+            self.warning_box(_("Updated preferences have not been loaded because windows are open.")+" "+_("Re-start fpdb to load them."))
+    
     def addLogText(self, text):
         end_iter = self.logbuffer.get_end_iter()
         self.logbuffer.insert(end_iter, text)
