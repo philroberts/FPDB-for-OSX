@@ -380,9 +380,6 @@ def main(argv=None):
     for i, site in enumerate(ErrorsList):
         totalerrors += ErrorsList[i].errorcount
 
-    print "---------------------"
-    print "Total Errors: %d" % totalerrors
-    print "---------------------"
     for i, site in enumerate(ErrorsList):
         ErrorsList[i].print_histogram()
 
@@ -407,6 +404,9 @@ def main(argv=None):
     for num, stat in sortedstats:
         print "(%3d) : %s" %(num, stat)
 
+    print "---------------------"
+    print "Total Errors: %d" % totalerrors
+    print "---------------------"
 
 if __name__ == '__main__':
     sys.exit(main())
