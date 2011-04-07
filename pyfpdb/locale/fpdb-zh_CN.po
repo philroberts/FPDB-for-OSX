@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-04-07 10:50+CEST\n"
+"POT-Creation-Date: 2011-04-07 15:20+CEST\n"
 "PO-Revision-Date: 2011-04-06 15:20+0000\n"
 "Last-Translator: jipeng <sjp00544@gmail.com>\n"
 "Language-Team: Chinese (China) <>\n"
@@ -19,7 +19,7 @@ msgstr ""
 #: AbsoluteToFpdb.py:140 AbsoluteToFpdb.py:142 BetfairToFpdb.py:76
 #: BetfairToFpdb.py:78 CarbonToFpdb.py:130 CarbonToFpdb.py:132
 #: EverestToFpdb.py:101 EverestToFpdb.py:103 EverleafToFpdb.py:128
-#: EverleafToFpdb.py:130 FulltiltToFpdb.py:209 FulltiltToFpdb.py:211
+#: EverleafToFpdb.py:130 FulltiltToFpdb.py:214 FulltiltToFpdb.py:216
 #: OnGameToFpdb.py:163 OnGameToFpdb.py:165 PacificPokerToFpdb.py:173
 #: PacificPokerToFpdb.py:175 PartyPokerToFpdb.py:197 PartyPokerToFpdb.py:199
 #: PkrToFpdb.py:128 PkrToFpdb.py:130 PokerStarsToFpdb.py:186
@@ -32,7 +32,7 @@ msgstr "无法识别的游戏类型：‘%s’"
 #: AbsoluteToFpdb.py:141 BetfairToFpdb.py:77 CarbonToFpdb.py:131
 #: EverestToFpdb.py:102 EverestToFpdb.py:107 EverleafToFpdb.py:129
 #: FullTiltPokerSummary.py:93 FullTiltPokerSummary.py:119
-#: FulltiltToFpdb.py:253 FulltiltToFpdb.py:268 OnGameToFpdb.py:164
+#: FulltiltToFpdb.py:258 FulltiltToFpdb.py:273 OnGameToFpdb.py:164
 #: OnGameToFpdb.py:183 PacificPokerToFpdb.py:174 PacificPokerToFpdb.py:205
 #: PartyPokerToFpdb.py:198 PkrToFpdb.py:129 PkrToFpdb.py:154
 #: PokerStarsSummary.py:82 PokerStarsSummary.py:108 PokerStarsToFpdb.py:187
@@ -61,13 +61,13 @@ msgstr "文件名：%s"
 msgid "Didn't match re_*InfoFromFilename: '%s'"
 msgstr ""
 
-#: AbsoluteToFpdb.py:279 EverleafToFpdb.py:228 FulltiltToFpdb.py:418
+#: AbsoluteToFpdb.py:279 EverleafToFpdb.py:228 FulltiltToFpdb.py:423
 #: OnGameToFpdb.py:305 PacificPokerToFpdb.py:347 PokerStarsToFpdb.py:358
 #: Win2dayToFpdb.py:210 WinamaxToFpdb.py:360
 msgid "reading antes"
 msgstr "读取赌注"
 
-#: AbsoluteToFpdb.py:288 BetfairToFpdb.py:160 FulltiltToFpdb.py:433
+#: AbsoluteToFpdb.py:288 BetfairToFpdb.py:160 FulltiltToFpdb.py:438
 msgid "Player bringing in: %s for %s"
 msgstr ""
 
@@ -85,28 +85,28 @@ msgstr ""
 
 #: AbsoluteToFpdb.py:352 BetfairToFpdb.py:199 CarbonToFpdb.py:267
 #: EverestToFpdb.py:234 EverestToFpdb.py:235 EverleafToFpdb.py:295
-#: FulltiltToFpdb.py:501 OnGameToFpdb.py:348 PacificPokerToFpdb.py:429
+#: FulltiltToFpdb.py:506 OnGameToFpdb.py:348 PacificPokerToFpdb.py:429
 #: PartyPokerToFpdb.py:535 PkrToFpdb.py:351 PokerStarsToFpdb.py:440
 #: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:261
 msgid "Unimplemented readAction: '%s' '%s'"
 msgstr ""
 
 #: AbsoluteToFpdb.py:402 BetfairToFpdb.py:222 CarbonToFpdb.py:297
-#: EverleafToFpdb.py:333 FulltiltToFpdb.py:795 PacificPokerToFpdb.py:458
+#: EverleafToFpdb.py:333 FulltiltToFpdb.py:800 PacificPokerToFpdb.py:458
 #: PartyPokerToFpdb.py:575 PokerStarsToFpdb.py:468 Win2dayToFpdb.py:375
 #: iPokerToFpdb.py:291
 msgid "parse input hand history"
 msgstr "处理输入历史记录"
 
 #: AbsoluteToFpdb.py:403 BetfairToFpdb.py:223 CarbonToFpdb.py:298
-#: EverleafToFpdb.py:334 FulltiltToFpdb.py:796 PacificPokerToFpdb.py:459
+#: EverleafToFpdb.py:334 FulltiltToFpdb.py:801 PacificPokerToFpdb.py:459
 #: PartyPokerToFpdb.py:576 PokerStarsToFpdb.py:469 Win2dayToFpdb.py:376
 #: iPokerToFpdb.py:292
 msgid "output translation to"
 msgstr "输出翻译结果到"
 
 #: AbsoluteToFpdb.py:404 BetfairToFpdb.py:224 CarbonToFpdb.py:299
-#: EverleafToFpdb.py:335 FulltiltToFpdb.py:797 PacificPokerToFpdb.py:460
+#: EverleafToFpdb.py:335 FulltiltToFpdb.py:802 PacificPokerToFpdb.py:460
 #: PartyPokerToFpdb.py:577 PokerStarsToFpdb.py:470 Win2dayToFpdb.py:377
 #: iPokerToFpdb.py:293
 msgid "follow (tail -f) the input"
@@ -128,7 +128,7 @@ msgstr ""
 msgid "No bringin found"
 msgstr ""
 
-#: BetfairToFpdb.py:199 Filters.py:80 FulltiltToFpdb.py:501
+#: BetfairToFpdb.py:199 Filters.py:80 FulltiltToFpdb.py:506
 #: GuiAutoImport.py:203 GuiPositionalStats.py:137 GuiStove.py:221
 #: GuiStove.py:225 GuiStove.py:229 GuiStove.py:233 GuiStove.py:237
 #: GuiStove.py:239 Hand.py:491 Hand.py:1709 ImapFetcher.py:44
@@ -532,7 +532,7 @@ msgstr ""
 msgid "press enter to continue"
 msgstr ""
 
-#: EverestToFpdb.py:108 FulltiltToFpdb.py:267 FulltiltToFpdb.py:269
+#: EverestToFpdb.py:108 FulltiltToFpdb.py:272 FulltiltToFpdb.py:274
 msgid "Unable to recognise handinfo from: '%s'"
 msgstr ""
 
@@ -732,57 +732,57 @@ msgstr ""
 msgid "Unable to locate currency"
 msgstr ""
 
-#: FulltiltToFpdb.py:210
+#: FulltiltToFpdb.py:215
 msgid "Raising FpdbParseError for file '%s'"
 msgstr ""
 
-#: FulltiltToFpdb.py:252 FulltiltToFpdb.py:254 PacificPokerToFpdb.py:204
+#: FulltiltToFpdb.py:257 FulltiltToFpdb.py:259 PacificPokerToFpdb.py:204
 #: PacificPokerToFpdb.py:206 PkrToFpdb.py:153 PkrToFpdb.py:155
 #: PokerStarsToFpdb.py:212 PokerStarsToFpdb.py:214
 msgid "Lim_Blinds has no lookup for '%s'"
 msgstr ""
 
-#: FulltiltToFpdb.py:371
+#: FulltiltToFpdb.py:376
 msgid "readPlayerStacks: No players detected (hand #%s)"
 msgstr ""
 
-#: FulltiltToFpdb.py:436
+#: FulltiltToFpdb.py:441
 msgid "No bringin found, handid =%s"
 msgstr ""
 
-#: FulltiltToFpdb.py:443
+#: FulltiltToFpdb.py:448
 msgid "readButton: Failed to detect button (hand #%s cancelled?)"
 msgstr ""
 
-#: FulltiltToFpdb.py:577
+#: FulltiltToFpdb.py:582
 msgid "determineTourneyType : Parsing NOK"
 msgstr ""
 
-#: FulltiltToFpdb.py:635
+#: FulltiltToFpdb.py:640
 msgid "Unable to get a valid Tournament ID -- File rejected"
 msgstr ""
 
-#: FulltiltToFpdb.py:666
+#: FulltiltToFpdb.py:671
 msgid "Conflict between buyins read in topline (%s) and in BuyIn field (%s)"
 msgstr ""
 
-#: FulltiltToFpdb.py:673
+#: FulltiltToFpdb.py:678
 msgid "Conflict between fees read in topline (%s) and in BuyIn field (%s)"
 msgstr ""
 
-#: FulltiltToFpdb.py:677
+#: FulltiltToFpdb.py:682
 msgid "Unable to affect a buyin to this tournament : assume it's a freeroll"
 msgstr ""
 
-#: FulltiltToFpdb.py:778
+#: FulltiltToFpdb.py:783
 msgid "Player finishing stats unreadable : %s"
 msgstr ""
 
-#: FulltiltToFpdb.py:787
+#: FulltiltToFpdb.py:792
 msgid "%s not found in tourney.ranks ..."
 msgstr ""
 
-#: FulltiltToFpdb.py:789
+#: FulltiltToFpdb.py:794
 msgid "Bad parsing : finish position incoherent : %s / %s"
 msgstr ""
 
