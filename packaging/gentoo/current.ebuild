@@ -64,7 +64,7 @@ src_install() {
 	fi
 
 	if use linguas_pt; then
-		msgfmt pyfpdb/locale/fpdb-pt_BR.po -o pyfpdb/locale/pt.mo || die "failed to create Portugese mo file"
+		msgfmt pyfpdb/locale/fpdb-pt_BR.po -o pyfpdb/locale/pt.mo || die "failed to create Portuguese mo file"
 	fi
 
 	if use linguas_ru; then
