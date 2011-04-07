@@ -314,8 +314,6 @@ class Site:
         self.layout       = {}
         self.emails       = {}
 
-        #print _("Loading site"), self.site_name
-
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
             self.layout[lo.max] = lo
