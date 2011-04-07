@@ -1521,6 +1521,7 @@ class Database:
                           % (fk['fktab'],fk['fkcol'], str(sys.exc_value).rstrip('\n'))
             else:
                 #print _("Only MySQL and Postgres supported so far")
+                pass
 
         if self.backend == self.PGSQL:
             self.connection.set_isolation_level(1)   # go back to normal isolation level
