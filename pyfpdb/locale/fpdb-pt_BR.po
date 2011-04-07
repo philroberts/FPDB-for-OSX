@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-04-06 23:46+CEST\n"
+"POT-Creation-Date: 2011-04-07 10:50+CEST\n"
 "PO-Revision-Date: 2011-04-06 17:39+0000\n"
 "Last-Translator: pkpkpkdo <ofelipedbzgt@hotmail.com>\n"
 "Language-Team: Portuguese (Brazilian) <>\n"
@@ -18,8 +18,8 @@ msgstr ""
 
 #: AbsoluteToFpdb.py:140 AbsoluteToFpdb.py:142 BetfairToFpdb.py:76
 #: BetfairToFpdb.py:78 CarbonToFpdb.py:130 CarbonToFpdb.py:132
-#: EverestToFpdb.py:101 EverestToFpdb.py:103 EverleafToFpdb.py:113
-#: EverleafToFpdb.py:115 FulltiltToFpdb.py:208 FulltiltToFpdb.py:210
+#: EverestToFpdb.py:101 EverestToFpdb.py:103 EverleafToFpdb.py:128
+#: EverleafToFpdb.py:130 FulltiltToFpdb.py:209 FulltiltToFpdb.py:211
 #: OnGameToFpdb.py:163 OnGameToFpdb.py:165 PacificPokerToFpdb.py:173
 #: PacificPokerToFpdb.py:175 PartyPokerToFpdb.py:197 PartyPokerToFpdb.py:199
 #: PkrToFpdb.py:128 PkrToFpdb.py:130 PokerStarsToFpdb.py:186
@@ -30,9 +30,9 @@ msgid "Unable to recognise gametype from: '%s'"
 msgstr "Incapaz de reconhecer o tipo do jogo de: '%s'"
 
 #: AbsoluteToFpdb.py:141 BetfairToFpdb.py:77 CarbonToFpdb.py:131
-#: EverestToFpdb.py:102 EverestToFpdb.py:107 EverleafToFpdb.py:114
+#: EverestToFpdb.py:102 EverestToFpdb.py:107 EverleafToFpdb.py:129
 #: FullTiltPokerSummary.py:93 FullTiltPokerSummary.py:119
-#: FulltiltToFpdb.py:252 FulltiltToFpdb.py:267 OnGameToFpdb.py:164
+#: FulltiltToFpdb.py:253 FulltiltToFpdb.py:268 OnGameToFpdb.py:164
 #: OnGameToFpdb.py:183 PacificPokerToFpdb.py:174 PacificPokerToFpdb.py:205
 #: PartyPokerToFpdb.py:198 PkrToFpdb.py:129 PkrToFpdb.py:154
 #: PokerStarsSummary.py:82 PokerStarsSummary.py:108 PokerStarsToFpdb.py:187
@@ -43,7 +43,7 @@ msgstr ""
 
 #: AbsoluteToFpdb.py:205 AbsoluteToFpdb.py:206 BetfairToFpdb.py:108
 #: BetfairToFpdb.py:109 CarbonToFpdb.py:163 CarbonToFpdb.py:165
-#: EverestToFpdb.py:145 EverestToFpdb.py:147 EverleafToFpdb.py:148
+#: EverestToFpdb.py:145 EverestToFpdb.py:147 EverleafToFpdb.py:163
 #: PacificPokerToFpdb.py:215 PacificPokerToFpdb.py:216 PokerStarsToFpdb.py:223
 #: PokerStarsToFpdb.py:224 iPokerToFpdb.py:156 iPokerToFpdb.py:158
 msgid "No match in readHandInfo: '%s'"
@@ -61,21 +61,21 @@ msgstr "Nome do arquivo: %s"
 msgid "Didn't match re_*InfoFromFilename: '%s'"
 msgstr ""
 
-#: AbsoluteToFpdb.py:279 EverleafToFpdb.py:213 FulltiltToFpdb.py:416
+#: AbsoluteToFpdb.py:279 EverleafToFpdb.py:228 FulltiltToFpdb.py:418
 #: OnGameToFpdb.py:305 PacificPokerToFpdb.py:347 PokerStarsToFpdb.py:358
 #: Win2dayToFpdb.py:210 WinamaxToFpdb.py:360
 msgid "reading antes"
 msgstr "lendo antes"
 
-#: AbsoluteToFpdb.py:288 BetfairToFpdb.py:160 FulltiltToFpdb.py:426
+#: AbsoluteToFpdb.py:288 BetfairToFpdb.py:160 FulltiltToFpdb.py:433
 msgid "Player bringing in: %s for %s"
 msgstr "Player bringing em: %s para %s"
 
-#: AbsoluteToFpdb.py:291 EverleafToFpdb.py:225
+#: AbsoluteToFpdb.py:291 EverleafToFpdb.py:240
 msgid "No bringin found."
 msgstr "Nenhum bringin encontrado."
 
-#: AbsoluteToFpdb.py:298 EverleafToFpdb.py:232
+#: AbsoluteToFpdb.py:298 EverleafToFpdb.py:247
 msgid "No small blind"
 msgstr "Small blind não encontrado"
 
@@ -84,29 +84,29 @@ msgid "Absolute readStudPlayerCards is only a stub."
 msgstr "Absolute readStudPlayerCards é somente temporário."
 
 #: AbsoluteToFpdb.py:352 BetfairToFpdb.py:199 CarbonToFpdb.py:267
-#: EverestToFpdb.py:234 EverestToFpdb.py:235 EverleafToFpdb.py:283
-#: FulltiltToFpdb.py:494 OnGameToFpdb.py:348 PacificPokerToFpdb.py:429
+#: EverestToFpdb.py:234 EverestToFpdb.py:235 EverleafToFpdb.py:295
+#: FulltiltToFpdb.py:501 OnGameToFpdb.py:348 PacificPokerToFpdb.py:429
 #: PartyPokerToFpdb.py:535 PkrToFpdb.py:351 PokerStarsToFpdb.py:440
 #: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:261
 msgid "Unimplemented readAction: '%s' '%s'"
 msgstr ""
 
 #: AbsoluteToFpdb.py:402 BetfairToFpdb.py:222 CarbonToFpdb.py:297
-#: EverleafToFpdb.py:321 FulltiltToFpdb.py:788 PacificPokerToFpdb.py:458
+#: EverleafToFpdb.py:333 FulltiltToFpdb.py:795 PacificPokerToFpdb.py:458
 #: PartyPokerToFpdb.py:575 PokerStarsToFpdb.py:468 Win2dayToFpdb.py:375
 #: iPokerToFpdb.py:291
 msgid "parse input hand history"
 msgstr "Analisar a entrada de histórico de mãos"
 
 #: AbsoluteToFpdb.py:403 BetfairToFpdb.py:223 CarbonToFpdb.py:298
-#: EverleafToFpdb.py:322 FulltiltToFpdb.py:789 PacificPokerToFpdb.py:459
+#: EverleafToFpdb.py:334 FulltiltToFpdb.py:796 PacificPokerToFpdb.py:459
 #: PartyPokerToFpdb.py:576 PokerStarsToFpdb.py:469 Win2dayToFpdb.py:376
 #: iPokerToFpdb.py:292
 msgid "output translation to"
 msgstr "tradução de saída para"
 
 #: AbsoluteToFpdb.py:404 BetfairToFpdb.py:224 CarbonToFpdb.py:299
-#: EverleafToFpdb.py:323 FulltiltToFpdb.py:790 PacificPokerToFpdb.py:460
+#: EverleafToFpdb.py:335 FulltiltToFpdb.py:797 PacificPokerToFpdb.py:460
 #: PartyPokerToFpdb.py:577 PokerStarsToFpdb.py:470 Win2dayToFpdb.py:377
 #: iPokerToFpdb.py:293
 msgid "follow (tail -f) the input"
@@ -129,7 +129,7 @@ msgstr ""
 msgid "No bringin found"
 msgstr "Nenhum bringin encontrado"
 
-#: BetfairToFpdb.py:199 Filters.py:80 FulltiltToFpdb.py:494
+#: BetfairToFpdb.py:199 Filters.py:80 FulltiltToFpdb.py:501
 #: GuiAutoImport.py:203 GuiPositionalStats.py:137 GuiStove.py:221
 #: GuiStove.py:225 GuiStove.py:229 GuiStove.py:233 GuiStove.py:237
 #: GuiStove.py:239 Hand.py:491 Hand.py:1709 ImapFetcher.py:44
@@ -539,15 +539,15 @@ msgstr "get_stats levou:  %4.3f segundos"
 msgid "press enter to continue"
 msgstr "pressione enter para continuar"
 
-#: EverestToFpdb.py:108 FulltiltToFpdb.py:266 FulltiltToFpdb.py:268
+#: EverestToFpdb.py:108 FulltiltToFpdb.py:267 FulltiltToFpdb.py:269
 msgid "Unable to recognise handinfo from: '%s'"
 msgstr "Incapaz de reconhecer handinfo de: '%s'"
 
-#: EverleafToFpdb.py:260
+#: EverleafToFpdb.py:274
 msgid "Everleaf readStudPlayerCards is only a stub."
 msgstr "Everleaf readStudPlayerCards é somente temporário."
 
-#: EverleafToFpdb.py:292
+#: EverleafToFpdb.py:304
 msgid "readShowdownActions %s %s"
 msgstr ""
 
@@ -739,58 +739,58 @@ msgstr "Incapaz de reconhecer informação do torneio: '%s'"
 msgid "Unable to locate currency"
 msgstr "Incapaz de localizar a moeda"
 
-#: FulltiltToFpdb.py:209
+#: FulltiltToFpdb.py:210
 msgid "Raising FpdbParseError for file '%s'"
 msgstr ""
 
-#: FulltiltToFpdb.py:251 FulltiltToFpdb.py:253 PacificPokerToFpdb.py:204
+#: FulltiltToFpdb.py:252 FulltiltToFpdb.py:254 PacificPokerToFpdb.py:204
 #: PacificPokerToFpdb.py:206 PkrToFpdb.py:153 PkrToFpdb.py:155
 #: PokerStarsToFpdb.py:212 PokerStarsToFpdb.py:214
 msgid "Lim_Blinds has no lookup for '%s'"
 msgstr "Lim_Blinds não tem base para '%s'"
 
-#: FulltiltToFpdb.py:369
+#: FulltiltToFpdb.py:371
 msgid "readPlayerStacks: No players detected (hand #%s)"
 msgstr ""
 
-#: FulltiltToFpdb.py:429
+#: FulltiltToFpdb.py:436
 msgid "No bringin found, handid =%s"
 msgstr "bringin não encontrado, handid =%s"
 
-#: FulltiltToFpdb.py:436
+#: FulltiltToFpdb.py:443
 msgid "readButton: Failed to detect button (hand #%s cancelled?)"
 msgstr ""
 
-#: FulltiltToFpdb.py:570
+#: FulltiltToFpdb.py:577
 msgid "determineTourneyType : Parsing NOK"
 msgstr "Determinar tipo de Torneio : Análise errada"
 
-#: FulltiltToFpdb.py:628
+#: FulltiltToFpdb.py:635
 msgid "Unable to get a valid Tournament ID -- File rejected"
 msgstr "Incapaz de conseguir um ID de Torneio válido -- Arquivo rejeitado"
 
-#: FulltiltToFpdb.py:659
+#: FulltiltToFpdb.py:666
 msgid "Conflict between buyins read in topline (%s) and in BuyIn field (%s)"
 msgstr "Conflito entre buyins na linha de topo (%s) e em BuyIn field (%s)"
 
-#: FulltiltToFpdb.py:666
+#: FulltiltToFpdb.py:673
 msgid "Conflict between fees read in topline (%s) and in BuyIn field (%s)"
 msgstr "Conflito entre fees na linha de topo (%s) e em BuyIn field (%s)"
 
-#: FulltiltToFpdb.py:670
+#: FulltiltToFpdb.py:677
 msgid "Unable to affect a buyin to this tournament : assume it's a freeroll"
 msgstr ""
 "Incapaz de determinar um buyin para este torneio : assuma que é um freeroll"
 
-#: FulltiltToFpdb.py:771
+#: FulltiltToFpdb.py:778
 msgid "Player finishing stats unreadable : %s"
 msgstr ""
 
-#: FulltiltToFpdb.py:780
+#: FulltiltToFpdb.py:787
 msgid "%s not found in tourney.ranks ..."
 msgstr ""
 
-#: FulltiltToFpdb.py:782
+#: FulltiltToFpdb.py:789
 msgid "Bad parsing : finish position incoherent : %s / %s"
 msgstr ""
 
@@ -3329,10 +3329,6 @@ msgstr ""
 
 #: WinamaxToFpdb.py:385
 msgid "Hero cards %s: %s"
-msgstr ""
-
-#: WinamaxToFpdb.py:412
-msgid "add show actions %s"
 msgstr ""
 
 #: WinamaxToFpdb.py:469
