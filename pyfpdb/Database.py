@@ -1374,7 +1374,7 @@ class Database:
                         s = "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
                         self.get_cursor().execute(s)
                     except:
-                        log.debug(_("Create failed: ") + str(sys.exc_info()))
+                        log.debug(_("Create index failed: ") + str(sys.exc_info()))
                 else:
                     return -1
             if self.backend == self.PGSQL:
