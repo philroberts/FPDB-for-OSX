@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2011-04-07 05:58+CEST\n"
+"POT-Creation-Date: 2011-04-07 10:56+CEST\n"
 "PO-Revision-Date: 2011-03-13 17:42+0100\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -18,8 +18,8 @@ msgstr ""
 
 #: AbsoluteToFpdb.py:140 AbsoluteToFpdb.py:142 BetfairToFpdb.py:76
 #: BetfairToFpdb.py:78 CarbonToFpdb.py:130 CarbonToFpdb.py:132
-#: EverestToFpdb.py:101 EverestToFpdb.py:103 EverleafToFpdb.py:113
-#: EverleafToFpdb.py:115 FulltiltToFpdb.py:208 FulltiltToFpdb.py:210
+#: EverestToFpdb.py:101 EverestToFpdb.py:103 EverleafToFpdb.py:128
+#: EverleafToFpdb.py:130 FulltiltToFpdb.py:209 FulltiltToFpdb.py:211
 #: OnGameToFpdb.py:163 OnGameToFpdb.py:165 PacificPokerToFpdb.py:173
 #: PacificPokerToFpdb.py:175 PartyPokerToFpdb.py:197 PartyPokerToFpdb.py:199
 #: PkrToFpdb.py:128 PkrToFpdb.py:130 PokerStarsToFpdb.py:186
@@ -30,9 +30,9 @@ msgid "Unable to recognise gametype from: '%s'"
 msgstr "Nem sikerült felismerni a játéktípust innen: '%s'"
 
 #: AbsoluteToFpdb.py:141 BetfairToFpdb.py:77 CarbonToFpdb.py:131
-#: EverestToFpdb.py:102 EverestToFpdb.py:107 EverleafToFpdb.py:114
+#: EverestToFpdb.py:102 EverestToFpdb.py:107 EverleafToFpdb.py:129
 #: FullTiltPokerSummary.py:93 FullTiltPokerSummary.py:119
-#: FulltiltToFpdb.py:252 FulltiltToFpdb.py:267 OnGameToFpdb.py:164
+#: FulltiltToFpdb.py:253 FulltiltToFpdb.py:268 OnGameToFpdb.py:164
 #: OnGameToFpdb.py:183 PacificPokerToFpdb.py:174 PacificPokerToFpdb.py:205
 #: PartyPokerToFpdb.py:198 PkrToFpdb.py:129 PkrToFpdb.py:154
 #: PokerStarsSummary.py:82 PokerStarsSummary.py:108 PokerStarsToFpdb.py:187
@@ -43,7 +43,7 @@ msgstr "FpdbParseError"
 
 #: AbsoluteToFpdb.py:205 AbsoluteToFpdb.py:206 BetfairToFpdb.py:108
 #: BetfairToFpdb.py:109 CarbonToFpdb.py:163 CarbonToFpdb.py:165
-#: EverestToFpdb.py:145 EverestToFpdb.py:147 EverleafToFpdb.py:148
+#: EverestToFpdb.py:145 EverestToFpdb.py:147 EverleafToFpdb.py:163
 #: PacificPokerToFpdb.py:215 PacificPokerToFpdb.py:216 PokerStarsToFpdb.py:223
 #: PokerStarsToFpdb.py:224 iPokerToFpdb.py:156 iPokerToFpdb.py:158
 msgid "No match in readHandInfo: '%s'"
@@ -61,52 +61,52 @@ msgstr "Fájlnév: %s"
 msgid "Didn't match re_*InfoFromFilename: '%s'"
 msgstr "nem illeszkedik re_*InfoFromFilename-re: '%s'"
 
-#: AbsoluteToFpdb.py:279 EverleafToFpdb.py:213 FulltiltToFpdb.py:416
+#: AbsoluteToFpdb.py:279 EverleafToFpdb.py:228 FulltiltToFpdb.py:418
 #: OnGameToFpdb.py:305 PacificPokerToFpdb.py:347 PokerStarsToFpdb.py:358
 #: Win2dayToFpdb.py:210 WinamaxToFpdb.py:360
 msgid "reading antes"
 msgstr "antek olvasása"
 
-#: AbsoluteToFpdb.py:288 BetfairToFpdb.py:160 FulltiltToFpdb.py:426
+#: AbsoluteToFpdb.py:288 BetfairToFpdb.py:160 FulltiltToFpdb.py:433
 msgid "Player bringing in: %s for %s"
 msgstr "Nyitó hívás: %s hív %s-t"
 
-#: AbsoluteToFpdb.py:291 EverleafToFpdb.py:225
+#: AbsoluteToFpdb.py:291 EverleafToFpdb.py:240
 msgid "No bringin found."
 msgstr "Nyitó hívás nem található."
 
-#: AbsoluteToFpdb.py:298 EverleafToFpdb.py:232
+#: AbsoluteToFpdb.py:298 EverleafToFpdb.py:247
 msgid "No small blind"
 msgstr "Nincs kisvak"
 
-#: AbsoluteToFpdb.py:324 EverleafToFpdb.py:258
+#: AbsoluteToFpdb.py:324
 msgid "Absolute cannot read all stud/razz hands yet."
 msgstr ""
 
 #: AbsoluteToFpdb.py:348 BetfairToFpdb.py:199 CarbonToFpdb.py:267
-#: EverestToFpdb.py:234 EverestToFpdb.py:235 EverleafToFpdb.py:278
-#: FulltiltToFpdb.py:494 OnGameToFpdb.py:348 PacificPokerToFpdb.py:429
+#: EverestToFpdb.py:234 EverestToFpdb.py:235 EverleafToFpdb.py:295
+#: FulltiltToFpdb.py:501 OnGameToFpdb.py:348 PacificPokerToFpdb.py:429
 #: PartyPokerToFpdb.py:535 PkrToFpdb.py:351 PokerStarsToFpdb.py:440
 #: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:261
 msgid "Unimplemented readAction: '%s' '%s'"
 msgstr "Nem ismert readAction: '%s' '%s'"
 
 #: AbsoluteToFpdb.py:398 BetfairToFpdb.py:222 CarbonToFpdb.py:297
-#: EverleafToFpdb.py:316 FulltiltToFpdb.py:788 PacificPokerToFpdb.py:458
+#: EverleafToFpdb.py:333 FulltiltToFpdb.py:795 PacificPokerToFpdb.py:458
 #: PartyPokerToFpdb.py:575 PokerStarsToFpdb.py:468 Win2dayToFpdb.py:375
 #: iPokerToFpdb.py:291
 msgid "parse input hand history"
 msgstr "leosztástörténet feldolgozása"
 
 #: AbsoluteToFpdb.py:399 BetfairToFpdb.py:223 CarbonToFpdb.py:298
-#: EverleafToFpdb.py:317 FulltiltToFpdb.py:789 PacificPokerToFpdb.py:459
+#: EverleafToFpdb.py:334 FulltiltToFpdb.py:796 PacificPokerToFpdb.py:459
 #: PartyPokerToFpdb.py:576 PokerStarsToFpdb.py:469 Win2dayToFpdb.py:376
 #: iPokerToFpdb.py:292
 msgid "output translation to"
 msgstr "feldolgozás eredményének helye"
 
 #: AbsoluteToFpdb.py:400 BetfairToFpdb.py:224 CarbonToFpdb.py:299
-#: EverleafToFpdb.py:318 FulltiltToFpdb.py:790 PacificPokerToFpdb.py:460
+#: EverleafToFpdb.py:335 FulltiltToFpdb.py:797 PacificPokerToFpdb.py:460
 #: PartyPokerToFpdb.py:577 PokerStarsToFpdb.py:470 Win2dayToFpdb.py:377
 #: iPokerToFpdb.py:293
 msgid "follow (tail -f) the input"
@@ -128,7 +128,7 @@ msgstr "readPlayerStacks: Kettőnél kevesebb játékost találtam egy leosztás
 msgid "No bringin found"
 msgstr "Nyitó hívás nem található"
 
-#: BetfairToFpdb.py:199 Filters.py:80 FulltiltToFpdb.py:494
+#: BetfairToFpdb.py:199 Filters.py:80 FulltiltToFpdb.py:501
 #: GuiAutoImport.py:203 GuiPositionalStats.py:137 GuiStove.py:221
 #: GuiStove.py:225 GuiStove.py:229 GuiStove.py:233 GuiStove.py:237
 #: GuiStove.py:239 Hand.py:491 Hand.py:1709 ImapFetcher.py:44
@@ -324,9 +324,7 @@ msgstr ""
 #: Database.py:1087 Database.py:1516
 #, fuzzy
 msgid "drop foreign key %s_%s_fkey failed: %s, continuing ..."
-msgstr ""
-"figyelem: a(z) %s_%s_fkey pg idegen kulcs eldobása nem sikerült: %s, "
-"folytatás ..."
+msgstr "%s_%s_fkey pg idegen kulcs eldobva, folytatás ..."
 
 #: Database.py:1091 Database.py:1520
 #, fuzzy
@@ -427,121 +425,125 @@ msgstr "    az eldobás sikertelen: "
 msgid "dropped foreign key %s_%s_fkey, continuing ..."
 msgstr "%s_%s_fkey pg idegen kulcs eldobva, folytatás ..."
 
-#: Database.py:1635
+#: Database.py:1636
 msgid "Rebuild hudcache took %.1f seconds"
 msgstr "A HUD cache újraépítése %.1f másodpercig tartott"
 
-#: Database.py:1638 Database.py:1752
+#: Database.py:1639 Database.py:1753
 msgid "Error rebuilding hudcache:"
 msgstr "Hiba a HUD cache újraépítése közben:"
 
-#: Database.py:1764 Database.py:1770
+#: Database.py:1765 Database.py:1771
 msgid "Error during analyze:"
 msgstr "Hiba analyze közben:"
 
-#: Database.py:1774
+#: Database.py:1775
 msgid "Analyze took %.1f seconds"
 msgstr "Analyze %.1f másodpercig tartott"
 
-#: Database.py:1784 Database.py:1790
+#: Database.py:1785 Database.py:1791
 msgid "Error during vacuum:"
 msgstr "Hiba vacuum közben:"
 
-#: Database.py:1794
+#: Database.py:1795
 msgid "Vacuum took %.1f seconds"
 msgstr "Vacuum %.1f másodpercig tartott"
 
-#: Database.py:1834
+#: Database.py:1835
 msgid "Error during lock_for_insert:"
 msgstr "Hiba lock_for_insert közben:"
 
-#: Database.py:1843
+#: Database.py:1844
 msgid "######## Hands ##########"
 msgstr "######## Leosztások ##########"
 
-#: Database.py:1847
+#: Database.py:1848
 msgid "###### End Hands ########"
 msgstr "###### Leosztások vége ########"
 
-#: Database.py:2572
+#: Database.py:2573
 msgid "######## Gametype ##########"
 msgstr "######## Játéktípusok ##########"
 
-#: Database.py:2576
+#: Database.py:2577
 msgid "###### End Gametype ########"
 msgstr "###### Játéktípusok vége ########"
 
-#: Database.py:2603
+#: Database.py:2604
 msgid "queue empty too long - writer stopping ..."
 msgstr "a sor ürítése túl sokáig tart - az írás befejeződik ..."
 
-#: Database.py:2606
+#: Database.py:2607
 msgid "writer stopping, error reading queue: "
 msgstr "az írás megállt, hiba a sor olvasásakor: "
 
-#: Database.py:2631
+#: Database.py:2632
 msgid "deadlock detected - trying again ..."
 msgstr "deadlock történt - újrapróbálás ..."
 
-#: Database.py:2636
+#: Database.py:2637
 msgid "too many deadlocks - failed to store hand "
 msgstr "túl sok deadlock - nem sikerült tárolni a leosztást "
 
-#: Database.py:2640
+#: Database.py:2641
 msgid "***Error storing hand: "
 msgstr "***Hiba a leosztás tárolása közben: "
 
-#: Database.py:2650
+#: Database.py:2651
 msgid "db writer finished: stored %d hands (%d fails) in %.1f seconds"
 msgstr ""
 "adatbázisba írás befejeződött: %d leosztás tárolva (%d sikertelen) %.1f mp "
 "alatt"
 
-#: Database.py:2660
+#: Database.py:2661
 msgid "***Error sending finish: "
 msgstr "***Hiba a befejezés küldésekor: "
 
-#: Database.py:2746
+#: Database.py:2747
 msgid "invalid source in Database.createOrUpdateTourney"
 msgstr "érvénytelen forrás a Database.createOrUpdateTourney-ban"
 
-#: Database.py:2759
+#: Database.py:2760
 msgid "invalid source in Database.createOrUpdateTourneysPlayers"
 msgstr "érvénytelen forrás a Database.createOrUpdateTourneysPlayers-ben"
 
-#: Database.py:2895
+#: Database.py:2896
 msgid "HandToWrite.init error: "
 msgstr "HandToWrite.init hiba: "
 
-#: Database.py:2945
+#: Database.py:2946
 msgid "HandToWrite.set_all error: "
 msgstr "HandToWrite.set_all hiba: "
 
-#: Database.py:2976
+#: Database.py:2977
 msgid "nutOmatic is id_player = %d"
 msgstr "nutOmatic id_player értéke = %d"
 
-#: Database.py:2984
+#: Database.py:2985
 msgid "query plan: "
 msgstr "lekérdezési terv: "
 
-#: Database.py:2993
+#: Database.py:2994
 msgid "cards ="
 msgstr "kezdőkéz ="
 
-#: Database.py:2996
+#: Database.py:2997
 msgid "get_stats took:  %4.3f seconds"
 msgstr "get_stats időigény: %4.3f mp"
 
-#: Database.py:2998
+#: Database.py:2999
 msgid "press enter to continue"
 msgstr "nyomj ENTER-t a folytatáshoz"
 
-#: EverestToFpdb.py:108 FulltiltToFpdb.py:266 FulltiltToFpdb.py:268
+#: EverestToFpdb.py:108 FulltiltToFpdb.py:267 FulltiltToFpdb.py:269
 msgid "Unable to recognise handinfo from: '%s'"
 msgstr "Nem sikerült felismerni a leosztásinformációkat innen: '%s'"
 
-#: EverleafToFpdb.py:287
+#: EverleafToFpdb.py:274
+msgid "Everleaf cannot read all stud/razz hands yet."
+msgstr ""
+
+#: EverleafToFpdb.py:304
 msgid "readShowdownActions %s %s"
 msgstr "readShowdownActions %s %s"
 
@@ -733,68 +735,68 @@ msgstr "Nem sikerült felismerni a verseny információt: '%s'"
 msgid "Unable to locate currency"
 msgstr "Nem található a pénznem"
 
-#: FulltiltToFpdb.py:209
+#: FulltiltToFpdb.py:210
 #, fuzzy
 msgid "Raising FpdbParseError for file '%s'"
 msgstr "determineGameType: FpdbParseError a '%s' fájlnál"
 
-#: FulltiltToFpdb.py:251 FulltiltToFpdb.py:253 PacificPokerToFpdb.py:204
+#: FulltiltToFpdb.py:252 FulltiltToFpdb.py:254 PacificPokerToFpdb.py:204
 #: PacificPokerToFpdb.py:206 PkrToFpdb.py:153 PkrToFpdb.py:155
 #: PokerStarsToFpdb.py:212 PokerStarsToFpdb.py:214
 msgid "Lim_Blinds has no lookup for '%s'"
 msgstr "Lim_Blinds nem tartalmazza ezt: '%s'"
 
-#: FulltiltToFpdb.py:369
+#: FulltiltToFpdb.py:371
 #, fuzzy
 msgid "readPlayerStacks: No players detected (hand #%s)"
 msgstr "FTP: readPlayerStacks: Nem találtam játékosokat (hand #%s)"
 
-#: FulltiltToFpdb.py:429
+#: FulltiltToFpdb.py:436
 msgid "No bringin found, handid =%s"
 msgstr "Nyitó hívás nem található, leosztásazonosító = %s"
 
-#: FulltiltToFpdb.py:436
+#: FulltiltToFpdb.py:443
 #, fuzzy
 msgid "readButton: Failed to detect button (hand #%s cancelled?)"
 msgstr ""
 "FTP: readButton: Nem sikerült az osztó felismerése (#%s leosztás "
 "megszakítva?)"
 
-#: FulltiltToFpdb.py:570
+#: FulltiltToFpdb.py:577
 msgid "determineTourneyType : Parsing NOK"
 msgstr "determineTourneyType : értelmezés nem OK"
 
-#: FulltiltToFpdb.py:628
+#: FulltiltToFpdb.py:635
 msgid "Unable to get a valid Tournament ID -- File rejected"
 msgstr "Nem sikerült érvényes versenyazonosítót találni --- A fájl elutasítva"
 
-#: FulltiltToFpdb.py:659
+#: FulltiltToFpdb.py:666
 msgid "Conflict between buyins read in topline (%s) and in BuyIn field (%s)"
 msgstr ""
 "Eltérés a beülők mértéke között a fejlécben (%s) és a Beülő mezőben (%s)"
 
-#: FulltiltToFpdb.py:666
+#: FulltiltToFpdb.py:673
 msgid "Conflict between fees read in topline (%s) and in BuyIn field (%s)"
 msgstr ""
 "Eltérés a díjak mértéke között a fejlécben (%s) és a beülő mezőben (%s)"
 
-#: FulltiltToFpdb.py:670
+#: FulltiltToFpdb.py:677
 msgid "Unable to affect a buyin to this tournament : assume it's a freeroll"
 msgstr ""
 "Nem sikerült beülőt meghatározni ehhez a versenyhez: feltételezem, hogy ez "
 "egy freeroll"
 
-#: FulltiltToFpdb.py:771
+#: FulltiltToFpdb.py:778
 #, fuzzy
 msgid "Player finishing stats unreadable : %s"
 msgstr "FullTilt: A következő játékos helyezési adata nem olvasható : %s"
 
-#: FulltiltToFpdb.py:780
+#: FulltiltToFpdb.py:787
 #, fuzzy
 msgid "%s not found in tourney.ranks ..."
 msgstr "FullTilt: %s nem található a verseny helyezettjei között ..."
 
-#: FulltiltToFpdb.py:782
+#: FulltiltToFpdb.py:789
 #, fuzzy
 msgid "Bad parsing : finish position incoherent : %s / %s"
 msgstr "FullTilt: Hibás értelmezés : a helyezések nem egyeznek : %s / %s"
@@ -943,7 +945,7 @@ msgstr "Indexek eldobása:"
 msgid "auto"
 msgstr "automatikus"
 
-#: GuiBulkImport.py:237 GuiBulkImport.py:287 GuiBulkImport.py:395
+#: GuiBulkImport.py:237 GuiBulkImport.py:287 GuiBulkImport.py:397
 msgid "don't drop"
 msgstr "megtartás"
 
@@ -1047,7 +1049,11 @@ msgstr "PartyPoker átalakító: ./GuiBulkImport.py -c PartyPoker -f fájlnév"
 msgid "-q is deprecated. Just use \"-f filename\" instead"
 msgstr "A -q már elévült. Használd helyette a \"-f fájlnév\" formát."
 
-#: GuiBulkImport.py:408
+#: GuiBulkImport.py:393
+msgid "You  have to select a site with the -c parameter. E.g.:"
+msgstr ""
+
+#: GuiBulkImport.py:410
 msgid ""
 "GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d "
 "in %s seconds - %.0f/sec"
@@ -3430,10 +3436,6 @@ msgstr "Osztott lapok nem találhatóak a %s leosztásban "
 msgid "Hero cards %s: %s"
 msgstr "Saját lapok %s: %s"
 
-#: WinamaxToFpdb.py:412
-msgid "add show actions %s"
-msgstr "mutatás akció hozzáadása: %s"
-
 #: WinamaxToFpdb.py:469
 msgid "Read shown cards: %s"
 msgstr "Mutatott lapok beolvasása: %s"
@@ -4271,15 +4273,19 @@ msgstr ""
 "Nem találhatóak a GTK könyvtárak az útvonaladban - telepítsd a GTK-t, vagy "
 "állítsd be kézzel az útvonalat\n"
 
-#, fuzzy
-#~ msgid "Create failed: "
-#~ msgstr "Index létrehozása nem sikerült: "
+#~ msgid "Absolute readStudPlayerCards is only a stub."
+#~ msgstr "Az Absolute terem readStudPlayerCards funkciója csak egy csonk."
 
-#~ msgid "dropping mysql foreign key"
-#~ msgstr "MySQL idegen kulcs eldobása"
+#~ msgid "warning: drop pg fk %s_%s_fkey failed: %s, continuing ..."
+#~ msgstr ""
+#~ "figyelem: a(z) %s_%s_fkey pg idegen kulcs eldobása nem sikerült: %s, "
+#~ "folytatás ..."
 
-#~ msgid "Only MySQL and Postgres supported so far"
-#~ msgstr "Egyelőre csak a MySQL és a Postgres támogatott"
+#~ msgid "dropping mysql index "
+#~ msgstr "MySQL index eldobása: "
+
+#~ msgid "Creating PostgreSQL index "
+#~ msgstr "PostgreSQL index létrehozása "
 
 #~ msgid "Creating mysql index %s %s"
 #~ msgstr "MySQL index létrehozása: %s %s"
@@ -4293,12 +4299,6 @@ msgstr ""
 #~ msgid "Unknown database: MySQL, Postgres and SQLite supported"
 #~ msgstr "Ismeretlen adatbázis: a MySQL, a Postgres és az SQLite támogatott"
 
-#~ msgid "dropping mysql index "
-#~ msgstr "MySQL index eldobása: "
-
-#~ msgid "dropping pg index "
-#~ msgstr "pg index eldobása: "
-
 #~ msgid "Dropping sqlite index "
 #~ msgstr "SQLite index eldobása: "
 
@@ -4308,27 +4308,11 @@ msgstr ""
 #~ "Fpdb csak a MySQL-t, a Postgres-t és az SQLite-ot támogatja. Mit "
 #~ "próbáltál használni?"
 
-#, fuzzy
-#~ msgid "Creating index "
-#~ msgstr "MySQL index létrehozása: "
+#~ msgid "Only MySQL and Postgres supported so far"
+#~ msgstr "Egyelőre csak a MySQL és a Postgres támogatott"
 
-#~ msgid "warning: drop pg fk %s_%s_fkey failed: %s, continuing ..."
-#~ msgstr ""
-#~ "figyelem: a(z) %s_%s_fkey pg idegen kulcs eldobása nem sikerült: %s, "
-#~ "folytatás ..."
-
-#~ msgid "Creating PostgreSQL index "
-#~ msgstr "PostgreSQL index létrehozása "
-
-#~ msgid ""
-#~ "has been created at:\n"
-#~ "%s.\n"
-#~ msgstr ""
-#~ "létrehozva itt:\n"
-#~ "%s.\n"
-
-#~ msgid "Absolute readStudPlayerCards is only a stub."
-#~ msgstr "Az Absolute terem readStudPlayerCards funkciója csak egy csonk."
+#~ msgid "dropping mysql foreign key"
+#~ msgstr "MySQL idegen kulcs eldobása"
 
 #~ msgid "Everleaf readStudPlayerCards is only a stub."
 #~ msgstr "Az Everleaf terem readStudPlayerCards funkciója csak egy csonk."
@@ -4347,6 +4331,16 @@ msgstr ""
 
 #~ msgid "_HUD Configurator"
 #~ msgstr "_HUD beállítása"
+
+#~ msgid ""
+#~ "has been created at:\n"
+#~ "%s.\n"
+#~ msgstr ""
+#~ "létrehozva itt:\n"
+#~ "%s.\n"
+
+#~ msgid "add show actions %s"
+#~ msgstr "mutatás akció hozzáadása: %s"
 
 #~ msgid "determineGameType: Raising FpdbParseError"
 #~ msgstr "determineGameType: FpdbParseError"
@@ -4635,6 +4629,9 @@ msgstr ""
 #~ msgid "CLI for fpdb_import is now available as CliFpdb.py"
 #~ msgstr ""
 #~ "az fpdb_import már parancssorból is elérhető a CliFpdb.py segítségével"
+
+#~ msgid "creating mysql index "
+#~ msgstr "MySQL index létrehozása: "
 
 #~ msgid "   create index failed: "
 #~ msgstr "    index létrehozása nem sikerült: "

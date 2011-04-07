@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-04-07 05:58+CEST\n"
+"POT-Creation-Date: 2011-04-07 10:56+CEST\n"
 "PO-Revision-Date: 2011-04-06 17:39+0000\n"
 "Last-Translator: pkpkpkdo <ofelipedbzgt@hotmail.com>\n"
 "Language-Team: Portuguese (Brazilian) <>\n"
@@ -18,8 +18,8 @@ msgstr ""
 
 #: AbsoluteToFpdb.py:140 AbsoluteToFpdb.py:142 BetfairToFpdb.py:76
 #: BetfairToFpdb.py:78 CarbonToFpdb.py:130 CarbonToFpdb.py:132
-#: EverestToFpdb.py:101 EverestToFpdb.py:103 EverleafToFpdb.py:113
-#: EverleafToFpdb.py:115 FulltiltToFpdb.py:208 FulltiltToFpdb.py:210
+#: EverestToFpdb.py:101 EverestToFpdb.py:103 EverleafToFpdb.py:128
+#: EverleafToFpdb.py:130 FulltiltToFpdb.py:209 FulltiltToFpdb.py:211
 #: OnGameToFpdb.py:163 OnGameToFpdb.py:165 PacificPokerToFpdb.py:173
 #: PacificPokerToFpdb.py:175 PartyPokerToFpdb.py:197 PartyPokerToFpdb.py:199
 #: PkrToFpdb.py:128 PkrToFpdb.py:130 PokerStarsToFpdb.py:186
@@ -30,9 +30,9 @@ msgid "Unable to recognise gametype from: '%s'"
 msgstr "Incapaz de reconhecer o tipo do jogo de: '%s'"
 
 #: AbsoluteToFpdb.py:141 BetfairToFpdb.py:77 CarbonToFpdb.py:131
-#: EverestToFpdb.py:102 EverestToFpdb.py:107 EverleafToFpdb.py:114
+#: EverestToFpdb.py:102 EverestToFpdb.py:107 EverleafToFpdb.py:129
 #: FullTiltPokerSummary.py:93 FullTiltPokerSummary.py:119
-#: FulltiltToFpdb.py:252 FulltiltToFpdb.py:267 OnGameToFpdb.py:164
+#: FulltiltToFpdb.py:253 FulltiltToFpdb.py:268 OnGameToFpdb.py:164
 #: OnGameToFpdb.py:183 PacificPokerToFpdb.py:174 PacificPokerToFpdb.py:205
 #: PartyPokerToFpdb.py:198 PkrToFpdb.py:129 PkrToFpdb.py:154
 #: PokerStarsSummary.py:82 PokerStarsSummary.py:108 PokerStarsToFpdb.py:187
@@ -43,7 +43,7 @@ msgstr ""
 
 #: AbsoluteToFpdb.py:205 AbsoluteToFpdb.py:206 BetfairToFpdb.py:108
 #: BetfairToFpdb.py:109 CarbonToFpdb.py:163 CarbonToFpdb.py:165
-#: EverestToFpdb.py:145 EverestToFpdb.py:147 EverleafToFpdb.py:148
+#: EverestToFpdb.py:145 EverestToFpdb.py:147 EverleafToFpdb.py:163
 #: PacificPokerToFpdb.py:215 PacificPokerToFpdb.py:216 PokerStarsToFpdb.py:223
 #: PokerStarsToFpdb.py:224 iPokerToFpdb.py:156 iPokerToFpdb.py:158
 msgid "No match in readHandInfo: '%s'"
@@ -61,52 +61,52 @@ msgstr "Nome do arquivo: %s"
 msgid "Didn't match re_*InfoFromFilename: '%s'"
 msgstr ""
 
-#: AbsoluteToFpdb.py:279 EverleafToFpdb.py:213 FulltiltToFpdb.py:416
+#: AbsoluteToFpdb.py:279 EverleafToFpdb.py:228 FulltiltToFpdb.py:418
 #: OnGameToFpdb.py:305 PacificPokerToFpdb.py:347 PokerStarsToFpdb.py:358
 #: Win2dayToFpdb.py:210 WinamaxToFpdb.py:360
 msgid "reading antes"
 msgstr "lendo antes"
 
-#: AbsoluteToFpdb.py:288 BetfairToFpdb.py:160 FulltiltToFpdb.py:426
+#: AbsoluteToFpdb.py:288 BetfairToFpdb.py:160 FulltiltToFpdb.py:433
 msgid "Player bringing in: %s for %s"
 msgstr "Player bringing em: %s para %s"
 
-#: AbsoluteToFpdb.py:291 EverleafToFpdb.py:225
+#: AbsoluteToFpdb.py:291 EverleafToFpdb.py:240
 msgid "No bringin found."
 msgstr "Nenhum bringin encontrado."
 
-#: AbsoluteToFpdb.py:298 EverleafToFpdb.py:232
+#: AbsoluteToFpdb.py:298 EverleafToFpdb.py:247
 msgid "No small blind"
 msgstr "Small blind não encontrado"
 
-#: AbsoluteToFpdb.py:324 EverleafToFpdb.py:258
+#: AbsoluteToFpdb.py:324
 msgid "Absolute cannot read all stud/razz hands yet."
 msgstr ""
 
 #: AbsoluteToFpdb.py:348 BetfairToFpdb.py:199 CarbonToFpdb.py:267
-#: EverestToFpdb.py:234 EverestToFpdb.py:235 EverleafToFpdb.py:278
-#: FulltiltToFpdb.py:494 OnGameToFpdb.py:348 PacificPokerToFpdb.py:429
+#: EverestToFpdb.py:234 EverestToFpdb.py:235 EverleafToFpdb.py:295
+#: FulltiltToFpdb.py:501 OnGameToFpdb.py:348 PacificPokerToFpdb.py:429
 #: PartyPokerToFpdb.py:535 PkrToFpdb.py:351 PokerStarsToFpdb.py:440
 #: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:261
 msgid "Unimplemented readAction: '%s' '%s'"
 msgstr ""
 
 #: AbsoluteToFpdb.py:398 BetfairToFpdb.py:222 CarbonToFpdb.py:297
-#: EverleafToFpdb.py:316 FulltiltToFpdb.py:788 PacificPokerToFpdb.py:458
+#: EverleafToFpdb.py:333 FulltiltToFpdb.py:795 PacificPokerToFpdb.py:458
 #: PartyPokerToFpdb.py:575 PokerStarsToFpdb.py:468 Win2dayToFpdb.py:375
 #: iPokerToFpdb.py:291
 msgid "parse input hand history"
 msgstr "Analisar a entrada de histórico de mãos"
 
 #: AbsoluteToFpdb.py:399 BetfairToFpdb.py:223 CarbonToFpdb.py:298
-#: EverleafToFpdb.py:317 FulltiltToFpdb.py:789 PacificPokerToFpdb.py:459
+#: EverleafToFpdb.py:334 FulltiltToFpdb.py:796 PacificPokerToFpdb.py:459
 #: PartyPokerToFpdb.py:576 PokerStarsToFpdb.py:469 Win2dayToFpdb.py:376
 #: iPokerToFpdb.py:292
 msgid "output translation to"
 msgstr "tradução de saída para"
 
 #: AbsoluteToFpdb.py:400 BetfairToFpdb.py:224 CarbonToFpdb.py:299
-#: EverleafToFpdb.py:318 FulltiltToFpdb.py:790 PacificPokerToFpdb.py:460
+#: EverleafToFpdb.py:335 FulltiltToFpdb.py:797 PacificPokerToFpdb.py:460
 #: PartyPokerToFpdb.py:577 PokerStarsToFpdb.py:470 Win2dayToFpdb.py:377
 #: iPokerToFpdb.py:293
 msgid "follow (tail -f) the input"
@@ -129,7 +129,7 @@ msgstr ""
 msgid "No bringin found"
 msgstr "Nenhum bringin encontrado"
 
-#: BetfairToFpdb.py:199 Filters.py:80 FulltiltToFpdb.py:494
+#: BetfairToFpdb.py:199 Filters.py:80 FulltiltToFpdb.py:501
 #: GuiAutoImport.py:203 GuiPositionalStats.py:137 GuiStove.py:221
 #: GuiStove.py:225 GuiStove.py:229 GuiStove.py:233 GuiStove.py:237
 #: GuiStove.py:239 Hand.py:491 Hand.py:1709 ImapFetcher.py:44
@@ -309,7 +309,7 @@ msgstr ""
 #: Database.py:1087 Database.py:1516
 #, fuzzy
 msgid "drop foreign key %s_%s_fkey failed: %s, continuing ..."
-msgstr "atenção: a queda de pg fk %s_%s_fkey falhou: %s, continuando ..."
+msgstr "chave estrangeira pg derrubada %s_%s_fkey, continuando ..."
 
 #: Database.py:1091 Database.py:1520
 #, fuzzy
@@ -409,119 +409,123 @@ msgstr "    queda falhou: "
 msgid "dropped foreign key %s_%s_fkey, continuing ..."
 msgstr "chave estrangeira pg derrubada %s_%s_fkey, continuando ..."
 
-#: Database.py:1635
+#: Database.py:1636
 msgid "Rebuild hudcache took %.1f seconds"
 msgstr "Reconstrução do cache do HUD levou %.1f segundos"
 
-#: Database.py:1638 Database.py:1752
+#: Database.py:1639 Database.py:1753
 msgid "Error rebuilding hudcache:"
 msgstr "Erro ao reconstruir cache do HUD:"
 
-#: Database.py:1764 Database.py:1770
+#: Database.py:1765 Database.py:1771
 msgid "Error during analyze:"
 msgstr "Erro durante a análise:"
 
-#: Database.py:1774
+#: Database.py:1775
 msgid "Analyze took %.1f seconds"
 msgstr "A análise levou %.1f segundos"
 
-#: Database.py:1784 Database.py:1790
+#: Database.py:1785 Database.py:1791
 msgid "Error during vacuum:"
 msgstr "Erro durante limpeza:"
 
-#: Database.py:1794
+#: Database.py:1795
 msgid "Vacuum took %.1f seconds"
 msgstr "A limpeza levou %.1f segundos"
 
-#: Database.py:1834
+#: Database.py:1835
 msgid "Error during lock_for_insert:"
 msgstr "Erro durante lock_for_insert:"
 
-#: Database.py:1843
+#: Database.py:1844
 msgid "######## Hands ##########"
 msgstr "######## Mãos ##########"
 
-#: Database.py:1847
+#: Database.py:1848
 msgid "###### End Hands ########"
 msgstr "###### Mãos Finais ########"
 
-#: Database.py:2572
+#: Database.py:2573
 msgid "######## Gametype ##########"
 msgstr "######## Tipo de Jogo ##########"
 
-#: Database.py:2576
+#: Database.py:2577
 msgid "###### End Gametype ########"
 msgstr "###### Tipo Final de Jogo ########"
 
-#: Database.py:2603
+#: Database.py:2604
 msgid "queue empty too long - writer stopping ..."
 msgstr "fila vazia muito longa - escritor parando ..."
 
-#: Database.py:2606
+#: Database.py:2607
 msgid "writer stopping, error reading queue: "
 msgstr "escritor parando, erro ao ler a fiila: "
 
-#: Database.py:2631
+#: Database.py:2632
 msgid "deadlock detected - trying again ..."
 msgstr "impasse encontrado - tentando novamente ..."
 
-#: Database.py:2636
+#: Database.py:2637
 msgid "too many deadlocks - failed to store hand "
 msgstr "muitos impasses encontrados - falha ao arquivar mãos "
 
-#: Database.py:2640
+#: Database.py:2641
 msgid "***Error storing hand: "
 msgstr "***Erro ao arquivar mãos: "
 
-#: Database.py:2650
+#: Database.py:2651
 msgid "db writer finished: stored %d hands (%d fails) in %.1f seconds"
 msgstr "escritor db terminou: mãos arquivadas %d (%d falhas) em %.1f segundos"
 
-#: Database.py:2660
+#: Database.py:2661
 msgid "***Error sending finish: "
 msgstr "***Erro ao enviar comando final: "
 
-#: Database.py:2746
+#: Database.py:2747
 msgid "invalid source in Database.createOrUpdateTourney"
 msgstr "fonte inválida em Database.createOrUpdateTourney"
 
-#: Database.py:2759
+#: Database.py:2760
 msgid "invalid source in Database.createOrUpdateTourneysPlayers"
 msgstr "fonte inválida em Database.createOrUpdateTourneysPlayers"
 
-#: Database.py:2895
+#: Database.py:2896
 msgid "HandToWrite.init error: "
 msgstr "erro em HandToWrite.init: "
 
-#: Database.py:2945
+#: Database.py:2946
 msgid "HandToWrite.set_all error: "
 msgstr "erro em HandToWrite.set_all: "
 
-#: Database.py:2976
+#: Database.py:2977
 msgid "nutOmatic is id_player = %d"
 msgstr "nutOmatic é id_player = %d"
 
-#: Database.py:2984
+#: Database.py:2985
 msgid "query plan: "
 msgstr "plano da query: "
 
-#: Database.py:2993
+#: Database.py:2994
 msgid "cards ="
 msgstr "cartas ="
 
-#: Database.py:2996
+#: Database.py:2997
 msgid "get_stats took:  %4.3f seconds"
 msgstr "get_stats levou:  %4.3f segundos"
 
-#: Database.py:2998
+#: Database.py:2999
 msgid "press enter to continue"
 msgstr "pressione enter para continuar"
 
-#: EverestToFpdb.py:108 FulltiltToFpdb.py:266 FulltiltToFpdb.py:268
+#: EverestToFpdb.py:108 FulltiltToFpdb.py:267 FulltiltToFpdb.py:269
 msgid "Unable to recognise handinfo from: '%s'"
 msgstr "Incapaz de reconhecer handinfo de: '%s'"
 
-#: EverleafToFpdb.py:287
+#: EverleafToFpdb.py:274
+msgid "Everleaf cannot read all stud/razz hands yet."
+msgstr ""
+
+#: EverleafToFpdb.py:304
 msgid "readShowdownActions %s %s"
 msgstr ""
 
@@ -713,58 +717,58 @@ msgstr "Incapaz de reconhecer informação do torneio: '%s'"
 msgid "Unable to locate currency"
 msgstr "Incapaz de localizar a moeda"
 
-#: FulltiltToFpdb.py:209
+#: FulltiltToFpdb.py:210
 msgid "Raising FpdbParseError for file '%s'"
 msgstr ""
 
-#: FulltiltToFpdb.py:251 FulltiltToFpdb.py:253 PacificPokerToFpdb.py:204
+#: FulltiltToFpdb.py:252 FulltiltToFpdb.py:254 PacificPokerToFpdb.py:204
 #: PacificPokerToFpdb.py:206 PkrToFpdb.py:153 PkrToFpdb.py:155
 #: PokerStarsToFpdb.py:212 PokerStarsToFpdb.py:214
 msgid "Lim_Blinds has no lookup for '%s'"
 msgstr "Lim_Blinds não tem base para '%s'"
 
-#: FulltiltToFpdb.py:369
+#: FulltiltToFpdb.py:371
 msgid "readPlayerStacks: No players detected (hand #%s)"
 msgstr ""
 
-#: FulltiltToFpdb.py:429
+#: FulltiltToFpdb.py:436
 msgid "No bringin found, handid =%s"
 msgstr "bringin não encontrado, handid =%s"
 
-#: FulltiltToFpdb.py:436
+#: FulltiltToFpdb.py:443
 msgid "readButton: Failed to detect button (hand #%s cancelled?)"
 msgstr ""
 
-#: FulltiltToFpdb.py:570
+#: FulltiltToFpdb.py:577
 msgid "determineTourneyType : Parsing NOK"
 msgstr "Determinar tipo de Torneio : Análise errada"
 
-#: FulltiltToFpdb.py:628
+#: FulltiltToFpdb.py:635
 msgid "Unable to get a valid Tournament ID -- File rejected"
 msgstr "Incapaz de conseguir um ID de Torneio válido -- Arquivo rejeitado"
 
-#: FulltiltToFpdb.py:659
+#: FulltiltToFpdb.py:666
 msgid "Conflict between buyins read in topline (%s) and in BuyIn field (%s)"
 msgstr "Conflito entre buyins na linha de topo (%s) e em BuyIn field (%s)"
 
-#: FulltiltToFpdb.py:666
+#: FulltiltToFpdb.py:673
 msgid "Conflict between fees read in topline (%s) and in BuyIn field (%s)"
 msgstr "Conflito entre fees na linha de topo (%s) e em BuyIn field (%s)"
 
-#: FulltiltToFpdb.py:670
+#: FulltiltToFpdb.py:677
 msgid "Unable to affect a buyin to this tournament : assume it's a freeroll"
 msgstr ""
 "Incapaz de determinar um buyin para este torneio : assuma que é um freeroll"
 
-#: FulltiltToFpdb.py:771
+#: FulltiltToFpdb.py:778
 msgid "Player finishing stats unreadable : %s"
 msgstr ""
 
-#: FulltiltToFpdb.py:780
+#: FulltiltToFpdb.py:787
 msgid "%s not found in tourney.ranks ..."
 msgstr ""
 
-#: FulltiltToFpdb.py:782
+#: FulltiltToFpdb.py:789
 msgid "Bad parsing : finish position incoherent : %s / %s"
 msgstr ""
 
@@ -915,7 +919,7 @@ msgstr "indexes derrubadas:"
 msgid "auto"
 msgstr "auto"
 
-#: GuiBulkImport.py:237 GuiBulkImport.py:287 GuiBulkImport.py:395
+#: GuiBulkImport.py:237 GuiBulkImport.py:287 GuiBulkImport.py:397
 msgid "don't drop"
 msgstr "não derrubar"
 
@@ -1017,7 +1021,11 @@ msgstr "Conversor PartyPoker: ./GuiBulkImport.py -c PartyPoker -f filename"
 msgid "-q is deprecated. Just use \"-f filename\" instead"
 msgstr "-q é obsoleto. Apenas use \"-f filename\" como alternativa"
 
-#: GuiBulkImport.py:408
+#: GuiBulkImport.py:393
+msgid "You  have to select a site with the -c parameter. E.g.:"
+msgstr ""
+
+#: GuiBulkImport.py:410
 msgid ""
 "GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d "
 "in %s seconds - %.0f/sec"
@@ -3305,10 +3313,6 @@ msgstr ""
 msgid "Hero cards %s: %s"
 msgstr ""
 
-#: WinamaxToFpdb.py:412
-msgid "add show actions %s"
-msgstr ""
-
 #: WinamaxToFpdb.py:469
 msgid "Read shown cards: %s"
 msgstr ""
@@ -4026,18 +4030,14 @@ msgid ""
 "manually\n"
 msgstr ""
 
-#, fuzzy
-#~ msgid "Create failed: "
-#~ msgstr "Criação de index falhou: "
+#~ msgid "Absolute readStudPlayerCards is only a stub."
+#~ msgstr "Absolute readStudPlayerCards é somente temporário."
 
-#~ msgid "dropping mysql foreign key"
-#~ msgstr "derrubando chave estrangeira do mysql "
+#~ msgid "warning: drop pg fk %s_%s_fkey failed: %s, continuing ..."
+#~ msgstr "atenção: a queda de pg fk %s_%s_fkey falhou: %s, continuando ..."
 
-#~ msgid "Only MySQL and Postgres supported so far"
-#~ msgstr "Apenas MySQL e Postgres são suportados por enquanto"
-
-#~ msgid "Creating mysql index %s %s"
-#~ msgstr "Criando mysql index %s %s"
+#~ msgid "dropping mysql index "
+#~ msgstr "derrubando mysql index "
 
 #~ msgid "Creating pgsql index %s %s"
 #~ msgstr "Criando pgsql index %s %s"
@@ -4048,12 +4048,6 @@ msgstr ""
 #~ msgid "Unknown database: MySQL, Postgres and SQLite supported"
 #~ msgstr "Database desconhecida: MySQL, Postgres e SQLite são suportados"
 
-#~ msgid "dropping mysql index "
-#~ msgstr "derrubando mysql index "
-
-#~ msgid "dropping pg index "
-#~ msgstr "derrubando pg index "
-
 #~ msgid "Dropping sqlite index "
 #~ msgstr "Derrubando sqlite index "
 
@@ -4063,15 +4057,11 @@ msgstr ""
 #~ "Fpdb suporta apenas MySQL, Postgres e SQLITE, o que você está tentando "
 #~ "usar?"
 
-#, fuzzy
-#~ msgid "Creating index "
-#~ msgstr "Criando mysql index %s %s"
+#~ msgid "Only MySQL and Postgres supported so far"
+#~ msgstr "Apenas MySQL e Postgres são suportados por enquanto"
 
-#~ msgid "warning: drop pg fk %s_%s_fkey failed: %s, continuing ..."
-#~ msgstr "atenção: a queda de pg fk %s_%s_fkey falhou: %s, continuando ..."
-
-#~ msgid "Absolute readStudPlayerCards is only a stub."
-#~ msgstr "Absolute readStudPlayerCards é somente temporário."
+#~ msgid "dropping mysql foreign key"
+#~ msgstr "derrubando chave estrangeira do mysql "
 
 #~ msgid "Everleaf readStudPlayerCards is only a stub."
 #~ msgstr "Everleaf readStudPlayerCards é somente temporário."
