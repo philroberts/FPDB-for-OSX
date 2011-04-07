@@ -941,7 +941,7 @@ class fpdb:
         print (_("Logfile is %s\n") % os.path.join(self.config.dir_log, self.config.log_file))
         if self.config.example_copy:
             self.info_box(_("Config file"),
-                          _("has been created at:\n%s.\n") % self.config.file
+                          _("Config file has been created at:") + ("\n%s.\n") % self.config.file
                            + _("Edit your screen_name and hand history path in the supported_sites section of the Advanced Preferences window (Main menu) before trying to import hands."))
         self.settings = {}
         self.settings['global_lock'] = self.lock
@@ -1385,7 +1385,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
             except KeyError, exc:
                 log.warning("site %s missing from db" % site)
                 dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Unknown Site")
-                diastring = _("WARNING: Unable to find site  '%s'\n\nPress YES to add this site to the database.") % site
+                diastring = _("Warning:") +" " + _("Unable to find site  '%s'\n\nPress YES to add this site to the database.") % site
                 dia.format_secondary_text(diastring)
                 response = dia.run()
                 dia.destroy()

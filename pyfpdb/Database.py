@@ -757,7 +757,7 @@ class Database:
             if row and row[0]:
                 self.date_nhands_ago[str(playerid)] = row[0]
             c.close()
-            print _("Database: date n hands ago = ") + self.date_nhands_ago[str(playerid)] + "(playerid "+str(playerid)+")"
+            print _("Database: n hands ago the date was:") + " " + self.date_nhands_ago[str(playerid)] + " (playerid "+str(playerid)+")"
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
             print _("*** Database Error: ")+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
@@ -1062,7 +1062,7 @@ class Database:
                     cons = c.fetchone()
                     #print "preparebulk find fk: cons=", cons
                     if cons:
-                        print "dropping mysql fk", cons[0], fk['fktab'], fk['fkcol']
+                        print "dropping foreign key ", cons[0], fk['fktab'], fk['fkcol']
                         try:
                             c.execute("alter table " + fk['fktab'] + " drop foreign key " + cons[0])
                         except:
@@ -1081,14 +1081,14 @@ class Database:
                         #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
                         try:
                             c.execute("alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol']))
-                            print "dropped pg fk pg fk %s_%s_fkey, continuing ..." % (fk['fktab'], fk['fkcol'])
+                            print "dropped foreign key %s_%s_fkey, continuing ..." % (fk['fktab'], fk['fkcol'])
                         except:
                             if "does not exist" not in str(sys.exc_value):
-                                print _("warning: drop pg fk %s_%s_fkey failed: %s, continuing ...") \
+                                print _("Warning:"), _("drop foreign key %s_%s_fkey failed: %s, continuing ...") \
                                       % (fk['fktab'], fk['fkcol'], str(sys.exc_value).rstrip('\n') )
                         c.execute("END TRANSACTION")
                     except:
-                        print _("warning: constraint %s_%s_fkey not dropped: %s, continuing ...") \
+                        print _("Warning:"), _("constraint %s_%s_fkey not dropped: %s, continuing ...") \
                               % (fk['fktab'],fk['fkcol'], str(sys.exc_value).rstrip('\n'))
                 else:
                     return -1
@@ -1096,7 +1096,7 @@ class Database:
         for idx in self.indexes[self.backend]:
             if idx['drop'] == 1:
                 if self.backend == self.MYSQL_INNODB:
-                    print _("dropping mysql index "), idx['tab'], idx['col']
+                    print _("Dropping index "), idx['tab'], idx['col']
                     try:
                         # apparently nowait is not implemented in mysql so this just hangs if there are locks
                         # preventing the index drop :-(
@@ -1107,7 +1107,7 @@ class Database:
                             # using: 'HandsPlayers' drop index 'playerId'
                 elif self.backend == self.PGSQL:
     #    DON'T FORGET TO RECREATE THEM!!
-                    print _("dropping pg index "), idx['tab'], idx['col']
+                    print _("Dropping index "), idx['tab'], idx['col']
                     try:
                         # try to lock table to see if index drop will work:
                         c.execute("BEGIN TRANSACTION")
@@ -1120,11 +1120,11 @@ class Database:
                             #print "dropped  pg index ", idx['tab'], idx['col']
                         except:
                             if "does not exist" not in str(sys.exc_value):
-                                print _("warning: drop index %s_%s_idx failed: %s, continuing ...") \
+                                print _("Warning:"), _("drop index %s_%s_idx failed: %s, continuing ...") \
                                       % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n'))
                         c.execute("END TRANSACTION")
                     except:
-                        print _("warning: index %s_%s_idx not dropped %s, continuing ...") \
+                        print _("Warning:"), _("index %s_%s_idx not dropped: %s, continuing ...") \
                               % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n'))
                 else:
                     return -1
@@ -1186,7 +1186,7 @@ class Database:
         for idx in self.indexes[self.backend]:
             if idx['drop'] == 1:
                 if self.backend == self.MYSQL_INNODB:
-                    print _("Creating MySQL index %s %s") % (idx['tab'], idx['col'])
+                    print _("Creating index %s %s") % (idx['tab'], idx['col'])
                     try:
                         s = "alter table %s add index %s(%s)" % (idx['tab'],idx['col'],idx['col'])
                         c.execute(s)
@@ -1195,7 +1195,7 @@ class Database:
                 elif self.backend == self.PGSQL:
     #                pass
                     # mod to use tab_col for index name?
-                    print _("Creating PostgreSQL index "), idx['tab'], idx['col']
+                    print _("Creating index %s %s") % (idx['tab'], idx['col'])
                     try:
                         s = "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
                         c.execute(s)
@@ -1351,8 +1351,8 @@ class Database:
                 self.connection.set_isolation_level(0)   # allow table/index operations to work
             for idx in self.indexes[self.backend]:
                 if self.backend == self.MYSQL_INNODB:
-                    print _("Creating mysql index %s %s") %(idx['tab'], idx['col'])
-                    log.debug(_("Creating mysql index %s %s") %(idx['tab'], idx['col']))
+                    print _("Creating index %s %s") %(idx['tab'], idx['col'])
+                    log.debug(_("Creating index %s %s") %(idx['tab'], idx['col']))
                     try:
                         s = "create index %s on %s(%s)" % (idx['col'],idx['tab'],idx['col'])
                         self.get_cursor().execute(s)
@@ -1360,23 +1360,22 @@ class Database:
                         print _("Create index failed: ") + str(sys.exc_info())
                 elif self.backend == self.PGSQL:
                     # mod to use tab_col for index name?
-                    print _("Creating pgsql index %s %s") %(idx['tab'], idx['col'])
-                    log.debug(_("Creating pgsql index %s %s") %(idx['tab'], idx['col']))
+                    print _("Creating index %s %s") %(idx['tab'], idx['col'])
+                    log.debug(_("Creating index %s %s") %(idx['tab'], idx['col']))
                     try:
                         s = "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
                         self.get_cursor().execute(s)
                     except:
                         print _("Create index failed: ") + str(sys.exc_info())
                 elif self.backend == self.SQLITE:
-                    print _("Creating sqlite index %s %s") %(idx['tab'], idx['col'])
-                    log.debug(_("Creating sqlite index %s %s") %(idx['tab'], idx['col']))
+                    print _("Creating index %s %s") %(idx['tab'], idx['col'])
+                    log.debug(_("Creating index %s %s") %(idx['tab'], idx['col']))
                     try:
                         s = "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
                         self.get_cursor().execute(s)
                     except:
-                        log.debug(_("Create index failed: ") + str(sys.exc_info()))
+                        log.debug(_("Create failed: ") + str(sys.exc_info()))
                 else:
-                    print _("Unknown database: MySQL, Postgres and SQLite supported")
                     return -1
             if self.backend == self.PGSQL:
                 self.connection.set_isolation_level(1)   # go back to normal isolation level
@@ -1393,14 +1392,14 @@ class Database:
             self.connection.set_isolation_level(0)   # allow table/index operations to work
         for idx in self.indexes[self.backend]:
             if self.backend == self.MYSQL_INNODB:
-                print _("dropping mysql index "), idx['tab'], idx['col']
+                print _("dropping index "), idx['tab'], idx['col']
                 try:
                     self.get_cursor().execute( "alter table %s drop index %s"
                                              , (idx['tab'], idx['col']) )
                 except:
                     print _("    drop index failed: ") + str(sys.exc_info())
             elif self.backend == self.PGSQL:
-                print _("dropping pg index "), idx['tab'], idx['col']
+                print _("dropping index "), idx['tab'], idx['col']
                 # mod to use tab_col for index name?
                 try:
                     self.get_cursor().execute( "drop index %s_%s_idx"
@@ -1408,14 +1407,13 @@ class Database:
                 except:
                     print _("    drop index failed: ") + str(sys.exc_info())
             elif self.backend == self.SQLITE:
-                print _("Dropping sqlite index "), idx['tab'], idx['col']
+                print _("Dropping index "), idx['tab'], idx['col']
                 try:
                     self.get_cursor().execute( "drop index %s_%s_idx"
                                                % (idx['tab'],idx['col']) )
                 except:
                     print _("    drop index failed: ") + str(sys.exc_info())
             else:
-                print _("Fpdb only supports MySQL, Postgres and SQLITE, what are you trying to use?")
                 return -1
         if self.backend == self.PGSQL:
             self.connection.set_isolation_level(1)   # go back to normal isolation level
@@ -1463,7 +1461,7 @@ class Database:
                 except:
                     print _("Create foreign key failed: ") + str(sys.exc_info())
             else:
-                print _("Only MySQL and Postgres supported so far")
+                pass
 
         try:
             if self.backend == self.PGSQL:
@@ -1493,14 +1491,14 @@ class Database:
                 cons = c.fetchone()
                 #print "preparebulk find fk: cons=", cons
                 if cons:
-                    print _("dropping mysql foreign key"), cons[0], fk['fktab'], fk['fkcol']
+                    print _("dropping foreign key"), cons[0], fk['fktab'], fk['fkcol']
                     try:
                         c.execute("alter table " + fk['fktab'] + " drop foreign key " + cons[0])
                     except:
                         print _("    drop failed: ") + str(sys.exc_info())
             elif self.backend == self.PGSQL:
 #    DON'T FORGET TO RECREATE THEM!!
-                print _("dropping pg foreign key"), fk['fktab'], fk['fkcol']
+                print _("dropping foreign key"), fk['fktab'], fk['fkcol']
                 try:
                     # try to lock table to see if index drop will work:
                     # hmmm, tested by commenting out rollback in grapher. lock seems to work but
@@ -1512,17 +1510,17 @@ class Database:
                     #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
                     try:
                         c.execute("alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol']))
-                        print _("dropped pg foreign key %s_%s_fkey, continuing ...") % (fk['fktab'], fk['fkcol'])
+                        print _("dropped foreign key %s_%s_fkey, continuing ...") % (fk['fktab'], fk['fkcol'])
                     except:
                         if "does not exist" not in str(sys.exc_value):
-                            print _("warning: drop pg fk %s_%s_fkey failed: %s, continuing ...") \
+                            print _("Warning:"), _("drop foreign key %s_%s_fkey failed: %s, continuing ...") \
                                   % (fk['fktab'], fk['fkcol'], str(sys.exc_value).rstrip('\n') )
                     c.execute("END TRANSACTION")
                 except:
-                    print _("warning: constraint %s_%s_fkey not dropped: %s, continuing ...") \
+                    print _("Warning:"), _("constraint %s_%s_fkey not dropped: %s, continuing ...") \
                           % (fk['fktab'],fk['fkcol'], str(sys.exc_value).rstrip('\n'))
             else:
-                print _("Only MySQL and Postgres supported so far")
+                #print _("Only MySQL and Postgres supported so far")
 
         if self.backend == self.PGSQL:
             self.connection.set_isolation_level(1)   # go back to normal isolation level
