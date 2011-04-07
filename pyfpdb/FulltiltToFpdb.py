@@ -171,6 +171,7 @@ class Fulltilt(HandHistoryConverter):
             self.re_PostDead         = re.compile(r"^%(PLAYERS)s posts a dead small blind of [%(LS)s]?(?P<SB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_PostBB           = re.compile(r"^%(PLAYERS)s posts (the big blind of )?[%(LS)s]?(?P<BB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_Antes            = re.compile(r"^%(PLAYERS)s antes [%(LS)s]?(?P<ANTE>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
+            self.re_ReturnsAnte      = re.compile(r"^Ante of [%(LS)s]?[%(NUM)s]+ returned to %(PLAYERS)s" % self.substitutions, re.MULTILINE)
             self.re_BringIn          = re.compile(r"^%(PLAYERS)s brings in for [%(LS)s]?(?P<BRINGIN>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_PostBoth         = re.compile(r"^%(PLAYERS)s posts small \& big blinds \[[%(LS)s]? (?P<SBBB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
@@ -415,11 +416,16 @@ class Fulltilt(HandHistoryConverter):
 
     def readAntes(self, hand):
         logging.debug(_("reading antes"))
+        slist = []
+        n = self.re_ReturnsAnte.finditer(hand.handText)
+        for player in n:
+            #If a player has their ante returned, then they timed out and are actually sitting out
+            slist.append(player.group('PNAME'))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
-#            if player.group() != 
-            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+            if player.group('PNAME') not in slist:
+                hand.addAnte(player.group('PNAME'), player.group('ANTE'))
 
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
