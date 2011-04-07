@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2011-04-07 10:50+CEST\n"
-"PO-Revision-Date: 2011-03-13 17:42+0100\n"
+"PO-Revision-Date: 2011-04-07 15:16+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -201,13 +201,10 @@ msgstr "hibás érték figyelmen kívül hagyva az xalignment-ben"
 
 #: Configuration.py:640 Configuration.py:647 Configuration.py:666
 #: Configuration.py:673
-#, fuzzy
 msgid "Invalid config value for %s, defaulting to %s"
-msgstr ""
-"Érvénytelen raw_hands.save beállítás, az alapértelmezett \"error\" használata"
+msgstr "Érvénytelen %s beállítás, az alapértelmezett %s használata"
 
 #: Configuration.py:691 Configuration.py:692
-#, fuzzy
 msgid "Configuration file %s not found. Using defaults."
 msgstr "A %s konfigurációs fájl nem található. Alapértelmezések használata."
 
@@ -216,21 +213,16 @@ msgid "Reading configuration file %s"
 msgstr "%s konfigurációs fájl olvasása"
 
 #: Configuration.py:729
-#, fuzzy
 msgid "Error parsing %s."
-msgstr "Hiba a(z) '%s' konvertálása közben"
+msgstr "Hiba a(z) '%s' értelmezése közben."
 
 #: Configuration.py:729 Configuration.py:845
-#, fuzzy
 msgid "See error log file."
-msgstr "Hiba a(z) %s értelmezése közben. Nézz bele a hibanaplóba."
+msgstr "Nézz bele a hibanaplóba."
 
 #: Configuration.py:845
-#, fuzzy
 msgid "Error parsing example configuration file %s."
-msgstr ""
-"Hiba a(z) %s minta konfigurációs fájl értelmezése közben. Nézz bele a "
-"hibanaplóba."
+msgstr "Hiba a(z) %s minta konfigurációs fájl értelmezése közben."
 
 #: Database.py:65
 msgid "Not using sqlalchemy connection pool."
@@ -249,35 +241,28 @@ msgid "*** WARNING UNKNOWN MYSQL ERROR:"
 msgstr "*** FIGYELEM: ISMERETLEN MYSQL HIBA:"
 
 #: Database.py:470
-#, fuzzy
 msgid "Connecting to SQLite: %s"
-msgstr "Kapcsolódva az SQLite adatbázishoz: %s"
+msgstr "Kapcsolódás az SQLite adatbázishoz: %s"
 
 #: Database.py:482
 msgid "Some database functions will not work without NumPy support"
 msgstr "Néhány adatbázis-funkció nem fog működni NumPy támogatás nélkül"
 
 #: Database.py:513
-#, fuzzy
 msgid "Outdated or too new database version (%s)."
-msgstr ""
-"elavult vagy túl új adatbázis verzió (%s) - kérlek hozd létre újra a táblákat"
+msgstr "elavult vagy túl új adatbázis verzió (%s)."
 
 #: Database.py:513 Database.py:523 Database.py:524
-#, fuzzy
 msgid "Please recreate tables."
-msgstr "_Táblák (újra) létrehozása"
+msgstr "Kérlek hozd létre újra a táblákat."
 
 #: Database.py:518 Database.py:519
-#, fuzzy
 msgid "Recreating tables."
-msgstr "A táblák újra létrehozása befejeződött"
+msgstr "A táblák újra létrehozása."
 
 #: Database.py:518 Database.py:519 Database.py:523 Database.py:524
-#, fuzzy
 msgid "Failed to read settings table."
-msgstr ""
-"Nem sikerült az olvasás a beállítások táblából - táblák újra létrehozása"
+msgstr "Nem sikerült az olvasás a beállítások táblából."
 
 #: Database.py:545
 msgid "commit %s failed: info=%s value=%s"
@@ -761,9 +746,8 @@ msgid "Unable to locate currency"
 msgstr "Nem található a pénznem"
 
 #: FulltiltToFpdb.py:210
-#, fuzzy
 msgid "Raising FpdbParseError for file '%s'"
-msgstr "determineGameType: FpdbParseError a '%s' fájlnál"
+msgstr "FpdbParseError a '%s' fájlnál"
 
 #: FulltiltToFpdb.py:252 FulltiltToFpdb.py:254 PacificPokerToFpdb.py:204
 #: PacificPokerToFpdb.py:206 PkrToFpdb.py:153 PkrToFpdb.py:155
@@ -772,20 +756,17 @@ msgid "Lim_Blinds has no lookup for '%s'"
 msgstr "Lim_Blinds nem tartalmazza ezt: '%s'"
 
 #: FulltiltToFpdb.py:371
-#, fuzzy
 msgid "readPlayerStacks: No players detected (hand #%s)"
-msgstr "FTP: readPlayerStacks: Nem találtam játékosokat (hand #%s)"
+msgstr "readPlayerStacks: Nem találtam játékosokat (hand #%s)"
 
 #: FulltiltToFpdb.py:436
 msgid "No bringin found, handid =%s"
 msgstr "Nyitó hívás nem található, leosztásazonosító = %s"
 
 #: FulltiltToFpdb.py:443
-#, fuzzy
 msgid "readButton: Failed to detect button (hand #%s cancelled?)"
 msgstr ""
-"FTP: readButton: Nem sikerült az osztó felismerése (#%s leosztás "
-"megszakítva?)"
+"readButton: Nem sikerült az osztó felismerése (#%s leosztás megszakítva?)"
 
 #: FulltiltToFpdb.py:577
 msgid "determineTourneyType : Parsing NOK"
@@ -812,19 +793,16 @@ msgstr ""
 "egy freeroll"
 
 #: FulltiltToFpdb.py:778
-#, fuzzy
 msgid "Player finishing stats unreadable : %s"
-msgstr "FullTilt: A következő játékos helyezési adata nem olvasható : %s"
+msgstr "A következő játékos helyezési adata nem olvasható : %s"
 
 #: FulltiltToFpdb.py:787
-#, fuzzy
 msgid "%s not found in tourney.ranks ..."
-msgstr "FullTilt: %s nem található a verseny helyezettjei között ..."
+msgstr "%s nem található a verseny helyezettjei között ..."
 
 #: FulltiltToFpdb.py:789
-#, fuzzy
 msgid "Bad parsing : finish position incoherent : %s / %s"
-msgstr "FullTilt: Hibás értelmezés : a helyezések nem egyeznek : %s / %s"
+msgstr "Hibás értelmezés : a helyezések nem egyeznek : %s / %s"
 
 #: GuiAutoImport.py:90
 msgid "Time between imports in seconds:"
@@ -1446,7 +1424,6 @@ msgid "Mail Folder"
 msgstr "Levelek mappája"
 
 #: GuiImapFetcher.py:110
-#, fuzzy
 msgid "Mail Server"
 msgstr "Levelezőkiszolgáló"
 
@@ -2110,17 +2087,20 @@ msgstr "HUD_main: indítás ...\n"
 
 #: HUD_main.pyw:94
 msgid "No admin rights for HUD"
-msgstr ""
+msgstr "Nincsenek rendszergazda jogok a HUD-hoz"
 
 #: HUD_main.pyw:95
 msgid ""
 "Please right click fpdb.exe and HUD_main.exe, select properties, and set "
 "them both to run as admin."
 msgstr ""
+"Kattints jobb gombbal az fpdb.exe-n és HUD_main.exe-n, válaszd ki a "
+"tulajdonságokat, és állítsd be mindkettőt úgy, hogy rendszergazdaként "
+"fussanak."
 
 #: HUD_main.pyw:95
 msgid "You will need to restart fpdb afterwards."
-msgstr ""
+msgstr "Ezek után újra kell indítanod az fpdb-t."
 
 #: HUD_main.pyw:118 HUD_run_me.py:62
 msgid "Closing this window will exit from the HUD."
@@ -2914,18 +2894,17 @@ msgstr "Kézzel kell megadnod a játékos nevét"
 
 #: PacificPokerToFpdb.py:258 PartyPokerToFpdb.py:348 PokerStarsToFpdb.py:266
 #: WinamaxToFpdb.py:263
-#, fuzzy
 msgid "Failed to detect currency."
-msgstr "nem sikerült a pénznem meghatározása"
+msgstr "Nem sikerült a pénznem felismerése."
 
 #: PacificPokerToFpdb.py:258 PartyPokerToFpdb.py:348 PokerStarsToFpdb.py:266
 #: WinamaxToFpdb.py:263
 msgid "Hand ID: %s: '%s'"
-msgstr ""
+msgstr "Leosztás ID: %s: '%s'"
 
 #: PacificPokerToFpdb.py:325
 msgid "No match in markStreets"
-msgstr ""
+msgstr "Nincs találat a markStreets-ben"
 
 #: PartyPokerToFpdb.py:212
 msgid "Cannot fetch field '%s'"
@@ -3600,12 +3579,9 @@ msgid "HUD Configurator - choose category"
 msgstr "HUD beállító - válassz típust és méretet"
 
 #: fpdb.pyw:386
-#, fuzzy
 msgid ""
 "Please select the game category for which you want to configure HUD stats:"
-msgstr ""
-"Válassz játéktípust, amelyre vonatkozóan be akarod állítani a HUD-ot, majd "
-"állítsd be a sorok és oszlopok számát:"
+msgstr "Válassz játéktípust, amelyre vonatkozóan be akarod állítani a HUD-ot:"
 
 #: fpdb.pyw:441
 msgid "HUD Configurator - please choose your stats"
