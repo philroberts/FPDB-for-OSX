@@ -210,9 +210,10 @@ DATABASE_TYPES = (
 #LOCALE_ENCODING = locale.getdefaultlocale()[1]
 LOCALE_ENCODING = locale.getpreferredencoding()
 if LOCALE_ENCODING == "US-ASCII":
-    print _("Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're not on a Mac, please report this problem.")
     LOCALE_ENCODING = "cp1252"
-
+    if (os.uname()[0]!="Darwin"):
+        print _("Default encoding set to US-ASCII, defaulting to CP1252 instead."), _("Please report this problem.")
+    
 
 # needs LOCALE_ENCODING (above), imported for sqlite setup in Config class below
 
