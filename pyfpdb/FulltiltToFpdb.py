@@ -356,8 +356,9 @@ class Fulltilt(HandHistoryConverter):
             # Remove any listed as sitting out in the summary as start of hand info unreliable
             n = self.re_SummarySitout.finditer(post)
             for b in n:
-                del plist[b.group('PNAME')]
-                #print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
+                if b.group('PNAME') in plist:
+                    #print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
+                    del plist[b.group('PNAME')]
 
         # Add remaining players
         for a in plist:
