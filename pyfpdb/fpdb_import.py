@@ -23,6 +23,7 @@ _ = L10n.get_translation()
 import os  # todo: remove this once import_dir is in fpdb_import
 import sys
 from time import time, strftime, sleep, clock
+from datetime import datetime
 import traceback
 import math
 import datetime
