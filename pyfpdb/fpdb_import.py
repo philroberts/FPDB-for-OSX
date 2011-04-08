@@ -176,6 +176,7 @@ class Importer:
         now = datetime.datetime.utcnow()
         file = os.path.splitext(os.path.basename(file))[0]
         id = self.database.storeFile([file, site, now, now, 0, 0, 0, 0, 0, 0, False])
+        self.database.commit()
         return [site] + [filter] + [id]
 
     #Add an individual file to filelist
