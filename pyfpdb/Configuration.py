@@ -207,8 +207,8 @@ DATABASE_TYPES = (
         DATABASE_TYPE_MYSQL,
         )
 
-#LOCALE_ENCODING = locale.getdefaultlocale()[1]
-LOCALE_ENCODING = locale.getpreferredencoding()
+LOCALE_ENCODING = locale.getdefaultlocale()[1]
+#LOCALE_ENCODING = locale.getpreferredencoding() #this breaks on Mac OSX - please leave this comment
 if LOCALE_ENCODING == "US-ASCII":
     print _("Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're not on a Mac, please report this problem.")
     LOCALE_ENCODING = "cp1252"
@@ -313,8 +313,6 @@ class Site:
         self.yshift       = node.getAttribute("yshift")
         self.layout       = {}
         self.emails       = {}
-
-        #print _("Loading site"), self.site_name
 
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
@@ -637,14 +635,14 @@ class RawHands:
             if save in ("none", "error", "all"):
                 self.save=save
             else:
-                print _("Invalid config value for raw_hands.save, defaulting to \"error\"")
+                print (_("Invalid config value for %s, defaulting to %s") % (raw_hands.save, "\"error\""))
                 self.save="error"
             
             compression=node.getAttribute("compression")
             if save in ("none", "gzip", "bzip2"):
                 self.compression=compression
             else:
-                print _("Invalid config value for raw_hands.compression, defaulting to \"none\"")
+                print (_("Invalid config value for %s, defaulting to %s") % (raw_hands.compression, "\"none\""))
                 self.compression="none"
     #end def __init__
 
@@ -663,14 +661,14 @@ class RawTourneys:
             if save in ("none", "error", "all"):
                 self.save=save
             else:
-                print _("Invalid config value for raw_tourneys.save, defaulting to \"error\"")
+                print (_("Invalid config value for %s, defaulting to %s") % (raw_tourneys.save, "\"error\""))
                 self.save="error"
             
             compression=node.getAttribute("compression")
             if save in ("none", "gzip", "bzip2"):
                 self.compression=compression
             else:
-                print _("Invalid config value for raw_tourneys.compression, defaulting to \"none\"")
+                print (_("Invalid config value for %s, defaulting to %s") % (raw_tourneys.compression, "\"none\""))
                 self.compression="none"
     #end def __init__
 
@@ -688,8 +686,8 @@ class Config:
         if file is not None: # config file path passed in
             file = os.path.expanduser(file)
             if not os.path.exists(file):
-                print _("Configuration file %s not found.  Using defaults.") % (file)
-                sys.stderr.write(_("Configuration file %s not found.  Using defaults.") % (file))
+                print _("Configuration file %s not found. Using defaults.") % (file)
+                sys.stderr.write(_("Configuration file %s not found. Using defaults.") % (file))
                 file = None
 
         self.example_copy,example_file = True,None
@@ -726,7 +724,7 @@ class Config:
                 self.doc = doc
                 self.file_error = None
             except:
-                log.error(_("Error parsing %s.  See error log file.") % (file))
+                log.error((_("Error parsing %s.") % (file)) + _("See error log file."))
                 traceback.print_exc(file=sys.stderr)
                 self.file_error = sys.exc_info()[1]
                 # we could add a parameter to decide whether to return or read a line and exit?
@@ -842,7 +840,7 @@ class Config:
         try:
             example_doc = xml.dom.minidom.parse(example_file)
         except:
-            log.error(_("Error parsing example configuration file %s. See error log file.") % (example_file))
+            log.error((_("Error parsing example configuration file %s.") % (example_file)) + _("See error log file."))
             return nodes_added
 
         for cnode in doc.getElementsByTagName("FreePokerToolsConfig"):

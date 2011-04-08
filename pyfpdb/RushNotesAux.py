@@ -243,7 +243,7 @@ class RushNotes(Aux_Window):
             c.execute(("SELECT handId, position, startCards, street0Aggr, tableName " +
                         "FROM Hands, HandsPlayers " +
                         "WHERE HandsPlayers.handId = Hands.id " +
-                        "AND street0VPI = True " +
+                        "AND street0VPI " +
                         "AND startCards > 0 " +
                         "AND playerId = %d " +
                         "ORDER BY startCards DESC " +

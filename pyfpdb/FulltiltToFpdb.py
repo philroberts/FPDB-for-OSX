@@ -46,6 +46,7 @@ class Fulltilt(HandHistoryConverter):
                         '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
                         '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
                         '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
+                        '5.00': ('1.25', '2.50'),       '5': ('1.25', '2.50'),
                         '6.00': ('1.00', '3.00'),       '6': ('1.00', '3.00'),
                         '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
                        '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
@@ -165,6 +166,7 @@ class Fulltilt(HandHistoryConverter):
             self.re_PostDead         = re.compile(r"^%(PLAYERS)s posts a dead small blind of [%(LS)s]?(?P<SB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_PostBB           = re.compile(r"^%(PLAYERS)s posts (the big blind of )?[%(LS)s]?(?P<BB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_Antes            = re.compile(r"^%(PLAYERS)s antes [%(LS)s]?(?P<ANTE>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
+            self.re_ReturnsAnte      = re.compile(r"^Ante of [%(LS)s]?[%(NUM)s]+ returned to %(PLAYERS)s" % self.substitutions, re.MULTILINE)
             self.re_BringIn          = re.compile(r"^%(PLAYERS)s brings in for [%(LS)s]?(?P<BRINGIN>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_PostBoth         = re.compile(r"^%(PLAYERS)s posts small \& big blinds \[[%(LS)s]? (?P<SBBB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
@@ -189,9 +191,14 @@ class Fulltilt(HandHistoryConverter):
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
                 ["tour", "hold", "fl"],
-
+                ["tour", "hold", "cn"],
+                
                 ["tour", "stud", "fl"],
-               ]
+                
+                ["tour", "draw", "fl"],
+                ["tour", "draw", "pl"],
+                ["tour", "draw", "nl"],
+        ]
 
     def determineGameType(self, handText):
         info = {'type':'ring'}
@@ -200,7 +207,7 @@ class Fulltilt(HandHistoryConverter):
         if not m:
             tmp = handText[0:100]
             log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error(_("determineGameType: Raising FpdbParseError for file '%s'") % self.in_path)
+            log.error("determineGameType: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
         mg = m.groupdict()
 
@@ -258,7 +265,7 @@ class Fulltilt(HandHistoryConverter):
                 info['bb'] = self.Lim_Blinds[bb][1]
             except KeyError:
                 log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
-                log.error(_("determineGameType: Raising FpdbParseError"))
+                log.error("determineGameType: " + _("Raising FpdbParseError"))
                 raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
 
         if mg['GAME'] is not None:
@@ -368,8 +375,9 @@ class Fulltilt(HandHistoryConverter):
             # Remove any listed as sitting out in the summary as start of hand info unreliable
             n = self.re_SummarySitout.finditer(post)
             for b in n:
-                del plist[b.group('PNAME')]
-                #print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
+                if b.group('PNAME') in plist:
+                    #print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
+                    del plist[b.group('PNAME')]
 
         # Add remaining players
         for a in plist:
@@ -378,7 +386,7 @@ class Fulltilt(HandHistoryConverter):
 
         if plist == {}:
             #No players! The hand is either missing stacks or everyone is sitting out
-            raise FpdbParseError(_("FTP: readPlayerStacks: No players detected (hand #%s)") % hand.handid)
+            raise FpdbParseError(_("readPlayerStacks: No players detected (hand #%s)") % hand.handid)
 
 
     def markStreets(self, hand):
@@ -435,11 +443,16 @@ class Fulltilt(HandHistoryConverter):
 
     def readAntes(self, hand):
         logging.debug(_("reading antes"))
+        slist = []
+        n = self.re_ReturnsAnte.finditer(hand.handText)
+        for player in n:
+            #If a player has their ante returned, then they timed out and are actually sitting out
+            slist.append(player.group('PNAME'))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
-#            if player.group() != 
-            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+            if player.group('PNAME') not in slist:
+                hand.addAnte(player.group('PNAME'), player.group('ANTE'))
 
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
@@ -454,7 +467,7 @@ class Fulltilt(HandHistoryConverter):
             hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
         except AttributeError, e:
             # FTP has no indication that a hand is cancelled.
-            raise FpdbParseError(_("FTP: readButton: Failed to detect button (hand #%s cancelled?)") % hand.handid)
+            raise FpdbParseError(_("readButton: Failed to detect button (hand #%s cancelled?)") % hand.handid)
 
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
@@ -512,7 +525,7 @@ class Fulltilt(HandHistoryConverter):
             elif action.group('ATYPE') == ' stands pat':
                 hand.addStandsPat( street, action.group('PNAME'), action.group('CARDS'))
             else:
-                print _("FullTilt: DEBUG: unimplemented readAction: '%s' '%s'") %(action.group('PNAME'),action.group('ATYPE'),)
+                print (_("DEBUG: ") + " " + _("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):
@@ -788,7 +801,7 @@ class Fulltilt(HandHistoryConverter):
 
                 tourney.addPlayer(rank, a.group('PNAME'), winnings, "USD", 0, 0, 0) #TODO: make it store actual winnings currency
             else:
-                print (_("FullTilt: Player finishing stats unreadable : %s") % a)
+                print (_("Player finishing stats unreadable : %s") % a)
 
         # Find Hero
         n = self.re_TourneyHeroFinishingP.search(playersText)
@@ -797,9 +810,9 @@ class Fulltilt(HandHistoryConverter):
             tourney.hero = heroName
             # Is this really useful ?
             if heroName not in tourney.ranks:
-                print (_("FullTilt: %s not found in tourney.ranks ...") % heroName)
+                print (_("%s not found in tourney.ranks ...") % heroName)
             elif (tourney.ranks[heroName] != Decimal(n.group('HERO_FINISHING_POS'))):            
-                print (_("FullTilt: Bad parsing : finish position incoherent : %s / %s") % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS')))
+                print (_("Bad parsing : finish position incoherent : %s / %s") % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS')))
 
         return True
 

@@ -89,8 +89,8 @@ class FullTiltPokerSummary(TourneySummary):
         m = self.re_TourneyInfo.search(self.summaryText[:2000])
         if m == None:
             tmp = self.summaryText[0:200]
-            log.error(_("parseSummary: Unable to recognise Tourney Info: '%s'") % tmp)
-            log.error(_("parseSummary: Raising FpdbParseError"))
+            log.error("parseSummary: " + _("Unable to recognise Tourney Info: '%s'") % tmp)
+            log.error("parseSummary: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise Tourney Info: '%s'") % tmp)
 
         #print "DEBUG: m.groupdict(): %s" % m.groupdict()
@@ -115,8 +115,8 @@ class FullTiltPokerSummary(TourneySummary):
 
         m = self.re_Currency.search(self.summaryText)
         if m == None:
-            log.error(_("parseSummary: Unable to locate currency"))
-            log.error(_("parseSummary: Raising FpdbParseError"))
+            log.error("parseSummary: " + _("Unable to locate currency"))
+            log.error("parseSummary: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to locate currency"))
         #print "DEBUG: m.groupdict(): %s" % m.groupdict()
 

@@ -1,0 +1,1399 @@
+Game # 2137894197 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 3.88 in seat 3)
+kos081                      (EUR 6.81 in seat 4)
+lukasp2                     (EUR 2.12 in seat 5)
+
+Dealer:                     kos081
+Small Blind:                lukasp2     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         5d - 8h - 9d - 5s
+
+akilim                      Fold        
+Makesdy                     Raise       (0.14)
+kos081                      Call        (0.14)
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+
+Flop                        2c - Th - Kc
+
+Makesdy                     Bet         (0.25)
+kos081                      Call        (0.25)
+
+Turn                        2c - Th - Kc - 2h
+
+Makesdy                     Check       
+kos081                      Check       
+
+River                       2c - Th - Kc - 2h - 6h
+
+Makesdy                     Check       
+kos081                      Check       
+
+Makesdy shows:              Jd - Qd - Qc - Td (two pairs, Queens and Deuces)
+kos081 shows:               7h - 4s - As - Ks (two pairs, Kings and Deuces)
+
+kos081 wins:                EUR 0.80 (with two pairs, Kings and Deuces)
+Rake:                       EUR 0.04
+
+Game ended 2011-03-21 16:55:43 GMT
+
+Game # 2137894457 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.96 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 3.49 in seat 3)
+kos081                      (EUR 7.22 in seat 4)
+lukasp2                     (EUR 2.10 in seat 5)
+Vokha                       (EUR 0.80 in seat 6)
+
+Dealer:                     lukasp2
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+
+F4UXR34L was dealt:         6s - 7c - Tc - Kh
+
+Makesdy                     Fold        
+kos081                      Call        (0.04)
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+akilim                      Check       
+
+Flop                        Jc - 7d - 2c
+
+akilim                      Check       
+kos081                      Check       
+
+Turn                        Jc - 7d - 2c - 9h
+
+akilim                      Check       
+kos081                      Check       
+
+River                       Jc - 7d - 2c - 9h - 3c
+
+akilim                      Check       
+kos081                      Check       
+
+akilim shows:               Qh - 6c - 5s - Qd (a pair of Queens)
+kos081 shows:               As - Kd - Ac - 2h (a pair of Aces)
+
+kos081 wins:                EUR 0.10 (with a pair of Aces)
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:56:21 GMT
+
+Game # 2137894631 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.94 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 4.00 in seat 3)
+kos081                      (EUR 7.28 in seat 4)
+lukasp2                     (EUR 2.10 in seat 5)
+Vokha                       (EUR 0.80 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         9s - 7s - 9d - 4c
+
+kos081                      Call        (0.04)
+lukasp2                     Raise       (0.18)
+F4UXR34L                    Fold        
+akilim                      Fold        
+Makesdy                     Fold        
+kos081                      Fold        
+lukasp2                     Payback     (0.14)
+
+lukasp2 didn't show hand
+
+lukasp2 wins:               EUR 0.14
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:56:48 GMT
+
+Game # 2137898774 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.94 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 3.96 in seat 3)
+kos081                      (EUR 7.24 in seat 4)
+lukasp2                     (EUR 2.20 in seat 5)
+Vokha                       (EUR 0.80 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  kos081      (0.04)
+
+F4UXR34L was dealt:         Kc - Kh - 3d - 7d
+
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+akilim                      Raise       (0.11)
+Makesdy                     Fold        
+kos081                      Call        (0.07)
+
+Flop                        5d - Qc - 7s
+
+kos081                      Check       
+akilim                      Check       
+
+Turn                        5d - Qc - 7s - 8s
+
+kos081                      Bet         (0.24)
+akilim                      Call        (0.24)
+
+River                       5d - Qc - 7s - 8s - Ts
+
+kos081                      Bet         (0.24)
+akilim                      Fold        
+kos081                      Payback     (0.24)
+
+kos081 didn't show hand
+
+kos081 wins:                EUR 0.69
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 16:57:46 GMT
+
+Game # 2137899072 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.94 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 3.94 in seat 3)
+kos081                      (EUR 7.58 in seat 4)
+lukasp2                     (EUR 2.20 in seat 5)
+Vokha                       (EUR 0.80 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                kos081      (0.02)
+Big Blind:                  lukasp2     (0.04)
+
+F4UXR34L was dealt:         5c - Jc - 7d - Ts
+
+F4UXR34L                    Fold        
+akilim                      Raise       (0.11)
+Makesdy                     Fold        
+kos081                      Call        (0.09)
+lukasp2                     Call        (0.07)
+
+Flop                        4h - 4c - Kc
+
+kos081                      Check       
+lukasp2                     Check       
+akilim                      Bet         (0.16)
+kos081                      Call        (0.16)
+lukasp2                     Fold        
+
+Turn                        4h - 4c - Kc - 8c
+
+kos081                      Check       
+akilim                      Check       
+
+River                       4h - 4c - Kc - 8c - 4s
+
+kos081                      Bet         (0.65)
+akilim                      Fold        
+kos081                      Payback     (0.65)
+
+kos081 didn't show hand
+
+kos081 wins:                EUR 0.62
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 16:58:33 GMT
+
+Game # 2137899323 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.94 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 3.94 in seat 3)
+kos081                      (EUR 7.93 in seat 4)
+lukasp2                     (EUR 2.09 in seat 5)
+Vokha                       (EUR 0.80 in seat 6)
+
+Dealer:                     kos081
+Small Blind:                lukasp2     (0.02)
+Big Blind:                  Vokha       (0.04)
+
+F4UXR34L was dealt:         2h - 3s - Kd - 5s
+
+F4UXR34L                    Fold        
+akilim                      Fold        
+Makesdy                     Fold        
+kos081                      Call        (0.04)
+lukasp2                     Call        (0.02)
+Vokha                       Check       
+
+Flop                        8h - Ah - 9h
+
+lukasp2                     Check       
+Vokha                       Check       
+kos081                      Check       
+
+Turn                        8h - Ah - 9h - Th
+
+lukasp2                     Check       
+Vokha                       Bet         (0.12)
+kos081                      Fold        
+lukasp2                     Call        (0.12)
+
+River                       8h - Ah - 9h - Th - 8c
+
+lukasp2                     Check       
+Vokha                       Bet         (0.04)
+lukasp2                     Call        (0.04)
+
+Vokha shows:                Qh - Jc - 2c - 5c (a straight, Queen high)
+
+lukasp2 didn't show hand (6d - Ad - 7s - Ts)
+
+Vokha wins:                 EUR 0.42 (with a straight, Queen high)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:59:41 GMT
+
+Game # 2137899674 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.94 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 3.94 in seat 3)
+kos081                      (EUR 7.89 in seat 4)
+lukasp2                     (EUR 1.89 in seat 5)
+Vokha                       (EUR 1.02 in seat 6)
+
+Dealer:                     lukasp2
+Small Blind:                Vokha       (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         Ac - Td - Tc - 2d
+
+akilim                      Fold        
+Makesdy                     Fold        
+kos081                      Call        (0.04)
+lukasp2                     Raise       (0.18)
+Vokha                       Fold        
+F4UXR34L                    Fold        
+kos081                      Call        (0.14)
+
+Flop                        3h - 9h - Jh
+
+kos081                      Check       
+lukasp2                     Check       
+
+Turn                        3h - 9h - Jh - 6d
+
+kos081                      Bet         (0.21)
+lukasp2                     Call        (0.21)
+
+River                       3h - 9h - Jh - 6d - Qc
+
+kos081                      Bet         (0.84)
+lukasp2                     Call        (0.84)
+
+kos081 shows:               Qh - Js - Ah - 7h (a flush, Ace high)
+
+lukasp2 didn't show hand (8d - 6c - Th - Kc)
+
+kos081 wins:                EUR 2.40 (with a flush, Ace high)
+Rake:                       EUR 0.12
+
+Game ended 2011-03-21 17:01:18 GMT
+
+Game # 2137905180 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.90 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 3.94 in seat 3)
+kos081                      (EUR 9.06 in seat 4)
+lukasp2                     (EUR 0.66 in seat 5)
+Vokha                       (EUR 1.00 in seat 6)
+
+Dealer:                     Vokha
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+
+F4UXR34L was dealt:         7c - Kd - Ac - 6c
+
+Makesdy                     Fold        
+kos081                      Call        (0.04)
+lukasp2                     Call        (0.04)
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Check       
+
+Flop                        Js - 6d - Kc
+
+akilim                      Check       
+kos081                      Check       
+lukasp2                     Bet         (0.14)
+akilim                      Call        (0.14)
+kos081                      Fold        
+
+Turn                        Js - 6d - Kc - Jc
+
+akilim                      Check       
+lukasp2                     Bet         (0.42)
+akilim                      Fold        
+lukasp2                     Payback     (0.42)
+
+lukasp2 didn't show hand
+
+lukasp2 wins:               EUR 0.40
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:02:05 GMT
+
+Game # 2137905419 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.88 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 3.94 in seat 3)
+kos081                      (EUR 9.02 in seat 4)
+lukasp2                     (EUR 0.88 in seat 5)
+Vokha                       (EUR 1.00 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         6s - Th - Kc - Qs
+
+kos081                      Call        (0.04)
+lukasp2                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Call        (0.02)
+Makesdy                     Check       
+
+Flop                        3s - 2h - 2c
+
+akilim                      Check       
+Makesdy                     Check       
+kos081                      Bet         (0.12)
+akilim                      Call        (0.12)
+Makesdy                     Fold        
+
+Turn                        3s - 2h - 2c - 8c
+
+akilim                      Check       
+kos081                      Bet         (0.36)
+akilim                      Raise       (0.72)
+kos081                      Raise       (2.16)
+akilim                      Fold        
+kos081                      Payback     (1.80)
+
+kos081 didn't show hand
+
+kos081 wins:                EUR 1.71
+Rake:                       EUR 0.09
+
+Game ended 2011-03-21 17:03:23 GMT
+
+Game # 2137910856 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.88 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 3.90 in seat 3)
+kos081                      (EUR 9.85 in seat 4)
+lukasp2                     (EUR 0.88 in seat 5)
+Vokha                       (EUR 1.00 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  kos081      (0.04)
+
+F4UXR34L was dealt:         Kc - 5h - 5d - 8d
+
+lukasp2                     Raise       (0.14)
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Call        (0.14)
+Makesdy                     Fold        
+kos081                      Call        (0.10)
+
+Flop                        As - 4c - Jh
+
+kos081                      Check       
+lukasp2                     Bet         (0.44)
+akilim                      Fold        
+kos081                      Fold        
+lukasp2                     Payback     (0.44)
+
+lukasp2 didn't show hand
+
+lukasp2 wins:               EUR 0.42
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:04:05 GMT
+
+Game # 2137911090 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.88 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 3.88 in seat 3)
+kos081                      (EUR 9.71 in seat 4)
+lukasp2                     (EUR 1.16 in seat 5)
+Vokha                       (EUR 1.00 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                kos081      (0.02)
+Big Blind:                  lukasp2     (0.04)
+
+F4UXR34L was dealt:         Qc - 8c - Qd - 7d
+
+Vokha                       Fold        
+F4UXR34L                    Call        (0.04)
+akilim                      Fold        
+Makesdy                     Fold        
+kos081                      Call        (0.02)
+lukasp2                     Check       
+
+Flop                        Kh - Kd - 5h
+
+kos081                      Check       
+lukasp2                     Check       
+F4UXR34L                    Check       
+
+Turn                        Kh - Kd - 5h - Kc
+
+kos081                      Bet         (0.08)
+lukasp2                     Fold        
+F4UXR34L                    Call        (0.08)
+
+River                       Kh - Kd - 5h - Kc - 8s
+
+kos081                      Bet         (0.12)
+F4UXR34L                    Call        (0.12)
+
+kos081 shows:               5c - 9d - 5s - Ad (a full house, Kings full of Fives)
+F4UXR34L shows:             Qc - 8c - Qd - 7d (a full house, Kings full of Queens)
+
+F4UXR34L wins:              EUR 0.50 (with a full house, Kings full of Queens)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:05:11 GMT
+
+Game # 2137911470 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.14 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 3.88 in seat 3)
+kos081                      (EUR 9.47 in seat 4)
+lukasp2                     (EUR 1.12 in seat 5)
+Vokha                       (EUR 1.00 in seat 6)
+
+Dealer:                     kos081
+Small Blind:                lukasp2     (0.02)
+Big Blind:                  Vokha       (0.04)
+
+F4UXR34L was dealt:         8s - 4c - 7d - Ah
+
+F4UXR34L                    Fold        
+akilim                      Fold        
+Makesdy                     Call        (0.04)
+kos081                      Fold        
+lukasp2                     Call        (0.02)
+Vokha                       Check       
+
+Flop                        2h - 6h - 4d
+
+lukasp2                     Bet         (0.12)
+Vokha                       Call        (0.12)
+Makesdy                     Fold        
+
+Turn                        2h - 6h - 4d - Jd
+
+lukasp2                     Bet         (0.36)
+Vokha                       Call        (0.36)
+
+River                       2h - 6h - 4d - Jd - 9c
+
+lukasp2                     All-In      (0.60)
+Vokha                       Fold        
+lukasp2                     Payback     (0.60)
+
+lukasp2 didn't show hand
+
+lukasp2 wins:               EUR 1.03
+Rake:                       EUR 0.05
+
+Game ended 2011-03-21 17:06:21 GMT
+
+Game # 2137915868 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.14 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 3.84 in seat 3)
+kos081                      (EUR 9.47 in seat 4)
+lukasp2                     (EUR 1.63 in seat 5)
+Vokha                       (EUR 0.48 in seat 6)
+
+Dealer:                     lukasp2
+Small Blind:                Vokha       (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         Jc - Td - 8d - 7s
+
+akilim                      Fold        
+Makesdy                     Raise       (0.14)
+kos081                      Call        (0.14)
+lukasp2                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Call        (0.10)
+
+Flop                        Qh - Ks - Tc
+
+F4UXR34L                    Check       
+Makesdy                     Check       
+kos081                      Check       
+
+Turn                        Qh - Ks - Tc - 6c
+
+F4UXR34L                    Check       
+Makesdy                     Check       
+kos081                      Check       
+
+River                       Qh - Ks - Tc - 6c - Qd
+
+F4UXR34L                    Check       
+Makesdy                     Check       
+kos081                      Check       
+
+F4UXR34L shows:             Jc - Td - 8d - 7s (two pairs, Queens and Tens)
+Makesdy shows:              2h - Ah - 2d - Ad (two pairs, Aces and Queens)
+
+kos081 didn't show hand (5s - 2s - 4h - 9h)
+
+Makesdy wins:               EUR 0.42 (with two pairs, Aces and Queens)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:07:38 GMT
+
+Game # 2137916302 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 4.12 in seat 3)
+kos081                      (EUR 9.33 in seat 4)
+lukasp2                     (EUR 1.63 in seat 5)
+Vokha                       (EUR 0.46 in seat 6)
+
+Dealer:                     Vokha
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+
+F4UXR34L was dealt:         9c - 6s - Ad - Kc
+
+Makesdy                     Fold        
+kos081                      Call        (0.04)
+lukasp2                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Check       
+
+Flop                        Qd - 2h - Jc
+
+akilim                      Bet         (0.07)
+kos081                      Call        (0.07)
+
+Turn                        Qd - 2h - Jc - Ts
+
+akilim                      Check       
+kos081                      Check       
+
+River                       Qd - 2h - Jc - Ts - 7h
+
+akilim                      Check       
+kos081                      Bet         (0.18)
+akilim                      Call        (0.18)
+
+kos081 shows:               Td - 7d - 5h - Jd (two pairs, Jacks and Tens)
+
+akilim didn't show hand (8d - Ah - Qc - 3d)
+
+kos081 wins:                EUR 0.57 (with two pairs, Jacks and Tens)
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 17:08:34 GMT
+
+Game # 2137916618 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.98 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 4.12 in seat 3)
+kos081                      (EUR 9.61 in seat 4)
+lukasp2                     (EUR 1.63 in seat 5)
+Vokha                       (EUR 0.46 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         Th - Tc - Qs - 5d
+
+kos081                      Fold        
+lukasp2                     Fold        
+Vokha                       Call        (0.04)
+F4UXR34L                    Fold        
+akilim                      Fold        
+Makesdy                     Check       
+
+Flop                        9h - 6h - Js
+
+Makesdy                     Check       
+Vokha                       Check       
+
+Turn                        9h - 6h - Js - 2d
+
+Makesdy                     Bet         (0.10)
+Vokha                       Fold        
+Makesdy                     Payback     (0.10)
+
+Makesdy didn't show hand
+
+Makesdy wins:               EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:09:26 GMT
+
+Game # 2137922912 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.98 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 4.18 in seat 3)
+lukasp2                     (EUR 1.63 in seat 5)
+Vokha                       (EUR 0.42 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  lukasp2     (0.04)
+
+F4UXR34L was dealt:         5h - 7d - Ks - 2d
+
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Fold        
+Makesdy                     Fold        
+lukasp2                     Payback     (0.02)
+
+lukasp2 didn't show hand
+
+lukasp2 wins:               EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:09:55 GMT
+
+Game # 2137923085 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.98 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 4.16 in seat 3)
+lukasp2                     (EUR 1.65 in seat 5)
+Vokha                       (EUR 0.42 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                lukasp2     (0.02)
+Big Blind:                  Vokha       (0.04)
+
+F4UXR34L was dealt:         6s - 7s - Ah - Jd
+
+F4UXR34L                    Fold        
+akilim                      Fold        
+Makesdy                     Fold        
+lukasp2                     Raise       (0.10)
+Vokha                       Call        (0.08)
+
+Flop                        4s - Ts - 6d
+
+lukasp2                     Bet         (0.18)
+Vokha                       All-In      (0.30)
+lukasp2                     Call        (0.12)
+
+Turn                        4s - Ts - 6d - 6c
+River                       4s - Ts - 6d - 6c - 5c
+
+lukasp2 shows:              Qs - 3d - Kh - 5h (two pairs, Sixes and Fives)
+Vokha shows:                Ks - 2s - 7c - Qh (a pair of Sixes)
+
+lukasp2 wins:               EUR 0.80 (with two pairs, Sixes and Fives)
+Rake:                       EUR 0.04
+
+Game ended 2011-03-21 17:10:40 GMT
+
+Game # 2137923379 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.98 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 4.16 in seat 3)
+lukasp2                     (EUR 2.03 in seat 5)
+Vokha                       (EUR 0.80 in seat 6)
+
+Dealer:                     lukasp2
+Small Blind:                Vokha       (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         As - Ks - 9s - 2h
+
+akilim                      Fold        
+Makesdy                     Fold        
+lukasp2                     Fold        
+Vokha                       Raise       (0.10)
+F4UXR34L                    Fold        
+Vokha                       Payback     (0.08)
+
+Vokha didn't show hand
+
+Vokha wins:                 EUR 0.08
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:11:25 GMT
+
+Game # 2137923575 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.94 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 4.16 in seat 3)
+Vokha                       (EUR 0.84 in seat 6)
+
+Dealer:                     Vokha
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+
+F4UXR34L was dealt:         4c - 2d - 7d - Kc
+
+Makesdy                     Fold        
+Vokha                       Raise       (0.14)
+F4UXR34L                    Fold        
+akilim                      Fold        
+Vokha                       Payback     (0.10)
+
+Vokha didn't show hand
+
+Vokha wins:                 EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:11:41 GMT
+
+Game # 2137923651 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.92 in seat 1)
+akilim                      (EUR 4.00 in seat 2)
+Makesdy                     (EUR 4.16 in seat 3)
+Vokha                       (EUR 0.90 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         6h - 3d - 6c - 4c
+
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Call        (0.02)
+Makesdy                     Check       
+
+Flop                        7s - 9c - 3h
+
+akilim                      Check       
+Makesdy                     Check       
+
+Turn                        7s - 9c - 3h - Ac
+
+akilim                      Bet         (0.06)
+Makesdy                     Fold        
+akilim                      Payback     (0.06)
+
+akilim didn't show hand
+
+akilim wins:                EUR 0.08
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:12:22 GMT
+
+Game # 2137926879 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.92 in seat 1)
+akilim                      (EUR 4.04 in seat 2)
+Makesdy                     (EUR 4.12 in seat 3)
+Vokha                       (EUR 0.90 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  Vokha       (0.04)
+
+F4UXR34L was dealt:         5s - Qd - 9c - Js
+
+F4UXR34L                    Fold        
+akilim                      Fold        
+Makesdy                     Fold        
+Vokha                       Payback     (0.02)
+
+Vokha didn't show hand
+
+Vokha wins:                 EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:12:31 GMT
+
+Game # 2137926921 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.92 in seat 1)
+akilim                      (EUR 4.04 in seat 2)
+Makesdy                     (EUR 4.10 in seat 3)
+Vokha                       (EUR 0.92 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                Vokha       (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         4c - Tc - Ad - 4h
+
+akilim                      Raise       (0.11)
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Payback     (0.07)
+
+akilim didn't show hand
+
+akilim wins:                EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:13:13 GMT
+
+Game # 2137927144 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.88 in seat 1)
+akilim                      (EUR 4.10 in seat 2)
+Makesdy                     (EUR 4.10 in seat 3)
+Vokha                       (EUR 0.90 in seat 6)
+
+Dealer:                     Vokha
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         Jd - 8d - 6s - 2s
+
+Vokha                       Fold        
+F4UXR34L                    Fold        
+Makesdy                     Payback     (0.02)
+
+Makesdy didn't show hand
+
+Makesdy wins:               EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:13:53 GMT
+
+Game # 2137927391 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.86 in seat 1)
+Makesdy                     (EUR 4.12 in seat 3)
+Vokha                       (EUR 0.90 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  Vokha       (0.04)
+
+F4UXR34L was dealt:         Jd - 9s - Jh - 9h
+
+F4UXR34L                    Raise       (0.14)
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Payback     (0.10)
+
+F4UXR34L didn't show hand
+
+F4UXR34L wins:              EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:14:09 GMT
+
+Game # 2137927474 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.92 in seat 1)
+Makesdy                     (EUR 4.10 in seat 3)
+Vokha                       (EUR 0.86 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                Vokha       (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         4h - 3s - 6s - Ac
+
+Makesdy                     Raise       (0.14)
+Vokha                       Fold        
+F4UXR34L                    Fold        
+Makesdy                     Payback     (0.10)
+
+Makesdy didn't show hand
+
+Makesdy wins:               EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:14:43 GMT
+
+Game # 2137927663 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.88 in seat 1)
+Makesdy                     (EUR 4.16 in seat 3)
+espanico8                   (EUR 2.00 in seat 4)
+Vokha                       (EUR 0.84 in seat 6)
+
+Dealer:                     Vokha
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  espanico8   (0.04)
+
+F4UXR34L was dealt:         5h - Td - 6s - 3d
+
+Vokha                       Call        (0.04)
+F4UXR34L                    Fold        
+espanico8                   Check       
+
+Flop                        Ac - Qh - 5s
+
+espanico8                   Check       
+Vokha                       Check       
+
+Turn                        Ac - Qh - 5s - 2c
+
+espanico8                   Bet         (0.04)
+Vokha                       Fold        
+espanico8                   Payback     (0.04)
+
+espanico8 didn't show hand
+
+espanico8 wins:             EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:15:54 GMT
+
+Game # 2137931072 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.86 in seat 1)
+Makesdy                     (EUR 4.16 in seat 3)
+espanico8                   (EUR 2.06 in seat 4)
+Vokha                       (EUR 0.80 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                espanico8   (0.02)
+Big Blind:                  Vokha       (0.04)
+
+F4UXR34L was dealt:         3c - Td - 2s - Js
+
+F4UXR34L                    Fold        
+espanico8                   Raise       (0.10)
+Vokha                       Call        (0.08)
+
+Flop                        4h - 7h - 6s
+
+espanico8                   Bet         (0.24)
+Vokha                       Fold        
+espanico8                   Payback     (0.24)
+
+espanico8 didn't show hand
+
+espanico8 wins:             EUR 0.22
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:16:40 GMT
+
+Game # 2137931321 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.86 in seat 1)
+opasa                       (EUR 2.00 in seat 2)
+-Juhave-                    (EUR 2.00 in seat 3)
+espanico8                   (EUR 2.16 in seat 4)
+Vokha                       (EUR 0.68 in seat 6)
+
+Dealer:                     espanico8
+Small Blind:                Vokha       (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+Blind out of turn:          opasa       (0.04)
+Blind out of turn:          -Juhave-    (0.04)
+
+F4UXR34L was dealt:         6c - 7c - Th - 5d
+
+opasa                       Check       
+-Juhave-                    Check       
+espanico8                   Call        (0.04)
+Vokha                       Fold        
+F4UXR34L                    Check       
+
+Flop                        Kd - 5h - 9d
+
+F4UXR34L                    Check       
+opasa                       Bet         (0.04)
+-Juhave-                    Call        (0.04)
+espanico8                   Call        (0.04)
+F4UXR34L                    Call        (0.04)
+
+Turn                        Kd - 5h - 9d - 8c
+
+F4UXR34L                    Check       
+opasa                       Bet         (0.04)
+-Juhave-                    Fold        
+espanico8                   Raise       (0.46)
+F4UXR34L                    Raise       (1.76)
+opasa                       Fold        
+espanico8                   All-In      (1.62)
+F4UXR34L                    Call        (0.32)
+
+River                       Kd - 5h - 9d - 8c - Ac
+
+F4UXR34L shows:             6c - 7c - Th - 5d (a straight, Nine high)
+espanico8 shows:            6h - 7h - Qd - 7s (a straight, Nine high)
+
+F4UXR34L wins:              EUR 2.16 split pot (with a straight, Nine high)
+espanico8 wins:             EUR 2.16 split pot (with a straight, Nine high)
+Rake:                       EUR 0.22
+
+Game ended 2011-03-21 17:18:08 GMT
+
+Game # 2137936806 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 3.86 in seat 1)
+opasa                       (EUR 1.88 in seat 2)
+-Juhave-                    (EUR 1.92 in seat 3)
+espanico8                   (EUR 2.16 in seat 4)
+Makesdy                     (EUR 4.16 in seat 5)
+Vokha                       (EUR 0.66 in seat 6)
+
+Dealer:                     Vokha
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  opasa       (0.04)
+Blind out of turn:          Makesdy     (0.04)
+
+F4UXR34L was dealt:         Tc - Kd - 8s - 2d
+
+-Juhave-                    Call        (0.04)
+espanico8                   Call        (0.04)
+Makesdy                     Check       
+Vokha                       Fold        
+F4UXR34L                    Fold        
+opasa                       Check       
+
+Flop                        4s - 5d - Th
+
+opasa                       Check       
+-Juhave-                    Check       
+espanico8                   Bet         (0.13)
+Makesdy                     Fold        
+opasa                       Call        (0.13)
+-Juhave-                    Fold        
+
+Turn                        4s - 5d - Th - Ts
+
+opasa                       Check       
+espanico8                   Check       
+
+River                       4s - 5d - Th - Ts - Jh
+
+opasa                       Bet         (0.44)
+espanico8                   Fold        
+opasa                       Payback     (0.44)
+
+opasa didn't show hand
+
+opasa wins:                 EUR 0.42
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:19:20 GMT
+
+Game # 2137937188 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+opasa                       (EUR 2.13 in seat 2)
+-Juhave-                    (EUR 1.88 in seat 3)
+espanico8                   (EUR 1.99 in seat 4)
+Makesdy                     (EUR 4.12 in seat 5)
+Vokha                       (EUR 0.66 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                opasa       (0.02)
+Big Blind:                  -Juhave-    (0.04)
+
+F4UXR34L was dealt:         Js - Jh - 3s - 9d
+
+espanico8                   Call        (0.04)
+Makesdy                     Fold        
+Vokha                       Call        (0.04)
+F4UXR34L                    Fold        
+opasa                       Call        (0.02)
+-Juhave-                    Check       
+
+Flop                        4s - Kd - 7c
+
+opasa                       Check       
+-Juhave-                    Check       
+espanico8                   Bet         (0.16)
+Vokha                       Fold        
+opasa                       Fold        
+-Juhave-                    Fold        
+espanico8                   Payback     (0.16)
+
+espanico8 didn't show hand
+
+espanico8 wins:             EUR 0.16
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:20:13 GMT
+
+Game # 2137937476 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+opasa                       (EUR 2.09 in seat 2)
+-Juhave-                    (EUR 1.84 in seat 3)
+espanico8                   (EUR 2.11 in seat 4)
+Makesdy                     (EUR 4.12 in seat 5)
+Vokha                       (EUR 0.62 in seat 6)
+
+Dealer:                     opasa
+Small Blind:                -Juhave-    (0.02)
+Big Blind:                  espanico8   (0.04)
+
+F4UXR34L was dealt:         2c - Qd - 6h - 4c
+
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Fold        
+opasa                       Call        (0.04)
+-Juhave-                    Call        (0.02)
+espanico8                   Raise       (0.12)
+opasa                       Call        (0.12)
+-Juhave-                    Call        (0.12)
+
+Flop                        8h - Ac - Qh
+
+-Juhave-                    Check       
+espanico8                   Bet         (0.48)
+opasa                       Fold        
+-Juhave-                    Call        (0.48)
+
+Turn                        8h - Ac - Qh - Jd
+
+-Juhave-                    Check       
+espanico8                   Bet         (1.44)
+-Juhave-                    All-In      (1.20)
+espanico8                   Payback     (0.24)
+
+River                       8h - Ac - Qh - Jd - 4h
+
+-Juhave- shows:             9h - Kh - Jh - 5h (a flush, King high)
+espanico8 shows:            7d - 8c - Js - Ad (two pairs, Aces and Jacks)
+
+-Juhave- wins:              EUR 3.65 (with a flush, King high)
+Rake:                       EUR 0.19
+
+Game ended 2011-03-21 17:20:58 GMT
+
+Game # 2137937697 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+opasa                       (EUR 1.93 in seat 2)
+-Juhave-                    (EUR 3.65 in seat 3)
+espanico8                   (EUR 0.27 in seat 4)
+Makesdy                     (EUR 4.12 in seat 5)
+Vokha                       (EUR 0.62 in seat 6)
+
+Dealer:                     -Juhave-
+Small Blind:                espanico8   (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         Ad - 5h - 2s - 7d
+
+F4UXR34L                    Fold        
+opasa                       Call        (0.04)
+-Juhave-                    Call        (0.04)
+espanico8                   Raise       (0.18)
+Makesdy                     Fold        
+opasa                       Fold        
+-Juhave-                    Call        (0.16)
+
+Flop                        7c - 7h - Qd
+
+espanico8                   All-In      (0.07)
+-Juhave-                    Call        (0.07)
+
+Turn                        7c - 7h - Qd - Jd
+River                       7c - 7h - Qd - Jd - 6c
+
+espanico8 shows:            Th - 8c - 5d - Kd (a pair of Sevens)
+-Juhave- shows:             Jc - 6d - 5c - Qc (two pairs, Queens and Jacks)
+
+-Juhave- wins:              EUR 0.59 (with two pairs, Queens and Jacks)
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 17:21:51 GMT
+
+Game # 2137947029 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+opasa                       (EUR 1.89 in seat 2)
+-Juhave-                    (EUR 3.97 in seat 3)
+espanico8                   (EUR 2.00 in seat 4)
+Makesdy                     (EUR 4.08 in seat 5)
+Vokha                       (EUR 0.62 in seat 6)
+
+Dealer:                     espanico8
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         4d - Kd - Qd - 2c
+
+opasa                       Fold        
+-Juhave-                    Fold        
+espanico8                   Raise       (0.08)
+Makesdy                     Call        (0.06)
+F4UXR34L                    Fold        
+
+Flop                        Jh - 2s - 2d
+
+Makesdy                     Check       
+espanico8                   Check       
+
+Turn                        Jh - 2s - 2d - 5h
+
+Makesdy                     Check       
+espanico8                   Bet         (0.20)
+Makesdy                     Fold        
+espanico8                   Payback     (0.20)
+
+espanico8 didn't show hand
+
+espanico8 wins:             EUR 0.18
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:22:26 GMT
+
+Game # 2137947161 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+opasa                       (EUR 1.89 in seat 2)
+-Juhave-                    (EUR 3.97 in seat 3)
+espanico8                   (EUR 2.10 in seat 4)
+Makesdy                     (EUR 4.00 in seat 5)
+Vokha                       (EUR 0.62 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  opasa       (0.04)
+
+F4UXR34L was dealt:         Th - 3d - 7h - Jc
+
+-Juhave-                    Call        (0.04)
+espanico8                   Call        (0.04)
+Makesdy                     Fold        
+F4UXR34L                    Fold        
+opasa                       Check       
+
+Flop                        6d - Ts - As
+
+opasa                       Bet         (0.04)
+-Juhave-                    Call        (0.04)
+espanico8                   Call        (0.04)
+
+Turn                        6d - Ts - As - 4s
+
+opasa                       Check       
+-Juhave-                    Check       
+espanico8                   Bet         (0.26)
+opasa                       Fold        
+-Juhave-                    Fold        
+espanico8                   Payback     (0.26)
+
+espanico8 didn't show hand
+
+espanico8 wins:             EUR 0.24
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:23:37 GMT
+
+Game # 2137947521 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Churui"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+opasa                       (EUR 1.81 in seat 2)
+-Juhave-                    (EUR 3.89 in seat 3)
+espanico8                   (EUR 2.26 in seat 4)
+Makesdy                     (EUR 4.00 in seat 5)
+Vokha                       (EUR 0.62 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                opasa       (0.02)
+Big Blind:                  -Juhave-    (0.04)
+
+F4UXR34L was dealt:         9c - Qs - 7d - Ah
+
+espanico8                   Call        (0.04)
+Makesdy                     Fold        
+F4UXR34L                    Fold        
+opasa                       Call        (0.02)
+-Juhave-                    Check       
+
+Flop                        4c - Th - As
+
+opasa                       Check       
+-Juhave-                    Check       
+espanico8                   Check       
+
+Turn                        4c - Th - As - 4h
+
+opasa                       Check       
+-Juhave-                    Check       
+espanico8                   Check       
+
+River                       4c - Th - As - 4h - 7h
+
+opasa                       Check       
+-Juhave-                    Check       
+espanico8                   Check       
+
+opasa shows:                3s - 5c - 3h - Tc (two pairs, Tens and Fours)
+
+-Juhave- didn't show hand (2d - 9h - Ks - Jc)
+espanico8 didn't show hand (Kc - Qd - Js - 5s)
+
+opasa wins:                 EUR 0.12 (with two pairs, Tens and Fours)
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:24:52 GMT
+
