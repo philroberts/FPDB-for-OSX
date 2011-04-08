@@ -1210,7 +1210,7 @@ class Sql:
                         id BIGSERIAL, PRIMARY KEY (id),
                         file TEXT NOT NULL,
                         site VARCHAR(32),
-                        type VARCHAR(7),timestamp without time zone
+                        type VARCHAR(7),timestamp without time zone,
                         startTime timestamp without time zone NOT NULL,
                         lastUpdate timestamp without time zone NOT NULL,
                         endTime timestamp without time zone,
