@@ -23,7 +23,6 @@ _ = L10n.get_translation()
 import os  # todo: remove this once import_dir is in fpdb_import
 import sys
 from time import time, strftime, sleep, clock
-from datetime import datetime
 import traceback
 import math
 import datetime
@@ -169,12 +168,12 @@ class Importer:
             
     def logImport(self, type, file, stored, dups, partial, errs, ttime, id):
         hands = stored + dups + partial + errs
-        now = datetime.utcnow()
+        now = datetime.datetime.utcnow()
         ttime100 = ttime * 100
         self.database.updateFile([type, now, now, hands, stored, dups, partial, errs, ttime100, True, id])
     
     def addFileToList(self, file, site, filter):
-        now = datetime.utcnow()
+        now = datetime.datetime.utcnow()
         file = os.path.splitext(os.path.basename(file))[0]
         id = self.database.storeFile([file, site, now, now, 0, 0, 0, 0, 0, 0, False])
         return [site] + [filter] + [id]
