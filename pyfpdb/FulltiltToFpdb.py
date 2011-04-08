@@ -46,6 +46,7 @@ class Fulltilt(HandHistoryConverter):
                         '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
                         '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
                         '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
+                        '5.00': ('1.25', '2.50'),       '5': ('1.25', '2.50'),
                         '6.00': ('1.00', '3.00'),       '6': ('1.00', '3.00'),
                         '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
                        '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
@@ -171,6 +172,7 @@ class Fulltilt(HandHistoryConverter):
             self.re_PostDead         = re.compile(r"^%(PLAYERS)s posts a dead small blind of [%(LS)s]?(?P<SB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_PostBB           = re.compile(r"^%(PLAYERS)s posts (the big blind of )?[%(LS)s]?(?P<BB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_Antes            = re.compile(r"^%(PLAYERS)s antes [%(LS)s]?(?P<ANTE>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
+            self.re_ReturnsAnte      = re.compile(r"^Ante of [%(LS)s]?[%(NUM)s]+ returned to %(PLAYERS)s" % self.substitutions, re.MULTILINE)
             self.re_BringIn          = re.compile(r"^%(PLAYERS)s brings in for [%(LS)s]?(?P<BRINGIN>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_PostBoth         = re.compile(r"^%(PLAYERS)s posts small \& big blinds \[[%(LS)s]? (?P<SBBB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
@@ -356,8 +358,9 @@ class Fulltilt(HandHistoryConverter):
             # Remove any listed as sitting out in the summary as start of hand info unreliable
             n = self.re_SummarySitout.finditer(post)
             for b in n:
-                del plist[b.group('PNAME')]
-                #print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
+                if b.group('PNAME') in plist:
+                    #print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
+                    del plist[b.group('PNAME')]
 
         # Add remaining players
         for a in plist:
@@ -414,11 +417,16 @@ class Fulltilt(HandHistoryConverter):
 
     def readAntes(self, hand):
         logging.debug(_("reading antes"))
+        slist = []
+        n = self.re_ReturnsAnte.finditer(hand.handText)
+        for player in n:
+            #If a player has their ante returned, then they timed out and are actually sitting out
+            slist.append(player.group('PNAME'))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
-#            if player.group() != 
-            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+            if player.group('PNAME') not in slist:
+                hand.addAnte(player.group('PNAME'), player.group('ANTE'))
 
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
