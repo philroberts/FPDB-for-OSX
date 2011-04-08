@@ -118,7 +118,7 @@ class GuiAutoImport (threading.Thread):
         hbox.pack_start(lbl1, expand=True, fill=False)
 
         self.doAutoImportBool = False
-        self.startButton = gtk.ToggleButton(_("  Start _Auto Import  "))
+        self.startButton = gtk.ToggleButton(_("Start _Auto Import"))
         self.startButton.connect("clicked", self.startClicked, "start clicked")
         hbox.pack_start(self.startButton, expand=False, fill=False)
 
@@ -177,7 +177,7 @@ class GuiAutoImport (threading.Thread):
     def do_import(self):
         """Callback for timer to do an import iteration."""
         if self.doAutoImportBool:
-            self.startButton.set_label(_(u'  _Auto Import Running  '))
+            self.startButton.set_label(_(u'_Auto Import Running'))
             self.importer.runUpdated()
             self.addText(".")
             #sys.stdout.write(".")
@@ -188,9 +188,9 @@ class GuiAutoImport (threading.Thread):
 
     def reset_startbutton(self):
         if self.pipe_to_hud is not None:
-            self.startButton.set_label(_(u'  Stop _Auto Import  '))
+            self.startButton.set_label(_(u'Stop _Auto Import'))
         else:
-            self.startButton.set_label(_(u'  Start _Auto Import  '))
+            self.startButton.set_label(_(u'Start _Auto Import'))
 
         return False
 
@@ -242,7 +242,7 @@ class GuiAutoImport (threading.Thread):
             if self.settings['global_lock'].acquire(wait=False, source="AutoImport"):   # returns false immediately if lock not acquired
                 self.addText(_("\nGlobal lock taken ... Auto Import Started.\n"))
                 self.doAutoImportBool = True
-                self.startButton.set_label(_(u'  _Stop Auto Import  '))
+                self.startButton.set_label(_(u'Stop _Auto Import'))
                 while gtk.events_pending(): # change the label NOW don't wait for the pipe to open
                     gtk.main_iteration(False)
                 if self.pipe_to_hud is None:
@@ -276,7 +276,7 @@ class GuiAutoImport (threading.Thread):
                     except:
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
                         #self.addText( "\n*** GuiAutoImport Error opening pipe: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1]))
-                        self.addText(_("\n*** GuiAutoImport Error opening pipe: ") + traceback.format_exc() )
+                        self.addText("\n" + _("*** GuiAutoImport Error opening pipe:") + " " + traceback.format_exc() )
                     else:
                         for site in self.input_settings:
                             self.importer.addImportDirectory(self.input_settings[site][0], True, site, self.input_settings[site][1])

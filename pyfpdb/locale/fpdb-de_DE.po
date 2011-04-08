@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-04-07 10:56+CEST\n"
-"PO-Revision-Date: 2011-04-07 05:59+0200\n"
+"POT-Creation-Date: 2011-04-08 10:50+CEST\n"
+"PO-Revision-Date: 2011-04-08 10:49+0200\n"
 "Last-Translator: Steffen Schaumburg <steffen@schaumburger.info>\n"
 "Language-Team: Fpdb\n"
 "Language: de\n"
@@ -143,11 +143,11 @@ msgstr "DEBUG: "
 msgid "fpdb card encoding(same as pokersource)"
 msgstr "fpdb Karten-Kodierung(gleiche wie pokersource)"
 
-#: Charset.py:45 Charset.py:60 Charset.py:75 Charset.py:86 Charset.py:94
+#: Charset.py:43 Charset.py:58 Charset.py:73
 msgid "Could not convert: \"%s\"\n"
 msgstr "Konnte \"%s\" nicht konvertieren.\n"
 
-#: Charset.py:48 Charset.py:63 Charset.py:78
+#: Charset.py:46 Charset.py:61 Charset.py:76
 msgid "Could not encode: \"%s\"\n"
 msgstr "Konnte \"%s% nicht kodieren.\n"
 
@@ -183,44 +183,46 @@ msgstr "Default Logger für %s initialisiert"
 msgid "Creating directory: '%s'"
 msgstr "Erstelle Verzeichnis \"%s\""
 
-#: Configuration.py:213
-msgid ""
-"Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're "
-"not on a Mac, please report this problem."
+#: Configuration.py:215
+msgid "Default encoding set to US-ASCII, defaulting to CP1252 instead."
 msgstr ""
-"Standardkodierung war auf US-ASCII gesetzt, verwende stattdessen CP1252 - "
-"bitte melde dieses Problem, es sei denn Du spielst an einem Mac."
+"Standardkodierung war auf US-ASCII gesetzt, es wird stattdessen CP1252 "
+"verwendet."
 
-#: Configuration.py:537
+#: Configuration.py:215
+msgid "Please report this problem."
+msgstr "Bitte melde dieses Problem."
+
+#: Configuration.py:536
 msgid "config.general: adding %s = %s"
 msgstr "config.general: Füge %s=%s hinzu"
 
-#: Configuration.py:584 Configuration.py:585
+#: Configuration.py:583 Configuration.py:584
 msgid "bad number in xalignment was ignored"
 msgstr "Unerlaubter Wert in xalignment wurde ignoriert"
 
-#: Configuration.py:640 Configuration.py:647 Configuration.py:666
-#: Configuration.py:673
+#: Configuration.py:639 Configuration.py:646 Configuration.py:665
+#: Configuration.py:672
 msgid "Invalid config value for %s, defaulting to %s"
 msgstr "Unerlaubter Konfigurationswert für %s, verwende Default %s"
 
-#: Configuration.py:691 Configuration.py:692
+#: Configuration.py:690 Configuration.py:691
 msgid "Configuration file %s not found. Using defaults."
 msgstr "Konfigurationsdatei %s nicht gefunden. Verwende Defaults."
 
-#: Configuration.py:722
+#: Configuration.py:721
 msgid "Reading configuration file %s"
 msgstr "Lese Konfigurationsdatei %s"
 
-#: Configuration.py:729
+#: Configuration.py:728
 msgid "Error parsing %s."
 msgstr "Fehler beim Parsen von %s."
 
-#: Configuration.py:729 Configuration.py:845
+#: Configuration.py:728 Configuration.py:844
 msgid "See error log file."
 msgstr "Siehe error Logdatei."
 
-#: Configuration.py:845
+#: Configuration.py:844
 msgid "Error parsing example configuration file %s."
 msgstr "Fehler beim Lesen der Beispielskonfigurationsdatei %s."
 
@@ -278,7 +280,7 @@ msgstr "*** Datenbankfehler: "
 
 #: Database.py:760
 msgid "Database: n hands ago the date was:"
-msgstr "Datenbank: Datum vor n Tagen war:"
+msgstr "Datenbank: Datum vor n Händen war:"
 
 #: Database.py:917
 msgid "ERROR: query %s result does not have player_id as first column"
@@ -300,26 +302,31 @@ msgstr "getLastInsertId(): Unbekanntes Backend: %d"
 msgid "*** Database get_last_insert_id error: "
 msgstr "*** Datenbank get_last_insert_id Fehler: "
 
+#: Database.py:1084 Database.py:1514
+msgid "dropped foreign key %s_%s_fkey, continuing ..."
+msgstr "Foreign Key %s_%s_idx gelöscht, fahre fort ..."
+
 #: Database.py:1087 Database.py:1091 Database.py:1123 Database.py:1127
-#: Database.py:1516 Database.py:1520 fpdb.pyw:1388
+#: Database.py:1498 Database.py:1517 Database.py:1521 fpdb.pyw:1387
 msgid "Warning:"
 msgstr "Warnung:"
 
-#: Database.py:1087 Database.py:1516
-msgid "drop foreign key %s_%s_fkey failed: %s, continuing ..."
-msgstr "Löschung des Index %s_%s_idx fehlgeschlagen: %s, fahre fort ..."
+#: Database.py:1087 Database.py:1498 Database.py:1517
+msgid "Drop foreign key %s_%s_fkey failed: %s, continuing ..."
+msgstr "Löschung des foreign key %s_%s_fkey fehlgeschlagen: %s, fahre fort ..."
 
-#: Database.py:1091 Database.py:1520
+#: Database.py:1091 Database.py:1521
 msgid "constraint %s_%s_fkey not dropped: %s, continuing ..."
-msgstr "Constraint %s_%s_idx nicht gelöscht: %s, fahre fort ..."
+msgstr "Constraint %s_%s_fkey nicht gelöscht: %s, fahre fort ..."
 
-#: Database.py:1099 Database.py:1110 Database.py:1410
-msgid "Dropping index "
-msgstr "Index wird gelöscht"
+#: Database.py:1099 Database.py:1110 Database.py:1395 Database.py:1402
+#: Database.py:1410
+msgid "Dropping index:"
+msgstr "Index wird gelöscht:"
 
-#: Database.py:1105 Database.py:1400 Database.py:1408 Database.py:1415
-msgid "    drop index failed: "
-msgstr "    Index-Löschung fehlgeschlagen: "
+#: Database.py:1105 Database.py:1400 Database.py:1409 Database.py:1415
+msgid "Drop index failed:"
+msgstr "Index-Löschung fehlgeschlagen:"
 
 #: Database.py:1123
 msgid "drop index %s_%s_idx failed: %s, continuing ..."
@@ -334,13 +341,13 @@ msgid "prepare import took %s seconds"
 msgstr "Vorbereitung des Import dauerte %s Sekunden"
 
 #: Database.py:1167 Database.py:1175 Database.py:1447 Database.py:1455
-msgid "Creating foreign key "
-msgstr "Erstelle Foreign Key "
+msgid "Creating foreign key:"
+msgstr "Erstelle Foreign Key:"
 
 #: Database.py:1173 Database.py:1182 Database.py:1194 Database.py:1453
 #: Database.py:1462
-msgid "Create foreign key failed: "
-msgstr "Erstellen des Foreign Keys fehlgeschlagen: "
+msgid "Create foreign key failed:"
+msgstr "Erstellen des Foreign Keys fehlgeschlagen:"
 
 #: Database.py:1189 Database.py:1198 Database.py:1354 Database.py:1355
 #: Database.py:1363 Database.py:1364 Database.py:1371 Database.py:1372
@@ -348,8 +355,8 @@ msgid "Creating index %s %s"
 msgstr "Erstelle Index %s %s"
 
 #: Database.py:1203 Database.py:1360 Database.py:1369 Database.py:1377
-msgid "Create index failed: "
-msgstr "Erstellen des Indexes fehlgeschlagen: "
+msgid "Create index failed:"
+msgstr "Erstellen des Indexes fehlgeschlagen:"
 
 #: Database.py:1211
 msgid "After import took %s seconds"
@@ -360,156 +367,139 @@ msgid "Finished recreating tables"
 msgstr "Neuerstellung der Tabellen abgeschlossen"
 
 #: Database.py:1292
-msgid "***Error creating tables: "
-msgstr "***Fehler beim Erstellen der Tabellen: "
+msgid "***Error creating tables:"
+msgstr "***Fehler beim Erstellen der Tabellen:"
 
 #: Database.py:1302
 msgid "*** Error unable to get databasecursor"
 msgstr "*** Fehler beim Erlangen des Datenbank-Cursors"
 
 #: Database.py:1314 Database.py:1325 Database.py:1335 Database.py:1342
-msgid "***Error dropping tables: "
-msgstr "***Fehler beim Löschen der Tabellen: "
+msgid "***Error dropping tables:"
+msgstr "***Fehler beim Löschen der Tabellen:"
 
 #: Database.py:1340
 msgid "*** Error in committing table drop"
 msgstr "*** Fehler beim Ausführen der Tabellen-Löschung"
 
 #: Database.py:1383
-msgid "Error creating indexes: "
-msgstr ""
-
-#: Database.py:1395 Database.py:1402
-#, fuzzy
-msgid "dropping index "
-msgstr "Index wird gelöscht"
+msgid "Error creating indexes:"
+msgstr "Fehler bei Erstellung der Indexe:"
 
 #: Database.py:1430 Database.py:1470
-msgid "    set_isolation_level failed: "
-msgstr ""
+msgid "set_isolation_level failed:"
+msgstr "set_isolation_level fehlgeschlagen:"
 
-#: Database.py:1494 Database.py:1501
-#, fuzzy
-msgid "dropping foreign key"
-msgstr "Erstelle Foreign Key "
+#: Database.py:1494 Database.py:1502
+msgid "Dropping foreign key:"
+msgstr "Erstelle Foreign Key:"
 
-#: Database.py:1498
-msgid "    drop failed: "
-msgstr ""
-
-#: Database.py:1513
-#, fuzzy
-msgid "dropped foreign key %s_%s_fkey, continuing ..."
-msgstr ""
-"Warnung: Löschung des Index %s_%s_idx fehlgeschlagen: %s, fahre fort ..."
-
-#: Database.py:1636
+#: Database.py:1637
 msgid "Rebuild hudcache took %.1f seconds"
-msgstr ""
+msgstr "Neuerstellung des HUD-Cache dauerte %.1f Sekunden"
 
-#: Database.py:1639 Database.py:1753
+#: Database.py:1640 Database.py:1754
 msgid "Error rebuilding hudcache:"
-msgstr ""
+msgstr "Fehler bei Neuerstellung des HUD-Cache"
 
-#: Database.py:1765 Database.py:1771
+#: Database.py:1766 Database.py:1772
 msgid "Error during analyze:"
-msgstr ""
+msgstr "Fehler während analyze:"
 
-#: Database.py:1775
+#: Database.py:1776
 msgid "Analyze took %.1f seconds"
-msgstr ""
+msgstr "Analyze dauerte %.1f Sekunden"
 
-#: Database.py:1785 Database.py:1791
+#: Database.py:1786 Database.py:1792
 msgid "Error during vacuum:"
-msgstr ""
+msgstr "Fehler während vacuum"
 
-#: Database.py:1795
+#: Database.py:1796
 msgid "Vacuum took %.1f seconds"
-msgstr ""
+msgstr "Vacuum dauerte %.1f Sekunden"
 
-#: Database.py:1835
+#: Database.py:1836
 msgid "Error during lock_for_insert:"
-msgstr ""
+msgstr "Fehler in lock_for_insert:"
 
-#: Database.py:1844
+#: Database.py:1845
 msgid "######## Hands ##########"
-msgstr ""
+msgstr "######## Hände ##########"
 
-#: Database.py:1848
+#: Database.py:1849
 msgid "###### End Hands ########"
-msgstr ""
+msgstr "###### Ende von Hände ########"
 
-#: Database.py:2573
+#: Database.py:2574
 msgid "######## Gametype ##########"
-msgstr ""
+msgstr "######## Gametype ##########"
 
-#: Database.py:2577
+#: Database.py:2578
 msgid "###### End Gametype ########"
-msgstr ""
+msgstr "###### Ende von Gametype ########"
 
-#: Database.py:2604
+#: Database.py:2605
 msgid "queue empty too long - writer stopping ..."
-msgstr ""
+msgstr "Queue war zu lange leer - Schreiber wird gestoppt ..."
 
-#: Database.py:2607
+#: Database.py:2608
 msgid "writer stopping, error reading queue: "
-msgstr ""
+msgstr "Schreiber wird angehalten, Fehler beim lesen der Queue: "
 
-#: Database.py:2632
+#: Database.py:2633
 msgid "deadlock detected - trying again ..."
-msgstr ""
+msgstr "Deadlock festgestellt - versuche es nochmal ..."
 
-#: Database.py:2637
-msgid "too many deadlocks - failed to store hand "
-msgstr ""
+#: Database.py:2638
+#, fuzzy
+msgid "Too many deadlocks - failed to store hand"
+msgstr "Zu viele Deadlocks - konnte Hand nicht speichern"
 
-#: Database.py:2641
-msgid "***Error storing hand: "
-msgstr ""
+#: Database.py:2642
+#, fuzzy
+msgid "***Error storing hand:"
+msgstr "***Fehler beim Speichern der Hand:"
 
-#: Database.py:2651
+#: Database.py:2652
 msgid "db writer finished: stored %d hands (%d fails) in %.1f seconds"
 msgstr ""
+"DB-Schreiber fertig: %d Hände (%d fehlgeschlagen) in %.1f Sekunden "
+"gespeichert"
 
-#: Database.py:2661
-msgid "***Error sending finish: "
+#: Database.py:2662
+#, fuzzy
+msgid "***Error sending finish:"
+msgstr "***Fehler beim Senden von finish: "
+
+#: Database.py:2748 Database.py:2761
+msgid "invalid source in %s"
 msgstr ""
 
-#: Database.py:2747
-msgid "invalid source in Database.createOrUpdateTourney"
-msgstr ""
+#: Database.py:2897 Database.py:2947
+#, fuzzy
+msgid "%s error: %s"
+msgstr "Fehler: %s"
 
-#: Database.py:2760
-msgid "invalid source in Database.createOrUpdateTourneysPlayers"
-msgstr ""
-
-#: Database.py:2896
-msgid "HandToWrite.init error: "
-msgstr ""
-
-#: Database.py:2946
-msgid "HandToWrite.set_all error: "
-msgstr ""
-
-#: Database.py:2977
+#: Database.py:2978
 msgid "nutOmatic is id_player = %d"
 msgstr ""
 
-#: Database.py:2985
+#: Database.py:2986
 msgid "query plan: "
 msgstr ""
 
-#: Database.py:2994
+#: Database.py:2995
 msgid "cards ="
 msgstr ""
 
-#: Database.py:2997
+#: Database.py:2998
 msgid "get_stats took:  %4.3f seconds"
 msgstr ""
 
-#: Database.py:2999
-msgid "press enter to continue"
-msgstr ""
+#: Database.py:3000 HandHistoryConverter.py:41 fpdb.pyw:46 fpdb.pyw:58
+#: fpdb.pyw:81
+msgid "Press ENTER to continue."
+msgstr "Drück ENTER um fortzufahren"
 
 #: EverestToFpdb.py:108 FulltiltToFpdb.py:267 FulltiltToFpdb.py:269
 msgid "Unable to recognise handinfo from: '%s'"
@@ -1741,7 +1731,7 @@ msgstr ""
 msgid "Thankyou"
 msgstr ""
 
-#: GuiSessionViewer.py:164 GuiStove.py:70 fpdb.pyw:1367
+#: GuiSessionViewer.py:164 GuiStove.py:70 fpdb.pyw:1366
 msgid "FPDB WARNING"
 msgstr "FPDB WARNUNG"
 
@@ -2386,10 +2376,6 @@ msgid ""
 "ImportError: Unable to import PYTZ library.  Please install PYTZ from http://"
 "pypi.python.org/pypi/pytz/"
 msgstr ""
-
-#: HandHistoryConverter.py:41 fpdb.pyw:46 fpdb.pyw:58 fpdb.pyw:81
-msgid "Press ENTER to continue."
-msgstr "Drück ENTER um fortzufahren"
 
 #: HandHistoryConverter.py:130
 msgid "Failed sanity check"
@@ -3949,18 +3935,18 @@ msgid ""
 "Any major error will be reported there _only_.\n"
 msgstr ""
 
-#: fpdb.pyw:1288
+#: fpdb.pyw:1287
 msgid "fpdb starting ..."
 msgstr "fpdb startet ..."
 
-#: fpdb.pyw:1388
+#: fpdb.pyw:1387
 msgid ""
 "Unable to find site  '%s'\n"
 "\n"
 "Press YES to add this site to the database."
 msgstr ""
 
-#: fpdb.pyw:1404
+#: fpdb.pyw:1403
 msgid ""
 "\n"
 "Enter short code for %s\n"
@@ -4087,11 +4073,42 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-#~ msgid "Create failed: "
+#~ msgid "Drop foreign key failed:"
+#~ msgstr "Erstellen des Foreign Keys fehlgeschlagen: "
+
+#~ msgid "Creating foreign key "
+#~ msgstr "Erstelle Foreign Key "
+
+#~ msgid "Create foreign key failed: "
+#~ msgstr "Erstellen des Foreign Keys fehlgeschlagen: "
+
+#~ msgid "    set_isolation_level failed: "
+#~ msgstr "    set_isolation_level fehlgeschlagen: "
+
+#~ msgid "Create index failed: "
 #~ msgstr "Erstellen des Indexes fehlgeschlagen: "
 
-#~ msgid "Creating mysql index %s %s"
-#~ msgstr "Erstelle MySQL Index %s %s"
+#~ msgid "drop foreign key %s_%s_fkey failed: %s, continuing ..."
+#~ msgstr ""
+#~ "Löschung des foreign key %s_%s_fkey fehlgeschlagen: %s, fahre fort ..."
+
+#~ msgid "dropping index "
+#~ msgstr "Index wird gelöscht"
+
+#, fuzzy
+#~ msgid "    drop table failed:"
+#~ msgstr "    Tabellen-Löschung fehlgeschlagen: "
+
+#~ msgid "invalid source in Database.createOrUpdateTourney"
+#~ msgstr "Ungültige Quelle in Database.createOrUpdateTourney"
+
+#, fuzzy
+#~ msgid "    drop failed: "
+#~ msgstr "    Index-Löschung fehlgeschlagen: "
+
+#, fuzzy
+#~ msgid "warning: drop pg fk %s_%s_fkey failed: %s, continuing ..."
+#~ msgstr "Löschung des Index %s_%s_idx fehlgeschlagen: %s, fahre fort ..."
 
 #~ msgid "dropping mysql index "
 #~ msgstr "MySQL-Indexe werden gelöscht"
@@ -4099,12 +4116,35 @@ msgstr ""
 #~ msgid "dropping pg index "
 #~ msgstr "PgSQL-Indexe werden gelöscht"
 
+#~ msgid "Creating PostgreSQL index "
+#~ msgstr "Erstelle PostgreSQL index"
+
+#~ msgid "Creating mysql index %s %s"
+#~ msgstr "Erstelle MySQL Index %s %s"
+
+#, fuzzy
+#~ msgid "Creating pgsql index %s %s"
+#~ msgstr "Erstelle MySQL Index %s %s"
+
+#, fuzzy
+#~ msgid "Creating sqlite index %s %s"
+#~ msgstr "Erstelle MySQL Index %s %s"
+
+#, fuzzy
+#~ msgid "Dropping sqlite index "
+#~ msgstr "MySQL-Indexe werden gelöscht"
+
+#, fuzzy
+#~ msgid "warning: drop fk %s_%s_fkey failed: %s, continuing ..."
+#~ msgstr "Löschung des Index %s_%s_idx fehlgeschlagen: %s, fahre fort ..."
+
+#, fuzzy
+#~ msgid "Create failed: "
+#~ msgstr "Erstellen des Indexes fehlgeschlagen: "
+
 #, fuzzy
 #~ msgid "Creating index "
 #~ msgstr "Erstelle MySQL Index %s %s"
-
-#~ msgid "Creating PostgreSQL index "
-#~ msgstr "Erstelle PostgreSQL index"
 
 #~ msgid "Absolute readStudPlayerCards is only a stub."
 #~ msgstr "Absolute readStudPlayerCards ist nur ein Platzhalter."

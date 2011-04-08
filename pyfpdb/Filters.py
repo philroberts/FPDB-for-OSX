@@ -1046,7 +1046,7 @@ class Filters(threading.Thread):
         btn_end.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
         btn_end.connect('clicked', self.__calendar_dialog, self.end_date)
 
-        btn_clear = gtk.Button(label=_(' Clear Dates '))
+        btn_clear = gtk.Button(label=_('Clear Dates'))
         btn_clear.connect('clicked', self.__clear_dates)
 
         hbox.pack_start(lbl_end, expand=False, padding=3)
