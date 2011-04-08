@@ -197,9 +197,14 @@ class Fulltilt(HandHistoryConverter):
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
                 ["tour", "hold", "fl"],
-
+                ["tour", "hold", "cn"],
+                
                 ["tour", "stud", "fl"],
-               ]
+                
+                ["tour", "draw", "fl"],
+                ["tour", "draw", "pl"],
+                ["tour", "draw", "nl"],
+        ]
 
     def determineGameType(self, handText):
         info = {'type':'ring'}
@@ -208,7 +213,7 @@ class Fulltilt(HandHistoryConverter):
         if not m:
             tmp = handText[0:100]
             log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error(_("determineGameType: Raising FpdbParseError for file '%s'") % self.in_path)
+            log.error("determineGameType: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
         mg = m.groupdict()
 
@@ -251,7 +256,7 @@ class Fulltilt(HandHistoryConverter):
                 info['bb'] = self.Lim_Blinds[bb][1]
             except KeyError:
                 log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
-                log.error(_("determineGameType: Raising FpdbParseError"))
+                log.error("determineGameType: " + _("Raising FpdbParseError"))
                 raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
 
         if mg['GAME'] is not None:
@@ -369,7 +374,7 @@ class Fulltilt(HandHistoryConverter):
 
         if plist == {}:
             #No players! The hand is either missing stacks or everyone is sitting out
-            raise FpdbParseError(_("FTP: readPlayerStacks: No players detected (hand #%s)") % hand.handid)
+            raise FpdbParseError(_("readPlayerStacks: No players detected (hand #%s)") % hand.handid)
 
 
     def markStreets(self, hand):
@@ -441,7 +446,7 @@ class Fulltilt(HandHistoryConverter):
             hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
         except AttributeError, e:
             # FTP has no indication that a hand is cancelled.
-            raise FpdbParseError(_("FTP: readButton: Failed to detect button (hand #%s cancelled?)") % hand.handid)
+            raise FpdbParseError(_("readButton: Failed to detect button (hand #%s cancelled?)") % hand.handid)
 
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
@@ -499,7 +504,7 @@ class Fulltilt(HandHistoryConverter):
             elif action.group('ATYPE') == ' stands pat':
                 hand.addStandsPat( street, action.group('PNAME'), action.group('CARDS'))
             else:
-                print _("FullTilt: DEBUG: unimplemented readAction: '%s' '%s'") %(action.group('PNAME'),action.group('ATYPE'),)
+                print (_("DEBUG: ") + " " + _("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):
@@ -776,7 +781,7 @@ class Fulltilt(HandHistoryConverter):
 
                 tourney.addPlayer(rank, a.group('PNAME'), winnings, "USD", 0, 0, 0) #TODO: make it store actual winnings currency
             else:
-                print (_("FullTilt: Player finishing stats unreadable : %s") % a)
+                print (_("Player finishing stats unreadable : %s") % a)
 
         # Find Hero
         n = self.re_TourneyHeroFinishingP.search(playersText)
@@ -785,9 +790,9 @@ class Fulltilt(HandHistoryConverter):
             tourney.hero = heroName
             # Is this really useful ?
             if heroName not in tourney.ranks:
-                print (_("FullTilt: %s not found in tourney.ranks ...") % heroName)
+                print (_("%s not found in tourney.ranks ...") % heroName)
             elif (tourney.ranks[heroName] != Decimal(n.group('HERO_FINISHING_POS'))):            
-                print (_("FullTilt: Bad parsing : finish position incoherent : %s / %s") % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS')))
+                print (_("Bad parsing : finish position incoherent : %s / %s") % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS')))
 
         return True
 

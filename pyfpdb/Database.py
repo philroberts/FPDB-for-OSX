@@ -467,7 +467,7 @@ class Database:
                     os.mkdir(self.config.dir_database)
                 database = os.path.join(self.config.dir_database, database)
             self.db_path = database
-            log.info(_("Connecting to SQLite: %(database)s") % {'database':self.db_path})
+            log.info(_("Connecting to SQLite: %s") % self.db_path)
             if os.path.exists(database) or create:
                 self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES )
                 self.__connected = True
@@ -510,19 +510,18 @@ class Database:
             self.cursor.execute("SELECT * FROM Settings")
             settings = self.cursor.fetchone()
             if settings[0] != DB_VERSION:
-                log.error(_("outdated or too new database version (%s) - please recreate tables")
-                              % (settings[0]))
+                log.error((_("Outdated or too new database version (%s).") % (settings[0])) + " " + _("Please recreate tables."))
                 self.wrongDbVersion = True
         except:# _mysql_exceptions.ProgrammingError:
             if database !=  ":memory:":
                 if create:
-                    print _("Failed to read settings table - recreating tables")
-                    log.info(_("Failed to read settings table - recreating tables"))
+                    print (_("Failed to read settings table.") + " - " + _("Recreating tables."))
+                    log.info(_("Failed to read settings table.") + " - " + _("Recreating tables."))
                     self.recreate_tables()
                     self.check_version(database=database, create=False)
                 else:
-                    print _("Failed to read settings table - please recreate tables")
-                    log.info(_("Failed to read settings table - please recreate tables"))
+                    print (_("Failed to read settings table.") + " - " + _("Please recreate tables."))
+                    log.info(_("Failed to read settings table.") + " - " + _("Please recreate tables."))
                     self.wrongDbVersion = True
             else:
                 self.wrongDbVersion = True
@@ -1534,37 +1533,37 @@ class Database:
         c = self.get_cursor()
         c.execute("INSERT INTO Settings (version) VALUES (%s);" % (DB_VERSION))
         #Fill Sites
-        c.execute("INSERT INTO Sites (name,code) VALUES ('Full Tilt Poker', 'FT')")
-        c.execute("INSERT INTO Sites (name,code) VALUES ('PokerStars', 'PS')")
-        c.execute("INSERT INTO Sites (name,code) VALUES ('Everleaf', 'EV')")
-        c.execute("INSERT INTO Sites (name,code) VALUES ('Win2day', 'W2')")
-        c.execute("INSERT INTO Sites (name,code) VALUES ('OnGame', 'OG')")
-        c.execute("INSERT INTO Sites (name,code) VALUES ('UltimateBet', 'UB')")
-        c.execute("INSERT INTO Sites (name,code) VALUES ('Betfair', 'BF')")
-        c.execute("INSERT INTO Sites (name,code) VALUES ('Absolute', 'AB')")
-        c.execute("INSERT INTO Sites (name,code) VALUES ('PartyPoker', 'PP')")
-        c.execute("INSERT INTO Sites (name,code) VALUES ('PacificPoker', 'P8')")
-        c.execute("INSERT INTO Sites (name,code) VALUES ('Partouche', 'PA')")
-        c.execute("INSERT INTO Sites (name,code) VALUES ('Carbon', 'CA')")
-        c.execute("INSERT INTO Sites (name,code) VALUES ('PKR', 'PK')")
-        c.execute("INSERT INTO Sites (name,code) VALUES ('iPoker', 'IP')")
-        c.execute("INSERT INTO Sites (name,code) VALUES ('Winamax', 'WM')")
-        c.execute("INSERT INTO Sites (name,code) VALUES ('Everest', 'EP')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('1', 'Full Tilt Poker', 'FT')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('2', 'PokerStars', 'PS')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('3', 'Everleaf', 'EV')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('4', 'Win2day', 'W2')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('5', 'OnGame', 'OG')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('6', 'UltimateBet', 'UB')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('7', 'Betfair', 'BF')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('8', 'Absolute', 'AB')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('9', 'PartyPoker', 'PP')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('10', 'PacificPoker', 'P8')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('11', 'Partouche', 'PA')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('12', 'Carbon', 'CA')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('13', 'PKR', 'PK')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('14', 'iPoker', 'IP')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('15', 'Winamax', 'WM')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('16', 'Everest', 'EP')")
         #Fill Actions
-        c.execute("INSERT INTO Actions (name,code) VALUES ('ante', 'A')")
-        c.execute("INSERT INTO Actions (name,code) VALUES ('small blind', 'SB')")
-        c.execute("INSERT INTO Actions (name,code) VALUES ('secondsb', 'SSB')")
-        c.execute("INSERT INTO Actions (name,code) VALUES ('big blind', 'BB')")
-        c.execute("INSERT INTO Actions (name,code) VALUES ('both', 'SBBB')")
-        c.execute("INSERT INTO Actions (name,code) VALUES ('calls', 'C')")
-        c.execute("INSERT INTO Actions (name,code) VALUES ('raises', 'R')")
-        c.execute("INSERT INTO Actions (name,code) VALUES ('bets', 'B')")
-        c.execute("INSERT INTO Actions (name,code) VALUES ('stands pat', 'S')")
-        c.execute("INSERT INTO Actions (name,code) VALUES ('folds', 'F')")
-        c.execute("INSERT INTO Actions (name,code) VALUES ('checks', 'K')")
-        c.execute("INSERT INTO Actions (name,code) VALUES ('discards', 'D')")
-        c.execute("INSERT INTO Actions (name,code) VALUES ('bringin', 'I')")
-        c.execute("INSERT INTO Actions (name,code) VALUES ('completes', 'P')")
+        c.execute("INSERT INTO Actions (id,name,code) VALUES ('1', 'ante', 'A')")
+        c.execute("INSERT INTO Actions (id,name,code) VALUES ('2', 'small blind', 'SB')")
+        c.execute("INSERT INTO Actions (id,name,code) VALUES ('3', 'secondsb', 'SSB')")
+        c.execute("INSERT INTO Actions (id,name,code) VALUES ('4', 'big blind', 'BB')")
+        c.execute("INSERT INTO Actions (id,name,code) VALUES ('5', 'both', 'SBBB')")
+        c.execute("INSERT INTO Actions (id,name,code) VALUES ('6', 'calls', 'C')")
+        c.execute("INSERT INTO Actions (id,name,code) VALUES ('7', 'raises', 'R')")
+        c.execute("INSERT INTO Actions (id,name,code) VALUES ('8', 'bets', 'B')")
+        c.execute("INSERT INTO Actions (id,name,code) VALUES ('9', 'stands pat', 'S')")
+        c.execute("INSERT INTO Actions (id,name,code) VALUES ('10', 'folds', 'F')")
+        c.execute("INSERT INTO Actions (id,name,code) VALUES ('11', 'checks', 'K')")
+        c.execute("INSERT INTO Actions (id,name,code) VALUES ('12', 'discards', 'D')")
+        c.execute("INSERT INTO Actions (id,name,code) VALUES ('13', 'bringin', 'I')")
+        c.execute("INSERT INTO Actions (id,name,code) VALUES ('14', 'completes', 'P')")
 
     #end def fillDefaultData
 

@@ -1,0 +1,258 @@
+Game # 2137876333 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Chikumi"
+
+Players(max 6):
+LihavaLapsi                 (EUR 2.08 in seat 1)
+kikekake                    (EUR 2.15 in seat 2)
+RealFish82                  (EUR 4.00 in seat 3)
+lukasp2                     (EUR 2.30 in seat 4)
+F4UXR34L                    (EUR 4.00 in seat 5)
+ditemelovoi                 (EUR 10.44 in seat 6)
+
+Dealer:                     RealFish82
+Small Blind:                lukasp2     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         8s - Qd - 3d - 5c
+
+ditemelovoi                 Call        (0.04)
+LihavaLapsi                 Raise       (0.18)
+kikekake                    Fold        
+RealFish82                  Fold        
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+ditemelovoi                 Call        (0.14)
+
+Flop                        Kh - 6d - 3c
+
+ditemelovoi                 Check       
+LihavaLapsi                 Bet         (0.36)
+ditemelovoi                 Raise       (1.50)
+LihavaLapsi                 All-In      (1.54)
+ditemelovoi                 Call        (0.40)
+
+Turn                        Kh - 6d - 3c - Jh
+River                       Kh - 6d - 3c - Jh - 7d
+
+ditemelovoi shows:          Th - Jd - Kd - 8h (two pairs, Kings and Jacks)
+LihavaLapsi shows:          Kc - 9h - Ad - Ts (a pair of Kings)
+
+ditemelovoi wins:           EUR 4.01 (with two pairs, Kings and Jacks)
+Rake:                       EUR 0.21
+
+Game ended 2011-03-21 16:44:53 GMT
+
+Game # 2137879886 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Chikumi"
+
+Players(max 6):
+LihavaLapsi                 (EUR 4.00 in seat 1)
+kikekake                    (EUR 2.15 in seat 2)
+RealFish82                  (EUR 4.00 in seat 3)
+lukasp2                     (EUR 2.28 in seat 4)
+F4UXR34L                    (EUR 3.96 in seat 5)
+ditemelovoi                 (EUR 12.37 in seat 6)
+
+Dealer:                     lukasp2
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  ditemelovoi (0.04)
+
+F4UXR34L was dealt:         Td - 5h - Kc - 3d
+
+LihavaLapsi                 Fold        
+kikekake                    Fold        
+RealFish82                  Fold        
+lukasp2                     Raise       (0.14)
+F4UXR34L                    Fold        
+ditemelovoi                 Call        (0.10)
+
+Flop                        Qs - 4c - Jh
+
+ditemelovoi                 Check       
+lukasp2                     Bet         (0.22)
+ditemelovoi                 Raise       (0.96)
+lukasp2                     Fold        
+ditemelovoi                 Payback     (0.74)
+
+ditemelovoi didn't show hand
+
+ditemelovoi wins:           EUR 0.71
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 16:46:00 GMT
+
+Game # 2137880240 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Chikumi"
+
+Players(max 6):
+LihavaLapsi                 (EUR 4.00 in seat 1)
+kikekake                    (EUR 2.15 in seat 2)
+RealFish82                  (EUR 4.00 in seat 3)
+lukasp2                     (EUR 1.92 in seat 4)
+F4UXR34L                    (EUR 4.00 in seat 5)
+ditemelovoi                 (EUR 12.72 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                ditemelovoi (0.02)
+Big Blind:                  LihavaLapsi (0.04)
+
+F4UXR34L was dealt:         8s - 5c - 8c - 6d
+
+kikekake                    Raise       (0.14)
+RealFish82                  Fold        
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+ditemelovoi                 Call        (0.12)
+LihavaLapsi                 Call        (0.10)
+
+Flop                        6h - Js - 5s
+
+ditemelovoi                 Check       
+LihavaLapsi                 Check       
+kikekake                    Bet         (0.42)
+ditemelovoi                 Fold        
+LihavaLapsi                 Fold        
+kikekake                    Payback     (0.42)
+
+kikekake didn't show hand
+
+kikekake wins:              EUR 0.40
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:46:39 GMT
+
+Game # 2137880464 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Chikumi"
+
+Players(max 6):
+LihavaLapsi                 (EUR 3.86 in seat 1)
+kikekake                    (EUR 2.41 in seat 2)
+RealFish82                  (EUR 4.00 in seat 3)
+lukasp2                     (EUR 1.92 in seat 4)
+F4UXR34L                    (EUR 4.00 in seat 5)
+ditemelovoi                 (EUR 12.58 in seat 6)
+
+Dealer:                     ditemelovoi
+Small Blind:                LihavaLapsi (0.02)
+Big Blind:                  kikekake    (0.04)
+
+F4UXR34L was dealt:         3s - 7h - Th - Jc
+
+RealFish82                  Fold        
+lukasp2                     Raise       (0.14)
+F4UXR34L                    Fold        
+ditemelovoi                 Call        (0.14)
+LihavaLapsi                 Fold        
+kikekake                    Call        (0.10)
+
+Flop                        2h - 8d - 8s
+
+kikekake                    Check       
+lukasp2                     Check       
+ditemelovoi                 Bet         (0.44)
+kikekake                    Fold        
+lukasp2                     Fold        
+ditemelovoi                 Payback     (0.44)
+
+ditemelovoi didn't show hand
+
+ditemelovoi wins:           EUR 0.42
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:47:45 GMT
+
+Game # 2137883876 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Chikumi"
+
+Players(max 6):
+LihavaLapsi                 (EUR 3.84 in seat 1)
+kikekake                    (EUR 2.27 in seat 2)
+RealFish82                  (EUR 4.00 in seat 3)
+lukasp2                     (EUR 1.78 in seat 4)
+F4UXR34L                    (EUR 4.00 in seat 5)
+ditemelovoi                 (EUR 12.86 in seat 6)
+
+Dealer:                     LihavaLapsi
+Small Blind:                kikekake    (0.02)
+Big Blind:                  RealFish82  (0.04)
+
+F4UXR34L was dealt:         3c - Ah - 4s - 9c
+
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+ditemelovoi                 Fold        
+LihavaLapsi                 Fold        
+kikekake                    Call        (0.02)
+RealFish82                  Check       
+
+Flop                        7s - 5s - Jd
+
+kikekake                    Bet         (0.04)
+RealFish82                  Call        (0.04)
+
+Turn                        7s - 5s - Jd - As
+
+kikekake                    Bet         (0.16)
+RealFish82                  Call        (0.16)
+
+River                       7s - 5s - Jd - As - 6s
+
+kikekake                    Bet         (0.48)
+RealFish82                  Call        (0.48)
+
+kikekake shows:             Js - 3d - 3s - Jc (a flush, Ace high)
+RealFish82 shows:           9s - Qs - 2c - 5d (a flush, Ace and Queen high)
+
+RealFish82 wins:            EUR 1.37 (with a flush, Ace and Queen high)
+Rake:                       EUR 0.07
+
+Game ended 2011-03-21 16:48:35 GMT
+
+Game # 2137884196 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Chikumi"
+
+Players(max 6):
+LihavaLapsi                 (EUR 3.84 in seat 1)
+kikekake                    (EUR 1.55 in seat 2)
+RealFish82                  (EUR 4.65 in seat 3)
+lukasp2                     (EUR 1.78 in seat 4)
+F4UXR34L                    (EUR 4.00 in seat 5)
+ditemelovoi                 (EUR 12.86 in seat 6)
+
+Dealer:                     kikekake
+Small Blind:                RealFish82  (0.02)
+Big Blind:                  lukasp2     (0.04)
+
+F4UXR34L was dealt:         5s - 2h - Ad - 2s
+
+F4UXR34L                    Fold        
+ditemelovoi                 Call        (0.04)
+LihavaLapsi                 Call        (0.04)
+kikekake                    Call        (0.04)
+RealFish82                  Call        (0.02)
+lukasp2                     Check       
+
+Flop                        7d - 2c - 8h
+
+RealFish82                  Check       
+lukasp2                     Check       
+ditemelovoi                 Check       
+LihavaLapsi                 Bet         (0.15)
+kikekake                    Call        (0.15)
+RealFish82                  Fold        
+lukasp2                     Call        (0.15)
+ditemelovoi                 Call        (0.15)
+
+Turn                        7d - 2c - 8h - 4d
+
+lukasp2                     Check       
+ditemelovoi                 Bet         (0.80)
+LihavaLapsi                 Fold        
+kikekake                    All-In      (1.36)
+lukasp2                     Fold        
+ditemelovoi                 Call        (0.56)
+
+River                       7d - 2c - 8h - 4d - 4h
+
+ditemelovoi shows:          6s - 4c - Jc - 8c (a full house, Fours full of Eights)
+kikekake shows:             5c - 7c - Jd - 6c (a straight, Eight high)
+
+ditemelovoi wins:           EUR 3.35 (with a full house, Fours full of Eights)
+Rake:                       EUR 0.17
+
+Game ended 2011-03-21 16:50:35 GMT
+
