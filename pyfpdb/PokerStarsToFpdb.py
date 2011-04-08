@@ -182,7 +182,7 @@ class PokerStars(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
-            tmp = handText[0:100]
+            tmp = handText[0:150]
             log.error(_("Unable to recognise gametype from: '%s'") % tmp)
             log.error("determineGameType: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)

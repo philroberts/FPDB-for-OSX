@@ -197,9 +197,14 @@ class Fulltilt(HandHistoryConverter):
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
                 ["tour", "hold", "fl"],
-
+                ["tour", "hold", "cn"],
+                
                 ["tour", "stud", "fl"],
-               ]
+                
+                ["tour", "draw", "fl"],
+                ["tour", "draw", "pl"],
+                ["tour", "draw", "nl"],
+        ]
 
     def determineGameType(self, handText):
         info = {'type':'ring'}
