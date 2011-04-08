@@ -213,8 +213,8 @@ class OnGame(HandHistoryConverter):
                     tzoffset = a.group('OFFSET')
                 else:
                     datetimestr = "2010/Jan/01 01:01:01"
-                    log.error(_("readHandInfo: DATETIME not matched: '%s'") % info[key])
-                    print (_("DEBUG: ") + _("readHandInfo: DATETIME not matched: '%s'") % info[key])
+                    log.error("readHandInfo: " + _("DATETIME not matched: '%s'") % info[key])
+                    print (_("DEBUG:") + " readHandInfo: " + _("DATETIME not matched: '%s'") % info[key])
                 # TODO: Manually adjust time against OFFSET
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%b/%d %H:%M:%S") # also timezone at end, e.g. " ET"
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, tzoffset, "UTC")
@@ -345,7 +345,7 @@ class OnGame(HandHistoryConverter):
             elif action.group('ATYPE') == ' stands pat':
                 hand.addStandsPat( street, action.group('PNAME'))
             else:
-                print (_("DEBUG: ") + _("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
+                print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):

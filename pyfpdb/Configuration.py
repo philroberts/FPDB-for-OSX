@@ -108,14 +108,14 @@ def get_config(file_name, fallback = True):
             try:
                 shutil.copyfile(example_path, config_path)
                 example_copy = True
-                msg = _("Config file has been created at %s.\n") % config_path
+                msg = _("Config file has been created at %s.") % (config_path+"\n")
                 logging.info(msg)
             except IOError:
                 try:
                     example_path = file_name + '.example'
                     shutil.copyfile(example_path, config_path)
                     example_copy = True
-                    msg = _("Config file has been created at %s.\n") % config_path
+                    msg = _("Config file has been created at %s.") % (config_path+"\n")
                     logging.info(msg)
                 except IOError:
                     pass
@@ -130,7 +130,7 @@ def get_config(file_name, fallback = True):
                 shutil.copyfile(example_path, config_path)
                 example_copy = True
                 msg = _("No %s found\n  in %s\n  or %s\n") % (file_name, exec_dir, default_dir) \
-                      + _("Config file has been created at %s.\n") % config_path
+                      + _("Config file has been created at %s.") % (config_path+"\n")
                 print msg
                 logging.info(msg)
         except:

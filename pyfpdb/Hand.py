@@ -488,8 +488,8 @@ If a player has None chips he won't be added."""
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
-            print (_("DEBUG: ") + _("checkPlayerExists: %s fail on hand number %s") % (player, self.handid))
-            raise FpdbParseError(_("checkPlayerExists: %s fail on hand number %s") % (player, self.handid))
+            print (_("DEBUG:") + " checkPlayerExists: " + _("%s fail on hand number %s") % (player, self.handid))
+            raise FpdbParseError("checkPlayerExists: " + _("%s fail on hand number %s") % (player, self.handid))
 
     def setCommunityCards(self, street, cards):
         log.debug("setCommunityCards %s %s" %(street,  cards))
@@ -1706,7 +1706,7 @@ class Pot(object):
         if self.sym is None:
             self.sym = "C"
         if self.total is None:
-            print (_("DEBUG: ") + _("call Pot.end() before printing pot total"))
+            print (_("DEBUG:") + " " + _("call Pot.end() before printing pot total"))
             # NB if I'm sure end() is idempotent, call it here.
             raise FpdbParseError(_("Error in printing Hand object"))
 

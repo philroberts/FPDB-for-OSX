@@ -264,9 +264,9 @@ class Fulltilt(HandHistoryConverter):
         m =  self.re_HandInfo.search(hand.handText)
         if m is None:
             tmp = hand.handText[0:100]
-            log.error(_("Unable to recognise handinfo from: '%s'") % tmp)
+            log.error(_("Unable to recognise hand info from: '%s'") % tmp)
             log.error("readHandInfo: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise handinfo from: '%s'"))
+            raise FpdbParseError(_("Unable to recognise hand info from: '%s'"))
 
         #print "DEBUG: m.groupdict: %s" % m.groupdict()
         hand.handid = m.group('HID')
@@ -440,7 +440,7 @@ class Fulltilt(HandHistoryConverter):
             hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
         except AttributeError, e:
             # FTP has no indication that a hand is cancelled.
-            raise FpdbParseError(_("readButton: Failed to detect button (hand #%s cancelled?)") % hand.handid)
+            raise FpdbParseError(_("%s Failed to detect button (hand #%s cancelled?)") % ("readButton:", hand.handid))
 
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
@@ -498,7 +498,7 @@ class Fulltilt(HandHistoryConverter):
             elif action.group('ATYPE') == ' stands pat':
                 hand.addStandsPat( street, action.group('PNAME'), action.group('CARDS'))
             else:
-                print (_("DEBUG: ") + " " + _("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
+                print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):

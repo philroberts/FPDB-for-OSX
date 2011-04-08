@@ -2976,7 +2976,7 @@ if __name__=="__main__":
 
     hero = db_connection.get_player_id(c, 'PokerStars', 'nutOmatic')
     if hero:
-        print _("nutOmatic is id_player = %d") % hero
+        print "nutOmatic player_id", hero
 
     # example of displaying query plan in sqlite:
     if db_connection.backend == 4:

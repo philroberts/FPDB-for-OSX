@@ -196,7 +196,7 @@ class Betfair(HandHistoryConverter):
             elif action.group('ATYPE') == 'checks':
                 hand.addCheck( street, action.group('PNAME'))
             else:
-                sys.stderr.write(_("DEBUG: ") + _("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
+                sys.stderr.write(_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):

@@ -200,7 +200,7 @@ class GuiAutoImport (threading.Thread):
         for site in the_sites:
             params = self.config.get_site_parameters(site)
             if params['enabled'] == True:
-                print (_("DEBUG: ") + _("Detecting hh directory for site: '%s'") % site)
+                print (_("DEBUG:") + " " + _("Detecting hand history directory for site: '%s'") % site)
                 if os.name == 'posix':
                     if self.posix_detect_hh_dirs(site):
                         #data[1].set_text(dia_chooser.get_filename())
@@ -240,7 +240,7 @@ class GuiAutoImport (threading.Thread):
             # - Ideally we want to release the lock if the auto-import is killed by some
             # kind of exception - is this possible?
             if self.settings['global_lock'].acquire(wait=False, source="AutoImport"):   # returns false immediately if lock not acquired
-                self.addText(_("\nGlobal lock taken ... Auto Import Started.\n"))
+                self.addText("\n" + _("Global lock taken ... Auto Import Started.")+"\n")
                 self.doAutoImportBool = True
                 self.startButton.set_label(_(u'Stop _Auto Import'))
                 while gtk.events_pending(): # change the label NOW don't wait for the pipe to open
