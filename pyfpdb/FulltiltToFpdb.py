@@ -148,16 +148,10 @@ class Fulltilt(HandHistoryConverter):
 ##Total Prize Pool: 1,500 Play Chips
 
 # These regexes are for FTP only
-    re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>HA|HORSE|HOSE)\s\-\s', re.VERBOSE)
+    re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>7\-Game|8\-Game|9\-Game|10\-Game|HA|HEROS|HO|HOE|HORSE|HOSE|OA|OE|SE)\s\-\s', re.VERBOSE)
     re_Max          = re.compile("(?P<MAX>\d+)( max)?", re.MULTILINE)
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
     re_DateTime     = re.compile("""((?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s(?P<TZ>\w+)\s-\s(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})|(?P<H2>[0-9]+):(?P<MIN2>[0-9]+)\s(?P<TZ2>\w+)\s-\s\w+\,\s(?P<M2>\w+)\s(?P<D2>\d+)\,\s(?P<Y2>[0-9]{4}))(?P<PARTIAL>\s\(partial\))?""", re.MULTILINE)
-
-
-
-
-    mixes = { 'HORSE': 'horse', '7-Game': '7game', 'HOSE': 'hose', 'HA': 'ha'}
-
 
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
@@ -180,7 +174,7 @@ class Fulltilt(HandHistoryConverter):
             self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %(PLAYERS)s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \([%(LS)s]?(?P<POT>[%(NUM)s]+)\)(, mucked| with.*)?" % self.substitutions, re.MULTILINE)
             self.re_SitsOut          = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
-            self.re_ShownCards       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(?P<ACT>showed|mucked) \[(?P<CARDS>.*)\].*" % player_re, re.MULTILINE)
+            self.re_ShownCards       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\](( and won \(.*\) with | and lost with | \- )(?P<STRING>.*))?" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"], 
@@ -233,6 +227,21 @@ class Fulltilt(HandHistoryConverter):
                    'Badugi' : ('draw','badugi'),
           '2-7 Single Draw' : ('draw','27_1draw')
                }
+        mixes = { 
+                   '7-Game' : '7game',
+                   '8-Game' : '8game',
+                   '9-Game' : '9game',
+                  '10-Game' : '10game',
+                       'HA' : 'ha',
+                    'HEROS' : 'heros',
+                       'HO' : 'ho',
+                      'HOE' : 'hoe',
+                    'HORSE' : 'horse',
+                     'HOSE' : 'hose',
+                       'OA' : 'oa',
+                       'OE' : 'oe',
+                       'SE' : 'se'
+            }
         currencies = { u'€':'EUR', '$':'USD', '':'T$' }
 
         if 'SB' in mg:
@@ -264,6 +273,9 @@ class Fulltilt(HandHistoryConverter):
         if mg['CURRENCY'] is not None:
             info['currency'] = currencies[mg['CURRENCY']]
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
+        m = self.re_Mixed.search(self.in_path)
+        if m: info['mix'] = mixes[m.groupdict()['MIXED']]
+
         return info
 
     def readHandInfo(self, hand):
@@ -380,10 +392,16 @@ class Fulltilt(HandHistoryConverter):
     def markStreets(self, hand):
 
         if hand.gametype['base'] == 'hold':
-            m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
-                       r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN \*\*\*)|.+))?"
-                       r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN>\[\S\S\].+(?=\*\*\* RIVER \*\*\*)|.+))?"
-                       r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?", hand.handText,re.DOTALL)
+            m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP (1\s)?\*\*\*)|.+)"
+                       r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN (1\s)?\*\*\*)|.+))?"
+                       r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN>\[\S\S\].+(?=\*\*\* RIVER (1\s)?\*\*\*)|.+))?"
+                       r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?"
+                       r"(\*\*\* FLOP 1 \*\*\*(?P<FLOP1> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN 1 \*\*\*)|.+))?"
+                       r"(\*\*\* TURN 1 \*\*\* \[\S\S \S\S \S\S] (?P<TURN1>\[\S\S\].+(?=\*\*\* RIVER 1 \*\*\*)|.+))?"
+                       r"(\*\*\* RIVER 1 \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER1>\[\S\S\].))?"
+                       r"(\*\*\* FLOP 2 \*\*\*(?P<FLOP2> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN 2 \*\*\*)|.+))?"
+                       r"(\*\*\* TURN 2 \*\*\* \[\S\S \S\S \S\S] (?P<TURN2>\[\S\S\].+(?=\*\*\* RIVER 2 \*\*\*)|.+))?"
+                       r"(\*\*\* RIVER 2 \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER2>\[\S\S\].+))?", hand.handText,re.DOTALL)
         elif hand.gametype['base'] == "stud":
             m =  re.search(r"(?P<ANTES>.+(?=\*\*\* 3RD STREET \*\*\*)|.+)"
                            r"(\*\*\* 3RD STREET \*\*\*(?P<THIRD>.+(?=\*\*\* 4TH STREET \*\*\*)|.+))?"
@@ -402,10 +420,13 @@ class Fulltilt(HandHistoryConverter):
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
-            #print "DEBUG readCommunityCards:", street, hand.streets.group(street)
+            #print "DEBUG readCommunityCards:", street, hand.streets[street]
             m = self.re_Board.search(hand.streets[street])
             hand.setCommunityCards(street, m.group('CARDS').split(' '))
-
+        if street in ('FLOP1', 'TURN1', 'RIVER1', 'FLOP2', 'TURN2', 'RIVER2'):
+            m = self.re_Board.search(hand.streets[street])
+            hand.setCommunityCards(street, m.group('CARDS').split(' '))
+            hand.runItTimes = 2
 
     def readBlinds(self, hand):
         try:
@@ -520,10 +541,16 @@ class Fulltilt(HandHistoryConverter):
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
             if m.group('CARDS') is not None:
-                if m.group('ACT'):
-                    hand.addShownCards(cards=m.group('CARDS').split(' '), player=m.group('PNAME'), shown = False, mucked = True)
-                else:
-                    hand.addShownCards(cards=m.group('CARDS').split(' '), player=m.group('PNAME'), shown = True, mucked = False)
+                cards = m.group('CARDS')
+                cards = cards.split(' ') # needs to be a list, not a set--stud needs the order
+                string = m.group('STRING')
+
+                (shown, mucked) = (False, False)
+                if m.group('SHOWED') == "showed": shown = True
+                elif m.group('SHOWED') == "mucked": mucked = True
+
+                #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
+                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
 
     def guessMaxSeats(self, hand):
         """Return a guess at max_seats when not specified in HH."""
@@ -542,13 +569,6 @@ class Fulltilt(HandHistoryConverter):
         if mo == 2: return 2
         if mo <= 6: return 6
         return 9
-
-    def readOther(self, hand):
-        m = self.re_Mixed.search(self.in_path)
-        if m is None:
-            hand.mixed = None
-        else:
-            hand.mixed = self.mixes[m.groupdict()['MIXED']]
 
     def readSummaryInfo(self, summaryInfoList):
         self.status = True

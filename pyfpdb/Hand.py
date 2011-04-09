@@ -77,6 +77,7 @@ class Hand(object):
         self.maxseats = None
         self.counted_seats = 0
         self.buttonpos = 0
+        self.runItTimes = 0
 
         #tourney stuff
         self.tourNo = None
@@ -112,6 +113,7 @@ class Hand(object):
         self.board = {} # dict from street names to community cards
         self.holecards = {}
         self.discards = {}
+        self.showdownStrings = {}
         for street in self.allStreets:
             self.streets[street] = "" # portions of the handText, filled by markStreets()
             self.actions[street] = []
@@ -273,12 +275,13 @@ dealt   whether they were seen in a 'dealt to' line
             next = id +1
         return next
 
-    def insertHands(self, db, hbulk, doinsert = False, printtest = False):
+    def insertHands(self, db, hbulk, fileId, doinsert = False, printtest = False):
         """ Function to insert Hand into database
             Should not commit, and do minimal selects. Callers may want to cache commits
             db: a connected Database object"""
         self.hands['gametypeId'] = self.dbid_gt
         self.hands['seats'] = len(self.dbid_pids)
+        self.hands['fileId'] = fileId
         hbulk = db.storeHand(self.hands, hbulk, doinsert, printtest)
         return hbulk
 
@@ -709,7 +712,7 @@ Add a raise on [street] by [player] to [amountTo]
             self.collectees[player] += Decimal(pot)
 
 
-    def addShownCards(self, cards, player, holeandboard=None, shown=True, mucked=False):
+    def addShownCards(self, cards, player, holeandboard=None, shown=True, mucked=False, string=None):
         """\
 For when a player shows cards for any reason (for showdown or out of choice).
 Card ranks will be uppercased
@@ -717,6 +720,8 @@ Card ranks will be uppercased
         log.debug(_("addShownCards %s hole=%s all=%s") % (player, cards,  holeandboard))
         if cards is not None:
             self.addHoleCards(cards,player,shown, mucked)
+            if string is not None:
+                self.showdownStrings[player] = string
         elif holeandboard is not None:
             holeandboard = set([self.card(c) for c in holeandboard])
             board = set([c for s in self.board.values() for c in s])
@@ -886,9 +891,8 @@ class HoldemOmahaHand(Hand):
             hhc.readHeroCards(self)
             hhc.readShowdownActions(self)
             # Read actions in street order
-            for street in self.communityStreets:
-                if self.streets[street]:
-                    hhc.readCommunityCards(self, street)
+            for street, text in self.streets.iteritems():
+                if text: hhc.readCommunityCards(self, street)
             for street in self.actionStreets:
                 if self.streets[street]:
                     hhc.readAction(self, street)
@@ -912,7 +916,7 @@ class HoldemOmahaHand(Hand):
             pass
 
 
-    def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False):
+    def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False, string=None):
         if player == self.hero: # we have hero's cards just update shown/mucked
             if shown:  self.shown.add(player)
             if mucked: self.mucked.add(player)
@@ -925,6 +929,8 @@ class HoldemOmahaHand(Hand):
                 diff = filter( lambda x: x not in self.board['FLOP']+self.board['TURN']+self.board['RIVER'], cards )
                 if len(diff) == 2 and self.gametype['category'] in ('holdem'):
                     self.addHoleCards('PREFLOP', player, open=[], closed=diff, shown=shown, mucked=mucked, dealt=dealt)
+        if string is not None:
+            self.showdownStrings[player] = string
 
     def getStreetTotals(self):
         # street1Pot INT,                  /* pot size at flop/street4 */
@@ -1200,13 +1206,15 @@ class DrawHand(Hand):
         elif builtFrom == "DB":
             self.select("dummy") # Will need a handId
 
-    def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False):
+    def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False, string=None):
         if player == self.hero: # we have hero's cards just update shown/mucked
             if shown:  self.shown.add(player)
             if mucked: self.mucked.add(player)
         else:
 # TODO: Probably better to find the last street with action and add the hole cards to that street
             self.addHoleCards('DRAWTHREE', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
+        if string is not None:
+            self.showdownStrings[player] = string
 
 
     def discardDrawHoleCards(self, cards, player, street):
@@ -1378,7 +1386,7 @@ class StudHand(Hand):
         elif builtFrom == "DB":
             self.select("dummy") # Will need a handId
 
-    def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False):
+    def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False, string=None):
         if player == self.hero: # we have hero's cards just update shown/mucked
             if shown:  self.shown.add(player)
             if mucked: self.mucked.add(player)
@@ -1389,6 +1397,8 @@ class StudHand(Hand):
             self.addHoleCards('SIXTH',   player, open=[cards[5]], closed=cards[2:5], shown=shown, mucked=mucked)
             if len(cards) > 6:
                 self.addHoleCards('SEVENTH', player, open=[],         closed=[cards[6]], shown=shown, mucked=mucked)
+        if string is not None:
+            self.showdownStrings[player] = string
 
 
     def addPlayerCards(self, player,  street,  open=[],  closed=[]):

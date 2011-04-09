@@ -127,7 +127,7 @@ def compare_handsplayers_file(filename, importer, errors):
                         # The stats match - continue
                         pass
                     else:
-                        if stat == 'tourneyTypeId' or stat == 'tourneysPlayersIds':
+                        if stat == 'tourneyTypeId' or stat == 'tourneysPlayersIds' or stat == 'showed':
                             # Not and error
                             pass
                         else:
@@ -153,6 +153,7 @@ def compare_hands_file(filename, importer, errors):
         del ghash['gsc']
         del ghash['sc']
         del ghash['id']
+        del ghash['board']
         for datum in ghash:
             #print "DEBUG: hand: '%s'" % datum
             try:
@@ -161,7 +162,12 @@ def compare_hands_file(filename, importer, errors):
                     pass
                 else:
                     # Stats don't match. 
-                    if datum == "gametypeId" or datum == 'sessionId' or datum == 'tourneyId' or datum == 'gameSessionId':
+                    if (datum == "gametypeId" 
+                        or datum == 'sessionId' 
+                        or datum == 'tourneyId' 
+                        or datum == 'gameSessionId'
+                        or datum == 'fileId'
+                        or datum == 'runIt'):
                         # Not an error. gametypeIds are dependent on the order added to the db.
                         #print "DEBUG: Skipping mismatched gamtypeId"
                         pass

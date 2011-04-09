@@ -165,6 +165,19 @@ class Importer:
         self.database.disconnect()
         for i in xrange(len(self.writerdbs)):
             self.writerdbs[i].disconnect()
+            
+    def logImport(self, type, file, stored, dups, partial, errs, ttime, id):
+        hands = stored + dups + partial + errs
+        now = datetime.datetime.utcnow()
+        ttime100 = ttime * 100
+        self.database.updateFile([type, now, now, hands, stored, dups, partial, errs, ttime100, True, id])
+    
+    def addFileToList(self, file, site, filter):
+        now = datetime.datetime.utcnow()
+        file = os.path.splitext(os.path.basename(file))[0]
+        id = self.database.storeFile([file, site, now, now, 0, 0, 0, 0, 0, 0, False])
+        self.database.commit()
+        return [site] + [filter] + [id]
 
     #Add an individual file to filelist
     def addImportFile(self, filename, site = "default", filter = "passthrough"):
@@ -173,7 +186,7 @@ class Importer:
         # filename not guaranteed to be unicode
         if filename in self.filelist or not os.path.exists(filename):
             return
-        self.filelist[filename] = [site] + [filter]
+        self.filelist[filename] = self.addFileToList(filename, site, filter)
         if site not in self.siteIds:
             # Get id from Sites table in DB
             result = self.database.get_site_id(site)
@@ -303,13 +316,15 @@ class Importer:
             
             ProgressDialog.progress_update()
             
-            (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file
-                                               ,self.filelist[file][0], self.filelist[file][1], q)
+            (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0]
+                                                           ,self.filelist[file][1], self.filelist[file][2], q)
             totstored += stored
             totdups += duplicates
             totpartial += partial
             toterrors += errors
-
+            
+            self.logImport('bulk', file, stored, duplicates, partial, errors, ttime, self.filelist[file][2])
+        self.database.commit()
         del ProgressDialog
         
         for i in xrange( self.settings['threads'] ):
@@ -394,7 +409,9 @@ class Importer:
                                 self.caller.addText("\n"+os.path.basename(file))
                         except KeyError: # TODO: What error happens here?
                             pass
-                        (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1], None)
+                        (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0]
+                                                                      ,self.filelist[file][1], self.filelist[file][2], None)
+                        self.logImport('auto', file, stored, duplicates, partial, errors, ttime, self.filelist[file][2])
                         try:
                             if not os.path.isdir(file): # Note: This assumes that whatever calls us has an "addText" func
                                 self.caller.addText(" %d stored, %d duplicates, %d partial, %d errors (time = %f)" % (stored, duplicates, partial, errors, ttime))
@@ -425,7 +442,7 @@ class Importer:
         #rulog.close()
 
     # This is now an internal function that should not be called directly.
-    def import_file_dict(self, file, site, filter, q=None):
+    def import_file_dict(self, file, site, filter, fileId, q=None):
 
         if os.path.isdir(file):
             self.addToDirList[file] = [site] + [filter]
@@ -449,7 +466,7 @@ class Importer:
             hhc = obj( self.config, in_path = file, index = idx
                       ,starsArchive = self.settings['starsArchive']
                       ,ftpArchive   = self.settings['ftpArchive']
-                      ,sitename     = site )
+                      ,sitename     = site)
             
             if hhc.getStatus():
                 if self.caller: hhc.progressNotify()
@@ -476,10 +493,10 @@ class Importer:
                     try:
                         id = hand.getHandId(self.database, id)
                         sc, gsc = hand.updateSessionsCache(self.database, sc, gsc, None, doinsert)
-                        hbulk = hand.insertHands(self.database, hbulk, doinsert, self.settings['testData'])
+                        hbulk = hand.insertHands(self.database, hbulk, fileId, doinsert, self.settings['testData'])
                         hcbulk = hand.updateHudCache(self.database, hcbulk, doinsert)
                         ihands.append(hand)
-                        to_hud.append(id)
+                        to_hud.append(hand.dbid_hands)
                     except Exceptions.FpdbHandDuplicate:
                         duplicates += 1
                 self.database.commit()
@@ -496,7 +513,7 @@ class Importer:
                 if self.callHud:
                     for hid in to_hud:
                         try:
-                            print _("fpdb_import: sending hand to hud"), hand.dbid_hands, "pipe =", self.caller.pipe_to_hud
+                            print _("fpdb_import: sending hand to hud"), hid, "pipe =", self.caller.pipe_to_hud
                             self.caller.pipe_to_hud.stdin.write("%s" % (hid) + os.linesep)
                         except IOError, e:
                             log.error(_("Failed to send hand to HUD: %s") % e)
