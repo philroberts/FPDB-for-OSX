@@ -129,18 +129,18 @@ def get_config(file_name, fallback = True):
             if not config_found and fallback:
                 shutil.copyfile(example_path, config_path)
                 example_copy = True
-                msg = _("No %s found\n  in %s\n  or %s\n") % (file_name, exec_dir, default_dir) \
-                      + _("Config file has been created at %s.") % (config_path+"\n")
+                msg = _("No %s found\n  in %s\n  or %s") % (file_name, exec_dir, default_dir) \
+                     + " " + _("Config file has been created at %s.") % (config_path+"\n")
                 print msg
                 logging.info(msg)
         except:
-            print _("Error copying .example config file, cannot fall back. Exiting.\n")
-            sys.stderr.write(_("Error copying .example config file, cannot fall back. Exiting.\n"))
+            print _("Error copying .example config file, cannot fall back. Exiting."), "\n"
+            sys.stderr.write(_("Error copying .example config file, cannot fall back. Exiting.")+"\n")
             sys.stderr.write( str(sys.exc_info()) )
             sys.exit()
     elif fallback:
-        print _("No %s found, cannot fall back. Exiting.\n") % file_name
-        sys.stderr.write(_("No %s found, cannot fall back. Exiting.\n") % file_name)
+        print _("No %s found, cannot fall back. Exiting.") % file_name, "\n"
+        sys.stderr.write((_("No %s found, cannot fall back. Exiting.") % file_name) + "\n")
         sys.exit()
 
     #print "get_config: returning "+str( (config_path,example_copy,example_path) )

@@ -341,9 +341,7 @@ def main(argv=None):
 
     parser = OptionParser()
     parser.add_option("-f", "--file", dest="filename", metavar="FILE", default=None,
-                    help=_("Input file in quiet mode"))
-    parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True,
-                    help=_("don't start gui; deprecated (just give a filename with -f)."))
+                    help=_("Input file"))
     parser.add_option("-c", "--convert", dest="filtername", default=None, metavar="FILTER",
                     help=_("Conversion filter (*Full Tilt Poker, PokerStars, Everleaf, Absolute)"))
     parser.add_option("-x", "--failOnError", action="store_true", default=False,
@@ -378,9 +376,6 @@ def main(argv=None):
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
 
-    if not options.gui:
-        print _('-q is deprecated. Just use "-f filename" instead')
-        # This is because -q on its own causes an error, so -f is necessary and sufficient for cmd line use
     if not options.filename:
         i = GuiBulkImport(settings, config, None)
         main_window = gtk.Window()

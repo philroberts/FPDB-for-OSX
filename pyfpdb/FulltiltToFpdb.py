@@ -663,18 +663,18 @@ class Fulltilt(HandHistoryConverter):
                         tourney.buyin = 100*Decimal(clearMoneyString(mg['BUYIN']))
                     else :
                         if 100*Decimal(clearMoneyString(mg['BUYIN'])) != tourney.buyin:
-                            log.error(_("Conflict between buyins read in topline (%s) and in BuyIn field (%s)") % (tourney.buyin, 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))) )
+                            log.error(_("Conflict between buyins read in top line (%s) and in BuyIn field (%s)") % (tourney.buyin, 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))) )
                             tourney.subTourneyBuyin = 100*Decimal(clearMoneyString(mg['BUYIN']))
                 if mg['FEE'] is not None:
                     if tourney.fee is None:
                         tourney.fee = 100*Decimal(clearMoneyString(mg['FEE']))
                     else :
                         if 100*Decimal(clearMoneyString(mg['FEE'])) != tourney.fee:
-                            log.error(_("Conflict between fees read in topline (%s) and in BuyIn field (%s)") % (tourney.fee, 100*Decimal(clearMoneyString(mg['FEE']))) )
+                            log.error(_("Conflict between fees read in top line (%s) and in BuyIn field (%s)") % (tourney.fee, 100*Decimal(clearMoneyString(mg['FEE']))) )
                             tourney.subTourneyFee = 100*Decimal(clearMoneyString(mg['FEE']))
 
         if tourney.buyin is None:
-            log.info(_("Unable to affect a buyin to this tournament : assume it's a freeroll"))
+            log.info(_("Unable to detect a buyin to this tournament : assume it's a freeroll"))
             tourney.buyin = 0
             tourney.fee = 0
         else:
@@ -784,9 +784,9 @@ class Fulltilt(HandHistoryConverter):
             tourney.hero = heroName
             # Is this really useful ?
             if heroName not in tourney.ranks:
-                print (_("%s not found in tourney.ranks ...") % heroName)
+                print (_("%s not found in %s...") % ("tourney.ranks", heroName))
             elif (tourney.ranks[heroName] != Decimal(n.group('HERO_FINISHING_POS'))):            
-                print (_("Bad parsing : finish position incoherent : %s / %s") % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS')))
+                print (_("Error:")+ _("Parsed finish position incoherent : %s / %s") % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS')))
 
         return True
 
