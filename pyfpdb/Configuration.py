@@ -123,7 +123,7 @@ def get_config(file_name, fallback = True):
 #    OK, fall back to the .example file, should be in the start dir
     elif os.path.exists(file_name + ".example"):
         try:
-            print ""
+            #print ""
             example_path = file_name + ".example"
             check_dir(default_dir)
             if not config_found and fallback:
@@ -173,7 +173,7 @@ def get_logger(file_name, config = "config", fallback = False, log_dir=None, log
     log = logging.getLogger()
     # but it looks like default is no output :-(  maybe because all the calls name a module?
     log.debug(_("Default logger initialised for %s") % file)
-    print(_("Default logger initialised for %s") % file)
+    #print(_("Default logger initialised for %s") % file)
     return log
 
 def check_dir(path, create = True):
@@ -207,9 +207,8 @@ DATABASE_TYPES = (
         DATABASE_TYPE_MYSQL,
         )
 
-#LOCALE_ENCODING = locale.getdefaultlocale()[1]
 LOCALE_ENCODING = locale.getpreferredencoding()
-if LOCALE_ENCODING == "US-ASCII":
+if LOCALE_ENCODING in ("US-ASCII", "", None):
     print _("Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're not on a Mac, please report this problem.")
     LOCALE_ENCODING = "cp1252"
 
@@ -313,8 +312,6 @@ class Site:
         self.yshift       = node.getAttribute("yshift")
         self.layout       = {}
         self.emails       = {}
-
-        print _("Loading site"), self.site_name
 
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
@@ -488,16 +485,16 @@ class Popup:
 
 class Import:
     def __init__(self, node):
-        self.node = node
-        self.interval    = node.getAttribute("interval")
-        self.callFpdbHud   = node.getAttribute("callFpdbHud")
-        self.ResultsDirectory = node.getAttribute("ResultsDirectory")
-        self.hhBulkPath = node.getAttribute("hhBulkPath")
-        self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=False)
-        self.cacheSessions = string_to_bool(node.getAttribute("cacheSessions"), default=False)
-        self.sessionTimeout = string_to_bool(node.getAttribute("sessionTimeout"), default=30)
-        self.fastStoreHudCache = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
-        self.saveStarsHH = string_to_bool(node.getAttribute("saveStarsHH"), default=False)
+        self.node               = node
+        self.interval           = node.getAttribute("interval")
+        self.sessionTimeout     = node.getAttribute("sessionTimeout")
+        self.ResultsDirectory   = node.getAttribute("ResultsDirectory")
+        self.hhBulkPath         = node.getAttribute("hhBulkPath")
+        self.saveActions        = string_to_bool(node.getAttribute("saveActions")      , default=False)
+        self.cacheSessions      = string_to_bool(node.getAttribute("cacheSessions")    , default=False)
+        self.callFpdbHud        = string_to_bool(node.getAttribute("callFpdbHud")      , default=False)
+        self.fastStoreHudCache  = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
+        self.saveStarsHH        = string_to_bool(node.getAttribute("saveStarsHH")      , default=False)
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    saveActions = %s\n    fastStoreHudCache = %s\nResultsDirectory = %s" \
@@ -631,20 +628,20 @@ class RawHands:
         if node==None:
             self.save="error"
             self.compression="none"
-            print _("missing config section raw_hands")
+            #print _("missing config section raw_hands")
         else:
             save=node.getAttribute("save")
             if save in ("none", "error", "all"):
                 self.save=save
             else:
-                print _("Invalid config value for raw_hands.save, defaulting to \"error\"")
+                print (_("Invalid config value for %s, defaulting to %s") % (raw_hands.save, "\"error\""))
                 self.save="error"
             
             compression=node.getAttribute("compression")
             if save in ("none", "gzip", "bzip2"):
                 self.compression=compression
             else:
-                print _("Invalid config value for raw_hands.compression, defaulting to \"none\"")
+                print (_("Invalid config value for %s, defaulting to %s") % (raw_hands.compression, "\"none\""))
                 self.compression="none"
     #end def __init__
 
@@ -657,20 +654,20 @@ class RawTourneys:
         if node==None:
             self.save="error"
             self.compression="none"
-            print _("missing config section raw_tourneys")
+            #print _("missing config section raw_tourneys")
         else:
             save=node.getAttribute("save")
             if save in ("none", "error", "all"):
                 self.save=save
             else:
-                print _("Invalid config value for raw_tourneys.save, defaulting to \"error\"")
+                print (_("Invalid config value for %s, defaulting to %s") % (raw_tourneys.save, "\"error\""))
                 self.save="error"
             
             compression=node.getAttribute("compression")
             if save in ("none", "gzip", "bzip2"):
                 self.compression=compression
             else:
-                print _("Invalid config value for raw_tourneys.compression, defaulting to \"none\"")
+                print (_("Invalid config value for %s, defaulting to %s") % (raw_tourneys.compression, "\"none\""))
                 self.compression="none"
     #end def __init__
 
@@ -688,8 +685,8 @@ class Config:
         if file is not None: # config file path passed in
             file = os.path.expanduser(file)
             if not os.path.exists(file):
-                print _("Configuration file %s not found.  Using defaults.") % (file)
-                sys.stderr.write(_("Configuration file %s not found.  Using defaults.") % (file))
+                print _("Configuration file %s not found. Using defaults.") % (file)
+                sys.stderr.write(_("Configuration file %s not found. Using defaults.") % (file))
                 file = None
 
         self.example_copy,example_file = True,None
@@ -720,13 +717,13 @@ class Config:
         while added > 0 and n < 2:
             n = n + 1
             log.info(_("Reading configuration file %s") % file)
-            print (("\n"+_("Reading configuration file %s")+"\n") % file)
+            #print (("\n"+_("Reading configuration file %s")+"\n") % file)
             try:
                 doc = xml.dom.minidom.parse(file)
                 self.doc = doc
                 self.file_error = None
             except:
-                log.error(_("Error parsing %s.  See error log file.") % (file))
+                log.error((_("Error parsing %s.") % (file)) + _("See error log file."))
                 traceback.print_exc(file=sys.stderr)
                 self.file_error = sys.exc_info()[1]
                 # we could add a parameter to decide whether to return or read a line and exit?
@@ -829,7 +826,7 @@ class Config:
         for raw_tourneys_node in doc.getElementsByTagName('raw_tourneys'):
             self.raw_tourneys = RawTourneys(raw_tourneys_node)
         
-        print ""
+        #print ""
     #end def __init__
 
     def add_missing_elements(self, doc, example_file):
@@ -842,7 +839,7 @@ class Config:
         try:
             example_doc = xml.dom.minidom.parse(example_file)
         except:
-            log.error(_("Error parsing example configuration file %s. See error log file.") % (example_file))
+            log.error((_("Error parsing example configuration file %s.") % (example_file)) + _("See error log file."))
             return nodes_added
 
         for cnode in doc.getElementsByTagName("FreePokerToolsConfig"):

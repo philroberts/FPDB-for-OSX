@@ -43,6 +43,7 @@ class DerivedStats():
         init['street4Aggr'] = False
         init['wonWhenSeenStreet1'] = 0.0
         init['sawShowdown'] = False
+        init['showed']      = False
         init['wonAtSD']     = 0.0
         init['startCards']  = 0
         init['position']            = 2
@@ -119,16 +120,17 @@ class DerivedStats():
         return self.handsactions
 
     def assembleHands(self, hand):
-        self.hands['tableName']  = hand.tablename
-        self.hands['siteHandNo'] = hand.handid
-        self.hands['gametypeId'] = None                     # Leave None, handled later after checking db
-        self.hands['sessionId']  = None                     # Leave None, added later if caching sessions
-        self.hands['startTime']  = hand.startTime           # format this!
-        self.hands['importTime'] = None
-        self.hands['seats']      = self.countPlayers(hand) 
-        self.hands['maxSeats']   = hand.maxseats
-        self.hands['texture']    = None                     # No calculation done for this yet.
-        self.hands['tourneyId']  = hand.tourneyId
+        self.hands['tableName']     = hand.tablename
+        self.hands['siteHandNo']    = hand.handid
+        self.hands['gametypeId']    = None                    # Leave None, handled later after checking db
+        self.hands['sessionId']     = None                    # Leave None, added later if caching sessions
+        self.hands['gameSessionId'] = None                    # Leave None, added later if caching sessions
+        self.hands['startTime']     = hand.startTime          # format this!
+        self.hands['importTime']    = None
+        self.hands['seats']         = self.countPlayers(hand) 
+        self.hands['maxSeats']      = hand.maxseats
+        self.hands['texture']       = None                    # No calculation done for this yet.
+        self.hands['tourneyId']     = hand.tourneyId
 
         # This (i think...) is correct for both stud and flop games, as hand.board['street'] disappears, and
         # those values remain default in stud.
@@ -142,6 +144,20 @@ class DerivedStats():
         self.hands['boardcard3'] = cards[2]
         self.hands['boardcard4'] = cards[3]
         self.hands['boardcard5'] = cards[4]
+        
+        self.hands['boards']     = []
+        self.hands['runIt']      = False           
+        for i in range(hand.runItTimes):
+            self.hands['runIt']  = True
+            boardcards = []
+            for street in hand.communityStreets:
+                boardId = i+1
+                street_i = street + str(boardId)
+                if street_i in hand.board:
+                    boardcards += hand.board[street_i]
+            boardcards = [u'0x', u'0x', u'0x', u'0x', u'0x'] + boardcards
+            cards = [Card.encodeCard(c) for c in boardcards[-5:]]
+            self.hands['boards'] += [[boardId] + cards]
 
         #print "DEBUG: self.getStreetTotals = (%s, %s, %s, %s, %s)" %  hand.getStreetTotals()
         totals = hand.getStreetTotals()
@@ -172,6 +188,8 @@ class DerivedStats():
                 self.handsplayers[player[1]]['tourneysPlayersIds'] = hand.tourneysPlayersIds[player[1]]
             else:
                 self.handsplayers[player[1]]['tourneysPlayersIds'] = None
+            if player[1] in hand.shown:
+                self.handsplayers[player[1]]['showed'] = True
 
         #### seen now processed in playersAtStreetX()
         # XXX: enumerate(list, start=x) is python 2.6 syntax; 'start'
@@ -213,10 +231,10 @@ class DerivedStats():
 
         for player in hand.players:
             hcs = hand.join_holecards(player[1], asList=True)
-            hcs = hcs + [u'0x', u'0x', u'0x', u'0x', u'0x']
-            #for i, card in enumerate(hcs[:7], 1): #Python 2.6 syntax
+            hcs = hcs + [u'0x']*18
+            #for i, card in enumerate(hcs[:20, 1): #Python 2.6 syntax
             #    self.handsplayers[player[1]]['card%s' % i] = Card.encodeCard(card)
-            for i, card in enumerate(hcs[:7]):
+            for i, card in enumerate(hcs[:20]):
                 self.handsplayers[player[1]]['card%s' % (i+1)] = Card.encodeCard(card)
             self.handsplayers[player[1]]['startCards'] = Card.calcStartCards(hand, player[1])
 

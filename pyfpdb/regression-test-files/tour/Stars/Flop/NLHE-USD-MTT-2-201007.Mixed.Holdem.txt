@@ -1,0 +1,50 @@
+﻿PokerStars Game #47282318621: Tournament #294435598, $2.00+$0.20 USD Mixed Hold'em (Hold'em No Limit) - Level II (10/20) - 2010/07/26 4:23:42 ET
+Table '294435598 1' 6-max Seat #5 is the button
+Seat 1: Player1 (2300 in chips) 
+Seat 2: Player2 (1240 in chips) 
+Seat 3: Player3 (2880 in chips) 
+Seat 4: Player4 (2300 in chips) 
+Seat 5: Player5 (2500 in chips) 
+Seat 6: Hero (1400 in chips) 
+Hero: posts small blind 10
+Player1: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [9d 3d]
+Player2: raises 60 to 80
+Player3: calls 80
+Player4: calls 80
+Player5 is disconnected 
+Player5 has timed out while disconnected
+Player5: folds 
+Player5 is sitting out
+Hero: folds 
+Player1: folds 
+*** FLOP *** [7c Qs Kd]
+Player2: bets 40
+Player3: folds 
+Player4: raises 60 to 100
+Player2: calls 60
+*** TURN *** [7c Qs Kd] [8h]
+Player2: checks 
+Player4: bets 100
+Player2: calls 100
+*** RIVER *** [7c Qs Kd 8h] [6s]
+Player2: checks 
+Player4: bets 200
+Player2: calls 200
+*** SHOW DOWN ***
+Player4: shows [Qd Kh] (two pair, Kings and Queens)
+Player2: mucks hand 
+Player4 collected 1070 from pot
+*** SUMMARY ***
+Total pot 1070 | Rake 0 
+Board [7c Qs Kd 8h 6s]
+Seat 1: Player1 (big blind) folded before Flop
+Seat 2: Player2 mucked [Ad 8d]
+Seat 3: Player3 folded on the Flop
+Seat 4: Player4 showed [Qd Kh] and won (1070) with two pair, Kings and Queens
+Seat 5: Player5 (button) folded before Flop (didn't bet)
+Seat 6: Hero (small blind) folded before Flop
+
+
+

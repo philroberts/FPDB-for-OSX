@@ -138,7 +138,7 @@ class Absolute(HandHistoryConverter):
         if not m:
             tmp = handText[0:100]
             log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error(_("determineGameType: Raising FpdbParseError"))
+            log.error("determineGameType: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
 
@@ -349,7 +349,7 @@ class Absolute(HandHistoryConverter):
                 bet = action.group('BET').replace(',', '')
                 hand.addComplete( street, action.group('PNAME'), bet)
             else:
-                logging.debug(_("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'),action.group('ATYPE')))
+                logging.debug(_("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):

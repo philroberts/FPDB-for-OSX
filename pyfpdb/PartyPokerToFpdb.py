@@ -195,7 +195,7 @@ class PartyPoker(HandHistoryConverter):
         if m is None:
             tmp = handText[0:100]
             log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error(_("determineGameType: Raising FpdbParseError"))
+            log.error("determineGameType: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
@@ -345,7 +345,7 @@ class PartyPoker(HandHistoryConverter):
                     elif info[key].find(u"€")!=-1:
                         hand.buyinCurrency="EUR"
                     else:
-                        raise FpdbParseError(_("Failed to detect currency. Hand ID: %s: '%s'") % (hand.handid, info[key]))
+                        raise FpdbParseError(_("Failed to detect currency.") + " " + _("Hand ID: %s: '%s'") % (hand.handid, info[key]))
                     info[key] = info[key].strip(u'$€')
                     hand.buyin = int(100*Decimal(info[key]))
             if key == 'LEVEL':
@@ -532,9 +532,7 @@ class PartyPoker(HandHistoryConverter):
             elif actionType == 'checks':
                 hand.addCheck( street, playerName )
             else:
-                raise FpdbParseError(
-                    _("Unimplemented readAction: '%s' '%s'") % (playerName,actionType,),
-                    hid = hand.hid, )
+                raise FpdbParseError(_("Unimplemented readAction: '%s' '%s'") % (playerName,actionType), hid = hand.hid)
 
     def readShowdownActions(self, hand):
         # all action in readShownCards

@@ -1,0 +1,2236 @@
+Game # 2137865906 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+francesco38                 (EUR 0.46 in seat 2)
+diavolos1                   (EUR 2.28 in seat 3)
+ALEXANDRUR                  (EUR 1.40 in seat 4)
+mqa151099                   (EUR 1.62 in seat 5)
+Bello09                     (EUR 1.02 in seat 6)
+
+Dealer:                     mqa151099
+Small Blind:                Bello09     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         9s - Ad - Kd - 8c
+
+francesco38                 Call        (0.04)
+diavolos1                   Call        (0.04)
+ALEXANDRUR                  Fold        
+mqa151099                   Call        (0.04)
+Bello09                     Call        (0.02)
+F4UXR34L                    Check       
+
+Flop                        Ac - 6d - 8d
+
+Bello09                     Bet         (0.10)
+F4UXR34L                    Raise       (0.50)
+francesco38                 All-In      (0.42)
+diavolos1                   Fold        
+mqa151099                   Fold        
+Bello09                     All-In      (0.88)
+F4UXR34L                    Call        (0.48)
+
+Turn                        Ac - 6d - 8d - Jh
+River                       Ac - 6d - 8d - Jh - 7h
+
+Bello09 shows:              6h - 9d - As - 4d (two pairs, Aces and Sixes)
+F4UXR34L shows:             9s - Ad - Kd - 8c (two pairs, Aces and Eights)
+
+F4UXR34L wins:              EUR 1.07 side pot (with two pairs, Aces and Eights)
+
+francesco38 shows:          5d - 7d - 2d - 5c (a pair of Sevens)
+
+F4UXR34L wins:              EUR 1.39 main pot (with two pairs, Aces and Eights)
+Rake:                       EUR 0.12
+
+Game ended 2011-03-21 16:37:29 GMT
+
+Game # 2137866285 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.44 in seat 1)
+francesco38                 (EUR 0.80 in seat 2)
+diavolos1                   (EUR 2.24 in seat 3)
+ALEXANDRUR                  (EUR 1.40 in seat 4)
+mqa151099                   (EUR 1.58 in seat 5)
+Bello09                     (EUR 1.20 in seat 6)
+
+Dealer:                     Bello09
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  francesco38 (0.04)
+
+F4UXR34L was dealt:         Qs - Qd - 3s - Ah
+
+diavolos1                   Call        (0.04)
+ALEXANDRUR                  Call        (0.04)
+mqa151099                   Fold        
+Bello09                     Call        (0.04)
+F4UXR34L                    Fold        
+francesco38                 Check       
+
+Flop                        Ks - Kc - Ts
+
+francesco38                 Check       
+diavolos1                   Bet         (0.18)
+ALEXANDRUR                  Fold        
+Bello09                     Raise       (0.72)
+francesco38                 Fold        
+diavolos1                   Call        (0.54)
+
+Turn                        Ks - Kc - Ts - As
+
+diavolos1                   Check       
+Bello09                     All-In      (0.44)
+diavolos1                   Call        (0.44)
+
+River                       Ks - Kc - Ts - As - Qh
+
+diavolos1 shows:            3c - Kh - 7d - Qc (a full house, Kings full of Queens)
+Bello09 shows:              9c - Kd - 8h - 2h (three of a kind, Kings)
+
+diavolos1 wins:             EUR 2.38 (with a full house, Kings full of Queens)
+Rake:                       EUR 0.12
+
+Game ended 2011-03-21 16:38:31 GMT
+
+Game # 2137866663 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.42 in seat 1)
+francesco38                 (EUR 0.76 in seat 2)
+diavolos1                   (EUR 3.42 in seat 3)
+ALEXANDRUR                  (EUR 1.36 in seat 4)
+mqa151099                   (EUR 1.58 in seat 5)
+Bello09                     (EUR 0.00 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                francesco38 (0.02)
+Big Blind:                  diavolos1   (0.04)
+
+F4UXR34L was dealt:         4s - As - Tc - 9s
+
+ALEXANDRUR                  Call        (0.04)
+mqa151099                   Call        (0.04)
+F4UXR34L                    Fold        
+francesco38                 Call        (0.02)
+diavolos1                   Check       
+
+Flop                        9h - 4d - 6s
+
+francesco38                 Check       
+diavolos1                   Check       
+ALEXANDRUR                  Check       
+mqa151099                   Check       
+
+Turn                        9h - 4d - 6s - Kd
+
+francesco38                 Bet         (0.04)
+diavolos1                   Raise       (0.16)
+ALEXANDRUR                  Fold        
+mqa151099                   Call        (0.16)
+francesco38                 Call        (0.12)
+
+River                       9h - 4d - 6s - Kd - 7d
+
+francesco38                 Check       
+diavolos1                   Bet         (0.64)
+mqa151099                   Fold        
+francesco38                 Fold        
+diavolos1                   Payback     (0.64)
+
+diavolos1 didn't show hand
+
+diavolos1 wins:             EUR 0.61
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 16:39:35 GMT
+
+Game # 2137870973 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.42 in seat 1)
+francesco38                 (EUR 0.56 in seat 2)
+diavolos1                   (EUR 3.83 in seat 3)
+ALEXANDRUR                  (EUR 1.32 in seat 4)
+mqa151099                   (EUR 1.38 in seat 5)
+IceTea11                    (EUR 2.07 in seat 6)
+
+Dealer:                     francesco38
+Small Blind:                diavolos1   (0.02)
+Big Blind:                  ALEXANDRUR  (0.04)
+Blind out of turn:          IceTea11    (0.04)
+
+F4UXR34L was dealt:         Ac - 9c - 2c - Th
+
+mqa151099                   Call        (0.04)
+IceTea11                    Check       
+F4UXR34L                    Fold        
+francesco38                 Call        (0.04)
+diavolos1                   Call        (0.02)
+ALEXANDRUR                  Check       
+
+Flop                        4h - 7h - Qs
+
+diavolos1                   Check       
+ALEXANDRUR                  Check       
+mqa151099                   Check       
+IceTea11                    Check       
+francesco38                 Check       
+
+Turn                        4h - 7h - Qs - Tc
+
+diavolos1                   Check       
+ALEXANDRUR                  Bet         (0.04)
+mqa151099                   Call        (0.04)
+IceTea11                    Fold        
+francesco38                 Call        (0.04)
+diavolos1                   Call        (0.04)
+
+River                       4h - 7h - Qs - Tc - 9d
+
+diavolos1                   Check       
+ALEXANDRUR                  Bet         (0.16)
+mqa151099                   Fold        
+francesco38                 Fold        
+diavolos1                   Fold        
+ALEXANDRUR                  Payback     (0.16)
+
+ALEXANDRUR didn't show hand
+
+ALEXANDRUR wins:            EUR 0.34
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:40:33 GMT
+
+Game # 2137871297 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.42 in seat 1)
+francesco38                 (EUR 0.48 in seat 2)
+diavolos1                   (EUR 3.75 in seat 3)
+ALEXANDRUR                  (EUR 1.58 in seat 4)
+mqa151099                   (EUR 1.30 in seat 5)
+IceTea11                    (EUR 2.03 in seat 6)
+
+Dealer:                     diavolos1
+Small Blind:                ALEXANDRUR  (0.02)
+Big Blind:                  mqa151099   (0.04)
+
+F4UXR34L was dealt:         2d - Td - 3d - 8h
+
+IceTea11                    Raise       (0.08)
+F4UXR34L                    Fold        
+francesco38                 Call        (0.08)
+diavolos1                   Call        (0.08)
+ALEXANDRUR                  Fold        
+mqa151099                   Call        (0.04)
+
+Flop                        4s - 4c - 5d
+
+mqa151099                   Check       
+IceTea11                    Check       
+francesco38                 Check       
+diavolos1                   Check       
+
+Turn                        4s - 4c - 5d - 6h
+
+mqa151099                   Check       
+IceTea11                    Bet         (0.34)
+francesco38                 Fold        
+diavolos1                   Call        (0.34)
+mqa151099                   Fold        
+
+River                       4s - 4c - 5d - 6h - 2h
+
+IceTea11                    Check       
+diavolos1                   Check       
+
+IceTea11 shows:             6s - 9c - Qd - 7s (two pairs, Sixes and Fours)
+diavolos1 shows:            Ah - 7d - 5c - 7h (two pairs, Sevens and Fours)
+
+diavolos1 wins:             EUR 0.97 (with two pairs, Sevens and Fours)
+Rake:                       EUR 0.05
+
+Game ended 2011-03-21 16:41:25 GMT
+
+Game # 2137871605 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.42 in seat 1)
+francesco38                 (EUR 0.40 in seat 2)
+diavolos1                   (EUR 4.30 in seat 3)
+ALEXANDRUR                  (EUR 1.56 in seat 4)
+mqa151099                   (EUR 1.22 in seat 5)
+IceTea11                    (EUR 1.61 in seat 6)
+
+Dealer:                     ALEXANDRUR
+Small Blind:                mqa151099   (0.02)
+Big Blind:                  IceTea11    (0.04)
+
+F4UXR34L was dealt:         6c - 3d - Ac - 6s
+
+F4UXR34L                    Fold        
+francesco38                 Call        (0.04)
+diavolos1                   Call        (0.04)
+ALEXANDRUR                  Call        (0.04)
+mqa151099                   Call        (0.02)
+IceTea11                    Check       
+
+Flop                        Td - 5h - Jd
+
+mqa151099                   Bet         (0.20)
+IceTea11                    Fold        
+francesco38                 Fold        
+diavolos1                   Call        (0.20)
+ALEXANDRUR                  Fold        
+
+Turn                        Td - 5h - Jd - 2d
+
+mqa151099                   Bet         (0.60)
+diavolos1                   Fold        
+mqa151099                   Payback     (0.60)
+
+mqa151099 didn't show hand
+
+mqa151099 wins:             EUR 0.57
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 16:42:02 GMT
+
+Game # 2137875811 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.42 in seat 1)
+francesco38                 (EUR 0.36 in seat 2)
+diavolos1                   (EUR 4.06 in seat 3)
+ALEXANDRUR                  (EUR 1.52 in seat 4)
+mqa151099                   (EUR 1.55 in seat 5)
+IceTea11                    (EUR 1.57 in seat 6)
+
+Dealer:                     mqa151099
+Small Blind:                IceTea11    (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         Qd - 2c - Kd - Kh
+
+francesco38                 Fold        
+diavolos1                   Call        (0.04)
+ALEXANDRUR                  Call        (0.04)
+mqa151099                   Call        (0.04)
+IceTea11                    Call        (0.02)
+F4UXR34L                    Check       
+
+Flop                        As - 8d - Ah
+
+IceTea11                    Check       
+F4UXR34L                    Check       
+diavolos1                   Check       
+ALEXANDRUR                  Check       
+mqa151099                   Check       
+
+Turn                        As - 8d - Ah - 8s
+
+IceTea11                    Check       
+F4UXR34L                    Check       
+diavolos1                   Check       
+ALEXANDRUR                  Check       
+mqa151099                   Check       
+
+River                       As - 8d - Ah - 8s - Ad
+
+IceTea11                    Check       
+F4UXR34L                    Bet         (0.20)
+diavolos1                   Fold        
+ALEXANDRUR                  Fold        
+mqa151099                   Fold        
+IceTea11                    Fold        
+F4UXR34L                    Payback     (0.20)
+
+F4UXR34L didn't show hand
+
+F4UXR34L wins:              EUR 0.18
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:43:00 GMT
+
+Game # 2137876144 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.56 in seat 1)
+francesco38                 (EUR 0.36 in seat 2)
+diavolos1                   (EUR 4.02 in seat 3)
+ALEXANDRUR                  (EUR 1.48 in seat 4)
+mqa151099                   (EUR 1.51 in seat 5)
+IceTea11                    (EUR 1.53 in seat 6)
+
+Dealer:                     IceTea11
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  francesco38 (0.04)
+
+F4UXR34L was dealt:         4d - 9h - 6s - Ks
+
+diavolos1                   Call        (0.04)
+ALEXANDRUR                  Call        (0.04)
+mqa151099                   Call        (0.04)
+IceTea11                    Raise       (0.20)
+F4UXR34L                    Fold        
+francesco38                 Call        (0.16)
+diavolos1                   Call        (0.16)
+ALEXANDRUR                  Call        (0.16)
+mqa151099                   Call        (0.16)
+
+Flop                        6c - 5h - 7c
+
+francesco38                 All-In      (0.16)
+diavolos1                   Call        (0.16)
+ALEXANDRUR                  Fold        
+mqa151099                   Call        (0.16)
+IceTea11                    Call        (0.16)
+
+Turn                        6c - 5h - 7c - Th
+
+diavolos1                   Check       
+mqa151099                   All-In      (1.15)
+IceTea11                    Call        (1.15)
+diavolos1                   Fold        
+
+River                       6c - 5h - 7c - Th - 4h
+
+mqa151099 shows:            Jc - 6h - Qc - 2h (a flush, Ten high)
+IceTea11 shows:             Td - Jh - Kh - 7h (a flush, King high)
+
+IceTea11 wins:              EUR 2.19 side pot (with a flush, King high)
+
+francesco38 shows:          7d - 8s - 5c - 6d (a straight, Eight high)
+
+IceTea11 wins:              EUR 1.58 main pot (with a flush, King high)
+Rake:                       EUR 0.19
+
+Game ended 2011-03-21 16:43:56 GMT
+
+Game # 2137876536 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.54 in seat 1)
+Makesdy                     (EUR 0.00 in seat 2)
+diavolos1                   (EUR 3.66 in seat 3)
+ALEXANDRUR                  (EUR 1.28 in seat 4)
+mqa151099                   (EUR 2.00 in seat 5)
+IceTea11                    (EUR 3.79 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                diavolos1   (0.02)
+Big Blind:                  ALEXANDRUR  (0.04)
+
+F4UXR34L was dealt:         Ts - Qc - 6s - 2s
+
+mqa151099                   Call        (0.04)
+IceTea11                    Call        (0.04)
+F4UXR34L                    Fold        
+diavolos1                   Fold        
+ALEXANDRUR                  Check       
+
+Flop                        7h - 2h - Qh
+
+ALEXANDRUR                  Check       
+mqa151099                   Check       
+IceTea11                    Check       
+
+Turn                        7h - 2h - Qh - Tc
+
+ALEXANDRUR                  Check       
+mqa151099                   Check       
+IceTea11                    Check       
+
+River                       7h - 2h - Qh - Tc - 2d
+
+ALEXANDRUR                  Bet         (0.04)
+mqa151099                   Fold        
+IceTea11                    Fold        
+ALEXANDRUR                  Payback     (0.04)
+
+ALEXANDRUR didn't show hand
+
+ALEXANDRUR wins:            EUR 0.14
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:44:59 GMT
+
+Game # 2137879861 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.54 in seat 1)
+Makesdy                     (EUR 4.00 in seat 2)
+diavolos1                   (EUR 3.64 in seat 3)
+ALEXANDRUR                  (EUR 1.38 in seat 4)
+mqa151099                   (EUR 1.96 in seat 5)
+IceTea11                    (EUR 3.75 in seat 6)
+
+Dealer:                     diavolos1
+Small Blind:                ALEXANDRUR  (0.02)
+Big Blind:                  mqa151099   (0.04)
+
+F4UXR34L was dealt:         7c - 6c - 4s - 3s
+
+IceTea11                    Call        (0.04)
+F4UXR34L                    Call        (0.04)
+diavolos1                   Call        (0.04)
+ALEXANDRUR                  Call        (0.02)
+mqa151099                   Check       
+
+Flop                        8d - Qs - Qd
+
+ALEXANDRUR                  Check       
+mqa151099                   Check       
+IceTea11                    Check       
+F4UXR34L                    Check       
+diavolos1                   Check       
+
+Turn                        8d - Qs - Qd - 8s
+
+ALEXANDRUR                  Check       
+mqa151099                   Check       
+IceTea11                    Check       
+F4UXR34L                    Check       
+diavolos1                   Bet         (0.15)
+ALEXANDRUR                  Fold        
+mqa151099                   Call        (0.15)
+IceTea11                    Fold        
+F4UXR34L                    Fold        
+
+River                       8d - Qs - Qd - 8s - 2c
+
+mqa151099                   Check       
+diavolos1                   Check       
+
+mqa151099 shows:            Kd - Kh - 9s - Kc (two pairs, Kings and Queens)
+diavolos1 shows:            Jc - Ac - 8h - 4h (three of a kind, Eights)
+
+diavolos1 wins:             EUR 0.48 (with three of a kind, Eights)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:45:59 GMT
+
+Game # 2137880231 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.50 in seat 1)
+Makesdy                     (EUR 4.00 in seat 2)
+diavolos1                   (EUR 3.93 in seat 3)
+ALEXANDRUR                  (EUR 1.34 in seat 4)
+mqa151099                   (EUR 1.77 in seat 5)
+IceTea11                    (EUR 3.71 in seat 6)
+
+Dealer:                     ALEXANDRUR
+Small Blind:                mqa151099   (0.02)
+Big Blind:                  IceTea11    (0.04)
+
+F4UXR34L was dealt:         Jh - 7c - 4s - Ad
+
+F4UXR34L                    Fold        
+diavolos1                   Call        (0.04)
+ALEXANDRUR                  Fold        
+mqa151099                   Call        (0.02)
+IceTea11                    Check       
+
+Flop                        2c - 7s - 9d
+
+mqa151099                   Check       
+IceTea11                    Check       
+diavolos1                   Check       
+
+Turn                        2c - 7s - 9d - Js
+
+mqa151099                   Check       
+IceTea11                    Bet         (0.12)
+diavolos1                   Call        (0.12)
+mqa151099                   Call        (0.12)
+
+River                       2c - 7s - 9d - Js - Ts
+
+mqa151099                   Bet         (0.12)
+IceTea11                    Call        (0.12)
+diavolos1                   Call        (0.12)
+
+mqa151099 shows:            Th - 4d - 6s - Td (three of a kind, Tens)
+IceTea11 shows:             Qs - Kd - 6h - 3s (a flush, Queen high)
+
+diavolos1 didn't show hand (8h - 3h - 7d - Jc)
+
+IceTea11 wins:              EUR 0.80 (with a flush, Queen high)
+Rake:                       EUR 0.04
+
+Game ended 2011-03-21 16:47:18 GMT
+
+Game # 2137880727 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.50 in seat 1)
+Makesdy                     (EUR 4.00 in seat 2)
+diavolos1                   (EUR 3.65 in seat 3)
+ALEXANDRUR                  (EUR 1.34 in seat 4)
+mqa151099                   (EUR 1.49 in seat 5)
+IceTea11                    (EUR 4.23 in seat 6)
+
+Dealer:                     mqa151099
+Small Blind:                IceTea11    (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         Td - Kc - Tc - 9d
+
+diavolos1                   Fold        
+ALEXANDRUR                  Call        (0.04)
+mqa151099                   Call        (0.04)
+IceTea11                    Call        (0.02)
+F4UXR34L                    Check       
+
+Flop                        Ts - 6c - Qd
+
+IceTea11                    Check       
+F4UXR34L                    Bet         (0.12)
+ALEXANDRUR                  Fold        
+mqa151099                   Fold        
+IceTea11                    Call        (0.12)
+
+Turn                        Ts - 6c - Qd - 2c
+
+IceTea11                    Check       
+F4UXR34L                    Bet         (0.40)
+IceTea11                    Fold        
+F4UXR34L                    Payback     (0.40)
+
+F4UXR34L didn't show hand
+
+F4UXR34L wins:              EUR 0.38
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:48:04 GMT
+
+Game # 2137883993 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.72 in seat 1)
+Makesdy                     (EUR 4.00 in seat 2)
+diavolos1                   (EUR 3.65 in seat 3)
+ALEXANDRUR                  (EUR 1.30 in seat 4)
+mqa151099                   (EUR 1.45 in seat 5)
+IceTea11                    (EUR 4.07 in seat 6)
+
+Dealer:                     IceTea11
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         2h - 3s - Th - 2c
+
+diavolos1                   Call        (0.04)
+ALEXANDRUR                  Fold        
+mqa151099                   Call        (0.04)
+IceTea11                    Raise       (0.12)
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+diavolos1                   Call        (0.08)
+mqa151099                   Call        (0.08)
+
+Flop                        5s - 2d - 6d
+
+diavolos1                   Check       
+mqa151099                   Check       
+IceTea11                    Check       
+
+Turn                        5s - 2d - 6d - 4d
+
+diavolos1                   Check       
+mqa151099                   Check       
+IceTea11                    Check       
+
+River                       5s - 2d - 6d - 4d - 4c
+
+diavolos1                   Check       
+mqa151099                   Check       
+IceTea11                    Check       
+
+diavolos1 shows:            5c - 8c - 9d - Ac (two pairs, Fives and Fours)
+mqa151099 shows:            7c - 8s - Ks - 5d (a straight, Eight high)
+
+IceTea11 didn't show hand (9c - Jh - 4s - Td)
+
+mqa151099 wins:             EUR 0.40 (with a straight, Eight high)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:49:02 GMT
+
+Game # 2137884365 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.70 in seat 1)
+Makesdy                     (EUR 3.96 in seat 2)
+diavolos1                   (EUR 3.53 in seat 3)
+ALEXANDRUR                  (EUR 1.30 in seat 4)
+mqa151099                   (EUR 1.73 in seat 5)
+IceTea11                    (EUR 3.95 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  diavolos1   (0.04)
+
+F4UXR34L was dealt:         5s - 2c - Qh - Td
+
+ALEXANDRUR                  Fold        
+mqa151099                   Call        (0.04)
+IceTea11                    Call        (0.04)
+F4UXR34L                    Fold        
+Makesdy                     Call        (0.02)
+diavolos1                   Raise       (0.16)
+mqa151099                   Call        (0.16)
+IceTea11                    Call        (0.16)
+Makesdy                     Fold        
+
+Flop                        9c - 8c - 4h
+
+diavolos1                   Bet         (0.24)
+mqa151099                   Call        (0.24)
+IceTea11                    Raise       (0.92)
+diavolos1                   Fold        
+mqa151099                   Call        (0.68)
+
+Turn                        9c - 8c - 4h - 3c
+
+mqa151099                   All-In      (0.61)
+IceTea11                    Call        (0.61)
+
+River                       9c - 8c - 4h - 3c - Qc
+
+mqa151099 shows:            As - 8d - Ac - 9h (two pairs, Nines and Eights)
+IceTea11 shows:             Kc - 9d - Jc - 4c (a flush, King high)
+
+IceTea11 wins:              EUR 3.75 (with a flush, King high)
+Rake:                       EUR 0.19
+
+Game ended 2011-03-21 16:50:02 GMT
+
+Game # 2137884723 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.70 in seat 1)
+Makesdy                     (EUR 3.92 in seat 2)
+diavolos1                   (EUR 3.09 in seat 3)
+ALEXANDRUR                  (EUR 1.30 in seat 4)
+mqa151099                   (EUR 2.00 in seat 5)
+IceTea11                    (EUR 5.97 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                diavolos1   (0.02)
+Big Blind:                  ALEXANDRUR  (0.04)
+
+F4UXR34L was dealt:         3s - Th - 2s - 9c
+
+mqa151099                   Call        (0.04)
+IceTea11                    Call        (0.04)
+F4UXR34L                    Fold        
+Makesdy                     Raise       (0.22)
+diavolos1                   Fold        
+ALEXANDRUR                  Call        (0.18)
+mqa151099                   Call        (0.18)
+IceTea11                    Call        (0.18)
+
+Flop                        8s - Td - Jh
+
+ALEXANDRUR                  Bet         (0.04)
+mqa151099                   Fold        
+IceTea11                    Call        (0.04)
+Makesdy                     Raise       (0.80)
+ALEXANDRUR                  Fold        
+IceTea11                    Fold        
+Makesdy                     Payback     (0.76)
+
+Makesdy didn't show hand
+
+Makesdy wins:               EUR 0.97
+Rake:                       EUR 0.05
+
+Game ended 2011-03-21 16:51:35 GMT
+
+Game # 2137888240 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.70 in seat 1)
+Makesdy                     (EUR 4.63 in seat 2)
+diavolos1                   (EUR 3.07 in seat 3)
+ALEXANDRUR                  (EUR 1.04 in seat 4)
+mqa151099                   (EUR 1.78 in seat 5)
+IceTea11                    (EUR 5.71 in seat 6)
+
+Dealer:                     diavolos1
+Small Blind:                ALEXANDRUR  (0.02)
+Big Blind:                  mqa151099   (0.04)
+
+F4UXR34L was dealt:         Qh - 8c - 6c - Ah
+
+IceTea11                    Raise       (0.14)
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+diavolos1                   Call        (0.14)
+ALEXANDRUR                  Fold        
+mqa151099                   Raise       (0.54)
+IceTea11                    Call        (0.44)
+diavolos1                   Fold        
+
+Flop                        5h - 3d - Jd
+
+mqa151099                   All-In      (1.20)
+IceTea11                    Call        (1.20)
+
+Turn                        5h - 3d - Jd - Ac
+River                       5h - 3d - Jd - Ac - 6s
+
+mqa151099 shows:            Ad - 7s - As - 4h (a straight, Seven high)
+IceTea11 shows:             4d - Js - 6d - 9s (two pairs, Jacks and Sixes)
+
+mqa151099 wins:             EUR 3.54 (with a straight, Seven high)
+Rake:                       EUR 0.18
+
+Game ended 2011-03-21 16:52:16 GMT
+
+Game # 2137888461 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.70 in seat 1)
+Makesdy                     (EUR 4.63 in seat 2)
+diavolos1                   (EUR 2.93 in seat 3)
+ALEXANDRUR                  (EUR 1.02 in seat 4)
+mqa151099                   (EUR 3.54 in seat 5)
+
+Dealer:                     ALEXANDRUR
+Small Blind:                mqa151099   (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         3d - Js - 2d - Ks
+
+Makesdy                     Fold        
+diavolos1                   Call        (0.04)
+ALEXANDRUR                  Fold        
+mqa151099                   Call        (0.02)
+F4UXR34L                    Check       
+
+Flop                        5d - Ts - 4h
+
+mqa151099                   Check       
+F4UXR34L                    Check       
+diavolos1                   Check       
+
+Turn                        5d - Ts - 4h - 2s
+
+mqa151099                   Check       
+F4UXR34L                    Bet         (0.09)
+diavolos1                   Call        (0.09)
+mqa151099                   Call        (0.09)
+
+River                       5d - Ts - 4h - 2s - Kc
+
+mqa151099                   Check       
+F4UXR34L                    Check       
+diavolos1                   Check       
+
+mqa151099 shows:            7s - 8h - Kh - 4d (two pairs, Kings and Fours)
+
+F4UXR34L didn't show hand (3d - Js - 2d - Ks)
+diavolos1 didn't show hand (7c - 5h - 4s - 7h)
+
+mqa151099 wins:             EUR 0.37 (with two pairs, Kings and Fours)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:53:13 GMT
+
+Game # 2137891798 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.57 in seat 1)
+Makesdy                     (EUR 4.63 in seat 2)
+diavolos1                   (EUR 2.80 in seat 3)
+ALEXANDRUR                  (EUR 1.02 in seat 4)
+mqa151099                   (EUR 3.78 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     mqa151099
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         3d - 7h - 3s - Qs
+
+diavolos1                   Raise       (0.14)
+mqa151099                   Call        (0.14)
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+
+Flop                        3h - Jh - 6s
+
+diavolos1                   Bet         (0.34)
+mqa151099                   Fold        
+diavolos1                   Payback     (0.34)
+
+diavolos1 didn't show hand
+
+diavolos1 wins:             EUR 0.32
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:53:50 GMT
+
+Game # 2137892026 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.55 in seat 1)
+Makesdy                     (EUR 4.59 in seat 2)
+diavolos1                   (EUR 2.98 in seat 3)
+mqa151099                   (EUR 3.64 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  diavolos1   (0.04)
+
+F4UXR34L was dealt:         3d - Ks - Th - 8h
+
+mqa151099                   Call        (0.04)
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+diavolos1                   Check       
+
+Flop                        7s - Ac - 9s
+
+diavolos1                   Check       
+mqa151099                   Bet         (0.10)
+diavolos1                   Call        (0.10)
+
+Turn                        7s - Ac - 9s - Js
+
+diavolos1                   Check       
+mqa151099                   Bet         (0.30)
+diavolos1                   Call        (0.30)
+
+River                       7s - Ac - 9s - Js - 3s
+
+diavolos1                   Check       
+mqa151099                   Check       
+
+diavolos1 shows:            9h - Jc - 6d - Jd (three of a kind, Jacks)
+mqa151099 shows:            Qd - 6c - Ad - As (three of a kind, Aces)
+
+mqa151099 wins:             EUR 0.86 (with three of a kind, Aces)
+Rake:                       EUR 0.04
+
+Game ended 2011-03-21 16:54:55 GMT
+
+Game # 2137892446 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 5.55 in seat 1)
+Makesdy                     (EUR 4.57 in seat 2)
+diavolos1                   (EUR 2.54 in seat 3)
+mqa151099                   (EUR 4.06 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                diavolos1   (0.02)
+Big Blind:                  mqa151099   (0.04)
+
+F4UXR34L was dealt:         Ac - 8d - Kd - Tc
+
+F4UXR34L                    Call        (0.04)
+Makesdy                     Fold        
+diavolos1                   Call        (0.02)
+mqa151099                   Check       
+
+Flop                        7c - 8h - 9c
+
+diavolos1                   Bet         (0.12)
+mqa151099                   Fold        
+F4UXR34L                    Call        (0.12)
+
+Turn                        7c - 8h - 9c - Js
+
+diavolos1                   Bet         (0.36)
+F4UXR34L                    Raise       (1.44)
+diavolos1                   Call        (1.08)
+
+River                       7c - 8h - 9c - Js - 5c
+
+diavolos1                   Check       
+F4UXR34L                    Bet         (3.24)
+diavolos1                   All-In      (0.94)
+F4UXR34L                    Payback     (2.30)
+
+F4UXR34L shows:             Ac - 8d - Kd - Tc (a flush, Ace high)
+diavolos1 shows:            8s - 7d - 7s - 2s (three of a kind, Sevens)
+
+F4UXR34L wins:              EUR 4.87 (with a flush, Ace high)
+Rake:                       EUR 0.25
+
+Game ended 2011-03-21 16:55:40 GMT
+
+Game # 2137897773 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.88 in seat 1)
+Makesdy                     (EUR 4.57 in seat 2)
+diavolos1                   (EUR 0.00 in seat 3)
+SPADA57                     (EUR 2.00 in seat 4)
+mqa151099                   (EUR 4.02 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     mqa151099
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         4s - Th - 9h - 4c
+
+mqa151099                   Call        (0.04)
+F4UXR34L                    Fold        
+Makesdy                     Check       
+
+Flop                        8d - 7s - Qc
+
+Makesdy                     Check       
+mqa151099                   Check       
+
+Turn                        8d - 7s - Qc - Td
+
+Makesdy                     Check       
+mqa151099                   Check       
+
+River                       8d - 7s - Qc - Td - 7d
+
+Makesdy                     Check       
+mqa151099                   Check       
+
+Makesdy shows:              6c - 6d - 6s - Ah (two pairs, Sevens and Sixes)
+mqa151099 shows:            2s - Ks - Tc - 3d (two pairs, Tens and Sevens)
+
+mqa151099 wins:             EUR 0.10 (with two pairs, Tens and Sevens)
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:56:29 GMT
+
+Game # 2137898016 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.86 in seat 1)
+Makesdy                     (EUR 4.53 in seat 2)
+diavolos1                   (EUR 0.00 in seat 3)
+SPADA57                     (EUR 2.00 in seat 4)
+mqa151099                   (EUR 4.08 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  SPADA57     (0.04)
+Blind out of turn:          NutRage     (0.04)
+
+F4UXR34L was dealt:         3c - Kd - 2h - 7h
+
+mqa151099                   Call        (0.04)
+NutRage                     Raise       (0.10)
+F4UXR34L                    Fold        
+Makesdy                     Call        (0.12)
+SPADA57                     Call        (0.10)
+mqa151099                   Call        (0.10)
+
+Flop                        5c - 4h - As
+
+Makesdy                     Check       
+SPADA57                     Bet         (0.56)
+mqa151099                   Fold        
+NutRage                     Fold        
+Makesdy                     Fold        
+SPADA57                     Payback     (0.56)
+
+SPADA57 didn't show hand
+
+SPADA57 wins:               EUR 0.54
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:57:34 GMT
+
+Game # 2137898413 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.86 in seat 1)
+Makesdy                     (EUR 4.39 in seat 2)
+diavolos1                   (EUR 0.00 in seat 3)
+SPADA57                     (EUR 2.40 in seat 4)
+mqa151099                   (EUR 3.94 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                SPADA57     (0.02)
+Big Blind:                  mqa151099   (0.04)
+
+F4UXR34L was dealt:         Ac - 3c - 7d - Js
+
+NutRage                     Fold        
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+SPADA57                     Call        (0.02)
+mqa151099                   Check       
+
+Flop                        2c - Ad - Ks
+
+SPADA57                     Bet         (0.08)
+mqa151099                   Call        (0.08)
+
+Turn                        2c - Ad - Ks - 3s
+
+SPADA57                     Bet         (0.08)
+mqa151099                   Call        (0.08)
+
+River                       2c - Ad - Ks - 3s - Qc
+
+SPADA57                     Bet         (0.40)
+mqa151099                   Call        (0.40)
+
+SPADA57 shows:              Kc - 3h - 2h - Qh (two pairs, Kings and Queens)
+mqa151099 shows:            Ah - 3d - Tc - Qs (two pairs, Aces and Queens)
+
+mqa151099 wins:             EUR 1.14 (with two pairs, Aces and Queens)
+Rake:                       EUR 0.06
+
+Game ended 2011-03-21 16:58:17 GMT
+
+Game # 2137898682 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.86 in seat 1)
+Makesdy                     (EUR 4.39 in seat 2)
+diavolos1                   (EUR 2.49 in seat 3)
+SPADA57                     (EUR 1.80 in seat 4)
+mqa151099                   (EUR 4.48 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     SPADA57
+Small Blind:                mqa151099   (0.02)
+Big Blind:                  NutRage     (0.04)
+Small + Big Blind:          diavolos1   (0.06)
+
+F4UXR34L was dealt:         3s - 9h - Jc - 2s
+
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+diavolos1                   Check       
+SPADA57                     Raise       (0.20)
+mqa151099                   Call        (0.18)
+NutRage                     Call        (0.16)
+diavolos1                   Call        (0.16)
+
+Flop                        9d - 4d - Ks
+
+mqa151099                   Check       
+NutRage                     Check       
+diavolos1                   Check       
+SPADA57                     Bet         (0.32)
+mqa151099                   Fold        
+NutRage                     Raise       (1.41)
+diavolos1                   Fold        
+SPADA57                     All-In      (1.28)
+NutRage                     Call        (0.19)
+
+Turn                        9d - 4d - Ks - 9c
+River                       9d - 4d - Ks - 9c - 8c
+
+NutRage shows:              7c - Qd - Kh - 6d (two pairs, Kings and Nines)
+SPADA57 shows:              Ah - Ts - Td - Ac (two pairs, Aces and Nines)
+
+SPADA57 wins:               EUR 3.82 (with two pairs, Aces and Nines)
+Rake:                       EUR 0.20
+
+Game ended 2011-03-21 16:59:21 GMT
+
+Game # 2137901078 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.86 in seat 1)
+Makesdy                     (EUR 4.39 in seat 2)
+diavolos1                   (EUR 2.27 in seat 3)
+SPADA57                     (EUR 3.82 in seat 4)
+mqa151099                   (EUR 4.28 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     mqa151099
+Small Blind:                NutRage     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         9s - 7d - 6s - Ad
+
+Makesdy                     Fold        
+diavolos1                   Call        (0.04)
+SPADA57                     Call        (0.04)
+mqa151099                   Call        (0.04)
+NutRage                     Raise       (0.22)
+F4UXR34L                    Fold        
+diavolos1                   Call        (0.20)
+SPADA57                     Fold        
+mqa151099                   Call        (0.20)
+
+Flop                        Qs - 3c - 7h
+
+NutRage                     Check       
+diavolos1                   Check       
+mqa151099                   Check       
+
+Turn                        Qs - 3c - 7h - Kh
+
+NutRage                     Bet         (0.60)
+diavolos1                   Call        (0.60)
+mqa151099                   Call        (0.60)
+
+River                       Qs - 3c - 7h - Kh - 9h
+
+NutRage                     Check       
+diavolos1                   All-In      (1.43)
+mqa151099                   Call        (1.43)
+NutRage                     Call        (1.43)
+
+diavolos1 shows:            5c - 2c - 5h - 3h (a flush, King high)
+mqa151099 shows:            Jh - 8h - 2d - 9d (a flush, King and Jack high)
+
+NutRage didn't show hand (4s - Ks - Jd - Td)
+
+mqa151099 wins:             EUR 6.55 (with a flush, King and Jack high)
+Rake:                       EUR 0.34
+
+Game ended 2011-03-21 17:00:38 GMT
+
+Game # 2137901536 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.82 in seat 1)
+Makesdy                     (EUR 4.39 in seat 2)
+diavolos1                   (EUR 0.00 in seat 3)
+SPADA57                     (EUR 3.78 in seat 4)
+mqa151099                   (EUR 8.56 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     NutRage
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         2s - 3h - 7s - Ad
+
+SPADA57                     Call        (0.04)
+mqa151099                   Call        (0.04)
+NutRage                     Fold        
+F4UXR34L                    Fold        
+Makesdy                     Check       
+
+Flop                        Js - 9c - 2h
+
+Makesdy                     Check       
+SPADA57                     Bet         (0.04)
+mqa151099                   Fold        
+Makesdy                     Fold        
+SPADA57                     Payback     (0.04)
+
+SPADA57 didn't show hand
+
+SPADA57 wins:               EUR 0.14
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:00:56 GMT
+
+Game # 2137901646 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.80 in seat 1)
+Makesdy                     (EUR 4.35 in seat 2)
+giancarlod                  (EUR 2.00 in seat 3)
+SPADA57                     (EUR 3.88 in seat 4)
+mqa151099                   (EUR 8.52 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  giancarlod  (0.04)
+
+F4UXR34L was dealt:         9s - 7d - 9d - 8c
+
+SPADA57                     Call        (0.04)
+mqa151099                   Call        (0.04)
+NutRage                     Fold        
+F4UXR34L                    Call        (0.04)
+Makesdy                     Fold        
+giancarlod                  Check       
+
+Flop                        5d - Qd - 5c
+
+giancarlod                  Bet         (0.04)
+SPADA57                     Fold        
+mqa151099                   Call        (0.04)
+F4UXR34L                    Fold        
+
+Turn                        5d - Qd - 5c - Js
+
+giancarlod                  Bet         (0.08)
+mqa151099                   Call        (0.08)
+
+River                       5d - Qd - 5c - Js - 6h
+
+giancarlod                  Bet         (0.08)
+mqa151099                   Raise       (0.40)
+giancarlod                  Fold        
+mqa151099                   Payback     (0.32)
+
+mqa151099 shows:            Ks - 7h - Ac - Ad (two pairs, Aces and Fives)
+
+mqa151099 wins:             EUR 0.56 (with two pairs, Aces and Fives)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:02:07 GMT
+
+Game # 2137907083 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.76 in seat 1)
+Makesdy                     (EUR 4.33 in seat 2)
+giancarlod                  (EUR 1.76 in seat 3)
+SPADA57                     (EUR 3.84 in seat 4)
+mqa151099                   (EUR 8.84 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                giancarlod  (0.02)
+Big Blind:                  SPADA57     (0.04)
+
+F4UXR34L was dealt:         As - Td - 6s - 9h
+
+mqa151099                   Call        (0.04)
+NutRage                     Fold        
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+giancarlod                  Call        (0.02)
+SPADA57                     Check       
+
+Flop                        6c - Jc - Kd
+
+giancarlod                  Bet         (0.12)
+SPADA57                     Fold        
+mqa151099                   Fold        
+giancarlod                  Payback     (0.12)
+
+giancarlod didn't show hand
+
+giancarlod wins:            EUR 0.12
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:02:39 GMT
+
+Game # 2137907278 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.76 in seat 1)
+Makesdy                     (EUR 4.33 in seat 2)
+giancarlod                  (EUR 1.84 in seat 3)
+SPADA57                     (EUR 3.80 in seat 4)
+mqa151099                   (EUR 8.80 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     giancarlod
+Small Blind:                SPADA57     (0.02)
+Big Blind:                  mqa151099   (0.04)
+
+F4UXR34L was dealt:         3d - 6c - Ac - 4c
+
+NutRage                     Fold        
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+giancarlod                  Raise       (0.14)
+SPADA57                     Call        (0.12)
+mqa151099                   Call        (0.10)
+
+Flop                        7c - 6d - 3h
+
+SPADA57                     Bet         (0.04)
+mqa151099                   Call        (0.04)
+giancarlod                  Call        (0.04)
+
+Turn                        7c - 6d - 3h - Ks
+
+SPADA57                     Bet         (0.04)
+mqa151099                   Fold        
+giancarlod                  Call        (0.04)
+
+River                       7c - 6d - 3h - Ks - 5s
+
+SPADA57                     Bet         (0.62)
+giancarlod                  All-In      (1.62)
+SPADA57                     Call        (1.00)
+
+giancarlod shows:           9d - Ts - Ad - 8h (a straight, Nine high)
+SPADA57 shows:              Qd - 9h - 2d - 8s (a straight, Nine high)
+
+SPADA57 wins:               EUR 1.84 split pot (with a straight, Nine high)
+giancarlod wins:            EUR 1.83 split pot (with a straight, Nine high)
+Rake:                       EUR 0.19
+
+Game ended 2011-03-21 17:03:32 GMT
+
+Game # 2137907595 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.76 in seat 1)
+Makesdy                     (EUR 4.33 in seat 2)
+giancarlod                  (EUR 1.83 in seat 3)
+SPADA57                     (EUR 3.80 in seat 4)
+mqa151099                   (EUR 8.62 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     SPADA57
+Small Blind:                mqa151099   (0.02)
+Big Blind:                  NutRage     (0.04)
+
+F4UXR34L was dealt:         5c - Jh - 8h - Jc
+
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+giancarlod                  Raise       (0.14)
+SPADA57                     Fold        
+mqa151099                   Call        (0.12)
+NutRage                     Fold        
+
+Flop                        Kh - 6h - 6d
+
+mqa151099                   Check       
+giancarlod                  Bet         (0.04)
+mqa151099                   Call        (0.04)
+
+Turn                        Kh - 6h - 6d - 2c
+
+mqa151099                   Check       
+giancarlod                  Bet         (0.40)
+mqa151099                   Call        (0.40)
+
+River                       Kh - 6h - 6d - 2c - 6s
+
+mqa151099                   Check       
+giancarlod                  Bet         (1.20)
+mqa151099                   Fold        
+giancarlod                  Payback     (1.20)
+
+giancarlod didn't show hand
+
+giancarlod wins:            EUR 1.14
+Rake:                       EUR 0.06
+
+Game ended 2011-03-21 17:04:28 GMT
+
+Game # 2137913922 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.76 in seat 1)
+Makesdy                     (EUR 4.33 in seat 2)
+giancarlod                  (EUR 2.39 in seat 3)
+SPADA57                     (EUR 3.80 in seat 4)
+mqa151099                   (EUR 8.04 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     mqa151099
+Small Blind:                NutRage     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         5c - As - 4c - 4d
+
+Makesdy                     Raise       (0.14)
+giancarlod                  Call        (0.14)
+SPADA57                     Fold        
+mqa151099                   Call        (0.14)
+NutRage                     Fold        
+F4UXR34L                    Fold        
+
+Flop                        5s - Ts - 9d
+
+Makesdy                     Bet         (0.48)
+giancarlod                  Call        (0.48)
+mqa151099                   Fold        
+
+Turn                        5s - Ts - 9d - Ac
+
+Makesdy                     Bet         (1.44)
+giancarlod                  Call        (1.44)
+
+River                       5s - Ts - 9d - Ac - 8c
+
+Makesdy                     All-In      (2.27)
+giancarlod                  All-In      (0.33)
+Makesdy                     Payback     (1.94)
+
+Makesdy shows:              Ad - 6d - Ah - 7h (a straight, Ten high)
+giancarlod shows:           4s - Qh - Jh - Ks (a straight, Queen high)
+
+giancarlod wins:            EUR 4.74 (with a straight, Queen high)
+Rake:                       EUR 0.24
+
+Game ended 2011-03-21 17:05:05 GMT
+
+Game # 2137914142 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.72 in seat 1)
+Makesdy                     (EUR 1.94 in seat 2)
+giancarlod                  (EUR 4.74 in seat 3)
+SPADA57                     (EUR 3.80 in seat 4)
+mqa151099                   (EUR 7.90 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     NutRage
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         Kh - Kd - 5c - Td
+
+giancarlod                  Call        (0.04)
+SPADA57                     Call        (0.04)
+mqa151099                   Call        (0.04)
+NutRage                     Fold        
+F4UXR34L                    Call        (0.02)
+Makesdy                     Check       
+
+Flop                        8s - 4c - 4h
+
+F4UXR34L                    Check       
+Makesdy                     Check       
+giancarlod                  Check       
+SPADA57                     Check       
+mqa151099                   Check       
+
+Turn                        8s - 4c - 4h - 2s
+
+F4UXR34L                    Check       
+Makesdy                     Bet         (0.20)
+giancarlod                  Fold        
+SPADA57                     Fold        
+mqa151099                   Fold        
+F4UXR34L                    Fold        
+Makesdy                     Payback     (0.20)
+
+Makesdy didn't show hand
+
+Makesdy wins:               EUR 0.18
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:06:02 GMT
+
+Game # 2137914494 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.68 in seat 1)
+Makesdy                     (EUR 2.08 in seat 2)
+giancarlod                  (EUR 4.70 in seat 3)
+SPADA57                     (EUR 3.76 in seat 4)
+mqa151099                   (EUR 7.86 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  giancarlod  (0.04)
+
+F4UXR34L was dealt:         5d - Qh - Qc - 5h
+
+SPADA57                     Call        (0.04)
+mqa151099                   Call        (0.04)
+NutRage                     Fold        
+F4UXR34L                    Call        (0.04)
+Makesdy                     Fold        
+giancarlod                  Check       
+
+Flop                        8h - Ah - 7s
+
+giancarlod                  Check       
+SPADA57                     Bet         (0.18)
+mqa151099                   Fold        
+F4UXR34L                    Call        (0.18)
+giancarlod                  Call        (0.18)
+
+Turn                        8h - Ah - 7s - 3d
+
+giancarlod                  Check       
+SPADA57                     Check       
+F4UXR34L                    Check       
+
+River                       8h - Ah - 7s - 3d - Jc
+
+giancarlod                  Check       
+SPADA57                     Bet         (0.72)
+F4UXR34L                    Fold        
+giancarlod                  Fold        
+SPADA57                     Payback     (0.72)
+
+SPADA57 didn't show hand
+
+SPADA57 wins:               EUR 0.69
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 17:07:10 GMT
+
+Game # 2137917880 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.46 in seat 1)
+Makesdy                     (EUR 3.98 in seat 2)
+giancarlod                  (EUR 4.48 in seat 3)
+SPADA57                     (EUR 4.23 in seat 4)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                giancarlod  (0.02)
+Big Blind:                  SPADA57     (0.04)
+
+F4UXR34L was dealt:         Js - Ac - Kd - 2s
+
+NutRage                     Fold        
+F4UXR34L                    Raise       (0.14)
+Makesdy                     Call        (0.14)
+giancarlod                  Call        (0.12)
+SPADA57                     Call        (0.10)
+
+Flop                        6s - Tc - 6c
+
+giancarlod                  Bet         (0.04)
+SPADA57                     Raise       (0.68)
+F4UXR34L                    Fold        
+Makesdy                     Raise       (2.64)
+giancarlod                  Fold        
+SPADA57                     Fold        
+Makesdy                     Payback     (1.96)
+
+Makesdy didn't show hand
+
+Makesdy wins:               EUR 1.87
+Rake:                       EUR 0.09
+
+Game ended 2011-03-21 17:08:02 GMT
+
+Game # 2137918193 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.32 in seat 1)
+Makesdy                     (EUR 5.03 in seat 2)
+giancarlod                  (EUR 4.30 in seat 3)
+SPADA57                     (EUR 3.41 in seat 4)
+henma                       (EUR 1.57 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     giancarlod
+Small Blind:                SPADA57     (0.02)
+Big Blind:                  henma       (0.04)
+
+F4UXR34L was dealt:         9d - 2c - 2s - 7d
+
+NutRage                     Fold        
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+giancarlod                  Call        (0.04)
+SPADA57                     Call        (0.02)
+henma                       Raise       (0.12)
+giancarlod                  Call        (0.12)
+SPADA57                     Call        (0.12)
+
+Flop                        Jh - Jc - 9s
+
+SPADA57                     Bet         (0.04)
+henma                       Call        (0.04)
+giancarlod                  Call        (0.04)
+
+Turn                        Jh - Jc - 9s - Qs
+
+SPADA57                     Bet         (0.04)
+henma                       Call        (0.04)
+giancarlod                  Call        (0.04)
+
+River                       Jh - Jc - 9s - Qs - As
+
+SPADA57                     Check       
+henma                       Check       
+giancarlod                  Bet         (0.72)
+SPADA57                     Fold        
+henma                       Fold        
+giancarlod                  Payback     (0.72)
+
+giancarlod didn't show hand
+
+giancarlod wins:            EUR 0.69
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 17:09:01 GMT
+
+Game # 2137918531 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.32 in seat 1)
+Makesdy                     (EUR 5.03 in seat 2)
+giancarlod                  (EUR 4.75 in seat 3)
+SPADA57                     (EUR 3.17 in seat 4)
+henma                       (EUR 1.33 in seat 5)
+NutRage                     (EUR 4.00 in seat 6)
+
+Dealer:                     SPADA57
+Small Blind:                henma       (0.02)
+Big Blind:                  NutRage     (0.04)
+
+F4UXR34L was dealt:         8s - Kc - Td - 5s
+
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+giancarlod                  Call        (0.04)
+SPADA57                     Call        (0.04)
+henma                       Call        (0.02)
+NutRage                     Raise       (0.16)
+giancarlod                  Call        (0.16)
+SPADA57                     Fold        
+henma                       Fold        
+
+Flop                        Qs - 6h - 7h
+
+NutRage                     Bet         (0.36)
+giancarlod                  Fold        
+NutRage                     Payback     (0.36)
+
+NutRage didn't show hand
+
+NutRage wins:               EUR 0.46
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:09:41 GMT
+
+Game # 2137923777 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.32 in seat 1)
+Makesdy                     (EUR 5.03 in seat 2)
+giancarlod                  (EUR 4.55 in seat 3)
+SPADA57                     (EUR 3.13 in seat 4)
+henma                       (EUR 1.29 in seat 5)
+NutRage                     (EUR 4.26 in seat 6)
+
+Dealer:                     henma
+Small Blind:                NutRage     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         6c - Ah - Tc - 2c
+
+Makesdy                     Fold        
+giancarlod                  Call        (0.04)
+SPADA57                     Call        (0.04)
+henma                       Call        (0.04)
+NutRage                     Fold        
+F4UXR34L                    Check       
+
+Flop                        8h - Ac - 9c
+
+F4UXR34L                    Check       
+giancarlod                  Bet         (0.04)
+SPADA57                     Raise       (0.30)
+henma                       Call        (0.30)
+F4UXR34L                    Fold        
+giancarlod                  Call        (0.26)
+
+Turn                        8h - Ac - 9c - Kd
+
+giancarlod                  Check       
+SPADA57                     Check       
+henma                       Check       
+
+River                       8h - Ac - 9c - Kd - 3h
+
+giancarlod                  Bet         (0.04)
+SPADA57                     Fold        
+henma                       Call        (0.04)
+
+giancarlod shows:           Qs - 8d - 9d - 7d (two pairs, Nines and Eights)
+henma shows:                Ts - 8c - Ks - Qc (two pairs, Kings and Eights)
+
+henma wins:                 EUR 1.11 (with two pairs, Kings and Eights)
+Rake:                       EUR 0.05
+
+Game ended 2011-03-21 17:10:58 GMT
+
+Game # 2137924232 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.28 in seat 1)
+Makesdy                     (EUR 5.03 in seat 2)
+giancarlod                  (EUR 4.17 in seat 3)
+SPADA57                     (EUR 2.79 in seat 4)
+henma                       (EUR 2.02 in seat 5)
+NutRage                     (EUR 4.24 in seat 6)
+
+Dealer:                     NutRage
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         7h - 2d - Qd - Ad
+
+giancarlod                  Call        (0.04)
+SPADA57                     Call        (0.04)
+henma                       Call        (0.04)
+NutRage                     Raise       (0.26)
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+giancarlod                  Call        (0.22)
+SPADA57                     Fold        
+henma                       Fold        
+
+Flop                        7c - Qc - 6s
+
+giancarlod                  Bet         (0.04)
+NutRage                     Raise       (0.59)
+giancarlod                  Call        (0.55)
+
+Turn                        7c - Qc - 6s - 2h
+
+giancarlod                  Bet         (0.04)
+NutRage                     Raise       (1.08)
+giancarlod                  Call        (1.04)
+
+River                       7c - Qc - 6s - 2h - 5s
+
+giancarlod                  Bet         (0.04)
+NutRage                     Raise       (1.50)
+giancarlod                  Call        (1.46)
+
+NutRage shows:              Qh - Th - Js - 7s (two pairs, Queens and Sevens)
+
+giancarlod didn't show hand (9c - 4c - 5h - 6h)
+
+NutRage wins:               EUR 6.65 (with two pairs, Queens and Sevens)
+Rake:                       EUR 0.35
+
+Game ended 2011-03-21 17:12:38 GMT
+
+Game # 2137927833 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.26 in seat 1)
+Makesdy                     (EUR 4.99 in seat 2)
+giancarlod                  (EUR 0.74 in seat 3)
+SPADA57                     (EUR 2.75 in seat 4)
+henma                       (EUR 1.98 in seat 5)
+NutRage                     (EUR 7.46 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  giancarlod  (0.04)
+
+F4UXR34L was dealt:         5s - Ad - Kh - Qs
+
+SPADA57                     Call        (0.04)
+henma                       Call        (0.04)
+NutRage                     Call        (0.04)
+F4UXR34L                    Call        (0.04)
+Makesdy                     Call        (0.02)
+giancarlod                  Check       
+
+Flop                        Qh - 9s - 8c
+
+Makesdy                     Check       
+giancarlod                  Bet         (0.24)
+SPADA57                     Call        (0.24)
+henma                       Fold        
+NutRage                     Call        (0.24)
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+
+Turn                        Qh - 9s - 8c - 2d
+
+giancarlod                  All-In      (0.46)
+SPADA57                     Call        (0.46)
+NutRage                     Raise       (1.63)
+SPADA57                     All-In      (2.01)
+NutRage                     Call        (0.84)
+
+River                       Qh - 9s - 8c - 2d - Qd
+
+SPADA57 shows:              6h - 8d - 3c - 8h (a full house, Eights full of Queens)
+NutRage shows:              Ah - 9h - 4h - 9c (a full house, Nines full of Queens)
+
+NutRage wins:               EUR 3.82 side pot (with a full house, Nines full of Queens)
+
+giancarlod shows:           Ts - 3s - 8s - Qc (a full house, Queens full of Eights)
+
+giancarlod wins:            EUR 2.23 main pot (with a full house, Queens full of Eights)
+Rake:                       EUR 0.31
+
+Game ended 2011-03-21 17:13:47 GMT
+
+Game # 2137928281 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.22 in seat 1)
+Makesdy                     (EUR 4.95 in seat 2)
+giancarlod                  (EUR 2.74 in seat 3)
+SPADA57                     (EUR 0.00 in seat 4)
+henma                       (EUR 1.94 in seat 5)
+NutRage                     (EUR 8.53 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                giancarlod  (0.02)
+Big Blind:                  henma       (0.04)
+
+F4UXR34L was dealt:         9h - Jh - Ad - 8h
+
+NutRage                     Fold        
+F4UXR34L                    Raise       (0.14)
+Makesdy                     Fold        
+giancarlod                  Call        (0.12)
+henma                       Raise       (0.20)
+F4UXR34L                    Call        (0.10)
+giancarlod                  Call        (0.10)
+
+Flop                        2d - Tc - Kc
+
+giancarlod                  Check       
+henma                       Check       
+F4UXR34L                    Check       
+
+Turn                        2d - Tc - Kc - Qh
+
+giancarlod                  Check       
+henma                       Check       
+F4UXR34L                    Bet         (0.72)
+giancarlod                  Fold        
+henma                       Fold        
+F4UXR34L                    Payback     (0.72)
+
+F4UXR34L didn't show hand
+
+F4UXR34L wins:              EUR 0.69
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 17:15:06 GMT
+
+Game # 2137928701 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.67 in seat 1)
+Makesdy                     (EUR 4.95 in seat 2)
+giancarlod                  (EUR 2.50 in seat 3)
+SPADA57                     (EUR 4.00 in seat 4)
+henma                       (EUR 1.70 in seat 5)
+NutRage                     (EUR 8.53 in seat 6)
+
+Dealer:                     giancarlod
+Small Blind:                henma       (0.02)
+Big Blind:                  NutRage     (0.04)
+
+F4UXR34L was dealt:         2c - Kd - 4d - 3c
+
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+giancarlod                  Call        (0.04)
+henma                       Call        (0.02)
+NutRage                     Check       
+
+Flop                        3s - Ac - Ah
+
+henma                       Check       
+NutRage                     Check       
+giancarlod                  Check       
+
+Turn                        3s - Ac - Ah - Jh
+
+henma                       Check       
+NutRage                     Check       
+giancarlod                  Bet         (0.04)
+henma                       Call        (0.04)
+NutRage                     Fold        
+
+River                       3s - Ac - Ah - Jh - 5h
+
+henma                       Check       
+giancarlod                  Check       
+
+henma shows:                8d - Ts - 7s - Jd (two pairs, Aces and Jacks)
+giancarlod shows:           Td - 5c - Jc - 6c (two pairs, Aces and Jacks)
+
+henma wins:                 EUR 0.09 split pot (with two pairs, Aces and Jacks)
+giancarlod wins:            EUR 0.09 split pot (with two pairs, Aces and Jacks)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:16:12 GMT
+
+Game # 2137932103 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.67 in seat 1)
+Makesdy                     (EUR 4.95 in seat 2)
+giancarlod                  (EUR 2.51 in seat 3)
+SPADA57                     (EUR 4.00 in seat 4)
+henma                       (EUR 1.71 in seat 5)
+NutRage                     (EUR 8.49 in seat 6)
+
+Dealer:                     henma
+Small Blind:                NutRage     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         9c - Kc - 4d - 8h
+
+Makesdy                     Fold        
+giancarlod                  Call        (0.04)
+henma                       Call        (0.04)
+NutRage                     Raise       (0.14)
+F4UXR34L                    Fold        
+giancarlod                  Call        (0.12)
+henma                       Call        (0.12)
+
+Flop                        8c - Ks - 5c
+
+NutRage                     Check       
+giancarlod                  Check       
+henma                       Check       
+
+Turn                        8c - Ks - 5c - 6h
+
+NutRage                     Check       
+giancarlod                  Bet         (0.04)
+henma                       Fold        
+NutRage                     Call        (0.04)
+
+River                       8c - Ks - 5c - 6h - 3s
+
+NutRage                     Check       
+giancarlod                  Check       
+
+NutRage shows:              9d - Kd - Ah - 4s (a pair of Kings)
+
+giancarlod didn't show hand (Jc - Qh - 9s - 6d)
+
+NutRage wins:               EUR 0.57 (with a pair of Kings)
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 17:17:34 GMT
+
+Game # 2137932614 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.63 in seat 1)
+Makesdy                     (EUR 4.95 in seat 2)
+giancarlod                  (EUR 2.31 in seat 3)
+SPADA57                     (EUR 4.00 in seat 4)
+henma                       (EUR 1.55 in seat 5)
+NutRage                     (EUR 8.86 in seat 6)
+
+Dealer:                     NutRage
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         As - 6c - 6d - Ah
+
+giancarlod                  Call        (0.04)
+henma                       Fold        
+NutRage                     Fold        
+F4UXR34L                    Call        (0.02)
+Makesdy                     Check       
+
+Flop                        Kc - 7h - Ks
+
+F4UXR34L                    Check       
+Makesdy                     Check       
+giancarlod                  Bet         (0.12)
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+giancarlod                  Payback     (0.12)
+
+giancarlod didn't show hand
+
+giancarlod wins:            EUR 0.12
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:18:19 GMT
+
+Game # 2137935927 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.59 in seat 1)
+Makesdy                     (EUR 4.91 in seat 2)
+giancarlod                  (EUR 2.39 in seat 3)
+SPADA57                     (EUR 4.00 in seat 4)
+henma                       (EUR 1.55 in seat 5)
+NutRage                     (EUR 8.86 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  giancarlod  (0.04)
+
+F4UXR34L was dealt:         3s - 9c - 9d - Ks
+
+henma                       Raise       (0.08)
+NutRage                     Fold        
+F4UXR34L                    Fold        
+Makesdy                     Call        (0.06)
+giancarlod                  Call        (0.04)
+
+Flop                        8h - 6h - 2d
+
+Makesdy                     Check       
+giancarlod                  Bet         (0.24)
+henma                       Call        (0.24)
+Makesdy                     Fold        
+
+Turn                        8h - 6h - 2d - 2c
+
+giancarlod                  Bet         (0.72)
+henma                       All-In      (1.23)
+giancarlod                  Call        (0.51)
+
+River                       8h - 6h - 2d - 2c - 5d
+
+giancarlod shows:           6s - 8d - 2h - 7s (a full house, Deuces full of Eights)
+henma shows:                3c - Jh - Kh - Kd (two pairs, Kings and Deuces)
+
+giancarlod wins:            EUR 3.03 (with a full house, Deuces full of Eights)
+Rake:                       EUR 0.15
+
+Game ended 2011-03-21 17:19:46 GMT
+
+Game # 2137936484 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.59 in seat 1)
+Makesdy                     (EUR 4.83 in seat 2)
+giancarlod                  (EUR 3.87 in seat 3)
+SPADA57                     (EUR 4.00 in seat 4)
+smorek99                    (EUR 0.00 in seat 5)
+NutRage                     (EUR 8.86 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                giancarlod  (0.02)
+Big Blind:                  SPADA57     (0.04)
+
+F4UXR34L was dealt:         5c - 4s - 7c - 9c
+
+NutRage                     Fold        
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+giancarlod                  Raise       (0.10)
+SPADA57                     Call        (0.08)
+
+Flop                        Ah - 6h - 4d
+
+giancarlod                  Bet         (0.24)
+SPADA57                     Call        (0.24)
+
+Turn                        Ah - 6h - 4d - Js
+
+giancarlod                  Bet         (0.16)
+SPADA57                     Raise       (0.32)
+giancarlod                  Call        (0.16)
+
+River                       Ah - 6h - 4d - Js - Tc
+
+giancarlod                  Bet         (0.04)
+SPADA57                     Raise       (0.20)
+giancarlod                  Call        (0.16)
+
+SPADA57 shows:              5s - As - 6c - 4h (two pairs, Aces and Sixes)
+giancarlod shows:           3c - Th - 9d - Ad (two pairs, Aces and Tens)
+
+giancarlod wins:            EUR 1.68 (with two pairs, Aces and Tens)
+Rake:                       EUR 0.08
+
+Game ended 2011-03-21 17:20:43 GMT
+
+Game # 2137944843 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.59 in seat 1)
+Makesdy                     (EUR 4.83 in seat 2)
+giancarlod                  (EUR 4.67 in seat 3)
+SPADA57                     (EUR 3.12 in seat 4)
+smorek99                    (EUR 4.00 in seat 5)
+NutRage                     (EUR 8.86 in seat 6)
+
+Dealer:                     giancarlod
+Small Blind:                SPADA57     (0.02)
+Big Blind:                  smorek99    (0.04)
+
+F4UXR34L was dealt:         Th - 5d - 6d - 8d
+
+NutRage                     Raise       (0.14)
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+giancarlod                  Call        (0.14)
+SPADA57                     Call        (0.12)
+smorek99                    Fold        
+
+Flop                        8c - Jh - 2c
+
+SPADA57                     Check       
+NutRage                     Bet         (0.34)
+giancarlod                  Call        (0.34)
+SPADA57                     Fold        
+
+Turn                        8c - Jh - 2c - 8s
+
+NutRage                     Bet         (0.60)
+giancarlod                  Call        (0.60)
+
+River                       8c - Jh - 2c - 8s - 2h
+
+NutRage                     Check       
+giancarlod                  Bet         (2.34)
+NutRage                     Fold        
+giancarlod                  Payback     (2.34)
+
+giancarlod didn't show hand
+
+giancarlod wins:            EUR 2.23
+Rake:                       EUR 0.11
+
+Game ended 2011-03-21 17:21:56 GMT
+
+Game # 2137945289 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Etomo"
+
+Players(max 6):
+F4UXR34L                    (EUR 7.59 in seat 1)
+Makesdy                     (EUR 4.83 in seat 2)
+giancarlod                  (EUR 5.82 in seat 3)
+SPADA57                     (EUR 2.98 in seat 4)
+smorek99                    (EUR 4.00 in seat 5)
+NutRage                     (EUR 7.78 in seat 6)
+
+Dealer:                     SPADA57
+Small Blind:                smorek99    (0.02)
+Big Blind:                  NutRage     (0.04)
+
+F4UXR34L was dealt:         2h - 7h - Ac - Jd
+
+F4UXR34L                    Fold        
+Makesdy                     Fold        
+giancarlod                  Call        (0.04)
+SPADA57                     Call        (0.04)
+smorek99                    Call        (0.02)
+NutRage                     Check       
+
+Flop                        9s - 5c - Ts
+
+smorek99                    Check       
+NutRage                     Bet         (0.12)
+giancarlod                  Raise       (0.52)
+SPADA57                     Fold        
+smorek99                    Fold        
+NutRage                     Raise       (1.60)
+giancarlod                  Call        (1.20)
+
+Turn                        9s - 5c - Ts - Tc
+
+NutRage                     Bet         (3.60)
+giancarlod                  All-In      (4.06)
+NutRage                     Call        (0.46)
+
+River                       9s - 5c - Ts - Tc - Qh
+
+NutRage shows:              Qs - Js - Ks - 6d (a straight, King high)
+giancarlod shows:           As - Th - 5h - 8s (a full house, Tens full of Fives)
+
+giancarlod wins:            EUR 11.14 (with a full house, Tens full of Fives)
+Rake:                       EUR 0.58
+
+Game ended 2011-03-21 17:23:12 GMT
+

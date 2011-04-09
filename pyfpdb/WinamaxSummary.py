@@ -44,8 +44,8 @@ class WinamaxSummary(TourneySummary):
                }
 
     substitutions = {
-                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : u"\$|\xe2\x82\xac|\u20AC|" # legal currency symbols
+                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",     # legal ISO currency codes
+                            'LS' : u"\$|\xe2\x82\xac|\u20ac|" # legal currency symbols
                     }
 
     re_GameType = re.compile("""<h1>((?P<LIMIT>No Limit|Pot Limit) (?P<GAME>Hold\'em))</h1>""")

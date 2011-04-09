@@ -1,0 +1,2481 @@
+Game # 2137871766 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.62 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 9.53 in seat 3)
+mqa151099                   (EUR 4.22 in seat 4)
+jacky12                     (EUR 1.88 in seat 5)
+w8in88                      (EUR 5.89 in seat 6)
+
+Dealer:                     w8in88
+Small Blind:                lukasp2     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         2c - 3s - As - 3d
+
+RealFish82                  Fold        
+mqa151099                   Call        (0.04)
+jacky12                     Call        (0.04)
+w8in88                      Call        (0.04)
+lukasp2                     Fold        
+F4UXR34L                    Check       
+
+Flop                        Ts - Ks - Kd
+
+F4UXR34L                    Check       
+mqa151099                   Check       
+jacky12                     Check       
+w8in88                      Check       
+
+Turn                        Ts - Ks - Kd - 6d
+
+F4UXR34L                    Check       
+mqa151099                   Check       
+jacky12                     Bet         (0.18)
+w8in88                      Fold        
+F4UXR34L                    Fold        
+mqa151099                   Fold        
+jacky12                     Payback     (0.18)
+
+jacky12 didn't show hand
+
+jacky12 wins:               EUR 0.18
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:40:38 GMT
+
+Game # 2137872103 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.60 in seat 1)
+F4UXR34L                    (EUR 3.96 in seat 2)
+RealFish82                  (EUR 9.53 in seat 3)
+mqa151099                   (EUR 4.18 in seat 4)
+jacky12                     (EUR 2.02 in seat 5)
+w8in88                      (EUR 5.85 in seat 6)
+
+Dealer:                     lukasp2
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  RealFish82  (0.04)
+
+F4UXR34L was dealt:         2d - 4s - Ad - Ks
+
+mqa151099                   Call        (0.04)
+jacky12                     Call        (0.04)
+w8in88                      Fold        
+lukasp2                     Fold        
+F4UXR34L                    Call        (0.02)
+RealFish82                  Raise       (0.16)
+mqa151099                   Call        (0.16)
+jacky12                     Call        (0.16)
+F4UXR34L                    Fold        
+
+Flop                        8d - 6h - 9s
+
+RealFish82                  Check       
+mqa151099                   Check       
+jacky12                     Check       
+
+Turn                        8d - 6h - 9s - 5s
+
+RealFish82                  Check       
+mqa151099                   Check       
+jacky12                     Bet         (0.64)
+RealFish82                  Fold        
+mqa151099                   Fold        
+jacky12                     Payback     (0.64)
+
+jacky12 didn't show hand
+
+jacky12 wins:               EUR 0.61
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 16:41:55 GMT
+
+Game # 2137872595 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.60 in seat 1)
+F4UXR34L                    (EUR 3.92 in seat 2)
+RealFish82                  (EUR 9.33 in seat 3)
+mqa151099                   (EUR 3.98 in seat 4)
+jacky12                     (EUR 2.43 in seat 5)
+w8in88                      (EUR 5.85 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                RealFish82  (0.02)
+Big Blind:                  mqa151099   (0.04)
+
+F4UXR34L was dealt:         3c - 6d - 7s - Ah
+
+jacky12                     Call        (0.04)
+w8in88                      Fold        
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Call        (0.02)
+mqa151099                   Check       
+
+Flop                        Ad - Ts - Jd
+
+RealFish82                  Bet         (0.12)
+mqa151099                   Fold        
+jacky12                     Call        (0.12)
+
+Turn                        Ad - Ts - Jd - 5c
+
+RealFish82                  Bet         (0.16)
+jacky12                     Call        (0.16)
+
+River                       Ad - Ts - Jd - 5c - 8h
+
+RealFish82                  Check       
+jacky12                     Check       
+
+RealFish82 shows:           5d - Ac - 9s - Kd (two pairs, Aces and Fives)
+
+jacky12 didn't show hand (Qd - Qc - 3d - 6s)
+
+RealFish82 wins:            EUR 0.65 (with two pairs, Aces and Fives)
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 16:42:41 GMT
+
+Game # 2137876905 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.60 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 9.66 in seat 3)
+mqa151099                   (EUR 3.94 in seat 4)
+jacky12                     (EUR 2.11 in seat 5)
+w8in88                      (EUR 5.85 in seat 6)
+
+Dealer:                     RealFish82
+Small Blind:                mqa151099   (0.02)
+Big Blind:                  jacky12     (0.04)
+
+F4UXR34L was dealt:         Qd - Js - 4c - 8s
+
+w8in88                      Fold        
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Raise       (0.14)
+mqa151099                   Call        (0.12)
+jacky12                     Call        (0.10)
+
+Flop                        Th - Jd - Kh
+
+mqa151099                   Check       
+jacky12                     Check       
+RealFish82                  Check       
+
+Turn                        Th - Jd - Kh - Kc
+
+mqa151099                   Check       
+jacky12                     Check       
+RealFish82                  Check       
+
+River                       Th - Jd - Kh - Kc - Qh
+
+mqa151099                   Check       
+jacky12                     Bet         (0.04)
+RealFish82                  Fold        
+mqa151099                   Fold        
+jacky12                     Payback     (0.04)
+
+jacky12 didn't show hand
+
+jacky12 wins:               EUR 0.40
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:43:50 GMT
+
+Game # 2137877295 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.60 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 9.52 in seat 3)
+mqa151099                   (EUR 3.80 in seat 4)
+jacky12                     (EUR 2.37 in seat 5)
+w8in88                      (EUR 5.85 in seat 6)
+
+Dealer:                     mqa151099
+Small Blind:                jacky12     (0.02)
+Big Blind:                  w8in88      (0.04)
+
+F4UXR34L was dealt:         8c - Qs - 5s - 9h
+
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Raise       (0.14)
+mqa151099                   Call        (0.14)
+jacky12                     Call        (0.12)
+w8in88                      Fold        
+
+Flop                        6c - Kh - 9d
+
+jacky12                     Check       
+RealFish82                  Bet         (0.34)
+mqa151099                   Call        (0.34)
+jacky12                     Fold        
+
+Turn                        6c - Kh - 9d - 7h
+
+RealFish82                  Bet         (0.40)
+mqa151099                   Fold        
+RealFish82                  Payback     (0.40)
+
+RealFish82 didn't show hand
+
+RealFish82 wins:            EUR 1.09
+Rake:                       EUR 0.05
+
+Game ended 2011-03-21 16:44:35 GMT
+
+Game # 2137877564 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.60 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 10.13 in seat 3)
+mqa151099                   (EUR 3.32 in seat 4)
+jacky12                     (EUR 2.23 in seat 5)
+w8in88                      (EUR 5.81 in seat 6)
+
+Dealer:                     jacky12
+Small Blind:                w8in88      (0.02)
+Big Blind:                  lukasp2     (0.04)
+
+F4UXR34L was dealt:         Td - 8c - 2c - 4c
+
+F4UXR34L                    Fold        
+RealFish82                  Raise       (0.14)
+mqa151099                   Call        (0.14)
+jacky12                     Fold        
+w8in88                      Fold        
+lukasp2                     Fold        
+
+Flop                        Tc - As - 6c
+
+RealFish82                  Bet         (0.25)
+mqa151099                   Fold        
+RealFish82                  Payback     (0.25)
+
+RealFish82 didn't show hand
+
+RealFish82 wins:            EUR 0.32
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:45:10 GMT
+
+Game # 2137880794 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.56 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 10.31 in seat 3)
+mqa151099                   (EUR 3.18 in seat 4)
+jacky12                     (EUR 2.23 in seat 5)
+w8in88                      (EUR 5.79 in seat 6)
+
+Dealer:                     w8in88
+Small Blind:                lukasp2     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         6s - 9d - Jc - 7c
+
+RealFish82                  Raise       (0.14)
+mqa151099                   Call        (0.14)
+jacky12                     Fold        
+w8in88                      Call        (0.14)
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+
+Flop                        Ts - 7d - Qs
+
+RealFish82                  Bet         (0.36)
+mqa151099                   Call        (0.36)
+w8in88                      Call        (0.36)
+
+Turn                        Ts - 7d - Qs - 6d
+
+RealFish82                  Bet         (1.56)
+mqa151099                   Call        (1.56)
+w8in88                      Call        (1.56)
+
+River                       Ts - 7d - Qs - 6d - Ac
+
+RealFish82                  Bet         (1.96)
+mqa151099                   Fold        
+w8in88                      Fold        
+RealFish82                  Payback     (1.96)
+
+RealFish82 didn't show hand
+
+RealFish82 wins:            EUR 5.93
+Rake:                       EUR 0.31
+
+Game ended 2011-03-21 16:46:43 GMT
+
+Game # 2137881406 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.54 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 14.18 in seat 3)
+mqa151099                   (EUR 1.12 in seat 4)
+Makesdy                     (EUR 0.00 in seat 5)
+w8in88                      (EUR 3.73 in seat 6)
+
+Dealer:                     lukasp2
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  RealFish82  (0.04)
+
+F4UXR34L was dealt:         Td - 6d - Ah - 6s
+
+mqa151099                   Call        (0.04)
+w8in88                      Fold        
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Raise       (0.10)
+mqa151099                   Call        (0.10)
+
+Flop                        Ac - 5s - 3d
+
+RealFish82                  Check       
+mqa151099                   Check       
+
+Turn                        Ac - 5s - 3d - 8h
+
+RealFish82                  Bet         (0.22)
+mqa151099                   Fold        
+RealFish82                  Payback     (0.22)
+
+RealFish82 didn't show hand
+
+RealFish82 wins:            EUR 0.28
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:47:30 GMT
+
+Game # 2137881679 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.54 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 14.32 in seat 3)
+mqa151099                   (EUR 0.98 in seat 4)
+Makesdy                     (EUR 0.00 in seat 5)
+w8in88                      (EUR 3.73 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                RealFish82  (0.02)
+Big Blind:                  mqa151099   (0.04)
+
+F4UXR34L was dealt:         3d - Jc - 3c - 5c
+
+w8in88                      Fold        
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+mqa151099                   Payback     (0.02)
+
+mqa151099 didn't show hand
+
+mqa151099 wins:             EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:47:45 GMT
+
+Game # 2137884785 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.54 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 14.30 in seat 3)
+mqa151099                   (EUR 1.00 in seat 4)
+nananinee                   (EUR 0.00 in seat 5)
+w8in88                      (EUR 3.73 in seat 6)
+
+Dealer:                     RealFish82
+Small Blind:                mqa151099   (0.02)
+Big Blind:                  w8in88      (0.04)
+
+F4UXR34L was dealt:         8c - 6d - Qh - Kh
+
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Raise       (0.08)
+mqa151099                   Call        (0.06)
+w8in88                      Call        (0.04)
+
+Flop                        4c - 2s - 7c
+
+mqa151099                   Check       
+w8in88                      Check       
+RealFish82                  Check       
+
+Turn                        4c - 2s - 7c - Jd
+
+mqa151099                   Check       
+w8in88                      Check       
+RealFish82                  Bet         (0.24)
+mqa151099                   Fold        
+w8in88                      Fold        
+RealFish82                  Payback     (0.24)
+
+RealFish82 didn't show hand
+
+RealFish82 wins:            EUR 0.22
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:48:46 GMT
+
+Game # 2137885174 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.54 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 14.44 in seat 3)
+mqa151099                   (EUR 0.92 in seat 4)
+nananinee                   (EUR 4.00 in seat 5)
+w8in88                      (EUR 3.65 in seat 6)
+
+Dealer:                     mqa151099
+Small Blind:                w8in88      (0.02)
+Big Blind:                  lukasp2     (0.04)
+
+F4UXR34L was dealt:         Tc - Jc - Ts - 8h
+
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+mqa151099                   Call        (0.04)
+w8in88                      Fold        
+lukasp2                     Check       
+
+Flop                        4s - 5h - Ad
+
+lukasp2                     Bet         (0.07)
+mqa151099                   Call        (0.07)
+
+Turn                        4s - 5h - Ad - 6c
+
+lukasp2                     Check       
+mqa151099                   Bet         (0.24)
+lukasp2                     Raise       (0.96)
+mqa151099                   All-In      (0.57)
+lukasp2                     Payback     (0.15)
+
+River                       4s - 5h - Ad - 6c - Jh
+
+lukasp2 shows:              8c - Qh - 5d - 4c (two pairs, Fives and Fours)
+mqa151099 shows:            Kc - 3c - 7c - 2s (a straight, Seven high)
+
+mqa151099 wins:             EUR 1.77 (with a straight, Seven high)
+Rake:                       EUR 0.09
+
+Game ended 2011-03-21 16:49:25 GMT
+
+Game # 2137885400 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 0.62 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 14.44 in seat 3)
+mqa151099                   (EUR 1.77 in seat 4)
+nananinee                   (EUR 4.00 in seat 5)
+w8in88                      (EUR 3.63 in seat 6)
+
+Dealer:                     w8in88
+Small Blind:                lukasp2     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         5c - 6c - 3h - 9d
+
+RealFish82                  Raise       (0.14)
+mqa151099                   Call        (0.14)
+w8in88                      Fold        
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+
+Flop                        2h - 8d - Td
+
+RealFish82                  Bet         (0.25)
+mqa151099                   Call        (0.25)
+
+Turn                        2h - 8d - Td - 8h
+
+RealFish82                  Bet         (0.44)
+mqa151099                   All-In      (1.38)
+RealFish82                  Call        (0.94)
+
+River                       2h - 8d - Td - 8h - 4d
+
+RealFish82 shows:           Ah - 3d - 3c - Ad (a flush, Ace high)
+mqa151099 shows:            Tc - 4s - 8c - As (a full house, Eights full of Tens)
+
+mqa151099 wins:             EUR 3.42 (with a full house, Eights full of Tens)
+Rake:                       EUR 0.18
+
+Game ended 2011-03-21 16:50:18 GMT
+
+Game # 2137885725 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 0.60 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 12.67 in seat 3)
+mqa151099                   (EUR 3.42 in seat 4)
+nananinee                   (EUR 4.00 in seat 5)
+w8in88                      (EUR 3.63 in seat 6)
+
+Dealer:                     lukasp2
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  RealFish82  (0.04)
+
+F4UXR34L was dealt:         4d - 9s - Th - 6h
+
+mqa151099                   Call        (0.04)
+w8in88                      Fold        
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Raise       (0.10)
+mqa151099                   Call        (0.10)
+
+Flop                        Js - As - Jd
+
+RealFish82                  Bet         (0.22)
+mqa151099                   Call        (0.22)
+
+Turn                        Js - As - Jd - 5s
+
+RealFish82                  Check       
+mqa151099                   Bet         (0.74)
+RealFish82                  Raise       (2.96)
+mqa151099                   Call        (2.22)
+
+River                       Js - As - Jd - 5s - Ts
+
+RealFish82                  Bet         (6.66)
+mqa151099                   All-In      (0.10)
+RealFish82                  Payback     (6.56)
+
+RealFish82 shows:           Kc - Ks - 2d - 7s (a flush, Ace high)
+mqa151099 shows:            Qs - 7h - 5d - 4s (a flush, Ace and Queen high)
+
+RealFish82 wins:            EUR 6.52 (with a flush, Ace high)
+Rake:                       EUR 0.34
+
+Game ended 2011-03-21 16:51:17 GMT
+
+Game # 2137890172 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 0.60 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.77 in seat 3)
+nananinee                   (EUR 4.00 in seat 5)
+w8in88                      (EUR 3.63 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                RealFish82  (0.02)
+Big Blind:                  nananinee   (0.04)
+
+F4UXR34L was dealt:         Js - Jh - As - 9h
+
+w8in88                      Call        (0.04)
+lukasp2                     Fold        
+F4UXR34L                    Raise       (0.14)
+RealFish82                  Call        (0.12)
+nananinee                   Fold        
+w8in88                      Call        (0.10)
+
+Flop                        Ad - 2h - Ts
+
+RealFish82                  Check       
+w8in88                      Check       
+F4UXR34L                    Bet         (0.34)
+RealFish82                  Fold        
+w8in88                      Fold        
+F4UXR34L                    Payback     (0.34)
+
+F4UXR34L didn't show hand
+
+F4UXR34L wins:              EUR 0.44
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:52:14 GMT
+
+Game # 2137890469 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 0.60 in seat 1)
+F4UXR34L                    (EUR 4.30 in seat 2)
+RealFish82                  (EUR 15.63 in seat 3)
+nananinee                   (EUR 3.96 in seat 5)
+w8in88                      (EUR 3.49 in seat 6)
+
+Dealer:                     RealFish82
+Small Blind:                nananinee   (0.02)
+Big Blind:                  w8in88      (0.04)
+
+F4UXR34L was dealt:         5d - 9d - 2h - As
+
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+nananinee                   Call        (0.02)
+w8in88                      Raise       (0.08)
+nananinee                   Fold        
+w8in88                      Payback     (0.08)
+
+w8in88 didn't show hand
+
+w8in88 wins:                EUR 0.08
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:52:31 GMT
+
+Game # 2137890574 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 0.60 in seat 1)
+F4UXR34L                    (EUR 4.30 in seat 2)
+RealFish82                  (EUR 15.63 in seat 3)
+mastruvitu                  (EUR 1.10 in seat 4)
+nananinee                   (EUR 3.92 in seat 5)
+w8in88                      (EUR 3.53 in seat 6)
+
+Dealer:                     nananinee
+Small Blind:                w8in88      (0.02)
+Big Blind:                  lukasp2     (0.04)
+
+F4UXR34L was dealt:         Js - Ks - 4d - 9h
+
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+nananinee                   Fold        
+w8in88                      Fold        
+lukasp2                     Payback     (0.02)
+
+lukasp2 didn't show hand
+
+lukasp2 wins:               EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:52:40 GMT
+
+Game # 2137890639 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 0.62 in seat 1)
+F4UXR34L                    (EUR 4.30 in seat 2)
+RealFish82                  (EUR 15.63 in seat 3)
+mastruvitu                  (EUR 1.10 in seat 4)
+nananinee                   (EUR 3.92 in seat 5)
+w8in88                      (EUR 3.51 in seat 6)
+
+Dealer:                     w8in88
+Small Blind:                lukasp2     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+Blind out of turn:          mastruvitu  (0.04)
+
+F4UXR34L was dealt:         9h - Jc - Qd - Jh
+
+RealFish82                  Fold        
+mastruvitu                  Check       
+nananinee                   Fold        
+w8in88                      Fold        
+lukasp2                     Call        (0.02)
+F4UXR34L                    Check       
+
+Flop                        3h - Qc - 2s
+
+lukasp2                     Check       
+F4UXR34L                    Check       
+mastruvitu                  Bet         (0.12)
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+mastruvitu                  Payback     (0.12)
+
+mastruvitu didn't show hand
+
+mastruvitu wins:            EUR 0.12
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:53:17 GMT
+
+Game # 2137890884 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 0.58 in seat 1)
+F4UXR34L                    (EUR 4.26 in seat 2)
+RealFish82                  (EUR 15.63 in seat 3)
+mastruvitu                  (EUR 1.18 in seat 4)
+nananinee                   (EUR 3.92 in seat 5)
+w8in88                      (EUR 3.51 in seat 6)
+
+Dealer:                     lukasp2
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  RealFish82  (0.04)
+
+F4UXR34L was dealt:         Kd - 8s - Tc - 2h
+
+mastruvitu                  Call        (0.04)
+nananinee                   Fold        
+w8in88                      Call        (0.04)
+lukasp2                     Call        (0.04)
+F4UXR34L                    Fold        
+RealFish82                  Check       
+
+Flop                        9d - 6c - 8d
+
+RealFish82                  Bet         (0.13)
+mastruvitu                  Call        (0.13)
+w8in88                      Call        (0.13)
+lukasp2                     All-In      (0.54)
+RealFish82                  Call        (0.41)
+mastruvitu                  Call        (0.41)
+w8in88                      Fold        
+
+Turn                        9d - 6c - 8d - 7d
+
+RealFish82                  Check       
+mastruvitu                  All-In      (0.60)
+RealFish82                  Call        (0.60)
+
+River                       9d - 6c - 8d - 7d - Js
+
+RealFish82 shows:           Td - Qd - Qh - 2c (a flush, Queen high)
+mastruvitu shows:           6d - 3s - Kh - 7c (two pairs, Sevens and Sixes)
+
+RealFish82 wins:            EUR 1.14 side pot (with a flush, Queen high)
+
+lukasp2 shows:              5d - Jd - 9h - Ad (a flush, Ace high)
+
+lukasp2 wins:               EUR 1.84 main pot (with a flush, Ace high)
+Rake:                       EUR 0.15
+
+Game ended 2011-03-21 16:54:38 GMT
+
+Game # 2137891456 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.84 in seat 1)
+F4UXR34L                    (EUR 4.24 in seat 2)
+RealFish82                  (EUR 15.59 in seat 3)
+nananinee                   (EUR 3.92 in seat 5)
+w8in88                      (EUR 3.34 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                RealFish82  (0.02)
+Big Blind:                  nananinee   (0.04)
+
+F4UXR34L was dealt:         Jd - 8s - Jh - Js
+
+w8in88                      Fold        
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+nananinee                   Payback     (0.02)
+
+nananinee didn't show hand
+
+nananinee wins:             EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:55:03 GMT
+
+Game # 2137891555 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.84 in seat 1)
+F4UXR34L                    (EUR 4.24 in seat 2)
+RealFish82                  (EUR 15.57 in seat 3)
+nananinee                   (EUR 3.94 in seat 5)
+w8in88                      (EUR 3.34 in seat 6)
+
+Dealer:                     RealFish82
+Small Blind:                nananinee   (0.02)
+Big Blind:                  w8in88      (0.04)
+
+F4UXR34L was dealt:         8s - 7c - Qs - Kd
+
+lukasp2                     Call        (0.04)
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+nananinee                   Call        (0.02)
+w8in88                      Check       
+
+Flop                        Ah - 2s - 9c
+
+nananinee                   Check       
+w8in88                      Check       
+lukasp2                     Check       
+
+Turn                        Ah - 2s - 9c - 3c
+
+nananinee                   Check       
+w8in88                      Check       
+lukasp2                     Check       
+
+River                       Ah - 2s - 9c - 3c - 6d
+
+nananinee                   Check       
+w8in88                      Check       
+lukasp2                     Check       
+
+nananinee shows:            4h - Td - Jh - 6s (a pair of Sixes)
+w8in88 shows:               Js - 5c - Qc - 6h (a pair of Sixes, with Ace and Queen as kickers)
+lukasp2 shows:              7s - Ts - Tc - 7d (a pair of Tens)
+
+lukasp2 wins:               EUR 0.12 (with a pair of Tens)
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:56:22 GMT
+
+Game # 2137897044 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.92 in seat 1)
+F4UXR34L                    (EUR 4.24 in seat 2)
+RealFish82                  (EUR 15.57 in seat 3)
+nananinee                   (EUR 3.90 in seat 5)
+w8in88                      (EUR 3.30 in seat 6)
+
+Dealer:                     nananinee
+Small Blind:                w8in88      (0.02)
+Big Blind:                  lukasp2     (0.04)
+
+F4UXR34L was dealt:         Th - Jc - 4c - 5s
+
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+nananinee                   Fold        
+w8in88                      Call        (0.02)
+lukasp2                     Check       
+
+Flop                        Ks - 8d - Td
+
+w8in88                      Check       
+lukasp2                     Check       
+
+Turn                        Ks - 8d - Td - 5c
+
+w8in88                      Check       
+lukasp2                     Check       
+
+River                       Ks - 8d - Td - 5c - 7h
+
+w8in88                      Check       
+lukasp2                     Check       
+
+w8in88 shows:               9d - 5h - 7c - 4s (two pairs, Sevens and Fives)
+
+lukasp2 didn't show hand (7s - 2c - 6d - Jh)
+
+w8in88 wins:                EUR 0.08 (with two pairs, Sevens and Fives)
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:57:15 GMT
+
+Game # 2137897392 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.88 in seat 1)
+F4UXR34L                    (EUR 4.24 in seat 2)
+RealFish82                  (EUR 15.57 in seat 3)
+nananinee                   (EUR 3.90 in seat 5)
+w8in88                      (EUR 3.34 in seat 6)
+
+Dealer:                     w8in88
+Small Blind:                lukasp2     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         7d - 7c - Qh - 8d
+
+RealFish82                  Fold        
+nananinee                   Fold        
+w8in88                      Fold        
+lukasp2                     Raise       (0.10)
+F4UXR34L                    Fold        
+lukasp2                     Payback     (0.08)
+
+lukasp2 didn't show hand
+
+lukasp2 wins:               EUR 0.08
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:57:27 GMT
+
+Game # 2137897466 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.92 in seat 1)
+F4UXR34L                    (EUR 4.20 in seat 2)
+RealFish82                  (EUR 15.57 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+nananinee                   (EUR 3.90 in seat 5)
+w8in88                      (EUR 3.34 in seat 6)
+
+Dealer:                     lukasp2
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  RealFish82  (0.04)
+
+F4UXR34L was dealt:         9s - 4s - 8d - 4h
+
+nananinee                   Fold        
+w8in88                      Fold        
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Payback     (0.02)
+
+RealFish82 didn't show hand
+
+RealFish82 wins:            EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:57:45 GMT
+
+Game # 2137897590 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.92 in seat 1)
+F4UXR34L                    (EUR 4.18 in seat 2)
+RealFish82                  (EUR 15.59 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+nananinee                   (EUR 3.90 in seat 5)
+w8in88                      (EUR 3.34 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                RealFish82  (0.02)
+Big Blind:                  Js9s        (0.04)
+
+F4UXR34L was dealt:         Qh - Ah - 9h - 6h
+
+nananinee                   Fold        
+w8in88                      Call        (0.04)
+lukasp2                     Call        (0.04)
+F4UXR34L                    Fold        
+RealFish82                  Raise       (0.18)
+Js9s                        Fold        
+w8in88                      Call        (0.16)
+lukasp2                     Call        (0.16)
+
+Flop                        Qs - Qc - 3s
+
+RealFish82                  Check       
+w8in88                      Bet         (0.48)
+lukasp2                     Fold        
+RealFish82                  Fold        
+w8in88                      Payback     (0.48)
+
+w8in88 didn't show hand
+
+w8in88 wins:                EUR 0.61
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 16:58:51 GMT
+
+Game # 2137899994 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.72 in seat 1)
+F4UXR34L                    (EUR 4.18 in seat 2)
+RealFish82                  (EUR 15.39 in seat 3)
+Js9s                        (EUR 3.96 in seat 4)
+nananinee                   (EUR 3.90 in seat 5)
+w8in88                      (EUR 3.75 in seat 6)
+
+Dealer:                     RealFish82
+Small Blind:                Js9s        (0.02)
+Big Blind:                  nananinee   (0.04)
+
+F4UXR34L was dealt:         As - 8s - 2d - 4s
+
+w8in88                      Call        (0.04)
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Raise       (0.18)
+Js9s                        Fold        
+nananinee                   Fold        
+w8in88                      Call        (0.14)
+
+Flop                        Qs - 3d - Ks
+
+w8in88                      Check       
+RealFish82                  Bet         (0.31)
+w8in88                      Fold        
+RealFish82                  Payback     (0.31)
+
+RealFish82 didn't show hand
+
+RealFish82 wins:            EUR 0.40
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:59:53 GMT
+
+Game # 2137900410 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.72 in seat 1)
+F4UXR34L                    (EUR 4.18 in seat 2)
+RealFish82                  (EUR 15.61 in seat 3)
+Js9s                        (EUR 3.94 in seat 4)
+nananinee                   (EUR 3.86 in seat 5)
+w8in88                      (EUR 3.57 in seat 6)
+
+Dealer:                     Js9s
+Small Blind:                nananinee   (0.02)
+Big Blind:                  w8in88      (0.04)
+
+F4UXR34L was dealt:         6c - 7s - 3h - Ks
+
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+Js9s                        Fold        
+nananinee                   Fold        
+w8in88                      Payback     (0.02)
+
+w8in88 didn't show hand
+
+w8in88 wins:                EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:00:09 GMT
+
+Game # 2137900503 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.72 in seat 1)
+F4UXR34L                    (EUR 4.18 in seat 2)
+RealFish82                  (EUR 15.61 in seat 3)
+Js9s                        (EUR 3.94 in seat 4)
+nananinee                   (EUR 3.84 in seat 5)
+w8in88                      (EUR 3.59 in seat 6)
+
+Dealer:                     nananinee
+Small Blind:                w8in88      (0.02)
+Big Blind:                  lukasp2     (0.04)
+
+F4UXR34L was dealt:         Kd - 4c - 9c - Jc
+
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+Js9s                        Fold        
+nananinee                   Raise       (0.14)
+w8in88                      Fold        
+lukasp2                     Call        (0.10)
+
+Flop                        Kc - 4s - Th
+
+lukasp2                     Check       
+nananinee                   Check       
+
+Turn                        Kc - 4s - Th - Kh
+
+lukasp2                     Check       
+nananinee                   Check       
+
+River                       Kc - 4s - Th - Kh - 9d
+
+lukasp2                     Bet         (0.22)
+nananinee                   Fold        
+lukasp2                     Payback     (0.22)
+
+lukasp2 didn't show hand
+
+lukasp2 wins:               EUR 0.28
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:00:44 GMT
+
+Game # 2137905742 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.86 in seat 1)
+F4UXR34L                    (EUR 4.18 in seat 2)
+RealFish82                  (EUR 15.61 in seat 3)
+Js9s                        (EUR 3.94 in seat 4)
+nananinee                   (EUR 3.70 in seat 5)
+w8in88                      (EUR 3.57 in seat 6)
+
+Dealer:                     w8in88
+Small Blind:                lukasp2     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         8s - 2h - Ac - As
+
+RealFish82                  Fold        
+Js9s                        Raise       (0.14)
+nananinee                   Fold        
+w8in88                      Call        (0.14)
+lukasp2                     Fold        
+F4UXR34L                    Call        (0.10)
+
+Flop                        Th - Ts - Qh
+
+F4UXR34L                    Check       
+Js9s                        Check       
+w8in88                      Bet         (0.33)
+F4UXR34L                    Fold        
+Js9s                        Fold        
+w8in88                      Payback     (0.33)
+
+w8in88 didn't show hand
+
+w8in88 wins:                EUR 0.42
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:01:22 GMT
+
+Game # 2137906011 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.84 in seat 1)
+F4UXR34L                    (EUR 4.04 in seat 2)
+RealFish82                  (EUR 15.61 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+nananinee                   (EUR 3.70 in seat 5)
+w8in88                      (EUR 3.85 in seat 6)
+
+Dealer:                     lukasp2
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  RealFish82  (0.04)
+
+F4UXR34L was dealt:         2h - Kh - 9c - 4h
+
+Js9s                        Fold        
+nananinee                   Fold        
+w8in88                      Fold        
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Payback     (0.02)
+
+RealFish82 didn't show hand
+
+RealFish82 wins:            EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:01:37 GMT
+
+Game # 2137906110 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.84 in seat 1)
+F4UXR34L                    (EUR 4.02 in seat 2)
+RealFish82                  (EUR 15.63 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+nananinee                   (EUR 3.70 in seat 5)
+w8in88                      (EUR 3.85 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                RealFish82  (0.02)
+Big Blind:                  Js9s        (0.04)
+
+F4UXR34L was dealt:         Td - 6d - 5s - Ac
+
+nananinee                   Fold        
+w8in88                      Fold        
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+Js9s                        Payback     (0.02)
+
+Js9s didn't show hand
+
+Js9s wins:                  EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:01:50 GMT
+
+Game # 2137906194 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.84 in seat 1)
+F4UXR34L                    (EUR 4.02 in seat 2)
+RealFish82                  (EUR 15.61 in seat 3)
+Js9s                        (EUR 4.02 in seat 4)
+nananinee                   (EUR 3.70 in seat 5)
+w8in88                      (EUR 3.85 in seat 6)
+
+Dealer:                     RealFish82
+Small Blind:                Js9s        (0.02)
+Big Blind:                  nananinee   (0.04)
+
+F4UXR34L was dealt:         3c - Kc - Jd - Ac
+
+w8in88                      Fold        
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Raise       (0.14)
+Js9s                        Fold        
+nananinee                   Fold        
+RealFish82                  Payback     (0.10)
+
+RealFish82 didn't show hand
+
+RealFish82 wins:            EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:02:06 GMT
+
+Game # 2137906306 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.84 in seat 1)
+F4UXR34L                    (EUR 4.02 in seat 2)
+RealFish82                  (EUR 15.67 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+nananinee                   (EUR 3.66 in seat 5)
+w8in88                      (EUR 3.85 in seat 6)
+
+Dealer:                     Js9s
+Small Blind:                nananinee   (0.02)
+Big Blind:                  w8in88      (0.04)
+
+F4UXR34L was dealt:         6s - Jh - Jd - 5h
+
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+Js9s                        Raise       (0.14)
+nananinee                   Fold        
+w8in88                      Fold        
+Js9s                        Payback     (0.10)
+
+Js9s didn't show hand
+
+Js9s wins:                  EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:02:21 GMT
+
+Game # 2137906407 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.84 in seat 1)
+F4UXR34L                    (EUR 4.02 in seat 2)
+RealFish82                  (EUR 15.67 in seat 3)
+Js9s                        (EUR 4.06 in seat 4)
+nananinee                   (EUR 3.64 in seat 5)
+w8in88                      (EUR 3.81 in seat 6)
+
+Dealer:                     nananinee
+Small Blind:                w8in88      (0.02)
+Big Blind:                  lukasp2     (0.04)
+
+F4UXR34L was dealt:         3s - 6h - Qd - 9d
+
+F4UXR34L                    Fold        
+RealFish82                  Raise       (0.14)
+Js9s                        Fold        
+nananinee                   Fold        
+w8in88                      Fold        
+lukasp2                     Fold        
+RealFish82                  Payback     (0.10)
+
+RealFish82 didn't show hand
+
+RealFish82 wins:            EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:02:37 GMT
+
+Game # 2137906504 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.80 in seat 1)
+F4UXR34L                    (EUR 4.02 in seat 2)
+RealFish82                  (EUR 15.73 in seat 3)
+Js9s                        (EUR 4.06 in seat 4)
+nananinee                   (EUR 3.64 in seat 5)
+w8in88                      (EUR 3.79 in seat 6)
+
+Dealer:                     w8in88
+Small Blind:                lukasp2     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         8h - 8s - Kc - 2h
+
+RealFish82                  Raise       (0.14)
+Js9s                        Fold        
+nananinee                   Fold        
+w8in88                      Fold        
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Payback     (0.10)
+
+RealFish82 didn't show hand
+
+RealFish82 wins:            EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:03:04 GMT
+
+Game # 2137906693 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.78 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.79 in seat 3)
+Js9s                        (EUR 4.06 in seat 4)
+nananinee                   (EUR 3.64 in seat 5)
+w8in88                      (EUR 3.79 in seat 6)
+
+Dealer:                     lukasp2
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  RealFish82  (0.04)
+
+F4UXR34L was dealt:         4s - Kh - 4c - Td
+
+Js9s                        Fold        
+nananinee                   Fold        
+w8in88                      Fold        
+lukasp2                     Raise       (0.14)
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+lukasp2                     Payback     (0.10)
+
+lukasp2 didn't show hand
+
+lukasp2 wins:               EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:03:18 GMT
+
+Game # 2137911790 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.84 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.75 in seat 3)
+Js9s                        (EUR 4.06 in seat 4)
+nananinee                   (EUR 3.64 in seat 5)
+w8in88                      (EUR 3.79 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                RealFish82  (0.02)
+Big Blind:                  Js9s        (0.04)
+
+F4UXR34L was dealt:         9s - As - 2d - Ah
+
+nananinee                   Fold        
+w8in88                      Fold        
+lukasp2                     Fold        
+F4UXR34L                    Raise       (0.14)
+RealFish82                  Fold        
+Js9s                        Fold        
+F4UXR34L                    Payback     (0.10)
+
+F4UXR34L didn't show hand
+
+F4UXR34L wins:              EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:03:44 GMT
+
+Game # 2137911971 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.84 in seat 1)
+F4UXR34L                    (EUR 4.06 in seat 2)
+RealFish82                  (EUR 15.73 in seat 3)
+Js9s                        (EUR 4.02 in seat 4)
+nananinee                   (EUR 3.64 in seat 5)
+w8in88                      (EUR 3.79 in seat 6)
+
+Dealer:                     RealFish82
+Small Blind:                Js9s        (0.02)
+Big Blind:                  nananinee   (0.04)
+
+F4UXR34L was dealt:         Kc - 8s - Ac - 6h
+
+w8in88                      Call        (0.04)
+lukasp2                     Fold        
+F4UXR34L                    Call        (0.04)
+RealFish82                  Fold        
+Js9s                        Fold        
+nananinee                   Check       
+
+Flop                        2c - 3c - Js
+
+nananinee                   Check       
+w8in88                      Check       
+F4UXR34L                    Bet         (0.10)
+nananinee                   Fold        
+w8in88                      Call        (0.10)
+
+Turn                        2c - 3c - Js - 3s
+
+w8in88                      Check       
+F4UXR34L                    Check       
+
+River                       2c - 3c - Js - 3s - 2s
+
+w8in88                      Check       
+F4UXR34L                    Check       
+
+w8in88 shows:               Ts - Ks - 9h - Kd (a flush, King high)
+
+F4UXR34L didn't show hand (Kc - 8s - Ac - 6h)
+
+w8in88 wins:                EUR 0.32 (with a flush, King high)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:04:37 GMT
+
+Game # 2137912286 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 1.84 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.73 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+nananinee                   (EUR 3.60 in seat 5)
+w8in88                      (EUR 3.97 in seat 6)
+
+Dealer:                     Js9s
+Small Blind:                nananinee   (0.02)
+Big Blind:                  lukasp2     (0.04)
+
+F4UXR34L was dealt:         Ts - 7s - 8s - 5c
+
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+Js9s                        Fold        
+nananinee                   Raise       (0.10)
+lukasp2                     Call        (0.08)
+
+Flop                        9c - 4s - 4d
+
+nananinee                   Bet         (0.18)
+lukasp2                     Raise       (0.63)
+nananinee                   Fold        
+lukasp2                     Payback     (0.45)
+
+lukasp2 didn't show hand
+
+lukasp2 wins:               EUR 0.57
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 17:05:10 GMT
+
+Game # 2137912502 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 2.11 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.73 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+nananinee                   (EUR 3.30 in seat 5)
+
+Dealer:                     nananinee
+Small Blind:                lukasp2     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         Jc - 9c - 9d - 6c
+
+RealFish82                  Fold        
+Js9s                        Fold        
+nananinee                   Raise       (0.14)
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+nananinee                   Payback     (0.10)
+
+nananinee didn't show hand
+
+nananinee wins:             EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:05:24 GMT
+
+Game # 2137912590 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 2.09 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.73 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+nananinee                   (EUR 3.36 in seat 5)
+
+Dealer:                     lukasp2
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  RealFish82  (0.04)
+
+F4UXR34L was dealt:         3h - Ac - 6d - 6h
+
+Js9s                        Fold        
+nananinee                   Fold        
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Payback     (0.02)
+
+RealFish82 didn't show hand
+
+RealFish82 wins:            EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:05:39 GMT
+
+Game # 2137912681 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 2.09 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.75 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+nananinee                   (EUR 3.36 in seat 5)
+
+Dealer:                     F4UXR34L
+Small Blind:                RealFish82  (0.02)
+Big Blind:                  Js9s        (0.04)
+
+F4UXR34L was dealt:         Jh - Jc - 3h - 2s
+
+nananinee                   Fold        
+lukasp2                     Fold        
+F4UXR34L                    Raise       (0.14)
+RealFish82                  Fold        
+Js9s                        Call        (0.10)
+
+Flop                        4c - 7s - Th
+
+Js9s                        Bet         (0.30)
+F4UXR34L                    Fold        
+Js9s                        Payback     (0.30)
+
+Js9s didn't show hand
+
+Js9s wins:                  EUR 0.28
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:06:17 GMT
+
+Game # 2137914936 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 2.09 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.73 in seat 3)
+Js9s                        (EUR 4.14 in seat 4)
+nananinee                   (EUR 3.36 in seat 5)
+pinguino90                  (EUR 1.42 in seat 6)
+
+Dealer:                     RealFish82
+Small Blind:                Js9s        (0.02)
+Big Blind:                  nananinee   (0.04)
+Blind out of turn:          pinguino90  (0.04)
+
+F4UXR34L was dealt:         9d - Qc - 2h - 3c
+
+pinguino90                  Raise       (0.04)
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+Js9s                        Fold        
+nananinee                   Fold        
+pinguino90                  Payback     (0.04)
+
+pinguino90 didn't show hand
+
+pinguino90 wins:            EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:06:36 GMT
+
+Game # 2137915057 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 2.09 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.73 in seat 3)
+Js9s                        (EUR 4.12 in seat 4)
+nananinee                   (EUR 3.32 in seat 5)
+pinguino90                  (EUR 1.48 in seat 6)
+
+Dealer:                     Js9s
+Small Blind:                pinguino90  (0.02)
+Big Blind:                  lukasp2     (0.04)
+
+F4UXR34L was dealt:         3s - 7c - Ks - 6s
+
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+Js9s                        Raise       (0.14)
+pinguino90                  Fold        
+lukasp2                     Call        (0.10)
+
+Flop                        5s - Kd - Ac
+
+lukasp2                     Check       
+Js9s                        Check       
+
+Turn                        5s - Kd - Ac - Js
+
+lukasp2                     Bet         (0.22)
+Js9s                        Fold        
+lukasp2                     Payback     (0.22)
+
+lukasp2 didn't show hand
+
+lukasp2 wins:               EUR 0.28
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:07:15 GMT
+
+Game # 2137915297 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 2.23 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.73 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+nananinee                   (EUR 3.32 in seat 5)
+pinguino90                  (EUR 1.46 in seat 6)
+
+Dealer:                     pinguino90
+Small Blind:                lukasp2     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         2c - Kh - Qh - 4h
+
+RealFish82                  Fold        
+Js9s                        Raise       (0.14)
+pinguino90                  Call        (0.14)
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+
+Flop                        5s - 5d - Qc
+
+Js9s                        Bet         (0.34)
+pinguino90                  All-In      (1.32)
+Js9s                        Call        (0.98)
+
+Turn                        5s - 5d - Qc - 6d
+River                       5s - 5d - Qc - 6d - Js
+
+Js9s shows:                 Ks - Jh - Qd - 6h (two pairs, Queens and Jacks)
+pinguino90 shows:           2s - As - 7c - 5c (three of a kind, Fives)
+
+pinguino90 wins:            EUR 2.84 (with three of a kind, Fives)
+Rake:                       EUR 0.14
+
+Game ended 2011-03-21 17:08:04 GMT
+
+Game # 2137915612 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 2.21 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.73 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+nananinee                   (EUR 3.32 in seat 5)
+pinguino90                  (EUR 2.84 in seat 6)
+
+Dealer:                     lukasp2
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  RealFish82  (0.04)
+
+F4UXR34L was dealt:         7c - 8h - 3h - Kh
+
+Js9s                        Fold        
+pinguino90                  Fold        
+lukasp2                     Raise       (0.14)
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+lukasp2                     Payback     (0.10)
+
+lukasp2 didn't show hand
+
+lukasp2 wins:               EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:08:21 GMT
+
+Game # 2137915700 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 2.27 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.69 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+nananinee                   (EUR 3.32 in seat 5)
+pinguino90                  (EUR 2.84 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                RealFish82  (0.02)
+Big Blind:                  Js9s        (0.04)
+
+F4UXR34L was dealt:         Jc - Qh - 2d - 8d
+
+pinguino90                  Fold        
+lukasp2                     Call        (0.04)
+F4UXR34L                    Fold        
+RealFish82                  Call        (0.02)
+Js9s                        Check       
+
+Flop                        Ah - 9h - Ac
+
+RealFish82                  Check       
+Js9s                        Check       
+lukasp2                     Bet         (0.09)
+RealFish82                  Fold        
+Js9s                        Fold        
+lukasp2                     Payback     (0.09)
+
+lukasp2 didn't show hand
+
+lukasp2 wins:               EUR 0.12
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:09:20 GMT
+
+Game # 2137922085 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 2.35 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.65 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+pinguino90                  (EUR 2.84 in seat 6)
+
+Dealer:                     RealFish82
+Small Blind:                Js9s        (0.02)
+Big Blind:                  pinguino90  (0.04)
+
+F4UXR34L was dealt:         Jd - 7s - As - 7c
+
+lukasp2                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Raise       (0.08)
+Js9s                        Fold        
+pinguino90                  Call        (0.04)
+
+Flop                        9d - 4c - Qs
+
+pinguino90                  Check       
+RealFish82                  Bet         (0.13)
+pinguino90                  Fold        
+RealFish82                  Payback     (0.13)
+
+RealFish82 didn't show hand
+
+RealFish82 wins:            EUR 0.18
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:09:47 GMT
+
+Game # 2137922268 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 2.35 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.75 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+pinguino90                  (EUR 2.76 in seat 6)
+
+Dealer:                     Js9s
+Small Blind:                pinguino90  (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         Jc - Kc - Ac - 7s
+
+RealFish82                  Fold        
+Js9s                        Raise       (0.14)
+pinguino90                  Call        (0.12)
+F4UXR34L                    Fold        
+
+Flop                        2c - 3h - Jd
+
+pinguino90                  Check       
+Js9s                        Check       
+
+Turn                        2c - 3h - Jd - 8c
+
+pinguino90                  Check       
+Js9s                        Bet         (0.32)
+pinguino90                  Fold        
+Js9s                        Payback     (0.32)
+
+Js9s didn't show hand
+
+Js9s wins:                  EUR 0.30
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:10:29 GMT
+
+Game # 2137922529 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 2.35 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.75 in seat 3)
+Js9s                        (EUR 4.16 in seat 4)
+pinguino90                  (EUR 2.62 in seat 6)
+
+Dealer:                     pinguino90
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  RealFish82  (0.04)
+
+F4UXR34L was dealt:         Tc - 5s - Kd - 6c
+
+Js9s                        Fold        
+pinguino90                  Call        (0.04)
+F4UXR34L                    Fold        
+RealFish82                  Check       
+
+Flop                        Jh - 6s - 8c
+
+RealFish82                  Check       
+pinguino90                  Check       
+
+Turn                        Jh - 6s - 8c - Ac
+
+RealFish82                  Check       
+pinguino90                  Bet         (0.04)
+RealFish82                  Fold        
+pinguino90                  Payback     (0.04)
+
+pinguino90 didn't show hand
+
+pinguino90 wins:            EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:10:50 GMT
+
+Game # 2137922678 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+lukasp2                     (EUR 2.35 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.71 in seat 3)
+Js9s                        (EUR 4.16 in seat 4)
+pinguino90                  (EUR 2.68 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                RealFish82  (0.02)
+Big Blind:                  Js9s        (0.04)
+
+F4UXR34L was dealt:         Td - 7d - 5s - 6h
+
+pinguino90                  Call        (0.04)
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+Js9s                        Check       
+
+Flop                        Ad - Ks - 4h
+
+Js9s                        Check       
+pinguino90                  Bet         (0.04)
+Js9s                        Fold        
+pinguino90                  Payback     (0.04)
+
+pinguino90 didn't show hand
+
+pinguino90 wins:            EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:11:37 GMT
+
+Game # 2137924970 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 15.69 in seat 3)
+Js9s                        (EUR 4.12 in seat 4)
+pinguino90                  (EUR 2.74 in seat 6)
+
+Dealer:                     RealFish82
+Small Blind:                Js9s        (0.02)
+Big Blind:                  pinguino90  (0.04)
+
+F4UXR34L was dealt:         3d - 4s - 2c - Qs
+
+F4UXR34L                    Fold        
+RealFish82                  Raise       (0.14)
+Js9s                        Call        (0.12)
+pinguino90                  Call        (0.10)
+
+Flop                        5c - 6d - 7s
+
+Js9s                        Check       
+pinguino90                  Check       
+RealFish82                  Bet         (0.28)
+Js9s                        Fold        
+pinguino90                  Call        (0.28)
+
+Turn                        5c - 6d - 7s - 3h
+
+pinguino90                  Check       
+RealFish82                  Bet         (0.49)
+pinguino90                  All-In      (2.32)
+RealFish82                  Call        (1.83)
+
+River                       5c - 6d - 7s - 3h - Js
+
+pinguino90 shows:           Jh - 2s - 4c - 5h (a straight, Seven high)
+RealFish82 shows:           9s - 9c - 6s - 8s (a straight, Nine high)
+
+RealFish82 wins:            EUR 5.34 (with a straight, Nine high)
+Rake:                       EUR 0.28
+
+Game ended 2011-03-21 17:12:49 GMT
+
+Game # 2137925462 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+annappa                     (EUR 1.06 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 18.29 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+fiuner_                     (EUR 2.00 in seat 5)
+
+Dealer:                     Js9s
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  RealFish82  (0.04)
+
+F4UXR34L was dealt:         7h - 7d - 8d - Ac
+
+Js9s                        Fold        
+F4UXR34L                    Fold        
+RealFish82                  Payback     (0.02)
+
+RealFish82 didn't show hand
+
+RealFish82 wins:            EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:13:09 GMT
+
+Game # 2137925533 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+annappa                     (EUR 1.06 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 18.31 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+fiuner_                     (EUR 2.00 in seat 5)
+
+Dealer:                     F4UXR34L
+Small Blind:                RealFish82  (0.02)
+Big Blind:                  Js9s        (0.04)
+Blind out of turn:          fiuner_     (0.04)
+
+F4UXR34L was dealt:         Ts - 9c - Qh - 5c
+
+fiuner_                     Check       
+F4UXR34L                    Fold        
+RealFish82                  Call        (0.02)
+Js9s                        Check       
+
+Flop                        Jh - 5s - 9s
+
+RealFish82                  Check       
+Js9s                        Check       
+fiuner_                     Check       
+
+Turn                        Jh - 5s - 9s - 5d
+
+RealFish82                  Check       
+Js9s                        Check       
+fiuner_                     Check       
+
+River                       Jh - 5s - 9s - 5d - Ad
+
+RealFish82                  Check       
+Js9s                        Check       
+fiuner_                     Bet         (0.10)
+RealFish82                  Call        (0.10)
+Js9s                        Fold        
+
+fiuner_ shows:              7d - 7c - 8h - Ah (two pairs, Aces and Fives)
+RealFish82 shows:           Kh - As - Tc - 9d (two pairs, Aces and Nines)
+
+RealFish82 wins:            EUR 0.30 (with two pairs, Aces and Nines)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:14:18 GMT
+
+Game # 2137929945 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+annappa                     (EUR 1.06 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 18.47 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+fiuner_                     (EUR 1.86 in seat 5)
+
+Dealer:                     RealFish82
+Small Blind:                Js9s        (0.02)
+Big Blind:                  fiuner_     (0.04)
+
+F4UXR34L was dealt:         4s - 6c - 9s - 3c
+
+F4UXR34L                    Fold        
+RealFish82                  Raise       (0.14)
+Js9s                        Fold        
+fiuner_                     Fold        
+RealFish82                  Payback     (0.10)
+
+RealFish82 didn't show hand
+
+RealFish82 wins:            EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:14:33 GMT
+
+Game # 2137930036 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+annappa                     (EUR 1.06 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 18.53 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+fiuner_                     (EUR 1.82 in seat 5)
+Vokha                       (EUR 0.80 in seat 6)
+
+Dealer:                     Js9s
+Small Blind:                fiuner_     (0.02)
+Big Blind:                  Vokha       (0.04)
+
+F4UXR34L was dealt:         Ts - As - 9c - 2s
+
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+Js9s                        Fold        
+fiuner_                     Fold        
+Vokha                       Payback     (0.02)
+
+Vokha didn't show hand
+
+Vokha wins:                 EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:14:44 GMT
+
+Game # 2137930113 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+annappa                     (EUR 1.06 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 18.53 in seat 3)
+Js9s                        (EUR 4.00 in seat 4)
+fiuner_                     (EUR 1.80 in seat 5)
+Vokha                       (EUR 0.82 in seat 6)
+
+Dealer:                     fiuner_
+Small Blind:                Vokha       (0.02)
+Big Blind:                  annappa     (0.04)
+
+F4UXR34L was dealt:         Kd - Ks - 4d - 3s
+
+F4UXR34L                    Call        (0.04)
+RealFish82                  Fold        
+Js9s                        Raise       (0.18)
+fiuner_                     Fold        
+Vokha                       Fold        
+annappa                     Fold        
+F4UXR34L                    Fold        
+Js9s                        Payback     (0.14)
+
+Js9s didn't show hand
+
+Js9s wins:                  EUR 0.14
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:15:22 GMT
+
+Game # 2137930313 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+annappa                     (EUR 1.02 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 18.53 in seat 3)
+Js9s                        (EUR 4.10 in seat 4)
+fiuner_                     (EUR 1.80 in seat 5)
+Vokha                       (EUR 0.80 in seat 6)
+
+Dealer:                     Vokha
+Small Blind:                annappa     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         Jd - Qh - 8s - 3d
+
+RealFish82                  Fold        
+Js9s                        Fold        
+fiuner_                     Call        (0.04)
+Vokha                       Raise       (0.18)
+annappa                     Call        (0.16)
+F4UXR34L                    Fold        
+fiuner_                     Call        (0.14)
+
+Flop                        6c - Th - Kc
+
+annappa                     Check       
+fiuner_                     Bet         (0.58)
+Vokha                       Fold        
+annappa                     Fold        
+fiuner_                     Payback     (0.58)
+
+fiuner_ didn't show hand
+
+fiuner_ wins:               EUR 0.56
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:16:20 GMT
+
+Game # 2137930652 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+annappa                     (EUR 0.84 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 18.53 in seat 3)
+Js9s                        (EUR 4.10 in seat 4)
+fiuner_                     (EUR 2.18 in seat 5)
+Vokha                       (EUR 0.62 in seat 6)
+
+Dealer:                     annappa
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  RealFish82  (0.04)
+
+F4UXR34L was dealt:         Ad - Tc - Td - 4c
+
+Js9s                        Fold        
+fiuner_                     Call        (0.04)
+Vokha                       Call        (0.04)
+annappa                     Call        (0.04)
+F4UXR34L                    Call        (0.02)
+RealFish82                  Check       
+
+Flop                        Qh - 9h - 9s
+
+F4UXR34L                    Check       
+RealFish82                  Check       
+fiuner_                     Check       
+Vokha                       Check       
+annappa                     Check       
+
+Turn                        Qh - 9h - 9s - Qc
+
+F4UXR34L                    Check       
+RealFish82                  Check       
+fiuner_                     Check       
+Vokha                       Bet         (0.10)
+annappa                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+fiuner_                     Fold        
+Vokha                       Payback     (0.10)
+
+Vokha didn't show hand
+
+Vokha wins:                 EUR 0.18
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:17:16 GMT
+
+Game # 2137934951 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+annappa                     (EUR 0.80 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 18.49 in seat 3)
+Js9s                        (EUR 4.10 in seat 4)
+fiuner_                     (EUR 2.14 in seat 5)
+Vokha                       (EUR 0.76 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                RealFish82  (0.02)
+Big Blind:                  Js9s        (0.04)
+
+F4UXR34L was dealt:         6s - 2s - Js - Tc
+
+fiuner_                     Fold        
+Vokha                       Fold        
+annappa                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+Js9s                        Payback     (0.02)
+
+Js9s didn't show hand
+
+Js9s wins:                  EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:17:48 GMT
+
+Game # 2137935148 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+annappa                     (EUR 0.80 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 18.47 in seat 3)
+Js9s                        (EUR 4.12 in seat 4)
+fiuner_                     (EUR 2.14 in seat 5)
+Vokha                       (EUR 0.76 in seat 6)
+
+Dealer:                     RealFish82
+Small Blind:                Js9s        (0.02)
+Big Blind:                  fiuner_     (0.04)
+
+F4UXR34L was dealt:         5d - 2h - 6s - 3h
+
+Vokha                       Fold        
+annappa                     Call        (0.04)
+F4UXR34L                    Fold        
+RealFish82                  Raise       (0.18)
+Js9s                        Call        (0.16)
+fiuner_                     Fold        
+annappa                     Call        (0.14)
+
+Flop                        Qd - Th - 9h
+
+Js9s                        Bet         (0.58)
+annappa                     Fold        
+RealFish82                  Fold        
+Js9s                        Payback     (0.58)
+
+Js9s didn't show hand
+
+Js9s wins:                  EUR 0.56
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:18:46 GMT
+
+Game # 2137935478 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+annappa                     (EUR 0.62 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 18.29 in seat 3)
+Js9s                        (EUR 4.50 in seat 4)
+fiuner_                     (EUR 2.10 in seat 5)
+Vokha                       (EUR 0.76 in seat 6)
+
+Dealer:                     Js9s
+Small Blind:                fiuner_     (0.02)
+Big Blind:                  Vokha       (0.04)
+
+F4UXR34L was dealt:         Tc - Ts - 2s - Ks
+
+annappa                     Call        (0.04)
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+Js9s                        Fold        
+fiuner_                     Call        (0.02)
+Vokha                       Check       
+
+Flop                        Jc - 3c - 4s
+
+fiuner_                     Check       
+Vokha                       Bet         (0.04)
+annappa                     Call        (0.04)
+fiuner_                     Fold        
+
+Turn                        Jc - 3c - 4s - Ac
+
+Vokha                       Check       
+annappa                     Bet         (0.15)
+Vokha                       Fold        
+annappa                     Payback     (0.15)
+
+annappa didn't show hand
+
+annappa wins:               EUR 0.18
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:19:44 GMT
+
+Game # 2137940802 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+annappa                     (EUR 0.72 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 18.29 in seat 3)
+Js9s                        (EUR 4.50 in seat 4)
+fiuner_                     (EUR 2.06 in seat 5)
+Vokha                       (EUR 0.68 in seat 6)
+
+Dealer:                     fiuner_
+Small Blind:                Vokha       (0.02)
+Big Blind:                  annappa     (0.04)
+
+F4UXR34L was dealt:         9d - Kh - 3d - 7d
+
+F4UXR34L                    Fold        
+RealFish82                  Fold        
+Js9s                        Fold        
+fiuner_                     Fold        
+Vokha                       Call        (0.02)
+annappa                     Check       
+
+Flop                        5d - Jd - 7s
+
+Vokha                       Bet         (0.08)
+annappa                     Raise       (0.32)
+Vokha                       All-In      (0.56)
+annappa                     Call        (0.32)
+
+Turn                        5d - Jd - 7s - Ac
+River                       5d - Jd - 7s - Ac - 5c
+
+Vokha shows:                Kc - 7h - 7c - Qc (a full house, Sevens full of Fives)
+annappa shows:              5s - Ad - Js - 6c (a full house, Fives full of Aces)
+
+Vokha wins:                 EUR 1.30 (with a full house, Sevens full of Fives)
+Rake:                       EUR 0.06
+
+Game ended 2011-03-21 17:20:51 GMT
+
+Game # 2137941177 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+annappa                     (EUR 0.04 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 18.29 in seat 3)
+Js9s                        (EUR 4.50 in seat 4)
+fiuner_                     (EUR 2.06 in seat 5)
+Vokha                       (EUR 1.30 in seat 6)
+
+Dealer:                     Vokha
+Small Blind:                annappa     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         Ah - 6d - 4h - 4s
+
+RealFish82                  Fold        
+Js9s                        Fold        
+fiuner_                     Call        (0.04)
+Vokha                       Call        (0.04)
+annappa                     All-In      (0.02)
+F4UXR34L                    Check       
+
+Flop                        7h - Ts - 6c
+
+F4UXR34L                    Check       
+fiuner_                     Check       
+Vokha                       Check       
+
+Turn                        7h - Ts - 6c - 3c
+
+F4UXR34L                    Check       
+fiuner_                     Bet         (0.16)
+Vokha                       Fold        
+F4UXR34L                    Fold        
+fiuner_                     Payback     (0.16)
+
+River                       7h - Ts - 6c - 3c - 5s
+
+annappa shows:              4d - 8c - Qh - 7d (a straight, Eight high)
+fiuner_ shows:              2c - Qs - 9c - 9s (a pair of Nines)
+
+annappa wins:               EUR 0.16 (with a straight, Eight high)
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:22:08 GMT
+
+Game # 2137941580 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+annappa                     (EUR 0.16 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 18.29 in seat 3)
+Js9s                        (EUR 4.50 in seat 4)
+fiuner_                     (EUR 2.02 in seat 5)
+Vokha                       (EUR 1.26 in seat 6)
+
+Dealer:                     annappa
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  RealFish82  (0.04)
+
+F4UXR34L was dealt:         7s - 4s - 4d - Jc
+
+Js9s                        Fold        
+fiuner_                     Fold        
+annappa                     Call        (0.04)
+F4UXR34L                    Fold        
+RealFish82                  Raise       (0.10)
+annappa                     All-In      (0.12)
+RealFish82                  Call        (0.02)
+
+Flop                        8s - Ad - 8d
+Turn                        8s - Ad - 8d - 8h
+River                       8s - Ad - 8d - 8h - Ts
+
+RealFish82 shows:           9d - Kc - Kh - Td (a full house, Eights full of Kings)
+annappa shows:              9h - 3d - 5d - 6h (three of a kind, Eights)
+
+RealFish82 wins:            EUR 0.32 (with a full house, Eights full of Kings)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:22:52 GMT
+
+Game # 2137948842 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+annappa                     (EUR 0.00 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 18.45 in seat 3)
+Js9s                        (EUR 4.50 in seat 4)
+fiuner_                     (EUR 2.02 in seat 5)
+Vokha                       (EUR 1.26 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                RealFish82  (0.02)
+Big Blind:                  Js9s        (0.04)
+
+F4UXR34L was dealt:         6c - 8s - 8d - Qs
+
+fiuner_                     Fold        
+F4UXR34L                    Fold        
+RealFish82                  Call        (0.02)
+Js9s                        Raise       (0.08)
+RealFish82                  Call        (0.08)
+
+Flop                        7c - 7s - 7h
+
+RealFish82                  Check       
+Js9s                        Bet         (0.24)
+RealFish82                  Fold        
+Js9s                        Payback     (0.24)
+
+Js9s didn't show hand
+
+Js9s wins:                  EUR 0.22
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:23:26 GMT
+
+Game # 2137949017 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Aburatsu"
+
+Players(max 6):
+annappa                     (EUR 0.00 in seat 1)
+F4UXR34L                    (EUR 4.00 in seat 2)
+RealFish82                  (EUR 18.33 in seat 3)
+Js9s                        (EUR 4.60 in seat 4)
+fiuner_                     (EUR 2.02 in seat 5)
+Vokha                       (EUR 1.26 in seat 6)
+
+Dealer:                     RealFish82
+Small Blind:                Js9s        (0.02)
+Big Blind:                  fiuner_     (0.04)
+
+F4UXR34L was dealt:         7h - Qh - 6s - 5c
+
+F4UXR34L                    Fold        
+RealFish82                  Raise       (0.14)
+Js9s                        Fold        
+fiuner_                     Fold        
+RealFish82                  Payback     (0.10)
+
+RealFish82 didn't show hand
+
+RealFish82 wins:            EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:23:55 GMT
+

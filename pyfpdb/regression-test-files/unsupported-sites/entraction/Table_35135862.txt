@@ -1,0 +1,1950 @@
+Game # 2137875860 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 0.68 in seat 2)
+Makesdy                     (EUR 4.00 in seat 3)
+_tiburon_                   (EUR 6.62 in seat 4)
+l4oo9od                     (EUR 2.00 in seat 5)
+pupazzzo                    (EUR 1.74 in seat 6)
+
+Dealer:                     l4oo9od
+Small Blind:                pupazzzo    (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+Blind out of turn:          Makesdy     (0.04)
+
+F4UXR34L was dealt:         9s - Jh - Ah - 8h
+
+Re46                        Call        (0.04)
+Makesdy                     Check       
+_tiburon_                   Call        (0.04)
+l4oo9od                     Call        (0.04)
+pupazzzo                    Raise       (0.10)
+F4UXR34L                    Fold        
+Re46                        Call        (0.08)
+Makesdy                     Fold        
+_tiburon_                   Call        (0.08)
+l4oo9od                     Call        (0.08)
+
+Flop                        Th - 6d - 5d
+
+pupazzzo                    Bet         (0.16)
+Re46                        Call        (0.16)
+_tiburon_                   Fold        
+l4oo9od                     Call        (0.16)
+
+Turn                        Th - 6d - 5d - 4s
+
+pupazzzo                    Check       
+Re46                        All-In      (0.40)
+l4oo9od                     Call        (0.40)
+pupazzzo                    Call        (0.40)
+
+River                       Th - 6d - 5d - 4s - 2s
+
+pupazzzo                    Check       
+l4oo9od                     Bet         (1.12)
+pupazzzo                    Fold        
+l4oo9od                     Payback     (1.12)
+
+l4oo9od shows:              5s - 3s - 6c - Ad (a straight, Six high)
+Re46 shows:                 3h - 5c - 7d - Jd (a straight, Seven high)
+
+Re46 wins:                  EUR 2.13 (with a straight, Seven high)
+Rake:                       EUR 0.11
+
+Game ended 2011-03-21 16:43:29 GMT
+
+Game # 2137876304 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 2.13 in seat 2)
+Makesdy                     (EUR 3.96 in seat 3)
+_tiburon_                   (EUR 6.50 in seat 4)
+l4oo9od                     (EUR 1.32 in seat 5)
+pupazzzo                    (EUR 1.06 in seat 6)
+
+Dealer:                     pupazzzo
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  Re46        (0.04)
+
+F4UXR34L was dealt:         Qh - 9d - 7c - Tc
+
+Makesdy                     Fold        
+_tiburon_                   Raise       (0.14)
+l4oo9od                     Call        (0.14)
+pupazzzo                    Call        (0.14)
+F4UXR34L                    Fold        
+Re46                        Fold        
+
+Flop                        Th - Kc - Jd
+
+_tiburon_                   Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+
+Turn                        Th - Kc - Jd - Ks
+
+_tiburon_                   Check       
+l4oo9od                     Bet         (0.48)
+pupazzzo                    Fold        
+_tiburon_                   Fold        
+l4oo9od                     Payback     (0.48)
+
+l4oo9od didn't show hand
+
+l4oo9od wins:               EUR 0.46
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:44:28 GMT
+
+Game # 2137879970 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 2.23 in seat 2)
+Makesdy                     (EUR 3.94 in seat 3)
+_tiburon_                   (EUR 6.32 in seat 4)
+l4oo9od                     (EUR 1.60 in seat 5)
+pupazzzo                    (EUR 1.88 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                _tiburon_   (0.02)
+Big Blind:                  l4oo9od     (0.04)
+
+F4UXR34L was dealt:         Jh - 8c - Jd - 3d
+
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Fold        
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+_tiburon_                   Call        (0.02)
+l4oo9od                     Check       
+
+Flop                        7s - Th - Ts
+
+_tiburon_                   Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+
+Turn                        7s - Th - Ts - 9s
+
+_tiburon_                   Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+
+River                       7s - Th - Ts - 9s - 8s
+
+_tiburon_                   Bet         (0.12)
+l4oo9od                     Call        (0.12)
+pupazzzo                    Fold        
+Re46                        Call        (0.12)
+
+_tiburon_ shows:            Qs - 8d - 6s - 2c (a flush, Queen high)
+
+l4oo9od didn't show hand (Kd - 5d - Kh - 2h)
+Re46 didn't show hand (2s - Js - Tc - 6h)
+
+_tiburon_ wins:             EUR 0.50 (with a flush, Queen high)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:46:30 GMT
+
+Game # 2137880410 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 2.07 in seat 2)
+Makesdy                     (EUR 3.94 in seat 3)
+_tiburon_                   (EUR 6.66 in seat 4)
+l4oo9od                     (EUR 1.44 in seat 5)
+pupazzzo                    (EUR 1.84 in seat 6)
+
+Dealer:                     _tiburon_
+Small Blind:                l4oo9od     (0.02)
+Big Blind:                  pupazzzo    (0.04)
+
+F4UXR34L was dealt:         8s - Jc - Ad - 5c
+
+F4UXR34L                    Fold        
+Re46                        Call        (0.04)
+Makesdy                     Call        (0.04)
+_tiburon_                   Fold        
+l4oo9od                     Call        (0.02)
+pupazzzo                    Check       
+
+Flop                        9d - 3s - 2c
+
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+Makesdy                     Check       
+
+Turn                        9d - 3s - 2c - 5h
+
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Bet         (0.16)
+Makesdy                     Fold        
+l4oo9od                     Call        (0.16)
+pupazzzo                    Fold        
+
+River                       9d - 3s - 2c - 5h - 6s
+
+l4oo9od                     Check       
+Re46                        Check       
+
+l4oo9od shows:              Tc - 2h - Qs - 3d (two pairs, Threes and Deuces)
+Re46 shows:                 8c - Ac - 6d - 4d (a straight, Six high)
+
+Re46 wins:                  EUR 0.46 (with a straight, Six high)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:47:15 GMT
+
+Game # 2137880704 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 2.33 in seat 2)
+Makesdy                     (EUR 3.90 in seat 3)
+_tiburon_                   (EUR 6.66 in seat 4)
+l4oo9od                     (EUR 1.24 in seat 5)
+pupazzzo                    (EUR 1.80 in seat 6)
+
+Dealer:                     l4oo9od
+Small Blind:                pupazzzo    (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         2c - 9s - Jd - Jh
+
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+_tiburon_                   Raise       (0.18)
+l4oo9od                     Call        (0.18)
+pupazzzo                    Call        (0.16)
+F4UXR34L                    Fold        
+Re46                        Call        (0.14)
+
+Flop                        Ac - As - 6d
+
+pupazzzo                    Check       
+Re46                        Check       
+_tiburon_                   Bet         (0.57)
+l4oo9od                     Fold        
+pupazzzo                    Call        (0.57)
+Re46                        Fold        
+
+Turn                        Ac - As - 6d - 7s
+
+pupazzzo                    Check       
+_tiburon_                   Bet         (1.90)
+pupazzzo                    All-In      (1.05)
+_tiburon_                   Payback     (0.85)
+
+River                       Ac - As - 6d - 7s - 7d
+
+pupazzzo shows:             Tc - 5h - Ad - Ts (three of a kind, Aces)
+_tiburon_ shows:            Ah - Jc - 2h - 8c (three of a kind, Aces, with Jack as kicker)
+
+_tiburon_ wins:             EUR 3.80 (with three of a kind, Aces, with Jack as kicker)
+Rake:                       EUR 0.20
+
+Game ended 2011-03-21 16:48:30 GMT
+
+Game # 2137884221 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 2.15 in seat 2)
+Makesdy                     (EUR 3.90 in seat 3)
+_tiburon_                   (EUR 8.66 in seat 4)
+l4oo9od                     (EUR 1.06 in seat 5)
+pupazzzo                    (EUR 4.00 in seat 6)
+
+Dealer:                     pupazzzo
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  Re46        (0.04)
+
+F4UXR34L was dealt:         Qc - 8s - 3d - 2s
+
+Makesdy                     Fold        
+_tiburon_                   Fold        
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Fold        
+Re46                        Check       
+
+Flop                        Jh - 2d - 2h
+
+Re46                        Bet         (0.04)
+l4oo9od                     Call        (0.04)
+pupazzzo                    Fold        
+
+Turn                        Jh - 2d - 2h - 3c
+
+Re46                        Bet         (0.04)
+l4oo9od                     Call        (0.04)
+
+River                       Jh - 2d - 2h - 3c - 6h
+
+Re46                        Bet         (0.04)
+l4oo9od                     Call        (0.04)
+
+Re46 shows:                 6d - Js - 7c - 7s (two pairs, Jacks and Sixes)
+l4oo9od shows:              Ad - 5d - Ac - Kh (two pairs, Aces and Deuces)
+
+l4oo9od wins:               EUR 0.36 (with two pairs, Aces and Deuces)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:49:21 GMT
+
+Game # 2137884472 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 1.99 in seat 2)
+Makesdy                     (EUR 3.90 in seat 3)
+_tiburon_                   (EUR 8.66 in seat 4)
+l4oo9od                     (EUR 1.26 in seat 5)
+pupazzzo                    (EUR 3.96 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                Re46        (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         8c - Qc - 8s - 5h
+
+_tiburon_                   Call        (0.04)
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Fold        
+Re46                        Call        (0.02)
+Makesdy                     Check       
+
+Flop                        5s - Kd - 7s
+
+Re46                        Check       
+Makesdy                     Check       
+_tiburon_                   Check       
+l4oo9od                     Check       
+pupazzzo                    Bet         (0.08)
+Re46                        Fold        
+Makesdy                     Fold        
+_tiburon_                   Fold        
+l4oo9od                     Call        (0.08)
+
+Turn                        5s - Kd - 7s - Tc
+
+l4oo9od                     Check       
+pupazzzo                    Bet         (0.12)
+l4oo9od                     Call        (0.12)
+
+River                       5s - Kd - 7s - Tc - 3s
+
+l4oo9od                     Check       
+pupazzzo                    Bet         (0.60)
+l4oo9od                     Fold        
+pupazzzo                    Payback     (0.60)
+
+pupazzzo didn't show hand
+
+pupazzzo wins:              EUR 0.57
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 16:50:34 GMT
+
+Game # 2137887899 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 1.95 in seat 2)
+Makesdy                     (EUR 3.86 in seat 3)
+_tiburon_                   (EUR 8.62 in seat 4)
+l4oo9od                     (EUR 1.02 in seat 5)
+pupazzzo                    (EUR 4.29 in seat 6)
+
+Dealer:                     Re46
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  _tiburon_   (0.04)
+
+F4UXR34L was dealt:         9s - Ad - 9d - 5s
+
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Call        (0.04)
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+_tiburon_                   Check       
+
+Flop                        4d - 5c - Qd
+
+_tiburon_                   Check       
+l4oo9od                     Bet         (0.22)
+pupazzzo                    Fold        
+F4UXR34L                    Fold        
+Re46                        Call        (0.22)
+_tiburon_                   Fold        
+
+Turn                        4d - 5c - Qd - Qs
+
+l4oo9od                     Check       
+Re46                        Check       
+
+River                       4d - 5c - Qd - Qs - 4s
+
+l4oo9od                     Bet         (0.49)
+Re46                        Fold        
+l4oo9od                     Payback     (0.49)
+
+l4oo9od didn't show hand
+
+l4oo9od wins:               EUR 0.63
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 16:51:34 GMT
+
+Game # 2137888228 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 1.69 in seat 2)
+Makesdy                     (EUR 3.84 in seat 3)
+_tiburon_                   (EUR 8.58 in seat 4)
+l4oo9od                     (EUR 1.39 in seat 5)
+pupazzzo                    (EUR 4.25 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                _tiburon_   (0.02)
+Big Blind:                  l4oo9od     (0.04)
+
+F4UXR34L was dealt:         Qd - 7s - As - 3d
+
+pupazzzo                    Raise       (0.08)
+F4UXR34L                    Fold        
+Re46                        Call        (0.08)
+Makesdy                     Call        (0.08)
+_tiburon_                   Call        (0.06)
+l4oo9od                     Call        (0.04)
+
+Flop                        4d - 8d - 5c
+
+_tiburon_                   Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+Makesdy                     Check       
+
+Turn                        4d - 8d - 5c - 6s
+
+_tiburon_                   Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+Makesdy                     Check       
+
+River                       4d - 8d - 5c - 6s - Qh
+
+_tiburon_                   Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+Makesdy                     Check       
+
+_tiburon_ shows:            Jc - 7c - Kc - 9d (a straight, Nine high)
+
+l4oo9od didn't show hand (6d - 3s - 8h - 4s)
+pupazzzo didn't show hand (6h - Ah - Th - Td)
+Re46 didn't show hand (2d - Jh - 2s - 8c)
+Makesdy didn't show hand (2h - 9s - 9c - Ac)
+
+_tiburon_ wins:             EUR 0.38 (with a straight, Nine high)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:52:37 GMT
+
+Game # 2137888599 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 1.61 in seat 2)
+Makesdy                     (EUR 3.76 in seat 3)
+_tiburon_                   (EUR 8.88 in seat 4)
+l4oo9od                     (EUR 1.31 in seat 5)
+pupazzzo                    (EUR 4.17 in seat 6)
+
+Dealer:                     _tiburon_
+Small Blind:                l4oo9od     (0.02)
+Big Blind:                  pupazzzo    (0.04)
+
+F4UXR34L was dealt:         6h - 9d - Qs - Ts
+
+F4UXR34L                    Fold        
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+_tiburon_                   Raise       (0.18)
+l4oo9od                     Call        (0.16)
+pupazzzo                    Call        (0.14)
+Re46                        Call        (0.14)
+
+Flop                        8h - 2d - 4d
+
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+_tiburon_                   Bet         (0.54)
+l4oo9od                     Fold        
+pupazzzo                    Call        (0.54)
+Re46                        Call        (0.54)
+
+Turn                        8h - 2d - 4d - Th
+
+pupazzzo                    Check       
+Re46                        Bet         (0.12)
+_tiburon_                   Call        (0.12)
+pupazzzo                    Call        (0.12)
+
+River                       8h - 2d - 4d - Th - 5h
+
+pupazzzo                    Check       
+Re46                        Bet         (0.20)
+_tiburon_                   Raise       (3.30)
+pupazzzo                    Fold        
+Re46                        All-In      (0.57)
+_tiburon_                   Payback     (2.53)
+
+_tiburon_ shows:            Ac - Ah - Jc - 9s (a pair of Aces)
+Re46 shows:                 7h - 6d - 4h - Ad (a flush, Ten high)
+
+Re46 wins:                  EUR 4.03 (with a flush, Ten high)
+Rake:                       EUR 0.21
+
+Game ended 2011-03-21 16:54:24 GMT
+
+Game # 2137892247 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 4.03 in seat 2)
+Makesdy                     (EUR 4.00 in seat 3)
+_tiburon_                   (EUR 7.27 in seat 4)
+l4oo9od                     (EUR 1.13 in seat 5)
+pupazzzo                    (EUR 3.33 in seat 6)
+
+Dealer:                     l4oo9od
+Small Blind:                pupazzzo    (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         6s - Kc - 8d - Qc
+
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+_tiburon_                   Call        (0.04)
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.02)
+F4UXR34L                    Check       
+
+Flop                        2h - 3c - 5s
+
+pupazzzo                    Check       
+F4UXR34L                    Check       
+Re46                        Check       
+_tiburon_                   Bet         (0.15)
+l4oo9od                     Fold        
+pupazzzo                    Raise       (0.65)
+F4UXR34L                    Fold        
+Re46                        Fold        
+_tiburon_                   Call        (0.50)
+
+Turn                        2h - 3c - 5s - 8s
+
+pupazzzo                    Bet         (1.50)
+_tiburon_                   Call        (1.50)
+
+River                       2h - 3c - 5s - 8s - Kd
+
+pupazzzo                    All-In      (1.14)
+_tiburon_                   Fold        
+pupazzzo                    Payback     (1.14)
+
+pupazzzo didn't show hand
+
+pupazzzo wins:              EUR 4.28
+Rake:                       EUR 0.22
+
+Game ended 2011-03-21 16:55:43 GMT
+
+Game # 2137897740 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 3.99 in seat 2)
+Makesdy                     (EUR 4.00 in seat 3)
+_tiburon_                   (EUR 5.08 in seat 4)
+l4oo9od                     (EUR 1.09 in seat 5)
+pupazzzo                    (EUR 5.42 in seat 6)
+
+Dealer:                     pupazzzo
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  Re46        (0.04)
+
+F4UXR34L was dealt:         6d - 5c - Th - Qc
+
+Makesdy                     Fold        
+_tiburon_                   Fold        
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Fold        
+Re46                        Check       
+
+Flop                        Ac - 7d - 3s
+
+Re46                        Check       
+l4oo9od                     Bet         (0.04)
+pupazzzo                    Call        (0.04)
+Re46                        Call        (0.04)
+
+Turn                        Ac - 7d - 3s - Ts
+
+Re46                        Check       
+l4oo9od                     Bet         (0.04)
+pupazzzo                    Call        (0.04)
+Re46                        Call        (0.04)
+
+River                       Ac - 7d - 3s - Ts - 6s
+
+Re46                        Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+
+Re46 shows:                 Jd - Kd - 9c - Ks (a pair of Kings)
+l4oo9od shows:              Td - 9h - 7h - 3c (two pairs, Tens and Sevens)
+
+pupazzzo didn't show hand (2d - 2h - 8s - 8h)
+
+l4oo9od wins:               EUR 0.36 (with two pairs, Tens and Sevens)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:56:40 GMT
+
+Game # 2137898079 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 3.87 in seat 2)
+Makesdy                     (EUR 4.00 in seat 3)
+_tiburon_                   (EUR 5.08 in seat 4)
+l4oo9od                     (EUR 1.33 in seat 5)
+pupazzzo                    (EUR 5.30 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                Re46        (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         Tc - 2d - 5c - 7h
+
+_tiburon_                   Call        (0.04)
+l4oo9od                     Call        (0.04)
+pupazzzo                    Raise       (0.08)
+F4UXR34L                    Fold        
+Re46                        Call        (0.06)
+Makesdy                     Fold        
+_tiburon_                   Call        (0.04)
+l4oo9od                     Call        (0.04)
+
+Flop                        4c - Ad - 9s
+
+Re46                        Check       
+_tiburon_                   Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+
+Turn                        4c - Ad - 9s - 8d
+
+Re46                        Check       
+_tiburon_                   Bet         (0.27)
+l4oo9od                     Call        (0.27)
+pupazzzo                    Raise       (0.54)
+Re46                        Fold        
+_tiburon_                   Call        (0.27)
+l4oo9od                     Call        (0.27)
+
+River                       4c - Ad - 9s - 8d - 6d
+
+_tiburon_                   Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+
+_tiburon_ shows:            3d - Kh - 4h - 9d (a flush, Ace high)
+
+l4oo9od didn't show hand (7c - 6c - 5s - Ac)
+pupazzzo didn't show hand (9h - Td - 9c - Ts)
+
+_tiburon_ wins:             EUR 1.89 (with a flush, Ace high)
+Rake:                       EUR 0.09
+
+Game ended 2011-03-21 16:58:11 GMT
+
+Game # 2137898640 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 3.79 in seat 2)
+Makesdy                     (EUR 3.96 in seat 3)
+_tiburon_                   (EUR 6.35 in seat 4)
+l4oo9od                     (EUR 0.71 in seat 5)
+pupazzzo                    (EUR 4.68 in seat 6)
+
+Dealer:                     Re46
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  _tiburon_   (0.04)
+
+F4UXR34L was dealt:         Qs - 9c - 5h - Js
+
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Fold        
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+_tiburon_                   Check       
+
+Flop                        8d - 7c - 4d
+
+_tiburon_                   Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+
+Turn                        8d - 7c - 4d - Kh
+
+_tiburon_                   Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+
+River                       8d - 7c - 4d - Kh - 7s
+
+_tiburon_                   Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+
+_tiburon_ shows:            9h - Qh - 3h - 8c (two pairs, Eights and Sevens)
+l4oo9od shows:              Qc - Ts - Ks - 4c (two pairs, Kings and Sevens)
+
+pupazzzo didn't show hand (Jh - 3d - 4h - Th)
+
+Re46 shows:                 Tc - 7d - 6s - 9d (three of a kind, Sevens)
+
+Re46 wins:                  EUR 0.18 (with three of a kind, Sevens)
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:59:08 GMT
+
+Game # 2137900997 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 3.93 in seat 2)
+Makesdy                     (EUR 3.94 in seat 3)
+_tiburon_                   (EUR 6.31 in seat 4)
+l4oo9od                     (EUR 0.67 in seat 5)
+pupazzzo                    (EUR 4.64 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                _tiburon_   (0.02)
+Big Blind:                  l4oo9od     (0.04)
+
+F4UXR34L was dealt:         8d - 6h - 4h - Td
+
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Fold        
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+_tiburon_                   Call        (0.02)
+l4oo9od                     Check       
+
+Flop                        2c - 6s - 4s
+
+_tiburon_                   Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+
+Turn                        2c - 6s - 4s - 2h
+
+_tiburon_                   Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+
+River                       2c - 6s - 4s - 2h - 5d
+
+_tiburon_                   Check       
+l4oo9od                     Check       
+pupazzzo                    Bet         (0.04)
+Re46                        Call        (0.04)
+_tiburon_                   Fold        
+l4oo9od                     Fold        
+
+pupazzzo shows:             Ad - 3s - Qd - 9s (a straight, Five high)
+Re46 shows:                 3d - Ah - 3h - Kd (a straight, Five high)
+
+pupazzzo wins:              EUR 0.11 split pot (with a straight, Five high)
+Re46 wins:                  EUR 0.11 split pot (with a straight, Five high)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:00:30 GMT
+
+Game # 2137901493 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 3.96 in seat 2)
+Makesdy                     (EUR 3.94 in seat 3)
+_tiburon_                   (EUR 6.27 in seat 4)
+l4oo9od                     (EUR 0.63 in seat 5)
+pupazzzo                    (EUR 4.67 in seat 6)
+
+Dealer:                     _tiburon_
+Small Blind:                l4oo9od     (0.02)
+Big Blind:                  pupazzzo    (0.04)
+
+F4UXR34L was dealt:         Jc - 9c - Qs - Th
+
+F4UXR34L                    Call        (0.04)
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+_tiburon_                   Call        (0.04)
+l4oo9od                     Fold        
+pupazzzo                    Check       
+
+Flop                        3d - 2d - Td
+
+pupazzzo                    Bet         (0.04)
+F4UXR34L                    Fold        
+Re46                        Fold        
+_tiburon_                   Call        (0.04)
+
+Turn                        3d - 2d - Td - 3c
+
+pupazzzo                    Bet         (0.04)
+_tiburon_                   Fold        
+pupazzzo                    Payback     (0.04)
+
+pupazzzo didn't show hand
+
+pupazzzo wins:              EUR 0.24
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:01:03 GMT
+
+Game # 2137901693 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 3.92 in seat 2)
+Makesdy                     (EUR 3.94 in seat 3)
+_tiburon_                   (EUR 6.19 in seat 4)
+l4oo9od                     (EUR 0.61 in seat 5)
+pupazzzo                    (EUR 4.83 in seat 6)
+
+Dealer:                     l4oo9od
+Small Blind:                pupazzzo    (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         6d - 8h - 7h - 6h
+
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+_tiburon_                   Call        (0.04)
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.02)
+F4UXR34L                    Check       
+
+Flop                        5s - Ac - Ks
+
+pupazzzo                    Check       
+F4UXR34L                    Check       
+Re46                        Bet         (0.04)
+_tiburon_                   Call        (0.04)
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Fold        
+
+Turn                        5s - Ac - Ks - 7c
+
+pupazzzo                    Check       
+Re46                        Bet         (0.04)
+_tiburon_                   Call        (0.04)
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.04)
+
+River                       5s - Ac - Ks - 7c - Jc
+
+pupazzzo                    Check       
+Re46                        Bet         (0.12)
+_tiburon_                   Fold        
+l4oo9od                     Call        (0.12)
+pupazzzo                    Fold        
+
+Re46 shows:                 Ts - 2d - Qh - Jd (a straight, Ace high)
+l4oo9od shows:              8d - 5d - 6c - 9c (a flush, Ace high)
+
+l4oo9od wins:               EUR 0.73 (with a flush, Ace high)
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 17:02:27 GMT
+
+Game # 2137907200 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 3.68 in seat 2)
+Makesdy                     (EUR 3.94 in seat 3)
+_tiburon_                   (EUR 6.07 in seat 4)
+l4oo9od                     (EUR 1.10 in seat 5)
+pupazzzo                    (EUR 4.71 in seat 6)
+
+Dealer:                     pupazzzo
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  Re46        (0.04)
+
+F4UXR34L was dealt:         3s - 3d - 7h - Qs
+
+Makesdy                     Fold        
+l4oo9od                     Fold        
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Fold        
+Re46                        Check       
+
+Flop                        Jd - 8h - Qd
+
+Re46                        Bet         (0.04)
+pupazzzo                    Call        (0.04)
+
+Turn                        Jd - 8h - Qd - 7d
+
+Re46                        Bet         (0.08)
+pupazzzo                    Call        (0.08)
+
+River                       Jd - 8h - Qd - 7d - Jh
+
+Re46                        Bet         (0.12)
+pupazzzo                    Call        (0.12)
+
+Re46 shows:                 2d - 4d - 5h - Th (a flush, Queen high)
+pupazzzo shows:             5d - 2s - Qc - Kd (a flush, King high)
+
+pupazzzo wins:              EUR 0.56 (with a flush, King high)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:03:12 GMT
+
+Game # 2137907478 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 3.40 in seat 2)
+Makesdy                     (EUR 3.94 in seat 3)
+_tiburon_                   (EUR 6.07 in seat 4)
+l4oo9od                     (EUR 1.10 in seat 5)
+pupazzzo                    (EUR 4.99 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                Re46        (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         5h - As - 6c - 5c
+
+l4oo9od                     Fold        
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Fold        
+Re46                        Call        (0.02)
+Makesdy                     Check       
+
+Flop                        9s - 4s - 9d
+
+Re46                        Check       
+Makesdy                     Check       
+pupazzzo                    Check       
+
+Turn                        9s - 4s - 9d - 3d
+
+Re46                        Check       
+Makesdy                     Check       
+pupazzzo                    Check       
+
+River                       9s - 4s - 9d - 3d - Ac
+
+Re46                        Check       
+Makesdy                     Check       
+pupazzzo                    Check       
+
+Re46 shows:                 Ad - Js - 8c - Qs (two pairs, Aces and Nines)
+Makesdy shows:              Kh - 2s - 2c - 9h (three of a kind, Nines)
+
+pupazzzo didn't show hand (3c - 5d - Ah - Th)
+
+Makesdy wins:               EUR 0.12 (with three of a kind, Nines)
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:03:53 GMT
+
+Game # 2137907707 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 3.36 in seat 2)
+Makesdy                     (EUR 4.02 in seat 3)
+_tiburon_                   (EUR 6.07 in seat 4)
+l4oo9od                     (EUR 1.10 in seat 5)
+pupazzzo                    (EUR 4.95 in seat 6)
+
+Dealer:                     Re46
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  l4oo9od     (0.04)
+
+F4UXR34L was dealt:         Kh - Kd - 3c - 2h
+
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Fold        
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+l4oo9od                     Check       
+
+Flop                        Qs - 5s - 6s
+
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+
+Turn                        Qs - 5s - 6s - 8s
+
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+
+River                       Qs - 5s - 6s - 8s - Jh
+
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+
+l4oo9od shows:              Qh - As - Ac - Kc (a pair of Aces)
+
+pupazzzo didn't show hand (2c - 6d - 4h - 4d)
+
+Re46 shows:                 Jc - 5h - Tc - Ks (two pairs, Jacks and Fives)
+
+Re46 wins:                  EUR 0.14 (with two pairs, Jacks and Fives)
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:04:31 GMT
+
+Game # 2137913947 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 3.46 in seat 2)
+Makesdy                     (EUR 4.00 in seat 3)
+_tiburon_                   (EUR 6.07 in seat 4)
+l4oo9od                     (EUR 1.06 in seat 5)
+pupazzzo                    (EUR 4.91 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                l4oo9od     (0.02)
+Big Blind:                  pupazzzo    (0.04)
+
+F4UXR34L was dealt:         5d - 3d - 4c - 7s
+
+F4UXR34L                    Fold        
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+l4oo9od                     Call        (0.02)
+pupazzzo                    Check       
+
+Flop                        9h - 2c - Kc
+
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+
+Turn                        9h - 2c - Kc - Ah
+
+l4oo9od                     Check       
+pupazzzo                    Bet         (0.04)
+Re46                        Call        (0.04)
+l4oo9od                     Call        (0.04)
+
+River                       9h - 2c - Kc - Ah - 4d
+
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+
+l4oo9od shows:              Jd - 2s - 4s - Kd (two pairs, Kings and Fours)
+
+pupazzzo didn't show hand (Th - 6d - Ac - 5s)
+Re46 didn't show hand (6c - Qh - 9s - Js)
+
+l4oo9od wins:               EUR 0.22 (with two pairs, Kings and Fours)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:05:29 GMT
+
+Game # 2137914295 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 3.38 in seat 2)
+Makesdy                     (EUR 4.00 in seat 3)
+_tiburon_                   (EUR 6.07 in seat 4)
+l4oo9od                     (EUR 1.20 in seat 5)
+pupazzzo                    (EUR 4.83 in seat 6)
+
+Dealer:                     l4oo9od
+Small Blind:                pupazzzo    (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         Ac - 8c - 2h - Qh
+
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.02)
+F4UXR34L                    Check       
+
+Flop                        5h - 4d - 6c
+
+pupazzzo                    Check       
+F4UXR34L                    Check       
+Re46                        Check       
+l4oo9od                     Check       
+
+Turn                        5h - 4d - 6c - 4h
+
+pupazzzo                    Check       
+F4UXR34L                    Check       
+Re46                        Check       
+l4oo9od                     Check       
+
+River                       5h - 4d - 6c - 4h - Tc
+
+pupazzzo                    Check       
+F4UXR34L                    Check       
+Re46                        Check       
+l4oo9od                     Check       
+
+pupazzzo shows:             Td - 2d - Jh - 7h (two pairs, Tens and Fours)
+
+F4UXR34L didn't show hand (Ac - 8c - 2h - Qh)
+
+Re46 shows:                 7s - 6d - Qd - Qs (two pairs, Queens and Fours)
+
+l4oo9od didn't show hand (Ts - 3c - 9d - 9h)
+
+Re46 wins:                  EUR 0.16 (with two pairs, Queens and Fours)
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:06:26 GMT
+
+Game # 2137914624 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 3.50 in seat 2)
+Makesdy                     (EUR 4.00 in seat 3)
+_tiburon_                   (EUR 6.07 in seat 4)
+l4oo9od                     (EUR 1.16 in seat 5)
+pupazzzo                    (EUR 4.79 in seat 6)
+
+Dealer:                     pupazzzo
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  Re46        (0.04)
+
+F4UXR34L was dealt:         Js - Ad - 7d - 4c
+
+Makesdy                     Fold        
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Fold        
+Re46                        Check       
+
+Flop                        Ks - 3c - 8h
+
+Re46                        Check       
+l4oo9od                     Check       
+pupazzzo                    Bet         (0.04)
+Re46                        Call        (0.04)
+l4oo9od                     Call        (0.04)
+
+Turn                        Ks - 3c - 8h - Qd
+
+Re46                        Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+
+River                       Ks - 3c - 8h - Qd - 2s
+
+Re46                        Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+
+Re46 shows:                 6s - 9d - 7h - Tc (high card King)
+l4oo9od shows:              4d - 5h - Qc - As (a pair of Queens)
+pupazzzo shows:             Kh - Ts - Th - 6d (a pair of Kings)
+
+pupazzzo wins:              EUR 0.24 (with a pair of Kings)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:07:30 GMT
+
+Game # 2137918014 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 3.42 in seat 2)
+Makesdy                     (EUR 4.00 in seat 3)
+_tiburon_                   (EUR 6.07 in seat 4)
+l4oo9od                     (EUR 1.08 in seat 5)
+pupazzzo                    (EUR 4.95 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                Re46        (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         8d - 2s - Qc - Ah
+
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Fold        
+Re46                        Call        (0.02)
+Makesdy                     Check       
+
+Flop                        2c - 5h - 7h
+
+Re46                        Check       
+Makesdy                     Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+
+Turn                        2c - 5h - 7h - 6c
+
+Re46                        Check       
+Makesdy                     Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+
+River                       2c - 5h - 7h - 6c - 5c
+
+Re46                        Check       
+Makesdy                     Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+
+Re46 shows:                 Qd - Jd - 7d - Kd (two pairs, Sevens and Fives)
+Makesdy shows:              Ac - 7c - Qh - 9s (a flush, Ace high)
+
+l4oo9od didn't show hand (3h - 8h - Jc - As)
+pupazzzo didn't show hand (8s - 8c - 6d - 4d)
+
+Makesdy wins:               EUR 0.16 (with a flush, Ace high)
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:08:20 GMT
+
+Game # 2137918296 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 3.38 in seat 2)
+Makesdy                     (EUR 4.12 in seat 3)
+_tiburon_                   (EUR 6.07 in seat 4)
+l4oo9od                     (EUR 1.04 in seat 5)
+pupazzzo                    (EUR 4.91 in seat 6)
+
+Dealer:                     Re46
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  l4oo9od     (0.04)
+
+F4UXR34L was dealt:         Th - Qs - Ah - 7s
+
+pupazzzo                    Fold        
+F4UXR34L                    Raise       (0.14)
+Re46                        Call        (0.14)
+Makesdy                     Fold        
+l4oo9od                     Call        (0.10)
+
+Flop                        As - Ks - Kh
+
+l4oo9od                     Check       
+F4UXR34L                    Bet         (0.33)
+Re46                        Call        (0.33)
+l4oo9od                     Call        (0.33)
+
+Turn                        As - Ks - Kh - 2d
+
+l4oo9od                     Check       
+F4UXR34L                    Bet         (1.04)
+Re46                        Fold        
+l4oo9od                     All-In      (0.57)
+F4UXR34L                    Payback     (0.47)
+
+River                       As - Ks - Kh - 2d - 3d
+
+l4oo9od shows:              2h - Ac - 5s - Qc (two pairs, Aces and Kings)
+F4UXR34L shows:             Th - Qs - Ah - 7s (two pairs, Aces and Kings)
+
+l4oo9od wins:               EUR 1.23 split pot (with two pairs, Aces and Kings)
+F4UXR34L wins:              EUR 1.22 split pot (with two pairs, Aces and Kings)
+Rake:                       EUR 0.12
+
+Game ended 2011-03-21 17:09:29 GMT
+
+Game # 2137918702 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.18 in seat 1)
+Re46                        (EUR 2.91 in seat 2)
+Makesdy                     (EUR 4.10 in seat 3)
+_tiburon_                   (EUR 6.07 in seat 4)
+l4oo9od                     (EUR 1.23 in seat 5)
+pupazzzo                    (EUR 4.91 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                l4oo9od     (0.02)
+Big Blind:                  pupazzzo    (0.04)
+
+F4UXR34L was dealt:         7h - Qd - Kd - 4c
+
+F4UXR34L                    Fold        
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+l4oo9od                     Call        (0.02)
+pupazzzo                    Check       
+
+Flop                        Jd - Ad - 2s
+
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+
+Turn                        Jd - Ad - 2s - Ac
+
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+
+River                       Jd - Ad - 2s - Ac - 7c
+
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+
+l4oo9od shows:              7s - 5h - 6d - 9c (two pairs, Aces and Sevens)
+
+pupazzzo didn't show hand (5c - Kh - 5d - 9s)
+Re46 didn't show hand (Th - Qh - 8d - 2h)
+
+l4oo9od wins:               EUR 0.12 (with two pairs, Aces and Sevens)
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:10:11 GMT
+
+Game # 2137923949 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.18 in seat 1)
+Re46                        (EUR 2.87 in seat 2)
+Makesdy                     (EUR 4.10 in seat 3)
+_tiburon_                   (EUR 6.07 in seat 4)
+l4oo9od                     (EUR 1.31 in seat 5)
+pupazzzo                    (EUR 4.87 in seat 6)
+
+Dealer:                     l4oo9od
+Small Blind:                pupazzzo    (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         6c - 5s - 5c - 9s
+
+Re46                        Call        (0.04)
+Makesdy                     Call        (0.04)
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.02)
+F4UXR34L                    Check       
+
+Flop                        Qs - 2h - 4d
+
+pupazzzo                    Check       
+F4UXR34L                    Check       
+Re46                        Check       
+Makesdy                     Bet         (0.20)
+l4oo9od                     Fold        
+pupazzzo                    Fold        
+F4UXR34L                    Fold        
+Re46                        Call        (0.20)
+
+Turn                        Qs - 2h - 4d - 3h
+
+Re46                        Check       
+Makesdy                     Bet         (0.60)
+Re46                        Fold        
+Makesdy                     Payback     (0.60)
+
+Makesdy didn't show hand
+
+Makesdy wins:               EUR 0.57
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 17:10:52 GMT
+
+Game # 2137924196 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.14 in seat 1)
+Re46                        (EUR 2.63 in seat 2)
+Makesdy                     (EUR 4.43 in seat 3)
+_tiburon_                   (EUR 6.07 in seat 4)
+l4oo9od                     (EUR 1.27 in seat 5)
+pupazzzo                    (EUR 4.83 in seat 6)
+
+Dealer:                     pupazzzo
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  Re46        (0.04)
+
+F4UXR34L was dealt:         8d - 4c - Qh - 7d
+
+Makesdy                     Fold        
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Fold        
+Re46                        Check       
+
+Flop                        9d - 5h - 2c
+
+Re46                        Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+
+Turn                        9d - 5h - 2c - 8s
+
+Re46                        Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+
+River                       9d - 5h - 2c - 8s - 7c
+
+Re46                        Check       
+l4oo9od                     Check       
+pupazzzo                    Bet         (0.14)
+Re46                        Fold        
+l4oo9od                     Fold        
+pupazzzo                    Payback     (0.14)
+
+pupazzzo didn't show hand
+
+pupazzzo wins:              EUR 0.14
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:12:01 GMT
+
+Game # 2137924592 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.12 in seat 1)
+Re46                        (EUR 2.59 in seat 2)
+Makesdy                     (EUR 4.43 in seat 3)
+_tiburon_                   (EUR 6.07 in seat 4)
+l4oo9od                     (EUR 1.23 in seat 5)
+pupazzzo                    (EUR 4.93 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                Re46        (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         4d - 5d - 7h - Ah
+
+l4oo9od                     Call        (0.04)
+pupazzzo                    Raise       (0.08)
+F4UXR34L                    Call        (0.08)
+Re46                        Call        (0.06)
+Makesdy                     Fold        
+l4oo9od                     Call        (0.04)
+
+Flop                        5c - Jc - 6s
+
+Re46                        Bet         (0.04)
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Call        (0.04)
+
+Turn                        5c - Jc - 6s - Kc
+
+Re46                        Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+F4UXR34L                    Check       
+
+River                       5c - Jc - 6s - Kc - Ac
+
+Re46                        Check       
+l4oo9od                     Bet         (0.04)
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Fold        
+Re46                        Fold        
+
+l4oo9od shows:              Ts - Qh - 7d - 3d (a straight, Ace high)
+
+pupazzzo didn't show hand (Ad - 9h - Qc - Qs)
+
+l4oo9od wins:               EUR 0.57 (with a straight, Ace high)
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 17:13:20 GMT
+
+Game # 2137928074 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 2.47 in seat 2)
+Makesdy                     (EUR 4.39 in seat 3)
+smorek99                    (EUR 4.00 in seat 4)
+l4oo9od                     (EUR 1.64 in seat 5)
+pupazzzo                    (EUR 4.77 in seat 6)
+
+Dealer:                     Re46
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  smorek99    (0.04)
+
+F4UXR34L was dealt:         2d - Th - 8d - As
+
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Fold        
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+smorek99                    Check       
+
+Flop                        Qc - 7s - 6s
+
+smorek99                    Bet         (0.18)
+l4oo9od                     Call        (0.18)
+pupazzzo                    Fold        
+Re46                        Call        (0.18)
+
+Turn                        Qc - 7s - 6s - 8h
+
+smorek99                    Check       
+l4oo9od                     Bet         (0.36)
+Re46                        Call        (0.36)
+smorek99                    Call        (0.36)
+
+River                       Qc - 7s - 6s - 8h - Jd
+
+smorek99                    Check       
+l4oo9od                     Bet         (0.04)
+Re46                        Call        (0.04)
+smorek99                    Call        (0.04)
+
+l4oo9od shows:              4d - 5h - 4h - Jc (a straight, Eight high)
+
+Re46 didn't show hand (9s - 4s - 8s - 7d)
+smorek99 didn't show hand (Kh - Qd - 3s - Qh)
+
+l4oo9od wins:               EUR 1.83 (with a straight, Eight high)
+Rake:                       EUR 0.09
+
+Game ended 2011-03-21 17:14:31 GMT
+
+Game # 2137928489 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 1.85 in seat 2)
+Makesdy                     (EUR 4.37 in seat 3)
+smorek99                    (EUR 4.00 in seat 4)
+l4oo9od                     (EUR 2.85 in seat 5)
+pupazzzo                    (EUR 4.73 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                smorek99    (0.02)
+Big Blind:                  l4oo9od     (0.04)
+
+F4UXR34L was dealt:         Ad - 5h - Js - 9c
+
+pupazzzo                    Fold        
+F4UXR34L                    Fold        
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+smorek99                    Call        (0.02)
+l4oo9od                     Check       
+
+Flop                        3d - Ah - Td
+
+smorek99                    Check       
+l4oo9od                     Check       
+Re46                        Check       
+
+Turn                        3d - Ah - Td - Kd
+
+smorek99                    Check       
+l4oo9od                     Check       
+Re46                        Bet         (0.08)
+smorek99                    Fold        
+l4oo9od                     Call        (0.08)
+
+River                       3d - Ah - Td - Kd - 2c
+
+l4oo9od                     Check       
+Re46                        Bet         (0.28)
+l4oo9od                     Fold        
+Re46                        Payback     (0.28)
+
+Re46 didn't show hand
+
+Re46 wins:                  EUR 0.26
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:15:39 GMT
+
+Game # 2137931898 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 1.99 in seat 2)
+Makesdy                     (EUR 4.37 in seat 3)
+smorek99                    (EUR 4.00 in seat 4)
+l4oo9od                     (EUR 2.73 in seat 5)
+pupazzzo                    (EUR 4.73 in seat 6)
+
+Dealer:                     smorek99
+Small Blind:                l4oo9od     (0.02)
+Big Blind:                  pupazzzo    (0.04)
+
+F4UXR34L was dealt:         Td - Kh - 5h - Ts
+
+F4UXR34L                    Fold        
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+smorek99                    Call        (0.04)
+l4oo9od                     Call        (0.02)
+pupazzzo                    Check       
+
+Flop                        2s - 6h - 4h
+
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+smorek99                    Check       
+
+Turn                        2s - 6h - 4h - 3c
+
+l4oo9od                     Bet         (0.16)
+pupazzzo                    Fold        
+Re46                        Call        (0.16)
+smorek99                    Fold        
+
+River                       2s - 6h - 4h - 3c - 6s
+
+l4oo9od                     Bet         (0.04)
+Re46                        Raise       (0.32)
+l4oo9od                     Call        (0.28)
+
+Re46 shows:                 5s - 9h - 8s - Kd (a pair of Sixes)
+l4oo9od shows:              5c - Jc - Ah - 4c (a straight, Six high)
+
+l4oo9od wins:               EUR 1.07 (with a straight, Six high)
+Rake:                       EUR 0.05
+
+Game ended 2011-03-21 17:16:49 GMT
+
+Game # 2137932326 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 1.47 in seat 2)
+Makesdy                     (EUR 4.37 in seat 3)
+smorek99                    (EUR 4.00 in seat 4)
+l4oo9od                     (EUR 3.28 in seat 5)
+pupazzzo                    (EUR 4.69 in seat 6)
+
+Dealer:                     l4oo9od
+Small Blind:                pupazzzo    (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         3c - 2h - Ad - Kd
+
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+smorek99                    Call        (0.04)
+l4oo9od                     Fold        
+pupazzzo                    Fold        
+F4UXR34L                    Check       
+
+Flop                        9c - 8s - 9s
+
+F4UXR34L                    Check       
+Re46                        Bet         (0.14)
+smorek99                    Fold        
+F4UXR34L                    Fold        
+Re46                        Payback     (0.14)
+
+Re46 didn't show hand
+
+Re46 wins:                  EUR 0.14
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:17:35 GMT
+
+Game # 2137932612 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 1.57 in seat 2)
+Makesdy                     (EUR 4.37 in seat 3)
+smorek99                    (EUR 4.00 in seat 4)
+l4oo9od                     (EUR 3.28 in seat 5)
+pupazzzo                    (EUR 4.67 in seat 6)
+
+Dealer:                     pupazzzo
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  Re46        (0.04)
+
+F4UXR34L was dealt:         2s - Tc - Jh - Ts
+
+Makesdy                     Call        (0.04)
+smorek99                    Fold        
+l4oo9od                     Call        (0.04)
+pupazzzo                    Call        (0.04)
+F4UXR34L                    Fold        
+Re46                        Check       
+
+Flop                        7s - As - 3d
+
+Re46                        Check       
+Makesdy                     Check       
+l4oo9od                     Check       
+pupazzzo                    Bet         (0.18)
+Re46                        Call        (0.18)
+Makesdy                     Fold        
+l4oo9od                     Call        (0.18)
+
+Turn                        7s - As - 3d - Jd
+
+Re46                        Check       
+l4oo9od                     Check       
+pupazzzo                    Bet         (0.12)
+Re46                        Call        (0.12)
+l4oo9od                     Call        (0.12)
+
+River                       7s - As - 3d - Jd - 4c
+
+Re46                        Bet         (0.08)
+l4oo9od                     Raise       (1.32)
+pupazzzo                    Fold        
+Re46                        Fold        
+l4oo9od                     Payback     (1.24)
+
+l4oo9od didn't show hand
+
+l4oo9od wins:               EUR 1.18
+Rake:                       EUR 0.06
+
+Game ended 2011-03-21 17:19:03 GMT
+
+Game # 2137936192 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 1.15 in seat 2)
+Makesdy                     (EUR 4.33 in seat 3)
+smorek99                    (EUR 4.00 in seat 4)
+l4oo9od                     (EUR 4.04 in seat 5)
+pupazzzo                    (EUR 4.33 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                Re46        (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         Kc - 9h - 5c - 8d
+
+smorek99                    Fold        
+l4oo9od                     Call        (0.04)
+pupazzzo                    Raise       (0.18)
+F4UXR34L                    Fold        
+Re46                        Call        (0.16)
+Makesdy                     Fold        
+l4oo9od                     Call        (0.14)
+
+Flop                        9c - 4h - Ts
+
+Re46                        Check       
+l4oo9od                     Check       
+pupazzzo                    Bet         (0.08)
+Re46                        Call        (0.08)
+l4oo9od                     Call        (0.08)
+
+Turn                        9c - 4h - Ts - 6c
+
+Re46                        Check       
+l4oo9od                     Check       
+pupazzzo                    Check       
+
+River                       9c - 4h - Ts - 6c - 2s
+
+Re46                        Bet         (0.12)
+l4oo9od                     Call        (0.12)
+pupazzzo                    Fold        
+
+Re46 shows:                 As - 3d - 5s - Ks (a straight, Six high)
+
+l4oo9od didn't show hand (Ah - 6d - 2h - Ac)
+
+Re46 wins:                  EUR 1.01 (with a straight, Six high)
+Rake:                       EUR 0.05
+
+Game ended 2011-03-21 17:20:21 GMT
+
+Game # 2137936697 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 1.78 in seat 2)
+Makesdy                     (EUR 4.29 in seat 3)
+smorek99                    (EUR 4.00 in seat 4)
+l4oo9od                     (EUR 3.66 in seat 5)
+pupazzzo                    (EUR 4.07 in seat 6)
+
+Dealer:                     Re46
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  smorek99    (0.04)
+
+F4UXR34L was dealt:         6h - 7s - Th - Kh
+
+l4oo9od                     Fold        
+pupazzzo                    Fold        
+F4UXR34L                    Fold        
+Re46                        Call        (0.04)
+Makesdy                     Raise       (0.11)
+smorek99                    Call        (0.09)
+Re46                        Call        (0.09)
+
+Flop                        Js - 8d - Ks
+
+Makesdy                     Check       
+smorek99                    Bet         (0.39)
+Re46                        Fold        
+Makesdy                     Fold        
+smorek99                    Payback     (0.39)
+
+smorek99 didn't show hand
+
+smorek99 wins:              EUR 0.37
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:21:03 GMT
+
+Game # 2137944960 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 1.65 in seat 2)
+Makesdy                     (EUR 4.16 in seat 3)
+smorek99                    (EUR 4.24 in seat 4)
+l4oo9od                     (EUR 3.66 in seat 5)
+pupazzzo                    (EUR 4.07 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                smorek99    (0.02)
+Big Blind:                  l4oo9od     (0.04)
+
+F4UXR34L was dealt:         Ah - 7s - 3h - Qs
+
+pupazzzo                    Fold        
+F4UXR34L                    Fold        
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+smorek99                    Fold        
+l4oo9od                     Check       
+
+Flop                        4h - 2s - Ts
+
+l4oo9od                     Check       
+Re46                        Check       
+
+Turn                        4h - 2s - Ts - 6h
+
+l4oo9od                     Check       
+Re46                        Bet         (0.10)
+l4oo9od                     Call        (0.10)
+
+River                       4h - 2s - Ts - 6h - 4s
+
+l4oo9od                     Check       
+Re46                        Check       
+
+l4oo9od shows:              Qh - As - 7c - 5d (a pair of Fours)
+Re46 shows:                 3d - 3s - Kc - 5c (a straight, Six high)
+
+Re46 wins:                  EUR 0.28 (with a straight, Six high)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:21:48 GMT
+
+Game # 2137945234 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Kaizuka"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.00 in seat 1)
+Re46                        (EUR 1.79 in seat 2)
+Makesdy                     (EUR 4.16 in seat 3)
+smorek99                    (EUR 4.22 in seat 4)
+l4oo9od                     (EUR 3.52 in seat 5)
+pupazzzo                    (EUR 4.07 in seat 6)
+
+Dealer:                     smorek99
+Small Blind:                l4oo9od     (0.02)
+Big Blind:                  pupazzzo    (0.04)
+
+F4UXR34L was dealt:         Js - Kh - 2s - Jh
+
+F4UXR34L                    Fold        
+Re46                        Call        (0.04)
+Makesdy                     Fold        
+smorek99                    Call        (0.04)
+l4oo9od                     Call        (0.02)
+pupazzzo                    Check       
+
+Flop                        As - 2h - Ad
+
+l4oo9od                     Check       
+pupazzzo                    Check       
+Re46                        Check       
+smorek99                    Check       
+
+Turn                        As - 2h - Ad - 6s
+
+l4oo9od                     Bet         (0.16)
+pupazzzo                    Raise       (0.32)
+Re46                        Fold        
+smorek99                    Fold        
+l4oo9od                     Call        (0.16)
+
+River                       As - 2h - Ad - 6s - 6h
+
+l4oo9od                     Check       
+pupazzzo                    Bet         (0.80)
+l4oo9od                     Call        (0.80)
+
+pupazzzo shows:             Kc - 3h - Ac - 4h (three of a kind, Aces)
+
+l4oo9od didn't show hand (Ah - 5d - 4s - Ts)
+
+pupazzzo wins:              EUR 2.28 (with three of a kind, Aces)
+Rake:                       EUR 0.12
+
+Game ended 2011-03-21 17:23:07 GMT
+
