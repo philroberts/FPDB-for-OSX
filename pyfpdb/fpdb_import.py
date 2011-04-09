@@ -302,7 +302,7 @@ class Importer:
         
         for file in self.filelist:
             
-            ProgressDialog.progress_update()
+            ProgressDialog.progress_update(file)
             
             (stored, duplicates, partial, errors, ttime) = self.import_file_dict(db, file
                                                ,self.filelist[file][0], self.filelist[file][1], q)
@@ -551,7 +551,7 @@ class ProgressBar:
             self.progress.destroy()
 
 
-    def progress_update(self):
+    def progress_update(self, file):
 
         if not self.parent:
             #nothing to do
@@ -571,6 +571,10 @@ class ProgressBar:
 
         self.pbar.set_fraction(progress_percent)
         self.pbar.set_text(progress_text)
+        
+        now = datetime.datetime.now()
+        now_formatted = now.strftime("%H:%M:%S")
+        self.progresstext.set_text(now_formatted + " - "+self.title+ " " +file+"\n")
 
 
     def __init__(self, sum, parent):
@@ -586,6 +590,7 @@ class ProgressBar:
         self.title = _("Importing")
             
         self.progress = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        self.progress.set_size_request(500,150)
 
         self.progress.set_resizable(False)
         self.progress.set_modal(True)
@@ -599,14 +604,23 @@ class ProgressBar:
         self.progress.add(vbox)
         vbox.show()
   
-        align = gtk.Alignment(0.5, 0.5, 0, 0)
-        vbox.pack_start(align, True, True, 2)
+        align = gtk.Alignment(0, 0, 0, 0)
+        vbox.pack_start(align, False, True, 2)
         align.show()
 
         self.pbar = gtk.ProgressBar()
         align.add(self.pbar)
         self.pbar.show()
 
+        align = gtk.Alignment(0, 0, 0, 0)
+        vbox.pack_start(align, False, True, 0)
+        align.show()
+        
+        self.progresstext = gtk.Label()
+        self.progresstext.set_line_wrap(True)
+        align.add(self.progresstext)
+        self.progresstext.show()
+        
         self.progress.show()
 
 
