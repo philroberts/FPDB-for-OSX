@@ -207,9 +207,8 @@ DATABASE_TYPES = (
         DATABASE_TYPE_MYSQL,
         )
 
-LOCALE_ENCODING = locale.getdefaultlocale()[1]
-#LOCALE_ENCODING = locale.getpreferredencoding() #this breaks on Mac OSX - please leave this comment
-if LOCALE_ENCODING == "US-ASCII":
+LOCALE_ENCODING = locale.getpreferredencoding()
+if LOCALE_ENCODING in ("US-ASCII", "", None):
     print _("Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're not on a Mac, please report this problem.")
     LOCALE_ENCODING = "cp1252"
 
