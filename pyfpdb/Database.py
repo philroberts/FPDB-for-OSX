@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 152
+DB_VERSION = 156
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -124,10 +124,12 @@ class Database:
               , [ # indexes for postgres (list index 3)
                   {'tab':'Gametypes',       'col':'siteId',            'drop':0}
                 , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
+                , {'tab':'Hands',           'col':'fileId',            'drop':0} # mct 22/3/09
                 #, {'tab':'Hands',           'col':'siteHandNo',        'drop':0}  unique indexes not dropped
                 , {'tab':'HandsActions',    'col':'handId',            'drop':1}
                 , {'tab':'HandsActions',    'col':'playerId',          'drop':1}
                 , {'tab':'HandsActions',    'col':'actionId',          'drop':1}
+                , {'tab':'Boards',          'col':'handId',            'drop':1}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':1}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
@@ -151,6 +153,8 @@ class Database:
                 ]
               , [ # indexes for sqlite (list index 4)
                   {'tab':'Hands',           'col':'gametypeId',        'drop':0}
+                , {'tab':'Hands',           'col':'fileId',            'drop':0}
+                , {'tab':'Boards',          'col':'handId',            'drop':0}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
@@ -179,6 +183,8 @@ class Database:
                   , [ ] # no db with index 1
                   , [ # foreign keys for mysql (index 2)
                       {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                    , {'fktab':'Hands',        'fkcol':'fileId',        'rtab':'Files',         'rcol':'id', 'drop':1}
+                    , {'fktab':'Boards',       'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
@@ -194,6 +200,8 @@ class Database:
                     ]
                   , [ # foreign keys for postgres (index 3)
                       {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                    , {'fktab':'Hands',        'fkcol':'fileId',        'rtab':'Files',         'rcol':'id', 'drop':1}
+                    , {'fktab':'Boards',       'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
@@ -332,7 +340,7 @@ class Database:
 
         tables=self.cursor.execute(self.sql.query['list_tables'])
         tables=self.cursor.fetchall()
-        for table in (u'Actions', u'Autorates', u'Backings', u'Gametypes', u'Hands', u'HandsActions', u'HandsPlayers', u'HudCache', u'SessionsCache', u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
+        for table in (u'Actions', u'Autorates', u'Backings', u'Gametypes', u'Hands', u'Boards', u'HandsActions', u'HandsPlayers', u'Files', u'HudCache', u'SessionsCache', u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
             print "table:", table
             result+="###################\nTable "+table+"\n###################\n"
             rows=self.cursor.execute(self.sql.query['get'+table])
@@ -515,12 +523,12 @@ class Database:
         except:# _mysql_exceptions.ProgrammingError:
             if database !=  ":memory:":
                 if create:
-                    print (_("Failed to read settings table.") + " - " + _("Recreating tables."))
+                    #print (_("Failed to read settings table.") + " - " + _("Recreating tables."))
                     log.info(_("Failed to read settings table.") + " - " + _("Recreating tables."))
                     self.recreate_tables()
                     self.check_version(database=database, create=False)
                 else:
-                    print (_("Failed to read settings table.") + " - " + _("Please recreate tables."))
+                    #print (_("Failed to read settings table.") + " - " + _("Please recreate tables."))
                     log.info(_("Failed to read settings table.") + " - " + _("Please recreate tables."))
                     self.wrongDbVersion = True
             else:
@@ -1241,7 +1249,7 @@ class Database:
         self.createAllIndexes()
         self.commit()
         self.get_sites()
-        print _("Finished recreating tables")
+        #print _("Finished recreating tables")
         log.info(_("Finished recreating tables"))
     #end def recreate_tables
 
@@ -1256,9 +1264,11 @@ class Database:
             c.execute(self.sql.query['createActionsTable'])
             c.execute(self.sql.query['createSitesTable'])
             c.execute(self.sql.query['createGametypesTable'])
+            c.execute(self.sql.query['createFilesTable'])
             c.execute(self.sql.query['createPlayersTable'])
             c.execute(self.sql.query['createAutoratesTable'])
             c.execute(self.sql.query['createHandsTable'])
+            c.execute(self.sql.query['createBoardsTable'])
             c.execute(self.sql.query['createTourneyTypesTable'])
             c.execute(self.sql.query['createTourneysTable'])
             c.execute(self.sql.query['createTourneysPlayersTable'])
@@ -1856,7 +1866,8 @@ class Database:
                         hdata['tourneyId'],
                         hdata['gametypeId'],
                         hdata['sessionId'],
-                        hdata['gameSessionId'], 
+                        hdata['gameSessionId'],
+                        hdata['fileId'],
                         hdata['startTime'],                
                         datetime.utcnow(), #importtime
                         hdata['seats'],
@@ -1868,6 +1879,7 @@ class Database:
                         hdata['boardcard3'],
                         hdata['boardcard4'],
                         hdata['boardcard5'],
+                        hdata['runIt'],
                         hdata['playersAtStreet1'],
                         hdata['playersAtStreet2'],
                         hdata['playersAtStreet3'],
@@ -1883,19 +1895,28 @@ class Database:
                         hdata['street3Pot'],
                         hdata['street4Pot'],
                         hdata['showdownPot'],
+                        hdata['boards'],
                         hdata['id']
                         ])
 
         if doinsert:
+            bbulk = []
             for h in hbulk:
                 id = h.pop()
                 if hdata['sc'] and hdata['gsc']:
                     h[4] = hdata['sc'][id]['id']
                     h[5] = hdata['gsc'][id]['id']
+                boards = h.pop()
+                for b in boards:
+                    bbulk += [[id] + b]
             q = self.sql.query['store_hand']
             q = q.replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
             c.executemany(q, hbulk)
+            q = self.sql.query['store_boards']
+            q = q.replace('%s', self.sql.query['placeholder'])
+            c = self.get_cursor()
+            c.executemany(q, bbulk)
             self.commit()
         return hbulk
 
@@ -1941,6 +1962,7 @@ class Database:
                              pdata[p]['street3Seen'],
                              pdata[p]['street4Seen'],
                              pdata[p]['sawShowdown'],
+                             pdata[p]['showed'],
                              pdata[p]['wonAtSD'],
                              pdata[p]['street0Aggr'],
                              pdata[p]['street1Aggr'],
@@ -2087,6 +2109,7 @@ class Database:
         insert_hudcache = insert_hudcache.replace('%s', self.sql.query['placeholder'])
 
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
+        hcs = []
         for p in pdata:
             #NOTE: Insert new stats at right place because SQL needs strict order
             line = []
@@ -2179,7 +2202,7 @@ class Database:
             line.append(pdata[p]['street3Raises'])               
             line.append(pdata[p]['street4Raises'])               
             
-            hc, hcs = {}, []
+            hc = {}
             hc['gametypeId'] = gid
             hc['playerId'] = pids[p]
             hc['activeSeats'] = len(pids)
@@ -2187,6 +2210,9 @@ class Database:
             hc['position'] = pos[pdata[p]['position']]
             hc['tourneyTypeId'] = pdata[p]['tourneyTypeId']
             hc['styleKey'] = styleKey
+            for i in range(len(line)):
+                if line[i]: line[i] = 1
+                else:       line[i] = 0
             hc['line'] = line
             hc['game'] = [hc['gametypeId']
                          ,hc['playerId']
@@ -2199,6 +2225,7 @@ class Database:
         for h in hcs:
             match = False
             for b in hcbulk:
+                #print h['game']==b['game'], h['game'], b['game']
                 if  h['game']==b['game']:
                     b['line'] = [sum(l) for l in zip(b['line'], h['line'])]
                     match = True
@@ -2206,14 +2233,9 @@ class Database:
         
         if doinsert:
             inserts = []
-            exists = []
-            updates = []
+            c = self.get_cursor()
             for hc in hcbulk:
                 row = hc['line'] + hc['game']
-                if hc['game'] in exists: 
-                    updates.append(row)
-                    continue
-                c = self.get_cursor()
                 num = c.execute(update_hudcache, row)
                 # Try to do the update first. Do insert it did not work
                 if ((self.backend == self.PGSQL and c.statusmessage != "UPDATE 1")
@@ -2224,11 +2246,11 @@ class Database:
                     #num = c.execute(insert_hudcache, row)
                     #print "DEBUG: Successfully(?: %s) updated HudCacho using INSERT" % num
                 else:
-                    exists.append(hc['game'])
                     #print "DEBUG: Successfully updated HudCacho using UPDATE"
-            if inserts: c.executemany(insert_hudcache, inserts)
-            if updates: c.executemany(update_hudcache, updates)
-                
+                    pass
+            if inserts:
+                c.executemany(insert_hudcache, inserts)
+                             
         return hcbulk
             
     def prepSessionsCache(self, hid, pids, startTime, sc, heros, doinsert = False):
@@ -2499,7 +2521,53 @@ class Database:
             self.commit()
             
         return gsc
+
+    def getGameTypeId(self, siteid, game, printdata = False):
+        c = self.get_cursor()
+        #FIXME: Fixed for NL at the moment
+        c.execute(self.sql.query['getGametypeNL'], (siteid, game['type'], game['category'], game['limitType'], game['currency'],
+                                                    game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100)))
+        tmp = c.fetchone()
+        if (tmp == None):
+            hilo = "h"
+            if game['category'] in ['studhilo', 'omahahilo']:
+                hilo = "s"
+            elif game['category'] in ['razz','27_3draw','badugi', '27_1draw']:
+                hilo = "l"
+            #FIXME: recognise currency
+            #TODO: this wont work for non-standard structures
+            tmp  = self.insertGameTypes( (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
+                                    game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
+                                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200)), printdata = printdata)
+        return tmp[0]
+
+
+    def insertGameTypes(self, row, printdata = False):
+        if printdata:
+            print _("######## Gametype ##########")
+            import pprint
+            pp = pprint.PrettyPrinter(indent=4)
+            pp.pprint(row)
+            print _("###### End Gametype ########")
+
+        c = self.get_cursor()
+        c.execute( self.sql.query['insertGameTypes'], row )
+        return [self.get_last_insert_id(c)]
     
+    def storeFile(self, fdata):
+        q = self.sql.query['store_file']
+        q = q.replace('%s', self.sql.query['placeholder'])
+        c = self.get_cursor()
+        c.execute(q, fdata)
+        id = self.get_last_insert_id(c)
+        return id
+        
+    def updateFile(self, fdata):
+        q = self.sql.query['update_file']
+        q = q.replace('%s', self.sql.query['placeholder'])
+        c = self.get_cursor()
+        c.execute(q, fdata)
+
     def getHeroIds(self, pids, sitename):
         #Grab playerIds using hero names in HUD_Config.xml
         try:
@@ -2548,40 +2616,6 @@ class Database:
         if len(result) > 0:
             dup = True
         return dup
-
-    def getGameTypeId(self, siteid, game, printdata = False):
-        c = self.get_cursor()
-        #FIXME: Fixed for NL at the moment
-        c.execute(self.sql.query['getGametypeNL'], (siteid, game['type'], game['category'], game['limitType'], game['currency'],
-                        int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100)))
-        tmp = c.fetchone()
-        if (tmp == None):
-            hilo = "h"
-            if game['category'] in ['studhilo', 'omahahilo']:
-                hilo = "s"
-            elif game['category'] in ['razz','27_3draw','badugi', '27_1draw']:
-                hilo = "l"
-            #FIXME: recognise currency
-            #TODO: this wont work for non-standard structures
-            tmp  = self.insertGameTypes( (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
-                                    int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
-                                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200)), printdata = printdata)
-        return tmp[0]
-
-
-    def insertGameTypes(self, row, printdata = False):
-        if printdata:
-            print _("######## Gametype ##########")
-            import pprint
-            pp = pprint.PrettyPrinter(indent=4)
-            pp.pprint(row)
-            print _("###### End Gametype ########")
-
-        c = self.get_cursor()
-        c.execute( self.sql.query['insertGameTypes'], row )
-        return [self.get_last_insert_id(c)]
-
-
 
 #################################
 # Finish of NEWIMPORT CODE

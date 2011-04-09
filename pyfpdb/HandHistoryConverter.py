@@ -68,7 +68,7 @@ class HandHistoryConverter():
 
     # maybe archive params should be one archive param, then call method in specific converter.   if archive:  convert_archive()
     def __init__( self, config, in_path = '-', out_path = '-', follow=False, index=0
-                , autostart=True, starsArchive=False, ftpArchive=False, sitename="PokerStars" ):
+                , autostart=True, starsArchive=False, ftpArchive=False, sitename="PokerStars"):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
@@ -289,6 +289,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             self.numErrors += 1
         else:
             # See if gametype is supported.
+            if 'mix' not in gametype: gametype['mix'] = 'none'
             type = gametype['type']
             base = gametype['base']
             limit = gametype['limitType']
@@ -332,6 +333,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
     'base'       in ('hold', 'stud', 'draw')
     'category'   in ('holdem', 'omahahi', omahahilo', 'razz', 'studhi', 'studhilo', 'fivedraw', '27_1draw', '27_3draw', 'badugi')
     'hilo'       in ('h','l','s')
+    'mix'        in (site specific, or 'none')
     'smallBlind' int?
     'bigBlind'   int?
     'smallBet'
@@ -445,7 +447,8 @@ or None if we fail to get the info """
     def readAction(self, hand, street): abstract
     def readCollectPot(self, hand): abstract
     def readShownCards(self, hand): abstract
-
+    
+    # EDIT: readOther is depreciated
     # Some sites do odd stuff that doesn't fall in to the normal HH parsing.
     # e.g., FTP doesn't put mixed game info in the HH, but puts in in the
     # file name. Use readOther() to clean up those messes.
