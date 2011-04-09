@@ -253,34 +253,34 @@ class Sql:
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
-                        id SERIAL, PRIMARY KEY (id),
-                        siteId INTEGER, FOREIGN KEY (siteId) REFERENCES Sites(id),
-                        currency varchar(4),
-                        type char(4),
-                        base char(4),
-                        category varchar(9),
-                        limitType char(2),
-                        hiLo char(1),
-                        mix char(9),
+                        id SERIAL NOT NULL, PRIMARY KEY (id),
+                        siteId INTEGER NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                        currency varchar(4) NOT NULL,
+                        type char(4) NOT NULL,
+                        base char(4) NOT NULL,
+                        category varchar(9) NOT NULL,
+                        limitType char(2) NOT NULL,
+                        hiLo char(1) NOT NULL,
+                        mix char(9) NOT NULL,
                         smallBlind int,
                         bigBlind int,
-                        smallBet int,
-                        bigBet int)"""
+                        smallBet int NOT NULL,
+                        bigBet int NOT NULL)"""
         elif db_server == 'sqlite':
             self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
-                        id INTEGER PRIMARY KEY,
-                        siteId INTEGER,
-                        currency TEXT,
-                        type TEXT,
-                        base TEXT,
-                        category TEXT,
-                        limitType TEXT,
-                        hiLo TEXT,
-                        mix TEXT,
+                        id INTEGER PRIMARY KEY NOT NULL,
+                        siteId INTEGER NOT NULL,
+                        currency TEXT NOT NULL,
+                        type TEXT NOT NULL,
+                        base TEXT NOT NULL,
+                        category TEXT NOT NULL,
+                        limitType TEXT NOT NULL,
+                        hiLo TEXT NOT NULL,
+                        mix TEXT NOT NULL,
                         smallBlind INTEGER,
                         bigBlind INTEGER,
-                        smallBet INTEGER,
-                        bigBet INTEGER,
+                        smallBet INTEGER NOT NULL,
+                        bigBet INTEGER NOT NULL,
                         FOREIGN KEY(siteId) REFERENCES Sites(id) ON DELETE CASCADE)"""
 
 
