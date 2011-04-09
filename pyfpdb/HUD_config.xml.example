@@ -259,14 +259,14 @@ Left-Drag to Move"
             </layout>
         </site>
 
-	    <site HH_path="C:\Users\WindowsUserName\Documents\EverleafSiteName\HandHistory\PlayerName"
+	    <site HH_path="C:\Users\WindowsUserName\Documents\EverleafSiteName\HandHistory\YOUR SCREEN NAME HERE"
                   bgcolor="#000000"
                   converter="EverleafToFpdb"
                   decoder="everleaf_decode_table"
                   enabled="True"
                   fgcolor="#EEEEEE"
                   hudopacity="0.75"
-                  screen_name="PlayerName"
+                  screen_name="YOUR SCREEN NAME HERE"
                   site_name="Everleaf"
                   site_path="C:\Users\WindowsUserName\AppData\Roaming\EverleafSiteName\"
                   supported_games="holdem,omahahi,omahahilo"

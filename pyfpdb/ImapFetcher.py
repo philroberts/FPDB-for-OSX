@@ -41,7 +41,7 @@ def splitPokerStarsSummaries(summaryText): #TODO: this needs to go to PSS.py
     splitSummaries = re.split(re_SplitTourneys, summaryText)
 
     if len(splitSummaries) <= 1:
-        print (_("DEBUG: ") + _("re_SplitTourneys isn't matching"))
+        print (_("DEBUG:") + " " + _("re_SplitTourneys isn't matching"))
 
     return splitSummaries
 
@@ -50,7 +50,7 @@ def splitFullTiltSummaries(summaryText):#TODO: this needs to go to FTPS.py
     splitSummaries = re.split(re_SplitTourneys, summaryText)
 
     if len(splitSummaries) <= 1:
-        print(_("DEBUG: ") + _("re_SplitTourneys isn't matching"))
+        print(_("DEBUG:") + " " + _("re_SplitTourneys isn't matching"))
 
     return splitSummaries
 

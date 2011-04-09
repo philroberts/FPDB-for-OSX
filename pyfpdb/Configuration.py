@@ -108,14 +108,14 @@ def get_config(file_name, fallback = True):
             try:
                 shutil.copyfile(example_path, config_path)
                 example_copy = True
-                msg = _("Config file has been created at %s.\n") % config_path
+                msg = _("Config file has been created at %s.") % (config_path+"\n")
                 logging.info(msg)
             except IOError:
                 try:
                     example_path = file_name + '.example'
                     shutil.copyfile(example_path, config_path)
                     example_copy = True
-                    msg = _("Config file has been created at %s.\n") % config_path
+                    msg = _("Config file has been created at %s.") % (config_path+"\n")
                     logging.info(msg)
                 except IOError:
                     pass
@@ -129,18 +129,18 @@ def get_config(file_name, fallback = True):
             if not config_found and fallback:
                 shutil.copyfile(example_path, config_path)
                 example_copy = True
-                msg = _("No %s found\n  in %s\n  or %s\n") % (file_name, exec_dir, default_dir) \
-                      + _("Config file has been created at %s.\n") % config_path
+                msg = _("No %s found\n  in %s\n  or %s") % (file_name, exec_dir, default_dir) \
+                     + " " + _("Config file has been created at %s.") % (config_path+"\n")
                 print msg
                 logging.info(msg)
         except:
-            print _("Error copying .example config file, cannot fall back. Exiting.\n")
-            sys.stderr.write(_("Error copying .example config file, cannot fall back. Exiting.\n"))
+            print _("Error copying .example config file, cannot fall back. Exiting."), "\n"
+            sys.stderr.write(_("Error copying .example config file, cannot fall back. Exiting.")+"\n")
             sys.stderr.write( str(sys.exc_info()) )
             sys.exit()
     elif fallback:
-        print _("No %s found, cannot fall back. Exiting.\n") % file_name
-        sys.stderr.write(_("No %s found, cannot fall back. Exiting.\n") % file_name)
+        print _("No %s found, cannot fall back. Exiting.") % file_name, "\n"
+        sys.stderr.write((_("No %s found, cannot fall back. Exiting.") % file_name) + "\n")
         sys.exit()
 
     #print "get_config: returning "+str( (config_path,example_copy,example_path) )
@@ -209,9 +209,10 @@ DATABASE_TYPES = (
 
 LOCALE_ENCODING = locale.getpreferredencoding()
 if LOCALE_ENCODING in ("US-ASCII", "", None):
-    print _("Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're not on a Mac, please report this problem.")
     LOCALE_ENCODING = "cp1252"
-
+    if (os.uname()[0]!="Darwin"):
+        print _("Default encoding set to US-ASCII, defaulting to CP1252 instead."), _("Please report this problem.")
+    
 
 # needs LOCALE_ENCODING (above), imported for sqlite setup in Config class below
 
@@ -988,7 +989,13 @@ class Config:
             location_node.setAttribute("x", str( locations[i-1][0] ))
             location_node.setAttribute("y", str( locations[i-1][1] ))
             self.supported_sites[site_name].layout[max].location[i] = ( locations[i-1][0], locations[i-1][1] )
-
+    
+    def edit_site(self, site_name, enabled, screen_name, history_path):
+        site_node = self.get_site_node(site_name)
+        site_node.setAttribute("enabled", enabled)
+        site_node.setAttribute("screen_name", screen_name)
+        site_node.setAttribute("HH_path", history_path)
+    
     def editStats(self, gameName, statArray):
         """replaces stat selection for the given gameName with the given statArray"""
         gameNode = self.getGameNode(gameName)
@@ -1029,7 +1036,7 @@ class Config:
                 newStat.setAttribute("tip", "tip1")
                 
                 gameNode.appendChild(newStat)
-        statNodes = gameNode.getElementsByTagName("stat")
+        statNodes = gameNode.getElementsByTagName("stat") #TODO remove this line?
     #end def editStats
 
     def edit_aux_layout(self, aux_name, max, width = None, height = None, locations = None):

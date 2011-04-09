@@ -597,8 +597,8 @@ class Hud:
                     if adj[j] > self.max:
                         adj[j] = adj[j] - self.max
             except Exception, inst:
-                sys.stderr.write(_("exception in Hud.adj_seats\n\n"))
-                sys.stderr.write(_("error is %s") % inst)           # __str__ allows args to printed directly
+                sys.stderr.write(_("Exception in Hud.adj_seats\n\n"))
+                sys.stderr.write(_("Error is %s") % inst)           # __str__ allows args to printed directly
         return adj
 
     def get_actual_seat(self, name):
