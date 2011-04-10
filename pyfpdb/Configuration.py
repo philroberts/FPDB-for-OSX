@@ -494,7 +494,7 @@ class Import:
     def __init__(self, node):
         self.node               = node
         self.interval           = node.getAttribute("interval")
-        self.sessionTimeout     = node.getAttribute("sessionTimeout")
+        self.sessionTimeout     = string_to_bool(node.getAttribute("sessionTimeout")    , default=30)
         self.ResultsDirectory   = node.getAttribute("ResultsDirectory")
         self.hhBulkPath         = node.getAttribute("hhBulkPath")
         self.saveActions        = string_to_bool(node.getAttribute("saveActions")      , default=False)
