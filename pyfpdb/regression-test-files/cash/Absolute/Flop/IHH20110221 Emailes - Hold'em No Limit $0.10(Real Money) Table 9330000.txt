@@ -1,0 +1,54 @@
+Stage #C379012708: Holdem  No Limit $0.10 Turbo - 2011-02-21 05:08:53.010 (ET) [ 2011-02-21 05:08:53 ]
+Table: Holmbury Rd.59 (Real Money) Seat #6 is the dealer
+Seat 6 - PLAYER6 ($11.19 in chips)
+Seat 7 - PLAYER7 ($1.09 in chips)
+Seat 9 - PLAYER9 ($11.95 in chips)
+Seat 1 - PLAYER1 ($1.60 in chips)
+Seat 3 - HERO ($11.56 in chips)
+Seat 4 - PLAYER4 ($2.67 in chips)
+Seat 5 - PLAYER5 ($8.34 in chips)
+PLAYER7 - Posts small blind $0.05
+PLAYER9 - Posts big blind $0.10
+*** POCKET CARDS ***
+Dealt to HERO [10c 4d]
+PLAYER1 - Folds
+HERO - Folds (Preselection)
+PLAYER4 - Calls $0.10 (Preselection)
+PLAYER5 - Raises $0.20 to $0.20
+PLAYER6 - Calls $0.20
+PLAYER7 - Folds
+PLAYER9 - Calls $0.10
+PLAYER4 - Raises $0.20 to $0.30 (Preselection)
+PLAYER5 - Calls $0.10
+PLAYER6 - Calls $0.10
+PLAYER9 - Calls $0.10
+*** FLOP *** [Kh 3s 5c]
+PLAYER9 - Checks
+PLAYER4 - Checks
+PLAYER5 - Checks
+PLAYER6 - Checks
+*** TURN *** [Kh 3s 5c] [6c]
+PLAYER9 - Checks
+PLAYER4 - Checks
+PLAYER5 - Bets $0.90
+PLAYER6 - Folds
+PLAYER9 - Folds
+PLAYER4 - Calls $0.90
+*** RIVER *** [Kh 3s 5c 6c] [5d]
+PLAYER4 - All-In $1.47
+PLAYER5 - Calls $1.47
+*** SHOW DOWN ***
+PLAYER4 - Shows [Qd 6d] (Two Pair, sixes and fives)
+PLAYER5 - Shows [Js Jh] (Two Pair, jacks and fives)
+PLAYER5 Collects $5.70 from main pot
+*** SUMMARY ***
+Total Pot($5.99) | Rake ($0.29)
+Board [Kh 3s 5c 6c 5d]
+Seat 1: PLAYER1 Folded on the POCKET CARDS
+Seat 3: HERO Folded on the POCKET CARDS
+Seat 4: PLAYER4 HI:lost with Two Pair, sixes and fives [Qd 6d - P:6d,B:6c,B:5d,B:5c,B:Kh]
+Seat 5: PLAYER5 collected Total ($5.70) HI:($5.70) with Two Pair, jacks and fives [Js Jh - P:Js,P:Jh,B:5d,B:5c,B:Kh]
+Seat 6: PLAYER6 (dealer) Folded on the TURN
+Seat 7: PLAYER7 (small blind) Folded on the POCKET CARDS
+Seat 9: PLAYER9 (big blind) Folded on the TURN
+

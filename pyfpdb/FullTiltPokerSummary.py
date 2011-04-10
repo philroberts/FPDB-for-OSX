@@ -25,7 +25,6 @@ import datetime
 
 from Exceptions import FpdbParseError
 from HandHistoryConverter import *
-import PokerStarsToFpdb
 from TourneySummary import *
 
 class FullTiltPokerSummary(TourneySummary):
@@ -45,10 +44,10 @@ class FullTiltPokerSummary(TourneySummary):
                }
 
     substitutions = {
-                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : "\$|\xe2\x82\xac|",       # legal currency symbols - Euro(cp1252, utf-8)
-                           'TAB' : u"-\u2013'\s\da-zA-Z",    # legal characters for tablename
-                           'NUM' : u".,\d",                  # legal characters in number format
+                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",      # legal ISO currency codes
+                            'LS' : u"\$|\xe2\x82\xac|\u20ac|", # legal currency symbols - Euro(cp1252, utf-8)
+                           'TAB' : u"-\u2013'\s\da-zA-Z",      # legal characters for tablename
+                           'NUM' : u".,\d",                    # legal characters in number format
                     }
 
     re_SplitTourneys = re.compile("^Full Tilt Poker Tournament Summary")
@@ -90,8 +89,8 @@ class FullTiltPokerSummary(TourneySummary):
         m = self.re_TourneyInfo.search(self.summaryText[:2000])
         if m == None:
             tmp = self.summaryText[0:200]
-            log.error(_("parseSummary: Unable to recognise Tourney Info: '%s'") % tmp)
-            log.error(_("parseSummary: Raising FpdbParseError"))
+            log.error("parseSummary: " + _("Unable to recognise Tourney Info: '%s'") % tmp)
+            log.error("parseSummary: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise Tourney Info: '%s'") % tmp)
 
         #print "DEBUG: m.groupdict(): %s" % m.groupdict()
@@ -116,8 +115,8 @@ class FullTiltPokerSummary(TourneySummary):
 
         m = self.re_Currency.search(self.summaryText)
         if m == None:
-            log.error(_("parseSummary: Unable to locate currency"))
-            log.error(_("parseSummary: Raising FpdbParseError"))
+            log.error("parseSummary: " + _("Unable to locate currency"))
+            log.error("parseSummary: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to locate currency"))
         #print "DEBUG: m.groupdict(): %s" % m.groupdict()
 

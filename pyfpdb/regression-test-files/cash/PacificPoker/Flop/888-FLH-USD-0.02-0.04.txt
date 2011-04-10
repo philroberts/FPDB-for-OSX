@@ -1,0 +1,1263 @@
+#Game No : 311161683
+***** Cassava Hand History for Game 311161683 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:24:27
+Table Guarapuava (Real Money)
+Seat 4 is the button
+Total number of players : 7
+Seat 1: KlimushkinI ( $0.91 )
+Seat 2: Barrydos ( $1.88 )
+Seat 3: Flash190 ( $0.34 )
+Seat 4: dimag45 ( $0.24 )
+Seat 8: saki81bg ( $0.55 )
+Seat 9: SkiNNeR14 ( $0.07 )
+Seat 10: pokergallo ( $2.51 )
+saki81bg posts small blind [$0.01]
+SkiNNeR14 posts big blind [$0.02]
+** Dealing down cards **
+pokergallo folds
+KlimushkinI folds
+Barrydos raises [$0.04]
+Flash190 folds
+dimag45 folds
+saki81bg folds
+SkiNNeR14 folds
+** Summary **
+Barrydos collected [ $0.05 ]
+
+
+
+#Game No : 311161716
+***** Cassava Hand History for Game 311161716 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:24:40
+Table Guarapuava (Real Money)
+Seat 8 is the button
+Total number of players : 7
+Seat 1: KlimushkinI ( $0.91 )
+Seat 2: Barrydos ( $1.91 )
+Seat 3: Flash190 ( $0.34 )
+Seat 4: dimag45 ( $0.24 )
+Seat 8: saki81bg ( $0.54 )
+Seat 9: SkiNNeR14 ( $0.05 )
+Seat 10: pokergallo ( $2.51 )
+SkiNNeR14 posts small blind [$0.01]
+pokergallo posts big blind [$0.02]
+** Dealing down cards **
+KlimushkinI folds
+Barrydos folds
+Flash190 folds
+dimag45 folds
+saki81bg calls [$0.02]
+SkiNNeR14 folds
+pokergallo checks
+** Dealing flop ** [ 6d, Kh, 4d ]
+pokergallo bets [$0.02]
+saki81bg calls [$0.02]
+** Dealing turn ** [ Kd ]
+pokergallo bets [$0.04]
+saki81bg calls [$0.04]
+** Dealing river ** [ 3c ]
+pokergallo bets [$0.04]
+saki81bg calls [$0.04]
+** Summary **
+pokergallo shows [ Ks, 5s ]
+saki81bg mucks [ 4s, 6h ]
+pokergallo collected [ $0.24 ]
+
+
+
+#Game No : 311161822
+***** Cassava Hand History for Game 311161822 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:25:36
+Table Guarapuava (Real Money)
+Seat 10 is the button
+Total number of players : 5
+Seat 1: KlimushkinI ( $0.91 )
+Seat 2: Barrydos ( $1.91 )
+Seat 3: Flash190 ( $0.34 )
+Seat 4: dimag45 ( $0.24 )
+Seat 10: pokergallo ( $2.63 )
+KlimushkinI posts small blind [$0.01]
+Barrydos posts big blind [$0.02]
+** Dealing down cards **
+Flash190 calls [$0.02]
+dimag45 folds
+pokergallo calls [$0.02]
+KlimushkinI calls [$0.01]
+Barrydos checks
+** Dealing flop ** [ 6c, 5s, 5h ]
+KlimushkinI checks
+Barrydos bets [$0.02]
+Flash190 calls [$0.02]
+pokergallo calls [$0.02]
+KlimushkinI calls [$0.02]
+** Dealing turn ** [ 2d ]
+KlimushkinI checks
+Barrydos checks
+Flash190 checks
+pokergallo checks
+** Dealing river ** [ 8h ]
+KlimushkinI checks
+Barrydos bets [$0.04]
+Flash190 folds
+pokergallo folds
+KlimushkinI folds
+** Summary **
+Barrydos collected [ $0.16 ]
+
+
+
+#Game No : 311161975
+***** Cassava Hand History for Game 311161975 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:26:54
+Table Guarapuava (Real Money)
+Seat 1 is the button
+Total number of players : 5
+Seat 1: KlimushkinI ( $0.87 )
+Seat 2: Barrydos ( $2.03 )
+Seat 3: Flash190 ( $0.30 )
+Seat 4: dimag45 ( $0.24 )
+Seat 10: pokergallo ( $2.59 )
+Barrydos posts small blind [$0.01]
+Flash190 posts big blind [$0.02]
+** Dealing down cards **
+dimag45 folds
+pokergallo calls [$0.02]
+KlimushkinI calls [$0.02]
+Barrydos calls [$0.01]
+Flash190 checks
+** Dealing flop ** [ Ks, 2c, 9s ]
+Barrydos bets [$0.02]
+Flash190 folds
+pokergallo calls [$0.02]
+KlimushkinI calls [$0.02]
+** Dealing turn ** [ Kh ]
+Barrydos bets [$0.04]
+pokergallo folds
+KlimushkinI calls [$0.04]
+** Dealing river ** [ 6s ]
+Barrydos bets [$0.04]
+KlimushkinI raises [$0.08]
+Barrydos calls [$0.04]
+** Summary **
+KlimushkinI shows [ 5s, 4s ]
+Barrydos mucks [ 8h, 9h ]
+KlimushkinI collected [ $0.37 ]
+
+
+
+#Game No : 311162064
+***** Cassava Hand History for Game 311162064 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:27:40
+Table Guarapuava (Real Money)
+Seat 2 is the button
+Total number of players : 5
+Seat 1: KlimushkinI ( $1.08 )
+Seat 2: Barrydos ( $1.87 )
+Seat 3: Flash190 ( $0.28 )
+Seat 9: SkiNNeR14 ( $0.04 )
+Seat 10: pokergallo ( $2.55 )
+Flash190 posts small blind [$0.01]
+SkiNNeR14 folds
+pokergallo posts big blind [$0.02]
+** Dealing down cards **
+KlimushkinI folds
+Barrydos folds
+Flash190 calls [$0.01]
+pokergallo checks
+** Dealing flop ** [ 4c, 6d, 5h ]
+Flash190 checks
+pokergallo bets [$0.02]
+Flash190 calls [$0.02]
+** Dealing turn ** [ 8s ]
+Flash190 checks
+pokergallo bets [$0.04]
+Flash190 calls [$0.04]
+** Dealing river ** [ 6h ]
+Flash190 bets [$0.04]
+pokergallo calls [$0.04]
+** Summary **
+Flash190 shows [ Qs, 6s ]
+pokergallo mucks [ 8d, 5c ]
+Flash190 collected [ $0.23 ]
+
+
+
+#Game No : 311162149
+***** Cassava Hand History for Game 311162149 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:28:19
+Table Guarapuava (Real Money)
+Seat 3 is the button
+Total number of players : 3
+Seat 2: Barrydos ( $1.87 )
+Seat 3: Flash190 ( $0.39 )
+Seat 10: pokergallo ( $2.43 )
+pokergallo posts small blind [$0.01]
+Barrydos posts big blind [$0.02]
+** Dealing down cards **
+Flash190 calls [$0.02]
+pokergallo calls [$0.01]
+Barrydos raises [$0.02]
+Flash190 calls [$0.02]
+pokergallo calls [$0.02]
+** Dealing flop ** [ 7h, 8h, Kd ]
+pokergallo checks
+Barrydos checks
+Flash190 checks
+** Dealing turn ** [ 9h ]
+pokergallo bets [$0.04]
+Barrydos folds
+Flash190 folds
+** Summary **
+pokergallo collected [ $0.12 ]
+
+
+
+#Game No : 311162252
+***** Cassava Hand History for Game 311162252 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:28:57
+Table Guarapuava (Real Money)
+Seat 10 is the button
+Total number of players : 5
+Seat 2: Barrydos ( $1.83 )
+Seat 3: Flash190 ( $0.35 )
+Seat 4: wanagu22 ( $0.45 )
+Seat 9: SkiNNeR14 ( $0.04 )
+Seat 10: pokergallo ( $2.51 )
+Barrydos posts small blind [$0.01]
+Flash190 posts big blind [$0.02]
+wanagu22 posts big blind [$0.02]
+SkiNNeR14 folds
+** Dealing down cards **
+wanagu22 checks
+pokergallo calls [$0.02]
+Barrydos raises [$0.03]
+Flash190 folds
+wanagu22 folds
+pokergallo calls [$0.02]
+** Dealing flop ** [ 6h, Qc, 5c ]
+Barrydos bets [$0.02]
+pokergallo calls [$0.02]
+** Dealing turn ** [ Ks ]
+Barrydos bets [$0.04]
+pokergallo folds
+** Summary **
+Barrydos collected [ $0.16 ]
+
+
+
+#Game No : 311162343
+***** Cassava Hand History for Game 311162343 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:29:34
+Table Guarapuava (Real Money)
+Seat 2 is the button
+Total number of players : 4
+Seat 2: Barrydos ( $1.93 )
+Seat 3: Flash190 ( $0.33 )
+Seat 4: wanagu22 ( $0.43 )
+Seat 10: pokergallo ( $2.45 )
+Flash190 posts small blind [$0.01]
+wanagu22 posts big blind [$0.02]
+** Dealing down cards **
+pokergallo calls [$0.02]
+Barrydos calls [$0.02]
+Flash190 folds
+wanagu22 checks
+** Dealing flop ** [ 9s, Jd, 4s ]
+wanagu22 checks
+pokergallo bets [$0.02]
+Barrydos raises [$0.04]
+wanagu22 folds
+pokergallo calls [$0.02]
+** Dealing turn ** [ Kh ]
+pokergallo checks
+Barrydos bets [$0.04]
+pokergallo calls [$0.04]
+** Dealing river ** [ 9h ]
+pokergallo checks
+Barrydos bets [$0.04]
+pokergallo calls [$0.04]
+** Summary **
+Barrydos shows [ Th, Qc ]
+pokergallo mucks [ Qd, 6d ]
+Barrydos collected [ $0.30 ]
+
+
+
+#Game No : 311162453
+***** Cassava Hand History for Game 311162453 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:30:23
+Table Guarapuava (Real Money)
+Seat 3 is the button
+Total number of players : 4
+Seat 2: Barrydos ( $2.09 )
+Seat 3: Flash190 ( $0.32 )
+Seat 4: wanagu22 ( $0.41 )
+Seat 10: pokergallo ( $2.31 )
+wanagu22 posts small blind [$0.01]
+pokergallo posts big blind [$0.02]
+** Dealing down cards **
+Barrydos folds
+Flash190 folds
+wanagu22 calls [$0.01]
+pokergallo checks
+** Dealing flop ** [ Qc, Tc, 8s ]
+wanagu22 checks
+pokergallo bets [$0.02]
+wanagu22 calls [$0.02]
+** Dealing turn ** [ 7s ]
+wanagu22 bets [$0.04]
+pokergallo calls [$0.04]
+** Dealing river ** [ 7d ]
+wanagu22 bets [$0.04]
+pokergallo calls [$0.04]
+** Summary **
+wanagu22 shows [ 9h, 3d ]
+pokergallo shows [ 2s, Ts ]
+pokergallo collected [ $0.23 ]
+
+
+
+#Game No : 311162508
+***** Cassava Hand History for Game 311162508 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:30:48
+Table Guarapuava (Real Money)
+Seat 4 is the button
+Total number of players : 4
+Seat 2: Barrydos ( $2.09 )
+Seat 3: Flash190 ( $0.32 )
+Seat 4: wanagu22 ( $0.29 )
+Seat 10: pokergallo ( $2.42 )
+pokergallo posts small blind [$0.01]
+Barrydos posts big blind [$0.02]
+** Dealing down cards **
+Flash190 folds
+wanagu22 raises [$0.04]
+pokergallo folds
+Barrydos calls [$0.02]
+** Dealing flop ** [ 3h, 9d, 9c ]
+Barrydos checks
+wanagu22 checks
+** Dealing turn ** [ Td ]
+Barrydos bets [$0.04]
+wanagu22 folds
+** Summary **
+Barrydos collected [ $0.09 ]
+
+
+
+#Game No : 311162581
+***** Cassava Hand History for Game 311162581 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:31:20
+Table Guarapuava (Real Money)
+Seat 10 is the button
+Total number of players : 4
+Seat 2: Barrydos ( $2.14 )
+Seat 4: wanagu22 ( $0.25 )
+Seat 9: SkiNNeR14 ( $0.04 )
+Seat 10: pokergallo ( $2.41 )
+Barrydos posts small blind [$0.01]
+wanagu22 posts big blind [$0.02]
+SkiNNeR14 folds
+** Dealing down cards **
+pokergallo raises [$0.04]
+Barrydos folds
+wanagu22 calls [$0.02]
+** Dealing flop ** [ 5d, As, 6d ]
+wanagu22 bets [$0.02]
+pokergallo calls [$0.02]
+** Dealing turn ** [ 3c ]
+wanagu22 bets [$0.04]
+pokergallo calls [$0.04]
+** Dealing river ** [ Ac ]
+wanagu22 bets [$0.04]
+pokergallo calls [$0.04]
+** Summary **
+wanagu22 shows [ Ah, 9d ]
+pokergallo mucks [ Ts, Th ]
+wanagu22 collected [ $0.28 ]
+
+
+
+#Game No : 311162661
+***** Cassava Hand History for Game 311162661 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:31:55
+Table Guarapuava (Real Money)
+Seat 2 is the button
+Total number of players : 4
+Seat 2: Barrydos ( $2.13 )
+Seat 4: wanagu22 ( $0.39 )
+Seat 9: SkiNNeR14 ( $0.04 )
+Seat 10: pokergallo ( $2.27 )
+wanagu22 posts small blind [$0.01]
+SkiNNeR14 posts big blind [$0.02]
+** Dealing down cards **
+pokergallo calls [$0.02]
+Barrydos calls [$0.02]
+wanagu22 calls [$0.01]
+SkiNNeR14 raises [$0.02]
+pokergallo calls [$0.02]
+Barrydos calls [$0.02]
+wanagu22 calls [$0.02]
+** Dealing flop ** [ 4d, 5h, 9d ]
+wanagu22 bets [$0.02]
+pokergallo calls [$0.02]
+Barrydos calls [$0.02]
+** Dealing turn ** [ 5c ]
+wanagu22 bets [$0.04]
+pokergallo calls [$0.04]
+Barrydos raises [$0.08]
+wanagu22 calls [$0.04]
+pokergallo calls [$0.04]
+** Dealing river ** [ 6c ]
+wanagu22 bets [$0.04]
+pokergallo folds
+Barrydos calls [$0.04]
+** Summary **
+wanagu22 shows [ 7d, 5d ]
+SkiNNeR14 shows [ As, 5s ]
+Barrydos mucks [ 4s, Ac ]
+SkiNNeR14 collected [ $0.16 ]
+wanagu22 collected [ $0.36 ]
+
+
+
+#Game No : 311162816
+***** Cassava Hand History for Game 311162816 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:33:04
+Table Guarapuava (Real Money)
+Seat 4 is the button
+Total number of players : 4
+Seat 2: Barrydos ( $1.95 )
+Seat 4: wanagu22 ( $0.57 )
+Seat 9: SkiNNeR14 ( $0.16 )
+Seat 10: pokergallo ( $2.13 )
+SkiNNeR14 posts small blind [$0.01]
+pokergallo posts big blind [$0.02]
+** Dealing down cards **
+Barrydos folds
+wanagu22 folds
+SkiNNeR14 calls [$0.01]
+pokergallo checks
+** Dealing flop ** [ 3h, 8d, Kd ]
+SkiNNeR14 bets [$0.02]
+pokergallo calls [$0.02]
+** Dealing turn ** [ Kh ]
+SkiNNeR14 checks
+pokergallo checks
+** Dealing river ** [ Qh ]
+SkiNNeR14 bets [$0.04]
+pokergallo calls [$0.04]
+** Summary **
+SkiNNeR14 shows [ 9d, Qs ]
+pokergallo mucks [ 6h, 3s ]
+SkiNNeR14 collected [ $0.16 ]
+
+
+
+#Game No : 311162864
+***** Cassava Hand History for Game 311162864 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:33:25
+Table Guarapuava (Real Money)
+Seat 9 is the button
+Total number of players : 3
+Seat 4: wanagu22 ( $0.57 )
+Seat 9: SkiNNeR14 ( $0.24 )
+Seat 10: pokergallo ( $2.05 )
+pokergallo posts small blind [$0.01]
+wanagu22 posts big blind [$0.02]
+** Dealing down cards **
+SkiNNeR14 raises [$0.04]
+pokergallo calls [$0.03]
+wanagu22 folds
+** Dealing flop ** [ Td, 9s, Qc ]
+pokergallo checks
+SkiNNeR14 bets [$0.02]
+pokergallo calls [$0.02]
+** Dealing turn ** [ 9d ]
+pokergallo checks
+SkiNNeR14 checks
+** Dealing river ** [ Th ]
+pokergallo bets [$0.04]
+SkiNNeR14 folds
+** Summary **
+pokergallo collected [ $0.14 ]
+
+
+
+#Game No : 311162918
+***** Cassava Hand History for Game 311162918 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:33:50
+Table Guarapuava (Real Money)
+Seat 10 is the button
+Total number of players : 3
+Seat 4: wanagu22 ( $0.55 )
+Seat 9: SkiNNeR14 ( $0.18 )
+Seat 10: pokergallo ( $2.13 )
+wanagu22 posts small blind [$0.01]
+SkiNNeR14 posts big blind [$0.02]
+** Dealing down cards **
+pokergallo calls [$0.02]
+wanagu22 calls [$0.01]
+SkiNNeR14 raises [$0.02]
+pokergallo calls [$0.02]
+wanagu22 calls [$0.02]
+** Dealing flop ** [ 7c, Ad, Ks ]
+wanagu22 checks
+SkiNNeR14 checks
+pokergallo checks
+** Dealing turn ** [ Qc ]
+wanagu22 checks
+SkiNNeR14 bets [$0.04]
+pokergallo calls [$0.04]
+wanagu22 calls [$0.04]
+** Dealing river ** [ 9d ]
+wanagu22 checks
+SkiNNeR14 bets [$0.04]
+pokergallo folds
+wanagu22 folds
+** Summary **
+SkiNNeR14 collected [ $0.23 ]
+
+
+
+#Game No : 311163074
+***** Cassava Hand History for Game 311163074 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:35:02
+Table Guarapuava (Real Money)
+Seat 4 is the button
+Total number of players : 3
+Seat 4: wanagu22 ( $0.47 )
+Seat 9: SkiNNeR14 ( $0.33 )
+Seat 10: pokergallo ( $2.05 )
+SkiNNeR14 posts small blind [$0.01]
+pokergallo posts big blind [$0.02]
+** Dealing down cards **
+wanagu22 folds
+SkiNNeR14 calls [$0.01]
+pokergallo checks
+** Dealing flop ** [ Ts, 9c, Kh ]
+SkiNNeR14 checks
+pokergallo bets [$0.02]
+SkiNNeR14 folds
+** Summary **
+pokergallo collected [ $0.04 ]
+
+
+
+#Game No : 311163169
+***** Cassava Hand History for Game 311163169 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:35:46
+Table Guarapuava (Real Money)
+Seat 9 is the button
+Total number of players : 3
+Seat 4: wanagu22 ( $0.47 )
+Seat 9: SkiNNeR14 ( $0.31 )
+Seat 10: pokergallo ( $2.07 )
+pokergallo posts small blind [$0.01]
+wanagu22 posts big blind [$0.02]
+** Dealing down cards **
+SkiNNeR14 calls [$0.02]
+pokergallo calls [$0.01]
+wanagu22 checks
+** Dealing flop ** [ 8c, 6s, Js ]
+pokergallo checks
+wanagu22 checks
+SkiNNeR14 checks
+** Dealing turn ** [ As ]
+pokergallo checks
+wanagu22 checks
+SkiNNeR14 checks
+** Dealing river ** [ Kh ]
+pokergallo checks
+wanagu22 checks
+SkiNNeR14 checks
+** Summary **
+pokergallo shows [ Ts, 3d ]
+wanagu22 mucks [ 7d, 3h ]
+SkiNNeR14 shows [ 5d, Qd ]
+SkiNNeR14 collected [ $0.06 ]
+
+
+
+#Game No : 311163244
+***** Cassava Hand History for Game 311163244 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:36:19
+Table Guarapuava (Real Money)
+Seat 10 is the button
+Total number of players : 3
+Seat 4: wanagu22 ( $0.45 )
+Seat 9: SkiNNeR14 ( $0.35 )
+Seat 10: pokergallo ( $2.05 )
+wanagu22 posts small blind [$0.01]
+SkiNNeR14 posts big blind [$0.02]
+** Dealing down cards **
+pokergallo folds
+wanagu22 calls [$0.01]
+SkiNNeR14 raises [$0.02]
+wanagu22 calls [$0.02]
+** Dealing flop ** [ Qc, 5h, Jd ]
+wanagu22 checks
+SkiNNeR14 bets [$0.02]
+wanagu22 folds
+** Summary **
+SkiNNeR14 collected [ $0.08 ]
+
+
+
+#Game No : 311163288
+***** Cassava Hand History for Game 311163288 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:36:43
+Table Guarapuava (Real Money)
+Seat 4 is the button
+Total number of players : 3
+Seat 4: wanagu22 ( $0.41 )
+Seat 9: SkiNNeR14 ( $0.39 )
+Seat 10: pokergallo ( $2.05 )
+SkiNNeR14 posts small blind [$0.01]
+pokergallo posts big blind [$0.02]
+** Dealing down cards **
+wanagu22 folds
+SkiNNeR14 calls [$0.01]
+pokergallo raises [$0.02]
+SkiNNeR14 calls [$0.02]
+** Dealing flop ** [ 5h, 6s, Jh ]
+SkiNNeR14 bets [$0.02]
+pokergallo raises [$0.04]
+SkiNNeR14 calls [$0.02]
+** Dealing turn ** [ Th ]
+SkiNNeR14 checks
+pokergallo bets [$0.04]
+SkiNNeR14 calls [$0.04]
+** Dealing river ** [ 3h ]
+SkiNNeR14 checks
+pokergallo checks
+** Summary **
+SkiNNeR14 shows [ 3c, 5c ]
+pokergallo shows [ Tc, Td ]
+pokergallo collected [ $0.23 ]
+
+
+
+#Game No : 311163386
+***** Cassava Hand History for Game 311163386 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:37:31
+Table Guarapuava (Real Money)
+Seat 9 is the button
+Total number of players : 3
+Seat 4: wanagu22 ( $0.41 )
+Seat 9: SkiNNeR14 ( $0.27 )
+Seat 10: pokergallo ( $2.16 )
+pokergallo posts small blind [$0.01]
+wanagu22 posts big blind [$0.02]
+** Dealing down cards **
+SkiNNeR14 folds
+pokergallo calls [$0.01]
+wanagu22 raises [$0.02]
+pokergallo calls [$0.02]
+** Dealing flop ** [ 2c, 9c, Qd ]
+pokergallo checks
+wanagu22 bets [$0.02]
+pokergallo calls [$0.02]
+** Dealing turn ** [ 5h ]
+pokergallo checks
+wanagu22 checks
+** Dealing river ** [ Kc ]
+pokergallo bets [$0.04]
+wanagu22 raises [$0.08]
+pokergallo folds
+** Summary **
+wanagu22 collected [ $0.19 ]
+
+
+
+#Game No : 311163451
+***** Cassava Hand History for Game 311163451 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:38:03
+Table Guarapuava (Real Money)
+Seat 10 is the button
+Total number of players : 2
+Seat 4: wanagu22 ( $0.50 )
+Seat 10: pokergallo ( $2.06 )
+pokergallo posts small blind [$0.01]
+wanagu22 posts big blind [$0.02]
+** Dealing down cards **
+pokergallo calls [$0.01]
+wanagu22 checks
+** Dealing flop ** [ Jc, 5d, 9c ]
+wanagu22 bets [$0.02]
+pokergallo calls [$0.02]
+** Dealing turn ** [ 3s ]
+wanagu22 checks
+pokergallo bets [$0.04]
+wanagu22 calls [$0.04]
+** Dealing river ** [ 6c ]
+wanagu22 checks
+pokergallo bets [$0.04]
+wanagu22 folds
+** Summary **
+pokergallo collected [ $0.16 ]
+
+
+
+#Game No : 311163523
+***** Cassava Hand History for Game 311163523 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:38:34
+Table Guarapuava (Real Money)
+Seat 4 is the button
+Total number of players : 2
+Seat 4: wanagu22 ( $0.42 )
+Seat 10: pokergallo ( $2.14 )
+wanagu22 posts small blind [$0.01]
+pokergallo posts big blind [$0.02]
+** Dealing down cards **
+wanagu22 calls [$0.01]
+pokergallo raises [$0.02]
+wanagu22 calls [$0.02]
+** Dealing flop ** [ 5h, Ah, 2c ]
+pokergallo bets [$0.02]
+wanagu22 calls [$0.02]
+** Dealing turn ** [ 7h ]
+pokergallo bets [$0.04]
+wanagu22 folds
+** Summary **
+pokergallo collected [ $0.12 ]
+
+
+
+#Game No : 311163567
+***** Cassava Hand History for Game 311163567 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:38:54
+Table Guarapuava (Real Money)
+Seat 10 is the button
+Total number of players : 2
+Seat 4: wanagu22 ( $0.36 )
+Seat 10: pokergallo ( $2.20 )
+pokergallo posts small blind [$0.01]
+wanagu22 posts big blind [$0.02]
+** Dealing down cards **
+pokergallo calls [$0.01]
+wanagu22 raises [$0.02]
+pokergallo calls [$0.02]
+** Dealing flop ** [ 5d, 3h, 7h ]
+wanagu22 bets [$0.02]
+pokergallo calls [$0.02]
+** Dealing turn ** [ Js ]
+wanagu22 checks
+pokergallo bets [$0.04]
+wanagu22 calls [$0.04]
+** Dealing river ** [ Qs ]
+wanagu22 checks
+pokergallo bets [$0.04]
+wanagu22 folds
+** Summary **
+pokergallo collected [ $0.19 ]
+
+
+
+#Game No : 311163633
+***** Cassava Hand History for Game 311163633 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:39:18
+Table Guarapuava (Real Money)
+Seat 4 is the button
+Total number of players : 2
+Seat 4: wanagu22 ( $0.26 )
+Seat 10: pokergallo ( $2.29 )
+wanagu22 posts small blind [$0.01]
+pokergallo posts big blind [$0.02]
+** Dealing down cards **
+wanagu22 calls [$0.01]
+pokergallo checks
+** Dealing flop ** [ 9s, Qh, 3d ]
+pokergallo checks
+wanagu22 checks
+** Dealing turn ** [ 6d ]
+pokergallo checks
+wanagu22 checks
+** Dealing river ** [ 8d ]
+pokergallo checks
+wanagu22 checks
+** Summary **
+pokergallo shows [ Th, 4s ]
+wanagu22 shows [ Ac, 2h ]
+wanagu22 collected [ $0.04 ]
+
+
+
+#Game No : 311163686
+***** Cassava Hand History for Game 311163686 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:39:38
+Table Guarapuava (Real Money)
+Seat 10 is the button
+Total number of players : 2
+Seat 4: wanagu22 ( $0.28 )
+Seat 10: pokergallo ( $2.27 )
+pokergallo posts small blind [$0.01]
+wanagu22 posts big blind [$0.02]
+** Dealing down cards **
+pokergallo raises [$0.03]
+wanagu22 folds
+** Summary **
+pokergallo collected [ $0.04 ]
+
+
+
+#Game No : 311163709
+***** Cassava Hand History for Game 311163709 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:39:47
+Table Guarapuava (Real Money)
+Seat 4 is the button
+Total number of players : 2
+Seat 4: wanagu22 ( $0.26 )
+Seat 10: pokergallo ( $2.29 )
+wanagu22 posts small blind [$0.01]
+pokergallo posts big blind [$0.02]
+** Dealing down cards **
+wanagu22 calls [$0.01]
+pokergallo checks
+** Dealing flop ** [ 4d, Qd, 8h ]
+pokergallo bets [$0.02]
+wanagu22 folds
+** Summary **
+pokergallo collected [ $0.04 ]
+
+
+
+#Game No : 311163744
+***** Cassava Hand History for Game 311163744 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:40:01
+Table Guarapuava (Real Money)
+Seat 10 is the button
+Total number of players : 2
+Seat 4: wanagu22 ( $0.24 )
+Seat 10: pokergallo ( $2.31 )
+pokergallo posts small blind [$0.01]
+wanagu22 posts big blind [$0.02]
+** Dealing down cards **
+pokergallo calls [$0.01]
+wanagu22 checks
+** Dealing flop ** [ Ks, 5d, Jc ]
+wanagu22 bets [$0.02]
+pokergallo calls [$0.02]
+** Dealing turn ** [ 3c ]
+wanagu22 checks
+pokergallo checks
+** Dealing river ** [ 9h ]
+wanagu22 checks
+pokergallo checks
+** Summary **
+wanagu22 shows [ 5c, 4d ]
+pokergallo shows [ 5h, Qc ]
+pokergallo collected [ $0.08 ]
+
+
+
+#Game No : 311163792
+***** Cassava Hand History for Game 311163792 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:40:22
+Table Guarapuava (Real Money)
+Seat 4 is the button
+Total number of players : 2
+Seat 4: wanagu22 ( $0.20 )
+Seat 10: pokergallo ( $2.35 )
+wanagu22 posts small blind [$0.01]
+pokergallo posts big blind [$0.02]
+** Dealing down cards **
+wanagu22 calls [$0.01]
+pokergallo checks
+** Dealing flop ** [ 4s, Ah, Qc ]
+pokergallo checks
+wanagu22 checks
+** Dealing turn ** [ Jd ]
+pokergallo checks
+wanagu22 checks
+** Dealing river ** [ 8c ]
+pokergallo checks
+wanagu22 checks
+** Summary **
+pokergallo shows [ Kd, 3h ]
+wanagu22 shows [ 5d, 4d ]
+wanagu22 collected [ $0.04 ]
+
+
+
+#Game No : 311163836
+***** Cassava Hand History for Game 311163836 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:40:44
+Table Guarapuava (Real Money)
+Seat 10 is the button
+Total number of players : 2
+Seat 4: wanagu22 ( $0.22 )
+Seat 10: pokergallo ( $2.33 )
+pokergallo posts small blind [$0.01]
+wanagu22 posts big blind [$0.02]
+** Dealing down cards **
+pokergallo calls [$0.01]
+wanagu22 checks
+** Dealing flop ** [ Kd, 7d, 9d ]
+wanagu22 bets [$0.02]
+pokergallo calls [$0.02]
+** Dealing turn ** [ 6h ]
+wanagu22 bets [$0.04]
+pokergallo folds
+** Summary **
+wanagu22 collected [ $0.08 ]
+
+
+
+#Game No : 311163885
+***** Cassava Hand History for Game 311163885 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:41:03
+Table Guarapuava (Real Money)
+Seat 4 is the button
+Total number of players : 2
+Seat 4: wanagu22 ( $0.26 )
+Seat 10: pokergallo ( $2.29 )
+wanagu22 posts small blind [$0.01]
+pokergallo posts big blind [$0.02]
+** Dealing down cards **
+wanagu22 calls [$0.01]
+pokergallo checks
+** Dealing flop ** [ 7h, 8s, Jc ]
+pokergallo bets [$0.02]
+wanagu22 calls [$0.02]
+** Dealing turn ** [ 5d ]
+pokergallo bets [$0.04]
+wanagu22 calls [$0.04]
+** Dealing river ** [ Td ]
+pokergallo bets [$0.04]
+wanagu22 folds
+** Summary **
+pokergallo collected [ $0.16 ]
+
+
+
+#Game No : 311165826
+***** Cassava Hand History for Game 311165826 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:56:39
+Table Guarapuava (Real Money)
+Seat 6 is the button
+Total number of players : 2
+Seat 3: 4epywok ( $1 )
+Seat 6: IrmaodoRubao ( $3 )
+IrmaodoRubao posts small blind [$0.01]
+4epywok posts big blind [$0.02]
+** Dealing down cards **
+IrmaodoRubao raises [$0.03]
+4epywok folds
+** Summary **
+IrmaodoRubao collected [ $0.04 ]
+
+
+
+#Game No : 311165863
+***** Cassava Hand History for Game 311165863 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:56:58
+Table Guarapuava (Real Money)
+Seat 3 is the button
+Total number of players : 2
+Seat 3: 4epywok ( $0.98 )
+Seat 6: IrmaodoRubao ( $3.02 )
+4epywok posts small blind [$0.01]
+IrmaodoRubao posts big blind [$0.02]
+** Dealing down cards **
+4epywok calls [$0.01]
+IrmaodoRubao checks
+** Dealing flop ** [ Jd, 9h, 5s ]
+IrmaodoRubao bets [$0.02]
+4epywok folds
+** Summary **
+IrmaodoRubao collected [ $0.04 ]
+
+
+
+#Game No : 311165924
+***** Cassava Hand History for Game 311165924 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:57:33
+Table Guarapuava (Real Money)
+Seat 6 is the button
+Total number of players : 2
+Seat 3: 4epywok ( $0.96 )
+Seat 6: IrmaodoRubao ( $3.04 )
+IrmaodoRubao posts small blind [$0.01]
+4epywok posts big blind [$0.02]
+** Dealing down cards **
+IrmaodoRubao calls [$0.01]
+4epywok checks
+** Dealing flop ** [ Kc, 5d, 6h ]
+4epywok checks
+IrmaodoRubao bets [$0.02]
+4epywok folds
+** Summary **
+IrmaodoRubao collected [ $0.04 ]
+
+
+
+#Game No : 311165947
+***** Cassava Hand History for Game 311165947 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:57:47
+Table Guarapuava (Real Money)
+Seat 3 is the button
+Total number of players : 2
+Seat 3: 4epywok ( $0.94 )
+Seat 6: IrmaodoRubao ( $3.06 )
+4epywok posts small blind [$0.01]
+IrmaodoRubao posts big blind [$0.02]
+** Dealing down cards **
+4epywok calls [$0.01]
+IrmaodoRubao checks
+** Dealing flop ** [ Jd, 7s, 4d ]
+IrmaodoRubao checks
+4epywok bets [$0.02]
+IrmaodoRubao folds
+** Summary **
+4epywok collected [ $0.04 ]
+
+
+
+#Game No : 311165976
+***** Cassava Hand History for Game 311165976 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:58:02
+Table Guarapuava (Real Money)
+Seat 6 is the button
+Total number of players : 2
+Seat 3: 4epywok ( $0.96 )
+Seat 6: IrmaodoRubao ( $3.04 )
+IrmaodoRubao posts small blind [$0.01]
+4epywok posts big blind [$0.02]
+** Dealing down cards **
+IrmaodoRubao calls [$0.01]
+4epywok raises [$0.02]
+IrmaodoRubao calls [$0.02]
+** Dealing flop ** [ Ts, Jd, Ac ]
+4epywok bets [$0.02]
+IrmaodoRubao calls [$0.02]
+** Dealing turn ** [ 2c ]
+4epywok bets [$0.04]
+IrmaodoRubao folds
+** Summary **
+4epywok collected [ $0.12 ]
+
+
+
+#Game No : 311166013
+***** Cassava Hand History for Game 311166013 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:58:25
+Table Guarapuava (Real Money)
+Seat 3 is the button
+Total number of players : 2
+Seat 3: 4epywok ( $1.02 )
+Seat 6: IrmaodoRubao ( $2.98 )
+4epywok posts small blind [$0.01]
+IrmaodoRubao posts big blind [$0.02]
+** Dealing down cards **
+4epywok raises [$0.03]
+IrmaodoRubao calls [$0.02]
+** Dealing flop ** [ Qs, 3s, Ts ]
+IrmaodoRubao bets [$0.02]
+4epywok calls [$0.02]
+** Dealing turn ** [ Kc ]
+IrmaodoRubao bets [$0.04]
+4epywok calls [$0.04]
+** Dealing river ** [ 7c ]
+IrmaodoRubao bets [$0.04]
+4epywok calls [$0.04]
+** Summary **
+IrmaodoRubao shows [ Qd, Jh ]
+4epywok mucks [ Tc, Ac ]
+IrmaodoRubao collected [ $0.27 ]
+
+
+
+#Game No : 311166057
+***** Cassava Hand History for Game 311166057 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:58:47
+Table Guarapuava (Real Money)
+Seat 6 is the button
+Total number of players : 2
+Seat 3: 4epywok ( $0.88 )
+Seat 6: IrmaodoRubao ( $3.11 )
+IrmaodoRubao posts small blind [$0.01]
+4epywok posts big blind [$0.02]
+** Dealing down cards **
+IrmaodoRubao calls [$0.01]
+4epywok checks
+** Dealing flop ** [ 2s, 3h, 6c ]
+4epywok bets [$0.02]
+IrmaodoRubao folds
+** Summary **
+4epywok collected [ $0.04 ]
+
+
+
+#Game No : 311166098
+***** Cassava Hand History for Game 311166098 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:59:06
+Table Guarapuava (Real Money)
+Seat 3 is the button
+Total number of players : 2
+Seat 3: 4epywok ( $0.90 )
+Seat 6: IrmaodoRubao ( $3.09 )
+4epywok posts small blind [$0.01]
+IrmaodoRubao posts big blind [$0.02]
+** Dealing down cards **
+4epywok raises [$0.03]
+IrmaodoRubao calls [$0.02]
+** Dealing flop ** [ 2d, Tc, 3d ]
+IrmaodoRubao checks
+4epywok bets [$0.02]
+IrmaodoRubao calls [$0.02]
+** Dealing turn ** [ Jc ]
+IrmaodoRubao checks
+4epywok bets [$0.04]
+IrmaodoRubao folds
+** Summary **
+4epywok collected [ $0.12 ]
+
+
+
+#Game No : 311166175
+***** Cassava Hand History for Game 311166175 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 13:59:43
+Table Guarapuava (Real Money)
+Seat 6 is the button
+Total number of players : 2
+Seat 3: 4epywok ( $0.96 )
+Seat 6: IrmaodoRubao ( $3.03 )
+IrmaodoRubao posts small blind [$0.01]
+4epywok posts big blind [$0.02]
+** Dealing down cards **
+IrmaodoRubao calls [$0.01]
+4epywok checks
+** Dealing flop ** [ Tc, Kc, 8c ]
+4epywok checks
+IrmaodoRubao bets [$0.02]
+4epywok calls [$0.02]
+** Dealing turn ** [ 8h ]
+4epywok checks
+IrmaodoRubao bets [$0.04]
+4epywok folds
+** Summary **
+IrmaodoRubao collected [ $0.08 ]
+
+
+
+#Game No : 311166253
+***** Cassava Hand History for Game 311166253 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 14:00:27
+Table Guarapuava (Real Money)
+Seat 3 is the button
+Total number of players : 3
+Seat 3: 4epywok ( $0.92 )
+Seat 6: IrmaodoRubao ( $3.07 )
+Seat 9: feketehon ( $2 )
+IrmaodoRubao posts small blind [$0.01]
+feketehon posts big blind [$0.02]
+** Dealing down cards **
+4epywok calls [$0.02]
+IrmaodoRubao calls [$0.01]
+feketehon checks
+** Dealing flop ** [ Ad, Ts, Jc ]
+IrmaodoRubao checks
+feketehon checks
+4epywok bets [$0.02]
+IrmaodoRubao folds
+feketehon calls [$0.02]
+** Dealing turn ** [ Ac ]
+feketehon checks
+4epywok bets [$0.04]
+feketehon calls [$0.04]
+** Dealing river ** [ Jd ]
+feketehon checks
+4epywok bets [$0.04]
+feketehon folds
+** Summary **
+4epywok collected [ $0.18 ]
+
+
+
+#Game No : 311166349
+***** Cassava Hand History for Game 311166349 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 14:01:11
+Table Guarapuava (Real Money)
+Seat 9 is the button
+Total number of players : 3
+Seat 3: 4epywok ( $1.02 )
+Seat 5: dennisvaz ( $1 )
+Seat 9: feketehon ( $1.92 )
+4epywok posts small blind [$0.01]
+dennisvaz posts big blind [$0.02]
+** Dealing down cards **
+feketehon calls [$0.02]
+4epywok calls [$0.01]
+dennisvaz checks
+** Dealing flop ** [ 9d, 4h, 7d ]
+4epywok checks
+dennisvaz checks
+feketehon checks
+** Dealing turn ** [ 8h ]
+4epywok checks
+dennisvaz bets [$0.04]
+feketehon folds
+4epywok folds
+** Summary **
+dennisvaz collected [ $0.06 ]
+
+
+
+#Game No : 311166418
+***** Cassava Hand History for Game 311166418 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 14:01:43
+Table Guarapuava (Real Money)
+Seat 3 is the button
+Total number of players : 3
+Seat 3: 4epywok ( $1 )
+Seat 5: dennisvaz ( $1.04 )
+Seat 9: feketehon ( $1.90 )
+dennisvaz posts small blind [$0.01]
+feketehon posts big blind [$0.02]
+** Dealing down cards **
+4epywok calls [$0.02]
+dennisvaz folds
+feketehon checks
+** Dealing flop ** [ Tc, 5h, 4d ]
+feketehon bets [$0.02]
+4epywok folds
+** Summary **
+feketehon collected [ $0.05 ]
+
+
+
+#Game No : 311166455
+***** Cassava Hand History for Game 311166455 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 08 03 2011 14:02:01
+Table Guarapuava (Real Money)
+Seat 5 is the button
+Total number of players : 3
+Seat 3: 4epywok ( $0.98 )
+Seat 5: dennisvaz ( $1.03 )
+Seat 9: feketehon ( $1.93 )
+feketehon posts small blind [$0.01]
+4epywok posts big blind [$0.02]
+** Dealing down cards **
+dennisvaz calls [$0.02]
+feketehon calls [$0.01]
+4epywok checks
+** Dealing flop ** [ 8s, Kh, 3h ]
+feketehon bets [$0.02]
+4epywok calls [$0.02]
+dennisvaz calls [$0.02]
+** Dealing turn ** [ 8c ]
+feketehon checks
+4epywok bets [$0.04]
+dennisvaz calls [$0.04]
+feketehon folds
+** Dealing river ** [ Jd ]
+4epywok checks
+dennisvaz checks
+** Summary **
+4epywok shows [ Ah, Ts ]
+dennisvaz shows [ 4d, 4h ]
+dennisvaz collected [ $0.19 ]
+
+
+

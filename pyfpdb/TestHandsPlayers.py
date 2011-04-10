@@ -21,8 +21,6 @@
 import sys
 import os
 import codecs
-import pprint
-import PokerStarsToFpdb
 from Hand import *
 import Configuration
 import Database
@@ -31,6 +29,10 @@ import fpdb_import
 import Options
 import datetime
 import pytz
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
+
+DEBUG = False
 
 
 class FpdbError:
@@ -125,7 +127,7 @@ def compare_handsplayers_file(filename, importer, errors):
                         # The stats match - continue
                         pass
                     else:
-                        if stat == 'tourneyTypeId' or stat == 'tourneysPlayersIds':
+                        if stat == 'tourneyTypeId' or stat == 'tourneysPlayersIds' or stat == 'showed':
                             # Not and error
                             pass
                         else:
@@ -147,6 +149,11 @@ def compare_hands_file(filename, importer, errors):
 
     for hand in handlist:
         ghash = hand.stats.getHands()
+        # Delete unused data from hash
+        del ghash['gsc']
+        del ghash['sc']
+        del ghash['id']
+        del ghash['boards']
         for datum in ghash:
             #print "DEBUG: hand: '%s'" % datum
             try:
@@ -155,7 +162,12 @@ def compare_hands_file(filename, importer, errors):
                     pass
                 else:
                     # Stats don't match. 
-                    if datum == "gametypeId" or datum == 'sessionId' or datum == 'tourneyId':
+                    if (datum == "gametypeId" 
+                        or datum == 'sessionId' 
+                        or datum == 'tourneyId' 
+                        or datum == 'gameSessionId'
+                        or datum == 'fileId'
+                        or datum == 'runIt'):
                         # Not an error. gametypeIds are dependent on the order added to the db.
                         #print "DEBUG: Skipping mismatched gamtypeId"
                         pass
@@ -172,6 +184,8 @@ def compare(leaf, importer, errors, site):
     # Test if this is a hand history file
     if filename.endswith('.txt'):
         # test if there is a .hp version of the file
+        if DEBUG: print "Site: %s" % site
+        if DEBUG: print "Filename: %s" % filename
         importer.addBulkImportImportFileOrDir(filename, site=site)
         (stored, dups, partial, errs, ttime) = importer.runImport()
 
@@ -213,7 +227,7 @@ def usage():
     print "Run tests for a sinlge site:"
     print "\t./TestHandsPlayers -s <Sitename>"
     print "Run tests for a sinlge file in a site:"
-    print "\t./TestHandsPlayers -s <Sitename> -f <filname>"
+    print "\t./TestHandsPlayers -s <Sitename> -f <filename>"
     sys.exit(0)
 
 def main(argv=None):
@@ -255,6 +269,7 @@ def main(argv=None):
     importer.setCallHud(False)
     importer.setFakeCacheHHC(True)
 
+    PacificPokerErrors= FpdbError('PacificPoker')
     PokerStarsErrors  = FpdbError('PokerStars')
     FTPErrors         = FpdbError('Full Tilt Poker')
     PartyPokerErrors  = FpdbError('Party Poker')
@@ -271,7 +286,7 @@ def main(argv=None):
     WinamaxErrors     = FpdbError('Winamax')
 
     ErrorsList = [
-                    PokerStarsErrors, FTPErrors, PartyPokerErrors,
+                    PacificPokerErrors, PokerStarsErrors, FTPErrors, PartyPokerErrors,
                     BetfairErrors, OnGameErrors, AbsoluteErrors,
                     EverleafErrors, CarbonErrors, PKRErrors,
                     iPokerErrors, WinamaxErrors, UltimateBetErrors,
@@ -279,6 +294,7 @@ def main(argv=None):
                 ]
 
     sites = {
+                'PacificPoker' : False,
                 'PokerStars' : False,
                 'Full Tilt Poker' : False,
                 'PartyPoker' : False,
@@ -300,6 +316,11 @@ def main(argv=None):
             sites[s] = True
     else:
         sites[options.sitename] = True
+
+    if sites['PacificPoker'] == True and not single_file_test:
+        walk_testfiles("regression-test-files/cash/PacificPoker/", compare, importer, PacificPokerErrors, "PacificPoker")
+    elif sites['PacificPoker'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, PacificPokerErrors, "PacificPoker")
 
     if sites['PokerStars'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
@@ -323,6 +344,7 @@ def main(argv=None):
         walk_testfiles(options.filename, compare, importer, BetfairErrors, "Betfair")
     if sites['OnGame'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/OnGame/", compare, importer, OnGameErrors, "OnGame")
+        walk_testfiles("regression-test-files/tour/ongame/", compare, importer, OnGameErrors, "OnGame")
     elif sites['OnGame'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, OnGameErrors, "OnGame")
     if sites['Absolute'] == True and not single_file_test:
@@ -336,6 +358,7 @@ def main(argv=None):
         walk_testfiles(options.filename, compare, importer, UltimateBetErrors, "Absolute")
     if sites['Everleaf'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
+        walk_testfiles("regression-test-files/tour/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
     elif sites['Everleaf'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, EverleafErrors, "Everleaf")
     if sites['Carbon'] == True and not single_file_test:
@@ -363,9 +386,6 @@ def main(argv=None):
     for i, site in enumerate(ErrorsList):
         totalerrors += ErrorsList[i].errorcount
 
-    print "---------------------"
-    print "Total Errors: %d" % totalerrors
-    print "---------------------"
     for i, site in enumerate(ErrorsList):
         ErrorsList[i].print_histogram()
 
@@ -390,6 +410,9 @@ def main(argv=None):
     for num, stat in sortedstats:
         print "(%3d) : %s" %(num, stat)
 
+    print "---------------------"
+    print "Total Errors: %d" % totalerrors
+    print "---------------------"
 
 if __name__ == '__main__':
     sys.exit(main())

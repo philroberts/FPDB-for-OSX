@@ -120,7 +120,7 @@ or None if we fail to get the info """
             except AttributeError:
                 tmp = handText[0:100]
                 log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-                log.error(_("determineGameType: Raising FpdbParseError"))
+                log.error("determineGameType: " + _("Raising FpdbParseError"))
                 raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         self.info = {}
@@ -258,7 +258,7 @@ or None if we fail to get the info """
                 #print "DEBUG: addBringIn(%s, %s)" %(action.group('PNAME'),  action.group('BET'))
                 hand.addBringIn(action.group('PNAME'), action.group('BET'))
             else:
-                logging.error(_("Unimplemented readAction: %s") % (ag))
+                logging.error(_("DEBUG: ") + _("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):

@@ -1,0 +1,145 @@
+#Game No : 362978981
+***** Cassava Hand History for Game 362978981 *****
+15/30 Blinds Fix Limit Omaha - *** 11 03 2011 15:43:24
+Table Bratislava (Practice Play)
+Seat 1 is the button
+Total number of players : 5
+Seat 1: CARNERA4 ( 4,202.50 )
+Seat 2: freshmoney2y ( 330 )
+Seat 3: rolirs301 ( 875 )
+Seat 4: physco30 ( 1,300 )
+Seat 9: jamiemaxey ( 920 )
+freshmoney2y posts small blind [15]
+rolirs301 posts big blind [30]
+** Dealing down cards **
+physco30 calls [30]
+jamiemaxey raises [60]
+CARNERA4 calls [60]
+freshmoney2y calls [45]
+rolirs301 calls [30]
+physco30 calls [30]
+** Dealing flop ** [ 7c, Ah, 2c ]
+freshmoney2y checks
+rolirs301 checks
+physco30 checks
+jamiemaxey bets [30]
+CARNERA4 calls [30]
+freshmoney2y calls [30]
+rolirs301 calls [30]
+physco30 calls [30]
+** Dealing turn ** [ 7d ]
+freshmoney2y checks
+rolirs301 checks
+physco30 checks
+jamiemaxey bets [60]
+CARNERA4 calls [60]
+freshmoney2y folds
+rolirs301 calls [60]
+physco30 calls [60]
+** Dealing river ** [ Jc ]
+rolirs301 checks
+physco30 bets [60]
+jamiemaxey calls [60]
+CARNERA4 calls [60]
+rolirs301 folds
+** Summary **
+physco30 shows [ Th, 8d, 9c, Tc ]
+jamiemaxey mucks [ 5h, 5d, 4d, As ]
+CARNERA4 shows [ Jd, Kc, Kd, 7h ]
+CARNERA4 collected [ 867.50 ]
+
+
+
+#Game No : 362979074
+***** Cassava Hand History for Game 362979074 *****
+15/30 Blinds Fix Limit Omaha - *** 11 03 2011 15:43:46
+Table Bratislava (Practice Play)
+Seat 2 is the button
+Total number of players : 5
+Seat 1: CARNERA4 ( 4,860 )
+Seat 2: freshmoney2y ( 240 )
+Seat 3: rolirs301 ( 725 )
+Seat 4: physco30 ( 1,090 )
+Seat 9: jamiemaxey ( 710 )
+rolirs301 posts small blind [15]
+physco30 posts big blind [30]
+** Dealing down cards **
+jamiemaxey calls [30]
+CARNERA4 calls [30]
+freshmoney2y calls [30]
+rolirs301 calls [15]
+physco30 checks
+** Dealing flop ** [ Js, 8c, 9s ]
+rolirs301 checks
+physco30 checks
+jamiemaxey bets [30]
+CARNERA4 calls [30]
+freshmoney2y calls [30]
+rolirs301 raises [60]
+physco30 calls [60]
+jamiemaxey raises [60]
+CARNERA4 calls [60]
+freshmoney2y calls [60]
+rolirs301 calls [30]
+physco30 calls [30]
+** Dealing turn ** [ Ks ]
+rolirs301 bets [60]
+physco30 folds
+jamiemaxey raises [120]
+CARNERA4 folds
+freshmoney2y calls [120]
+rolirs301 calls [60]
+** Dealing river ** [ Qh ]
+rolirs301 checks
+jamiemaxey bets [60]
+rolirs301 calls [60]
+** Summary **
+jamiemaxey shows [ 7s, Jc, 5s, 4s ]
+freshmoney2y mucks [ Ah, 9h, Td, 5d ]
+rolirs301 shows [ 3h, 8s, Th, Qs ]
+rolirs301 collected [ 957.50 ]
+rolirs301 collected [ 120 ]
+
+
+
+#Game No : 362979128
+***** Cassava Hand History for Game 362979128 *****
+15/30 Blinds Fix Limit Omaha - *** 11 03 2011 15:44:40
+Table Bratislava (Practice Play)
+Seat 3 is the button
+Total number of players : 4
+Seat 1: CARNERA4 ( 4,740 )
+Seat 3: rolirs301 ( 1,502.50 )
+Seat 4: physco30 ( 970 )
+Seat 9: jamiemaxey ( 410 )
+physco30 posts small blind [15]
+jamiemaxey posts big blind [30]
+** Dealing down cards **
+CARNERA4 calls [30]
+rolirs301 calls [30]
+physco30 calls [15]
+jamiemaxey checks
+** Dealing flop ** [ 3c, 7s, 2s ]
+physco30 checks
+jamiemaxey checks
+CARNERA4 checks
+rolirs301 checks
+** Dealing turn ** [ 7h ]
+physco30 checks
+jamiemaxey bets [60]
+CARNERA4 calls [60]
+rolirs301 folds
+physco30 folds
+** Dealing river ** [ Ts ]
+jamiemaxey bets [60]
+CARNERA4 raises [120]
+jamiemaxey raises [120]
+CARNERA4 raises [120]
+jamiemaxey calls [60]
+** Summary **
+CARNERA4 shows [ 3s, 7c, 3h, 6c ]
+jamiemaxey shows [ 6d, 7d, Ks, Th ]
+jamiemaxey collected [ 717.50 ]
+
+
+

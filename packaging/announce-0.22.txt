@@ -1,0 +1,112 @@
+Hello everyone,
+The new fpdb release 0.22 is now available for download as source or as packages/installers for Debian, Gentoo, Ubuntu and Windows.
+This version brings many improvements and bugfixes. A quick word on our version naming: We have decided to stop using the usual alpha/beta/rc release system as it doesn't suit fpdb's development style and resources. From now on all releases are created equal (ie. considered "testing"). If they proof themselves we declare them "stable" and make them the default download on sourceforge. If you wish to be notified of new releases or stabilisation please subscribe to the fpdb-announe mailing list (see Links further down). Since this version has been available for some time we consider it stable and recommend all users to update.
+
+So... what is FPDB?
+===================
+FPDB (Free Poker Database) is a free/open source suite of steadily growing tools to track and analyse your online poker game. FPDB is able to import the hand histories that poker sites write to your computer and to store additional data from each hand in a database for use in later analysis.
+
+FPDB is ambitious, intending to support all games. Currently we support flop based games (Hold’em, Omaha, Omaha Hi/Lo), stud games (7 Card Stud, 7 Card Stud Hi/Lo, and Razz) and draw games (Triple Draw Lowball, 5 Card Draw) on most major poker sites.
+
+FPDB provides a Heads Up Display (HUD), Profit Grapher and Stats viewers with a list of features that is growing.
+
+What's changed
+==============
+417 changesets (incl. merges) have gone in since 0.21-rc2. Some of the improvements are:
+
+New stats:
+    Three bet: name="three_B"  (note this stat was previously "three_B_0")
+    Four bet: name="four_B"
+    Cold four bet: name="cfour_B"
+    Squeeze bet preflop: name="squeeze"
+    Fold to three bet preflop: name="f_3bet"
+    Fold to four bet preflop: name="f_4bet"
+    Steal Success : name="s_steal"
+
+Pokerstars Home Games now supported
+Everest now supported
+Winamax now supported
+
+Translation progress:
+    Complete: English, Hungarian. If you notice an untranslated string in any output please let us know.
+    Partial: French (85%), German (32%), Polish (27%), Spanish (17%), Russian (6%).
+    
+
+Significant work on the underlying HUD code, including hud dragging and table closing
+Problems where some stats became > 100% are now fixed
+sqlite database performance improvements (sqlite is the default database for fpdb)
+pokerstars.it tournament HUD now working
+Cap games added to filter options
+Initial work to support Rush poker - this will need further testing and improvement before we can release it. One or two testers would be welcome, please PM gimick if you want to help.
+
+Various updates and fixes when importing Hand histories.
+Party freeroll tournaments now recognised.
+Stars 20/40 limit and FTP 1k/2k limit now recognised.
+Initial work on a Stove function for holdem (see the viewers menu)
+The windows exe has been upgraded from python 2.6 to python 2.7.
+
+
+Where to get it
+===============
+Please note that you will have to either recreate your database or use a new one if you're updating from 0.21-rc2 or older. Fpdb will warn you if your database is incompatible and will not work unless you recreate or use a different one.
+Config files from 0.20 and later should work. Please report if you have problems with config files from that version or later.
+You can find checksums (MD5 and SHA512) in the download folder.
+To download: http://sourceforge.net/projects/fpdb/files/fpdb/0.22/
+
+Links
+=====
+To be notified by email of new versions you can subscribe to our announce mailing list here: https://lists.sourceforge.net/lists/listinfo/fpdb-announce
+Link to fpdb website (wiki) http://fpdb.wiki.sourceforge.net/
+Features page: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Features
+How to install&setup fpdb in 5 Minutes with the Windows installer: http://sf.net/projects/fpdb/files/fpdb/help/ Choose exe021install.avi (18mb, no sound)
+Installation instructions are available from: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Installation
+Getting Started Instructions: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Getting_Started
+FAQ: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=FAQ
+Screenshots: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Screenshots
+
+How to help
+===========
+Join us in IRC (see below) and say you want to do something :)
+
+How to get help
+===============
+Please also see the "Bug reports" section below to enable us to help you.
+These are listed in order of usefulness - the 2+2 thread in particular is rather chaotic so if we miss your post feel free to bring it up again
+1) Chat/IRC
+One of the developers is usually around, but it is IRC. Dont get discouraged because we didn't answer within 10 minutes, once we do you've probably got our full attention.
+This link takes you to a website where you can talk to us directly: http://webchat.freenode.net/?channels=fpdb
+Alternatively use can use any IRC client to connect to #fpdb on freenode.net
+2) Mailing List
+Visit http://lists.sourceforge.net/lists/listinfo/fpdb-main to subscribe to the development&support mailing list and send us an email
+3) The monster 2+2 forum thread (registration required).
+http://forumserver.twoplustwo.com/16...2009-a-273001/ Please dont let the size of the thread phase you. It is monitored and sends email notifications to some of the developers. (Note: If you play poker and don't frequent the 2+2 forums, you may want to become better acquainted. Its a bit daunting at first, but well worth the effort)
+
+Bug reports
+===========
+When you do report issues, try to make it easier for us help you. We usually need at least the following information:
+- Operating system and version (e.g. Ubuntu 10.10 or Windows XP)
+- Database type (MySQL, SQLite, PostgreSQL)
+- Install method (exe, tarball, deb, git, ebuild)
+- Fpdb version
+- Site name and gametype (e.g. $10 Pokerstars Razz SnG)
+You can find most of these details for easy copy&paste in the Help menu under About.
+
+Important known problems
+========================
+Hud will not work if using postgres database - fixed in 0.23
+PKR is not working correctly
+
+Special information for Windows installations
+=============================================
+First-time installs will need to download and install the C++ runtime executable from Microsoft.
+Windows 7 and windows Vista users will need to set fpdb.exe and hud_main.exe to run as administrator (see http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Install_in_Windows)
+
+Contributors
+============
+Code/translations: Worros, Donoban, Nutomatic, Steffen, Chaz Littlejohn, Scott Wolchok, tribumarchal, Erki Ferenc, Eric Blade, atinm, Mika Bostrom, Robert Wielinga, Chris Moore, Gerko de Roo, Gimick
+Special shoutout to Eleatic Stranger who has written an initial converter for Carbon poker, without ever having played on the site!
+Documentation: RSOAndrew, Buggernaut, ChazDazzle
+Testers and everyone answering forum questions - xaviax, Dog, uncooper etc. You know who you are.
+Hand History donations: Quite a few people on this list now. Every donation for alternate sites and various corner cases is appreciated. 
+
+And a particular thanks to all the libraries, interpreters etc. that we use to create fpdb!

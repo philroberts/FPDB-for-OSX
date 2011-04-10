@@ -52,10 +52,10 @@ class Winamax(HandHistoryConverter):
     siteId   = 14 # Needs to match id entry in Sites database
 
     mixes = { } # Legal mixed games
-    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
+    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": u"\xe2\x82\xac|\u20ac", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
     substitutions = {
-                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : "\$|\xe2\x82\xac|"        # legal currency symbols - Euro(cp1252, utf-8)
+                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",     # legal ISO currency codes
+                            'LS' : u"\$|\xe2\x82\xac|\u20ac|" # legal currency symbols - Euro(cp1252, utf-8)
                     }
 
     limits = { 'no limit':'nl', 'pot limit' : 'pl','LIMIT':'fl'}
@@ -86,7 +86,7 @@ class Winamax(HandHistoryConverter):
             (?P<RING>CashGame)?
             (?P<TOUR>Tournament\s
             (?P<TOURNAME>.+)?\s
-            buyIn:\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\,]+)?\s\+?\s(?P<BIRAKE>[%(LS)s\d\,]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Gratuit|Ticket\suniquement)?\s
+            buyIn:\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\,]+)?\s\+?\s(?P<BIRAKE>[%(LS)s\d\,]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll|Gratuit|Ticket\suniquement)?\s
             (level:\s(?P<LEVEL>\d+))?
             .*)?
             \s-\sHandId:\s\#(?P<HID1>\d+)-(?P<HID2>\d+)-(?P<HID3>\d+).*\s  # REB says: HID3 is the correct hand number
@@ -170,7 +170,7 @@ class Winamax(HandHistoryConverter):
         if not m:
             tmp = handText[0:100]
             log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error(_("determineGameType: Raising FpdbParseError"))
+            log.error("determineGameType: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
@@ -188,7 +188,7 @@ class Winamax(HandHistoryConverter):
             else:
                 tmp = handText[0:100]
                 log.error(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
-                log.error(_("determineGameType: Raising FpdbParseError"))
+                log.error("determineGameType: " + _("Raising FpdbParseError"))
                 raise FpdbParseError(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
@@ -247,7 +247,7 @@ class Winamax(HandHistoryConverter):
                         if k in info.keys() and info[k]:
                             info[k] = info[k].replace(',','.')
 
-                    if info[key] == 'Freeroll':
+                    if info[key] == 'Gratuit' or info[key] == 'Freeroll':
                         hand.buyin = 0
                         hand.fee = 0
                         hand.buyinCurrency = "FREE"
@@ -259,8 +259,8 @@ class Winamax(HandHistoryConverter):
                         elif info[key].find("FPP")!=-1:
                             hand.buyinCurrency="PSFP"
                         else:
-                            #FIXME: handle other currencies, FPP, play money
-                            raise FpdbParseError(_("Failed to detect currency. Hand ID: %s: '%s'") % (hand.handid, info[key]))
+                            #FIXME: handle other currencies (are there other currencies?)
+                            raise FpdbParseError(_("Failed to detect currency.") + " " + _("Hand ID: %s: '%s'") % (hand.handid, info[key]))
 
                         info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
 
@@ -403,13 +403,13 @@ class Winamax(HandHistoryConverter):
             elif action.group('ATYPE') == ' stands pat':
                 hand.addStandsPat( street, action.group('PNAME'))
             else:
-                log.fatal(_("DEBUG: ") + _("unimplemented readAction: '%s' '%s'") % (action.group('PNAME'),action.group('ATYPE')))
+                log.fatal(_("DEBUG: ") + _("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
 #            print "Processed %s"%acts
 #            print "committed=",hand.pot.committed
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):
-            log.debug(_("add show actions %s") % shows)
+            #log.debug(_("add show actions %s") % shows)
             cards = shows.group('CARDS')
             cards = cards.split(' ')
 #            print "DEBUG: addShownCards(%s, %s)" %(cards, shows.group('PNAME'))

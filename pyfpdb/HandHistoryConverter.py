@@ -50,9 +50,6 @@ import Hand
 from Exceptions import FpdbParseError
 import Configuration
 
-import pygtk
-import gtk
-
 class HandHistoryConverter():
 
     READ_CHUNK_SIZE = 10000 # bytes to read at a time from file in tail mode
@@ -71,7 +68,7 @@ class HandHistoryConverter():
 
     # maybe archive params should be one archive param, then call method in specific converter.   if archive:  convert_archive()
     def __init__( self, config, in_path = '-', out_path = '-', follow=False, index=0
-                , autostart=True, starsArchive=False, ftpArchive=False, sitename="PokerStars" ):
+                , autostart=True, starsArchive=False, ftpArchive=False, sitename="PokerStars"):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
@@ -128,9 +125,6 @@ If in follow mode, wait for more data to turn up.
 Otherwise, finish at EOF.
 
 """
-        while gtk.events_pending():
-            gtk.main_iteration(False)
-
         starttime = time.time()
         if not self.sanityCheck():
             log.warning(_("Failed sanity check"))
@@ -182,7 +176,12 @@ Otherwise, finish at EOF.
         finally:
             if self.out_fh != sys.stdout:
                 self.out_fh.close()
-
+                
+    def progressNotify(self):
+        "A callback to the interface while events are pending"
+        import gtk, pygtk
+        while gtk.events_pending():
+            gtk.main_iteration(False)
 
     def tailHands(self):
         """Generator of handTexts from a tailed file:
@@ -290,6 +289,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             self.numErrors += 1
         else:
             # See if gametype is supported.
+            if 'mix' not in gametype: gametype['mix'] = 'none'
             type = gametype['type']
             base = gametype['base']
             limit = gametype['limitType']
@@ -333,6 +333,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
     'base'       in ('hold', 'stud', 'draw')
     'category'   in ('holdem', 'omahahi', omahahilo', 'razz', 'studhi', 'studhilo', 'fivedraw', '27_1draw', '27_3draw', 'badugi')
     'hilo'       in ('h','l','s')
+    'mix'        in (site specific, or 'none')
     'smallBlind' int?
     'bigBlind'   int?
     'smallBet'
@@ -446,7 +447,8 @@ or None if we fail to get the info """
     def readAction(self, hand, street): abstract
     def readCollectPot(self, hand): abstract
     def readShownCards(self, hand): abstract
-
+    
+    # EDIT: readOther is depreciated
     # Some sites do odd stuff that doesn't fall in to the normal HH parsing.
     # e.g., FTP doesn't put mixed game info in the HH, but puts in in the
     # file name. Use readOther() to clean up those messes.
@@ -460,24 +462,8 @@ or None if we fail to get the info """
 
     def sanityCheck(self):
         """Check we aren't going to do some stupid things"""
-        #TODO: the hhbase stuff needs to be in fpdb_import
         sane = False
         base_w = False
-        #~ #Check if hhbase exists and is writable
-        #~ #Note: Will not try to create the base HH directory
-        #~ if not (os.access(self.hhbase, os.W_OK) and os.path.isdir(self.hhbase)):
-            #~ print "HH Sanity Check: Directory hhbase '" + self.hhbase + "' doesn't exist or is not writable"
-        #~ else:
-            #~ #Check if hhdir exists and is writable
-            #~ if not os.path.isdir(self.hhdir):
-                #~ # In first pass, dir may not exist. Attempt to create dir
-                #~ print "Creating directory: '%s'" % (self.hhdir)
-                #~ os.mkdir(self.hhdir)
-                #~ sane = True
-            #~ elif os.access(self.hhdir, os.W_OK):
-                #~ sane = True
-            #~ else:
-                #~ print "HH Sanity Check: Directory hhdir '" + self.hhdir + "' or its parent directory are not writable"
 
         # Make sure input and output files are different or we'll overwrite the source file
         if True: # basically.. I don't know

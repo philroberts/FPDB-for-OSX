@@ -1,0 +1,68 @@
+#Game No : 440985926
+***** Cassava Hand History for Game 440985926 *****
+15/30 Blinds Fix Limit OmahaHL - *** 11 03 2011 15:43:53
+Table Cologne (Practice Play)
+Seat 3 is the button
+Total number of players : 9
+Seat 1: peefoot ( 1,459.13 )
+Seat 2: Borr_09 ( 1,200 )
+Seat 3: harryabc ( 483.75 )
+Seat 4: watdafaq ( 2,476 )
+Seat 5: Dlady14 ( 7,627.14 )
+Seat 6: nugsy20 ( 42,530.55 )
+Seat 7: SPURS..UK ( 870 )
+Seat 8: jjak13 ( 661.50 )
+Seat 9: slickey65 ( 212,388.17 )
+watdafaq posts small blind [15]
+Dlady14 posts big blind [30]
+Borr_09 folds
+** Dealing down cards **
+nugsy20 calls [30]
+SPURS..UK calls [30]
+jjak13 calls [30]
+slickey65 calls [30]
+peefoot calls [30]
+harryabc calls [30]
+watdafaq calls [15]
+Dlady14 checks
+** Dealing flop ** [ 2s, 5h, Jc ]
+watdafaq checks
+Dlady14 checks
+nugsy20 checks
+SPURS..UK checks
+jjak13 checks
+slickey65 checks
+peefoot folds
+harryabc checks
+** Dealing turn ** [ Ks ]
+watdafaq checks
+Dlady14 checks
+nugsy20 checks
+SPURS..UK checks
+jjak13 checks
+slickey65 checks
+harryabc checks
+** Dealing river ** [ 4d ]
+watdafaq checks
+Dlady14 checks
+nugsy20 checks
+SPURS..UK checks
+jjak13 bets [60]
+slickey65 folds
+harryabc calls [60]
+watdafaq folds
+Dlady14 calls [60]
+nugsy20 calls [60]
+SPURS..UK folds
+** Summary **
+jjak13 shows [ 8h, 7s, 3d, 9s ]
+harryabc shows [ Qd, Qh, 2d, Jd ]
+(Hi: Jd, Jc, 2d, 2s, Ks)
+Dlady14 mucks [ 8c, 6d, Jh, 6h ]
+nugsy20 shows [ 6c, Ah, Ac, 8s ]
+(Lo: 2s, 4d, 5h, 6c, Ac)
+harryabc collected [ 238 ]
+nugsy20 collected [ 238 ]
+
+
+

@@ -19,8 +19,8 @@
 
 import Options
 
-import logging, os, sys
-import re, urllib2
+import logging, os, sys, string
+import re, urllib2, datetime, pytz
 import codecs
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
@@ -32,35 +32,45 @@ def write_file(filename, data):
     f.close()
     print f
 
-def update(leaf, stat, default):
+def update(leaf, file_type, stat, default):
     filename = leaf
     #print "DEBUG: fileanme: %s" % filename
 
     # Test if this is a hand history file
-    if filename.endswith('.hp'):
+    if filename.endswith(file_type):
         in_fh = codecs.open(filename, 'r', 'utf8')
         whole_file = in_fh.read()
         in_fh.close()
 
         hash = eval(whole_file)
-        for player in hash:
-            hash[player][stat] = default
+        if file_type==".hp":
+            for player in hash:
+                print "player:", player, "<end>"
+                hash[player][stat] = default
+        elif file_type==".hands":
+            hash[stat] = default
 
-        string = pp.pformat(hash)
-        write_file(filename, string)
+        out_string = pp.pformat(hash)
+        out_string = string.replace(out_string, "<UTC>", "pytz.utc")
+        write_file(filename, out_string)
 
-def walk_testfiles(dir, stat, default):
-    """Walks a directory, and executes a callback on each file """
+def walk_test_files(dir, file_type, stat, default):
+    """Walks a directory, and executes a callback on each file 
+    dir: directory of to search
+    file_type: .hands or .hp
+    stat: stat to add
+    default: value to insert"""
     dir = os.path.abspath(dir)
     for file in [file for file in os.listdir(dir) if not file in [".",".."]]:
         nfile = os.path.join(dir,file)
         if os.path.isdir(nfile):
-            walk_testfiles(nfile, stat, default)
+            walk_test_files(nfile, file_type, stat, default)
         else:
-            update(nfile, stat, default)
+            update(nfile, file_type, stat, default)
 
 def usage():
     print "USAGE:"
+    print "Edit this script to activate walk_test_files in main(). Parameters explained in comment of walk_test_files."
     print "\t./ScriptAddStatToRegression.py"
     sys.exit(0)
 
@@ -70,13 +80,13 @@ def main(argv=None):
 
     (options, argv) = Options.fpdb_options()
 
-    if options.usage == True:
+    if options.usage == True: # or (len(argv) < 1):
         usage()
 
     print "WARNING:"
     print "This script will modify many files in the regression test suite"
     print "As a safety precaution, you need to edit the file manually to run it"
-    #walk_testfiles('regression-test-files/', 'zzzzzzz', False)
+    #walk_test_files('regression-test-files/', '.hp', 'NEW_STAT', "DEFAULT_VALUE")
 
 if __name__ == '__main__':
     main()

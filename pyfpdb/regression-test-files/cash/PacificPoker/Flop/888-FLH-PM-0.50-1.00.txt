@@ -1,0 +1,63 @@
+#Game No : 362981853
+***** Cassava Hand History for Game 362981853 *****
+0.50/1 Blinds Fix Limit Holdem - *** 11 03 2011 16:29:14
+Table Suzano (Practice Play)
+Seat 9 is the button
+Total number of players : 7
+Seat 1: herbaroquera ( 991 )
+Seat 3: gurji077 ( 258.55 )
+Seat 5: Rookie33333 ( 236 )
+Seat 6: zuvis14 ( 753.65 )
+Seat 7: sausekater ( 1,000 )
+Seat 8: Trowland502 ( 1,258.25 )
+Seat 9: lilybeat11 ( 11,380.43 )
+herbaroquera posts small blind [0.50]
+gurji077 posts big blind [1]
+sausekater posts big blind [1]
+** Dealing down cards **
+Rookie33333 calls [1]
+zuvis14 calls [1]
+sausekater checks
+Trowland502 calls [1]
+lilybeat11 calls [1]
+herbaroquera calls [0.50]
+gurji077 checks
+** Dealing flop ** [ 6h, 7c, Jh ]
+herbaroquera checks
+gurji077 checks
+Rookie33333 checks
+zuvis14 checks
+sausekater bets [1]
+Trowland502 calls [1]
+lilybeat11 calls [1]
+herbaroquera calls [1]
+gurji077 calls [1]
+Rookie33333 folds
+zuvis14 calls [1]
+** Dealing turn ** [ 2s ]
+herbaroquera checks
+gurji077 checks
+zuvis14 checks
+sausekater bets [2]
+Trowland502 calls [2]
+lilybeat11 calls [2]
+herbaroquera calls [2]
+gurji077 calls [2]
+zuvis14 folds
+** Dealing river ** [ 8d ]
+herbaroquera checks
+gurji077 checks
+sausekater bets [2]
+Trowland502 calls [2]
+lilybeat11 calls [2]
+herbaroquera calls [2]
+gurji077 folds
+** Summary **
+sausekater shows [ 2d, Jc ]
+Trowland502 mucks [ 6c, Kd ]
+lilybeat11 mucks [ 8h, 7d ]
+herbaroquera mucks [ Tc, Ad ]
+sausekater collected [ 29.75 ]
+
+
+

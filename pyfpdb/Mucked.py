@@ -50,6 +50,7 @@ class Aux_Window(object):
     def create(self, *args):      pass
     def relocate(self, *args):    pass
     def save_layout(self, *args): pass
+    def update_card_positions(self, *args): pass
     def destroy(self):
         try:
             self.container.destroy()

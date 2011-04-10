@@ -1,0 +1,1842 @@
+Game # 2137881190 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.94 in seat 1)
+Vokha                       (EUR 3.24 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.00 in seat 4)
+w8in88                      (EUR 4.11 in seat 5)
+smorek99                    (EUR 4.00 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                Vokha       (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         6c - 9c - Ks - As
+
+akilim                      Fold        
+w8in88                      Fold        
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Payback     (0.02)
+
+F4UXR34L didn't show hand
+
+F4UXR34L wins:              EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:46:24 GMT
+
+Game # 2137881290 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.94 in seat 1)
+Vokha                       (EUR 3.22 in seat 2)
+F4UXR34L                    (EUR 4.02 in seat 3)
+akilim                      (EUR 4.00 in seat 4)
+w8in88                      (EUR 4.11 in seat 5)
+smorek99                    (EUR 4.00 in seat 6)
+
+Dealer:                     Vokha
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+
+F4UXR34L was dealt:         Ks - Ts - 5c - Qc
+
+w8in88                      Fold        
+Makesdy                     Fold        
+Vokha                       Call        (0.04)
+F4UXR34L                    Call        (0.02)
+akilim                      Check       
+
+Flop                        8c - 7h - 7d
+
+F4UXR34L                    Check       
+akilim                      Check       
+Vokha                       Bet         (0.08)
+F4UXR34L                    Fold        
+akilim                      Fold        
+Vokha                       Payback     (0.08)
+
+Vokha didn't show hand
+
+Vokha wins:                 EUR 0.12
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:47:21 GMT
+
+Game # 2137881626 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.94 in seat 1)
+Vokha                       (EUR 3.30 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.00 in seat 4)
+w8in88                      (EUR 4.11 in seat 5)
+smorek99                    (EUR 4.00 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  w8in88      (0.04)
+
+F4UXR34L was dealt:         4c - 2c - 2h - Jd
+
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Call        (0.02)
+w8in88                      Check       
+
+Flop                        7s - 3c - 5h
+
+akilim                      Check       
+w8in88                      Check       
+
+Turn                        7s - 3c - 5h - Js
+
+akilim                      Bet         (0.06)
+w8in88                      Call        (0.06)
+
+River                       7s - 3c - 5h - Js - 8c
+
+akilim                      Check       
+w8in88                      Bet         (0.15)
+akilim                      Call        (0.15)
+
+w8in88 shows:               9d - Qs - 6s - 3s (a straight, Nine high)
+
+akilim didn't show hand (9h - Jc - Ac - 7h)
+
+w8in88 wins:                EUR 0.48 (with a straight, Nine high)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:48:13 GMT
+
+Game # 2137884961 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.94 in seat 1)
+Vokha                       (EUR 3.30 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.00 in seat 4)
+w8in88                      (EUR 4.34 in seat 5)
+smorek99                    (EUR 4.00 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                w8in88      (0.02)
+Big Blind:                  smorek99    (0.04)
+
+F4UXR34L was dealt:         Ac - Ah - 6s - Tc
+
+Makesdy                     Call        (0.04)
+Vokha                       Call        (0.04)
+F4UXR34L                    Call        (0.04)
+akilim                      Fold        
+w8in88                      Fold        
+smorek99                    Check       
+
+Flop                        Ks - 2h - 9h
+
+smorek99                    Check       
+Makesdy                     Check       
+Vokha                       Bet         (0.18)
+F4UXR34L                    Fold        
+smorek99                    Fold        
+Makesdy                     Fold        
+Vokha                       Payback     (0.18)
+
+Vokha didn't show hand
+
+Vokha wins:                 EUR 0.18
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:49:17 GMT
+
+Game # 2137885347 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.90 in seat 1)
+Vokha                       (EUR 3.44 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.00 in seat 4)
+w8in88                      (EUR 4.32 in seat 5)
+smorek99                    (EUR 4.00 in seat 6)
+
+Dealer:                     w8in88
+Small Blind:                smorek99    (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         9s - 8c - 2h - 8h
+
+Vokha                       Call        (0.04)
+F4UXR34L                    Fold        
+akilim                      Raise       (0.14)
+w8in88                      Fold        
+smorek99                    Call        (0.12)
+Makesdy                     Fold        
+Vokha                       Fold        
+
+Flop                        4h - 3d - Kd
+
+smorek99                    Check       
+akilim                      Bet         (0.27)
+smorek99                    Raise       (1.17)
+akilim                      Fold        
+smorek99                    Payback     (0.90)
+
+smorek99 didn't show hand
+
+smorek99 wins:              EUR 0.86
+Rake:                       EUR 0.04
+
+Game ended 2011-03-21 16:50:59 GMT
+
+Game # 2137889992 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.86 in seat 1)
+Vokha                       (EUR 3.40 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.00 in seat 4)
+w8in88                      (EUR 4.32 in seat 5)
+smorek99                    (EUR 4.45 in seat 6)
+
+Dealer:                     smorek99
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  Vokha       (0.04)
+
+F4UXR34L was dealt:         2d - Kc - 8c - 3c
+
+F4UXR34L                    Fold        
+akilim                      Fold        
+w8in88                      Call        (0.04)
+smorek99                    Fold        
+Makesdy                     Call        (0.02)
+Vokha                       Check       
+
+Flop                        Qc - As - 4c
+
+Makesdy                     Bet         (0.12)
+Vokha                       Fold        
+w8in88                      Fold        
+Makesdy                     Payback     (0.12)
+
+Makesdy didn't show hand
+
+Makesdy wins:               EUR 0.12
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:51:47 GMT
+
+Game # 2137890313 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.94 in seat 1)
+Vokha                       (EUR 3.36 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.00 in seat 4)
+w8in88                      (EUR 4.28 in seat 5)
+smorek99                    (EUR 4.45 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                Vokha       (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         Qc - 7c - Qs - Js
+
+akilim                      Raise       (0.11)
+w8in88                      Call        (0.11)
+smorek99                    Call        (0.11)
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Fold        
+
+Flop                        Ks - 4s - Tc
+
+akilim                      Check       
+w8in88                      Check       
+smorek99                    Check       
+
+Turn                        Ks - 4s - Tc - Jc
+
+akilim                      Bet         (0.19)
+w8in88                      Raise       (0.96)
+smorek99                    Fold        
+akilim                      Fold        
+w8in88                      Payback     (0.77)
+
+w8in88 didn't show hand
+
+w8in88 wins:                EUR 0.74
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 16:53:06 GMT
+
+Game # 2137890809 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.94 in seat 1)
+Vokha                       (EUR 3.34 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.00 in seat 4)
+w8in88                      (EUR 4.72 in seat 5)
+smorek99                    (EUR 4.34 in seat 6)
+
+Dealer:                     Vokha
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+
+F4UXR34L was dealt:         3c - 9h - 4d - Ad
+
+w8in88                      Call        (0.04)
+smorek99                    Fold        
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Check       
+
+Flop                        8h - 9c - Qh
+
+akilim                      Check       
+w8in88                      Bet         (0.07)
+akilim                      Raise       (0.25)
+w8in88                      Call        (0.18)
+
+Turn                        8h - 9c - Qh - Kc
+
+akilim                      Bet         (0.45)
+w8in88                      Fold        
+akilim                      Payback     (0.45)
+
+akilim didn't show hand
+
+akilim wins:                EUR 0.57
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 16:53:48 GMT
+
+Game # 2137891075 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.94 in seat 1)
+Vokha                       (EUR 3.34 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.28 in seat 4)
+w8in88                      (EUR 4.43 in seat 5)
+smorek99                    (EUR 4.34 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  w8in88      (0.04)
+
+F4UXR34L was dealt:         4s - 2d - 8h - Ts
+
+smorek99                    Fold        
+Makesdy                     Raise       (0.14)
+Vokha                       Call        (0.14)
+F4UXR34L                    Fold        
+akilim                      Call        (0.12)
+w8in88                      Fold        
+
+Flop                        2s - As - Ks
+
+akilim                      Check       
+Makesdy                     Check       
+Vokha                       Bet         (0.12)
+akilim                      Fold        
+Makesdy                     Fold        
+Vokha                       Payback     (0.12)
+
+Vokha didn't show hand
+
+Vokha wins:                 EUR 0.44
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:54:46 GMT
+
+Game # 2137891445 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.80 in seat 1)
+Vokha                       (EUR 3.64 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.14 in seat 4)
+w8in88                      (EUR 4.39 in seat 5)
+smorek99                    (EUR 4.34 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                w8in88      (0.02)
+Big Blind:                  smorek99    (0.04)
+
+F4UXR34L was dealt:         3s - 6c - 5h - 9s
+
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Raise       (0.11)
+w8in88                      Fold        
+smorek99                    Call        (0.07)
+
+Flop                        2d - Qc - 6h
+
+smorek99                    Check       
+akilim                      Check       
+
+Turn                        2d - Qc - 6h - 7c
+
+smorek99                    Check       
+akilim                      Check       
+
+River                       2d - Qc - 6h - 7c - 4h
+
+smorek99                    Bet         (0.04)
+akilim                      Fold        
+smorek99                    Payback     (0.04)
+
+smorek99 didn't show hand
+
+smorek99 wins:              EUR 0.22
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:55:51 GMT
+
+Game # 2137896843 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.86 in seat 1)
+Vokha                       (EUR 3.64 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.03 in seat 4)
+w8in88                      (EUR 4.37 in seat 5)
+smorek99                    (EUR 4.45 in seat 6)
+
+Dealer:                     w8in88
+Small Blind:                smorek99    (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         5c - 5h - 6s - Ks
+
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Fold        
+w8in88                      Fold        
+smorek99                    Fold        
+Makesdy                     Payback     (0.02)
+
+Makesdy didn't show hand
+
+Makesdy wins:               EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:56:05 GMT
+
+Game # 2137896932 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.88 in seat 1)
+Vokha                       (EUR 3.64 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.03 in seat 4)
+w8in88                      (EUR 4.37 in seat 5)
+smorek99                    (EUR 4.43 in seat 6)
+
+Dealer:                     smorek99
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  Vokha       (0.04)
+
+F4UXR34L was dealt:         Js - Td - 8s - 5s
+
+F4UXR34L                    Fold        
+akilim                      Raise       (0.11)
+w8in88                      Call        (0.11)
+smorek99                    Fold        
+Makesdy                     Fold        
+Vokha                       Fold        
+
+Flop                        Qc - Jh - 9c
+
+akilim                      Bet         (0.21)
+w8in88                      Call        (0.21)
+
+Turn                        Qc - Jh - 9c - 4d
+
+akilim                      Check       
+w8in88                      Bet         (0.52)
+akilim                      Call        (0.52)
+
+River                       Qc - Jh - 9c - 4d - 7c
+
+akilim                      Bet         (0.87)
+w8in88                      Call        (0.87)
+
+akilim shows:               3c - 9h - Ah - As (a pair of Aces)
+w8in88 shows:               Tc - 7s - Jc - Qs (a flush, Queen high)
+
+w8in88 wins:                EUR 3.31 (with a flush, Queen high)
+Rake:                       EUR 0.17
+
+Game ended 2011-03-21 16:57:04 GMT
+
+Game # 2137897328 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.86 in seat 1)
+Vokha                       (EUR 3.60 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.00 in seat 4)
+w8in88                      (EUR 5.97 in seat 5)
+smorek99                    (EUR 4.43 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                Vokha       (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         Js - 9c - 7c - 5c
+
+akilim                      Raise       (0.11)
+w8in88                      Fold        
+smorek99                    Fold        
+Makesdy                     Fold        
+Vokha                       Call        (0.09)
+F4UXR34L                    Fold        
+
+Flop                        Td - 6d - 8s
+
+Vokha                       Check       
+akilim                      Check       
+
+Turn                        Td - 6d - 8s - Ac
+
+Vokha                       Bet         (0.04)
+akilim                      Call        (0.04)
+
+River                       Td - 6d - 8s - Ac - 4h
+
+Vokha                       Bet         (0.04)
+akilim                      Call        (0.04)
+
+Vokha shows:                9d - 9h - 5h - 4s (a pair of Nines)
+akilim shows:               Qh - 3c - Kc - Tc (a pair of Tens)
+
+akilim wins:                EUR 0.40 (with a pair of Tens)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 16:58:08 GMT
+
+Game # 2137897728 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.86 in seat 1)
+Vokha                       (EUR 3.41 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.21 in seat 4)
+w8in88                      (EUR 5.97 in seat 5)
+smorek99                    (EUR 4.43 in seat 6)
+
+Dealer:                     Vokha
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+
+F4UXR34L was dealt:         Qs - 5c - Js - 7c
+
+w8in88                      Fold        
+smorek99                    Fold        
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Payback     (0.02)
+
+akilim didn't show hand
+
+akilim wins:                EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:58:24 GMT
+
+Game # 2137899820 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.86 in seat 1)
+Vokha                       (EUR 3.41 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.23 in seat 4)
+w8in88                      (EUR 5.97 in seat 5)
+smorek99                    (EUR 4.43 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  w8in88      (0.04)
+
+F4UXR34L was dealt:         9s - 5c - 8d - 2s
+
+smorek99                    Call        (0.04)
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Fold        
+w8in88                      Check       
+
+Flop                        9c - 5s - 4c
+
+w8in88                      Check       
+smorek99                    Bet         (0.04)
+w8in88                      Call        (0.04)
+
+Turn                        9c - 5s - 4c - 3c
+
+w8in88                      Check       
+smorek99                    Bet         (0.04)
+w8in88                      Fold        
+smorek99                    Payback     (0.04)
+
+smorek99 didn't show hand
+
+smorek99 wins:              EUR 0.18
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:59:24 GMT
+
+Game # 2137900225 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.86 in seat 1)
+Vokha                       (EUR 3.41 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.21 in seat 4)
+w8in88                      (EUR 5.89 in seat 5)
+smorek99                    (EUR 4.53 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                w8in88      (0.02)
+Big Blind:                  smorek99    (0.04)
+
+F4UXR34L was dealt:         7c - 4c - 3s - 7s
+
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Fold        
+w8in88                      Fold        
+smorek99                    Payback     (0.02)
+
+smorek99 didn't show hand
+
+smorek99 wins:              EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 16:59:45 GMT
+
+Game # 2137900360 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.86 in seat 1)
+Vokha                       (EUR 3.41 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.21 in seat 4)
+w8in88                      (EUR 5.87 in seat 5)
+smorek99                    (EUR 4.55 in seat 6)
+
+Dealer:                     w8in88
+Small Blind:                smorek99    (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         Kc - 5s - Ts - 6s
+
+Vokha                       Call        (0.04)
+F4UXR34L                    Fold        
+akilim                      Raise       (0.14)
+w8in88                      Fold        
+smorek99                    Fold        
+Makesdy                     Fold        
+Vokha                       Fold        
+akilim                      Payback     (0.10)
+
+akilim didn't show hand
+
+akilim wins:                EUR 0.14
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:00:26 GMT
+
+Game # 2137900613 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.96 in seat 1)
+Vokha                       (EUR 3.37 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.31 in seat 4)
+w8in88                      (EUR 5.87 in seat 5)
+smorek99                    (EUR 4.53 in seat 6)
+
+Dealer:                     smorek99
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  Vokha       (0.04)
+
+F4UXR34L was dealt:         2d - 7d - 4h - 2c
+
+F4UXR34L                    Fold        
+akilim                      Fold        
+w8in88                      Fold        
+smorek99                    Fold        
+Makesdy                     Fold        
+Vokha                       Payback     (0.02)
+
+Vokha didn't show hand
+
+Vokha wins:                 EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:00:35 GMT
+
+Game # 2137900671 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.94 in seat 1)
+Vokha                       (EUR 3.39 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.31 in seat 4)
+w8in88                      (EUR 5.87 in seat 5)
+smorek99                    (EUR 4.53 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                Vokha       (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         2h - Jd - Ad - 7c
+
+akilim                      Fold        
+w8in88                      Fold        
+smorek99                    Fold        
+Makesdy                     Call        (0.04)
+Vokha                       Fold        
+F4UXR34L                    Check       
+
+Flop                        Qh - 4h - 8h
+
+F4UXR34L                    Check       
+Makesdy                     Bet         (0.10)
+F4UXR34L                    Fold        
+Makesdy                     Payback     (0.10)
+
+Makesdy didn't show hand
+
+Makesdy wins:               EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:01:17 GMT
+
+Game # 2137905979 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 4.00 in seat 1)
+Vokha                       (EUR 3.37 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.31 in seat 4)
+w8in88                      (EUR 5.87 in seat 5)
+smorek99                    (EUR 4.53 in seat 6)
+
+Dealer:                     Vokha
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+
+F4UXR34L was dealt:         Ac - 9h - Kh - Ks
+
+w8in88                      Fold        
+smorek99                    Call        (0.04)
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Call        (0.02)
+akilim                      Check       
+
+Flop                        8s - 9c - Ad
+
+F4UXR34L                    Check       
+akilim                      Check       
+smorek99                    Check       
+
+Turn                        8s - 9c - Ad - Qd
+
+F4UXR34L                    Check       
+akilim                      Check       
+smorek99                    Bet         (0.12)
+F4UXR34L                    Fold        
+akilim                      Fold        
+smorek99                    Payback     (0.12)
+
+smorek99 didn't show hand
+
+smorek99 wins:              EUR 0.12
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:02:28 GMT
+
+Game # 2137906451 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 4.00 in seat 1)
+Vokha                       (EUR 3.37 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.27 in seat 4)
+w8in88                      (EUR 5.87 in seat 5)
+smorek99                    (EUR 4.61 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  smorek99    (0.04)
+
+F4UXR34L was dealt:         Ks - 5s - Jd - 5c
+
+Makesdy                     Raise       (0.14)
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Fold        
+smorek99                    Fold        
+Makesdy                     Payback     (0.10)
+
+Makesdy didn't show hand
+
+Makesdy wins:               EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:02:54 GMT
+
+Game # 2137906618 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 4.06 in seat 1)
+Vokha                       (EUR 3.37 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.25 in seat 4)
+nananinee                   (EUR 0.00 in seat 5)
+smorek99                    (EUR 4.57 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                smorek99    (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         5d - Tc - 8c - Qs
+
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Fold        
+smorek99                    Call        (0.02)
+Makesdy                     Check       
+
+Flop                        Ac - Ks - Jh
+
+smorek99                    Check       
+Makesdy                     Check       
+
+Turn                        Ac - Ks - Jh - 7c
+
+smorek99                    Bet         (0.04)
+Makesdy                     Fold        
+smorek99                    Payback     (0.04)
+
+smorek99 didn't show hand
+
+smorek99 wins:              EUR 0.08
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:03:36 GMT
+
+Game # 2137911910 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 4.02 in seat 1)
+Vokha                       (EUR 3.37 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.25 in seat 4)
+smorek99                    (EUR 4.61 in seat 6)
+
+Dealer:                     smorek99
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  Vokha       (0.04)
+
+F4UXR34L was dealt:         8s - Jc - Jh - As
+
+F4UXR34L                    Fold        
+akilim                      Fold        
+smorek99                    Fold        
+Makesdy                     Fold        
+Vokha                       Payback     (0.02)
+
+Vokha didn't show hand
+
+Vokha wins:                 EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:03:47 GMT
+
+Game # 2137911986 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 4.00 in seat 1)
+Vokha                       (EUR 3.39 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.25 in seat 4)
+smorek99                    (EUR 4.61 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                Vokha       (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         2s - Ks - 5h - 5s
+
+akilim                      Fold        
+smorek99                    Call        (0.04)
+Makesdy                     Call        (0.04)
+Vokha                       Call        (0.02)
+F4UXR34L                    Check       
+
+Flop                        Ah - Kc - 9s
+
+Vokha                       Bet         (0.04)
+F4UXR34L                    Fold        
+smorek99                    Fold        
+Makesdy                     Fold        
+Vokha                       Payback     (0.04)
+
+Vokha didn't show hand
+
+Vokha wins:                 EUR 0.16
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:04:29 GMT
+
+Game # 2137912240 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.96 in seat 1)
+Vokha                       (EUR 3.51 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.25 in seat 4)
+ulisse12                    (EUR 1.42 in seat 5)
+smorek99                    (EUR 4.57 in seat 6)
+
+Dealer:                     Vokha
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+Blind out of turn:          ulisse12    (0.04)
+
+F4UXR34L was dealt:         3s - Ks - Tc - Jd
+
+ulisse12                    Check       
+smorek99                    Fold        
+Makesdy                     Fold        
+Vokha                       Call        (0.04)
+F4UXR34L                    Fold        
+akilim                      Check       
+
+Flop                        Kd - 2h - 5c
+
+akilim                      Check       
+ulisse12                    Check       
+Vokha                       Check       
+
+Turn                        Kd - 2h - 5c - Kh
+
+akilim                      Check       
+ulisse12                    Check       
+Vokha                       Check       
+
+River                       Kd - 2h - 5c - Kh - 8h
+
+akilim                      Check       
+ulisse12                    Check       
+Vokha                       Bet         (0.08)
+akilim                      Fold        
+ulisse12                    Call        (0.08)
+
+Vokha shows:                6h - Th - 5d - 9s (a flush, King high)
+
+ulisse12 didn't show hand (As - 7c - Js - Jc)
+
+Vokha wins:                 EUR 0.28 (with a flush, King high)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:05:55 GMT
+
+Game # 2137914798 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.96 in seat 1)
+Vokha                       (EUR 3.67 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.21 in seat 4)
+ulisse12                    (EUR 1.30 in seat 5)
+smorek99                    (EUR 4.57 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  ulisse12    (0.04)
+
+F4UXR34L was dealt:         As - 2d - 4d - Qc
+
+smorek99                    Raise       (0.14)
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Fold        
+ulisse12                    Fold        
+smorek99                    Payback     (0.10)
+
+smorek99 didn't show hand
+
+smorek99 wins:              EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:06:31 GMT
+
+Game # 2137915017 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.96 in seat 1)
+Vokha                       (EUR 3.67 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.19 in seat 4)
+ulisse12                    (EUR 1.26 in seat 5)
+smorek99                    (EUR 4.63 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                ulisse12    (0.02)
+Big Blind:                  smorek99    (0.04)
+
+F4UXR34L was dealt:         3c - Th - 3h - Kd
+
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Fold        
+akilim                      Raise       (0.11)
+ulisse12                    Call        (0.09)
+smorek99                    Fold        
+
+Flop                        9h - Jc - Jh
+
+ulisse12                    Check       
+akilim                      Bet         (0.13)
+ulisse12                    Call        (0.13)
+
+Turn                        9h - Jc - Jh - 4s
+
+ulisse12                    Check       
+akilim                      Check       
+
+River                       9h - Jc - Jh - 4s - Kh
+
+ulisse12                    Check       
+akilim                      Check       
+
+ulisse12 shows:             Jd - 5s - 5h - 7d (three of a kind, Jacks)
+
+akilim didn't show hand (9d - Qc - As - Ac)
+
+ulisse12 wins:              EUR 0.50 (with three of a kind, Jacks)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:07:34 GMT
+
+Game # 2137915423 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.96 in seat 1)
+Vokha                       (EUR 3.67 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.00 in seat 4)
+ulisse12                    (EUR 1.52 in seat 5)
+smorek99                    (EUR 4.59 in seat 6)
+
+Dealer:                     ulisse12
+Small Blind:                smorek99    (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         3h - 3s - Tc - Jh
+
+Vokha                       Call        (0.04)
+F4UXR34L                    Fold        
+akilim                      Raise       (0.14)
+ulisse12                    Call        (0.14)
+smorek99                    Fold        
+Makesdy                     Fold        
+Vokha                       Call        (0.10)
+
+Flop                        Ah - Kh - 6s
+
+Vokha                       Check       
+akilim                      Bet         (0.36)
+ulisse12                    Fold        
+Vokha                       Fold        
+akilim                      Payback     (0.36)
+
+akilim didn't show hand
+
+akilim wins:                EUR 0.46
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:08:30 GMT
+
+Game # 2137921772 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.92 in seat 1)
+Vokha                       (EUR 3.53 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.32 in seat 4)
+ulisse12                    (EUR 1.38 in seat 5)
+smorek99                    (EUR 4.57 in seat 6)
+
+Dealer:                     smorek99
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  Vokha       (0.04)
+
+F4UXR34L was dealt:         5d - 9h - 4d - Kh
+
+F4UXR34L                    Fold        
+akilim                      Raise       (0.11)
+ulisse12                    Call        (0.11)
+smorek99                    Fold        
+Makesdy                     Call        (0.09)
+Vokha                       Call        (0.07)
+
+Flop                        3d - Ah - 8h
+
+Makesdy                     Check       
+Vokha                       Check       
+akilim                      Check       
+ulisse12                    Check       
+
+Turn                        3d - Ah - 8h - Jd
+
+Makesdy                     Check       
+Vokha                       Check       
+akilim                      Check       
+ulisse12                    Check       
+
+River                       3d - Ah - 8h - Jd - 6s
+
+Makesdy                     Check       
+Vokha                       Check       
+akilim                      Check       
+ulisse12                    Check       
+
+Makesdy shows:              Qc - Qs - 4h - 7d (a pair of Queens)
+
+Vokha didn't show hand (2c - 8c - 2d - 5c)
+akilim didn't show hand (4s - Ts - Jh - Tc)
+
+ulisse12 shows:             6c - Qh - 3h - 5h (two pairs, Sixes and Threes)
+
+ulisse12 wins:              EUR 0.42 (with two pairs, Sixes and Threes)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:10:04 GMT
+
+Game # 2137922377 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.81 in seat 1)
+Vokha                       (EUR 3.42 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.21 in seat 4)
+ulisse12                    (EUR 1.69 in seat 5)
+smorek99                    (EUR 4.57 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                Vokha       (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         8s - 8c - 3s - 6s
+
+akilim                      Fold        
+ulisse12                    Raise       (0.14)
+smorek99                    Fold        
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Fold        
+ulisse12                    Payback     (0.10)
+
+ulisse12 didn't show hand
+
+ulisse12 wins:              EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:10:28 GMT
+
+Game # 2137922524 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.81 in seat 1)
+Vokha                       (EUR 3.40 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.21 in seat 4)
+ulisse12                    (EUR 1.75 in seat 5)
+smorek99                    (EUR 4.57 in seat 6)
+
+Dealer:                     Vokha
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  akilim      (0.04)
+
+F4UXR34L was dealt:         Js - Kd - Qh - 2c
+
+ulisse12                    Call        (0.04)
+smorek99                    Call        (0.04)
+Makesdy                     Fold        
+Vokha                       Call        (0.04)
+F4UXR34L                    Fold        
+akilim                      Check       
+
+Flop                        6c - Ts - Ah
+
+akilim                      Check       
+ulisse12                    Check       
+smorek99                    Check       
+Vokha                       Bet         (0.04)
+akilim                      Fold        
+ulisse12                    Call        (0.04)
+smorek99                    Fold        
+
+Turn                        6c - Ts - Ah - 6d
+
+ulisse12                    Check       
+Vokha                       Bet         (0.04)
+ulisse12                    Call        (0.04)
+
+River                       6c - Ts - Ah - 6d - 9h
+
+ulisse12                    Check       
+Vokha                       Bet         (0.18)
+ulisse12                    Raise       (0.88)
+Vokha                       Fold        
+ulisse12                    Payback     (0.70)
+
+ulisse12 didn't show hand
+
+ulisse12 wins:              EUR 0.67
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 17:12:54 GMT
+
+Game # 2137925433 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.81 in seat 1)
+Vokha                       (EUR 3.10 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.17 in seat 4)
+ulisse12                    (EUR 2.12 in seat 5)
+smorek99                    (EUR 4.53 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                akilim      (0.02)
+Big Blind:                  ulisse12    (0.04)
+
+F4UXR34L was dealt:         4h - 9s - Ah - 6d
+
+smorek99                    Fold        
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Raise       (0.14)
+akilim                      Raise       (0.36)
+ulisse12                    Fold        
+F4UXR34L                    Fold        
+akilim                      Payback     (0.24)
+
+akilim didn't show hand
+
+akilim wins:                EUR 0.32
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:13:48 GMT
+
+Game # 2137929754 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.81 in seat 1)
+Vokha                       (EUR 3.10 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.35 in seat 4)
+ulisse12                    (EUR 2.08 in seat 5)
+smorek99                    (EUR 4.53 in seat 6)
+
+Dealer:                     akilim
+Small Blind:                ulisse12    (0.02)
+Big Blind:                  smorek99    (0.04)
+
+F4UXR34L was dealt:         5s - 7h - As - 2d
+
+Makesdy                     Fold        
+Vokha                       Fold        
+F4UXR34L                    Raise       (0.14)
+akilim                      Fold        
+ulisse12                    Call        (0.12)
+smorek99                    Fold        
+
+Flop                        8d - 2h - Ts
+
+ulisse12                    Check       
+F4UXR34L                    Bet         (0.20)
+ulisse12                    Raise       (0.92)
+F4UXR34L                    Fold        
+ulisse12                    Payback     (0.72)
+
+ulisse12 didn't show hand
+
+ulisse12 wins:              EUR 0.69
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 17:14:45 GMT
+
+Game # 2137930118 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.81 in seat 1)
+Vokha                       (EUR 3.10 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+akilim                      (EUR 4.35 in seat 4)
+ulisse12                    (EUR 2.43 in seat 5)
+smorek99                    (EUR 4.49 in seat 6)
+
+Dealer:                     ulisse12
+Small Blind:                smorek99    (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         8c - Qh - 9h - Qc
+
+Vokha                       Fold        
+F4UXR34L                    Call        (0.04)
+akilim                      Raise       (0.14)
+ulisse12                    Call        (0.14)
+smorek99                    Raise       (0.62)
+Makesdy                     Fold        
+F4UXR34L                    Fold        
+akilim                      Call        (0.50)
+ulisse12                    Fold        
+
+Flop                        Th - 4s - 3h
+
+smorek99                    Bet         (1.12)
+akilim                      All-In      (3.71)
+smorek99                    Call        (2.59)
+
+Turn                        Th - 4s - 3h - 8h
+River                       Th - 4s - 3h - 8h - 2d
+
+smorek99 shows:             Ah - As - 5h - 5c (a flush, Ace high)
+akilim shows:               Tc - Kh - Jc - 7h (a flush, King high)
+
+smorek99 wins:              EUR 8.48 (with a flush, Ace high)
+Rake:                       EUR 0.44
+
+Game ended 2011-03-21 17:16:08 GMT
+
+Game # 2137930640 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.96 in seat 1)
+Vokha                       (EUR 3.10 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+ulisse12                    (EUR 2.29 in seat 5)
+smorek99                    (EUR 8.62 in seat 6)
+
+Dealer:                     smorek99
+Small Blind:                Makesdy     (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         5d - Ks - Js - 9h
+
+ulisse12                    Call        (0.04)
+smorek99                    Fold        
+Makesdy                     Fold        
+F4UXR34L                    Check       
+
+Flop                        6h - Qs - Th
+
+F4UXR34L                    Bet         (0.10)
+ulisse12                    Fold        
+F4UXR34L                    Payback     (0.10)
+
+F4UXR34L didn't show hand
+
+F4UXR34L wins:              EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:16:41 GMT
+
+Game # 2137934771 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.94 in seat 1)
+F4UXR34L                    (EUR 4.06 in seat 3)
+ulisse12                    (EUR 2.25 in seat 5)
+smorek99                    (EUR 8.62 in seat 6)
+
+Dealer:                     Makesdy
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  ulisse12    (0.04)
+
+F4UXR34L was dealt:         4h - Js - 4s - 7d
+
+smorek99                    Fold        
+Makesdy                     Raise       (0.14)
+F4UXR34L                    Fold        
+ulisse12                    Fold        
+Makesdy                     Payback     (0.10)
+
+Makesdy didn't show hand
+
+Makesdy wins:               EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:17:04 GMT
+
+Game # 2137934890 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 4.00 in seat 1)
+F4UXR34L                    (EUR 4.04 in seat 3)
+ulisse12                    (EUR 2.21 in seat 5)
+smorek99                    (EUR 8.62 in seat 6)
+
+Dealer:                     F4UXR34L
+Small Blind:                ulisse12    (0.02)
+Big Blind:                  Makesdy     (0.04)
+
+F4UXR34L was dealt:         Ac - Kc - Jh - 7c
+
+F4UXR34L                    Raise       (0.14)
+ulisse12                    Fold        
+Makesdy                     Fold        
+F4UXR34L                    Payback     (0.10)
+
+F4UXR34L didn't show hand
+
+F4UXR34L wins:              EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:17:20 GMT
+
+Game # 2137934990 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.96 in seat 1)
+F4UXR34L                    (EUR 4.10 in seat 3)
+ulisse12                    (EUR 2.19 in seat 5)
+
+Dealer:                     ulisse12
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  ulisse12    (0.04)
+
+F4UXR34L was dealt:         Kc - 7d - 4h - 5h
+
+F4UXR34L                    Fold        
+ulisse12                    Payback     (0.02)
+
+ulisse12 didn't show hand
+
+ulisse12 wins:              EUR 0.04
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:17:28 GMT
+
+Game # 2137935031 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Makesdy                     (EUR 3.96 in seat 1)
+F4UXR34L                    (EUR 4.08 in seat 3)
+ulisse12                    (EUR 2.21 in seat 5)
+
+Dealer:                     F4UXR34L
+Small Blind:                ulisse12    (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         9s - 6h - 8h - 7c
+
+ulisse12                    Call        (0.02)
+F4UXR34L                    Raise       (0.08)
+ulisse12                    Call        (0.08)
+
+Flop                        8d - 3s - 4h
+
+ulisse12                    Check       
+F4UXR34L                    Bet         (0.18)
+ulisse12                    Fold        
+F4UXR34L                    Payback     (0.18)
+
+F4UXR34L didn't show hand
+
+F4UXR34L wins:              EUR 0.22
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:17:50 GMT
+
+Game # 2137935162 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.18 in seat 3)
+ulisse12                    (EUR 2.09 in seat 5)
+
+Dealer:                     ulisse12
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  ulisse12    (0.04)
+
+F4UXR34L was dealt:         Qc - 8d - 5d - 3d
+
+F4UXR34L                    Raise       (0.10)
+ulisse12                    Call        (0.08)
+
+Flop                        Js - 7c - Qs
+
+F4UXR34L                    Check       
+ulisse12                    Bet         (0.12)
+F4UXR34L                    Fold        
+ulisse12                    Payback     (0.12)
+
+ulisse12 didn't show hand
+
+ulisse12 wins:              EUR 0.22
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:18:14 GMT
+
+Game # 2137935292 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.06 in seat 3)
+mor2cohen                   (EUR 1.47 in seat 4)
+ulisse12                    (EUR 2.19 in seat 5)
+
+Dealer:                     F4UXR34L
+Small Blind:                ulisse12    (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         Qh - 4d - 6d - Th
+
+ulisse12                    Call        (0.02)
+F4UXR34L                    Check       
+
+Flop                        8h - 3d - 2h
+
+ulisse12                    Check       
+F4UXR34L                    Bet         (0.06)
+ulisse12                    Call        (0.06)
+
+Turn                        8h - 3d - 2h - 9d
+
+ulisse12                    Check       
+F4UXR34L                    Bet         (0.15)
+ulisse12                    Call        (0.15)
+
+River                       8h - 3d - 2h - 9d - Qs
+
+ulisse12                    Check       
+F4UXR34L                    Check       
+
+ulisse12 shows:             9c - 5c - Kh - 7h (a pair of Nines)
+F4UXR34L shows:             Qh - 4d - 6d - Th (a pair of Queens)
+
+F4UXR34L wins:              EUR 0.48 (with a pair of Queens)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:18:45 GMT
+
+Game # 2137935475 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.29 in seat 3)
+mor2cohen                   (EUR 1.47 in seat 4)
+ulisse12                    (EUR 1.94 in seat 5)
+
+Dealer:                     ulisse12
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  mor2cohen   (0.04)
+
+F4UXR34L was dealt:         8c - Qd - 7d - 8d
+
+ulisse12                    Call        (0.04)
+F4UXR34L                    Fold        
+mor2cohen                   Check       
+
+Flop                        6d - 8h - 9h
+
+mor2cohen                   Bet         (0.08)
+ulisse12                    Fold        
+mor2cohen                   Payback     (0.08)
+
+mor2cohen didn't show hand
+
+mor2cohen wins:             EUR 0.10
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:19:00 GMT
+
+Game # 2137935560 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.27 in seat 3)
+mor2cohen                   (EUR 1.53 in seat 4)
+ulisse12                    (EUR 1.90 in seat 5)
+
+Dealer:                     F4UXR34L
+Small Blind:                mor2cohen   (0.02)
+Big Blind:                  ulisse12    (0.04)
+
+F4UXR34L was dealt:         Qc - 4h - 6s - 5c
+
+F4UXR34L                    Fold        
+mor2cohen                   Raise       (0.10)
+ulisse12                    Fold        
+mor2cohen                   Payback     (0.08)
+
+mor2cohen didn't show hand
+
+mor2cohen wins:             EUR 0.08
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:19:14 GMT
+
+Game # 2137935641 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.27 in seat 3)
+mor2cohen                   (EUR 1.57 in seat 4)
+ulisse12                    (EUR 1.86 in seat 5)
+
+Dealer:                     mor2cohen
+Small Blind:                ulisse12    (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         7d - Qh - 4s - Kc
+
+mor2cohen                   Call        (0.04)
+ulisse12                    Call        (0.02)
+F4UXR34L                    Check       
+
+Flop                        5d - 9h - 5h
+
+ulisse12                    Check       
+F4UXR34L                    Check       
+mor2cohen                   Bet         (0.08)
+ulisse12                    Fold        
+F4UXR34L                    Fold        
+mor2cohen                   Payback     (0.08)
+
+mor2cohen didn't show hand
+
+mor2cohen wins:             EUR 0.12
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:19:44 GMT
+
+Game # 2137940806 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.23 in seat 3)
+mor2cohen                   (EUR 1.65 in seat 4)
+ulisse12                    (EUR 1.82 in seat 5)
+
+Dealer:                     ulisse12
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  mor2cohen   (0.04)
+
+F4UXR34L was dealt:         Kh - 8d - Kc - Jd
+
+ulisse12                    Call        (0.04)
+F4UXR34L                    Call        (0.02)
+mor2cohen                   Check       
+
+Flop                        4s - As - 4h
+
+F4UXR34L                    Check       
+mor2cohen                   Check       
+ulisse12                    Check       
+
+Turn                        4s - As - 4h - 2d
+
+F4UXR34L                    Check       
+mor2cohen                   Bet         (0.12)
+ulisse12                    Fold        
+F4UXR34L                    Fold        
+mor2cohen                   Payback     (0.12)
+
+mor2cohen didn't show hand
+
+mor2cohen wins:             EUR 0.12
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:20:21 GMT
+
+Game # 2137941010 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+F4UXR34L                    (EUR 4.19 in seat 3)
+mor2cohen                   (EUR 1.73 in seat 4)
+ulisse12                    (EUR 1.78 in seat 5)
+
+Dealer:                     F4UXR34L
+Small Blind:                ulisse12    (0.02)
+Big Blind:                  F4UXR34L    (0.04)
+
+F4UXR34L was dealt:         Js - 8d - 5s - 6c
+
+ulisse12                    Call        (0.02)
+F4UXR34L                    Check       
+
+Flop                        Qd - Ks - Jc
+
+ulisse12                    Check       
+F4UXR34L                    Check       
+
+Turn                        Qd - Ks - Jc - Jd
+
+ulisse12                    Bet         (0.08)
+F4UXR34L                    Call        (0.08)
+
+River                       Qd - Ks - Jc - Jd - 2h
+
+ulisse12                    Bet         (0.24)
+F4UXR34L                    Call        (0.24)
+
+ulisse12 shows:             Td - Ac - 8h - 9s (a straight, Ace high)
+
+F4UXR34L didn't show hand (Js - 8d - 5s - 6c)
+
+ulisse12 wins:              EUR 0.69 (with a straight, Ace high)
+Rake:                       EUR 0.03
+
+Game ended 2011-03-21 17:20:51 GMT
+
+Game # 2137941174 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+ALEXANDRUR                  (EUR 1.61 in seat 1)
+happyx                      (EUR 1.00 in seat 2)
+F4UXR34L                    (EUR 4.00 in seat 3)
+superzio                    (EUR 2.00 in seat 4)
+ulisse12                    (EUR 2.11 in seat 5)
+
+Dealer:                     ulisse12
+Small Blind:                F4UXR34L    (0.02)
+Big Blind:                  superzio    (0.04)
+
+F4UXR34L was dealt:         Ks - Ah - Jc - 4s
+
+ulisse12                    Call        (0.04)
+F4UXR34L                    Raise       (0.14)
+superzio                    Call        (0.12)
+ulisse12                    Call        (0.12)
+
+Flop                        6s - 7s - Kd
+
+F4UXR34L                    Bet         (0.36)
+superzio                    Call        (0.36)
+ulisse12                    Call        (0.36)
+
+Turn                        6s - 7s - Kd - Td
+
+F4UXR34L                    Bet         (1.56)
+superzio                    All-In      (1.48)
+ulisse12                    Fold        
+F4UXR34L                    Payback     (0.08)
+
+River                       6s - 7s - Kd - Td - Qd
+
+F4UXR34L shows:             Ks - Ah - Jc - 4s (a straight, Ace high)
+superzio shows:             8c - 2c - 9s - Ad (a straight, Ten high)
+
+F4UXR34L wins:              EUR 4.30 (with a straight, Ace high)
+Rake:                       EUR 0.22
+
+Game ended 2011-03-21 17:21:32 GMT
+
+Game # 2137941442 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+ALEXANDRUR                  (EUR 1.61 in seat 1)
+happyx                      (EUR 1.00 in seat 2)
+F4UXR34L                    (EUR 6.30 in seat 3)
+ulisse12                    (EUR 1.59 in seat 5)
+
+Dealer:                     F4UXR34L
+Small Blind:                ulisse12    (0.02)
+Big Blind:                  ALEXANDRUR  (0.04)
+Blind out of turn:          happyx      (0.04)
+
+F4UXR34L was dealt:         5s - 3s - Kc - 3c
+
+happyx                      Check       
+F4UXR34L                    Fold        
+ulisse12                    Call        (0.02)
+ALEXANDRUR                  Check       
+
+Flop                        Qc - 6s - 4c
+
+ulisse12                    Check       
+ALEXANDRUR                  Check       
+happyx                      Check       
+
+Turn                        Qc - 6s - 4c - Ad
+
+ulisse12                    Check       
+ALEXANDRUR                  Check       
+happyx                      Check       
+
+River                       Qc - 6s - 4c - Ad - Qd
+
+ulisse12                    Check       
+ALEXANDRUR                  Check       
+happyx                      Check       
+
+ulisse12 shows:             Jc - 9d - 9c - 8s (two pairs, Queens and Nines)
+
+ALEXANDRUR didn't show hand (Kh - 9h - Td - 7h)
+
+happyx shows:               Qh - 4s - 2d - 2s (a full house, Queens full of Fours)
+
+happyx wins:                EUR 0.12 (with a full house, Queens full of Fours)
+Rake:                       EUR 0.00
+
+Game ended 2011-03-21 17:22:28 GMT
+
+Game # 2137941705 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+ALEXANDRUR                  (EUR 1.57 in seat 1)
+happyx                      (EUR 1.08 in seat 2)
+F4UXR34L                    (EUR 6.30 in seat 3)
+ulisse12                    (EUR 1.55 in seat 5)
+
+Dealer:                     ulisse12
+Small Blind:                ALEXANDRUR  (0.02)
+Big Blind:                  happyx      (0.04)
+
+F4UXR34L was dealt:         6s - Td - 2h - 3c
+
+F4UXR34L                    Fold        
+ulisse12                    Call        (0.04)
+ALEXANDRUR                  Fold        
+happyx                      Raise       (0.04)
+ulisse12                    Call        (0.04)
+
+Flop                        4s - 7h - Js
+
+happyx                      Check       
+ulisse12                    Check       
+
+Turn                        4s - 7h - Js - 6c
+
+happyx                      Bet         (0.04)
+ulisse12                    Call        (0.04)
+
+River                       4s - 7h - Js - 6c - 4h
+
+happyx                      Bet         (0.04)
+ulisse12                    Fold        
+happyx                      Payback     (0.04)
+
+happyx didn't show hand
+
+happyx wins:                EUR 0.24
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:23:39 GMT
+

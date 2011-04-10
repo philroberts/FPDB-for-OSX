@@ -33,15 +33,34 @@ class Everleaf(HandHistoryConverter):
     filetype = "text"
     codepage = "cp1252"
     siteId   = 3 # Needs to match id entry in Sites database
-
+    
+    substitutions = {
+                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",       # legal ISO currency codes
+                            'LS' : u"\$|\u20AC|\xe2\x82\xac|\x80|",  # legal currency symbols - Euro(cp1252, utf-8) #TODO change \x80 to \x20\x80, update all regexes accordingly
+                           'TAB' : u"-\u2013'\s\da-zA-Z#_",     # legal characters for tablename
+                           'NUM' : u".,\d",                     # legal characters in number format
+                    }
+    
     # Static regexes
     re_SplitHands  = re.compile(r"\n\n\n+")
     re_TailSplitHands  = re.compile(r"(\n\n\n+)")
-    re_GameInfo    = re.compile(ur"^(Blinds )?(?P<CURRENCY>[$€]?)(?P<SB>[.0-9]+)/[$€]?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) ?(?P<GAME>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
-    #re.compile(ur"^(Blinds )?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/(?:\$| €)?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) ?(?P<GAME>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
-    re_HandInfo    = re.compile(ur".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?P<CURRENCY>[$€])?(?P<SB>[.0-9]+)/(?:[$€])?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)", re.MULTILINE)
+    re_GameInfo    = re.compile(ur"^(Blinds )? ?(?P<CURRENCY>[%(LS)s]?)(?P<SB>[.0-9]+) ?/ ? ?[%(LS)s]?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) ?(?P<GAME>(Hold\'em|Omaha|7 Card Stud))" % substitutions, re.MULTILINE)
+    
+    #re_HandInfo    = re.compile(ur".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?P<CURRENCY>[$€])?(?P<SB>[.0-9]+)/(?:[$€])?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)", re.MULTILINE)
+    
+    re_HandInfo    = re.compile(ur".*\n(.*#|.* partie )(?P<HID>[0-9]+).*(\n|\n\n)(Blinds )? ?(?P<CURRENCY>[%(LS)s])?(?P<SB>[.0-9]+) ?/ ?(?:[%(LS)s])?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)" % substitutions, re.MULTILINE)
+    #
+    
+    #re_HandInfo    = re.compile(ur"(.*#|.*\n.* partie )(?P<HID>[0-9]+).*(\n|\n\n)(Blinds )?(?:\$| €|)(?P<SB>[.0-9]+)/(?:\$| €|)(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)", re.MULTILINE) 
+    
+    
     re_Button      = re.compile(ur"^Seat (?P<BUTTON>\d+) is the button$", re.MULTILINE)
-    re_PlayerInfo  = re.compile(ur"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+([$€]? (?P<CASH>[.0-9]+) (USD|EURO|Chips)|new player|All-in) \)$", re.MULTILINE)
+    re_PlayerInfo  = re.compile(ur"""^Seat\s(?P<SEAT>[0-9]+):\s(?P<PNAME>.*)\s+
+                                    \(
+                                      \s+[%(LS)s]?\s?(?P<CASH>[.0-9]+)
+                                          (\s(USD|EURO|EUR|Chips)?(new\splayer|All-in)?)?
+                                  \s?\)$
+                                  """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_Board       = re.compile(ur"\[ (?P<CARDS>.+) \]")
     re_TourneyInfoFromFilename = re.compile(ur".*TID_(?P<TOURNO>[0-9]+)-(?P<TABLE>[0-9]+)\.txt")
 
@@ -53,16 +72,16 @@ class Everleaf(HandHistoryConverter):
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             logging.debug("player_re: "+ player_re)
-            self.re_PostSB          = re.compile(ur"^%s: posts small blind \[[$€]? (?P<SB>[.0-9]+)\s.*\]$" % player_re, re.MULTILINE)
-            self.re_PostBB          = re.compile(ur"^%s: posts big blind \[[$€]? (?P<BB>[.0-9]+)\s.*\]$" % player_re, re.MULTILINE)
-            self.re_PostBoth        = re.compile(ur"^%s: posts both blinds \[[$€]? (?P<SBBB>[.0-9]+)\s.*\]$" % player_re, re.MULTILINE)
-            self.re_Antes           = re.compile(ur"^%s: posts ante \[[$€]? (?P<ANTE>[.0-9]+)\s.*\]$" % player_re, re.MULTILINE)
-            self.re_BringIn         = re.compile(ur"^%s posts bring-in [$€]? (?P<BRINGIN>[.0-9]+)\." % player_re, re.MULTILINE)
+            self.re_PostSB          = re.compile(ur"^%s: posts small blind \[ ?[%s]? (?P<SB>[.0-9]+)\s.*\]$" % (player_re, self.substitutions["LS"]), re.MULTILINE)
+            self.re_PostBB          = re.compile(ur"^%s: posts big blind \[ ?[%s]? (?P<BB>[.0-9]+)\s.*\]$" % (player_re, self.substitutions["LS"]), re.MULTILINE)
+            self.re_PostBoth        = re.compile(ur"^%s: posts both blinds \[ ?[%s]? (?P<SBBB>[.0-9]+)\s.*\]$" % (player_re, self.substitutions["LS"]), re.MULTILINE)
+            self.re_Antes           = re.compile(ur"^%s: posts ante \[ ?[%s]? (?P<ANTE>[.0-9]+)\s.*\]$" % (player_re, self.substitutions["LS"]), re.MULTILINE)
+            self.re_BringIn         = re.compile(ur"^%s posts bring-in  ?[%s]? (?P<BRINGIN>[.0-9]+)\." % (player_re, self.substitutions["LS"]), re.MULTILINE)
             self.re_HeroCards       = re.compile(ur"^Dealt to %s \[ (?P<CARDS>.*) \]$" % player_re, re.MULTILINE)
-            # ^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.,\d]+) (USD|EURO|Chips)\])?
-            self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:[$€]?) (?P<BET>[.,\d]+)\s?(USD|EURO|Chips|)\])?" % player_re, re.MULTILINE)
+            # ^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.,\d]+) (USD|EURO|EUR|Chips)\])?
+            self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?: ?[%s]?) (?P<BET>[.,\d]+)\s?(USD|EURO|EUR|Chips|)\])?" % (player_re, self.substitutions["LS"]), re.MULTILINE)
             self.re_ShowdownAction  = re.compile(ur"^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
-            self.re_CollectPot      = re.compile(ur"^%s wins (?:[$€]?)\s?(?P<POT>[.\d]+) (USD|EURO|chips)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
+            self.re_CollectPot      = re.compile(ur"^%s wins  ?(?: ?[%s]?)\s?(?P<POT>[.\d]+) (USD|EURO|EUR|chips)(.*?\[ (?P<CARDS>.*?) \])?" % (player_re, self.substitutions["LS"]), re.MULTILINE)
             self.re_SitsOut         = re.compile(ur"^%s sits out" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
@@ -91,8 +110,6 @@ class Everleaf(HandHistoryConverter):
     'bigBet'
     'currency'  in ('USD', 'EUR', 'T$', <countrycode>)
 or None if we fail to get the info """
-        #(TODO: which parts are optional/required?)
-
         # Blinds $0.50/$1 PL Omaha - 2008/12/07 - 21:59:48
         # Blinds $0.05/$0.10 NL Hold'em - 2009/02/21 - 11:21:57
         # $0.25/$0.50 7 Card Stud - 2008/12/05 - 21:43:59
@@ -103,12 +120,13 @@ or None if we fail to get the info """
         # Blinds 10/20 NL Hold'em - 2009/02/25 - 17:30:32
         # Table 2
         info = {'type':'ring'}
-
+        
+        
         m = self.re_GameInfo.search(handText)
         if not m:
-            tmp = handText[0:100]
+            tmp = handText[0:150]
             log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error(_("determineGameType: Raising FpdbParseError"))
+            log.error("determineGameType: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
@@ -164,11 +182,6 @@ or None if we fail to get the info """
             #           https://www.poker4ever.com/tourney/%TOURNEY_NUMBER%
 
         # Believe Everleaf time is GMT/UTC, no transation necessary
-        # Stars format (Nov 10 2008): 2008/11/07 12:38:49 CET [2008/11/07 7:38:49 ET]
-        # or                        : 2008/11/07 12:38:49 ET
-        # Not getting it in my HH files yet, so using
-        # 2008/11/10 3:58:52 ET
-        #TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%Y/%m/%d - %H:%M:%S")
         return
 
@@ -187,9 +200,6 @@ or None if we fail to get the info """
 
 
     def markStreets(self, hand):
-        # PREFLOP = ** Dealing down cards **
-        # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
-        #m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \])?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\* \[ (?P<TURN1>\S\S) \])?(?P<TURN>.*?\*\*)?( Dealing River \*\* \[ (?P<RIVER1>\S\S) \])?(?P<RIVER>.*)', hand.handText,re.DOTALL)
         if hand.gametype['base'] == 'hold':
             m =  re.search(r"\*\* Dealing down cards \*\*(?P<PREFLOP>.+(?=\*\* Dealing Flop \*\*)|.+)"
                        r"(\*\* Dealing Flop \*\*(?P<FLOP> \[ \S\S, \S\S, \S\S \].+(?=\*\* Dealing Turn \*\*)|.+))?"
@@ -261,10 +271,7 @@ or None if we fail to get the info """
 
 
     def readStudPlayerCards(self, hand, street):
-        # lol. see Plymouth.txt
         logging.warning(_("Everleaf readStudPlayerCards is only a stub."))
-        #~ if street in ('THIRD', 'FOURTH',  'FIFTH',  'SIXTH'):
-            #~ hand.addPlayerCards(player = player.group('PNAME'), street = street,  closed = [],  open = [])
 
 
     def readAction(self, hand, street):
@@ -285,7 +292,7 @@ or None if we fail to get the info """
             elif action.group('ATYPE') == ' complete to':
                 hand.addComplete( street, action.group('PNAME'), action.group('BET'))
             else:
-                logging.debug(_("Unimplemented readAction: %s %s") % (action.group('PNAME'),action.group('ATYPE')))
+                logging.debug(_("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):
