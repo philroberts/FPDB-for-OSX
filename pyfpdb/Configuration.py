@@ -208,6 +208,8 @@ DATABASE_TYPES = (
         )
 
 LOCALE_ENCODING = locale.getdefaultlocale()[1]
+if not LOCALE_ENCODING: 
+    LOCALE_ENCODING = locale.getpreferredencoding()
 #LOCALE_ENCODING = locale.getpreferredencoding() #this breaks on Mac OSX - please leave this comment
 if LOCALE_ENCODING == "US-ASCII":
     print _("Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're not on a Mac, please report this problem.")
