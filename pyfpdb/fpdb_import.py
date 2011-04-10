@@ -175,7 +175,7 @@ class Importer:
     def addFileToList(self, file, site, filter):
         now = datetime.datetime.utcnow()
         file = os.path.splitext(os.path.basename(file))[0]
-        id = self.database.storeFile([file, site, now, now, 0, 0, 0, 0, 0, 0, False])
+        id = self.database.storeFile([unicode(file, "utf8", "replace"), site, now, now, 0, 0, 0, 0, 0, 0, False])
         self.database.commit()
         return [site] + [filter] + [id]
 
