@@ -97,6 +97,7 @@ def get_config(file_name, fallback = True):
         if os.path.exists(config_path):
             config_found = True
     
+    #TODO: clean up the example path loading to ensure it behaves the same on all OSs
     # Example configuration for debian package
     if os.name == 'posix':
         # If we're on linux, try to copy example from the place
