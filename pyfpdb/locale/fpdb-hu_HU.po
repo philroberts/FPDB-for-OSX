@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2011-04-10 08:57+CEST\n"
+"POT-Creation-Date: 2011-04-10 18:46+CEST\n"
 "PO-Revision-Date: 2011-04-07 15:16+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -131,7 +131,7 @@ msgstr "Nyitó hívás nem található"
 #: BetfairToFpdb.py:199 Filters.py:80 FulltiltToFpdb.py:528
 #: GuiAutoImport.py:203 GuiPositionalStats.py:137 GuiStove.py:221
 #: GuiStove.py:225 GuiStove.py:229 GuiStove.py:233 GuiStove.py:237
-#: GuiStove.py:239 Hand.py:494 Hand.py:1719 ImapFetcher.py:44
+#: GuiStove.py:239 Hand.py:494 Hand.py:1720 ImapFetcher.py:44
 #: ImapFetcher.py:53 OnGameToFpdb.py:217 OnGameToFpdb.py:348
 #: PacificPokerToFpdb.py:429 PkrToFpdb.py:351 PokerStarsToFpdb.py:447
 #: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:261
@@ -151,11 +151,11 @@ msgstr "Nem sikerült konvertálni: \"%s\"\n"
 msgid "Could not encode: \"%s\"\n"
 msgstr "Nem sikerült kódolni: \"%s\"\n"
 
-#: Configuration.py:111 Configuration.py:118 Configuration.py:133
+#: Configuration.py:117 Configuration.py:124 Configuration.py:139
 msgid "Config file has been created at %s.\n"
 msgstr "Konfigurációs fájl létrehozva itt: %s.\n"
 
-#: Configuration.py:132
+#: Configuration.py:138
 msgid ""
 "No %s found\n"
 "  in %s\n"
@@ -165,25 +165,25 @@ msgstr ""
 "  itt: %s\n"
 "  vagy itt: %s\n"
 
-#: Configuration.py:137 Configuration.py:138
+#: Configuration.py:143 Configuration.py:144
 msgid "Error copying .example config file, cannot fall back. Exiting.\n"
 msgstr ""
 "Hiba a .example konfigurációs fájl másolása közben, nem tudom folytatni. "
 "Kilépés.\n"
 
-#: Configuration.py:142 Configuration.py:143
+#: Configuration.py:148 Configuration.py:149
 msgid "No %s found, cannot fall back. Exiting.\n"
 msgstr "%s nem található, nem tudom folytatni. Kilépés.\n"
 
-#: Configuration.py:175
+#: Configuration.py:181
 msgid "Default logger initialised for %s"
 msgstr "Alapértelmezett naplózó előkészítve ehhez: %s"
 
-#: Configuration.py:187 Database.py:473 Database.py:474
+#: Configuration.py:193 Database.py:473 Database.py:474
 msgid "Creating directory: '%s'"
 msgstr "Könyvtár létrehozása: '%s'"
 
-#: Configuration.py:212
+#: Configuration.py:218
 msgid ""
 "Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're "
 "not on a Mac, please report this problem."
@@ -191,36 +191,36 @@ msgstr ""
 "US-ASCII az alapértelmezett karakterkódolás, CP1252 használata ehelyett.Ha "
 "nem Mac-et használsz, akkor kérlek jelentsd ezt a problémát."
 
-#: Configuration.py:534
+#: Configuration.py:540
 msgid "config.general: adding %s = %s"
 msgstr "config.general: %s = %s hozzáadása"
 
-#: Configuration.py:581 Configuration.py:582
+#: Configuration.py:587 Configuration.py:588
 msgid "bad number in xalignment was ignored"
 msgstr "hibás érték figyelmen kívül hagyva az xalignment-ben"
 
-#: Configuration.py:637 Configuration.py:644 Configuration.py:663
-#: Configuration.py:670
+#: Configuration.py:643 Configuration.py:650 Configuration.py:669
+#: Configuration.py:676
 msgid "Invalid config value for %s, defaulting to %s"
 msgstr "Érvénytelen %s beállítás, az alapértelmezett %s használata"
 
-#: Configuration.py:688 Configuration.py:689
+#: Configuration.py:694 Configuration.py:695
 msgid "Configuration file %s not found. Using defaults."
 msgstr "A %s konfigurációs fájl nem található. Alapértelmezések használata."
 
-#: Configuration.py:719
+#: Configuration.py:725
 msgid "Reading configuration file %s"
 msgstr "%s konfigurációs fájl olvasása"
 
-#: Configuration.py:726
+#: Configuration.py:732
 msgid "Error parsing %s."
 msgstr "Hiba a(z) '%s' értelmezése közben."
 
-#: Configuration.py:726 Configuration.py:842
+#: Configuration.py:732 Configuration.py:848
 msgid "See error log file."
 msgstr "Nézz bele a hibanaplóba."
 
-#: Configuration.py:842
+#: Configuration.py:848
 msgid "Error parsing example configuration file %s."
 msgstr "Hiba a(z) %s minta konfigurációs fájl értelmezése közben."
 
@@ -1939,7 +1939,7 @@ msgstr ""
 "GuiTourneyImport.load kész: Tárolva: %d\tHibák: %d; %s másodperc alatt - "
 "%.0f/mp"
 
-#: GuiTourneyImport.py:175 fpdb_import.py:234
+#: GuiTourneyImport.py:175 fpdb_import.py:238
 msgid "Attempted to add non-directory '%s' as an import directory"
 msgstr "Nem könyvtár ('%s') megadása importálási könyvtárként"
 
@@ -2378,7 +2378,7 @@ msgstr "KEZDŐKÉZ"
 msgid "TOURNEYS PLAYER IDS"
 msgstr "VERSENYJÁTÉKOS AZONOSÍTÓK"
 
-#: Hand.py:224 Hand.py:1417
+#: Hand.py:224 Hand.py:1418
 msgid "[ERROR] Tried to add holecards for unknown player: %s"
 msgstr "[ERROR] Kezdőkéz hozzáadása ismeretlen játékoshoz: %s"
 
@@ -2438,26 +2438,26 @@ msgstr ""
 msgid "*** Game String:"
 msgstr "*** Játék sztring:"
 
-#: Hand.py:915
+#: Hand.py:916
 msgid "HoldemOmahaHand.__init__:Neither HHC nor DB+handid provided"
 msgstr ""
 "HoldemOmahaHand.__init__: sem a HHC, sem az adatbázis+leosztásaonosító nem "
 "lett megadva"
 
-#: Hand.py:1188
+#: Hand.py:1189
 msgid "DrawHand.__init__: street 'DEAL' is empty. Hand cancelled? HandID: '%s'"
 msgstr ""
 "DrawHand.__init__: a 'DEAL' utca üres. A leosztás megszakítva? HandID: '%s'"
 
-#: Hand.py:1426
+#: Hand.py:1427
 msgid "%s %s completes %s"
 msgstr "%s utcán %s játékos kiegészít erre: %s"
 
-#: Hand.py:1444
+#: Hand.py:1445
 msgid "Bringin: %s, %s"
 msgstr "Nyitó hívás: %s, %s"
 
-#: Hand.py:1626
+#: Hand.py:1627
 msgid ""
 "join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should "
 "be impossible for anyone who is not a hero"
@@ -2465,23 +2465,23 @@ msgstr ""
 "join_holecards: a kézbe kapott lapok száma kisebb, mint 4, pont 4 vagy 7 - 5 "
 "és 6 a saját játékos számára lehetetlen"
 
-#: Hand.py:1627
+#: Hand.py:1628
 msgid "join_holcards: holecards(%s): %s"
 msgstr "join_holecards: holecards(%s): %s"
 
-#: Hand.py:1629
+#: Hand.py:1630
 msgid "join_holecards: Player '%s' appears not to have been dealt a card"
 msgstr "join_holecards: a '%s' játékos úgy tűnik, hogy nem kapott lapot"
 
-#: Hand.py:1705 Hand.py:1706
+#: Hand.py:1706 Hand.py:1707
 msgid "Pot.end(): Major failure while calculating pot: '%s'"
 msgstr "Pot.end(): Komoly hiba a kassza számítása közben: '%s'"
 
-#: Hand.py:1719
+#: Hand.py:1720
 msgid "call Pot.end() before printing pot total"
 msgstr "Pot.end() hívása a teljes kassza kiírása előtt"
 
-#: Hand.py:1721
+#: Hand.py:1722
 msgid "Error in printing Hand object"
 msgstr "Hiba egy Hand objektum kiírása közben"
 
@@ -2783,7 +2783,7 @@ msgstr "Hibák: %s"
 msgid "Finished importing %s/%s PS summaries"
 msgstr "%s/%s PS összefoglaló importálása kész"
 
-#: Mucked.py:327
+#: Mucked.py:328
 msgid "No Name"
 msgstr "Nincs név"
 
@@ -4110,11 +4110,11 @@ msgstr "Nem található a következő adatbázis-modul: MySQLdb"
 msgid "Import database module: psycopg2 not found"
 msgstr "Nem található a következő adatbázis-modul: psycopg2"
 
-#: fpdb_import.py:197
+#: fpdb_import.py:201
 msgid "Database ID for %s not found"
 msgstr "Azonosító nem található a(z) %s teremhez"
 
-#: fpdb_import.py:199
+#: fpdb_import.py:203
 msgid ""
 "[ERROR] More than 1 Database ID found for %s - Multiple currencies not "
 "implemented yet"
@@ -4122,55 +4122,55 @@ msgstr ""
 "[ERROR] Egynél több azonosítót találtam a(z) %s teremhez - Termenként több "
 "pénznem még nem támogatott"
 
-#: fpdb_import.py:244
+#: fpdb_import.py:248
 msgid "Started at %s -- %d files to import. indexes: %s"
 msgstr "Elindítva: %s -- %d fájl importálása. Indexek: %s"
 
-#: fpdb_import.py:253
+#: fpdb_import.py:257
 msgid "No need to drop indexes."
 msgstr "Nem szükséges az indexek eldobása."
 
-#: fpdb_import.py:272
+#: fpdb_import.py:276
 msgid "writers finished already"
 msgstr "az írások már befejeződtek"
 
-#: fpdb_import.py:275
+#: fpdb_import.py:279
 msgid "waiting for writers to finish ..."
 msgstr "várakozás az írások befejeződésére ..."
 
-#: fpdb_import.py:285
+#: fpdb_import.py:289
 msgid "                              ... writers finished"
 msgstr "                              ... az írások befejeződtek"
 
-#: fpdb_import.py:291
+#: fpdb_import.py:295
 msgid "No need to rebuild indexes."
 msgstr "Nem szükséges az adatbázis indexeinek újraépítése."
 
-#: fpdb_import.py:295
+#: fpdb_import.py:299
 msgid "No need to rebuild hudcache."
 msgstr "Nem szükséges a HUD gyorstár újraépítése."
 
-#: fpdb_import.py:331
+#: fpdb_import.py:335
 msgid "sending finish message queue length ="
 msgstr "befejező üzenet küldése; sor hossza ="
 
-#: fpdb_import.py:455 fpdb_import.py:456
+#: fpdb_import.py:459 fpdb_import.py:460
 msgid "Converting %s"
 msgstr "%s konvertálása"
 
-#: fpdb_import.py:516
+#: fpdb_import.py:520
 msgid "fpdb_import: sending hand to hud"
 msgstr "fpdb_import: leosztás küldése a HUD számára"
 
-#: fpdb_import.py:519
+#: fpdb_import.py:523
 msgid "Failed to send hand to HUD: %s"
 msgstr "Nem sikerült a leosztás elküldése a HUD számára: %s"
 
-#: fpdb_import.py:534
+#: fpdb_import.py:538
 msgid "Unknown filter filter_name:'%s' in filter:'%s'"
 msgstr "Ismeretlen szűrő: filter_name:'%s' a '%s' szűrőben"
 
-#: fpdb_import.py:545
+#: fpdb_import.py:549
 msgid ""
 "Error No.%s please send the hand causing this to fpdb-main@lists.sourceforge."
 "net so we can fix the problem."
@@ -4178,11 +4178,11 @@ msgstr ""
 "%s számú hiba. Kérlek küldd el az ezt okozó leosztást az fpdb-main@lists."
 "sourceforge.net címre, hogy ki tudjuk javítani a hibát."
 
-#: fpdb_import.py:546
+#: fpdb_import.py:550
 msgid "Filename:"
 msgstr "Fájlnév:"
 
-#: fpdb_import.py:547
+#: fpdb_import.py:551
 msgid ""
 "Here is the first line of the hand so you can identify it. Please mention "
 "that the error was a ValueError:"
@@ -4190,15 +4190,15 @@ msgstr ""
 "Itt az első sora a leosztásnak azonosítás céljából. Kérlek említsd majd meg, "
 "hogy a hiba ValueError volt:"
 
-#: fpdb_import.py:549
+#: fpdb_import.py:553
 msgid "Hand logged to hand-errors.txt"
 msgstr "A leosztás naplózva a hand-errors.txt fájlba"
 
-#: fpdb_import.py:609
+#: fpdb_import.py:613
 msgid "Importing"
 msgstr "Importálás"
 
-#: fpdb_import.py:647
+#: fpdb_import.py:651
 msgid "CLI for importing hands is GuiBulkImport.py"
 msgstr ""
 "Parancssorból a GuiBulkImport.py segítségével tudsz leosztásokat importálni"

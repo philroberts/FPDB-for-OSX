@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-04-10 08:57+CEST\n"
+"POT-Creation-Date: 2011-04-10 18:46+CEST\n"
 "PO-Revision-Date: 2011-04-07 08:53+0000\n"
 "Last-Translator: steffen123 <steffen@schaumburger.info>\n"
 "Language-Team: Polish (Poland) <>\n"
@@ -132,7 +132,7 @@ msgstr ""
 #: BetfairToFpdb.py:199 Filters.py:80 FulltiltToFpdb.py:528
 #: GuiAutoImport.py:203 GuiPositionalStats.py:137 GuiStove.py:221
 #: GuiStove.py:225 GuiStove.py:229 GuiStove.py:233 GuiStove.py:237
-#: GuiStove.py:239 Hand.py:494 Hand.py:1719 ImapFetcher.py:44
+#: GuiStove.py:239 Hand.py:494 Hand.py:1720 ImapFetcher.py:44
 #: ImapFetcher.py:53 OnGameToFpdb.py:217 OnGameToFpdb.py:348
 #: PacificPokerToFpdb.py:429 PkrToFpdb.py:351 PokerStarsToFpdb.py:447
 #: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:261
@@ -152,69 +152,69 @@ msgstr ""
 msgid "Could not encode: \"%s\"\n"
 msgstr ""
 
-#: Configuration.py:111 Configuration.py:118 Configuration.py:133
+#: Configuration.py:117 Configuration.py:124 Configuration.py:139
 msgid "Config file has been created at %s.\n"
 msgstr ""
 
-#: Configuration.py:132
+#: Configuration.py:138
 msgid ""
 "No %s found\n"
 "  in %s\n"
 "  or %s\n"
 msgstr ""
 
-#: Configuration.py:137 Configuration.py:138
+#: Configuration.py:143 Configuration.py:144
 msgid "Error copying .example config file, cannot fall back. Exiting.\n"
 msgstr ""
 
-#: Configuration.py:142 Configuration.py:143
+#: Configuration.py:148 Configuration.py:149
 msgid "No %s found, cannot fall back. Exiting.\n"
 msgstr ""
 
-#: Configuration.py:175
+#: Configuration.py:181
 msgid "Default logger initialised for %s"
 msgstr ""
 
-#: Configuration.py:187 Database.py:473 Database.py:474
+#: Configuration.py:193 Database.py:473 Database.py:474
 msgid "Creating directory: '%s'"
 msgstr ""
 
-#: Configuration.py:212
+#: Configuration.py:218
 msgid ""
 "Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're "
 "not on a Mac, please report this problem."
 msgstr ""
 
-#: Configuration.py:534
+#: Configuration.py:540
 msgid "config.general: adding %s = %s"
 msgstr ""
 
-#: Configuration.py:581 Configuration.py:582
+#: Configuration.py:587 Configuration.py:588
 msgid "bad number in xalignment was ignored"
 msgstr ""
 
-#: Configuration.py:637 Configuration.py:644 Configuration.py:663
-#: Configuration.py:670
+#: Configuration.py:643 Configuration.py:650 Configuration.py:669
+#: Configuration.py:676
 msgid "Invalid config value for %s, defaulting to %s"
 msgstr ""
 
-#: Configuration.py:688 Configuration.py:689
+#: Configuration.py:694 Configuration.py:695
 msgid "Configuration file %s not found. Using defaults."
 msgstr ""
 
-#: Configuration.py:719
+#: Configuration.py:725
 msgid "Reading configuration file %s"
 msgstr ""
 
-#: Configuration.py:726
+#: Configuration.py:732
 msgid "Error parsing %s."
 msgstr ""
 
-#: Configuration.py:726 Configuration.py:842
+#: Configuration.py:732 Configuration.py:848
 msgid "See error log file."
 msgstr ""
 
-#: Configuration.py:842
+#: Configuration.py:848
 msgid "Error parsing example configuration file %s."
 msgstr ""
 
@@ -1845,7 +1845,7 @@ msgid ""
 "GuiTourneyImport.load done: Stored: %d\tErrors: %d in %s seconds - %.0f/sec"
 msgstr ""
 
-#: GuiTourneyImport.py:175 fpdb_import.py:234
+#: GuiTourneyImport.py:175 fpdb_import.py:238
 msgid "Attempted to add non-directory '%s' as an import directory"
 msgstr ""
 
@@ -2275,7 +2275,7 @@ msgstr ""
 msgid "TOURNEYS PLAYER IDS"
 msgstr ""
 
-#: Hand.py:224 Hand.py:1417
+#: Hand.py:224 Hand.py:1418
 msgid "[ERROR] Tried to add holecards for unknown player: %s"
 msgstr ""
 
@@ -2330,45 +2330,45 @@ msgstr ""
 msgid "*** Game String:"
 msgstr ""
 
-#: Hand.py:915
+#: Hand.py:916
 msgid "HoldemOmahaHand.__init__:Neither HHC nor DB+handid provided"
 msgstr ""
 
-#: Hand.py:1188
+#: Hand.py:1189
 msgid "DrawHand.__init__: street 'DEAL' is empty. Hand cancelled? HandID: '%s'"
 msgstr ""
 
-#: Hand.py:1426
+#: Hand.py:1427
 msgid "%s %s completes %s"
 msgstr ""
 
-#: Hand.py:1444
+#: Hand.py:1445
 msgid "Bringin: %s, %s"
 msgstr ""
 
-#: Hand.py:1626
+#: Hand.py:1627
 msgid ""
 "join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should "
 "be impossible for anyone who is not a hero"
 msgstr ""
 
-#: Hand.py:1627
+#: Hand.py:1628
 msgid "join_holcards: holecards(%s): %s"
 msgstr ""
 
-#: Hand.py:1629
+#: Hand.py:1630
 msgid "join_holecards: Player '%s' appears not to have been dealt a card"
 msgstr ""
 
-#: Hand.py:1705 Hand.py:1706
+#: Hand.py:1706 Hand.py:1707
 msgid "Pot.end(): Major failure while calculating pot: '%s'"
 msgstr ""
 
-#: Hand.py:1719
+#: Hand.py:1720
 msgid "call Pot.end() before printing pot total"
 msgstr ""
 
-#: Hand.py:1721
+#: Hand.py:1722
 msgid "Error in printing Hand object"
 msgstr ""
 
@@ -2659,7 +2659,7 @@ msgstr ""
 msgid "Finished importing %s/%s PS summaries"
 msgstr ""
 
-#: Mucked.py:327
+#: Mucked.py:328
 msgid "No Name"
 msgstr ""
 
@@ -3934,11 +3934,11 @@ msgstr "import modułu bazy danych: nie znaleziono MySQLdb"
 msgid "Import database module: psycopg2 not found"
 msgstr "import modułu bazy danych: nie znaleziono psycopg2"
 
-#: fpdb_import.py:197
+#: fpdb_import.py:201
 msgid "Database ID for %s not found"
 msgstr "ID bazy danych dla %s nie został znaleziony"
 
-#: fpdb_import.py:199
+#: fpdb_import.py:203
 msgid ""
 "[ERROR] More than 1 Database ID found for %s - Multiple currencies not "
 "implemented yet"
@@ -3946,55 +3946,55 @@ msgstr ""
 "[BŁĄD] Znaleziono więcej niż 1 ID bazy danych dla %s - obsługa wielu walut "
 "nie została jeszcze wdrożona."
 
-#: fpdb_import.py:244
+#: fpdb_import.py:248
 msgid "Started at %s -- %d files to import. indexes: %s"
 msgstr "Rozpoczęto o %s -- %d rozdań do zaimportowania. indeksów - %s"
 
-#: fpdb_import.py:253
+#: fpdb_import.py:257
 msgid "No need to drop indexes."
 msgstr "Nie ma potrzeby usuwania indeksów tabelii."
 
-#: fpdb_import.py:272
+#: fpdb_import.py:276
 msgid "writers finished already"
 msgstr "writers finished already"
 
-#: fpdb_import.py:275
+#: fpdb_import.py:279
 msgid "waiting for writers to finish ..."
 msgstr "waiting for writers to finish ..."
 
-#: fpdb_import.py:285
+#: fpdb_import.py:289
 msgid "                              ... writers finished"
 msgstr "                              ... writers finished"
 
-#: fpdb_import.py:291
+#: fpdb_import.py:295
 msgid "No need to rebuild indexes."
 msgstr "Nie ma potrzeby odbudowywania indeksów tabelii."
 
-#: fpdb_import.py:295
+#: fpdb_import.py:299
 msgid "No need to rebuild hudcache."
 msgstr "Nie ma potrzeby odbudowywania cache'u HUD-a."
 
-#: fpdb_import.py:331
+#: fpdb_import.py:335
 msgid "sending finish message queue length ="
 msgstr "wysyłanie zakończone - długość kolejki ="
 
-#: fpdb_import.py:455 fpdb_import.py:456
+#: fpdb_import.py:459 fpdb_import.py:460
 msgid "Converting %s"
 msgstr "konwertowanie %s"
 
-#: fpdb_import.py:516
+#: fpdb_import.py:520
 msgid "fpdb_import: sending hand to hud"
 msgstr "fpdb_import: trwa wysyłanie rozdania do HUD-a"
 
-#: fpdb_import.py:519
+#: fpdb_import.py:523
 msgid "Failed to send hand to HUD: %s"
 msgstr "wysłanie rozdania do HUD-a się nie powiodło: %s"
 
-#: fpdb_import.py:534
+#: fpdb_import.py:538
 msgid "Unknown filter filter_name:'%s' in filter:'%s'"
 msgstr "nieznany filtr filter_name: '%s' w filtrze: '%s'"
 
-#: fpdb_import.py:545
+#: fpdb_import.py:549
 msgid ""
 "Error No.%s please send the hand causing this to fpdb-main@lists.sourceforge."
 "net so we can fix the problem."
@@ -4002,11 +4002,11 @@ msgstr ""
 "Błąd nr %s. Wyślij rozdanie powodujące problem na adres fpdb-main@lists."
 "sourceforge.net."
 
-#: fpdb_import.py:546
+#: fpdb_import.py:550
 msgid "Filename:"
 msgstr "nazwa pliku:"
 
-#: fpdb_import.py:547
+#: fpdb_import.py:551
 msgid ""
 "Here is the first line of the hand so you can identify it. Please mention "
 "that the error was a ValueError:"
@@ -4014,15 +4014,15 @@ msgstr ""
 "To jest pierwsza linia rozdania, abyś mógł je rozpoznać. Zauważ, że to był "
 "ValueError:"
 
-#: fpdb_import.py:549
+#: fpdb_import.py:553
 msgid "Hand logged to hand-errors.txt"
 msgstr "rozdanie zalogowano do hand-errors.txt"
 
-#: fpdb_import.py:609
+#: fpdb_import.py:613
 msgid "Importing"
 msgstr "importowanie"
 
-#: fpdb_import.py:647
+#: fpdb_import.py:651
 msgid "CLI for importing hands is GuiBulkImport.py"
 msgstr "CLI do importowania rozdań jest w GuiBulkImport.py"
 
