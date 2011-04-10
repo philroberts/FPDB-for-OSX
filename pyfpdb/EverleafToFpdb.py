@@ -271,7 +271,7 @@ or None if we fail to get the info """
 
 
     def readStudPlayerCards(self, hand, street):
-        logging.warning(_("Everleaf readStudPlayerCards is only a stub."))
+        logging.warning(_("%s cannot read all stud/razz hands yet.") % hand.sitename)
 
 
     def readAction(self, hand, street):
@@ -292,7 +292,7 @@ or None if we fail to get the info """
             elif action.group('ATYPE') == ' complete to':
                 hand.addComplete( street, action.group('PNAME'), action.group('BET'))
             else:
-                logging.debug(_("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
+                logging.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):
@@ -301,7 +301,7 @@ or None if we fail to get the info """
         for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
             cards = cards.split(', ')
-            logging.debug(_("readShowdownActions %s %s") % (cards, shows.group('PNAME')))
+            logging.debug("readShowdownActions %s %s" % (cards, shows.group('PNAME')))
             hand.addShownCards(cards, shows.group('PNAME'))
 
 

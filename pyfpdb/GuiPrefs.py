@@ -175,12 +175,12 @@ if __name__=="__main__":
     config = Configuration.Config()
 
     win = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    win.set_title(_("Test Preferences Dialog"))
+    win.set_title(_("Advanced Preferences Dialog"))
     win.set_border_width(1)
     win.set_default_size(600, 500)
     win.set_resizable(True)
 
-    dia = gtk.Dialog(_("Preferences"),
+    dia = gtk.Dialog(_("Advanced Preferences"),
                      win,
                      gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                      (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,

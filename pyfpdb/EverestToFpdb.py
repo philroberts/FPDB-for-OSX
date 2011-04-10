@@ -105,7 +105,7 @@ class Everest(HandHistoryConverter):
         if not m2:
             tmp = handText[0:100]
             log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise handinfo from: '%s'") % tmp)
+            raise FpdbParseError(_("Unable to recognise hand info from: '%s'") % tmp)
 
         self.info = {}
         mg = m.groupdict()
@@ -231,8 +231,8 @@ class Everest(HandHistoryConverter):
             elif action.group('ATYPE') in ('FOLD', 'SIT_OUT'):
                 hand.addFold(street, player)
             else:
-                print (_("Unimplemented readAction: '%s' '%s'") % (action.group('PSEAT'), action.group('ATYPE')))
-                logging.debug(_("Unimplemented readAction: '%s' '%s'") % (action.group('PSEAT'), action.group('ATYPE')))
+                print (_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
+                logging.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):

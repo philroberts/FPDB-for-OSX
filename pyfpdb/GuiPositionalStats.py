@@ -134,7 +134,7 @@ class GuiPositionalStats (threading.Thread):
     def toggleCallback(self, widget, data=None):
 #        print "%s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()])
         self.activesite = data
-        print (_("DEBUG: ") + _("activesite set to %s") % (self.activesite))
+        print (_("DEBUG:") + " " + _("activesite set to %s") % (self.activesite))
 
     def refreshStats(self, widget, data):
         try: self.stats_vbox.destroy()
