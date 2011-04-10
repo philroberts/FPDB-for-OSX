@@ -1,0 +1,42 @@
+Everleaf Gaming Game #190075259
+***** Hand history for game #190075259 *****
+Blinds $0.01/$0.02 NL Hold'em - 2010/08/03 - 17:03:59
+Table Los Angeles XV
+Seat 2 is the button
+Total number of players: 8
+Seat 1: zetnik (  $ 0.98 USD )
+Seat 2: Nadiy1981 (  $ 1.95 USD )
+Seat 3: rcgott4 (  $ 0.94 USD )
+Seat 4: MDKILLER69 (  $ 1.80 USD )
+Seat 5: Serg2407 (  $ 0.40 USD )
+Seat 8: lenchik_1984 (  $ 1.51 USD )
+Seat 9: xxx47 (  $ 0.03 USD )
+Seat 10: maluo (  $ 4.19 USD )
+rcgott4: posts small blind [$ 0.01 USD]
+MDKILLER69: posts big blind [$ 0.02 USD]
+** Dealing down cards **
+Serg2407 calls [$ 0.02 USD]
+lenchik_1984 folds
+xxx47 calls [$ 0.02 USD]
+maluo folds
+zetnik calls [$ 0.02 USD]
+Nadiy1981 folds
+rcgott4 calls [$ 0.01 USD]
+MDKILLER69 raises [$ 0.18 USD]
+Serg2407 folds
+xxx47 calls [$ 0.01 USD]
+zetnik raises [$ 0.96 USD]
+rcgott4 folds
+MDKILLER69 calls [$ 0.78 USD]
+** Dealing Flop ** [ 6d, Jc, Js ]
+** Dealing Turn ** [ 3d ]
+** Dealing River ** [ 9d ]
+zetnik shows [ 4c, 4d ] two pairs, jacks and fours
+MDKILLER69 shows [ 8c, 8h ] two pairs, jacks and eights
+xxx47 shows [ 5s, Td ] a pair of jacks
+MDKILLER69 wins $ 0.13 USD from main pot with two pairs, jacks and
+eights [ Jc, Js, 9d, 8c, 8h ]
+MDKILLER69 wins $ 1.81 USD from side pot with two pairs, jacks and
+eights [ Jc, Js, 9d, 8c, 8h ]
+
+

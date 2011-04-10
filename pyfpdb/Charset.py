@@ -40,10 +40,10 @@ def to_utf8(s):
         _out = unicode(s, Configuration.LOCALE_ENCODING).encode('utf-8')
         return _out
     except UnicodeDecodeError:
-        sys.stderr.write(_('Could not convert: "%s"\n') % s)
+        sys.stderr.write(_('Could not convert: "%s"') % (s+"\n"))
         raise
     except UnicodeEncodeError:
-        sys.stderr.write(_('Could not encode: "%s"\n') % s)
+        sys.stderr.write(_('Could not encode: "%s"') % (s+"\n"))
         raise
     except TypeError: # TypeError is raised when we give unicode() an already encoded string
         return s
@@ -55,10 +55,10 @@ def to_db_utf8(s):
         (_out, _len) = encoder_to_utf.encode(unicode(s))
         return _out
     except UnicodeDecodeError:
-        sys.stderr.write(_('Could not convert: "%s"\n') % s)
+        sys.stderr.write(_('Could not convert: "%s"') % (s+"\n"))
         raise
     except UnicodeEncodeError:
-        sys.stderr.write(_('Could not encode: "%s"\n') % s)
+        sys.stderr.write(_('Could not encode: "%s"') % (s+"\n"))
         raise
 
 def to_gui(s):
@@ -70,8 +70,8 @@ def to_gui(s):
         (_out, _len) = encoder_to_sys.encode(s, 'replace')
         return _out
     except UnicodeDecodeError:
-        sys.stderr.write(_('Could not convert: "%s"\n') % s)
+        sys.stderr.write(_('Could not convert: "%s"') % (s+"\n"))
         raise
     except UnicodeEncodeError:
-        sys.stderr.write(_('Could not encode: "%s"\n') % s)
+        sys.stderr.write(_('Could not encode: "%s"') % (s+"\n"))
         raise

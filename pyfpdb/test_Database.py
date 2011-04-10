@@ -47,8 +47,8 @@ def testSQLiteVarianceFunction():
     cur.execute("SELECT variance(i) from test")
     result = cur.fetchone()[0]
 
-    print (_("DEBUG: ") + _("Testing variance function"))
-    print (_("DEBUG: ") + _("result: %s expecting: 0.666666 (result-expecting ~= 0.0): %s") % (result, (result - 0.66666)))
+    print (_("DEBUG:") + " " + _("Testing variance function"))
+    print (_("DEBUG:") + " " + _("result: %s expecting: 0.666666 (result-expecting ~= 0.0): %s") % (result, (result - 0.66666)))
     cur.execute("DROP TABLE test")
     assert (result - 0.66666) <= 0.0001
 
