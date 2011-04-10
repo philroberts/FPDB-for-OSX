@@ -2212,8 +2212,8 @@ class Database:
             hc['tourneyTypeId'] = pdata[p]['tourneyTypeId']
             hc['styleKey'] = styleKey
             for i in range(len(line)):
-                if line[i]: line[i] = 1
-                else:       line[i] = 0
+                if line[i]==True:  line[i] = 1
+                if line[i]==False: line[i] = 0
             hc['line'] = line
             hc['game'] = [hc['gametypeId']
                          ,hc['playerId']

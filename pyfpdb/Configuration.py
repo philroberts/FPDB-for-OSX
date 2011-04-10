@@ -97,6 +97,7 @@ def get_config(file_name, fallback = True):
         if os.path.exists(config_path):
             config_found = True
     
+    #TODO: clean up the example path loading to ensure it behaves the same on all OSs
     # Example configuration for debian package
     if os.name == 'posix':
         # If we're on linux, try to copy example from the place
@@ -104,6 +105,11 @@ def get_config(file_name, fallback = True):
         # the config directory for us so there's no need to check it
         # again
         example_path = '/usr/share/python-fpdb/' + file_name + '.example'
+        if not os.path.exists(example_path):
+            if os.path.exists(file_name + '.example'):
+                example_path = file_name + '.example'
+            else:
+                example_path = "pyfpdb/" + file_name + '.example'
         if not config_found and fallback:
             try:
                 shutil.copyfile(example_path, config_path)
@@ -488,7 +494,7 @@ class Import:
     def __init__(self, node):
         self.node               = node
         self.interval           = node.getAttribute("interval")
-        self.sessionTimeout     = node.getAttribute("sessionTimeout")
+        self.sessionTimeout     = string_to_bool(node.getAttribute("sessionTimeout")    , default=30)
         self.ResultsDirectory   = node.getAttribute("ResultsDirectory")
         self.hhBulkPath         = node.getAttribute("hhBulkPath")
         self.saveActions        = string_to_bool(node.getAttribute("saveActions")      , default=False)
@@ -736,7 +742,7 @@ class Config:
 #sys.exc_info = (<class 'xml.parsers.expat.ExpatError'>, ExpatError('not well-formed (invalid token): line 511,
 # column 4',), <traceback object at 0x024503A0>)
 
-            if not self.example_copy and example_file is not None:
+            if (not self.example_copy) and (example_file is not None):
                 # reads example file and adds missing elements into current config
                 added = self.add_missing_elements(doc, example_file)
 

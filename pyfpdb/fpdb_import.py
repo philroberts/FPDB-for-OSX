@@ -175,6 +175,10 @@ class Importer:
     def addFileToList(self, file, site, filter):
         now = datetime.datetime.utcnow()
         file = os.path.splitext(os.path.basename(file))[0]
+        try: #TODO: this is a dirty hack. GBI needs it, GAI fails with it.
+            file = unicode(file, "utf8", "replace")
+        except TypeError:
+            pass
         id = self.database.storeFile([file, site, now, now, 0, 0, 0, 0, 0, 0, False])
         self.database.commit()
         return [site] + [filter] + [id]

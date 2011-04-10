@@ -153,7 +153,7 @@ def compare_hands_file(filename, importer, errors):
         del ghash['gsc']
         del ghash['sc']
         del ghash['id']
-        del ghash['board']
+        del ghash['boards']
         for datum in ghash:
             #print "DEBUG: hand: '%s'" % datum
             try:
