@@ -641,6 +641,7 @@ class ProgressBar:
         
         self.progresstext = gtk.Label()
         self.progresstext.set_line_wrap(True)
+        self.progresstext.set_selectable(True)
         align.add(self.progresstext)
         self.progresstext.show()
         
