@@ -40,7 +40,7 @@ import Exceptions
 class GuiBulkImport():
 
     # CONFIGURATION  -  update these as preferred:
-    allowThreads = True  # set to True to try out the threads field
+    allowThreads = False  # set to True to try out the threads field
 
     def dopulse(self):
         self.progressbar.pulse()
