@@ -2834,7 +2834,7 @@ class Database:
             else:
                 if source=="HHC":
                     cursor.execute (self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),
-                            (hand.tourneyId, playerId, None, None, None, None, None, None))
+                            (hand.tourneyId, playerId, player[3], player[4], None, None, None, None))
                 elif source=="TS":
                     #print "all values: tourneyId",hand.tourneyId, "playerId",playerId, "rank",hand.ranks[player], "winnings",hand.winnings[player], "winCurr",hand.winningsCurrency[player], hand.rebuyCounts[player], hand.addOnCounts[player], hand.koCounts[player]
                     if hand.ranks[player]:

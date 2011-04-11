@@ -469,7 +469,7 @@ If a player has None chips he won't be added."""
         log.debug("addPlayer: %s %s (%s)" % (seat, name, chips))
         if chips is not None:
             chips = chips.replace(u',', u'') #some sites have commas
-            self.players.append([seat, name, chips])
+            self.players.append([seat, name, chips, 0, 0])
             self.stacks[name] = Decimal(chips)
             self.pot.addPlayer(name)
             for street in self.actionStreets:
@@ -477,6 +477,17 @@ If a player has None chips he won't be added."""
                 #self.holecards[name] = {} # dict from street names.
                 #self.discards[name] = {} # dict from street names.
 
+
+    def addPlayerRank(self, name, winnings, rank):
+        """\
+name        (string) player name
+winnings    (int) winnings
+rank        (int) rank the player finished the tournament"""
+        log.debug("addPlayerRank: %s %s (%s)" % (name, winnings, rank))
+        for player in self.players:
+            if player[1] == name:
+                player[3]=rank
+                player[4]=winnings
 
     def addStreets(self, match):
         # go through m and initialise actions to empty list for each street.
