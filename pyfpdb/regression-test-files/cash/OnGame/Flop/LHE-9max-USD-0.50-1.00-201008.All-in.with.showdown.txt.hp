@@ -47,7 +47,7 @@
                  'raiseToStealChance': False,
                  'raiseToStealDone': False,
                  'raisedFirstIn': True,
-                 'rake': 215,
+                 'rake': 15,
                  'sawShowdown': True,
                  'seatNo': 1,
                  'showed': False,
