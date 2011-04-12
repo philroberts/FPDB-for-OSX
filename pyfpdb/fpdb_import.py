@@ -318,7 +318,7 @@ class Importer:
         
         for file in self.filelist:
             
-            ProgressDialog.progress_update(file)
+            ProgressDialog.progress_update(file, str(self.database.getHandCount()))
             
             (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0]
                                                            ,self.filelist[file][1], self.filelist[file][2], q)
@@ -574,7 +574,7 @@ class ProgressBar:
             self.progress.destroy()
 
 
-    def progress_update(self, file):
+    def progress_update(self, file, handcount):
 
         if not self.parent:
             #nothing to do
@@ -594,6 +594,8 @@ class ProgressBar:
 
         self.pbar.set_fraction(progress_percent)
         self.pbar.set_text(progress_text)
+        
+        self.handcount.set_text(_("Database Statistics") + " - " + _("Number of Hands: ") + handcount)
         
         now = datetime.datetime.now()
         now_formatted = now.strftime("%H:%M:%S")
@@ -636,11 +638,20 @@ class ProgressBar:
         self.pbar.show()
 
         align = gtk.Alignment(0, 0, 0, 0)
+        vbox.pack_start(align, False, True, 2)
+        align.show()
+
+        self.handcount = gtk.Label()
+        align.add(self.handcount)
+        self.handcount.show()
+        
+        align = gtk.Alignment(0, 0, 0, 0)
         vbox.pack_start(align, False, True, 0)
         align.show()
         
         self.progresstext = gtk.Label()
         self.progresstext.set_line_wrap(True)
+        self.progresstext.set_selectable(True)
         align.add(self.progresstext)
         self.progresstext.show()
         

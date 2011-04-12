@@ -36,11 +36,14 @@ import fpdb_import
 import Configuration
 import Exceptions
 
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("importer")
 
 class GuiBulkImport():
 
     # CONFIGURATION  -  update these as preferred:
-    allowThreads = True  # set to True to try out the threads field
+    allowThreads = False  # set to True to try out the threads field
 
     def dopulse(self):
         self.progressbar.pulse()
@@ -110,12 +113,14 @@ class GuiBulkImport():
                 ttime = time() - starttime
                 if ttime == 0:
                     ttime = 1
-                print _('GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec')\
-                     % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
+                    
+                completionMessage = _('GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec')\
+                    % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
+                print completionMessage
+                log.info(completionMessage)
+
                 self.importer.clearFileList()
-                # This file should really be 'logging'
-                #log.info('GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec'\
-                #     % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime))
+                
                 if self.n_hands_in_db == 0 and stored > 0:
                     self.cb_dropindexes.set_sensitive(True)
                     self.cb_dropindexes.set_active(0)
