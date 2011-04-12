@@ -125,9 +125,7 @@ class OnGame(HandHistoryConverter):
             self.re_PostDead  = re.compile('(?P<PNAME>.*) posts dead blind \((%(CUR)s)?(?P<DEAD>[\.0-9]+)\)' % subst, re.MULTILINE)
             self.re_HeroCards = re.compile('Dealing\sto\s%(PLYR)s:\s\[(?P<CARDS>.*)\]' % subst)
 
-            #lopllopl checks, Eurolll checks, .Lucchess checks.
-            #chumley. calls $0.25
-            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( (%(CUR)s)?(?P<BET>[\d\.]+))?( and is all-in)?' % subst)
+            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( (%(CUR)s)?(?P<BET>[\d\.]+))?( to (%(CUR)s)?(?P<BET2>[\d\.]+))?( and is all-in)?' % subst)
             #self.re_Board = re.compile(r"\[board cards (?P<CARDS>.+) \]")
 
             #Uchilka shows [ KC,JD ]
@@ -331,7 +329,7 @@ class OnGame(HandHistoryConverter):
             #acts = action.groupdict()
             #print "readaction: acts: %s" %acts
             if action.group('ATYPE') == ' raises':
-                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET2') )
             elif action.group('ATYPE') == ' calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' bets':
