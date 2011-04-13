@@ -1,0 +1,29 @@
+FullTiltPoker Game #28014530000: Table Atable (6 max) - $25/$50 - $2,000 Cap Pot Limit Omaha Hi - 11:00:00 ET - 2011/02/01
+
+Seat 1: Player1 ($2,821)
+Seat 2: Player2 ($1,417.50)
+Seat 3: Player3 ($6,392)
+Seat 5: Player5 ($1,167.50)
+Seat 6: Hero ($5,000)
+Player5 posts the small blind of $25
+Hero posts the big blind of $50
+The button is in seat #3
+*** HOLE CARDS ***
+Dealt to Hero [Tc 6s 8c Kh]
+Player1 folds
+Player2 folds
+Player3 folds
+Player5 has 15 seconds left to act
+Player5 folds
+Uncalled bet of $25 returned to Hero
+Hero mucks
+Hero wins the pot ($50)
+*** SUMMARY ***
+Duration 22s
+Total pot $50 | Rake $0
+Seat 1: Player1 didn't bet (folded)
+Seat 2: Player2 didn't bet (folded)
+Seat 3: Player3 (button) didn't bet (folded)
+Seat 5: Player5 (small blind) folded before the Flop
+Seat 6: Hero (big blind) collected ($50)
+
