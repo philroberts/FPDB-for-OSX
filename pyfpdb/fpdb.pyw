@@ -473,8 +473,9 @@ class fpdb:
             if attr.startswith('__'):
                 continue
             if attr in ("Charset", "Configuration", "Database", "GInitiallyUnowned", "gtk", "pygtk",
-                        "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict",
-                        "h", "re", "re_Percent", "re_Places", ):
+                        "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict", "h", "re",
+                        "re_Percent", "re_Places", "L10n", "sys", "_", "log", "encoder", "codecs",
+                        "logging"):
                 continue
             statDict[attr] = eval("Stats.%s.__doc__" % (attr))
 
