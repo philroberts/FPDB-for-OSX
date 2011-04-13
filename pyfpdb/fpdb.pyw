@@ -838,16 +838,12 @@ class fpdb:
         win.destroy()
         self.dia_confirm.set_modal(True)
 
-    def dia_save_profile(self, widget, data=None):
-        self.warning_box(_("Unimplemented: Save Profile (try saving a HUD layout, that should do it)"))
-
     def get_menu(self, window):
         """returns the menu for this program"""
         fpdbmenu = """
             <ui>
               <menubar name="MenuBar">
                 <menu action="main">
-                  <menuitem action="SaveProf"/>
                   <menuitem action="site_preferences"/>
                   <menuitem action="hud_preferences"/>
                   <menuitem action="advanced_preferences"/>
@@ -896,7 +892,6 @@ class fpdb:
         # Create actions
         actiongroup.add_actions([('main', None, _('_Main')),
                                  ('Quit', gtk.STOCK_QUIT, _('_Quit'), None, 'Quit the Program', self.quit),
-                                 ('SaveProf', None, _('Save Profile (todo)'), None, 'Save your profile', self.dia_save_profile),
                                  ('site_preferences', None, _('_Site Preferences'), None, 'Site Preferences', self.dia_site_preferences),
                                  ('advanced_preferences', None, _('_Advanced Preferences'), _('<control>F'), 'Edit your preferences', self.dia_advanced_preferences),
                                  ('import', None, _('_Import')),
