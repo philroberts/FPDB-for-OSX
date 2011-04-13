@@ -68,10 +68,14 @@ Important known problems
 ========================
 YYY(PKR is not working correctly)YYY
 
-Special information for Windows installations
-=============================================
+Notice for Windows users
+========================
 YYY(First-time installs may need to download and install the C++ runtime executable from Microsoft.)YYY
 YYY(Windows 7 and windows Vista users will need to set fpdb.exe and hud_main.exe to run as administrator (see http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Install_in_Windows))YYY
+
+Notice for Arch Linux users
+===========================
+You will need to change the shebang in fpdb.pyw and HUD_main.pyw from python to python2. Join us in IRC if you have questions about this.
 
 Contributors
 ============
