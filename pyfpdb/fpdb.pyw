@@ -477,7 +477,7 @@ class fpdb:
                         "re_Percent", "re_Places", "L10n", "sys", "_", "log", "encoder", "codecs",
                         "logging"):
                 continue
-            statDict[attr] = eval("Stats.%s.__doc__" % (attr))
+            statDict[attr] = (eval("Stats.%s.__doc__" % (attr)) + " (" + attr + ")")
 
         for rowNumber in range(self.hud_preferences_rows + 1):
             newRow = []
@@ -534,7 +534,7 @@ class fpdb:
             for column in row:
                 new_field = column.get_active_text()
                 for attr in stat_dict: #very inefficient, but who cares
-                    if new_field == eval("Stats.%s.__doc__" % (attr)):
+                    if new_field == stat_dict[attr]:
                         newRow.append(attr)
                         break
             statTable.append(newRow)
