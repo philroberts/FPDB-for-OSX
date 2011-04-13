@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2011-04-13 16:12+CEST\n"
-"PO-Revision-Date: 2011-04-12 20:45+0200\n"
+"PO-Revision-Date: 2011-04-13 21:22+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -1708,9 +1708,8 @@ msgid "and"
 msgstr "Max:"
 
 #: GuiRingPlayerStats.py:785
-#, fuzzy
 msgid "Restrict to hand types:"
-msgstr "Indítsd újra az fpdb-t a betöltésükhöz."
+msgstr "Szűrés a következő kéztípusokra:"
 
 #: GuiSessionViewer.py:42
 msgid "Failed to load numpy and/or matplotlib in Session Viewer"
@@ -3394,7 +3393,7 @@ msgstr ""
 
 #: fpdb.pyw:130
 msgid "%s plus git"
-msgstr ""
+msgstr "%s plusz git"
 
 #: fpdb.pyw:263
 msgid ""
@@ -3486,7 +3485,7 @@ msgstr "HUD beállító - válassz kategóriát"
 
 #: fpdb.pyw:387
 msgid "Note that this does not existing settings, but overwrites them."
-msgstr "Vedd figyele,be, hogy ez felülírja a meglévő beállításokat."
+msgstr "Vedd figyelembe, hogy ez felülírja a meglévő beállításokat."
 
 #: fpdb.pyw:391
 msgid ""
