@@ -127,8 +127,7 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.23"
-
+VERSION = _("%s plus git") % "0.24"
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
@@ -200,8 +199,12 @@ class fpdb:
         # Insensitive/base is chosen as the background colour, because 
         # although not perfect, it seems to be the least instrusive.
         baseNormStyle = eventBox.get_style().base[gtk.STATE_INSENSITIVE]
-        if baseNormStyle:
-            eventBox.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.color_parse(str(baseNormStyle)))
+        try:
+            gtk.gdk.color_parse(str(baseNormStyle))
+            if baseNormStyle:
+                eventBox.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.color_parse(str(baseNormStyle)))
+        except:
+            pass
 
         if nb.get_n_pages() > 0:
             tabButton = gtk.Button()
@@ -310,26 +313,23 @@ class fpdb:
         for t in self.threads:
             log.debug("........." + str(t.__class__))
 
-    def dia_preferences(self, widget, data=None):
-        dia = gtk.Dialog(_("Preferences"),
+    def dia_advanced_preferences(self, widget, data=None):
+        dia = gtk.Dialog(_("Advanced Preferences"),
                          self.window,
                          gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                          (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
                           gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
         dia.set_default_size(700, 500)
 
+        #force reload of prefs from xml file - needed because HUD could
+        #have changed file contents
+        self.load_profile()
         prefs = GuiPrefs.GuiPrefs(self.config, self.window, dia.vbox, dia)
         response = dia.run()
         if response == gtk.RESPONSE_ACCEPT:
             # save updated config
             self.config.save()
-            if len(self.nb_tab_names) == 1:
-                # only main tab open, reload profile
-                self.load_profile()
-                dia.destroy()
-            else:
-                dia.destroy()  # destroy prefs before raising warning, otherwise parent is dia rather than self.window
-                self.warning_box(_("Updated preferences have not been loaded because windows are open. Re-start fpdb to load them."))
+            self.reload_config(dia)
         else:
             dia.destroy()
 
@@ -371,24 +371,29 @@ class fpdb:
                     diatitle=_("Database Statistics"))
     #end def dia_database_stats
 
-    def diaHudConfigurator(self, widget, data=None):
-        """Opens dialog to set parameters (game category, row count, column count for HUD stat configurator"""
-        self.hudConfiguratorRows = None
-        self.hudConfiguratorColumns = None
-        self.hudConfiguratorGame = None
+    def dia_hud_preferences(self, widget, data=None):
+        """Opens dialog to set parameters (game category, row count, column count) for HUD preferences"""
+        #Note: No point in working on this until the new HUD configuration system is in place
+        self.hud_preferences_rows = None
+        self.hud_preferences_columns = None
+        self.hud_preferences_game = None
 
-        diaSelections = gtk.Dialog(_("HUD Configurator - choose category"),
+        diaSelections = gtk.Dialog(_("HUD Preferences - choose category"),
                                  self.window,
                                  gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                  (gtk.STOCK_OK, gtk.RESPONSE_ACCEPT,
                                   gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
+
+        label = gtk.Label(_("Note that this does not existing settings, but overwrites them."))
+        diaSelections.vbox.add(label)
+        label.show()
 
         label = gtk.Label(_("Please select the game category for which you want to configure HUD stats:"))
         diaSelections.vbox.add(label)
         label.show()
 
         comboGame = gtk.combo_box_new_text()
-        comboGame.connect("changed", self.hudConfiguratorComboSelection)
+        comboGame.connect("changed", self.hud_preferences_combo_selection)
         diaSelections.vbox.add(comboGame)
         games = self.config.get_supported_games()
         for game in games:
@@ -397,7 +402,7 @@ class fpdb:
         comboGame.show()
 
         comboRows = gtk.combo_box_new_text()
-        comboRows.connect("changed", self.hudConfiguratorComboSelection)
+        comboRows.connect("changed", self.hud_preferences_combo_selection)
         diaSelections.vbox.add(comboRows)
         for i in range(1, 8):
             comboRows.append_text(str(i) + " rows")
@@ -405,40 +410,39 @@ class fpdb:
         comboRows.show()
 
         comboColumns = gtk.combo_box_new_text()
-        comboColumns.connect("changed", self.hudConfiguratorComboSelection)
+        comboColumns.connect("changed", self.hud_preferences_combo_selection)
         diaSelections.vbox.add(comboColumns)
         for i in range(1, 8):
             comboColumns.append_text(str(i) + " columns")
         comboColumns.set_active(0)
         comboColumns.show()
 
+        self.load_profile()
         response = diaSelections.run()
         diaSelections.destroy()
 
         if (response == gtk.RESPONSE_ACCEPT and
-            self.hudConfiguratorRows != None and
-            self.hudConfiguratorColumns != None and
-            self.hudConfiguratorGame != None):
-            #print "clicked ok and selected:", self.hudConfiguratorGame,"with", str(self.hudConfiguratorRows), "rows and", str(self.hudConfiguratorColumns), "columns"
-            self.diaHudConfiguratorTable()
-    #end def diaHudConfigurator
+            self.hud_preferences_rows != None and
+            self.hud_preferences_columns != None and
+            self.hud_preferences_game != None):
+            self.dia_hud_preferences_table()
+    #end def dia_hud_preferences
 
-    def hudConfiguratorComboSelection(self, widget):
-        #TODO: remove this and handle it directly in diaHudConfigurator
+    def hud_preferences_combo_selection(self, widget):
+        #TODO: remove this and handle it directly in dia_hud_preferences
         result = widget.get_active_text()
         if result.endswith(" rows"):
-            self.hudConfiguratorRows = int(result[0])
+            self.hud_preferences_rows = int(result[0])
         elif result.endswith(" columns"):
-            self.hudConfiguratorColumns = int(result[0])
+            self.hud_preferences_columns = int(result[0])
         else:
-            self.hudConfiguratorGame = result
-    #end def hudConfiguratorComboSelection
+            self.hud_preferences_game = result
+    #end def hud_preferences_combo_selection
 
-    def diaHudConfiguratorTable(self):
+    def dia_hud_preferences_table(self):
         """shows dialogue with Table of ComboBoxes to allow choosing of HUD stats"""
-        #TODO: add notices to hud configurator: no duplicates, no empties, display options
         #TODO: show explanation of what each stat means
-        diaHudTable = gtk.Dialog(_("HUD Configurator - please choose your stats"),
+        diaHudTable = gtk.Dialog(_("HUD Preferences - please choose your stats"),
                                  self.window,
                                  gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                  (gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT,
@@ -456,12 +460,12 @@ class fpdb:
         diaHudTable.vbox.add(label)
         label.show()
 
-        label = gtk.Label(_("To configure things like colouring you will still have to use the Preferences dialogue or manually edit your HUD_config.xml."))
+        label = gtk.Label(_("To configure things like colouring you will still have to use the Advanced Preferences dialogue or manually edit your HUD_config.xml."))
         diaHudTable.vbox.add(label)
         label.show()
 
-        self.hudConfiguratorTableContents = []
-        table = gtk.Table(rows=self.hudConfiguratorRows + 1, columns=self.hudConfiguratorColumns + 1, homogeneous=True)
+        self.hud_preferences_table_contents = []
+        table = gtk.Table(rows=self.hud_preferences_rows + 1, columns=self.hud_preferences_columns + 1, homogeneous=True)
 
         statDir = dir(Stats)
         statDict = {}
@@ -469,14 +473,15 @@ class fpdb:
             if attr.startswith('__'):
                 continue
             if attr in ("Charset", "Configuration", "Database", "GInitiallyUnowned", "gtk", "pygtk",
-                        "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict",
-                        "h", "re", "re_Percent", "re_Places", ):
+                        "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict", "h", "re",
+                        "re_Percent", "re_Places", "L10n", "sys", "_", "log", "encoder", "codecs",
+                        "logging"):
                 continue
-            statDict[attr] = eval("Stats.%s.__doc__" % (attr))
+            statDict[attr] = (eval("Stats.%s.__doc__" % (attr)) + " (" + attr + ")")
 
-        for rowNumber in range(self.hudConfiguratorRows + 1):
+        for rowNumber in range(self.hud_preferences_rows + 1):
             newRow = []
-            for columnNumber in range(self.hudConfiguratorColumns + 1):
+            for columnNumber in range(self.hud_preferences_columns + 1):
                 if rowNumber == 0:
                     if columnNumber == 0:
                         pass
@@ -497,7 +502,7 @@ class fpdb:
                 else:
                     comboBox = gtk.combo_box_new_text()
 
-                    for stat in statDict.keys():
+                    for stat in statDict.values():
                         comboBox.append_text(stat)
                     comboBox.set_active(0)
 
@@ -509,7 +514,7 @@ class fpdb:
 
                     comboBox.show()
             if rowNumber != 0:
-                self.hudConfiguratorTableContents.append(newRow)
+                self.hud_preferences_table_contents.append(newRow)
         diaHudTable.vbox.add(table)
         table.show()
 
@@ -517,22 +522,26 @@ class fpdb:
         diaHudTable.destroy()
 
         if response == gtk.RESPONSE_ACCEPT:
-            self.storeNewHudStatConfig()
-    #end def diaHudConfiguratorTable
+            self.storeNewHudStatConfig(statDict)
+    #end def dia_hud_preferences_table
 
-    def storeNewHudStatConfig(self):
-        """stores selections made in diaHudConfiguratorTable"""
-        self.obtain_global_lock("diaHudConfiguratorTable")
+    def storeNewHudStatConfig(self, stat_dict):
+        """stores selections made in dia_hud_preferences_table"""
+        self.obtain_global_lock("dia_hud_preferences")
         statTable = []
-        for row in self.hudConfiguratorTableContents:
+        for row in self.hud_preferences_table_contents:
             newRow = []
             for column in row:
-                newField = column.get_active_text()
-                newRow.append(newField)
+                new_field = column.get_active_text()
+                for attr in stat_dict: #very inefficient, but who cares
+                    if new_field == stat_dict[attr]:
+                        newRow.append(attr)
+                        break
             statTable.append(newRow)
 
-        self.config.editStats(self.hudConfiguratorGame, statTable)
+        self.config.editStats(self.hud_preferences_game, statTable)
         self.config.save()  # TODO: make it not store in horrible formatting
+        self.reload_config(None)
         self.release_global_lock()
     #end def storeNewHudStatConfig
 
@@ -544,29 +553,6 @@ class fpdb:
         dumpFile.write(result)
         dumpFile.close()
     #end def dia_database_stats
-
-    def dia_load_profile(self, widget, data=None):
-        """Dialogue to select a file to load a profile from"""
-        if self.obtain_global_lock("fpdb.dia_load_profile"):  # returns true if successful
-            #try:
-            #    chooser = gtk.FileChooserDialog(title="Please select a profile file to load",
-            #            action=gtk.FILE_CHOOSER_ACTION_OPEN,
-            #            buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
-            #    chooser.set_filename(self.profile)
-
-            #    response = chooser.run()
-            #    chooser.destroy()
-            #    if response == gtk.RESPONSE_OK:
-            #        self.load_profile(chooser.get_filename())
-            #    elif response == gtk.RESPONSE_CANCEL:
-            #        print 'User cancelled loading profile'
-            #except:
-            #    pass
-            #try:
-            self.load_profile()
-            #except:
-            #    pass
-            self.release_global_lock()
 
     def dia_recreate_tables(self, widget, data=None):
         """Dialogue that asks user to confirm that he wants to delete and recreate the tables"""
@@ -723,6 +709,79 @@ class fpdb:
         #if lock_set:
         #    self.release_global_lock()
 
+    def dia_site_preferences(self, widget, data=None):
+        dia = gtk.Dialog(_("Site Preferences"), self.window,
+                gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                (gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT, gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
+        label = gtk.Label(_("Please select which sites you play on and enter your usernames."))
+        dia.vbox.add(label)
+        
+        self.load_profile()
+        site_names = self.config.site_ids
+        available_site_names=[]
+        for site_name in site_names:
+            try:
+                tmp = self.config.supported_sites[site_name].enabled
+                available_site_names.append(site_name)
+            except KeyError:
+                pass
+        
+        label = gtk.Label(_(" "))
+        dia.vbox.add(label)
+        
+        column_headers=[_("Site"), _("Screen Name"), _("History Path")] #TODO , _("Summary Path"), _("HUD")] 
+        #HUD column will contain a button that shows favseat and HUD locations. Make it possible to load screenshot to arrange HUD windowlets.
+        table = gtk.Table(rows=len(available_site_names)+1, columns=len(column_headers), homogeneous=False)
+        dia.vbox.add(table)
+        
+        for header_number in range (0, len(column_headers)):
+            label = gtk.Label(column_headers[header_number])
+            table.attach(label, header_number, header_number+1, 0, 1)
+        
+        check_buttons=[]
+        screen_names=[]
+        history_paths=[]
+        y_pos=1
+        for site_number in range(0, len(available_site_names)):
+            check_button = gtk.CheckButton(label=available_site_names[site_number])
+            check_button.set_active(self.config.supported_sites[available_site_names[site_number]].enabled)
+            table.attach(check_button, 0, 1, y_pos, y_pos+1)
+            check_buttons.append(check_button)
+            
+            entry = gtk.Entry()
+            entry.set_text(self.config.supported_sites[available_site_names[site_number]].screen_name)
+            table.attach(entry, 1, 2, y_pos, y_pos+1)
+            screen_names.append(entry)
+            
+            entry = gtk.Entry()
+            entry.set_text(self.config.supported_sites[available_site_names[site_number]].HH_path)
+            table.attach(entry, 2, 3, y_pos, y_pos+1)
+            history_paths.append(entry)
+            
+            y_pos+=1
+        
+        dia.show_all()
+        response = dia.run()
+        if (response == gtk.RESPONSE_ACCEPT):
+            for site_number in range(0, len(available_site_names)):
+                #print "site %s enabled=%s name=%s" % (available_site_names[site_number], check_buttons[site_number].get_active(), screen_names[site_number].get_text(), history_paths[site_number].get_text())
+                self.config.edit_site(available_site_names[site_number], str(check_buttons[site_number].get_active()), screen_names[site_number].get_text(), history_paths[site_number].get_text())
+            
+            self.config.save()
+            self.reload_config(dia)
+            
+        dia.destroy()
+    
+    def reload_config(self, dia):
+        if len(self.nb_tab_names) == 1:
+            # only main tab open, reload profile
+            self.load_profile()
+            if dia: dia.destroy() # destroy prefs before raising warning, otherwise parent is dia rather than self.window
+            self.warning_box(_("If you had previously opened any tabs they cannot use the new settings without restart.")+" "+_("Re-start fpdb to load them."))
+        else:
+            if dia: dia.destroy() # destroy prefs before raising warning, otherwise parent is dia rather than self.window
+            self.warning_box(_("Updated preferences have not been loaded because windows are open.")+" "+_("Re-start fpdb to load them."))
+    
     def addLogText(self, text):
         end_iter = self.logbuffer.get_end_iter()
         self.logbuffer.insert(end_iter, text)
@@ -783,19 +842,15 @@ class fpdb:
         win.destroy()
         self.dia_confirm.set_modal(True)
 
-    def dia_save_profile(self, widget, data=None):
-        self.warning_box(_("Unimplemented: Save Profile (try saving a HUD layout, that should do it)"))
-
     def get_menu(self, window):
         """returns the menu for this program"""
         fpdbmenu = """
             <ui>
               <menubar name="MenuBar">
                 <menu action="main">
-                  <menuitem action="LoadProf"/>
-                  <menuitem action="SaveProf"/>
-                  <menuitem action="hudConfigurator"/>
-                  <menuitem action="Preferences"/>
+                  <menuitem action="site_preferences"/>
+                  <menuitem action="hud_preferences"/>
+                  <menuitem action="advanced_preferences"/>
                   <separator/>
                   <menuitem action="Quit"/>
                 </menu>
@@ -807,7 +862,7 @@ class fpdb:
                 </menu>
                 <menu action="viewers">
                   <menuitem action="autoimp"/>
-                  <menuitem action="hudConfigurator"/>
+                  <menuitem action="hud_preferences"/>
                   <menuitem action="graphs"/>
                   <menuitem action="tourneygraphs"/>
                   <menuitem action="ringplayerstats"/>
@@ -841,16 +896,15 @@ class fpdb:
         # Create actions
         actiongroup.add_actions([('main', None, _('_Main')),
                                  ('Quit', gtk.STOCK_QUIT, _('_Quit'), None, 'Quit the Program', self.quit),
-                                 ('LoadProf', None, _('_Load Profile (broken)'), _('<control>L'), 'Load your profile', self.dia_load_profile),
-                                 ('SaveProf', None, _('_Save Profile (todo)'), _('<control>S'), 'Save your profile', self.dia_save_profile),
-                                 ('Preferences', None, _('Pre_ferences'), _('<control>F'), 'Edit your preferences', self.dia_preferences),
+                                 ('site_preferences', None, _('_Site Preferences'), None, 'Site Preferences', self.dia_site_preferences),
+                                 ('advanced_preferences', None, _('_Advanced Preferences'), _('<control>F'), 'Edit your preferences', self.dia_advanced_preferences),
                                  ('import', None, _('_Import')),
                                  ('bulkimp', None, _('_Bulk Import'), _('<control>B'), 'Bulk Import', self.tab_bulk_import),
                                  ('tourneyimp', None, _('Tournament _Results Import'), _('<control>R'), 'Tournament Results Import', self.tab_tourney_import),
                                  ('imapimport', None, _('_Import through eMail/IMAP'), _('<control>I'), 'Import through eMail/IMAP', self.tab_imap_import),
                                  ('viewers', None, _('_Viewers')),
                                  ('autoimp', None, _('_Auto Import and HUD'), _('<control>A'), 'Auto Import and HUD', self.tab_auto_import),
-                                 ('hudConfigurator', None, _('_HUD Configurator'), _('<control>H'), 'HUD Configurator', self.diaHudConfigurator),
+                                 ('hud_preferences', None, _('_HUD Preferences'), _('<control>H'), 'HUD Preferences', self.dia_hud_preferences),
                                  ('graphs', None, _('_Graphs'), _('<control>G'), 'Graphs', self.tabGraphViewer),
                                  ('tourneygraphs', None, _('Tourney Graphs'), None, 'TourneyGraphs', self.tabTourneyGraphViewer),
                                  ('stove', None, _('Stove (preview)'), None, 'Stove', self.tabStove),
@@ -895,8 +949,8 @@ class fpdb:
         print (_("Logfile is %s\n") % os.path.join(self.config.dir_log, self.config.log_file))
         if self.config.example_copy:
             self.info_box(_("Config file"),
-                          _("has been created at:\n%s.\n") % self.config.file
-                           + _("Edit your screen_name and hand history path in the supported_sites section of the Preferences window (Main menu) before trying to import hands."))
+                          _("Config file has been created at:") + ("\n%s.\n") % self.config.file
+                           + _("Edit your screen_name and hand history path in the supported_sites section of the Advanced Preferences window (Main menu) before trying to import hands."))
         self.settings = {}
         self.settings['global_lock'] = self.lock
         if (os.sep == "/"):
@@ -1338,7 +1392,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
             except KeyError, exc:
                 log.warning("site %s missing from db" % site)
                 dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Unknown Site")
-                diastring = _("WARNING: Unable to find site  '%s'\n\nPress YES to add this site to the database.") % site
+                diastring = _("Warning:") +" " + _("Unable to find site  '%s'\n\nPress YES to add this site to the database.") % site
                 dia.format_secondary_text(diastring)
                 response = dia.run()
                 dia.destroy()

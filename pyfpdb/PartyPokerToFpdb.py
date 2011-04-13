@@ -532,7 +532,7 @@ class PartyPoker(HandHistoryConverter):
             elif actionType == 'checks':
                 hand.addCheck( street, playerName )
             else:
-                raise FpdbParseError(_("Unimplemented readAction: '%s' '%s'") % (playerName,actionType), hid = hand.hid)
+                raise FpdbParseError(_("Unimplemented %s: '%s' '%s'") % ("readAction", playerName,actionType), hid = hand.hid)
 
     def readShowdownActions(self, hand):
         # all action in readShownCards

@@ -125,9 +125,7 @@ class OnGame(HandHistoryConverter):
             self.re_PostDead  = re.compile('(?P<PNAME>.*) posts dead blind \((%(CUR)s)?(?P<DEAD>[\.0-9]+)\)' % subst, re.MULTILINE)
             self.re_HeroCards = re.compile('Dealing\sto\s%(PLYR)s:\s\[(?P<CARDS>.*)\]' % subst)
 
-            #lopllopl checks, Eurolll checks, .Lucchess checks.
-            #chumley. calls $0.25
-            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( (%(CUR)s)?(?P<BET>[\d\.]+))?( and is all-in)?' % subst)
+            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( (%(CUR)s)?(?P<BET>[\d\.]+))?( to (%(CUR)s)?(?P<BET2>[\d\.]+))?( and is all-in)?' % subst)
             #self.re_Board = re.compile(r"\[board cards (?P<CARDS>.+) \]")
 
             #Uchilka shows [ KC,JD ]
@@ -213,8 +211,8 @@ class OnGame(HandHistoryConverter):
                     tzoffset = a.group('OFFSET')
                 else:
                     datetimestr = "2010/Jan/01 01:01:01"
-                    log.error(_("readHandInfo: DATETIME not matched: '%s'") % info[key])
-                    print (_("DEBUG: ") + _("readHandInfo: DATETIME not matched: '%s'") % info[key])
+                    log.error("readHandInfo: " + _("DATETIME not matched: '%s'") % info[key])
+                    print (_("DEBUG:") + " readHandInfo: " + _("DATETIME not matched: '%s'") % info[key])
                 # TODO: Manually adjust time against OFFSET
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%b/%d %H:%M:%S") # also timezone at end, e.g. " ET"
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, tzoffset, "UTC")
@@ -331,7 +329,7 @@ class OnGame(HandHistoryConverter):
             #acts = action.groupdict()
             #print "readaction: acts: %s" %acts
             if action.group('ATYPE') == ' raises':
-                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET2') )
             elif action.group('ATYPE') == ' calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' bets':
@@ -345,7 +343,7 @@ class OnGame(HandHistoryConverter):
             elif action.group('ATYPE') == ' stands pat':
                 hand.addStandsPat( street, action.group('PNAME'))
             else:
-                print (_("DEBUG: ") + _("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
+                print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):

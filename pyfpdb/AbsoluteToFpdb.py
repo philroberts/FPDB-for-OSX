@@ -321,11 +321,7 @@ class Absolute(HandHistoryConverter):
             hand.involved = False
 
     def readStudPlayerCards(self, hand, street):
-        # lol. see Plymouth.txt
-        logging.warning(_("Absolute readStudPlayerCards is only a stub."))
-        #~ if street in ('THIRD', 'FOURTH',  'FIFTH',  'SIXTH'):
-            #~ hand.addPlayerCards(player = player.group('PNAME'), street = street,  closed = [],  open = [])
-
+        logging.warning(_("%s cannot read all stud/razz hands yet.") % hand.sitename)
 
     def readAction(self, hand, street):
         logging.debug("readAction (%s)" % street)
@@ -349,7 +345,7 @@ class Absolute(HandHistoryConverter):
                 bet = action.group('BET').replace(',', '')
                 hand.addComplete( street, action.group('PNAME'), bet)
             else:
-                logging.debug(_("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
+                logging.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):

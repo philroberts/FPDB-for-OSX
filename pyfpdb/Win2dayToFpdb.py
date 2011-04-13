@@ -292,7 +292,7 @@ class Win2day(HandHistoryConverter):
 
     def readStudPlayerCards(self, hand, street):
         # See comments of reference implementation in FullTiltToFpdb.py
-        logging.debug("readStudPlayerCards")
+        # logging.debug("readStudPlayerCards")
         m = self.re_HeroCards.finditer(hand.streets[street])
         for player in m:
             #~ logging.debug(player.groupdict())
@@ -345,7 +345,7 @@ class Win2day(HandHistoryConverter):
             elif action.group('ATYPE') == 'ACTION_STAND':
                 hand.addStandsPat( street, action.group('PNAME'))
             else:
-                print (_("DEBUG: ") + _("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
+                print (_("DEBUG:") + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):
