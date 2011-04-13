@@ -127,7 +127,7 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.24 plus git"
+VERSION = _("%s plus git") % "0.24"
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
