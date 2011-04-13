@@ -502,7 +502,7 @@ class fpdb:
                 else:
                     comboBox = gtk.combo_box_new_text()
 
-                    for stat in statDict.keys():
+                    for stat in statDict.values():
                         comboBox.append_text(stat)
                     comboBox.set_active(0)
 
@@ -522,18 +522,21 @@ class fpdb:
         diaHudTable.destroy()
 
         if response == gtk.RESPONSE_ACCEPT:
-            self.storeNewHudStatConfig()
+            self.storeNewHudStatConfig(statDict)
     #end def dia_hud_preferences_table
 
-    def storeNewHudStatConfig(self):
+    def storeNewHudStatConfig(self, stat_dict):
         """stores selections made in dia_hud_preferences_table"""
         self.obtain_global_lock("dia_hud_preferences")
         statTable = []
         for row in self.hud_preferences_table_contents:
             newRow = []
             for column in row:
-                newField = column.get_active_text()
-                newRow.append(newField)
+                new_field = column.get_active_text()
+                for attr in stat_dict: #very inefficient, but who cares
+                    if new_field == eval("Stats.%s.__doc__" % (attr)):
+                        newRow.append(attr)
+                        break
             statTable.append(newRow)
 
         self.config.editStats(self.hud_preferences_game, statTable)
