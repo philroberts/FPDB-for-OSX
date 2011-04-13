@@ -168,16 +168,13 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                          ,['h.street3Raises',     'Bets to See Street7',   0,  5]
                          ,['h.street4Raises',     'Bets to See Showdown',  0,  5]
                          ]
-        firstcard = '((hp.startcards - 1) /  13)'
-        secondcard = '((hp.startcards - 1) - 13 * %s)' % firstcard
-        gap = '(%s - %s = %d)'
 
         self.cardstests = [
-            ['%(firstcard)s = %(secondcard)s' % locals(), 'Pocket pairs'],
-            ['%(firstcard)s > %(secondcard)s' % locals(), 'Suited'],
-            [gap % (firstcard, secondcard, 1), 'Suited connectors'],
-            ['%(firstcard)s < %(secondcard)s' % locals(), 'Offsuit'],
-            [gap % (secondcard, firstcard, 1), 'Offsuit connectors'],
+            [Card.DATABASE_FILTERS['pair'], _('Pocket pairs')],
+            [Card.DATABASE_FILTERS['suited'], _('Suited')],
+            [Card.DATABASE_FILTERS['suited_connectors'], _('Suited connectors')],
+            [Card.DATABASE_FILTERS['offsuit'], _('Offsuit')],
+            [Card.DATABASE_FILTERS['offsuit_connectors'], _('Offsuit connectors')],
         ]
         self.stats_frame = None
         self.stats_vbox = None
