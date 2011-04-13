@@ -168,10 +168,21 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                          ,['h.street3Raises',     'Bets to See Street7',   0,  5]
                          ,['h.street4Raises',     'Bets to See Showdown',  0,  5]
                          ]
+        firstcard = '((hp.startcards - 1) /  13)'
+        secondcard = '((hp.startcards - 1) - 13 * %s)' % firstcard
+        gap = '(%s - %s = %d)'
 
+        self.cardstests = [
+            [' %(firstcard)s = %(secondcard)s' % locals(), 'Pocket pairs'],
+            [gap % (firstcard, secondcard, 1), 'Suited connectors'],
+            [gap % (secondcard, firstcard, 1), 'Offsuit connectors'],
+            [gap % (firstcard, secondcard, 2), 'Suited one-gaps'],
+            [gap % (secondcard, firstcard, 2), 'Offsuit one-gaps']
+        ]
         self.stats_frame = None
         self.stats_vbox = None
         self.detailFilters = []   # the data used to enhance the sql select
+        self.cardsFilters = []
         
         #self.main_hbox = gtk.HBox(False, 0)
         #self.main_hbox.show()
@@ -686,7 +697,15 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                     # X between Y and Z
                     flagtest += ' and %s between %s and %s ' % (f[0], str(f[1]), str(f[2]))
         query = query.replace("<flagtest>", flagtest)
+        if self.cardsFilters:
+            cardstests = []
 
+            for filter in self.cardsFilters:
+                cardstests.append(filter)
+            cardstests = ''.join(('and (', ' or '.join(cardstests), ')'))
+        else:
+            cardstests = ''
+        query = query.replace("<cardstest>", cardstests)
         # allow for differences in sql cast() function:
         if self.db.backend == self.MYSQL_INNODB:
             query = query.replace("<signed>", 'signed ')
@@ -726,11 +745,14 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         label.show()
 
         betweenFilters = []
-        for htest in self.handtests:
+        def add_hbox():
             hbox = gtk.HBox(False, 0)
             handbox.pack_start(hbox, False, False, 0)
             hbox.show()
+            return hbox
 
+        for htest in self.handtests:
+            hbox = add_hbox()
             cb = gtk.CheckButton()
             lbl_from = gtk.Label(htest[1])
             lbl_from.set_alignment(xalign=0.0, yalign=0.5)
@@ -760,6 +782,20 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
 
             htest[4:7] = [cb,sb1,sb2]
 
+        label = gtk.Label(_('Restrict to hand types:'))
+        handbox.add(label)
+        label.show()
+        for ctest in self.cardstests:
+            hbox = add_hbox()
+            cb = gtk.CheckButton()
+            if ctest[0] in self.cardsFilters:
+                cb.set_active(True)
+            label = gtk.Label(ctest[1])
+            hbox.pack_start(cb, expand=False, padding=3)
+            hbox.pack_start(label, expand=True, padding=3)
+            cb.show()
+            label.show()
+            ctest[2:3] = [cb]
         response = detailDialog.run()
 
         if response == gtk.RESPONSE_ACCEPT:
@@ -769,6 +805,11 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                     self.detailFilters.append( (ht[0], ht[5].get_value_as_int(), ht[6].get_value_as_int()) )
                 ht[2],ht[3] = ht[5].get_value_as_int(), ht[6].get_value_as_int()
             print "detailFilters =", self.detailFilters
+            self.cardsFilters = []
+            for ct in self.cardstests:
+                if ct[2].get_active():
+                    self.cardsFilters.append(ct[0])
+            print "cardsFilters =", self.cardsFilters
             self.refreshStats(None, None)
 
         detailDialog.destroy()
