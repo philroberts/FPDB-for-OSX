@@ -209,7 +209,7 @@ class Fulltilt(HandHistoryConverter):
             log.error(_("Unable to recognise gametype from: '%s'") % tmp)
             log.error("determineGameType: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
-        #mg = m.groupdict()
+        mg = m.groupdict()
 
         # translations from captured groups to our info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
@@ -286,7 +286,7 @@ class Fulltilt(HandHistoryConverter):
             log.error("readHandInfo: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise hand info from: '%s'"))
 
-        print "DEBUG: m.groupdict: %s" % m.groupdict()
+        #print "DEBUG: m.groupdict: %s" % m.groupdict()
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
 
