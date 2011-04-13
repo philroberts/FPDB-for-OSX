@@ -538,6 +538,7 @@ class fpdb:
 
         self.config.editStats(self.hud_preferences_game, statTable)
         self.config.save()  # TODO: make it not store in horrible formatting
+        self.reload_config(None)
         self.release_global_lock()
     #end def storeNewHudStatConfig
 
@@ -772,10 +773,10 @@ class fpdb:
         if len(self.nb_tab_names) == 1:
             # only main tab open, reload profile
             self.load_profile()
-            dia.destroy() # destroy prefs before raising warning, otherwise parent is dia rather than self.window
+            if dia: dia.destroy() # destroy prefs before raising warning, otherwise parent is dia rather than self.window
             self.warning_box(_("If you had previously opened any tabs they cannot use the new settings without restart.")+" "+_("Re-start fpdb to load them."))
         else:
-            dia.destroy() # destroy prefs before raising warning, otherwise parent is dia rather than self.window
+            if dia: dia.destroy() # destroy prefs before raising warning, otherwise parent is dia rather than self.window
             self.warning_box(_("Updated preferences have not been loaded because windows are open.")+" "+_("Re-start fpdb to load them."))
     
     def addLogText(self, text):
