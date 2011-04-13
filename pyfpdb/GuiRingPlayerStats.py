@@ -173,11 +173,11 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         gap = '(%s - %s = %d)'
 
         self.cardstests = [
-            [' %(firstcard)s = %(secondcard)s' % locals(), 'Pocket pairs'],
+            ['%(firstcard)s = %(secondcard)s' % locals(), 'Pocket pairs'],
+            ['%(firstcard)s > %(secondcard)s' % locals(), 'Suited'],
             [gap % (firstcard, secondcard, 1), 'Suited connectors'],
+            ['%(firstcard)s < %(secondcard)s' % locals(), 'Offsuit'],
             [gap % (secondcard, firstcard, 1), 'Offsuit connectors'],
-            [gap % (firstcard, secondcard, 2), 'Suited one-gaps'],
-            [gap % (secondcard, firstcard, 2), 'Offsuit one-gaps']
         ]
         self.stats_frame = None
         self.stats_vbox = None
