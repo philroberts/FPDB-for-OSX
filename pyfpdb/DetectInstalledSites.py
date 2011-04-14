@@ -28,6 +28,7 @@ We just look for a hero HH folder, and assume the application is installed
 
 Situations not handled are:
     Multiple screennames using the computer
+    Unexpected files in HH dir (e.g. "archive" may become heroname!)
     Any variation from the default installation options
     Mac installations
 
@@ -103,7 +104,7 @@ class DetectInstalledSites():
         #
         self.userPlatform = platform.system()  #Linux, Windows,
         if self.userPlatform == 'Windows':
-            self.userPlatform = platform.release() # XP, Vista, Win7
+            self.userPlatform = platform.release() # XP or various strings for Vista/win7
             if self.userPlatform <> 'XP':
                 self.userPlatform = 'Win7' #Vista and win7
 
@@ -140,18 +141,20 @@ class DetectInstalledSites():
         if self.userPlatform == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/Full Tilt Poker/HandHistory/")
         elif self.userPlatform == "XP":
-            a=winpaths.whatever()
-            hhp=os.path.expanduser("c:/drive_c/Program Files/Full Tilt Poker/HandHistory/")
+            hhp=os.path.expanduser(winpaths.get_program_files()+"\\Full Tilt Poker\\HandHistory\\")
         elif self.userPlatform == "Win7":
-            hhp=os.path.expanduser("c:/drive_c/Program Files (x86)/Full Tilt Poker/HandHistory/")
+            hhp=os.path.expanduser(winpaths.get_program_files()+"\\Full Tilt Poker\\HandHistory\\")
+        else:
+            return
             
         if os.path.exists(hhp):
                 self.pathfound = hhp
         try:
             self.herofound = os.listdir(self.pathfound)[0]
+            self.pathfound = self.pathfound + self.herofound
         except:
             pass
-            
+ 
         return
         
     def PS(self):
@@ -159,14 +162,17 @@ class DetectInstalledSites():
         if self.userPlatform == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/PokerStars/HandHistory/")
         elif self.userPlatform == "XP":
-            inst=os.path.expanduser("c:/drive_c/Program Files/PokerStars/")
+            hhp=os.path.expanduser(winpaths.get_program_files()+"\\PokerStars\\HandHistory\\")
         elif self.userPlatform == "Win7":
-            inst=os.path.expanduser("c:/drive_c/Program Files (x86)/PokerStars/")
+            hhp=os.path.expanduser(winpaths.get_local_appdata()+"\\PokerStars\\HandHistory\\")
+        else:
+            return
             
         if os.path.exists(hhp):
                 self.pathfound = hhp
         try:
             self.herofound = os.listdir(self.pathfound)[0]
+            self.pathfound = self.pathfound + self.herofound
         except:
             pass
             
