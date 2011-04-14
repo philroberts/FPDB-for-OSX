@@ -200,8 +200,12 @@ class fpdb:
         # Insensitive/base is chosen as the background colour, because 
         # although not perfect, it seems to be the least instrusive.
         baseNormStyle = eventBox.get_style().base[gtk.STATE_INSENSITIVE]
-        if baseNormStyle:
-            eventBox.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.color_parse(str(baseNormStyle)))
+        try:
+            gtk.gdk.color_parse(str(baseNormStyle))
+            if baseNormStyle:
+                eventBox.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.color_parse(str(baseNormStyle)))
+        except:
+            pass
 
         if nb.get_n_pages() > 0:
             tabButton = gtk.Button()
@@ -318,6 +322,9 @@ class fpdb:
                           gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
         dia.set_default_size(700, 500)
 
+        #force reload of prefs from xml file - needed because HUD could
+        #have changed file contents
+        self.load_profile()
         prefs = GuiPrefs.GuiPrefs(self.config, self.window, dia.vbox, dia)
         response = dia.run()
         if response == gtk.RESPONSE_ACCEPT:
@@ -411,6 +418,7 @@ class fpdb:
         comboColumns.set_active(0)
         comboColumns.show()
 
+        self.load_profile()
         response = diaSelections.run()
         diaSelections.destroy()
 
@@ -704,6 +712,7 @@ class fpdb:
         label = gtk.Label(_("Please select which sites you play on and enter your usernames."))
         dia.vbox.add(label)
         
+        self.load_profile()
         site_names = self.config.site_ids
         available_site_names=[]
         for site_name in site_names:
