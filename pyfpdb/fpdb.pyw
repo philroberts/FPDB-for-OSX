@@ -467,17 +467,7 @@ class fpdb:
         self.hud_preferences_table_contents = []
         table = gtk.Table(rows=self.hud_preferences_rows + 1, columns=self.hud_preferences_columns + 1, homogeneous=True)
 
-        statDir = dir(Stats)
-        statDict = {}
-        for attr in statDir:
-            if attr.startswith('__'):
-                continue
-            if attr in ("Charset", "Configuration", "Database", "GInitiallyUnowned", "gtk", "pygtk",
-                        "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict", "h", "re",
-                        "re_Percent", "re_Places", "L10n", "sys", "_", "log", "encoder", "codecs",
-                        "logging"):
-                continue
-            statDict[attr] = (eval("Stats.%s.__doc__" % (attr)) + " (" + attr + ")")
+        statDict = Stats.build_stat_descriptions(Stats)
 
         for rowNumber in range(self.hud_preferences_rows + 1):
             newRow = []

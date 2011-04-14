@@ -51,6 +51,19 @@ def calcStartCards(hand, player):
         return 0
 
 
+# The following depends on the exact implementation of twoStartCards.
+_firstcard = '((hp.startcards - 1) /  13)'
+_secondcard = '((hp.startcards - 1) - 13 * %s)' % _firstcard
+_gap = '(%s - %s = %d)'
+
+DATABASE_FILTERS = {
+    'pair': '%s = %s' % (_firstcard, _secondcard),
+    'suited': '%s > %s' % (_firstcard, _secondcard),
+    'offsuit': '%s < %s' % (_firstcard, _secondcard),
+    'suited_connectors': _gap % (_firstcard, _secondcard, 1),
+    'offsuit_connectors': _gap % (_secondcard, _firstcard, 1)
+}
+
 def twoStartCards(value1, suit1, value2, suit2):
     """ Function to convert 2 value,suit pairs into a Holdem style starting hand e.g. AQo
         Incoming values should be ints 2-14 (2,3,...K,A), suits are 'd'/'h'/'c'/'s'
