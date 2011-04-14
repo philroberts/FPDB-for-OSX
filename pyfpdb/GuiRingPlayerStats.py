@@ -57,10 +57,10 @@ onlinehelp = {'Game':_('Type of Game'),
               'AggFreq':_('Aggression Frequency\nBet or Raise vs Fold'),
               'ContBet':_('Continuation Bet post-flop'),
               'RFI':_('% Raise First In\% Raise when first to bet'),
-              'Steals':_('% First to raise pre-flop\nand steal blinds'),
+              'Steals':_('% First to raise preflop\nand steal blinds'),
               'Saw_F':_('% Saw Flop vs hands dealt'),
-              'SawSD':_('Saw Show Down / River'),
-              'WtSDwsF':_('Went To Show Down When Saw Flop'),
+              'SawSD':_('Saw Showdown / River'),
+              'WtSDwsF':_('Went To Showdown When Saw Flop'),
               'W$SD':_('% Won some money at showdown'),
               'FlAFq':_('Flop Aggression\n% Bet or Raise after seeing Flop'),
               'TuAFq':_('Turn Aggression\n% Bet or Raise after seeing Turn'),
@@ -168,16 +168,13 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                          ,['h.street3Raises',     'Bets to See Street7',   0,  5]
                          ,['h.street4Raises',     'Bets to See Showdown',  0,  5]
                          ]
-        firstcard = '((hp.startcards - 1) /  13)'
-        secondcard = '((hp.startcards - 1) - 13 * %s)' % firstcard
-        gap = '(%s - %s = %d)'
 
         self.cardstests = [
-            ['%(firstcard)s = %(secondcard)s' % locals(), 'Pocket pairs'],
-            ['%(firstcard)s > %(secondcard)s' % locals(), 'Suited'],
-            [gap % (firstcard, secondcard, 1), 'Suited connectors'],
-            ['%(firstcard)s < %(secondcard)s' % locals(), 'Offsuit'],
-            [gap % (secondcard, firstcard, 1), 'Offsuit connectors'],
+            [Card.DATABASE_FILTERS['pair'], _('Pocket pairs')],
+            [Card.DATABASE_FILTERS['suited'], _('Suited')],
+            [Card.DATABASE_FILTERS['suited_connectors'], _('Suited connectors')],
+            [Card.DATABASE_FILTERS['offsuit'], _('Offsuit')],
+            [Card.DATABASE_FILTERS['offsuit_connectors'], _('Offsuit connectors')],
         ]
         self.stats_frame = None
         self.stats_vbox = None
