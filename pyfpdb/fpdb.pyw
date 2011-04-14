@@ -127,8 +127,7 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.23 plus git"
-
+VERSION = _("%s plus git") % "0.24"
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
@@ -468,16 +467,7 @@ class fpdb:
         self.hud_preferences_table_contents = []
         table = gtk.Table(rows=self.hud_preferences_rows + 1, columns=self.hud_preferences_columns + 1, homogeneous=True)
 
-        statDir = dir(Stats)
-        statDict = {}
-        for attr in statDir:
-            if attr.startswith('__'):
-                continue
-            if attr in ("Charset", "Configuration", "Database", "GInitiallyUnowned", "gtk", "pygtk",
-                        "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict",
-                        "h", "re", "re_Percent", "re_Places", ):
-                continue
-            statDict[attr] = eval("Stats.%s.__doc__" % (attr))
+        statDict = Stats.build_stat_descriptions(Stats)
 
         for rowNumber in range(self.hud_preferences_rows + 1):
             newRow = []
@@ -502,7 +492,7 @@ class fpdb:
                 else:
                     comboBox = gtk.combo_box_new_text()
 
-                    for stat in statDict.keys():
+                    for stat in statDict.values():
                         comboBox.append_text(stat)
                     comboBox.set_active(0)
 
@@ -522,22 +512,26 @@ class fpdb:
         diaHudTable.destroy()
 
         if response == gtk.RESPONSE_ACCEPT:
-            self.storeNewHudStatConfig()
+            self.storeNewHudStatConfig(statDict)
     #end def dia_hud_preferences_table
 
-    def storeNewHudStatConfig(self):
+    def storeNewHudStatConfig(self, stat_dict):
         """stores selections made in dia_hud_preferences_table"""
         self.obtain_global_lock("dia_hud_preferences")
         statTable = []
         for row in self.hud_preferences_table_contents:
             newRow = []
             for column in row:
-                newField = column.get_active_text()
-                newRow.append(newField)
+                new_field = column.get_active_text()
+                for attr in stat_dict: #very inefficient, but who cares
+                    if new_field == stat_dict[attr]:
+                        newRow.append(attr)
+                        break
             statTable.append(newRow)
 
         self.config.editStats(self.hud_preferences_game, statTable)
         self.config.save()  # TODO: make it not store in horrible formatting
+        self.reload_config(None)
         self.release_global_lock()
     #end def storeNewHudStatConfig
 
@@ -772,10 +766,10 @@ class fpdb:
         if len(self.nb_tab_names) == 1:
             # only main tab open, reload profile
             self.load_profile()
-            dia.destroy() # destroy prefs before raising warning, otherwise parent is dia rather than self.window
+            if dia: dia.destroy() # destroy prefs before raising warning, otherwise parent is dia rather than self.window
             self.warning_box(_("If you had previously opened any tabs they cannot use the new settings without restart.")+" "+_("Re-start fpdb to load them."))
         else:
-            dia.destroy() # destroy prefs before raising warning, otherwise parent is dia rather than self.window
+            if dia: dia.destroy() # destroy prefs before raising warning, otherwise parent is dia rather than self.window
             self.warning_box(_("Updated preferences have not been loaded because windows are open.")+" "+_("Re-start fpdb to load them."))
     
     def addLogText(self, text):
@@ -838,16 +832,12 @@ class fpdb:
         win.destroy()
         self.dia_confirm.set_modal(True)
 
-    def dia_save_profile(self, widget, data=None):
-        self.warning_box(_("Unimplemented: Save Profile (try saving a HUD layout, that should do it)"))
-
     def get_menu(self, window):
         """returns the menu for this program"""
         fpdbmenu = """
             <ui>
               <menubar name="MenuBar">
                 <menu action="main">
-                  <menuitem action="SaveProf"/>
                   <menuitem action="site_preferences"/>
                   <menuitem action="hud_preferences"/>
                   <menuitem action="advanced_preferences"/>
@@ -896,7 +886,6 @@ class fpdb:
         # Create actions
         actiongroup.add_actions([('main', None, _('_Main')),
                                  ('Quit', gtk.STOCK_QUIT, _('_Quit'), None, 'Quit the Program', self.quit),
-                                 ('SaveProf', None, _('Save Profile (todo)'), None, 'Save your profile', self.dia_save_profile),
                                  ('site_preferences', None, _('_Site Preferences'), None, 'Site Preferences', self.dia_site_preferences),
                                  ('advanced_preferences', None, _('_Advanced Preferences'), _('<control>F'), 'Edit your preferences', self.dia_advanced_preferences),
                                  ('import', None, _('_Import')),
