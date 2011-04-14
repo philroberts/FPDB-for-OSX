@@ -16,20 +16,21 @@
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
 """
-Attempt to detect which poker sites are installed by the user, their heroname
-and the path to the HH files.
+Attempt to detect which poker sites are installed by the user, their
+ heroname and the path to the HH files.
 
 This is intended for new fpdb users to get them up and running quickly.
 
 We assume that the majority of these users will install the poker client
 into default locations so we will only check those places.
 
-We just look for a hero HH folder, and assume the application is installed
+We just look for a hero HH folder, and don't really care if the
+  application is installed
 
 Situations not handled are:
     Multiple screennames using the computer
-    Unexpected files in HH dir (e.g. "archive" may become heroname!)
-    Any variation from the default installation options
+    Unexpected dirs in HH dir (e.g. "archive" may become a heroname!)
+    Non-standard installation locations
     Mac installations
 
 Typical Usage:
@@ -178,3 +179,4 @@ class DetectInstalledSites():
             
         return
         
+ 
