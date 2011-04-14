@@ -36,8 +36,8 @@ What's changed
 
 For the full changelog or to look at ongoing development please visit http://trac-git.assembla.com/fpdb/timeline
 
-Where to get it
-===============
+How to download/update
+======================
 Please note that you will have to either recreate your database or use a new one if you're updating from 0.22 or older. Fpdb will warn you if your database is incompatible and will not work properly unless you recreate or use a new one.
 Config files from 0.20 and later should work. Please report if you have problems with config files from that version or later.
 You can find checksums (MD5 and SHA512) in the download folder.
