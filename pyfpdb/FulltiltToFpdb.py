@@ -89,7 +89,7 @@ class Fulltilt(HandHistoryConverter):
                                     (?P<ENTRYID>\sEntry\s\#\d+\s)?
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
                                     [%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[.0-9]+)\s)?-\s
-                                    [%(LS)s]?(?P<CAP>[.0-9]+\sCap\s)?
+                                    [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
                                     (?P<GAMETYPE>[-\da-zA-Z\/\'\s]+)\s-\s
                                     (?P<DATETIME>.*$)
                                     (?P<PARTIAL>\(partial\))?\s
@@ -282,9 +282,9 @@ class Fulltilt(HandHistoryConverter):
         m =  self.re_HandInfo.search(hand.handText)
         if m is None:
             tmp = hand.handText[0:100]
-            log.error(_("Unable to recognise handinfo from: '%s'") % tmp)
+            log.error(_("Unable to recognise hand info from: '%s'") % tmp)
             log.error("readHandInfo: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise handinfo from: '%s'"))
+            raise FpdbParseError(_("Unable to recognise hand info from: '%s'"))
 
         #print "DEBUG: m.groupdict: %s" % m.groupdict()
         hand.handid = m.group('HID')
@@ -467,7 +467,7 @@ class Fulltilt(HandHistoryConverter):
             hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
         except AttributeError, e:
             # FTP has no indication that a hand is cancelled.
-            raise FpdbParseError(_("readButton: Failed to detect button (hand #%s cancelled?)") % hand.handid)
+            raise FpdbParseError(_("%s Failed to detect button (hand #%s cancelled?)") % ("readButton:", hand.handid))
 
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
@@ -525,7 +525,7 @@ class Fulltilt(HandHistoryConverter):
             elif action.group('ATYPE') == ' stands pat':
                 hand.addStandsPat( street, action.group('PNAME'), action.group('CARDS'))
             else:
-                print (_("DEBUG: ") + " " + _("Unimplemented readAction: '%s' '%s'") % (action.group('PNAME'), action.group('ATYPE')))
+                print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):
@@ -689,18 +689,18 @@ class Fulltilt(HandHistoryConverter):
                         tourney.buyin = 100*Decimal(clearMoneyString(mg['BUYIN']))
                     else :
                         if 100*Decimal(clearMoneyString(mg['BUYIN'])) != tourney.buyin:
-                            log.error(_("Conflict between buyins read in topline (%s) and in BuyIn field (%s)") % (tourney.buyin, 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))) )
+                            log.error(_("Conflict between buyins read in top line (%s) and in BuyIn field (%s)") % (tourney.buyin, 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))) )
                             tourney.subTourneyBuyin = 100*Decimal(clearMoneyString(mg['BUYIN']))
                 if mg['FEE'] is not None:
                     if tourney.fee is None:
                         tourney.fee = 100*Decimal(clearMoneyString(mg['FEE']))
                     else :
                         if 100*Decimal(clearMoneyString(mg['FEE'])) != tourney.fee:
-                            log.error(_("Conflict between fees read in topline (%s) and in BuyIn field (%s)") % (tourney.fee, 100*Decimal(clearMoneyString(mg['FEE']))) )
+                            log.error(_("Conflict between fees read in top line (%s) and in BuyIn field (%s)") % (tourney.fee, 100*Decimal(clearMoneyString(mg['FEE']))) )
                             tourney.subTourneyFee = 100*Decimal(clearMoneyString(mg['FEE']))
 
         if tourney.buyin is None:
-            log.info(_("Unable to affect a buyin to this tournament : assume it's a freeroll"))
+            log.info(_("Unable to detect a buyin to this tournament : assume it's a freeroll"))
             tourney.buyin = 0
             tourney.fee = 0
         else:
@@ -810,9 +810,9 @@ class Fulltilt(HandHistoryConverter):
             tourney.hero = heroName
             # Is this really useful ?
             if heroName not in tourney.ranks:
-                print (_("%s not found in tourney.ranks ...") % heroName)
+                print (_("%s not found in %s...") % ("tourney.ranks", heroName))
             elif (tourney.ranks[heroName] != Decimal(n.group('HERO_FINISHING_POS'))):            
-                print (_("Bad parsing : finish position incoherent : %s / %s") % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS')))
+                print (_("Error:")+ _("Parsed finish position incoherent : %s / %s") % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS')))
 
         return True
 

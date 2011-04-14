@@ -2602,6 +2602,7 @@ class Sql:
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
+                      <cardstest>
                       <gtbigBlind_test>
                       and   date_format(h.startTime, '%Y-%m-%d %T') <datestest>
                       group by hgametypeId
@@ -2744,6 +2745,7 @@ class Sql:
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
+                      <cardstest>
                       <gtbigBlind_test>
                       and   to_char(h.startTime, 'YYYY-MM-DD HH24:MI:SS') <datestest>
                       group by hgametypeId
@@ -2887,6 +2889,7 @@ class Sql:
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
+                      <cardstest>
                       <gtbigBlind_test>
                       and   datetime(h.startTime) <datestest>
                       group by hgametypeId

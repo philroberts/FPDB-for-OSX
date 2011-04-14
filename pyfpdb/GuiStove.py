@@ -218,25 +218,25 @@ Against the range: {
         self.outputlabel.set_text(string)
 
     def set_board_flop(self, caller, widget):
-        print (_("DEBUG: ") + _("called set_board_flop: '%s' '%s'") % (caller ,widget))
+        print (_("DEBUG:") + " " + _("called") + " set_board_flop: '%s' '%s'" % (caller ,widget))
         self.boardtext = widget.get_text()
 
     def set_hero_cards_flop(self, caller, widget):
-        print (_("DEBUG: ") + _("called set_hero_cards_flop"))
+        print (_("DEBUG:") + " " + _("called") + " set_hero_cards_flop")
         self.herorange = widget.get_text()
 
     def set_villain_cards_flop(self, caller, widget):
-        print (_("DEBUG: ") + _("called set_villain_cards_flop"))
+        print (_("DEBUG:") + " " + _("called") + " set_villain_cards_flop")
         self.villainrange = widget.get_text()
 
     def update_flop_output_pane(self, caller, widget):
-        print (_("DEBUG: ") + _("called update_flop_output_pane"))
+        print (_("DEBUG:") + " " + _("called") + " update_flop_output_pane")
         self.stove.set_board_string(self.boardtext)
         self.stove.set_hero_cards_string(self.herorange)
         self.stove.set_villain_range_string(self.villainrange)
-        print (_("DEBUG: ") + ("odds_for_range"))
+        print (_("DEBUG:") + ("odds_for_range"))
         self.ev = Stove.odds_for_range(self.stove)
-        print (_("DEBUG: ") + ("set_output_label"))
+        print (_("DEBUG:") + " " + ("set_output_label"))
         self.set_output_label(self.ev.output)
 
 

@@ -36,11 +36,14 @@ import fpdb_import
 import Configuration
 import Exceptions
 
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("importer")
 
 class GuiBulkImport():
 
     # CONFIGURATION  -  update these as preferred:
-    allowThreads = True  # set to True to try out the threads field
+    allowThreads = False  # set to True to try out the threads field
 
     def dopulse(self):
         self.progressbar.pulse()
@@ -110,12 +113,14 @@ class GuiBulkImport():
                 ttime = time() - starttime
                 if ttime == 0:
                     ttime = 1
-                print _('GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec')\
-                     % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
+                    
+                completionMessage = _('GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec')\
+                    % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
+                print completionMessage
+                log.info(completionMessage)
+
                 self.importer.clearFileList()
-                # This file should really be 'logging'
-                #log.info('GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec'\
-                #     % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime))
+                
                 if self.n_hands_in_db == 0 and stored > 0:
                     self.cb_dropindexes.set_sensitive(True)
                     self.cb_dropindexes.set_active(0)
@@ -341,10 +346,8 @@ def main(argv=None):
 
     parser = OptionParser()
     parser.add_option("-f", "--file", dest="filename", metavar="FILE", default=None,
-                    help=_("Input file in quiet mode"))
-    parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True,
-                    help=_("don't start gui; deprecated (just give a filename with -f)."))
-    parser.add_option("-c", "--convert", dest="filtername", default="PokerStars", metavar="FILTER",
+                    help=_("Input file"))
+    parser.add_option("-c", "--convert", dest="filtername", default=None, metavar="FILTER",
                     help=_("Conversion filter (*Full Tilt Poker, PokerStars, Everleaf, Absolute)"))
     parser.add_option("-x", "--failOnError", action="store_true", default=False,
                     help=_("If this option is passed it quits when it encounters any error"))
@@ -378,9 +381,6 @@ def main(argv=None):
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
 
-    if not options.gui:
-        print _('-q is deprecated. Just use "-f filename" instead')
-        # This is because -q on its own causes an error, so -f is necessary and sufficient for cmd line use
     if not options.filename:
         i = GuiBulkImport(settings, config, None)
         main_window = gtk.Window()
@@ -389,6 +389,8 @@ def main(argv=None):
         main_window.show()
         gtk.main()
     else:
+        if not options.filtername:
+            print _("You  have to select a site with the -c parameter. E.g.:"), "Everleaf   converter: ./GuiBulkImport.py -c Everleaf -f filename"
         #Do something useful
         importer = fpdb_import.Importer(False,settings, config, None)
         # importer.setDropIndexes("auto")
