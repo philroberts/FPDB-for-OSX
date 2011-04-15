@@ -361,14 +361,14 @@ class GuiDatabase:
             log.debug(_("testDB: trying to connect to: %s/%s, %s, %s/%s") % (str(dbms_num),dbms,name,user,passwd))
             db.connect(backend=dbms_num, host=host, database=name, user=user, password=passwd, create=False)
             if db.connected:
-                log.debug(_("         connected ok"))
+                log.debug(_("connected ok"))
                 status = 'ok'
                 icon = gtk.STOCK_APPLY
                 if db.wrongDbVersion:
                     status = 'old'
                     icon = gtk.STOCK_INFO
             else:
-                log.debug(_("         not connected but no exception"))
+                log.debug(_("not connected but no exception"))
         except Exceptions.FpdbMySQLAccessDenied:
             err_msg = _("MySQL Server reports: Access denied. Are your permissions set correctly?")
             status = "failed"
@@ -688,7 +688,7 @@ if __name__=="__main__":
     config = Configuration.Config()
 
     win = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    win.set_title(_("Test Log Viewer"))
+    win.set_title(_("Log Viewer"))
     win.set_border_width(1)
     win.set_default_size(600, 500)
     win.set_resizable(True)
