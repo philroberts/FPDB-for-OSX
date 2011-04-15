@@ -51,12 +51,12 @@ if platform.system() == 'Windows':
 
 class DetectInstalledSites():
 
-    def __init__(self, site = "All"):
+    def __init__(self, sitename = "All"):
         #
         # objects returned
         #
         self.sitestatusdict = {}
-        self.sitecode = site
+        self.sitename = sitename
         self.heroname = ""
         self.hhpath = ""
         self.detected = ""
@@ -65,22 +65,22 @@ class DetectInstalledSites():
         #is little advantage in querying the sites table at the moment.
         #plus we can run from the command line as no dependencies
         #
-        self.supportedSites = { "FT" : "Full Tilt Poker",
-                                "PS" : "PokerStars",
-                                "EV" : "Everleaf",
-                                "W2" : "Win2day",
-                                "OG" : "OnGame",
-                                "UB" : "UltimateBet",
-                                "BF" : "Betfair",
-                                "AB" : "Absolute",
-                                "PP" : "PartyPoker",
-                                "P8" : "PacificPoker",
-                                "PA" : "Partouche",
-                                "CA" : "Carbon",
-                                "PK" : "PKR",
-                                "IP" : "iPoker",
-                                "WM" : "Winamax",
-                                "EP" : "Everest" }
+        self.supportedSites = [ "Full Tilt Poker",
+                                "PokerStars",
+                                "Everleaf",
+                                "Win2day",
+                                "OnGame",
+                                "UltimateBet",
+                                "Betfair",
+                                "Absolute",
+                                "PartyPoker",
+                                "PacificPoker",
+                                "Partouche",
+                                "Carbon",
+                                "PKR",
+                                "iPoker",
+                                "Winamax",
+                                "Everest" ]
                             
         self.supportedPlatforms = ["Linux", "XP", "Win7"]
         #
@@ -93,14 +93,14 @@ class DetectInstalledSites():
             if self.userPlatform <> 'XP':
                 self.userPlatform = 'Win7' #Vista and win7
 
-        if site == "All":
+        if sitename == "All":
             for siteiter in self.supportedSites:
                 self.sitestatusdict[siteiter]=self.Detect(siteiter)
         else:
-            self.sitestatusdict[site]=self.Detect(site)
-            self.heroname = self.sitestatusdict[site]['heroname']
-            self.hhpath = self.sitestatusdict[site]['hhpath']
-            self.detected = self.sitestatusdict[site]['detected']
+            self.sitestatusdict[sitename]=self.Detect(sitename)
+            self.heroname = self.sitestatusdict[sitename]['heroname']
+            self.hhpath = self.sitestatusdict[sitename]['hhpath']
+            self.detected = self.sitestatusdict[sitename]['detected']
             
         return
 
@@ -109,10 +109,10 @@ class DetectInstalledSites():
         self.pathfound = ""
         self.herofound = ""
         
-        if siteToDetect == "FT":
-            self.FT()
-        elif siteToDetect == "PS":
-            self.PS()
+        if siteToDetect == "Full Tilt Poker":
+            self.DetectFullTilt()
+        elif siteToDetect == "PokerStars":
+            self.DetectPokerStars()
             
         if (self.pathfound and self.herofound):
             self.pathfound = unicode(self.pathfound)
@@ -121,7 +121,7 @@ class DetectInstalledSites():
         else:
             return {"detected":False, "hhpath":"", "heroname":""}
             
-    def FT(self):
+    def DetectFullTilt(self):
 
         if self.userPlatform == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/Full Tilt Poker/HandHistory/")
@@ -142,7 +142,7 @@ class DetectInstalledSites():
  
         return
         
-    def PS(self):
+    def DetectPokerStars(self):
 
         if self.userPlatform == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/PokerStars/HandHistory/")
