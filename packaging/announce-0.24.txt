@@ -84,6 +84,7 @@ You can find most of these details for easy copy&paste in the Help menu under Ab
 Important known problems
 ========================
 PKR is not working correctly
+There's a problem with some Euro games on Pokerstars
 
 Notice for Windows users
 ========================
