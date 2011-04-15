@@ -42,8 +42,12 @@ Todo:
 """
 import platform
 import os
+
 if platform.system() == 'Windows':
-    import winpaths
+    from win32com.shell import shellcon
+    from win32com.shell import shell
+    PROGRAM_FILES = unicode(shell.SHGetFolderPath(0, shellcon.CSIDL_PROGRAM_FILES, 0, 0))
+    LOCAL_APPDATA = unicode(shell.SHGetFolderPath(0, shellcon.CSIDL_LOCAL_APPDATA, 0, 0))
 
 class DetectInstalledSites():
 
@@ -97,7 +101,7 @@ class DetectInstalledSites():
             self.heroname = self.sitestatusdict[site]['heroname']
             self.hhpath = self.sitestatusdict[site]['hhpath']
             self.detected = self.sitestatusdict[site]['detected']
-
+            
         return
 
     def Detect(self, siteToDetect):
@@ -122,9 +126,9 @@ class DetectInstalledSites():
         if self.userPlatform == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/Full Tilt Poker/HandHistory/")
         elif self.userPlatform == "XP":
-            hhp=os.path.expanduser(winpaths.get_program_files()+"\\Full Tilt Poker\\HandHistory\\")
+            hhp=os.path.expanduser(PROGRAM_FILES+"\\Full Tilt Poker\\HandHistory\\")
         elif self.userPlatform == "Win7":
-            hhp=os.path.expanduser(winpaths.get_program_files()+"\\Full Tilt Poker\\HandHistory\\")
+            hhp=os.path.expanduser(PROGRAM_FILES+"\\Full Tilt Poker\\HandHistory\\")
         else:
             return
             
@@ -143,9 +147,9 @@ class DetectInstalledSites():
         if self.userPlatform == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/PokerStars/HandHistory/")
         elif self.userPlatform == "XP":
-            hhp=os.path.expanduser(winpaths.get_program_files()+"\\PokerStars\\HandHistory\\")
+            hhp=os.path.expanduser(PROGRAM_FILES+"\\PokerStars\\HandHistory\\")
         elif self.userPlatform == "Win7":
-            hhp=os.path.expanduser(winpaths.get_local_appdata()+"\\PokerStars\\HandHistory\\")
+            hhp=os.path.expanduser(LOCAL_APPDATA+"\\PokerStars\\HandHistory\\")
         else:
             return
             

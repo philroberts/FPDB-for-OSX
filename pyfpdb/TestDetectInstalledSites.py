@@ -4,11 +4,6 @@
 from DetectInstalledSites import *
 print "Following sites detected:"
 print "------------------------------------"
-#all sites example 
-foo = DetectInstalledSites()
-
-
-from DetectInstalledSites import *
 
 #single site example
 foo = DetectInstalledSites("PS")
@@ -16,6 +11,8 @@ if foo.detected:
     print foo.sitecode
     print foo.hhpath
     print foo.heroname
+    
+print "------------------------------------"
 
 #all sites example
 foo = DetectInstalledSites()
