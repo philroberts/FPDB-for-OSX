@@ -29,32 +29,12 @@ We just look for a hero HH folder, and don't really care if the
 
 Situations not handled are:
     Multiple screennames using the computer
-    Unexpected dirs in HH dir (e.g. "archive" may become a heroname!)
+    TODO Unexpected dirs in HH dir (e.g. "archive" may become a heroname!)
     Non-standard installation locations
-    Mac installations
+    TODO Mac installations
 
 Typical Usage:
-
-from DetectInstalledSites import *
-
-#single site example
-foo = DetectInstalledSites("PS")
-if foo.detected:
-    print foo.sitecode
-    print foo.hhpath
-    print foo.heroname
-
-#all sites example
-foo = DetectInstalledSites()
-for sitecode in foo.sitestatusdict:
-    if foo.sitestatusdict[sitecode]['detected']:
-        print sitecode
-        print foo.sitestatusdict[sitecode]['hhpath']
-        print foo.sitestatusdict[sitecode]['heroname']
-        
-#print foo.supportedSites
-#print foo.supportedPlatforms
-#print foo.userPlatform
+    See TestDetectInstalledSites.py
 
 Todo:
     replace hardcoded site list with something more subtle
