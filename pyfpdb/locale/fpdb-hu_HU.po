@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2011-04-14 04:58+CEST\n"
-"PO-Revision-Date: 2011-04-12 20:45+0200\n"
+"PO-Revision-Date: 2011-04-15 18:35+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -714,10 +714,8 @@ msgstr ""
 "Eltérés a beülők mértéke között a fejlécben (%s) és a Beülő mezőben (%s)"
 
 #: FulltiltToFpdb.py:699
-#, fuzzy
 msgid "Conflict between fees read in top line (%s) and in Fee field (%s)"
-msgstr ""
-"Eltérés a díjak mértéke között a fejlécben (%s) és a beülő mezőben (%s)"
+msgstr "Eltérés a díjak mértéke között a fejlécben (%s) és a díj mezőben (%s)"
 
 #: FulltiltToFpdb.py:703
 msgid "Unable to detect a buyin to this tournament : assume it's a freeroll"
@@ -829,13 +827,12 @@ msgid "Importing..."
 msgstr "Importálás..."
 
 #: GuiBulkImport.py:117 GuiBulkImport.py:410
-#, fuzzy
 msgid ""
 "Bulk import done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in "
 "%s seconds - %.0f/sec"
 msgstr ""
-"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d "
-"%s másodperc alatt - %.0f/mp"
+"Importálás kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d %s "
+"másodperc alatt - %.0f/mp"
 
 #: GuiBulkImport.py:132
 msgid "Import Complete"
@@ -924,22 +921,20 @@ msgid "Print some useful one liners"
 msgstr "Megjelenít néhány hasznos egysoros információt."
 
 #: GuiBulkImport.py:357
-#, fuzzy
 msgid ""
 "Do the required conversion for Stars Archive format (ie. as provided by "
 "support)"
 msgstr ""
 "A kiválasztott konverzió elvégzése Stars Archívum formátumra (ahogy az "
-"ügyfélszolgálattól jön"
+"ügyfélszolgálattól jön)"
 
 #: GuiBulkImport.py:359
-#, fuzzy
 msgid ""
 "Do the required conversion for FTP Archive format (ie. as provided by "
 "support)"
 msgstr ""
 "A kiválasztott konverzió elvégzése FTP Archívum formátumra (ahogy az "
-"ügyfélszolgálattól jön"
+"ügyfélszolgálattól jön)"
 
 #: GuiBulkImport.py:361
 msgid ""
@@ -953,10 +948,9 @@ msgstr "HASZNÁLAT:"
 #: GuiBulkImport.py:367 GuiBulkImport.py:368 GuiBulkImport.py:369
 #: GuiBulkImport.py:370 GuiBulkImport.py:371
 msgid "converter"
-msgstr ""
+msgstr "konverter"
 
 #: GuiBulkImport.py:393
-#, fuzzy
 msgid "You have to select a site with the -c parameter. E.g.:"
 msgstr "Választanod kell egy termet a -c paraméterrel. Pl.:"
 
@@ -1025,14 +1019,12 @@ msgid "testDB: trying to connect to: %s/%s, %s, %s/%s"
 msgstr "testDB: kapcsolódási kísérlet: %s/%s, %s, %s/%s"
 
 #: GuiDatabase.py:364
-#, fuzzy
 msgid "connected ok"
-msgstr "         kapcsolódás OK"
+msgstr "kapcsolódás OK"
 
 #: GuiDatabase.py:371
-#, fuzzy
 msgid "not connected but no exception"
-msgstr "         nem kapcsolódott, de nem volt hibaüzenet"
+msgstr "nem kapcsolódott, de nem volt hibaüzenet"
 
 #: GuiDatabase.py:373 fpdb.pyw:967
 msgid ""
@@ -1220,7 +1212,6 @@ msgid "No Data for Player(s) Found"
 msgstr "Nem található adat a játékos(ok)ra vonatkozóan"
 
 #: GuiGraphViewer.py:219 GuiGraphViewer.py:232
-#, fuzzy
 msgid ""
 "Hands: %d\n"
 "Profit: (%s): %.2f"
@@ -1542,7 +1533,6 @@ msgid "% Raise First In\\% Raise when first to bet"
 msgstr "nyitóemelés"
 
 #: GuiRingPlayerStats.py:60
-#, fuzzy
 msgid ""
 "% First to raise preflop\n"
 "and steal blinds"
@@ -1555,12 +1545,10 @@ msgid "% Saw Flop vs hands dealt"
 msgstr "flopot néz"
 
 #: GuiRingPlayerStats.py:62
-#, fuzzy
 msgid "Saw Showdown / River"
 msgstr "terítésig/riverig megy"
 
 #: GuiRingPlayerStats.py:63
-#, fuzzy
 msgid "Went To Showdown When Saw Flop"
 msgstr "terítésig megy, ha flopot nézett"
 
@@ -1648,23 +1636,23 @@ msgstr "Statisztikák f_rissítése"
 
 #: GuiRingPlayerStats.py:173
 msgid "Pocket pairs"
-msgstr ""
+msgstr "Osztott párok"
 
 #: GuiRingPlayerStats.py:174
 msgid "Suited"
-msgstr ""
+msgstr "Egyszínű"
 
 #: GuiRingPlayerStats.py:175
 msgid "Suited connectors"
-msgstr ""
+msgstr "Egyszínű kapcsolódó"
 
 #: GuiRingPlayerStats.py:176
 msgid "Offsuit"
-msgstr ""
+msgstr "Különböző színű"
 
 #: GuiRingPlayerStats.py:177
 msgid "Offsuit connectors"
-msgstr ""
+msgstr "Különböző színű kapcsolódó"
 
 #: GuiRingPlayerStats.py:349 GuiSessionViewer.py:257
 #: GuiTourneyPlayerStats.py:243
@@ -1830,16 +1818,13 @@ msgid "Tournament Results"
 msgstr "Versenyeredmények"
 
 #: GuiTourneyImport.py:72 GuiTourneyImport.py:295
-#, fuzzy
 msgid "Tourney import done: Stored: %d \tErrors: %d in %s seconds - %.0f/sec"
 msgstr ""
-"GuiTourneyImport.load kész: Tárolva: %d\tHibák: %d; %s másodperc alatt - "
-"%.0f/mp"
+"Verseny importálás kész: Tárolva: %d\tHibák: %d; %s másodperc alatt - %.0f/mp"
 
 #: GuiTourneyImport.py:78
-#, fuzzy
 msgid "tourney import aborted - global lock not available"
-msgstr "importálás megszakítva - nem elérhető a globális zárolás"
+msgstr "verseny importálás megszakítva - nem elérhető a globális zárolás"
 
 #: GuiTourneyImport.py:175 fpdb_import.py:238
 msgid "Attempted to add non-directory '%s' as an import directory"
@@ -2849,30 +2834,26 @@ msgid "Total Profit"
 msgstr "teljes profit"
 
 #: Stats.py:131
-#, fuzzy
 msgid "Player Name"
-msgstr "Játékosok"
+msgstr "játékosnév"
 
 #: Stats.py:140 Stats.py:149 Stats.py:156
-#, fuzzy
 msgid "Voluntarily put in preflop/3rd street %"
-msgstr "önként befizet preflop %"
+msgstr "önként befizet preflop/3. utcán %"
 
 #: Stats.py:160 Stats.py:169 Stats.py:177
-#, fuzzy
 msgid "Preflop/3rd street raise %"
-msgstr "preflop emelés %"
+msgstr "preflop/3. utcán emelés %"
 
 #: Stats.py:181 Stats.py:190 Stats.py:198
 msgid "% went to showdown when seen flop/4th street"
-msgstr ""
+msgstr "terítésig megy, ha flopot/4. utcát néz %"
 
 #: Stats.py:202 Stats.py:211 Stats.py:219
 msgid "% won money at showdown"
 msgstr "pénzt nyer terítéskor %"
 
 #: Stats.py:225 Stats.py:234 Stats.py:243
-#, fuzzy
 msgid "Profit per 100 hands"
 msgstr "profit/100 leosztás"
 
@@ -2881,17 +2862,14 @@ msgid "exception calcing p/100: 100 * %d / %d"
 msgstr "hiba a p/100 számítása kózben: 100 * %d / %d"
 
 #: Stats.py:247 Stats.py:256 Stats.py:265
-#, fuzzy
 msgid "Big blinds won per 100 hands"
 msgstr "nagyvak/100 leosztás"
 
 #: Stats.py:259
-#, fuzzy
 msgid "exception calcing bb/100: "
-msgstr "hiba a BB/100 számítása közben: "
+msgstr "hiba a bb/100 számítása közben: "
 
 #: Stats.py:269 Stats.py:278 Stats.py:287
-#, fuzzy
 msgid "Big bets won per 100 hands"
 msgstr "nagytét/100 leosztás"
 
@@ -2900,12 +2878,10 @@ msgid "exception calcing BB/100: "
 msgstr "hiba a BB/100 számítása közben: "
 
 #: Stats.py:291 Stats.py:301 Stats.py:310
-#, fuzzy
 msgid "Flop/4th street seen %"
-msgstr "flopot néz %"
+msgstr "flopot/4. utcát néz %"
 
 #: Stats.py:314 Stats.py:333 Stats.py:342
-#, fuzzy
 msgid "Number of hands seen"
 msgstr "látott leosztások száma"
 
@@ -2914,7 +2890,6 @@ msgid "% steal attempted"
 msgstr "lopási kísérlet %"
 
 #: Stats.py:382 Stats.py:391
-#, fuzzy
 msgid "% steal success"
 msgstr "sikeres lopás %"
 
@@ -2931,116 +2906,94 @@ msgid "% folded blind to steal"
 msgstr "dob lopásra %"
 
 #: Stats.py:457 Stats.py:466 Stats.py:473
-#, fuzzy
 msgid "% 3 bet preflop/3rd street"
 msgstr "3-bet preflop/3. utcán %"
 
 #: Stats.py:476 Stats.py:485 Stats.py:492
-#, fuzzy
 msgid "% 4 bet preflop/3rd street"
-msgstr "3-bet preflop/3. utcán %"
+msgstr "4-bet preflop/3. utcán %"
 
 #: Stats.py:495 Stats.py:504 Stats.py:511
-#, fuzzy
 msgid "% cold 4 bet preflop/3rd street"
 msgstr "hideg 4-bet preflop/3. utcán %"
 
 #: Stats.py:514 Stats.py:523 Stats.py:530
-#, fuzzy
 msgid "% squeeze preflop"
 msgstr "squeeze preflop %"
 
 #: Stats.py:534 Stats.py:543 Stats.py:550
-#, fuzzy
 msgid "% raise to steal"
 msgstr "emel lopásra %"
 
 #: Stats.py:554 Stats.py:563 Stats.py:570
-#, fuzzy
 msgid "% fold to 3 bet preflop/3rd street"
-msgstr "dob 3-betre preflop %"
+msgstr "dob 3-betre preflop/3. utcán %"
 
 #: Stats.py:573 Stats.py:582 Stats.py:589
-#, fuzzy
 msgid "% fold to 4 bet preflop/3rd street"
-msgstr "dob 4-betre preflop %"
+msgstr "dob 4-betre preflop/3. utcán %"
 
 #: Stats.py:592 Stats.py:601 Stats.py:608
 msgid "% won money when seen flop/4th street"
-msgstr ""
+msgstr "nyert pénzt, ha flopot/4. utcát néz %"
 
 #: Stats.py:611 Stats.py:620 Stats.py:627
-#, fuzzy
 msgid "Aggression frequency flop/4th street"
 msgstr "agresszió gyakoriság flopon/4. utcán"
 
 #: Stats.py:630 Stats.py:639 Stats.py:646
-#, fuzzy
 msgid "Aggression frequency turn/5th street"
 msgstr "agresszió gyakoriság turnön/5. utcán"
 
 #: Stats.py:649 Stats.py:658 Stats.py:665
-#, fuzzy
 msgid "Aggression frequency river/6th street"
 msgstr "agresszió gyakoriság riveren/6. utcán"
 
 #: Stats.py:668 Stats.py:677 Stats.py:684
-#, fuzzy
 msgid "Aggression frequency 7th street"
 msgstr "agresszió gyakoriság 7. utcán"
 
 #: Stats.py:687 Stats.py:703 Stats.py:710
-#, fuzzy
 msgid "Post-flop aggression frequency"
 msgstr "postflop agresszió gyakoriság"
 
 #: Stats.py:740 Stats.py:755 Stats.py:762
-#, fuzzy
 msgid "Aggression factor"
 msgstr "agresszió faktor"
 
 #: Stats.py:765 Stats.py:776 Stats.py:783
-#, fuzzy
 msgid "% continuation bet"
 msgstr "folytató nyitás %"
 
 #: Stats.py:786 Stats.py:795 Stats.py:802
-#, fuzzy
 msgid "% continuation bet flop/4th street"
 msgstr "folytató nyitás flopon/4. utcán %"
 
 #: Stats.py:805 Stats.py:814 Stats.py:821
-#, fuzzy
 msgid "% continuation bet turn/5th street"
 msgstr "folytató nyitás turnön/5. utcán %"
 
 #: Stats.py:824 Stats.py:833 Stats.py:840
-#, fuzzy
 msgid "% continuation bet river/6th street"
 msgstr "folytató nyitás riveren/6. utcán %"
 
 #: Stats.py:843 Stats.py:852 Stats.py:859
-#, fuzzy
 msgid "% continuation bet 7th street"
 msgstr "folytató nyitás 7. utcán %"
 
 #: Stats.py:862 Stats.py:871 Stats.py:878
-#, fuzzy
 msgid "% fold frequency flop/4th street"
 msgstr "dobási gyakoriság flopon/4. utcán %"
 
 #: Stats.py:881 Stats.py:890 Stats.py:897
-#, fuzzy
 msgid "% fold frequency turn/5th street"
 msgstr "dobási gyakoriság turnön/5. utcán %"
 
 #: Stats.py:900 Stats.py:909 Stats.py:916
-#, fuzzy
 msgid "% fold frequency river/6th street"
 msgstr "dobási gyakoriság riveren/6. utcán %"
 
 #: Stats.py:919 Stats.py:928 Stats.py:935
-#, fuzzy
 msgid "% fold frequency 7th street"
 msgstr "dobási gyakoriság 7. utcán %"
 
