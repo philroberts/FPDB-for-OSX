@@ -135,8 +135,8 @@ setup(
     description = 'Free Poker DataBase',
     version     = fpdbver,
 
-    windows = [   {'script': pydir+'fpdb.pyw', "icon_resources": [(1, gfxdir+"fpdb_large_icon.ico")]},
-                  {'script': pydir+'HUD_main.pyw', },
+    windows = [   {'script': pydir+'fpdb.pyw', 'uac_info': "requireAdministrator", "icon_resources": [(1, gfxdir+"fpdb_large_icon.ico")]},
+                  {'script': pydir+'HUD_main.pyw', 'uac_info': "requireAdministrator", },
                   {'script': pydir+'Configuration.py', }
               ],
 
