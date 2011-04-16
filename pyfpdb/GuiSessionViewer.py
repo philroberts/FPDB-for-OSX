@@ -40,7 +40,7 @@ try:
 
 except ImportError, inst:
     print _("""Failed to load numpy and/or matplotlib in Session Viewer""")
-    print _("ImportError: %s") % inst.args
+    print "ImportError: %s" % inst.args
 
 import Card
 import fpdb_import
@@ -369,7 +369,7 @@ class GuiSessionViewer (threading.Thread):
             self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("***Error: ")+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            print _("Error:")+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
             raise
 
 

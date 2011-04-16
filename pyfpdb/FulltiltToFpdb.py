@@ -600,7 +600,7 @@ class Fulltilt(HandHistoryConverter):
         
         m = self.re_TourneyInfo.search(tourneyText)
         if not m: 
-            log.info(_("determineTourneyType : Parsing NOK"))
+            log.info(_("Error:") + " determineTourneyType")
             return False
         mg = m.groupdict()
         #print mg
@@ -696,7 +696,7 @@ class Fulltilt(HandHistoryConverter):
                         tourney.fee = 100*Decimal(clearMoneyString(mg['FEE']))
                     else :
                         if 100*Decimal(clearMoneyString(mg['FEE'])) != tourney.fee:
-                            log.error(_("Conflict between fees read in top line (%s) and in BuyIn field (%s)") % (tourney.fee, 100*Decimal(clearMoneyString(mg['FEE']))) )
+                            log.error(_("Conflict between fees read in top line (%s) and in Fee field (%s)") % (tourney.fee, 100*Decimal(clearMoneyString(mg['FEE']))) )
                             tourney.subTourneyFee = 100*Decimal(clearMoneyString(mg['FEE']))
 
         if tourney.buyin is None:

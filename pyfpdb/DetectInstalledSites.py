@@ -29,32 +29,12 @@ We just look for a hero HH folder, and don't really care if the
 
 Situations not handled are:
     Multiple screennames using the computer
-    Unexpected dirs in HH dir (e.g. "archive" may become a heroname!)
+    TODO Unexpected dirs in HH dir (e.g. "archive" may become a heroname!)
     Non-standard installation locations
-    Mac installations
+    TODO Mac installations
 
 Typical Usage:
-
-from DetectInstalledSites import *
-
-#single site example
-foo = DetectInstalledSites("PS")
-if foo.detected:
-    print foo.sitecode
-    print foo.hhpath
-    print foo.heroname
-
-#all sites example
-foo = DetectInstalledSites()
-for sitecode in foo.sitestatusdict:
-    if foo.sitestatusdict[sitecode]['detected']:
-        print sitecode
-        print foo.sitestatusdict[sitecode]['hhpath']
-        print foo.sitestatusdict[sitecode]['heroname']
-        
-#print foo.supportedSites
-#print foo.supportedPlatforms
-#print foo.userPlatform
+    See TestDetectInstalledSites.py
 
 Todo:
     replace hardcoded site list with something more subtle
@@ -62,17 +42,21 @@ Todo:
 """
 import platform
 import os
+
 if platform.system() == 'Windows':
-    import winpaths
+    from win32com.shell import shellcon
+    from win32com.shell import shell
+    PROGRAM_FILES = unicode(shell.SHGetFolderPath(0, shellcon.CSIDL_PROGRAM_FILES, 0, 0))
+    LOCAL_APPDATA = unicode(shell.SHGetFolderPath(0, shellcon.CSIDL_LOCAL_APPDATA, 0, 0))
 
 class DetectInstalledSites():
 
-    def __init__(self, site = "All"):
+    def __init__(self, sitename = "All"):
         #
         # objects returned
         #
         self.sitestatusdict = {}
-        self.sitecode = site
+        self.sitename = sitename
         self.heroname = ""
         self.hhpath = ""
         self.detected = ""
@@ -81,22 +65,22 @@ class DetectInstalledSites():
         #is little advantage in querying the sites table at the moment.
         #plus we can run from the command line as no dependencies
         #
-        self.supportedSites = { "FT" : "Full Tilt Poker",
-                                "PS" : "PokerStars",
-                                "EV" : "Everleaf",
-                                "W2" : "Win2day",
-                                "OG" : "OnGame",
-                                "UB" : "UltimateBet",
-                                "BF" : "Betfair",
-                                "AB" : "Absolute",
-                                "PP" : "PartyPoker",
-                                "P8" : "PacificPoker",
-                                "PA" : "Partouche",
-                                "CA" : "Carbon",
-                                "PK" : "PKR",
-                                "IP" : "iPoker",
-                                "WM" : "Winamax",
-                                "EP" : "Everest" }
+        self.supportedSites = [ "Full Tilt Poker",
+                                "PokerStars",
+                                "Everleaf",
+                                "Win2day",
+                                "OnGame",
+                                "UltimateBet",
+                                "Betfair",
+                                "Absolute",
+                                "PartyPoker",
+                                "PacificPoker",
+                                "Partouche",
+                                "Carbon",
+                                "PKR",
+                                "iPoker",
+                                "Winamax",
+                                "Everest" ]
                             
         self.supportedPlatforms = ["Linux", "XP", "Win7"]
         #
@@ -109,15 +93,15 @@ class DetectInstalledSites():
             if self.userPlatform <> 'XP':
                 self.userPlatform = 'Win7' #Vista and win7
 
-        if site == "All":
+        if sitename == "All":
             for siteiter in self.supportedSites:
                 self.sitestatusdict[siteiter]=self.Detect(siteiter)
         else:
-            self.sitestatusdict[site]=self.Detect(site)
-            self.heroname = self.sitestatusdict[site]['heroname']
-            self.hhpath = self.sitestatusdict[site]['hhpath']
-            self.detected = self.sitestatusdict[site]['detected']
-
+            self.sitestatusdict[sitename]=self.Detect(sitename)
+            self.heroname = self.sitestatusdict[sitename]['heroname']
+            self.hhpath = self.sitestatusdict[sitename]['hhpath']
+            self.detected = self.sitestatusdict[sitename]['detected']
+            
         return
 
     def Detect(self, siteToDetect):
@@ -125,10 +109,10 @@ class DetectInstalledSites():
         self.pathfound = ""
         self.herofound = ""
         
-        if siteToDetect == "FT":
-            self.FT()
-        elif siteToDetect == "PS":
-            self.PS()
+        if siteToDetect == "Full Tilt Poker":
+            self.DetectFullTilt()
+        elif siteToDetect == "PokerStars":
+            self.DetectPokerStars()
             
         if (self.pathfound and self.herofound):
             self.pathfound = unicode(self.pathfound)
@@ -137,14 +121,14 @@ class DetectInstalledSites():
         else:
             return {"detected":False, "hhpath":"", "heroname":""}
             
-    def FT(self):
+    def DetectFullTilt(self):
 
         if self.userPlatform == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/Full Tilt Poker/HandHistory/")
         elif self.userPlatform == "XP":
-            hhp=os.path.expanduser(winpaths.get_program_files()+"\\Full Tilt Poker\\HandHistory\\")
+            hhp=os.path.expanduser(PROGRAM_FILES+"\\Full Tilt Poker\\HandHistory\\")
         elif self.userPlatform == "Win7":
-            hhp=os.path.expanduser(winpaths.get_program_files()+"\\Full Tilt Poker\\HandHistory\\")
+            hhp=os.path.expanduser(PROGRAM_FILES+"\\Full Tilt Poker\\HandHistory\\")
         else:
             return
             
@@ -158,14 +142,14 @@ class DetectInstalledSites():
  
         return
         
-    def PS(self):
+    def DetectPokerStars(self):
 
         if self.userPlatform == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/PokerStars/HandHistory/")
         elif self.userPlatform == "XP":
-            hhp=os.path.expanduser(winpaths.get_program_files()+"\\PokerStars\\HandHistory\\")
+            hhp=os.path.expanduser(PROGRAM_FILES+"\\PokerStars\\HandHistory\\")
         elif self.userPlatform == "Win7":
-            hhp=os.path.expanduser(winpaths.get_local_appdata()+"\\PokerStars\\HandHistory\\")
+            hhp=os.path.expanduser(LOCAL_APPDATA+"\\PokerStars\\HandHistory\\")
         else:
             return
             
