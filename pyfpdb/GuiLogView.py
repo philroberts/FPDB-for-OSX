@@ -201,7 +201,7 @@ if __name__=="__main__":
     config = Configuration.Config()
 
     win = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    win.set_title(_("Test Log Viewer"))
+    win.set_title(_("Log Viewer"))
     win.set_border_width(1)
     win.set_default_size(600, 500)
     win.set_resizable(True)

@@ -129,7 +129,7 @@ class GuiTourneyGraphViewer (threading.Thread):
             self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("***Error: ")+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            print _("Error:")+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
             raise
 
     def generateGraph(self, widget, data):
@@ -227,7 +227,7 @@ class GuiTourneyGraphViewer (threading.Thread):
                 #self.exportButton.set_sensitive(True)
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("***Error: ")+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            print _("Error:")+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
 
     #end of def showClicked
 
