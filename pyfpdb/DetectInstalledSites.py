@@ -66,21 +66,21 @@ class DetectInstalledSites():
         #plus we can run from the command line as no dependencies
         #
         self.supportedSites = [ "Full Tilt Poker",
-                                "PokerStars",
-                                "Everleaf",
-                                "Win2day",
-                                "OnGame",
-                                "UltimateBet",
-                                "Betfair",
-                                "Absolute",
-                                "PartyPoker",
-                                "PacificPoker",
-                                "Partouche",
-                                "Carbon",
-                                "PKR",
-                                "iPoker",
-                                "Winamax",
-                                "Everest" ]
+                                "PokerStars"]#,
+                                #"Everleaf",
+                                #"Win2day",
+                                #"OnGame",
+                                #"UltimateBet",
+                                #"Betfair",
+                                #"Absolute",
+                                #"PartyPoker",
+                                #"PacificPoker",
+                                #"Partouche",
+                                #"Carbon",
+                                #"PKR",
+                                #"iPoker",
+                                #"Winamax",
+                                #"Everest" ]
                             
         self.supportedPlatforms = ["Linux", "XP", "Win7"]
         #
