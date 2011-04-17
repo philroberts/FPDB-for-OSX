@@ -50,8 +50,8 @@ class GuiBulkImport():
         return True
 
     def load_clicked(self, widget, data=None):
-        if self.cbfilter.get_model()[self.cbfilter.get_active()][0] == (_("Please Select Site")):
-            self.progressbar.set_text(_("Please Select Site"))
+        if self.cbfilter.get_model()[self.cbfilter.get_active()][0] == (_("Please select site")):
+            self.progressbar.set_text(_("Please select site"))
             return
         stored = None
         dups = None
@@ -264,7 +264,7 @@ class GuiBulkImport():
 #    ComboBox - filter
         self.cbfilter = gtk.combo_box_new_text()
         disabled_sites = []                                # move disabled sites to bottom of list
-        self.cbfilter.append_text(_("Please Select Site"))
+        self.cbfilter.append_text(_("Please select site"))
         for w in self.config.hhcs:
             try:
                 if self.config.supported_sites[w].enabled: # include enabled ones first
