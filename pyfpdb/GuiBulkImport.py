@@ -348,7 +348,7 @@ def main(argv=None):
     parser.add_option("-f", "--file", dest="filename", metavar="FILE", default=None,
                     help=_("Input file"))
     parser.add_option("-c", "--convert", dest="filtername", default=None, metavar="FILTER",
-                    help=_("Conversion filter (*Full Tilt Poker, PokerStars, Everleaf, Absolute)"))
+                    help=_("Site")+ " (Absolute, Carbon, Everleaf, Full Tilt Poker, PokerStars, ...)") #TODO: dynamically generate list
     parser.add_option("-x", "--failOnError", action="store_true", default=False,
                     help=_("If this option is passed it quits when it encounters any error"))
     parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False,
