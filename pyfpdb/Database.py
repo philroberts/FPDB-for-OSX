@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 156
+DB_VERSION = 157
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -1872,7 +1872,6 @@ class Database:
                         hdata['startTime'],                
                         datetime.utcnow(), #importtime
                         hdata['seats'],
-                        hdata['maxSeats'],
                         hdata['texture'],
                         hdata['playersVpi'],
                         hdata['boardcard1'],
@@ -2527,7 +2526,8 @@ class Database:
         c = self.get_cursor()
         #FIXME: Fixed for NL at the moment
         c.execute(self.sql.query['getGametypeNL'], (siteid, game['type'], game['category'], game['limitType'], game['currency'],
-                                                    game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100)))
+                                                    game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
+                                                    game['maxSeats'], game['ante']))
         tmp = c.fetchone()
         if (tmp == None):
             hilo = "h"
@@ -2539,7 +2539,8 @@ class Database:
             #TODO: this wont work for non-standard structures
             tmp  = self.insertGameTypes( (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
                                     game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
-                                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200)), printdata = printdata)
+                                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200), game['maxSeats'], game['ante']),
+                                    printdata = printdata)
         return tmp[0]
 
 

@@ -235,8 +235,12 @@ dealt   whether they were seen in a 'dealt to' line
         # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
         # These functions are intended for prep insert eventually
         #####
+        self.gametype['maxSeats'] = self.maxseats #TODO: move up to individual parsers
+        self.gametype['ante'] = 0 #TODO store actual ante
+        
         self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
         self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype, printdata = printtest)
+        
         #Gametypes
         hilo = "h"
         if self.gametype['category'] in ['studhilo', 'omahahilo']:
@@ -383,7 +387,6 @@ dealt   whether they were seen in a 'dealt to' line
         self.handid    = res['siteHandNo']
         #print "DBEUG: res['startTime']: %s" % res['startTime']
         self.startTime = datetime.datetime.strptime(res['startTime'], "%Y-%m-%d %H:%M:%S+00:00")
-        self.maxseats = res['maxSeats']
 
         cards = map(Card.valueSuitFromCard, [res['boardcard1'], res['boardcard2'], res['boardcard3'], res['boardcard4'], res['boardcard5']])
         #print "DEBUG: res['boardcard1']: %s" % res['boardcard1']

@@ -249,7 +249,9 @@ class Sql:
                         smallBlind int,
                         bigBlind int,
                         smallBet int NOT NULL,
-                        bigBet int NOT NULL)
+                        bigBet int NOT NULL,
+                        maxSeats TINYINT NOT NULL,
+                        ante INT NOT NULL)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
@@ -265,7 +267,9 @@ class Sql:
                         smallBlind int,
                         bigBlind int,
                         smallBet int NOT NULL,
-                        bigBet int NOT NULL)"""
+                        bigBet int NOT NULL,
+                        maxSeats SMALLINT NOT NULL,
+                        ante INT NOT NULL)"""
         elif db_server == 'sqlite':
             self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
                         id INTEGER PRIMARY KEY NOT NULL,
@@ -281,6 +285,8 @@ class Sql:
                         bigBlind INTEGER,
                         smallBet INTEGER NOT NULL,
                         bigBet INTEGER NOT NULL,
+                        maxSeats INT NOT NULL,
+                        ante INT NOT NULL,
                         FOREIGN KEY(siteId) REFERENCES Sites(id) ON DELETE CASCADE)"""
 
 
@@ -364,7 +370,6 @@ class Sql:
                             startTime DATETIME NOT NULL,
                             importTime DATETIME NOT NULL,
                             seats TINYINT NOT NULL,
-                            maxSeats TINYINT NOT NULL,
                             rush BOOLEAN,
                             boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 smallint,
@@ -405,7 +410,6 @@ class Sql:
                             startTime timestamp without time zone NOT NULL,
                             importTime timestamp without time zone NOT NULL,
                             seats SMALLINT NOT NULL,
-                            maxSeats SMALLINT NOT NULL,
                             rush BOOLEAN,
                             boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 smallint,
@@ -445,7 +449,6 @@ class Sql:
                             startTime REAL NOT NULL,
                             importTime REAL NOT NULL,
                             seats INT NOT NULL,
-                            maxSeats INT NOT NULL,
                             rush BOOLEAN,
                             boardcard1 INT,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 INT,
@@ -2358,14 +2361,14 @@ class Sql:
             """
 
         self.query['get_table_name'] = """
-                SELECT h.tableName, h.maxSeats, gt.category, gt.type, s.id, s.name
+                SELECT h.tableName, gt.maxSeats, gt.category, gt.type, s.id, s.name
                      , count(1) as numseats
                 FROM Hands h, Gametypes gt, Sites s, HandsPlayers hp
                 WHERE h.id = %s
                     AND   gt.id = h.gametypeId
                     AND   s.id = gt.siteID
                     AND   hp.handId = h.id
-                GROUP BY h.tableName, h.maxSeats, gt.category, gt.type, s.id, s.name
+                GROUP BY h.tableName, gt.maxSeats, gt.category, gt.type, s.id, s.name
             """
 
         self.query['get_actual_seat'] = """
@@ -4741,7 +4744,9 @@ class Sql:
                                            AND   limitType=%s
                                            AND   smallBet=%s
                                            AND   bigBet=%s
-        """
+                                           AND   maxSeats=%s
+                                           AND   ante=%s
+        """ #TODO: seems odd to have limitType variable in this query
 
         self.query['getGametypeNL'] = """SELECT id
                                            FROM Gametypes
@@ -4753,12 +4758,14 @@ class Sql:
                                            AND   mix=%s
                                            AND   smallBlind=%s
                                            AND   bigBlind=%s
-        """
+                                           AND   maxSeats=%s
+                                           AND   ante=%s
+        """ #TODO: seems odd to have limitType variable in this query
 
         self.query['insertGameTypes'] = """INSERT INTO Gametypes
                                               (siteId, currency, type, base, category, limitType
-                                              ,hiLo, mix, smallBlind, bigBlind, smallBet, bigBet)
-                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                              ,hiLo, mix, smallBlind, bigBlind, smallBet, bigBet, maxSeats, ante)
+                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
         self.query['isAlreadyInDB'] = """SELECT id FROM Hands 
                                          WHERE gametypeId=%s AND siteHandNo=%s
@@ -4902,7 +4909,6 @@ class Sql:
                                             startTime,
                                             importtime,
                                             seats,
-                                            maxseats,
                                             texture,
                                             playersVpi,
                                             boardcard1,
@@ -4930,8 +4936,7 @@ class Sql:
                                              values
                                               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s)"""
+                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
 
         self.query['store_hands_players'] = """insert into HandsPlayers (
