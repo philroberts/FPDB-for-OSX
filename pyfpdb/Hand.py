@@ -251,7 +251,7 @@ dealt   whether they were seen in a 'dealt to' line
         self.gametyperow = (self.siteId, self.gametype['currency'], self.gametype['type'], self.gametype['base'],
                                     self.gametype['category'], self.gametype['limitType'], hilo,
                                     int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
-                                    int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200))
+                                    int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200), int(self.gametype['maxSeats']), int(self.gametype['ante']))
         # Note: the above data is calculated in db.getGameTypeId
         #       Only being calculated above so we can grab the testdata
         self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype, printdata = printtest)
