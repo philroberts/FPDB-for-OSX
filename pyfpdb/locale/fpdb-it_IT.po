@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-04-14 04:58+CEST\n"
+"POT-Creation-Date: 2011-04-17 20:32+CEST\n"
 "PO-Revision-Date: 2011-04-05 09:26+0000\n"
 "Last-Translator: seppone1991 <seppone1991@gmail.com>\n"
 "Language-Team: Italian (Italy) <>\n"
@@ -17,35 +17,35 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: AbsoluteToFpdb.py:140 AbsoluteToFpdb.py:142 BetfairToFpdb.py:76
-#: BetfairToFpdb.py:78 CarbonToFpdb.py:130 CarbonToFpdb.py:132
+#: BetfairToFpdb.py:78 CarbonToFpdb.py:132 CarbonToFpdb.py:134
 #: EverestToFpdb.py:101 EverestToFpdb.py:103 EverleafToFpdb.py:128
 #: EverleafToFpdb.py:130 FulltiltToFpdb.py:209 FulltiltToFpdb.py:211
 #: OnGameToFpdb.py:161 OnGameToFpdb.py:163 PacificPokerToFpdb.py:173
 #: PacificPokerToFpdb.py:175 PartyPokerToFpdb.py:197 PartyPokerToFpdb.py:199
-#: PkrToFpdb.py:128 PkrToFpdb.py:130 PokerStarsToFpdb.py:193
-#: PokerStarsToFpdb.py:195 Win2dayToFpdb.py:101 Win2dayToFpdb.py:103
+#: PkrToFpdb.py:128 PkrToFpdb.py:130 PokerStarsToFpdb.py:194
+#: PokerStarsToFpdb.py:196 Win2dayToFpdb.py:101 Win2dayToFpdb.py:103
 #: WinamaxToFpdb.py:172 WinamaxToFpdb.py:174 iPokerToFpdb.py:122
 #: iPokerToFpdb.py:124
 msgid "Unable to recognise gametype from: '%s'"
 msgstr "Impossibile riconoscere il tipo di gioco da:'%s'"
 
-#: AbsoluteToFpdb.py:141 BetfairToFpdb.py:77 CarbonToFpdb.py:131
+#: AbsoluteToFpdb.py:141 BetfairToFpdb.py:77 CarbonToFpdb.py:133
 #: EverestToFpdb.py:102 EverestToFpdb.py:107 EverleafToFpdb.py:129
 #: FullTiltPokerSummary.py:93 FullTiltPokerSummary.py:119
 #: FulltiltToFpdb.py:268 FulltiltToFpdb.py:286 OnGameToFpdb.py:162
 #: OnGameToFpdb.py:181 PacificPokerToFpdb.py:174 PacificPokerToFpdb.py:205
 #: PartyPokerToFpdb.py:198 PkrToFpdb.py:129 PkrToFpdb.py:154
-#: PokerStarsSummary.py:82 PokerStarsSummary.py:108 PokerStarsToFpdb.py:194
-#: PokerStarsToFpdb.py:222 SitenameSummary.py:82 Win2dayToFpdb.py:102
+#: PokerStarsSummary.py:82 PokerStarsSummary.py:108 PokerStarsToFpdb.py:195
+#: PokerStarsToFpdb.py:223 SitenameSummary.py:82 Win2dayToFpdb.py:102
 #: WinamaxToFpdb.py:173 WinamaxToFpdb.py:191 iPokerToFpdb.py:123
 msgid "Raising FpdbParseError"
 msgstr "Raising FpdbParseError"
 
 #: AbsoluteToFpdb.py:205 AbsoluteToFpdb.py:206 BetfairToFpdb.py:108
-#: BetfairToFpdb.py:109 CarbonToFpdb.py:163 CarbonToFpdb.py:165
+#: BetfairToFpdb.py:109 CarbonToFpdb.py:165 CarbonToFpdb.py:167
 #: EverestToFpdb.py:145 EverestToFpdb.py:147 EverleafToFpdb.py:163
-#: PacificPokerToFpdb.py:215 PacificPokerToFpdb.py:216 PokerStarsToFpdb.py:232
-#: PokerStarsToFpdb.py:233 iPokerToFpdb.py:156 iPokerToFpdb.py:158
+#: PacificPokerToFpdb.py:215 PacificPokerToFpdb.py:216 PokerStarsToFpdb.py:233
+#: PokerStarsToFpdb.py:234 iPokerToFpdb.py:156 iPokerToFpdb.py:158
 msgid "No match in readHandInfo: '%s'"
 msgstr "Nessuna partita in readHandInfo: '%s'"
 
@@ -62,7 +62,7 @@ msgid "Didn't match re_*InfoFromFilename: '%s'"
 msgstr "re_*InfoFromFilename non ha prodotto risultati: '%s'"
 
 #: AbsoluteToFpdb.py:279 EverleafToFpdb.py:228 FulltiltToFpdb.py:445
-#: OnGameToFpdb.py:303 PacificPokerToFpdb.py:347 PokerStarsToFpdb.py:365
+#: OnGameToFpdb.py:303 PacificPokerToFpdb.py:347 PokerStarsToFpdb.py:366
 #: Win2dayToFpdb.py:210 WinamaxToFpdb.py:360
 msgid "reading antes"
 msgstr "lettura ante"
@@ -83,32 +83,32 @@ msgstr "No small blind(piccolo buio)"
 msgid "%s cannot read all stud/razz hands yet."
 msgstr ""
 
-#: AbsoluteToFpdb.py:348 BetfairToFpdb.py:199 CarbonToFpdb.py:267
+#: AbsoluteToFpdb.py:348 BetfairToFpdb.py:199 CarbonToFpdb.py:269
 #: EverestToFpdb.py:234 EverestToFpdb.py:235 EverleafToFpdb.py:295
 #: FulltiltToFpdb.py:528 OnGameToFpdb.py:346 PacificPokerToFpdb.py:429
-#: PartyPokerToFpdb.py:535 PkrToFpdb.py:351 PokerStarsToFpdb.py:447
+#: PartyPokerToFpdb.py:535 PkrToFpdb.py:351 PokerStarsToFpdb.py:448
 #: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:261
 #, fuzzy
 msgid "Unimplemented %s: '%s' '%s'"
 msgstr "readAction non implementata: '%s' '%s'"
 
-#: AbsoluteToFpdb.py:398 BetfairToFpdb.py:222 CarbonToFpdb.py:297
+#: AbsoluteToFpdb.py:398 BetfairToFpdb.py:222 CarbonToFpdb.py:299
 #: EverleafToFpdb.py:333 FulltiltToFpdb.py:821 PacificPokerToFpdb.py:458
-#: PartyPokerToFpdb.py:575 PokerStarsToFpdb.py:476 Win2dayToFpdb.py:375
+#: PartyPokerToFpdb.py:575 PokerStarsToFpdb.py:477 Win2dayToFpdb.py:375
 #: iPokerToFpdb.py:291
 msgid "parse input hand history"
 msgstr "Analisi della storia della mano"
 
-#: AbsoluteToFpdb.py:399 BetfairToFpdb.py:223 CarbonToFpdb.py:298
+#: AbsoluteToFpdb.py:399 BetfairToFpdb.py:223 CarbonToFpdb.py:300
 #: EverleafToFpdb.py:334 FulltiltToFpdb.py:822 PacificPokerToFpdb.py:459
-#: PartyPokerToFpdb.py:576 PokerStarsToFpdb.py:477 Win2dayToFpdb.py:376
+#: PartyPokerToFpdb.py:576 PokerStarsToFpdb.py:478 Win2dayToFpdb.py:376
 #: iPokerToFpdb.py:292
 msgid "output translation to"
 msgstr "Traduzione di"
 
-#: AbsoluteToFpdb.py:400 BetfairToFpdb.py:224 CarbonToFpdb.py:299
+#: AbsoluteToFpdb.py:400 BetfairToFpdb.py:224 CarbonToFpdb.py:301
 #: EverleafToFpdb.py:335 FulltiltToFpdb.py:823 PacificPokerToFpdb.py:460
-#: PartyPokerToFpdb.py:577 PokerStarsToFpdb.py:478 Win2dayToFpdb.py:377
+#: PartyPokerToFpdb.py:577 PokerStarsToFpdb.py:479 Win2dayToFpdb.py:377
 #: iPokerToFpdb.py:293
 msgid "follow (tail -f) the input"
 msgstr "seguire (tail-f) l'ingresso"
@@ -133,7 +133,7 @@ msgstr "Bring-in non trovato"
 #: GuiPositionalStats.py:137 GuiStove.py:221 GuiStove.py:225 GuiStove.py:229
 #: GuiStove.py:233 GuiStove.py:237 GuiStove.py:239 Hand.py:494 Hand.py:1720
 #: ImapFetcher.py:44 ImapFetcher.py:53 OnGameToFpdb.py:215 OnGameToFpdb.py:346
-#: PacificPokerToFpdb.py:429 PkrToFpdb.py:351 PokerStarsToFpdb.py:447
+#: PacificPokerToFpdb.py:429 PkrToFpdb.py:351 PokerStarsToFpdb.py:448
 #: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:261
 #: test_Database.py:50 test_Database.py:51
 #, fuzzy
@@ -717,7 +717,7 @@ msgstr "Errore di analisi Fpdb per il file %s"
 
 #: FulltiltToFpdb.py:267 FulltiltToFpdb.py:269 PacificPokerToFpdb.py:204
 #: PacificPokerToFpdb.py:206 PkrToFpdb.py:153 PkrToFpdb.py:155
-#: PokerStarsToFpdb.py:221 PokerStarsToFpdb.py:223
+#: PokerStarsToFpdb.py:222 PokerStarsToFpdb.py:224
 msgid "Lim_Blinds has no lookup for '%s'"
 msgstr "Lim_Blinds non ha trovato alcun risultato per '%s'"
 
@@ -964,9 +964,10 @@ msgstr "Caricamento...."
 msgid "Input file"
 msgstr "File di ingresso"
 
-#: GuiBulkImport.py:351
-msgid "Conversion filter (*Full Tilt Poker, PokerStars, Everleaf, Absolute)"
-msgstr "Filtro di conversione(*Full Tilt Poker,Pokerstars,Everleaf,Absolute)"
+#: GuiBulkImport.py:351 GuiImapFetcher.py:110 GuiTourneyPlayerStats.py:82
+#: fpdb.pyw:722
+msgid "Site"
+msgstr "Sito"
 
 #: GuiBulkImport.py:353
 msgid "If this option is passed it quits when it encounters any error"
@@ -1279,25 +1280,19 @@ msgstr ""
 "Mani: %d\n"
 "Profit(%s): %.2f"
 
-#: GuiGraphViewer.py:220
-msgid "Showdown: $%.2f"
+#: GuiGraphViewer.py:220 GuiGraphViewer.py:234
+#, fuzzy
+msgid "Showdown"
 msgstr "Showdown: $%.2f"
 
-#: GuiGraphViewer.py:221
-msgid "Non-showdown: $%.2f"
+#: GuiGraphViewer.py:221 GuiGraphViewer.py:236
+#, fuzzy
+msgid "Non-showdown"
 msgstr "Non-showdown: $%.2f"
 
 #: GuiGraphViewer.py:229
 msgid "Profit graph for ring games"
 msgstr "Grafico Profitto per Cash Game"
-
-#: GuiGraphViewer.py:234
-msgid "Showdown (%s): %.2f"
-msgstr "Showdown (%s): %.2f"
-
-#: GuiGraphViewer.py:236
-msgid "Non-showdown (%s): %.2f"
-msgstr "Non-showdown (%s): %.2f"
 
 #: GuiGraphViewer.py:363 GuiTourneyGraphViewer.py:274
 msgid "Please choose the directory you wish to export to:"
@@ -1365,10 +1360,6 @@ msgstr "Mail Server"
 #: GuiImapFetcher.py:110
 msgid "Use SSL"
 msgstr "Usa SSL"
-
-#: GuiImapFetcher.py:110 GuiTourneyPlayerStats.py:82 fpdb.pyw:722
-msgid "Site"
-msgstr "Sito"
 
 #: GuiImapFetcher.py:142
 msgid "Yes"
@@ -1532,78 +1523,77 @@ msgstr "Carte personali"
 msgid "Position"
 msgstr "Posizione"
 
-#: GuiRingPlayerStats.py:47
-msgid "Name of the player"
-msgstr "Nome del giocatore"
+#: GuiRingPlayerStats.py:47 Stats.py:131
+#, fuzzy
+msgid "Player Name"
+msgstr "Giocatori"
 
-#: GuiRingPlayerStats.py:48
-msgid "Number of hands played"
-msgstr "Numero di mani giocate"
+#: GuiRingPlayerStats.py:48 Stats.py:314 Stats.py:333 Stats.py:342
+#, fuzzy
+msgid "Number of hands seen"
+msgstr "numero mani viste"
 
 #: GuiRingPlayerStats.py:49
 msgid "Number of Seats"
 msgstr "Numero di posti a sedere"
 
-#: GuiRingPlayerStats.py:50
-msgid ""
-"Voluntarily Putting In the pot\n"
-"(blinds excluded)"
-msgstr ""
-"Volontà di mettere chips nel piatto\n"
-"(Blinds esclusi)"
+#: GuiRingPlayerStats.py:50 Stats.py:140 Stats.py:149 Stats.py:156
+#, fuzzy
+msgid "Voluntarily put in preflop/3rd street %"
+msgstr "Volonta di mettere soldi nel piatto Pre-Flop%"
 
-#: GuiRingPlayerStats.py:51
-msgid "% Pre Flop Raise"
-msgstr "% Rilancio Pre Flop"
+#: GuiRingPlayerStats.py:51 Stats.py:160 Stats.py:169 Stats.py:177
+#, fuzzy
+msgid "Preflop/3rd street raise %"
+msgstr "Rilancio Pre-Flop %"
 
-#: GuiRingPlayerStats.py:52
-msgid "% Pre Flop Re-Raise / 3Bet"
-msgstr "% Controrilancio Pre Flop / 3Bet"
+#: GuiRingPlayerStats.py:52 Stats.py:457 Stats.py:466 Stats.py:473
+#, fuzzy
+msgid "% 3 bet preflop/3rd street"
+msgstr "% 3 Bet preflop/3rd"
 
-#: GuiRingPlayerStats.py:53
-msgid "% Pre Flop Re-Raise / 4Bet"
-msgstr "% Controrilancio Pre Flop / 4Bet"
+#: GuiRingPlayerStats.py:53 Stats.py:476 Stats.py:485 Stats.py:492
+#, fuzzy
+msgid "% 4 bet preflop/3rd street"
+msgstr "% 3 Bet preflop/3rd"
 
-#: GuiRingPlayerStats.py:54
-msgid "% Pre Flop Fold To Re-Raise / F3Bet"
-msgstr "% Fold Pre Flop davanti un controrilancio / F3Bet"
+#: GuiRingPlayerStats.py:54 Stats.py:554 Stats.py:563 Stats.py:570
+#, fuzzy
+msgid "% fold to 3 bet preflop/3rd street"
+msgstr "% Fold a una 3 Bet preflop"
 
-#: GuiRingPlayerStats.py:55
-msgid "% Pre Flop Fold To Re-Raise / F4Bet"
-msgstr "% Fold Pre Flop davanti una 4bet/ F4Bet"
+#: GuiRingPlayerStats.py:55 Stats.py:573 Stats.py:582 Stats.py:589
+#, fuzzy
+msgid "% fold to 4 bet preflop/3rd street"
+msgstr "% Fold a una 4 Bet preflop"
 
 #: GuiRingPlayerStats.py:56
-msgid "Aggression Factor\n"
-msgstr "Fattore di Aggressione\n"
+msgid "Aggression Factor"
+msgstr "Fattore Aggressione"
 
-#: GuiRingPlayerStats.py:57
-msgid ""
-"Aggression Frequency\n"
-"Bet or Raise vs Fold"
-msgstr ""
-"Frequenza di aggressione\n"
-"Bet or Raise vs Fold"
+#: GuiRingPlayerStats.py:57 Stats.py:687 Stats.py:703 Stats.py:710
+#, fuzzy
+msgid "Post-flop aggression frequency"
+msgstr "Frequenza Aggressione Post-Flop"
 
-#: GuiRingPlayerStats.py:58
-msgid "Continuation Bet post-flop"
-msgstr "Continuation Bet post-flop"
+#: GuiRingPlayerStats.py:58 Stats.py:765 Stats.py:776 Stats.py:783
+#, fuzzy
+msgid "% continuation bet"
+msgstr "% continuation bet"
 
 #: GuiRingPlayerStats.py:59
-msgid "% Raise First In\\% Raise when first to bet"
+#, fuzzy
+msgid "% Raise First In / % Raise when first to bet"
 msgstr "% Raise First In\\% Rilancio quando si è primi ad aprire il piatto"
 
-#: GuiRingPlayerStats.py:60
-#, fuzzy
-msgid ""
-"% First to raise preflop\n"
-"and steal blinds"
-msgstr ""
-"% Primo a rilanciare Pre Flop\n"
-"e a rubare i blinds"
+#: GuiRingPlayerStats.py:60 Stats.py:367 Stats.py:376
+msgid "% steal attempted"
+msgstr "% tentativo di steal"
 
-#: GuiRingPlayerStats.py:61
-msgid "% Saw Flop vs hands dealt"
-msgstr "% Flop visti vs Mani giocate"
+#: GuiRingPlayerStats.py:61 Stats.py:291 Stats.py:301 Stats.py:310
+#, fuzzy
+msgid "Flop/4th street seen %"
+msgstr "Flop visti %"
 
 #: GuiRingPlayerStats.py:62
 #, fuzzy
@@ -1612,36 +1602,27 @@ msgstr "Show Down / River visti"
 
 #: GuiRingPlayerStats.py:63
 #, fuzzy
-msgid "Went To Showdown When Saw Flop"
-msgstr "Mani finite allo Show Down quando guardi il flop"
+msgid "% went to showdown when seen flop/4th streetp"
+msgstr "% continuation bet al flop/4th"
 
-#: GuiRingPlayerStats.py:64
+#: GuiRingPlayerStats.py:64 Stats.py:202 Stats.py:211 Stats.py:219
 msgid "% Won some money at showdown"
 msgstr "% Soldi vinti allo showdown"
 
-#: GuiRingPlayerStats.py:65
-msgid ""
-"Flop Aggression\n"
-"% Bet or Raise after seeing Flop"
-msgstr ""
-"Aggressione al Flop\n"
-"% Bet o rilancio dopo aver visto il flop"
+#: GuiRingPlayerStats.py:65 Stats.py:611 Stats.py:620 Stats.py:627
+#, fuzzy
+msgid "Aggression frequency flop/4th street"
+msgstr "Frequenza Aggressione al flop/4th"
 
-#: GuiRingPlayerStats.py:66
-msgid ""
-"Turn Aggression\n"
-"% Bet or Raise after seeing Turn"
-msgstr ""
-"Aggressione al Turn\n"
-"% Bet o Rilancio dopo aver visto il Turn"
+#: GuiRingPlayerStats.py:66 Stats.py:630 Stats.py:639 Stats.py:646
+#, fuzzy
+msgid "Aggression frequency turn/5th street"
+msgstr "Frequenza Aggressione al turn/5th"
 
-#: GuiRingPlayerStats.py:67
-msgid ""
-"River Aggression\n"
-"% Bet or Raise after seeing River"
-msgstr ""
-"Aggressione al River\n"
-"% Bet o Rilancio dopo aver visto il River"
+#: GuiRingPlayerStats.py:67 Stats.py:649 Stats.py:658 Stats.py:665
+#, fuzzy
+msgid "Aggression frequency river/6th street"
+msgstr "Frequenza Aggressione al river/6th"
 
 #: GuiRingPlayerStats.py:68
 msgid ""
@@ -1651,26 +1632,23 @@ msgstr ""
 "Prossimamente\n"
 " % Aggressione totale"
 
-#: GuiRingPlayerStats.py:69
-msgid "Amount won"
-msgstr "Totale vincite"
+#: GuiRingPlayerStats.py:69 Stats.py:124 Stats.py:127 Stats.py:128
+msgid "Total Profit"
+msgstr "Profitto totale"
 
-#: GuiRingPlayerStats.py:70
-msgid ""
-"Number of Big Blinds won\n"
-"or lost per 100 hands"
-msgstr ""
-"Numero di Big Blinds vinti\n"
-"o persi per 100 mani"
+#: GuiRingPlayerStats.py:70 Stats.py:247 Stats.py:256 Stats.py:265
+#, fuzzy
+msgid "Big blinds won per 100 hands"
+msgstr "big blinds/100 mani"
 
 #: GuiRingPlayerStats.py:71
 msgid "Amount of rake paid"
 msgstr "Totale rake pagato"
 
 #: GuiRingPlayerStats.py:72
+#, fuzzy
 msgid ""
-"Number of Big Blinds won\n"
-"or lost per 100 hands\n"
+"Big blinds won per 100 hands\n"
 "when excluding rake"
 msgstr ""
 "Numero di Big Blinds vinti\n"
@@ -2042,79 +2020,63 @@ msgstr "Ogni errore verrà segnalato lì _solo_."
 msgid "HUD_main: starting ...\n"
 msgstr "HUD_main: avvio in corso...\n"
 
-#: HUD_main.pyw:94
-msgid "No admin rights for HUD"
-msgstr "Non hai i diritti di amministratore per l HUD"
-
-#: HUD_main.pyw:95
-msgid ""
-"Please right click fpdb.exe and HUD_main.exe, select properties, and set "
-"them both to run as admin."
-msgstr ""
-"Si prega di cliccare col tasto destro del mouse su fpdb.exe e HUD_main.exe,"
-"selezionare proprietà,e settare entrambe su Esegui come Amministratore."
-
-#: HUD_main.pyw:95
-msgid "You will need to restart fpdb afterwards."
-msgstr "Dopo sarà necessario riavviare fpdb ."
-
-#: HUD_main.pyw:118 HUD_run_me.py:62
+#: HUD_main.pyw:108 HUD_run_me.py:62
 msgid "Closing this window will exit from the HUD."
 msgstr "Chiudi questa finestra per uscire dall HUD"
 
-#: HUD_main.pyw:134
+#: HUD_main.pyw:123
 msgid "Error initializing main_window"
 msgstr "Errore di inizializzazione main_window"
 
-#: HUD_main.pyw:149
+#: HUD_main.pyw:138
 msgid "hud_main: Game changed."
 msgstr "hud_main: Gioco cambiato"
 
-#: HUD_main.pyw:155 fpdb.pyw:1047
+#: HUD_main.pyw:144 fpdb.pyw:1047
 msgid "Quitting normally"
 msgstr "Chiudere normalmente"
 
-#: HUD_main.pyw:216
+#: HUD_main.pyw:205
 msgid "Received hand no %s"
 msgstr "Mano ricevuta no %s"
 
-#: HUD_main.pyw:240
+#: HUD_main.pyw:229
 msgid "HUD_main.read_stdin: hand processing starting ..."
 msgstr "HUD_main.read_stdin: Processo mano in corso ..."
 
-#: HUD_main.pyw:245
+#: HUD_main.pyw:234
 msgid "db error: skipping %s"
 msgstr "errore db: saltato %s"
 
-#: HUD_main.pyw:264
+#: HUD_main.pyw:253
 msgid "hud_dict[%s] was not found\n"
 msgstr "hud_dict[%s] non è stato trovato\n"
 
-#: HUD_main.pyw:265
+#: HUD_main.pyw:254
 msgid "will not send hand\n"
 msgstr "La mano non sarà inviata\n"
 
-#: HUD_main.pyw:287
+#: HUD_main.pyw:276
 msgid "HUD create: table name %s not found, skipping."
 msgstr "HUD create:nome tavolo %s non trovato,saltato."
 
-#: HUD_main.pyw:296
+#: HUD_main.pyw:285
 msgid "Table \"%s\" no longer exists\n"
 msgstr "Il Tavolo \"%s\" non esiste più\n"
 
-#: HUD_main.pyw:328
+#: HUD_main.pyw:317
 msgid "Error resizing HUD for table: %s."
 msgstr "Errore ridimensionamento dell' HUD per il tavolo: %s."
 
-#: HUD_main.pyw:342
+#: HUD_main.pyw:331
 msgid "Error killing HUD for table: %s."
 msgstr "Errore chiudendo HUD nel tavolo: %s"
 
-#: HUD_main.pyw:365
+#: HUD_main.pyw:354
 msgid "Error creating HUD for hand %s."
 msgstr "Errore apertura HUD per la mano: %s"
 
-#: HUD_main.pyw:376
+#: HUD_main.pyw:365
 msgid "Error updating HUD for hand %s."
 msgstr "Errore aggiornamento HUD per la mano: %s"
 
@@ -2755,7 +2717,7 @@ msgid "DATETIME not matched: '%s'"
 msgstr "readHandInfo: DATATIME non riscontrata: '%s'"
 
 #: OnGameToFpdb.py:273 PacificPokerToFpdb.py:305 PartyPokerToFpdb.py:365
-#: PokerStarsToFpdb.py:320 Win2dayToFpdb.py:169 WinamaxToFpdb.py:329
+#: PokerStarsToFpdb.py:321 Win2dayToFpdb.py:169 WinamaxToFpdb.py:329
 msgid "readButton: not found"
 msgstr "readButton:Non trovato"
 
@@ -2847,12 +2809,12 @@ msgstr "premi invio per finire"
 msgid "You need to manually enter the playername"
 msgstr "Inserisci manualmente il nome del giocatore"
 
-#: PacificPokerToFpdb.py:258 PartyPokerToFpdb.py:348 PokerStarsToFpdb.py:275
+#: PacificPokerToFpdb.py:258 PartyPokerToFpdb.py:348 PokerStarsToFpdb.py:276
 #: WinamaxToFpdb.py:263
 msgid "Failed to detect currency."
 msgstr "Impossibile individuare valuta."
 
-#: PacificPokerToFpdb.py:258 PartyPokerToFpdb.py:348 PokerStarsToFpdb.py:275
+#: PacificPokerToFpdb.py:258 PartyPokerToFpdb.py:348 PokerStarsToFpdb.py:276
 #: WinamaxToFpdb.py:263
 msgid "Hand ID: %s: '%s'"
 msgstr "ID Mano: %s: '%s'"
@@ -2905,32 +2867,9 @@ msgstr "Errore inatteso durante il processo del file"
 msgid "End of file reached"
 msgstr "Fine del file raggiunta"
 
-#: Stats.py:124 Stats.py:127 Stats.py:128
-msgid "Total Profit"
-msgstr "Profitto totale"
-
-#: Stats.py:131
-#, fuzzy
-msgid "Player Name"
-msgstr "Giocatori"
-
-#: Stats.py:140 Stats.py:149 Stats.py:156
-#, fuzzy
-msgid "Voluntarily put in preflop/3rd street %"
-msgstr "Volonta di mettere soldi nel piatto Pre-Flop%"
-
-#: Stats.py:160 Stats.py:169 Stats.py:177
-#, fuzzy
-msgid "Preflop/3rd street raise %"
-msgstr "Rilancio Pre-Flop %"
-
 #: Stats.py:181 Stats.py:190 Stats.py:198
 msgid "% went to showdown when seen flop/4th street"
 msgstr ""
-
-#: Stats.py:202 Stats.py:211 Stats.py:219
-msgid "% won money at showdown"
-msgstr "% soldi vinti allo showdown"
 
 #: Stats.py:225 Stats.py:234 Stats.py:243
 #, fuzzy
@@ -2940,11 +2879,6 @@ msgstr "profitto/100 mani"
 #: Stats.py:237
 msgid "exception calcing p/100: 100 * %d / %d"
 msgstr "eccezione di calcolo p/100: 100* %d / %d"
-
-#: Stats.py:247 Stats.py:256 Stats.py:265
-#, fuzzy
-msgid "Big blinds won per 100 hands"
-msgstr "big blinds/100 mani"
 
 #: Stats.py:259
 #, fuzzy
@@ -2959,20 +2893,6 @@ msgstr "Big Bets/100 mani"
 #: Stats.py:281
 msgid "exception calcing BB/100: "
 msgstr "eccezione calcolo BB/100: "
-
-#: Stats.py:291 Stats.py:301 Stats.py:310
-#, fuzzy
-msgid "Flop/4th street seen %"
-msgstr "Flop visti %"
-
-#: Stats.py:314 Stats.py:333 Stats.py:342
-#, fuzzy
-msgid "Number of hands seen"
-msgstr "numero mani viste"
-
-#: Stats.py:367 Stats.py:376
-msgid "% steal attempted"
-msgstr "% tentativo di steal"
 
 #: Stats.py:382 Stats.py:391
 #, fuzzy
@@ -2991,16 +2911,6 @@ msgstr "% foldate davanti uno steal da BB"
 msgid "% folded blind to steal"
 msgstr "% foldate davanti uno steal dai blind"
 
-#: Stats.py:457 Stats.py:466 Stats.py:473
-#, fuzzy
-msgid "% 3 bet preflop/3rd street"
-msgstr "% 3 Bet preflop/3rd"
-
-#: Stats.py:476 Stats.py:485 Stats.py:492
-#, fuzzy
-msgid "% 4 bet preflop/3rd street"
-msgstr "% 3 Bet preflop/3rd"
-
 #: Stats.py:495 Stats.py:504 Stats.py:511
 #, fuzzy
 msgid "% cold 4 bet preflop/3rd street"
@@ -3016,54 +2926,19 @@ msgstr "% Squeeze preflop"
 msgid "% raise to steal"
 msgstr "% Rilancio a uno Steal"
 
-#: Stats.py:554 Stats.py:563 Stats.py:570
-#, fuzzy
-msgid "% fold to 3 bet preflop/3rd street"
-msgstr "% Fold a una 3 Bet preflop"
-
-#: Stats.py:573 Stats.py:582 Stats.py:589
-#, fuzzy
-msgid "% fold to 4 bet preflop/3rd street"
-msgstr "% Fold a una 4 Bet preflop"
-
 #: Stats.py:592 Stats.py:601 Stats.py:608
 msgid "% won money when seen flop/4th street"
 msgstr ""
-
-#: Stats.py:611 Stats.py:620 Stats.py:627
-#, fuzzy
-msgid "Aggression frequency flop/4th street"
-msgstr "Frequenza Aggressione al flop/4th"
-
-#: Stats.py:630 Stats.py:639 Stats.py:646
-#, fuzzy
-msgid "Aggression frequency turn/5th street"
-msgstr "Frequenza Aggressione al turn/5th"
-
-#: Stats.py:649 Stats.py:658 Stats.py:665
-#, fuzzy
-msgid "Aggression frequency river/6th street"
-msgstr "Frequenza Aggressione al river/6th"
 
 #: Stats.py:668 Stats.py:677 Stats.py:684
 #, fuzzy
 msgid "Aggression frequency 7th street"
 msgstr "Frequenza Aggressione 7th"
 
-#: Stats.py:687 Stats.py:703 Stats.py:710
-#, fuzzy
-msgid "Post-flop aggression frequency"
-msgstr "Frequenza Aggressione Post-Flop"
-
 #: Stats.py:740 Stats.py:755 Stats.py:762
 #, fuzzy
 msgid "Aggression factor"
 msgstr "Fattore Aggressione"
-
-#: Stats.py:765 Stats.py:776 Stats.py:783
-#, fuzzy
-msgid "% continuation bet"
-msgstr "% continuation bet"
 
 #: Stats.py:786 Stats.py:795 Stats.py:802
 #, fuzzy
@@ -4242,6 +4117,130 @@ msgstr ""
 "percorso manualmente\n"
 
 #~ msgid ""
+#~ "Flop Aggression\n"
+#~ "% Bet or Raise after seeing Flop"
+#~ msgstr ""
+#~ "Aggressione al Flop\n"
+#~ "% Bet o rilancio dopo aver visto il flop"
+
+#~ msgid ""
+#~ "Turn Aggression\n"
+#~ "% Bet or Raise after seeing Turn"
+#~ msgstr ""
+#~ "Aggressione al Turn\n"
+#~ "% Bet o Rilancio dopo aver visto il Turn"
+
+#~ msgid ""
+#~ "River Aggression\n"
+#~ "% Bet or Raise after seeing River"
+#~ msgstr ""
+#~ "Aggressione al River\n"
+#~ "% Bet o Rilancio dopo aver visto il River"
+
+#~ msgid "Amount won"
+#~ msgstr "Totale vincite"
+
+#~ msgid ""
+#~ "Number of Big Blinds won\n"
+#~ "or lost per 100 hands"
+#~ msgstr ""
+#~ "Numero di Big Blinds vinti\n"
+#~ "o persi per 100 mani"
+
+#~ msgid ""
+#~ "Aggression Frequency\n"
+#~ "Bet or Raise vs Fold"
+#~ msgstr ""
+#~ "Frequenza di aggressione\n"
+#~ "Bet or Raise vs Fold"
+
+#~ msgid "Continuation Bet post-flop"
+#~ msgstr "Continuation Bet post-flop"
+
+#, fuzzy
+#~ msgid ""
+#~ "% First to raise preflop\n"
+#~ "and steal blinds"
+#~ msgstr ""
+#~ "% Primo a rilanciare Pre Flop\n"
+#~ "e a rubare i blinds"
+
+#~ msgid "% Saw Flop vs hands dealt"
+#~ msgstr "% Flop visti vs Mani giocate"
+
+#, fuzzy
+#~ msgid "Went To Showdown When Saw Flop"
+#~ msgstr "Mani finite allo Show Down quando guardi il flop"
+
+#~ msgid "% won money at showdown"
+#~ msgstr "% soldi vinti allo showdown"
+
+#~ msgid "% Pre Flop Raise"
+#~ msgstr "% Rilancio Pre Flop"
+
+#, fuzzy
+#~ msgid "% Pre Flop 3Bet"
+#~ msgstr "% Rilancio Pre Flop"
+
+#, fuzzy
+#~ msgid "% Pre Flop 4Bet"
+#~ msgstr "% Rilancio Pre Flop"
+
+#, fuzzy
+#~ msgid "% Pre Flop Fold To 3Bet"
+#~ msgstr "% Fold Pre Flop davanti un controrilancio / F3Bet"
+
+#, fuzzy
+#~ msgid "% Pre Flop Fold To 4Bet"
+#~ msgstr "% Fold Pre Flop davanti una 4bet/ F4Bet"
+
+#~ msgid "Name of the player"
+#~ msgstr "Nome del giocatore"
+
+#~ msgid "Number of hands played"
+#~ msgstr "Numero di mani giocate"
+
+#~ msgid ""
+#~ "Voluntarily Putting In the pot\n"
+#~ "(blinds excluded)"
+#~ msgstr ""
+#~ "Volontà di mettere chips nel piatto\n"
+#~ "(Blinds esclusi)"
+
+#~ msgid "% Pre Flop Re-Raise / 3Bet"
+#~ msgstr "% Controrilancio Pre Flop / 3Bet"
+
+#~ msgid "% Pre Flop Re-Raise / 4Bet"
+#~ msgstr "% Controrilancio Pre Flop / 4Bet"
+
+#~ msgid "Aggression Factor\n"
+#~ msgstr "Fattore di Aggressione\n"
+
+#~ msgid "Conversion filter (*Full Tilt Poker, PokerStars, Everleaf, Absolute)"
+#~ msgstr ""
+#~ "Filtro di conversione(*Full Tilt Poker,Pokerstars,Everleaf,Absolute)"
+
+#~ msgid "Showdown (%s): %.2f"
+#~ msgstr "Showdown (%s): %.2f"
+
+#~ msgid "Non-showdown (%s): %.2f"
+#~ msgstr "Non-showdown (%s): %.2f"
+
+#~ msgid "No admin rights for HUD"
+#~ msgstr "Non hai i diritti di amministratore per l HUD"
+
+#~ msgid ""
+#~ "Please right click fpdb.exe and HUD_main.exe, select properties, and set "
+#~ "them both to run as admin."
+#~ msgstr ""
+#~ "Si prega di cliccare col tasto destro del mouse su fpdb.exe e HUD_main."
+#~ "exe,selezionare proprietà,e settare entrambe su Esegui come "
+#~ "Amministratore."
+
+#~ msgid "You will need to restart fpdb afterwards."
+#~ msgstr "Dopo sarà necessario riavviare fpdb ."
+
+#~ msgid ""
 #~ "Hands: %d\n"
 #~ "Profit (%s): %.2f"
 #~ msgstr ""
@@ -4278,9 +4277,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "% folded to steal"
 #~ msgstr "% foldate davanti uno steal da SB"
-
-#~ msgid "Aggression Factor"
-#~ msgstr "Fattore Aggressione"
 
 #~ msgid "ImportError: %s"
 #~ msgstr "Errore di importazione:%s"

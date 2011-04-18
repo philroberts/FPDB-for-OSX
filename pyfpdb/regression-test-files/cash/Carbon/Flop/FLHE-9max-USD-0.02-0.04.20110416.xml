@@ -1,0 +1,524 @@
+<description type="Holdem" stakes="Limit $0.02/$0.04"/>
+<game id="33325037-500" starttime="20110416150310" numholecards="2" gametype="2" realmoney="true" data="20110416|Sydney Harbour Bridge (33325037)|33325037|33325037-500|false">
+	<players dealer="1">
+		<player seat="0" nickname="stackhouse777" balance="$0.56" dealtin="true" />
+		<player seat="1" nickname="DaveNewbie" balance="$0.35" dealtin="true" />
+		<player seat="2" nickname="Archaces" balance="$0.27" dealtin="true" />
+		<player seat="3" nickname="Miclest" balance="$0.80" dealtin="true" />
+		<player seat="4" nickname="dmlink" balance="$0.60" dealtin="true" />
+		<player seat="6" nickname="keizerkarel7" balance="$0.68" dealtin="true" />
+		<player seat="7" nickname="xxxcata" balance="$2.65" dealtin="true" />
+		<player seat="8" nickname="DnDGeek" balance="$0.80" dealtin="false" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1302984185598" player="2" amount="0.01"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1302984185855" player="3" amount="0.02"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1302984202272" player="4" amount="0.04"/>
+		<event sequence="4" type="CALL" timestamp="1302984207412" player="6" amount="0.04"/>
+		<event sequence="5" type="RAISE" timestamp="1302984209584" player="7" amount="0.06"/>
+		<event sequence="6" type="FOLD" timestamp="1302984209843" player="0"/>
+		<event sequence="7" type="FOLD" timestamp="1302984210197" player="1"/>
+		<event sequence="8" type="CALL" timestamp="1302984212096" player="2" amount="0.05"/>
+		<event sequence="9" type="FOLD" timestamp="1302984212419" player="3"/>
+		<event sequence="10" type="CALL" timestamp="1302984213596" player="4" amount="0.02"/>
+		<event sequence="11" type="CALL" timestamp="1302984213905" player="6" amount="0.02"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="12" type="CHECK" timestamp="1302984216455" player="2"/>
+		<event sequence="13" type="BET" timestamp="1302984217901" player="4" amount="0.02"/>
+		<event sequence="14" type="CALL" timestamp="1302984219066" player="6" amount="0.02"/>
+		<event sequence="15" type="RAISE" timestamp="1302984221603" player="7" amount="0.04"/>
+		<event sequence="16" type="FOLD" timestamp="1302984222832" player="2"/>
+		<event sequence="17" type="CALL" timestamp="1302984224906" player="4" amount="0.02"/>
+		<event sequence="18" type="CALL" timestamp="1302984230185" player="6" amount="0.02"/>
+		<cards type="COMMUNITY" cards="2h,Ah,5d"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="19" type="CHECK" timestamp="1302984232492" player="4"/>
+		<event sequence="20" type="CHECK" timestamp="1302984233715" player="6"/>
+		<event sequence="21" type="BET" timestamp="1302984236641" player="7" amount="0.04"/>
+		<event sequence="22" type="CALL" timestamp="1302984237873" player="4" amount="0.04"/>
+		<event sequence="23" type="CALL" timestamp="1302984239257" player="6" amount="0.04"/>
+		<cards type="COMMUNITY" cards="2h,Ah,5d,Kd"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="24" type="CHECK" timestamp="1302984241271" player="4"/>
+		<event sequence="25" type="CHECK" timestamp="1302984242544" player="6"/>
+		<event sequence="26" type="BET" timestamp="1302984243784" player="7" amount="0.04"/>
+		<event sequence="27" type="CALL" timestamp="1302984245269" player="4" amount="0.04"/>
+		<event sequence="28" type="CALL" timestamp="1302984246257" player="6" amount="0.04"/>
+		<cards type="COMMUNITY" cards="2h,Ah,5d,Kd,5s"/>
+	</round>
+	<round id="SHOWDOWN" sequence="6">
+		<event sequence="29" type="SHOW" timestamp="1302984246963" player="7"/>
+		<event sequence="30" type="MUCK" timestamp="1302984247244" player="4"/>
+		<event sequence="31" type="MUCK" timestamp="1302984248539" player="6"/>
+		<cards type="SHOWN" cards="Kh,Ad" player="7"/>
+		<cards type="MUCKED" cards="Ac,Qs" player="4"/>
+		<cards type="MUCKED" cards="Ks,Qd" player="6"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+		<winner amount="0.59" uncalled="false" potnumber="1" player="7" hand="Two Pair Aces and Kings" pottype="n"/>
+	</round>
+</game>
+
+<game id="33325037-501" starttime="20110416150415" numholecards="2" gametype="2" realmoney="true" data="20110416|Sydney Harbour Bridge (33325037)|33325037|33325037-501|false">
+	<players dealer="2">
+		<player seat="0" nickname="stackhouse777" balance="$0.56" dealtin="true" />
+		<player seat="1" nickname="DaveNewbie" balance="$0.35" dealtin="true" />
+		<player seat="2" nickname="Archaces" balance="$0.21" dealtin="true" />
+		<player seat="3" nickname="Miclest" balance="$0.78" dealtin="true" />
+		<player seat="4" nickname="dmlink" balance="$0.42" dealtin="true" />
+		<player seat="6" nickname="keizerkarel7" balance="$0.50" dealtin="true" />
+		<player seat="7" nickname="xxxcata" balance="$3.06" dealtin="true" />
+		<player seat="8" nickname="DnDGeek" balance="$0.80" dealtin="false" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1302984250832" player="3" amount="0.01"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1302984251133" player="4" amount="0.02"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1302984255835" player="6"/>
+		<event sequence="4" type="RAISE" timestamp="1302984258870" player="7" amount="0.04"/>
+		<event sequence="5" type="FOLD" timestamp="1302984262138" player="0"/>
+		<event sequence="6" type="FOLD" timestamp="1302984262465" player="1"/>
+		<event sequence="7" type="CALL" timestamp="1302984265065" player="2" amount="0.04"/>
+		<event sequence="8" type="FOLD" timestamp="1302984269147" player="3"/>
+		<event sequence="9" type="FOLD" timestamp="1302984269422" player="4"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="10" type="BET" timestamp="1302984272624" player="7" amount="0.02"/>
+		<event sequence="11" type="CALL" timestamp="1302984276702" player="2" amount="0.02"/>
+		<cards type="COMMUNITY" cards="3h,Kh,2d"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="12" type="BET" timestamp="1302984279901" player="7" amount="0.04"/>
+		<event sequence="13" type="FOLD" timestamp="1302984283191" player="2"/>
+		<cards type="COMMUNITY" cards="3h,Kh,2d,8c"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="5">
+		<event sequence="14" type="MUCK" timestamp="1302984283891" player="7"/>
+		<winner amount="0.19" uncalled="false" potnumber="1" player="7" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+	</round>
+</game>
+
+<game id="33325037-502" starttime="20110416150450" numholecards="2" gametype="2" realmoney="true" data="20110416|Sydney Harbour Bridge (33325037)|33325037|33325037-502|false">
+	<players dealer="3">
+		<player seat="0" nickname="stackhouse777" balance="$0.56" dealtin="true" />
+		<player seat="2" nickname="Archaces" balance="$0.15" dealtin="true" />
+		<player seat="3" nickname="Miclest" balance="$0.77" dealtin="true" />
+		<player seat="4" nickname="dmlink" balance="$0.60" dealtin="true" />
+		<player seat="6" nickname="keizerkarel7" balance="$0.50" dealtin="true" />
+		<player seat="7" nickname="xxxcata" balance="$3.15" dealtin="true" />
+		<player seat="8" nickname="DnDGeek" balance="$0.80" dealtin="false" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1302984286285" player="4" amount="0.01"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1302984286592" player="6" amount="0.02"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="CALL" timestamp="1302984289975" player="7" amount="0.02"/>
+		<event sequence="4" type="FOLD" timestamp="1302984292895" player="0"/>
+		<event sequence="5" type="FOLD" timestamp="1302984293175" player="2"/>
+		<event sequence="6" type="RAISE" timestamp="1302984294566" player="3" amount="0.04"/>
+		<event sequence="7" type="CALL" timestamp="1302984299074" player="4" amount="0.03"/>
+		<event sequence="8" type="CALL" timestamp="1302984299387" player="6" amount="0.02"/>
+		<event sequence="9" type="CALL" timestamp="1302984310715" player="7" amount="0.02"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="10" type="BET" timestamp="1302984314224" player="4" amount="0.02"/>
+		<event sequence="11" type="FOLD" timestamp="1302984318159" player="6"/>
+		<event sequence="12" type="CALL" timestamp="1302984321516" player="7" amount="0.02"/>
+		<event sequence="13" type="CALL" timestamp="1302984324705" player="3" amount="0.02"/>
+		<cards type="COMMUNITY" cards="Td,4c,5c"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="14" type="BET" timestamp="1302984327076" player="4" amount="0.04"/>
+		<event sequence="15" type="FOLD" timestamp="1302984329122" player="7"/>
+		<event sequence="16" type="RAISE" timestamp="1302984339506" player="3" amount="0.08"/>
+		<event sequence="17" type="CALL" timestamp="1302984341283" player="4" amount="0.04"/>
+		<cards type="COMMUNITY" cards="Td,4c,5c,Js"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="18" type="CHECK" timestamp="1302984342534" player="4"/>
+		<event sequence="19" type="CHECK" timestamp="1302984345433" player="3"/>
+		<cards type="COMMUNITY" cards="Td,4c,5c,Js,9s"/>
+	</round>
+	<round id="SHOWDOWN" sequence="6">
+		<event sequence="20" type="SHOW" timestamp="1302984345914" player="4"/>
+		<event sequence="21" type="MUCK" timestamp="1302984345972" player="3"/>
+		<cards type="SHOWN" cards="Ts,As" player="4"/>
+		<cards type="MUCKED" cards="Kc,Ad" player="3"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+		<winner amount="0.37" uncalled="false" potnumber="1" player="4" hand="Pair of Tens" pottype="n"/>
+	</round>
+</game>
+
+<game id="33325037-503" starttime="20110416150552" numholecards="2" gametype="2" realmoney="true" data="20110416|Sydney Harbour Bridge (33325037)|33325037|33325037-503|false">
+	<players dealer="4">
+		<player seat="0" nickname="stackhouse777" balance="$0.56" dealtin="true" />
+		<player seat="2" nickname="Archaces" balance="$0.15" dealtin="true" />
+		<player seat="3" nickname="Miclest" balance="$0.63" dealtin="true" />
+		<player seat="4" nickname="dmlink" balance="$0.83" dealtin="true" />
+		<player seat="6" nickname="keizerkarel7" balance="$0.46" dealtin="true" />
+		<player seat="7" nickname="xxxcata" balance="$3.09" dealtin="true" />
+		<player seat="8" nickname="DnDGeek" balance="$0.80" dealtin="false" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1302984348200" player="6" amount="0.01"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1302984348600" player="7" amount="0.02"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1302984358934" player="0"/>
+		<event sequence="4" type="RAISE" timestamp="1302984359192" player="2" amount="0.04"/>
+		<event sequence="5" type="FOLD" timestamp="1302984359456" player="3"/>
+		<event sequence="6" type="CALL" timestamp="1302984364728" player="4" amount="0.04"/>
+		<event sequence="7" type="CALL" timestamp="1302984369091" player="6" amount="0.03"/>
+		<event sequence="8" type="CALL" timestamp="1302984371894" player="7" amount="0.02"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="9" type="CHECK" timestamp="1302984376550" player="6"/>
+		<event sequence="10" type="BET" timestamp="1302984378635" player="7" amount="0.02"/>
+		<event sequence="11" type="CALL" timestamp="1302984381113" player="2" amount="0.02"/>
+		<event sequence="12" type="CALL" timestamp="1302984382420" player="4" amount="0.02"/>
+		<event sequence="13" type="FOLD" timestamp="1302984386333" player="6"/>
+		<cards type="COMMUNITY" cards="Ah,Ac,9d"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="14" type="BET" timestamp="1302984388720" player="7" amount="0.04"/>
+		<event sequence="15" type="RAISE" timestamp="1302984391089" player="2" amount="0.08"/>
+		<event sequence="16" type="CALL" timestamp="1302984392756" player="4" amount="0.08"/>
+		<event sequence="17" type="FOLD" timestamp="1302984395311" player="7"/>
+		<cards type="COMMUNITY" cards="Ah,Ac,9d,4h"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="18" type="ALL_IN" timestamp="1302984397202" player="2" amount="0.01"/>
+		<event sequence="19" type="CALL" timestamp="1302984398668" player="4" amount="0.01"/>
+		<cards type="COMMUNITY" cards="Ah,Ac,9d,4h,Tc"/>
+	</round>
+	<round id="SHOWDOWN" sequence="6">
+		<event sequence="20" type="SHOW" timestamp="1302984399361" player="2"/>
+		<event sequence="21" type="SHOW" timestamp="1302984399884" player="4"/>
+		<cards type="SHOWN" cards="Jc,As" player="2"/>
+		<cards type="SHOWN" cards="5d,Ad" player="4"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+		<winner amount="0.42" uncalled="false" potnumber="1" player="2" hand="Three of a Kind Aces" pottype="n"/>
+	</round>
+</game>
+
+<game id="33325037-504" starttime="20110416150646" numholecards="2" gametype="2" realmoney="true" data="20110416|Sydney Harbour Bridge (33325037)|33325037|33325037-504|false">
+	<players dealer="6">
+		<player seat="0" nickname="stackhouse777" balance="$0.56" dealtin="true" />
+		<player seat="2" nickname="Archaces" balance="$0.42" dealtin="true" />
+		<player seat="3" nickname="Miclest" balance="$0.63" dealtin="true" />
+		<player seat="4" nickname="dmlink" balance="$0.68" dealtin="true" />
+		<player seat="6" nickname="keizerkarel7" balance="$0.42" dealtin="true" />
+		<player seat="7" nickname="xxxcata" balance="$2.99" dealtin="true" />
+		<player seat="8" nickname="DnDGeek" balance="$0.80" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1302984402359" player="7" amount="0.01"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1302984402552" player="8" amount="0.02"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1302984405556" player="0"/>
+		<event sequence="4" type="CALL" timestamp="1302984406509" player="2" amount="0.02"/>
+		<event sequence="5" type="FOLD" timestamp="1302984409098" player="3"/>
+		<event sequence="6" type="FOLD" timestamp="1302984415017" player="4"/>
+		<event sequence="7" type="FOLD" timestamp="1302984415562" player="6"/>
+		<event sequence="8" type="RAISE" timestamp="1302984417522" player="7" amount="0.04"/>
+		<event sequence="9" type="FOLD" timestamp="1302984417742" player="8"/>
+		<event sequence="10" type="CALL" timestamp="1302984419155" player="2" amount="0.02"/>
+		<cards type="HOLE" cards="Jc,4h" player="8" hand="Jack High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="11" type="BET" timestamp="1302984422109" player="7" amount="0.02"/>
+		<event sequence="12" type="CALL" timestamp="1302984423510" player="2" amount="0.02"/>
+		<cards type="COMMUNITY" cards="5h,3h,Jh" hand="Pair of Jacks"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="13" type="BET" timestamp="1302984426107" player="7" amount="0.04"/>
+		<event sequence="14" type="CALL" timestamp="1302984427365" player="2" amount="0.04"/>
+		<cards type="COMMUNITY" cards="5h,3h,Jh,8s" hand="Pair of Jacks"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="15" type="BET" timestamp="1302984430448" player="7" amount="0.04"/>
+		<event sequence="16" type="CALL" timestamp="1302984431719" player="2" amount="0.04"/>
+		<cards type="COMMUNITY" cards="5h,3h,Jh,8s,8h" hand="Flush Jack High"/>
+	</round>
+	<round id="SHOWDOWN" sequence="6">
+		<event sequence="17" type="SHOW" timestamp="1302984432414" player="7"/>
+		<event sequence="18" type="SHOW" timestamp="1302984432800" player="2"/>
+		<cards type="SHOWN" cards="2s,4s" player="7"/>
+		<cards type="SHOWN" cards="Th,Ad" player="2"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+		<winner amount="0.29" uncalled="false" potnumber="1" player="2" hand="Flush Jack High" pottype="n"/>
+	</round>
+</game>
+
+<game id="33325037-505" starttime="20110416150719" numholecards="2" gametype="2" realmoney="true" data="20110416|Sydney Harbour Bridge (33325037)|33325037|33325037-505|false">
+	<players dealer="7">
+		<player seat="0" nickname="stackhouse777" balance="$0.56" dealtin="true" />
+		<player seat="2" nickname="Archaces" balance="$0.57" dealtin="true" />
+		<player seat="3" nickname="Miclest" balance="$0.63" dealtin="true" />
+		<player seat="4" nickname="dmlink" balance="$0.68" dealtin="true" />
+		<player seat="6" nickname="keizerkarel7" balance="$0.42" dealtin="true" />
+		<player seat="7" nickname="xxxcata" balance="$2.85" dealtin="true" />
+		<player seat="8" nickname="DnDGeek" balance="$0.78" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1302984434879" player="8" amount="0.01"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1302984435143" player="0" amount="0.02"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="CALL" timestamp="1302984436882" player="2" amount="0.02"/>
+		<event sequence="4" type="FOLD" timestamp="1302984437817" player="3"/>
+		<event sequence="5" type="FOLD" timestamp="1302984441401" player="4"/>
+		<event sequence="6" type="CALL" timestamp="1302984441660" player="6" amount="0.02"/>
+		<event sequence="7" type="RAISE" timestamp="1302984442060" player="7" amount="0.04"/>
+		<event sequence="8" type="CALL" timestamp="1302984444968" player="8" amount="0.03"/>
+		<event sequence="9" type="CALL" timestamp="1302984457763" player="0" amount="0.02"/>
+		<event sequence="10" type="CALL" timestamp="1302984458022" player="2" amount="0.02"/>
+		<event sequence="11" type="CALL" timestamp="1302984459889" player="6" amount="0.02"/>
+		<cards type="HOLE" cards="Js,Kh" player="8" hand="King High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="12" type="CHECK" timestamp="1302984468172" player="8"/>
+		<event sequence="13" type="CHECK" timestamp="1302984474371" player="0"/>
+		<event sequence="14" type="CHECK" timestamp="1302984475811" player="2"/>
+		<event sequence="15" type="CHECK" timestamp="1302984479047" player="6"/>
+		<event sequence="16" type="BET" timestamp="1302984479503" player="7" amount="0.02"/>
+		<event sequence="17" type="CALL" timestamp="1302984502136" player="8" amount="0.02"/>
+		<event sequence="18" type="FOLD" timestamp="1302984509526" player="0"/>
+		<event sequence="19" type="CALL" timestamp="1302984511214" player="2" amount="0.02"/>
+		<event sequence="20" type="FOLD" timestamp="1302984511539" player="6"/>
+		<cards type="COMMUNITY" cards="Ad,Th,Jc" hand="Pair of Jacks"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="21" type="CHECK" timestamp="1302984513751" player="8"/>
+		<event sequence="22" type="CHECK" timestamp="1302984516059" player="2"/>
+		<event sequence="23" type="BET" timestamp="1302984516567" player="7" amount="0.04"/>
+		<event sequence="24" type="FOLD" timestamp="1302984519492" player="8"/>
+		<event sequence="25" type="CALL" timestamp="1302984520966" player="2" amount="0.04"/>
+		<cards type="COMMUNITY" cards="Ad,Th,Jc,2s" hand="Pair of Jacks"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="26" type="CHECK" timestamp="1302984522897" player="2"/>
+		<event sequence="27" type="BET" timestamp="1302984523401" player="7" amount="0.04"/>
+		<event sequence="28" type="CALL" timestamp="1302984524931" player="2" amount="0.04"/>
+		<cards type="COMMUNITY" cards="Ad,Th,Jc,2s,6s" hand="Pair of Jacks"/>
+	</round>
+	<round id="SHOWDOWN" sequence="6">
+		<event sequence="29" type="SHOW" timestamp="1302984525694" player="7"/>
+		<event sequence="30" type="MUCK" timestamp="1302984527340" player="2"/>
+		<cards type="SHOWN" cards="7c,As" player="7"/>
+		<cards type="MUCKED" cards="9c,Td" player="2"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+		<winner amount="0.40" uncalled="false" potnumber="1" player="7" hand="Pair of Aces" pottype="n"/>
+	</round>
+</game>
+
+<game id="33325037-506" starttime="20110416150854" numholecards="2" gametype="2" realmoney="true" data="20110416|Sydney Harbour Bridge (33325037)|33325037|33325037-506|false">
+	<players dealer="8">
+		<player seat="0" nickname="stackhouse777" balance="$0.52" dealtin="true" />
+		<player seat="2" nickname="Archaces" balance="$0.43" dealtin="true" />
+		<player seat="3" nickname="Miclest" balance="$0.63" dealtin="true" />
+		<player seat="4" nickname="dmlink" balance="$0.68" dealtin="true" />
+		<player seat="6" nickname="keizerkarel7" balance="$0.38" dealtin="true" />
+		<player seat="7" nickname="xxxcata" balance="$3.11" dealtin="true" />
+		<player seat="8" nickname="DnDGeek" balance="$0.72" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1302984529728" player="0" amount="0.01"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1302984529987" player="2" amount="0.02"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1302984532538" player="3"/>
+		<event sequence="4" type="RAISE" timestamp="1302984541161" player="4" amount="0.04"/>
+		<event sequence="5" type="FOLD" timestamp="1302984541491" player="6"/>
+		<event sequence="6" type="CALL" timestamp="1302984543082" player="7" amount="0.04"/>
+		<event sequence="7" type="FOLD" timestamp="1302984543291" player="8"/>
+		<event sequence="8" type="FOLD" timestamp="1302984548660" player="0"/>
+		<event sequence="9" type="CALL" timestamp="1302984550229" player="2" amount="0.02"/>
+		<cards type="HOLE" cards="6d,Ah" player="8" hand="Ace High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="10" type="BET" timestamp="1302984553522" player="2" amount="0.02"/>
+		<event sequence="11" type="CALL" timestamp="1302984555020" player="4" amount="0.02"/>
+		<event sequence="12" type="CALL" timestamp="1302984555527" player="7" amount="0.02"/>
+		<cards type="COMMUNITY" cards="Qd,5s,3d" hand="Ace High"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="13" type="BET" timestamp="1302984558428" player="2" amount="0.04"/>
+		<event sequence="14" type="CALL" timestamp="1302984559567" player="4" amount="0.04"/>
+		<event sequence="15" type="FOLD" timestamp="1302984560251" player="7"/>
+		<cards type="COMMUNITY" cards="Qd,5s,3d,5c" hand="Pair of Fives"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="16" type="BET" timestamp="1302984562237" player="2" amount="0.04"/>
+		<event sequence="17" type="CALL" timestamp="1302984563331" player="4" amount="0.04"/>
+		<cards type="COMMUNITY" cards="Qd,5s,3d,5c,2s" hand="Pair of Fives"/>
+	</round>
+	<round id="SHOWDOWN" sequence="6">
+		<event sequence="18" type="SHOW" timestamp="1302984563814" player="2"/>
+		<event sequence="19" type="MUCK" timestamp="1302984564046" player="4"/>
+		<cards type="SHOWN" cards="5h,7c" player="2"/>
+		<cards type="MUCKED" cards="Ks,Ad" player="4"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+		<winner amount="0.34" uncalled="false" potnumber="1" player="2" hand="Three of a Kind Fives" pottype="n"/>
+	</round>
+</game>
+
+<game id="33325037-507" starttime="20110416150931" numholecards="2" gametype="2" realmoney="true" data="20110416|Sydney Harbour Bridge (33325037)|33325037|33325037-507|false">
+	<players dealer="0">
+		<player seat="0" nickname="stackhouse777" balance="$0.51" dealtin="true" />
+		<player seat="2" nickname="Archaces" balance="$0.63" dealtin="true" />
+		<player seat="3" nickname="Miclest" balance="$0.63" dealtin="true" />
+		<player seat="4" nickname="dmlink" balance="$0.54" dealtin="true" />
+		<player seat="7" nickname="xxxcata" balance="$3.05" dealtin="true" />
+		<player seat="8" nickname="DnDGeek" balance="$0.72" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1302984566378" player="2" amount="0.01"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1302984566636" player="3" amount="0.02"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1302984568421" player="4"/>
+		<event sequence="4" type="RAISE" timestamp="1302984569552" player="7" amount="0.04"/>
+		<event sequence="5" type="CALL" timestamp="1302984577487" player="8" amount="0.04"/>
+		<event sequence="6" type="CALL" timestamp="1302984580206" player="0" amount="0.04"/>
+		<event sequence="7" type="CALL" timestamp="1302984581564" player="2" amount="0.03"/>
+		<event sequence="8" type="CALL" timestamp="1302984584398" player="3" amount="0.02"/>
+		<cards type="HOLE" cards="Tc,9c" player="8" hand="Ten High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="9" type="CHECK" timestamp="1302984587478" player="2"/>
+		<event sequence="10" type="CHECK" timestamp="1302984592411" player="3"/>
+		<event sequence="11" type="BET" timestamp="1302984592840" player="7" amount="0.02"/>
+		<event sequence="12" type="CALL" timestamp="1302984594097" player="8" amount="0.02"/>
+		<event sequence="13" type="CALL" timestamp="1302984603436" player="0" amount="0.02"/>
+		<event sequence="14" type="CALL" timestamp="1302984606554" player="2" amount="0.02"/>
+		<event sequence="15" type="CALL" timestamp="1302984609137" player="3" amount="0.02"/>
+		<cards type="COMMUNITY" cards="4d,8c,7s" hand="Ten High"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="16" type="CHECK" timestamp="1302984611867" player="2"/>
+		<event sequence="17" type="CHECK" timestamp="1302984613746" player="3"/>
+		<event sequence="18" type="BET" timestamp="1302984614154" player="7" amount="0.04"/>
+		<event sequence="19" type="CALL" timestamp="1302984616758" player="8" amount="0.04"/>
+		<event sequence="20" type="RAISE" timestamp="1302984621549" player="0" amount="0.08"/>
+		<event sequence="21" type="FOLD" timestamp="1302984621812" player="2"/>
+		<event sequence="22" type="CALL" timestamp="1302984624979" player="3" amount="0.08"/>
+		<event sequence="23" type="CALL" timestamp="1302984627279" player="7" amount="0.04"/>
+		<event sequence="24" type="RAISE" timestamp="1302984628371" player="8" amount="0.12"/>
+		<event sequence="25" type="CALL" timestamp="1302984632193" player="0" amount="0.04"/>
+		<event sequence="26" type="CALL" timestamp="1302984639786" player="3" amount="0.04"/>
+		<event sequence="27" type="CALL" timestamp="1302984640208" player="7" amount="0.04"/>
+		<cards type="COMMUNITY" cards="4d,8c,7s,6s" hand="Ten High Straight"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="28" type="CHECK" timestamp="1302984646076" player="3"/>
+		<event sequence="29" type="CHECK" timestamp="1302984648400" player="7"/>
+		<event sequence="30" type="BET" timestamp="1302984649535" player="8" amount="0.04"/>
+		<event sequence="31" type="FOLD" timestamp="1302984653958" player="0"/>
+		<event sequence="32" type="FOLD" timestamp="1302984657594" player="3"/>
+		<event sequence="33" type="CALL" timestamp="1302984658017" player="7" amount="0.04"/>
+		<cards type="COMMUNITY" cards="4d,8c,7s,6s,Jh" hand="Jack High Straight"/>
+	</round>
+	<round id="SHOWDOWN" sequence="6">
+		<event sequence="34" type="SHOW" timestamp="1302984658427" player="8"/>
+		<event sequence="35" type="MUCK" timestamp="1302984658890" player="7"/>
+		<cards type="SHOWN" cards="Tc,9c" player="8"/>
+		<cards type="MUCKED" cards="7d,6d" player="7"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+		<winner amount="0.82" uncalled="false" potnumber="1" player="8" hand="Jack High Straight" pottype="n"/>
+	</round>
+</game>
+
+<game id="33325037-508" starttime="20110416151105" numholecards="2" gametype="2" realmoney="true" data="20110416|Sydney Harbour Bridge (33325037)|33325037|33325037-508|false">
+	<players dealer="2">
+		<player seat="0" nickname="stackhouse777" balance="$0.33" dealtin="true" />
+		<player seat="2" nickname="Archaces" balance="$0.57" dealtin="true" />
+		<player seat="3" nickname="Miclest" balance="$0.45" dealtin="true" />
+		<player seat="4" nickname="dmlink" balance="$0.60" dealtin="true" />
+		<player seat="7" nickname="xxxcata" balance="$2.83" dealtin="true" />
+		<player seat="8" nickname="DnDGeek" balance="$1.32" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1302984661189" player="3" amount="0.01"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1302984661583" player="4" amount="0.02"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1302984664297" player="7" amount="0.04"/>
+		<event sequence="4" type="FOLD" timestamp="1302984664496" player="8"/>
+		<event sequence="5" type="RAISE" timestamp="1302984674867" player="0" amount="0.06"/>
+		<event sequence="6" type="CALL" timestamp="1302984678727" player="2" amount="0.06"/>
+		<event sequence="7" type="FOLD" timestamp="1302984681061" player="3"/>
+		<event sequence="8" type="CALL" timestamp="1302984683615" player="4" amount="0.04"/>
+		<event sequence="9" type="CALL" timestamp="1302984685353" player="7" amount="0.02"/>
+		<cards type="HOLE" cards="7d,4c" player="8" hand="Seven High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="10" type="CHECK" timestamp="1302984701219" player="4"/>
+		<event sequence="11" type="CHECK" timestamp="1302984701656" player="7"/>
+		<event sequence="12" type="BET" timestamp="1302984704083" player="0" amount="0.02"/>
+		<event sequence="13" type="CALL" timestamp="1302984705821" player="2" amount="0.02"/>
+		<event sequence="14" type="CALL" timestamp="1302984712724" player="4" amount="0.02"/>
+		<event sequence="15" type="FOLD" timestamp="1302984728265" player="7"/>
+		<cards type="COMMUNITY" cards="Ks,6s,9h" hand="King High"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="16" type="CHECK" timestamp="1302984730360" player="4"/>
+		<event sequence="17" type="BET" timestamp="1302984736907" player="0" amount="0.04"/>
+		<event sequence="18" type="CALL" timestamp="1302984738676" player="2" amount="0.04"/>
+		<event sequence="19" type="CALL" timestamp="1302984740397" player="4" amount="0.04"/>
+		<cards type="COMMUNITY" cards="Ks,6s,9h,6c" hand="Pair of Sixes"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="20" type="CHECK" timestamp="1302984742046" player="4"/>
+		<event sequence="21" type="CHECK" timestamp="1302984743838" player="0"/>
+		<event sequence="22" type="CHECK" timestamp="1302984745216" player="2"/>
+		<cards type="COMMUNITY" cards="Ks,6s,9h,6c,2s" hand="Pair of Sixes"/>
+	</round>
+	<round id="SHOWDOWN" sequence="6">
+		<event sequence="23" type="SHOW" timestamp="1302984745707" player="4"/>
+		<event sequence="24" type="SHOW" timestamp="1302984746371" player="0"/>
+		<event sequence="25" type="SHOW" timestamp="1302984748294" player="2"/>
+		<cards type="SHOWN" cards="8s,8c" player="4"/>
+		<cards type="SHOWN" cards="Kd,9d" player="0"/>
+		<cards type="SHOWN" cards="Kh,Th" player="2"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+		<winner amount="0.41" uncalled="false" potnumber="1" player="0" hand="Two Pair Kings and Nines" pottype="n"/>
+	</round>
+</game>
+
+<game id="33325037-509" starttime="20110416151234" numholecards="2" gametype="2" realmoney="true" data="20110416|Sydney Harbour Bridge (33325037)|33325037|33325037-509|false">
+	<players dealer="3">
+		<player seat="0" nickname="stackhouse777" balance="$0.62" dealtin="true" />
+		<player seat="2" nickname="Archaces" balance="$0.45" dealtin="true" />
+		<player seat="3" nickname="Miclest" balance="$0.44" dealtin="true" />
+		<player seat="4" nickname="dmlink" balance="$0.48" dealtin="true" />
+		<player seat="7" nickname="xxxcata" balance="$2.77" dealtin="true" />
+		<player seat="8" nickname="DnDGeek" balance="$1.32" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1302984750446" player="4" amount="0.01"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1302984750960" player="7" amount="0.02"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1302984754016" player="8"/>
+		<event sequence="4" type="LEAVE" timestamp="1302984755631" player="8"/>
+		<cards type="HOLE" cards="2d,Td" player="8" hand="Ten High"/>
+	</round>
+</game>

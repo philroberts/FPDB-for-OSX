@@ -50,6 +50,9 @@ class GuiBulkImport():
         return True
 
     def load_clicked(self, widget, data=None):
+        if self.cbfilter.get_model()[self.cbfilter.get_active()][0] == (_("Please select site")):
+            self.progressbar.set_text(_("Please select site"))
+            return
         stored = None
         dups = None
         partial = None
@@ -261,6 +264,7 @@ class GuiBulkImport():
 #    ComboBox - filter
         self.cbfilter = gtk.combo_box_new_text()
         disabled_sites = []                                # move disabled sites to bottom of list
+        self.cbfilter.append_text(_("Please select site"))
         for w in self.config.hhcs:
             try:
                 if self.config.supported_sites[w].enabled: # include enabled ones first
@@ -348,7 +352,7 @@ def main(argv=None):
     parser.add_option("-f", "--file", dest="filename", metavar="FILE", default=None,
                     help=_("Input file"))
     parser.add_option("-c", "--convert", dest="filtername", default=None, metavar="FILTER",
-                    help=_("Conversion filter (*Full Tilt Poker, PokerStars, Everleaf, Absolute)"))
+                    help=_("Site")+ " (Absolute, Carbon, Everleaf, Full Tilt Poker, PokerStars, ...)") #TODO: dynamically generate list
     parser.add_option("-x", "--failOnError", action="store_true", default=False,
                     help=_("If this option is passed it quits when it encounters any error"))
     parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False,

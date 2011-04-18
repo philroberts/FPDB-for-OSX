@@ -114,8 +114,7 @@ class HUD_main(object):
                 self.main_window.set_icon_from_file(cards)
             elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
                 self.main_window.set_icon_from_file('/usr/share/pixmaps/fpdb-cards.png')
-            else:
-                self.main_window.set_icon_stock(gtk.STOCK_HOME)
+            
             if not options.hidden:
                 self.main_window.show_all()
             gobject.timeout_add(800, self.check_tables)
