@@ -88,6 +88,8 @@ def compare_gametypes_file(filename, importer, errors):
                 8:'Gametype: Big Blind',
                 9:'Gametype: Small Bet',
                 10:'Gametype: Big Bet',
+                11:'Gametype: maxSeats',
+                12:'Gametype: ante'
             }
 
     for hand in handlist:

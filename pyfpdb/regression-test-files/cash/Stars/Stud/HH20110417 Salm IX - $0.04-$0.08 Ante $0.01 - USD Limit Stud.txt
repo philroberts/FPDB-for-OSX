@@ -1,0 +1,83 @@
+﻿PokerStars Game #60974484959:  7 Card Stud Limit ($0.04/$0.08 USD) - 2011/04/18 2:21:35 CET [2011/04/17 20:21:35 ET]
+Table 'Salm IX' 8-max
+Seat 1: roditopgrdk ($1.59 in chips) 
+Seat 2: pirklepump ($1.37 in chips) 
+Seat 3: yaoenqi001 ($0.99 in chips) 
+Seat 4: ranchim ($1.04 in chips) 
+Seat 5: Perla993 ($0.98 in chips) 
+Seat 6: steffen780 ($2.40 in chips) 
+Seat 7: Tumim ($4.29 in chips) 
+Seat 8: Spacemasa ($0.11 in chips) 
+roditopgrdk: posts the ante $0.01
+pirklepump: posts the ante $0.01
+yaoenqi001: posts the ante $0.01
+ranchim: posts the ante $0.01
+Perla993: posts the ante $0.01
+steffen780: posts the ante $0.01
+Tumim: posts the ante $0.01
+Spacemasa: posts the ante $0.01
+*** 3rd STREET ***
+Dealt to roditopgrdk [9h]
+Dealt to pirklepump [6s]
+Dealt to yaoenqi001 [8h]
+Dealt to ranchim [As]
+Dealt to Perla993 [Ad]
+Dealt to steffen780 [Ks 7h 9s]
+Dealt to Tumim [2d]
+Dealt to Spacemasa [Qh]
+Tumim: brings in for $0.02
+Spacemasa: calls $0.02
+roditopgrdk: calls $0.02
+pirklepump: calls $0.02
+yaoenqi001: calls $0.02
+ranchim: calls $0.02
+Perla993: folds 
+steffen780: folds 
+*** 4th STREET ***
+Dealt to roditopgrdk [9h] [3d]
+Dealt to pirklepump [6s] [2h]
+Dealt to yaoenqi001 [8h] [Kd]
+Dealt to ranchim [As] [Jd]
+Dealt to Tumim [2d] [3h]
+Dealt to Spacemasa [Qh] [Qs]
+Pair on board - a double bet is allowed
+Spacemasa: bets $0.08 and is all-in
+roditopgrdk: folds 
+pirklepump: folds 
+yaoenqi001: folds 
+ranchim: calls $0.08
+Tumim: calls $0.08
+*** 5th STREET ***
+Dealt to ranchim [As Jd] [Qd]
+Dealt to Tumim [2d 3h] [Ac]
+Dealt to Spacemasa [Qh Qs] [7c]
+ranchim: checks 
+Tumim: bets $0.08
+ranchim: raises $0.08 to $0.16
+Tumim: calls $0.08
+*** 6th STREET ***
+Dealt to ranchim [As Jd Qd] [2s]
+Dealt to Tumim [2d 3h Ac] [4d]
+Dealt to Spacemasa [Qh Qs 7c] [Td]
+ranchim: bets $0.08
+Tumim: calls $0.08
+*** RIVER ***
+ranchim: bets $0.08
+Tumim: calls $0.08
+*** SHOW DOWN ***
+ranchim: shows [Tc Kh As Jd Qd 2s 9c] (a straight, Ten to Ace)
+Tumim: mucks hand 
+ranchim collected $0.61 from side pot
+Spacemasa: mucks hand 
+ranchim collected $0.42 from main pot
+*** SUMMARY ***
+Total pot $1.08 Main pot $0.42. Side pot $0.61. | Rake $0.05 
+Seat 1: roditopgrdk folded on the 4th Street
+Seat 2: pirklepump folded on the 4th Street
+Seat 3: yaoenqi001 folded on the 4th Street
+Seat 4: ranchim showed [Tc Kh As Jd Qd 2s 9c] and won ($1.03) with a straight, Ten to Ace
+Seat 5: Perla993 folded on the 3rd Street (didn't bet)
+Seat 6: steffen780 folded on the 3rd Street (didn't bet)
+Seat 7: Tumim mucked [5c 6c 2d 3h Ac 4d 8d]
+Seat 8: Spacemasa mucked [Ts 8c Qh Qs 7c Td 4c]
+

@@ -229,10 +229,10 @@ class Stud_list:
     def update_gui(self, new_hand_id):
         iter = self.liststore.append(self.info_row[0]) 
         sel = self.treeview.get_selection()
-        sel.select_iter(iter)
+        #sel.select_iter(iter)
 
         vadj = self.scrolled_window.get_vadjustment()
-        vadj.set_value(vadj.upper)
+        #vadj.set_value(vadj.upper)
 
 class Stud_cards:
     def __init__(self, parent, params, config):
@@ -312,13 +312,14 @@ class Stud_cards:
 ##    action in tool tips for 3rd street cards
         for c in (0, 1, 2):
             for r in range(0, self.rows):
-                self.eb[(c, r)].set_tooltip_text(self.tips[0])
+                #self.eb[(c, r)].set_tooltip_text(self.tips[0])
+                pass
 
 #    action in tools tips for later streets
         round_to_col = (0, 3, 4, 5, 6)
-        for round in range(1, len(self.tips)):
-            for r in range(0, self.rows):
-                self.eb[(round_to_col[round], r)].set_tooltip_text(self.tips[round])
+        #for round in range(1, len(self.tips)):
+        #    for r in range(0, self.rows):
+        #        self.eb[(round_to_col[round], r)].set_tooltip_text(self.tips[round])
 
     def get_screen_name(self, seat_no):
         """Gets and returns the screen name from stat_dict, given seat number."""
