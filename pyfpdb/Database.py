@@ -2357,6 +2357,8 @@ class Database:
                     end   =  sc['bk'][i]['sessionEnd']
                     for h in sc['bk'][i]['ids']:
                         sc[h] = {'id': sid, 'data': [start, end]}
+            self.commit()
+            
         return sc
     
     def storeSessionsCache(self, hid, pids, startTime, game, gid, pdata, sc, gsc, tz, heros, doinsert = False):
