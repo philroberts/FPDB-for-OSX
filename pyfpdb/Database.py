@@ -2328,6 +2328,7 @@ class Database:
                     for h in  sc['bk'][i]['ids']:
                         sc[h] = {'id': r[0]['id'], 'data': [start, end]}
                 elif (num > 1):
+                    self.commit()
                     start, end, merge = None, None, []
                     sid += 1
                     r.append(sc['bk'][i])
@@ -2351,13 +2352,13 @@ class Database:
                             sc[k]['id'] = sid
                     for h in sc['bk'][i]['ids']:
                         sc[h] = {'id': sid, 'data': [start, end]}
+                    self.commit()
                 elif (num == 0):
                     sid += 1
                     start =  sc['bk'][i]['sessionStart']
                     end   =  sc['bk'][i]['sessionEnd']
                     for h in sc['bk'][i]['ids']:
-                        sc[h] = {'id': sid, 'data': [start, end]}
-            self.commit()
+                        sc[h] = {'id': sid, 'data': [start, end]}                
             
         return sc
     
@@ -2483,6 +2484,7 @@ class Database:
                     c.execute(update_SC, row)
                     for h in gsc['bk'][i]['ids']: gsc[h] = {'id': r[0]['id']} 
                 elif (num > 1):
+                    self.commit()
                     gstart, gend, hands, tourneys, totalProfit, delete = None, None, 0, 0, 0, []
                     for n in r: delete.append(n['id'])
                     delete.sort()
@@ -2506,6 +2508,7 @@ class Database:
                     for h in gsc['bk'][i]['ids']: gsc[h] = {'id': gsid}
                     for m in delete:
                         c.execute(update_Hands_gsid, (gsid, m))
+                    self.commit()
                 elif (num == 0):
                     gstart =          gsc['bk'][i]['gameStart']
                     gend =            gsc['bk'][i]['gameEnd']
