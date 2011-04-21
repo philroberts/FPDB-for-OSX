@@ -128,7 +128,7 @@ class DerivedStats():
         self.hands['startTime']     = hand.startTime          # format this!
         self.hands['importTime']    = None
         self.hands['seats']         = self.countPlayers(hand) 
-        self.hands['maxSeats']      = hand.maxseats
+        #self.hands['maxSeats']      = hand.maxseats
         self.hands['texture']       = None                    # No calculation done for this yet.
         self.hands['tourneyId']     = hand.tourneyId
 
