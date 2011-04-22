@@ -358,7 +358,7 @@ class GuiDatabase:
         try:
             # is creating empty db for sqlite ... mod db.py further?
             # add noDbTables flag to db.py?
-            log.debug(_("testDB: trying to connect to: %s/%s, %s, %s/%s") % (str(dbms_num),dbms,name,user,passwd))
+            log.debug("testDB: " + _("trying to connect to:") + " %s/%s, %s, %s/%s" % (str(dbms_num),dbms,name,user,passwd))
             db.connect(backend=dbms_num, host=host, database=name, user=user, password=passwd, create=False)
             if db.connected:
                 log.debug(_("connected ok"))

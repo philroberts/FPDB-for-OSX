@@ -9,7 +9,6 @@
     'gsc': None,
     'id': 2085,
     'importTime': None,
-    'maxSeats': 6,
     'playersAtShowdown': 2,
     'playersAtStreet1': 3,
     'playersAtStreet2': 3,

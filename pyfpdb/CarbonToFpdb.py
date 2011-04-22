@@ -66,7 +66,7 @@ class Carbon(HandHistoryConverter):
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r'<description type="(?P<GAME>[a-zA-Z ]+)" stakes="(?P<LIMIT>[a-zA-Z ]+) \(\$(?P<SB>[.0-9]+)/\$(?P<BB>[.0-9]+)\)"/>', re.MULTILINE)
+    re_GameInfo = re.compile(r'<description type="(?P<GAME>[a-zA-Z ]+)" stakes="(?P<LIMIT>[a-zA-Z ]+) \(?\$(?P<SB>[.0-9]+)/\$(?P<BB>[.0-9]+)\)?"/>', re.MULTILINE)
     re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="2" gametype="2" realmoney="true" data="[0-9]+\|(?P<TABLE>[^\(]+)', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
@@ -99,7 +99,9 @@ class Carbon(HandHistoryConverter):
                 return p[1]
 
     def readSupportedGames(self):
-        return [["ring", "hold", "nl"],
+        return [["ring", "hold", "fl"],
+                ["ring", "hold", "nl"],
+                ["tour", "hold", "fl"],
                 ["tour", "hold", "nl"]]
 
     def determineGameType(self, handText):

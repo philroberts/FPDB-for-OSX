@@ -7,7 +7,6 @@
     'gameSessionId': 1,
     'gametypeId': 1,
     'importTime': None,
-    'maxSeats': 6,
     'playersAtShowdown': 0,
     'playersAtStreet0': 4,
     'playersAtStreet1': 0,

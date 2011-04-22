@@ -217,8 +217,8 @@ class GuiGraphViewer (threading.Thread):
                             400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
 
                 self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: (%s): %.2f') %(len(green), green[-1]))
-                self.ax.plot(blue, color='blue', label=_('Showdown: $%.2f') %(blue[-1]))
-                self.ax.plot(red, color='red', label=_('Non-showdown: $%.2f') %(red[-1]))
+                self.ax.plot(blue, color='blue', label=_('Showdown') + ': $%.2f' %(blue[-1]))
+                self.ax.plot(red, color='red', label=_('Non-showdown') + ': $%.2f' %(red[-1]))
                 self.graphBox.add(self.canvas)
                 self.canvas.show()
                 self.canvas.draw()
@@ -231,9 +231,9 @@ class GuiGraphViewer (threading.Thread):
                 #Draw plot
                 self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: (%s): %.2f') %(len(green),graphops['dspin'], green[-1]))
                 if graphops['showdown'] == 'ON':
-                    self.ax.plot(blue, color='blue', label=_('Showdown (%s): %.2f') %(graphops['dspin'], blue[-1]))
+                    self.ax.plot(blue, color='blue', label=_('Showdown') + ' (%s): %.2f' %(graphops['dspin'], blue[-1]))
                 if graphops['nonshowdown'] == 'ON':
-                    self.ax.plot(red, color='red', label=_('Non-showdown (%s): %.2f') %(graphops['dspin'], red[-1]))
+                    self.ax.plot(red, color='red', label=_('Non-showdown') + ' (%s): %.2f' %(graphops['dspin'], red[-1]))
 
                 if sys.version[0:3] == '2.5':
                     self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
