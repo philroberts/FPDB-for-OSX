@@ -69,6 +69,7 @@ class Aux_Window(object):
         try:
             pb = gtk.gdk.pixbuf_new_from_file(self.config.execution_path(deckimg))
         except:
+            #FIXME: this can't be right? /usr will not exist on windows
             stockpath = '/usr/share/python-fpdb/' + deckimg
             pb = gtk.gdk.pixbuf_new_from_file(stockpath)
         
