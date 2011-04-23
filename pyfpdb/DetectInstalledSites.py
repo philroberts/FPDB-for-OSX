@@ -43,11 +43,13 @@ Todo:
 import platform
 import os
 
-if platform.system() == 'Windows':
-    from win32com.shell import shellcon
-    from win32com.shell import shell
-    PROGRAM_FILES = unicode(shell.SHGetFolderPath(0, shellcon.CSIDL_PROGRAM_FILES, 0, 0))
-    LOCAL_APPDATA = unicode(shell.SHGetFolderPath(0, shellcon.CSIDL_LOCAL_APPDATA, 0, 0))
+import Configuration
+Config=Configuration.Config()
+
+if Config.os_family in ['Win7', 'XP']:
+    import winpaths
+    PROGRAM_FILES = winpaths.get_program_files()
+    LOCAL_APPDATA = winpaths.get_local_appdata()
 
 class DetectInstalledSites():
 
@@ -83,15 +85,6 @@ class DetectInstalledSites():
                                 #"Everest" ]
 
         self.supportedPlatforms = ["Linux", "XP", "Win7"]
-        #
-        #detect os in use - we will work with "Linux", "XP" and "Win7"
-        #    Vista will be considered as Win7
-        #
-        self.userPlatform = platform.system()  #Linux, Windows,
-        if self.userPlatform == 'Windows':
-            self.userPlatform = platform.release() # XP or various strings for Vista/win7
-            if self.userPlatform <> 'XP':
-                self.userPlatform = 'Win7' #Vista and win7
 
         if sitename == "All":
             for siteiter in self.supportedSites:
@@ -125,11 +118,11 @@ class DetectInstalledSites():
 
     def DetectFullTilt(self):
 
-        if self.userPlatform == "Linux":
+        if Config.os_family == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/Full Tilt Poker/HandHistory/")
-        elif self.userPlatform == "XP":
+        elif Config.os_family == "XP":
             hhp=os.path.expanduser(PROGRAM_FILES+"\\Full Tilt Poker\\HandHistory\\")
-        elif self.userPlatform == "Win7":
+        elif Config.os_family == "Win7":
             hhp=os.path.expanduser(PROGRAM_FILES+"\\Full Tilt Poker\\HandHistory\\")
         else:
             return
@@ -149,11 +142,11 @@ class DetectInstalledSites():
         
     def DetectPokerStars(self):
 
-        if self.userPlatform == "Linux":
+        if Config.os_family == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/PokerStars/HandHistory/")
-        elif self.userPlatform == "XP":
+        elif Config.os_family == "XP":
             hhp=os.path.expanduser(PROGRAM_FILES+"\\PokerStars\\HandHistory\\")
-        elif self.userPlatform == "Win7":
+        elif Config.os_family == "Win7":
             hhp=os.path.expanduser(LOCAL_APPDATA+"\\PokerStars\\HandHistory\\")
         else:
             return
@@ -173,11 +166,11 @@ class DetectInstalledSites():
 
     def DetectPartyPoker(self):
 
-        if self.userPlatform == "Linux":
+        if Config.os_family == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/PartyGaming/PartyPoker/HandHistory/")
-        elif self.userPlatform == "XP":
+        elif Config.os_family == "XP":
             hhp=os.path.expanduser(PROGRAM_FILES+"\\PartyGaming\\PartyPoker\\HandHistory\\")
-        elif self.userPlatform == "Win7":
+        elif Config.os_family == "Win7":
             hhp=os.path.expanduser("c:\\Programs\\PartyGaming\\PartyPoker\\HandHistory\\")
         else:
             return
