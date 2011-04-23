@@ -262,7 +262,7 @@ class Layout:
 
     def __str__(self):
         if hasattr(self, 'name'):
-            name = self.name + ",   "
+            name = str(self.name) + ",   "
         else:
             name = ""
         temp = "    Layout = %s%d max, width= %d, height = %d" % (name, self.max, self.width, self.height)
