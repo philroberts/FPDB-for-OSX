@@ -1381,7 +1381,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
                 self.config.get_site_id(site)                     # and check against list from db
             except KeyError, exc:
                 log.warning("site %s missing from db" % site)
-                dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Unknown Site")
+                dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format=_("Unknown Site"))
                 diastring = _("Warning:") +" " + _("Unable to find site  '%s'\n\nPress YES to add this site to the database.") % site
                 dia.format_secondary_text(diastring)
                 response = dia.run()

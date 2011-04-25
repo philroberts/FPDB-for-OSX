@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-04-17 20:32+CEST\n"
+"POT-Creation-Date: 2011-04-25 05:03+CEST\n"
 "PO-Revision-Date: 2011-04-07 08:53+0000\n"
 "Last-Translator: steffen123 <steffen@schaumburger.info>\n"
 "Language-Team: Spanish (Spain) <>\n"
@@ -22,8 +22,8 @@ msgstr ""
 #: EverleafToFpdb.py:130 FulltiltToFpdb.py:209 FulltiltToFpdb.py:211
 #: OnGameToFpdb.py:161 OnGameToFpdb.py:163 PacificPokerToFpdb.py:173
 #: PacificPokerToFpdb.py:175 PartyPokerToFpdb.py:197 PartyPokerToFpdb.py:199
-#: PkrToFpdb.py:128 PkrToFpdb.py:130 PokerStarsToFpdb.py:194
-#: PokerStarsToFpdb.py:196 Win2dayToFpdb.py:101 Win2dayToFpdb.py:103
+#: PkrToFpdb.py:128 PkrToFpdb.py:130 PokerStarsToFpdb.py:195
+#: PokerStarsToFpdb.py:197 Win2dayToFpdb.py:101 Win2dayToFpdb.py:103
 #: WinamaxToFpdb.py:172 WinamaxToFpdb.py:174 iPokerToFpdb.py:122
 #: iPokerToFpdb.py:124
 msgid "Unable to recognise gametype from: '%s'"
@@ -35,8 +35,8 @@ msgstr "No ha sido posible reconocer el tipo de partida de: '%s'"
 #: FulltiltToFpdb.py:268 FulltiltToFpdb.py:286 OnGameToFpdb.py:162
 #: OnGameToFpdb.py:181 PacificPokerToFpdb.py:174 PacificPokerToFpdb.py:205
 #: PartyPokerToFpdb.py:198 PkrToFpdb.py:129 PkrToFpdb.py:154
-#: PokerStarsSummary.py:82 PokerStarsSummary.py:108 PokerStarsToFpdb.py:195
-#: PokerStarsToFpdb.py:223 SitenameSummary.py:82 Win2dayToFpdb.py:102
+#: PokerStarsSummary.py:82 PokerStarsSummary.py:108 PokerStarsToFpdb.py:196
+#: PokerStarsToFpdb.py:224 SitenameSummary.py:82 Win2dayToFpdb.py:102
 #: WinamaxToFpdb.py:173 WinamaxToFpdb.py:191 iPokerToFpdb.py:123
 msgid "Raising FpdbParseError"
 msgstr ""
@@ -44,8 +44,8 @@ msgstr ""
 #: AbsoluteToFpdb.py:205 AbsoluteToFpdb.py:206 BetfairToFpdb.py:108
 #: BetfairToFpdb.py:109 CarbonToFpdb.py:165 CarbonToFpdb.py:167
 #: EverestToFpdb.py:145 EverestToFpdb.py:147 EverleafToFpdb.py:163
-#: PacificPokerToFpdb.py:215 PacificPokerToFpdb.py:216 PokerStarsToFpdb.py:233
-#: PokerStarsToFpdb.py:234 iPokerToFpdb.py:156 iPokerToFpdb.py:158
+#: PacificPokerToFpdb.py:215 PacificPokerToFpdb.py:216 PokerStarsToFpdb.py:234
+#: PokerStarsToFpdb.py:235 iPokerToFpdb.py:156 iPokerToFpdb.py:158
 msgid "No match in readHandInfo: '%s'"
 msgstr ""
 
@@ -62,7 +62,7 @@ msgid "Didn't match re_*InfoFromFilename: '%s'"
 msgstr ""
 
 #: AbsoluteToFpdb.py:279 EverleafToFpdb.py:228 FulltiltToFpdb.py:445
-#: OnGameToFpdb.py:303 PacificPokerToFpdb.py:347 PokerStarsToFpdb.py:366
+#: OnGameToFpdb.py:303 PacificPokerToFpdb.py:347 PokerStarsToFpdb.py:367
 #: Win2dayToFpdb.py:210 WinamaxToFpdb.py:360
 msgid "reading antes"
 msgstr "leyendo antes"
@@ -86,7 +86,7 @@ msgstr ""
 #: AbsoluteToFpdb.py:348 BetfairToFpdb.py:199 CarbonToFpdb.py:269
 #: EverestToFpdb.py:234 EverestToFpdb.py:235 EverleafToFpdb.py:295
 #: FulltiltToFpdb.py:528 OnGameToFpdb.py:346 PacificPokerToFpdb.py:429
-#: PartyPokerToFpdb.py:535 PkrToFpdb.py:351 PokerStarsToFpdb.py:448
+#: PartyPokerToFpdb.py:535 PkrToFpdb.py:351 PokerStarsToFpdb.py:449
 #: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:261
 #, fuzzy
 msgid "Unimplemented %s: '%s' '%s'"
@@ -94,21 +94,21 @@ msgstr "readAction no implementada: '%s' '%s'"
 
 #: AbsoluteToFpdb.py:398 BetfairToFpdb.py:222 CarbonToFpdb.py:299
 #: EverleafToFpdb.py:333 FulltiltToFpdb.py:821 PacificPokerToFpdb.py:458
-#: PartyPokerToFpdb.py:575 PokerStarsToFpdb.py:477 Win2dayToFpdb.py:375
+#: PartyPokerToFpdb.py:575 PokerStarsToFpdb.py:478 Win2dayToFpdb.py:375
 #: iPokerToFpdb.py:291
 msgid "parse input hand history"
 msgstr "Analizando historial de manos de entrada"
 
 #: AbsoluteToFpdb.py:399 BetfairToFpdb.py:223 CarbonToFpdb.py:300
 #: EverleafToFpdb.py:334 FulltiltToFpdb.py:822 PacificPokerToFpdb.py:459
-#: PartyPokerToFpdb.py:576 PokerStarsToFpdb.py:478 Win2dayToFpdb.py:376
+#: PartyPokerToFpdb.py:576 PokerStarsToFpdb.py:479 Win2dayToFpdb.py:376
 #: iPokerToFpdb.py:292
 msgid "output translation to"
 msgstr "Salida de la traducción a "
 
 #: AbsoluteToFpdb.py:400 BetfairToFpdb.py:224 CarbonToFpdb.py:301
 #: EverleafToFpdb.py:335 FulltiltToFpdb.py:823 PacificPokerToFpdb.py:460
-#: PartyPokerToFpdb.py:577 PokerStarsToFpdb.py:479 Win2dayToFpdb.py:377
+#: PartyPokerToFpdb.py:577 PokerStarsToFpdb.py:480 Win2dayToFpdb.py:377
 #: iPokerToFpdb.py:293
 msgid "follow (tail -f) the input"
 msgstr "sigue (tail -f) la entrada"
@@ -131,9 +131,9 @@ msgstr "No se encuentra el bringin"
 
 #: BetfairToFpdb.py:199 FulltiltToFpdb.py:528 GuiAutoImport.py:203
 #: GuiPositionalStats.py:137 GuiStove.py:221 GuiStove.py:225 GuiStove.py:229
-#: GuiStove.py:233 GuiStove.py:237 GuiStove.py:239 Hand.py:494 Hand.py:1720
+#: GuiStove.py:233 GuiStove.py:237 GuiStove.py:239 Hand.py:497 Hand.py:1723
 #: ImapFetcher.py:44 ImapFetcher.py:53 OnGameToFpdb.py:215 OnGameToFpdb.py:346
-#: PacificPokerToFpdb.py:429 PkrToFpdb.py:351 PokerStarsToFpdb.py:448
+#: PacificPokerToFpdb.py:429 PkrToFpdb.py:351 PokerStarsToFpdb.py:449
 #: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:261
 #: test_Database.py:50 test_Database.py:51
 msgid "DEBUG:"
@@ -459,67 +459,67 @@ msgstr "######## Manos ##########"
 msgid "###### End Hands ########"
 msgstr "###### Fin manos ########"
 
-#: Database.py:2548
+#: Database.py:2549
 msgid "######## Gametype ##########"
 msgstr "######## Tipo de juego ##########"
 
-#: Database.py:2552
+#: Database.py:2553
 msgid "###### End Gametype ########"
 msgstr "###### Fin tipo de juego ########"
 
-#: Database.py:2640
+#: Database.py:2641
 msgid "queue empty too long - writer stopping ..."
 msgstr "la cola ha estado vacía demasiado tiempo - parando escritor ..."
 
-#: Database.py:2643
+#: Database.py:2644
 #, fuzzy
 msgid "writer stopping, error reading queue:"
 msgstr "escritor parado, error leyendo cola: "
 
-#: Database.py:2668
+#: Database.py:2669
 msgid "deadlock detected - trying again ..."
 msgstr "deadlock detectado - intentando de nuevo ..."
 
-#: Database.py:2673
+#: Database.py:2674
 #, fuzzy
 msgid "Too many deadlocks - failed to store hand"
 msgstr "demasiados deadlocks - no se ha podido guardar la mano"
 
-#: Database.py:2677
+#: Database.py:2678
 #, fuzzy
 msgid "***Error storing hand:"
 msgstr "***Error guardando la mano: "
 
-#: Database.py:2687
+#: Database.py:2688
 msgid "db writer finished: stored %d hands (%d fails) in %.1f seconds"
 msgstr ""
 "el escript db ha finalizado: guardadas %d manos (%d falladas) en %1.f "
 "segundos"
 
-#: Database.py:2697
+#: Database.py:2698
 #, fuzzy
 msgid "***Error sending finish:"
 msgstr "***Error enviando fin: "
 
-#: Database.py:2783 Database.py:2796
+#: Database.py:2784 Database.py:2797
 msgid "invalid source in %s"
 msgstr ""
 
-#: Database.py:2932 Database.py:2982
+#: Database.py:2933 Database.py:2983
 #, fuzzy
 msgid "%s error: %s"
 msgstr "el error es %s"
 
-#: Database.py:3030
+#: Database.py:3031
 msgid "cards ="
 msgstr "cartas ="
 
-#: Database.py:3033
+#: Database.py:3034
 #, fuzzy
 msgid "get_stats took: %4.3f seconds"
 msgstr "get_stats tardo: %4.3f segundos"
 
-#: Database.py:3035 HandHistoryConverter.py:41 fpdb.pyw:46 fpdb.pyw:58
+#: Database.py:3036 HandHistoryConverter.py:41 fpdb.pyw:46 fpdb.pyw:58
 #: fpdb.pyw:81
 msgid "Press ENTER to continue."
 msgstr ""
@@ -720,7 +720,7 @@ msgstr ""
 
 #: FulltiltToFpdb.py:267 FulltiltToFpdb.py:269 PacificPokerToFpdb.py:204
 #: PacificPokerToFpdb.py:206 PkrToFpdb.py:153 PkrToFpdb.py:155
-#: PokerStarsToFpdb.py:222 PokerStarsToFpdb.py:224
+#: PokerStarsToFpdb.py:223 PokerStarsToFpdb.py:225
 msgid "Lim_Blinds has no lookup for '%s'"
 msgstr "LimBlinds no tiene busqueda para '%s'"
 
@@ -868,7 +868,11 @@ msgstr ""
 msgid "Browse..."
 msgstr "Navegar..."
 
-#: GuiBulkImport.py:62
+#: GuiBulkImport.py:53 GuiBulkImport.py:54 GuiBulkImport.py:267
+msgid "Please select site"
+msgstr ""
+
+#: GuiBulkImport.py:65
 msgid ""
 "\n"
 "Global lock taken ..."
@@ -876,11 +880,11 @@ msgstr ""
 "\n"
 "lock global obtenido ..."
 
-#: GuiBulkImport.py:63
+#: GuiBulkImport.py:66
 msgid "Importing..."
 msgstr "Importando..."
 
-#: GuiBulkImport.py:117 GuiBulkImport.py:410
+#: GuiBulkImport.py:120 GuiBulkImport.py:414
 #, fuzzy
 msgid ""
 "Bulk import done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in "
@@ -889,126 +893,119 @@ msgstr ""
 "GuiBulkImpor hecho: Guardadas: %d \tDuplicadas: %d \tParciales: %d "
 "\tErrores: %d en %s segundos - %.0f/seg"
 
-#: GuiBulkImport.py:132
+#: GuiBulkImport.py:135
 msgid "Import Complete"
 msgstr "Importación completada"
 
-#: GuiBulkImport.py:140
+#: GuiBulkImport.py:143
 msgid "bulk import aborted - global lock not available"
 msgstr "importación abortada - lock global no disponible"
 
-#: GuiBulkImport.py:168
+#: GuiBulkImport.py:171
 msgid "Print Start/Stop Info"
 msgstr "Mostrar Start/Stop Info"
 
-#: GuiBulkImport.py:175
+#: GuiBulkImport.py:178
 msgid "Hands/status print:"
 msgstr "Manos/estado: "
 
-#: GuiBulkImport.py:192
+#: GuiBulkImport.py:195
 msgid "Number of threads:"
 msgstr "Número de hilos:"
 
-#: GuiBulkImport.py:212
+#: GuiBulkImport.py:215
 msgid "Archive File"
 msgstr ""
 
-#: GuiBulkImport.py:217
+#: GuiBulkImport.py:220
 msgid "Hands/file:"
 msgstr "Manos/fichero:"
 
-#: GuiBulkImport.py:232
+#: GuiBulkImport.py:235
 msgid "Drop indexes:"
 msgstr "Eliminar índices:"
 
-#: GuiBulkImport.py:241 GuiBulkImport.py:291
+#: GuiBulkImport.py:244 GuiBulkImport.py:295
 msgid "auto"
 msgstr "auto"
 
-#: GuiBulkImport.py:242 GuiBulkImport.py:292 GuiBulkImport.py:397
+#: GuiBulkImport.py:245 GuiBulkImport.py:296 GuiBulkImport.py:401
 msgid "don't drop"
 msgstr "no eliminar"
 
-#: GuiBulkImport.py:243 GuiBulkImport.py:293
+#: GuiBulkImport.py:246 GuiBulkImport.py:297
 msgid "drop"
 msgstr "eliminar"
 
-#: GuiBulkImport.py:249
+#: GuiBulkImport.py:252
 msgid "HUD Test mode"
 msgstr "HUD modo test"
 
-#: GuiBulkImport.py:254 GuiTourneyImport.py:106
+#: GuiBulkImport.py:257 GuiTourneyImport.py:106
 msgid "Site filter:"
 msgstr "Filtro de sitio:"
 
-#: GuiBulkImport.py:282
+#: GuiBulkImport.py:286
 msgid "Drop HudCache:"
 msgstr "eliminar HudCache:"
 
-#: GuiBulkImport.py:300 GuiTourneyImport.py:135 fpdb.pyw:892
+#: GuiBulkImport.py:304 GuiTourneyImport.py:135 fpdb.pyw:892
 msgid "_Bulk Import"
 msgstr "_Importar Volumen"
 
-#: GuiBulkImport.py:302 GuiTourneyImport.py:137
+#: GuiBulkImport.py:306 GuiTourneyImport.py:137
 msgid "Import clicked"
 msgstr "Importar seleccionado"
 
-#: GuiBulkImport.py:320
+#: GuiBulkImport.py:324
 msgid "Waiting..."
 msgstr "Esperando..."
 
-#: GuiBulkImport.py:349 Options.py:58
+#: GuiBulkImport.py:353 Options.py:58
 msgid "Input file"
 msgstr "Fichero de entrada"
 
-#: GuiBulkImport.py:351 GuiImapFetcher.py:110 GuiTourneyPlayerStats.py:82
+#: GuiBulkImport.py:355 GuiImapFetcher.py:110 GuiTourneyPlayerStats.py:82
 #: fpdb.pyw:722
 msgid "Site"
 msgstr "Sitio"
 
-#: GuiBulkImport.py:353
-msgid "If this option is passed it quits when it encounters any error"
-msgstr ""
-"Si esta opción es seleccionada, fpdb saldrá cuando encuentre cualquier error"
-
-#: GuiBulkImport.py:355 Options.py:55
-msgid "Print some useful one liners"
-msgstr "Mostrar algunas líneas últies"
-
 #: GuiBulkImport.py:357
 #, fuzzy
 msgid ""
-"Do the required conversion for Stars Archive format (ie. as provided by "
-"support)"
+"If this option is used it quits with an extended error message if it "
+"encounters any error"
 msgstr ""
-"Hacer la conversión requerida para un fichero en formato Stars (ie. tal y "
-"como está proporcionado por el soporte"
+"Si esta opción es seleccionada, fpdb saldrá cuando encuentre cualquier error"
 
-#: GuiBulkImport.py:359
+#: GuiBulkImport.py:359 Options.py:55
+msgid "Print some useful one liners"
+msgstr "Mostrar algunas líneas últies"
+
+#: GuiBulkImport.py:361 GuiBulkImport.py:363
 #, fuzzy
 msgid ""
-"Do the required conversion for FTP Archive format (ie. as provided by "
-"support)"
+"Do the required conversion for %s archive format (ie. as provided by support)"
 msgstr ""
 "Hacer la conversión requerida para un fichero en formato Stars (ie. tal y "
 "como está proporcionado por el soporte"
 
-#: GuiBulkImport.py:361
-msgid ""
-"Output the pprinted version of the HandsPlayer hash for regresion testing"
+#: GuiBulkImport.py:365
+#, fuzzy
+msgid "Generate and print test data for regression testing"
 msgstr ""
 "Mostrar la versión impresa del hash de HandsPlayer para test de regresión"
 
-#: GuiBulkImport.py:366 GuiTourneyImport.py:272 ImapFetcher.py:172
+#: GuiBulkImport.py:370 GuiTourneyImport.py:272 ImapFetcher.py:172
 msgid "USAGE:"
 msgstr "USO:"
 
-#: GuiBulkImport.py:367 GuiBulkImport.py:368 GuiBulkImport.py:369
-#: GuiBulkImport.py:370 GuiBulkImport.py:371
+#: GuiBulkImport.py:371 GuiBulkImport.py:372 GuiBulkImport.py:373
+#: GuiBulkImport.py:374 GuiBulkImport.py:375
 msgid "converter"
 msgstr ""
 
-#: GuiBulkImport.py:393
+#: GuiBulkImport.py:397
 msgid "You have to select a site with the -c parameter. E.g.:"
 msgstr ""
 
@@ -1073,7 +1070,8 @@ msgid "sortCols error: "
 msgstr "sortCols error: "
 
 #: GuiDatabase.py:361
-msgid "testDB: trying to connect to: %s/%s, %s, %s/%s"
+#, fuzzy
+msgid "trying to connect to:"
 msgstr "testDB: intentando conectar a: %s/%s, %s, %s/%s"
 
 #: GuiDatabase.py:364
@@ -1495,12 +1493,7 @@ msgstr "Ajuste"
 msgid "Value (double-click to change)"
 msgstr ""
 
-#: GuiPrefs.py:178
-#, fuzzy
-msgid "Advanced Preferences Dialog"
-msgstr "Dialogo de preferencias de prueba"
-
-#: GuiPrefs.py:183 fpdb.pyw:317
+#: GuiPrefs.py:178 GuiPrefs.py:183 fpdb.pyw:317
 #, fuzzy
 msgid "Advanced Preferences"
 msgstr "Preferencias"
@@ -1594,8 +1587,9 @@ msgid "% went to showdown when seen flop/4th streetp"
 msgstr "% de apuesta de continuación flop/4a"
 
 #: GuiRingPlayerStats.py:64 Stats.py:202 Stats.py:211 Stats.py:219
-msgid "% Won some money at showdown"
-msgstr ""
+#, fuzzy
+msgid "% won some money at showdown"
+msgstr "% gano dinero en el showdown"
 
 #: GuiRingPlayerStats.py:65 Stats.py:611 Stats.py:620 Stats.py:627
 #, fuzzy
@@ -2264,49 +2258,49 @@ msgstr "CARTAS PRIVADAS"
 msgid "TOURNEYS PLAYER IDS"
 msgstr "IDS DE JUGADORES DE TORNEO"
 
-#: Hand.py:224 Hand.py:1418
+#: Hand.py:224 Hand.py:1421
 msgid "[ERROR] Tried to add holecards for unknown player: %s"
 msgstr ""
 "[ERROR] Se ha intentado añadir cartas privadas para un jugador desconocido: "
 "%s"
 
-#: Hand.py:488
+#: Hand.py:491
 msgid "markstreets didn't match - Assuming hand %s was cancelled"
 msgstr "markstreets no cuadra - asumiendo que la mano %s ha sido cancelada"
 
-#: Hand.py:490
+#: Hand.py:493
 msgid "markStreets appeared to fail: First 100 chars: '%s'"
 msgstr ""
 
-#: Hand.py:494 Hand.py:495
+#: Hand.py:497 Hand.py:498
 msgid "%s fail on hand number %s"
 msgstr ""
 
-#: Hand.py:586
+#: Hand.py:589
 msgid "%s %s calls %s"
 msgstr "%s %s iguala %s"
 
-#: Hand.py:657
+#: Hand.py:660
 msgid "%s %s raise %s"
 msgstr "%s %s sube %s"
 
-#: Hand.py:668
+#: Hand.py:671
 msgid "%s %s bets %s"
 msgstr "%s %s apuesta %s"
 
-#: Hand.py:691
+#: Hand.py:694
 msgid "%s %s folds"
 msgstr "%s %s se tira"
 
-#: Hand.py:700
+#: Hand.py:703
 msgid "%s %s checks"
 msgstr "%s %s pasa"
 
-#: Hand.py:720
+#: Hand.py:723
 msgid "addShownCards %s hole=%s all=%s"
 msgstr "addShownCards %s privadas=%s todas=%s"
 
-#: Hand.py:833
+#: Hand.py:836
 msgid ""
 "*** ERROR - HAND: calling writeGameLine with unexpected STARTTIME value, "
 "expecting datetime.date object, received:"
@@ -2314,34 +2308,34 @@ msgstr ""
 "*** ERROR - HAND: llamada a writeGameLine con un valor inesperado en "
 "STARTTIME, esperando un objeto datetime.date, recibido:"
 
-#: Hand.py:834
+#: Hand.py:837
 msgid ""
 "*** Make sure your HandHistoryConverter is setting hand.startTime properly!"
 msgstr ""
 "*** Asegurate de que tu HandHistoryConverter esta estableciendo hand."
 "startTime correctamente!"
 
-#: Hand.py:835
+#: Hand.py:838
 msgid "*** Game String:"
 msgstr "*** Cadena de partida:"
 
-#: Hand.py:916
+#: Hand.py:919
 msgid "HoldemOmahaHand.__init__:Neither HHC nor DB+handid provided"
 msgstr "HoldemOmahaHand.__init__:Ni HHC ni BD+handid proporcionado"
 
-#: Hand.py:1189
+#: Hand.py:1192
 msgid "DrawHand.__init__: street 'DEAL' is empty. Hand cancelled? HandID: '%s'"
 msgstr ""
 
-#: Hand.py:1427
+#: Hand.py:1430
 msgid "%s %s completes %s"
 msgstr "%s %s completa %s"
 
-#: Hand.py:1445
+#: Hand.py:1448
 msgid "Bringin: %s, %s"
 msgstr "Bringin: %s, %s"
 
-#: Hand.py:1627
+#: Hand.py:1630
 msgid ""
 "join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should "
 "be impossible for anyone who is not a hero"
@@ -2349,23 +2343,23 @@ msgstr ""
 "join_holecards: # de cartas privadas debería ser <4, 4 o 7 - 5 y 6 deberían "
 "ser sólo posibles para el héroe"
 
-#: Hand.py:1628
+#: Hand.py:1631
 msgid "join_holcards: holecards(%s): %s"
 msgstr "join_holcards: cartasprivadas(%s): %s"
 
-#: Hand.py:1630
+#: Hand.py:1633
 msgid "join_holecards: Player '%s' appears not to have been dealt a card"
 msgstr ""
 
-#: Hand.py:1706 Hand.py:1707
+#: Hand.py:1709 Hand.py:1710
 msgid "Pot.end(): Major failure while calculating pot: '%s'"
 msgstr ""
 
-#: Hand.py:1720
+#: Hand.py:1723
 msgid "call Pot.end() before printing pot total"
 msgstr ""
 
-#: Hand.py:1722
+#: Hand.py:1725
 msgid "Error in printing Hand object"
 msgstr ""
 
@@ -2667,7 +2661,7 @@ msgstr ""
 msgid "Finished importing %s/%s PS summaries"
 msgstr ""
 
-#: Mucked.py:328
+#: Mucked.py:329
 msgid "No Name"
 msgstr "No hay nombre"
 
@@ -2681,7 +2675,7 @@ msgid "DATETIME not matched: '%s'"
 msgstr ""
 
 #: OnGameToFpdb.py:273 PacificPokerToFpdb.py:305 PartyPokerToFpdb.py:365
-#: PokerStarsToFpdb.py:321 Win2dayToFpdb.py:169 WinamaxToFpdb.py:329
+#: PokerStarsToFpdb.py:322 Win2dayToFpdb.py:169 WinamaxToFpdb.py:329
 msgid "readButton: not found"
 msgstr "readButton: no econtrado"
 
@@ -2772,12 +2766,12 @@ msgstr "Aprieta enter para finalizar"
 msgid "You need to manually enter the playername"
 msgstr "Es necesario que introduzcas manualmente el nombre del jugador"
 
-#: PacificPokerToFpdb.py:258 PartyPokerToFpdb.py:348 PokerStarsToFpdb.py:276
+#: PacificPokerToFpdb.py:258 PartyPokerToFpdb.py:348 PokerStarsToFpdb.py:277
 #: WinamaxToFpdb.py:263
 msgid "Failed to detect currency."
 msgstr ""
 
-#: PacificPokerToFpdb.py:258 PartyPokerToFpdb.py:348 PokerStarsToFpdb.py:276
+#: PacificPokerToFpdb.py:258 PartyPokerToFpdb.py:348 PokerStarsToFpdb.py:277
 #: WinamaxToFpdb.py:263
 msgid "Hand ID: %s: '%s'"
 msgstr ""
@@ -3851,6 +3845,11 @@ msgstr ""
 msgid "fpdb starting ..."
 msgstr "fpdb iniciando ..."
 
+#: fpdb.pyw:1384
+#, fuzzy
+msgid "Unknown Site"
+msgstr "Límite desconocido '%s'"
+
 #: fpdb.pyw:1385
 msgid ""
 "Unable to find site  '%s'\n"
@@ -3984,6 +3983,29 @@ msgid ""
 "manually\n"
 msgstr ""
 
+#, fuzzy
+#~ msgid ""
+#~ "%s server reports: Access denied. Are your permissions set correctly?"
+#~ msgstr ""
+#~ "MySQL Server reporta: Acceso denegado. Están los permisos correctamente "
+#~ "establecidos?"
+
+#, fuzzy
+#~ msgid "Please check that the %s service has been started"
+#~ msgstr "Por favor, comprueba que el servicio de MySQL ha sido iniciado"
+
+#, fuzzy
+#~ msgid ""
+#~ "Do the required conversion for FTP Archive format (ie. as provided by "
+#~ "support)"
+#~ msgstr ""
+#~ "Hacer la conversión requerida para un fichero en formato Stars (ie. tal y "
+#~ "como está proporcionado por el soporte"
+
+#, fuzzy
+#~ msgid "Advanced Preferences Dialog"
+#~ msgstr "Dialogo de preferencias de prueba"
+
 #~ msgid ""
 #~ "Aggression Frequency\n"
 #~ "Bet or Raise vs Fold"
@@ -4004,9 +4026,6 @@ msgstr ""
 
 #~ msgid "% Saw Flop vs hands dealt"
 #~ msgstr "% Saw Flop vs hands dealt"
-
-#~ msgid "% won money at showdown"
-#~ msgstr "% gano dinero en el showdown"
 
 #~ msgid "% Pre Flop Raise"
 #~ msgstr "% Pre Flop Raise"

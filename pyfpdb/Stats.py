@@ -199,7 +199,7 @@ def wtsd(stat_dict, player):
                 )
 
 def wmsd(stat_dict, player):
-    stat_descriptions["wmsd"] = _("% Won some money at showdown") + " (wmsd)"
+    stat_descriptions["wmsd"] = _("% won some money at showdown") + " (wmsd)"
     stat = 0.0
     try:
         stat = float(stat_dict[player]['wmsd'])/float(stat_dict[player]['sd'])
@@ -208,7 +208,7 @@ def wmsd(stat_dict, player):
                 'w=%3.1f%%'     % (100.0*stat),
                 'wmsd=%3.1f%%'  % (100.0*stat),
                 '(%5.1f/%d)'    % (float(stat_dict[player]['wmsd']), stat_dict[player]['sd']),
-                _('% Won some money at showdown')
+                _('% won some money at showdown')
                 )
     except:
         return (stat,
@@ -216,7 +216,7 @@ def wmsd(stat_dict, player):
                 'w=NA',
                 'wmsd=NA',
                 '(0/0)',
-                _('% Won some money at showdown')
+                _('% won some money at showdown')
                 )
 
 # Money is stored as pennies, so there is an implicit 100-multiplier
