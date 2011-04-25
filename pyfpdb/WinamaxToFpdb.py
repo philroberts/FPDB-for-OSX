@@ -214,7 +214,7 @@ class Winamax(HandHistoryConverter):
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'),a.group('M'), a.group('D'), a.group('H'),a.group('MIN'),a.group('S'))
                 else:
                     datetimestr = "2010/Jan/01 01:01:01"
-                    log.error(_("readHandInfo: DATETIME not matched: '%s'") % info[key])
+                    log.error("readHandInfo: " + _("DATETIME not matched: '%s'") % info[key])
                     #print "DEBUG: readHandInfo: DATETIME not matched: '%s'" % info[key]
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "CET", "UTC")

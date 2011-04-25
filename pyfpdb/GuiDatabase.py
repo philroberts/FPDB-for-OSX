@@ -579,14 +579,14 @@ class AddDB(gtk.Dialog):
             dia.vbox.add(l)
             dia.show_all()
             ret = dia.run()
-            log.debug(_("check_fields: ret is %s cancel is %s") % (str(ret), str(int(gtk.RESPONSE_CANCEL))))
+            #log.debug(_("check_fields: ret is %s cancel is %s") % (str(ret), str(int(gtk.RESPONSE_CANCEL))))
             if ret == gtk.RESPONSE_YES:
                 try_again = True
-            log.debug(_("check_fields: destroy dialog"))
+            #log.debug(_("check_fields: destroy dialog"))
             dia.hide()
             dia.destroy()
 
-        log.debug(_("check_fields: returning ok as %s, try_again as %s") % (str(ok), str(try_again)))
+        #log.debug(_("check_fields: returning ok as %s, try_again as %s") % (str(ok), str(try_again)))
         return(ok,try_again)
 
     def db_type_changed(self, widget, data):
