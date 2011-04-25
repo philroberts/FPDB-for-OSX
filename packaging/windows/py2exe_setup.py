@@ -136,11 +136,11 @@ setup(
     version     = fpdbver,
 
     windows = [   {'script': pydir+'fpdb.pyw', 'uac_info': "requireAdministrator", "icon_resources": [(1, gfxdir+"fpdb_large_icon.ico")]},
-                  {'script': pydir+'HUD_main.pyw', 'uac_info': "requireAdministrator", },
-                  {'script': pydir+'Configuration.py', }
+                  {'script': pydir+'HUD_main.pyw', 'uac_info': "requireAdministrator", }
               ],
 
-    console = [   {'script': pydir+'Stove.py', }
+    console = [   {'script': pydir+'Stove.py', },
+                  {'script': pydir+'Configuration.py', }
               ],
 
     options = {'py2exe': {

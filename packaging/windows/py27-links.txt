@@ -1,7 +1,7 @@
 This is a list of download links of Windows32 packages for Python 2.7 of our dependencies.
 
 
-These are as of 27Feb2011:
+These are as of 20Apr2011:
 
 Required:
 Python 2.7 ... http://python.org/ftp/python/2.7/python-2.7.msi
@@ -13,6 +13,8 @@ pyGobject X ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pygobject/2.26/pyg
 pywin 216 ... http://sourceforge.net/projects/pywin32/files/pywin32/Build216/pywin32-216.win32-py2.7.exe/download
 numpy 1.5.1 ... http://sourceforge.net/projects/numpy/files/NumPy/1.5.1/numpy-1.5.1-win32-superpack-python2.7.exe/download
 pypokereval 138 ... http://sourceforge.net/projects/fpdb/files/fpdb/pokereval-138.win32-py2.7.exe/download
+winpaths 0.1 ... http://pypi.python.org/packages/source/w/winpaths/winpaths-0.1.zip
+  (winpaths will probably need a manual install, extract winpaths.py and place it in the site-packages folder)
 
 optional:
 cdecimal 2.2 ... http://www.bytereef.org/software/mpdecimal/releases/cdecimal-2.2.win32-py2.7.msi
