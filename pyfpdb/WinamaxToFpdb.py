@@ -473,11 +473,3 @@ class Winamax(HandHistoryConverter):
             if m.group('CARDS') is not None:
                 shown = True
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
-
-if __name__ == "__main__":
-    c = Configuration.Config()
-    if len(sys.argv) ==  1:
-        testfile = "regression-test-files/ongame/nlhe/ong NLH handhq_0.txt"
-    else:
-        testfile = sys.argv[1]
-    e = Winamax(c, testfile)
