@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-04-25 05:03+CEST\n"
+"POT-Creation-Date: 2011-04-25 05:29+CEST\n"
 "PO-Revision-Date: 2011-04-08 00:10+0000\n"
 "Last-Translator: pkpkpkdo <ofelipedbzgt@hotmail.com>\n"
 "Language-Team: Portuguese (Brazilian) <>\n"
@@ -153,12 +153,12 @@ msgstr "Não foi possível converter: \"%s\"\n"
 msgid "Could not encode: \"%s\""
 msgstr "Não foi possível codificar: \"%s\"\n"
 
-#: Configuration.py:117 Configuration.py:124 Configuration.py:139
+#: Configuration.py:146 Configuration.py:153 Configuration.py:168
 #, fuzzy
 msgid "Config file has been created at %s."
 msgstr "Arquivo de configuração foi criada em %s.\n"
 
-#: Configuration.py:138
+#: Configuration.py:167
 #, fuzzy
 msgid ""
 "No %s found\n"
@@ -169,66 +169,66 @@ msgstr ""
 "  em %s\n"
 "  ou %s\n"
 
-#: Configuration.py:143 Configuration.py:144
+#: Configuration.py:172 Configuration.py:173
 #, fuzzy
 msgid "Error copying .example config file, cannot fall back. Exiting."
 msgstr ""
 "Erro ao copiar arquivo de configuração .example, incapaz de voltar. Saindo.\n"
 
-#: Configuration.py:148 Configuration.py:149
+#: Configuration.py:177 Configuration.py:178
 #, fuzzy
 msgid "No %s found, cannot fall back. Exiting."
 msgstr "%s não encontrado, incapaz de voltar. Saindo.\n"
 
-#: Configuration.py:181
+#: Configuration.py:210
 msgid "Default logger initialised for %s"
 msgstr ""
 
-#: Configuration.py:193 Database.py:473 Database.py:474
+#: Configuration.py:222 Database.py:473 Database.py:474
 msgid "Creating directory: '%s'"
 msgstr "Criando diretório: '%s'"
 
-#: Configuration.py:220
+#: Configuration.py:249
 #, fuzzy
 msgid "Default encoding set to US-ASCII, defaulting to CP1252 instead."
 msgstr ""
 "Codificação padrão definida para US-ASCII, definindo CP1252 como alternativa "
 "-- Se você não estiver usando um Mac, por favor reporte este problema."
 
-#: Configuration.py:220
+#: Configuration.py:249
 msgid "Please report this problem."
 msgstr ""
 
-#: Configuration.py:541
+#: Configuration.py:566
 msgid "config.general: adding %s = %s"
 msgstr "config.general: adicionando %s = %s"
 
-#: Configuration.py:588 Configuration.py:589
+#: Configuration.py:613 Configuration.py:614
 msgid "bad number in xalignment was ignored"
 msgstr "número incorreto em xalignment foi ignorado"
 
-#: Configuration.py:644 Configuration.py:651 Configuration.py:670
-#: Configuration.py:677
+#: Configuration.py:669 Configuration.py:676 Configuration.py:695
+#: Configuration.py:702
 msgid "Invalid config value for %s, defaulting to %s"
 msgstr ""
 
-#: Configuration.py:695 Configuration.py:696
+#: Configuration.py:721 Configuration.py:722
 msgid "Configuration file %s not found. Using defaults."
 msgstr ""
 
-#: Configuration.py:726
+#: Configuration.py:761
 msgid "Reading configuration file %s"
 msgstr "Lendo arquivo de configuração %s"
 
-#: Configuration.py:733
+#: Configuration.py:768
 msgid "Error parsing %s."
 msgstr ""
 
-#: Configuration.py:733 Configuration.py:849
+#: Configuration.py:768 Configuration.py:884
 msgid "See error log file."
 msgstr ""
 
-#: Configuration.py:849
+#: Configuration.py:884
 msgid "Error parsing example configuration file %s."
 msgstr ""
 
@@ -454,65 +454,65 @@ msgstr "######## Mãos ##########"
 msgid "###### End Hands ########"
 msgstr "###### Mãos Finais ########"
 
-#: Database.py:2549
+#: Database.py:2552
 msgid "######## Gametype ##########"
 msgstr "######## Tipo de Jogo ##########"
 
-#: Database.py:2553
+#: Database.py:2556
 msgid "###### End Gametype ########"
 msgstr "###### Tipo Final de Jogo ########"
 
-#: Database.py:2641
+#: Database.py:2644
 msgid "queue empty too long - writer stopping ..."
 msgstr "fila vazia muito longa - escritor parando ..."
 
-#: Database.py:2644
+#: Database.py:2647
 #, fuzzy
 msgid "writer stopping, error reading queue:"
 msgstr "escritor parando, erro ao ler a fiila: "
 
-#: Database.py:2669
+#: Database.py:2672
 msgid "deadlock detected - trying again ..."
 msgstr "impasse encontrado - tentando novamente ..."
 
-#: Database.py:2674
+#: Database.py:2677
 #, fuzzy
 msgid "Too many deadlocks - failed to store hand"
 msgstr "muitos impasses encontrados - falha ao arquivar mãos "
 
-#: Database.py:2678
+#: Database.py:2681
 #, fuzzy
 msgid "***Error storing hand:"
 msgstr "***Erro ao arquivar mãos: "
 
-#: Database.py:2688
+#: Database.py:2691
 msgid "db writer finished: stored %d hands (%d fails) in %.1f seconds"
 msgstr "escritor db terminou: mãos arquivadas %d (%d falhas) em %.1f segundos"
 
-#: Database.py:2698
+#: Database.py:2701
 #, fuzzy
 msgid "***Error sending finish:"
 msgstr "***Erro ao enviar comando final: "
 
-#: Database.py:2784 Database.py:2797
+#: Database.py:2787 Database.py:2800
 msgid "invalid source in %s"
 msgstr ""
 
-#: Database.py:2933 Database.py:2983
+#: Database.py:2936 Database.py:2986
 #, fuzzy
 msgid "%s error: %s"
 msgstr "erro é %s"
 
-#: Database.py:3031
+#: Database.py:3034
 msgid "cards ="
 msgstr "cartas ="
 
-#: Database.py:3034
+#: Database.py:3037
 #, fuzzy
 msgid "get_stats took: %4.3f seconds"
 msgstr "get_stats levou:  %4.3f segundos"
 
-#: Database.py:3036 HandHistoryConverter.py:41 fpdb.pyw:46 fpdb.pyw:58
+#: Database.py:3039 HandHistoryConverter.py:41 fpdb.pyw:46 fpdb.pyw:58
 #: fpdb.pyw:81
 msgid "Press ENTER to continue."
 msgstr "Pressione ENTER para continuar"
@@ -2655,7 +2655,7 @@ msgstr ""
 msgid "Finished importing %s/%s PS summaries"
 msgstr ""
 
-#: Mucked.py:329
+#: Mucked.py:330
 msgid "No Name"
 msgstr "Sem Nome"
 
