@@ -358,17 +358,17 @@ class GuiDatabase:
         try:
             # is creating empty db for sqlite ... mod db.py further?
             # add noDbTables flag to db.py?
-            log.debug(_("testDB: trying to connect to: %s/%s, %s, %s/%s") % (str(dbms_num),dbms,name,user,passwd))
+            log.debug("testDB: " + _("trying to connect to:") + " %s/%s, %s, %s/%s" % (str(dbms_num),dbms,name,user,passwd))
             db.connect(backend=dbms_num, host=host, database=name, user=user, password=passwd, create=False)
             if db.connected:
-                log.debug(_("         connected ok"))
+                log.debug(_("connected ok"))
                 status = 'ok'
                 icon = gtk.STOCK_APPLY
                 if db.wrongDbVersion:
                     status = 'old'
                     icon = gtk.STOCK_INFO
             else:
-                log.debug(_("         not connected but no exception"))
+                log.debug(_("not connected but no exception"))
         except Exceptions.FpdbMySQLAccessDenied:
             err_msg = _("MySQL Server reports: Access denied. Are your permissions set correctly?")
             status = "failed"
@@ -579,14 +579,14 @@ class AddDB(gtk.Dialog):
             dia.vbox.add(l)
             dia.show_all()
             ret = dia.run()
-            log.debug(_("check_fields: ret is %s cancel is %s") % (str(ret), str(int(gtk.RESPONSE_CANCEL))))
+            #log.debug(_("check_fields: ret is %s cancel is %s") % (str(ret), str(int(gtk.RESPONSE_CANCEL))))
             if ret == gtk.RESPONSE_YES:
                 try_again = True
-            log.debug(_("check_fields: destroy dialog"))
+            #log.debug(_("check_fields: destroy dialog"))
             dia.hide()
             dia.destroy()
 
-        log.debug(_("check_fields: returning ok as %s, try_again as %s") % (str(ok), str(try_again)))
+        #log.debug(_("check_fields: returning ok as %s, try_again as %s") % (str(ok), str(try_again)))
         return(ok,try_again)
 
     def db_type_changed(self, widget, data):
@@ -688,7 +688,7 @@ if __name__=="__main__":
     config = Configuration.Config()
 
     win = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    win.set_title(_("Test Log Viewer"))
+    win.set_title(_("Log Viewer"))
     win.set_border_width(1)
     win.set_default_size(600, 500)
     win.set_resizable(True)

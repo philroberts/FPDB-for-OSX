@@ -146,7 +146,7 @@ def vpip(stat_dict, player):
                 'v=%3.1f%%'     % (100.0*stat),
                 'vpip=%3.1f%%'  % (100.0*stat),
                 '(%d/%d)'       % (stat_dict[player]['vpip'], stat_dict[player]['n']),
-                _('Voluntarily put in preflop/3rd street %%')
+                _('Voluntarily put in preflop/3rd street %')
                 )
     except: return (stat,
                     'NA',
@@ -199,7 +199,7 @@ def wtsd(stat_dict, player):
                 )
 
 def wmsd(stat_dict, player):
-    stat_descriptions["wmsd"] = _("% won money at showdown") + " (wmsd)"
+    stat_descriptions["wmsd"] = _("% won some money at showdown") + " (wmsd)"
     stat = 0.0
     try:
         stat = float(stat_dict[player]['wmsd'])/float(stat_dict[player]['sd'])
@@ -208,7 +208,7 @@ def wmsd(stat_dict, player):
                 'w=%3.1f%%'     % (100.0*stat),
                 'wmsd=%3.1f%%'  % (100.0*stat),
                 '(%5.1f/%d)'    % (float(stat_dict[player]['wmsd']), stat_dict[player]['sd']),
-                _('% won money at showdown')
+                _('% won some money at showdown')
                 )
     except:
         return (stat,
@@ -216,7 +216,7 @@ def wmsd(stat_dict, player):
                 'w=NA',
                 'wmsd=NA',
                 '(0/0)',
-                _('% won money at showdown')
+                _('% won some money at showdown')
                 )
 
 # Money is stored as pennies, so there is an implicit 100-multiplier
@@ -234,7 +234,7 @@ def profit100(stat_dict, player):
                 _('Profit per 100 hands')
                 )
     except:
-            print _("exception calcing p/100: 100 * %d / %d") % (stat_dict[player]['net'], stat_dict[player]['n'])
+            print _("exception calculating p/100: 100 * %d / %d") % (stat_dict[player]['net'], stat_dict[player]['n'])
             return (stat,
                     'NA',
                     'p=NA',
@@ -256,7 +256,7 @@ def bbper100(stat_dict, player):
                 _('Big blinds won per 100 hands')
                 )
     except:
-        log.info(_("exception calcing bb/100: ")+str(stat_dict[player]))
+        log.info(_("exception calculating bb/100: ")+str(stat_dict[player]))
         return (stat,
                 'NA',
                 'bb100=NA',
@@ -278,7 +278,7 @@ def BBper100(stat_dict, player):
                 _('Big bets won per 100 hands')
                 )
     except:
-        log.info(_("exception calcing BB/100: ")+str(stat_dict[player]))
+        log.info(_("exception calculating BB/100: ")+str(stat_dict[player]))
         return (stat,
                 'NA',
                 'BB100=NA',
@@ -432,7 +432,7 @@ def f_BB_steal(stat_dict, player):
                 _('% folded BB to steal'))
                 
 def f_steal(stat_dict, player):
-    stat_descriptions["f_steal"] = _("% folded to steal") + " (f_steal)"
+    stat_descriptions["f_steal"] = _("% folded blind to steal") + " (f_steal)"
     stat = 0.0
     try:
         folded_blind = stat_dict[player]['sbnotdef'] + stat_dict[player]['bbnotdef']
@@ -444,14 +444,14 @@ def f_steal(stat_dict, player):
                 'fB=%3.1f%%'    % (100.0*stat),
                 'fB_s=%3.1f%%'  % (100.0*stat),
                 '(%d/%d)'       % (folded_blind, blind_stolen),
-                _('% folded to steal'))
+                _('% folded blind to steal'))
     except:
         return (stat,
                 'NA',
                 'fB=NA',
                 'fB_s=NA',
                 '(0/0)',
-                _('% folded to steal'))
+                _('% folded blind to steal'))
 
 def three_B(stat_dict, player):
     stat_descriptions["three_B"] = _("% 3 bet preflop/3rd street") + " (three_B)"
@@ -759,7 +759,7 @@ def agg_fact(stat_dict, player):
                 'afa=NA',
                 'agg_fa=NA',
                 '(0/0)',
-                _('Aggression Factor'))
+                _('Aggression factor'))
 
 def cbet(stat_dict, player):
     stat_descriptions["cbet"] = _("% continuation bet") + " (cbet)"

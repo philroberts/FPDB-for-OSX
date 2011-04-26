@@ -66,7 +66,7 @@ class Carbon(HandHistoryConverter):
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r'<description type="(?P<GAME>[a-zA-Z ]+)" stakes="(?P<LIMIT>[a-zA-Z ]+) \(\$(?P<SB>[.0-9]+)/\$(?P<BB>[.0-9]+)\)"/>', re.MULTILINE)
+    re_GameInfo = re.compile(r'<description type="(?P<GAME>[a-zA-Z ]+)" stakes="(?P<LIMIT>[a-zA-Z ]+) \(?\$(?P<SB>[.0-9]+)/\$(?P<BB>[.0-9]+)\)?"/>', re.MULTILINE)
     re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="2" gametype="2" realmoney="true" data="[0-9]+\|(?P<TABLE>[^\(]+)', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
@@ -99,7 +99,9 @@ class Carbon(HandHistoryConverter):
                 return p[1]
 
     def readSupportedGames(self):
-        return [["ring", "hold", "nl"],
+        return [["ring", "hold", "fl"],
+                ["ring", "hold", "nl"],
+                ["tour", "hold", "fl"],
                 ["tour", "hold", "nl"]]
 
     def determineGameType(self, handText):
@@ -291,23 +293,3 @@ or None if we fail to get the info """
         for m in self.re_ShownCards.finditer(hand.handText):
             cards = m.group('CARDS').split(',')
             hand.addShownCards(cards=cards, player=self.playerNameFromSeatNo(m.group('PSEAT'), hand))
-
-if __name__ == "__main__":
-    parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"), default="-")
-    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
-    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
-    parser.add_option("-q", "--quiet", action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
-    parser.add_option("-v", "--verbose", action="store_const", const=logging.INFO, dest="verbosity")
-    parser.add_option("--vv", action="store_const", const=logging.DEBUG, dest="verbosity")
-
-    (options, args) = parser.parse_args()
-
-    LOG_FILENAME = './logging.out'
-    logging.basicConfig(filename=LOG_FILENAME, level=options.verbosity)
-
-    e = Carbon(in_path = options.ipath,
-               out_path = options.opath,
-               follow = options.follow,
-               autostart = True)
-

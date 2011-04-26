@@ -40,7 +40,7 @@ try:
 
 except ImportError, inst:
     print _("""Failed to load numpy and/or matplotlib in Session Viewer""")
-    print _("ImportError: %s") % inst.args
+    print "ImportError: %s" % inst.args
 
 import Card
 import fpdb_import
@@ -158,7 +158,7 @@ class GuiSessionViewer (threading.Thread):
             warning_string = _("Session Viewer is proof of concept code only, and contains many bugs.\n")
             warning_string += _("Feel free to use the viewer, but there is no guarantee that the data is accurate.\n")
             warning_string += _("If you are interested in developing the code further please contact us via the usual channels.\n")
-            warning_string += _("Thankyou")
+            warning_string += _("Thank you")
             self.warning_box(warning_string)
 
     def warning_box(self, str, diatitle=_("FPDB WARNING")):
@@ -369,7 +369,7 @@ class GuiSessionViewer (threading.Thread):
             self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("***Error: ")+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            print _("Error:")+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
             raise
 
 

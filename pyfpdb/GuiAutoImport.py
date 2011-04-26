@@ -246,8 +246,8 @@ class GuiAutoImport (threading.Thread):
                 while gtk.events_pending(): # change the label NOW don't wait for the pipe to open
                     gtk.main_iteration(False)
                 if self.pipe_to_hud is None:
-                    if Configuration.FROZEN:    # if py2exe, run hud_main.exe
-                        path = Configuration.EXEC_PATH
+                    if self.config.install_method == "exe":    # if py2exe, run hud_main.exe
+                        path = self.config.fpdb_program_path
                         command = "HUD_main.exe"
                         bs = 0
                     elif os.name == 'nt':
@@ -264,7 +264,7 @@ class GuiAutoImport (threading.Thread):
 
                         print _("opening pipe to HUD")
                     try:
-                        if Configuration.FROZEN or (os.name == "nt" and win32console.GetConsoleWindow()) == 0:
+                        if self.config.install_method == "exe" or (os.name == "nt" and win32console.GetConsoleWindow()) == 0:
                             self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
                                                                 stdin=subprocess.PIPE,
                                                                 stdout=subprocess.PIPE,  # needed for pythonw / py2exe
