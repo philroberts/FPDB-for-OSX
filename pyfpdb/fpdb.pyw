@@ -1393,7 +1393,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
 
     def validate_config(self):
         # check if sites in config file are in DB
-        for site in self.config.get_supported_sites(True):    # get site names from config file
+        for site in self.config.supported_sites:    # get site names from config file
             try:
                 self.config.get_site_id(site)                     # and check against list from db
             except KeyError, exc:
