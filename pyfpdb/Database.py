@@ -2346,12 +2346,12 @@ class Database:
                             merge.append(n['id'])
                             c.execute(update_Hands_sid, (sid, n['id']))
                             c.execute(update_SC_sid, (start, end, sid, n['id']))
+                            self.commit()
                     for k, v in sc.iteritems(): 
                         if k!='bk' and v['id'] in merge: 
                             sc[k]['id'] = sid
                     for h in sc['bk'][i]['ids']:
                         sc[h] = {'id': sid, 'data': [start, end]}
-                    self.commit()
                 elif (num == 0):
                     sid += 1
                     start =  sc['bk'][i]['sessionStart']
@@ -2507,7 +2507,7 @@ class Database:
                     for h in gsc['bk'][i]['ids']: gsc[h] = {'id': gsid}
                     for m in delete:
                         c.execute(update_Hands_gsid, (gsid, m))
-                    self.commit()
+                        self.commit()
                 elif (num == 0):
                     gstart =          gsc['bk'][i]['gameStart']
                     gend =            gsc['bk'][i]['gameEnd']

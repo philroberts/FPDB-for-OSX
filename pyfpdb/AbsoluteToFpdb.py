@@ -384,31 +384,3 @@ def validCard(card):
     if card == '10d': card = 'Td'
     if card == '10c': card = 'Tc'
     return card
-
-if __name__ == "__main__":
-    import Configuration
-    import Database
-    config =  Configuration.Config(None)
-    # line below this is required
-    # because config.site_ids (site_name to site_id map) is required 
-    # and one is stored and db.
-    db = Database.Database(config)
-
-    parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"), default="-")
-    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
-    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
-    parser.add_option("-q", "--quiet",
-                  action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
-    parser.add_option("-v", "--verbose",
-                  action="store_const", const=logging.INFO, dest="verbosity")
-    parser.add_option("--vv",
-                  action="store_const", const=logging.DEBUG, dest="verbosity")
-
-    (options, args) = parser.parse_args()
-
-    LOG_FILENAME = './logging.out'
-    logging.basicConfig(filename=LOG_FILENAME,level=options.verbosity)
-
-    e = Absolute(config, in_path = options.ipath, out_path = options.opath, follow = options.follow, autostart=True, sitename="Absolute")
-

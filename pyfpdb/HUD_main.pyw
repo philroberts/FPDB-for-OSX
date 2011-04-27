@@ -75,7 +75,7 @@ class HUD_main(object):
                 log.info(_("Any major error will be reported there _only_."))
                 errorFile = open(fileName, 'w', 0)
                 sys.stderr = errorFile
-                log.info(_("HUD_main: starting ...\n"))
+                log.info(_("HUD_main starting"))
 
             self.hud_dict = {}
             self.hud_params = self.config.get_hud_ui_parameters()
@@ -250,8 +250,8 @@ class HUD_main(object):
                 try:
                     self.hud_dict[temp_key].stat_dict = stat_dict
                 except KeyError:    # HUD instance has been killed off, key is stale
-                    log.error(_('hud_dict[%s] was not found\n') % temp_key)
-                    log.error(_('will not send hand\n'))
+                    log.error(_('hud_dict[%s] was not found') % temp_key)
+                    log.error(_('will not send hand'))
                     # Unlocks table, copied from end of function
                     self.db_connection.connection.rollback()
                     return
@@ -282,7 +282,7 @@ class HUD_main(object):
                     if hasattr(tablewindow, 'number'):
                         self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
                     else:
-                        log.error(_('Table "%s" no longer exists\n') % table_name)
+                        log.error(_('Table "%s" no longer exists') % table_name)
                         return
 
             self.db_connection.connection.rollback()

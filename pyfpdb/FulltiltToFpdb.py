@@ -815,20 +815,3 @@ class Fulltilt(HandHistoryConverter):
                 print (_("Error:")+ _("Parsed finish position incoherent : %s / %s") % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS')))
 
         return True
-
-if __name__ == "__main__":
-    parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"), default="regression-test-files/fulltilt/razz/FT20090223 Danville - $0.50-$1 Ante $0.10 - Limit Razz.txt")
-    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
-    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
-    parser.add_option("-q", "--quiet",
-                  action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
-    parser.add_option("-v", "--verbose",
-                  action="store_const", const=logging.INFO, dest="verbosity")
-    parser.add_option("--vv",
-                  action="store_const", const=logging.DEBUG, dest="verbosity")
-
-    (options, args) = parser.parse_args()
-
-    e = Fulltilt(in_path = options.ipath, out_path = options.opath, follow = options.follow)
-

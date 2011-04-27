@@ -41,40 +41,71 @@ import re
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
+import platform
+if platform.system() == 'Windows':
+    import winpaths
+    winpaths_appdata = winpaths.get_appdata()
+else:
+    winpaths_appdata = False
+
 import logging, logging.config
 import ConfigParser
 
+#
+# Setup constants
+# code is centralised here to ensure uniform handling of path names
+# especially important when user directory includes non-ascii chars
+#
+# INSTALL_METHOD ("source" or "exe")
+# FPDB_PROGRAM_PATH (path to the root fpdb installation dir root (normally ...../fpdb)
+# APPDATA_PATH (root path for appdata eg /~ or appdata)
+# CONFIG_PATH (path to the directory holding logs, sqlite db's and config)
+# OS_FAMILY (OS Family for installed system (Linux, Mac, XP, Win7)
+# POSIX (True=Linux or Mac platform, False=Windows platform)
+
+if hasattr(sys, "frozen"):
+    INSTALL_METHOD = "exe"
+else:
+    INSTALL_METHOD = "source"
+    
+if INSTALL_METHOD == "exe":
+    FPDB_PROGRAM_PATH = os.path.dirname(sys.executable) # should be exe path to /fpdb
+else:
+    FPDB_PROGRAM_PATH = os.path.dirname(sys.path[0])  # should be source path to /fpdb
+
+sysPlatform = platform.system()  #Linux, Windows, Darwin
+if sysPlatform[0:5] == 'Linux':
+    OS_FAMILY = 'Linux'
+elif sysPlatform == 'Darwin':
+    OS_FAMILY = 'Mac'
+elif sysPlatform == 'Windows':
+    if platform.release() <> 'XP':
+        OS_FAMILY = 'Win7' #Vista and win7
+    else:
+        OS_FAMILY = 'XP'
+else:
+    OS_FAMILY = False
+
+if OS_FAMILY in ['XP', 'Win7']:
+    APPDATA_PATH = winpaths_appdata
+    CONFIG_PATH = os.path.join(APPDATA_PATH, u"fpdb")
+elif OS_FAMILY == 'Mac':
+    APPDATA_PATH = os.getenv("HOME")
+    CONFIG_PATH = os.path.join(APPDATA_PATH, u".fpdb")
+elif OS_FAMILY == 'Linux':
+    APPDATA_PATH = os.path.expanduser("~")
+    CONFIG_PATH = os.path.join(APPDATA_PATH, u".fpdb")
+else:
+    APPDATA_PATH = False
+    CONFIG_PATH = False
+
+if os.name == 'posix':
+    POSIX = True
+else:
+    POSIX = False
+    
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("config")
-
-
-##############################################################################
-#    Functions for finding config files and setting up logging
-#    Also used in other modules that use logging.
-
-def get_default_config_path():
-    """Returns the path where the fpdb config file _should_ be stored."""
-    if os.name == 'posix':
-        if (os.uname()[0]=="Darwin"):
-            config_path = os.path.join(os.getenv("HOME"), ".fpdb")
-        else:
-            config_path = os.path.join(os.path.expanduser("~"), '.fpdb')
-    elif os.name == 'nt':
-        config_path = os.path.join(unicode(os.environ[u"APPDATA"], "latin-1"), u"fpdb")
-        #print u"path after joining in get_default_config_path:",config_path
-    else: config_path = False
-    
-    try: os.mkdir(config_path)
-    except: pass
-    
-    return config_path
-
-def get_exec_path():
-    """Returns the path to the fpdb(dir|.exe) file we are executing"""
-    if hasattr(sys, "frozen"):  # compiled by py2exe
-        return os.path.dirname(sys.executable)
-    else:
-        return os.path.dirname(sys.path[0])  # should be path to /fpdb
 
 def get_config(file_name, fallback = True):
     """Looks in cwd and in self.default_config_path for a config file."""
@@ -82,24 +113,22 @@ def get_config(file_name, fallback = True):
     config_found,example_found,example_copy = False,False,False
     config_path, example_path = None,None
 
-    exec_dir = get_exec_path()
-    if file_name == 'logging.conf' and not hasattr(sys, "frozen"):
-        config_path = os.path.join(exec_dir, 'pyfpdb', file_name)
+    if file_name == 'logging.conf' and INSTALL_METHOD == "source":
+        config_path = os.path.join(FPDB_PROGRAM_PATH, 'pyfpdb', file_name)
     else:
-        config_path = os.path.join(exec_dir, file_name)
+        config_path = os.path.join(FPDB_PROGRAM_PATH, file_name)
         #print "config_path=", config_path
     if os.path.exists(config_path):    # there is a file in the cwd
         config_found = True            # so we use it
     else: # no file in the cwd, look where it should be in the first place
-        default_dir = get_default_config_path()
-        config_path = os.path.join(default_dir, file_name)
+        config_path = os.path.join(CONFIG_PATH, file_name)
         #print "config path 2=", config_path
         if os.path.exists(config_path):
             config_found = True
     
     #TODO: clean up the example path loading to ensure it behaves the same on all OSs
     # Example configuration for debian package
-    if os.name == 'posix':
+    if POSIX:
         # If we're on linux, try to copy example from the place
         # debian package puts it; get_default_config_path() creates
         # the config directory for us so there's no need to check it
@@ -131,11 +160,11 @@ def get_config(file_name, fallback = True):
         try:
             #print ""
             example_path = file_name + ".example"
-            check_dir(default_dir)
+            check_dir(CONFIG_PATH)
             if not config_found and fallback:
                 shutil.copyfile(example_path, config_path)
                 example_copy = True
-                msg = _("No %s found\n  in %s\n  or %s") % (file_name, exec_dir, default_dir) \
+                msg = _("No %s found\n  in %s\n  or %s") % (file_name, FPDB_PROGRAM_PATH, CONFIG_PATH) \
                      + " " + _("Config file has been created at %s.") % (config_path+"\n")
                 print msg
                 logging.info(msg)
@@ -156,11 +185,11 @@ def get_logger(file_name, config = "config", fallback = False, log_dir=None, log
     (conf_file,copied,example_file) = get_config(file_name, fallback = fallback)
 
     if log_dir is None:
-        log_dir = os.path.join(get_exec_path(), u'log')
+        log_dir = os.path.join(FPDB_PROGRAM_PATH, u'log')
     #print "\nget_logger: checking log_dir:", log_dir
     check_dir(log_dir)
     if log_file is None:
-        file = os.path.join(log_dir, 'fpdb-log.txt')
+        file = os.path.join(log_dir, u'fpdb-log.txt')
     else:
         file = os.path.join(log_dir, log_file)
 
@@ -219,15 +248,11 @@ if LOCALE_ENCODING in ("US-ASCII", "", None):
     if (os.uname()[0]!="Darwin"):
         print _("Default encoding set to US-ASCII, defaulting to CP1252 instead."), _("Please report this problem.")
     
-
 # needs LOCALE_ENCODING (above), imported for sqlite setup in Config class below
-
-FROZEN = hasattr(sys, "frozen")
-EXEC_PATH = get_exec_path()
-
 import Charset
 
 
+        
 ########################################################################
 def string_to_bool(string, default=True):
     """converts a string representation of a boolean value to boolean True or False
@@ -262,7 +287,7 @@ class Layout:
 
     def __str__(self):
         if hasattr(self, 'name'):
-            name = self.name + ",   "
+            name = str(self.name) + ",   "
         else:
             name = ""
         temp = "    Layout = %s%d max, width= %d, height = %d" % (name, self.max, self.width, self.height)
@@ -688,6 +713,7 @@ class Config:
 #    we check the existence of "file" and try to recover if it doesn't exist
 
 #        self.default_config_path = self.get_default_config_path()
+        
         self.example_copy = False
         if file is not None: # config file path passed in
             file = os.path.expanduser(file)
@@ -700,13 +726,21 @@ class Config:
         if file is None: (file,self.example_copy,example_file) = get_config("HUD_config.xml", True)
 
         self.file = file
-        self.dir_self = get_exec_path()
-#        self.dir_config = os.path.dirname(self.file)
-        self.dir_config = get_default_config_path()
-        self.dir_log = os.path.join(self.dir_config, u'log')
-        self.dir_database = os.path.join(self.dir_config, u'database')
+        
+        self.install_method = INSTALL_METHOD
+        self.fpdb_program_path = FPDB_PROGRAM_PATH
+        self.appdata_path = APPDATA_PATH
+        self.config_path = CONFIG_PATH
+        self.os_family = OS_FAMILY
+        self.posix = POSIX
+        
+        if not os.path.exists(CONFIG_PATH):
+            os.mkdir(CONFIG_PATH)
+
+        self.dir_log = os.path.join(CONFIG_PATH, u'log')
+        self.dir_database = os.path.join(CONFIG_PATH, u'database')
         self.log_file = os.path.join(self.dir_log, u'fpdb-log.txt')
-        log = get_logger("logging.conf", "config", log_dir=self.dir_log)
+        log = get_logger(u"logging.conf", "config", log_dir=self.dir_log)
 
         self.supported_sites = {}
         self.supported_games = {}
@@ -719,6 +753,7 @@ class Config:
         self.emails = {}
         self.gui_cash_stats = GUICashStats()
         self.site_ids = {}                   # site ID list from the database
+
 
         added,n = 1,0  # use n to prevent infinite loop if add_missing_elements() fails somehow
         while added > 0 and n < 2:
@@ -821,7 +856,7 @@ class Config:
                 self.set_db_parameters(db_name = 'fpdb', db_ip = df_parms['db-host'],
                                      db_user = df_parms['db-user'],
                                      db_pass = df_parms['db-password'])
-                self.save(file=os.path.join(self.dir_config, "HUD_config.xml"))
+                self.save(file=os.path.join(CONFIG_PATH, u"HUD_config.xml"))
         
         if doc.getElementsByTagName("raw_hands") == []:
             self.raw_hands = RawHands()
@@ -871,14 +906,12 @@ class Config:
         return nodes_added
 
     def find_default_conf(self):
-        if os.name == 'posix':
-            config_path = os.path.join(os.path.expanduser("~"), '.fpdb', 'default.conf')
-        elif os.name == 'nt':
-            config_path = os.path.join(os.environ["APPDATA"], 'fpdb', 'default.conf')
-        else: config_path = False
+        if CONFIG_PATH:
+            config_file = os.path.join(CONFIG_PATH, u'default.conf')
+        else: config_file = False
 
-        if config_path and os.path.exists(config_path):
-            file = config_path
+        if config_file and os.path.exists(config_file):
+            file = config_file
         else:
             file = None
         return file
@@ -1552,8 +1585,14 @@ if __name__== "__main__":
     except:
         print "xml.dom.ext needs PyXML to be installed!"
 
-    print "FROZEN =", FROZEN
-    print "EXEC_PATH =", EXEC_PATH
+    print "\n----------- ENVIRONMENT CONSTANTS -----------"
+    print "Configuration.install_method =", INSTALL_METHOD
+    print "Configuration.fpdb_program_path =", FPDB_PROGRAM_PATH
+    print "Configuration.appdata_path =", APPDATA_PATH
+    print "Configuration.config_path =", CONFIG_PATH
+    print "Configuration.os_family =", OS_FAMILY
+    print "Configuration.posix =", POSIX
+    print "----------- END ENVIRONMENT CONSTANTS -----------"
 
     print "press enter to end"
     sys.stdin.readline()
