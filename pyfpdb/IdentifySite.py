@@ -21,34 +21,43 @@ _ = L10n.get_translation()
 import re
 import sys
 import os
-import os.path
 from optparse import OptionParser
 import codecs
 import Configuration
 import Database
 
-__ARCHIVE_PRE_HEADER_REGEX='^Hand #(\d+)\s*$|\*{20}\s#\s\d+\s\*+\s+'
-re_SplitArchive = re.compile(__ARCHIVE_PRE_HEADER_REGEX)
-
+__ARCHIVE_PRE_HEADER_REGEX='^Hand #(\d+)\s*$|\*{20}\s#\s\d+\s\*{20,25}\s+'
+re_SplitArchive = re.compile(__ARCHIVE_PRE_HEADER_REGEX, re.MULTILINE)
 
 class IdentifySite:
-    def __init__(self, config, in_path = '-'):
+    def __init__(self, config, in_path = '-', list = []):
         self.in_path = in_path
         self.config = config
-        self.db = Database.Database(config)
+        self.db = Database.Database(self.config)
         self.sitelist = {}
         self.filelist = {}
         self.generateSiteList()
-        self.walkDirectory(self.in_path, self.sitelist)
+        if list:
+            for file in list:
+                self.idSite(file, self.sitelist)
+        else:
+            if os.path.isdir(self.in_path):
+                self.walkDirectory(self.in_path, self.sitelist)
+            else:
+                self.idSite(self.in_path, self.sitelist)
+            
+    def get_filelist(self):
+        return self.filelist
         
     def generateSiteList(self):
         """Generates a ordered dictionary of site, filter and filter name for each site in hhcs"""
         for site, hhc in self.config.hhcs.iteritems():
             filter = hhc.converter
             filter_name = filter.replace("ToFpdb", "")
+            summary = hhc.summaryImporter
             result = self.db.get_site_id(site)
             if len(result) == 1:
-                self.sitelist[result[0][0]] = (site, filter, filter_name)
+                self.sitelist[result[0][0]] = (site, filter, filter_name, summary)
             else:
                 pass
 
@@ -70,32 +79,43 @@ class IdentifySite:
     
     def idSite(self, file, sitelist):
         """Identifies the site the hh file originated from"""
-        if file.endswith('.txt'):
+        if file.endswith('.txt') or file.endswith('.xml'):
             self.filelist[file] = ''
             archive = False
-            for site, info in sitelist.iteritems():
-                mod = __import__(info[1])
-                obj = getattr(mod, info[2], None)
+            for id, info in sitelist.iteritems():
+                site = info[0]
+                filter = info[1]
+                filter_name = info[2]
+                summary = info[3]
+                mod = __import__(filter)
+                obj = getattr(mod, filter_name, None)
+                if summary:
+                    smod = __import__(summary)
+                    sobj = getattr(smod, summary, None)
                 
                 for kodec in self.__listof(obj.codepage):
                     try:
                         in_fh = codecs.open(file, 'r', kodec)
-                        whole_file = in_fh.read()
+                        whole_file = in_fh.read(2000)
                         in_fh.close()
-                
-                        if info[2] in ('OnGame', 'Winamax'):
+                        if filter_name in ('OnGame', 'Winamax'):
                             m = obj.re_HandInfo.search(whole_file)
-                        elif info[2] in ('PartyPoker'):
+                        elif filter_name in ('PartyPoker'):
                             m = obj.re_GameInfoRing.search(whole_file)
                             if not m:
                                 m = obj.re_GameInfoTrny.search(whole_file)
                         else:
                             m = obj.re_GameInfo.search(whole_file)
-                            if re_SplitArchive.search(whole_file):
+                            if m and re_SplitArchive.search(whole_file):
                                 archive = True
+                            if not m and summary:
+                                m = sobj.re_TourneyInfo.search(whole_file)
+                                if m:
+                                    filter = summary            
                         if m:
-                            self.filelist[file] = [info[0]] + [info[1]] + [kodec] + [archive]
+                            self.filelist[file] = [site] + [filter] + [kodec] + [archive]
                             break
+
                     except:
                         pass
             
@@ -103,8 +123,8 @@ def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
         
-	config = Configuration.Config(file = "HUD_config.test.xml")
-    in_path = 'regression-test-files/'
+    config = Configuration.Config(file = "HUD_config.test.xml")
+    in_path = os.path.abspath('regression-test-files')
     IdSite = IdentifySite(config, in_path)
 
     print "\n----------- SITE LIST -----------"
