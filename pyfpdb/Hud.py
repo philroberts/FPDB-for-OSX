@@ -112,14 +112,15 @@ class Hud:
 
         self.creation_attrs = None
 
+    #	Set up a main window for this this instance of the HUD
     def create_mw(self):
-#	Set up a main window for this this instance of the HUD
         win = gtk.Window()
         win.set_skip_taskbar_hint(True)  # invisible to taskbar
         win.set_gravity(gtk.gdk.GRAVITY_STATIC)
-        win.set_title("%s FPDBHUD" % (self.table.name)) # give it a title that we can easily filter out in the window list when Table search code is looking
+        # give it a title that we can easily filter out in the window list when Table search code is looking
+        win.set_title("%s FPDBHUD" % (self.table.name)) 
         win.set_decorated(False)    # kill titlebars
-        win.set_opacity(self.colors["hudopacity"])  # set it to configured hud opacity
+        win.set_opacity(self.colors["hudopacity"])  
         win.set_focus(None)
         win.set_focus_on_map(False)
         win.set_accept_focus(False)
@@ -499,13 +500,14 @@ class Hud:
 #    callback for table moved
 
 #    move the stat windows
+        (self.table.oldx, self.table.oldy) = self.table.gdkhandle.get_origin()
         adj = self.adj_seats(self.hand, self.config)
         loc = self.config.get_locations(self.table.site, self.max)
         for i, w in enumerate(self.stat_windows.itervalues()):
             (x, y) = loc[adj[i+1]]
             w.relocate(x, y)
-#    move the main window
-        self.main_window.move(self.table.x + self.site_params['xshift'], self.table.y + self.site_params['yshift'])
+#    move the main window - use the "old" position as it's already updated by the time we get here.
+        self.main_window.move(self.table.oldx + self.site_params['xshift'], self.table.oldy + self.site_params['yshift'])
 #    and move any auxs
         for aux in self.aux_windows:
             aux.update_card_positions()
@@ -547,6 +549,11 @@ class Hud:
             w.window.move(w.x, w.y) 
 
     def reposition_windows(self, *args):
+        if self.repositioningwindows is True:
+            return True
+        else:
+            self.repositioningwindows = True
+            
         self.update_table_position()
         for w in self.stat_windows.itervalues():
             if type(w) == int:
@@ -554,6 +561,7 @@ class Hud:
                 continue
 #            print "in reposition, w =", w, w.x, w.y
             w.window.move(w.x, w.y)
+        self.repositioningwindows = False
         return True
 
     def debug_stat_windows(self, *args):
@@ -772,8 +780,8 @@ class Stat_Window:
         self.popups = { }
 
     def relocate(self, x, y):
-        self.x = x + self.table.x
-        self.y = y + self.table.y
+        self.x = x + self.table.oldx
+        self.y = y + self.table.oldy
         self.window.move(self.x, self.y)
 
     def __init__(self, parent, game, table, seat, adj, x, y, player_id, font):
