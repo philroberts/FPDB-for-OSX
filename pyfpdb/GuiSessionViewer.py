@@ -158,7 +158,7 @@ class GuiSessionViewer (threading.Thread):
             warning_string = _("Session Viewer is proof of concept code only, and contains many bugs.\n")
             warning_string += _("Feel free to use the viewer, but there is no guarantee that the data is accurate.\n")
             warning_string += _("If you are interested in developing the code further please contact us via the usual channels.\n")
-            warning_string += _("Thankyou")
+            warning_string += _("Thank you")
             self.warning_box(warning_string)
 
     def warning_box(self, str, diatitle=_("FPDB WARNING")):

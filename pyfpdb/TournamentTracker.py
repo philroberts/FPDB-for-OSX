@@ -302,8 +302,8 @@ class ttracker_main(object):
 
 if __name__== "__main__":
 
-    sys.stderr.write(_("tournament tracker starting\n"))
-    sys.stderr.write(_("Using db name = %s\n") % (options.dbname))
+    sys.stderr.write(_("Tournament tracker starting"))
+    sys.stderr.write(_("Using db name = %s") % (options.dbname))
 
 #    start the HUD_main object
     hm = ttracker_main(db_name = options.dbname)

@@ -215,24 +215,3 @@ class Betfair(HandHistoryConverter):
                 cards = m.group('CARDS')
                 cards = cards.split(', ')
                 hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
-
-
-if __name__ == "__main__":
-    parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"), default="regression-test-files/betfair/befair.02.04.txt")
-    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
-    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
-    parser.add_option("-q", "--quiet",
-                  action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
-    parser.add_option("-v", "--verbose",
-                  action="store_const", const=logging.INFO, dest="verbosity")
-    parser.add_option("--vv",
-                  action="store_const", const=logging.DEBUG, dest="verbosity")
-
-    (options, args) = parser.parse_args()
-
-    LOG_FILENAME = './logging.out'
-    logging.basicConfig(filename=LOG_FILENAME,level=options.verbosity)
-
-    e = Betfair(in_path = options.ipath, out_path = options.opath, follow = options.follow)
-

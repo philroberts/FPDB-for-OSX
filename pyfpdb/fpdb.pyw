@@ -102,6 +102,7 @@ except ImportError:
     sqlite3_version = 'not found'
     sqlite_version = 'not found'
 
+import DetectInstalledSites
 import GuiPrefs
 import GuiLogView
 import GuiDatabase
@@ -719,7 +720,7 @@ class fpdb:
         label = gtk.Label(_(" "))
         dia.vbox.add(label)
         
-        column_headers=[_("Site"), _("Screen Name"), _("History Path")] #TODO , _("Summary Path"), _("HUD")] 
+        column_headers=[_("Site"), _("Screen Name"), _("History Path"), _("Detect")] #TODO , _("Summary Path"), _("HUD")] 
         #HUD column will contain a button that shows favseat and HUD locations. Make it possible to load screenshot to arrange HUD windowlets.
         table = gtk.Table(rows=len(available_site_names)+1, columns=len(column_headers), homogeneous=False)
         dia.vbox.add(table)
@@ -731,6 +732,8 @@ class fpdb:
         check_buttons=[]
         screen_names=[]
         history_paths=[]
+        detector = DetectInstalledSites.DetectInstalledSites()
+        
         y_pos=1
         for site_number in range(0, len(available_site_names)):
             check_button = gtk.CheckButton(label=available_site_names[site_number])
@@ -748,6 +751,11 @@ class fpdb:
             table.attach(entry, 2, 3, y_pos, y_pos+1)
             history_paths.append(entry)
             
+            if available_site_names[site_number] in detector.supportedSites:
+                button = gtk.Button(_("Detect"))
+                table.attach(button, 3, 4, y_pos, y_pos+1)
+                button.connect("clicked", self.detect_clicked, (detector, available_site_names[site_number], screen_names[site_number], history_paths[site_number]))
+            
             y_pos+=1
         
         dia.show_all()
@@ -761,6 +769,15 @@ class fpdb:
             self.reload_config(dia)
             
         dia.destroy()
+    
+    def detect_clicked(self, widget, data):
+        detector = data[0]
+        site_name = data[1]
+        entry_screen_name = data[2]
+        entry_history_path = data[3]
+        if detector.sitestatusdict[site_name]['detected']:
+            entry_screen_name.set_text(detector.sitestatusdict[site_name]['heroname'])
+            entry_history_path.set_text(detector.sitestatusdict[site_name]['hhpath'])
     
     def reload_config(self, dia):
         if len(self.nb_tab_names) == 1:
@@ -939,7 +956,7 @@ class fpdb:
         print (_("Logfile is %s\n") % os.path.join(self.config.dir_log, self.config.log_file))
         if self.config.example_copy:
             self.info_box(_("Config file"),
-                          _("Config file has been created at:") + ("\n%s.\n") % self.config.file
+                          _("Config file has been created at %s.") % self.config.file
                            + _("Edit your screen_name and hand history path in the supported_sites section of the Advanced Preferences window (Main menu) before trying to import hands."))
         self.settings = {}
         self.settings['global_lock'] = self.lock
@@ -1381,7 +1398,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
                 self.config.get_site_id(site)                     # and check against list from db
             except KeyError, exc:
                 log.warning("site %s missing from db" % site)
-                dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Unknown Site")
+                dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format=_("Unknown Site"))
                 diastring = _("Warning:") +" " + _("Unable to find site  '%s'\n\nPress YES to add this site to the database.") % site
                 dia.format_secondary_text(diastring)
                 response = dia.run()

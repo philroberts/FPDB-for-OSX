@@ -199,7 +199,7 @@ def wtsd(stat_dict, player):
                 )
 
 def wmsd(stat_dict, player):
-    stat_descriptions["wmsd"] = _("% Won some money at showdown") + " (wmsd)"
+    stat_descriptions["wmsd"] = _("% won some money at showdown") + " (wmsd)"
     stat = 0.0
     try:
         stat = float(stat_dict[player]['wmsd'])/float(stat_dict[player]['sd'])
@@ -208,7 +208,7 @@ def wmsd(stat_dict, player):
                 'w=%3.1f%%'     % (100.0*stat),
                 'wmsd=%3.1f%%'  % (100.0*stat),
                 '(%5.1f/%d)'    % (float(stat_dict[player]['wmsd']), stat_dict[player]['sd']),
-                _('% Won some money at showdown')
+                _('% won some money at showdown')
                 )
     except:
         return (stat,
@@ -216,7 +216,7 @@ def wmsd(stat_dict, player):
                 'w=NA',
                 'wmsd=NA',
                 '(0/0)',
-                _('% Won some money at showdown')
+                _('% won some money at showdown')
                 )
 
 # Money is stored as pennies, so there is an implicit 100-multiplier
@@ -234,7 +234,7 @@ def profit100(stat_dict, player):
                 _('Profit per 100 hands')
                 )
     except:
-            print _("exception calcing p/100: 100 * %d / %d") % (stat_dict[player]['net'], stat_dict[player]['n'])
+            print _("exception calculating p/100: 100 * %d / %d") % (stat_dict[player]['net'], stat_dict[player]['n'])
             return (stat,
                     'NA',
                     'p=NA',
@@ -256,7 +256,7 @@ def bbper100(stat_dict, player):
                 _('Big blinds won per 100 hands')
                 )
     except:
-        log.info(_("exception calcing bb/100: ")+str(stat_dict[player]))
+        log.info(_("exception calculating bb/100: ")+str(stat_dict[player]))
         return (stat,
                 'NA',
                 'bb100=NA',
@@ -278,7 +278,7 @@ def BBper100(stat_dict, player):
                 _('Big bets won per 100 hands')
                 )
     except:
-        log.info(_("exception calcing BB/100: ")+str(stat_dict[player]))
+        log.info(_("exception calculating BB/100: ")+str(stat_dict[player]))
         return (stat,
                 'NA',
                 'BB100=NA',

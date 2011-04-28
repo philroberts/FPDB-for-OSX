@@ -568,20 +568,3 @@ def renderCards(string):
     "Splits strings like ' Js, 4d '"
     cards = string.strip().split(' ')
     return filter(len, map(lambda x: x.strip(' ,'), cards))
-
-
-if __name__ == "__main__":
-    parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"))
-    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
-    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
-    parser.add_option("-q", "--quiet",
-                  action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
-    parser.add_option("-v", "--verbose",
-                  action="store_const", const=logging.INFO, dest="verbosity")
-    parser.add_option("--vv",
-                  action="store_const", const=logging.DEBUG, dest="verbosity")
-
-    (options, args) = parser.parse_args()
-
-    e = PartyPoker(in_path = options.ipath, out_path = options.opath, follow = options.follow)
