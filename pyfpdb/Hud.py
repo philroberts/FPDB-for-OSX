@@ -83,6 +83,7 @@ class Hud:
         self.site          = table.site
         self.mw_created    = False
         self.hud_params    = parent.hud_params
+        self.repositioningwindows = False # used to keep reposition_windows from re-entering
 
         self.stat_windows  = {}
         self.popup_windows = {}
