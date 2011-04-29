@@ -278,15 +278,18 @@ class fpdb:
         else:
             os_text="Unknown"
         
+        import locale
         nums = [(_('Operating System'), os_text),
                 ('Python',           sys.version[0:3]),
                 ('GTK+',             '.'.join([str(x) for x in gtk.gtk_version])),
                 ('PyGTK',            '.'.join([str(x) for x in gtk.pygtk_version])),
                 ('matplotlib',       matplotlib_version),
                 ('numpy',            numpy_version),
-                ('sqlite',          sqlite_version),
-                ('fpdb version',     VERSION),
-                ('database used',    self.settings['db-server'])
+                ('sqlite',           sqlite_version),
+                (_('fpdb version'),  VERSION),
+                (_('database used'), self.settings['db-server']),
+                (_('language'),      locale.getdefaultlocale()[0]),
+                (_('character encoding'), locale.getdefaultlocale()[1])
                ]
         versions = gtk.TextBuffer()
         w = 20  # width used for module names and version numbers
