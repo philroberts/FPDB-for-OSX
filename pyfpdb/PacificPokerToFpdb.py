@@ -46,32 +46,32 @@ class PacificPoker(HandHistoryConverter):
                     }
                     
     # translations from captured groups to fpdb info strings
-# :: TODO 0.02 limit does not seem right
-    Lim_Blinds = {      '0.02': ('0.01', '0.02'),    '0.04': ('0.01', '0.02'),
-                        '0.10': ('0.02', '0.05'),    '0.20': ('0.05', '0.10'),
-                        '0.40': ('0.10', '0.20'),    '0.50': ('0.10', '0.25'),
-                        '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
-                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
-                        '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
-                        '6.00': ('1.00', '3.00'),       '6': ('1.00', '3.00'),
-                        '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
-                       '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
-                       '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
-                       '30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
-                       '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
-                       '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
-                       '80.00': ('20.00', '40.00'),    '80': ('20.00', '40.00'),
-                      '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
-                      '200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
-                      '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
-                      '800.00': ('200.00', '400.00'), '800': ('200.00', '400.00'),
-                     '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00')
+    # used for fixed limit games to determine the bet sizes based on the big blind
+    Lim_Blinds = {      '0.01': ('0.01', '0.02'),
+                        '0.02': ('0.02', '0.04'),
+                        '0.03': ('0.03', '0.06'),
+                        '0.05': ('0.05', '0.10'),
+                        '0.12': ('0.12', '0.25'),
+                        '0.25': ('0.25', '0.50'),
+                        '0.50': ('0.50', '1.00'),
+                        '1.00': ('1.00', '2.00'),         '1': ('1.00', '2.00'),
+                        '2.00': ('2.00', '4.00'),         '2': ('2.00', '4.00'),
+                        '3.00': ('3.00', '6.00'),         '3': ('3.00', '6.00'),
+                        '5.00': ('5.00', '10.00'),        '5': ('5.00', '10.00'),
+                       '10.00': ('10.00', '20.00'),      '10': ('10.00', '20.00'),
+                       '15.00': ('15.00', '30.00'),      '15': ('15.00', '30.00'),
+                       '30.00': ('30.00', '60.00'),      '30': ('30.00', '60.00'),
+                       '50.00': ('50.00', '100.00'),     '50': ('50.00', '100.00'),
+                       '75.00': ('75.00', '150.00'),     '75': ('75.00', '150.00'),
+                      '100.00': ('100.00', '200.00'),   '100': ('100.00', '200.00'),
+                      '200.00': ('200.00', '400.00'),   '200': ('200.00', '400.00'),
+                      '250.00': ('250.00', '500.00'),   '250': ('250.00', '500.00')
                   }
 
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl', 'Fix Limit':'fl' }
 
     games = {                          # base, category
-                               "Holdem" : ('hold','holdem'), 
+                               'Holdem' : ('hold','holdem'),
                                 'Omaha' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
                               'OmahaHL' : ('hold','omahahilo'),
@@ -93,7 +93,7 @@ class PacificPoker(HandHistoryConverter):
           \*\*\*\*\*\sCassava\sHand\sHistory\sfor\sGame\s[0-9]+\s\*\*\*\*\*\\n
           (?P<CURRENCY>%(LS)s)?(?P<SB>[.,0-9]+)/(%(LS)s)?(?P<BB>[.,0-9]+)\sBlinds\s
           (?P<LIMIT>No\sLimit|Fix\sLimit|Pot\sLimit)\s
-	  (?P<GAME>Holdem|Omaha|OmahaHL)
+          (?P<GAME>Holdem|Omaha|OmahaHL)
           \s-\s\*\*\*\s
           (?P<DATETIME>.*$)
           """ % substitutions, re.MULTILINE|re.VERBOSE)
@@ -108,8 +108,8 @@ class PacificPoker(HandHistoryConverter):
           ^Table\s(?P<TABLE>[-\ \#a-zA-Z\d]+)\s
           (\(Real\sMoney\))?
           (?P<PLAY>\(Practice\sPlay\))?
-	  \\n
-	  Seat\s(?P<BUTTON>[0-9]+)\sis\sthe\sbutton
+          \\n
+          Seat\s(?P<BUTTON>[0-9]+)\sis\sthe\sbutton
           """, re.MULTILINE|re.VERBOSE)
 
     re_SplitHands   = re.compile('\n\n+')
@@ -119,12 +119,11 @@ class PacificPoker(HandHistoryConverter):
 
     re_DateTime     = re.compile("""(?P<D>[0-9]{2})\s(?P<M>[0-9]{2})\s(?P<Y>[0-9]{4})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
-    # These used to be compiled per player, but regression tests say
-    # we don't have to, and it makes life faster.
     short_subst = {'PLYR': r'(?P<PNAME>.+?)', 'CUR': '\$?'}
     re_PostSB           = re.compile(r"^%(PLYR)s posts small blind \[%(CUR)s(?P<SB>[.,0-9]+)\]" %  short_subst, re.MULTILINE)
     re_PostBB           = re.compile(r"^%(PLYR)s posts big blind \[%(CUR)s(?P<BB>[.,0-9]+)\]" %  short_subst, re.MULTILINE)
     re_Antes            = re.compile(r"^%(PLYR)s posts the ante \[%(CUR)s(?P<ANTE>[.,0-9]+)\]" % short_subst, re.MULTILINE)
+    # TODO: unknown in available hand histories:
     re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.,0-9]+)" % short_subst, re.MULTILINE)
     re_PostBoth         = re.compile(r"^%(PLYR)s posts dead blind \[%(CUR)s(?P<SBBB>[.,0-9]+)\s\+\s%(CUR)s[.,0-9]+\]" %  short_subst, re.MULTILINE)
     re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s( \[\s(?P<NEWCARDS>.+?)\s\])" % short_subst, re.MULTILINE)
@@ -175,6 +174,7 @@ class PacificPoker(HandHistoryConverter):
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
+        #print "DEBUG: mg==", mg
         if 'LIMIT' in mg:
             #print "DEBUG: re_GameInfo[LIMIT] \'", mg['LIMIT'], "\'"
             info['limitType'] = self.limits[mg['LIMIT']]
@@ -308,7 +308,7 @@ class PacificPoker(HandHistoryConverter):
         log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
-	    #print "DEBUG: Seat[", a.group('SEAT'), "]; PNAME[", a.group('PNAME'), "]; CASH[", a.group('CASH'), "]"
+            #print "DEBUG: Seat[", a.group('SEAT'), "]; PNAME[", a.group('PNAME'), "]; CASH[", a.group('CASH'), "]"
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
@@ -319,20 +319,20 @@ class PacificPoker(HandHistoryConverter):
                        r"(\*\* Dealing flop \*\* (?P<FLOP>\[ \S\S, \S\S, \S\S \].+(?=\*\* Dealing turn \*\*)|.+))?"
                        r"(\*\* Dealing turn \*\* (?P<TURN>\[ \S\S \].+(?=\*\* Dealing river \*\*)|.+))?"
                        r"(\*\* Dealing river \*\* (?P<RIVER>\[ \S\S \].+))?"
-		       , hand.handText,re.DOTALL)
+                       , hand.handText,re.DOTALL)
         if m is None:
             log.error("Didn't match markStreets")
             raise FpdbParseError(_("No match in markStreets"))
-	else:
+        else:
             #print "DEBUG: Matched markStreets"
-	    mg = m.groupdict()
-#	    if 'PREFLOP' in mg:
+            mg = m.groupdict()
+#            if 'PREFLOP' in mg:
 #                print "DEBUG: PREFLOP: ", [mg['PREFLOP']]
-#	    if 'FLOP' in mg:
+#            if 'FLOP' in mg:
 #                print "DEBUG: FLOP: ", [mg['FLOP']]
-#	    if 'TURN' in mg:
+#            if 'TURN' in mg:
 #                print "DEBUG: TURN: ", [mg['TURN']]
-#	    if 'RIVER' in mg:
+#            if 'RIVER' in mg:
 #                print "DEBUG: RIVER: ", [mg['RIVER']]
 
         hand.addStreets(m)
@@ -407,12 +407,22 @@ class PacificPoker(HandHistoryConverter):
 
 
     def readAction(self, hand, street):
+        #print "DEBUG: street==", street, "."
+        #print "DEBUG: hand==", hand, "."
+        if street in ('PREFLOP', 'FLOP'):
+            betsize = hand.sb
+        elif street in ('TURN', 'RIVER'):
+            betsize = hand.bb
+        #print "DEBUG: betsize==", betsize
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
             #print "DEBUG: acts: %s" %acts
             if action.group('ATYPE') == ' raises':
-                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET').replace(',','') )
+                if hand.gametype['limitType'] == 'fl':
+                    hand.addRaiseBy( street, action.group('PNAME'), betsize )
+                else:
+                    hand.addRaiseBy( street, action.group('PNAME'), action.group('BET').replace(',','') )
             elif action.group('ATYPE') == ' calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET').replace(',','') )
             elif action.group('ATYPE') == ' bets':
