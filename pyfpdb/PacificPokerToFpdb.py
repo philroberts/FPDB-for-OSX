@@ -407,22 +407,12 @@ class PacificPoker(HandHistoryConverter):
 
 
     def readAction(self, hand, street):
-        #print "DEBUG: street==", street, "."
-        #print "DEBUG: hand==", hand, "."
-        if street in ('PREFLOP', 'FLOP'):
-            betsize = hand.sb
-        elif street in ('TURN', 'RIVER'):
-            betsize = hand.bb
-        #print "DEBUG: betsize==", betsize
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
             #print "DEBUG: acts: %s" %acts
             if action.group('ATYPE') == ' raises':
-                if hand.gametype['limitType'] == 'fl':
-                    hand.addRaiseBy( street, action.group('PNAME'), betsize )
-                else:
-                    hand.addRaiseBy( street, action.group('PNAME'), action.group('BET').replace(',','') )
+                 hand.addCallandRaise( street, action.group('PNAME'), action.group('BET').replace(',','') )
             elif action.group('ATYPE') == ' calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET').replace(',','') )
             elif action.group('ATYPE') == ' bets':
