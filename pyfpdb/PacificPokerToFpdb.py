@@ -46,27 +46,27 @@ class PacificPoker(HandHistoryConverter):
                     }
                     
     # translations from captured groups to fpdb info strings
-    # used for fixed limit games to determine the bet sizes based on the big blind
-    Lim_Blinds = {      '0.01': ('0.01', '0.02'),
-                        '0.02': ('0.02', '0.04'),
-                        '0.03': ('0.03', '0.06'),
-                        '0.05': ('0.05', '0.10'),
-                        '0.12': ('0.12', '0.25'),
-                        '0.25': ('0.25', '0.50'),
-                        '0.50': ('0.50', '1.00'),
-                        '1.00': ('1.00', '2.00'),         '1': ('1.00', '2.00'),
-                        '2.00': ('2.00', '4.00'),         '2': ('2.00', '4.00'),
-                        '3.00': ('3.00', '6.00'),         '3': ('3.00', '6.00'),
-                        '5.00': ('5.00', '10.00'),        '5': ('5.00', '10.00'),
-                       '10.00': ('10.00', '20.00'),      '10': ('10.00', '20.00'),
-                       '15.00': ('15.00', '30.00'),      '15': ('15.00', '30.00'),
-                       '30.00': ('30.00', '60.00'),      '30': ('30.00', '60.00'),
-                       '50.00': ('50.00', '100.00'),     '50': ('50.00', '100.00'),
-                       '75.00': ('75.00', '150.00'),     '75': ('75.00', '150.00'),
-                      '100.00': ('100.00', '200.00'),   '100': ('100.00', '200.00'),
-                      '200.00': ('200.00', '400.00'),   '200': ('200.00', '400.00'),
-                      '250.00': ('250.00', '500.00'),   '250': ('250.00', '500.00')
-                  }
+    # not needed for PacificPoker
+    #Lim_Blinds = {      '0.01': ('0.01', '0.02'),
+    #                    '0.02': ('0.02', '0.04'),
+    #                    '0.03': ('0.03', '0.06'),
+    #                    '0.05': ('0.05', '0.10'),
+    #                    '0.12': ('0.12', '0.25'),
+    #                    '0.25': ('0.25', '0.50'),
+    #                    '0.50': ('0.50', '1.00'),
+    #                    '1.00': ('1.00', '2.00'),         '1': ('1.00', '2.00'),
+    #                    '2.00': ('2.00', '4.00'),         '2': ('2.00', '4.00'),
+    #                    '3.00': ('3.00', '6.00'),         '3': ('3.00', '6.00'),
+    #                    '5.00': ('5.00', '10.00'),        '5': ('5.00', '10.00'),
+    #                   '10.00': ('10.00', '20.00'),      '10': ('10.00', '20.00'),
+    #                   '15.00': ('15.00', '30.00'),      '15': ('15.00', '30.00'),
+    #                   '30.00': ('30.00', '60.00'),      '30': ('30.00', '60.00'),
+    #                   '50.00': ('50.00', '100.00'),     '50': ('50.00', '100.00'),
+    #                   '75.00': ('75.00', '150.00'),     '75': ('75.00', '150.00'),
+    #                  '100.00': ('100.00', '200.00'),   '100': ('100.00', '200.00'),
+    #                  '200.00': ('200.00', '400.00'),   '200': ('200.00', '400.00'),
+    #                  '250.00': ('250.00', '500.00'),   '250': ('250.00', '500.00')
+    #              }
 
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl', 'Fix Limit':'fl' }
 
@@ -196,14 +196,15 @@ class PacificPoker(HandHistoryConverter):
         else:
             info['type'] = 'ring'
 
-        if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring' and info['base'] != 'stud':
-            try:
-                info['sb'] = self.Lim_Blinds[mg['BB']][0]
-                info['bb'] = self.Lim_Blinds[mg['BB']][1]
-            except KeyError:
-                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+        # Pacific Poker includes the blind levels in the gametype, the following is not needed.
+        #if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring' and info['base'] != 'stud':
+        #    try:
+        #        info['sb'] = self.Lim_Blinds[mg['BB']][0]
+        #        info['bb'] = self.Lim_Blinds[mg['BB']][1]
+        #    except KeyError:
+        #        log.error(_("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB']))
+        #        log.error(_("determineGameType: Raising FpdbParseError"))
+        #        raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
 
         return info
 
