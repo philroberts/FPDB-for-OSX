@@ -293,3 +293,4 @@ or None if we fail to get the info """
         for m in self.re_ShownCards.finditer(hand.handText):
             cards = m.group('CARDS').split(',')
             hand.addShownCards(cards=cards, player=self.playerNameFromSeatNo(m.group('PSEAT'), hand))
+

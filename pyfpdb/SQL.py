@@ -2721,14 +2721,26 @@ class Sql:
                                  else (sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer)))
                                      /(0.0+sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)))
                              end                                                                    AS aggfac
-                            ,100.0*(sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) 
+                            ,case when
+                                sum(cast(hp.foldToOtherRaisedStreet1 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet2 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet3 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet4 as <signed>integer))+
+                                sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer))+
+                                sum(cast(hp.street1Aggr as <signed>integer))+ sum(cast(hp.street2Aggr as <signed>integer))+ sum(cast(hp.street3Aggr as <signed>integer))+ sum(cast(hp.street4Aggr as <signed>integer))
+                                = 0 then -999
+                            else
+                            100.0*(sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) 
                                        / ((sum(cast(hp.foldToOtherRaisedStreet1 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet2 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet3 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet4 as <signed>integer))) +
                                        (sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer))) +
                                        (sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) )
-                                                                                                    AS aggfrq
-                            ,100.0*(sum(cast(hp.street1CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street3CBDone as <signed>integer)) + sum(cast(hp.street4CBDone as <signed>integer))) 
+                              end                                                                   AS aggfrq
+                            ,case when
+                                sum(cast(hp.street1CBChance as <signed>integer))+
+                                sum(cast(hp.street2CBChance as <signed>integer))+
+                                sum(cast(hp.street3CBChance as <signed>integer))+
+                                sum(cast(hp.street4CBChance as <signed>integer)) = 0 then -999
+                            else
+                             100.0*(sum(cast(hp.street1CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street3CBDone as <signed>integer)) + sum(cast(hp.street4CBDone as <signed>integer))) 
                                        / (sum(cast(hp.street1CBChance as <signed>integer))+ sum(cast(hp.street2CBChance as <signed>integer))+ sum(cast(hp.street3CBChance as <signed>integer))+ sum(cast(hp.street4CBChance as <signed>integer))) 
-                                                                                                    AS conbet
+                            end                                                                     AS conbet
                             ,sum(hp.totalProfit)/100.0                                              AS net
                             ,sum(hp.rake)/100.0                                                     AS rake
                             ,100.0*avg(hp.totalProfit/(gt.bigBlind+0.0))                            AS bbper100
@@ -2959,30 +2971,30 @@ class Sql:
             # sc: itm and profitPerTourney changed to "ELSE 0" to avoid divide by zero error as temp fix
             # proper fix should use coalesce() or case ... when ... to work in all circumstances
             self.query['tourneyPlayerDetailedStats'] = """
-                      select s.name                                                                 AS siteName
-                            ,t.tourneyTypeId                                                        AS tourneyTypeId
-                            ,tt.currency                                                            AS currency
+                      select s.name                                                                 AS "siteName"
+                            ,t.tourneyTypeId                                                        AS "tourneyTypeId"
+                            ,tt.currency                                                            AS "currency"
                             ,(CASE
                                 WHEN tt.currency = 'USD' THEN tt.buyIn/100.0
                                 WHEN tt.currency = 'EUR' THEN tt.buyIn/100.0
                                 ELSE tt.buyIn
-                              END)                                                                  AS buyIn
-                            ,tt.fee/100.0                                                           AS fee
-                            ,tt.category                                                            AS category
-                            ,tt.limitType                                                           AS limitType
-                            ,p.name                                                                 AS playerName
-                            ,COUNT(1)                                                               AS tourneyCount
-                            ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
+                              END)                                                                  AS "buyIn"
+                            ,tt.fee/100.0                                                           AS "fee"
+                            ,tt.category                                                            AS "category"
+                            ,tt.limitType                                                           AS "limitType"
+                            ,p.name                                                                 AS "playerName"
+                            ,COUNT(1)                                                               AS "tourneyCount"
+                            ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS "unknownRank"
                             ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)
-                             /(COUNT(1) - SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))             AS itm
-                            ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS _1st
-                            ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
-                            ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
-                            ,SUM(tp.winnings)/100.0                                                 AS won
-                            ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS spent
-                            ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS roi
+                             /(COUNT(1) - SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))             AS "itm"
+                            ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS "_1st"
+                            ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS "_2nd"
+                            ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS "_3rd"
+                            ,SUM(tp.winnings)/100.0                                                 AS "won"
+                            ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS "spent"
+                            ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS "roi"
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0
-                             /(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))               AS profitPerTourney
+                             /(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))               AS "profitPerTourney"
                       from TourneysPlayers tp
                            inner join Tourneys t        on  (t.id = tp.tourneyId)
                            inner join TourneyTypes tt   on  (tt.Id = t.tourneyTypeId)
@@ -2990,11 +3002,11 @@ class Sql:
                            inner join Players p         on  (p.Id = tp.playerId)
                       where tp.playerId in <nametest> <sitetest>
                       and   to_char(t.startTime, 'YYYY-MM-DD HH24:MI:SS') <datestest>
-                      group by tourneyTypeId, s.name, playerName, tt.currency, tt.buyin, tt.fee
+                      group by t.tourneyTypeId, s.name, p.name, tt.currency, tt.buyin, tt.fee
                              , tt.category, tt.limitType
-                      order by tourneyTypeId
-                              ,playerName
-                              ,siteName"""
+                      order by t.tourneyTypeId
+                              ,p.name
+                              ,s.name"""
         elif db_server == 'sqlite':
             self.query['tourneyPlayerDetailedStats'] = """
                       select s.name                                                                 AS siteName
@@ -3577,7 +3589,7 @@ class Sql:
             ORDER BY h.startTime"""
 
         self.query['getRingProfitAllHandsPlayerIdSiteInBB'] = """
-            SELECT hp.handId, ( hp.totalProfit / ( gt.bigBlind  * 2 ) ) * 100 , hp.sawShowdown
+            SELECT hp.handId, ( hp.totalProfit / ( gt.bigBlind  * 2.0 ) ) * 100 , hp.sawShowdown
             FROM HandsPlayers hp
             INNER JOIN Players pl      ON  (pl.id = hp.playerId)
             INNER JOIN Hands h         ON  (h.id  = hp.handId)
