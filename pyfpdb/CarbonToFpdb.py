@@ -62,6 +62,7 @@ class Carbon(HandHistoryConverter):
     filetype = "text"
     codepage = "cp1252"
     siteID   = 11
+    copyGameHeader = True
 
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')

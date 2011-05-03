@@ -106,6 +106,8 @@ follow :  whether to tail -f the input"""
         self.status = True
 
         self.parsedObjectType = "HH"      #default behaviour : parsing HH files, can be "Summary" if the parsing encounters a Summary File
+        
+        self.copyGameHeader = False
 
         if autostart:
             self.start()
@@ -279,7 +281,10 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         return handlist
 
     def processHand(self, handText):
-        gametype = self.determineGameType(handText)
+        if self.copyGameHeader:
+            gametype = self.determineGameType(self.whole_file)
+        else:
+            gametype = self.determineGameType(handText)
         log.debug("gametype %s" % gametype)
         hand = None
         l = None
@@ -500,10 +505,10 @@ or None if we fail to get the info """
                     #print "trying", kodec
                     try:
                         in_fh = codecs.open(self.in_path, 'r', kodec)
-                        whole_file = in_fh.read()
+                        self.whole_file = in_fh.read()
                         in_fh.close()
-                        self.obs = whole_file[self.index:]
-                        self.index = len(whole_file)
+                        self.obs = self.whole_file[self.index:]
+                        self.index = len(self.whole_file)
                         break
                     except:
                         pass
