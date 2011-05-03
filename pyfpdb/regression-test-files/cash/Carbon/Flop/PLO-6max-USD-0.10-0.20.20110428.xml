@@ -1,0 +1,47 @@
+<description type="Omaha" stakes="Pot Limit ($0.10/$0.25)"/>
+<game id="33781219-10" starttime="20110428130032" numholecards="4" gametype="9" realmoney="true" data="20110428|Krakatoa (33781219)|33781219|33781219-10|false">
+	<players dealer="1">
+		<player seat="0" nickname="Hero" balance="$12.78" dealtin="true" />
+		<player seat="1" nickname="licarus" balance="$25.00" dealtin="true" />
+		<player seat="2" nickname="BeepsDad" balance="$7.79" dealtin="true" />
+		<player seat="3" nickname="starstuded" balance="$15.00" dealtin="true" />
+		<player seat="4" nickname="PHRBisollini1" balance="$25.78" dealtin="true" />
+		<player seat="5" nickname="PhilDes24poker" balance="$10.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1304013622828" player="2" amount="0.10"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1304013623046" player="3" amount="0.25"/>
+		<event sequence="3" type="INITIAL_BLIND" timestamp="1304013623296" player="5" amount="0.25"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="4" type="FOLD" timestamp="1304013625640" player="4"/>
+		<event sequence="5" type="CHECK" timestamp="1304013627468" player="5"/>
+		<event sequence="6" type="FOLD" timestamp="1304013630718" player="0"/>
+		<event sequence="7" type="CALL" timestamp="1304013633046" player="1" amount="0.25"/>
+		<event sequence="8" type="CALL" timestamp="1304013639609" player="2" amount="0.15"/>
+		<event sequence="9" type="CHECK" timestamp="1304013639812" player="3"/>
+		<cards type="HOLE" cards="3d,6d,7h,Jd" player="0" hand="Jack High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="10" type="CHECK" timestamp="1304013642468" player="2"/>
+		<event sequence="11" type="CHECK" timestamp="1304013644843" player="3"/>
+		<event sequence="12" type="CHECK" timestamp="1304013646453" player="5"/>
+		<event sequence="13" type="CHECK" timestamp="1304013648640" player="1"/>
+		<cards type="COMMUNITY" cards="Td,Ad,Kd" hand="Flush Ace High"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="14" type="CHECK" timestamp="1304013650437" player="2"/>
+		<event sequence="15" type="BET" timestamp="1304013653828" player="3" amount="0.50"/>
+		<event sequence="16" type="FOLD" timestamp="1304013655859" player="5"/>
+		<event sequence="17" type="FOLD" timestamp="1304013659984" player="1"/>
+		<event sequence="18" type="FOLD" timestamp="1304013660234" player="2"/>
+		<cards type="COMMUNITY" cards="Td,Ad,Kd,2h" hand="Flush Ace High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="5">
+		<event sequence="19" type="MUCK" timestamp="1304013660859" player="3"/>
+		<winner amount="1.45" uncalled="false" potnumber="1" player="3" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+	</round>
+</game>
+
