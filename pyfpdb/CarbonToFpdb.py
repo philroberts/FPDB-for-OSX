@@ -100,10 +100,13 @@ class Carbon(HandHistoryConverter):
                 return p[1]
 
     def readSupportedGames(self):
-        return [["ring", "hold", "fl"],
-                ["ring", "hold", "nl"],
-                ["tour", "hold", "fl"],
-                ["tour", "hold", "nl"]]
+        return [["ring", "hold", "nl"],
+                ["ring", "hold", "pl"],
+                ["ring", "hold", "fl"],
+                
+                ["tour", "hold", "nl"],
+                ["tour", "hold", "pl"],
+                ["tour", "hold", "fl"]]
 
     def determineGameType(self, handText):
         """return dict with keys/values:
@@ -136,12 +139,13 @@ or None if we fail to get the info """
 
         self.info = {}
         mg = m.groupdict()
-        print mg
 
-        limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl' }
+        limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'Pot Limit':'pl'}
         games = {              # base, category
                     'Holdem' : ('hold','holdem'),
-         'Holdem Tournament' : ('hold','holdem') }
+         'Holdem Tournament' : ('hold','holdem'),
+                    'Omaha'  : ('hold','omahahi'),
+         'Omaha Tournament'  : ('hold','omahahi')}
 
         if 'LIMIT' in mg:
             self.info['limitType'] = limits[mg['LIMIT']]
@@ -151,7 +155,7 @@ or None if we fail to get the info """
             self.info['sb'] = mg['SB']
         if 'BB' in mg:
             self.info['bb'] = mg['BB']
-        if mg['GAME'] == 'Holdem Tournament':
+        if 'Tournament' in mg['GAME']:
             self.info['type'] = 'tour'
             self.info['currency'] = 'T$'
         else:
