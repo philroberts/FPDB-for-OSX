@@ -277,6 +277,10 @@ class GuiSessionViewer (threading.Thread):
 
         self.db.cursor.execute(q)
         hands = self.db.cursor.fetchall()
+        #fixme - nasty hack to ensure that the hands.insert() works 
+        # for mysql data.  mysql returns tuples which can't be inserted
+        # into so convert explicity to list.
+        hands = list(hands)
 
         hands.insert(0, (hands[0][0], 0, 0, 0, 0))
 
