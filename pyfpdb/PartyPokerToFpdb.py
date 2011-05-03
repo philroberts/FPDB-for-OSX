@@ -67,8 +67,17 @@ class PartyPoker(HandHistoryConverter):
                       #'200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
                       #'500.00': ('??', '250.00'), '500': ('??', '250.00'),
                   }
-    NLim_Blinds_20bb = {    '0.80': ('0.01', '0.01'),
-                            '1.60': ('0.01', '0.04'),
+    NLim_Blinds_20bb = {    '0.80': ('0.01', '0.02'),
+                            '1.60': ('0.02', '0.04'),
+                            '4': ('0.05', '0.10'),
+                            '10': ('0.10', '0.25'),
+                            '20': ('0.25', '0.50'),
+                            '40': ('0.50', '1.00'),
+                            #'10': ('0.10', '0.25'),
+                            #'10': ('0.10', '0.25'),
+                            #'10': ('0.10', '0.25'),
+                            #'10': ('0.10', '0.25'),
+                            #'10': ('0.10', '0.25'),
                        }
 
     months = { 'January':1, 'Jan':1, 'February':2, 'Feb':2, 'March':3, 'Mar':3,
@@ -213,7 +222,7 @@ class PartyPoker(HandHistoryConverter):
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
-        print "DEBUG: mg: %s" % mg
+        #print "DEBUG: mg: %s" % mg
 
         if 'LIMIT' in mg and mg['LIMIT'] != None:
             info['limitType'] = self.limits[mg['LIMIT']]
@@ -264,7 +273,7 @@ class PartyPoker(HandHistoryConverter):
                 log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
                 log.error("determineGameType: " + _("Raising FpdbParseError"))
                 raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
-        print "DEUBG: DGT.info: %s" % info
+        #print "DEUBG: DGT.info: %s" % info
         return info
 
 
@@ -278,7 +287,7 @@ class PartyPoker(HandHistoryConverter):
         info.update(m.groupdict())
         info.update(m2.groupdict())
 
-        print "DEBUG: readHand.info: %s" % info
+        #print "DEBUG: readHand.info: %s" % info
 
         # FIXME: it's dirty hack
         # party doesnt subtract uncalled money from commited money
@@ -524,7 +533,7 @@ class PartyPoker(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
-            print "DEBUG: acts: %s" % acts
+            #print "DEBUG: acts: %s" % acts
             playerName = action.group('PNAME')
             amount = self.clearMoneyString(action.group('BET')) if action.group('BET') else None
             actionType = action.group('ATYPE')
