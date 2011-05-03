@@ -1698,6 +1698,8 @@ class Database:
             game['type']                    = tmp[4]
             pdata['pname']['totalProfit']   = tmp[5]
             pdata['pname']['tourneyTypeId'] = tmp[6]
+            pdata['pname']['street0VPI']    = tmp[7]
+            pdata['pname']['street1Seen']   = tmp[8]
             tmp = c.fetchone()
             sc  = self.prepSessionsCache (id, pids, startTime, sc , heros, tmp == None)
             gsc = self.storeSessionsCache(id, pids, startTime, game, gid, pdata, sc, gsc, None, heros, tmp == None)
@@ -2390,23 +2392,29 @@ class Database:
                 hand['hid'] = hid
                 hand['tourneys'] = 0
                 hand['tourneyTypeId'] = None
+                hand['played'] = 0
                 hand['ids'] = []
                 if (game['type']=='summary'):
                     hand['type'] = 'tour'
                     hand['tourneys'] = 1
                     hand['tourneyTypeId'] = pdata['tourneyTypeId']
+                    hand['played'] = 1
                     if pdata['buyinCurrency'] == pdata['winningsCurrency'][p]:
                           hand['totalProfit'] = pdata['winnings'][p] - (pdata['buyin'] + pdata['fee'])
                     else: hand['totalProfit'] = pdata['winnings'][p]
                 elif (game['type']=='ring'):
                     hand['type'] = game['type']
-                    hand['hands'] = 1
                     hand['gametypeId'] = gid
+                    if pdata[p]['street0VPI'] or pdata[p]['street1Seen']:
+                        hand['played'] = 1
                     hand['totalProfit'] = pdata[p]['totalProfit']
+                    hand['hands'] = 1
                 elif (game['type']=='tour'):
                     hand['type'] = game['type']
-                    hand['hands'] = 1
                     hand['tourneyTypeId'] = pdata[p]['tourneyTypeId']
+                    if pdata[p]['street0VPI'] or pdata[p]['street1Seen']:
+                        hand['played'] = 1
+                    hand['hands'] = 1
         
         if hand:
             id = []
@@ -2416,7 +2424,8 @@ class Database:
                 if ((hand['date']          == gsc['bk'][i]['date']) 
                 and (hand['gametypeId']    == gsc['bk'][i]['gametypeId'])
                 and (hand['playerId']      == gsc['bk'][i]['playerId']) 
-                and (hand['tourneyTypeId'] == gsc['bk'][i]['tourneyTypeId'])): 
+                and (hand['tourneyTypeId'] == gsc['bk'][i]['tourneyTypeId'])
+                and (hand['played']        == gsc['bk'][i]['played'])): 
                     if ((lower <= gsc['bk'][i]['gameEnd'])
                     and (upper >= gsc['bk'][i]['gameStart'])):
                         if ((hand['startTime'] <=  gsc['bk'][i]['gameEnd']) 
@@ -2464,7 +2473,8 @@ class Database:
                        ,gsc['bk'][i]['type']
                        ,gsc['bk'][i]['gametypeId']
                        ,gsc['bk'][i]['tourneyTypeId']
-                       ,gsc['bk'][i]['playerId']]
+                       ,gsc['bk'][i]['playerId']
+                       ,gsc['bk'][i]['played']]
                 row = [lower, upper] + game
                 c.execute(select_SC, row)
                 r = self.fetchallDict(c)

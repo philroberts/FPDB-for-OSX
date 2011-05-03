@@ -1594,6 +1594,7 @@ class Sql:
                         gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                         tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        played BOOLEAN,
                         hands INT NOT NULL,
                         tourneys INT NOT NULL,
                         totalProfit INT)
@@ -1613,6 +1614,7 @@ class Sql:
                         gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                         tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        played BOOLEAN,
                         hands INT,
                         tourneys INT,
                         totalProfit INT)
@@ -1631,6 +1633,7 @@ class Sql:
                         gametypeId INT,
                         tourneyTypeId INT,
                         playerId INT,
+                        played INT,
                         hands INT,
                         tourneys INT,
                         totalProfit INT)
@@ -4573,7 +4576,9 @@ class Sql:
                     Hands.gametypeId as gametypeId,
                     Gametypes.type as game,
                     HandsPlayers.totalProfit as totalProfit,
-                    Tourneys.tourneyTypeId as tourneyTypeId
+                    Tourneys.tourneyTypeId as tourneyTypeId,
+                    HandsPlayers.street0VPI as street0VPI,
+                    HandsPlayers.street1Seen as street1Seen
                     FROM Gametypes, HandsPlayers, Hands
                     LEFT JOIN Tourneys ON Hands.tourneyId = Tourneys.tourneyTypeId
                     WHERE HandsPlayers.handId = Hands.id
@@ -4641,6 +4646,7 @@ class Sql:
                     gametypeId,
                     tourneyTypeId,
                     playerId,
+                    played,
                     hands,
                     tourneys,
                     totalProfit
@@ -4653,7 +4659,8 @@ class Sql:
                         (case when gametypeId=%s then 1 else 0 end) end)=1
                     AND (case when tourneyTypeId is NULL then 1 else 
                         (case when tourneyTypeId=%s then 1 else 0 end) end)=1
-                    AND playerId=%s"""
+                    AND playerId=%s
+                    AND played=%s"""
                     
         self.query['insert_SC'] = """
                     insert into SessionsCache (
@@ -4667,11 +4674,12 @@ class Sql:
                     gametypeId,
                     tourneyTypeId,
                     playerId,
+                    played,
                     hands,
                     tourneys,
                     totalProfit)
                     values (%s, %s, %s, %s, %s, %s, %s, 
-                            %s, %s, %s, %s, %s, %s)"""
+                            %s, %s, %s, %s, %s, %s, %s)"""
                             
         self.query['update_Hands_gsid'] = """
                     UPDATE Hands SET
