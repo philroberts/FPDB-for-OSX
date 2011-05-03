@@ -33,6 +33,7 @@ class Everest(HandHistoryConverter):
     filetype = "text"
     codepage = "utf8"
     siteID   = 15
+    copyGameHeader = True
 
     substitutions = {
                         'LS' : u"\$|\xe2\x82\xac|\u20ac|",
