@@ -278,15 +278,18 @@ class fpdb:
         else:
             os_text="Unknown"
         
+        import locale
         nums = [(_('Operating System'), os_text),
                 ('Python',           sys.version[0:3]),
                 ('GTK+',             '.'.join([str(x) for x in gtk.gtk_version])),
                 ('PyGTK',            '.'.join([str(x) for x in gtk.pygtk_version])),
                 ('matplotlib',       matplotlib_version),
                 ('numpy',            numpy_version),
-                ('sqlite',          sqlite_version),
-                ('fpdb version',     VERSION),
-                ('database used',    self.settings['db-server'])
+                ('sqlite',           sqlite_version),
+                (_('fpdb version'),  VERSION),
+                (_('database used'), self.settings['db-server']),
+                (_('language'),      locale.getdefaultlocale()[0]),
+                (_('character encoding'), locale.getdefaultlocale()[1])
                ]
         versions = gtk.TextBuffer()
         w = 20  # width used for module names and version numbers
@@ -915,8 +918,8 @@ class fpdb:
                                  ('graphs', None, _('_Graphs'), _('<control>G'), 'Graphs', self.tabGraphViewer),
                                  ('tourneygraphs', None, _('Tourney Graphs'), None, 'TourneyGraphs', self.tabTourneyGraphViewer),
                                  ('stove', None, _('Stove (preview)'), None, 'Stove', self.tabStove),
-                                 ('ringplayerstats', None, _('Ring _Player Stats (tabulated view, not on pgsql)'), _('<control>P'), 'Ring Player Stats (tabulated view, not on pgsql)', self.tab_ring_player_stats),
-                                 ('tourneyplayerstats', None, _('_Tourney Stats (tabulated view, not on pgsql)'), _('<control>T'), 'Tourney Stats (tabulated view, not on pgsql)', self.tab_tourney_player_stats),
+                                 ('ringplayerstats', None, _('Ring _Player Stats'), _('<control>P'), 'Ring Player Stats ', self.tab_ring_player_stats),
+                                 ('tourneyplayerstats', None, _('_Tourney Stats'), _('<control>T'), 'Tourney Stats ', self.tab_tourney_player_stats),
                                  ('tourneyviewer', None, _('Tourney _Viewer'), None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
                                  ('posnstats', None, _('P_ositional Stats (tabulated view, not on sqlite)'), _('<control>O'), 'Positional Stats (tabulated view, not on sqlite)', self.tab_positional_stats),
                                  ('sessionstats', None, _('Session Stats'), None, 'Session Stats', self.tab_session_stats),
