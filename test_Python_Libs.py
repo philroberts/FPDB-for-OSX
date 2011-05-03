@@ -37,9 +37,15 @@ try:
     print "Import of pango:\tSuccess"
 
     if os.name == 'nt':
-        import win32
+        import win32gui
         import win32api
+        import win32con
+        import win32process
+        import win32event
+        import win32console
         print "Import of win32:\tSuccess"
+        import winpaths
+        print "Import of winpaths:\tSuccess"
 
     try:
         import matplotlib
