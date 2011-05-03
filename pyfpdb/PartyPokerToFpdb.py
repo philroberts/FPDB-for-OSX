@@ -114,20 +114,21 @@ class PartyPoker(HandHistoryConverter):
             \s+Total\s+number\s+of\s+players\s+\:\s+(?P<PLYRS>\d+)/?(?P<MAX>\d+)?
             """, re.VERBOSE|re.MULTILINE|re.DOTALL)
 
-    #re_GameInfoTrny     = re.compile("""
-    #        (?P<LIMIT>(NL|PL|))\s*
-    #        (?P<GAME>(Texas\ Hold\'em|Omaha))\s+
-    #        (?:(?P<BUYIN>\$?[.,0-9]+)\s*(?P<BUYIN_CURRENCY>%(LEGAL_ISO)s)?\s*Buy-in\s+)?
-    #        Trny:\s?(?P<TOURNO>\d+)\s+
-    #        Level:\s*(?P<LEVEL>\d+)\s+
-    #        ((Blinds|Stakes)(?:-Antes)?)\(
-    #            (?P<SB>[.,0-9 ]+)\s*
-    #            /(?P<BB>[.,0-9 ]+)
-    #            (?:\s*-\s*(?P<ANTE>[.,0-9 ]+)\$?)?
-    #        \)
-    #        \s*\-\s*
-    #        (?P<DATETIME>.+)
-    #        """ % substitutions, re.VERBOSE | re.UNICODE)
+    re_GameInfoTrny     = re.compile("""
+            \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
+            (?P<LIMIT>(NL|PL|))\s*
+            (?P<GAME>(Texas\ Hold\'em|Omaha))\s+
+            (?:(?P<BUYIN>[%(LS)s]?[%(NUM)s]+)\s*(?P<BUYIN_CURRENCY>%(LEGAL_ISO)s)?\s*Buy-in\s+)?
+            Trny:\s?(?P<TOURNO>\d+)\s+
+            Level:\s*(?P<LEVEL>\d+)\s+
+            ((Blinds|Stakes)(?:-Antes)?)\(
+                (?P<SB>[%(NUM)s ]+)\s*
+                /(?P<BB>[%(NUM)s ]+)
+                (?:\s*-\s*(?P<ANTE>[%(NUM)s ]+)\$?)?
+            \)
+            \s*\-\s*
+            (?P<DATETIME>.+)
+            """ % substitutions, re.VERBOSE | re.UNICODE)
 
     re_PlayerInfo   = re.compile(u"""
           Seat\s(?P<SEAT>\d+):\s
@@ -216,6 +217,8 @@ class PartyPoker(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
+            m = self.re_GameInfoTrny.search(handText)
+        if not m:
             tmp = handText[0:150]
             log.error(_("Unable to recognise gametype from: '%s'") % tmp)
             log.error("determineGameType: " + _("Raising FpdbParseError"))
@@ -232,7 +235,7 @@ class PartyPoker(HandHistoryConverter):
             info['limitType'] = 'fl'
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
-        if mg['CASHBI'] != None:
+        if 'CASHBI' in mg and mg['CASHBI'] != None:
             # The summary is using buyin rather then listing the blinds
             # Only with NL games?
             mg['CASHBI'] = self.clearMoneyString(mg['CASHBI'])
@@ -257,6 +260,11 @@ class PartyPoker(HandHistoryConverter):
                 info['currency'] = self.currencies['$']
             else:
                 info['currency'] = self.currencies[mg['CURRENCY']]
+        if 'BUYIN_CURRENCY' in mg:
+            if mg['BUYIN_CURRENCY'] == None:
+                info['currency'] = self.currencies['$']
+            else:
+                info['currency'] = mg['BUYIN_CURRENCY']
         if 'MIXED' in mg:
             if mg['MIXED'] is not None: info['mix'] = self.mixes[mg['MIXED']]
 
@@ -279,8 +287,12 @@ class PartyPoker(HandHistoryConverter):
 
     def readHandInfo(self, hand):
         info = {}
+        m2 = None
         m  = self.re_HandInfo.search(hand.handText,re.DOTALL)
-        m2 = self.re_GameInfo.search(hand.handText)
+        if hand.gametype['type'] == 'ring':
+            m2 = self.re_GameInfo.search(hand.handText)
+        else:
+            m2 = self.re_GameInfoTrny.search(hand.handText)
         if m is None or m2 is None:
             log.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
             raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
@@ -547,8 +559,6 @@ class PartyPoker(HandHistoryConverter):
                     actionType = 'raises'
                 else:
                     actionType = 'calls'
-            else:
-                actionType = 'none'
 
             if actionType == 'raises':
                 if street == 'PREFLOP' and \
@@ -568,7 +578,7 @@ class PartyPoker(HandHistoryConverter):
             elif actionType == 'none':
                 pass
             else:
-                raise FpdbParseError(_("Unimplemented %s: '%s' '%s'") % ("readAction", playerName,actionType), hid = hand.hid)
+                raise FpdbParseError(_("Unimplemented readAction: hid:%s '%s' '%s'") % (playerName, actionType, hand.handid))
 
     def readShowdownActions(self, hand):
         # all action in readShownCards
