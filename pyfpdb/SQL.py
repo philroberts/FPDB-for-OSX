@@ -360,7 +360,7 @@ class Sql:
         if db_server == 'mysql':
             self.query['createHandsTable'] = """CREATE TABLE Hands (
                             id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-                            tableName VARCHAR(22) NOT NULL,
+                            tableName VARCHAR(50) NOT NULL,
                             siteHandNo BIGINT NOT NULL,
                             tourneyId INT UNSIGNED, 
                             gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
@@ -400,7 +400,7 @@ class Sql:
         elif db_server == 'postgresql':
             self.query['createHandsTable'] = """CREATE TABLE Hands (
                             id BIGSERIAL, PRIMARY KEY (id),
-                            tableName VARCHAR(22) NOT NULL,
+                            tableName VARCHAR(50) NOT NULL,
                             siteHandNo BIGINT NOT NULL,
                             tourneyId INT,
                             gametypeId INT NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
@@ -439,7 +439,7 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['createHandsTable'] = """CREATE TABLE Hands (
                             id INTEGER PRIMARY KEY,
-                            tableName TEXT(22) NOT NULL,
+                            tableName TEXT(50) NOT NULL,
                             siteHandNo INT NOT NULL,
                             tourneyId INT,
                             gametypeId INT NOT NULL,
