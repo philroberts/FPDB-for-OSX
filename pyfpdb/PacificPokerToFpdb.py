@@ -21,7 +21,16 @@
 import L10n
 _ = L10n.get_translation()
 
-# TODO: straighten out discards for draw games
+# DONE: Holdem: nl, pl, fl
+# TODO: Tournaments and SNG import
+# TODO: bulkloading summary files hangs fpdb
+# TODO: Ring player stats do not always show, cause in the hhc?
+
+
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("888hhc")
+log.info("PacificPokerToFpdb.py")
 
 import sys
 from HandHistoryConverter import *
@@ -123,7 +132,7 @@ class PacificPoker(HandHistoryConverter):
     re_PostSB           = re.compile(r"^%(PLYR)s posts small blind \[%(CUR)s(?P<SB>[.,0-9]+)\]" %  short_subst, re.MULTILINE)
     re_PostBB           = re.compile(r"^%(PLYR)s posts big blind \[%(CUR)s(?P<BB>[.,0-9]+)\]" %  short_subst, re.MULTILINE)
     re_Antes            = re.compile(r"^%(PLYR)s posts the ante \[%(CUR)s(?P<ANTE>[.,0-9]+)\]" % short_subst, re.MULTILINE)
-    # TODO: unknown in available hand histories:
+    # TODO: unknown in available hand histories for pacificpoker:
     re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.,0-9]+)" % short_subst, re.MULTILINE)
     re_PostBoth         = re.compile(r"^%(PLYR)s posts dead blind \[%(CUR)s(?P<SBBB>[.,0-9]+)\s\+\s%(CUR)s[.,0-9]+\]" %  short_subst, re.MULTILINE)
     re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s( \[\s(?P<NEWCARDS>.+?)\s\])" % short_subst, re.MULTILINE)
@@ -239,10 +248,10 @@ class PacificPoker(HandHistoryConverter):
                 hand.tourNo = info[key]
             if key == 'BUYIN':
                 if hand.tourNo!=None:
-                    #print "DEBUG: info['BUYIN']: %s" % info['BUYIN']
-                    #print "DEBUG: info['BIAMT']: %s" % info['BIAMT']
-                    #print "DEBUG: info['BIRAKE']: %s" % info['BIRAKE']
-                    #print "DEBUG: info['BOUNTY']: %s" % info['BOUNTY']
+                    print "DEBUG: info['BUYIN']: %s" % info['BUYIN']
+                    print "DEBUG: info['BIAMT']: %s" % info['BIAMT']
+                    print "DEBUG: info['BIRAKE']: %s" % info['BIRAKE']
+                    print "DEBUG: info['BOUNTY']: %s" % info['BOUNTY']
                     if info[key] == 'Freeroll':
                         hand.buyin = 0
                         hand.fee = 0
