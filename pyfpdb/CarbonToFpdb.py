@@ -67,8 +67,8 @@ class Carbon(HandHistoryConverter):
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r'<description type="(?P<GAME>[a-zA-Z ]+)" stakes="(?P<LIMIT>[a-zA-Z ]+) \(?\$(?P<SB>[.0-9]+)/\$(?P<BB>[.0-9]+)\)?"/>', re.MULTILINE)
-    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="2" gametype="2" realmoney="true" data="[0-9]+\|(?P<TABLE>[^\(]+)', re.MULTILINE)
+    re_GameInfo = re.compile(r'<description type="(?P<GAME>[a-zA-Z ]+)" stakes="(?P<LIMIT>[a-zA-Z ]+)\s?\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?\)?"/>', re.MULTILINE)
+    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLE>[-\ \#a-zA-Z\d\']+)(\(\d+\))?\|(?P<TOURNO>\d+)?.*>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
     re_Board = re.compile(r'<cards type="COMMUNITY" cards="(?P<CARDS>[^"]+)"', re.MULTILINE)
@@ -100,10 +100,13 @@ class Carbon(HandHistoryConverter):
                 return p[1]
 
     def readSupportedGames(self):
-        return [["ring", "hold", "fl"],
-                ["ring", "hold", "nl"],
-                ["tour", "hold", "fl"],
-                ["tour", "hold", "nl"]]
+        return [["ring", "hold", "nl"],
+                ["ring", "hold", "pl"],
+                ["ring", "hold", "fl"],
+                
+                ["tour", "hold", "nl"],
+                ["tour", "hold", "pl"],
+                ["tour", "hold", "fl"]]
 
     def determineGameType(self, handText):
         """return dict with keys/values:
@@ -136,12 +139,13 @@ or None if we fail to get the info """
 
         self.info = {}
         mg = m.groupdict()
-        print mg
 
-        limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl' }
+        limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'Pot Limit':'pl', 'Pot Limit ':'pl'}
         games = {              # base, category
                     'Holdem' : ('hold','holdem'),
-         'Holdem Tournament' : ('hold','holdem') }
+         'Holdem Tournament' : ('hold','holdem'),
+                    'Omaha'  : ('hold','omahahi'),
+         'Omaha Tournament'  : ('hold','omahahi')}
 
         if 'LIMIT' in mg:
             self.info['limitType'] = limits[mg['LIMIT']]
@@ -151,7 +155,7 @@ or None if we fail to get the info """
             self.info['sb'] = mg['SB']
         if 'BB' in mg:
             self.info['bb'] = mg['BB']
-        if mg['GAME'] == 'Holdem Tournament':
+        if 'Tournament' in mg['GAME']:
             self.info['type'] = 'tour'
             self.info['currency'] = 'T$'
         else:
@@ -169,10 +173,13 @@ or None if we fail to get the info """
         logging.debug("HID %s-%s, Table %s" % (m.group('HID1'),
                       m.group('HID2'), m.group('TABLE')[:-1]))
         hand.handid = m.group('HID1') + m.group('HID2')
-        hand.tablename = m.group('TABLE')[:-1]
+        if hand.gametype['type'] == 'tour':
+            hand.tablename = m.group('TABLE')
+            hand.tourNo = m.group('TOURNO')
+        else:
+            hand.tablename = m.group('TABLE')[:-1]
         hand.maxseats = 2 # This value may be increased as necessary
-        hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],
-                                                    '%Y%m%d%H%M')
+        hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],'%Y%m%d%H%M')
         # Check that the hand is complete up to the awarding of the pot; if
         # not, the hand is unparseable
         if self.re_EndOfHand.search(hand.handText) is None:
@@ -219,10 +226,13 @@ or None if we fail to get the info """
         for a in self.re_PostSB.finditer(hand.handText):
             #print "DEBUG: found sb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('SB'))
             hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),'small blind', a.group('SB'))
-
+            if not hand.gametype['sb']:
+                hand.gametype['sb'] = a.group('SB')
         for a in self.re_PostBB.finditer(hand.handText):
             #print "DEBUG: found bb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('BB'))
             hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'big blind', a.group('BB'))
+            if not hand.gametype['bb']:
+                hand.gametype['bb'] = a.group('BB')
         for a in self.re_PostBoth.finditer(hand.handText):
             bb = Decimal(self.info['bb'])
             amount = Decimal(a.group('SBBB'))

@@ -1,0 +1,21 @@
+<description type="Omaha Tournament" stakes="Pot Limit"/>
+<game id="33777884-1" starttime="20110428093003" numholecards="4" gametype="25" realmoney="true" data="20110428|Shrew Room - Turbo Heads Up|33777296-1|33777884-1|true">
+	<players dealer="0">
+		<player seat="0" nickname="fieryman11" balance="$1490.00" dealtin="true" />
+		<player seat="1" nickname="Hero" balance="$1480.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1304000994765" player="0" amount="10.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1304000994765" player="1" amount="20.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1304000996796" player="0"/>
+		<cards type="HOLE" cards="7d,Td,4h,5s" player="1" hand="Ten High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="4" type="MUCK" timestamp="1304000997312" player="1"/>
+		<winner amount="30.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
