@@ -67,7 +67,7 @@ class Carbon(HandHistoryConverter):
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r'<description type="(?P<GAME>[a-zA-Z ]+)" stakes="(?P<LIMIT>[a-zA-Z ]+)\s?\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?\)?"/>', re.MULTILINE)
+    re_GameInfo = re.compile(r'<description type="(?P<GAME>[-0-9a-zA-Z ]+)" stakes="(?P<LIMIT>[a-zA-Z ]+?)\s?\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?\)?"/>', re.MULTILINE)
     re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLE>[-\ \#a-zA-Z\d\']+)(\(\d+\))?\|(?P<TOURNO>\d+)?.*>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
@@ -103,6 +103,8 @@ class Carbon(HandHistoryConverter):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
+
+                ["ring", "draw", "fl"],
                 
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
@@ -139,13 +141,16 @@ or None if we fail to get the info """
 
         self.info = {}
         mg = m.groupdict()
+        #print "DEBUG: mg: %s" % mg
 
         limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'Pot Limit':'pl', 'Pot Limit ':'pl'}
         games = {              # base, category
                     'Holdem' : ('hold','holdem'),
          'Holdem Tournament' : ('hold','holdem'),
                     'Omaha'  : ('hold','omahahi'),
-         'Omaha Tournament'  : ('hold','omahahi')}
+         'Omaha Tournament'  : ('hold','omahahi'),
+              '2-7 Lowball'  : ('draw','27_3draw'),
+                }
 
         if 'LIMIT' in mg:
             self.info['limitType'] = limits[mg['LIMIT']]
@@ -205,8 +210,16 @@ or None if we fail to get the info """
                 hand.addPlayer(seatno, a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
-        #if hand.gametype['base'] == 'hold':
-        m = re.search(r'<round id="PREFLOP" sequence="[0-9]+">(?P<PREFLOP>.+(?=<round id="POSTFLOP")|.+)(<round id="POSTFLOP" sequence="[0-9]+">(?P<FLOP>.+(?=<round id="POSTTURN")|.+))?(<round id="POSTTURN" sequence="[0-9]+">(?P<TURN>.+(?=<round id="POSTRIVER")|.+))?(<round id="POSTRIVER" sequence="[0-9]+">(?P<RIVER>.+))?', hand.handText, re.DOTALL)
+        if hand.gametype['base'] == 'hold':
+            m = re.search(r'<round id="PREFLOP" sequence="[0-9]+">(?P<PREFLOP>.+(?=<round id="POSTFLOP")|.+)(<round id="POSTFLOP" sequence="[0-9]+">(?P<FLOP>.+(?=<round id="POSTTURN")|.+))?(<round id="POSTTURN" sequence="[0-9]+">(?P<TURN>.+(?=<round id="POSTRIVER")|.+))?(<round id="POSTRIVER" sequence="[0-9]+">(?P<RIVER>.+))?', hand.handText, re.DOTALL)
+        elif hand.gametype['base'] == 'draw':
+            if hand.gametype['category'] in ('27_3draw'):
+                m =  re.search(r'(?P<PREDEAL>.+(?=<round id="PRE_FIRST_DRAW" sequence="[0-9]+">)|.+)'
+                           r'(<round id="PRE_FIRST_DRAW" sequence="[0-9]+">(?P<DEAL>.+(?=<round id="FIRST_DRAW" sequence="[0-9]+">)|.+))?'
+                           r'(<round id="FIRST_DRAW" sequence="[0-9]+">(?P<DRAWONE>.+(?=<round id="SECOND_DRAW" sequence="[0-9]+">)|.+))?'
+                           r'(<round id="SECOND_DRAW" sequence="[0-9]+">(?P<DRAWTWO>.+(?=<round id="THIRD_DRAW" sequence="[0-9]+">)|.+))?'
+                           r'(<round id="THIRD_DRAW" sequence="[0-9]+">(?P<DRAWTHREE>.+))?', hand.handText,re.DOTALL)
+
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street):
@@ -250,11 +263,13 @@ or None if we fail to get the info """
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
 
     def readHeroCards(self, hand):
-        m = self.re_HeroCards.search(hand.handText)
-        if m:
-            hand.hero = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
-            cards = m.group('CARDS').split(',')
-            hand.addHoleCards('PREFLOP', hand.hero, closed=cards, shown=False,
+        for street in ('PREFLOP', 'DEAL'):
+            if street in hand.streets.keys():
+                m = self.re_HeroCards.search(hand.handText)
+                if m:
+                    hand.hero = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
+                    cards = m.group('CARDS').split(',')
+                    hand.addHoleCards(street, hand.hero, closed=cards, shown=False,
                               mucked=False, dealt=True)
 
     def readAction(self, hand, street):
