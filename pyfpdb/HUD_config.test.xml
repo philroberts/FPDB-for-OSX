@@ -889,7 +889,7 @@ Left-Drag to Move"
         <hhc site="iPoker" converter="iPokerToFpdb"/>
         <hhc site="Winamax" converter="WinamaxToFpdb"/>
         <hhc site="Everest" converter="EverestToFpdb"/>
-        <hhc site="Pacific" converter="PacificPokerToFpdb"/>
+        <hhc site="PacificPoker" converter="PacificPokerToFpdb"/>
     </hhcs>
 
     <raw_hands save="none" compression="none"/>
