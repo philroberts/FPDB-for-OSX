@@ -224,7 +224,7 @@ class TourneySummary(object):
         self.db.commit()
         self.tourneyId = self.db.createOrUpdateTourney(self, "TS")
         self.db.commit()
-        self.tourneysPlayersIds = self.db.createOrUpdateTourneysPlayers(self, "TS")
+        self.tourneysPlayersIds = self.db.createOrUpdateTourneysPlayersTS(self)
         self.db.commit()
         
         logging.debug(_("Tourney Insert/Update done"))

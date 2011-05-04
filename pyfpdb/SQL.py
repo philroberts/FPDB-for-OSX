@@ -4894,9 +4894,9 @@ class Sql:
                                                  WHERE id=%s
         """
 
-        self.query['insertTourneysPlayer'] = """INSERT INTO TourneysPlayers
+        self.query['insertTourneysPlayer'] = """insert into TourneysPlayers
                                                     (tourneyId, playerId, rank, winnings, winningsCurrency, rebuyCount, addOnCount, koCount)
-                                                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                                                values (%s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         self.query['selectHandsPlayersWithWrongTTypeId'] = """SELECT id
