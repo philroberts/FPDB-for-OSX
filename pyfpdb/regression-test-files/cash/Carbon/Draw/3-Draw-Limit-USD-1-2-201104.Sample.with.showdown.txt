@@ -1,3 +1,4 @@
+<description type="2-7 Lowball" stakes="Limit $1/$2"/>
 <game id="33423082-14" starttime="20110419091134" numholecards="5" gametype="67" realmoney="true" data="20110419|Minnehaha (33423082)|33423082|33423082-14|false">
 	<players dealer="1">
 		<player seat="1" nickname="Villain" balance="$32.80" dealtin="true" />
