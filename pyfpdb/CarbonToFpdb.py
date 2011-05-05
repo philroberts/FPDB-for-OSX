@@ -103,7 +103,6 @@ class Carbon(HandHistoryConverter):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
-
                 ["ring", "draw", "fl"],
                 
                 ["tour", "hold", "nl"],
