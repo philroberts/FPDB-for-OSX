@@ -310,8 +310,8 @@ class Database:
                 self.recreate_tables()
                 self.wrongDbVersion = False
 
-            self.pcache      = None     # PlayerId cache
-            self.tpcache      = None     # PlayerId cache
+            self.pcache      = {}     # PlayerId cache
+            self.tpcache     = {}     # PlayerId cache
             self.cachemiss   = 0        # Delete me later - using to count player cache misses
             self.cachehit    = 0        # Delete me later - using to count player cache hits
 
@@ -965,23 +965,22 @@ class Database:
 
     def getSqlPlayerIDs(self, pnames, siteid, pid, pbulk, doinsert):
         result = {}
-        if(self.pcache == None):
-            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key[0], key[1]))
+        #if(self.pcache == None):
+        #    self.pcache = LambdaDict(lambda  key:self.insertPlayer(key[0], key[1]))
 
         for player in pnames:
-            self.pinserts = None
-            result[player] = self.pcache[(player,siteid)]
+            #result[player] = self.pcache[(player,siteid)]
             # NOTE: Using the LambdaDict does the same thing as:
-            #if player in self.pcache:
+            if player in self.pcache:
             #    #print "DEBUG: cachehit"
-            #    pass
-            #else:
-            #    self.pcache[player] = self.insertPlayer(player, siteid)
-            #result[player] = self.pcache[player]
-            if self.pinserts:
-                pbulk.append(self.pinserts)
-                result[player] = pid
-                pid += 1
+                pass
+            else:
+                self.pcache[player] = self.insertPlayer(player, siteid, "HHC")
+                if not self.pcache[player]:
+                    pbulk.append(self.pinserts)
+                    self.pcache[player] = pid
+                    pid += 1
+            result[player] = self.pcache[player]
                 
         if doinsert and pbulk:
             c = self.get_cursor()
@@ -991,7 +990,7 @@ class Database:
 
         return result, pid, pbulk
 
-    def insertPlayer(self, name, site_id):
+    def insertPlayer(self, name, site_id, source):
         result = None
         _name = Charset.to_db_utf8(name)
         c = self.get_cursor()
@@ -1011,15 +1010,18 @@ class Database:
 
         tmp = c.fetchone()
         if (tmp == None): #new player
-            self.pinserts = [_name, site_id]
-            #c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
-            #          ,(_name, site_id))
-            #Get last id might be faster here.
-            #result = self.get_last_insert_id(c)
+            if source == "HHC":
+                self.pinserts = [_name, site_id]
+            elif source == "TS":
+                c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
+                          ,(_name, site_id))
+                #Get last id might be faster here.
+                result = self.get_last_insert_id(c)
+            else:
+                raise FpdbParseError(_("invalid source in insertPlayer()"))
         else:
             result = tmp[1]
         return result
-
 
     def get_last_insert_id(self, cursor=None):
         ret = None
@@ -2881,25 +2883,22 @@ class Database:
     
     def getSqlTourneysPlayersIDs(self, hand, tpid, tpbulk, doinsert):
         result = {}
-        if(self.tpcache == None):
-            self.tpcache = LambdaDict(lambda  key:self.insertTourneysPlayers(key[0], key[1]))
+        #if(self.tpcache == None):
+        #    self.tpcache = LambdaDict(lambda  key:self.insertTourneysPlayers(key[0], key[1]))
             
         if hand.tourneyId:
             for player in hand.players:
-                self.tpinserts = None
                 playerId = hand.dbid_pids[player[1]]
-                result[player[1]] = self.tpcache[(hand.tourneyId, playerId)]
-                # NOTE: Using the LambdaDict does the same thing as:
-                #if player in self.pcache:
+                if player[1] in self.tpcache:
                 #    #print "DEBUG: cachehit"
-                #    pass
-                #else:
-                #    self.pcache[player] = self.insertPlayer(player, siteid)
-                #result[player] = self.pcache[player]
-                if self.tpinserts:
-                    tpbulk.append(self.tpinserts)
-                    result[player[1]] = tpid
-                    tpid += 1
+                    pass
+                else:
+                    self.tpcache[player[1]] = self.insertTourneysPlayers(hand.tourneyId, playerId)
+                    if not self.tpcache[player[1]]:
+                        tpbulk.append(self.tpinserts)
+                        self.tpcache[player[1]] = tpid
+                        tpid += 1
+                result[player[1]] = self.tpcache[player[1]]                    
                 
         if doinsert and tpbulk:
             cursor = self.get_cursor()
