@@ -32,7 +32,7 @@ class Everest(HandHistoryConverter):
     sitename = "Everest"
     filetype = "text"
     codepage = "utf8"
-    siteID   = 15
+    siteId   = 16
     copyGameHeader = True
 
     substitutions = {
