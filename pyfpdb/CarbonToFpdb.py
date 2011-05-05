@@ -61,7 +61,7 @@ class Carbon(HandHistoryConverter):
     sitename = "Carbon"
     filetype = "text"
     codepage = "cp1252"
-    siteID   = 11
+    siteId   = 11
     copyGameHeader = True
 
     # Static regexes

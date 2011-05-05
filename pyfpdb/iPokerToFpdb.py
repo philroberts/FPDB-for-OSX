@@ -54,7 +54,7 @@ class iPoker(HandHistoryConverter):
     sitename = "iPoker"
     filetype = "text"
     codepage = "cp1252"
-    siteID   = 13
+    siteId   = 13
 
     # Static regexes
     re_SplitHands = re.compile(r'</game>')
