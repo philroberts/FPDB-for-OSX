@@ -477,16 +477,12 @@ class Importer:
                 if self.caller: hhc.progressNotify()
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
-                (pbulk, tpbulk, hbulk, hpbulk, habulk, hcbulk, phands, ihands, to_hud) = ([], [], [], [], [], [], [], [], [])
+                (hbulk, hpbulk, habulk, hcbulk, phands, ihands, to_hud) = ([], [], [], [], [], [], [])
                 sc, gsc = {'bk': []}, {'bk': []}
                 
                 ####Lock Placeholder####
-                pid = self.database.nextPlayerId()
-                tpid = self.database.nextTourneysPlayersId()
-                for i in range(len(handlist)):
-                    doinsert = len(handlist)==i+1
-                    hand = handlist[i]
-                    pid, tpid, pbulk, tpbulk = hand.prepInsert(self.database, pid, tpid, pbulk, tpbulk, doinsert, printtest = self.settings['testData'])
+                for hand in handlist:
+                    hand.prepInsert(self.database, printtest = self.settings['testData'])
                     self.database.commit()
                     phands.append(hand)
                 ####Lock Placeholder####

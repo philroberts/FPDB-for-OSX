@@ -230,14 +230,14 @@ dealt   whether they were seen in a 'dealt to' line
 
         self.holecards[street][player] = [open, closed]
 
-    def prepInsert(self, db, pid, tpid, pbulk, tpbulk, doinsert = False, printtest = False):
+    def prepInsert(self, db, printtest = False):
         #####
         # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
         # These functions are intended for prep insert eventually
         #####
         self.gametype['maxSeats'] = self.maxseats #TODO: move up to individual parsers
         self.gametype['ante'] = 0 #TODO store actual ante
-        self.dbid_pids, pid, pbulk = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId, pid, pbulk, doinsert)
+        self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
         
         #Gametypes
         hilo = "h"
@@ -257,9 +257,7 @@ dealt   whether they were seen in a 'dealt to' line
         if self.tourNo!=None:
             self.tourneyTypeId = db.createTourneyType(self)
             self.tourneyId = db.createOrUpdateTourney(self, "HHC")
-        if self.tourNo!=None or doinsert:
-            self.tourneysPlayersIds, tpid, tpbulk = db.getSqlTourneysPlayersIDs(self, tpid, tpbulk, doinsert)
-        return pid, tpid, pbulk, tpbulk
+            self.tourneysPlayersIds = db.getSqlTourneysPlayersIDs(self, self.tourneyId)
         
     def assembleHand(self):
         self.stats.getStats(self)

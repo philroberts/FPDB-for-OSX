@@ -310,8 +310,8 @@ class Database:
                 self.recreate_tables()
                 self.wrongDbVersion = False
 
-            self.pcache      = {}     # PlayerId cache
-            self.tpcache     = {}     # PlayerId cache
+            self.pcache      = None     # PlayerId cache
+            self.tpcache     = None     # PlayerId cache
             self.cachemiss   = 0        # Delete me later - using to count player cache misses
             self.cachehit    = 0        # Delete me later - using to count player cache hits
 
@@ -963,34 +963,24 @@ class Database:
         self.pcache = None
         self.tpcache = None
 
-    def getSqlPlayerIDs(self, pnames, siteid, pid, pbulk, doinsert):
+    def getSqlPlayerIDs(self, pnames, siteid):
         result = {}
-        #if(self.pcache == None):
-        #    self.pcache = LambdaDict(lambda  key:self.insertPlayer(key[0], key[1]))
+        if(self.pcache == None):
+            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key[0], key[1]))
 
         for player in pnames:
-            #result[player] = self.pcache[(player,siteid)]
+            result[player] = self.pcache[(player,siteid)]
             # NOTE: Using the LambdaDict does the same thing as:
-            if player in self.pcache:
+            #if player in self.pcache:
             #    #print "DEBUG: cachehit"
-                pass
-            else:
-                self.pcache[player] = self.insertPlayer(player, siteid, "HHC")
-                if not self.pcache[player]:
-                    pbulk.append(self.pinserts)
-                    self.pcache[player] = pid
-                    pid += 1
-            result[player] = self.pcache[player]
-                
-        if doinsert and pbulk:
-            c = self.get_cursor()
-            q = "insert into Players (name, siteId) values (%s, %s)"
-            q = q.replace('%s', self.sql.query['placeholder'])
-            c.executemany(q, pbulk)
+            #    pass
+            #else:
+            #    self.pcache[player] = self.insertPlayer(player, siteid)
+            #result[player] = self.pcache[player]
 
-        return result, pid, pbulk
-
-    def insertPlayer(self, name, site_id, source):
+        return result
+    
+    def insertPlayer(self, name, site_id):
         result = None
         _name = Charset.to_db_utf8(name)
         c = self.get_cursor()
@@ -1010,15 +1000,11 @@ class Database:
 
         tmp = c.fetchone()
         if (tmp == None): #new player
-            if source == "HHC":
-                self.pinserts = [_name, site_id]
-            elif source == "TS":
-                c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
-                          ,(_name, site_id))
-                #Get last id might be faster here.
-                result = self.get_last_insert_id(c)
-            else:
-                raise FpdbParseError(_("invalid source in insertPlayer()"))
+            c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
+                      ,(_name, site_id))
+            #Get last id might be faster here.
+            #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
+            result = self.get_last_insert_id(c)
         else:
             result = tmp[1]
         return result
@@ -2637,22 +2623,6 @@ class Database:
         if not id: id = 0
         id += 1
         return id
-    
-    def nextPlayerId(self):
-        c = self.get_cursor()
-        c.execute("SELECT max(id) FROM Players")
-        id = c.fetchone()[0]
-        if not id: id = 0
-        id += 1
-        return id
-    
-    def nextTourneysPlayersId(self):
-        c = self.get_cursor()
-        c.execute("SELECT max(id) FROM TourneysPlayers")
-        id = c.fetchone()[0]
-        if not id: id = 0
-        id += 1
-        return id
 
     def isDuplicate(self, gametypeID, siteHandNo):
         dup = False
@@ -2881,42 +2851,48 @@ class Database:
                 tourneysPlayersIds[player[1]]=self.get_last_insert_id(cursor)
         return tourneysPlayersIds
     
-    def getSqlTourneysPlayersIDs(self, hand, tpid, tpbulk, doinsert):
+    def getSqlTourneysPlayersIDs(self, hand, tourneyId):
         result = {}
-        #if(self.tpcache == None):
-        #    self.tpcache = LambdaDict(lambda  key:self.insertTourneysPlayers(key[0], key[1]))
-            
-        if hand.tourneyId:
-            for player in hand.players:
-                playerId = hand.dbid_pids[player[1]]
-                if player[1] in self.tpcache:
-                #    #print "DEBUG: cachehit"
-                    pass
-                else:
-                    self.tpcache[player[1]] = self.insertTourneysPlayers(hand.tourneyId, playerId)
-                    if not self.tpcache[player[1]]:
-                        tpbulk.append(self.tpinserts)
-                        self.tpcache[player[1]] = tpid
-                        tpid += 1
-                result[player[1]] = self.tpcache[player[1]]                    
-                
-        if doinsert and tpbulk:
-            cursor = self.get_cursor()
-            q = self.sql.query['insertTourneysPlayer']
-            q.replace('%s', self.sql.query['placeholder'])
-            cursor.executemany(q, tpbulk)
-            
-        return result, tpid, tpbulk
+        if(self.tpcache == None):
+            self.tpcache = LambdaDict(lambda  key:self.insertTourneysPlayers(key[0], key[1]))
 
-    def insertTourneysPlayers(self, tourneyId, playerId):
+        for player in hand.players:
+            playerId = hand.dbid_pids[player[1]]
+            result[player[1]] = self.tpcache[(playerId,hand.tourneyId)]
+            # NOTE: Using the LambdaDict does the same thing as:
+            #if player in self.pcache:
+            #    #print "DEBUG: cachehit"
+            #    pass
+            #else:
+            #    self.pcache[player] = self.insertPlayer(player, siteid)
+            #result[player] = self.pcache[player]
+
+        return result
+    
+    def insertTourneysPlayers(self, playerId, tourneyId):
         result = None
         c = self.get_cursor()
         q = self.sql.query['getTourneysPlayersByIds']
         q = q.replace('%s', self.sql.query['placeholder'])
-        c.execute (q,(tourneyId, playerId))
+
+        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
+        #Usage:
+        #        INSERT INTO `tags` (`tag`, `count`)
+        #         VALUES ($tag, 1)
+        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
+
+
+        #print "DEBUG: name: %s site: %s" %(name, site_id)
+
+        c.execute (q, (tourneyId, playerId))
+
         tmp = c.fetchone()
         if (tmp == None): #new player
-            self.tpinserts = (tourneyId, playerId, None, None, None, None, None, None)
+            c.execute (self.sql.query['insertTourneysPlayer'].replace('%s',self.sql.query['placeholder'])
+                      ,(tourneyId, playerId, None, None, None, None, None, None))
+            #Get last id might be faster here.
+            #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
+            result = self.get_last_insert_id(c)
         else:
             result = tmp[1]
         return result
