@@ -26,12 +26,8 @@ _ = L10n.get_translation()
 #
 # TODO:
 #
-# -- No support for games other than NL hold 'em cash. Hand histories for other
-#    games required
-# -- No support for limit hold 'em yet, though this would be easy to add
 # -- No support for tournaments (see also the last item below)
 # -- Assumes that the currency of ring games is USD
-# -- Only works for 'gametype="2"'. What is 'gametype'?
 # -- Only accepts 'realmoney="true"'
 # -- A hand's time-stamp does not record seconds past the minute (a
 #    limitation of the history format)
@@ -63,6 +59,18 @@ class Carbon(HandHistoryConverter):
     codepage = "cp1252"
     siteId   = 11
     copyGameHeader = True
+
+    limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'Pot Limit':'pl', 'Pot Limit ':'pl'}
+    games = {              # base, category
+                    'Holdem' : ('hold','holdem'),
+         'Holdem Tournament' : ('hold','holdem'),
+                    'Omaha'  : ('hold','omahahi'),
+         'Omaha Tournament'  : ('hold','omahahi'),
+              '2-7 Lowball'  : ('draw','27_3draw'),
+                   'Badugi'  : ('draw','badugi'),
+                   '7-Stud'  : ('stud','studhi'),
+                     'Razz'  : ('stud','razz'),
+            }
 
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
@@ -103,7 +111,13 @@ class Carbon(HandHistoryConverter):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
+
+                ["ring", "stud", "fl"],
+                ["ring", "stud", "pl"],
+
                 ["ring", "draw", "fl"],
+                ["ring", "draw", "pl"],
+                ["ring", "draw", "nl"],
                 
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
@@ -140,21 +154,12 @@ or None if we fail to get the info """
 
         self.info = {}
         mg = m.groupdict()
-        #print "DEBUG: mg: %s" % mg
-
-        limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'Pot Limit':'pl', 'Pot Limit ':'pl'}
-        games = {              # base, category
-                    'Holdem' : ('hold','holdem'),
-         'Holdem Tournament' : ('hold','holdem'),
-                    'Omaha'  : ('hold','omahahi'),
-         'Omaha Tournament'  : ('hold','omahahi'),
-              '2-7 Lowball'  : ('draw','27_3draw'),
-                }
+        print "DEBUG: mg: %s" % mg
 
         if 'LIMIT' in mg:
-            self.info['limitType'] = limits[mg['LIMIT']]
+            self.info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
-            (self.info['base'], self.info['category']) = games[mg['GAME']]
+            (self.info['base'], self.info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
             self.info['sb'] = mg['SB']
         if 'BB' in mg:
@@ -212,12 +217,19 @@ or None if we fail to get the info """
         if hand.gametype['base'] == 'hold':
             m = re.search(r'<round id="PREFLOP" sequence="[0-9]+">(?P<PREFLOP>.+(?=<round id="POSTFLOP")|.+)(<round id="POSTFLOP" sequence="[0-9]+">(?P<FLOP>.+(?=<round id="POSTTURN")|.+))?(<round id="POSTTURN" sequence="[0-9]+">(?P<TURN>.+(?=<round id="POSTRIVER")|.+))?(<round id="POSTRIVER" sequence="[0-9]+">(?P<RIVER>.+))?', hand.handText, re.DOTALL)
         elif hand.gametype['base'] == 'draw':
-            if hand.gametype['category'] in ('27_3draw'):
+            if hand.gametype['category'] in ('27_3draw','badugi'):
                 m =  re.search(r'(?P<PREDEAL>.+(?=<round id="PRE_FIRST_DRAW" sequence="[0-9]+">)|.+)'
                            r'(<round id="PRE_FIRST_DRAW" sequence="[0-9]+">(?P<DEAL>.+(?=<round id="FIRST_DRAW" sequence="[0-9]+">)|.+))?'
                            r'(<round id="FIRST_DRAW" sequence="[0-9]+">(?P<DRAWONE>.+(?=<round id="SECOND_DRAW" sequence="[0-9]+">)|.+))?'
                            r'(<round id="SECOND_DRAW" sequence="[0-9]+">(?P<DRAWTWO>.+(?=<round id="THIRD_DRAW" sequence="[0-9]+">)|.+))?'
                            r'(<round id="THIRD_DRAW" sequence="[0-9]+">(?P<DRAWTHREE>.+))?', hand.handText,re.DOTALL)
+        elif hand.gametype['base'] == 'stud':
+            m =  re.search(r'(?P<ANTES>.+(?=<round id="BRING_IN" sequence="[0-9]+">)|.+)'
+                       r'(<round id="BRING_IN" sequence="[0-9]+">(?P<THIRD>.+(?=<round id="THIRD_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="THIRD_STREET" sequence="[0-9]+">(?P<FOURTH>.+(?=<round id="FOURTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="FOURTH_STREET" sequence="[0-9]+">(?P<FIFTH>.+(?=<round id="FIFTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="FIFTH_STREET" sequence="[0-9]+">(?P<SIXTH>.+(?=<round id="SIXTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="SIXTH_STREET" sequence="[0-9]+">(?P<SEVENTH>.+))?', hand.handText,re.DOTALL)
 
         hand.addStreets(m)
 
