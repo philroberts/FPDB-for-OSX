@@ -37,7 +37,8 @@ class Everest(HandHistoryConverter):
 
     substitutions = {
                         'LS' : u"\$|\xe2\x82\xac|\u20ac|",
-                       'TAB' : u"-\u2013'\s\da-zA-Z",       # legal characters for tablename
+                       'TAB' : u"-\u2013'\s\da-zA-Z",
+                       'NUM' : u"\d,\.",
                     }
 
     # Static regexes
@@ -52,7 +53,7 @@ class Everest(HandHistoryConverter):
                                     game="(?P<GAME>[-a-zA-Z ]+)"\s
                                     gametype="(?P<LIMIT>[-a-zA-Z ]+)"/>
                                 """ % substitutions, re.VERBOSE|re.MULTILINE)
-    re_HandInfo = re.compile(r'<HAND time="(?P<DATETIME>[0-9]+)" id="(?P<HID>[0-9]+)" index="\d+" blinds="((?P<SB>\d+) (?P<CURRENCY>[%(LS)s])/(?P<BB>\d+))' % substitutions, re.MULTILINE)
+    re_HandInfo = re.compile(r'<HAND time="(?P<DATETIME>[0-9]+)" id="(?P<HID>[0-9]+)" index="\d+" blinds="((?P<SB>[%(NUM)s]+) (?P<CURRENCY>[%(LS)s])/(?P<BB>[%(NUM)s]+))' % substitutions, re.MULTILINE)
     re_Button = re.compile(r'<DEALER position="(?P<BUTTON>[0-9]+)"\/>')
     re_PlayerInfo = re.compile(r'<SEAT position="(?P<SEAT>[0-9]+)" name="(?P<PNAME>.+)" balance="(?P<CASH>[.0-9]+)"/>', re.MULTILINE)
     re_Board = re.compile(r'(?P<CARDS>.+)<\/COMMUNITY>', re.MULTILINE)
@@ -113,9 +114,9 @@ class Everest(HandHistoryConverter):
         mg.update(m2.groupdict())
         print "DEBUG: mg: %s" % mg
 
-        limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'pot-limit':'pl' }
+        limits = { 'no-limit':'nl', 'limit':'fl', 'pot-limit':'pl' }
         games = {              # base, category
-                    'Holdem' : ('hold','holdem'),
+                    'hold-em' : ('hold','holdem'),
          'Holdem Tournament' : ('hold','holdem'),
                   'omaha-hi' : ('hold','omahahi'),
                 }
@@ -125,9 +126,11 @@ class Everest(HandHistoryConverter):
         if 'GAME' in mg:
             (self.info['base'], self.info['category']) = games[mg['GAME']]
         if 'SB' in mg:
-            self.info['sb'] = mg['SB']
+            sb = mg['SB'].replace(',','.')
+            self.info['sb'] = sb
         if 'BB' in mg:
-            self.info['bb'] = mg['BB']
+            bb = mg['BB'].replace(',','.')
+            self.info['bb'] = bb
 
         self.info['type'] = 'ring'
         if mg['CURRENCY'] == u'\u20ac':
@@ -185,7 +188,7 @@ class Everest(HandHistoryConverter):
 
     def readBlinds(self, hand):
         for a in self.re_PostXB.finditer(hand.handText):
-            amount = "%.2f" % float(int(a.group('XB'))/100)
+            amount = "%.2f" % float(float(a.group('XB'))/100)
             print "DEBUG: readBlinds amount: %s" % amount
             if Decimal(a.group('XB'))/100 == Decimal(self.info['sb']):
                 hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),'small blind', amount)
