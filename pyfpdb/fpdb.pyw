@@ -50,13 +50,8 @@ else:
     #print "debug - not changing path"
 
 if os.name == 'nt':
-    try:
-        import win32api
-        import win32con
-    except ImportError:
-        print _("We appear to be running in Windows, but the Windows Python Extensions are not loading. Please install the PYWIN32 package from http://sourceforge.net/projects/pywin32/")
-        raw_input(_("Press ENTER to continue."))
-        exit()
+    import win32api
+    import win32con
 
 print "Python " + sys.version[0:3] + '...'
 
@@ -71,36 +66,21 @@ import logging
 import logging.config
 log = logging.getLogger("fpdb")
 
-try:
-    import pygtk
-    pygtk.require('2.0')
-    import gtk
-    import pango
-except ImportError:
-    print _("Unable to load PyGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org.")
-    raw_input(_("Press ENTER to continue."))
-    exit()
+import pygtk
+pygtk.require('2.0')
+import gtk
+import pango
 
 import interlocks
 
 # these imports not required in this module, imported here to report version in About dialog
-try:
-    import matplotlib
-    matplotlib_version = matplotlib.__version__
-except ImportError:
-    matplotlib_version = 'not found'
-try:
-    import numpy
-    numpy_version = numpy.__version__
-except ImportError:
-    numpy_version = 'not found'
-try:
-    import sqlite3
-    sqlite3_version = sqlite3.version
-    sqlite_version = sqlite3.sqlite_version
-except ImportError:
-    sqlite3_version = 'not found'
-    sqlite_version = 'not found'
+import matplotlib
+matplotlib_version = matplotlib.__version__
+import numpy
+numpy_version = numpy.__version__
+import sqlite3
+sqlite3_version = sqlite3.version
+sqlite_version = sqlite3.sqlite_version
 
 import DetectInstalledSites
 import GuiPrefs
