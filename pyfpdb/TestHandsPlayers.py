@@ -363,6 +363,10 @@ def main(argv=None):
         walk_testfiles("regression-test-files/tour/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
     elif sites['Everleaf'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, EverleafErrors, "Everleaf")
+    if sites['Everest'] == True and not single_file_test:
+        walk_testfiles("regression-test-files/cash/Everest/", compare, importer, EverestErrors, "Everest")
+    elif sites['Everest'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, EverestErrors, "Everest")
     if sites['Carbon'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Carbon/", compare, importer, CarbonErrors, "Carbon")
     elif sites['Carbon'] == True and single_file_test:

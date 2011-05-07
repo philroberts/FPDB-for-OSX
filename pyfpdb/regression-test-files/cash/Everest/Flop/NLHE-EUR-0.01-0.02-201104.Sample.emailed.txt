@@ -1,0 +1,42 @@
+<SESSION time="1303913692" tableName="Vannes-23" id="1291.61.1528" type="ring" money="€" screenName="Hero" game="hold-em" gametype="no-limit"/>
+<HAND time="1303913758" id="6754716931" index="1" blinds="0,01 €/0,02 €" stakes="0,01 €/0,02 €">
+  <SEAT position="0" name="Player1" balance="78"/>
+  <SEAT position="1" name="Player2" balance="67"/>
+  <SEAT position="2" name="Hero" balance="200"/>
+  <SEAT position="3" name="Player4" balance="200"/>
+  <SEAT position="4" name="Player5" balance="131"/>
+  <SEAT position="5" name="Player6" balance="654"/>
+  <DEALER position="0"/>
+  <BLIND position="1" amount="1" penalty="0"/>
+  <BLIND position="2" amount="2" penalty="0"/>
+  <XBLIND position="3"/>
+  <HOLE position="1">--</HOLE>
+  <HOLE position="2">6c</HOLE>
+  <HOLE position="4">--</HOLE>
+  <HOLE position="5">--</HOLE>
+  <HOLE position="0">--</HOLE>
+  <HOLE position="1">--</HOLE>
+  <HOLE position="2">5h</HOLE>
+  <HOLE position="4">--</HOLE>
+  <HOLE position="5">--</HOLE>
+  <HOLE position="0">--</HOLE>
+  <CHAT time="1303913765" name="Player6">retour au proprio</CHAT>
+  <CHAT time="1303913767" name="Player6">lol</CHAT>
+  <BET position="4" amount="2"/>
+  <BET position="5" amount="2"/>
+  <BET position="0" amount="2"/>
+  <BET position="1" amount="1"/>
+  <BET position="2" amount="0"/>
+  <SWEEP rake="0" tax="0">10</SWEEP>
+  <COMMUNITY>Kc, 10s, 8s</COMMUNITY>
+  <BET position="1" amount="10"/>
+  <FOLD position="2"/>
+  <FOLD position="4"/>
+  <FOLD position="5"/>
+  <FOLD position="0"/>
+  <PUSH position="1" amount="10"/>
+  <SWEEP rake="0" tax="0">10</SWEEP>
+  <XSHOW position="1"/>
+  <WIN position="1" amount="10" pot="0" potAmount="10"/>
+</HAND>
+

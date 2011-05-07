@@ -84,6 +84,7 @@ def site_alias(alias):
     tmp = alias
     aliases = {
                 "PacificPoker"   : "PacificPoker",
+                "Pacific"        : "PacificPoker",
                 "PokerStars"     : "PokerStars",
                 "Full Tilt Poker": "Full Tilt Poker",
                 "PartyPoker"     : "PartyPoker",

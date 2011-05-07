@@ -26,17 +26,11 @@ _ = L10n.get_translation()
 #
 # TODO:
 #
-# -- No support for games other than NL hold 'em cash. Hand histories for other
-#    games required
-# -- No support for limit hold 'em yet, though this would be easy to add
 # -- No support for tournaments (see also the last item below)
 # -- Assumes that the currency of ring games is USD
-# -- Only works for 'gametype="2"'. What is 'gametype'?
 # -- Only accepts 'realmoney="true"'
 # -- A hand's time-stamp does not record seconds past the minute (a
 #    limitation of the history format)
-# -- No support for a bring-in or for antes (is the latter in fact unnecessary
-#    for hold 'em on Carbon?)
 # -- hand.maxseats can only be guessed at
 # -- The last hand in a history file will often be incomplete and is therefore
 #    rejected
@@ -45,8 +39,7 @@ _ = L10n.get_translation()
 #    xxxxxxxx-yyy(y*) to xxxxxxxxyyy(y*) (in principle this should be stored as
 #    a string, but the database does not support this). Is there a possibility
 #    of collision between hand IDs that ought to be distinct?
-# -- Cannot parse tables that run it twice (nor is this likely ever to be
-#    possible)
+# -- Cannot parse tables that run it twice
 # -- Cannot parse hands in which someone is all in in one of the blinds. Until
 #    this is corrected tournaments will be unparseable
 
@@ -61,8 +54,21 @@ class Carbon(HandHistoryConverter):
     sitename = "Carbon"
     filetype = "text"
     codepage = "cp1252"
-    siteID   = 11
+    siteId   = 11
     copyGameHeader = True
+
+    limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'Pot Limit':'pl', 'Pot Limit ':'pl'}
+    games = {              # base, category
+                    'Holdem' : ('hold','holdem'),
+         'Holdem Tournament' : ('hold','holdem'),
+                    'Omaha'  : ('hold','omahahi'),
+         'Omaha Tournament'  : ('hold','omahahi'),
+              '2-7 Lowball'  : ('draw','27_3draw'),
+                   'Badugi'  : ('draw','badugi'),
+                   '7-Stud'  : ('stud','studhi'),
+                   '5-Stud'  : ('stud','5studhi'),
+                     'Razz'  : ('stud','razz'),
+            }
 
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
@@ -80,8 +86,8 @@ class Carbon(HandHistoryConverter):
     re_PostSB = re.compile(r'<event sequence="[0-9]+" type="(SMALL_BLIND|RETURN_BLIND)" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])" amount="(?P<SB>[.0-9]+)"/>', re.MULTILINE)
     re_PostBB = re.compile(r'<event sequence="[0-9]+" type="(BIG_BLIND|INITIAL_BLIND)" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])" amount="(?P<BB>[.0-9]+)"/>', re.MULTILINE)
     re_PostBoth = re.compile(r'<event sequence="[0-9]+" type="(RETURN_BLIND)" player="(?P<PSEAT>[0-9])" amount="(?P<SBBB>[.0-9]+)"/>', re.MULTILINE)
-    #re_Antes = ???
-    #re_BringIn = ???
+    re_Antes = re.compile(r'<event sequence="[0-9]+" type="ANTE" (?P<TIMESTAMP>timestamp="\d+" )?player="(?P<PSEAT>[0-9])" amount="(?P<ANTE>[.0-9]+)"/>', re.MULTILINE)
+    re_BringIn = re.compile(r'<event sequence="[0-9]+" type="BRING_IN" (?P<TIMESTAMP>timestamp="\d+" )?player="(?P<PSEAT>[0-9])" amount="(?P<BRINGIN>[.0-9]+)"/>', re.MULTILINE)
     re_HeroCards = re.compile(r'<cards type="HOLE" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_Action = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT)" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?/>', re.MULTILINE)
     re_ShowdownAction = re.compile(r'<cards type="SHOWN" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
@@ -104,7 +110,12 @@ class Carbon(HandHistoryConverter):
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
 
+                ["ring", "stud", "fl"],
+                ["ring", "stud", "pl"],
+
                 ["ring", "draw", "fl"],
+                ["ring", "draw", "pl"],
+                ["ring", "draw", "nl"],
                 
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
@@ -141,21 +152,12 @@ or None if we fail to get the info """
 
         self.info = {}
         mg = m.groupdict()
-        #print "DEBUG: mg: %s" % mg
-
-        limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'Pot Limit':'pl', 'Pot Limit ':'pl'}
-        games = {              # base, category
-                    'Holdem' : ('hold','holdem'),
-         'Holdem Tournament' : ('hold','holdem'),
-                    'Omaha'  : ('hold','omahahi'),
-         'Omaha Tournament'  : ('hold','omahahi'),
-              '2-7 Lowball'  : ('draw','27_3draw'),
-                }
+        print "DEBUG: mg: %s" % mg
 
         if 'LIMIT' in mg:
-            self.info['limitType'] = limits[mg['LIMIT']]
+            self.info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
-            (self.info['base'], self.info['category']) = games[mg['GAME']]
+            (self.info['base'], self.info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
             self.info['sb'] = mg['SB']
         if 'BB' in mg:
@@ -213,12 +215,19 @@ or None if we fail to get the info """
         if hand.gametype['base'] == 'hold':
             m = re.search(r'<round id="PREFLOP" sequence="[0-9]+">(?P<PREFLOP>.+(?=<round id="POSTFLOP")|.+)(<round id="POSTFLOP" sequence="[0-9]+">(?P<FLOP>.+(?=<round id="POSTTURN")|.+))?(<round id="POSTTURN" sequence="[0-9]+">(?P<TURN>.+(?=<round id="POSTRIVER")|.+))?(<round id="POSTRIVER" sequence="[0-9]+">(?P<RIVER>.+))?', hand.handText, re.DOTALL)
         elif hand.gametype['base'] == 'draw':
-            if hand.gametype['category'] in ('27_3draw'):
+            if hand.gametype['category'] in ('27_3draw','badugi'):
                 m =  re.search(r'(?P<PREDEAL>.+(?=<round id="PRE_FIRST_DRAW" sequence="[0-9]+">)|.+)'
                            r'(<round id="PRE_FIRST_DRAW" sequence="[0-9]+">(?P<DEAL>.+(?=<round id="FIRST_DRAW" sequence="[0-9]+">)|.+))?'
                            r'(<round id="FIRST_DRAW" sequence="[0-9]+">(?P<DRAWONE>.+(?=<round id="SECOND_DRAW" sequence="[0-9]+">)|.+))?'
                            r'(<round id="SECOND_DRAW" sequence="[0-9]+">(?P<DRAWTWO>.+(?=<round id="THIRD_DRAW" sequence="[0-9]+">)|.+))?'
                            r'(<round id="THIRD_DRAW" sequence="[0-9]+">(?P<DRAWTHREE>.+))?', hand.handText,re.DOTALL)
+        elif hand.gametype['base'] == 'stud':
+            m =  re.search(r'(?P<ANTES>.+(?=<round id="BRING_IN" sequence="[0-9]+">)|.+)'
+                       r'(<round id="BRING_IN" sequence="[0-9]+">(?P<THIRD>.+(?=<round id="THIRD_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="THIRD_STREET" sequence="[0-9]+">(?P<FOURTH>.+(?=<round id="FOURTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="FOURTH_STREET" sequence="[0-9]+">(?P<FIFTH>.+(?=<round id="FIFTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="FIFTH_STREET" sequence="[0-9]+">(?P<SIXTH>.+(?=<round id="SIXTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="SIXTH_STREET" sequence="[0-9]+">(?P<SEVENTH>.+))?', hand.handText,re.DOTALL)
 
         hand.addStreets(m)
 
@@ -230,10 +239,18 @@ or None if we fail to get the info """
             hand.setCommunityCards(street, [m.group('CARDS').split(',')[-1]])
 
     def readAntes(self, hand):
-        pass # ???
+        m = self.re_Antes.finditer(hand.handText)
+        for player in m:
+            pname = self.playerNameFromSeatNo(player.group('PSEAT'), hand)
+            #print "DEBUG: hand.addAnte(%s,%s)" %(pname, player.group('ANTE'))
+            hand.addAnte(pname, player.group('ANTE'))
 
     def readBringIn(self, hand):
-        pass # ???
+        m = self.re_BringIn.search(hand.handText)
+        if m:
+            pname = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
+            #print "DEBUG: hand.addBringIn(%s,%s)" %(pname, m.group('BRINGIN'))
+            hand.addBringIn(pname, m.group('BRINGIN'))
 
     def readBlinds(self, hand):
         for a in self.re_PostSB.finditer(hand.handText):
