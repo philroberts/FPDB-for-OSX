@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2011-05-08 04:08+CEST\n"
+"POT-Creation-Date: 2011-05-08 05:19+CEST\n"
 "PO-Revision-Date: 2011-04-25 17:24+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: EverestToFpdb.py:103 EverestToFpdb.py:105 EverleafToFpdb.py:128
 #: EverleafToFpdb.py:130 FulltiltToFpdb.py:209 FulltiltToFpdb.py:211
 #: OnGameToFpdb.py:161 OnGameToFpdb.py:163 PacificPokerToFpdb.py:181
-#: PacificPokerToFpdb.py:183 PartyPokerToFpdb.py:197 PartyPokerToFpdb.py:199
+#: PacificPokerToFpdb.py:183 PartyPokerToFpdb.py:223 PartyPokerToFpdb.py:225
 #: PkrToFpdb.py:128 PkrToFpdb.py:130 PokerStarsToFpdb.py:195
 #: PokerStarsToFpdb.py:197 Win2dayToFpdb.py:101 Win2dayToFpdb.py:103
 #: WinamaxToFpdb.py:172 WinamaxToFpdb.py:174 iPokerToFpdb.py:122
@@ -33,19 +33,20 @@ msgstr "Nem sikerült felismerni a játéktípust innen: '%s'"
 #: EverestToFpdb.py:104 EverestToFpdb.py:109 EverleafToFpdb.py:129
 #: FullTiltPokerSummary.py:93 FullTiltPokerSummary.py:119
 #: FulltiltToFpdb.py:268 FulltiltToFpdb.py:286 OnGameToFpdb.py:162
-#: OnGameToFpdb.py:181 PacificPokerToFpdb.py:182 PartyPokerToFpdb.py:198
-#: PkrToFpdb.py:129 PkrToFpdb.py:154 PokerStarsSummary.py:82
-#: PokerStarsSummary.py:108 PokerStarsToFpdb.py:196 PokerStarsToFpdb.py:224
-#: SitenameSummary.py:82 Win2dayToFpdb.py:102 WinamaxToFpdb.py:173
-#: WinamaxToFpdb.py:191 iPokerToFpdb.py:123
+#: OnGameToFpdb.py:181 PacificPokerToFpdb.py:182 PartyPokerToFpdb.py:224
+#: PartyPokerToFpdb.py:282 PkrToFpdb.py:129 PkrToFpdb.py:154
+#: PokerStarsSummary.py:82 PokerStarsSummary.py:108 PokerStarsToFpdb.py:196
+#: PokerStarsToFpdb.py:224 SitenameSummary.py:82 Win2dayToFpdb.py:102
+#: WinamaxToFpdb.py:173 WinamaxToFpdb.py:191 iPokerToFpdb.py:123
 msgid "Raising FpdbParseError"
 msgstr "FpdbParseError"
 
 #: AbsoluteToFpdb.py:205 AbsoluteToFpdb.py:206 BetfairToFpdb.py:108
 #: BetfairToFpdb.py:109 CarbonToFpdb.py:177 CarbonToFpdb.py:179
 #: EverestToFpdb.py:149 EverestToFpdb.py:151 EverleafToFpdb.py:163
-#: PacificPokerToFpdb.py:225 PacificPokerToFpdb.py:226 PokerStarsToFpdb.py:234
-#: PokerStarsToFpdb.py:235 iPokerToFpdb.py:156 iPokerToFpdb.py:158
+#: PacificPokerToFpdb.py:225 PacificPokerToFpdb.py:226 PartyPokerToFpdb.py:297
+#: PartyPokerToFpdb.py:298 PokerStarsToFpdb.py:234 PokerStarsToFpdb.py:235
+#: iPokerToFpdb.py:156 iPokerToFpdb.py:158
 msgid "No match in readHandInfo: '%s'"
 msgstr "readHandInfo nem illeszkedik: '%s'"
 
@@ -86,7 +87,7 @@ msgstr "%s még nem tud minden stud/razz leosztást feldolgozni."
 #: AbsoluteToFpdb.py:348 BetfairToFpdb.py:199 CarbonToFpdb.py:312
 #: EverestToFpdb.py:238 EverestToFpdb.py:239 EverleafToFpdb.py:295
 #: FulltiltToFpdb.py:528 OnGameToFpdb.py:346 PacificPokerToFpdb.py:439
-#: PartyPokerToFpdb.py:535 PkrToFpdb.py:351 PokerStarsToFpdb.py:451
+#: PartyPokerToFpdb.py:581 PkrToFpdb.py:351 PokerStarsToFpdb.py:451
 #: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:261
 msgid "Unimplemented %s: '%s' '%s'"
 msgstr "Nem kivitelezett %s: '%s' '%s'"
@@ -658,8 +659,9 @@ msgstr "Nem található a pénznem"
 msgid "Raising FpdbParseError for file '%s'"
 msgstr "FpdbParseError a '%s' fájlnál"
 
-#: FulltiltToFpdb.py:267 FulltiltToFpdb.py:269 PkrToFpdb.py:153
-#: PkrToFpdb.py:155 PokerStarsToFpdb.py:223 PokerStarsToFpdb.py:225
+#: FulltiltToFpdb.py:267 FulltiltToFpdb.py:269 PartyPokerToFpdb.py:281
+#: PartyPokerToFpdb.py:283 PkrToFpdb.py:153 PkrToFpdb.py:155
+#: PokerStarsToFpdb.py:223 PokerStarsToFpdb.py:225
 msgid "Lim_Blinds has no lookup for '%s'"
 msgstr "Lim_Blinds nem tartalmazza ezt: '%s'"
 
@@ -2562,7 +2564,7 @@ msgstr "limit nem található itt: self.limits(%s). leosztás: '%s'"
 msgid "DATETIME not matched: '%s'"
 msgstr "DATETIME nem illeszkedik: '%s'"
 
-#: OnGameToFpdb.py:273 PacificPokerToFpdb.py:315 PartyPokerToFpdb.py:365
+#: OnGameToFpdb.py:273 PacificPokerToFpdb.py:315 PartyPokerToFpdb.py:392
 #: PokerStarsToFpdb.py:324 Win2dayToFpdb.py:169 WinamaxToFpdb.py:329
 msgid "readButton: not found"
 msgstr "readButton: nem található"
@@ -2654,12 +2656,12 @@ msgstr "nyomj ENTER-t a befejezéshez"
 msgid "You need to manually enter the playername"
 msgstr "Kézzel kell megadnod a játékos nevét"
 
-#: PacificPokerToFpdb.py:268 PartyPokerToFpdb.py:348 PokerStarsToFpdb.py:279
+#: PacificPokerToFpdb.py:268 PartyPokerToFpdb.py:375 PokerStarsToFpdb.py:279
 #: WinamaxToFpdb.py:263
 msgid "Failed to detect currency."
 msgstr "Nem sikerült a pénznem felismerése."
 
-#: PacificPokerToFpdb.py:268 PartyPokerToFpdb.py:348 PokerStarsToFpdb.py:279
+#: PacificPokerToFpdb.py:268 PartyPokerToFpdb.py:375 PokerStarsToFpdb.py:279
 #: WinamaxToFpdb.py:263
 msgid "Hand ID: %s: '%s'"
 msgstr "Leosztás ID: %s: '%s'"
@@ -2667,30 +2669,6 @@ msgstr "Leosztás ID: %s: '%s'"
 #: PacificPokerToFpdb.py:335
 msgid "No match in markStreets"
 msgstr "Nincs találat a markStreets-ben"
-
-#: PartyPokerToFpdb.py:212
-msgid "Cannot fetch field '%s'"
-msgstr "Nem található mező: '%s'"
-
-#: PartyPokerToFpdb.py:216
-msgid "Unknown limit '%s'"
-msgstr "Ismeretlen limit: '%s'"
-
-#: PartyPokerToFpdb.py:221
-msgid "Unknown game type '%s'"
-msgstr "Ismeretlen játéktípus: '%s'"
-
-#: PartyPokerToFpdb.py:255
-msgid "Cannot read HID for current hand: %s"
-msgstr "HID nem olvasható a leosztásból: %s"
-
-#: PartyPokerToFpdb.py:260
-msgid "Cannot read Handinfo for current hand"
-msgstr "Handinfo nem olvasható az aktuális leosztásból"
-
-#: PartyPokerToFpdb.py:265
-msgid "Cannot read GameType for current hand"
-msgstr "GameType nem olvasható az aktuális leosztásból"
 
 #: SplitHandHistory.py:76 fpdb_prerun.py:63 fpdb_prerun.py:76
 msgid "File not found"
@@ -3966,6 +3944,28 @@ msgstr ""
 "Nem találhatóak a GTK könyvtárak az útvonaladban - telepítsd a GTK-t, vagy "
 "állítsd be kézzel az útvonalat\n"
 
+#, fuzzy
+#~ msgid "Unimplemented readAction: hid:%s '%s' '%s'"
+#~ msgstr "Nem ismert readAction: '%s' '%s'"
+
+#~ msgid "Cannot fetch field '%s'"
+#~ msgstr "Nem található mező: '%s'"
+
+#~ msgid "Unknown limit '%s'"
+#~ msgstr "Ismeretlen limit: '%s'"
+
+#~ msgid "Unknown game type '%s'"
+#~ msgstr "Ismeretlen játéktípus: '%s'"
+
+#~ msgid "Cannot read HID for current hand: %s"
+#~ msgstr "HID nem olvasható a leosztásból: %s"
+
+#~ msgid "Cannot read Handinfo for current hand"
+#~ msgstr "Handinfo nem olvasható az aktuális leosztásból"
+
+#~ msgid "Cannot read GameType for current hand"
+#~ msgstr "GameType nem olvasható az aktuális leosztásból"
+
 #~ msgid "Ring _Player Stats (tabulated view, not on pgsql)"
 #~ msgstr "Kész_pénzes statisztikák (táblázat; Postgre-vel nem)"
 
@@ -4385,9 +4385,6 @@ msgstr ""
 
 #~ msgid "parseSummary: Unable to locate currency"
 #~ msgstr "parseSummary: Nem található a pénznem"
-
-#~ msgid "unimplemented readAction: '%s' '%s'"
-#~ msgstr "Nem ismert readAction: '%s' '%s'"
 
 #~ msgid "Unimplemented readAction: %s %s"
 #~ msgstr "Nem ismert readAction: %s %s"
