@@ -19,7 +19,7 @@
 
 failure_list = []
 success_list = []
-verbose = True
+verbose = False
 
 global_modules_to_test =   ["gobject",
                             "pygtk",
@@ -90,7 +90,7 @@ def try_import(modulename):
 def success(message):
     if verbose:
         print message
-        success_list.append(message)
+    success_list.append(message)
 
 def failure(message):
     if verbose:
@@ -180,4 +180,7 @@ if config.os_family in ("XP", "Win7"):
     os.execvpe('pythonw.exe', list(('pythonw.exe', 'fpdb.pyw', '-r'))+sys.argv[1:], os.environ)
 else:
     os.execvpe('python', list(('python', 'fpdb.pyw', '-r'))+sys.argv[1:], os.environ)
-        
+
+###################
+# DO NOT INSERT ANY LINES BELOW HERE
+# os.execvpe above stops transfers control to fpdb.pyw immediately
