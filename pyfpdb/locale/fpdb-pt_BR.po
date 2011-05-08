@@ -5,10 +5,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-05-08 04:08+CEST\n"
-"PO-Revision-Date: 2011-04-08 00:10+0000\n"
-"Last-Translator: pkpkpkdo <ofelipedbzgt@hotmail.com>\n"
-"Language-Team: Portuguese (Brazilian) <>\n"
+"POT-Creation-Date: 2011-05-08 04:29+CEST\n"
+"PO-Revision-Date: 2011-05-08 02:23+0000\n"
+"Last-Translator: steffen123 <steffen@schaumburger.info>\n"
+"Language-Team: Portuguese (Brazilian) (http://www.transifex.net/projects/p/"
+"fpdb/team/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,41 +124,31 @@ msgid "fpdb card encoding(same as pokersource)"
 msgstr "fpdb codificação de carta(mesma que pokersource)"
 
 #: Charset.py:43 Charset.py:58 Charset.py:73
-#, fuzzy
 msgid "Could not convert: \"%s\""
-msgstr "Não foi possível converter: \"%s\"\n"
+msgstr ""
 
 #: Charset.py:46 Charset.py:61 Charset.py:76
-#, fuzzy
 msgid "Could not encode: \"%s\""
-msgstr "Não foi possível codificar: \"%s\"\n"
+msgstr ""
 
 #: Configuration.py:149 Configuration.py:156 Configuration.py:171 fpdb.pyw:942
-#, fuzzy
 msgid "Config file has been created at %s."
-msgstr "Arquivo de configuração foi criada em %s.\n"
+msgstr ""
 
 #: Configuration.py:170
-#, fuzzy
 msgid ""
 "No %s found\n"
 "  in %s\n"
 "  or %s"
 msgstr ""
-"%s não encontrado\n"
-"  em %s\n"
-"  ou %s\n"
 
 #: Configuration.py:175 Configuration.py:176
-#, fuzzy
 msgid "Error copying .example config file, cannot fall back. Exiting."
 msgstr ""
-"Erro ao copiar arquivo de configuração .example, incapaz de voltar. Saindo.\n"
 
 #: Configuration.py:180 Configuration.py:181
-#, fuzzy
 msgid "No %s found, cannot fall back. Exiting."
-msgstr "%s não encontrado, incapaz de voltar. Saindo.\n"
+msgstr ""
 
 #: Configuration.py:213
 msgid "Default logger initialised for %s"
@@ -168,11 +159,8 @@ msgid "Creating directory: '%s'"
 msgstr "Criando diretório: '%s'"
 
 #: Configuration.py:252
-#, fuzzy
 msgid "Default encoding set to US-ASCII, defaulting to CP1252 instead."
 msgstr ""
-"Codificação padrão definida para US-ASCII, definindo CP1252 como alternativa "
-"-- Se você não estiver usando um Mac, por favor reporte este problema."
 
 #: Configuration.py:252
 msgid "Please report this problem."
@@ -264,9 +252,8 @@ msgid "*** Database Error: "
 msgstr "*** Erro na Database: "
 
 #: Database.py:768
-#, fuzzy
 msgid "Database: n hands ago the date was:"
-msgstr "Database: dados de n mãos atrás = "
+msgstr ""
 
 #: Database.py:925
 msgid "ERROR: query %s result does not have player_id as first column"
@@ -289,9 +276,8 @@ msgid "*** Database get_last_insert_id error: "
 msgstr "*** Erro de database get_last_insert_id: "
 
 #: Database.py:1073 Database.py:1081 Database.py:1505 Database.py:1513
-#, fuzzy
 msgid "Dropping foreign key:"
-msgstr "derrubando chave estrangeira pg"
+msgstr ""
 
 #: Database.py:1077 Database.py:1096 Database.py:1100 Database.py:1132
 #: Database.py:1136 Database.py:1509 Database.py:1528 Database.py:1532
@@ -300,66 +286,55 @@ msgid "Warning:"
 msgstr ""
 
 #: Database.py:1077 Database.py:1096 Database.py:1509 Database.py:1528
-#, fuzzy
 msgid "Drop foreign key %s_%s_fkey failed: %s, continuing ..."
-msgstr "chave estrangeira pg derrubada %s_%s_fkey, continuando ..."
+msgstr ""
 
 #: Database.py:1093 Database.py:1525
-#, fuzzy
 msgid "dropped foreign key %s_%s_fkey, continuing ..."
-msgstr "chave estrangeira pg derrubada %s_%s_fkey, continuando ..."
+msgstr ""
 
 #: Database.py:1100 Database.py:1532
-#, fuzzy
 msgid "constraint %s_%s_fkey not dropped: %s, continuing ..."
-msgstr "atenção: constante %s_%s_fkey não caiu: %s, continuando ..."
+msgstr ""
 
 #: Database.py:1108 Database.py:1119 Database.py:1406 Database.py:1413
 #: Database.py:1421
-#, fuzzy
 msgid "Dropping index:"
-msgstr "derrubando pg index "
+msgstr ""
 
 #: Database.py:1114 Database.py:1411 Database.py:1419 Database.py:1426
-#, fuzzy
 msgid "Drop index failed:"
-msgstr "    queda de index falhou: "
+msgstr ""
 
 #: Database.py:1132
-#, fuzzy
 msgid "drop index %s_%s_idx failed: %s, continuing ..."
-msgstr "atenção: quedra de index %s_%s_idx falhou: %s, continuando ..."
+msgstr ""
 
 #: Database.py:1136
-#, fuzzy
 msgid "index %s_%s_idx not dropped: %s, continuing ..."
-msgstr "atenção: index %s_%s_idx não derrubado %s, continuando ..."
+msgstr ""
 
 #: Database.py:1145
 msgid "prepare import took %s seconds"
 msgstr ""
 
 #: Database.py:1176 Database.py:1184 Database.py:1458 Database.py:1466
-#, fuzzy
 msgid "Creating foreign key:"
-msgstr "Criando chave estrangeira "
+msgstr ""
 
 #: Database.py:1182 Database.py:1191 Database.py:1203 Database.py:1464
 #: Database.py:1473
-#, fuzzy
 msgid "Create foreign key failed:"
-msgstr "Crianção de chave estrangeira falhou: "
+msgstr ""
 
 #: Database.py:1198 Database.py:1207 Database.py:1365 Database.py:1366
 #: Database.py:1374 Database.py:1375 Database.py:1382 Database.py:1383
-#, fuzzy
 msgid "Creating index %s %s"
-msgstr "Criando mysql index %s %s"
+msgstr ""
 
 #: Database.py:1212 Database.py:1371 Database.py:1380 Database.py:1388
-#, fuzzy
 msgid "Create index failed:"
-msgstr "Criação de index falhou: "
+msgstr ""
 
 #: Database.py:1220
 msgid "After import took %s seconds"
@@ -370,32 +345,28 @@ msgid "Finished recreating tables"
 msgstr "Terminada recriação de mesas"
 
 #: Database.py:1303
-#, fuzzy
 msgid "***Error creating tables:"
-msgstr "***Erro ao criar mesas: "
+msgstr ""
 
 #: Database.py:1313
 msgid "*** Error unable to get databasecursor"
 msgstr "*** Erro incapaz de conseguir databasecursor"
 
 #: Database.py:1325 Database.py:1336 Database.py:1346 Database.py:1353
-#, fuzzy
 msgid "***Error dropping tables:"
-msgstr "***Erro ao derrubar mesas: "
+msgstr ""
 
 #: Database.py:1351
 msgid "*** Error in committing table drop"
 msgstr "*** Erro em enviar o comando de queda para mesa"
 
 #: Database.py:1394
-#, fuzzy
 msgid "Error creating indexes:"
-msgstr "Erro ao criar indexes: "
+msgstr ""
 
 #: Database.py:1441 Database.py:1481
-#, fuzzy
 msgid "set_isolation_level failed:"
-msgstr "    set_isolation_level falhou: "
+msgstr ""
 
 #: Database.py:1648
 msgid "Rebuild hudcache took %.1f seconds"
@@ -446,59 +417,52 @@ msgid "queue empty too long - writer stopping ..."
 msgstr "fila vazia muito longa - escritor parando ..."
 
 #: Database.py:2657
-#, fuzzy
 msgid "writer stopping, error reading queue:"
-msgstr "escritor parando, erro ao ler a fiila: "
+msgstr ""
 
 #: Database.py:2682
 msgid "deadlock detected - trying again ..."
 msgstr "impasse encontrado - tentando novamente ..."
 
 #: Database.py:2687
-#, fuzzy
 msgid "Too many deadlocks - failed to store hand"
-msgstr "muitos impasses encontrados - falha ao arquivar mãos "
+msgstr ""
 
 #: Database.py:2691
-#, fuzzy
 msgid "***Error storing hand:"
-msgstr "***Erro ao arquivar mãos: "
+msgstr ""
 
 #: Database.py:2701
 msgid "db writer finished: stored %d hands (%d fails) in %.1f seconds"
 msgstr "escritor db terminou: mãos arquivadas %d (%d falhas) em %.1f segundos"
 
 #: Database.py:2711
-#, fuzzy
 msgid "***Error sending finish:"
-msgstr "***Erro ao enviar comando final: "
+msgstr ""
 
 #: Database.py:2797 Database.py:2810
 msgid "invalid source in %s"
 msgstr ""
 
 #: Database.py:2946 Database.py:2996
-#, fuzzy
 msgid "%s error: %s"
-msgstr "erro é %s"
+msgstr ""
 
 #: Database.py:3044
 msgid "cards ="
 msgstr "cartas ="
 
 #: Database.py:3047
-#, fuzzy
 msgid "get_stats took: %4.3f seconds"
-msgstr "get_stats levou:  %4.3f segundos"
+msgstr ""
 
 #: Database.py:3049 HandHistoryConverter.py:41 fpdb.pyw:46
 msgid "Press ENTER to continue."
 msgstr "Pressione ENTER para continuar"
 
 #: EverestToFpdb.py:110 FulltiltToFpdb.py:285 FulltiltToFpdb.py:287
-#, fuzzy
 msgid "Unable to recognise hand info from: '%s'"
-msgstr "Incapaz de reconhecer handinfo de: '%s'"
+msgstr ""
 
 #: Filters.py:53
 msgid "All"
@@ -658,9 +622,8 @@ msgid "To:"
 msgstr "Para:"
 
 #: Filters.py:1049
-#, fuzzy
 msgid "Clear Dates"
-msgstr " Limpar Datas "
+msgstr ""
 
 #: Filters.py:1068
 msgid "show"
@@ -709,38 +672,32 @@ msgstr ""
 #: FulltiltToFpdb.py:603 FulltiltToFpdb.py:815 GuiGraphViewer.py:133
 #: GuiGraphViewer.py:249 GuiSessionViewer.py:376 GuiTourneyGraphViewer.py:132
 #: GuiTourneyGraphViewer.py:230 fpdb_prerun.py:97
-#, fuzzy
 msgid "Error:"
-msgstr "***Erro: "
+msgstr ""
 
 #: FulltiltToFpdb.py:661
 msgid "Unable to get a valid Tournament ID -- File rejected"
 msgstr "Incapaz de conseguir um ID de Torneio válido -- Arquivo rejeitado"
 
 #: FulltiltToFpdb.py:692
-#, fuzzy
 msgid "Conflict between buyins read in top line (%s) and in BuyIn field (%s)"
-msgstr "Conflito entre buyins na linha de topo (%s) e em BuyIn field (%s)"
+msgstr ""
 
 #: FulltiltToFpdb.py:699
-#, fuzzy
 msgid "Conflict between fees read in top line (%s) and in Fee field (%s)"
-msgstr "Conflito entre fees na linha de topo (%s) e em BuyIn field (%s)"
+msgstr ""
 
 #: FulltiltToFpdb.py:703
-#, fuzzy
 msgid "Unable to detect a buyin to this tournament : assume it's a freeroll"
 msgstr ""
-"Incapaz de determinar um buyin para este torneio : assuma que é um freeroll"
 
 #: FulltiltToFpdb.py:804
 msgid "Player finishing stats unreadable : %s"
 msgstr ""
 
 #: FulltiltToFpdb.py:813
-#, fuzzy
 msgid "%s not found in %s..."
-msgstr "Arquivo não encontrado %s"
+msgstr ""
 
 #: FulltiltToFpdb.py:815
 msgid "Parsed finish position incoherent : %s / %s"
@@ -751,9 +708,8 @@ msgid "Time between imports in seconds:"
 msgstr "Tempo entre importações em segundos:"
 
 #: GuiAutoImport.py:121 GuiAutoImport.py:193
-#, fuzzy
 msgid "Start _Auto Import"
-msgstr "  Começar _Importação Automática  "
+msgstr ""
 
 #: GuiAutoImport.py:125
 msgid "Detect Directories"
@@ -769,36 +725,28 @@ msgstr ""
 "Por favor seleciona a pasta/caminho em que você quer aplicar o Auto Import."
 
 #: GuiAutoImport.py:180
-#, fuzzy
 msgid "_Auto Import Running"
-msgstr "  _Auto Import Funcionando  "
+msgstr ""
 
 #: GuiAutoImport.py:191 GuiAutoImport.py:245
-#, fuzzy
 msgid "Stop _Auto Import"
-msgstr "  Parar _Auto Import  "
+msgstr ""
 
 #: GuiAutoImport.py:203
 msgid "Detecting hand history directory for site: '%s'"
 msgstr ""
 
 #: GuiAutoImport.py:243
-#, fuzzy
 msgid "Global lock taken ... Auto Import Started."
 msgstr ""
-"\n"
-"Bloqueio Global aplicado ... Auto Import Começou.\n"
 
 #: GuiAutoImport.py:265
 msgid "opening pipe to HUD"
 msgstr "abrindo caminho para o HUD"
 
 #: GuiAutoImport.py:279
-#, fuzzy
 msgid "*** GuiAutoImport Error opening pipe:"
 msgstr ""
-"\n"
-"*** Erro no GuiAutoImport abrindo caminho: "
 
 #: GuiAutoImport.py:291
 msgid ""
@@ -853,15 +801,10 @@ msgid "Importing..."
 msgstr "Importando..."
 
 #: GuiBulkImport.py:120 GuiBulkImport.py:414
-#, fuzzy
 msgid ""
 "Bulk import done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in "
 "%s seconds - %.0f/sec"
 msgstr ""
-"GuiBulkImport feita: Arquivadas: %d <span class=\"whitespace other\" title="
-"\"Tab\">»</span>Duplicadas: %d <span class=\"whitespace other\" title=\"Tab"
-"\">»</span>Partial: %d <span class=\"whitespace other\" title=\"Tab\">»</"
-"span>Erros: %d em %s segundos - %.0f/sec"
 
 #: GuiBulkImport.py:135
 msgid "Import Complete"
@@ -941,28 +884,23 @@ msgid "Site"
 msgstr "ite"
 
 #: GuiBulkImport.py:357
-#, fuzzy
 msgid ""
 "If this option is used it quits with an extended error message if it "
 "encounters any error"
-msgstr "Se essa opção passar o programa sairá quando encontrar qualquer erro"
+msgstr ""
 
 #: GuiBulkImport.py:359 Options.py:55
 msgid "Print some useful one liners"
 msgstr "Mostrar algumas linhas úteis"
 
 #: GuiBulkImport.py:361 GuiBulkImport.py:363
-#, fuzzy
 msgid ""
 "Do the required conversion for %s archive format (ie. as provided by support)"
 msgstr ""
-"Faça as conversões requeridas para o formato do arquivo do Stars (ie. como "
-"provido por suporte"
 
 #: GuiBulkImport.py:365
-#, fuzzy
 msgid "Generate and print test data for regression testing"
-msgstr "Mostrar versão de HandsPlayer para teste de regressão"
+msgstr ""
 
 #: GuiBulkImport.py:370 GuiTourneyImport.py:272 ImapFetcher.py:172
 msgid "USAGE:"
@@ -1038,19 +976,16 @@ msgid "sortCols error: "
 msgstr "erro de sortCols: "
 
 #: GuiDatabase.py:361
-#, fuzzy
 msgid "trying to connect to:"
-msgstr "testDB: tentando se conectar a: %s/%s, %s, %s/%s"
+msgstr ""
 
 #: GuiDatabase.py:364
-#, fuzzy
 msgid "connected ok"
-msgstr "         conexão ok"
+msgstr ""
 
 #: GuiDatabase.py:371
-#, fuzzy
 msgid "not connected but no exception"
-msgstr "         não conectado mas sem exceção"
+msgstr ""
 
 #: GuiDatabase.py:373 fpdb.pyw:967
 msgid ""
@@ -1220,23 +1155,18 @@ msgid "No Data for Player(s) Found"
 msgstr "Dados de um ou mais jogadores não encontrados"
 
 #: GuiGraphViewer.py:219 GuiGraphViewer.py:232
-#, fuzzy
 msgid ""
 "Hands: %d\n"
 "Profit: (%s): %.2f"
 msgstr ""
-"Mãos: %d\n"
-"Lucro (%s): %.2f"
 
 #: GuiGraphViewer.py:220 GuiGraphViewer.py:234
-#, fuzzy
 msgid "Showdown"
-msgstr "Showdown: $%.2f"
+msgstr ""
 
 #: GuiGraphViewer.py:221 GuiGraphViewer.py:236
-#, fuzzy
 msgid "Non-showdown"
-msgstr "Non-showdown: $%.2f"
+msgstr ""
 
 #: GuiGraphViewer.py:229
 msgid "Profit graph for ring games"
@@ -1450,9 +1380,8 @@ msgid "Value (double-click to change)"
 msgstr ""
 
 #: GuiPrefs.py:178 GuiPrefs.py:183 fpdb.pyw:301
-#, fuzzy
 msgid "Advanced Preferences"
-msgstr "Preferências"
+msgstr ""
 
 #: GuiRingPlayerStats.py:44
 msgid "Type of Game"
@@ -1471,9 +1400,8 @@ msgid "Player Name"
 msgstr ""
 
 #: GuiRingPlayerStats.py:48 Stats.py:314 Stats.py:333 Stats.py:342
-#, fuzzy
 msgid "Number of hands seen"
-msgstr "Número de mãos jogadas"
+msgstr ""
 
 #: GuiRingPlayerStats.py:49
 msgid "Number of Seats"
@@ -1504,23 +1432,20 @@ msgid "% fold to 4 bet preflop/3rd street"
 msgstr ""
 
 #: GuiRingPlayerStats.py:56 Stats.py:740 Stats.py:755 Stats.py:762
-#, fuzzy
 msgid "Aggression factor"
-msgstr "Aggression Factor\n"
+msgstr ""
 
 #: GuiRingPlayerStats.py:57 Stats.py:687 Stats.py:703 Stats.py:710
 msgid "Post-flop aggression frequency"
 msgstr ""
 
 #: GuiRingPlayerStats.py:58 Stats.py:765 Stats.py:776 Stats.py:783
-#, fuzzy
 msgid "% continuation bet"
-msgstr "Continuation Bet pós-flop"
+msgstr ""
 
 #: GuiRingPlayerStats.py:59
-#, fuzzy
 msgid "% Raise First In / % Raise when first to bet"
-msgstr "% Primeiro Raise In\\% Aumentos quando primeiro a falar"
+msgstr ""
 
 #: GuiRingPlayerStats.py:60 Stats.py:367 Stats.py:376
 msgid "% steal attempted"
@@ -1531,39 +1456,28 @@ msgid "Flop/4th street seen %"
 msgstr ""
 
 #: GuiRingPlayerStats.py:62
-#, fuzzy
 msgid "Saw Showdown / River"
-msgstr "Foi ao Show Down / River"
+msgstr ""
 
 #: GuiRingPlayerStats.py:63 Stats.py:181 Stats.py:190 Stats.py:198
 msgid "% went to showdown when seen flop/4th street"
 msgstr ""
 
 #: GuiRingPlayerStats.py:64 Stats.py:202 Stats.py:211 Stats.py:219
-#, fuzzy
 msgid "% won some money at showdown"
-msgstr "% Ganhou algum dinheiro no showdown"
+msgstr ""
 
 #: GuiRingPlayerStats.py:65 Stats.py:611 Stats.py:620 Stats.py:627
-#, fuzzy
 msgid "Aggression frequency flop/4th street"
 msgstr ""
-"Aggression Frequency\n"
-"Bet ou Raise vs Fold"
 
 #: GuiRingPlayerStats.py:66 Stats.py:630 Stats.py:639 Stats.py:646
-#, fuzzy
 msgid "Aggression frequency turn/5th street"
 msgstr ""
-"Aggression Frequency\n"
-"Bet ou Raise vs Fold"
 
 #: GuiRingPlayerStats.py:67 Stats.py:649 Stats.py:658 Stats.py:665
-#, fuzzy
 msgid "Aggression frequency river/6th street"
 msgstr ""
-"Aggression Frequency\n"
-"Bet ou Raise vs Fold"
 
 #: GuiRingPlayerStats.py:68
 msgid ""
@@ -1578,25 +1492,18 @@ msgid "Total Profit"
 msgstr ""
 
 #: GuiRingPlayerStats.py:70 Stats.py:247 Stats.py:256 Stats.py:265
-#, fuzzy
 msgid "Big blinds won per 100 hands"
 msgstr ""
-"Número de Big Blinds ganhos\n"
-"ou perdidos por 100 mãos"
 
 #: GuiRingPlayerStats.py:71
 msgid "Amount of rake paid"
 msgstr "Quantia de rake pago"
 
 #: GuiRingPlayerStats.py:72
-#, fuzzy
 msgid ""
 "Big blinds won per 100 hands\n"
 "when excluding rake"
 msgstr ""
-"Número de Big Blinds ganhos\n"
-"ou perdidos por 100 mãos\n"
-"excluindo rake"
 
 #: GuiRingPlayerStats.py:73
 msgid ""
@@ -1712,29 +1619,22 @@ msgid "Sessions"
 msgstr "Sessões"
 
 #: GuiStove.py:63
-#, fuzzy
 msgid ""
 "Stove is a GUI mockup of a EV calculation page, and completely non "
 "functional."
-msgstr "Stove é um GUI modelo de cálculos EV, e completamente não funcional.\n"
+msgstr ""
 
 #: GuiStove.py:64
-#, fuzzy
 msgid ""
 "Unless you are interested in developing this feature, please ignore this "
 "page."
 msgstr ""
-"A menos que você esteja interessado em desenvolver e melhorar este recurso "
-"por favor ignore está página.\n"
 
 #: GuiStove.py:65
-#, fuzzy
 msgid ""
 "If you are interested in developing the code further see GuiStove.py and "
 "Stove.py."
 msgstr ""
-"Se você está interssado em desenvolvê-lo por favor veja GuiStove.py e Stove."
-"py\n"
 
 #: GuiStove.py:97
 msgid "Draw"
@@ -1801,16 +1701,12 @@ msgid "Tournament Results"
 msgstr "Resultados de Torneios"
 
 #: GuiTourneyImport.py:72 GuiTourneyImport.py:295
-#, fuzzy
 msgid "Tourney import done: Stored: %d \tErrors: %d in %s seconds - %.0f/sec"
 msgstr ""
-"GuiTourneyImport.load feito: Arquivadas: %d<span class=\"whitespace other\" "
-"title=\"Tab\">»</span>Erros: %d em %s segundos - %.0f/sec"
 
 #: GuiTourneyImport.py:78
-#, fuzzy
 msgid "tourney import aborted - global lock not available"
-msgstr "importação manual abortada - bloqueio global indisponível"
+msgstr ""
 
 #: GuiTourneyImport.py:175 fpdb_import.py:238
 msgid "Attempted to add non-directory '%s' as an import directory"
@@ -1954,9 +1850,8 @@ msgid "Any major error will be reported there _only_."
 msgstr ""
 
 #: HUD_main.pyw:78 HUD_run_me.py:45
-#, fuzzy
 msgid "HUD_main starting"
-msgstr "HUD_main iniciando\n"
+msgstr ""
 
 #: HUD_main.pyw:108 HUD_run_me.py:62
 msgid "Closing this window will exit from the HUD."
@@ -1999,9 +1894,8 @@ msgid "HUD create: table name %s not found, skipping."
 msgstr ""
 
 #: HUD_main.pyw:285
-#, fuzzy
 msgid "Table \"%s\" no longer exists"
-msgstr "A mesa \"%s\" não existe\n"
+msgstr ""
 
 #: HUD_main.pyw:317
 msgid "Error resizing HUD for table: %s."
@@ -2020,9 +1914,8 @@ msgid "Error updating HUD for hand %s."
 msgstr "Erro ao atualizar HUD para a mão %s."
 
 #: HUD_run_me.py:51 TournamentTracker.py:306
-#, fuzzy
 msgid "Using db name = %s"
-msgstr "Usando nome da db = %s\n"
+msgstr ""
 
 #: HUD_run_me.py:66
 msgid "HUD Main Window"
@@ -2784,11 +2677,8 @@ msgid "exception calculating bb/100: "
 msgstr ""
 
 #: Stats.py:269 Stats.py:278 Stats.py:287
-#, fuzzy
 msgid "Big bets won per 100 hands"
 msgstr ""
-"Número de Big Blinds ganhos\n"
-"ou perdidos por 100 mãos"
 
 #: Stats.py:281
 msgid "exception calculating BB/100: "
@@ -2807,9 +2697,8 @@ msgid "% folded BB to steal"
 msgstr ""
 
 #: Stats.py:435 Stats.py:447 Stats.py:454
-#, fuzzy
 msgid "% folded blind to steal"
-msgstr "%s %s raise %s"
+msgstr ""
 
 #: Stats.py:495 Stats.py:504 Stats.py:511
 msgid "% cold 4 bet preflop/3rd street"
@@ -2820,25 +2709,20 @@ msgid "% squeeze preflop"
 msgstr ""
 
 #: Stats.py:534 Stats.py:543 Stats.py:550
-#, fuzzy
 msgid "% raise to steal"
-msgstr "%s %s raise %s"
+msgstr ""
 
 #: Stats.py:592 Stats.py:601 Stats.py:608
 msgid "% won money when seen flop/4th street"
 msgstr ""
 
 #: Stats.py:668 Stats.py:677 Stats.py:684
-#, fuzzy
 msgid "Aggression frequency 7th street"
 msgstr ""
-"Aggression Frequency\n"
-"Bet ou Raise vs Fold"
 
 #: Stats.py:786 Stats.py:795 Stats.py:802
-#, fuzzy
 msgid "% continuation bet flop/4th street"
-msgstr "Continuation Bet pós-flop"
+msgstr ""
 
 #: Stats.py:805 Stats.py:814 Stats.py:821
 msgid "% continuation bet turn/5th street"
@@ -2849,9 +2733,8 @@ msgid "% continuation bet river/6th street"
 msgstr ""
 
 #: Stats.py:843 Stats.py:852 Stats.py:859
-#, fuzzy
 msgid "% continuation bet 7th street"
-msgstr "Continuation Bet pós-flop"
+msgstr ""
 
 #: Stats.py:862 Stats.py:871 Stats.py:878
 msgid "% fold frequency flop/4th street"
@@ -2957,9 +2840,8 @@ msgid "table name %s not found, skipping.\n"
 msgstr ""
 
 #: TournamentTracker.py:305
-#, fuzzy
 msgid "Tournament tracker starting"
-msgstr "Resultados de Torneios"
+msgstr ""
 
 #: TourneyFilters.py:52
 msgid "Sites:"
@@ -3234,9 +3116,8 @@ msgid "fpdb version"
 msgstr ""
 
 #: fpdb.pyw:270
-#, fuzzy
 msgid "database used"
-msgstr "Database criada"
+msgstr ""
 
 #: fpdb.pyw:271
 msgid "language"
@@ -3400,9 +3281,8 @@ msgid "User cancelled rebuilding db indexes"
 msgstr ""
 
 #: fpdb.pyw:687
-#, fuzzy
 msgid "Site Preferences"
-msgstr "Preferências"
+msgstr ""
 
 #: fpdb.pyw:690
 msgid "Please select which sites you play on and enter your usernames."
@@ -3447,18 +3327,16 @@ msgid "_Quit"
 msgstr ""
 
 #: fpdb.pyw:889
-#, fuzzy
 msgid "_Site Preferences"
-msgstr "Preferências"
+msgstr ""
 
 #: fpdb.pyw:890
 msgid "<control>F"
 msgstr ""
 
 #: fpdb.pyw:890
-#, fuzzy
 msgid "_Advanced Preferences"
-msgstr "Preferências"
+msgstr ""
 
 #: fpdb.pyw:891
 msgid "_Import"
@@ -3501,9 +3379,8 @@ msgid "<control>H"
 msgstr ""
 
 #: fpdb.pyw:897
-#, fuzzy
 msgid "_HUD Preferences"
-msgstr "Preferências"
+msgstr ""
 
 #: fpdb.pyw:898
 msgid "<control>G"
@@ -3526,18 +3403,16 @@ msgid "<control>P"
 msgstr ""
 
 #: fpdb.pyw:901
-#, fuzzy
 msgid "Ring _Player Stats"
-msgstr "Mostrar Status dos Jogadores"
+msgstr ""
 
 #: fpdb.pyw:902
 msgid "<control>T"
 msgstr ""
 
 #: fpdb.pyw:902
-#, fuzzy
 msgid "_Tourney Stats"
-msgstr "Torneio"
+msgstr ""
 
 #: fpdb.pyw:903
 msgid "Tourney _Viewer"
@@ -3548,9 +3423,8 @@ msgid "<control>O"
 msgstr ""
 
 #: fpdb.pyw:904
-#, fuzzy
 msgid "P_ositional Stats (tabulated view)"
-msgstr "Página de status por posição mostrada em %4.2f segundos"
+msgstr ""
 
 #: fpdb.pyw:905 fpdb.pyw:1133
 msgid "Session Stats"
@@ -3919,304 +3793,3 @@ msgid ""
 "no gtk directories found in your path - install gtk or edit the path "
 "manually\n"
 msgstr ""
-
-#~ msgid "Using db name = %s\n"
-#~ msgstr "Usando nome da db = %s\n"
-
-#~ msgid "HUD_main starting\n"
-#~ msgstr "HUD_main iniciando\n"
-
-#~ msgid "Thankyou"
-#~ msgstr "Obrigado"
-
-#, fuzzy
-#~ msgid "Config file has been created at:"
-#~ msgstr "Arquivo de configuração foi criada em %s.\n"
-
-#, fuzzy
-#~ msgid "Error is %s"
-#~ msgstr "erro é %s"
-
-#, fuzzy
-#~ msgid "Aggression Factor"
-#~ msgstr "Aggression Factor\n"
-
-#, fuzzy
-#~ msgid "% went to showdown when seen flop/4th streetp"
-#~ msgstr "Continuation Bet pós-flop"
-
-#~ msgid "check_fields: destroy dialog"
-#~ msgstr "check_fields: destruir diálogo"
-
-#~ msgid "check_fields: returning ok as %s, try_again as %s"
-#~ msgstr "check_fields: retornando ok como %s, try_again como %s"
-
-#~ msgid "parse input hand history"
-#~ msgstr "Analisar a entrada de histórico de mãos"
-
-#~ msgid "output translation to"
-#~ msgstr "tradução de saída para"
-
-#~ msgid "follow (tail -f) the input"
-#~ msgstr "seguir (tail -f) na entrada"
-
-#, fuzzy
-#~ msgid ""
-#~ "%s server reports: Access denied. Are your permissions set correctly?"
-#~ msgstr ""
-#~ "Report do Servidor MySQL: Acesso negado. Suas permissões estão "
-#~ "configuradas corretamente?"
-
-#, fuzzy
-#~ msgid "Please check that the %s service has been started"
-#~ msgstr "Por favor cheque que o serviço MySQL foi iniciado"
-
-#, fuzzy
-#~ msgid ""
-#~ "Do the required conversion for FTP Archive format (ie. as provided by "
-#~ "support)"
-#~ msgstr ""
-#~ "Faça as conversões requeridas para o formato do arquivo do FTP (ie. como "
-#~ "provido por suporte"
-
-#, fuzzy
-#~ msgid "Advanced Preferences Dialog"
-#~ msgstr "Preferências de diálogo de teste"
-
-#~ msgid ""
-#~ "Flop Aggression\n"
-#~ "% Bet or Raise after seeing Flop"
-#~ msgstr ""
-#~ "Agressão no Flop\n"
-#~ "% Bet ou Raise depois de ver o Flop"
-
-#~ msgid ""
-#~ "Turn Aggression\n"
-#~ "% Bet or Raise after seeing Turn"
-#~ msgstr ""
-#~ "Agressão no Turn\n"
-#~ "% Bet ou Raise depois de ver o Turn"
-
-#~ msgid ""
-#~ "River Aggression\n"
-#~ "% Bet or Raise after seeing River"
-#~ msgstr ""
-#~ "Agressão no River\n"
-#~ "% Bet ou Raise depois de ver o River"
-
-#~ msgid "Amount won"
-#~ msgstr "Quantia ganha"
-
-#~ msgid ""
-#~ "Number of Big Blinds won\n"
-#~ "or lost per 100 hands"
-#~ msgstr ""
-#~ "Número de Big Blinds ganhos\n"
-#~ "ou perdidos por 100 mãos"
-
-#~ msgid ""
-#~ "Aggression Frequency\n"
-#~ "Bet or Raise vs Fold"
-#~ msgstr ""
-#~ "Aggression Frequency\n"
-#~ "Bet ou Raise vs Fold"
-
-#~ msgid "Continuation Bet post-flop"
-#~ msgstr "Continuation Bet pós-flop"
-
-#, fuzzy
-#~ msgid ""
-#~ "% First to raise preflop\n"
-#~ "and steal blinds"
-#~ msgstr ""
-#~ "% Primeiro a dar raise pre-flop\n"
-#~ "e roubar blinds"
-
-#~ msgid "% Saw Flop vs hands dealt"
-#~ msgstr "% Saw Flop vs hands dealt"
-
-#, fuzzy
-#~ msgid "Went To Showdown When Saw Flop"
-#~ msgstr "Went To Show Down When Saw Flop"
-
-#~ msgid "% Pre Flop Raise"
-#~ msgstr "% Pre Flop Raise"
-
-#, fuzzy
-#~ msgid "% Pre Flop 3Bet"
-#~ msgstr "% Pre Flop Raise"
-
-#, fuzzy
-#~ msgid "% Pre Flop 4Bet"
-#~ msgstr "% Pre Flop Raise"
-
-#, fuzzy
-#~ msgid "% Pre Flop Fold To 3Bet"
-#~ msgstr "% Pre Flop Fold To Re-Raise / F3Bet"
-
-#, fuzzy
-#~ msgid "% Pre Flop Fold To 4Bet"
-#~ msgstr "% Pre Flop Fold To Re-Raise / F4Bet"
-
-#~ msgid "Name of the player"
-#~ msgstr "Nome do Jogador"
-
-#~ msgid "Number of hands played"
-#~ msgstr "Número de mãos jogadas"
-
-#~ msgid ""
-#~ "Voluntarily Putting In the pot\n"
-#~ "(blinds excluded)"
-#~ msgstr ""
-#~ "Voluntarily Putting In the pot\n"
-#~ "(blinds não contam)"
-
-#~ msgid "% Pre Flop Re-Raise / 3Bet"
-#~ msgstr "% Pre Flop Re-Raise / 3Bet"
-
-#~ msgid "% Pre Flop Re-Raise / 4Bet"
-#~ msgstr "% Pre Flop Re-Raise / 4Bet"
-
-#~ msgid "Conversion filter (*Full Tilt Poker, PokerStars, Everleaf, Absolute)"
-#~ msgstr ""
-#~ "Filtro de Conversão (*Full Tilt Poker, PokerStars, Everleaf, Absolute)"
-
-#~ msgid "Showdown (%s): %.2f"
-#~ msgstr "Showdown (%s): %.2f"
-
-#~ msgid "Non-showdown (%s): %.2f"
-#~ msgstr "Non-showdown (%s): %.2f"
-
-#~ msgid ""
-#~ "Hands: %d\n"
-#~ "Profit (%s): %.2f"
-#~ msgstr ""
-#~ "Mãos: %d\n"
-#~ "Lucro (%s): %.2f"
-
-#~ msgid ""
-#~ "Hands: %d\n"
-#~ "Profit: $%.2f"
-#~ msgstr ""
-#~ "Mãos: %d\n"
-#~ "Lucro: $%.2f"
-
-#~ msgid "determineTourneyType : Parsing NOK"
-#~ msgstr "Determinar tipo de Torneio : Análise errada"
-
-#~ msgid ""
-#~ "GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d "
-#~ "\tErrors: %d in %s seconds - %.0f/sec"
-#~ msgstr ""
-#~ "GuiBulkImport.load feito: Arquivadas: %d <span class=\"whitespace other\" "
-#~ "title=\"Tab\">»</span>Duplicadas: %d <span class=\"whitespace other\" "
-#~ "title=\"Tab\">»</span>Partial: %d <span class=\"whitespace other\" title="
-#~ "\"Tab\">»</span>Erros: %d em %s segundos - %.0f/sec"
-
-#~ msgid "Test Log Viewer"
-#~ msgstr "Teste vizualizador de Log"
-
-#~ msgid "***Error: "
-#~ msgstr "***Erro: "
-
-#~ msgid "ImportError: %s"
-#~ msgstr "ImportError: %s"
-
-#~ msgid "PokerStars converter: ./GuiBulkImport.py -c PokerStars -f filename"
-#~ msgstr "Conversor PokerStars: ./GuiBulkImport.py -c PokerStars -f filename"
-
-#~ msgid ""
-#~ "Full Tilt  converter: ./GuiBulkImport.py -c \"Full Tilt Poker\" -f "
-#~ "filename"
-#~ msgstr ""
-#~ "Full Tilt  Conversor: ./GuiBulkImport.py -c \"Full Tilt Poker\" -f "
-#~ "filename"
-
-#~ msgid "Everleaf   converter: ./GuiBulkImport.py -c Everleaf -f filename"
-#~ msgstr "Everleaf   Conversor: ./GuiBulkImport.py -c Everleaf -f filename"
-
-#~ msgid "Absolute   converter: ./GuiBulkImport.py -c Absolute -f filename"
-#~ msgstr "Absolute   Conversor: ./GuiBulkImport.py -c Absolute -f filename"
-
-#~ msgid "PartyPoker converter: ./GuiBulkImport.py -c PartyPoker -f filename"
-#~ msgstr "Conversor PartyPoker: ./GuiBulkImport.py -c PartyPoker -f filename"
-
-#~ msgid ""
-#~ "Default encoding set to US-ASCII, defaulting to CP1252 instead -- If "
-#~ "you're not on a Mac, please report this problem."
-#~ msgstr ""
-#~ "Codificação padrão definida para US-ASCII, definindo CP1252 como "
-#~ "alternativa -- Se você não estiver usando um Mac, por favor reporte este "
-#~ "problema."
-
-#~ msgid "Absolute readStudPlayerCards is only a stub."
-#~ msgstr "Absolute readStudPlayerCards é somente temporário."
-
-#~ msgid "warning: drop pg fk %s_%s_fkey failed: %s, continuing ..."
-#~ msgstr "atenção: a queda de pg fk %s_%s_fkey falhou: %s, continuando ..."
-
-#~ msgid "dropping mysql index "
-#~ msgstr "derrubando mysql index "
-
-#~ msgid "Creating pgsql index %s %s"
-#~ msgstr "Criando pgsql index %s %s"
-
-#~ msgid "Creating sqlite index %s %s"
-#~ msgstr "Criando sqlite index %s %s"
-
-#~ msgid "Unknown database: MySQL, Postgres and SQLite supported"
-#~ msgstr "Database desconhecida: MySQL, Postgres e SQLite são suportados"
-
-#~ msgid "Dropping sqlite index "
-#~ msgstr "Derrubando sqlite index "
-
-#~ msgid ""
-#~ "Fpdb only supports MySQL, Postgres and SQLITE, what are you trying to use?"
-#~ msgstr ""
-#~ "Fpdb suporta apenas MySQL, Postgres e SQLITE, o que você está tentando "
-#~ "usar?"
-
-#~ msgid "Only MySQL and Postgres supported so far"
-#~ msgstr "Apenas MySQL e Postgres são suportados por enquanto"
-
-#~ msgid "dropping mysql foreign key"
-#~ msgstr "derrubando chave estrangeira do mysql "
-
-#~ msgid "    drop failed: "
-#~ msgstr "    queda falhou: "
-
-#~ msgid "invalid source in Database.createOrUpdateTourney"
-#~ msgstr "fonte inválida em Database.createOrUpdateTourney"
-
-#~ msgid "invalid source in Database.createOrUpdateTourneysPlayers"
-#~ msgstr "fonte inválida em Database.createOrUpdateTourneysPlayers"
-
-#~ msgid "HandToWrite.init error: "
-#~ msgstr "erro em HandToWrite.init: "
-
-#~ msgid "HandToWrite.set_all error: "
-#~ msgstr "erro em HandToWrite.set_all: "
-
-#~ msgid "nutOmatic is id_player = %d"
-#~ msgstr "nutOmatic é id_player = %d"
-
-#~ msgid "query plan: "
-#~ msgstr "plano da query: "
-
-#~ msgid "press enter to continue"
-#~ msgstr "pressione enter para continuar"
-
-#~ msgid "Everleaf readStudPlayerCards is only a stub."
-#~ msgstr "Everleaf readStudPlayerCards é somente temporário."
-
-#~ msgid "  _Stop Auto Import  "
-#~ msgstr "  _Parar Auto Import  "
-
-#~ msgid "Input file in quiet mode"
-#~ msgstr "Arquivo de input em modo silencioso"
-
-#~ msgid "don't start gui; deprecated (just give a filename with -f)."
-#~ msgstr "Não começe o gui; obsoleto (apenas dê um nome de arquivo com -f)."
-
-#~ msgid "-q is deprecated. Just use \"-f filename\" instead"
-#~ msgstr "-q é obsoleto. Apenas use \"-f filename\" como alternativa"
