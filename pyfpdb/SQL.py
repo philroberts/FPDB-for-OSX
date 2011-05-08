@@ -2422,7 +2422,7 @@ class Sql:
             self.query['get_hand_1day_ago'] = """
                 select coalesce(max(id),0)
                 from Hands
-                where startTime < strftime('%J', 'now') - 1"""
+                where startTime < datetime(strftime('%J', 'now') - 1)"""
 
         # not used yet ...
         # gets a date, would need to use handsplayers (not hudcache) to get exact hand Id
