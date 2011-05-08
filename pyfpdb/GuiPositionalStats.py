@@ -111,11 +111,11 @@ class GuiPositionalStats (threading.Thread):
         # To miss columns out remove them from both tuples (the 1st 2 elements should always be included).
         # To change the heading just edit the second list element as required
         # If the first list element does not match a query column that pair is ignored
-        self.posncols =  ( "game", "avgseats", "plposition", "vpip", "pfr", "pf3", "steals" 
+        self.posncols =  ( "game", "avgseats", "plposition", "vpip", "pfr", "pf3", "pf4", "pff3", "pff4", "steals"
                          , "saw_f", "sawsd", "wtsdwsf", "wmsd", "flafq", "tuafq", "rvafq"
                          , "pofafq", "net", "bbper100", "profitperhand", "variance", "n"
                          )
-        self.posnheads = ( "Game", "Seats", "Posn", "VPIP", "PFR", "PF3", "Steals"
+        self.posnheads = ( "Game", "Seats", "Posn", "VPIP", "PFR", "PF3", "PF4", "PFF3", "PFF4", "Steals"
                          , "Saw_F", "SawSD", "WtSDwsF", "W$SD", "FlAFq", "TuAFq", "RvAFq"
                          , "PoFAFq", "Net($)", "bb/100", "$/hand", "Variance", "Hds"
                          )
@@ -345,13 +345,44 @@ class GuiPositionalStats (threading.Thread):
             query = query.replace('<groupbyseats>', '')
             query = query.replace('<orderbyseats>', '')
 
-        if [x for x in limits if str(x).isdigit()]:
-            blindtest = str(tuple([x for x in limits if str(x).isdigit()]))
+        lims = [int(x) for x in limits if x.isdigit()]
+        potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
+        nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
+        capnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'cn']
+        bbtest = "( (gt.limitType = 'fl' and gt.bigBlind in "
+                 # and ( (limit and bb in()) or (nolimit and bb in ()) )
+        if lims:
+            blindtest = str(tuple(lims))
             blindtest = blindtest.replace("L", "")
             blindtest = blindtest.replace(",)",")")
-            query = query.replace("<gtbigBlind_test>", "gt.bigBlind in " +  blindtest)
+            bbtest = bbtest + blindtest + ' ) '
         else:
-            query = query.replace("<gtbigBlind_test>", "gt.bigBlind = -1 ")
+            bbtest = bbtest + '(-1) ) '
+        bbtest = bbtest + " or (gt.limitType = 'pl' and gt.bigBlind in "
+        if potlims:
+            blindtest = str(tuple(potlims))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            bbtest = bbtest + blindtest + ' ) '
+        else:
+            bbtest = bbtest + '(-1) ) '
+        bbtest = bbtest + " or (gt.limitType = 'nl' and gt.bigBlind in "
+        if nolims:
+            blindtest = str(tuple(nolims))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            bbtest = bbtest + blindtest + ' ) '
+        else:
+            bbtest = bbtest + '(-1) ) '
+        bbtest = bbtest + " or (gt.limitType = 'cn' and gt.bigBlind in "
+        if capnolims:
+            blindtest = str(tuple(capnolims))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            bbtest = bbtest + blindtest + ' ) )'
+        else:
+            bbtest = bbtest + '(-1) ) )'
+        query = query.replace("<gtbigBlind_test>", bbtest)
 
         groupLevels = "show" not in str(limits)
         if groupLevels:
@@ -372,7 +403,7 @@ class GuiPositionalStats (threading.Thread):
             else:
                 bigblindselect = """'$' ||
                                     trim(leading ' ' from
-                                         case when min(gt.bigBlind) < 100 
+                                         case when min(gt.bigBlind) < 100
                                               then to_char(min(gt.bigBlind)/100.0,'90D00')
                                               else to_char(min(gt.bigBlind)/100.0,'999990')
                                          end)
@@ -397,6 +428,11 @@ class GuiPositionalStats (threading.Thread):
                                                           else format(gt.bigBlind/100.0, 0)
                                                      end 
                                                     ) )"""
+            elif self.db.backend == self.SQLITE:
+                bigblindselect = """'$' || ltrim(case when gt.bigBlind < 100 
+                                                      then round(gt.bigBlind/100.0, 2)
+                                                      else round(gt.bigBlind/100.0, 0)
+                                                 end)"""
             else:
                 bigblindselect = """'$' || trim(leading ' ' from
                                                 case when gt.bigBlind < 100 
