@@ -208,11 +208,12 @@ class TourneySummary(object):
         # Starttime may not match the one in the Summary file : HH = time of the first Hand / could be slighltly different from the one in the summary file
         # Note: If the TourneyNo could be a unique id .... this would really be a relief to deal with matrix matches ==> Ask on the IRC / Ask Fulltilt ??
         
-        for player in self.players:
-            id=self.db.get_player_id(self.config, self.siteName, player)
-            if not id:
-                id=self.db.insertPlayer(unicode(player), self.siteId)
-            self.playerIds.update({player:id})
+        self.playerIds = self.db.getSqlPlayerIDs(self.players, self.siteId)
+        #for player in self.players:
+        #    id=self.db.get_player_id(self.config, self.siteName, player)
+        #    if not id:
+        #        id=self.db.insertPlayer(unicode(player), self.siteId)
+        #    self.playerIds.update({player:id})
         
         #print "TS.insert players",self.players,"playerIds",self.playerIds
         
@@ -220,11 +221,9 @@ class TourneySummary(object):
         self.dbid_pids=self.playerIds #TODO:rename this field in Hand so this silly renaming can be removed
         
         #print "TS.self before starting insert",self
-        self.tourneyTypeId = self.db.createTourneyType(self)
-        self.db.commit()
-        self.tourneyId = self.db.createOrUpdateTourney(self, "TS")
-        self.db.commit()
-        self.tourneysPlayersIds = self.db.createOrUpdateTourneysPlayers(self, "TS")
+        self.tourneyTypeId = self.db.getSqlTourneyTypeIDs(self)
+        self.tourneyId = self.db.createOrUpdateTourney(self)
+        self.tourneysPlayersIds = self.db.createOrUpdateTourneysPlayers(self)
         self.db.commit()
         
         logging.debug(_("Tourney Insert/Update done"))
