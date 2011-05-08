@@ -3167,9 +3167,9 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['playerStats'] = """
                 SELECT
-                      upper(stats.limitType) || ' ' ||
                       upper(substr(stats.category,1,1)) || substr(stats.category,2) || ' ' ||
-                      stats.name || ' ' || cast(stats.bigBlindDesc as char)                 AS Game
+                      stats.name || ' ' ||
+                      cast(stats.bigBlindDesc as char) || ' ' || stats.maxSeats || ' seat'  AS Game
                      ,stats.n,stats.vpip,stats.pfr,stats.pf3,stats.pf4,stats.pff3,stats.pff4
                      ,stats.steals,stats.saw_f,stats.sawsd,stats.wtsdwsf,stats.wmsd,stats.FlAFq
                      ,stats.TuAFq,stats.RvAFq,stats.PoFAFq,stats.Net,stats.BBper100,stats.Profitperhand
@@ -3178,7 +3178,10 @@ class Sql:
                      ,stats.AvgSeats
                 FROM
                     (select /* stats from hudcache */
-                            gt.base,gt.category,upper(gt.limitType) as limitType,s.name
+                            gt.base
+                           ,gt.category,maxSeats,gt.bigBlind,gt.currency
+                           ,upper(gt.limitType)                                             AS limitType
+                           ,s.name
                            ,<selectgt.bigBlind>                                             AS bigBlindDesc
                            ,<hcgametypeId>                                                  AS gtId
                            ,sum(HDs)                                                        AS n
@@ -3254,7 +3257,7 @@ class Sql:
                       group by hprof.gtId
                      ) hprof2
                     on hprof2.gtId = stats.gtId
-                order by stats.category, stats.limittype, stats.bigBlindDesc desc <orderbyseats>"""
+                order by stats.category, stats.bigBlind, stats.limittype, stats.currency, stats.maxSeats <orderbyseats>"""
         else:  # assume postgres
             self.query['playerStats'] = """
                 SELECT upper(stats.limitType) || ' '
@@ -3512,10 +3515,9 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['playerStatsByPosition'] = """
                 SELECT
-                      upper(stats.limitType) || ' ' ||
                       upper(substr(stats.category,1,1)) || substr(stats.category,2) || ' ' ||
                       stats.name || ' ' ||
-                      cast(stats.bigBlindDesc as char)                                      AS Game
+                      cast(stats.bigBlindDesc as char) || ' ' || stats.maxSeats || ' seat'  AS Game
                      ,case when stats.PlPosition = -2 then 'BB'
                            when stats.PlPosition = -1 then 'SB'
                            when stats.PlPosition =  0 then 'Btn'
@@ -3534,7 +3536,7 @@ class Sql:
                 FROM
                     (select /* stats from hudcache */
                             gt.base
-                           ,gt.category
+                           ,gt.category,maxSeats,gt.bigBlind,gt.currency
                            ,upper(gt.limitType)                                             AS limitType
                            ,s.name
                            ,<selectgt.bigBlind>                                             AS bigBlindDesc
@@ -3605,12 +3607,12 @@ class Sql:
                 inner join
                     ( select /* profit from handsplayers/handsactions */
                              hprof.gtId,
-                             case when hprof.position = 'B' then -2
+                             cast(case when hprof.position = 'B' then -2
                                   when hprof.position = 'S' then -1
                                   when hprof.position in ('3','4') then 2
                                   when hprof.position in ('6','7') then 5
                                   else hprof.position
-                             end                                      as PlPosition,
+                             end as signed)                           as PlPosition,
                              sum(hprof.profit) as sum_profit,
                              avg(hprof.profit/100.0) as profitperhand,
                              case when hprof.gtId = -1 then -999
@@ -3629,9 +3631,9 @@ class Sql:
                       group by hprof.gtId, PlPosition
                      ) hprof2
                     on (    hprof2.gtId = stats.gtId
-                        and cast(hprof2.PlPosition as signed) = stats.PlPosition)
-                order by stats.category, stats.limitType, stats.bigBlindDesc desc
-                         <orderbyseats>, cast(stats.PlPosition as signed)
+                        and hprof2.PlPosition = stats.PlPosition)
+                order by stats.category, stats.bigBlind, stats.limitType, stats.currency, stats.maxSeats <orderbyseats>
+                        ,cast(stats.PlPosition as signed)
                 """
         else:  # assume postgresql
             self.query['playerStatsByPosition'] = """

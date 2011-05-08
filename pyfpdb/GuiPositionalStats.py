@@ -429,10 +429,7 @@ class GuiPositionalStats (threading.Thread):
                                                      end 
                                                     ) )"""
             elif self.db.backend == self.SQLITE:
-                bigblindselect = """'$' || ltrim(case when gt.bigBlind < 100 
-                                                      then round(gt.bigBlind/100.0, 2)
-                                                      else round(gt.bigBlind/100.0, 0)
-                                                 end)"""
+                bigblindselect = """gt.bigBlind || gt.limitType || ' ' || gt.currency"""
             else:
                 bigblindselect = """'$' || trim(leading ' ' from
                                                 case when gt.bigBlind < 100 
