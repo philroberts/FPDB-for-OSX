@@ -1381,43 +1381,11 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
                 self.config.get_site_id(site)                     # and check against list from db
             except KeyError, exc:
                 log.warning("site %s missing from db" % site)
-                dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format=_("Unknown Site"))
-                diastring = _("Warning:") +" " + _("Unable to find site  '%s'\n\nPress YES to add this site to the database.") % site
+                dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_OK), message_format=_("Unknown Site"))
+                diastring = _("Warning:") +" " + _("Unable to find site  '%s'") % site
                 dia.format_secondary_text(diastring)
-                response = dia.run()
+                dia.run()
                 dia.destroy()
-                if response == gtk.RESPONSE_YES:
-                    self.add_site(site)
-
-    def add_site(self, site):
-        dia = gtk.Dialog(title="Add Site", parent=self.window,
-                         flags=gtk.DIALOG_DESTROY_WITH_PARENT,
-                         buttons=(gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT,
-                                  gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
-                        )
-
-        h = gtk.HBox()
-        dia.vbox.pack_start(h, padding=5)  # sets horizontal padding
-        label = gtk.Label(_("\nEnter short code for %s\n(up to 3 characters):\n") % site)
-        h.pack_start(label, padding=20)     # sets horizontal padding
-        #label.set_alignment(1.0, 0.5)
-        
-        h = gtk.HBox()
-        dia.vbox.add(h)
-        e_code = gtk.Entry(max=3)
-        e_code.set_width_chars(5)
-        h.pack_start(e_code, True, False, padding=5)
-
-        label = gtk.Label("")
-        dia.vbox.add(label)  # create space below entry, maybe padding arg above makes this redundant?
-
-        dia.show_all()
-        response = dia.run()
-        site_code = e_code.get_text()
-        if response == gtk.RESPONSE_ACCEPT and site_code is not None and site_code != "":
-            self.db.add_site(site, site_code)
-            self.db.commit()
-        dia.destroy()
 
     def main(self):
         gtk.main()

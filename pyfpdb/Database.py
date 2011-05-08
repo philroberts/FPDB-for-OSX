@@ -507,11 +507,6 @@ class Database:
         sites = self.cursor.fetchall()
         self.config.set_site_ids(sites)
 
-    def add_site(self, site, site_code):
-        self.cursor.execute("INSERT INTO Sites "
-                            "SELECT max(id)+1, '%s', '%s' "
-                            "FROM Sites " % (site, site_code) )
-
     def check_version(self, database, create):
         self.wrongDbVersion = False
         try:
