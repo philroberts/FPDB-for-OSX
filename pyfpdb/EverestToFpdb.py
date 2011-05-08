@@ -112,7 +112,7 @@ class Everest(HandHistoryConverter):
         self.info = {}
         mg = m.groupdict()
         mg.update(m2.groupdict())
-        print "DEBUG: mg: %s" % mg
+        #print "DEBUG: mg: %s" % mg
 
         limits = { 'no-limit':'nl', 'limit':'fl', 'pot-limit':'pl' }
         games = {              # base, category
@@ -139,7 +139,7 @@ class Everest(HandHistoryConverter):
         # HACK - tablename not in every hand.
         self.info['TABLENAME'] = mg['TABLE']
 
-        print "DEBUG: self.info: %s" % self.info
+        #print "DEBUG: self.info: %s" % self.info
 
         return self.info
 
@@ -189,7 +189,7 @@ class Everest(HandHistoryConverter):
     def readBlinds(self, hand):
         for a in self.re_PostXB.finditer(hand.handText):
             amount = "%.2f" % float(float(a.group('XB'))/100)
-            print "DEBUG: readBlinds amount: %s" % amount
+            #print "DEBUG: readBlinds amount: %s" % amount
             if Decimal(a.group('XB'))/100 == Decimal(self.info['sb']):
                 hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),'small blind', amount)
             elif Decimal(a.group('XB'))/100 == Decimal(self.info['bb']):
@@ -207,11 +207,11 @@ class Everest(HandHistoryConverter):
                               mucked=False, dealt=True)
 
     def readAction(self, hand, street):
-        print "DEBUG: readAction (%s)" % street
+        #print "DEBUG: readAction (%s)" % street
         m = self.re_Action.finditer(hand.streets[street])
         curr_pot = Decimal('0')
         for action in m:
-            print " DEBUG: %s %s" % (action.group('ATYPE'), action.groupdict())
+            #print " DEBUG: %s %s" % (action.group('ATYPE'), action.groupdict())
             player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
             if action.group('ATYPE') == 'BET':
                 amount = Decimal(action.group('BET'))
@@ -248,7 +248,7 @@ class Everest(HandHistoryConverter):
     def readCollectPot(self, hand):
         for m in self.re_CollectPot.finditer(hand.handText):
             player = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
-            print "DEBUG: %s collects %s" % (player, m.group('POT'))
+            #print "DEBUG: %s collects %s" % (player, m.group('POT'))
             hand.addCollectPot(player, str(int(m.group('POT'))/100))
 
     def readShownCards(self, hand):
