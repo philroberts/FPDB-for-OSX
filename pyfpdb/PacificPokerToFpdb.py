@@ -205,7 +205,7 @@ class PacificPoker(HandHistoryConverter):
         else:
             info['type'] = 'ring'
 
-		# Pacific Poker includes the blind levels in the gametype, the following is not needed.
+        # Pacific Poker includes the blind levels in the gametype, the following is not needed.
         #if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring' and info['base'] != 'stud':
         #    try:
         #        info['sb'] = self.Lim_Blinds[mg['BB']][0]

@@ -62,6 +62,7 @@ import ConfigParser
 # CONFIG_PATH (path to the directory holding logs, sqlite db's and config)
 # OS_FAMILY (OS Family for installed system (Linux, Mac, XP, Win7)
 # POSIX (True=Linux or Mac platform, False=Windows platform)
+# PYTHON_VERSION (n.n)
 
 if hasattr(sys, "frozen"):
     INSTALL_METHOD = "exe"
@@ -103,6 +104,8 @@ if os.name == 'posix':
     POSIX = True
 else:
     POSIX = False
+    
+PYTHON_VERSION = sys.version[:3]
     
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("config")
@@ -733,6 +736,7 @@ class Config:
         self.config_path = CONFIG_PATH
         self.os_family = OS_FAMILY
         self.posix = POSIX
+        self.python_version = PYTHON_VERSION
         
         if not os.path.exists(CONFIG_PATH):
             os.mkdir(CONFIG_PATH)
@@ -1586,12 +1590,13 @@ if __name__== "__main__":
         print "xml.dom.ext needs PyXML to be installed!"
 
     print "\n----------- ENVIRONMENT CONSTANTS -----------"
-    print "Configuration.install_method =", INSTALL_METHOD
+    print "Configuration.install_method {source,exe} =", INSTALL_METHOD
     print "Configuration.fpdb_program_path =", FPDB_PROGRAM_PATH
     print "Configuration.appdata_path =", APPDATA_PATH
     print "Configuration.config_path =", CONFIG_PATH
-    print "Configuration.os_family =", OS_FAMILY
-    print "Configuration.posix =", POSIX
+    print "Configuration.os_family {Linux,Mac,XP,Win7} =", OS_FAMILY
+    print "Configuration.posix {True/False} =", POSIX
+    print "Configuration.python_version =", PYTHON_VERSION
     print "----------- END ENVIRONMENT CONSTANTS -----------"
 
     print "press enter to end"

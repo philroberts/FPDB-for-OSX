@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 158
+DB_VERSION = 159
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -506,11 +506,6 @@ class Database:
         self.cursor.execute("SELECT name,id FROM Sites")
         sites = self.cursor.fetchall()
         self.config.set_site_ids(sites)
-
-    def add_site(self, site, site_code):
-        self.cursor.execute("INSERT INTO Sites "
-                            "SELECT max(id)+1, '%s', '%s' "
-                            "FROM Sites " % (site, site_code) )
 
     def check_version(self, database, create):
         self.wrongDbVersion = False
@@ -1881,7 +1876,7 @@ class Database:
                         hdata['boardcard3'],
                         hdata['boardcard4'],
                         hdata['boardcard5'],
-                        hdata['runIt'],
+                        hdata['runItTwice'],
                         hdata['playersAtStreet1'],
                         hdata['playersAtStreet2'],
                         hdata['playersAtStreet3'],
@@ -2848,7 +2843,7 @@ class Database:
             else:
                 if source=="HHC":
                     cursor.execute (self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),
-                            (hand.tourneyId, playerId, None, None, None, None, None, None))
+                            (hand.tourneyId, playerId, player[3], player[4], None, None, None, None))
                 elif source=="TS":
                     #print "all values: tourneyId",hand.tourneyId, "playerId",playerId, "rank",hand.ranks[player], "winnings",hand.winnings[player], "winCurr",hand.winningsCurrency[player], hand.rebuyCounts[player], hand.addOnCounts[player], hand.koCounts[player]
                     if hand.ranks[player]:

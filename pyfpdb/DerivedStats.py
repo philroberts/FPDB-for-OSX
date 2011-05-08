@@ -146,9 +146,9 @@ class DerivedStats():
         self.hands['boardcard5'] = cards[4]
         
         self.hands['boards']     = []
-        self.hands['runIt']      = False           
+        self.hands['runItTwice']      = False           
         for i in range(hand.runItTimes):
-            self.hands['runIt']  = True
+            self.hands['runItTwice']  = True
             boardcards = []
             for street in hand.communityStreets:
                 boardId = i+1

@@ -169,7 +169,7 @@ def compare_hands_file(filename, importer, errors):
                         or datum == 'tourneyId' 
                         or datum == 'gameSessionId'
                         or datum == 'fileId'
-                        or datum == 'runIt'):
+                        or datum == 'runItTwice'):
                         # Not an error. gametypeIds are dependent on the order added to the db.
                         #print "DEBUG: Skipping mismatched gamtypeId"
                         pass
