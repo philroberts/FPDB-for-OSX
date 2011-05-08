@@ -32,7 +32,7 @@ class Win2day(HandHistoryConverter):
     sitename = "Win2day"
     filetype = "text"
     codepage = "utf-8"
-    siteID   = 4
+    siteId   = 4
 
     # Static regexes
     re_GameInfo     = re.compile("""<HISTORY\sID="(?P<HID>[0-9]+)"\sSESSION="session[0-9]+\.xml"\s

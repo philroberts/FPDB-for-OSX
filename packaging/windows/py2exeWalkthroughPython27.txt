@@ -166,36 +166,41 @@ Extract: numpy-1.5.1-nosse.exe... 100%
 Execute: "C:\DOCUME~1\user\LOCALS~1\Temp\numpy-1.5.1-nosse.exe"
 Completed
 
-Step 6 Run py2exe to generate fpdb.exe
+Step 6 compile fpdb_folder_check.exe
+------------------------------------
+
+6.1/
+Install minGW minimal installation
+See instructions here....http://www.mingw.org/wiki/InstallationHOWTOforMinGW
+
+6.2/
+dos>gcc fpdb_folder_check.c -o fpdb_folder_check.exe
+
+Step 7 Run py2exe to generate fpdb.exe
 --------------------------------------
 
-6.0/ Set version number of build folder
+7.0/ Set version number of build folder
 dos> cd Desktop\fpdb\packaging\windows
 dos> write py2exe_setup.py
 change the value of fpdbver and save file
 
-6.1/ Run the script to create the fpdb.exe bundle
+7.1/ Run the script to create the fpdb.exe bundle
 
 dos> cd Desktop\fpdb\packaging\windows
 dos> c:\python27\python.exe py2exe_setup.py py2exe
 
 wait a while, watch lots of copying and whatever.
 
-6.2/ You should next get prompted for the GTK folder.
+7.2/ You should next get prompted for the GTK folder.
 Enter c:\GTK
 
-6.3/ If there are no errors reported, it has probably worked, we will test soon.
+7.3/ If there are no errors reported, it has probably worked, we will test soon.
 
 Build notes:
 
 There is a warning about dll's not included  "umath.pyd - c:\Python27\lib\site-packages\numpy\core\umath.pyd"
  - reason for this is not understood at present.  (Umath is apparently included in the built package).
 
-
-Step 7 not currently used
--------------------------
-
-Has been deleted
 
 
 Step 8 Drag out the completed bundle

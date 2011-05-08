@@ -67,8 +67,17 @@ class PartyPoker(HandHistoryConverter):
                       #'200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
                       #'500.00': ('??', '250.00'), '500': ('??', '250.00'),
                   }
-    NLim_Blinds_20bb = {    '0.80': ('0.01', '0.01'),
-                            '1.60': ('0.01', '0.04'),
+    NLim_Blinds_20bb = {    '0.80': ('0.01', '0.02'),
+                            '1.60': ('0.02', '0.04'),
+                            '4': ('0.05', '0.10'),
+                            '10': ('0.10', '0.25'),
+                            '20': ('0.25', '0.50'),
+                            '40': ('0.50', '1.00'),
+                            #'10': ('0.10', '0.25'),
+                            #'10': ('0.10', '0.25'),
+                            #'10': ('0.10', '0.25'),
+                            #'10': ('0.10', '0.25'),
+                            #'10': ('0.10', '0.25'),
                        }
 
     months = { 'January':1, 'Jan':1, 'February':2, 'Feb':2, 'March':3, 'Mar':3,
@@ -105,20 +114,21 @@ class PartyPoker(HandHistoryConverter):
             \s+Total\s+number\s+of\s+players\s+\:\s+(?P<PLYRS>\d+)/?(?P<MAX>\d+)?
             """, re.VERBOSE|re.MULTILINE|re.DOTALL)
 
-    #re_GameInfoTrny     = re.compile("""
-    #        (?P<LIMIT>(NL|PL|))\s*
-    #        (?P<GAME>(Texas\ Hold\'em|Omaha))\s+
-    #        (?:(?P<BUYIN>\$?[.,0-9]+)\s*(?P<BUYIN_CURRENCY>%(LEGAL_ISO)s)?\s*Buy-in\s+)?
-    #        Trny:\s?(?P<TOURNO>\d+)\s+
-    #        Level:\s*(?P<LEVEL>\d+)\s+
-    #        ((Blinds|Stakes)(?:-Antes)?)\(
-    #            (?P<SB>[.,0-9 ]+)\s*
-    #            /(?P<BB>[.,0-9 ]+)
-    #            (?:\s*-\s*(?P<ANTE>[.,0-9 ]+)\$?)?
-    #        \)
-    #        \s*\-\s*
-    #        (?P<DATETIME>.+)
-    #        """ % substitutions, re.VERBOSE | re.UNICODE)
+    re_GameInfoTrny     = re.compile("""
+            \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
+            (?P<LIMIT>(NL|PL|))\s*
+            (?P<GAME>(Texas\ Hold\'em|Omaha))\s+
+            (?:(?P<BUYIN>[%(LS)s]?[%(NUM)s]+)\s*(?P<BUYIN_CURRENCY>%(LEGAL_ISO)s)?\s*Buy-in\s+)?
+            Trny:\s?(?P<TOURNO>\d+)\s+
+            Level:\s*(?P<LEVEL>\d+)\s+
+            ((Blinds|Stakes)(?:-Antes)?)\(
+                (?P<SB>[%(NUM)s ]+)\s*
+                /(?P<BB>[%(NUM)s ]+)
+                (?:\s*-\s*(?P<ANTE>[%(NUM)s ]+)\$?)?
+            \)
+            \s*\-\s*
+            (?P<DATETIME>.+)
+            """ % substitutions, re.VERBOSE | re.UNICODE)
 
     re_PlayerInfo   = re.compile(u"""
           Seat\s(?P<SEAT>\d+):\s
@@ -207,13 +217,15 @@ class PartyPoker(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
+            m = self.re_GameInfoTrny.search(handText)
+        if not m:
             tmp = handText[0:150]
             log.error(_("Unable to recognise gametype from: '%s'") % tmp)
             log.error("determineGameType: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
-        print "DEBUG: mg: %s" % mg
+        #print "DEBUG: mg: %s" % mg
 
         if 'LIMIT' in mg and mg['LIMIT'] != None:
             info['limitType'] = self.limits[mg['LIMIT']]
@@ -223,7 +235,7 @@ class PartyPoker(HandHistoryConverter):
             info['limitType'] = 'fl'
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
-        if mg['CASHBI'] != None:
+        if 'CASHBI' in mg and mg['CASHBI'] != None:
             # The summary is using buyin rather then listing the blinds
             # Only with NL games?
             mg['CASHBI'] = self.clearMoneyString(mg['CASHBI'])
@@ -248,6 +260,11 @@ class PartyPoker(HandHistoryConverter):
                 info['currency'] = self.currencies['$']
             else:
                 info['currency'] = self.currencies[mg['CURRENCY']]
+        if 'BUYIN_CURRENCY' in mg:
+            if mg['BUYIN_CURRENCY'] == None:
+                info['currency'] = self.currencies['$']
+            else:
+                info['currency'] = mg['BUYIN_CURRENCY']
         if 'MIXED' in mg:
             if mg['MIXED'] is not None: info['mix'] = self.mixes[mg['MIXED']]
 
@@ -264,21 +281,25 @@ class PartyPoker(HandHistoryConverter):
                 log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
                 log.error("determineGameType: " + _("Raising FpdbParseError"))
                 raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
-        print "DEUBG: DGT.info: %s" % info
+        #print "DEUBG: DGT.info: %s" % info
         return info
 
 
     def readHandInfo(self, hand):
         info = {}
+        m2 = None
         m  = self.re_HandInfo.search(hand.handText,re.DOTALL)
-        m2 = self.re_GameInfo.search(hand.handText)
+        if hand.gametype['type'] == 'ring':
+            m2 = self.re_GameInfo.search(hand.handText)
+        else:
+            m2 = self.re_GameInfoTrny.search(hand.handText)
         if m is None or m2 is None:
             log.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
             raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
         info.update(m.groupdict())
         info.update(m2.groupdict())
 
-        print "DEBUG: readHand.info: %s" % info
+        #print "DEBUG: readHand.info: %s" % info
 
         # FIXME: it's dirty hack
         # party doesnt subtract uncalled money from commited money
@@ -524,7 +545,7 @@ class PartyPoker(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
-            print "DEBUG: acts: %s" % acts
+            #print "DEBUG: acts: %s" % acts
             playerName = action.group('PNAME')
             amount = self.clearMoneyString(action.group('BET')) if action.group('BET') else None
             actionType = action.group('ATYPE')
@@ -538,8 +559,6 @@ class PartyPoker(HandHistoryConverter):
                     actionType = 'raises'
                 else:
                     actionType = 'calls'
-            else:
-                actionType = 'none'
 
             if actionType == 'raises':
                 if street == 'PREFLOP' and \
@@ -559,7 +578,7 @@ class PartyPoker(HandHistoryConverter):
             elif actionType == 'none':
                 pass
             else:
-                raise FpdbParseError(_("Unimplemented %s: '%s' '%s'") % ("readAction", playerName,actionType), hid = hand.hid)
+                raise FpdbParseError((_("Unimplemented %s: '%s' '%s'") + " hid:%s") % ("readAction", playerName, actionType, hand.handid))
 
     def readShowdownActions(self, hand):
         # all action in readShownCards
