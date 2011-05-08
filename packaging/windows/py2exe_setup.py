@@ -114,6 +114,7 @@ def copy_file(source,destination):
 distdir = r'fpdb-' + fpdbver
 rootdir = r'../../' #cwd is normally /packaging/windows
 pydir = rootdir+'pyfpdb/'
+packagedir = rootdir+'packaging/windows/'
 gfxdir = rootdir+'gfx/'
 sys.path.append( pydir )  # allows fpdb modules to be found by options/includes below
 
@@ -140,7 +141,8 @@ setup(
               ],
 
     console = [   {'script': pydir+'Stove.py', },
-                  {'script': pydir+'Configuration.py', }
+                  {'script': pydir+'Configuration.py', },
+                  {'script': pydir+'fpdb_prerun.py', }
               ],
 
     options = {'py2exe': {
@@ -176,9 +178,10 @@ print "*** py2exe build phase complete ***"
 copy_tree (r'c:\python27\Lib\site-packages\pytz\zoneinfo', os.path.join(r'dist', 'zoneinfo'))
 copy_tree (pydir+r'locale', os.path.join(r'dist', 'locale'))
 
-# create distribution folder and populate with gfx + bat
+# create distribution folder and populate with gfx + bat + fpdb_folder_check.exe
 copy_tree (gfxdir, os.path.join(distdir, 'gfx'))
-copy_file (rootdir+'run_fpdb.bat', distdir)
+copy_file (packagedir+'run_fpdb.bat', distdir)
+copy_file (packagedir+'fpdb_folder_check.exe', distdir)
 
 print "*** Renaming dist folder as pyfpdb folder ***"
 dest = os.path.join(distdir, 'pyfpdb')
