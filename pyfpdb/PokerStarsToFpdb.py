@@ -272,6 +272,8 @@ class PokerStars(HandHistoryConverter):
                             hand.buyinCurrency="EUR"
                         elif info[key].find("FPP")!=-1:
                             hand.buyinCurrency="PSFP"
+                        elif re.match("^[0-9+]*$", info[key]):
+                            hand.buyinCurrency="play"
                         else:
                             #FIXME: handle other currencies, play money
                             raise FpdbParseError(_("Failed to detect currency.") + " " + _("Hand ID: %s: '%s'") % (hand.handid, info[key]))
