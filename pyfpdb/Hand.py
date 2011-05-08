@@ -237,9 +237,8 @@ dealt   whether they were seen in a 'dealt to' line
         #####
         self.gametype['maxSeats'] = self.maxseats #TODO: move up to individual parsers
         self.gametype['ante'] = 0 #TODO store actual ante
-        
         self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
-        self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype, printdata = printtest)
+        self.dbid_gt = db.getSqlGameTypeId(self.siteId, self.gametype, printdata = printtest)
         
         #Gametypes
         hilo = "h"
@@ -254,13 +253,11 @@ dealt   whether they were seen in a 'dealt to' line
                                     int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200), int(self.gametype['maxSeats']), int(self.gametype['ante']))
         # Note: the above data is calculated in db.getGameTypeId
         #       Only being calculated above so we can grab the testdata
-        self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype, printdata = printtest)
         
         if self.tourNo!=None:
-            self.tourneyTypeId = db.createTourneyType(self)
-            self.tourneyId = db.createOrUpdateTourney(self, "HHC")
-            self.tourneysPlayersIds = db.createOrUpdateTourneysPlayers(self, "HHC")
-        #db.commit() #commit these transactions'  
+            self.tourneyTypeId = db.getSqlTourneyTypeIDs(self)
+            self.tourneyId = db.getSqlTourneyIDs(self)
+            self.tourneysPlayersIds = db.getSqlTourneysPlayersIDs(self)
         
     def assembleHand(self):
         self.stats.getStats(self)
