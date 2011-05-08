@@ -143,7 +143,7 @@ class PokerStars(HandHistoryConverter):
 
     # These used to be compiled per player, but regression tests say
     # we don't have to, and it makes life faster.
-    short_subst = {'PLYR': r'(?P<PNAME>.+?)', 'CUR': '(\$|\xe2\x82\xac)?'}
+    short_subst = {'PLYR': r'(?P<PNAME>.+?)', 'CUR': '\$?'}
     re_PostSB           = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[.0-9]+)" %  short_subst, re.MULTILINE)
     re_PostBB           = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[.0-9]+)" %  short_subst, re.MULTILINE)
     re_Antes            = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % short_subst, re.MULTILINE)
