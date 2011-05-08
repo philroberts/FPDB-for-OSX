@@ -377,7 +377,7 @@ class Sql:
                             boardcard4 smallint,
                             boardcard5 smallint,
                             texture smallint,
-                            runIt BOOLEAN,
+                            runItTwice BOOLEAN,
                             playersVpi SMALLINT NOT NULL,         /* num of players vpi */
                             playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4 */
                             playersAtStreet2 SMALLINT NOT NULL,
@@ -417,7 +417,7 @@ class Sql:
                             boardcard4 smallint,
                             boardcard5 smallint,
                             texture smallint,
-                            runIt BOOLEAN,
+                            runItTwice BOOLEAN,
                             playersVpi SMALLINT NOT NULL,         /* num of players vpi */
                             playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4 */
                             playersAtStreet2 SMALLINT NOT NULL,
@@ -456,7 +456,7 @@ class Sql:
                             boardcard4 INT,
                             boardcard5 INT,
                             texture INT,
-                            runIt BOOLEAN,
+                            runItTwice BOOLEAN,
                             playersVpi INT NOT NULL,         /* num of players vpi */
                             playersAtStreet1 INT NOT NULL,   /* num of players seeing flop/street4 */
                             playersAtStreet2 INT NOT NULL,
@@ -5149,7 +5149,7 @@ class Sql:
                                             boardcard3,
                                             boardcard4,
                                             boardcard5,
-                                            runIt,
+                                            runItTwice,
                                             playersAtStreet1,
                                             playersAtStreet2,
                                             playersAtStreet3,
