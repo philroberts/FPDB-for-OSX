@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2011-05-08 06:20+CEST\n"
-"PO-Revision-Date: 2011-04-25 17:24+0200\n"
+"PO-Revision-Date: 2011-05-09 15:33+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -3158,20 +3158,19 @@ msgstr "Operációs rendszer"
 
 #: fpdb.pyw:269
 msgid "fpdb version"
-msgstr ""
+msgstr "fpdb verzió"
 
 #: fpdb.pyw:270
-#, fuzzy
 msgid "database used"
-msgstr "Adatbázisok"
+msgstr "használt adatbázis"
 
 #: fpdb.pyw:271
 msgid "language"
-msgstr ""
+msgstr "nyelv"
 
 #: fpdb.pyw:272
 msgid "character encoding"
-msgstr ""
+msgstr "karakter kódolás"
 
 #: fpdb.pyw:284
 msgid "Your config file is: "
@@ -3470,18 +3469,16 @@ msgid "<control>P"
 msgstr "<control>P"
 
 #: fpdb.pyw:901
-#, fuzzy
 msgid "Ring _Player Stats"
-msgstr "Készpénzes statisztikák"
+msgstr "Kész_pénzes statisztikák"
 
 #: fpdb.pyw:902
 msgid "<control>T"
 msgstr "<control>T"
 
 #: fpdb.pyw:902
-#, fuzzy
 msgid "_Tourney Stats"
-msgstr "Versenystatisztikák"
+msgstr "Versenys_tatisztikák"
 
 #: fpdb.pyw:903
 msgid "Tourney _Viewer"
@@ -3492,9 +3489,8 @@ msgid "<control>O"
 msgstr "<control>O"
 
 #: fpdb.pyw:904
-#, fuzzy
 msgid "P_ositional Stats (tabulated view)"
-msgstr "P_ozíciós statisztikák (táblázat; SQLite-tal nem)"
+msgstr "P_ozíciós statisztikák (táblázat)"
 
 #: fpdb.pyw:905 fpdb.pyw:1133
 msgid "Session Stats"
@@ -3766,9 +3762,8 @@ msgid "Unknown Site"
 msgstr "Ismeretlen terem"
 
 #: fpdb.pyw:1385
-#, fuzzy
 msgid "Unable to find site  '%s'"
-msgstr "Nem sikerült felismerni a leosztásinformációkat innen: '%s'"
+msgstr "Nem sikerült megtalálni a(z) '%s' termet"
 
 #: fpdb_import.py:51
 msgid "Import database module: MySQLdb not found"
@@ -3890,14 +3885,13 @@ msgstr ""
 "http://sourceforge.net/projects/pywin32/"
 
 #: fpdb_prerun.py:136
-#, fuzzy
 msgid ""
 "\n"
 "python 2.6-2.7 not found, please install python 2.6 or 2.7 for fpdb\n"
 msgstr ""
 "\n"
-"Python 2.5-2.7 nem található, kérlek telepítsd a Python 2.5-öt, 2.6-ot, vagy "
-"2.7-et az fpdb számára\n"
+"Python 2.6-2.7 nem található, kérlek telepítsd a Python 2.6-ot vagy 2.7-et "
+"az fpdb számára\n"
 
 #: interlocks.py:52
 msgid "lock already held by:"
