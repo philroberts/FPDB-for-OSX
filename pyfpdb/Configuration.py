@@ -566,7 +566,7 @@ class General(dict):
         #                e.g. user could set to 4.0 for day to start at 4am local time
         # [ HH_bulk_path was here - now moved to import section ]
         for (name, value) in node.attributes.items():
-            log.debug(_("config.general: adding %s = %s") % (name,value))
+            log.debug(unicode(_("config.general: adding %s = %s"), "utf8") % (name,value))
             self[name] = value
         
         try:
