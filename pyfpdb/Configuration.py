@@ -762,7 +762,7 @@ class Config:
         added,n = 1,0  # use n to prevent infinite loop if add_missing_elements() fails somehow
         while added > 0 and n < 2:
             n = n + 1
-            log.info(_("Reading configuration file %s") % file)
+            log.info(unicode(_("Reading configuration file %s"), "utf8") % file)
             #print (("\n"+_("Reading configuration file %s")+"\n") % file)
             try:
                 doc = xml.dom.minidom.parse(file)
