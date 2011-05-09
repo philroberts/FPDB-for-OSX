@@ -375,7 +375,8 @@ class Aux_Seats(Aux_Window):
                 (x, y) = self.params['layout'][self.hud.max].common
             else:
                 (x, y) = loc[adj[i]]
-            self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)       
+#            self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)
+            self.positions[i] = self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
 
     def create(self):
@@ -396,7 +397,8 @@ class Aux_Seats(Aux_Window):
             self.m_windows[i].set_transient_for(self.hud.main_window)  # FIXME: shouldn't this be the table window??
             self.m_windows[i].set_focus_on_map(False)
             self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
-            self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)
+#            self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)
+            self.positions[i] =  self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
             if self.params.has_key('opacity'):
                 self.m_windows[i].set_opacity(float(self.params['opacity']))
@@ -445,9 +447,11 @@ class Aux_Seats(Aux_Window):
         height = self.hud.table.height
         for (i, pos) in self.positions.iteritems():
              if i != 'common':
-                new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x) * 1000 / witdh, (pos[1] - self.hud.table.y) * 1000 / height)
+#                new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x) * 1000 / witdh, (pos[1] - self.hud.table.y) * 1000 / height)
+                new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y) )
              else:
-                new_locs[i] = ((pos[0] - self.hud.table.x) * 1000 / witdh, (pos[1] - self.hud.table.y) * 1000 / height)
+#                new_locs[i] = ((pos[0] - self.hud.table.x) * 1000 / witdh, (pos[1] - self.hud.table.y) * 1000 / height)
+                new_locs[i] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y))
         self.config.edit_aux_layout(self.params['name'], self.hud.max, locations = new_locs)
 
     def configure_event_cb(self, widget, event, i, *args):

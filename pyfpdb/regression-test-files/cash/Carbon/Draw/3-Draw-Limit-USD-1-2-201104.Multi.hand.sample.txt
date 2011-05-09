@@ -1,0 +1,404 @@
+<description type="2-7 Lowball" stakes="Limit $1/$2"/>
+<game id="33423082-1" starttime="20110419085211" numholecards="5" gametype="67" realmoney="true" data="20110419|Minnehaha (33423082)|33423082|33423082-1|false">
+	<players dealer="3">
+		<player seat="1" nickname="Villain" balance="$30.00" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$50.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1303221132531" player="3" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1303221135171" player="1" amount="1.00"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1303221146937" player="3"/>
+		<cards type="HOLE" cards="4s,Qc,9d,Ad,5s" player="3" hand="A-Q-9-5-4"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="4" type="MUCK" timestamp="1303221148687" player="1"/>
+		<winner amount="1.50" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="33423082-2" starttime="20110419085229" numholecards="5" gametype="67" realmoney="true" data="20110419|Minnehaha (33423082)|33423082|33423082-2|false">
+	<players dealer="1">
+		<player seat="1" nickname="Villain" balance="$30.50" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$49.50" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1303221151109" player="1" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1303221151562" player="3" amount="1.00"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1303221154968" player="1"/>
+		<cards type="HOLE" cards="Ac,2c,Jh,Qd,Td" player="3" hand="A-Q-J-T-2"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="4" type="MUCK" timestamp="1303221155781" player="3"/>
+		<winner amount="1.50" uncalled="false" potnumber="1" player="3" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="33423082-3" starttime="20110419085236" numholecards="5" gametype="67" realmoney="true" data="20110419|Minnehaha (33423082)|33423082|33423082-3|false">
+	<players dealer="3">
+		<player seat="1" nickname="Villain" balance="$30.00" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$50.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1303221158203" player="3" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1303221158500" player="1" amount="1.00"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1303221161890" player="3" amount="2.00"/>
+		<event sequence="4" type="CALL" timestamp="1303221164140" player="1" amount="1.00"/>
+		<cards type="HOLE" cards="Th,4s,8d,3c,Kh" player="3" hand="K-T-8-4-3"/>
+	</round>
+	<round id="FIRST_DRAW" sequence="3">
+		<event sequence="5" type="DRAW" timestamp="1303221165937" player="1" text="0"/>
+		<event sequence="6" type="DRAW" timestamp="1303221169468" player="3" text="2"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="3h,4s,8d,3c,As" player="3" hand="Pair of Threes"/>
+	</round>
+	<round id="POST_FIRST_DRAW" sequence="4">
+		<event sequence="7" type="BET" timestamp="1303221171125" player="1" amount="1.00"/>
+		<event sequence="8" type="FOLD" timestamp="1303221178656" player="3"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="5">
+		<event sequence="9" type="MUCK" timestamp="1303221180250" player="1"/>
+		<winner amount="4.80" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+	</round>
+</game>
+
+<game id="33423082-4" starttime="20110419085302" numholecards="5" gametype="67" realmoney="true" data="20110419|Minnehaha (33423082)|33423082|33423082-4|false">
+	<players dealer="1">
+		<player seat="1" nickname="Villain" balance="$31.80" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$48.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1303221182734" player="1" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1303221183187" player="3" amount="1.00"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="3" type="CALL" timestamp="1303221186546" player="1" amount="0.50"/>
+		<event sequence="4" type="CHECK" timestamp="1303221189921" player="3"/>
+		<cards type="HOLE" cards="Qd,7h,Kh,Td,2h" player="3" hand="K-Q-T-7-2"/>
+	</round>
+	<round id="FIRST_DRAW" sequence="3">
+		<event sequence="5" type="DRAW" timestamp="1303221192390" player="3" text="3"/>
+		<event sequence="6" type="DRAW" timestamp="1303221194640" player="1" text="3"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="4d,7h,8h,Kd,2h" player="3" hand="K-8-7-4-2"/>
+	</round>
+	<round id="POST_FIRST_DRAW" sequence="4">
+		<event sequence="7" type="BET" timestamp="1303221201703" player="3" amount="1.00"/>
+		<event sequence="8" type="FOLD" timestamp="1303221206015" player="1"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="5">
+		<event sequence="9" type="MUCK" timestamp="1303221206781" player="3"/>
+		<winner amount="2.90" uncalled="false" potnumber="1" player="3" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+	</round>
+</game>
+
+<game id="33423082-5" starttime="20110419085328" numholecards="5" gametype="67" realmoney="true" data="20110419|Minnehaha (33423082)|33423082|33423082-5|false">
+	<players dealer="3">
+		<player seat="1" nickname="Villain" balance="$30.80" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$48.90" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1303221209218" player="3" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1303221209718" player="1" amount="1.00"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1303221217031" player="3"/>
+		<cards type="HOLE" cards="Qh,Qc,9d,9c,Qs" player="3" hand="Full House - Queens over Nines"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="4" type="MUCK" timestamp="1303221218687" player="1"/>
+		<winner amount="1.50" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="33423082-6" starttime="20110419090851" numholecards="5" gametype="67" realmoney="true" data="20110419|Minnehaha (33423082)|33423082|33423082-6|false">
+	<players dealer="1">
+		<player seat="1" nickname="Villain" balance="$31.30" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$48.40" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1303222133171" player="1" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1303222133593" player="3" amount="1.00"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1303222138187" player="1" amount="2.00"/>
+		<event sequence="4" type="FOLD" timestamp="1303222141390" player="3"/>
+		<cards type="HOLE" cards="3h,Qc,Jc,9s,Jh" player="3" hand="Pair of Jacks"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1303222143484" player="1"/>
+		<winner amount="3.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="33423082-7" starttime="20110419090904" numholecards="5" gametype="67" realmoney="true" data="20110419|Minnehaha (33423082)|33423082|33423082-7|false">
+	<players dealer="3">
+		<player seat="1" nickname="Villain" balance="$32.30" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$47.40" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1303222145968" player="3" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1303222146906" player="1" amount="1.00"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1303222149578" player="3" amount="2.00"/>
+		<event sequence="4" type="FOLD" timestamp="1303222154609" player="1"/>
+		<cards type="HOLE" cards="5s,5c,Jd,7c,4d" player="3" hand="Pair of Fives"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1303222155375" player="3"/>
+		<winner amount="3.00" uncalled="false" potnumber="1" player="3" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="33423082-8" starttime="20110419090915" numholecards="5" gametype="67" realmoney="true" data="20110419|Minnehaha (33423082)|33423082|33423082-8|false">
+	<players dealer="1">
+		<player seat="1" nickname="Villain" balance="$31.30" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$48.40" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1303222157765" player="1" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1303222158171" player="3" amount="1.00"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="3" type="CALL" timestamp="1303222162921" player="1" amount="0.50"/>
+		<event sequence="4" type="CHECK" timestamp="1303222165250" player="3"/>
+		<cards type="HOLE" cards="8s,Tc,Qc,Qs,4d" player="3" hand="Pair of Queens"/>
+	</round>
+	<round id="FIRST_DRAW" sequence="3">
+		<event sequence="5" type="DRAW" timestamp="1303222168281" player="3" text="3"/>
+		<event sequence="5" type="CHAT" timestamp="1303222174703" player="Villain" text="see the 3?"/>
+		<event sequence="5" type="CHAT" timestamp="1303222181875" player="Hero" text="ahhhh yes"/>
+		<event sequence="6" type="DRAW" timestamp="1303222183468" player="1" text="2"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="8s,5c,9h,8d,4d" player="3" hand="Pair of Eights"/>
+	</round>
+	<round id="POST_FIRST_DRAW" sequence="4">
+		<event sequence="6" type="CHAT" timestamp="1303222188546" player="Hero" text="its tricky"/>
+		<event sequence="6" type="CHAT" timestamp="1303222197000" player="Villain" text="not great, but it works"/>
+		<event sequence="7" type="BET" timestamp="1303222197484" player="3" amount="1.00"/>
+		<event sequence="8" type="FOLD" timestamp="1303222201171" player="1"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="5">
+		<event sequence="9" type="MUCK" timestamp="1303222201953" player="3"/>
+		<winner amount="2.90" uncalled="false" potnumber="1" player="3" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+	</round>
+</game>
+
+<game id="33423082-9" starttime="20110419091003" numholecards="5" gametype="67" realmoney="true" data="20110419|Minnehaha (33423082)|33423082|33423082-9|false">
+	<players dealer="3">
+		<player seat="1" nickname="Villain" balance="$30.30" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$49.30" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1303222204406" player="3" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1303222204828" player="1" amount="1.00"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1303222207359" player="3"/>
+		<cards type="HOLE" cards="Td,Tc,Jd,5d,5s" player="3" hand="Two Pair Tens and Fives"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="4" type="MUCK" timestamp="1303222217359" player="1"/>
+		<winner amount="1.50" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="33423082-10" starttime="20110419091019" numholecards="5" gametype="67" realmoney="true" data="20110419|Minnehaha (33423082)|33423082|33423082-10|false">
+	<players dealer="1">
+		<player seat="1" nickname="Villain" balance="$30.80" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$48.80" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1303222220359" player="1" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1303222220796" player="3" amount="1.00"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="2" type="CHAT" timestamp="1303222224625" player="Villain" text="i liked the ps sw best also, probably just used to it after 6 years "/>
+		<event sequence="3" type="RAISE" timestamp="1303222226421" player="1" amount="2.00"/>
+		<event sequence="4" type="FOLD" timestamp="1303222230921" player="3"/>
+		<cards type="HOLE" cards="3d,Qh,Kd,Qc,Jd" player="3" hand="Pair of Queens"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1303222233000" player="1"/>
+		<winner amount="3.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="33423082-11" starttime="20110419091034" numholecards="5" gametype="67" realmoney="true" data="20110419|Minnehaha (33423082)|33423082|33423082-11|false">
+	<players dealer="3">
+		<player seat="1" nickname="Villain" balance="$31.80" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$47.80" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1303222235437" player="3" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1303222236015" player="1" amount="1.00"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="2" type="CHAT" timestamp="1303222240265" player="Hero" text="u play td for 6 years?"/>
+		<event sequence="3" type="FOLD" timestamp="1303222241796" player="3"/>
+		<cards type="HOLE" cards="9d,4s,Qd,Qc,Kc" player="3" hand="Pair of Queens"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="4" type="MUCK" timestamp="1303222244203" player="1"/>
+		<winner amount="1.50" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="33423082-12" starttime="20110419091045" numholecards="5" gametype="67" realmoney="true" data="20110419|Minnehaha (33423082)|33423082|33423082-12|false">
+	<players dealer="1">
+		<player seat="1" nickname="Villain" balance="$32.30" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$47.30" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1303222246687" player="1" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1303222247109" player="3" amount="1.00"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="2" type="CHAT" timestamp="1303222258984" player="Villain" text="no, ps for 6 yrs, pretty new to td"/>
+		<event sequence="3" type="FOLD" timestamp="1303222265812" player="1"/>
+		<cards type="HOLE" cards="Ad,6h,3d,6c,7d" player="3" hand="Pair of Sixes"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="4" type="MUCK" timestamp="1303222266562" player="3"/>
+		<winner amount="1.50" uncalled="false" potnumber="1" player="3" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="33423082-13" starttime="20110419091107" numholecards="5" gametype="67" realmoney="true" data="20110419|Minnehaha (33423082)|33423082|33423082-13|false">
+	<players dealer="3">
+		<player seat="1" nickname="Villain" balance="$31.80" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$47.80" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1303222268984" player="3" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1303222269593" player="1" amount="1.00"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="3" type="CALL" timestamp="1303222272953" player="3" amount="0.50"/>
+		<event sequence="3" type="CHAT" timestamp="1303222276984" player="Villain" text="td part of 8-game, so had to learn"/>
+		<event sequence="4" type="RAISE" timestamp="1303222284312" player="1" amount="2.00"/>
+		<event sequence="5" type="FOLD" timestamp="1303222291437" player="3"/>
+		<cards type="HOLE" cards="6d,7c,5s,5c,Qh" player="3" hand="Pair of Fives"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="6" type="MUCK" timestamp="1303222293328" player="1"/>
+		<winner amount="3.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="33423082-14" starttime="20110419091134" numholecards="5" gametype="67" realmoney="true" data="20110419|Minnehaha (33423082)|33423082|33423082-14|false">
+	<players dealer="1">
+		<player seat="1" nickname="Villain" balance="$32.80" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$46.80" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1303222295812" player="1" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1303222296234" player="3" amount="1.00"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1303222308046" player="1" amount="2.00"/>
+		<event sequence="4" type="CALL" timestamp="1303222314609" player="3" amount="1.00"/>
+		<cards type="HOLE" cards="Qh,Tc,4s,6h,7h" player="3" hand="Q-T-7-6-4"/>
+	</round>
+	<round id="FIRST_DRAW" sequence="3">
+		<event sequence="5" type="DRAW" timestamp="1303222316406" player="3" text="2"/>
+		<event sequence="6" type="DRAW" timestamp="1303222323109" player="1" text="1"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="9d,9c,4s,6h,7h" player="3" hand="Pair of Nines"/>
+	</round>
+	<round id="POST_FIRST_DRAW" sequence="4">
+		<event sequence="7" type="CHECK" timestamp="1303222327281" player="3"/>
+		<event sequence="8" type="BET" timestamp="1303222332187" player="1" amount="1.00"/>
+		<event sequence="8" type="CHAT" timestamp="1303222334234" player="Villain" text="played some higher stakes td cash games on ps to learn"/>
+		<event sequence="9" type="CALL" timestamp="1303222335875" player="3" amount="1.00"/>
+	</round>
+	<round id="SECOND_DRAW" sequence="5">
+		<event sequence="10" type="DRAW" timestamp="1303222342640" player="3" text="1"/>
+		<event sequence="11" type="DRAW" timestamp="1303222345312" player="1" text="0"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="3c,9c,4s,6h,7h" player="3" hand="9-7-6-4-3"/>
+	</round>
+	<round id="POST_SECOND_DRAW" sequence="6">
+		<event sequence="12" type="CHECK" timestamp="1303222361500" player="3"/>
+		<event sequence="13" type="BET" timestamp="1303222364218" player="1" amount="2.00"/>
+		<event sequence="14" type="RAISE" timestamp="1303222368984" player="3" amount="4.00"/>
+		<event sequence="15" type="CALL" timestamp="1303222372734" player="1" amount="2.00"/>
+	</round>
+	<round id="THIRD_DRAW" sequence="7">
+		<event sequence="16" type="DRAW" timestamp="1303222378093" player="3" text="0"/>
+		<event sequence="17" type="DRAW" timestamp="1303222381468" player="1" text="0"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="3c,9c,4s,6h,7h" player="3" hand="9-7-6-4-3"/>
+	</round>
+	<round id="POST_THIRD_DRAW" sequence="8">
+		<event sequence="18" type="CHECK" timestamp="1303222387421" player="3"/>
+		<event sequence="19" type="CHECK" timestamp="1303222389562" player="1"/>
+	</round>
+	<round id="SHOWDOWN" sequence="9">
+		<event sequence="20" type="SHOW" timestamp="1303222390218" player="3"/>
+		<event sequence="21" type="SHOW" timestamp="1303222390843" player="1"/>
+		<cards type="SHOWN" cards="3c,9c,4s,6h,7h" player="3"/>
+		<cards type="SHOWN" cards="2d,6c,4c,8s,7c" player="1"/>
+	</round>
+	<round id="END_OF_GAME" sequence="10">
+		<winner amount="13.50" uncalled="false" potnumber="1" player="1" hand="8-7-6-4-2" pottype="n"/>
+	</round>
+</game>
+
+<game id="33423082-15" starttime="20110419091312" numholecards="5" gametype="67" realmoney="true" data="20110419|Minnehaha (33423082)|33423082|33423082-15|false">
+	<players dealer="3">
+		<player seat="1" nickname="Villain" balance="$39.30" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$39.80" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1303222393109" player="3" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1303222393609" player="1" amount="1.00"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1303222406296" player="3" amount="2.00"/>
+		<event sequence="4" type="CALL" timestamp="1303222410296" player="1" amount="1.00"/>
+		<cards type="HOLE" cards="Ah,3c,7c,6s,9d" player="3" hand="A-9-7-6-3"/>
+	</round>
+	<round id="FIRST_DRAW" sequence="3">
+		<event sequence="4" type="CHAT" timestamp="1303222419750" player="Villain" text="got a 5 draw game starting up, gtg"/>
+		<event sequence="5" type="DRAW" timestamp="1303222430437" player="1" text="2"/>
+		<event sequence="6" type="DRAW" timestamp="1303222438140" player="3" text="1"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="Jh,3c,7c,6s,9d" player="3" hand="J-9-7-6-3"/>
+	</round>
+	<round id="POST_FIRST_DRAW" sequence="4">
+		<event sequence="7" type="BET" timestamp="1303222442171" player="1" amount="1.00"/>
+		<event sequence="8" type="FOLD" timestamp="1303222449703" player="3"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="5">
+		<event sequence="9" type="MUCK" timestamp="1303222454000" player="1"/>
+		<winner amount="4.80" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+	</round>
+</game>

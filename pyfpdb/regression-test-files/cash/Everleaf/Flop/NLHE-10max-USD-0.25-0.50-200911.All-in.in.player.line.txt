@@ -1,0 +1,45 @@
+Everleaf Gaming Game #116214546
+***** Hand history for game #116214546 *****
+Blinds $0.25/$0.50 NL Hold'em - 2009/11/17 - 18:57:01
+Table Catacaos
+Seat 10 is the button
+Total number of players: 10
+Seat 1: Player1 (  $ 48.35 USD )
+Seat 2: Player2 (  $ 49.70 USD )
+Seat 3: Player3 (  $ 49.50 USD )
+Seat 4: Player4 ( All-in )
+Seat 5: Player5 (  $ 23.65 USD )
+Seat 6: Player6 (  $ 34.85 USD )
+Seat 7: Player7 (  $ 51.75 USD )
+Seat 8: Player8 (  $ 147.31 USD )
+Seat 9: Hero (  $ 53.45 USD )
+Seat 10: Player10 (  $ 31.75 USD )
+Player1: posts small blind [$ 0.25 USD]
+Player3: posts big blind [$ 0.50 USD]
+** Dealing down cards **
+Dealt to Hero [ Ad, 5c ]
+Player5 calls [$ 0.50 USD]
+Player6 calls [$ 0.50 USD]
+Player7 folds
+Player8 folds
+Hero folds
+Player10 folds
+Player1 folds
+Player3 checks
+** Dealing Flop ** [ 9d, 3c, 4h ]
+Player3 checks
+Player5 checks
+Player6: bets [$ 1.75 USD]
+Player3 folds
+Player5 calls [$ 1.75 USD]
+** Dealing Turn ** [ 3h ]
+Player5 checks
+Player6: bets [$ 5.25 USD]
+Player5 calls [$ 5.25 USD]
+** Dealing River ** [ 6d ]
+Player5 folds
+Player6 does not show cards
+Player6 wins $ 15 USD from main pot
+
+
+
