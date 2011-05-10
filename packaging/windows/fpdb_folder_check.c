@@ -38,7 +38,7 @@ To compile this function, install mingw then DOS>fpdb_folder_check.c -o fpdb_fol
   good enough to identify problems for most first-time users.
 */
 
-
+#include <unistd.h>
 #include <stdio.h>
 
 int main(int argc, char **argv)
@@ -69,7 +69,7 @@ for(i = 0; c[i]; i++) {
 
 if (debugmode) {printf ("\nascii OK\n");}
 
-if (access(argv[1]) != 0) {
+if (access(argv[1], F_OK) != 0) {
     if (debugmode) {printf ("access() fail: Folder does not not exist");}
     return 1;
     }
