@@ -566,7 +566,7 @@ class General(dict):
         #                e.g. user could set to 4.0 for day to start at 4am local time
         # [ HH_bulk_path was here - now moved to import section ]
         for (name, value) in node.attributes.items():
-            log.debug(_("config.general: adding %s = %s") % (name,value))
+            log.debug(unicode(_("config.general: adding %s = %s"), "utf8") % (name,value))
             self[name] = value
         
         try:
@@ -762,7 +762,7 @@ class Config:
         added,n = 1,0  # use n to prevent infinite loop if add_missing_elements() fails somehow
         while added > 0 and n < 2:
             n = n + 1
-            log.info(_("Reading configuration file %s") % file)
+            log.info(unicode(_("Reading configuration file %s"), "utf8") % file)
             #print (("\n"+_("Reading configuration file %s")+"\n") % file)
             try:
                 doc = xml.dom.minidom.parse(file)
