@@ -96,24 +96,21 @@ class Cake(HandHistoryConverter):
 
     re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
     short_subst = {'PLYR': r'(?P<PNAME>.+?)', 'CUR': '\$?'}
-    re_PostSB           = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[.0-9]+)" %  short_subst, re.MULTILINE)
-    re_PostBB           = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[.0-9]+)" %  short_subst, re.MULTILINE)
-    re_Antes            = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % short_subst, re.MULTILINE)
-    re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % short_subst, re.MULTILINE)
-    re_PostBoth         = re.compile(r"^%(PLYR)s: posts small \& big blinds %(CUR)s(?P<SBBB>[.0-9]+)" %  short_subst, re.MULTILINE)
-    re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % short_subst, re.MULTILINE)
-    re_Action           = re.compile(r"""
-                        ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds)
-                        (\s(%(CUR)s)?(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?
-                        \s*(and\sis\sall.in)?
-                        (and\shas\sreached\sthe\s[%(CUR)s\d\.]+\scap)?
-                        (\son|\scards?)?
-                        (\s\[(?P<CARDS>.+?)\])?\s*$"""
+    re_PostSB       = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[.0-9]+)$" %  short_subst, re.MULTILINE)
+    re_PostBB       = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[.0-9]+)$" %  short_subst, re.MULTILINE)
+    re_Antes        = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % short_subst, re.MULTILINE)
+    re_BringIn      = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % short_subst, re.MULTILINE)
+    re_PostBoth     = re.compile(r"^%(PLYR)s:posts dead blind %(CUR)s(?P<SB>[.0-9]+) and big blind %(CUR)s(?P<BB>[.0-9]+)" %  short_subst, re.MULTILINE)
+    re_HeroCards    = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % short_subst, re.MULTILINE)
+    re_Action       = re.compile(r"""
+                        ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sis\sall\sin)
+                        (\s(%(CUR)s)?(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?$
+                        """
                          %  short_subst, re.MULTILINE|re.VERBOSE)
     re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" % short_subst['PLYR'], re.MULTILINE)
     re_sitsOut          = re.compile("^%s sits out" %  short_subst['PLYR'], re.MULTILINE)
     re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\]( and won \([.\d]+\) with (?P<STRING>.*))?" %  short_subst['PLYR'], re.MULTILINE)
-    re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s (\(button\) |\(small blind\) |\(big blind\) |\(button\) \(small blind\) |\(button\) \(big blind\) )?(collected|showed \[.*\] and won) \(%(CUR)s(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  short_subst, re.MULTILINE)
+    re_CollectPot       = re.compile(r"%(PLYR)s wins %(CUR)s(?P<POT>[.\d]+)" %  short_subst, re.MULTILINE)
     re_WinningRankOne   = re.compile(u"^%(PLYR)s wins the tournament and receives %(CUR)s(?P<AMT>[\.0-9]+) - congratulations!$" %  short_subst, re.MULTILINE)
     re_WinningRankOther = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place and received %(CUR)s(?P<AMT>[.0-9]+)\.$" %  short_subst, re.MULTILINE)
     re_RankOther        = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place$" %  short_subst, re.MULTILINE)
@@ -138,7 +135,7 @@ class Cake(HandHistoryConverter):
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
-        print "DEBUG: mg: %s" % mg
+        #print "DEBUG: mg: %s" % mg
         if 'LIMIT' in mg:
             info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
@@ -246,7 +243,10 @@ class Cake(HandHistoryConverter):
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+            sb = Decimal(a.group('SB'))
+            bb = Decimal(a.group('BB'))
+            sbbb = sb + bb
+            hand.addBlind(a.group('PNAME'), 'both', str(sbbb))
 
     def readHeroCards(self, hand):
         for street in ('PREFLOP', 'DEAL'):
@@ -261,17 +261,22 @@ class Cake(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
-            print "DEBUG: acts: %s" %acts
-            if action.group('ATYPE') == ' raises':
-                hand.addRaiseBy( street, action.group('PNAME'), action.group('BETTO') )
-            elif action.group('ATYPE') == ' calls':
+            #print "DEBUG: acts: %s" %acts
+            amount = action.group('BET') if action.group('BET') else None
+            actionType = action.group('ATYPE')
+
+            if actionType == ' raises':
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BETTO') )
+            elif actionType == ' calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' bets':
+            elif actionType == ' bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' folds':
+            elif actionType == ' folds':
                 hand.addFold( street, action.group('PNAME'))
-            elif action.group('ATYPE') == ' checks':
+            elif actionType == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
+            elif actionType == ' is all in':
+                hand.addAllIn(street, action.group('PNAME'), action.group('BET'))
             else:
                 print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 
