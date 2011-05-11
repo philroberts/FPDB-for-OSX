@@ -168,7 +168,6 @@ class DetectInstalledSites():
 
     def detectPartyPoker(self):
 
-        print "here"
         if Config.os_family == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/PartyGaming/PartyPoker/HandHistory/")
         elif Config.os_family == "XP":
