@@ -50,7 +50,6 @@ from decimal_wrapper import Decimal
 
 
 class Carbon(HandHistoryConverter):
-
     sitename = "Carbon"
     filetype = "text"
     codepage = "cp1252"
@@ -190,7 +189,7 @@ or None if we fail to get the info """
         # Check that the hand is complete up to the awarding of the pot; if
         # not, the hand is unparseable
         if self.re_EndOfHand.search(hand.handText) is None:
-            raise FpdbParseError("readHandInfo failed: HID: '%s' HID2: '%s'" %(m.group('HID1'), m.group('HID2')))
+            raise FpdbParseError("readHandInfo failed: EndOfHand missing HID: '%s-%s'" %(m.group('HID1'), m.group('HID2')))
 
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.handText)
