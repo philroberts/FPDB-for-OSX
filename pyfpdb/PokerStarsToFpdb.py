@@ -151,7 +151,7 @@ class PokerStars(HandHistoryConverter):
     re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""
                         ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
-                        (\s(%(CUR)s)?(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
+                        (\s%(CUR)s(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
                         \s*(and\sis\sall.in)?
                         (and\shas\sreached\sthe\s[%(CUR)s\d\.]+\scap)?
                         (\son|\scards?)?
