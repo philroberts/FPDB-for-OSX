@@ -152,9 +152,12 @@ def compare_hands_file(filename, importer, errors):
     for hand in handlist:
         ghash = hand.stats.getHands()
         # Delete unused data from hash
-        del ghash['gsc']
-        del ghash['sc']
-        del ghash['id']
+        try:
+            del ghash['gsc']
+            del ghash['sc']
+            del ghash['id']
+        except KeyError:
+            pass
         del ghash['boards']
         for datum in ghash:
             #print "DEBUG: hand: '%s'" % datum

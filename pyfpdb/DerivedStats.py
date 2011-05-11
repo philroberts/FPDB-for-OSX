@@ -518,11 +518,10 @@ class DerivedStats():
                         bet_level += 1
                 continue
             elif bet_level == 4:
-                if pname == second_agressor: 
+                if pname != first_agressor: 
                     self.handsplayers[pname]['street0_FoldTo4BChance'] = True
                     if act == 'folds':
                         self.handsplayers[pname]['street0_FoldTo4BDone'] = True
-                    break
 
     def calcCBets(self, hand):
         """Fill streetXCBChance, streetXCBDone, foldToStreetXCBDone, foldToStreetXCBChance

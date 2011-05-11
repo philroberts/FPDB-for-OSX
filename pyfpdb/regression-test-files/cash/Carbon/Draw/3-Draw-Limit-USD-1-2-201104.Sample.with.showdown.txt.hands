@@ -17,6 +17,7 @@
     'playersAtStreet4': 0,
     'playersVpi': 2,
     'runIt': False,
+    'runItTwice': False,
     'sc': None,
     'seats': 2,
     'sessionId': None,
