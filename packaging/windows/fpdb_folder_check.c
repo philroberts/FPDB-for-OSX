@@ -29,7 +29,7 @@ To compile this function, install mingw then DOS>fpdb_folder_check.c -o fpdb_fol
   this function is not coded to cleanly handle codepage/locale/UTF.  
   The value of argv is not necessarily exactly what was passed....instead.....
  We will make two checks instead (yes, it is a hack):
- 1  a char-by-char examination of the passed parameter to ensure 0 > char < 127
+ 1  a char-by-char examination of the passed parameter to ensure 32 >= char <= 127
  2 A call to access() to check for folder exists  (This check catches most situations
     with accented chars but will obviously NOT fail if an accented and non-accented
     folder actually exists.
@@ -40,41 +40,50 @@ To compile this function, install mingw then DOS>fpdb_folder_check.c -o fpdb_fol
 
 #include <unistd.h>
 #include <stdio.h>
+#include <windows.h>
 
 int main(int argc, char **argv)
 {
-int debugmode=0;
+int debugmode=1;
 
 if (argc != 2) {
      printf ("A helper function to examine a directory passed in the first argument\n");
-     printf ("Returns 0 if the directory exists, and contains only ascii characters 0 to 127\n");
+     printf ("Returns 0 if the directory exists, and contains only ascii characters 32 to 127\n");
      printf ("Returns 1 in all other cases\n");
      return 1;
     }
 
 if (debugmode) {
     printf (argv[1],"\n");
+    printf ("\nLength: %d ", strlen(argv[1]));
+    printf ("\nMAX_PATH: %d ", MAX_PATH);
     printf ("\n");
     }
 
 char *c = argv[1];
 int i;
 
-for(i = 0; c[i]; i++) {
+for(i=0; c[i]; i++) {
+/* this loop finishes when c[i]<>true which is end of string (null \0) */
     if (debugmode) {printf(" %d ", c[i]);}
-    if ((c[i] < 0)||(c[i] > 127)) {
-        if (debugmode) {printf ("Invalid ASCII");} 
-        return 1;}
+    if ((c[i] < 32)||(c[i] > 127)) {
+        if (debugmode) {printf ("\nInvalid ASCII");} 
+        return 1;
+        }
+    if (i > MAX_PATH-1) {
+        if (debugmode) {printf ("\nMAX_PATH (%d chars) exceeded", MAX_PATH);}
+        return 1;
+        }
     }
 
 if (debugmode) {printf ("\nascii OK\n");}
 
 if (access(argv[1], F_OK) != 0) {
-    if (debugmode) {printf ("access() fail: Folder does not not exist");}
+    if (debugmode) {printf ("\naccess() fail: Folder does not not exist");}
     return 1;
     }
 
-if (debugmode) {printf ("access() OK");}
+if (debugmode) {printf ("\naccess() OK");}
 return 0;
 
 }
