@@ -2578,7 +2578,7 @@ class Database:
                 print _("######## Gametype ##########")
                 import pprint
                 pp = pprint.PrettyPrinter(indent=4)
-                pp.pprint(row)
+                pp.pprint(gtinsert)
                 print _("###### End Gametype ########")
                 
             c.execute(self.sql.query['insertGameTypes'], gtinsert)
