@@ -23,10 +23,9 @@ Code
 ====
 atinm
 Chaz Littlejohn
-Chris Moore
+dooglus/Chris Moore
 danny
 donoban
-dooglus
 Eric Blade
 Erki Ferenc
 evilny/moomoo
