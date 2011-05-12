@@ -279,7 +279,7 @@ or None if we fail to get the info """
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
 
     def readHeroCards(self, hand):
-        for street in ('PREFLOP', 'DEAL'):
+        for street in ('PREFLOP', 'DEAL', 'THIRD'):
             if street in hand.streets.keys():
                 m = self.re_HeroCards.search(hand.handText)
                 if m:
