@@ -222,11 +222,11 @@ or None if we fail to get the info """
                            r'(<round id="THIRD_DRAW" sequence="[0-9]+">(?P<DRAWTHREE>.+))?', hand.handText,re.DOTALL)
         elif hand.gametype['base'] == 'stud':
             m =  re.search(r'(?P<ANTES>.+(?=<round id="BRING_IN" sequence="[0-9]+">)|.+)'
-                       r'(<round id="BRING_IN" sequence="[0-9]+">(?P<THIRD>.+(?=<round id="THIRD_STREET" sequence="[0-9]+">)|.+))?'
-                       r'(<round id="THIRD_STREET" sequence="[0-9]+">(?P<FOURTH>.+(?=<round id="FOURTH_STREET" sequence="[0-9]+">)|.+))?'
-                       r'(<round id="FOURTH_STREET" sequence="[0-9]+">(?P<FIFTH>.+(?=<round id="FIFTH_STREET" sequence="[0-9]+">)|.+))?'
-                       r'(<round id="FIFTH_STREET" sequence="[0-9]+">(?P<SIXTH>.+(?=<round id="SIXTH_STREET" sequence="[0-9]+">)|.+))?'
-                       r'(<round id="SIXTH_STREET" sequence="[0-9]+">(?P<SEVENTH>.+))?', hand.handText,re.DOTALL)
+                       r'(<round id="BRING_IN" sequence="[0-9]+">(?P<THIRD>.+(?=<round id="FOURTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="FOURTH_STREET" sequence="[0-9]+">(?P<FOURTH>.+(?=<round id="FIFTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="FIFTH_STREET" sequence="[0-9]+">(?P<FIFTH>.+(?=<round id="SIXTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="SIXTH_STREET" sequence="[0-9]+">(?P<SIXTH>.+(?=<round id="SEVENTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="SEVENTH_STREET" sequence="[0-9]+">(?P<SEVENTH>.+))?', hand.handText,re.DOTALL)
 
         hand.addStreets(m)
 
@@ -311,11 +311,11 @@ or None if we fail to get the info """
                 logging.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
 
     def readShowdownActions(self, hand):
-        for shows in self.re_ShowdownAction.finditer(hand.handText):
-            cards = shows.group('CARDS').split(',')
-            hand.addShownCards(cards,
-                               self.playerNameFromSeatNo(shows.group('PSEAT'),
-                                                         hand))
+        for street in ('RIVER', 'SEVENTH', 'DRAWTHREE'):
+            if street in hand.streets.keys() and hand.streets[street] != None:
+                for shows in self.re_ShowdownAction.finditer(hand.streets[street]):
+                    cards = shows.group('CARDS').split(',')
+                    hand.addShownCards(cards, self.playerNameFromSeatNo(shows.group('PSEAT'), hand))
 
     def readCollectPot(self, hand):
         pots = [Decimal(0) for n in range(hand.maxseats)]
@@ -332,7 +332,9 @@ or None if we fail to get the info """
                 hand.addCollectPot(player=pname, pot=pots[p])
 
     def readShownCards(self, hand):
-        for m in self.re_ShownCards.finditer(hand.handText):
-            cards = m.group('CARDS').split(',')
-            hand.addShownCards(cards=cards, player=self.playerNameFromSeatNo(m.group('PSEAT'), hand))
+        for street in ('RIVER', 'SEVENTH', 'DRAWTHREE'):
+            if street in hand.streets.keys() and hand.streets[street] != None:
+                for m in self.re_ShownCards.finditer(hand.streets[street]):
+                    cards = m.group('CARDS').split(',')
+                    hand.addShownCards(cards=cards, player=self.playerNameFromSeatNo(m.group('PSEAT'),hand))
 
