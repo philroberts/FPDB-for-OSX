@@ -17,7 +17,11 @@ Jabber: steffen@schaumburger.info
 2+2 Forum: steffen123
 
 Ray
-Carl
+
+Carl Gherardi
+carl.gherardi@gmail.com
+IRC: Worros/s0rrow
+2+2 Forum: Sorrow
 
 Code
 ====
@@ -31,7 +35,7 @@ Erki Ferenc
 evilny/moomoo
 Forrest
 Gerko de Roo
-gimick
+gimick/steve
 grindi
 lastpoet
 Matt Turnbull
@@ -41,7 +45,6 @@ PassThePeas
 Robert Wielinga
 Scott Wolchok
 sqlcoder
-steve
 tribumarchal
 
 Documentation
