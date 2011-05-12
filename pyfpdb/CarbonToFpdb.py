@@ -72,7 +72,7 @@ class Carbon(HandHistoryConverter):
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r'<description type="(?P<GAME>[-0-9a-zA-Z ]+)" stakes="(?P<LIMIT>[a-zA-Z ]+?)\s?\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?\)?"/>', re.MULTILINE)
+    re_GameInfo = re.compile(r'<description type="(?P<GAME>[-0-9a-zA-Z ]+)" stakes="(?P<LIMIT>[a-zA-Z ]+)\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?"/>', re.MULTILINE)
     re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLE>[-\ \#a-zA-Z\d\']+)(\(\d+\))?\|(?P<TOURNO>\d+)?.*>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
@@ -332,7 +332,7 @@ or None if we fail to get the info """
                 hand.addCollectPot(player=pname, pot=pots[p])
 
     def readShownCards(self, hand):
-        for street in ('RIVER', 'SEVENTH', 'DRAWTHREE'):
+        for street in ('FLOP', 'TURN', 'RIVER', 'SEVENTH', 'DRAWTHREE'):
             if street in hand.streets.keys() and hand.streets[street] != None:
                 for m in self.re_ShownCards.finditer(hand.streets[street]):
                     cards = m.group('CARDS').split(',')
