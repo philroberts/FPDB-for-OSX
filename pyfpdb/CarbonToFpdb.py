@@ -56,7 +56,7 @@ class Carbon(HandHistoryConverter):
     siteId   = 11
     copyGameHeader = True
 
-    limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'Pot Limit':'pl', 'Pot Limit ':'pl'}
+    limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'Pot Limit':'pl', 'Pot Limit ':'pl', 'Half Pot Limit':'hp'}
     games = {              # base, category
                     'Holdem' : ('hold','holdem'),
          'Holdem Tournament' : ('hold','holdem'),
@@ -115,6 +115,7 @@ class Carbon(HandHistoryConverter):
                 ["ring", "draw", "fl"],
                 ["ring", "draw", "pl"],
                 ["ring", "draw", "nl"],
+                ["ring", "draw", "hp"],
                 
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
@@ -285,8 +286,8 @@ or None if we fail to get the info """
                 if m:
                     hand.hero = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
                     cards = m.group('CARDS').split(',')
-                    hand.addHoleCards(street, hand.hero, closed=cards, shown=False,
-                              mucked=False, dealt=True)
+                    #print "DEBUG: cards: %s" % cards
+                    hand.addHoleCards(street, hand.hero, closed=cards, shown=False, mucked=False, dealt=True)
 
     def readAction(self, hand, street):
         logging.debug("readAction (%s)" % street)
