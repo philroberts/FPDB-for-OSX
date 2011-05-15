@@ -1,4 +1,7 @@
-This list is very incomplete! Contact steffen if you're missing from it.
+When possible please contact us using the means listed on http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Contact_-_Get_Help
+That way you'll get better help faster, and spread the workload for us more evenly.
+
+This list is somewhat incomplete! Contact steffen if you're missing from it.
 
 This is a list of everyone who contributed to fpdb. I'll be contacting everyone to ask whether/what contact details they want added. If you're using git feel free to update your own info. Everything is optional.
 
