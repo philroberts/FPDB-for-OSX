@@ -26,19 +26,29 @@ pygtk 2.22 ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.22/pygtk-2.
 pycairo 1.8.10 ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pycairo/1.8/pycairo-1.8.10.win32-py2.7.exe
 pyGobject X 2.26 ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pygobject/2.26/pygobject-2.26.0-1.win32-py2.7.exe
 pywin 216 ... http://sourceforge.net/projects/pywin32/files/pywin32/Build216/pywin32-216.win32-py2.7.exe/download
+winpaths 0.1 ... http://pypi.python.org/packages/any/w/winpaths/winpaths-0.1.win32.exe
 
-pypokereval 138 ... http://sourceforge.net/projects/fpdb/files/fpdb/pokereval-138.win32-py2.7.exe/download
+pypokereval 138 ... http://sourceforge.net/projects/fpdb/files/fpdb/pypoker-eval-win32/pokereval-138.win32-py2.7.exe/download
 cdecimal 2.2 ... http://www.bytereef.org/software/mpdecimal/releases/cdecimal-2.2.win32-py2.7.msi
+mysql-python 1.2.3 ... http://sourceforge.net/projects/fpdb/files/fpdb/MySQL-python-1.2.3-win32-py2.7/MySQL-python-1.2.3.win32-py2.7.exe/download
 psycopg2 ... http://www.stickpeople.com/projects/python/win-psycopg/psycopg2-2.2.1.win32-py2.6-pg8.4.3-release.exe
 
 (Note: stickpeople is the offical repository, not a community build)
 
 py2exe 0.6.9 ... http://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/py2exe-0.6.9.win32-py2.7.exe/download
 
-1.2/ MySQL 
+1.2/ Winpaths
 
-Install the following file:
-mysql-python 1.2.3 ... http://sourceforge.net/projects/fpdb/files/fpdb/MySQL-python-1.2.3.win32-py2.7.exe/download
+1.2.1/ The Winpaths package installer requires C++2005 runtime to install.  This is not installed by default,
+ and is a complete pain to sort out, so we will instead install winpaths manually.  This means that any uninstall
+ of winpaths will need to be done manually too.
+
+1.2.2/ download winpaths zip:
+winpaths 0.1 ... http://pypi.python.org/packages/source/w/winpaths/winpaths-0.1.zip
+
+1.2.3/ extract winpaths.py from the zip file and place it in c:\python27\lib\site-packages\
+
+1.2.4/ test by running python >>> import winpaths
 
 1.3/ pytz fixup to work in an executable package
 
@@ -156,36 +166,41 @@ Extract: numpy-1.5.1-nosse.exe... 100%
 Execute: "C:\DOCUME~1\user\LOCALS~1\Temp\numpy-1.5.1-nosse.exe"
 Completed
 
-Step 6 Run py2exe to generate fpdb.exe
+Step 6 compile fpdb_folder_check.exe
+------------------------------------
+
+6.1/
+Install minGW minimal installation
+See instructions here....http://www.mingw.org/wiki/InstallationHOWTOforMinGW
+
+6.2/
+dos>gcc fpdb_folder_check.c -o fpdb_folder_check.exe
+
+Step 7 Run py2exe to generate fpdb.exe
 --------------------------------------
 
-6.0/ Set version number of build folder
+7.0/ Set version number of build folder
 dos> cd Desktop\fpdb\packaging\windows
 dos> write py2exe_setup.py
 change the value of fpdbver and save file
 
-6.1/ Run the script to create the fpdb.exe bundle
+7.1/ Run the script to create the fpdb.exe bundle
 
 dos> cd Desktop\fpdb\packaging\windows
 dos> c:\python27\python.exe py2exe_setup.py py2exe
 
 wait a while, watch lots of copying and whatever.
 
-6.2/ You should next get prompted for the GTK folder.
+7.2/ You should next get prompted for the GTK folder.
 Enter c:\GTK
 
-6.3/ If there are no errors reported, it has probably worked, we will test soon.
+7.3/ If there are no errors reported, it has probably worked, we will test soon.
 
 Build notes:
 
 There is a warning about dll's not included  "umath.pyd - c:\Python27\lib\site-packages\numpy\core\umath.pyd"
  - reason for this is not understood at present.  (Umath is apparently included in the built package).
 
-
-Step 7 not currently used
--------------------------
-
-Has been deleted
 
 
 Step 8 Drag out the completed bundle

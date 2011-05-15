@@ -1,0 +1,33 @@
+Hand#2589013774000163 - New Castle (Turbo 6-max) 13774 -- $0.02/$0.04 FL Hold'em -- 2011/05/08 - 10:37:17
+Seat 3: Vill***1 ($0.31 in chips) 
+Seat 8: Hero ($1.78 in chips) 
+Seat 9: Play***3 ($1.04 in chips) DEALER
+Vill***1: posts small blind $0.01
+Hero: posts big blind $0.02
+Dealt to Hero [7c,5h]
+Play***3: calls $0.02
+Vill***1: calls $0.01
+Hero: checks
+*** FLOP *** [6d,8c,4s]
+Vill***1: bets $0.02
+Hero: calls $0.02
+Play***3: calls $0.02
+*** TURN *** [Qd]
+Vill***1: bets $0.04
+Hero: raises to $0.08
+Play***3: folds
+Vill***1: raises to $0.12
+Hero: raises to $0.16
+Vill***1: calls $0.04
+*** RIVER *** [2h]
+Vill***1: bets $0.04
+Hero: raises to $0.08
+Vill***1: is all in $0.07
+Hero: calls $0.03
+Vill***1: shows [7h 5c]
+Hero: shows [7c 5h]
+***SHOW DOWN***
+Vill***1 wins $0.31 with Straight Eight high 
+Hero wins $0.31 with Straight Eight high 
+
+

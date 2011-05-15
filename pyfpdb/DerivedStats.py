@@ -128,7 +128,7 @@ class DerivedStats():
         self.hands['startTime']     = hand.startTime          # format this!
         self.hands['importTime']    = None
         self.hands['seats']         = self.countPlayers(hand) 
-        self.hands['maxSeats']      = hand.maxseats
+        #self.hands['maxSeats']      = hand.maxseats
         self.hands['texture']       = None                    # No calculation done for this yet.
         self.hands['tourneyId']     = hand.tourneyId
 
@@ -146,9 +146,9 @@ class DerivedStats():
         self.hands['boardcard5'] = cards[4]
         
         self.hands['boards']     = []
-        self.hands['runIt']      = False           
+        self.hands['runItTwice']      = False           
         for i in range(hand.runItTimes):
-            self.hands['runIt']  = True
+            self.hands['runItTwice']  = True
             boardcards = []
             for street in hand.communityStreets:
                 boardId = i+1
@@ -518,11 +518,10 @@ class DerivedStats():
                         bet_level += 1
                 continue
             elif bet_level == 4:
-                if pname == second_agressor: 
+                if pname != first_agressor: 
                     self.handsplayers[pname]['street0_FoldTo4BChance'] = True
                     if act == 'folds':
                         self.handsplayers[pname]['street0_FoldTo4BDone'] = True
-                    break
 
     def calcCBets(self, hand):
         """Fill streetXCBChance, streetXCBDone, foldToStreetXCBDone, foldToStreetXCBChance

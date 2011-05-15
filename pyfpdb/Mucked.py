@@ -69,6 +69,7 @@ class Aux_Window(object):
         try:
             pb = gtk.gdk.pixbuf_new_from_file(self.config.execution_path(deckimg))
         except:
+            #FIXME: this can't be right? /usr will not exist on windows
             stockpath = '/usr/share/python-fpdb/' + deckimg
             pb = gtk.gdk.pixbuf_new_from_file(stockpath)
         
@@ -229,10 +230,10 @@ class Stud_list:
     def update_gui(self, new_hand_id):
         iter = self.liststore.append(self.info_row[0]) 
         sel = self.treeview.get_selection()
-        sel.select_iter(iter)
+        #sel.select_iter(iter)
 
         vadj = self.scrolled_window.get_vadjustment()
-        vadj.set_value(vadj.upper)
+        #vadj.set_value(vadj.upper)
 
 class Stud_cards:
     def __init__(self, parent, params, config):
@@ -312,13 +313,14 @@ class Stud_cards:
 ##    action in tool tips for 3rd street cards
         for c in (0, 1, 2):
             for r in range(0, self.rows):
-                self.eb[(c, r)].set_tooltip_text(self.tips[0])
+                #self.eb[(c, r)].set_tooltip_text(self.tips[0])
+                pass
 
 #    action in tools tips for later streets
         round_to_col = (0, 3, 4, 5, 6)
-        for round in range(1, len(self.tips)):
-            for r in range(0, self.rows):
-                self.eb[(round_to_col[round], r)].set_tooltip_text(self.tips[round])
+        #for round in range(1, len(self.tips)):
+        #    for r in range(0, self.rows):
+        #        self.eb[(round_to_col[round], r)].set_tooltip_text(self.tips[round])
 
     def get_screen_name(self, seat_no):
         """Gets and returns the screen name from stat_dict, given seat number."""
@@ -373,7 +375,8 @@ class Aux_Seats(Aux_Window):
                 (x, y) = self.params['layout'][self.hud.max].common
             else:
                 (x, y) = loc[adj[i]]
-            self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)       
+#            self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)
+            self.positions[i] = self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
 
     def create(self):
@@ -394,7 +397,8 @@ class Aux_Seats(Aux_Window):
             self.m_windows[i].set_transient_for(self.hud.main_window)  # FIXME: shouldn't this be the table window??
             self.m_windows[i].set_focus_on_map(False)
             self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
-            self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)
+#            self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)
+            self.positions[i] =  self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
             if self.params.has_key('opacity'):
                 self.m_windows[i].set_opacity(float(self.params['opacity']))
@@ -443,9 +447,11 @@ class Aux_Seats(Aux_Window):
         height = self.hud.table.height
         for (i, pos) in self.positions.iteritems():
              if i != 'common':
-                new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x) * 1000 / witdh, (pos[1] - self.hud.table.y) * 1000 / height)
+#                new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x) * 1000 / witdh, (pos[1] - self.hud.table.y) * 1000 / height)
+                new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y) )
              else:
-                new_locs[i] = ((pos[0] - self.hud.table.x) * 1000 / witdh, (pos[1] - self.hud.table.y) * 1000 / height)
+#                new_locs[i] = ((pos[0] - self.hud.table.x) * 1000 / witdh, (pos[1] - self.hud.table.y) * 1000 / height)
+                new_locs[i] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y))
         self.config.edit_aux_layout(self.params['name'], self.hud.max, locations = new_locs)
 
     def configure_event_cb(self, widget, event, i, *args):

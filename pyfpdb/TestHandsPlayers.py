@@ -77,17 +77,19 @@ def compare_gametypes_file(filename, importer, errors):
     handlist = hhc.getProcessedHands()
 
     lookup = {
-                0:'siteId',
-                1:'currency',
-                2:'type',
-                3:'base',
-                4:'game',
-                5:'limit',
-                6:'hilo',
-                7:'Small Blind',
-                8:'Big Blind',
-                9:'Small Bet',
-                10:'Big Bet',
+                0:'Gametype: siteId',
+                1:'Gametype: currency',
+                2:'Gametype: type',
+                3:'Gametype: base',
+                4:'Gametype: game',
+                5:'Gametype: limit',
+                6:'Gametype: hilo',
+                7:'Gametype: Small Blind',
+                8:'Gametype: Big Blind',
+                9:'Gametype: Small Bet',
+                10:'Gametype: Big Bet',
+                11:'Gametype: maxSeats',
+                12:'Gametype: ante'
             }
 
     for hand in handlist:
@@ -150,9 +152,12 @@ def compare_hands_file(filename, importer, errors):
     for hand in handlist:
         ghash = hand.stats.getHands()
         # Delete unused data from hash
-        del ghash['gsc']
-        del ghash['sc']
-        del ghash['id']
+        try:
+            del ghash['gsc']
+            del ghash['sc']
+            del ghash['id']
+        except KeyError:
+            pass
         del ghash['boards']
         for datum in ghash:
             #print "DEBUG: hand: '%s'" % datum
@@ -167,7 +172,7 @@ def compare_hands_file(filename, importer, errors):
                         or datum == 'tourneyId' 
                         or datum == 'gameSessionId'
                         or datum == 'fileId'
-                        or datum == 'runIt'):
+                        or datum == 'runItTwice'):
                         # Not an error. gametypeIds are dependent on the order added to the db.
                         #print "DEBUG: Skipping mismatched gamtypeId"
                         pass
@@ -361,6 +366,10 @@ def main(argv=None):
         walk_testfiles("regression-test-files/tour/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
     elif sites['Everleaf'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, EverleafErrors, "Everleaf")
+    if sites['Everest'] == True and not single_file_test:
+        walk_testfiles("regression-test-files/cash/Everest/", compare, importer, EverestErrors, "Everest")
+    elif sites['Everest'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, EverestErrors, "Everest")
     if sites['Carbon'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Carbon/", compare, importer, CarbonErrors, "Carbon")
     elif sites['Carbon'] == True and single_file_test:

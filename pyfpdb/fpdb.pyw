@@ -50,13 +50,8 @@ else:
     #print "debug - not changing path"
 
 if os.name == 'nt':
-    try:
-        import win32api
-        import win32con
-    except ImportError:
-        print _("We appear to be running in Windows, but the Windows Python Extensions are not loading. Please install the PYWIN32 package from http://sourceforge.net/projects/pywin32/")
-        raw_input(_("Press ENTER to continue."))
-        exit()
+    import win32api
+    import win32con
 
 print "Python " + sys.version[0:3] + '...'
 
@@ -71,37 +66,23 @@ import logging
 import logging.config
 log = logging.getLogger("fpdb")
 
-try:
-    import pygtk
-    pygtk.require('2.0')
-    import gtk
-    import pango
-except ImportError:
-    print _("Unable to load PyGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org.")
-    raw_input(_("Press ENTER to continue."))
-    exit()
+import pygtk
+pygtk.require('2.0')
+import gtk
+import pango
 
 import interlocks
 
 # these imports not required in this module, imported here to report version in About dialog
-try:
-    import matplotlib
-    matplotlib_version = matplotlib.__version__
-except ImportError:
-    matplotlib_version = 'not found'
-try:
-    import numpy
-    numpy_version = numpy.__version__
-except ImportError:
-    numpy_version = 'not found'
-try:
-    import sqlite3
-    sqlite3_version = sqlite3.version
-    sqlite_version = sqlite3.sqlite_version
-except ImportError:
-    sqlite3_version = 'not found'
-    sqlite_version = 'not found'
+import matplotlib
+matplotlib_version = matplotlib.__version__
+import numpy
+numpy_version = numpy.__version__
+import sqlite3
+sqlite3_version = sqlite3.version
+sqlite_version = sqlite3.sqlite_version
 
+import DetectInstalledSites
 import GuiPrefs
 import GuiLogView
 import GuiDatabase
@@ -277,15 +258,18 @@ class fpdb:
         else:
             os_text="Unknown"
         
+        import locale
         nums = [(_('Operating System'), os_text),
                 ('Python',           sys.version[0:3]),
                 ('GTK+',             '.'.join([str(x) for x in gtk.gtk_version])),
                 ('PyGTK',            '.'.join([str(x) for x in gtk.pygtk_version])),
                 ('matplotlib',       matplotlib_version),
                 ('numpy',            numpy_version),
-                ('sqlite',          sqlite_version),
-                ('fpdb version',     VERSION),
-                ('database used',    self.settings['db-server'])
+                ('sqlite',           sqlite_version),
+                (_('fpdb version'),  VERSION),
+                (_('database used'), self.settings['db-server']),
+                (_('language'),      locale.getdefaultlocale()[0]),
+                (_('character encoding'), locale.getdefaultlocale()[1])
                ]
         versions = gtk.TextBuffer()
         w = 20  # width used for module names and version numbers
@@ -467,17 +451,7 @@ class fpdb:
         self.hud_preferences_table_contents = []
         table = gtk.Table(rows=self.hud_preferences_rows + 1, columns=self.hud_preferences_columns + 1, homogeneous=True)
 
-        statDir = dir(Stats)
-        statDict = {}
-        for attr in statDir:
-            if attr.startswith('__'):
-                continue
-            if attr in ("Charset", "Configuration", "Database", "GInitiallyUnowned", "gtk", "pygtk",
-                        "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict", "h", "re",
-                        "re_Percent", "re_Places", "L10n", "sys", "_", "log", "encoder", "codecs",
-                        "logging"):
-                continue
-            statDict[attr] = (eval("Stats.%s.__doc__" % (attr)) + " (" + attr + ")")
+        statDict = Stats.build_stat_descriptions(Stats)
 
         for rowNumber in range(self.hud_preferences_rows + 1):
             newRow = []
@@ -729,7 +703,7 @@ class fpdb:
         label = gtk.Label(_(" "))
         dia.vbox.add(label)
         
-        column_headers=[_("Site"), _("Screen Name"), _("History Path")] #TODO , _("Summary Path"), _("HUD")] 
+        column_headers=[_("Site"), _("Screen Name"), _("History Path"), _("Detect")] #TODO , _("Summary Path"), _("HUD")] 
         #HUD column will contain a button that shows favseat and HUD locations. Make it possible to load screenshot to arrange HUD windowlets.
         table = gtk.Table(rows=len(available_site_names)+1, columns=len(column_headers), homogeneous=False)
         dia.vbox.add(table)
@@ -741,6 +715,8 @@ class fpdb:
         check_buttons=[]
         screen_names=[]
         history_paths=[]
+        detector = DetectInstalledSites.DetectInstalledSites()
+        
         y_pos=1
         for site_number in range(0, len(available_site_names)):
             check_button = gtk.CheckButton(label=available_site_names[site_number])
@@ -758,6 +734,11 @@ class fpdb:
             table.attach(entry, 2, 3, y_pos, y_pos+1)
             history_paths.append(entry)
             
+            if available_site_names[site_number] in detector.supportedSites:
+                button = gtk.Button(_("Detect"))
+                table.attach(button, 3, 4, y_pos, y_pos+1)
+                button.connect("clicked", self.detect_clicked, (detector, available_site_names[site_number], screen_names[site_number], history_paths[site_number]))
+            
             y_pos+=1
         
         dia.show_all()
@@ -771,6 +752,15 @@ class fpdb:
             self.reload_config(dia)
             
         dia.destroy()
+    
+    def detect_clicked(self, widget, data):
+        detector = data[0]
+        site_name = data[1]
+        entry_screen_name = data[2]
+        entry_history_path = data[3]
+        if detector.sitestatusdict[site_name]['detected']:
+            entry_screen_name.set_text(detector.sitestatusdict[site_name]['heroname'])
+            entry_history_path.set_text(detector.sitestatusdict[site_name]['hhpath'])
     
     def reload_config(self, dia):
         if len(self.nb_tab_names) == 1:
@@ -908,10 +898,10 @@ class fpdb:
                                  ('graphs', None, _('_Graphs'), _('<control>G'), 'Graphs', self.tabGraphViewer),
                                  ('tourneygraphs', None, _('Tourney Graphs'), None, 'TourneyGraphs', self.tabTourneyGraphViewer),
                                  ('stove', None, _('Stove (preview)'), None, 'Stove', self.tabStove),
-                                 ('ringplayerstats', None, _('Ring _Player Stats (tabulated view, not on pgsql)'), _('<control>P'), 'Ring Player Stats (tabulated view, not on pgsql)', self.tab_ring_player_stats),
-                                 ('tourneyplayerstats', None, _('_Tourney Stats (tabulated view, not on pgsql)'), _('<control>T'), 'Tourney Stats (tabulated view, not on pgsql)', self.tab_tourney_player_stats),
+                                 ('ringplayerstats', None, _('Ring _Player Stats'), _('<control>P'), 'Ring Player Stats ', self.tab_ring_player_stats),
+                                 ('tourneyplayerstats', None, _('_Tourney Stats'), _('<control>T'), 'Tourney Stats ', self.tab_tourney_player_stats),
                                  ('tourneyviewer', None, _('Tourney _Viewer'), None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
-                                 ('posnstats', None, _('P_ositional Stats (tabulated view, not on sqlite)'), _('<control>O'), 'Positional Stats (tabulated view, not on sqlite)', self.tab_positional_stats),
+                                 ('posnstats', None, _('P_ositional Stats (tabulated view)'), _('<control>O'), 'Positional Stats (tabulated view)', self.tab_positional_stats),
                                  ('sessionstats', None, _('Session Stats'), None, 'Session Stats', self.tab_session_stats),
                                  ('replayer', None, _('Hand _Replayer (not working yet)'), None, 'Hand Replayer', self.tab_replayer),
                                  ('database', None, _('_Database')),
@@ -949,7 +939,7 @@ class fpdb:
         print (_("Logfile is %s\n") % os.path.join(self.config.dir_log, self.config.log_file))
         if self.config.example_copy:
             self.info_box(_("Config file"),
-                          _("Config file has been created at:") + ("\n%s.\n") % self.config.file
+                          _("Config file has been created at %s.") % self.config.file
                            + _("Edit your screen_name and hand history path in the supported_sites section of the Advanced Preferences window (Main menu) before trying to import hands."))
         self.settings = {}
         self.settings['global_lock'] = self.lock
@@ -1386,48 +1376,16 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
 
     def validate_config(self):
         # check if sites in config file are in DB
-        for site in self.config.get_supported_sites(True):    # get site names from config file
+        for site in self.config.supported_sites:    # get site names from config file
             try:
                 self.config.get_site_id(site)                     # and check against list from db
             except KeyError, exc:
                 log.warning("site %s missing from db" % site)
-                dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Unknown Site")
-                diastring = _("Warning:") +" " + _("Unable to find site  '%s'\n\nPress YES to add this site to the database.") % site
+                dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_OK), message_format=_("Unknown Site"))
+                diastring = _("Warning:") +" " + _("Unable to find site  '%s'") % site
                 dia.format_secondary_text(diastring)
-                response = dia.run()
+                dia.run()
                 dia.destroy()
-                if response == gtk.RESPONSE_YES:
-                    self.add_site(site)
-
-    def add_site(self, site):
-        dia = gtk.Dialog(title="Add Site", parent=self.window,
-                         flags=gtk.DIALOG_DESTROY_WITH_PARENT,
-                         buttons=(gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT,
-                                  gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
-                        )
-
-        h = gtk.HBox()
-        dia.vbox.pack_start(h, padding=5)  # sets horizontal padding
-        label = gtk.Label(_("\nEnter short code for %s\n(up to 3 characters):\n") % site)
-        h.pack_start(label, padding=20)     # sets horizontal padding
-        #label.set_alignment(1.0, 0.5)
-        
-        h = gtk.HBox()
-        dia.vbox.add(h)
-        e_code = gtk.Entry(max=3)
-        e_code.set_width_chars(5)
-        h.pack_start(e_code, True, False, padding=5)
-
-        label = gtk.Label("")
-        dia.vbox.add(label)  # create space below entry, maybe padding arg above makes this redundant?
-
-        dia.show_all()
-        response = dia.run()
-        site_code = e_code.get_text()
-        if response == gtk.RESPONSE_ACCEPT and site_code is not None and site_code != "":
-            self.db.add_site(site, site_code)
-            self.db.commit()
-        dia.destroy()
 
     def main(self):
         gtk.main()

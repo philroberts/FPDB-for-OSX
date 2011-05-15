@@ -19,9 +19,11 @@ XXX changesets (incl. merges) have gone in since XXX. Some of the improvements a
 
 XXX
 
-Where to get it
-===============
-Please note that you will have to either recreate your database or use a new one if you're updating from XXX or older. Fpdb will warn you if your database is incompatible and will not work unless you recreate or use a different one.
+For the full changelog or to look at ongoing development please visit http://trac-git.assembla.com/fpdb/timeline
+
+How to download/update
+======================
+Please note that you will have to either recreate your database or use a new one if you're updating from XXX or older. Fpdb will warn you if your database is incompatible and will not work properly unless you recreate or use a new one.
 Config files from 0.20 and later should work. Please report if you have problems with config files from that version or later.
 You can find checksums (MD5 and SHA512) in the download folder.
 To download: http://sourceforge.net/projects/fpdb/files/fpdb/XXX/
@@ -68,10 +70,14 @@ Important known problems
 ========================
 YYY(PKR is not working correctly)YYY
 
-Special information for Windows installations
-=============================================
+Notice for Windows users
+========================
 YYY(First-time installs may need to download and install the C++ runtime executable from Microsoft.)YYY
 YYY(Windows 7 and windows Vista users will need to set fpdb.exe and hud_main.exe to run as administrator (see http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Install_in_Windows))YYY
+
+Notice for Arch Linux users
+===========================
+YYY(You will need to change the shebang in fpdb.pyw and HUD_main.pyw from python to python2. Join us in IRC if you have questions about this.)YYY
 
 Contributors
 ============

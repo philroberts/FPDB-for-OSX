@@ -14,6 +14,7 @@ msgmerge --update locale/fpdb-it_IT.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-pl_PL.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-pt_BR.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-ru_RU.po locale/fpdb-en_GB.pot
+msgmerge --update locale/fpdb-ro_RO.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-zh_CN.po locale/fpdb-en_GB.pot
 
 echo "checking translated files"
@@ -25,6 +26,7 @@ msgfmt -c --check-accelerators locale/fpdb-hu_HU.po
 msgfmt -c --check-accelerators locale/fpdb-it_IT.po
 msgfmt -c --check-accelerators locale/fpdb-pl_PL.po
 msgfmt -c --check-accelerators locale/fpdb-pt_BR.po
+msgfmt -c --check-accelerators locale/fpdb-ro_RO.po
 msgfmt -c --check-accelerators locale/fpdb-ru_RU.po
 msgfmt -c --check-accelerators locale/fpdb-zh_CN.po
 
@@ -40,6 +42,7 @@ python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=loc
 python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/it/LC_MESSAGES/fpdb.mo locale/fpdb-it_IT.po
 python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/pl/LC_MESSAGES/fpdb.mo locale/fpdb-pl_PL.po
 python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/pt/LC_MESSAGES/fpdb.mo locale/fpdb-pt_BR.po
+python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/ro/LC_MESSAGES/fpdb.mo locale/fpdb-ro_RO.po
 python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/ru/LC_MESSAGES/fpdb.mo locale/fpdb-ru_RU.po
 python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/zh/LC_MESSAGES/fpdb.mo locale/fpdb-zh_CN.po
 
