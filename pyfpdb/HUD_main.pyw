@@ -273,6 +273,7 @@ class HUD_main(object):
 #        If no client window is found on the screen, complain and continue
                     if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
+                    log.error("chris")
                     log.error(_("HUD create: table name %s not found, skipping.") % table_name)
                 else:
                     tablewindow.key = temp_key

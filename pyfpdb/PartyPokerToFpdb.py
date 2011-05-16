@@ -304,21 +304,21 @@ class PartyPoker(HandHistoryConverter):
         # FIXME: it's dirty hack
         # party doesnt subtract uncalled money from commited money
         # so hand.totalPot calculation has to be redefined
-#        from Hand import Pot, HoldemOmahaHand
-#        def getNewTotalPot(origTotalPot):
-#            def totalPot(self):
-#                if self.totalpot is None:
-#                    self.pot.end()
-#                    self.totalpot = self.pot.total
-#                for i,v in enumerate(self.collected):
-#                    if v[0] in self.pot.returned:
-#                        self.collected[i][1] = Decimal(v[1]) - self.pot.returned[v[0]]
-#                        self.collectees[v[0]] -= self.pot.returned[v[0]]
-#                        self.pot.returned[v[0]] = 0
-#                return origTotalPot()
-#            return totalPot
-#        instancemethod = type(hand.totalPot)
-#        hand.totalPot = instancemethod(getNewTotalPot(hand.totalPot), hand, HoldemOmahaHand)
+        from Hand import Pot, HoldemOmahaHand
+        def getNewTotalPot(origTotalPot):
+            def totalPot(self):
+                if self.totalpot is None:
+                    self.pot.end()
+                    self.totalpot = self.pot.total
+                for i,v in enumerate(self.collected):
+                    if v[0] in self.pot.returned:
+                        self.collected[i][1] = Decimal(v[1]) - self.pot.returned[v[0]]
+                        self.collectees[v[0]] -= self.pot.returned[v[0]]
+                        self.pot.returned[v[0]] = 0
+                return origTotalPot()
+            return totalPot
+        instancemethod = type(hand.totalPot)
+        hand.totalPot = instancemethod(getNewTotalPot(hand.totalPot), hand, HoldemOmahaHand)
 
         for key in info:
             pass
@@ -550,16 +550,6 @@ class PartyPoker(HandHistoryConverter):
             amount = self.clearMoneyString(action.group('BET')) if action.group('BET') else None
             actionType = action.group('ATYPE')
 
-            if actionType == 'is all-In' and amount != None:
-                # party's allin can mean either raise or bet or call
-                Bp = hand.lastBet[street]
-                if Bp == 0:
-                    actionType = 'bets'
-                elif Bp < Decimal(amount):
-                    actionType = 'raises'
-                else:
-                    actionType = 'calls'
-
             if actionType == 'raises':
                 if street == 'PREFLOP' and \
                     playerName in [item[0] for item in hand.actions['BLINDSANTES'] if item[2]!='ante']:
@@ -575,8 +565,8 @@ class PartyPoker(HandHistoryConverter):
                 hand.addFold( street, playerName )
             elif actionType == 'checks':
                 hand.addCheck( street, playerName )
-            elif actionType == 'none':
-                pass
+            elif actionType == 'is all-In':
+                hand.addAllIn(street, playerName, amount)
             else:
                 raise FpdbParseError((_("Unimplemented %s: '%s' '%s'") + " hid:%s") % ("readAction", playerName, actionType, hand.handid))
 
