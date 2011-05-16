@@ -94,6 +94,7 @@ class Filters(threading.Thread):
         self.siteid = {}
         self.heroes = {}
         self.boxes  = {}
+        self.toggles  = {}
         self.graphops = {}
 
         for site in self.conf.get_supported_sites():
@@ -630,13 +631,28 @@ class Filters(threading.Thread):
         lbl_title = gtk.Label(self.filterText['playerstitle'])
         lbl_title.set_alignment(xalign=0.0, yalign=0.5)
         top_hbox.pack_start(lbl_title, expand=True, padding=3)
+
+        showb = gtk.Button(label=_("hide all"), stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'all')
+        self.toggles['all'] = showb
+        showb.show()
+        top_hbox.pack_end(showb, expand=False, padding=1)
+
+        showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'Heroes')
+        self.toggles['Heroes'] = showb
+        showb.show()
+        top_hbox.pack_end(showb, expand=False, padding=1)
+
         showb = gtk.Button(label=_("Refresh"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__refresh, 'players')
+        showb.connect('clicked', self.__refresh, 'Heroes')
 
         vbox1 = gtk.VBox(False, 0)
         vbox.pack_start(vbox1, False, False, 0)
-        self.boxes['players'] = vbox1
+        self.boxes['Heroes'] = vbox1
 
         for site in self.conf.get_supported_sites():
             hBox = gtk.HBox(False, 0)
@@ -678,12 +694,13 @@ class Filters(threading.Thread):
 
         showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'sites')
+        showb.connect('clicked', self.__toggle_box, 'Sites')
+        self.toggles['Sites'] = showb
         showb.show()
         top_hbox.pack_start(showb, expand=False, padding=1)
 
         vbox1 = gtk.VBox(False, 0)
-        self.boxes['sites'] = vbox1
+        self.boxes['Sites'] = vbox1
         vbox.pack_start(vbox1, False, False, 0)
 
         for site in self.conf.get_supported_sites():
@@ -708,6 +725,7 @@ class Filters(threading.Thread):
         showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
         showb.connect('clicked', self.__toggle_box, 'tourneyTypes')
+        self.toggles['tourneyTypes'] = showb
         top_hbox.pack_start(showb, expand=False, padding=1)
 
         vbox1 = gtk.VBox(False, 0)
@@ -733,12 +751,13 @@ class Filters(threading.Thread):
         top_hbox.pack_start(lbl_title, expand=True, padding=3)
         showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'games')
+        showb.connect('clicked', self.__toggle_box, 'Games')
+        self.toggles['Games'] = showb
         top_hbox.pack_start(showb, expand=False, padding=1)
 
         vbox1 = gtk.VBox(False, 0)
         vbox.pack_start(vbox1, False, False, 0)
-        self.boxes['games'] = vbox1
+        self.boxes['Games'] = vbox1
 
         self.cursor.execute(self.sql.query['getGames'])
         result = self.db.cursor.fetchall()
@@ -760,12 +779,13 @@ class Filters(threading.Thread):
         top_hbox.pack_start(lbl_title, expand=True, padding=3)
         showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'limits')
+        showb.connect('clicked', self.__toggle_box, 'Limits')
+        self.toggles['Limits'] = showb
         top_hbox.pack_start(showb, expand=False, padding=1)
 
         vbox1 = gtk.VBox(False, 15)
         vbox.pack_start(vbox1, False, False, 0)
-        self.boxes['limits'] = vbox1
+        self.boxes['Limits'] = vbox1
 
         self.cursor.execute(self.sql.query['getCashLimits'])
         # selects  limitType, bigBlind
@@ -874,13 +894,14 @@ class Filters(threading.Thread):
         top_hbox.pack_start(title, expand=True, padding=3)
         showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'graphops')
+        showb.connect('clicked', self.__toggle_box, 'GraphOps')
+        self.toggles['GraphOps'] = showb
         top_hbox.pack_start(showb, expand=False, padding=1)
 
         vbox1 = gtk.VBox(False, 0)
         vbox.pack_start(vbox1, False, False, 0)
         vbox1.show()
-        self.boxes['graphops'] = vbox1
+        self.boxes['GraphOps'] = vbox1
 
         hbox1 = gtk.HBox(False, 0)
         vbox1.pack_start(hbox1, False, False, 0)
@@ -925,12 +946,13 @@ class Filters(threading.Thread):
         hbox.pack_start(lbl_title, expand=True, padding=3)
         showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'seats')
+        showb.connect('clicked', self.__toggle_box, 'Seats')
+        self.toggles['Seats'] = showb
         hbox.pack_start(showb, expand=False, padding=1)
 
         vbox1 = gtk.VBox(False, 0)
         vbox.pack_start(vbox1, False, False, 0)
-        self.boxes['seats'] = vbox1
+        self.boxes['Seats'] = vbox1
 
         hbox = gtk.HBox(False, 0)
         vbox1.pack_start(hbox, False, True, 0)
@@ -959,12 +981,13 @@ class Filters(threading.Thread):
         hbox.pack_start(lbl_title, expand=True, padding=3)
         showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'groups')
+        showb.connect('clicked', self.__toggle_box, 'Groups')
+        self.toggles['Groups'] = showb
         hbox.pack_start(showb, expand=False, padding=1)
 
         vbox1 = gtk.VBox(False, 0)
         vbox.pack_start(vbox1, False, False, 0)
-        self.boxes['groups'] = vbox1
+        self.boxes['Groups'] = vbox1
 
         hbox = gtk.HBox(False, 0)
         vbox1.pack_start(hbox, False, False, 0)
@@ -1017,12 +1040,13 @@ class Filters(threading.Thread):
         top_hbox.pack_start(lbl_title, expand=True, padding=3)
         showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'dates')
+        showb.connect('clicked', self.__toggle_box, 'Dates')
+        self.toggles['Dates'] = showb
         top_hbox.pack_start(showb, expand=False, padding=1)
 
         vbox1 = gtk.VBox(False, 0)
         vbox.pack_start(vbox1, False, False, 0)
-        self.boxes['dates'] = vbox1
+        self.boxes['Dates'] = vbox1
 
         hbox = gtk.HBox()
         vbox1.pack_start(hbox, False, True, 0)
@@ -1063,12 +1087,37 @@ class Filters(threading.Thread):
     #end def __refresh
 
     def __toggle_box(self, widget, entry):
-        if self.boxes[entry].props.visible:
+        if (entry == "all"):
+            if (widget.get_label() == _("hide all")):
+                for entry in self.boxes.keys():
+                    if (self.boxes[entry].props.visible):
+                        self.__toggle_box(widget, entry)
+                        widget.set_label(_("show all"))
+            else:
+                for entry in self.boxes.keys():
+                    if (not self.boxes[entry].props.visible):
+                        self.__toggle_box(widget, entry)
+                    widget.set_label(_("hide all"))
+        elif self.boxes[entry].props.visible:
             self.boxes[entry].hide()
-            widget.set_label(_("show"))
+            self.toggles[entry].set_label(_("show"))
+            for entry in self.boxes.keys():
+                if (self.display.has_key(entry) and
+                    self.display[entry] and
+                    self.boxes[entry].props.visible):
+                    break
+            else:
+                self.toggles["all"].set_label(_("show all"))
         else:
             self.boxes[entry].show()
-            widget.set_label(_("hide"))
+            self.toggles[entry].set_label(_("hide"))
+            for entry in self.boxes.keys():
+                if (self.display.has_key(entry) and
+                    self.display[entry] and
+                    not self.boxes[entry].props.visible):
+                    break
+            else:
+                self.toggles["all"].set_label(_("hide all"))
     #end def __toggle_box
 
     def __calendar_dialog(self, widget, entry):
