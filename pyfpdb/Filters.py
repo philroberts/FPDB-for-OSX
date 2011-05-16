@@ -207,16 +207,18 @@ class Filters(threading.Thread):
         self.Button2=gtk.Button("Unnamed 2")
         self.Button2.set_sensitive(False)
 
-        self.mainVBox.add(playerFrame)
-        self.mainVBox.add(sitesFrame)
-        self.mainVBox.add(gamesFrame)
-        self.mainVBox.add(limitsFrame)
-        self.mainVBox.add(seatsFrame)
-        self.mainVBox.add(groupsFrame)
-        self.mainVBox.add(dateFrame)
-        self.mainVBox.add(graphopsFrame)
-        self.mainVBox.add(self.Button1)
-        self.mainVBox.add(self.Button2)
+        expand = False
+        self.mainVBox.pack_start(playerFrame, expand)
+        self.mainVBox.pack_start(sitesFrame, expand)
+        self.mainVBox.pack_start(gamesFrame, expand)
+        self.mainVBox.pack_start(limitsFrame, expand)
+        self.mainVBox.pack_start(seatsFrame, expand)
+        self.mainVBox.pack_start(groupsFrame, expand)
+        self.mainVBox.pack_start(dateFrame, expand)
+        self.mainVBox.pack_start(graphopsFrame, expand)
+        self.mainVBox.pack_start(gtk.VBox(False, 0))
+        self.mainVBox.pack_start(self.Button1, expand)
+        self.mainVBox.pack_start(self.Button2, expand)
 
         self.mainVBox.show_all()
 
