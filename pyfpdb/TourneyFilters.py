@@ -105,6 +105,7 @@ class TourneyFilters(Filters.Filters):
         self.siteid = {}
         self.heroes = {}
         self.boxes = {}
+        self.toggles  = {}
 
         for site in self.conf.get_supported_sites():
             #Get db site id for filtering later
