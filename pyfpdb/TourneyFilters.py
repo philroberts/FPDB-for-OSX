@@ -80,23 +80,6 @@ class TourneyFilters(Filters.Filters):
         self.make_filter()
     #end def __refresh
 
-    def __set_num_tourneys(self, w, val):
-        try:
-            self.numTourneys = int(w.get_text())
-        except:
-            self.numTourneys = 0
-        print _("setting numTourneys:"), self.numTourneys
-    #end def __set_num_tourneys
-
-    def __toggle_box(self, widget, entry): #identical with Filters
-        if self.boxes[entry].props.visible:
-            self.boxes[entry].hide()
-            widget.set_label("show")
-        else:
-            self.boxes[entry].show()
-            widget.set_label("hide")
-    #end def __toggle_box
-
     def make_filter(self):
         self.tourneyTypes = {}
         #self.tourneys = {}
