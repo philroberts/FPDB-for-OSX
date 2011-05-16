@@ -174,12 +174,14 @@ class TourneyFilters(Filters.Filters):
         self.Button2=gtk.Button("Unnamed 2")
         self.Button2.set_sensitive(False)
 
-        self.mainVBox.add(playerFrame)
-        self.mainVBox.add(sitesFrame)
-        self.mainVBox.add(seatsFrame)
-        self.mainVBox.add(dateFrame)
-        #self.mainVBox.add(self.Button1)
-        self.mainVBox.add(self.Button2)
+        expand = False
+        self.mainVBox.pack_start(playerFrame, expand)
+        self.mainVBox.pack_start(sitesFrame, expand)
+        self.mainVBox.pack_start(seatsFrame, expand)
+        self.mainVBox.pack_start(dateFrame, expand)
+        self.mainVBox.pack_start(gtk.VBox(False, 0))
+        #self.mainVBox.pack_start(self.Button1, expand)
+        self.mainVBox.pack_start(self.Button2, expand)
 
         self.mainVBox.show_all()
 
