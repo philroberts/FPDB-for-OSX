@@ -344,15 +344,19 @@ class Filters(threading.Thread):
     def cardCallback(self, widget, data=None):
         log.debug( _("%s was toggled %s") % (data, (_("OFF"), _("ON"))[widget.get_active()]) )
 
-    def createPlayerLine(self, hbox, site, player):
+    def createPlayerLine(self, vbox, site, player):
         log.debug('add:"%s"' % player)
         label = gtk.Label(site +" id:")
-        hbox.pack_start(label, False, False, 3)
+        label.set_alignment(xalign=0.0, yalign=1.0)
+        vbox.pack_start(label, False, False, 3)
+
+        hbox = gtk.HBox(False, 0)
+        vbox.pack_start(hbox, False, True, 0)
 
         pname = gtk.Entry()
         pname.set_text(player)
         pname.set_width_chars(20)
-        hbox.pack_start(pname, False, True, 0)
+        hbox.pack_start(pname, True, True, 20)
         pname.connect("changed", self.__set_hero_name, site)
 
         # Added EntryCompletion but maybe comboBoxEntry is more flexible? (e.g. multiple choices)
@@ -659,12 +663,9 @@ class Filters(threading.Thread):
         self.boxes['Heroes'] = vbox1
 
         for site in self.conf.get_supported_sites():
-            hBox = gtk.HBox(False, 0)
-            vbox1.pack_start(hBox, False, True, 0)
-
             player = self.conf.supported_sites[site].screen_name
             _pname = Charset.to_gui(player)
-            self.createPlayerLine(hBox, site, _pname)
+            self.createPlayerLine(vbox1, site, _pname)
 
         if "GroupsAll" in display and display["GroupsAll"] == True:
             hbox = gtk.HBox(False, 0)
