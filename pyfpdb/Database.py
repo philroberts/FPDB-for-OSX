@@ -746,14 +746,10 @@ class Database:
         d = timedelta(days=hud_days, hours=tz_day_start_offset)
         now = datetime.utcnow() - d
         self.date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
-        log.error("hud_days = %s" % hud_days)
-        log.error("self.date_ndays_ago = %s" % (self.date_ndays_ago,))
         
         d = timedelta(days=h_hud_days, hours=tz_day_start_offset)
         now = datetime.utcnow() - d
         self.h_date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
-        log.error("h_hud_days = %s" % h_hud_days)
-        log.error("self.h_date_ndays_ago = %s" % (self.h_date_ndays_ago,))
 
     def init_player_hud_stat_vars(self, playerid):
         # not sure if this is workable, to be continued ...
