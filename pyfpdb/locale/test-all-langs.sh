@@ -9,4 +9,3 @@ LC_ALL="pt_BR.UTF-8" ../../run_fpdb.py
 LC_ALL="ro_RO.UTF-8" ../../run_fpdb.py 
 LC_ALL="ru_RU.UTF-8" ../../run_fpdb.py 
 LC_ALL="zh_CN.UTF-8" ../../run_fpdb.py 
-
