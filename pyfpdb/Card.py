@@ -419,6 +419,7 @@ if __name__ == '__main__':
         cardid = raw_input('Enter cardid: ')
         print "Value: '%s'" % suitFromCardList[int(cardid)]
     elif s == '2':
-        cardid = raw_input('Enter card: ')
-        print "Encoded card: '%s'" % encodeCard(cardid)
+        while True:
+            cardid = raw_input('Enter card: ')
+            print "Encoded card: '%s'" % encodeCard(cardid)
 

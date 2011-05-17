@@ -1,4 +1,7 @@
-This list is very incomplete! Contact steffen if you're missing from it.
+When possible please contact us using the means listed on http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Contact_-_Get_Help
+That way you'll get better help faster, and spread the workload for us more evenly.
+
+This list is somewhat incomplete! Contact steffen if you're missing from it.
 
 This is a list of everyone who contributed to fpdb. I'll be contacting everyone to ask whether/what contact details they want added. If you're using git feel free to update your own info. Everything is optional.
 
@@ -17,22 +20,25 @@ Jabber: steffen@schaumburger.info
 2+2 Forum: steffen123
 
 Ray
-Carl
+
+Carl Gherardi
+carl.gherardi@gmail.com
+IRC: Worros/s0rrow
+2+2 Forum: Sorrow
 
 Code
 ====
 atinm
 Chaz Littlejohn
-Chris Moore
+dooglus/Chris Moore
 danny
 donoban
-dooglus
 Eric Blade
 Erki Ferenc
 evilny/moomoo
 Forrest
 Gerko de Roo
-gimick
+gimick/steve
 grindi
 lastpoet
 Matt Turnbull
@@ -42,7 +48,6 @@ PassThePeas
 Robert Wielinga
 Scott Wolchok
 sqlcoder
-steve
 tribumarchal
 
 Documentation
@@ -54,6 +59,7 @@ RSOAndrew
 Translations (alphabetically by language)
 ============
 sjp (Chinese zh_CN)
+PassThePeas (French fr_FR)
 tribumarchal (French fr_FR)
 Wedge (French fr_FR))
 Steffen Schaumburg (German de_DE)

@@ -69,6 +69,7 @@ class DetectInstalledSites():
         #
         self.supportedSites = [ "Full Tilt Poker",
                                 "PartyPoker",
+                                "Carbon",
                                 "PokerStars"]#,
                                 #"Everleaf",
                                 #"Win2day",
@@ -78,7 +79,6 @@ class DetectInstalledSites():
                                 #"Absolute",
                                 #"PacificPoker",
                                 #"Partouche",
-                                #"Carbon",
                                 #"PKR",
                                 #"iPoker",
                                 #"Winamax",
@@ -88,26 +88,28 @@ class DetectInstalledSites():
 
         if sitename == "All":
             for siteiter in self.supportedSites:
-                self.sitestatusdict[siteiter]=self.Detect(siteiter)
+                self.sitestatusdict[siteiter]=self.detect(siteiter)
         else:
-            self.sitestatusdict[sitename]=self.Detect(sitename)
+            self.sitestatusdict[sitename]=self.detect(sitename)
             self.heroname = self.sitestatusdict[sitename]['heroname']
             self.hhpath = self.sitestatusdict[sitename]['hhpath']
             self.detected = self.sitestatusdict[sitename]['detected']
 
         return
 
-    def Detect(self, siteToDetect):
+    def detect(self, siteToDetect):
 
         self.pathfound = ""
         self.herofound = ""
 
         if siteToDetect == "Full Tilt Poker":
-            self.DetectFullTilt()
+            self.detectFullTilt()
         elif siteToDetect == "PartyPoker":
-            self.DetectPartyPoker()
+            self.detectPartyPoker()
         elif siteToDetect == "PokerStars":
-            self.DetectPokerStars()
+            self.detectPokerStars()
+        elif siteToDetect == "Carbon":
+            self.detectCarbonMergeNetwork()
 
         if (self.pathfound and self.herofound):
             self.pathfound = unicode(self.pathfound)
@@ -116,7 +118,7 @@ class DetectInstalledSites():
         else:
             return {"detected":False, "hhpath":"", "heroname":""}
 
-    def DetectFullTilt(self):
+    def detectFullTilt(self):
 
         if Config.os_family == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/Full Tilt Poker/HandHistory/")
@@ -140,7 +142,7 @@ class DetectInstalledSites():
 
         return
         
-    def DetectPokerStars(self):
+    def detectPokerStars(self):
 
         if Config.os_family == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/PokerStars/HandHistory/")
@@ -164,7 +166,7 @@ class DetectInstalledSites():
 
         return
 
-    def DetectPartyPoker(self):
+    def detectPartyPoker(self):
 
         if Config.os_family == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/PartyGaming/PartyPoker/HandHistory/")
@@ -189,5 +191,38 @@ class DetectInstalledSites():
             self.pathfound = self.pathfound + self.herofound
         except:
             pass
+
+        return
+
+    def detectCarbonMergeNetwork(self):
+
+# Carbon is the principal room on the Merge network but there are many other skins.
+# FPDB slightly confusingly uses the "Carbon" identifier for sites on the merge network
+
+# Normally, we understand that a player can only be valid at one
+# room on the Merge network so we will exit once successful
+
+# Many thanks to Ilithios for the PlayersOnly information
+
+        merge_skin_names = ["CarbonPoker", "PlayersOnly"]
+        
+        for skin in merge_skin_names:
+            if Config.os_family == "Linux":
+                hhp=os.path.expanduser("~/.wine/drive_c/Program Files/"+skin+"/history/")
+            elif Config.os_family == "XP":
+                hhp=os.path.expanduser(PROGRAM_FILES+"\\"+skin+"\\history\\")            
+            elif Config.os_family == "Win7":
+                hhp=os.path.expanduser(PROGRAM_FILES+"\\"+skin+"\\history\\")
+            else:
+                return
+
+            if os.path.exists(hhp):
+                self.pathfound = hhp
+                try:
+                    self.herofound = os.listdir(self.pathfound)[0]
+                    self.pathfound = self.pathfound + self.herofound
+                    break
+                except:
+                    continue
 
         return

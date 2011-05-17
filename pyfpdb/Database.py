@@ -1559,6 +1559,7 @@ class Database:
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('14', 'iPoker', 'IP')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('15', 'Winamax', 'WM')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('16', 'Everest', 'EP')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('17', 'Cake', 'CK')")
         #Fill Actions
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('1', 'ante', 'A')")
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('2', 'small blind', 'SB')")
@@ -2577,7 +2578,7 @@ class Database:
                 print _("######## Gametype ##########")
                 import pprint
                 pp = pprint.PrettyPrinter(indent=4)
-                pp.pprint(row)
+                pp.pprint(gtinsert)
                 print _("###### End Gametype ########")
                 
             c.execute(self.sql.query['insertGameTypes'], gtinsert)
