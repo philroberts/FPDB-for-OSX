@@ -262,7 +262,7 @@ class GuiSessionViewer (threading.Thread):
         THRESHOLD = 1800     # Min # of secs between consecutive hands before being considered a new session
         PADDING   = 5        # Additional time in minutes to add to a session, session startup, shutdown etc
 
-        # Get a list of all handids and their timestampts
+        # Get a list of all handids and their timestamps
         #FIXME: Query still need to filter on blind levels
 
         q = self.sql.query['sessionStats']
