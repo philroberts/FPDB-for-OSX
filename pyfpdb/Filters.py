@@ -70,7 +70,7 @@ class Filters(threading.Thread):
         self.sw = gtk.ScrolledWindow()
         self.sw.set_border_width(0)
         self.sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.sw.set_size_request(370, 300)
+        self.sw.set_size_request(235, 300)
 
 
         # Outer Packing box
