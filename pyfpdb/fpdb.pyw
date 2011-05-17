@@ -476,7 +476,7 @@ class fpdb:
                 else:
                     comboBox = gtk.combo_box_new_text()
 
-                    for stat in statDict.values():
+                    for stat in sorted(statDict.values()):
                         comboBox.append_text(stat)
                     comboBox.set_active(0)
 
