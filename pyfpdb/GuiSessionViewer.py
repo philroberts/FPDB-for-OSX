@@ -130,26 +130,26 @@ class GuiSessionViewer (threading.Thread):
                        #, ("variance", True,  "Variance", 1.0, "%5.2f")
                        ]
 
-        self.stats_frame = None
-        self.stats_vbox = None
         self.detailFilters = []   # the data used to enhance the sql select
 
-        #self.main_hbox = gtk.HBox(False, 0)
-        #self.main_hbox.show()
         self.main_hbox = gtk.HPaned()
 
         self.stats_frame = gtk.Frame()
         self.stats_frame.show()
 
+        main_vbox = gtk.VPaned()
+        main_vbox.show()
+        self.graphBox = gtk.VBox(False, 0)
+        self.graphBox.set_size_request(400,400)
+        self.graphBox.show()
         self.stats_vbox = gtk.VBox(False, 0)
         self.stats_vbox.show()
         self.stats_frame.add(self.stats_vbox)
-        # self.fillStatsFrame(self.stats_vbox)
 
-        #self.main_hbox.pack_start(self.filters.get_vbox())
-        #self.main_hbox.pack_start(self.stats_frame, expand=True, fill=True)
         self.main_hbox.pack1(self.filters.get_vbox())
-        self.main_hbox.pack2(self.stats_frame)
+        self.main_hbox.pack2(main_vbox)
+        main_vbox.pack1(self.graphBox)
+        main_vbox.pack2(self.stats_frame)
         self.main_hbox.show()
 
         # make sure Hand column is not displayed
@@ -227,16 +227,8 @@ class GuiSessionViewer (threading.Thread):
 
 
 
-        self.graphBox = gtk.VBox(False, 0)
-        self.graphBox.show()
         self.generateGraph(quotes)
 
-        vbox.pack_start(self.graphBox)
-        # Separator
-        sep = gtk.HSeparator()
-        vbox.pack_start(sep, expand=False, padding=3)
-        sep.show_now()
-        vbox.show_now()
         heading = gtk.Label(self.filterText['handhead'])
         heading.show()
         vbox.pack_start(heading, expand=False, padding=3)
