@@ -136,6 +136,19 @@ def playername(stat_dict, player):
             stat_dict[player]['screen_name'],
             stat_dict[player]['screen_name'])
 
+def playershort(stat_dict, player):
+    stat_descriptions["playershort"] = (_("Player Name")+" 1-6") + " (playershort)"
+    r = stat_dict[player]['screen_name']
+    if (len(r) > 7):
+        r = r[:6] + ".."
+    return (r,
+            r,
+            r,
+            r,
+            stat_dict[player]['screen_name'],
+            (_("Player Name")+" 1-6")
+            )
+            
 def vpip(stat_dict, player):
     stat_descriptions["vpip"] = _("Voluntarily put in preflop/3rd street %") + " (vpip)"
     stat = 0.0
@@ -1001,6 +1014,7 @@ if __name__== "__main__":
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq2') 
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq3') 
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq4')
+        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'playershort')
         #print "\n" 
 
     print _("\n\nLegal stats:")

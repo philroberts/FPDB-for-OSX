@@ -70,7 +70,7 @@ class Filters(threading.Thread):
         self.sw = gtk.ScrolledWindow()
         self.sw.set_border_width(0)
         self.sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.sw.set_size_request(370, 300)
+        self.sw.set_size_request(235, 300)
 
 
         # Outer Packing box
@@ -108,7 +108,9 @@ class Filters(threading.Thread):
 
         # For use in date ranges.
         self.start_date = gtk.Entry(max=12)
+        self.start_date.set_width_chars(12)
         self.end_date = gtk.Entry(max=12)
+        self.end_date.set_width_chars(12)
         self.start_date.set_property('editable', False)
         self.end_date.set_property('editable', False)
 
@@ -342,15 +344,19 @@ class Filters(threading.Thread):
     def cardCallback(self, widget, data=None):
         log.debug( _("%s was toggled %s") % (data, (_("OFF"), _("ON"))[widget.get_active()]) )
 
-    def createPlayerLine(self, hbox, site, player):
+    def createPlayerLine(self, vbox, site, player):
         log.debug('add:"%s"' % player)
         label = gtk.Label(site +" id:")
-        hbox.pack_start(label, False, False, 3)
+        label.set_alignment(xalign=0.0, yalign=1.0)
+        vbox.pack_start(label, False, False, 3)
+
+        hbox = gtk.HBox(False, 0)
+        vbox.pack_start(hbox, False, True, 0)
 
         pname = gtk.Entry()
         pname.set_text(player)
         pname.set_width_chars(20)
-        hbox.pack_start(pname, False, True, 0)
+        hbox.pack_start(pname, True, True, 20)
         pname.connect("changed", self.__set_hero_name, site)
 
         # Added EntryCompletion but maybe comboBoxEntry is more flexible? (e.g. multiple choices)
@@ -657,12 +663,9 @@ class Filters(threading.Thread):
         self.boxes['Heroes'] = vbox1
 
         for site in self.conf.get_supported_sites():
-            hBox = gtk.HBox(False, 0)
-            vbox1.pack_start(hBox, False, True, 0)
-
             player = self.conf.supported_sites[site].screen_name
             _pname = Charset.to_gui(player)
-            self.createPlayerLine(hBox, site, _pname)
+            self.createPlayerLine(vbox1, site, _pname)
 
         if "GroupsAll" in display and display["GroupsAll"] == True:
             hbox = gtk.HBox(False, 0)
@@ -806,7 +809,7 @@ class Filters(threading.Thread):
                     if line[0] != self.display["UseType"]:
                         continue
                 hbox = gtk.HBox(False, 0)
-                if i <= len(result)/2:
+                if i < len(result)/2:
                     vbox2.pack_start(hbox, False, False, 0)
                 else:
                     vbox3.pack_start(hbox, False, False, 0)
@@ -1046,40 +1049,41 @@ class Filters(threading.Thread):
         self.toggles['Dates'] = showb
         top_hbox.pack_start(showb, expand=False, padding=1)
 
-        vbox1 = gtk.VBox(False, 0)
-        vbox.pack_start(vbox1, False, False, 0)
-        self.boxes['Dates'] = vbox1
+        hbox1 = gtk.HBox(False, 0)
+        vbox.pack_start(hbox1, False, False, 0)
+        self.boxes['Dates'] = hbox1
 
-        hbox = gtk.HBox()
-        vbox1.pack_start(hbox, False, True, 0)
+        table = gtk.Table(2,4,False)
+        hbox1.pack_start(table, False, True, 0)
 
         lbl_start = gtk.Label(_('From:'))
-
+        lbl_start.set_alignment(xalign=1.0, yalign=0.5)
         btn_start = gtk.Button()
         btn_start.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
         btn_start.connect('clicked', self.__calendar_dialog, self.start_date)
-
-        hbox.pack_start(lbl_start, expand=False, padding=3)
-        hbox.pack_start(btn_start, expand=False, padding=3)
-        hbox.pack_start(self.start_date, expand=False, padding=2)
-
-        #New row for end date
-        hbox = gtk.HBox()
-        vbox1.pack_start(hbox, False, True, 0)
+        clr_start = gtk.Button()
+        clr_start.set_image(gtk.image_new_from_stock(gtk.STOCK_CLEAR, gtk.ICON_SIZE_BUTTON))
+        clr_start.connect('clicked', self.__clear_start_date)
 
         lbl_end = gtk.Label(_('To:'))
+        lbl_end.set_alignment(xalign=1.0, yalign=0.5)
         btn_end = gtk.Button()
         btn_end.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
         btn_end.connect('clicked', self.__calendar_dialog, self.end_date)
+        clr_end = gtk.Button()
+        clr_end.set_image(gtk.image_new_from_stock(gtk.STOCK_CLEAR, gtk.ICON_SIZE_BUTTON))
+        clr_end.connect('clicked', self.__clear_end_date)
 
-        btn_clear = gtk.Button(label=_('Clear Dates'))
-        btn_clear.connect('clicked', self.__clear_dates)
+        table.attach(lbl_start,       0,1, 0,1)
+        table.attach(btn_start,       1,2, 0,1)
+        table.attach(self.start_date, 2,3, 0,1)
+        table.attach(clr_start,       3,4, 0,1)
 
-        hbox.pack_start(lbl_end, expand=False, padding=3)
-        hbox.pack_start(btn_end, expand=False, padding=3)
-        hbox.pack_start(self.end_date, expand=False, padding=2)
+        table.attach(lbl_end,         0,1, 1,2)
+        table.attach(btn_end,         1,2, 1,2)
+        table.attach(self.end_date,   2,3, 1,2)
+        table.attach(clr_end,         3,4, 1,2)
 
-        hbox.pack_start(btn_clear, expand=False, padding=15)
     #end def fillDateFrame
 
     def __refresh(self, widget, entry):
@@ -1140,10 +1144,13 @@ class Filters(threading.Thread):
         d.show_all()
     #end def __calendar_dialog
 
-    def __clear_dates(self, w):
+    def __clear_start_date(self, w):
         self.start_date.set_text('')
+    #end def __clear_start_date
+
+    def __clear_end_date(self, w):
         self.end_date.set_text('')
-    #end def __clear_dates
+    #end def __clear_end_date
 
     def __get_dates(self):
         # self.day_start gives user's start of day in hours

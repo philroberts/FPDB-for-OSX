@@ -12,7 +12,7 @@
              config_difficulty="expert"
              />
 
-    <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" saveActions="True" cacheSessions="False" sessionTimeout="30"></import>
+    <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="True" cacheSessions="False" sessionTimeout="30"></import>
 
     <gui_cash_stats>
         <col col_name="game"       disp_all="True"  disp_posn="True"  col_title="Game"     xalignment="0.0" field_format="%s"    field_type="str" />
@@ -224,49 +224,49 @@ Left-Drag to Move"
               font="Sans"
               font_size="8"
               supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
-            <layout fav_seat="5" height="547" max="8" width="794">
-                <location seat="1" x="367" y="-6">  </location>
-                <location seat="2" x="606" y="45"> </location>
-                <location seat="3" x="622" y="197"> </location>
-                <location seat="4" x="558" y="410"> </location>
-                <location seat="5" x="240" y="444"> </location>
-                <location seat="6" x="33" y="346"> </location>
-                <location seat="7" x="4" y="198"> </location>
-                <location seat="8" x="28" y="39">  </location>
+            <layout fav_seat="0" height="547" max="8" width="794">
+                <location seat="1" x="640" y="64">  </location>
+                <location seat="2" x="650" y="230"> </location>
+                <location seat="3" x="650" y="385"> </location>
+                <location seat="4" x="588" y="425"> </location>
+                <location seat="5" x="92" y="425"> </location>
+                <location seat="6" x="0" y="373"> </location>
+                <location seat="7" x="0" y="223"> </location>
+                <location seat="8" x="25" y="50">  </location>
             </layout>
-            <layout fav_seat="4" height="547" max="6" width="794">
-                <location seat="1" x="377" y="-5"> </location>
-                <location seat="2" x="620" y="43"> </location>
-                <location seat="3" x="605" y="179"> </location>
-                <location seat="4" x="212" y="444"> </location>
-                <location seat="5" x="-2" y="186"> </location>
-                <location seat="6" x="78" y="24"> </location>
+            <layout fav_seat="0" height="547" max="6" width="794">
+                <location seat="1" x="640" y="58"> </location>
+                <location seat="2" x="654" y="288"> </location>
+                <location seat="3" x="615" y="424"> </location>
+                <location seat="4" x="70" y="421"> </location>
+                <location seat="5" x="0" y="280"> </location>
+                <location seat="6" x="70" y="58"> </location>
             </layout>
-            <layout fav_seat="2" height="547" max="2" width="794">
+            <layout fav_seat="0" height="547" max="2" width="794">
                 <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10" y="288"> </location>
+                <location seat="2" x="10"  y="288"> </location>
             </layout>
-            <layout fav_seat="5" height="547" max="9" width="794">
-                <location seat="1" x="487" y="12">  </location>
+            <layout fav_seat="0" height="547" max="9" width="794">
+                <location seat="1" x="634" y="38">  </location>
                 <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="647" y="323"> </location>
+                <location seat="3" x="667" y="321"> </location>
                 <location seat="4" x="667" y="445"> </location>
                 <location seat="5" x="337" y="459"> </location>
                 <location seat="6" x="0" y="400"> </location>
                 <location seat="7" x="0" y="322"> </location>
                 <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="95" y="18">  </location>
+                <location seat="9" x="70" y="53">  </location>
             </layout>
         </site>
 
-	    <site HH_path="C:\Users\WindowsUserName\Documents\EverleafSiteName\HandHistory\YOUR SCREEN NAME HERE"
+	    <site HH_path="C:\Users\WindowsUserName\Documents\EverleafSiteName\HandHistory\PlayerName"
                   bgcolor="#000000"
                   converter="EverleafToFpdb"
                   decoder="everleaf_decode_table"
                   enabled="True"
                   fgcolor="#EEEEEE"
                   hudopacity="0.75"
-                  screen_name="YOUR SCREEN NAME HERE"
+                  screen_name="PlayerName"
                   site_name="Everleaf"
                   site_path="C:\Users\WindowsUserName\AppData\Roaming\EverleafSiteName\"
                   supported_games="holdem,omahahi,omahahilo"
@@ -410,11 +410,6 @@ Left-Drag to Move"
               HH_path="C:/Program Files/PartyGaming/PartyPoker/HandHistory/YOUR SCREEN NAME HERE/"
               decoder="everleaf_decode_table"
               converter="PartyPokerToFpdb"
-              bgcolor="#000000"
-              fgcolor="#FFFFFF"
-              hudopacity="1.0"
-              font="Sans"
-              font_size="8"
               supported_games="holdem">
             <layout fav_seat="0" height="547" max="8" width="794">
                 <location seat="1" x="640" y="64">  </location>
@@ -426,7 +421,7 @@ Left-Drag to Move"
                 <location seat="7" x="0" y="223"> </location>
                 <location seat="8" x="25" y="50">  </location>
             </layout>
-            <layout fav_seat="2" height="547" max="6" width="794">
+            <layout fav_seat="0" height="547" max="6" width="794">
                 <location seat="1" x="640" y="58"> </location>
                 <location seat="2" x="654" y="288"> </location>
                 <location seat="3" x="615" y="424"> </location>
@@ -449,7 +444,7 @@ Left-Drag to Move"
                 <location seat="8" x="0" y="181">  </location>
                 <location seat="9" x="70" y="53">  </location>
             </layout>
-            <layout fav_seat="4" height="547" max="10" width="794">
+            <layout fav_seat="6" height="547" max="10" width="794">
                 <location seat="1" x="698" y="69">  </location>
                 <location seat="2" x="716" y="243"> </location>
                 <location seat="3" x="699" y="301"> </location>
@@ -655,78 +650,6 @@ Left-Drag to Move"
             </layout>
         </site>
 
-        <site HH_path="C:/Program Files/PacificPoker/HandHistory/YOUR SCREEN NAME HERE/" converter="PacificPokerToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="PacificPoker" site_path="C:/Program Files/PacificPoker/" supported_games="holdem" table_finder="PacificPoker.exe">
-            <layout fav_seat="0" height="547" max="8" width="794">
-                <location seat="1" x="640" y="64">  </location>
-                <location seat="2" x="650" y="230"> </location>
-                <location seat="3" x="650" y="385"> </location>
-                <location seat="4" x="588" y="425"> </location>
-                <location seat="5" x="92" y="425"> </location>
-                <location seat="6" x="0" y="373"> </location>
-                <location seat="7" x="0" y="223"> </location>
-                <location seat="8" x="25" y="50">  </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="6" width="794">
-                <location seat="1" x="640" y="58"> </location>
-                <location seat="2" x="654" y="288"> </location>
-                <location seat="3" x="615" y="424"> </location>
-                <location seat="4" x="70" y="421"> </location>
-                <location seat="5" x="0" y="280"> </location>
-                <location seat="6" x="70" y="58"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="2" width="794">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10" y="288"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="9" width="794">
-                <location seat="1" x="634" y="38">  </location>
-                <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="667" y="321"> </location>
-                <location seat="4" x="667" y="445"> </location>
-                <location seat="5" x="337" y="459"> </location>
-                <location seat="6" x="0" y="400"> </location>
-                <location seat="7" x="0" y="322"> </location>
-                <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="70" y="53">  </location>
-            </layout>
-        </site>
-
-        <site HH_path="C:/Program Files/Cake/HandHistory/YOUR SCREEN NAME HERE/" converter="CakeToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="Cake" site_path="C:/Program Files/Cake/" supported_games="holdem" table_finder="Cake.exe">
-            <layout fav_seat="0" height="547" max="8" width="794">
-                <location seat="1" x="640" y="64">  </location>
-                <location seat="2" x="650" y="230"> </location>
-                <location seat="3" x="650" y="385"> </location>
-                <location seat="4" x="588" y="425"> </location>
-                <location seat="5" x="92" y="425"> </location>
-                <location seat="6" x="0" y="373"> </location>
-                <location seat="7" x="0" y="223"> </location>
-                <location seat="8" x="25" y="50">  </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="6" width="794">
-                <location seat="1" x="640" y="58"> </location>
-                <location seat="2" x="654" y="288"> </location>
-                <location seat="3" x="615" y="424"> </location>
-                <location seat="4" x="70" y="421"> </location>
-                <location seat="5" x="0" y="280"> </location>
-                <location seat="6" x="70" y="58"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="2" width="794">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10" y="288"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="9" width="794">
-                <location seat="1" x="634" y="38">  </location>
-                <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="667" y="321"> </location>
-                <location seat="4" x="667" y="445"> </location>
-                <location seat="5" x="337" y="459"> </location>
-                <location seat="6" x="0" y="400"> </location>
-                <location seat="7" x="0" y="322"> </location>
-                <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="70" y="53">  </location>
-            </layout>
-        </site>
-
     </supported_sites>
 
     <supported_games>
@@ -735,7 +658,7 @@ Left-Drag to Move"
             <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" stat_loth="20" stat_locolor ="#408000" stat_hith="35" stat_hicolor ="#F05000" tip="tip1"> </stat>
             <stat click="tog_decorate" col="2" popup="default" row="0" stat_name="three_B" stat_loth="4" stat_locolor ="#408000" stat_hith="13" stat_hicolor ="#F05000" tip="tip1"> </stat>
             <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="1" stat_name="playershort" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="1" stat_name="playername" tip="tip1"> </stat>
             <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="cb1" tip="tip1"> </stat>
             <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="wtsd" tip="tip1"> </stat>
             <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="steal" tip="tip1"> </stat>
@@ -743,7 +666,7 @@ Left-Drag to Move"
         </game>
 
         <game aux="stud_mucked" cols="2" db="fpdb" game_name="razz" rows="3">
-            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playername" tip="tip1"> </stat>
         	<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
         	<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
         	<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
@@ -752,7 +675,7 @@ Left-Drag to Move"
         </game>
 
         <game aux="mucked" cols="2" db="fpdb" game_name="omahahi" rows="3">
-            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playername" tip="tip1"> </stat>
         	<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
         	<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
         	<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
@@ -761,7 +684,7 @@ Left-Drag to Move"
         </game>
 
         <game aux="mucked" cols="2" db="fpdb" game_name="omahahilo" rows="3">
-            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playername" tip="tip1"> </stat>
         	<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
         	<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
         	<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
@@ -770,7 +693,7 @@ Left-Drag to Move"
         </game>
 
         <game aux="stud_mucked" cols="2" db="fpdb" game_name="studhi" rows="3">
-            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playername" tip="tip1"> </stat>
         	<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
         	<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
         	<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
@@ -779,7 +702,7 @@ Left-Drag to Move"
         </game>
 
         <game aux="stud_mucked" cols="2" db="fpdb" game_name="studhilo" rows="3">
-            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playername" tip="tip1"> </stat>
         	<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
         	<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
         	<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
@@ -924,8 +847,6 @@ Left-Drag to Move"
         <hhc site="iPoker" converter="iPokerToFpdb"/>
         <hhc site="Winamax" converter="WinamaxToFpdb"/>
         <hhc site="Everest" converter="EverestToFpdb"/>
-        <hhc site="PacificPoker" converter="PacificPokerToFpdb"/>
-        <hhc site="Cake" converter="CakeToFpdb"/>
     </hhcs>
 
     <raw_hands save="none" compression="none"/>
