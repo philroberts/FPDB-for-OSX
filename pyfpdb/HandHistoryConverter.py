@@ -65,6 +65,7 @@ class HandHistoryConverter():
     codepage = "cp1252"
 
     re_tzOffset = re.compile('^\w+[+-]\d{4}$')
+    copyGameHeader = False
 
     # maybe archive params should be one archive param, then call method in specific converter.   if archive:  convert_archive()
     def __init__( self, config, in_path = '-', out_path = '-', follow=False, index=0
@@ -107,7 +108,6 @@ follow :  whether to tail -f the input"""
 
         self.parsedObjectType = "HH"      #default behaviour : parsing HH files, can be "Summary" if the parsing encounters a Summary File
         
-        self.copyGameHeader = False
 
         if autostart:
             self.start()

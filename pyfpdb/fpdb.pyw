@@ -108,7 +108,7 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = _("%s plus git") % "0.24"
+VERSION = "0.25 + git"
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
@@ -476,7 +476,7 @@ class fpdb:
                 else:
                     comboBox = gtk.combo_box_new_text()
 
-                    for stat in statDict.values():
+                    for stat in sorted(statDict.values()):
                         comboBox.append_text(stat)
                     comboBox.set_active(0)
 

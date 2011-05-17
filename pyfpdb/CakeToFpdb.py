@@ -43,24 +43,24 @@ class Cake(HandHistoryConverter):
                     
     # translations from captured groups to fpdb info strings
     Lim_Blinds = {  '0.04': ('0.01', '0.02'),        '0.08': ('0.02', '0.04'),
-                        '0.10': ('0.02', '0.05'),    '0.20': ('0.05', '0.10'),
-                        '0.40': ('0.10', '0.20'),    '0.50': ('0.10', '0.25'),
-                        '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
-                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
-                        '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
-                        '6.00': ('1.00', '3.00'),       '6': ('1.00', '3.00'),
-                        '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
-                       '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
-                       '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
-                       '30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
-                       '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
-                       '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
-                       '80.00': ('20.00', '40.00'),    '80': ('20.00', '40.00'),
-                      '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
-                      '200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
-                      '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
-                      '800.00': ('200.00', '400.00'), '800': ('200.00', '400.00'),
-                     '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00')
+#                        '0.10': ('0.02', '0.05'),    '0.20': ('0.05', '0.10'),
+#                        '0.40': ('0.10', '0.20'),    '0.50': ('0.10', '0.25'),
+#                        '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
+#                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
+#                        '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
+#                        '6.00': ('1.00', '3.00'),       '6': ('1.00', '3.00'),
+#                        '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
+#                       '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
+#                       '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
+#                       '30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
+#                       '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
+#                       '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
+#                       '80.00': ('20.00', '40.00'),    '80': ('20.00', '40.00'),
+#                      '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
+#                      '200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
+#                      '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
+#                      '800.00': ('200.00', '400.00'), '800': ('200.00', '400.00'),
+#                     '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00')
                   }
 
     limits = { 'NL':'nl', 'PL':'pl', 'FL':'fl' }
@@ -95,25 +95,24 @@ class Cake(HandHistoryConverter):
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
     re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
-    short_subst = {'PLYR': r'(?P<PNAME>.+?)', 'CUR': '\$?'}
-    re_PostSB       = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[.0-9]+)$" %  short_subst, re.MULTILINE)
-    re_PostBB       = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[.0-9]+)$" %  short_subst, re.MULTILINE)
-    re_Antes        = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % short_subst, re.MULTILINE)
-    re_BringIn      = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % short_subst, re.MULTILINE)
-    re_PostBoth     = re.compile(r"^%(PLYR)s:posts dead blind %(CUR)s(?P<SB>[.0-9]+) and big blind %(CUR)s(?P<BB>[.0-9]+)" %  short_subst, re.MULTILINE)
-    re_HeroCards    = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % short_subst, re.MULTILINE)
+    re_PostSB       = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[.0-9]+)$" %  substitutions, re.MULTILINE)
+    re_PostBB       = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[.0-9]+)$" %  substitutions, re.MULTILINE)
+    re_Antes        = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % substitutions, re.MULTILINE)
+    re_BringIn      = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % substitutions, re.MULTILINE)
+    re_PostBoth     = re.compile(r"^%(PLYR)s:posts dead blind %(CUR)s(?P<SB>[.0-9]+) and big blind %(CUR)s(?P<BB>[.0-9]+)" %  substitutions, re.MULTILINE)
+    re_HeroCards    = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
     re_Action       = re.compile(r"""
                         ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sis\sall\sin)
                         (\s(%(CUR)s)?(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?$
                         """
-                         %  short_subst, re.MULTILINE|re.VERBOSE)
-    re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" % short_subst['PLYR'], re.MULTILINE)
-    re_sitsOut          = re.compile("^%s sits out" %  short_subst['PLYR'], re.MULTILINE)
-    re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\]( and won \([.\d]+\) with (?P<STRING>.*))?" %  short_subst['PLYR'], re.MULTILINE)
-    re_CollectPot       = re.compile(r"%(PLYR)s wins %(CUR)s(?P<POT>[.\d]+)" %  short_subst, re.MULTILINE)
-    re_WinningRankOne   = re.compile(u"^%(PLYR)s wins the tournament and receives %(CUR)s(?P<AMT>[\.0-9]+) - congratulations!$" %  short_subst, re.MULTILINE)
-    re_WinningRankOther = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place and received %(CUR)s(?P<AMT>[.0-9]+)\.$" %  short_subst, re.MULTILINE)
-    re_RankOther        = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place$" %  short_subst, re.MULTILINE)
+                         %  substitutions, re.MULTILINE|re.VERBOSE)
+    re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" % substitutions['PLYR'], re.MULTILINE)
+    re_sitsOut          = re.compile("^%s sits out" %  substitutions['PLYR'], re.MULTILINE)
+    re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\]( and won \([.\d]+\) with (?P<STRING>.*))?" %  substitutions['PLYR'], re.MULTILINE)
+    re_CollectPot       = re.compile(r"%(PLYR)s wins %(CUR)s(?P<POT>[.\d]+)" %  substitutions, re.MULTILINE)
+    re_WinningRankOne   = re.compile(u"^%(PLYR)s wins the tournament and receives %(CUR)s(?P<AMT>[\.0-9]+) - congratulations!$" %  substitutions, re.MULTILINE)
+    re_WinningRankOther = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place and received %(CUR)s(?P<AMT>[.0-9]+)\.$" %  substitutions, re.MULTILINE)
+    re_RankOther        = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place$" %  substitutions, re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         pass

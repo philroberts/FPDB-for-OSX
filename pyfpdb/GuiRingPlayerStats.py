@@ -523,7 +523,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                                     value += ' - $' + '%.0f' % (maxbb/100.0)
                     else:
                         continue
-                if value and value != -999:
+                if value != None and value != -999:
                     treerow.append(column[colformat] % value)
                 else:
                     treerow.append(' ')

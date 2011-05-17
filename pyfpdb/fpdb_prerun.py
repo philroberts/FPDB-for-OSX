@@ -116,7 +116,7 @@ except:
 try:
     try_import("Charset")
 except:
-    failure("fpdb must be installed in an American-English path")
+    failure("fpdb must be installed in an English path")
     win_output(failure_list)
     sys.exit(1)
 

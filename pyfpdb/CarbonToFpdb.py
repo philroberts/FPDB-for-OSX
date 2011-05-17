@@ -56,7 +56,7 @@ class Carbon(HandHistoryConverter):
     siteId   = 11
     copyGameHeader = True
 
-    limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'Pot Limit':'pl', 'Pot Limit ':'pl'}
+    limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'Pot Limit':'pl', 'Pot Limit ':'pl', 'Half Pot Limit':'hp'}
     games = {              # base, category
                     'Holdem' : ('hold','holdem'),
          'Holdem Tournament' : ('hold','holdem'),
@@ -72,7 +72,7 @@ class Carbon(HandHistoryConverter):
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r'<description type="(?P<GAME>[-0-9a-zA-Z ]+)" stakes="(?P<LIMIT>[a-zA-Z ]+?)\s?\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?\)?"/>', re.MULTILINE)
+    re_GameInfo = re.compile(r'<description type="(?P<GAME>[-0-9a-zA-Z ]+)" stakes="(?P<LIMIT>[a-zA-Z ]+)\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?"/>', re.MULTILINE)
     re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLE>[-\ \#a-zA-Z\d\']+)(\(\d+\))?\|(?P<TOURNO>\d+)?.*>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
@@ -92,7 +92,7 @@ class Carbon(HandHistoryConverter):
     re_ShowdownAction = re.compile(r'<cards type="SHOWN" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_CollectPot = re.compile(r'<winner amount="(?P<POT>[.0-9]+)" uncalled="(true|false)" potnumber="[0-9]+" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
-    re_ShownCards = re.compile(r'<cards type="(SHOWN|MUCKED)" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
+    re_ShownCards = re.compile(r'<cards type="(SHOWN|MUCKED)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
 
     def compilePlayerRegexs(self, hand):
         pass
@@ -115,6 +115,7 @@ class Carbon(HandHistoryConverter):
                 ["ring", "draw", "fl"],
                 ["ring", "draw", "pl"],
                 ["ring", "draw", "nl"],
+                ["ring", "draw", "hp"],
                 
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
@@ -222,11 +223,11 @@ or None if we fail to get the info """
                            r'(<round id="THIRD_DRAW" sequence="[0-9]+">(?P<DRAWTHREE>.+))?', hand.handText,re.DOTALL)
         elif hand.gametype['base'] == 'stud':
             m =  re.search(r'(?P<ANTES>.+(?=<round id="BRING_IN" sequence="[0-9]+">)|.+)'
-                       r'(<round id="BRING_IN" sequence="[0-9]+">(?P<THIRD>.+(?=<round id="THIRD_STREET" sequence="[0-9]+">)|.+))?'
-                       r'(<round id="THIRD_STREET" sequence="[0-9]+">(?P<FOURTH>.+(?=<round id="FOURTH_STREET" sequence="[0-9]+">)|.+))?'
-                       r'(<round id="FOURTH_STREET" sequence="[0-9]+">(?P<FIFTH>.+(?=<round id="FIFTH_STREET" sequence="[0-9]+">)|.+))?'
-                       r'(<round id="FIFTH_STREET" sequence="[0-9]+">(?P<SIXTH>.+(?=<round id="SIXTH_STREET" sequence="[0-9]+">)|.+))?'
-                       r'(<round id="SIXTH_STREET" sequence="[0-9]+">(?P<SEVENTH>.+))?', hand.handText,re.DOTALL)
+                       r'(<round id="BRING_IN" sequence="[0-9]+">(?P<THIRD>.+(?=<round id="FOURTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="FOURTH_STREET" sequence="[0-9]+">(?P<FOURTH>.+(?=<round id="FIFTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="FIFTH_STREET" sequence="[0-9]+">(?P<FIFTH>.+(?=<round id="SIXTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="SIXTH_STREET" sequence="[0-9]+">(?P<SIXTH>.+(?=<round id="SEVENTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="SEVENTH_STREET" sequence="[0-9]+">(?P<SEVENTH>.+))?', hand.handText,re.DOTALL)
 
         hand.addStreets(m)
 
@@ -279,14 +280,14 @@ or None if we fail to get the info """
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
 
     def readHeroCards(self, hand):
-        for street in ('PREFLOP', 'DEAL'):
+        for street in ('PREFLOP', 'DEAL', 'THIRD'):
             if street in hand.streets.keys():
                 m = self.re_HeroCards.search(hand.handText)
                 if m:
                     hand.hero = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
                     cards = m.group('CARDS').split(',')
-                    hand.addHoleCards(street, hand.hero, closed=cards, shown=False,
-                              mucked=False, dealt=True)
+                    #print "DEBUG: cards: %s" % cards
+                    hand.addHoleCards(street, hand.hero, closed=cards, shown=False, mucked=False, dealt=True)
 
     def readAction(self, hand, street):
         logging.debug("readAction (%s)" % street)
@@ -311,11 +312,11 @@ or None if we fail to get the info """
                 logging.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
 
     def readShowdownActions(self, hand):
-        for shows in self.re_ShowdownAction.finditer(hand.handText):
-            cards = shows.group('CARDS').split(',')
-            hand.addShownCards(cards,
-                               self.playerNameFromSeatNo(shows.group('PSEAT'),
-                                                         hand))
+        for street in ('RIVER', 'SEVENTH', 'DRAWTHREE'):
+            if street in hand.streets.keys() and hand.streets[street] != None:
+                for shows in self.re_ShowdownAction.finditer(hand.streets[street]):
+                    cards = shows.group('CARDS').split(',')
+                    hand.addShownCards(cards, self.playerNameFromSeatNo(shows.group('PSEAT'), hand))
 
     def readCollectPot(self, hand):
         pots = [Decimal(0) for n in range(hand.maxseats)]
@@ -332,7 +333,9 @@ or None if we fail to get the info """
                 hand.addCollectPot(player=pname, pot=pots[p])
 
     def readShownCards(self, hand):
-        for m in self.re_ShownCards.finditer(hand.handText):
-            cards = m.group('CARDS').split(',')
-            hand.addShownCards(cards=cards, player=self.playerNameFromSeatNo(m.group('PSEAT'), hand))
+        for street in ('FLOP', 'TURN', 'RIVER', 'SEVENTH', 'DRAWTHREE'):
+            if street in hand.streets.keys() and hand.streets[street] != None:
+                for m in self.re_ShownCards.finditer(hand.streets[street]):
+                    cards = m.group('CARDS').split(',')
+                    hand.addShownCards(cards=cards, player=self.playerNameFromSeatNo(m.group('PSEAT'),hand))
 

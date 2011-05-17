@@ -293,7 +293,7 @@ class Hud:
         item.connect("activate", self.set_hud_style, ('O','S'))
         setattr(self, 'hudStyleOptionS', item)
         
-        item = gtk.CheckMenuItem(_('  %s Days') % (self.hud_params['h_hud_days']))
+        item = gtk.CheckMenuItem(_('  %s Days') % (self.hud_params['hud_days']))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('O','T'))
         setattr(self, 'hudStyleOptionT', item)
