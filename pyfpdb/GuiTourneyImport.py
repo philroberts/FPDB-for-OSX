@@ -69,13 +69,13 @@ class GuiTourneyImport():
             ttime = time() - starttime
             if ttime == 0:
                 ttime = 1
-            print _('GuiTourneyImport.load done: Stored: %d\tErrors: %d in %s seconds - %.0f/sec')\
+            print _('Tourney import done: Stored: %d \tErrors: %d in %s seconds - %.0f/sec')\
                      % (stored, errs, ttime, (stored+0.0) / ttime)
             self.importer.clearFileList()
 
             self.settings['global_lock'].release()
         else:
-            print _("bulk import aborted - global lock not available")
+            print _("tourney import aborted - global lock not available")
 
     def get_vbox(self):
         """returns the vbox of this thread"""
@@ -292,7 +292,7 @@ def main(argv=None):
     ttime = time() - starttime
     if ttime == 0:
         ttime = 1
-    print _('GuiTourneyImport.load done: Stored: %d\tErrors: %d in %s seconds - %.0f/sec')\
+    print _('Tourney import done: Stored: %d \tErrors: %d in %s seconds - %.0f/sec')\
                      % (stored, errs, ttime, (stored+0.0) / ttime)
     importer.clearFileList()
 

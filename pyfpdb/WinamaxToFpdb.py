@@ -214,14 +214,14 @@ class Winamax(HandHistoryConverter):
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'),a.group('M'), a.group('D'), a.group('H'),a.group('MIN'),a.group('S'))
                 else:
                     datetimestr = "2010/Jan/01 01:01:01"
-                    log.error(_("readHandInfo: DATETIME not matched: '%s'") % info[key])
+                    log.error("readHandInfo: " + _("DATETIME not matched: '%s'") % info[key])
                     #print "DEBUG: readHandInfo: DATETIME not matched: '%s'" % info[key]
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "CET", "UTC")
             if key == 'HID1':
                 # Need to remove non-alphanumerics for MySQL
 #                hand.handid = "1%.9d%s%s"%(int(info['HID2']),info['HID1'],info['HID3'])
-                hand.handid = "%s%s%s"%(int(info['HID2']),info['HID1'],info['HID3'])
+                hand.handid = "%s%s%s"%(int(info['HID1']),info['HID2'],info['HID3'])
                 if len (hand.handid) > 19:
                     hand.handid = "%s%s" % (int(info['HID2']), int(info['HID3']))
                     
@@ -473,11 +473,3 @@ class Winamax(HandHistoryConverter):
             if m.group('CARDS') is not None:
                 shown = True
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
-
-if __name__ == "__main__":
-    c = Configuration.Config()
-    if len(sys.argv) ==  1:
-        testfile = "regression-test-files/ongame/nlhe/ong NLH handhq_0.txt"
-    else:
-        testfile = sys.argv[1]
-    e = Winamax(c, testfile)

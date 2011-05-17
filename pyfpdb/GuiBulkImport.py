@@ -50,6 +50,9 @@ class GuiBulkImport():
         return True
 
     def load_clicked(self, widget, data=None):
+        if self.cbfilter.get_model()[self.cbfilter.get_active()][0] == (_("Please select site")):
+            self.progressbar.set_text(_("Please select site"))
+            return
         stored = None
         dups = None
         partial = None
@@ -114,7 +117,7 @@ class GuiBulkImport():
                 if ttime == 0:
                     ttime = 1
                     
-                completionMessage = _('GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec')\
+                completionMessage = _('Bulk import done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec')\
                     % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
                 print completionMessage
                 log.info(completionMessage)
@@ -261,6 +264,7 @@ class GuiBulkImport():
 #    ComboBox - filter
         self.cbfilter = gtk.combo_box_new_text()
         disabled_sites = []                                # move disabled sites to bottom of list
+        self.cbfilter.append_text(_("Please select site"))
         for w in self.config.hhcs:
             try:
                 if self.config.supported_sites[w].enabled: # include enabled ones first
@@ -348,27 +352,27 @@ def main(argv=None):
     parser.add_option("-f", "--file", dest="filename", metavar="FILE", default=None,
                     help=_("Input file"))
     parser.add_option("-c", "--convert", dest="filtername", default=None, metavar="FILTER",
-                    help=_("Conversion filter (*Full Tilt Poker, PokerStars, Everleaf, Absolute)"))
+                    help=_("Site")+ " (Absolute, Carbon, Everleaf, Full Tilt Poker, PokerStars, ...)") #TODO: dynamically generate list
     parser.add_option("-x", "--failOnError", action="store_true", default=False,
-                    help=_("If this option is passed it quits when it encounters any error"))
+                    help=_("If this option is used it quits with an extended error message if it encounters any error"))
     parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False,
                     help=_("Print some useful one liners"))
     parser.add_option("-s", "--starsarchive", action="store_true", dest="starsArchive", default=False,
-                    help=_("Do the required conversion for Stars Archive format (ie. as provided by support"))
+                    help=_("Do the required conversion for %s archive format (ie. as provided by support)") % "PokerStars")
     parser.add_option("-F", "--ftparchive", action="store_true", dest="ftpArchive", default=False,
-                    help=_("Do the required conversion for FTP Archive format (ie. as provided by support"))
+                    help=_("Do the required conversion for %s archive format (ie. as provided by support)") % "Full Tilt Poker")
     parser.add_option("-t", "--testdata", action="store_true", dest="testData", default=False,
-                    help=_("Output the pprinted version of the HandsPlayer hash for regresion testing"))
+                    help=_("Generate and print test data for regression testing"))
     (options, argv) = parser.parse_args(args = argv)
 
     if options.usage == True:
         #Print usage examples and exit
         print _("USAGE:")
-        print _('PokerStars converter: ./GuiBulkImport.py -c PokerStars -f filename')
-        print _('Full Tilt  converter: ./GuiBulkImport.py -c "Full Tilt Poker" -f filename')
-        print _("Everleaf   converter: ./GuiBulkImport.py -c Everleaf -f filename")
-        print _("Absolute   converter: ./GuiBulkImport.py -c Absolute -f filename")
-        print _("PartyPoker converter: ./GuiBulkImport.py -c PartyPoker -f filename")
+        print ('PokerStars ' + _('converter') + ': ./GuiBulkImport.py -c PokerStars -f filename')
+        print ('Full Tilt  ' + _('converter') + ': ./GuiBulkImport.py -c "Full Tilt Poker" -f filename')
+        print ('Everleaf   ' + _('converter') + ': ./GuiBulkImport.py -c Everleaf -f filename')
+        print ('Absolute   ' + _('converter') + ': ./GuiBulkImport.py -c Absolute -f filename')
+        print ('PartyPoker ' + _('converter') + ': ./GuiBulkImport.py -c PartyPoker -f filename')
         sys.exit(0)
 
     config = Configuration.Config()
@@ -390,7 +394,7 @@ def main(argv=None):
         gtk.main()
     else:
         if not options.filtername:
-            print _("You  have to select a site with the -c parameter. E.g.:"), "Everleaf   converter: ./GuiBulkImport.py -c Everleaf -f filename"
+            print _("You have to select a site with the -c parameter. E.g.:"), "Everleaf   converter: ./GuiBulkImport.py -c Everleaf -f filename"
         #Do something useful
         importer = fpdb_import.Importer(False,settings, config, None)
         # importer.setDropIndexes("auto")
@@ -407,7 +411,7 @@ def main(argv=None):
             importer.setPrintTestData(True)
         (stored, dups, partial, errs, ttime) = importer.runImport()
         importer.clearFileList()
-        print _('GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec')\
+        print _('Bulk import done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec')\
                      % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
 
 

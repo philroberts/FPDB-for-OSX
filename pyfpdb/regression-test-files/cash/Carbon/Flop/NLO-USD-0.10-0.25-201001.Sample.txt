@@ -1,0 +1,50 @@
+<description type="Omaha" stakes="No Limit ($0.10/$0.25)"/>
+<game id="31226377-1375" starttime="20110128163339" numholecards="4" gametype="9" realmoney="true" data="20110128|Uluru (31226377)|31226377|31226377-1375|false">
+	<players dealer="0">
+		<player seat="0" nickname="Player1" balance="$196.18" dealtin="true" />
+		<player seat="1" nickname="Player2" balance="$11.39" dealtin="true" />
+		<player seat="2" nickname="Hero" balance="$25.00" dealtin="true" />
+		<player seat="3" nickname="Player4" balance="$25.00" dealtin="false" />
+		<player seat="4" nickname="Player5" balance="$34.74" dealtin="true" />
+		<player seat="5" nickname="Player6" balance="$19.46" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1296250404093" player="1" amount="0.10"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1296250404421" player="2" amount="0.25"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1296250416718" player="4"/>
+		<event sequence="4" type="FOLD" timestamp="1296250417250" player="5"/>
+		<event sequence="5" type="CALL" timestamp="1296250425171" player="0" amount="0.25"/>
+		<event sequence="6" type="CALL" timestamp="1296250426734" player="1" amount="0.15"/>
+		<event sequence="7" type="CHECK" timestamp="1296250429937" player="2"/>
+		<cards type="HOLE" cards="2s,8h,3c,2h" player="2" hand="Pair of Twos"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="8" type="CHECK" timestamp="1296250431843" player="1"/>
+		<event sequence="9" type="CHECK" timestamp="1296250435046" player="2"/>
+		<event sequence="10" type="CHECK" timestamp="1296250444546" player="0"/>
+		<cards type="COMMUNITY" cards="3h,8s,Ad" hand="Two Pair Eights and Threes"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="11" type="CHECK" timestamp="1296250445125" player="1"/>
+		<event sequence="12" type="BET" timestamp="1296250452968" player="2" amount="0.50"/>
+		<event sequence="13" type="CALL" timestamp="1296250454390" player="0" amount="0.50"/>
+		<event sequence="14" type="FOLD" timestamp="1296250454984" player="1"/>
+		<cards type="COMMUNITY" cards="3h,8s,Ad,Td" hand="Two Pair Eights and Threes"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="15" type="BET" timestamp="1296250462968" player="2" amount="1.25"/>
+		<event sequence="16" type="CALL" timestamp="1296250464437" player="0" amount="1.25"/>
+		<cards type="COMMUNITY" cards="3h,8s,Ad,Td,8c" hand="Full House - Eights over Threes"/>
+	</round>
+	<round id="SHOWDOWN" sequence="6">
+		<event sequence="17" type="SHOW" timestamp="1296250465093" player="2"/>
+		<event sequence="18" type="SHOW" timestamp="1296250467687" player="0"/>
+		<cards type="SHOWN" cards="2s,8h,3c,2h" player="2"/>
+		<cards type="SHOWN" cards="Kh,2d,Ah,4d" player="0"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+		<winner amount="4.04" uncalled="false" potnumber="1" player="2" hand="Full House - Eights over Threes" pottype="n"/>
+	</round>
+</game>

@@ -1,0 +1,43 @@
+<description type="2-7 Lowball" stakes="Pot Limit ($0.05/$0.10)"/>
+<game id="31691047-4" starttime="20110216205608" numholecards="5" gametype="67" realmoney="true" data="20110216|Burney (31691047)|31691047|31691047-4|false">
+	<players dealer="0">
+		<player seat="0" nickname="Hero" balance="$10.15" dealtin="true" />
+		<player seat="2" nickname="Villain" balance="$4.75" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1297907767203" player="0" amount="0.05"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1297907767687" player="2" amount="0.10"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1297907771281" player="0" amount="0.30"/>
+		<event sequence="4" type="RAISE" timestamp="1297907781421" player="2" amount="0.90"/>
+		<event sequence="5" type="RAISE" timestamp="1297907786140" player="0" amount="2.70"/>
+		<event sequence="6" type="ALL_IN" timestamp="1297907805281" player="2" amount="3.85"/>
+		<event sequence="7" type="CALL" timestamp="1297907808281" player="0" amount="2.05"/>
+		<cards type="HOLE" cards="9c,6s,8s,7h,4s" player="0" hand="9-8-7-6-4"/>
+	</round>
+	<round id="FIRST_DRAW" sequence="3">
+		<event sequence="8" type="DRAW" timestamp="1297907813187" player="2" text="2"/>
+		<event sequence="9" type="DRAW" timestamp="1297907815265" player="0" text="0"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="9c,6s,8s,7h,4s" player="0" hand="9-8-7-6-4"/>
+	</round>
+	<round id="SECOND_DRAW" sequence="4">
+		<event sequence="10" type="DRAW" timestamp="1297907824000" player="2" text="1"/>
+		<event sequence="11" type="DRAW" timestamp="1297907826125" player="0" text="0"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="9c,6s,8s,7h,4s" player="0" hand="9-8-7-6-4"/>
+	</round>
+	<round id="THIRD_DRAW" sequence="5">
+		<event sequence="12" type="DRAW" timestamp="1297907828671" player="2" text="1"/>
+		<event sequence="13" type="DRAW" timestamp="1297907831656" player="0" text="0"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="9c,6s,8s,7h,4s" player="0" hand="9-8-7-6-4"/>
+	</round>
+	<round id="SHOWDOWN" sequence="6">
+		<event sequence="14" type="SHOW" timestamp="1297907832234" player="2"/>
+		<event sequence="15" type="SHOW" timestamp="1297907832781" player="0"/>
+		<cards type="SHOWN" cards="Ac,2s,6h,7c,3d" player="2"/>
+		<cards type="SHOWN" cards="9c,6s,8s,7h,4s" player="0"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+		<winner amount="9.03" uncalled="false" potnumber="1" player="0" hand="9-8-7-6-4" pottype="n"/>
+	</round>
+</game>

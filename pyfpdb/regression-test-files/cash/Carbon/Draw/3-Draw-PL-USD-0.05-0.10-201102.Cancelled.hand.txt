@@ -1,0 +1,14 @@
+<description type="2-7 Lowball" stakes="Pot Limit ($0.05/$0.10)"/>
+<game id="31691047-143" starttime="20110216222921" numholecards="5" gametype="67" realmoney="true" data="20110216|Burney (31691047)|31691047|31691047-143|false">
+	<players dealer="2">
+		<player seat="0" nickname="Hero" balance="$53.87" dealtin="false" />
+		<player seat="2" nickname="Villain" balance="$27.90" dealtin="false" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1297913360765" player="2" amount="0.05"/>
+	</round>
+	<round id="GAME_CANCELLED" sequence="2">
+		<event sequence="2" type="GAME_CANCELLED" timestamp="1297913362578"/>
+	</round>
+</game>
+

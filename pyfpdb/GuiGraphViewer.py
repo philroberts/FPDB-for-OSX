@@ -130,7 +130,7 @@ class GuiGraphViewer (threading.Thread):
             self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("***Error: ")+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            print _("Error:")+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
             raise
 
     def generateGraph(self, widget, data):
@@ -216,9 +216,9 @@ class GuiGraphViewer (threading.Thread):
                             0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
                             400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
 
-                self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: $%.2f') %(len(green), green[-1]))
-                self.ax.plot(blue, color='blue', label=_('Showdown: $%.2f') %(blue[-1]))
-                self.ax.plot(red, color='red', label=_('Non-showdown: $%.2f') %(red[-1]))
+                self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: (%s): %.2f') %(len(green), green[-1]))
+                self.ax.plot(blue, color='blue', label=_('Showdown') + ': $%.2f' %(blue[-1]))
+                self.ax.plot(red, color='red', label=_('Non-showdown') + ': $%.2f' %(red[-1]))
                 self.graphBox.add(self.canvas)
                 self.canvas.show()
                 self.canvas.draw()
@@ -229,11 +229,11 @@ class GuiGraphViewer (threading.Thread):
                 self.ax.set_title((_("Profit graph for ring games")+names),fontsize=12)
 
                 #Draw plot
-                self.ax.plot(green, color='green', label=_('Hands: %d\nProfit (%s): %.2f') %(len(green),graphops['dspin'], green[-1]))
+                self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: (%s): %.2f') %(len(green),graphops['dspin'], green[-1]))
                 if graphops['showdown'] == 'ON':
-                    self.ax.plot(blue, color='blue', label=_('Showdown (%s): %.2f') %(graphops['dspin'], blue[-1]))
+                    self.ax.plot(blue, color='blue', label=_('Showdown') + ' (%s): %.2f' %(graphops['dspin'], blue[-1]))
                 if graphops['nonshowdown'] == 'ON':
-                    self.ax.plot(red, color='red', label=_('Non-showdown (%s): %.2f') %(graphops['dspin'], red[-1]))
+                    self.ax.plot(red, color='red', label=_('Non-showdown') + ' (%s): %.2f' %(graphops['dspin'], red[-1]))
 
                 if sys.version[0:3] == '2.5':
                     self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
@@ -246,7 +246,7 @@ class GuiGraphViewer (threading.Thread):
                 #self.exportButton.set_sensitive(True)
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("***Error: ")+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            print _("Error:")+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
 
     #end of def showClicked
 

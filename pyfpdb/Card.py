@@ -15,6 +15,7 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import sys
 import L10n
 _ = L10n.get_translation()
 
@@ -50,6 +51,19 @@ def calcStartCards(hand, player):
         # FIXME: Only do startCards value for holdem at the moment
         return 0
 
+
+# The following depends on the exact implementation of twoStartCards.
+_firstcard = '((hp.startcards - 1) /  13)'
+_secondcard = '((hp.startcards - 1) - 13 * %s)' % _firstcard
+_gap = '(%s - %s = %d)'
+
+DATABASE_FILTERS = {
+    'pair': '%s = %s' % (_firstcard, _secondcard),
+    'suited': '%s > %s' % (_firstcard, _secondcard),
+    'offsuit': '%s < %s' % (_firstcard, _secondcard),
+    'suited_connectors': _gap % (_firstcard, _secondcard, 1),
+    'offsuit_connectors': _gap % (_secondcard, _firstcard, 1)
+}
 
 def twoStartCards(value1, suit1, value2, suit2):
     """ Function to convert 2 value,suit pairs into a Holdem style starting hand e.g. AQo
@@ -398,10 +412,14 @@ def encodeRazzStartHand(cards):
     return encodeRazzList[startHand]
 
 if __name__ == '__main__':
-    print _("fpdb card encoding(same as pokersource)")
-    for i in xrange(1, 14):
-        print "card %2d = %s    card %2d = %s    card %2d = %s    card %2d = %s" % \
-            (i, valueSuitFromCard(i), i+13, valueSuitFromCard(i+13), i+26, valueSuitFromCard(i+26), i+39, valueSuitFromCard(i+39))
+    print "1) Card from list id (suitFromCardList: 1=2h)"
+    print "2) listid from Card (encodeCardList: 2h=2)"
+    s = raw_input('--> ')
+    if s == '1':
+        cardid = raw_input('Enter cardid: ')
+        print "Value: '%s'" % suitFromCardList[int(cardid)]
+    elif s == '2':
+        while True:
+            cardid = raw_input('Enter card: ')
+            print "Encoded card: '%s'" % encodeCard(cardid)
 
-        print
-    print encodeCard('7c')

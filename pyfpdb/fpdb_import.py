@@ -416,6 +416,7 @@ class Importer:
                         (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0]
                                                                       ,self.filelist[file][1], self.filelist[file][2], None)
                         self.logImport('auto', file, stored, duplicates, partial, errors, ttime, self.filelist[file][2])
+                        self.database.commit()
                         try:
                             if not os.path.isdir(file): # Note: This assumes that whatever calls us has an "addText" func
                                 self.caller.addText(" %d stored, %d duplicates, %d partial, %d errors (time = %f)" % (stored, duplicates, partial, errors, ttime))

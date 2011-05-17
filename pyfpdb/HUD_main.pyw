@@ -75,7 +75,7 @@ class HUD_main(object):
                 log.info(_("Any major error will be reported there _only_."))
                 errorFile = open(fileName, 'w', 0)
                 sys.stderr = errorFile
-                log.info(_("HUD_main: starting ...\n"))
+                log.info(_("HUD_main starting"))
 
             self.hud_dict = {}
             self.hud_params = self.config.get_hud_ui_parameters()
@@ -86,16 +86,6 @@ class HUD_main(object):
 
             # a main window
             self.main_window = gtk.Window()
-            
-            if os.name == 'nt': # Check for admin rights, don't start auto import if we don't have them
-                if (os.sys.getwindowsversion()[0] >= 6):
-                    import ctypes
-                    if not ctypes.windll.shell32.IsUserAnAdmin():
-                        dia = gtk.MessageDialog(parent=self.main_window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_ERROR, buttons=(gtk.BUTTONS_OK), message_format=_("No admin rights for HUD"))
-                        dia.format_secondary_text(_("Please right click fpdb.exe and HUD_main.exe, select properties, and set them both to run as admin.")+" "+_("You will need to restart fpdb afterwards."))
-                        response = dia.run()
-                        dia.destroy()
-                        return
             
             if options.minimized:
                 self.main_window.iconify()
@@ -124,8 +114,7 @@ class HUD_main(object):
                 self.main_window.set_icon_from_file(cards)
             elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
                 self.main_window.set_icon_from_file('/usr/share/pixmaps/fpdb-cards.png')
-            else:
-                self.main_window.set_icon_stock(gtk.STOCK_HOME)
+            
             if not options.hidden:
                 self.main_window.show_all()
             gobject.timeout_add(800, self.check_tables)
@@ -261,8 +250,8 @@ class HUD_main(object):
                 try:
                     self.hud_dict[temp_key].stat_dict = stat_dict
                 except KeyError:    # HUD instance has been killed off, key is stale
-                    log.error(_('hud_dict[%s] was not found\n') % temp_key)
-                    log.error(_('will not send hand\n'))
+                    log.error(_('hud_dict[%s] was not found') % temp_key)
+                    log.error(_('will not send hand'))
                     # Unlocks table, copied from end of function
                     self.db_connection.connection.rollback()
                     return
@@ -293,7 +282,7 @@ class HUD_main(object):
                     if hasattr(tablewindow, 'number'):
                         self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
                     else:
-                        log.error(_('Table "%s" no longer exists\n') % table_name)
+                        log.error(_('Table "%s" no longer exists') % table_name)
                         return
 
             self.db_connection.connection.rollback()

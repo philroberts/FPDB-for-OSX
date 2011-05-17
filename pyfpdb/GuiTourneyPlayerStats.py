@@ -190,7 +190,7 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
                     value = result[sqlrow][colnames.index(column[colalias])]
                 else:
                     value = 111
-                if value and value != -999:
+                if value != None and value != -999:
                     treerow.append(column[colformat] % value)
                 else:
                     treerow.append(' ')

@@ -44,32 +44,32 @@ ranks = {'x':0, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 
 onlinehelp = {'Game':_('Type of Game'),
               'Hand':_('Hole cards'),
               'Posn':_('Position'),
-              'Name':_('Name of the player'),
-              'Hds':_('Number of hands played'),
+              'Name':_('Player Name'),
+              'Hds':_('Number of hands seen'),
               'Seats':_('Number of Seats'),
-              'VPIP':_('Voluntarily Putting In the pot\n(blinds excluded)'),
-              'PFR':_('% Pre Flop Raise'),
-              'PF3':_('% Pre Flop Re-Raise / 3Bet'),
-              'PF4':_('% Pre Flop Re-Raise / 4Bet'),
-              'PFF3':_('% Pre Flop Fold To Re-Raise / F3Bet'),
-              'PFF4':_('% Pre Flop Fold To Re-Raise / F4Bet'),
-              'AggFac':_('Aggression Factor\n'),
-              'AggFreq':_('Aggression Frequency\nBet or Raise vs Fold'),
-              'ContBet':_('Continuation Bet post-flop'),
-              'RFI':_('% Raise First In\% Raise when first to bet'),
-              'Steals':_('% First to raise pre-flop\nand steal blinds'),
-              'Saw_F':_('% Saw Flop vs hands dealt'),
-              'SawSD':_('Saw Show Down / River'),
-              'WtSDwsF':_('Went To Show Down When Saw Flop'),
-              'W$SD':_('% Won some money at showdown'),
-              'FlAFq':_('Flop Aggression\n% Bet or Raise after seeing Flop'),
-              'TuAFq':_('Turn Aggression\n% Bet or Raise after seeing Turn'),
-              'RvAFq':_('River Aggression\n% Bet or Raise after seeing River'),
+              'VPIP':_('Voluntarily put in preflop/3rd street %'),
+              'PFR':_('Preflop/3rd street raise %'),
+              'PF3':_('% 3 bet preflop/3rd street'),
+              'PF4':_('% 4 bet preflop/3rd street'),
+              'PFF3':_('% fold to 3 bet preflop/3rd street'),
+              'PFF4':_('% fold to 4 bet preflop/3rd street'),
+              'AggFac':_('Aggression factor')+("\n"),
+              'AggFreq':_('Post-flop aggression frequency'),
+              'ContBet':_('% continuation bet'),
+              'RFI':_('% Raise First In / % Raise when first to bet'),
+              'Steals':_('% steal attempted'),
+              'Saw_F':_('Flop/4th street seen %'),
+              'SawSD':_('Saw Showdown / River'),
+              'WtSDwsF':_('% went to showdown when seen flop/4th street'),
+              'W$SD':_('% won some money at showdown'),
+              'FlAFq':_('Aggression frequency flop/4th street'),
+              'TuAFq':_('Aggression frequency turn/5th street'),
+              'RvAFq':_('Aggression frequency river/6th street'),
               'PoFAFq':_('Coming Soon\nTotal % agression'),
-              'Net($)':_('Amount won'),
-              'bb/100':_('Number of Big Blinds won\nor lost per 100 hands'),
+              'Net($)':_('Total Profit'),
+              'bb/100':_('Big blinds won per 100 hands'),
               'Rake($)':_('Amount of rake paid'),
-              'bbxr/100':_('Number of Big Blinds won\nor lost per 100 hands\nwhen excluding rake'),
+              'bbxr/100':_('Big blinds won per 100 hands\nwhen excluding rake'),
               'Variance':_('Measure of uncertainty\nThe lower, the more stable the amounts won')
               } 
 
@@ -168,16 +168,13 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                          ,['h.street3Raises',     'Bets to See Street7',   0,  5]
                          ,['h.street4Raises',     'Bets to See Showdown',  0,  5]
                          ]
-        firstcard = '((hp.startcards - 1) /  13)'
-        secondcard = '((hp.startcards - 1) - 13 * %s)' % firstcard
-        gap = '(%s - %s = %d)'
 
         self.cardstests = [
-            ['%(firstcard)s = %(secondcard)s' % locals(), 'Pocket pairs'],
-            ['%(firstcard)s > %(secondcard)s' % locals(), 'Suited'],
-            [gap % (firstcard, secondcard, 1), 'Suited connectors'],
-            ['%(firstcard)s < %(secondcard)s' % locals(), 'Offsuit'],
-            [gap % (secondcard, firstcard, 1), 'Offsuit connectors'],
+            [Card.DATABASE_FILTERS['pair'], _('Pocket pairs')],
+            [Card.DATABASE_FILTERS['suited'], _('Suited')],
+            [Card.DATABASE_FILTERS['suited_connectors'], _('Suited connectors')],
+            [Card.DATABASE_FILTERS['offsuit'], _('Offsuit')],
+            [Card.DATABASE_FILTERS['offsuit_connectors'], _('Offsuit connectors')],
         ]
         self.stats_frame = None
         self.stats_vbox = None
@@ -526,7 +523,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                                     value += ' - $' + '%.0f' % (maxbb/100.0)
                     else:
                         continue
-                if value and value != -999:
+                if value != None and value != -999:
                     treerow.append(column[colformat] % value)
                 else:
                     treerow.append(' ')

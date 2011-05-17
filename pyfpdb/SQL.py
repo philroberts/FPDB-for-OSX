@@ -249,7 +249,9 @@ class Sql:
                         smallBlind int,
                         bigBlind int,
                         smallBet int NOT NULL,
-                        bigBet int NOT NULL)
+                        bigBet int NOT NULL,
+                        maxSeats TINYINT NOT NULL,
+                        ante INT NOT NULL)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
@@ -265,7 +267,9 @@ class Sql:
                         smallBlind int,
                         bigBlind int,
                         smallBet int NOT NULL,
-                        bigBet int NOT NULL)"""
+                        bigBet int NOT NULL,
+                        maxSeats SMALLINT NOT NULL,
+                        ante INT NOT NULL)"""
         elif db_server == 'sqlite':
             self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
                         id INTEGER PRIMARY KEY NOT NULL,
@@ -281,6 +285,8 @@ class Sql:
                         bigBlind INTEGER,
                         smallBet INTEGER NOT NULL,
                         bigBet INTEGER NOT NULL,
+                        maxSeats INT NOT NULL,
+                        ante INT NOT NULL,
                         FOREIGN KEY(siteId) REFERENCES Sites(id) ON DELETE CASCADE)"""
 
 
@@ -354,7 +360,7 @@ class Sql:
         if db_server == 'mysql':
             self.query['createHandsTable'] = """CREATE TABLE Hands (
                             id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-                            tableName VARCHAR(22) NOT NULL,
+                            tableName VARCHAR(50) NOT NULL,
                             siteHandNo BIGINT NOT NULL,
                             tourneyId INT UNSIGNED, 
                             gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
@@ -364,7 +370,6 @@ class Sql:
                             startTime DATETIME NOT NULL,
                             importTime DATETIME NOT NULL,
                             seats TINYINT NOT NULL,
-                            maxSeats TINYINT NOT NULL,
                             rush BOOLEAN,
                             boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 smallint,
@@ -372,7 +377,7 @@ class Sql:
                             boardcard4 smallint,
                             boardcard5 smallint,
                             texture smallint,
-                            runIt BOOLEAN,
+                            runItTwice BOOLEAN,
                             playersVpi SMALLINT NOT NULL,         /* num of players vpi */
                             playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4 */
                             playersAtStreet2 SMALLINT NOT NULL,
@@ -395,7 +400,7 @@ class Sql:
         elif db_server == 'postgresql':
             self.query['createHandsTable'] = """CREATE TABLE Hands (
                             id BIGSERIAL, PRIMARY KEY (id),
-                            tableName VARCHAR(22) NOT NULL,
+                            tableName VARCHAR(50) NOT NULL,
                             siteHandNo BIGINT NOT NULL,
                             tourneyId INT,
                             gametypeId INT NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
@@ -405,7 +410,6 @@ class Sql:
                             startTime timestamp without time zone NOT NULL,
                             importTime timestamp without time zone NOT NULL,
                             seats SMALLINT NOT NULL,
-                            maxSeats SMALLINT NOT NULL,
                             rush BOOLEAN,
                             boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 smallint,
@@ -413,7 +417,7 @@ class Sql:
                             boardcard4 smallint,
                             boardcard5 smallint,
                             texture smallint,
-                            runIt BOOLEAN,
+                            runItTwice BOOLEAN,
                             playersVpi SMALLINT NOT NULL,         /* num of players vpi */
                             playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4 */
                             playersAtStreet2 SMALLINT NOT NULL,
@@ -435,7 +439,7 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['createHandsTable'] = """CREATE TABLE Hands (
                             id INTEGER PRIMARY KEY,
-                            tableName TEXT(22) NOT NULL,
+                            tableName TEXT(50) NOT NULL,
                             siteHandNo INT NOT NULL,
                             tourneyId INT,
                             gametypeId INT NOT NULL,
@@ -445,7 +449,6 @@ class Sql:
                             startTime REAL NOT NULL,
                             importTime REAL NOT NULL,
                             seats INT NOT NULL,
-                            maxSeats INT NOT NULL,
                             rush BOOLEAN,
                             boardcard1 INT,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 INT,
@@ -453,7 +456,7 @@ class Sql:
                             boardcard4 INT,
                             boardcard5 INT,
                             texture INT,
-                            runIt BOOLEAN,
+                            runItTwice BOOLEAN,
                             playersVpi INT NOT NULL,         /* num of players vpi */
                             playersAtStreet1 INT NOT NULL,   /* num of players seeing flop/street4 */
                             playersAtStreet2 INT NOT NULL,
@@ -1591,6 +1594,7 @@ class Sql:
                         gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                         tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        played BOOLEAN,
                         hands INT NOT NULL,
                         tourneys INT NOT NULL,
                         totalProfit INT)
@@ -1610,6 +1614,7 @@ class Sql:
                         gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                         tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        played BOOLEAN,
                         hands INT,
                         tourneys INT,
                         totalProfit INT)
@@ -1628,6 +1633,7 @@ class Sql:
                         gametypeId INT,
                         tourneyTypeId INT,
                         playerId INT,
+                        played INT,
                         hands INT,
                         tourneys INT,
                         totalProfit INT)
@@ -2358,14 +2364,14 @@ class Sql:
             """
 
         self.query['get_table_name'] = """
-                SELECT h.tableName, h.maxSeats, gt.category, gt.type, s.id, s.name
+                SELECT h.tableName, gt.maxSeats, gt.category, gt.type, s.id, s.name
                      , count(1) as numseats
                 FROM Hands h, Gametypes gt, Sites s, HandsPlayers hp
                 WHERE h.id = %s
                     AND   gt.id = h.gametypeId
                     AND   s.id = gt.siteID
                     AND   hp.handId = h.id
-                GROUP BY h.tableName, h.maxSeats, gt.category, gt.type, s.id, s.name
+                GROUP BY h.tableName, gt.maxSeats, gt.category, gt.type, s.id, s.name
             """
 
         self.query['get_actual_seat'] = """
@@ -2416,7 +2422,7 @@ class Sql:
             self.query['get_hand_1day_ago'] = """
                 select coalesce(max(id),0)
                 from Hands
-                where startTime < strftime('%J', 'now') - 1"""
+                where startTime < datetime(strftime('%J', 'now') - 1)"""
 
         # not used yet ...
         # gets a date, would need to use handsplayers (not hudcache) to get exact hand Id
@@ -2718,14 +2724,26 @@ class Sql:
                                  else (sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer)))
                                      /(0.0+sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)))
                              end                                                                    AS aggfac
-                            ,100.0*(sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) 
+                            ,case when
+                                sum(cast(hp.foldToOtherRaisedStreet1 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet2 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet3 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet4 as <signed>integer))+
+                                sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer))+
+                                sum(cast(hp.street1Aggr as <signed>integer))+ sum(cast(hp.street2Aggr as <signed>integer))+ sum(cast(hp.street3Aggr as <signed>integer))+ sum(cast(hp.street4Aggr as <signed>integer))
+                                = 0 then -999
+                            else
+                            100.0*(sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) 
                                        / ((sum(cast(hp.foldToOtherRaisedStreet1 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet2 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet3 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet4 as <signed>integer))) +
                                        (sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer))) +
                                        (sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) )
-                                                                                                    AS aggfrq
-                            ,100.0*(sum(cast(hp.street1CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street3CBDone as <signed>integer)) + sum(cast(hp.street4CBDone as <signed>integer))) 
+                              end                                                                   AS aggfrq
+                            ,case when
+                                sum(cast(hp.street1CBChance as <signed>integer))+
+                                sum(cast(hp.street2CBChance as <signed>integer))+
+                                sum(cast(hp.street3CBChance as <signed>integer))+
+                                sum(cast(hp.street4CBChance as <signed>integer)) = 0 then -999
+                            else
+                             100.0*(sum(cast(hp.street1CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street3CBDone as <signed>integer)) + sum(cast(hp.street4CBDone as <signed>integer))) 
                                        / (sum(cast(hp.street1CBChance as <signed>integer))+ sum(cast(hp.street2CBChance as <signed>integer))+ sum(cast(hp.street3CBChance as <signed>integer))+ sum(cast(hp.street4CBChance as <signed>integer))) 
-                                                                                                    AS conbet
+                            end                                                                     AS conbet
                             ,sum(hp.totalProfit)/100.0                                              AS net
                             ,sum(hp.rake)/100.0                                                     AS rake
                             ,100.0*avg(hp.totalProfit/(gt.bigBlind+0.0))                            AS bbper100
@@ -2938,7 +2956,7 @@ class Sql:
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
                             ,SUM(tp.winnings)/100.0                                                 AS won
-                            ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS spent
+                            ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 WHEN tt.currency = 'EUR' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS spent
                             ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS roi
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0/(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS profitPerTourney
                       from TourneysPlayers tp
@@ -2956,30 +2974,30 @@ class Sql:
             # sc: itm and profitPerTourney changed to "ELSE 0" to avoid divide by zero error as temp fix
             # proper fix should use coalesce() or case ... when ... to work in all circumstances
             self.query['tourneyPlayerDetailedStats'] = """
-                      select s.name                                                                 AS siteName
-                            ,t.tourneyTypeId                                                        AS tourneyTypeId
-                            ,tt.currency                                                            AS currency
+                      select s.name                                                                 AS "siteName"
+                            ,t.tourneyTypeId                                                        AS "tourneyTypeId"
+                            ,tt.currency                                                            AS "currency"
                             ,(CASE
                                 WHEN tt.currency = 'USD' THEN tt.buyIn/100.0
                                 WHEN tt.currency = 'EUR' THEN tt.buyIn/100.0
                                 ELSE tt.buyIn
-                              END)                                                                  AS buyIn
-                            ,tt.fee/100.0                                                           AS fee
-                            ,tt.category                                                            AS category
-                            ,tt.limitType                                                           AS limitType
-                            ,p.name                                                                 AS playerName
-                            ,COUNT(1)                                                               AS tourneyCount
-                            ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
+                              END)                                                                  AS "buyIn"
+                            ,tt.fee/100.0                                                           AS "fee"
+                            ,tt.category                                                            AS "category"
+                            ,tt.limitType                                                           AS "limitType"
+                            ,p.name                                                                 AS "playerName"
+                            ,COUNT(1)                                                               AS "tourneyCount"
+                            ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS "unknownRank"
                             ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)
-                             /(COUNT(1) - SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))             AS itm
-                            ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS _1st
-                            ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
-                            ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
-                            ,SUM(tp.winnings)/100.0                                                 AS won
-                            ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS spent
-                            ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS roi
+                             /(COUNT(1) - SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))             AS "itm"
+                            ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS "_1st"
+                            ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS "_2nd"
+                            ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS "_3rd"
+                            ,SUM(tp.winnings)/100.0                                                 AS "won"
+                            ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS "spent"
+                            ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS "roi"
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0
-                             /(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))               AS profitPerTourney
+                             /(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))               AS "profitPerTourney"
                       from TourneysPlayers tp
                            inner join Tourneys t        on  (t.id = tp.tourneyId)
                            inner join TourneyTypes tt   on  (tt.Id = t.tourneyTypeId)
@@ -2987,11 +3005,11 @@ class Sql:
                            inner join Players p         on  (p.Id = tp.playerId)
                       where tp.playerId in <nametest> <sitetest>
                       and   to_char(t.startTime, 'YYYY-MM-DD HH24:MI:SS') <datestest>
-                      group by tourneyTypeId, s.name, playerName, tt.currency, tt.buyin, tt.fee
+                      group by t.tourneyTypeId, s.name, p.name, tt.currency, tt.buyin, tt.fee
                              , tt.category, tt.limitType
-                      order by tourneyTypeId
-                              ,playerName
-                              ,siteName"""
+                      order by t.tourneyTypeId
+                              ,p.name
+                              ,s.name"""
         elif db_server == 'sqlite':
             self.query['tourneyPlayerDetailedStats'] = """
                       select s.name                                                                 AS siteName
@@ -3146,8 +3164,100 @@ class Sql:
                      ) hprof2
                     on hprof2.gtId = stats.gtId
                 order by stats.category, stats.limittype, stats.bigBlindDesc desc <orderbyseats>"""
-        #elif db_server == 'sqlite': #TODO
-        #    self.query['playerStats'] = """ """
+        elif db_server == 'sqlite':
+            self.query['playerStats'] = """
+                SELECT
+                      upper(substr(stats.category,1,1)) || substr(stats.category,2) || ' ' ||
+                      stats.name || ' ' ||
+                      cast(stats.bigBlindDesc as char) || ' ' || stats.maxSeats || ' seat'  AS Game
+                     ,stats.n,stats.vpip,stats.pfr,stats.pf3,stats.pf4,stats.pff3,stats.pff4
+                     ,stats.steals,stats.saw_f,stats.sawsd,stats.wtsdwsf,stats.wmsd,stats.FlAFq
+                     ,stats.TuAFq,stats.RvAFq,stats.PoFAFq,stats.Net,stats.BBper100,stats.Profitperhand
+                     ,case when hprof2.variance = -999 then '-' else round(hprof2.variance, 2)
+                      end                                                                   AS Variance
+                     ,stats.AvgSeats
+                FROM
+                    (select /* stats from hudcache */
+                            gt.base
+                           ,gt.category,maxSeats,gt.bigBlind,gt.currency
+                           ,upper(gt.limitType)                                             AS limitType
+                           ,s.name
+                           ,<selectgt.bigBlind>                                             AS bigBlindDesc
+                           ,<hcgametypeId>                                                  AS gtId
+                           ,sum(HDs)                                                        AS n
+                           ,round(100.0*sum(street0VPI)/sum(HDs),1)                         AS vpip
+                           ,round(100.0*sum(street0Aggr)/sum(HDs),1)                        AS pfr
+                           ,case when sum(street0_3Bchance) = 0 then '0'
+                                 else round(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),1)
+                            end                                                             AS pf3
+                           ,case when sum(street0_4Bchance) = 0 then '0'
+                                 else round(100.0*sum(street0_4Bdone)/sum(street0_4Bchance),1)
+                            end                                                             AS pf4
+                           ,case when sum(street0_FoldTo3Bchance) = 0 then '0'
+                                 else round(100.0*sum(street0_FoldTo3Bdone)/sum(street0_FoldTo3Bchance),1)
+                            end                                                             AS pff3
+                           ,case when sum(street0_FoldTo4Bchance) = 0 then '0'
+                                 else round(100.0*sum(street0_FoldTo4Bdone)/sum(street0_FoldTo4Bchance),1)
+                            end                                                             AS pff4
+                           ,case when sum(raiseFirstInChance) = 0 then '-'
+                                 else round(100.0*sum(raisedFirstIn)/sum(raiseFirstInChance),1)
+                            end                                                             AS steals
+                           ,round(100.0*sum(street1Seen)/sum(HDs),1)                        AS saw_f
+                           ,round(100.0*sum(sawShowdown)/sum(HDs),1)                        AS sawsd
+                           ,case when sum(street1Seen) = 0 then '-'
+                                 else round(100.0*sum(sawShowdown)/sum(street1Seen),1)
+                            end                                                             AS wtsdwsf
+                           ,case when sum(sawShowdown) = 0 then '-'
+                                 else round(100.0*sum(wonAtSD)/sum(sawShowdown),1)
+                            end                                                             AS wmsd
+                           ,case when sum(street1Seen) = 0 then '-'
+                                 else round(100.0*sum(street1Aggr)/sum(street1Seen),1)
+                            end                                                             AS FlAFq
+                           ,case when sum(street2Seen) = 0 then '-'
+                                 else round(100.0*sum(street2Aggr)/sum(street2Seen),1)
+                            end                                                             AS TuAFq
+                           ,case when sum(street3Seen) = 0 then '-'
+                                else round(100.0*sum(street3Aggr)/sum(street3Seen),1)
+                            end                                                             AS RvAFq
+                           ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then '-'
+                                else round(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
+                                         /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen)),1)
+                            end                                                             AS PoFAFq
+                           ,round(sum(totalProfit)/100.0,2)                                 AS Net
+                           ,round((sum(totalProfit/(gt.bigBlind+0.0))) / (sum(HDs)/100.0),2)
+                                                                                            AS BBper100
+                           ,round( (sum(totalProfit)/100.0) / sum(HDs), 4)                  AS Profitperhand
+                           ,round( sum(activeSeats*HDs)/(sum(HDs)+0.0), 2)                  AS AvgSeats
+                     from Gametypes gt
+                          inner join Sites s on s.Id = gt.siteId
+                          inner join HudCache hc on hc.gametypeId = gt.Id
+                     where hc.playerId in <player_test>
+                     and   <gtbigBlind_test>
+                     and   hc.activeSeats <seats_test>
+                     and   '20' || substr(hc.styleKey,2,2) || '-' || substr(hc.styleKey,4,2) || '-' ||
+                                   substr(hc.styleKey,6,2) <datestest>
+                     group by gt.base,gt.category,upper(gt.limitType),s.name <groupbygt.bigBlind>,gtId
+                    ) stats
+                inner join
+                    ( select /* profit from handsplayers/handsactions */
+                             hprof.gtId, sum(hprof.profit) sum_profit,
+                             avg(hprof.profit/100.0) profitperhand,
+                             case when hprof.gtId = -1 then -999
+                                  else variance(hprof.profit/100.0)
+                             end as variance
+                      from
+                          (select hp.handId, <hgametypeId> as gtId, hp.totalProfit as profit
+                           from HandsPlayers hp
+                           inner join Hands h        ON h.id            = hp.handId
+                           where hp.playerId in <player_test>
+                           and   hp.tourneysPlayersId IS NULL
+                           and   datetime(h.startTime) <datestest>
+                           group by hp.handId, gtId, hp.totalProfit
+                          ) hprof
+                      group by hprof.gtId
+                     ) hprof2
+                    on hprof2.gtId = stats.gtId
+                order by stats.category, stats.bigBlind, stats.limittype, stats.currency, stats.maxSeats <orderbyseats>"""
         else:  # assume postgres
             self.query['playerStats'] = """
                 SELECT upper(stats.limitType) || ' '
@@ -3403,7 +3513,128 @@ class Sql:
                          <orderbyseats>, cast(stats.PlPosition as signed)
                 """
         elif db_server == 'sqlite':
-            self.query['playerStatsByPosition'] = ""#TODO
+            self.query['playerStatsByPosition'] = """
+                SELECT
+                      upper(substr(stats.category,1,1)) || substr(stats.category,2) || ' ' ||
+                      stats.name || ' ' ||
+                      cast(stats.bigBlindDesc as char) || ' ' || stats.maxSeats || ' seat'  AS Game
+                     ,case when stats.PlPosition = -2 then 'BB'
+                           when stats.PlPosition = -1 then 'SB'
+                           when stats.PlPosition =  0 then 'Btn'
+                           when stats.PlPosition =  1 then 'CO'
+                           when stats.PlPosition =  2 then 'MP'
+                           when stats.PlPosition =  5 then 'EP'
+                           else 'xx'
+                      end                                                                   AS PlPosition
+                     ,stats.n,stats.vpip,stats.pfr,stats.pf3,stats.pf4,stats.pff3,stats.pff4
+                     ,stats.steals,stats.saw_f,stats.sawsd,stats.wtsdwsf,stats.wmsd,stats.FlAFq
+                     ,stats.TuAFq,stats.RvAFq,stats.PoFAFq,stats.Net,stats.BBper100,stats.Profitperhand
+                     ,case when hprof2.variance = -999 then '-'
+                           else round(hprof2.variance, 2)
+                      end                                                                   AS Variance
+                     ,stats.AvgSeats
+                FROM
+                    (select /* stats from hudcache */
+                            gt.base
+                           ,gt.category,maxSeats,gt.bigBlind,gt.currency
+                           ,upper(gt.limitType)                                             AS limitType
+                           ,s.name
+                           ,<selectgt.bigBlind>                                             AS bigBlindDesc
+                           ,<hcgametypeId>                                                  AS gtId
+                           ,case when hc.position = 'B' then -2
+                                 when hc.position = 'S' then -1
+                                 when hc.position = 'D' then  0
+                                 when hc.position = 'C' then  1
+                                 when hc.position = 'M' then  2
+                                 when hc.position = 'E' then  5
+                                 else 9
+                            end                                                             AS PlPosition
+                           ,sum(HDs)                                                        AS n
+                           ,round(100.0*sum(street0VPI)/sum(HDs),1)                         AS vpip
+                           ,round(100.0*sum(street0Aggr)/sum(HDs),1)                        AS pfr
+                           ,case when sum(street0_3Bchance) = 0 then '0'
+                                 else round(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),1)
+                            end                                                             AS pf3
+                           ,case when sum(street0_4Bchance) = 0 then '0'
+                                 else round(100.0*sum(street0_4Bdone)/sum(street0_4Bchance),1)
+                            end                                                             AS pf4
+                           ,case when sum(street0_FoldTo3Bchance) = 0 then '0'
+                                 else round(100.0*sum(street0_FoldTo3Bdone)/sum(street0_FoldTo3Bchance),1)
+                            end                                                             AS pff3
+                           ,case when sum(street0_FoldTo4Bchance) = 0 then '0'
+                                 else round(100.0*sum(street0_FoldTo4Bdone)/sum(street0_FoldTo4Bchance),1)
+                            end                                                             AS pff4
+                           ,case when sum(raiseFirstInChance) = 0 then '-'
+                                 else round(100.0*sum(raisedFirstIn)/sum(raiseFirstInChance),1)
+                            end                                                             AS steals
+                           ,round(100.0*sum(street1Seen)/sum(HDs),1)                        AS saw_f
+                           ,round(100.0*sum(sawShowdown)/sum(HDs),1)                        AS sawsd
+                           ,case when sum(street1Seen) = 0 then '-'
+                                 else round(100.0*sum(sawShowdown)/sum(street1Seen),1)
+                            end                                                             AS wtsdwsf
+                           ,case when sum(sawShowdown) = 0 then '-'
+                                 else round(100.0*sum(wonAtSD)/sum(sawShowdown),1)
+                            end                                                             AS wmsd
+                           ,case when sum(street1Seen) = 0 then '-'
+                                 else round(100.0*sum(street1Aggr)/sum(street1Seen),1)
+                            end                                                             AS FlAFq
+                           ,case when sum(street2Seen) = 0 then '-'
+                                 else round(100.0*sum(street2Aggr)/sum(street2Seen),1)
+                            end                                                             AS TuAFq
+                           ,case when sum(street3Seen) = 0 then '-'
+                                else round(100.0*sum(street3Aggr)/sum(street3Seen),1)
+                            end                                                             AS RvAFq
+                           ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then '-'
+                                else round(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
+                                         /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen)),1)
+                            end                                                             AS PoFAFq
+                           ,round(sum(totalProfit)/100.0,2)                                 AS Net
+                           ,round((sum(totalProfit/(gt.bigBlind+0.0))) / (sum(HDs)/100.0),2)
+                                                                                            AS BBper100
+                           ,round( (sum(totalProfit)/100.0) / sum(HDs), 4)                  AS Profitperhand
+                           ,round( sum(activeSeats*HDs)/(sum(HDs)+0.0), 2)                  AS AvgSeats
+                     from Gametypes gt
+                          inner join Sites s on s.Id = gt.siteId
+                          inner join HudCache hc on hc.gametypeId = gt.Id
+                     where hc.playerId in <player_test>
+                     and   <gtbigBlind_test>
+                     and   hc.activeSeats <seats_test>
+                     and   '20' || substr(hc.styleKey,2,2) || '-' || substr(hc.styleKey,4,2) || '-' ||
+                                   substr(hc.styleKey,6,2) <datestest>
+                     group by gt.base,gt.category,upper(gt.limitType),s.name
+                              <groupbygt.bigBlind>,gtId<groupbyseats>,PlPosition
+                    ) stats
+                inner join
+                    ( select /* profit from handsplayers/handsactions */
+                             hprof.gtId,
+                             cast(case when hprof.position = 'B' then -2
+                                  when hprof.position = 'S' then -1
+                                  when hprof.position in ('3','4') then 2
+                                  when hprof.position in ('6','7') then 5
+                                  else hprof.position
+                             end as signed)                           as PlPosition,
+                             sum(hprof.profit) as sum_profit,
+                             avg(hprof.profit/100.0) as profitperhand,
+                             case when hprof.gtId = -1 then -999
+                                  else variance(hprof.profit/100.0)
+                             end as variance
+                      from
+                          (select hp.handId, <hgametypeId> as gtId, hp.position
+                                , hp.totalProfit as profit
+                           from HandsPlayers hp
+                           inner join Hands h  ON  (h.id = hp.handId)
+                           where hp.playerId in <player_test>
+                           and   hp.tourneysPlayersId IS NULL
+                           and   datetime(h.startTime) <datestest>
+                           group by hp.handId, gtId, hp.position, hp.totalProfit
+                          ) hprof
+                      group by hprof.gtId, PlPosition
+                     ) hprof2
+                    on (    hprof2.gtId = stats.gtId
+                        and hprof2.PlPosition = stats.PlPosition)
+                order by stats.category, stats.bigBlind, stats.limitType, stats.currency, stats.maxSeats <orderbyseats>
+                        ,cast(stats.PlPosition as signed)
+                """
         else:  # assume postgresql
             self.query['playerStatsByPosition'] = """
                 select /* stats from hudcache */
@@ -3574,7 +3805,7 @@ class Sql:
             ORDER BY h.startTime"""
 
         self.query['getRingProfitAllHandsPlayerIdSiteInBB'] = """
-            SELECT hp.handId, ( hp.totalProfit / ( gt.bigBlind  * 2 ) ) * 100 , hp.sawShowdown
+            SELECT hp.handId, ( hp.totalProfit / ( gt.bigBlind  * 2.0 ) ) * 100 , hp.sawShowdown
             FROM HandsPlayers hp
             INNER JOIN Players pl      ON  (pl.id = hp.playerId)
             INNER JOIN Hands h         ON  (h.id  = hp.handId)
@@ -4558,7 +4789,9 @@ class Sql:
                     Hands.gametypeId as gametypeId,
                     Gametypes.type as game,
                     HandsPlayers.totalProfit as totalProfit,
-                    Tourneys.tourneyTypeId as tourneyTypeId
+                    Tourneys.tourneyTypeId as tourneyTypeId,
+                    HandsPlayers.street0VPI as street0VPI,
+                    HandsPlayers.street1Seen as street1Seen
                     FROM Gametypes, HandsPlayers, Hands
                     LEFT JOIN Tourneys ON Hands.tourneyId = Tourneys.tourneyTypeId
                     WHERE HandsPlayers.handId = Hands.id
@@ -4626,6 +4859,7 @@ class Sql:
                     gametypeId,
                     tourneyTypeId,
                     playerId,
+                    played,
                     hands,
                     tourneys,
                     totalProfit
@@ -4638,7 +4872,8 @@ class Sql:
                         (case when gametypeId=%s then 1 else 0 end) end)=1
                     AND (case when tourneyTypeId is NULL then 1 else 
                         (case when tourneyTypeId=%s then 1 else 0 end) end)=1
-                    AND playerId=%s"""
+                    AND playerId=%s
+                    AND played=%s"""
                     
         self.query['insert_SC'] = """
                     insert into SessionsCache (
@@ -4652,11 +4887,12 @@ class Sql:
                     gametypeId,
                     tourneyTypeId,
                     playerId,
+                    played,
                     hands,
                     tourneys,
                     totalProfit)
                     values (%s, %s, %s, %s, %s, %s, %s, 
-                            %s, %s, %s, %s, %s, %s)"""
+                            %s, %s, %s, %s, %s, %s, %s)"""
                             
         self.query['update_Hands_gsid'] = """
                     UPDATE Hands SET
@@ -4741,7 +4977,9 @@ class Sql:
                                            AND   limitType=%s
                                            AND   smallBet=%s
                                            AND   bigBet=%s
-        """
+                                           AND   maxSeats=%s
+                                           AND   ante=%s
+        """ #TODO: seems odd to have limitType variable in this query
 
         self.query['getGametypeNL'] = """SELECT id
                                            FROM Gametypes
@@ -4753,12 +4991,14 @@ class Sql:
                                            AND   mix=%s
                                            AND   smallBlind=%s
                                            AND   bigBlind=%s
-        """
+                                           AND   maxSeats=%s
+                                           AND   ante=%s
+        """ #TODO: seems odd to have limitType variable in this query
 
         self.query['insertGameTypes'] = """INSERT INTO Gametypes
                                               (siteId, currency, type, base, category, limitType
-                                              ,hiLo, mix, smallBlind, bigBlind, smallBet, bigBet)
-                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                              ,hiLo, mix, smallBlind, bigBlind, smallBet, bigBet, maxSeats, ante)
+                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
         self.query['isAlreadyInDB'] = """SELECT id FROM Hands 
                                          WHERE gametypeId=%s AND siteHandNo=%s
@@ -4867,9 +5107,9 @@ class Sql:
                                                  WHERE id=%s
         """
 
-        self.query['insertTourneysPlayer'] = """INSERT INTO TourneysPlayers
+        self.query['insertTourneysPlayer'] = """insert into TourneysPlayers
                                                     (tourneyId, playerId, rank, winnings, winningsCurrency, rebuyCount, addOnCount, koCount)
-                                                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                                                values (%s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         self.query['selectHandsPlayersWithWrongTTypeId'] = """SELECT id
@@ -4902,7 +5142,6 @@ class Sql:
                                             startTime,
                                             importtime,
                                             seats,
-                                            maxseats,
                                             texture,
                                             playersVpi,
                                             boardcard1,
@@ -4910,7 +5149,7 @@ class Sql:
                                             boardcard3,
                                             boardcard4,
                                             boardcard5,
-                                            runIt,
+                                            runItTwice,
                                             playersAtStreet1,
                                             playersAtStreet2,
                                             playersAtStreet3,
@@ -4930,8 +5169,7 @@ class Sql:
                                              values
                                               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s)"""
+                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
 
         self.query['store_hands_players'] = """insert into HandsPlayers (

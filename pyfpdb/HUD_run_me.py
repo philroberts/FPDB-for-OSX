@@ -42,13 +42,13 @@ def destroy(*args):             # call back for terminating the main eventloop
 
 
 if __name__== "__main__":
-    sys.stderr.write(_("HUD_main starting\n"))
+    sys.stderr.write(_("HUD_main starting"))
 
     try:
         HUD_main.db_name = sys.argv[1]
     except:
         HUD_main.db_name = 'fpdb'
-    sys.stderr.write(_("Using db name = %s\n") % (HUD_main.db_name))
+    sys.stderr.write(_("Using db name = %s") % (HUD_main.db_name))
 
     HUD_main.config = Configuration.Config()
 

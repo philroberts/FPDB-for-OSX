@@ -1,0 +1,53 @@
+<description type="Badugi" stakes="Pot Limit ($0.05/$0.10)"/>
+<game id="31274465-32" starttime="20110129224038" numholecards="4" gametype="71" realmoney="true" data="20110129|Kunming (31274465)|31274465|31274465-32|false">
+	<players dealer="3">
+		<player seat="0" nickname="Player1" balance="$7.43" dealtin="false" />
+		<player seat="1" nickname="Player2" balance="$0.00" dealtin="false" />
+		<player seat="3" nickname="Player3" balance="$5.32" dealtin="true" />
+		<player seat="4" nickname="Hero" balance="$10.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1296358833593" player="3" amount="0.05"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1296358833906" player="4" amount="0.10"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="3" type="CALL" timestamp="1296358836656" player="3" amount="0.05"/>
+		<event sequence="4" type="CHECK" timestamp="1296358842078" player="4"/>
+		<cards type="HOLE" cards="Jh,3h,2s,3s" player="4" hand="Two Cards, 3-2"/>
+	</round>
+	<round id="FIRST_DRAW" sequence="3">
+		<event sequence="5" type="DRAW" timestamp="1296358845359" player="4" text="2"/>
+		<event sequence="6" type="DRAW" timestamp="1296358846765" player="3" text="2"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="Ah,3h,2s,6s" player="4" hand="Two Cards, 2-A"/>
+	</round>
+	<round id="POST_FIRST_DRAW" sequence="4">
+		<event sequence="7" type="CHECK" timestamp="1296358852875" player="4"/>
+		<event sequence="8" type="CHECK" timestamp="1296358856093" player="3"/>
+	</round>
+	<round id="SECOND_DRAW" sequence="5">
+		<event sequence="9" type="DRAW" timestamp="1296358858703" player="4" text="2"/>
+		<event sequence="10" type="DRAW" timestamp="1296358877046" player="3" text="2"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="Ah,Qd,2s,9d" player="4" hand="Three Cards, 9-2-A"/>
+	</round>
+	<round id="POST_SECOND_DRAW" sequence="6">
+		<event sequence="11" type="CHECK" timestamp="1296358881046" player="4"/>
+		<event sequence="12" type="CHECK" timestamp="1296358884546" player="3"/>
+	</round>
+	<round id="THIRD_DRAW" sequence="7">
+		<event sequence="13" type="DRAW" timestamp="1296358888375" player="4" text="2"/>
+		<event sequence="14" type="DRAW" timestamp="1296358889546" player="3" text="1"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="Ah,7d,2s,Kc" player="4" hand="Badugi, K-7-2-A"/>
+	</round>
+	<round id="POST_THIRD_DRAW" sequence="8">
+		<event sequence="15" type="CHECK" timestamp="1296358894218" player="4"/>
+		<event sequence="16" type="BET" timestamp="1296358897296" player="3" amount="0.20"/>
+		<event sequence="17" type="RAISE" timestamp="1296358902734" player="4" amount="0.60"/>
+		<event sequence="18" type="FOLD" timestamp="1296358907468" player="3"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="9">
+		<event sequence="19" type="MUCK" timestamp="1296358908156" player="4"/>
+		<winner amount="0.97" uncalled="false" potnumber="1" player="4" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="10">
+	</round>
+</game>

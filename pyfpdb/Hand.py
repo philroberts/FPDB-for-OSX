@@ -235,8 +235,11 @@ dealt   whether they were seen in a 'dealt to' line
         # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
         # These functions are intended for prep insert eventually
         #####
+        self.gametype['maxSeats'] = self.maxseats #TODO: move up to individual parsers
+        self.gametype['ante'] = 0 #TODO store actual ante
         self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
-        self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype, printdata = printtest)
+        self.dbid_gt = db.getSqlGameTypeId(self.siteId, self.gametype, printdata = printtest)
+        
         #Gametypes
         hilo = "h"
         if self.gametype['category'] in ['studhilo', 'omahahilo']:
@@ -247,16 +250,14 @@ dealt   whether they were seen in a 'dealt to' line
         self.gametyperow = (self.siteId, self.gametype['currency'], self.gametype['type'], self.gametype['base'],
                                     self.gametype['category'], self.gametype['limitType'], hilo,
                                     int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
-                                    int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200))
+                                    int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200), int(self.gametype['maxSeats']), int(self.gametype['ante']))
         # Note: the above data is calculated in db.getGameTypeId
         #       Only being calculated above so we can grab the testdata
-        self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype, printdata = printtest)
         
         if self.tourNo!=None:
-            self.tourneyTypeId = db.createTourneyType(self)
-            self.tourneyId = db.createOrUpdateTourney(self, "HHC")
-            self.tourneysPlayersIds = db.createOrUpdateTourneysPlayers(self, "HHC")
-        #db.commit() #commit these transactions'  
+            self.tourneyTypeId = db.getSqlTourneyTypeIDs(self)
+            self.tourneyId = db.getSqlTourneyIDs(self)
+            self.tourneysPlayersIds = db.getSqlTourneysPlayersIDs(self)
         
     def assembleHand(self):
         self.stats.getStats(self)
@@ -383,7 +384,6 @@ dealt   whether they were seen in a 'dealt to' line
         self.handid    = res['siteHandNo']
         #print "DBEUG: res['startTime']: %s" % res['startTime']
         self.startTime = datetime.datetime.strptime(res['startTime'], "%Y-%m-%d %H:%M:%S+00:00")
-        self.maxseats = res['maxSeats']
 
         cards = map(Card.valueSuitFromCard, [res['boardcard1'], res['boardcard2'], res['boardcard3'], res['boardcard4'], res['boardcard5']])
         #print "DEBUG: res['boardcard1']: %s" % res['boardcard1']
@@ -469,7 +469,7 @@ If a player has None chips he won't be added."""
         log.debug("addPlayer: %s %s (%s)" % (seat, name, chips))
         if chips is not None:
             chips = chips.replace(u',', u'') #some sites have commas
-            self.players.append([seat, name, chips])
+            self.players.append([seat, name, chips, 0, 0])
             self.stacks[name] = Decimal(chips)
             self.pot.addPlayer(name)
             for street in self.actionStreets:
@@ -477,6 +477,17 @@ If a player has None chips he won't be added."""
                 #self.holecards[name] = {} # dict from street names.
                 #self.discards[name] = {} # dict from street names.
 
+
+    def addPlayerRank(self, name, winnings, rank):
+        """\
+name        (string) player name
+winnings    (int) winnings
+rank        (int) rank the player finished the tournament"""
+        log.debug("addPlayerRank: %s %s (%s)" % (name, winnings, rank))
+        for player in self.players:
+            if player[1] == name:
+                player[3]=rank
+                player[4]=winnings
 
     def addStreets(self, match):
         # go through m and initialise actions to empty list for each street.
