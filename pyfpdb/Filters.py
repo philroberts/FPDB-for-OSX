@@ -25,7 +25,7 @@ import gtk
 import os
 import sys
 from optparse import OptionParser
-from time import gmtime, mktime, strftime, strptime
+from time import gmtime, mktime, strftime, strptime, localtime
 import gobject
 #import pokereval
 
@@ -1134,6 +1134,14 @@ class Filters(threading.Thread):
         cal = gtk.Calendar()
         vb.pack_start(cal, expand=False, padding=0)
 
+        # if the day is configured to not start at midnight, check whether it's still yesterday,
+        # and if so, select yesterday in the calendar instead of today
+        now = localtime()
+        if (now.tm_hour < self.day_start):
+            yesterday = localtime(mktime(now) - 24*3600)
+            cal.select_month(yesterday.tm_mon - 1, yesterday.tm_year) # months are 0 through 11
+            cal.select_day(yesterday.tm_mday)
+            
         btn = gtk.Button(_('Done'))
         btn.connect('clicked', self.__get_date, cal, entry, d)
 
