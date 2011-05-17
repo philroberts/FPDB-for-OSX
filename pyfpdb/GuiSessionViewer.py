@@ -309,7 +309,7 @@ class GuiSessionViewer (threading.Thread):
             pass
 
         total = 0
-        first_idx = 0
+        first_idx = 1
         lowidx = 0
         uppidx = 0
         opens = []
@@ -323,20 +323,21 @@ class GuiSessionViewer (threading.Thread):
         # Take all results and format them into a list for feeding into gui model.
         #print "DEBUG: range(len(index[0]): %s" % range(len(index[0]))
         for i in range(len(index[0])):
-            hds = index[0][i] - first_idx                                       # Number of hands in session
+            last_idx = index[0][i]
+            hds = last_idx - first_idx + 1                                           # Number of hands in session
             if hds > 0:
                 stime = strftime("%d/%m/%Y %H:%M", localtime(times[first_idx]))      # Formatted start time
-                etime = strftime("%d/%m/%Y %H:%M", localtime(times[index[0][i]]))   # Formatted end time
-                minutesplayed = (times[index[0][i]] - times[first_idx])/60
+                etime = strftime("%d/%m/%Y %H:%M", localtime(times[last_idx]))       # Formatted end time
+                minutesplayed = (times[last_idx] - times[first_idx])/60
                 if minutesplayed == 0:
                     minutesplayed = 1
                 minutesplayed = minutesplayed + PADDING
                 hph = hds*60/minutesplayed # Hands per hour
-                end_idx = first_idx+hds+1
+                end_idx = last_idx+1
                 won = sum(winnings[first_idx:end_idx])/100.0
                 #print "DEBUG: winnings[%s:%s]: %s" % (first_idx, end_idx, winnings[first_idx:end_idx])
-                hwm = max(cum_sum[first_idx:end_idx])
-                lwm = min(cum_sum[first_idx:end_idx])
+                hwm = max(cum_sum[first_idx-1:end_idx]) # include the opening balance,
+                lwm = min(cum_sum[first_idx-1:end_idx]) # before we win/lose first hand
                 open = (sum(winnings[:first_idx]))/100
                 close = (sum(winnings[:end_idx]))/100
                 #print "DEBUG: range: (%s, %s) - (min, max): (%s, %s) - (open,close): (%s, %s)" %(first_idx, end_idx, lwm, hwm, open, close)
@@ -347,8 +348,8 @@ class GuiSessionViewer (threading.Thread):
                 highs.append(hwm)
                 lows.append(lwm)
                 #print "DEBUG: Hands in session %4s: %4s  Start: %s End: %s HPH: %s Profit: %s" %(sid, hds, stime, etime, hph, won)
-                total = total + (index[0][i] - first_idx)
-                first_idx = index[0][i] + 1
+                total = total + hds
+                first_idx = end_idx
                 sid = sid+1
             else:
                 print "hds <= 0"
