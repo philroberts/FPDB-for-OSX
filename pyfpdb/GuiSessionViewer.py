@@ -34,7 +34,7 @@ try:
     from matplotlib.figure import Figure
     from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
     from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
-    from matplotlib.finance import candlestick2
+    from matplotlib.finance import candlestick
 
     from numpy import diff, nonzero, sum, cumsum, max, min, append
 
@@ -223,13 +223,13 @@ class GuiSessionViewer (threading.Thread):
     def createStatsPane(self, vbox, playerids, sitenos, limits, seats):
         starttime = time()
 
-        (results, opens, closes, highs, lows) = self.generateDatasets(playerids, sitenos, limits, seats)
+        (results, quotes) = self.generateDatasets(playerids, sitenos, limits, seats)
 
 
 
         self.graphBox = gtk.VBox(False, 0)
         self.graphBox.show()
-        self.generateGraph(opens, closes, highs, lows)
+        self.generateGraph(quotes)
 
         vbox.pack_start(self.graphBox)
         # Separator
@@ -312,10 +312,7 @@ class GuiSessionViewer (threading.Thread):
         first_idx = 1
         lowidx = 0
         uppidx = 0
-        opens = []
-        closes = []
-        highs = []
-        lows = []
+        quotes = []
         results = []
         cum_sum = cumsum(winnings)
         cum_sum = cum_sum/100
@@ -343,10 +340,7 @@ class GuiSessionViewer (threading.Thread):
                 #print "DEBUG: range: (%s, %s) - (min, max): (%s, %s) - (open,close): (%s, %s)" %(first_idx, end_idx, lwm, hwm, open, close)
             
                 results.append([sid, hds, stime, etime, hph, won])
-                opens.append(open)
-                closes.append(close)
-                highs.append(hwm)
-                lows.append(lwm)
+                quotes.append((sid, open, close, hwm, lwm))
                 #print "DEBUG: Hands in session %4s: %4s  Start: %s End: %s HPH: %s Profit: %s" %(sid, hds, stime, etime, hph, won)
                 total = total + hds
                 first_idx = end_idx
@@ -354,7 +348,7 @@ class GuiSessionViewer (threading.Thread):
             else:
                 print "hds <= 0"
 
-        return (results, opens, closes, highs, lows)
+        return (results, quotes)
 
     def clearGraphData(self):
 
@@ -378,16 +372,11 @@ class GuiSessionViewer (threading.Thread):
             raise
 
 
-    def generateGraph(self, opens, closes, highs, lows):
+    def generateGraph(self, quotes):
         self.clearGraphData()
 
         #print "DEBUG:"
-        #print "\thighs = %s" % highs
-        #print "\tlows = %s" % lows
-        #print "\topens = %s" % opens
-        #print "\tcloses = %s" % closes
-        #print "\tlen(highs): %s == len(lows): %s" %(len(highs), len(lows))
-        #print "\tlen(opens): %s == len(closes): %s" %(len(opens), len(closes))
+        #print "\tquotes = %s" % quotes
 
         #for i in range(len(highs)):
         #    print "DEBUG: (%s, %s, %s, %s)" %(lows[i], opens[i], closes[i], highs[i])
@@ -402,7 +391,7 @@ class GuiSessionViewer (threading.Thread):
         self.ax.set_ylabel("$", fontsize = 12)
         self.ax.grid(color='g', linestyle=':', linewidth=0.2)
 
-        candlestick2(self.ax, opens, closes, highs, lows, width=0.50, colordown='r', colorup='g', alpha=1.00)
+        candlestick(self.ax, quotes, width=0.50, colordown='r', colorup='g', alpha=1.00)
         self.graphBox.add(self.canvas)
         self.canvas.show()
         self.canvas.draw()
