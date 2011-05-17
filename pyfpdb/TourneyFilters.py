@@ -80,6 +80,14 @@ class TourneyFilters(Filters.Filters):
         self.make_filter()
     #end def __refresh
 
+    def __set_num_tourneys(self, w, val):
+        try:
+            self.numTourneys = int(w.get_text())
+        except:
+            self.numTourneys = 0
+        print _("setting numTourneys:"), self.numTourneys
+    #end def __set_num_tourneys
+
     def make_filter(self):
         self.tourneyTypes = {}
         #self.tourneys = {}
@@ -88,6 +96,7 @@ class TourneyFilters(Filters.Filters):
         self.siteid = {}
         self.heroes = {}
         self.boxes = {}
+        self.toggles  = {}
 
         for site in self.conf.get_supported_sites():
             #Get db site id for filtering later
@@ -156,12 +165,14 @@ class TourneyFilters(Filters.Filters):
         self.Button2=gtk.Button("Unnamed 2")
         self.Button2.set_sensitive(False)
 
-        self.mainVBox.add(playerFrame)
-        self.mainVBox.add(sitesFrame)
-        self.mainVBox.add(seatsFrame)
-        self.mainVBox.add(dateFrame)
-        #self.mainVBox.add(self.Button1)
-        self.mainVBox.add(self.Button2)
+        expand = False
+        self.mainVBox.pack_start(playerFrame, expand)
+        self.mainVBox.pack_start(sitesFrame, expand)
+        self.mainVBox.pack_start(seatsFrame, expand)
+        self.mainVBox.pack_start(dateFrame, expand)
+        self.mainVBox.pack_start(gtk.VBox(False, 0))
+        #self.mainVBox.pack_start(self.Button1, expand)
+        self.mainVBox.pack_start(self.Button2, expand)
 
         self.mainVBox.show_all()
 
