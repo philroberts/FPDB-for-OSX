@@ -727,7 +727,6 @@ class Database:
            self.h_date_ndays_ago  date n days ago for hero (different n)
         """
 
-        log.error("here!")
         self.hand_1day_ago = 1
         try:
             c = self.get_cursor()
