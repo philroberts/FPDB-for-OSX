@@ -1,8 +1,5 @@
-Replace all occurrences of XXX with the real values.
-Remove or leave YYY(foobar)YYY sections as appropriate.
-
 Hello everyone,
-The new fpdb release XXX is now available for download as source or as packages/installers for Debian, Gentoo, Ubuntu and Windows. This version brings many improvements and bugfixes, we listed some of them later on.
+The new fpdb release 0.25 is now available for download as source or as packages/installers for Debian, Gentoo, Ubuntu and Windows. This version brings many improvements and bugfixes, we listed some of them later on.
 
 So... what is FPDB?
 ===================
@@ -14,29 +11,50 @@ FPDB provides a Heads Up Display (HUD), Profit Grapher and Stats viewers with a 
 
 What's changed
 ==============
-XXX changesets (incl. merges) have gone in since XXX. Some of the improvements are:
+373 changesets (incl. merges) have gone in since 0.24. Some of the improvements are:
 
 Parser Changes:
-XXX
+- Initial Cake support added
+- Restored PS Euro support, add support for play money tourneys
+- Lots of big&small improvements on Party support
+- Lots of big&small improvements on Merge/Carbon support
+- Lots of improvements in Pacific
+- Everest supports NLHE and blinds < 1 Euro
+- A few fixes to stat recording
 
 HUD&GUI&Analysis Changes:
-XXX
+- HUD should now work on Merge/Carbon and Everest (untested)
+- New dialogue "site preferences" that allows easier configuration of name and HH-path (incl. auto-detection for some sites)
+- New HUD stat: playershort which is the start of the player name. Default for new fpdb configs.
+- Improved progress window for bulk import
+- HUD preferences shows translated stat descriptions now
+- Mucked cards display correctly when multi-tabling
+- No longer adds hands from previous sessions at same table name to current session
+- Positional stats now works on sqlite
 
 Other Changes:
-XXX
+- Add a proper contributors file. If you're missing from this file please let us know.
+- Performance improvements, especially for SessionsCache and tourneys
+- PostgreSQL support restored/expanded
+- Run as admin no longer needed on Win Vista/7
+- No longer fails without if installed in invalid location
+- Fixes to prevent config changes from being lost
+- Fixes for OSX support. Fpdb now starts out of the box
+- Various cleanups
+- Lots of new test data
 
 For the full changelog or to look at ongoing development please visit http://trac-git.assembla.com/fpdb/timeline
 
 Languages
 =========
-Fpdb XXX is fully translated into XXX, and mostly translated into XXX. There's partial translations for XXX. Any help with translations would be appreciated.
+Fpdb 0.25 is fully translated into Hungarian and Romanian, and mostly translated into French and Italian. There's partial translations for Chinese, German, Polish, Portuguese, Russian and Spanish. Any help with translations would be appreciated.
 
 How to download/update
 ======================
-Please note that you will have to either recreate your database or use a new one if you're updating from XXX or older. Fpdb will warn you if your database is incompatible and will not work properly unless you recreate or use a new one.
+Please note that you will have to either recreate your database or use a new one if you're updating from 0.24 or older. Fpdb will warn you if your database is incompatible and will not work properly unless you recreate or use a new one.
 Config files from 0.20 and later should work. Please report if you have problems with config files from that version or later.
 You can find checksums (MD5 and SHA512) in the download folder.
-To download: https://sourceforge.net/projects/fpdb/files/fpdb/XXX/
+To download: https://sourceforge.net/projects/fpdb/files/fpdb/0.25/
 
 Links
 =====
@@ -78,15 +96,15 @@ You can find most of these details for easy copy&paste in the Help menu under Ab
 
 Important known problems
 ========================
-YYY(PKR is not working correctly)YYY
+PKR is not working correctly
 
 Notice for Windows users
 ========================
-YYY(First-time installs may need to download and install the C++ runtime executable from Microsoft.)YYY
+First-time installs may need to download and install the C++ runtime executable from Microsoft.
 
 Notice for Arch Linux users
 ===========================
-YYY(You will need to change the shebang in fpdb.pyw and HUD_main.pyw from python to python2. Join us in IRC if you have questions about this.)YYY
+You will need to change the shebang in fpdb.pyw and HUD_main.pyw from python to python2. Join us in IRC if you have questions about this.
 
 Contributors
 ============
