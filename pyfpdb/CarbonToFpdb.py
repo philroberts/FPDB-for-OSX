@@ -152,7 +152,7 @@ or None if we fail to get the info """
 
         self.info = {}
         mg = m.groupdict()
-        print "DEBUG: mg: %s" % mg
+        #print "DEBUG: mg: %s" % mg
 
         if 'LIMIT' in mg:
             self.info['limitType'] = self.limits[mg['LIMIT']]
