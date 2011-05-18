@@ -964,9 +964,13 @@ class Filters(threading.Thread):
 
         lbl_from = gtk.Label(self.filterText['seatsbetween'])
         lbl_to   = gtk.Label(self.filterText['seatsand'])
+
         adj1 = gtk.Adjustment(value=2, lower=2, upper=10, step_incr=1, page_incr=1, page_size=0)
+        adj1.connect('value-changed', self.__seats_changed, 'from')
         sb1 = gtk.SpinButton(adjustment=adj1, climb_rate=0.0, digits=0)
+
         adj2 = gtk.Adjustment(value=10, lower=2, upper=10, step_incr=1, page_incr=1, page_size=0)
+        adj2.connect('value-changed', self.__seats_changed, 'to')
         sb2 = gtk.SpinButton(adjustment=adj2, climb_rate=0.0, digits=0)
 
         hbox.pack_start(lbl_from, expand=False, padding=3)
@@ -1209,6 +1213,15 @@ class Filters(threading.Thread):
             start = self.start_date.get_text()
             if (start and ds < start):
                 self.start_date.set_text(ds)
+
+    def __seats_changed(self, widget, which):
+        seats_from = self.sbSeats['from'].get_value_as_int()
+        seats_to = self.sbSeats['to'].get_value_as_int()
+        if (seats_from > seats_to):
+            if (which == 'from'):
+                self.sbSeats['to'].set_value(seats_from)
+            else:
+                self.sbSeats['from'].set_value(seats_to)
 
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""
