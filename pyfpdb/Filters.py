@@ -25,7 +25,7 @@ import gtk
 import os
 import sys
 from optparse import OptionParser
-from time import gmtime, mktime, strftime, strptime
+from time import gmtime, mktime, strftime, strptime, localtime
 import gobject
 #import pokereval
 
@@ -964,9 +964,13 @@ class Filters(threading.Thread):
 
         lbl_from = gtk.Label(self.filterText['seatsbetween'])
         lbl_to   = gtk.Label(self.filterText['seatsand'])
+
         adj1 = gtk.Adjustment(value=2, lower=2, upper=10, step_incr=1, page_incr=1, page_size=0)
+        adj1.connect('value-changed', self.__seats_changed, 'from')
         sb1 = gtk.SpinButton(adjustment=adj1, climb_rate=0.0, digits=0)
+
         adj2 = gtk.Adjustment(value=10, lower=2, upper=10, step_incr=1, page_incr=1, page_size=0)
+        adj2.connect('value-changed', self.__seats_changed, 'to')
         sb2 = gtk.SpinButton(adjustment=adj2, climb_rate=0.0, digits=0)
 
         hbox.pack_start(lbl_from, expand=False, padding=3)
@@ -1134,6 +1138,19 @@ class Filters(threading.Thread):
         cal = gtk.Calendar()
         vb.pack_start(cal, expand=False, padding=0)
 
+        # if the date field is already set, default to the currently selected date, else default to 'today'
+        text = entry.get_text()
+        if (text):
+            date = strptime(text, "%Y-%m-%d")
+        else:
+            # if the day is configured to not start at midnight, check whether it's still yesterday,
+            # and if so, select yesterday in the calendar instead of today
+            date = localtime()
+            if (date.tm_hour < self.day_start):
+                date = localtime(mktime(date) - 24*3600)
+        cal.select_month(date.tm_mon - 1, date.tm_year) # months are 0 through 11
+        cal.select_day(date.tm_mday)
+            
         btn = gtk.Button(_('Done'))
         btn.connect('clicked', self.__get_date, cal, entry, d)
 
@@ -1184,6 +1201,27 @@ class Filters(threading.Thread):
         ds = '%04d-%02d-%02d' % (year, month, day)
         entry.set_text(ds)
         win.destroy()
+
+        # if the opposite date is set, and now the start date is later
+        # than the end date, modify the one we didn't just set to be
+        # the same as the one we did just set
+        if (entry == self.start_date):
+            end = self.end_date.get_text()
+            if (end and ds > end):
+                self.end_date.set_text(ds)
+        else:
+            start = self.start_date.get_text()
+            if (start and ds < start):
+                self.start_date.set_text(ds)
+
+    def __seats_changed(self, widget, which):
+        seats_from = self.sbSeats['from'].get_value_as_int()
+        seats_to = self.sbSeats['to'].get_value_as_int()
+        if (seats_from > seats_to):
+            if (which == 'from'):
+                self.sbSeats['to'].set_value(seats_from)
+            else:
+                self.sbSeats['from'].set_value(seats_to)
 
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""

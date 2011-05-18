@@ -34,7 +34,7 @@ try:
     from matplotlib.figure import Figure
     from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
     from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
-    from matplotlib.finance import candlestick2
+    from matplotlib.finance import candlestick
 
     from numpy import diff, nonzero, sum, cumsum, max, min, append
 
@@ -82,12 +82,12 @@ class GuiSessionViewer (threading.Thread):
 
         filters_display = { "Heroes"    : True,
                             "Sites"     : True,
-                            "Games"     : False,
-                            "Limits"    : False,
-                            "LimitSep"  : False,
-                            "LimitType" : False,
-                            "Type"      : True,
-                            "Seats"     : False,
+                            "Games"     : True,
+                            "Limits"    : True,
+                            "LimitSep"  : True,
+                            "LimitType" : True,
+                            "Type"      : False,
+                            "Seats"     : True,
                             "SeatSep"   : False,
                             "Dates"     : True,
                             "Groups"    : False,
@@ -130,36 +130,36 @@ class GuiSessionViewer (threading.Thread):
                        #, ("variance", True,  "Variance", 1.0, "%5.2f")
                        ]
 
-        self.stats_frame = None
-        self.stats_vbox = None
         self.detailFilters = []   # the data used to enhance the sql select
 
-        #self.main_hbox = gtk.HBox(False, 0)
-        #self.main_hbox.show()
         self.main_hbox = gtk.HPaned()
 
         self.stats_frame = gtk.Frame()
         self.stats_frame.show()
 
+        main_vbox = gtk.VPaned()
+        main_vbox.show()
+        self.graphBox = gtk.VBox(False, 0)
+        self.graphBox.set_size_request(400,400)
+        self.graphBox.show()
         self.stats_vbox = gtk.VBox(False, 0)
         self.stats_vbox.show()
         self.stats_frame.add(self.stats_vbox)
-        # self.fillStatsFrame(self.stats_vbox)
 
-        #self.main_hbox.pack_start(self.filters.get_vbox())
-        #self.main_hbox.pack_start(self.stats_frame, expand=True, fill=True)
         self.main_hbox.pack1(self.filters.get_vbox())
-        self.main_hbox.pack2(self.stats_frame)
+        self.main_hbox.pack2(main_vbox)
+        main_vbox.pack1(self.graphBox)
+        main_vbox.pack2(self.stats_frame)
         self.main_hbox.show()
 
         # make sure Hand column is not displayed
         #[x for x in self.columns if x[0] == 'hand'][0][1] = False
-        if DEBUG == False:
-            warning_string = _("Session Viewer is proof of concept code only, and contains many bugs.\n")
-            warning_string += _("Feel free to use the viewer, but there is no guarantee that the data is accurate.\n")
-            warning_string += _("If you are interested in developing the code further please contact us via the usual channels.\n")
-            warning_string += _("Thank you")
-            self.warning_box(warning_string)
+        # if DEBUG == False:
+        #     warning_string = _("Session Viewer is proof of concept code only, and contains many bugs.\n")
+        #     warning_string += _("Feel free to use the viewer, but there is no guarantee that the data is accurate.\n")
+        #     warning_string += _("If you are interested in developing the code further please contact us via the usual channels.\n")
+        #     warning_string += _("Thank you")
+        #     self.warning_box(warning_string)
 
     def warning_box(self, str, diatitle=_("FPDB WARNING")):
         diaWarning = gtk.Dialog(title=diatitle, parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
@@ -190,27 +190,32 @@ class GuiSessionViewer (threading.Thread):
         sites = self.filters.getSites()
         heroes = self.filters.getHeroes()
         siteids = self.filters.getSiteIds()
+        games  = self.filters.getGames()
         limits  = self.filters.getLimits()
         seats  = self.filters.getSeats()
         sitenos = []
         playerids = []
 
+        for i in ('show', 'none'):
+            if i in limits:
+                limits.remove(i)
+
         # Which sites are selected?
         for site in sites:
             if sites[site] == True:
                 sitenos.append(siteids[site])
-                _q = self.sql.query['getPlayerId']
-                _name = Charset.to_utf8(heroes[site])
-                #print 'DEBUG(_name) :: %s' % _name
-                self.cursor.execute(_q, (_name,)) # arg = tuple
-                result = self.db.cursor.fetchall()
-                if len(result) == 1:
-                    playerids.append(result[0][0])
+                _hname = Charset.to_utf8(heroes[site])
+                result = self.db.get_player_id(self.conf, site, _hname)
+                if result is not None:
+                    playerids.append(result)
 
         if not sitenos:
             #Should probably pop up here.
             print _("No sites selected - defaulting to PokerStars")
             sitenos = [2]
+        if not games:
+            print _("No games found")
+            return
         if not playerids:
             print _("No player ids found")
             return
@@ -218,25 +223,19 @@ class GuiSessionViewer (threading.Thread):
             print _("No limits found")
             return
 
-        self.createStatsPane(vbox, playerids, sitenos, limits, seats)
+        self.createStatsPane(vbox, playerids, sitenos, games, limits, seats)
 
-    def createStatsPane(self, vbox, playerids, sitenos, limits, seats):
+    def createStatsPane(self, vbox, playerids, sitenos, games, limits, seats):
         starttime = time()
 
-        (results, opens, closes, highs, lows) = self.generateDatasets(playerids, sitenos, limits, seats)
+        (results, quotes) = self.generateDatasets(playerids, sitenos, games, limits, seats)
 
+        if DEBUG:
+            for x in quotes:
+                print "start %s\tend %s  \thigh %s\tlow %s" % (x[1], x[2], x[3], x[4])
 
+        self.generateGraph(quotes)
 
-        self.graphBox = gtk.VBox(False, 0)
-        self.graphBox.show()
-        self.generateGraph(opens, closes, highs, lows)
-
-        vbox.pack_start(self.graphBox)
-        # Separator
-        sep = gtk.HSeparator()
-        vbox.pack_start(sep, expand=False, padding=3)
-        sep.show_now()
-        vbox.show_now()
         heading = gtk.Label(self.filterText['handhead'])
         heading.show()
         vbox.pack_start(heading, expand=False, padding=3)
@@ -257,17 +256,78 @@ class GuiSessionViewer (threading.Thread):
         print _("Stats page displayed in %4.2f seconds") % (time() - starttime)
     #end def fillStatsFrame(self, vbox):
 
-    def generateDatasets(self, playerids, sitenos, limits, seats):
-        print "DEBUG: Starting generateDatasets"
+    def generateDatasets(self, playerids, sitenos, games, limits, seats):
+        if (DEBUG): print "DEBUG: Starting generateDatasets"
         THRESHOLD = 1800     # Min # of secs between consecutive hands before being considered a new session
         PADDING   = 5        # Additional time in minutes to add to a session, session startup, shutdown etc
 
-        # Get a list of all handids and their timestampts
-        #FIXME: Query still need to filter on blind levels
+        # Get a list of timestamps and profits
 
         q = self.sql.query['sessionStats']
         start_date, end_date = self.filters.getDates()
-        q = q.replace("<datestest>", " between '" + start_date + "' and '" + end_date + "'")
+        q = q.replace("<datestest>", " BETWEEN '" + start_date + "' AND '" + end_date + "'")
+
+        l = []
+        for m in self.filters.display.items():
+            if m[0] == 'Games' and m[1]:
+                for n in games:
+                    if games[n]:
+                        l.append(n)
+                if len(l) > 0:
+                    gametest = str(tuple(l))
+                    gametest = gametest.replace("L", "")
+                    gametest = gametest.replace(",)",")")
+                    gametest = gametest.replace("u'","'")
+                    gametest = "AND gt.category in %s" % gametest
+                else:
+                    gametest = "AND gt.category IS NULL"
+        q = q.replace("<game_test>", gametest)
+
+        lims = [int(x) for x in limits if x.isdigit()]
+        potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
+        nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
+        capnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'cn']
+        limittest = "AND ( (gt.limitType = 'fl' AND gt.bigBlind in "
+                 # and ( (limit and bb in()) or (nolimit and bb in ()) )
+        if lims:
+            blindtest = str(tuple(lims))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            limittest = limittest + blindtest + ' ) '
+        else:
+            limittest = limittest + '(-1) ) '
+        limittest = limittest + " OR (gt.limitType = 'pl' AND gt.bigBlind in "
+        if potlims:
+            blindtest = str(tuple(potlims))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            limittest = limittest + blindtest + ' ) '
+        else:
+            limittest = limittest + '(-1) ) '
+        limittest = limittest + " OR (gt.limitType = 'nl' AND gt.bigBlind in "
+        if nolims:
+            blindtest = str(tuple(nolims))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            limittest = limittest + blindtest + ' ) '
+        else:
+            limittest = limittest + '(-1) ) '
+        limittest = limittest + " OR (gt.limitType = 'cn' AND gt.bigBlind in "
+        if capnolims:
+            blindtest = str(tuple(capnolims))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            limittest = limittest + blindtest + ' ) )'
+        else:
+            limittest = limittest + '(-1) ) )'
+        q = q.replace("<limit_test>", limittest)
+
+        if seats:
+            q = q.replace('<seats_test>',
+                          'AND h.seats BETWEEN ' + str(seats['from']) +
+                          ' AND ' + str(seats['to']))
+        else:
+            q = q.replace('<seats_test>', 'AND h.seats BETWEEN 0 AND 100')
 
         nametest = str(tuple(playerids))
         nametest = nametest.replace("L", "")
@@ -275,22 +335,44 @@ class GuiSessionViewer (threading.Thread):
         q = q.replace("<player_test>", nametest)
         q = q.replace("<ampersand_s>", "%s")
 
-        self.db.cursor.execute(q)
-        hands = self.db.cursor.fetchall()
+        if DEBUG:
+            hands = [ 
+                ( u'10000',  10), ( u'10000',  20), ( u'10000',  30),
+                ( u'20000', -10), ( u'20000', -20), ( u'20000', -30),
+                ( u'30000',  40),
+                ( u'40000',   0),
+                ( u'50000', -40),
+                ( u'60000',  10), ( u'60000',  30), ( u'60000', -20),
+                ( u'70000', -20), ( u'70000',  10), ( u'70000',  30),
+                ( u'80000', -10), ( u'80000', -30), ( u'80000',  20),
+                ( u'90000',  20), ( u'90000', -10), ( u'90000', -30),
+                (u'100000',  30), (u'100000', -50), (u'100000',  30),
+                (u'110000', -20), (u'110000',  50), (u'110000', -20),
+                (u'120000', -30), (u'120000',  50), (u'120000', -30),
+                (u'130000',  20), (u'130000', -50), (u'130000',  20),
+                (u'140000',  40), (u'140000', -40),
+                (u'150000', -40), (u'150000',  40),
+                (u'160000', -40), (u'160000',  80), (u'160000', -40),
+                ]
+        else:
+            self.db.cursor.execute(q)
+            hands = self.db.cursor.fetchall()
+
         #fixme - nasty hack to ensure that the hands.insert() works 
         # for mysql data.  mysql returns tuples which can't be inserted
         # into so convert explicity to list.
         hands = list(hands)
 
-        hands.insert(0, (hands[0][0], 0, 0, 0, 0))
+        if (not hands):
+            return ([], [])
+
+        hands.insert(0, (hands[0][0], 0))
 
         # Take that list and create an array of the time between hands
         times = map(lambda x:long(x[0]), hands)
-        handids = map(lambda x:int(x[1]), hands)
-        winnings = map(lambda x:float(x[4]), hands)
+        profits = map(lambda x:float(x[1]), hands)
         #print "DEBUG: times   : %s" % times
-        #print "DEBUG: handids : %s" % handids
-        #print "DEBUG: winnings: %s" % winnings
+        #print "DEBUG: profits: %s" % profits
         #print "DEBUG: len(times) %s" %(len(times))
         diffs = diff(times)                      # This array is the difference in starttime between consecutive hands
         diffs2 = append(diffs,THRESHOLD + 1)     # Append an additional session to the end of the diffs, so the next line
@@ -308,17 +390,10 @@ class GuiSessionViewer (threading.Thread):
             #print "DEBUG: index[0][0] %s" %(index[0][0])
             pass
 
-        total = 0
         first_idx = 1
-        lowidx = 0
-        uppidx = 0
-        opens = []
-        closes = []
-        highs = []
-        lows = []
+        quotes = []
         results = []
-        cum_sum = cumsum(winnings)
-        cum_sum = cum_sum/100
+        cum_sum = cumsum(profits) / 100
         sid = 1
         # Take all results and format them into a list for feeding into gui model.
         #print "DEBUG: range(len(index[0]): %s" % range(len(index[0]))
@@ -329,32 +404,28 @@ class GuiSessionViewer (threading.Thread):
                 stime = strftime("%d/%m/%Y %H:%M", localtime(times[first_idx]))      # Formatted start time
                 etime = strftime("%d/%m/%Y %H:%M", localtime(times[last_idx]))       # Formatted end time
                 minutesplayed = (times[last_idx] - times[first_idx])/60
+                minutesplayed = minutesplayed + PADDING
                 if minutesplayed == 0:
                     minutesplayed = 1
-                minutesplayed = minutesplayed + PADDING
                 hph = hds*60/minutesplayed # Hands per hour
                 end_idx = last_idx+1
-                won = sum(winnings[first_idx:end_idx])/100.0
-                #print "DEBUG: winnings[%s:%s]: %s" % (first_idx, end_idx, winnings[first_idx:end_idx])
+                won = sum(profits[first_idx:end_idx])/100.0
+                #print "DEBUG: profits[%s:%s]: %s" % (first_idx, end_idx, profits[first_idx:end_idx])
                 hwm = max(cum_sum[first_idx-1:end_idx]) # include the opening balance,
                 lwm = min(cum_sum[first_idx-1:end_idx]) # before we win/lose first hand
-                open = (sum(winnings[:first_idx]))/100
-                close = (sum(winnings[:end_idx]))/100
+                open = (sum(profits[:first_idx]))/100
+                close = (sum(profits[:end_idx]))/100
                 #print "DEBUG: range: (%s, %s) - (min, max): (%s, %s) - (open,close): (%s, %s)" %(first_idx, end_idx, lwm, hwm, open, close)
             
                 results.append([sid, hds, stime, etime, hph, won])
-                opens.append(open)
-                closes.append(close)
-                highs.append(hwm)
-                lows.append(lwm)
+                quotes.append((sid, open, close, hwm, lwm))
                 #print "DEBUG: Hands in session %4s: %4s  Start: %s End: %s HPH: %s Profit: %s" %(sid, hds, stime, etime, hph, won)
-                total = total + hds
                 first_idx = end_idx
                 sid = sid+1
             else:
                 print "hds <= 0"
 
-        return (results, opens, closes, highs, lows)
+        return (results, quotes)
 
     def clearGraphData(self):
 
@@ -378,16 +449,11 @@ class GuiSessionViewer (threading.Thread):
             raise
 
 
-    def generateGraph(self, opens, closes, highs, lows):
+    def generateGraph(self, quotes):
         self.clearGraphData()
 
         #print "DEBUG:"
-        #print "\thighs = %s" % highs
-        #print "\tlows = %s" % lows
-        #print "\topens = %s" % opens
-        #print "\tcloses = %s" % closes
-        #print "\tlen(highs): %s == len(lows): %s" %(len(highs), len(lows))
-        #print "\tlen(opens): %s == len(closes): %s" %(len(opens), len(closes))
+        #print "\tquotes = %s" % quotes
 
         #for i in range(len(highs)):
         #    print "DEBUG: (%s, %s, %s, %s)" %(lows[i], opens[i], closes[i], highs[i])
@@ -402,7 +468,7 @@ class GuiSessionViewer (threading.Thread):
         self.ax.set_ylabel("$", fontsize = 12)
         self.ax.grid(color='g', linestyle=':', linewidth=0.2)
 
-        candlestick2(self.ax, opens, closes, highs, lows, width=0.50, colordown='r', colorup='g', alpha=1.00)
+        candlestick(self.ax, quotes, width=0.50, colordown='r', colorup='g', alpha=1.00)
         self.graphBox.add(self.canvas)
         self.canvas.show()
         self.canvas.draw()
