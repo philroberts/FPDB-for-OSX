@@ -966,12 +966,12 @@ class Filters(threading.Thread):
         lbl_to   = gtk.Label(self.filterText['seatsand'])
 
         adj1 = gtk.Adjustment(value=2, lower=2, upper=10, step_incr=1, page_incr=1, page_size=0)
-        adj1.connect('value-changed', self.__seats_changed, 'from')
         sb1 = gtk.SpinButton(adjustment=adj1, climb_rate=0.0, digits=0)
+        adj1.connect('value-changed', self.__seats_changed, 'from')
 
         adj2 = gtk.Adjustment(value=10, lower=2, upper=10, step_incr=1, page_incr=1, page_size=0)
-        adj2.connect('value-changed', self.__seats_changed, 'to')
         sb2 = gtk.SpinButton(adjustment=adj2, climb_rate=0.0, digits=0)
+        adj2.connect('value-changed', self.__seats_changed, 'to')
 
         hbox.pack_start(lbl_from, expand=False, padding=3)
         hbox.pack_start(sb1, False, False, 0)
