@@ -104,30 +104,16 @@ class GuiSessionViewer (threading.Thread):
         # ToDo: create popup to adjust column config
         # columns to display, keys match column name returned by sql, values in tuple are:
         #     is column displayed, column heading, xalignment, formatting
-        self.columns = [ ("sid",      True,  "SID",      0.0, "%s")
-                       , ("hand",     False, "Hand",     0.0, "%s")   # true not allowed for this line
+        self.columns = [ ("sid",      True,  "SID",      0.0, "%d")
                        , ("n",        True,  "Hds",      1.0, "%d")
                        , ("start",    True,  "Start",    1.0, "%d")
                        , ("end",      True,  "End",      1.0, "%d")
                        , ("hph",      True,  "Hands/h",  1.0, "%d")
-                       , ("profit",   True,  "Profit",   1.0, "%s")
-                       #, ("avgseats", True,  "Seats",    1.0, "%3.1f")
-                       #, ("vpip",     True,  "VPIP",     1.0, "%3.1f")
-                       #, ("pfr",      True,  "PFR",      1.0, "%3.1f")
-                       #, ("pf3",      True,  "PF3",      1.0, "%3.1f")
-                       #, ("steals",   True,  "Steals",   1.0, "%3.1f")
-                       #, ("saw_f",    True,  "Saw_F",    1.0, "%3.1f")
-                       #, ("sawsd",    True,  "SawSD",    1.0, "%3.1f")
-                       #, ("wtsdwsf",  True,  "WtSDwsF",  1.0, "%3.1f")
-                       #, ("wmsd",     True,  "W$SD",     1.0, "%3.1f")
-                       #, ("flafq",    True,  "FlAFq",    1.0, "%3.1f")
-                       #, ("tuafq",    True,  "TuAFq",    1.0, "%3.1f")
-                       #, ("rvafq",    True,  "RvAFq",    1.0, "%3.1f")
-                       #, ("pofafq",   False, "PoFAFq",   1.0, "%3.1f")
-                       #, ("net",      True,  "Net($)",   1.0, "%6.2f")
-                       #, ("bbper100", True,  "BB/100",   1.0, "%4.2f")
-                       #, ("rake",     True,  "Rake($)",  1.0, "%6.2f")
-                       #, ("variance", True,  "Variance", 1.0, "%5.2f")
+                       , ("open",     True,  "Open",     1.0, "%f")
+                       , ("close",    True,  "Close",    1.0, "%f")
+                       , ("lwm",      True,  "Low",      1.0, "%f")
+                       , ("hwm",      True,  "High",     1.0, "%f")
+                       , ("profit",   True,  "Profit",   1.0, "%f")
                        ]
 
         self.detailFilters = []   # the data used to enhance the sql select
@@ -417,7 +403,12 @@ class GuiSessionViewer (threading.Thread):
                 close = (sum(profits[:end_idx]))/100
                 #print "DEBUG: range: (%s, %s) - (min, max): (%s, %s) - (open,close): (%s, %s)" %(first_idx, end_idx, lwm, hwm, open, close)
             
-                results.append([sid, hds, stime, etime, hph, won])
+                results.append([sid, hds, stime, etime, hph,
+                                "%.2f" % open,
+                                "%.2f" % close,
+                                "%.2f" % lwm,
+                                "%.2f" % hwm,
+                                "%.2f" % won])
                 quotes.append((sid, open, close, hwm, lwm))
                 #print "DEBUG: Hands in session %4s: %4s  Start: %s End: %s HPH: %s Profit: %s" %(sid, hds, stime, etime, hph, won)
                 first_idx = end_idx
