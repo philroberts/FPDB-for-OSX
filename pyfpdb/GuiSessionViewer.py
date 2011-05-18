@@ -274,15 +274,13 @@ class GuiSessionViewer (threading.Thread):
         # into so convert explicity to list.
         hands = list(hands)
 
-        hands.insert(0, (hands[0][0], 0, 0, 0, 0))
+        hands.insert(0, (hands[0][0], 0))
 
         # Take that list and create an array of the time between hands
         times = map(lambda x:long(x[0]), hands)
-        handids = map(lambda x:int(x[1]), hands)
-        winnings = map(lambda x:float(x[4]), hands)
+        profits = map(lambda x:float(x[1]), hands)
         #print "DEBUG: times   : %s" % times
-        #print "DEBUG: handids : %s" % handids
-        #print "DEBUG: winnings: %s" % winnings
+        #print "DEBUG: profits: %s" % profits
         #print "DEBUG: len(times) %s" %(len(times))
         diffs = diff(times)                      # This array is the difference in starttime between consecutive hands
         diffs2 = append(diffs,THRESHOLD + 1)     # Append an additional session to the end of the diffs, so the next line
@@ -306,7 +304,7 @@ class GuiSessionViewer (threading.Thread):
         uppidx = 0
         quotes = []
         results = []
-        cum_sum = cumsum(winnings)
+        cum_sum = cumsum(profits)
         cum_sum = cum_sum/100
         sid = 1
         # Take all results and format them into a list for feeding into gui model.
@@ -323,12 +321,12 @@ class GuiSessionViewer (threading.Thread):
                 minutesplayed = minutesplayed + PADDING
                 hph = hds*60/minutesplayed # Hands per hour
                 end_idx = last_idx+1
-                won = sum(winnings[first_idx:end_idx])/100.0
-                #print "DEBUG: winnings[%s:%s]: %s" % (first_idx, end_idx, winnings[first_idx:end_idx])
+                won = sum(profits[first_idx:end_idx])/100.0
+                #print "DEBUG: profits[%s:%s]: %s" % (first_idx, end_idx, profits[first_idx:end_idx])
                 hwm = max(cum_sum[first_idx-1:end_idx]) # include the opening balance,
                 lwm = min(cum_sum[first_idx-1:end_idx]) # before we win/lose first hand
-                open = (sum(winnings[:first_idx]))/100
-                close = (sum(winnings[:end_idx]))/100
+                open = (sum(profits[:first_idx]))/100
+                close = (sum(profits[:end_idx]))/100
                 #print "DEBUG: range: (%s, %s) - (min, max): (%s, %s) - (open,close): (%s, %s)" %(first_idx, end_idx, lwm, hwm, open, close)
             
                 results.append([sid, hds, stime, etime, hph, won])

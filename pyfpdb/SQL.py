@@ -3866,7 +3866,7 @@ class Sql:
         ####################################
         if db_server == 'mysql':
             self.query['sessionStats'] = """
-                SELECT UNIX_TIMESTAMP(h.startTime) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
+                SELECT UNIX_TIMESTAMP(h.startTime) as time, hp.totalProfit
                 FROM HandsPlayers hp
                  INNER JOIN Hands h       on  (h.id = hp.handId)
                  INNER JOIN Gametypes gt  on  (gt.Id = h.gametypeId)
@@ -3878,7 +3878,7 @@ class Sql:
                 ORDER by time"""
         elif db_server == 'postgresql':
             self.query['sessionStats'] = """
-                SELECT EXTRACT(epoch from h.startTime) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
+                SELECT EXTRACT(epoch from h.startTime) as time, hp.totalProfit
                 FROM HandsPlayers hp
                  INNER JOIN Hands h       on  (h.id = hp.handId)
                  INNER JOIN Gametypes gt  on  (gt.Id = h.gametypeId)
@@ -3890,7 +3890,7 @@ class Sql:
                 ORDER by time"""
         elif db_server == 'sqlite':
             self.query['sessionStats'] = """
-                SELECT STRFTIME('<ampersand_s>', h.startTime) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
+                SELECT STRFTIME('<ampersand_s>', h.startTime) as time, hp.totalProfit
                 FROM HandsPlayers hp
                  INNER JOIN Hands h       on  (h.id = hp.handId)
                  INNER JOIN Gametypes gt  on  (gt.Id = h.gametypeId)
