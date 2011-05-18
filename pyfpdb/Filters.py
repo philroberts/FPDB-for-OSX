@@ -448,10 +448,10 @@ class Filters(threading.Thread):
         else:
             self.games[game] = w.get_active()
             if (w.get_active()): # when we turn a game on, turn 'none' off if it's on
-                if (self.cbNoGames.get_active()):
+                if (self.cbNoGames and self.cbNoGames.get_active()):
                     self.cbNoGames.set_active(False)
             else:                # when we turn a game off, turn 'all' off if it's on
-                if (self.cbAllGames.get_active()):
+                if (self.cbAllGames and self.cbAllGames.get_active()):
                     self.cbAllGames.set_active(False)
     #end def __set_game_select
 
