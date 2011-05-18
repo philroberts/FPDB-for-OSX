@@ -193,7 +193,6 @@ class GuiSessionViewer (threading.Thread):
         games  = self.filters.getGames()
         limits  = self.filters.getLimits()
         seats  = self.filters.getSeats()
-        print "seats = %s" % (seats, )
         sitenos = []
         playerids = []
 
@@ -258,7 +257,7 @@ class GuiSessionViewer (threading.Thread):
     #end def fillStatsFrame(self, vbox):
 
     def generateDatasets(self, playerids, sitenos, games, limits, seats):
-        print "DEBUG: Starting generateDatasets"
+        if (DEBUG): print "DEBUG: Starting generateDatasets"
         THRESHOLD = 1800     # Min # of secs between consecutive hands before being considered a new session
         PADDING   = 5        # Additional time in minutes to add to a session, session startup, shutdown etc
 
