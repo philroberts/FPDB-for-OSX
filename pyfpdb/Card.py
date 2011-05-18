@@ -15,6 +15,7 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import sys
 import L10n
 _ = L10n.get_translation()
 
@@ -411,10 +412,14 @@ def encodeRazzStartHand(cards):
     return encodeRazzList[startHand]
 
 if __name__ == '__main__':
-    print _("fpdb card encoding(same as pokersource)")
-    for i in xrange(1, 14):
-        print "card %2d = %s    card %2d = %s    card %2d = %s    card %2d = %s" % \
-            (i, valueSuitFromCard(i), i+13, valueSuitFromCard(i+13), i+26, valueSuitFromCard(i+26), i+39, valueSuitFromCard(i+39))
+    print "1) Card from list id (suitFromCardList: 1=2h)"
+    print "2) listid from Card (encodeCardList: 2h=2)"
+    s = raw_input('--> ')
+    if s == '1':
+        cardid = raw_input('Enter cardid: ')
+        print "Value: '%s'" % suitFromCardList[int(cardid)]
+    elif s == '2':
+        while True:
+            cardid = raw_input('Enter card: ')
+            print "Encoded card: '%s'" % encodeCard(cardid)
 
-        print
-    print encodeCard('7c')

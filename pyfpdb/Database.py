@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 158
+DB_VERSION = 160
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -510,11 +510,6 @@ class Database:
         self.cursor.execute("SELECT name,id FROM Sites")
         sites = self.cursor.fetchall()
         self.config.set_site_ids(sites)
-
-    def add_site(self, site, site_code):
-        self.cursor.execute("INSERT INTO Sites "
-                            "SELECT max(id)+1, '%s', '%s' "
-                            "FROM Sites " % (site, site_code) )
 
     def check_version(self, database, create):
         self.wrongDbVersion = False
@@ -1564,6 +1559,7 @@ class Database:
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('14', 'iPoker', 'IP')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('15', 'Winamax', 'WM')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('16', 'Everest', 'EP')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('17', 'Cake', 'CK')")
         #Fill Actions
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('1', 'ante', 'A')")
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('2', 'small blind', 'SB')")
@@ -1885,7 +1881,7 @@ class Database:
                         hdata['boardcard3'],
                         hdata['boardcard4'],
                         hdata['boardcard5'],
-                        hdata['runIt'],
+                        hdata['runItTwice'],
                         hdata['playersAtStreet1'],
                         hdata['playersAtStreet2'],
                         hdata['playersAtStreet3'],
@@ -2582,7 +2578,7 @@ class Database:
                 print _("######## Gametype ##########")
                 import pprint
                 pp = pprint.PrettyPrinter(indent=4)
-                pp.pprint(row)
+                pp.pprint(gtinsert)
                 print _("###### End Gametype ########")
                 
             c.execute(self.sql.query['insertGameTypes'], gtinsert)

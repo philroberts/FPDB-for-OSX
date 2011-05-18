@@ -42,7 +42,7 @@ Py2exe script for fpdb.
 # steffeN: Doesnt seem necessary to gettext-ify this, but feel free to if you disagree
 # Gimick: restructure to allow script to run from packaging/windows directory, and not to write to source pyfpdb
 
-fpdbver = '0.22'
+fpdbver = 'exever'
 
 import os
 import sys
@@ -114,6 +114,7 @@ def copy_file(source,destination):
 distdir = r'fpdb-' + fpdbver
 rootdir = r'../../' #cwd is normally /packaging/windows
 pydir = rootdir+'pyfpdb/'
+packagedir = rootdir+'packaging/windows/'
 gfxdir = rootdir+'gfx/'
 sys.path.append( pydir )  # allows fpdb modules to be found by options/includes below
 
@@ -140,7 +141,8 @@ setup(
               ],
 
     console = [   {'script': pydir+'Stove.py', },
-                  {'script': pydir+'Configuration.py', }
+                  {'script': pydir+'Configuration.py', },
+                  {'script': pydir+'fpdb_prerun.py', }
               ],
 
     options = {'py2exe': {
@@ -178,11 +180,13 @@ copy_tree (pydir+r'locale', os.path.join(r'dist', 'locale'))
 
 # create distribution folder and populate with gfx + bat
 copy_tree (gfxdir, os.path.join(distdir, 'gfx'))
-copy_file (rootdir+'run_fpdb.bat', distdir)
+copy_file (packagedir+'run_fpdb.bat', distdir)
 
 print "*** Renaming dist folder as pyfpdb folder ***"
 dest = os.path.join(distdir, 'pyfpdb')
 os.rename( 'dist', dest )
+
+copy_file (packagedir+'fpdb_folder_check.exe', dest)
 
 print "*** copying GTK runtime ***"
 gtk_dir = ""

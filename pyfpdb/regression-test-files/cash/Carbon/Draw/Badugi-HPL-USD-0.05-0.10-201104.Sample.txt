@@ -1,0 +1,56 @@
+<description type="Badugi" stakes="Half Pot Limit ($0.50/$0.50)"/>
+<game id="33227759-34" starttime="20110412150057" numholecards="4" gametype="71" realmoney="true" data="20110412|Goyang (33227759)|33227759|33227759-34|false">
+	<players dealer="3">
+		<player seat="0" nickname="Hero" balance="$30.00" dealtin="true" />
+		<player seat="2" nickname="Player2" balance="$80.53" dealtin="true" />
+		<player seat="3" nickname="Player3" balance="$32.36" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="ANTE" timestamp="1302638467281" player="3" amount="0.50"/>
+		<event sequence="2" type="ANTE" timestamp="1302638467390" player="2" amount="0.50"/>
+		<event sequence="3" type="ANTE" timestamp="1302638467671" player="0" amount="0.50"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="4" type="CHECK" timestamp="1302638471500" player="0"/>
+		<event sequence="5" type="CHECK" timestamp="1302638475078" player="2"/>
+		<event sequence="6" type="CHECK" timestamp="1302638476281" player="3"/>
+		<cards type="HOLE" cards="Qs,2s,Jh,2c" player="0" hand="Three Cards, Q-J-2"/>
+	</round>
+	<round id="FIRST_DRAW" sequence="3">
+		<event sequence="7" type="DRAW" timestamp="1302638478718" player="0" text="3"/>
+		<event sequence="8" type="DRAW" timestamp="1302638480984" player="2" text="3"/>
+		<event sequence="9" type="DRAW" timestamp="1302638482609" player="3" text="2"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="Ts,2s,4c,As" player="0" hand="Two Cards, 4-A"/>
+	</round>
+	<round id="POST_FIRST_DRAW" sequence="4">
+		<event sequence="10" type="CHECK" timestamp="1302638486468" player="0"/>
+		<event sequence="11" type="CHECK" timestamp="1302638489328" player="2"/>
+		<event sequence="12" type="BET" timestamp="1302638491796" player="3" amount="0.75"/>
+		<event sequence="13" type="FOLD" timestamp="1302638494734" player="0"/>
+		<event sequence="14" type="CALL" timestamp="1302638496109" player="2" amount="0.75"/>
+	</round>
+	<round id="SECOND_DRAW" sequence="5">
+		<event sequence="15" type="DRAW" timestamp="1302638497281" player="2" text="2"/>
+		<event sequence="16" type="DRAW" timestamp="1302638498968" player="3" text="1"/>
+	</round>
+	<round id="POST_SECOND_DRAW" sequence="6">
+		<event sequence="17" type="CHECK" timestamp="1302638501468" player="2"/>
+		<event sequence="18" type="CHECK" timestamp="1302638504640" player="3"/>
+	</round>
+	<round id="THIRD_DRAW" sequence="7">
+		<event sequence="19" type="DRAW" timestamp="1302638506234" player="2" text="2"/>
+		<event sequence="20" type="DRAW" timestamp="1302638508453" player="3" text="1"/>
+	</round>
+	<round id="POST_THIRD_DRAW" sequence="8">
+		<event sequence="21" type="CHECK" timestamp="1302638511296" player="2"/>
+		<event sequence="22" type="BET" timestamp="1302638514046" player="3" amount="1.50"/>
+		<event sequence="23" type="FOLD" timestamp="1302638515265" player="2"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="9">
+		<event sequence="24" type="MUCK" timestamp="1302638515812" player="3"/>
+		<winner amount="4.38" uncalled="false" potnumber="1" player="3" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="10">
+	</round>
+</game>
+
