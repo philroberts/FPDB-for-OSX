@@ -51,6 +51,7 @@ class Filters(threading.Thread):
 
         # text used on screen stored here so that it can be configured
         self.filterText = {'limitsall':_('All'), 'limitsnone':_('None'), 'limitsshow':_('Show _Limits')
+                          ,'gamesall':_('All'), 'gamesnone':_('None')
                           ,'seatsbetween':_('Between:'), 'seatsand':_('And:'), 'seatsshow':_('Show Number of _Players')
                           ,'playerstitle':_('Hero:'), 'sitestitle':(_('Sites')+':'), 'gamestitle':(_('Games')+':')
                           ,'limitstitle':_('Limits:'), 'seatstitle':_('Number of Players:')
@@ -143,6 +144,9 @@ class Filters(threading.Thread):
         gamesFrame.set_label_align(0.0, 0.0)
         gamesFrame.show()
         vbox = gtk.VBox(False, 0)
+        self.cbGames = {}
+        self.cbNoGames = None
+        self.cbAllGames = None
 
         self.fillGamesFrame(vbox)
         gamesFrame.add(vbox)
@@ -410,11 +414,13 @@ class Filters(threading.Thread):
         cb.set_active(True)
     #end def createTourneyTypeLine
 
-    def createGameLine(self, hbox, game):
-        cb = gtk.CheckButton(game.replace("_", "__"))
+    def createGameLine(self, hbox, game, gtext):
+        cb = gtk.CheckButton(gtext.replace("_", "__"))
         cb.connect('clicked', self.__set_game_select, game)
         hbox.pack_start(cb, False, False, 0)
-        cb.set_active(True)
+        if game != "none":
+            cb.set_active(True)
+        return(cb)
 
     def createLimitLine(self, hbox, limit, ltext):
         cb = gtk.CheckButton(str(ltext))
@@ -431,9 +437,22 @@ class Filters(threading.Thread):
     #end def __set_site_select
 
     def __set_game_select(self, w, game):
-        #print w.get_active()
-        self.games[game] = w.get_active()
-        log.debug(_("self.games[%s] set to %s") %(game, self.games[game]))
+        if (game == 'all'):
+            if (w.get_active()):
+                for cb in self.cbGames.values():
+                    cb.set_active(True)
+        elif (game == 'none'):
+            if (w.get_active()):
+                for cb in self.cbGames.values():
+                    cb.set_active(False)
+        else:
+            self.games[game] = w.get_active()
+            if (w.get_active()): # when we turn a game on, turn 'none' off if it's on
+                if (self.cbNoGames.get_active()):
+                    self.cbNoGames.set_active(False)
+            else:                # when we turn a game off, turn 'all' off if it's on
+                if (self.cbAllGames.get_active()):
+                    self.cbAllGames.set_active(False)
     #end def __set_game_select
 
     def __set_limit_select(self, w, limit):
@@ -779,7 +798,22 @@ class Filters(threading.Thread):
                     vbox2.pack_start(hbox, False, False, 0)
                 else:
                     vbox3.pack_start(hbox, False, False, 0)
-                self.createGameLine(hbox, line[0])
+                self.cbGames[line[0]] = self.createGameLine(hbox, line[0], line[0])
+
+            if len(result) >= 2:
+                hbox = gtk.HBox(True, 0)
+                vbox1.pack_start(hbox, False, False, 0)
+                vbox2 = gtk.VBox(False, 0)
+                hbox.pack_start(vbox2, False, False, 0)
+                vbox3 = gtk.VBox(False, 0)
+                hbox.pack_start(vbox3, False, False, 0)
+
+                hbox = gtk.HBox(False, 0)
+                vbox2.pack_start(hbox, False, False, 0)
+                self.cbAllGames = self.createGameLine(hbox, 'all', self.filterText['gamesall'])
+                hbox = gtk.HBox(False, 0)
+                vbox3.pack_start(hbox, False, False, 0)
+                self.cbNoGames = self.createGameLine(hbox, 'none', self.filterText['gamesnone'])
         else:
             print _("INFO: No games returned from database")
             log.info(_("No games returned from database"))
