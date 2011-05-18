@@ -356,7 +356,6 @@ class GuiSessionViewer (threading.Thread):
                 (u'160000', -40), (u'160000',  80), (u'160000', -40),
                 ]
         else:
-            print "query: %s" % (q,)
             self.db.cursor.execute(q)
             hands = self.db.cursor.fetchall()
 
