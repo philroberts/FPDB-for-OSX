@@ -767,9 +767,18 @@ class Filters(threading.Thread):
         self.cursor.execute(self.sql.query['getGames'])
         result = self.db.cursor.fetchall()
         if len(result) >= 1:
-            for line in result:
+            hbox = gtk.HBox(True, 0)
+            vbox1.pack_start(hbox, False, False, 0)
+            vbox2 = gtk.VBox(False, 0)
+            hbox.pack_start(vbox2, False, False, 0)
+            vbox3 = gtk.VBox(False, 0)
+            hbox.pack_start(vbox3, False, False, 0)
+            for i, line in enumerate(result):
                 hbox = gtk.HBox(False, 0)
-                vbox1.pack_start(hbox, False, True, 0)
+                if i < len(result)/2:
+                    vbox2.pack_start(hbox, False, False, 0)
+                else:
+                    vbox3.pack_start(hbox, False, False, 0)
                 self.createGameLine(hbox, line[0])
         else:
             print _("INFO: No games returned from database")
