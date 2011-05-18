@@ -154,12 +154,12 @@ class GuiSessionViewer (threading.Thread):
 
         # make sure Hand column is not displayed
         #[x for x in self.columns if x[0] == 'hand'][0][1] = False
-        if DEBUG == False:
-            warning_string = _("Session Viewer is proof of concept code only, and contains many bugs.\n")
-            warning_string += _("Feel free to use the viewer, but there is no guarantee that the data is accurate.\n")
-            warning_string += _("If you are interested in developing the code further please contact us via the usual channels.\n")
-            warning_string += _("Thank you")
-            self.warning_box(warning_string)
+        # if DEBUG == False:
+        #     warning_string = _("Session Viewer is proof of concept code only, and contains many bugs.\n")
+        #     warning_string += _("Feel free to use the viewer, but there is no guarantee that the data is accurate.\n")
+        #     warning_string += _("If you are interested in developing the code further please contact us via the usual channels.\n")
+        #     warning_string += _("Thank you")
+        #     self.warning_box(warning_string)
 
     def warning_box(self, str, diatitle=_("FPDB WARNING")):
         diaWarning = gtk.Dialog(title=diatitle, parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
@@ -225,7 +225,9 @@ class GuiSessionViewer (threading.Thread):
 
         (results, quotes) = self.generateDatasets(playerids, sitenos, limits, seats)
 
-
+        if DEBUG:
+            for x in quotes:
+                print "start %s\tend %s  \thigh %s\tlow %s" % (x[1], x[2], x[3], x[4])
 
         self.generateGraph(quotes)
 
@@ -267,8 +269,29 @@ class GuiSessionViewer (threading.Thread):
         q = q.replace("<player_test>", nametest)
         q = q.replace("<ampersand_s>", "%s")
 
-        self.db.cursor.execute(q)
-        hands = self.db.cursor.fetchall()
+        if DEBUG:
+            hands = [ 
+                ( u'10000',  10), ( u'10000',  20), ( u'10000',  30),
+                ( u'20000', -10), ( u'20000', -20), ( u'20000', -30),
+                ( u'30000',  40),
+                ( u'40000',   0),
+                ( u'50000', -40),
+                ( u'60000',  10), ( u'60000',  30), ( u'60000', -20),
+                ( u'70000', -20), ( u'70000',  10), ( u'70000',  30),
+                ( u'80000', -10), ( u'80000', -30), ( u'80000',  20),
+                ( u'90000',  20), ( u'90000', -10), ( u'90000', -30),
+                (u'100000',  30), (u'100000', -50), (u'100000',  30),
+                (u'110000', -20), (u'110000',  50), (u'110000', -20),
+                (u'120000', -30), (u'120000',  50), (u'120000', -30),
+                (u'130000',  20), (u'130000', -50), (u'130000',  20),
+                (u'140000',  40), (u'140000', -40),
+                (u'150000', -40), (u'150000',  40),
+                (u'160000', -40), (u'160000',  80), (u'160000', -40),
+                ]
+        else:
+            self.db.cursor.execute(q)
+            hands = self.db.cursor.fetchall()
+
         #fixme - nasty hack to ensure that the hands.insert() works 
         # for mysql data.  mysql returns tuples which can't be inserted
         # into so convert explicity to list.
@@ -298,14 +321,10 @@ class GuiSessionViewer (threading.Thread):
             #print "DEBUG: index[0][0] %s" %(index[0][0])
             pass
 
-        total = 0
         first_idx = 1
-        lowidx = 0
-        uppidx = 0
         quotes = []
         results = []
-        cum_sum = cumsum(profits)
-        cum_sum = cum_sum/100
+        cum_sum = cumsum(profits) / 100
         sid = 1
         # Take all results and format them into a list for feeding into gui model.
         #print "DEBUG: range(len(index[0]): %s" % range(len(index[0]))
@@ -316,9 +335,9 @@ class GuiSessionViewer (threading.Thread):
                 stime = strftime("%d/%m/%Y %H:%M", localtime(times[first_idx]))      # Formatted start time
                 etime = strftime("%d/%m/%Y %H:%M", localtime(times[last_idx]))       # Formatted end time
                 minutesplayed = (times[last_idx] - times[first_idx])/60
+                minutesplayed = minutesplayed + PADDING
                 if minutesplayed == 0:
                     minutesplayed = 1
-                minutesplayed = minutesplayed + PADDING
                 hph = hds*60/minutesplayed # Hands per hour
                 end_idx = last_idx+1
                 won = sum(profits[first_idx:end_idx])/100.0
@@ -332,7 +351,6 @@ class GuiSessionViewer (threading.Thread):
                 results.append([sid, hds, stime, etime, hph, won])
                 quotes.append((sid, open, close, hwm, lwm))
                 #print "DEBUG: Hands in session %4s: %4s  Start: %s End: %s HPH: %s Profit: %s" %(sid, hds, stime, etime, hph, won)
-                total = total + hds
                 first_idx = end_idx
                 sid = sid+1
             else:
