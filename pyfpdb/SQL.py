@@ -1593,6 +1593,7 @@ class Sql:
                         type char(7) NOT NULL,
                         gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                         tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        tourneyId INT UNSIGNED UNSIGNED, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         played BOOLEAN,
                         hands INT NOT NULL,
@@ -1613,6 +1614,7 @@ class Sql:
                         type char(7),
                         gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                         tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
                         played BOOLEAN,
                         hands INT,
@@ -1632,6 +1634,7 @@ class Sql:
                         type TEXT,
                         gametypeId INT,
                         tourneyTypeId INT,
+                        tourneyId INT,
                         playerId INT,
                         played INT,
                         hands INT,
@@ -4858,6 +4861,7 @@ class Sql:
                     type,
                     gametypeId,
                     tourneyTypeId,
+                    tourneyId,
                     playerId,
                     played,
                     hands,
@@ -4872,6 +4876,8 @@ class Sql:
                         (case when gametypeId=%s then 1 else 0 end) end)=1
                     AND (case when tourneyTypeId is NULL then 1 else 
                         (case when tourneyTypeId=%s then 1 else 0 end) end)=1
+                    AND (case when tourneyId is NULL then 1 else 
+                        (case when tourneyId=%s then 1 else 0 end) end)=1
                     AND playerId=%s
                     AND played=%s"""
                     
@@ -4886,13 +4892,14 @@ class Sql:
                     type,
                     gametypeId,
                     tourneyTypeId,
+                    tourneyId,
                     playerId,
                     played,
                     hands,
                     tourneys,
                     totalProfit)
                     values (%s, %s, %s, %s, %s, %s, %s, 
-                            %s, %s, %s, %s, %s, %s, %s)"""
+                            %s, %s, %s, %s, %s, %s, %s, %s)"""
                             
         self.query['update_Hands_gsid'] = """
                     UPDATE Hands SET

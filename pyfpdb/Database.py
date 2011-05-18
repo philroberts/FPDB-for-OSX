@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 160
+DB_VERSION = 161
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -139,6 +139,7 @@ class Database:
                 , {'tab':'SessionsCache',   'col':'gametypeId',        'drop':1}
                 , {'tab':'SessionsCache',   'col':'playerId',          'drop':0}
                 , {'tab':'SessionsCache',   'col':'tourneyTypeId',     'drop':0}
+                , {'tab':'SessionsCache',   'col':'tourneyId',         'drop':0}
                 , {'tab':'Players',         'col':'siteId',            'drop':1}
                 #, {'tab':'Players',         'col':'name',              'drop':0}  unique indexes not dropped
                 , {'tab':'Tourneys',        'col':'tourneyTypeId',     'drop':1}
@@ -146,10 +147,10 @@ class Database:
                 , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
                 #, {'tab':'TourneysPlayers', 'col':'tourneyId',         'drop':0}  unique indexes not dropped
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
-                , {'tab':'Backings',        'col':'tourneysPlayersId',  'drop':0}
+                , {'tab':'Backings',        'col':'tourneysPlayersId', 'drop':0}
                 , {'tab':'Backings',        'col':'playerId',          'drop':0}
                 , {'tab':'RawHands',        'col':'id',                'drop':0}
-                , {'tab':'RawTourneys',        'col':'id',                'drop':0}
+                , {'tab':'RawTourneys',     'col':'id',                'drop':0}
                 ]
               , [ # indexes for sqlite (list index 4)
                   {'tab':'Hands',           'col':'gametypeId',        'drop':0}
@@ -167,11 +168,12 @@ class Database:
                 , {'tab':'SessionsCache',   'col':'gametypeId',        'drop':1}
                 , {'tab':'SessionsCache',   'col':'playerId',          'drop':0}
                 , {'tab':'SessionsCache',   'col':'tourneyTypeId',     'drop':0}
+                , {'tab':'SessionsCache',   'col':'tourneyId',         'drop':0}
                 , {'tab':'Players',         'col':'siteId',            'drop':1}
                 , {'tab':'Tourneys',        'col':'tourneyTypeId',     'drop':1}
                 , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
-                , {'tab':'Backings',        'col':'tourneysPlayersId',  'drop':0}
+                , {'tab':'Backings',        'col':'tourneysPlayersId', 'drop':0}
                 , {'tab':'Backings',        'col':'playerId',          'drop':0}
                 , {'tab':'RawHands',        'col':'id',                'drop':0}
                 , {'tab':'RawTourneys',     'col':'id',                'drop':0}
@@ -197,6 +199,7 @@ class Database:
                     , {'fktab':'SessionsCache','fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'SessionsCache','fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                     , {'fktab':'SessionsCache','fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
+                    , {'fktab':'SessionsCache','fkcol':'tourneyId',     'rtab':'Tourneys',      'rcol':'id', 'drop':1}
                     ]
                   , [ # foreign keys for postgres (index 3)
                       {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
@@ -213,6 +216,7 @@ class Database:
                     , {'fktab':'SessionsCache','fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'SessionsCache','fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                     , {'fktab':'SessionsCache','fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
+                    , {'fktab':'SessionsCache','fkcol':'tourneyId',     'rtab':'Tourneys',      'rcol':'id', 'drop':1}
                     ]
                   , [ # no foreign keys in sqlite (index 4)
                     ]
@@ -2363,7 +2367,7 @@ class Database:
             
         return sc
     
-    def storeSessionsCache(self, hid, pids, startTime, game, gid, pdata, sc, gsc, tz, heros, doinsert = False):
+    def storeSessionsCache(self, hid, pids, startTime, game, gid, tid, pdata, sc, gsc, tz, heros, doinsert = False):
         """Update cached sessions. If no record exists, do an insert"""
         if not tz:
             tz_dt = datetime.utcnow() - datetime.today()
@@ -2381,17 +2385,18 @@ class Database:
 
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
         hand = {}
-        for p, id in pids.iteritems():
-            if id in heros:
+        for p, pid in pids.iteritems():
+            if pid in heros:
                 hand['hands'] = 0
                 hand['totalProfit'] = 0
-                hand['playerId'] = id
+                hand['playerId'] = pid
                 hand['gametypeId'] = None
                 hand['date'] = date
                 hand['startTime'] = startTime.replace(tzinfo=None)
                 hand['hid'] = hid
                 hand['tourneys'] = 0
                 hand['tourneyTypeId'] = None
+                hand['tourneyId'] = tid
                 hand['played'] = 0
                 hand['ids'] = []
                 if (game['type']=='summary'):
@@ -2425,6 +2430,7 @@ class Database:
                 and (hand['gametypeId']    == gsc['bk'][i]['gametypeId'])
                 and (hand['playerId']      == gsc['bk'][i]['playerId']) 
                 and (hand['tourneyTypeId'] == gsc['bk'][i]['tourneyTypeId'])
+                and (hand['tourneyId']     == gsc['bk'][i]['tourneyId'])
                 and (hand['played']        == gsc['bk'][i]['played'])): 
                     if ((lower <= gsc['bk'][i]['gameEnd'])
                     and (upper >= gsc['bk'][i]['gameStart'])):
@@ -2473,6 +2479,7 @@ class Database:
                        ,gsc['bk'][i]['type']
                        ,gsc['bk'][i]['gametypeId']
                        ,gsc['bk'][i]['tourneyTypeId']
+                       ,gsc['bk'][i]['tourneyId']
                        ,gsc['bk'][i]['playerId']
                        ,gsc['bk'][i]['played']]
                 row = [lower, upper] + game

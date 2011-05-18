@@ -310,7 +310,7 @@ dealt   whether they were seen in a 'dealt to' line
                 heros = [self.dbid_pids[self.hero]]
                 sc = db.prepSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, sc, heros, doinsert)
                 gsc = db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.gametype, self.dbid_gt
-                                           ,self.handsplayers, sc, gsc, tz, heros, doinsert)
+                                           ,self.tourneyId, self.handsplayers, sc, gsc, tz, heros, doinsert)
         if doinsert and sc['bk'] and gsc['bk']:
             self.hands['sc'] = sc
             self.hands['gsc'] = gsc
