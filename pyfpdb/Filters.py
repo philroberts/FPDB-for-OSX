@@ -411,7 +411,7 @@ class Filters(threading.Thread):
     #end def createTourneyTypeLine
 
     def createGameLine(self, hbox, game):
-        cb = gtk.CheckButton(game)
+        cb = gtk.CheckButton(game.replace("_", "__"))
         cb.connect('clicked', self.__set_game_select, game)
         hbox.pack_start(cb, False, False, 0)
         cb.set_active(True)
