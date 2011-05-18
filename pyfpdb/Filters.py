@@ -1198,6 +1198,18 @@ class Filters(threading.Thread):
         entry.set_text(ds)
         win.destroy()
 
+        # if the opposite date is set, and now the start date is later
+        # than the end date, modify the one we didn't just set to be
+        # the same as the one we did just set
+        if (entry == self.start_date):
+            end = self.end_date.get_text()
+            if (end and ds > end):
+                self.end_date.set_text(ds)
+        else:
+            start = self.start_date.get_text()
+            if (start and ds < start):
+                self.start_date.set_text(ds)
+
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""
     if argv is None:
