@@ -1909,7 +1909,7 @@ class Database:
             bbulk = []
             for h in hbulk:
                 id = h.pop()
-                if hdata['sc'] and hdata['gsc']:
+                if id in hdata['sc'] and id in hdata['gsc']:
                     h[4] = hdata['sc'][id]['id']
                     h[5] = hdata['gsc'][id]['id']
                 boards = h.pop()
