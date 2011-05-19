@@ -174,24 +174,26 @@ Left-Drag to Move"
                 <location seat="8" x="0"   y="35">  </location>
             </layout>
             <layout max="6" width="792" height="546" fav_seat="0">
-                <location seat="1" x="681" y="119"> </location>
-                <location seat="2" x="681" y="301"> </location>
-                <location seat="3" x="487" y="369"> </location>
-                <location seat="4" x="226" y="369"> </location>
-                <location seat="5" x="0"   y="301"> </location>
-                <location seat="6" x="0"   y="119"> </location>
+                <location seat="1" x="566" y="90"> </location>
+                <location seat="2" x="660" y="291"> </location>
+                <location seat="3" x="409" y="379"> </location>
+                <location seat="4" x="113" y="402"> </location>
+                <location seat="5" x="19" y="291"> </location>
+                <location seat="6" x="110" y="87"> </location>
+                
             </layout>
             <layout max="10" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="586" y="393"> </location>
-                <location seat="5" x="421" y="440"> </location>
-                <location seat="6" x="267" y="440"> </location>
-                <location seat="7" x="0"   y="361"> </location>
-                <location seat="8" x="0"   y="280">  </location>
-                <location seat="9" x="121" y="280">  </location>
-                <location seat="10" x="46"  y="30">  </location>
+                <location seat="1" x="633" y="26">  </location>
+                <location seat="2" x="677" y="65"> </location>
+                <location seat="3" x="680" y="281"> </location>
+                <location seat="4" x="677" y="351"> </location>
+                <location seat="5" x="496" y="407"> </location>
+                <location seat="6" x="197" y="411"> </location>
+                <location seat="7" x="7" y="351"> </location>
+                <location seat="8" x="3" y="281">  </location>
+                <location seat="9" x="0" y="64">  </location>
+                <location seat="10" x="52" y="27">  </location>
+                
             </layout>
             <layout max="9" width="792" height="546" fav_seat="0">
                 <location seat="1" x="560" y="0">  </location>
