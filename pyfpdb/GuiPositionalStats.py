@@ -28,6 +28,7 @@ from time import time, strftime
 import fpdb_import
 import Database
 import Filters
+import Charset
 
 class GuiPositionalStats (threading.Thread):
     def __init__(self, config, querylist, debug=True):
@@ -158,10 +159,10 @@ class GuiPositionalStats (threading.Thread):
         for site in sites:
             if sites[site] == True:
                 sitenos.append(siteids[site])
-                self.cursor.execute(self.sql.query['getPlayerId'], (heroes[site],))
-                result = self.db.cursor.fetchall()
-                if len(result) == 1:
-                    playerids.append(result[0][0])
+                _hname = Charset.to_utf8(heroes[site])
+                result = self.db.get_player_id(self.conf, site, _hname)
+                if result is not None:
+                    playerids.append(result)
 
         if not sitenos:
             #Should probably pop up here.

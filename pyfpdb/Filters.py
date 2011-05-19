@@ -51,6 +51,7 @@ class Filters(threading.Thread):
 
         # text used on screen stored here so that it can be configured
         self.filterText = {'limitsall':_('All'), 'limitsnone':_('None'), 'limitsshow':_('Show _Limits')
+                          ,'gamesall':_('All'), 'gamesnone':_('None')
                           ,'seatsbetween':_('Between:'), 'seatsand':_('And:'), 'seatsshow':_('Show Number of _Players')
                           ,'playerstitle':_('Hero:'), 'sitestitle':(_('Sites')+':'), 'gamestitle':(_('Games')+':')
                           ,'limitstitle':_('Limits:'), 'seatstitle':_('Number of Players:')
@@ -143,6 +144,9 @@ class Filters(threading.Thread):
         gamesFrame.set_label_align(0.0, 0.0)
         gamesFrame.show()
         vbox = gtk.VBox(False, 0)
+        self.cbGames = {}
+        self.cbNoGames = None
+        self.cbAllGames = None
 
         self.fillGamesFrame(vbox)
         gamesFrame.add(vbox)
@@ -410,11 +414,13 @@ class Filters(threading.Thread):
         cb.set_active(True)
     #end def createTourneyTypeLine
 
-    def createGameLine(self, hbox, game):
-        cb = gtk.CheckButton(game)
+    def createGameLine(self, hbox, game, gtext):
+        cb = gtk.CheckButton(gtext.replace("_", "__"))
         cb.connect('clicked', self.__set_game_select, game)
         hbox.pack_start(cb, False, False, 0)
-        cb.set_active(True)
+        if game != "none":
+            cb.set_active(True)
+        return(cb)
 
     def createLimitLine(self, hbox, limit, ltext):
         cb = gtk.CheckButton(str(ltext))
@@ -431,9 +437,22 @@ class Filters(threading.Thread):
     #end def __set_site_select
 
     def __set_game_select(self, w, game):
-        #print w.get_active()
-        self.games[game] = w.get_active()
-        log.debug(_("self.games[%s] set to %s") %(game, self.games[game]))
+        if (game == 'all'):
+            if (w.get_active()):
+                for cb in self.cbGames.values():
+                    cb.set_active(True)
+        elif (game == 'none'):
+            if (w.get_active()):
+                for cb in self.cbGames.values():
+                    cb.set_active(False)
+        else:
+            self.games[game] = w.get_active()
+            if (w.get_active()): # when we turn a game on, turn 'none' off if it's on
+                if (self.cbNoGames and self.cbNoGames.get_active()):
+                    self.cbNoGames.set_active(False)
+            else:                # when we turn a game off, turn 'all' off if it's on
+                if (self.cbAllGames and self.cbAllGames.get_active()):
+                    self.cbAllGames.set_active(False)
     #end def __set_game_select
 
     def __set_limit_select(self, w, limit):
@@ -767,10 +786,34 @@ class Filters(threading.Thread):
         self.cursor.execute(self.sql.query['getGames'])
         result = self.db.cursor.fetchall()
         if len(result) >= 1:
-            for line in result:
+            hbox = gtk.HBox(True, 0)
+            vbox1.pack_start(hbox, False, False, 0)
+            vbox2 = gtk.VBox(False, 0)
+            hbox.pack_start(vbox2, False, False, 0)
+            vbox3 = gtk.VBox(False, 0)
+            hbox.pack_start(vbox3, False, False, 0)
+            for i, line in enumerate(result):
                 hbox = gtk.HBox(False, 0)
-                vbox1.pack_start(hbox, False, True, 0)
-                self.createGameLine(hbox, line[0])
+                if i < len(result)/2:
+                    vbox2.pack_start(hbox, False, False, 0)
+                else:
+                    vbox3.pack_start(hbox, False, False, 0)
+                self.cbGames[line[0]] = self.createGameLine(hbox, line[0], line[0])
+
+            if len(result) >= 2:
+                hbox = gtk.HBox(True, 0)
+                vbox1.pack_start(hbox, False, False, 0)
+                vbox2 = gtk.VBox(False, 0)
+                hbox.pack_start(vbox2, False, False, 0)
+                vbox3 = gtk.VBox(False, 0)
+                hbox.pack_start(vbox3, False, False, 0)
+
+                hbox = gtk.HBox(False, 0)
+                vbox2.pack_start(hbox, False, False, 0)
+                self.cbAllGames = self.createGameLine(hbox, 'all', self.filterText['gamesall'])
+                hbox = gtk.HBox(False, 0)
+                vbox3.pack_start(hbox, False, False, 0)
+                self.cbNoGames = self.createGameLine(hbox, 'none', self.filterText['gamesnone'])
         else:
             print _("INFO: No games returned from database")
             log.info(_("No games returned from database"))
@@ -964,10 +1007,14 @@ class Filters(threading.Thread):
 
         lbl_from = gtk.Label(self.filterText['seatsbetween'])
         lbl_to   = gtk.Label(self.filterText['seatsand'])
+
         adj1 = gtk.Adjustment(value=2, lower=2, upper=10, step_incr=1, page_incr=1, page_size=0)
         sb1 = gtk.SpinButton(adjustment=adj1, climb_rate=0.0, digits=0)
+        adj1.connect('value-changed', self.__seats_changed, 'from')
+
         adj2 = gtk.Adjustment(value=10, lower=2, upper=10, step_incr=1, page_incr=1, page_size=0)
         sb2 = gtk.SpinButton(adjustment=adj2, climb_rate=0.0, digits=0)
+        adj2.connect('value-changed', self.__seats_changed, 'to')
 
         hbox.pack_start(lbl_from, expand=False, padding=3)
         hbox.pack_start(sb1, False, False, 0)
@@ -1197,6 +1244,27 @@ class Filters(threading.Thread):
         ds = '%04d-%02d-%02d' % (year, month, day)
         entry.set_text(ds)
         win.destroy()
+
+        # if the opposite date is set, and now the start date is later
+        # than the end date, modify the one we didn't just set to be
+        # the same as the one we did just set
+        if (entry == self.start_date):
+            end = self.end_date.get_text()
+            if (end and ds > end):
+                self.end_date.set_text(ds)
+        else:
+            start = self.start_date.get_text()
+            if (start and ds < start):
+                self.start_date.set_text(ds)
+
+    def __seats_changed(self, widget, which):
+        seats_from = self.sbSeats['from'].get_value_as_int()
+        seats_to = self.sbSeats['to'].get_value_as_int()
+        if (seats_from > seats_to):
+            if (which == 'from'):
+                self.sbSeats['to'].set_value(seats_from)
+            else:
+                self.sbSeats['from'].set_value(seats_to)
 
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""
