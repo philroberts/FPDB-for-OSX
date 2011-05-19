@@ -288,11 +288,11 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
             raise FpdbParseError
         
     def updateSessionsCache(self, sc, gsc, tz, doinsert):
-        self.heros = self.db.getHeroIds(self.dbid_pids, self.siteName)
-        sc = self.db.prepSessionsCache(self.tourNo, self.dbid_pids, self.startTime, sc , self.heros, doinsert)
+        heros = self.db.getHeroIds(self.dbid_pids, self.siteName)
+        sc = self.db.prepSessionsCache(self.tourNo, self.dbid_pids, self.startTime, sc , heros, doinsert)
         
         gsc = self.db.storeSessionsCache(self.tourNo, self.dbid_pids, self.startTime, {'type': 'summary'} 
-                                        ,None, self.assembleInfo(), sc, gsc, tz, self.heros, doinsert)
+                                        ,None, self.tourneyId, self.assembleInfo(), sc, gsc, tz, heros, doinsert)
         return sc, gsc
     
     def assembleInfo(self):

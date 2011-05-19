@@ -306,16 +306,14 @@ dealt   whether they were seen in a 'dealt to' line
     def updateSessionsCache(self, db, sc, gsc, tz, doinsert = False):
         """ Function to update the SessionsCache"""
         if self.cacheSessions:
-            self.heros = db.getHeroIds(self.dbid_pids, self.sitename)
-            sc = db.prepSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, sc, self.heros, doinsert)
-            gsc = db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.gametype
-                                           ,self.dbid_gt, self.handsplayers, sc, gsc, tz, self.heros, doinsert)
-        if doinsert and sc['bk'] and gsc['bk']:
+            heros = []
+            if self.hero in self.dbid_pids: heros = [self.dbid_pids[self.hero]]   
+            sc = db.prepSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, sc, heros, doinsert)
+            gsc = db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.gametype, self.dbid_gt
+                                       ,self.tourneyId, self.handsplayers, sc, gsc, tz, heros, doinsert)
+        if doinsert:
             self.hands['sc'] = sc
             self.hands['gsc'] = gsc
-        else:
-            self.hands['sc'] = None
-            self.hands['gsc'] = None
         return sc, gsc
 
     def select(self, db, handId):
