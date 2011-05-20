@@ -4937,22 +4937,17 @@ class Sql:
             self.query['analyze'] = "analyze"
             
         if db_server == 'mysql':
-            self.query['selectLock'] = """
-                        SELECT locked 
-                        FROM InsertLock 
-                        WHERE locked=True 
-                        LOCK IN SHARE MODE"""
-            
+            self.query['switchLockOn'] = """
+                        UPDATE InsertLock k1, 
+                        (SELECT count(locked) as locks FROM InsertLock WHERE locked=True) as k2 SET
+                        k1.locked=%s
+                        WHERE k1.id=%s
+                        AND k2.locks = 0"""
+                        
         if db_server == 'mysql':
-            self.query['switchLock'] = """
+            self.query['switchLockOff'] = """
                         UPDATE InsertLock SET
                         locked=%s
-                        WHERE id=%s"""
-                        
-        if db_server == 'mysql':               
-            self.query['missedLock'] = """
-                        UPDATE InsertLock SET
-                        missed=missed+%s
                         WHERE id=%s"""
 
         if db_server == 'mysql':
