@@ -49,6 +49,19 @@ class Filters(threading.Thread):
         self.conf = db.config
         self.display = display
 
+        self.gameName = {"27_1draw"  : _("Single Draw 2-7 Lowball")
+                        ,"27_3draw"  : _("Triple Draw 2-7 Lowball")
+                        ,"5studhi"   : _("5 Card Stud")
+                        ,"badugi"    : _("Badugi")
+                        ,"fivedraw"  : _("5 Card Draw")
+                        ,"holdem"    : _("Hold'em")
+                        ,"omahahi"   : _("Omaha")
+                        ,"omahahilo" : _("Omaha Hi/Lo")
+                        ,"razz"      : _("Razz")
+                        ,"studhi"    : _("7 Card Stud")
+                        ,"studhilo"  : _("7 Card Stud Hi/Lo")
+                        }
+
         # text used on screen stored here so that it can be configured
         self.filterText = {'limitsall':_('All'), 'limitsnone':_('None'), 'limitsshow':_('Show _Limits')
                           ,'gamesall':_('All'), 'gamesnone':_('None')
@@ -786,19 +799,10 @@ class Filters(threading.Thread):
         self.cursor.execute(self.sql.query['getGames'])
         result = self.db.cursor.fetchall()
         if len(result) >= 1:
-            hbox = gtk.HBox(True, 0)
-            vbox1.pack_start(hbox, False, False, 0)
-            vbox2 = gtk.VBox(False, 0)
-            hbox.pack_start(vbox2, False, False, 0)
-            vbox3 = gtk.VBox(False, 0)
-            hbox.pack_start(vbox3, False, False, 0)
-            for i, line in enumerate(result):
+            for line in sorted(result, key = lambda game: self.gameName[game[0]]):
                 hbox = gtk.HBox(False, 0)
-                if i < len(result)/2:
-                    vbox2.pack_start(hbox, False, False, 0)
-                else:
-                    vbox3.pack_start(hbox, False, False, 0)
-                self.cbGames[line[0]] = self.createGameLine(hbox, line[0], line[0])
+                vbox1.pack_start(hbox, False, True, 0)
+                self.cbGames[line[0]] = self.createGameLine(hbox, line[0], self.gameName[line[0]])
 
             if len(result) >= 2:
                 hbox = gtk.HBox(True, 0)
