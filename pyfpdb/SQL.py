@@ -1593,6 +1593,7 @@ class Sql:
                         type char(7) NOT NULL,
                         gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                         tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        tourneyId INT UNSIGNED UNSIGNED, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         played BOOLEAN,
                         hands INT NOT NULL,
@@ -1613,6 +1614,7 @@ class Sql:
                         type char(7),
                         gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                         tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
                         played BOOLEAN,
                         hands INT,
@@ -1632,6 +1634,7 @@ class Sql:
                         type TEXT,
                         gametypeId INT,
                         tourneyTypeId INT,
+                        tourneyId INT,
                         playerId INT,
                         played INT,
                         hands INT,
@@ -4862,6 +4865,7 @@ class Sql:
                     type,
                     gametypeId,
                     tourneyTypeId,
+                    tourneyId,
                     playerId,
                     played,
                     hands,
@@ -4876,6 +4880,8 @@ class Sql:
                         (case when gametypeId=%s then 1 else 0 end) end)=1
                     AND (case when tourneyTypeId is NULL then 1 else 
                         (case when tourneyTypeId=%s then 1 else 0 end) end)=1
+                    AND (case when tourneyId is NULL then 1 else 
+                        (case when tourneyId=%s then 1 else 0 end) end)=1
                     AND playerId=%s
                     AND played=%s"""
                     
@@ -4890,13 +4896,14 @@ class Sql:
                     type,
                     gametypeId,
                     tourneyTypeId,
+                    tourneyId,
                     playerId,
                     played,
                     hands,
                     tourneys,
                     totalProfit)
                     values (%s, %s, %s, %s, %s, %s, %s, 
-                            %s, %s, %s, %s, %s, %s, %s)"""
+                            %s, %s, %s, %s, %s, %s, %s, %s)"""
                             
         self.query['update_Hands_gsid'] = """
                     UPDATE Hands SET
@@ -4934,22 +4941,17 @@ class Sql:
             self.query['analyze'] = "analyze"
             
         if db_server == 'mysql':
-            self.query['selectLock'] = """
-                        SELECT locked 
-                        FROM InsertLock 
-                        WHERE locked=True 
-                        LOCK IN SHARE MODE"""
-            
+            self.query['switchLockOn'] = """
+                        UPDATE InsertLock k1, 
+                        (SELECT count(locked) as locks FROM InsertLock WHERE locked=True) as k2 SET
+                        k1.locked=%s
+                        WHERE k1.id=%s
+                        AND k2.locks = 0"""
+                        
         if db_server == 'mysql':
-            self.query['switchLock'] = """
+            self.query['switchLockOff'] = """
                         UPDATE InsertLock SET
                         locked=%s
-                        WHERE id=%s"""
-                        
-        if db_server == 'mysql':               
-            self.query['missedLock'] = """
-                        UPDATE InsertLock SET
-                        missed=missed+%s
                         WHERE id=%s"""
 
         if db_server == 'mysql':
