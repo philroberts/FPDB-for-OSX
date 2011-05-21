@@ -159,6 +159,13 @@ class fpdb:
         else:
             self.nb.set_current_page(tab_no)
 
+    def switch_to_tab(self, accel_group, acceleratable, keyval, modifier):
+        tab = keyval - ord('0')
+        if (tab == 0): tab = 10
+        tab = tab - 1
+        if (tab < len(self.nb_tab_names)):
+            self.display_tab(self.nb_tab_names[tab])
+
     def create_custom_tab(self, text, nb):
         #create a custom tab for notebook containing a
         #label and a button with STOCK_ICON
@@ -916,6 +923,10 @@ class fpdb:
                                  ('About', None, _('A_bout, License, Copying'), None, 'About the program', self.dia_about),
                                 ])
         actiongroup.get_action('Quit').set_property('short-label', _('_Quit'))
+
+        # define keyboard shortcuts alt-1 through alt-0 for switching tabs
+        for key in range(10):
+            accel_group.connect_group(ord('%s' % key), gtk.gdk.MOD1_MASK, gtk.ACCEL_LOCKED, self.switch_to_tab)
 
         uimanager.insert_action_group(actiongroup, 0)
         merge_id = uimanager.add_ui_from_string(fpdbmenu)

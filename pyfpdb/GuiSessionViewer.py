@@ -104,30 +104,17 @@ class GuiSessionViewer (threading.Thread):
         # ToDo: create popup to adjust column config
         # columns to display, keys match column name returned by sql, values in tuple are:
         #     is column displayed, column heading, xalignment, formatting
-        self.columns = [ ("sid",      True,  "SID",      0.0, "%s")
-                       , ("hand",     False, "Hand",     0.0, "%s")   # true not allowed for this line
-                       , ("n",        True,  "Hds",      1.0, "%d")
-                       , ("start",    True,  "Start",    1.0, "%d")
-                       , ("end",      True,  "End",      1.0, "%d")
-                       , ("hph",      True,  "Hands/h",  1.0, "%d")
-                       , ("profit",   True,  "Profit",   1.0, "%s")
-                       #, ("avgseats", True,  "Seats",    1.0, "%3.1f")
-                       #, ("vpip",     True,  "VPIP",     1.0, "%3.1f")
-                       #, ("pfr",      True,  "PFR",      1.0, "%3.1f")
-                       #, ("pf3",      True,  "PF3",      1.0, "%3.1f")
-                       #, ("steals",   True,  "Steals",   1.0, "%3.1f")
-                       #, ("saw_f",    True,  "Saw_F",    1.0, "%3.1f")
-                       #, ("sawsd",    True,  "SawSD",    1.0, "%3.1f")
-                       #, ("wtsdwsf",  True,  "WtSDwsF",  1.0, "%3.1f")
-                       #, ("wmsd",     True,  "W$SD",     1.0, "%3.1f")
-                       #, ("flafq",    True,  "FlAFq",    1.0, "%3.1f")
-                       #, ("tuafq",    True,  "TuAFq",    1.0, "%3.1f")
-                       #, ("rvafq",    True,  "RvAFq",    1.0, "%3.1f")
-                       #, ("pofafq",   False, "PoFAFq",   1.0, "%3.1f")
-                       #, ("net",      True,  "Net($)",   1.0, "%6.2f")
-                       #, ("bbper100", True,  "BB/100",   1.0, "%4.2f")
-                       #, ("rake",     True,  "Rake($)",  1.0, "%6.2f")
-                       #, ("variance", True,  "Variance", 1.0, "%5.2f")
+        self.columns = [ (1.0, "SID"   )
+                       , (1.0, "Hands" )
+                       , (0.5, "Start" )
+                       , (0.5, "End"   )
+                       , (1.0, "Rate"  )
+                       , (1.0, "Open"  )
+                       , (1.0, "Close" )
+                       , (1.0, "Low"   )
+                       , (1.0, "High"  )
+                       , (1.0, "Range" )
+                       , (1.0, "Profit")
                        ]
 
         self.detailFilters = []   # the data used to enhance the sql select
@@ -417,7 +404,13 @@ class GuiSessionViewer (threading.Thread):
                 close = (sum(profits[:end_idx]))/100
                 #print "DEBUG: range: (%s, %s) - (min, max): (%s, %s) - (open,close): (%s, %s)" %(first_idx, end_idx, lwm, hwm, open, close)
             
-                results.append([sid, hds, stime, etime, hph, won])
+                results.append([sid, hds, stime, etime, hph,
+                                "%.2f" % open,
+                                "%.2f" % close,
+                                "%.2f" % lwm,
+                                "%.2f" % hwm,
+                                "%.2f" % (hwm - lwm),
+                                "%.2f" % won])
                 quotes.append((sid, open, close, hwm, lwm))
                 #print "DEBUG: Hands in session %4s: %4s  Start: %s End: %s HPH: %s Profit: %s" %(sid, hds, stime, etime, hph, won)
                 first_idx = end_idx
@@ -476,42 +469,34 @@ class GuiSessionViewer (threading.Thread):
     def addTable(self, vbox, results):
         row = 0
         sqlrow = 0
-        colalias,colshow,colheading,colxalign,colformat = 0,1,2,3,4
+        colxalign,colheading = range(2)
 
-        # pre-fetch some constant values:
-        cols_to_show = [x for x in self.columns if x[colshow]]
-
-        self.liststore = gtk.ListStore(*([str] * len(cols_to_show)))
+        self.liststore = gtk.ListStore(*([str] * len(self.columns)))
         for row in results:
             iter = self.liststore.append(row)
 
         view = gtk.TreeView(model=self.liststore)
         view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
         vbox.add(view)
-        textcell = gtk.CellRendererText()
-        textcell50 = gtk.CellRendererText()
-        textcell50.set_property('xalign', 0.5)
-        numcell = gtk.CellRendererText()
-        numcell.set_property('xalign', 1.0)
+        cell05 = gtk.CellRendererText()
+        cell05.set_property('xalign', 0.5)
+        cell10 = gtk.CellRendererText()
+        cell10.set_property('xalign', 1.0)
         listcols = []
 
         # Create header row   eg column: ("game",     True, "Game",     0.0, "%s")
-        for col, column in enumerate(cols_to_show):
-            s = column[colheading]
-            listcols.append(gtk.TreeViewColumn(s))
+        for col, column in enumerate(self.columns):
+            treeviewcolumn = gtk.TreeViewColumn(column[colheading])
+            listcols.append(treeviewcolumn)
+            treeviewcolumn.set_alignment(column[colxalign])
             view.append_column(listcols[col])
-            if column[colformat] == '%s':
-                if column[colxalign] == 0.0:
-                    listcols[col].pack_start(textcell, expand=True)
-                    listcols[col].add_attribute(textcell, 'text', col)
-                else:
-                    listcols[col].pack_start(textcell50, expand=True)
-                    listcols[col].add_attribute(textcell50, 'text', col)
-                listcols[col].set_expand(True)
+            if (column[colxalign] == 0.5):
+                cell = cell05
             else:
-                listcols[col].pack_start(numcell, expand=True)
-                listcols[col].add_attribute(numcell, 'text', col)
-                listcols[col].set_expand(True)
+                cell = cell10
+            listcols[col].pack_start(cell, expand=True)
+            listcols[col].add_attribute(cell, 'text', col)
+            listcols[col].set_expand(True)
 
         vbox.show_all()
 
