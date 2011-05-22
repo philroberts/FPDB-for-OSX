@@ -767,6 +767,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
               "fivedraw"   : "5 Card Draw",
               "27_1draw"   : "Single Draw 2-7 Lowball",
               "27_3draw"   : "Triple Draw 2-7 Lowball",
+              "5studhi"    : "5 Card Stud",
               "badugi"     : "Badugi"
              }
         ls = {"nl"  : "No Limit",
