@@ -856,7 +856,7 @@ class Filters(threading.Thread):
                     if line[0] != self.display["UseType"]:
                         continue
                 hbox = gtk.HBox(False, 0)
-                if i < len(result)/2:
+                if i < (len(result)+1)/2:
                     vbox2.pack_start(hbox, False, False, 0)
                 else:
                     vbox3.pack_start(hbox, False, False, 0)
