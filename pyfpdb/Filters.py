@@ -862,7 +862,7 @@ class Filters(threading.Thread):
                     vbox3.pack_start(hbox, False, False, 0)
                 if True:  #line[0] == 'ring':
                     if line[1] == 'fl':
-                        name = str(line[2])
+                        name = str(line[2])+line[1]
                         self.found['fl'] = True
                     elif line[1] == 'pl':
                         name = str(line[2])+line[1]
