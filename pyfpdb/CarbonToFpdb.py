@@ -293,11 +293,13 @@ or None if we fail to get the info """
         logging.debug("readAction (%s)" % street)
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            logging.debug("%s %s" % (action.group('ATYPE'),
-                                     action.groupdict()))
+            logging.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
             player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
             if action.group('ATYPE') == 'RAISE':
-                hand.addCallandRaise(street, player, action.group('BET'))
+                if self.info['limitType'] == 'fl':
+                    hand.addRaiseTo(street, player, action.group('BET'))
+                else:
+                    hand.addCallandRaise(street, player, action.group('BET'))
             elif action.group('ATYPE') == 'CALL':
                 hand.addCall(street, player, action.group('BET'))
             elif action.group('ATYPE') == 'BET':
