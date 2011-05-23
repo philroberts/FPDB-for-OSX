@@ -90,7 +90,7 @@ class Carbon(HandHistoryConverter):
     re_HeroCards = re.compile(r'<cards type="HOLE" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_Action = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT)" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?/>', re.MULTILINE)
     re_ShowdownAction = re.compile(r'<cards type="SHOWN" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
-    re_CollectPot = re.compile(r'<winner amount="(?P<POT>[.0-9]+)" uncalled="(true|false)" potnumber="[0-9]+" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
+    re_CollectPot = re.compile(r'<winner amount="(?P<POT>[.0-9]+)" uncalled="false" potnumber="[0-9]+" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_ShownCards = re.compile(r'<cards type="(SHOWN|MUCKED)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
 
@@ -296,10 +296,7 @@ or None if we fail to get the info """
             logging.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
             player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
             if action.group('ATYPE') == 'RAISE':
-                if self.info['limitType'] == 'fl':
-                    hand.addRaiseTo(street, player, action.group('BET'))
-                else:
-                    hand.addCallandRaise(street, player, action.group('BET'))
+                hand.addRaiseTo(street, player, action.group('BET'))
             elif action.group('ATYPE') == 'CALL':
                 hand.addCall(street, player, action.group('BET'))
             elif action.group('ATYPE') == 'BET':
