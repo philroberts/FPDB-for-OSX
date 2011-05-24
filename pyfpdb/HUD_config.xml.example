@@ -101,7 +101,7 @@
 
     hero_stat_days :
         - a numeric value
-        - if hero_stat_range is set to 'T', this value tells how many days are 
+        - if hero_stat_range is set to 'T', this value tells how many days are
           included in the stat calculation
         - defaults to 30
         - value not used by default as it depends on hero_stat_range setting
@@ -122,7 +122,7 @@
         - if value is M, stats for blind levels are combined if the higher level
           is less than or equal to M times the lower blind level
         - defaults to 1, meaning only stats from current blind level are included
-        - e.g. if set to 3 and current big blind is 50, stats for blind levels from 
+        - e.g. if set to 3 and current big blind is 50, stats for blind levels from
           16.7 (50 divided by 3) to big blind of 150 (50 times 3) are included
 -->
     <hud_ui
@@ -143,7 +143,6 @@ Left-Drag to Move"
     />
 
     <supported_sites>
-
         <site enabled="True"
               site_name="PokerStars"
               table_finder="PokerStars.exe"
@@ -282,68 +281,57 @@ Left-Drag to Move"
             </layout>
         </site>
 
-	    <site HH_path="C:\Users\WindowsUserName\Documents\EverleafSiteName\HandHistory\YOUR SCREEN NAME HERE"
-                  bgcolor="#000000"
-                  converter="EverleafToFpdb"
-                  decoder="everleaf_decode_table"
-                  enabled="True"
-                  fgcolor="#EEEEEE"
-                  hudopacity="0.75"
-                  screen_name="YOUR SCREEN NAME HERE"
-                  site_name="Everleaf"
-                  site_path="C:\Users\WindowsUserName\AppData\Roaming\EverleafSiteName\"
-                  supported_games="holdem,omahahi,omahahilo"
-                  table_finder="Poker.exe">
-	        <layout fav_seat="0" height="546" max="6" width="792">
-			<location seat="0" x="0" y="0"> </location>
-	        	<location seat="1" x="586" y="109"> </location>
-	        	<location seat="2" x="605" y="283"> </location>
-	        	<location seat="3" x="544" y="383"> </location>
-	        	<location seat="4" x="67" y="383"> </location>
-	        	<location seat="5" x="5" y="284"> </location>
-	        	<location seat="6" x="61" y="111"> </location>
-	        </layout>
-	        <layout fav_seat="0" height="546" max="10" width="792">
-			<location seat="0" x="182" y="69"> </location>
-	        	<location seat="1" x="485" y="66">  </location>
-	        	<location seat="2" x="661" y="79"> </location>
-	        	<location seat="3" x="675" y="210"> </location>
-	        	<location seat="4" x="644" y="346"> </location>
-	        	<location seat="5" x="449" y="375"> </location>
-	        	<location seat="6" x="253" y="374"> </location>
-	        	<location seat="7" x="46" y="348"> </location>
-	        	<location seat="8" x="23" y="204">  </location>
-	        	<location seat="9" x="38" y="79">  </location>
-	        	<location seat="10" x="226" y="67">  </location>
-	        </layout>
-	        <layout fav_seat="0" height="546" max="8" width="792">
-			<location seat="0" x="182" y="69"> </location>
-	        	<location seat="1" x="456" y="74">  </location>
-	        	<location seat="2" x="630" y="81"> </location>
-	        	<location seat="3" x="618" y="352"> </location>
-	        	<location seat="4" x="426" y="380"> </location>
-	        	<location seat="5" x="243" y="382"> </location>
-	        	<location seat="6" x="34" y="351"> </location>
-	        	<location seat="7" x="22" y="82"> </location>
-	        	<location seat="8" x="213" y="74">  </location>
-                </layout>
-
-	        <layout fav_seat="0" height="546" max="2" width="792">
-	        	<location seat="1" x="651" y="288"> </location>
-	        	<location seat="2" x="10" y="288"> </location>
-	        </layout>
-            <layout max="9" width="792" height="546" fav_seat="0">
-                <location seat="1" x="560" y="0">  </location>
-                <location seat="2" x="679" y="123"> </location>
-                <location seat="3" x="688" y="309"> </location>
-                <location seat="4" x="483" y="370"> </location>
-                <location seat="5" x="444" y="413"> </location>
-                <location seat="6" x="224" y="372"> </location>
-                <location seat="7" x="0"   y="307"> </location>
-                <location seat="8" x="0"   y="121">  </location>
-                <location seat="9" x="140" y="0">  </location>
+        <site HH_path="C:\Users\WindowsUserName\Documents\EverleafSiteName\HandHistory\YOUR SCREEN NAME HERE"
+              bgcolor="#000000"
+              converter="EverleafToFpdb"
+              decoder="everleaf_decode_table"
+              enabled="True"
+              fgcolor="#EEEEEE"
+              hudopacity="0.75"
+              screen_name="YOUR SCREEN NAME HERE"
+              site_name="Everleaf"
+              site_path="C:\Users\WindowsUserName\AppData\Roaming\EverleafSiteName\"
+              supported_games="holdem,omahahi,omahahilo"
+              table_finder="Poker.exe">
+            <layout fav_seat="0" height="546" max="6" width="792">
+                <location seat="0" x="0" y="0"> </location>
+                <location seat="1" x="586" y="109"> </location>
+                <location seat="2" x="605" y="283"> </location>
+                <location seat="3" x="544" y="383"> </location>
+                <location seat="4" x="67" y="383"> </location>
+                <location seat="5" x="5" y="284"> </location>
+                <location seat="6" x="61" y="111"> </location>
             </layout>
-	    </site>
+            <layout fav_seat="0" height="546" max="10" width="792">
+                <location seat="0" x="182" y="69"> </location>
+                <location seat="1" x="485" y="66">  </location>
+                <location seat="2" x="661" y="79"> </location>
+                <location seat="3" x="675" y="210"> </location>
+                <location seat="4" x="644" y="346"> </location>
+                <location seat="5" x="449" y="375"> </location>
+                <location seat="6" x="253" y="374"> </location>
+                <location seat="7" x="46" y="348"> </location>
+                <location seat="8" x="23" y="204">  </location>
+                <location seat="9" x="38" y="79">  </location>
+                <location seat="10" x="226" y="67">  </location>
+            </layout>
+            <layout fav_seat="0" height="546" max="8" width="792">
+                <location seat="0" x="182" y="69"> </location>
+                <location seat="1" x="456" y="74">  </location>
+                <location seat="2" x="630" y="81"> </location>
+                <location seat="3" x="618" y="352"> </location>
+                <location seat="4" x="426" y="380"> </location>
+                <location seat="5" x="243" y="382"> </location>
+                <location seat="6" x="34" y="351"> </location>
+                <location seat="7" x="22" y="82"> </location>
+                <location seat="8" x="213" y="74">  </location>
+            </layout>
+
+            <layout fav_seat="0" height="546" max="2" width="792">
+                <location seat="1" x="651" y="288"> </location>
+                <location seat="2" x="10" y="288"> </location>
+            </layout>
+        </site>
 
         <site enabled="True"
               site_name="Win2day"
@@ -401,7 +389,6 @@ Left-Drag to Move"
             </layout>
         </site>
 
-
         <site enabled="True"
               site_name="Absolute"
               table_finder="AbsolutePoker.exe"
@@ -457,7 +444,6 @@ Left-Drag to Move"
                 <location seat="10" x="46"  y="30">  </location>
             </layout>
         </site>
-
 
         <site enabled="True"
               site_name="PartyPoker"
@@ -855,7 +841,6 @@ Left-Drag to Move"
                 <location seat="10" x="46"  y="30">  </location>
             </layout>
         </site>
-
     </supported_sites>
 
     <supported_games>
@@ -873,47 +858,47 @@ Left-Drag to Move"
 
         <game aux="stud_mucked" cols="2" db="fpdb" game_name="razz" rows="3">
             <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
         </game>
 
         <game aux="mucked" cols="2" db="fpdb" game_name="omahahi" rows="3">
             <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
         </game>
 
         <game aux="mucked" cols="2" db="fpdb" game_name="omahahilo" rows="3">
             <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
         </game>
 
         <game aux="stud_mucked" cols="2" db="fpdb" game_name="studhi" rows="3">
             <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
         </game>
 
         <game aux="stud_mucked" cols="2" db="fpdb" game_name="studhilo" rows="3">
             <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
-        	<stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
         </game>
 
         <game cols="3" db="fpdb" game_name="27_3draw" rows="2">
@@ -951,7 +936,6 @@ Left-Drag to Move"
             <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
             <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
         </game>
-
     </supported_games>
 
     <popup_windows>
@@ -1058,7 +1042,7 @@ Left-Drag to Move"
     </hhcs>
 
     <raw_hands save="none" compression="none"/>
-    
+
     <raw_tourneys save="none" compression="none"/>
 
     <supported_databases>
@@ -1066,5 +1050,5 @@ Left-Drag to Move"
         <database db_ip="localhost" db_server="sqlite" db_name="fpdb.db3" db_user="fpdb" db_pass="fpdb"/>
     </supported_databases>
 </FreePokerToolsConfig>
-<!-- IMPORTANT: Please note that fpdb stores your email password in clear text. 
+<!-- IMPORTANT: Please note that fpdb stores your email password in clear text.
 So do not post a config containing a password on the Internet or anywhere else without removing the password! -->

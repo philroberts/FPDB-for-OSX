@@ -346,7 +346,7 @@ class GuiPositionalStats (threading.Thread):
             query = query.replace('<groupbyseats>', '')
             query = query.replace('<orderbyseats>', '')
 
-        lims = [int(x) for x in limits if x.isdigit()]
+        lims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'fl']
         potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
         nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
         capnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'cn']
