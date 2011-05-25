@@ -292,11 +292,18 @@ or None if we fail to get the info """
     def readAction(self, hand, street):
         logging.debug("readAction (%s)" % street)
         m = self.re_Action.finditer(hand.streets[street])
+        raises = 0
         for action in m:
             logging.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
             player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
             if action.group('ATYPE') == 'RAISE':
-                hand.addRaiseTo(street, player, action.group('BET'))
+                raises += 1
+                if self.info['limitType'] == 'fl':
+                    hand.addRaiseTo(street, player, action.group('BET'))
+                elif raises == 1:
+                    hand.addRaiseTo(street, player, action.group('BET'))
+                else: # raises > 1
+                    hand.addCallandRaise(street, player, action.group('BET'))
             elif action.group('ATYPE') == 'CALL':
                 hand.addCall(street, player, action.group('BET'))
             elif action.group('ATYPE') == 'BET':
@@ -320,16 +327,9 @@ or None if we fail to get the info """
     def readCollectPot(self, hand):
         pots = [Decimal(0) for n in range(hand.maxseats)]
         for m in self.re_CollectPot.finditer(hand.handText):
-            pots[int(m.group('PSEAT'))] += Decimal(m.group('POT'))
-        # Regarding the processing logic for "committed", see Pot.end() in
-        # Hand.py
-        committed = sorted([(v,k) for (k,v) in hand.pot.committed.items()])
-        for p in range(hand.maxseats):
-            pname = self.playerNameFromSeatNo(p, hand)
-            if committed[-1][1] == pname:
-                pots[p] -= committed[-1][0] - committed[-2][0]
-            if pots[p] > 0:
-                hand.addCollectPot(player=pname, pot=pots[p])
+            pname = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
+            #print "DEBUG: addCollectPot(%s, %s)" %(pname, m.group('POT'))
+            hand.addCollectPot(player=pname, pot=m.group('POT'))
 
     def readShownCards(self, hand):
         for street in ('FLOP', 'TURN', 'RIVER', 'SEVENTH', 'DRAWTHREE'):
