@@ -844,6 +844,13 @@ Left-Drag to Move"
     </supported_sites>
 
     <supported_games>
+        <!-- holdem
+
+             vpip  pfr          three_B
+             n     playershort  cb1
+             wtsd  steal        totalprofit
+
+          -->
         <game aux="mucked" cols="3" db="fpdb" game_name="holdem" rows="3">
             <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" stat_loth="25" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
             <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" stat_loth="20" stat_locolor ="#408000" stat_hith="35" stat_hicolor ="#F05000" tip="tip1"> </stat>
@@ -856,6 +863,13 @@ Left-Drag to Move"
             <stat click="tog_decorate" col="2" popup="default" row="2" stat_name="totalprofit" stat_loth="0" stat_locolor ="#F05000" stat_hith="0" stat_hicolor ="#408000" tip="tip1"> </stat>
         </game>
 
+        <!-- razz
+
+             playershort  n
+             vpip         pfr
+             saw_f        ffreq1
+
+          -->
         <game aux="stud_mucked" cols="2" db="fpdb" game_name="razz" rows="3">
             <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
             <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
@@ -865,6 +879,13 @@ Left-Drag to Move"
             <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
         </game>
 
+        <!-- omahahi
+
+             playershort  n
+             vpip         pfr
+             saw_f        ffreq1
+
+          -->
         <game aux="mucked" cols="2" db="fpdb" game_name="omahahi" rows="3">
             <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
             <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
@@ -874,6 +895,13 @@ Left-Drag to Move"
             <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
         </game>
 
+        <!-- omahahilo
+
+             playershort  n
+             vpip         pfr
+             saw_f        ffreq1
+
+          -->
         <game aux="mucked" cols="2" db="fpdb" game_name="omahahilo" rows="3">
             <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
             <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
@@ -883,6 +911,13 @@ Left-Drag to Move"
             <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
         </game>
 
+        <!-- studhi
+
+             playershort  n
+             vpip         pfr
+             saw_f        ffreq1
+
+          -->
         <game aux="stud_mucked" cols="2" db="fpdb" game_name="studhi" rows="3">
             <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
             <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
@@ -892,6 +927,13 @@ Left-Drag to Move"
             <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
         </game>
 
+        <!-- studhilo
+
+             playershort  n
+             vpip         pfr
+             saw_f        ffreq1
+
+          -->
         <game aux="stud_mucked" cols="2" db="fpdb" game_name="studhilo" rows="3">
             <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
             <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
@@ -901,6 +943,12 @@ Left-Drag to Move"
             <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
         </game>
 
+        <!-- 27_3draw
+
+             vpip  pfr   ffreq1
+             n     wtsd  wmsd
+
+          -->
         <game cols="3" db="fpdb" game_name="27_3draw" rows="2">
             <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
             <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
@@ -910,6 +958,12 @@ Left-Drag to Move"
             <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
         </game>
 
+        <!-- 27_1draw
+
+             vpip  pfr   ffreq1
+             n     wtsd  wmsd
+
+          -->
         <game cols="3" db="fpdb" game_name="27_1draw" rows="2">
             <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
             <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
@@ -919,6 +973,12 @@ Left-Drag to Move"
             <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
         </game>
 
+        <!-- badugi
+
+             vpip  pfr   ffreq1
+             n     wtsd  wmsd
+
+          -->
         <game cols="3" db="fpdb" game_name="badugi" rows="2">
             <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
             <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
@@ -928,6 +988,12 @@ Left-Drag to Move"
             <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
         </game>
 
+        <!-- fivedraw
+
+             vpip  pfr   ffreq1
+             n     wtsd  wmsd
+
+          -->
         <game cols="3" db="fpdb" game_name="fivedraw" rows="2">
             <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
             <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
