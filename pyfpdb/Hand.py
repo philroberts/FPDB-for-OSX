@@ -1672,6 +1672,7 @@ class Pot(object):
 
     def addMoney(self, player, amount):
         # addMoney must be called for any actions that put money in the pot, in the order they occur
+        #print "DEBUG: %s adds %s" %(player, amount)
         self.contenders.add(player)
         self.committed[player] += amount
 
