@@ -68,6 +68,21 @@ class Carbon(HandHistoryConverter):
                    '5-Stud'  : ('stud','5studhi'),
                      'Razz'  : ('stud','razz'),
             }
+    Lim_Blinds = {  '0.04': ('0.01', '0.02'),        '0.10': ('0.02', '0.05'),
+                        '0.20': ('0.05', '0.10'),    '0.50': ('0.10', '0.25'),
+                        '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
+                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
+                        '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
+                        '6.00': ('1.50', '3.00'),       '6': ('1.50', '3.00'),
+                        '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
+                       '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
+                       #'12.00': ('2.00', '5.00'),      '12': ('2.00', '5.00'),
+                       #'20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
+                       #'30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
+                       #'40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
+                       #'60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
+                      #'100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
+                  }
 
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
@@ -168,6 +183,15 @@ or None if we fail to get the info """
         else:
             self.info['type'] = 'ring'
             self.info['currency'] = 'USD'
+
+        if self.info['limitType'] == 'fl' and self.info['bb'] is not None and self.info['type'] == 'ring':
+            try:
+                self.info['sb'] = self.Lim_Blinds[mg['BB']][0]
+                self.info['bb'] = self.Lim_Blinds[mg['BB']][1]
+            except KeyError:
+                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+                log.error("determineGameType: " + _("Raising FpdbParseError"))
+                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
 
         return self.info
 
