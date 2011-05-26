@@ -295,6 +295,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         else:
             # See if gametype is supported.
             if 'mix' not in gametype: gametype['mix'] = 'none'
+            if 'ante' not in gametype: gametype['ante'] = 0
             type = gametype['type']
             base = gametype['base']
             limit = gametype['limitType']
