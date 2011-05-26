@@ -236,7 +236,6 @@ dealt   whether they were seen in a 'dealt to' line
         # These functions are intended for prep insert eventually
         #####
         self.gametype['maxSeats'] = self.maxseats #TODO: move up to individual parsers
-        self.gametype['ante'] = 0 #TODO store actual ante
         self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
         self.dbid_gt = db.getSqlGameTypeId(self.siteId, self.gametype, printdata = printtest)
         
@@ -544,6 +543,11 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
             self.actions['BLINDSANTES'].append(act)
 #            self.pot.addMoney(player, ante)
             self.pot.addCommonMoney(player, ante)
+            if self.gametype['ante'] == 0:
+                if self.gametype['type'] == 'ring':
+                    self.gametype['ante'] = int(100*ante)
+                else:
+                    self.gametype['ante'] = int(ante)
 #I think the antes should be common money, don't have enough hand history to check
 
     def addBlind(self, player, blindtype, amount):
