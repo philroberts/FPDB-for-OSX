@@ -1152,47 +1152,29 @@ class Filters(threading.Thread):
         capnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'cn']
         hpnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'hp']
 
-        where = "AND ( (gt.limitType = 'fl' and gt.bigBlind in "
+        where          = "AND ( "
+        default_clause = '(-1)) '
+        clause = default_clause
 
-        if lims:
-            blindtest = str(tuple(lims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            where = where + blindtest + ' ) '
-        else:
-            where = where + '(-1) ) '
-        where = where + " or (gt.limitType = 'pl' and gt.bigBlind in "
+        if lims: 
+            clause = "(gt.limitType = 'fl' and gt.bigBlind in (%s))" % (','.join(map(str, lims)))
+        where = where + clause
+        clause = default_clause
         if potlims:
-            blindtest = str(tuple(potlims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            where = where + blindtest + ' ) '
-        else:
-            where = where + '(-1) ) '
-        where = where + " or (gt.limitType = 'nl' and gt.bigBlind in "
+            clause = "or (gt.limitType = 'pl' and gt.bigBlind in (%s))" % (','.join(map(str, potlims)))
+        where = where + clause
+        clause = default_clause
         if nolims:
-            blindtest = str(tuple(nolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            where = where + blindtest + ' ) '
-        else:
-            where = where + '(-1) ) '
-        where = where + " or (gt.limitType = 'hp' and gt.bigBlind in "
+            clause = "or (gt.limitType = 'nl' and gt.bigBlind in (%s))" % (','.join(map(str, nolims)))
+        where = where + clause
+        clause = default_clause
         if hpnolims:
-            blindtest = str(tuple(hpnolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            where = where + blindtest + ' ) '
-        else:
-            where = where + '(-1) ) '
-        where = where + " or (gt.limitType = 'cn' and gt.bigBlind in "
+            clause = "or (gt.limitType = 'hp' and gt.bigBlind in (%s))" % (','.join(map(str, hpnolims)))
+        where = where + clause
+        clause = default_clause
         if capnolims:
-            blindtest = str(tuple(capnolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            where = where + blindtest + ' ) )'
-        else:
-            where = where + '(-1) ) )'
+            clause = "or (gt.limitType = 'cp' and gt.bigBlind in (%s))" % (','.join(map(str, capnolims)))
+        where = where + clause + ' )'
 
         return where
 
