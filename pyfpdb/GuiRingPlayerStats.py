@@ -628,47 +628,8 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
             query = query.replace('<groupbyseats>', '')
             query = query.replace('<orderbyseats>', '')
 
-        lims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'fl']
-        potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
-        nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
-        capnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'cn']
-        bbtest = "and ( (gt.limitType = 'fl' and gt.bigBlind in "
-                 # and ( (limit and bb in()) or (nolimit and bb in ()) )
-        if lims:
-            blindtest = str(tuple(lims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) '
-        else:
-            bbtest = bbtest + '(-1) ) '
-        bbtest = bbtest + " or (gt.limitType = 'pl' and gt.bigBlind in "
-        if potlims:
-            blindtest = str(tuple(potlims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) '
-        else:
-            bbtest = bbtest + '(-1) ) '
-        bbtest = bbtest + " or (gt.limitType = 'nl' and gt.bigBlind in "
-        if nolims:
-            blindtest = str(tuple(nolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) '
-        else:
-            bbtest = bbtest + '(-1) ) '
-        bbtest = bbtest + " or (gt.limitType = 'cn' and gt.bigBlind in "
-        if capnolims:
-            blindtest = str(tuple(capnolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) )'
-        else:
-            bbtest = bbtest + '(-1) ) )'
-        if type == 'ring':
-            bbtest = bbtest + " and gt.type = 'ring' "
-        elif type == 'tour':
-            bbtest = " and gt.type = 'tour' "
+        bbtest = self.filters.get_limits_where_clause(limits)
+
         query = query.replace("<gtbigBlind_test>", bbtest)
 
         if holecards:  # re-use level variables for hole card query

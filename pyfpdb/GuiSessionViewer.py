@@ -270,43 +270,8 @@ class GuiSessionViewer (threading.Thread):
                     gametest = "AND gt.category IS NULL"
         q = q.replace("<game_test>", gametest)
 
-        lims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'fl']
-        potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
-        nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
-        capnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'cn']
-        limittest = "AND ( (gt.limitType = 'fl' AND gt.bigBlind in "
-                 # and ( (limit and bb in()) or (nolimit and bb in ()) )
-        if lims:
-            blindtest = str(tuple(lims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            limittest = limittest + blindtest + ' ) '
-        else:
-            limittest = limittest + '(-1) ) '
-        limittest = limittest + " OR (gt.limitType = 'pl' AND gt.bigBlind in "
-        if potlims:
-            blindtest = str(tuple(potlims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            limittest = limittest + blindtest + ' ) '
-        else:
-            limittest = limittest + '(-1) ) '
-        limittest = limittest + " OR (gt.limitType = 'nl' AND gt.bigBlind in "
-        if nolims:
-            blindtest = str(tuple(nolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            limittest = limittest + blindtest + ' ) '
-        else:
-            limittest = limittest + '(-1) ) '
-        limittest = limittest + " OR (gt.limitType = 'cn' AND gt.bigBlind in "
-        if capnolims:
-            blindtest = str(tuple(capnolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            limittest = limittest + blindtest + ' ) )'
-        else:
-            limittest = limittest + '(-1) ) )'
+        limittest = self.filters.get_limits_where_clause(limits)
+
         q = q.replace("<limit_test>", limittest)
 
         if seats:
