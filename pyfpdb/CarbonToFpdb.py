@@ -32,8 +32,6 @@ _ = L10n.get_translation()
 # -- A hand's time-stamp does not record seconds past the minute (a
 #    limitation of the history format)
 # -- hand.maxseats can only be guessed at
-# -- The last hand in a history file will often be incomplete and is therefore
-#    rejected
 # -- Is behaviour currently correct when someone shows an uncalled hand?
 # -- Information may be lost when the hand ID is converted from the native form
 #    xxxxxxxx-yyy(y*) to xxxxxxxxyyy(y*) (in principle this should be stored as
@@ -63,6 +61,7 @@ class Carbon(HandHistoryConverter):
                     'Omaha'  : ('hold','omahahi'),
          'Omaha Tournament'  : ('hold','omahahi'),
               '2-7 Lowball'  : ('draw','27_3draw'),
+              'A-5 Lowball'  : ('draw','a5_3draw'),
                    'Badugi'  : ('draw','badugi'),
                    '7-Stud'  : ('stud','studhi'),
                    '5-Stud'  : ('stud','5studhi'),
@@ -239,7 +238,7 @@ or None if we fail to get the info """
         if hand.gametype['base'] == 'hold':
             m = re.search(r'<round id="PREFLOP" sequence="[0-9]+">(?P<PREFLOP>.+(?=<round id="POSTFLOP")|.+)(<round id="POSTFLOP" sequence="[0-9]+">(?P<FLOP>.+(?=<round id="POSTTURN")|.+))?(<round id="POSTTURN" sequence="[0-9]+">(?P<TURN>.+(?=<round id="POSTRIVER")|.+))?(<round id="POSTRIVER" sequence="[0-9]+">(?P<RIVER>.+))?', hand.handText, re.DOTALL)
         elif hand.gametype['base'] == 'draw':
-            if hand.gametype['category'] in ('27_3draw','badugi'):
+            if hand.gametype['category'] in ('27_3draw','badugi','a5_3draw'):
                 m =  re.search(r'(?P<PREDEAL>.+(?=<round id="PRE_FIRST_DRAW" sequence="[0-9]+">)|.+)'
                            r'(<round id="PRE_FIRST_DRAW" sequence="[0-9]+">(?P<DEAL>.+(?=<round id="FIRST_DRAW" sequence="[0-9]+">)|.+))?'
                            r'(<round id="FIRST_DRAW" sequence="[0-9]+">(?P<DRAWONE>.+(?=<round id="SECOND_DRAW" sequence="[0-9]+">)|.+))?'

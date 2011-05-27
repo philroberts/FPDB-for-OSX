@@ -51,6 +51,7 @@ class Filters(threading.Thread):
 
         self.gameName = {"27_1draw"  : _("Single Draw 2-7 Lowball")
                         ,"27_3draw"  : _("Triple Draw 2-7 Lowball")
+                        ,"a5_3draw"  : _("Triple Draw A-5 Lowball")
                         ,"5studhi"   : _("5 Card Stud")
                         ,"badugi"    : _("Badugi")
                         ,"fivedraw"  : _("5 Card Draw")
