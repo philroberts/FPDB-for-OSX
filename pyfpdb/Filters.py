@@ -72,7 +72,7 @@ class Filters(threading.Thread):
                           ,'groupstitle':_('Grouping:'), 'posnshow':_('Show Position Stats')
                           ,'datestitle':_('Date:')
                           ,'groupsall':_('All Players')
-                          ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'limitsCN':'CAP', 'ring':_('Ring'), 'tour':_('Tourney')
+                          ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'limitsCN':'CAP', 'ring':_('Ring'), 'tour':_('Tourney'), 'limitsHP':_('HP')
                           }
 
         gen = self.conf.get_general_params()
@@ -94,7 +94,7 @@ class Filters(threading.Thread):
         self.sw.show()
         #print(_("DEBUG:") + _("New packing box created!"))
 
-        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'ring':False, 'tour':False}
+        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'hp':False, 'ring':False, 'tour':False}
         self.label = {}
         self.callback = {}
 
@@ -843,7 +843,7 @@ class Filters(threading.Thread):
         self.cursor.execute(self.sql.query['getCashLimits'])
         # selects  limitType, bigBlind
         result = self.db.cursor.fetchall()
-        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'ring':False, 'tour':False}
+        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'hp':False, 'ring':False, 'tour':False}
 
         if len(result) >= 1:
             hbox = gtk.HBox(True, 0)
@@ -900,6 +900,7 @@ class Filters(threading.Thread):
                     if self.found['pl']:  self.num_limit_types = self.num_limit_types + 1
                     if self.found['nl']:  self.num_limit_types = self.num_limit_types + 1
                     if self.found['cn']:  self.num_limit_types = self.num_limit_types + 1
+                    if self.found['hp']:  self.num_limit_types = self.num_limit_types + 1
                     if self.num_limit_types > 1:
                        if self.found['fl']:
                            hbox = gtk.HBox(False, 0)
@@ -917,6 +918,10 @@ class Filters(threading.Thread):
                            hbox = gtk.HBox(False, 0)
                            vbox3.pack_start(hbox, False, False, 0)
                            self.cbCN = self.createLimitLine(hbox, 'cn', self.filterText['limitsCN'])
+                       if self.found['hp']:
+                           hbox = gtk.HBox(False, 0)
+                           vbox3.pack_start(hbox, False, False, 0)
+                           self.cbCN = self.createLimitLine(hbox, 'cn', self.filterText['limitsHP'])
                        dest = vbox2  # for ring/tour buttons
         else:
             print _("INFO: No games returned from database")
