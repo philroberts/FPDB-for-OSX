@@ -65,6 +65,7 @@ class GuiGraphViewer (threading.Thread):
         filters_display = { "Heroes"    : True,
                             "Sites"     : True,
                             "Games"     : True,
+                            "Currencies": True,
                             "Limits"    : True,
                             "LimitSep"  : True,
                             "LimitType" : True,
@@ -145,6 +146,7 @@ class GuiGraphViewer (threading.Thread):
             siteids = self.filters.getSiteIds()
             limits  = self.filters.getLimits()
             games   = self.filters.getGames()
+            currencies = self.filters.getCurrencies()
             graphops = self.filters.getGraphOps()
             names   = ""
             
@@ -182,7 +184,7 @@ class GuiGraphViewer (threading.Thread):
 
             #Get graph data from DB
             starttime = time()
-            (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games, graphops['dspin'])
+            (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games, currencies, graphops['dspin'])
             print _("Graph generated in: %s") %(time() - starttime)
 
 
@@ -251,7 +253,7 @@ class GuiGraphViewer (threading.Thread):
     #end of def showClicked
 
 
-    def getRingProfitGraph(self, names, sites, limits, games, units):
+    def getRingProfitGraph(self, names, sites, limits, games, currencies, units):
 #        tmp = self.sql.query['getRingProfitAllHandsPlayerIdSite']
 #        print "DEBUG: getRingProfitGraph"
 
@@ -286,6 +288,16 @@ class GuiGraphViewer (threading.Thread):
                     gametest = "and gt.category IS NULL"
         tmp = tmp.replace("<game_test>", gametest)
         
+        q = []
+        for n in currencies:
+            if currencies[n]:
+                q.append(n)
+        currencytest = str(tuple(q))
+        currencytest = currencytest.replace(",)",")")
+        currencytest = currencytest.replace("u'","'")
+        currencytest = "AND gt.currency in %s" % currencytest
+        tmp = tmp.replace("<currency_test>", currencytest)
+
         lims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'fl']
         potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
         nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']

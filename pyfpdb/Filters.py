@@ -62,14 +62,21 @@ class Filters(threading.Thread):
                         ,"studhilo"  : _("7 Card Stud Hi/Lo")
                         }
 
+        self.currencyName = {"USD" : _("US Dollars")
+                            ,"EUR" : _("Euros")
+                            ,"T$"  : _("Tournament Dollars")
+                            ,"play": _("Play Money")
+                            }
+
         # text used on screen stored here so that it can be configured
         self.filterText = {'limitsall':_('All'), 'limitsnone':_('None'), 'limitsshow':_('Show _Limits')
                           ,'gamesall':_('All'), 'gamesnone':_('None')
+                          ,'currenciesall':_('All'), 'currenciesnone':_('None')
                           ,'seatsbetween':_('Between:'), 'seatsand':_('And:'), 'seatsshow':_('Show Number of _Players')
                           ,'playerstitle':_('Hero:'), 'sitestitle':(_('Sites')+':'), 'gamestitle':(_('Games')+':')
                           ,'limitstitle':_('Limits:'), 'seatstitle':_('Number of Players:')
                           ,'groupstitle':_('Grouping:'), 'posnshow':_('Show Position Stats')
-                          ,'datestitle':_('Date:')
+                          ,'datestitle':_('Date:'), 'currenciestitle':(_('Currencies')+':')
                           ,'groupsall':_('All Players')
                           ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'limitsCN':'CAP', 'ring':_('Ring'), 'tour':_('Tourney')
                           }
@@ -110,6 +117,7 @@ class Filters(threading.Thread):
         self.boxes  = {}
         self.toggles  = {}
         self.graphops = {}
+        self.currencies  = {}
 
         for site in self.conf.get_supported_sites():
             #Get db site id for filtering later
@@ -163,6 +171,18 @@ class Filters(threading.Thread):
 
         self.fillGamesFrame(vbox)
         gamesFrame.add(vbox)
+
+        # Currencies
+        currenciesFrame = gtk.Frame()
+        currenciesFrame.set_label_align(0.0, 0.0)
+        currenciesFrame.show()
+        vbox = gtk.VBox(False, 0)
+        self.cbCurrencies = {}
+        self.cbNoCurrencies = None
+        self.cbAllCurrencies = None
+
+        self.fillCurrenciesFrame(vbox)
+        currenciesFrame.add(vbox)
 
         # Limits
         limitsFrame = gtk.Frame()
@@ -230,6 +250,7 @@ class Filters(threading.Thread):
         self.mainVBox.pack_start(playerFrame, expand)
         self.mainVBox.pack_start(sitesFrame, expand)
         self.mainVBox.pack_start(gamesFrame, expand)
+        self.mainVBox.pack_start(currenciesFrame, expand)
         self.mainVBox.pack_start(limitsFrame, expand)
         self.mainVBox.pack_start(seatsFrame, expand)
         self.mainVBox.pack_start(groupsFrame, expand)
@@ -248,6 +269,8 @@ class Filters(threading.Thread):
             sitesFrame.hide()
         if "Games" not in self.display or self.display["Games"] == False:
             gamesFrame.hide()
+        if "Currencies" not in self.display or self.display["Currencies"] == False:
+            currenciesFrame.hide()
         if "Limits" not in self.display or self.display["Limits"] == False:
             limitsFrame.hide()
         if "Seats" not in self.display or self.display["Seats"] == False:
@@ -301,6 +324,10 @@ class Filters(threading.Thread):
     def getGames(self):
         return self.games
     #end def getGames
+
+    def getCurrencies(self):
+        return self.currencies
+    #end def getCurrencies
 
     def getSiteIds(self):
         return self.siteid
@@ -435,6 +462,14 @@ class Filters(threading.Thread):
             cb.set_active(True)
         return(cb)
 
+    def createCurrencyLine(self, hbox, currency, ctext):
+        cb = gtk.CheckButton(ctext.replace("_", "__"))
+        cb.connect('clicked', self.__set_currency_select, currency)
+        hbox.pack_start(cb, False, False, 0)
+        if currency != "none" and currency != "all" and currency != "play":
+            cb.set_active(True)
+        return(cb)
+
     def createLimitLine(self, hbox, limit, ltext):
         cb = gtk.CheckButton(str(ltext))
         cb.connect('clicked', self.__set_limit_select, limit)
@@ -467,6 +502,25 @@ class Filters(threading.Thread):
                 if (self.cbAllGames and self.cbAllGames.get_active()):
                     self.cbAllGames.set_active(False)
     #end def __set_game_select
+
+    def __set_currency_select(self, w, currency):
+        if (currency == 'all'):
+            if (w.get_active()):
+                for cb in self.cbCurrencies.values():
+                    cb.set_active(True)
+        elif (currency == 'none'):
+            if (w.get_active()):
+                for cb in self.cbCurrencies.values():
+                    cb.set_active(False)
+        else:
+            self.currencies[currency] = w.get_active()
+            if (w.get_active()): # when we turn a currency on, turn 'none' off if it's on
+                if (self.cbNoCurrencies and self.cbNoCurrencies.get_active()):
+                    self.cbNoCurrencies.set_active(False)
+            else:                # when we turn a currency off, turn 'all' off if it's on
+                if (self.cbAllCurrencies and self.cbAllCurrencies.get_active()):
+                    self.cbAllCurrencies.set_active(False)
+    #end def __set_currency_select
 
     def __set_limit_select(self, w, limit):
         #print "__set_limit_select:  limit =", limit, w.get_active()
@@ -822,6 +876,53 @@ class Filters(threading.Thread):
             print _("INFO: No games returned from database")
             log.info(_("No games returned from database"))
     #end def fillGamesFrame
+
+    def fillCurrenciesFrame(self, vbox):
+        top_hbox = gtk.HBox(False, 0)
+        vbox.pack_start(top_hbox, False, False, 0)
+        lbl_title = gtk.Label(self.filterText['currenciestitle'])
+        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
+        top_hbox.pack_start(lbl_title, expand=True, padding=3)
+        showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'Currencies')
+        self.toggles['Currencies'] = showb
+        top_hbox.pack_start(showb, expand=False, padding=1)
+
+        vbox1 = gtk.VBox(False, 0)
+        vbox.pack_start(vbox1, False, False, 0)
+        self.boxes['Currencies'] = vbox1
+
+        self.cursor.execute(self.sql.query['getCurrencies'])
+        result = self.db.cursor.fetchall()
+        if len(result) >= 1:
+            for line in result:
+                hbox = gtk.HBox(False, 0)
+                vbox1.pack_start(hbox, False, True, 0)
+                if (self.currencyName.has_key(line[0])):
+                    cname = self.currencyName[line[0]]
+                else:
+                    cname = line[0]
+                self.cbCurrencies[line[0]] = self.createCurrencyLine(hbox, line[0], cname)
+
+            if len(result) >= 2:
+                hbox = gtk.HBox(True, 0)
+                vbox1.pack_start(hbox, False, False, 0)
+                vbox2 = gtk.VBox(False, 0)
+                hbox.pack_start(vbox2, False, False, 0)
+                vbox3 = gtk.VBox(False, 0)
+                hbox.pack_start(vbox3, False, False, 0)
+
+                hbox = gtk.HBox(False, 0)
+                vbox2.pack_start(hbox, False, False, 0)
+                self.cbAllCurrencies = self.createCurrencyLine(hbox, 'all', self.filterText['currenciesall'])
+                hbox = gtk.HBox(False, 0)
+                vbox3.pack_start(hbox, False, False, 0)
+                self.cbNoCurrencies = self.createCurrencyLine(hbox, 'none', self.filterText['currenciesnone'])
+        else:
+            print _("INFO: No currencies returned from database")
+            log.info(_("No currencies returned from database"))
+    #end def fillCurrenciesFrame
 
     def fillLimitsFrame(self, vbox, display):
         top_hbox = gtk.HBox(False, 0)

@@ -90,6 +90,8 @@ class Sql:
 
         self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
         
+        self.query['getCurrencies'] = """SELECT DISTINCT currency from Gametypes ORDER BY currency"""
+        
         self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""
 
         self.query['getTourneyTypesIds'] = "SELECT id FROM TourneyTypes"
@@ -3811,6 +3813,7 @@ class Sql:
             AND   h.startTime < '<enddate_test>'
             <limit_test>
             <game_test>
+            <currency_test>
             AND   hp.tourneysPlayersId IS NULL
             GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
             ORDER BY h.startTime"""
@@ -3827,6 +3830,7 @@ class Sql:
             AND   h.startTime < '<enddate_test>'
             <limit_test>
             <game_test>
+            <currency_test>
             AND   hp.tourneysPlayersId IS NULL
             GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
             ORDER BY h.startTime"""
@@ -3873,6 +3877,7 @@ class Sql:
                  <limit_test>
                  <game_test>
                  <seats_test>
+                 <currency_test>
                 ORDER by time"""
         elif db_server == 'postgresql':
             self.query['sessionStats'] = """
@@ -3888,6 +3893,7 @@ class Sql:
                  <limit_test>
                  <game_test>
                  <seats_test>
+                 <currency_test>
                 ORDER by time"""
         elif db_server == 'sqlite':
             self.query['sessionStats'] = """
@@ -3903,6 +3909,7 @@ class Sql:
                  <limit_test>
                  <game_test>
                  <seats_test>
+                 <currency_test>
                 ORDER by time"""
 
 
