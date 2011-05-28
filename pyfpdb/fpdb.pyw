@@ -236,6 +236,9 @@ class fpdb:
         # This forces the widget to redraw itself.
         #nb.queue_draw_area(0,0,-1,-1) needed or not??
 
+    def remove_current_tab(self, accel_group, acceleratable, keyval, modifier):
+        self.remove_tab(None, (self.nb, self.nb_tab_names[self.nb.get_current_page()]))
+
     def delete_event(self, widget, event, data=None):
         return False
 
@@ -927,6 +930,7 @@ class fpdb:
         # define keyboard shortcuts alt-1 through alt-0 for switching tabs
         for key in range(10):
             accel_group.connect_group(ord('%s' % key), gtk.gdk.MOD1_MASK, gtk.ACCEL_LOCKED, self.switch_to_tab)
+        accel_group.connect_group(ord('w'), gtk.gdk.CONTROL_MASK, gtk.ACCEL_LOCKED, self.remove_current_tab)
 
         uimanager.insert_action_group(actiongroup, 0)
         merge_id = uimanager.add_ui_from_string(fpdbmenu)
