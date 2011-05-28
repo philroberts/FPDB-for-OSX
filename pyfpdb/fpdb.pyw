@@ -194,13 +194,11 @@ class fpdb:
         except:
             pass
 
-        if nb.get_n_pages() > 0:
-            tabButton = gtk.Button()
-
-            tabButton.connect('clicked', self.remove_tab, (nb, text))
-            #Add a picture on a button
-            self.add_icon_to_button(tabButton)
-            tabBox.pack_start(tabButton, False)
+        tabButton = gtk.Button()
+        tabButton.connect('clicked', self.remove_tab, (nb, text))
+        #Add a picture on a button
+        self.add_icon_to_button(tabButton)
+        tabBox.pack_start(tabButton, False)
 
         # needed, otherwise even calling show_all on the notebook won't
         # make the hbox contents appear.
