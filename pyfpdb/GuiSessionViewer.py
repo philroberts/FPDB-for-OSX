@@ -83,6 +83,7 @@ class GuiSessionViewer (threading.Thread):
         filters_display = { "Heroes"    : True,
                             "Sites"     : True,
                             "Games"     : True,
+                            "Currencies": True,
                             "Limits"    : True,
                             "LimitSep"  : True,
                             "LimitType" : True,
@@ -178,6 +179,7 @@ class GuiSessionViewer (threading.Thread):
         heroes = self.filters.getHeroes()
         siteids = self.filters.getSiteIds()
         games  = self.filters.getGames()
+        currencies = self.filters.getCurrencies()
         limits  = self.filters.getLimits()
         seats  = self.filters.getSeats()
         sitenos = []
@@ -203,6 +205,9 @@ class GuiSessionViewer (threading.Thread):
         if not games:
             print _("No games found")
             return
+        if not currencies:
+            print _("No currencies found")
+            return
         if not playerids:
             print _("No player ids found")
             return
@@ -210,12 +215,12 @@ class GuiSessionViewer (threading.Thread):
             print _("No limits found")
             return
 
-        self.createStatsPane(vbox, playerids, sitenos, games, limits, seats)
+        self.createStatsPane(vbox, playerids, sitenos, games, currencies, limits, seats)
 
-    def createStatsPane(self, vbox, playerids, sitenos, games, limits, seats):
+    def createStatsPane(self, vbox, playerids, sitenos, games, currencies, limits, seats):
         starttime = time()
 
-        (results, quotes) = self.generateDatasets(playerids, sitenos, games, limits, seats)
+        (results, quotes) = self.generateDatasets(playerids, sitenos, games, currencies, limits, seats)
 
         if DEBUG:
             for x in quotes:
@@ -243,7 +248,7 @@ class GuiSessionViewer (threading.Thread):
         print _("Stats page displayed in %4.2f seconds") % (time() - starttime)
     #end def fillStatsFrame(self, vbox):
 
-    def generateDatasets(self, playerids, sitenos, games, limits, seats):
+    def generateDatasets(self, playerids, sitenos, games, currencies, limits, seats):
         if (DEBUG): print "DEBUG: Starting generateDatasets"
         THRESHOLD = 1800     # Min # of secs between consecutive hands before being considered a new session
         PADDING   = 5        # Additional time in minutes to add to a session, session startup, shutdown etc
@@ -271,8 +276,18 @@ class GuiSessionViewer (threading.Thread):
         q = q.replace("<game_test>", gametest)
 
         limittest = self.filters.get_limits_where_clause(limits)
-
         q = q.replace("<limit_test>", limittest)
+
+        l = []
+        for n in currencies:
+            if currencies[n]:
+                l.append(n)
+        currencytest = str(tuple(l))
+        currencytest = currencytest.replace(",)",")")
+        currencytest = currencytest.replace("u'","'")
+        currencytest = "AND gt.currency in %s" % currencytest
+        q = q.replace("<currency_test>", currencytest)
+
 
         if seats:
             q = q.replace('<seats_test>',
