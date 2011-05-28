@@ -878,6 +878,7 @@ class fpdb:
                 </menu>
                 <menu action="help">
                   <menuitem action="Logs"/>
+                  <menuitem action="Help Tab"/>
                   <separator/>
                   <menuitem action="About"/>
                 </menu>
@@ -918,6 +919,7 @@ class fpdb:
                                  ('dumptofile', None, _('Dump Database to Textfile (takes ALOT of time)'), None, 'Dump Database to Textfile (takes ALOT of time)', self.dia_dump_db),
                                  ('help', None, _('_Help')),
                                  ('Logs', None, _('_Log Messages'), None, 'Log and Debug Messages', self.dia_logs),
+                                 ('Help Tab', None, _('_Help Tab'), None, 'Help Tab', self.tab_main_help),
                                  ('About', None, _('A_bout, License, Copying'), None, 'About the program', self.dia_about),
                                 ])
         actiongroup.get_action('Quit').set_property('short-label', _('_Quit'))
