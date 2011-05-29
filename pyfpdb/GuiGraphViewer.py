@@ -65,6 +65,7 @@ class GuiGraphViewer (threading.Thread):
         filters_display = { "Heroes"    : True,
                             "Sites"     : True,
                             "Games"     : True,
+                            "Currencies": True,
                             "Limits"    : True,
                             "LimitSep"  : True,
                             "LimitType" : True,
@@ -145,6 +146,7 @@ class GuiGraphViewer (threading.Thread):
             siteids = self.filters.getSiteIds()
             limits  = self.filters.getLimits()
             games   = self.filters.getGames()
+            currencies = self.filters.getCurrencies()
             graphops = self.filters.getGraphOps()
             names   = ""
             
@@ -182,7 +184,7 @@ class GuiGraphViewer (threading.Thread):
 
             #Get graph data from DB
             starttime = time()
-            (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games, graphops['dspin'])
+            (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games, currencies, graphops['dspin'])
             print _("Graph generated in: %s") %(time() - starttime)
 
 
@@ -251,7 +253,7 @@ class GuiGraphViewer (threading.Thread):
     #end of def showClicked
 
 
-    def getRingProfitGraph(self, names, sites, limits, games, units):
+    def getRingProfitGraph(self, names, sites, limits, games, currencies, units):
 #        tmp = self.sql.query['getRingProfitAllHandsPlayerIdSite']
 #        print "DEBUG: getRingProfitGraph"
 
@@ -285,44 +287,19 @@ class GuiGraphViewer (threading.Thread):
                 else:
                     gametest = "and gt.category IS NULL"
         tmp = tmp.replace("<game_test>", gametest)
+
+        limittest = self.filters.get_limits_where_clause(limits)
         
-        lims = [int(x) for x in limits if x.isdigit()]
-        potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
-        nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
-        capnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'cn']
-        limittest = "and ( (gt.limitType = 'fl' and gt.bigBlind in "
-                 # and ( (limit and bb in()) or (nolimit and bb in ()) )
-        if lims:
-            blindtest = str(tuple(lims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            limittest = limittest + blindtest + ' ) '
-        else:
-            limittest = limittest + '(-1) ) '
-        limittest = limittest + " or (gt.limitType = 'pl' and gt.bigBlind in "
-        if potlims:
-            blindtest = str(tuple(potlims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            limittest = limittest + blindtest + ' ) '
-        else:
-            limittest = limittest + '(-1) ) '
-        limittest = limittest + " or (gt.limitType = 'nl' and gt.bigBlind in "
-        if nolims:
-            blindtest = str(tuple(nolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            limittest = limittest + blindtest + ' ) '
-        else:
-            limittest = limittest + '(-1) ) '
-        limittest = limittest + " or (gt.limitType = 'cn' and gt.bigBlind in "
-        if capnolims:
-            blindtest = str(tuple(capnolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            limittest = limittest + blindtest + ' ) )'
-        else:
-            limittest = limittest + '(-1) ) )'
+        q = []
+        for n in currencies:
+            if currencies[n]:
+                q.append(n)
+        currencytest = str(tuple(q))
+        currencytest = currencytest.replace(",)",")")
+        currencytest = currencytest.replace("u'","'")
+        currencytest = "AND gt.currency in %s" % currencytest
+        tmp = tmp.replace("<currency_test>", currencytest)
+
 
         if type == 'ring':
             limittest = limittest + " and gt.type = 'ring' "

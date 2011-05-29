@@ -49,16 +49,37 @@ class Filters(threading.Thread):
         self.conf = db.config
         self.display = display
 
+        self.gameName = {"27_1draw"  : _("Single Draw 2-7 Lowball")
+                        ,"27_3draw"  : _("Triple Draw 2-7 Lowball")
+                        ,"a5_3draw"  : _("Triple Draw A-5 Lowball")
+                        ,"5studhi"   : _("5 Card Stud")
+                        ,"badugi"    : _("Badugi")
+                        ,"fivedraw"  : _("5 Card Draw")
+                        ,"holdem"    : _("Hold'em")
+                        ,"omahahi"   : _("Omaha")
+                        ,"omahahilo" : _("Omaha Hi/Lo")
+                        ,"razz"      : _("Razz")
+                        ,"studhi"    : _("7 Card Stud")
+                        ,"studhilo"  : _("7 Card Stud Hi/Lo")
+                        }
+
+        self.currencyName = {"USD" : _("US Dollars")
+                            ,"EUR" : _("Euros")
+                            ,"T$"  : _("Tournament Dollars")
+                            ,"play": _("Play Money")
+                            }
+
         # text used on screen stored here so that it can be configured
         self.filterText = {'limitsall':_('All'), 'limitsnone':_('None'), 'limitsshow':_('Show _Limits')
                           ,'gamesall':_('All'), 'gamesnone':_('None')
+                          ,'currenciesall':_('All'), 'currenciesnone':_('None')
                           ,'seatsbetween':_('Between:'), 'seatsand':_('And:'), 'seatsshow':_('Show Number of _Players')
                           ,'playerstitle':_('Hero:'), 'sitestitle':(_('Sites')+':'), 'gamestitle':(_('Games')+':')
                           ,'limitstitle':_('Limits:'), 'seatstitle':_('Number of Players:')
                           ,'groupstitle':_('Grouping:'), 'posnshow':_('Show Position Stats')
-                          ,'datestitle':_('Date:')
+                          ,'datestitle':_('Date:'), 'currenciestitle':(_('Currencies')+':')
                           ,'groupsall':_('All Players')
-                          ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'limitsCN':'CAP', 'ring':_('Ring'), 'tour':_('Tourney')
+                          ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'limitsCN':'CAP', 'ring':_('Ring'), 'tour':_('Tourney'), 'limitsHP':_('HP')
                           }
 
         gen = self.conf.get_general_params()
@@ -80,7 +101,7 @@ class Filters(threading.Thread):
         self.sw.show()
         #print(_("DEBUG:") + _("New packing box created!"))
 
-        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'ring':False, 'tour':False}
+        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'hp':False, 'ring':False, 'tour':False}
         self.label = {}
         self.callback = {}
 
@@ -97,6 +118,7 @@ class Filters(threading.Thread):
         self.boxes  = {}
         self.toggles  = {}
         self.graphops = {}
+        self.currencies  = {}
 
         for site in self.conf.get_supported_sites():
             #Get db site id for filtering later
@@ -150,6 +172,18 @@ class Filters(threading.Thread):
 
         self.fillGamesFrame(vbox)
         gamesFrame.add(vbox)
+
+        # Currencies
+        currenciesFrame = gtk.Frame()
+        currenciesFrame.set_label_align(0.0, 0.0)
+        currenciesFrame.show()
+        vbox = gtk.VBox(False, 0)
+        self.cbCurrencies = {}
+        self.cbNoCurrencies = None
+        self.cbAllCurrencies = None
+
+        self.fillCurrenciesFrame(vbox)
+        currenciesFrame.add(vbox)
 
         # Limits
         limitsFrame = gtk.Frame()
@@ -217,6 +251,7 @@ class Filters(threading.Thread):
         self.mainVBox.pack_start(playerFrame, expand)
         self.mainVBox.pack_start(sitesFrame, expand)
         self.mainVBox.pack_start(gamesFrame, expand)
+        self.mainVBox.pack_start(currenciesFrame, expand)
         self.mainVBox.pack_start(limitsFrame, expand)
         self.mainVBox.pack_start(seatsFrame, expand)
         self.mainVBox.pack_start(groupsFrame, expand)
@@ -235,6 +270,8 @@ class Filters(threading.Thread):
             sitesFrame.hide()
         if "Games" not in self.display or self.display["Games"] == False:
             gamesFrame.hide()
+        if "Currencies" not in self.display or self.display["Currencies"] == False:
+            currenciesFrame.hide()
         if "Limits" not in self.display or self.display["Limits"] == False:
             limitsFrame.hide()
         if "Seats" not in self.display or self.display["Seats"] == False:
@@ -288,6 +325,10 @@ class Filters(threading.Thread):
     def getGames(self):
         return self.games
     #end def getGames
+
+    def getCurrencies(self):
+        return self.currencies
+    #end def getCurrencies
 
     def getSiteIds(self):
         return self.siteid
@@ -422,6 +463,14 @@ class Filters(threading.Thread):
             cb.set_active(True)
         return(cb)
 
+    def createCurrencyLine(self, hbox, currency, ctext):
+        cb = gtk.CheckButton(ctext.replace("_", "__"))
+        cb.connect('clicked', self.__set_currency_select, currency)
+        hbox.pack_start(cb, False, False, 0)
+        if currency != "none" and currency != "all" and currency != "play":
+            cb.set_active(True)
+        return(cb)
+
     def createLimitLine(self, hbox, limit, ltext):
         cb = gtk.CheckButton(str(ltext))
         cb.connect('clicked', self.__set_limit_select, limit)
@@ -454,6 +503,25 @@ class Filters(threading.Thread):
                 if (self.cbAllGames and self.cbAllGames.get_active()):
                     self.cbAllGames.set_active(False)
     #end def __set_game_select
+
+    def __set_currency_select(self, w, currency):
+        if (currency == 'all'):
+            if (w.get_active()):
+                for cb in self.cbCurrencies.values():
+                    cb.set_active(True)
+        elif (currency == 'none'):
+            if (w.get_active()):
+                for cb in self.cbCurrencies.values():
+                    cb.set_active(False)
+        else:
+            self.currencies[currency] = w.get_active()
+            if (w.get_active()): # when we turn a currency on, turn 'none' off if it's on
+                if (self.cbNoCurrencies and self.cbNoCurrencies.get_active()):
+                    self.cbNoCurrencies.set_active(False)
+            else:                # when we turn a currency off, turn 'all' off if it's on
+                if (self.cbAllCurrencies and self.cbAllCurrencies.get_active()):
+                    self.cbAllCurrencies.set_active(False)
+    #end def __set_currency_select
 
     def __set_limit_select(self, w, limit):
         #print "__set_limit_select:  limit =", limit, w.get_active()
@@ -786,19 +854,10 @@ class Filters(threading.Thread):
         self.cursor.execute(self.sql.query['getGames'])
         result = self.db.cursor.fetchall()
         if len(result) >= 1:
-            hbox = gtk.HBox(True, 0)
-            vbox1.pack_start(hbox, False, False, 0)
-            vbox2 = gtk.VBox(False, 0)
-            hbox.pack_start(vbox2, False, False, 0)
-            vbox3 = gtk.VBox(False, 0)
-            hbox.pack_start(vbox3, False, False, 0)
-            for i, line in enumerate(result):
+            for line in sorted(result, key = lambda game: self.gameName[game[0]]):
                 hbox = gtk.HBox(False, 0)
-                if i < len(result)/2:
-                    vbox2.pack_start(hbox, False, False, 0)
-                else:
-                    vbox3.pack_start(hbox, False, False, 0)
-                self.cbGames[line[0]] = self.createGameLine(hbox, line[0], line[0])
+                vbox1.pack_start(hbox, False, True, 0)
+                self.cbGames[line[0]] = self.createGameLine(hbox, line[0], self.gameName[line[0]])
 
             if len(result) >= 2:
                 hbox = gtk.HBox(True, 0)
@@ -819,6 +878,53 @@ class Filters(threading.Thread):
             log.info(_("No games returned from database"))
     #end def fillGamesFrame
 
+    def fillCurrenciesFrame(self, vbox):
+        top_hbox = gtk.HBox(False, 0)
+        vbox.pack_start(top_hbox, False, False, 0)
+        lbl_title = gtk.Label(self.filterText['currenciestitle'])
+        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
+        top_hbox.pack_start(lbl_title, expand=True, padding=3)
+        showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'Currencies')
+        self.toggles['Currencies'] = showb
+        top_hbox.pack_start(showb, expand=False, padding=1)
+
+        vbox1 = gtk.VBox(False, 0)
+        vbox.pack_start(vbox1, False, False, 0)
+        self.boxes['Currencies'] = vbox1
+
+        self.cursor.execute(self.sql.query['getCurrencies'])
+        result = self.db.cursor.fetchall()
+        if len(result) >= 1:
+            for line in result:
+                hbox = gtk.HBox(False, 0)
+                vbox1.pack_start(hbox, False, True, 0)
+                if (self.currencyName.has_key(line[0])):
+                    cname = self.currencyName[line[0]]
+                else:
+                    cname = line[0]
+                self.cbCurrencies[line[0]] = self.createCurrencyLine(hbox, line[0], cname)
+
+            if len(result) >= 2:
+                hbox = gtk.HBox(True, 0)
+                vbox1.pack_start(hbox, False, False, 0)
+                vbox2 = gtk.VBox(False, 0)
+                hbox.pack_start(vbox2, False, False, 0)
+                vbox3 = gtk.VBox(False, 0)
+                hbox.pack_start(vbox3, False, False, 0)
+
+                hbox = gtk.HBox(False, 0)
+                vbox2.pack_start(hbox, False, False, 0)
+                self.cbAllCurrencies = self.createCurrencyLine(hbox, 'all', self.filterText['currenciesall'])
+                hbox = gtk.HBox(False, 0)
+                vbox3.pack_start(hbox, False, False, 0)
+                self.cbNoCurrencies = self.createCurrencyLine(hbox, 'none', self.filterText['currenciesnone'])
+        else:
+            print _("INFO: No currencies returned from database")
+            log.info(_("No currencies returned from database"))
+    #end def fillCurrenciesFrame
+
     def fillLimitsFrame(self, vbox, display):
         top_hbox = gtk.HBox(False, 0)
         vbox.pack_start(top_hbox, False, False, 0)
@@ -838,7 +944,7 @@ class Filters(threading.Thread):
         self.cursor.execute(self.sql.query['getCashLimits'])
         # selects  limitType, bigBlind
         result = self.db.cursor.fetchall()
-        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'ring':False, 'tour':False}
+        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'hp':False, 'ring':False, 'tour':False}
 
         if len(result) >= 1:
             hbox = gtk.HBox(True, 0)
@@ -852,13 +958,13 @@ class Filters(threading.Thread):
                     if line[0] != self.display["UseType"]:
                         continue
                 hbox = gtk.HBox(False, 0)
-                if i < len(result)/2:
+                if i < (len(result)+1)/2:
                     vbox2.pack_start(hbox, False, False, 0)
                 else:
                     vbox3.pack_start(hbox, False, False, 0)
                 if True:  #line[0] == 'ring':
                     if line[1] == 'fl':
-                        name = str(line[2])
+                        name = str(line[2])+line[1]
                         self.found['fl'] = True
                     elif line[1] == 'pl':
                         name = str(line[2])+line[1]
@@ -895,6 +1001,7 @@ class Filters(threading.Thread):
                     if self.found['pl']:  self.num_limit_types = self.num_limit_types + 1
                     if self.found['nl']:  self.num_limit_types = self.num_limit_types + 1
                     if self.found['cn']:  self.num_limit_types = self.num_limit_types + 1
+                    if self.found['hp']:  self.num_limit_types = self.num_limit_types + 1
                     if self.num_limit_types > 1:
                        if self.found['fl']:
                            hbox = gtk.HBox(False, 0)
@@ -912,6 +1019,10 @@ class Filters(threading.Thread):
                            hbox = gtk.HBox(False, 0)
                            vbox3.pack_start(hbox, False, False, 0)
                            self.cbCN = self.createLimitLine(hbox, 'cn', self.filterText['limitsCN'])
+                       if self.found['hp']:
+                           hbox = gtk.HBox(False, 0)
+                           vbox3.pack_start(hbox, False, False, 0)
+                           self.cbCN = self.createLimitLine(hbox, 'cn', self.filterText['limitsHP'])
                        dest = vbox2  # for ring/tour buttons
         else:
             print _("INFO: No games returned from database")
@@ -1132,6 +1243,41 @@ class Filters(threading.Thread):
         table.attach(clr_end,         3,4, 1,2)
 
     #end def fillDateFrame
+
+    def get_limits_where_clause(self, limits):
+        "Accepts a list of limits and returns a formatted SQL where clause"
+        where = ""
+        lims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'fl']
+        potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
+        nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
+        capnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'cn']
+        hpnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'hp']
+
+        where          = "AND ( "
+        default_clause = '(-1)) '
+        clause = default_clause
+
+        if lims: 
+            clause = "(gt.limitType = 'fl' and gt.bigBlind in (%s))" % (','.join(map(str, lims)))
+        where = where + clause
+        clause = default_clause
+        if potlims:
+            clause = "or (gt.limitType = 'pl' and gt.bigBlind in (%s))" % (','.join(map(str, potlims)))
+        where = where + clause
+        clause = default_clause
+        if nolims:
+            clause = "or (gt.limitType = 'nl' and gt.bigBlind in (%s))" % (','.join(map(str, nolims)))
+        where = where + clause
+        clause = default_clause
+        if hpnolims:
+            clause = "or (gt.limitType = 'hp' and gt.bigBlind in (%s))" % (','.join(map(str, hpnolims)))
+        where = where + clause
+        clause = default_clause
+        if capnolims:
+            clause = "or (gt.limitType = 'cp' and gt.bigBlind in (%s))" % (','.join(map(str, capnolims)))
+        where = where + clause + ' )'
+
+        return where
 
     def __refresh(self, widget, entry):
         for w in self.mainVBox.get_children():

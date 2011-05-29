@@ -90,6 +90,8 @@ class Sql:
 
         self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
         
+        self.query['getCurrencies'] = """SELECT DISTINCT currency from Gametypes ORDER BY currency"""
+        
         self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""
 
         self.query['getTourneyTypesIds'] = "SELECT id FROM TourneyTypes"
@@ -3814,6 +3816,7 @@ class Sql:
             AND   h.startTime < '<enddate_test>'
             <limit_test>
             <game_test>
+            <currency_test>
             AND   hp.tourneysPlayersId IS NULL
             GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
             ORDER BY h.startTime"""
@@ -3830,6 +3833,7 @@ class Sql:
             AND   h.startTime < '<enddate_test>'
             <limit_test>
             <game_test>
+            <currency_test>
             AND   hp.tourneysPlayersId IS NULL
             GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
             ORDER BY h.startTime"""
@@ -3876,6 +3880,7 @@ class Sql:
                  <limit_test>
                  <game_test>
                  <seats_test>
+                 <currency_test>
                 ORDER by time"""
         elif db_server == 'postgresql':
             self.query['sessionStats'] = """
@@ -3891,6 +3896,7 @@ class Sql:
                  <limit_test>
                  <game_test>
                  <seats_test>
+                 <currency_test>
                 ORDER by time"""
         elif db_server == 'sqlite':
             self.query['sessionStats'] = """
@@ -3906,6 +3912,7 @@ class Sql:
                  <limit_test>
                  <game_test>
                  <seats_test>
+                 <currency_test>
                 ORDER by time"""
 
 
@@ -4941,22 +4948,17 @@ class Sql:
             self.query['analyze'] = "analyze"
             
         if db_server == 'mysql':
-            self.query['selectLock'] = """
-                        SELECT locked 
-                        FROM InsertLock 
-                        WHERE locked=True 
-                        LOCK IN SHARE MODE"""
-            
+            self.query['switchLockOn'] = """
+                        UPDATE InsertLock k1, 
+                        (SELECT count(locked) as locks FROM InsertLock WHERE locked=True) as k2 SET
+                        k1.locked=%s
+                        WHERE k1.id=%s
+                        AND k2.locks = 0"""
+                        
         if db_server == 'mysql':
-            self.query['switchLock'] = """
+            self.query['switchLockOff'] = """
                         UPDATE InsertLock SET
                         locked=%s
-                        WHERE id=%s"""
-                        
-        if db_server == 'mysql':               
-            self.query['missedLock'] = """
-                        UPDATE InsertLock SET
-                        missed=missed+%s
                         WHERE id=%s"""
 
         if db_server == 'mysql':

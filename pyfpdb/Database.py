@@ -1819,29 +1819,24 @@ class Database:
 
     def setThreadId(self, threadid):
         self.threadId = threadid
-    
+                
     def acquireLock(self, wait=True, retry_time=.01):
         while not self._has_lock:
             cursor = self.get_cursor()
-            cursor.execute(self.sql.query['selectLock'])
-            record = cursor.fetchall()
+            num = cursor.execute(self.sql.query['switchLockOn'], (True, self.threadId))
             self.commit()
-            if not len(record):
-                cursor.execute(self.sql.query['switchLock'], (True, self.threadId))
-                self.commit()
-                self._has_lock = True
-                return True
-            else:
-                cursor.execute(self.sql.query['missedLock'], (1, self.threadId))
-                self.commit()
+            if (self.backend == self.MYSQL_INNODB and num == 0):
                 if not wait:
                     return False
                 sleep(retry_time)
+            else:
+                self._has_lock = True
+                return True
     
     def releaseLock(self):
         if self._has_lock:
             cursor = self.get_cursor()
-            num = cursor.execute(self.sql.query['switchLock'], (False, self.threadId))
+            num = cursor.execute(self.sql.query['switchLockOff'], (False, self.threadId))
             self.commit()
             self._has_lock = False
 

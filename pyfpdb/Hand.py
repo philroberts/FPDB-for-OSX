@@ -236,7 +236,6 @@ dealt   whether they were seen in a 'dealt to' line
         # These functions are intended for prep insert eventually
         #####
         self.gametype['maxSeats'] = self.maxseats #TODO: move up to individual parsers
-        self.gametype['ante'] = 0 #TODO store actual ante
         self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
         self.dbid_gt = db.getSqlGameTypeId(self.siteId, self.gametype, printdata = printtest)
         
@@ -248,9 +247,10 @@ dealt   whether they were seen in a 'dealt to' line
             hilo = "l"
 
         self.gametyperow = (self.siteId, self.gametype['currency'], self.gametype['type'], self.gametype['base'],
-                                    self.gametype['category'], self.gametype['limitType'], hilo,
-                                    int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
-                                    int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200), int(self.gametype['maxSeats']), int(self.gametype['ante']))
+                            self.gametype['category'], self.gametype['limitType'], hilo, self.gametype['mix'],
+                            int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
+                            int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200),
+                            int(self.gametype['maxSeats']), int(self.gametype['ante']))
         # Note: the above data is calculated in db.getGameTypeId
         #       Only being calculated above so we can grab the testdata
         
@@ -543,6 +543,11 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
             self.actions['BLINDSANTES'].append(act)
 #            self.pot.addMoney(player, ante)
             self.pot.addCommonMoney(player, ante)
+            if self.gametype['ante'] == 0:
+                if self.gametype['type'] == 'ring':
+                    self.gametype['ante'] = int(100*ante)
+                else:
+                    self.gametype['ante'] = int(ante)
 #I think the antes should be common money, don't have enough hand history to check
 
     def addBlind(self, player, blindtype, amount):
@@ -763,8 +768,9 @@ Map the tuple self.gametype onto the pokerstars string describing it
               "studhi"     : "7 Card Stud",
               "studhilo"   : "7 Card Stud Hi/Lo",
               "fivedraw"   : "5 Card Draw",
-              "27_1draw"   : "FIXME",
+              "27_1draw"   : "Single Draw 2-7 Lowball",
               "27_3draw"   : "Triple Draw 2-7 Lowball",
+              "5studhi"    : "5 Card Stud",
               "badugi"     : "Badugi"
              }
         ls = {"nl"  : "No Limit",
@@ -934,7 +940,7 @@ class HoldemOmahaHand(Hand):
             if len(cards) in (2, 4):  # avoid adding board by mistake (Everleaf problem)
                 self.addHoleCards('PREFLOP', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
             elif len(cards) == 5:     # cards holds a winning hand, not hole cards
-                # filter( lambda x: x not in b, a )		# calcs a - b where a and b are lists
+                # filter( lambda x: x not in b, a )             # calcs a - b where a and b are lists
                 # so diff is set to the winning hand minus the board cards, if we're lucky that leaves the hole cards
                 diff = filter( lambda x: x not in self.board['FLOP']+self.board['TURN']+self.board['RIVER'], cards )
                 if len(diff) == 2 and self.gametype['category'] in ('holdem'):
@@ -1671,6 +1677,7 @@ class Pot(object):
 
     def addMoney(self, player, amount):
         # addMoney must be called for any actions that put money in the pot, in the order they occur
+        #print "DEBUG: %s adds %s" %(player, amount)
         self.contenders.add(player)
         self.committed[player] += amount
 

@@ -136,7 +136,6 @@ def main(argv=None):
     for file, site in IdSite.filelist.iteritems():
         print file, site
     print "----------- END ID REGRESSION FILES -----------"
-	
-    
+
 if __name__ == '__main__':
     sys.exit(main())
