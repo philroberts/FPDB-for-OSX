@@ -2602,6 +2602,7 @@ class Sql:
                       where hp.playerId in <player_test>
                       <game_test>
                       <site_test>
+                      <currency_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
@@ -2757,6 +2758,7 @@ class Sql:
                       where hp.playerId in <player_test>
                       <game_test>
                       <site_test>
+                      <currency_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
@@ -2901,6 +2903,7 @@ class Sql:
                       where hp.playerId in <player_test>
                       <game_test>
                       <site_test>
+                      <currency_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
