@@ -30,7 +30,13 @@ Code
 ====
 atinm
 Chaz Littlejohn
-dooglus/Chris Moore
+
+Chris Moore
+dooglus@gmail.com
+IRC: dooglus
+Jabber: dooglus@gmail.com
+git: http://repo.or.cz/w/fpdb-dooglus.git
+
 danny
 donoban
 Eric Blade
