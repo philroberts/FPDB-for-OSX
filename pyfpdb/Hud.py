@@ -940,7 +940,7 @@ class Popup_window:
         pu_text = ""
         mo_text = ""
         for s in stat_list:
-            number = Stats.do_stat(stat_dict, player = int(stat_window.player_id), stat = s)
+            number = Stats.do_stat(stat_dict, player = int(stat_window.player_id), stat = s, handid = int(stat_window.parent.hand))
             mo_text += number[5] + " " + number[4] + "\n"
             pu_text += number[3] + "\n"
 
