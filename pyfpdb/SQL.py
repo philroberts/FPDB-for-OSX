@@ -2463,12 +2463,7 @@ class Sql:
                 inner join Hands h          on (h.id = hp3.handId)
                 """
 
-        # used in Gui*PlayerStats:
-        self.query['getPlayerId'] = """SELECT id from Players where name = %s"""
-
-        self.query['getPlayerIdBySite'] = """SELECT id from Players where name = %s AND siteId = %s"""
-
-        # used in *Filters:
+        # Used in *Filters:
         #self.query['getLimits'] = already defined further up
         self.query['getLimits2'] = """SELECT DISTINCT type, limitType, bigBlind 
                                       from Gametypes
@@ -3866,7 +3861,7 @@ class Sql:
         ####################################
         if db_server == 'mysql':
             self.query['sessionStats'] = """
-                SELECT UNIX_TIMESTAMP(h.startTime) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
+                SELECT UNIX_TIMESTAMP(h.startTime) as time, hp.totalProfit
                 FROM HandsPlayers hp
                  INNER JOIN Hands h       on  (h.id = hp.handId)
                  INNER JOIN Gametypes gt  on  (gt.Id = h.gametypeId)
@@ -3875,10 +3870,13 @@ class Sql:
                 WHERE hp.playerId in <player_test>
                  AND  date_format(h.startTime, '%Y-%m-%d') <datestest>
                  AND  gt.type LIKE 'ring'
+                 <limit_test>
+                 <game_test>
+                 <seats_test>
                 ORDER by time"""
         elif db_server == 'postgresql':
             self.query['sessionStats'] = """
-                SELECT EXTRACT(epoch from h.startTime) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
+                SELECT EXTRACT(epoch from h.startTime) as time, hp.totalProfit
                 FROM HandsPlayers hp
                  INNER JOIN Hands h       on  (h.id = hp.handId)
                  INNER JOIN Gametypes gt  on  (gt.Id = h.gametypeId)
@@ -3887,10 +3885,13 @@ class Sql:
                 WHERE hp.playerId in <player_test>
                  AND  h.startTime <datestest>
                  AND  gt.type LIKE 'ring'
+                 <limit_test>
+                 <game_test>
+                 <seats_test>
                 ORDER by time"""
         elif db_server == 'sqlite':
             self.query['sessionStats'] = """
-                SELECT STRFTIME('<ampersand_s>', h.startTime) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
+                SELECT STRFTIME('<ampersand_s>', h.startTime) as time, hp.totalProfit
                 FROM HandsPlayers hp
                  INNER JOIN Hands h       on  (h.id = hp.handId)
                  INNER JOIN Gametypes gt  on  (gt.Id = h.gametypeId)
@@ -3899,6 +3900,9 @@ class Sql:
                 WHERE hp.playerId in <player_test>
                  AND  h.startTime <datestest>
                  AND  gt.type is 'ring'
+                 <limit_test>
+                 <game_test>
+                 <seats_test>
                 ORDER by time"""
 
 
