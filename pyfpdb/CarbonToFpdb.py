@@ -295,14 +295,19 @@ or None if we fail to get the info """
             bb = Decimal(self.info['bb'])
             amount = Decimal(a.group('SBBB'))
             if amount < bb:
-                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'),
-                              hand), 'small blind', a.group('SBBB'))
+                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'small blind', a.group('SBBB'))
             elif amount == bb:
-                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'),
-                              hand), 'big blind', a.group('SBBB'))
+                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'big blind', a.group('SBBB'))
             else:
-                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'),
-                              hand), 'both', a.group('SBBB'))
+                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'both', a.group('SBBB'))
+
+        # FIXME
+        # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
+        # see http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
+        if hand.gametype['sb'] == None or hand.gametype['bb'] == None:
+            hand.gametype['sb'] = "1"
+            hand.gametype['bb'] = "1"
+
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
