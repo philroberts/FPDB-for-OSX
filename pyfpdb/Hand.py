@@ -228,6 +228,10 @@ dealt   whether they were seen in a 'dealt to' line
         if shown:  self.shown.add(player)
         if mucked: self.mucked.add(player)
 
+        if '' in closed:
+            tmp = closed.index('')
+            closed[tmp] = '0x'
+
         self.holecards[street][player] = [open, closed]
 
     def prepInsert(self, db, printtest = False):
