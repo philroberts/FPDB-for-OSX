@@ -61,6 +61,7 @@ import re
 import Configuration
 import Database
 import Charset
+import Card
 
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
@@ -90,13 +91,16 @@ def do_tip(widget, tip):
     widget.set_tooltip_text(_tip)
 
 
-def do_stat(stat_dict, player = 24, stat = 'vpip'):
+def do_stat(stat_dict, player = 24, stat = 'vpip', handid = -1):
     statname = stat
     match = re_Places.search(stat)
     if match:   # override if necessary
         statname = stat[0:-2]
-
-    result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': statname, 'player': player})
+    
+    if stat == 'starthands':
+        result = eval("%(stat)s(stat_dict, %(player)d, %(handid)d)" % {'stat': statname, 'player': player, 'handid': int(handid)})
+    else:
+        result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': statname, 'player': player})
 
     # If decimal places have been defined, override result[1]
     # NOTE: decimal place override ALWAYS assumes the raw result is a
@@ -947,7 +951,109 @@ def ffreq4(stat_dict, player):
                 '(0/0)',
                 _('% fold frequency 7th street'))
 
+def starthands(stat_dict, player, handid):
+    
+    
+    #summary of known starting hands+position
+    # data volumes could get crazy here,so info is limited to hands
+    # in the current HH file only
+    
+    # this info is NOT read from the cache, so does not obey aggregation
+    # parameters for other stats
+    
+    #display shows 3 categories
+    # PFcall - limp or coldcall preflop
+    # PFaggr - raise preflop
+    # PFdefBB - defended in BB
+    
+    # hand is shown, followed by position indicator
+    # (b=SB/BB. l=Button/cutoff m=previous 3 seats to that, e=remainder)
+    
+    # due to screen space required for this stat, it should only
+    # be used in the popup section i.e.
+    # <pu_stat pu_stat_name="starthands"> </pu_stat>
+    
+    stat_descriptions["starthands"] = _("starting hands at this table") + " (starting hands)"
+    PFcall=" PFcall:"
+    PFaggr=" PFaggr:"
+    PFdefend=" PFdefBB:"
+    count_pfc = count_pfa = count_pfd = 2
+    
+    if handid == -1:
+        return ((''),
+                (''),
+                (''),
+                (''),
+                (''),
+                (''))
 
+    c = Configuration.Config()
+    db_connection = Database.Database(c)
+    sc = db_connection.get_cursor()
+
+    sc.execute(("SELECT distinct startCards, street0Aggr, " +
+    			"case when HandsPlayers.position = 'B' then 'b' " +
+                            "when HandsPlayers.position = 'S' then 'b' " +
+                            "when HandsPlayers.position = '0' then 'l' " +
+                            "when HandsPlayers.position = '1' then 'l' " +
+                            "when HandsPlayers.position = '2' then 'm' " +
+                            "when HandsPlayers.position = '3' then 'm' " +
+                            "when HandsPlayers.position = '4' then 'm' " +
+                            "when HandsPlayers.position = '5' then 'e' " +
+                            "when HandsPlayers.position = '6' then 'e' " +
+                            "when HandsPlayers.position = '7' then 'e' " +
+                            "when HandsPlayers.position = '8' then 'e' " +
+                            "when HandsPlayers.position = '9' then 'e' " +
+                            "else 'X' end " +
+                        "FROM Hands, HandsPlayers, Gametypes " +
+                        "WHERE HandsPlayers.handId = Hands.id " +
+                        " AND Gametypes.id = Hands.gametypeid "+
+                        " AND Gametypes.type = " +
+                        "   (SELECT Gametypes.type FROM Gametypes, Hands   " +
+                        "  WHERE Hands.gametypeid = Gametypes.id and Hands.id = %d) " +
+                        " AND Gametypes.Limittype =  " +
+                        "   (SELECT Gametypes.limitType FROM Gametypes, Hands  " +
+                        " WHERE Hands.gametypeid = Gametypes.id and Hands.id = %d) " +
+                        "AND Gametypes.category = 'holdem' " +
+                        "AND fileId = (SELECT fileId FROM Hands " +
+                        " WHERE Hands.id = %d) " +
+                        "AND HandsPlayers.playerId = %d " +
+                        "AND street0VPI " +
+                        "AND startCards > 0 " +
+                        "ORDER BY startCards DESC " +
+                        ";")
+                         % (int(handid), int(handid), int(handid), int(player)))
+
+    for (qstartcards, qstreet0Aggr, qposition) in sc.fetchall():
+        humancards = Card.decodeStartHandValue("holdem", qstartcards)
+                
+        if qposition == "B" and qstreet0Aggr == False:
+            PFdefend=PFdefend+"/"+humancards
+            count_pfd += 1
+            if (count_pfd / 8.0 == int(count_pfd / 8.0)):
+                PFdefend=PFdefend+"\n"
+        elif qstreet0Aggr == True:
+            PFaggr=PFaggr+"/"+humancards+"."+qposition
+            count_pfa += 1
+            if (count_pfa / 8.0 == int(count_pfa / 8.0)):
+                PFaggr=PFaggr+"\n"
+        else:
+            PFcall=PFcall+"/"+humancards+"."+qposition
+            count_pfc += 1
+            if (count_pfc / 8.0 == int(count_pfc / 8.0)):
+                PFcall=PFcall+"\n"
+    sc.close()
+    
+    returnstring = PFcall + "\n" + PFaggr + "\n" + PFdefend  #+ "\n" + str(handid)
+
+    return ((returnstring),
+            (returnstring),
+            (returnstring),
+            (returnstring),
+            (returnstring),
+            (''))
+
+                
 def build_stat_descriptions(stats_file):
     for method in dir(stats_file):
         if method in ("Charset", "Configuration", "Database", "GInitiallyUnowned", "gtk", "pygtk",
@@ -1015,6 +1121,7 @@ if __name__== "__main__":
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq3') 
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq4')
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'playershort')
+        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'starthands')
         #print "\n" 
 
     print _("\n\nLegal stats:")
