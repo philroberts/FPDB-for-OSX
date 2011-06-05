@@ -298,7 +298,6 @@ class GuiGraphViewer (threading.Thread):
         currencytest = currencytest.replace(",)",")")
         currencytest = currencytest.replace("u'","'")
         currencytest = "AND gt.currency in %s" % currencytest
-        tmp = tmp.replace("<currency_test>", currencytest)
 
 
         if type == 'ring':
@@ -312,6 +311,7 @@ class GuiGraphViewer (threading.Thread):
         tmp = tmp.replace("<startdate_test>", start_date)
         tmp = tmp.replace("<enddate_test>", end_date)
         tmp = tmp.replace("<limit_test>", limittest)
+        tmp = tmp.replace("<currency_test>", currencytest)
         tmp = tmp.replace(",)", ")")
 
         #print "DEBUG: sql query:"

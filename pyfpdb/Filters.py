@@ -1254,27 +1254,31 @@ class Filters(threading.Thread):
         hpnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'hp']
 
         where          = "AND ( "
-        default_clause = '(-1)) '
-        clause = default_clause
 
         if lims: 
             clause = "(gt.limitType = 'fl' and gt.bigBlind in (%s))" % (','.join(map(str, lims)))
+        else:
+            clause = "(gt.limitType = 'fl' and gt.bigBlind in (-1))"
         where = where + clause
-        clause = default_clause
         if potlims:
             clause = "or (gt.limitType = 'pl' and gt.bigBlind in (%s))" % (','.join(map(str, potlims)))
+        else:
+            clause = "or (gt.limitType = 'pl' and gt.bigBlind in (-1))"
         where = where + clause
-        clause = default_clause
         if nolims:
             clause = "or (gt.limitType = 'nl' and gt.bigBlind in (%s))" % (','.join(map(str, nolims)))
+        else:
+            clause = "or (gt.limitType = 'nl' and gt.bigBlind in (-1))"
         where = where + clause
-        clause = default_clause
         if hpnolims:
             clause = "or (gt.limitType = 'hp' and gt.bigBlind in (%s))" % (','.join(map(str, hpnolims)))
+        else:
+            clause = "or (gt.limitType = 'hp' and gt.bigBlind in (-1))"
         where = where + clause
-        clause = default_clause
         if capnolims:
             clause = "or (gt.limitType = 'cp' and gt.bigBlind in (%s))" % (','.join(map(str, capnolims)))
+        else:
+            clause = "or (gt.limitType = 'cp' and gt.bigBlind in (-1))"
         where = where + clause + ' )'
 
         return where

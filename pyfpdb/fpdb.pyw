@@ -194,13 +194,11 @@ class fpdb:
         except:
             pass
 
-        if nb.get_n_pages() > 0:
-            tabButton = gtk.Button()
-
-            tabButton.connect('clicked', self.remove_tab, (nb, text))
-            #Add a picture on a button
-            self.add_icon_to_button(tabButton)
-            tabBox.pack_start(tabButton, False)
+        tabButton = gtk.Button()
+        tabButton.connect('clicked', self.remove_tab, (nb, text))
+        #Add a picture on a button
+        self.add_icon_to_button(tabButton)
+        tabBox.pack_start(tabButton, False)
 
         # needed, otherwise even calling show_all on the notebook won't
         # make the hbox contents appear.
@@ -237,6 +235,9 @@ class fpdb:
         # Need to refresh the widget --
         # This forces the widget to redraw itself.
         #nb.queue_draw_area(0,0,-1,-1) needed or not??
+
+    def remove_current_tab(self, accel_group, acceleratable, keyval, modifier):
+        self.remove_tab(None, (self.nb, self.nb_tab_names[self.nb.get_current_page()]))
 
     def delete_event(self, widget, event, data=None):
         return False
@@ -880,6 +881,7 @@ class fpdb:
                 </menu>
                 <menu action="help">
                   <menuitem action="Logs"/>
+                  <menuitem action="Help Tab"/>
                   <separator/>
                   <menuitem action="About"/>
                 </menu>
@@ -920,6 +922,7 @@ class fpdb:
                                  ('dumptofile', None, _('Dump Database to Textfile (takes ALOT of time)'), None, 'Dump Database to Textfile (takes ALOT of time)', self.dia_dump_db),
                                  ('help', None, _('_Help')),
                                  ('Logs', None, _('_Log Messages'), None, 'Log and Debug Messages', self.dia_logs),
+                                 ('Help Tab', None, _('_Help Tab'), None, 'Help Tab', self.tab_main_help),
                                  ('About', None, _('A_bout, License, Copying'), None, 'About the program', self.dia_about),
                                 ])
         actiongroup.get_action('Quit').set_property('short-label', _('_Quit'))
@@ -927,6 +930,7 @@ class fpdb:
         # define keyboard shortcuts alt-1 through alt-0 for switching tabs
         for key in range(10):
             accel_group.connect_group(ord('%s' % key), gtk.gdk.MOD1_MASK, gtk.ACCEL_LOCKED, self.switch_to_tab)
+        accel_group.connect_group(ord('w'), gtk.gdk.CONTROL_MASK, gtk.ACCEL_LOCKED, self.remove_current_tab)
 
         uimanager.insert_action_group(actiongroup, 0)
         merge_id = uimanager.add_ui_from_string(fpdbmenu)

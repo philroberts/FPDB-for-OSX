@@ -362,6 +362,13 @@ class GuiSessionViewer (threading.Thread):
         results = []
         cum_sum = cumsum(profits) / 100
         sid = 1
+
+        total_hands = 0
+        total_time = 0
+        global_open = None
+        global_lwm = None
+        global_hwm = None
+
         # Take all results and format them into a list for feeding into gui model.
         #print "DEBUG: range(len(index[0]): %s" % range(len(index[0]))
         for i in range(len(index[0])):
@@ -384,6 +391,16 @@ class GuiSessionViewer (threading.Thread):
                 close = (sum(profits[:end_idx]))/100
                 #print "DEBUG: range: (%s, %s) - (min, max): (%s, %s) - (open,close): (%s, %s)" %(first_idx, end_idx, lwm, hwm, open, close)
             
+                total_hands = total_hands + hds
+                total_time = total_time + minutesplayed
+                if (global_lwm == None or global_lwm > lwm):
+                    global_lwm = lwm
+                if (global_hwm == None or global_hwm < hwm):
+                    global_hwm = hwm
+                if (global_open == None):
+                    global_open = open
+                    global_stime = stime
+
                 results.append([sid, hds, stime, etime, hph,
                                 "%.2f" % open,
                                 "%.2f" % close,
@@ -397,6 +414,17 @@ class GuiSessionViewer (threading.Thread):
                 sid = sid+1
             else:
                 print "hds <= 0"
+        global_close = close
+        global_etime = etime
+        results.append([''] * 11)
+        results.append([_("all"), total_hands, global_stime, global_etime,
+                        total_hands * 60 / total_time,
+                        "%.2f" % global_open,
+                        "%.2f" % global_close,
+                        "%.2f" % global_lwm,
+                        "%.2f" % global_hwm,
+                        "%.2f" % (global_hwm - global_lwm),
+                        "%.2f" % (global_close - global_open)])
 
         return (results, quotes)
 
