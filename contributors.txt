@@ -30,7 +30,13 @@ Code
 ====
 atinm
 Chaz Littlejohn
-dooglus/Chris Moore
+
+Chris Moore
+dooglus@gmail.com
+IRC: dooglus
+Jabber: dooglus@gmail.com
+git: http://repo.or.cz/w/fpdb-dooglus.git
+
 danny
 donoban
 Eric Blade
@@ -38,7 +44,12 @@ Erki Ferenc
 evilny/moomoo
 Forrest
 Gerko de Roo
+
 gimick/steve
+bbtgaf@googlemail.com
+IRC: gimick
+2+2 Forum: gimick
+
 grindi
 lastpoet
 Matt Turnbull

@@ -28,6 +28,7 @@ from time import time, strftime
 import fpdb_import
 import Database
 import Filters
+import Charset
 
 class GuiPositionalStats (threading.Thread):
     def __init__(self, config, querylist, debug=True):
@@ -158,10 +159,10 @@ class GuiPositionalStats (threading.Thread):
         for site in sites:
             if sites[site] == True:
                 sitenos.append(siteids[site])
-                self.cursor.execute(self.sql.query['getPlayerId'], (heroes[site],))
-                result = self.db.cursor.fetchall()
-                if len(result) == 1:
-                    playerids.append(result[0][0])
+                _hname = Charset.to_utf8(heroes[site])
+                result = self.db.get_player_id(self.conf, site, _hname)
+                if result is not None:
+                    playerids.append(result)
 
         if not sitenos:
             #Should probably pop up here.
@@ -345,43 +346,8 @@ class GuiPositionalStats (threading.Thread):
             query = query.replace('<groupbyseats>', '')
             query = query.replace('<orderbyseats>', '')
 
-        lims = [int(x) for x in limits if x.isdigit()]
-        potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
-        nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
-        capnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'cn']
-        bbtest = "( (gt.limitType = 'fl' and gt.bigBlind in "
-                 # and ( (limit and bb in()) or (nolimit and bb in ()) )
-        if lims:
-            blindtest = str(tuple(lims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) '
-        else:
-            bbtest = bbtest + '(-1) ) '
-        bbtest = bbtest + " or (gt.limitType = 'pl' and gt.bigBlind in "
-        if potlims:
-            blindtest = str(tuple(potlims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) '
-        else:
-            bbtest = bbtest + '(-1) ) '
-        bbtest = bbtest + " or (gt.limitType = 'nl' and gt.bigBlind in "
-        if nolims:
-            blindtest = str(tuple(nolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) '
-        else:
-            bbtest = bbtest + '(-1) ) '
-        bbtest = bbtest + " or (gt.limitType = 'cn' and gt.bigBlind in "
-        if capnolims:
-            blindtest = str(tuple(capnolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) )'
-        else:
-            bbtest = bbtest + '(-1) ) )'
+        bbtest = self.filters.get_limits_where_clause(limits)
+
         query = query.replace("<gtbigBlind_test>", bbtest)
 
         groupLevels = "show" not in str(limits)
