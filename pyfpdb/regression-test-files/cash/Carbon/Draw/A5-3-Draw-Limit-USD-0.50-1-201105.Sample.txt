@@ -1,0 +1,58 @@
+<description type="A-5 Lowball" stakes="Limit $0.50/$1"/>
+<game id="33997611-33" starttime="20110503161452" numholecards="5" gametype="63" realmoney="true" data="20110503|Bow Glacier (33997611)|33997611|33997611-33|false">
+	<players dealer="1">
+		<player seat="1" nickname="Hero" balance="$9.25" dealtin="true" />
+		<player seat="2" nickname="Player2" balance="$21.53" dealtin="true" />
+		<player seat="3" nickname="Player3" balance="$10.00" dealtin="true" />
+		<player seat="4" nickname="Player4" balance="$11.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1304457286031" player="2" amount="0.25"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1304457286500" player="3" amount="0.50"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1304457290562" player="4"/>
+		<event sequence="4" type="RAISE" timestamp="1304457292843" player="1" amount="1.00"/>
+		<event sequence="5" type="FOLD" timestamp="1304457296156" player="2"/>
+		<event sequence="6" type="CALL" timestamp="1304457297718" player="3" amount="0.50"/>
+		<cards type="HOLE" cards="6c,3c,Td,2s,Js" player="1" hand="J-T-6-3-2"/>
+	</round>
+	<round id="FIRST_DRAW" sequence="3">
+		<event sequence="7" type="DRAW" timestamp="1304457299093" player="3" text="1"/>
+		<event sequence="8" type="DRAW" timestamp="1304457301203" player="1" text="2"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="6c,3c,Ad,2s,9s" player="1" hand="9-6-3-2-A"/>
+	</round>
+	<round id="POST_FIRST_DRAW" sequence="4">
+		<event sequence="9" type="CHECK" timestamp="1304457304234" player="3"/>
+		<event sequence="10" type="CHECK" timestamp="1304457307062" player="1"/>
+	</round>
+	<round id="SECOND_DRAW" sequence="5">
+		<event sequence="11" type="DRAW" timestamp="1304457309703" player="3" text="1"/>
+		<event sequence="12" type="DRAW" timestamp="1304457311531" player="1" text="1"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="6c,3c,Ad,2s,2h" player="1" hand="Pair of Twos"/>
+	</round>
+	<round id="POST_SECOND_DRAW" sequence="6">
+		<event sequence="13" type="CHECK" timestamp="1304457313578" player="3"/>
+		<event sequence="14" type="BET" timestamp="1304457316078" player="1" amount="1.00"/>
+		<event sequence="15" type="CALL" timestamp="1304457317484" player="3" amount="1.00"/>
+	</round>
+	<round id="THIRD_DRAW" sequence="7">
+		<event sequence="16" type="DRAW" timestamp="1304457319171" player="3" text="0"/>
+		<event sequence="17" type="DRAW" timestamp="1304457321750" player="1" text="1"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="6c,3c,Ad,2s,8h" player="1" hand="8-6-3-2-A"/>
+	</round>
+	<round id="POST_THIRD_DRAW" sequence="8">
+		<event sequence="18" type="CHECK" timestamp="1304457323531" player="3"/>
+		<event sequence="19" type="BET" timestamp="1304457325812" player="1" amount="1.00"/>
+		<event sequence="20" type="CALL" timestamp="1304457327109" player="3" amount="1.00"/>
+	</round>
+	<round id="SHOWDOWN" sequence="9">
+		<event sequence="21" type="SHOW" timestamp="1304457327718" player="1"/>
+		<event sequence="22" type="MUCK" timestamp="1304457329515" player="3"/>
+		<cards type="SHOWN" cards="6c,3c,Ad,2s,8h" player="1"/>
+		<cards type="MUCKED" cards="Ac,8s,7c,3h,6d" player="3"/>
+	</round>
+	<round id="END_OF_GAME" sequence="10">
+		<winner amount="5.94" uncalled="false" potnumber="1" player="1" hand="8-6-3-2-A" pottype="n"/>
+	</round>
+</game>

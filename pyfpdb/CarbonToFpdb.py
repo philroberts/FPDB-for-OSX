@@ -32,8 +32,6 @@ _ = L10n.get_translation()
 # -- A hand's time-stamp does not record seconds past the minute (a
 #    limitation of the history format)
 # -- hand.maxseats can only be guessed at
-# -- The last hand in a history file will often be incomplete and is therefore
-#    rejected
 # -- Is behaviour currently correct when someone shows an uncalled hand?
 # -- Information may be lost when the hand ID is converted from the native form
 #    xxxxxxxx-yyy(y*) to xxxxxxxxyyy(y*) (in principle this should be stored as
@@ -63,16 +61,33 @@ class Carbon(HandHistoryConverter):
                     'Omaha'  : ('hold','omahahi'),
          'Omaha Tournament'  : ('hold','omahahi'),
               '2-7 Lowball'  : ('draw','27_3draw'),
+              'A-5 Lowball'  : ('draw','a5_3draw'),
                    'Badugi'  : ('draw','badugi'),
+           '5-Draw w/Joker'  : ('draw','fivedraw'),
                    '7-Stud'  : ('stud','studhi'),
                    '5-Stud'  : ('stud','5studhi'),
                      'Razz'  : ('stud','razz'),
             }
+    Lim_Blinds = {  '0.04': ('0.01', '0.02'),        '0.10': ('0.02', '0.05'),
+                        '0.20': ('0.05', '0.10'),    '0.50': ('0.10', '0.25'),
+                        '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
+                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
+                        '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
+                        '6.00': ('1.50', '3.00'),       '6': ('1.50', '3.00'),
+                        '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
+                       '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
+                       #'12.00': ('2.00', '5.00'),      '12': ('2.00', '5.00'),
+                       #'20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
+                       #'30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
+                       #'40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
+                       #'60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
+                      #'100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
+                  }
 
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r'<description type="(?P<GAME>[-0-9a-zA-Z ]+)" stakes="(?P<LIMIT>[a-zA-Z ]+)\s?\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?"/>', re.MULTILINE)
+    re_GameInfo = re.compile(r'<description type="(?P<GAME>[-0-9a-zA-Z \/]+)" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
     re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLE>[-\ \#a-zA-Z\d\']+)(\(\d+\))?\|(?P<TOURNO>\d+)?.*>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
@@ -90,7 +105,7 @@ class Carbon(HandHistoryConverter):
     re_HeroCards = re.compile(r'<cards type="HOLE" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_Action = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT)" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?/>', re.MULTILINE)
     re_ShowdownAction = re.compile(r'<cards type="SHOWN" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
-    re_CollectPot = re.compile(r'<winner amount="(?P<POT>[.0-9]+)" uncalled="(true|false)" potnumber="[0-9]+" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
+    re_CollectPot = re.compile(r'<winner amount="(?P<POT>[.0-9]+)" uncalled="false" potnumber="[0-9]+" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_ShownCards = re.compile(r'<cards type="(SHOWN|MUCKED)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
 
@@ -169,6 +184,15 @@ or None if we fail to get the info """
             self.info['type'] = 'ring'
             self.info['currency'] = 'USD'
 
+        if self.info['limitType'] == 'fl' and self.info['bb'] is not None and self.info['type'] == 'ring':
+            try:
+                self.info['sb'] = self.Lim_Blinds[mg['BB']][0]
+                self.info['bb'] = self.Lim_Blinds[mg['BB']][1]
+            except KeyError:
+                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+                log.error("determineGameType: " + _("Raising FpdbParseError"))
+                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+
         return self.info
 
     def readHandInfo(self, hand):
@@ -215,12 +239,16 @@ or None if we fail to get the info """
         if hand.gametype['base'] == 'hold':
             m = re.search(r'<round id="PREFLOP" sequence="[0-9]+">(?P<PREFLOP>.+(?=<round id="POSTFLOP")|.+)(<round id="POSTFLOP" sequence="[0-9]+">(?P<FLOP>.+(?=<round id="POSTTURN")|.+))?(<round id="POSTTURN" sequence="[0-9]+">(?P<TURN>.+(?=<round id="POSTRIVER")|.+))?(<round id="POSTRIVER" sequence="[0-9]+">(?P<RIVER>.+))?', hand.handText, re.DOTALL)
         elif hand.gametype['base'] == 'draw':
-            if hand.gametype['category'] in ('27_3draw','badugi'):
+            if hand.gametype['category'] in ('27_3draw','badugi','a5_3draw'):
                 m =  re.search(r'(?P<PREDEAL>.+(?=<round id="PRE_FIRST_DRAW" sequence="[0-9]+">)|.+)'
                            r'(<round id="PRE_FIRST_DRAW" sequence="[0-9]+">(?P<DEAL>.+(?=<round id="FIRST_DRAW" sequence="[0-9]+">)|.+))?'
                            r'(<round id="FIRST_DRAW" sequence="[0-9]+">(?P<DRAWONE>.+(?=<round id="SECOND_DRAW" sequence="[0-9]+">)|.+))?'
                            r'(<round id="SECOND_DRAW" sequence="[0-9]+">(?P<DRAWTWO>.+(?=<round id="THIRD_DRAW" sequence="[0-9]+">)|.+))?'
                            r'(<round id="THIRD_DRAW" sequence="[0-9]+">(?P<DRAWTHREE>.+))?', hand.handText,re.DOTALL)
+            else:
+                m =  re.search(r'(?P<PREDEAL>.+(?=<round id="PRE_FIRST_DRAW" sequence="[0-9]+">)|.+)'
+                           r'(<round id="PRE_FIRST_DRAW" sequence="[0-9]+">(?P<DEAL>.+(?=<round id="FIRST_DRAW" sequence="[0-9]+">)|.+))?'
+                           r'(<round id="FIRST_DRAW" sequence="[0-9]+">(?P<DRAWONE>.+(?=<round id="SECOND_DRAW" sequence="[0-9]+">)|.+))?', hand.handText,re.DOTALL)
         elif hand.gametype['base'] == 'stud':
             m =  re.search(r'(?P<ANTES>.+(?=<round id="BRING_IN" sequence="[0-9]+">)|.+)'
                        r'(<round id="BRING_IN" sequence="[0-9]+">(?P<THIRD>.+(?=<round id="FOURTH_STREET" sequence="[0-9]+">)|.+))?'
@@ -267,14 +295,19 @@ or None if we fail to get the info """
             bb = Decimal(self.info['bb'])
             amount = Decimal(a.group('SBBB'))
             if amount < bb:
-                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'),
-                              hand), 'small blind', a.group('SBBB'))
+                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'small blind', a.group('SBBB'))
             elif amount == bb:
-                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'),
-                              hand), 'big blind', a.group('SBBB'))
+                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'big blind', a.group('SBBB'))
             else:
-                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'),
-                              hand), 'both', a.group('SBBB'))
+                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'both', a.group('SBBB'))
+
+        # FIXME
+        # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
+        # see http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
+        if hand.gametype['sb'] == None or hand.gametype['bb'] == None:
+            hand.gametype['sb'] = "1"
+            hand.gametype['bb'] = "1"
+
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
@@ -292,12 +325,18 @@ or None if we fail to get the info """
     def readAction(self, hand, street):
         logging.debug("readAction (%s)" % street)
         m = self.re_Action.finditer(hand.streets[street])
+        raises = 0
         for action in m:
-            logging.debug("%s %s" % (action.group('ATYPE'),
-                                     action.groupdict()))
+            logging.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
             player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
             if action.group('ATYPE') == 'RAISE':
-                hand.addCallandRaise(street, player, action.group('BET'))
+                raises += 1
+                if self.info['limitType'] == 'fl':
+                    hand.addRaiseTo(street, player, action.group('BET'))
+                elif raises == 1:
+                    hand.addRaiseTo(street, player, action.group('BET'))
+                else: # raises > 1
+                    hand.addCallandRaise(street, player, action.group('BET'))
             elif action.group('ATYPE') == 'CALL':
                 hand.addCall(street, player, action.group('BET'))
             elif action.group('ATYPE') == 'BET':
@@ -321,16 +360,9 @@ or None if we fail to get the info """
     def readCollectPot(self, hand):
         pots = [Decimal(0) for n in range(hand.maxseats)]
         for m in self.re_CollectPot.finditer(hand.handText):
-            pots[int(m.group('PSEAT'))] += Decimal(m.group('POT'))
-        # Regarding the processing logic for "committed", see Pot.end() in
-        # Hand.py
-        committed = sorted([(v,k) for (k,v) in hand.pot.committed.items()])
-        for p in range(hand.maxseats):
-            pname = self.playerNameFromSeatNo(p, hand)
-            if committed[-1][1] == pname:
-                pots[p] -= committed[-1][0] - committed[-2][0]
-            if pots[p] > 0:
-                hand.addCollectPot(player=pname, pot=pots[p])
+            pname = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
+            #print "DEBUG: addCollectPot(%s, %s)" %(pname, m.group('POT'))
+            hand.addCollectPot(player=pname, pot=m.group('POT'))
 
     def readShownCards(self, hand):
         for street in ('FLOP', 'TURN', 'RIVER', 'SEVENTH', 'DRAWTHREE'):

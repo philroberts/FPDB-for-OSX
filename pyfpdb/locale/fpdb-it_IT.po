@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-05-16 04:04+CEST\n"
+"POT-Creation-Date: 2011-05-17 03:11+CEST\n"
 "PO-Revision-Date: 2011-05-08 02:23+0000\n"
 "Last-Translator: steffen123 <steffen@schaumburger.info>\n"
 "Language-Team: Italian (Italy) (http://www.transifex.net/projects/p/fpdb/"
@@ -543,7 +543,7 @@ msgstr "Cash-game"
 msgid "Tourney"
 msgstr "Torneo:"
 
-#: Filters.py:106 TourneyFilters.py:116
+#: Filters.py:106 TourneyFilters.py:99
 msgid "Either 0 or more than one site matched (%s) - EEK"
 msgstr "0 o più siti trovati (%s) - EEK"
 
@@ -1406,11 +1406,11 @@ msgstr "Carte personali"
 msgid "Position"
 msgstr "Posizione"
 
-#: GuiRingPlayerStats.py:47 Stats.py:131
+#: GuiRingPlayerStats.py:47 Stats.py:131 Stats.py:140 Stats.py:149
 msgid "Player Name"
 msgstr ""
 
-#: GuiRingPlayerStats.py:48 Stats.py:314 Stats.py:333 Stats.py:342
+#: GuiRingPlayerStats.py:48 Stats.py:327 Stats.py:346 Stats.py:355
 msgid "Number of hands seen"
 msgstr ""
 
@@ -1418,39 +1418,39 @@ msgstr ""
 msgid "Number of Seats"
 msgstr "Numero di posti a sedere"
 
-#: GuiRingPlayerStats.py:50 Stats.py:140 Stats.py:149 Stats.py:156
+#: GuiRingPlayerStats.py:50 Stats.py:153 Stats.py:162 Stats.py:169
 msgid "Voluntarily put in preflop/3rd street %"
 msgstr ""
 
-#: GuiRingPlayerStats.py:51 Stats.py:160 Stats.py:169 Stats.py:177
+#: GuiRingPlayerStats.py:51 Stats.py:173 Stats.py:182 Stats.py:190
 msgid "Preflop/3rd street raise %"
 msgstr ""
 
-#: GuiRingPlayerStats.py:52 Stats.py:457 Stats.py:466 Stats.py:473
+#: GuiRingPlayerStats.py:52 Stats.py:470 Stats.py:479 Stats.py:486
 msgid "% 3 bet preflop/3rd street"
 msgstr ""
 
-#: GuiRingPlayerStats.py:53 Stats.py:476 Stats.py:485 Stats.py:492
+#: GuiRingPlayerStats.py:53 Stats.py:489 Stats.py:498 Stats.py:505
 msgid "% 4 bet preflop/3rd street"
 msgstr ""
 
-#: GuiRingPlayerStats.py:54 Stats.py:554 Stats.py:563 Stats.py:570
+#: GuiRingPlayerStats.py:54 Stats.py:567 Stats.py:576 Stats.py:583
 msgid "% fold to 3 bet preflop/3rd street"
 msgstr ""
 
-#: GuiRingPlayerStats.py:55 Stats.py:573 Stats.py:582 Stats.py:589
+#: GuiRingPlayerStats.py:55 Stats.py:586 Stats.py:595 Stats.py:602
 msgid "% fold to 4 bet preflop/3rd street"
 msgstr ""
 
-#: GuiRingPlayerStats.py:56 Stats.py:740 Stats.py:755 Stats.py:762
+#: GuiRingPlayerStats.py:56 Stats.py:753 Stats.py:768 Stats.py:775
 msgid "Aggression factor"
 msgstr ""
 
-#: GuiRingPlayerStats.py:57 Stats.py:687 Stats.py:703 Stats.py:710
+#: GuiRingPlayerStats.py:57 Stats.py:700 Stats.py:716 Stats.py:723
 msgid "Post-flop aggression frequency"
 msgstr ""
 
-#: GuiRingPlayerStats.py:58 Stats.py:765 Stats.py:776 Stats.py:783
+#: GuiRingPlayerStats.py:58 Stats.py:778 Stats.py:789 Stats.py:796
 msgid "% continuation bet"
 msgstr ""
 
@@ -1458,11 +1458,11 @@ msgstr ""
 msgid "% Raise First In / % Raise when first to bet"
 msgstr ""
 
-#: GuiRingPlayerStats.py:60 Stats.py:367 Stats.py:376
+#: GuiRingPlayerStats.py:60 Stats.py:380 Stats.py:389
 msgid "% steal attempted"
 msgstr "% tentativo di steal"
 
-#: GuiRingPlayerStats.py:61 Stats.py:291 Stats.py:301 Stats.py:310
+#: GuiRingPlayerStats.py:61 Stats.py:304 Stats.py:314 Stats.py:323
 msgid "Flop/4th street seen %"
 msgstr ""
 
@@ -1470,23 +1470,23 @@ msgstr ""
 msgid "Saw Showdown / River"
 msgstr ""
 
-#: GuiRingPlayerStats.py:63 Stats.py:181 Stats.py:190 Stats.py:198
+#: GuiRingPlayerStats.py:63 Stats.py:194 Stats.py:203 Stats.py:211
 msgid "% went to showdown when seen flop/4th street"
 msgstr ""
 
-#: GuiRingPlayerStats.py:64 Stats.py:202 Stats.py:211 Stats.py:219
+#: GuiRingPlayerStats.py:64 Stats.py:215 Stats.py:224 Stats.py:232
 msgid "% won some money at showdown"
 msgstr ""
 
-#: GuiRingPlayerStats.py:65 Stats.py:611 Stats.py:620 Stats.py:627
+#: GuiRingPlayerStats.py:65 Stats.py:624 Stats.py:633 Stats.py:640
 msgid "Aggression frequency flop/4th street"
 msgstr ""
 
-#: GuiRingPlayerStats.py:66 Stats.py:630 Stats.py:639 Stats.py:646
+#: GuiRingPlayerStats.py:66 Stats.py:643 Stats.py:652 Stats.py:659
 msgid "Aggression frequency turn/5th street"
 msgstr ""
 
-#: GuiRingPlayerStats.py:67 Stats.py:649 Stats.py:658 Stats.py:665
+#: GuiRingPlayerStats.py:67 Stats.py:662 Stats.py:671 Stats.py:678
 msgid "Aggression frequency river/6th street"
 msgstr ""
 
@@ -1502,7 +1502,7 @@ msgstr ""
 msgid "Total Profit"
 msgstr "Profitto totale"
 
-#: GuiRingPlayerStats.py:70 Stats.py:247 Stats.py:256 Stats.py:265
+#: GuiRingPlayerStats.py:70 Stats.py:260 Stats.py:269 Stats.py:278
 msgid "Big blinds won per 100 hands"
 msgstr ""
 
@@ -2669,99 +2669,99 @@ msgstr "Errore inatteso durante il processo del file"
 msgid "End of file reached"
 msgstr "Fine del file raggiunta"
 
-#: Stats.py:225 Stats.py:234 Stats.py:243
+#: Stats.py:238 Stats.py:247 Stats.py:256
 msgid "Profit per 100 hands"
 msgstr ""
 
-#: Stats.py:237
+#: Stats.py:250
 msgid "exception calculating p/100: 100 * %d / %d"
 msgstr ""
 
-#: Stats.py:259
+#: Stats.py:272
 msgid "exception calculating bb/100: "
 msgstr ""
 
-#: Stats.py:269 Stats.py:278 Stats.py:287
+#: Stats.py:282 Stats.py:291 Stats.py:300
 msgid "Big bets won per 100 hands"
 msgstr ""
 
-#: Stats.py:281
+#: Stats.py:294
 msgid "exception calculating BB/100: "
 msgstr ""
 
-#: Stats.py:382 Stats.py:391
+#: Stats.py:395 Stats.py:404
 msgid "% steal success"
 msgstr ""
 
-#: Stats.py:397 Stats.py:406 Stats.py:413
+#: Stats.py:410 Stats.py:419 Stats.py:426
 msgid "% folded SB to steal"
 msgstr "% foldate davanti uno steal da SB"
 
-#: Stats.py:416 Stats.py:425 Stats.py:432
+#: Stats.py:429 Stats.py:438 Stats.py:445
 msgid "% folded BB to steal"
 msgstr "% foldate davanti uno steal da BB"
 
-#: Stats.py:435 Stats.py:447 Stats.py:454
+#: Stats.py:448 Stats.py:460 Stats.py:467
 msgid "% folded blind to steal"
 msgstr ""
 
-#: Stats.py:495 Stats.py:504 Stats.py:511
+#: Stats.py:508 Stats.py:517 Stats.py:524
 msgid "% cold 4 bet preflop/3rd street"
 msgstr ""
 
-#: Stats.py:514 Stats.py:523 Stats.py:530
+#: Stats.py:527 Stats.py:536 Stats.py:543
 msgid "% squeeze preflop"
 msgstr ""
 
-#: Stats.py:534 Stats.py:543 Stats.py:550
+#: Stats.py:547 Stats.py:556 Stats.py:563
 msgid "% raise to steal"
 msgstr ""
 
-#: Stats.py:592 Stats.py:601 Stats.py:608
+#: Stats.py:605 Stats.py:614 Stats.py:621
 msgid "% won money when seen flop/4th street"
 msgstr ""
 
-#: Stats.py:668 Stats.py:677 Stats.py:684
+#: Stats.py:681 Stats.py:690 Stats.py:697
 msgid "Aggression frequency 7th street"
 msgstr ""
 
-#: Stats.py:786 Stats.py:795 Stats.py:802
+#: Stats.py:799 Stats.py:808 Stats.py:815
 msgid "% continuation bet flop/4th street"
 msgstr ""
 
-#: Stats.py:805 Stats.py:814 Stats.py:821
+#: Stats.py:818 Stats.py:827 Stats.py:834
 msgid "% continuation bet turn/5th street"
 msgstr ""
 
-#: Stats.py:824 Stats.py:833 Stats.py:840
+#: Stats.py:837 Stats.py:846 Stats.py:853
 msgid "% continuation bet river/6th street"
 msgstr ""
 
-#: Stats.py:843 Stats.py:852 Stats.py:859
+#: Stats.py:856 Stats.py:865 Stats.py:872
 msgid "% continuation bet 7th street"
 msgstr ""
 
-#: Stats.py:862 Stats.py:871 Stats.py:878
+#: Stats.py:875 Stats.py:884 Stats.py:891
 msgid "% fold frequency flop/4th street"
 msgstr ""
 
-#: Stats.py:881 Stats.py:890 Stats.py:897
+#: Stats.py:894 Stats.py:903 Stats.py:910
 msgid "% fold frequency turn/5th street"
 msgstr ""
 
-#: Stats.py:900 Stats.py:909 Stats.py:916
+#: Stats.py:913 Stats.py:922 Stats.py:929
 msgid "% fold frequency river/6th street"
 msgstr ""
 
-#: Stats.py:919 Stats.py:928 Stats.py:935
+#: Stats.py:932 Stats.py:941 Stats.py:948
 msgid "% fold frequency 7th street"
 msgstr ""
 
-#: Stats.py:973
+#: Stats.py:986
 msgid "Example stats, player = %s  hand = %s:"
 msgstr "Esempio stats, giocatore=%s  mano=%s:"
 
-#: Stats.py:1006
+#: Stats.py:1020
 msgid ""
 "\n"
 "\n"
@@ -2771,7 +2771,7 @@ msgstr ""
 "\n"
 "Stats certificate:"
 
-#: Stats.py:1007
+#: Stats.py:1021
 msgid ""
 "(add _0 to name to display with 0 decimal places, _1 to display with 1, "
 "etc)\n"
@@ -2862,10 +2862,6 @@ msgstr "Siti:"
 #: TourneyFilters.py:54
 msgid "Tourney Type"
 msgstr "Tipo Torneo"
-
-#: TourneyFilters.py:88
-msgid "setting numTourneys:"
-msgstr "impostazione numTourneys:"
 
 #: TourneySummary.py:133
 msgid "END TIME"
@@ -3099,10 +3095,6 @@ msgstr ""
 #: fpdb.pyw:104
 msgid "GuiStove not found. If you want to use it please install pypoker-eval."
 msgstr "GuiStove non trovata.Se vuoi sarla installare pypoker-eval"
-
-#: fpdb.pyw:111
-msgid "%s plus git"
-msgstr ""
 
 #: fpdb.pyw:244
 msgid ""
@@ -3882,6 +3874,9 @@ msgstr ""
 "\n"
 "nessuna cartella gtk trovata in questo percorso - installa gtk o modifica il "
 "percorso manualmente\n"
+
+#~ msgid "setting numTourneys:"
+#~ msgstr "impostazione numTourneys:"
 
 #~ msgid "fpdb card encoding(same as pokersource)"
 #~ msgstr "fpdb codifica carta(come pokersource)"

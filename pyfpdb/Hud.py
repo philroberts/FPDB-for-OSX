@@ -113,7 +113,7 @@ class Hud:
 
         self.creation_attrs = None
 
-    #	Set up a main window for this this instance of the HUD
+    # Set up a main window for this this instance of the HUD
     def create_mw(self):
         win = gtk.Window()
         win.set_skip_taskbar_hint(True)  # invisible to taskbar
@@ -703,7 +703,7 @@ class Hud:
                     if this_stat.hudcolor != "":
                         window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
                     else:
-                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))	
+                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
                     
                     if this_stat.stat_loth != "":
                         if number[0] < (float(this_stat.stat_loth)/100):
@@ -940,7 +940,7 @@ class Popup_window:
         pu_text = ""
         mo_text = ""
         for s in stat_list:
-            number = Stats.do_stat(stat_dict, player = int(stat_window.player_id), stat = s)
+            number = Stats.do_stat(stat_dict, player = int(stat_window.player_id), stat = s, handid = int(stat_window.parent.hand))
             mo_text += number[5] + " " + number[4] + "\n"
             pu_text += number[3] + "\n"
 

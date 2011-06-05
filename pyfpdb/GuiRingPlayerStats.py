@@ -126,6 +126,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         filters_display = { "Heroes"    : True,
                             "Sites"     : True,
                             "Games"     : True,
+                            "Currencies": True,
                             "Limits"    : True,
                             "LimitSep"  : True,
                             "LimitType" : True,
@@ -261,6 +262,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         groups = self.filters.getGroups()
         dates = self.filters.getDates()
         games = self.filters.getGames()
+        currencies = self.filters.getCurrencies()
         sitenos = []
         playerids = []
 
@@ -284,10 +286,10 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
             print _("No limits found")
             return
 
-        self.createStatsTable(vbox, playerids, sitenos, limits, type, seats, groups, dates, games)
+        self.createStatsTable(vbox, playerids, sitenos, limits, type, seats, groups, dates, games, currencies)
     #end def fillStatsFrame
 
-    def createStatsTable(self, vbox, playerids, sitenos, limits, type, seats, groups, dates, games):
+    def createStatsTable(self, vbox, playerids, sitenos, limits, type, seats, groups, dates, games, currencies):
         startTime = time()
         show_detail = True
 
@@ -304,7 +306,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         #   gridnum   - index for grid data structures
         flags = [False, self.filters.getNumHands(), 0]
         self.addGrid(swin, 'playerDetailedStats', flags, playerids
-                    ,sitenos, limits, type, seats, groups, dates, games)
+                    ,sitenos, limits, type, seats, groups, dates, games, currencies)
         swin.show()
 
         if 'allplayers' in groups and groups['allplayers']:
@@ -330,7 +332,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
             flags[0] = True
             flags[2] = 1
             self.addGrid(swin2, 'playerDetailedStats', flags, playerids
-                        ,sitenos, limits, type, seats, groups, dates, games)
+                        ,sitenos, limits, type, seats, groups, dates, games, currencies)
 
         if self.height_inc is None:
             self.height_inc = 0
@@ -420,7 +422,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
     #end def sortcols
     
 
-    def addGrid(self, vbox, query, flags, playerids, sitenos, limits, type, seats, groups, dates, games):
+    def addGrid(self, vbox, query, flags, playerids, sitenos, limits, type, seats, groups, dates, games, currencies):
         counter = 0
         row = 0
         sqlrow = 0
@@ -428,7 +430,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         else:          holecards,grid = flags[0],flags[2]
 
         tmp = self.sql.query[query]
-        tmp = self.refineQuery(tmp, flags, playerids, sitenos, limits, type, seats, groups, dates, games)
+        tmp = self.refineQuery(tmp, flags, playerids, sitenos, limits, type, seats, groups, dates, games, currencies)
         #print "DEBUG: query: %s" % tmp
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
@@ -542,7 +544,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
             #print "saved ", self.top_pane_height
     #end def addGrid
 
-    def refineQuery(self, query, flags, playerids, sitenos, limits, type, seats, groups, dates, games):
+    def refineQuery(self, query, flags, playerids, sitenos, limits, type, seats, groups, dates, games, currencies):
         having = ''
         if not flags:
             holecards = False
@@ -599,6 +601,16 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                     gametest = "and gt.category IS NULL"
         query = query.replace("<game_test>", gametest)
         
+        q = []
+        for n in currencies:
+            if currencies[n]:
+                q.append(n)
+        currencytest = str(tuple(q))
+        currencytest = currencytest.replace(",)",")")
+        currencytest = currencytest.replace("u'","'")
+        currencytest = "AND gt.currency in %s" % currencytest
+        query = query.replace("<currency_test>", currencytest)
+
         sitetest = ""
         q = []
         for m in self.filters.display.items():
@@ -628,47 +640,8 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
             query = query.replace('<groupbyseats>', '')
             query = query.replace('<orderbyseats>', '')
 
-        lims = [int(x) for x in limits if x.isdigit()]
-        potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
-        nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
-        capnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'cn']
-        bbtest = "and ( (gt.limitType = 'fl' and gt.bigBlind in "
-                 # and ( (limit and bb in()) or (nolimit and bb in ()) )
-        if lims:
-            blindtest = str(tuple(lims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) '
-        else:
-            bbtest = bbtest + '(-1) ) '
-        bbtest = bbtest + " or (gt.limitType = 'pl' and gt.bigBlind in "
-        if potlims:
-            blindtest = str(tuple(potlims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) '
-        else:
-            bbtest = bbtest + '(-1) ) '
-        bbtest = bbtest + " or (gt.limitType = 'nl' and gt.bigBlind in "
-        if nolims:
-            blindtest = str(tuple(nolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) '
-        else:
-            bbtest = bbtest + '(-1) ) '
-        bbtest = bbtest + " or (gt.limitType = 'cn' and gt.bigBlind in "
-        if capnolims:
-            blindtest = str(tuple(capnolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) )'
-        else:
-            bbtest = bbtest + '(-1) ) )'
-        if type == 'ring':
-            bbtest = bbtest + " and gt.type = 'ring' "
-        elif type == 'tour':
-            bbtest = " and gt.type = 'tour' "
+        bbtest = self.filters.get_limits_where_clause(limits)
+
         query = query.replace("<gtbigBlind_test>", bbtest)
 
         if holecards:  # re-use level variables for hole card query
