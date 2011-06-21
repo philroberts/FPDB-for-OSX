@@ -1564,6 +1564,7 @@ class Database:
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('15', 'Winamax', 'WM')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('16', 'Everest', 'EP')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('17', 'Cake', 'CK')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('18', 'Entraction', 'TR')")
         #Fill Actions
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('1', 'ante', 'A')")
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('2', 'small blind', 'SB')")
