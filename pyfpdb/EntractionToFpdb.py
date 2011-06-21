@@ -96,8 +96,8 @@ class Entraction(HandHistoryConverter):
     re_GameEnds     = re.compile(r"Game\sended\s(?P<Y>[0-9]{4})-(?P<M>[0-9]{2})-(?P<D>[0-9]{2})\s(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", re.MULTILINE)
 
     re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
-    re_PostSB       = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[.0-9]+)" %  substitutions, re.MULTILINE)
-    re_PostBB       = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[.0-9]+)" %  substitutions, re.MULTILINE)
+    re_PostSB       = re.compile(r"^Small Blind: {16}(?P<PNAME>.*)\s+\((?P<SB>[.0-9]+)\)", re.MULTILINE)
+    re_PostBB       = re.compile(r"^Big Blind: {18}(?P<PNAME>.*)\s+\((?P<BB>[.0-9]+)\)", re.MULTILINE)
     re_Antes        = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % substitutions, re.MULTILINE)
     re_BringIn      = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % substitutions, re.MULTILINE)
     re_PostBoth     = re.compile(r"^%(PLYR)s: posts small \& big blinds %(CUR)s(?P<SBBB>[.0-9]+)" %  substitutions, re.MULTILINE)
@@ -203,7 +203,8 @@ class Entraction(HandHistoryConverter):
         log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            name = a.group('PNAME').strip()
+            hand.addPlayer(int(a.group('SEAT')), name, a.group('CASH'))
 
     def markStreets(self, hand):
         if hand.gametype['base'] in ("hold"):
@@ -238,17 +239,18 @@ class Entraction(HandHistoryConverter):
 #            hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         
     def readBlinds(self, hand):
-        pass
-#        liveBlind = True
-#        for a in self.re_PostSB.finditer(hand.handText):
-#            if liveBlind:
-#                hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
-#                liveBlind = False
-#            else:
-#                # Post dead blinds as ante
-#                hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
-#        for a in self.re_PostBB.finditer(hand.handText):
-#            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+        liveBlind = True
+        for a in self.re_PostSB.finditer(hand.handText):
+            name = a.group('PNAME').strip()
+            if liveBlind:
+                hand.addBlind(name, 'small blind', a.group('SB'))
+                liveBlind = False
+            else:
+                # Post dead blinds as ante
+                hand.addBlind(name, 'secondsb', a.group('SB'))
+        for a in self.re_PostBB.finditer(hand.handText):
+            name = a.group('PNAME').strip()
+            hand.addBlind(name, 'big blind', a.group('BB'))
 #        for a in self.re_PostBoth.finditer(hand.handText):
 #            hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
 
