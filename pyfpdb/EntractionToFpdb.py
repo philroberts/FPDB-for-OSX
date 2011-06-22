@@ -103,17 +103,12 @@ class Entraction(HandHistoryConverter):
     re_PostBoth     = re.compile(r"^%(PLYR)s: posts small \& big blinds %(CUR)s(?P<SBBB>[.0-9]+)" %  substitutions, re.MULTILINE)
     re_HeroCards    = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""
-                        ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
-                        (\s%(CUR)s(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
-                        \s*(and\sis\sall.in)?
-                        (and\shas\sreached\sthe\s[%(CUR)s\d\.]+\scap)?
-                        (\son|\scards?)?
-                        (\s\[(?P<CARDS>.+?)\])?\s*$"""
+                        ^%(PLYR)s\s+(?P<ATYPE>Fold|Check|Call|Bet|Raise)
+                        (\s+\((?P<BET>[.\d]+)\))?$"""
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" % substitutions['PLYR'], re.MULTILINE)
-    re_sitsOut          = re.compile("^%s sits out" %  substitutions['PLYR'], re.MULTILINE)
     re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\]( and won \([.\d]+\) with (?P<STRING>.*))?" %  substitutions['PLYR'], re.MULTILINE)
-    re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s (\(button\) |\(small blind\) |\(big blind\) |\(button\) \(small blind\) |\(button\) \(big blind\) )?(collected|showed \[.*\] and won) \(%(CUR)s(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  substitutions, re.MULTILINE)
+    re_CollectPot       = re.compile(r"%(PLYR)s\swins:\s+(%(LEGAL_ISO)s)\s(?P<POT>[.\d]+)" %  substitutions, re.MULTILINE)
     re_WinningRankOne   = re.compile(u"^%(PLYR)s wins the tournament and receives %(CUR)s(?P<AMT>[\.0-9]+) - congratulations!$" %  substitutions, re.MULTILINE)
     re_WinningRankOther = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place and received %(CUR)s(?P<AMT>[.0-9]+)\.$" %  substitutions, re.MULTILINE)
     re_RankOther        = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place$" %  substitutions, re.MULTILINE)
@@ -216,12 +211,12 @@ class Entraction(HandHistoryConverter):
         #print mg
         hand.addStreets(m)
 
-    def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
-        pass
-#        if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
-#            #print "DEBUG readCommunityCards:", street, hand.streets.group(street)
-#            m = self.re_Board.search(hand.streets[street])
-#            hand.setCommunityCards(street, m.group('CARDS').split(' '))
+    def readCommunityCards(self, hand, street):
+        print "DEBUG: readCommunityCards"
+        if street in ('FLOP','TURN','RIVER'):
+            print "DEBUG readCommunityCards:", street, hand.streets.group(street)
+            m = self.re_Board.search(hand.streets[street])
+            hand.setCommunityCards(street, m.group('CARDS').split(' '))
 
     def readAntes(self, hand):
         pass
@@ -292,27 +287,22 @@ class Entraction(HandHistoryConverter):
 
 
     def readAction(self, hand, street):
-        pass
-#        m = self.re_Action.finditer(hand.streets[street])
-#        for action in m:
-#            acts = action.groupdict()
-#            #print "DEBUG: acts: %s" %acts
-#            if action.group('ATYPE') == ' raises':
-#                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
-#            elif action.group('ATYPE') == ' calls':
-#                hand.addCall( street, action.group('PNAME'), action.group('BET') )
-#            elif action.group('ATYPE') == ' bets':
-#                hand.addBet( street, action.group('PNAME'), action.group('BET') )
-#            elif action.group('ATYPE') == ' folds':
-#                hand.addFold( street, action.group('PNAME'))
-#            elif action.group('ATYPE') == ' checks':
-#                hand.addCheck( street, action.group('PNAME'))
-#            elif action.group('ATYPE') == ' discards':
-#                hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('CARDS'))
-#            elif action.group('ATYPE') == ' stands pat':
-#                hand.addStandsPat( street, action.group('PNAME'), action.group('CARDS'))
-#            else:
-#                print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
+        m = self.re_Action.finditer(hand.streets[street])
+        for action in m:
+            acts = action.groupdict()
+            #print "DEBUG: acts: %s" %acts
+            if action.group('ATYPE') == 'Raise':
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == 'Call':
+                hand.addCall( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == 'Bet':
+                hand.addBet( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == 'Folds':
+                hand.addFold( street, action.group('PNAME'))
+            elif action.group('ATYPE') == 'Check':
+                hand.addCheck( street, action.group('PNAME'))
+            else:
+                print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):
@@ -331,9 +321,8 @@ class Entraction(HandHistoryConverter):
 #            hand.addPlayerRank (rankothers.group('PNAME'),0,rankothers.group('RANK'))
 
     def readCollectPot(self,hand):
-        pass
-#        for m in self.re_CollectPot.finditer(hand.handText):
-#            hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
+        for m in self.re_CollectPot.finditer(hand.handText):
+            hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
 
     def readShownCards(self,hand):
         pass
