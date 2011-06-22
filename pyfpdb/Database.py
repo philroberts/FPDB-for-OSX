@@ -44,7 +44,7 @@ import re
 import Queue
 import codecs
 import math
-
+import pytz
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("db")
@@ -2362,15 +2362,26 @@ class Database:
             
         return sc
     
-    def storeSessionsCache(self, hid, pids, startTime, game, gid, tid, pdata, sc, gsc, tz, heros, doinsert = False):
+    def storeSessionsCache(self, hid, pids, startTime, game, gid, tid, pdata, sc, gsc, tz_name, heros, doinsert = False):
         """Update cached sessions. If no record exists, do an insert"""
-        if not tz:
-            tz_dt = datetime.utcnow() - datetime.today()
-            tz = tz_dt.seconds/3600
-            
-        THRESHOLD = timedelta(seconds=int(self.sessionTimeout * 60))
-        local = startTime + timedelta(hours=int(tz))
+        utc = pytz.utc
+        if tz_name in pytz.common_timezones:
+            naive = startTime.replace(tzinfo=None)
+            utc_start = utc.localize(naive)
+            tz = pytz.timezone(tz_name)
+            loc_tz = utc_start.astimezone(tz).strftime('%z')
+            local = naive + timedelta(hours=int(loc_tz[:-2]), minutes=int(loc_tz[0]+loc_tz[-2:]))
+        else:
+            if strftime('%Z') == 'UTC':
+                local = startTime
+                loc_tz = '0'
+            else:
+                tz_dt = datetime.today() - datetime.utcnow()
+                loc_tz = tz_dt.seconds/3600 - 24
+                local = startTime + timedelta(hours=int(loc_tz))
+                loc_tz = str(loc_tz)
         date = "d%02d%02d%02d" % (local.year - 2000, local.month, local.day)
+        THRESHOLD = timedelta(seconds=int(self.sessionTimeout * 60))
         
         select_SC         = self.sql.query['select_SC'].replace('%s', self.sql.query['placeholder'])
         update_SC         = self.sql.query['update_SC'].replace('%s', self.sql.query['placeholder'])
