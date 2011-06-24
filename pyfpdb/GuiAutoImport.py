@@ -94,6 +94,7 @@ class GuiAutoImport (threading.Thread):
         hbox = gtk.HBox(False, 0)
         vbox2.pack_start(hbox, False, True, 0)
         self.intervalEntry = gtk.Entry()
+        self.intervalEntry.set_width_chars(4)
         self.intervalEntry.set_text(str(self.config.get_import_parameters().get("interval")))
         hbox.pack_start(self.intervalEntry, False, False, 0)
         lbl1 = gtk.Label()
@@ -152,6 +153,10 @@ class GuiAutoImport (threading.Thread):
     #end of GuiAutoImport.__init__
     def browseClicked(self, widget, data):
         """runs when user clicks one of the browse buttons in the auto import tab"""
+#       Browse is not valid while hud is running, so return immediately
+        if (self.pipe_to_hud):
+            return
+            
         current_path=data[1].get_text()
 
         dia_chooser = gtk.FileChooserDialog(title=_("Please choose the path that you want to Auto Import"),
@@ -243,6 +248,7 @@ class GuiAutoImport (threading.Thread):
                 self.addText("\n" + _("Global lock taken ... Auto Import Started.")+"\n")
                 self.doAutoImportBool = True
                 self.startButton.set_label(_(u'Stop _Auto Import'))
+                self.intervalEntry.set_sensitive(False)
                 while gtk.events_pending(): # change the label NOW don't wait for the pipe to open
                     gtk.main_iteration(False)
                 if self.pipe_to_hud is None:
@@ -282,7 +288,7 @@ class GuiAutoImport (threading.Thread):
                             self.importer.addImportDirectory(self.input_settings[site][0], True, site, self.input_settings[site][1])
                             self.addText("\n * Add "+ site+ " import directory "+ str(self.input_settings[site][0]))
                             self.do_import()
-                            interval = int(self.intervalEntry.get_text())
+                    interval = int(self.intervalEntry.get_text())
                     if self.importtimer != 0:
                         gobject.source_remove(self.importtimer)
                     self.importtimer = gobject.timeout_add(interval * 1000, self.do_import)
@@ -301,6 +307,7 @@ class GuiAutoImport (threading.Thread):
                 #print >>self.pipe_to_hud.stdin, "\n"
                 # self.pipe_to_hud.communicate('\n') # waits for process to terminate
             self.pipe_to_hud = None
+            self.intervalEntry.set_sensitive(True)
             self.startButton.set_label(_(u'  Start _Auto Import  '))
 
     #end def GuiAutoImport.startClicked
@@ -321,6 +328,10 @@ class GuiAutoImport (threading.Thread):
         dirPath=gtk.Entry()
         dirPath.set_text(hhpath)
         hbox1.pack_start(dirPath, True, True, 3)
+#       Anything typed into dirPath was never recognised (only the browse button works)
+#       so just prevent entry to avoid user confusion
+        dirPath.set_editable(False)
+        
         dirPath.show()
 
         browseButton=gtk.Button(_("Browse..."))
@@ -328,13 +339,16 @@ class GuiAutoImport (threading.Thread):
         hbox2.pack_start(browseButton, False, False, 3)
         browseButton.show()
 
-        label = gtk.Label("%s filter:" % site)
+        label = gtk.Label("filter:")
         hbox2.pack_start(label, False, False, 3)
         label.show()
 
+#       Anything typed into filter was never recognised
+#       so just grey it out to avoid user confusion
         filter=gtk.Entry()
         filter.set_text(filter_name)
         hbox2.pack_start(filter, True, True, 3)
+        filter.set_sensitive(False)
         filter.show()
 
     def addSites(self, vbox1, vbox2):
