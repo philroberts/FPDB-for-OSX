@@ -1298,6 +1298,8 @@ class Database:
             c.execute(self.sql.query['addTPlayersIndex'])
             c.execute(self.sql.query['addTTypesIndex'])
 
+            c.execute(self.sql.query['addHudCacheCompundIndex'])
+
             self.fillDefaultData()
             self.commit()
         except:

@@ -1688,6 +1688,8 @@ class Sql:
             self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (siteId, buyin, fee
                                              , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
 
+        self.query['addHudCacheCompundIndex'] = """CREATE INDEX HudCache_Compound_idx ON HudCache(playerId, activeSeats, position, tourneyTypeId, styleKey)"""
+
         self.query['get_last_hand'] = "select max(id) from Hands"
         
         self.query['get_last_date'] = "SELECT MAX(startTime) FROM Hands"
