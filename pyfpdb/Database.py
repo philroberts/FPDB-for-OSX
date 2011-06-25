@@ -1258,57 +1258,48 @@ class Database:
     #end def recreate_tables
 
     def create_tables(self):
-        #todo: should detect and fail gracefully if tables already exist.
-        try:
-            log.debug(self.sql.query['createSettingsTable'])
-            c = self.get_cursor()
-            c.execute(self.sql.query['createSettingsTable'])
+        log.debug(self.sql.query['createSettingsTable'])
+        c = self.get_cursor()
+        c.execute(self.sql.query['createSettingsTable'])
 
-            log.debug("Creating tables")
-            c.execute(self.sql.query['createActionsTable'])
-            c.execute(self.sql.query['createSitesTable'])
-            c.execute(self.sql.query['createGametypesTable'])
-            c.execute(self.sql.query['createFilesTable'])
-            c.execute(self.sql.query['createPlayersTable'])
-            c.execute(self.sql.query['createAutoratesTable'])
-            c.execute(self.sql.query['createHandsTable'])
-            c.execute(self.sql.query['createBoardsTable'])
-            c.execute(self.sql.query['createTourneyTypesTable'])
-            c.execute(self.sql.query['createTourneysTable'])
-            c.execute(self.sql.query['createTourneysPlayersTable'])
-            c.execute(self.sql.query['createHandsPlayersTable'])
-            c.execute(self.sql.query['createHandsActionsTable'])
-            c.execute(self.sql.query['createHudCacheTable'])
-            c.execute(self.sql.query['createSessionsCacheTable'])
-            c.execute(self.sql.query['createBackingsTable'])
-            c.execute(self.sql.query['createRawHands'])
-            c.execute(self.sql.query['createRawTourneys'])
-            
-            # Create sessionscache indexes
-            log.debug("Creating SessionsCache indexes")
-            c.execute(self.sql.query['addSessionIdIndex'])
-            c.execute(self.sql.query['addHandsSessionIdIndex'])
-            c.execute(self.sql.query['addHandsGameSessionIdIndex'])
+        log.debug("Creating tables")
+        c.execute(self.sql.query['createActionsTable'])
+        c.execute(self.sql.query['createSitesTable'])
+        c.execute(self.sql.query['createGametypesTable'])
+        c.execute(self.sql.query['createFilesTable'])
+        c.execute(self.sql.query['createPlayersTable'])
+        c.execute(self.sql.query['createAutoratesTable'])
+        c.execute(self.sql.query['createHandsTable'])
+        c.execute(self.sql.query['createBoardsTable'])
+        c.execute(self.sql.query['createTourneyTypesTable'])
+        c.execute(self.sql.query['createTourneysTable'])
+        c.execute(self.sql.query['createTourneysPlayersTable'])
+        c.execute(self.sql.query['createHandsPlayersTable'])
+        c.execute(self.sql.query['createHandsActionsTable'])
+        c.execute(self.sql.query['createHudCacheTable'])
+        c.execute(self.sql.query['createSessionsCacheTable'])
+        c.execute(self.sql.query['createBackingsTable'])
+        c.execute(self.sql.query['createRawHands'])
+        c.execute(self.sql.query['createRawTourneys'])
 
-            # Create unique indexes:
-            log.debug("Creating unique indexes")
-            c.execute(self.sql.query['addTourneyIndex'])
-            c.execute(self.sql.query['addHandsIndex'])
-            c.execute(self.sql.query['addPlayersIndex'])
-            c.execute(self.sql.query['addTPlayersIndex'])
-            c.execute(self.sql.query['addTTypesIndex'])
+        # Create sessionscache indexes
+        log.debug("Creating SessionsCache indexes")
+        c.execute(self.sql.query['addSessionIdIndex'])
+        c.execute(self.sql.query['addHandsSessionIdIndex'])
+        c.execute(self.sql.query['addHandsGameSessionIdIndex'])
 
-            c.execute(self.sql.query['addHudCacheCompundIndex'])
+        # Create unique indexes:
+        log.debug("Creating unique indexes")
+        c.execute(self.sql.query['addTourneyIndex'])
+        c.execute(self.sql.query['addHandsIndex'])
+        c.execute(self.sql.query['addPlayersIndex'])
+        c.execute(self.sql.query['addTPlayersIndex'])
+        c.execute(self.sql.query['addTTypesIndex'])
 
-            self.fillDefaultData()
-            self.commit()
-        except:
-            #print "Error creating tables: ", str(sys.exc_value)
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("***Error creating tables:"), err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-            self.rollback()
-            raise
-#end def disconnect
+        c.execute(self.sql.query['addHudCacheCompundIndex'])
+
+        self.fillDefaultData()
+        self.commit()
 
     def drop_tables(self):
         """Drops the fpdb tables from the current db"""
