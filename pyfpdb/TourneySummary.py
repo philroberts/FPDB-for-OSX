@@ -139,7 +139,7 @@ class TourneySummary(object):
                  (_("FEE"), self.fee),
                  (_("CURRENCY"), self.currency),
                  (_("HERO"), self.hero),
-                 (_("MAXSEATS"), self.maxseats),
+                 (_("MAX SEATS"), self.maxseats),
                  (_("ENTRIES"), self.entries),
                  (_("SPEED"), self.speed),
                  (_("PRIZE POOL"), self.prizepool),

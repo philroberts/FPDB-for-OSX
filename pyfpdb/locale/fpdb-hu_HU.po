@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2011-06-26 11:15+CEST\n"
+"POT-Creation-Date: 2011-06-26 13:33+CEST\n"
 "PO-Revision-Date: 2011-05-09 15:33+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -404,57 +404,57 @@ msgstr "######## Leosztások ##########"
 msgid "###### End Hands ########"
 msgstr "###### Leosztások vége ########"
 
-#: Database.py:2491
+#: Database.py:2502
 msgid "######## Gametype ##########"
 msgstr "######## Játéktípusok ##########"
 
-#: Database.py:2495
+#: Database.py:2506
 msgid "###### End Gametype ########"
 msgstr "###### Játéktípusok vége ########"
 
-#: Database.py:2582
+#: Database.py:2593
 msgid "queue empty too long - writer stopping ..."
 msgstr "a sor ürítése túl sokáig tart - az írás befejeződik ..."
 
-#: Database.py:2585
+#: Database.py:2596
 msgid "writer stopping, error reading queue:"
 msgstr "az írás megállt, hiba a sor olvasásakor:"
 
-#: Database.py:2610
+#: Database.py:2621
 msgid "deadlock detected - trying again ..."
 msgstr "deadlock történt - újrapróbálás ..."
 
-#: Database.py:2615
+#: Database.py:2626
 msgid "Too many deadlocks - failed to store hand"
 msgstr "Túl sok deadlock - nem sikerült tárolni a leosztást"
 
-#: Database.py:2619
+#: Database.py:2630
 msgid "***Error storing hand:"
 msgstr "***Hiba a leosztás tárolása közben:"
 
-#: Database.py:2629
+#: Database.py:2640
 msgid "db writer finished: stored %d hands (%d fails) in %.1f seconds"
 msgstr ""
 "adatbázisba írás befejeződött: %d leosztás tárolva (%d sikertelen) %.1f mp "
 "alatt"
 
-#: Database.py:2638
+#: Database.py:2649
 msgid "***Error sending finish:"
 msgstr "***Hiba a befejezés küldésekor:"
 
-#: Database.py:2956 Database.py:3006
+#: Database.py:2967 Database.py:3017
 msgid "%s error: %s"
 msgstr "%s hiba: %s"
 
-#: Database.py:3054
+#: Database.py:3065
 msgid "cards ="
 msgstr "kezdőkéz ="
 
-#: Database.py:3057
+#: Database.py:3068
 msgid "get_stats took: %4.3f seconds"
 msgstr "get_stats időigény: %4.3f mp"
 
-#: Database.py:3059 HandHistoryConverter.py:41 fpdb.pyw:46
+#: Database.py:3070 HandHistoryConverter.py:41 fpdb.pyw:46
 msgid "Press ENTER to continue."
 msgstr "Nyomj ENTER-t a folytatáshoz."
 
@@ -843,13 +843,13 @@ msgstr ""
 
 #: GuiAutoImport.py:302
 #, fuzzy
-msgid "Global lock released."
-msgstr "Globális zárolás feloldva.\n"
-
-#: GuiAutoImport.py:302
-#, fuzzy
 msgid "Stopping Auto Import."
 msgstr "_Auto Import leállítása"
+
+#: GuiAutoImport.py:302 fpdb.pyw:1087
+#, fuzzy
+msgid "Global lock released."
+msgstr "Globális zárolás feloldva.\n"
 
 #: GuiAutoImport.py:304
 #, fuzzy
@@ -1236,7 +1236,7 @@ msgstr "Nem található limit"
 msgid "Graph generated in: %s"
 msgstr "Grafikon létrehozva %s mp alatt"
 
-#: GuiGraphViewer.py:193
+#: GuiGraphViewer.py:193 GuiGraphViewer.py:221 GuiGraphViewer.py:234
 msgid "Hands"
 msgstr "Leosztások"
 
@@ -1244,13 +1244,11 @@ msgstr "Leosztások"
 msgid "No Data for Player(s) Found"
 msgstr "Nem található adat a játékos(ok)ra vonatkozóan"
 
-#: GuiGraphViewer.py:221 GuiGraphViewer.py:234
-msgid ""
-"Hands: %d\n"
-"Profit: (%s): %.2f"
-msgstr ""
-"Leosztások: %d\n"
-"Profit (%s): %.2f"
+#: GuiGraphViewer.py:221 GuiGraphViewer.py:234 GuiTourneyGraphViewer.py:203
+#: GuiTourneyGraphViewer.py:213
+#, fuzzy
+msgid "Profit"
+msgstr "teljes profit"
 
 #: GuiGraphViewer.py:222 GuiGraphViewer.py:236
 msgid "Showdown"
@@ -1766,11 +1764,6 @@ msgstr "hívás:"
 msgid "Tournaments"
 msgstr "Versenyek"
 
-#: GuiTourneyGraphViewer.py:203 GuiTourneyGraphViewer.py:213
-#, fuzzy
-msgid "Profit"
-msgstr "teljes profit"
-
 #: GuiTourneyGraphViewer.py:210
 msgid "Tournament Results"
 msgstr "Versenyeredmények"
@@ -1925,14 +1918,13 @@ msgstr "N/A"
 msgid "invalid entry in tourney number - must enter numbers only"
 msgstr "érvénytelen érték a versenyazonosítónál - csak számok használhatóak"
 
-#: HUD_main.pyw:69
-#, fuzzy
-msgid "using db name = %s"
-msgstr "%s nevű adatbázis használata"
-
 #: HUD_main.pyw:69 HUD_main.pyw:78 HUD_run_me.py:45
 msgid "HUD_main starting"
 msgstr "HUD_main indítás"
+
+#: HUD_main.pyw:69 HUD_run_me.py:51 TournamentTracker.py:306
+msgid "Using db name = %s"
+msgstr "%s nevű adatbázis használata"
 
 #: HUD_main.pyw:74
 #, fuzzy
@@ -1975,7 +1967,8 @@ msgid "database error: skipping %s"
 msgstr "adatbázis hiba: kihagyásra kerül %s"
 
 #: HUD_main.pyw:253
-msgid "hud_dict[%s] was not found"
+#, fuzzy
+msgid "%s was not found"
 msgstr "hud_dict[%s] nincs meg"
 
 #: HUD_main.pyw:254
@@ -2006,10 +1999,6 @@ msgstr "Hiba a HUD létrehozása közben erre a leosztásra: %s."
 msgid "Error updating HUD for hand %s."
 msgstr "Hiba a HUD frissítése közben erre a leosztásra: %s."
 
-#: HUD_run_me.py:51 TournamentTracker.py:306
-msgid "Using db name = %s"
-msgstr "%s nevű adatbázis használata"
-
 #: HUD_run_me.py:66
 msgid "HUD Main Window"
 msgstr "HUD Főablak"
@@ -2023,7 +2012,8 @@ msgid "SB"
 msgstr "SB"
 
 #: Hand.py:151
-msgid "BUTTONPOS"
+#, fuzzy
+msgid "BUTTON POS"
 msgstr "GOMB"
 
 #: Hand.py:152
@@ -2043,7 +2033,8 @@ msgid "HERO"
 msgstr "JÁTÉKOS"
 
 #: Hand.py:156 TourneySummary.py:142
-msgid "MAXSEATS"
+#, fuzzy
+msgid "MAX SEATS"
 msgstr "MAX. SZÉKEK"
 
 #: Hand.py:157
@@ -2055,7 +2046,8 @@ msgid "MIXED"
 msgstr "KEVERT"
 
 #: Hand.py:159
-msgid "LASTBET"
+#, fuzzy
+msgid "LAST BET"
 msgstr "UTOLSÓ TÉT"
 
 #: Hand.py:160
@@ -3669,10 +3661,6 @@ msgstr ""
 "\n"
 "Globális zárolás meghiúsult, %s már zárolta"
 
-#: fpdb.pyw:1087
-msgid "Global lock released.\n"
-msgstr "Globális zárolás feloldva.\n"
-
 #: fpdb.pyw:1094
 msgid "Auto Import"
 msgstr "Auto Import"
@@ -3955,6 +3943,23 @@ msgstr ""
 #: windows_make_bats.py:57
 msgid "No gtk directories found in your path."
 msgstr ""
+
+#~ msgid "MAXSEATS"
+#~ msgstr "MAX. SZÉKEK"
+
+#, fuzzy
+#~ msgid "using db name = %s"
+#~ msgstr "%s nevű adatbázis használata"
+
+#~ msgid ""
+#~ "Hands: %d\n"
+#~ "Profit: (%s): %.2f"
+#~ msgstr ""
+#~ "Leosztások: %d\n"
+#~ "Profit (%s): %.2f"
+
+#~ msgid "Global lock released.\n"
+#~ msgstr "Globális zárolás feloldva.\n"
 
 #~ msgid ""
 #~ "\n"

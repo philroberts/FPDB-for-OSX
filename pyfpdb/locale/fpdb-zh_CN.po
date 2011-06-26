@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-06-26 11:15+CEST\n"
+"POT-Creation-Date: 2011-06-26 13:33+CEST\n"
 "PO-Revision-Date: 2011-04-07 08:53+0000\n"
 "Last-Translator: steffen123 <steffen@schaumburger.info>\n"
 "Language-Team: Chinese (China) <>\n"
@@ -406,55 +406,55 @@ msgstr ""
 msgid "###### End Hands ########"
 msgstr ""
 
-#: Database.py:2491
+#: Database.py:2502
 msgid "######## Gametype ##########"
 msgstr ""
 
-#: Database.py:2495
+#: Database.py:2506
 msgid "###### End Gametype ########"
 msgstr ""
 
-#: Database.py:2582
+#: Database.py:2593
 msgid "queue empty too long - writer stopping ..."
 msgstr ""
 
-#: Database.py:2585
+#: Database.py:2596
 msgid "writer stopping, error reading queue:"
 msgstr ""
 
-#: Database.py:2610
+#: Database.py:2621
 msgid "deadlock detected - trying again ..."
 msgstr ""
 
-#: Database.py:2615
+#: Database.py:2626
 msgid "Too many deadlocks - failed to store hand"
 msgstr ""
 
-#: Database.py:2619
+#: Database.py:2630
 msgid "***Error storing hand:"
 msgstr ""
 
-#: Database.py:2629
+#: Database.py:2640
 msgid "db writer finished: stored %d hands (%d fails) in %.1f seconds"
 msgstr ""
 
-#: Database.py:2638
+#: Database.py:2649
 msgid "***Error sending finish:"
 msgstr ""
 
-#: Database.py:2956 Database.py:3006
+#: Database.py:2967 Database.py:3017
 msgid "%s error: %s"
 msgstr ""
 
-#: Database.py:3054
+#: Database.py:3065
 msgid "cards ="
 msgstr ""
 
-#: Database.py:3057
+#: Database.py:3068
 msgid "get_stats took: %4.3f seconds"
 msgstr ""
 
-#: Database.py:3059 HandHistoryConverter.py:41 fpdb.pyw:46
+#: Database.py:3070 HandHistoryConverter.py:41 fpdb.pyw:46
 msgid "Press ENTER to continue."
 msgstr ""
 
@@ -833,11 +833,11 @@ msgid "Global lock not available."
 msgstr ""
 
 #: GuiAutoImport.py:302
-msgid "Global lock released."
+msgid "Stopping Auto Import."
 msgstr ""
 
-#: GuiAutoImport.py:302
-msgid "Stopping Auto Import."
+#: GuiAutoImport.py:302 fpdb.pyw:1087
+msgid "Global lock released."
 msgstr ""
 
 #: GuiAutoImport.py:304
@@ -1204,7 +1204,7 @@ msgstr ""
 msgid "Graph generated in: %s"
 msgstr ""
 
-#: GuiGraphViewer.py:193
+#: GuiGraphViewer.py:193 GuiGraphViewer.py:221 GuiGraphViewer.py:234
 msgid "Hands"
 msgstr ""
 
@@ -1212,10 +1212,9 @@ msgstr ""
 msgid "No Data for Player(s) Found"
 msgstr ""
 
-#: GuiGraphViewer.py:221 GuiGraphViewer.py:234
-msgid ""
-"Hands: %d\n"
-"Profit: (%s): %.2f"
+#: GuiGraphViewer.py:221 GuiGraphViewer.py:234 GuiTourneyGraphViewer.py:203
+#: GuiTourneyGraphViewer.py:213
+msgid "Profit"
 msgstr ""
 
 #: GuiGraphViewer.py:222 GuiGraphViewer.py:236
@@ -1717,10 +1716,6 @@ msgstr ""
 msgid "Tournaments"
 msgstr ""
 
-#: GuiTourneyGraphViewer.py:203 GuiTourneyGraphViewer.py:213
-msgid "Profit"
-msgstr ""
-
 #: GuiTourneyGraphViewer.py:210
 msgid "Tournament Results"
 msgstr ""
@@ -1863,12 +1858,12 @@ msgstr ""
 msgid "invalid entry in tourney number - must enter numbers only"
 msgstr ""
 
-#: HUD_main.pyw:69
-msgid "using db name = %s"
-msgstr ""
-
 #: HUD_main.pyw:69 HUD_main.pyw:78 HUD_run_me.py:45
 msgid "HUD_main starting"
+msgstr ""
+
+#: HUD_main.pyw:69 HUD_run_me.py:51 TournamentTracker.py:306
+msgid "Using db name = %s"
 msgstr ""
 
 #: HUD_main.pyw:74
@@ -1908,8 +1903,9 @@ msgid "database error: skipping %s"
 msgstr ""
 
 #: HUD_main.pyw:253
-msgid "hud_dict[%s] was not found"
-msgstr ""
+#, fuzzy
+msgid "%s was not found"
+msgstr "文件%s无法找到"
 
 #: HUD_main.pyw:254
 msgid "will not send hand"
@@ -1939,10 +1935,6 @@ msgstr ""
 msgid "Error updating HUD for hand %s."
 msgstr ""
 
-#: HUD_run_me.py:51 TournamentTracker.py:306
-msgid "Using db name = %s"
-msgstr ""
-
 #: HUD_run_me.py:66
 msgid "HUD Main Window"
 msgstr ""
@@ -1956,7 +1948,7 @@ msgid "SB"
 msgstr ""
 
 #: Hand.py:151
-msgid "BUTTONPOS"
+msgid "BUTTON POS"
 msgstr ""
 
 #: Hand.py:152
@@ -1976,7 +1968,7 @@ msgid "HERO"
 msgstr ""
 
 #: Hand.py:156 TourneySummary.py:142
-msgid "MAXSEATS"
+msgid "MAX SEATS"
 msgstr ""
 
 #: Hand.py:157
@@ -1988,7 +1980,7 @@ msgid "MIXED"
 msgstr ""
 
 #: Hand.py:159
-msgid "LASTBET"
+msgid "LAST BET"
 msgstr ""
 
 #: Hand.py:160
@@ -3515,10 +3507,6 @@ msgstr ""
 msgid ""
 "\n"
 "Failed to get global lock, it is currently held by %s"
-msgstr ""
-
-#: fpdb.pyw:1087
-msgid "Global lock released.\n"
 msgstr ""
 
 #: fpdb.pyw:1094

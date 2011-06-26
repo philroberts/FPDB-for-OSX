@@ -66,7 +66,7 @@ class HUD_main(object):
     def __init__(self, db_name='fpdb'):
         self.db_name = db_name
         self.config = c
-        log.info(_("HUD_main starting") + ": " + _("using db name = %s") % (db_name))
+        log.info(_("HUD_main starting") + ": " + _("Using db name = %s") % (db_name))
 
         try:
             if not options.errorsToConsole:
@@ -250,7 +250,7 @@ class HUD_main(object):
                 try:
                     self.hud_dict[temp_key].stat_dict = stat_dict
                 except KeyError:    # HUD instance has been killed off, key is stale
-                    log.error(_('hud_dict[%s] was not found') % temp_key)
+                    log.error(_('%s was not found') % ("hud_dict[%s]" % temp_key))
                     log.error(_('will not send hand'))
                     # Unlocks table, copied from end of function
                     self.db_connection.connection.rollback()
