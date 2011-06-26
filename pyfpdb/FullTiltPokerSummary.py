@@ -60,6 +60,7 @@ class FullTiltPokerSummary(TourneySummary):
                         (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s+
                         (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+
                         (Buy-In:\s[%(LS)s](?P<BUYIN>[.\d]+)(\s\+\s[%(LS)s](?P<FEE>[.\d]+))?\s+)?
+                        (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[.\d]+)\s+)?
                         (Add-On:\s[%(LS)s](?P<ADDON>[.\d]+)\s+)?
                         (Rebuy:\s[%(LS)s](?P<REBUYAMT>[.\d]+)\s+)?
                         ((?P<PNAME>.{2,15})\sperformed\s(?P<PREBUYS>\d+)\sRebuys\s+)?
