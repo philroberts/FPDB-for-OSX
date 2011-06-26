@@ -55,12 +55,14 @@ class FullTiltPokerSummary(TourneySummary):
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
 
     re_TourneyInfo = re.compile(u"""
-                        \s.*
-                        (?P<TYPE>Tournament|Sit\s\&\sGo|\(Rebuy\)|)\s\((?P<TOURNO>[0-9]+)\)(\s+)?
+                        (\s*.*(?P<TYPE>Tournament|Sit\s\&\sGo|\(Rebuy\)|Matrix|Knockout|KO|Daily\sDollar|Madness|Freeroll|Heads-Up).*\s)
+                        \((?P<TOURNO>[0-9]+)\)
+                        (\s+)?(\sMatch\s\d\s)?
                         (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s+
                         (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+
                         (Buy-In:\s[%(LS)s](?P<BUYIN>[.\d]+)(\s\+\s[%(LS)s](?P<FEE>[.\d]+))?\s+)?
                         (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[.\d]+)\s+)?
+                        ((?P<PNAMEBOUNTIES>.{2,15})\sreceived\s\d+\sKnockout\sBounty\sAwards\s+)?
                         (Add-On:\s[%(LS)s](?P<ADDON>[.\d]+)\s+)?
                         (Rebuy:\s[%(LS)s](?P<REBUYAMT>[.\d]+)\s+)?
                         ((?P<PNAME>.{2,15})\sperformed\s(?P<PREBUYS>\d+)\sRebuys\s+)?
@@ -72,6 +74,7 @@ class FullTiltPokerSummary(TourneySummary):
                         (Total\sRebuys:\s(?P<REBUYS>\d+)\s+)?
                         ([%(LS)s]?(?P<ADDED>[.\d]+)\sadded\sto\sthe\sprize\spool\sby\sPokerStars\.com\s+)?
                         (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[%(NUM)s]+)\s+)?
+                        (Top\s\d+\sfinishers\sreceive\sentry\sto\stournament\s\d+\s+)?
                         (Target\sTournament\s.*)?
                         Tournament\sstarted:\s
                         (?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s??(?P<TZ>[A-Z]+)\s
