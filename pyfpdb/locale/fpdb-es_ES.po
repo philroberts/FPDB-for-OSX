@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-06-26 10:18+CEST\n"
+"POT-Creation-Date: 2011-06-26 11:15+CEST\n"
 "PO-Revision-Date: 2011-05-08 02:22+0000\n"
 "Last-Translator: steffen123 <steffen@schaumburger.info>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.net/projects/p/fpdb/"
@@ -776,7 +776,7 @@ msgstr ""
 msgid "Time between imports in seconds:"
 msgstr "Tiempo entre importaciones en segundos: "
 
-#: GuiAutoImport.py:122 GuiAutoImport.py:198
+#: GuiAutoImport.py:122 GuiAutoImport.py:198 GuiAutoImport.py:311
 msgid "Start _Auto Import"
 msgstr ""
 
@@ -816,32 +816,45 @@ msgstr "abriendo tubería al HUD"
 msgid "*** GuiAutoImport Error opening pipe:"
 msgstr ""
 
+#: GuiAutoImport.py:289
+#, fuzzy
+msgid "Add %s import directory %s"
+msgstr "Directorio creado '%s'"
+
 #: GuiAutoImport.py:297
-msgid ""
-"\n"
-"Auto Import aborted - global lock not available"
+#, fuzzy
+msgid "Auto Import aborted."
+msgstr "Auto importación Lista."
+
+#: GuiAutoImport.py:297
+#, fuzzy
+msgid "Global lock not available."
 msgstr ""
 "\n"
-"Auto importación abortada - lock global no disponible"
+"lock global obtenido ..."
 
 #: GuiAutoImport.py:302
-msgid ""
-"\n"
-"Stopping Auto Import - global lock released."
+#, fuzzy
+msgid "Global lock released."
 msgstr ""
 "\n"
-"Parando Auto importación - lock global liberado."
+"lock global obtenido ..."
+
+#: GuiAutoImport.py:302
+#, fuzzy
+msgid "Stopping Auto Import."
+msgstr "  Empezar _Auto Impotación   "
 
 #: GuiAutoImport.py:304
-msgid ""
-"\n"
-" * Stop Auto Import: HUD already terminated"
+#, fuzzy
+msgid "HUD already terminated."
 msgstr ""
 "\n"
 " * Parar Auto Import: el HUD ya está parado"
 
-#: GuiAutoImport.py:311
-msgid "  Start _Auto Import  "
+#: GuiAutoImport.py:304
+#, fuzzy
+msgid "Stop Auto Import"
 msgstr "  Empezar _Auto Impotación   "
 
 #: GuiAutoImport.py:324
@@ -2855,20 +2868,12 @@ msgstr "Editar"
 msgid "Rebuy"
 msgstr ""
 
-#: TournamentTracker.py:263
-msgid "db error: skipping "
-msgstr ""
-
 #: TournamentTracker.py:265
-msgid "Database error %s in hand %d. Skipping.\n"
-msgstr ""
-
-#: TournamentTracker.py:274
-msgid "could not find tournament: skipping"
+msgid "Database error %s in hand %d. Skipping."
 msgstr ""
 
 #: TournamentTracker.py:275
-msgid "Could not find tournament %d in hand %d. Skipping.\n"
+msgid "Could not find tournament %d in hand %d. Skipping."
 msgstr ""
 
 #: TournamentTracker.py:298
@@ -3248,7 +3253,7 @@ msgstr "Por favor, confirme que usted quiere (re-)crear las tablas."
 #: fpdb.pyw:547
 msgid ""
 " If there already are tables in the database %s on %s they will be deleted "
-"and you will have to re-import your histories.\n"
+"and you will have to re-import your histories."
 msgstr ""
 
 #: fpdb.pyw:548
@@ -3809,6 +3814,20 @@ msgstr ""
 msgid "No gtk directories found in your path."
 msgstr ""
 
+#~ msgid ""
+#~ "\n"
+#~ "Auto Import aborted - global lock not available"
+#~ msgstr ""
+#~ "\n"
+#~ "Auto importación abortada - lock global no disponible"
+
+#~ msgid ""
+#~ "\n"
+#~ "Stopping Auto Import - global lock released."
+#~ msgstr ""
+#~ "\n"
+#~ "Parando Auto importación - lock global liberado."
+
 #~ msgid "addShownCards %s hole=%s all=%s"
 #~ msgstr "addShownCards %s privadas=%s todas=%s"
 
@@ -3828,12 +3847,6 @@ msgstr ""
 
 #~ msgid "Number of Hands: "
 #~ msgstr "Número de manos:"
-
-#, fuzzy
-#~ msgid "Global lock taken"
-#~ msgstr ""
-#~ "\n"
-#~ "lock global obtenido ..."
 
 #~ msgid "Importing..."
 #~ msgstr "Importando..."

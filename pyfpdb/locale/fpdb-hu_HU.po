@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2011-06-26 10:18+CEST\n"
+"POT-Creation-Date: 2011-06-26 11:15+CEST\n"
 "PO-Revision-Date: 2011-05-09 15:33+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -784,7 +784,7 @@ msgstr "Az értelmezett helyezések nem egyeznek : %s / %s"
 msgid "Time between imports in seconds:"
 msgstr "Importálások közti idő (mp):"
 
-#: GuiAutoImport.py:122 GuiAutoImport.py:198
+#: GuiAutoImport.py:122 GuiAutoImport.py:198 GuiAutoImport.py:311
 msgid "Start _Auto Import"
 msgstr "_Auto Import indítása"
 
@@ -824,33 +824,44 @@ msgstr "cső nyitása a HUD-hoz"
 msgid "*** GuiAutoImport Error opening pipe:"
 msgstr "*** GuiAutoImport Hiba a cső nyitásakor:"
 
+#: GuiAutoImport.py:289
+#, fuzzy
+msgid "Add %s import directory %s"
+msgstr "'%s' könyvtár létrehozva"
+
 #: GuiAutoImport.py:297
-msgid ""
-"\n"
-"Auto Import aborted - global lock not available"
+#, fuzzy
+msgid "Auto Import aborted."
+msgstr "Auto Import kész."
+
+#: GuiAutoImport.py:297
+#, fuzzy
+msgid "Global lock not available."
 msgstr ""
 "\n"
-"Auto Import megszakítva - nem elérhető a globális zárolás"
+"Globális zárolás OK..."
 
 #: GuiAutoImport.py:302
-msgid ""
-"\n"
-"Stopping Auto Import - global lock released."
-msgstr ""
-"\n"
-"Auto Import leállítása - globális zárolás feloldva."
+#, fuzzy
+msgid "Global lock released."
+msgstr "Globális zárolás feloldva.\n"
+
+#: GuiAutoImport.py:302
+#, fuzzy
+msgid "Stopping Auto Import."
+msgstr "_Auto Import leállítása"
 
 #: GuiAutoImport.py:304
-msgid ""
-"\n"
-" * Stop Auto Import: HUD already terminated"
+#, fuzzy
+msgid "HUD already terminated."
 msgstr ""
 "\n"
 " * Auto Import megállítása: A HUD már nem fut"
 
-#: GuiAutoImport.py:311
-msgid "  Start _Auto Import  "
-msgstr "  _Auto Import indítása  "
+#: GuiAutoImport.py:304
+#, fuzzy
+msgid "Stop Auto Import"
+msgstr "_Auto Import leállítása"
 
 #: GuiAutoImport.py:324
 msgid "%s auto-import:"
@@ -2900,20 +2911,14 @@ msgstr "Szerkeszt"
 msgid "Rebuy"
 msgstr "Rebuy"
 
-#: TournamentTracker.py:263
-msgid "db error: skipping "
-msgstr "adatbázis hiba: kihagyásra kerül a(z)"
-
 #: TournamentTracker.py:265
-msgid "Database error %s in hand %d. Skipping.\n"
+#, fuzzy
+msgid "Database error %s in hand %d. Skipping."
 msgstr "%s adatbázishiba a %d leosztásban. Kihagyás.\n"
 
-#: TournamentTracker.py:274
-msgid "could not find tournament: skipping"
-msgstr "nem található a verseny: kihagyás"
-
 #: TournamentTracker.py:275
-msgid "Could not find tournament %d in hand %d. Skipping.\n"
+#, fuzzy
+msgid "Could not find tournament %d in hand %d. Skipping."
 msgstr "Nem található a %d versenyazonosító a %d leosztásban. Kihagyás.\n"
 
 #: TournamentTracker.py:298
@@ -3311,9 +3316,10 @@ msgstr ""
 "Kérlek erősítsd meg, hogy valóban (újra) létre akarod hozni a táblákat."
 
 #: fpdb.pyw:547
+#, fuzzy
 msgid ""
 " If there already are tables in the database %s on %s they will be deleted "
-"and you will have to re-import your histories.\n"
+"and you will have to re-import your histories."
 msgstr ""
 " Ha már vannak táblák a(z) %s adatbázisban a(z) %s kiszolgálón, akkor azok "
 "törölve lesznek, és újra kell majd importálnod a leosztástörténeteket.\n"
@@ -3950,6 +3956,29 @@ msgstr ""
 msgid "No gtk directories found in your path."
 msgstr ""
 
+#~ msgid ""
+#~ "\n"
+#~ "Auto Import aborted - global lock not available"
+#~ msgstr ""
+#~ "\n"
+#~ "Auto Import megszakítva - nem elérhető a globális zárolás"
+
+#~ msgid ""
+#~ "\n"
+#~ "Stopping Auto Import - global lock released."
+#~ msgstr ""
+#~ "\n"
+#~ "Auto Import leállítása - globális zárolás feloldva."
+
+#~ msgid "  Start _Auto Import  "
+#~ msgstr "  _Auto Import indítása  "
+
+#~ msgid "db error: skipping "
+#~ msgstr "adatbázis hiba: kihagyásra kerül a(z)"
+
+#~ msgid "could not find tournament: skipping"
+#~ msgstr "nem található a verseny: kihagyás"
+
 #~ msgid "addShownCards %s hole=%s all=%s"
 #~ msgstr "addShownCards %s játékos kézben=%s mind=%s"
 
@@ -3997,12 +4026,6 @@ msgstr ""
 #~ msgstr ""
 #~ "\n"
 #~ "Versenyek száma: "
-
-#, fuzzy
-#~ msgid "Global lock taken"
-#~ msgstr ""
-#~ "\n"
-#~ "Globális zárolás OK..."
 
 #~ msgid "Importing..."
 #~ msgstr "Importálás..."

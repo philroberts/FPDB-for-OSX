@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-06-26 10:18+CEST\n"
+"POT-Creation-Date: 2011-06-26 11:15+CEST\n"
 "PO-Revision-Date: 2011-05-13 08:55+0000\n"
 "Last-Translator: jax <jax@netmagnet.ro>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.net/projects/p/fpdb/"
@@ -784,7 +784,7 @@ msgstr "Analiza pozitiei finale e incoerenta: %s / %s"
 msgid "Time between imports in seconds:"
 msgstr "Timpul dintre importuri in secunde:"
 
-#: GuiAutoImport.py:122 GuiAutoImport.py:198
+#: GuiAutoImport.py:122 GuiAutoImport.py:198 GuiAutoImport.py:311
 msgid "Start _Auto Import"
 msgstr "Pornire _Auto Importare"
 
@@ -824,33 +824,44 @@ msgstr "deschidere legatura spre HUD"
 msgid "*** GuiAutoImport Error opening pipe:"
 msgstr "*** GuiAutoImport Eroare la deschiderea legaturii:"
 
+#: GuiAutoImport.py:289
+#, fuzzy
+msgid "Add %s import directory %s"
+msgstr "Creare director '%s'"
+
 #: GuiAutoImport.py:297
-msgid ""
-"\n"
-"Auto Import aborted - global lock not available"
+#, fuzzy
+msgid "Auto Import aborted."
+msgstr "Importul automat e pregatit."
+
+#: GuiAutoImport.py:297
+#, fuzzy
+msgid "Global lock not available."
 msgstr ""
 "\n"
-"Importarea automata oprita - siguranta generala nu e disponibila"
+"Siguranta generala luata..."
 
 #: GuiAutoImport.py:302
-msgid ""
-"\n"
-"Stopping Auto Import - global lock released."
-msgstr ""
-"\n"
-"Oprire importare automata - siguranta generala deblocata."
+#, fuzzy
+msgid "Global lock released."
+msgstr "Siguranta globala eliberata.\n"
+
+#: GuiAutoImport.py:302
+#, fuzzy
+msgid "Stopping Auto Import."
+msgstr "Opreste _Auto Import"
 
 #: GuiAutoImport.py:304
-msgid ""
-"\n"
-" * Stop Auto Import: HUD already terminated"
+#, fuzzy
+msgid "HUD already terminated."
 msgstr ""
 "\n"
 "* Oprire importare automata: HUD deja oprit"
 
-#: GuiAutoImport.py:311
-msgid "  Start _Auto Import  "
-msgstr "  Pornire _Auto Import"
+#: GuiAutoImport.py:304
+#, fuzzy
+msgid "Stop Auto Import"
+msgstr "Opreste _Auto Import"
 
 #: GuiAutoImport.py:324
 msgid "%s auto-import:"
@@ -2900,20 +2911,14 @@ msgstr "Editare"
 msgid "Rebuy"
 msgstr "Rebuy"
 
-#: TournamentTracker.py:263
-msgid "db error: skipping "
-msgstr "eroare bd: ignorare"
-
 #: TournamentTracker.py:265
-msgid "Database error %s in hand %d. Skipping.\n"
+#, fuzzy
+msgid "Database error %s in hand %d. Skipping."
 msgstr "Eroare a bazei de date %s in mina %d. Ignorare.\n"
 
-#: TournamentTracker.py:274
-msgid "could not find tournament: skipping"
-msgstr "nu se gaseste turneul: ignorare"
-
 #: TournamentTracker.py:275
-msgid "Could not find tournament %d in hand %d. Skipping.\n"
+#, fuzzy
+msgid "Could not find tournament %d in hand %d. Skipping."
 msgstr "Nu se poate gasi turneul %d in mina %d. Ignorare.\n"
 
 #: TournamentTracker.py:298
@@ -3313,9 +3318,10 @@ msgid "Please confirm that you want to (re-)create the tables."
 msgstr "Rugam confirmati (re)crearea tabelelor."
 
 #: fpdb.pyw:547
+#, fuzzy
 msgid ""
 " If there already are tables in the database %s on %s they will be deleted "
-"and you will have to re-import your histories.\n"
+"and you will have to re-import your histories."
 msgstr ""
 " Daca sunt deja tabele in baza de date %s pe %s ele vor fi sterse si va "
 "trebui sa va reimportati istoricul.\n"
@@ -3942,6 +3948,29 @@ msgstr ""
 msgid "No gtk directories found in your path."
 msgstr ""
 
+#~ msgid ""
+#~ "\n"
+#~ "Auto Import aborted - global lock not available"
+#~ msgstr ""
+#~ "\n"
+#~ "Importarea automata oprita - siguranta generala nu e disponibila"
+
+#~ msgid ""
+#~ "\n"
+#~ "Stopping Auto Import - global lock released."
+#~ msgstr ""
+#~ "\n"
+#~ "Oprire importare automata - siguranta generala deblocata."
+
+#~ msgid "  Start _Auto Import  "
+#~ msgstr "  Pornire _Auto Import"
+
+#~ msgid "db error: skipping "
+#~ msgstr "eroare bd: ignorare"
+
+#~ msgid "could not find tournament: skipping"
+#~ msgstr "nu se gaseste turneul: ignorare"
+
 #~ msgid "addShownCards %s hole=%s all=%s"
 #~ msgstr "addShownCards %s proprie=%s toate=%s"
 
@@ -3980,12 +4009,6 @@ msgstr ""
 #~ msgstr ""
 #~ "\n"
 #~ "Numarul Turneelor:"
-
-#, fuzzy
-#~ msgid "Global lock taken"
-#~ msgstr ""
-#~ "\n"
-#~ "Siguranta generala luata..."
 
 #~ msgid "Importing..."
 #~ msgstr "Importare..."

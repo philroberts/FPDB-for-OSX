@@ -281,12 +281,12 @@ class GuiAutoImport (threading.Thread):
                             self.pipe_to_hud = subprocess.Popen(command, bufsize=bs, stdin=subprocess.PIPE, universal_newlines=True)
                     except:
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                        #self.addText( "\n*** GuiAutoImport Error opening pipe: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1]))
+                        #self.addText( _("\n*** GuiAutoImport Error opening pipe: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])))
                         self.addText("\n" + _("*** GuiAutoImport Error opening pipe:") + " " + traceback.format_exc() )
                     else:
                         for site in self.input_settings:
                             self.importer.addImportDirectory(self.input_settings[site][0], True, site, self.input_settings[site][1])
-                            self.addText("\n * Add "+ site+ " import directory "+ str(self.input_settings[site][0]))
+                            self.addText("\n * " + _("Add %s import directory %s") % (site, str(self.input_settings[site][0])))
                             self.do_import()
                     interval = int(self.intervalEntry.get_text())
                     if self.importtimer != 0:
@@ -294,21 +294,21 @@ class GuiAutoImport (threading.Thread):
                     self.importtimer = gobject.timeout_add(interval * 1000, self.do_import)
 
             else:
-                self.addText(_("\nAuto Import aborted - global lock not available"))
+                self.addText("\n" + _("Auto Import aborted.") + _("Global lock not available."))
         else: # toggled off
             gobject.source_remove(self.importtimer)
             self.settings['global_lock'].release()
             self.doAutoImportBool = False # do_import will return this and stop the gobject callback timer
-            self.addText(_("\nStopping Auto Import - global lock released."))
+            self.addText("\n" + _("Stopping Auto Import.") + _("Global lock released."))
             if self.pipe_to_hud.poll() is not None:
-                self.addText(_("\n * Stop Auto Import: HUD already terminated"))
+                self.addText("\n * " + _("Stop Auto Import") + ": " + _("HUD already terminated."))
             else:
                 self.pipe_to_hud.terminate()
                 #print >>self.pipe_to_hud.stdin, "\n"
                 # self.pipe_to_hud.communicate('\n') # waits for process to terminate
             self.pipe_to_hud = None
             self.intervalEntry.set_sensitive(True)
-            self.startButton.set_label(_(u'  Start _Auto Import  '))
+            self.startButton.set_label(_(u'Start _Auto Import'))
 
     #end def GuiAutoImport.startClicked
 

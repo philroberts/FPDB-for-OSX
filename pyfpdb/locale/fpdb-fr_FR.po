@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-06-26 10:18+CEST\n"
+"POT-Creation-Date: 2011-06-26 11:15+CEST\n"
 "PO-Revision-Date: 2011-05-14 00:18+0000\n"
 "Last-Translator: PassThePeas <stephane.alessio@gmail.com>\n"
 "Language-Team: French (France) (http://www.transifex.net/projects/p/fpdb/"
@@ -787,7 +787,7 @@ msgstr "Rang de fin parsé incohérent : %s / %s"
 msgid "Time between imports in seconds:"
 msgstr "Temps entre les importations en secondes"
 
-#: GuiAutoImport.py:122 GuiAutoImport.py:198
+#: GuiAutoImport.py:122 GuiAutoImport.py:198 GuiAutoImport.py:311
 msgid "Start _Auto Import"
 msgstr "Démarrage de l'_Auto Import"
 
@@ -827,33 +827,44 @@ msgstr "ouverture du flux vers le HUD"
 msgid "*** GuiAutoImport Error opening pipe:"
 msgstr "*** Erreur de GuiAutoImport lors de l'ouverture du pipe:"
 
+#: GuiAutoImport.py:289
+#, fuzzy
+msgid "Add %s import directory %s"
+msgstr "Répertoire créé '%s'"
+
 #: GuiAutoImport.py:297
-msgid ""
-"\n"
-"Auto Import aborted - global lock not available"
+#, fuzzy
+msgid "Auto Import aborted."
+msgstr "Auto-importation prête."
+
+#: GuiAutoImport.py:297
+#, fuzzy
+msgid "Global lock not available."
 msgstr ""
 "\n"
-"Auto-importation annulée - verrou global non disponible"
+"Verrou global obtenu..."
 
 #: GuiAutoImport.py:302
-msgid ""
-"\n"
-"Stopping Auto Import - global lock released."
-msgstr ""
-"\n"
-"Arrêt de l'auto-importation - verrou global libéré."
+#, fuzzy
+msgid "Global lock released."
+msgstr "Verrou global libéré.\n"
+
+#: GuiAutoImport.py:302
+#, fuzzy
+msgid "Stopping Auto Import."
+msgstr "Arrêter l'_Auto Import"
 
 #: GuiAutoImport.py:304
-msgid ""
-"\n"
-" * Stop Auto Import: HUD already terminated"
+#, fuzzy
+msgid "HUD already terminated."
 msgstr ""
 "\n"
 " * Arrêter Auto-importation: HUD déjà interrompu."
 
-#: GuiAutoImport.py:311
-msgid "  Start _Auto Import  "
-msgstr "  Démarrer _Auto-importation  "
+#: GuiAutoImport.py:304
+#, fuzzy
+msgid "Stop Auto Import"
+msgstr "Arrêter l'_Auto Import"
 
 #: GuiAutoImport.py:324
 msgid "%s auto-import:"
@@ -2906,20 +2917,14 @@ msgstr "Édition"
 msgid "Rebuy"
 msgstr "Recave"
 
-#: TournamentTracker.py:263
-msgid "db error: skipping "
-msgstr "erreur bdd: ignore "
-
 #: TournamentTracker.py:265
-msgid "Database error %s in hand %d. Skipping.\n"
+#, fuzzy
+msgid "Database error %s in hand %d. Skipping."
 msgstr "Erreur de base de données %s dans la main %d. Ignorée.\n"
 
-#: TournamentTracker.py:274
-msgid "could not find tournament: skipping"
-msgstr "tournoi non trouvé: ignore"
-
 #: TournamentTracker.py:275
-msgid "Could not find tournament %d in hand %d. Skipping.\n"
+#, fuzzy
+msgid "Could not find tournament %d in hand %d. Skipping."
 msgstr "Impossible de trouver le tournoi %d dans la main %d. Ignoré.\n"
 
 #: TournamentTracker.py:298
@@ -3321,9 +3326,10 @@ msgid "Please confirm that you want to (re-)create the tables."
 msgstr "Veuillez confirmer la reconstruction des tables."
 
 #: fpdb.pyw:547
+#, fuzzy
 msgid ""
 " If there already are tables in the database %s on %s they will be deleted "
-"and you will have to re-import your histories.\n"
+"and you will have to re-import your histories."
 msgstr ""
 " S'il y a déjà des tables dans la base de données %s de %s elles seront "
 "détruites et vous devrez réimporter votre historique.\n"
@@ -3947,6 +3953,29 @@ msgstr ""
 msgid "No gtk directories found in your path."
 msgstr ""
 
+#~ msgid ""
+#~ "\n"
+#~ "Auto Import aborted - global lock not available"
+#~ msgstr ""
+#~ "\n"
+#~ "Auto-importation annulée - verrou global non disponible"
+
+#~ msgid ""
+#~ "\n"
+#~ "Stopping Auto Import - global lock released."
+#~ msgstr ""
+#~ "\n"
+#~ "Arrêt de l'auto-importation - verrou global libéré."
+
+#~ msgid "  Start _Auto Import  "
+#~ msgstr "  Démarrer _Auto-importation  "
+
+#~ msgid "db error: skipping "
+#~ msgstr "erreur bdd: ignore "
+
+#~ msgid "could not find tournament: skipping"
+#~ msgstr "tournoi non trouvé: ignore"
+
 #~ msgid "addShownCards %s hole=%s all=%s"
 #~ msgstr "addShownCards %s privatives=%s comunesl=%s"
 
@@ -3979,12 +4008,6 @@ msgstr ""
 #~ msgstr ""
 #~ "\n"
 #~ "Nombres de Tournois: "
-
-#, fuzzy
-#~ msgid "Global lock taken"
-#~ msgstr ""
-#~ "\n"
-#~ "Verrou global obtenu..."
 
 #~ msgid "Importing..."
 #~ msgstr "Importation en cours..."
