@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-06-26 09:39+CEST\n"
+"POT-Creation-Date: 2011-06-26 10:18+CEST\n"
 "PO-Revision-Date: 2011-05-08 02:22+0000\n"
 "Last-Translator: steffen123 <steffen@schaumburger.info>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.net/projects/p/fpdb/"
@@ -2205,10 +2205,6 @@ msgstr "%s %s se tira"
 msgid "%s %s checks"
 msgstr "%s %s pasa"
 
-#: Hand.py:738
-msgid "addShownCards %s hole=%s all=%s"
-msgstr "addShownCards %s privadas=%s todas=%s"
-
 #: Hand.py:852
 msgid ""
 "*** ERROR - HAND: calling writeGameLine with unexpected STARTTIME value, "
@@ -2515,7 +2511,8 @@ msgid "Error finding actual seat.\n"
 msgstr "Error mostrado asiento actual.\n"
 
 #: Hud.py:633
-msgid "Creating hud from hand "
+#, fuzzy
+msgid "Creating hud from hand %s"
 msgstr "Creando HUD para mano "
 
 #: Hud.py:685
@@ -2578,10 +2575,12 @@ msgid "readBlinds in noSB exception - no SB created"
 msgstr "readBlinds en noSB exception  - no se ha creado SB(ciega pequeña)"
 
 #: Options.py:31
-msgid "If passed error output will go to the console rather than ."
+#, fuzzy
+msgid "If passed error output will go to the console rather than the log file."
 msgstr "Si se indica, la salida error irá a la consola en vez de a ."
 
 #: Options.py:34
+#, fuzzy
 msgid "Overrides the default database name"
 msgstr "reemplaza la base de datos por defecto"
 
@@ -2633,7 +2632,7 @@ msgid "X location to open window"
 msgstr ""
 
 #: Options.py:70
-msgid "Y location to open Window"
+msgid "Y location to open window"
 msgstr ""
 
 #: Options.py:72
@@ -3312,10 +3311,6 @@ msgstr ""
 msgid "Please select which sites you play on and enter your usernames."
 msgstr ""
 
-#: fpdb.pyw:711
-msgid " "
-msgstr ""
-
 #: fpdb.pyw:714
 msgid "History Path"
 msgstr ""
@@ -3680,7 +3675,7 @@ msgstr ""
 
 #: fpdb.pyw:1400
 #, fuzzy
-msgid "Unable to find site  '%s'"
+msgid "Unable to find site '%s'"
 msgstr "No ha sido posible reconocer el tipo de partida de: '%s'"
 
 #: fpdb_import.py:51
@@ -3718,7 +3713,7 @@ msgid "waiting for writers to finish ..."
 msgstr ""
 
 #: fpdb_import.py:289
-msgid "                              ... writers finished"
+msgid "... writers finished"
 msgstr ""
 
 #: fpdb_import.py:295
@@ -3803,17 +3798,19 @@ msgid "result: %s expecting: 0.666666 (result-expecting ~= 0.0): %s"
 msgstr ""
 
 #: windows_make_bats.py:30
-msgid ""
-"\n"
-"This script is only for windows\n"
+msgid "This script is only for Windows."
 msgstr ""
 
 #: windows_make_bats.py:57
-msgid ""
-"\n"
-"no gtk directories found in your path - install gtk or edit the path "
-"manually\n"
+msgid "Install gtk or edit the path manually."
 msgstr ""
+
+#: windows_make_bats.py:57
+msgid "No gtk directories found in your path."
+msgstr ""
+
+#~ msgid "addShownCards %s hole=%s all=%s"
+#~ msgstr "addShownCards %s privadas=%s todas=%s"
 
 #~ msgid ""
 #~ "\n"

@@ -735,7 +735,7 @@ Add a raise on [street] by [player] to [amountTo]
 For when a player shows cards for any reason (for showdown or out of choice).
 Card ranks will be uppercased
 """
-        log.debug(_("addShownCards %s hole=%s all=%s") % (player, cards,  holeandboard))
+        log.debug("addShownCards %s hole=%s all=%s" % (player, cards,  holeandboard))
         if cards is not None:
             self.addHoleCards(cards,player,shown, mucked)
             if string is not None:

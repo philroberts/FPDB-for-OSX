@@ -630,7 +630,7 @@ class Hud:
 
         self.stat_dict = stat_dict
         self.cards = cards
-        log.info(_('Creating hud from hand ')+str(hand))
+        log.info(_('Creating hud from hand %s') % str(hand))
         adj = self.adj_seats(hand, config)
         loc = self.config.get_locations(self.table.site, self.max)
         if loc is None and self.max != 10:

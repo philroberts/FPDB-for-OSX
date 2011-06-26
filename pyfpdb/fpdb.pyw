@@ -708,7 +708,7 @@ class fpdb:
             except KeyError:
                 pass
         
-        label = gtk.Label(_(" "))
+        label = gtk.Label(" ")
         dia.vbox.add(label)
         
         column_headers=[_("Site"), _("Screen Name"), _("History Path"), _("Detect")] #TODO , _("Summary Path"), _("HUD")] 
@@ -1397,7 +1397,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
             except KeyError, exc:
                 log.warning("site %s missing from db" % site)
                 dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_OK), message_format=_("Unknown Site"))
-                diastring = _("Warning:") +" " + _("Unable to find site  '%s'") % site
+                diastring = _("Warning:") +" " + _("Unable to find site '%s'") % site
                 dia.format_secondary_text(diastring)
                 dia.run()
                 dia.destroy()

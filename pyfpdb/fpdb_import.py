@@ -286,7 +286,7 @@ class Importer:
                     while gtk.events_pending(): # see http://faq.pygtk.org/index.py?req=index for more hints (3.7)
                         gtk.main_iteration(False)
                     sleep(0.5)
-                print _("                              ... writers finished")
+                print _("... writers finished")
 
         # Tidying up after import
         if self.settings['dropIndexes'] == 'drop':

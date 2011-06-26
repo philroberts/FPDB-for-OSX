@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-06-26 09:39+CEST\n"
+"POT-Creation-Date: 2011-06-26 10:18+CEST\n"
 "PO-Revision-Date: 2011-05-14 00:18+0000\n"
 "Last-Translator: PassThePeas <stephane.alessio@gmail.com>\n"
 "Language-Team: French (France) (http://www.transifex.net/projects/p/fpdb/"
@@ -2245,10 +2245,6 @@ msgstr "%s %s passe"
 msgid "%s %s checks"
 msgstr "%s %s parole"
 
-#: Hand.py:738
-msgid "addShownCards %s hole=%s all=%s"
-msgstr "addShownCards %s privatives=%s comunesl=%s"
-
 #: Hand.py:852
 msgid ""
 "*** ERROR - HAND: calling writeGameLine with unexpected STARTTIME value, "
@@ -2557,7 +2553,8 @@ msgid "Error finding actual seat.\n"
 msgstr "Problème pour trouver le siège courant.\n"
 
 #: Hud.py:633
-msgid "Creating hud from hand "
+#, fuzzy
+msgid "Creating hud from hand %s"
 msgstr "Création du hud depuis la main"
 
 #: Hud.py:685
@@ -2621,11 +2618,13 @@ msgid "readBlinds in noSB exception - no SB created"
 msgstr "exception readBlinds dans noSB - pas de SB créée"
 
 #: Options.py:31
-msgid "If passed error output will go to the console rather than ."
+#, fuzzy
+msgid "If passed error output will go to the console rather than the log file."
 msgstr ""
 "Si une erreur est transmise, la sortie ira vers la console plutôt que vers ."
 
 #: Options.py:34
+#, fuzzy
 msgid "Overrides the default database name"
 msgstr "Outrepasse le nom de base de données par défaut"
 
@@ -2680,8 +2679,9 @@ msgid "X location to open window"
 msgstr "Position d'ouverture en X de la fenêtre"
 
 #: Options.py:70
-msgid "Y location to open Window"
-msgstr "Position d'ouverture en Y de la fenêtre"
+#, fuzzy
+msgid "Y location to open window"
+msgstr "Position d'ouverture en X de la fenêtre"
 
 #: Options.py:72
 msgid "Auto-start Auto-import"
@@ -3388,10 +3388,6 @@ msgstr ""
 msgid "Please select which sites you play on and enter your usernames."
 msgstr ""
 
-#: fpdb.pyw:711
-msgid " "
-msgstr ""
-
 #: fpdb.pyw:714
 msgid "History Path"
 msgstr ""
@@ -3793,8 +3789,9 @@ msgid "Unknown Site"
 msgstr ""
 
 #: fpdb.pyw:1400
-msgid "Unable to find site  '%s'"
-msgstr ""
+#, fuzzy
+msgid "Unable to find site '%s'"
+msgstr "Impossible de reconnaître les informations sur la main depuis: '%s'"
 
 #: fpdb_import.py:51
 msgid "Import database module: MySQLdb not found"
@@ -3833,8 +3830,9 @@ msgid "waiting for writers to finish ..."
 msgstr "En attente de finition de la sauvegarde..."
 
 #: fpdb_import.py:289
-msgid "                              ... writers finished"
-msgstr "                              ... sauvegardes terminées"
+#, fuzzy
+msgid "... writers finished"
+msgstr "Les sauvegardes sont déjà finies"
 
 #: fpdb_import.py:295
 msgid "No need to rebuild indexes."
@@ -3931,22 +3929,32 @@ msgid "result: %s expecting: 0.666666 (result-expecting ~= 0.0): %s"
 msgstr "resultat : %s attendu: 0.666666 (resultat-attendu ~= 0.0): %s"
 
 #: windows_make_bats.py:30
-msgid ""
-"\n"
-"This script is only for windows\n"
+#, fuzzy
+msgid "This script is only for Windows."
 msgstr ""
 "\n"
 "Ce script est seulement pour Windows\n"
 
 #: windows_make_bats.py:57
-msgid ""
-"\n"
-"no gtk directories found in your path - install gtk or edit the path "
-"manually\n"
+#, fuzzy
+msgid "Install gtk or edit the path manually."
 msgstr ""
 "\n"
 "pas de répertoire gtk trouvé à cet endroit - installez gtk ou modifiez le "
 "chemin manuellement\n"
+
+#: windows_make_bats.py:57
+msgid "No gtk directories found in your path."
+msgstr ""
+
+#~ msgid "addShownCards %s hole=%s all=%s"
+#~ msgstr "addShownCards %s privatives=%s comunesl=%s"
+
+#~ msgid "                              ... writers finished"
+#~ msgstr "                              ... sauvegardes terminées"
+
+#~ msgid "Y location to open Window"
+#~ msgstr "Position d'ouverture en Y de la fenêtre"
 
 #~ msgid ""
 #~ "\n"

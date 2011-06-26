@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2011-06-26 09:39+CEST\n"
+"POT-Creation-Date: 2011-06-26 10:18+CEST\n"
 "PO-Revision-Date: 2011-05-09 15:33+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -2244,10 +2244,6 @@ msgstr "%s utcán %s játékos dob"
 msgid "%s %s checks"
 msgstr "%s utcán %s játékos passzol"
 
-#: Hand.py:738
-msgid "addShownCards %s hole=%s all=%s"
-msgstr "addShownCards %s játékos kézben=%s mind=%s"
-
 #: Hand.py:852
 msgid ""
 "*** ERROR - HAND: calling writeGameLine with unexpected STARTTIME value, "
@@ -2556,7 +2552,8 @@ msgid "Error finding actual seat.\n"
 msgstr "Hiba az aktuális szék keresése közben.\n"
 
 #: Hud.py:633
-msgid "Creating hud from hand "
+#, fuzzy
+msgid "Creating hud from hand %s"
 msgstr "HUD készítése ebből a leosztásból: "
 
 #: Hud.py:685
@@ -2618,10 +2615,12 @@ msgid "readBlinds in noSB exception - no SB created"
 msgstr "noSB-n belüli readBlinds hiba - kisvak nem lett létrehozva"
 
 #: Options.py:31
-msgid "If passed error output will go to the console rather than ."
+#, fuzzy
+msgid "If passed error output will go to the console rather than the log file."
 msgstr "Ha be van állítva, akkor a hibakimenet a konzolra lesz irányítva."
 
 #: Options.py:34
+#, fuzzy
 msgid "Overrides the default database name"
 msgstr "Felülbírálja az alapértelmezett adatbázis-nevet"
 
@@ -2673,8 +2672,9 @@ msgid "X location to open window"
 msgstr "A megnyitandó ablak X koordinátája"
 
 #: Options.py:70
-msgid "Y location to open Window"
-msgstr "A megnyitandó ablak Y koordinátája"
+#, fuzzy
+msgid "Y location to open window"
+msgstr "A megnyitandó ablak X koordinátája"
 
 #: Options.py:72
 msgid "Auto-start Auto-import"
@@ -3382,10 +3382,6 @@ msgstr ""
 "Kérlek válaszd ki, hogy melyik termekben játszol, és írd be a "
 "felhasználóneveidet."
 
-#: fpdb.pyw:711
-msgid " "
-msgstr " "
-
 #: fpdb.pyw:714
 msgid "History Path"
 msgstr "Leosztástörténetek útvonala"
@@ -3795,7 +3791,8 @@ msgid "Unknown Site"
 msgstr "Ismeretlen terem"
 
 #: fpdb.pyw:1400
-msgid "Unable to find site  '%s'"
+#, fuzzy
+msgid "Unable to find site '%s'"
 msgstr "Nem sikerült megtalálni a(z) '%s' termet"
 
 #: fpdb_import.py:51
@@ -3835,8 +3832,9 @@ msgid "waiting for writers to finish ..."
 msgstr "várakozás az írások befejeződésére ..."
 
 #: fpdb_import.py:289
-msgid "                              ... writers finished"
-msgstr "                              ... az írások befejeződtek"
+#, fuzzy
+msgid "... writers finished"
+msgstr "az írások már befejeződtek"
 
 #: fpdb_import.py:295
 msgid "No need to rebuild indexes."
@@ -3934,22 +3932,35 @@ msgid "result: %s expecting: 0.666666 (result-expecting ~= 0.0): %s"
 msgstr "eredmény: %s várt érték: 0.666666 (eredmény - várt érték ~= 0.0): %s"
 
 #: windows_make_bats.py:30
-msgid ""
-"\n"
-"This script is only for windows\n"
+#, fuzzy
+msgid "This script is only for Windows."
 msgstr ""
 "\n"
 "Ez a szkript csak windowson használható\n"
 
 #: windows_make_bats.py:57
-msgid ""
-"\n"
-"no gtk directories found in your path - install gtk or edit the path "
-"manually\n"
+#, fuzzy
+msgid "Install gtk or edit the path manually."
 msgstr ""
 "\n"
 "Nem találhatóak a GTK könyvtárak az útvonaladban - telepítsd a GTK-t, vagy "
 "állítsd be kézzel az útvonalat\n"
+
+#: windows_make_bats.py:57
+msgid "No gtk directories found in your path."
+msgstr ""
+
+#~ msgid "addShownCards %s hole=%s all=%s"
+#~ msgstr "addShownCards %s játékos kézben=%s mind=%s"
+
+#~ msgid "                              ... writers finished"
+#~ msgstr "                              ... az írások befejeződtek"
+
+#~ msgid " "
+#~ msgstr " "
+
+#~ msgid "Y location to open Window"
+#~ msgstr "A megnyitandó ablak Y koordinátája"
 
 #~ msgid ""
 #~ "\n"

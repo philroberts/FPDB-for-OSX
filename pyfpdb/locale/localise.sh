@@ -47,3 +47,6 @@ python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=loc
 python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/zh/LC_MESSAGES/fpdb.mo locale/fpdb-zh_CN.po
 
 pocount locale/*.po
+rm locale/*~
+rm messages.mo
+
