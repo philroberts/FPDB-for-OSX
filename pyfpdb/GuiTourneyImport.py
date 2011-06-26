@@ -51,7 +51,6 @@ class GuiTourneyImport():
 
 
     def load_clicked(self, widget, data=None):
-        print "DEBUG: load_clicked"
         stored = None
         dups = None
         partial = None
@@ -59,10 +58,7 @@ class GuiTourneyImport():
         ttime = None
 
         if self.settings['global_lock'].acquire(wait=False, source="GuiTourneyImport"):
-            print "DEBUG: got global lock"
-            #    get the dir to import from the chooser
             selected = self.chooser.get_filenames()
-            print "DEBUG: Files selected: %s" % selected
 
             sitename = self.cbfilter.get_model()[self.cbfilter.get_active()][0]
 
@@ -238,7 +234,6 @@ class SummaryImporter:
                 del summaryTexts[0]
                 log.warn(_("TourneyImport: Removing text < 100 characters from start of file"))
 
-            print "Found %s summaries" %(len(summaryTexts))
             ####Lock Placeholder####
             for j, summaryText in enumerate(summaryTexts, start=1):
                 sc, gsc = {'bk': []}, {'bk': []}
@@ -248,7 +243,8 @@ class SummaryImporter:
                     sc, gsc = conv.updateSessionsCache(sc, gsc, None, doinsert)
                 except FpdbParseError, e:
                     errors += 1
-                print _("Finished importing %s/%s tournament summaries") %(j, len(summaryTexts))
+                if j != 1:
+                    print _("Finished importing %s/%s tournament summaries") %(j, len(summaryTexts))
                 imported = j
             ####Lock Placeholder####
         return (imported - errors, errors)
@@ -371,6 +367,11 @@ class ProgressBar:
 
         self.progress.show()
 
+def usage():
+    print _("USAGE:")
+    print _("./GuiTourneyImport.py -k <Site> -f <filename>")
+    print _("./GuiTourneyImport.py -k PokerStars -f <filename>")
+    print _("./GuiTourneyImport.py -k 'Full Tilt Poker' -f <filename>")
 
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""
@@ -382,11 +383,12 @@ def main(argv=None):
 
     if options.usage == True:
         #Print usage examples and exit
-        print _("USAGE:")
+        usage()
         sys.exit(0)
 
     if options.hhc == "PokerStarsToFpdb":
         print _("Need to define a converter")
+        usage()
         exit(0)
 
     config = Configuration.Config("HUD_config.test.xml")
@@ -394,6 +396,7 @@ def main(argv=None):
 
     if options.filename == None:
         print _("Need a filename to import")
+        usage()
         exit(0)
 
     importer = SummaryImporter(config, sql, None, None)
