@@ -596,7 +596,7 @@ class ProgressBar:
         self.pbar.set_fraction(progress_percent)
         self.pbar.set_text(progress_text)
         
-        self.handcount.set_text(_("Database Statistics") + " - " + _("Number of Hands: ") + handcount)
+        self.handcount.set_text(_("Database Statistics") + " - " + _("Number of Hands:") + " " + handcount)
         
         now = datetime.datetime.now()
         now_formatted = now.strftime("%H:%M:%S")

@@ -133,7 +133,7 @@ import Configuration
 config = Configuration.Config()
 
 if config.python_version not in("2.6", "2.7"):
-    failure(_("\npython 2.6-2.7 not found, please install python 2.6 or 2.7 for fpdb\n"))
+    failure(_("Python 2.6-2.7 not found, please install python 2.6 or 2.7 for fpdb."))
 
 #
 # next, check for individual modules existing

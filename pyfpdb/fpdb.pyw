@@ -357,9 +357,9 @@ class fpdb:
             self.warning_box(_("Cannot open Database Maintenance window because other windows have been opened. Re-start fpdb to use this option."))
 
     def dia_database_stats(self, widget, data=None):
-        self.warning_box(str=_("Number of Hands: ") + str(self.db.getHandCount()) +
-                    _("\nNumber of Tourneys: ") + str(self.db.getTourneyCount()) +
-                    _("\nNumber of TourneyTypes: ") + str(self.db.getTourneyTypeCount()),
+        self.warning_box(str=_("Number of Hands:") + " " + str(self.db.getHandCount()) +
+                    "\n" + _("Number of Tourneys:") + " " + str(self.db.getTourneyCount()) +
+                    "\n" + _("Number of TourneyTypes:") + " " + str(self.db.getTourneyTypeCount()),
                     diatitle=_("Database Statistics"))
     #end def dia_database_stats
 
@@ -1268,8 +1268,8 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         # setup error logging
         if not options.errorsToConsole:
             fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
-            print (_("\nNote: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in: %s") % self.config.dir_log) \
-                  + _("\nAny major error will be reported there _only_.\n")
+            print (_("Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in: %s") % self.config.dir_log) \
+                  + _("Any major error will be reported there _only_.")
             errorFile = open(fileName, 'w', 0)
             sys.stderr = errorFile
 

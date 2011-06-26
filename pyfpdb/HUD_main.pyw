@@ -66,12 +66,12 @@ class HUD_main(object):
     def __init__(self, db_name='fpdb'):
         self.db_name = db_name
         self.config = c
-        log.info(_("HUD_main starting: using db name = %s") % (db_name))
+        log.info(_("HUD_main starting") + ": " + _("using db name = %s") % (db_name))
 
         try:
             if not options.errorsToConsole:
                 fileName = os.path.join(self.config.dir_log, 'HUD-errors.txt')
-                log.info(_("Note: error output is being diverted to:") + fileName)
+                log.info(_("Note: error output is being diverted to %s.") % fileName)
                 log.info(_("Any major error will be reported there _only_."))
                 errorFile = open(fileName, 'w', 0)
                 sys.stderr = errorFile
@@ -135,7 +135,7 @@ class HUD_main(object):
         self.kill_hud(None, hud.table.key)
 
     def game_changed(self, widget, hud):
-        print _("hud_main: Game changed.")
+        print "hud_main: " + _("Game changed.")
 
     def table_changed(self, widget, hud):
         self.kill_hud(None, hud.table.key)
@@ -226,12 +226,12 @@ class HUD_main(object):
 
 #        get basic info about the new hand from the db
 #        if there is a db error, complain, skip hand, and proceed
-            log.info(_("HUD_main.read_stdin: hand processing starting ..."))
+            log.info("HUD_main.read_stdin: " + _("Hand processing starting."))
             try:
                 (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
             except Exception:
-                log.exception(_("db error: skipping %s") % new_hand_id)
+                log.exception(_("database error: skipping %s") % new_hand_id)
                 continue
 
             if type == "tour":   # hand is from a tournament

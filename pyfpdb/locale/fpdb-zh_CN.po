@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-06-26 08:20+CEST\n"
+"POT-Creation-Date: 2011-06-26 09:39+CEST\n"
 "PO-Revision-Date: 2011-04-07 08:53+0000\n"
 "Last-Translator: steffen123 <steffen@schaumburger.info>\n"
 "Language-Team: Chinese (China) <>\n"
@@ -134,8 +134,9 @@ msgstr ""
 #: CakeToFpdb.py:196 EntractionToFpdb.py:195 OnGameToFpdb.py:273
 #: PacificPokerToFpdb.py:315 PartyPokerToFpdb.py:392 PokerStarsToFpdb.py:327
 #: Win2dayToFpdb.py:169 WinamaxToFpdb.py:329
-msgid "readButton: not found"
-msgstr ""
+#, fuzzy
+msgid "not found"
+msgstr "文件%s无法找到"
 
 #: Charset.py:43 Charset.py:58 Charset.py:73
 #, fuzzy
@@ -741,7 +742,7 @@ msgstr ""
 
 #: FulltiltToFpdb.py:603 FulltiltToFpdb.py:816 GuiGraphViewer.py:134
 #: GuiGraphViewer.py:251 GuiSessionViewer.py:449 GuiTourneyGraphViewer.py:132
-#: GuiTourneyGraphViewer.py:230 fpdb_prerun.py:97
+#: GuiTourneyGraphViewer.py:225 fpdb_prerun.py:97
 msgid "Error:"
 msgstr ""
 
@@ -848,132 +849,126 @@ msgstr ""
 msgid "Browse..."
 msgstr ""
 
-#: GuiBulkImport.py:53 GuiBulkImport.py:54 GuiBulkImport.py:267
+#: GuiBulkImport.py:53 GuiBulkImport.py:54 GuiBulkImport.py:266
 msgid "Please select site"
 msgstr ""
 
-#: GuiBulkImport.py:65
-msgid ""
-"\n"
-"Global lock taken ..."
+#: GuiBulkImport.py:65 GuiTourneyImport.py:325 fpdb_import.py:616
+msgid "Importing"
 msgstr ""
 
-#: GuiBulkImport.py:66
-msgid "Importing..."
-msgstr ""
-
-#: GuiBulkImport.py:120 GuiBulkImport.py:414
+#: GuiBulkImport.py:119 GuiBulkImport.py:413
 msgid ""
 "Bulk import done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in "
 "%s seconds - %.0f/sec"
 msgstr ""
 
-#: GuiBulkImport.py:135
+#: GuiBulkImport.py:134
 msgid "Import Complete"
 msgstr ""
 
-#: GuiBulkImport.py:143
+#: GuiBulkImport.py:142
 msgid "bulk import aborted - global lock not available"
 msgstr ""
 
-#: GuiBulkImport.py:171
+#: GuiBulkImport.py:170
 msgid "Print Start/Stop Info"
 msgstr ""
 
-#: GuiBulkImport.py:178
+#: GuiBulkImport.py:177
 msgid "Hands/status print:"
 msgstr ""
 
-#: GuiBulkImport.py:195
+#: GuiBulkImport.py:194
 msgid "Number of threads:"
 msgstr ""
 
-#: GuiBulkImport.py:215
+#: GuiBulkImport.py:214
 msgid "Archive File"
 msgstr ""
 
-#: GuiBulkImport.py:220
+#: GuiBulkImport.py:219
 msgid "Hands/file:"
 msgstr ""
 
-#: GuiBulkImport.py:235
+#: GuiBulkImport.py:234
 msgid "Drop indexes:"
 msgstr ""
 
-#: GuiBulkImport.py:244 GuiBulkImport.py:295
+#: GuiBulkImport.py:243 GuiBulkImport.py:294
 msgid "auto"
 msgstr ""
 
-#: GuiBulkImport.py:245 GuiBulkImport.py:296 GuiBulkImport.py:401
+#: GuiBulkImport.py:244 GuiBulkImport.py:295 GuiBulkImport.py:400
 msgid "don't drop"
 msgstr ""
 
-#: GuiBulkImport.py:246 GuiBulkImport.py:297
+#: GuiBulkImport.py:245 GuiBulkImport.py:296
 msgid "drop"
 msgstr ""
 
-#: GuiBulkImport.py:252
+#: GuiBulkImport.py:251
 msgid "HUD Test mode"
 msgstr ""
 
-#: GuiBulkImport.py:257 GuiTourneyImport.py:107
+#: GuiBulkImport.py:256 GuiTourneyImport.py:107
 msgid "Site filter:"
 msgstr ""
 
-#: GuiBulkImport.py:286
+#: GuiBulkImport.py:285
 msgid "Drop HudCache:"
 msgstr ""
 
-#: GuiBulkImport.py:304 GuiTourneyImport.py:136 fpdb.pyw:901
+#: GuiBulkImport.py:303 GuiTourneyImport.py:136 fpdb.pyw:901
 msgid "_Bulk Import"
 msgstr ""
 
-#: GuiBulkImport.py:306 GuiTourneyImport.py:138
+#: GuiBulkImport.py:305 GuiTourneyImport.py:138
 msgid "Import clicked"
 msgstr ""
 
-#: GuiBulkImport.py:324
+#: GuiBulkImport.py:323
 msgid "Waiting..."
 msgstr ""
 
-#: GuiBulkImport.py:353 Options.py:58
+#: GuiBulkImport.py:352 Options.py:58
 msgid "Input file"
 msgstr ""
 
-#: GuiBulkImport.py:355 GuiImapFetcher.py:110 GuiTourneyPlayerStats.py:82
+#: GuiBulkImport.py:354 GuiImapFetcher.py:110 GuiTourneyPlayerStats.py:82
 #: fpdb.pyw:714
 msgid "Site"
 msgstr ""
 
-#: GuiBulkImport.py:357
+#: GuiBulkImport.py:356
 msgid ""
 "If this option is used it quits with an extended error message if it "
 "encounters any error"
 msgstr ""
 
-#: GuiBulkImport.py:359 Options.py:55
+#: GuiBulkImport.py:358 Options.py:55
 msgid "Print some useful one liners"
 msgstr ""
 
-#: GuiBulkImport.py:361 GuiBulkImport.py:363
+#: GuiBulkImport.py:360 GuiBulkImport.py:362
 msgid ""
 "Do the required conversion for %s archive format (ie. as provided by support)"
 msgstr ""
 
-#: GuiBulkImport.py:365
+#: GuiBulkImport.py:364
 msgid "Generate and print test data for regression testing"
 msgstr ""
 
-#: GuiBulkImport.py:370 GuiTourneyImport.py:371 ImapFetcher.py:172
+#: GuiBulkImport.py:369 GuiTourneyImport.py:371 ImapFetcher.py:172
 msgid "USAGE:"
 msgstr ""
 
-#: GuiBulkImport.py:371 GuiBulkImport.py:372 GuiBulkImport.py:373
-#: GuiBulkImport.py:374 GuiBulkImport.py:375
+#: GuiBulkImport.py:370 GuiBulkImport.py:371 GuiBulkImport.py:372
+#: GuiBulkImport.py:373 GuiBulkImport.py:374
 msgid "converter"
 msgstr ""
 
-#: GuiBulkImport.py:397
+#: GuiBulkImport.py:396
 msgid "You have to select a site with the -c parameter. E.g.:"
 msgstr ""
 
@@ -1029,12 +1024,10 @@ msgstr ""
 msgid "loadDbs error: "
 msgstr ""
 
-#: GuiDatabase.py:314 GuiLogView.py:191 GuiTourneyPlayerStats.py:425
-msgid "***sortCols error: "
-msgstr ""
-
-#: GuiDatabase.py:316
-msgid "sortCols error: "
+#: GuiDatabase.py:314 GuiDatabase.py:316 GuiLogView.py:191
+#: GuiRingPlayerStats.py:398 GuiRingPlayerStats.py:420
+#: GuiTourneyPlayerStats.py:425
+msgid "error"
 msgstr ""
 
 #: GuiDatabase.py:361
@@ -1230,15 +1223,15 @@ msgstr ""
 msgid "Profit graph for ring games"
 msgstr ""
 
-#: GuiGraphViewer.py:340 GuiTourneyGraphViewer.py:274
+#: GuiGraphViewer.py:340 GuiTourneyGraphViewer.py:269
 msgid "Please choose the directory you wish to export to:"
 msgstr ""
 
-#: GuiGraphViewer.py:353 GuiTourneyGraphViewer.py:287
+#: GuiGraphViewer.py:353 GuiTourneyGraphViewer.py:282
 msgid "Closed, no graph exported"
 msgstr ""
 
-#: GuiGraphViewer.py:371 GuiTourneyGraphViewer.py:305
+#: GuiGraphViewer.py:371 GuiTourneyGraphViewer.py:300
 msgid "Graph created"
 msgstr ""
 
@@ -1533,12 +1526,6 @@ msgstr ""
 msgid "Aggression frequency river/6th street"
 msgstr ""
 
-#: GuiRingPlayerStats.py:68
-msgid ""
-"Coming Soon\n"
-"Total % agression"
-msgstr ""
-
 #: GuiRingPlayerStats.py:69 Stats.py:128 Stats.py:131 Stats.py:132
 msgid "Total Profit"
 msgstr ""
@@ -1598,14 +1585,6 @@ msgstr ""
 #: GuiRingPlayerStats.py:351 GuiSessionViewer.py:248
 #: GuiTourneyPlayerStats.py:243
 msgid "Stats page displayed in %4.2f seconds"
-msgstr ""
-
-#: GuiRingPlayerStats.py:398
-msgid "***sortnums error: "
-msgstr ""
-
-#: GuiRingPlayerStats.py:420
-msgid "***sortcols error: "
 msgstr ""
 
 #: GuiRingPlayerStats.py:704
@@ -1726,17 +1705,16 @@ msgstr ""
 msgid "called"
 msgstr ""
 
-#: GuiTourneyGraphViewer.py:176
+#: GuiTourneyGraphViewer.py:176 GuiTourneyGraphViewer.py:203
+#: GuiTourneyGraphViewer.py:213
 msgid "Tournaments"
 msgstr ""
 
-#: GuiTourneyGraphViewer.py:203 GuiTourneyGraphViewer.py:216
-msgid ""
-"Tournaments: %d\n"
-"Profit: $%.2f"
+#: GuiTourneyGraphViewer.py:203 GuiTourneyGraphViewer.py:213
+msgid "Profit"
 msgstr ""
 
-#: GuiTourneyGraphViewer.py:213
+#: GuiTourneyGraphViewer.py:210
 msgid "Tournament Results"
 msgstr ""
 
@@ -1757,40 +1735,25 @@ msgid "Tourney Summary Import started at %s - %d files to import."
 msgstr ""
 
 #: GuiTourneyImport.py:231
-msgid "TourneyImport: Removing text < 100 characters from end of file"
+msgid "Removing text < 100 characters from end of file"
 msgstr ""
 
 #: GuiTourneyImport.py:235
-msgid "TourneyImport: Removing text < 100 characters from start of file"
+msgid "Removing text < 100 characters from start of file"
 msgstr ""
 
 #: GuiTourneyImport.py:247
 msgid "Finished importing %s/%s tournament summaries"
 msgstr ""
 
-#: GuiTourneyImport.py:269
-msgid "GTI.readFile: '%s'"
+#: GuiTourneyImport.py:309 fpdb.pyw:361
+msgid "Number of Tourneys:"
 msgstr ""
 
-#: GuiTourneyImport.py:309
-msgid "Number of Tourneys: "
-msgstr ""
-
-#: GuiTourneyImport.py:325 fpdb_import.py:616
-msgid "Importing"
-msgstr ""
-
-#: GuiTourneyImport.py:372
-msgid "./GuiTourneyImport.py -k <Site> -f <filename>"
-msgstr ""
-
-#: GuiTourneyImport.py:373
-msgid "./GuiTourneyImport.py -k PokerStars -f <filename>"
-msgstr ""
-
-#: GuiTourneyImport.py:374
-msgid "./GuiTourneyImport.py -k 'Full Tilt Poker' -f <filename>"
-msgstr ""
+#: GuiTourneyImport.py:372 GuiTourneyImport.py:373 GuiTourneyImport.py:374
+#, fuzzy
+msgid "filename"
+msgstr "文件名：%s"
 
 #: GuiTourneyImport.py:390 ImapFetcher.py:176
 msgid "Need to define a converter"
@@ -1873,15 +1836,16 @@ msgid "Display _Player"
 msgstr ""
 
 #: GuiTourneyViewer.py:68
-msgid ""
-"Tournament not found - please ensure you imported it and selected the "
-"correct site"
+#, fuzzy
+msgid "Tournament not found."
+msgstr "文件%s无法找到"
+
+#: GuiTourneyViewer.py:68 GuiTourneyViewer.py:96
+msgid "Please ensure you imported it and selected the correct site."
 msgstr ""
 
 #: GuiTourneyViewer.py:96
-msgid ""
-"Player or tourney not found - please ensure you imported it and selected the "
-"correct site"
+msgid "Player or tournament not found."
 msgstr ""
 
 #: GuiTourneyViewer.py:110
@@ -1893,19 +1857,19 @@ msgid "invalid entry in tourney number - must enter numbers only"
 msgstr ""
 
 #: HUD_main.pyw:69
-msgid "HUD_main starting: using db name = %s"
+msgid "using db name = %s"
+msgstr ""
+
+#: HUD_main.pyw:69 HUD_main.pyw:78 HUD_run_me.py:45
+msgid "HUD_main starting"
 msgstr ""
 
 #: HUD_main.pyw:74
-msgid "Note: error output is being diverted to:"
+msgid "Note: error output is being diverted to %s."
 msgstr ""
 
-#: HUD_main.pyw:75
+#: HUD_main.pyw:75 fpdb.pyw:1272
 msgid "Any major error will be reported there _only_."
-msgstr ""
-
-#: HUD_main.pyw:78 HUD_run_me.py:45
-msgid "HUD_main starting"
 msgstr ""
 
 #: HUD_main.pyw:108 HUD_run_me.py:62
@@ -1917,7 +1881,7 @@ msgid "Error initializing main_window"
 msgstr ""
 
 #: HUD_main.pyw:138
-msgid "hud_main: Game changed."
+msgid "Game changed."
 msgstr ""
 
 #: HUD_main.pyw:144 fpdb.pyw:1062
@@ -1929,11 +1893,11 @@ msgid "Received hand no %s"
 msgstr ""
 
 #: HUD_main.pyw:229
-msgid "HUD_main.read_stdin: hand processing starting ..."
+msgid "Hand processing starting."
 msgstr ""
 
 #: HUD_main.pyw:234
-msgid "db error: skipping %s"
+msgid "database error: skipping %s"
 msgstr ""
 
 #: HUD_main.pyw:253
@@ -3176,19 +3140,11 @@ msgid ""
 msgstr ""
 
 #: fpdb.pyw:360 fpdb_import.py:599
-msgid "Number of Hands: "
-msgstr ""
-
-#: fpdb.pyw:361
-msgid ""
-"\n"
-"Number of Tourneys: "
+msgid "Number of Hands:"
 msgstr ""
 
 #: fpdb.pyw:362
-msgid ""
-"\n"
-"Number of TourneyTypes: "
+msgid "Number of TourneyTypes:"
 msgstr ""
 
 #: fpdb.pyw:363 fpdb_import.py:599
@@ -3649,15 +3605,8 @@ msgstr ""
 
 #: fpdb.pyw:1271
 msgid ""
-"\n"
 "Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt "
 "in: %s"
-msgstr ""
-
-#: fpdb.pyw:1272
-msgid ""
-"\n"
-"Any major error will be reported there _only_.\n"
 msgstr ""
 
 #: fpdb.pyw:1300
@@ -3777,9 +3726,7 @@ msgid ""
 msgstr ""
 
 #: fpdb_prerun.py:136
-msgid ""
-"\n"
-"python 2.6-2.7 not found, please install python 2.6 or 2.7 for fpdb\n"
+msgid "Python 2.6-2.7 not found, please install python 2.6 or 2.7 for fpdb."
 msgstr ""
 
 #: interlocks.py:52

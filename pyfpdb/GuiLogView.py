@@ -188,7 +188,7 @@ class GuiLogView:
             # to turn indicator off for other cols
         except:
             err = traceback.extract_tb(sys.exc_info()[2])
-            print _("***sortCols error: ") + str(sys.exc_info()[1])
+            print ("***sortCols " + _("error") + ": " + str(sys.exc_info()[1]))
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
 
     def refresh(self, widget, data):
