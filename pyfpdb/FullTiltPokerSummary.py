@@ -60,6 +60,7 @@ class FullTiltPokerSummary(TourneySummary):
                         (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s+
                         (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+
                         (Buy-In:\s[%(LS)s](?P<BUYIN>[.\d]+)(\s\+\s[%(LS)s](?P<FEE>[.\d]+))?\s+)?
+                        (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[.\d]+)\s+)?
                         (Add-On:\s[%(LS)s](?P<ADDON>[.\d]+)\s+)?
                         (Rebuy:\s[%(LS)s](?P<REBUYAMT>[.\d]+)\s+)?
                         ((?P<PNAME>.{2,15})\sperformed\s(?P<PREBUYS>\d+)\sRebuys\s+)?
@@ -78,7 +79,7 @@ class FullTiltPokerSummary(TourneySummary):
 
     re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP)""" % substitutions)
 
-    re_Player = re.compile(u"""(?P<RANK>[\d]+):\s(?P<NAME>[^,\r\n]{2,15})(,(\s)?[%(LS)s](?P<WINNINGS>[.\d]+))?""")
+    re_Player = re.compile(u"""(?P<RANK>[\d]+):\s(?P<NAME>[^,\r\n]{2,15})(, [%(LS)s](?P<WINNINGS>[.\d]+))?""" % substitutions)
     re_Finished = re.compile(u"""(?P<NAME>[^,\r\n]{2,15}) finished in (?P<RANK>[\d]+)\S\S place""")
 
     re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
