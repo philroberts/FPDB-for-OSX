@@ -1418,15 +1418,30 @@ def main(argv=None):
     parser = OptionParser()
     (options, argv) = parser.parse_args(args = argv)
 
-    config = Configuration.Config()
-    db = None
+    config = Configuration.Config(file = "HUD_config.test.xml")
+    db = Database.Database(config)
 
-    db = Database.Database()
-    db.do_connect(config)
+    qdict = SQL.Sql(db_server = 'sqlite')
 
-    qdict = SQL.SQL(db.get_backend_name())
+    filters_display = { "Heroes"    : True,
+                        "Sites"     : True,
+                        "Games"     : True,
+                        "Currencies": True,
+                        "Limits"    : True,
+                        "LimitSep"  : True,
+                        "LimitType" : True,
+                        "Type"      : False,
+                        "UseType"   : 'ring',
+                        "Seats"     : False,
+                        "SeatSep"   : False,
+                        "Dates"     : True,
+                        "GraphOps"  : True,
+                        "Groups"    : False,
+                        "Button1"   : True,
+                        "Button2"   : True
+                          }
 
-    i = Filters(db, config, qdict)
+    i = Filters(db, config, qdict, display = filters_display)
     main_window = gtk.Window()
     main_window.connect('destroy', destroy)
     main_window.add(i.get_vbox())
