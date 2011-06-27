@@ -282,7 +282,7 @@ class Importer:
                     while gtk.events_pending(): # see http://faq.pygtk.org/index.py?req=index for more hints (3.7)
                         gtk.main_iteration(False)
                     sleep(0.5)
-                print _("                              ... writers finished")
+                print _("... writers finished")
 
         # Tidying up after import
         if self.settings['dropIndexes'] == 'drop':
@@ -602,7 +602,7 @@ class ProgressBar:
         self.pbar.set_fraction(progress_percent)
         self.pbar.set_text(progress_text)
         
-        self.handcount.set_text(_("Database Statistics") + " - " + _("Number of Hands: ") + handcount)
+        self.handcount.set_text(_("Database Statistics") + " - " + _("Number of Hands:") + " " + handcount)
         
         now = datetime.datetime.now()
         now_formatted = now.strftime("%H:%M:%S")

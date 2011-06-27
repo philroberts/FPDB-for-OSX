@@ -200,22 +200,17 @@ class GuiTourneyGraphViewer (threading.Thread):
                             0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
                             400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
 
-                self.ax.plot(green, color='green', label=_('Tournaments: %d\nProfit: $%.2f') %(len(green), green[-1]))
-                #self.ax.plot(blue, color='blue', label=_('Showdown: $%.2f') %(blue[-1]))
-                #self.ax.plot(red, color='red', label=_('Non-showdown: $%.2f') %(red[-1]))
+                self.ax.plot(green, color='green', label=_('Tournaments') + ': %d\n' % len(green) + _('Profit') + ': $%.2f' % green[-1])
                 self.graphBox.add(self.canvas)
                 self.canvas.show()
                 self.canvas.draw()
 
                 #TODO: Do something useful like alert user
-                #print "No hands returned by graph query"
             else:
                 self.ax.set_title(_("Tournament Results"))
 
                 #Draw plot
-                self.ax.plot(green, color='green', label=_('Tournaments: %d\nProfit: $%.2f') %(len(green), green[-1]))
-                #self.ax.plot(blue, color='blue', label=_('Showdown: $%.2f') %(blue[-1]))
-                #self.ax.plot(red, color='red', label=_('Non-showdown: $%.2f') %(red[-1]))
+                self.ax.plot(green, color='green', label=_('Tournaments') + ': %d\n' % len(green) + _('Profit') + ': $%.2f' % green[-1])
                 if sys.version[0:3] == '2.5':
                     self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
                 else:

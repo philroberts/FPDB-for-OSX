@@ -357,9 +357,9 @@ class fpdb:
             self.warning_box(_("Cannot open Database Maintenance window because other windows have been opened. Re-start fpdb to use this option."))
 
     def dia_database_stats(self, widget, data=None):
-        self.warning_box(str=_("Number of Hands: ") + str(self.db.getHandCount()) +
-                    _("\nNumber of Tourneys: ") + str(self.db.getTourneyCount()) +
-                    _("\nNumber of TourneyTypes: ") + str(self.db.getTourneyTypeCount()),
+        self.warning_box(str=_("Number of Hands:") + " " + str(self.db.getHandCount()) +
+                    "\n" + _("Number of Tourneys:") + " " + str(self.db.getTourneyCount()) +
+                    "\n" + _("Number of TourneyTypes:") + " " + str(self.db.getTourneyTypeCount()),
                     diatitle=_("Database Statistics"))
     #end def dia_database_stats
 
@@ -544,7 +544,7 @@ class fpdb:
             dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING,
                     buttons=(gtk.BUTTONS_YES_NO), message_format=_("Confirm deleting and recreating tables"))
             diastring = _("Please confirm that you want to (re-)create the tables.") \
-                        + (_(" If there already are tables in the database %s on %s they will be deleted and you will have to re-import your histories.\n") % (self.db.database, self.db.host)) \
+                        + (_(" If there already are tables in the database %s on %s they will be deleted and you will have to re-import your histories.") % (self.db.database, self.db.host)) + "\n"\
                         + _("This may take a while.")
             dia_confirm.format_secondary_text(diastring)  # todo: make above string with bold for db, host and deleted
             # disable windowclose, do not want the the underlying processing interrupted mid-process
@@ -708,7 +708,7 @@ class fpdb:
             except KeyError:
                 pass
         
-        label = gtk.Label(_(" "))
+        label = gtk.Label(" ")
         dia.vbox.add(label)
         
         column_headers=[_("Site"), _("Screen Name"), _("History Path"), _("Detect")] #TODO , _("Summary Path"), _("HUD")] 
@@ -1268,8 +1268,8 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         # setup error logging
         if not options.errorsToConsole:
             fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
-            print (_("\nNote: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in: %s") % self.config.dir_log) \
-                  + _("\nAny major error will be reported there _only_.\n")
+            print (_("Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in: %s") % self.config.dir_log) \
+                  + _("Any major error will be reported there _only_.")
             errorFile = open(fileName, 'w', 0)
             sys.stderr = errorFile
 
@@ -1397,7 +1397,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
             except KeyError, exc:
                 log.warning("site %s missing from db" % site)
                 dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_OK), message_format=_("Unknown Site"))
-                diastring = _("Warning:") +" " + _("Unable to find site  '%s'") % site
+                diastring = _("Warning:") +" " + _("Unable to find site '%s'") % site
                 dia.format_secondary_text(diastring)
                 dia.run()
                 dia.destroy()

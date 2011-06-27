@@ -31,7 +31,7 @@ msgfmt -c --check-accelerators locale/fpdb-ru_RU.po
 msgfmt -c --check-accelerators locale/fpdb-zh_CN.po
 
 echo "check the following output for misplaced \\\\"
-grep "[\\][\\]" locale/*.po
+grep -n "[\\][\\]" locale/*.po
 
 echo "compiling mo files"
 #python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale//LC_MESSAGES/fpdb.mo locale/fpdb-.po
@@ -47,3 +47,5 @@ python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=loc
 python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/zh/LC_MESSAGES/fpdb.mo locale/fpdb-zh_CN.po
 
 pocount locale/*.po
+rm locale/*~
+rm messages.mo

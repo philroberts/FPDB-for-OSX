@@ -326,7 +326,7 @@ class Winamax(HandHistoryConverter):
             hand.buttonpos = int(m.group('BUTTON'))
             log.debug(_('readButton: button on pos %d') % hand.buttonpos)
         else:
-            log.warning(_('readButton: not found'))
+            log.info('readButton: ' + _('not found'))
 
 #    def readCommunityCards(self, hand, street):
 #        #print hand.streets.group(street)

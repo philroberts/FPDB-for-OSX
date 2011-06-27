@@ -192,7 +192,7 @@ class Entraction(HandHistoryConverter):
             #hand.buttonpos = int(m.group('BUTTON'))
             pass
         else:
-            log.info(_('readButton: not found'))
+            log.info('readButton: ' + _('not found'))
 
     def readPlayerStacks(self, hand):
         log.debug("readPlayerStacks")

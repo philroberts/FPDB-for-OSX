@@ -268,8 +268,7 @@ class SummaryImporter:
                 in_fh.close()
                 break
             except UnicodeDecodeError, e:
-                log.error(_("GTI.readFile: '%s' : '%s'") % (filename,e))
-                pass
+                log.error("GTI.readFile: '%s' : '%s'" % (filename,e))
 
         return whole_file
 
@@ -308,7 +307,7 @@ class ProgressBar:
         self.pbar.set_fraction(progress_percent)
         self.pbar.set_text(progress_text)
 
-        self.count.set_text(_("Number of Tourneys: ") + count)
+        self.count.set_text(_("Number of Tourneys:") + " " + count)
 
         now = datetime.datetime.now()
         now_formatted = now.strftime("%H:%M:%S")
@@ -371,9 +370,9 @@ class ProgressBar:
 
 def usage():
     print _("USAGE:")
-    print _("./GuiTourneyImport.py -k <Site> -f <filename>")
-    print _("./GuiTourneyImport.py -k PokerStars -f <filename>")
-    print _("./GuiTourneyImport.py -k 'Full Tilt Poker' -f <filename>")
+    print "./GuiTourneyImport.py -k <Site> -f <" + _("filename") + ">"
+    print "./GuiTourneyImport.py -k PokerStars -f <" + _("filename") + ">"
+    print "./GuiTourneyImport.py -k 'Full Tilt Poker' -f <" + _("filename") + ">"
 
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""

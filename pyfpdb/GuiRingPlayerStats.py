@@ -65,7 +65,7 @@ onlinehelp = {'Game':_('Type of Game'),
               'FlAFq':_('Aggression frequency flop/4th street'),
               'TuAFq':_('Aggression frequency turn/5th street'),
               'RvAFq':_('Aggression frequency river/6th street'),
-              'PoFAFq':_('Coming Soon\nTotal % agression'),
+              #'PoFAFq':_('Total % agression'), TODO
               'Net($)':_('Total Profit'),
               'bb/100':_('Big blinds won per 100 hands'),
               'Rake($)':_('Amount of rake paid'),
@@ -395,7 +395,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
             #print "n =", n, "iter1[n] =", self.liststore[grid].get_value(iter1,n), "iter2[n] =", self.liststore[grid].get_value(iter2,n), "ret =", ret
         except:
             err = traceback.extract_tb(sys.exc_info()[2])
-            print _("***sortnums error: ") + str(sys.exc_info()[1])
+            print ("***sortnums " + _("error") + ": " + str(sys.exc_info()[1]))
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
 
         return(ret)
@@ -417,7 +417,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
             # to turn indicator off for other cols
         except:
             err = traceback.extract_tb(sys.exc_info()[2])
-            print _("***sortcols error: ") + str(sys.exc_info()[1])
+            print ("***sortcols " + _("error") + ": " + str(sys.exc_info()[1]))
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
     #end def sortcols
     

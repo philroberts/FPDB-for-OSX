@@ -691,7 +691,7 @@ class Fulltilt(HandHistoryConverter):
                     else :
                         if 100*Decimal(buyin) != tourney.buyin:
                             log.error(_("Conflict between buyins read in top line (%s) and in BuyIn field (%s)") % (tourney.buyin, 100*Decimal(buyin)))
-                            tourney.subTourneyBuyin = 100*Decimal(buyin))
+                            tourney.subTourneyBuyin = 100*Decimal(buyin)
                 if mg['FEE'] is not None:
                     fee = clearMoneyString(mg['FEE'])
                     if tourney.fee is None:
