@@ -186,12 +186,10 @@ class GuiGraphViewer (threading.Thread):
         (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games, currencies, graphops['dspin'])
         print _("Graph generated in: %s") %(time() - starttime)
 
-
-
         #Set axis labels and grid overlay properites
-        self.ax.set_xlabel(_("Hands"), fontsize = 12)
+        self.ax.set_xlabel(_("Hands"))
         # SET LABEL FOR X AXIS
-        self.ax.set_ylabel(graphops['dspin'], fontsize = 12)
+        self.ax.set_ylabel(graphops['dspin'])
         self.ax.grid(color='g', linestyle=':', linewidth=0.2)
         if green == None or green == []:
             self.ax.set_title(_("No Data for Player(s) Found"))
@@ -224,7 +222,7 @@ class GuiGraphViewer (threading.Thread):
             self.canvas.show()
             self.canvas.draw()
         else:
-            self.ax.set_title((_("Profit graph for ring games")+names),fontsize=12)
+            self.ax.set_title((_("Profit graph for ring games")+names))
 
             #Draw plot
             self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: (%s): %.2f') %(len(green),graphops['dspin'], green[-1]))
