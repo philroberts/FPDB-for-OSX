@@ -203,12 +203,10 @@ class Importer:
                     log.error(_("[ERROR] More than 1 Database ID found for %s - Multiple currencies not implemented yet") % site)
 
 
-    # Called from GuiBulkImport to add a file or directory.
+    # Called from GuiBulkImport to add a file or directory. Bulk import never monitors
     def addBulkImportImportFileOrDir(self, inputPath, site = "PokerStars"):
         """Add a file or directory for bulk import"""
         filter = self.config.hhcs[site].converter
-        # Bulk import never monitors
-        # if directory, add all files in it. Otherwise add single file.
         # TODO: only add sane files?
         if os.path.isdir(inputPath):
             for subdir in os.walk(inputPath):
@@ -239,8 +237,6 @@ class Importer:
 
     def runImport(self):
         """"Run full import on self.filelist. This is called from GuiBulkImport.py"""
-        #if self.settings['forceThreads'] > 0:  # use forceThreads until threading enabled in GuiBulkImport
-        #    self.setThreads(self.settings['forceThreads'])
 
         # Initial setup
         start = datetime.datetime.now()
@@ -286,7 +282,7 @@ class Importer:
                     while gtk.events_pending(): # see http://faq.pygtk.org/index.py?req=index for more hints (3.7)
                         gtk.main_iteration(False)
                     sleep(0.5)
-                print _("                              ... writers finished")
+                print _("... writers finished")
 
         # Tidying up after import
         if self.settings['dropIndexes'] == 'drop':
@@ -492,18 +488,28 @@ class Importer:
                 
                 ####Lock Placeholder####
                 id = self.database.nextHandId()
+                sctimer, ihtimer, hctimer = 0,0,0
                 for i in range(len(phands)):
                     doinsert = len(phands)==i+1
                     hand = phands[i]
                     try:
                         id = hand.getHandId(self.database, id)
+                        stime = time()
                         sc, gsc = hand.updateSessionsCache(self.database, sc, gsc, None, doinsert)
+                        sctimer += time() - stime
+                        stime = time()
                         hbulk = hand.insertHands(self.database, hbulk, fileId, doinsert, self.settings['testData'])
+                        ihtimer = time() - stime
+                        stime = time()
                         hcbulk = hand.updateHudCache(self.database, hcbulk, doinsert)
+                        hctimer = time() - stime
                         ihands.append(hand)
                         to_hud.append(hand.dbid_hands)
                     except Exceptions.FpdbHandDuplicate:
                         duplicates += 1
+                #log.debug("DEBUG: hand.updateSessionsCache: %s" % (t5tot))
+                #log.debug("DEBUG: hand.insertHands: %s" % (t6tot))
+                #log.debug("DEBUG: hand.updateHudCache: %s" % (t7tot))
                 self.database.commit()
                 ####Lock Placeholder####
                 
@@ -596,7 +602,7 @@ class ProgressBar:
         self.pbar.set_fraction(progress_percent)
         self.pbar.set_text(progress_text)
         
-        self.handcount.set_text(_("Database Statistics") + " - " + _("Number of Hands: ") + handcount)
+        self.handcount.set_text(_("Database Statistics") + " - " + _("Number of Hands:") + " " + handcount)
         
         now = datetime.datetime.now()
         now_formatted = now.strftime("%H:%M:%S")

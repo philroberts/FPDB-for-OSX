@@ -170,7 +170,7 @@ class Fulltilt(HandHistoryConverter):
             self.re_BringIn          = re.compile(r"^%(PLAYERS)s brings in for [%(LS)s]?(?P<BRINGIN>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_PostBoth         = re.compile(r"^%(PLAYERS)s posts small \& big blinds \[[%(LS)s]? (?P<SBBB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
-            self.re_Action           = re.compile(r"^%(PLAYERS)s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds| discards| stands pat)( [%(LS)s]?(?P<BET>[%(NUM)s]+))?(\son|\scards?)?(\s\[(?P<CARDS>.+?)\])?" % self.substitutions, re.MULTILINE)
+            self.re_Action           = re.compile(r"^%(PLAYERS)s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds| discards| stands pat)( [%(LS)s]?(?P<BET>[%(NUM)s]+))?( on| cards?)?( \[(?P<CARDS>.+?)\])?" % self.substitutions, re.MULTILINE)
             self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %(PLAYERS)s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \([%(LS)s]?(?P<POT>[%(NUM)s]+)\)(, mucked| with.*)?" % self.substitutions, re.MULTILINE)
             self.re_SitsOut          = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
@@ -418,8 +418,8 @@ class Fulltilt(HandHistoryConverter):
 
         hand.addStreets(m)
 
-    def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
-        if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
+    def readCommunityCards(self, hand, street):
+        if street in ('FLOP','TURN','RIVER'):
             #print "DEBUG readCommunityCards:", street, hand.streets[street]
             m = self.re_Board.search(hand.streets[street])
             hand.setCommunityCards(street, m.group('CARDS').split(' '))
@@ -685,19 +685,21 @@ class Fulltilt(HandHistoryConverter):
                     tourney.subTourneyFee = 100*Decimal(self.clearMoneyString(mg['FEE']))
             else :
                 if mg['BUYIN'] is not None:
+                    buyin = clearMoneyString(mg['BUYIN'])
                     if tourney.buyin is None:
-                        tourney.buyin = 100*Decimal(clearMoneyString(mg['BUYIN']))
+                        tourney.buyin = 100*Decimal(buyin)
                     else :
-                        if 100*Decimal(clearMoneyString(mg['BUYIN'])) != tourney.buyin:
-                            log.error(_("Conflict between buyins read in top line (%s) and in BuyIn field (%s)") % (tourney.buyin, 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))) )
-                            tourney.subTourneyBuyin = 100*Decimal(clearMoneyString(mg['BUYIN']))
+                        if 100*Decimal(buyin) != tourney.buyin:
+                            log.error(_("Conflict between buyins read in top line (%s) and in BuyIn field (%s)") % (tourney.buyin, 100*Decimal(buyin)))
+                            tourney.subTourneyBuyin = 100*Decimal(buyin)
                 if mg['FEE'] is not None:
+                    fee = clearMoneyString(mg['FEE'])
                     if tourney.fee is None:
-                        tourney.fee = 100*Decimal(clearMoneyString(mg['FEE']))
+                        tourney.fee = 100*Decimal(fee)
                     else :
-                        if 100*Decimal(clearMoneyString(mg['FEE'])) != tourney.fee:
-                            log.error(_("Conflict between fees read in top line (%s) and in Fee field (%s)") % (tourney.fee, 100*Decimal(clearMoneyString(mg['FEE']))) )
-                            tourney.subTourneyFee = 100*Decimal(clearMoneyString(mg['FEE']))
+                        if 100*Decimal(fee) != tourney.fee:
+                            log.error(_("Conflict between fees read in top line (%s) and in Fee field (%s)") % (tourney.fee, 100*Decimal(fee)))
+                            tourney.subTourneyFee = 100*Decimal(fee)
 
         if tourney.buyin is None:
             log.info(_("Unable to detect a buyin to this tournament : assume it's a freeroll"))
@@ -736,7 +738,7 @@ class Fulltilt(HandHistoryConverter):
                         "KO_BOUNTY_AMOUNT"  : "koBounty"
                     }
 
-        mg = {}     # After the loop, mg will contain all the matching groups, including the ones that have not been used, like ENDTIME and IN-PROGRESS
+        mg = {}
         for data in dictRegex:
             m = dictRegex.get(data).search(tourneyText)
             if m is not None:
@@ -744,8 +746,7 @@ class Fulltilt(HandHistoryConverter):
                 setattr(tourney, dictHolders[data], mg[data])
 
         if mg['IN_PROGRESS'] is not None or mg['ENDTIME'] is not None:
-            # Assign endtime to tourney (if None, that's ok, it's because the tourney wans't over over when the summary file was produced)
-            tourney.endtime = mg['ENDTIME']
+            tourney.endtime = mg['ENDTIME'] # None is ok - tourney may not be over
 
         # Deal with hero specific information
         if tourney.hero is not None :

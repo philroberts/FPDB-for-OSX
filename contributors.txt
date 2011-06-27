@@ -76,8 +76,10 @@ Wedge (French fr_FR))
 Steffen Schaumburg (German de_DE)
 Erki Ferenc (Hungarian hu_HU)
 seppone1991 (Italian it_IT)
+greg20 (Polish pl_PL)
 pkpkpkdo (Portugese pt_BR)
 jax (Romanian ro_RO)
+Lexey (Russian ru_RU)
 
 Testers, Support
 ================

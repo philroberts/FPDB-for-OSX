@@ -44,9 +44,13 @@ log = logging.getLogger("importer")
 
 
 class GuiTourneyImport():
+    def progressNotify(self):
+        "A callback to the interface while events are pending"
+        while gtk.events_pending():
+            gtk.main_iteration(False)
+
 
     def load_clicked(self, widget, data=None):
-        print "DEBUG: load_clicked"
         stored = None
         dups = None
         partial = None
@@ -54,10 +58,7 @@ class GuiTourneyImport():
         ttime = None
 
         if self.settings['global_lock'].acquire(wait=False, source="GuiTourneyImport"):
-            print "DEBUG: got global lock"
-            #    get the dir to import from the chooser
             selected = self.chooser.get_filenames()
-            print "DEBUG: Files selected: %s" % selected
 
             sitename = self.cbfilter.get_model()[self.cbfilter.get_active()][0]
 
@@ -86,7 +87,7 @@ class GuiTourneyImport():
         self.config = config
         self.parent = parent
 
-        self.importer = SummaryImporter(config, sql, parent)
+        self.importer = SummaryImporter(config, sql, parent, self)
 
         self.vbox = gtk.VBox(False, 0)
         self.vbox.show()
@@ -146,10 +147,11 @@ class GuiTourneyImport():
         self.lab_spacer.show()
 
 class SummaryImporter:
-    def __init__(self, config, sql = None, parent = None):
+    def __init__(self, config, sql = None, parent = None, caller = None):
         self.config     = config
         self.sql        = sql
         self.parent     = parent
+        self.caller     = caller
 
         self.filelist   = {}
         self.dirlist    = {}
@@ -182,7 +184,7 @@ class SummaryImporter:
                     self.addImportFile(unicode(os.path.join(subdir[0], file),'utf-8'),
                                        site=site, tsc=tsc)
         else:
-            self.addImportFile(unicode(inputPath,'utf-8'), site=site, tsc=tsc)
+            self.addImportFile(inputPath, site=site, tsc=tsc)
         pass
 
     def runImport(self):
@@ -192,11 +194,18 @@ class SummaryImporter:
 
         total_errors = 0
         total_imported = 0
+        ProgressDialog = ProgressBar(len(self.filelist), self.parent)
         for f in self.filelist:
-            (site, tsc) = self.filelist[f]
-            imported, errs = self.importFile(f, tsc, site)
-            total_errors += errs
-            total_imported += imported
+            ProgressDialog.progress_update(f, str(total_imported))
+            if self.parent: self.caller.progressNotify()
+            if os.path.exists(f):
+                (site, tsc) = self.filelist[f]
+                imported, errs = self.importFile(f, tsc, site)
+                total_errors += errs
+                total_imported += imported
+            else:
+                print "Unable to access: %s" % f
+        del ProgressDialog
         return (total_imported, total_errors)
             
 
@@ -207,32 +216,37 @@ class SummaryImporter:
         mod = __import__(tsc)
         obj = getattr(mod, tsc, None)
         if callable(obj):
+            errors = 0
+            imported = 0
+
             foabs = self.readFile(obj, filename)
+            if len(foabs) == 0:
+                log.error("Found: '%s' with 0 characters... skipping" % filename)
+                return (0, 1) # File had 0 characters
             summaryTexts = re.split(obj.re_SplitTourneys, foabs)
 
             # The summary files tend to have a header or footer
             # Remove the first and/or last entry if it has < 100 characters
             if len(summaryTexts[-1]) <= 100:
                 summaryTexts.pop()
-                log.warn(_("TourneyImport: Removing text < 100 characters from end of file"))
+                log.warn(_("TourneyImport: Removing text < 100 characters from end of file: '%s'" % filename))
 
             if len(summaryTexts[0]) <= 130:
                 del summaryTexts[0]
-                log.warn(_("TourneyImport: Removing text < 100 characters from start of file"))
+                log.warn(_("TourneyImport: Removing text < 100 characters from start of file: '%s'" % filename))
 
-            print "Found %s summaries" %(len(summaryTexts))
-            errors = 0
-            imported = 0
             ####Lock Placeholder####
             for j, summaryText in enumerate(summaryTexts, start=1):
                 sc, gsc = {'bk': []}, {'bk': []}
                 doinsert = len(summaryTexts)==j
                 try:
-                    conv = obj(db=self.database, config=self.config, siteName=site, summaryText=summaryText, builtFrom = "IMAP")
+                    conv = obj(db=None, config=self.config, siteName=site, summaryText=summaryText, builtFrom = "IMAP")
                     sc, gsc = conv.updateSessionsCache(sc, gsc, None, doinsert)
                 except FpdbParseError, e:
+                    log.error(_("GuiTourneyImport parse error: '%s'" % filename))
                     errors += 1
-                print _("Finished importing %s/%s tournament summaries") %(j, len(summaryTexts))
+                if j != 1:
+                    print _("Finished importing %s/%s tournament summaries") %(j, len(summaryTexts))
                 imported = j
             ####Lock Placeholder####
         return (imported - errors, errors)
@@ -243,7 +257,7 @@ class SummaryImporter:
         self.filelist = {}
 
     def readFile(self, tsc, filename):
-        codepage = ["utf8", "utf16"]
+        codepage = ["utf16", "utf8"]
         whole_file = None
         tsc.codepage
 
@@ -254,10 +268,111 @@ class SummaryImporter:
                 in_fh.close()
                 break
             except UnicodeDecodeError, e:
-                log.warn(_("GTI.readFile: '%s'") % e)
-                pass
+                log.error("GTI.readFile: '%s' : '%s'" % (filename,e))
 
         return whole_file
+
+class ProgressBar:
+    """
+    Popup window to show progress
+
+    Init method sets up total number of expected iterations
+    If no parent is passed to init, command line
+    mode assumed, and does not create a progress bar
+    """
+
+    def __del__(self):
+
+        if self.parent:
+            self.progress.destroy()
+
+
+    def progress_update(self, file, count):
+        if not self.parent:
+            #nothing to do
+            return
+
+        self.fraction += 1
+        #update sum if fraction exceeds expected total number of iterations
+        if self.fraction > self.sum:
+            sum = self.fraction
+
+        #progress bar total set to 1 plus the number of items,to prevent it
+        #reaching 100% prior to processing fully completing
+
+        progress_percent = float(self.fraction) / (float(self.sum) + 1.0)
+        progress_text = (self.title + " "
+                            + str(self.fraction) + " / " + str(self.sum))
+
+        self.pbar.set_fraction(progress_percent)
+        self.pbar.set_text(progress_text)
+
+        self.count.set_text(_("Number of Tourneys:") + " " + count)
+
+        now = datetime.datetime.now()
+        now_formatted = now.strftime("%H:%M:%S")
+        self.progresstext.set_text(now_formatted + " - "+self.title+ " " +file+"\n")
+
+    def __init__(self, sum, parent):
+
+        self.parent = parent
+        if not self.parent:
+            #no parent is passed, assume this is being run from the
+            #command line, so return immediately
+            return
+
+        self.fraction = 0
+        self.sum = sum
+        self.title = _("Importing")
+
+        self.progress = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        self.progress.set_size_request(500,150)
+
+        self.progress.set_resizable(False)
+        self.progress.set_modal(True)
+        self.progress.set_transient_for(self.parent)
+        self.progress.set_decorated(True)
+        self.progress.set_deletable(False)
+        self.progress.set_title(self.title)
+
+        vbox = gtk.VBox(False, 5)
+        vbox.set_border_width(10)
+        self.progress.add(vbox)
+        vbox.show()
+
+        align = gtk.Alignment(0, 0, 0, 0)
+        vbox.pack_start(align, False, True, 2)
+        align.show()
+
+        self.pbar = gtk.ProgressBar()
+        align.add(self.pbar)
+        self.pbar.show()
+
+        align = gtk.Alignment(0, 0, 0, 0)
+        vbox.pack_start(align, False, True, 2)
+        align.show()
+
+        self.count = gtk.Label()
+        align.add(self.count)
+        self.count.show()
+
+        align = gtk.Alignment(0, 0, 0, 0)
+        vbox.pack_start(align, False, True, 0)
+        align.show()
+
+        self.progresstext = gtk.Label()
+        self.progresstext.set_line_wrap(True)
+        self.progresstext.set_selectable(True)
+        align.add(self.progresstext)
+        self.progresstext.show()
+
+        self.progress.show()
+
+def usage():
+    print _("USAGE:")
+    print "./GuiTourneyImport.py -k <Site> -f <" + _("filename") + ">"
+    print "./GuiTourneyImport.py -k PokerStars -f <" + _("filename") + ">"
+    print "./GuiTourneyImport.py -k 'Full Tilt Poker' -f <" + _("filename") + ">"
 
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""
@@ -269,11 +384,12 @@ def main(argv=None):
 
     if options.usage == True:
         #Print usage examples and exit
-        print _("USAGE:")
+        usage()
         sys.exit(0)
 
     if options.hhc == "PokerStarsToFpdb":
         print _("Need to define a converter")
+        usage()
         exit(0)
 
     config = Configuration.Config("HUD_config.test.xml")
@@ -281,9 +397,10 @@ def main(argv=None):
 
     if options.filename == None:
         print _("Need a filename to import")
+        usage()
         exit(0)
 
-    importer = SummaryImporter(config, sql, None)
+    importer = SummaryImporter(config, sql, None, None)
 
     importer.addImportFileOrDir(options.filename, site = options.hhc)
     starttime = time()
