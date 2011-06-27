@@ -229,11 +229,11 @@ class SummaryImporter:
             # Remove the first and/or last entry if it has < 100 characters
             if len(summaryTexts[-1]) <= 100:
                 summaryTexts.pop()
-                log.warn(_("TourneyImport: Removing text < 100 characters from end of file: '%s'" % filename))
+                log.warn(_("Tourney import: Removing text < 100 characters from end of file: %s" % filename))
 
             if len(summaryTexts[0]) <= 130:
                 del summaryTexts[0]
-                log.warn(_("TourneyImport: Removing text < 100 characters from start of file: '%s'" % filename))
+                log.warn(_("Tourney import: Removing text < 100 characters from start of file: %s" % filename))
 
             ####Lock Placeholder####
             for j, summaryText in enumerate(summaryTexts, start=1):
@@ -243,7 +243,7 @@ class SummaryImporter:
                     conv = obj(db=None, config=self.config, siteName=site, summaryText=summaryText, builtFrom = "IMAP")
                     sc, gsc = conv.updateSessionsCache(sc, gsc, None, doinsert)
                 except FpdbParseError, e:
-                    log.error(_("GuiTourneyImport parse error: '%s'" % filename))
+                    log.error(_("Tourney import parse error in file: %s" % filename))
                     errors += 1
                 if j != 1:
                     print _("Finished importing %s/%s tournament summaries") %(j, len(summaryTexts))
