@@ -56,7 +56,7 @@ class FullTiltPokerSummary(TourneySummary):
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
 
     re_TourneyInfo = re.compile(u"""
-                        (\s*.*(?P<TYPE>Tournament|Sit\s\&\sGo|Sit\&Go|\(Rebuy\)|Matrix|Knockout|KO|Rush|Satellite|FTOPS|MiniFTOPS|Step\s\d|Daily\sDollar|Madness|Freeroll|Heads-Up|Challenge|Super\sTurbo).*\s)
+                        (\s*.*(?P<TYPE>Tournament|Sit\s\&\sGo|Sit\&Go|\(Rebuy\)|Matrix|Knockout|KO|Rush|Satellite|FTOPS|MiniFTOPS|Step\s\d|Daily\sDollar|Madness|Freeroll|Heads-Up|Challenge|Super\sTurbo|The\sKitchen\sSink).*\s)
                         \((?P<TOURNO>[0-9]+)\)
                         (\s+)?(\sMatch\s\d\s)?
                         (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s+
