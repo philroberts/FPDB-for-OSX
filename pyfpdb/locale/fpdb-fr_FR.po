@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-06-26 11:15+CEST\n"
+"POT-Creation-Date: 2011-06-26 13:33+CEST\n"
 "PO-Revision-Date: 2011-05-14 00:18+0000\n"
 "Last-Translator: PassThePeas <stephane.alessio@gmail.com>\n"
 "Language-Team: French (France) (http://www.transifex.net/projects/p/fpdb/"
@@ -408,56 +408,56 @@ msgstr "######## Mains ##########"
 msgid "###### End Hands ########"
 msgstr "###### Fin des mains ########"
 
-#: Database.py:2491
+#: Database.py:2502
 msgid "######## Gametype ##########"
 msgstr "######## Type de jeu ##########"
 
-#: Database.py:2495
+#: Database.py:2506
 msgid "###### End Gametype ########"
 msgstr "###### Fin de type de jeu ########"
 
-#: Database.py:2582
+#: Database.py:2593
 msgid "queue empty too long - writer stopping ..."
 msgstr "Vidage de la file d'attente trop long - arrêt de l'écriture..."
 
-#: Database.py:2585
+#: Database.py:2596
 msgid "writer stopping, error reading queue:"
 msgstr "arrêt de l'écriture, erreur lors de la lecture de la file:"
 
-#: Database.py:2610
+#: Database.py:2621
 msgid "deadlock detected - trying again ..."
 msgstr "deadlock détecté - Nouvelle tentative..."
 
-#: Database.py:2615
+#: Database.py:2626
 msgid "Too many deadlocks - failed to store hand"
 msgstr "Trop de deadlocks - échec du stockage de la main"
 
-#: Database.py:2619
+#: Database.py:2630
 msgid "***Error storing hand:"
 msgstr "***Erreur de stockage de la main:"
 
-#: Database.py:2629
+#: Database.py:2640
 msgid "db writer finished: stored %d hands (%d fails) in %.1f seconds"
 msgstr ""
 "fin de l'écriture en BDD: %d mains stockées (%d en échec) en %.1f secondes"
 
-#: Database.py:2638
+#: Database.py:2649
 msgid "***Error sending finish:"
 msgstr "***Erreur lors de l'arrêt:"
 
-#: Database.py:2956 Database.py:3006
+#: Database.py:2967 Database.py:3017
 msgid "%s error: %s"
 msgstr "%s erreur: %s"
 
-#: Database.py:3054
+#: Database.py:3065
 msgid "cards ="
 msgstr "cartes ="
 
-#: Database.py:3057
+#: Database.py:3068
 msgid "get_stats took: %4.3f seconds"
 msgstr "get_stats a duré: %4.3f secondes"
 
-#: Database.py:3059 HandHistoryConverter.py:41 fpdb.pyw:46
+#: Database.py:3070 HandHistoryConverter.py:41 fpdb.pyw:46
 msgid "Press ENTER to continue."
 msgstr "Appuyez sur ENTRÉE pour continuer."
 
@@ -846,13 +846,13 @@ msgstr ""
 
 #: GuiAutoImport.py:302
 #, fuzzy
-msgid "Global lock released."
-msgstr "Verrou global libéré.\n"
-
-#: GuiAutoImport.py:302
-#, fuzzy
 msgid "Stopping Auto Import."
 msgstr "Arrêter l'_Auto Import"
+
+#: GuiAutoImport.py:302 fpdb.pyw:1087
+#, fuzzy
+msgid "Global lock released."
+msgstr "Verrou global libéré.\n"
 
 #: GuiAutoImport.py:304
 #, fuzzy
@@ -1239,7 +1239,7 @@ msgstr "Pas de limites trouvées"
 msgid "Graph generated in: %s"
 msgstr "Graphique généré en: %s"
 
-#: GuiGraphViewer.py:193
+#: GuiGraphViewer.py:193 GuiGraphViewer.py:221 GuiGraphViewer.py:234
 msgid "Hands"
 msgstr "Mains"
 
@@ -1247,13 +1247,11 @@ msgstr "Mains"
 msgid "No Data for Player(s) Found"
 msgstr "Pas de Données Trouvées pour le(s) Joueur(s)"
 
-#: GuiGraphViewer.py:221 GuiGraphViewer.py:234
-msgid ""
-"Hands: %d\n"
-"Profit: (%s): %.2f"
-msgstr ""
-"Mains: %d\n"
-"Gains: (%s): %.2f"
+#: GuiGraphViewer.py:221 GuiGraphViewer.py:234 GuiTourneyGraphViewer.py:203
+#: GuiTourneyGraphViewer.py:213
+#, fuzzy
+msgid "Profit"
+msgstr "Profit Total"
 
 #: GuiGraphViewer.py:222 GuiGraphViewer.py:236
 msgid "Showdown"
@@ -1765,11 +1763,6 @@ msgstr ""
 msgid "Tournaments"
 msgstr "Tournois"
 
-#: GuiTourneyGraphViewer.py:203 GuiTourneyGraphViewer.py:213
-#, fuzzy
-msgid "Profit"
-msgstr "Profit Total"
-
 #: GuiTourneyGraphViewer.py:210
 msgid "Tournament Results"
 msgstr "Résultats de tournois"
@@ -1926,13 +1919,12 @@ msgstr "N/A"
 msgid "invalid entry in tourney number - must enter numbers only"
 msgstr "numéro de tournoi invalide - chiffres seulement"
 
-#: HUD_main.pyw:69
-#, fuzzy
-msgid "using db name = %s"
-msgstr "Démarrage HUD principal : utilisation de la db = %s"
-
 #: HUD_main.pyw:69 HUD_main.pyw:78 HUD_run_me.py:45
 msgid "HUD_main starting"
+msgstr ""
+
+#: HUD_main.pyw:69 HUD_run_me.py:51 TournamentTracker.py:306
+msgid "Using db name = %s"
 msgstr ""
 
 #: HUD_main.pyw:74
@@ -1976,8 +1968,9 @@ msgid "database error: skipping %s"
 msgstr "erreur bdd: ignore %s"
 
 #: HUD_main.pyw:253
-msgid "hud_dict[%s] was not found"
-msgstr ""
+#, fuzzy
+msgid "%s was not found"
+msgstr "Fichier non trouvé"
 
 #: HUD_main.pyw:254
 msgid "will not send hand"
@@ -2007,10 +2000,6 @@ msgstr "Problème de création du HUD pour la main %s."
 msgid "Error updating HUD for hand %s."
 msgstr "Erreur de mise à jour du HUD pour la main %s."
 
-#: HUD_run_me.py:51 TournamentTracker.py:306
-msgid "Using db name = %s"
-msgstr ""
-
 #: HUD_run_me.py:66
 msgid "HUD Main Window"
 msgstr "Fenêtre Principale HUD"
@@ -2024,7 +2013,8 @@ msgid "SB"
 msgstr "SB"
 
 #: Hand.py:151
-msgid "BUTTONPOS"
+#, fuzzy
+msgid "BUTTON POS"
 msgstr "POSITION BOUTON"
 
 #: Hand.py:152
@@ -2044,7 +2034,8 @@ msgid "HERO"
 msgstr "HÉROS"
 
 #: Hand.py:156 TourneySummary.py:142
-msgid "MAXSEATS"
+#, fuzzy
+msgid "MAX SEATS"
 msgstr "SIÈGES MAX"
 
 #: Hand.py:157
@@ -2056,7 +2047,8 @@ msgid "MIXED"
 msgstr "MIXTE"
 
 #: Hand.py:159
-msgid "LASTBET"
+#, fuzzy
+msgid "LAST BET"
 msgstr "DERNIÈRE MISE"
 
 #: Hand.py:160
@@ -3669,10 +3661,6 @@ msgstr ""
 "\n"
 "Impossible d'obtenir un verrou global, il actuellement détenu par %s"
 
-#: fpdb.pyw:1087
-msgid "Global lock released.\n"
-msgstr "Verrou global libéré.\n"
-
 #: fpdb.pyw:1094
 msgid "Auto Import"
 msgstr "Importation Auto"
@@ -3952,6 +3940,23 @@ msgstr ""
 #: windows_make_bats.py:57
 msgid "No gtk directories found in your path."
 msgstr ""
+
+#~ msgid "MAXSEATS"
+#~ msgstr "SIÈGES MAX"
+
+#, fuzzy
+#~ msgid "using db name = %s"
+#~ msgstr "Démarrage HUD principal : utilisation de la db = %s"
+
+#~ msgid ""
+#~ "Hands: %d\n"
+#~ "Profit: (%s): %.2f"
+#~ msgstr ""
+#~ "Mains: %d\n"
+#~ "Gains: (%s): %.2f"
+
+#~ msgid "Global lock released.\n"
+#~ msgstr "Verrou global libéré.\n"
 
 #~ msgid ""
 #~ "\n"

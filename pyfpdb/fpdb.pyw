@@ -1084,7 +1084,7 @@ class fpdb:
     def release_global_lock(self):
         self.lock.release()
         self.lockTakenBy = None
-        print _("Global lock released.\n")
+        print _("Global lock released.")
 
     def tab_auto_import(self, widget, data=None):
         """opens the auto import tab"""

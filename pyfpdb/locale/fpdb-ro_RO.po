@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-06-26 11:15+CEST\n"
+"POT-Creation-Date: 2011-06-26 13:33+CEST\n"
 "PO-Revision-Date: 2011-05-13 08:55+0000\n"
 "Last-Translator: jax <jax@netmagnet.ro>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.net/projects/p/fpdb/"
@@ -407,57 +407,57 @@ msgstr "######## Miini ##########"
 msgid "###### End Hands ########"
 msgstr "##### Sfirsit Miini #####"
 
-#: Database.py:2491
+#: Database.py:2502
 msgid "######## Gametype ##########"
 msgstr "####### Tip de joc #########"
 
-#: Database.py:2495
+#: Database.py:2506
 msgid "###### End Gametype ########"
 msgstr "#### Sfisit tip de joc #####"
 
-#: Database.py:2582
+#: Database.py:2593
 msgid "queue empty too long - writer stopping ..."
 msgstr "coada fara continut de prea mult timp - se opreste scrierea ..."
 
-#: Database.py:2585
+#: Database.py:2596
 msgid "writer stopping, error reading queue:"
 msgstr "scriere oprita, eroare la citirea cozii:"
 
-#: Database.py:2610
+#: Database.py:2621
 msgid "deadlock detected - trying again ..."
 msgstr "detectare punct mort - se reincearca ..."
 
-#: Database.py:2615
+#: Database.py:2626
 msgid "Too many deadlocks - failed to store hand"
 msgstr "Prea multe puncte moarte - eroare la inregistrarea miinii"
 
-#: Database.py:2619
+#: Database.py:2630
 msgid "***Error storing hand:"
 msgstr "*** Eroare la inregistrarea miinii:"
 
-#: Database.py:2629
+#: Database.py:2640
 msgid "db writer finished: stored %d hands (%d fails) in %.1f seconds"
 msgstr ""
 "scrierea in baza de date s-a incheiat: s-au salvat %d miini (%d esecuri) in "
 "%.1f secunde"
 
-#: Database.py:2638
+#: Database.py:2649
 msgid "***Error sending finish:"
 msgstr "*** Eroare la incheiere:"
 
-#: Database.py:2956 Database.py:3006
+#: Database.py:2967 Database.py:3017
 msgid "%s error: %s"
 msgstr "%s eroare: %s"
 
-#: Database.py:3054
+#: Database.py:3065
 msgid "cards ="
 msgstr "carti ="
 
-#: Database.py:3057
+#: Database.py:3068
 msgid "get_stats took: %4.3f seconds"
 msgstr "get_stats a durat: %4.3f secunde"
 
-#: Database.py:3059 HandHistoryConverter.py:41 fpdb.pyw:46
+#: Database.py:3070 HandHistoryConverter.py:41 fpdb.pyw:46
 msgid "Press ENTER to continue."
 msgstr "Apasa ENTER pentru a continua."
 
@@ -843,13 +843,13 @@ msgstr ""
 
 #: GuiAutoImport.py:302
 #, fuzzy
-msgid "Global lock released."
-msgstr "Siguranta globala eliberata.\n"
-
-#: GuiAutoImport.py:302
-#, fuzzy
 msgid "Stopping Auto Import."
 msgstr "Opreste _Auto Import"
+
+#: GuiAutoImport.py:302 fpdb.pyw:1087
+#, fuzzy
+msgid "Global lock released."
+msgstr "Siguranta globala eliberata.\n"
 
 #: GuiAutoImport.py:304
 #, fuzzy
@@ -1234,7 +1234,7 @@ msgstr "Nu gasesc limitele"
 msgid "Graph generated in: %s"
 msgstr "Grafic generat in: %s"
 
-#: GuiGraphViewer.py:193
+#: GuiGraphViewer.py:193 GuiGraphViewer.py:221 GuiGraphViewer.py:234
 msgid "Hands"
 msgstr "Miini"
 
@@ -1242,13 +1242,11 @@ msgstr "Miini"
 msgid "No Data for Player(s) Found"
 msgstr "Jucatorul/jucatorii gasiti nu au date"
 
-#: GuiGraphViewer.py:221 GuiGraphViewer.py:234
-msgid ""
-"Hands: %d\n"
-"Profit: (%s): %.2f"
-msgstr ""
-"Miini: %d\n"
-"Profit: (%s): %.2f"
+#: GuiGraphViewer.py:221 GuiGraphViewer.py:234 GuiTourneyGraphViewer.py:203
+#: GuiTourneyGraphViewer.py:213
+#, fuzzy
+msgid "Profit"
+msgstr "Profit total"
 
 #: GuiGraphViewer.py:222 GuiGraphViewer.py:236
 msgid "Showdown"
@@ -1766,11 +1764,6 @@ msgstr "platit"
 msgid "Tournaments"
 msgstr "Turnee"
 
-#: GuiTourneyGraphViewer.py:203 GuiTourneyGraphViewer.py:213
-#, fuzzy
-msgid "Profit"
-msgstr "Profit total"
-
 #: GuiTourneyGraphViewer.py:210
 msgid "Tournament Results"
 msgstr "Rezultate Turnee"
@@ -1927,14 +1920,13 @@ msgstr "N/A"
 msgid "invalid entry in tourney number - must enter numbers only"
 msgstr "intrare invalida la numarul turneului - trebuie introduse doar numere"
 
-#: HUD_main.pyw:69
-#, fuzzy
-msgid "using db name = %s"
-msgstr "Folosirea bd numita = %s"
-
 #: HUD_main.pyw:69 HUD_main.pyw:78 HUD_run_me.py:45
 msgid "HUD_main starting"
 msgstr "Pornire HUD_main"
+
+#: HUD_main.pyw:69 HUD_run_me.py:51 TournamentTracker.py:306
+msgid "Using db name = %s"
+msgstr "Folosirea bd numita = %s"
 
 #: HUD_main.pyw:74
 #, fuzzy
@@ -1977,7 +1969,8 @@ msgid "database error: skipping %s"
 msgstr "eroare bd: ignorare %s"
 
 #: HUD_main.pyw:253
-msgid "hud_dict[%s] was not found"
+#, fuzzy
+msgid "%s was not found"
 msgstr "hud_dict[%s] nu a fost gasit"
 
 #: HUD_main.pyw:254
@@ -2008,10 +2001,6 @@ msgstr "Eroare la crearea HUD pentru mina %s."
 msgid "Error updating HUD for hand %s."
 msgstr "Eroare la actualizarea HUD pentru mina %s."
 
-#: HUD_run_me.py:51 TournamentTracker.py:306
-msgid "Using db name = %s"
-msgstr "Folosirea bd numita = %s"
-
 #: HUD_run_me.py:66
 msgid "HUD Main Window"
 msgstr "HUD Fereastra Principala"
@@ -2025,7 +2014,8 @@ msgid "SB"
 msgstr "SB"
 
 #: Hand.py:151
-msgid "BUTTONPOS"
+#, fuzzy
+msgid "BUTTON POS"
 msgstr "POZBUTON"
 
 #: Hand.py:152
@@ -2045,7 +2035,8 @@ msgid "HERO"
 msgstr "EROU"
 
 #: Hand.py:156 TourneySummary.py:142
-msgid "MAXSEATS"
+#, fuzzy
+msgid "MAX SEATS"
 msgstr "LOCURIMAX"
 
 #: Hand.py:157
@@ -2057,7 +2048,8 @@ msgid "MIXED"
 msgstr "AMESTECAT"
 
 #: Hand.py:159
-msgid "LASTBET"
+#, fuzzy
+msgid "LAST BET"
 msgstr "ULTIMPARIU"
 
 #: Hand.py:160
@@ -3666,10 +3658,6 @@ msgstr ""
 "\n"
 "Nu se poate lua siguranta globala, e detinuta de %s"
 
-#: fpdb.pyw:1087
-msgid "Global lock released.\n"
-msgstr "Siguranta globala eliberata.\n"
-
 #: fpdb.pyw:1094
 msgid "Auto Import"
 msgstr "Importare Automata"
@@ -3947,6 +3935,23 @@ msgstr ""
 #: windows_make_bats.py:57
 msgid "No gtk directories found in your path."
 msgstr ""
+
+#~ msgid "MAXSEATS"
+#~ msgstr "LOCURIMAX"
+
+#, fuzzy
+#~ msgid "using db name = %s"
+#~ msgstr "Folosirea bd numita = %s"
+
+#~ msgid ""
+#~ "Hands: %d\n"
+#~ "Profit: (%s): %.2f"
+#~ msgstr ""
+#~ "Miini: %d\n"
+#~ "Profit: (%s): %.2f"
+
+#~ msgid "Global lock released.\n"
+#~ msgstr "Siguranta globala eliberata.\n"
 
 #~ msgid ""
 #~ "\n"
