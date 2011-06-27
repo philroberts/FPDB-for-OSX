@@ -196,6 +196,7 @@ class Filters(threading.Thread):
         self.cbNL = None
         self.cbPL = None
         self.cbCN = None
+        self.cbHP = None
         self.rb = {}     # radio buttons for ring/tour
         self.type = None # ring/tour
         self.types = {}  # list of all ring/tour values
@@ -1012,7 +1013,7 @@ class Filters(threading.Thread):
                        if self.found['hp']:
                            hbox = gtk.HBox(False, 0)
                            vbox3.pack_start(hbox, False, False, 0)
-                           self.cbCN = self.createLimitLine(hbox, 'cn', self.filterText['limitsHP'])
+                           self.cbHP = self.createLimitLine(hbox, 'hp', self.filterText['limitsHP'])
                        dest = vbox2  # for ring/tour buttons
         else:
             print _("INFO: No games returned from database")
