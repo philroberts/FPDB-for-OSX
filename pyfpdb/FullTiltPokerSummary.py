@@ -150,17 +150,15 @@ class FullTiltPokerSummary(TourneySummary):
             if 'TICKET' and mg['TICKET'] != None:
                 #print "Tournament Ticket Level %s" % mg['LEVEL']
                 step_values = {
-                              #  '1' :    '750', # Step 1 -    $7.50 USD
+                                '1' :    '330', # Step 1 -    $3.30 USD
                                 '2' :    '870', # Step 2 -    $8.70 USD
-                              #  '3' :   '8200', # Step 3 -   $82.00 USD
-                              #  '4' :  '21500', # Step 4 -  $215.00 USD
-                              #  '5' :  '70000', # Step 5 -  $700.00 USD
-                              #  '6' : '210000', # Step 6 - $2100.00 USD
+                                '3' :   '2600', # Step 3 -   $26.00 USD
+                                '4' :   '7500', # Step 4 -   $75.00 USD
+                                '5' :  '21600', # Step 5 -  $216.00 USD
+                                '6' :  '64000', # Step 6 -  $640.00 USD
+                                '7' : '210000', # Step 7 - $2100.00 USD
                               }
-                if mg['LEVEL'] == '2':
-                    winnings = step_values[mg['LEVEL']]
-                else:
-                    raise FpdbParseError("Found a new step value")
+                winnings = step_values[mg['LEVEL']]
             self.addPlayer(rank, name, winnings, self.currency, None, None, None)
 
             playercount += 1
