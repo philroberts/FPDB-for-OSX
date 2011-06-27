@@ -18,18 +18,12 @@
 import L10n
 _ = L10n.get_translation()
 
-#import traceback
 import threading
 import pygtk
 pygtk.require('2.0')
 import gtk
-#import os
-#import sys
 from time import time, strftime
 
-#import Card
-#import fpdb_import
-#import Database
 import Charset
 import TourneyFilters
 import GuiPlayerStats
@@ -406,23 +400,18 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
     #end def reset_style_render_func
 
     def sortCols(self, col, nums):
-        try:
-            #This doesn't actually work yet - clicking heading in top section sorts bottom section :-(
-            (n, grid) = nums
-            if not col.get_sort_indicator() or col.get_sort_order() == gtk.SORT_ASCENDING:
-                col.set_sort_order(gtk.SORT_DESCENDING)
-            else:
-                col.set_sort_order(gtk.SORT_ASCENDING)
-            self.liststore[grid].set_sort_column_id(n, col.get_sort_order())
-            self.liststore[grid].set_sort_func(n, self.sortnums, (n,grid))
-            for i in xrange(len(self.listcols[grid])):
-                self.listcols[grid][i].set_sort_indicator(False)
-            self.listcols[grid][n].set_sort_indicator(True)
-            # use this   listcols[col].set_sort_indicator(True)
-            # to turn indicator off for other cols
-        except:
-            err = traceback.extract_tb(sys.exc_info()[2])
-            print ("***sortCols " + _("error") + ": " + str(sys.exc_info()[1]))
-            print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
+        #This doesn't actually work yet - clicking heading in top section sorts bottom section :-(
+        (n, grid) = nums
+        if not col.get_sort_indicator() or col.get_sort_order() == gtk.SORT_ASCENDING:
+            col.set_sort_order(gtk.SORT_DESCENDING)
+        else:
+            col.set_sort_order(gtk.SORT_ASCENDING)
+        self.liststore[grid].set_sort_column_id(n, col.get_sort_order())
+        self.liststore[grid].set_sort_func(n, self.sortnums, (n,grid))
+        for i in xrange(len(self.listcols[grid])):
+            self.listcols[grid][i].set_sort_indicator(False)
+        self.listcols[grid][n].set_sort_indicator(True)
+        # use this   listcols[col].set_sort_indicator(True)
+        # to turn indicator off for other cols
     #end def sortCols
 #end class GuiTourneyPlayerStats

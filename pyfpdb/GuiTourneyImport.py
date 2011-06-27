@@ -221,6 +221,7 @@ class SummaryImporter:
 
             foabs = self.readFile(obj, filename)
             if len(foabs) == 0:
+                log.error("Found: '%s' with 0 characters... skipping" % filename)
                 return (0, 1) # File had 0 characters
             summaryTexts = re.split(obj.re_SplitTourneys, foabs)
 
@@ -228,11 +229,11 @@ class SummaryImporter:
             # Remove the first and/or last entry if it has < 100 characters
             if len(summaryTexts[-1]) <= 100:
                 summaryTexts.pop()
-                log.warn("TourneyImport: " + _("Removing text < 100 characters from end of file"))
+                log.warn(_("Tourney import: Removing text < 100 characters from end of file: %s" % filename))
 
             if len(summaryTexts[0]) <= 130:
                 del summaryTexts[0]
-                log.warn("TourneyImport: " + _("Removing text < 100 characters from start of file"))
+                log.warn(_("Tourney import: Removing text < 100 characters from start of file: %s" % filename))
 
             ####Lock Placeholder####
             for j, summaryText in enumerate(summaryTexts, start=1):
@@ -242,6 +243,7 @@ class SummaryImporter:
                     conv = obj(db=None, config=self.config, siteName=site, summaryText=summaryText, builtFrom = "IMAP")
                     sc, gsc = conv.updateSessionsCache(sc, gsc, None, doinsert)
                 except FpdbParseError, e:
+                    log.error(_("Tourney import parse error in file: %s" % filename))
                     errors += 1
                 if j != 1:
                     print _("Finished importing %s/%s tournament summaries") %(j, len(summaryTexts))
@@ -255,7 +257,7 @@ class SummaryImporter:
         self.filelist = {}
 
     def readFile(self, tsc, filename):
-        codepage = ["utf8", "utf16"]
+        codepage = ["utf16", "utf8"]
         whole_file = None
         tsc.codepage
 
@@ -266,8 +268,7 @@ class SummaryImporter:
                 in_fh.close()
                 break
             except UnicodeDecodeError, e:
-                log.warn("GTI.readFile: '%s'" % e)
-                pass
+                log.error("GTI.readFile: '%s' : '%s'" % (filename,e))
 
         return whole_file
 

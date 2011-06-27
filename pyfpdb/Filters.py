@@ -196,6 +196,7 @@ class Filters(threading.Thread):
         self.cbNL = None
         self.cbPL = None
         self.cbCN = None
+        self.cbHP = None
         self.rb = {}     # radio buttons for ring/tour
         self.type = None # ring/tour
         self.types = {}  # list of all ring/tour values
@@ -1012,7 +1013,7 @@ class Filters(threading.Thread):
                        if self.found['hp']:
                            hbox = gtk.HBox(False, 0)
                            vbox3.pack_start(hbox, False, False, 0)
-                           self.cbCN = self.createLimitLine(hbox, 'cn', self.filterText['limitsHP'])
+                           self.cbHP = self.createLimitLine(hbox, 'hp', self.filterText['limitsHP'])
                        dest = vbox2  # for ring/tour buttons
         else:
             print _("INFO: No games returned from database")
@@ -1417,15 +1418,30 @@ def main(argv=None):
     parser = OptionParser()
     (options, argv) = parser.parse_args(args = argv)
 
-    config = Configuration.Config()
-    db = None
+    config = Configuration.Config(file = "HUD_config.test.xml")
+    db = Database.Database(config)
 
-    db = Database.Database()
-    db.do_connect(config)
+    qdict = SQL.Sql(db_server = 'sqlite')
 
-    qdict = SQL.SQL(db.get_backend_name())
+    filters_display = { "Heroes"    : True,
+                        "Sites"     : True,
+                        "Games"     : True,
+                        "Currencies": True,
+                        "Limits"    : True,
+                        "LimitSep"  : True,
+                        "LimitType" : True,
+                        "Type"      : False,
+                        "UseType"   : 'ring',
+                        "Seats"     : False,
+                        "SeatSep"   : False,
+                        "Dates"     : True,
+                        "GraphOps"  : True,
+                        "Groups"    : False,
+                        "Button1"   : True,
+                        "Button2"   : True
+                          }
 
-    i = Filters(db, config, qdict)
+    i = Filters(db, config, qdict, display = filters_display)
     main_window = gtk.Window()
     main_window.connect('destroy', destroy)
     main_window.add(i.get_vbox())

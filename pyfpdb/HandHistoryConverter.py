@@ -132,121 +132,40 @@ Otherwise, finish at EOF.
             log.warning(_("Failed sanity check"))
             return
 
-        try:
-            self.numHands = 0
-            self.numErrors = 0
-            if self.follow:
-                #TODO: See how summary files can be handled on the fly (here they should be rejected as before)
-                log.info(_("Tailing '%s'") % self.in_path)
-                for handText in self.tailHands():
-                    try:
-                        self.processHand(handText)
-                        self.numHands += 1
-                    except FpdbParseError, e:
-                        self.numErrors += 1
-                        log.warning(_("HHC.start(follow): processHand failed: Exception msg: '%s'") % e)
-                        log.debug(handText)
-            else:
-                handsList = self.allHandsAsList()
-                log.debug( _("handsList is ") + str(handsList) )
-                log.info("Parsing %d hands" % len(handsList))
-                # Determine if we're dealing with a HH file or a Summary file
-                # quick fix : empty files make the handsList[0] fail ==> If empty file, go on with HH parsing
-                if len(handsList) == 0 or self.isSummary(handsList[0]) == False:
-                    self.parsedObjectType = "HH"
-                    for handText in handsList:
-                        try:
-                            self.processedHands.append(self.processHand(handText))
-                        except FpdbParseError, e:
-                            self.numErrors += 1
-                            log.warning(_("HHC.start(): processHand failed: Exception msg: '%s'") % e)
-                            log.debug(handText)
-                    self.numHands = len(handsList)
-                    endtime = time.time()
-                    log.info(_("Read %d hands (%d failed) in %.3f seconds") % (self.numHands, self.numErrors, endtime - starttime))
-                else:
-                        self.parsedObjectType = "Summary"
-                        summaryParsingStatus = self.readSummaryInfo(handsList)
-                        endtime = time.time()
-                        if summaryParsingStatus :
-                            log.info(_("Summary file '%s' correctly parsed  (took %.3f seconds)") % (self.in_path, endtime - starttime))
-                        else :
-                            log.warning(_("Error converting summary file '%s' (took %.3f seconds)") % (self.in_path, endtime - starttime))
+        self.numHands = 0
+        self.numErrors = 0
+        handsList = self.allHandsAsList()
+        log.debug( _("handsList is ") + str(handsList) )
+        log.info("Parsing %d hands" % len(handsList))
+        # Determine if we're dealing with a HH file or a Summary file
+        # quick fix : empty files make the handsList[0] fail ==> If empty file, go on with HH parsing
+        if len(handsList) == 0 or self.isSummary(handsList[0]) == False:
+            self.parsedObjectType = "HH"
+            for handText in handsList:
+                try:
+                    self.processedHands.append(self.processHand(handText))
+                except FpdbParseError, e:
+                    self.numErrors += 1
+                    log.warning(_("HHC.start(): processHand failed: Exception msg: '%s'") % e)
+                    log.debug(handText)
+            self.numHands = len(handsList)
+            endtime = time.time()
+            log.info(_("Read %d hands (%d failed) in %.3f seconds") % (self.numHands, self.numErrors, endtime - starttime))
+        else:
+            self.parsedObjectType = "Summary"
+            summaryParsingStatus = self.readSummaryInfo(handsList)
+            endtime = time.time()
+            if summaryParsingStatus :
+                log.info(_("Summary file '%s' correctly parsed  (took %.3f seconds)") % (self.in_path, endtime - starttime))
+            else :
+                log.warning(_("Error converting summary file '%s' (took %.3f seconds)") % (self.in_path, endtime - starttime))
 
-        except IOError, ioe:
-            log.exception(_("Error converting '%s'") % self.in_path)
-        finally:
-            if self.out_fh != sys.stdout:
-                self.out_fh.close()
                 
     def progressNotify(self):
         "A callback to the interface while events are pending"
         import gtk, pygtk
         while gtk.events_pending():
             gtk.main_iteration(False)
-
-    def tailHands(self):
-        """Generator of handTexts from a tailed file:
-Tail the in_path file and yield handTexts separated by re_SplitHands.
-This requires a regex that greedily groups and matches the 'splitter' between hands,
-which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
-
-"""
-        if self.in_path == '-':
-            raise StopIteration
-        interval = 1.0 # seconds to sleep between reads for new data
-        fd = codecs.open(self.in_path,'r', self.codepage)
-        data = ''
-        while 1:
-            where = fd.tell()
-            newdata = fd.read(self.READ_CHUNK_SIZE)
-            if not newdata:
-                fd_results = os.fstat(fd.fileno())
-                try:
-                    st_results = os.stat(self.in_path)
-                except OSError:
-                    st_results = fd_results
-                if st_results[1] == fd_results[1]:
-                    time.sleep(interval)
-                    fd.seek(where)
-                else:
-                    log.debug(_("%s changed inode numbers from %d to %d") % (self.in_path, fd_results[1], st_results[1]))
-                    fd = codecs.open(self.in_path, 'r', self.codepage)
-                    fd.seek(where)
-            else:
-                # yield hands
-                data = data + newdata
-                result = self.re_TailSplitHands.split(data)
-                result = iter(result)
-                data = ''
-                # --x       data (- is bit of splitter, x is paragraph)     yield,...,keep
-                # [,--,x]    result of re.split (with group around splitter)
-                # ,x        our output: yield nothing, keep x
-                #
-                # --x--x    [,--,x,--,x]  x,x
-                # -x--x     [-x,--,x]     x,x
-                # x-        [x-]          ,x-
-                # x--       [x,--,]       x,--
-                # x--x      [x,--,x]      x,x
-                # x--x--    [x,--,x,--,]  x,x,--
-
-                # The length is always odd.
-                # 'odd' indices are always splitters.
-                # 'even' indices are always paragraphs or ''
-                # We want to discard all the ''
-                # We want to discard splitters unless the final item is '' (because the splitter could grow with new data)
-                # We want to yield all paragraphs followed by a splitter, i.e. all even indices except the last.
-                for para in result:
-                    try:
-                        result.next()
-                        splitter = True
-                    except StopIteration:
-                        splitter = False
-                    if splitter: # para is followed by a splitter
-                        if para: yield para # para not ''
-                    else:
-                        data = para # keep final partial paragraph
-
 
     def allHandsAsList(self):
         """Return a list of handtexts in the file at self.in_path"""
@@ -269,7 +188,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             self.obs = m.sub('', self.obs)
 
         if self.obs is None or self.obs == "":
-            log.error(_("Read no hands."))
+            log.error(_("Read no hands from file: '%s'" % self.in_path))
             return []
         handlist = re.split(self.re_SplitHands,  self.obs)
         # Some HH formats leave dangling text after the split
@@ -497,25 +416,20 @@ or None if we fail to get the info """
         """Open in_path according to self.codepage. Exceptions caught further up"""
 
         if self.filetype == "text":
-            if self.in_path == '-':
-                # read from stdin
-                log.debug(_("Reading stdin with %s") % self.codepage) # is this necessary? or possible? or what?
-                in_fh = codecs.getreader('cp1252')(sys.stdin)
+            for kodec in self.__listof(self.codepage):
+                #print "trying", kodec
+                try:
+                    in_fh = codecs.open(self.in_path, 'r', kodec)
+                    self.whole_file = in_fh.read()
+                    in_fh.close()
+                    self.obs = self.whole_file[self.index:]
+                    self.index = len(self.whole_file)
+                    break
+                except:
+                    pass
             else:
-                for kodec in self.__listof(self.codepage):
-                    #print "trying", kodec
-                    try:
-                        in_fh = codecs.open(self.in_path, 'r', kodec)
-                        self.whole_file = in_fh.read()
-                        in_fh.close()
-                        self.obs = self.whole_file[self.index:]
-                        self.index = len(self.whole_file)
-                        break
-                    except:
-                        pass
-                else:
-                    print _("unable to read file with any codec in list!"), self.in_path
-                    self.obs = ""
+                print _("unable to read file with any codec in list!"), self.in_path
+                self.obs = ""
         elif self.filetype == "xml":
             doc = xml.dom.minidom.parse(filename)
             self.doc = doc

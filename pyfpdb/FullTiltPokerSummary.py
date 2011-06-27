@@ -34,6 +34,7 @@ class FullTiltPokerSummary(TourneySummary):
                                 'Omaha' : ('hold','omahahi'),
                             'Omahai Hi' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
+                            'Omaha H/L' : ('hold','omahahilo'),
                                  'Razz' : ('stud','razz'), 
                                  'RAZZ' : ('stud','razz'),
                           '7 Card Stud' : ('stud','studhi'),
@@ -55,14 +56,16 @@ class FullTiltPokerSummary(TourneySummary):
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
 
     re_TourneyInfo = re.compile(u"""
-                        \s.*
-                        (?P<TYPE>Tournament|Sit\s\&\sGo|\(Rebuy\)|)\s\((?P<TOURNO>[0-9]+)\)(\s+)?
-                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s+
+                        (\s*.*(?P<TYPE>Tournament|Sit\s\&\sGo|Sit\&Go|\(Rebuy\)|Matrix|Knockout|KO|Rush|Satellite|FTOPS|MiniFTOPS|Step\s\d|Daily\sDollar|Madness|Freeroll|Heads-Up|Challenge|Super\sTurbo|The\sKitchen\sSink).*\s)
+                        \((?P<TOURNO>[0-9]+)\)
+                        (\s+)?(\sMatch\s\d\s)?
+                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s+
                         (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+
-                        (Buy-In:\s[%(LS)s](?P<BUYIN>[.\d]+)(\s\+\s[%(LS)s](?P<FEE>[.\d]+))?\s+)?
-                        (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[.\d]+)\s+)?
-                        (Add-On:\s[%(LS)s](?P<ADDON>[.\d]+)\s+)?
-                        (Rebuy:\s[%(LS)s](?P<REBUYAMT>[.\d]+)\s+)?
+                        (Buy-In:\s[%(LS)s](?P<BUYIN>[%(NUM)s]+)(\s\+\s[%(LS)s](?P<FEE>[%(NUM)s]+))?\s+)?
+                        (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[%(NUM)s]+)\s+)?
+                        ((?P<PNAMEBOUNTIES>.{2,15})\sreceived\s\d+\sKnockout\sBounty\sAwards?\s+)?
+                        (Add-On:\s[%(LS)s](?P<ADDON>[%(NUM)s]+)\s+)?
+                        (Rebuy:\s[%(LS)s](?P<REBUYAMT>[%(NUM)s]+)\s+)?
                         ((?P<PNAME>.{2,15})\sperformed\s(?P<PREBUYS>\d+)\sRebuys\s+)?
                         (Buy-In\sChips:\s(?P<CHIPS>\d+)\s+)?
                         (Add-On\sChips:\s(?P<ADDONCHIPS>\d+)\s+)?
@@ -72,14 +75,15 @@ class FullTiltPokerSummary(TourneySummary):
                         (Total\sRebuys:\s(?P<REBUYS>\d+)\s+)?
                         ([%(LS)s]?(?P<ADDED>[.\d]+)\sadded\sto\sthe\sprize\spool\sby\sPokerStars\.com\s+)?
                         (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[%(NUM)s]+)\s+)?
+                        (Top\s\d+\sfinishers\sreceive\s(entry\sto\s[Tt]ournament\s\d+|Step\s\d\sTicket|FTPA\sChallenge\sFinals\sTicket)\s+)?
                         (Target\sTournament\s.*)?
                         Tournament\sstarted:\s
-                        (?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s??(?P<TZ>[A-Z]+)\s
+                        (?P<DATETIME>((?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s??(?P<TZ>[A-Z]+)\s|\w+,\s(?P<MONTH>\w+)\s(?P<DAY>\d+),\s(?P<YEAR>[\d]{4})\s(?P<HOUR>\d+):(?P<MIN2>\d+)))
                                """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
 
     re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP)""" % substitutions)
 
-    re_Player = re.compile(u"""(?P<RANK>[\d]+):\s(?P<NAME>[^,\r\n]{2,15})(, [%(LS)s](?P<WINNINGS>[.\d]+))?""" % substitutions)
+    re_Player = re.compile(u"""(?P<RANK>[\d]+):\s(?P<NAME>[^,\r\n]{2,15})(,\s[%(LS)s](?P<WINNINGS>[.\d]+))?(,\s(?P<TICKET>Step\s(?P<LEVEL>\d)\sTicket))?""" % substitutions)
     re_Finished = re.compile(u"""(?P<NAME>[^,\r\n]{2,15}) finished in (?P<RANK>[\d]+)\S\S place""")
 
     re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
@@ -107,10 +111,15 @@ class FullTiltPokerSummary(TourneySummary):
         if 'PRIZEPOOL' in mg: self.prizepool             = mg['PRIZEPOOL']
         if 'ENTRIES'   in mg: self.entries               = mg['ENTRIES']
 
-        datetimestr = "%s/%s/%s %s:%s:%s" % (mg['Y'], mg['M'], mg['D'], mg['H'], mg['MIN'], mg['S'])
-        self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+        datetimestr = ""
+        if mg['YEAR'] == None:
+            datetimestr = "%s/%s/%s %s:%s:%s" % (mg['Y'], mg['M'], mg['D'], mg['H'], mg['MIN'], mg['S'])
+            self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+        else:
+            datetimestr = "%s/%s/%s %s:%s" % (mg['YEAR'], mg['MONTH'], mg['DAY'], mg['HOUR'], mg['MIN2'])
+            self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%B/%d %H:%M")
 
-        if 'TZ' in mg:
+        if 'TZ' in mg and mg['TZ'] is not None:
             self.startTime = HandHistoryConverter.changeTimezone(self.startTime, mg['TZ'], "UTC")
 
 
@@ -137,8 +146,23 @@ class FullTiltPokerSummary(TourneySummary):
 
             if 'WINNINGS' in mg and mg['WINNINGS'] != None:
                 winnings = int(100*Decimal(mg['WINNINGS']))
+
+            if 'TICKET' and mg['TICKET'] != None:
+                #print "Tournament Ticket Level %s" % mg['LEVEL']
+                step_values = {
+                                '1' :    '330', # Step 1 -    $3.30 USD
+                                '2' :    '870', # Step 2 -    $8.70 USD
+                                '3' :   '2600', # Step 3 -   $26.00 USD
+                                '4' :   '7500', # Step 4 -   $75.00 USD
+                                '5' :  '21600', # Step 5 -  $216.00 USD
+                                '6' :  '64000', # Step 6 -  $640.00 USD
+                                '7' : '210000', # Step 7 - $2100.00 USD
+                              }
+                winnings = step_values[mg['LEVEL']]
             self.addPlayer(rank, name, winnings, self.currency, None, None, None)
+
             playercount += 1
+
 
         # Some files dont contain the normals lines, and only contain the line
         # <PLAYER> finished in XXXXrd place
