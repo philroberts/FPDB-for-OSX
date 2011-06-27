@@ -44,6 +44,7 @@ class Filters(threading.Thread):
         # config and qdict are now redundant
         self.debug = debug
         self.db = db
+        self.cursor = db.cursor
         self.sql = db.sql
         self.conf = db.config
         self.display = display
@@ -121,9 +122,8 @@ class Filters(threading.Thread):
 
         for site in self.conf.get_supported_sites():
             #Get db site id for filtering later
-            c = self.db.get_cursor()
-            c.execute(self.sql.query['getSiteId'], (site,))
-            result = c.fetchall()
+            self.cursor.execute(self.sql.query['getSiteId'], (site,))
+            result = self.db.cursor.fetchall()
             if len(result) == 1:
                 self.siteid[site] = result[0][0]
             else:
@@ -852,9 +852,8 @@ class Filters(threading.Thread):
         vbox.pack_start(vbox1, False, False, 0)
         self.boxes['Games'] = vbox1
 
-        c = self.db.get_cursor()
-        c.execute(self.sql.query['getGames'])
-        result = c.fetchall()
+        self.cursor.execute(self.sql.query['getGames'])
+        result = self.db.cursor.fetchall()
         if len(result) >= 1:
             for line in sorted(result, key = lambda game: self.gameName[game[0]]):
                 hbox = gtk.HBox(False, 0)
@@ -896,9 +895,8 @@ class Filters(threading.Thread):
         vbox.pack_start(vbox1, False, False, 0)
         self.boxes['Currencies'] = vbox1
 
-        c = self.db.get_cursor()
-        c.execute(self.sql.query['getCurrencies'])
-        result = c.fetchall()
+        self.cursor.execute(self.sql.query['getCurrencies'])
+        result = self.db.cursor.fetchall()
         if len(result) >= 1:
             for line in result:
                 hbox = gtk.HBox(False, 0)
@@ -944,8 +942,7 @@ class Filters(threading.Thread):
         vbox.pack_start(vbox1, False, False, 0)
         self.boxes['Limits'] = vbox1
 
-        c = self.db.get_cursor()
-        c.execute(self.sql.query['getCashLimits'])
+        self.cursor.execute(self.sql.query['getCashLimits'])
         # selects  limitType, bigBlind
         result = self.db.cursor.fetchall()
         self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'hp':False, 'ring':False, 'tour':False}
