@@ -249,13 +249,14 @@ class fpdb:
         dia = gtk.AboutDialog()
         dia.set_name("Free Poker Database (FPDB)")
         dia.set_version(VERSION)
-        dia.set_copyright(_("Copyright 2008-2011, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, sqlcoder, Bostik, and others"))
+        dia.set_copyright(_("Copyright 2008-2011. See contributors.txt for details"))
         dia.set_comments(_("You are free to change, and distribute original or changed versions of fpdb within the rules set out by the license"))
-        dia.set_license(_("Please see fpdb's start screen for license information"))
+        dia.set_license(_("Please see the help screen for license information"))
         dia.set_website("http://fpdb.sourceforge.net/")
 
         dia.set_authors(['Steffen', 'Eratosthenes', 'Carl Gherardi',
-            'Eric Blade', '_mt', 'sqlcoder', 'Bostik', _('and others')])
+            'Eric Blade', '_mt', 'sqlcoder', 'Bostik', 'gimick', 'Chaz',
+            _('... and others.'), _("See contributors.txt")])
         dia.set_program_name("Free Poker Database (FPDB)")
         
         if (os.name=="posix"):
@@ -376,7 +377,7 @@ class fpdb:
                                  (gtk.STOCK_OK, gtk.RESPONSE_ACCEPT,
                                   gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
 
-        label = gtk.Label(_("Note that this does not existing settings, but overwrites them."))
+        label = gtk.Label(_("Note that this does not load existing settings, but overwrites them (if you click save)."))
         diaSelections.vbox.add(label)
         label.show()
 

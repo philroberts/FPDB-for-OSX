@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-06-28 02:16+CEST\n"
+"POT-Creation-Date: 2011-06-28 03:07+CEST\n"
 "PO-Revision-Date: 2011-05-13 08:55+0000\n"
 "Last-Translator: jax <jax@netmagnet.ro>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.net/projects/p/fpdb/"
@@ -148,7 +148,7 @@ msgstr "Nu pot converti: \"%s\""
 msgid "Could not encode: \"%s\""
 msgstr "Nu pot coda: \"%s\""
 
-#: Configuration.py:149 Configuration.py:156 Configuration.py:171 fpdb.pyw:957
+#: Configuration.py:149 Configuration.py:156 Configuration.py:171 fpdb.pyw:958
 msgid "Config file has been created at %s."
 msgstr "Fisierul de configurare a fost creat ca %s."
 
@@ -294,7 +294,7 @@ msgstr "Se renunta la cheia straina:"
 
 #: Database.py:1052 Database.py:1068 Database.py:1072 Database.py:1090
 #: Database.py:1094 Database.py:1424 Database.py:1443 Database.py:1447
-#: fpdb.pyw:1400
+#: fpdb.pyw:1401
 msgid "Warning:"
 msgstr "Atentie:"
 
@@ -709,11 +709,11 @@ msgstr "arata"
 msgid "show"
 msgstr "arata"
 
-#: Filters.py:1319 fpdb.pyw:810
+#: Filters.py:1319 fpdb.pyw:811
 msgid "Pick a date"
 msgstr "Alege o data"
 
-#: Filters.py:1338 fpdb.pyw:816
+#: Filters.py:1338 fpdb.pyw:817
 msgid "Done"
 msgstr "Gata"
 
@@ -746,7 +746,7 @@ msgstr "%s Nu pot detecta buton (mina #%s a fost anulata?)"
 
 #: FulltiltToFpdb.py:604 FulltiltToFpdb.py:817 GuiGraphViewer.py:134
 #: GuiSessionViewer.py:449 GuiTourneyGraphViewer.py:132
-#: GuiTourneyGraphViewer.py:225 fpdb_prerun.py:97
+#: GuiTourneyGraphViewer.py:225 WinTables.py:86 fpdb_prerun.py:97
 msgid "Error:"
 msgstr "Eroare:"
 
@@ -844,7 +844,7 @@ msgstr ""
 msgid "Stopping Auto Import."
 msgstr "Opreste _Auto Import"
 
-#: GuiAutoImport.py:302 fpdb.pyw:1087
+#: GuiAutoImport.py:302 fpdb.pyw:1088
 #, fuzzy
 msgid "Global lock released."
 msgstr "Siguranta globala eliberata.\n"
@@ -941,7 +941,7 @@ msgstr "Filtrul site-ului:"
 msgid "Drop HudCache:"
 msgstr "Renuntare la HudCache:"
 
-#: GuiBulkImport.py:303 GuiTourneyImport.py:136 fpdb.pyw:901
+#: GuiBulkImport.py:303 GuiTourneyImport.py:136 fpdb.pyw:902
 msgid "_Bulk Import"
 msgstr "_Bulk Import"
 
@@ -958,7 +958,7 @@ msgid "Input file"
 msgstr "Fisierul sursa"
 
 #: GuiBulkImport.py:354 GuiImapFetcher.py:110 GuiTourneyPlayerStats.py:76
-#: fpdb.pyw:714
+#: fpdb.pyw:715
 msgid "Site"
 msgstr "Site"
 
@@ -1067,34 +1067,34 @@ msgstr "conexiune buna"
 msgid "not connected but no exception"
 msgstr "neconectat dar nici o abatere"
 
-#: GuiDatabase.py:373 fpdb.pyw:982
+#: GuiDatabase.py:373 fpdb.pyw:983
 msgid ""
 "MySQL Server reports: Access denied. Are your permissions set correctly?"
 msgstr ""
 "raportul serverului MySQL: Acces nepermis. Sunt permisiunile puse corect?"
 
-#: GuiDatabase.py:377 fpdb.pyw:984
+#: GuiDatabase.py:377 fpdb.pyw:985
 msgid "MySQL client reports: 2002 or 2003 error. Unable to connect - "
 msgstr ""
 "raportul clientului MySQL: eroare 2002 sau 2003. Nu se poate efectua "
 "conectarea - "
 
-#: GuiDatabase.py:378 fpdb.pyw:985
+#: GuiDatabase.py:378 fpdb.pyw:986
 msgid "Please check that the MySQL service has been started"
 msgstr "Verificati daca serviciul MySQL e pornit"
 
-#: GuiDatabase.py:382 fpdb.pyw:987
+#: GuiDatabase.py:382 fpdb.pyw:988
 msgid ""
 "PostgreSQL Server reports: Access denied. Are your permissions set correctly?"
 msgstr ""
 "raportul serverului PostgreSQL: Acces nepermis. Sunt permisiunile puse "
 "corect?"
 
-#: GuiDatabase.py:385 fpdb.pyw:989
+#: GuiDatabase.py:385 fpdb.pyw:990
 msgid "PostgreSQL client reports: Unable to connect - "
 msgstr "raportul clientului PostgreSQL: Nu se poate efectua conectarea -"
 
-#: GuiDatabase.py:386 fpdb.pyw:990
+#: GuiDatabase.py:386 fpdb.pyw:991
 msgid "Please check that the PostgreSQL service has been started"
 msgstr "Verificati daca serviciul PostgreSQL e pornit"
 
@@ -1432,7 +1432,7 @@ msgstr "Mucked"
 msgid "Field Type"
 msgstr "Tipul cimpului"
 
-#: GuiPrefs.py:39 fpdb.pyw:1124
+#: GuiPrefs.py:39 fpdb.pyw:1125
 msgid "Ring Player Stats"
 msgstr "Statisticile jucatorului cash"
 
@@ -1464,7 +1464,7 @@ msgstr "Setari"
 msgid "Value (double-click to change)"
 msgstr "Valoare (dublu-clic pentru schimare)"
 
-#: GuiPrefs.py:178 GuiPrefs.py:183 fpdb.pyw:309
+#: GuiPrefs.py:178 GuiPrefs.py:183 fpdb.pyw:310
 msgid "Advanced Preferences"
 msgstr "Preferinte avansate"
 
@@ -1653,7 +1653,7 @@ msgstr "Restringe la tipurile miinilor:"
 msgid "Failed to load numpy and/or matplotlib in Session Viewer"
 msgstr "Nu pot incarca numpy si/sau matplotlib in Vizualizare Sesiune"
 
-#: GuiSessionViewer.py:152 GuiStove.py:70 fpdb.pyw:1379
+#: GuiSessionViewer.py:152 GuiStove.py:70 fpdb.pyw:1380
 msgid "FPDB WARNING"
 msgstr "AVERTISMENT FPDB"
 
@@ -1804,7 +1804,7 @@ msgstr ""
 msgid "Finished importing %s/%s tournament summaries"
 msgstr "Importarea sumarului turneelor %s/%s s-a incheiat"
 
-#: GuiTourneyImport.py:310 fpdb.pyw:361
+#: GuiTourneyImport.py:310 fpdb.pyw:362
 #, fuzzy
 msgid "Number of Tourneys:"
 msgstr ""
@@ -1935,7 +1935,7 @@ msgstr "Folosirea bd numita = %s"
 msgid "Note: error output is being diverted to %s."
 msgstr "Nota: eroarea de iesire este redirectionata spre:"
 
-#: HUD_main.pyw:75 fpdb.pyw:1272
+#: HUD_main.pyw:75 fpdb.pyw:1273
 msgid "Any major error will be reported there _only_."
 msgstr "Orice eroare majora va fi raportata _doar_ acolo."
 
@@ -1952,7 +1952,7 @@ msgstr "Eroare la initializarea main_window"
 msgid "Game changed."
 msgstr "hud_main: Joc schimbat."
 
-#: HUD_main.pyw:144 fpdb.pyw:1062
+#: HUD_main.pyw:144 fpdb.pyw:1063
 msgid "Quitting normally"
 msgstr "Iesire normala"
 
@@ -3068,7 +3068,8 @@ msgid "Window %s not found. Skipping."
 msgstr "Fereastra %s nu a fost gasita. Ignorare."
 
 #: WinTables.py:86
-msgid "self.window doesn't exist? why?"
+#, fuzzy
+msgid "%s doesn't exist."
 msgstr "self.window nu exista? de ce?"
 
 #: WinamaxToFpdb.py:300
@@ -3124,12 +3125,8 @@ msgstr ""
 "pypoker-eval."
 
 #: fpdb.pyw:252
-msgid ""
-"Copyright 2008-2011, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, "
-"sqlcoder, Bostik, and others"
+msgid "Copyright 2008-2011. See contributors.txt for details"
 msgstr ""
-"Copyright 2008-2011, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, "
-"sqlcoder, Bostik, si altii"
 
 #: fpdb.pyw:253
 msgid ""
@@ -3140,59 +3137,65 @@ msgstr ""
 "ale fpdb in cadrul regulilor stabilite de licenta"
 
 #: fpdb.pyw:254
-msgid "Please see fpdb's start screen for license information"
+#, fuzzy
+msgid "Please see the help screen for license information"
 msgstr ""
 "Va rugam cititi ecranul de pornire al fpdb pentru informatii despre licenta"
 
-#: fpdb.pyw:258
-msgid "and others"
+#: fpdb.pyw:259
+#, fuzzy
+msgid "... and others."
 msgstr "si altii"
 
-#: fpdb.pyw:270
+#: fpdb.pyw:259
+msgid "See contributors.txt"
+msgstr ""
+
+#: fpdb.pyw:271
 msgid "Operating System"
 msgstr "Sistem de operare"
 
-#: fpdb.pyw:277
+#: fpdb.pyw:278
 msgid "fpdb version"
 msgstr "versiune fpdb"
 
-#: fpdb.pyw:278
+#: fpdb.pyw:279
 msgid "database used"
 msgstr "baza de date folosita"
 
-#: fpdb.pyw:279
+#: fpdb.pyw:280
 msgid "language"
 msgstr "limba"
 
-#: fpdb.pyw:280
+#: fpdb.pyw:281
 msgid "character encoding"
 msgstr "encodare de caractere"
 
-#: fpdb.pyw:292
+#: fpdb.pyw:293
 msgid "Your config file is: "
 msgstr "Fisierul de configurare este:"
 
-#: fpdb.pyw:297
+#: fpdb.pyw:298
 msgid "Version Information:"
 msgstr "Informatii despre versiune:"
 
-#: fpdb.pyw:304
+#: fpdb.pyw:305
 msgid "Threads: "
 msgstr "Procese:"
 
-#: fpdb.pyw:334
+#: fpdb.pyw:335
 msgid "Maintain Databases"
 msgstr "Intretinere Baze de date"
 
-#: fpdb.pyw:344
+#: fpdb.pyw:345
 msgid "saving updated db data"
 msgstr "salvarea datelor modificate in bd"
 
-#: fpdb.pyw:351
+#: fpdb.pyw:352
 msgid "guidb response was "
 msgstr "raspunsul guidb a fost"
 
-#: fpdb.pyw:357
+#: fpdb.pyw:358
 msgid ""
 "Cannot open Database Maintenance window because other windows have been "
 "opened. Re-start fpdb to use this option."
@@ -3200,59 +3203,62 @@ msgstr ""
 "Nu se poate deschide Intretinerea Bazei de Date pentru ca au fost deschise "
 "alte ferestre. Reporniti fpdb pentru a folosi aceasta optiune."
 
-#: fpdb.pyw:360 fpdb_import.py:605
+#: fpdb.pyw:361 fpdb_import.py:605
 #, fuzzy
 msgid "Number of Hands:"
 msgstr "Numarul Miinilor:"
 
-#: fpdb.pyw:362
+#: fpdb.pyw:363
 #, fuzzy
 msgid "Number of TourneyTypes:"
 msgstr ""
 "\n"
 "Numarul TourneyTypes:"
 
-#: fpdb.pyw:363 fpdb_import.py:605
+#: fpdb.pyw:364 fpdb_import.py:605
 msgid "Database Statistics"
 msgstr "Statisticile Bazei de date"
 
-#: fpdb.pyw:373
+#: fpdb.pyw:374
 msgid "HUD Preferences - choose category"
 msgstr "HUD Preferinte - alegeti categoria"
 
-#: fpdb.pyw:379
-msgid "Note that this does not existing settings, but overwrites them."
+#: fpdb.pyw:380
+#, fuzzy
+msgid ""
+"Note that this does not load existing settings, but overwrites them (if you "
+"click save)."
 msgstr "Notati ca aceasta nu setarile curente, ci le rescrie."
 
-#: fpdb.pyw:383
+#: fpdb.pyw:384
 msgid ""
 "Please select the game category for which you want to configure HUD stats:"
 msgstr ""
 "Rugam alegeti categoria de joc pentru care doriti configurarea statisticilor "
 "HUD:"
 
-#: fpdb.pyw:437
+#: fpdb.pyw:438
 msgid "HUD Preferences - please choose your stats"
 msgstr "HUD Preferinte - alegeti statisticile"
 
-#: fpdb.pyw:443
+#: fpdb.pyw:444
 msgid "Please choose the stats you wish to use in the below table."
 msgstr "Rugam alegeti statisticile ce le doriti folosite in tabela de mai jos."
 
-#: fpdb.pyw:447
+#: fpdb.pyw:448
 msgid "Note that you may not select any stat more than once or it will crash."
 msgstr ""
 "Luati nota de faptul ca nu puteti selecta orice statistica mai mult decit o "
 "data ori se va bloca."
 
-#: fpdb.pyw:451
+#: fpdb.pyw:452
 msgid ""
 "It is not currently possible to select \"empty\" or anything else to that "
 "end."
 msgstr ""
 "Nu este posibil a se selecta \"gol\" sau orice altceva pina la sfirsit."
 
-#: fpdb.pyw:455
+#: fpdb.pyw:456
 msgid ""
 "To configure things like colouring you will still have to use the Advanced "
 "Preferences dialogue or manually edit your HUD_config.xml."
@@ -3260,15 +3266,15 @@ msgstr ""
 "Pentru a configura lucruri ca si culorile trebuie sa folositi Preferinte "
 "Avansate sau sa editati manual fisierul HUD_config.xml."
 
-#: fpdb.pyw:545
+#: fpdb.pyw:546
 msgid "Confirm deleting and recreating tables"
 msgstr "Confirmati stergerea si recrearea tabelelor"
 
-#: fpdb.pyw:546
+#: fpdb.pyw:547
 msgid "Please confirm that you want to (re-)create the tables."
 msgstr "Rugam confirmati (re)crearea tabelelor."
 
-#: fpdb.pyw:547
+#: fpdb.pyw:548
 #, fuzzy
 msgid ""
 "If there already are tables in the database %s on %s they will be deleted "
@@ -3277,81 +3283,81 @@ msgstr ""
 " Daca sunt deja tabele in baza de date %s pe %s ele vor fi sterse si va "
 "trebui sa va reimportati istoricul.\n"
 
-#: fpdb.pyw:548
+#: fpdb.pyw:549
 msgid "This may take a while."
 msgstr "S-ar putea sa dureze putin."
 
-#: fpdb.pyw:573
+#: fpdb.pyw:574
 msgid "User cancelled recreating tables"
 msgstr "Utilizatorul a anulat recrearea tabelelor"
 
-#: fpdb.pyw:580
+#: fpdb.pyw:581
 msgid "Please confirm that you want to re-create the HUD cache."
 msgstr "Rugam confirmati ca doriti sa recreati cache-ul pentru HUD."
 
-#: fpdb.pyw:588
+#: fpdb.pyw:589
 msgid " Hero's cache starts: "
 msgstr " Cache-ul Eroului:"
 
-#: fpdb.pyw:602
+#: fpdb.pyw:603
 msgid " Villains' cache starts: "
 msgstr " Cache-ul Dusmanuli:"
 
-#: fpdb.pyw:615
+#: fpdb.pyw:616
 msgid " Rebuilding HUD Cache ... "
 msgstr " Recladire Cache HUD..."
 
-#: fpdb.pyw:623
+#: fpdb.pyw:624
 msgid "User cancelled rebuilding hud cache"
 msgstr "Utilizatorul a intrerupt recladirea cache-ului pentru hud"
 
-#: fpdb.pyw:635
+#: fpdb.pyw:636
 msgid "Confirm rebuilding database indexes"
 msgstr "Confirmati recladirea indexurilor in baza de date"
 
-#: fpdb.pyw:636
+#: fpdb.pyw:637
 msgid "Please confirm that you want to rebuild the database indexes."
 msgstr "Rugam confirmati ca doriti sa recladiti indexurile bazei de date."
 
-#: fpdb.pyw:644
+#: fpdb.pyw:645
 msgid " Rebuilding Indexes ... "
 msgstr " Recladire Indexuri ..."
 
-#: fpdb.pyw:651
+#: fpdb.pyw:652
 msgid " Cleaning Database ... "
 msgstr " Curatare Baza de date ..."
 
-#: fpdb.pyw:656
+#: fpdb.pyw:657
 msgid " Analyzing Database ... "
 msgstr " Analiza Baza de Date ..."
 
-#: fpdb.pyw:661
+#: fpdb.pyw:662
 msgid "User cancelled rebuilding db indexes"
 msgstr "Utilizatorul a anulat recladirea indexurilor bd"
 
-#: fpdb.pyw:695
+#: fpdb.pyw:696
 msgid "Site Preferences"
 msgstr "Preferite Site"
 
-#: fpdb.pyw:698
+#: fpdb.pyw:699
 msgid "Please select which sites you play on and enter your usernames."
 msgstr ""
 "Rugam selectati care site-uri jucati si introduceti pe fiecare numele de "
 "utilizator"
 
-#: fpdb.pyw:714
+#: fpdb.pyw:715
 msgid "History Path"
 msgstr "Cale Istoric"
 
-#: fpdb.pyw:714
+#: fpdb.pyw:715
 msgid "Screen Name"
 msgstr "Nume Afisat"
 
-#: fpdb.pyw:714 fpdb.pyw:746
+#: fpdb.pyw:715 fpdb.pyw:747
 msgid "Detect"
 msgstr "Detectare"
 
-#: fpdb.pyw:778
+#: fpdb.pyw:779
 msgid ""
 "If you had previously opened any tabs they cannot use the new settings "
 "without restart."
@@ -3359,187 +3365,187 @@ msgstr ""
 "Daca ati deschis deja alte tab-uri ele nu pot folosi noile setari fara "
 "repornire."
 
-#: fpdb.pyw:778 fpdb.pyw:781
+#: fpdb.pyw:779 fpdb.pyw:782
 msgid "Re-start fpdb to load them."
 msgstr "Reporniti fpdb pentru a le incarca."
 
-#: fpdb.pyw:781
+#: fpdb.pyw:782
 msgid "Updated preferences have not been loaded because windows are open."
 msgstr ""
 "Preferintele modificate nu au fost incarcate deoarece sunt ferestre deschise."
 
-#: fpdb.pyw:896
+#: fpdb.pyw:897
 msgid "_Main"
 msgstr "_Principal"
 
-#: fpdb.pyw:897 fpdb.pyw:928
+#: fpdb.pyw:898 fpdb.pyw:929
 msgid "_Quit"
 msgstr "_Iesire"
 
-#: fpdb.pyw:898
+#: fpdb.pyw:899
 msgid "_Site Preferences"
 msgstr "_Preferinte Site"
 
-#: fpdb.pyw:899
+#: fpdb.pyw:900
 msgid "<control>F"
 msgstr "<control>F"
 
-#: fpdb.pyw:899
+#: fpdb.pyw:900
 msgid "_Advanced Preferences"
 msgstr "_Preferinte Avansate"
 
-#: fpdb.pyw:900
+#: fpdb.pyw:901
 msgid "_Import"
 msgstr "_Importare"
 
-#: fpdb.pyw:901
+#: fpdb.pyw:902
 msgid "<control>B"
 msgstr "<control>B"
 
-#: fpdb.pyw:902
+#: fpdb.pyw:903
 msgid "<control>R"
 msgstr "<control>R"
 
-#: fpdb.pyw:902
+#: fpdb.pyw:903
 msgid "Tournament _Results Import"
 msgstr "Importare _Rezultate Turneu"
 
-#: fpdb.pyw:903
+#: fpdb.pyw:904
 msgid "<control>I"
 msgstr "<control>I"
 
-#: fpdb.pyw:903
+#: fpdb.pyw:904
 msgid "_Import through eMail/IMAP"
 msgstr "_Importare prin eMail/IMAP"
 
-#: fpdb.pyw:904
+#: fpdb.pyw:905
 msgid "_Viewers"
 msgstr "_Vizitatori"
 
-#: fpdb.pyw:905
+#: fpdb.pyw:906
 msgid "<control>A"
 msgstr "<control>A"
 
-#: fpdb.pyw:905
+#: fpdb.pyw:906
 msgid "_Auto Import and HUD"
 msgstr "_Importare automata si HUD"
 
-#: fpdb.pyw:906
+#: fpdb.pyw:907
 msgid "<control>H"
 msgstr "<control>H"
 
-#: fpdb.pyw:906
+#: fpdb.pyw:907
 msgid "_HUD Preferences"
 msgstr "_Preferinte HUD"
 
-#: fpdb.pyw:907
+#: fpdb.pyw:908
 msgid "<control>G"
 msgstr "<control>G"
 
-#: fpdb.pyw:907
+#: fpdb.pyw:908
 msgid "_Graphs"
 msgstr "_Grafice"
 
-#: fpdb.pyw:908 fpdb.pyw:1189
+#: fpdb.pyw:909 fpdb.pyw:1190
 msgid "Tourney Graphs"
 msgstr "Grafice Turneu"
 
-#: fpdb.pyw:909
+#: fpdb.pyw:910
 msgid "Stove (preview)"
 msgstr "Stove (previzualizare)"
 
-#: fpdb.pyw:910
+#: fpdb.pyw:911
 msgid "<control>P"
 msgstr "<control>P"
 
-#: fpdb.pyw:910
+#: fpdb.pyw:911
 msgid "Ring _Player Stats"
 msgstr "Statistici _Jucatori Cash"
 
-#: fpdb.pyw:911
+#: fpdb.pyw:912
 msgid "<control>T"
 msgstr "<control>T"
 
-#: fpdb.pyw:911
+#: fpdb.pyw:912
 msgid "_Tourney Stats"
 msgstr "Statistici _Turneu"
 
-#: fpdb.pyw:912
+#: fpdb.pyw:913
 msgid "Tourney _Viewer"
 msgstr "_Vizualizare Turneu"
 
-#: fpdb.pyw:913
+#: fpdb.pyw:914
 msgid "<control>O"
 msgstr "<control>O"
 
-#: fpdb.pyw:913
+#: fpdb.pyw:914
 msgid "P_ositional Stats (tabulated view)"
 msgstr "Statistici P_ozitionale (vedere tabelara)"
 
-#: fpdb.pyw:914
+#: fpdb.pyw:915
 #, fuzzy
 msgid "<control>S"
 msgstr "<control>F"
 
-#: fpdb.pyw:914 fpdb.pyw:1148
+#: fpdb.pyw:915 fpdb.pyw:1149
 msgid "Session Stats"
 msgstr "Statistici Sesiune"
 
-#: fpdb.pyw:915
+#: fpdb.pyw:916
 msgid "Hand _Replayer (not working yet)"
 msgstr "_Rejucare Mina (inca nefunctional)"
 
-#: fpdb.pyw:916
+#: fpdb.pyw:917
 msgid "_Database"
 msgstr "_Baza de date"
 
-#: fpdb.pyw:917
+#: fpdb.pyw:918
 msgid "_Maintain Databases"
 msgstr "_Intretinere Baza de date"
 
-#: fpdb.pyw:918
+#: fpdb.pyw:919
 msgid "Create or Recreate _Tables"
 msgstr "Creare sau recreare _Tabele"
 
-#: fpdb.pyw:919
+#: fpdb.pyw:920
 msgid "Rebuild HUD Cache"
 msgstr "Recladire cache HUD"
 
-#: fpdb.pyw:920
+#: fpdb.pyw:921
 msgid "Rebuild DB Indexes"
 msgstr "Recladire Indexuri BD"
 
-#: fpdb.pyw:921
+#: fpdb.pyw:922
 msgid "_Statistics"
 msgstr "_Statistici"
 
-#: fpdb.pyw:922
+#: fpdb.pyw:923
 msgid "Dump Database to Textfile (takes ALOT of time)"
 msgstr "Varza Baza de date in fisier text (dureaza MULT timp)"
 
-#: fpdb.pyw:923
+#: fpdb.pyw:924
 msgid "_Help"
 msgstr "_Ajutor"
 
-#: fpdb.pyw:924
+#: fpdb.pyw:925
 msgid "_Log Messages"
 msgstr "_Jurnalizare Mesaje"
 
-#: fpdb.pyw:925
+#: fpdb.pyw:926
 #, fuzzy
 msgid "_Help Tab"
 msgstr "_Ajutor"
 
-#: fpdb.pyw:926
+#: fpdb.pyw:927
 msgid "A_bout, License, Copying"
 msgstr "Despre, Licentiere, Copiere"
 
-#: fpdb.pyw:948
+#: fpdb.pyw:949
 #, fuzzy
 msgid "There is an error in your config file %s"
 msgstr "Exista o eroare in fisierul de configurare\n"
 
-#: fpdb.pyw:949
+#: fpdb.pyw:950
 #, fuzzy
 msgid "Error is:"
 msgstr ""
@@ -3547,20 +3553,20 @@ msgstr ""
 "\n"
 "Eroarea este:"
 
-#: fpdb.pyw:950
+#: fpdb.pyw:951
 msgid "CONFIG FILE ERROR"
 msgstr "EROARE FISIER CONFIGURARE"
 
-#: fpdb.pyw:954
+#: fpdb.pyw:955
 #, fuzzy
 msgid "Logfile is %s"
 msgstr "Fisierul jurnal este %s\n"
 
-#: fpdb.pyw:956
+#: fpdb.pyw:957
 msgid "Config file"
 msgstr "Fisier configurare"
 
-#: fpdb.pyw:958
+#: fpdb.pyw:959
 #, fuzzy
 msgid ""
 "Enter your screen_name and hand history path in the Site Preferences window "
@@ -3570,19 +3576,19 @@ msgstr ""
 "site-uri_suportate din fereastra Preferinte Avansate (Meniu Principal) "
 "nainte de a incerca sa importati miini."
 
-#: fpdb.pyw:980
+#: fpdb.pyw:981
 msgid "Connected to SQLite: %s"
 msgstr "Conectat la SQLite: %s"
 
-#: fpdb.pyw:1014
+#: fpdb.pyw:1015
 msgid "Strong Warning - Invalid database version"
 msgstr "Avertizare serioasa - Versiune invalida a bazei de date"
 
-#: fpdb.pyw:1017
+#: fpdb.pyw:1018
 msgid "An invalid DB version or missing tables have been detected."
 msgstr "S-a detectat a versiune invalida a BD sau tabele lipsa"
 
-#: fpdb.pyw:1021
+#: fpdb.pyw:1022
 msgid ""
 "This error is not necessarily fatal but it is strongly recommended that you "
 "recreate the tables by using the Database menu."
@@ -3590,7 +3596,7 @@ msgstr ""
 "Aceasta eroare nu e neaparat fatala dar e foarte recomandat sa recreati "
 "tabelele folosind meniul Daza de date"
 
-#: fpdb.pyw:1025
+#: fpdb.pyw:1026
 msgid ""
 "Not doing this will likely lead to misbehaviour including fpdb crashes, "
 "corrupt data etc."
@@ -3598,57 +3604,57 @@ msgstr ""
 "Daca nu faceti asta cel mai probabil va apare un comportament gresit al "
 "fpdb, blocari, date corupte, etc."
 
-#: fpdb.pyw:1039
+#: fpdb.pyw:1040
 msgid "Status: Connected to %s database named %s on host %s"
 msgstr "Statut: Conectat la baza de date %s numita %s pe %s"
 
-#: fpdb.pyw:1049
+#: fpdb.pyw:1050
 #, fuzzy
 msgid "Global lock taken by %s"
 msgstr ""
 "\n"
 "Siguranta globala luata de %s"
 
-#: fpdb.pyw:1052
+#: fpdb.pyw:1053
 #, fuzzy
 msgid "Failed to get global lock, it is currently held by %s"
 msgstr ""
 "\n"
 "Nu se poate lua siguranta globala, e detinuta de %s"
 
-#: fpdb.pyw:1094
+#: fpdb.pyw:1095
 msgid "Auto Import"
 msgstr "Importare Automata"
 
-#: fpdb.pyw:1104
+#: fpdb.pyw:1105
 msgid "Bulk Import"
 msgstr "Importare in Masa"
 
-#: fpdb.pyw:1111
+#: fpdb.pyw:1112
 msgid "Tournament Results Import"
 msgstr "Importare Rezultate Turneu"
 
-#: fpdb.pyw:1117
+#: fpdb.pyw:1118
 msgid "eMail Import"
 msgstr "Importare eMail"
 
-#: fpdb.pyw:1130
+#: fpdb.pyw:1131
 msgid "Tourney Stats"
 msgstr "Statistici Turneu"
 
-#: fpdb.pyw:1136
+#: fpdb.pyw:1137
 msgid "Tourney Viewer"
 msgstr "Vizualizare Turneu"
 
-#: fpdb.pyw:1142
+#: fpdb.pyw:1143
 msgid "Positional Stats"
 msgstr "Statistici Pozitionale"
 
-#: fpdb.pyw:1154
+#: fpdb.pyw:1155
 msgid "Hand Replayer"
 msgstr "Rejucare Mina"
 
-#: fpdb.pyw:1158
+#: fpdb.pyw:1159
 msgid ""
 "Fpdb needs translators!\n"
 "If you speak another language and have a few minutes or more to spare get in "
@@ -3705,19 +3711,19 @@ msgstr ""
 "Puteti gasi textele integrale ale licentelor in agpl-3.0.txt, gpl-2.0.txt, "
 "gpl-3.0.txt si mit.txt in directorul de instalare al fpdb."
 
-#: fpdb.pyw:1175
+#: fpdb.pyw:1176
 msgid "Help"
 msgstr "Ajutor"
 
-#: fpdb.pyw:1182
+#: fpdb.pyw:1183
 msgid "Graphs"
 msgstr "Grafice"
 
-#: fpdb.pyw:1196
+#: fpdb.pyw:1197
 msgid "Stove"
 msgstr "Stove"
 
-#: fpdb.pyw:1271
+#: fpdb.pyw:1272
 #, fuzzy
 msgid ""
 "Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt "
@@ -3727,15 +3733,15 @@ msgstr ""
 "Nota: iesirea de eroare este redirectionata spre fpdb-errors.txt si HUD-"
 "errors.txt in: %s"
 
-#: fpdb.pyw:1300
+#: fpdb.pyw:1301
 msgid "fpdb starting ..."
 msgstr "pornire fpdb ..."
 
-#: fpdb.pyw:1399
+#: fpdb.pyw:1400
 msgid "Unknown Site"
 msgstr "Site Necunoscut"
 
-#: fpdb.pyw:1400
+#: fpdb.pyw:1401
 #, fuzzy
 msgid "Unable to find site '%s'"
 msgstr "Nu pot gasit site-ul '%s'"
@@ -3889,6 +3895,13 @@ msgstr ""
 #: windows_make_bats.py:57
 msgid "No gtk directories found in your path."
 msgstr ""
+
+#~ msgid ""
+#~ "Copyright 2008-2011, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, "
+#~ "_mt, sqlcoder, Bostik, and others"
+#~ msgstr ""
+#~ "Copyright 2008-2011, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, "
+#~ "_mt, sqlcoder, Bostik, si altii"
 
 #, fuzzy
 #~ msgid "Finished importing %s/%s summaries"
