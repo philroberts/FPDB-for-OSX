@@ -160,7 +160,7 @@ class Hud:
         menu.append(repositem)
         repositem.connect("activate", self.reposition_windows)
 
-        aggitem = gtk.MenuItem(_('Show Player Stats'))
+        aggitem = gtk.MenuItem(_('Show Player Stats for'))
         menu.append(aggitem)
         self.aggMenu = gtk.Menu()
         aggitem.set_submenu(self.aggMenu)
@@ -193,7 +193,7 @@ class Hud:
         item.connect("activate", self.set_aggregation, ('P',10000))
         setattr(self, 'h_aggBBmultItem10000', item)
         
-        item = gtk.MenuItem(_('For #Seats:'))
+        item = gtk.MenuItem(_('Number of Seats:'))
         self.aggMenu.append(item)
         
         item = gtk.CheckMenuItem(_('  Any Number'))
@@ -229,7 +229,7 @@ class Hud:
         item.connect("activate", self.set_hud_style, ('P','T'))
         setattr(self, 'h_hudStyleOptionT', item)
 
-        aggitem = gtk.MenuItem(_('Show Opponent Stats'))
+        aggitem = gtk.MenuItem(_('Show Opponent Stats for'))
         menu.append(aggitem)
         self.aggMenu = gtk.Menu()
         aggitem.set_submenu(self.aggMenu)
@@ -262,7 +262,7 @@ class Hud:
         item.connect("activate", self.set_aggregation, ('O',10000))
         setattr(self, 'aggBBmultItem10000', item)
         
-        item = gtk.MenuItem(_('For #Seats:'))
+        item = gtk.MenuItem(_('Number of Seats:'))
         self.aggMenu.append(item)
         
         item = gtk.CheckMenuItem(_('  Any Number'))
@@ -592,7 +592,7 @@ class Hud:
         adj = range(0, self.max + 1) # default seat adjustments = no adjustment
 #    does the user have a fav_seat?
         if self.max not in config.supported_sites[self.table.site].layout:
-            sys.stderr.write(_("No layout found for %d-max games for site %s\n") % (self.max, self.table.site))
+            sys.stderr.write(_("No layout found for %d-max games for site %s.") % (self.max, self.table.site))
             return adj
         if self.table.site != None and int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
             try:
@@ -614,7 +614,7 @@ class Hud:
         for key in self.stat_dict:
             if self.stat_dict[key]['screen_name'] == name:
                 return self.stat_dict[key]['seat']
-        sys.stderr.write(_("Error finding actual seat.\n"))
+        sys.stderr.write(_("Error finding actual seat."))
 
     def create(self, hand, config, stat_dict, cards):
 #    update this hud, to the stats and players as of "hand"

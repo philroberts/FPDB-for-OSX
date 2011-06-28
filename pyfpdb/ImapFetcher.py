@@ -156,7 +156,7 @@ def importSummaries(db, config, summaries, options = None):
                     FullTiltPokerSummary.FullTiltPokerSummary(db=db, config=config, siteName=u"Fulltilt", summaryText=summaryText, builtFrom = "IMAP")
             except FpdbParseError, e:
                 errors += 1
-            print _("Finished importing %s/%s PS summaries") %(j, len(summaryTexts))
+            print _("Finished importing %s/%s tournament summaries") %(j, len(summaryTexts))
 
     return errors
 

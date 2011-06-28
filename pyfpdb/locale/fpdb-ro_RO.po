@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-06-27 16:18+CEST\n"
+"POT-Creation-Date: 2011-06-28 02:16+CEST\n"
 "PO-Revision-Date: 2011-05-13 08:55+0000\n"
 "Last-Translator: jax <jax@netmagnet.ro>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.net/projects/p/fpdb/"
@@ -153,10 +153,8 @@ msgid "Config file has been created at %s."
 msgstr "Fisierul de configurare a fost creat ca %s."
 
 #: Configuration.py:170
-msgid ""
-"No %s found\n"
-"  in %s\n"
-"  or %s"
+#, fuzzy
+msgid "No %s found in \"%s\" or \"%s\"."
 msgstr ""
 "Nu am gasit %s\n"
 "   in %s\n"
@@ -457,7 +455,7 @@ msgstr "carti ="
 msgid "get_stats took: %4.3f seconds"
 msgstr "get_stats a durat: %4.3f secunde"
 
-#: Database.py:3070 HandHistoryConverter.py:41 fpdb.pyw:46
+#: Database.py:3070 HandHistoryConverter.py:41 fpdb.pyw:38 fpdb.pyw:46
 msgid "Press ENTER to continue."
 msgstr "Apasa ENTER pentru a continua."
 
@@ -1802,7 +1800,7 @@ msgstr ""
 msgid "Tourney import parse error in file: %s"
 msgstr ""
 
-#: GuiTourneyImport.py:249
+#: GuiTourneyImport.py:249 ImapFetcher.py:159
 msgid "Finished importing %s/%s tournament summaries"
 msgstr "Importarea sumarului turneelor %s/%s s-a incheiat"
 
@@ -1814,8 +1812,9 @@ msgstr ""
 "Numarul Turneelor:"
 
 #: GuiTourneyImport.py:373 GuiTourneyImport.py:374 GuiTourneyImport.py:375
+#: fpdb_import.py:557
 #, fuzzy
-msgid "filename"
+msgid "Filename"
 msgstr "Nume fisier:"
 
 #: GuiTourneyImport.py:391 ImapFetcher.py:176
@@ -2327,7 +2326,8 @@ msgid "Failed sanity check"
 msgstr "Esuare la verificarea inregritatii"
 
 #: HandHistoryConverter.py:138
-msgid "handsList is "
+#, fuzzy
+msgid "Hands list is:"
 msgstr "handList este"
 
 #: HandHistoryConverter.py:149
@@ -2410,32 +2410,6 @@ msgstr "Creare director '%s'"
 msgid "out_path %s couldn't be opened"
 msgstr "out_path %s nu a putut fi deschis"
 
-#: Hello.py:46
-msgid "creating Hello"
-msgstr "creare Salut"
-
-#: Hello.py:49
-msgid "Hello World"
-msgstr "Salut Lume"
-
-#: Hello.py:67
-msgid "site ="
-msgstr "site ="
-
-#: Hello.py:75
-msgid "YOUR NAME HERE"
-msgstr "NUMELE DVS"
-
-#: Hello.py:106
-msgid ""
-"Hello %s\n"
-"You have played %d hands\n"
-" on %s."
-msgstr ""
-"Salut %s\n"
-"Ai jucat %d miini\n"
-" pe %s"
-
 #: Hud.py:150
 msgid "Kill This HUD"
 msgstr "Opreste acest HUD"
@@ -2449,7 +2423,8 @@ msgid "Reposition StatWindows"
 msgstr "Repozitioneaza StatWindows"
 
 #: Hud.py:163
-msgid "Show Player Stats"
+#, fuzzy
+msgid "Show Player Stats for"
 msgstr "Arata Statisticile Jucatorului"
 
 #: Hud.py:168 Hud.py:237
@@ -2477,8 +2452,9 @@ msgid "  All Levels"
 msgstr "  Toate nivelele"
 
 #: Hud.py:196 Hud.py:265
-msgid "For #Seats:"
-msgstr "Pentru #Locuri:"
+#, fuzzy
+msgid "Number of Seats:"
+msgstr "Numar de locuri"
 
 #: Hud.py:199 Hud.py:268
 msgid "  Any Number"
@@ -2509,7 +2485,8 @@ msgid "  %s Days"
 msgstr "  %s Zile"
 
 #: Hud.py:232
-msgid "Show Opponent Stats"
+#, fuzzy
+msgid "Show Opponent Stats for"
 msgstr "Arata statisticile oponentilor"
 
 #: Hud.py:354
@@ -2525,7 +2502,8 @@ msgid "Updating config file"
 msgstr "Actualizare fisier de configurare"
 
 #: Hud.py:595
-msgid "No layout found for %d-max games for site %s\n"
+#, fuzzy
+msgid "No layout found for %d-max games for site %s."
 msgstr "Nici o amplasare gasita pentru jocuri cu maxim %d pe site-ul %s\n"
 
 #: Hud.py:609
@@ -2533,7 +2511,8 @@ msgid "Exception in %s"
 msgstr "Exceptie in %s"
 
 #: Hud.py:617
-msgid "Error finding actual seat.\n"
+#, fuzzy
+msgid "Error finding actual seat."
 msgstr "Eroare la gasirea locului actual.\n"
 
 #: Hud.py:633
@@ -2578,10 +2557,6 @@ msgstr "Nu s-au gasit sumare de turnee"
 #: ImapFetcher.py:111
 msgid "Errors: %s"
 msgstr "Erori: %s"
-
-#: ImapFetcher.py:159
-msgid "Finished importing %s/%s PS summaries"
-msgstr "S-a terminat importarea sumarelor %s/%s PS"
 
 #: Mucked.py:330
 msgid "No Name"
@@ -2818,19 +2793,17 @@ msgid "Example stats, player = %s  hand = %s:"
 msgstr "Exemplu de statistici, jucator = %s  mina = %s:"
 
 #: Stats.py:1127
-msgid ""
-"\n"
-"\n"
-"Legal stats:"
+#, fuzzy
+msgid "Legal stats:"
 msgstr ""
 "\n"
 "\n"
 "Statistici legale:"
 
 #: Stats.py:1128
+#, fuzzy
 msgid ""
-"(add _0 to name to display with 0 decimal places, _1 to display with 1, "
-"etc)\n"
+"(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)"
 msgstr ""
 "(adauga _0 la nume pentru a afisa cu 0 decimale, _1 entru a afisa cu 1, "
 "etc)\n"
@@ -2898,7 +2871,8 @@ msgid "Could not find tournament %d in hand %d. Skipping."
 msgstr "Nu se poate gasi turneul %d in mina %d. Ignorare.\n"
 
 #: TournamentTracker.py:298
-msgid "table name %s not found, skipping.\n"
+#, fuzzy
+msgid "Table name %s not found, skipping."
 msgstr "masa cu numele %s nu a fost gasita, se ignora.\n"
 
 #: TournamentTracker.py:305
@@ -3130,13 +3104,14 @@ msgid "No match in XTables for table '%s'."
 msgstr "Nepotrivire in XTables pentru tabela '%s'."
 
 #: fpdb.pyw:38
-msgid " - press return to continue\n"
-msgstr " - apasa enter pentru a continua\n"
+#, fuzzy
+msgid "Python %s found."
+msgstr "Nu gasesc limitele"
 
 #: fpdb.pyw:45
+#, fuzzy
 msgid ""
-"\n"
-"python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n"
+"Python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb."
 msgstr ""
 "\n"
 "python 2.5-2.7 nu a fost gasit, rugam instalati python 2.5, 2.6 sau 2.7 "
@@ -3296,7 +3271,7 @@ msgstr "Rugam confirmati (re)crearea tabelelor."
 #: fpdb.pyw:547
 #, fuzzy
 msgid ""
-" If there already are tables in the database %s on %s they will be deleted "
+"If there already are tables in the database %s on %s they will be deleted "
 "and you will have to re-import your histories."
 msgstr ""
 " Daca sunt deja tabele in baza de date %s pe %s ele vor fi sterse si va "
@@ -3560,14 +3535,13 @@ msgid "A_bout, License, Copying"
 msgstr "Despre, Licentiere, Copiere"
 
 #: fpdb.pyw:948
-msgid "There is an error in your config file\n"
+#, fuzzy
+msgid "There is an error in your config file %s"
 msgstr "Exista o eroare in fisierul de configurare\n"
 
 #: fpdb.pyw:949
-msgid ""
-"\n"
-"\n"
-"Error is:  "
+#, fuzzy
+msgid "Error is:"
 msgstr ""
 "\n"
 "\n"
@@ -3578,7 +3552,8 @@ msgid "CONFIG FILE ERROR"
 msgstr "EROARE FISIER CONFIGURARE"
 
 #: fpdb.pyw:954
-msgid "Logfile is %s\n"
+#, fuzzy
+msgid "Logfile is %s"
 msgstr "Fisierul jurnal este %s\n"
 
 #: fpdb.pyw:956
@@ -3586,9 +3561,10 @@ msgid "Config file"
 msgstr "Fisier configurare"
 
 #: fpdb.pyw:958
+#, fuzzy
 msgid ""
-"Edit your screen_name and hand history path in the supported_sites section "
-"of the Advanced Preferences window (Main menu) before trying to import hands."
+"Enter your screen_name and hand history path in the Site Preferences window "
+"(Main menu) before trying to import hands."
 msgstr ""
 "Modificati numele de afisare si calea spre istoricul miinilor in sectiunea "
 "site-uri_suportate din fereastra Preferinte Avansate (Meniu Principal) "
@@ -3627,17 +3603,15 @@ msgid "Status: Connected to %s database named %s on host %s"
 msgstr "Statut: Conectat la baza de date %s numita %s pe %s"
 
 #: fpdb.pyw:1049
-msgid ""
-"\n"
-"Global lock taken by %s"
+#, fuzzy
+msgid "Global lock taken by %s"
 msgstr ""
 "\n"
 "Siguranta globala luata de %s"
 
 #: fpdb.pyw:1052
-msgid ""
-"\n"
-"Failed to get global lock, it is currently held by %s"
+#, fuzzy
+msgid "Failed to get global lock, it is currently held by %s"
 msgstr ""
 "\n"
 "Nu se poate lua siguranta globala, e detinuta de %s"
@@ -3843,10 +3817,6 @@ msgstr ""
 "Eroare nr.%s rugam trimiteti mina ce cauzeaza asta la fpdb-main@lists."
 "sourceforge.net pentru a putea remedia problema."
 
-#: fpdb_import.py:557
-msgid "Filename:"
-msgstr "Nume fisier:"
-
 #: fpdb_import.py:558
 msgid ""
 "Here is the first line of the hand so you can identify it. Please mention "
@@ -3919,6 +3889,45 @@ msgstr ""
 #: windows_make_bats.py:57
 msgid "No gtk directories found in your path."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Finished importing %s/%s summaries"
+#~ msgstr "S-a terminat importarea sumarelor %s/%s PS"
+
+#, fuzzy
+#~ msgid "For Number of Seats:"
+#~ msgstr "Numar de locuri"
+
+#, fuzzy
+#~ msgid "filename"
+#~ msgstr "Nume fisier:"
+
+#~ msgid "For #Seats:"
+#~ msgstr "Pentru #Locuri:"
+
+#~ msgid " - press return to continue\n"
+#~ msgstr " - apasa enter pentru a continua\n"
+
+#~ msgid "creating Hello"
+#~ msgstr "creare Salut"
+
+#~ msgid "Hello World"
+#~ msgstr "Salut Lume"
+
+#~ msgid "site ="
+#~ msgstr "site ="
+
+#~ msgid "YOUR NAME HERE"
+#~ msgstr "NUMELE DVS"
+
+#~ msgid ""
+#~ "Hello %s\n"
+#~ "You have played %d hands\n"
+#~ " on %s."
+#~ msgstr ""
+#~ "Salut %s\n"
+#~ "Ai jucat %d miini\n"
+#~ " pe %s"
 
 #~ msgid ""
 #~ "Hands: %d\n"

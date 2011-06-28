@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-06-27 16:18+CEST\n"
-"PO-Revision-Date: 2011-06-26 13:33+0200\n"
+"POT-Creation-Date: 2011-06-28 02:16+CEST\n"
+"PO-Revision-Date: 2011-06-28 02:20+0200\n"
 "Last-Translator: Steffen Schaumburg <steffen@schaumburger.info>\n"
 "Language-Team: Fpdb\n"
 "Language: de\n"
@@ -150,14 +150,8 @@ msgid "Config file has been created at %s."
 msgstr "Konfigurationsdatei %s wurde erstellt."
 
 #: Configuration.py:170
-msgid ""
-"No %s found\n"
-"  in %s\n"
-"  or %s"
-msgstr ""
-"Kein %s gefunden\n"
-"in %s\n"
-"oder %s"
+msgid "No %s found in \"%s\" or \"%s\"."
+msgstr "Kein %s gefunden in \"%s\" oder \"%s\"."
 
 #: Configuration.py:175 Configuration.py:176
 msgid "Error copying .example config file, cannot fall back. Exiting."
@@ -453,7 +447,7 @@ msgstr "Karten ="
 msgid "get_stats took: %4.3f seconds"
 msgstr "get_stats dauerte %.1f Sekunden"
 
-#: Database.py:3070 HandHistoryConverter.py:41 fpdb.pyw:46
+#: Database.py:3070 HandHistoryConverter.py:41 fpdb.pyw:38 fpdb.pyw:46
 msgid "Press ENTER to continue."
 msgstr "Drück ENTER um fortzufahren"
 
@@ -1773,20 +1767,18 @@ msgstr ""
 "importieren"
 
 #: GuiTourneyImport.py:232
-#, fuzzy
 msgid "Tourney import: Removing text < 100 characters from end of file: %s"
-msgstr "Entferne Text < 100 Zeichen vom Ende der Datei"
+msgstr "Tourney Import: Entferne Text < 100 Zeichen vom Ende der Datei: %s"
 
 #: GuiTourneyImport.py:236
-#, fuzzy
 msgid "Tourney import: Removing text < 100 characters from start of file: %s"
-msgstr "Entferne Text < 100 Zeichen vom Anfang der Datei"
+msgstr "Tourney Import: Entferne Text < 100 Zeichen vom Anfang der Datei: %s"
 
 #: GuiTourneyImport.py:246
 msgid "Tourney import parse error in file: %s"
-msgstr ""
+msgstr "Tourney import Parse-Fehler in Datei: %s"
 
-#: GuiTourneyImport.py:249
+#: GuiTourneyImport.py:249 ImapFetcher.py:159
 msgid "Finished importing %s/%s tournament summaries"
 msgstr "%s/%s Tournament-Zusammenfassungen importiert"
 
@@ -1795,7 +1787,8 @@ msgid "Number of Tourneys:"
 msgstr "Zahl der Tournamente:"
 
 #: GuiTourneyImport.py:373 GuiTourneyImport.py:374 GuiTourneyImport.py:375
-msgid "filename"
+#: fpdb_import.py:557
+msgid "Filename"
 msgstr "Dateiname"
 
 #: GuiTourneyImport.py:391 ImapFetcher.py:176
@@ -2023,11 +2016,11 @@ msgstr "MIXED"
 
 #: Hand.py:159
 msgid "LAST BET"
-msgstr ""
+msgstr "LETZTER BET"
 
 #: Hand.py:160
 msgid "ACTION STREETS"
-msgstr "ACTION STRASSEN"
+msgstr "ACTION-STRASSEN"
 
 #: Hand.py:161
 msgid "STREETS"
@@ -2039,11 +2032,11 @@ msgstr "ALLE STRASSEN"
 
 #: Hand.py:163
 msgid "COMMUNITY STREETS"
-msgstr "COMMUNITY STRASSEN"
+msgstr "COMMUNITY-STRASSEN"
 
 #: Hand.py:164
 msgid "HOLE STREETS"
-msgstr "HOLE STRASSEN"
+msgstr "HOLE-STRASSEN"
 
 #: Hand.py:165
 msgid "COUNTED SEATS"
@@ -2059,7 +2052,7 @@ msgstr "GEZEIGT"
 
 #: Hand.py:168
 msgid "MUCKED"
-msgstr ""
+msgstr "MUCKED"
 
 #: Hand.py:169
 msgid "TOTAL POT"
@@ -2095,11 +2088,11 @@ msgstr "BUYIN"
 
 #: Hand.py:177
 msgid "BUYIN CURRENCY"
-msgstr "BUYIN WÄHRUNG"
+msgstr "BUYIN-WÄHRUNG"
 
 #: Hand.py:178
 msgid "BUYIN CHIPS"
-msgstr "BUYING CHIPS"
+msgstr "BUYING-CHIPS"
 
 #: Hand.py:179 TourneySummary.py:139
 msgid "FEE"
@@ -2139,7 +2132,7 @@ msgstr "SPIELER"
 
 #: Hand.py:190
 msgid "STACKS"
-msgstr ""
+msgstr "STACKS"
 
 #: Hand.py:191
 msgid "POSTED"
@@ -2147,7 +2140,7 @@ msgstr ""
 
 #: Hand.py:192
 msgid "POT"
-msgstr ""
+msgstr "POT"
 
 #: Hand.py:193
 msgid "SEATING"
@@ -2155,11 +2148,11 @@ msgstr ""
 
 #: Hand.py:194
 msgid "GAMETYPE"
-msgstr ""
+msgstr "SPIELART"
 
 #: Hand.py:195
 msgid "ACTION"
-msgstr ""
+msgstr "ACTION"
 
 #: Hand.py:196
 msgid "COLLECTEES"
@@ -2167,11 +2160,11 @@ msgstr ""
 
 #: Hand.py:197
 msgid "BETS"
-msgstr ""
+msgstr "BETS"
 
 #: Hand.py:198
 msgid "BOARD"
-msgstr ""
+msgstr "BOARD"
 
 #: Hand.py:199
 msgid "DISCARDS"
@@ -2179,11 +2172,11 @@ msgstr ""
 
 #: Hand.py:200
 msgid "HOLECARDS"
-msgstr ""
+msgstr "HOLE-KARTEN"
 
 #: Hand.py:201
 msgid "TOURNEYS PLAYER IDS"
-msgstr ""
+msgstr "TOURNEYS PLAYER IDS"
 
 #: Hand.py:224 Hand.py:1437
 msgid "[ERROR] Tried to add holecards for unknown player: %s"
@@ -2199,7 +2192,7 @@ msgstr ""
 
 #: Hand.py:507 Hand.py:508
 msgid "%s fail on hand number %s"
-msgstr ""
+msgstr "%s Fehler bei Hand Nummer %s"
 
 #: Hand.py:604
 msgid "%s %s calls %s"
@@ -2226,15 +2219,18 @@ msgid ""
 "*** ERROR - HAND: calling writeGameLine with unexpected STARTTIME value, "
 "expecting datetime.date object, received:"
 msgstr ""
+"*** FEHLER - HAND: writeGameLine wurde mit unerwartetem STARTTIME-Wert "
+"aufgerufen, habe datetime.date-Objekt erwarten und dies erhalten:"
 
 #: Hand.py:853
 msgid ""
 "*** Make sure your HandHistoryConverter is setting hand.startTime properly!"
 msgstr ""
+"*** Bitte prüfe, dass Dein HandHistoryConverter hand.startTime richtig setzt!"
 
 #: Hand.py:854
 msgid "*** Game String:"
-msgstr ""
+msgstr "*** Spiel-String:"
 
 #: Hand.py:935
 msgid "HoldemOmahaHand.__init__:Neither HHC nor DB+handid provided"
@@ -2245,6 +2241,7 @@ msgid "DrawHand.__init__: street 'DEAL' is empty. Hand cancelled? HandID: '%s'"
 msgstr ""
 
 #: Hand.py:1446
+#, fuzzy
 msgid "%s %s completes %s"
 msgstr "%s %s completes %s"
 
@@ -2276,7 +2273,7 @@ msgstr ""
 
 #: Hand.py:1742
 msgid "Error in printing Hand object"
-msgstr ""
+msgstr "Fehler bei Ausgabe von Hand-Objekt"
 
 #: HandHistoryConverter.py:40
 msgid ""
@@ -2286,11 +2283,11 @@ msgstr ""
 
 #: HandHistoryConverter.py:132
 msgid "Failed sanity check"
-msgstr ""
+msgstr "Selbsttest fehlgeschlagen"
 
 #: HandHistoryConverter.py:138
-msgid "handsList is "
-msgstr ""
+msgid "Hands list is:"
+msgstr "Die Hand-Liste ist:"
 
 #: HandHistoryConverter.py:149
 msgid "HHC.start(): processHand failed: Exception msg: '%s'"
@@ -2302,7 +2299,7 @@ msgstr ""
 
 #: HandHistoryConverter.py:159
 msgid "Summary file '%s' correctly parsed  (took %.3f seconds)"
-msgstr ""
+msgstr "Zusammenfassungsdatei '%s' korrekt geparst (dauerte %.3f Sekunden)"
 
 #: HandHistoryConverter.py:161
 msgid "Error converting summary file '%s' (took %.3f seconds)"
@@ -2317,9 +2314,8 @@ msgid "Converting ftpArchive format to readable"
 msgstr ""
 
 #: HandHistoryConverter.py:191
-#, fuzzy
 msgid "Read no hands from file: '%s'"
-msgstr "Lese Konfigurationsdatei %s"
+msgstr "Keine Hände in Datei \"%s\" eingelesen"
 
 #: HandHistoryConverter.py:199
 msgid "Removing text < 50 characters"
@@ -2364,58 +2360,35 @@ msgstr ""
 
 #: HandHistoryConverter.py:623
 msgid "Created directory '%s'"
-msgstr ""
+msgstr "Verzeichnis \"%s\" erstellt"
 
 #: HandHistoryConverter.py:627
 msgid "out_path %s couldn't be opened"
 msgstr ""
 
-#: Hello.py:46
-msgid "creating Hello"
-msgstr ""
-
-#: Hello.py:49
-msgid "Hello World"
-msgstr ""
-
-#: Hello.py:67
-msgid "site ="
-msgstr ""
-
-#: Hello.py:75
-msgid "YOUR NAME HERE"
-msgstr ""
-
-#: Hello.py:106
-msgid ""
-"Hello %s\n"
-"You have played %d hands\n"
-" on %s."
-msgstr ""
-
 #: Hud.py:150
 msgid "Kill This HUD"
-msgstr ""
+msgstr "Dieses HUD beenden"
 
 #: Hud.py:155
 msgid "Save HUD Layout"
-msgstr ""
+msgstr "HUD-Layout speichern"
 
 #: Hud.py:159
 msgid "Reposition StatWindows"
-msgstr ""
+msgstr "Stat-Fenster neu positionieren"
 
 #: Hud.py:163
-msgid "Show Player Stats"
-msgstr ""
+msgid "Show Player Stats for"
+msgstr "Spieler-Stats anzeigen für"
 
 #: Hud.py:168 Hud.py:237
 msgid "For This Blind Level Only"
-msgstr ""
+msgstr "Nur dieses Blind-Level"
 
 #: Hud.py:173 Hud.py:242
 msgid "For Multiple Blind Levels:"
-msgstr ""
+msgstr "Mehrere Blind-Level"
 
 #: Hud.py:176 Hud.py:245
 msgid "  0.5 to 2.0 x Current Blinds"
@@ -2434,8 +2407,8 @@ msgid "  All Levels"
 msgstr ""
 
 #: Hud.py:196 Hud.py:265
-msgid "For #Seats:"
-msgstr ""
+msgid "Number of Seats:"
+msgstr "Zahl der Sitze:"
 
 #: Hud.py:199 Hud.py:268
 msgid "  Any Number"
@@ -2451,7 +2424,7 @@ msgstr ""
 
 #: Hud.py:214 Hud.py:283
 msgid "Since:"
-msgstr ""
+msgstr "Seit:"
 
 #: Hud.py:217 Hud.py:286
 msgid "  All Time"
@@ -2466,8 +2439,8 @@ msgid "  %s Days"
 msgstr ""
 
 #: Hud.py:232
-msgid "Show Opponent Stats"
-msgstr ""
+msgid "Show Opponent Stats for"
+msgstr "Gegner-Stats anzeigen für"
 
 #: Hud.py:354
 msgid "Debug StatWindows"
@@ -2479,24 +2452,23 @@ msgstr ""
 
 #: Hud.py:586
 msgid "Updating config file"
-msgstr ""
+msgstr "Konfigurationsdatei wird aktualisiert"
 
 #: Hud.py:595
-msgid "No layout found for %d-max games for site %s\n"
-msgstr ""
+msgid "No layout found for %d-max games for site %s."
+msgstr "Kein %d-Spieler-Layout für Seite %s gefunden."
 
 #: Hud.py:609
 msgid "Exception in %s"
-msgstr ""
+msgstr "Exception in %s"
 
 #: Hud.py:617
-msgid "Error finding actual seat.\n"
-msgstr ""
+msgid "Error finding actual seat."
+msgstr "Fehler beim Finden des tatsächlichen Sitzes."
 
 #: Hud.py:633
-#, fuzzy
 msgid "Creating hud from hand %s"
-msgstr "Erstelle MySQL Index %s %s"
+msgstr "Erstelle HUD von Hand %s"
 
 #: Hud.py:685
 msgid ""
@@ -2527,15 +2499,11 @@ msgstr ""
 
 #: ImapFetcher.py:109
 msgid "No Tournament summaries found."
-msgstr ""
+msgstr "Keine Tournament-Zusammenfassungen gefunden."
 
 #: ImapFetcher.py:111
 msgid "Errors: %s"
 msgstr "Fehler: %s"
-
-#: ImapFetcher.py:159
-msgid "Finished importing %s/%s PS summaries"
-msgstr ""
 
 #: Mucked.py:330
 msgid "No Name"
@@ -2666,15 +2634,15 @@ msgstr ""
 
 #: SplitHandHistory.py:126
 msgid "Unexpected error processing file"
-msgstr ""
+msgstr "Unerwarteter Fehler bei Dateiverarbeitung"
 
 #: SplitHandHistory.py:165
 msgid "End of file reached"
-msgstr ""
+msgstr "Ende der Datei erreicht"
 
 #: Stats.py:242 Stats.py:251 Stats.py:260
 msgid "Profit per 100 hands"
-msgstr ""
+msgstr "Gewinn pro 100 Hände"
 
 #: Stats.py:254
 msgid "exception calculating p/100: 100 * %d / %d"
@@ -2686,7 +2654,7 @@ msgstr ""
 
 #: Stats.py:286 Stats.py:295 Stats.py:304
 msgid "Big bets won per 100 hands"
-msgstr ""
+msgstr "Gewonnene Big Bets pro 100 Hände"
 
 #: Stats.py:298
 msgid "exception calculating BB/100: "
@@ -2769,16 +2737,12 @@ msgid "Example stats, player = %s  hand = %s:"
 msgstr ""
 
 #: Stats.py:1127
-msgid ""
-"\n"
-"\n"
-"Legal stats:"
+msgid "Legal stats:"
 msgstr ""
 
 #: Stats.py:1128
 msgid ""
-"(add _0 to name to display with 0 decimal places, _1 to display with 1, "
-"etc)\n"
+"(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)"
 msgstr ""
 
 #: Stove.py:290
@@ -2825,11 +2789,11 @@ msgstr ""
 
 #: TournamentTracker.py:161
 msgid "Edit"
-msgstr ""
+msgstr "Bearbeiten"
 
 #: TournamentTracker.py:164
 msgid "Rebuy"
-msgstr ""
+msgstr "Rebuy"
 
 #: TournamentTracker.py:265
 msgid "Database error %s in hand %d. Skipping."
@@ -2840,8 +2804,8 @@ msgid "Could not find tournament %d in hand %d. Skipping."
 msgstr ""
 
 #: TournamentTracker.py:298
-msgid "table name %s not found, skipping.\n"
-msgstr ""
+msgid "Table name %s not found, skipping."
+msgstr "Tisch %s nicht gefunden, überspringe."
 
 #: TournamentTracker.py:305
 msgid "Tournament tracker starting"
@@ -2857,19 +2821,19 @@ msgstr ""
 
 #: TourneySummary.py:133
 msgid "END TIME"
-msgstr ""
+msgstr "ENDZEIT"
 
 #: TourneySummary.py:134
 msgid "TOURNEY NAME"
-msgstr ""
+msgstr "TOURNEY NAME"
 
 #: TourneySummary.py:135
 msgid "TOURNEY NO"
-msgstr ""
+msgstr "TOURNEY NUMMER"
 
 #: TourneySummary.py:140
 msgid "CURRENCY"
-msgstr ""
+msgstr "WÄHRUNG"
 
 #: TourneySummary.py:143
 msgid "ENTRIES"
@@ -2877,7 +2841,7 @@ msgstr ""
 
 #: TourneySummary.py:144
 msgid "SPEED"
-msgstr ""
+msgstr "GESCHWINDIGKEIT"
 
 #: TourneySummary.py:145
 msgid "PRIZE POOL"
@@ -2885,31 +2849,33 @@ msgstr ""
 
 #: TourneySummary.py:146
 msgid "STARTING CHIP COUNT"
-msgstr ""
+msgstr "ANFANGS-CHIP-COUNT"
 
 #: TourneySummary.py:148
 msgid "REBUY"
-msgstr ""
+msgstr "REBUY"
 
 #: TourneySummary.py:149
 msgid "ADDON"
-msgstr ""
+msgstr "ADDON"
 
 #: TourneySummary.py:150
+#, fuzzy
 msgid "KO"
-msgstr ""
+msgstr "KO"
 
 #: TourneySummary.py:151
 msgid "MATRIX"
-msgstr ""
+msgstr "MATRIX"
 
 #: TourneySummary.py:152
 msgid "MATRIX ID PROCESSED"
-msgstr ""
+msgstr "MATRIX ID VERARBEITET"
 
 #: TourneySummary.py:153
+#, fuzzy
 msgid "SHOOTOUT"
-msgstr ""
+msgstr "SHOOTOUT"
 
 #: TourneySummary.py:154
 msgid "MATRIX MATCH ID"
@@ -3070,17 +3036,17 @@ msgid "No match in XTables for table '%s'."
 msgstr ""
 
 #: fpdb.pyw:38
-msgid " - press return to continue\n"
-msgstr " - drücke Enter um fortzufahren\n"
+#, fuzzy
+msgid "Python %s found."
+msgstr "Python %s gefunden."
 
 #: fpdb.pyw:45
+#, fuzzy
 msgid ""
-"\n"
-"python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n"
+"Python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb."
 msgstr ""
-"\n"
 "Python 2.5-2.7 nicht gefunden, bitte installiere Python 2.5, 2.6 oder 2.7 "
-"für fpdb\n"
+"für fpdb."
 
 #: fpdb.pyw:104
 msgid "GuiStove not found. If you want to use it please install pypoker-eval."
@@ -3223,13 +3189,12 @@ msgid "Please confirm that you want to (re-)create the tables."
 msgstr "Bitte bestätige, dass Du die Tabellen neu erstellen möchtest."
 
 #: fpdb.pyw:547
-#, fuzzy
 msgid ""
-" If there already are tables in the database %s on %s they will be deleted "
+"If there already are tables in the database %s on %s they will be deleted "
 "and you will have to re-import your histories."
 msgstr ""
-" Falls bereits Tabellen in der Datenbank %s auf %s existieren werden sie "
-"gelöscht werden und Du wirst Deine Histories neu importieren müssen.\n"
+"Falls bereits Tabellen in der Datenbank %s auf %s existieren werden sie "
+"gelöscht werden und Du wirst Deine Histories neu importieren müssen."
 
 #: fpdb.pyw:548
 msgid "This may take a while."
@@ -3487,26 +3452,20 @@ msgid "A_bout, License, Copying"
 msgstr "_Über, Lizenz, Kopieren"
 
 #: fpdb.pyw:948
-msgid "There is an error in your config file\n"
-msgstr "Fehler in Deiner Konfigurationsdatei\n"
+msgid "There is an error in your config file %s"
+msgstr "Fehler in Deiner Konfigurationsdatei %s"
 
 #: fpdb.pyw:949
-msgid ""
-"\n"
-"\n"
-"Error is:  "
-msgstr ""
-"\n"
-"\n"
-"Der Fehler ist:"
+msgid "Error is:"
+msgstr "Der Fehler ist:"
 
 #: fpdb.pyw:950
 msgid "CONFIG FILE ERROR"
 msgstr "FEHLER IN DER KONFIGURATIONSDATEI"
 
 #: fpdb.pyw:954
-msgid "Logfile is %s\n"
-msgstr "Die Logdatei ist %s\n"
+msgid "Logfile is %s"
+msgstr "Die Logdatei ist %s"
 
 #: fpdb.pyw:956
 msgid "Config file"
@@ -3514,8 +3473,8 @@ msgstr "Konfigurationsdatei"
 
 #: fpdb.pyw:958
 msgid ""
-"Edit your screen_name and hand history path in the supported_sites section "
-"of the Advanced Preferences window (Main menu) before trying to import hands."
+"Enter your screen_name and hand history path in the Site Preferences window "
+"(Main menu) before trying to import hands."
 msgstr ""
 
 #: fpdb.pyw:980
@@ -3552,20 +3511,12 @@ msgid "Status: Connected to %s database named %s on host %s"
 msgstr "Status: Verbunden mit %s-Datenbank namens %s auf Host: %s"
 
 #: fpdb.pyw:1049
-msgid ""
-"\n"
-"Global lock taken by %s"
-msgstr ""
-"\n"
-"Globaler Lock durch %s ergriffen"
+msgid "Global lock taken by %s"
+msgstr "Globaler Lock durch %s ergriffen"
 
 #: fpdb.pyw:1052
-msgid ""
-"\n"
-"Failed to get global lock, it is currently held by %s"
-msgstr ""
-"\n"
-"Konnte globalen Lock nicht ergreifen, wird momentan von %s gehalten"
+msgid "Failed to get global lock, it is currently held by %s"
+msgstr "Konnte globalen Lock nicht ergreifen, wird momentan von %s gehalten"
 
 #: fpdb.pyw:1094
 msgid "Auto Import"
@@ -3738,7 +3689,7 @@ msgstr ""
 
 #: fpdb_import.py:456 fpdb_import.py:457
 msgid "Converting %s"
-msgstr ""
+msgstr "Konvertiere %s"
 
 #: fpdb_import.py:527
 msgid "fpdb_import: sending hand to hud"
@@ -3758,23 +3709,22 @@ msgid ""
 "net so we can fix the problem."
 msgstr ""
 
-#: fpdb_import.py:557
-msgid "Filename:"
-msgstr ""
-
 #: fpdb_import.py:558
+#, fuzzy
 msgid ""
 "Here is the first line of the hand so you can identify it. Please mention "
 "that the error was a ValueError:"
 msgstr ""
+"Hier ist die erste Zeile der Hand, so dass Du sie identifizieren kannst. "
+"Bitte erwähne, dass der Fehler ein ValueError war:"
 
 #: fpdb_import.py:560
 msgid "Hand logged to hand-errors.txt"
-msgstr ""
+msgstr "Hand wurde in hand-errors.txt geloggt"
 
 #: fpdb_import.py:669
 msgid "CLI for importing hands is GuiBulkImport.py"
-msgstr ""
+msgstr "CLI zum Import von Händen ist GuiBulkImport.py"
 
 #: fpdb_prerun.py:65
 msgid ""
@@ -3814,15 +3764,33 @@ msgstr ""
 
 #: windows_make_bats.py:30
 msgid "This script is only for Windows."
-msgstr ""
+msgstr "Dieses Script ist nur für Windows."
 
 #: windows_make_bats.py:57
 msgid "Install gtk or edit the path manually."
-msgstr ""
+msgstr "Installiere gtk oder konfiguriere den Pfad von Hand."
 
 #: windows_make_bats.py:57
 msgid "No gtk directories found in your path."
-msgstr ""
+msgstr "Keine gtk-Verzeichnisse in Deinem Pfad gefunden."
+
+#, fuzzy
+#~ msgid "Finished importing %s/%s summaries"
+#~ msgstr "%s/%s Tournament-Zusammenfassungen importiert"
+
+#, fuzzy
+#~ msgid "For Number of Seats:"
+#~ msgstr "Zahl der Sitze:"
+
+#~ msgid "filename"
+#~ msgstr "Dateiname"
+
+#, fuzzy
+#~ msgid "For #Seats:"
+#~ msgstr "Für Sitzzahl:"
+
+#~ msgid " - press return to continue\n"
+#~ msgstr " - drücke Enter um fortzufahren\n"
 
 #~ msgid ""
 #~ "Hands: %d\n"

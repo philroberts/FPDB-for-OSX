@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-06-27 16:18+CEST\n"
+"POT-Creation-Date: 2011-06-28 02:16+CEST\n"
 "PO-Revision-Date: 2011-05-08 02:22+0000\n"
 "Last-Translator: steffen123 <steffen@schaumburger.info>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.net/projects/p/fpdb/"
@@ -152,10 +152,7 @@ msgid "Config file has been created at %s."
 msgstr ""
 
 #: Configuration.py:170
-msgid ""
-"No %s found\n"
-"  in %s\n"
-"  or %s"
+msgid "No %s found in \"%s\" or \"%s\"."
 msgstr ""
 
 #: Configuration.py:175 Configuration.py:176
@@ -451,7 +448,7 @@ msgstr "cartas ="
 msgid "get_stats took: %4.3f seconds"
 msgstr ""
 
-#: Database.py:3070 HandHistoryConverter.py:41 fpdb.pyw:46
+#: Database.py:3070 HandHistoryConverter.py:41 fpdb.pyw:38 fpdb.pyw:46
 msgid "Press ENTER to continue."
 msgstr ""
 
@@ -1768,7 +1765,7 @@ msgstr ""
 msgid "Tourney import parse error in file: %s"
 msgstr ""
 
-#: GuiTourneyImport.py:249
+#: GuiTourneyImport.py:249 ImapFetcher.py:159
 msgid "Finished importing %s/%s tournament summaries"
 msgstr ""
 
@@ -1778,8 +1775,9 @@ msgid "Number of Tourneys:"
 msgstr "Número de manos:"
 
 #: GuiTourneyImport.py:373 GuiTourneyImport.py:374 GuiTourneyImport.py:375
+#: fpdb_import.py:557
 #, fuzzy
-msgid "filename"
+msgid "Filename"
 msgstr "Nombre de archivo: %s"
 
 #: GuiTourneyImport.py:391 ImapFetcher.py:176
@@ -2289,7 +2287,8 @@ msgid "Failed sanity check"
 msgstr "Ha fallado la verificación"
 
 #: HandHistoryConverter.py:138
-msgid "handsList is "
+#, fuzzy
+msgid "Hands list is:"
 msgstr "handList es "
 
 #: HandHistoryConverter.py:149
@@ -2374,32 +2373,6 @@ msgstr "Directorio creado '%s'"
 msgid "out_path %s couldn't be opened"
 msgstr "out_path %s no ha podido ser creada"
 
-#: Hello.py:46
-msgid "creating Hello"
-msgstr "creando Hello"
-
-#: Hello.py:49
-msgid "Hello World"
-msgstr "Hola Mundo"
-
-#: Hello.py:67
-msgid "site ="
-msgstr "sitio ="
-
-#: Hello.py:75
-msgid "YOUR NAME HERE"
-msgstr "TU NOMBRE AQUÍ"
-
-#: Hello.py:106
-msgid ""
-"Hello %s\n"
-"You have played %d hands\n"
-" on %s."
-msgstr ""
-"Hola %s\n"
-"Has jugado %d manos\n"
-" en %s."
-
 #: Hud.py:150
 msgid "Kill This HUD"
 msgstr "Matar este HUD"
@@ -2413,7 +2386,8 @@ msgid "Reposition StatWindows"
 msgstr "Reposicionar ventanas de estadísticas"
 
 #: Hud.py:163
-msgid "Show Player Stats"
+#, fuzzy
+msgid "Show Player Stats for"
 msgstr "Mostrar estadísiticas de jugador"
 
 #: Hud.py:168 Hud.py:237
@@ -2441,8 +2415,9 @@ msgid "  All Levels"
 msgstr "  Todos los nieveles"
 
 #: Hud.py:196 Hud.py:265
-msgid "For #Seats:"
-msgstr "Para # de asientos:"
+#, fuzzy
+msgid "Number of Seats:"
+msgstr "Número de asientos"
 
 #: Hud.py:199 Hud.py:268
 msgid "  Any Number"
@@ -2473,7 +2448,8 @@ msgid "  %s Days"
 msgstr "  %s días"
 
 #: Hud.py:232
-msgid "Show Opponent Stats"
+#, fuzzy
+msgid "Show Opponent Stats for"
 msgstr "Mostrar estadísticas de oponentes"
 
 #: Hud.py:354
@@ -2489,7 +2465,8 @@ msgid "Updating config file"
 msgstr "actualizando fichero de configuración"
 
 #: Hud.py:595
-msgid "No layout found for %d-max games for site %s\n"
+#, fuzzy
+msgid "No layout found for %d-max games for site %s."
 msgstr ""
 "No se ha encontrado diseño para partidas de %d-max para este sitio %s\n"
 
@@ -2498,7 +2475,8 @@ msgid "Exception in %s"
 msgstr ""
 
 #: Hud.py:617
-msgid "Error finding actual seat.\n"
+#, fuzzy
+msgid "Error finding actual seat."
 msgstr "Error mostrado asiento actual.\n"
 
 #: Hud.py:633
@@ -2542,10 +2520,6 @@ msgstr ""
 
 #: ImapFetcher.py:111
 msgid "Errors: %s"
-msgstr ""
-
-#: ImapFetcher.py:159
-msgid "Finished importing %s/%s PS summaries"
 msgstr ""
 
 #: Mucked.py:330
@@ -2781,10 +2755,8 @@ msgid "Example stats, player = %s  hand = %s:"
 msgstr "Ejemplo de estadísticas, jugador = %s, mano= %s:"
 
 #: Stats.py:1127
-msgid ""
-"\n"
-"\n"
-"Legal stats:"
+#, fuzzy
+msgid "Legal stats:"
 msgstr ""
 "\n"
 "\n"
@@ -2792,8 +2764,7 @@ msgstr ""
 
 #: Stats.py:1128
 msgid ""
-"(add _0 to name to display with 0 decimal places, _1 to display with 1, "
-"etc)\n"
+"(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)"
 msgstr ""
 
 #: Stove.py:290
@@ -2855,8 +2826,9 @@ msgid "Could not find tournament %d in hand %d. Skipping."
 msgstr ""
 
 #: TournamentTracker.py:298
-msgid "table name %s not found, skipping.\n"
-msgstr ""
+#, fuzzy
+msgid "Table name %s not found, skipping."
+msgstr "HUD creación: mesa %s no encontrada, ignorando."
 
 #: TournamentTracker.py:305
 msgid "Tournament tracker starting"
@@ -3106,13 +3078,13 @@ msgid "No match in XTables for table '%s'."
 msgstr ""
 
 #: fpdb.pyw:38
-msgid " - press return to continue\n"
-msgstr ""
+#, fuzzy
+msgid "Python %s found."
+msgstr "No se han encontrado límites"
 
 #: fpdb.pyw:45
 msgid ""
-"\n"
-"python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n"
+"Python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb."
 msgstr ""
 
 #: fpdb.pyw:104
@@ -3251,7 +3223,7 @@ msgstr "Por favor, confirme que usted quiere (re-)crear las tablas."
 
 #: fpdb.pyw:547
 msgid ""
-" If there already are tables in the database %s on %s they will be deleted "
+"If there already are tables in the database %s on %s they will be deleted "
 "and you will have to re-import your histories."
 msgstr ""
 
@@ -3507,14 +3479,11 @@ msgid "A_bout, License, Copying"
 msgstr "Acerca de, Licencia, Copia"
 
 #: fpdb.pyw:948
-msgid "There is an error in your config file\n"
+msgid "There is an error in your config file %s"
 msgstr ""
 
 #: fpdb.pyw:949
-msgid ""
-"\n"
-"\n"
-"Error is:  "
+msgid "Error is:"
 msgstr ""
 
 #: fpdb.pyw:950
@@ -3522,7 +3491,8 @@ msgid "CONFIG FILE ERROR"
 msgstr "ERROR EN EL ARCHIVO DE CONFIGURACION"
 
 #: fpdb.pyw:954
-msgid "Logfile is %s\n"
+#, fuzzy
+msgid "Logfile is %s"
 msgstr "Archivo de registro es %s\n"
 
 #: fpdb.pyw:956
@@ -3531,8 +3501,8 @@ msgstr "Archivo de configuración"
 
 #: fpdb.pyw:958
 msgid ""
-"Edit your screen_name and hand history path in the supported_sites section "
-"of the Advanced Preferences window (Main menu) before trying to import hands."
+"Enter your screen_name and hand history path in the Site Preferences window "
+"(Main menu) before trying to import hands."
 msgstr ""
 
 #: fpdb.pyw:980
@@ -3569,17 +3539,15 @@ msgid "Status: Connected to %s database named %s on host %s"
 msgstr "Estado: Conectado a la base de datos %s llamada %s en la máquina %s"
 
 #: fpdb.pyw:1049
-msgid ""
-"\n"
-"Global lock taken by %s"
+#, fuzzy
+msgid "Global lock taken by %s"
 msgstr ""
 "\n"
 "Reloj global usado por %s"
 
 #: fpdb.pyw:1052
-msgid ""
-"\n"
-"Failed to get global lock, it is currently held by %s"
+#, fuzzy
+msgid "Failed to get global lock, it is currently held by %s"
 msgstr ""
 "\n"
 "Fallo al acceder al reloj global, está siendo utilizado por %s"
@@ -3750,10 +3718,6 @@ msgid ""
 "net so we can fix the problem."
 msgstr ""
 
-#: fpdb_import.py:557
-msgid "Filename:"
-msgstr ""
-
 #: fpdb_import.py:558
 msgid ""
 "Here is the first line of the hand so you can identify it. Please mention "
@@ -3808,6 +3772,42 @@ msgstr ""
 #: windows_make_bats.py:57
 msgid "No gtk directories found in your path."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Finished importing %s/%s summaries"
+#~ msgstr "Ha finalizado la recreación de tablas"
+
+#, fuzzy
+#~ msgid "For Number of Seats:"
+#~ msgstr "Número de asientos"
+
+#, fuzzy
+#~ msgid "filename"
+#~ msgstr "Nombre de archivo: %s"
+
+#~ msgid "For #Seats:"
+#~ msgstr "Para # de asientos:"
+
+#~ msgid "creating Hello"
+#~ msgstr "creando Hello"
+
+#~ msgid "Hello World"
+#~ msgstr "Hola Mundo"
+
+#~ msgid "site ="
+#~ msgstr "sitio ="
+
+#~ msgid "YOUR NAME HERE"
+#~ msgstr "TU NOMBRE AQUÍ"
+
+#~ msgid ""
+#~ "Hello %s\n"
+#~ "You have played %d hands\n"
+#~ " on %s."
+#~ msgstr ""
+#~ "Hola %s\n"
+#~ "Has jugado %d manos\n"
+#~ " en %s."
 
 #, fuzzy
 #~ msgid ""

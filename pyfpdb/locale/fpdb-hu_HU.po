@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2011-06-27 16:18+CEST\n"
+"POT-Creation-Date: 2011-06-28 02:16+CEST\n"
 "PO-Revision-Date: 2011-05-09 15:33+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -151,10 +151,8 @@ msgid "Config file has been created at %s."
 msgstr "Konfigurációs fájl létrehozva itt: %s."
 
 #: Configuration.py:170
-msgid ""
-"No %s found\n"
-"  in %s\n"
-"  or %s"
+#, fuzzy
+msgid "No %s found in \"%s\" or \"%s\"."
 msgstr ""
 "%s nem található\n"
 "  itt: %s\n"
@@ -454,7 +452,7 @@ msgstr "kezdőkéz ="
 msgid "get_stats took: %4.3f seconds"
 msgstr "get_stats időigény: %4.3f mp"
 
-#: Database.py:3070 HandHistoryConverter.py:41 fpdb.pyw:46
+#: Database.py:3070 HandHistoryConverter.py:41 fpdb.pyw:38 fpdb.pyw:46
 msgid "Press ENTER to continue."
 msgstr "Nyomj ENTER-t a folytatáshoz."
 
@@ -1800,7 +1798,7 @@ msgstr ""
 msgid "Tourney import parse error in file: %s"
 msgstr ""
 
-#: GuiTourneyImport.py:249
+#: GuiTourneyImport.py:249 ImapFetcher.py:159
 msgid "Finished importing %s/%s tournament summaries"
 msgstr "%s/%s verseny összegzés importálása befejezve"
 
@@ -1812,8 +1810,9 @@ msgstr ""
 "Versenyek száma: "
 
 #: GuiTourneyImport.py:373 GuiTourneyImport.py:374 GuiTourneyImport.py:375
+#: fpdb_import.py:557
 #, fuzzy
-msgid "filename"
+msgid "Filename"
 msgstr "Fájlnév:"
 
 #: GuiTourneyImport.py:391 ImapFetcher.py:176
@@ -2329,7 +2328,8 @@ msgid "Failed sanity check"
 msgstr "A megfelelőségi ellenőrzésen nem ment át"
 
 #: HandHistoryConverter.py:138
-msgid "handsList is "
+#, fuzzy
+msgid "Hands list is:"
 msgstr "A handsList a következő: "
 
 #: HandHistoryConverter.py:149
@@ -2412,32 +2412,6 @@ msgstr "'%s' könyvtár létrehozva"
 msgid "out_path %s couldn't be opened"
 msgstr "%s kimeneti könyvtár nem nyitható meg"
 
-#: Hello.py:46
-msgid "creating Hello"
-msgstr "Hello létrehozása"
-
-#: Hello.py:49
-msgid "Hello World"
-msgstr "Helló Világ"
-
-#: Hello.py:67
-msgid "site ="
-msgstr "terem ="
-
-#: Hello.py:75
-msgid "YOUR NAME HERE"
-msgstr "A TE NEVED"
-
-#: Hello.py:106
-msgid ""
-"Hello %s\n"
-"You have played %d hands\n"
-" on %s."
-msgstr ""
-"Hello %s\n"
-"Eddig %d leosztást játszottál\n"
-"a %s teremben."
-
 #: Hud.py:150
 msgid "Kill This HUD"
 msgstr "Ezen HUD kilövése"
@@ -2451,7 +2425,8 @@ msgid "Reposition StatWindows"
 msgstr "Újrapozícionálás"
 
 #: Hud.py:163
-msgid "Show Player Stats"
+#, fuzzy
+msgid "Show Player Stats for"
 msgstr "Játékos statisztikák megjelenítése"
 
 #: Hud.py:168 Hud.py:237
@@ -2479,8 +2454,9 @@ msgid "  All Levels"
 msgstr "  Minden limit"
 
 #: Hud.py:196 Hud.py:265
-msgid "For #Seats:"
-msgstr "Ennyi szék számára:"
+#, fuzzy
+msgid "Number of Seats:"
+msgstr "Székek száma"
 
 #: Hud.py:199 Hud.py:268
 msgid "  Any Number"
@@ -2511,7 +2487,8 @@ msgid "  %s Days"
 msgstr "  Az elmúlt %s nap"
 
 #: Hud.py:232
-msgid "Show Opponent Stats"
+#, fuzzy
+msgid "Show Opponent Stats for"
 msgstr "Ellenfél statisztikáinak mutatása"
 
 #: Hud.py:354
@@ -2527,7 +2504,8 @@ msgid "Updating config file"
 msgstr "Konfigurációs fájl frissítése"
 
 #: Hud.py:595
-msgid "No layout found for %d-max games for site %s\n"
+#, fuzzy
+msgid "No layout found for %d-max games for site %s."
 msgstr "Nem található elrendezés a %d fős asztalok számára a %s teremben\n"
 
 #: Hud.py:609
@@ -2535,7 +2513,8 @@ msgid "Exception in %s"
 msgstr "Hiba itt: %s"
 
 #: Hud.py:617
-msgid "Error finding actual seat.\n"
+#, fuzzy
+msgid "Error finding actual seat."
 msgstr "Hiba az aktuális szék keresése közben.\n"
 
 #: Hud.py:633
@@ -2579,10 +2558,6 @@ msgstr "Nem található versenyösszefoglaló."
 #: ImapFetcher.py:111
 msgid "Errors: %s"
 msgstr "Hibák: %s"
-
-#: ImapFetcher.py:159
-msgid "Finished importing %s/%s PS summaries"
-msgstr "%s/%s PS összefoglaló importálása kész"
 
 #: Mucked.py:330
 msgid "No Name"
@@ -2818,19 +2793,17 @@ msgid "Example stats, player = %s  hand = %s:"
 msgstr "Példa statisztikák, játékos = %s  leosztás = %s:"
 
 #: Stats.py:1127
-msgid ""
-"\n"
-"\n"
-"Legal stats:"
+#, fuzzy
+msgid "Legal stats:"
 msgstr ""
 "\n"
 "\n"
 "Érvényes statisztikák:"
 
 #: Stats.py:1128
+#, fuzzy
 msgid ""
-"(add _0 to name to display with 0 decimal places, _1 to display with 1, "
-"etc)\n"
+"(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)"
 msgstr ""
 "(írj a név után _0-t tizedesjegy nélküli megjelenítéshez, _1-et az egy "
 "tizedesjegyhez, stb.)\n"
@@ -2898,7 +2871,8 @@ msgid "Could not find tournament %d in hand %d. Skipping."
 msgstr "Nem található a %d versenyazonosító a %d leosztásban. Kihagyás.\n"
 
 #: TournamentTracker.py:298
-msgid "table name %s not found, skipping.\n"
+#, fuzzy
+msgid "Table name %s not found, skipping."
 msgstr "%s nevű asztal nincs meg, kihagyás.\n"
 
 #: TournamentTracker.py:305
@@ -3131,13 +3105,14 @@ msgid "No match in XTables for table '%s'."
 msgstr "Nincs XTables találat ehhez az asztalhoz: '%s'"
 
 #: fpdb.pyw:38
-msgid " - press return to continue\n"
-msgstr " - nyomj ENTER-t a folytatáshoz\n"
+#, fuzzy
+msgid "Python %s found."
+msgstr "Nem található limit"
 
 #: fpdb.pyw:45
+#, fuzzy
 msgid ""
-"\n"
-"python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n"
+"Python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb."
 msgstr ""
 "\n"
 "Python 2.5-2.7 nem található, kérlek telepítsd a Python 2.5-öt, 2.6-ot, vagy "
@@ -3294,7 +3269,7 @@ msgstr ""
 #: fpdb.pyw:547
 #, fuzzy
 msgid ""
-" If there already are tables in the database %s on %s they will be deleted "
+"If there already are tables in the database %s on %s they will be deleted "
 "and you will have to re-import your histories."
 msgstr ""
 " Ha már vannak táblák a(z) %s adatbázisban a(z) %s kiszolgálón, akkor azok "
@@ -3560,14 +3535,13 @@ msgid "A_bout, License, Copying"
 msgstr "_Névjegy, licensz, másolás"
 
 #: fpdb.pyw:948
-msgid "There is an error in your config file\n"
+#, fuzzy
+msgid "There is an error in your config file %s"
 msgstr "Hiba van a konfigurációs fájlodban\n"
 
 #: fpdb.pyw:949
-msgid ""
-"\n"
-"\n"
-"Error is:  "
+#, fuzzy
+msgid "Error is:"
 msgstr ""
 "\n"
 "\n"
@@ -3578,7 +3552,8 @@ msgid "CONFIG FILE ERROR"
 msgstr "KONFIGURÁCIÓS FÁJL HIBA"
 
 #: fpdb.pyw:954
-msgid "Logfile is %s\n"
+#, fuzzy
+msgid "Logfile is %s"
 msgstr "A naplófájl: %s\n"
 
 #: fpdb.pyw:956
@@ -3586,9 +3561,10 @@ msgid "Config file"
 msgstr "Konfigurációs fájl"
 
 #: fpdb.pyw:958
+#, fuzzy
 msgid ""
-"Edit your screen_name and hand history path in the supported_sites section "
-"of the Advanced Preferences window (Main menu) before trying to import hands."
+"Enter your screen_name and hand history path in the Site Preferences window "
+"(Main menu) before trying to import hands."
 msgstr ""
 "Állítsd be a képernyőnevet és a leosztástörténetek útvonalát a "
 "supported_sites résznél a Haladó beállítások ablakban (Főmenü) mielőtt "
@@ -3630,17 +3606,15 @@ msgstr ""
 "kiszolgálón"
 
 #: fpdb.pyw:1049
-msgid ""
-"\n"
-"Global lock taken by %s"
+#, fuzzy
+msgid "Global lock taken by %s"
 msgstr ""
 "\n"
 "Globális zárolást végzett %s"
 
 #: fpdb.pyw:1052
-msgid ""
-"\n"
-"Failed to get global lock, it is currently held by %s"
+#, fuzzy
+msgid "Failed to get global lock, it is currently held by %s"
 msgstr ""
 "\n"
 "Globális zárolás meghiúsult, %s már zárolta"
@@ -3850,10 +3824,6 @@ msgstr ""
 "%s számú hiba. Kérlek küldd el az ezt okozó leosztást az fpdb-main@lists."
 "sourceforge.net címre, hogy ki tudjuk javítani a hibát."
 
-#: fpdb_import.py:557
-msgid "Filename:"
-msgstr "Fájlnév:"
-
 #: fpdb_import.py:558
 msgid ""
 "Here is the first line of the hand so you can identify it. Please mention "
@@ -3927,6 +3897,45 @@ msgstr ""
 #: windows_make_bats.py:57
 msgid "No gtk directories found in your path."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Finished importing %s/%s summaries"
+#~ msgstr "%s/%s PS összefoglaló importálása kész"
+
+#, fuzzy
+#~ msgid "For Number of Seats:"
+#~ msgstr "Székek száma"
+
+#, fuzzy
+#~ msgid "filename"
+#~ msgstr "Fájlnév:"
+
+#~ msgid "For #Seats:"
+#~ msgstr "Ennyi szék számára:"
+
+#~ msgid " - press return to continue\n"
+#~ msgstr " - nyomj ENTER-t a folytatáshoz\n"
+
+#~ msgid "creating Hello"
+#~ msgstr "Hello létrehozása"
+
+#~ msgid "Hello World"
+#~ msgstr "Helló Világ"
+
+#~ msgid "site ="
+#~ msgstr "terem ="
+
+#~ msgid "YOUR NAME HERE"
+#~ msgstr "A TE NEVED"
+
+#~ msgid ""
+#~ "Hello %s\n"
+#~ "You have played %d hands\n"
+#~ " on %s."
+#~ msgstr ""
+#~ "Hello %s\n"
+#~ "Eddig %d leosztást játszottál\n"
+#~ "a %s teremben."
 
 #~ msgid ""
 #~ "Hands: %d\n"

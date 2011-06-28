@@ -370,9 +370,9 @@ class ProgressBar:
 
 def usage():
     print _("USAGE:")
-    print "./GuiTourneyImport.py -k <Site> -f <" + _("filename") + ">"
-    print "./GuiTourneyImport.py -k PokerStars -f <" + _("filename") + ">"
-    print "./GuiTourneyImport.py -k 'Full Tilt Poker' -f <" + _("filename") + ">"
+    print "./GuiTourneyImport.py -k <Site> -f <" + _("Filename") + ">"
+    print "./GuiTourneyImport.py -k PokerStars -f <" + _("Filename") + ">"
+    print "./GuiTourneyImport.py -k 'Full Tilt Poker' -f <" + _("Filename") + ">"
 
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""

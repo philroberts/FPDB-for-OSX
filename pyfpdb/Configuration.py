@@ -167,7 +167,7 @@ def get_config(file_name, fallback = True):
             if not config_found and fallback:
                 shutil.copyfile(example_path, config_path)
                 example_copy = True
-                msg = _("No %s found\n  in %s\n  or %s") % (file_name, FPDB_PROGRAM_PATH, CONFIG_PATH) \
+                msg = _("No %s found in \"%s\" or \"%s\".") % (file_name, FPDB_PROGRAM_PATH, CONFIG_PATH) \
                      + " " + _("Config file has been created at %s.") % (config_path+"\n")
                 print msg
                 logging.info(msg)
