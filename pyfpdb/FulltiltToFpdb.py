@@ -77,7 +77,7 @@ class Fulltilt(HandHistoryConverter):
                                     (Ante\s\$?(?P<ANTE>[%(NUM)s]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
-                                    (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw))
+                                    (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))
                                  ''' % substitutions, re.VERBOSE)
     re_SplitHands   = re.compile(r"\n\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
@@ -223,9 +223,10 @@ class Fulltilt(HandHistoryConverter):
                   'Stud Hi' : ('stud','studhi'), 
                  'Stud H/L' : ('stud','studhilo'),
           '2-7 Triple Draw' : ('draw','27_3draw'),
+          'A-5 Triple Draw' : ('draw','a5_3draw'),
               '5 Card Draw' : ('draw','fivedraw'),
                    'Badugi' : ('draw','badugi'),
-          '2-7 Single Draw' : ('draw','27_1draw')
+          '2-7 Single Draw' : ('draw','27_1draw'),
                }
         mixes = { 
                    '7-Game' : '7game',
