@@ -2322,7 +2322,7 @@ class Database:
                     hand['tourneyTypeId'] = pdata['tourneyTypeId']
                     hand['played'] = 1
                     if pdata['buyinCurrency'] == pdata['winningsCurrency'][p]:
-                          hand['totalProfit'] = pdata['winnings'][p] - (pdata['buyin'] + pdata['fee'])
+                          hand['totalProfit'] = int(pdata['winnings'][p]) - (pdata['buyin'] + pdata['fee'])
                     else: hand['totalProfit'] = pdata['winnings'][p]
                 elif (game['type']=='ring'):
                     hand['type'] = game['type']
