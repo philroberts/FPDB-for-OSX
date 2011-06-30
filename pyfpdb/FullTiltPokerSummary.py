@@ -39,6 +39,7 @@ class FullTiltPokerSummary(TourneySummary):
                                  'RAZZ' : ('stud','razz'),
                           '7 Card Stud' : ('stud','studhi'),
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
+                             'Stud H/L' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
                           '5 Card Draw' : ('draw','fivedraw')
@@ -59,7 +60,7 @@ class FullTiltPokerSummary(TourneySummary):
                         (\s*.*(?P<TYPE>Tournament|Sit\s\&\sGo|Sit\&Go|\(Rebuy\)|Matrix|Knockout|KO|Rush|Satellite|FTOPS|MiniFTOPS|Step\s\d|Daily\sDollar|Madness|Freeroll|Heads-Up|Challenge|Super\sTurbo|The\sKitchen\sSink).*\s)
                         \((?P<TOURNO>[0-9]+)\)
                         (\s+)?(\sMatch\s\d\s)?
-                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s+
+                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s+
                         (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+
                         (Buy-In:\s[%(LS)s](?P<BUYIN>[%(NUM)s]+)(\s\+\s[%(LS)s](?P<FEE>[%(NUM)s]+))?\s+)?
                         (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[%(NUM)s]+)\s+)?
@@ -76,7 +77,7 @@ class FullTiltPokerSummary(TourneySummary):
                         (Total\sRebuys:\s(?P<REBUYS>\d+)\s+)?
                         ([%(LS)s]?(?P<ADDED>[.\d]+)\sadded\sto\sthe\sprize\spool\sby\sPokerStars\.com\s+)?
                         (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[%(NUM)s]+)\s+)?
-                        (Top\s\d+\sfinishers\sreceive\s(entry\sto\s[Tt]ournament\s\d+|Step\s\d\sTicket|FTPA\sChallenge\sFinals\sTicket)\s+)?
+                        (Top\s\d+\sfinishers?\sreceive\s(entry\sto\s[Tt]ournament\s\d+|Step\s\d\sTicket|FTPA\sChallenge\sFinals\sTicket)\s+)?
                         (Target\sTournament\s.*)?
                         Tournament\sstarted:\s
                         (?P<DATETIME>((?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s??(?P<TZ>[A-Z]+)\s|\w+,\s(?P<MONTH>\w+)\s(?P<DAY>\d+),\s(?P<YEAR>[\d]{4})\s(?P<HOUR>\d+):(?P<MIN2>\d+)))
