@@ -66,7 +66,8 @@ class FullTiltPokerSummary(TourneySummary):
                         ((?P<PNAMEBOUNTIES>.{2,15})\sreceived\s\d+\sKnockout\sBounty\sAwards?\s+)?
                         (Add-On:\s[%(LS)s](?P<ADDON>[%(NUM)s]+)\s+)?
                         (Rebuy:\s[%(LS)s](?P<REBUYAMT>[%(NUM)s]+)\s+)?
-                        ((?P<PNAME>.{2,15})\sperformed\s(?P<PREBUYS>\d+)\sRebuys\s+)?
+                        ((?P<P1NAME>.{2,15})\sperformed\s(?P<PADDONS>\d+)\sAdd-Ons?\s+)?
+                        ((?P<P2NAME>.{2,15})\sperformed\s(?P<PREBUYS>\d+)\sRebuys?\s+)?
                         (Buy-In\sChips:\s(?P<CHIPS>\d+)\s+)?
                         (Add-On\sChips:\s(?P<ADDONCHIPS>\d+)\s+)?
                         (Rebuy\sChips:\s(?P<REBUYCHIPS>\d+)\s+)?
