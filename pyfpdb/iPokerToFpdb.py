@@ -76,7 +76,7 @@ class iPoker(HandHistoryConverter):
     re_PostBB = re.compile(r'<action no="[0-9]+" player="%(PLYR)s" type="2" sum="(%(LS)s)(?P<BB>[.0-9]+)"' % substitutions, re.MULTILINE)
     re_PostBoth = re.compile(r'<event sequence="[0-9]+" type="(RETURN_BLIND)" player="(?P<PSEAT>[0-9])" amount="(?P<SBBB>[.0-9]+)"/>', re.MULTILINE)
     re_HeroCards = re.compile(r'<cards type="HOLE" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
-    re_Action = re.compile(r'<action no="[0-9]+" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>\d+)" sum="(%(LS)s)(?P<BET>[.0-9]+)"' % substitutions, re.MULTILINE)
+    re_Action = re.compile(r'<action no="(?P<ACT>[0-9]+)" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>\d+)" sum="(%(LS)s)(?P<BET>[.0-9]+)"' % substitutions, re.MULTILINE)
     re_Ante   = re.compile(r'<action no="[0-9]+" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>15)" sum="(%(LS)s)(?P<BET>[.0-9]+)" cards="' % substitutions, re.MULTILINE)
     re_ShowdownAction = re.compile(r'<cards type="SHOWN" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
@@ -242,31 +242,39 @@ class iPoker(HandHistoryConverter):
                               mucked=False, dealt=True)
 
     def readAction(self, hand, street):
-        logging.debug("readAction (%s)" % street)
+        # HH format doesn't actually print the actions in order!
         m = self.re_Action.finditer(hand.streets[street])
-        for action in m:
-            ag = action.groupdict()
-            atype = action.group('ATYPE')
-            player = action.group('PNAME')
-            #print "DEBUG: action.groupdict: %s" % ag
+        actions = {}
+        for a in m:
+            actions[int(a.group('ACT'))] = a.groupdict()
+        for a in sorted(actions.iterkeys()):
+            action = actions[a]
+            atype = action['ATYPE']
+            player = action['PNAME']
+            #print "DEBUG: action: %s" % action
             if atype == '23': # Raise to
-                hand.addRaiseTo(street, player, action.group('BET'))
+                hand.addRaiseTo(street, player, action['BET'])
+            elif atype == '6': # Raise by
+                #This is only a guess
+                hand.addRaiseBy(street, player, action['BET'])
             elif atype == '3':
-                hand.addCall(street, player, action.group('BET'))
-            elif action.group('ATYPE') == '5':
-                hand.addBet(street, player, action.group('BET'))
+                hand.addCall(street, player, action['BET'])
+            elif atype == '5':
+                hand.addBet(street, player, action['BET'])
             elif atype == '0':
                 hand.addFold(street, player)
             elif atype == '4':
                 hand.addCheck(street, player)
             elif atype == '16': #BringIn
-                hand.addBringIn(player, action.group('BET'))
-            elif atype == '1' or atype == '2': #sb/bb
+                hand.addBringIn(player, action['BET'])
+            elif atype == '7':
+                hand.addAllIn(street, player, action['BET'])
+            elif atype == '1' or atype == '2' or atype == '8': #sb/bb/no action this hand (joined table)
                 pass
             elif atype == '9': #FIXME: Sitting out
                 pass
             else:
-                logging.error(_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
+                logging.error(_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action['PNAME'], action['ATYPE']))
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):
