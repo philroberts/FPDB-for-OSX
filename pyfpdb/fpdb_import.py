@@ -43,23 +43,6 @@ import Database
 import Configuration
 import Exceptions
 
-
-#    database interface modules
-try:
-    import MySQLdb
-except ImportError:
-    log.debug(_("Import database module: MySQLdb not found"))
-else:
-    mysqlLibFound = True
-
-try:
-    import psycopg2
-except ImportError:
-    log.debug(_("Import database module: psycopg2 not found"))
-else:
-    import psycopg2.extensions
-    psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
-
 class Importer:
     def __init__(self, caller, settings, config, sql = None, parent = None):
         """Constructor"""
