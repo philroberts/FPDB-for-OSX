@@ -144,11 +144,6 @@ class Importer:
         self.pos_in_file = {}
         self.filelist = {}
 
-    def closeDBs(self):
-        self.database.disconnect()
-        for i in xrange(len(self.writerdbs)):
-            self.writerdbs[i].disconnect()
-            
     def logImport(self, type, file, stored, dups, partial, errs, ttime, id):
         hands = stored + dups + partial + errs
         now = datetime.datetime.utcnow()
