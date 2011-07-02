@@ -333,6 +333,26 @@ class PokerStars(HandHistoryConverter):
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
+
+        # There is no marker between deal and draw in Stars single draw games
+        # overcome this by inserting the marker into the hand text
+        # This fixes handsplayers.cardxx which is not correctly set in single draw
+        #
+        # FIXME: there has to be a cleaner way to do this - altering the hand object
+        # at the markStreets stage is a bit of a hack.
+        
+        if hand.gametype['category'] in ('27_1draw', 'fivedraw'):
+            # Firstly, isolate the first discard/stand pat line (thanks Carl for the regex)
+            discard_split = re.split(r"(?:(.+(?: stands pat on|: discards).+))", hand.handText,re.DOTALL)
+            if discard_split:
+                # Draw section found, reassemble, with FIRST DRAW marker added
+                discard_split[0] = discard_split[0] + "*** DRAW ***\r\n"
+                single_draw_hand_text = ""
+                for i in discard_split:
+                    single_draw_hand_text = single_draw_hand_text + i
+            else:
+                single_draw_hand_text = hand.handText
+
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
         if hand.gametype['base'] in ("hold"):
@@ -349,11 +369,9 @@ class PokerStars(HandHistoryConverter):
                            r"(\*\*\* RIVER \*\*\*(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
         elif hand.gametype['base'] in ("draw"):
             if hand.gametype['category'] in ('27_1draw', 'fivedraw'):
-                # There is no marker between deal and draw in Stars single draw games
-                # This unfortunately affects the accounting.
                 m =  re.search(r"(?P<PREDEAL>.+(?=\*\*\* DEALING HANDS \*\*\*)|.+)"
-                           r"(\*\*\* DEALING HANDS \*\*\*(?P<DEAL>.+(?=(: stands pat on|: discards))|.+))?"
-                           r"((: stands pat on|: discards)(?P<DRAWONE>.+))?", hand.handText,re.DOTALL)
+                           r"(\*\*\* DEALING HANDS \*\*\*(?P<DEAL>.+(?=\*\*\* DRAW \*\*\*)|.+))?"
+                           r"(\*\*\* DRAW \*\*\*(?P<DRAWONE>.+))?", single_draw_hand_text,re.DOTALL)
             else:
                 m =  re.search(r"(?P<PREDEAL>.+(?=\*\*\* DEALING HANDS \*\*\*)|.+)"
                            r"(\*\*\* DEALING HANDS \*\*\*(?P<DEAL>.+(?=\*\*\* FIRST DRAW \*\*\*)|.+))?"
