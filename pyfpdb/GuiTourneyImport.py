@@ -185,7 +185,6 @@ class SummaryImporter:
                                        site=site, tsc=tsc)
         else:
             self.addImportFile(inputPath, site=site, tsc=tsc)
-        pass
 
     def runImport(self):
         start = datetime.datetime.now()
