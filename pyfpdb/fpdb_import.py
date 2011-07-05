@@ -43,23 +43,6 @@ import Database
 import Configuration
 import Exceptions
 
-
-#    database interface modules
-try:
-    import MySQLdb
-except ImportError:
-    log.debug(_("Import database module: MySQLdb not found"))
-else:
-    mysqlLibFound = True
-
-try:
-    import psycopg2
-except ImportError:
-    log.debug(_("Import database module: psycopg2 not found"))
-else:
-    import psycopg2.extensions
-    psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
-
 class Importer:
     def __init__(self, caller, settings, config, sql = None, parent = None):
         """Constructor"""
@@ -161,11 +144,6 @@ class Importer:
         self.pos_in_file = {}
         self.filelist = {}
 
-    def closeDBs(self):
-        self.database.disconnect()
-        for i in xrange(len(self.writerdbs)):
-            self.writerdbs[i].disconnect()
-            
     def logImport(self, type, file, stored, dups, partial, errs, ttime, id):
         hands = stored + dups + partial + errs
         now = datetime.datetime.utcnow()
@@ -549,21 +527,6 @@ class Importer:
 
         #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
-
-
-    def printEmailErrorMessage(self, errors, filename, line):
-        traceback.print_exc(file=sys.stderr)
-        print (_("Error No.%s please send the hand causing this to fpdb-main@lists.sourceforge.net so we can fix the problem.") % errors)
-        print _("Filename:"), filename
-        print _("Here is the first line of the hand so you can identify it. Please mention that the error was a ValueError:")
-        print self.hand[0]
-        print _("Hand logged to hand-errors.txt")
-        logfile = open('hand-errors.txt', 'a')
-        for s in self.hand:
-            logfile.write(str(s) + "\n")
-        logfile.write("\n")
-        logfile.close()
-        
         
 class ProgressBar:
 

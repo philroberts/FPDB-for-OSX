@@ -135,7 +135,7 @@ Otherwise, finish at EOF.
         self.numHands = 0
         self.numErrors = 0
         handsList = self.allHandsAsList()
-        log.debug( _("handsList is ") + str(handsList) )
+        log.debug( _("Hands list is:") + str(handsList))
         log.info("Parsing %d hands" % len(handsList))
         # Determine if we're dealing with a HH file or a Summary file
         # quick fix : empty files make the handsList[0] fail ==> If empty file, go on with HH parsing
@@ -188,7 +188,7 @@ Otherwise, finish at EOF.
             self.obs = m.sub('', self.obs)
 
         if self.obs is None or self.obs == "":
-            log.error(_("Read no hands from file: '%s'" % self.in_path))
+            log.error(_("Read no hands from file: '%s'") % self.in_path)
             return []
         handlist = re.split(self.re_SplitHands,  self.obs)
         # Some HH formats leave dangling text after the split

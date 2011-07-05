@@ -1124,8 +1124,8 @@ if __name__== "__main__":
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'starthands')
         #print "\n" 
 
-    print _("\n\nLegal stats:")
-    print _("(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)\n")
+    print _("Legal stats:")
+    print _("(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)")
     for attr in statlist:
         print "%-14s %s" % (attr, eval("%s.__doc__" % (attr)))
 #        print "            <pu_stat pu_stat_name = \"%s\"> </pu_stat>" % (attr)

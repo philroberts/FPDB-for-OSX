@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-06-26 13:33+CEST\n"
+"POT-Creation-Date: 2011-06-28 03:07+CEST\n"
 "PO-Revision-Date: 2011-06-09 13:37+0000\n"
 "Last-Translator: greg20 <greg20@isonews2.com>\n"
 "Language-Team: Polish (Poland) (http://www.transifex.net/projects/p/fpdb/"
@@ -37,8 +37,8 @@ msgstr ""
 #: AbsoluteToFpdb.py:141 BetfairToFpdb.py:77 CakeToFpdb.py:133
 #: CakeToFpdb.py:159 CarbonToFpdb.py:165 CarbonToFpdb.py:193
 #: EntractionToFpdb.py:132 EverestToFpdb.py:104 EverestToFpdb.py:109
-#: EverleafToFpdb.py:129 FullTiltPokerSummary.py:94
-#: FullTiltPokerSummary.py:120 FulltiltToFpdb.py:268 FulltiltToFpdb.py:286
+#: EverleafToFpdb.py:129 FullTiltPokerSummary.py:98
+#: FullTiltPokerSummary.py:129 FulltiltToFpdb.py:269 FulltiltToFpdb.py:287
 #: OnGameToFpdb.py:162 OnGameToFpdb.py:181 PacificPokerToFpdb.py:182
 #: PartyPokerToFpdb.py:224 PartyPokerToFpdb.py:282 PkrToFpdb.py:129
 #: PkrToFpdb.py:154 PokerStarsSummary.py:82 PokerStarsSummary.py:108
@@ -71,12 +71,12 @@ msgid "Didn't match re_*InfoFromFilename: '%s'"
 msgstr ""
 
 #: AbsoluteToFpdb.py:279 CakeToFpdb.py:221 EverleafToFpdb.py:228
-#: FulltiltToFpdb.py:445 OnGameToFpdb.py:303 PacificPokerToFpdb.py:357
+#: FulltiltToFpdb.py:446 OnGameToFpdb.py:303 PacificPokerToFpdb.py:357
 #: PokerStarsToFpdb.py:372 Win2dayToFpdb.py:210 WinamaxToFpdb.py:360
 msgid "reading antes"
 msgstr ""
 
-#: AbsoluteToFpdb.py:288 BetfairToFpdb.py:160 FulltiltToFpdb.py:460
+#: AbsoluteToFpdb.py:288 BetfairToFpdb.py:160 FulltiltToFpdb.py:461
 msgid "Player bringing in: %s for %s"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgstr ""
 
 #: AbsoluteToFpdb.py:348 BetfairToFpdb.py:199 CakeToFpdb.py:280
 #: CarbonToFpdb.py:351 EntractionToFpdb.py:305 EverestToFpdb.py:238
-#: EverestToFpdb.py:239 EverleafToFpdb.py:295 FulltiltToFpdb.py:528
+#: EverestToFpdb.py:239 EverleafToFpdb.py:295 FulltiltToFpdb.py:529
 #: OnGameToFpdb.py:346 PacificPokerToFpdb.py:439 PartyPokerToFpdb.py:571
 #: PkrToFpdb.py:351 PokerStarsToFpdb.py:454 Win2dayToFpdb.py:348
 #: WinamaxToFpdb.py:406 iPokerToFpdb.py:261
@@ -118,7 +118,7 @@ msgid "No bringin found"
 msgstr ""
 
 #: BetfairToFpdb.py:199 CakeToFpdb.py:280 EntractionToFpdb.py:305
-#: FulltiltToFpdb.py:528 GuiAutoImport.py:208 GuiPositionalStats.py:138
+#: FulltiltToFpdb.py:529 GuiAutoImport.py:208 GuiPositionalStats.py:138
 #: GuiStove.py:221 GuiStove.py:225 GuiStove.py:229 GuiStove.py:233
 #: GuiStove.py:237 GuiStove.py:239 Hand.py:507 Hand.py:1740 ImapFetcher.py:44
 #: ImapFetcher.py:53 OnGameToFpdb.py:215 OnGameToFpdb.py:346
@@ -129,7 +129,7 @@ msgid "DEBUG:"
 msgstr ""
 
 #: CakeToFpdb.py:158 CakeToFpdb.py:160 CarbonToFpdb.py:192 CarbonToFpdb.py:194
-#: FulltiltToFpdb.py:267 FulltiltToFpdb.py:269 PartyPokerToFpdb.py:281
+#: FulltiltToFpdb.py:268 FulltiltToFpdb.py:270 PartyPokerToFpdb.py:281
 #: PartyPokerToFpdb.py:283 PkrToFpdb.py:153 PkrToFpdb.py:155
 #: PokerStarsToFpdb.py:226 PokerStarsToFpdb.py:228
 msgid "Lim_Blinds has no lookup for '%s'"
@@ -149,15 +149,12 @@ msgstr ""
 msgid "Could not encode: \"%s\""
 msgstr ""
 
-#: Configuration.py:149 Configuration.py:156 Configuration.py:171 fpdb.pyw:957
+#: Configuration.py:149 Configuration.py:156 Configuration.py:171 fpdb.pyw:958
 msgid "Config file has been created at %s."
 msgstr ""
 
 #: Configuration.py:170
-msgid ""
-"No %s found\n"
-"  in %s\n"
-"  or %s"
+msgid "No %s found in \"%s\" or \"%s\"."
 msgstr ""
 
 #: Configuration.py:175 Configuration.py:176
@@ -291,7 +288,7 @@ msgstr ""
 
 #: Database.py:1052 Database.py:1068 Database.py:1072 Database.py:1090
 #: Database.py:1094 Database.py:1424 Database.py:1443 Database.py:1447
-#: fpdb.pyw:1400
+#: fpdb.pyw:1401
 msgid "Warning:"
 msgstr "Ostrzeżenie:"
 
@@ -448,11 +445,11 @@ msgstr ""
 msgid "get_stats took: %4.3f seconds"
 msgstr ""
 
-#: Database.py:3070 HandHistoryConverter.py:41 fpdb.pyw:46
+#: Database.py:3070 HandHistoryConverter.py:41 fpdb.pyw:38 fpdb.pyw:46
 msgid "Press ENTER to continue."
 msgstr ""
 
-#: EverestToFpdb.py:110 FulltiltToFpdb.py:285 FulltiltToFpdb.py:287
+#: EverestToFpdb.py:110 FulltiltToFpdb.py:286 FulltiltToFpdb.py:288
 msgid "Unable to recognise hand info from: '%s'"
 msgstr ""
 
@@ -601,121 +598,121 @@ msgstr ""
 msgid "Either 0 or more than one site matched (%s) - EEK"
 msgstr ""
 
-#: Filters.py:390
+#: Filters.py:391
 msgid "%s was toggled %s"
 msgstr ""
 
-#: Filters.py:390
+#: Filters.py:391
 msgid "OFF"
 msgstr ""
 
-#: Filters.py:390
+#: Filters.py:391
 msgid "ON"
 msgstr ""
 
-#: Filters.py:485
+#: Filters.py:486
 msgid "self.sites[%s] set to %s"
 msgstr ""
 
-#: Filters.py:529
+#: Filters.py:530
 msgid "self.limit[%s] set to %s"
 msgstr ""
 
-#: Filters.py:707
+#: Filters.py:708
 msgid "self.seats[%s] set to %s"
 msgstr ""
 
-#: Filters.py:713
+#: Filters.py:714
 msgid "self.groups[%s] set to %s"
 msgstr ""
 
-#: Filters.py:730 Filters.py:787 Filters.py:817 Filters.py:844 Filters.py:887
-#: Filters.py:934 Filters.py:1044 Filters.py:1096 Filters.py:1135
-#: Filters.py:1194 Filters.py:1306
+#: Filters.py:731 Filters.py:788 Filters.py:818 Filters.py:845 Filters.py:888
+#: Filters.py:935 Filters.py:1045 Filters.py:1097 Filters.py:1136
+#: Filters.py:1195 Filters.py:1307
 msgid "hide"
 msgstr "ukryj"
 
-#: Filters.py:737 Filters.py:1284 Filters.py:1293 Filters.py:1313
+#: Filters.py:738 Filters.py:1285 Filters.py:1294 Filters.py:1314
 #, fuzzy
 msgid "hide all"
 msgstr "ukryj"
 
-#: Filters.py:744 GuiLogView.py:87 GuiPositionalStats.py:64
+#: Filters.py:745 GuiLogView.py:87 GuiPositionalStats.py:64
 msgid "Refresh"
 msgstr "Odśwież"
 
-#: Filters.py:766
+#: Filters.py:767
 msgid "Min # Hands:"
 msgstr "Min. liczba rozdań:"
 
-#: Filters.py:834
+#: Filters.py:835
 msgid "INFO: No tourney types returned from database"
 msgstr ""
 
-#: Filters.py:835
+#: Filters.py:836
 msgid "No tourney types returned from database"
 msgstr ""
 
-#: Filters.py:877 Filters.py:1018
+#: Filters.py:878 Filters.py:1019
 msgid "INFO: No games returned from database"
 msgstr ""
 
-#: Filters.py:878 Filters.py:1019
+#: Filters.py:879 Filters.py:1020
 msgid "No games returned from database"
 msgstr ""
 
-#: Filters.py:925
+#: Filters.py:926
 msgid "No currencies returned from database"
 msgstr ""
 
-#: Filters.py:1041
+#: Filters.py:1042
 msgid "Graphing Options:"
 msgstr "Opcje wykresu:"
 
-#: Filters.py:1059
+#: Filters.py:1060
 msgid "Show Graph In:"
 msgstr "Pokaż wykres w:"
 
-#: Filters.py:1075
+#: Filters.py:1076
 msgid "Showdown Winnings"
 msgstr "Showdown Winnings"
 
-#: Filters.py:1083
+#: Filters.py:1084
 msgid "Non-Showdown Winnings"
 msgstr "Non-Showdown Winnings"
 
-#: Filters.py:1207
+#: Filters.py:1208
 msgid "From:"
 msgstr "Od:"
 
-#: Filters.py:1216
+#: Filters.py:1217
 msgid "To:"
 msgstr "Do:"
 
-#: Filters.py:1288 Filters.py:1303
+#: Filters.py:1289 Filters.py:1304
 #, fuzzy
 msgid "show all"
 msgstr "pokaż"
 
-#: Filters.py:1296
+#: Filters.py:1297
 msgid "show"
 msgstr "pokaż"
 
-#: Filters.py:1318 fpdb.pyw:810
+#: Filters.py:1319 fpdb.pyw:811
 msgid "Pick a date"
 msgstr "Wybierz datę"
 
-#: Filters.py:1337 fpdb.pyw:816
+#: Filters.py:1338 fpdb.pyw:817
 msgid "Done"
 msgstr "Zrobione"
 
-#: FullTiltPokerSummary.py:93 FullTiltPokerSummary.py:95
+#: FullTiltPokerSummary.py:97 FullTiltPokerSummary.py:99
 #: PokerStarsSummary.py:81 PokerStarsSummary.py:83 SitenameSummary.py:81
 #: SitenameSummary.py:83
 msgid "Unable to recognise Tourney Info: '%s'"
 msgstr ""
 
-#: FullTiltPokerSummary.py:119 FullTiltPokerSummary.py:121
+#: FullTiltPokerSummary.py:128 FullTiltPokerSummary.py:130
 #: PokerStarsSummary.py:107 PokerStarsSummary.py:109
 msgid "Unable to locate currency"
 msgstr ""
@@ -724,49 +721,49 @@ msgstr ""
 msgid "Raising FpdbParseError for file '%s'"
 msgstr ""
 
-#: FulltiltToFpdb.py:389
+#: FulltiltToFpdb.py:390
 msgid "readPlayerStacks: No players detected (hand #%s)"
 msgstr ""
 
-#: FulltiltToFpdb.py:463
+#: FulltiltToFpdb.py:464
 msgid "No bringin found, handid =%s"
 msgstr ""
 
-#: FulltiltToFpdb.py:470
+#: FulltiltToFpdb.py:471
 msgid "%s Failed to detect button (hand #%s cancelled?)"
 msgstr ""
 
-#: FulltiltToFpdb.py:603 FulltiltToFpdb.py:816 GuiGraphViewer.py:134
-#: GuiGraphViewer.py:251 GuiSessionViewer.py:449 GuiTourneyGraphViewer.py:132
-#: GuiTourneyGraphViewer.py:225 fpdb_prerun.py:97
+#: FulltiltToFpdb.py:604 FulltiltToFpdb.py:817 GuiGraphViewer.py:134
+#: GuiSessionViewer.py:449 GuiTourneyGraphViewer.py:132
+#: GuiTourneyGraphViewer.py:225 WinTables.py:86 fpdb_prerun.py:97
 msgid "Error:"
 msgstr ""
 
-#: FulltiltToFpdb.py:661
+#: FulltiltToFpdb.py:662
 msgid "Unable to get a valid Tournament ID -- File rejected"
 msgstr ""
 
-#: FulltiltToFpdb.py:693
+#: FulltiltToFpdb.py:694
 msgid "Conflict between buyins read in top line (%s) and in BuyIn field (%s)"
 msgstr ""
 
-#: FulltiltToFpdb.py:701
+#: FulltiltToFpdb.py:702
 msgid "Conflict between fees read in top line (%s) and in Fee field (%s)"
 msgstr ""
 
-#: FulltiltToFpdb.py:705
+#: FulltiltToFpdb.py:706
 msgid "Unable to detect a buyin to this tournament : assume it's a freeroll"
 msgstr "Nie wykryto buy-inu do tego turnieju - przyjęto, że to freeroll."
 
-#: FulltiltToFpdb.py:805
+#: FulltiltToFpdb.py:806
 msgid "Player finishing stats unreadable : %s"
 msgstr ""
 
-#: FulltiltToFpdb.py:814
+#: FulltiltToFpdb.py:815
 msgid "%s not found in %s..."
 msgstr ""
 
-#: FulltiltToFpdb.py:816
+#: FulltiltToFpdb.py:817
 msgid "Parsed finish position incoherent : %s / %s"
 msgstr ""
 
@@ -833,7 +830,7 @@ msgstr "Uwolniono blokadę.\n"
 msgid "Stopping Auto Import."
 msgstr "Zatrzymaj automatyczny import"
 
-#: GuiAutoImport.py:302 fpdb.pyw:1087
+#: GuiAutoImport.py:302 fpdb.pyw:1088
 #, fuzzy
 msgid "Global lock released."
 msgstr "Uwolniono blokadę.\n"
@@ -859,7 +856,7 @@ msgstr "Przeglądaj..."
 msgid "Please select site"
 msgstr "Wybierz poker room"
 
-#: GuiBulkImport.py:65 GuiTourneyImport.py:325 fpdb_import.py:616
+#: GuiBulkImport.py:65 GuiTourneyImport.py:326 fpdb_import.py:622
 msgid "Importing"
 msgstr "Importowanie"
 
@@ -927,7 +924,7 @@ msgstr "Poker room:"
 msgid "Drop HudCache:"
 msgstr "Zrzuć cache HUD-a:"
 
-#: GuiBulkImport.py:303 GuiTourneyImport.py:136 fpdb.pyw:901
+#: GuiBulkImport.py:303 GuiTourneyImport.py:136 fpdb.pyw:902
 msgid "_Bulk Import"
 msgstr "Import luzem"
 
@@ -943,8 +940,8 @@ msgstr "Oczekiwanie..."
 msgid "Input file"
 msgstr ""
 
-#: GuiBulkImport.py:354 GuiImapFetcher.py:110 GuiTourneyPlayerStats.py:82
-#: fpdb.pyw:714
+#: GuiBulkImport.py:354 GuiImapFetcher.py:110 GuiTourneyPlayerStats.py:76
+#: fpdb.pyw:715
 msgid "Site"
 msgstr "Poker room"
 
@@ -967,7 +964,7 @@ msgstr ""
 msgid "Generate and print test data for regression testing"
 msgstr ""
 
-#: GuiBulkImport.py:369 GuiTourneyImport.py:371 ImapFetcher.py:172
+#: GuiBulkImport.py:369 GuiTourneyImport.py:372 ImapFetcher.py:172
 msgid "USAGE:"
 msgstr ""
 
@@ -992,7 +989,7 @@ msgstr "Odśwież"
 msgid "Type"
 msgstr "Rodzaj"
 
-#: GuiDatabase.py:116 GuiTourneyPlayerStats.py:89
+#: GuiDatabase.py:116 GuiTourneyPlayerStats.py:83
 msgid "Name"
 msgstr "Nazwa"
 
@@ -1034,7 +1031,6 @@ msgstr ""
 
 #: GuiDatabase.py:314 GuiDatabase.py:316 GuiLogView.py:191
 #: GuiRingPlayerStats.py:398 GuiRingPlayerStats.py:420
-#: GuiTourneyPlayerStats.py:425
 msgid "error"
 msgstr ""
 
@@ -1050,29 +1046,29 @@ msgstr ""
 msgid "not connected but no exception"
 msgstr ""
 
-#: GuiDatabase.py:373 fpdb.pyw:982
+#: GuiDatabase.py:373 fpdb.pyw:983
 msgid ""
 "MySQL Server reports: Access denied. Are your permissions set correctly?"
 msgstr ""
 
-#: GuiDatabase.py:377 fpdb.pyw:984
+#: GuiDatabase.py:377 fpdb.pyw:985
 msgid "MySQL client reports: 2002 or 2003 error. Unable to connect - "
 msgstr ""
 
-#: GuiDatabase.py:378 fpdb.pyw:985
+#: GuiDatabase.py:378 fpdb.pyw:986
 msgid "Please check that the MySQL service has been started"
 msgstr ""
 
-#: GuiDatabase.py:382 fpdb.pyw:987
+#: GuiDatabase.py:382 fpdb.pyw:988
 msgid ""
 "PostgreSQL Server reports: Access denied. Are your permissions set correctly?"
 msgstr ""
 
-#: GuiDatabase.py:385 fpdb.pyw:989
+#: GuiDatabase.py:385 fpdb.pyw:990
 msgid "PostgreSQL client reports: Unable to connect - "
 msgstr ""
 
-#: GuiDatabase.py:386 fpdb.pyw:990
+#: GuiDatabase.py:386 fpdb.pyw:991
 msgid "Please check that the PostgreSQL service has been started"
 msgstr ""
 
@@ -1184,61 +1180,61 @@ msgstr "Odśwież wykres"
 msgid "_Export to File"
 msgstr "Eksportuj do pliku"
 
-#: GuiGraphViewer.py:168 GuiPositionalStats.py:169 GuiRingPlayerStats.py:280
+#: GuiGraphViewer.py:167 GuiPositionalStats.py:169 GuiRingPlayerStats.py:280
 #: GuiSessionViewer.py:203 GuiTourneyGraphViewer.py:157
-#: GuiTourneyPlayerStats.py:268
+#: GuiTourneyPlayerStats.py:262
 msgid "No sites selected - defaulting to PokerStars"
 msgstr ""
 
-#: GuiGraphViewer.py:173 GuiPositionalStats.py:172 GuiRingPlayerStats.py:283
+#: GuiGraphViewer.py:172 GuiPositionalStats.py:172 GuiRingPlayerStats.py:283
 #: GuiSessionViewer.py:212 GuiTourneyGraphViewer.py:162
-#: GuiTourneyPlayerStats.py:271
+#: GuiTourneyPlayerStats.py:265
 msgid "No player ids found"
 msgstr ""
 
-#: GuiGraphViewer.py:178 GuiPositionalStats.py:175 GuiRingPlayerStats.py:286
+#: GuiGraphViewer.py:177 GuiPositionalStats.py:175 GuiRingPlayerStats.py:286
 #: GuiSessionViewer.py:215
 msgid "No limits found"
 msgstr ""
 
-#: GuiGraphViewer.py:188 GuiTourneyGraphViewer.py:172
+#: GuiGraphViewer.py:187 GuiTourneyGraphViewer.py:172
 msgid "Graph generated in: %s"
 msgstr ""
 
-#: GuiGraphViewer.py:193 GuiGraphViewer.py:221 GuiGraphViewer.py:234
+#: GuiGraphViewer.py:190 GuiGraphViewer.py:218 GuiGraphViewer.py:228
 msgid "Hands"
 msgstr ""
 
-#: GuiGraphViewer.py:198 GuiTourneyGraphViewer.py:180
+#: GuiGraphViewer.py:195 GuiTourneyGraphViewer.py:180
 msgid "No Data for Player(s) Found"
 msgstr ""
 
-#: GuiGraphViewer.py:221 GuiGraphViewer.py:234 GuiTourneyGraphViewer.py:203
+#: GuiGraphViewer.py:218 GuiGraphViewer.py:228 GuiTourneyGraphViewer.py:203
 #: GuiTourneyGraphViewer.py:213
 msgid "Profit"
 msgstr ""
 
-#: GuiGraphViewer.py:222 GuiGraphViewer.py:236
+#: GuiGraphViewer.py:219 GuiGraphViewer.py:230
 msgid "Showdown"
 msgstr ""
 
-#: GuiGraphViewer.py:223 GuiGraphViewer.py:238
+#: GuiGraphViewer.py:220 GuiGraphViewer.py:232
 msgid "Non-showdown"
 msgstr ""
 
-#: GuiGraphViewer.py:231
+#: GuiGraphViewer.py:225
 msgid "Profit graph for ring games"
 msgstr ""
 
-#: GuiGraphViewer.py:340 GuiTourneyGraphViewer.py:269
+#: GuiGraphViewer.py:331 GuiTourneyGraphViewer.py:269
 msgid "Please choose the directory you wish to export to:"
 msgstr ""
 
-#: GuiGraphViewer.py:353 GuiTourneyGraphViewer.py:282
+#: GuiGraphViewer.py:344 GuiTourneyGraphViewer.py:282
 msgid "Closed, no graph exported"
 msgstr ""
 
-#: GuiGraphViewer.py:371 GuiTourneyGraphViewer.py:300
+#: GuiGraphViewer.py:362 GuiTourneyGraphViewer.py:300
 msgid "Graph created"
 msgstr ""
 
@@ -1405,7 +1401,7 @@ msgstr ""
 msgid "Field Type"
 msgstr ""
 
-#: GuiPrefs.py:39 fpdb.pyw:1124
+#: GuiPrefs.py:39 fpdb.pyw:1125
 msgid "Ring Player Stats"
 msgstr "Statystyki gracza"
 
@@ -1437,7 +1433,7 @@ msgstr "Ustawienie"
 msgid "Value (double-click to change)"
 msgstr "Wartość (dwuklik, by zmienić)"
 
-#: GuiPrefs.py:178 GuiPrefs.py:183 fpdb.pyw:309
+#: GuiPrefs.py:178 GuiPrefs.py:183 fpdb.pyw:310
 msgid "Advanced Preferences"
 msgstr "Zaawansowane ustawienia"
 
@@ -1569,7 +1565,7 @@ msgstr ""
 msgid "_Filters"
 msgstr ""
 
-#: GuiRingPlayerStats.py:146 GuiTourneyPlayerStats.py:75
+#: GuiRingPlayerStats.py:146 GuiTourneyPlayerStats.py:69
 msgid "_Refresh Stats"
 msgstr ""
 
@@ -1594,7 +1590,7 @@ msgid "Offsuit connectors"
 msgstr ""
 
 #: GuiRingPlayerStats.py:351 GuiSessionViewer.py:248
-#: GuiTourneyPlayerStats.py:243
+#: GuiTourneyPlayerStats.py:237
 msgid "Stats page displayed in %4.2f seconds"
 msgstr ""
 
@@ -1622,7 +1618,7 @@ msgstr ""
 msgid "Failed to load numpy and/or matplotlib in Session Viewer"
 msgstr ""
 
-#: GuiSessionViewer.py:152 GuiStove.py:70 fpdb.pyw:1379
+#: GuiSessionViewer.py:152 GuiStove.py:70 fpdb.pyw:1380
 msgid "FPDB WARNING"
 msgstr "Ostrzeżenie"
 
@@ -1725,7 +1721,7 @@ msgstr ""
 msgid "Tournament Results"
 msgstr ""
 
-#: GuiTourneyImport.py:73 GuiTourneyImport.py:411
+#: GuiTourneyImport.py:73 GuiTourneyImport.py:412
 msgid "Tourney import done: Stored: %d \tErrors: %d in %s seconds - %.0f/sec"
 msgstr ""
 
@@ -1733,7 +1729,7 @@ msgstr ""
 msgid "tourney import aborted - global lock not available"
 msgstr ""
 
-#: GuiTourneyImport.py:177 fpdb_import.py:238
+#: GuiTourneyImport.py:177 fpdb_import.py:236
 msgid "Attempted to add non-directory '%s' as an import directory"
 msgstr ""
 
@@ -1741,95 +1737,100 @@ msgstr ""
 msgid "Tourney Summary Import started at %s - %d files to import."
 msgstr ""
 
-#: GuiTourneyImport.py:231
-msgid "Removing text < 100 characters from end of file"
+#: GuiTourneyImport.py:232
+msgid "Tourney import: Removing text < 100 characters from end of file: %s"
 msgstr ""
 
-#: GuiTourneyImport.py:235
-msgid "Removing text < 100 characters from start of file"
+#: GuiTourneyImport.py:236
+msgid "Tourney import: Removing text < 100 characters from start of file: %s"
 msgstr ""
 
-#: GuiTourneyImport.py:247
+#: GuiTourneyImport.py:246
+msgid "Tourney import parse error in file: %s"
+msgstr ""
+
+#: GuiTourneyImport.py:249 ImapFetcher.py:159
 msgid "Finished importing %s/%s tournament summaries"
 msgstr ""
 
-#: GuiTourneyImport.py:309 fpdb.pyw:361
+#: GuiTourneyImport.py:310 fpdb.pyw:362
 #, fuzzy
 msgid "Number of Tourneys:"
 msgstr ""
 "\n"
 "Liczba turniejów: "
 
-#: GuiTourneyImport.py:372 GuiTourneyImport.py:373 GuiTourneyImport.py:374
+#: GuiTourneyImport.py:373 GuiTourneyImport.py:374 GuiTourneyImport.py:375
+#: fpdb_import.py:557
 #, fuzzy
-msgid "filename"
+msgid "Filename"
 msgstr "nazwa pliku:"
 
-#: GuiTourneyImport.py:390 ImapFetcher.py:176
+#: GuiTourneyImport.py:391 ImapFetcher.py:176
 msgid "Need to define a converter"
 msgstr ""
 
-#: GuiTourneyImport.py:398
+#: GuiTourneyImport.py:399
 msgid "Need a filename to import"
 msgstr ""
 
-#: GuiTourneyPlayerStats.py:84
+#: GuiTourneyPlayerStats.py:78
 msgid "Cat."
 msgstr ""
 
-#: GuiTourneyPlayerStats.py:85
+#: GuiTourneyPlayerStats.py:79
 msgid "Limit"
 msgstr ""
 
-#: GuiTourneyPlayerStats.py:86
+#: GuiTourneyPlayerStats.py:80
 msgid "Curr."
 msgstr ""
 
-#: GuiTourneyPlayerStats.py:87
+#: GuiTourneyPlayerStats.py:81
 msgid "BuyIn"
 msgstr ""
 
-#: GuiTourneyPlayerStats.py:88
+#: GuiTourneyPlayerStats.py:82
 msgid "Fee"
 msgstr ""
 
-#: GuiTourneyPlayerStats.py:90
+#: GuiTourneyPlayerStats.py:84
 msgid "#"
 msgstr ""
 
-#: GuiTourneyPlayerStats.py:91
+#: GuiTourneyPlayerStats.py:85
 msgid "ITM%"
 msgstr ""
 
-#: GuiTourneyPlayerStats.py:92
+#: GuiTourneyPlayerStats.py:86
 msgid "1st"
 msgstr ""
 
-#: GuiTourneyPlayerStats.py:93
+#: GuiTourneyPlayerStats.py:87
 msgid "2nd"
 msgstr ""
 
-#: GuiTourneyPlayerStats.py:94
+#: GuiTourneyPlayerStats.py:88
 msgid "3rd"
 msgstr ""
 
-#: GuiTourneyPlayerStats.py:95
+#: GuiTourneyPlayerStats.py:89
 msgid "Rank?"
 msgstr ""
 
-#: GuiTourneyPlayerStats.py:96
+#: GuiTourneyPlayerStats.py:90
 msgid "Spent"
 msgstr ""
 
-#: GuiTourneyPlayerStats.py:97
+#: GuiTourneyPlayerStats.py:91
 msgid "Won"
 msgstr ""
 
-#: GuiTourneyPlayerStats.py:98
+#: GuiTourneyPlayerStats.py:92
 msgid "ROI%"
 msgstr ""
 
-#: GuiTourneyPlayerStats.py:99
+#: GuiTourneyPlayerStats.py:93
 msgid "$/Tour"
 msgstr ""
 
@@ -1885,7 +1886,7 @@ msgstr ""
 "uwaga: błąd wyjścia został skierowany do fpdb-errors.txt i HUD-errors.txt w "
 "%s"
 
-#: HUD_main.pyw:75 fpdb.pyw:1272
+#: HUD_main.pyw:75 fpdb.pyw:1273
 msgid "Any major error will be reported there _only_."
 msgstr ""
 
@@ -1901,7 +1902,7 @@ msgstr ""
 msgid "Game changed."
 msgstr ""
 
-#: HUD_main.pyw:144 fpdb.pyw:1062
+#: HUD_main.pyw:144 fpdb.pyw:1063
 msgid "Quitting normally"
 msgstr "normalne wychodzenie"
 
@@ -2276,128 +2277,85 @@ msgstr ""
 msgid "Failed sanity check"
 msgstr ""
 
-#: HandHistoryConverter.py:140
-msgid "Tailing '%s'"
+#: HandHistoryConverter.py:138
+msgid "Hands list is:"
 msgstr ""
 
-#: HandHistoryConverter.py:147
-msgid "HHC.start(follow): processHand failed: Exception msg: '%s'"
-msgstr ""
-
-#: HandHistoryConverter.py:151
-msgid "handsList is "
-msgstr ""
-
-#: HandHistoryConverter.py:162
+#: HandHistoryConverter.py:149
 msgid "HHC.start(): processHand failed: Exception msg: '%s'"
 msgstr ""
 
-#: HandHistoryConverter.py:166
+#: HandHistoryConverter.py:153
 msgid "Read %d hands (%d failed) in %.3f seconds"
 msgstr ""
 
-#: HandHistoryConverter.py:172
+#: HandHistoryConverter.py:159
 msgid "Summary file '%s' correctly parsed  (took %.3f seconds)"
 msgstr ""
 
-#: HandHistoryConverter.py:174
+#: HandHistoryConverter.py:161
 msgid "Error converting summary file '%s' (took %.3f seconds)"
 msgstr ""
 
-#: HandHistoryConverter.py:177
-msgid "Error converting '%s'"
-msgstr ""
-
-#: HandHistoryConverter.py:213
-msgid "%s changed inode numbers from %d to %d"
-msgstr ""
-
-#: HandHistoryConverter.py:261
+#: HandHistoryConverter.py:180
 msgid "Converting starsArchive format to readable"
 msgstr ""
 
-#: HandHistoryConverter.py:266
+#: HandHistoryConverter.py:185
 msgid "Converting ftpArchive format to readable"
 msgstr ""
 
-#: HandHistoryConverter.py:272
-msgid "Read no hands."
+#: HandHistoryConverter.py:191
+msgid "Read no hands from file: '%s'"
 msgstr ""
 
-#: HandHistoryConverter.py:280
+#: HandHistoryConverter.py:199
 msgid "Removing text < 50 characters"
 msgstr ""
 
-#: HandHistoryConverter.py:313 HandHistoryConverter.py:314
-#: HandHistoryConverter.py:320
+#: HandHistoryConverter.py:232 HandHistoryConverter.py:233
+#: HandHistoryConverter.py:239
 msgid "Unsupported game type: %s"
 msgstr ""
 
-#: HandHistoryConverter.py:479
+#: HandHistoryConverter.py:398
 msgid "HH Sanity Check: output and input files are the same, check config"
 msgstr ""
 
-#: HandHistoryConverter.py:502
-msgid "Reading stdin with %s"
-msgstr ""
-
-#: HandHistoryConverter.py:517
+#: HandHistoryConverter.py:431
 msgid "unable to read file with any codec in list!"
 msgstr ""
 
-#: HandHistoryConverter.py:584
+#: HandHistoryConverter.py:498
 msgid " given TZ:"
 msgstr ""
 
-#: HandHistoryConverter.py:584
+#: HandHistoryConverter.py:498
 msgid "raw time:"
 msgstr ""
 
-#: HandHistoryConverter.py:594
+#: HandHistoryConverter.py:508
 msgid "changeTimeZone: offset="
 msgstr ""
 
-#: HandHistoryConverter.py:657
+#: HandHistoryConverter.py:571
 msgid "utcTime:"
 msgstr ""
 
-#: HandHistoryConverter.py:706
+#: HandHistoryConverter.py:620
 msgid "Unable to create output directory %s for HHC!"
 msgstr ""
 
-#: HandHistoryConverter.py:707
+#: HandHistoryConverter.py:621
 msgid "*** ERROR: UNABLE TO CREATE OUTPUT DIRECTORY"
 msgstr ""
 
-#: HandHistoryConverter.py:709
+#: HandHistoryConverter.py:623
 msgid "Created directory '%s'"
 msgstr ""
 
-#: HandHistoryConverter.py:713
+#: HandHistoryConverter.py:627
 msgid "out_path %s couldn't be opened"
-msgstr ""
-
-#: Hello.py:46
-msgid "creating Hello"
-msgstr ""
-
-#: Hello.py:49
-msgid "Hello World"
-msgstr ""
-
-#: Hello.py:67
-msgid "site ="
-msgstr ""
-
-#: Hello.py:75
-msgid "YOUR NAME HERE"
-msgstr ""
-
-#: Hello.py:106
-msgid ""
-"Hello %s\n"
-"You have played %d hands\n"
-" on %s."
 msgstr ""
 
 #: Hud.py:150
@@ -2413,8 +2371,9 @@ msgid "Reposition StatWindows"
 msgstr ""
 
 #: Hud.py:163
-msgid "Show Player Stats"
-msgstr ""
+#, fuzzy
+msgid "Show Player Stats for"
+msgstr "Statystyki gracza"
 
 #: Hud.py:168 Hud.py:237
 msgid "For This Blind Level Only"
@@ -2441,8 +2400,9 @@ msgid "  All Levels"
 msgstr ""
 
 #: Hud.py:196 Hud.py:265
-msgid "For #Seats:"
-msgstr ""
+#, fuzzy
+msgid "Number of Seats:"
+msgstr "Ilość wątków:"
 
 #: Hud.py:199 Hud.py:268
 msgid "  Any Number"
@@ -2473,8 +2433,9 @@ msgid "  %s Days"
 msgstr ""
 
 #: Hud.py:232
-msgid "Show Opponent Stats"
-msgstr ""
+#, fuzzy
+msgid "Show Opponent Stats for"
+msgstr "Statystyki gracza"
 
 #: Hud.py:354
 msgid "Debug StatWindows"
@@ -2489,7 +2450,7 @@ msgid "Updating config file"
 msgstr ""
 
 #: Hud.py:595
-msgid "No layout found for %d-max games for site %s\n"
+msgid "No layout found for %d-max games for site %s."
 msgstr ""
 
 #: Hud.py:609
@@ -2497,7 +2458,7 @@ msgid "Exception in %s"
 msgstr ""
 
 #: Hud.py:617
-msgid "Error finding actual seat.\n"
+msgid "Error finding actual seat."
 msgstr ""
 
 #: Hud.py:633
@@ -2537,10 +2498,6 @@ msgstr ""
 
 #: ImapFetcher.py:111
 msgid "Errors: %s"
-msgstr ""
-
-#: ImapFetcher.py:159
-msgid "Finished importing %s/%s PS summaries"
 msgstr ""
 
 #: Mucked.py:330
@@ -2772,19 +2729,17 @@ msgid "Example stats, player = %s  hand = %s:"
 msgstr "Przykładowe statystyki, gracz = %s  rozdanie = %s:"
 
 #: Stats.py:1127
-msgid ""
-"\n"
-"\n"
-"Legal stats:"
+#, fuzzy
+msgid "Legal stats:"
 msgstr ""
 "\n"
 "\n"
 "Legal stats:"
 
 #: Stats.py:1128
+#, fuzzy
 msgid ""
-"(add _0 to name to display with 0 decimal places, _1 to display with 1, "
-"etc)\n"
+"(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)"
 msgstr ""
 "(dodaj _0 do nazwy, aby nie wyświetlać liczb dziesiętnych; _1, aby "
 "wyświetlać 1 liczbę dziesiętną, _2 2 itd.)\n"
@@ -2852,7 +2807,8 @@ msgid "Could not find tournament %d in hand %d. Skipping."
 msgstr "Nie znaleziono turnieju %d w rozdaniu %d: Pomijanie.\n"
 
 #: TournamentTracker.py:298
-msgid "table name %s not found, skipping.\n"
+#, fuzzy
+msgid "Table name %s not found, skipping."
 msgstr "nie znaleziono stołu %s - pomijanie\n"
 
 #: TournamentTracker.py:305
@@ -3048,7 +3004,8 @@ msgid "Window %s not found. Skipping."
 msgstr ""
 
 #: WinTables.py:86
-msgid "self.window doesn't exist? why?"
+#, fuzzy
+msgid "%s doesn't exist."
 msgstr "self.window nie istnieje? dlaczego?"
 
 #: WinamaxToFpdb.py:300
@@ -3084,13 +3041,13 @@ msgid "No match in XTables for table '%s'."
 msgstr "Brak dopasowań in XTables dla tabeli '%s'."
 
 #: fpdb.pyw:38
-msgid " - press return to continue\n"
-msgstr " - naciśnij enter, aby kontynuować\n"
+msgid "Python %s found."
+msgstr ""
 
 #: fpdb.pyw:45
+#, fuzzy
 msgid ""
-"\n"
-"python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n"
+"Python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb."
 msgstr ""
 "\n"
 "nie znaleziono python 2.5-2.7, zainstaluj python 2.5, 2.6 or 2.7 dla fpdb\n"
@@ -3101,9 +3058,7 @@ msgstr ""
 "Nie znaleziono GuiStove. Jeżeli chcesz go używać zainstaluj pypoker-eval."
 
 #: fpdb.pyw:252
-msgid ""
-"Copyright 2008-2011, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, "
-"sqlcoder, Bostik, and others"
+msgid "Copyright 2008-2011. See contributors.txt for details"
 msgstr ""
 
 #: fpdb.pyw:253
@@ -3115,58 +3070,64 @@ msgstr ""
 "przestrzegając reguły licencji."
 
 #: fpdb.pyw:254
-msgid "Please see fpdb's start screen for license information"
+#, fuzzy
+msgid "Please see the help screen for license information"
 msgstr "Zobacz ekran startowy fpdb, aby sprawdzić licencję"
 
-#: fpdb.pyw:258
-msgid "and others"
+#: fpdb.pyw:259
+#, fuzzy
+msgid "... and others."
 msgstr "i inni"
 
-#: fpdb.pyw:270
+#: fpdb.pyw:259
+msgid "See contributors.txt"
+msgstr ""
+
+#: fpdb.pyw:271
 msgid "Operating System"
 msgstr "System operacyjny"
 
-#: fpdb.pyw:277
+#: fpdb.pyw:278
 msgid "fpdb version"
 msgstr ""
 
-#: fpdb.pyw:278
+#: fpdb.pyw:279
 msgid "database used"
 msgstr ""
 
-#: fpdb.pyw:279
+#: fpdb.pyw:280
 msgid "language"
 msgstr ""
 
-#: fpdb.pyw:280
+#: fpdb.pyw:281
 msgid "character encoding"
 msgstr ""
 
-#: fpdb.pyw:292
+#: fpdb.pyw:293
 msgid "Your config file is: "
 msgstr "Twój plik konfiguracyjny jest w: "
 
-#: fpdb.pyw:297
+#: fpdb.pyw:298
 msgid "Version Information:"
 msgstr "Informacja o wersji:"
 
-#: fpdb.pyw:304
+#: fpdb.pyw:305
 msgid "Threads: "
 msgstr "Wątki: "
 
-#: fpdb.pyw:334
+#: fpdb.pyw:335
 msgid "Maintain Databases"
 msgstr "Konserwacja bazy danych"
 
-#: fpdb.pyw:344
+#: fpdb.pyw:345
 msgid "saving updated db data"
 msgstr "zapisywanie zaktulizowanej bazy danych"
 
-#: fpdb.pyw:351
+#: fpdb.pyw:352
 msgid "guidb response was "
 msgstr "odpowiedź od guidb to "
 
-#: fpdb.pyw:357
+#: fpdb.pyw:358
 msgid ""
 "Cannot open Database Maintenance window because other windows have been "
 "opened. Re-start fpdb to use this option."
@@ -3174,54 +3135,56 @@ msgstr ""
 "Nie włączono okna konserwacji bazy danych, ponieważ inne okna były otwarte. "
 "Wyłącz i włącz ponownie fpdb, aby użyć tej opcji."
 
-#: fpdb.pyw:360 fpdb_import.py:599
+#: fpdb.pyw:361 fpdb_import.py:605
 #, fuzzy
 msgid "Number of Hands:"
 msgstr "Liczba rozdań: "
 
-#: fpdb.pyw:362
+#: fpdb.pyw:363
 #, fuzzy
 msgid "Number of TourneyTypes:"
 msgstr ""
 "\n"
 "Liczba rodzajów turnieju: "
 
-#: fpdb.pyw:363 fpdb_import.py:599
+#: fpdb.pyw:364 fpdb_import.py:605
 msgid "Database Statistics"
 msgstr "Statystyki bazy danych"
 
-#: fpdb.pyw:373
+#: fpdb.pyw:374
 msgid "HUD Preferences - choose category"
 msgstr "Ustawienia HUD-a - wybierz kategorię"
 
-#: fpdb.pyw:379
-msgid "Note that this does not existing settings, but overwrites them."
+#: fpdb.pyw:380
+msgid ""
+"Note that this does not load existing settings, but overwrites them (if you "
+"click save)."
 msgstr ""
 
-#: fpdb.pyw:383
+#: fpdb.pyw:384
 msgid ""
 "Please select the game category for which you want to configure HUD stats:"
 msgstr "Wybierz grę dla której chcesz skonfigurować HUD-a:"
 
-#: fpdb.pyw:437
+#: fpdb.pyw:438
 msgid "HUD Preferences - please choose your stats"
 msgstr "Ustawienia HUD-a - wybierz statystyki"
 
-#: fpdb.pyw:443
+#: fpdb.pyw:444
 msgid "Please choose the stats you wish to use in the below table."
 msgstr "Wybierz statystyki, które chcesz używać."
 
-#: fpdb.pyw:447
+#: fpdb.pyw:448
 msgid "Note that you may not select any stat more than once or it will crash."
 msgstr "Nie możesz użyć tej samej statystyki więcej niż raz."
 
-#: fpdb.pyw:451
+#: fpdb.pyw:452
 msgid ""
 "It is not currently possible to select \"empty\" or anything else to that "
 "end."
 msgstr ""
 
-#: fpdb.pyw:455
+#: fpdb.pyw:456
 msgid ""
 "To configure things like colouring you will still have to use the Advanced "
 "Preferences dialogue or manually edit your HUD_config.xml."
@@ -3229,322 +3192,323 @@ msgstr ""
 "Aby skonfigurować rzeczy jak kolorowanie, przejdź do ustawień zaawansowanych "
 "lub ręcznie wyedytuj plik HUD_config.xml."
 
-#: fpdb.pyw:545
+#: fpdb.pyw:546
 msgid "Confirm deleting and recreating tables"
 msgstr "Potwierdź usunięcie lub ponowne utworzenie tabel."
 
-#: fpdb.pyw:546
+#: fpdb.pyw:547
 msgid "Please confirm that you want to (re-)create the tables."
 msgstr "Potwierdź chęć usunięcia lub ponownego utworzenia tabel."
 
-#: fpdb.pyw:547
+#: fpdb.pyw:548
 #, fuzzy
 msgid ""
-" If there already are tables in the database %s on %s they will be deleted "
+"If there already are tables in the database %s on %s they will be deleted "
 "and you will have to re-import your histories."
 msgstr ""
 " Jeżeli już istnieją tabele w bazie danych %s na %s zostaną one usunięte i "
 "będziesz musiał ponownie zaimportować historię rozdań.\n"
 
-#: fpdb.pyw:548
+#: fpdb.pyw:549
 msgid "This may take a while."
 msgstr "To może zająć chwilę."
 
-#: fpdb.pyw:573
+#: fpdb.pyw:574
 msgid "User cancelled recreating tables"
 msgstr "Użytkownik anulował ponowne utworzenie tabel."
 
-#: fpdb.pyw:580
+#: fpdb.pyw:581
 msgid "Please confirm that you want to re-create the HUD cache."
 msgstr "Potwierdź chęć ponownego utworzenia cache'u HUD-a."
 
-#: fpdb.pyw:588
+#: fpdb.pyw:589
 msgid " Hero's cache starts: "
 msgstr " Cache hero rozpoczyna się: "
 
-#: fpdb.pyw:602
+#: fpdb.pyw:603
 msgid " Villains' cache starts: "
 msgstr " Cache villaina rozpoczyna się: "
 
-#: fpdb.pyw:615
+#: fpdb.pyw:616
 msgid " Rebuilding HUD Cache ... "
 msgstr " Odbudowywanie cache'u HUD-a... "
 
-#: fpdb.pyw:623
+#: fpdb.pyw:624
 msgid "User cancelled rebuilding hud cache"
 msgstr "Użytkownik anulował odbudowywanie cache'u HUD-a... "
 
-#: fpdb.pyw:635
+#: fpdb.pyw:636
 msgid "Confirm rebuilding database indexes"
 msgstr "Potwierdź odbudowywanie indeksów bazy danych"
 
-#: fpdb.pyw:636
+#: fpdb.pyw:637
 msgid "Please confirm that you want to rebuild the database indexes."
 msgstr "Potwierdź chęć odbudowania indeksów bazy danych."
 
-#: fpdb.pyw:644
+#: fpdb.pyw:645
 msgid " Rebuilding Indexes ... "
 msgstr " Odbudowywanie indeksów... "
 
-#: fpdb.pyw:651
+#: fpdb.pyw:652
 msgid " Cleaning Database ... "
 msgstr " Czyszczenie bazy danych... "
 
-#: fpdb.pyw:656
+#: fpdb.pyw:657
 msgid " Analyzing Database ... "
 msgstr " Analizowanie bazy danych... "
 
-#: fpdb.pyw:661
+#: fpdb.pyw:662
 msgid "User cancelled rebuilding db indexes"
 msgstr "Użytkownik anulował odbudowywanie indeksów bazy danych."
 
-#: fpdb.pyw:695
+#: fpdb.pyw:696
 msgid "Site Preferences"
 msgstr "Ustawienia poker roomów"
 
-#: fpdb.pyw:698
+#: fpdb.pyw:699
 msgid "Please select which sites you play on and enter your usernames."
 msgstr "Zaznacz poker roomy na których grasz i wprowadź swoją nazwę gracza."
 
-#: fpdb.pyw:714
+#: fpdb.pyw:715
 msgid "History Path"
 msgstr "Ścieżka do historii rozdań"
 
-#: fpdb.pyw:714
+#: fpdb.pyw:715
 msgid "Screen Name"
 msgstr "Nazwa gracza"
 
-#: fpdb.pyw:714 fpdb.pyw:746
+#: fpdb.pyw:715 fpdb.pyw:747
 msgid "Detect"
 msgstr "Wykryj"
 
-#: fpdb.pyw:778
+#: fpdb.pyw:779
 msgid ""
 "If you had previously opened any tabs they cannot use the new settings "
 "without restart."
 msgstr "Poprzednio otwarte karty nie będą korzystać z nowych ustawień."
 
-#: fpdb.pyw:778 fpdb.pyw:781
+#: fpdb.pyw:779 fpdb.pyw:782
 msgid "Re-start fpdb to load them."
 msgstr "Zrestartuj fpdb, aby załadować nowe ustawienia."
 
-#: fpdb.pyw:781
+#: fpdb.pyw:782
 msgid "Updated preferences have not been loaded because windows are open."
 msgstr ""
 
-#: fpdb.pyw:896
+#: fpdb.pyw:897
 msgid "_Main"
 msgstr "Plik"
 
-#: fpdb.pyw:897 fpdb.pyw:928
+#: fpdb.pyw:898 fpdb.pyw:929
 msgid "_Quit"
 msgstr "Wyjście"
 
-#: fpdb.pyw:898
+#: fpdb.pyw:899
 msgid "_Site Preferences"
 msgstr "Ustawienia poker roomów"
 
-#: fpdb.pyw:899
+#: fpdb.pyw:900
 msgid "<control>F"
 msgstr "<control>F"
 
-#: fpdb.pyw:899
+#: fpdb.pyw:900
 msgid "_Advanced Preferences"
 msgstr "Zaawansowane ustawienia"
 
-#: fpdb.pyw:900
+#: fpdb.pyw:901
 msgid "_Import"
 msgstr "Import"
 
-#: fpdb.pyw:901
+#: fpdb.pyw:902
 msgid "<control>B"
 msgstr "<control>B"
 
-#: fpdb.pyw:902
+#: fpdb.pyw:903
 msgid "<control>R"
 msgstr "<control>R"
 
-#: fpdb.pyw:902
+#: fpdb.pyw:903
 msgid "Tournament _Results Import"
 msgstr "Import wyników turniejowych"
 
-#: fpdb.pyw:903
+#: fpdb.pyw:904
 msgid "<control>I"
 msgstr "<control>I"
 
-#: fpdb.pyw:903
+#: fpdb.pyw:904
 msgid "_Import through eMail/IMAP"
 msgstr "Import pocztą"
 
-#: fpdb.pyw:904
+#: fpdb.pyw:905
 msgid "_Viewers"
 msgstr "Narzędzia"
 
-#: fpdb.pyw:905
+#: fpdb.pyw:906
 msgid "<control>A"
 msgstr "<control>A"
 
-#: fpdb.pyw:905
+#: fpdb.pyw:906
 msgid "_Auto Import and HUD"
 msgstr "Import automatyczny i HUD"
 
-#: fpdb.pyw:906
+#: fpdb.pyw:907
 msgid "<control>H"
 msgstr "<control>H"
 
-#: fpdb.pyw:906
+#: fpdb.pyw:907
 msgid "_HUD Preferences"
 msgstr "Ustawienia HUD-a"
 
-#: fpdb.pyw:907
+#: fpdb.pyw:908
 msgid "<control>G"
 msgstr "<control>G"
 
-#: fpdb.pyw:907
+#: fpdb.pyw:908
 msgid "_Graphs"
 msgstr "Wykresy"
 
-#: fpdb.pyw:908 fpdb.pyw:1189
+#: fpdb.pyw:909 fpdb.pyw:1190
 msgid "Tourney Graphs"
 msgstr "Wykresy turniejowe"
 
-#: fpdb.pyw:909
+#: fpdb.pyw:910
 msgid "Stove (preview)"
 msgstr "Stove (podgląd)"
 
-#: fpdb.pyw:910
+#: fpdb.pyw:911
 msgid "<control>P"
 msgstr "<control>P"
 
-#: fpdb.pyw:910
+#: fpdb.pyw:911
 msgid "Ring _Player Stats"
 msgstr ""
 
-#: fpdb.pyw:911
+#: fpdb.pyw:912
 msgid "<control>T"
 msgstr "<control>T"
 
-#: fpdb.pyw:911
+#: fpdb.pyw:912
 msgid "_Tourney Stats"
 msgstr ""
 
-#: fpdb.pyw:912
+#: fpdb.pyw:913
 msgid "Tourney _Viewer"
 msgstr "Przeglądarka turniejowa"
 
-#: fpdb.pyw:913
+#: fpdb.pyw:914
 msgid "<control>O"
 msgstr "<control>O"
 
-#: fpdb.pyw:913
+#: fpdb.pyw:914
 msgid "P_ositional Stats (tabulated view)"
 msgstr "Statystyki pozycyjne"
 
-#: fpdb.pyw:914
+#: fpdb.pyw:915
 #, fuzzy
 msgid "<control>S"
 msgstr "<control>F"
 
-#: fpdb.pyw:914 fpdb.pyw:1148
+#: fpdb.pyw:915 fpdb.pyw:1149
 msgid "Session Stats"
 msgstr "Statystyki sesji"
 
-#: fpdb.pyw:915
+#: fpdb.pyw:916
 msgid "Hand _Replayer (not working yet)"
 msgstr "Odtwarzacz rozdań (jeszcze nie działa)"
 
-#: fpdb.pyw:916
+#: fpdb.pyw:917
 msgid "_Database"
 msgstr "Baza danych"
 
-#: fpdb.pyw:917
+#: fpdb.pyw:918
 msgid "_Maintain Databases"
 msgstr "Konserwacja bazy danych"
 
-#: fpdb.pyw:918
+#: fpdb.pyw:919
 msgid "Create or Recreate _Tables"
 msgstr "Stwórz albo odbuduj _tabele"
 
-#: fpdb.pyw:919
+#: fpdb.pyw:920
 msgid "Rebuild HUD Cache"
 msgstr "Odbuduj cache HUD-a"
 
-#: fpdb.pyw:920
+#: fpdb.pyw:921
 msgid "Rebuild DB Indexes"
 msgstr "Odbuduj indeksy bazy danych"
 
-#: fpdb.pyw:921
+#: fpdb.pyw:922
 msgid "_Statistics"
 msgstr "Statystyki"
 
-#: fpdb.pyw:922
+#: fpdb.pyw:923
 msgid "Dump Database to Textfile (takes ALOT of time)"
 msgstr "Zrzuć bazę danych do pliku tekstowego (zajmuje dużo czasu)"
 
-#: fpdb.pyw:923
+#: fpdb.pyw:924
 msgid "_Help"
 msgstr "Pomoc"
 
-#: fpdb.pyw:924
+#: fpdb.pyw:925
 msgid "_Log Messages"
 msgstr "Dziennik"
 
-#: fpdb.pyw:925
+#: fpdb.pyw:926
 #, fuzzy
 msgid "_Help Tab"
 msgstr "Pomoc"
 
-#: fpdb.pyw:926
+#: fpdb.pyw:927
 msgid "A_bout, License, Copying"
 msgstr "O programie, licencja, kopiowanie"
 
-#: fpdb.pyw:948
-msgid "There is an error in your config file\n"
+#: fpdb.pyw:949
+#, fuzzy
+msgid "There is an error in your config file %s"
 msgstr "Wystąpił błąd w pliku konfiguracyjnym\n"
 
-#: fpdb.pyw:949
-msgid ""
-"\n"
-"\n"
-"Error is:  "
+#: fpdb.pyw:950
+#, fuzzy
+msgid "Error is:"
 msgstr ""
 "\n"
 "\n"
 "Błąd to:  "
 
-#: fpdb.pyw:950
+#: fpdb.pyw:951
 msgid "CONFIG FILE ERROR"
 msgstr "BŁĄD PLIKU KONFIGURACYJNEGO"
 
-#: fpdb.pyw:954
-msgid "Logfile is %s\n"
+#: fpdb.pyw:955
+#, fuzzy
+msgid "Logfile is %s"
 msgstr "Plik dziennika jest w %s\n"
 
-#: fpdb.pyw:956
+#: fpdb.pyw:957
 msgid "Config file"
 msgstr "Plik konfiguracyjny"
 
-#: fpdb.pyw:958
+#: fpdb.pyw:959
+#, fuzzy
 msgid ""
-"Edit your screen_name and hand history path in the supported_sites section "
-"of the Advanced Preferences window (Main menu) before trying to import hands."
+"Enter your screen_name and hand history path in the Site Preferences window "
+"(Main menu) before trying to import hands."
 msgstr ""
 "Przed próbą importu rozdań wprowadź swoją nazwę gracza i ścieżkę do historii "
 "rozdań w ustawieniach poker roomów."
 
-#: fpdb.pyw:980
+#: fpdb.pyw:981
 msgid "Connected to SQLite: %s"
 msgstr "Połączono z SQLite: %s"
 
-#: fpdb.pyw:1014
+#: fpdb.pyw:1015
 msgid "Strong Warning - Invalid database version"
 msgstr "Poważne ostrzeżenie - nieprawidłowa wersja bazy danych"
 
-#: fpdb.pyw:1017
+#: fpdb.pyw:1018
 msgid "An invalid DB version or missing tables have been detected."
 msgstr "Wykryto nieprawidłową wersję bazy danych lub brakujące tabele."
 
-#: fpdb.pyw:1021
+#: fpdb.pyw:1022
 msgid ""
 "This error is not necessarily fatal but it is strongly recommended that you "
 "recreate the tables by using the Database menu."
@@ -3552,65 +3516,63 @@ msgstr ""
 "Ten błąd nie musi oznaczać niczego poważnego, ale zaleca się odbudowanie "
 "tabel, używając odpowiedniej opcji w menu \"Baza Danych\"."
 
-#: fpdb.pyw:1025
+#: fpdb.pyw:1026
 msgid ""
 "Not doing this will likely lead to misbehaviour including fpdb crashes, "
 "corrupt data etc."
 msgstr "Nie zrobienie tego może prowadzić do błędów programu."
 
-#: fpdb.pyw:1039
+#: fpdb.pyw:1040
 msgid "Status: Connected to %s database named %s on host %s"
 msgstr "Status: połączono do %s z bazą danych o nazwie %s na komputerze %s"
 
-#: fpdb.pyw:1049
-msgid ""
-"\n"
-"Global lock taken by %s"
+#: fpdb.pyw:1050
+#, fuzzy
+msgid "Global lock taken by %s"
 msgstr ""
 "\n"
 "Blokada została pobrana przez %s"
 
-#: fpdb.pyw:1052
-msgid ""
-"\n"
-"Failed to get global lock, it is currently held by %s"
+#: fpdb.pyw:1053
+#, fuzzy
+msgid "Failed to get global lock, it is currently held by %s"
 msgstr ""
 "\n"
 "Nie udało się pobrać blokady, jest ona aktualnie używana przez %s"
 
-#: fpdb.pyw:1094
+#: fpdb.pyw:1095
 msgid "Auto Import"
 msgstr "Import automatyczny"
 
-#: fpdb.pyw:1104
+#: fpdb.pyw:1105
 msgid "Bulk Import"
 msgstr "Import luzem"
 
-#: fpdb.pyw:1111
+#: fpdb.pyw:1112
 msgid "Tournament Results Import"
 msgstr "Import wyników turniejowych"
 
-#: fpdb.pyw:1117
+#: fpdb.pyw:1118
 msgid "eMail Import"
 msgstr "Import pocztą"
 
-#: fpdb.pyw:1130
+#: fpdb.pyw:1131
 msgid "Tourney Stats"
 msgstr "Statystyki turniejowe"
 
-#: fpdb.pyw:1136
+#: fpdb.pyw:1137
 msgid "Tourney Viewer"
 msgstr "Przeglądarka turniejowa"
 
-#: fpdb.pyw:1142
+#: fpdb.pyw:1143
 msgid "Positional Stats"
 msgstr "Statystyki pozycyjne"
 
-#: fpdb.pyw:1154
+#: fpdb.pyw:1155
 msgid "Hand Replayer"
 msgstr "Odwtarzacz rozdań"
 
-#: fpdb.pyw:1158
+#: fpdb.pyw:1159
 msgid ""
 "Fpdb needs translators!\n"
 "If you speak another language and have a few minutes or more to spare get in "
@@ -3640,19 +3602,19 @@ msgid ""
 "txt and mit.txt in the fpdb installation directory."
 msgstr ""
 
-#: fpdb.pyw:1175
+#: fpdb.pyw:1176
 msgid "Help"
 msgstr "Pomoc"
 
-#: fpdb.pyw:1182
+#: fpdb.pyw:1183
 msgid "Graphs"
 msgstr "Wykresy"
 
-#: fpdb.pyw:1196
+#: fpdb.pyw:1197
 msgid "Stove"
 msgstr "Stove"
 
-#: fpdb.pyw:1271
+#: fpdb.pyw:1272
 #, fuzzy
 msgid ""
 "Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt "
@@ -3662,15 +3624,15 @@ msgstr ""
 "uwaga: błąd wyjścia został skierowany do fpdb-errors.txt i HUD-errors.txt w "
 "%s"
 
-#: fpdb.pyw:1300
+#: fpdb.pyw:1301
 msgid "fpdb starting ..."
 msgstr "trwa włączanie fpdb..."
 
-#: fpdb.pyw:1399
+#: fpdb.pyw:1400
 msgid "Unknown Site"
 msgstr ""
 
-#: fpdb.pyw:1400
+#: fpdb.pyw:1401
 #, fuzzy
 msgid "Unable to find site '%s'"
 msgstr "Nie znaleziono tabeli %s"
@@ -3695,56 +3657,56 @@ msgstr ""
 "[BŁĄD] Znaleziono więcej niż 1 ID bazy danych dla %s - obsługa wielu walut "
 "nie została jeszcze wdrożona."
 
-#: fpdb_import.py:248
+#: fpdb_import.py:244
 msgid "Started at %s -- %d files to import. indexes: %s"
 msgstr "Rozpoczęto o %s -- %d rozdań do zaimportowania. indeksów - %s"
 
-#: fpdb_import.py:257
+#: fpdb_import.py:253
 msgid "No need to drop indexes."
 msgstr "Nie ma potrzeby usuwania indeksów."
 
-#: fpdb_import.py:276
+#: fpdb_import.py:272
 msgid "writers finished already"
 msgstr "writers finished already"
 
-#: fpdb_import.py:279
+#: fpdb_import.py:275
 msgid "waiting for writers to finish ..."
 msgstr "waiting for writers to finish ..."
 
-#: fpdb_import.py:289
+#: fpdb_import.py:285
 #, fuzzy
 msgid "... writers finished"
 msgstr "writers finished already"
 
-#: fpdb_import.py:295
+#: fpdb_import.py:291
 msgid "No need to rebuild indexes."
 msgstr "Nie ma potrzeby odbudowywania indeksów tabelii."
 
-#: fpdb_import.py:299
+#: fpdb_import.py:295
 msgid "No need to rebuild hudcache."
 msgstr "Nie ma potrzeby odbudowywania cache'u HUD-a."
 
-#: fpdb_import.py:335
+#: fpdb_import.py:331
 msgid "sending finish message queue length ="
 msgstr "wysyłanie zakończone - długość kolejki ="
 
-#: fpdb_import.py:460 fpdb_import.py:461
+#: fpdb_import.py:456 fpdb_import.py:457
 msgid "Converting %s"
 msgstr "konwertowanie %s"
 
-#: fpdb_import.py:521
+#: fpdb_import.py:527
 msgid "fpdb_import: sending hand to hud"
 msgstr "fpdb_import: trwa wysyłanie rozdania do HUD-a"
 
-#: fpdb_import.py:524
+#: fpdb_import.py:530
 msgid "Failed to send hand to HUD: %s"
 msgstr "wysłanie rozdania do HUD-a się nie powiodło: %s"
 
-#: fpdb_import.py:539
+#: fpdb_import.py:545
 msgid "Unknown filter filter_name:'%s' in filter:'%s'"
 msgstr "nieznany filtr filter_name: '%s' w filtrze: '%s'"
 
-#: fpdb_import.py:550
+#: fpdb_import.py:556
 msgid ""
 "Error No.%s please send the hand causing this to fpdb-main@lists.sourceforge."
 "net so we can fix the problem."
@@ -3752,11 +3714,7 @@ msgstr ""
 "Błąd nr %s. Wyślij rozdanie powodujące problem na adres fpdb-main@lists."
 "sourceforge.net."
 
-#: fpdb_import.py:551
-msgid "Filename:"
-msgstr "nazwa pliku:"
-
-#: fpdb_import.py:552
+#: fpdb_import.py:558
 msgid ""
 "Here is the first line of the hand so you can identify it. Please mention "
 "that the error was a ValueError:"
@@ -3764,11 +3722,11 @@ msgstr ""
 "To jest pierwsza linia rozdania, abyś mógł je rozpoznać. Zauważ, że to był "
 "ValueError:"
 
-#: fpdb_import.py:554
+#: fpdb_import.py:560
 msgid "Hand logged to hand-errors.txt"
 msgstr "rozdanie zalogowano do hand-errors.txt"
 
-#: fpdb_import.py:663
+#: fpdb_import.py:669
 msgid "CLI for importing hands is GuiBulkImport.py"
 msgstr "CLI do importowania rozdań jest w GuiBulkImport.py"
 
@@ -3830,6 +3788,17 @@ msgstr ""
 "\n"
 "Nie znaleziono katalogów GTK w podanej przez Ciebie ścieżce. Zainstaluj GTK "
 "lub wprowadź ścieżkę ręcznie.\n"
+
+#, fuzzy
+#~ msgid "Finished importing %s/%s summaries"
+#~ msgstr "Skończono ponowne utworzenie tabel"
+
+#, fuzzy
+#~ msgid "filename"
+#~ msgstr "nazwa pliku:"
+
+#~ msgid " - press return to continue\n"
+#~ msgstr " - naciśnij enter, aby kontynuować\n"
 
 #~ msgid "Global lock released.\n"
 #~ msgstr "Uwolniono blokadę.\n"

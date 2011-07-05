@@ -295,7 +295,7 @@ class ttracker_main(object):
 #    If no client window is found on the screen, complain and continue
                     if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
-                    sys.stderr.write(_("table name %s not found, skipping.\n")% table_name)
+                    sys.stderr.write(_("Table name %s not found, skipping.")% table_name)
                 else:
                     self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, stat_dict, cards)
             self.db_connection.connection.rollback()
