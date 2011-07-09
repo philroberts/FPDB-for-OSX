@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2011-06-28 03:07+CEST\n"
+"POT-Creation-Date: 2011-07-09 09:37+CEST\n"
 "PO-Revision-Date: 2011-07-03 00:35+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -25,22 +25,22 @@ msgstr ""
 #: PacificPokerToFpdb.py:183 PartyPokerToFpdb.py:223 PartyPokerToFpdb.py:225
 #: PkrToFpdb.py:128 PkrToFpdb.py:130 PokerStarsToFpdb.py:198
 #: PokerStarsToFpdb.py:200 Win2dayToFpdb.py:101 Win2dayToFpdb.py:103
-#: WinamaxToFpdb.py:172 WinamaxToFpdb.py:174 iPokerToFpdb.py:122
-#: iPokerToFpdb.py:124
+#: WinamaxToFpdb.py:172 WinamaxToFpdb.py:174 iPokerToFpdb.py:114
+#: iPokerToFpdb.py:116
 msgid "Unable to recognise gametype from: '%s'"
 msgstr "Nem sikerült felismerni a játéktípust innen: '%s'"
 
 #: AbsoluteToFpdb.py:141 BetfairToFpdb.py:77 CakeToFpdb.py:133
 #: CakeToFpdb.py:159 CarbonToFpdb.py:165 CarbonToFpdb.py:193
 #: EntractionToFpdb.py:132 EverestToFpdb.py:104 EverestToFpdb.py:109
-#: EverleafToFpdb.py:129 FullTiltPokerSummary.py:98
-#: FullTiltPokerSummary.py:129 FulltiltToFpdb.py:269 FulltiltToFpdb.py:287
+#: EverleafToFpdb.py:129 FullTiltPokerSummary.py:101
+#: FullTiltPokerSummary.py:135 FulltiltToFpdb.py:269 FulltiltToFpdb.py:287
 #: OnGameToFpdb.py:162 OnGameToFpdb.py:181 PacificPokerToFpdb.py:182
 #: PartyPokerToFpdb.py:224 PartyPokerToFpdb.py:282 PkrToFpdb.py:129
 #: PkrToFpdb.py:154 PokerStarsSummary.py:82 PokerStarsSummary.py:108
 #: PokerStarsToFpdb.py:199 PokerStarsToFpdb.py:227 SitenameSummary.py:82
 #: Win2dayToFpdb.py:102 WinamaxToFpdb.py:173 WinamaxToFpdb.py:191
-#: iPokerToFpdb.py:123
+#: iPokerToFpdb.py:115
 msgid "Raising FpdbParseError"
 msgstr "FpdbParseError"
 
@@ -50,7 +50,7 @@ msgstr "FpdbParseError"
 #: EntractionToFpdb.py:168 EverestToFpdb.py:149 EverestToFpdb.py:151
 #: EverleafToFpdb.py:163 PacificPokerToFpdb.py:225 PacificPokerToFpdb.py:226
 #: PartyPokerToFpdb.py:297 PartyPokerToFpdb.py:298 PokerStarsToFpdb.py:237
-#: PokerStarsToFpdb.py:238 iPokerToFpdb.py:156 iPokerToFpdb.py:158
+#: PokerStarsToFpdb.py:238 iPokerToFpdb.py:154 iPokerToFpdb.py:156
 msgid "No match in readHandInfo: '%s'"
 msgstr "readHandInfo nem illeszkedik: '%s'"
 
@@ -68,7 +68,7 @@ msgstr "nem illeszkedik re_*InfoFromFilename-re: '%s'"
 
 #: AbsoluteToFpdb.py:279 CakeToFpdb.py:221 EverleafToFpdb.py:228
 #: FulltiltToFpdb.py:446 OnGameToFpdb.py:303 PacificPokerToFpdb.py:357
-#: PokerStarsToFpdb.py:372 Win2dayToFpdb.py:210 WinamaxToFpdb.py:360
+#: PokerStarsToFpdb.py:389 Win2dayToFpdb.py:210 WinamaxToFpdb.py:360
 msgid "reading antes"
 msgstr "antek olvasása"
 
@@ -92,8 +92,8 @@ msgstr "%s még nem tud minden stud/razz leosztást feldolgozni."
 #: CarbonToFpdb.py:351 EntractionToFpdb.py:305 EverestToFpdb.py:238
 #: EverestToFpdb.py:239 EverleafToFpdb.py:295 FulltiltToFpdb.py:529
 #: OnGameToFpdb.py:346 PacificPokerToFpdb.py:439 PartyPokerToFpdb.py:571
-#: PkrToFpdb.py:351 PokerStarsToFpdb.py:454 Win2dayToFpdb.py:348
-#: WinamaxToFpdb.py:406 iPokerToFpdb.py:261
+#: PkrToFpdb.py:351 PokerStarsToFpdb.py:471 Win2dayToFpdb.py:348
+#: WinamaxToFpdb.py:406 iPokerToFpdb.py:277
 msgid "Unimplemented %s: '%s' '%s'"
 msgstr "Nem kivitelezett %s: '%s' '%s'"
 
@@ -118,8 +118,8 @@ msgstr "Nyitó hívás nem található"
 #: GuiStove.py:221 GuiStove.py:225 GuiStove.py:229 GuiStove.py:233
 #: GuiStove.py:237 GuiStove.py:239 Hand.py:507 Hand.py:1740 ImapFetcher.py:44
 #: ImapFetcher.py:53 OnGameToFpdb.py:215 OnGameToFpdb.py:346
-#: PacificPokerToFpdb.py:439 PkrToFpdb.py:351 PokerStarsToFpdb.py:454
-#: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:261
+#: PacificPokerToFpdb.py:439 PkrToFpdb.py:351 PokerStarsToFpdb.py:471
+#: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:277
 #: test_Database.py:50 test_Database.py:51
 msgid "DEBUG:"
 msgstr "DEBUG: "
@@ -704,13 +704,13 @@ msgstr "Válassz napot"
 msgid "Done"
 msgstr "Kész"
 
-#: FullTiltPokerSummary.py:97 FullTiltPokerSummary.py:99
+#: FullTiltPokerSummary.py:100 FullTiltPokerSummary.py:102
 #: PokerStarsSummary.py:81 PokerStarsSummary.py:83 SitenameSummary.py:81
 #: SitenameSummary.py:83
 msgid "Unable to recognise Tourney Info: '%s'"
 msgstr "Nem sikerült felismerni a verseny információt: '%s'"
 
-#: FullTiltPokerSummary.py:128 FullTiltPokerSummary.py:130
+#: FullTiltPokerSummary.py:134 FullTiltPokerSummary.py:136
 #: PokerStarsSummary.py:107 PokerStarsSummary.py:109
 msgid "Unable to locate currency"
 msgstr "Nem található a pénznem"
@@ -733,7 +733,7 @@ msgstr "%s nem ismerte fel az osztót (#%s leosztás megszakítva?)"
 
 #: FulltiltToFpdb.py:604 FulltiltToFpdb.py:817 GuiGraphViewer.py:134
 #: GuiSessionViewer.py:449 GuiTourneyGraphViewer.py:132
-#: GuiTourneyGraphViewer.py:225 WinTables.py:86 fpdb_prerun.py:97
+#: GuiTourneyGraphViewer.py:225 WinTables.py:87 fpdb_prerun.py:97
 msgid "Error:"
 msgstr "Hiba:"
 
@@ -851,7 +851,7 @@ msgstr "Kiválaszt..."
 msgid "Please select site"
 msgstr "Válassz termet"
 
-#: GuiBulkImport.py:65 GuiTourneyImport.py:326 fpdb_import.py:622
+#: GuiBulkImport.py:65 GuiTourneyImport.py:325 fpdb_import.py:585
 msgid "Importing"
 msgstr "Importálás"
 
@@ -963,7 +963,7 @@ msgstr ""
 msgid "Generate and print test data for regression testing"
 msgstr "Tesztadat generálása és kiírása regressziós tesztelés végett"
 
-#: GuiBulkImport.py:369 GuiTourneyImport.py:372 ImapFetcher.py:172
+#: GuiBulkImport.py:369 GuiTourneyImport.py:371 ImapFetcher.py:172
 msgid "USAGE:"
 msgstr "HASZNÁLAT:"
 
@@ -1738,7 +1738,7 @@ msgstr "Versenyek"
 msgid "Tournament Results"
 msgstr "Versenyeredmények"
 
-#: GuiTourneyImport.py:73 GuiTourneyImport.py:412
+#: GuiTourneyImport.py:73 GuiTourneyImport.py:411
 msgid "Tourney import done: Stored: %d \tErrors: %d in %s seconds - %.0f/sec"
 msgstr ""
 "Verseny importálás kész: Tárolva: %d\tHibák: %d; %s másodperc alatt - %.0f/mp"
@@ -1747,48 +1747,47 @@ msgstr ""
 msgid "tourney import aborted - global lock not available"
 msgstr "verseny importálás megszakítva - nem elérhető a globális zárolás"
 
-#: GuiTourneyImport.py:177 fpdb_import.py:236
+#: GuiTourneyImport.py:177 fpdb_import.py:214
 msgid "Attempted to add non-directory '%s' as an import directory"
 msgstr "Nem könyvtár ('%s') megadása importálási könyvtárként"
 
-#: GuiTourneyImport.py:193
+#: GuiTourneyImport.py:192
 msgid "Tourney Summary Import started at %s - %d files to import."
 msgstr "Verseny összegzés import elindítva ekkor: %s - %d fájl importálása."
 
-#: GuiTourneyImport.py:232
+#: GuiTourneyImport.py:231
 msgid "Tourney import: Removing text < 100 characters from end of file: %s"
 msgstr ""
 "Verseny import: 100 karakternél rövidebb szöveg eltávolítása a(z) %s fájl "
 "végéről"
 
-#: GuiTourneyImport.py:236
+#: GuiTourneyImport.py:235
 msgid "Tourney import: Removing text < 100 characters from start of file: %s"
 msgstr ""
 "Verseny import: 100 karakternél rövidebb szöveg eltávolítása a(z) %s fájl "
 "elejéről"
 
-#: GuiTourneyImport.py:246
+#: GuiTourneyImport.py:245
 msgid "Tourney import parse error in file: %s"
 msgstr "Verseny import értelmezési hiba a(z) %s fájlban"
 
-#: GuiTourneyImport.py:249 ImapFetcher.py:159
+#: GuiTourneyImport.py:248 ImapFetcher.py:159
 msgid "Finished importing %s/%s tournament summaries"
 msgstr "%s/%s verseny összegzés importálása befejezve"
 
-#: GuiTourneyImport.py:310 fpdb.pyw:362
+#: GuiTourneyImport.py:309 fpdb.pyw:362
 msgid "Number of Tourneys:"
 msgstr "Versenyek száma:"
 
-#: GuiTourneyImport.py:373 GuiTourneyImport.py:374 GuiTourneyImport.py:375
-#: fpdb_import.py:557
+#: GuiTourneyImport.py:372 GuiTourneyImport.py:373 GuiTourneyImport.py:374
 msgid "Filename"
 msgstr "Fájlnév"
 
-#: GuiTourneyImport.py:391 ImapFetcher.py:176
+#: GuiTourneyImport.py:390 ImapFetcher.py:176
 msgid "Need to define a converter"
 msgstr "Meg kell adni egy konvertert"
 
-#: GuiTourneyImport.py:399
+#: GuiTourneyImport.py:398
 msgid "Need a filename to import"
 msgstr "Importálandó fájlnév megadása szükséges"
 
@@ -3004,11 +3003,11 @@ msgstr ""
 "Ez a modul a gtk 2.8.18 verziójával lett fejlesztve és tesztelve.  Te most a "
 "%d.%d.%d verziót használod.  Lehet, hogy máshogy fog működni."
 
-#: WinTables.py:83
+#: WinTables.py:84
 msgid "Window %s not found. Skipping."
 msgstr "A(z) %s nevű ablak nincs meg. Kihagyás."
 
-#: WinTables.py:86
+#: WinTables.py:87
 msgid "%s doesn't exist."
 msgstr "%s nem létezik."
 
@@ -3138,7 +3137,7 @@ msgstr ""
 "Nem tudom megnyitni az adatbázis karbantartó ablakot, mert más ablakok is "
 "nyitva vannak. Indítsd újra az fpdb-t a funkció használatához."
 
-#: fpdb.pyw:361 fpdb_import.py:605
+#: fpdb.pyw:361 fpdb_import.py:568
 msgid "Number of Hands:"
 msgstr "Leosztások száma:"
 
@@ -3146,7 +3145,7 @@ msgstr "Leosztások száma:"
 msgid "Number of TourneyTypes:"
 msgstr "Versenytípusok száma:"
 
-#: fpdb.pyw:364 fpdb_import.py:605
+#: fpdb.pyw:364 fpdb_import.py:568
 msgid "Database Statistics"
 msgstr "Adatbázis statisztikák"
 
@@ -3667,19 +3666,11 @@ msgstr "Ismeretlen terem"
 msgid "Unable to find site '%s'"
 msgstr "Nem sikerült megtalálni a(z) '%s' termet"
 
-#: fpdb_import.py:51
-msgid "Import database module: MySQLdb not found"
-msgstr "Nem található a következő adatbázis-modul: MySQLdb"
-
-#: fpdb_import.py:58
-msgid "Import database module: psycopg2 not found"
-msgstr "Nem található a következő adatbázis-modul: psycopg2"
-
-#: fpdb_import.py:201
+#: fpdb_import.py:179
 msgid "Database ID for %s not found"
 msgstr "Azonosító nem található a(z) %s teremhez"
 
-#: fpdb_import.py:203
+#: fpdb_import.py:181
 msgid ""
 "[ERROR] More than 1 Database ID found for %s - Multiple currencies not "
 "implemented yet"
@@ -3687,75 +3678,55 @@ msgstr ""
 "[ERROR] Egynél több azonosítót találtam a(z) %s teremhez - Termenként több "
 "pénznem még nem támogatott"
 
-#: fpdb_import.py:244
+#: fpdb_import.py:222
 msgid "Started at %s -- %d files to import. indexes: %s"
 msgstr "Elindítva: %s -- %d fájl importálása. Indexek: %s"
 
-#: fpdb_import.py:253
+#: fpdb_import.py:231
 msgid "No need to drop indexes."
 msgstr "Nem szükséges az indexek eldobása."
 
-#: fpdb_import.py:272
+#: fpdb_import.py:250
 msgid "writers finished already"
 msgstr "az írások már befejeződtek"
 
-#: fpdb_import.py:275
+#: fpdb_import.py:253
 msgid "waiting for writers to finish ..."
 msgstr "várakozás az írások befejeződésére ..."
 
-#: fpdb_import.py:285
+#: fpdb_import.py:263
 msgid "... writers finished"
 msgstr "... az írások befejeződtek"
 
-#: fpdb_import.py:291
+#: fpdb_import.py:269
 msgid "No need to rebuild indexes."
 msgstr "Nem szükséges az adatbázis indexeinek újraépítése."
 
-#: fpdb_import.py:295
+#: fpdb_import.py:273
 msgid "No need to rebuild hudcache."
 msgstr "Nem szükséges a HUD gyorstár újraépítése."
 
-#: fpdb_import.py:331
+#: fpdb_import.py:309
 msgid "sending finish message queue length ="
 msgstr "befejező üzenet küldése; sor hossza ="
 
-#: fpdb_import.py:456 fpdb_import.py:457
+#: fpdb_import.py:434 fpdb_import.py:435
 msgid "Converting %s"
 msgstr "%s konvertálása"
 
-#: fpdb_import.py:527
+#: fpdb_import.py:505
 msgid "fpdb_import: sending hand to hud"
 msgstr "fpdb_import: leosztás küldése a HUD számára"
 
-#: fpdb_import.py:530
+#: fpdb_import.py:508
 msgid "Failed to send hand to HUD: %s"
 msgstr "Nem sikerült a leosztás elküldése a HUD számára: %s"
 
-#: fpdb_import.py:545
+#: fpdb_import.py:523
 msgid "Unknown filter filter_name:'%s' in filter:'%s'"
 msgstr "Ismeretlen szűrő: filter_name:'%s' a '%s' szűrőben"
 
-#: fpdb_import.py:556
-msgid ""
-"Error No.%s please send the hand causing this to fpdb-main@lists.sourceforge."
-"net so we can fix the problem."
-msgstr ""
-"%s számú hiba. Kérlek küldd el az ezt okozó leosztást az fpdb-main@lists."
-"sourceforge.net címre, hogy ki tudjuk javítani a hibát."
-
-#: fpdb_import.py:558
-msgid ""
-"Here is the first line of the hand so you can identify it. Please mention "
-"that the error was a ValueError:"
-msgstr ""
-"Itt az első sora a leosztásnak azonosítás céljából. Kérlek említsd majd meg, "
-"hogy a hiba ValueError volt:"
-
-#: fpdb_import.py:560
-msgid "Hand logged to hand-errors.txt"
-msgstr "A leosztás naplózva a hand-errors.txt fájlba"
-
-#: fpdb_import.py:669
+#: fpdb_import.py:632
 msgid "CLI for importing hands is GuiBulkImport.py"
 msgstr ""
 "Parancssorból a GuiBulkImport.py segítségével tudsz leosztásokat importálni"
@@ -3807,6 +3778,29 @@ msgstr "Telepítsd a GTK-t, vagy állítsd be kézzel az útvonalat"
 #: windows_make_bats.py:57
 msgid "No gtk directories found in your path."
 msgstr "Nem találhatóak GTK könyvtárak az útvonaladban."
+
+#~ msgid "Import database module: MySQLdb not found"
+#~ msgstr "Nem található a következő adatbázis-modul: MySQLdb"
+
+#~ msgid "Import database module: psycopg2 not found"
+#~ msgstr "Nem található a következő adatbázis-modul: psycopg2"
+
+#~ msgid ""
+#~ "Error No.%s please send the hand causing this to fpdb-main@lists."
+#~ "sourceforge.net so we can fix the problem."
+#~ msgstr ""
+#~ "%s számú hiba. Kérlek küldd el az ezt okozó leosztást az fpdb-main@lists."
+#~ "sourceforge.net címre, hogy ki tudjuk javítani a hibát."
+
+#~ msgid ""
+#~ "Here is the first line of the hand so you can identify it. Please mention "
+#~ "that the error was a ValueError:"
+#~ msgstr ""
+#~ "Itt az első sora a leosztásnak azonosítás céljából. Kérlek említsd majd "
+#~ "meg, hogy a hiba ValueError volt:"
+
+#~ msgid "Hand logged to hand-errors.txt"
+#~ msgstr "A leosztás naplózva a hand-errors.txt fájlba"
 
 #~ msgid ""
 #~ "Copyright 2008-2011, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, "
