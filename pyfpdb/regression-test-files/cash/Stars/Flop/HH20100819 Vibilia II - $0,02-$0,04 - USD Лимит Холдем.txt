@@ -1,0 +1,71 @@
+﻿PokerStars Game #48397944918:  Hold'em Limit ($0.02/$0.04 USD) - 2010/08/20 5:01:22 MSK [2010/08/19 21:01:22 ET]
+Table 'Vibilia II' 10-max Seat #7 is the button
+Seat 1: player1 ($0.21 in chips) 
+Seat 2: hero ($0.70 in chips) 
+Seat 3: player2 ($0.20 in chips) 
+Seat 4: player3 ($1.52 in chips) 
+Seat 5: player4 ($0.29 in chips) 
+Seat 6: player5 ($0.75 in chips) 
+Seat 7: player6 ($0.44 in chips) 
+Seat 9: player7 ($0.68 in chips) 
+player7: posts small blind $0.01
+player1: posts big blind $0.02
+hero: posts big blind $0.02
+player2: posts big blind $0.02
+*** HOLE CARDS ***
+Dealt to hero [2c 4d]
+player8 joins the table at seat #8 
+hero: checks 
+player2: checks 
+player3: calls $0.02
+player4: calls $0.02
+player5: calls $0.02
+player6: calls $0.02
+player7: calls $0.01
+player1: checks 
+*** FLOP *** [As Jc 5d]
+player7: checks 
+player9 joins the table at seat #10 
+player1: checks 
+hero: checks 
+player2: checks 
+player3: checks 
+player4: checks 
+player5: checks 
+player6: checks 
+*** TURN *** [As Jc 5d] [Ts]
+player7: checks 
+player1: checks 
+hero: checks 
+player2: checks 
+player3: checks 
+player4: checks 
+player5: checks 
+player6: folds 
+*** RIVER *** [As Jc 5d Ts] [3c]
+player7: checks 
+player1: bets $0.04
+hero: raises $0.04 to $0.08
+player2: calls $0.08
+player3: folds 
+player4: folds 
+player5: folds 
+player7: folds 
+player1: calls $0.04
+*** SHOW DOWN ***
+hero: shows [2c 4d] (a straight, Ace to Five)
+player4 leaves the table
+player2: mucks hand 
+player1: mucks hand 
+hero collected $0.38 from pot
+*** SUMMARY ***
+Total pot $0.40 | Rake $0.02 
+Board [As Jc 5d Ts 3c]
+Seat 1: player1 (big blind) mucked [4h Jh]
+Seat 2: hero showed [2c 4d] and won ($0.38) with a straight, Ace to Five
+Seat 3: player2 mucked [9h 5h]
+Seat 4: player3 folded on the River
+Seat 5: player4 folded on the River
+Seat 6: player5 folded on the River
+Seat 7: player6 (button) folded on the Turn
+Seat 9: player7 (small blind) folded on the River
