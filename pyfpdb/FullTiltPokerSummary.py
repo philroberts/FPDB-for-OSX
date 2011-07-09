@@ -39,9 +39,11 @@ class FullTiltPokerSummary(TourneySummary):
                                  'RAZZ' : ('stud','razz'),
                           '7 Card Stud' : ('stud','studhi'),
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
+                             'Stud H/L' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
-                          '5 Card Draw' : ('draw','fivedraw')
+                          '5 Card Draw' : ('draw','fivedraw'),
+                         '7-Game Mixed' : ('mixed','mix_7game'),
                }
 
     substitutions = {
@@ -56,17 +58,18 @@ class FullTiltPokerSummary(TourneySummary):
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
 
     re_TourneyInfo = re.compile(u"""
-                        (\s*.*(?P<TYPE>Tournament|Sit\s\&\sGo|Sit\&Go|\(Rebuy\)|Matrix|Knockout|KO|Rush|Satellite|FTOPS|MiniFTOPS|Step\s\d|Daily\sDollar|Madness|Freeroll|Heads-Up|Challenge|Super\sTurbo|The\sKitchen\sSink).*\s)
+                        (\s*.*(?P<TYPE>Tournament|Sit\s\&\sGo|Sit\&Go|\(Rebuy\)|Matrix|Knockout|KO|Rush|Satellite|FTOPS|MiniFTOPS|Step\s\d|Daily\sDollar|Madness|Freeroll|Heads-Up|Challenge|Super\sTurbo|The\sKitchen\sSink|Tier\sOne).*\s)
                         \((?P<TOURNO>[0-9]+)\)
                         (\s+)?(\sMatch\s\d\s)?
-                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s+
-                        (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+
+                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw|7-Game\sMixed)\s+
+                        ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+)?
                         (Buy-In:\s[%(LS)s](?P<BUYIN>[%(NUM)s]+)(\s\+\s[%(LS)s](?P<FEE>[%(NUM)s]+))?\s+)?
                         (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[%(NUM)s]+)\s+)?
                         ((?P<PNAMEBOUNTIES>.{2,15})\sreceived\s\d+\sKnockout\sBounty\sAwards?\s+)?
                         (Add-On:\s[%(LS)s](?P<ADDON>[%(NUM)s]+)\s+)?
                         (Rebuy:\s[%(LS)s](?P<REBUYAMT>[%(NUM)s]+)\s+)?
-                        ((?P<PNAME>.{2,15})\sperformed\s(?P<PREBUYS>\d+)\sRebuys\s+)?
+                        ((?P<P1NAME>.{2,15})\sperformed\s(?P<PADDONS>\d+)\sAdd-Ons?\s+)?
+                        ((?P<P2NAME>.{2,15})\sperformed\s(?P<PREBUYS>\d+)\sRebuys?\s+)?
                         (Buy-In\sChips:\s(?P<CHIPS>\d+)\s+)?
                         (Add-On\sChips:\s(?P<ADDONCHIPS>\d+)\s+)?
                         (Rebuy\sChips:\s(?P<REBUYCHIPS>\d+)\s+)?
@@ -75,7 +78,7 @@ class FullTiltPokerSummary(TourneySummary):
                         (Total\sRebuys:\s(?P<REBUYS>\d+)\s+)?
                         ([%(LS)s]?(?P<ADDED>[.\d]+)\sadded\sto\sthe\sprize\spool\sby\sPokerStars\.com\s+)?
                         (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[%(NUM)s]+)\s+)?
-                        (Top\s\d+\sfinishers\sreceive\s(entry\sto\s[Tt]ournament\s\d+|Step\s\d\sTicket|FTPA\sChallenge\sFinals\sTicket)\s+)?
+                        (Top\s(\d+\s)?finishers?\sreceives?\s(entry\sto\s[Tt]ournament\s\d+|Step\s\d\sTicket|FTPA\sChallenge\sFinals\sTicket|[%(LS)s]\d+\sSatellite\sToken)\s+)?
                         (Target\sTournament\s.*)?
                         Tournament\sstarted:\s
                         (?P<DATETIME>((?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s??(?P<TZ>[A-Z]+)\s|\w+,\s(?P<MONTH>\w+)\s(?P<DAY>\d+),\s(?P<YEAR>[\d]{4})\s(?P<HOUR>\d+):(?P<MIN2>\d+)))
@@ -102,7 +105,10 @@ class FullTiltPokerSummary(TourneySummary):
 
         mg = m.groupdict()
         if 'TOURNO'    in mg: self.tourNo = mg['TOURNO']
-        if 'LIMIT'     in mg: self.gametype['limitType'] = self.limits[mg['LIMIT']]
+        if 'LIMIT'     in mg and mg['LIMIT'] != None:
+            self.gametype['limitType'] = self.limits[mg['LIMIT']]
+        else:
+            self.gametype['limitType'] = 'mx'
         if 'GAME'      in mg: self.gametype['category']  = self.games[mg['GAME']][1]
         if mg['BUYIN'] != None:
             self.buyin = int(100*Decimal(mg['BUYIN']))

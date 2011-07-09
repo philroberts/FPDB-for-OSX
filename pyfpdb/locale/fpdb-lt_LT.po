@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-06-28 03:07+CEST\n"
-"PO-Revision-Date: 2011-06-26 11:35+0000\n"
-"Last-Translator: steffen123 <steffen@schaumburger.info>\n"
+"POT-Creation-Date: 2011-07-09 09:49+CEST\n"
+"PO-Revision-Date: 2011-07-04 08:44+0000\n"
+"Last-Translator: OvidijusSv <OvidijusSv@gmail.com>\n"
 "Language-Team: Lithuanian (Lithuania) (http://www.transifex.net/projects/p/"
 "fpdb/team/lt_LT/)\n"
 "Language: lt_LT\n"
@@ -27,22 +27,22 @@ msgstr ""
 #: PacificPokerToFpdb.py:183 PartyPokerToFpdb.py:223 PartyPokerToFpdb.py:225
 #: PkrToFpdb.py:128 PkrToFpdb.py:130 PokerStarsToFpdb.py:198
 #: PokerStarsToFpdb.py:200 Win2dayToFpdb.py:101 Win2dayToFpdb.py:103
-#: WinamaxToFpdb.py:172 WinamaxToFpdb.py:174 iPokerToFpdb.py:122
-#: iPokerToFpdb.py:124
+#: WinamaxToFpdb.py:172 WinamaxToFpdb.py:174 iPokerToFpdb.py:114
+#: iPokerToFpdb.py:116
 msgid "Unable to recognise gametype from: '%s'"
 msgstr "Nepavyksta atpažinti žaidimo rūšies iš: '%s'"
 
 #: AbsoluteToFpdb.py:141 BetfairToFpdb.py:77 CakeToFpdb.py:133
 #: CakeToFpdb.py:159 CarbonToFpdb.py:165 CarbonToFpdb.py:193
 #: EntractionToFpdb.py:132 EverestToFpdb.py:104 EverestToFpdb.py:109
-#: EverleafToFpdb.py:129 FullTiltPokerSummary.py:98
-#: FullTiltPokerSummary.py:129 FulltiltToFpdb.py:269 FulltiltToFpdb.py:287
+#: EverleafToFpdb.py:129 FullTiltPokerSummary.py:101
+#: FullTiltPokerSummary.py:135 FulltiltToFpdb.py:269 FulltiltToFpdb.py:287
 #: OnGameToFpdb.py:162 OnGameToFpdb.py:181 PacificPokerToFpdb.py:182
 #: PartyPokerToFpdb.py:224 PartyPokerToFpdb.py:282 PkrToFpdb.py:129
 #: PkrToFpdb.py:154 PokerStarsSummary.py:82 PokerStarsSummary.py:108
 #: PokerStarsToFpdb.py:199 PokerStarsToFpdb.py:227 SitenameSummary.py:82
 #: Win2dayToFpdb.py:102 WinamaxToFpdb.py:173 WinamaxToFpdb.py:191
-#: iPokerToFpdb.py:123
+#: iPokerToFpdb.py:115
 msgid "Raising FpdbParseError"
 msgstr ""
 
@@ -52,7 +52,7 @@ msgstr ""
 #: EntractionToFpdb.py:168 EverestToFpdb.py:149 EverestToFpdb.py:151
 #: EverleafToFpdb.py:163 PacificPokerToFpdb.py:225 PacificPokerToFpdb.py:226
 #: PartyPokerToFpdb.py:297 PartyPokerToFpdb.py:298 PokerStarsToFpdb.py:237
-#: PokerStarsToFpdb.py:238 iPokerToFpdb.py:156 iPokerToFpdb.py:158
+#: PokerStarsToFpdb.py:238 iPokerToFpdb.py:154 iPokerToFpdb.py:156
 msgid "No match in readHandInfo: '%s'"
 msgstr ""
 
@@ -70,7 +70,7 @@ msgstr ""
 
 #: AbsoluteToFpdb.py:279 CakeToFpdb.py:221 EverleafToFpdb.py:228
 #: FulltiltToFpdb.py:446 OnGameToFpdb.py:303 PacificPokerToFpdb.py:357
-#: PokerStarsToFpdb.py:372 Win2dayToFpdb.py:210 WinamaxToFpdb.py:360
+#: PokerStarsToFpdb.py:389 Win2dayToFpdb.py:210 WinamaxToFpdb.py:360
 msgid "reading antes"
 msgstr ""
 
@@ -94,8 +94,8 @@ msgstr ""
 #: CarbonToFpdb.py:351 EntractionToFpdb.py:305 EverestToFpdb.py:238
 #: EverestToFpdb.py:239 EverleafToFpdb.py:295 FulltiltToFpdb.py:529
 #: OnGameToFpdb.py:346 PacificPokerToFpdb.py:439 PartyPokerToFpdb.py:571
-#: PkrToFpdb.py:351 PokerStarsToFpdb.py:454 Win2dayToFpdb.py:348
-#: WinamaxToFpdb.py:406 iPokerToFpdb.py:261
+#: PkrToFpdb.py:351 PokerStarsToFpdb.py:471 Win2dayToFpdb.py:348
+#: WinamaxToFpdb.py:406 iPokerToFpdb.py:277
 msgid "Unimplemented %s: '%s' '%s'"
 msgstr ""
 
@@ -120,8 +120,8 @@ msgstr ""
 #: GuiStove.py:221 GuiStove.py:225 GuiStove.py:229 GuiStove.py:233
 #: GuiStove.py:237 GuiStove.py:239 Hand.py:507 Hand.py:1740 ImapFetcher.py:44
 #: ImapFetcher.py:53 OnGameToFpdb.py:215 OnGameToFpdb.py:346
-#: PacificPokerToFpdb.py:439 PkrToFpdb.py:351 PokerStarsToFpdb.py:454
-#: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:261
+#: PacificPokerToFpdb.py:439 PkrToFpdb.py:351 PokerStarsToFpdb.py:471
+#: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:277
 #: test_Database.py:50 test_Database.py:51
 msgid "DEBUG:"
 msgstr ""
@@ -445,7 +445,7 @@ msgstr ""
 
 #: Database.py:3070 HandHistoryConverter.py:41 fpdb.pyw:38 fpdb.pyw:46
 msgid "Press ENTER to continue."
-msgstr ""
+msgstr "Norėdami tęsti spauskite ENTER"
 
 #: EverestToFpdb.py:110 FulltiltToFpdb.py:286 FulltiltToFpdb.py:288
 msgid "Unable to recognise hand info from: '%s'"
@@ -701,13 +701,13 @@ msgstr "Pasirinkite datą"
 msgid "Done"
 msgstr "Baigta"
 
-#: FullTiltPokerSummary.py:97 FullTiltPokerSummary.py:99
+#: FullTiltPokerSummary.py:100 FullTiltPokerSummary.py:102
 #: PokerStarsSummary.py:81 PokerStarsSummary.py:83 SitenameSummary.py:81
 #: SitenameSummary.py:83
 msgid "Unable to recognise Tourney Info: '%s'"
 msgstr ""
 
-#: FullTiltPokerSummary.py:128 FullTiltPokerSummary.py:130
+#: FullTiltPokerSummary.py:134 FullTiltPokerSummary.py:136
 #: PokerStarsSummary.py:107 PokerStarsSummary.py:109
 msgid "Unable to locate currency"
 msgstr "Nepavyko nustatyti valiutos"
@@ -730,7 +730,7 @@ msgstr ""
 
 #: FulltiltToFpdb.py:604 FulltiltToFpdb.py:817 GuiGraphViewer.py:134
 #: GuiSessionViewer.py:449 GuiTourneyGraphViewer.py:132
-#: GuiTourneyGraphViewer.py:225 WinTables.py:86 fpdb_prerun.py:97
+#: GuiTourneyGraphViewer.py:225 WinTables.py:87 fpdb_prerun.py:97
 msgid "Error:"
 msgstr ""
 
@@ -846,7 +846,7 @@ msgstr "Naršyti..."
 msgid "Please select site"
 msgstr ""
 
-#: GuiBulkImport.py:65 GuiTourneyImport.py:326 fpdb_import.py:622
+#: GuiBulkImport.py:65 GuiTourneyImport.py:325 fpdb_import.py:585
 msgid "Importing"
 msgstr ""
 
@@ -952,7 +952,7 @@ msgstr ""
 msgid "Generate and print test data for regression testing"
 msgstr ""
 
-#: GuiBulkImport.py:369 GuiTourneyImport.py:372 ImapFetcher.py:172
+#: GuiBulkImport.py:369 GuiTourneyImport.py:371 ImapFetcher.py:172
 msgid "USAGE:"
 msgstr ""
 
@@ -1715,7 +1715,7 @@ msgstr "Turnyrai"
 msgid "Tournament Results"
 msgstr "Turnyrų Rezultatai"
 
-#: GuiTourneyImport.py:73 GuiTourneyImport.py:412
+#: GuiTourneyImport.py:73 GuiTourneyImport.py:411
 msgid "Tourney import done: Stored: %d \tErrors: %d in %s seconds - %.0f/sec"
 msgstr ""
 
@@ -1723,45 +1723,43 @@ msgstr ""
 msgid "tourney import aborted - global lock not available"
 msgstr ""
 
-#: GuiTourneyImport.py:177 fpdb_import.py:236
+#: GuiTourneyImport.py:177 fpdb_import.py:214
 msgid "Attempted to add non-directory '%s' as an import directory"
 msgstr ""
 
-#: GuiTourneyImport.py:193
+#: GuiTourneyImport.py:192
 msgid "Tourney Summary Import started at %s - %d files to import."
 msgstr "Turnyrų apžvalgos įkėlimas pradėtas per %s - liko %d failų"
 
-#: GuiTourneyImport.py:232
+#: GuiTourneyImport.py:231
 msgid "Tourney import: Removing text < 100 characters from end of file: %s"
 msgstr ""
 
-#: GuiTourneyImport.py:236
+#: GuiTourneyImport.py:235
 msgid "Tourney import: Removing text < 100 characters from start of file: %s"
 msgstr ""
 
-#: GuiTourneyImport.py:246
+#: GuiTourneyImport.py:245
 msgid "Tourney import parse error in file: %s"
 msgstr ""
 
-#: GuiTourneyImport.py:249 ImapFetcher.py:159
+#: GuiTourneyImport.py:248 ImapFetcher.py:159
 msgid "Finished importing %s/%s tournament summaries"
 msgstr "Įkelta turnyrų apžvalgų: %s/%s"
 
-#: GuiTourneyImport.py:310 fpdb.pyw:362
+#: GuiTourneyImport.py:309 fpdb.pyw:362
 msgid "Number of Tourneys:"
 msgstr ""
 
-#: GuiTourneyImport.py:373 GuiTourneyImport.py:374 GuiTourneyImport.py:375
-#: fpdb_import.py:557
-#, fuzzy
+#: GuiTourneyImport.py:372 GuiTourneyImport.py:373 GuiTourneyImport.py:374
 msgid "Filename"
-msgstr "Falio pavadinimas: %s"
+msgstr ""
 
-#: GuiTourneyImport.py:391 ImapFetcher.py:176
+#: GuiTourneyImport.py:390 ImapFetcher.py:176
 msgid "Need to define a converter"
 msgstr "Reikia nurodyti konvertuotoją"
 
-#: GuiTourneyImport.py:399
+#: GuiTourneyImport.py:398
 msgid "Need a filename to import"
 msgstr "Nurodykite failo vardą, kad pradėtumėte importuoti"
 
@@ -2003,119 +2001,119 @@ msgstr ""
 
 #: Hand.py:165
 msgid "COUNTED SEATS"
-msgstr ""
+msgstr "SUSKAIČIUOTOS VIETOS"
 
 #: Hand.py:166
 msgid "DEALT"
-msgstr ""
+msgstr "PADALINTA"
 
 #: Hand.py:167
 msgid "SHOWN"
-msgstr ""
+msgstr "PARODYTA"
 
 #: Hand.py:168
 msgid "MUCKED"
-msgstr ""
+msgstr "NUMESTA NERODŽIUS"
 
 #: Hand.py:169
 msgid "TOTAL POT"
-msgstr ""
+msgstr "VISAS BANKAS"
 
 #: Hand.py:170
 msgid "TOTAL COLLECTED"
-msgstr ""
+msgstr "IŠ VISO SURINKTA"
 
 #: Hand.py:171
 msgid "RAKE"
-msgstr ""
+msgstr "MOKESTIS"
 
 #: Hand.py:172 TourneySummary.py:132
 msgid "START TIME"
-msgstr ""
+msgstr "PRADĖJIMO LAIKAS"
 
 #: Hand.py:173
 msgid "TOURNAMENT NO"
-msgstr ""
+msgstr "TURNYRO NR"
 
 #: Hand.py:174 TourneySummary.py:137
 msgid "TOURNEY ID"
-msgstr ""
+msgstr "TURNYRO ID"
 
 #: Hand.py:175 TourneySummary.py:136
 msgid "TOURNEY TYPE ID"
-msgstr ""
+msgstr "TURNYRO TIPO ID"
 
 #: Hand.py:176 TourneySummary.py:138
 msgid "BUYIN"
-msgstr ""
+msgstr "ĮPIRKA"
 
 #: Hand.py:177
 msgid "BUYIN CURRENCY"
-msgstr ""
+msgstr "ĮPIRKOS VALIUTA"
 
 #: Hand.py:178
 msgid "BUYIN CHIPS"
-msgstr ""
+msgstr "ĮSIPIRKTA ŽETONŲ"
 
 #: Hand.py:179 TourneySummary.py:139
 msgid "FEE"
-msgstr ""
+msgstr "MOKESTIS"
 
 #: Hand.py:180
 msgid "IS REBUY"
-msgstr ""
+msgstr "YRA ATSIPIRKIMAI"
 
 #: Hand.py:181
 msgid "IS ADDON"
-msgstr ""
+msgstr "YRA PAPILDYMAS"
 
 #: Hand.py:182
 msgid "IS KO"
-msgstr ""
+msgstr "YRA GALVŲ MEDŽIOKLĖ"
 
 #: Hand.py:183 TourneySummary.py:163
 msgid "KO BOUNTY"
-msgstr ""
+msgstr "GALVŲ MEDŽIOKLĖ"
 
 #: Hand.py:184
 msgid "IS MATRIX"
-msgstr ""
+msgstr "YRA MATRICA"
 
 #: Hand.py:185
 msgid "IS SHOOTOUT"
-msgstr ""
+msgstr "YRA SHOOTOUTAS"
 
 #: Hand.py:186 TourneySummary.py:164
 msgid "TOURNEY COMMENT"
-msgstr ""
+msgstr "TURNYRO KOMENTARAS"
 
 #: Hand.py:189 TourneySummary.py:176
 msgid "PLAYERS"
-msgstr ""
+msgstr "ŽAIDĖJAI"
 
 #: Hand.py:190
 msgid "STACKS"
-msgstr ""
+msgstr "ŽETONAI"
 
 #: Hand.py:191
 msgid "POSTED"
-msgstr ""
+msgstr "ĮDĖTA"
 
 #: Hand.py:192
 msgid "POT"
-msgstr ""
+msgstr "BANKAS"
 
 #: Hand.py:193
 msgid "SEATING"
-msgstr ""
+msgstr "IŠSODINIMAS"
 
 #: Hand.py:194
 msgid "GAMETYPE"
-msgstr ""
+msgstr "ŽAIDIMO TIPAS"
 
 #: Hand.py:195
 msgid "ACTION"
-msgstr ""
+msgstr "VEIKSMAS"
 
 #: Hand.py:196
 msgid "COLLECTEES"
@@ -2123,27 +2121,27 @@ msgstr ""
 
 #: Hand.py:197
 msgid "BETS"
-msgstr ""
+msgstr "STATYMAI"
 
 #: Hand.py:198
 msgid "BOARD"
-msgstr ""
+msgstr "STALAS"
 
 #: Hand.py:199
 msgid "DISCARDS"
-msgstr ""
+msgstr "NUMESTOS KORTOS"
 
 #: Hand.py:200
 msgid "HOLECARDS"
-msgstr ""
+msgstr "TURIMOS KORTOS"
 
 #: Hand.py:201
 msgid "TOURNEYS PLAYER IDS"
-msgstr ""
+msgstr "TURNYRO ŽAIDĖJŲ ID"
 
 #: Hand.py:224 Hand.py:1437
 msgid "[ERROR] Tried to add holecards for unknown player: %s"
-msgstr ""
+msgstr "[ERROR] Bandyta pridėti turimas kortas nežinomam žaidėjui: %s"
 
 #: Hand.py:501
 msgid "markstreets didn't match - Assuming hand %s was cancelled"
@@ -2159,23 +2157,23 @@ msgstr ""
 
 #: Hand.py:604
 msgid "%s %s calls %s"
-msgstr ""
+msgstr "%s %s atsako %s"
 
 #: Hand.py:675
 msgid "%s %s raise %s"
-msgstr ""
+msgstr "%s %s kelia %s"
 
 #: Hand.py:686
 msgid "%s %s bets %s"
-msgstr ""
+msgstr "%s %s stato %s"
 
 #: Hand.py:709
 msgid "%s %s folds"
-msgstr ""
+msgstr "%s %s numeta"
 
 #: Hand.py:718
 msgid "%s %s checks"
-msgstr ""
+msgstr "%s %s praleidžia"
 
 #: Hand.py:852
 msgid ""
@@ -2202,11 +2200,11 @@ msgstr ""
 
 #: Hand.py:1446
 msgid "%s %s completes %s"
-msgstr ""
+msgstr "%s %s prideda %s"
 
 #: Hand.py:1464
 msgid "Bringin: %s, %s"
-msgstr ""
+msgstr "Pradeda: %s, %s"
 
 #: Hand.py:1646
 msgid ""
@@ -2245,9 +2243,8 @@ msgid "Failed sanity check"
 msgstr ""
 
 #: HandHistoryConverter.py:138
-#, fuzzy
 msgid "Hands list is:"
-msgstr "Rankų filtrai:"
+msgstr ""
 
 #: HandHistoryConverter.py:149
 msgid "HHC.start(): processHand failed: Exception msg: '%s'"
@@ -2263,15 +2260,15 @@ msgstr ""
 
 #: HandHistoryConverter.py:161
 msgid "Error converting summary file '%s' (took %.3f seconds)"
-msgstr ""
+msgstr "Nepavyko konvertuoti apžvalgos failų '%s' (užtruko %.3f sekundžių)"
 
 #: HandHistoryConverter.py:180
 msgid "Converting starsArchive format to readable"
-msgstr ""
+msgstr "starsArchive formatas verčiamas į skaitomą"
 
 #: HandHistoryConverter.py:185
 msgid "Converting ftpArchive format to readable"
-msgstr ""
+msgstr "ftpArchive formatas verčiamas į skaitomą"
 
 #: HandHistoryConverter.py:191
 msgid "Read no hands from file: '%s'"
@@ -2279,7 +2276,7 @@ msgstr ""
 
 #: HandHistoryConverter.py:199
 msgid "Removing text < 50 characters"
-msgstr ""
+msgstr "Panaikinamas tekstas < 50 simbolių"
 
 #: HandHistoryConverter.py:232 HandHistoryConverter.py:233
 #: HandHistoryConverter.py:239
@@ -2292,7 +2289,7 @@ msgstr ""
 
 #: HandHistoryConverter.py:431
 msgid "unable to read file with any codec in list!"
-msgstr ""
+msgstr "nepavyko perskaityti failo su nė vienu kodeku sąraše"
 
 #: HandHistoryConverter.py:498
 msgid " given TZ:"
@@ -2320,7 +2317,7 @@ msgstr ""
 
 #: HandHistoryConverter.py:623
 msgid "Created directory '%s'"
-msgstr ""
+msgstr "Sukurta direktorija '%s'"
 
 #: HandHistoryConverter.py:627
 msgid "out_path %s couldn't be opened"
@@ -2328,82 +2325,79 @@ msgstr ""
 
 #: Hud.py:150
 msgid "Kill This HUD"
-msgstr ""
+msgstr "Užbaigti šį HUD"
 
 #: Hud.py:155
 msgid "Save HUD Layout"
-msgstr ""
+msgstr "Išsaugoti HUD išdėstymą"
 
 #: Hud.py:159
 msgid "Reposition StatWindows"
-msgstr ""
+msgstr "Perstatyti StatWindows"
 
 #: Hud.py:163
-#, fuzzy
 msgid "Show Player Stats for"
-msgstr "Rodyti pozicinius rodiklius:"
+msgstr ""
 
 #: Hud.py:168 Hud.py:237
 msgid "For This Blind Level Only"
-msgstr ""
+msgstr "Tik šiam statymų lygiui"
 
 #: Hud.py:173 Hud.py:242
 msgid "For Multiple Blind Levels:"
-msgstr ""
+msgstr "Keliems statymų lygiams:"
 
 #: Hud.py:176 Hud.py:245
 msgid "  0.5 to 2.0 x Current Blinds"
-msgstr ""
+msgstr "nuo 0.5 iki 2.0 x esami statymai"
 
 #: Hud.py:181 Hud.py:250
 msgid "  0.33 to 3.0 x Current Blinds"
-msgstr ""
+msgstr "nuo 0.33 iki 3.0 x esami statymai"
 
 #: Hud.py:186 Hud.py:255
 msgid "  0.1 to 10 x Current Blinds"
-msgstr ""
+msgstr "nuo 0.1 iki 10 x esami statymai"
 
 #: Hud.py:191 Hud.py:260
 msgid "  All Levels"
-msgstr ""
+msgstr "Visi lygiai"
 
 #: Hud.py:196 Hud.py:265
-#, fuzzy
 msgid "Number of Seats:"
-msgstr "Vietų skaičius"
+msgstr ""
 
 #: Hud.py:199 Hud.py:268
 msgid "  Any Number"
-msgstr ""
+msgstr "Betkoks skaičius"
 
 #: Hud.py:204 Hud.py:273
 msgid "  Custom"
-msgstr ""
+msgstr "Pagal nuožiūrą"
 
 #: Hud.py:209 Hud.py:278
 msgid "  Exact"
-msgstr ""
+msgstr "Būtent"
 
 #: Hud.py:214 Hud.py:283
 msgid "Since:"
-msgstr ""
+msgstr "Nuo:"
 
 #: Hud.py:217 Hud.py:286
 msgid "  All Time"
-msgstr ""
+msgstr "Visą laiką"
 
 #: Hud.py:222 Hud.py:291
 msgid "  Session"
-msgstr ""
+msgstr "Sesija"
 
 #: Hud.py:227 Hud.py:296
 msgid "  %s Days"
-msgstr ""
+msgstr "%s Dienų"
 
 #: Hud.py:232
-#, fuzzy
 msgid "Show Opponent Stats for"
-msgstr "Rodyti pozicinius rodiklius:"
+msgstr ""
 
 #: Hud.py:354
 msgid "Debug StatWindows"
@@ -2411,7 +2405,7 @@ msgstr ""
 
 #: Hud.py:358
 msgid "Set max seats"
-msgstr ""
+msgstr "Nurodyti maksimalų vietų skaičių"
 
 #: Hud.py:586
 msgid "Updating config file"
@@ -2426,9 +2420,8 @@ msgid "Exception in %s"
 msgstr ""
 
 #: Hud.py:617
-#, fuzzy
 msgid "Error finding actual seat."
-msgstr "Klaida analizuojant"
+msgstr ""
 
 #: Hud.py:633
 msgid "Creating hud from hand %s"
@@ -2463,7 +2456,7 @@ msgstr ""
 
 #: ImapFetcher.py:109
 msgid "No Tournament summaries found."
-msgstr ""
+msgstr "Jokių turnyrų apžvalgų nerasta"
 
 #: ImapFetcher.py:111
 msgid "Errors: %s"
@@ -2471,7 +2464,7 @@ msgstr ""
 
 #: Mucked.py:330
 msgid "No Name"
-msgstr ""
+msgstr "Nėra Vardo"
 
 #: OnGameToFpdb.py:180 OnGameToFpdb.py:182 WinamaxToFpdb.py:190
 #: WinamaxToFpdb.py:192
@@ -2496,7 +2489,7 @@ msgstr ""
 
 #: Options.py:37
 msgid "Specifies a configuration file."
-msgstr ""
+msgstr "Nurodo nustatymų failą"
 
 #: Options.py:40
 msgid ""
@@ -2509,7 +2502,7 @@ msgstr ""
 
 #: Options.py:46
 msgid "A sitename"
-msgstr ""
+msgstr "Saito pavadinimas"
 
 #: Options.py:50
 msgid "Error logging level:"
@@ -2954,11 +2947,11 @@ msgid ""
 "using version %d.%d.%d.  Your milage may vary."
 msgstr ""
 
-#: WinTables.py:83
+#: WinTables.py:84
 msgid "Window %s not found. Skipping."
 msgstr ""
 
-#: WinTables.py:86
+#: WinTables.py:87
 msgid "%s doesn't exist."
 msgstr ""
 
@@ -3079,7 +3072,7 @@ msgid ""
 "opened. Re-start fpdb to use this option."
 msgstr ""
 
-#: fpdb.pyw:361 fpdb_import.py:605
+#: fpdb.pyw:361 fpdb_import.py:568
 msgid "Number of Hands:"
 msgstr ""
 
@@ -3087,7 +3080,7 @@ msgstr ""
 msgid "Number of TourneyTypes:"
 msgstr ""
 
-#: fpdb.pyw:364 fpdb_import.py:605
+#: fpdb.pyw:364 fpdb_import.py:568
 msgid "Database Statistics"
 msgstr ""
 
@@ -3548,89 +3541,65 @@ msgstr ""
 msgid "Unable to find site '%s'"
 msgstr ""
 
-#: fpdb_import.py:51
-msgid "Import database module: MySQLdb not found"
-msgstr ""
-
-#: fpdb_import.py:58
-msgid "Import database module: psycopg2 not found"
-msgstr ""
-
-#: fpdb_import.py:201
+#: fpdb_import.py:179
 msgid "Database ID for %s not found"
 msgstr ""
 
-#: fpdb_import.py:203
+#: fpdb_import.py:181
 msgid ""
 "[ERROR] More than 1 Database ID found for %s - Multiple currencies not "
 "implemented yet"
 msgstr ""
 
-#: fpdb_import.py:244
+#: fpdb_import.py:222
 msgid "Started at %s -- %d files to import. indexes: %s"
 msgstr ""
 
-#: fpdb_import.py:253
+#: fpdb_import.py:231
 msgid "No need to drop indexes."
 msgstr ""
 
-#: fpdb_import.py:272
+#: fpdb_import.py:250
 msgid "writers finished already"
 msgstr ""
 
-#: fpdb_import.py:275
+#: fpdb_import.py:253
 msgid "waiting for writers to finish ..."
 msgstr ""
 
-#: fpdb_import.py:285
+#: fpdb_import.py:263
 msgid "... writers finished"
 msgstr ""
 
-#: fpdb_import.py:291
+#: fpdb_import.py:269
 msgid "No need to rebuild indexes."
 msgstr ""
 
-#: fpdb_import.py:295
+#: fpdb_import.py:273
 msgid "No need to rebuild hudcache."
 msgstr ""
 
-#: fpdb_import.py:331
+#: fpdb_import.py:309
 msgid "sending finish message queue length ="
 msgstr ""
 
-#: fpdb_import.py:456 fpdb_import.py:457
+#: fpdb_import.py:434 fpdb_import.py:435
 msgid "Converting %s"
 msgstr ""
 
-#: fpdb_import.py:527
+#: fpdb_import.py:505
 msgid "fpdb_import: sending hand to hud"
 msgstr ""
 
-#: fpdb_import.py:530
+#: fpdb_import.py:508
 msgid "Failed to send hand to HUD: %s"
 msgstr ""
 
-#: fpdb_import.py:545
+#: fpdb_import.py:523
 msgid "Unknown filter filter_name:'%s' in filter:'%s'"
 msgstr ""
 
-#: fpdb_import.py:556
-msgid ""
-"Error No.%s please send the hand causing this to fpdb-main@lists.sourceforge."
-"net so we can fix the problem."
-msgstr ""
-
-#: fpdb_import.py:558
-msgid ""
-"Here is the first line of the hand so you can identify it. Please mention "
-"that the error was a ValueError:"
-msgstr ""
-
-#: fpdb_import.py:560
-msgid "Hand logged to hand-errors.txt"
-msgstr ""
-
-#: fpdb_import.py:669
+#: fpdb_import.py:632
 msgid "CLI for importing hands is GuiBulkImport.py"
 msgstr ""
 
@@ -3674,11 +3643,3 @@ msgstr ""
 #: windows_make_bats.py:57
 msgid "No gtk directories found in your path."
 msgstr ""
-
-#, fuzzy
-#~ msgid "Finished importing %s/%s summaries"
-#~ msgstr "Įkelta turnyrų apžvalgų: %s/%s"
-
-#, fuzzy
-#~ msgid "For Number of Seats:"
-#~ msgstr "Vietų skaičius"

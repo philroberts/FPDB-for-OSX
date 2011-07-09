@@ -1423,10 +1423,10 @@ def main(argv=None):
 
     qdict = SQL.Sql(db_server = 'sqlite')
 
-    filters_display = { "Heroes"    : True,
-                        "Sites"     : True,
-                        "Games"     : True,
-                        "Currencies": True,
+    filters_display = { "Heroes"    : False,
+                        "Sites"     : False,
+                        "Games"     : False,
+                        "Currencies": False,
                         "Limits"    : True,
                         "LimitSep"  : True,
                         "LimitType" : True,
@@ -1434,11 +1434,11 @@ def main(argv=None):
                         "UseType"   : 'ring',
                         "Seats"     : False,
                         "SeatSep"   : False,
-                        "Dates"     : True,
-                        "GraphOps"  : True,
+                        "Dates"     : False,
+                        "GraphOps"  : False,
                         "Groups"    : False,
-                        "Button1"   : True,
-                        "Button2"   : True
+                        "Button1"   : False,
+                        "Button2"   : False
                           }
 
     i = Filters(db, config, qdict, display = filters_display)

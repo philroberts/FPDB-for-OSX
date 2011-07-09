@@ -686,6 +686,67 @@ Left-Drag to Move"
                 <location seat="9" x="70" y="53">  </location>
             </layout>
         </site>
+
+        <site enabled="True"
+              site_name="iPoker"
+              table_finder="iPoker.exe"
+              screen_name="Hero"
+              site_path="C:/Program Files/PartyGaming/iPoker"
+              HH_path="C:/Program Files/PartyGaming/iPoker/HandHistory/Hero/"
+              decoder="everleaf_decode_table"
+              converter="iPokerToFpdb"
+              bgcolor="#000000"
+              fgcolor="#FFFFFF"
+              hudopacity="1.0"
+              font="Sans"
+              font_size="8"
+              supported_games="holdem">
+            <layout fav_seat="0" height="547" max="8" width="794">
+                <location seat="1" x="640" y="64">  </location>
+                <location seat="2" x="650" y="230"> </location>
+                <location seat="3" x="650" y="385"> </location>
+                <location seat="4" x="588" y="425"> </location>
+                <location seat="5" x="92" y="425"> </location>
+                <location seat="6" x="0" y="373"> </location>
+                <location seat="7" x="0" y="223"> </location>
+                <location seat="8" x="25" y="50">  </location>
+            </layout>
+            <layout fav_seat="2" height="547" max="6" width="794">
+                <location seat="1" x="640" y="58"> </location>
+                <location seat="2" x="654" y="288"> </location>
+                <location seat="3" x="615" y="424"> </location>
+                <location seat="4" x="70" y="421"> </location>
+                <location seat="5" x="0" y="280"> </location>
+                <location seat="6" x="70" y="58"> </location>
+            </layout>
+            <layout fav_seat="0" height="547" max="2" width="794">
+                <location seat="1" x="651" y="288"> </location>
+                <location seat="2" x="10"  y="288"> </location>
+            </layout>
+            <layout fav_seat="0" height="547" max="9" width="794">
+                <location seat="1" x="634" y="38">  </location>
+                <location seat="2" x="667" y="184"> </location>
+                <location seat="3" x="667" y="321"> </location>
+                <location seat="4" x="667" y="445"> </location>
+                <location seat="5" x="337" y="459"> </location>
+                <location seat="6" x="0" y="400"> </location>
+                <location seat="7" x="0" y="322"> </location>
+                <location seat="8" x="0" y="181">  </location>
+                <location seat="9" x="70" y="53">  </location>
+            </layout>
+            <layout fav_seat="4" height="547" max="10" width="794">
+                <location seat="1" x="698" y="69">  </location>
+                <location seat="2" x="716" y="243"> </location>
+                <location seat="3" x="699" y="301"> </location>
+                <location seat="4" x="456" y="391"> </location>
+                <location seat="5" x="338" y="369"> </location>
+                <location seat="6" x="98" y="363"> </location>
+                <location seat="7" x="15" y="242"> </location>
+                <location seat="8" x="11" y="55">  </location>
+                <location seat="9" x="341" y="30">  </location>
+                <location seat="10" x="562" y="8">  </location>
+            </layout>
+        </site>
     </supported_sites>
 
     <supported_games>
