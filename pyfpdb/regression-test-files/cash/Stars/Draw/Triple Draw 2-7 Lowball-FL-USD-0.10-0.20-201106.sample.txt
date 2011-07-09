@@ -1,0 +1,51 @@
+﻿PokerStars Game #63845186378:  Triple Draw 2-7 Lowball Limit ($0.10/$0.20 USD) - 2011/06/26 18:34:02 WET [2011/06/26 13:34:02 ET]
+Table 'SeinV' 6-max Seat #1 is the button
+Seat 1: Player1 ($4.36 in chips) 
+Seat 2: Hero ($3.40 in chips) 
+Seat 3: Player2 ($3 in chips) 
+Seat 4: Player3 ($3.98 in chips) 
+Seat 5: Player4 ($4.46 in chips) 
+Hero: posts small blind $0.05
+Player2: posts big blind $0.10
+*** DEALING HANDS ***
+Dealt to Hero [8s Td Kd Qs Qc]
+Player3: calls $0.10
+Player4: folds 
+Player1: calls $0.10
+Hero: folds 
+Player2: checks 
+*** FIRST DRAW ***
+Player2: discards 3 cards
+Player3: discards 2 cards
+Player1: discards 2 cards
+Player2: checks 
+Player3: checks 
+Player1: bets $0.10
+lippo81 joins the table at seat #6 
+Player2: folds 
+Player3: calls $0.10
+*** SECOND DRAW ***
+Player3: discards 2 cards
+Player1: stands pat 
+Player3: checks 
+Player1: bets $0.20
+Player3: calls $0.20
+*** THIRD DRAW ***
+Player3: discards 1 card
+Player1: stands pat 
+Player3: bets $0.20
+Player1: calls $0.20
+*** SHOW DOWN ***
+Player3: shows [7d 2s 8d 5h 5c] (Lo: a pair of Fives)
+Player1: shows [3c 6s 7h 8c 9d] (Lo: 9,8,7,6,3)
+Player1 collected $1.29 from pot
+*** SUMMARY ***
+Total pot $1.35 | Rake $0.06 
+Seat 1: Player1 (button) showed [3c 6s 7h 8c 9d] and won ($1.29) with Lo: 9,8,7,6,3
+Seat 2: Hero (small blind) folded before the Draw
+Seat 3: Player2 (big blind) folded after the 1st Draw
+Seat 4: Player3 showed [7d 2s 8d 5h 5c] and lost with Lo: a pair of Fives
+Seat 5: Player4 folded before the Draw (didn't bet)
+
+
+
