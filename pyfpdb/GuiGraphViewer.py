@@ -135,120 +135,111 @@ class GuiGraphViewer (threading.Thread):
             raise
 
     def generateGraph(self, widget, data):
-        try:
-            self.clearGraphData()
+        self.clearGraphData()
 
-            sitenos = []
-            playerids = []
+        sitenos = []
+        playerids = []
 
-            sites   = self.filters.getSites()
-            heroes  = self.filters.getHeroes()
-            siteids = self.filters.getSiteIds()
-            limits  = self.filters.getLimits()
-            games   = self.filters.getGames()
-            currencies = self.filters.getCurrencies()
-            graphops = self.filters.getGraphOps()
-            names   = ""
-            
-            for i in ('show', 'none'):
-                if i in limits:
-                    limits.remove(i)
-            # Which sites are selected?
-            for site in sites:
-                if sites[site] == True:
-                    sitenos.append(siteids[site])
-                    _hname = Charset.to_utf8(heroes[site])
-                    result = self.db.get_player_id(self.conf, site, _hname)
-                    if result is not None:
-                        playerids.append(int(result))
-                        names = names + "\n"+_hname + " on "+site
+        sites   = self.filters.getSites()
+        heroes  = self.filters.getHeroes()
+        siteids = self.filters.getSiteIds()
+        limits  = self.filters.getLimits()
+        games   = self.filters.getGames()
+        currencies = self.filters.getCurrencies()
+        graphops = self.filters.getGraphOps()
+        names   = ""
 
-            if not sitenos:
-                #Should probably pop up here.
-                print _("No sites selected - defaulting to PokerStars")
-                self.db.rollback()
-                return
+        for i in ('show', 'none'):
+            if i in limits:
+                limits.remove(i)
+        # Which sites are selected?
+        for site in sites:
+            if sites[site] == True:
+                sitenos.append(siteids[site])
+                _hname = Charset.to_utf8(heroes[site])
+                result = self.db.get_player_id(self.conf, site, _hname)
+                if result is not None:
+                    playerids.append(int(result))
+                    names = names + "\n"+_hname + " on "+site
 
-            if not playerids:
-                print _("No player ids found")
-                self.db.rollback()
-                return
+        if not sitenos:
+            #Should probably pop up here.
+            print _("No sites selected - defaulting to PokerStars")
+            self.db.rollback()
+            return
 
-            if not limits:
-                print _("No limits found")
-                self.db.rollback()
-                return
+        if not playerids:
+            print _("No player ids found")
+            self.db.rollback()
+            return
 
-            #Set graph properties
-            self.ax = self.fig.add_subplot(111)
+        if not limits:
+            print _("No limits found")
+            self.db.rollback()
+            return
 
-            #Get graph data from DB
-            starttime = time()
-            (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games, currencies, graphops['dspin'])
-            print _("Graph generated in: %s") %(time() - starttime)
+        #Set graph properties
+        self.ax = self.fig.add_subplot(111)
 
+        #Get graph data from DB
+        starttime = time()
+        (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games, currencies, graphops['dspin'])
+        print _("Graph generated in: %s") %(time() - starttime)
 
+        #Set axis labels and grid overlay properites
+        self.ax.set_xlabel(_("Hands"))
+        # SET LABEL FOR X AXIS
+        self.ax.set_ylabel(graphops['dspin'])
+        self.ax.grid(color='g', linestyle=':', linewidth=0.2)
+        if green == None or green == []:
+            self.ax.set_title(_("No Data for Player(s) Found"))
+            green = ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
+                        700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
+                        500.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,
+                        1000., 1000.,  1000.,  1000.,  1000.,  1000.,   875.,   750.,
+                        625.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
+                        0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
+                        400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
+            red   =  ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
+                        700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
+                        0.,   0.,     0.,     0.,     0.,     0.,   125.,   250.,
+                        375.,   500.,   500.,   500.,   500.,   500.,   500.,   500.,
+                        500.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
+                        0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
+                        400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
+            blue =    ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
+                          700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
+                          0.,     0.,     0.,     0.,     0.,     0.,   125.,   250.,
+                          375.,   500.,   625.,   750.,   875.,  1000.,   875.,   750.,
+                          625.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
+                        0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
+                        400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
 
-            #Set axis labels and grid overlay properites
-            self.ax.set_xlabel(_("Hands"), fontsize = 12)
-            # SET LABEL FOR X AXIS
-            self.ax.set_ylabel(graphops['dspin'], fontsize = 12)
-            self.ax.grid(color='g', linestyle=':', linewidth=0.2)
-            if green == None or green == []:
-                self.ax.set_title(_("No Data for Player(s) Found"))
-                green = ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
-                            700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
-                            500.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,
-                            1000., 1000.,  1000.,  1000.,  1000.,  1000.,   875.,   750.,
-                            625.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
-                            0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
-                            400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
-                red   =  ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
-                            700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
-                            0.,   0.,     0.,     0.,     0.,     0.,   125.,   250.,
-                            375.,   500.,   500.,   500.,   500.,   500.,   500.,   500.,
-                            500.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
-                            0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
-                            400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
-                blue =    ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
-                              700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
-                              0.,     0.,     0.,     0.,     0.,     0.,   125.,   250.,
-                              375.,   500.,   625.,   750.,   875.,  1000.,   875.,   750.,
-                              625.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
-                            0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
-                            400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
+            self.ax.plot(green, color='green', label=_('Hands') + ': %d\n' % len(green) + _('Profit') + ': %.2f' % green[-1])
+            self.ax.plot(blue, color='blue', label=_('Showdown') + ': $%.2f' %(blue[-1]))
+            self.ax.plot(red, color='red', label=_('Non-showdown') + ': $%.2f' %(red[-1]))
+            self.graphBox.add(self.canvas)
+            self.canvas.show()
+            self.canvas.draw()
+        else:
+            self.ax.set_title((_("Profit graph for ring games")+names))
 
-                self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: (%s): %.2f') %(len(green), green[-1]))
-                self.ax.plot(blue, color='blue', label=_('Showdown') + ': $%.2f' %(blue[-1]))
-                self.ax.plot(red, color='red', label=_('Non-showdown') + ': $%.2f' %(red[-1]))
-                self.graphBox.add(self.canvas)
-                self.canvas.show()
-                self.canvas.draw()
+            #Draw plot
+            self.ax.plot(green, color='green', label=_('Hands') + ': %d\n' % len(green) + _('Profit') + ': (%s): %.2f' % (graphops['dspin'], green[-1]))
+            if graphops['showdown'] == 'ON':
+                self.ax.plot(blue, color='blue', label=_('Showdown') + ' (%s): %.2f' %(graphops['dspin'], blue[-1]))
+            if graphops['nonshowdown'] == 'ON':
+                self.ax.plot(red, color='red', label=_('Non-showdown') + ' (%s): %.2f' %(graphops['dspin'], red[-1]))
 
-                #TODO: Do something useful like alert user
-                #print "No hands returned by graph query"
+            if sys.version[0:3] == '2.5':
+                self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
             else:
-                self.ax.set_title((_("Profit graph for ring games")+names),fontsize=12)
+                self.ax.legend(loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
 
-                #Draw plot
-                self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: (%s): %.2f') %(len(green),graphops['dspin'], green[-1]))
-                if graphops['showdown'] == 'ON':
-                    self.ax.plot(blue, color='blue', label=_('Showdown') + ' (%s): %.2f' %(graphops['dspin'], blue[-1]))
-                if graphops['nonshowdown'] == 'ON':
-                    self.ax.plot(red, color='red', label=_('Non-showdown') + ' (%s): %.2f' %(graphops['dspin'], red[-1]))
-
-                if sys.version[0:3] == '2.5':
-                    self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
-                else:
-                    self.ax.legend(loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
-
-                self.graphBox.add(self.canvas)
-                self.canvas.show()
-                self.canvas.draw()
-                #self.exportButton.set_sensitive(True)
-        except:
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("Error:")+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            self.graphBox.add(self.canvas)
+            self.canvas.show()
+            self.canvas.draw()
+            #self.exportButton.set_sensitive(True)
 
     #end of def showClicked
 

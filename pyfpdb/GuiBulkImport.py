@@ -62,8 +62,7 @@ class GuiBulkImport():
         # (see comment above about what to do if pipe already open)
         if self.settings['global_lock'].acquire(wait=False, source="GuiBulkImport"):   # returns false immediately if lock not acquired
             #try:
-                print _("\nGlobal lock taken ...")
-                self.progressbar.set_text(_("Importing..."))
+                self.progressbar.set_text(_("Importing"))
                 self.progressbar.pulse()
                 while gtk.events_pending(): # see http://faq.pygtk.org/index.py?req=index for more hints (3.7)
                     gtk.main_iteration(False)
@@ -101,7 +100,7 @@ class GuiBulkImport():
                         self.importer.setFTPArchive(True)
 
                 for selection in selected:
-                    self.importer.addBulkImportImportFileOrDir(selection, site = sitename)
+                    self.importer.addBulkImportImportFileOrDir(unicode(selection), site = sitename)
                 self.importer.setCallHud(self.cb_testmode.get_active())
                 self.importer.bHudTest = self.cb_testmode.get_active()
                 starttime = time()
