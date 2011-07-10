@@ -28,7 +28,7 @@ def fpdb_options():
     parser = OptionParser()
     parser.add_option("-x", "--errorsToConsole",
                       action="store_true",
-                      help=_("If passed error output will go to the console rather than ."))
+                      help=_("If passed error output will go to the console rather than the log file."))
     parser.add_option("-d", "--databaseName",
                       dest="dbname",
                       help=_("Overrides the default database name"))
@@ -67,7 +67,7 @@ def fpdb_options():
     parser.add_option("--xloc", dest="xloc", default=None, type="int",
                       help=_("X location to open window"))
     parser.add_option("--yloc", dest="yloc", default=None, type="int",
-                      help=_("Y location to open Window"))
+                      help=_("Y location to open window"))
     parser.add_option("--autoimport", action="store_true", dest="autoimport",
                       help=_("Auto-start Auto-import"))
     parser.add_option("--minimized", action="store_true", dest="minimized",

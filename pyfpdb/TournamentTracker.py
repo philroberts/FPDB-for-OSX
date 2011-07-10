@@ -260,9 +260,9 @@ class ttracker_main(object):
                     cards['common'] = comm_cards['common']
             except Exception, err:
                 err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                print _("db error: skipping ")+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+                #print _("db error: skipping ")+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
                 if new_hand_id: # new_hand_id is none if we had an error prior to the store
-                    sys.stderr.write(_("Database error %s in hand %d. Skipping.\n") % (err, int(new_hand_id)))
+                    sys.stderr.write(_("Database error %s in hand %d. Skipping.") % (err, int(new_hand_id)) + "\n")
                 continue
 
             if type == "tour":   # hand is from a tournament
@@ -271,8 +271,8 @@ class ttracker_main(object):
                     (tour_number, tab_number) = mat_obj.group(1, 2)
                     temp_key = tour_number
                 else:   # tourney, but can't get number and table
-                    print _("could not find tournament: skipping")
-                    sys.stderr.write(_("Could not find tournament %d in hand %d. Skipping.\n") % (int(tour_number), int(new_hand_id)))
+                    #print _("could not find tournament: skipping")
+                    sys.stderr.write(_("Could not find tournament %d in hand %d. Skipping.") % (int(tour_number), int(new_hand_id)) + "\n")
                     continue
 
             else:
@@ -295,7 +295,7 @@ class ttracker_main(object):
 #    If no client window is found on the screen, complain and continue
                     if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
-                    sys.stderr.write(_("table name %s not found, skipping.\n")% table_name)
+                    sys.stderr.write(_("Table name %s not found, skipping.")% table_name)
                 else:
                     self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, stat_dict, cards)
             self.db_connection.connection.rollback()

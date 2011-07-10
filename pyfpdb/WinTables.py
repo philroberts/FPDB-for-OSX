@@ -83,7 +83,7 @@ class Table(Table_Window):
                 log.error(_("Window %s not found. Skipping.") % self.search_string)
                 return None
         except AttributeError:
-            log.error(_("self.window doesn't exist? why?"))
+            log.error(_("Error:") + " " + _("%s doesn't exist.") % "self.window")
             return None
 
         self.title = titles[hwnd]

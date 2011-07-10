@@ -148,15 +148,15 @@ class Hand(object):
     def __str__(self):
         vars = ( (_("BB"), self.bb),
                  (_("SB"), self.sb),
-                 (_("BUTTONPOS"), self.buttonpos),
+                 (_("BUTTON POS"), self.buttonpos),
                  (_("HAND NO."), self.handid),
                  (_("SITE"), self.sitename),
                  (_("TABLE NAME"), self.tablename),
                  (_("HERO"), self.hero),
-                 (_("MAXSEATS"), self.maxseats),
+                 (_("MAX SEATS"), self.maxseats),
                  (_("LEVEL"), self.level),
                  (_("MIXED"), self.mixed),
-                 (_("LASTBET"), self.lastBet),
+                 (_("LAST BET"), self.lastBet),
                  (_("ACTION STREETS"), self.actionStreets),
                  (_("STREETS"), self.streets),
                  (_("ALL STREETS"), self.allStreets),
@@ -735,7 +735,7 @@ Add a raise on [street] by [player] to [amountTo]
 For when a player shows cards for any reason (for showdown or out of choice).
 Card ranks will be uppercased
 """
-        log.debug(_("addShownCards %s hole=%s all=%s") % (player, cards,  holeandboard))
+        log.debug("addShownCards %s hole=%s all=%s" % (player, cards,  holeandboard))
         if cards is not None:
             self.addHoleCards(cards,player,shown, mucked)
             if string is not None:

@@ -1688,6 +1688,8 @@ class Sql:
             self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (siteId, buyin, fee
                                              , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
 
+        self.query['addHudCacheCompundIndex'] = """CREATE INDEX HudCache_Compound_idx ON HudCache(playerId, activeSeats, position, tourneyTypeId, styleKey)"""
+
         self.query['get_last_hand'] = "select max(id) from Hands"
         
         self.query['get_last_date'] = "SELECT MAX(startTime) FROM Hands"
@@ -2388,18 +2390,49 @@ class Sql:
             """
 
         self.query['get_cards'] = """
-                select
-                    seatNo     AS seat_number,
-                    card1, /*card1Value, card1Suit, */
-                    card2, /*card2Value, card2Suit, */
-                    card3, /*card3Value, card3Suit, */
-                    card4, /*card4Value, card4Suit, */
-                    card5, /*card5Value, card5Suit, */
-                    card6, /*card6Value, card6Suit, */
-                    card7  /*card7Value, card7Suit */
-                from HandsPlayers, Players
-                where handID = %s and HandsPlayers.playerId = Players.id
-                order by seatNo
+/*
+	changed to activate mucked card display in draw games
+	in draw games, card6->card20 contain 3 sets of 5 cards at each draw
+
+	CASE code searches from the highest card number (latest draw) and when
+	it finds a non-zero card, it returns that set of data
+*/
+            SELECT
+                seatNo AS seat_number,
+                CASE Gametypes.base
+                    when 'draw' then COALESCE(NULLIF(card16,0), NULLIF(card11,0), NULLIF(card6,0), card1)
+                    else card1
+                end card1,
+                CASE Gametypes.base
+                    when 'draw' then COALESCE(NULLIF(card17,0), NULLIF(card12,0), NULLIF(card7,0), card2)
+                    else card2
+                end card2,
+                CASE Gametypes.base
+                    when 'draw' then COALESCE(NULLIF(card18,0), NULLIF(card13,0), NULLIF(card8,0), card3)
+                    else card3
+                end card3,
+                CASE Gametypes.base
+                    when 'draw' then COALESCE(NULLIF(card19,0), NULLIF(card14,0), NULLIF(card9,0), card4)
+                    else card4
+                end card4,
+                CASE Gametypes.base
+                    when 'draw' then COALESCE(NULLIF(card20,0), NULLIF(card15,0), NULLIF(card10,0), card5)
+                    else card5
+                end card5,
+                CASE Gametypes.base
+                    when 'draw' then 0
+                    else card6
+                end card6,
+                CASE Gametypes.base
+                    when 'draw' then 0
+                    else card7
+                end card7
+
+                FROM HandsPlayers, Hands, Gametypes
+                WHERE handID = %s
+                 AND HandsPlayers.handId=Hands.id
+                 AND Hands.gametypeId = Gametypes.id
+                ORDER BY seatNo
             """
 
         self.query['get_common_cards'] = """

@@ -73,7 +73,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 161
+DB_VERSION = 162
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -732,16 +732,11 @@ class Database:
         """
 
         self.hand_1day_ago = 1
-        try:
-            c = self.get_cursor()
-            c.execute(self.sql.query['get_hand_1day_ago'])
-            row = c.fetchone()
-        except: # TODO: what error is a database error?!
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("*** Database Error: ") + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
-        else:
-            if row and row[0]:
-                self.hand_1day_ago = int(row[0])
+        c = self.get_cursor()
+        c.execute(self.sql.query['get_hand_1day_ago'])
+        row = c.fetchone()
+        if row and row[0]:
+            self.hand_1day_ago = int(row[0])
                 
         tz = datetime.utcnow() - datetime.today()
         tz_offset = tz.seconds/3600
@@ -754,24 +749,6 @@ class Database:
         d = timedelta(days=h_hud_days, hours=tz_day_start_offset)
         now = datetime.utcnow() - d
         self.h_date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
-
-    def init_player_hud_stat_vars(self, playerid):
-        # not sure if this is workable, to be continued ...
-        try:
-            # self.date_nhands_ago is used for fetching stats for last n hands (hud_style = 'H')
-            # This option not used yet - needs to be called for each player :-(
-            self.date_nhands_ago[str(playerid)] = 'd000000'
-
-            # should use aggregated version of query if appropriate
-            c.execute(self.sql.query['get_date_nhands_ago'], (self.hud_hands, playerid))
-            row = c.fetchone()
-            if row and row[0]:
-                self.date_nhands_ago[str(playerid)] = row[0]
-            c.close()
-            print _("Database: n hands ago the date was:") + " " + self.date_nhands_ago[str(playerid)] + " (playerid "+str(playerid)+")"
-        except:
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("*** Database Error: ")+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
 
     # is get_stats_from_hand slow?
     def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
@@ -859,10 +836,8 @@ class Database:
         #print "get stats: hud style =", hud_style, "query =", query, "subs =", subs
         c = self.connection.cursor()
 
-#       now get the stats
+        # Now get the stats
         c.execute(self.sql.query[query], subs)
-        #for row in c.fetchall():   # needs "explain query plan" in sql statement
-        #    print "query plan: ", row
         colnames = [desc[0] for desc in c.description]
         for row in c.fetchall():
             playerid = row[0]
@@ -870,7 +845,6 @@ class Database:
                 t_dict = {}
                 for name, val in zip(colnames, row):
                     t_dict[name.lower()] = val
-#                    print t_dict
                 stat_dict[t_dict['player_id']] = t_dict
 
         return stat_dict
@@ -1064,14 +1038,12 @@ class Database:
                 if self.backend == self.MYSQL_INNODB:
                     c.execute("SELECT constraint_name " +
                               "FROM information_schema.KEY_COLUMN_USAGE " +
-                              #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
                               "WHERE 1=1 " +
                               "AND table_name = %s AND column_name = %s " +
                               "AND referenced_table_name = %s " +
                               "AND referenced_column_name = %s ",
                               (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
                     cons = c.fetchone()
-                    #print "preparebulk find fk: cons=", cons
                     if cons:
                         print _("Dropping foreign key:"), cons[0], fk['fktab'], fk['fkcol']
                         try:
@@ -1080,7 +1052,6 @@ class Database:
                             print _("Warning:"), _("Drop foreign key %s_%s_fkey failed: %s, continuing ...") \
                                       % (fk['fktab'], fk['fkcol'], str(sys.exc_value).rstrip('\n') )
                 elif self.backend == self.PGSQL:
-    #    DON'T FORGET TO RECREATE THEM!!
                     print _("Dropping foreign key:"), fk['fktab'], fk['fkcol']
                     try:
                         # try to lock table to see if index drop will work:
@@ -1089,8 +1060,6 @@ class Database:
                         # will leave code here for now pending further tests/enhancement ...
                         c.execute("BEGIN TRANSACTION")
                         c.execute( "lock table %s in exclusive mode nowait" % (fk['fktab'],) )
-                        #print "after lock, status:", c.statusmessage
-                        #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
                         try:
                             c.execute("alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol']))
                             print _("dropped foreign key %s_%s_fkey, continuing ...") % (fk['fktab'], fk['fkcol'])
@@ -1106,30 +1075,16 @@ class Database:
                     return -1
 
         for idx in self.indexes[self.backend]:
+            print _("Dropping index:"), idx['tab'], idx['col']
             if idx['drop'] == 1:
                 if self.backend == self.MYSQL_INNODB:
-                    print _("Dropping index:"), idx['tab'], idx['col']
-                    try:
-                        # apparently nowait is not implemented in mysql so this just hangs if there are locks
-                        # preventing the index drop :-(
-                        c.execute( "alter table %s drop index %s;", (idx['tab'],idx['col']) )
-                    except:
-                        print _("Drop index failed:"), str(sys.exc_info())
-                            # ALTER TABLE `fpdb`.`handsplayers` DROP INDEX `playerId`;
-                            # using: 'HandsPlayers' drop index 'playerId'
+                    c.execute( "ALTER TABLE %s DROP INDEX %s;", (idx['tab'],idx['col']) )
                 elif self.backend == self.PGSQL:
-    #    DON'T FORGET TO RECREATE THEM!!
-                    print _("Dropping index:"), idx['tab'], idx['col']
                     try:
-                        # try to lock table to see if index drop will work:
                         c.execute("BEGIN TRANSACTION")
-                        c.execute( "lock table %s in exclusive mode nowait" % (idx['tab'],) )
-                        #print "after lock, status:", c.statusmessage
+                        c.execute( "LOCK TABLE %s IN EXCLUSIVE MODE NOWAIT" % (idx['tab'],) )
                         try:
-                            # table locked ok so index drop should work:
-                            #print "drop index %s_%s_idx" % (idx['tab'],idx['col'])
-                            c.execute( "drop index if exists %s_%s_idx" % (idx['tab'],idx['col']) )
-                            #print "dropped  pg index ", idx['tab'], idx['col']
+                            c.execute( "DROP INDEX IF EXISTS %s_%s_idx" % (idx['tab'],idx['col']) )
                         except:
                             if "does not exist" not in str(sys.exc_value):
                                 print _("Warning:"), _("drop index %s_%s_idx failed: %s, continuing ...") \
@@ -1253,149 +1208,106 @@ class Database:
         self.createAllIndexes()
         self.commit()
         self.get_sites()
-        #print _("Finished recreating tables")
         log.info(_("Finished recreating tables"))
     #end def recreate_tables
 
     def create_tables(self):
-        #todo: should detect and fail gracefully if tables already exist.
-        try:
-            log.debug(self.sql.query['createSettingsTable'])
-            c = self.get_cursor()
-            c.execute(self.sql.query['createSettingsTable'])
+        log.debug(self.sql.query['createSettingsTable'])
+        c = self.get_cursor()
+        c.execute(self.sql.query['createSettingsTable'])
 
-            log.debug("Creating tables")
-            c.execute(self.sql.query['createActionsTable'])
-            c.execute(self.sql.query['createSitesTable'])
-            c.execute(self.sql.query['createGametypesTable'])
-            c.execute(self.sql.query['createFilesTable'])
-            c.execute(self.sql.query['createPlayersTable'])
-            c.execute(self.sql.query['createAutoratesTable'])
-            c.execute(self.sql.query['createHandsTable'])
-            c.execute(self.sql.query['createBoardsTable'])
-            c.execute(self.sql.query['createTourneyTypesTable'])
-            c.execute(self.sql.query['createTourneysTable'])
-            c.execute(self.sql.query['createTourneysPlayersTable'])
-            c.execute(self.sql.query['createHandsPlayersTable'])
-            c.execute(self.sql.query['createHandsActionsTable'])
-            c.execute(self.sql.query['createHudCacheTable'])
-            c.execute(self.sql.query['createSessionsCacheTable'])
-            c.execute(self.sql.query['createBackingsTable'])
-            c.execute(self.sql.query['createRawHands'])
-            c.execute(self.sql.query['createRawTourneys'])
-            
-            # Create sessionscache indexes
-            log.debug("Creating SessionsCache indexes")
-            c.execute(self.sql.query['addSessionIdIndex'])
-            c.execute(self.sql.query['addHandsSessionIdIndex'])
-            c.execute(self.sql.query['addHandsGameSessionIdIndex'])
+        log.debug("Creating tables")
+        c.execute(self.sql.query['createActionsTable'])
+        c.execute(self.sql.query['createSitesTable'])
+        c.execute(self.sql.query['createGametypesTable'])
+        c.execute(self.sql.query['createFilesTable'])
+        c.execute(self.sql.query['createPlayersTable'])
+        c.execute(self.sql.query['createAutoratesTable'])
+        c.execute(self.sql.query['createHandsTable'])
+        c.execute(self.sql.query['createBoardsTable'])
+        c.execute(self.sql.query['createTourneyTypesTable'])
+        c.execute(self.sql.query['createTourneysTable'])
+        c.execute(self.sql.query['createTourneysPlayersTable'])
+        c.execute(self.sql.query['createHandsPlayersTable'])
+        c.execute(self.sql.query['createHandsActionsTable'])
+        c.execute(self.sql.query['createHudCacheTable'])
+        c.execute(self.sql.query['createSessionsCacheTable'])
+        c.execute(self.sql.query['createBackingsTable'])
+        c.execute(self.sql.query['createRawHands'])
+        c.execute(self.sql.query['createRawTourneys'])
 
-            # Create unique indexes:
-            log.debug("Creating unique indexes")
-            c.execute(self.sql.query['addTourneyIndex'])
-            c.execute(self.sql.query['addHandsIndex'])
-            c.execute(self.sql.query['addPlayersIndex'])
-            c.execute(self.sql.query['addTPlayersIndex'])
-            c.execute(self.sql.query['addTTypesIndex'])
+        # Create sessionscache indexes
+        log.debug("Creating SessionsCache indexes")
+        c.execute(self.sql.query['addSessionIdIndex'])
+        c.execute(self.sql.query['addHandsSessionIdIndex'])
+        c.execute(self.sql.query['addHandsGameSessionIdIndex'])
 
-            self.fillDefaultData()
-            self.commit()
-        except:
-            #print "Error creating tables: ", str(sys.exc_value)
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("***Error creating tables:"), err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-            self.rollback()
-            raise
-#end def disconnect
+        # Create unique indexes:
+        log.debug("Creating unique indexes")
+        c.execute(self.sql.query['addTourneyIndex'])
+        c.execute(self.sql.query['addHandsIndex'])
+        c.execute(self.sql.query['addPlayersIndex'])
+        c.execute(self.sql.query['addTPlayersIndex'])
+        c.execute(self.sql.query['addTTypesIndex'])
+
+        c.execute(self.sql.query['addHudCacheCompundIndex'])
+
+        self.fillDefaultData()
+        self.commit()
 
     def drop_tables(self):
         """Drops the fpdb tables from the current db"""
-        try:
-            c = self.get_cursor()
-        except:
-            print _("*** Error unable to get databasecursor")
-        else:
-            backend = self.get_backend_name()
-            if backend == 'MySQL InnoDB': # what happens if someone is using MyISAM?
-                try:
-                    self.drop_referential_integrity() # needed to drop tables with foreign keys
-                    c.execute(self.sql.query['list_tables'])
-                    tables = c.fetchall()
-                    for table in tables:
-                        c.execute(self.sql.query['drop_table'] + table[0])
-                except:
-                    err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                    print _("***Error dropping tables:"), +err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-                    self.rollback()
-            elif backend == 'PostgreSQL':
-                try:
-                    self.commit()
-                    c.execute(self.sql.query['list_tables'])
-                    tables = c.fetchall()
-                    for table in tables:
-                        c.execute(self.sql.query['drop_table'] + table[0] + ' cascade')
-                except:
-                    err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                    print _("***Error dropping tables:"), err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-                    self.rollback()
-            elif backend == 'SQLite':
-                try:
-                    c.execute(self.sql.query['list_tables'])
-                    for table in c.fetchall():
-                        log.debug(self.sql.query['drop_table'] + table[0])
-                        c.execute(self.sql.query['drop_table'] + table[0])
-                except:
-                    err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                    print _("***Error dropping tables:"), err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-                    self.rollback()
+        c = self.get_cursor()
+
+        backend = self.get_backend_name()
+        if backend == 'MySQL InnoDB': # what happens if someone is using MyISAM?
+            try:
+                self.drop_referential_integrity() # needed to drop tables with foreign keys
+                c.execute(self.sql.query['list_tables'])
+                tables = c.fetchall()
+                for table in tables:
+                    c.execute(self.sql.query['drop_table'] + table[0])
+            except:
+                err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                print _("***Error dropping tables:"), +err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+                self.rollback()
+        elif backend == 'PostgreSQL':
             try:
                 self.commit()
+                c.execute(self.sql.query['list_tables'])
+                tables = c.fetchall()
+                for table in tables:
+                    c.execute(self.sql.query['drop_table'] + table[0] + ' cascade')
             except:
-                print _("*** Error in committing table drop")
                 err = traceback.extract_tb(sys.exc_info()[2])[-1]
                 print _("***Error dropping tables:"), err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
                 self.rollback()
+        elif backend == 'SQLite':
+            c.execute(self.sql.query['list_tables'])
+            for table in c.fetchall():
+                if table[0] != 'sqlite_stat1':
+                    log.info("%s '%s'" % (self.sql.query['drop_table'], table[0]))
+                    c.execute(self.sql.query['drop_table'] + table[0])
+        self.commit()
     #end def drop_tables
 
     def createAllIndexes(self):
         """Create new indexes"""
 
-        try:
-            if self.backend == self.PGSQL:
-                self.connection.set_isolation_level(0)   # allow table/index operations to work
-            for idx in self.indexes[self.backend]:
-                if self.backend == self.MYSQL_INNODB:
-                    print _("Creating index %s %s") %(idx['tab'], idx['col'])
-                    log.debug(_("Creating index %s %s") %(idx['tab'], idx['col']))
-                    try:
-                        s = "create index %s on %s(%s)" % (idx['col'],idx['tab'],idx['col'])
-                        self.get_cursor().execute(s)
-                    except:
-                        print _("Create index failed:"), str(sys.exc_info())
-                elif self.backend == self.PGSQL:
-                    # mod to use tab_col for index name?
-                    print _("Creating index %s %s") %(idx['tab'], idx['col'])
-                    log.debug(_("Creating index %s %s") %(idx['tab'], idx['col']))
-                    try:
-                        s = "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
-                        self.get_cursor().execute(s)
-                    except:
-                        print _("Create index failed:"), str(sys.exc_info())
-                elif self.backend == self.SQLITE:
-                    print _("Creating index %s %s") %(idx['tab'], idx['col'])
-                    log.debug(_("Creating index %s %s") %(idx['tab'], idx['col']))
-                    try:
-                        s = "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
-                        self.get_cursor().execute(s)
-                    except:
-                        log.debug(_("Create index failed:"), str(sys.exc_info()))
-                else:
-                    return -1
-            if self.backend == self.PGSQL:
-                self.connection.set_isolation_level(1)   # go back to normal isolation level
-        except:
-            print _("Error creating indexes:"), str(sys.exc_value)
-            raise FpdbError("Error creating indexes:" + " " + str(sys.exc_value) )
+        if self.backend == self.PGSQL:
+            self.connection.set_isolation_level(0)   # allow table/index operations to work
+        c = self.get_cursor()
+        for idx in self.indexes[self.backend]:
+            log.info(_("Creating index %s %s") %(idx['tab'], idx['col']))
+            if self.backend == self.MYSQL_INNODB:
+                s = "CREATE INDEX %s ON %s(%s)" % (idx['col'],idx['tab'],idx['col'])
+                c.execute(s)
+            elif self.backend == self.PGSQL or self.backend == self.SQLITE:
+                s = "CREATE INDEX %s_%s_idx ON %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
+                c.execute(s)
+
+        if self.backend == self.PGSQL:
+            self.connection.set_isolation_level(1)   # go back to normal isolation level
     #end def createAllIndexes
 
     def dropAllIndexes(self):
@@ -1631,6 +1543,7 @@ class Database:
             #print "rebuild_sql_cash:",rebuild_sql_cash
             self.get_cursor().execute(self.sql.query['clearHudCache'])
             self.get_cursor().execute(rebuild_sql_cash)
+            print _("Rebuild hudcache(cash) took %.1f seconds") % (time() - stime,)
 
             if self.hero_ids == {}:
                 where = "WHERE hp.tourneysPlayersId >= 0"
@@ -1849,9 +1762,6 @@ class Database:
             print _("Error during lock_for_insert:"), str(sys.exc_value)
     #end def lock_for_insert
 
-###########################
-# NEWIMPORT CODE
-###########################
 
     def storeHand(self, hdata, hbulk, doinsert = False, printdata = False):
         if printdata:
@@ -2412,7 +2322,7 @@ class Database:
                     hand['tourneyTypeId'] = pdata['tourneyTypeId']
                     hand['played'] = 1
                     if pdata['buyinCurrency'] == pdata['winningsCurrency'][p]:
-                          hand['totalProfit'] = pdata['winnings'][p] - (pdata['buyin'] + pdata['fee'])
+                          hand['totalProfit'] = int(pdata['winnings'][p]) - (pdata['buyin'] + pdata['fee'])
                     else: hand['totalProfit'] = pdata['winnings'][p]
                 elif (game['type']=='ring'):
                     hand['type'] = game['type']
@@ -2664,9 +2574,6 @@ class Database:
             dup = True
         return dup
 
-#################################
-# Finish of NEWIMPORT CODE
-#################################
 
     # read HandToWrite objects from q and insert into database
     def insert_queue_hands(self, q, maxwait=10, commitEachHand=True):

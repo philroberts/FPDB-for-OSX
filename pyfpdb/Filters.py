@@ -63,9 +63,9 @@ class Filters(threading.Thread):
                         ,"studhilo"  : _("7 Card Stud Hi/Lo")
                         }
 
-        self.currencyName = {"USD" : _("US Dollars")
-                            ,"EUR" : _("Euros")
-                            ,"T$"  : _("Tournament Dollars")
+        self.currencyName = {"USD" : _("US Dollar")
+                            ,"EUR" : _("Euro")
+                            ,"T$"  : _("Tournament Dollar")
                             ,"play": _("Play Money")
                             }
 
@@ -196,6 +196,7 @@ class Filters(threading.Thread):
         self.cbNL = None
         self.cbPL = None
         self.cbCN = None
+        self.cbHP = None
         self.rb = {}     # radio buttons for ring/tour
         self.type = None # ring/tour
         self.types = {}  # list of all ring/tour values
@@ -921,7 +922,7 @@ class Filters(threading.Thread):
                 vbox3.pack_start(hbox, False, False, 0)
                 self.cbNoCurrencies = self.createCurrencyLine(hbox, 'none', self.filterText['currenciesnone'])
         else:
-            print _("INFO: No currencies returned from database")
+            #print "INFO: No currencies returned from database"
             log.info(_("No currencies returned from database"))
     #end def fillCurrenciesFrame
 
@@ -963,18 +964,8 @@ class Filters(threading.Thread):
                 else:
                     vbox3.pack_start(hbox, False, False, 0)
                 if True:  #line[0] == 'ring':
-                    if line[1] == 'fl':
-                        name = str(line[2])+line[1]
-                        self.found['fl'] = True
-                    elif line[1] == 'pl':
-                        name = str(line[2])+line[1]
-                        self.found['pl'] = True
-                    elif line[1] == 'cn':
-                        name = str(line[2])+line[1]
-                        self.found['cn'] = True
-                    else:
-                        name = str(line[2])+line[1]
-                        self.found['nl'] = True
+                    name = str(line[2])+line[1]
+                    self.found[line[1]] = True
                     self.cbLimits[name] = self.createLimitLine(hbox, name, name)
                     self.types[name] = line[0]
                 self.found[line[0]] = True      # type is ring/tour
@@ -1022,7 +1013,7 @@ class Filters(threading.Thread):
                        if self.found['hp']:
                            hbox = gtk.HBox(False, 0)
                            vbox3.pack_start(hbox, False, False, 0)
-                           self.cbCN = self.createLimitLine(hbox, 'cn', self.filterText['limitsHP'])
+                           self.cbHP = self.createLimitLine(hbox, 'hp', self.filterText['limitsHP'])
                        dest = vbox2  # for ring/tour buttons
         else:
             print _("INFO: No games returned from database")
@@ -1427,15 +1418,30 @@ def main(argv=None):
     parser = OptionParser()
     (options, argv) = parser.parse_args(args = argv)
 
-    config = Configuration.Config()
-    db = None
+    config = Configuration.Config(file = "HUD_config.test.xml")
+    db = Database.Database(config)
 
-    db = Database.Database()
-    db.do_connect(config)
+    qdict = SQL.Sql(db_server = 'sqlite')
 
-    qdict = SQL.SQL(db.get_backend_name())
+    filters_display = { "Heroes"    : False,
+                        "Sites"     : False,
+                        "Games"     : False,
+                        "Currencies": False,
+                        "Limits"    : True,
+                        "LimitSep"  : True,
+                        "LimitType" : True,
+                        "Type"      : False,
+                        "UseType"   : 'ring',
+                        "Seats"     : False,
+                        "SeatSep"   : False,
+                        "Dates"     : False,
+                        "GraphOps"  : False,
+                        "Groups"    : False,
+                        "Button1"   : False,
+                        "Button2"   : False
+                          }
 
-    i = Filters(db, config, qdict)
+    i = Filters(db, config, qdict, display = filters_display)
     main_window = gtk.Window()
     main_window.connect('destroy', destroy)
     main_window.add(i.get_vbox())

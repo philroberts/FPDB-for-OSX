@@ -166,7 +166,7 @@ class Win2day(HandHistoryConverter):
                     hand.buttonpos = player[0]
                     break
         else:
-            logging.info(_('readButton: not found'))
+            log.info('readButton: ' + _('not found'))
 
     def readPlayerStacks(self, hand):
         logging.debug("readPlayerStacks")

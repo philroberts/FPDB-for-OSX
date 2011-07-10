@@ -35,14 +35,14 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6', '2.7') and '-r' no
     #print "new path =", tmppath
     if re.search('python', tmppath, re.I):
         os.environ['PATH'] = tmppath
-        print "Python " + sys.version[0:3] + _(' - press return to continue\n')
+        print _("Python %s found.") + " " + sys.version[0:3] + " " + _("Press ENTER to continue.")
         sys.stdin.readline()
         if os.name == 'nt':
             os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ)
         else:
             os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ)
     else:
-        print _("\npython 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n")
+        print "\n" + _("Python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb.")
         raw_input(_("Press ENTER to continue."))
         exit()
 else:
@@ -249,13 +249,14 @@ class fpdb:
         dia = gtk.AboutDialog()
         dia.set_name("Free Poker Database (FPDB)")
         dia.set_version(VERSION)
-        dia.set_copyright(_("Copyright 2008-2011, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, sqlcoder, Bostik, and others"))
+        dia.set_copyright(_("Copyright 2008-2011. See contributors.txt for details"))
         dia.set_comments(_("You are free to change, and distribute original or changed versions of fpdb within the rules set out by the license"))
-        dia.set_license(_("Please see fpdb's start screen for license information"))
+        dia.set_license(_("Please see the help screen for license information"))
         dia.set_website("http://fpdb.sourceforge.net/")
 
         dia.set_authors(['Steffen', 'Eratosthenes', 'Carl Gherardi',
-            'Eric Blade', '_mt', 'sqlcoder', 'Bostik', _('and others')])
+            'Eric Blade', '_mt', 'sqlcoder', 'Bostik', 'gimick', 'Chaz',
+            _('... and others.'), _("See contributors.txt")])
         dia.set_program_name("Free Poker Database (FPDB)")
         
         if (os.name=="posix"):
@@ -357,9 +358,9 @@ class fpdb:
             self.warning_box(_("Cannot open Database Maintenance window because other windows have been opened. Re-start fpdb to use this option."))
 
     def dia_database_stats(self, widget, data=None):
-        self.warning_box(str=_("Number of Hands: ") + str(self.db.getHandCount()) +
-                    _("\nNumber of Tourneys: ") + str(self.db.getTourneyCount()) +
-                    _("\nNumber of TourneyTypes: ") + str(self.db.getTourneyTypeCount()),
+        self.warning_box(str=_("Number of Hands:") + " " + str(self.db.getHandCount()) +
+                    "\n" + _("Number of Tourneys:") + " " + str(self.db.getTourneyCount()) +
+                    "\n" + _("Number of TourneyTypes:") + " " + str(self.db.getTourneyTypeCount()),
                     diatitle=_("Database Statistics"))
     #end def dia_database_stats
 
@@ -376,7 +377,7 @@ class fpdb:
                                  (gtk.STOCK_OK, gtk.RESPONSE_ACCEPT,
                                   gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
 
-        label = gtk.Label(_("Note that this does not existing settings, but overwrites them."))
+        label = gtk.Label(_("Note that this does not load existing settings, but overwrites them (if you click save)."))
         diaSelections.vbox.add(label)
         label.show()
 
@@ -544,7 +545,7 @@ class fpdb:
             dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING,
                     buttons=(gtk.BUTTONS_YES_NO), message_format=_("Confirm deleting and recreating tables"))
             diastring = _("Please confirm that you want to (re-)create the tables.") \
-                        + (_(" If there already are tables in the database %s on %s they will be deleted and you will have to re-import your histories.\n") % (self.db.database, self.db.host)) \
+                        + " " + (_("If there already are tables in the database %s on %s they will be deleted and you will have to re-import your histories.") % (self.db.database, self.db.host)) + "\n"\
                         + _("This may take a while.")
             dia_confirm.format_secondary_text(diastring)  # todo: make above string with bold for db, host and deleted
             # disable windowclose, do not want the the underlying processing interrupted mid-process
@@ -708,7 +709,7 @@ class fpdb:
             except KeyError:
                 pass
         
-        label = gtk.Label(_(" "))
+        label = gtk.Label(" ")
         dia.vbox.add(label)
         
         column_headers=[_("Site"), _("Screen Name"), _("History Path"), _("Detect")] #TODO , _("Summary Path"), _("HUD")] 
@@ -945,17 +946,17 @@ class fpdb:
         """Loads profile from the provided path name."""
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
         if self.config.file_error:
-            self.warning_box(_("There is an error in your config file\n") + self.config.file
-                              + _("\n\nError is:  ") + str(self.config.file_error),
+            self.warning_box(_("There is an error in your config file %s") % self.config.file
+                              + "\n\n" + _("Error is:") + " " + str(self.config.file_error),
                               diatitle=_("CONFIG FILE ERROR"))
             sys.exit()
 
         log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
-        print (_("Logfile is %s\n") % os.path.join(self.config.dir_log, self.config.log_file))
+        print (_("Logfile is %s") % os.path.join(self.config.dir_log, self.config.log_file))
         if self.config.example_copy:
             self.info_box(_("Config file"),
                           _("Config file has been created at %s.") % self.config.file
-                           + _("Edit your screen_name and hand history path in the supported_sites section of the Advanced Preferences window (Main menu) before trying to import hands."))
+                           + _("Enter your screen_name and hand history path in the Site Preferences window (Main menu) before trying to import hands."))
         self.settings = {}
         self.settings['global_lock'] = self.lock
         if (os.sep == "/"):
@@ -1046,10 +1047,10 @@ class fpdb:
     def obtain_global_lock(self, source):
         ret = self.lock.acquire(source=source)  # will return false if lock is already held
         if ret:
-            print (_("\nGlobal lock taken by %s") % source)
+            print (_("Global lock taken by %s") % source)
             self.lockTakenBy=source
         else:
-            print (_("\nFailed to get global lock, it is currently held by %s") % source)
+            print (_("Failed to get global lock, it is currently held by %s") % source)
         return ret
         # need to release it later:
         # self.lock.release()
@@ -1084,7 +1085,7 @@ class fpdb:
     def release_global_lock(self):
         self.lock.release()
         self.lockTakenBy = None
-        print _("Global lock released.\n")
+        print _("Global lock released.")
 
     def tab_auto_import(self, widget, data=None):
         """opens the auto import tab"""
@@ -1268,8 +1269,8 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         # setup error logging
         if not options.errorsToConsole:
             fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
-            print (_("\nNote: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in: %s") % self.config.dir_log) \
-                  + _("\nAny major error will be reported there _only_.\n")
+            print (_("Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in: %s") % self.config.dir_log) \
+                  + _("Any major error will be reported there _only_.")
             errorFile = open(fileName, 'w', 0)
             sys.stderr = errorFile
 
@@ -1397,7 +1398,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
             except KeyError, exc:
                 log.warning("site %s missing from db" % site)
                 dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_OK), message_format=_("Unknown Site"))
-                diastring = _("Warning:") +" " + _("Unable to find site  '%s'") % site
+                diastring = _("Warning:") +" " + _("Unable to find site '%s'") % site
                 dia.format_secondary_text(diastring)
                 dia.run()
                 dia.destroy()
