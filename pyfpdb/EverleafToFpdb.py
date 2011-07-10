@@ -323,5 +323,5 @@ or None if we fail to get the info """
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         if tournament:
-            return "%s - Tournament ID: %s -" % (table_number, tournament)
-        return "%s -" % (table_name)
+            return re.escape("%s - Tournament ID: %s - " % (table_number, tournament))
+        return re.escape("%s -" % (table_name))
