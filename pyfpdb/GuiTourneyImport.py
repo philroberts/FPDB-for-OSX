@@ -276,7 +276,9 @@ class SummaryImporter:
                 in_fh.close()
                 break
             except UnicodeDecodeError, e:
-                log.error("GTI.readFile: '%s' : '%s'" % (filename,e))
+                log.warning("GTI.readFile: '%s' : '%s'" % (filename,e))
+            except UnicodeError, e:
+                log.warning("GTI.readFile: '%s' : '%s'" % (filename,e))
 
         return whole_file
 
