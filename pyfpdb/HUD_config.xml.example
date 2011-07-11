@@ -1145,11 +1145,21 @@ Left-Drag to Move"
     </popup_windows>
 
     <aux_windows>
-        <aw card_ht="42" card_wd="30" class="Stud_mucked" cols="11" deck="Cards01.png" module="Mucked" name="stud_mucked" rows="8"> </aw>
+        <!--
+        Choose mucked card size (between 21 and 84 pixels high)
+            Standard size: card_ht="42"
+            2/3 size:  card_ht="28"
+            half size: card_ht="21"
+            Double size: card_ht="84"
+            
+        Card height cannot be set for stud games
+        -->
+        
+        <aw class="Stud_mucked" cols="11" deck="Cards03.png" module="Mucked" name="stud_mucked" rows="8"> </aw>
         <aw class="Hello" module="Hello" name="Hello"> </aw>
         <aw class="Hello_Menu" module="Hello" name="Hello_menu"> </aw>
         <aw class="Hello_plus" module="Hello" name="Hello_plus"> </aw>
-        <aw card_ht="42" card_wd="30" class="Flop_Mucked" deck="Cards01.png" module="Mucked" name="mucked" opacity="0.7" timeout="5">
+        <aw card_ht="28" class="Flop_Mucked" deck="Cards03.png" module="Mucked" name="mucked" opacity="0.7" timeout="5">
             <layout height="546" max="6" width="792">
                 <location seat="1" x="555" y="169"> </location>
                 <location seat="2" x="572" y="276"> </location>
