@@ -62,7 +62,7 @@ class Everleaf(HandHistoryConverter):
                                   \s?\)$
                                   """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_Board       = re.compile(ur"\[ (?P<CARDS>.+) \]")
-    re_TourneyInfoFromFilename = re.compile(ur".*TID_(?P<TOURNO>[0-9]+)-(?P<TABLE>[0-9]+)\.txt")
+    re_TourneyInfoFromFilename = re.compile(ur".*TID_(?P<TOURNO>[0-9]+)-(?P<TABLE>[0-9]+).*\.txt")
 
 
     def compilePlayerRegexs(self, hand):
