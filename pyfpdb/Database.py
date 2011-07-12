@@ -2201,13 +2201,14 @@ class Database:
                 id = id[0]
                 sc['bk'][id]['ids'].append(hid)
             elif len(id) == 2:
-                if  sc['bk'][id[0]]['startTime'] < sc['bk'][id[1]]['startTime']:
-                    sc['bk'][id[0]]['endTime']   = sc['bk'][id[1]]['endTime']
+                if  sc['bk'][id[0]]['sessionStart'] < sc['bk'][id[1]]['sessionStart']:
+                    sc['bk'][id[0]]['sessionEnd']   = sc['bk'][id[1]]['sessionEnd']
                 else:
-                    sc['bk'][id[0]]['startTime'] = sc['bk'][id[1]]['startTime']
-                sc['bk'].pop[id[1]]
+                    sc['bk'][id[0]]['sessionStart'] = sc['bk'][id[1]]['sessionStart']
+                sh = sc['bk'].pop(id[1])
                 id = id[0]
                 sc['bk'][id]['ids'].append(hid)
+                sc['bk'][id]['ids'] += sh['ids']
             elif len(id) == 0:
                 hand['id'] = None
                 hand['sessionStart'] = hand['startTime']
@@ -2376,8 +2377,9 @@ class Database:
                 gsc['bk'][id[0]]['hands']         += hand['hands']
                 gsc['bk'][id[0]]['tourneys']      += hand['tourneys']
                 gsc['bk'][id[0]]['totalProfit']   += hand['totalProfit']
-                gsc['bk'].pop[id[1]]
+                gh = gsc['bk'].pop(id[1])
                 gsc['bk'][id[0]]['ids'].append(hid)
+                gsc['bk'][id[0]]['ids'] += gh['ids']
             elif len(id) == 0:
                 hand['gameStart'] = hand['startTime']
                 hand['gameEnd']   = hand['startTime']
