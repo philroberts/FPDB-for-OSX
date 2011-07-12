@@ -2205,7 +2205,7 @@ class Database:
                     sc['bk'][id[0]]['endTime']   = sc['bk'][id[1]]['endTime']
                 else:
                     sc['bk'][id[0]]['startTime'] = sc['bk'][id[1]]['startTime']
-                sc['bk'].pop[id[1]]
+                sc['bk'].pop(id[1])
                 id = id[0]
                 sc['bk'][id]['ids'].append(hid)
             elif len(id) == 0:
@@ -2376,7 +2376,7 @@ class Database:
                 gsc['bk'][id[0]]['hands']         += hand['hands']
                 gsc['bk'][id[0]]['tourneys']      += hand['tourneys']
                 gsc['bk'][id[0]]['totalProfit']   += hand['totalProfit']
-                gsc['bk'].pop[id[1]]
+                gsc['bk'].pop(id[1])
                 gsc['bk'][id[0]]['ids'].append(hid)
             elif len(id) == 0:
                 hand['gameStart'] = hand['startTime']
