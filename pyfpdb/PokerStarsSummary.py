@@ -42,6 +42,7 @@ class PokerStarsSummary(TourneySummary):
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
                           '5 Card Draw' : ('draw','fivedraw'),
                                 'HORSE' : ('mixed','mix_horse'),
+                               '8-Game' : ('mixed','mix_8game'),
                }
 
     substitutions = {
@@ -56,7 +57,7 @@ class PokerStarsSummary(TourneySummary):
     re_TourneyInfo = re.compile(u"""
                         \#(?P<TOURNO>[0-9]+),\s
                         ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s)?
-                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw|HORSE)\s+
+                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw|HORSE|8-Game)\s+
                         (?P<DESC>[ a-zA-Z]+\s+)?
                         (Buy-In:\s[%(LS)s](?P<BUYIN>[.0-9]+)(\/[%(LS)s](?P<FEE>[.0-9]+))?(?P<CUR>\s(%(LEGAL_ISO)s))?\s+)?
                         (?P<ENTRIES>[0-9]+)\splayers\s+
