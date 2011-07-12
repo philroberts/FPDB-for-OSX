@@ -2201,10 +2201,10 @@ class Database:
                 id = id[0]
                 sc['bk'][id]['ids'].append(hid)
             elif len(id) == 2:
-                if  sc['bk'][id[0]]['startTime'] < sc['bk'][id[1]]['startTime']:
-                    sc['bk'][id[0]]['endTime']   = sc['bk'][id[1]]['endTime']
+                if  sc['bk'][id[0]]['sessionStart'] < sc['bk'][id[1]]['sessionStart']:
+                    sc['bk'][id[0]]['sessionEnd']   = sc['bk'][id[1]]['sessionEnd']
                 else:
-                    sc['bk'][id[0]]['startTime'] = sc['bk'][id[1]]['startTime']
+                    sc['bk'][id[0]]['sessionStart'] = sc['bk'][id[1]]['sessionStart']
                 sh = sc['bk'].pop(id[1])
                 id = id[0]
                 sc['bk'][id]['ids'].append(hid)
