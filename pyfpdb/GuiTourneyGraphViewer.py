@@ -112,117 +112,107 @@ class GuiTourneyGraphViewer (threading.Thread):
     #end def get_vbox
 
     def clearGraphData(self):
-
         try:
-            try:
-                if self.canvas:
-                    self.graphBox.remove(self.canvas)
-            except:
-                pass
-
-            if self.fig != None:
-                self.fig.clear()
-            self.fig = Figure(figsize=(5,4), dpi=100)
-            if self.canvas is not None:
-                self.canvas.destroy()
-
-            self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
+            if self.canvas:
+                self.graphBox.remove(self.canvas)
         except:
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("Error:")+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-            raise
+            pass
+
+        if self.fig != None:
+            self.fig.clear()
+        self.fig = Figure(figsize=(5,4), dpi=100)
+        if self.canvas is not None:
+            self.canvas.destroy()
+
+        self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
 
     def generateGraph(self, widget, data):
-        try:
-            self.clearGraphData()
+        self.clearGraphData()
 
-            sitenos = []
-            playerids = []
+        sitenos = []
+        playerids = []
 
-            sites   = self.filters.getSites()
-            heroes  = self.filters.getHeroes()
-            siteids = self.filters.getSiteIds()
-            
-            # Which sites are selected?
-            for site in sites:
-                if sites[site] == True:
-                    sitenos.append(siteids[site])
-                    _hname = Charset.to_utf8(heroes[site])
-                    result = self.db.get_player_id(self.conf, site, _hname)
-                    if result is not None:
-                        playerids.append(int(result))
+        sites   = self.filters.getSites()
+        heroes  = self.filters.getHeroes()
+        siteids = self.filters.getSiteIds()
 
-            if not sitenos:
-                #Should probably pop up here.
-                print _("No sites selected - defaulting to PokerStars")
-                self.db.rollback()
-                return
+        # Which sites are selected?
+        for site in sites:
+            if sites[site] == True:
+                sitenos.append(siteids[site])
+                _hname = Charset.to_utf8(heroes[site])
+                result = self.db.get_player_id(self.conf, site, _hname)
+                if result is not None:
+                    playerids.append(int(result))
 
-            if not playerids:
-                print _("No player ids found")
-                self.db.rollback()
-                return
+        if not sitenos:
+            #Should probably pop up here.
+            print _("No sites selected - defaulting to PokerStars")
+            self.db.rollback()
+            return
 
-            #Set graph properties
-            self.ax = self.fig.add_subplot(111)
+        if not playerids:
+            print _("No player ids found")
+            self.db.rollback()
+            return
 
-            #Get graph data from DB
-            starttime = time()
-            green = self.getData(playerids, sitenos)
-            print _("Graph generated in: %s") %(time() - starttime)
+        #Set graph properties
+        self.ax = self.fig.add_subplot(111)
+
+        #Get graph data from DB
+        starttime = time()
+        green = self.getData(playerids, sitenos)
+        print _("Graph generated in: %s") %(time() - starttime)
 
 
-            #Set axis labels and grid overlay properites
-            self.ax.set_xlabel(_("Tournaments"), fontsize = 12)
-            self.ax.set_ylabel("$", fontsize = 12)
-            self.ax.grid(color='g', linestyle=':', linewidth=0.2)
-            if green == None or green == []:
-                self.ax.set_title(_("No Data for Player(s) Found"))
-                green = ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
-                            700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
-                            500.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,
-                            1000., 1000.,  1000.,  1000.,  1000.,  1000.,   875.,   750.,
-                            625.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
-                            0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
-                            400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
-                red   =  ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
-                            700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
-                            0.,   0.,     0.,     0.,     0.,     0.,   125.,   250.,
-                            375.,   500.,   500.,   500.,   500.,   500.,   500.,   500.,
-                            500.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
-                            0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
-                            400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
-                blue =    ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
-                              700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
-                              0.,     0.,     0.,     0.,     0.,     0.,   125.,   250.,
-                              375.,   500.,   625.,   750.,   875.,  1000.,   875.,   750.,
-                              625.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
-                            0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
-                            400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
+        #Set axis labels and grid overlay properites
+        self.ax.set_xlabel(_("Tournaments"), fontsize = 12)
+        self.ax.set_ylabel("$", fontsize = 12)
+        self.ax.grid(color='g', linestyle=':', linewidth=0.2)
+        if green == None or green == []:
+            self.ax.set_title(_("No Data for Player(s) Found"))
+            green = ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
+                        700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
+                        500.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,
+                        1000., 1000.,  1000.,  1000.,  1000.,  1000.,   875.,   750.,
+                        625.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
+                        0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
+                        400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
+            red   =  ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
+                        700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
+                        0.,   0.,     0.,     0.,     0.,     0.,   125.,   250.,
+                        375.,   500.,   500.,   500.,   500.,   500.,   500.,   500.,
+                        500.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
+                        0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
+                        400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
+            blue =    ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
+                          700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
+                          0.,     0.,     0.,     0.,     0.,     0.,   125.,   250.,
+                          375.,   500.,   625.,   750.,   875.,  1000.,   875.,   750.,
+                          625.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
+                        0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
+                        400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
 
-                self.ax.plot(green, color='green', label=_('Tournaments') + ': %d\n' % len(green) + _('Profit') + ': $%.2f' % green[-1])
-                self.graphBox.add(self.canvas)
-                self.canvas.show()
-                self.canvas.draw()
+            self.ax.plot(green, color='green', label=_('Tournaments') + ': %d\n' % len(green) + _('Profit') + ': $%.2f' % green[-1])
+            self.graphBox.add(self.canvas)
+            self.canvas.show()
+            self.canvas.draw()
 
-                #TODO: Do something useful like alert user
+            #TODO: Do something useful like alert user
+        else:
+            self.ax.set_title(_("Tournament Results"))
+
+            #Draw plot
+            self.ax.plot(green, color='green', label=_('Tournaments') + ': %d\n' % len(green) + _('Profit') + ': $%.2f' % green[-1])
+            if sys.version[0:3] == '2.5':
+                self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
             else:
-                self.ax.set_title(_("Tournament Results"))
+                self.ax.legend(loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
 
-                #Draw plot
-                self.ax.plot(green, color='green', label=_('Tournaments') + ': %d\n' % len(green) + _('Profit') + ': $%.2f' % green[-1])
-                if sys.version[0:3] == '2.5':
-                    self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
-                else:
-                    self.ax.legend(loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
-
-                self.graphBox.add(self.canvas)
-                self.canvas.show()
-                self.canvas.draw()
-                #self.exportButton.set_sensitive(True)
-        except:
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("Error:")+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            self.graphBox.add(self.canvas)
+            self.canvas.show()
+            self.canvas.draw()
+            #self.exportButton.set_sensitive(True)
 
     #end of def showClicked
 
