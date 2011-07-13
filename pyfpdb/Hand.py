@@ -221,7 +221,7 @@ dealt   whether they were seen in a 'dealt to' line
         try:
             self.checkPlayerExists(player)
         except FpdbParseError, e:
-            print _("[ERROR] Tried to add holecards for unknown player: %s") % (player,)
+            log.error(_("[ERROR] Tried to add holecards for unknown player: %s") % (player,))
             return
 
         if dealt:  self.dealt.add(player)
@@ -504,7 +504,7 @@ rank        (int) rank the player finished the tournament"""
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
-            print (_("DEBUG:") + " checkPlayerExists: " + _("%s fail on hand number %s") % (player, self.handid))
+            log.error(_("DEBUG:") + " checkPlayerExists: " + _("%s fail on hand number %s") % (player, self.handid))
             raise FpdbParseError("checkPlayerExists: " + _("%s fail on hand number %s") % (player, self.handid))
 
     def setCommunityCards(self, street, cards):
@@ -1434,7 +1434,7 @@ closed    likewise, but known only to player
             self.checkPlayerExists(player)
             self.holecards[street][player] = (open, closed)
         except FpdbParseError, e:
-            print _("[ERROR] Tried to add holecards for unknown player: %s") % (player,)
+            log.error(_("[ERROR] Tried to add holecards for unknown player: %s") % (player,))
 
     # TODO: def addComplete(self, player, amount):
     def addComplete(self, street, player, amountTo):
