@@ -995,22 +995,6 @@ class fpdb:
         if self.db is not None and not self.db.is_connected():
             self.db = None
 
-#        except FpdbMySQLFailedError:
-#            self.warning_box("Unable to connect to MySQL! Is the MySQL server running?!", "FPDB ERROR")
-#            exit()
-#        except FpdbError:
-#            #print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
-#            self.warning_box("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']), "FPDB ERROR")
-#            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-#            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
-#            sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
-#        except:
-#            #print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
-#            self.warning_box("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']), "FPDB ERROR")
-#            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-#            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
-#            sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
-
         if self.db is not None and self.db.wrongDbVersion:
             diaDbVersionWarning = gtk.Dialog(title=_("Strong Warning - Invalid database version"),
                                              parent=None, flags=0, buttons=(gtk.STOCK_OK, gtk.RESPONSE_OK))
