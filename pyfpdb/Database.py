@@ -2374,9 +2374,12 @@ class Database:
                 if    gsc['bk'][id[0]]['gameStart'] < gsc['bk'][id[1]]['gameStart']:
                       gsc['bk'][id[0]]['gameEnd']   = gsc['bk'][id[1]]['gameEnd']
                 else: gsc['bk'][id[0]]['gameStart'] = gsc['bk'][id[1]]['gameStart']
-                gsc['bk'][id[0]]['hands']         += hand['hands']
-                gsc['bk'][id[0]]['tourneys']      += hand['tourneys']
-                gsc['bk'][id[0]]['totalProfit']   += hand['totalProfit']
+                gsc['bk'][id[0]]['hands']          += gsc['bk'][id[1]]['hands']
+                gsc['bk'][id[0]]['tourneys']       += gsc['bk'][id[1]]['tourneys']
+                gsc['bk'][id[0]]['totalProfit']    += gsc['bk'][id[1]]['totalProfit']
+                gsc['bk'][id[0]]['hands']          += hand['hands']
+                gsc['bk'][id[0]]['tourneys']       += hand['tourneys']
+                gsc['bk'][id[0]]['totalProfit']    += hand['totalProfit']
                 gh = gsc['bk'].pop(id[1])
                 gsc['bk'][id[0]]['ids'].append(hid)
                 gsc['bk'][id[0]]['ids'] += gh['ids']
