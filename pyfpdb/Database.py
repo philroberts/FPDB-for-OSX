@@ -1599,35 +1599,43 @@ class Database:
         rebuildSessionsCache    = rebuildSessionsCache.replace('<where_clause>', where)
         rebuildSessionsCacheSum = rebuildSessionsCacheSum.replace('<where_clause>', where_summary)
         
+        start, end, limit = 0, 5000, 5000
         c = self.get_cursor()
+        c.execute("SELECT count(id) FROM Hands")
+        max = c.fetchone()[0]
         c.execute(self.sql.query['clearSessionsCache'])
         self.commit()
-        
-        sc, gsc = {'bk': []}, {'bk': []}
-        c.execute(rebuildSessionsCache)
-        tmp = c.fetchone()
-        while True:
-            pids, game, pdata = {}, {}, {}
-            pdata['pname'] = {}
-            id                              = tmp[0]
-            startTime                       = tmp[1]
-            pids['pname']                   = tmp[2]
-            gid                             = tmp[3]
-            game['type']                    = tmp[4]
-            pdata['pname']['totalProfit']   = tmp[5]
-            pdata['pname']['tourneyTypeId'] = tmp[6]
-            pdata['pname']['street0VPI']    = tmp[7]
-            pdata['pname']['street1Seen']   = tmp[8]
+        while start < max:
+            print start, end
+            sc, gsc = {'bk': []}, {'bk': []}
+            c.execute(rebuildSessionsCache, (start, end))
             tmp = c.fetchone()
-            sc  = self.prepSessionsCache (id, pids, startTime, sc , heros, tmp == None)
-            gsc = self.storeSessionsCache(id, pids, startTime, game, gid, pdata, sc, gsc, None, heros, tmp == None)
-            if tmp == None:
-                for i, id in sc.iteritems():
-                    if i!='bk':
-                        sid =  id['id']
-                        gid =  gsc[i]['id']
-                        c.execute("UPDATE Hands SET sessionId = %s, gameSessionId = %s WHERE id = %s", (sid, gid, i))
-                break
+            while True:
+                pids, game, pdata = {}, {}, {}
+                pdata['pname'] = {}
+                id                              = tmp[0]
+                startTime                       = tmp[1]
+                pids['pname']                   = tmp[2]
+                gid                             = tmp[3]
+                game['type']                    = tmp[4]
+                tid                             = tmp[5]
+                pdata['pname']['totalProfit']   = tmp[6]
+                pdata['pname']['tourneyTypeId'] = tmp[7]
+                pdata['pname']['street0VPI']    = tmp[8]
+                pdata['pname']['street1Seen']   = tmp[9]
+                tmp = c.fetchone()
+                sc  = self.prepSessionsCache (id, pids, startTime, sc , heros, tmp == None)
+                gsc = self.storeSessionsCache(id, pids, startTime, game, gid, tid, pdata, sc, gsc, None, heros, tmp == None)
+                if tmp == None:
+                    for i, id in sc.iteritems():
+                        if i!='bk':
+                            sid =  id['id']
+                            gid =  gsc[i]['id']
+                            c.execute("UPDATE Hands SET sessionId = %s, gameSessionId = %s WHERE id = %s", (sid, gid, i))
+                            self.commit()
+                    break
+            start += limit
+            end += limit
         self.commit()
         
         sc, gsc = {'bk': []}, {'bk': []}
@@ -1649,7 +1657,7 @@ class Database:
             info['fee']                       = tmp[8]
             tmp = c.fetchone()    
             sc  = self.prepSessionsCache (id, pids, startTime, sc , heros, tmp == None)
-            gsc = self.storeSessionsCache(id, pids, startTime, game, None, info, sc, gsc, None, heros, tmp == None)
+            gsc = self.storeSessionsCache(id, pids, startTime, game, None, id, info, sc, gsc, None, heros, tmp == None)
             if tmp == None:
                 break
 
@@ -2315,7 +2323,7 @@ class Database:
                 hand['tourneys'] = 0
                 hand['tourneyTypeId'] = None
                 hand['tourneyId'] = tid
-                hand['played'] = 0
+                hand['played'] = 1 #0 Disabling played hands caching until it can be made less resource intensive
                 hand['ids'] = []
                 if (game['type']=='summary'):
                     hand['type'] = 'tour'
