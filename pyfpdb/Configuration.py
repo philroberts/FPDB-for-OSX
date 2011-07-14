@@ -110,6 +110,12 @@ PYTHON_VERSION = sys.version[:3]
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("config")
 
+LOGLEVEL = {'DEBUG'   : logging.DEBUG,
+            'INFO'    : logging.INFO,
+            'WARNING' : logging.WARNING,
+            'ERROR'   : logging.ERROR,
+            'CRITICAL': logging.CRITICAL}
+
 def get_config(file_name, fallback = True):
     """Looks in cwd and in self.default_config_path for a config file."""
     # look for example file even if not used here, path is returned to caller
@@ -184,7 +190,7 @@ def get_config(file_name, fallback = True):
     #print "get_config: returning "+str( (config_path,example_copy,example_path) )
     return (config_path,example_copy,example_path)
 
-def get_logger(file_name, config = "config", fallback = False, log_dir=None, log_file=None):
+def get_logger(file_name, config = "config", fallback = False, log_dir=None, log_file=None, lvl = logging.INFO):
     (conf_file,copied,example_file) = get_config(file_name, fallback = fallback)
 
     if log_dir is None:
@@ -207,7 +213,7 @@ def get_logger(file_name, config = "config", fallback = False, log_dir=None, log
         except:
             pass
 
-    log = logging.basicConfig(filename=file, level=logging.INFO)
+    log = logging.basicConfig(filename=file, level=lvl)
     log = logging.getLogger()
     # but it looks like default is no output :-(  maybe because all the calls name a module?
     log.debug(_("Default logger initialised for %s") % file)
@@ -711,7 +717,7 @@ class RawTourneys:
 #end class RawTourneys
 
 class Config:
-    def __init__(self, file = None, dbname = '', custom_log_dir='', lvl=''):
+    def __init__(self, file = None, dbname = '', custom_log_dir='', lvl='INFO'):
 #    "file" is a path to an xml file with the fpdb/HUD configuration
 #    we check the existence of "file" and try to recover if it doesn't exist
 
@@ -742,14 +748,13 @@ class Config:
             os.mkdir(CONFIG_PATH)
 
         if custom_log_dir and os.path.exists(custom_log_dir):
-            self.dir_log = custom_log_dir
+            self.dir_log = unicode(custom_log_dir, "utf8")
         else:
             self.dir_log = os.path.join(CONFIG_PATH, u'log')
+        self.log_file = os.path.join(self.dir_log, u'fpdb-log.txt')
         self.dir_database = os.path.join(CONFIG_PATH, u'database')
-        log = get_logger(u"logging.conf", "config", log_dir=self.dir_log)
-        if lvl in ('DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'):
-            log.setLevel(lvl)
-
+        log = get_logger(u"logging.conf", "config", log_dir=self.dir_log, lvl = LOGLEVEL[lvl])
+            
         self.supported_sites = {}
         self.supported_games = {}
         self.supported_databases = {}        # databaseName --> Database instance
