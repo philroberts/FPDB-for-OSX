@@ -454,16 +454,19 @@ class Database:
                     pass
             if not self.is_connected():
                 try:
+                    print(host, user, password, database)
                     self.connection = psycopg2.connect(host = host,
                                                user = user,
                                                password = password,
                                                database = database)
                     self.__connected = True
                 except Exception, ex:
-                    if 'Connection refused' in ex.args[0]:
+                    if 'Connection refused' in ex.args[0] or ('database "' in ex.args[0] and '" does not exist' in ex.args[0]):
                         # meaning eg. db not running
                         raise FpdbPostgresqlNoDatabase(errmsg = ex.args[0])
                     elif 'password authentication' in ex.args[0]:
+                        raise FpdbPostgresqlAccessDenied(errmsg = ex.args[0])
+                    elif 'role "' in ex.args[0] and '" does not exist' in ex.args[0]: #role "fpdb" does not exist
                         raise FpdbPostgresqlAccessDenied(errmsg = ex.args[0])
                     else:
                         msg = ex.args[0]
