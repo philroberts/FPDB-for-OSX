@@ -711,7 +711,7 @@ class RawTourneys:
 #end class RawTourneys
 
 class Config:
-    def __init__(self, file = None, dbname = ''):
+    def __init__(self, file = None, dbname = '', custom_log_dir='', lvl=''):
 #    "file" is a path to an xml file with the fpdb/HUD configuration
 #    we check the existence of "file" and try to recover if it doesn't exist
 
@@ -741,10 +741,14 @@ class Config:
         if not os.path.exists(CONFIG_PATH):
             os.mkdir(CONFIG_PATH)
 
-        self.dir_log = os.path.join(CONFIG_PATH, u'log')
+        if custom_log_dir and os.path.exists(custom_log_dir):
+            self.dir_log = custom_log_dir
+        else:
+            self.dir_log = os.path.join(CONFIG_PATH, u'log')
         self.dir_database = os.path.join(CONFIG_PATH, u'database')
-        self.log_file = os.path.join(self.dir_log, u'fpdb-log.txt')
         log = get_logger(u"logging.conf", "config", log_dir=self.dir_log)
+        if lvl in ('DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'):
+            log.setLevel(lvl)
 
         self.supported_sites = {}
         self.supported_games = {}
