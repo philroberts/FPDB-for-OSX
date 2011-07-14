@@ -123,7 +123,6 @@ class TourneySummary(object):
             self.db = Database.Database(config)
 
         self.parseSummary()
-        self.insertOrUpdate()
     #end def __init__
 
     def __str__(self):
@@ -197,7 +196,7 @@ class TourneySummary(object):
     def getSummaryText(self):
         return self.summaryText
     
-    def insertOrUpdate(self):
+    def insertOrUpdate(self, printtest = False):
         # First : check all needed info is filled in the object, especially for the initial select
 
         # Notes on DB Insert
@@ -207,6 +206,7 @@ class TourneySummary(object):
         # Only one existinf Tourney entry for Matrix Tourneys, but multiple Summary files
         # Starttime may not match the one in the Summary file : HH = time of the first Hand / could be slighltly different from the one in the summary file
         # Note: If the TourneyNo could be a unique id .... this would really be a relief to deal with matrix matches ==> Ask on the IRC / Ask Fulltilt ??
+        self.db.set_printdata(printtest)
         
         self.playerIds = self.db.getSqlPlayerIDs(self.players, self.siteId)
         #for player in self.players:

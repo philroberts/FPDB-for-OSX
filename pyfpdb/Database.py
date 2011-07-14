@@ -287,6 +287,7 @@ class Database:
         gen = c.get_general_params()
         self.day_start = 0
         self._has_lock = False
+        self.printdata = False
         
         if 'day_start' in gen:
             self.day_start = float(gen['day_start'])
@@ -724,6 +725,9 @@ class Database:
         for row in c.fetchall():
             winners[row[0]] = row[1]
         return winners
+
+    def set_printdata(self, val):
+        self.printdata = val
 
     def init_hud_stat_vars(self, hud_days, h_hud_days):
         """Initialise variables used by Hud to fetch stats:
@@ -2666,13 +2670,6 @@ class Database:
                          hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency)
         
         result = self.ttcache[(hand.tourNo, hand.siteId, tourneydata, tourneyInsert)]
-            # NOTE: Using the LambdaDict does the same thing as:
-            #if player in self.pcache:
-            #    #print "DEBUG: cachehit"
-            #    pass
-            #else:
-            #    self.pcache[player] = self.insertPlayer(player, siteid)
-            #result[player] = self.pcache[player]
 
         return result
     
@@ -2681,15 +2678,6 @@ class Database:
         c = self.get_cursor()
         q = self.sql.query['getTourneyTypeIdByTourneyNo']
         q = q.replace('%s', self.sql.query['placeholder'])
-
-        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
-        #Usage:
-        #        INSERT INTO `tags` (`tag`, `count`)
-        #         VALUES ($tag, 1)
-        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
-
-
-        #print "DEBUG: name: %s site: %s" %(name, site_id)
 
         c.execute (q, (tournNo, siteId))
 
@@ -2700,6 +2688,12 @@ class Database:
             try:
                 result = tmp[0]
             except TypeError: #this means we need to create a new entry
+                if self.printdata:
+                    print _("######## TourneyType ##########")
+                    import pprint
+                    pp = pprint.PrettyPrinter(indent=4)
+                    pp.pprint(tourneyInsert)
+                    print _("###### End TourneyType ########")
                 c.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']), tourneyInsert)
                 #Get last id might be faster here.
                 #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
@@ -2739,9 +2733,16 @@ class Database:
                       )
                 cursor.execute(q, row)
         else:
-            cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
-                    (summary.tourneyTypeId, summary.tourNo, summary.entries, summary.prizepool, summary.startTime,
-                     summary.endTime, summary.tourneyName, summary.matrixIdProcessed, summary.totalRebuyCount, summary.totalAddOnCount))
+            row = (summary.tourneyTypeId, summary.tourNo, summary.entries, summary.prizepool, summary.startTime,
+                   summary.endTime, summary.tourneyName, summary.matrixIdProcessed, summary.totalRebuyCount, 
+                   summary.totalAddOnCount)
+            if self.printdata:
+                print _("######## Tourneys ##########")
+                import pprint
+                pp = pprint.PrettyPrinter(indent=4)
+                pp.pprint(row)
+                print _("###### End Tourneys ########")
+            cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']), row)
             tourneyId = self.get_last_insert_id(cursor)
         return tourneyId
     #end def createOrUpdateTourney
@@ -2751,13 +2752,6 @@ class Database:
             self.tcache = LambdaDict(lambda  key:self.insertTourney(key[0], key[1], key[2], key[3]))
 
         result = self.tcache[(hand.siteId, hand.tourNo, hand.tourneyTypeId, hand.startTime)]
-            # NOTE: Using the LambdaDict does the same thing as:
-            #if player in self.pcache:
-            #    #print "DEBUG: cachehit"
-            #    pass
-            #else:
-            #    self.pcache[player] = self.insertPlayer(player, siteid)
-            #result[player] = self.pcache[player]
 
         return result
     
@@ -2766,15 +2760,6 @@ class Database:
         c = self.get_cursor()
         q = self.sql.query['getTourneyByTourneyNo']
         q = q.replace('%s', self.sql.query['placeholder'])
-
-        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
-        #Usage:
-        #        INSERT INTO `tags` (`tag`, `count`)
-        #         VALUES ($tag, 1)
-        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
-
-
-        #print "DEBUG: name: %s site: %s" %(name, site_id)
 
         c.execute (q, (siteId, tourNo))
 
@@ -2849,13 +2834,6 @@ class Database:
         for player in hand.players:
             playerId = hand.dbid_pids[player[1]]
             result[player[1]] = self.tpcache[(playerId,hand.tourneyId)]
-            # NOTE: Using the LambdaDict does the same thing as:
-            #if player in self.pcache:
-            #    #print "DEBUG: cachehit"
-            #    pass
-            #else:
-            #    self.pcache[player] = self.insertPlayer(player, siteid)
-            #result[player] = self.pcache[player]
 
         return result
     
@@ -2864,15 +2842,6 @@ class Database:
         c = self.get_cursor()
         q = self.sql.query['getTourneysPlayersByIds']
         q = q.replace('%s', self.sql.query['placeholder'])
-
-        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
-        #Usage:
-        #        INSERT INTO `tags` (`tag`, `count`)
-        #         VALUES ($tag, 1)
-        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
-
-
-        #print "DEBUG: name: %s site: %s" %(name, site_id)
 
         c.execute (q, (tourneyId, playerId))
 
