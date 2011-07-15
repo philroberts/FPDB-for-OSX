@@ -591,12 +591,22 @@ class PartyPoker(HandHistoryConverter):
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         "Returns string to search in windows titles"
         if type=="tour":
-            TableName = table_name.split(" ")
-            print 'party', 'getTableTitleRe', "%s.+Table\s#%s" % (TableName[0], table_number)
-            if len(TableName[1]) > 6:
-                return "#%s" % (table_number)
+            if table_name:
+                TableName = table_name.split(" ")
+                print 'party', 'getTableTitleRe', "%s.+Table\s#%s" % (TableName[0], table_number)
+                if len(TableName[1]) > 6:
+                    return "#%s" % (table_number)
+                else:
+                   return "%s.+Table\s#%s" % (TableName[0], table_number)
             else:
-                return "%s.+Table\s#%s" % (TableName[0], table_number)
+                #
+                #sng's seem to get passed in with:
+                #   table_name = None
+                #   tournament=8-digit tourney number
+                #   table_number = 7 digit table number
+                # screen string is normally Turbo|Speed|(etc) #table_number
+                #
+                return "#%s" % (table_number)
         else:
             return table_name
 
