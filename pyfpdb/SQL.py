@@ -4838,6 +4838,7 @@ class Sql:
                     HandsPlayers.playerId as playerId,
                     Hands.gametypeId as gametypeId,
                     Gametypes.type as game,
+                    Hands.tourneyId as tourneyId,
                     HandsPlayers.totalProfit as totalProfit,
                     Tourneys.tourneyTypeId as tourneyTypeId,
                     HandsPlayers.street0VPI as street0VPI,
@@ -4847,6 +4848,8 @@ class Sql:
                     WHERE HandsPlayers.handId = Hands.id
                     AND   Hands.gametypeId = Gametypes.id
                     AND (case when HandsPlayers.playerId = <where_clause> then 1 else 0 end) = 1
+                    AND Hands.id >= %s
+                    AND Hands.id < %s
                     ORDER BY Hands.startTime ASC"""
                     
         self.query['rebuildSessionsCacheSum'] = """
