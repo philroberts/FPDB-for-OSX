@@ -100,7 +100,7 @@ class GuiBulkImport():
                         self.importer.setFTPArchive(True)
 
                 for selection in selected:
-                    self.importer.addBulkImportImportFileOrDir(unicode(selection), site = sitename)
+                    self.importer.addBulkImportImportFileOrDir(selection, site = sitename)
                 self.importer.setCallHud(self.cb_testmode.get_active())
                 self.importer.bHudTest = self.cb_testmode.get_active()
                 starttime = time()
