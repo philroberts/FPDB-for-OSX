@@ -1571,7 +1571,7 @@ class Database:
             print err
     #end def rebuild_hudcache
     
-    def rebuild_sessionscache(self):
+    def rebuild_sessionscache(self, tz_name = None):
         """clears sessionscache and rebuilds from the individual records"""
         heros = []
         c = self.get_cursor()
@@ -1631,7 +1631,7 @@ class Database:
                     pdata['pname']['street1Seen']   = tmp[9]
                     tmp = c.fetchone()
                     sc  = self.prepSessionsCache (id, pids, startTime, sc , heros, tmp == None)
-                    gsc = self.storeSessionsCache(id, pids, startTime, game, gid, tid, pdata, sc, gsc, None, heros, tmp == None)
+                    gsc = self.storeSessionsCache(id, pids, startTime, game, gid, tid, pdata, sc, gsc, tz_name, heros, tmp == None)
                     if tmp == None:
                         for i, id in sc.iteritems():
                             if i!='bk':
