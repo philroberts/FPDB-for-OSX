@@ -335,23 +335,22 @@ class PokerStars(HandHistoryConverter):
     def markStreets(self, hand):
 
         # There is no marker between deal and draw in Stars single draw games
-        # overcome this by inserting the marker into the hand text
-        # This fixes handsplayers.cardxx which is not correctly set in single draw
-        #
-        # FIXME: there has to be a cleaner way to do this - altering the hand object
-        # at the markStreets stage is a bit of a hack.
-        
+        #  this upsets the accounting, incorrectly sets handsPlayers.cardxx and 
+        #  in consequence the mucked-display is incorrect.
+        # Attempt to fix by inserting a DRAW marker into the hand text attribute
+
         if hand.gametype['category'] in ('27_1draw', 'fivedraw'):
-            # Firstly, isolate the first discard/stand pat line (thanks Carl for the regex)
-            discard_split = re.split(r"(?:(.+(?: stands pat on|: discards).+))", hand.handText,re.DOTALL)
-            if discard_split:
-                # Draw section found, reassemble, with FIRST DRAW marker added
-                discard_split[0] = discard_split[0] + "*** DRAW ***\r\n"
-                single_draw_hand_text = ""
-                for i in discard_split:
-                    single_draw_hand_text = single_draw_hand_text + i
+            # isolate the first discard/stand pat line (thanks Carl for the regex)
+            discard_split = re.split(r"(?:(.+(?: stands pat|: discards).+))", hand.handText,re.DOTALL)
+            if len(hand.handText) == len(discard_split[0]):
+                # handText was not split, no DRAW street occurred
+                pass
             else:
-                single_draw_hand_text = hand.handText
+                # DRAW street found, reassemble, with DRAW marker added
+                discard_split[0] += "*** DRAW ***\r\n"
+                hand.handText = ""
+                for i in discard_split:
+                    hand.handText += i
 
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
@@ -371,7 +370,7 @@ class PokerStars(HandHistoryConverter):
             if hand.gametype['category'] in ('27_1draw', 'fivedraw'):
                 m =  re.search(r"(?P<PREDEAL>.+(?=\*\*\* DEALING HANDS \*\*\*)|.+)"
                            r"(\*\*\* DEALING HANDS \*\*\*(?P<DEAL>.+(?=\*\*\* DRAW \*\*\*)|.+))?"
-                           r"(\*\*\* DRAW \*\*\*(?P<DRAWONE>.+))?", single_draw_hand_text,re.DOTALL)
+                           r"(\*\*\* DRAW \*\*\*(?P<DRAWONE>.+))?", hand.handText,re.DOTALL)
             else:
                 m =  re.search(r"(?P<PREDEAL>.+(?=\*\*\* DEALING HANDS \*\*\*)|.+)"
                            r"(\*\*\* DEALING HANDS \*\*\*(?P<DEAL>.+(?=\*\*\* FIRST DRAW \*\*\*)|.+))?"

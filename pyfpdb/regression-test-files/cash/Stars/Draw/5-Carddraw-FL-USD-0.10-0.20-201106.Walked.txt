@@ -1,0 +1,26 @@
+﻿PokerStars Game #64147461939:  5 Card Draw Limit ($0.10/$0.20 USD) - 2011/07/04 21:58:32 WET [2011/07/04 16:58:32 ET]
+Table 'Pul V' 6-max Seat #1 is the button
+Seat 1: Player1 ($1.52 in chips) 
+Seat 2: Player2 ($0.90 in chips) 
+Seat 3: Hero ($2.15 in chips) 
+Seat 4: Player3 ($7.93 in chips) 
+Player2: posts small blind $0.05
+Hero: posts big blind $0.10
+Player4: sits out 
+*** DEALING HANDS ***
+Dealt to Hero [9s 8d 2s Kc 6d]
+Player5 leaves the table
+Player3: folds 
+Player1: folds 
+Player2: folds 
+Uncalled bet ($0.05) returned to Hero
+Hero collected $0.10 from pot
+*** SUMMARY ***
+Total pot $0.10 | Rake $0 
+Seat 1: Player1 (button) folded before the Draw (didn't bet)
+Seat 2: Player2 (small blind) folded before the Draw
+Seat 3: Hero (big blind) collected ($0.10)
+Seat 4: Player3 folded before the Draw (didn't bet)
+
+
+
