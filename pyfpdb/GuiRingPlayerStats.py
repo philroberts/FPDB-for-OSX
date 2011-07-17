@@ -368,35 +368,30 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         return
 
     def sortnums(self, model, iter1, iter2, nums):
-        try:
-            ret = 0
-            (n, grid) = nums
-            a = self.liststore[grid].get_value(iter1, n)
-            b = self.liststore[grid].get_value(iter2, n)
-            if 'f' in self.cols_to_show[n][4]:
-                try:     a = float(a)
-                except:  a = 0.0
-                try:     b = float(b)
-                except:  b = 0.0
-            if n == 0 and grid == 1: #make sure it only works on the starting hands
-                a1,a2,a3 = ranks[a[0]], ranks[a[1]], (a+'o')[2]
-                b1,b2,b3 = ranks[b[0]], ranks[b[1]], (b+'o')[2]
-                if a1 > b1 or ( a1 == b1 and (a2 > b2 or (a2 == b2 and a3 > b3) ) ):
-                    ret = 1
-                else:
-                    ret = -1
+        ret = 0
+        (n, grid) = nums
+        a = self.liststore[grid].get_value(iter1, n)
+        b = self.liststore[grid].get_value(iter2, n)
+        if 'f' in self.cols_to_show[n][4]:
+            try:     a = float(a)
+            except:  a = 0.0
+            try:     b = float(b)
+            except:  b = 0.0
+        if n == 0 and grid == 1: #make sure it only works on the starting hands
+            a1,a2,a3 = ranks[a[0]], ranks[a[1]], (a+'o')[2]
+            b1,b2,b3 = ranks[b[0]], ranks[b[1]], (b+'o')[2]
+            if a1 > b1 or ( a1 == b1 and (a2 > b2 or (a2 == b2 and a3 > b3) ) ):
+                ret = 1
             else:
-                if a < b:
-                    ret = -1
-                elif a == b:
-                    ret = 0
-                else:
-                    ret = 1
-            #print "n =", n, "iter1[n] =", self.liststore[grid].get_value(iter1,n), "iter2[n] =", self.liststore[grid].get_value(iter2,n), "ret =", ret
-        except:
-            err = traceback.extract_tb(sys.exc_info()[2])
-            print ("***sortnums " + _("error") + ": " + str(sys.exc_info()[1]))
-            print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
+                ret = -1
+        else:
+            if a < b:
+                ret = -1
+            elif a == b:
+                ret = 0
+            else:
+                ret = 1
+        #print "n =", n, "iter1[n] =", self.liststore[grid].get_value(iter1,n), "iter2[n] =", self.liststore[grid].get_value(iter2,n), "ret =", ret
 
         return(ret)
 

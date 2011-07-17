@@ -37,7 +37,7 @@ class Everleaf(HandHistoryConverter):
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",       # legal ISO currency codes
                             'LS' : u"\$|\u20AC|\xe2\x82\xac|\x80|",  # legal currency symbols - Euro(cp1252, utf-8) #TODO change \x80 to \x20\x80, update all regexes accordingly
-                           'TAB' : u"-\u2013'\s\da-zA-Z#_",     # legal characters for tablename
+                           'TAB' : u"-\u2013'\s\da-zA-Z#_()",     # legal characters for tablename
                            'NUM' : u".,\d",                     # legal characters in number format
                     }
     
@@ -323,5 +323,5 @@ or None if we fail to get the info """
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         if tournament:
-            return "%s - Tournament ID: %s -" % (table_number, tournament)
-        return "%s -" % (table_name)
+            return re.escape("%s - Tournament ID: %s - " % (table_number, tournament))
+        return re.escape("%s -" % (table_name))

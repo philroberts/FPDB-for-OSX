@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-06-28 03:07+CEST\n"
+"POT-Creation-Date: 2011-07-09 09:37+CEST\n"
 "PO-Revision-Date: 2011-05-14 00:18+0000\n"
 "Last-Translator: PassThePeas <stephane.alessio@gmail.com>\n"
 "Language-Team: French (France) (http://www.transifex.net/projects/p/fpdb/"
@@ -26,22 +26,22 @@ msgstr ""
 #: PacificPokerToFpdb.py:183 PartyPokerToFpdb.py:223 PartyPokerToFpdb.py:225
 #: PkrToFpdb.py:128 PkrToFpdb.py:130 PokerStarsToFpdb.py:198
 #: PokerStarsToFpdb.py:200 Win2dayToFpdb.py:101 Win2dayToFpdb.py:103
-#: WinamaxToFpdb.py:172 WinamaxToFpdb.py:174 iPokerToFpdb.py:122
-#: iPokerToFpdb.py:124
+#: WinamaxToFpdb.py:172 WinamaxToFpdb.py:174 iPokerToFpdb.py:114
+#: iPokerToFpdb.py:116
 msgid "Unable to recognise gametype from: '%s'"
 msgstr "Impossible de reconnaître le type de jeu de: '%s'"
 
 #: AbsoluteToFpdb.py:141 BetfairToFpdb.py:77 CakeToFpdb.py:133
 #: CakeToFpdb.py:159 CarbonToFpdb.py:165 CarbonToFpdb.py:193
 #: EntractionToFpdb.py:132 EverestToFpdb.py:104 EverestToFpdb.py:109
-#: EverleafToFpdb.py:129 FullTiltPokerSummary.py:98
-#: FullTiltPokerSummary.py:129 FulltiltToFpdb.py:269 FulltiltToFpdb.py:287
+#: EverleafToFpdb.py:129 FullTiltPokerSummary.py:101
+#: FullTiltPokerSummary.py:135 FulltiltToFpdb.py:269 FulltiltToFpdb.py:287
 #: OnGameToFpdb.py:162 OnGameToFpdb.py:181 PacificPokerToFpdb.py:182
 #: PartyPokerToFpdb.py:224 PartyPokerToFpdb.py:282 PkrToFpdb.py:129
 #: PkrToFpdb.py:154 PokerStarsSummary.py:82 PokerStarsSummary.py:108
 #: PokerStarsToFpdb.py:199 PokerStarsToFpdb.py:227 SitenameSummary.py:82
 #: Win2dayToFpdb.py:102 WinamaxToFpdb.py:173 WinamaxToFpdb.py:191
-#: iPokerToFpdb.py:123
+#: iPokerToFpdb.py:115
 msgid "Raising FpdbParseError"
 msgstr "Déclenchement d'une erreur de parsing FpdbParseError"
 
@@ -51,7 +51,7 @@ msgstr "Déclenchement d'une erreur de parsing FpdbParseError"
 #: EntractionToFpdb.py:168 EverestToFpdb.py:149 EverestToFpdb.py:151
 #: EverleafToFpdb.py:163 PacificPokerToFpdb.py:225 PacificPokerToFpdb.py:226
 #: PartyPokerToFpdb.py:297 PartyPokerToFpdb.py:298 PokerStarsToFpdb.py:237
-#: PokerStarsToFpdb.py:238 iPokerToFpdb.py:156 iPokerToFpdb.py:158
+#: PokerStarsToFpdb.py:238 iPokerToFpdb.py:154 iPokerToFpdb.py:156
 msgid "No match in readHandInfo: '%s'"
 msgstr "Pas de correspondance dans readHandInfo : '%s'"
 
@@ -69,7 +69,7 @@ msgstr "Ne correspond pas à re_*InfoFromFilename"
 
 #: AbsoluteToFpdb.py:279 CakeToFpdb.py:221 EverleafToFpdb.py:228
 #: FulltiltToFpdb.py:446 OnGameToFpdb.py:303 PacificPokerToFpdb.py:357
-#: PokerStarsToFpdb.py:372 Win2dayToFpdb.py:210 WinamaxToFpdb.py:360
+#: PokerStarsToFpdb.py:389 Win2dayToFpdb.py:210 WinamaxToFpdb.py:360
 msgid "reading antes"
 msgstr "lecture antes"
 
@@ -93,8 +93,8 @@ msgstr "%s ne peut pas encore lire toutes les mains de stud/razz."
 #: CarbonToFpdb.py:351 EntractionToFpdb.py:305 EverestToFpdb.py:238
 #: EverestToFpdb.py:239 EverleafToFpdb.py:295 FulltiltToFpdb.py:529
 #: OnGameToFpdb.py:346 PacificPokerToFpdb.py:439 PartyPokerToFpdb.py:571
-#: PkrToFpdb.py:351 PokerStarsToFpdb.py:454 Win2dayToFpdb.py:348
-#: WinamaxToFpdb.py:406 iPokerToFpdb.py:261
+#: PkrToFpdb.py:351 PokerStarsToFpdb.py:471 Win2dayToFpdb.py:348
+#: WinamaxToFpdb.py:406 iPokerToFpdb.py:277
 msgid "Unimplemented %s: '%s' '%s'"
 msgstr "Non implémenté %s: '%s' '%s'"
 
@@ -119,8 +119,8 @@ msgstr "Bring-In non trouvé"
 #: GuiStove.py:221 GuiStove.py:225 GuiStove.py:229 GuiStove.py:233
 #: GuiStove.py:237 GuiStove.py:239 Hand.py:507 Hand.py:1740 ImapFetcher.py:44
 #: ImapFetcher.py:53 OnGameToFpdb.py:215 OnGameToFpdb.py:346
-#: PacificPokerToFpdb.py:439 PkrToFpdb.py:351 PokerStarsToFpdb.py:454
-#: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:261
+#: PacificPokerToFpdb.py:439 PkrToFpdb.py:351 PokerStarsToFpdb.py:471
+#: Win2dayToFpdb.py:348 WinamaxToFpdb.py:406 iPokerToFpdb.py:277
 #: test_Database.py:50 test_Database.py:51
 msgid "DEBUG:"
 msgstr "DEBUG:"
@@ -717,13 +717,13 @@ msgstr "Choisir une date"
 msgid "Done"
 msgstr "Fait"
 
-#: FullTiltPokerSummary.py:97 FullTiltPokerSummary.py:99
+#: FullTiltPokerSummary.py:100 FullTiltPokerSummary.py:102
 #: PokerStarsSummary.py:81 PokerStarsSummary.py:83 SitenameSummary.py:81
 #: SitenameSummary.py:83
 msgid "Unable to recognise Tourney Info: '%s'"
 msgstr "Impossible de reconnaître les infos de tournoi: '%s'"
 
-#: FullTiltPokerSummary.py:128 FullTiltPokerSummary.py:130
+#: FullTiltPokerSummary.py:134 FullTiltPokerSummary.py:136
 #: PokerStarsSummary.py:107 PokerStarsSummary.py:109
 msgid "Unable to locate currency"
 msgstr "Impossible de trouver la devise"
@@ -746,7 +746,7 @@ msgstr "%s n'a pas réussi à identifier le bouton (main #%s annulée?)"
 
 #: FulltiltToFpdb.py:604 FulltiltToFpdb.py:817 GuiGraphViewer.py:134
 #: GuiSessionViewer.py:449 GuiTourneyGraphViewer.py:132
-#: GuiTourneyGraphViewer.py:225 WinTables.py:86 fpdb_prerun.py:97
+#: GuiTourneyGraphViewer.py:225 WinTables.py:87 fpdb_prerun.py:97
 msgid "Error:"
 msgstr "Erreur:"
 
@@ -876,7 +876,7 @@ msgstr "Parcourir..."
 msgid "Please select site"
 msgstr ""
 
-#: GuiBulkImport.py:65 GuiTourneyImport.py:326 fpdb_import.py:622
+#: GuiBulkImport.py:65 GuiTourneyImport.py:325 fpdb_import.py:585
 msgid "Importing"
 msgstr "Importation"
 
@@ -988,7 +988,7 @@ msgstr ""
 msgid "Generate and print test data for regression testing"
 msgstr "Générer et imprimer les jeux de données pour les tests de regréssion"
 
-#: GuiBulkImport.py:369 GuiTourneyImport.py:372 ImapFetcher.py:172
+#: GuiBulkImport.py:369 GuiTourneyImport.py:371 ImapFetcher.py:172
 msgid "USAGE:"
 msgstr "UTILISATION:"
 
@@ -1764,7 +1764,7 @@ msgstr "Tournois"
 msgid "Tournament Results"
 msgstr "Résultats de tournois"
 
-#: GuiTourneyImport.py:73 GuiTourneyImport.py:412
+#: GuiTourneyImport.py:73 GuiTourneyImport.py:411
 msgid "Tourney import done: Stored: %d \tErrors: %d in %s seconds - %.0f/sec"
 msgstr ""
 
@@ -1772,55 +1772,54 @@ msgstr ""
 msgid "tourney import aborted - global lock not available"
 msgstr ""
 
-#: GuiTourneyImport.py:177 fpdb_import.py:236
+#: GuiTourneyImport.py:177 fpdb_import.py:214
 msgid "Attempted to add non-directory '%s' as an import directory"
 msgstr "Tentative d'ajout d'un répertoire '%s' qui n'en est pas un"
 
-#: GuiTourneyImport.py:193
+#: GuiTourneyImport.py:192
 msgid "Tourney Summary Import started at %s - %d files to import."
 msgstr ""
 "Importation d'un résumé de tournoi commencé à %s - %d fichiers à importer."
 
-#: GuiTourneyImport.py:232
+#: GuiTourneyImport.py:231
 #, fuzzy
 msgid "Tourney import: Removing text < 100 characters from end of file: %s"
 msgstr ""
 "Importation de tournoi: Suppression du texte < 100 caractères avant la fin "
 "du fichier"
 
-#: GuiTourneyImport.py:236
+#: GuiTourneyImport.py:235
 #, fuzzy
 msgid "Tourney import: Removing text < 100 characters from start of file: %s"
 msgstr ""
 "Importation de tournoi: Suppression du texte < 100 caractères à partir du "
 "début du fichier"
 
-#: GuiTourneyImport.py:246
+#: GuiTourneyImport.py:245
 msgid "Tourney import parse error in file: %s"
 msgstr ""
 
-#: GuiTourneyImport.py:249 ImapFetcher.py:159
+#: GuiTourneyImport.py:248 ImapFetcher.py:159
 msgid "Finished importing %s/%s tournament summaries"
 msgstr "Importation terminée %s/%s résumés de tournoi"
 
-#: GuiTourneyImport.py:310 fpdb.pyw:362
+#: GuiTourneyImport.py:309 fpdb.pyw:362
 #, fuzzy
 msgid "Number of Tourneys:"
 msgstr ""
 "\n"
 "Nombres de Tournois: "
 
-#: GuiTourneyImport.py:373 GuiTourneyImport.py:374 GuiTourneyImport.py:375
-#: fpdb_import.py:557
+#: GuiTourneyImport.py:372 GuiTourneyImport.py:373 GuiTourneyImport.py:374
 #, fuzzy
 msgid "Filename"
 msgstr "Nom de fichier:"
 
-#: GuiTourneyImport.py:391 ImapFetcher.py:176
+#: GuiTourneyImport.py:390 ImapFetcher.py:176
 msgid "Need to define a converter"
 msgstr "Il faut choisir un convertisseur"
 
-#: GuiTourneyImport.py:399
+#: GuiTourneyImport.py:398
 msgid "Need a filename to import"
 msgstr "Il faut choisir un nom de fichier pour l'imporation"
 
@@ -3068,11 +3067,11 @@ msgstr ""
 "Ce module à été développé et testé avec la version 2.8.18 de gtk.  Vous "
 "utilisez la version %d.%d.%d.  Votre programme de fidélité peut varier."
 
-#: WinTables.py:83
+#: WinTables.py:84
 msgid "Window %s not found. Skipping."
 msgstr "Fenêtre %s non trouvé. Ignorée."
 
-#: WinTables.py:86
+#: WinTables.py:87
 #, fuzzy
 msgid "%s doesn't exist."
 msgstr "self.window n'existe pas ? Pourquoi ?"
@@ -3210,7 +3209,7 @@ msgstr ""
 "d'autres fenêtres ont été ouvertes. Relancez fpdb pour utiliser cette "
 "fonction."
 
-#: fpdb.pyw:361 fpdb_import.py:605
+#: fpdb.pyw:361 fpdb_import.py:568
 #, fuzzy
 msgid "Number of Hands:"
 msgstr "Nombre de Mains : "
@@ -3222,7 +3221,7 @@ msgstr ""
 "\n"
 "Nombre de Types de Tournois : "
 
-#: fpdb.pyw:364 fpdb_import.py:605
+#: fpdb.pyw:364 fpdb_import.py:568
 msgid "Database Statistics"
 msgstr "Statistiques de la Base de Données"
 
@@ -3748,19 +3747,11 @@ msgstr ""
 msgid "Unable to find site '%s'"
 msgstr "Impossible de reconnaître les informations sur la main depuis: '%s'"
 
-#: fpdb_import.py:51
-msgid "Import database module: MySQLdb not found"
-msgstr "Importation du module de base de données: MySQLdb non trouvé"
-
-#: fpdb_import.py:58
-msgid "Import database module: psycopg2 not found"
-msgstr "Importation du module de base de données: psycopg2 non trouvé"
-
-#: fpdb_import.py:201
+#: fpdb_import.py:179
 msgid "Database ID for %s not found"
 msgstr "Id de base de donnée %s non trouvé"
 
-#: fpdb_import.py:203
+#: fpdb_import.py:181
 msgid ""
 "[ERROR] More than 1 Database ID found for %s - Multiple currencies not "
 "implemented yet"
@@ -3768,76 +3759,56 @@ msgstr ""
 "[ERREUR] Plus d'1 Id de Base de Données trouvé pour %s - Devises Multiples "
 "pas encore implémenté"
 
-#: fpdb_import.py:244
+#: fpdb_import.py:222
 msgid "Started at %s -- %d files to import. indexes: %s"
 msgstr "Débuté à %s -- %d fichiers à importer. Index: %s"
 
-#: fpdb_import.py:253
+#: fpdb_import.py:231
 msgid "No need to drop indexes."
 msgstr "Inutile de supprimer les index."
 
-#: fpdb_import.py:272
+#: fpdb_import.py:250
 msgid "writers finished already"
 msgstr "Les sauvegardes sont déjà finies"
 
-#: fpdb_import.py:275
+#: fpdb_import.py:253
 msgid "waiting for writers to finish ..."
 msgstr "En attente de finition de la sauvegarde..."
 
-#: fpdb_import.py:285
+#: fpdb_import.py:263
 #, fuzzy
 msgid "... writers finished"
 msgstr "Les sauvegardes sont déjà finies"
 
-#: fpdb_import.py:291
+#: fpdb_import.py:269
 msgid "No need to rebuild indexes."
 msgstr "Inutile de reconstruire les index."
 
-#: fpdb_import.py:295
+#: fpdb_import.py:273
 msgid "No need to rebuild hudcache."
 msgstr "Inutile de reconstruire le cache hud."
 
-#: fpdb_import.py:331
+#: fpdb_import.py:309
 msgid "sending finish message queue length ="
 msgstr "Longueur du message de fin de file d'attente ="
 
-#: fpdb_import.py:456 fpdb_import.py:457
+#: fpdb_import.py:434 fpdb_import.py:435
 msgid "Converting %s"
 msgstr "Conversion %s"
 
-#: fpdb_import.py:527
+#: fpdb_import.py:505
 msgid "fpdb_import: sending hand to hud"
 msgstr "fpdb_import: Envoie de la main au HUD"
 
-#: fpdb_import.py:530
+#: fpdb_import.py:508
 msgid "Failed to send hand to HUD: %s"
 msgstr "Échec de l'envoi de la main au HUD: %s"
 
-#: fpdb_import.py:545
+#: fpdb_import.py:523
 msgid "Unknown filter filter_name:'%s' in filter:'%s'"
 msgstr "Nom filter_name de filtre inconnu:'%s' dans le filtre:'%s'"
 
-#: fpdb_import.py:556
-msgid ""
-"Error No.%s please send the hand causing this to fpdb-main@lists.sourceforge."
-"net so we can fix the problem."
-msgstr ""
-"Erreur No%s veuillez nous faire parvenir la main en cause à fpdb-main@lists."
-"sourceforge.net que nous puissions régler ce problème."
-
-#: fpdb_import.py:558
-msgid ""
-"Here is the first line of the hand so you can identify it. Please mention "
-"that the error was a ValueError:"
-msgstr ""
-"Voici la première ligne de la main pour que vous puissiez l'identifier. "
-"Veuillez préciser préciser que l'erreur avait pour valeur:"
-
-#: fpdb_import.py:560
-msgid "Hand logged to hand-errors.txt"
-msgstr "Main enregistrée dans hand-error.txt"
-
-#: fpdb_import.py:669
+#: fpdb_import.py:632
 msgid "CLI for importing hands is GuiBulkImport.py"
 msgstr "Le CLI pour l'importation de la main est GuiBulkImport.py"
 
@@ -3897,6 +3868,29 @@ msgstr ""
 #: windows_make_bats.py:57
 msgid "No gtk directories found in your path."
 msgstr ""
+
+#~ msgid "Import database module: MySQLdb not found"
+#~ msgstr "Importation du module de base de données: MySQLdb non trouvé"
+
+#~ msgid "Import database module: psycopg2 not found"
+#~ msgstr "Importation du module de base de données: psycopg2 non trouvé"
+
+#~ msgid ""
+#~ "Error No.%s please send the hand causing this to fpdb-main@lists."
+#~ "sourceforge.net so we can fix the problem."
+#~ msgstr ""
+#~ "Erreur No%s veuillez nous faire parvenir la main en cause à fpdb-"
+#~ "main@lists.sourceforge.net que nous puissions régler ce problème."
+
+#~ msgid ""
+#~ "Here is the first line of the hand so you can identify it. Please mention "
+#~ "that the error was a ValueError:"
+#~ msgstr ""
+#~ "Voici la première ligne de la main pour que vous puissiez l'identifier. "
+#~ "Veuillez préciser préciser que l'erreur avait pour valeur:"
+
+#~ msgid "Hand logged to hand-errors.txt"
+#~ msgstr "Main enregistrée dans hand-error.txt"
 
 #~ msgid ""
 #~ "Copyright 2008-2011, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, "

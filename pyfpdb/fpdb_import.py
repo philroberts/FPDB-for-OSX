@@ -183,6 +183,15 @@ class Importer:
 
     # Called from GuiBulkImport to add a file or directory. Bulk import never monitors
     def addBulkImportImportFileOrDir(self, inputPath, site = "PokerStars"):
+
+        #for windows platform, force os.walk variable to be unicode
+        # see fpdb-main post 9th July 2011
+        
+        if self.config.posix:
+            pass
+        else:
+            inputPath = unicode(inputPath)
+
         """Add a file or directory for bulk import"""
         filter = self.config.hhcs[site].converter
         # TODO: only add sane files?
