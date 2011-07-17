@@ -1597,7 +1597,7 @@ class Sql:
                         tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         tourneyId INT UNSIGNED UNSIGNED, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        played BOOLEAN,
+                        played INT NOT NULL,
                         hands INT NOT NULL,
                         tourneys INT NOT NULL,
                         totalProfit INT)
@@ -1618,7 +1618,7 @@ class Sql:
                         tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        played BOOLEAN,
+                        played INT,
                         hands INT,
                         tourneys INT,
                         totalProfit INT)
@@ -4830,7 +4830,7 @@ class Sql:
         # Queries to rebuild/modify sessionscache
         ####################################
         
-        self.query['clearSessionsCache'] = """DELETE FROM SessionsCache"""
+        self.query['clearSessionsCache'] = """DROP TABLE IF EXISTS SessionsCache"""
         
         self.query['rebuildSessionsCache'] = """
                     SELECT Hands.id as id,
@@ -4839,18 +4839,18 @@ class Sql:
                     Hands.gametypeId as gametypeId,
                     Gametypes.type as game,
                     Hands.tourneyId as tourneyId,
+                    <tourney_type_clause>
                     HandsPlayers.totalProfit as totalProfit,
-                    Tourneys.tourneyTypeId as tourneyTypeId,
                     HandsPlayers.street0VPI as street0VPI,
                     HandsPlayers.street1Seen as street1Seen
-                    FROM Gametypes, HandsPlayers, Hands
-                    LEFT JOIN Tourneys ON Hands.tourneyId = Tourneys.tourneyTypeId
-                    WHERE HandsPlayers.handId = Hands.id
-                    AND   Hands.gametypeId = Gametypes.id
-                    AND (case when HandsPlayers.playerId = <where_clause> then 1 else 0 end) = 1
-                    AND Hands.id >= %s
-                    AND Hands.id < %s
-                    ORDER BY Hands.startTime ASC"""
+                    FROM  HandsPlayers HandsPlayers
+                    INNER JOIN Hands ON (HandsPlayers.handId = Hands.id)
+                    INNER JOIN Gametypes ON (Gametypes.id = Hands.gametypeId)
+                    <tourney_join_clause>
+                    WHERE  (HandsPlayers.playerId = <where_clause>)
+                    AND Gametypes.type = %s
+                    ORDER BY Hands.startTime ASC
+                    LIMIT %s, %s"""
                     
         self.query['rebuildSessionsCacheSum'] = """
                     SELECT Tourneys.id as id,
@@ -4895,6 +4895,7 @@ class Sql:
                     sessionEnd=%s,
                     gameStart=%s,
                     gameEnd=%s,
+                    played=played+%s,
                     hands=hands+%s,
                     tourneys=tourneys+%s, 
                     totalProfit=totalProfit+%s
@@ -4928,8 +4929,7 @@ class Sql:
                         (case when tourneyTypeId=%s then 1 else 0 end) end)=1
                     AND (case when tourneyId is NULL then 1 else 
                         (case when tourneyId=%s then 1 else 0 end) end)=1
-                    AND playerId=%s
-                    AND played=%s"""
+                    AND playerId=%s"""
                     
         self.query['insert_SC'] = """
                     insert into SessionsCache (
