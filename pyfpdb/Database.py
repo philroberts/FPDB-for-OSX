@@ -1603,8 +1603,10 @@ class Database:
         max.append(c.fetchone()[0])
         c.execute("SELECT count(id) FROM Hands WHERE tourneyId is NULL")
         max.append(c.fetchone()[0])
+        c.execute(self.sql.query['dropSessionIdIndex'])
+        c.execute(self.sql.query['dropHandsSessionIdIndex'])
+        c.execute(self.sql.query['dropHandsGameSessionIdIndex'])
         c.execute(self.sql.query['clearSessionsCache'])
-        self.commit()
         c.execute(self.sql.query['createSessionsCacheTable'])
         self.commit()
         
@@ -1640,6 +1642,12 @@ class Database:
                         break
                 start += limit
             self.commit()
+        # Create sessionscache indexes
+        log.debug("Creating SessionsCache indexes")
+        c.execute(self.sql.query['addSessionIdIndex'])
+        c.execute(self.sql.query['addHandsSessionIdIndex'])
+        c.execute(self.sql.query['addHandsGameSessionIdIndex'])
+        self.commit()
         
 
     def get_hero_hudcache_start(self):

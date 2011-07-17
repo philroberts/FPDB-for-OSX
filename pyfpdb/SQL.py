@@ -1643,11 +1643,13 @@ class Sql:
                         tourneys INT,
                         totalProfit INT)
                         """
+        
+        self.query['dropSessionIdIndex'] = "ALTER TABLE SessionsCache DROP INDEX index_SessionId"
+        self.query['dropHandsSessionIdIndex'] = "ALTER TABLE Hands DROP INDEX index_handsSessionId"
+        self.query['dropHandsGameSessionIdIndex'] = "ALTER TABLE Hands DROP INDEX index_handsGameSessionId"
                         
         self.query['addSessionIdIndex'] = """CREATE INDEX index_SessionId ON SessionsCache (sessionId)"""
-        
         self.query['addHandsSessionIdIndex'] = """CREATE INDEX index_handsSessionId ON Hands (sessionId)"""
-        
         self.query['addHandsGameSessionIdIndex'] = """CREATE INDEX index_handsGameSessionId ON Hands (gameSessionId)"""
 
         if db_server == 'mysql':
