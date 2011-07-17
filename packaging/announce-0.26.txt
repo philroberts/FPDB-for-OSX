@@ -1,8 +1,5 @@
-Replace all occurrences of XXX with the real values.
-Remove or leave YYY(foobar)YYY sections as appropriate.
-
 Hello everyone,
-The new fpdb release XXX is now available for download as source or as packages/installers for Debian, Gentoo, Ubuntu and Windows. This version brings many improvements and bugfixes, we listed some of them later on.
+The new fpdb release 0.26 is now available for download as source or as packages/installers for Debian, Gentoo, Ubuntu and Windows. This version brings many improvements and bugfixes, we listed some of them later on.
 
 So... what is FPDB?
 ===================
@@ -14,26 +11,41 @@ FPDB provides a Heads Up Display (HUD), Profit Grapher and Stats viewers with a 
 
 What's changed
 ==============
-XXX changesets (incl. merges) have gone in since XXX. Some of the improvements, in no particular order, are:
+281 changesets (incl. merges) have gone in since 0.25. Some of the improvements, in no particular order, are:
 
 Parser Changes:
-XXX
+- Stars: Polish on the summary parsing (e.g. 8Game, HORSE); Fixes for various draw games
+- FTP: Much improved summary parsing (bad timing, sorrow did most of this just before they were shut down :( )
+- Everleaf: HUD now works in cap limit games
+- Party: Fixes for tourneys
+- iPoker: Major update
+- Carbon: Fix parsing of amounts; fixed limit stake recording; support A-5 lowball and single draw; Tourney improvements
 
 HUD&GUI&Analysis Changes:
-XXX
+- A whole bunch of interface improvements for the viewers.
+- Many fixes/improvements to the session viewer
+- Improved HUD defaults
+- Add currency filter (especially important to remove play money hands from analysis)
+- Order-of-magnitude better performance for updating the HUD on the default sqlite database
 
 Other Changes:
-XXX
+- Fair bit of translations and string cleaning
+- Update bundled libraries of the Windows installer
+- Misc cleanups
+- Various backend improvements, especially for MySQL and sessions
+- Another fix for non-English filenames on Windows
+- Assorted other stuff
+- Improved automated testing
 
 For the full changelog or to look at ongoing development please visit http://trac-git.assembla.com/fpdb/timeline
 
 Languages
 =========
-Fpdb XXX is fully translated into XXX, and mostly translated into XXX. There's partial translations for XXX. Any help with translations would be appreciated.
+Fpdb 0.26 is fully translated into English and Hungarian, and mostly translated into French and Romanian. There's partial translations for Spanish, Italian, Lithuanian, Polish, Portuguese and Russian. Any help with translations would be appreciated.
 
 How to download/update
 ======================
-Please note that you will have to either recreate your database or use a new one if you're updating from XXX or older. Fpdb will warn you if your database is incompatible and will not work properly unless you recreate or use a new one.
+Please note that you will have to either recreate your database or use a new one if you're updating from 0.25 or older. Fpdb will warn you if your database is incompatible and will not work properly unless you recreate or use a new one.
 Config files from 0.20 and later should work. Please report if you have problems with config files from that version or later.
 You can find checksums (MD5 and SHA512) in the download folder.
 To download: https://sourceforge.net/projects/fpdb/files/fpdb/XXX/
@@ -78,16 +90,15 @@ You can find most of these details for easy copy&paste in the Help menu under Ab
 
 Important known problems
 ========================
-YYY(PKR is not working correctly)YYY
+PKR is not working correctly
 
 Notice for Windows users
 ========================
-YYY(First-time installs may need to download and install the C++ runtime executable from Microsoft.)YYY
-YYY(Fpdb on Windows is not currently compatible with PostgreSQL 9.x (it works fine in Linux).)YYY
+First-time installs may need to download and install the C++ runtime executable from Microsoft. Fpdb on Windows is not currently compatible with PostgreSQL 9.x (it works fine in Linux).
 
 Notice for Arch Linux users
 ===========================
-YYY(You will need to change the shebang in fpdb.pyw and HUD_main.pyw from python to python2. Join us in IRC if you have questions about this.)YYY
+You will need to change the shebang in fpdb.pyw and HUD_main.pyw from python to python2. Join us in IRC if you have questions about this.
 
 Contributors
 ============
