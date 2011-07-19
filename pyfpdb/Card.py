@@ -25,6 +25,68 @@ card_map = { "0": 0, "2": 2, "3" : 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 
 card_map_low = { "0": 0, "A":1, "2": 2, "3" : 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 8,
             "9" : 9, "T" : 10, "J" : 11, "Q" : 12, "K" : 13}
 
+games = {              # base, category
+             'holdem' : ('hold','holdem', 'h'), 
+            'omahahi' : ('hold','omaha','h'), 
+          'omahahilo' : ('hold','omaha8', 's'),
+               'razz' : ('stud','razz', 'l'), 
+             'studhi' : ('stud','7stud', 'h'), 
+           'studhilo' : ('stud','7stud8', 's'),
+           '27_3draw' : ('draw','lowball27', 'r'),
+           'fivedraw' : ('draw','5draw', 'h'),
+             'badugi' : ('draw','lowball27', 'l'),
+           '27_1draw' : ('draw','lowball27', 'r')
+       }
+
+hands = {'hi':{
+            'NoPair'  : 'high card, %s',
+            'OnePair' : 'a pair of %s',
+            'TwoPair' : 'two pair, %s',
+            'Trips'   : 'three of a kind, %s',
+            'Straight': 'a straight, %s',
+            'Flush'   : 'a flush, %s',
+            'FlHouse' : 'a full house, %s',
+            'Quads'   : 'four of a kind, %s',
+            'StFlush' : 'a straight flush, %s'
+            },
+         'lo':{
+            'Nothing' : '%s',
+            'NoPair'  : '%s',
+            'OnePair' : 'a pair of %s',
+            'TwoPair' : 'two pair, %s',
+            'Trips'   : 'three of a kind, %s',
+            'FlHouse' : 'a full house, %s',
+            'Quads'   : 'four of a kind, %s',
+            }
+         }
+
+names = {
+            'A' : ('Ace', 'Aces', 14),
+            'K' : ('King', 'Kings', 13),
+            'Q' : ('Queen', 'Queens', 12),
+            'J' : ('Jack', 'Jacks', 11),
+            'T' : ('Ten', 'Tens', 10),
+            '9' : ('Nine', 'Nines', 9),
+            '8' : ('Eight', 'Eights', 8),
+            '7' : ('Seven', 'Sevens', 7),
+            '6' : ('Six', 'Sixes', 6),
+            '5' : ('Five', 'Fives', 5),
+            '4' : ('Four', 'Fours', 4),
+            '3' : ('Three', 'Threes', 3),
+            '2' : ('Two', 'Twos', 2)
+            }
+
+streets = {'stud': {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4},
+           'hold': {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3},
+           'draw': {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}
+          }
+
+iter = {0: 100000,
+        1: 0,
+        2: 0,
+        3: 0
+        }
+
 def decodeStartHandValue(game, value):
     if game == "holdem":
         return twoStartCardString(value)

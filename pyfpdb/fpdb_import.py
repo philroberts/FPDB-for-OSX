@@ -460,7 +460,7 @@ class Importer:
                 if self.caller: hhc.progressNotify()
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
-                (hbulk, hpbulk, habulk, hcbulk, phands, ihands, to_hud) = ([], [], [], [], [], [], [])
+                (hbulk, hpbulk, habulk, hcbulk, hsbulk, phands, ihands, to_hud) = ([], [], [], [], [], [], [], [])
                 sc, gsc = {'bk': []}, {'bk': []}
                 
                 ####Lock Placeholder####
@@ -514,6 +514,7 @@ class Importer:
                     hand = ihands[i]
                     hpbulk = hand.insertHandsPlayers(self.database, hpbulk, doinsert, self.settings['testData'])
                     habulk = hand.insertHandsActions(self.database, habulk, doinsert, self.settings['testData'])
+                    hsbulk = hand.insertHandsStove(self.database, hsbulk, doinsert)
                 self.database.commit()
 
                 #pipe the Hands.id out to the HUD

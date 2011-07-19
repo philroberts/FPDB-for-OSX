@@ -267,6 +267,7 @@ dealt   whether they were seen in a 'dealt to' line
         self.stats.getStats(self)
         self.hands = self.stats.getHands()
         self.handsplayers = self.stats.getHandsPlayers()
+        self.handsstove = self.stats.getHandsStove()
         
     def getHandId(self, db, id):    
         if db.isDuplicate(self.dbid_gt, self.hands['siteHandNo']):
@@ -297,9 +298,14 @@ dealt   whether they were seen in a 'dealt to' line
     
     def insertHandsActions(self, db, habulk, doinsert = False, printtest = False):
         """ Function to inserts HandsActions into database"""
-        handsactions = self.stats.getHandsActions()
-        habulk = db.storeHandsActions(self.dbid_hands, self.dbid_pids, handsactions, habulk, doinsert, printtest)
+        habulk = db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.handsactions, habulk, doinsert, printtest)
         return habulk
+    
+    def insertHandsStove(self, db, hsbulk, doinsert = False):
+        """ Function to inserts HandsActions into database"""
+        if self.handsstove:
+            hsbulk = db.storeHandsStove(self.handsstove, hsbulk, doinsert)
+        return hsbulk
 
     def updateHudCache(self, db, hcbulk, doinsert = False):
         """ Function to update the HudCache"""
