@@ -455,16 +455,19 @@ class Database:
                     pass
             if not self.is_connected():
                 try:
+                    print(host, user, password, database)
                     self.connection = psycopg2.connect(host = host,
                                                user = user,
                                                password = password,
                                                database = database)
                     self.__connected = True
                 except Exception, ex:
-                    if 'Connection refused' in ex.args[0]:
+                    if 'Connection refused' in ex.args[0] or ('database "' in ex.args[0] and '" does not exist' in ex.args[0]):
                         # meaning eg. db not running
                         raise FpdbPostgresqlNoDatabase(errmsg = ex.args[0])
                     elif 'password authentication' in ex.args[0]:
+                        raise FpdbPostgresqlAccessDenied(errmsg = ex.args[0])
+                    elif 'role "' in ex.args[0] and '" does not exist' in ex.args[0]: #role "fpdb" does not exist
                         raise FpdbPostgresqlAccessDenied(errmsg = ex.args[0])
                     else:
                         msg = ex.args[0]
@@ -1604,35 +1607,43 @@ class Database:
         rebuildSessionsCache    = rebuildSessionsCache.replace('<where_clause>', where)
         rebuildSessionsCacheSum = rebuildSessionsCacheSum.replace('<where_clause>', where_summary)
         
+        start, end, limit = 0, 5000, 5000
         c = self.get_cursor()
+        c.execute("SELECT count(id) FROM Hands")
+        max = c.fetchone()[0]
         c.execute(self.sql.query['clearSessionsCache'])
         self.commit()
-        
-        sc, gsc = {'bk': []}, {'bk': []}
-        c.execute(rebuildSessionsCache)
-        tmp = c.fetchone()
-        while True:
-            pids, game, pdata = {}, {}, {}
-            pdata['pname'] = {}
-            id                              = tmp[0]
-            startTime                       = tmp[1]
-            pids['pname']                   = tmp[2]
-            gid                             = tmp[3]
-            game['type']                    = tmp[4]
-            pdata['pname']['totalProfit']   = tmp[5]
-            pdata['pname']['tourneyTypeId'] = tmp[6]
-            pdata['pname']['street0VPI']    = tmp[7]
-            pdata['pname']['street1Seen']   = tmp[8]
+        while start < max:
+            print start, end
+            sc, gsc = {'bk': []}, {'bk': []}
+            c.execute(rebuildSessionsCache, (start, end))
             tmp = c.fetchone()
-            sc  = self.prepSessionsCache (id, pids, startTime, sc , heros, tmp == None)
-            gsc = self.storeSessionsCache(id, pids, startTime, game, gid, pdata, sc, gsc, None, heros, tmp == None)
-            if tmp == None:
-                for i, id in sc.iteritems():
-                    if i!='bk':
-                        sid =  id['id']
-                        gid =  gsc[i]['id']
-                        c.execute("UPDATE Hands SET sessionId = %s, gameSessionId = %s WHERE id = %s", (sid, gid, i))
-                break
+            while True:
+                pids, game, pdata = {}, {}, {}
+                pdata['pname'] = {}
+                id                              = tmp[0]
+                startTime                       = tmp[1]
+                pids['pname']                   = tmp[2]
+                gid                             = tmp[3]
+                game['type']                    = tmp[4]
+                tid                             = tmp[5]
+                pdata['pname']['totalProfit']   = tmp[6]
+                pdata['pname']['tourneyTypeId'] = tmp[7]
+                pdata['pname']['street0VPI']    = tmp[8]
+                pdata['pname']['street1Seen']   = tmp[9]
+                tmp = c.fetchone()
+                sc  = self.prepSessionsCache (id, pids, startTime, sc , heros, tmp == None)
+                gsc = self.storeSessionsCache(id, pids, startTime, game, gid, tid, pdata, sc, gsc, None, heros, tmp == None)
+                if tmp == None:
+                    for i, id in sc.iteritems():
+                        if i!='bk':
+                            sid =  id['id']
+                            gid =  gsc[i]['id']
+                            c.execute("UPDATE Hands SET sessionId = %s, gameSessionId = %s WHERE id = %s", (sid, gid, i))
+                            self.commit()
+                    break
+            start += limit
+            end += limit
         self.commit()
         
         sc, gsc = {'bk': []}, {'bk': []}
@@ -1654,7 +1665,7 @@ class Database:
             info['fee']                       = tmp[8]
             tmp = c.fetchone()    
             sc  = self.prepSessionsCache (id, pids, startTime, sc , heros, tmp == None)
-            gsc = self.storeSessionsCache(id, pids, startTime, game, None, info, sc, gsc, None, heros, tmp == None)
+            gsc = self.storeSessionsCache(id, pids, startTime, game, None, id, info, sc, gsc, None, heros, tmp == None)
             if tmp == None:
                 break
 
@@ -2320,7 +2331,7 @@ class Database:
                 hand['tourneys'] = 0
                 hand['tourneyTypeId'] = None
                 hand['tourneyId'] = tid
-                hand['played'] = 0
+                hand['played'] = 1 #0 Disabling played hands caching until it can be made less resource intensive
                 hand['ids'] = []
                 if (game['type']=='summary'):
                     hand['type'] = 'tour'
@@ -2379,9 +2390,12 @@ class Database:
                 if    gsc['bk'][id[0]]['gameStart'] < gsc['bk'][id[1]]['gameStart']:
                       gsc['bk'][id[0]]['gameEnd']   = gsc['bk'][id[1]]['gameEnd']
                 else: gsc['bk'][id[0]]['gameStart'] = gsc['bk'][id[1]]['gameStart']
-                gsc['bk'][id[0]]['hands']         += hand['hands']
-                gsc['bk'][id[0]]['tourneys']      += hand['tourneys']
-                gsc['bk'][id[0]]['totalProfit']   += hand['totalProfit']
+                gsc['bk'][id[0]]['hands']          += gsc['bk'][id[1]]['hands']
+                gsc['bk'][id[0]]['tourneys']       += gsc['bk'][id[1]]['tourneys']
+                gsc['bk'][id[0]]['totalProfit']    += gsc['bk'][id[1]]['totalProfit']
+                gsc['bk'][id[0]]['hands']          += hand['hands']
+                gsc['bk'][id[0]]['tourneys']       += hand['tourneys']
+                gsc['bk'][id[0]]['totalProfit']    += hand['totalProfit']
                 gh = gsc['bk'].pop(id[1])
                 gsc['bk'][id[0]]['ids'].append(hid)
                 gsc['bk'][id[0]]['ids'] += gh['ids']

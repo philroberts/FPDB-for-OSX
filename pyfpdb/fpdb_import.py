@@ -494,6 +494,15 @@ class Importer:
                         to_hud.append(hand.dbid_hands)
                     except Exceptions.FpdbHandDuplicate:
                         duplicates += 1
+                        #If last hand in the file is a duplicate this will backtrack and insert the new hand records
+                        if (doinsert and ihands):
+                            hand = ihands[-1]
+                            hp = hand.handsplayers
+                            hand.hero, hbulk, hand.handsplayers  = 0, hbulk[:-1], [] #making sure we don't insert data from this hand
+                            sc, gsc = hand.updateSessionsCache(self.database, sc, gsc, None, doinsert)
+                            hbulk = hand.insertHands(self.database, hbulk, fileId, doinsert, self.settings['testData'])
+                            hcbulk = hand.updateHudCache(self.database, hcbulk, doinsert)
+                            hand.handsplayers = hp
                 #log.debug("DEBUG: hand.updateSessionsCache: %s" % (t5tot))
                 #log.debug("DEBUG: hand.insertHands: %s" % (t6tot))
                 #log.debug("DEBUG: hand.updateHudCache: %s" % (t7tot))
