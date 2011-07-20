@@ -70,6 +70,7 @@ RSOAndrew
 Translations (alphabetically by language)
 ============
 sjp (Chinese zh_CN)
+kibbitzer (French fr_FR)
 PassThePeas (French fr_FR)
 tribumarchal (French fr_FR)
 Wedge (French fr_FR))
