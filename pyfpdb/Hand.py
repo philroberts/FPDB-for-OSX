@@ -298,12 +298,14 @@ dealt   whether they were seen in a 'dealt to' line
     
     def insertHandsActions(self, db, habulk, doinsert = False, printtest = False):
         """ Function to inserts HandsActions into database"""
-        habulk = db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.handsactions, habulk, doinsert, printtest)
+        handsactions = self.stats.getHandsActions()
+        habulk = db.storeHandsActions(self.dbid_hands, self.dbid_pids, handsactions, habulk, doinsert, printtest)
         return habulk
     
     def insertHandsStove(self, db, hsbulk, doinsert = False):
         """ Function to inserts HandsActions into database"""
         if self.handsstove:
+            for hs in self.handsstove: hs[0] = self.dbid_hands
             hsbulk = db.storeHandsStove(self.handsstove, hsbulk, doinsert)
         return hsbulk
 

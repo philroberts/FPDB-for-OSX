@@ -217,8 +217,8 @@ class Database:
                     , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsStove', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsStove', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsStove',   'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsStove',   'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                     , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
@@ -2007,7 +2007,8 @@ class Database:
         return habulk
     
     def storeHandsStove(self, sdata, hsbulk, doinsert):
-        hsbulk += sdata  
+        #print sdata
+        hsbulk += sdata
         if doinsert and hsbulk:
             q = self.sql.query['store_hands_stove']
             q = q.replace('%s', self.sql.query['placeholder'])
@@ -2458,7 +2459,7 @@ class Database:
                         hands         += n['hands']
                         tourneys      += n['tourneys']
                         totalProfit   += n['totalProfit']
-                        allInEV       += n['totalProfit']
+                        allInEV       += n['allInEV']
                     row = [start, end, gstart, gend, sid] + game + [played, hands, tourneys, totalProfit, allInEV]
                     c.execute(insert_SC, row)
                     gsid = self.get_last_insert_id(c)

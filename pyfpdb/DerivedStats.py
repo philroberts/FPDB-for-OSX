@@ -244,7 +244,7 @@ class DerivedStats():
 
         for player in hand.pot.committed:
             self.handsplayers[player]['totalProfit'] = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player])- (100*hand.pot.common[player]))
-            if hand.gametype['type'] == 'ring':
+            if hand.gametype['type'] == 'ring' and pokereval:
                 self.handsplayers[player]['allInEV'] = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player])- (100*hand.pot.common[player]))
 
         self.calcCBets(hand)
@@ -429,7 +429,8 @@ class DerivedStats():
                                              for k in range(len(inserts_temp)):
                                                  if ((boardId == inserts_temp[k][3]) and (histring == inserts_temp[k][6]) and
                                                     (histringvalue != inserts_temp[k][8]) and (histring is not None) and (winnings>0) and
-                                                    (streetId == inserts_temp[k][2]) and (hand.dbid_pids[player[1]] != inserts_temp[k][1])):
+                                                    (streetId == inserts_temp[k][2]) and (hand.dbid_pids[player[1]] != inserts_temp[k][1])
+                                                    and ('Flush' not in histring)):
                                                      hiappend = ' - higher kicker'
                                                      if histringvalue > inserts_temp[k][8]:
                                                          histring += hiappend
@@ -475,7 +476,7 @@ class DerivedStats():
             for n in range(len(board['board'])):
                 if len(board['board']) > 1: 
                     bid = n + 1
-                    portion = 0.5
+                    portion = 2
                 else: 
                     bid = n
                     portion = 1
@@ -495,9 +496,10 @@ class DerivedStats():
                             if ((j[1] == pid) and (j[2] == tid) and (j[3] == bid)):
                                 j[6] = equities[v]
                                 if street == startstreet and hand.gametype['type'] == 'ring':
-                                    allInEV = int((self.handsplayers[board['players'][v]]['winnings'] * equities[v] 
+                                    print hand.totalcollected, Decimal(equities[v])/1000, 
+                                    allInEV = int((100*hand.totalcollected * Decimal(equities[v])/1000 
                                                  - (100*hand.pot.committed[board['players'][v]])
-                                                 - (100*hand.pot.common[board['players'][v]]))* portion)
+                                                 - (100*hand.pot.common[board['players'][v]]))/portion)
                                     if bid == 2:
                                         self.handsplayers[board['players'][v]]['allInEV'] += allInEV
                                     else:

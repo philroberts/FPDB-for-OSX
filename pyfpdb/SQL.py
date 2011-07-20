@@ -4999,7 +4999,7 @@ class Sql:
                     tourneys,
                     totalProfit,
                     allInEV)
-                    values (%s, %s, %s, %s, %s, %s, %s, %s
+                    values (%s, %s, %s, %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s, %s, %s, %s)"""
                             
         self.query['update_Hands_gsid'] = """
@@ -5304,6 +5304,7 @@ class Sql:
                 winnings,
                 rake,
                 totalProfit,
+                allInEV,
                 street0VPI,
                 street1Seen,
                 street2Seen,
@@ -5452,7 +5453,7 @@ class Sql:
                         ev
                )
                values (
-                    %s, %s,  %s, %s, %s,
+                    %s, %s, %s, %s, %s,
                     %s, %s
                )"""
                 
