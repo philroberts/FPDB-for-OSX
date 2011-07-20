@@ -474,14 +474,14 @@ def encodeRazzStartHand(cards):
     return encodeRazzList[startHand]
 
 if __name__ == '__main__':
-    print "1) Card from list id (suitFromCardList: 1=2h)"
-    print "2) listid from Card (encodeCardList: 2h=2)"
+    print("1) Card from list id (suitFromCardList: 1=2h)")
+    print("2) listid from Card (encodeCardList: 2h=2)")
     s = raw_input('--> ')
     if s == '1':
         cardid = raw_input('Enter cardid: ')
-        print "Value: '%s'" % suitFromCardList[int(cardid)]
+        print("Value: '%s'" % suitFromCardList[int(cardid)])
     elif s == '2':
         while True:
             cardid = raw_input('Enter card: ')
-            print "Encoded card: '%s'" % encodeCard(cardid)
+            print("Encoded card: '%s'" % encodeCard(cardid))
 

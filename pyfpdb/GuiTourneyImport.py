@@ -152,12 +152,16 @@ class SummaryImporter:
         self.sql        = sql
         self.parent     = parent
         self.caller     = caller
+        self.settings   = { 'testData':False }
 
         self.filelist   = {}
         self.dirlist    = {}
 
         self.updatedsize = {}
         self.updatedtime = {}
+
+    def setPrintTestData(self, value):
+        self.settings['testData'] = value
 
     def addImportFile(self, filename, site = "default", tsc = "passthrough"):
         if filename in self.filelist or not os.path.exists(filename):
@@ -249,6 +253,7 @@ class SummaryImporter:
                 doinsert = len(summaryTexts)==j
                 try:
                     conv = obj(db=None, config=self.config, siteName=site, summaryText=summaryText, builtFrom = "IMAP")
+                    conv.insertOrUpdate(printtest = self.settings['testData'])
                     sc, gsc = conv.updateSessionsCache(sc, gsc, None, doinsert)
                 except FpdbParseError, e:
                     log.error(_("Tourney import parse error in file: %s") % filename)
@@ -413,6 +418,8 @@ def main(argv=None):
     importer = SummaryImporter(config, sql, None, None)
 
     importer.addImportFileOrDir(options.filename, site = options.hhc)
+    if options.testData:
+        importer.setPrintTestData(True)
     starttime = time()
     (stored, errs) = importer.runImport()
 

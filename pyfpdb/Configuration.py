@@ -175,15 +175,15 @@ def get_config(file_name, fallback = True):
                 example_copy = True
                 msg = _("No %s found in \"%s\" or \"%s\".") % (file_name, FPDB_PROGRAM_PATH, CONFIG_PATH) \
                      + " " + _("Config file has been created at %s.") % (config_path+"\n")
-                print msg
+                print(msg)
                 logging.info(msg)
         except:
-            print _("Error copying .example config file, cannot fall back. Exiting."), "\n"
+            print(_("Error copying .example config file, cannot fall back. Exiting."), "\n")
             sys.stderr.write(_("Error copying .example config file, cannot fall back. Exiting.")+"\n")
             sys.stderr.write( str(sys.exc_info()) )
             sys.exit()
     elif fallback:
-        print _("No %s found, cannot fall back. Exiting.") % file_name, "\n"
+        print(_("No %s found, cannot fall back. Exiting.") % file_name, "\n")
         sys.stderr.write((_("No %s found, cannot fall back. Exiting.") % file_name) + "\n")
         sys.exit()
 
@@ -229,7 +229,7 @@ def check_dir(path, create = True):
             return False
     if create:
         msg = _("Creating directory: '%s'") % (path)
-        print msg
+        print(msg)
         log.info(msg)
         os.mkdir(path)#, "utf-8"))
     else:
@@ -255,7 +255,7 @@ LOCALE_ENCODING = locale.getpreferredencoding()
 if LOCALE_ENCODING in ("US-ASCII", "", None):
     LOCALE_ENCODING = "cp1252"
     if (os.uname()[0]!="Darwin"):
-        print _("Default encoding set to US-ASCII, defaulting to CP1252 instead."), _("Please report this problem.")
+        print(_("Default encoding set to US-ASCII, defaulting to CP1252 instead."), _("Please report this problem."))
     
 # needs LOCALE_ENCODING (above), imported for sqlite setup in Config class below
 import Charset
@@ -619,7 +619,7 @@ class GUICashStats(list):
                 try:
                     if child.hasAttribute('xalignment'):   xalignment   = float(child.getAttribute('xalignment'))
                 except ValueError:
-                    print _("bad number in xalignment was ignored")
+                    print(_("bad number in xalignment was ignored"))
                     log.info(_("bad number in xalignment was ignored"))
 
                 self.append( [col_name, col_title, disp_all, disp_posn, field_format, field_type, xalignment] )
@@ -727,7 +727,7 @@ class Config:
         if file is not None: # config file path passed in
             file = os.path.expanduser(file)
             if not os.path.exists(file):
-                print _("Configuration file %s not found. Using defaults.") % (file)
+                print(_("Configuration file %s not found. Using defaults.") % (file))
                 sys.stderr.write(_("Configuration file %s not found. Using defaults.") % (file))
                 file = None
 
@@ -909,11 +909,11 @@ class Config:
                             cnode.appendChild(new)
                             t_node = self.doc.createTextNode("\r\n\r\n")
                             cnode.appendChild(t_node)
-                            print "... adding missing config section: " + e.localName
+                            print("... adding missing config section: " + e.localName)
                             nodes_added = nodes_added + 1
 
         if nodes_added > 0:
-            print "Added %d missing config sections\n" % nodes_added
+            print("Added %d missing config sections\n" % nodes_added)
             self.save()
 
         return nodes_added
@@ -941,7 +941,6 @@ class Config:
         siteNode = self.get_site_node(siteName)
         for emailNode in siteNode.getElementsByTagName("email"):
             if emailNode.getAttribute("fetchType") == fetchType:
-                print "found emailNode"
                 return emailNode
                 break
     #end def getEmailNode

@@ -62,6 +62,8 @@ def fpdb_options():
                     help=_("Input out path in quiet mode"))
     parser.add_option("-a", "--archive", action="store_true", dest="archive", default=False,
                     help=_("File to be split is a PokerStars or Full Tilt Poker archive file"))
+    parser.add_option("-t", "--testdata", action="store_true", dest="testData", default=False,
+                    help=_("Developer option to print regression test data"))
     parser.add_option("-n", "--numhands", dest="hands", default="100", type="int",
                     help=_("How many hands do you want saved to each file. Default is 100"))
     parser.add_option("--xloc", dest="xloc", default=None, type="int",
