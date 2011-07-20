@@ -1,0 +1,216 @@
+Everleaf Gaming Game #288496467
+***** Hand history for game #288496467 *****
+Blinds 30/60 NL Hold'em - 2011/07/17 - 15:26:09
+Table 1
+Seat 10 is the button
+Total number of players: 7
+Seat 1: Whiskerrr (  965 Chips )
+Seat 2: Chatje (  2010 Chips )
+Seat 3: mirek61 (  730 Chips )
+Seat 4: delpiero81 (  620 Chips )
+Seat 5: TARIK_3 (  1000 Chips )
+Seat 6: EricBlade (  1000 Chips )
+Seat 10: tony31088 (  3865 Chips )
+Whiskerrr: posts small blind [ 30 Chips]
+Chatje: posts big blind [ 60 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ Td, Th ]
+mirek61 folds
+delpiero81 raises [ 120 Chips]
+TARIK_3 folds
+EricBlade raises [ 450 Chips]
+tony31088 folds
+Whiskerrr folds
+Chatje folds
+delpiero81 calls [ 330 Chips]
+** Dealing Flop ** [ As, Js, Jd ]
+delpiero81 folds
+EricBlade does not show cards
+EricBlade wins 990 chips from main pot
+
+
+
+Everleaf Gaming Game #288496624
+***** Hand history for game #288496624 *****
+Blinds 30/60 NL Hold'em - 2011/07/17 - 15:26:55
+Table 1
+Seat 1 is the button
+Total number of players: 7
+Seat 1: Whiskerrr (  935 Chips )
+Seat 2: Chatje (  1950 Chips )
+Seat 3: mirek61 (  730 Chips )
+Seat 4: delpiero81 (  170 Chips )
+Seat 5: TARIK_3 (  1000 Chips )
+Seat 6: EricBlade (  1540 Chips )
+Seat 7: anem2 ( new player )
+Seat 10: tony31088 (  3865 Chips )
+Chatje: posts small blind [ 30 Chips]
+mirek61: posts big blind [ 60 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ 9s, Ts ]
+delpiero81 calls [ 60 Chips]
+TARIK_3 calls [ 60 Chips]
+EricBlade calls [ 60 Chips]
+anem2 has been reseated to this table
+tony31088 folds
+Whiskerrr folds
+Chatje calls [ 30 Chips]
+mirek61 checks
+** Dealing Flop ** [ Ah, 6h, 8h ]
+Chatje checks
+mirek61 checks
+delpiero81: bets [ 110 Chips]
+TARIK_3 calls [ 110 Chips]
+EricBlade folds
+Chatje folds
+mirek61 calls [ 110 Chips]
+** Dealing Turn ** [ 9h ]
+mirek61 checks
+TARIK_3 checks
+** Dealing River ** [ Ad ]
+mirek61 checks
+TARIK_3: bets [ 630 Chips]
+mirek61 calls [ 560 Chips]
+TARIK_3 shows [ As, Qd ] three of a kind, aces
+mirek61 shows [ 2d, Kh ] a flush, ace high
+delpiero81 does not show cards
+mirek61 wins 630 chips from main pot with a flush, ace high [ Ah, Kh, 9h, 8h, 6h ]
+mirek61 wins 1120 chips from side pot with a flush, ace high [ Ah, Kh, 9h, 8h, 6h ]
+
+
+
+Everleaf Gaming Game #288496916
+***** Hand history for game #288496916 *****
+Blinds 30/60 NL Hold'em - 2011/07/17 - 15:28:18
+Table 1
+Seat 2 is the button
+Total number of players: 7
+Seat 1: Whiskerrr (  935 Chips )
+Seat 2: Chatje (  1890 Chips )
+Seat 3: mirek61 (  1750 Chips )
+Seat 5: TARIK_3 (  270 Chips )
+Seat 6: EricBlade (  1480 Chips )
+Seat 7: anem2 (  1000 Chips )
+Seat 10: tony31088 (  3865 Chips )
+mirek61: posts small blind [ 30 Chips]
+TARIK_3: posts big blind [ 60 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ 8s, 8c ]
+EricBlade raises [ 210 Chips]
+anem2 folds
+tony31088 folds
+Whiskerrr folds
+Chatje folds
+mirek61 folds
+TARIK_3 folds
+EricBlade does not show cards
+EricBlade wins 150 chips from main pot
+
+
+
+Everleaf Gaming Game #288497032
+***** Hand history for game #288497032 *****
+Blinds 30/60 NL Hold'em - 2011/07/17 - 15:28:50
+Table 1
+Seat 3 is the button
+Total number of players: 7
+Seat 1: Whiskerrr (  935 Chips )
+Seat 2: Chatje (  1890 Chips )
+Seat 3: mirek61 (  1720 Chips )
+Seat 5: TARIK_3 (  210 Chips )
+Seat 6: EricBlade (  1570 Chips )
+Seat 7: anem2 (  1000 Chips )
+Seat 10: tony31088 (  3865 Chips )
+TARIK_3: posts small blind [ 30 Chips]
+EricBlade: posts big blind [ 60 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ 6s, 7d ]
+anem2 folds
+tony31088 raises [ 210 Chips]
+Whiskerrr calls [ 210 Chips]
+Chatje folds
+mirek61 folds
+TARIK_3 folds
+EricBlade folds
+** Dealing Flop ** [ 3h, 4d, Kc ]
+tony31088: bets [ 300 Chips]
+Whiskerrr folds
+tony31088 does not show cards
+tony31088 wins 510 chips from main pot
+
+
+
+Everleaf Gaming Game #288497171
+***** Hand history for game #288497171 *****
+Blinds 30/60 NL Hold'em - 2011/07/17 - 15:29:27
+Table 1
+Seat 5 is the button
+Total number of players: 7
+Seat 1: Whiskerrr (  725 Chips )
+Seat 2: Chatje (  1890 Chips )
+Seat 3: mirek61 (  1720 Chips )
+Seat 4: Steve1973 ( new player )
+Seat 5: TARIK_3 (  180 Chips )
+Seat 6: EricBlade (  1510 Chips )
+Seat 7: anem2 (  1000 Chips )
+Seat 10: tony31088 (  4165 Chips )
+EricBlade: posts small blind [ 30 Chips]
+anem2: posts big blind [ 60 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ 5c, Kd ]
+tony31088 folds
+Whiskerrr folds
+Chatje calls [ 60 Chips]
+mirek61 calls [ 60 Chips]
+TARIK_3 folds
+EricBlade folds
+anem2 checks
+** Dealing Flop ** [ Kc, 3c, 4c ]
+anem2 checks
+Steve1973 has been reseated to this table
+Chatje: bets [ 60 Chips]
+mirek61 calls [ 60 Chips]
+anem2 folds
+** Dealing Turn ** [ 7d ]
+Chatje: bets [ 120 Chips]
+mirek61 calls [ 120 Chips]
+** Dealing River ** [ Td ]
+Chatje: bets [ 570 Chips]
+mirek61 folds
+Chatje does not show cards
+Chatje wins 570 chips from main pot
+
+
+
+Everleaf Gaming Game #288497406
+***** Hand history for game #288497406 *****
+Blinds 50/100 NL Hold'em - 2011/07/17 - 15:30:28
+Table 1
+Seat 6 is the button
+Total number of players: 8
+Seat 1: Whiskerrr (  725 Chips )
+Seat 2: Chatje (  2220 Chips )
+Seat 3: mirek61 (  1480 Chips )
+Seat 4: Steve1973 (  1000 Chips )
+Seat 5: TARIK_3 (  180 Chips )
+Seat 6: EricBlade (  1480 Chips )
+Seat 7: anem2 (  940 Chips )
+Seat 8: baki90 ( new player )
+Seat 10: tony31088 (  4165 Chips )
+anem2: posts small blind [ 50 Chips]
+tony31088: posts big blind [ 100 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ Jc, 7c ]
+baki90 has been reseated to this table
+Whiskerrr folds
+Chatje folds
+mirek61 folds
+Steve1973 folds
+TARIK_3 folds
+EricBlade folds
+anem2 folds
+tony31088 does not show cards
+tony31088 wins 100 chips from main pot
+
+
+

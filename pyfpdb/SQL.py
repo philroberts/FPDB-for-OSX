@@ -702,6 +702,7 @@ class Sql:
                         winnings int NOT NULL,
                         rake int NOT NULL,
                         totalProfit INT,
+                        allInEV INT,
                         comment text,
                         commentTs DATETIME,
                         tourneysPlayersId BIGINT UNSIGNED, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
@@ -843,6 +844,7 @@ class Sql:
                         winnings int NOT NULL,
                         rake int NOT NULL,
                         totalProfit INT,
+                        allInEV INT,
                         comment text,
                         commentTs timestamp without time zone,
                         tourneysPlayersId BIGINT, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
@@ -983,6 +985,7 @@ class Sql:
                         winnings INT NOT NULL,
                         rake INT NOT NULL,
                         totalProfit INT,
+                        allInEV INT,
                         comment TEXT,
                         commentTs REAL,
                         tourneysPlayersId INT,
@@ -1187,6 +1190,45 @@ class Sql:
                         numDiscarded SMALLINT,
                         cardsDiscarded TEXT,
                         allIn BOOLEAN
+                        )""" 
+
+
+        ################################
+        # Create HandsStove
+        ################################
+
+        if db_server == 'mysql':
+            self.query['createHandsStoveTable'] = """CREATE TABLE HandsStove (
+                        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        street INT,
+                        boardId INT,
+                        hiString text,
+                        loString text,
+                        ev INT)
+                        ENGINE=INNODB"""
+        elif db_server == 'postgresql':
+            self.query['createHandsStoveTable'] = """CREATE TABLE HandsStove (
+                        id BIGSERIAL, PRIMARY KEY (id),
+                        handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        street SMALLINT,
+                        boardId SMALLINT,
+                        hiString TEXT,
+                        loString TEXT,
+                        ev INT)"""
+        elif db_server == 'sqlite':
+            self.query['createHandsStoveTable'] = """CREATE TABLE HandsStove (
+                        id INTEGER PRIMARY KEY,
+                        handId INT NOT NULL,
+                        playerId INT NOT NULL,
+                        street SMALLINT,
+                        actionNo SMALLINT,
+                        boardId SMALLINT,
+                        hiString TEXT,
+                        loString TEXT,
+                        ev INT
                         )""" 
                         
         ################################
@@ -1600,7 +1642,8 @@ class Sql:
                         played INT NOT NULL,
                         hands INT NOT NULL,
                         tourneys INT NOT NULL,
-                        totalProfit INT)
+                        totalProfit INT,
+                        allInEV INT)
                         ENGINE=INNODB
                         """
                         
@@ -1621,7 +1664,8 @@ class Sql:
                         played INT,
                         hands INT,
                         tourneys INT,
-                        totalProfit INT)
+                        totalProfit INT,
+                        allInEV INT)
                         """
                         
         elif db_server == 'sqlite':
@@ -1641,7 +1685,8 @@ class Sql:
                         played INT,
                         hands INT,
                         tourneys INT,
-                        totalProfit INT)
+                        totalProfit INT,
+                        allInEV INT)
                         """
         
         self.query['dropSessionIdIndex'] = "ALTER TABLE SessionsCache DROP INDEX index_SessionId"
@@ -4843,6 +4888,7 @@ class Sql:
                     Hands.tourneyId as tourneyId,
                     <tourney_type_clause>
                     HandsPlayers.totalProfit as totalProfit,
+                    HandsPlayers.allInEV as allInEV,
                     HandsPlayers.street0VPI as street0VPI,
                     HandsPlayers.street1Seen as street1Seen
                     FROM  HandsPlayers HandsPlayers
@@ -4900,7 +4946,8 @@ class Sql:
                     played=played+%s,
                     hands=hands+%s,
                     tourneys=tourneys+%s, 
-                    totalProfit=totalProfit+%s
+                    totalProfit=totalProfit+%s,
+                    allInEV=allInEV+%s
                     WHERE id=%s"""
                     
         self.query['select_SC'] = """
@@ -4919,7 +4966,8 @@ class Sql:
                     played,
                     hands,
                     tourneys,
-                    totalProfit
+                    totalProfit,
+                    allInEV
                     FROM SessionsCache
                     WHERE gameEnd>=%s
                     AND gameStart<=%s
@@ -4949,8 +4997,9 @@ class Sql:
                     played,
                     hands,
                     tourneys,
-                    totalProfit)
-                    values (%s, %s, %s, %s, %s, %s, %s, 
+                    totalProfit,
+                    allInEV)
+                    values (%s, %s, %s, %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s, %s, %s, %s)"""
                             
         self.query['update_Hands_gsid'] = """
@@ -5255,6 +5304,7 @@ class Sql:
                 winnings,
                 rake,
                 totalProfit,
+                allInEV,
                 street0VPI,
                 street1Seen,
                 street2Seen,
@@ -5370,7 +5420,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s
+                    %s, %s, %s, %s
                 )"""
 
         self.query['store_hands_actions'] = """insert into HandsActions (
@@ -5392,6 +5442,20 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s
                 )"""
+
+        self.query['store_hands_stove'] = """insert into HandsStove (
+                        handId,
+                        playerId,
+                        street,
+                        boardId,
+                        hiString,
+                        loString,
+                        ev
+               )
+               values (
+                    %s, %s, %s, %s, %s,
+                    %s, %s
+               )"""
                 
         self.query['store_boards'] = """insert into Boards (
                         handId,
