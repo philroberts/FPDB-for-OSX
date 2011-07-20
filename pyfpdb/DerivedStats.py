@@ -430,7 +430,7 @@ class DerivedStats():
                                                  if ((boardId == inserts_temp[k][3]) and (histring == inserts_temp[k][6]) and
                                                     (histringvalue != inserts_temp[k][8]) and (histring is not None) and (winnings>0) and
                                                     (streetId == inserts_temp[k][2]) and (hand.dbid_pids[player[1]] != inserts_temp[k][1])
-                                                    and ('Flush' not in histring)):
+                                                    and ('flush' not in histring) and ('straight' not in histring) and ('full house' not in histring)):
                                                      hiappend = ' - higher kicker'
                                                      if histringvalue > inserts_temp[k][8]:
                                                          histring += hiappend
