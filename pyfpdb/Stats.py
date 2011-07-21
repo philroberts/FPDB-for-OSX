@@ -566,6 +566,24 @@ def raiseToSteal(stat_dict, player):
                 '(0/0)',
                 _('% raise to steal'))
 
+def car0(stat_dict, player):
+    stat_descriptions["car_0"] = _("% called a raise preflop") + " (car_0)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['car_0'])/float(stat_dict[player]['car_opp_0'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                'CAR0=%3.1f%%'    % (100.0*stat),
+                'CAR_pf=%3.1f%%' % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['car_0'], stat_dict[player]['car_opp_0']),
+                _('% called a raise preflop'))
+    except:
+        return (stat,
+                'NA',
+                'CAR0=NA',
+                'CAR_pf=NA',
+                '(0/0)',
+                _('% called a raise preflop'))
 
 def f_3bet(stat_dict, player):
     stat_descriptions["f_3bet"] = _("% fold to 3 bet preflop/3rd street") + " (f_3bet)"
