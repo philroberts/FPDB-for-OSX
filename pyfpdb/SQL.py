@@ -715,6 +715,8 @@ class Sql:
 
                         street0VPI BOOLEAN,
                         street0Aggr BOOLEAN,
+                        street0CalledRaiseChance TINYINT,
+                        street0CalledRaiseDone TINYINT,
                         street0_3BChance BOOLEAN,
                         street0_3BDone BOOLEAN,
                         street0_4BChance BOOLEAN,
@@ -857,6 +859,8 @@ class Sql:
 
                         street0VPI BOOLEAN,
                         street0Aggr BOOLEAN,
+                        street0CalledRaiseChance SMALLINT,
+                        street0CalledRaiseDone SMALLINT,
                         street0_3BChance BOOLEAN,
                         street0_3BDone BOOLEAN,
                         street0_4BChance BOOLEAN,
@@ -998,6 +1002,8 @@ class Sql:
 
                         street0VPI INT,
                         street0Aggr INT,
+                        street0CalledRaiseChance INT,
+                        street0CalledRaiseDone INT,
                         street0_3BChance INT,
                         street0_3BDone INT,
                         street0_4BChance INT,
@@ -1309,6 +1315,8 @@ class Sql:
 
                         street0VPI INT,
                         street0Aggr INT,
+                        street0CalledRaiseChance INT,
+                        street0CalledRaiseDone INT,
                         street0_3BChance INT,
                         street0_3BDone INT,
                         street0_4BChance INT,
@@ -1421,6 +1429,8 @@ class Sql:
 
                         street0VPI INT,
                         street0Aggr INT,
+                        street0CalledRaiseChance INT,
+                        street0CalledRaiseDone INT,
                         street0_3BChance INT,
                         street0_3BDone INT,
                         street0_4BChance INT,
@@ -1530,6 +1540,8 @@ class Sql:
 
                         street0VPI INT,
                         street0Aggr INT,
+                        street0CalledRaiseChance INT,
+                        street0CalledRaiseDone INT,
                         street0_3BChance INT,
                         street0_3BDone INT,
                         street0_4BChance INT,
@@ -1793,6 +1805,8 @@ class Sql:
                     sum(hc.HDs)                         AS n,
                     sum(hc.street0VPI)                  AS vpip,
                     sum(hc.street0Aggr)                 AS pfr,
+                    sum(hc.street0CalledRaiseChance)    AS CAR_opp_0,
+                    sum(hc.street0CalledRaiseDone)      AS CAR_0,
                     sum(hc.street0_3BChance)            AS TB_opp_0,
                     sum(hc.street0_3BDone)              AS TB_0,
                     sum(hc.street0_4BChance)            AS FB_opp_0,
@@ -1917,6 +1931,8 @@ class Sql:
                        sum(hc.HDs)                         AS n,
                        sum(hc.street0VPI)                  AS vpip,
                        sum(hc.street0Aggr)                 AS pfr,
+                       sum(hc.street0CalledRaiseChance)    AS CAR_opp_0,
+                       sum(hc.street0CalledRaiseDone)      AS CAR_0,
                        sum(hc.street0_3BChance)            AS TB_opp_0,
                        sum(hc.street0_3BDone)              AS TB_0,
                        sum(hc.street0_4BChance)            AS FB_opp_0,
@@ -2058,6 +2074,8 @@ class Sql:
                            1                                                        AS n,
                            cast(hp2.street0VPI as <signed>integer)                  AS vpip,
                            cast(hp2.street0Aggr as <signed>integer)                 AS pfr,
+                           cast(hp2.street0CalledRaiseChance as <signed>integer)    AS CAR_opp_0,
+                           cast(hp2.street0CalledRaiseDone as <signed>integer)      AS CAR_0,
                            cast(hp2.street0_3BChance as <signed>integer)            AS TB_opp_0,
                            cast(hp2.street0_3BDone as <signed>integer)              AS TB_0,
                            cast(hp2.street0_4BChance as <signed>integer)            AS FB_opp_0,
@@ -2175,6 +2193,8 @@ class Sql:
                            1                                                        AS n,
                            cast(hp2.street0VPI as <signed>integer)                  AS vpip,
                            cast(hp2.street0Aggr as <signed>integer)                 AS pfr,
+                           cast(hp2.street0CalledRaiseChance as <signed>integer)    AS CAR_opp_0,
+                           cast(hp2.street0CalledRaiseDone as <signed>integer)      AS CAR_0,
                            cast(hp2.street0_3BChance as <signed>integer)            AS TB_opp_0,
                            cast(hp2.street0_3BDone as <signed>integer)              AS TB_0,
                            cast(hp2.street0_4BChance as <signed>integer)            AS FB_opp_0,
@@ -2293,6 +2313,8 @@ class Sql:
                            1                                                        AS n,
                            cast(hp2.street0VPI as <signed>integer)                  AS vpip,
                            cast(hp2.street0Aggr as <signed>integer)                 AS pfr,
+                           cast(hp2.street0CalledRaiseChance as <signed>integer)    AS CAR_opp_0,
+                           cast(hp2.street0CalledRaiseDone as <signed>integer)      AS CAR_0,
                            cast(hp2.street0_3BChance as <signed>integer)            AS TB_opp_0,
                            cast(hp2.street0_3BDone as <signed>integer)              AS TB_0,
                            cast(hp2.street0_4BChance as <signed>integer)            AS FB_opp_0,
@@ -2584,6 +2606,9 @@ class Sql:
                             ,count(1)                                                               AS n
                             ,100.0*sum(cast(hp.street0VPI as <signed>integer))/count(1)             AS vpip
                             ,100.0*sum(cast(hp.street0Aggr as <signed>integer))/count(1)            AS pfr
+                            ,case when sum(cast(hp.street0CalledRaiseChance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0CalledRaiseDone as <signed>integer))/sum(cast(hp.street0CalledRaiseChance as <signed>integer))
+                             end                                                                    AS car0
                             ,case when sum(cast(hp.street0_3Bchance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0_3Bdone as <signed>integer))/sum(cast(hp.street0_3Bchance as <signed>integer))
                              end                                                                    AS pf3
@@ -2729,6 +2754,9 @@ class Sql:
                             ,count(1)                                                               AS n
                             ,100.0*sum(cast(hp.street0VPI as <signed>integer))/count(1)             AS vpip
                             ,100.0*sum(cast(hp.street0Aggr as <signed>integer))/count(1)            AS pfr
+                            ,case when sum(cast(hp.street0CalledRaiseChance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0CalledRaiseDone as <signed>integer))/sum(cast(hp.street0CalledRaiseChance as <signed>integer))
+                             end                                                                    AS car0
                             ,case when sum(cast(hp.street0_3Bchance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0_3Bdone as <signed>integer))/sum(cast(hp.street0_3Bchance as <signed>integer))
                              end                                                                    AS pf3
@@ -2886,6 +2914,9 @@ class Sql:
                             ,count(1)                                                               AS n
                             ,100.0*sum(cast(hp.street0VPI as <signed>integer))/count(1)             AS vpip
                             ,100.0*sum(cast(hp.street0Aggr as <signed>integer))/count(1)            AS pfr
+                            ,case when sum(cast(hp.street0CalledRaiseChance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0CalledRaiseDone as <signed>integer))/sum(cast(hp.street0CalledRaiseChance as <signed>integer))
+                             end                                                                    AS car0
                             ,case when sum(cast(hp.street0_3Bchance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0_3Bdone as <signed>integer))/sum(cast(hp.street0_3Bchance as <signed>integer))
                              end                                                                    AS pf3
@@ -3171,6 +3202,10 @@ class Sql:
                            ,sum(HDs)                                                        AS n
                            ,format(100.0*sum(street0VPI)/sum(HDs),1)                        AS vpip
                            ,format(100.0*sum(street0Aggr)/sum(HDs),1)                       AS pfr
+                           
+                           ,case when sum(street0CalledRaiseChance) = 0 then '0'
+                                 else format(100.0*sum(street0CalledRaiseDone)/sum(street0CalledRaiseChance),1)
+                            end                                                             AS car0
                            ,case when sum(street0_3Bchance) = 0 then '0'
                                  else format(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),1)
                             end                                                             AS pf3
@@ -3270,6 +3305,9 @@ class Sql:
                            ,sum(HDs)                                                        AS n
                            ,round(100.0*sum(street0VPI)/sum(HDs),1)                         AS vpip
                            ,round(100.0*sum(street0Aggr)/sum(HDs),1)                        AS pfr
+                           ,case when sum(street0CalledRaiseChance) = 0 then '0'
+                                 else format(100.0*sum(street0CalledRaiseDone)/sum(street0CalledRaiseChance),1)
+                            end                                                             AS car0
                            ,case when sum(street0_3Bchance) = 0 then '0'
                                  else round(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),1)
                             end                                                             AS pf3
@@ -3380,6 +3418,9 @@ class Sql:
                            ,sum(HDs) as n
                            ,to_char(100.0*sum(street0VPI)/sum(HDs),'990D0')                 AS vpip
                            ,to_char(100.0*sum(street0Aggr)/sum(HDs),'90D0')                 AS pfr
+                           ,case when sum(street0CalledRaiseChance) = 0 then '0'
+                                 else to_char(100.0*sum(street0CalledRaiseDone)/sum(street0CalledRaiseChance),'90D0')
+                            end                                                             AS car0
                            ,case when sum(street0_3Bchance) = 0 then '0'
                                  else to_char(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),'90D0')
                             end                                                             AS pf3
@@ -3467,6 +3508,7 @@ class Sql:
                      ,stats.n
                      ,stats.vpip
                      ,stats.pfr
+                     ,stats.car0
                      ,stats.pf3
                      ,stats.pf4
                      ,stats.pff3
@@ -3506,6 +3548,9 @@ class Sql:
                            ,sum(HDs)                                                        AS n
                            ,format(100.0*sum(street0VPI)/sum(HDs),1)                        AS vpip
                            ,format(100.0*sum(street0Aggr)/sum(HDs),1)                       AS pfr
+                           ,case when sum(street0CalledRaiseChance) = 0 then '0'
+                                 else format(100.0*sum(street0CalledRaiseDone)/sum(street0CalledRaiseChance),1)
+                            end                                                             AS car0
                            ,case when sum(street0_3Bchance) = 0 then '0'
                                  else format(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),1)
                             end                                                             AS pf3
@@ -3635,6 +3680,9 @@ class Sql:
                            ,sum(HDs)                                                        AS n
                            ,round(100.0*sum(street0VPI)/sum(HDs),1)                         AS vpip
                            ,round(100.0*sum(street0Aggr)/sum(HDs),1)                        AS pfr
+                           ,case when sum(street0CalledRaiseChance) = 0 then '0'
+                                 else format(100.0*sum(street0CalledRaiseDone)/sum(street0CalledRaiseChance),1)
+                            end                                                             AS car0
                            ,case when sum(street0_3Bchance) = 0 then '0'
                                  else round(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),1)
                             end                                                             AS pf3
@@ -3775,6 +3823,9 @@ class Sql:
                            ,sum(HDs)                                                        AS n
                            ,to_char(round(100.0*sum(street0VPI)/sum(HDs)),'990D0')          AS vpip
                            ,to_char(round(100.0*sum(street0Aggr)/sum(HDs)),'90D0')          AS pfr
+                           ,case when sum(street0CalledRaiseChance) = 0 then '0'
+                                 else to_char(100.0*sum(street0CalledRaiseDone)/sum(street0CalledRaiseChance),'90D0')
+                            end                                                             AS car0
                            ,case when sum(street0_3Bchance) = 0 then '0'
                                  else to_char(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),'90D0')
                             end                                                             AS pf3
@@ -4022,6 +4073,8 @@ class Sql:
                 ,wonAtSD
                 ,street0VPI
                 ,street0Aggr
+                ,street0CalledRaiseChance
+                ,street0CalledRaiseDone
                 ,street0_3BChance
                 ,street0_3BDone
                 ,street0_4BChance
@@ -4130,6 +4183,8 @@ class Sql:
                       ,sum(wonAtSD)
                       ,sum(street0VPI)
                       ,sum(street0Aggr)
+                      ,sum(street0CalledRaiseChance)
+                      ,sum(street0CalledRaiseDone)
                       ,sum(street0_3BChance)
                       ,sum(street0_3BDone)
                       ,sum(street0_4BChance)
@@ -4238,6 +4293,8 @@ class Sql:
                 ,wonAtSD
                 ,street0VPI
                 ,street0Aggr
+                ,street0CalledRaiseChance
+                ,street0CalledRaiseDone
                 ,street0_3BChance
                 ,street0_3BDone
                 ,street0_4BChance
@@ -4346,6 +4403,8 @@ class Sql:
                       ,sum(wonAtSD)
                       ,sum(CAST(street0VPI as integer))
                       ,sum(CAST(street0Aggr as integer))
+                      ,sum(CAST(street0CalledRaiseChance as integer))
+                      ,sum(CAST(street0CalledRaiseDone as integer))
                       ,sum(CAST(street0_3BChance as integer))
                       ,sum(CAST(street0_3BDone as integer))
                       ,sum(CAST(street0_4BChance as integer))
@@ -4454,6 +4513,8 @@ class Sql:
                 ,wonAtSD
                 ,street0VPI
                 ,street0Aggr
+                ,street0CalledRaiseChance
+                ,street0CalledRaiseDone
                 ,street0_3BChance
                 ,street0_3BDone
                 ,street0_4BChance
@@ -4562,6 +4623,8 @@ class Sql:
                       ,sum(wonAtSD)
                       ,sum(CAST(street0VPI as integer))
                       ,sum(CAST(street0Aggr as integer))
+                      ,sum(CAST(street0CalledRaiseChance as integer))
+                      ,sum(CAST(street0CalledRaiseDone as integer))
                       ,sum(CAST(street0_3BChance as integer))
                       ,sum(CAST(street0_3BDone as integer))
                       ,sum(CAST(street0_4BChance as integer))
@@ -4665,6 +4728,8 @@ class Sql:
                 HDs,
                 street0VPI,
                 street0Aggr,
+                street0CalledRaiseChance,
+                street0CalledRaiseDone,
                 street0_3BChance,
                 street0_3BDone,
                 street0_4BChance,
@@ -4768,13 +4833,16 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s)"""
+                    %s, %s, %s, %s, %s,
+                    %s)"""
 
         self.query['update_hudcache'] = """
             UPDATE HudCache SET
             HDs=HDs+%s,
             street0VPI=street0VPI+%s,
             street0Aggr=street0Aggr+%s,
+            street0CalledRaiseChance=street0CalledRaiseChance+%s,
+            street0CalledRaiseDone=street0CalledRaiseDone+%s,
             street0_3BChance=street0_3BChance+%s,
             street0_3BDone=street0_3BDone+%s,
             street0_4BChance=street0_4BChance+%s,
@@ -5343,6 +5411,8 @@ class Sql:
                 position,
                 tourneysPlayersId,
                 startCards,
+                street0CalledRaiseChance,
+                street0CalledRaiseDone,
                 street0_3BChance,
                 street0_3BDone,
                 street0_4BChance,
@@ -5420,7 +5490,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s
+                    %s, %s, %s, %s, %s,
+                    %s
                 )"""
 
         self.query['store_hands_actions'] = """insert into HandsActions (

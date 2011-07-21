@@ -1921,6 +1921,8 @@ class Database:
                              pdata[p]['position'],
                              pdata[p]['tourneysPlayersIds'],
                              pdata[p]['startCards'],
+                             pdata[p]['street0CalledRaiseChance'],
+                             pdata[p]['street0CalledRaiseDone'],
                              pdata[p]['street0_3BChance'],
                              pdata[p]['street0_3BDone'],
                              pdata[p]['street0_4BChance'],
@@ -2052,7 +2054,9 @@ class Database:
             line = []
             line.append(1)  # HDs
             line.append(pdata[p]['street0VPI'])
-            line.append(pdata[p]['street0Aggr'])                 
+            line.append(pdata[p]['street0Aggr'])  
+            line.append(pdata[p]['street0CalledRaiseChance'])
+            line.append(pdata[p]['street0CalledRaiseDone'])
             line.append(pdata[p]['street0_3BChance'])            
             line.append(pdata[p]['street0_3BDone'])              
             line.append(pdata[p]['street0_4BChance'])            

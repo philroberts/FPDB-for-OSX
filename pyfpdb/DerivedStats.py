@@ -58,6 +58,8 @@ class DerivedStats():
         init['wonAtSD']     = 0.0
         init['startCards']  = 0
         init['position']            = 2
+        init['street0CalledRaiseChance'] = 0
+        init['street0CalledRaiseDone'] = 0
         init['street0_3BChance']    = False
         init['street0_3BDone']      = False
         init['street0_4BChance']    = False
@@ -262,6 +264,7 @@ class DerivedStats():
         self.calcCheckCallRaise(hand)
         self.calc34BetStreet0(hand)
         self.calcSteals(hand)
+        self.calcCalledRaiseStreet0(hand)
         # Additional stats
         # 3betSB, 3betBB
         # Squeeze, Ratchet?
@@ -810,6 +813,38 @@ class DerivedStats():
                 if chance == True:
                     self.handsplayers[name]['street%dCBChance' % (i+1)] = True
                     self.handsplayers[name]['street%dCBDone' % (i+1)] = self.betStreet(hand.actionStreets[i+2], name)
+
+    def calcCalledRaiseStreet0(self, hand):
+        """
+        Fill street0CalledRaiseChance, street0CalledRaiseDone
+        For flop games, go through the preflop actions:
+            skip through first raise
+            For each subsequent action:
+                if the next action is fold :
+                    player chance + 1
+                if the next action is raise :
+                    player chance + 1
+                if the next non-fold action is call :
+                    player chance + 1
+                    player done + 1
+                    skip through list to the next raise action
+        """
+
+        if hand.gametype['base'] <> 'hold':
+            return
+ 
+        fast_forward = True
+        for tupleread in hand.actions[hand.actionStreets[1]]:
+            action = tupleread[1]
+            if fast_forward:
+                if action == 'raises':
+                    fast_forward = False # raisefound, end fast-forward
+            else:
+                player = tupleread[0]
+                self.handsplayers[player]['street0CalledRaiseChance'] += 1
+                if action == 'calls':
+                    self.handsplayers[player]['street0CalledRaiseDone'] += 1
+                    fast_forward = True
 
     def calcCheckCallRaise(self, hand):
         """Fill streetXCheckCallRaiseChance, streetXCheckCallRaiseDone
