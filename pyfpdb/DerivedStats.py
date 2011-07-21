@@ -496,7 +496,6 @@ class DerivedStats():
                             if ((j[1] == pid) and (j[2] == tid) and (j[3] == bid)):
                                 j[6] = equities[v]
                                 if street == startstreet and hand.gametype['type'] == 'ring':
-                                    print hand.totalcollected, Decimal(equities[v])/1000, 
                                     allInEV = int((100*hand.totalcollected * Decimal(equities[v])/1000 
                                                  - (100*hand.pot.committed[board['players'][v]])
                                                  - (100*hand.pot.common[board['players'][v]]))/portion)
