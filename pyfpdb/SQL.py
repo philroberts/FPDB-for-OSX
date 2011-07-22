@@ -3055,9 +3055,8 @@ class Sql:
                             ,t.tourneyTypeId                                                        AS tourneyTypeId
                             ,tt.currency                                                            AS currency
                             ,(CASE
-                                WHEN tt.currency = 'USD' THEN tt.buyIn/100.0
-                                WHEN tt.currency = 'EUR' THEN tt.buyIn/100.0
-                                ELSE tt.buyIn
+                                WHEN tt.currency = 'play' THEN tt.buyIn
+                                ELSE tt.buyIn/100.0
                               END)                                                                  AS buyIn
                             ,tt.fee/100.0                                                           AS fee
                             ,tt.category                                                            AS category
@@ -3070,8 +3069,14 @@ class Sql:
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
                             ,SUM(tp.winnings)/100.0                                                 AS won
-                            ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 WHEN tt.currency = 'EUR' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS spent
-                            ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS roi
+                            ,SUM(CASE
+                                   WHEN tt.currency = 'play' THEN tt.buyIn
+                                   ELSE (tt.buyIn+tt.fee)/100.0
+                                 END)                                                               AS spent
+                            ,ROUND(
+                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS REAL)/
+                                CAST(SUM(tt.buyin+tt.fee) AS REAL))* 100.0
+                             ,2)                                                                    AS roi
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0/(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS profitPerTourney
                       from TourneysPlayers tp
                            inner join Tourneys t        on  (t.id = tp.tourneyId)
@@ -3092,9 +3097,8 @@ class Sql:
                             ,t.tourneyTypeId                                                        AS "tourneyTypeId"
                             ,tt.currency                                                            AS "currency"
                             ,(CASE
-                                WHEN tt.currency = 'USD' THEN tt.buyIn/100.0
-                                WHEN tt.currency = 'EUR' THEN tt.buyIn/100.0
-                                ELSE tt.buyIn
+                                WHEN tt.currency = 'play' THEN tt.buyIn
+                                ELSE tt.buyIn/100.0
                               END)                                                                  AS "buyIn"
                             ,tt.fee/100.0                                                           AS "fee"
                             ,tt.category                                                            AS "category"
@@ -3108,8 +3112,14 @@ class Sql:
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS "_2nd"
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS "_3rd"
                             ,SUM(tp.winnings)/100.0                                                 AS "won"
-                            ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS "spent"
-                            ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS "roi"
+                            ,SUM(CASE
+                                   WHEN tt.currency = 'play' THEN tt.buyIn
+                                   ELSE (tt.buyIn+tt.fee)/100.0
+                                 END)                                                               AS "spent"
+                            ,ROUND(
+                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS REAL)/
+                                CAST(SUM(tt.buyin+tt.fee) AS REAL))* 100.0
+                             ,2)                                                                    AS "roi"
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0
                              /(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))               AS "profitPerTourney"
                       from TourneysPlayers tp
@@ -3130,9 +3140,8 @@ class Sql:
                             ,t.tourneyTypeId                                                        AS tourneyTypeId
                             ,tt.currency                                                            AS currency
                             ,(CASE
-                                WHEN tt.currency = 'USD' THEN tt.buyIn/100.0
-                                WHEN tt.currency = 'EUR' THEN tt.buyIn/100.0
-                                ELSE tt.buyIn
+                                WHEN tt.currency = 'play' THEN tt.buyIn
+                                ELSE tt.buyIn/100.0
                               END)                                                                  AS buyIn
                             ,tt.fee/100.0                                                           AS fee
                             ,tt.category                                                            AS category
@@ -3140,13 +3149,16 @@ class Sql:
                             ,p.name                                                                 AS playerName
                             ,COUNT(1)                                                               AS tourneyCount
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
-                            ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)/(COUNT(1) - SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS itm
+                            ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)                          AS itm
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS _1st
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
                             ,SUM(tp.winnings)/100.0                                                 AS won
                             ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS spent
-                            ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS roi
+                            ,ROUND(
+                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS REAL)/
+                                CAST(SUM(tt.buyin+tt.fee) AS REAL))* 100.0
+                             ,2)                                                                    AS roi
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0/(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS profitPerTourney
                       from TourneysPlayers tp
                            inner join Tourneys t        on  (t.id = tp.tourneyId)
