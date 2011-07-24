@@ -146,6 +146,7 @@ class Filters(threading.Thread):
         self.graphops['dspin'] = "$"
         self.graphops['showdown'] = 'OFF'
         self.graphops['nonshowdown'] = 'OFF'
+        self.graphops['ev'] = 'OFF'
 
         playerFrame = gtk.Frame()
         playerFrame.set_label_align(0.0, 0.0)
@@ -1086,6 +1087,11 @@ class Filters(threading.Thread):
         # ditto as 8 lines up :)
         #button.set_active(True)
         button.connect("toggled", self.__set_graphopscheck_select, "nonshowdown");
+        button.show()
+
+        button = gtk.CheckButton(_("EV"), False)
+        vbox1.pack_start(button, True, True, 0)
+        button.connect("toggled", self.__set_graphopscheck_select, "ev");
         button.show()
 
     def fillSeatsFrame(self, vbox, display):

@@ -702,6 +702,7 @@ class Sql:
                         winnings int NOT NULL,
                         rake int NOT NULL,
                         totalProfit INT,
+                        allInEV INT,
                         comment text,
                         commentTs DATETIME,
                         tourneysPlayersId BIGINT UNSIGNED, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
@@ -845,6 +846,7 @@ class Sql:
                         winnings int NOT NULL,
                         rake int NOT NULL,
                         totalProfit INT,
+                        allInEV INT,
                         comment text,
                         commentTs timestamp without time zone,
                         tourneysPlayersId BIGINT, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
@@ -987,6 +989,7 @@ class Sql:
                         winnings INT NOT NULL,
                         rake INT NOT NULL,
                         totalProfit INT,
+                        allInEV INT,
                         comment TEXT,
                         commentTs REAL,
                         tourneysPlayersId INT,
@@ -1193,6 +1196,45 @@ class Sql:
                         numDiscarded SMALLINT,
                         cardsDiscarded TEXT,
                         allIn BOOLEAN
+                        )""" 
+
+
+        ################################
+        # Create HandsStove
+        ################################
+
+        if db_server == 'mysql':
+            self.query['createHandsStoveTable'] = """CREATE TABLE HandsStove (
+                        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        street INT,
+                        boardId INT,
+                        hiString text,
+                        loString text,
+                        ev INT)
+                        ENGINE=INNODB"""
+        elif db_server == 'postgresql':
+            self.query['createHandsStoveTable'] = """CREATE TABLE HandsStove (
+                        id BIGSERIAL, PRIMARY KEY (id),
+                        handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        street SMALLINT,
+                        boardId SMALLINT,
+                        hiString TEXT,
+                        loString TEXT,
+                        ev INT)"""
+        elif db_server == 'sqlite':
+            self.query['createHandsStoveTable'] = """CREATE TABLE HandsStove (
+                        id INTEGER PRIMARY KEY,
+                        handId INT NOT NULL,
+                        playerId INT NOT NULL,
+                        street SMALLINT,
+                        actionNo SMALLINT,
+                        boardId SMALLINT,
+                        hiString TEXT,
+                        loString TEXT,
+                        ev INT
                         )""" 
                         
         ################################
@@ -1609,10 +1651,11 @@ class Sql:
                         tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         tourneyId INT UNSIGNED UNSIGNED, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        played BOOLEAN,
+                        played INT NOT NULL,
                         hands INT NOT NULL,
                         tourneys INT NOT NULL,
-                        totalProfit INT)
+                        totalProfit INT,
+                        allInEV INT)
                         ENGINE=INNODB
                         """
                         
@@ -1630,10 +1673,11 @@ class Sql:
                         tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        played BOOLEAN,
+                        played INT,
                         hands INT,
                         tourneys INT,
-                        totalProfit INT)
+                        totalProfit INT,
+                        allInEV INT)
                         """
                         
         elif db_server == 'sqlite':
@@ -1653,13 +1697,16 @@ class Sql:
                         played INT,
                         hands INT,
                         tourneys INT,
-                        totalProfit INT)
+                        totalProfit INT,
+                        allInEV INT)
                         """
+        
+        self.query['dropSessionIdIndex'] = "ALTER TABLE SessionsCache DROP INDEX index_SessionId"
+        self.query['dropHandsSessionIdIndex'] = "ALTER TABLE Hands DROP INDEX index_handsSessionId"
+        self.query['dropHandsGameSessionIdIndex'] = "ALTER TABLE Hands DROP INDEX index_handsGameSessionId"
                         
         self.query['addSessionIdIndex'] = """CREATE INDEX index_SessionId ON SessionsCache (sessionId)"""
-        
         self.query['addHandsSessionIdIndex'] = """CREATE INDEX index_handsSessionId ON Hands (sessionId)"""
-        
         self.query['addHandsGameSessionIdIndex'] = """CREATE INDEX index_handsGameSessionId ON Hands (gameSessionId)"""
 
         if db_server == 'mysql':
@@ -3008,9 +3055,8 @@ class Sql:
                             ,t.tourneyTypeId                                                        AS tourneyTypeId
                             ,tt.currency                                                            AS currency
                             ,(CASE
-                                WHEN tt.currency = 'USD' THEN tt.buyIn/100.0
-                                WHEN tt.currency = 'EUR' THEN tt.buyIn/100.0
-                                ELSE tt.buyIn
+                                WHEN tt.currency = 'play' THEN tt.buyIn
+                                ELSE tt.buyIn/100.0
                               END)                                                                  AS buyIn
                             ,tt.fee/100.0                                                           AS fee
                             ,tt.category                                                            AS category
@@ -3023,8 +3069,14 @@ class Sql:
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
                             ,SUM(tp.winnings)/100.0                                                 AS won
-                            ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 WHEN tt.currency = 'EUR' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS spent
-                            ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS roi
+                            ,SUM(CASE
+                                   WHEN tt.currency = 'play' THEN tt.buyIn
+                                   ELSE (tt.buyIn+tt.fee)/100.0
+                                 END)                                                               AS spent
+                            ,ROUND(
+                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS REAL)/
+                                CAST(SUM(tt.buyin+tt.fee) AS REAL))* 100.0
+                             ,2)                                                                    AS roi
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0/(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS profitPerTourney
                       from TourneysPlayers tp
                            inner join Tourneys t        on  (t.id = tp.tourneyId)
@@ -3045,9 +3097,8 @@ class Sql:
                             ,t.tourneyTypeId                                                        AS "tourneyTypeId"
                             ,tt.currency                                                            AS "currency"
                             ,(CASE
-                                WHEN tt.currency = 'USD' THEN tt.buyIn/100.0
-                                WHEN tt.currency = 'EUR' THEN tt.buyIn/100.0
-                                ELSE tt.buyIn
+                                WHEN tt.currency = 'play' THEN tt.buyIn
+                                ELSE tt.buyIn/100.0
                               END)                                                                  AS "buyIn"
                             ,tt.fee/100.0                                                           AS "fee"
                             ,tt.category                                                            AS "category"
@@ -3061,8 +3112,14 @@ class Sql:
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS "_2nd"
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS "_3rd"
                             ,SUM(tp.winnings)/100.0                                                 AS "won"
-                            ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS "spent"
-                            ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS "roi"
+                            ,SUM(CASE
+                                   WHEN tt.currency = 'play' THEN tt.buyIn
+                                   ELSE (tt.buyIn+tt.fee)/100.0
+                                 END)                                                               AS "spent"
+                            ,ROUND(
+                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS REAL)/
+                                CAST(SUM(tt.buyin+tt.fee) AS REAL))* 100.0
+                             ,2)                                                                    AS "roi"
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0
                              /(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))               AS "profitPerTourney"
                       from TourneysPlayers tp
@@ -3083,9 +3140,8 @@ class Sql:
                             ,t.tourneyTypeId                                                        AS tourneyTypeId
                             ,tt.currency                                                            AS currency
                             ,(CASE
-                                WHEN tt.currency = 'USD' THEN tt.buyIn/100.0
-                                WHEN tt.currency = 'EUR' THEN tt.buyIn/100.0
-                                ELSE tt.buyIn
+                                WHEN tt.currency = 'play' THEN tt.buyIn
+                                ELSE tt.buyIn/100.0
                               END)                                                                  AS buyIn
                             ,tt.fee/100.0                                                           AS fee
                             ,tt.category                                                            AS category
@@ -3093,13 +3149,16 @@ class Sql:
                             ,p.name                                                                 AS playerName
                             ,COUNT(1)                                                               AS tourneyCount
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
-                            ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)/(COUNT(1) - SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS itm
+                            ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)                          AS itm
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS _1st
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
                             ,SUM(tp.winnings)/100.0                                                 AS won
                             ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS spent
-                            ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS roi
+                            ,ROUND(
+                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS REAL)/
+                                CAST(SUM(tt.buyin+tt.fee) AS REAL))* 100.0
+                             ,2)                                                                    AS roi
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0/(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS profitPerTourney
                       from TourneysPlayers tp
                            inner join Tourneys t        on  (t.id = tp.tourneyId)
@@ -3892,7 +3951,7 @@ class Sql:
             ORDER BY h.startTime"""
 
         self.query['getRingProfitAllHandsPlayerIdSiteInBB'] = """
-            SELECT hp.handId, ( hp.totalProfit / ( gt.bigBlind  * 2.0 ) ) * 100 , hp.sawShowdown
+            SELECT hp.handId, ( hp.totalProfit / ( gt.bigBlind  * 2.0 ) ) * 100 , hp.sawShowdown, hp.allInEV
             FROM HandsPlayers hp
             INNER JOIN Players pl      ON  (pl.id = hp.playerId)
             INNER JOIN Hands h         ON  (h.id  = hp.handId)
@@ -3909,7 +3968,7 @@ class Sql:
             ORDER BY h.startTime"""
 
         self.query['getRingProfitAllHandsPlayerIdSiteInDollars'] = """
-            SELECT hp.handId, hp.totalProfit, hp.sawShowdown
+            SELECT hp.handId, hp.totalProfit, hp.sawShowdown, hp.allInEV
             FROM HandsPlayers hp
             INNER JOIN Players pl      ON  (pl.id = hp.playerId)
             INNER JOIN Hands h         ON  (h.id  = hp.handId)
@@ -4898,7 +4957,7 @@ class Sql:
         # Queries to rebuild/modify sessionscache
         ####################################
         
-        self.query['clearSessionsCache'] = """DELETE FROM SessionsCache"""
+        self.query['clearSessionsCache'] = """DROP TABLE IF EXISTS SessionsCache"""
         
         self.query['rebuildSessionsCache'] = """
                     SELECT Hands.id as id,
@@ -4907,18 +4966,19 @@ class Sql:
                     Hands.gametypeId as gametypeId,
                     Gametypes.type as game,
                     Hands.tourneyId as tourneyId,
+                    <tourney_type_clause>
                     HandsPlayers.totalProfit as totalProfit,
-                    Tourneys.tourneyTypeId as tourneyTypeId,
+                    HandsPlayers.allInEV as allInEV,
                     HandsPlayers.street0VPI as street0VPI,
                     HandsPlayers.street1Seen as street1Seen
-                    FROM Gametypes, HandsPlayers, Hands
-                    LEFT JOIN Tourneys ON Hands.tourneyId = Tourneys.tourneyTypeId
-                    WHERE HandsPlayers.handId = Hands.id
-                    AND   Hands.gametypeId = Gametypes.id
-                    AND (case when HandsPlayers.playerId = <where_clause> then 1 else 0 end) = 1
-                    AND Hands.id >= %s
-                    AND Hands.id < %s
-                    ORDER BY Hands.startTime ASC"""
+                    FROM  HandsPlayers HandsPlayers
+                    INNER JOIN Hands ON (HandsPlayers.handId = Hands.id)
+                    INNER JOIN Gametypes ON (Gametypes.id = Hands.gametypeId)
+                    <tourney_join_clause>
+                    WHERE  (HandsPlayers.playerId = <where_clause>)
+                    AND Gametypes.type = %s
+                    ORDER BY Hands.startTime ASC
+                    LIMIT %s, %s"""
                     
         self.query['rebuildSessionsCacheSum'] = """
                     SELECT Tourneys.id as id,
@@ -4963,9 +5023,11 @@ class Sql:
                     sessionEnd=%s,
                     gameStart=%s,
                     gameEnd=%s,
+                    played=played+%s,
                     hands=hands+%s,
                     tourneys=tourneys+%s, 
-                    totalProfit=totalProfit+%s
+                    totalProfit=totalProfit+%s,
+                    allInEV=allInEV+%s
                     WHERE id=%s"""
                     
         self.query['select_SC'] = """
@@ -4984,7 +5046,8 @@ class Sql:
                     played,
                     hands,
                     tourneys,
-                    totalProfit
+                    totalProfit,
+                    allInEV
                     FROM SessionsCache
                     WHERE gameEnd>=%s
                     AND gameStart<=%s
@@ -4996,8 +5059,7 @@ class Sql:
                         (case when tourneyTypeId=%s then 1 else 0 end) end)=1
                     AND (case when tourneyId is NULL then 1 else 
                         (case when tourneyId=%s then 1 else 0 end) end)=1
-                    AND playerId=%s
-                    AND played=%s"""
+                    AND playerId=%s"""
                     
         self.query['insert_SC'] = """
                     insert into SessionsCache (
@@ -5015,8 +5077,9 @@ class Sql:
                     played,
                     hands,
                     tourneys,
-                    totalProfit)
-                    values (%s, %s, %s, %s, %s, %s, %s, 
+                    totalProfit,
+                    allInEV)
+                    values (%s, %s, %s, %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s, %s, %s, %s)"""
                             
         self.query['update_Hands_gsid'] = """
@@ -5321,6 +5384,7 @@ class Sql:
                 winnings,
                 rake,
                 totalProfit,
+                allInEV,
                 street0VPI,
                 street1Seen,
                 street2Seen,
@@ -5438,7 +5502,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s, %s
+                    %s, %s, %s, %s, %s,
+                    %s
                 )"""
 
         self.query['store_hands_actions'] = """insert into HandsActions (
@@ -5460,6 +5525,20 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s
                 )"""
+
+        self.query['store_hands_stove'] = """insert into HandsStove (
+                        handId,
+                        playerId,
+                        street,
+                        boardId,
+                        hiString,
+                        loString,
+                        ev
+               )
+               values (
+                    %s, %s, %s, %s, %s,
+                    %s, %s
+               )"""
                 
         self.query['store_boards'] = """insert into Boards (
                         handId,

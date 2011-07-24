@@ -129,6 +129,8 @@ class Database:
                 , {'tab':'HandsActions',    'col':'handId',            'drop':1}
                 , {'tab':'HandsActions',    'col':'playerId',          'drop':1}
                 , {'tab':'HandsActions',    'col':'actionId',          'drop':1}
+                , {'tab':'HandsStove',      'col':'handId',            'drop':1}
+                , {'tab':'HandsStove',      'col':'playerId',          'drop':1}
                 , {'tab':'Boards',          'col':'handId',            'drop':1}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':1}
@@ -163,6 +165,8 @@ class Database:
                 , {'tab':'HandsActions',    'col':'handId',            'drop':0}
                 , {'tab':'HandsActions',    'col':'playerId',          'drop':0}
                 , {'tab':'HandsActions',    'col':'actionId',          'drop':1}
+                , {'tab':'HandsStove',      'col':'handId',            'drop':0}
+                , {'tab':'HandsStove',      'col':'playerId',          'drop':0}
                 , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
                 , {'tab':'HudCache',        'col':'tourneyTypeId',     'drop':0}
@@ -194,6 +198,8 @@ class Database:
                     , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsStove',   'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsStove',   'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                     , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
@@ -211,6 +217,8 @@ class Database:
                     , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsStove',   'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsStove',   'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                     , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
@@ -287,6 +295,7 @@ class Database:
         gen = c.get_general_params()
         self.day_start = 0
         self._has_lock = False
+        self.printdata = False
         
         if 'day_start' in gen:
             self.day_start = float(gen['day_start'])
@@ -349,7 +358,7 @@ class Database:
 
         tables=self.cursor.execute(self.sql.query['list_tables'])
         tables=self.cursor.fetchall()
-        for table in (u'Actions', u'Autorates', u'Backings', u'Gametypes', u'Hands', u'Boards', u'HandsActions', u'HandsPlayers', u'Files', u'HudCache', u'SessionsCache', u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
+        for table in (u'Actions', u'Autorates', u'Backings', u'Gametypes', u'Hands', u'Boards', u'HandsActions', u'HandsPlayers', u'HandsStove', u'Files', u'HudCache', u'SessionsCache', u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
             print "table:", table
             result+="###################\nTable "+table+"\n###################\n"
             rows=self.cursor.execute(self.sql.query['get'+table])
@@ -727,6 +736,9 @@ class Database:
         for row in c.fetchall():
             winners[row[0]] = row[1]
         return winners
+
+    def set_printdata(self, val):
+        self.printdata = val
 
     def init_hud_stat_vars(self, hud_days, h_hud_days):
         """Initialise variables used by Hud to fetch stats:
@@ -1234,6 +1246,7 @@ class Database:
         c.execute(self.sql.query['createTourneysPlayersTable'])
         c.execute(self.sql.query['createHandsPlayersTable'])
         c.execute(self.sql.query['createHandsActionsTable'])
+        c.execute(self.sql.query['createHandsStoveTable'])
         c.execute(self.sql.query['createHudCacheTable'])
         c.execute(self.sql.query['createSessionsCacheTable'])
         c.execute(self.sql.query['createBackingsTable'])
@@ -1574,21 +1587,16 @@ class Database:
             print err
     #end def rebuild_hudcache
     
-    def rebuild_sessionscache(self):
+    def rebuild_sessionscache(self, tz_name = None):
         """clears sessionscache and rebuilds from the individual records"""
         heros = []
-        for site in self.config.get_supported_sites():
-            result = self.get_site_id(site)
-            if result:
-                site_id = result[0][0]
-                hero = self.config.supported_sites[site].screen_name
-                p_id = self.get_player_id(self.config, site, hero)
-                if p_id:
-                    heros.append(int(p_id))
-                    
-        rebuildSessionsCache    = self.sql.query['rebuildSessionsCache']
-        rebuildSessionsCacheSum = self.sql.query['rebuildSessionsCacheSum']
-        
+        c = self.get_cursor()
+        c.execute("SELECT playerId FROM SessionsCache GROUP BY playerId")
+        herorecords = c.fetchall()
+        for h in herorecords:
+            heros += h
+                                
+        rebuildSessionsCache    = self.sql.query['rebuildSessionsCache']        
         if len(heros) == 0:
             where         = '0'
             where_summary = '0'
@@ -1599,71 +1607,65 @@ class Database:
                 for i in heros:
                     if i != heros[0]:
                         where = where + ' OR HandsPlayers.playerId = %s' % str(i)
-                        where_summary = where_summary + ' OR TourneysPlayers.playerId = %s' % str(i)
-        rebuildSessionsCache    = rebuildSessionsCache.replace('<where_clause>', where)
-        rebuildSessionsCacheSum = rebuildSessionsCacheSum.replace('<where_clause>', where_summary)
-        
-        start, end, limit = 0, 5000, 5000
+        rebuildSessionsCache     = rebuildSessionsCache.replace('<where_clause>', where)
+        rebuildSessionsCacheRing = rebuildSessionsCache.replace('<tourney_join_clause>','')
+        rebuildSessionsCacheRing = rebuildSessionsCacheRing.replace('<tourney_type_clause>','NULL,')
+        rebuildSessionsCacheTour = rebuildSessionsCache.replace('<tourney_join_clause>',"""INNER JOIN Tourneys ON (Tourneys.id = Hands.tourneyId)""")
+        rebuildSessionsCacheTour = rebuildSessionsCacheTour.replace('<tourney_type_clause>','Tourneys.tourneyTypeId,')
+
+        max, queries, type = [], [rebuildSessionsCacheTour, rebuildSessionsCacheRing], ['tour', 'ring']
         c = self.get_cursor()
-        c.execute("SELECT count(id) FROM Hands")
-        max = c.fetchone()[0]
+        c.execute("SELECT count(id) FROM Hands WHERE tourneyId is not NULL")
+        max.append(c.fetchone()[0])
+        c.execute("SELECT count(id) FROM Hands WHERE tourneyId is NULL")
+        max.append(c.fetchone()[0])
+        c.execute(self.sql.query['dropSessionIdIndex'])
+        c.execute(self.sql.query['dropHandsSessionIdIndex'])
+        c.execute(self.sql.query['dropHandsGameSessionIdIndex'])
         c.execute(self.sql.query['clearSessionsCache'])
-        self.commit()
-        while start < max:
-            print start, end
-            sc, gsc = {'bk': []}, {'bk': []}
-            c.execute(rebuildSessionsCache, (start, end))
-            tmp = c.fetchone()
-            while True:
-                pids, game, pdata = {}, {}, {}
-                pdata['pname'] = {}
-                id                              = tmp[0]
-                startTime                       = tmp[1]
-                pids['pname']                   = tmp[2]
-                gid                             = tmp[3]
-                game['type']                    = tmp[4]
-                tid                             = tmp[5]
-                pdata['pname']['totalProfit']   = tmp[6]
-                pdata['pname']['tourneyTypeId'] = tmp[7]
-                pdata['pname']['street0VPI']    = tmp[8]
-                pdata['pname']['street1Seen']   = tmp[9]
-                tmp = c.fetchone()
-                sc  = self.prepSessionsCache (id, pids, startTime, sc , heros, tmp == None)
-                gsc = self.storeSessionsCache(id, pids, startTime, game, gid, tid, pdata, sc, gsc, None, heros, tmp == None)
-                if tmp == None:
-                    for i, id in sc.iteritems():
-                        if i!='bk':
-                            sid =  id['id']
-                            gid =  gsc[i]['id']
-                            c.execute("UPDATE Hands SET sessionId = %s, gameSessionId = %s WHERE id = %s", (sid, gid, i))
-                            self.commit()
-                    break
-            start += limit
-            end += limit
+        c.execute(self.sql.query['createSessionsCacheTable'])
         self.commit()
         
-        sc, gsc = {'bk': []}, {'bk': []}
-        c.execute(rebuildSessionsCacheSum)        
-        tmp = c.fetchone()
-        while True:
-            pids, game, info = {}, {}, {}
-            id                                = tmp[0]
-            startTime                         = tmp[1]
-            pids['pname']                     = tmp[2]
-            game['type']                      = 'summary'
-            info['tourneyTypeId']             = tmp[3]
-            info['winnings']                  = {}
-            info['winnings']['pname']         = tmp[4]
-            info['winningsCurrency']          = {}
-            info['winningsCurrency']['pname'] = tmp[5]
-            info['buyinCurrency']             = tmp[6]
-            info['buyin']                     = tmp[7]
-            info['fee']                       = tmp[8]
-            tmp = c.fetchone()    
-            sc  = self.prepSessionsCache (id, pids, startTime, sc , heros, tmp == None)
-            gsc = self.storeSessionsCache(id, pids, startTime, game, None, id, info, sc, gsc, None, heros, tmp == None)
-            if tmp == None:
-                break
+        for k in range(2):
+            start, limit =  0, 5000
+            while start < max[k]:
+                sc, gsc = {'bk': []}, {'bk': []}
+                c.execute(queries[k], (type[k], start, limit))
+                tmp = c.fetchone()
+                while tmp:
+                    pids, game, pdata = {}, {}, {}
+                    pdata['pname'] = {}
+                    id                              = tmp[0]
+                    startTime                       = tmp[1]
+                    pids['pname']                   = tmp[2]
+                    gid                             = tmp[3]
+                    game['type']                    = tmp[4]
+                    tid                             = tmp[5]
+                    pdata['pname']['tourneyTypeId'] = tmp[6]
+                    pdata['pname']['totalProfit']   = tmp[7]
+                    pdata['pname']['allInEV']       = tmp[8]
+                    pdata['pname']['street0VPI']    = tmp[9]
+                    pdata['pname']['street1Seen']   = tmp[10]
+                    tmp = c.fetchone()
+                    sc  = self.prepSessionsCache (id, pids, startTime, sc , heros, tmp == None)
+                    gsc = self.storeSessionsCache(id, pids, startTime, game, gid, tid, pdata, sc, gsc, tz_name, heros, tmp == None)
+                    if tmp == None:
+                        for i, id in sc.iteritems():
+                            if i!='bk':
+                                sid =  id['id']
+                                gid =  gsc[i]['id']
+                                c.execute("UPDATE Hands SET sessionId = %s, gameSessionId = %s WHERE id = %s", (sid, gid, i))
+                                self.commit()
+                        break
+                start += limit
+            self.commit()
+        # Create sessionscache indexes
+        log.debug("Creating SessionsCache indexes")
+        c.execute(self.sql.query['addSessionIdIndex'])
+        c.execute(self.sql.query['addHandsSessionIdIndex'])
+        c.execute(self.sql.query['addHandsGameSessionIdIndex'])
+        self.commit()
+        
 
     def get_hero_hudcache_start(self):
         """fetches earliest stylekey from hudcache for one of hero's player ids"""
@@ -1880,6 +1882,7 @@ class Database:
                              pdata[p]['winnings'],
                              pdata[p]['rake'],
                              pdata[p]['totalProfit'],
+                             pdata[p]['allInEV'],
                              pdata[p]['street0VPI'],
                              pdata[p]['street1Seen'],
                              pdata[p]['street2Seen'],
@@ -2011,6 +2014,16 @@ class Database:
             c = self.get_cursor()
             c.executemany(q, habulk)
         return habulk
+    
+    def storeHandsStove(self, sdata, hsbulk, doinsert):
+        #print sdata
+        hsbulk += sdata
+        if doinsert and hsbulk:
+            q = self.sql.query['store_hands_stove']
+            q = q.replace('%s', self.sql.query['placeholder'])
+            c = self.get_cursor()
+            c.executemany(q, hsbulk)
+        return hsbulk
 
     def storeHudCache(self, gid, pids, starttime, pdata, hcbulk, doinsert = False):
         """Update cached statistics. If update fails because no record exists, do an insert."""
@@ -2323,6 +2336,7 @@ class Database:
             if pid in heros:
                 hand['hands'] = 0
                 hand['totalProfit'] = 0
+                hand['allInEV'] = 0
                 hand['playerId'] = pid
                 hand['gametypeId'] = None
                 hand['date'] = date
@@ -2331,7 +2345,7 @@ class Database:
                 hand['tourneys'] = 0
                 hand['tourneyTypeId'] = None
                 hand['tourneyId'] = tid
-                hand['played'] = 1 #0 Disabling played hands caching until it can be made less resource intensive
+                hand['played'] = 0
                 hand['ids'] = []
                 if (game['type']=='summary'):
                     hand['type'] = 'tour'
@@ -2347,6 +2361,7 @@ class Database:
                     if pdata[p]['street0VPI'] or pdata[p]['street1Seen']:
                         hand['played'] = 1
                     hand['totalProfit'] = pdata[p]['totalProfit']
+                    hand['allInEV'] = pdata[p]['allInEV']
                     hand['hands'] = 1
                 elif (game['type']=='tour'):
                     hand['type'] = game['type']
@@ -2364,24 +2379,17 @@ class Database:
                 and (hand['gametypeId']    == gsc['bk'][i]['gametypeId'])
                 and (hand['playerId']      == gsc['bk'][i]['playerId']) 
                 and (hand['tourneyTypeId'] == gsc['bk'][i]['tourneyTypeId'])
-                and (hand['tourneyId']     == gsc['bk'][i]['tourneyId'])
-                and (hand['played']        == gsc['bk'][i]['played'])): 
+                and (hand['tourneyId']     == gsc['bk'][i]['tourneyId'])): 
                     if ((lower <= gsc['bk'][i]['gameEnd'])
                     and (upper >= gsc['bk'][i]['gameStart'])):
-                        if ((hand['startTime'] <=  gsc['bk'][i]['gameEnd']) 
-                        and (hand['startTime'] >=  gsc['bk'][i]['gameStart'])):
-                            gsc['bk'][i]['hands']         += hand['hands']
-                            gsc['bk'][i]['tourneys']      += hand['tourneys']
-                            gsc['bk'][i]['totalProfit']   += hand['totalProfit']
-                        elif hand['startTime']  <  gsc['bk'][i]['gameStart']:
-                            gsc['bk'][i]['hands']         += hand['hands']
-                            gsc['bk'][i]['tourneys']      += hand['tourneys']
-                            gsc['bk'][i]['totalProfit']   += hand['totalProfit']
+                        gsc['bk'][i]['played']        += hand['played']
+                        gsc['bk'][i]['hands']         += hand['hands']
+                        gsc['bk'][i]['tourneys']      += hand['tourneys']
+                        gsc['bk'][i]['totalProfit']   += hand['totalProfit']
+                        gsc['bk'][i]['allInEV']       += hand['allInEV']
+                        if hand['startTime']  <  gsc['bk'][i]['gameStart']:
                             gsc['bk'][i]['gameStart']      = hand['startTime']
                         elif hand['startTime']  >  gsc['bk'][i]['gameEnd']:
-                            gsc['bk'][i]['hands']         += hand['hands']
-                            gsc['bk'][i]['tourneys']      += hand['tourneys']
-                            gsc['bk'][i]['totalProfit']   += hand['totalProfit']
                             gsc['bk'][i]['gameEnd']        = hand['startTime']
                         id.append(i)
             if len(id) == 1:
@@ -2390,12 +2398,16 @@ class Database:
                 if    gsc['bk'][id[0]]['gameStart'] < gsc['bk'][id[1]]['gameStart']:
                       gsc['bk'][id[0]]['gameEnd']   = gsc['bk'][id[1]]['gameEnd']
                 else: gsc['bk'][id[0]]['gameStart'] = gsc['bk'][id[1]]['gameStart']
+                gsc['bk'][id[0]]['played']         += gsc['bk'][id[1]]['played']
                 gsc['bk'][id[0]]['hands']          += gsc['bk'][id[1]]['hands']
                 gsc['bk'][id[0]]['tourneys']       += gsc['bk'][id[1]]['tourneys']
                 gsc['bk'][id[0]]['totalProfit']    += gsc['bk'][id[1]]['totalProfit']
+                gsc['bk'][id[0]]['allInEV']        += gsc['bk'][id[1]]['allInEV']
+                gsc['bk'][id[0]]['played']         += hand['played']
                 gsc['bk'][id[0]]['hands']          += hand['hands']
                 gsc['bk'][id[0]]['tourneys']       += hand['tourneys']
                 gsc['bk'][id[0]]['totalProfit']    += hand['totalProfit']
+                gsc['bk'][id[0]]['allInEV']        += hand['allInEV']
                 gh = gsc['bk'].pop(id[1])
                 gsc['bk'][id[0]]['ids'].append(hid)
                 gsc['bk'][id[0]]['ids'] += gh['ids']
@@ -2418,8 +2430,7 @@ class Database:
                        ,gsc['bk'][i]['gametypeId']
                        ,gsc['bk'][i]['tourneyTypeId']
                        ,gsc['bk'][i]['tourneyId']
-                       ,gsc['bk'][i]['playerId']
-                       ,gsc['bk'][i]['played']]
+                       ,gsc['bk'][i]['playerId']]
                 row = [lower, upper] + game
                 c.execute(select_SC, row)
                 r = self.fetchallDict(c)
@@ -2431,15 +2442,17 @@ class Database:
                     if gsc['bk'][i]['gameEnd']   > gend:
                         gend = gsc['bk'][i]['gameEnd']
                     row = [start, end, gstart, gend
+                          ,gsc['bk'][i]['played']
                           ,gsc['bk'][i]['hands']
                           ,gsc['bk'][i]['tourneys']
                           ,gsc['bk'][i]['totalProfit']
+                          ,gsc['bk'][i]['allInEV']
                           ,r[0]['id']]
                     c.execute(update_SC, row)
                     for h in gsc['bk'][i]['ids']: gsc[h] = {'id': r[0]['id']} 
                 elif (num > 1):
                     self.commit()
-                    gstart, gend, hands, tourneys, totalProfit, delete = None, None, 0, 0, 0, []
+                    gstart, gend, played, hands, tourneys, totalProfit, allInEV, delete = None, None, 0, 0, 0, 0, 0, []
                     for n in r: delete.append(n['id'])
                     delete.sort()
                     for d in delete: c.execute(delete_SC, d)
@@ -2453,10 +2466,12 @@ class Database:
                             if  gend < n['gameEnd']: 
                                 gend = n['gameEnd']
                         else:   gend = n['gameEnd']
+                        played        += n['played']
                         hands         += n['hands']
                         tourneys      += n['tourneys']
                         totalProfit   += n['totalProfit']
-                    row = [start, end, gstart, gend, sid] + game + [hands, tourneys, totalProfit]
+                        allInEV       += n['allInEV']
+                    row = [start, end, gstart, gend, sid] + game + [played, hands, tourneys, totalProfit, allInEV]
                     c.execute(insert_SC, row)
                     gsid = self.get_last_insert_id(c)
                     for h in gsc['bk'][i]['ids']: gsc[h] = {'id': gsid}
@@ -2466,10 +2481,12 @@ class Database:
                 elif (num == 0):
                     gstart =          gsc['bk'][i]['gameStart']
                     gend =            gsc['bk'][i]['gameEnd']
+                    played =          gsc['bk'][i]['played']
                     hands =           gsc['bk'][i]['hands']
                     tourneys =        gsc['bk'][i]['tourneys']
                     totalProfit =     gsc['bk'][i]['totalProfit']
-                    row = [start, end, gstart, gend, sid] + game + [hands, tourneys, totalProfit]
+                    allInEV =         gsc['bk'][i]['allInEV']
+                    row = [start, end, gstart, gend, sid] + game + [played, hands, tourneys, totalProfit, allInEV]
                     c.execute(insert_SC, row)
                     gsid = self.get_last_insert_id(c)
                     for h in gsc['bk'][i]['ids']: gsc[h] = {'id': gsid}
@@ -2684,13 +2701,6 @@ class Database:
                          hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency)
         
         result = self.ttcache[(hand.tourNo, hand.siteId, tourneydata, tourneyInsert)]
-            # NOTE: Using the LambdaDict does the same thing as:
-            #if player in self.pcache:
-            #    #print "DEBUG: cachehit"
-            #    pass
-            #else:
-            #    self.pcache[player] = self.insertPlayer(player, siteid)
-            #result[player] = self.pcache[player]
 
         return result
     
@@ -2699,15 +2709,6 @@ class Database:
         c = self.get_cursor()
         q = self.sql.query['getTourneyTypeIdByTourneyNo']
         q = q.replace('%s', self.sql.query['placeholder'])
-
-        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
-        #Usage:
-        #        INSERT INTO `tags` (`tag`, `count`)
-        #         VALUES ($tag, 1)
-        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
-
-
-        #print "DEBUG: name: %s site: %s" %(name, site_id)
 
         c.execute (q, (tournNo, siteId))
 
@@ -2718,6 +2719,12 @@ class Database:
             try:
                 result = tmp[0]
             except TypeError: #this means we need to create a new entry
+                if self.printdata:
+                    print _("######## TourneyType ##########")
+                    import pprint
+                    pp = pprint.PrettyPrinter(indent=4)
+                    pp.pprint(tourneyInsert)
+                    print _("###### End TourneyType ########")
                 c.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']), tourneyInsert)
                 #Get last id might be faster here.
                 #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
@@ -2757,9 +2764,16 @@ class Database:
                       )
                 cursor.execute(q, row)
         else:
-            cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
-                    (summary.tourneyTypeId, summary.tourNo, summary.entries, summary.prizepool, summary.startTime,
-                     summary.endTime, summary.tourneyName, summary.matrixIdProcessed, summary.totalRebuyCount, summary.totalAddOnCount))
+            row = (summary.tourneyTypeId, summary.tourNo, summary.entries, summary.prizepool, summary.startTime,
+                   summary.endTime, summary.tourneyName, summary.matrixIdProcessed, summary.totalRebuyCount, 
+                   summary.totalAddOnCount)
+            if self.printdata:
+                print _("######## Tourneys ##########")
+                import pprint
+                pp = pprint.PrettyPrinter(indent=4)
+                pp.pprint(row)
+                print _("###### End Tourneys ########")
+            cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']), row)
             tourneyId = self.get_last_insert_id(cursor)
         return tourneyId
     #end def createOrUpdateTourney
@@ -2769,13 +2783,6 @@ class Database:
             self.tcache = LambdaDict(lambda  key:self.insertTourney(key[0], key[1], key[2], key[3]))
 
         result = self.tcache[(hand.siteId, hand.tourNo, hand.tourneyTypeId, hand.startTime)]
-            # NOTE: Using the LambdaDict does the same thing as:
-            #if player in self.pcache:
-            #    #print "DEBUG: cachehit"
-            #    pass
-            #else:
-            #    self.pcache[player] = self.insertPlayer(player, siteid)
-            #result[player] = self.pcache[player]
 
         return result
     
@@ -2784,15 +2791,6 @@ class Database:
         c = self.get_cursor()
         q = self.sql.query['getTourneyByTourneyNo']
         q = q.replace('%s', self.sql.query['placeholder'])
-
-        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
-        #Usage:
-        #        INSERT INTO `tags` (`tag`, `count`)
-        #         VALUES ($tag, 1)
-        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
-
-
-        #print "DEBUG: name: %s site: %s" %(name, site_id)
 
         c.execute (q, (siteId, tourNo))
 
@@ -2867,13 +2865,6 @@ class Database:
         for player in hand.players:
             playerId = hand.dbid_pids[player[1]]
             result[player[1]] = self.tpcache[(playerId,hand.tourneyId)]
-            # NOTE: Using the LambdaDict does the same thing as:
-            #if player in self.pcache:
-            #    #print "DEBUG: cachehit"
-            #    pass
-            #else:
-            #    self.pcache[player] = self.insertPlayer(player, siteid)
-            #result[player] = self.pcache[player]
 
         return result
     
@@ -2882,15 +2873,6 @@ class Database:
         c = self.get_cursor()
         q = self.sql.query['getTourneysPlayersByIds']
         q = q.replace('%s', self.sql.query['placeholder'])
-
-        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
-        #Usage:
-        #        INSERT INTO `tags` (`tag`, `count`)
-        #         VALUES ($tag, 1)
-        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
-
-
-        #print "DEBUG: name: %s site: %s" %(name, site_id)
 
         c.execute (q, (tourneyId, playerId))
 
