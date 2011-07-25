@@ -114,25 +114,19 @@ class GuiGraphViewer (threading.Thread):
     #end def get_vbox
 
     def clearGraphData(self):
-
         try:
-            try:
-                if self.canvas:
-                    self.graphBox.remove(self.canvas)
-            except:
-                pass
-
-            if self.fig != None:
-                self.fig.clear()
-            self.fig = Figure(figsize=(5,4), dpi=100)
-            if self.canvas is not None:
-                self.canvas.destroy()
-
-            self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
+            if self.canvas:
+                self.graphBox.remove(self.canvas)
         except:
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("Error:")+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-            raise
+            pass
+
+        if self.fig != None:
+            self.fig.clear()
+        self.fig = Figure(figsize=(5,4), dpi=100)
+        if self.canvas is not None:
+            self.canvas.destroy()
+
+        self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
 
     def generateGraph(self, widget, data):
         self.clearGraphData()
@@ -183,7 +177,7 @@ class GuiGraphViewer (threading.Thread):
 
         #Get graph data from DB
         starttime = time()
-        (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games, currencies, graphops['dspin'])
+        (green, blue, red, orange) = self.getRingProfitGraph(playerids, sitenos, limits, games, currencies, graphops['dspin'])
         print _("Graph generated in: %s") %(time() - starttime)
 
         #Set axis labels and grid overlay properites
@@ -230,6 +224,8 @@ class GuiGraphViewer (threading.Thread):
                 self.ax.plot(blue, color='blue', label=_('Showdown') + ' (%s): %.2f' %(graphops['dspin'], blue[-1]))
             if graphops['nonshowdown'] == 'ON':
                 self.ax.plot(red, color='red', label=_('Non-showdown') + ' (%s): %.2f' %(graphops['dspin'], red[-1]))
+            if graphops['ev'] == 'ON':
+                self.ax.plot(red, color='orange', label=_('All-in EV') + ' (%s): %.2f' %(graphops['dspin'], orange[-1]))
 
             if sys.version[0:3] == '2.5':
                 self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
@@ -318,10 +314,12 @@ class GuiGraphViewer (threading.Thread):
         green = map(lambda x:float(x[1]), winnings)
         blue  = map(lambda x: float(x[1]) if x[2] == True  else 0.0, winnings)
         red   = map(lambda x: float(x[1]) if x[2] == False else 0.0, winnings)
+        orange = map(lambda x:float(x[3]), winnings)
         greenline = cumsum(green)
         blueline  = cumsum(blue)
         redline   = cumsum(red)
-        return (greenline/100, blueline/100, redline/100)
+        orangeline = cumsum(orange)
+        return (greenline/100, blueline/100, redline/100,orangeline/100)
         #end of def getRingProfitGraph
 
     def exportGraph (self, widget, data):
