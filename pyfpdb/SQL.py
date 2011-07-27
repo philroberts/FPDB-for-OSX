@@ -1217,8 +1217,8 @@ class Sql:
         elif db_server == 'postgresql':
             self.query['createHandsStoveTable'] = """CREATE TABLE HandsStove (
                         id BIGSERIAL, PRIMARY KEY (id),
-                        handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
-                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        handId BIGINT NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                        playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         street SMALLINT,
                         boardId SMALLINT,
                         hiString TEXT,
