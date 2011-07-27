@@ -178,7 +178,7 @@ class Importer:
                 if len(result) == 0:
                     log.error(_("Database ID for %s not found") % site)
                 else:
-                    log.error(_("[ERROR] More than 1 Database ID found for %s - Multiple currencies not implemented yet") % site)
+                    log.error(_("More than 1 Database ID found for %s") % site)
 
 
     # Called from GuiBulkImport to add a file or directory. Bulk import never monitors
