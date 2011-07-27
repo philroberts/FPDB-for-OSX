@@ -155,6 +155,9 @@ setup(
                                       ,'OnGameToFpdb',        'PartyPokerToFpdb'
                                       ,'PkrToFpdb',           'PokerStarsToFpdb'
                                       ,'Win2dayToFpdb',       'WinamaxToFpdb'
+                                      ,'EntractionToFpdb',    'EverestToFpdb'
+                                      ,'CakeToFpdb',          'PacificPokerToFpdb'
+
                                       ],
                       'excludes'    : ['_tkagg', '_agg2', 'cocoaagg', 'fltkagg'],
                       'dll_excludes': ['libglade-2.0-0.dll', 'libgdk-win32-2.0-0.dll', 'libgobject-2.0-0.dll'
