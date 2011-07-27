@@ -25,8 +25,6 @@ import logging
 log = logging.getLogger("parser")
 
 try:
-    sys.path.insert(0, ".")
-    sys.path.insert(0, ".libs")
     from pokereval import PokerEval
     pokereval = PokerEval()
 except:
