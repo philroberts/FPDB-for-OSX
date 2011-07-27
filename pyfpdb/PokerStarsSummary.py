@@ -61,7 +61,7 @@ class PokerStarsSummary(TourneySummary):
                         (?P<DESC>[ a-zA-Z]+\s+)?
                         (Buy-In:\s[%(LS)s](?P<BUYIN>[.0-9]+)(\/[%(LS)s](?P<FEE>[.0-9]+))?(?P<CUR>\s(%(LEGAL_ISO)s))?\s+)?
                         (?P<ENTRIES>[0-9]+)\splayers\s+
-                        ([%(LS)s]?(?P<ADDED>[.\d]+)\sadded\sto\sthe\sprize\spool\sby\sPokerStars\.com\s+)?
+                        ([%(LS)s]?(?P<ADDED>[.\d]+)(\s(%(LEGAL_ISO)s))?\sadded\sto\sthe\sprize\spool\sby\sPokerStars(\.com)?\s+)?
                         (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[.0-9]+)(\s(%(LEGAL_ISO)s))?\s+)?
                         (Target\sTournament\s.*)?
                         Tournament\sstarted\s+(-\s)?
@@ -84,7 +84,7 @@ class PokerStarsSummary(TourneySummary):
             log.error("parseSummary: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise Tourney Info: '%s'") % tmp)
 
-        #print "DEBUG: m.groupdict(): %s" % m.groupdict()
+        print "DEBUG: m.groupdict(): %s" % m.groupdict()
 
         mg = m.groupdict()
         if 'TOURNO'    in mg: self.tourNo = mg['TOURNO']

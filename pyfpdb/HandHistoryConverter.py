@@ -513,7 +513,7 @@ or None if we fail to get the info """
         elif givenTimezone=="CET":
             givenTZ = timezone('Europe/Berlin')
             #Note: Daylight Saving Time is standardised across the EU so this should be fine
-        elif givenTimezone == 'GMT': # Greenwich Mean Time (same as UTC - no change to time)
+        elif givenTimezone == 'GMT' or givenTimezone == 'WET': # Greenwich Mean Time (same as UTC - no change to time)
             givenTZ = timezone('GMT')
         elif givenTimezone == 'HST': # Hawaiian Standard Time
             pass
