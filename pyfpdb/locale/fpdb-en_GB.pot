@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-07-23 05:24+CEST\n"
+"POT-Creation-Date: 2011-07-27 07:20+CEST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2092,11 +2092,11 @@ msgid "Tried to add holecards for unknown player: %s"
 msgstr ""
 
 #: Hand.py:509 Hand.py:511
-msgid "%s didn't match - Assuming hand %s was cancelled."
+msgid "First 100 characters: %s"
 msgstr ""
 
 #: Hand.py:509 Hand.py:511
-msgid "First 100 characters: %s"
+msgid "Streets didn't match - Assuming hand %s was cancelled."
 msgstr ""
 
 #: Hand.py:515 Hand.py:516
@@ -2176,7 +2176,7 @@ msgid "Error in printing Hand object"
 msgstr ""
 
 #: HandHistoryConverter.py:40
-msgid "Unable to import PYTZ library.  Please install PYTZ from http://pypi.python.org/pypi/pytz/"
+msgid "Unable to import PYTZ library. Please install PYTZ from http://pypi.python.org/pypi/pytz/"
 msgstr ""
 
 #: HandHistoryConverter.py:132
