@@ -1649,7 +1649,7 @@ class Sql:
                         type char(7) NOT NULL,
                         gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                         tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
-                        tourneyId INT UNSIGNED UNSIGNED, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
+                        tourneyId INT UNSIGNED, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         played INT NOT NULL,
                         hands INT NOT NULL,
