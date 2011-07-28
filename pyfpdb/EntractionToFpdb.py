@@ -92,7 +92,7 @@ class Entraction(HandHistoryConverter):
 
     re_SplitHands   = re.compile('Game #')
     re_Button       = re.compile('^Dealer:\s+(?P<PNAME>.*)$', re.MULTILINE)
-    re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
+    re_Board        = re.compile(r"(?P<CARDS>.+)$")
     re_GameEnds     = re.compile(r"Game\sended\s(?P<Y>[0-9]{4})-(?P<M>[0-9]{2})-(?P<D>[0-9]{2})\s(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", re.MULTILINE)
 
     re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
@@ -103,7 +103,7 @@ class Entraction(HandHistoryConverter):
     re_PostBoth     = re.compile(r"^%(PLYR)s: posts small \& big blinds %(CUR)s(?P<SBBB>[.0-9]+)" %  substitutions, re.MULTILINE)
     re_HeroCards    = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""
-                        ^%(PLYR)s\s+(?P<ATYPE>Fold|Check|Call|Bet|Raise)
+                        ^%(PLYR)s\s+(?P<ATYPE>Fold|Check|Call|Bet|Raise|All-In)
                         (\s+\((?P<BET>[.\d]+)\))?$"""
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" % substitutions['PLYR'], re.MULTILINE)
@@ -204,19 +204,18 @@ class Entraction(HandHistoryConverter):
     def markStreets(self, hand):
         if hand.gametype['base'] in ("hold"):
             m =  re.search(r"Dealer:(?P<PREFLOP>.+(?=Flop {24})|.+)"
-                       r"(Flop  {24}(?P<FLOP>\S\S - \S\S - \S\S\.+(?=Turn  {24})|.+))?"
-                       r"(Turn  {24}\S\S - \S\S - \S\S - (?P<TURN>\S\S.+(?=River  {23})|.+))?"
-                       r"(River  {23}\S\S - \S\S - \S\S - \S\S - (?P<RIVER>\S\S.+))?", hand.handText,re.DOTALL)
-        #mg = m.groupdict()
-        #print mg
+                       r"(Flop {24}(?P<FLOP>\S\S - \S\S - \S\S.+(?=Turn {24})|.+))?"
+                       r"(Turn {24}\S\S - \S\S - \S\S - (?P<TURN>\S\S.+(?=River {23})|.+))?"
+                       r"(River {23}\S\S - \S\S - \S\S - \S\S - (?P<RIVER>\S\S.+))?", hand.handText,re.DOTALL)
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street):
-        print "DEBUG: readCommunityCards"
-        if street in ('FLOP','TURN','RIVER'):
-            print "DEBUG readCommunityCards:", street, hand.streets.group(street)
-            m = self.re_Board.search(hand.streets[street])
-            hand.setCommunityCards(street, m.group('CARDS').split(' '))
+        pass
+        #print "DEBUG: readCommunityCards"
+        #if street in ('FLOP','TURN','RIVER'):
+        #    print "DEBUG readCommunityCards: %s %s" %(street, hand.streets[street])
+        #    m = self.re_Board.search(hand.streets[street])
+        #    hand.setCommunityCards(street, m.group('CARDS').split(' '))
 
     def readAntes(self, hand):
         pass
@@ -292,7 +291,7 @@ class Entraction(HandHistoryConverter):
             acts = action.groupdict()
             #print "DEBUG: acts: %s" %acts
             if action.group('ATYPE') == 'Raise':
-                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
+                hand.addCallandRaise( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == 'Call':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == 'Bet':
@@ -301,6 +300,8 @@ class Entraction(HandHistoryConverter):
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'Check':
                 hand.addCheck( street, action.group('PNAME'))
+            elif action.group('ATYPE') == 'All-In':
+                hand.addAllIn(street, action.group('PNAME'), action.group('BET'))
             else:
                 print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 
