@@ -80,6 +80,7 @@ class PacificPoker(HandHistoryConverter):
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl', 'Fix Limit':'fl' }
 
     games = {                          # base, category
+                             "Hold'em"  : ('hold','holdem'),
                                'Holdem' : ('hold','holdem'),
                                 'Omaha' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
