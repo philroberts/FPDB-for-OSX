@@ -50,7 +50,7 @@ from decimal_wrapper import Decimal
 class Carbon(HandHistoryConverter):
     sitename = "Carbon"
     filetype = "text"
-    codepage = "cp1252"
+    codepage = ("cp1252", "utf8")
     siteId   = 11
     copyGameHeader = True
 
@@ -88,7 +88,7 @@ class Carbon(HandHistoryConverter):
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r'<description type="(?P<GAME>[-0-9a-zA-Z \/]+)" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
-    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLE>[-\ \$\#a-zA-Z\d\']+)(\(\d+\))?\|(?P<TOURNO>\d+)?.*>', re.MULTILINE)
+    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLE>[-\ %\$\#a-zA-Z\d\']+)(\(\d+\))?\|(?P<TOURNO>\d+)?.*>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
     re_Board = re.compile(r'<cards type="COMMUNITY" cards="(?P<CARDS>[^"]+)"', re.MULTILINE)
