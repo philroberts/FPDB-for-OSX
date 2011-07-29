@@ -103,7 +103,7 @@ class PacificPoker(HandHistoryConverter):
           \*\*\*\*\*\sCassava\sHand\sHistory\sfor\sGame\s[0-9]+\s\*\*\*\*\*\\n
           (?P<CURRENCY>%(LS)s)?(?P<SB>[.,0-9]+)/(%(LS)s)?(?P<BB>[.,0-9]+)\sBlinds\s
           (?P<LIMIT>No\sLimit|Fix\sLimit|Pot\sLimit)\s
-          (?P<GAME>Holdem|Omaha|OmahaHL|Hold\'em)
+          (?P<GAME>Holdem|Omaha|OmahaHL|Hold\'em|Omaha\sHi/Lo|OmahaHL|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)
           \s-\s\*\*\*\s
           (?P<DATETIME>.*$)
           """ % substitutions, re.MULTILINE|re.VERBOSE)

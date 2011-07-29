@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2008-2011, Carl Gherardi
@@ -44,7 +44,7 @@ class Everleaf(HandHistoryConverter):
     # Static regexes
     re_SplitHands  = re.compile(r"\n\n\n+")
     re_TailSplitHands  = re.compile(r"(\n\n\n+)")
-    re_GameInfo    = re.compile(ur"^(Blinds )? ?(?P<CURRENCY>[%(LS)s]?)(?P<SB>[.0-9]+) ?/ ? ?[%(LS)s]?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) ?(?P<GAME>(Hold\'em|Omaha|7 Card Stud))" % substitutions, re.MULTILINE)
+    re_GameInfo    = re.compile(ur"^(Blinds )? ?(?P<CURRENCY>[%(LS)s]?)(?P<SB>[.0-9]+) ?/ ? ?[%(LS)s]?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) ?(?P<GAME>(Hold\'em|Omaha|7\sCard\sStud))" % substitutions, re.MULTILINE)
     
     #re_HandInfo    = re.compile(ur".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?P<CURRENCY>[$€])?(?P<SB>[.0-9]+)/(?:[$€])?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)", re.MULTILINE)
     
@@ -80,7 +80,7 @@ class Everleaf(HandHistoryConverter):
             self.re_HeroCards       = re.compile(ur"^Dealt to %s \[ (?P<CARDS>.*) \]$" % player_re, re.MULTILINE)
             # ^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.,\d]+) (USD|EURO|EUR|Chips)\])?
             self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?: ?[%s]?) (?P<BET>[.,\d]+)\s?(USD|EURO|EUR|Chips|)\])?" % (player_re, self.substitutions["LS"]), re.MULTILINE)
-            self.re_ShowdownAction  = re.compile(ur"^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
+            self.re_ShowdownAction  = re.compile(ur"^%s (?P<SHOWED>shows|mucks) \[ (?P<CARDS>.*) \] (?P<STRING>.*)" % player_re, re.MULTILINE)
             self.re_CollectPot      = re.compile(ur"^%s wins  ?(?: ?[%s]?)\s?(?P<POT>[.\d]+) (USD|EURO|EUR|chips)(.*?\[ (?P<CARDS>.*?) \])?" % (player_re, self.substitutions["LS"]), re.MULTILINE)
             self.re_SitsOut         = re.compile(ur"^%s sits out" % player_re, re.MULTILINE)
 
@@ -311,14 +311,20 @@ or None if we fail to get the info """
 
     def readShownCards(self,hand):
         """Reads lines where hole & board cards are mixed to form a hand (summary lines)"""
-        for m in self.re_CollectPot.finditer(hand.handText):
+        for m in self.re_ShowdownAction.finditer(hand.handText):
             if m.group('CARDS') is not None:
                 cards = m.group('CARDS')
                 cards = cards.split(', ')
+                string = m.group('STRING')
                 player = m.group('PNAME')
+
+                (shown, mucked) = (False, False)
+                if m.group('SHOWED') == "showed": shown = True
+                elif m.group('SHOWED') == "mucked": mucked = True
+                
                 logging.debug("readShownCards %s cards=%s" % (player, cards))
 #                hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
-                hand.addShownCards(cards=cards, player=m.group('PNAME'))
+                hand.addShownCards(cards=cards, player=player, shown=shown, mucked=mucked, string=string)
 
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):

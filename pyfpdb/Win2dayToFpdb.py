@@ -37,7 +37,7 @@ class Win2day(HandHistoryConverter):
     # Static regexes
     re_GameInfo     = re.compile("""<HISTORY\sID="(?P<HID>[0-9]+)"\sSESSION="session[0-9]+\.xml"\s
                                     TABLE="(?P<TABLE>[-\sa-zA-Z0-9\xc0-\xfc/.]+)"\s
-                                    GAME="(?P<GAME>[_A-Z]+)"\sGAMETYPE="[_a-zA-Z]+"\sGAMEKIND="[_a-zA-Z]+"\s
+                                    GAME="(?P<GAME>GAME_THM|GAME_OMA)"\sGAMETYPE="[_a-zA-Z]+"\sGAMEKIND="[_a-zA-Z]+"\s
                                     TABLECURRENCY="(?P<CURRENCY>[A-Z]+)"\s
                                     LIMIT="(?P<LIMIT>NL|PL)"\s
                                     STAKES="(?P<SB>[.0-9]+)/(?P<BB>[.0-9]+)"\s
