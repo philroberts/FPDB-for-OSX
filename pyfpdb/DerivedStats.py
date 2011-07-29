@@ -379,7 +379,7 @@ class DerivedStats():
                                         cards = hole + board['board'][n]
                                         cards  = [str(c) for c in cards]
                                         bcards = []
-                                if (u'0x' not in cards) and ((game[0] == 'hold' and len(board['board'][n])>=3) or 
+                                if (u'0x' not in cards and 'null' not in cards) and ((game[0] == 'hold' and len(board['board'][n])>=3) or 
                                    (game[0] == 'stud' and len(cards)==7) or (game[0] == 'draw' and len(cards)==5)):
                                      if game[2] == 'h':
                                          best_hi = pokereval.best_hand("hi", cards, bcards)
@@ -438,7 +438,7 @@ class DerivedStats():
                                                      else:
                                                          if hiappend not in inserts_temp[k][4] and inserts_temp[k][10]>0: 
                                                              inserts_temp[k][4] += hiappend
-                                if (u'0x' not in cards) and board['allin'] and self.handsplayers[player[1]]['sawShowdown']: 
+                                if (u'0x' not in cards and 'null' not in cards) and board['allin'] and self.handsplayers[player[1]]['sawShowdown']: 
                                     if player[1] not in board['players']:
                                         board['hole'].append([str(c) for c in hole])
                                         board['players'].append(player[1])

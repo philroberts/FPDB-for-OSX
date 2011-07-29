@@ -68,7 +68,7 @@ class Carbon(HandHistoryConverter):
                    '5-Stud'  : ('stud','5studhi'),
                      'Razz'  : ('stud','razz'),
             }
-    Lim_Blinds = {  '0.04': ('0.01', '0.02'),        '0.10': ('0.02', '0.05'),
+    Lim_Blinds = {      '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),
                         '0.20': ('0.05', '0.10'),    '0.50': ('0.10', '0.25'),
                         '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
                         '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
@@ -76,19 +76,18 @@ class Carbon(HandHistoryConverter):
                         '6.00': ('1.50', '3.00'),       '6': ('1.50', '3.00'),
                         '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
                        '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
-                       #'12.00': ('2.00', '5.00'),      '12': ('2.00', '5.00'),
-                       #'20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
-                       #'30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
-                       #'40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
-                       #'60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
-                      #'100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
+                       '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
+                       '30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
+                       '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
+                       '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
+                      '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
                   }
 
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Holdem\sTournament|Omaha|Omaha\sTournament|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|7\-Stud|5\-Stud|Razz)" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
-    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLE>[\.\-\ &%\$\#a-zA-Z\d\']+)(\(\d+\))?\|(?P<TOURNO>\d+)?.*>', re.MULTILINE)
+    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLE>[,\.\-\ &%\$\#a-zA-Z\d\']+)(\(\d+\))?\|(?P<TOURNO>\d+)?.*>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
     re_Board = re.compile(r'<cards type="COMMUNITY" cards="(?P<CARDS>[^"]+)"', re.MULTILINE)
