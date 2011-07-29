@@ -87,7 +87,7 @@ class Carbon(HandHistoryConverter):
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r'<description type="(?P<GAME>[-0-9a-zA-Z \/]+)" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
+    re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Holdem\sTournament|Omaha|Omaha\sTournament|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|7\-Stud|5\-Stud|Razz)" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
     re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLE>[-\ %\$\#a-zA-Z\d\']+)(\(\d+\))?\|(?P<TOURNO>\d+)?.*>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
@@ -157,12 +157,12 @@ or None if we fail to get the info """
             # and subsequent hands. In these cases we use the value previously
             # stored.
             try:
-                self.info
                 return self.info
             except AttributeError:
                 tmp = handText[0:100]
                 log.error(_("Unable to recognise gametype from: '%s'") % tmp)
                 log.error("determineGameType: " + _("Raising FpdbParseError"))
+                #print _("Unable to recognise gametype from: '%s'") % tmp
                 raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         self.info = {}
@@ -214,7 +214,7 @@ or None if we fail to get the info """
         # Check that the hand is complete up to the awarding of the pot; if
         # not, the hand is unparseable
         if self.re_EndOfHand.search(hand.handText) is None:
-            raise FpdbParseError("readHandInfo failed: EndOfHand missing HID: '%s-%s'" %(m.group('HID1'), m.group('HID2')))
+            raise FpdbParseError("readHandInfo failed: END_OF_GAME missing from HID (partial hand history): '%s-%s'" %(m.group('HID1'), m.group('HID2')))
 
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.handText)
@@ -234,6 +234,8 @@ or None if we fail to get the info """
                     hand.maxseats = 6
             if a.group('DEALTIN') == "true":
                 hand.addPlayer(seatno, a.group('PNAME'), a.group('CASH'))
+        if not hand.players:
+            raise FpdbParseError("readPlayerStacks failed: No one was dealt in")
 
     def markStreets(self, hand):
         if hand.gametype['base'] == 'hold':
@@ -261,10 +263,13 @@ or None if we fail to get the info """
 
     def readCommunityCards(self, hand, street):
         m = self.re_Board.search(hand.streets[street])
-        if street == 'FLOP':
-            hand.setCommunityCards(street, m.group('CARDS').split(','))
-        elif street in ('TURN','RIVER'):
-            hand.setCommunityCards(street, [m.group('CARDS').split(',')[-1]])
+        if m and street in ('FLOP','TURN','RIVER'):
+            if street == 'FLOP':
+                hand.setCommunityCards(street, m.group('CARDS').split(','))
+            elif street in ('TURN','RIVER'):
+                hand.setCommunityCards(street, [m.group('CARDS').split(',')[-1]])
+        else:
+            raise FpdbParseError("readCommunityCards failed: No community cards found on this street")
 
     def readAntes(self, hand):
         m = self.re_Antes.finditer(hand.handText)
