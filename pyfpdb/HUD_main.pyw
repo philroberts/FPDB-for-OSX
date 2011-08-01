@@ -47,7 +47,7 @@ import Options
 (options, argv) = Options.fpdb_options()
 
 #    get the correct module for the current os
-if sys.platform == 'linux2':
+if sys.platform[0:5] == 'linux':
     import XTables as Tables
 elif sys.platform == 'darwin':
     import OSXTables as Tables

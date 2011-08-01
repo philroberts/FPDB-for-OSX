@@ -84,7 +84,7 @@ class PokerStarsSummary(TourneySummary):
             log.error("parseSummary: " + _("Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise Tourney Info: '%s'") % tmp)
 
-        print "DEBUG: m.groupdict(): %s" % m.groupdict()
+        #print "DEBUG: m.groupdict(): %s" % m.groupdict()
 
         mg = m.groupdict()
         if 'TOURNO'    in mg: self.tourNo = mg['TOURNO']

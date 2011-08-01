@@ -37,7 +37,7 @@ try:
     from pytz import timezone
     import pytz
 except ImportError:
-    print _("ImportError: Unable to import PYTZ library.  Please install PYTZ from http://pypi.python.org/pypi/pytz/")
+    print (_("Unable to import PYTZ library. Please install PYTZ from http://pypi.python.org/pypi/pytz/"))
     raw_input(_("Press ENTER to continue."))
     exit()   
 
@@ -513,8 +513,8 @@ or None if we fail to get the info """
         elif givenTimezone=="CET":
             givenTZ = timezone('Europe/Berlin')
             #Note: Daylight Saving Time is standardised across the EU so this should be fine
-        elif givenTimezone == 'GMT' or givenTimezone == 'WET': # Greenwich Mean Time (same as UTC - no change to time)
-            givenTZ = timezone('GMT')
+        elif givenTimezone == 'GMT' or givenTimezone == 'WET': # Greenwich Mean Time (same as UTC except daylight saving time)
+            givenTZ = timezone('WET')
         elif givenTimezone == 'HST': # Hawaiian Standard Time
             pass
         elif givenTimezone == 'AKT': # Alaska Time

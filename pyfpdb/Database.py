@@ -1779,11 +1779,11 @@ class Database:
 
     def storeHand(self, hdata, hbulk, doinsert = False, printdata = False):
         if printdata:
-            print _("######## Hands ##########")
+            print ("######## Hands ##########")
             import pprint
             pp = pprint.PrettyPrinter(indent=4)
             pp.pprint(hdata)
-            print _("###### End Hands ########")
+            print ("###### End Hands ########")
             
         # Tablename can have odd charachers
         hdata['tableName'] = Charset.to_db_utf8(hdata['tableName'])
@@ -2537,11 +2537,11 @@ class Database:
         if (tmp == None):
                 
             if self.gtprintdata:
-                print _("######## Gametype ##########")
+                print ("######## Gametype ##########")
                 import pprint
                 pp = pprint.PrettyPrinter(indent=4)
                 pp.pprint(gtinsert)
-                print _("###### End Gametype ########")
+                print ("###### End Gametype ########")
                 
             c.execute(self.sql.query['insertGameTypes'], gtinsert)
             result = self.get_last_insert_id(c)
@@ -2720,11 +2720,11 @@ class Database:
                 result = tmp[0]
             except TypeError: #this means we need to create a new entry
                 if self.printdata:
-                    print _("######## TourneyType ##########")
+                    print ("######## TourneyType ##########")
                     import pprint
                     pp = pprint.PrettyPrinter(indent=4)
                     pp.pprint(tourneyInsert)
-                    print _("###### End TourneyType ########")
+                    print ("###### End TourneyType ########")
                 c.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']), tourneyInsert)
                 #Get last id might be faster here.
                 #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
@@ -2768,11 +2768,11 @@ class Database:
                    summary.endTime, summary.tourneyName, summary.matrixIdProcessed, summary.totalRebuyCount, 
                    summary.totalAddOnCount)
             if self.printdata:
-                print _("######## Tourneys ##########")
+                print ("######## Tourneys ##########")
                 import pprint
                 pp = pprint.PrettyPrinter(indent=4)
                 pp.pprint(row)
-                print _("###### End Tourneys ########")
+                print ("###### End Tourneys ########")
             cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']), row)
             tourneyId = self.get_last_insert_id(cursor)
         return tourneyId
