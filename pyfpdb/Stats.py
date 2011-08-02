@@ -994,7 +994,7 @@ def starthands(stat_dict, player, handid):
     stat_descriptions["starthands"] = _("starting hands at this table") + " (starting hands)"
     PFlimp=" PFlimp:"
     PFaggr=" PFaggr:"
-    PFcar=" PFliCa:"
+    PFcar=" PFCaRa:"
     PFdefend=" PFdefBB:"
     count_pfl = count_pfa = count_pfc = count_pfd = 2
     
