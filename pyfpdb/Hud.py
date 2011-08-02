@@ -34,11 +34,9 @@ import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("hud")
 
-#    pyGTK modules
-import pygtk
-import gtk
-import pango
-import gobject
+from Cocoa import *
+
+titlebarheight = 22
 
 #    win32 modules -- only imported on windows systems
 if os.name == 'nt':
@@ -64,6 +62,14 @@ def importName(module_name, name):
         return None
     return(getattr(module, name))
 
+class mainwindowtextfield(NSTextField):
+    def mouseDragged_(self, event):
+        frame = self.owner.frame()
+        frame.origin.x += event.deltaX()
+        frame.origin.y -= event.deltaY()
+        self.owner.setFrame_display_(frame, True)
+    def rightMouseDown_(self, event):
+        print event, "RIGHTMOUSEEVENT"
 
 class Hud:
     def __init__(self, parent, table, max, poker_game, config, db_connection):
@@ -95,15 +101,17 @@ class Hud:
         self.hud_ui     = config.get_hud_ui_parameters()
         self.site_params = config.get_site_parameters(self.table.site)
 
-        self.backgroundcolor = gtk.gdk.color_parse(self.colors['hudbgcolor'])
-        self.foregroundcolor = gtk.gdk.color_parse(self.colors['hudfgcolor'])
+        #self.backgroundcolor = gtk.gdk.color_parse(self.colors['hudbgcolor'])
+        #self.foregroundcolor = gtk.gdk.color_parse(self.colors['hudfgcolor'])
+        self.backgroundcolor = NSColor.blackColor()
+        self.foregroundcolor = NSColor.whiteColor()
 
-        self.font = pango.FontDescription("%s %s" % (font, font_size))
+        self.font = NSFont.fontWithName_size_(font, font_size)
         # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
 
         game_params = config.get_game_parameters(self.poker_game)
         # if there are AUX windows configured, set them up (Ray knows how this works, if anyone needs info)
-        if not game_params['aux'] == [""]:
+        if False and not game_params['aux'] == [""]:
             for aux in game_params['aux']:
                 aux_params = config.get_aux_parameters(aux)
                 my_import = importName(aux_params['module'], aux_params['class'])
@@ -115,264 +123,279 @@ class Hud:
 
     # Set up a main window for this this instance of the HUD
     def create_mw(self):
-        win = gtk.Window()
-        win.set_skip_taskbar_hint(True)  # invisible to taskbar
-        win.set_gravity(gtk.gdk.GRAVITY_STATIC)
-        # give it a title that we can easily filter out in the window list when Table search code is looking
-        win.set_title("%s FPDBHUD" % (self.table.name)) 
-        win.set_decorated(False)    # kill titlebars
-        win.set_opacity(self.colors["hudopacity"])  
-        win.set_focus(None)
-        win.set_focus_on_map(False)
-        win.set_accept_focus(False)
-
-        eventbox = gtk.EventBox()
-        label = gtk.Label(self.hud_ui['label'])
-
-        win.add(eventbox)
-        eventbox.add(label)
-
-        # set it to the desired color of the HUD for this site
-        label.modify_bg(gtk.STATE_NORMAL, self.backgroundcolor)
-        label.modify_fg(gtk.STATE_NORMAL, self.foregroundcolor)
-
-        eventbox.modify_bg(gtk.STATE_NORMAL, self.backgroundcolor)
-        eventbox.modify_fg(gtk.STATE_NORMAL, self.foregroundcolor)
+        adjustedy = NSScreen.mainScreen().frame().size.height - self.table.y - 20 - titlebarheight
+        rect = NSMakeRect(self.table.x, adjustedy, 300, 20)
+        win = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(rect, NSBorderlessWindowMask, NSBackingStoreBuffered, False)
+        win.setTitle_("%s FPDBHUD" % (self.table.name))
+        #win.setOpaque_(False)
+            
+        label = mainwindowtextfield.alloc().initWithFrame_(rect)
+        label.owner = win
+        label.setStringValue_(self.hud_ui['label'])
+        label.setEditable_(False)
+        label.setSelectable_(False)
+        label.setBezeled_(False)
+        label.setFont_(self.font)
+        label.setTextColor_(self.foregroundcolor)
+        label.setBackgroundColor_(self.backgroundcolor)
+        win.setContentView_(label)
+        #win = gtk.Window()
+        #win.set_skip_taskbar_hint(True)  # invisible to taskbar
+        #win.set_gravity(gtk.gdk.GRAVITY_STATIC)
+        ## give it a title that we can easily filter out in the window list when Table search code is looking
+        #win.set_title("%s FPDBHUD" % (self.table.name)) 
+        #win.set_decorated(False)    # kill titlebars
+        #win.set_opacity(self.colors["hudopacity"])  
+        #win.set_focus(None)
+        #win.set_focus_on_map(False)
+        #win.set_accept_focus(False)
+        #
+        #eventbox = gtk.EventBox()
+        #label = gtk.Label(self.hud_ui['label'])
+        #
+        #win.add(eventbox)
+        #eventbox.add(label)
+        #
+        ## set it to the desired color of the HUD for this site
+        #label.modify_bg(gtk.STATE_NORMAL, self.backgroundcolor)
+        #label.modify_fg(gtk.STATE_NORMAL, self.foregroundcolor)
+        #
+        #eventbox.modify_bg(gtk.STATE_NORMAL, self.backgroundcolor)
+        #eventbox.modify_fg(gtk.STATE_NORMAL, self.foregroundcolor)
 
         self.main_window = win
-        # move it to the table window's X/Y position (0,0 on the table window usually)
-        self.main_window.move(self.table.x, self.table.y)
 
 #    A popup menu for the main window
 #    This menu code has become extremely long - is there a better way to do this?
-        menu = gtk.Menu()
-
-        killitem = gtk.MenuItem(_('Kill This HUD'))
-        menu.append(killitem)
-        if self.parent is not None:
-            killitem.connect("activate", self.parent.kill_hud, self.table_name)
-
-        saveitem = gtk.MenuItem(_('Save HUD Layout'))
-        menu.append(saveitem)
-        saveitem.connect("activate", self.save_layout)
-
-        repositem = gtk.MenuItem(_('Reposition StatWindows'))
-        menu.append(repositem)
-        repositem.connect("activate", self.reposition_windows)
-
-        aggitem = gtk.MenuItem(_('Show Player Stats for'))
-        menu.append(aggitem)
-        self.aggMenu = gtk.Menu()
-        aggitem.set_submenu(self.aggMenu)
-        # set agg_bb_mult to 1 to stop aggregation
-        item = gtk.CheckMenuItem(_('For This Blind Level Only'))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, ('P', 1))
-        setattr(self, 'h_aggBBmultItem1', item)
-
-        item = gtk.MenuItem(_('For Multiple Blind Levels:'))
-        self.aggMenu.append(item)
-        
-        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.5", "2.0"))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, ('P',2))
-        setattr(self, 'h_aggBBmultItem2', item)
-        
-        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.33", "3.0"))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, ('P',3))
-        setattr(self, 'h_aggBBmultItem3', item)
-        
-        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.1", "10.0"))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, ('P',10))
-        setattr(self, 'h_aggBBmultItem10', item)
-        
-        item = gtk.CheckMenuItem("  " + _('All Levels'))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, ('P',10000))
-        setattr(self, 'h_aggBBmultItem10000', item)
-        
-        item = gtk.MenuItem(_('Number of Seats:'))
-        self.aggMenu.append(item)
-        
-        item = gtk.CheckMenuItem("  " + _('Any Number'))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_seats_style, ('P','A'))
-        setattr(self, 'h_seatsStyleOptionA', item)
-        
-        item = gtk.CheckMenuItem("  " + _('Custom'))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_seats_style, ('P','C'))
-        setattr(self, 'h_seatsStyleOptionC', item)
-        
-        item = gtk.CheckMenuItem("  " + _('Exact'))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_seats_style, ('P','E'))
-        setattr(self, 'h_seatsStyleOptionE', item)
-        
-        item = gtk.MenuItem(_('Since:'))
-        self.aggMenu.append(item)
-        
-        item = gtk.CheckMenuItem("  " + _('All Time'))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_hud_style, ('P','A'))
-        setattr(self, 'h_hudStyleOptionA', item)
-        
-        item = gtk.CheckMenuItem("  " + _('Session'))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_hud_style, ('P','S'))
-        setattr(self, 'h_hudStyleOptionS', item)
-        
-        item = gtk.CheckMenuItem("  " + _('%s Days') % (self.hud_params['h_hud_days']))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_hud_style, ('P','T'))
-        setattr(self, 'h_hudStyleOptionT', item)
-
-        aggitem = gtk.MenuItem(_('Show Opponent Stats for'))
-        menu.append(aggitem)
-        self.aggMenu = gtk.Menu()
-        aggitem.set_submenu(self.aggMenu)
-        # set agg_bb_mult to 1 to stop aggregation
-        item = gtk.CheckMenuItem(_('For This Blind Level Only'))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, ('O',1))
-        setattr(self, 'aggBBmultItem1', item)
-        
-        item = gtk.MenuItem(_('For Multiple Blind Levels:'))
-        self.aggMenu.append(item)
-        
-        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.5", "2.0"))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, ('O',2))
-        setattr(self, 'aggBBmultItem2', item)
-        
-        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.33", "3.0"))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, ('O',3))
-        setattr(self, 'aggBBmultItem3', item)
-        
-        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.1", "10.0"))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, ('O',10))
-        setattr(self, 'aggBBmultItem10', item)
-        
-        item = gtk.CheckMenuItem("  " + _('All Levels'))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, ('O',10000))
-        setattr(self, 'aggBBmultItem10000', item)
-        
-        item = gtk.MenuItem(_('Number of Seats:'))
-        self.aggMenu.append(item)
-        
-        item = gtk.CheckMenuItem("  " + _('Any Number'))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_seats_style, ('O','A'))
-        setattr(self, 'seatsStyleOptionA', item)
-        
-        item = gtk.CheckMenuItem("  " + _('Custom'))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_seats_style, ('O','C'))
-        setattr(self, 'seatsStyleOptionC', item)
-        
-        item = gtk.CheckMenuItem("  " + _('Exact'))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_seats_style, ('O','E'))
-        setattr(self, 'seatsStyleOptionE', item)
-        
-        item = gtk.MenuItem(_('Since:'))
-        self.aggMenu.append(item)
-        
-        item = gtk.CheckMenuItem("  " + _('All Time'))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_hud_style, ('O','A'))
-        setattr(self, 'hudStyleOptionA', item)
-        
-        item = gtk.CheckMenuItem("  " + _('Session'))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_hud_style, ('O','S'))
-        setattr(self, 'hudStyleOptionS', item)
-        
-        item = gtk.CheckMenuItem("  " + _('%s Days') % (self.hud_params['hud_days']))
-        self.aggMenu.append(item)
-        item.connect("activate", self.set_hud_style, ('O','T'))
-        setattr(self, 'hudStyleOptionT', item)
-
-        # set active on current options:
-        if self.hud_params['h_agg_bb_mult'] == 1:
-            getattr(self, 'h_aggBBmultItem1').set_active(True)
-        elif self.hud_params['h_agg_bb_mult'] == 2:
-            getattr(self, 'h_aggBBmultItem2').set_active(True)
-        elif self.hud_params['h_agg_bb_mult'] == 3:
-            getattr(self, 'h_aggBBmultItem3').set_active(True)
-        elif self.hud_params['h_agg_bb_mult'] == 10:
-            getattr(self, 'h_aggBBmultItem10').set_active(True)
-        elif self.hud_params['h_agg_bb_mult'] > 9000:
-            getattr(self, 'h_aggBBmultItem10000').set_active(True)
-        
-        if self.hud_params['agg_bb_mult'] == 1:
-            getattr(self, 'aggBBmultItem1').set_active(True)
-        elif self.hud_params['agg_bb_mult'] == 2:
-            getattr(self, 'aggBBmultItem2').set_active(True)
-        elif self.hud_params['agg_bb_mult'] == 3:
-            getattr(self, 'aggBBmultItem3').set_active(True)
-        elif self.hud_params['agg_bb_mult'] == 10:
-            getattr(self, 'aggBBmultItem10').set_active(True)
-        elif self.hud_params['agg_bb_mult'] > 9000:
-            getattr(self, 'aggBBmultItem10000').set_active(True)
-        
-        if self.hud_params['h_seats_style'] == 'A':
-            getattr(self, 'h_seatsStyleOptionA').set_active(True)
-        elif self.hud_params['h_seats_style'] == 'C':
-            getattr(self, 'h_seatsStyleOptionC').set_active(True)
-        elif self.hud_params['h_seats_style'] == 'E':
-            getattr(self, 'h_seatsStyleOptionE').set_active(True)
-        
-        if self.hud_params['seats_style'] == 'A':
-            getattr(self, 'seatsStyleOptionA').set_active(True)
-        elif self.hud_params['seats_style'] == 'C':
-            getattr(self, 'seatsStyleOptionC').set_active(True)
-        elif self.hud_params['seats_style'] == 'E':
-            getattr(self, 'seatsStyleOptionE').set_active(True)
-        
-        if self.hud_params['h_hud_style'] == 'A':
-            getattr(self, 'h_hudStyleOptionA').set_active(True)
-        elif self.hud_params['h_hud_style'] == 'S':
-            getattr(self, 'h_hudStyleOptionS').set_active(True)
-        elif self.hud_params['h_hud_style'] == 'T':
-            getattr(self, 'h_hudStyleOptionT').set_active(True)
-        
-        if self.hud_params['hud_style'] == 'A':
-            getattr(self, 'hudStyleOptionA').set_active(True)
-        elif self.hud_params['hud_style'] == 'S':
-            getattr(self, 'hudStyleOptionS').set_active(True)
-        elif self.hud_params['hud_style'] == 'T':
-            getattr(self, 'hudStyleOptionT').set_active(True)
-
-        eventbox.connect_object("button-press-event", self.on_button_press, menu)
-
-        debugitem = gtk.MenuItem(_('Debug Statistics Windows'))
-        menu.append(debugitem)
-        debugitem.connect("activate", self.debug_stat_windows)
-
-        item5 = gtk.MenuItem(_('Set max seats'))
-        menu.append(item5)
-        maxSeatsMenu = gtk.Menu()
-        item5.set_submenu(maxSeatsMenu)
-        for i in range(2, 11, 1):
-            item = gtk.MenuItem('%d-max' % i)
-            item.ms = i
-            maxSeatsMenu.append(item)
-            item.connect("activate", self.change_max_seats)
-            setattr(self, 'maxSeatsMenuItem%d' % (i - 1), item)
-
-        eventbox.connect_object("button-press-event", self.on_button_press, menu)
-
+#        menu = gtk.Menu()
+#
+#        killitem = gtk.MenuItem(_('Kill This HUD'))
+#        menu.append(killitem)
+#        if self.parent is not None:
+#            killitem.connect("activate", self.parent.kill_hud, self.table_name)
+#
+#        saveitem = gtk.MenuItem(_('Save HUD Layout'))
+#        menu.append(saveitem)
+#        saveitem.connect("activate", self.save_layout)
+#
+#        repositem = gtk.MenuItem(_('Reposition StatWindows'))
+#        menu.append(repositem)
+#        repositem.connect("activate", self.reposition_windows)
+#
+#        aggitem = gtk.MenuItem(_('Show Player Stats for'))
+#        menu.append(aggitem)
+#        self.aggMenu = gtk.Menu()
+#        aggitem.set_submenu(self.aggMenu)
+#        # set agg_bb_mult to 1 to stop aggregation
+#        item = gtk.CheckMenuItem(_('For This Blind Level Only'))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_aggregation, ('P', 1))
+#        setattr(self, 'h_aggBBmultItem1', item)
+#
+#        item = gtk.MenuItem(_('For Multiple Blind Levels:'))
+#        self.aggMenu.append(item)
+#        
+#        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.5", "2.0"))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_aggregation, ('P',2))
+#        setattr(self, 'h_aggBBmultItem2', item)
+#        
+#        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.33", "3.0"))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_aggregation, ('P',3))
+#        setattr(self, 'h_aggBBmultItem3', item)
+#        
+#        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.1", "10.0"))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_aggregation, ('P',10))
+#        setattr(self, 'h_aggBBmultItem10', item)
+#        
+#        item = gtk.CheckMenuItem("  " + _('All Levels'))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_aggregation, ('P',10000))
+#        setattr(self, 'h_aggBBmultItem10000', item)
+#        
+#        item = gtk.MenuItem(_('Number of Seats:'))
+#        self.aggMenu.append(item)
+#        
+#        item = gtk.CheckMenuItem("  " + _('Any Number'))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_seats_style, ('P','A'))
+#        setattr(self, 'h_seatsStyleOptionA', item)
+#        
+#        item = gtk.CheckMenuItem("  " + _('Custom'))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_seats_style, ('P','C'))
+#        setattr(self, 'h_seatsStyleOptionC', item)
+#        
+#        item = gtk.CheckMenuItem("  " + _('Exact'))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_seats_style, ('P','E'))
+#        setattr(self, 'h_seatsStyleOptionE', item)
+#        
+#        item = gtk.MenuItem(_('Since:'))
+#        self.aggMenu.append(item)
+#        
+#        item = gtk.CheckMenuItem("  " + _('All Time'))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_hud_style, ('P','A'))
+#        setattr(self, 'h_hudStyleOptionA', item)
+#        
+#        item = gtk.CheckMenuItem("  " + _('Session'))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_hud_style, ('P','S'))
+#        setattr(self, 'h_hudStyleOptionS', item)
+#        
+#        item = gtk.CheckMenuItem("  " + _('%s Days') % (self.hud_params['h_hud_days']))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_hud_style, ('P','T'))
+#        setattr(self, 'h_hudStyleOptionT', item)
+#
+#        aggitem = gtk.MenuItem(_('Show Opponent Stats for'))
+#        menu.append(aggitem)
+#        self.aggMenu = gtk.Menu()
+#        aggitem.set_submenu(self.aggMenu)
+#        # set agg_bb_mult to 1 to stop aggregation
+#        item = gtk.CheckMenuItem(_('For This Blind Level Only'))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_aggregation, ('O',1))
+#        setattr(self, 'aggBBmultItem1', item)
+#        
+#        item = gtk.MenuItem(_('For Multiple Blind Levels:'))
+#        self.aggMenu.append(item)
+#        
+#        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.5", "2.0"))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_aggregation, ('O',2))
+#        setattr(self, 'aggBBmultItem2', item)
+#        
+#        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.33", "3.0"))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_aggregation, ('O',3))
+#        setattr(self, 'aggBBmultItem3', item)
+#        
+#        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.1", "10.0"))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_aggregation, ('O',10))
+#        setattr(self, 'aggBBmultItem10', item)
+#        
+#        item = gtk.CheckMenuItem("  " + _('All Levels'))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_aggregation, ('O',10000))
+#        setattr(self, 'aggBBmultItem10000', item)
+#        
+#        item = gtk.MenuItem(_('Number of Seats:'))
+#        self.aggMenu.append(item)
+#        
+#        item = gtk.CheckMenuItem("  " + _('Any Number'))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_seats_style, ('O','A'))
+#        setattr(self, 'seatsStyleOptionA', item)
+#        
+#        item = gtk.CheckMenuItem("  " + _('Custom'))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_seats_style, ('O','C'))
+#        setattr(self, 'seatsStyleOptionC', item)
+#        
+#        item = gtk.CheckMenuItem("  " + _('Exact'))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_seats_style, ('O','E'))
+#        setattr(self, 'seatsStyleOptionE', item)
+#        
+#        item = gtk.MenuItem(_('Since:'))
+#        self.aggMenu.append(item)
+#        
+#        item = gtk.CheckMenuItem("  " + _('All Time'))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_hud_style, ('O','A'))
+#        setattr(self, 'hudStyleOptionA', item)
+#        
+#        item = gtk.CheckMenuItem("  " + _('Session'))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_hud_style, ('O','S'))
+#        setattr(self, 'hudStyleOptionS', item)
+#        
+#        item = gtk.CheckMenuItem("  " + _('%s Days') % (self.hud_params['hud_days']))
+#        self.aggMenu.append(item)
+#        item.connect("activate", self.set_hud_style, ('O','T'))
+#        setattr(self, 'hudStyleOptionT', item)
+#
+#        # set active on current options:
+#        if self.hud_params['h_agg_bb_mult'] == 1:
+#            getattr(self, 'h_aggBBmultItem1').set_active(True)
+#        elif self.hud_params['h_agg_bb_mult'] == 2:
+#            getattr(self, 'h_aggBBmultItem2').set_active(True)
+#        elif self.hud_params['h_agg_bb_mult'] == 3:
+#            getattr(self, 'h_aggBBmultItem3').set_active(True)
+#        elif self.hud_params['h_agg_bb_mult'] == 10:
+#            getattr(self, 'h_aggBBmultItem10').set_active(True)
+#        elif self.hud_params['h_agg_bb_mult'] > 9000:
+#            getattr(self, 'h_aggBBmultItem10000').set_active(True)
+#        
+#        if self.hud_params['agg_bb_mult'] == 1:
+#            getattr(self, 'aggBBmultItem1').set_active(True)
+#        elif self.hud_params['agg_bb_mult'] == 2:
+#            getattr(self, 'aggBBmultItem2').set_active(True)
+#        elif self.hud_params['agg_bb_mult'] == 3:
+#            getattr(self, 'aggBBmultItem3').set_active(True)
+#        elif self.hud_params['agg_bb_mult'] == 10:
+#            getattr(self, 'aggBBmultItem10').set_active(True)
+#        elif self.hud_params['agg_bb_mult'] > 9000:
+#            getattr(self, 'aggBBmultItem10000').set_active(True)
+#        
+#        if self.hud_params['h_seats_style'] == 'A':
+#            getattr(self, 'h_seatsStyleOptionA').set_active(True)
+#        elif self.hud_params['h_seats_style'] == 'C':
+#            getattr(self, 'h_seatsStyleOptionC').set_active(True)
+#        elif self.hud_params['h_seats_style'] == 'E':
+#            getattr(self, 'h_seatsStyleOptionE').set_active(True)
+#        
+#        if self.hud_params['seats_style'] == 'A':
+#            getattr(self, 'seatsStyleOptionA').set_active(True)
+#        elif self.hud_params['seats_style'] == 'C':
+#            getattr(self, 'seatsStyleOptionC').set_active(True)
+#        elif self.hud_params['seats_style'] == 'E':
+#            getattr(self, 'seatsStyleOptionE').set_active(True)
+#        
+#        if self.hud_params['h_hud_style'] == 'A':
+#            getattr(self, 'h_hudStyleOptionA').set_active(True)
+#        elif self.hud_params['h_hud_style'] == 'S':
+#            getattr(self, 'h_hudStyleOptionS').set_active(True)
+#        elif self.hud_params['h_hud_style'] == 'T':
+#            getattr(self, 'h_hudStyleOptionT').set_active(True)
+#        
+#        if self.hud_params['hud_style'] == 'A':
+#            getattr(self, 'hudStyleOptionA').set_active(True)
+#        elif self.hud_params['hud_style'] == 'S':
+#            getattr(self, 'hudStyleOptionS').set_active(True)
+#        elif self.hud_params['hud_style'] == 'T':
+#            getattr(self, 'hudStyleOptionT').set_active(True)
+#
+#        eventbox.connect_object("button-press-event", self.on_button_press, menu)
+#
+#        debugitem = gtk.MenuItem(_('Debug Statistics Windows'))
+#        menu.append(debugitem)
+#        debugitem.connect("activate", self.debug_stat_windows)
+#
+#        item5 = gtk.MenuItem(_('Set max seats'))
+#        menu.append(item5)
+#        maxSeatsMenu = gtk.Menu()
+#        item5.set_submenu(maxSeatsMenu)
+#        for i in range(2, 11, 1):
+#            item = gtk.MenuItem('%d-max' % i)
+#            item.ms = i
+#            maxSeatsMenu.append(item)
+#            item.connect("activate", self.change_max_seats)
+#            setattr(self, 'maxSeatsMenuItem%d' % (i - 1), item)
+#
+#        eventbox.connect_object("button-press-event", self.on_button_press, menu)
+#
         self.mw_created = True
         self.label = label
-        menu.show_all()
-        self.main_window.show_all()
-#        self.topify_window(self.main_window)
+#        menu.show_all()
+#        self.main_window.show_all()
+        self.main_window.display()
+        self.topify_window(self.main_window)
 
     def change_max_seats(self, widget):
         if self.max != widget.ms:
@@ -499,21 +522,33 @@ class Hud:
 
     def up_update_table_position(self):
 #    callback for table moved
-
+        adjustedy = NSScreen.mainScreen().frame().size.height - self.table.y - 20 - titlebarheight
+        frame = self.main_window.frame()
+        frame.origin.x = self.table.x
+        frame.origin.y = adjustedy
+        self.main_window.setFrame_display_(frame, True)
+        self.topify_window(self.main_window)
+#    move the main window - use the "old" position as it's already updated by the time we get here.
+#        self.main_window.move(self.table.x + self.site_params['xshift'], self.table.y + self.site_params['yshift'])
+#        log.debug('mainwindow moved to %d %d' % (self.table.x + self.site_params['xshift'], self.table.y + self.site_params['yshift']))
 #    move the stat windows
-        (self.table.oldx, self.table.oldy) = self.table.gdkhandle.get_origin()
         adj = self.adj_seats(self.hand, self.config)
         loc = self.config.get_locations(self.table.site, self.max)
         for i, w in enumerate(self.stat_windows.itervalues()):
             (x, y) = loc[adj[i+1]]
+            log.debug('moving stat window %d to %d, %d'%(i, x, y))
             w.relocate(x, y)
-#    move the main window - use the "old" position as it's already updated by the time we get here.
-        self.main_window.move(self.table.oldx + self.site_params['xshift'], self.table.oldy + self.site_params['yshift'])
+            self.topify_window(w.window)
 #    and move any auxs
         for aux in self.aux_windows:
             aux.update_card_positions()
         return True
-
+    
+    def topify_all(self):
+        self.topify_window(self.main_window)
+        for w in self.stat_windows.values():
+            self.topify_window(w.window)
+    
     def on_button_press(self, widget, event):
         if event.button == 1: # if primary button, start movement
             self.main_window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
@@ -530,7 +565,8 @@ class Hud:
             s.kill_popups()
             try:
                 # throws "invalid window handle" in WinXP (sometimes?)
-                s.window.destroy()
+                s.window.setReleasedWhenClosed_(False)
+                s.window.close()
             except: # TODO: what exception?
                 pass
         self.stat_windows = {}
@@ -561,7 +597,10 @@ class Hud:
 #                print "in reposition, w =", w
                 continue
 #            print "in reposition, w =", w, w.x, w.y
-            w.window.move(w.x, w.y)
+            frame = w.window.frame()
+            frame.origin.x = w.x
+            frame.origin.y = w.y
+            w.window.setFrame_display_(frame, True)
         self.repositioningwindows = False
         return True
 
@@ -606,8 +645,8 @@ class Hud:
                     if adj[j] > self.max:
                         adj[j] = adj[j] - self.max
             except Exception, inst:
-                sys.stderr.write(_("Exception in %s") % "Hud.adj_seats")
-                sys.stderr.write("Error:" + (" %s") % inst)           # __str__ allows args to printed directly
+                sys.stderr.write(_("Exception in %s\n") % "Hud.adj_seats")
+                sys.stderr.write("Error:" + (" %s\n") % inst)           # __str__ allows args to printed directly
         return adj
 
     def get_actual_seat(self, name):
@@ -667,6 +706,7 @@ class Hud:
             self.stats[config.supported_games[self.poker_game].stats[stat].row] \
                       [config.supported_games[self.poker_game].stats[stat].col] = \
                       config.supported_games[self.poker_game].stats[stat].stat_name
+        print self.stats
 
 #        if os.name == "nt": # we call update_table_position() regularly in Windows to see if we're moving around.  See comments on that function for why this isn't done in X.
 #            gobject.timeout_add(500, self.update_table_position)
@@ -677,7 +717,7 @@ class Hud:
             if self.update_table_position() == False: # we got killed by finding our table was gone
                 return
 
-        self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
+#        self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
         for s in self.stat_dict:
             try:
                 statd = self.stat_dict[s]
@@ -692,6 +732,7 @@ class Hud:
                 self.create(hand, config, self.stat_dict, self.cards)
                 self.stat_windows[statd['seat']].player_id = statd['player_id']
 
+            print self.stats
             for r in xrange(0, config.supported_games[self.poker_game].rows):
                 for c in xrange(0, config.supported_games[self.poker_game].cols):
                     this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
@@ -699,40 +740,53 @@ class Hud:
                     statstring = "%s%s%s" % (this_stat.hudprefix, str(number[1]), this_stat.hudsuffix)
                     window = self.stat_windows[statd['seat']]
 
-                    if this_stat.hudcolor != "":
-                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
-                    else:
-                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
-                    
-                    if this_stat.stat_loth != "":
-                        if number[0] < (float(this_stat.stat_loth)/100):
-                            window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_locolor))
+ #                   if this_stat.hudcolor != "":
+ #                       window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
+ #                   else:
+ #                       window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
+ #                   
+ #                   if this_stat.stat_loth != "":
+ #                       if number[0] < (float(this_stat.stat_loth)/100):
+ #                           window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_locolor))
+ #
+ #                   if this_stat.stat_hith != "":
+ #                       if number[0] > (float(this_stat.stat_hith)/100):
+ #                           window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_hicolor))
 
-                    if this_stat.stat_hith != "":
-                        if number[0] > (float(this_stat.stat_hith)/100):
-                            window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_hicolor))
-
-                    window.label[r][c].set_text(statstring)
+                    #window.grid.cellAtRow_column_(r, c).setStringValue_(statstring)
+                    window.labels[r][c].setStringValue_(statstring)
                     if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
                         unhidewindow = True
                     tip = "%s\n%s\n%s, %s" % (statd['screen_name'], number[5], number[3], number[4])
-                    Stats.do_tip(window.e_box[r][c], tip)
+                    #Stats.do_tip(window.e_box[r][c], tip)
             if unhidewindow: #and not window.window.visible: # there is no "visible" attribute in gtk.Window, although the docs seem to indicate there should be
-                window.window.show_all()
+                window.window.display()
             unhidewindow = False
 
     def topify_window(self, window, parentwindow=None):
-        window.set_focus_on_map(False)
-        window.set_accept_focus(False)
+        #window.set_focus_on_map(False)
+        #window.set_accept_focus(False)
 #        print "topify_window", window, parentwindow
+        window.orderWindow_relativeTo_(NSWindowAbove, self.table.number)
+        #if not self.table.gdkhandle:
+        #    self.table.gdkhandle = gtk.gdk.window_foreign_new(int(self.table.number)) # gtk handle to poker window
+        #    log.debug('table number %d' % int(self.table.number))
+        #    log.debug(self.table.gdkhandle)
+        #if parentwindow is not None:
+        #    window.window.set_transient_for(parentwindow.window)
+        #else:
+        #    pass
+        #    #window.window.set_transient_for(self.table.gdkhandle)
+        #window.set_destroy_with_parent(True)
 
-        if not self.table.gdkhandle:
-            self.table.gdkhandle = gtk.gdk.window_foreign_new(int(self.table.number)) # gtk handle to poker window
-        if parentwindow is not None:
-            window.window.set_transient_for(parentwindow.window)
-        else:
-            window.window.set_transient_for(self.table.gdkhandle)
-        window.set_destroy_with_parent(True)
+class statwindowtextfield(NSTextField):
+    def mouseDragged_(self, event):
+        frame = self.owner.frame()
+        frame.origin.x += event.deltaX()
+        frame.origin.y -= event.deltaY()
+        self.owner.setFrame_display_(frame, True)
+    def rightMouseDown_(self, event):
+        print event, "RIGHTMOUSEEVENT_statwindow"
 
 class Stat_Window:
 
@@ -773,16 +827,17 @@ class Stat_Window:
     def kill_popup(self, popup):
         #print "remove popup", popup
         self.popups.remove(popup)
-        popup.window.destroy()
+        #popup.window.close()
 
     def kill_popups(self):
-        map(lambda x: x.window.destroy(), self.popups)
+        #map(lambda x: x.window.close(), self.popups)
         self.popups = { }
 
     def relocate(self, x, y):
-        self.x = x + self.table.oldx
-        self.y = y + self.table.oldy
-        self.window.move(self.x, self.y)
+        frame = self.window.frame()
+        frame.origin.x = x + self.table.x
+        frame.origin.y = NSScreen.mainScreen().frame().size.height - self.table.y - y - titlebarheight - frame.size.height
+        self.window.setFrame_display_(frame, True)
 
     def __init__(self, parent, game, table, seat, adj, x, y, player_id, font):
         self.parent = parent        # Hud object that this stat window belongs to
@@ -792,79 +847,114 @@ class Stat_Window:
         self.adj = adj              # the adjusted seat number for this player
         self.x = x + table.x        # table.x and y are the location of the table
         self.y = y + table.y        # x and y are the location relative to table.x & y
+        self.y = NSScreen.mainScreen().frame().size.height - table.y - y - titlebarheight - 20 * game.rows
         self.player_id = player_id  # looks like this isn't used ;)
         self.sb_click = 0           # used to figure out button clicks
         self.popups = []            # list of open popups for this stat window
         self.useframes = parent.config.get_frames(parent.site)
 
-        self.window = gtk.Window()
-        self.window.set_decorated(0)
-        self.window.set_property("skip-taskbar-hint", True)
-        self.window.set_gravity(gtk.gdk.GRAVITY_STATIC)
-
-        self.window.set_title("%s" % seat)
-        self.window.set_focus(None) # set gtk default focus widget for this window to None
-        self.window.set_focus_on_map(False)
-        self.window.set_accept_focus(False)
-
-        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_UTILITY)
-
-        grid = gtk.Table(rows = game.rows, columns = game.cols, homogeneous = False)
-        self.grid = grid
-        self.window.add(grid)
-        self.window.modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
-
-        self.e_box = []
-        self.frame = []
-        self.label = []
-        usegtkframes = self.useframes
-        e_box = self.e_box
-        label = self.label
+        rect = NSMakeRect(self.x, self.y, 120, 20 * game.rows)
+        self.window = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(rect, NSBorderlessWindowMask, NSBackingStoreBuffered, False)
+#        self.grid = NSMatrix.alloc().initWithFrame_mode_cellClass_numberOfRows_numberOfColumns_(rect, NSListModeMatrix, NSTextFieldCell.class__(), 2, 3)
+#        self.grid.setAutosizesCells_(True)
+#        self.grid.setDrawsCellBackground_(True)
+#        self.grid.setDrawsBackground_(True)
+#        self.grid.setBackgroundColor_(parent.backgroundcolor)
+#        self.grid.setCellBackgroundColor_(parent.backgroundcolor)
+        self.window.setTitle_("%s" % seat)
+        self.labels = []
+        
         for r in xrange(game.rows):
-            if usegtkframes:
-                self.frame.append([])
-            e_box.append([])
-            label.append([])
+            self.labels.append([])
             for c in xrange(game.cols):
-                if usegtkframes:
-                    self.frame[r].append( gtk.Frame() )
-                e_box[r].append( gtk.EventBox() )
-
-                e_box[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
-                e_box[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
-
-                Stats.do_tip(e_box[r][c], 'stuff')
-                if usegtkframes:
-                    grid.attach(self.frame[r][c], c, c+1, r, r+1, xpadding = game.xpad, ypadding = game.ypad)
-                    self.frame[r][c].add(e_box[r][c])
-                else:
-                    grid.attach(e_box[r][c], c, c+1, r, r+1, xpadding = game.xpad, ypadding = game.ypad)
-                label[r].append( gtk.Label('xxx') )
-
-                if usegtkframes:
-                    self.frame[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
-                label[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
-                label[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
-
-                e_box[r][c].add(self.label[r][c])
-                e_box[r][c].connect("button_press_event", self.button_press_cb)
-                e_box[r][c].connect("focus-in-event", self.noop)
-                e_box[r][c].connect("focus", self.noop)
-                e_box[r][c].connect("focus-out-event", self.noop)
-                label[r][c].modify_font(font)
-
-        self.window.set_opacity(parent.colors['hudopacity'])
-        self.window.connect("focus", self.noop)
-        self.window.connect("focus-in-event", self.noop)
-        self.window.connect("focus-out-event", self.noop)
-        self.window.connect("button_press_event", self.button_press_cb)
-        self.window.set_focus_on_map(False)
-        self.window.set_accept_focus(False)
-
-
-        self.window.move(self.x, self.y)
-        self.window.hide()
-        self.window.realize() # window must be realized before it has a gdkwindow so we can attach it to the table window..
+                rect = NSMakeRect(c * 40, (game.rows - r - 1) * 20, 40, 20)
+                label = statwindowtextfield.alloc().initWithFrame_(rect)
+                label.owner = self.window
+                label.setStringValue_('xxx')
+                label.setTextColor_(parent.foregroundcolor)
+                label.setBackgroundColor_(parent.backgroundcolor)
+                label.setFont_(parent.font)
+                label.setBezeled_(False)
+                label.setEditable_(False)
+                label.setSelectable_(False)
+                label.setAlignment_(NSCenterTextAlignment)
+                self.window.contentView().addSubview_(label)
+                self.labels[r].append(label)
+#                cell = self.grid.cellAtRow_column_(r, c)
+#                cell.setStringValue_('xxx')
+#                cell.setFont_(font)
+#                cell.setBackgroundColor_(parent.backgroundcolor)
+#                cell.setTextColor_(parent.foregroundcolor)
+#        self.window.setContentView_(self.grid)
+        self.window.display()
+#        self.window = gtk.Window()
+#        self.window.set_skip_taskbar_hint(True)
+#        self.window.set_gravity(gtk.gdk.GRAVITY_STATIC)
+#
+#        self.window.set_title("%s" % seat)
+#        self.window.set_decorated(False)
+#        self.window.set_focus(None) # set gtk default focus widget for this window to None
+#        self.window.set_focus_on_map(False)
+#        self.window.set_accept_focus(False)
+#
+##        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_MENU)
+#
+#        grid = gtk.Table(rows = game.rows, columns = game.cols, homogeneous = False)
+#        self.grid = grid
+#        self.window.add(grid)
+#        self.window.modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
+#
+#        self.e_box = []
+#        self.frame = []
+#        self.label = []
+#        usegtkframes = self.useframes
+#        e_box = self.e_box
+#        label = self.label
+#        for r in xrange(game.rows):
+#            if usegtkframes:
+#                self.frame.append([])
+#            e_box.append([])
+#            label.append([])
+#            for c in xrange(game.cols):
+#                if usegtkframes:
+#                    self.frame[r].append( gtk.Frame() )
+#                e_box[r].append( gtk.EventBox() )
+#
+#                e_box[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
+#                e_box[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
+#
+#                Stats.do_tip(e_box[r][c], 'stuff')
+#                if usegtkframes:
+#                    grid.attach(self.frame[r][c], c, c+1, r, r+1, xpadding = game.xpad, ypadding = game.ypad)
+#                    self.frame[r][c].add(e_box[r][c])
+#                else:
+#                    grid.attach(e_box[r][c], c, c+1, r, r+1, xpadding = game.xpad, ypadding = game.ypad)
+#                label[r].append( gtk.Label('xxx') )
+#
+#                if usegtkframes:
+#                    self.frame[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
+#                label[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
+#                label[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
+#
+#                e_box[r][c].add(self.label[r][c])
+#                e_box[r][c].connect("button_press_event", self.button_press_cb)
+#                e_box[r][c].connect("focus-in-event", self.noop)
+#                e_box[r][c].connect("focus", self.noop)
+#                e_box[r][c].connect("focus-out-event", self.noop)
+#                label[r][c].modify_font(font)
+#
+#        self.window.set_opacity(parent.colors['hudopacity'])
+#        self.window.connect("focus", self.noop)
+#        self.window.connect("focus-in-event", self.noop)
+#        self.window.connect("focus-out-event", self.noop)
+#        self.window.connect("button_press_event", self.button_press_cb)
+#        self.window.set_focus_on_map(False)
+#        self.window.set_accept_focus(False)
+#
+#
+#        self.window.move(self.x, self.y)
+#        self.window.hide()
+#        self.window.realize() # window must be realized before it has a gdkwindow so we can attach it to the table window..
 #        self.topify_window(self.window)
 
 
@@ -978,13 +1068,14 @@ class Popup_window:
             top.move(x, y)
 
     def topify_window(self, window):
-        window.set_focus_on_map(False)
-        window.set_accept_focus(False)
+        window.orderWindow_relativeTo_(NSWindowAbove, self.table.number)
+#        window.set_focus_on_map(False)
+#        window.set_accept_focus(False)
 
-        if not self.table.gdkhandle:
-            self.table.gdkhandle = gtk.gdk.window_foreign_new(int(self.table.number)) # gtk handle to poker window
+#        if not self.table.gdkhandle:
+#            self.table.gdkhandle = gtk.gdk.window_foreign_new(int(self.table.number)) # gtk handle to poker window
 #        window.window.reparent(self.table.gdkhandle, 0, 0)
-        window.window.set_transient_for(self.table.gdkhandle)
+#        window.window.set_transient_for(self.table.gdkhandle)
 #        window.present()
 
 

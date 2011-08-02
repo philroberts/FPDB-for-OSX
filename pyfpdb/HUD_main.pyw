@@ -34,15 +34,17 @@ import thread
 import time
 import string
 
-#    pyGTK modules
-import gtk
-import gobject
+import objc
+from Foundation import *
+from AppKit import *
 
 #    FreePokerTools modules
 import Configuration
 import Database
 import Hud
 import Options
+
+from HandHistoryConverter import getTableTitleRe
 
 (options, argv) = Options.fpdb_options()
 
@@ -58,6 +60,10 @@ else: # This is bad--figure out the values for the various windows flavors
 # get config and set up logger
 c = Configuration.Config(file=options.config, dbname=options.dbname)
 log = Configuration.get_logger("logging.conf", "hud", log_dir=c.dir_log, log_file='HUD-log.txt')
+
+class AppDelegate(NSObject):
+  def windowWillClose_(self, notification):
+    app.terminate_(self)
 
 class HUD_main(object):
     """A main() object to own both the read_stdin thread and the gui."""
@@ -81,47 +87,74 @@ class HUD_main(object):
             self.hud_params = self.config.get_hud_ui_parameters()
 
             # a thread to read stdin
-            gobject.threads_init()                        # this is required
             thread.start_new_thread(self.read_stdin, ())  # starts the thread
 
             # a main window
-            self.main_window = gtk.Window()
             
-            if options.minimized:
-                self.main_window.iconify()
-            if options.hidden:
-                self.main_window.hide()        
-            
-            if options.xloc is not None or options.yloc is not None:
-                if options.xloc is None:
-                    options.xloc = 0
-                if options.yloc is None:
-                    options.yloc = 0
-                self.main_window.move(options.xloc,options.yloc)
-            self.main_window.connect("client_moved", self.client_moved)
-            self.main_window.connect("client_resized", self.client_resized)
-            self.main_window.connect("client_destroyed", self.client_destroyed)
-            self.main_window.connect("game_changed", self.game_changed)
-            self.main_window.connect("table_changed", self.table_changed)
-            self.main_window.connect("destroy", self.destroy)
-            self.vb = gtk.VBox()
-            self.label = gtk.Label(_('Closing this window will exit from the HUD.'))
-            self.vb.add(self.label)
-            self.main_window.add(self.vb)
-            self.main_window.set_title("HUD Main Window")
-            cards = os.path.join(os.getcwd(), '..','gfx','fpdb-cards.png')
-            if os.path.exists(cards):
-                self.main_window.set_icon_from_file(cards)
-            elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
-                self.main_window.set_icon_from_file('/usr/share/pixmaps/fpdb-cards.png')
-            
-            if not options.hidden:
-                self.main_window.show_all()
-            gobject.timeout_add(800, self.check_tables)
+            if options.xloc is None:
+                options.xloc = 0
+            if options.yloc is None:
+                options.yloc = 0
 
+
+            
+            rect = NSMakeRect(options.xloc + 100, options.yloc + 400, 300, 20)
+            self.main_window = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(rect, NSTitledWindowMask | NSClosableWindowMask | NSResizableWindowMask | NSMiniaturizableWindowMask, NSBackingStoreBuffered, False)
+            self.main_window.setTitle_("HUD Main Window")
+            self.vb = NSMatrix.alloc().initWithFrame_mode_cellClass_numberOfRows_numberOfColumns_(rect, NSListModeMatrix, NSTextFieldCell.class__(), 1, 1)
+            self.vb.setAutosizesCells_(True)
+            cell = self.vb.cellAtRow_column_(0, 0)
+            cell.setAlignment_(NSCenterTextAlignment)
+            cell.setStringValue_("Closing this window will exit from the HUD.")
+            self.main_window.setContentView_(self.vb)
+            self.delegate = AppDelegate.alloc().init()
+            self.main_window.setDelegate_(self.delegate)
+            self.main_window.setLevel_(NSFloatingWindowLevel)
+            self.main_window.orderWindow_relativeTo_(NSWindowAbove, 0)
+            self.main_window.display()
+
+            objc.loadBundle("axlib", globals(), "axlib/build/Release/axlib.framework")
+            self.tm = tablemonitor.alloc().init()
+            class mycallback(tmcallback):
+                def callback_event_(self, tablename, eventtype):
+                    print tablename, eventtype
+                    
+                    if eventtype == "app_activated":
+                        for hud in self.owner.hud_dict.values():
+                            hud.topify_all()
+                        return
+                    for k in self.owner.hud_dict.keys():
+                        if tablename.startswith(k):
+                            hud = self.owner.hud_dict[k]
+                            
+                            if eventtype == "window_moved":
+                                hud.table.check_loc()
+                                hud.up_update_table_position()
+                            elif eventtype == "window_resized":
+                                hud.resize_windows()
+                            elif eventtype == "focus_changed":
+                                hud.topify_all()
+                            elif eventtype == "clicked":
+                                hud.topify_all()
+                            elif eventtype == "window_destroyed":
+                                (_, row, col) = self.owner.vb.getRow_column_ofCell_(None, None, hud.tablehudlabel)
+                                self.owner.vb.removeRow_(row)
+                                frame = self.owner.main_window.frame()
+                                frame.size.height -= 20
+                                self.owner.main_window.setFrame_display_(frame, True)
+                                hud.main_window.close()
+                                hud.kill()
+                                del(self.owner.hud_dict[hud.table_name])
+                            break
+            self.cb = mycallback.alloc().init()
+            self.cb.owner = self
+            self.tm.registerCallback_(self.cb)
+            #self.tm.detectFakePS()
+            self.tm.detectPS()
+            self.tm.doObserver()
         except:
             log.exception(_("Error initializing main_window"))
-            gtk.main_quit()   # we're hosed, just terminate
+            app.terminate()
 
     def client_moved(self, widget, hud):
         hud.up_update_table_position()
@@ -142,10 +175,11 @@ class HUD_main(object):
 
     def destroy(self, *args):             # call back for terminating the main eventloop
         log.info(_("Quitting normally"))
-        gtk.main_quit()
+        app.terminate()
 
     def kill_hud(self, event, table):
-        gobject.idle_add(idle_kill, self, table)
+        pass
+        #gobject.idle_add(idle_kill, self, table)
     
     def check_tables(self):
         for hud in self.hud_dict.keys():
@@ -180,11 +214,38 @@ class HUD_main(object):
         self.hud_params['h_aggregate_tour'] = True
 
         [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
-        gobject.idle_add(idle_create, self, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards)
+
+        #gobject.idle_add(idle_create, self, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards)
+        try:
+            if table.gdkhandle is not None:  # on windows this should already be set
+                table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
+            self.vb.addRow()
+            cell = self.vb.cellAtRow_column_(self.vb.numberOfRows() - 1, 0)
+            cell.setStringValue_("%s - %s" % (table.site, temp_key))
+            cell.setAlignment_(NSCenterTextAlignment)
+            frame = self.main_window.frame()
+            frame.size.height += 20
+            self.main_window.setFrame_display_(frame, True)
+            self.vb.setNeedsDisplay_(True)
+            #self.vb.sizeToCells()
+
+            #self.main_window.resize_children()
+            
+            self.hud_dict[temp_key].tablehudlabel = self.vb.cellAtRow_column_(self.vb.numberOfRows() - 1, 0)
+            self.hud_dict[temp_key].create(new_hand_id, self.config, stat_dict, cards)
+            for m in self.hud_dict[temp_key].aux_windows:
+                m.create()
+                m.update_gui(new_hand_id)
+            self.hud_dict[temp_key].update(new_hand_id, self.config)
+            self.hud_dict[temp_key].reposition_windows()
+        except:
+            log.exception(_("Error creating HUD for hand %s.") % new_hand_id)
+
 
     def update_HUD(self, new_hand_id, table_name, config):
         """Update a HUD gui from inside the non-gui read_stdin thread."""
-        gobject.idle_add(idle_update, self, new_hand_id, table_name, config)
+#        gobject.idle_add(idle_update, self, new_hand_id, table_name, config)
+        idle_update(self, new_hand_id, table_name, config)
 
     def read_stdin(self):            # This is the thread function
         """Do all the non-gui heavy lifting for the HUD program."""
@@ -200,6 +261,7 @@ class HUD_main(object):
         found = False
 
         while 1:    # wait for a new hand number on stdin
+            pool = NSAutoreleasePool.alloc().init()
             new_hand_id = sys.stdin.readline()
             new_hand_id = string.rstrip(new_hand_id)
             log.debug(_("Received hand no %s") % new_hand_id)
@@ -291,6 +353,7 @@ class HUD_main(object):
                     self.hud_dict[temp_key].table.check_table_no(self.hud_dict[temp_key])
                 except KeyError:
                     pass
+            del pool
 
     def get_cards(self, new_hand_id):
         cards = self.db_connection.get_cards(new_hand_id)
@@ -309,17 +372,18 @@ class HUD_main(object):
 #    with the gui.
 
 def idle_resize(hud):
-    gtk.gdk.threads_enter()
+    #gtk.gdk.threads_enter()
     try:
         [aw.update_card_positions() for aw in hud.aux_windows]
         hud.resize_windows()
     except:
         log.exception(_("Error resizing HUD for table: %s.") % hud.table.title)
     finally:
-        gtk.gdk.threads_leave()
+        pass
+        #gtk.gdk.threads_leave()
 
 def idle_kill(hud_main, table):
-    gtk.gdk.threads_enter()
+    #gtk.gdk.threads_enter()
     try:
         if table in hud_main.hud_dict:
             hud_main.vb.remove(hud_main.hud_dict[table].tablehudlabel)
@@ -330,15 +394,16 @@ def idle_kill(hud_main, table):
     except:
         log.exception(_("Error killing HUD for table: %s.") % table.title)
     finally:
-        gtk.gdk.threads_leave()
+        pass
+        #gtk.gdk.threads_leave()
 
 def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards):
 
-    gtk.gdk.threads_enter()
+    #gtk.gdk.threads_enter()
     try:
         if table.gdkhandle is not None:  # on windows this should already be set
             table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
-        newlabel = gtk.Label("%s - %s" % (table.site, temp_key))
+        #newlabel = gtk.Label("%s - %s" % (table.site, temp_key))
         hud_main.vb.add(newlabel)
         newlabel.show()
         hud_main.main_window.resize_children()
@@ -353,24 +418,26 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
     except:
         log.exception(_("Error creating HUD for hand %s.") % new_hand_id)
     finally:
-        gtk.gdk.threads_leave()
+        pass
+        #gtk.gdk.threads_leave()
     return False
 
 def idle_update(hud_main, new_hand_id, table_name, config):
-    gtk.gdk.threads_enter()
+    #gtk.gdk.threads_enter()
     try:
         hud_main.hud_dict[table_name].update(new_hand_id, config)
         [aw.update_gui(new_hand_id) for aw in hud_main.hud_dict[table_name].aux_windows]
     except:
         log.exception(_("Error updating HUD for hand %s.") % new_hand_id)
     finally:
-        gtk.gdk.threads_leave()
-        return False
+        pass
+        #gtk.gdk.threads_leave()
+    return False
 
 if __name__== "__main__":
-
+    global app
+    app = NSApplication.sharedApplication()
 #    start the HUD_main object
     hm = HUD_main(db_name = options.dbname)
-
 #    start the event loop
-    gtk.main()
+    app.run()
