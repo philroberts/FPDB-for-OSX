@@ -992,10 +992,11 @@ def starthands(stat_dict, player, handid):
     # <pu_stat pu_stat_name="starthands"> </pu_stat>
     
     stat_descriptions["starthands"] = _("starting hands at this table") + " (starting hands)"
-    PFcall=" PFcall:"
+    PFlimp=" PFlimp:"
     PFaggr=" PFaggr:"
+    PFcar=" PFliCa:"
     PFdefend=" PFdefBB:"
-    count_pfc = count_pfa = count_pfd = 2
+    count_pfl = count_pfa = count_pfc = count_pfd = 2
     
     if handid == -1:
         return ((''),
@@ -1009,7 +1010,7 @@ def starthands(stat_dict, player, handid):
     db_connection = Database.Database(c)
     sc = db_connection.get_cursor()
 
-    sc.execute(("SELECT distinct startCards, street0Aggr, " +
+    sc.execute(("SELECT distinct startCards, street0Aggr, street0CalledRaiseDone, " +
     			"case when HandsPlayers.position = 'B' then 'b' " +
                             "when HandsPlayers.position = 'S' then 'b' " +
                             "when HandsPlayers.position = '0' then 'l' " +
@@ -1042,7 +1043,7 @@ def starthands(stat_dict, player, handid):
                         ";")
                          % (int(handid), int(handid), int(handid), int(player)))
 
-    for (qstartcards, qstreet0Aggr, qposition) in sc.fetchall():
+    for (qstartcards, qstreet0Aggr, qstreet0CalledRaiseDone, qposition) in sc.fetchall():
         humancards = Card.decodeStartHandValue("holdem", qstartcards)
                 
         if qposition == "B" and qstreet0Aggr == False:
@@ -1055,14 +1056,19 @@ def starthands(stat_dict, player, handid):
             count_pfa += 1
             if (count_pfa / 8.0 == int(count_pfa / 8.0)):
                 PFaggr=PFaggr+"\n"
-        else:
-            PFcall=PFcall+"/"+humancards+"."+qposition
+        elif qstreet0CalledRaiseDone:
+            PFcar=PFcar+"/"+humancards+"."+qposition
             count_pfc += 1
             if (count_pfc / 8.0 == int(count_pfc / 8.0)):
-                PFcall=PFcall+"\n"
+                PFcar=PFcar+"\n"
+        else:
+            PFlimp=PFlimp+"/"+humancards+"."+qposition
+            count_pfl += 1
+            if (count_pfl / 8.0 == int(count_pfl / 8.0)):
+                PFlimp=PFlimp+"\n"
     sc.close()
     
-    returnstring = PFcall + "\n" + PFaggr + "\n" + PFdefend  #+ "\n" + str(handid)
+    returnstring = PFlimp + "\n" + PFaggr + "\n" + PFcar + "\n" + PFdefend  #+ "\n" + str(handid)
 
     return ((returnstring),
             (returnstring),
