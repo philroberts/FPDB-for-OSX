@@ -78,16 +78,15 @@ You can find most of these details for easy copy&paste in the Help menu under Ab
 
 Important known problems
 ========================
-YYY(PKR is not working correctly)YYY
+PKR is not working correctly.
 
 Notice for Windows users
 ========================
-YYY(First-time installs may need to download and install the C++ runtime executable from Microsoft.)YYY
-YYY(Fpdb on Windows is not currently compatible with PostgreSQL 9.x (it works fine in Linux).)YYY
+First-time installs may need to download and install the C++ runtime executable from Microsoft. Fpdb on Windows is not currently compatible with PostgreSQL 9.x (it works fine in Linux). Please let us know if you know a way to solve either of these problems.
 
 Notice for Arch Linux users
 ===========================
-YYY(You will need to change the shebang in fpdb.pyw and HUD_main.pyw from python to python2. Join us in IRC if you have questions about this.)YYY
+You will need to change the shebang in fpdb.pyw and HUD_main.pyw from python to python2. Get in touch if you have questions about this or if you have a solution to this problem that doesn't affect compatibility for other distros.
 
 Contributors
 ============
