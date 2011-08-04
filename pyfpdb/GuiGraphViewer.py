@@ -225,7 +225,7 @@ class GuiGraphViewer (threading.Thread):
             if graphops['nonshowdown'] == 'ON':
                 self.ax.plot(red, color='red', label=_('Non-showdown') + ' (%s): %.2f' %(graphops['dspin'], red[-1]))
             if graphops['ev'] == 'ON':
-                self.ax.plot(red, color='orange', label=_('All-in EV') + ' (%s): %.2f' %(graphops['dspin'], orange[-1]))
+                self.ax.plot(orange, color='orange', label=_('All-in EV') + ' (%s): %.2f' %(graphops['dspin'], orange[-1]))
 
             if sys.version[0:3] == '2.5':
                 self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
