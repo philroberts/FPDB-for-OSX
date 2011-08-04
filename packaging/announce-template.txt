@@ -8,7 +8,7 @@ So... what is FPDB?
 ===================
 FPDB (Free Poker Database) is a free/open source suite of steadily growing tools to track and analyse your online poker game. FPDB is able to import the hand histories that poker sites write to your computer and to store additional data from each hand in a database for use in later analysis.
 
-FPDB is ambitious, intending to support all games. Currently we support flop based games (Hold’em, Omaha, Omaha Hi/Lo), stud games (7 Card Stud, 7 Card Stud Hi/Lo, and Razz) and draw games (Triple Draw Lowball, 5 Card Draw) on most major poker sites.
+FPDB is ambitious, intending to support all games. Currently we support flop based games (Hold’em, Omaha, Omaha Hi/Lo), stud games (7 Card Stud, 7 Card Stud Hi/Lo, and Razz) and draw games (Triple Draw Lowball, 5 Card Draw, and Badugi) on most major poker sites.
 
 FPDB provides a Heads Up Display (HUD), Profit Grapher and Stats viewers with a list of features that is growing.
 
@@ -78,16 +78,15 @@ You can find most of these details for easy copy&paste in the Help menu under Ab
 
 Important known problems
 ========================
-YYY(PKR is not working correctly)YYY
+PKR is not working correctly.
 
 Notice for Windows users
 ========================
-YYY(First-time installs may need to download and install the C++ runtime executable from Microsoft.)YYY
-YYY(Fpdb on Windows is not currently compatible with PostgreSQL 9.x (it works fine in Linux).)YYY
+First-time installs may need to download and install the C++ runtime executable from Microsoft. Fpdb on Windows is not currently compatible with PostgreSQL 9.x (it works fine in Linux). Please let us know if you know a way to solve either of these problems.
 
 Notice for Arch Linux users
 ===========================
-YYY(You will need to change the shebang in fpdb.pyw and HUD_main.pyw from python to python2. Join us in IRC if you have questions about this.)YYY
+You will need to change the shebang in fpdb.pyw and HUD_main.pyw from python to python2. Get in touch if you have questions about this or if you have a solution to this problem that doesn't affect compatibility for other distros.
 
 Contributors
 ============
