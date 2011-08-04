@@ -67,7 +67,7 @@ class iPoker(HandHistoryConverter):
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
     #re_GameInfo = re.compile(ur'<gametype>(?P<GAME>[a-zA-Z0-9 ]+) (%(LS)s)(?P<BLAH>.+)</gametype>' % substitutions, re.MULTILINE)
-    re_GameInfo = re.compile(r'<gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Omaha\sPL) (%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+)</gametype>' % substitutions, re.MULTILINE)
+    re_GameInfo = re.compile(r'<gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL) (%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+)</gametype>' % substitutions, re.MULTILINE)
     re_HandInfo = re.compile(r'gamecode="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-: 0-9]+)</startdate>', re.MULTILINE)
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" name="(?P<PNAME>[^"]+)" chips="(%(LS)s)(?P<CASH>[.0-9]+)" dealer="(?P<BUTTONPOS>(0|1))" win="(%(LS)s)(?P<WIN>[.0-9]+)" (bet="(%(LS)s)(?P<BET>[^"]+))?' % substitutions, re.MULTILINE)
     re_Board = re.compile(r'<cards type="(?P<STREET>Flop|Turn|River)" player="">(?P<CARDS>.+?)</cards>', re.MULTILINE)
@@ -97,6 +97,7 @@ class iPoker(HandHistoryConverter):
                 ["ring", "stud", "fl"],
                 ["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
+                ["ring", "hold", "fl"],
                 #["tour", "hold", "nl"]
                 ]
 
@@ -123,6 +124,7 @@ class iPoker(HandHistoryConverter):
         games = {              # base, category
                     '7 Card Stud L' : ('stud','studhilo'),
                         'Holdem NL' : ('hold','holdem'),
+                         'Holdem L' : ('hold','holdem'),
                          'Omaha PL' : ('hold','omahahi'),
                 }
 
