@@ -3154,7 +3154,10 @@ class Sql:
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
                             ,SUM(tp.winnings)/100.0                                                 AS won
-                            ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS spent
+                            ,SUM(CASE
+                                   WHEN tt.currency = 'play' THEN tt.buyIn
+                                   ELSE (tt.buyIn+tt.fee)/100.0
+                                 END)                                                               AS spent
                             ,ROUND(
                                 (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS REAL)/
                                 CAST(SUM(tt.buyin+tt.fee) AS REAL))* 100.0
