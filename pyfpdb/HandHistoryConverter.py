@@ -177,12 +177,10 @@ Otherwise, finish at EOF.
         # if self.archive:
         #     self.obs = self.convert_archive(self.obs)
         if self.starsArchive == True:
-            log.debug(_("Converting starsArchive format to readable"))
             m = re.compile('^Hand #\d+', re.MULTILINE)
             self.obs = m.sub('', self.obs)
 
         if self.ftpArchive == True:
-            log.debug(_("Converting ftpArchive format to readable"))
             # Remove  ******************** # 1 *************************
             m = re.compile('\*{20}\s#\s\d+\s\*{20,25}\s+', re.MULTILINE)
             self.obs = m.sub('', self.obs)
