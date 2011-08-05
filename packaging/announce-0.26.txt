@@ -1,5 +1,5 @@
 Hello everyone,
-The new fpdb release 0.26 is now available for download as source or as packages/installers for Debian, Gentoo, Ubuntu and Windows. This version brings many improvements and bugfixes, we listed some of them later on.
+The new fpdb release 0.26 is now available for download as source or as packages/installers for Debian, Gentoo, Ubuntu and Windows. This version brings many improvements and bugfixes, we listed some of them later on. There was an error in the creation of the Windows installer, if you use Windows please download 0.26.1 instead of 0.26.
 
 So... what is FPDB?
 ===================
@@ -41,7 +41,7 @@ For the full changelog or to look at ongoing development please visit http://tra
 
 Languages
 =========
-Fpdb 0.26 is fully translated into English and Hungarian, and mostly translated into French and Romanian. There's partial translations for Spanish, Italian, Lithuanian, Polish, Portuguese and Russian. Any help with translations would be appreciated.
+Fpdb 0.26 is fully translated into English and Hungarian, and mostly translated into French and Romanian. There's partial translations for Spanish, Italian, German, Lithuanian, Polish, Portuguese and Russian. Any help with translations would be appreciated.
 
 How to download/update
 ======================
@@ -70,7 +70,7 @@ How to get help
 Please also see the "Bug reports" section below to enable us to help you.
 These are listed in order of usefulness - the 2+2 thread in particular is rather chaotic so if we miss your post feel free to bring it up again
 1) Chat/IRC
-One of the developers is usually around, but it is IRC. Dont get discouraged because we didn't answer within 10 minutes, once we do you've probably got our full attention.
+One of the developers is usually around, but it is IRC. Dont get discouraged because if we don't answer within 10 minutes, once we do you've probably got our full attention.
 This link takes you to a website where you can talk to us directly: http://webchat.freenode.net/?channels=fpdb
 Alternatively use can use any IRC client to connect to #fpdb on freenode.net
 2) Mailing List
