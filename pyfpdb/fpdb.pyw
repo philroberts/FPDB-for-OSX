@@ -22,33 +22,6 @@ import sys
 import re
 import Queue
 
-# if path is set to use an old version of python look for a new one:
-# (does this work in linux?)
-if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6', '2.7') and '-r' not in sys.argv:
-    #print "old path =", os.environ['PATH']
-    dirs = re.split(os.pathsep, os.environ['PATH'])
-    # remove any trailing / or \ chars from dirs:
-    dirs = [re.sub('[\\/]$', '', p) for p in dirs]
-    # remove any dirs containing 'python' apart from those ending in 'python25', 'python26' or 'python':
-    dirs = [p for p in dirs if not re.search('python', p, re.I) or re.search('python25$', p, re.I) or re.search('python26$', p, re.I) or re.search('python27$', p, re.I)]
-    tmppath = ";".join(dirs)
-    #print "new path =", tmppath
-    if re.search('python', tmppath, re.I):
-        os.environ['PATH'] = tmppath
-        print _("Python %s found.") + " " + sys.version[0:3] + " " + _("Press ENTER to continue.")
-        sys.stdin.readline()
-        if os.name == 'nt':
-            os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ)
-        else:
-            os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ)
-    else:
-        print "\n" + _("Python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb.")
-        raw_input(_("Press ENTER to continue."))
-        exit()
-else:
-    pass
-    #print "debug - not changing path"
-
 if os.name == 'nt':
     import win32api
     import win32con
