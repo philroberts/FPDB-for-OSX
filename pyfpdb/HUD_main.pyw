@@ -30,7 +30,7 @@ _ = L10n.get_translation()
 import sys
 import os
 import traceback
-import thread
+import threading
 import time
 import string
 
@@ -65,6 +65,12 @@ class AppDelegate(NSObject):
   def windowWillClose_(self, notification):
     app.terminate_(self)
 
+class UpdateOnGUIThread(NSObject):
+    def updateHUD(self):
+        idle_update(self.owner, self.new_hand_id, self.table_name, self.config)
+    def createHUD(self):
+        idle_create(self.owner, self.new_hand_id, self.table, self.temp_key, self.max, self.poker_game, self.type, self.stat_dict, self.cards)
+
 class HUD_main(object):
     """A main() object to own both the read_stdin thread and the gui."""
 #    This class mainly provides state for controlling the multiple HUDs.
@@ -87,7 +93,7 @@ class HUD_main(object):
             self.hud_params = self.config.get_hud_ui_parameters()
 
             # a thread to read stdin
-            thread.start_new_thread(self.read_stdin, ())  # starts the thread
+            threading.Thread(target=self.read_stdin).start()
 
             # a main window
             
@@ -117,8 +123,6 @@ class HUD_main(object):
             self.tm = tablemonitor.alloc().init()
             class mycallback(tmcallback):
                 def callback_event_(self, tablename, eventtype):
-                    print tablename, eventtype
-                    
                     if eventtype == "app_activated":
                         for hud in self.owner.hud_dict.values():
                             hud.topify_all()
@@ -154,7 +158,7 @@ class HUD_main(object):
             self.tm.doObserver()
         except:
             log.exception(_("Error initializing main_window"))
-            app.terminate()
+            app.terminate_(None)
 
     def client_moved(self, widget, hud):
         hud.up_update_table_position()
@@ -175,7 +179,7 @@ class HUD_main(object):
 
     def destroy(self, *args):             # call back for terminating the main eventloop
         log.info(_("Quitting normally"))
-        app.terminate()
+        app.terminate_(None)
 
     def kill_hud(self, event, table):
         pass
@@ -215,37 +219,28 @@ class HUD_main(object):
 
         [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
 
-        #gobject.idle_add(idle_create, self, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards)
-        try:
-            if table.gdkhandle is not None:  # on windows this should already be set
-                table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
-            self.vb.addRow()
-            cell = self.vb.cellAtRow_column_(self.vb.numberOfRows() - 1, 0)
-            cell.setStringValue_("%s - %s" % (table.site, temp_key))
-            cell.setAlignment_(NSCenterTextAlignment)
-            frame = self.main_window.frame()
-            frame.size.height += 20
-            self.main_window.setFrame_display_(frame, True)
-            self.vb.setNeedsDisplay_(True)
-            #self.vb.sizeToCells()
-
-            #self.main_window.resize_children()
-            
-            self.hud_dict[temp_key].tablehudlabel = self.vb.cellAtRow_column_(self.vb.numberOfRows() - 1, 0)
-            self.hud_dict[temp_key].create(new_hand_id, self.config, stat_dict, cards)
-            for m in self.hud_dict[temp_key].aux_windows:
-                m.create()
-                m.update_gui(new_hand_id)
-            self.hud_dict[temp_key].update(new_hand_id, self.config)
-            self.hud_dict[temp_key].reposition_windows()
-        except:
-            log.exception(_("Error creating HUD for hand %s.") % new_hand_id)
-
+        updateObject = UpdateOnGUIThread.alloc().init()
+        updateObject.new_hand_id = new_hand_id
+        updateObject.table = table
+        updateObject.temp_key = temp_key
+        updateObject.max = max
+        updateObject.poker_game = poker_game
+        updateObject.type = type
+        updateObject.stat_dict = stat_dict
+        updateObject.cards = cards
+        updateObject.owner = self
+        sel = objc.selector(updateObject.createHUD, signature = "v@:")
+        updateObject.performSelectorOnMainThread_withObject_waitUntilDone_(sel, None, False)
 
     def update_HUD(self, new_hand_id, table_name, config):
         """Update a HUD gui from inside the non-gui read_stdin thread."""
-#        gobject.idle_add(idle_update, self, new_hand_id, table_name, config)
-        idle_update(self, new_hand_id, table_name, config)
+        updateObject = UpdateOnGUIThread.alloc().init()
+        updateObject.new_hand_id = new_hand_id
+        updateObject.table_name = table_name
+        updateObject.config = config
+        updateObject.owner = self
+        sel = objc.selector(updateObject.updateHUD, signature = "v@:")
+        updateObject.performSelectorOnMainThread_withObject_waitUntilDone_(sel, None, False)
 
     def read_stdin(self):            # This is the thread function
         """Do all the non-gui heavy lifting for the HUD program."""
@@ -398,17 +393,17 @@ def idle_kill(hud_main, table):
         #gtk.gdk.threads_leave()
 
 def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards):
-
-    #gtk.gdk.threads_enter()
     try:
-        if table.gdkhandle is not None:  # on windows this should already be set
-            table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
-        #newlabel = gtk.Label("%s - %s" % (table.site, temp_key))
-        hud_main.vb.add(newlabel)
-        newlabel.show()
-        hud_main.main_window.resize_children()
-
-        hud_main.hud_dict[temp_key].tablehudlabel = newlabel
+        hud_main.vb.addRow()
+        cell = hud_main.vb.cellAtRow_column_(hud_main.vb.numberOfRows() - 1, 0)
+        cell.setStringValue_("%s - %s" % (table.site, temp_key))
+        cell.setAlignment_(NSCenterTextAlignment)
+        frame = hud_main.main_window.frame()
+        frame.size.height += 20
+        hud_main.main_window.setFrame_display_(frame, True)
+        hud_main.vb.setNeedsDisplay_(True)
+        
+        hud_main.hud_dict[temp_key].tablehudlabel = hud_main.vb.cellAtRow_column_(hud_main.vb.numberOfRows() - 1, 0)
         hud_main.hud_dict[temp_key].create(new_hand_id, hud_main.config, stat_dict, cards)
         for m in hud_main.hud_dict[temp_key].aux_windows:
             m.create()
@@ -417,9 +412,6 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
         hud_main.hud_dict[temp_key].reposition_windows()
     except:
         log.exception(_("Error creating HUD for hand %s.") % new_hand_id)
-    finally:
-        pass
-        #gtk.gdk.threads_leave()
     return False
 
 def idle_update(hud_main, new_hand_id, table_name, config):
