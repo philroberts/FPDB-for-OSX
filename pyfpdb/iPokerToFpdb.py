@@ -227,10 +227,10 @@ class iPoker(HandHistoryConverter):
         pass
 
     def readBlinds(self, hand):
-        m = self.re_PostSB.search(hand.streets['PREFLOP'])
-        hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
-        for a in self.re_PostBB.finditer(hand.handText):
-            hand.addBlind(m.group('PNAME'), 'big blind', a.group('BB'))
+        for a in self.re_PostSB.finditer(hand.streets['PREFLOP']):
+            hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
+        for a in self.re_PostBB.finditer(hand.streets['PREFLOP']):
+            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         #for a in self.re_PostBoth.finditer(hand.handText):
 
     def readButton(self, hand):
