@@ -492,7 +492,7 @@ or None if we fail to get the info """
            Tries to convert the time parameter (with no timezone) from the givenTimezone to 
            the wantedTimeZone (currently only allows "UTC")
         """
-        log.debug(_("raw time:") + " " + str(time) + " " + _("given time zone:") + " " + str(givenTimezone))
+        #log.debug("raw time: " + str(time) + " given time zone: " + str(givenTimezone))
         if wantedTimezone=="UTC":
             wantedTimezone = pytz.utc
         else:
@@ -502,7 +502,7 @@ or None if we fail to get the info """
         if HandHistoryConverter.re_tzOffset.match(givenTimezone):
             offset = int(givenTimezone[-5:])
             givenTimezone = givenTimezone[0:-5]
-            log.debug( _("changeTimeZone: offset=") + str(offset) )
+            #log.debug("changeTimeZone: offset=") + str(offset))
         else: offset=0
 
         if givenTimezone=="ET":
@@ -565,7 +565,7 @@ or None if we fail to get the info """
 
         localisedTime = givenTZ.localize(time)
         utcTime = localisedTime.astimezone(wantedTimezone) + datetime.timedelta(seconds=-3600*(offset/100)-60*(offset%100))
-        log.debug( _("utcTime:")+str(utcTime) )
+        #log.debug("utcTime: " + str(utcTime))
         return utcTime
     #end @staticmethod def changeTimezone
 
@@ -615,7 +615,7 @@ def get_out_fh(out_path, parameters):
                 os.makedirs(out_dir) 
             except: # we get a WindowsError here in Windows.. pretty sure something else for Linux :D 
                 log.error(_("Unable to create output directory %s for HHC!") % out_dir) 
-                print _("*** ERROR: UNABLE TO CREATE OUTPUT DIRECTORY"), out_dir 
+                print(_("Unable to create output directory %s for HHC!") % out_dir)
             else: 
                 log.info(_("Created directory '%s'") % out_dir) 
         try: 
