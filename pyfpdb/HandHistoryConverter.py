@@ -136,7 +136,7 @@ Otherwise, finish at EOF.
         self.numErrors = 0
         handsList = self.allHandsAsList()
         log.debug( _("Hands list is:") + str(handsList))
-        log.info("Parsing %d hands" % len(handsList))
+        log.info(_("Parsing %d hands") % len(handsList))
         # Determine if we're dealing with a HH file or a Summary file
         # quick fix : empty files make the handsList[0] fail ==> If empty file, go on with HH parsing
         if len(handsList) == 0 or self.isSummary(handsList[0]) == False:
@@ -146,7 +146,6 @@ Otherwise, finish at EOF.
                     self.processedHands.append(self.processHand(handText))
                 except FpdbParseError, e:
                     self.numErrors += 1
-                    log.warning(_("HHC.start(): processHand failed: Exception msg: '%s'") % e)
                     log.debug(handText)
             self.numHands = len(handsList)
             endtime = time.time()
@@ -156,7 +155,7 @@ Otherwise, finish at EOF.
             summaryParsingStatus = self.readSummaryInfo(handsList)
             endtime = time.time()
             if summaryParsingStatus :
-                log.info(_("Summary file '%s' correctly parsed  (took %.3f seconds)") % (self.in_path, endtime - starttime))
+                log.info(_("Summary file '%s' correctly parsed (took %.3f seconds)") % (self.in_path, endtime - starttime))
             else :
                 log.warning(_("Error converting summary file '%s' (took %.3f seconds)") % (self.in_path, endtime - starttime))
 
@@ -177,12 +176,10 @@ Otherwise, finish at EOF.
         # if self.archive:
         #     self.obs = self.convert_archive(self.obs)
         if self.starsArchive == True:
-            log.debug(_("Converting starsArchive format to readable"))
             m = re.compile('^Hand #\d+', re.MULTILINE)
             self.obs = m.sub('', self.obs)
 
         if self.ftpArchive == True:
-            log.debug(_("Converting ftpArchive format to readable"))
             # Remove  ******************** # 1 *************************
             m = re.compile('\*{20}\s#\s\d+\s\*{20,25}\s+', re.MULTILINE)
             self.obs = m.sub('', self.obs)
@@ -495,7 +492,7 @@ or None if we fail to get the info """
            Tries to convert the time parameter (with no timezone) from the givenTimezone to 
            the wantedTimeZone (currently only allows "UTC")
         """
-        log.debug( _("raw time:")+str(time) + _(" given TZ:")+str(givenTimezone) )
+        #log.debug("raw time: " + str(time) + " given time zone: " + str(givenTimezone))
         if wantedTimezone=="UTC":
             wantedTimezone = pytz.utc
         else:
@@ -505,12 +502,13 @@ or None if we fail to get the info """
         if HandHistoryConverter.re_tzOffset.match(givenTimezone):
             offset = int(givenTimezone[-5:])
             givenTimezone = givenTimezone[0:-5]
-            log.debug( _("changeTimeZone: offset=") + str(offset) )
+            #log.debug("changeTimeZone: offset=") + str(offset))
         else: offset=0
 
         if givenTimezone=="ET":
             givenTZ = timezone('US/Eastern')
-        elif givenTimezone=="CET":
+        elif (givenTimezone=="CET" or givenTimezone=="CEST"):
+            #since CEST will only be used in summer time it's ok to treat it as identical to CET.
             givenTZ = timezone('Europe/Berlin')
             #Note: Daylight Saving Time is standardised across the EU so this should be fine
         elif givenTimezone == 'GMT' or givenTimezone == 'WET': # Greenwich Mean Time (same as UTC except daylight saving time)
@@ -568,7 +566,7 @@ or None if we fail to get the info """
 
         localisedTime = givenTZ.localize(time)
         utcTime = localisedTime.astimezone(wantedTimezone) + datetime.timedelta(seconds=-3600*(offset/100)-60*(offset%100))
-        log.debug( _("utcTime:")+str(utcTime) )
+        #log.debug("utcTime: " + str(utcTime))
         return utcTime
     #end @staticmethod def changeTimezone
 
@@ -618,7 +616,7 @@ def get_out_fh(out_path, parameters):
                 os.makedirs(out_dir) 
             except: # we get a WindowsError here in Windows.. pretty sure something else for Linux :D 
                 log.error(_("Unable to create output directory %s for HHC!") % out_dir) 
-                print _("*** ERROR: UNABLE TO CREATE OUTPUT DIRECTORY"), out_dir 
+                print(_("Unable to create output directory %s for HHC!") % out_dir)
             else: 
                 log.info(_("Created directory '%s'") % out_dir) 
         try: 

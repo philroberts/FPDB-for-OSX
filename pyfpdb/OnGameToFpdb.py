@@ -94,7 +94,7 @@ class OnGame(HandHistoryConverter):
             (?P<M>[a-zA-Z]{3})\s
             (?P<D>[0-9]+)\s
             (?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s
-            (?P<OFFSET>\w+[-+]\d+)\s
+            (?P<OFFSET>\w+([-+]\d+)?)\s
             (?P<Y>[0-9]{4})
             """, re.MULTILINE|re.VERBOSE)
         

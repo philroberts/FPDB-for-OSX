@@ -1745,7 +1745,6 @@ class Pot(object):
         if self.sym is None:
             self.sym = "C"
         if self.total is None:
-            print (_("DEBUG:") + " " + _("call Pot.end() before printing pot total"))
             # NB if I'm sure end() is idempotent, call it here.
             raise FpdbParseError(_("Error in printing Hand object"))
 
