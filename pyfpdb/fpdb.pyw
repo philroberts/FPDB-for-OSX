@@ -1026,7 +1026,11 @@ class fpdb:
             # rollback to make sure any locks are cleared:
             self.db.rollback()
 
-        self.validate_config()
+        #If the db-version is out of date, don't validate the config 
+        # otherwise the end user gets bombarded with false messages
+        # about every site not existing
+        if not self.db.wrongDbVersion:
+            self.validate_config()
 
     def obtain_global_lock(self, source):
         ret = self.lock.acquire(source=source)  # will return false if lock is already held
