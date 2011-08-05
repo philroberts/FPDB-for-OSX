@@ -136,7 +136,7 @@ Otherwise, finish at EOF.
         self.numErrors = 0
         handsList = self.allHandsAsList()
         log.debug( _("Hands list is:") + str(handsList))
-        log.info("Parsing %d hands" % len(handsList))
+        log.info(_("Parsing %d hands") % len(handsList))
         # Determine if we're dealing with a HH file or a Summary file
         # quick fix : empty files make the handsList[0] fail ==> If empty file, go on with HH parsing
         if len(handsList) == 0 or self.isSummary(handsList[0]) == False:
@@ -146,7 +146,6 @@ Otherwise, finish at EOF.
                     self.processedHands.append(self.processHand(handText))
                 except FpdbParseError, e:
                     self.numErrors += 1
-                    log.warning(_("HHC.start(): processHand failed: Exception msg: '%s'") % e)
                     log.debug(handText)
             self.numHands = len(handsList)
             endtime = time.time()
@@ -156,7 +155,7 @@ Otherwise, finish at EOF.
             summaryParsingStatus = self.readSummaryInfo(handsList)
             endtime = time.time()
             if summaryParsingStatus :
-                log.info(_("Summary file '%s' correctly parsed  (took %.3f seconds)") % (self.in_path, endtime - starttime))
+                log.info(_("Summary file '%s' correctly parsed (took %.3f seconds)") % (self.in_path, endtime - starttime))
             else :
                 log.warning(_("Error converting summary file '%s' (took %.3f seconds)") % (self.in_path, endtime - starttime))
 
@@ -493,7 +492,7 @@ or None if we fail to get the info """
            Tries to convert the time parameter (with no timezone) from the givenTimezone to 
            the wantedTimeZone (currently only allows "UTC")
         """
-        log.debug( _("raw time:")+str(time) + _(" given TZ:")+str(givenTimezone) )
+        log.debug(_("raw time:") + " " + str(time) + " " + _("given time zone:") + " " + str(givenTimezone))
         if wantedTimezone=="UTC":
             wantedTimezone = pytz.utc
         else:
