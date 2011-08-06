@@ -304,7 +304,7 @@ class Hud:
     # Set up a main window for this this instance of the HUD
     def create_mw(self):
         adjustedy = NSScreen.mainScreen().frame().size.height - self.table.y - 20 - titlebarheight
-        rect = NSMakeRect(self.table.x, adjustedy, 300, 20)
+        rect = NSMakeRect(self.table.x, adjustedy, self.font.pointSize() * 22, self.font.pointSize())
         win = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(rect, NSBorderlessWindowMask, NSBackingStoreBuffered, False)
         win.setTitle_("%s FPDBHUD" % (self.table.name))
         #win.setOpaque_(False)
@@ -769,7 +769,9 @@ class Stat_Window:
         self.popups = []            # list of open popups for this stat window
         self.useframes = parent.config.get_frames(parent.site)
 
-        rect = NSMakeRect(self.x, self.y, 120, 20 * game.rows)
+        colWidth = self.parent.font.pointSize() * 3
+        rowHeight = self.parent.font.pointSize()
+        rect = NSMakeRect(self.x, self.y, colWidth * game.cols, rowHeight * game.rows)
         self.window = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(rect, NSBorderlessWindowMask, NSBackingStoreBuffered, False)
         self.window.setAllowsToolTipsWhenApplicationIsInactive_(True)
 #        self.grid = NSMatrix.alloc().initWithFrame_mode_cellClass_numberOfRows_numberOfColumns_(rect, NSListModeMatrix, NSTextFieldCell.class__(), 2, 3)
@@ -784,7 +786,7 @@ class Stat_Window:
         for r in xrange(game.rows):
             self.labels.append([])
             for c in xrange(game.cols):
-                rect = NSMakeRect(c * 40, (game.rows - r - 1) * 20, 40, 20)
+                rect = NSMakeRect(c * colWidth, (game.rows - r - 1) * rowHeight, colWidth, rowHeight)
                 label = statwindowtextfield.alloc().initWithFrame_(rect)
                 label.owner = self.window
                 label.setStringValue_('xxx')
