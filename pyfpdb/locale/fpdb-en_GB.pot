@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-08-06 09:51+CEST\n"
+"POT-Creation-Date: 2011-08-06 15:07+CEST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -293,7 +293,7 @@ msgstr ""
 
 #: Database.py:1068 Database.py:1084 Database.py:1088 Database.py:1106
 #: Database.py:1110 Database.py:1441 Database.py:1460 Database.py:1464
-#: fpdb.pyw:1358
+#: fpdb.pyw:1362
 msgid "Warning:"
 msgstr ""
 
@@ -812,7 +812,7 @@ msgstr ""
 msgid "Stopping Auto Import."
 msgstr ""
 
-#: GuiAutoImport.py:302 fpdb.pyw:1045
+#: GuiAutoImport.py:302 fpdb.pyw:1049
 msgid "Global lock released."
 msgstr ""
 
@@ -1364,7 +1364,7 @@ msgstr ""
 msgid "Field Type"
 msgstr ""
 
-#: GuiPrefs.py:39 fpdb.pyw:1082
+#: GuiPrefs.py:39 fpdb.pyw:1086
 msgid "Ring Player Stats"
 msgstr ""
 
@@ -1577,7 +1577,7 @@ msgstr ""
 msgid "Failed to load numpy and/or matplotlib in Session Viewer"
 msgstr ""
 
-#: GuiSessionViewer.py:152 GuiStove.py:70 fpdb.pyw:1337
+#: GuiSessionViewer.py:152 GuiStove.py:70 fpdb.pyw:1341
 msgid "FPDB WARNING"
 msgstr ""
 
@@ -1826,7 +1826,7 @@ msgstr ""
 msgid "Note: error output is being diverted to %s."
 msgstr ""
 
-#: HUD_main.pyw:75 fpdb.pyw:1230
+#: HUD_main.pyw:75 fpdb.pyw:1234
 msgid "Any major error will be reported there _only_."
 msgstr ""
 
@@ -1842,7 +1842,7 @@ msgstr ""
 msgid "Game changed."
 msgstr ""
 
-#: HUD_main.pyw:144 fpdb.pyw:1020
+#: HUD_main.pyw:144 fpdb.pyw:1024
 msgid "Quitting normally"
 msgstr ""
 
@@ -2593,11 +2593,11 @@ msgstr ""
 msgid "Example stats, player = %s  hand = %s:"
 msgstr ""
 
-#: Stats.py:1151
+#: Stats.py:1121
 msgid "Legal stats:"
 msgstr ""
 
-#: Stats.py:1152
+#: Stats.py:1122
 msgid "(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)"
 msgstr ""
 
@@ -3169,7 +3169,7 @@ msgstr ""
 msgid "_Graphs"
 msgstr ""
 
-#: fpdb.pyw:882 fpdb.pyw:1147
+#: fpdb.pyw:882 fpdb.pyw:1151
 msgid "Tourney Graphs"
 msgstr ""
 
@@ -3209,7 +3209,7 @@ msgstr ""
 msgid "<control>S"
 msgstr ""
 
-#: fpdb.pyw:888 fpdb.pyw:1106
+#: fpdb.pyw:888 fpdb.pyw:1110
 msgid "Session Stats"
 msgstr ""
 
@@ -3309,47 +3309,47 @@ msgstr ""
 msgid "Status: Connected to %s database named %s on host %s"
 msgstr ""
 
-#: fpdb.pyw:1007
+#: fpdb.pyw:1011
 msgid "Global lock taken by %s"
 msgstr ""
 
-#: fpdb.pyw:1010
+#: fpdb.pyw:1014
 msgid "Failed to get global lock, it is currently held by %s"
 msgstr ""
 
-#: fpdb.pyw:1052
+#: fpdb.pyw:1056
 msgid "Auto Import"
 msgstr ""
 
-#: fpdb.pyw:1062
+#: fpdb.pyw:1066
 msgid "Bulk Import"
 msgstr ""
 
-#: fpdb.pyw:1069
+#: fpdb.pyw:1073
 msgid "Tournament Results Import"
 msgstr ""
 
-#: fpdb.pyw:1075
+#: fpdb.pyw:1079
 msgid "eMail Import"
 msgstr ""
 
-#: fpdb.pyw:1088
+#: fpdb.pyw:1092
 msgid "Tourney Stats"
 msgstr ""
 
-#: fpdb.pyw:1094
+#: fpdb.pyw:1098
 msgid "Tourney Viewer"
 msgstr ""
 
-#: fpdb.pyw:1100
+#: fpdb.pyw:1104
 msgid "Positional Stats"
 msgstr ""
 
-#: fpdb.pyw:1112
+#: fpdb.pyw:1116
 msgid "Hand Replayer"
 msgstr ""
 
-#: fpdb.pyw:1116
+#: fpdb.pyw:1120
 msgid ""
 "Fpdb needs translators!\n"
 "If you speak another language and have a few minutes or more to spare get in touch by emailing steffen@schaumburger.info\n"
@@ -3370,31 +3370,31 @@ msgid ""
 "You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt and mit.txt in the fpdb installation directory."
 msgstr ""
 
-#: fpdb.pyw:1133
+#: fpdb.pyw:1137
 msgid "Help"
 msgstr ""
 
-#: fpdb.pyw:1140
+#: fpdb.pyw:1144
 msgid "Graphs"
 msgstr ""
 
-#: fpdb.pyw:1154
+#: fpdb.pyw:1158
 msgid "Stove"
 msgstr ""
 
-#: fpdb.pyw:1229
+#: fpdb.pyw:1233
 msgid "Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in: %s"
 msgstr ""
 
-#: fpdb.pyw:1258
+#: fpdb.pyw:1262
 msgid "fpdb starting ..."
 msgstr ""
 
-#: fpdb.pyw:1357
+#: fpdb.pyw:1361
 msgid "Unknown Site"
 msgstr ""
 
-#: fpdb.pyw:1358
+#: fpdb.pyw:1362
 msgid "Unable to find site '%s'"
 msgstr ""
 

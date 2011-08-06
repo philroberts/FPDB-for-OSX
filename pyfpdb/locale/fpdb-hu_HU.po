@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2011-08-06 09:46+CEST\n"
+"POT-Creation-Date: 2011-08-06 15:07+CEST\n"
 "PO-Revision-Date: 2011-07-03 00:35+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -299,7 +299,7 @@ msgstr "Idegen kulcs eldobása:"
 
 #: Database.py:1068 Database.py:1084 Database.py:1088 Database.py:1106
 #: Database.py:1110 Database.py:1441 Database.py:1460 Database.py:1464
-#: fpdb.pyw:1358
+#: fpdb.pyw:1362
 msgid "Warning:"
 msgstr "Figyelmeztetés:"
 
@@ -822,7 +822,7 @@ msgstr "Globális zárolás nem elérhető."
 msgid "Stopping Auto Import."
 msgstr "Auto Import leállítása."
 
-#: GuiAutoImport.py:302 fpdb.pyw:1045
+#: GuiAutoImport.py:302 fpdb.pyw:1049
 msgid "Global lock released."
 msgstr "Globális zárolás feloldva."
 
@@ -1410,7 +1410,7 @@ msgstr "nem mutatott"
 msgid "Field Type"
 msgstr "Mező típusa"
 
-#: GuiPrefs.py:39 fpdb.pyw:1082
+#: GuiPrefs.py:39 fpdb.pyw:1086
 msgid "Ring Player Stats"
 msgstr "Készpénzes statisztikák"
 
@@ -1626,7 +1626,7 @@ msgstr "Szűrés a következő kéztípusokra:"
 msgid "Failed to load numpy and/or matplotlib in Session Viewer"
 msgstr "Nem sikerült a numpy és/vagy a matplotlib betöltése a Session nézetben"
 
-#: GuiSessionViewer.py:152 GuiStove.py:70 fpdb.pyw:1337
+#: GuiSessionViewer.py:152 GuiStove.py:70 fpdb.pyw:1341
 msgid "FPDB WARNING"
 msgstr "FPDB FIGYELMEZTETÉS"
 
@@ -1891,7 +1891,7 @@ msgstr "%s nevű adatbázis használata"
 msgid "Note: error output is being diverted to %s."
 msgstr "Megjegyzés: a hibakimenet ide van átirányítva: %s"
 
-#: HUD_main.pyw:75 fpdb.pyw:1230
+#: HUD_main.pyw:75 fpdb.pyw:1234
 msgid "Any major error will be reported there _only_."
 msgstr "Bármilyen nagyobb hiba _csak_oda_ kerül kiírásra."
 
@@ -1907,7 +1907,7 @@ msgstr "Hiba a main_window inicializálása közben"
 msgid "Game changed."
 msgstr "Játékváltás."
 
-#: HUD_main.pyw:144 fpdb.pyw:1020
+#: HUD_main.pyw:144 fpdb.pyw:1024
 msgid "Quitting normally"
 msgstr "Normál kilépés"
 
@@ -2710,11 +2710,11 @@ msgstr "kezdőkezek ennél az asztalnál"
 msgid "Example stats, player = %s  hand = %s:"
 msgstr "Példa statisztikák, játékos = %s  leosztás = %s:"
 
-#: Stats.py:1151
+#: Stats.py:1121
 msgid "Legal stats:"
 msgstr "Érvényes statisztikák:"
 
-#: Stats.py:1152
+#: Stats.py:1122
 msgid ""
 "(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)"
 msgstr ""
@@ -3336,7 +3336,7 @@ msgstr "<control>G"
 msgid "_Graphs"
 msgstr "_Grafikonok"
 
-#: fpdb.pyw:882 fpdb.pyw:1147
+#: fpdb.pyw:882 fpdb.pyw:1151
 msgid "Tourney Graphs"
 msgstr "Verseny grafikonok"
 
@@ -3376,7 +3376,7 @@ msgstr "P_ozíciós statisztikák (táblázat)"
 msgid "<control>S"
 msgstr "<control>S"
 
-#: fpdb.pyw:888 fpdb.pyw:1106
+#: fpdb.pyw:888 fpdb.pyw:1110
 msgid "Session Stats"
 msgstr "Session statisztikák"
 
@@ -3492,47 +3492,47 @@ msgstr ""
 "Állapot: Kapcsolódva a(z) %s adatbázis-kezelő %s nevű adatbázisához a(z) %s "
 "kiszolgálón"
 
-#: fpdb.pyw:1007
+#: fpdb.pyw:1011
 msgid "Global lock taken by %s"
 msgstr "%s globális zárolást végzett"
 
-#: fpdb.pyw:1010
+#: fpdb.pyw:1014
 msgid "Failed to get global lock, it is currently held by %s"
 msgstr "Globális zárolás meghiúsult, %s már zárolta"
 
-#: fpdb.pyw:1052
+#: fpdb.pyw:1056
 msgid "Auto Import"
 msgstr "Auto Import"
 
-#: fpdb.pyw:1062
+#: fpdb.pyw:1066
 msgid "Bulk Import"
 msgstr "Importálás"
 
-#: fpdb.pyw:1069
+#: fpdb.pyw:1073
 msgid "Tournament Results Import"
 msgstr "Versenyeredmények importálása"
 
-#: fpdb.pyw:1075
+#: fpdb.pyw:1079
 msgid "eMail Import"
 msgstr "Email import"
 
-#: fpdb.pyw:1088
+#: fpdb.pyw:1092
 msgid "Tourney Stats"
 msgstr "Versenystatisztikák"
 
-#: fpdb.pyw:1094
+#: fpdb.pyw:1098
 msgid "Tourney Viewer"
 msgstr "Verseny nézet"
 
-#: fpdb.pyw:1100
+#: fpdb.pyw:1104
 msgid "Positional Stats"
 msgstr "Pozíciós statisztikák"
 
-#: fpdb.pyw:1112
+#: fpdb.pyw:1116
 msgid "Hand Replayer"
 msgstr "Leosztás visszajátszása"
 
-#: fpdb.pyw:1116
+#: fpdb.pyw:1120
 msgid ""
 "Fpdb needs translators!\n"
 "If you speak another language and have a few minutes or more to spare get in "
@@ -3593,19 +3593,19 @@ msgstr ""
 "A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, "
 "gpl-2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
 
-#: fpdb.pyw:1133
+#: fpdb.pyw:1137
 msgid "Help"
 msgstr "Súgó"
 
-#: fpdb.pyw:1140
+#: fpdb.pyw:1144
 msgid "Graphs"
 msgstr "Grafikonok"
 
-#: fpdb.pyw:1154
+#: fpdb.pyw:1158
 msgid "Stove"
 msgstr "EV kalkulátor"
 
-#: fpdb.pyw:1229
+#: fpdb.pyw:1233
 msgid ""
 "Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt "
 "in: %s"
@@ -3613,15 +3613,15 @@ msgstr ""
 "Megjegyzés: a hibakimenet átirányítva az fpdb-errors.txt és HUD-errors.txt "
 "fájlokba itt: %s"
 
-#: fpdb.pyw:1258
+#: fpdb.pyw:1262
 msgid "fpdb starting ..."
 msgstr "fpdb indítása ..."
 
-#: fpdb.pyw:1357
+#: fpdb.pyw:1361
 msgid "Unknown Site"
 msgstr "Ismeretlen terem"
 
-#: fpdb.pyw:1358
+#: fpdb.pyw:1362
 msgid "Unable to find site '%s'"
 msgstr "Nem sikerült megtalálni a(z) '%s' termet"
 
