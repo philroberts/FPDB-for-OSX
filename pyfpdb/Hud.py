@@ -62,6 +62,8 @@ def importName(module_name, name):
         return None
     return(getattr(module, name))
 
+NSToolTipManager.sharedToolTipManager().setInitialToolTipDelay_(0.1)
+
 class mainwindowtextfield(NSTextField):
     def mouseDragged_(self, event):
         frame = self.owner.frame()
@@ -762,6 +764,7 @@ class Hud:
                     if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
                         unhidewindow = True
                     tip = "%s\n%s\n%s, %s" % (statd['screen_name'], number[5], number[3], number[4])
+                    Stats.do_tip(window.labels[r][c], tip)
                     #Stats.do_tip(window.e_box[r][c], tip)
             if unhidewindow: #and not window.window.visible: # there is no "visible" attribute in gtk.Window, although the docs seem to indicate there should be
                 window.window.display()
@@ -859,6 +862,7 @@ class Stat_Window:
 
         rect = NSMakeRect(self.x, self.y, 120, 20 * game.rows)
         self.window = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(rect, NSBorderlessWindowMask, NSBackingStoreBuffered, False)
+        self.window.setAllowsToolTipsWhenApplicationIsInactive_(True)
 #        self.grid = NSMatrix.alloc().initWithFrame_mode_cellClass_numberOfRows_numberOfColumns_(rect, NSListModeMatrix, NSTextFieldCell.class__(), 2, 3)
 #        self.grid.setAutosizesCells_(True)
 #        self.grid.setDrawsCellBackground_(True)

@@ -88,7 +88,7 @@ def __stat_override(decimals, stat_vals):
 
 def do_tip(widget, tip):
     _tip = Charset.to_utf8(tip)
-    widget.set_tooltip_text(_tip)
+    widget.setToolTip_(_tip)
 
 
 def do_stat(stat_dict, player = 24, stat = 'vpip', handid = -1):
