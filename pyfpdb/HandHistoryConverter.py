@@ -496,7 +496,7 @@ or None if we fail to get the info """
         if wantedTimezone=="UTC":
             wantedTimezone = pytz.utc
         else:
-            raise Error #TODO raise appropriate error
+            raise ValueError #TODO raise appropriate error
 
         givenTZ = None
         if HandHistoryConverter.re_tzOffset.match(givenTimezone):
@@ -558,11 +558,13 @@ or None if we fail to get the info """
         elif givenTimezone == 'NZT': # New Zealand Time
             pass
         else:
-            raise Error #TODO raise appropriate error
+            raise ValueError #TODO raise appropriate error
         
         if givenTZ is None:
-            raise Error #TODO raise appropriate error
-                        # (or just return time unchanged?)
+            # do not crash if timezone not in list, just return unconverted time
+            #raise Error #TODO raise appropriate error
+            log.warn(_("Timezone conversion not supported: " + givenTimezone + " " + str(time)))
+            return time
 
         localisedTime = givenTZ.localize(time)
         utcTime = localisedTime.astimezone(wantedTimezone) + datetime.timedelta(seconds=-3600*(offset/100)-60*(offset%100))
