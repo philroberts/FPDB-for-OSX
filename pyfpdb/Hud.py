@@ -248,10 +248,10 @@ class mainwindowtextfield(NSTextField):
         self.hud.change_max_seats(sender.tag())
 
 def parseColor(colorstring):
-    r = int(colorstring[1:3], 16)
-    g = int(colorstring[3:5], 16)
-    b = int(colorstring[5:7], 16)
-    return NSColor.colorWithDeviceRed_green_blue_alpha_(r, g, b, 255)
+    r = int(colorstring[1:3], 16) / 255.0
+    g = int(colorstring[3:5], 16) / 255.0
+    b = int(colorstring[5:7], 16) / 255.0
+    return NSColor.colorWithDeviceRed_green_blue_alpha_(r, g, b, 1)
 
 class Hud:
     def __init__(self, parent, table, max, poker_game, config, db_connection):
