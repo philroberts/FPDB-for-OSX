@@ -70,6 +70,8 @@ class mainwindowtextfield(NSTextField):
         if self is None: return None
 
         self.hud = hud
+        # Local override of translation routine because pyobjc's autoconversion to NSString doesn't fare well otherwise.
+        _ = lambda x: unicode(globals()['_'](x))
         
         menu = NSMenu.alloc().initWithTitle_("HUD menu")
         menu.addItemWithTitle_action_keyEquivalent_(_('Kill This HUD'), objc.selector(self.killHud_, signature = "v@:@"), "")
