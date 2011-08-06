@@ -14,6 +14,7 @@
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
+print "here"
 import L10n
 _ = L10n.get_translation()
 
@@ -34,11 +35,11 @@ import Options
 import string
 cl_options = string.join(sys.argv[1:])
 (options, argv) = Options.fpdb_options()
-
+print "aaaaaa"
 import logging
 import logging.config
 log = logging.getLogger("fpdb")
-
+print "bbbbbbb"
 import pygtk
 pygtk.require('2.0')
 import gtk
@@ -76,11 +77,12 @@ try:
 except:
     print _("GuiStove not found. If you want to use it please install pypoker-eval.")
 import SQL
+print "cccccccccccc"
 import Database
 import Configuration
 import Exceptions
 import Stats
-
+print "ddddddddddddddddd"
 VERSION = "0.26 + git"
 
 class fpdb:
@@ -1158,6 +1160,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         self.add_and_display_tab(tab, _("Stove"))
 
     def __init__(self):
+        print "kjdfhakjdfhkasjdhfkasdjhfkasdjfhksadjhfksadjfhksjdh"
         # no more than 1 process can this lock at a time:
         self.lock = interlocks.InterProcessLock(name="fpdb_global_lock")
         self.db = None
@@ -1224,8 +1227,10 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         if not options.hidden:
             self.window.show()
             self.visible = True     # Flip on
-            
+        
+        print "2122222222222222222222222222222222"    
         self.load_profile(create_db=True)
+        print "33333333333333333333333333333333333"    
 
         # setup error logging
         if not options.errorsToConsole:
@@ -1368,7 +1373,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         gtk.main()
         return 0
 
-
+print "lfkjlkafjdslkjalkjf"
 if __name__ == "__main__":
     me = fpdb()
     me.main()
