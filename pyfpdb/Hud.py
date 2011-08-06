@@ -319,6 +319,7 @@ class Hud:
         label.setTextColor_(self.foregroundcolor)
         label.setBackgroundColor_(self.backgroundcolor)
         win.setContentView_(label)
+        win.setAlphaValue_(self.colors["hudopacity"])
         #win = gtk.Window()
         #win.set_skip_taskbar_hint(True)  # invisible to taskbar
         #win.set_gravity(gtk.gdk.GRAVITY_STATIC)
@@ -781,6 +782,7 @@ class Stat_Window:
 #        self.grid.setBackgroundColor_(parent.backgroundcolor)
 #        self.grid.setCellBackgroundColor_(parent.backgroundcolor)
         self.window.setTitle_("%s" % seat)
+        self.window.setAlphaValue_(parent.colors['hudopacity'])
         self.labels = []
         
         for r in xrange(game.rows):
