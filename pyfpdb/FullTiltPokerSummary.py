@@ -139,7 +139,7 @@ class FullTiltPokerSummary(TourneySummary):
         mg = m.groupdict()
         if mg['CURRENCY'] == "$":     self.currency = "USD"
         elif mg['CURRENCY'] == u"€":  self.currency="EUR"
-        elif mg['CURRENCY'] == "FPP": self.currency="PSFP"
+        elif mg['CURRENCY'] == "FPP": self.currency="FTFP"
 
         m = self.re_Player.finditer(self.summaryText)
         playercount = 0

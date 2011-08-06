@@ -256,14 +256,14 @@ class Winamax(HandHistoryConverter):
                         elif info[key].find(u"€")!=-1:
                             hand.buyinCurrency="EUR"
                         elif info[key].find("FPP")!=-1:
-                            hand.buyinCurrency="PSFP"
+                            hand.buyinCurrency="WIFP"
                         else:
                             #FIXME: handle other currencies (are there other currencies?)
                             raise FpdbParseError(_("Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
 
                         info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
 
-                        if hand.buyinCurrency!="PSFP":
+                        if hand.buyinCurrency!="WIFP":
                             if info['BOUNTY'] != None:
                                 # There is a bounty, Which means we need to switch BOUNTY and BIRAKE values
                                 tmp = info['BOUNTY']
