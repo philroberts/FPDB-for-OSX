@@ -178,9 +178,6 @@ class mainwindowtextfield(NSTextField):
         menu.addItem_(aggItem)
         menu.setSubmenu_forItem_(aggMenu, aggItem)
 
-        # Debug stat windows
-        debugItem = menu.addItemWithTitle_action_keyEquivalent_(_('Debug Statistics Windows'), objc.selector(self.debugStatWindows_, signature = "v@:@"), "")
-
         # Set max seats
         maxSeatsItem = NSMenuItem.alloc().init()
         maxSeatsItem.setTitle_(_('Set max seats'))
@@ -242,10 +239,6 @@ class mainwindowtextfield(NSTextField):
         self.opponentSince = sender
         sender.setState_(NSOnState)
         self.hud.set_hud_style(('O', sender.representedObject()))
-
-    # Debug statwindows menu action
-    def debugStatWindows_(self, sender):
-        self.hud.debug_stat_windows()
 
     # Set max seats menu actions
     def changeMaxSeats_(self, sender):
@@ -531,14 +524,6 @@ class Hud:
             w.window.setFrame_display_(frame, True)
         self.repositioningwindows = False
         return True
-
-    def debug_stat_windows(self, *args):
-#        print self.table, "\n", self.main_window.window.get_transient_for()
-        for w in self.stat_windows:
-            try:
-                print self.stat_windows[w].window.window.get_transient_for()
-            except AttributeError:
-                print "this window doesnt have get_transient_for"
 
     def save_layout(self, *args):
         new_layout = [(0, 0)] * self.max
