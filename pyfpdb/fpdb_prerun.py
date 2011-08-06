@@ -29,7 +29,8 @@ global_modules_to_test =   ["gobject",
                             "matplotlib",
                             "numpy",
                             "pylab",
-                            "sqlite3"]
+                            "sqlite3",
+                            "pytz"]
 
 windows_modules_to_test =  ["win32gui",
                             "win32api",
@@ -65,6 +66,8 @@ def try_import(modulename):
             failure(_("Unable to load PyGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org."))
         if modulename in ["win32console"]:
             failure (_("We appear to be running in Windows, but the Windows Python Extensions are not loading. Please install the PYWIN32 package from http://sourceforge.net/projects/pywin32/"))
+        if modulename in ["pytz"]:
+            failure (_("Unable to import PYTZ library. Please install PYTZ from http://pypi.python.org/pypi/pytz/"))
         return False
 
     if modulename == "pygtk":
