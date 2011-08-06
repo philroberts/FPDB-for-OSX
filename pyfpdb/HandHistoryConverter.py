@@ -392,9 +392,8 @@ or None if we fail to get the info """
             sane = True
 
         if self.in_path != '-' and self.out_path == self.in_path:
-            print _("HH Sanity Check: output and input files are the same, check config")
+            print(_("Output and input files are the same, check config."))
             sane = False
-
 
         return sane
 
@@ -622,6 +621,6 @@ def get_out_fh(out_path, parameters):
         try: 
             return(codecs.open(out_path, 'w', 'utf8')) 
         except: 
-            log.error(_("out_path %s couldn't be opened") % (out_path)) 
+            log.error(_("Output path %s couldn't be opened.") % (out_path)) 
     else:
         return(sys.stdout)

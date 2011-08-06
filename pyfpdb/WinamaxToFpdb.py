@@ -187,9 +187,8 @@ class Winamax(HandHistoryConverter):
                 info['limitType'] = self.limits[mg['LIMIT']]
             else:
                 tmp = handText[0:100]
-                log.error(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
+                log.error(_("Limit not found in %s.") % tmp)
+                raise FpdbParseError(_("Limit not found in %s.") % tmp)
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
@@ -260,7 +259,7 @@ class Winamax(HandHistoryConverter):
                             hand.buyinCurrency="PSFP"
                         else:
                             #FIXME: handle other currencies (are there other currencies?)
-                            raise FpdbParseError(_("Failed to detect currency.") + " " + _("Hand ID: %s: '%s'") % (hand.handid, info[key]))
+                            raise FpdbParseError(_("Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
 
                         info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
 
@@ -346,7 +345,7 @@ class Winamax(HandHistoryConverter):
                 m = self.re_PostSB.search(hand.handText)
                 hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
             except exceptions.AttributeError: # no small blind
-                log.warning( _("readBlinds in noSB exception - no SB created")+str(sys.exc_info()) )
+                log.warning( _("No small blinds found.")+str(sys.exc_info()) )
             #hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))

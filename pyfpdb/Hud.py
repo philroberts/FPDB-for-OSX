@@ -173,22 +173,22 @@ class Hud:
         item = gtk.MenuItem(_('For Multiple Blind Levels:'))
         self.aggMenu.append(item)
         
-        item = gtk.CheckMenuItem(_('  0.5 to 2.0 x Current Blinds'))
+        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.5", "2.0"))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',2))
         setattr(self, 'h_aggBBmultItem2', item)
         
-        item = gtk.CheckMenuItem(_('  0.33 to 3.0 x Current Blinds'))
+        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.33", "3.0"))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',3))
         setattr(self, 'h_aggBBmultItem3', item)
         
-        item = gtk.CheckMenuItem(_('  0.1 to 10 x Current Blinds'))
+        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.1", "10.0"))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',10))
         setattr(self, 'h_aggBBmultItem10', item)
         
-        item = gtk.CheckMenuItem(_('  All Levels'))
+        item = gtk.CheckMenuItem("  " + _('All Levels'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',10000))
         setattr(self, 'h_aggBBmultItem10000', item)
@@ -196,17 +196,17 @@ class Hud:
         item = gtk.MenuItem(_('Number of Seats:'))
         self.aggMenu.append(item)
         
-        item = gtk.CheckMenuItem(_('  Any Number'))
+        item = gtk.CheckMenuItem("  " + _('Any Number'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('P','A'))
         setattr(self, 'h_seatsStyleOptionA', item)
         
-        item = gtk.CheckMenuItem(_('  Custom'))
+        item = gtk.CheckMenuItem("  " + _('Custom'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('P','C'))
         setattr(self, 'h_seatsStyleOptionC', item)
         
-        item = gtk.CheckMenuItem(_('  Exact'))
+        item = gtk.CheckMenuItem("  " + _('Exact'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('P','E'))
         setattr(self, 'h_seatsStyleOptionE', item)
@@ -214,17 +214,17 @@ class Hud:
         item = gtk.MenuItem(_('Since:'))
         self.aggMenu.append(item)
         
-        item = gtk.CheckMenuItem(_('  All Time'))
+        item = gtk.CheckMenuItem("  " + _('All Time'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('P','A'))
         setattr(self, 'h_hudStyleOptionA', item)
         
-        item = gtk.CheckMenuItem(_('  Session'))
+        item = gtk.CheckMenuItem("  " + _('Session'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('P','S'))
         setattr(self, 'h_hudStyleOptionS', item)
         
-        item = gtk.CheckMenuItem(_('  %s Days') % (self.hud_params['h_hud_days']))
+        item = gtk.CheckMenuItem("  " + _('%s Days') % (self.hud_params['h_hud_days']))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('P','T'))
         setattr(self, 'h_hudStyleOptionT', item)
@@ -242,22 +242,22 @@ class Hud:
         item = gtk.MenuItem(_('For Multiple Blind Levels:'))
         self.aggMenu.append(item)
         
-        item = gtk.CheckMenuItem(_('  0.5 to 2.0 x Current Blinds'))
+        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.5", "2.0"))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',2))
         setattr(self, 'aggBBmultItem2', item)
         
-        item = gtk.CheckMenuItem(_('  0.33 to 3.0 x Current Blinds'))
+        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.33", "3.0"))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',3))
         setattr(self, 'aggBBmultItem3', item)
         
-        item = gtk.CheckMenuItem(_('  0.1 to 10 x Current Blinds'))
+        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.1", "10.0"))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',10))
         setattr(self, 'aggBBmultItem10', item)
         
-        item = gtk.CheckMenuItem(_('  All Levels'))
+        item = gtk.CheckMenuItem("  " + _('All Levels'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',10000))
         setattr(self, 'aggBBmultItem10000', item)
@@ -265,17 +265,17 @@ class Hud:
         item = gtk.MenuItem(_('Number of Seats:'))
         self.aggMenu.append(item)
         
-        item = gtk.CheckMenuItem(_('  Any Number'))
+        item = gtk.CheckMenuItem("  " + _('Any Number'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('O','A'))
         setattr(self, 'seatsStyleOptionA', item)
         
-        item = gtk.CheckMenuItem(_('  Custom'))
+        item = gtk.CheckMenuItem("  " + _('Custom'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('O','C'))
         setattr(self, 'seatsStyleOptionC', item)
         
-        item = gtk.CheckMenuItem(_('  Exact'))
+        item = gtk.CheckMenuItem("  " + _('Exact'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('O','E'))
         setattr(self, 'seatsStyleOptionE', item)
@@ -283,17 +283,17 @@ class Hud:
         item = gtk.MenuItem(_('Since:'))
         self.aggMenu.append(item)
         
-        item = gtk.CheckMenuItem(_('  All Time'))
+        item = gtk.CheckMenuItem("  " + _('All Time'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('O','A'))
         setattr(self, 'hudStyleOptionA', item)
         
-        item = gtk.CheckMenuItem(_('  Session'))
+        item = gtk.CheckMenuItem("  " + _('Session'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('O','S'))
         setattr(self, 'hudStyleOptionS', item)
         
-        item = gtk.CheckMenuItem(_('  %s Days') % (self.hud_params['hud_days']))
+        item = gtk.CheckMenuItem("  " + _('%s Days') % (self.hud_params['hud_days']))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('O','T'))
         setattr(self, 'hudStyleOptionT', item)
@@ -351,7 +351,7 @@ class Hud:
 
         eventbox.connect_object("button-press-event", self.on_button_press, menu)
 
-        debugitem = gtk.MenuItem(_('Debug StatWindows'))
+        debugitem = gtk.MenuItem(_('Debug Statistics Windows'))
         menu.append(debugitem)
         debugitem.connect("activate", self.debug_stat_windows)
 
@@ -682,8 +682,7 @@ class Hud:
             try:
                 statd = self.stat_dict[s]
             except KeyError:
-                log.error(_("KeyError at the start of the for loop in update in hud_main. How this can possibly happen is totally beyond my comprehension. Your HUD may be about to get really weird. -Eric"))
-                log.error(_("(btw, the key was %s and statd is %s") % (s, statd))
+                log.error(_("HUD process overloaded, skipping this hand."))
                 continue
             try:
                 self.stat_windows[statd['seat']].player_id = statd['player_id']

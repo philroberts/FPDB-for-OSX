@@ -28,10 +28,10 @@ def fpdb_options():
     parser = OptionParser()
     parser.add_option("-x", "--errorsToConsole",
                       action="store_true",
-                      help=_("If passed error output will go to the console rather than the log file."))
+                      help=_("Send error messages to the console rather than the log file."))
     parser.add_option("-d", "--databaseName",
                       dest="dbname",
-                      help=_("Overrides the default database name"))
+                      help=_("Specifies a database name."))
     parser.add_option("-c", "--configFile",
                       dest="config", default=None,
                       help=_("Specifies a configuration file."))
