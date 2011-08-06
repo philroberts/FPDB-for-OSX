@@ -71,6 +71,12 @@ class mainwindowtextfield(NSTextField):
     def rightMouseDown_(self, event):
         print event, "RIGHTMOUSEEVENT"
 
+def parseColor(colorstring):
+    r = int(colorstring[1:3], 16)
+    g = int(colorstring[3:5], 16)
+    b = int(colorstring[5:7], 16)
+    return NSColor.colorWithDeviceRed_green_blue_alpha_(r, g, b, 255)
+
 class Hud:
     def __init__(self, parent, table, max, poker_game, config, db_connection):
 #    __init__ is (now) intended to be called from the stdin thread, so it
@@ -101,10 +107,8 @@ class Hud:
         self.hud_ui     = config.get_hud_ui_parameters()
         self.site_params = config.get_site_parameters(self.table.site)
 
-        #self.backgroundcolor = gtk.gdk.color_parse(self.colors['hudbgcolor'])
-        #self.foregroundcolor = gtk.gdk.color_parse(self.colors['hudfgcolor'])
-        self.backgroundcolor = NSColor.blackColor()
-        self.foregroundcolor = NSColor.whiteColor()
+        self.backgroundcolor = parseColor(self.colors['hudbgcolor'])
+        self.foregroundcolor = parseColor(self.colors['hudfgcolor'])
 
         self.font = NSFont.fontWithName_size_(font, font_size)
         # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
@@ -740,18 +744,18 @@ class Hud:
                     statstring = "%s%s%s" % (this_stat.hudprefix, str(number[1]), this_stat.hudsuffix)
                     window = self.stat_windows[statd['seat']]
 
- #                   if this_stat.hudcolor != "":
- #                       window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
- #                   else:
- #                       window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
- #                   
- #                   if this_stat.stat_loth != "":
- #                       if number[0] < (float(this_stat.stat_loth)/100):
- #                           window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_locolor))
- #
- #                   if this_stat.stat_hith != "":
- #                       if number[0] > (float(this_stat.stat_hith)/100):
- #                           window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_hicolor))
+                    if this_stat.hudcolor != "":
+                        window.labels[r][c].setTextColor_(parseColor(this_stat.hudcolor))
+                    else:
+                        window.labels[r][c].setTextColor_(parseColor(self.colors['hudfgcolor']))
+                    
+                    if this_stat.stat_loth != "":
+                        if number[0] < (float(this_stat.stat_loth)/100):
+                            window.labels[r][c].setTextColor_(parseColor(this_stat.stat_locolor))
+ 
+                    if this_stat.stat_hith != "":
+                        if number[0] > (float(this_stat.stat_hith)/100):
+                            window.labels[r][c].setTextColor_(parseColor(this_stat.stat_hicolor))
 
                     #window.grid.cellAtRow_column_(r, c).setStringValue_(statstring)
                     window.labels[r][c].setStringValue_(statstring)
