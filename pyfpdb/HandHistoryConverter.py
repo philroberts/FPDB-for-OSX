@@ -506,7 +506,12 @@ or None if we fail to get the info """
             #since CEST will only be used in summer time it's ok to treat it as identical to CET.
             givenTZ = timezone('Europe/Berlin')
             #Note: Daylight Saving Time is standardised across the EU so this should be fine
-        elif givenTimezone == 'GMT' or givenTimezone == 'WET': # Greenwich Mean Time (same as UTC except daylight saving time)
+        elif givenTimezone == 'GMT': # GMT is always the same as UTC
+            givenTZ = timezone('GMT')
+            # GMT cannot be treated as WET because some HH's are explicitly
+            # GMT+-delta so would be incorrect during the summertime 
+            # if substituted as WET+-delta
+        elif givenTimezone == 'WET': # WET is GMT with daylight saving delta
             givenTZ = timezone('WET')
         elif givenTimezone == 'HST': # Hawaiian Standard Time
             pass
@@ -527,8 +532,6 @@ or None if we fail to get the info """
         elif givenTimezone == 'BRT': # Brasilia Time
             pass
         elif givenTimezone == 'AKT': # Alaska Time
-            pass
-        elif givenTimezone == 'WET': # Western European Time
             pass
         elif givenTimezone == 'EET': # Eastern European Time
             pass
