@@ -527,7 +527,7 @@ or None if we fail to get the info """
         elif givenTimezone == 'NT': # Newfoundland Time
             pass
         elif givenTimezone == 'ART': # Argentinian Time
-            pass
+            givenTZ = timezone('America/Argentina/Buenos_Aires')
         elif givenTimezone == 'BRT': # Brasilia Time
             pass
         elif givenTimezone == 'AKT': # Alaska Time
