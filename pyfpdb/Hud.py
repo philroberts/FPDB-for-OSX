@@ -528,8 +528,10 @@ class Hud:
     def save_layout(self, *args):
         new_layout = [(0, 0)] * self.max
         for sw in self.stat_windows:
-            loc = self.stat_windows[sw].window.get_position()
-            new_loc = (loc[0] - self.table.x, loc[1] - self.table.y)
+            frame = self.stat_windows[sw].window.frame()
+            adjustedy = NSScreen.mainScreen().frame().size.height - frame.origin.y - frame.size.height - titlebarheight
+
+            new_loc = (int(frame.origin.x - self.table.x), int(adjustedy - self.table.y))
             new_layout[self.stat_windows[sw].adj - 1] = new_loc
         self.config.edit_layout(self.table.site, self.max, locations=new_layout)
 #    ask each aux to save its layout back to the config object
