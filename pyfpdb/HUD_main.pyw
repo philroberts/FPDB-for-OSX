@@ -66,6 +66,8 @@ class AppDelegate(NSObject):
     app.terminate_(self)
 
 class UpdateOnGUIThread(NSObject):
+    def killHUD(self):
+        idle_kill(self.owner, self.table)
     def updateHUD(self):
         idle_update(self.owner, self.new_hand_id, self.table_name, self.config)
     def createHUD(self):
@@ -141,14 +143,7 @@ class HUD_main(object):
                             elif eventtype == "clicked":
                                 hud.topify_all()
                             elif eventtype == "window_destroyed":
-                                (_, row, col) = self.owner.vb.getRow_column_ofCell_(None, None, hud.tablehudlabel)
-                                self.owner.vb.removeRow_(row)
-                                frame = self.owner.main_window.frame()
-                                frame.size.height -= 20
-                                self.owner.main_window.setFrame_display_(frame, True)
-                                hud.main_window.close()
-                                hud.kill()
-                                del(self.owner.hud_dict[hud.table_name])
+                                self.owner.kill_hud(hud.table_name)
                             break
             self.cb = mycallback.alloc().init()
             self.cb.owner = self
@@ -169,21 +164,24 @@ class HUD_main(object):
             gigobject.idle_add(idle_resize, hud)
 
     def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
-        self.kill_hud(None, hud.table.key)
+        self.kill_hud(hud.table.key)
 
     def game_changed(self, widget, hud):
         print "hud_main: " + _("Game changed.")
 
     def table_changed(self, widget, hud):
-        self.kill_hud(None, hud.table.key)
+        self.kill_hud(hud.table.key)
 
     def destroy(self, *args):             # call back for terminating the main eventloop
         log.info(_("Quitting normally"))
         app.terminate_(None)
 
-    def kill_hud(self, event, table):
-        pass
-        #gobject.idle_add(idle_kill, self, table)
+    def kill_hud(self, table):
+        updateObject = UpdateOnGUIThread.alloc().init()
+        updateObject.owner = self
+        updateObject.table = table
+        sel = objc.selector(updateObject.killHUD, signature = "v@:")
+        updateObject.performSelectorOnMainThread_withObject_waitUntilDone_(sel, None, False)
     
     def check_tables(self):
         for hud in self.hud_dict.keys():
@@ -220,6 +218,7 @@ class HUD_main(object):
         [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
 
         updateObject = UpdateOnGUIThread.alloc().init()
+        updateObject.owner = self
         updateObject.new_hand_id = new_hand_id
         updateObject.table = table
         updateObject.temp_key = temp_key
@@ -228,17 +227,16 @@ class HUD_main(object):
         updateObject.type = type
         updateObject.stat_dict = stat_dict
         updateObject.cards = cards
-        updateObject.owner = self
         sel = objc.selector(updateObject.createHUD, signature = "v@:")
         updateObject.performSelectorOnMainThread_withObject_waitUntilDone_(sel, None, False)
 
     def update_HUD(self, new_hand_id, table_name, config):
         """Update a HUD gui from inside the non-gui read_stdin thread."""
         updateObject = UpdateOnGUIThread.alloc().init()
+        updateObject.owner = self
         updateObject.new_hand_id = new_hand_id
         updateObject.table_name = table_name
         updateObject.config = config
-        updateObject.owner = self
         sel = objc.selector(updateObject.updateHUD, signature = "v@:")
         updateObject.performSelectorOnMainThread_withObject_waitUntilDone_(sel, None, False)
 
@@ -367,7 +365,6 @@ class HUD_main(object):
 #    with the gui.
 
 def idle_resize(hud):
-    #gtk.gdk.threads_enter()
     try:
         [aw.update_card_positions() for aw in hud.aux_windows]
         hud.resize_windows()
@@ -375,22 +372,20 @@ def idle_resize(hud):
         log.exception(_("Error resizing HUD for table: %s.") % hud.table.title)
     finally:
         pass
-        #gtk.gdk.threads_leave()
 
 def idle_kill(hud_main, table):
-    #gtk.gdk.threads_enter()
     try:
-        if table in hud_main.hud_dict:
-            hud_main.vb.remove(hud_main.hud_dict[table].tablehudlabel)
-            hud_main.hud_dict[table].main_window.destroy()
-            hud_main.hud_dict[table].kill()
-            del(hud_main.hud_dict[table])
-        hud_main.main_window.resize(1, 1)
+        hud = hud_main.hud_dict[table]
+        (_, row, col) = hud_main.vb.getRow_column_ofCell_(None, None, hud.tablehudlabel)
+        hud_main.vb.removeRow_(row)
+        frame = hud_main.main_window.frame()
+        frame.size.height -= 20
+        hud_main.main_window.setFrame_display_(frame, True)
+        hud.main_window.close()
+        hud.kill()
+        del(hud_main.hud_dict[hud.table_name])
     except:
         log.exception(_("Error killing HUD for table: %s.") % table.title)
-    finally:
-        pass
-        #gtk.gdk.threads_leave()
 
 def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards):
     try:

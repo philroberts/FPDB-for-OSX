@@ -65,13 +65,192 @@ def importName(module_name, name):
 NSToolTipManager.sharedToolTipManager().setInitialToolTipDelay_(0.1)
 
 class mainwindowtextfield(NSTextField):
+    def initWithFrame_HUD_(self, frame, hud):
+        self = super(mainwindowtextfield, self).initWithFrame_(frame)
+        if self is None: return None
+
+        self.hud = hud
+        
+        menu = NSMenu.alloc().initWithTitle_("HUD menu")
+        menu.addItemWithTitle_action_keyEquivalent_(_('Kill This HUD'), objc.selector(self.killHud_, signature = "v@:@"), "")
+        menu.addItemWithTitle_action_keyEquivalent_(_('Save HUD Layout'), objc.selector(self.saveLayout_, signature = "v@:@"), "")
+        menu.addItemWithTitle_action_keyEquivalent_(_('Reposition StatWindows'), objc.selector(self.repositionStatWindows_, signature = "v@:@"), "")
+
+        # Player stats
+        aggItem = NSMenuItem.alloc().init()
+        aggItem.setTitle_(_('Show Player Stats for'))
+        aggMenu = NSMenu.alloc().initWithTitle_(_('Show Player Stats for'))
+        aggMenu.addItemWithTitle_action_keyEquivalent_(_('For This Blind Level Only'), objc.selector(self.aggregation_, signature = "v@:@"), "").setTag_(1)
+        blindItem = NSMenuItem.alloc().init()
+        blindItem.setTitle_(_('For Multiple Blind Levels:'))
+        aggMenu.addItem_(blindItem)
+        aggMenu.addItemWithTitle_action_keyEquivalent_(_('%s to %s * Current Blinds') % ("  0.5", "2.0"), objc.selector(self.aggregation_, signature = "v@:@"), "").setTag_(2)
+        aggMenu.addItemWithTitle_action_keyEquivalent_(_('%s to %s * Current Blinds') % ("  0.33", "3.0"), objc.selector(self.aggregation_, signature = "v@:@"), "").setTag_(3)
+        aggMenu.addItemWithTitle_action_keyEquivalent_(_('%s to %s * Current Blinds') % ("  0.1", "10.0"), objc.selector(self.aggregation_, signature = "v@:@"), "").setTag_(10)
+        aggMenu.addItemWithTitle_action_keyEquivalent_("  " + _('All Levels'), objc.selector(self.aggregation_, signature = "v@:@"), "").setTag_(10000)
+        self.playerAgg = aggMenu.itemWithTag_(self.hud.hud_params['h_agg_bb_mult'])
+        if self.playerAgg == None:
+            self.playerAgg = aggMenu.itemWithTitle_("  " + _('All Levels'))
+        self.playerAgg.setState_(NSOnState)
+
+        seatsItem = NSMenuItem.alloc().init()
+        seatsItem.setTitle_(_('Number of Seats:'))
+        aggMenu.addItem_(seatsItem)
+        aggMenu.addItemWithTitle_action_keyEquivalent_("  " + _('Any Number'), objc.selector(self.seats_, signature = "v@:@"), "").setRepresentedObject_("A")
+        aggMenu.addItemWithTitle_action_keyEquivalent_("  " + _('Custom'), objc.selector(self.seats_, signature = "v@:@"), "").setRepresentedObject_("C")
+        aggMenu.addItemWithTitle_action_keyEquivalent_("  " + _('Exact'), objc.selector(self.seats_, signature = "v@:@"), "").setRepresentedObject_("T")
+        currentStyle = self.hud.hud_params['h_seats_style']
+        if currentStyle == 'A':
+            self.playerSeats = aggMenu.itemWithTitle_("  " + _('Any Number'))
+        elif currentStyle == 'C':
+            self.playerSeats = aggMenu.itemWithTitle_("  " + _('Custom'))
+        else:
+            self.playerSeats = aggMenu.itemWithTitle_("  " + _('Exact'))
+        self.playerSeats.setState_(NSOnState)
+
+        sinceItem = NSMenuItem.alloc().init()
+        sinceItem.setTitle_(_('Since:'))
+        aggMenu.addItem_(sinceItem)
+        aggMenu.addItemWithTitle_action_keyEquivalent_("  " + _('All Time'), objc.selector(self.since_, signature = "v@:@"), "").setRepresentedObject_("A")
+        aggMenu.addItemWithTitle_action_keyEquivalent_("  " + _('Session'), objc.selector(self.since_, signature = "v@:@"), "").setRepresentedObject_("S")
+        aggMenu.addItemWithTitle_action_keyEquivalent_("  " + _('%s Days') % (self.hud.hud_params['hud_days']), objc.selector(self.since_, signature = "v@:@"), "").setRepresentedObject_("T")
+        currentSince = self.hud.hud_params['h_hud_style']
+        if currentSince == 'A':
+            self.playerSince = aggMenu.itemWithTitle_("  " + _('All Time'))
+        elif currentSince == 'S':
+            self.playerSince = aggMenu.itemWithTitle_("  " + _('Session'))
+        else:
+            self.playerSince = aggMenu.itemWithTitle_("  " + _('%s Days') % (self.hud.hud_params['hud_days']))
+        self.playerSince.setState_(NSOnState)
+
+        menu.addItem_(aggItem)
+        menu.setSubmenu_forItem_(aggMenu, aggItem)
+        
+        # Opponent stats
+        aggItem = NSMenuItem.alloc().init()
+        aggItem.setTitle_(_('Show Opponent Stats for'))
+        aggMenu = NSMenu.alloc().initWithTitle_(_('Show Opponent Stats for'))
+        aggMenu.addItemWithTitle_action_keyEquivalent_(_('For This Blind Level Only'), objc.selector(self.aggregationOpp_, signature = "v@:@"), "").setTag_(1)
+        blindItem = NSMenuItem.alloc().init()
+        blindItem.setTitle_(_('For Multiple Blind Levels:'))
+        aggMenu.addItem_(blindItem)
+        aggMenu.addItemWithTitle_action_keyEquivalent_(_('%s to %s * Current Blinds') % ("  0.5", "2.0"), objc.selector(self.aggregationOpp_, signature = "v@:@"), "").setTag_(2)
+        aggMenu.addItemWithTitle_action_keyEquivalent_(_('%s to %s * Current Blinds') % ("  0.33", "3.0"), objc.selector(self.aggregationOpp_, signature = "v@:@"), "").setTag_(3)
+        aggMenu.addItemWithTitle_action_keyEquivalent_(_('%s to %s * Current Blinds') % ("  0.1", "10.0"), objc.selector(self.aggregationOpp_, signature = "v@:@"), "").setTag_(10)
+        aggMenu.addItemWithTitle_action_keyEquivalent_("  " + _('All Levels'), objc.selector(self.aggregationOpp_, signature = "v@:@"), "").setTag_(10000)
+        self.opponentAgg = aggMenu.itemWithTag_(self.hud.hud_params['h_agg_bb_mult'])
+        if self.opponentAgg == None:
+            self.opponentAgg = aggMenu.itemWithTitle_("  " + _('All Levels'))
+        self.opponentAgg.setState_(NSOnState)
+
+        seatsItem = NSMenuItem.alloc().init()
+        seatsItem.setTitle_(_('Number of Seats:'))
+        aggMenu.addItem_(seatsItem)
+        aggMenu.addItemWithTitle_action_keyEquivalent_("  " + _('Any Number'), objc.selector(self.seatsOpp_, signature = "v@:@"), "").setRepresentedObject_("A")
+        aggMenu.addItemWithTitle_action_keyEquivalent_("  " + _('Custom'), objc.selector(self.seatsOpp_, signature = "v@:@"), "").setRepresentedObject_("C")
+        aggMenu.addItemWithTitle_action_keyEquivalent_("  " + _('Exact'), objc.selector(self.seatsOpp_, signature = "v@:@"), "").setRepresentedObject_("T")
+        currentStyle = self.hud.hud_params['h_seats_style']
+        if currentStyle == 'A':
+            self.opponentSeats = aggMenu.itemWithTitle_("  " + _('Any Number'))
+        elif currentStyle == 'C':
+            self.opponentSeats = aggMenu.itemWithTitle_("  " + _('Custom'))
+        else:
+            self.opponentSeats = aggMenu.itemWithTitle_("  " + _('Exact'))
+        self.opponentSeats.setState_(NSOnState)
+
+        sinceItem = NSMenuItem.alloc().init()
+        sinceItem.setTitle_(_('Since:'))
+        aggMenu.addItem_(sinceItem)
+        aggMenu.addItemWithTitle_action_keyEquivalent_("  " + _('All Time'), objc.selector(self.sinceOpp_, signature = "v@:@"), "").setRepresentedObject_("A")
+        aggMenu.addItemWithTitle_action_keyEquivalent_("  " + _('Session'), objc.selector(self.sinceOpp_, signature = "v@:@"), "").setRepresentedObject_("S")
+        aggMenu.addItemWithTitle_action_keyEquivalent_("  " + _('%s Days') % (self.hud.hud_params['hud_days']), objc.selector(self.sinceOpp_, signature = "v@:@"), "").setRepresentedObject_("T")
+        currentSince = self.hud.hud_params['h_hud_style']
+        if currentSince == 'A':
+            self.opponentSince = aggMenu.itemWithTitle_("  " + _('All Time'))
+        elif currentSince == 'S':
+            self.opponentSince = aggMenu.itemWithTitle_("  " + _('Session'))
+        else:
+            self.opponentSince = aggMenu.itemWithTitle_("  " + _('%s Days') % (self.hud.hud_params['hud_days']))
+        self.opponentSince.setState_(NSOnState)
+
+        menu.addItem_(aggItem)
+        menu.setSubmenu_forItem_(aggMenu, aggItem)
+
+        # Debug stat windows
+        debugItem = menu.addItemWithTitle_action_keyEquivalent_(_('Debug Statistics Windows'), objc.selector(self.debugStatWindows_, signature = "v@:@"), "")
+
+        # Set max seats
+        maxSeatsItem = NSMenuItem.alloc().init()
+        maxSeatsItem.setTitle_(_('Set max seats'))
+        maxSeatsMenu = NSMenu.alloc().initWithTitle_(_('Set max seats'))
+        for i in range(2, 11, 1):
+            maxSeatsMenu.addItemWithTitle_action_keyEquivalent_('%d-max' % i, objc.selector(self.changeMaxSeats_, signature = "v@:@"), "").setTag_(i)
+        self.maxSeats = maxSeatsMenu.itemWithTag_(self.hud.max)
+        self.maxSeats.setState_(NSOnState)
+        menu.addItem_(maxSeatsItem)
+        menu.setSubmenu_forItem_(maxSeatsMenu, maxSeatsItem)
+
+        self.setMenu_(menu)
+        
+        return self
+
     def mouseDragged_(self, event):
         frame = self.owner.frame()
         frame.origin.x += event.deltaX()
         frame.origin.y -= event.deltaY()
         self.owner.setFrame_display_(frame, True)
-    def rightMouseDown_(self, event):
-        print event, "RIGHTMOUSEEVENT"
+
+    def killHud_(self, sender):
+        self.hud.parent.kill_hud(self.hud.table_name)
+    def saveLayout_(self, sender):
+        self.hud.save_layout()
+    def repositionStatWindows_(self, sender):
+        self.hud.reposition_windows()
+
+    # Player stats menu actions
+    def aggregation_(self, sender):
+        self.playerAgg.setState_(NSOffState)
+        self.playerAgg = sender
+        sender.setState_(NSOnState)
+        self.hud.set_aggregation(('P', sender.tag()))
+    def seats_(self, sender):
+        self.playerSeats.setState_(NSOffState)
+        self.playerSeats = sender
+        sender.setState_(NSOnState)
+        self.hud.set_seats_style(('P', sender.representedObject()))
+    def since_(self, sender):
+        self.playerSince.setState_(NSOffState)
+        self.playerSince = sender
+        sender.setState_(NSOnState)
+        self.hud.set_hud_style(('P', sender.representedObject()))
+
+    # Opponent stats menu actions
+    def aggregationOpp_(self, sender):
+        self.opponentAgg.setState_(NSOffState)
+        self.opponentAgg = sender
+        sender.setState_(NSOnState)
+        self.hud.set_aggregation(('O', sender.tag()))
+    def seatsOpp_(self, sender):
+        self.opponentSeats.setState_(NSOffState)
+        self.opponentSeats = sender
+        sender.setState_(NSOnState)
+        self.hud.set_seats_style(('O', sender.representedObject()))
+    def sinceOpp_(self, sender):
+        self.opponentSince.setState_(NSOffState)
+        self.opponentSince = sender
+        sender.setState_(NSOnState)
+        self.hud.set_hud_style(('O', sender.representedObject()))
+
+    # Debug statwindows menu action
+    def debugStatWindows_(self, sender):
+        self.hud.debug_stat_windows()
+
+    # Set max seats menu actions
+    def changeMaxSeats_(self, sender):
+        self.maxSeats.setState_(NSOffState)
+        self.maxSeats = sender
+        sender.setState_(NSOnState)
+        self.hud.change_max_seats(sender.tag())
 
 def parseColor(colorstring):
     r = int(colorstring[1:3], 16)
@@ -135,7 +314,7 @@ class Hud:
         win.setTitle_("%s FPDBHUD" % (self.table.name))
         #win.setOpaque_(False)
             
-        label = mainwindowtextfield.alloc().initWithFrame_(rect)
+        label = mainwindowtextfield.alloc().initWithFrame_HUD_(rect, self)
         label.owner = win
         label.setStringValue_(self.hud_ui['label'])
         label.setEditable_(False)
@@ -171,231 +350,6 @@ class Hud:
 
         self.main_window = win
 
-#    A popup menu for the main window
-#    This menu code has become extremely long - is there a better way to do this?
-#        menu = gtk.Menu()
-#
-#        killitem = gtk.MenuItem(_('Kill This HUD'))
-#        menu.append(killitem)
-#        if self.parent is not None:
-#            killitem.connect("activate", self.parent.kill_hud, self.table_name)
-#
-#        saveitem = gtk.MenuItem(_('Save HUD Layout'))
-#        menu.append(saveitem)
-#        saveitem.connect("activate", self.save_layout)
-#
-#        repositem = gtk.MenuItem(_('Reposition StatWindows'))
-#        menu.append(repositem)
-#        repositem.connect("activate", self.reposition_windows)
-#
-#        aggitem = gtk.MenuItem(_('Show Player Stats for'))
-#        menu.append(aggitem)
-#        self.aggMenu = gtk.Menu()
-#        aggitem.set_submenu(self.aggMenu)
-#        # set agg_bb_mult to 1 to stop aggregation
-#        item = gtk.CheckMenuItem(_('For This Blind Level Only'))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_aggregation, ('P', 1))
-#        setattr(self, 'h_aggBBmultItem1', item)
-#
-#        item = gtk.MenuItem(_('For Multiple Blind Levels:'))
-#        self.aggMenu.append(item)
-#        
-#        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.5", "2.0"))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_aggregation, ('P',2))
-#        setattr(self, 'h_aggBBmultItem2', item)
-#        
-#        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.33", "3.0"))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_aggregation, ('P',3))
-#        setattr(self, 'h_aggBBmultItem3', item)
-#        
-#        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.1", "10.0"))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_aggregation, ('P',10))
-#        setattr(self, 'h_aggBBmultItem10', item)
-#        
-#        item = gtk.CheckMenuItem("  " + _('All Levels'))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_aggregation, ('P',10000))
-#        setattr(self, 'h_aggBBmultItem10000', item)
-#        
-#        item = gtk.MenuItem(_('Number of Seats:'))
-#        self.aggMenu.append(item)
-#        
-#        item = gtk.CheckMenuItem("  " + _('Any Number'))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_seats_style, ('P','A'))
-#        setattr(self, 'h_seatsStyleOptionA', item)
-#        
-#        item = gtk.CheckMenuItem("  " + _('Custom'))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_seats_style, ('P','C'))
-#        setattr(self, 'h_seatsStyleOptionC', item)
-#        
-#        item = gtk.CheckMenuItem("  " + _('Exact'))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_seats_style, ('P','E'))
-#        setattr(self, 'h_seatsStyleOptionE', item)
-#        
-#        item = gtk.MenuItem(_('Since:'))
-#        self.aggMenu.append(item)
-#        
-#        item = gtk.CheckMenuItem("  " + _('All Time'))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_hud_style, ('P','A'))
-#        setattr(self, 'h_hudStyleOptionA', item)
-#        
-#        item = gtk.CheckMenuItem("  " + _('Session'))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_hud_style, ('P','S'))
-#        setattr(self, 'h_hudStyleOptionS', item)
-#        
-#        item = gtk.CheckMenuItem("  " + _('%s Days') % (self.hud_params['h_hud_days']))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_hud_style, ('P','T'))
-#        setattr(self, 'h_hudStyleOptionT', item)
-#
-#        aggitem = gtk.MenuItem(_('Show Opponent Stats for'))
-#        menu.append(aggitem)
-#        self.aggMenu = gtk.Menu()
-#        aggitem.set_submenu(self.aggMenu)
-#        # set agg_bb_mult to 1 to stop aggregation
-#        item = gtk.CheckMenuItem(_('For This Blind Level Only'))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_aggregation, ('O',1))
-#        setattr(self, 'aggBBmultItem1', item)
-#        
-#        item = gtk.MenuItem(_('For Multiple Blind Levels:'))
-#        self.aggMenu.append(item)
-#        
-#        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.5", "2.0"))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_aggregation, ('O',2))
-#        setattr(self, 'aggBBmultItem2', item)
-#        
-#        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.33", "3.0"))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_aggregation, ('O',3))
-#        setattr(self, 'aggBBmultItem3', item)
-#        
-#        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.1", "10.0"))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_aggregation, ('O',10))
-#        setattr(self, 'aggBBmultItem10', item)
-#        
-#        item = gtk.CheckMenuItem("  " + _('All Levels'))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_aggregation, ('O',10000))
-#        setattr(self, 'aggBBmultItem10000', item)
-#        
-#        item = gtk.MenuItem(_('Number of Seats:'))
-#        self.aggMenu.append(item)
-#        
-#        item = gtk.CheckMenuItem("  " + _('Any Number'))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_seats_style, ('O','A'))
-#        setattr(self, 'seatsStyleOptionA', item)
-#        
-#        item = gtk.CheckMenuItem("  " + _('Custom'))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_seats_style, ('O','C'))
-#        setattr(self, 'seatsStyleOptionC', item)
-#        
-#        item = gtk.CheckMenuItem("  " + _('Exact'))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_seats_style, ('O','E'))
-#        setattr(self, 'seatsStyleOptionE', item)
-#        
-#        item = gtk.MenuItem(_('Since:'))
-#        self.aggMenu.append(item)
-#        
-#        item = gtk.CheckMenuItem("  " + _('All Time'))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_hud_style, ('O','A'))
-#        setattr(self, 'hudStyleOptionA', item)
-#        
-#        item = gtk.CheckMenuItem("  " + _('Session'))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_hud_style, ('O','S'))
-#        setattr(self, 'hudStyleOptionS', item)
-#        
-#        item = gtk.CheckMenuItem("  " + _('%s Days') % (self.hud_params['hud_days']))
-#        self.aggMenu.append(item)
-#        item.connect("activate", self.set_hud_style, ('O','T'))
-#        setattr(self, 'hudStyleOptionT', item)
-#
-#        # set active on current options:
-#        if self.hud_params['h_agg_bb_mult'] == 1:
-#            getattr(self, 'h_aggBBmultItem1').set_active(True)
-#        elif self.hud_params['h_agg_bb_mult'] == 2:
-#            getattr(self, 'h_aggBBmultItem2').set_active(True)
-#        elif self.hud_params['h_agg_bb_mult'] == 3:
-#            getattr(self, 'h_aggBBmultItem3').set_active(True)
-#        elif self.hud_params['h_agg_bb_mult'] == 10:
-#            getattr(self, 'h_aggBBmultItem10').set_active(True)
-#        elif self.hud_params['h_agg_bb_mult'] > 9000:
-#            getattr(self, 'h_aggBBmultItem10000').set_active(True)
-#        
-#        if self.hud_params['agg_bb_mult'] == 1:
-#            getattr(self, 'aggBBmultItem1').set_active(True)
-#        elif self.hud_params['agg_bb_mult'] == 2:
-#            getattr(self, 'aggBBmultItem2').set_active(True)
-#        elif self.hud_params['agg_bb_mult'] == 3:
-#            getattr(self, 'aggBBmultItem3').set_active(True)
-#        elif self.hud_params['agg_bb_mult'] == 10:
-#            getattr(self, 'aggBBmultItem10').set_active(True)
-#        elif self.hud_params['agg_bb_mult'] > 9000:
-#            getattr(self, 'aggBBmultItem10000').set_active(True)
-#        
-#        if self.hud_params['h_seats_style'] == 'A':
-#            getattr(self, 'h_seatsStyleOptionA').set_active(True)
-#        elif self.hud_params['h_seats_style'] == 'C':
-#            getattr(self, 'h_seatsStyleOptionC').set_active(True)
-#        elif self.hud_params['h_seats_style'] == 'E':
-#            getattr(self, 'h_seatsStyleOptionE').set_active(True)
-#        
-#        if self.hud_params['seats_style'] == 'A':
-#            getattr(self, 'seatsStyleOptionA').set_active(True)
-#        elif self.hud_params['seats_style'] == 'C':
-#            getattr(self, 'seatsStyleOptionC').set_active(True)
-#        elif self.hud_params['seats_style'] == 'E':
-#            getattr(self, 'seatsStyleOptionE').set_active(True)
-#        
-#        if self.hud_params['h_hud_style'] == 'A':
-#            getattr(self, 'h_hudStyleOptionA').set_active(True)
-#        elif self.hud_params['h_hud_style'] == 'S':
-#            getattr(self, 'h_hudStyleOptionS').set_active(True)
-#        elif self.hud_params['h_hud_style'] == 'T':
-#            getattr(self, 'h_hudStyleOptionT').set_active(True)
-#        
-#        if self.hud_params['hud_style'] == 'A':
-#            getattr(self, 'hudStyleOptionA').set_active(True)
-#        elif self.hud_params['hud_style'] == 'S':
-#            getattr(self, 'hudStyleOptionS').set_active(True)
-#        elif self.hud_params['hud_style'] == 'T':
-#            getattr(self, 'hudStyleOptionT').set_active(True)
-#
-#        eventbox.connect_object("button-press-event", self.on_button_press, menu)
-#
-#        debugitem = gtk.MenuItem(_('Debug Statistics Windows'))
-#        menu.append(debugitem)
-#        debugitem.connect("activate", self.debug_stat_windows)
-#
-#        item5 = gtk.MenuItem(_('Set max seats'))
-#        menu.append(item5)
-#        maxSeatsMenu = gtk.Menu()
-#        item5.set_submenu(maxSeatsMenu)
-#        for i in range(2, 11, 1):
-#            item = gtk.MenuItem('%d-max' % i)
-#            item.ms = i
-#            maxSeatsMenu.append(item)
-#            item.connect("activate", self.change_max_seats)
-#            setattr(self, 'maxSeatsMenuItem%d' % (i - 1), item)
-#
-#        eventbox.connect_object("button-press-event", self.on_button_press, menu)
-#
         self.mw_created = True
         self.label = label
 #        menu.show_all()
@@ -403,10 +357,10 @@ class Hud:
         self.main_window.display()
         self.topify_window(self.main_window)
 
-    def change_max_seats(self, widget):
-        if self.max != widget.ms:
+    def change_max_seats(self, seats):
+        if self.max != seats:
             #print 'change_max_seats', widget.ms
-            self.max = widget.ms
+            self.max = seats
             try:
                 self.kill()
                 self.create(*self.creation_attrs)
@@ -415,77 +369,43 @@ class Hud:
                 log.error("Exception:",str(e))
                 pass
 
-    def set_aggregation(self, widget, val):
+    def set_aggregation(self, val):
         (player_opp, num) = val
         if player_opp == 'P':
             # set these true all the time, set the multiplier to 1 to turn agg off:
             self.hud_params['h_aggregate_ring'] = True
             self.hud_params['h_aggregate_tour'] = True
 
-            if     self.hud_params['h_agg_bb_mult'] != num \
-               and getattr(self, 'h_aggBBmultItem'+str(num)).get_active():
+            if     self.hud_params['h_agg_bb_mult'] != num:
                 log.debug('set_player_aggregation %d', num)
                 self.hud_params['h_agg_bb_mult'] = num
-                for mult in ('1', '2', '3', '10', '10000'):
-                    if mult != str(num):
-                        getattr(self, 'h_aggBBmultItem'+mult).set_active(False)
         else:
             self.hud_params['aggregate_ring'] = True
             self.hud_params['aggregate_tour'] = True
 
-            if     self.hud_params['agg_bb_mult'] != num \
-               and getattr(self, 'aggBBmultItem'+str(num)).get_active():
+            if     self.hud_params['agg_bb_mult'] != num:
                 log.debug('set_opponent_aggregation %d', num)
                 self.hud_params['agg_bb_mult'] = num
-                for mult in ('1', '2', '3', '10', '10000'):
-                    if mult != str(num):
-                        getattr(self, 'aggBBmultItem'+mult).set_active(False)
 
-    def set_seats_style(self, widget, val):
+    def set_seats_style(self, val):
         (player_opp, style) = val
         if player_opp == 'P':
             param = 'h_seats_style'
-            prefix = 'h_'
         else:
             param = 'seats_style'
-            prefix = ''
 
-        if style == 'A' and getattr(self, prefix+'seatsStyleOptionA').get_active():
-            self.hud_params[param] = 'A'
-            getattr(self, prefix+'seatsStyleOptionC').set_active(False)
-            getattr(self, prefix+'seatsStyleOptionE').set_active(False)
-        elif style == 'C' and getattr(self, prefix+'seatsStyleOptionC').get_active():
-            self.hud_params[param] = 'C'
-            getattr(self, prefix+'seatsStyleOptionA').set_active(False)
-            getattr(self, prefix+'seatsStyleOptionE').set_active(False)
-        elif style == 'E' and getattr(self, prefix+'seatsStyleOptionE').get_active():
-            self.hud_params[param] = 'E'
-            getattr(self, prefix+'seatsStyleOptionA').set_active(False)
-            getattr(self, prefix+'seatsStyleOptionC').set_active(False)
         log.debug("setting self.hud_params[%s] = %s" % (param, style))
+        self.hud_params[param] = style
 
-    def set_hud_style(self, widget, val):
+    def set_hud_style(self, val):
         (player_opp, style) = val
         if player_opp == 'P':
             param = 'h_hud_style'
-            prefix = 'h_'
         else:
             param = 'hud_style'
-            prefix = ''
 
-        if style == 'A' and getattr(self, prefix+'hudStyleOptionA').get_active():
-            self.hud_params[param] = 'A'
-            getattr(self, prefix+'hudStyleOptionS').set_active(False)
-            getattr(self, prefix+'hudStyleOptionT').set_active(False)
-        elif style == 'S' and getattr(self, prefix+'hudStyleOptionS').get_active():
-            self.hud_params[param] = 'S'
-            getattr(self, prefix+'hudStyleOptionA').set_active(False)
-            getattr(self, prefix+'hudStyleOptionT').set_active(False)
-        elif style == 'T' and getattr(self, prefix+'hudStyleOptionT').get_active():
-            self.hud_params[param] = 'T'
-            getattr(self, prefix+'hudStyleOptionA').set_active(False)
-            getattr(self, prefix+'hudStyleOptionS').set_active(False)
         log.debug("setting self.hud_params[%s] = %s" % (param, style))
+        self.hud_params[param] = style
 
     def update_table_position(self):
         # get table's X/Y position on the desktop, and relocate all of our child windows to accomodate
