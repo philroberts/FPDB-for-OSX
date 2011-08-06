@@ -87,7 +87,9 @@ src_install() {
 		msgfmt pyfpdb/locale/fpdb-zh_CN.po -o pyfpdb/locale/zh.mo || die "failed to create Chinese mo file"
 	fi
 
-	domo pyfpdb/locale/*.mo || die "failed to install mo files"
+	if use linguas_de || use linguas_es || use linguas_fr || use linguas_hu || use linguas_it || use linguas_lt|| use linguas_pl || use linguas_pt || use linguas_ro || use	linguas_ru || use linguas_zh; then
+		domo pyfpdb/locale/*.mo || die "failed to install mo files"
+	fi
 
 	doins readme.txt || die "failed to install readme.txt file"
 
@@ -100,7 +102,9 @@ src_install() {
 	newicon gfx/fpdb-icon.png ${PN}.png || die "failed to install fpdb icon"
 	make_desktop_entry ${PN}  || die "failed to create desktop entry"
 
-	fperms +x "${GAMES_DATADIR}"/${PN}/pyfpdb/*.pyw
+	fperms +x "${GAMES_DATADIR}"/${PN}/pyfpdb/fpdb.pyw
+	fperms +x "${GAMES_DATADIR}"/${PN}/pyfpdb/HUD_main.pyw
+
 	prepgamesdirs
 }
 
