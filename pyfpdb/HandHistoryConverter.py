@@ -33,13 +33,8 @@ from xml.dom.minidom import Node
 import time
 import datetime
 
-try:
-    from pytz import timezone
-    import pytz
-except ImportError:
-    print (_("Unable to import PYTZ library. Please install PYTZ from http://pypi.python.org/pypi/pytz/"))
-    raw_input(_("Press ENTER to continue."))
-    exit()   
+from pytz import timezone
+import pytz
 
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
