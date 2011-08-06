@@ -767,7 +767,7 @@ class Config:
         self.gui_cash_stats = GUICashStats()
         self.site_ids = {}                   # site ID list from the database
 
-        print "£ksadjfhkasjdhsakfdjhjk"
+
         added,n = 1,0  # use n to prevent infinite loop if add_missing_elements() fails somehow
         while added > 0 and n < 2:
             n = n + 1
@@ -790,8 +790,6 @@ class Config:
 #sys.exc_info = (<class 'xml.parsers.expat.ExpatError'>, ExpatError('not well-formed (invalid token): line 511,
 # column 4',), <traceback object at 0x024503A0>)
 
-            print "£ddddddddddddddddddddddd"
-        
             if (not self.example_copy) and (example_file is not None):
                 # reads example file and adds missing elements into current config
                 added = self.add_missing_elements(doc, example_file)
@@ -883,7 +881,7 @@ class Config:
         for raw_tourneys_node in doc.getElementsByTagName('raw_tourneys'):
             self.raw_tourneys = RawTourneys(raw_tourneys_node)
         
-        print "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+        #print ""
     #end def __init__
 
     def add_missing_elements(self, doc, example_file):
