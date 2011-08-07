@@ -102,7 +102,7 @@ class SplitHandHistory:
                     
     def new_file(self, fileno=-1):
         if fileno < 1:
-            print (_('Nope, will not work (fileno=%d)') % fileno)
+            print (_('Invalid file number') + ': %d)' % fileno)
             sys.exit(2)
         basename = os.path.splitext(os.path.basename(self.in_path))[0]
         name = os.path.join(self.out_path, basename+'-%06d.txt' % fileno)
