@@ -1,10 +1,3 @@
-//
-//  tablemonitor.m
-//  axlib
-//
-//  Created by Philip Roberts on 1/08/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
 
 #import "tablemonitor.h"
 
@@ -19,8 +12,6 @@ CGEventRef myEventTapCallBack (
 							   CGEventRef event,
 							   void *refcon
 							   );
-// I don't like doing this this way, but the refcon data crashes when I try to send a msg to it.
-//HKWindowManager *wm = NULL;
 
 @implementation tmcallback
 
@@ -276,7 +267,6 @@ CGEventRef myEventTapCallBack (
 		}
 	}
 	
-//	return event;
 	switch (type) {
 			/* The null event. */
 		case kCGEventNull:
