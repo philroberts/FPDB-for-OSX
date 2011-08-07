@@ -8,10 +8,10 @@ Why?
 ----
 
 The GTK HUD is great, but the GTK code for keeping the HUD windows on
-top of tables doesn't work with native windows, because it can only
-see windows in your X server.  This project might be the answer:
-http://gtk-osx.sourceforge.net/ but I wanted an excuse to mess around
-with Cocoa.
+top of tables doesn't work with native poker client windows, because
+it can only see windows in your X server.  This project might be the
+answer: http://gtk-osx.sourceforge.net/ but I wanted an excuse to mess
+around with Cocoa.
 
 How?
 ----
