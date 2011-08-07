@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-08-07 15:06+CEST\n"
+"POT-Creation-Date: 2011-08-07 15:22+CEST\n"
 "PO-Revision-Date: 2011-07-11 11:13+0000\n"
 "Last-Translator: kibbitzer <thomas.joannes@gmail.com>\n"
 "Language-Team: French (France) (http://www.transifex.net/projects/p/fpdb/"
@@ -450,6 +450,23 @@ msgstr "get_stats a duré: %4.3f secondes"
 #: Database.py:3073
 msgid "Press ENTER to continue."
 msgstr "Appuyez sur ENTRÉE pour continuer."
+
+#: DerivedStats.py:523
+#, fuzzy
+msgid "%s and %s"
+msgstr "%s a été basculé %s"
+
+#: DerivedStats.py:529 DerivedStats.py:532 DerivedStats.py:543
+msgid "high"
+msgstr ""
+
+#: DerivedStats.py:537
+msgid "%s full of %s"
+msgstr ""
+
+#: DerivedStats.py:546
+msgid "a Royal Flush"
+msgstr ""
 
 #: EverestToFpdb.py:110 FulltiltToFpdb.py:286 FulltiltToFpdb.py:288
 msgid "Unable to recognise hand info from: '%s'"

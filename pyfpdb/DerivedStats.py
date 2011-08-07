@@ -520,30 +520,30 @@ class DerivedStats():
         elif best[0] == 'TwoPair':
             hipair = Card.names[cards[0][0]][1]
             pair = Card.names[cards[2][0]][1]
-            pairs = hipair + ' and ' + pair
+            pairs = _("%s and %s") % (hipair, pair)
             string = string % pairs
         elif best[0] == 'Trips':
             threeoak = Card.names[cards[0][0]][1]
             string = string % threeoak
         elif best[0] == 'Straight':
-            straight = Card.names[cards[0][0]][0] + ' high'
+            straight = Card.names[cards[0][0]][0] + " " + _("high")
             string = string % straight
         elif best[0] == 'Flush':
-            flush = Card.names[cards[0][0]][0] + ' high'
+            flush = Card.names[cards[0][0]][0] + " " + _("high")
             string = string % flush
         elif best[0] == 'FlHouse':
             threeoak = Card.names[cards[0][0]][1]
             pair     = Card.names[cards[3][0]][1]
-            full     = threeoak + ' full of ' + pair
+            full     = _("%s full of %s") % (threeoak, pair)
             string = string % full
         elif best[0] == 'Quads':
             four = Card.names[cards[0][0]][1]
             string = string % four
         elif best[0] == 'StFlush':
-            flush = Card.names[cards[0][0]][0] + ' high'
+            flush = Card.names[cards[0][0]][0] + " " + _("high")
             string = string % flush
             if string[0] in ('As', 'Ad', 'Ah', 'Ac'):
-                string = 'a Royal Flush' 
+                string = _('a Royal Flush')
         return string
 
     def setPositions(self, hand):
