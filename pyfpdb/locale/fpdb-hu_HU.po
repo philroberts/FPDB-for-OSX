@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2011-08-06 15:07+CEST\n"
+"POT-Creation-Date: 2011-08-07 15:06+CEST\n"
 "PO-Revision-Date: 2011-07-03 00:35+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -442,7 +442,7 @@ msgstr "kezdőkéz ="
 msgid "get_stats took: %4.3f seconds"
 msgstr "get_stats időigény: %4.3f mp"
 
-#: Database.py:3073 HandHistoryConverter.py:41
+#: Database.py:3073
 msgid "Press ENTER to continue."
 msgstr "Nyomj ENTER-t a folytatáshoz."
 
@@ -728,7 +728,7 @@ msgid "%s Failed to detect button (hand #%s cancelled?)"
 msgstr "%s nem ismerte fel az osztót (#%s leosztás megszakítva?)"
 
 #: FulltiltToFpdb.py:604 FulltiltToFpdb.py:817 GuiSessionViewer.py:449
-#: WinTables.py:87 fpdb_prerun.py:97
+#: WinTables.py:87 fpdb_prerun.py:100
 msgid "Error:"
 msgstr "Hiba:"
 
@@ -1883,15 +1883,15 @@ msgstr "érvénytelen érték a versenyazonosítónál - csak számok használha
 msgid "HUD_main starting"
 msgstr "HUD_main indítás"
 
-#: HUD_main.pyw:69 HUD_run_me.py:51 TournamentTracker.py:306
+#: HUD_main.pyw:69 HUD_run_me.py:51 TournamentTracker.py:307
 msgid "Using db name = %s"
 msgstr "%s nevű adatbázis használata"
 
-#: HUD_main.pyw:74
+#: HUD_main.pyw:74 TournamentTracker.py:39 fpdb.pyw:1233
 msgid "Note: error output is being diverted to %s."
 msgstr "Megjegyzés: a hibakimenet ide van átirányítva: %s"
 
-#: HUD_main.pyw:75 fpdb.pyw:1234
+#: HUD_main.pyw:75 TournamentTracker.py:40 fpdb.pyw:1234
 msgid "Any major error will be reported there _only_."
 msgstr "Bármilyen nagyobb hiba _csak_oda_ kerül kiírásra."
 
@@ -2267,63 +2267,58 @@ msgstr "Pot.end(): Komoly hiba a kassza számítása közben: '%s'"
 msgid "Error in printing Hand object"
 msgstr "Hiba egy Hand objektum kiírása közben"
 
-#: HandHistoryConverter.py:40
-#, fuzzy
-msgid ""
-"Unable to import PYTZ library. Please install PYTZ from http://pypi.python."
-"org/pypi/pytz/"
-msgstr ""
-"ImportError: Nem sikerült a PYTZ library betöltése.  Kérlek telepítsd innen: "
-"http://pypi.python.org/pypi/pytz/"
-
-#: HandHistoryConverter.py:132
+#: HandHistoryConverter.py:127
 msgid "Failed sanity check"
 msgstr "A megfelelőségi ellenőrzésen nem ment át"
 
-#: HandHistoryConverter.py:138
+#: HandHistoryConverter.py:133
 msgid "Hands list is:"
 msgstr "A leosztások listája a következő:"
 
-#: HandHistoryConverter.py:139
+#: HandHistoryConverter.py:134
 msgid "Parsing %d hands"
 msgstr ""
 
-#: HandHistoryConverter.py:152
+#: HandHistoryConverter.py:147
 msgid "Read %d hands (%d failed) in %.3f seconds"
 msgstr "%d leosztás beolvasva (%d sikertelen) %.3f mp alatt"
 
-#: HandHistoryConverter.py:158
+#: HandHistoryConverter.py:153
 #, fuzzy
 msgid "Summary file '%s' correctly parsed (took %.3f seconds)"
 msgstr "A(z) '%s' összefoglaló fájl rendben feldolgozva (%.3f mp)"
 
-#: HandHistoryConverter.py:160
+#: HandHistoryConverter.py:155
 msgid "Error converting summary file '%s' (took %.3f seconds)"
 msgstr "Hiba a(z) '%s' összefoglaló fájl konvertálása közben (%.3f mp)"
 
-#: HandHistoryConverter.py:188
+#: HandHistoryConverter.py:183
 msgid "Read no hands from file: '%s'"
 msgstr "Egy leosztás sem került beolvasásra a(z) %s fájlból"
 
-#: HandHistoryConverter.py:196
+#: HandHistoryConverter.py:191
 msgid "Removing text < 50 characters"
 msgstr "50 karakternél rövidebb szöveg eltávolítása"
 
-#: HandHistoryConverter.py:229 HandHistoryConverter.py:230
-#: HandHistoryConverter.py:236
+#: HandHistoryConverter.py:224 HandHistoryConverter.py:225
+#: HandHistoryConverter.py:231
 msgid "Unsupported game type: %s"
 msgstr "Nem támogatott játéktípus: %s"
 
-#: HandHistoryConverter.py:395
+#: HandHistoryConverter.py:390
 #, fuzzy
 msgid "Output and input files are the same, check config."
 msgstr ""
 "HH Sanity Check: a kimeneti és bemeneti fájlok azonosak, ellenőrizd a "
 "beállításokat"
 
-#: HandHistoryConverter.py:427
+#: HandHistoryConverter.py:422
 msgid "unable to read file with any codec in list!"
 msgstr "a fájl olvasása nem sikerült egyik listabeli kódolással sem!"
+
+#: HandHistoryConverter.py:563
+msgid "Timezone conversion not supported"
+msgstr ""
 
 #: HandHistoryConverter.py:617 HandHistoryConverter.py:618
 msgid "Unable to create output directory %s for HHC!"
@@ -2586,11 +2581,12 @@ msgstr "Kézzel kell megadnod a játékos nevét"
 msgid "Failed to detect currency."
 msgstr "Nem sikerült a pénznem felismerése."
 
-#: PacificPokerToFpdb.py:336
-msgid "No match in markStreets"
-msgstr "Nincs találat a markStreets-ben"
+#: PacificPokerToFpdb.py:335 PacificPokerToFpdb.py:336
+#, fuzzy
+msgid "Unable to recognise streets"
+msgstr "Nem sikerült felismerni a verseny információt: '%s'"
 
-#: SplitHandHistory.py:76 fpdb_prerun.py:63 fpdb_prerun.py:76
+#: SplitHandHistory.py:76 fpdb_prerun.py:64 fpdb_prerun.py:79
 msgid "File not found"
 msgstr "Fájl nem található"
 
@@ -2599,8 +2595,8 @@ msgid "%s processed"
 msgstr "%s feldolgozva"
 
 #: SplitHandHistory.py:105
-msgid "Nope, will not work (fileno=%d)"
-msgstr "Nem, nem fog működni (fileno=%d)"
+msgid "Invalid file number"
+msgstr ""
 
 #: SplitHandHistory.py:126
 msgid "Unexpected error processing file"
@@ -2614,21 +2610,14 @@ msgstr "Fájl vége"
 msgid "Profit per 100 hands"
 msgstr "profit/100 leosztás"
 
-#: Stats.py:254
-msgid "exception calculating p/100: 100 * %d / %d"
-msgstr "hiba a p/100 számítása közben: 100 * %d / %d"
-
-#: Stats.py:276
-msgid "exception calculating bb/100: "
+#: Stats.py:254 Stats.py:276 Stats.py:298
+#, fuzzy
+msgid "exception calculating %s"
 msgstr "hiba a bb/100 számítása közben: "
 
 #: Stats.py:286 Stats.py:295 Stats.py:304
 msgid "Big bets won per 100 hands"
 msgstr "nagytét/100 leosztás"
-
-#: Stats.py:298
-msgid "exception calculating BB/100: "
-msgstr "hiba a BB/100 számítása közben: "
 
 #: Stats.py:399 Stats.py:408
 msgid "% steal success"
@@ -2707,7 +2696,8 @@ msgid "starting hands at this table"
 msgstr "kezdőkezek ennél az asztalnál"
 
 #: Stats.py:1116
-msgid "Example stats, player = %s  hand = %s:"
+#, fuzzy
+msgid "Example stats. Player = %s, Hand = %s:"
 msgstr "Példa statisztikák, játékos = %s  leosztás = %s:"
 
 #: Stats.py:1121
@@ -2737,55 +2727,44 @@ msgstr "Kamu HUD Főablak"
 msgid "enter table name to find: "
 msgstr "add meg a keresendő asztalnevet: "
 
-#: TournamentTracker.py:39
-msgid ""
-"Note: error output is being diverted to fpdb-error-log.txt and HUD-error."
-"txt. Any major error will be reported there _only_."
-msgstr ""
-"Megjegyzés: a hibakimenet átirányítva az fpdb-errors.txt és HUD-errors.txt "
-"fájlokba. Bármilyen nagyobb hiba _csak_oda_ kerül kiírásra."
-
-#: TournamentTracker.py:100
-msgid "tournament edit window="
-msgstr "versenyszerkesztő ablak="
-
-#: TournamentTracker.py:103
+#: TournamentTracker.py:104
 msgid "FPDB Tournament Entry"
 msgstr "FPDB Versenybeírás"
 
-#: TournamentTracker.py:143
+#: TournamentTracker.py:144
 msgid "Closing this window will stop the Tournament Tracker"
 msgstr "Ezen ablak bezárása leállítja a Versenykövetőt"
 
-#: TournamentTracker.py:145
-msgid "Enter Tournament"
-msgstr "Verseny beírása"
+#: TournamentTracker.py:146
+#, fuzzy
+msgid "Add Tournament"
+msgstr "Versenyek"
 
-#: TournamentTracker.py:150
+#: TournamentTracker.py:151
 msgid "FPDB Tournament Tracker"
 msgstr "FPDB Versenykövető"
 
-#: TournamentTracker.py:161
+#: TournamentTracker.py:162
 msgid "Edit"
 msgstr "Szerkeszt"
 
-#: TournamentTracker.py:164
+#: TournamentTracker.py:165
 msgid "Rebuy"
 msgstr "Rebuy"
 
-#: TournamentTracker.py:265
+#: TournamentTracker.py:266
 msgid "Database error %s in hand %d. Skipping."
 msgstr "%s adatbázishiba a %d leosztásban. Kihagyás."
 
-#: TournamentTracker.py:275
+#: TournamentTracker.py:276
 msgid "Could not find tournament %d in hand %d. Skipping."
 msgstr "Nem található a %d versenyazonosító a %d leosztásban. Kihagyás."
 
-#: TournamentTracker.py:298
+#: TournamentTracker.py:299
 msgid "Table name %s not found, skipping."
 msgstr "%s nevű asztal nincs meg, kihagyás."
 
-#: TournamentTracker.py:305
+#: TournamentTracker.py:306
 msgid "Tournament tracker starting"
 msgstr "versenykövető indítása"
 
@@ -2950,20 +2929,13 @@ msgid "COUNT ADDONS"
 msgstr "ADDONOK SZÁMA"
 
 #: TourneySummary.py:182
-msgid "NB OF KO"
-msgstr "KO SZÁMA"
+#, fuzzy
+msgid "COUNT KO"
+msgstr "ADDONOK SZÁMA"
 
 #: TourneySummary.py:229
 msgid "Tourney Insert/Update done"
 msgstr "Verseny beszúrás/frissítés kész"
-
-#: TourneySummary.py:249
-msgid "addPlayer: rank:%s - name : '%s' - Winnings (%s)"
-msgstr "addPlayer: helyezés: %s - név: '%s' - Nyeremény (%s)"
-
-#: TourneySummary.py:276
-msgid "incrementPlayerWinnings: name : '%s' - Add Winnings (%s)"
-msgstr "incrementPlayerWinnings: név: '%s' - plusz nyeremény (%s)"
 
 #: TreeViewTooltips.py:108
 msgid ""
@@ -2981,17 +2953,9 @@ msgstr "A(z) %s nevű ablak nincs meg. Kihagyás."
 msgid "%s doesn't exist."
 msgstr "%s nem létezik."
 
-#: WinamaxToFpdb.py:299
-msgid "readplayerstacks: re is '%s'"
-msgstr "readplayerstacks: re értéke '%s'"
-
 #: WinamaxToFpdb.py:316
 msgid "Failed to add streets. handtext=%s"
 msgstr "Nem sikerült az utcák hozzáadása. handtext=%s"
-
-#: WinamaxToFpdb.py:326
-msgid "readButton: button on pos %d"
-msgstr "readButton: a gomb ebben a pozícióban: %d"
 
 #: WinamaxToFpdb.py:378
 msgid "No hole cards found for %s"
@@ -3605,14 +3569,6 @@ msgstr "Grafikonok"
 msgid "Stove"
 msgstr "EV kalkulátor"
 
-#: fpdb.pyw:1233
-msgid ""
-"Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt "
-"in: %s"
-msgstr ""
-"Megjegyzés: a hibakimenet átirányítva az fpdb-errors.txt és HUD-errors.txt "
-"fájlokba itt: %s"
-
 #: fpdb.pyw:1262
 msgid "fpdb starting ..."
 msgstr "fpdb indítása ..."
@@ -3662,10 +3618,6 @@ msgstr "Nem szükséges az adatbázis indexeinek újraépítése."
 msgid "No need to rebuild hudcache."
 msgstr "Nem szükséges a HUD gyorstár újraépítése."
 
-#: fpdb_import.py:318
-msgid "sending finish message queue length ="
-msgstr "befejező üzenet küldése; sor hossza ="
-
 #: fpdb_import.py:443 fpdb_import.py:444
 msgid "Converting %s"
 msgstr "%s konvertálása"
@@ -3679,7 +3631,8 @@ msgid "Failed to send hand to HUD: %s"
 msgstr "Nem sikerült a leosztás elküldése a HUD számára: %s"
 
 #: fpdb_import.py:542
-msgid "Unknown filter filter_name:'%s' in filter:'%s'"
+#, fuzzy
+msgid "Unknown filter name %s in filter %s."
 msgstr "Ismeretlen szűrő: filter_name:'%s' a '%s' szűrőben"
 
 #: fpdb_import.py:651
@@ -3687,7 +3640,7 @@ msgid "CLI for importing hands is GuiBulkImport.py"
 msgstr ""
 "Parancssorból a GuiBulkImport.py segítségével tudsz leosztásokat importálni"
 
-#: fpdb_prerun.py:65
+#: fpdb_prerun.py:66
 msgid ""
 "Unable to load PyGTK modules required for GUI. Please install PyCairo, "
 "PyGObject, and PyGTK from www.pygtk.org."
@@ -3695,7 +3648,7 @@ msgstr ""
 "Nem sikerült a GUI által igényelt PyGTK modulok betöltése. Kérlek telepítsd "
 "a PyCairo-t, a PyGObject-et és a PyGTK-t a www.pygtk.org címről."
 
-#: fpdb_prerun.py:67
+#: fpdb_prerun.py:68
 msgid ""
 "We appear to be running in Windows, but the Windows Python Extensions are "
 "not loading. Please install the PYWIN32 package from http://sourceforge.net/"
@@ -3705,7 +3658,16 @@ msgstr ""
 "Bővítmények nem töltődnek be. Kérlek telepítsd a PYWIN32 csomagot innen: "
 "http://sourceforge.net/projects/pywin32/"
 
-#: fpdb_prerun.py:136
+#: fpdb_prerun.py:70
+#, fuzzy
+msgid ""
+"Unable to import PYTZ library. Please install PYTZ from http://pypi.python."
+"org/pypi/pytz/"
+msgstr ""
+"ImportError: Nem sikerült a PYTZ library betöltése.  Kérlek telepítsd innen: "
+"http://pypi.python.org/pypi/pytz/"
+
+#: fpdb_prerun.py:139
 msgid "Python 2.6-2.7 not found, please install python 2.6 or 2.7 for fpdb."
 msgstr ""
 "Python 2.6-2.7 nem található, kérlek telepítsd a Python 2.6-ot vagy 2.7-et "
@@ -3726,6 +3688,58 @@ msgstr "Telepítsd a GTK-t, vagy állítsd be kézzel az útvonalat"
 #: windows_make_bats.py:57
 msgid "No gtk directories found in your path."
 msgstr "Nem találhatóak GTK könyvtárak az útvonaladban."
+
+#~ msgid "readButton: button on pos %d"
+#~ msgstr "readButton: a gomb ebben a pozícióban: %d"
+
+#~ msgid "sending finish message queue length ="
+#~ msgstr "befejező üzenet küldése; sor hossza ="
+
+#, fuzzy
+#~ msgid "Add player: rank: %s name: %s winnings: %s"
+#~ msgstr "addPlayer: helyezés: %s - név: '%s' - Nyeremény (%s)"
+
+#, fuzzy
+#~ msgid "Increment player winnings: name: %s, add winnings: %s"
+#~ msgstr "incrementPlayerWinnings: név: '%s' - plusz nyeremény (%s)"
+
+#~ msgid "readplayerstacks: re is '%s'"
+#~ msgstr "readplayerstacks: re értéke '%s'"
+
+#~ msgid "NB OF KO"
+#~ msgstr "KO SZÁMA"
+
+#~ msgid "tournament edit window="
+#~ msgstr "versenyszerkesztő ablak="
+
+#~ msgid "Enter Tournament"
+#~ msgstr "Verseny beírása"
+
+#~ msgid ""
+#~ "Note: error output is being diverted to fpdb-error-log.txt and HUD-error."
+#~ "txt. Any major error will be reported there _only_."
+#~ msgstr ""
+#~ "Megjegyzés: a hibakimenet átirányítva az fpdb-errors.txt és HUD-errors."
+#~ "txt fájlokba. Bármilyen nagyobb hiba _csak_oda_ kerül kiírásra."
+
+#~ msgid ""
+#~ "Note: error output is being diverted to fpdb-errors.txt and HUD-errors."
+#~ "txt in: %s"
+#~ msgstr ""
+#~ "Megjegyzés: a hibakimenet átirányítva az fpdb-errors.txt és HUD-errors."
+#~ "txt fájlokba itt: %s"
+
+#~ msgid "No match in markStreets"
+#~ msgstr "Nincs találat a markStreets-ben"
+
+#~ msgid "Nope, will not work (fileno=%d)"
+#~ msgstr "Nem, nem fog működni (fileno=%d)"
+
+#~ msgid "exception calculating p/100: 100 * %d / %d"
+#~ msgstr "hiba a p/100 számítása közben: 100 * %d / %d"
+
+#~ msgid "exception calculating BB/100: "
+#~ msgstr "hiba a BB/100 számítása közben: "
 
 #~ msgid "Hand ID: %s: '%s'"
 #~ msgstr "Leosztás ID: %s: '%s'"
