@@ -648,7 +648,6 @@ class Hud:
                 self.create(hand, config, self.stat_dict, self.cards)
                 self.stat_windows[statd['seat']].player_id = statd['player_id']
 
-            print self.stats
             for r in xrange(0, config.supported_games[self.poker_game].rows):
                 for c in xrange(0, config.supported_games[self.poker_game].cols):
                     this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
