@@ -81,7 +81,11 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.26 + git"
+try:
+    import subprocess
+    VERSION = subprocess.Popen(["git", "describe", "--tags", "--dirty"], stdout=subprocess.PIPE).communicate()[0]
+except:
+    VERSION = "0.26 + git"
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
