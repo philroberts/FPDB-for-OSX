@@ -54,7 +54,7 @@ class DetectInstalledSites():
 
     def __init__(self, sitename = "All"):
 
-        Config=Configuration.Config()
+        self.Config=Configuration.Config()
         #
         # objects returned
         #
@@ -121,11 +121,11 @@ class DetectInstalledSites():
 
     def detectFullTilt(self):
 
-        if Config.os_family == "Linux":
+        if self.Config.os_family == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/Full Tilt Poker/HandHistory/")
-        elif Config.os_family == "XP":
+        elif self.Config.os_family == "XP":
             hhp=os.path.expanduser(PROGRAM_FILES+"\\Full Tilt Poker\\HandHistory\\")
-        elif Config.os_family == "Win7":
+        elif self.Config.os_family == "Win7":
             hhp=os.path.expanduser(PROGRAM_FILES+"\\Full Tilt Poker\\HandHistory\\")
         else:
             return
@@ -145,11 +145,11 @@ class DetectInstalledSites():
         
     def detectPokerStars(self):
 
-        if Config.os_family == "Linux":
+        if self.Config.os_family == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/PokerStars/HandHistory/")
-        elif Config.os_family == "XP":
+        elif self.Config.os_family == "XP":
             hhp=os.path.expanduser(PROGRAM_FILES+"\\PokerStars\\HandHistory\\")
-        elif Config.os_family == "Win7":
+        elif self.Config.os_family == "Win7":
             hhp=os.path.expanduser(LOCAL_APPDATA+"\\PokerStars\\HandHistory\\")
         else:
             return
@@ -169,11 +169,11 @@ class DetectInstalledSites():
 
     def detectPartyPoker(self):
 
-        if Config.os_family == "Linux":
+        if self.Config.os_family == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/PartyGaming/PartyPoker/HandHistory/")
-        elif Config.os_family == "XP":
+        elif self.Config.os_family == "XP":
             hhp=os.path.expanduser(PROGRAM_FILES+"\\PartyGaming\\PartyPoker\\HandHistory\\")
-        elif Config.os_family == "Win7":
+        elif self.Config.os_family == "Win7":
             hhp=os.path.expanduser("c:\\Programs\\PartyGaming\\PartyPoker\\HandHistory\\")
         else:
             return
@@ -208,11 +208,11 @@ class DetectInstalledSites():
         merge_skin_names = ["CarbonPoker", "PlayersOnly"]
         
         for skin in merge_skin_names:
-            if Config.os_family == "Linux":
+            if self.Config.os_family == "Linux":
                 hhp=os.path.expanduser("~/.wine/drive_c/Program Files/"+skin+"/history/")
-            elif Config.os_family == "XP":
+            elif self.Config.os_family == "XP":
                 hhp=os.path.expanduser(PROGRAM_FILES+"\\"+skin+"\\history\\")            
-            elif Config.os_family == "Win7":
+            elif self.Config.os_family == "Win7":
                 hhp=os.path.expanduser(PROGRAM_FILES+"\\"+skin+"\\history\\")
             else:
                 return
