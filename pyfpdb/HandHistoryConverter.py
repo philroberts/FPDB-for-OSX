@@ -490,7 +490,8 @@ or None if we fail to get the info """
         if wantedTimezone=="UTC":
             wantedTimezone = pytz.utc
         else:
-            raise ValueError #TODO raise appropriate error
+            log.error(_("Unsupported target Timezone: ") + givenTimezone)
+            raise FpdbParseError(_("Unsupported target Timezone: ") + givenTimezone)
 
         givenTZ = None
         if HandHistoryConverter.re_tzOffset.match(givenTimezone):
@@ -513,35 +514,33 @@ or None if we fail to get the info """
         elif givenTimezone == 'WET': # WET is GMT with daylight saving delta
             givenTZ = timezone('WET')
         elif givenTimezone == 'HST': # Hawaiian Standard Time
-            pass
+            givenTZ = timezone('US/Hawaii')
         elif givenTimezone == 'AKT': # Alaska Time
-            pass
+            givenTZ = timezone('US/Alaska')
         elif givenTimezone == 'PT': # Pacific Time
-            pass
+            givenTZ = timezone('US/Pacific')
         elif givenTimezone == 'MT': # Mountain Time
-            pass
+            givenTZ = timezone('US/Mountain')
         elif givenTimezone == 'CT': # Central Time
-            pass
+            givenTZ = timezone('US/Central')
         elif givenTimezone == 'AT': # Atlantic Time
-            pass
+            givenTZ = timezone('Canada/Atlantic')
         elif givenTimezone == 'NT': # Newfoundland Time
-            pass
+            givenTZ = timezone('Canada/Newfoundland')
         elif givenTimezone == 'ART': # Argentinian Time
             givenTZ = timezone('America/Argentina/Buenos_Aires')
         elif givenTimezone == 'BRT': # Brasilia Time
-            pass
-        elif givenTimezone == 'AKT': # Alaska Time
-            pass
+            givenTZ = timezone('America/Sao_Paulo')
         elif givenTimezone == 'EET': # Eastern European Time
-            pass
+            givenTZ = timezone('Europe/Bucharest')
         elif givenTimezone == 'MSK': # Moscow Standard Time
-            pass
+            givenTZ = timezone('Europe/Moscow')
         elif givenTimezone == 'IST': # India Standard Time
-            pass
+            givenTZ = timezone('Asia/Kolkata')
         elif givenTimezone == 'CCT': # China Coast Time
             givenTZ = timezone('Australia/West')
         elif givenTimezone == 'JST': # Japan Standard Time
-            pass
+            givenTZ = timezone('Asia/Tokyo')
         elif givenTimezone == 'AWST': # Australian Western Standard Time
             givenTZ = timezone('Australia/West')
         elif givenTimezone == 'ACST': # Australian Central Standard Time
@@ -553,13 +552,10 @@ or None if we fail to get the info """
             # Using Sydney. 
             givenTZ = timezone('Australia/Sydney')
         elif givenTimezone == 'NZT': # New Zealand Time
-            pass
-        else:
-            raise ValueError #TODO raise appropriate error
-        
+            givenTZ = timezone('Pacific/Auckland')
+
         if givenTZ is None:
             # do not crash if timezone not in list, just return unconverted time
-            #raise Error #TODO raise appropriate error
             log.warn(_("Timezone conversion not supported") + ": " + givenTimezone + " " + str(time))
             return time
 
