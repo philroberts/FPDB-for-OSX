@@ -251,8 +251,8 @@ def profit100(stat_dict, player):
                 _('Profit per 100 hands')
                 )
     except:
-            print _("exception calculating p/100: 100 * %d / %d") % (stat_dict[player]['net'], stat_dict[player]['n'])
-            return (stat,
+        log.info(_("exception calculating %s") % ("p/100: 100 * %d / %d" % (stat_dict[player]['net'], stat_dict[player]['n'])))
+        return (stat,
                     'NA',
                     'p=NA',
                     'p/100=NA',
@@ -273,7 +273,7 @@ def bbper100(stat_dict, player):
                 _('Big blinds won per 100 hands')
                 )
     except:
-        log.info(_("exception calculating bb/100: ")+str(stat_dict[player]))
+        log.info(_("exception calculating %s") % ("bb/100: "+str(stat_dict[player])))
         return (stat,
                 'NA',
                 'bb100=NA',
@@ -295,7 +295,7 @@ def BBper100(stat_dict, player):
                 _('Big bets won per 100 hands')
                 )
     except:
-        log.info(_("exception calculating BB/100: ")+str(stat_dict[player]))
+        log.info(_("exception calculating %s") % ("BB/100: "+str(stat_dict[player])))
         return (stat,
                 'NA',
                 'BB100=NA',
@@ -1113,7 +1113,7 @@ if __name__== "__main__":
     stat_dict = db_connection.get_stats_from_hand(h, "ring")
     
     for player in stat_dict.keys():
-        print (_("Example stats, player = %s  hand = %s:") % (player, h))
+        print (_("Example stats. Player = %s, Hand = %s:") % (player, h))
         for attr in statlist:
             print "  ", do_stat(stat_dict, player=player, stat=attr)
         break

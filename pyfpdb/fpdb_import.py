@@ -315,7 +315,7 @@ class Importer:
         del ProgressDialog
         
         for i in xrange( self.settings['threads'] ):
-            print _("sending finish message queue length ="), q.qsize()
+            #print ("sending finish message queue length ="), q.qsize()
             db.send_finish_msg(q)
 
         
@@ -539,7 +539,7 @@ class Importer:
                 # TODO: appropriate response?
                 return (0, 0, 0, 1, time() - ttime)
         else:
-            log.warning(_("Unknown filter filter_name:'%s' in filter:'%s'") %(filter_name, filter))
+            log.warning(_("Unknown filter name %s in filter %s.") %(filter_name, filter))
             return (0, 0, 0, 1, time() - ttime)
 
         ttime = time() - ttime

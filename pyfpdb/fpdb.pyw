@@ -81,7 +81,11 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.26 + git"
+try:
+    import subprocess
+    VERSION = subprocess.Popen(["git", "describe", "--tags", "--dirty"], stdout=subprocess.PIPE).communicate()[0]
+except:
+    VERSION = "0.26 + git"
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
@@ -1230,8 +1234,8 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         # setup error logging
         if not options.errorsToConsole:
             fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
-            print (_("Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in: %s") % self.config.dir_log) \
-                  + _("Any major error will be reported there _only_.")
+            print((_("Note: error output is being diverted to %s.") % self.config.dir_log),
+                  _("Any major error will be reported there _only_."))
             errorFile = open(fileName, 'w', 0)
             sys.stderr = errorFile
 

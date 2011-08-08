@@ -332,8 +332,8 @@ class PacificPoker(HandHistoryConverter):
                        r"(\*\* Dealing river \*\* (?P<RIVER>\[ \S\S \].+))?"
                        , hand.handText,re.DOTALL)
         if m is None:
-            log.error("Didn't match markStreets")
-            raise FpdbParseError(_("No match in markStreets"))
+            log.error(_("Unable to recognise streets"))
+            raise FpdbParseError(_("Unable to recognise streets"))
         else:
             #print "DEBUG: Matched markStreets"
             mg = m.groupdict()
