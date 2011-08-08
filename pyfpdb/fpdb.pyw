@@ -930,7 +930,7 @@ class fpdb:
 
         log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
         print (_("Logfile is %s") % os.path.join(self.config.dir_log, self.config.log_file))
-        if self.config.example_copy:
+        if self.config.example_copy or options.initialRun:
             self.info_box(_("Config file"),
                           _("Config file has been created at %s.") % self.config.file
                            + _("Enter your screen_name and hand history path in the Site Preferences window (Main menu) before trying to import hands."))
@@ -1234,7 +1234,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         # setup error logging
         if not options.errorsToConsole:
             fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
-            print((_("Note: error output is being diverted to %s.") % self.config.dir_log),
+            print((_("Note: error output is being diverted to %s.") % self.config.dir_log) + " " +
                   _("Any major error will be reported there _only_."))
             errorFile = open(fileName, 'w', 0)
             sys.stderr = errorFile

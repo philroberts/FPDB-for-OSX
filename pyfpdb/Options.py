@@ -51,6 +51,8 @@ def fpdb_options():
                       default = 'EMPTY')
     parser.add_option("-v", "--version", action = "store_true", 
                       help = _("Print version information and exit."))
+    parser.add_option("-i", "--initialrun", action = "store_true", dest="initialRun",
+                      help = _("Force config-created dialog"))
     parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False,
                     help=_("Print some useful one liners"))
     # The following options are used for SplitHandHistory.py

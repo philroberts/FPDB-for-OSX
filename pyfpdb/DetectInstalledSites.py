@@ -44,9 +44,8 @@ import platform
 import os
 
 import Configuration
-Config=Configuration.Config()
 
-if Config.os_family in ['Win7', 'XP']:
+if platform.system() == 'Windows':
     import winpaths
     PROGRAM_FILES = winpaths.get_program_files()
     LOCAL_APPDATA = winpaths.get_local_appdata()
@@ -54,6 +53,8 @@ if Config.os_family in ['Win7', 'XP']:
 class DetectInstalledSites():
 
     def __init__(self, sitename = "All"):
+
+        Config=Configuration.Config()
         #
         # objects returned
         #
