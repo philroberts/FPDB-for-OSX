@@ -303,7 +303,7 @@ class Hud:
 
     # Set up a main window for this this instance of the HUD
     def create_mw(self):
-        adjustedy = NSScreen.mainScreen().frame().size.height - self.table.y - 20 - titlebarheight
+        adjustedy = NSScreen.mainScreen().frame().size.height - self.table.y - self.font.pointSize() - titlebarheight
         rect = NSMakeRect(self.table.x, adjustedy, self.font.pointSize() * 22, self.font.pointSize())
         win = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(rect, NSBorderlessWindowMask, NSBackingStoreBuffered, False)
         win.setTitle_("%s FPDBHUD" % (self.table.name))
@@ -444,7 +444,7 @@ class Hud:
 
     def up_update_table_position(self):
 #    callback for table moved
-        adjustedy = NSScreen.mainScreen().frame().size.height - self.table.y - 20 - titlebarheight
+        adjustedy = NSScreen.mainScreen().frame().size.height - self.table.y - self.font.pointSize() - titlebarheight
         frame = self.main_window.frame()
         frame.origin.x = self.table.x
         frame.origin.y = adjustedy
@@ -762,8 +762,7 @@ class Stat_Window:
         self.seat = seat            # seat number of his player
         self.adj = adj              # the adjusted seat number for this player
         self.x = x + table.x        # table.x and y are the location of the table
-        self.y = y + table.y        # x and y are the location relative to table.x & y
-        self.y = NSScreen.mainScreen().frame().size.height - table.y - y - titlebarheight - 20 * game.rows
+        self.y = NSScreen.mainScreen().frame().size.height - table.y - y - titlebarheight - self.parent.font.pointSize() * game.rows# x and y are the location relative to table.x & y
         self.player_id = player_id  # looks like this isn't used ;)
         self.sb_click = 0           # used to figure out button clicks
         self.popups = []            # list of open popups for this stat window
