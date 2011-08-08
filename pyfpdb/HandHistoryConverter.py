@@ -490,8 +490,8 @@ or None if we fail to get the info """
         if wantedTimezone=="UTC":
             wantedTimezone = pytz.utc
         else:
-            log.error(_("Unsupported target Timezone: ") + givenTimezone)
-            raise FpdbParseError(_("Unsupported target Timezone: ") + givenTimezone)
+            log.error(_("Unsupported target timezone: ") + givenTimezone)
+            raise FpdbParseError(_("Unsupported target timezone: ") + givenTimezone)
 
         givenTZ = None
         if HandHistoryConverter.re_tzOffset.match(givenTimezone):

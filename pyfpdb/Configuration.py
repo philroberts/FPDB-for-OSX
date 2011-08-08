@@ -913,7 +913,7 @@ class Config:
                             nodes_added = nodes_added + 1
 
         if nodes_added > 0:
-            print("Added %d missing config sections\n" % nodes_added)
+            print(("Added %d missing config sections" % nodes_added)+"\n")
             self.save()
 
         return nodes_added
