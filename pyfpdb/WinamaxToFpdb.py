@@ -296,7 +296,7 @@ class Winamax(HandHistoryConverter):
         hand.mixed = None
 
     def readPlayerStacks(self, hand):
-        log.debug(_("readplayerstacks: re is '%s'") % self.re_PlayerInfo)
+        #log.debug("readplayerstacks re: '%s'" % self.re_PlayerInfo)
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
@@ -313,7 +313,7 @@ class Winamax(HandHistoryConverter):
 #            print "adding street", m.group(0)
 #            print "---"
         except:
-            print (_("Failed to add streets. handtext=%s"))
+            log.info(_("Failed to add streets. handtext=%s"))
 
     #Needs to return a list in the format
     # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb,
@@ -323,7 +323,7 @@ class Winamax(HandHistoryConverter):
         m = self.re_Button.search(hand.handText)
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
-            log.debug(_('readButton: button on pos %d') % hand.buttonpos)
+            #log.debug(_('readButton: button on pos %d') % hand.buttonpos)
         else:
             log.info('readButton: ' + _('not found'))
 

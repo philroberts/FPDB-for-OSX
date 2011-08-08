@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-08-06 15:07+CEST\n"
+"POT-Creation-Date: 2011-08-07 15:22+CEST\n"
 "PO-Revision-Date: 2011-05-13 08:55+0000\n"
 "Last-Translator: jax <jax@netmagnet.ro>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.net/projects/p/fpdb/"
@@ -450,9 +450,26 @@ msgstr "carti ="
 msgid "get_stats took: %4.3f seconds"
 msgstr "get_stats a durat: %4.3f secunde"
 
-#: Database.py:3073 HandHistoryConverter.py:41
+#: Database.py:3073
 msgid "Press ENTER to continue."
 msgstr "Apasa ENTER pentru a continua."
+
+#: DerivedStats.py:523
+#, fuzzy
+msgid "%s and %s"
+msgstr "%s a fost schimbat %s"
+
+#: DerivedStats.py:529 DerivedStats.py:532 DerivedStats.py:543
+msgid "high"
+msgstr ""
+
+#: DerivedStats.py:537
+msgid "%s full of %s"
+msgstr ""
+
+#: DerivedStats.py:546
+msgid "a Royal Flush"
+msgstr ""
 
 #: EverestToFpdb.py:110 FulltiltToFpdb.py:286 FulltiltToFpdb.py:288
 msgid "Unable to recognise hand info from: '%s'"
@@ -740,7 +757,7 @@ msgid "%s Failed to detect button (hand #%s cancelled?)"
 msgstr "%s Nu pot detecta buton (mina #%s a fost anulata?)"
 
 #: FulltiltToFpdb.py:604 FulltiltToFpdb.py:817 GuiSessionViewer.py:449
-#: WinTables.py:87 fpdb_prerun.py:97
+#: WinTables.py:87 fpdb_prerun.py:100
 msgid "Error:"
 msgstr "Eroare:"
 
@@ -1918,16 +1935,16 @@ msgstr "intrare invalida la numarul turneului - trebuie introduse doar numere"
 msgid "HUD_main starting"
 msgstr "Pornire HUD_main"
 
-#: HUD_main.pyw:69 HUD_run_me.py:51 TournamentTracker.py:306
+#: HUD_main.pyw:69 HUD_run_me.py:51 TournamentTracker.py:307
 msgid "Using db name = %s"
 msgstr "Folosirea bd numita = %s"
 
-#: HUD_main.pyw:74
+#: HUD_main.pyw:74 TournamentTracker.py:39 fpdb.pyw:1233
 #, fuzzy
 msgid "Note: error output is being diverted to %s."
 msgstr "Nota: eroarea de iesire este redirectionata spre:"
 
-#: HUD_main.pyw:75 fpdb.pyw:1234
+#: HUD_main.pyw:75 TournamentTracker.py:40 fpdb.pyw:1234
 msgid "Any major error will be reported there _only_."
 msgstr "Orice eroare majora va fi raportata _doar_ acolo."
 
@@ -2308,65 +2325,60 @@ msgstr "Pot.end(): Esec major in timpul calcularii potului: '%s'"
 msgid "Error in printing Hand object"
 msgstr "Eroare la afisarea obiectului Hand"
 
-#: HandHistoryConverter.py:40
-#, fuzzy
-msgid ""
-"Unable to import PYTZ library. Please install PYTZ from http://pypi.python."
-"org/pypi/pytz/"
-msgstr ""
-"Eroare de Import: Nu se poate importa libraria PYTZ. Rugam instalati PYTZ de "
-"la http://pypi.python.org/"
-
-#: HandHistoryConverter.py:132
+#: HandHistoryConverter.py:127
 msgid "Failed sanity check"
 msgstr "Esuare la verificarea inregritatii"
 
-#: HandHistoryConverter.py:138
+#: HandHistoryConverter.py:133
 #, fuzzy
 msgid "Hands list is:"
 msgstr "handList este"
 
-#: HandHistoryConverter.py:139
+#: HandHistoryConverter.py:134
 msgid "Parsing %d hands"
 msgstr ""
 
-#: HandHistoryConverter.py:152
+#: HandHistoryConverter.py:147
 msgid "Read %d hands (%d failed) in %.3f seconds"
 msgstr "Citire %d miini (%d a esuat) in %.3f secunde"
 
-#: HandHistoryConverter.py:158
+#: HandHistoryConverter.py:153
 #, fuzzy
 msgid "Summary file '%s' correctly parsed (took %.3f seconds)"
 msgstr "Fisierul sumar '%s' a fost parcurs cu succes (a durat %.3f secunde)"
 
-#: HandHistoryConverter.py:160
+#: HandHistoryConverter.py:155
 msgid "Error converting summary file '%s' (took %.3f seconds)"
 msgstr "Eroare la convertirea fisierului sumar '%s' (durata %.3f secunde)"
 
-#: HandHistoryConverter.py:188
+#: HandHistoryConverter.py:183
 #, fuzzy
 msgid "Read no hands from file: '%s'"
 msgstr "Citire fisier de configurare %s"
 
-#: HandHistoryConverter.py:196
+#: HandHistoryConverter.py:191
 msgid "Removing text < 50 characters"
 msgstr "Eliminare text < 50 caractere"
 
-#: HandHistoryConverter.py:229 HandHistoryConverter.py:230
-#: HandHistoryConverter.py:236
+#: HandHistoryConverter.py:224 HandHistoryConverter.py:225
+#: HandHistoryConverter.py:231
 msgid "Unsupported game type: %s"
 msgstr "Tip de joc neacceptat: %s"
 
-#: HandHistoryConverter.py:395
+#: HandHistoryConverter.py:390
 #, fuzzy
 msgid "Output and input files are the same, check config."
 msgstr ""
 "HH Verificare Integritate: fisierele de intrare si iesire sunt identice, "
 "verificati configurarea"
 
-#: HandHistoryConverter.py:427
+#: HandHistoryConverter.py:422
 msgid "unable to read file with any codec in list!"
 msgstr "nu se poate citi fisierul cu nici un codec din lista!"
+
+#: HandHistoryConverter.py:563
+msgid "Timezone conversion not supported"
+msgstr ""
 
 #: HandHistoryConverter.py:617 HandHistoryConverter.py:618
 msgid "Unable to create output directory %s for HHC!"
@@ -2635,11 +2647,12 @@ msgstr "Trebuie introdus manual numele jucatorului"
 msgid "Failed to detect currency."
 msgstr "Nu pot detecta moneda."
 
-#: PacificPokerToFpdb.py:336
-msgid "No match in markStreets"
-msgstr "Nici o potrivire in markStree"
+#: PacificPokerToFpdb.py:335 PacificPokerToFpdb.py:336
+#, fuzzy
+msgid "Unable to recognise streets"
+msgstr "Nu se recunoaste informatia turneului: '%s'"
 
-#: SplitHandHistory.py:76 fpdb_prerun.py:63 fpdb_prerun.py:76
+#: SplitHandHistory.py:76 fpdb_prerun.py:64 fpdb_prerun.py:79
 msgid "File not found"
 msgstr "Fisierul nu a fost gasit"
 
@@ -2648,8 +2661,8 @@ msgid "%s processed"
 msgstr "%s procesate"
 
 #: SplitHandHistory.py:105
-msgid "Nope, will not work (fileno=%d)"
-msgstr "Nu, nu va functiona (fileno=%d)"
+msgid "Invalid file number"
+msgstr ""
 
 #: SplitHandHistory.py:126
 msgid "Unexpected error processing file"
@@ -2663,21 +2676,14 @@ msgstr "S-a ajuns la sfirsitul fisierului"
 msgid "Profit per 100 hands"
 msgstr "Profit per 100 miini"
 
-#: Stats.py:254
-msgid "exception calculating p/100: 100 * %d / %d"
-msgstr "abatere la calcularea p/100: 100 * %d / %d"
-
-#: Stats.py:276
-msgid "exception calculating bb/100: "
+#: Stats.py:254 Stats.py:276 Stats.py:298
+#, fuzzy
+msgid "exception calculating %s"
 msgstr "abatere la calcularea bb/100:"
 
 #: Stats.py:286 Stats.py:295 Stats.py:304
 msgid "Big bets won per 100 hands"
 msgstr "Pariuri mari cistigate per 100 miini"
-
-#: Stats.py:298
-msgid "exception calculating BB/100: "
-msgstr "abatere la calcularea BB/100:"
 
 #: Stats.py:399 Stats.py:408
 msgid "% steal success"
@@ -2756,7 +2762,8 @@ msgid "starting hands at this table"
 msgstr ""
 
 #: Stats.py:1116
-msgid "Example stats, player = %s  hand = %s:"
+#, fuzzy
+msgid "Example stats. Player = %s, Hand = %s:"
 msgstr "Exemplu de statistici, jucator = %s  mina = %s:"
 
 #: Stats.py:1121
@@ -2791,58 +2798,47 @@ msgstr "Fereastra principala HUD falsa"
 msgid "enter table name to find: "
 msgstr "introdu numele mesei pentru cautare:"
 
-#: TournamentTracker.py:39
-msgid ""
-"Note: error output is being diverted to fpdb-error-log.txt and HUD-error."
-"txt. Any major error will be reported there _only_."
-msgstr ""
-"Nota: iesirea de eroare e redirectionata spre fpdb-error-log.txt si HUD-"
-"error.txt. Orice eroare majora va fi raportata _doar_ acolo."
-
-#: TournamentTracker.py:100
-msgid "tournament edit window="
-msgstr "turneu editare fereastra="
-
-#: TournamentTracker.py:103
+#: TournamentTracker.py:104
 msgid "FPDB Tournament Entry"
 msgstr "FPDB Inscriere Turneu"
 
-#: TournamentTracker.py:143
+#: TournamentTracker.py:144
 msgid "Closing this window will stop the Tournament Tracker"
 msgstr "Inchiderea acestei ferestre va opri Trackerul de Turneu"
 
-#: TournamentTracker.py:145
-msgid "Enter Tournament"
-msgstr "Introdu Turneu"
+#: TournamentTracker.py:146
+#, fuzzy
+msgid "Add Tournament"
+msgstr "Turnee"
 
-#: TournamentTracker.py:150
+#: TournamentTracker.py:151
 msgid "FPDB Tournament Tracker"
 msgstr "FPDB Tracker de Turneu"
 
-#: TournamentTracker.py:161
+#: TournamentTracker.py:162
 msgid "Edit"
 msgstr "Editare"
 
-#: TournamentTracker.py:164
+#: TournamentTracker.py:165
 msgid "Rebuy"
 msgstr "Rebuy"
 
-#: TournamentTracker.py:265
+#: TournamentTracker.py:266
 #, fuzzy
 msgid "Database error %s in hand %d. Skipping."
 msgstr "Eroare a bazei de date %s in mina %d. Ignorare.\n"
 
-#: TournamentTracker.py:275
+#: TournamentTracker.py:276
 #, fuzzy
 msgid "Could not find tournament %d in hand %d. Skipping."
 msgstr "Nu se poate gasi turneul %d in mina %d. Ignorare.\n"
 
-#: TournamentTracker.py:298
+#: TournamentTracker.py:299
 #, fuzzy
 msgid "Table name %s not found, skipping."
 msgstr "masa cu numele %s nu a fost gasita, se ignora.\n"
 
-#: TournamentTracker.py:305
+#: TournamentTracker.py:306
 msgid "Tournament tracker starting"
 msgstr "Pornire Tracker de turneu"
 
@@ -3007,20 +3003,13 @@ msgid "COUNT ADDONS"
 msgstr "NUMARA ADDON-uri"
 
 #: TourneySummary.py:182
-msgid "NB OF KO"
-msgstr "NR DE KO"
+#, fuzzy
+msgid "COUNT KO"
+msgstr "NUMARA ADDON-uri"
 
 #: TourneySummary.py:229
 msgid "Tourney Insert/Update done"
 msgstr "Adaugare/modificare de turneu facuta"
-
-#: TourneySummary.py:249
-msgid "addPlayer: rank:%s - name : '%s' - Winnings (%s)"
-msgstr "addPlayer: pozitia: %s - nume: '%s' - Cistiguri (%s)"
-
-#: TourneySummary.py:276
-msgid "incrementPlayerWinnings: name : '%s' - Add Winnings (%s)"
-msgstr "incrementPlayerWinnings: nume: '%s' - Cistiguri adaugate (%s)"
 
 #: TreeViewTooltips.py:108
 msgid ""
@@ -3039,17 +3028,9 @@ msgstr "Fereastra %s nu a fost gasita. Ignorare."
 msgid "%s doesn't exist."
 msgstr "self.window nu exista? de ce?"
 
-#: WinamaxToFpdb.py:299
-msgid "readplayerstacks: re is '%s'"
-msgstr "readplayerstacks: re este '%s'"
-
 #: WinamaxToFpdb.py:316
 msgid "Failed to add streets. handtext=%s"
 msgstr "Nu pot adauga strazi. handtext=%s"
-
-#: WinamaxToFpdb.py:326
-msgid "readButton: button on pos %d"
-msgstr "readButton: butonul e in pozitia %d"
 
 #: WinamaxToFpdb.py:378
 msgid "No hole cards found for %s"
@@ -3676,16 +3657,6 @@ msgstr "Grafice"
 msgid "Stove"
 msgstr "Stove"
 
-#: fpdb.pyw:1233
-#, fuzzy
-msgid ""
-"Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt "
-"in: %s"
-msgstr ""
-"\n"
-"Nota: iesirea de eroare este redirectionata spre fpdb-errors.txt si HUD-"
-"errors.txt in: %s"
-
 #: fpdb.pyw:1262
 msgid "fpdb starting ..."
 msgstr "pornire fpdb ..."
@@ -3737,10 +3708,6 @@ msgstr "Nu e nevesara recladirea indexurilor."
 msgid "No need to rebuild hudcache."
 msgstr "Nu e necesara recladirea cache-ului hud."
 
-#: fpdb_import.py:318
-msgid "sending finish message queue length ="
-msgstr "lungimea cozii pentru trimiterea mesaje de sfirsit = "
-
 #: fpdb_import.py:443 fpdb_import.py:444
 msgid "Converting %s"
 msgstr "Convertire %s"
@@ -3754,14 +3721,15 @@ msgid "Failed to send hand to HUD: %s"
 msgstr "Nu se poate trimite mina la HUD: %s"
 
 #: fpdb_import.py:542
-msgid "Unknown filter filter_name:'%s' in filter:'%s'"
+#, fuzzy
+msgid "Unknown filter name %s in filter %s."
 msgstr "Filtru necunoscut: '%s' in filtru: '%s'"
 
 #: fpdb_import.py:651
 msgid "CLI for importing hands is GuiBulkImport.py"
 msgstr "CLI pentru importarea miinilor este GuiBulkImport.py"
 
-#: fpdb_prerun.py:65
+#: fpdb_prerun.py:66
 msgid ""
 "Unable to load PyGTK modules required for GUI. Please install PyCairo, "
 "PyGObject, and PyGTK from www.pygtk.org."
@@ -3769,7 +3737,7 @@ msgstr ""
 "Nu se poate incarca modulul PyGTK necesar pentru GUI. Instalati PyCairo, "
 "PyGObject si PyGTK de la www.pygtk.org."
 
-#: fpdb_prerun.py:67
+#: fpdb_prerun.py:68
 msgid ""
 "We appear to be running in Windows, but the Windows Python Extensions are "
 "not loading. Please install the PYWIN32 package from http://sourceforge.net/"
@@ -3779,7 +3747,16 @@ msgstr ""
 "incarcate. Rugam instalati pachetul PYWIN32 de la http://sourceforge.net/"
 "projects/pywin32/"
 
-#: fpdb_prerun.py:136
+#: fpdb_prerun.py:70
+#, fuzzy
+msgid ""
+"Unable to import PYTZ library. Please install PYTZ from http://pypi.python."
+"org/pypi/pytz/"
+msgstr ""
+"Eroare de Import: Nu se poate importa libraria PYTZ. Rugam instalati PYTZ de "
+"la http://pypi.python.org/"
+
+#: fpdb_prerun.py:139
 #, fuzzy
 msgid "Python 2.6-2.7 not found, please install python 2.6 or 2.7 for fpdb."
 msgstr ""
@@ -3809,6 +3786,60 @@ msgstr ""
 #: windows_make_bats.py:57
 msgid "No gtk directories found in your path."
 msgstr ""
+
+#~ msgid "readButton: button on pos %d"
+#~ msgstr "readButton: butonul e in pozitia %d"
+
+#~ msgid "sending finish message queue length ="
+#~ msgstr "lungimea cozii pentru trimiterea mesaje de sfirsit = "
+
+#, fuzzy
+#~ msgid "Add player: rank: %s name: %s winnings: %s"
+#~ msgstr "addPlayer: pozitia: %s - nume: '%s' - Cistiguri (%s)"
+
+#, fuzzy
+#~ msgid "Increment player winnings: name: %s, add winnings: %s"
+#~ msgstr "incrementPlayerWinnings: nume: '%s' - Cistiguri adaugate (%s)"
+
+#~ msgid "readplayerstacks: re is '%s'"
+#~ msgstr "readplayerstacks: re este '%s'"
+
+#~ msgid "NB OF KO"
+#~ msgstr "NR DE KO"
+
+#~ msgid "tournament edit window="
+#~ msgstr "turneu editare fereastra="
+
+#~ msgid "Enter Tournament"
+#~ msgstr "Introdu Turneu"
+
+#~ msgid ""
+#~ "Note: error output is being diverted to fpdb-error-log.txt and HUD-error."
+#~ "txt. Any major error will be reported there _only_."
+#~ msgstr ""
+#~ "Nota: iesirea de eroare e redirectionata spre fpdb-error-log.txt si HUD-"
+#~ "error.txt. Orice eroare majora va fi raportata _doar_ acolo."
+
+#, fuzzy
+#~ msgid ""
+#~ "Note: error output is being diverted to fpdb-errors.txt and HUD-errors."
+#~ "txt in: %s"
+#~ msgstr ""
+#~ "\n"
+#~ "Nota: iesirea de eroare este redirectionata spre fpdb-errors.txt si HUD-"
+#~ "errors.txt in: %s"
+
+#~ msgid "No match in markStreets"
+#~ msgstr "Nici o potrivire in markStree"
+
+#~ msgid "Nope, will not work (fileno=%d)"
+#~ msgstr "Nu, nu va functiona (fileno=%d)"
+
+#~ msgid "exception calculating p/100: 100 * %d / %d"
+#~ msgstr "abatere la calcularea p/100: 100 * %d / %d"
+
+#~ msgid "exception calculating BB/100: "
+#~ msgstr "abatere la calcularea BB/100:"
 
 #~ msgid "Hand ID: %s: '%s'"
 #~ msgstr "ID-ul miinii: %s: '%s'"

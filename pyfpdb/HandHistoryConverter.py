@@ -560,7 +560,7 @@ or None if we fail to get the info """
         if givenTZ is None:
             # do not crash if timezone not in list, just return unconverted time
             #raise Error #TODO raise appropriate error
-            log.warn(_("Timezone conversion not supported: " + givenTimezone + " " + str(time)))
+            log.warn(_("Timezone conversion not supported") + ": " + givenTimezone + " " + str(time))
             return time
 
         localisedTime = givenTZ.localize(time)

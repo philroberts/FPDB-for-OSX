@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-08-06 15:07+CEST\n"
+"POT-Creation-Date: 2011-08-07 15:22+CEST\n"
 "PO-Revision-Date: 2011-07-27 15:17+0000\n"
 "Last-Translator: pkpkpkdo <ofelipedbzgt@hotmail.com>\n"
 "Language-Team: Portuguese (Brazilian) (http://www.transifex.net/projects/p/"
@@ -438,9 +438,26 @@ msgstr "cartas ="
 msgid "get_stats took: %4.3f seconds"
 msgstr ""
 
-#: Database.py:3073 HandHistoryConverter.py:41
+#: Database.py:3073
 msgid "Press ENTER to continue."
 msgstr "Pressione ENTER para continuar"
+
+#: DerivedStats.py:523
+#, fuzzy
+msgid "%s and %s"
+msgstr "%s foi alternado %s"
+
+#: DerivedStats.py:529 DerivedStats.py:532 DerivedStats.py:543
+msgid "high"
+msgstr ""
+
+#: DerivedStats.py:537
+msgid "%s full of %s"
+msgstr ""
+
+#: DerivedStats.py:546
+msgid "a Royal Flush"
+msgstr ""
 
 #: EverestToFpdb.py:110 FulltiltToFpdb.py:286 FulltiltToFpdb.py:288
 msgid "Unable to recognise hand info from: '%s'"
@@ -724,7 +741,7 @@ msgid "%s Failed to detect button (hand #%s cancelled?)"
 msgstr ""
 
 #: FulltiltToFpdb.py:604 FulltiltToFpdb.py:817 GuiSessionViewer.py:449
-#: WinTables.py:87 fpdb_prerun.py:97
+#: WinTables.py:87 fpdb_prerun.py:100
 msgid "Error:"
 msgstr ""
 
@@ -1852,15 +1869,15 @@ msgstr "Entrada inválida em Número de Torneio - digite apenas números"
 msgid "HUD_main starting"
 msgstr ""
 
-#: HUD_main.pyw:69 HUD_run_me.py:51 TournamentTracker.py:306
+#: HUD_main.pyw:69 HUD_run_me.py:51 TournamentTracker.py:307
 msgid "Using db name = %s"
 msgstr ""
 
-#: HUD_main.pyw:74
+#: HUD_main.pyw:74 TournamentTracker.py:39 fpdb.pyw:1233
 msgid "Note: error output is being diverted to %s."
 msgstr ""
 
-#: HUD_main.pyw:75 fpdb.pyw:1234
+#: HUD_main.pyw:75 TournamentTracker.py:40 fpdb.pyw:1234
 msgid "Any major error will be reported there _only_."
 msgstr ""
 
@@ -2228,60 +2245,58 @@ msgstr ""
 msgid "Error in printing Hand object"
 msgstr ""
 
-#: HandHistoryConverter.py:40
-msgid ""
-"Unable to import PYTZ library. Please install PYTZ from http://pypi.python."
-"org/pypi/pytz/"
-msgstr ""
-
-#: HandHistoryConverter.py:132
+#: HandHistoryConverter.py:127
 msgid "Failed sanity check"
 msgstr "Teste de sanidade falhou"
 
-#: HandHistoryConverter.py:138
+#: HandHistoryConverter.py:133
 msgid "Hands list is:"
 msgstr ""
 
-#: HandHistoryConverter.py:139
+#: HandHistoryConverter.py:134
 msgid "Parsing %d hands"
 msgstr ""
 
-#: HandHistoryConverter.py:152
+#: HandHistoryConverter.py:147
 msgid "Read %d hands (%d failed) in %.3f seconds"
 msgstr "Leitura de %d mãos (%d falhou) em %.3f segundos"
 
-#: HandHistoryConverter.py:158
+#: HandHistoryConverter.py:153
 #, fuzzy
 msgid "Summary file '%s' correctly parsed (took %.3f seconds)"
 msgstr "Arquivo de sumário '%s' corretamente definido  (levou %.3f segundos)"
 
-#: HandHistoryConverter.py:160
+#: HandHistoryConverter.py:155
 msgid "Error converting summary file '%s' (took %.3f seconds)"
 msgstr "Erro ao converter arquivo sumário '%s' (levou %.3f segundos)"
 
-#: HandHistoryConverter.py:188
+#: HandHistoryConverter.py:183
 msgid "Read no hands from file: '%s'"
 msgstr ""
 
-#: HandHistoryConverter.py:196
+#: HandHistoryConverter.py:191
 msgid "Removing text < 50 characters"
 msgstr "Removendo textos de < 50 caracteres"
 
-#: HandHistoryConverter.py:229 HandHistoryConverter.py:230
-#: HandHistoryConverter.py:236
+#: HandHistoryConverter.py:224 HandHistoryConverter.py:225
+#: HandHistoryConverter.py:231
 msgid "Unsupported game type: %s"
 msgstr ""
 
-#: HandHistoryConverter.py:395
+#: HandHistoryConverter.py:390
 #, fuzzy
 msgid "Output and input files are the same, check config."
 msgstr ""
 "HH Teste de sanidade: arquivos de output e input são os mesmos, cheque as "
 "configurações."
 
-#: HandHistoryConverter.py:427
+#: HandHistoryConverter.py:422
 msgid "unable to read file with any codec in list!"
 msgstr "incapaz de ler o arquivo com os codecs da lista"
+
+#: HandHistoryConverter.py:563
+msgid "Timezone conversion not supported"
+msgstr ""
 
 #: HandHistoryConverter.py:617 HandHistoryConverter.py:618
 msgid "Unable to create output directory %s for HHC!"
@@ -2540,11 +2555,12 @@ msgstr "Você precisa inserir o nome do jogador manualmente"
 msgid "Failed to detect currency."
 msgstr ""
 
-#: PacificPokerToFpdb.py:336
-msgid "No match in markStreets"
-msgstr ""
+#: PacificPokerToFpdb.py:335 PacificPokerToFpdb.py:336
+#, fuzzy
+msgid "Unable to recognise streets"
+msgstr "Incapaz de reconhecer informação do torneio: '%s'"
 
-#: SplitHandHistory.py:76 fpdb_prerun.py:63 fpdb_prerun.py:76
+#: SplitHandHistory.py:76 fpdb_prerun.py:64 fpdb_prerun.py:79
 msgid "File not found"
 msgstr "Arquivo não encontrado"
 
@@ -2553,7 +2569,7 @@ msgid "%s processed"
 msgstr ""
 
 #: SplitHandHistory.py:105
-msgid "Nope, will not work (fileno=%d)"
+msgid "Invalid file number"
 msgstr ""
 
 #: SplitHandHistory.py:126
@@ -2568,20 +2584,12 @@ msgstr "Fim do arquivo atingido"
 msgid "Profit per 100 hands"
 msgstr ""
 
-#: Stats.py:254
-msgid "exception calculating p/100: 100 * %d / %d"
-msgstr ""
-
-#: Stats.py:276
-msgid "exception calculating bb/100: "
+#: Stats.py:254 Stats.py:276 Stats.py:298
+msgid "exception calculating %s"
 msgstr ""
 
 #: Stats.py:286 Stats.py:295 Stats.py:304
 msgid "Big bets won per 100 hands"
-msgstr ""
-
-#: Stats.py:298
-msgid "exception calculating BB/100: "
 msgstr ""
 
 #: Stats.py:399 Stats.py:408
@@ -2661,7 +2669,8 @@ msgid "starting hands at this table"
 msgstr ""
 
 #: Stats.py:1116
-msgid "Example stats, player = %s  hand = %s:"
+#, fuzzy
+msgid "Example stats. Player = %s, Hand = %s:"
 msgstr "Stats de exemplo, jogador = %s  mão = %s:"
 
 #: Stats.py:1121
@@ -2689,55 +2698,44 @@ msgstr "Falsa janela principal do HUD"
 msgid "enter table name to find: "
 msgstr "insira o nome da mesa para encontrá-la: "
 
-#: TournamentTracker.py:39
-msgid ""
-"Note: error output is being diverted to fpdb-error-log.txt and HUD-error."
-"txt. Any major error will be reported there _only_."
-msgstr ""
-"Nota: erro de output foi desviado para fpdb-error-log.txt e HUD-error.txt. "
-"Qualquer outro erro será reportado lá _somente_."
-
-#: TournamentTracker.py:100
-msgid "tournament edit window="
-msgstr "janela de edição de torneio="
-
-#: TournamentTracker.py:103
+#: TournamentTracker.py:104
 msgid "FPDB Tournament Entry"
 msgstr "FPDB Tournament Entry"
 
-#: TournamentTracker.py:143
+#: TournamentTracker.py:144
 msgid "Closing this window will stop the Tournament Tracker"
 msgstr "Fechar esta janela fará com que o Tournament Tracker pare"
 
-#: TournamentTracker.py:145
-msgid "Enter Tournament"
-msgstr "Entrar no Torneio"
+#: TournamentTracker.py:146
+#, fuzzy
+msgid "Add Tournament"
+msgstr "Torneios"
 
-#: TournamentTracker.py:150
+#: TournamentTracker.py:151
 msgid "FPDB Tournament Tracker"
 msgstr "FPDB Tournament Tracker"
 
-#: TournamentTracker.py:161
+#: TournamentTracker.py:162
 msgid "Edit"
 msgstr "Editar"
 
-#: TournamentTracker.py:164
+#: TournamentTracker.py:165
 msgid "Rebuy"
 msgstr "Rebuy"
 
-#: TournamentTracker.py:265
+#: TournamentTracker.py:266
 msgid "Database error %s in hand %d. Skipping."
 msgstr ""
 
-#: TournamentTracker.py:275
+#: TournamentTracker.py:276
 msgid "Could not find tournament %d in hand %d. Skipping."
 msgstr ""
 
-#: TournamentTracker.py:298
+#: TournamentTracker.py:299
 msgid "Table name %s not found, skipping."
 msgstr ""
 
-#: TournamentTracker.py:305
+#: TournamentTracker.py:306
 msgid "Tournament tracker starting"
 msgstr ""
 
@@ -2902,20 +2900,13 @@ msgid "COUNT ADDONS"
 msgstr "NÚMERO DE ADDONS"
 
 #: TourneySummary.py:182
-msgid "NB OF KO"
-msgstr "NÚMERO DE KO"
+#, fuzzy
+msgid "COUNT KO"
+msgstr "NÚMERO DE ADDONS"
 
 #: TourneySummary.py:229
 msgid "Tourney Insert/Update done"
 msgstr "Inserir torneio/Update feito"
-
-#: TourneySummary.py:249
-msgid "addPlayer: rank:%s - name : '%s' - Winnings (%s)"
-msgstr "addPlayer: rank:%s - nome : '%s' - Ganhos (%s)"
-
-#: TourneySummary.py:276
-msgid "incrementPlayerWinnings: name : '%s' - Add Winnings (%s)"
-msgstr "incrementPlayerWinnings: nome : '%s' - Adicionar ganhos (%s)"
 
 #: TreeViewTooltips.py:108
 msgid ""
@@ -2933,17 +2924,9 @@ msgstr ""
 msgid "%s doesn't exist."
 msgstr ""
 
-#: WinamaxToFpdb.py:299
-msgid "readplayerstacks: re is '%s'"
-msgstr ""
-
 #: WinamaxToFpdb.py:316
 msgid "Failed to add streets. handtext=%s"
 msgstr "Falha ao adicionar streets. handtext=%s"
-
-#: WinamaxToFpdb.py:326
-msgid "readButton: button on pos %d"
-msgstr ""
 
 #: WinamaxToFpdb.py:378
 msgid "No hole cards found for %s"
@@ -3529,12 +3512,6 @@ msgstr "Gráficos"
 msgid "Stove"
 msgstr "Stove"
 
-#: fpdb.pyw:1233
-msgid ""
-"Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt "
-"in: %s"
-msgstr ""
-
 #: fpdb.pyw:1262
 msgid "fpdb starting ..."
 msgstr ""
@@ -3583,10 +3560,6 @@ msgstr ""
 msgid "No need to rebuild hudcache."
 msgstr ""
 
-#: fpdb_import.py:318
-msgid "sending finish message queue length ="
-msgstr ""
-
 #: fpdb_import.py:443 fpdb_import.py:444
 msgid "Converting %s"
 msgstr ""
@@ -3600,14 +3573,14 @@ msgid "Failed to send hand to HUD: %s"
 msgstr ""
 
 #: fpdb_import.py:542
-msgid "Unknown filter filter_name:'%s' in filter:'%s'"
+msgid "Unknown filter name %s in filter %s."
 msgstr ""
 
 #: fpdb_import.py:651
 msgid "CLI for importing hands is GuiBulkImport.py"
 msgstr ""
 
-#: fpdb_prerun.py:65
+#: fpdb_prerun.py:66
 msgid ""
 "Unable to load PyGTK modules required for GUI. Please install PyCairo, "
 "PyGObject, and PyGTK from www.pygtk.org."
@@ -3615,7 +3588,7 @@ msgstr ""
 "Incapaz de carregar os módulos PyGTK requeridos para GUI. Por favor instale "
 "PyCairo, PyGObject, e PyGTK em www.pygtk.org."
 
-#: fpdb_prerun.py:67
+#: fpdb_prerun.py:68
 msgid ""
 "We appear to be running in Windows, but the Windows Python Extensions are "
 "not loading. Please install the PYWIN32 package from http://sourceforge.net/"
@@ -3625,7 +3598,13 @@ msgstr ""
 "para Windows não estão carregando. Por favor instale o pack PYWIN32 em "
 "http://sourceforge.net/projects/pywin32/"
 
-#: fpdb_prerun.py:136
+#: fpdb_prerun.py:70
+msgid ""
+"Unable to import PYTZ library. Please install PYTZ from http://pypi.python."
+"org/pypi/pytz/"
+msgstr ""
+
+#: fpdb_prerun.py:139
 msgid "Python 2.6-2.7 not found, please install python 2.6 or 2.7 for fpdb."
 msgstr ""
 
@@ -3644,6 +3623,30 @@ msgstr ""
 #: windows_make_bats.py:57
 msgid "No gtk directories found in your path."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Add player: rank: %s name: %s winnings: %s"
+#~ msgstr "addPlayer: rank:%s - nome : '%s' - Ganhos (%s)"
+
+#, fuzzy
+#~ msgid "Increment player winnings: name: %s, add winnings: %s"
+#~ msgstr "incrementPlayerWinnings: nome : '%s' - Adicionar ganhos (%s)"
+
+#~ msgid "NB OF KO"
+#~ msgstr "NÚMERO DE KO"
+
+#~ msgid "tournament edit window="
+#~ msgstr "janela de edição de torneio="
+
+#~ msgid "Enter Tournament"
+#~ msgstr "Entrar no Torneio"
+
+#~ msgid ""
+#~ "Note: error output is being diverted to fpdb-error-log.txt and HUD-error."
+#~ "txt. Any major error will be reported there _only_."
+#~ msgstr ""
+#~ "Nota: erro de output foi desviado para fpdb-error-log.txt e HUD-error."
+#~ "txt. Qualquer outro erro será reportado lá _somente_."
 
 #~ msgid "readBlinds in noSB exception - no SB created"
 #~ msgstr "readBlinds em noSB exceção - SB não criado"

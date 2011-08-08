@@ -36,7 +36,8 @@ import traceback
 (options, argv) = Options.fpdb_options()
 
 if not options.errorsToConsole:
-    print _("Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_.")
+    print (_("Note: error output is being diverted to %s.") % "tourneyerror.txt"),
+             _("Any major error will be reported there _only_.")
     errorFile = open('tourneyerror.txt', 'w', 0)
     sys.stderr = errorFile
 
@@ -97,7 +98,7 @@ class Tournament:
             self.window.show() # isn't there a better way to bring something to the front? not that GTK focus works right anyway, ever
         else:
             self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
-            print _("tournament edit window="), self.window
+            #print("tournament edit window:", self.window)
             self.window.connect("delete_event", self.delete_event)
             self.window.connect("destroy", self.destroy)
             self.window.set_title(_("FPDB Tournament Entry"))
@@ -142,7 +143,7 @@ class ttracker_main(object):
         self.vb = gtk.VBox()
         self.label = gtk.Label(_('Closing this window will stop the Tournament Tracker'))
         self.vb.add(self.label)
-        self.addbutton = gtk.Button(label=_("Enter Tournament"))
+        self.addbutton = gtk.Button(label=_("Add Tournament"))
         self.addbutton.connect("clicked", self.addClicked, "add tournament")
         self.vb.add(self.addbutton)
 
