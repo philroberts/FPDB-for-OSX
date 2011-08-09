@@ -179,10 +179,18 @@ if len(failure_list):
 import os
 os.chdir(os.path.join(config.fpdb_program_path, u"pyfpdb"))
 
-if config.os_family in ("XP", "Win7"):
-    os.execvpe('pythonw.exe', list(('pythonw.exe', 'fpdb.pyw', '-r'))+sys.argv[1:], os.environ)
+if config.example_copy:
+    # A new configuration file was created by config(), so
+    # this is the first run of fpdb.
+    # signal fpdb.pyw to show the config created dialog
+    initialRun = "-i"
 else:
-    os.execvpe('python', list(('python', 'fpdb.pyw', '-r'))+sys.argv[1:], os.environ)
+    initialRun = ""
+
+if config.os_family in ("XP", "Win7"):
+    os.execvpe('pythonw.exe', list(('pythonw.exe', 'fpdb.pyw', initialRun, '-r'))+sys.argv[1:], os.environ)
+else:
+    os.execvpe('python', list(('python', 'fpdb.pyw', initialRun, '-r'))+sys.argv[1:], os.environ)
 
 ###################
 # DO NOT INSERT ANY LINES BELOW HERE

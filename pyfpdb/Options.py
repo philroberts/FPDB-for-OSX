@@ -51,6 +51,8 @@ def fpdb_options():
                       default = 'EMPTY')
     parser.add_option("-v", "--version", action = "store_true", 
                       help = _("Print version information and exit."))
+    parser.add_option("-i", "--initialrun", action = "store_true", dest="initialRun",
+                      help = _("Force initial-run dialog"))
     parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False,
                     help=_("Print some useful one liners"))
     # The following options are used for SplitHandHistory.py
@@ -59,7 +61,7 @@ def fpdb_options():
     parser.add_option("-D", "--directory", dest="directory", metavar="FILE", default=None,
                     help=_("Input directory"))
     parser.add_option("-o", "--outpath", dest="outpath", metavar="FILE", default=None,
-                    help=_("Input out path in quiet mode"))
+                    help=_("Out path in quiet mode"))
     parser.add_option("-a", "--archive", action="store_true", dest="archive", default=False,
                     help=_("File to be split is a PokerStars or Full Tilt Poker archive file"))
     parser.add_option("-t", "--testdata", action="store_true", dest="testData", default=False,
