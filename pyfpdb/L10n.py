@@ -15,6 +15,8 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+#You may find http://boodebr.org/main/python/all-about-python-and-unicode helpful
+
 def pass_through(to_translate): return to_translate
 
 def get_special_translation():
