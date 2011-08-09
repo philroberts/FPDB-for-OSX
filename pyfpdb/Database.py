@@ -2928,47 +2928,43 @@ class Database:
 class HandToWrite:
 
     def __init__(self, finished = False): # db_name and game not used any more
-        try:
-            self.finished = finished
-            self.config = None
-            self.settings = None
-            self.base = None
-            self.category = None
-            self.siteTourneyNo = None
-            self.buyin = None
-            self.fee = None
-            self.knockout = None
-            self.entries = None
-            self.prizepool = None
-            self.tourneyStartTime = None
-            self.isTourney = None
-            self.tourneyTypeId = None
-            self.siteID = None
-            self.siteHandNo = None
-            self.gametypeID = None
-            self.handStartTime = None
-            self.names = None
-            self.playerIDs = None
-            self.startCashes = None
-            self.positions = None
-            self.antes = None
-            self.cardValues = None
-            self.cardSuits = None
-            self.boardValues = None
-            self.boardSuits = None
-            self.winnings = None
-            self.rakes = None
-            self.actionTypes = None
-            self.allIns = None
-            self.actionAmounts = None
-            self.actionNos = None
-            self.hudImportData = None
-            self.maxSeats = None
-            self.tableName = None
-            self.seatNos = None
-        except:
-            print _("%s error: %s") % ("HandToWrite.init", str(sys.exc_info()))
-            raise
+        self.finished = finished
+        self.config = None
+        self.settings = None
+        self.base = None
+        self.category = None
+        self.siteTourneyNo = None
+        self.buyin = None
+        self.fee = None
+        self.knockout = None
+        self.entries = None
+        self.prizepool = None
+        self.tourneyStartTime = None
+        self.isTourney = None
+        self.tourneyTypeId = None
+        self.siteID = None
+        self.siteHandNo = None
+        self.gametypeID = None
+        self.handStartTime = None
+        self.names = None
+        self.playerIDs = None
+        self.startCashes = None
+        self.positions = None
+        self.antes = None
+        self.cardValues = None
+        self.cardSuits = None
+        self.boardValues = None
+        self.boardSuits = None
+        self.winnings = None
+        self.rakes = None
+        self.actionTypes = None
+        self.allIns = None
+        self.actionAmounts = None
+        self.actionNos = None
+        self.hudImportData = None
+        self.maxSeats = None
+        self.tableName = None
+        self.seatNos = None
     # end def __init__
 
     def set_all( self, config, settings, base, category, siteTourneyNo, buyin
