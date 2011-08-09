@@ -110,16 +110,16 @@ def failure(message):
 from Tkinter import *
 
 try:
-    try_import("sys")
+    module = __import__("sys")
 except:
     failure("python failure - could not import sys module")
     win_output(failure_list)
     sys.exit(1)
-    
+ 
 try:
-    try_import("Charset")
+    module = __import__("L10n")
 except:
-    failure("fpdb must be installed in an English path")
+    failure("fpdb modules cannot be loaded, check that fpdb is installed in an English path")
     win_output(failure_list)
     sys.exit(1)
 
