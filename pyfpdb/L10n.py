@@ -15,23 +15,52 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
-import locale
+#You may find http://boodebr.org/main/python/all-about-python-and-unicode helpful
+
 def pass_through(to_translate): return to_translate
 
-(lang, charset) = locale.getdefaultlocale()
-if lang==None or lang[:2]=="en":
-    translation=pass_through
-else:
+def get_special_translation():
+    # this function call used from the Configuration process
+    # Configuration.py cannot call get_translation() because
+    # that is dependent on Configuration !!
+    return pass_through
+
+def set_translation(to_lang):
+
     import gettext
     try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans = gettext.translation("fpdb", localedir="locale", languages=[to_lang])
         trans.install()
         translation=_
     except IOError:
         translation=pass_through
-    
+    return translation
+
 #def translate(to_translate):
 #        return _(to_translate)
-        
+#       
 def get_translation():
-    return translation
+    # This cannot be done in an in-line function
+    # because importing Configuration in turn calls L10n
+    # which goes wrong because the attribute translation has
+    # yet been set !!!!
+    # FIXME: This function slows down fpdb-startup, because there
+    # are multiple invocations of L10n by each imported
+    # module in fpdb.pyw, therefore config() gets called
+    # multiple times
+    
+    import Configuration
+    conf=Configuration.Config()
+    
+    if conf.general['ui_language'] == "system":
+        import locale
+        try:
+            (lang, charset) = locale.getdefaultlocale()
+        except:
+            lang = None
+        if lang==None or lang[:2]=="en":
+            return pass_through
+        else:
+            return set_translation(lang)
+    else:
+        return set_translation(conf.general['ui_language'])

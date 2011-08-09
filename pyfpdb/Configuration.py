@@ -28,7 +28,7 @@ Handles fpdb/fpdb-hud configuration files.
 from __future__ import with_statement
 
 import L10n
-_ = L10n.get_translation()
+_ = L10n.get_special_translation()
 
 import os
 import sys
@@ -169,7 +169,6 @@ def get_config(file_name, fallback = True):
         try:
             #print ""
             example_path = file_name + ".example"
-            check_dir(CONFIG_PATH)
             if not config_found and fallback:
                 shutil.copyfile(example_path, config_path)
                 example_copy = True
