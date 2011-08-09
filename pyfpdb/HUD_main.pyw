@@ -66,12 +66,100 @@ class AppDelegate(NSObject):
     app.terminate_(self)
 
 class UpdateOnGUIThread(NSObject):
-    def killHUD(self):
-        idle_kill(self.owner, self.table)
-    def updateHUD(self):
-        idle_update(self.owner, self.new_hand_id, self.table_name, self.config)
-    def createHUD(self):
-        idle_create(self.owner, self.new_hand_id, self.table, self.temp_key, self.max, self.poker_game, self.type, self.stat_dict, self.cards)
+    def stdinNotification(self, notification):
+        notification.object().readInBackgroundAndNotify()
+        data = notification.userInfo()[NSFileHandleNotificationDataItem]
+        new_hand_id = NSString.alloc().initWithBytes_length_encoding_(data.bytes(), data.length(), NSUTF8StringEncoding)
+        new_hand_id = string.rstrip(new_hand_id)
+        log.debug(_("Received hand no %s") % new_hand_id)
+        if new_hand_id == "":           # blank line means quit
+            self.owner.destroy()
+            return
+
+#    This block cannot be hoisted outside the while loop, because it would
+#    cause a problem when auto importing into an empty db.
+
+#    FIXME: This doesn't work in the case of the player playing on 2
+#    sites at once (???)  Eratosthenes
+        if not self.found:
+            for site in self.owner.config.get_supported_sites():
+                result = self.owner.db_connection.get_site_id(site)
+                if result:
+                    site_id = result[0][0]
+                    self.owner.hero[site_id] = self.owner.config.supported_sites[site].screen_name
+                    self.owner.hero_ids[site_id] = self.owner.db_connection.get_player_id(self.owner.config, site, self.owner.hero[site_id])
+                    if self.owner.hero_ids[site_id] is not None:
+                        self.found = True
+                    else:
+                        self.owner.hero_ids[site_id] = -1
+
+#        get basic info about the new hand from the db
+#        if there is a db error, complain, skip hand, and proceed
+        log.info("HUD_main.read_stdin: " + _("Hand processing starting."))
+        try:
+            (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
+                self.owner.db_connection.get_table_info(new_hand_id)
+        except Exception:
+            log.exception(_("database error: skipping %s") % new_hand_id)
+            return
+
+        if type == "tour":   # hand is from a tournament
+            temp_key = "%s Table %s" % (tour_number, tab_number)
+        else:
+            temp_key = table_name
+
+#        Update an existing HUD
+        if temp_key in self.owner.hud_dict:
+            # get stats using hud's specific params and get cards
+            self.owner.db_connection.init_hud_stat_vars( self.owner.hud_dict[temp_key].hud_params['hud_days']
+                                                         , self.owner.hud_dict[temp_key].hud_params['h_hud_days'])
+            stat_dict = self.owner.db_connection.get_stats_from_hand(new_hand_id, type, self.owner.hud_dict[temp_key].hud_params,
+                                                                     self.owner.hero_ids[site_id], num_seats)
+
+            try:
+                self.owner.hud_dict[temp_key].stat_dict = stat_dict
+            except KeyError:    # HUD instance has been killed off, key is stale
+                log.error(_('%s was not found') % ("hud_dict[%s]" % temp_key))
+                log.error(_('will not send hand'))
+                # Unlocks table, copied from end of function
+                self.owner.db_connection.connection.rollback()
+                return
+
+            self.owner.hud_dict[temp_key].cards = self.owner.get_cards(new_hand_id)
+            [aw.update_data(new_hand_id, self.owner.db_connection) for aw in self.owner.hud_dict[temp_key].aux_windows]
+            self.owner.update_HUD(new_hand_id, temp_key, self.owner.config)
+
+#        Or create a new HUD
+        else:
+            # get stats using default params--also get cards
+            self.owner.db_connection.init_hud_stat_vars( self.owner.hud_params['hud_days'], self.owner.hud_params['h_hud_days'] )
+            stat_dict = self.owner.db_connection.get_stats_from_hand(new_hand_id, type, self.owner.hud_params,
+                                                                     self.owner.hero_ids[site_id], num_seats)
+            cards = self.owner.get_cards(new_hand_id)
+            table_kwargs = dict(table_name=table_name, tournament=tour_number, table_number=tab_number)
+            tablewindow = Tables.Table(self.owner.config, site_name, **table_kwargs)
+            if tablewindow.number is None:
+#        If no client window is found on the screen, complain and continue
+                if type == "tour":
+                    table_name = "%s %s" % (tour_number, tab_number)
+                log.error(_("HUD create: table name %s not found, skipping.") % table_name)
+            else:
+                tablewindow.key = temp_key
+                tablewindow.max = max
+                tablewindow.site = site_name
+                # Test that the table window still exists
+                if hasattr(tablewindow, 'number'):
+                    self.owner.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
+                else:
+                    log.error(_('Table "%s" no longer exists') % table_name)
+                    return
+
+        self.owner.db_connection.connection.rollback()
+        if type == "tour":
+            try:
+                self.owner.hud_dict[temp_key].table.check_table_no(self.owner.hud_dict[temp_key])
+            except KeyError:
+                pass
 
 class HUD_main(object):
     """A main() object to own both the read_stdin thread and the gui."""
@@ -94,8 +182,14 @@ class HUD_main(object):
             self.hud_dict = {}
             self.hud_params = self.config.get_hud_ui_parameters()
 
-            # a thread to read stdin
-            threading.Thread(target=self.read_stdin).start()
+            self.guiUpdate = UpdateOnGUIThread.alloc().init()
+            self.guiUpdate.owner = self
+            self.guiUpdate.found = False
+            self.hero, self.hero_ids = {}, {}
+            self.db_connection = Database.Database(self.config)
+            NSNotificationCenter.defaultCenter().addObserver_selector_name_object_(self.guiUpdate, objc.selector(self.guiUpdate.stdinNotification, signature = "v@:@"), "NSFileHandleReadCompletionNotification", None)
+            self.stdinHandle = NSFileHandle.fileHandleWithStandardInput()
+            self.stdinHandle.readInBackgroundAndNotify()
 
             # a main window
             
@@ -177,12 +271,19 @@ class HUD_main(object):
         app.terminate_(None)
 
     def kill_hud(self, table):
-        updateObject = UpdateOnGUIThread.alloc().init()
-        updateObject.owner = self
-        updateObject.table = table
-        sel = objc.selector(updateObject.killHUD, signature = "v@:")
-        updateObject.performSelectorOnMainThread_withObject_waitUntilDone_(sel, None, False)
-    
+        try:
+            hud = self.hud_dict[table]
+            (_, row, col) = self.vb.getRow_column_ofCell_(None, None, hud.tablehudlabel)
+            self.vb.removeRow_(row)
+            frame = self.main_window.frame()
+            frame.size.height -= 20
+            self.main_window.setFrame_display_(frame, True)
+            hud.main_window.close()
+            hud.kill()
+            del(self.hud_dict[hud.table_name])
+        except:
+            log.exception(_("Error killing HUD for table: %s.") % table.title)
+
     def check_tables(self):
         for hud in self.hud_dict.keys():
             self.hud_dict[hud].table.check_table(self.hud_dict[hud])
@@ -217,136 +318,32 @@ class HUD_main(object):
 
         [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
 
-        updateObject = UpdateOnGUIThread.alloc().init()
-        updateObject.owner = self
-        updateObject.new_hand_id = new_hand_id
-        updateObject.table = table
-        updateObject.temp_key = temp_key
-        updateObject.max = max
-        updateObject.poker_game = poker_game
-        updateObject.type = type
-        updateObject.stat_dict = stat_dict
-        updateObject.cards = cards
-        sel = objc.selector(updateObject.createHUD, signature = "v@:")
-        updateObject.performSelectorOnMainThread_withObject_waitUntilDone_(sel, None, False)
+        try:
+            self.vb.addRow()
+            cell = self.vb.cellAtRow_column_(self.vb.numberOfRows() - 1, 0)
+            cell.setStringValue_("%s - %s" % (table.site, temp_key))
+            cell.setAlignment_(NSCenterTextAlignment)
+            frame = self.main_window.frame()
+            frame.size.height += 20
+            self.main_window.setFrame_display_(frame, True)
+            self.vb.setNeedsDisplay_(True)
+            
+            self.hud_dict[temp_key].tablehudlabel = self.vb.cellAtRow_column_(self.vb.numberOfRows() - 1, 0)
+            self.hud_dict[temp_key].create(new_hand_id, self.config, stat_dict, cards)
+            for m in self.hud_dict[temp_key].aux_windows:
+                m.create()
+                m.update_gui(new_hand_id)
+            self.hud_dict[temp_key].update(new_hand_id, self.config)
+            self.hud_dict[temp_key].reposition_windows()
+        except:
+            log.exception(_("Error creating HUD for hand %s.") % new_hand_id)
 
     def update_HUD(self, new_hand_id, table_name, config):
-        """Update a HUD gui from inside the non-gui read_stdin thread."""
-        updateObject = UpdateOnGUIThread.alloc().init()
-        updateObject.owner = self
-        updateObject.new_hand_id = new_hand_id
-        updateObject.table_name = table_name
-        updateObject.config = config
-        sel = objc.selector(updateObject.updateHUD, signature = "v@:")
-        updateObject.performSelectorOnMainThread_withObject_waitUntilDone_(sel, None, False)
-
-    def read_stdin(self):            # This is the thread function
-        """Do all the non-gui heavy lifting for the HUD program."""
-
-#    This db connection is for the read_stdin thread only. It should not
-#    be passed to HUDs for use in the gui thread. HUD objects should not
-#    need their own access to the database, but should open their own
-#    if it is required.
-        self.db_connection = Database.Database(self.config)
-
-#       get hero's screen names and player ids
-        self.hero, self.hero_ids = {}, {}
-        found = False
-
-        while 1:    # wait for a new hand number on stdin
-            pool = NSAutoreleasePool.alloc().init()
-            new_hand_id = sys.stdin.readline()
-            new_hand_id = string.rstrip(new_hand_id)
-            log.debug(_("Received hand no %s") % new_hand_id)
-            if new_hand_id == "":           # blank line means quit
-                self.destroy()
-                break # this thread is not always killed immediately with gtk.main_quit()
-
-#    This block cannot be hoisted outside the while loop, because it would
-#    cause a problem when auto importing into an empty db.
-
-#    FIXME: This doesn't work in the case of the player playing on 2
-#    sites at once (???)  Eratosthenes
-            if not found:
-                for site in self.config.get_supported_sites():
-                    result = self.db_connection.get_site_id(site)
-                    if result:
-                        site_id = result[0][0]
-                        self.hero[site_id] = self.config.supported_sites[site].screen_name
-                        self.hero_ids[site_id] = self.db_connection.get_player_id(self.config, site, self.hero[site_id])
-                        if self.hero_ids[site_id] is not None:
-                            found = True
-                        else:
-                            self.hero_ids[site_id] = -1
-
-#        get basic info about the new hand from the db
-#        if there is a db error, complain, skip hand, and proceed
-            log.info("HUD_main.read_stdin: " + _("Hand processing starting."))
-            try:
-                (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
-                                self.db_connection.get_table_info(new_hand_id)
-            except Exception:
-                log.exception(_("database error: skipping %s") % new_hand_id)
-                continue
-
-            if type == "tour":   # hand is from a tournament
-                temp_key = "%s Table %s" % (tour_number, tab_number)
-            else:
-                temp_key = table_name
-
-#        Update an existing HUD
-            if temp_key in self.hud_dict:
-                # get stats using hud's specific params and get cards
-                self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
-                                                     , self.hud_dict[temp_key].hud_params['h_hud_days'])
-                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params,
-                                                                   self.hero_ids[site_id], num_seats)
-
-                try:
-                    self.hud_dict[temp_key].stat_dict = stat_dict
-                except KeyError:    # HUD instance has been killed off, key is stale
-                    log.error(_('%s was not found') % ("hud_dict[%s]" % temp_key))
-                    log.error(_('will not send hand'))
-                    # Unlocks table, copied from end of function
-                    self.db_connection.connection.rollback()
-                    return
-
-                self.hud_dict[temp_key].cards = self.get_cards(new_hand_id)
-                [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
-                self.update_HUD(new_hand_id, temp_key, self.config)
-
-#        Or create a new HUD
-            else:
-                # get stats using default params--also get cards
-                self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
-                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params,
-                                                                   self.hero_ids[site_id], num_seats)
-                cards = self.get_cards(new_hand_id)
-                table_kwargs = dict(table_name=table_name, tournament=tour_number, table_number=tab_number)
-                tablewindow = Tables.Table(self.config, site_name, **table_kwargs)
-                if tablewindow.number is None:
-#        If no client window is found on the screen, complain and continue
-                    if type == "tour":
-                        table_name = "%s %s" % (tour_number, tab_number)
-                    log.error(_("HUD create: table name %s not found, skipping.") % table_name)
-                else:
-                    tablewindow.key = temp_key
-                    tablewindow.max = max
-                    tablewindow.site = site_name
-                    # Test that the table window still exists
-                    if hasattr(tablewindow, 'number'):
-                        self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
-                    else:
-                        log.error(_('Table "%s" no longer exists') % table_name)
-                        return
-
-            self.db_connection.connection.rollback()
-            if type == "tour":
-                try:
-                    self.hud_dict[temp_key].table.check_table_no(self.hud_dict[temp_key])
-                except KeyError:
-                    pass
-            del pool
+        try:
+            self.hud_dict[table_name].update(new_hand_id, config)
+            [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
+        except:
+            log.exception(_("Error updating HUD for hand %s.") % new_hand_id)
 
     def get_cards(self, new_hand_id):
         cards = self.db_connection.get_cards(new_hand_id)
@@ -354,15 +351,6 @@ class HUD_main(object):
         if comm_cards != {}: # stud!
             cards['common'] = comm_cards['common']
         return cards
-######################################################################
-#   idle FUNCTIONS
-#
-#    These are passed to the event loop by the non-gui thread to do
-#    gui things in a thread-safe way. They are passed to the event
-#    loop using the gobject.idle_add() function.
-#
-#    A general rule for gtk is that only 1 thread should be messing
-#    with the gui.
 
 def idle_resize(hud):
     try:
@@ -372,54 +360,6 @@ def idle_resize(hud):
         log.exception(_("Error resizing HUD for table: %s.") % hud.table.title)
     finally:
         pass
-
-def idle_kill(hud_main, table):
-    try:
-        hud = hud_main.hud_dict[table]
-        (_, row, col) = hud_main.vb.getRow_column_ofCell_(None, None, hud.tablehudlabel)
-        hud_main.vb.removeRow_(row)
-        frame = hud_main.main_window.frame()
-        frame.size.height -= 20
-        hud_main.main_window.setFrame_display_(frame, True)
-        hud.main_window.close()
-        hud.kill()
-        del(hud_main.hud_dict[hud.table_name])
-    except:
-        log.exception(_("Error killing HUD for table: %s.") % table.title)
-
-def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards):
-    try:
-        hud_main.vb.addRow()
-        cell = hud_main.vb.cellAtRow_column_(hud_main.vb.numberOfRows() - 1, 0)
-        cell.setStringValue_("%s - %s" % (table.site, temp_key))
-        cell.setAlignment_(NSCenterTextAlignment)
-        frame = hud_main.main_window.frame()
-        frame.size.height += 20
-        hud_main.main_window.setFrame_display_(frame, True)
-        hud_main.vb.setNeedsDisplay_(True)
-        
-        hud_main.hud_dict[temp_key].tablehudlabel = hud_main.vb.cellAtRow_column_(hud_main.vb.numberOfRows() - 1, 0)
-        hud_main.hud_dict[temp_key].create(new_hand_id, hud_main.config, stat_dict, cards)
-        for m in hud_main.hud_dict[temp_key].aux_windows:
-            m.create()
-            m.update_gui(new_hand_id)
-        hud_main.hud_dict[temp_key].update(new_hand_id, hud_main.config)
-        hud_main.hud_dict[temp_key].reposition_windows()
-    except:
-        log.exception(_("Error creating HUD for hand %s.") % new_hand_id)
-    return False
-
-def idle_update(hud_main, new_hand_id, table_name, config):
-    #gtk.gdk.threads_enter()
-    try:
-        hud_main.hud_dict[table_name].update(new_hand_id, config)
-        [aw.update_gui(new_hand_id) for aw in hud_main.hud_dict[table_name].aux_windows]
-    except:
-        log.exception(_("Error updating HUD for hand %s.") % new_hand_id)
-    finally:
-        pass
-        #gtk.gdk.threads_leave()
-    return False
 
 if __name__== "__main__":
     global app
