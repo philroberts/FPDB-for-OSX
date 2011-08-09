@@ -924,7 +924,7 @@ class fpdb:
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
         if self.config.file_error:
             self.warning_box(_("There is an error in your config file %s") % self.config.file
-                              + "\n\n" + _("Error is:") + " " + str(self.config.file_error),
+                              + ":\n" + str(self.config.file_error),
                               diatitle=_("CONFIG FILE ERROR"))
             sys.exit()
 

@@ -97,7 +97,7 @@ class TourneyFilters(Filters.Filters):
             if len(result) == 1:
                 self.siteid[site] = result[0][0]
             else:
-                print _("Either 0 or more than one site matched (%s) - EEK") % site
+                log.debug(_("Either 0 or more than one site matched for %s") % site)
 
         # For use in date ranges.
         self.start_date = gtk.Entry(max=12)
