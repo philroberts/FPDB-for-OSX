@@ -33,8 +33,6 @@ Caveats/Known Bugs
   your HUD_config.xml, Bad Things may happen.  Back it up and remove
   them.  And send me an email telling me I'm lazy, I might get around
   to fixing it.
-* Right-click popup of all stats on HUD stat windows
-  is not implemented yet.
 * If you have multiple tables open with names like "Ichabod", "Ichabod
   II" etc, the HUD may get confused.
 * PokerStars must be open when you start the HUD.
