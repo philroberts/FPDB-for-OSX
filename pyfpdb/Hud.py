@@ -287,6 +287,9 @@ class Hud:
         self.foregroundcolor = parseColor(self.colors['hudfgcolor'])
 
         self.font = NSFont.fontWithName_size_(font, font_size)
+        self.fontpixels = NSString.stringWithString_(self.hud_ui['label']).sizeWithAttributes_(NSDictionary.dictionaryWithObject_forKey_(self.font, NSFontAttributeName))
+        self.fontpixels.width += 6 # Account for the padding needed for NSTextField
+
         # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
 
         game_params = config.get_game_parameters(self.poker_game)
@@ -303,8 +306,8 @@ class Hud:
 
     # Set up a main window for this this instance of the HUD
     def create_mw(self):
-        adjustedy = NSScreen.mainScreen().frame().size.height - self.table.y - self.font.pointSize() - titlebarheight
-        rect = NSMakeRect(self.table.x, adjustedy, self.font.pointSize() * 22, self.font.pointSize())
+        adjustedy = NSScreen.mainScreen().frame().size.height - self.table.y - self.fontpixels.height - titlebarheight
+        rect = NSMakeRect(self.table.x, adjustedy, self.fontpixels.width, self.fontpixels.height)
         win = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(rect, NSBorderlessWindowMask, NSBackingStoreBuffered, False)
         win.setTitle_("%s FPDBHUD" % (self.table.name))
         #win.setOpaque_(False)
@@ -444,7 +447,7 @@ class Hud:
 
     def up_update_table_position(self):
 #    callback for table moved
-        adjustedy = NSScreen.mainScreen().frame().size.height - self.table.y - self.font.pointSize() - titlebarheight
+        adjustedy = NSScreen.mainScreen().frame().size.height - self.table.y - self.fontpixels.height - titlebarheight
         frame = self.main_window.frame()
         frame.origin.x = self.table.x
         frame.origin.y = adjustedy
@@ -770,8 +773,8 @@ class Stat_Window:
         self.popups = []            # list of open popups for this stat window
         self.useframes = parent.config.get_frames(parent.site)
 
-        colWidth = self.parent.font.pointSize() * 3
-        rowHeight = self.parent.font.pointSize()
+        colWidth = self.parent.fontpixels.width / 6.5
+        rowHeight = self.parent.fontpixels.height
         rect = NSMakeRect(self.x, self.y, colWidth * game.cols, rowHeight * game.rows)
         self.window = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(rect, NSBorderlessWindowMask, NSBackingStoreBuffered, False)
         self.window.setAllowsToolTipsWhenApplicationIsInactive_(True)
@@ -906,8 +909,8 @@ class Popup_window:
                 stat_list = stat_window.parent.config.popup_windows[w].pu_stats
                 break
 
-        colWidth = stat_window.parent.font.pointSize() * 10
-        rowHeight = stat_window.parent.font.pointSize()
+        colWidth = stat_window.parent.fontpixels.width / 2
+        rowHeight = stat_window.parent.fontpixels.height
         frame = stat_window.window.frame()
         rect = NSMakeRect(frame.origin.x, frame.origin.y - rowHeight * len(stat_list) / 2, colWidth, rowHeight * len(stat_list))
         screenheight = NSScreen.mainScreen().frame().size.height - titlebarheight
