@@ -92,12 +92,7 @@ class fpdb:
         """called when a tab button is clicked to activate that tab"""
         self.display_tab(tab_name)
 
-    def add_and_display_tab(self, new_tab, new_tab_name):
-        """just calls the component methods"""
-        self.add_tab(new_tab, new_tab_name)
-        self.display_tab(new_tab_name)
-
-    def add_tab(self, new_page, new_tab_name):
+    def add_and_display_tab(self, new_page, new_tab_name):
         """adds a tab, namely creates the button and displays it and appends all the relevant arrays"""
         for name in self.nb_tab_names:  # todo: check this is valid
             if name == new_tab_name:
@@ -122,6 +117,7 @@ class fpdb:
         self.nb.append_page(page, event_box)
         self.nb_tab_names.append(new_tab_name)
         page.show()
+        self.display_tab(new_tab_name)
 
     def display_tab(self, new_tab_name):
         """displays the indicated tab"""
