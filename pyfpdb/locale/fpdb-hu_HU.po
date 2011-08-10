@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2011-08-09 19:40+CEST\n"
-"PO-Revision-Date: 2011-07-03 00:35+0200\n"
+"PO-Revision-Date: 2011-08-10 16:33+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -105,9 +105,8 @@ msgid "Output being written to %s"
 msgstr "Az eredmény ide kerül kiírásra %s"
 
 #: BetfairToFpdb.py:123
-#, fuzzy
 msgid "Less than 2 players found in hand %s."
-msgstr "readPlayerStacks: Kettőnél kevesebb játékost találtam egy leosztásban"
+msgstr "Kettőnél kevesebb játékost található a(z) %s leosztásban."
 
 #: BetfairToFpdb.py:163
 msgid "No bringin found"
@@ -150,33 +149,31 @@ msgstr "Nem találhatóak közös lapok ezen az utcán"
 
 #: Card.py:477
 msgid "Convert list ID to card (e.g. 1 to 2h)"
-msgstr ""
+msgstr "Lista azonosító konvertálása kártyává (pl. 1 -> 2h)"
 
 #: Card.py:478
 msgid "Convert card to list ID (e.g. 2h to 1)"
-msgstr ""
+msgstr "Kártya konvertálása lista azonosítóvá (pl. 1 -> 2h)"
 
 #: Card.py:482
 msgid "Enter list ID:"
-msgstr ""
+msgstr "Lista azonosító megadása:"
 
 #: Card.py:483
-#, fuzzy
 msgid "Card:"
-msgstr "Közös lapok:"
+msgstr "Kártya:"
 
 #: Card.py:486
 msgid "Enter card:"
-msgstr ""
+msgstr "Kártya megadása:"
 
 #: Card.py:487
-#, fuzzy
 msgid "Encoded card:"
-msgstr "Osztott lapok"
+msgstr "Kódolt kártya:"
 
 #: Card.py:489
 msgid "Please enter 1 or 2"
-msgstr ""
+msgstr "Kérlek 1-et vagy 2-t adj meg"
 
 #: Charset.py:43 Charset.py:58 Charset.py:73
 msgid "Could not convert: \"%s\""
@@ -632,9 +629,8 @@ msgid "Tourney"
 msgstr "Versenyek"
 
 #: Filters.py:130 TourneyFilters.py:100
-#, fuzzy
 msgid "Either 0 or more than one site matched for %s"
-msgstr "Vagy egynél több, vagy egy terem sem illeszkedik (%s) - EEK"
+msgstr "Vagy egynél több, vagy egy terem sem illeszkedik erre: %s"
 
 #: Filters.py:392
 msgid "%s was toggled %s"
@@ -762,9 +758,8 @@ msgid "Raising FpdbParseError for file '%s'"
 msgstr "FpdbParseError a '%s' fájlnál"
 
 #: FulltiltToFpdb.py:390
-#, fuzzy
 msgid "No players detected in hand %s."
-msgstr "readPlayerStacks: Nem találtam játékosokat (hand #%s)"
+msgstr "Nem találtam játékosokat a(z) %s leosztásban."
 
 #: FulltiltToFpdb.py:464
 msgid "No bringin found, handid =%s"
@@ -802,9 +797,8 @@ msgid "Player finishing stats unreadable : %s"
 msgstr "A következő játékos helyezési adata nem olvasható : %s"
 
 #: FulltiltToFpdb.py:815
-#, fuzzy
 msgid "Could not find rank for %s."
-msgstr "%s fájl nem található"
+msgstr "Nem található helyezés %s számára."
 
 #: FulltiltToFpdb.py:817
 msgid "Parsed finish position incoherent : %s / %s"
@@ -899,13 +893,12 @@ msgid "Importing"
 msgstr "Importálás"
 
 #: GuiBulkImport.py:119 GuiBulkImport.py:413
-#, fuzzy
 msgid ""
 "Bulk import done: Stored: %d, Duplicates: %d, Partial: %d, Errors: %d, Time: "
 "%s seconds, Stored/second: %.0f"
 msgstr ""
-"Importálás kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d %s "
-"másodperc alatt - %.0f/mp"
+"Importálás kész: Tárolt: %d, Duplikáció: %d, Részleges: %d, Hibák: %d, Idő: "
+"%s mp, Sebesség: %.0f/mp"
 
 #: GuiBulkImport.py:134
 msgid "Import Complete"
@@ -2350,9 +2343,8 @@ msgid "unable to read file with any codec in list!"
 msgstr "a fájl olvasása nem sikerült egyik listabeli kódolással sem!"
 
 #: HandHistoryConverter.py:493 HandHistoryConverter.py:494
-#, fuzzy
 msgid "Unsupported target timezone: "
-msgstr "Nem támogatott játéktípus: %s"
+msgstr "Nem támogatott időzóna: "
 
 #: HandHistoryConverter.py:559
 msgid "Timezone conversion not supported"
@@ -2544,16 +2536,15 @@ msgstr "Verzióinformáció kiírása, majd kilépés."
 
 #: Options.py:55
 msgid "Force initial-run dialog"
-msgstr ""
+msgstr "Első futás párbeszéd kényszerítése"
 
 #: Options.py:62
 msgid "Input directory"
 msgstr "Bemeneti könyvtár"
 
 #: Options.py:64
-#, fuzzy
 msgid "Out path in quiet mode"
-msgstr "Könyvtár beolvasása csendes módban"
+msgstr "Kimeneti könyvtár csendes módban"
 
 #: Options.py:66
 msgid "File to be split is a PokerStars or Full Tilt Poker archive file"
