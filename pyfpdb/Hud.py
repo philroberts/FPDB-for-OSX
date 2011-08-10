@@ -697,12 +697,13 @@ class Hud:
 
 class statwindowtextfield(NSTextField):
     def mouseDragged_(self, event):
-        frame = self.owner.frame()
+        frame = self.owner.window.frame()
         frame.origin.x += event.deltaX()
         frame.origin.y -= event.deltaY()
-        self.owner.setFrame_display_(frame, True)
+        self.owner.window.setFrame_display_(frame, True)
     def rightMouseDown_(self, event):
-        print event, "RIGHTMOUSEEVENT_statwindow"
+        newpopup = Popup_window(self, self.owner)
+        self.owner.popups.append(newpopup)
 
 class Stat_Window:
 
@@ -743,11 +744,12 @@ class Stat_Window:
     def kill_popup(self, popup):
         #print "remove popup", popup
         self.popups.remove(popup)
-        #popup.window.close()
+        del popup.window
 
     def kill_popups(self):
-        #map(lambda x: x.window.close(), self.popups)
-        self.popups = { }
+        for x in self.popups:
+            del x.window
+        self.popups = []
 
     def relocate(self, x, y):
         frame = self.window.frame()
@@ -788,7 +790,7 @@ class Stat_Window:
             for c in xrange(game.cols):
                 rect = NSMakeRect(c * colWidth, (game.rows - r - 1) * rowHeight, colWidth, rowHeight)
                 label = statwindowtextfield.alloc().initWithFrame_(rect)
-                label.owner = self.window
+                label.owner = self
                 label.setStringValue_('xxx')
                 label.setTextColor_(parent.foregroundcolor)
                 label.setBackgroundColor_(parent.backgroundcolor)
@@ -797,6 +799,10 @@ class Stat_Window:
                 label.setEditable_(False)
                 label.setSelectable_(False)
                 label.setAlignment_(NSCenterTextAlignment)
+                for stat in game.stats:
+                    if game.stats[stat].row == r and game.stats[stat].col == c:
+                        label.popup_format = game.stats[stat].popup
+                        break
                 self.window.contentView().addSubview_(label)
                 self.labels[r].append(label)
 #                cell = self.grid.cellAtRow_column_(r, c)
@@ -880,121 +886,57 @@ class Stat_Window:
 def destroy(*args):             # call back for terminating the main eventloop
     gtk.main_quit()
 
+class PopupTextField(NSTextField):
+    def mouseDragged_(self, event):
+        frame = self.owner.window.frame()
+        frame.origin.x += event.deltaX()
+        frame.origin.y -= event.deltaY()
+        self.owner.window.setFrame_display_(frame, True)
+    def rightMouseDown_(self, event):
+        self.owner.stat_window.kill_popup(self.owner)
+
 class Popup_window:
     def __init__(self, parent, stat_window):
-        self.sb_click = 0
         self.stat_window = stat_window
-        self.parent = parent
 
-#    create the popup window
-        self.window = gtk.Window()
-        self.window.set_decorated(0)
-        self.window.set_gravity(gtk.gdk.GRAVITY_STATIC)
-        self.window.set_title("popup")
-        self.window.set_property("skip-taskbar-hint", True)
-        self.window.set_focus_on_map(False)
-        self.window.set_accept_focus(False)
-        self.window.set_transient_for(parent.get_toplevel())
-
-        self.window.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
-
-        self.ebox = gtk.EventBox()
-        self.ebox.connect("button_press_event", self.button_press_cb)
-        self.lab  = gtk.Label("stuff\nstuff\nstuff")
-
-#    need an event box so we can respond to clicks
-        self.window.add(self.ebox)
-        self.ebox.add(self.lab)
-
-        self.ebox.modify_bg(gtk.STATE_NORMAL, stat_window.parent.backgroundcolor)
-        self.ebox.modify_fg(gtk.STATE_NORMAL, stat_window.parent.foregroundcolor)
-        self.window.modify_bg(gtk.STATE_NORMAL, stat_window.parent.backgroundcolor)
-        self.window.modify_fg(gtk.STATE_NORMAL, stat_window.parent.foregroundcolor)
-        self.lab.modify_bg(gtk.STATE_NORMAL, stat_window.parent.backgroundcolor)
-        self.lab.modify_fg(gtk.STATE_NORMAL, stat_window.parent.foregroundcolor)
-
-#    figure out the row, col address of the click that activated the popup
-        row = 0
-        col = 0
-        for r in xrange(0, stat_window.game.rows):
-            for c in xrange(0, stat_window.game.cols):
-                if stat_window.e_box[r][c] == parent:
-                    row = r
-                    col = c
-                    break
-
-#    figure out what popup format we're using
-        popup_format = "default"
-        for stat in stat_window.game.stats:
-            if stat_window.game.stats[stat].row == row and stat_window.game.stats[stat].col == col:
-                popup_format = stat_window.game.stats[stat].popup
-                break
-
-#    get the list of stats to be presented from the config
+        #    get the list of stats to be presented from the config
         stat_list = []
         for w in stat_window.parent.config.popup_windows:
-            if w == popup_format:
+            if w == parent.popup_format:
                 stat_list = stat_window.parent.config.popup_windows[w].pu_stats
                 break
 
-#    get a database connection
-#        db_connection = Database.Database(stat_window.parent.config, stat_window.parent.db_name, 'temp')
-
-#    calculate the stat_dict and then create the text for the pu
-#        stat_dict = db_connection.get_stats_from_hand(stat_window.parent.hand, stat_window.player_id)
-#        stat_dict = self.db_connection.get_stats_from_hand(stat_window.parent.hand)
-#        db_connection.close_connection()
-        stat_dict = stat_window.parent.stat_dict
-        pu_text = ""
-        mo_text = ""
+        colWidth = stat_window.parent.font.pointSize() * 10
+        rowHeight = stat_window.parent.font.pointSize()
+        frame = stat_window.window.frame()
+        rect = NSMakeRect(frame.origin.x, frame.origin.y - rowHeight * len(stat_list) / 2, colWidth, rowHeight * len(stat_list))
+        screenheight = NSScreen.mainScreen().frame().size.height - titlebarheight
+        if rect.origin.y < 0:
+            rect.origin.y = 0
+        elif rect.origin.y + rect.size.height > screenheight:
+            rect.origin.y = screenheight - rect.size.height
+        self.window = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(rect, NSBorderlessWindowMask, NSBackingStoreBuffered, False)
+        self.window.setAllowsToolTipsWhenApplicationIsInactive_(True)
+        self.window.setTitle_("popup")
+        self.window.setAlphaValue_(stat_window.parent.colors['hudopacity'])
+        rect = NSMakeRect(0, 0, colWidth, len(stat_list) * rowHeight)
+        r = 0
         for s in stat_list:
-            number = Stats.do_stat(stat_dict, player = int(stat_window.player_id), stat = s, handid = int(stat_window.parent.hand))
-            mo_text += number[5] + " " + number[4] + "\n"
-            pu_text += number[3] + "\n"
+            rect = NSMakeRect(0, (len(stat_list) - r - 1) * rowHeight, colWidth, rowHeight)
+            label = PopupTextField.alloc().initWithFrame_(rect)
+            label.setTextColor_(stat_window.parent.foregroundcolor)
+            label.setBackgroundColor_(stat_window.parent.backgroundcolor)
+            label.setFont_(stat_window.parent.font)
+            label.setBezeled_(False)
+            label.setEditable_(False)
+            label.setSelectable_(False)
+            label.setAlignment_(NSCenterTextAlignment)
+            label.owner = self
 
+            number = Stats.do_stat(stat_window.parent.stat_dict, player = int(stat_window.player_id), stat = s, handid = int(stat_window.parent.hand))
+            label.setStringValue_(number[3])
 
-        self.lab.set_text(pu_text)
-        Stats.do_tip(self.lab, mo_text)
-        self.window.show_all()
-
-        self.window.set_transient_for(stat_window.window)
-
-    def button_press_cb(self, widget, event, *args):
-#    This handles all callbacks from button presses on the event boxes in
-#    the popup windows.  There is a bit of an ugly kludge to separate single-
-#    and double-clicks.  This is the same code as in the Stat_window class
-        if event.button == 1:   # left button event
-            pass
-
-        if event.button == 2:   # middle button event
-            pass
-
-        if event.button == 3:   # right button event
-            self.stat_window.kill_popup(self)
-            return True
-#            self.window.destroy()
-        return False
-
-    def toggle_decorated(self, widget):
-        top = widget.get_toplevel()
-        (x, y) = top.get_position()
-
-        if top.get_decorated():
-            top.set_decorated(0)
-            top.move(x, y)
-        else:
-            top.set_decorated(1)
-            top.move(x, y)
-
-    def topify_window(self, window):
-        window.orderWindow_relativeTo_(NSWindowAbove, self.table.number)
-#        window.set_focus_on_map(False)
-#        window.set_accept_focus(False)
-
-#        if not self.table.gdkhandle:
-#            self.table.gdkhandle = gtk.gdk.window_foreign_new(int(self.table.number)) # gtk handle to poker window
-#        window.window.reparent(self.table.gdkhandle, 0, 0)
-#        window.window.set_transient_for(self.table.gdkhandle)
-#        window.present()
-
-
+            Stats.do_tip(label, number[5] + " " + number[4])
+            self.window.contentView().addSubview_(label)
+            r += 1
+        self.window.orderFrontRegardless()
