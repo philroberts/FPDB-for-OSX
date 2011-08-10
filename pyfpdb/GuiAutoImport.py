@@ -270,7 +270,7 @@ class GuiAutoImport (threading.Thread):
 
                         print _("opening pipe to HUD")
                     try:
-                        if self.config.install_method == "exe" or (os.name == "nt" and win32console.GetConsoleWindow()) == 0:
+                        if self.config.install_method == "exe" or (os.name == "nt" and win32console.GetConsoleWindow() == 0):
                             self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
                                                                 stdin=subprocess.PIPE,
                                                                 stdout=subprocess.PIPE,  # needed for pythonw / py2exe
