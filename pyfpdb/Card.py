@@ -95,12 +95,6 @@ def decodeStartHandValue(game, value):
     else:
         return "xx"
 
-
-# FIXME: the following is a workaround until switching to newimport.
-#        This should be moved into DerivedStats
-#        I'd also like to change HandsPlayers.startCards to a different datatype
-#        so we can 'trivially' add different start card classifications
-
 def calcStartCards(hand, player):
     hcs = hand.join_holecards(player, asList=True)
     if hand.gametype['category'] == 'holdem':

@@ -69,6 +69,7 @@ RSOAndrew
 
 Translations (alphabetically by language)
 ============
+mcnito (Catalan ca_ES
 sjp (Chinese zh_CN)
 kibbitzer (French fr_FR)
 Julien_ (French fr_FR)
