@@ -6,6 +6,7 @@ python /usr/share/doc/python-2.*/examples/Tools/i18n/pygettext.py --output-dir=l
 
 echo "merging template with existing translations"
 #msgmerge --update locale/fpdb-.po locale/fpdb-en_GB.pot
+msgmerge --update locale/fpdb-ca_ES.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-de_DE.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-es_ES.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-fr_FR.po locale/fpdb-en_GB.pot
@@ -20,6 +21,7 @@ msgmerge --update locale/fpdb-zh_CN.po locale/fpdb-en_GB.pot
 
 echo "checking translated files"
 #msgfmt -c --check-accelerators locale/fpdb-.po
+msgfmt -c --check-accelerators locale/fpdb-ca_ES.po
 msgfmt -c --check-accelerators locale/fpdb-de_DE.po
 msgfmt -c --check-accelerators locale/fpdb-es_ES.po
 msgfmt -c --check-accelerators locale/fpdb-fr_FR.po
@@ -37,6 +39,7 @@ grep -n "[\\][\\]" locale/*.po
 
 echo "compiling mo files"
 #python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale//LC_MESSAGES/fpdb.mo locale/fpdb-.po
+python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/ca/LC_MESSAGES/fpdb.mo locale/fpdb-ca_ES.po
 python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/de/LC_MESSAGES/fpdb.mo locale/fpdb-de_DE.po
 python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/es/LC_MESSAGES/fpdb.mo locale/fpdb-es_ES.po
 python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/fr/LC_MESSAGES/fpdb.mo locale/fpdb-fr_FR.po

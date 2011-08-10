@@ -1442,7 +1442,7 @@ closed    likewise, but known only to player
             self.checkPlayerExists(player)
             self.holecards[street][player] = (open, closed)
         except FpdbParseError, e:
-            log.error(_("[ERROR] Tried to add holecards for unknown player: %s") % (player,))
+            log.error(_("Tried to add holecards for unknown player: %s") % (player,))
 
     # TODO: def addComplete(self, player, amount):
     def addComplete(self, street, player, amountTo):

@@ -110,16 +110,16 @@ def failure(message):
 from Tkinter import *
 
 try:
-    try_import("sys")
+    module = __import__("sys")
 except:
     failure("python failure - could not import sys module")
     win_output(failure_list)
     sys.exit(1)
-    
+ 
 try:
-    try_import("Charset")
+    module = __import__("L10n")
 except:
-    failure("fpdb must be installed in an English path")
+    failure("fpdb modules cannot be loaded, check that fpdb is installed in an English path")
     win_output(failure_list)
     sys.exit(1)
 
@@ -179,10 +179,18 @@ if len(failure_list):
 import os
 os.chdir(os.path.join(config.fpdb_program_path, u"pyfpdb"))
 
-if config.os_family in ("XP", "Win7"):
-    os.execvpe('pythonw.exe', list(('pythonw.exe', 'fpdb.pyw', '-r'))+sys.argv[1:], os.environ)
+if config.example_copy:
+    # A new configuration file was created by config(), so
+    # this is the first run of fpdb.
+    # signal fpdb.pyw to show the config created dialog
+    initialRun = "-i"
 else:
-    os.execvpe('python', list(('python', 'fpdb.pyw', '-r'))+sys.argv[1:], os.environ)
+    initialRun = ""
+
+if config.os_family in ("XP", "Win7"):
+    os.execvpe('pythonw.exe', list(('pythonw.exe', 'fpdb.pyw', initialRun, '-r'))+sys.argv[1:], os.environ)
+else:
+    os.execvpe('python', list(('python', 'fpdb.pyw', initialRun, '-r'))+sys.argv[1:], os.environ)
 
 ###################
 # DO NOT INSERT ANY LINES BELOW HERE

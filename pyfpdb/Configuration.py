@@ -28,7 +28,7 @@ Handles fpdb/fpdb-hud configuration files.
 from __future__ import with_statement
 
 import L10n
-_ = L10n.get_translation()
+_ = L10n.get_special_translation()
 
 import os
 import sys
@@ -152,15 +152,15 @@ def get_config(file_name, fallback = True):
             try:
                 shutil.copyfile(example_path, config_path)
                 example_copy = True
-                msg = _("Config file has been created at %s.") % (config_path+"\n")
-                logging.info(msg)
+                msg = _("Config file has been created at %s.") % (config_path)
+                log.info(msg)
             except IOError:
                 try:
                     example_path = file_name + '.example'
                     shutil.copyfile(example_path, config_path)
                     example_copy = True
-                    msg = _("Config file has been created at %s.") % (config_path+"\n")
-                    logging.info(msg)
+                    msg = _("Config file has been created at %s.") % (config_path)
+                    log.info(msg)
                 except IOError:
                     pass
 
@@ -169,14 +169,13 @@ def get_config(file_name, fallback = True):
         try:
             #print ""
             example_path = file_name + ".example"
-            check_dir(CONFIG_PATH)
             if not config_found and fallback:
                 shutil.copyfile(example_path, config_path)
                 example_copy = True
                 msg = _("No %s found in \"%s\" or \"%s\".") % (file_name, FPDB_PROGRAM_PATH, CONFIG_PATH) \
                      + " " + _("Config file has been created at %s.") % (config_path+"\n")
                 print(msg)
-                logging.info(msg)
+                log.info(msg)
         except:
             print(_("Error copying .example config file, cannot fall back. Exiting."), "\n")
             sys.stderr.write(_("Error copying .example config file, cannot fall back. Exiting.")+"\n")
@@ -718,23 +717,6 @@ class RawTourneys:
 
 class Config:
     def __init__(self, file = None, dbname = '', custom_log_dir='', lvl='INFO'):
-#    "file" is a path to an xml file with the fpdb/HUD configuration
-#    we check the existence of "file" and try to recover if it doesn't exist
-
-#        self.default_config_path = self.get_default_config_path()
-        
-        self.example_copy = False
-        if file is not None: # config file path passed in
-            file = os.path.expanduser(file)
-            if not os.path.exists(file):
-                print(_("Configuration file %s not found. Using defaults.") % (file))
-                sys.stderr.write(_("Configuration file %s not found. Using defaults.") % (file))
-                file = None
-
-        self.example_copy,example_file = True,None
-        if file is None: (file,self.example_copy,example_file) = get_config("HUD_config.xml", True)
-
-        self.file = file
         
         self.install_method = INSTALL_METHOD
         self.fpdb_program_path = FPDB_PROGRAM_PATH
@@ -754,7 +736,25 @@ class Config:
         self.log_file = os.path.join(self.dir_log, u'fpdb-log.txt')
         self.dir_database = os.path.join(CONFIG_PATH, u'database')
         log = get_logger(u"logging.conf", "config", log_dir=self.dir_log, lvl = LOGLEVEL[lvl])
-            
+
+#    "file" is a path to an xml file with the fpdb/HUD configuration
+#    we check the existence of "file" and try to recover if it doesn't exist
+
+#        self.default_config_path = self.get_default_config_path()
+        
+        self.example_copy = False
+        if file is not None: # config file path passed in
+            file = os.path.expanduser(file)
+            if not os.path.exists(file):
+                print(_("Configuration file %s not found. Using defaults.") % (file))
+                sys.stderr.write(_("Configuration file %s not found. Using defaults.") % (file))
+                file = None
+
+        self.example_copy,example_file = True,None
+        if file is None: (file,self.example_copy,example_file) = get_config("HUD_config.xml", True)
+
+        self.file = file
+                    
         self.supported_sites = {}
         self.supported_games = {}
         self.supported_databases = {}        # databaseName --> Database instance
@@ -913,7 +913,7 @@ class Config:
                             nodes_added = nodes_added + 1
 
         if nodes_added > 0:
-            print("Added %d missing config sections\n" % nodes_added)
+            print(("Added %d missing config sections" % nodes_added)+"\n")
             self.save()
 
         return nodes_added

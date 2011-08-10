@@ -116,7 +116,7 @@ class GuiBulkImport():
                 if ttime == 0:
                     ttime = 1
                     
-                completionMessage = _('Bulk import done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec')\
+                completionMessage = _('Bulk import done: Stored: %d, Duplicates: %d, Partial: %d, Errors: %d, Time: %s seconds, Stored/second: %.0f')\
                     % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
                 print completionMessage
                 log.info(completionMessage)
@@ -410,8 +410,8 @@ def main(argv=None):
             importer.setPrintTestData(True)
         (stored, dups, partial, errs, ttime) = importer.runImport()
         importer.clearFileList()
-        print _('Bulk import done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec')\
-                     % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
+        print(_('Bulk import done: Stored: %d, Duplicates: %d, Partial: %d, Errors: %d, Time: %s seconds, Stored/second: %.0f')\
+                     % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime))
 
 
 if __name__ == '__main__':
