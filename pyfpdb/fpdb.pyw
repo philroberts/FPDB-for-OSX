@@ -113,7 +113,6 @@ class fpdb:
             self.tabs.append(event_box)
             self.tab_names.append(new_tab_name)
 
-        #self.nb.append_page(new_page, gtk.Label(new_tab_name))
         self.nb.append_page(page, event_box)
         self.nb_tab_names.append(new_tab_name)
         page.show()
@@ -190,7 +189,6 @@ class fpdb:
         iconBox.pack_start(image, True, False, 0)
         button.add(iconBox)
         iconBox.show()
-        return
 
     # Remove a page from the notebook
     def remove_tab(self, button, data):
@@ -300,8 +298,6 @@ class fpdb:
             dia.destroy()
 
     def dia_maintain_dbs(self, widget, data=None):
-        #self.warning_box("Unimplemented: Maintain Databases")
-        #return
         if len(self.tab_names) == 1:
             if self.obtain_global_lock("dia_maintain_dbs"):  # returns true if successful
                 # only main tab has been opened, open dialog
@@ -319,10 +315,8 @@ class fpdb:
                     # save updated config
                     self.config.save()
                     self.load_profile()
-                    for name in self.config.supported_databases:  # db_ip/db_user/db_pass/db_server
-                        log.info('fpdb: name,desc=' + name + ',' + self.config.supported_databases[name].db_desc)
-                else:
-                    log.info(_('guidb response was ') + str(response))
+                    #for name in self.config.supported_databases:  # db_ip/db_user/db_pass/db_server
+                    #    log.debug('fpdb: name,desc=' + name + ',' + self.config.supported_databases[name].db_desc)
 
                 self.release_global_lock()
 
@@ -513,8 +507,6 @@ class fpdb:
     def dia_recreate_tables(self, widget, data=None):
         """Dialogue that asks user to confirm that he wants to delete and recreate the tables"""
         if self.obtain_global_lock("fpdb.dia_recreate_tables"):  # returns true if successful
-
-            #lock_released = False
             dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING,
                     buttons=(gtk.BUTTONS_YES_NO), message_format=_("Confirm deleting and recreating tables"))
             diastring = _("Please confirm that you want to (re-)create the tables.") \
@@ -527,25 +519,15 @@ class fpdb:
             response = dia_confirm.run()
             dia_confirm.destroy()
             if response == gtk.RESPONSE_YES:
-                #if self.db.backend == self.fdb_lock.fdb.MYSQL_INNODB:
-                    # mysql requires locks on all tables or none - easier to release this lock
-                    # than lock all the other tables
-                    # ToDo: lock all other tables so that lock doesn't have to be released
-                #    self.release_global_lock()
-                #    lock_released = True
                 self.db.recreate_tables()
                 # find any guibulkimport/guiautoimport windows and clear player cache:
                 for t in self.threads:
                     if isinstance(t, GuiBulkImport.GuiBulkImport) or isinstance(t, GuiAutoImport.GuiAutoImport):
                         t.importer.database.resetPlayerIDs()
                 self.release_global_lock()
-                #else:
-                    # for other dbs use same connection as holds global lock
-                #    self.fdb_lock.fdb.recreate_tables()
             elif response == gtk.RESPONSE_NO:
                 self.release_global_lock()
                 print _('User cancelled recreating tables')
-            #if not lock_released:
     #end def dia_recreate_tables
 
     def dia_recreate_hudcache(self, widget, data=None):
