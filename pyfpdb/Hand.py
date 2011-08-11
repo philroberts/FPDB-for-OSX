@@ -29,6 +29,7 @@ from decimal_wrapper import Decimal
 import operator
 import time,datetime
 from copy import deepcopy
+from string import upper
 import pprint
 
 import logging
@@ -59,7 +60,6 @@ class Hand(object):
         self.saveActions = self.config.get_import_parameters().get('saveActions')
         self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
         self.cacheSessions = self.config.get_import_parameters().get("cacheSessions")
-        #log = Configuration.get_logger("logging.conf", "db", log_dir=self.config.dir_log)
         self.sitename = sitename
         self.siteId = self.config.get_site_id(sitename)
         self.stats = DerivedStats.DerivedStats(self)
@@ -979,11 +979,11 @@ class HoldemOmahaHand(Hand):
 
         for street in self.holeStreets:
             if player in self.holecards[street].keys():
-                hcs[0] = self.holecards[street][player][1][0]
-                hcs[1] = self.holecards[street][player][1][1]
+                hcs[0] = upper(self.holecards[street][player][1][0])
+                hcs[1] = upper(self.holecards[street][player][1][1])
                 try:
-                    hcs[2] = self.holecards[street][player][1][2]
-                    hcs[3] = self.holecards[street][player][1][3]
+                    hcs[2] = upper(self.holecards[street][player][1][2])
+                    hcs[3] = upper(self.holecards[street][player][1][3])
                 except IndexError:
                     pass
 

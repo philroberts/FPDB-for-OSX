@@ -33,6 +33,7 @@ import traceback
 import threading
 import time
 import string
+import logging
 
 import objc
 from Foundation import *
@@ -58,8 +59,9 @@ else: # This is bad--figure out the values for the various windows flavors
     import WinTables as Tables
 
 # get config and set up logger
+Configuration.set_logfile("HUD-log.txt")
 c = Configuration.Config(file=options.config, dbname=options.dbname)
-log = Configuration.get_logger("logging.conf", "hud", log_dir=c.dir_log, log_file='HUD-log.txt')
+log = logging.getLogger("hud")
 
 class AppDelegate(NSObject):
   def windowWillClose_(self, notification):
