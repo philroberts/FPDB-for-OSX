@@ -32,10 +32,6 @@ _ = L10n.get_translation()
 #    Standard Library modules
 import re
 
-#    pyGTK modules
-import gtk
-import gobject
-
 #    FreePokerTools modules
 import Configuration
 from HandHistoryConverter import getTableTitleRe
@@ -67,35 +63,6 @@ limit_game_names = { #fpdb name      Stars Name   FTP Name
 #    phrases. If it has this word in the title, it is not a table.
 bad_words = ('History for table:', 'HUD:', 'Chat:', 'FPDBHUD')
 
-#    Here are the custom signals we define for allowing the 'client watcher'
-#    thread to communicate with the gui thread. Any time a poker client is
-#    is moved, resized, or closed one of these signals is emitted to the
-#    HUD main window.
-gobject.signal_new("client_moved", gtk.Window,
-                   gobject.SIGNAL_RUN_LAST,
-                   gobject.TYPE_NONE,
-                   (gobject.TYPE_PYOBJECT,))
-
-gobject.signal_new("client_resized", gtk.Window,
-                   gobject.SIGNAL_RUN_LAST,
-                   gobject.TYPE_NONE,
-                   (gobject.TYPE_PYOBJECT,))
-
-gobject.signal_new("client_destroyed", gtk.Window,
-                   gobject.SIGNAL_RUN_LAST,
-                   gobject.TYPE_NONE,
-                   (gobject.TYPE_PYOBJECT,))
-
-gobject.signal_new("game_changed", gtk.Window,
-                   gobject.SIGNAL_RUN_LAST,
-                   gobject.TYPE_NONE,
-                   (gobject.TYPE_PYOBJECT,))
-
-gobject.signal_new("table_changed", gtk.Window,
-                   gobject.SIGNAL_RUN_LAST,
-                   gobject.TYPE_NONE,
-                   (gobject.TYPE_PYOBJECT,))
-
 #    Each TableWindow object must have the following attributes correctly populated:
 #    tw.name = the table name from the title bar, which must to match the table name
 #              from the corresponding hand record in the db.
@@ -112,9 +79,6 @@ gobject.signal_new("table_changed", gtk.Window,
 #            screen location of (0, 0) in the working window.
 #    tournament = Tournament number for a tournament or None for a cash game.
 #    table = Table number for a tournament.
-#    gdkhandle = 
-#    window = 
-#    parent = 
 #    game = 
 #    search_string = 
 
@@ -158,8 +122,6 @@ class Table_Window(object):
         self.height = geo['height']
         self.x      = geo['x']
         self.y      = geo['y']
-        self.oldx   = self.x # attn ray: remove these two lines and update Hud.py::update_table_position()
-        self.oldy   = self.y
 
         self.game = self.get_game()
 
@@ -212,31 +174,8 @@ class Table_Window(object):
         return False
 
 ####################################################################
-#    check_table() is meant to be called by the hud periodically to
-#    determine if the client has been moved or resized. check_table()
-#    also checks and signals if the client has been closed. 
-    def check_table(self, hud):
-        result = self.check_size()
-        if result != False:
-            hud.parent.main_window.emit(result, hud)
-            if result == "client_destroyed":
-                return True
-
-        result = self.check_loc()
-        if result != False:
-            hud.parent.main_window.emit(result, hud)
-            if result == "client_destroyed":
-                return True
-        return True
-
-####################################################################
 #    "check" methods. They use the corresponding get method, update the
-#    table object and return the name of the signal to be emitted or 
-#    False if unchanged. These do not signal for destroyed
-#    clients to prevent a race condition.
-
-#    These might be called by a Window.timeout, so they must not
-#    return False, or the timeout will be cancelled.
+#    table object.
     def check_game(self, hud):
         new_game = self.get_game()
         if new_game is not None and self.game != new_game:
@@ -247,36 +186,22 @@ class Table_Window(object):
 
     def check_size(self):
         new_geo = self.get_geometry()
-        if new_geo is None:   # window destroyed
-            return "client_destroyed"
-
-        elif  self.width  != new_geo['width'] or self.height != new_geo['height']:    # window resized
+        if  self.width  != new_geo['width'] or self.height != new_geo['height']:    # window resized
             self.oldwidth = self.width
             self.width  = new_geo['width']
             self.oldheight = self.height
             self.height = new_geo['height']
-            return "client_resized"
-        return False  # no change
 
     def check_loc(self):
         new_geo = self.get_geometry()        
-        if new_geo is None:   # window destroyed
-            return "client_destroyed"
-
         if self.x != new_geo['x'] or self.y != new_geo['y']: # window moved
-#            print self.x, self.y, new_geo['x'], new_geo['y']
             self.x      = new_geo['x']
             self.y      = new_geo['y']
-            return "client_moved"
-        return False  # no change
 
     def check_table_no(self, hud):
         result = self.get_table_no()
         if result != False and result != self.table:
             self.table = result
-            if hud is not None:
-                hud.parent.main_window.emit("table_changed", hud)
-        return True
 
     def check_bad_words(self, title):
         for word in bad_words:

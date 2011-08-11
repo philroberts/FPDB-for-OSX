@@ -49,7 +49,6 @@ import Configuration
 import Stats
 import Mucked
 import Database
-#import HUD_main
 
 
 def importName(module_name, name):
@@ -64,9 +63,9 @@ def importName(module_name, name):
 
 NSToolTipManager.sharedToolTipManager().setInitialToolTipDelay_(0.1)
 
-class mainwindowtextfield(NSTextField):
+class MainWindowTextField(NSTextField):
     def initWithFrame_HUD_(self, frame, hud):
-        self = super(mainwindowtextfield, self).initWithFrame_(frame)
+        self = super(MainWindowTextField, self).initWithFrame_(frame)
         if self is None: return None
 
         self.hud = hud
@@ -76,7 +75,6 @@ class mainwindowtextfield(NSTextField):
         menu = NSMenu.alloc().initWithTitle_("HUD menu")
         menu.addItemWithTitle_action_keyEquivalent_(_('Kill This HUD'), objc.selector(self.killHud_, signature = "v@:@"), "")
         menu.addItemWithTitle_action_keyEquivalent_(_('Save HUD Layout'), objc.selector(self.saveLayout_, signature = "v@:@"), "")
-        menu.addItemWithTitle_action_keyEquivalent_(_('Reposition StatWindows'), objc.selector(self.repositionStatWindows_, signature = "v@:@"), "")
 
         # Player stats
         aggItem = NSMenuItem.alloc().init()
@@ -203,8 +201,6 @@ class mainwindowtextfield(NSTextField):
         self.hud.parent.kill_hud(self.hud.table_name)
     def saveLayout_(self, sender):
         self.hud.save_layout()
-    def repositionStatWindows_(self, sender):
-        self.hud.reposition_windows()
 
     # Player stats menu actions
     def aggregation_(self, sender):
@@ -255,8 +251,6 @@ def parseColor(colorstring):
 
 class Hud:
     def __init__(self, parent, table, max, poker_game, config, db_connection):
-#    __init__ is (now) intended to be called from the stdin thread, so it
-#    cannot touch the gui
         if parent is None:  # running from cli ..
             self.parent = self
         else:
@@ -271,7 +265,6 @@ class Hud:
         self.site          = table.site
         self.mw_created    = False
         self.hud_params    = parent.hud_params
-        self.repositioningwindows = False # used to keep reposition_windows from re-entering
 
         self.stat_windows  = {}
         self.popup_windows = {}
@@ -289,8 +282,6 @@ class Hud:
         self.font = NSFont.fontWithName_size_(font, font_size)
         self.fontpixels = NSString.stringWithString_(self.hud_ui['label']).sizeWithAttributes_(NSDictionary.dictionaryWithObject_forKey_(self.font, NSFontAttributeName))
         self.fontpixels.width += 6 # Account for the padding needed for NSTextField
-
-        # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
 
         game_params = config.get_game_parameters(self.poker_game)
         # if there are AUX windows configured, set them up (Ray knows how this works, if anyone needs info)
@@ -310,9 +301,8 @@ class Hud:
         rect = NSMakeRect(self.table.x, adjustedy, self.fontpixels.width, self.fontpixels.height)
         win = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(rect, NSBorderlessWindowMask, NSBackingStoreBuffered, False)
         win.setTitle_("%s FPDBHUD" % (self.table.name))
-        #win.setOpaque_(False)
             
-        label = mainwindowtextfield.alloc().initWithFrame_HUD_(rect, self)
+        label = MainWindowTextField.alloc().initWithFrame_HUD_(rect, self)
         label.owner = win
         label.setStringValue_(self.hud_ui['label'])
         label.setEditable_(False)
@@ -323,42 +313,14 @@ class Hud:
         label.setBackgroundColor_(self.backgroundcolor)
         win.setContentView_(label)
         win.setAlphaValue_(self.colors["hudopacity"])
-        #win = gtk.Window()
-        #win.set_skip_taskbar_hint(True)  # invisible to taskbar
-        #win.set_gravity(gtk.gdk.GRAVITY_STATIC)
-        ## give it a title that we can easily filter out in the window list when Table search code is looking
-        #win.set_title("%s FPDBHUD" % (self.table.name)) 
-        #win.set_decorated(False)    # kill titlebars
-        #win.set_opacity(self.colors["hudopacity"])  
-        #win.set_focus(None)
-        #win.set_focus_on_map(False)
-        #win.set_accept_focus(False)
-        #
-        #eventbox = gtk.EventBox()
-        #label = gtk.Label(self.hud_ui['label'])
-        #
-        #win.add(eventbox)
-        #eventbox.add(label)
-        #
-        ## set it to the desired color of the HUD for this site
-        #label.modify_bg(gtk.STATE_NORMAL, self.backgroundcolor)
-        #label.modify_fg(gtk.STATE_NORMAL, self.foregroundcolor)
-        #
-        #eventbox.modify_bg(gtk.STATE_NORMAL, self.backgroundcolor)
-        #eventbox.modify_fg(gtk.STATE_NORMAL, self.foregroundcolor)
-
         self.main_window = win
 
         self.mw_created = True
         self.label = label
-#        menu.show_all()
-#        self.main_window.show_all()
-        self.main_window.display()
         self.topify_window(self.main_window)
 
     def change_max_seats(self, seats):
         if self.max != seats:
-            #print 'change_max_seats', widget.ms
             self.max = seats
             try:
                 self.kill()
@@ -407,61 +369,20 @@ class Hud:
         self.hud_params[param] = style
 
     def update_table_position(self):
-        # get table's X/Y position on the desktop, and relocate all of our child windows to accomodate
-        # In Windows, we can verify the existence of a Window, with win32gui.IsWindow().  In Linux, there doesn't seem to be a
-        # way to verify the existence of a Window, without trying to access it, which if it doesn't exist anymore, results in a
-        # big giant X trap and crash.
-        # People tell me this is a bad idea, because theoretically, IsWindow() could return true now, but not be true when we actually
-        # use it, but accessing a dead window doesn't result in a complete windowing system shutdown in Windows, whereas it does
-        # in X. - Eric
-        if os.name == 'nt':
-            if not win32gui.IsWindow(self.table.number):
-                self.parent.kill_hud(self, self.table.name)
-                self.parent.kill_hud(self, self.table.name.split(" ")[0])
-                #table.name is only a valid handle for ring games ! we are not killing tourney tables here.
-                return False
-        # anyone know how to do this in unix, or better yet, trap the X11 error that is triggered when executing the get_origin() for a closed window?
-        if self.table.gdkhandle is not None:
-            (oldx, oldy) = self.table.gdkhandle.get_origin() # In Windows, this call returns (0,0) if it's an invalid window.  In X, the X server is immediately killed.
-            #(x, y, width, height) = self.table.get_geometry()
-            #print "self.table.get_geometry=",x,y,width,height
-            if self.table.oldx != oldx or self.table.oldy != oldy: # If the current position does not equal the stored position, save the new position, and then move all the sub windows.
-                self.table.oldx = oldx
-                self.table.oldy = oldy
-                self.main_window.move(oldx + self.site_params['xshift'], oldy + self.site_params['yshift'])
-                adj = self.adj_seats(self.hand, self.config)
-                loc = self.config.get_locations(self.table.site, self.max)
-                # TODO: is stat_windows getting converted somewhere from a list to a dict, for no good reason?
-                for i, w in enumerate(self.stat_windows.itervalues()):
-                    (oldx, oldy) = loc[adj[i+1]]
-                    w.relocate(oldx, oldy)
-
-                # While we're at it, fix the positions of mucked cards too
-                for aux in self.aux_windows:
-                    aux.update_card_positions()
-                
-                self.reposition_windows()
-                # call reposition_windows, which apparently moves even hidden windows, where this function does not, even though they do the same thing, afaict
-
-        return True
-
-    def up_update_table_position(self):
 #    callback for table moved
+#    OSX uses different coordinate systems in different APIs.  Convert CGWindow coords into NSWindow coords.
         adjustedy = NSScreen.mainScreen().frame().size.height - self.table.y - self.fontpixels.height - titlebarheight
+#    move the main window - use the "old" position as it's already updated by the time we get here.
         frame = self.main_window.frame()
         frame.origin.x = self.table.x
         frame.origin.y = adjustedy
         self.main_window.setFrame_display_(frame, True)
         self.topify_window(self.main_window)
-#    move the main window - use the "old" position as it's already updated by the time we get here.
-#        self.main_window.move(self.table.x + self.site_params['xshift'], self.table.y + self.site_params['yshift'])
-#        log.debug('mainwindow moved to %d %d' % (self.table.x + self.site_params['xshift'], self.table.y + self.site_params['yshift']))
 #    move the stat windows
         adj = self.adj_seats(self.hand, self.config)
         loc = self.config.get_locations(self.table.site, self.max)
         for i, w in enumerate(self.stat_windows.itervalues()):
             (x, y) = loc[adj[i+1]]
-            log.debug('moving stat window %d to %d, %d'%(i, x, y))
             w.relocate(x, y)
             self.topify_window(w.window)
 #    and move any auxs
@@ -474,22 +395,13 @@ class Hud:
         for w in self.stat_windows.values():
             self.topify_window(w.window)
     
-    def on_button_press(self, widget, event):
-        if event.button == 1: # if primary button, start movement
-            self.main_window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
-            return True
-        if event.button == 3: # if secondary button, popup our main popup window
-            widget.popup(None, None, None, event.button, event.time)
-            return True
-        return False
-
     def kill(self, *args):
 #    kill all stat_windows, popups and aux_windows in this HUD
 #    heap dead, burnt bodies, blood 'n guts, veins between my teeth
         for s in self.stat_windows.itervalues():
             s.kill_popups()
             try:
-                # throws "invalid window handle" in WinXP (sometimes?)
+                # Defer release til after this loop when we empty the dict.
                 s.window.setReleasedWhenClosed_(False)
                 s.window.close()
             except: # TODO: what exception?
@@ -501,33 +413,17 @@ class Hud:
         self.aux_windows = []
 
     def resize_windows(self, *args):
+        adjustedy = NSScreen.mainScreen().frame().size.height - self.table.y - titlebarheight
         for w in self.stat_windows.itervalues():
             if type(w) == int:
                 continue
-            rel_x = (w.x - self.table.x) * self.table.width  / self.table.oldwidth
-            rel_y = (w.y - self.table.y) * self.table.height / self.table.oldheight
-            w.x = self.table.x + rel_x
-            w.y = self.table.y + rel_y
-            w.window.move(w.x, w.y) 
-
-    def reposition_windows(self, *args):
-        if self.repositioningwindows is True:
-            return True
-        else:
-            self.repositioningwindows = True
-            
-        self.update_table_position()
-        for w in self.stat_windows.itervalues():
-            if type(w) == int:
-#                print "in reposition, w =", w
-                continue
-#            print "in reposition, w =", w, w.x, w.y
             frame = w.window.frame()
-            frame.origin.x = w.x
-            frame.origin.y = w.y
-            w.window.setFrame_display_(frame, True)
-        self.repositioningwindows = False
-        return True
+            rel_x = (frame.origin.x - self.table.x) * self.table.width  / float(self.table.oldwidth)
+            rel_y = (frame.origin.y - adjustedy) * self.table.height / float(self.table.oldheight)
+            frame.origin.x = int(rel_x + self.table.x)
+            frame.origin.y = int(rel_y + adjustedy)
+            w.window.setFrame_display_(frame, False)
+        [aw.update_card_positions() for aw in self.aux_windows]
 
     def save_layout(self, *args):
         new_layout = [(0, 0)] * self.max
@@ -614,7 +510,7 @@ class Hud:
 
         self.topify_window(self.main_window)
         for i in xrange(1, self.max + 1):
-            self.topify_window(self.stat_windows[i].window, self.main_window)
+            self.topify_window(self.stat_windows[i].window)
         self.stats = []
         game = config.supported_games[self.poker_game]
 
@@ -625,18 +521,10 @@ class Hud:
             self.stats[config.supported_games[self.poker_game].stats[stat].row] \
                       [config.supported_games[self.poker_game].stats[stat].col] = \
                       config.supported_games[self.poker_game].stats[stat].stat_name
-        print self.stats
-
-#        if os.name == "nt": # we call update_table_position() regularly in Windows to see if we're moving around.  See comments on that function for why this isn't done in X.
-#            gobject.timeout_add(500, self.update_table_position)
 
     def update(self, hand, config):
         self.hand = hand   # this is the last hand, so it is available later
-        if os.name == 'nt':
-            if self.update_table_position() == False: # we got killed by finding our table was gone
-                return
 
-#        self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
         for s in self.stat_dict:
             try:
                 statd = self.stat_dict[s]
@@ -645,7 +533,6 @@ class Hud:
                 continue
             try:
                 self.stat_windows[statd['seat']].player_id = statd['player_id']
-                #self.stat_windows[self.stat_dict[s]['seat']].player_id = self.stat_dict[s]['player_id']
             except KeyError: # omg, we have more seats than stat windows .. damn poker sites with incorrect max seating info .. let's force 10 here
                 self.max = 10
                 self.create(hand, config, self.stat_dict, self.cards)
@@ -671,34 +558,19 @@ class Hud:
                         if number[0] > (float(this_stat.stat_hith)/100):
                             window.labels[r][c].setTextColor_(parseColor(this_stat.stat_hicolor))
 
-                    #window.grid.cellAtRow_column_(r, c).setStringValue_(statstring)
                     window.labels[r][c].setStringValue_(statstring)
                     if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
                         unhidewindow = True
                     tip = "%s\n%s\n%s, %s" % (statd['screen_name'], number[5], number[3], number[4])
                     Stats.do_tip(window.labels[r][c], tip)
-                    #Stats.do_tip(window.e_box[r][c], tip)
-            if unhidewindow: #and not window.window.visible: # there is no "visible" attribute in gtk.Window, although the docs seem to indicate there should be
+            if unhidewindow:
                 window.window.display()
             unhidewindow = False
 
-    def topify_window(self, window, parentwindow=None):
-        #window.set_focus_on_map(False)
-        #window.set_accept_focus(False)
-#        print "topify_window", window, parentwindow
+    def topify_window(self, window):
         window.orderWindow_relativeTo_(NSWindowAbove, self.table.number)
-        #if not self.table.gdkhandle:
-        #    self.table.gdkhandle = gtk.gdk.window_foreign_new(int(self.table.number)) # gtk handle to poker window
-        #    log.debug('table number %d' % int(self.table.number))
-        #    log.debug(self.table.gdkhandle)
-        #if parentwindow is not None:
-        #    window.window.set_transient_for(parentwindow.window)
-        #else:
-        #    pass
-        #    #window.window.set_transient_for(self.table.gdkhandle)
-        #window.set_destroy_with_parent(True)
 
-class statwindowtextfield(NSTextField):
+class StatWindowTextField(NSTextField):
     def mouseDragged_(self, event):
         frame = self.owner.window.frame()
         frame.origin.x += event.deltaX()
@@ -709,43 +581,7 @@ class statwindowtextfield(NSTextField):
         self.owner.popups.append(newpopup)
 
 class Stat_Window:
-
-    def button_press_cb(self, widget, event, *args):
-#    This handles all callbacks from button presses on the event boxes in
-#    the stat windows.  There is a bit of an ugly kludge to separate single-
-#    and double-clicks.
-        self.window.show() #_all()
-
-        if event.button == 3:   # right button event
-            newpopup = Popup_window(self.window, self)
-            #print "added popup", newpopup
-            # TODO: how should we go about making sure it doesn't open a dozen popups if you click?
-            self.popups.append(newpopup)
-            return True
-
-        if event.button == 2:   # middle button event
-            self.window.hide()
-            return True
-
-        if event.button == 1:   # left button event
-            # close on double click for a stat window
-            # for those that don't have a mouse with middle button
-            if event.type == gtk.gdk._2BUTTON_PRESS:
-                self.window.hide()
-                return True
-            # TODO: make position saving save sizes as well?
-            if event.state & gtk.gdk.SHIFT_MASK:
-                self.window.begin_resize_drag(gtk.gdk.WINDOW_EDGE_SOUTH_EAST, event.button, int(event.x_root), int(event.y_root), event.time)
-            else:
-                self.window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
-            return True
-        return False
-
-    def noop(self, arga=None, argb=None): # i'm going to try to connect the focus-in and focus-out events here, to see if that fixes any of the focus problems.
-        return True
-
     def kill_popup(self, popup):
-        #print "remove popup", popup
         self.popups.remove(popup)
         del popup.window
 
@@ -767,7 +603,7 @@ class Stat_Window:
         self.seat = seat            # seat number of his player
         self.adj = adj              # the adjusted seat number for this player
         self.x = x + table.x        # table.x and y are the location of the table
-        self.y = NSScreen.mainScreen().frame().size.height - table.y - y - titlebarheight - self.parent.font.pointSize() * game.rows# x and y are the location relative to table.x & y
+        self.y = NSScreen.mainScreen().frame().size.height - table.y - y - titlebarheight - self.parent.fontpixels.height * game.rows
         self.player_id = player_id  # looks like this isn't used ;)
         self.sb_click = 0           # used to figure out button clicks
         self.popups = []            # list of open popups for this stat window
@@ -778,12 +614,6 @@ class Stat_Window:
         rect = NSMakeRect(self.x, self.y, colWidth * game.cols, rowHeight * game.rows)
         self.window = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(rect, NSBorderlessWindowMask, NSBackingStoreBuffered, False)
         self.window.setAllowsToolTipsWhenApplicationIsInactive_(True)
-#        self.grid = NSMatrix.alloc().initWithFrame_mode_cellClass_numberOfRows_numberOfColumns_(rect, NSListModeMatrix, NSTextFieldCell.class__(), 2, 3)
-#        self.grid.setAutosizesCells_(True)
-#        self.grid.setDrawsCellBackground_(True)
-#        self.grid.setDrawsBackground_(True)
-#        self.grid.setBackgroundColor_(parent.backgroundcolor)
-#        self.grid.setCellBackgroundColor_(parent.backgroundcolor)
         self.window.setTitle_("%s" % seat)
         self.window.setAlphaValue_(parent.colors['hudopacity'])
         self.labels = []
@@ -792,7 +622,7 @@ class Stat_Window:
             self.labels.append([])
             for c in xrange(game.cols):
                 rect = NSMakeRect(c * colWidth, (game.rows - r - 1) * rowHeight, colWidth, rowHeight)
-                label = statwindowtextfield.alloc().initWithFrame_(rect)
+                label = StatWindowTextField.alloc().initWithFrame_(rect)
                 label.owner = self
                 label.setStringValue_('xxx')
                 label.setTextColor_(parent.foregroundcolor)
@@ -808,86 +638,6 @@ class Stat_Window:
                         break
                 self.window.contentView().addSubview_(label)
                 self.labels[r].append(label)
-#                cell = self.grid.cellAtRow_column_(r, c)
-#                cell.setStringValue_('xxx')
-#                cell.setFont_(font)
-#                cell.setBackgroundColor_(parent.backgroundcolor)
-#                cell.setTextColor_(parent.foregroundcolor)
-#        self.window.setContentView_(self.grid)
-        self.window.display()
-#        self.window = gtk.Window()
-#        self.window.set_skip_taskbar_hint(True)
-#        self.window.set_gravity(gtk.gdk.GRAVITY_STATIC)
-#
-#        self.window.set_title("%s" % seat)
-#        self.window.set_decorated(False)
-#        self.window.set_focus(None) # set gtk default focus widget for this window to None
-#        self.window.set_focus_on_map(False)
-#        self.window.set_accept_focus(False)
-#
-##        self.window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_MENU)
-#
-#        grid = gtk.Table(rows = game.rows, columns = game.cols, homogeneous = False)
-#        self.grid = grid
-#        self.window.add(grid)
-#        self.window.modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
-#
-#        self.e_box = []
-#        self.frame = []
-#        self.label = []
-#        usegtkframes = self.useframes
-#        e_box = self.e_box
-#        label = self.label
-#        for r in xrange(game.rows):
-#            if usegtkframes:
-#                self.frame.append([])
-#            e_box.append([])
-#            label.append([])
-#            for c in xrange(game.cols):
-#                if usegtkframes:
-#                    self.frame[r].append( gtk.Frame() )
-#                e_box[r].append( gtk.EventBox() )
-#
-#                e_box[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
-#                e_box[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
-#
-#                Stats.do_tip(e_box[r][c], 'stuff')
-#                if usegtkframes:
-#                    grid.attach(self.frame[r][c], c, c+1, r, r+1, xpadding = game.xpad, ypadding = game.ypad)
-#                    self.frame[r][c].add(e_box[r][c])
-#                else:
-#                    grid.attach(e_box[r][c], c, c+1, r, r+1, xpadding = game.xpad, ypadding = game.ypad)
-#                label[r].append( gtk.Label('xxx') )
-#
-#                if usegtkframes:
-#                    self.frame[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
-#                label[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
-#                label[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
-#
-#                e_box[r][c].add(self.label[r][c])
-#                e_box[r][c].connect("button_press_event", self.button_press_cb)
-#                e_box[r][c].connect("focus-in-event", self.noop)
-#                e_box[r][c].connect("focus", self.noop)
-#                e_box[r][c].connect("focus-out-event", self.noop)
-#                label[r][c].modify_font(font)
-#
-#        self.window.set_opacity(parent.colors['hudopacity'])
-#        self.window.connect("focus", self.noop)
-#        self.window.connect("focus-in-event", self.noop)
-#        self.window.connect("focus-out-event", self.noop)
-#        self.window.connect("button_press_event", self.button_press_cb)
-#        self.window.set_focus_on_map(False)
-#        self.window.set_accept_focus(False)
-#
-#
-#        self.window.move(self.x, self.y)
-#        self.window.hide()
-#        self.window.realize() # window must be realized before it has a gdkwindow so we can attach it to the table window..
-#        self.topify_window(self.window)
-
-
-def destroy(*args):             # call back for terminating the main eventloop
-    gtk.main_quit()
 
 class PopupTextField(NSTextField):
     def mouseDragged_(self, event):

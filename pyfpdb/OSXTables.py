@@ -27,9 +27,6 @@ _ = L10n.get_translation()
 import re
 import os
 
-#    pyGTK modules
-import gtk
-
 #    Other Library modules
 from Quartz.CoreGraphics import *
 
@@ -80,12 +77,3 @@ class Table(Table_Window):
             if d[kCGWindowNumber] == self.number:
                 return d[kCGWindowName]
         return None
-
-    def topify(self, window):
-#    The idea here is to call set_transient_for on the HUD window, with the table window
-#    as the argument. This should keep the HUD window on top of the table window, as if 
-#    the hud window was a dialog belonging to the table.
-
-#    This is the gdkhandle for the HUD window
-        gdkwindow = gtk.gdk.window_foreign_new(window.window.xid)
-        gdkwindow.set_transient_for(window.window)

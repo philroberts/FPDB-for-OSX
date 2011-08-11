@@ -192,13 +192,10 @@ class HUD_main(object):
             self.stdinHandle.readInBackgroundAndNotify()
 
             # a main window
-            
             if options.xloc is None:
                 options.xloc = 0
             if options.yloc is None:
                 options.yloc = 0
-
-
             
             rect = NSMakeRect(options.xloc + 100, options.yloc + 400, 300, 20)
             self.main_window = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(rect, NSTitledWindowMask | NSClosableWindowMask | NSResizableWindowMask | NSMiniaturizableWindowMask, NSBackingStoreBuffered, False)
@@ -216,8 +213,8 @@ class HUD_main(object):
             self.main_window.display()
 
             objc.loadBundle("axlib", globals(), "axlib/build/Release/axlib.framework")
-            self.tm = tablemonitor.alloc().init()
-            class mycallback(tmcallback):
+            self.tm = TableMonitor.alloc().init()
+            class MyCallback(TMCallback):
                 def callback_event_(self, tablename, eventtype):
                     if eventtype == "app_activated":
                         for hud in self.owner.hud_dict.values():
@@ -229,8 +226,9 @@ class HUD_main(object):
                             
                             if eventtype == "window_moved":
                                 hud.table.check_loc()
-                                hud.up_update_table_position()
+                                hud.update_table_position()
                             elif eventtype == "window_resized":
+                                hud.table.check_size()
                                 hud.resize_windows()
                             elif eventtype == "focus_changed":
                                 hud.topify_all()
@@ -239,7 +237,7 @@ class HUD_main(object):
                             elif eventtype == "window_destroyed":
                                 self.owner.kill_hud(hud.table_name)
                             break
-            self.cb = mycallback.alloc().init()
+            self.cb = MyCallback.alloc().init()
             self.cb.owner = self
             self.tm.registerCallback_(self.cb)
             #self.tm.detectFakePS()
@@ -248,23 +246,6 @@ class HUD_main(object):
         except:
             log.exception(_("Error initializing main_window"))
             app.terminate_(None)
-
-    def client_moved(self, widget, hud):
-        hud.up_update_table_position()
-
-    def client_resized(self, widget, hud):
-#TODO   Don't forget to get rid of this.
-        if not is_windows:
-            gigobject.idle_add(idle_resize, hud)
-
-    def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
-        self.kill_hud(hud.table.key)
-
-    def game_changed(self, widget, hud):
-        print "hud_main: " + _("Game changed.")
-
-    def table_changed(self, widget, hud):
-        self.kill_hud(hud.table.key)
 
     def destroy(self, *args):             # call back for terminating the main eventloop
         log.info(_("Quitting normally"))
@@ -283,11 +264,6 @@ class HUD_main(object):
             del(self.hud_dict[hud.table_name])
         except:
             log.exception(_("Error killing HUD for table: %s.") % table.title)
-
-    def check_tables(self):
-        for hud in self.hud_dict.keys():
-            self.hud_dict[hud].table.check_table(self.hud_dict[hud])
-        return True
 
     def create_HUD(self, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards):
         """type is "ring" or "tour" used to set hud_params"""
@@ -334,7 +310,6 @@ class HUD_main(object):
                 m.create()
                 m.update_gui(new_hand_id)
             self.hud_dict[temp_key].update(new_hand_id, self.config)
-            self.hud_dict[temp_key].reposition_windows()
         except:
             log.exception(_("Error creating HUD for hand %s.") % new_hand_id)
 
@@ -351,15 +326,6 @@ class HUD_main(object):
         if comm_cards != {}: # stud!
             cards['common'] = comm_cards['common']
         return cards
-
-def idle_resize(hud):
-    try:
-        [aw.update_card_positions() for aw in hud.aux_windows]
-        hud.resize_windows()
-    except:
-        log.exception(_("Error resizing HUD for table: %s.") % hud.table.title)
-    finally:
-        pass
 
 if __name__== "__main__":
     global app
