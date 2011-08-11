@@ -570,7 +570,7 @@ or None if we fail to get the info """
         if type=="tour":
             return "%s.+Table %s" % (tournament, table_number)
         else:
-            return table_name
+            return table_name + " [^IVX]"
 
     @staticmethod
     def getTableNoRe(tournament):

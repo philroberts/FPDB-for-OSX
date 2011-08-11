@@ -224,23 +224,26 @@ class HUD_main(object):
                         for hud in self.owner.hud_dict.values():
                             hud.topify_all()
                         return
+                    longestmatch = ""
                     for k in self.owner.hud_dict.keys():
-                        if tablename.startswith(k):
-                            hud = self.owner.hud_dict[k]
-                            
-                            if eventtype == "window_moved":
-                                hud.table.check_loc()
-                                hud.update_table_position()
-                            elif eventtype == "window_resized":
-                                hud.table.check_size()
-                                hud.resize_windows()
-                            elif eventtype == "focus_changed":
-                                hud.topify_all()
-                            elif eventtype == "clicked":
-                                hud.topify_all()
-                            elif eventtype == "window_destroyed":
-                                self.owner.kill_hud(hud.table_name)
-                            break
+                        if tablename.startswith(k) and len(k) > len(longestmatch):
+                            longestmatch = k
+                    if not longestmatch == "":
+                        hud = self.owner.hud_dict[longestmatch]
+
+                        if eventtype == "window_moved":
+                            hud.table.check_loc()
+                            hud.update_table_position()
+                        elif eventtype == "window_resized":
+                            hud.table.check_size()
+                            hud.resize_windows()
+                        elif eventtype == "focus_changed":
+                            hud.topify_all()
+                        elif eventtype == "clicked":
+                            hud.topify_all()
+                        elif eventtype == "window_destroyed":
+                            self.owner.kill_hud(hud.table_name)
+
             self.cb = MyCallback.alloc().init()
             self.cb.owner = self
             self.tm.registerCallback_(self.cb)
