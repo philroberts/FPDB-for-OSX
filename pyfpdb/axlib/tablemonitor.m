@@ -63,7 +63,7 @@ CGEventRef myEventTapCallBack (
 					return;
 				}
 				CFMakeCollectable(title);
-				if ([title isEqualToString:@"Meeus"]) {
+				if ([title hasPrefix:@"Meeus"]) {
 					found = TRUE;
 					break;
 				}
