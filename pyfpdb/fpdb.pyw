@@ -36,8 +36,6 @@ cl_options = string.join(sys.argv[1:])
 (options, argv) = Options.fpdb_options()
 
 import logging
-import logging.config
-log = logging.getLogger("fpdb")
 
 import pygtk
 pygtk.require('2.0')
@@ -80,6 +78,9 @@ import Database
 import Configuration
 import Exceptions
 import Stats
+
+Configuration.set_logfile("fpdb-log.txt")
+log = logging.getLogger("fpdb")
 
 try:
     import subprocess
@@ -906,7 +907,7 @@ class fpdb:
                               diatitle=_("CONFIG FILE ERROR"))
             sys.exit()
 
-        log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
+        log = logging.getLogger("fpdb")
         print (_("Logfile is %s") % os.path.join(self.config.dir_log, self.config.log_file))
         if self.config.example_copy or options.initialRun:
             self.info_box(_("Config file"),
