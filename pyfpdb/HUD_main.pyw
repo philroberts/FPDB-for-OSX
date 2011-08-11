@@ -71,8 +71,10 @@ class UpdateOnGUIThread(NSObject):
     def stdinNotification(self, notification):
         notification.object().readInBackgroundAndNotify()
         data = notification.userInfo()[NSFileHandleNotificationDataItem]
-        new_hand_id = NSString.alloc().initWithBytes_length_encoding_(data.bytes(), data.length(), NSUTF8StringEncoding)
-        new_hand_id = string.rstrip(new_hand_id)
+        new_hand_ids = NSString.alloc().initWithBytes_length_encoding_(data.bytes(), data.length(), NSUTF8StringEncoding)
+        for hand_id in string.rstrip(new_hand_ids).split("\n"):
+            self.process(hand_id)
+    def process(self, new_hand_id):
         log.debug(_("Received hand no %s") % new_hand_id)
         if new_hand_id == "":           # blank line means quit
             self.owner.destroy()
