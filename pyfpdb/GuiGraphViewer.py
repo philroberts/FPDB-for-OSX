@@ -122,7 +122,7 @@ class GuiGraphViewer (threading.Thread):
 
         if self.fig != None:
             self.fig.clear()
-        self.fig = Figure(figsize=(5,4), dpi=100)
+        self.fig = Figure(figsize=(5,4), dpi=108.78)
         if self.canvas is not None:
             self.canvas.destroy()
 
@@ -219,7 +219,7 @@ class GuiGraphViewer (threading.Thread):
             self.ax.set_title((_("Profit graph for ring games")+names))
 
             #Draw plot
-            self.ax.plot(green, color='green', label=_('Hands') + ': %d\n' % len(green) + _('Profit') + ': (%s): %.2f' % (graphops['dspin'], green[-1]))
+            self.ax.plot(green, color='green', label=_('Profit') + ': (%s): %.2f' % (graphops['dspin'], green[-1]))
             if graphops['showdown'] == 'ON':
                 self.ax.plot(blue, color='blue', label=_('Showdown') + ' (%s): %.2f' %(graphops['dspin'], blue[-1]))
             if graphops['nonshowdown'] == 'ON':
@@ -230,8 +230,13 @@ class GuiGraphViewer (threading.Thread):
             if sys.version[0:3] == '2.5':
                 self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
             else:
-                self.ax.legend(loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
-
+                leg = self.ax.legend(loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'), title=_('Hands') + ': %d' % len(green))
+                lines = leg.get_lines()
+                for line in lines:
+                    print line.get_ydata()
+                    adjustedydata = [y + 4 for y in line.get_ydata()]
+                    print adjustedydata
+                    line.set_ydata(adjustedydata)
             self.graphBox.add(self.canvas)
             self.canvas.show()
             self.canvas.draw()
