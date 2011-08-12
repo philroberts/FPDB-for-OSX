@@ -233,9 +233,7 @@ class GuiGraphViewer (threading.Thread):
                 leg = self.ax.legend(loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'), title=_('Hands') + ': %d' % len(green))
                 lines = leg.get_lines()
                 for line in lines:
-                    print line.get_ydata()
                     adjustedydata = [y + 4 for y in line.get_ydata()]
-                    print adjustedydata
                     line.set_ydata(adjustedydata)
             self.graphBox.add(self.canvas)
             self.canvas.show()
