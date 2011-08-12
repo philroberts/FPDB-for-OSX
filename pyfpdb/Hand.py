@@ -29,6 +29,7 @@ from decimal_wrapper import Decimal
 import operator
 import time,datetime
 from copy import deepcopy
+from string import upper
 import pprint
 
 import logging
@@ -979,11 +980,11 @@ class HoldemOmahaHand(Hand):
 
         for street in self.holeStreets:
             if player in self.holecards[street].keys():
-                hcs[0] = self.holecards[street][player][1][0]
-                hcs[1] = self.holecards[street][player][1][1]
+                hcs[0] = upper(self.holecards[street][player][1][0])
+                hcs[1] = upper(self.holecards[street][player][1][1])
                 try:
-                    hcs[2] = self.holecards[street][player][1][2]
-                    hcs[3] = self.holecards[street][player][1][3]
+                    hcs[2] = upper(self.holecards[street][player][1][2])
+                    hcs[3] = upper(self.holecards[street][player][1][3])
                 except IndexError:
                     pass
 

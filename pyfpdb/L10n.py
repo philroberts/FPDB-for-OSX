@@ -28,6 +28,7 @@ def get_special_translation():
 def set_translation(to_lang):
 
     import gettext
+
     try:
         trans = gettext.translation("fpdb", localedir="locale", languages=[to_lang])
         trans.install()
@@ -44,11 +45,17 @@ def get_translation():
     # because importing Configuration in turn calls L10n
     # which goes wrong because the attribute translation has
     # yet been set !!!!
-    # FIXME: This function slows down fpdb-startup, because there
-    # are multiple invocations of L10n by each imported
-    # module in fpdb.pyw, therefore config() gets called
-    # multiple times
-    
+
+    # check if _ has already been bound if it has, return it now
+    # and do not bind again.
+    # Otherwise startup will be very slow because L10n is called
+    # multiple times during startup
+
+    try:
+        return _
+    except:
+        pass
+
     import Configuration
     conf=Configuration.Config()
     
@@ -64,3 +71,31 @@ def get_translation():
             return set_translation(lang)
     else:
         return set_translation(conf.general['ui_language'])
+
+def get_installed_translations():
+    #
+    # returns a list of translated installed languages, (de, es)...
+    # and a list of lang/country combos for that language (de_DE, de_AT)...
+    #
+    import locale
+    import gettext
+    la_list = []
+    la_co_list = []
+    
+    for (ident,la_co) in locale.windows_locale.iteritems():
+        if gettext.find("fpdb", localedir="locale", languages=[la_co]):
+            if "_" in la_co:
+                la, co = la_co.split("_",1)
+                la_list.append(la)
+            else:
+                la_list.append(la_co)
+            la_co_list.append(la_co)
+    #
+    #eliminate dupes and sort
+    #
+    la_set=set(la_list)
+    la_list=list(la_set)
+    la_list.sort()
+    la_co_list.sort()
+                 
+    return la_list, la_co_list

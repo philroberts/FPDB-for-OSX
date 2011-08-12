@@ -194,4 +194,4 @@ else:
 
 ###################
 # DO NOT INSERT ANY LINES BELOW HERE
-# os.execvpe above stops transfers control to fpdb.pyw immediately
+# os.execvpe above transfers control to fpdb.pyw immediately
