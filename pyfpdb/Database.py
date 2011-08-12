@@ -279,7 +279,6 @@ class Database:
 
 
     def __init__(self, c, sql = None, autoconnect = True):
-        #log = Configuration.get_logger("logging.conf", "db", log_dir=c.dir_log)
         log.debug(_("Creating Database instance, sql = %s") % sql)
         self.config = c
         self.__connected = False
