@@ -47,10 +47,10 @@ class GuiReplayer:
         self.filename="regression-test-files/cash/Stars/Flop/NLHE-FR-USD-0.01-0.02-201005.microgrind.txt"
         self.site="PokerStars"
 
-        if options.filename != None:
-            self.filename = options.filename
-        if options.sitename != None:
-            self.site = options.sitename
+#        if options.filename != None:
+#            self.filename = options.filename
+#        if options.sitename != None:
+#            self.site = options.sitename
 
         self.db = Database.Database(self.conf, sql=self.sql)
 
@@ -298,7 +298,7 @@ class Table:
         # tmp var while refactoring
         self.table = {}
         i = 0
-        for seat, name, chips in hand.players:
+        for seat, name, chips, dummy, dummy in hand.players:
             self.players.append(Player(hand, name, chips, seat))
             self.table[i] = self.players[i].get_hash()
             i += 1
@@ -312,6 +312,7 @@ class Table:
 
 class Player:
     def __init__(self, hand, name, stack, seat):
+        print hand
         self.status    = 'live'
         self.stack     = Decimal(stack)
         self.chips     = 0
