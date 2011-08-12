@@ -56,6 +56,27 @@ def get_translation():
     except:
         pass
 
+    try:
+        return pass_through
+    except:
+        pass
+    
+    #
+    # shouldn't get this far, but just in case...
+    #
+    return init_translation()
+
+def init_translation():
+    # This cannot be done in an in-line function
+    # because importing Configuration in turn calls L10n
+    # which goes wrong because the attribute translation has
+    # yet been set !!!!
+
+    # check if _ has already been bound if it has, return it now
+    # and do not bind again.
+    # Otherwise startup will be very slow because L10n is called
+    # multiple times during startup
+
     import Configuration
     conf=Configuration.Config()
     
@@ -71,7 +92,6 @@ def get_translation():
             return set_translation(lang)
     else:
         return set_translation(conf.general['ui_language'])
-
 def get_installed_translations():
     #
     # returns a list of translated installed languages, (de, es)...
