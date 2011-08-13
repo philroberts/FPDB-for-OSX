@@ -30,7 +30,10 @@ import sys
 #  ./Anonymise.py -f <valid path to HH file> -k <name of input filter>
 
 (options, argv) = Options.fpdb_options()
-config = Configuration.Config()
+if options.config:
+    config = Configuration.Config(options.config)
+else:
+    config = Configuration.Config()
 
 filter = options.hhc
 
@@ -41,18 +44,20 @@ obj = getattr(mod, filter_name, None)
 
 hhc = obj(config, autostart=False)
 
-if os.path.exists(options.filename):
-    in_fh = codecs.open(options.filename, 'r', "utf8")
-    filecontents = in_fh.read()
-    in_fh.close()
-else:
-    print _("Could not find file %s") % options.filename
-    exit(1)
+for kodec in ("utf8", "cp1252", "utf-16"):
+    if os.path.exists(options.filename):
+        in_fh = codecs.open(options.filename, 'r', kodec)
+        filecontents = in_fh.read()
+        in_fh.close()
+        break
+    else:
+        print(_("Could not find file %s") % options.filename)
+        exit(1)
 
 m = hhc.re_PlayerInfo.finditer(filecontents)
 
 outfile = options.filename+".anon"
-print (_("Output being written to %s") % outfile)
+print(_("Output being written to %s") % outfile)
 
 savestdout = sys.stdout
 fsock = open(outfile,"w")
@@ -67,7 +72,7 @@ uniq = set(players)
 for i, name in enumerate(uniq):
     filecontents = filecontents.replace(name, 'Player%d' %i)
 
-print filecontents
+print(filecontents)
 
 sys.stdout = savestdout
 fsock.close()

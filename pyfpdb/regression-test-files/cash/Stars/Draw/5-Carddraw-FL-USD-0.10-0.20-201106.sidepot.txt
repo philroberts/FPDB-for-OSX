@@ -1,0 +1,36 @@
+﻿PokerStars Game #64146221551:  5 Card Draw Limit ($0.10/$0.20 USD) - 2011/07/04 21:56:59 WET [2011/07/04 16:56:59 ET]
+Table 'Pulova' 6-max Seat #3 is the button
+Seat 1: Player1 ($1.52 in chips) 
+Seat 3: Hero ($2.35 in chips) 
+Seat 4: Player3 ($7.33 in chips) 
+Seat 5: Player4 ($0.15 in chips) 
+Seat 6: Player5 ($0.19 in chips) 
+Player3: posts small blind $0.05
+Player4: posts big blind $0.10
+Player6: sits out 
+*** DEALING HANDS ***
+Dealt to Hero [Qd 7h 6c 6h Th]
+Player5: folds 
+Player1: folds 
+Hero: raises $0.10 to $0.20
+Player3: calls $0.15
+Player4: calls $0.05 and is all-in
+Player3: discards 2 cards
+Player4: discards 2 cards
+Hero: discards 2 cards [7h Th]
+Dealt to Hero [Qd 6c 6h] [4h Td]
+Player3: checks 
+Hero: checks 
+*** SHOW DOWN ***
+Player3: shows [2h Kh Qs Ad Ks] (a pair of Kings)
+Hero: mucks hand 
+Player3 collected $0.10 from side pot
+Player4: mucks hand 
+Player3 collected $0.43 from main pot
+*** SUMMARY ***
+Total pot $0.55 Main pot $0.43. Side pot $0.10. | Rake $0.02 
+Seat 1: Player1 folded before the Draw (didn't bet)
+Seat 3: Hero (button) mucked [Qd 4h 6c 6h Td]
+Seat 4: Player3 (small blind) showed [2h Kh Qs Ad Ks] and won ($0.53) with a pair of Kings
+Seat 5: Player4 (big blind) mucked [Kc 9c 9s Qc 4c]
+Seat 6: Player5 folded before the Draw (didn't bet)

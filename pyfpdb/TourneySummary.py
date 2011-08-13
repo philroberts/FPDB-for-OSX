@@ -123,7 +123,6 @@ class TourneySummary(object):
             self.db = Database.Database(config)
 
         self.parseSummary()
-        self.insertOrUpdate()
     #end def __init__
 
     def __str__(self):
@@ -139,7 +138,7 @@ class TourneySummary(object):
                  (_("FEE"), self.fee),
                  (_("CURRENCY"), self.currency),
                  (_("HERO"), self.hero),
-                 (_("MAXSEATS"), self.maxseats),
+                 (_("MAX SEATS"), self.maxseats),
                  (_("ENTRIES"), self.entries),
                  (_("SPEED"), self.speed),
                  (_("PRIZE POOL"), self.prizepool),
@@ -180,7 +179,7 @@ class TourneySummary(object):
                     (_("WINNINGS CURRENCY"), self.winningsCurrency),
                     (_("COUNT REBUYS"), self.rebuyCounts),
                     (_("COUNT ADDONS"), self.addOnCounts),
-                    (_("NB OF KO"), self.koCounts)
+                    (_("COUNT KO"), self.koCounts)
         )
         str = ''
         for (name, var) in vars:
@@ -197,7 +196,7 @@ class TourneySummary(object):
     def getSummaryText(self):
         return self.summaryText
     
-    def insertOrUpdate(self):
+    def insertOrUpdate(self, printtest = False):
         # First : check all needed info is filled in the object, especially for the initial select
 
         # Notes on DB Insert
@@ -207,6 +206,7 @@ class TourneySummary(object):
         # Only one existinf Tourney entry for Matrix Tourneys, but multiple Summary files
         # Starttime may not match the one in the Summary file : HH = time of the first Hand / could be slighltly different from the one in the summary file
         # Note: If the TourneyNo could be a unique id .... this would really be a relief to deal with matrix matches ==> Ask on the IRC / Ask Fulltilt ??
+        self.db.set_printdata(printtest)
         
         self.playerIds = self.db.getSqlPlayerIDs(self.players, self.siteId)
         #for player in self.players:
@@ -246,7 +246,7 @@ rank        (int) indicating the finishing rank (can be -1 if unknown)
 name        (string) player name
 winnings    (int) the money the player ended the tourney with (can be 0, or -1 if unknown)
 """
-        log.debug(_("addPlayer: rank:%s - name : '%s' - Winnings (%s)") % (rank, name, winnings))
+        log.debug("addPlayer: rank:%s - name : '%s' - Winnings (%s)" % (rank, name, winnings))
         self.players.append(name)
         if rank:
             self.ranks.update( { name : rank } )
@@ -273,7 +273,7 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
     #end def addPlayer
 
     def incrementPlayerWinnings(self, name, additionnalWinnings):
-        log.debug(_("incrementPlayerWinnings: name : '%s' - Add Winnings (%s)") % (name, additionnalWinnings))
+        log.debug("incrementPlayerWinnings: name : '%s' - Add Winnings (%s)" % (name, additionnalWinnings))
         oldWins = 0
         if self.winnings.has_key(name):
             oldWins = self.winnings[name]
@@ -284,15 +284,15 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
-            print "checkPlayerExists", player, "fail"
+            #print "checkPlayerExists", player, "fail"
             raise FpdbParseError
         
     def updateSessionsCache(self, sc, gsc, tz, doinsert):
-        self.heros = self.db.getHeroIds(self.dbid_pids, self.siteName)
-        sc = self.db.prepSessionsCache(self.tourNo, self.dbid_pids, self.startTime, sc , self.heros, doinsert)
+        heros = self.db.getHeroIds(self.dbid_pids, self.siteName)
+        sc = self.db.prepSessionsCache(self.tourNo, self.dbid_pids, self.startTime, sc , heros, doinsert)
         
         gsc = self.db.storeSessionsCache(self.tourNo, self.dbid_pids, self.startTime, {'type': 'summary'} 
-                                        ,None, self.assembleInfo(), sc, gsc, tz, self.heros, doinsert)
+                                        ,None, self.tourneyId, self.assembleInfo(), sc, gsc, tz, heros, doinsert)
         return sc, gsc
     
     def assembleInfo(self):

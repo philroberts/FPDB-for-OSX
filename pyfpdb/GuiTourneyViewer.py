@@ -65,7 +65,7 @@ class GuiTourneyViewer (threading.Thread):
             result=self.db.getTourneyInfo(self.siteName, self.tourneyNo)
             if result[1] == None:
                 self.table.destroy()
-                self.errorLabel=gtk.Label(_("Tournament not found - please ensure you imported it and selected the correct site"))
+                self.errorLabel=gtk.Label(_("Tournament not found.") + " " + _("Please ensure you imported it and selected the correct site."))
                 self.mainVBox.add(self.errorLabel)
             else:
                 x=0
@@ -93,7 +93,7 @@ class GuiTourneyViewer (threading.Thread):
             result=self.db.getTourneyPlayerInfo(self.siteName, self.tourneyNo, self.playerName)
             if result[1] == None:
                 self.table.destroy()
-                self.errorLabel=gtk.Label(_("Player or tourney not found - please ensure you imported it and selected the correct site"))
+                self.errorLabel=gtk.Label(_("Player or tournament not found.") + " " + _("Please ensure you imported it and selected the correct site."))
                 self.mainVBox.add(self.errorLabel)
             else:
                 x=0

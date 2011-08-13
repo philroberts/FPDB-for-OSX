@@ -60,7 +60,7 @@ class Aux_Window(object):
 ############################################################################
 #    Some utility routines useful for Aux_Windows
 #
-    def get_card_images(self):
+    def get_card_images(self, card_width=30, card_height=42):
 
         card_images = 53 * [0]
         suits = ('s', 'h', 'd', 'c')
@@ -75,18 +75,32 @@ class Aux_Window(object):
         
         for j in range(0, 13):
             for i in range(0, 4):
-                card_images[Card.cardFromValueSuit(ranks[j], suits[i])] = self.cropper(pb, i, j)
-        temp_pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(), pb.get_bits_per_sample(),  30,  42)
+                card_images[Card.cardFromValueSuit(ranks[j], suits[i])] = self.cropper(pb, i, j, card_width, card_height)
 #    also pick out a card back and store in [0]
-        card_images[0] = self.cropper(pb, 2, 13)
+        card_images[0] = self.cropper(pb, 2, 13, card_width, card_height)
         return(card_images)
 #   cards are 30 wide x 42 high
 
-    def cropper(self, pb, i, j):
+    def cropper(self, pb, i, j, card_width, card_height):
         """Crop out a card image given an FTP deck and the i, j position."""
-        temp_pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(), pb.get_bits_per_sample(),  30,  42)
-        pb.copy_area(30*j, 42*i, 30, 42, temp_pb, 0, 0)
-        return temp_pb
+        cropped_pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(),
+                                    pb.get_bits_per_sample(), 30, 42)
+        pb.copy_area(30*j, 42*i, 30, 42, cropped_pb, 0, 0)
+
+        if card_height == 42:
+            """ no scaling """
+            return cropped_pb
+        else:
+            """Apply scaling to the the 30w x 42h card image """
+            scaled_pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(),
+                                        pb.get_bits_per_sample(),
+                                        card_width, card_height)
+            scaled_card = cropped_pb.scale_simple(card_width, card_height,
+                                                gtk.gdk.INTERP_BILINEAR)
+
+            scaled_card.copy_area(0, 0, self.card_width, self.card_height,
+                                        scaled_pb, 0, 0)
+            return scaled_pb
 
     def has_cards(self, cards):
         """Returns the number of cards in the list."""
@@ -463,7 +477,13 @@ class Flop_Mucked(Aux_Seats):
 
     def __init__(self, hud, config, params):
         super(Flop_Mucked, self).__init__(hud, config, params)
-        self.card_images = self.get_card_images()
+                
+        self.card_height = int(self.params['card_ht'])
+        if (self.card_height > 84): self.card_height = 84
+        if (self.card_height < 21): self.card_height = 21
+        self.card_width = int(30. * (self.card_height / 42.))
+        
+        self.card_images = self.get_card_images(self.card_width, self.card_height)
         self.uses_timer = True  # this Aux_seats object uses a timer to control hiding
 
     def create_contents(self, container, i):
@@ -482,17 +502,18 @@ class Flop_Mucked(Aux_Seats):
 
 #    scratch is a working pixbuf, used to assemble the image
             scratch = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8,
-                                     int(self.params['card_wd'])*n_cards,
-                                     int(self.params['card_ht']))
+                                        self.card_width * n_cards,
+                                        self.card_height)
             x = 0 # x coord where the next card starts in scratch
             for card in cards:
 #    concatenate each card image to scratch
                 if card == None or card ==0:
                     break
+
                 self.card_images[card].copy_area(0, 0, 
-                                        int(self.params['card_wd']), int(self.params['card_ht']),
+                                        self.card_width, self.card_height,
                                         scratch, x, 0)
-                x = x + int(self.params['card_wd'])
+                x = x + self.card_width
             container.seen_cards.set_from_pixbuf(scratch)
             container.resize(1,1)
             container.show()

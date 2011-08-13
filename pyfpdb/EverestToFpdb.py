@@ -50,7 +50,7 @@ class Everest(HandHistoryConverter):
                                     type="(?P<TYPE>[a-zA-Z ]+)"\s
                                     money="(?P<CURRENCY>[%(LS)s])"\s
                                     screenName="[a-zA-Z]+"\s
-                                    game="(?P<GAME>[-a-zA-Z ]+)"\s
+                                    game="(?P<GAME>hold\-em|Holdem\sTournament|omaha\-hi)"\s
                                     gametype="(?P<LIMIT>[-a-zA-Z ]+)"/>
                                 """ % substitutions, re.VERBOSE|re.MULTILINE)
     re_HandInfo = re.compile(r'<HAND time="(?P<DATETIME>[0-9]+)" id="(?P<HID>[0-9]+)" index="\d+" blinds="((?P<SB>[%(NUM)s]+) (?P<CURRENCY>[%(LS)s])/(?P<BB>[%(NUM)s]+))' % substitutions, re.MULTILINE)

@@ -37,12 +37,12 @@ class PokerStars(HandHistoryConverter):
     filetype = "text"
     codepage = ("utf8", "cp1252")
     siteId   = 2 # Needs to match id entry in Sites database
-    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3", "play": ""}         # ADD Euro, Sterling, etc HERE
+    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\£", "play": ""}         # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",      # legal ISO currency codes
-                            'LS' : u"\$|\xe2\x82\xac|\u20ac|", # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : u"\$|\xe2\x82\xac|\u20ac|\£|", # legal currency symbols - Euro(cp1252, utf-8)
                            'PLYR': r'(?P<PNAME>.+?)',
-                            'CUR': u"(\$|\xe2\x82\xac|\u20ac|)",
+                            'CUR': u"(\$|\xe2\x82\xac|\u20ac||\£|)",
                     }
                     
     # translations from captured groups to fpdb info strings
@@ -90,7 +90,7 @@ class PokerStars(HandHistoryConverter):
                         'Mixed Hold\'em': 'mholdem',
                            'Triple Stud': '3stud'
                } # Legal mixed games
-    currencies = { u'€':'EUR', '$':'USD', '':'T$' }
+    currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP' }
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
@@ -271,6 +271,8 @@ class PokerStars(HandHistoryConverter):
                     else:
                         if info[key].find("$")!=-1:
                             hand.buyinCurrency="USD"
+                        elif info[key].find(u"£")!=-1:
+                            hand.buyinCurrency="GBP"
                         elif info[key].find(u"€")!=-1:
                             hand.buyinCurrency="EUR"
                         elif info[key].find("FPP")!=-1:
@@ -279,9 +281,9 @@ class PokerStars(HandHistoryConverter):
                             hand.buyinCurrency="play"
                         else:
                             #FIXME: handle other currencies, play money
-                            raise FpdbParseError(_("Failed to detect currency.") + " " + _("Hand ID: %s: '%s'") % (hand.handid, info[key]))
+                            raise FpdbParseError(_("Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
 
-                        info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
+                        info['BIAMT'] = info['BIAMT'].strip(u'$€£FPP')
                         
                         if hand.buyinCurrency!="PSFP":
                             if info['BOUNTY'] != None:
@@ -289,13 +291,13 @@ class PokerStars(HandHistoryConverter):
                                 tmp = info['BOUNTY']
                                 info['BOUNTY'] = info['BIRAKE']
                                 info['BIRAKE'] = tmp
-                                info['BOUNTY'] = info['BOUNTY'].strip(u'$€') # Strip here where it isn't 'None'
+                                info['BOUNTY'] = info['BOUNTY'].strip(u'$€£') # Strip here where it isn't 'None'
                                 hand.koBounty = int(100*Decimal(info['BOUNTY']))
                                 hand.isKO = True
                             else:
                                 hand.isKO = False
 
-                            info['BIRAKE'] = info['BIRAKE'].strip(u'$€')
+                            info['BIRAKE'] = info['BIRAKE'].strip(u'$€£')
 
                             hand.buyin = int(100*Decimal(info['BIAMT']))
                             hand.fee = int(100*Decimal(info['BIRAKE']))
@@ -324,7 +326,7 @@ class PokerStars(HandHistoryConverter):
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
         else:
-            log.info(_('readButton: not found'))
+            log.info('readButton: ' + _('not found'))
 
     def readPlayerStacks(self, hand):
         log.debug("readPlayerStacks")
@@ -333,6 +335,25 @@ class PokerStars(HandHistoryConverter):
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
+
+        # There is no marker between deal and draw in Stars single draw games
+        #  this upsets the accounting, incorrectly sets handsPlayers.cardxx and 
+        #  in consequence the mucked-display is incorrect.
+        # Attempt to fix by inserting a DRAW marker into the hand text attribute
+
+        if hand.gametype['category'] in ('27_1draw', 'fivedraw'):
+            # isolate the first discard/stand pat line (thanks Carl for the regex)
+            discard_split = re.split(r"(?:(.+(?: stands pat|: discards).+))", hand.handText,re.DOTALL)
+            if len(hand.handText) == len(discard_split[0]):
+                # handText was not split, no DRAW street occurred
+                pass
+            else:
+                # DRAW street found, reassemble, with DRAW marker added
+                discard_split[0] += "*** DRAW ***\r\n"
+                hand.handText = ""
+                for i in discard_split:
+                    hand.handText += i
+
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
         if hand.gametype['base'] in ("hold"):
@@ -349,11 +370,9 @@ class PokerStars(HandHistoryConverter):
                            r"(\*\*\* RIVER \*\*\*(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
         elif hand.gametype['base'] in ("draw"):
             if hand.gametype['category'] in ('27_1draw', 'fivedraw'):
-                # There is no marker between deal and draw in Stars single draw games
-                # This unfortunately affects the accounting.
                 m =  re.search(r"(?P<PREDEAL>.+(?=\*\*\* DEALING HANDS \*\*\*)|.+)"
-                           r"(\*\*\* DEALING HANDS \*\*\*(?P<DEAL>.+(?=(: stands pat on|: discards))|.+))?"
-                           r"((: stands pat on|: discards)(?P<DRAWONE>.+))?", hand.handText,re.DOTALL)
+                           r"(\*\*\* DEALING HANDS \*\*\*(?P<DEAL>.+(?=\*\*\* DRAW \*\*\*)|.+))?"
+                           r"(\*\*\* DRAW \*\*\*(?P<DRAWONE>.+))?", hand.handText,re.DOTALL)
             else:
                 m =  re.search(r"(?P<PREDEAL>.+(?=\*\*\* DEALING HANDS \*\*\*)|.+)"
                            r"(\*\*\* DEALING HANDS \*\*\*(?P<DEAL>.+(?=\*\*\* FIRST DRAW \*\*\*)|.+))?"

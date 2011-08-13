@@ -61,6 +61,7 @@ import re
 import Configuration
 import Database
 import Charset
+import Card
 
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
@@ -90,13 +91,16 @@ def do_tip(widget, tip):
     widget.set_tooltip_text(_tip)
 
 
-def do_stat(stat_dict, player = 24, stat = 'vpip'):
+def do_stat(stat_dict, player = 24, stat = 'vpip', handid = -1):
     statname = stat
     match = re_Places.search(stat)
     if match:   # override if necessary
         statname = stat[0:-2]
-
-    result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': statname, 'player': player})
+    
+    if stat == 'starthands':
+        result = eval("%(stat)s(stat_dict, %(player)d, %(handid)d)" % {'stat': statname, 'player': player, 'handid': int(handid)})
+    else:
+        result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': statname, 'player': player})
 
     # If decimal places have been defined, override result[1]
     # NOTE: decimal place override ALWAYS assumes the raw result is a
@@ -247,8 +251,8 @@ def profit100(stat_dict, player):
                 _('Profit per 100 hands')
                 )
     except:
-            print _("exception calculating p/100: 100 * %d / %d") % (stat_dict[player]['net'], stat_dict[player]['n'])
-            return (stat,
+        log.info(_("exception calculating %s") % ("p/100: 100 * %d / %d" % (stat_dict[player]['net'], stat_dict[player]['n'])))
+        return (stat,
                     'NA',
                     'p=NA',
                     'p/100=NA',
@@ -269,7 +273,7 @@ def bbper100(stat_dict, player):
                 _('Big blinds won per 100 hands')
                 )
     except:
-        log.info(_("exception calculating bb/100: ")+str(stat_dict[player]))
+        log.info(_("exception calculating %s") % ("bb/100: "+str(stat_dict[player])))
         return (stat,
                 'NA',
                 'bb100=NA',
@@ -291,7 +295,7 @@ def BBper100(stat_dict, player):
                 _('Big bets won per 100 hands')
                 )
     except:
-        log.info(_("exception calculating BB/100: ")+str(stat_dict[player]))
+        log.info(_("exception calculating %s") % ("BB/100: "+str(stat_dict[player])))
         return (stat,
                 'NA',
                 'BB100=NA',
@@ -562,6 +566,24 @@ def raiseToSteal(stat_dict, player):
                 '(0/0)',
                 _('% raise to steal'))
 
+def car0(stat_dict, player):
+    stat_descriptions["car_0"] = _("% called a raise preflop") + " (car_0)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['car_0'])/float(stat_dict[player]['car_opp_0'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                'CAR0=%3.1f%%'    % (100.0*stat),
+                'CAR_pf=%3.1f%%' % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['car_0'], stat_dict[player]['car_opp_0']),
+                _('% called a raise preflop'))
+    except:
+        return (stat,
+                'NA',
+                'CAR0=NA',
+                'CAR_pf=NA',
+                '(0/0)',
+                _('% called a raise preflop'))
 
 def f_3bet(stat_dict, player):
     stat_descriptions["f_3bet"] = _("% fold to 3 bet preflop/3rd street") + " (f_3bet)"
@@ -947,7 +969,115 @@ def ffreq4(stat_dict, player):
                 '(0/0)',
                 _('% fold frequency 7th street'))
 
+def starthands(stat_dict, player, handid):
+    
+    
+    #summary of known starting hands+position
+    # data volumes could get crazy here,so info is limited to hands
+    # in the current HH file only
+    
+    # this info is NOT read from the cache, so does not obey aggregation
+    # parameters for other stats
+    
+    #display shows 3 categories
+    # PFcall - limp or coldcall preflop
+    # PFaggr - raise preflop
+    # PFdefBB - defended in BB
+    
+    # hand is shown, followed by position indicator
+    # (b=SB/BB. l=Button/cutoff m=previous 3 seats to that, e=remainder)
+    
+    # due to screen space required for this stat, it should only
+    # be used in the popup section i.e.
+    # <pu_stat pu_stat_name="starthands"> </pu_stat>
+    
+    stat_descriptions["starthands"] = _("starting hands at this table") + " (starting hands)"
+    PFlimp=" PFlimp:"
+    PFaggr=" PFaggr:"
+    PFcar=" PFCaRa:"
+    PFdefend=" PFdefBB:"
+    count_pfl = count_pfa = count_pfc = count_pfd = 2
+    
+    if handid == -1:
+        return ((''),
+                (''),
+                (''),
+                (''),
+                (''),
+                (''))
 
+    c = Configuration.Config()
+    db_connection = Database.Database(c)
+    sc = db_connection.get_cursor()
+
+    sc.execute(("SELECT distinct startCards, street0Aggr, street0CalledRaiseDone, " +
+    			"case when HandsPlayers.position = 'B' then 'b' " +
+                            "when HandsPlayers.position = 'S' then 'b' " +
+                            "when HandsPlayers.position = '0' then 'l' " +
+                            "when HandsPlayers.position = '1' then 'l' " +
+                            "when HandsPlayers.position = '2' then 'm' " +
+                            "when HandsPlayers.position = '3' then 'm' " +
+                            "when HandsPlayers.position = '4' then 'm' " +
+                            "when HandsPlayers.position = '5' then 'e' " +
+                            "when HandsPlayers.position = '6' then 'e' " +
+                            "when HandsPlayers.position = '7' then 'e' " +
+                            "when HandsPlayers.position = '8' then 'e' " +
+                            "when HandsPlayers.position = '9' then 'e' " +
+                            "else 'X' end " +
+                        "FROM Hands, HandsPlayers, Gametypes " +
+                        "WHERE HandsPlayers.handId = Hands.id " +
+                        " AND Gametypes.id = Hands.gametypeid "+
+                        " AND Gametypes.type = " +
+                        "   (SELECT Gametypes.type FROM Gametypes, Hands   " +
+                        "  WHERE Hands.gametypeid = Gametypes.id and Hands.id = %d) " +
+                        " AND Gametypes.Limittype =  " +
+                        "   (SELECT Gametypes.limitType FROM Gametypes, Hands  " +
+                        " WHERE Hands.gametypeid = Gametypes.id and Hands.id = %d) " +
+                        "AND Gametypes.category = 'holdem' " +
+                        "AND fileId = (SELECT fileId FROM Hands " +
+                        " WHERE Hands.id = %d) " +
+                        "AND HandsPlayers.playerId = %d " +
+                        "AND street0VPI " +
+                        "AND startCards > 0 " +
+                        "ORDER BY startCards DESC " +
+                        ";")
+                         % (int(handid), int(handid), int(handid), int(player)))
+
+    for (qstartcards, qstreet0Aggr, qstreet0CalledRaiseDone, qposition) in sc.fetchall():
+        humancards = Card.decodeStartHandValue("holdem", qstartcards)
+                
+        if qposition == "B" and qstreet0Aggr == False:
+            PFdefend=PFdefend+"/"+humancards
+            count_pfd += 1
+            if (count_pfd / 8.0 == int(count_pfd / 8.0)):
+                PFdefend=PFdefend+"\n"
+        elif qstreet0Aggr == True:
+            PFaggr=PFaggr+"/"+humancards+"."+qposition
+            count_pfa += 1
+            if (count_pfa / 8.0 == int(count_pfa / 8.0)):
+                PFaggr=PFaggr+"\n"
+        elif qstreet0CalledRaiseDone:
+            PFcar=PFcar+"/"+humancards+"."+qposition
+            count_pfc += 1
+            if (count_pfc / 8.0 == int(count_pfc / 8.0)):
+                PFcar=PFcar+"\n"
+        else:
+            PFlimp=PFlimp+"/"+humancards+"."+qposition
+            count_pfl += 1
+            if (count_pfl / 8.0 == int(count_pfl / 8.0)):
+                PFlimp=PFlimp+"\n"
+    sc.close()
+    
+    returnstring = PFlimp + "\n" + PFaggr + "\n" + PFcar + "\n" + PFdefend  #+ "\n" + str(handid)
+
+    return ((returnstring),
+            (returnstring),
+            (returnstring),
+            (returnstring),
+            (returnstring),
+            (''))
+
+                
 def build_stat_descriptions(stats_file):
     for method in dir(stats_file):
         if method in ("Charset", "Configuration", "Database", "GInitiallyUnowned", "gtk", "pygtk",
@@ -983,42 +1113,13 @@ if __name__== "__main__":
     stat_dict = db_connection.get_stats_from_hand(h, "ring")
     
     for player in stat_dict.keys():
-        print (_("Example stats, player = %s  hand = %s:") % (player, h))
+        print (_("Example stats. Player = %s, Hand = %s:") % (player, h))
         for attr in statlist:
             print "  ", do_stat(stat_dict, player=player, stat=attr)
         break
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'vpip') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'pfr') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'wtsd') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'profit100') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'saw_f') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'n') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'fold_f') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'wmsd') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'steal') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'f_SB_steal') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'f_BB_steal') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'f_steal')
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'three_B')
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'WMsF') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq1') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq2') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq3') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq4') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq_123') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'cb1') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'cb2') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'cb3') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'cb4') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq1') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq2') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq3') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq4')
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'playershort')
-        #print "\n" 
 
-    print _("\n\nLegal stats:")
-    print _("(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)\n")
+    print _("Legal stats:")
+    print _("(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)")
     for attr in statlist:
         print "%-14s %s" % (attr, eval("%s.__doc__" % (attr)))
 #        print "            <pu_stat pu_stat_name = \"%s\"> </pu_stat>" % (attr)

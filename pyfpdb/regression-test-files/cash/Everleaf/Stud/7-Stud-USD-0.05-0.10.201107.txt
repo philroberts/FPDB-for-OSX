@@ -1,0 +1,538 @@
+Everleaf Gaming Game #285997460
+***** Hand history for game #285997460 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:08:53
+Table Clarkdale 20
+Total number of players: 4
+Seat 1: Player1 (  $ 0.54 USD )
+Seat 2: Player2 (  $ 1.29 USD )
+Seat 3: Player3 (  $ 1.62 USD )
+Seat 4: Player4 (  $ 1.58 USD )
+Player1: posts ante [$ 0.01 USD]
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+Player4: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player2 posts bring-in $0.02.
+Player3 folds
+Player4 calls [$ 0.02 USD]
+Player1 folds
+**** dealing 4th street ****
+Player4 checks
+Player2 checks
+**** dealing 5th street ****
+Player4 checks
+Player2 checks
+**** dealing 6th street ****
+Player2 checks
+Player4: bets [$ 0.10 USD]
+Player2 folds
+Player4 does not show cards
+Player4 wins $ 0.08 USD from main pot
+
+
+
+Everleaf Gaming Game #285997675
+***** Hand history for game #285997675 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:09:57
+Table Clarkdale 20
+Total number of players: 4
+Seat 1: Player1 (  $ 0.53 USD )
+Seat 2: Player2 (  $ 1.26 USD )
+Seat 3: Player3 (  $ 1.61 USD )
+Seat 4: Player4 (  $ 1.63 USD )
+Player1: posts ante [$ 0.01 USD]
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+Player4: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player2 posts bring-in $0.02.
+Player3 completes to $0.05.
+Player4 folds
+Player1 folds
+Player2 calls [$ 0.03 USD]
+**** dealing 4th street ****
+Player2 checks
+Player3 checks
+**** dealing 5th street ****
+Player2 checks
+Player3: bets [$ 0.10 USD]
+Player2 calls [$ 0.10 USD]
+**** dealing 6th street ****
+Player2: bets [$ 0.10 USD]
+Player3 folds
+Player2 does not show cards
+Player2 wins $ 0.32 USD from main pot
+
+
+
+Everleaf Gaming Game #285997876
+***** Hand history for game #285997876 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:10:56
+Table Clarkdale 20
+Total number of players: 4
+Seat 1: Player1 (  $ 0.52 USD )
+Seat 2: Player2 (  $ 1.42 USD )
+Seat 3: Player3 (  $ 1.45 USD )
+Seat 4: Player4 (  $ 1.62 USD )
+Player1: posts ante [$ 0.01 USD]
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+Player4: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player3 posts bring-in $0.02.
+Player4 completes to $0.05.
+Player1 folds
+Player2 calls [$ 0.05 USD]
+Player3 folds
+**** dealing 4th street ****
+Player2 checks
+Player4: bets [$ 0.05 USD]
+Player2 calls [$ 0.05 USD]
+**** dealing 5th street ****
+Player2 checks
+Player4: bets [$ 0.10 USD]
+Player2 raises [$ 0.20 USD]
+Player4 calls [$ 0.10 USD]
+**** dealing 6th street ****
+Player2: bets [$ 0.10 USD]
+Player4 calls [$ 0.10 USD]
+**** dealing river **** 
+Player2: bets [$ 0.10 USD]
+Player4 calls [$ 0.10 USD]
+Player2 shows [ 5d, 8d, Kd, 7d, 9d, Jh, Qc ] a flush, king high
+Player4 does not show cards
+Player2 wins $ 0.98 USD from main pot with a flush, king high [ Kd, 9d, 8d, 7d, 5d ]
+
+
+
+Everleaf Gaming Game #285998132
+***** Hand history for game #285998132 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:12:14
+Table Clarkdale 20
+Total number of players: 4
+Seat 1: Player1 (  $ 0.51 USD )
+Seat 2: Player2 (  $ 1.89 USD )
+Seat 3: Player3 (  $ 1.42 USD )
+Seat 4: Player4 (  $ 1.11 USD )
+Player1: posts ante [$ 0.01 USD]
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+Player4: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player2 posts bring-in $0.02.
+Player3 completes to $0.05.
+Player4 folds
+Player1 folds
+Player2 folds
+Player3 does not show cards
+Player3 wins $ 0.08 USD from main pot
+
+
+
+Everleaf Gaming Game #285998238
+***** Hand history for game #285998238 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:12:42
+Table Clarkdale 20
+Total number of players: 4
+Seat 1: Player1 (  $ 0.50 USD )
+Seat 2: Player2 (  $ 1.86 USD )
+Seat 3: Player3 (  $ 1.47 USD )
+Seat 4: Player4 (  $ 1.10 USD )
+Player1: posts ante [$ 0.01 USD]
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+Player4: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player1 posts bring-in $0.02.
+Player2 folds
+Player3 calls [$ 0.02 USD]
+Player4 completes to $0.05.
+Player1 calls [$ 0.03 USD]
+Player3 calls [$ 0.03 USD]
+**** dealing 4th street ****
+Player4 checks
+Player1 checks
+Player3: bets [$ 0.05 USD]
+Player4 calls [$ 0.05 USD]
+Player1 calls [$ 0.05 USD]
+**** dealing 5th street ****
+Player4 checks
+Player1: bets [$ 0.10 USD]
+Player3 calls [$ 0.10 USD]
+Player4 folds
+**** dealing 6th street ****
+Player1: bets [$ 0.10 USD]
+Player3 calls [$ 0.10 USD]
+**** dealing river **** 
+Player1: bets [$ 0.10 USD]
+Player3 raises [$ 0.20 USD]
+Player1 folds
+Player3 does not show cards
+Player3 wins $ 0.88 USD from main pot with a straight, nine high [ 9s, 8h, 7c, 6c, 5d ]
+
+
+
+Everleaf Gaming Game #285998596
+***** Hand history for game #285998596 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:14:33
+Table Clarkdale 20
+Total number of players: 4
+Seat 1: Player1 (  $ 0.09 USD )
+Seat 2: Player2 (  $ 1.85 USD )
+Seat 3: Player3 (  $ 1.94 USD )
+Seat 4: Player4 (  $ 0.99 USD )
+Player1: posts ante [$ 0.01 USD]
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+Player4: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player2 posts bring-in $0.02.
+Player3 folds
+Player4 folds
+Player1 completes to $0.05.
+Player2 folds
+Player1 does not show cards
+Player1 wins $ 0.08 USD from main pot
+
+
+
+Everleaf Gaming Game #285998708
+***** Hand history for game #285998708 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:15:08
+Table Clarkdale 20
+Total number of players: 4
+Seat 1: Player1 (  $ 0.14 USD )
+Seat 2: Player2 (  $ 1.82 USD )
+Seat 3: Player3 (  $ 1.93 USD )
+Seat 4: Player4 (  $ 0.98 USD )
+Player1: posts ante [$ 0.01 USD]
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+Player4: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player1 posts bring-in $0.02.
+Player2 folds
+Player3 completes to $0.05.
+Player4 calls [$ 0.05 USD]
+Player1 folds
+**** dealing 4th street ****
+Player3 checks
+Player4 checks
+**** dealing 5th street ****
+Player3 checks
+Player4 checks
+**** dealing 6th street ****
+Player4: bets [$ 0.10 USD]
+Player3 calls [$ 0.10 USD]
+**** dealing river **** 
+Player4: bets [$ 0.10 USD]
+Player3 raises [$ 0.20 USD]
+Player4 calls [$ 0.10 USD]
+Player3 shows [ 7c, Ad, Kc, 4c, 8c, 2s, Ac ] a flush, ace high
+Player4 does not show cards
+Player3 wins $ 0.70 USD from main pot with a flush, ace high [ Ac, Kc, 8c, 7c, 4c ]
+
+
+
+Everleaf Gaming Game #285998978
+***** Hand history for game #285998978 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:16:36
+Table Clarkdale 20
+Total number of players: 4
+Seat 1: Player1 (  $ 0.61 USD )
+Seat 2: Player2 (  $ 1.81 USD )
+Seat 3: Player3 (  $ 2.27 USD )
+Seat 4: Player4 (  $ 0.62 USD )
+Player1: posts ante [$ 0.01 USD]
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+Player4: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player2 posts bring-in $0.02.
+Player3 completes to $0.05.
+Player4 folds
+Player1 folds
+Player2 calls [$ 0.03 USD]
+**** dealing 4th street ****
+Player3: bets [$ 0.05 USD]
+Player2 calls [$ 0.05 USD]
+**** dealing 5th street ****
+Player3: bets [$ 0.10 USD]
+Player2 folds
+Player3 does not show cards
+Player3 wins $ 0.24 USD from main pot
+
+
+
+Everleaf Gaming Game #285999138
+***** Hand history for game #285999138 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:17:24
+Table Clarkdale 20
+Total number of players: 3
+Seat 1: Player1 (  $ 0.60 USD )
+Seat 2: Player2 (  $ 1.70 USD )
+Seat 3: Player3 (  $ 2.40 USD )
+Player1: posts ante [$ 0.01 USD]
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player2 posts bring-in $0.02.
+Player3 calls [$ 0.02 USD]
+Player1 completes to $0.05.
+Player2 calls [$ 0.03 USD]
+Player3 calls [$ 0.03 USD]
+**** dealing 4th street ****
+Player1: bets [$ 0.05 USD]
+Player2 folds
+Player3 folds
+Player1 does not show cards
+Player1 wins $ 0.18 USD from main pot
+
+
+
+Everleaf Gaming Game #285999277
+***** Hand history for game #285999277 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:18:05
+Table Clarkdale 20
+Total number of players: 3
+Seat 1: Player1 (  $ 0.72 USD )
+Seat 2: Player2 (  $ 1.64 USD )
+Seat 3: Player3 (  $ 2.34 USD )
+Player1: posts ante [$ 0.01 USD]
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player1 posts bring-in $0.02.
+Player2 calls [$ 0.02 USD]
+Player3 calls [$ 0.02 USD]
+**** dealing 4th street ****
+Player3 checks
+Player1 checks
+Player2 checks
+**** dealing 5th street ****
+Player3: bets [$ 0.10 USD]
+Player1 folds
+Player2 folds
+Player3 does not show cards
+Player3 wins $ 0.09 USD from main pot
+
+
+
+Everleaf Gaming Game #285999470
+***** Hand history for game #285999470 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:19:11
+Table Clarkdale 20
+Total number of players: 3
+Seat 1: Player1 (  $ 0.69 USD )
+Seat 2: Player2 (  $ 1.61 USD )
+Seat 3: Player3 (  $ 2.40 USD )
+Player1: posts ante [$ 0.01 USD]
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player3 posts bring-in $0.02.
+Player1 completes to $0.05.
+Player2 folds
+Player3 calls [$ 0.03 USD]
+**** dealing 4th street ****
+Player3 checks
+Player1: bets [$ 0.05 USD]
+Player3 folds
+Player1 does not show cards
+Player1 wins $ 0.13 USD from main pot
+
+
+
+Everleaf Gaming Game #285999596
+***** Hand history for game #285999596 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:19:46
+Table Clarkdale 20
+Total number of players: 3
+Seat 1: Player1 (  $ 0.76 USD )
+Seat 2: Player2 (  $ 1.60 USD )
+Seat 3: Player3 (  $ 2.34 USD )
+Player1: posts ante [$ 0.01 USD]
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player3 posts bring-in $0.02.
+Player1 folds
+Player2 completes to $0.05.
+Player3 calls [$ 0.03 USD]
+**** dealing 4th street ****
+Player2: bets [$ 0.05 USD]
+Player3 calls [$ 0.05 USD]
+**** dealing 5th street ****
+Player2: bets [$ 0.10 USD]
+Player3 raises [$ 0.20 USD]
+Player2 calls [$ 0.10 USD]
+**** dealing 6th street ****
+Player2 checks
+Player3: bets [$ 0.10 USD]
+Player2 folds
+Player3 does not show cards
+Player3 wins $ 0.59 USD from main pot
+
+
+
+Everleaf Gaming Game #285999807
+***** Hand history for game #285999807 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:20:58
+Table Clarkdale 20
+Total number of players: 2
+Seat 2: Player2 (  $ 1.29 USD )
+Seat 3: Player3 (  $ 2.62 USD )
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player3 posts bring-in $0.02.
+Player2 folds
+Player3 does not show cards
+Player3 wins $ 0.02 USD from main pot
+
+
+
+Everleaf Gaming Game #285999845
+***** Hand history for game #285999845 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:21:12
+Table Clarkdale 20
+Total number of players: 2
+Seat 2: Player2 (  $ 1.28 USD )
+Seat 3: Player3 (  $ 2.63 USD )
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player2 posts bring-in $0.02.
+Player3 calls [$ 0.02 USD]
+**** dealing 4th street ****
+Player2 checks
+Player3 checks
+**** dealing 5th street ****
+Player2: bets [$ 0.10 USD]
+Player3 calls [$ 0.10 USD]
+**** dealing 6th street ****
+Player2: bets [$ 0.10 USD]
+Player3 calls [$ 0.10 USD]
+**** dealing river **** 
+Player2 checks
+Player3 checks
+Player2 shows [ 9h, 7c, 3s, Ac, 3h, 6s, 2s ] a pair of threes
+Player3 shows [ Qs, 3c, Ts, Jh, Qh, Ad, 2c ] a pair of queens
+Player3 wins $ 0.44 USD from main pot with a pair of queens [ Ad, Qs, Qh, Jh, Ts ]
+
+
+
+Everleaf Gaming Game #285999989
+***** Hand history for game #285999989 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:21:58
+Table Clarkdale 20
+Total number of players: 2
+Seat 2: Player2 (  $ 1.05 USD )
+Seat 3: Player3 (  $ 2.84 USD )
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player3 posts bring-in $0.02.
+Player2 calls [$ 0.02 USD]
+**** dealing 4th street ****
+Player3: bets [$ 0.10 USD]
+Player2 folds
+Player3 does not show cards
+Player3 wins $ 0.06 USD from main pot
+
+
+
+Everleaf Gaming Game #286000080
+***** Hand history for game #286000080 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:22:26
+Table Clarkdale 20
+Total number of players: 2
+Seat 2: Player2 (  $ 1.02 USD )
+Seat 3: Player3 (  $ 2.87 USD )
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player2 posts bring-in $0.02.
+Player3 completes to $0.05.
+Player2 calls [$ 0.03 USD]
+**** dealing 4th street ****
+Player2: bets [$ 0.05 USD]
+Player3 calls [$ 0.05 USD]
+**** dealing 5th street ****
+Player3 checks
+Player2 checks
+**** dealing 6th street ****
+Player3 checks
+Player2 checks
+**** dealing river **** 
+Player3: bets [$ 0.10 USD]
+Player2 calls [$ 0.10 USD]
+Player3 shows [ 6c, Kd, Ac, 5h, Ah, Qc, As ] three of a kind, aces
+Player2 does not show cards
+Player3 wins $ 0.40 USD from main pot with three of a kind, aces [ Ac, Ah, As, Kd, Qc ]
+
+
+
+Everleaf Gaming Game #286000221
+***** Hand history for game #286000221 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:23:17
+Table Clarkdale 20
+Total number of players: 2
+Seat 2: Player2 (  $ 0.81 USD )
+Seat 3: Player3 (  $ 3.06 USD )
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player3 posts bring-in $0.02.
+Player2 folds
+Player3 does not show cards
+Player3 wins $ 0.02 USD from main pot
+
+
+
+Everleaf Gaming Game #286000285
+***** Hand history for game #286000285 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:23:36
+Table Clarkdale 20
+Total number of players: 2
+Seat 2: Player2 (  $ 0.80 USD )
+Seat 3: Player3 (  $ 3.07 USD )
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player3 posts bring-in $0.02.
+Player2 completes to $0.05.
+Player3 folds
+Player2 does not show cards
+Player2 wins $ 0.06 USD from main pot
+
+
+
+Everleaf Gaming Game #286000360
+***** Hand history for game #286000360 *****
+$0.05/$0.10 7 Card Stud - 2011/07/08 - 00:23:58
+Table Clarkdale 20
+Total number of players: 2
+Seat 2: Player2 (  $ 0.83 USD )
+Seat 3: Player3 (  $ 3.04 USD )
+Player2: posts ante [$ 0.01 USD]
+Player3: posts ante [$ 0.01 USD]
+** Dealing down cards **
+Player2 posts bring-in $0.02.
+Player3 calls [$ 0.02 USD]
+**** dealing 4th street ****
+Player3 checks
+Player2 checks
+**** dealing 5th street ****
+Player2: bets [$ 0.10 USD]
+Player3 calls [$ 0.10 USD]
+**** dealing 6th street ****
+Player2 checks
+Player3 checks
+**** dealing river **** 
+Player2 checks
+Player3 checks
+Player2 shows [ 4h, Th, 2s, 3s, 3c, Jd, 6h ] a pair of threes
+Player3 shows [ 4c, Ah, Qc, As, Kh, Ts, 8c ] a pair of aces
+Player3 wins $ 0.24 USD from main pot with a pair of aces [ As, Ah, Kh, Qc, Ts ]
+

@@ -30,7 +30,13 @@ Code
 ====
 atinm
 Chaz Littlejohn
-dooglus/Chris Moore
+
+Chris Moore
+dooglus@gmail.com
+IRC: dooglus
+Jabber: dooglus@gmail.com
+git: http://repo.or.cz/w/fpdb-dooglus.git
+
 danny
 donoban
 Eric Blade
@@ -63,15 +69,21 @@ RSOAndrew
 
 Translations (alphabetically by language)
 ============
+mcnito (Catalan ca_ES
 sjp (Chinese zh_CN)
+kibbitzer (French fr_FR)
+Julien_ (French fr_FR)
 PassThePeas (French fr_FR)
 tribumarchal (French fr_FR)
 Wedge (French fr_FR))
 Steffen Schaumburg (German de_DE)
 Erki Ferenc (Hungarian hu_HU)
 seppone1991 (Italian it_IT)
+OvidijusSv (Lithuanian lt_LT)
+greg20 (Polish pl_PL)
 pkpkpkdo (Portugese pt_BR)
 jax (Romanian ro_RO)
+Lexey (Russian ru_RU)
 
 Testers, Support
 ================

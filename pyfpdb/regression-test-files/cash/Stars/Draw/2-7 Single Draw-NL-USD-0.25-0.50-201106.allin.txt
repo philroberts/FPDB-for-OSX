@@ -1,0 +1,41 @@
+﻿PokerStars Game #63826125692:  Single Draw 2-7 Lowball No Limit ($0.25/$0.50 USD) - 2011/06/26 23:34:01 WET [2011/06/26 18:34:01 ET]
+Table 'AlstI' 7-max Seat #7 is the button
+Seat 1: Player1 ($24 in chips) 
+Seat 2: Player2 ($31.60 in chips) 
+Seat 3: Player3 ($5.65 in chips) 
+Seat 4: Player4 ($8.45 in chips) 
+Seat 5: Hero ($18.75 in chips) 
+Seat 6: Player5 ($19.65 in chips) 
+Seat 7: Player6 ($104.65 in chips) 
+Player1: posts small blind $0.25
+Player2: posts big blind $0.50
+*** DEALING HANDS ***
+Dealt to Hero [3s Qd 7s 9s Jc]
+Player3: calls $0.50
+Player4: folds 
+Hero: folds 
+Player5: folds 
+Player6: raises $2 to $2.50
+Player1: folds 
+Player2: calls $2
+Player3: folds 
+Player2: discards 1 card
+Player6: stands pat 
+Player2: checks 
+Player6: checks 
+*** SHOW DOWN ***
+Player2: shows [8h 3c 4s 8d 7d] (Lo: a pair of Eights)
+Player6: shows [2d Th 3d 6h 5c] (Lo: T,6,5,3,2)
+Player6 collected $5.50 from pot
+*** SUMMARY ***
+Total pot $5.75 | Rake $0.25 
+Seat 1: Player1 (small blind) folded before Flop
+Seat 2: Player2 (big blind) showed [8h 3c 4s 8d 7d] and lost with Lo: a pair of Eights
+Seat 3: Player3 folded before Flop
+Seat 4: Player4 folded before Flop (didn't bet)
+Seat 5: Hero folded before Flop (didn't bet)
+Seat 6: Player5 folded before Flop (didn't bet)
+Seat 7: Player6 (button) showed [2d Th 3d 6h 5c] and won ($5.50) with Lo: T,6,5,3,2
+
+
+

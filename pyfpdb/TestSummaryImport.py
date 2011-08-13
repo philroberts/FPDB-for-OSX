@@ -24,6 +24,7 @@ import codecs
 import pprint
 import Configuration
 import Database
+import Options
 import SQL
 from GuiTourneyImport import SummaryImporter
 
@@ -120,6 +121,26 @@ def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
 
+    (options, argv) = Options.fpdb_options()
+
+    test_all_sites = True
+
+    if options.usage == True:
+        usage()
+
+    single_file_test = False
+
+    if options.sitename:
+        options.sitename = Options.site_alias(options.sitename)
+        if options.sitename == False:
+            usage()
+        if options.filename:
+            print "Testing single hand: '%s'" % options.filename
+            single_file_test = True
+        else:
+            print "Only regression testing '%s' files" % (options.sitename)
+        test_all_sites = False
+
     config = Configuration.Config(file = "HUD_config.test.xml")
     db = Database.Database(config)
     sql = SQL.Sql(db_server = 'sqlite')
@@ -138,10 +159,10 @@ def main(argv=None):
     #CarbonErrors      = FpdbError('Carbon')
     #PKRErrors         = FpdbError('PKR')
     #iPokerErrors      = FpdbError('iPoker')
-    WinamaxErrors     = FpdbError('Winamax')
+    #WinamaxErrors     = FpdbError('Winamax')
 
     ErrorsList = [
-                    PokerStarsErrors, FTPErrors, WinamaxErrors,
+                    PokerStarsErrors, FTPErrors, #WinamaxErrors,
                     #PartyPokerErrors,
                     #BetfairErrors, OnGameErrors, AbsoluteErrors,
                     #EverleafErrors, CarbonErrors, PKRErrors,
@@ -149,8 +170,8 @@ def main(argv=None):
                 ]
 
     sites = {
-                'PokerStars' : True,
-                'Full Tilt Poker' : True,
+                'PokerStars' : False,
+                'Full Tilt Poker' : False,
                 #'PartyPoker' : True,
                 #'Betfair' : True,
                 #'OnGame' : True,
@@ -160,14 +181,23 @@ def main(argv=None):
                 #'Carbon' : True,
                 #'PKR' : False,
                 #'iPoker' : True,
-                'Winamax' : True,
+                #'Winamax' : False,
             }
 
-    if sites['PokerStars'] == True:
+    if test_all_sites == True:
+        for s in sites:
+            sites[s] = True
+    else:
+        sites[options.sitename] = True
+
+    if sites['PokerStars'] == True and not single_file_test:
         walk_testfiles("regression-test-files/summaries/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
-    if sites['Full Tilt Poker'] == True:
+    elif sites['PokerStars'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, PokerStarsErrors, "PokerStars")
+    if sites['Full Tilt Poker'] == True and not single_file_test:
         walk_testfiles("regression-test-files/summaries/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
-    #    walk_testfiles("regression-test-files/tour/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
+    elif sites['Full Tilt Poker'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, FTPErrors, "Full Tilt Poker")
     #if sites['PartyPoker'] == True:
     #    walk_testfiles("regression-test-files/cash/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
     #    walk_testfiles("regression-test-files/tour/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
@@ -187,8 +217,8 @@ def main(argv=None):
     #    walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
     #if sites['iPoker'] == True:
     #    walk_testfiles("regression-test-files/cash/iPoker/", compare, importer, iPokerErrors, "iPoker")
-    if sites['Winamax'] == True:
-        walk_testfiles("regression-test-files/summaries/Winamax/", compare, importer, WinamaxErrors, "Winamax")
+    #if sites['Winamax'] == True:
+    #    walk_testfiles("regression-test-files/summaries/Winamax/", compare, importer, WinamaxErrors, "Winamax")
 
     totalerrors = 0
 

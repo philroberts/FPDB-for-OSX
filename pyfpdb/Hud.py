@@ -113,7 +113,7 @@ class Hud:
 
         self.creation_attrs = None
 
-    #	Set up a main window for this this instance of the HUD
+    # Set up a main window for this this instance of the HUD
     def create_mw(self):
         win = gtk.Window()
         win.set_skip_taskbar_hint(True)  # invisible to taskbar
@@ -160,7 +160,7 @@ class Hud:
         menu.append(repositem)
         repositem.connect("activate", self.reposition_windows)
 
-        aggitem = gtk.MenuItem(_('Show Player Stats'))
+        aggitem = gtk.MenuItem(_('Show Player Stats for'))
         menu.append(aggitem)
         self.aggMenu = gtk.Menu()
         aggitem.set_submenu(self.aggMenu)
@@ -173,40 +173,40 @@ class Hud:
         item = gtk.MenuItem(_('For Multiple Blind Levels:'))
         self.aggMenu.append(item)
         
-        item = gtk.CheckMenuItem(_('  0.5 to 2.0 x Current Blinds'))
+        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.5", "2.0"))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',2))
         setattr(self, 'h_aggBBmultItem2', item)
         
-        item = gtk.CheckMenuItem(_('  0.33 to 3.0 x Current Blinds'))
+        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.33", "3.0"))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',3))
         setattr(self, 'h_aggBBmultItem3', item)
         
-        item = gtk.CheckMenuItem(_('  0.1 to 10 x Current Blinds'))
+        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.1", "10.0"))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',10))
         setattr(self, 'h_aggBBmultItem10', item)
         
-        item = gtk.CheckMenuItem(_('  All Levels'))
+        item = gtk.CheckMenuItem("  " + _('All Levels'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',10000))
         setattr(self, 'h_aggBBmultItem10000', item)
         
-        item = gtk.MenuItem(_('For #Seats:'))
+        item = gtk.MenuItem(_('Number of Seats:'))
         self.aggMenu.append(item)
         
-        item = gtk.CheckMenuItem(_('  Any Number'))
+        item = gtk.CheckMenuItem("  " + _('Any Number'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('P','A'))
         setattr(self, 'h_seatsStyleOptionA', item)
         
-        item = gtk.CheckMenuItem(_('  Custom'))
+        item = gtk.CheckMenuItem("  " + _('Custom'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('P','C'))
         setattr(self, 'h_seatsStyleOptionC', item)
         
-        item = gtk.CheckMenuItem(_('  Exact'))
+        item = gtk.CheckMenuItem("  " + _('Exact'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('P','E'))
         setattr(self, 'h_seatsStyleOptionE', item)
@@ -214,22 +214,22 @@ class Hud:
         item = gtk.MenuItem(_('Since:'))
         self.aggMenu.append(item)
         
-        item = gtk.CheckMenuItem(_('  All Time'))
+        item = gtk.CheckMenuItem("  " + _('All Time'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('P','A'))
         setattr(self, 'h_hudStyleOptionA', item)
         
-        item = gtk.CheckMenuItem(_('  Session'))
+        item = gtk.CheckMenuItem("  " + _('Session'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('P','S'))
         setattr(self, 'h_hudStyleOptionS', item)
         
-        item = gtk.CheckMenuItem(_('  %s Days') % (self.hud_params['h_hud_days']))
+        item = gtk.CheckMenuItem("  " + _('%s Days') % (self.hud_params['h_hud_days']))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('P','T'))
         setattr(self, 'h_hudStyleOptionT', item)
 
-        aggitem = gtk.MenuItem(_('Show Opponent Stats'))
+        aggitem = gtk.MenuItem(_('Show Opponent Stats for'))
         menu.append(aggitem)
         self.aggMenu = gtk.Menu()
         aggitem.set_submenu(self.aggMenu)
@@ -242,40 +242,40 @@ class Hud:
         item = gtk.MenuItem(_('For Multiple Blind Levels:'))
         self.aggMenu.append(item)
         
-        item = gtk.CheckMenuItem(_('  0.5 to 2.0 x Current Blinds'))
+        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.5", "2.0"))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',2))
         setattr(self, 'aggBBmultItem2', item)
         
-        item = gtk.CheckMenuItem(_('  0.33 to 3.0 x Current Blinds'))
+        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.33", "3.0"))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',3))
         setattr(self, 'aggBBmultItem3', item)
         
-        item = gtk.CheckMenuItem(_('  0.1 to 10 x Current Blinds'))
+        item = gtk.CheckMenuItem(_('%s to %s * Current Blinds') % ("  0.1", "10.0"))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',10))
         setattr(self, 'aggBBmultItem10', item)
         
-        item = gtk.CheckMenuItem(_('  All Levels'))
+        item = gtk.CheckMenuItem("  " + _('All Levels'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',10000))
         setattr(self, 'aggBBmultItem10000', item)
         
-        item = gtk.MenuItem(_('For #Seats:'))
+        item = gtk.MenuItem(_('Number of Seats:'))
         self.aggMenu.append(item)
         
-        item = gtk.CheckMenuItem(_('  Any Number'))
+        item = gtk.CheckMenuItem("  " + _('Any Number'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('O','A'))
         setattr(self, 'seatsStyleOptionA', item)
         
-        item = gtk.CheckMenuItem(_('  Custom'))
+        item = gtk.CheckMenuItem("  " + _('Custom'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('O','C'))
         setattr(self, 'seatsStyleOptionC', item)
         
-        item = gtk.CheckMenuItem(_('  Exact'))
+        item = gtk.CheckMenuItem("  " + _('Exact'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('O','E'))
         setattr(self, 'seatsStyleOptionE', item)
@@ -283,17 +283,17 @@ class Hud:
         item = gtk.MenuItem(_('Since:'))
         self.aggMenu.append(item)
         
-        item = gtk.CheckMenuItem(_('  All Time'))
+        item = gtk.CheckMenuItem("  " + _('All Time'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('O','A'))
         setattr(self, 'hudStyleOptionA', item)
         
-        item = gtk.CheckMenuItem(_('  Session'))
+        item = gtk.CheckMenuItem("  " + _('Session'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('O','S'))
         setattr(self, 'hudStyleOptionS', item)
         
-        item = gtk.CheckMenuItem(_('  %s Days') % (self.hud_params['hud_days']))
+        item = gtk.CheckMenuItem("  " + _('%s Days') % (self.hud_params['hud_days']))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('O','T'))
         setattr(self, 'hudStyleOptionT', item)
@@ -351,7 +351,7 @@ class Hud:
 
         eventbox.connect_object("button-press-event", self.on_button_press, menu)
 
-        debugitem = gtk.MenuItem(_('Debug StatWindows'))
+        debugitem = gtk.MenuItem(_('Debug Statistics Windows'))
         menu.append(debugitem)
         debugitem.connect("activate", self.debug_stat_windows)
 
@@ -592,7 +592,7 @@ class Hud:
         adj = range(0, self.max + 1) # default seat adjustments = no adjustment
 #    does the user have a fav_seat?
         if self.max not in config.supported_sites[self.table.site].layout:
-            sys.stderr.write(_("No layout found for %d-max games for site %s\n") % (self.max, self.table.site))
+            sys.stderr.write(_("No layout found for %d-max games for site %s.") % (self.max, self.table.site))
             return adj
         if self.table.site != None and int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
             try:
@@ -614,7 +614,7 @@ class Hud:
         for key in self.stat_dict:
             if self.stat_dict[key]['screen_name'] == name:
                 return self.stat_dict[key]['seat']
-        sys.stderr.write(_("Error finding actual seat.\n"))
+        sys.stderr.write(_("Error finding actual seat."))
 
     def create(self, hand, config, stat_dict, cards):
 #    update this hud, to the stats and players as of "hand"
@@ -630,7 +630,7 @@ class Hud:
 
         self.stat_dict = stat_dict
         self.cards = cards
-        log.info(_('Creating hud from hand ')+str(hand))
+        log.info(_('Creating hud from hand %s') % str(hand))
         adj = self.adj_seats(hand, config)
         loc = self.config.get_locations(self.table.site, self.max)
         if loc is None and self.max != 10:
@@ -682,8 +682,7 @@ class Hud:
             try:
                 statd = self.stat_dict[s]
             except KeyError:
-                log.error(_("KeyError at the start of the for loop in update in hud_main. How this can possibly happen is totally beyond my comprehension. Your HUD may be about to get really weird. -Eric"))
-                log.error(_("(btw, the key was %s and statd is %s") % (s, statd))
+                log.error(_("HUD process overloaded, skipping this hand."))
                 continue
             try:
                 self.stat_windows[statd['seat']].player_id = statd['player_id']
@@ -703,7 +702,7 @@ class Hud:
                     if this_stat.hudcolor != "":
                         window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
                     else:
-                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))	
+                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
                     
                     if this_stat.stat_loth != "":
                         if number[0] < (float(this_stat.stat_loth)/100):
@@ -940,7 +939,7 @@ class Popup_window:
         pu_text = ""
         mo_text = ""
         for s in stat_list:
-            number = Stats.do_stat(stat_dict, player = int(stat_window.player_id), stat = s)
+            number = Stats.do_stat(stat_dict, player = int(stat_window.player_id), stat = s, handid = int(stat_window.parent.hand))
             mo_text += number[5] + " " + number[4] + "\n"
             pu_text += number[3] + "\n"
 

@@ -28,10 +28,10 @@ def fpdb_options():
     parser = OptionParser()
     parser.add_option("-x", "--errorsToConsole",
                       action="store_true",
-                      help=_("If passed error output will go to the console rather than ."))
+                      help=_("Send error messages to the console rather than the log file."))
     parser.add_option("-d", "--databaseName",
                       dest="dbname",
-                      help=_("Overrides the default database name"))
+                      help=_("Specifies a database name."))
     parser.add_option("-c", "--configFile",
                       dest="config", default=None,
                       help=_("Specifies a configuration file."))
@@ -51,6 +51,8 @@ def fpdb_options():
                       default = 'EMPTY')
     parser.add_option("-v", "--version", action = "store_true", 
                       help = _("Print version information and exit."))
+    parser.add_option("-i", "--initialrun", action = "store_true", dest="initialRun",
+                      help = _("Force initial-run dialog"))
     parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False,
                     help=_("Print some useful one liners"))
     # The following options are used for SplitHandHistory.py
@@ -59,15 +61,17 @@ def fpdb_options():
     parser.add_option("-D", "--directory", dest="directory", metavar="FILE", default=None,
                     help=_("Input directory"))
     parser.add_option("-o", "--outpath", dest="outpath", metavar="FILE", default=None,
-                    help=_("Input out path in quiet mode"))
+                    help=_("Out path in quiet mode"))
     parser.add_option("-a", "--archive", action="store_true", dest="archive", default=False,
                     help=_("File to be split is a PokerStars or Full Tilt Poker archive file"))
+    parser.add_option("-t", "--testdata", action="store_true", dest="testData", default=False,
+                    help=_("Developer option to print regression test data"))
     parser.add_option("-n", "--numhands", dest="hands", default="100", type="int",
                     help=_("How many hands do you want saved to each file. Default is 100"))
     parser.add_option("--xloc", dest="xloc", default=None, type="int",
                       help=_("X location to open window"))
     parser.add_option("--yloc", dest="yloc", default=None, type="int",
-                      help=_("Y location to open Window"))
+                      help=_("Y location to open window"))
     parser.add_option("--autoimport", action="store_true", dest="autoimport",
                       help=_("Auto-start Auto-import"))
     parser.add_option("--minimized", action="store_true", dest="minimized",

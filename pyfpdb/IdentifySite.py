@@ -23,8 +23,8 @@ import sys
 import os
 from optparse import OptionParser
 import codecs
-import Configuration
 import Database
+import Configuration
 
 __ARCHIVE_PRE_HEADER_REGEX='^Hand #(\d+)\s*$|\*{20}\s#\s\d+\s\*{20,25}\s+'
 re_SplitArchive = re.compile(__ARCHIVE_PRE_HEADER_REGEX, re.MULTILINE)
@@ -51,13 +51,20 @@ class IdentifySite:
         
     def generateSiteList(self):
         """Generates a ordered dictionary of site, filter and filter name for each site in hhcs"""
+        #print self.config.hhcs
         for site, hhc in self.config.hhcs.iteritems():
             filter = hhc.converter
             filter_name = filter.replace("ToFpdb", "")
             summary = hhc.summaryImporter
             result = self.db.get_site_id(site)
             if len(result) == 1:
-                self.sitelist[result[0][0]] = (site, filter, filter_name, summary)
+                smod, sobj = None, None
+                mod = __import__(filter)
+                obj = getattr(mod, filter_name, None)
+                if summary:
+                    smod = __import__(summary)
+                    sobj = getattr(smod, summary, None)
+                self.sitelist[result[0][0]] = (site, filter, filter_name, summary, mod, obj, smod, sobj)
             else:
                 pass
 
@@ -87,21 +94,21 @@ class IdentifySite:
                 filter = info[1]
                 filter_name = info[2]
                 summary = info[3]
-                mod = __import__(filter)
-                obj = getattr(mod, filter_name, None)
+                mod = info[4]
+                obj = info[5]
                 if summary:
-                    smod = __import__(summary)
-                    sobj = getattr(smod, summary, None)
+                    smod = info[6]
+                    sobj = info[7]
                 
                 for kodec in self.__listof(obj.codepage):
                     try:
                         in_fh = codecs.open(file, 'r', kodec)
-                        whole_file = in_fh.read(2000)
+                        whole_file = in_fh.read(250)
                         in_fh.close()
                         if filter_name in ('OnGame', 'Winamax'):
                             m = obj.re_HandInfo.search(whole_file)
                         elif filter_name in ('PartyPoker'):
-                            m = obj.re_GameInfoRing.search(whole_file)
+                            m = obj.re_GameInfo.search(whole_file)
                             if not m:
                                 m = obj.re_GameInfoTrny.search(whole_file)
                         else:
@@ -114,6 +121,7 @@ class IdentifySite:
                                     filter = summary            
                         if m:
                             self.filelist[file] = [site] + [filter] + [kodec] + [archive]
+                            if self.verbose: print 'found --', site, filter, kodec, archive
                             break
 
                     except:
@@ -136,7 +144,6 @@ def main(argv=None):
     for file, site in IdSite.filelist.iteritems():
         print file, site
     print "----------- END ID REGRESSION FILES -----------"
-	
-    
+
 if __name__ == '__main__':
     sys.exit(main())

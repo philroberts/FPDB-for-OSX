@@ -1,0 +1,22 @@
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="35425228-23" starttime="20110531165736" numholecards="2" gametype="23" realmoney="true" data="20110531|Dragonfly Room - Super Turbo|35424785-1|35425228-23|true">
+	<players dealer="5">
+		<player seat="1" nickname="Player1" balance="$550.00" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$1900.00" dealtin="true" />
+		<player seat="4" nickname="Player4" balance="$3350.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="BIG_BLIND" timestamp="1306879058659" player="1" amount="200.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="2" type="FOLD" timestamp="1306879061023" player="3"/>
+		<event sequence="3" type="FOLD" timestamp="1306879065593" player="4"/>
+		<cards type="HOLE" cards="5d,Tc" player="3" hand="Ten High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="4" type="MUCK" timestamp="1306879067110" player="1"/>
+		<winner amount="200.00" uncalled="true" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
