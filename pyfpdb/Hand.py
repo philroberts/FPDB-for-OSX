@@ -980,11 +980,13 @@ class HoldemOmahaHand(Hand):
 
         for street in self.holeStreets:
             if player in self.holecards[street].keys():
-                hcs[0] = upper(self.holecards[street][player][1][0])
-                hcs[1] = upper(self.holecards[street][player][1][1])
+                for i in 0,1:
+                    hcs[i] = self.holecards[street][player][1][i]
+                    hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 try:
-                    hcs[2] = upper(self.holecards[street][player][1][2])
-                    hcs[3] = upper(self.holecards[street][player][1][3])
+                    for i in 2,3:
+                        hcs[i] = self.holecards[street][player][1][i]
+                        hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 except IndexError:
                     pass
 
