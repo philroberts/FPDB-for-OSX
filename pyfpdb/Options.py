@@ -107,6 +107,7 @@ def site_alias(alias):
                 "Party"          : "PartyPoker",
                 "AP"             : "Absolute",
                 "UB"             : "UltimateBet",
+                "Entraction"     : "Entraction",
               }
     try:
         tmp = aliases[alias]

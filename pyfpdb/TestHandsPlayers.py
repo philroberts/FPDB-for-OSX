@@ -290,13 +290,14 @@ def main(argv=None):
     iPokerErrors      = FpdbError('iPoker')
     Win2dayErrors     = FpdbError('Win2day')
     WinamaxErrors     = FpdbError('Winamax')
+    EntractionErrors  = FpdbError('Entraction')
 
     ErrorsList = [
                     PacificPokerErrors, PokerStarsErrors, FTPErrors, PartyPokerErrors,
                     BetfairErrors, OnGameErrors, AbsoluteErrors,
                     EverleafErrors, CarbonErrors, PKRErrors,
                     iPokerErrors, WinamaxErrors, UltimateBetErrors,
-                    Win2dayErrors, EverestErrors,
+                    Win2dayErrors, EverestErrors, EntractionErrors
                 ]
 
     sites = {
@@ -315,6 +316,7 @@ def main(argv=None):
                 'Win2day' : False,
                 'Winamax' : False,
                 'Everest' : False,
+                'Entraction' : False,
             }
 
     if test_all_sites == True:
@@ -391,6 +393,10 @@ def main(argv=None):
         walk_testfiles("regression-test-files/cash/Win2day/", compare, importer, Win2dayErrors, "Win2day")
     elif sites['Win2day'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, Win2dayErrors, "Win2day")
+    if sites['Entraction'] == True and not single_file_test:
+        walk_testfiles("regression-test-files/cash/Entraction/", compare, importer, EntractionErrors, "Entraction")
+    elif sites['Entraction'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, EntractionErrors, "Entraction")
 
     totalerrors = 0
 
