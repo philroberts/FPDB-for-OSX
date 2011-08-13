@@ -298,8 +298,8 @@ class Importer:
         tottime = 0
         filecount = 0
         fileerrorcount = 0
-        moveimportedfiles = False # need to wire this into GUI and make it prettier
-        movefailedfiles = False # and this too
+        moveimportedfiles = False #TODO need to wire this into GUI and make it prettier
+        movefailedfiles = False #TODO and this too
         
         #prepare progress popup window
         ProgressDialog = ProgressBar(len(self.filelist), self.parent)
