@@ -100,6 +100,7 @@ class Entraction(HandHistoryConverter):
     re_PostSB       = re.compile(r"^Small Blind: {16}(?P<PNAME>.*)\s+\((?P<SB>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
     re_PostBB       = re.compile(r"^Big Blind: {18}(?P<PNAME>.*)\s+\((?P<BB>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
     re_PostBoth     = re.compile(r"^Small \+ Big Blind: {10}(?P<PNAME>.*)\s+\((?P<SBBB>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
+    re_PostSecondSB = re.compile(r"^Blind out of turn: {10}(?P<PNAME>.*)\s+\((?P<SB>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
     re_Antes        = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_BringIn      = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_HeroCards    = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
@@ -238,12 +239,7 @@ class Entraction(HandHistoryConverter):
         for a in self.re_PostSB.finditer(hand.handText):
             name = a.group('PNAME').strip()
             blind = self.clearMoneyString(a.group('SB'))
-            if liveBlind:
-                hand.addBlind(name, 'small blind', blind)
-                liveBlind = False
-            else:
-                # Post dead blinds as ante
-                hand.addBlind(name, 'secondsb', blind)
+            hand.addBlind(name, 'small blind', blind)
         for a in self.re_PostBB.finditer(hand.handText):
             name = a.group('PNAME').strip()
             blind = self.clearMoneyString(a.group('BB'))
@@ -251,6 +247,9 @@ class Entraction(HandHistoryConverter):
         for a in self.re_PostBoth.finditer(hand.handText):
             name = a.group('PNAME').strip()
             hand.addBlind(name, 'both', a.group('SBBB'))
+        for a in self.re_PostSecondSB.finditer(hand.handText):
+            name = a.group('PNAME').strip()
+            hand.addBlind(name, 'secondsb', blind)
 
     def readHeroCards(self, hand):
         pass
