@@ -99,9 +99,9 @@ class Entraction(HandHistoryConverter):
     re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
     re_PostSB       = re.compile(r"^Small Blind: {16}(?P<PNAME>.*)\s+\((?P<SB>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
     re_PostBB       = re.compile(r"^Big Blind: {18}(?P<PNAME>.*)\s+\((?P<BB>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
+    re_PostBoth     = re.compile(r"^Small \+ Big Blind: {10}(?P<PNAME>.*)\s+\((?P<SBBB>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
     re_Antes        = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_BringIn      = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[%(NUM)s]+)" % substitutions, re.MULTILINE)
-    re_PostBoth     = re.compile(r"^%(PLYR)s: posts small \& big blinds %(CUR)s(?P<SBBB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_HeroCards    = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""
                         ^%(PLYR)s\s+(?P<ATYPE>Fold|Check|Call|Bet|Raise|All-In)
@@ -248,8 +248,9 @@ class Entraction(HandHistoryConverter):
             name = a.group('PNAME').strip()
             blind = self.clearMoneyString(a.group('BB'))
             hand.addBlind(name, 'big blind', blind)
-#        for a in self.re_PostBoth.finditer(hand.handText):
-#            hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+        for a in self.re_PostBoth.finditer(hand.handText):
+            name = a.group('PNAME').strip()
+            hand.addBlind(name, 'both', a.group('SBBB'))
 
     def readHeroCards(self, hand):
         pass
