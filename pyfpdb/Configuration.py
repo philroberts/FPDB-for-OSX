@@ -28,7 +28,7 @@ Handles fpdb/fpdb-hud configuration files.
 from __future__ import with_statement
 
 import L10n
-_ = L10n.get_special_translation()
+_ = L10n.get_translation()
 
 import os
 import sys
