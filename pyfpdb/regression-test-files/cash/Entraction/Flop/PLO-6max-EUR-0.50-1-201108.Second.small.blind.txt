@@ -11,7 +11,7 @@ Small Blind:                Hero        (0.50)
 Big Blind:                  Player3     (1.00)
 Blind out of turn:          Player4     (1.00)
 
-Hero   was dealt:           2h - 2s - Ah - As
+Hero was dealt:             2h - 2s - Ah - As
 
 Player4                     Raise       (2.50)
 Player5                     Fold        
@@ -28,10 +28,10 @@ Hero                        Call        (26.50)
 Turn                        6s - Js - 3s - 2c
 River                       6s - Js - 3s - 2c - 9s
 
-Hero   shows:               2h - 2s - Ah - As (a flush, Ace high)
-Player4    shows:           2d - Qs - Ts - 5d (a flush, Queen high)
+Hero shows:                 2h - 2s - Ah - As (a flush, Ace high)
+Player4 shows:              2d - Qs - Ts - 5d (a flush, Queen high)
 
-Hero   wins:                EUR 98.00 (with a flush, Ace high)
+Hero wins:                  EUR 98.00 (with a flush, Ace high)
 Rake:                       EUR 3.00
 
 Game ended 2011-08-06 18:53:35 CEST
