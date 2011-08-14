@@ -140,7 +140,7 @@ Otherwise, finish at EOF.
                     self.processedHands.append(self.processHand(handText))
                 except FpdbParseError, e:
                     self.numErrors += 1
-                    log.debug(handText)
+                    log.error("%s" % e)
             self.numHands = len(handsList)
             endtime = time.time()
             log.info(_("Read %d hands (%d failed) in %.3f seconds") % (self.numHands, self.numErrors, endtime - starttime))
