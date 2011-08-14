@@ -19,12 +19,6 @@
 
 def pass_through(to_translate): return to_translate
 
-def get_special_translation():
-    # this function call used from the Configuration process
-    # Configuration.py cannot call get_translation() because
-    # that is dependent on Configuration !!
-    return pass_through
-
 def set_translation(to_lang):
 
     import gettext
@@ -46,8 +40,8 @@ def get_translation():
     # which goes wrong because the attribute translation has
     # yet been set !!!!
 
-    # check if _ has already been bound if it has, return it now
-    # and do not bind again.
+    # check if _ or pass_through has already been bound if it has,
+    # return it now and do not bind again.
     # Otherwise startup will be very slow because L10n is called
     # multiple times during startup
 
@@ -67,20 +61,16 @@ def get_translation():
     return init_translation()
 
 def init_translation():
-    # This cannot be done in an in-line function
-    # because importing Configuration in turn calls L10n
-    # which goes wrong because the attribute translation has
-    # yet been set !!!!
-
-    # check if _ has already been bound if it has, return it now
-    # and do not bind again.
-    # Otherwise startup will be very slow because L10n is called
-    # multiple times during startup
-
+    #
+    # set the system language
+    # this function normally called once only per instance
+    # Calling this function again will have no effect because
+    # translations cannot be changed on-the-fly by this function
+    #
     import Configuration
     conf=Configuration.Config()
     
-    if conf.general['ui_language'] == "system":
+    if conf.general['ui_language'] in ("system", ""):
         import locale
         try:
             (lang, charset) = locale.getdefaultlocale()
@@ -92,6 +82,7 @@ def init_translation():
             return set_translation(lang)
     else:
         return set_translation(conf.general['ui_language'])
+
 def get_installed_translations():
     #
     # returns a list of translated installed languages, (de, es)...
@@ -117,5 +108,19 @@ def get_installed_translations():
     la_list=list(la_set)
     la_list.sort()
     la_co_list.sort()
-                 
-    return la_list, la_co_list
+    
+    la_dict = {}
+    la_co_dict = {}
+    try:
+        from icu import Locale
+        for code in la_list:
+            la_dict[code] = Locale.getDisplayName(Locale(code))
+        for code in la_co_list:
+            la_co_dict[code] = Locale.getDisplayName(Locale(code))
+    except:
+        for code in la_list:
+            la_dict[code] = code
+        for code in la_co_list:
+            la_co_dict[code] = code
+
+    return la_dict, la_co_dict

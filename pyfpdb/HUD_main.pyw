@@ -24,7 +24,7 @@
 Main for FreePokerTools HUD.
 """
 import L10n
-_ = L10n.get_translation()
+_ = L10n.init_translation()
 
 #    Standard Library modules
 import sys
