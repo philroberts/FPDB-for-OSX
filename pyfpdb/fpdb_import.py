@@ -30,6 +30,7 @@ import re
 import Queue
 from collections import deque # using Queue for now
 import threading
+import shutil
 
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
@@ -294,20 +295,40 @@ class Importer:
         totpartial = 0
         toterrors = 0
         tottime = 0
+        filecount = 0
+        fileerrorcount = 0
+        moveimportedfiles = False #TODO need to wire this into GUI and make it prettier
+        movefailedfiles = False #TODO and this too
         
         #prepare progress popup window
         ProgressDialog = ProgressBar(len(self.filelist), self.parent)
         
         for file in self.filelist:
             
+            filecount = filecount + 1
             ProgressDialog.progress_update(file, str(self.database.getHandCount()))
-            
-            (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0]
-                                                           ,self.filelist[file][1], self.filelist[file][2], q)
-            totstored += stored
-            totdups += duplicates
-            totpartial += partial
-            toterrors += errors
+        
+            if not moveimportedfiles and not movefailedfiles:    
+                (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0]
+                                                               ,self.filelist[file][1], self.filelist[file][2], q)
+                totstored += stored
+                totdups += duplicates
+                totpartial += partial
+                toterrors += errors
+            else:
+                try:
+                    (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0]
+                                                                   ,self.filelist[file][1], self.filelist[file][2], q)
+                    totstored += stored
+                    totdups += duplicates
+                    totpartial += partial
+                    toterrors += errors
+                    if moveimportedfiles:
+                        shutil.move(file, "c:\\fpdbimported\\%d-%s" % (filecount, os.path.basename(file[3:]) ) )
+                except:
+                    fileerrorcount = fileerrorcount + 1
+                    if movefailedfiles:
+                        shutil.move(file, "c:\\fpdbfailed\\%d-%s" % (fileerrorcount, os.path.basename(file[3:]) ) )
             
             self.logImport('bulk', file, stored, duplicates, partial, errors, ttime, self.filelist[file][2])
         self.database.commit()
