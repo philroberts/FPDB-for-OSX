@@ -91,7 +91,7 @@ class Entraction(HandHistoryConverter):
           Table\s(?P<TABLE>.+)
         """ % substitutions, re.MULTILINE|re.VERBOSE)
 
-    re_SplitHands   = re.compile('Game #')
+    re_SplitHands   = re.compile('(?=Game #)')
     re_Button       = re.compile('^Dealer:\s+(?P<PNAME>.*)$', re.MULTILINE)
     re_Board        = re.compile(r"(?P<CARDS>.+)$")
     re_GameEnds     = re.compile(r"Game\sended\s(?P<Y>[0-9]{4})-(?P<M>[0-9]{2})-(?P<D>[0-9]{2})\s(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", re.MULTILINE)
@@ -235,7 +235,6 @@ class Entraction(HandHistoryConverter):
 #            hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         
     def readBlinds(self, hand):
-        liveBlind = True
         for a in self.re_PostSB.finditer(hand.handText):
             name = a.group('PNAME').strip()
             blind = self.clearMoneyString(a.group('SB'))
@@ -249,7 +248,8 @@ class Entraction(HandHistoryConverter):
             hand.addBlind(name, 'both', a.group('SBBB'))
         for a in self.re_PostSecondSB.finditer(hand.handText):
             name = a.group('PNAME').strip()
-            hand.addBlind(name, 'secondsb', blind)
+            blind = self.clearMoneyString(a.group('SB'))
+            hand.addBlind(name, 'big blind', blind)
 
     def readHeroCards(self, hand):
         pass
