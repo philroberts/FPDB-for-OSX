@@ -19,7 +19,7 @@ How?
 Grab the code from this git branch and proceed as in
 [the fpdb git guide](http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Install_With_Git).
 You will also need to build the _axlib_ framework included in the
-pyfdb/axlib/ directory.  This framework is used to access some
+pyfpdb/axlib/ directory.  This framework is used to access some
 windowing notifications that aren't available directly in python or
 through pyobjc.  Open axlib.xcodeproj in XCode and build in Release
 mode.  Finally, you will need to enable access for assistive devices
