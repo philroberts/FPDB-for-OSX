@@ -31,14 +31,17 @@ import sys
 import time
 
 import logging
-# logging has been set up in fpdb.py or HUD_main.py, use their settings:
-log = logging.getLogger("importer")
 
 
 import fpdb_import
 from optparse import OptionParser
 import Configuration
 import string
+
+if __name__ == "__main__":
+    Configuration.set_logfile("fpdb-log.txt")
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("importer")
 
 if os.name == "nt":
     import win32console

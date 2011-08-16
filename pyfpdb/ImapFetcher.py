@@ -176,6 +176,7 @@ def main(argv=None):
         print _("Need to define a converter")
         exit(0)
 
+    Configuration.set_logfile("fpdb-log.txt")
     # These options should really come from the OptionsParser
     config = Configuration.Config()
     db = Database.Database(config)

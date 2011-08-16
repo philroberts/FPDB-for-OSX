@@ -509,6 +509,7 @@ class GuiSessionViewer (threading.Thread):
         vbox.show_all()
 
 def main(argv=None):
+    Configuration.set_logfile("fpdb-log.txt")
     config = Configuration.Config()
     i = GuiBulkImport(settings, config)
 
