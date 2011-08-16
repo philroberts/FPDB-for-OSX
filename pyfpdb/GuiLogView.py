@@ -30,6 +30,9 @@ import pango
 import os
 import traceback
 import logging
+import Configuration
+if __name__ == "__main__":
+    Configuration.set_logfile("fpdb-log.txt")
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("logview")
 

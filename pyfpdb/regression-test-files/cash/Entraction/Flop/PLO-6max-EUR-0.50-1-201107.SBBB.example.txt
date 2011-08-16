@@ -1,0 +1,38 @@
+Game # 2314086000 - Omaha High Pot Limit EUR 0.50/1 - Table "Eaton Max 100BB"
+
+Players(max 6):
+Hero                        (EUR 417.43 in seat 1)
+Player2                     (EUR 116.24 in seat 2)
+Player3                     (EUR 100.00 in seat 3)
+Player4                     (EUR 690.18 in seat 4)
+Player5                     (EUR 241.40 in seat 5)
+Player6                     (EUR 90.00 in seat 6)
+
+Dealer:                     Player3
+Small Blind:                Player4     (0.50)
+Big Blind:                  Player5     (1.00)
+Small + Big Blind:          Player2     (1.50)
+
+Hero was dealt:             Ad - Td - 7s - 8h
+
+Player6                     Fold        
+Hero                        Raise       (5.00)
+Player2                     Call        (4.00)
+Player3                     Fold        
+Player4                     Fold        
+Player5                     Fold        
+
+Flop                        Kh - 8s - Ks
+
+Hero                        Bet         (7.50)
+Player2                     Fold        
+Hero                        Payback     (7.50)
+
+Hero didn't show hand
+
+Hero wins:                  EUR 11.40
+Rake:                       EUR 0.60
+
+Game ended 2011-07-20 23:45:00 CEST
+
+
