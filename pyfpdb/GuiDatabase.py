@@ -688,17 +688,17 @@ if __name__=="__main__":
     config = Configuration.Config()
 
     win = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    win.set_title(_("Log Viewer"))
+    win.set_title(_("Maintain Databases"))
     win.set_border_width(1)
     win.set_default_size(600, 500)
     win.set_resizable(True)
 
-    dia = gtk.Dialog(_("Log Viewer"),
+    dia = gtk.Dialog(_("Maintain Databases"),
                      win,
                      gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                      (gtk.STOCK_CLOSE, gtk.RESPONSE_OK))
     dia.set_default_size(500, 500)
-    log = GuiLogView(config, win, dia.vbox)
+    log = GuiDatabase(config, win, dia)
     response = dia.run()
     if response == gtk.RESPONSE_ACCEPT:
         pass
