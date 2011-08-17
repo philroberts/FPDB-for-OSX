@@ -226,7 +226,7 @@ class HUD_main(object):
                         return
                     longestmatch = ""
                     for k in self.owner.hud_dict.keys():
-                        if tablename.startswith(k) and len(k) > len(longestmatch):
+                        if tablename.find(k) != -1 and len(k) > len(longestmatch):
                             longestmatch = k
                     if not longestmatch == "":
                         hud = self.owner.hud_dict[longestmatch]
