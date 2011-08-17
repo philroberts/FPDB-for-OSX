@@ -265,6 +265,7 @@ class HUD_main(object):
             self.vb.removeRow_(row)
             frame = self.main_window.frame()
             frame.size.height -= 20
+            frame.origin.y += 20
             self.main_window.setFrame_display_(frame, True)
             hud.main_window.close()
             hud.kill()
