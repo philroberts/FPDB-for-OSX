@@ -197,11 +197,11 @@ class HUD_main(object):
 
             # a main window
             if options.xloc is None:
-                options.xloc = 0
+                options.xloc = 950
             if options.yloc is None:
-                options.yloc = 0
+                options.yloc = 1400
             
-            rect = NSMakeRect(options.xloc + 100, options.yloc + 400, 300, 20)
+            rect = NSMakeRect(options.xloc, options.yloc, 300, 20)
             self.main_window = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(rect, NSTitledWindowMask | NSClosableWindowMask | NSResizableWindowMask | NSMiniaturizableWindowMask, NSBackingStoreBuffered, False)
             self.main_window.setTitle_("HUD Main Window")
             self.vb = NSMatrix.alloc().initWithFrame_mode_cellClass_numberOfRows_numberOfColumns_(rect, NSListModeMatrix, NSTextFieldCell.class__(), 1, 1)
