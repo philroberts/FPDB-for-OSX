@@ -121,6 +121,8 @@ class Table_Window(object):
         if geo is None:  return None
         self.width  = geo['width']
         self.height = geo['height']
+        self.oldwidth = self.width
+        self.oldheight = self.height
         self.x      = geo['x']
         self.y      = geo['y']
 
