@@ -186,24 +186,22 @@ if config.posix:
     for i in posix_modules_to_test:
         try_import(i) 
 
-#
-# finished, work out how to exit
-#
-
 if len(failure_list):
     win_output(failure_list)
-        
+
+#
+# finished validation, work out how to exit
+#
 if config.install_method == "exe":
     if len(failure_list):
         sys.exit(1)
-    else:
-        sys.exit(0)
-        
+ 
 if len(failure_list):
     if config.os_family in ("XP", "Win7"):
         sys.exit(1)
     else:
         sys.exit(failure_list)
+
 #
 # If initial run (example_copy==True), prompt for language
 #
@@ -225,6 +223,13 @@ if config.example_copy:
     initial_run = "-i"
 else:
     initial_run = ""
+
+if config.install_method == "exe":
+    if initial_run:
+        sys.exit(2)
+    else:
+        sys.exit(0)
+
 #
 # finally, invoke fpdb
 #
