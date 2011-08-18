@@ -102,12 +102,10 @@ def get_installed_translations():
                 la_list.append(la_co)
             la_co_list.append(la_co)
     #
-    #eliminate dupes and sort
+    #eliminate dupes
     #
     la_set=set(la_list)
     la_list=list(la_set)
-    la_list.sort()
-    la_co_list.sort()
     
     la_dict = {}
     la_co_dict = {}

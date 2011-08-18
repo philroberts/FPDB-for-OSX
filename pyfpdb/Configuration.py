@@ -988,7 +988,7 @@ class Config:
                 shutil.move(file, file+".backup")
             except:
                 pass
-
+                
         with open(file, 'w') as f:
             #self.doc.writexml(f)
             f.write( self.wrap_long_lines( self.doc.toxml() ) )
@@ -1027,7 +1027,7 @@ class Config:
         emailNode.setAttribute("folder", newEmail.folder)
         emailNode.setAttribute("useSsl", newEmail.useSsl)
     #end def editEmail
-    
+        
     def edit_layout(self, site_name, max, width = None, height = None,
                     fav_seat = None, locations = None):
         site_node   = self.get_site_node(site_name)
@@ -1465,6 +1465,11 @@ class Config:
             if font           is not None: site_node.setAttribute("font", font)
             if font_size      is not None: site_node.setAttribute("font_size", font_size)
         return
+
+    def set_general(self,lang=None):
+
+       for general_node in self.doc.getElementsByTagName('general'):
+            if lang: general_node.setAttribute("ui_language", lang)
 
     def set_site_ids(self, sites):
         self.site_ids = dict(sites)
