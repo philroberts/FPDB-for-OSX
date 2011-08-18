@@ -53,7 +53,6 @@ class Importer:
         self.sql        = sql
         self.parent     = parent
 
-        #log = Configuration.get_logger("logging.conf", "importer", log_dir=self.config.dir_log)
         self.filelist   = {}
         self.dirlist    = {}
         self.siteIds    = {}

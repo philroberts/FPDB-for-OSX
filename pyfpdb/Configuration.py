@@ -182,42 +182,25 @@ def get_config(file_name, fallback = True):
             sys.stderr.write( str(sys.exc_info()) )
             sys.exit()
     elif fallback:
-        print(_("No %s found, cannot fall back. Exiting.") % file_name, "\n")
         sys.stderr.write((_("No %s found, cannot fall back. Exiting.") % file_name) + "\n")
         sys.exit()
 
     #print "get_config: returning "+str( (config_path,example_copy,example_path) )
     return (config_path,example_copy,example_path)
 
-def get_logger(file_name, config = "config", fallback = False, log_dir=None, log_file=None, lvl = logging.INFO):
-    (conf_file,copied,example_file) = get_config(file_name, fallback = fallback)
+def set_logfile(file_name):
+    (conf_file,copied,example_file) = get_config("logging.conf", fallback = False)
 
-    if log_dir is None:
-        log_dir = os.path.join(FPDB_PROGRAM_PATH, u'log')
-    #print "\nget_logger: checking log_dir:", log_dir
+    log_dir = os.path.join(CONFIG_PATH, u'log')
     check_dir(log_dir)
-    if log_file is None:
-        file = os.path.join(log_dir, u'fpdb-log.txt')
-    else:
-        file = os.path.join(log_dir, log_file)
+    log_file = os.path.join(log_dir, file_name)
 
     if conf_file:
         try:
-            file = file.replace('\\', '\\\\')  # replace each \ with \\
-#            print "    ="+file+" "+ str(type(file))+" len="+str(len(file))+"\n"
-            logging.config.fileConfig(conf_file, {"logFile":file})
-            log = logging.getLogger(config)
-            log.debug("%s logger initialised" % config)
-            return log
+            log_file = log_file.replace('\\', '\\\\')  # replace each \ with \\
+            logging.config.fileConfig(conf_file, {"logFile":log_file})
         except:
-            pass
-
-    log = logging.basicConfig(filename=file, level=lvl)
-    log = logging.getLogger()
-    # but it looks like default is no output :-(  maybe because all the calls name a module?
-    log.debug(_("Default logger initialised for %s") % file)
-    #print(_("Default logger initialised for %s") % file)
-    return log
+            sys.stderr.write(_("Could not setup log file %s" % file_name))
 
 def check_dir(path, create = True):
     """Check if a dir exists, optionally creates if not."""
@@ -735,7 +718,7 @@ class Config:
             self.dir_log = os.path.join(CONFIG_PATH, u'log')
         self.log_file = os.path.join(self.dir_log, u'fpdb-log.txt')
         self.dir_database = os.path.join(CONFIG_PATH, u'database')
-        log = get_logger(u"logging.conf", "config", log_dir=self.dir_log, lvl = LOGLEVEL[lvl])
+        log = logging.getLogger("config")
 
 #    "file" is a path to an xml file with the fpdb/HUD configuration
 #    we check the existence of "file" and try to recover if it doesn't exist

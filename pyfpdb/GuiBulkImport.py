@@ -374,6 +374,7 @@ def main(argv=None):
         print ('PartyPoker ' + _('converter') + ': ./GuiBulkImport.py -c PartyPoker -f filename')
         sys.exit(0)
 
+    Configuration.set_logfile("GuiBulkImport-log.txt")
     config = Configuration.Config()
 
     settings = {}
