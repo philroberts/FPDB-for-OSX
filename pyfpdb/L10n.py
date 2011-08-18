@@ -80,6 +80,8 @@ def init_translation():
             return pass_through
         else:
             return set_translation(lang)
+    elif conf.general['ui_language'] == "en":
+        return pass_through
     else:
         return set_translation(conf.general['ui_language'])
 

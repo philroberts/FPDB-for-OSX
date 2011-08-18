@@ -109,6 +109,7 @@ class ChooseLanguage:
         self.listbox  = Listbox(win)
         
         self.listbox.insert(END,("Use the system language settings"))
+        self.listbox.insert(END,("en -- Always use English for FPDB"))
         for key in sorted(language_dict.iterkeys()):
             self.listbox.insert(END,(key + " -- " + language_dict[key]))
         self.listbox.pack(fill=BOTH, expand=1)
