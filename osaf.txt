@@ -1,3 +1,5 @@
+The following licence applies to the pyICU module which is included in the windows executable version of fpdb
+
 /* ====================================================================
  * Copyright (c) 2005 Open Source Applications Foundation.
  *
