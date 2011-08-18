@@ -43,6 +43,8 @@ elif sys.platform == 'darwin':
 else: # This is bad--figure out the values for the various windows flavors
     import WinTables as Tables
 
+if __name__ == "__main__":
+    Configuration.set_logfile("fpdb-log.txt")
 config = Configuration.Config()
 #   Main function used for testing
 if __name__=="__main__":

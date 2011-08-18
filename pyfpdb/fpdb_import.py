@@ -33,8 +33,6 @@ import threading
 import shutil
 
 import logging
-# logging has been set up in fpdb.py or HUD_main.py, use their settings:
-log = logging.getLogger("importer")
 
 import pygtk
 import gtk
@@ -43,6 +41,11 @@ import gtk
 import Database
 import Configuration
 import Exceptions
+
+if __name__ == "__main__":
+    Configuration.set_logfile("fpdb-log.txt")
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("importer")
 
 class Importer:
     def __init__(self, caller, settings, config, sql = None, parent = None):

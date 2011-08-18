@@ -39,6 +39,7 @@ def write_file(filename, data):
     print f
 
 def main():
+    Configuration.set_logfile("fpdb-log.txt")
     config = Configuration.Config()
     db = Database.Database(config)
 

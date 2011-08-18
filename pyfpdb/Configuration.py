@@ -1504,6 +1504,7 @@ class Config:
         return( self.gui_cash_stats )
 
 if __name__== "__main__":
+    set_logfile("fpdb-log.txt")
     c = Config()
 
     print "\n----------- SUPPORTED SITES -----------"
