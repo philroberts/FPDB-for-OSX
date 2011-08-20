@@ -73,7 +73,6 @@ follow :  whether to tail -f the input"""
         self.config = config
         self.import_parameters = self.config.get_import_parameters()
         self.sitename = sitename
-        #log = Configuration.get_logger("logging.conf", "parser", log_dir=self.config.dir_log)
         log.info("HandHistory init - %s site, %s subclass, in_path '%s'; out_path '%s'" 
                  % (self.sitename, self.__class__, in_path, out_path) ) # should use self.filter, not self.sitename
 
@@ -141,7 +140,7 @@ Otherwise, finish at EOF.
                     self.processedHands.append(self.processHand(handText))
                 except FpdbParseError, e:
                     self.numErrors += 1
-                    log.debug(handText)
+                    log.error("%s" % e)
             self.numHands = len(handsList)
             endtime = time.time()
             log.info(_("Read %d hands (%d failed) in %.3f seconds") % (self.numHands, self.numErrors, endtime - starttime))

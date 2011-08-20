@@ -30,14 +30,17 @@ import gobject
 #import pokereval
 
 import logging
-# logging has been set up in fpdb.py or HUD_main.py, use their settings:
-log = logging.getLogger("filter")
 
 import Configuration
 import Database
 import SQL
 import Charset
 import Filters
+
+if __name__ == "__main__":
+    Configuration.set_logfile("fpdb-log.txt")
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("filter")
 
 class Filters(threading.Thread):
     def __init__(self, db, config, qdict, display = {}, debug=True):

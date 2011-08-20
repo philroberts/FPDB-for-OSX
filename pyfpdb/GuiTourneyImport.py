@@ -39,6 +39,8 @@ import Options
 from Exceptions import FpdbParseError
 
 import logging
+if __name__ == "__main__":
+    Configuration.set_logfile("fpdb-log.txt")
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("importer")
 

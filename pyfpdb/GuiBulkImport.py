@@ -37,6 +37,8 @@ import Configuration
 import Exceptions
 
 import logging
+if __name__ == "__main__":
+    Configuration.set_logfile("fpdb-log.txt")
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("importer")
 
@@ -374,6 +376,7 @@ def main(argv=None):
         print ('PartyPoker ' + _('converter') + ': ./GuiBulkImport.py -c PartyPoker -f filename')
         sys.exit(0)
 
+    Configuration.set_logfile("GuiBulkImport-log.txt")
     config = Configuration.Config()
 
     settings = {}
