@@ -29,12 +29,19 @@ rem    Next, Validate installation environment.
 rem    fpdb_prerun will throw a tcl window and errorlevel 1 if a problem found
 rem    problem will also be detailed in fpdb_prerun.txt
 rem    -v flag (verbose) activates text output
+rem    errorlevel 2 signals a first-time run of fpdb.
 
 fpdb_prerun.exe -v >..\fpdb_prerun.txt
 if %ERRORLEVEL% == 1 goto:end
+if %ERRORLEVEL% == 2 goto:initialrun
 
 start /b fpdb.exe
 goto:end
+
+:initialrun
+start /b fpdb.exe -i
+goto:end
+
 
 :folder_check_error
 

@@ -44,7 +44,7 @@ To compile this function, install mingw then DOS>fpdb_folder_check.c -o fpdb_fol
 
 int main(int argc, char **argv)
 {
-int debugmode=1;
+int debugmode=0;
 
 if (argc != 2) {
      printf ("A helper function to examine a directory passed in the first argument\n");
