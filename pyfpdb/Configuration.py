@@ -200,7 +200,7 @@ def set_logfile(file_name):
             log_file = log_file.replace('\\', '\\\\')  # replace each \ with \\
             logging.config.fileConfig(conf_file, {"logFile":log_file})
         except:
-            sys.stderr.write(_("Could not setup log file %s" % file_name))
+            sys.stderr.write(_("Could not setup log file %s") % file_name)
 
 def check_dir(path, create = True):
     """Check if a dir exists, optionally creates if not."""
