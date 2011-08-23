@@ -359,6 +359,7 @@ def main(argv=None):
     def destroy(*args):  # call back for terminating the main eventloop
         gtk.main_quit()
 
+    Configuration.set_logfile("fpdb-log.txt")
     import Options
 
     (options, argv) = Options.fpdb_options()

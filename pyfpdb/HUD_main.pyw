@@ -24,7 +24,7 @@
 Main for FreePokerTools HUD.
 """
 import L10n
-_ = L10n.get_translation()
+_ = L10n.init_translation()
 
 #    Standard Library modules
 import sys
@@ -33,6 +33,7 @@ import traceback
 import thread
 import time
 import string
+import logging
 
 #    pyGTK modules
 import gtk
@@ -56,8 +57,9 @@ else: # This is bad--figure out the values for the various windows flavors
     import WinTables as Tables
 
 # get config and set up logger
+Configuration.set_logfile("HUD-log.txt")
 c = Configuration.Config(file=options.config, dbname=options.dbname)
-log = Configuration.get_logger("logging.conf", "hud", log_dir=c.dir_log, log_file='HUD-log.txt')
+log = logging.getLogger("hud")
 
 class HUD_main(object):
     """A main() object to own both the read_stdin thread and the gui."""

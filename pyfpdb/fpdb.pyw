@@ -36,8 +36,6 @@ cl_options = string.join(sys.argv[1:])
 (options, argv) = Options.fpdb_options()
 
 import logging
-import logging.config
-log = logging.getLogger("fpdb")
 
 import pygtk
 pygtk.require('2.0')
@@ -80,6 +78,9 @@ import Database
 import Configuration
 import Exceptions
 import Stats
+
+Configuration.set_logfile("fpdb-log.txt")
+log = logging.getLogger("fpdb")
 
 try:
     import subprocess
@@ -284,6 +285,7 @@ class fpdb:
                          gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                          (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
                           gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
+        dia.set_deletable(False)
         dia.set_default_size(700, 500)
 
         #force reload of prefs from xml file - needed because HUD could
@@ -651,7 +653,8 @@ class fpdb:
     def dia_site_preferences(self, widget, data=None):
         dia = gtk.Dialog(_("Site Preferences"), self.window,
                 gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
-                (gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT, gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
+                (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT, gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
+        dia.set_deletable(False)
         label = gtk.Label(_("Please select which sites you play on and enter your usernames."))
         dia.vbox.add(label)
         
@@ -907,12 +910,13 @@ class fpdb:
                               diatitle=_("CONFIG FILE ERROR"))
             sys.exit()
 
-        log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
+        log = logging.getLogger("fpdb")
         print (_("Logfile is %s") % os.path.join(self.config.dir_log, self.config.log_file))
-        if self.config.example_copy or options.initialRun:
+        if self.config.example_copy or self.display_config_created_dialogue:
             self.info_box(_("Config file"),
                           _("Config file has been created at %s.") % self.config.file
                            + _("Enter your screen_name and hand history path in the Site Preferences window (Main menu) before trying to import hands."))
+            self.display_config_created_dialogue = False
         self.settings = {}
         self.settings['global_lock'] = self.lock
         if (os.sep == "/"):
@@ -1149,7 +1153,14 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         self.visible = False
         self.threads = []     # objects used by tabs - no need for threads, gtk handles it
         self.closeq = Queue.Queue(20)  # used to signal ending of a thread (only logviewer for now)
-        
+
+        if options.initialRun:
+            self.display_config_created_dialogue = True
+            self.display_site_preferences = True
+        else:
+            self.display_config_created_dialogue = False
+            self.display_site_preferences = False
+            
         # create window, move it to specific location on command line
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
         if options.xloc is not None or options.yloc is not None:
@@ -1184,7 +1195,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         menubar = self.get_menu(self.window)
         self.main_vbox.pack_start(menubar, False, True, 0)
         menubar.show()
-
+        
         # create a tab bar
         self.nb = gtk.Notebook()
         self.nb.set_show_tabs(True)
@@ -1209,6 +1220,10 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
             self.visible = True     # Flip on
             
         self.load_profile(create_db=True)
+        
+        if options.initialRun and self.display_site_preferences:
+            self.dia_site_preferences(None,None)
+            self.display_site_preferences=False
 
         # setup error logging
         if not options.errorsToConsole:

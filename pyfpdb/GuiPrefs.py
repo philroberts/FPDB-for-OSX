@@ -171,6 +171,7 @@ class GuiPrefs:
             dia.response(gtk.RESPONSE_ACCEPT)
 
 if __name__=="__main__":
+    Configuration.set_logfile("fpdb-log.txt")
 
     config = Configuration.Config()
 

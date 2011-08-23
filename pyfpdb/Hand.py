@@ -60,7 +60,6 @@ class Hand(object):
         self.saveActions = self.config.get_import_parameters().get('saveActions')
         self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
         self.cacheSessions = self.config.get_import_parameters().get("cacheSessions")
-        #log = Configuration.get_logger("logging.conf", "db", log_dir=self.config.dir_log)
         self.sitename = sitename
         self.siteId = self.config.get_site_id(sitename)
         self.stats = DerivedStats.DerivedStats(self)
@@ -222,7 +221,7 @@ dealt   whether they were seen in a 'dealt to' line
         try:
             self.checkPlayerExists(player)
         except FpdbParseError, e:
-            log.error(_("Tried to add holecards for unknown player: %s") % (player,))
+            log.error(_("Tried to add holecards for unknown player: '%s'") % (player,))
             return
 
         if dealt:  self.dealt.add(player)
@@ -513,8 +512,8 @@ rank        (int) rank the player finished the tournament"""
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
-            log.debug("checkPlayerExists: " + _("%s fail on hand number %s") % (player, self.handid))
-            raise FpdbParseError("checkPlayerExists: " + _("%s fail on hand number %s") % (player, self.handid))
+            log.debug("checkPlayerExists: " + _("'%s' fail on hand number %s") % (player, self.handid))
+            raise FpdbParseError("checkPlayerExists: " + _("'%s' fail on hand number %s") % (player, self.handid))
 
     def setCommunityCards(self, street, cards):
         log.debug("setCommunityCards %s %s" %(street,  cards))
@@ -980,11 +979,13 @@ class HoldemOmahaHand(Hand):
 
         for street in self.holeStreets:
             if player in self.holecards[street].keys():
-                hcs[0] = upper(self.holecards[street][player][1][0])
-                hcs[1] = upper(self.holecards[street][player][1][1])
+                for i in 0,1:
+                    hcs[i] = self.holecards[street][player][1][i]
+                    hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 try:
-                    hcs[2] = upper(self.holecards[street][player][1][2])
-                    hcs[3] = upper(self.holecards[street][player][1][3])
+                    for i in 2,3:
+                        hcs[i] = self.holecards[street][player][1][i]
+                        hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 except IndexError:
                     pass
 

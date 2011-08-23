@@ -306,6 +306,7 @@ if __name__== "__main__":
     sys.stderr.write(_("Tournament tracker starting"))
     sys.stderr.write(_("Using db name = %s") % (options.dbname))
 
+    Configuration.set_logfile("fpdb-log.txt")
 #    start the HUD_main object
     hm = ttracker_main(db_name = options.dbname)
 

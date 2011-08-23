@@ -131,6 +131,7 @@ def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
         
+    Configuration.set_logfile("fpdb-log.txt")
     config = Configuration.Config(file = "HUD_config.test.xml")
     in_path = os.path.abspath('regression-test-files')
     IdSite = IdentifySite(config, in_path)
