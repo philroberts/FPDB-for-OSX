@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2011-08-22 13:46+CEST\n"
-"PO-Revision-Date: 2011-08-10 16:33+0200\n"
+"PO-Revision-Date: 2011-08-23 23:08+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -202,9 +202,8 @@ msgid "No %s found, cannot fall back. Exiting."
 msgstr "%s nem található, nem tudom folytatni. Kilépés."
 
 #: Configuration.py:203
-#, fuzzy
 msgid "Could not setup log file %s"
-msgstr "%s fájl nem található"
+msgstr "Nem sikerült beállítani a(z) %s naplófájlt"
 
 #: Configuration.py:213 Database.py:495 Database.py:496
 msgid "Creating directory: '%s'"
@@ -2215,9 +2214,8 @@ msgid "TOURNEYS PLAYER IDS"
 msgstr "VERSENYJÁTÉKOS AZONOSÍTÓK"
 
 #: Hand.py:224
-#, fuzzy
 msgid "Tried to add holecards for unknown player: '%s'"
-msgstr "Kezdőkéz hozzáadása ismeretlen játékoshoz: %s"
+msgstr "Kezdőkéz hozzáadása ismeretlen játékoshoz: '%s'"
 
 #: Hand.py:509 Hand.py:511
 msgid "First 100 characters: %s"
@@ -2229,9 +2227,8 @@ msgstr ""
 "Az utcák nem egyeznek - A(z) %s leosztás érvénytelenítését feltételezem"
 
 #: Hand.py:515 Hand.py:516
-#, fuzzy
 msgid "'%s' fail on hand number %s"
-msgstr "%s hiba a következő leosztásban: %s"
+msgstr "'%s' nem létezik a következő leosztásban: %s"
 
 #: Hand.py:612
 msgid "%s %s calls %s"
