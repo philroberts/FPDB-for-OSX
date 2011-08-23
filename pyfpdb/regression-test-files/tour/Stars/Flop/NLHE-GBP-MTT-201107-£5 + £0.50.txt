@@ -1,0 +1,49 @@
+﻿PokerStars Game #64603934169: Tournament #411616316, £5.00+£0.50 GBP Hold'em No Limit - Level I (10/20) - 2011/07/15 20:49:50 WET [2011/07/15 15:49:50 ET]
+Table '411616316 1' 9-max Seat #1 is the button
+Seat 1: player1 (3000 in chips) 
+Seat 2: player2 (3000 in chips) 
+Seat 3: Hero (3000 in chips) 
+Seat 4: player3 (3000 in chips) 
+Seat 5: player4 (6000 in chips) 
+Seat 6: player5 (3000 in chips) 
+Seat 7: player6 (3000 in chips) 
+Seat 8: player7 (6000 in chips) 
+player2: posts small blind 10
+Hero: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [8h Td]
+player3 has timed out
+player3: folds 
+player3 is sitting out
+player4: folds 
+player5: folds 
+player6: folds 
+player7: folds 
+player1: folds 
+player2: calls 10
+Hero: checks 
+*** FLOP *** [9d 3c Kd]
+player3 has returned
+player2: bets 40
+Hero: calls 40
+*** TURN *** [9d 3c Kd] [5c]
+Hero re-buys and receives 3000 chips for £5.00
+player2: bets 80
+Hero: folds 
+Uncalled bet (80) returned to player2
+player2 collected 120 from pot
+player2: doesn't show hand 
+*** SUMMARY ***
+Total pot 120 | Rake 0 
+Board [9d 3c Kd 5c]
+Seat 1: player1 (button) folded before Flop (didn't bet)
+Seat 2: player2 (small blind) collected (120)
+Seat 3: Hero (big blind) folded on the Turn
+Seat 4: player3 folded before Flop (didn't bet)
+Seat 5: player4 folded before Flop (didn't bet)
+Seat 6: player5 folded before Flop (didn't bet)
+Seat 7: player6 folded before Flop (didn't bet)
+Seat 8: player7 folded before Flop (didn't bet)
+
+
+

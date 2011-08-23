@@ -30,6 +30,9 @@ import pango
 import os
 import traceback
 import logging
+import Configuration
+if __name__ == "__main__":
+    Configuration.set_logfile("fpdb-log.txt")
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("logview")
 
@@ -174,22 +177,17 @@ class GuiLogView:
                         iter = self.liststore.append( ('', '', '', line.strip(), True) )
 
     def sortCols(self, col, n):
-        try:
-            if not col.get_sort_indicator() or col.get_sort_order() == gtk.SORT_ASCENDING:
-                col.set_sort_order(gtk.SORT_DESCENDING)
-            else:
-                col.set_sort_order(gtk.SORT_ASCENDING)
-            self.liststore.set_sort_column_id(n, col.get_sort_order())
-            #self.liststore.set_sort_func(n, self.sortnums, (n,grid))
-            for i in xrange(len(self.listcols)):
-                self.listcols[i].set_sort_indicator(False)
-            self.listcols[n].set_sort_indicator(True)
-            # use this   listcols[col].set_sort_indicator(True)
-            # to turn indicator off for other cols
-        except:
-            err = traceback.extract_tb(sys.exc_info()[2])
-            print _("***sortCols error: ") + str(sys.exc_info()[1])
-            print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
+        if not col.get_sort_indicator() or col.get_sort_order() == gtk.SORT_ASCENDING:
+            col.set_sort_order(gtk.SORT_DESCENDING)
+        else:
+            col.set_sort_order(gtk.SORT_ASCENDING)
+        self.liststore.set_sort_column_id(n, col.get_sort_order())
+        #self.liststore.set_sort_func(n, self.sortnums, (n,grid))
+        for i in xrange(len(self.listcols)):
+            self.listcols[i].set_sort_indicator(False)
+        self.listcols[n].set_sort_indicator(True)
+        # use this   listcols[col].set_sort_indicator(True)
+        # to turn indicator off for other cols
 
     def refresh(self, widget, data):
         self.loadLog()

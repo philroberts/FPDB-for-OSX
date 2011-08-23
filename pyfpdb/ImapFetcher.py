@@ -41,7 +41,7 @@ def splitPokerStarsSummaries(summaryText): #TODO: this needs to go to PSS.py
     splitSummaries = re.split(re_SplitTourneys, summaryText)
 
     if len(splitSummaries) <= 1:
-        print (_("DEBUG:") + " " + _("re_SplitTourneys isn't matching"))
+        print (_("DEBUG:") + " " + _("Could not split tourneys"))
 
     return splitSummaries
 
@@ -50,7 +50,7 @@ def splitFullTiltSummaries(summaryText):#TODO: this needs to go to FTPS.py
     splitSummaries = re.split(re_SplitTourneys, summaryText)
 
     if len(splitSummaries) <= 1:
-        print(_("DEBUG:") + " " + _("re_SplitTourneys isn't matching"))
+		print(_("DEBUG:") + " " + _("Could not split tourneys"))
 
     return splitSummaries
 
@@ -64,7 +64,7 @@ def run(config, db):
         else:
             server = IMAP4(config.host)
         response = server.login(config.username, config.password) #TODO catch authentication error
-        print(_("response to logging in: "), response)
+        #print(_("response to logging in: "), response)
         #print "server.list():",server.list() #prints list of folders
 
         response = server.select(config.folder)
@@ -80,14 +80,14 @@ def run(config, db):
                 raise error #TODO: show error message
             neededMessages.append(("PS", messageNumber))
 
-        print _("ImapFetcher: Found %s messages to fetch") %(len(neededMessages))
+        print _("Found %s eMails to fetch") %(len(neededMessages))
 
         if (len(neededMessages)==0):
             raise error #TODO: show error message
 
         email_bodies = []
         for i, messageData in enumerate(neededMessages, start=1):
-            print "Retrieving message %s" % i
+            #print("Retrieving message %s" % i)
             response, bodyData = server.fetch(messageData[1], "(UID BODY[TEXT])")
             bodyData=bodyData[0][1]
             if response!="OK":
@@ -100,7 +100,7 @@ def run(config, db):
        # finally:
         #    pass
         server.logout()
-        print _("Completed retrieving IMAP messages, closing server connection")
+        print _("Finished downloading emails.")
 
         errors = 0
         if len(email_bodies) > 0:
@@ -108,7 +108,7 @@ def run(config, db):
         else:
             print _("No Tournament summaries found.")
 
-        print (_("Errors: %s") % errors)
+        print(_("Errors:"), errors)
 
 def readFile(filename, options):
     codepage = ["utf8"]
@@ -156,7 +156,7 @@ def importSummaries(db, config, summaries, options = None):
                     FullTiltPokerSummary.FullTiltPokerSummary(db=db, config=config, siteName=u"Fulltilt", summaryText=summaryText, builtFrom = "IMAP")
             except FpdbParseError, e:
                 errors += 1
-            print _("Finished importing %s/%s PS summaries") %(j, len(summaryTexts))
+            print _("Finished importing %s/%s tournament summaries") %(j, len(summaryTexts))
 
     return errors
 
@@ -176,6 +176,7 @@ def main(argv=None):
         print _("Need to define a converter")
         exit(0)
 
+    Configuration.set_logfile("fpdb-log.txt")
     # These options should really come from the OptionsParser
     config = Configuration.Config()
     db = Database.Database(config)

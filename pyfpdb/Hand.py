@@ -29,6 +29,7 @@ from decimal_wrapper import Decimal
 import operator
 import time,datetime
 from copy import deepcopy
+from string import upper
 import pprint
 
 import logging
@@ -59,7 +60,6 @@ class Hand(object):
         self.saveActions = self.config.get_import_parameters().get('saveActions')
         self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
         self.cacheSessions = self.config.get_import_parameters().get("cacheSessions")
-        #log = Configuration.get_logger("logging.conf", "db", log_dir=self.config.dir_log)
         self.sitename = sitename
         self.siteId = self.config.get_site_id(sitename)
         self.stats = DerivedStats.DerivedStats(self)
@@ -148,15 +148,15 @@ class Hand(object):
     def __str__(self):
         vars = ( (_("BB"), self.bb),
                  (_("SB"), self.sb),
-                 (_("BUTTONPOS"), self.buttonpos),
+                 (_("BUTTON POS"), self.buttonpos),
                  (_("HAND NO."), self.handid),
                  (_("SITE"), self.sitename),
                  (_("TABLE NAME"), self.tablename),
                  (_("HERO"), self.hero),
-                 (_("MAXSEATS"), self.maxseats),
+                 (_("MAX SEATS"), self.maxseats),
                  (_("LEVEL"), self.level),
                  (_("MIXED"), self.mixed),
-                 (_("LASTBET"), self.lastBet),
+                 (_("LAST BET"), self.lastBet),
                  (_("ACTION STREETS"), self.actionStreets),
                  (_("STREETS"), self.streets),
                  (_("ALL STREETS"), self.allStreets),
@@ -221,12 +221,16 @@ dealt   whether they were seen in a 'dealt to' line
         try:
             self.checkPlayerExists(player)
         except FpdbParseError, e:
-            print _("[ERROR] Tried to add holecards for unknown player: %s") % (player,)
+            log.error(_("Tried to add holecards for unknown player: '%s'") % (player,))
             return
 
         if dealt:  self.dealt.add(player)
         if shown:  self.shown.add(player)
         if mucked: self.mucked.add(player)
+
+        if '' in closed:
+            tmp = closed.index('')
+            closed[tmp] = '0x'
 
         self.holecards[street][player] = [open, closed]
 
@@ -236,7 +240,6 @@ dealt   whether they were seen in a 'dealt to' line
         # These functions are intended for prep insert eventually
         #####
         self.gametype['maxSeats'] = self.maxseats #TODO: move up to individual parsers
-        self.gametype['ante'] = 0 #TODO store actual ante
         self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
         self.dbid_gt = db.getSqlGameTypeId(self.siteId, self.gametype, printdata = printtest)
         
@@ -248,9 +251,10 @@ dealt   whether they were seen in a 'dealt to' line
             hilo = "l"
 
         self.gametyperow = (self.siteId, self.gametype['currency'], self.gametype['type'], self.gametype['base'],
-                                    self.gametype['category'], self.gametype['limitType'], hilo,
-                                    int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
-                                    int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200), int(self.gametype['maxSeats']), int(self.gametype['ante']))
+                            self.gametype['category'], self.gametype['limitType'], hilo, self.gametype['mix'],
+                            int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
+                            int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200),
+                            int(self.gametype['maxSeats']), int(self.gametype['ante']))
         # Note: the above data is calculated in db.getGameTypeId
         #       Only being calculated above so we can grab the testdata
         
@@ -263,6 +267,7 @@ dealt   whether they were seen in a 'dealt to' line
         self.stats.getStats(self)
         self.hands = self.stats.getHands()
         self.handsplayers = self.stats.getHandsPlayers()
+        self.handsstove = self.stats.getHandsStove()
         
     def getHandId(self, db, id):    
         if db.isDuplicate(self.dbid_gt, self.hands['siteHandNo']):
@@ -296,6 +301,13 @@ dealt   whether they were seen in a 'dealt to' line
         handsactions = self.stats.getHandsActions()
         habulk = db.storeHandsActions(self.dbid_hands, self.dbid_pids, handsactions, habulk, doinsert, printtest)
         return habulk
+    
+    def insertHandsStove(self, db, hsbulk, doinsert = False):
+        """ Function to inserts HandsActions into database"""
+        if self.handsstove:
+            for hs in self.handsstove: hs[0] = self.dbid_hands
+            hsbulk = db.storeHandsStove(self.handsstove, hsbulk, doinsert)
+        return hsbulk
 
     def updateHudCache(self, db, hcbulk, doinsert = False):
         """ Function to update the HudCache"""
@@ -306,16 +318,14 @@ dealt   whether they were seen in a 'dealt to' line
     def updateSessionsCache(self, db, sc, gsc, tz, doinsert = False):
         """ Function to update the SessionsCache"""
         if self.cacheSessions:
-            self.heros = db.getHeroIds(self.dbid_pids, self.sitename)
-            sc = db.prepSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, sc, self.heros, doinsert)
-            gsc = db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.gametype
-                                           ,self.dbid_gt, self.handsplayers, sc, gsc, tz, self.heros, doinsert)
-        if doinsert and sc['bk'] and gsc['bk']:
+            heros = []
+            if self.hero in self.dbid_pids: heros = [self.dbid_pids[self.hero]]   
+            sc = db.prepSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, sc, heros, doinsert)
+            gsc = db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.gametype, self.dbid_gt
+                                       ,self.tourneyId, self.handsplayers, sc, gsc, tz, heros, doinsert)
+        if doinsert:
             self.hands['sc'] = sc
             self.hands['gsc'] = gsc
-        else:
-            self.hands['sc'] = None
-            self.hands['gsc'] = None
         return sc, gsc
 
     def select(self, db, handId):
@@ -496,14 +506,14 @@ rank        (int) rank the player finished the tournament"""
             log.debug("markStreets:\n"+ str(self.streets))
         else:
             tmp = self.handText[0:100]
-            log.error(_("markstreets didn't match - Assuming hand %s was cancelled") % self.handid)
+            log.debug(_("Streets didn't match - Assuming hand %s was cancelled.") % (self.handid) + " " + _("First 100 characters: %s") % tmp)
             self.cancelled = True
-            raise FpdbParseError(_("markStreets appeared to fail: First 100 chars: '%s'") % tmp)
+            raise FpdbParseError(_("Streets didn't match - Assuming hand %s was cancelled.") % (self.handid) + " " + _("First 100 characters: %s") % tmp)
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
-            print (_("DEBUG:") + " checkPlayerExists: " + _("%s fail on hand number %s") % (player, self.handid))
-            raise FpdbParseError("checkPlayerExists: " + _("%s fail on hand number %s") % (player, self.handid))
+            log.debug("checkPlayerExists: " + _("'%s' fail on hand number %s") % (player, self.handid))
+            raise FpdbParseError("checkPlayerExists: " + _("'%s' fail on hand number %s") % (player, self.handid))
 
     def setCommunityCards(self, street, cards):
         log.debug("setCommunityCards %s %s" %(street,  cards))
@@ -545,6 +555,11 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
             self.actions['BLINDSANTES'].append(act)
 #            self.pot.addMoney(player, ante)
             self.pot.addCommonMoney(player, ante)
+            if self.gametype['ante'] == 0:
+                if self.gametype['type'] == 'ring':
+                    self.gametype['ante'] = int(100*ante)
+                else:
+                    self.gametype['ante'] = int(ante)
 #I think the antes should be common money, don't have enough hand history to check
 
     def addBlind(self, player, blindtype, amount):
@@ -728,7 +743,7 @@ Add a raise on [street] by [player] to [amountTo]
 For when a player shows cards for any reason (for showdown or out of choice).
 Card ranks will be uppercased
 """
-        log.debug(_("addShownCards %s hole=%s all=%s") % (player, cards,  holeandboard))
+        log.debug("addShownCards %s hole=%s all=%s" % (player, cards,  holeandboard))
         if cards is not None:
             self.addHoleCards(cards,player,shown, mucked)
             if string is not None:
@@ -765,8 +780,9 @@ Map the tuple self.gametype onto the pokerstars string describing it
               "studhi"     : "7 Card Stud",
               "studhilo"   : "7 Card Stud Hi/Lo",
               "fivedraw"   : "5 Card Draw",
-              "27_1draw"   : "FIXME",
+              "27_1draw"   : "Single Draw 2-7 Lowball",
               "27_3draw"   : "Triple Draw 2-7 Lowball",
+              "5studhi"    : "5 Card Stud",
               "badugi"     : "Badugi"
              }
         ls = {"nl"  : "No Limit",
@@ -924,7 +940,7 @@ class HoldemOmahaHand(Hand):
             #    log.warning(_("HoldemOmahaHand.__init__:Can't assemble hand from db without a handid"))
             print "DEBUG: HoldemOmaha hand initialised for select()"
         else:
-            log.warning(_("HoldemOmahaHand.__init__:Neither HHC nor DB+handid provided"))
+            log.warning("HoldemOmahaHand.__init__: " + _("Neither HHC nor DB+handID provided"))
             pass
 
 
@@ -936,7 +952,7 @@ class HoldemOmahaHand(Hand):
             if len(cards) in (2, 4):  # avoid adding board by mistake (Everleaf problem)
                 self.addHoleCards('PREFLOP', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
             elif len(cards) == 5:     # cards holds a winning hand, not hole cards
-                # filter( lambda x: x not in b, a )		# calcs a - b where a and b are lists
+                # filter( lambda x: x not in b, a )             # calcs a - b where a and b are lists
                 # so diff is set to the winning hand minus the board cards, if we're lucky that leaves the hole cards
                 diff = filter( lambda x: x not in self.board['FLOP']+self.board['TURN']+self.board['RIVER'], cards )
                 if len(diff) == 2 and self.gametype['category'] in ('holdem'):
@@ -963,11 +979,13 @@ class HoldemOmahaHand(Hand):
 
         for street in self.holeStreets:
             if player in self.holecards[street].keys():
-                hcs[0] = self.holecards[street][player][1][0]
-                hcs[1] = self.holecards[street][player][1][1]
+                for i in 0,1:
+                    hcs[i] = self.holecards[street][player][1][i]
+                    hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 try:
-                    hcs[2] = self.holecards[street][player][1][2]
-                    hcs[3] = self.holecards[street][player][1][3]
+                    for i in 2,3:
+                        hcs[i] = self.holecards[street][player][1][i]
+                        hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 except IndexError:
                     pass
 
@@ -1197,7 +1215,7 @@ class DrawHand(Hand):
             hhc.markStreets(self)
             # markStreets in Draw may match without dealing cards
             if self.streets['DEAL'] == None:
-                raise FpdbParseError(_("DrawHand.__init__: street 'DEAL' is empty. Hand cancelled? HandID: '%s'") % self.handid)
+                raise FpdbParseError("DrawHand.__init__: " + _("Street 'DEAL' is empty. Was hand %s cancelled?") % self.handid)
             hhc.readBlinds(self)
             hhc.readAntes(self)
             hhc.readButton(self)
@@ -1426,7 +1444,7 @@ closed    likewise, but known only to player
             self.checkPlayerExists(player)
             self.holecards[street][player] = (open, closed)
         except FpdbParseError, e:
-            print _("[ERROR] Tried to add holecards for unknown player: %s") % (player,)
+            log.error(_("Tried to add holecards for unknown player: %s") % (player,))
 
     # TODO: def addComplete(self, player, amount):
     def addComplete(self, street, player, amountTo):
@@ -1636,7 +1654,7 @@ Add a complete on [street] by [player] to [amountTo]
                 holecards = [u'0x', u'0x'] + holecards
             else:
                 log.warning(_("join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should be impossible for anyone who is not a hero"))
-                log.warning(_("join_holcards: holecards(%s): %s") %(player, holecards))
+                log.warning("join_holcards: holecards(%s): %s" % (player, holecards))
             if holecards == [u'0x', u'0x']:
                 log.warning(_("join_holecards: Player '%s' appears not to have been dealt a card"))
                 # If a player is listed but not dealt a card in a cash game this can occur
@@ -1673,6 +1691,7 @@ class Pot(object):
 
     def addMoney(self, player, amount):
         # addMoney must be called for any actions that put money in the pot, in the order they occur
+        #print "DEBUG: %s adds %s" %(player, amount)
         self.contenders.add(player)
         self.committed[player] += amount
 
@@ -1714,8 +1733,8 @@ class Pot(object):
                 self.pots += [sum([min(v,v1) for (v,k) in commitsall])]
                 commitsall = [((v-v1),k) for (v,k) in commitsall if v-v1 >0]
         except IndexError, e:
-            log.error(_("Pot.end(): Major failure while calculating pot: '%s'") % e)
-            raise FpdbParseError(_("Pot.end(): Major failure while calculating pot: '%s'") % e)
+            log.error(_("Major failure while calculating pot: '%s'") % e)
+            raise FpdbParseError(_("Major failure while calculating pot: '%s'") % e)
 
         # TODO: I think rake gets taken out of the pots.
         # so it goes:
@@ -1728,7 +1747,6 @@ class Pot(object):
         if self.sym is None:
             self.sym = "C"
         if self.total is None:
-            print (_("DEBUG:") + " " + _("call Pot.end() before printing pot total"))
             # NB if I'm sure end() is idempotent, call it here.
             raise FpdbParseError(_("Error in printing Hand object"))
 

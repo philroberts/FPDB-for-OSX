@@ -80,6 +80,7 @@ class PacificPoker(HandHistoryConverter):
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl', 'Fix Limit':'fl' }
 
     games = {                          # base, category
+                             "Hold'em"  : ('hold','holdem'),
                                'Holdem' : ('hold','holdem'),
                                 'Omaha' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
@@ -102,7 +103,7 @@ class PacificPoker(HandHistoryConverter):
           \*\*\*\*\*\sCassava\sHand\sHistory\sfor\sGame\s[0-9]+\s\*\*\*\*\*\\n
           (?P<CURRENCY>%(LS)s)?(?P<SB>[.,0-9]+)/(%(LS)s)?(?P<BB>[.,0-9]+)\sBlinds\s
           (?P<LIMIT>No\sLimit|Fix\sLimit|Pot\sLimit)\s
-          (?P<GAME>Holdem|Omaha|OmahaHL)
+          (?P<GAME>Holdem|Omaha|OmahaHL|Hold\'em|Omaha\sHi/Lo|OmahaHL|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)
           \s-\s\*\*\*\s
           (?P<DATETIME>.*$)
           """ % substitutions, re.MULTILINE|re.VERBOSE)
@@ -262,14 +263,14 @@ class PacificPoker(HandHistoryConverter):
                         elif info[key].find(u"€")!=-1:
                             hand.buyinCurrency="EUR"
                         elif info[key].find("FPP")!=-1:
-                            hand.buyinCurrency="PSFP"
+                            hand.buyinCurrency="PCFP"
                         else:
                             #FIXME: handle other currencies, FPP, play money
-                            raise FpdbParseError(_("Failed to detect currency.") + " " + _("Hand ID: %s: '%s'") % (hand.handid, info[key]))
+                            raise FpdbParseError(_("Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
 
                         info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
                         
-                        if hand.buyinCurrency!="PSFP":
+                        if hand.buyinCurrency!="PCFP":
                             if info['BOUNTY'] != None:
                                 # There is a bounty, Which means we need to switch BOUNTY and BIRAKE values
                                 tmp = info['BOUNTY']
@@ -312,7 +313,7 @@ class PacificPoker(HandHistoryConverter):
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
         else:
-            log.info(_('readButton: not found'))
+            log.info('readButton: ' + _('not found'))
 
     def readPlayerStacks(self, hand):
         log.debug("readPlayerStacks")
@@ -331,8 +332,8 @@ class PacificPoker(HandHistoryConverter):
                        r"(\*\* Dealing river \*\* (?P<RIVER>\[ \S\S \].+))?"
                        , hand.handText,re.DOTALL)
         if m is None:
-            log.error("Didn't match markStreets")
-            raise FpdbParseError(_("No match in markStreets"))
+            log.error(_("Unable to recognise streets"))
+            raise FpdbParseError(_("Unable to recognise streets"))
         else:
             #print "DEBUG: Matched markStreets"
             mg = m.groupdict()

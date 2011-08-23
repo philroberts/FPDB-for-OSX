@@ -15,39 +15,12 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 import L10n
-_ = L10n.get_translation()
+_ = L10n.init_translation()
 
 import os
 import sys
 import re
 import Queue
-
-# if path is set to use an old version of python look for a new one:
-# (does this work in linux?)
-if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6', '2.7') and '-r' not in sys.argv:
-    #print "old path =", os.environ['PATH']
-    dirs = re.split(os.pathsep, os.environ['PATH'])
-    # remove any trailing / or \ chars from dirs:
-    dirs = [re.sub('[\\/]$', '', p) for p in dirs]
-    # remove any dirs containing 'python' apart from those ending in 'python25', 'python26' or 'python':
-    dirs = [p for p in dirs if not re.search('python', p, re.I) or re.search('python25$', p, re.I) or re.search('python26$', p, re.I) or re.search('python27$', p, re.I)]
-    tmppath = ";".join(dirs)
-    #print "new path =", tmppath
-    if re.search('python', tmppath, re.I):
-        os.environ['PATH'] = tmppath
-        print "Python " + sys.version[0:3] + _(' - press return to continue\n')
-        sys.stdin.readline()
-        if os.name == 'nt':
-            os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ)
-        else:
-            os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ)
-    else:
-        print _("\npython 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n")
-        raw_input(_("Press ENTER to continue."))
-        exit()
-else:
-    pass
-    #print "debug - not changing path"
 
 if os.name == 'nt':
     import win32api
@@ -63,8 +36,6 @@ cl_options = string.join(sys.argv[1:])
 (options, argv) = Options.fpdb_options()
 
 import logging
-import logging.config
-log = logging.getLogger("fpdb")
 
 import pygtk
 pygtk.require('2.0')
@@ -108,19 +79,22 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.25 + git"
+Configuration.set_logfile("fpdb-log.txt")
+log = logging.getLogger("fpdb")
+
+try:
+    import subprocess
+    VERSION = subprocess.Popen(["git", "describe", "--tags", "--dirty"], stdout=subprocess.PIPE).communicate()[0]
+    VERSION = VERSION[:-1]
+except:
+    VERSION = "0.26 + git"
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
         """called when a tab button is clicked to activate that tab"""
         self.display_tab(tab_name)
 
-    def add_and_display_tab(self, new_tab, new_tab_name):
-        """just calls the component methods"""
-        self.add_tab(new_tab, new_tab_name)
-        self.display_tab(new_tab_name)
-
-    def add_tab(self, new_page, new_tab_name):
+    def add_and_display_tab(self, new_page, new_tab_name):
         """adds a tab, namely creates the button and displays it and appends all the relevant arrays"""
         for name in self.nb_tab_names:  # todo: check this is valid
             if name == new_tab_name:
@@ -141,10 +115,10 @@ class fpdb:
             self.tabs.append(event_box)
             self.tab_names.append(new_tab_name)
 
-        #self.nb.append_page(new_page, gtk.Label(new_tab_name))
         self.nb.append_page(page, event_box)
         self.nb_tab_names.append(new_tab_name)
         page.show()
+        self.display_tab(new_tab_name)
 
     def display_tab(self, new_tab_name):
         """displays the indicated tab"""
@@ -158,6 +132,13 @@ class fpdb:
             raise FpdbError("invalid tab_no " + str(tab_no))
         else:
             self.nb.set_current_page(tab_no)
+
+    def switch_to_tab(self, accel_group, acceleratable, keyval, modifier):
+        tab = keyval - ord('0')
+        if (tab == 0): tab = 10
+        tab = tab - 1
+        if (tab < len(self.nb_tab_names)):
+            self.display_tab(self.nb_tab_names[tab])
 
     def create_custom_tab(self, text, nb):
         #create a custom tab for notebook containing a
@@ -187,13 +168,11 @@ class fpdb:
         except:
             pass
 
-        if nb.get_n_pages() > 0:
-            tabButton = gtk.Button()
-
-            tabButton.connect('clicked', self.remove_tab, (nb, text))
-            #Add a picture on a button
-            self.add_icon_to_button(tabButton)
-            tabBox.pack_start(tabButton, False)
+        tabButton = gtk.Button()
+        tabButton.connect('clicked', self.remove_tab, (nb, text))
+        #Add a picture on a button
+        self.add_icon_to_button(tabButton)
+        tabBox.pack_start(tabButton, False)
 
         # needed, otherwise even calling show_all on the notebook won't
         # make the hbox contents appear.
@@ -212,7 +191,6 @@ class fpdb:
         iconBox.pack_start(image, True, False, 0)
         button.add(iconBox)
         iconBox.show()
-        return
 
     # Remove a page from the notebook
     def remove_tab(self, button, data):
@@ -231,6 +209,9 @@ class fpdb:
         # This forces the widget to redraw itself.
         #nb.queue_draw_area(0,0,-1,-1) needed or not??
 
+    def remove_current_tab(self, accel_group, acceleratable, keyval, modifier):
+        self.remove_tab(None, (self.nb, self.nb_tab_names[self.nb.get_current_page()]))
+
     def delete_event(self, widget, event, data=None):
         return False
 
@@ -241,13 +222,14 @@ class fpdb:
         dia = gtk.AboutDialog()
         dia.set_name("Free Poker Database (FPDB)")
         dia.set_version(VERSION)
-        dia.set_copyright(_("Copyright 2008-2011, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, sqlcoder, Bostik, and others"))
+        dia.set_copyright(_("Copyright 2008-2011. See contributors.txt for details"))
         dia.set_comments(_("You are free to change, and distribute original or changed versions of fpdb within the rules set out by the license"))
-        dia.set_license(_("Please see fpdb's start screen for license information"))
+        dia.set_license(_("Please see the help screen for license information"))
         dia.set_website("http://fpdb.sourceforge.net/")
 
         dia.set_authors(['Steffen', 'Eratosthenes', 'Carl Gherardi',
-            'Eric Blade', '_mt', 'sqlcoder', 'Bostik', _('and others')])
+            'Eric Blade', '_mt', 'sqlcoder', 'Bostik', 'gimick', 'Chaz',
+            _('... and others.'), _("See contributors.txt")])
         dia.set_program_name("Free Poker Database (FPDB)")
         
         if (os.name=="posix"):
@@ -303,6 +285,7 @@ class fpdb:
                          gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                          (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
                           gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
+        dia.set_deletable(False)
         dia.set_default_size(700, 500)
 
         #force reload of prefs from xml file - needed because HUD could
@@ -318,8 +301,6 @@ class fpdb:
             dia.destroy()
 
     def dia_maintain_dbs(self, widget, data=None):
-        #self.warning_box("Unimplemented: Maintain Databases")
-        #return
         if len(self.tab_names) == 1:
             if self.obtain_global_lock("dia_maintain_dbs"):  # returns true if successful
                 # only main tab has been opened, open dialog
@@ -337,10 +318,8 @@ class fpdb:
                     # save updated config
                     self.config.save()
                     self.load_profile()
-                    for name in self.config.supported_databases:  # db_ip/db_user/db_pass/db_server
-                        log.info('fpdb: name,desc=' + name + ',' + self.config.supported_databases[name].db_desc)
-                else:
-                    log.info(_('guidb response was ') + str(response))
+                    #for name in self.config.supported_databases:  # db_ip/db_user/db_pass/db_server
+                    #    log.debug('fpdb: name,desc=' + name + ',' + self.config.supported_databases[name].db_desc)
 
                 self.release_global_lock()
 
@@ -349,9 +328,9 @@ class fpdb:
             self.warning_box(_("Cannot open Database Maintenance window because other windows have been opened. Re-start fpdb to use this option."))
 
     def dia_database_stats(self, widget, data=None):
-        self.warning_box(str=_("Number of Hands: ") + str(self.db.getHandCount()) +
-                    _("\nNumber of Tourneys: ") + str(self.db.getTourneyCount()) +
-                    _("\nNumber of TourneyTypes: ") + str(self.db.getTourneyTypeCount()),
+        self.warning_box(str=_("Number of Hands:") + " " + str(self.db.getHandCount()) +
+                    "\n" + _("Number of Tourneys:") + " " + str(self.db.getTourneyCount()) +
+                    "\n" + _("Number of TourneyTypes:") + " " + str(self.db.getTourneyTypeCount()),
                     diatitle=_("Database Statistics"))
     #end def dia_database_stats
 
@@ -368,7 +347,7 @@ class fpdb:
                                  (gtk.STOCK_OK, gtk.RESPONSE_ACCEPT,
                                   gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
 
-        label = gtk.Label(_("Note that this does not existing settings, but overwrites them."))
+        label = gtk.Label(_("Note that this does not load existing settings, but overwrites them (if you click save)."))
         diaSelections.vbox.add(label)
         label.show()
 
@@ -531,12 +510,10 @@ class fpdb:
     def dia_recreate_tables(self, widget, data=None):
         """Dialogue that asks user to confirm that he wants to delete and recreate the tables"""
         if self.obtain_global_lock("fpdb.dia_recreate_tables"):  # returns true if successful
-
-            #lock_released = False
             dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING,
                     buttons=(gtk.BUTTONS_YES_NO), message_format=_("Confirm deleting and recreating tables"))
             diastring = _("Please confirm that you want to (re-)create the tables.") \
-                        + (_(" If there already are tables in the database %s on %s they will be deleted and you will have to re-import your histories.\n") % (self.db.database, self.db.host)) \
+                        + " " + (_("If there already are tables in the database %s on %s they will be deleted and you will have to re-import your histories.") % (self.db.database, self.db.host)) + "\n"\
                         + _("This may take a while.")
             dia_confirm.format_secondary_text(diastring)  # todo: make above string with bold for db, host and deleted
             # disable windowclose, do not want the the underlying processing interrupted mid-process
@@ -545,25 +522,15 @@ class fpdb:
             response = dia_confirm.run()
             dia_confirm.destroy()
             if response == gtk.RESPONSE_YES:
-                #if self.db.backend == self.fdb_lock.fdb.MYSQL_INNODB:
-                    # mysql requires locks on all tables or none - easier to release this lock
-                    # than lock all the other tables
-                    # ToDo: lock all other tables so that lock doesn't have to be released
-                #    self.release_global_lock()
-                #    lock_released = True
                 self.db.recreate_tables()
                 # find any guibulkimport/guiautoimport windows and clear player cache:
                 for t in self.threads:
                     if isinstance(t, GuiBulkImport.GuiBulkImport) or isinstance(t, GuiAutoImport.GuiAutoImport):
                         t.importer.database.resetPlayerIDs()
                 self.release_global_lock()
-                #else:
-                    # for other dbs use same connection as holds global lock
-                #    self.fdb_lock.fdb.recreate_tables()
             elif response == gtk.RESPONSE_NO:
                 self.release_global_lock()
                 print _('User cancelled recreating tables')
-            #if not lock_released:
     #end def dia_recreate_tables
 
     def dia_recreate_hudcache(self, widget, data=None):
@@ -686,7 +653,8 @@ class fpdb:
     def dia_site_preferences(self, widget, data=None):
         dia = gtk.Dialog(_("Site Preferences"), self.window,
                 gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
-                (gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT, gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
+                (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT, gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
+        dia.set_deletable(False)
         label = gtk.Label(_("Please select which sites you play on and enter your usernames."))
         dia.vbox.add(label)
         
@@ -700,7 +668,7 @@ class fpdb:
             except KeyError:
                 pass
         
-        label = gtk.Label(_(" "))
+        label = gtk.Label(" ")
         dia.vbox.add(label)
         
         column_headers=[_("Site"), _("Screen Name"), _("History Path"), _("Detect")] #TODO , _("Summary Path"), _("HUD")] 
@@ -873,6 +841,7 @@ class fpdb:
                 </menu>
                 <menu action="help">
                   <menuitem action="Logs"/>
+                  <menuitem action="Help Tab"/>
                   <separator/>
                   <menuitem action="About"/>
                 </menu>
@@ -902,7 +871,7 @@ class fpdb:
                                  ('tourneyplayerstats', None, _('_Tourney Stats'), _('<control>T'), 'Tourney Stats ', self.tab_tourney_player_stats),
                                  ('tourneyviewer', None, _('Tourney _Viewer'), None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
                                  ('posnstats', None, _('P_ositional Stats (tabulated view)'), _('<control>O'), 'Positional Stats (tabulated view)', self.tab_positional_stats),
-                                 ('sessionstats', None, _('Session Stats'), None, 'Session Stats', self.tab_session_stats),
+                                 ('sessionstats', None, _('Session Stats'), _('<control>S'), 'Session Stats', self.tab_session_stats),
                                  ('replayer', None, _('Hand _Replayer (not working yet)'), None, 'Hand Replayer', self.tab_replayer),
                                  ('database', None, _('_Database')),
                                  ('maintaindbs', None, _('_Maintain Databases'), None, 'Maintain Databases', self.dia_maintain_dbs),
@@ -913,9 +882,15 @@ class fpdb:
                                  ('dumptofile', None, _('Dump Database to Textfile (takes ALOT of time)'), None, 'Dump Database to Textfile (takes ALOT of time)', self.dia_dump_db),
                                  ('help', None, _('_Help')),
                                  ('Logs', None, _('_Log Messages'), None, 'Log and Debug Messages', self.dia_logs),
+                                 ('Help Tab', None, _('_Help Tab'), None, 'Help Tab', self.tab_main_help),
                                  ('About', None, _('A_bout, License, Copying'), None, 'About the program', self.dia_about),
                                 ])
         actiongroup.get_action('Quit').set_property('short-label', _('_Quit'))
+
+        # define keyboard shortcuts alt-1 through alt-0 for switching tabs
+        for key in range(10):
+            accel_group.connect_group(ord('%s' % key), gtk.gdk.MOD1_MASK, gtk.ACCEL_LOCKED, self.switch_to_tab)
+        accel_group.connect_group(ord('w'), gtk.gdk.CONTROL_MASK, gtk.ACCEL_LOCKED, self.remove_current_tab)
 
         uimanager.insert_action_group(actiongroup, 0)
         merge_id = uimanager.add_ui_from_string(fpdbmenu)
@@ -930,17 +905,18 @@ class fpdb:
         """Loads profile from the provided path name."""
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
         if self.config.file_error:
-            self.warning_box(_("There is an error in your config file\n") + self.config.file
-                              + _("\n\nError is:  ") + str(self.config.file_error),
+            self.warning_box(_("There is an error in your config file %s") % self.config.file
+                              + ":\n" + str(self.config.file_error),
                               diatitle=_("CONFIG FILE ERROR"))
             sys.exit()
 
-        log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
-        print (_("Logfile is %s\n") % os.path.join(self.config.dir_log, self.config.log_file))
-        if self.config.example_copy:
+        log = logging.getLogger("fpdb")
+        print (_("Logfile is %s") % os.path.join(self.config.dir_log, self.config.log_file))
+        if self.config.example_copy or self.display_config_created_dialogue:
             self.info_box(_("Config file"),
                           _("Config file has been created at %s.") % self.config.file
-                           + _("Edit your screen_name and hand history path in the supported_sites section of the Advanced Preferences window (Main menu) before trying to import hands."))
+                           + _("Enter your screen_name and hand history path in the Site Preferences window (Main menu) before trying to import hands."))
+            self.display_config_created_dialogue = False
         self.settings = {}
         self.settings['global_lock'] = self.lock
         if (os.sep == "/"):
@@ -979,22 +955,6 @@ class fpdb:
         if self.db is not None and not self.db.is_connected():
             self.db = None
 
-#        except FpdbMySQLFailedError:
-#            self.warning_box("Unable to connect to MySQL! Is the MySQL server running?!", "FPDB ERROR")
-#            exit()
-#        except FpdbError:
-#            #print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
-#            self.warning_box("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']), "FPDB ERROR")
-#            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-#            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
-#            sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
-#        except:
-#            #print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
-#            self.warning_box("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']), "FPDB ERROR")
-#            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-#            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
-#            sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
-
         if self.db is not None and self.db.wrongDbVersion:
             diaDbVersionWarning = gtk.Dialog(title=_("Strong Warning - Invalid database version"),
                                              parent=None, flags=0, buttons=(gtk.STOCK_OK, gtk.RESPONSE_OK))
@@ -1026,15 +986,19 @@ class fpdb:
             # rollback to make sure any locks are cleared:
             self.db.rollback()
 
-        self.validate_config()
+        #If the db-version is out of date, don't validate the config 
+        # otherwise the end user gets bombarded with false messages
+        # about every site not existing
+        if not self.db.wrongDbVersion:
+            self.validate_config()
 
     def obtain_global_lock(self, source):
         ret = self.lock.acquire(source=source)  # will return false if lock is already held
         if ret:
-            print (_("\nGlobal lock taken by %s") % source)
+            print (_("Global lock taken by %s") % source)
             self.lockTakenBy=source
         else:
-            print (_("\nFailed to get global lock, it is currently held by %s") % source)
+            print (_("Failed to get global lock, it is currently held by %s") % source)
         return ret
         # need to release it later:
         # self.lock.release()
@@ -1069,7 +1033,7 @@ class fpdb:
     def release_global_lock(self):
         self.lock.release()
         self.lockTakenBy = None
-        print _("Global lock released.\n")
+        print _("Global lock released.")
 
     def tab_auto_import(self, widget, data=None):
         """opens the auto import tab"""
@@ -1189,7 +1153,14 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         self.visible = False
         self.threads = []     # objects used by tabs - no need for threads, gtk handles it
         self.closeq = Queue.Queue(20)  # used to signal ending of a thread (only logviewer for now)
-        
+
+        if options.initialRun:
+            self.display_config_created_dialogue = True
+            self.display_site_preferences = True
+        else:
+            self.display_config_created_dialogue = False
+            self.display_site_preferences = False
+            
         # create window, move it to specific location on command line
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
         if options.xloc is not None or options.yloc is not None:
@@ -1224,7 +1195,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         menubar = self.get_menu(self.window)
         self.main_vbox.pack_start(menubar, False, True, 0)
         menubar.show()
-
+        
         # create a tab bar
         self.nb = gtk.Notebook()
         self.nb.set_show_tabs(True)
@@ -1249,12 +1220,16 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
             self.visible = True     # Flip on
             
         self.load_profile(create_db=True)
+        
+        if options.initialRun and self.display_site_preferences:
+            self.dia_site_preferences(None,None)
+            self.display_site_preferences=False
 
         # setup error logging
         if not options.errorsToConsole:
             fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
-            print (_("\nNote: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in: %s") % self.config.dir_log) \
-                  + _("\nAny major error will be reported there _only_.\n")
+            print((_("Note: error output is being diverted to %s.") % self.config.dir_log) + " " +
+                  _("Any major error will be reported there _only_."))
             errorFile = open(fileName, 'w', 0)
             sys.stderr = errorFile
 
@@ -1382,7 +1357,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
             except KeyError, exc:
                 log.warning("site %s missing from db" % site)
                 dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_OK), message_format=_("Unknown Site"))
-                diastring = _("Warning:") +" " + _("Unable to find site  '%s'") % site
+                diastring = _("Warning:") +" " + _("Unable to find site '%s'") % site
                 dia.format_secondary_text(diastring)
                 dia.run()
                 dia.destroy()

@@ -24,7 +24,7 @@
 Main for FreePokerTools HUD.
 """
 import L10n
-_ = L10n.get_translation()
+_ = L10n.init_translation()
 
 #    Standard Library modules
 import sys
@@ -33,6 +33,7 @@ import traceback
 import thread
 import time
 import string
+import logging
 
 #    pyGTK modules
 import gtk
@@ -47,7 +48,7 @@ import Options
 (options, argv) = Options.fpdb_options()
 
 #    get the correct module for the current os
-if sys.platform == 'linux2':
+if sys.platform[0:5] == 'linux':
     import XTables as Tables
 elif sys.platform == 'darwin':
     import OSXTables as Tables
@@ -56,8 +57,9 @@ else: # This is bad--figure out the values for the various windows flavors
     import WinTables as Tables
 
 # get config and set up logger
+Configuration.set_logfile("HUD-log.txt")
 c = Configuration.Config(file=options.config, dbname=options.dbname)
-log = Configuration.get_logger("logging.conf", "hud", log_dir=c.dir_log, log_file='HUD-log.txt')
+log = logging.getLogger("hud")
 
 class HUD_main(object):
     """A main() object to own both the read_stdin thread and the gui."""
@@ -66,12 +68,12 @@ class HUD_main(object):
     def __init__(self, db_name='fpdb'):
         self.db_name = db_name
         self.config = c
-        log.info(_("HUD_main starting: using db name = %s") % (db_name))
+        log.info(_("HUD_main starting") + ": " + _("Using db name = %s") % (db_name))
 
         try:
             if not options.errorsToConsole:
                 fileName = os.path.join(self.config.dir_log, 'HUD-errors.txt')
-                log.info(_("Note: error output is being diverted to:") + fileName)
+                log.info(_("Note: error output is being diverted to %s.") % fileName)
                 log.info(_("Any major error will be reported there _only_."))
                 errorFile = open(fileName, 'w', 0)
                 sys.stderr = errorFile
@@ -135,7 +137,7 @@ class HUD_main(object):
         self.kill_hud(None, hud.table.key)
 
     def game_changed(self, widget, hud):
-        print _("hud_main: Game changed.")
+        print "hud_main: " + _("Game changed.")
 
     def table_changed(self, widget, hud):
         self.kill_hud(None, hud.table.key)
@@ -226,12 +228,12 @@ class HUD_main(object):
 
 #        get basic info about the new hand from the db
 #        if there is a db error, complain, skip hand, and proceed
-            log.info(_("HUD_main.read_stdin: hand processing starting ..."))
+            log.info("HUD_main.read_stdin: " + _("Hand processing starting."))
             try:
                 (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
             except Exception:
-                log.exception(_("db error: skipping %s") % new_hand_id)
+                log.exception(_("database error: skipping %s") % new_hand_id)
                 continue
 
             if type == "tour":   # hand is from a tournament
@@ -250,7 +252,7 @@ class HUD_main(object):
                 try:
                     self.hud_dict[temp_key].stat_dict = stat_dict
                 except KeyError:    # HUD instance has been killed off, key is stale
-                    log.error(_('hud_dict[%s] was not found') % temp_key)
+                    log.error(_('%s was not found') % ("hud_dict[%s]" % temp_key))
                     log.error(_('will not send hand'))
                     # Unlocks table, copied from end of function
                     self.db_connection.connection.rollback()

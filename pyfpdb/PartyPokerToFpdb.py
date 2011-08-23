@@ -105,7 +105,7 @@ class PartyPoker(HandHistoryConverter):
             """ % substitutions, re.VERBOSE | re.UNICODE)
 
     re_HandInfo     = re.compile("""
-            ^Table\s+(?P<TTYPE>[$a-zA-Z0-9 ]+)?\s+
+            ^Table\s+(?P<TTYPE>[$,a-zA-Z0-9 ]+)?\s+
             (?: \#|\(|)(?P<TABLE>\d+)\)?\s+
             (?:[a-zA-Z0-9 ]+\s+\#(?P<MTTTABLE>\d+).+)?
             (\(No\sDP\)\s)?
@@ -189,7 +189,7 @@ class PartyPoker(HandHistoryConverter):
                 r"^Dealt to %(PLYR)s \[\s*(?P<NEWCARDS>.+)\s*\]" % subst,
                 re.MULTILINE)
             self.re_Action = re.compile(u"""
-                ^%(PLYR)s\s+(?P<ATYPE>bets|checks|raises|calls|folds|is\sall-In)
+                ^%(PLYR)s\s+(?P<ATYPE>bets|checks|raises|completes|bring-ins|calls|folds|is\sall-In)
                 (?:\s+[%(BRAX)s]?%(CUR_SYM)s?(?P<BET>[.,\d]+)\s*(%(CUR)s)?[%(BRAX)s]?)?
                 """ %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShownCards = re.compile(
@@ -372,7 +372,7 @@ class PartyPoker(HandHistoryConverter):
                     elif info[key].find(u"€")!=-1:
                         hand.buyinCurrency="EUR"
                     else:
-                        raise FpdbParseError(_("Failed to detect currency.") + " " + _("Hand ID: %s: '%s'") % (hand.handid, info[key]))
+                        raise FpdbParseError(_("Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
                     info[key] = info[key].strip(u'$€')
                     hand.buyin = int(100*Decimal(info[key]))
             if key == 'LEVEL':
@@ -389,7 +389,7 @@ class PartyPoker(HandHistoryConverter):
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
         else:
-            log.info(_('readButton: not found'))
+            log.info('readButton: ' + _('not found'))
 
     def readPlayerStacks(self, hand):
         log.debug("readPlayerStacks")
@@ -451,13 +451,14 @@ class PartyPoker(HandHistoryConverter):
                            r"(?:\*{2} Dealing River \*{2} (?P<RIVER>\[ \S\S \].+?))?$"
                             , hand.handText,re.DOTALL)
         elif hand.gametype['base'] in ("stud"):
-            m =  re.search(r"(?P<ANTES>.+)"
-                           r"(?:\*{2} Dealing \*{2}(?P<THIRD>.+))?"
-                           r"(?:\*{2} Dealing Fourth street \*{2}(?P<FOURTH>.+))?"
-                           r"(?:\*{2} Dealing Fifth street \*{2}(?P<FIFTH>.+))?"
-                           r"(?:\*{2} Dealing Sixth street \*{2}(?P<SIXTH>.+))?"
-                           r"(?:\*{2} Dealing Seventh street \*{2}(?P<SEVENTH>.+))?"
-                            , hand.handText,re.DOTALL)
+            m =  re.search(
+                r"(?P<ANTES>.+(?=\*\* Dealing \*\*)|.+)"
+                r"(\*\* Dealing \*\*(?P<THIRD>.+(?=\*\* Dealing Fourth street \*\*)|.+))?"
+                r"(\*\* Dealing Fourth street \*\*(?P<FOURTH>.+(?=\*\* Dealing Fifth street \*\*)|.+))?"
+                r"(\*\* Dealing Fifth street \*\*(?P<FIFTH>.+(?=\*\* Dealing Sixth street \*\*)|.+))?"
+                r"(\*\* Dealing Sixth street \*\*(?P<SIXTH>.+(?=\*\* Dealing River \*\*)|.+))?"
+                r"(\*\* Dealing River \*\*(?P<SEVENTH>.+))?"
+                 , hand.handText,re.DOTALL)
 
         hand.addStreets(m)
 
@@ -565,6 +566,10 @@ class PartyPoker(HandHistoryConverter):
                 hand.addFold( street, playerName )
             elif actionType == 'checks':
                 hand.addCheck( street, playerName )
+            elif actionType == 'completes':
+                hand.addComplete( street, playerName, amount )
+            elif actionType == 'bring-ins':
+                hand.addBringIn( playerName, amount)
             elif actionType == 'is all-In':
                 hand.addAllIn(street, playerName, amount)
             else:
@@ -591,12 +596,22 @@ class PartyPoker(HandHistoryConverter):
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         "Returns string to search in windows titles"
         if type=="tour":
-            TableName = table_name.split(" ")
-            print 'party', 'getTableTitleRe', "%s.+Table\s#%s" % (TableName[0], table_number)
-            if len(TableName[1]) > 6:
-                return "#%s" % (table_number)
+            if table_name:
+                TableName = table_name.split(" ")
+                print 'party', 'getTableTitleRe', "%s.+Table\s#%s" % (TableName[0], table_number)
+                if len(TableName[1]) > 6:
+                    return "#%s" % (table_number)
+                else:
+                   return "%s.+Table\s#%s" % (TableName[0], table_number)
             else:
-                return "%s.+Table\s#%s" % (TableName[0], table_number)
+                #
+                #sng's seem to get passed in with:
+                #   table_name = None
+                #   tournament=8-digit tourney number
+                #   table_number = 7 digit table number
+                # screen string is normally Turbo|Speed|(etc) #table_number
+                #
+                return "#%s" % (table_number)
         else:
             return table_name
 

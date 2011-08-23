@@ -65,6 +65,7 @@ class GuiGraphViewer (threading.Thread):
         filters_display = { "Heroes"    : True,
                             "Sites"     : True,
                             "Games"     : True,
+                            "Currencies": True,
                             "Limits"    : True,
                             "LimitSep"  : True,
                             "LimitType" : True,
@@ -113,145 +114,133 @@ class GuiGraphViewer (threading.Thread):
     #end def get_vbox
 
     def clearGraphData(self):
-
         try:
-            try:
-                if self.canvas:
-                    self.graphBox.remove(self.canvas)
-            except:
-                pass
-
-            if self.fig != None:
-                self.fig.clear()
-            self.fig = Figure(figsize=(5,4), dpi=100)
-            if self.canvas is not None:
-                self.canvas.destroy()
-
-            self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
+            if self.canvas:
+                self.graphBox.remove(self.canvas)
         except:
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("Error:")+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-            raise
+            pass
+
+        if self.fig != None:
+            self.fig.clear()
+        self.fig = Figure(figsize=(5,4), dpi=100)
+        if self.canvas is not None:
+            self.canvas.destroy()
+
+        self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
 
     def generateGraph(self, widget, data):
-        try:
-            self.clearGraphData()
+        self.clearGraphData()
 
-            sitenos = []
-            playerids = []
+        sitenos = []
+        playerids = []
 
-            sites   = self.filters.getSites()
-            heroes  = self.filters.getHeroes()
-            siteids = self.filters.getSiteIds()
-            limits  = self.filters.getLimits()
-            games   = self.filters.getGames()
-            graphops = self.filters.getGraphOps()
-            names   = ""
-            
-            for i in ('show', 'none'):
-                if i in limits:
-                    limits.remove(i)
-            # Which sites are selected?
-            for site in sites:
-                if sites[site] == True:
-                    sitenos.append(siteids[site])
-                    _hname = Charset.to_utf8(heroes[site])
-                    result = self.db.get_player_id(self.conf, site, _hname)
-                    if result is not None:
-                        playerids.append(int(result))
-                        names = names + "\n"+_hname + " on "+site
+        sites   = self.filters.getSites()
+        heroes  = self.filters.getHeroes()
+        siteids = self.filters.getSiteIds()
+        limits  = self.filters.getLimits()
+        games   = self.filters.getGames()
+        currencies = self.filters.getCurrencies()
+        graphops = self.filters.getGraphOps()
+        names   = ""
 
-            if not sitenos:
-                #Should probably pop up here.
-                print _("No sites selected - defaulting to PokerStars")
-                self.db.rollback()
-                return
+        for i in ('show', 'none'):
+            if i in limits:
+                limits.remove(i)
+        # Which sites are selected?
+        for site in sites:
+            if sites[site] == True:
+                sitenos.append(siteids[site])
+                _hname = Charset.to_utf8(heroes[site])
+                result = self.db.get_player_id(self.conf, site, _hname)
+                if result is not None:
+                    playerids.append(int(result))
+                    names = names + "\n"+_hname + " on "+site
 
-            if not playerids:
-                print _("No player ids found")
-                self.db.rollback()
-                return
+        if not sitenos:
+            #Should probably pop up here.
+            print _("No sites selected - defaulting to PokerStars")
+            self.db.rollback()
+            return
 
-            if not limits:
-                print _("No limits found")
-                self.db.rollback()
-                return
+        if not playerids:
+            print _("No player ids found")
+            self.db.rollback()
+            return
 
-            #Set graph properties
-            self.ax = self.fig.add_subplot(111)
+        if not limits:
+            print _("No limits found")
+            self.db.rollback()
+            return
 
-            #Get graph data from DB
-            starttime = time()
-            (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games, graphops['dspin'])
-            print _("Graph generated in: %s") %(time() - starttime)
+        #Set graph properties
+        self.ax = self.fig.add_subplot(111)
 
+        #Get graph data from DB
+        starttime = time()
+        (green, blue, red, orange) = self.getRingProfitGraph(playerids, sitenos, limits, games, currencies, graphops['dspin'])
+        print _("Graph generated in: %s") %(time() - starttime)
 
+        #Set axis labels and grid overlay properites
+        self.ax.set_xlabel(_("Hands"))
+        # SET LABEL FOR X AXIS
+        self.ax.set_ylabel(graphops['dspin'])
+        self.ax.grid(color='g', linestyle=':', linewidth=0.2)
+        if green == None or green == []:
+            self.ax.set_title(_("No Data for Player(s) Found"))
+            green = ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
+                        700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
+                        500.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,
+                        1000., 1000.,  1000.,  1000.,  1000.,  1000.,   875.,   750.,
+                        625.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
+                        0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
+                        400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
+            red   =  ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
+                        700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
+                        0.,   0.,     0.,     0.,     0.,     0.,   125.,   250.,
+                        375.,   500.,   500.,   500.,   500.,   500.,   500.,   500.,
+                        500.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
+                        0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
+                        400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
+            blue =    ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
+                          700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
+                          0.,     0.,     0.,     0.,     0.,     0.,   125.,   250.,
+                          375.,   500.,   625.,   750.,   875.,  1000.,   875.,   750.,
+                          625.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
+                        0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
+                        400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
 
-            #Set axis labels and grid overlay properites
-            self.ax.set_xlabel(_("Hands"), fontsize = 12)
-            # SET LABEL FOR X AXIS
-            self.ax.set_ylabel(graphops['dspin'], fontsize = 12)
-            self.ax.grid(color='g', linestyle=':', linewidth=0.2)
-            if green == None or green == []:
-                self.ax.set_title(_("No Data for Player(s) Found"))
-                green = ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
-                            700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
-                            500.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,
-                            1000., 1000.,  1000.,  1000.,  1000.,  1000.,   875.,   750.,
-                            625.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
-                            0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
-                            400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
-                red   =  ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
-                            700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
-                            0.,   0.,     0.,     0.,     0.,     0.,   125.,   250.,
-                            375.,   500.,   500.,   500.,   500.,   500.,   500.,   500.,
-                            500.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
-                            0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
-                            400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
-                blue =    ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
-                              700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
-                              0.,     0.,     0.,     0.,     0.,     0.,   125.,   250.,
-                              375.,   500.,   625.,   750.,   875.,  1000.,   875.,   750.,
-                              625.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
-                            0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
-                            400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
+            self.ax.plot(green, color='green', label=_('Hands') + ': %d\n' % len(green) + _('Profit') + ': %.2f' % green[-1])
+            self.ax.plot(blue, color='blue', label=_('Showdown') + ': $%.2f' %(blue[-1]))
+            self.ax.plot(red, color='red', label=_('Non-showdown') + ': $%.2f' %(red[-1]))
+            self.graphBox.add(self.canvas)
+            self.canvas.show()
+            self.canvas.draw()
+        else:
+            self.ax.set_title((_("Profit graph for ring games")+names))
 
-                self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: (%s): %.2f') %(len(green), green[-1]))
-                self.ax.plot(blue, color='blue', label=_('Showdown') + ': $%.2f' %(blue[-1]))
-                self.ax.plot(red, color='red', label=_('Non-showdown') + ': $%.2f' %(red[-1]))
-                self.graphBox.add(self.canvas)
-                self.canvas.show()
-                self.canvas.draw()
+            #Draw plot
+            self.ax.plot(green, color='green', label=_('Hands') + ': %d\n' % len(green) + _('Profit') + ': (%s): %.2f' % (graphops['dspin'], green[-1]))
+            if graphops['showdown'] == 'ON':
+                self.ax.plot(blue, color='blue', label=_('Showdown') + ' (%s): %.2f' %(graphops['dspin'], blue[-1]))
+            if graphops['nonshowdown'] == 'ON':
+                self.ax.plot(red, color='red', label=_('Non-showdown') + ' (%s): %.2f' %(graphops['dspin'], red[-1]))
+            if graphops['ev'] == 'ON':
+                self.ax.plot(orange, color='orange', label=_('All-in EV') + ' (%s): %.2f' %(graphops['dspin'], orange[-1]))
 
-                #TODO: Do something useful like alert user
-                #print "No hands returned by graph query"
+            if sys.version[0:3] == '2.5':
+                self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
             else:
-                self.ax.set_title((_("Profit graph for ring games")+names),fontsize=12)
+                self.ax.legend(loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
 
-                #Draw plot
-                self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: (%s): %.2f') %(len(green),graphops['dspin'], green[-1]))
-                if graphops['showdown'] == 'ON':
-                    self.ax.plot(blue, color='blue', label=_('Showdown') + ' (%s): %.2f' %(graphops['dspin'], blue[-1]))
-                if graphops['nonshowdown'] == 'ON':
-                    self.ax.plot(red, color='red', label=_('Non-showdown') + ' (%s): %.2f' %(graphops['dspin'], red[-1]))
-
-                if sys.version[0:3] == '2.5':
-                    self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
-                else:
-                    self.ax.legend(loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
-
-                self.graphBox.add(self.canvas)
-                self.canvas.show()
-                self.canvas.draw()
-                #self.exportButton.set_sensitive(True)
-        except:
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("Error:")+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            self.graphBox.add(self.canvas)
+            self.canvas.show()
+            self.canvas.draw()
+            #self.exportButton.set_sensitive(True)
 
     #end of def showClicked
 
 
-    def getRingProfitGraph(self, names, sites, limits, games, units):
+    def getRingProfitGraph(self, names, sites, limits, games, currencies, units):
 #        tmp = self.sql.query['getRingProfitAllHandsPlayerIdSite']
 #        print "DEBUG: getRingProfitGraph"
 
@@ -285,44 +274,18 @@ class GuiGraphViewer (threading.Thread):
                 else:
                     gametest = "and gt.category IS NULL"
         tmp = tmp.replace("<game_test>", gametest)
+
+        limittest = self.filters.get_limits_where_clause(limits)
         
-        lims = [int(x) for x in limits if x.isdigit()]
-        potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
-        nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
-        capnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'cn']
-        limittest = "and ( (gt.limitType = 'fl' and gt.bigBlind in "
-                 # and ( (limit and bb in()) or (nolimit and bb in ()) )
-        if lims:
-            blindtest = str(tuple(lims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            limittest = limittest + blindtest + ' ) '
-        else:
-            limittest = limittest + '(-1) ) '
-        limittest = limittest + " or (gt.limitType = 'pl' and gt.bigBlind in "
-        if potlims:
-            blindtest = str(tuple(potlims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            limittest = limittest + blindtest + ' ) '
-        else:
-            limittest = limittest + '(-1) ) '
-        limittest = limittest + " or (gt.limitType = 'nl' and gt.bigBlind in "
-        if nolims:
-            blindtest = str(tuple(nolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            limittest = limittest + blindtest + ' ) '
-        else:
-            limittest = limittest + '(-1) ) '
-        limittest = limittest + " or (gt.limitType = 'cn' and gt.bigBlind in "
-        if capnolims:
-            blindtest = str(tuple(capnolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            limittest = limittest + blindtest + ' ) )'
-        else:
-            limittest = limittest + '(-1) ) )'
+        q = []
+        for n in currencies:
+            if currencies[n]:
+                q.append(n)
+        currencytest = str(tuple(q))
+        currencytest = currencytest.replace(",)",")")
+        currencytest = currencytest.replace("u'","'")
+        currencytest = "AND gt.currency in %s" % currencytest
+
 
         if type == 'ring':
             limittest = limittest + " and gt.type = 'ring' "
@@ -335,6 +298,7 @@ class GuiGraphViewer (threading.Thread):
         tmp = tmp.replace("<startdate_test>", start_date)
         tmp = tmp.replace("<enddate_test>", end_date)
         tmp = tmp.replace("<limit_test>", limittest)
+        tmp = tmp.replace("<currency_test>", currencytest)
         tmp = tmp.replace(",)", ")")
 
         #print "DEBUG: sql query:"
@@ -350,10 +314,12 @@ class GuiGraphViewer (threading.Thread):
         green = map(lambda x:float(x[1]), winnings)
         blue  = map(lambda x: float(x[1]) if x[2] == True  else 0.0, winnings)
         red   = map(lambda x: float(x[1]) if x[2] == False else 0.0, winnings)
+        orange = map(lambda x:float(x[3]), winnings)
         greenline = cumsum(green)
         blueline  = cumsum(blue)
         redline   = cumsum(red)
-        return (greenline/100, blueline/100, redline/100)
+        orangeline = cumsum(orange)
+        return (greenline/100, blueline/100, redline/100,orangeline/100)
         #end of def getRingProfitGraph
 
     def exportGraph (self, widget, data):

@@ -17,7 +17,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 #note: fpdb has only been tested on x86 and amd64, but should work on other arches, too
 
-IUSE="graph mysql postgres sqlite linguas_de linguas_es linguas_fr linguas_hu linguas_it linguas_pl linguas_pt linguas_ro linguas_ru linguas_zh"
+IUSE="graph mysql postgres sqlite linguas_ca linguas_de linguas_es linguas_fr linguas_hu linguas_it linguas_lt linguas_pl linguas_pt linguas_ro linguas_ru linguas_zh"
 RDEPEND="
 	mysql? ( virtual/mysql
 		dev-python/mysql-python )
@@ -39,6 +39,10 @@ src_install() {
 	doins -r gfx || die "failed to install gfx directory"
 	doins -r pyfpdb || die "failed to install pyfpdb directory"
 
+	if use linguas_ca; then
+		msgfmt pyfpdb/locale/fpdb-ca_ES.po -o pyfpdb/locale/ca.mo || die "failed to create Catalan mo file"
+	fi
+
 	if use linguas_de; then
 		msgfmt pyfpdb/locale/fpdb-de_DE.po -o pyfpdb/locale/de.mo || die "failed to create German mo file"
 	fi
@@ -57,6 +61,10 @@ src_install() {
 
 	if use linguas_it; then
 		msgfmt pyfpdb/locale/fpdb-it_IT.po -o pyfpdb/locale/it.mo || die "failed to create Italian mo file"
+	fi
+
+	if use linguas_lt; then
+		msgfmt pyfpdb/locale/fpdb-lt_IT.po -o pyfpdb/locale/lt.mo || die "failed to create Lithuanian mo file"
 	fi
 
 	if use linguas_pl; then
@@ -79,7 +87,9 @@ src_install() {
 		msgfmt pyfpdb/locale/fpdb-zh_CN.po -o pyfpdb/locale/zh.mo || die "failed to create Chinese mo file"
 	fi
 
-	domo pyfpdb/locale/*.mo || die "failed to install mo files"
+	if use linguas_ca || use linguas_de || use linguas_es || use linguas_fr || use linguas_hu || use linguas_it || use linguas_lt|| use linguas_pl || use linguas_pt || use linguas_ro || use	linguas_ru || use linguas_zh; then
+		domo pyfpdb/locale/*.mo || die "failed to install mo files"
+	fi
 
 	doins readme.txt || die "failed to install readme.txt file"
 
@@ -92,7 +102,9 @@ src_install() {
 	newicon gfx/fpdb-icon.png ${PN}.png || die "failed to install fpdb icon"
 	make_desktop_entry ${PN}  || die "failed to create desktop entry"
 
-	fperms +x "${GAMES_DATADIR}"/${PN}/pyfpdb/*.pyw
+	fperms +x "${GAMES_DATADIR}"/${PN}/pyfpdb/fpdb.pyw
+	fperms +x "${GAMES_DATADIR}"/${PN}/pyfpdb/HUD_main.pyw
+
 	prepgamesdirs
 }
 

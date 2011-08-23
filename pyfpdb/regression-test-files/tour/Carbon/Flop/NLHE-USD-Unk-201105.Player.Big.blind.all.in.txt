@@ -1,0 +1,38 @@
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="35428805-25" starttime="20110531181531" numholecards="2" gametype="23" realmoney="true" data="20110531|Dragonfly Room - Super Turbo|35428050-1|35428805-25|true">
+	<players dealer="5">
+		<player seat="0" nickname="Player0" balance="$2500.00" dealtin="true" />
+		<player seat="2" nickname="Hero" balance="$0.00" dealtin="true" />
+		<player seat="5" nickname="Player5" balance="$2100.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1306883733192" player="0" amount="500.00"/>
+		<event sequence="2" type="ALL_IN" timestamp="1306883733192" player="2" amount="900.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="ALL_IN" timestamp="1306883755307" player="5" amount="2100.00"/>
+		<event sequence="4" type="FOLD" timestamp="1306883758540" player="0"/>
+		<event sequence="5" type="SHOW" timestamp="1306883759030" player="2"/>
+		<event sequence="6" type="SHOW" timestamp="1306883759230" player="5"/>
+		<event sequence="6" type="CHAT" timestamp="1306883759449" player="CrowdedMind" text="balllllllssssss"/>
+		<cards type="HOLE" cards="4h,7s" player="2" hand="Seven High"/>
+		<cards type="SHOWN" cards="4h,7s" player="2"/>
+		<cards type="SHOWN" cards="Th,Qs" player="5"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="6" type="CHAT" timestamp="1306883763400" player="CrowdedMind" text="**** "/>
+		<cards type="COMMUNITY" cards="Ts,Kh,9h" hand="King High"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<cards type="COMMUNITY" cards="Ts,Kh,9h,3c" hand="King High"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="6" type="CHAT" timestamp="1306883766843" player="CrowdedMind" text="bye"/>
+		<cards type="COMMUNITY" cards="Ts,Kh,9h,3c,4d" hand="Pair of Fours"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+		<event sequence="7" type="PLAYER_OUT" timestamp="1306883768904" player="2"/>
+		<winner amount="1200.00" uncalled="true" potnumber="2" player="5" hand="Pair of Tens" pottype="n"/>
+		<winner amount="2300.00" uncalled="false" potnumber="1" player="5" hand="Pair of Tens" pottype="n"/>
+	</round>
+</game>

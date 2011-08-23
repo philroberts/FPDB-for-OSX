@@ -30,10 +30,9 @@ import re
 import Queue
 from collections import deque # using Queue for now
 import threading
+import shutil
 
 import logging
-# logging has been set up in fpdb.py or HUD_main.py, use their settings:
-log = logging.getLogger("importer")
 
 import pygtk
 import gtk
@@ -43,22 +42,10 @@ import Database
 import Configuration
 import Exceptions
 
-
-#    database interface modules
-try:
-    import MySQLdb
-except ImportError:
-    log.debug(_("Import database module: MySQLdb not found"))
-else:
-    mysqlLibFound = True
-
-try:
-    import psycopg2
-except ImportError:
-    log.debug(_("Import database module: psycopg2 not found"))
-else:
-    import psycopg2.extensions
-    psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
+if __name__ == "__main__":
+    Configuration.set_logfile("fpdb-log.txt")
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("importer")
 
 class Importer:
     def __init__(self, caller, settings, config, sql = None, parent = None):
@@ -69,7 +56,6 @@ class Importer:
         self.sql        = sql
         self.parent     = parent
 
-        #log = Configuration.get_logger("logging.conf", "importer", log_dir=self.config.dir_log)
         self.filelist   = {}
         self.dirlist    = {}
         self.siteIds    = {}
@@ -161,11 +147,6 @@ class Importer:
         self.pos_in_file = {}
         self.filelist = {}
 
-    def closeDBs(self):
-        self.database.disconnect()
-        for i in xrange(len(self.writerdbs)):
-            self.writerdbs[i].disconnect()
-            
     def logImport(self, type, file, stored, dups, partial, errs, ttime, id):
         hands = stored + dups + partial + errs
         now = datetime.datetime.utcnow()
@@ -200,15 +181,22 @@ class Importer:
                 if len(result) == 0:
                     log.error(_("Database ID for %s not found") % site)
                 else:
-                    log.error(_("[ERROR] More than 1 Database ID found for %s - Multiple currencies not implemented yet") % site)
+                    log.error(_("More than 1 Database ID found for %s") % site)
 
 
-    # Called from GuiBulkImport to add a file or directory.
+    # Called from GuiBulkImport to add a file or directory. Bulk import never monitors
     def addBulkImportImportFileOrDir(self, inputPath, site = "PokerStars"):
+
+        #for windows platform, force os.walk variable to be unicode
+        # see fpdb-main post 9th July 2011
+        
+        if self.config.posix:
+            pass
+        else:
+            inputPath = unicode(inputPath)
+
         """Add a file or directory for bulk import"""
         filter = self.config.hhcs[site].converter
-        # Bulk import never monitors
-        # if directory, add all files in it. Otherwise add single file.
         # TODO: only add sane files?
         if os.path.isdir(inputPath):
             for subdir in os.walk(inputPath):
@@ -239,8 +227,6 @@ class Importer:
 
     def runImport(self):
         """"Run full import on self.filelist. This is called from GuiBulkImport.py"""
-        #if self.settings['forceThreads'] > 0:  # use forceThreads until threading enabled in GuiBulkImport
-        #    self.setThreads(self.settings['forceThreads'])
 
         # Initial setup
         start = datetime.datetime.now()
@@ -286,7 +272,7 @@ class Importer:
                     while gtk.events_pending(): # see http://faq.pygtk.org/index.py?req=index for more hints (3.7)
                         gtk.main_iteration(False)
                     sleep(0.5)
-                print _("                              ... writers finished")
+                print _("... writers finished")
 
         # Tidying up after import
         if self.settings['dropIndexes'] == 'drop':
@@ -312,27 +298,47 @@ class Importer:
         totpartial = 0
         toterrors = 0
         tottime = 0
+        filecount = 0
+        fileerrorcount = 0
+        moveimportedfiles = False #TODO need to wire this into GUI and make it prettier
+        movefailedfiles = False #TODO and this too
         
         #prepare progress popup window
         ProgressDialog = ProgressBar(len(self.filelist), self.parent)
         
         for file in self.filelist:
             
+            filecount = filecount + 1
             ProgressDialog.progress_update(file, str(self.database.getHandCount()))
-            
-            (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0]
-                                                           ,self.filelist[file][1], self.filelist[file][2], q)
-            totstored += stored
-            totdups += duplicates
-            totpartial += partial
-            toterrors += errors
+        
+            if not moveimportedfiles and not movefailedfiles:    
+                (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0]
+                                                               ,self.filelist[file][1], self.filelist[file][2], q)
+                totstored += stored
+                totdups += duplicates
+                totpartial += partial
+                toterrors += errors
+            else:
+                try:
+                    (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0]
+                                                                   ,self.filelist[file][1], self.filelist[file][2], q)
+                    totstored += stored
+                    totdups += duplicates
+                    totpartial += partial
+                    toterrors += errors
+                    if moveimportedfiles:
+                        shutil.move(file, "c:\\fpdbimported\\%d-%s" % (filecount, os.path.basename(file[3:]) ) )
+                except:
+                    fileerrorcount = fileerrorcount + 1
+                    if movefailedfiles:
+                        shutil.move(file, "c:\\fpdbfailed\\%d-%s" % (fileerrorcount, os.path.basename(file[3:]) ) )
             
             self.logImport('bulk', file, stored, duplicates, partial, errors, ttime, self.filelist[file][2])
         self.database.commit()
         del ProgressDialog
         
         for i in xrange( self.settings['threads'] ):
-            print _("sending finish message queue length ="), q.qsize()
+            #print ("sending finish message queue length ="), q.qsize()
             db.send_finish_msg(q)
 
         
@@ -477,7 +483,7 @@ class Importer:
                 if self.caller: hhc.progressNotify()
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
-                (hbulk, hpbulk, habulk, hcbulk, phands, ihands, to_hud) = ([], [], [], [], [], [], [])
+                (hbulk, hpbulk, habulk, hcbulk, hsbulk, phands, ihands, to_hud) = ([], [], [], [], [], [], [], [])
                 sc, gsc = {'bk': []}, {'bk': []}
                 
                 ####Lock Placeholder####
@@ -492,18 +498,37 @@ class Importer:
                 
                 ####Lock Placeholder####
                 id = self.database.nextHandId()
+                sctimer, ihtimer, hctimer = 0,0,0
                 for i in range(len(phands)):
                     doinsert = len(phands)==i+1
                     hand = phands[i]
                     try:
                         id = hand.getHandId(self.database, id)
+                        stime = time()
                         sc, gsc = hand.updateSessionsCache(self.database, sc, gsc, None, doinsert)
+                        sctimer += time() - stime
+                        stime = time()
                         hbulk = hand.insertHands(self.database, hbulk, fileId, doinsert, self.settings['testData'])
+                        ihtimer = time() - stime
+                        stime = time()
                         hcbulk = hand.updateHudCache(self.database, hcbulk, doinsert)
+                        hctimer = time() - stime
                         ihands.append(hand)
                         to_hud.append(hand.dbid_hands)
                     except Exceptions.FpdbHandDuplicate:
                         duplicates += 1
+                        #If last hand in the file is a duplicate this will backtrack and insert the new hand records
+                        if (doinsert and ihands):
+                            hand = ihands[-1]
+                            hp = hand.handsplayers
+                            hand.hero, hbulk, hand.handsplayers  = 0, hbulk[:-1], [] #making sure we don't insert data from this hand
+                            sc, gsc = hand.updateSessionsCache(self.database, sc, gsc, None, doinsert)
+                            hbulk = hand.insertHands(self.database, hbulk, fileId, doinsert, self.settings['testData'])
+                            hcbulk = hand.updateHudCache(self.database, hcbulk, doinsert)
+                            hand.handsplayers = hp
+                #log.debug("DEBUG: hand.updateSessionsCache: %s" % (t5tot))
+                #log.debug("DEBUG: hand.insertHands: %s" % (t6tot))
+                #log.debug("DEBUG: hand.updateHudCache: %s" % (t7tot))
                 self.database.commit()
                 ####Lock Placeholder####
                 
@@ -512,6 +537,7 @@ class Importer:
                     hand = ihands[i]
                     hpbulk = hand.insertHandsPlayers(self.database, hpbulk, doinsert, self.settings['testData'])
                     habulk = hand.insertHandsActions(self.database, habulk, doinsert, self.settings['testData'])
+                    hsbulk = hand.insertHandsStove(self.database, hsbulk, doinsert)
                 self.database.commit()
 
                 #pipe the Hands.id out to the HUD
@@ -536,28 +562,13 @@ class Importer:
                 # TODO: appropriate response?
                 return (0, 0, 0, 1, time() - ttime)
         else:
-            log.warning(_("Unknown filter filter_name:'%s' in filter:'%s'") %(filter_name, filter))
+            log.warning(_("Unknown filter name %s in filter %s.") %(filter_name, filter))
             return (0, 0, 0, 1, time() - ttime)
 
         ttime = time() - ttime
 
         #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
-
-
-    def printEmailErrorMessage(self, errors, filename, line):
-        traceback.print_exc(file=sys.stderr)
-        print (_("Error No.%s please send the hand causing this to fpdb-main@lists.sourceforge.net so we can fix the problem.") % errors)
-        print _("Filename:"), filename
-        print _("Here is the first line of the hand so you can identify it. Please mention that the error was a ValueError:")
-        print self.hand[0]
-        print _("Hand logged to hand-errors.txt")
-        logfile = open('hand-errors.txt', 'a')
-        for s in self.hand:
-            logfile.write(str(s) + "\n")
-        logfile.write("\n")
-        logfile.close()
-        
         
 class ProgressBar:
 
@@ -596,7 +607,7 @@ class ProgressBar:
         self.pbar.set_fraction(progress_percent)
         self.pbar.set_text(progress_text)
         
-        self.handcount.set_text(_("Database Statistics") + " - " + _("Number of Hands: ") + handcount)
+        self.handcount.set_text(_("Database Statistics") + " - " + _("Number of Hands:") + " " + handcount)
         
         now = datetime.datetime.now()
         now_formatted = now.strftime("%H:%M:%S")

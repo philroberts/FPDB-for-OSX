@@ -187,9 +187,8 @@ class Winamax(HandHistoryConverter):
                 info['limitType'] = self.limits[mg['LIMIT']]
             else:
                 tmp = handText[0:100]
-                log.error(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
+                log.error(_("Limit not found in %s.") % tmp)
+                raise FpdbParseError(_("Limit not found in %s.") % tmp)
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
@@ -257,14 +256,14 @@ class Winamax(HandHistoryConverter):
                         elif info[key].find(u"€")!=-1:
                             hand.buyinCurrency="EUR"
                         elif info[key].find("FPP")!=-1:
-                            hand.buyinCurrency="PSFP"
+                            hand.buyinCurrency="WIFP"
                         else:
                             #FIXME: handle other currencies (are there other currencies?)
-                            raise FpdbParseError(_("Failed to detect currency.") + " " + _("Hand ID: %s: '%s'") % (hand.handid, info[key]))
+                            raise FpdbParseError(_("Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
 
                         info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
 
-                        if hand.buyinCurrency!="PSFP":
+                        if hand.buyinCurrency!="WIFP":
                             if info['BOUNTY'] != None:
                                 # There is a bounty, Which means we need to switch BOUNTY and BIRAKE values
                                 tmp = info['BOUNTY']
@@ -297,7 +296,7 @@ class Winamax(HandHistoryConverter):
         hand.mixed = None
 
     def readPlayerStacks(self, hand):
-        log.debug(_("readplayerstacks: re is '%s'") % self.re_PlayerInfo)
+        #log.debug("readplayerstacks re: '%s'" % self.re_PlayerInfo)
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
@@ -314,7 +313,7 @@ class Winamax(HandHistoryConverter):
 #            print "adding street", m.group(0)
 #            print "---"
         except:
-            print (_("Failed to add streets. handtext=%s"))
+            log.info(_("Failed to add streets. handtext=%s"))
 
     #Needs to return a list in the format
     # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb,
@@ -324,9 +323,9 @@ class Winamax(HandHistoryConverter):
         m = self.re_Button.search(hand.handText)
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
-            log.debug(_('readButton: button on pos %d') % hand.buttonpos)
+            #log.debug(_('readButton: button on pos %d') % hand.buttonpos)
         else:
-            log.warning(_('readButton: not found'))
+            log.info('readButton: ' + _('not found'))
 
 #    def readCommunityCards(self, hand, street):
 #        #print hand.streets.group(street)
@@ -346,7 +345,7 @@ class Winamax(HandHistoryConverter):
                 m = self.re_PostSB.search(hand.handText)
                 hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
             except exceptions.AttributeError: # no small blind
-                log.warning( _("readBlinds in noSB exception - no SB created")+str(sys.exc_info()) )
+                log.warning( _("No small blinds found.")+str(sys.exc_info()) )
             #hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))

@@ -36,13 +36,15 @@ import L10n
 _ = L10n.get_translation()
 
 #    get the correct module for the current os
-if sys.platform == 'linux2':
+if sys.platform[0:5] == 'linux':
     import XTables as Tables
 elif sys.platform == 'darwin':
     import OSXTables as Tables
 else: # This is bad--figure out the values for the various windows flavors
     import WinTables as Tables
 
+if __name__ == "__main__":
+    Configuration.set_logfile("fpdb-log.txt")
 config = Configuration.Config()
 #   Main function used for testing
 if __name__=="__main__":

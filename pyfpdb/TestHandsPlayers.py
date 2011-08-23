@@ -84,12 +84,13 @@ def compare_gametypes_file(filename, importer, errors):
                 4:'Gametype: game',
                 5:'Gametype: limit',
                 6:'Gametype: hilo',
-                7:'Gametype: Small Blind',
-                8:'Gametype: Big Blind',
-                9:'Gametype: Small Bet',
-                10:'Gametype: Big Bet',
-                11:'Gametype: maxSeats',
-                12:'Gametype: ante'
+                7:'Gametype: mix',
+                8:'Gametype: Small Blind',
+                9:'Gametype: Big Blind',
+                10:'Gametype: Small Bet',
+                11:'Gametype: Big Bet',
+                12:'Gametype: maxSeats',
+                13:'Gametype: ante'
             }
 
     for hand in handlist:
@@ -239,6 +240,7 @@ def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
 
+    Configuration.set_logfile("fpdb-log.txt")
     (options, argv) = Options.fpdb_options()
 
     test_all_sites = True
@@ -289,13 +291,14 @@ def main(argv=None):
     iPokerErrors      = FpdbError('iPoker')
     Win2dayErrors     = FpdbError('Win2day')
     WinamaxErrors     = FpdbError('Winamax')
+    EntractionErrors  = FpdbError('Entraction')
 
     ErrorsList = [
                     PacificPokerErrors, PokerStarsErrors, FTPErrors, PartyPokerErrors,
                     BetfairErrors, OnGameErrors, AbsoluteErrors,
                     EverleafErrors, CarbonErrors, PKRErrors,
                     iPokerErrors, WinamaxErrors, UltimateBetErrors,
-                    Win2dayErrors, EverestErrors,
+                    Win2dayErrors, EverestErrors, EntractionErrors
                 ]
 
     sites = {
@@ -314,6 +317,7 @@ def main(argv=None):
                 'Win2day' : False,
                 'Winamax' : False,
                 'Everest' : False,
+                'Entraction' : False,
             }
 
     if test_all_sites == True:
@@ -372,6 +376,7 @@ def main(argv=None):
         walk_testfiles(options.filename, compare, importer, EverestErrors, "Everest")
     if sites['Carbon'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Carbon/", compare, importer, CarbonErrors, "Carbon")
+        walk_testfiles("regression-test-files/tour/Carbon/", compare, importer, CarbonErrors, "Carbon")
     elif sites['Carbon'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, CarbonErrors, "Carbon")
     #if sites['PKR'] == True and not single_file_test:
@@ -389,6 +394,10 @@ def main(argv=None):
         walk_testfiles("regression-test-files/cash/Win2day/", compare, importer, Win2dayErrors, "Win2day")
     elif sites['Win2day'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, Win2dayErrors, "Win2day")
+    if sites['Entraction'] == True and not single_file_test:
+        walk_testfiles("regression-test-files/cash/Entraction/", compare, importer, EntractionErrors, "Entraction")
+    elif sites['Entraction'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, EntractionErrors, "Entraction")
 
     totalerrors = 0
 

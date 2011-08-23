@@ -1,0 +1,106 @@
+Hello everyone,
+The new fpdb release 0.26 is now available for download as source or as packages/installers for Debian, Gentoo, Ubuntu and Windows. This version brings many improvements and bugfixes, we listed some of them later on. There was an error in the creation of the Windows installer, if you use Windows please download 0.26.1 instead of 0.26.
+
+So... what is FPDB?
+===================
+FPDB (Free Poker Database) is a free/open source suite of steadily growing tools to track and analyse your online poker game. FPDB is able to import the hand histories that poker sites write to your computer and to store additional data from each hand in a database for use in later analysis.
+
+FPDB is ambitious, intending to support all games. Currently we support flop based games (Hold’em, Omaha, Omaha Hi/Lo), stud games (7 Card Stud, 7 Card Stud Hi/Lo, and Razz) and draw games (Triple Draw Lowball, 5 Card Draw, and Badugi) on most major poker sites.
+
+FPDB provides a Heads Up Display (HUD), Profit Grapher and Stats viewers with a list of features that is growing.
+
+What's changed
+==============
+281 changesets (incl. merges) have gone in since 0.25. Some of the improvements, in no particular order, are:
+
+Parser Changes:
+- Stars: Polish on the summary parsing (e.g. 8Game, HORSE); Fixes for various draw games
+- FTP: Much improved summary parsing (bad timing, sorrow did most of this just before they were shut down :( )
+- Everleaf: HUD now works in cap limit games
+- Party: Fixes for tourneys
+- iPoker: Major update
+- Carbon: Fix parsing of amounts; fixed limit stake recording; support A-5 lowball and single draw; Tourney improvements
+
+HUD&GUI&Analysis Changes:
+- A whole bunch of interface improvements for the viewers.
+- Many fixes/improvements to the session viewer
+- Improved HUD defaults
+- Add currency filter (especially important to remove play money hands from analysis)
+- Order-of-magnitude better performance for updating the HUD on the default sqlite database
+
+Other Changes:
+- Fair bit of translations and string cleaning
+- Update bundled libraries of the Windows installer
+- Misc cleanups
+- Various backend improvements, especially for MySQL and sessions
+- Another fix for non-English filenames on Windows
+- Assorted other stuff
+- Improved automated testing
+
+For the full changelog or to look at ongoing development please visit http://trac-git.assembla.com/fpdb/timeline
+
+Languages
+=========
+Fpdb 0.26 is fully translated into English and Hungarian, and mostly translated into French and Romanian. There's partial translations for Spanish, Italian, German, Lithuanian, Polish, Portuguese and Russian. Any help with translations would be appreciated.
+
+How to download/update
+======================
+Please note that you will have to either recreate your database or use a new one if you're updating from 0.25 or older. Fpdb will warn you if your database is incompatible and will not work properly unless you recreate or use a new one.
+Config files from 0.20 and later should work. Please report if you have problems with config files from that version or later.
+You can find checksums (MD5 and SHA512) in the download folder.
+To download: https://sourceforge.net/projects/fpdb/files/fpdb/XXX/
+
+Links
+=====
+To be notified by email of new versions you can subscribe to our announce mailing list here: https://lists.sourceforge.net/lists/listinfo/fpdb-announce
+Link to fpdb website (wiki) http://fpdb.wiki.sourceforge.net/
+Features page: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Features
+How to install&setup fpdb in 5 Minutes with the Windows installer: http://sf.net/projects/fpdb/files/fpdb/help/ Choose exe021install.avi (18mb, no sound)
+Installation instructions are available from: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Installation
+Getting Started Instructions: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Getting_Started
+FAQ: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=FAQ
+Screenshots: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Screenshots
+
+How to help
+===========
+Join us in IRC (see below) and say you want to do something :)
+
+How to get help
+===============
+Please also see the "Bug reports" section below to enable us to help you.
+These are listed in order of usefulness - the 2+2 thread in particular is rather chaotic so if we miss your post feel free to bring it up again
+1) Chat/IRC
+One of the developers is usually around, but it is IRC. Dont get discouraged because if we don't answer within 10 minutes, once we do you've probably got our full attention.
+This link takes you to a website where you can talk to us directly: http://webchat.freenode.net/?channels=fpdb
+Alternatively use can use any IRC client to connect to #fpdb on freenode.net
+2) Mailing List
+Visit http://lists.sourceforge.net/lists/listinfo/fpdb-main to subscribe to the development&support mailing list and send us an email
+3) The monster 2+2 forum thread (registration required).
+http://forumserver.twoplustwo.com/16...2009-a-273001/ Please dont let the size of the thread phase you. It is monitored and sends email notifications to some of the developers. (Note: If you play poker and don't frequent the 2+2 forums, you may want to become better acquainted. Its a bit daunting at first, but well worth the effort)
+
+Bug reports
+===========
+When you do report issues, try to make it easier for us help you. We usually need at least the following information:
+- Operating system and version (e.g. Ubuntu 10.10 or Windows XP)
+- Database type (MySQL, SQLite, PostgreSQL)
+- Install method (exe, tarball, deb, git, ebuild)
+- Fpdb version
+- Site name and gametype (e.g. $10 Pokerstars Razz SnG)
+You can find most of these details for easy copy&paste in the Help menu under About.
+
+Important known problems
+========================
+PKR is not working correctly
+
+Notice for Windows users
+========================
+First-time installs may need to download and install the C++ runtime executable from Microsoft. Fpdb on Windows is not currently compatible with PostgreSQL 9.x (it works fine in Linux). Please let us know if you know a way to solve either of these problems.
+
+Notice for Arch Linux users
+===========================
+You will need to change the shebang in fpdb.pyw and HUD_main.pyw from python to python2. Get in touch if you have questions about this or if you have a solution to this problem that doesn't affect compatibility for other distros.
+
+Contributors
+============
+For the latest list of contributors please see http://trac-git.assembla.com/fpdb/browser/contributors.txt
+If you're missing from this file please let us know. Full details of who did what can be viewed in the git history.

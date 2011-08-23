@@ -31,13 +31,16 @@ import gobject
 import pango
 
 import logging
-# logging has been set up in fpdb.py or HUD_main.py, use their settings:
-log = logging.getLogger("maintdbs")
 
 import Exceptions
 import Configuration
 import Database
 import SQL
+
+if __name__ == "__main__":
+    Configuration.set_logfile("fpdb-log.txt")
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("maintdbs")
 
 class GuiDatabase:
 
@@ -311,9 +314,9 @@ class GuiDatabase:
             # to turn indicator off for other cols
         except:
             err = traceback.extract_tb(sys.exc_info()[2])
-            print _("***sortCols error: ") + str(sys.exc_info()[1])
+            print "***sortCols " + _("error") + ": " + str(sys.exc_info()[1])
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
-            log.info(_('sortCols error: ') + str(sys.exc_info()) )
+            log.info('sortCols ' + _('error') + ': ' + str(sys.exc_info()) )
 
     def refresh(self, widget, data):
         self.loadDbs()
@@ -688,17 +691,17 @@ if __name__=="__main__":
     config = Configuration.Config()
 
     win = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    win.set_title(_("Log Viewer"))
+    win.set_title(_("Maintain Databases"))
     win.set_border_width(1)
     win.set_default_size(600, 500)
     win.set_resizable(True)
 
-    dia = gtk.Dialog(_("Log Viewer"),
+    dia = gtk.Dialog(_("Maintain Databases"),
                      win,
                      gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                      (gtk.STOCK_CLOSE, gtk.RESPONSE_OK))
     dia.set_default_size(500, 500)
-    log = GuiLogView(config, win, dia.vbox)
+    log = GuiDatabase(config, win, dia)
     response = dia.run()
     if response == gtk.RESPONSE_ACCEPT:
         pass

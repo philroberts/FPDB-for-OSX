@@ -59,20 +59,21 @@ class Table(Table_Window):
         for hwnd in titles:
             if titles[hwnd] == "":
                 continue
+            # if window not visible, probably not a table
+            if not win32gui.IsWindowVisible(hwnd): 
+                continue
+            # if window is a child of another window, probably not a table
+            if win32gui.GetParent(hwnd) != 0:
+                continue
+            HasNoOwner = win32gui.GetWindow(hwnd, win32con.GW_OWNER) == 0
+            WindowStyle = win32gui.GetWindowLong(hwnd, win32con.GWL_EXSTYLE)
+            if HasNoOwner and WindowStyle & win32con.WS_EX_TOOLWINDOW != 0:
+                continue
+            if not HasNoOwner and WindowStyle & win32con.WS_EX_APPWINDOW == 0:
+                continue
+            
             if re.search(self.search_string, titles[hwnd], re.I):
                 if self.check_bad_words(titles[hwnd]):
-                    continue
-                # if window not visible, probably not a table
-                if not win32gui.IsWindowVisible(hwnd): 
-                    continue
-                # if window is a child of another window, probably not a table
-                if win32gui.GetParent(hwnd) != 0:
-                    continue
-                HasNoOwner = win32gui.GetWindow(hwnd, win32con.GW_OWNER) == 0
-                WindowStyle = win32gui.GetWindowLong(hwnd, win32con.GWL_EXSTYLE)
-                if HasNoOwner and WindowStyle & win32con.WS_EX_TOOLWINDOW != 0:
-                    continue
-                if not HasNoOwner and WindowStyle & win32con.WS_EX_APPWINDOW == 0:
                     continue
 
                 self.window = hwnd
@@ -83,7 +84,7 @@ class Table(Table_Window):
                 log.error(_("Window %s not found. Skipping.") % self.search_string)
                 return None
         except AttributeError:
-            log.error(_("self.window doesn't exist? why?"))
+            log.error(_("Error:") + " " + _("%s doesn't exist.") % "self.window")
             return None
 
         self.title = titles[hwnd]

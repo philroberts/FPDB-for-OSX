@@ -56,7 +56,7 @@ class Pkr(HandHistoryConverter):
           Starting\sHand\s\#(?P<HID>[0-9]+)\s
           Start\stime\sof\shand:\s(?P<DATETIME>.*)\s
           Last\sHand\s\#[0-9]+\s
-          Game\sType:\s(?P<GAME>HOLD'EM|5\sCard\sDraw)\s
+          Game\sType:\s(?P<GAME>HOLD'EM)\s
           Limit\sType:\s(?P<LIMIT>NO\sLIMIT|LIMIT|POT\sLIMIT)\s
           Table\sType\:\sRING\s
           Money\sType:\sREAL\sMONEY\s

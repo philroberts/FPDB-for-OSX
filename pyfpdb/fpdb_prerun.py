@@ -29,7 +29,8 @@ global_modules_to_test =   ["gobject",
                             "matplotlib",
                             "numpy",
                             "pylab",
-                            "sqlite3"]
+                            "sqlite3",
+                            "pytz"]
 
 windows_modules_to_test =  ["win32gui",
                             "win32api",
@@ -44,7 +45,7 @@ mac_modules_to_test = []
 posix_modules_to_test = []
 
 def win_output(message):
-
+    
     win = Tk()
     win.title("FPDB")
     win.geometry("600x400")
@@ -65,6 +66,8 @@ def try_import(modulename):
             failure(_("Unable to load PyGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org."))
         if modulename in ["win32console"]:
             failure (_("We appear to be running in Windows, but the Windows Python Extensions are not loading. Please install the PYWIN32 package from http://sourceforge.net/projects/pywin32/"))
+        if modulename in ["pytz"]:
+            failure (_("Unable to import PYTZ library. Please install PYTZ from http://pypi.python.org/pypi/pytz/"))
         return False
 
     if modulename == "pygtk":
@@ -97,6 +100,36 @@ def failure(message):
         print _("Error:"), message
     failure_list.append(message)
 
+
+class ChooseLanguage:
+     
+    def __init__(self, win, language_dict):
+        win.title("Choose a language for FPDB")
+        win.geometry("350x350")
+        self.listbox  = Listbox(win)
+        
+        self.listbox.insert(END,("Use the system language settings"))
+        self.listbox.insert(END,("en -- Always use English for FPDB"))
+        for key in sorted(language_dict.iterkeys()):
+            self.listbox.insert(END,(key + " -- " + language_dict[key]))
+        self.listbox.pack(fill=BOTH, expand=1)
+        self.listbox.select_set(0)
+        
+        self.listbox.bind('<Double-1>', self.callbackLanguage)
+        win.mainloop()
+        
+    def callbackLanguage(self, event):
+        index = self.listbox.curselection()[0]
+        if index == "0":
+            self.selected_language = ""
+        else:
+            self.selected_language = self.listbox.get(index)
+        win.destroy()
+        
+    def getLanguage(self):
+        import string
+        return string.split(self.selected_language, " -- ", 1)[0]
+
 #=====================================================================
 
 #
@@ -107,16 +140,16 @@ def failure(message):
 from Tkinter import *
 
 try:
-    try_import("sys")
+    module = __import__("sys")
 except:
     failure("python failure - could not import sys module")
     win_output(failure_list)
     sys.exit(1)
-    
+ 
 try:
-    try_import("Charset")
+    module = __import__("L10n")
 except:
-    failure("fpdb must be installed in an English path")
+    failure("fpdb modules cannot be loaded, check that fpdb is installed in an English path")
     win_output(failure_list)
     sys.exit(1)
 
@@ -133,8 +166,8 @@ import Configuration
 config = Configuration.Config()
 
 if config.python_version not in("2.6", "2.7"):
-    failure(_("\npython 2.6-2.7 not found, please install python 2.6 or 2.7 for fpdb\n"))
-
+    failure(_("Python 2.6-2.7 not found, please install python 2.6 or 2.7 for fpdb."))
+    
 #
 # next, check for individual modules existing
 #
@@ -154,33 +187,60 @@ if config.posix:
     for i in posix_modules_to_test:
         try_import(i) 
 
-#
-# finished, work out how to exit
-#
-
 if len(failure_list):
     win_output(failure_list)
-        
+
+#
+# finished validation, work out how to exit
+#
 if config.install_method == "exe":
     if len(failure_list):
         sys.exit(1)
-    else:
-        sys.exit(0)
-        
+ 
 if len(failure_list):
     if config.os_family in ("XP", "Win7"):
         sys.exit(1)
     else:
         sys.exit(failure_list)
 
+#
+# If initial run (example_copy==True), prompt for language
+#
+if config.example_copy:
+    #
+    # Ask user for their preferred language, save their choice in the
+    #  config
+    #
+    language_dict,null=L10n.get_installed_translations()
+    win = Tk()
+    chosen_lang = ChooseLanguage(win, language_dict).getLanguage()
+
+    if chosen_lang:
+        conf=Configuration.Config()
+        conf.set_general(lang=chosen_lang)
+        conf.save()
+
+    # signal fpdb.pyw to trigger the config created dialog
+    initial_run = "-i"
+else:
+    initial_run = ""
+
+if config.install_method == "exe":
+    if initial_run:
+        sys.exit(2)
+    else:
+        sys.exit(0)
+
+#
+# finally, invoke fpdb
+#
 import os
 os.chdir(os.path.join(config.fpdb_program_path, u"pyfpdb"))
 
 if config.os_family in ("XP", "Win7"):
-    os.execvpe('pythonw.exe', list(('pythonw.exe', 'fpdb.pyw', '-r'))+sys.argv[1:], os.environ)
+    os.execvpe('pythonw.exe', list(('pythonw.exe', 'fpdb.pyw', initial_run, '-r'))+sys.argv[1:], os.environ)
 else:
-    os.execvpe('python', list(('python', 'fpdb.pyw', '-r'))+sys.argv[1:], os.environ)
-
+    os.execvpe('python', list(('python', 'fpdb.pyw', initial_run, '-r'))+sys.argv[1:], os.environ)
 ###################
 # DO NOT INSERT ANY LINES BELOW HERE
-# os.execvpe above stops transfers control to fpdb.pyw immediately
+# os.execvpe above transfers control to fpdb.pyw immediately

@@ -25,19 +25,22 @@ import gtk
 import os
 import sys
 from optparse import OptionParser
-from time import gmtime, mktime, strftime, strptime
+from time import gmtime, mktime, strftime, strptime, localtime
 import gobject
 #import pokereval
 
 import logging
-# logging has been set up in fpdb.py or HUD_main.py, use their settings:
-log = logging.getLogger("filter")
 
 import Configuration
 import Database
 import SQL
 import Charset
 import Filters
+
+if __name__ == "__main__":
+    Configuration.set_logfile("fpdb-log.txt")
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("filter")
 
 class Filters(threading.Thread):
     def __init__(self, db, config, qdict, display = {}, debug=True):
@@ -49,15 +52,37 @@ class Filters(threading.Thread):
         self.conf = db.config
         self.display = display
 
+        self.gameName = {"27_1draw"  : _("Single Draw 2-7 Lowball")
+                        ,"27_3draw"  : _("Triple Draw 2-7 Lowball")
+                        ,"a5_3draw"  : _("Triple Draw A-5 Lowball")
+                        ,"5studhi"   : _("5 Card Stud")
+                        ,"badugi"    : _("Badugi")
+                        ,"fivedraw"  : _("5 Card Draw")
+                        ,"holdem"    : _("Hold'em")
+                        ,"omahahi"   : _("Omaha")
+                        ,"omahahilo" : _("Omaha Hi/Lo")
+                        ,"razz"      : _("Razz")
+                        ,"studhi"    : _("7 Card Stud")
+                        ,"studhilo"  : _("7 Card Stud Hi/Lo")
+                        }
+
+        self.currencyName = {"USD" : _("US Dollar")
+                            ,"EUR" : _("Euro")
+                            ,"T$"  : _("Tournament Dollar")
+                            ,"play": _("Play Money")
+                            }
+
         # text used on screen stored here so that it can be configured
         self.filterText = {'limitsall':_('All'), 'limitsnone':_('None'), 'limitsshow':_('Show _Limits')
+                          ,'gamesall':_('All'), 'gamesnone':_('None')
+                          ,'currenciesall':_('All'), 'currenciesnone':_('None')
                           ,'seatsbetween':_('Between:'), 'seatsand':_('And:'), 'seatsshow':_('Show Number of _Players')
                           ,'playerstitle':_('Hero:'), 'sitestitle':(_('Sites')+':'), 'gamestitle':(_('Games')+':')
                           ,'limitstitle':_('Limits:'), 'seatstitle':_('Number of Players:')
                           ,'groupstitle':_('Grouping:'), 'posnshow':_('Show Position Stats')
-                          ,'datestitle':_('Date:')
+                          ,'datestitle':_('Date:'), 'currenciestitle':(_('Currencies')+':')
                           ,'groupsall':_('All Players')
-                          ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'limitsCN':'CAP', 'ring':_('Ring'), 'tour':_('Tourney')
+                          ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'limitsCN':'CAP', 'ring':_('Ring'), 'tour':_('Tourney'), 'limitsHP':'HP'
                           }
 
         gen = self.conf.get_general_params()
@@ -70,7 +95,7 @@ class Filters(threading.Thread):
         self.sw = gtk.ScrolledWindow()
         self.sw.set_border_width(0)
         self.sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.sw.set_size_request(370, 300)
+        self.sw.set_size_request(235, 300)
 
 
         # Outer Packing box
@@ -79,7 +104,7 @@ class Filters(threading.Thread):
         self.sw.show()
         #print(_("DEBUG:") + _("New packing box created!"))
 
-        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'ring':False, 'tour':False}
+        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'hp':False, 'ring':False, 'tour':False}
         self.label = {}
         self.callback = {}
 
@@ -94,7 +119,9 @@ class Filters(threading.Thread):
         self.siteid = {}
         self.heroes = {}
         self.boxes  = {}
+        self.toggles  = {}
         self.graphops = {}
+        self.currencies  = {}
 
         for site in self.conf.get_supported_sites():
             #Get db site id for filtering later
@@ -103,11 +130,13 @@ class Filters(threading.Thread):
             if len(result) == 1:
                 self.siteid[site] = result[0][0]
             else:
-                print _("Either 0 or more than one site matched (%s) - EEK") % site
+                log.debug(_("Either 0 or more than one site matched for %s") % site)
 
         # For use in date ranges.
         self.start_date = gtk.Entry(max=12)
+        self.start_date.set_width_chars(12)
         self.end_date = gtk.Entry(max=12)
+        self.end_date.set_width_chars(12)
         self.start_date.set_property('editable', False)
         self.end_date.set_property('editable', False)
 
@@ -120,6 +149,7 @@ class Filters(threading.Thread):
         self.graphops['dspin'] = "$"
         self.graphops['showdown'] = 'OFF'
         self.graphops['nonshowdown'] = 'OFF'
+        self.graphops['ev'] = 'OFF'
 
         playerFrame = gtk.Frame()
         playerFrame.set_label_align(0.0, 0.0)
@@ -140,9 +170,24 @@ class Filters(threading.Thread):
         gamesFrame.set_label_align(0.0, 0.0)
         gamesFrame.show()
         vbox = gtk.VBox(False, 0)
+        self.cbGames = {}
+        self.cbNoGames = None
+        self.cbAllGames = None
 
         self.fillGamesFrame(vbox)
         gamesFrame.add(vbox)
+
+        # Currencies
+        currenciesFrame = gtk.Frame()
+        currenciesFrame.set_label_align(0.0, 0.0)
+        currenciesFrame.show()
+        vbox = gtk.VBox(False, 0)
+        self.cbCurrencies = {}
+        self.cbNoCurrencies = None
+        self.cbAllCurrencies = None
+
+        self.fillCurrenciesFrame(vbox)
+        currenciesFrame.add(vbox)
 
         # Limits
         limitsFrame = gtk.Frame()
@@ -155,6 +200,7 @@ class Filters(threading.Thread):
         self.cbNL = None
         self.cbPL = None
         self.cbCN = None
+        self.cbHP = None
         self.rb = {}     # radio buttons for ring/tour
         self.type = None # ring/tour
         self.types = {}  # list of all ring/tour values
@@ -206,16 +252,19 @@ class Filters(threading.Thread):
         self.Button2=gtk.Button("Unnamed 2")
         self.Button2.set_sensitive(False)
 
-        self.mainVBox.add(playerFrame)
-        self.mainVBox.add(sitesFrame)
-        self.mainVBox.add(gamesFrame)
-        self.mainVBox.add(limitsFrame)
-        self.mainVBox.add(seatsFrame)
-        self.mainVBox.add(groupsFrame)
-        self.mainVBox.add(dateFrame)
-        self.mainVBox.add(graphopsFrame)
-        self.mainVBox.add(self.Button1)
-        self.mainVBox.add(self.Button2)
+        expand = False
+        self.mainVBox.pack_start(playerFrame, expand)
+        self.mainVBox.pack_start(sitesFrame, expand)
+        self.mainVBox.pack_start(gamesFrame, expand)
+        self.mainVBox.pack_start(currenciesFrame, expand)
+        self.mainVBox.pack_start(limitsFrame, expand)
+        self.mainVBox.pack_start(seatsFrame, expand)
+        self.mainVBox.pack_start(groupsFrame, expand)
+        self.mainVBox.pack_start(dateFrame, expand)
+        self.mainVBox.pack_start(graphopsFrame, expand)
+        self.mainVBox.pack_start(gtk.VBox(False, 0))
+        self.mainVBox.pack_start(self.Button1, expand)
+        self.mainVBox.pack_start(self.Button2, expand)
 
         self.mainVBox.show_all()
 
@@ -226,6 +275,8 @@ class Filters(threading.Thread):
             sitesFrame.hide()
         if "Games" not in self.display or self.display["Games"] == False:
             gamesFrame.hide()
+        if "Currencies" not in self.display or self.display["Currencies"] == False:
+            currenciesFrame.hide()
         if "Limits" not in self.display or self.display["Limits"] == False:
             limitsFrame.hide()
         if "Seats" not in self.display or self.display["Seats"] == False:
@@ -279,6 +330,10 @@ class Filters(threading.Thread):
     def getGames(self):
         return self.games
     #end def getGames
+
+    def getCurrencies(self):
+        return self.currencies
+    #end def getCurrencies
 
     def getSiteIds(self):
         return self.siteid
@@ -339,15 +394,19 @@ class Filters(threading.Thread):
     def cardCallback(self, widget, data=None):
         log.debug( _("%s was toggled %s") % (data, (_("OFF"), _("ON"))[widget.get_active()]) )
 
-    def createPlayerLine(self, hbox, site, player):
+    def createPlayerLine(self, vbox, site, player):
         log.debug('add:"%s"' % player)
         label = gtk.Label(site +" id:")
-        hbox.pack_start(label, False, False, 3)
+        label.set_alignment(xalign=0.0, yalign=1.0)
+        vbox.pack_start(label, False, False, 3)
+
+        hbox = gtk.HBox(False, 0)
+        vbox.pack_start(hbox, False, True, 0)
 
         pname = gtk.Entry()
         pname.set_text(player)
         pname.set_width_chars(20)
-        hbox.pack_start(pname, False, True, 0)
+        hbox.pack_start(pname, True, True, 20)
         pname.connect("changed", self.__set_hero_name, site)
 
         # Added EntryCompletion but maybe comboBoxEntry is more flexible? (e.g. multiple choices)
@@ -401,11 +460,21 @@ class Filters(threading.Thread):
         cb.set_active(True)
     #end def createTourneyTypeLine
 
-    def createGameLine(self, hbox, game):
-        cb = gtk.CheckButton(game)
+    def createGameLine(self, hbox, game, gtext):
+        cb = gtk.CheckButton(gtext.replace("_", "__"))
         cb.connect('clicked', self.__set_game_select, game)
         hbox.pack_start(cb, False, False, 0)
-        cb.set_active(True)
+        if game != "none":
+            cb.set_active(True)
+        return(cb)
+
+    def createCurrencyLine(self, hbox, currency, ctext):
+        cb = gtk.CheckButton(ctext.replace("_", "__"))
+        cb.connect('clicked', self.__set_currency_select, currency)
+        hbox.pack_start(cb, False, False, 0)
+        if currency != "none" and currency != "all" and currency != "play":
+            cb.set_active(True)
+        return(cb)
 
     def createLimitLine(self, hbox, limit, ltext):
         cb = gtk.CheckButton(str(ltext))
@@ -422,10 +491,42 @@ class Filters(threading.Thread):
     #end def __set_site_select
 
     def __set_game_select(self, w, game):
-        #print w.get_active()
-        self.games[game] = w.get_active()
-        log.debug(_("self.games[%s] set to %s") %(game, self.games[game]))
+        if (game == 'all'):
+            if (w.get_active()):
+                for cb in self.cbGames.values():
+                    cb.set_active(True)
+        elif (game == 'none'):
+            if (w.get_active()):
+                for cb in self.cbGames.values():
+                    cb.set_active(False)
+        else:
+            self.games[game] = w.get_active()
+            if (w.get_active()): # when we turn a game on, turn 'none' off if it's on
+                if (self.cbNoGames and self.cbNoGames.get_active()):
+                    self.cbNoGames.set_active(False)
+            else:                # when we turn a game off, turn 'all' off if it's on
+                if (self.cbAllGames and self.cbAllGames.get_active()):
+                    self.cbAllGames.set_active(False)
     #end def __set_game_select
+
+    def __set_currency_select(self, w, currency):
+        if (currency == 'all'):
+            if (w.get_active()):
+                for cb in self.cbCurrencies.values():
+                    cb.set_active(True)
+        elif (currency == 'none'):
+            if (w.get_active()):
+                for cb in self.cbCurrencies.values():
+                    cb.set_active(False)
+        else:
+            self.currencies[currency] = w.get_active()
+            if (w.get_active()): # when we turn a currency on, turn 'none' off if it's on
+                if (self.cbNoCurrencies and self.cbNoCurrencies.get_active()):
+                    self.cbNoCurrencies.set_active(False)
+            else:                # when we turn a currency off, turn 'all' off if it's on
+                if (self.cbAllCurrencies and self.cbAllCurrencies.get_active()):
+                    self.cbAllCurrencies.set_active(False)
+    #end def __set_currency_select
 
     def __set_limit_select(self, w, limit):
         #print "__set_limit_select:  limit =", limit, w.get_active()
@@ -630,21 +731,33 @@ class Filters(threading.Thread):
         lbl_title = gtk.Label(self.filterText['playerstitle'])
         lbl_title.set_alignment(xalign=0.0, yalign=0.5)
         top_hbox.pack_start(lbl_title, expand=True, padding=3)
+
+        showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'Heroes')
+        self.toggles['Heroes'] = showb
+        showb.show()
+        top_hbox.pack_end(showb, expand=False, padding=1)
+
+        showb = gtk.Button(label=_("hide all"), stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'all')
+        self.toggles['all'] = showb
+        showb.show()
+        top_hbox.pack_end(showb, expand=False, padding=1)
+
         showb = gtk.Button(label=_("Refresh"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__refresh, 'players')
+        showb.connect('clicked', self.__refresh, 'Heroes')
 
         vbox1 = gtk.VBox(False, 0)
         vbox.pack_start(vbox1, False, False, 0)
-        self.boxes['players'] = vbox1
+        self.boxes['Heroes'] = vbox1
 
         for site in self.conf.get_supported_sites():
-            hBox = gtk.HBox(False, 0)
-            vbox1.pack_start(hBox, False, True, 0)
-
             player = self.conf.supported_sites[site].screen_name
             _pname = Charset.to_gui(player)
-            self.createPlayerLine(hBox, site, _pname)
+            self.createPlayerLine(vbox1, site, _pname)
 
         if "GroupsAll" in display and display["GroupsAll"] == True:
             hbox = gtk.HBox(False, 0)
@@ -678,12 +791,13 @@ class Filters(threading.Thread):
 
         showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'sites')
+        showb.connect('clicked', self.__toggle_box, 'Sites')
+        self.toggles['Sites'] = showb
         showb.show()
         top_hbox.pack_start(showb, expand=False, padding=1)
 
         vbox1 = gtk.VBox(False, 0)
-        self.boxes['sites'] = vbox1
+        self.boxes['Sites'] = vbox1
         vbox.pack_start(vbox1, False, False, 0)
 
         for site in self.conf.get_supported_sites():
@@ -708,6 +822,7 @@ class Filters(threading.Thread):
         showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
         showb.connect('clicked', self.__toggle_box, 'tourneyTypes')
+        self.toggles['tourneyTypes'] = showb
         top_hbox.pack_start(showb, expand=False, padding=1)
 
         vbox1 = gtk.VBox(False, 0)
@@ -733,24 +848,87 @@ class Filters(threading.Thread):
         top_hbox.pack_start(lbl_title, expand=True, padding=3)
         showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'games')
+        showb.connect('clicked', self.__toggle_box, 'Games')
+        self.toggles['Games'] = showb
         top_hbox.pack_start(showb, expand=False, padding=1)
 
         vbox1 = gtk.VBox(False, 0)
         vbox.pack_start(vbox1, False, False, 0)
-        self.boxes['games'] = vbox1
+        self.boxes['Games'] = vbox1
 
         self.cursor.execute(self.sql.query['getGames'])
+        result = self.db.cursor.fetchall()
+        if len(result) >= 1:
+            for line in sorted(result, key = lambda game: self.gameName[game[0]]):
+                hbox = gtk.HBox(False, 0)
+                vbox1.pack_start(hbox, False, True, 0)
+                self.cbGames[line[0]] = self.createGameLine(hbox, line[0], self.gameName[line[0]])
+
+            if len(result) >= 2:
+                hbox = gtk.HBox(True, 0)
+                vbox1.pack_start(hbox, False, False, 0)
+                vbox2 = gtk.VBox(False, 0)
+                hbox.pack_start(vbox2, False, False, 0)
+                vbox3 = gtk.VBox(False, 0)
+                hbox.pack_start(vbox3, False, False, 0)
+
+                hbox = gtk.HBox(False, 0)
+                vbox2.pack_start(hbox, False, False, 0)
+                self.cbAllGames = self.createGameLine(hbox, 'all', self.filterText['gamesall'])
+                hbox = gtk.HBox(False, 0)
+                vbox3.pack_start(hbox, False, False, 0)
+                self.cbNoGames = self.createGameLine(hbox, 'none', self.filterText['gamesnone'])
+        else:
+            print _("INFO: No games returned from database")
+            log.info(_("No games returned from database"))
+    #end def fillGamesFrame
+
+    def fillCurrenciesFrame(self, vbox):
+        top_hbox = gtk.HBox(False, 0)
+        vbox.pack_start(top_hbox, False, False, 0)
+        lbl_title = gtk.Label(self.filterText['currenciestitle'])
+        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
+        top_hbox.pack_start(lbl_title, expand=True, padding=3)
+        showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'Currencies')
+        self.toggles['Currencies'] = showb
+        top_hbox.pack_start(showb, expand=False, padding=1)
+
+        vbox1 = gtk.VBox(False, 0)
+        vbox.pack_start(vbox1, False, False, 0)
+        self.boxes['Currencies'] = vbox1
+
+        self.cursor.execute(self.sql.query['getCurrencies'])
         result = self.db.cursor.fetchall()
         if len(result) >= 1:
             for line in result:
                 hbox = gtk.HBox(False, 0)
                 vbox1.pack_start(hbox, False, True, 0)
-                self.createGameLine(hbox, line[0])
+                if (self.currencyName.has_key(line[0])):
+                    cname = self.currencyName[line[0]]
+                else:
+                    cname = line[0]
+                self.cbCurrencies[line[0]] = self.createCurrencyLine(hbox, line[0], cname)
+
+            if len(result) >= 2:
+                hbox = gtk.HBox(True, 0)
+                vbox1.pack_start(hbox, False, False, 0)
+                vbox2 = gtk.VBox(False, 0)
+                hbox.pack_start(vbox2, False, False, 0)
+                vbox3 = gtk.VBox(False, 0)
+                hbox.pack_start(vbox3, False, False, 0)
+
+                hbox = gtk.HBox(False, 0)
+                vbox2.pack_start(hbox, False, False, 0)
+                self.cbAllCurrencies = self.createCurrencyLine(hbox, 'all', self.filterText['currenciesall'])
+                hbox = gtk.HBox(False, 0)
+                vbox3.pack_start(hbox, False, False, 0)
+                self.cbNoCurrencies = self.createCurrencyLine(hbox, 'none', self.filterText['currenciesnone'])
         else:
-            print _("INFO: No games returned from database")
-            log.info(_("No games returned from database"))
-    #end def fillGamesFrame
+            #print "INFO: No currencies returned from database"
+            log.info(_("No currencies returned from database"))
+    #end def fillCurrenciesFrame
 
     def fillLimitsFrame(self, vbox, display):
         top_hbox = gtk.HBox(False, 0)
@@ -760,17 +938,18 @@ class Filters(threading.Thread):
         top_hbox.pack_start(lbl_title, expand=True, padding=3)
         showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'limits')
+        showb.connect('clicked', self.__toggle_box, 'Limits')
+        self.toggles['Limits'] = showb
         top_hbox.pack_start(showb, expand=False, padding=1)
 
         vbox1 = gtk.VBox(False, 15)
         vbox.pack_start(vbox1, False, False, 0)
-        self.boxes['limits'] = vbox1
+        self.boxes['Limits'] = vbox1
 
         self.cursor.execute(self.sql.query['getCashLimits'])
         # selects  limitType, bigBlind
         result = self.db.cursor.fetchall()
-        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'ring':False, 'tour':False}
+        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'hp':False, 'ring':False, 'tour':False}
 
         if len(result) >= 1:
             hbox = gtk.HBox(True, 0)
@@ -784,23 +963,13 @@ class Filters(threading.Thread):
                     if line[0] != self.display["UseType"]:
                         continue
                 hbox = gtk.HBox(False, 0)
-                if i <= len(result)/2:
+                if i < (len(result)+1)/2:
                     vbox2.pack_start(hbox, False, False, 0)
                 else:
                     vbox3.pack_start(hbox, False, False, 0)
                 if True:  #line[0] == 'ring':
-                    if line[1] == 'fl':
-                        name = str(line[2])
-                        self.found['fl'] = True
-                    elif line[1] == 'pl':
-                        name = str(line[2])+line[1]
-                        self.found['pl'] = True
-                    elif line[1] == 'cn':
-                        name = str(line[2])+line[1]
-                        self.found['cn'] = True
-                    else:
-                        name = str(line[2])+line[1]
-                        self.found['nl'] = True
+                    name = str(line[2])+line[1]
+                    self.found[line[1]] = True
                     self.cbLimits[name] = self.createLimitLine(hbox, name, name)
                     self.types[name] = line[0]
                 self.found[line[0]] = True      # type is ring/tour
@@ -827,6 +996,7 @@ class Filters(threading.Thread):
                     if self.found['pl']:  self.num_limit_types = self.num_limit_types + 1
                     if self.found['nl']:  self.num_limit_types = self.num_limit_types + 1
                     if self.found['cn']:  self.num_limit_types = self.num_limit_types + 1
+                    if self.found['hp']:  self.num_limit_types = self.num_limit_types + 1
                     if self.num_limit_types > 1:
                        if self.found['fl']:
                            hbox = gtk.HBox(False, 0)
@@ -844,6 +1014,10 @@ class Filters(threading.Thread):
                            hbox = gtk.HBox(False, 0)
                            vbox3.pack_start(hbox, False, False, 0)
                            self.cbCN = self.createLimitLine(hbox, 'cn', self.filterText['limitsCN'])
+                       if self.found['hp']:
+                           hbox = gtk.HBox(False, 0)
+                           vbox3.pack_start(hbox, False, False, 0)
+                           self.cbHP = self.createLimitLine(hbox, 'hp', self.filterText['limitsHP'])
                        dest = vbox2  # for ring/tour buttons
         else:
             print _("INFO: No games returned from database")
@@ -874,13 +1048,14 @@ class Filters(threading.Thread):
         top_hbox.pack_start(title, expand=True, padding=3)
         showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'graphops')
+        showb.connect('clicked', self.__toggle_box, 'GraphOps')
+        self.toggles['GraphOps'] = showb
         top_hbox.pack_start(showb, expand=False, padding=1)
 
         vbox1 = gtk.VBox(False, 0)
         vbox.pack_start(vbox1, False, False, 0)
         vbox1.show()
-        self.boxes['graphops'] = vbox1
+        self.boxes['GraphOps'] = vbox1
 
         hbox1 = gtk.HBox(False, 0)
         vbox1.pack_start(hbox1, False, False, 0)
@@ -917,6 +1092,11 @@ class Filters(threading.Thread):
         button.connect("toggled", self.__set_graphopscheck_select, "nonshowdown");
         button.show()
 
+        button = gtk.CheckButton(_("EV"), False)
+        vbox1.pack_start(button, True, True, 0)
+        button.connect("toggled", self.__set_graphopscheck_select, "ev");
+        button.show()
+
     def fillSeatsFrame(self, vbox, display):
         hbox = gtk.HBox(False, 0)
         vbox.pack_start(hbox, False, False, 0)
@@ -925,22 +1105,27 @@ class Filters(threading.Thread):
         hbox.pack_start(lbl_title, expand=True, padding=3)
         showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'seats')
+        showb.connect('clicked', self.__toggle_box, 'Seats')
+        self.toggles['Seats'] = showb
         hbox.pack_start(showb, expand=False, padding=1)
 
         vbox1 = gtk.VBox(False, 0)
         vbox.pack_start(vbox1, False, False, 0)
-        self.boxes['seats'] = vbox1
+        self.boxes['Seats'] = vbox1
 
         hbox = gtk.HBox(False, 0)
         vbox1.pack_start(hbox, False, True, 0)
 
         lbl_from = gtk.Label(self.filterText['seatsbetween'])
         lbl_to   = gtk.Label(self.filterText['seatsand'])
+
         adj1 = gtk.Adjustment(value=2, lower=2, upper=10, step_incr=1, page_incr=1, page_size=0)
         sb1 = gtk.SpinButton(adjustment=adj1, climb_rate=0.0, digits=0)
+        adj1.connect('value-changed', self.__seats_changed, 'from')
+
         adj2 = gtk.Adjustment(value=10, lower=2, upper=10, step_incr=1, page_incr=1, page_size=0)
         sb2 = gtk.SpinButton(adjustment=adj2, climb_rate=0.0, digits=0)
+        adj2.connect('value-changed', self.__seats_changed, 'to')
 
         hbox.pack_start(lbl_from, expand=False, padding=3)
         hbox.pack_start(sb1, False, False, 0)
@@ -959,12 +1144,13 @@ class Filters(threading.Thread):
         hbox.pack_start(lbl_title, expand=True, padding=3)
         showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'groups')
+        showb.connect('clicked', self.__toggle_box, 'Groups')
+        self.toggles['Groups'] = showb
         hbox.pack_start(showb, expand=False, padding=1)
 
         vbox1 = gtk.VBox(False, 0)
         vbox.pack_start(vbox1, False, False, 0)
-        self.boxes['groups'] = vbox1
+        self.boxes['Groups'] = vbox1
 
         hbox = gtk.HBox(False, 0)
         vbox1.pack_start(hbox, False, False, 0)
@@ -1017,44 +1203,85 @@ class Filters(threading.Thread):
         top_hbox.pack_start(lbl_title, expand=True, padding=3)
         showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'dates')
+        showb.connect('clicked', self.__toggle_box, 'Dates')
+        self.toggles['Dates'] = showb
         top_hbox.pack_start(showb, expand=False, padding=1)
 
-        vbox1 = gtk.VBox(False, 0)
-        vbox.pack_start(vbox1, False, False, 0)
-        self.boxes['dates'] = vbox1
+        hbox1 = gtk.HBox(False, 0)
+        vbox.pack_start(hbox1, False, False, 0)
+        self.boxes['Dates'] = hbox1
 
-        hbox = gtk.HBox()
-        vbox1.pack_start(hbox, False, True, 0)
+        table = gtk.Table(2,4,False)
+        hbox1.pack_start(table, False, True, 0)
 
         lbl_start = gtk.Label(_('From:'))
-
+        lbl_start.set_alignment(xalign=1.0, yalign=0.5)
         btn_start = gtk.Button()
         btn_start.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
         btn_start.connect('clicked', self.__calendar_dialog, self.start_date)
-
-        hbox.pack_start(lbl_start, expand=False, padding=3)
-        hbox.pack_start(btn_start, expand=False, padding=3)
-        hbox.pack_start(self.start_date, expand=False, padding=2)
-
-        #New row for end date
-        hbox = gtk.HBox()
-        vbox1.pack_start(hbox, False, True, 0)
+        clr_start = gtk.Button()
+        clr_start.set_image(gtk.image_new_from_stock(gtk.STOCK_CLEAR, gtk.ICON_SIZE_BUTTON))
+        clr_start.connect('clicked', self.__clear_start_date)
 
         lbl_end = gtk.Label(_('To:'))
+        lbl_end.set_alignment(xalign=1.0, yalign=0.5)
         btn_end = gtk.Button()
         btn_end.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
         btn_end.connect('clicked', self.__calendar_dialog, self.end_date)
+        clr_end = gtk.Button()
+        clr_end.set_image(gtk.image_new_from_stock(gtk.STOCK_CLEAR, gtk.ICON_SIZE_BUTTON))
+        clr_end.connect('clicked', self.__clear_end_date)
 
-        btn_clear = gtk.Button(label=_('Clear Dates'))
-        btn_clear.connect('clicked', self.__clear_dates)
+        table.attach(lbl_start,       0,1, 0,1)
+        table.attach(btn_start,       1,2, 0,1)
+        table.attach(self.start_date, 2,3, 0,1)
+        table.attach(clr_start,       3,4, 0,1)
 
-        hbox.pack_start(lbl_end, expand=False, padding=3)
-        hbox.pack_start(btn_end, expand=False, padding=3)
-        hbox.pack_start(self.end_date, expand=False, padding=2)
+        table.attach(lbl_end,         0,1, 1,2)
+        table.attach(btn_end,         1,2, 1,2)
+        table.attach(self.end_date,   2,3, 1,2)
+        table.attach(clr_end,         3,4, 1,2)
 
-        hbox.pack_start(btn_clear, expand=False, padding=15)
     #end def fillDateFrame
+
+    def get_limits_where_clause(self, limits):
+        "Accepts a list of limits and returns a formatted SQL where clause"
+        where = ""
+        lims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'fl']
+        potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
+        nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
+        capnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'cn']
+        hpnolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'hp']
+
+        where          = "AND ( "
+
+        if lims: 
+            clause = "(gt.limitType = 'fl' and gt.bigBlind in (%s))" % (','.join(map(str, lims)))
+        else:
+            clause = "(gt.limitType = 'fl' and gt.bigBlind in (-1))"
+        where = where + clause
+        if potlims:
+            clause = "or (gt.limitType = 'pl' and gt.bigBlind in (%s))" % (','.join(map(str, potlims)))
+        else:
+            clause = "or (gt.limitType = 'pl' and gt.bigBlind in (-1))"
+        where = where + clause
+        if nolims:
+            clause = "or (gt.limitType = 'nl' and gt.bigBlind in (%s))" % (','.join(map(str, nolims)))
+        else:
+            clause = "or (gt.limitType = 'nl' and gt.bigBlind in (-1))"
+        where = where + clause
+        if hpnolims:
+            clause = "or (gt.limitType = 'hp' and gt.bigBlind in (%s))" % (','.join(map(str, hpnolims)))
+        else:
+            clause = "or (gt.limitType = 'hp' and gt.bigBlind in (-1))"
+        where = where + clause
+        if capnolims:
+            clause = "or (gt.limitType = 'cp' and gt.bigBlind in (%s))" % (','.join(map(str, capnolims)))
+        else:
+            clause = "or (gt.limitType = 'cp' and gt.bigBlind in (-1))"
+        where = where + clause + ' )'
+
+        return where
 
     def __refresh(self, widget, entry):
         for w in self.mainVBox.get_children():
@@ -1063,12 +1290,37 @@ class Filters(threading.Thread):
     #end def __refresh
 
     def __toggle_box(self, widget, entry):
-        if self.boxes[entry].props.visible:
+        if (entry == "all"):
+            if (widget.get_label() == _("hide all")):
+                for entry in self.boxes.keys():
+                    if (self.boxes[entry].props.visible):
+                        self.__toggle_box(widget, entry)
+                        widget.set_label(_("show all"))
+            else:
+                for entry in self.boxes.keys():
+                    if (not self.boxes[entry].props.visible):
+                        self.__toggle_box(widget, entry)
+                    widget.set_label(_("hide all"))
+        elif self.boxes[entry].props.visible:
             self.boxes[entry].hide()
-            widget.set_label(_("show"))
+            self.toggles[entry].set_label(_("show"))
+            for entry in self.boxes.keys():
+                if (self.display.has_key(entry) and
+                    self.display[entry] and
+                    self.boxes[entry].props.visible):
+                    break
+            else:
+                self.toggles["all"].set_label(_("show all"))
         else:
             self.boxes[entry].show()
-            widget.set_label(_("hide"))
+            self.toggles[entry].set_label(_("hide"))
+            for entry in self.boxes.keys():
+                if (self.display.has_key(entry) and
+                    self.display[entry] and
+                    not self.boxes[entry].props.visible):
+                    break
+            else:
+                self.toggles["all"].set_label(_("hide all"))
     #end def __toggle_box
 
     def __calendar_dialog(self, widget, entry):
@@ -1079,6 +1331,19 @@ class Filters(threading.Thread):
         cal = gtk.Calendar()
         vb.pack_start(cal, expand=False, padding=0)
 
+        # if the date field is already set, default to the currently selected date, else default to 'today'
+        text = entry.get_text()
+        if (text):
+            date = strptime(text, "%Y-%m-%d")
+        else:
+            # if the day is configured to not start at midnight, check whether it's still yesterday,
+            # and if so, select yesterday in the calendar instead of today
+            date = localtime()
+            if (date.tm_hour < self.day_start):
+                date = localtime(mktime(date) - 24*3600)
+        cal.select_month(date.tm_mon - 1, date.tm_year) # months are 0 through 11
+        cal.select_day(date.tm_mday)
+            
         btn = gtk.Button(_('Done'))
         btn.connect('clicked', self.__get_date, cal, entry, d)
 
@@ -1089,10 +1354,13 @@ class Filters(threading.Thread):
         d.show_all()
     #end def __calendar_dialog
 
-    def __clear_dates(self, w):
+    def __clear_start_date(self, w):
         self.start_date.set_text('')
+    #end def __clear_start_date
+
+    def __clear_end_date(self, w):
         self.end_date.set_text('')
-    #end def __clear_dates
+    #end def __clear_end_date
 
     def __get_dates(self):
         # self.day_start gives user's start of day in hours
@@ -1127,6 +1395,27 @@ class Filters(threading.Thread):
         entry.set_text(ds)
         win.destroy()
 
+        # if the opposite date is set, and now the start date is later
+        # than the end date, modify the one we didn't just set to be
+        # the same as the one we did just set
+        if (entry == self.start_date):
+            end = self.end_date.get_text()
+            if (end and ds > end):
+                self.end_date.set_text(ds)
+        else:
+            start = self.start_date.get_text()
+            if (start and ds < start):
+                self.start_date.set_text(ds)
+
+    def __seats_changed(self, widget, which):
+        seats_from = self.sbSeats['from'].get_value_as_int()
+        seats_to = self.sbSeats['to'].get_value_as_int()
+        if (seats_from > seats_to):
+            if (which == 'from'):
+                self.sbSeats['to'].set_value(seats_from)
+            else:
+                self.sbSeats['from'].set_value(seats_to)
+
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""
     if argv is None:
@@ -1138,15 +1427,30 @@ def main(argv=None):
     parser = OptionParser()
     (options, argv) = parser.parse_args(args = argv)
 
-    config = Configuration.Config()
-    db = None
+    config = Configuration.Config(file = "HUD_config.test.xml")
+    db = Database.Database(config)
 
-    db = Database.Database()
-    db.do_connect(config)
+    qdict = SQL.Sql(db_server = 'sqlite')
 
-    qdict = SQL.SQL(db.get_backend_name())
+    filters_display = { "Heroes"    : False,
+                        "Sites"     : False,
+                        "Games"     : False,
+                        "Currencies": False,
+                        "Limits"    : True,
+                        "LimitSep"  : True,
+                        "LimitType" : True,
+                        "Type"      : False,
+                        "UseType"   : 'ring',
+                        "Seats"     : False,
+                        "SeatSep"   : False,
+                        "Dates"     : False,
+                        "GraphOps"  : False,
+                        "Groups"    : False,
+                        "Button1"   : False,
+                        "Button2"   : False
+                          }
 
-    i = Filters(db, config, qdict)
+    i = Filters(db, config, qdict, display = filters_display)
     main_window = gtk.Window()
     main_window.connect('destroy', destroy)
     main_window.add(i.get_vbox())

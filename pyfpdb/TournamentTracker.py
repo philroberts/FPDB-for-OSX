@@ -36,7 +36,8 @@ import traceback
 (options, argv) = Options.fpdb_options()
 
 if not options.errorsToConsole:
-    print _("Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_.")
+    print (_("Note: error output is being diverted to %s.") % "tourneyerror.txt"),
+             _("Any major error will be reported there _only_.")
     errorFile = open('tourneyerror.txt', 'w', 0)
     sys.stderr = errorFile
 
@@ -97,7 +98,7 @@ class Tournament:
             self.window.show() # isn't there a better way to bring something to the front? not that GTK focus works right anyway, ever
         else:
             self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
-            print _("tournament edit window="), self.window
+            #print("tournament edit window:", self.window)
             self.window.connect("delete_event", self.delete_event)
             self.window.connect("destroy", self.destroy)
             self.window.set_title(_("FPDB Tournament Entry"))
@@ -142,7 +143,7 @@ class ttracker_main(object):
         self.vb = gtk.VBox()
         self.label = gtk.Label(_('Closing this window will stop the Tournament Tracker'))
         self.vb.add(self.label)
-        self.addbutton = gtk.Button(label=_("Enter Tournament"))
+        self.addbutton = gtk.Button(label=_("Add Tournament"))
         self.addbutton.connect("clicked", self.addClicked, "add tournament")
         self.vb.add(self.addbutton)
 
@@ -260,9 +261,9 @@ class ttracker_main(object):
                     cards['common'] = comm_cards['common']
             except Exception, err:
                 err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                print _("db error: skipping ")+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+                #print _("db error: skipping ")+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
                 if new_hand_id: # new_hand_id is none if we had an error prior to the store
-                    sys.stderr.write(_("Database error %s in hand %d. Skipping.\n") % (err, int(new_hand_id)))
+                    sys.stderr.write(_("Database error %s in hand %d. Skipping.") % (err, int(new_hand_id)) + "\n")
                 continue
 
             if type == "tour":   # hand is from a tournament
@@ -271,8 +272,8 @@ class ttracker_main(object):
                     (tour_number, tab_number) = mat_obj.group(1, 2)
                     temp_key = tour_number
                 else:   # tourney, but can't get number and table
-                    print _("could not find tournament: skipping")
-                    sys.stderr.write(_("Could not find tournament %d in hand %d. Skipping.\n") % (int(tour_number), int(new_hand_id)))
+                    #print _("could not find tournament: skipping")
+                    sys.stderr.write(_("Could not find tournament %d in hand %d. Skipping.") % (int(tour_number), int(new_hand_id)) + "\n")
                     continue
 
             else:
@@ -295,7 +296,7 @@ class ttracker_main(object):
 #    If no client window is found on the screen, complain and continue
                     if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
-                    sys.stderr.write(_("table name %s not found, skipping.\n")% table_name)
+                    sys.stderr.write(_("Table name %s not found, skipping.")% table_name)
                 else:
                     self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, stat_dict, cards)
             self.db_connection.connection.rollback()
@@ -305,6 +306,7 @@ if __name__== "__main__":
     sys.stderr.write(_("Tournament tracker starting"))
     sys.stderr.write(_("Using db name = %s") % (options.dbname))
 
+    Configuration.set_logfile("fpdb-log.txt")
 #    start the HUD_main object
     hm = ttracker_main(db_name = options.dbname)
 

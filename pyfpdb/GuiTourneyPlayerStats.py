@@ -18,18 +18,12 @@
 import L10n
 _ = L10n.get_translation()
 
-#import traceback
 import threading
 import pygtk
 pygtk.require('2.0')
 import gtk
-#import os
-#import sys
 from time import time, strftime
 
-#import Card
-#import fpdb_import
-#import Database
 import Charset
 import TourneyFilters
 import GuiPlayerStats
@@ -123,6 +117,7 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
         
         query = self.sql.query[query]
         query = self.refineQuery(query, numTourneys, tourneyTypes, playerids, sitenos, seats, dates)
+        #print "DEBUG:\n%s" % query
         self.cursor.execute(query)
         result = self.cursor.fetchall()
         #print "result of the big query in addGrid:",result
@@ -346,40 +341,8 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
             query = query.replace('<groupbyseats>', '')
             query = query.replace('<orderbyseats>', '')
 
-        #lims = [int(x) for x in limits if x.isdigit()]
-        #potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
-        #nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
-        #bbtest = "and ( (gt.limitType = 'fl' and gt.bigBlind in "
-                 # and ( (limit and bb in()) or (nolimit and bb in ()) )
-        #if lims:
-        #    blindtest = str(tuple(lims))
-        #    blindtest = blindtest.replace("L", "")
-        #    blindtest = blindtest.replace(",)",")")
-        #    bbtest = bbtest + blindtest + ' ) '
-        #else:
-        #    bbtest = bbtest + '(-1) ) '
-        #bbtest = bbtest + " or (gt.limitType = 'pl' and gt.bigBlind in "
-        #if potlims:
-        #    blindtest = str(tuple(potlims))
-        #    blindtest = blindtest.replace("L", "")
-        #    blindtest = blindtest.replace(",)",")")
-        #    bbtest = bbtest + blindtest + ' ) '
-        #else:
-        #    bbtest = bbtest + '(-1) ) '
-        #bbtest = bbtest + " or (gt.limitType = 'nl' and gt.bigBlind in "
-        #if nolims:
-        #    blindtest = str(tuple(nolims))
-        #    blindtest = blindtest.replace("L", "")
-        #    blindtest = blindtest.replace(",)",")")
-        #    bbtest = bbtest + blindtest + ' ) )'
-        #else:
-        #    bbtest = bbtest + '(-1) ) )'
-        
-        #if type == 'ring':
-        #    bbtest = bbtest + " and gt.type = 'ring' "
-        #elif type == 'tour':
-        #bbtest = " and gt.type = 'tour' "
-        
+        #bbtest = self.filters.get_limits_where_clause(limits)
+
         #query = query.replace("<gtbigBlind_test>", bbtest)
 
         #query = query.replace("<orderbyhgametypeId>", "")
@@ -438,23 +401,18 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
     #end def reset_style_render_func
 
     def sortCols(self, col, nums):
-        try:
-            #This doesn't actually work yet - clicking heading in top section sorts bottom section :-(
-            (n, grid) = nums
-            if not col.get_sort_indicator() or col.get_sort_order() == gtk.SORT_ASCENDING:
-                col.set_sort_order(gtk.SORT_DESCENDING)
-            else:
-                col.set_sort_order(gtk.SORT_ASCENDING)
-            self.liststore[grid].set_sort_column_id(n, col.get_sort_order())
-            self.liststore[grid].set_sort_func(n, self.sortnums, (n,grid))
-            for i in xrange(len(self.listcols[grid])):
-                self.listcols[grid][i].set_sort_indicator(False)
-            self.listcols[grid][n].set_sort_indicator(True)
-            # use this   listcols[col].set_sort_indicator(True)
-            # to turn indicator off for other cols
-        except:
-            err = traceback.extract_tb(sys.exc_info()[2])
-            print _("***sortCols error: ") + str(sys.exc_info()[1])
-            print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
+        #This doesn't actually work yet - clicking heading in top section sorts bottom section :-(
+        (n, grid) = nums
+        if not col.get_sort_indicator() or col.get_sort_order() == gtk.SORT_ASCENDING:
+            col.set_sort_order(gtk.SORT_DESCENDING)
+        else:
+            col.set_sort_order(gtk.SORT_ASCENDING)
+        self.liststore[grid].set_sort_column_id(n, col.get_sort_order())
+        self.liststore[grid].set_sort_func(n, self.sortnums, (n,grid))
+        for i in xrange(len(self.listcols[grid])):
+            self.listcols[grid][i].set_sort_indicator(False)
+        self.listcols[grid][n].set_sort_indicator(True)
+        # use this   listcols[col].set_sort_indicator(True)
+        # to turn indicator off for other cols
     #end def sortCols
 #end class GuiTourneyPlayerStats
