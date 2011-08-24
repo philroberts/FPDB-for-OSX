@@ -118,7 +118,7 @@ class Table(Table_Window):
             return None
 
     def get_window_title(self):
-        return self.wnck_table_w.get_title()
+        return self.wnck_table_w.get_name()
 
 
     def topify(self, window):
