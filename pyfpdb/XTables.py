@@ -32,15 +32,14 @@ import logging
 import gtk
 
 #    Other Library modules
-import Xlib.display
+import wnck
 
 #    FPDB modules
 from TableWindow import Table_Window
 import Configuration
 
 #    We might as well do this once and make them globals
-disp = Xlib.display.Display()
-root = disp.screen().root
+root = wnck.screen_get_default()
 
 c = Configuration.Config()
 log = logging.getLogger("hud")
@@ -53,28 +52,27 @@ class Table(Table_Window):
 #    given the self.search_string. Then populate self.number, self.title, 
 #    self.window, and self.parent (if required).
 
-        reg = '''
-                \s+(?P<XID>[\dxabcdef]+)    # XID in hex
-                \s(?P<TITLE>.+):            # window title
-            '''
-
         self.number = None
-        for listing in os.popen('xwininfo -root -tree').readlines():
-            if re.search(self.search_string, listing, re.I):
-                log.info(listing)
-                mo = re.match(reg, listing, re.VERBOSE)
-                title  = re.sub('\"', '', mo.groupdict()["TITLE"])
+        self.wnck_table_w = None
+
+        # Flush GTK event loop before calling wnck.get_*
+        while gtk.events_pending():
+            gtk.main_iteration(False)
+
+        for win in root.get_windows():
+            w_title = win.get_name()
+            if re.search(self.search_string, w_title, re.I):
+                log.info('"%s" matches: "%s"' % (w_title, self.search_string))
+                title = w_title.replace('"', '')
                 if self.check_bad_words(title): continue
-                self.number = int( mo.groupdict()["XID"], 0 )
+                self.wnck_table_w = win
+                self.number = int(win.get_xid())
                 self.title = title
-                if self.number is None:
-                    log.warning(_("Could not retrieve XID from table xwininfo. xwininfo is %s") % listing)
                 break
 
         if self.number is None:
             log.warning(_("No match in XTables for table '%s'.") % self.search_string)
             return None
-        (self.window, self.parent) = self.get_window_from_xid(self.number)
 
 #    def get_window_from_xid(self, id):
 #        for outside in root.query_tree().children:
@@ -88,14 +86,6 @@ class Table(Table_Window):
 #                        parent = wayinside.query_tree().parent
 #                        return (wayinside, parent.query_tree().parent)
 #        return (None, None)
-
-    def get_window_from_xid(self, id):
-        for top_level in root.query_tree().children:
-            if top_level.id == id:
-                return (top_level, None)
-            for w in treewalk(top_level):
-                if w.id == id:
-                    return (w, top_level)
 
     #def get_geometry(self):
         #try:
@@ -117,41 +107,20 @@ class Table(Table_Window):
             #return None
 
     def get_geometry(self):
-        geo_re = '''
-                Absolute\supper-left\sX: \s+ (?P<X>\d+)   # x
-                .+
-                Absolute\supper-left\sY: \s+ (?P<Y>\d+)   # y
-                .+
-                Width: \s+ (?P<W>\d+)                   # width
-                .+
-                Height: \s+ (?P<H>\d+)                  # height
-            '''
-        des_re = 'No such window with id'
-
-        listing = os.popen("xwininfo -id %d -stats" % (self.number)).read()
-        if listing == "": return
-        mo = re.search(des_re, listing)
-        if mo is not None:
-            return None      # table has been destroyed
-
-        mo = re.search(geo_re, listing, re.VERBOSE|re.DOTALL)
+        (_x, _y, _h, _w) = self.wnck_table_w.get_client_window_geometry()
         try:
-            return {'x'        : int(mo.groupdict()['X']),
-                    'y'        : int(mo.groupdict()['Y']),
-                    'width'    : int(mo.groupdict()['W']),
-                    'height'   : int(mo.groupdict()['H'])
+            return {'x'        : int(_x),
+                    'y'        : int(_y),
+                    'width'    : int(_w),
+                    'height'   : int(_h)
                    }
         except AttributeError:
             return None
 
     def get_window_title(self):
-        s = os.popen("xwininfo -wm -id %d" % self.number).read()
-        mo = re.search('"(.+)"', s)
-        try:
-            return mo.group(1)
-        except AttributeError:
-            return None
-        
+        return self.wnck_table_w.get_title()
+
+
     def topify(self, window):
 #    The idea here is to call set_transient_for on the HUD window, with the table window
 #    as the argument. This should keep the HUD window on top of the table window, as if 
@@ -161,8 +130,3 @@ class Table(Table_Window):
         gdkwindow = gtk.gdk.window_foreign_new(window.window.xid)
         gdkwindow.set_transient_for(self.gdkhandle)
 
-def treewalk(parent):
-    for w in parent.query_tree().children:
-        for ww in treewalk(w):
-            yield ww
-        yield w
