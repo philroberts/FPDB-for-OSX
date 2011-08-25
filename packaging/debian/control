@@ -10,7 +10,7 @@ Architecture: all
 Section: games
 Priority: extra
 Depends: ${python:Depends}, python-gtk2, python-matplotlib,
-	python-support, python-xlib,
+	python-support, python-wnck,
 	python-pysqlite2
 Suggests: wine, postgresql | mysql-server, python-psycopg2 | python-mysqldb
 Description: free poker database with HUD
