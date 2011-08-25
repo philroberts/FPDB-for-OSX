@@ -161,7 +161,7 @@ class GuiReplayer:
             self.pangolayout.set_text('$'+str(self.table[i]["stack"]))     #player stacks
             self.area.window.draw_layout(self.gc, self.table[i]["x"]+10,self.table[i]["y"]+20, self.pangolayout)
 
-        color = cm.alloc_color("green")
+        color = cm.alloc_color("black")
         self.gc.set_foreground(color)
 
         self.pangolayout.set_text(self.currency+str(self.pot)) #displays pot
