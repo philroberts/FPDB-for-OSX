@@ -122,11 +122,39 @@ class GuiReplayer:
         self.action_number=0
         self.action_level=0
         self.pot=0
+        self.tableImage = None
+        self.cardImages = None
 
 
     def area_expose(self, area, event):
         self.style = self.area.get_style()
         self.gc = self.style.fg_gc[gtk.STATE_NORMAL]
+
+        if self.tableImage is None:
+            try:
+                self.tableImage = gtk.gdk.pixbuf_new_from_file("../gfx/Table.png")
+                self.area.set_size_request(self.tableImage.get_width(), self.tableImage.get_height())
+            except:
+                return
+        if self.cardImages is None:
+            try:
+                pb = gtk.gdk.pixbuf_new_from_file("Cards01.png")
+            except:
+                return
+            self.cardwidth = pb.get_width() / 14
+            self.cardheight = pb.get_height() / 6
+            print self.cardwidth, self.cardheight
+            
+            self.cardImages = [gtk.gdk.Pixmap(self.area.window, self.cardwidth, self.cardheight) for i in range(53)]
+            suits = ('s', 'h', 'd', 'c')
+            ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
+            for j in range(0, 13):
+                for i in range(0, 4):
+                    index = Card.cardFromValueSuit(ranks[j], suits[i])
+                    self.cardImages[index].draw_pixbuf(self.gc, pb, self.cardwidth * j, self.cardheight * i, 0, 0, self.cardwidth, self.cardheight)
+            self.cardImages[0].draw_pixbuf(self.gc, pb, self.cardwidth*13, self.cardheight*2, 0, 0, self.cardwidth, self.cardheight)
+
+        self.area.window.draw_pixbuf(self.gc, self.tableImage, 0, 0, 0, 0)
 
         playerid='999'  #makes sure we have an error if player is not recognised
         for i in range(0,len(self.table)):  #surely there must be a better way to find the player id in the table...
@@ -142,12 +170,14 @@ class GuiReplayer:
             self.table[playerid]["chips"] += Decimal(self.actions[self.action_number][3]) #increase player's chips on table
 
 
+        padding = 5
+        communityLeft = int(self.tableImage.get_width() / 2 - 2.5 * self.cardwidth - 2 * padding)
+        communityTop = int(self.tableImage.get_height() / 2 - 1.5 * self.cardheight)
+
         cm = self.gc.get_colormap() #create colormap toi be able to play with colours
 
         color = cm.alloc_color("black") #defaults to black
         self.gc.set_foreground(color)
-
-        self.area.window.draw_arc(self.gc, 0, 125, 125, 300, 300, 0, 360*64) #table
 
         for i in self.table:
             if self.table[i]["status"]=="folded":
@@ -158,6 +188,10 @@ class GuiReplayer:
                 self.gc.set_foreground(color)
             self.pangolayout.set_text(self.table[i]["name"]+self.table[i]["holecards"])     #player names + holecards
             self.area.window.draw_layout(self.gc, self.table[i]["x"],self.table[i]["y"], self.pangolayout)
+            cardIndex = Card.encodeCard(self.table[i]["holecards"][0:2])
+            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, self.table[i]["x"], self.table[i]["y"] - self.cardheight, -1, -1)
+            cardIndex = Card.encodeCard(self.table[i]["holecards"][3:5])
+            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, self.table[i]["x"] + self.cardwidth + padding, self.table[i]["y"] - self.cardheight, -1, -1)
             self.pangolayout.set_text('$'+str(self.table[i]["stack"]))     #player stacks
             self.area.window.draw_layout(self.gc, self.table[i]["x"]+10,self.table[i]["y"]+20, self.pangolayout)
 
@@ -165,17 +199,27 @@ class GuiReplayer:
         self.gc.set_foreground(color)
 
         self.pangolayout.set_text(self.currency+str(self.pot)) #displays pot
-        self.area.window.draw_layout(self.gc,270,270, self.pangolayout)
+        self.area.window.draw_layout(self.gc,self.tableImage.get_width() / 2,270, self.pangolayout)
 
         if self.actions[self.action_number][0]>1:   #displays flop
             self.pangolayout.set_text(self.MyHand.board['FLOP'][0]+" "+self.MyHand.board['FLOP'][1]+" "+self.MyHand.board['FLOP'][2])
-            self.area.window.draw_layout(self.gc,210,240, self.pangolayout)
+            self.area.window.draw_layout(self.gc,communityLeft,communityTop + self.cardheight, self.pangolayout)
+            cardIndex = Card.encodeCard(self.MyHand.board['FLOP'][0])
+            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft, communityTop, -1, -1)
+            cardIndex = Card.encodeCard(self.MyHand.board['FLOP'][1])
+            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + self.cardwidth + padding, communityTop, -1, -1)
+            cardIndex = Card.encodeCard(self.MyHand.board['FLOP'][2])
+            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + 2 * (self.cardwidth + padding), communityTop, -1, -1)
         if self.actions[self.action_number][0]>2:   #displays turn
             self.pangolayout.set_text(self.MyHand.board['TURN'][0])
-            self.area.window.draw_layout(self.gc,270,240, self.pangolayout)
+            self.area.window.draw_layout(self.gc,communityLeft + 60,communityTop + self.cardheight, self.pangolayout)
+            cardIndex = Card.encodeCard(self.MyHand.board['TURN'][0])
+            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + 3 * (self.cardwidth + padding), communityTop, -1, -1)
         if self.actions[self.action_number][0]>3:   #displays river
             self.pangolayout.set_text(self.MyHand.board['RIVER'][0])
-            self.area.window.draw_layout(self.gc,290,240, self.pangolayout)
+            self.area.window.draw_layout(self.gc,communityLeft + 80,communityTop + self.cardheight, self.pangolayout)
+            cardIndex = Card.encodeCard(self.MyHand.board['RIVER'][0])
+            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + 4 * (self.cardwidth + padding), communityTop, -1, -1)
 
         color = cm.alloc_color("red")   #highlights the action
         self.gc.set_foreground(color)
