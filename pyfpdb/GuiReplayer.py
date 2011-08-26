@@ -101,7 +101,45 @@ class GuiReplayer:
         self.gc = self.style.fg_gc[gtk.STATE_NORMAL]
         self.area.show()
 
-        self.replayBox.pack_start(self.area)
+        self.replayBox.pack_start(self.area, False)
+
+        self.buttonBox = gtk.HButtonBox()
+        self.buttonBox.set_layout(gtk.BUTTONBOX_SPREAD)
+        self.startButton = gtk.Button()
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_MEDIA_PREVIOUS, gtk.ICON_SIZE_BUTTON)
+        self.startButton.set_image(image)
+        self.flopButton = gtk.Button("Flop")
+        self.turnButton = gtk.Button("Turn")
+        self.riverButton = gtk.Button("River")
+        self.endButton = gtk.Button()
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_MEDIA_NEXT, gtk.ICON_SIZE_BUTTON)
+        self.endButton.set_image(image)
+        self.playPauseButton = gtk.Button()
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_MEDIA_PLAY, gtk.ICON_SIZE_BUTTON)
+        self.playPauseButton.set_image(image)
+        self.buttonBox.add(self.startButton)
+        self.buttonBox.add(self.flopButton)
+        self.buttonBox.add(self.turnButton)
+        self.buttonBox.add(self.riverButton)
+        self.buttonBox.add(self.endButton)
+        self.buttonBox.add(self.playPauseButton)
+        self.buttonBox.show_all()
+        
+        self.replayBox.pack_start(self.buttonBox, False)
+
+        self.state = gtk.Adjustment(0, 0, 10, 1)
+        self.stateSlider = gtk.HScale(self.state)
+        self.stateSlider.connect("format_value", lambda x,y: "")
+        self.stateSlider.set_digits(0)
+        for i in range(10):
+            self.stateSlider.add_mark(i, gtk.POS_BOTTOM, None)
+        self.state.connect("value_changed", self.slider_changed)
+        self.stateSlider.show()
+
+        self.replayBox.pack_start(self.stateSlider, False)
 
         gobject.timeout_add(1000,self.draw_action)
 
@@ -274,6 +312,9 @@ class GuiReplayer:
     def get_vbox(self):
         """returns the vbox of this thread"""
         return self.mainHBox
+
+    def slider_changed(self, adjustment):
+        pass
 
     def importhand(self, handnumber=1):
         """Temporary function that grabs a Hand object from a specified file. Obviously this will
