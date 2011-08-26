@@ -939,6 +939,7 @@ class HoldemOmahaHand(Hand):
             #else:
             #    log.warning(_("HoldemOmahaHand.__init__:Can't assemble hand from db without a handid"))
             print "DEBUG: HoldemOmaha hand initialised for select()"
+            self.maxseats = 10
         else:
             log.warning("HoldemOmahaHand.__init__: " + _("Neither HHC nor DB+handID provided"))
             pass
