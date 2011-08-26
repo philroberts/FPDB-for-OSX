@@ -178,6 +178,9 @@ class GuiReplayer:
         color = cm.alloc_color("black") #defaults to black
         self.gc.set_foreground(color)
 
+        convertx = lambda x: int(x * self.tableImage.get_width() * 0.85) + self.cardwidth
+        converty = lambda y: int(y * self.tableImage.get_height() * 0.6) + self.cardheight * 2
+
         for i in self.table:
             if self.table[i]["status"]=="folded":
                 color = cm.alloc_color("grey") #player has folded => greyed out
@@ -185,14 +188,17 @@ class GuiReplayer:
             else:
                 color = cm.alloc_color("black") #player is live
                 self.gc.set_foreground(color)
+
+            playerx = convertx(self.table[i]["x"])
+            playery = converty(self.table[i]["y"])
             self.pangolayout.set_text(self.table[i]["name"]+self.table[i]["holecards"])     #player names + holecards
-            self.area.window.draw_layout(self.gc, self.table[i]["x"],self.table[i]["y"], self.pangolayout)
+            self.area.window.draw_layout(self.gc, playerx, playery, self.pangolayout)
             cardIndex = Card.encodeCard(self.table[i]["holecards"][0:2])
-            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, self.table[i]["x"], self.table[i]["y"] - self.cardheight, -1, -1)
+            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx, playery - self.cardheight, -1, -1)
             cardIndex = Card.encodeCard(self.table[i]["holecards"][3:5])
-            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, self.table[i]["x"] + self.cardwidth + padding, self.table[i]["y"] - self.cardheight, -1, -1)
+            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + self.cardwidth + padding, playery - self.cardheight, -1, -1)
             self.pangolayout.set_text('$'+str(self.table[i]["stack"]))     #player stacks
-            self.area.window.draw_layout(self.gc, self.table[i]["x"]+10,self.table[i]["y"]+20, self.pangolayout)
+            self.area.window.draw_layout(self.gc, playerx + 10, playery + 20, self.pangolayout)
 
         color = cm.alloc_color("black")
         self.gc.set_foreground(color)
@@ -223,11 +229,14 @@ class GuiReplayer:
         color = cm.alloc_color("red")   #highlights the action
         self.gc.set_foreground(color)
 
+        playerx = convertx(self.table[playerid]["x"])
+        playery = converty(self.table[playerid]["y"])
+
         self.pangolayout.set_text(self.actions[self.action_number][2]) #displays action
-        self.area.window.draw_layout(self.gc, self.table[playerid]["x"]+10,self.table[playerid]["y"]+35, self.pangolayout)
+        self.area.window.draw_layout(self.gc, playerx + 10, playery + 35, self.pangolayout)
         if self.actions[self.action_number][3]:  #displays amount
             self.pangolayout.set_text(self.currency+self.actions[self.action_number][3])
-            self.area.window.draw_layout(self.gc, self.table[playerid]["x"]+10,self.table[playerid]["y"]+55, self.pangolayout)
+            self.area.window.draw_layout(self.gc, playerx + 10, playery + 55, self.pangolayout)
 
         color = cm.alloc_color("black")      #we don't want to draw the filters and others in red
         self.gc.set_foreground(color)
@@ -348,8 +357,8 @@ class Player:
         self.seat      = seat
         self.name      = name
         self.holecards = hand.join_holecards(name)
-        self.x         = int (round(250+200*math.cos(2*self.seat*math.pi/hand.maxseats)))
-        self.y         = int (round(250+200*math.sin(2*self.seat*math.pi/hand.maxseats)))
+        self.x         = 0.5 + 0.5 * math.cos(2 * self.seat * math.pi / hand.maxseats)
+        self.y         = 0.5 + 0.5 * math.sin(2 * self.seat * math.pi / hand.maxseats)
 
     def get_hash(self):
         return { 'chips': 0,
