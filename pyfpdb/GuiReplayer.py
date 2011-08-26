@@ -31,6 +31,8 @@ import gtk
 import math
 import gobject
 
+import copy
+
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -47,10 +49,10 @@ class GuiReplayer:
         self.filename="regression-test-files/cash/Stars/Flop/NLHE-FR-USD-0.01-0.02-201005.microgrind.txt"
         self.site="PokerStars"
 
-        if options.filename != None:
-            self.filename = options.filename
-        if options.sitename != None:
-            self.site = options.sitename
+#        if options.filename != None:
+#            self.filename = options.filename
+#        if options.sitename != None:
+#            self.site = options.sitename
 
         self.db = Database.Database(self.conf, sql=self.sql)
 
@@ -101,136 +103,210 @@ class GuiReplayer:
         self.gc = self.style.fg_gc[gtk.STATE_NORMAL]
         self.area.show()
 
-        self.replayBox.pack_start(self.area)
+        self.replayBox.pack_start(self.area, False)
 
-        gobject.timeout_add(1000,self.draw_action)
+        self.buttonBox = gtk.HButtonBox()
+        self.buttonBox.set_layout(gtk.BUTTONBOX_SPREAD)
+        self.startButton = gtk.Button()
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_MEDIA_PREVIOUS, gtk.ICON_SIZE_BUTTON)
+        self.startButton.set_image(image)
+        self.startButton.connect("clicked", self.start_clicked)
+        self.flopButton = gtk.Button("Flop")
+        self.flopButton.connect("clicked", self.flop_clicked)
+        self.turnButton = gtk.Button("Turn")
+        self.turnButton.connect("clicked", self.turn_clicked)
+        self.riverButton = gtk.Button("River")
+        self.riverButton.connect("clicked", self.river_clicked)
+        self.endButton = gtk.Button()
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_MEDIA_NEXT, gtk.ICON_SIZE_BUTTON)
+        self.endButton.set_image(image)
+        self.endButton.connect("clicked", self.end_clicked)
+        self.playPauseButton = gtk.Button()
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_MEDIA_PLAY, gtk.ICON_SIZE_BUTTON)
+        self.playPauseButton.set_image(image)
+        self.playPauseButton.connect("clicked", self.play_clicked)
+        self.buttonBox.add(self.startButton)
+        self.buttonBox.add(self.flopButton)
+        self.buttonBox.add(self.turnButton)
+        self.buttonBox.add(self.riverButton)
+        self.buttonBox.add(self.endButton)
+        self.buttonBox.add(self.playPauseButton)
+        self.buttonBox.show_all()
+        
+        self.replayBox.pack_start(self.buttonBox, False)
+
+        self.state = gtk.Adjustment(0, 0, 10, 1)
+        self.stateSlider = gtk.HScale(self.state)
+        self.stateSlider.connect("format_value", lambda x,y: "")
+        self.stateSlider.set_digits(0)
+        self.state.connect("value_changed", self.slider_changed)
+        self.stateSlider.show()
+
+        self.replayBox.pack_start(self.stateSlider, False)
 
         self.MyHand = self.importhand()
-        self.table = Table(self.area, self.MyHand).table
 
         if self.MyHand.gametype['currency']=="USD":    #TODO: check if there are others ..
             self.currency="$"
         elif self.MyHand.gametype['currency']=="EUR":
             self.currency="€"
 
-        self.actions=[]     #create list with all actions
-
+        self.states = [] # List with all table states.
+        
         if isinstance(self.MyHand, HoldemOmahaHand):
             if self.MyHand.gametype['category'] == 'holdem':
                 self.play_holdem()
 
-        self.action_number=0
-        self.action_level=0
-        self.pot=0
+        self.state.set_upper(len(self.states) - 1)
+        for i in range(len(self.states)):
+            self.stateSlider.add_mark(i, gtk.POS_BOTTOM, None)
 
+        self.tableImage = None
+        self.cardImages = None
+        self.playing = False
 
     def area_expose(self, area, event):
         self.style = self.area.get_style()
         self.gc = self.style.fg_gc[gtk.STATE_NORMAL]
 
-        playerid='999'  #makes sure we have an error if player is not recognised
-        for i in range(0,len(self.table)):  #surely there must be a better way to find the player id in the table...
-            if self.table[i]['name']==self.actions[self.action_number][1]:
-                playerid=i
+        if self.tableImage is None:
+            try:
+                self.tableImage = gtk.gdk.pixbuf_new_from_file("../gfx/Table.png")
+                self.area.set_size_request(self.tableImage.get_width(), self.tableImage.get_height())
+            except:
+                return
+        if self.cardImages is None:
+            try:
+                pb = gtk.gdk.pixbuf_new_from_file("Cards01.png")
+            except:
+                return
+            self.cardwidth = pb.get_width() / 14
+            self.cardheight = pb.get_height() / 6
+            
+            self.cardImages = [gtk.gdk.Pixmap(self.area.window, self.cardwidth, self.cardheight) for i in range(53)]
+            suits = ('s', 'h', 'd', 'c')
+            ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
+            for j in range(0, 13):
+                for i in range(0, 4):
+                    index = Card.cardFromValueSuit(ranks[j], suits[i])
+                    self.cardImages[index].draw_pixbuf(self.gc, pb, self.cardwidth * j, self.cardheight * i, 0, 0, self.cardwidth, self.cardheight)
+            self.cardImages[0].draw_pixbuf(self.gc, pb, self.cardwidth*13, self.cardheight*2, 0, 0, self.cardwidth, self.cardheight)
 
-        if self.actions[self.action_number][2]=="folds":
-            self.table[playerid]["status"]="folded"
+        self.area.window.draw_pixbuf(self.gc, self.tableImage, 0, 0, 0, 0)
 
-        if self.actions[self.action_number][3]:
-            self.table[playerid]["stack"] -= Decimal(self.actions[self.action_number][3])  #decreases stack if player bets
-            self.pot += Decimal(self.actions[self.action_number][3]) #increase pot
-            self.table[playerid]["chips"] += Decimal(self.actions[self.action_number][3]) #increase player's chips on table
+        state = self.states[int(self.state.get_value())]
 
+        padding = 5
+        communityLeft = int(self.tableImage.get_width() / 2 - 2.5 * self.cardwidth - 2 * padding)
+        communityTop = int(self.tableImage.get_height() / 2 - 1.5 * self.cardheight)
 
         cm = self.gc.get_colormap() #create colormap toi be able to play with colours
 
-        color = cm.alloc_color("black") #defaults to black
+        color = cm.alloc_color("white") #defaults to black
         self.gc.set_foreground(color)
 
-        self.area.window.draw_arc(self.gc, 0, 125, 125, 300, 300, 0, 360*64) #table
+        convertx = lambda x: int(x * self.tableImage.get_width() * 0.85) + self.cardwidth
+        converty = lambda y: int(y * self.tableImage.get_height() * 0.6) + self.cardheight * 2
 
-        for i in self.table:
-            if self.table[i]["status"]=="folded":
+        for player in state.players.values():
+            if player.action=="folds":
                 color = cm.alloc_color("grey") #player has folded => greyed out
                 self.gc.set_foreground(color)
             else:
-                color = cm.alloc_color("black") #player is live
+                color = cm.alloc_color("white") #player is live
                 self.gc.set_foreground(color)
-            self.pangolayout.set_text(self.table[i]["name"]+self.table[i]["holecards"])     #player names + holecards
-            self.area.window.draw_layout(self.gc, self.table[i]["x"],self.table[i]["y"], self.pangolayout)
-            self.pangolayout.set_text('$'+str(self.table[i]["stack"]))     #player stacks
-            self.area.window.draw_layout(self.gc, self.table[i]["x"]+10,self.table[i]["y"]+20, self.pangolayout)
 
-        color = cm.alloc_color("green")
+            playerx = convertx(player.x)
+            playery = converty(player.y)
+            self.pangolayout.set_text(player.name + player.holecards)     #player names + holecards
+            self.area.window.draw_layout(self.gc, playerx, playery, self.pangolayout)
+            cardIndex = Card.encodeCard(player.holecards[0:2])
+            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx, playery - self.cardheight, -1, -1)
+            cardIndex = Card.encodeCard(player.holecards[3:5])
+            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + self.cardwidth + padding, playery - self.cardheight, -1, -1)
+            self.pangolayout.set_text(self.currency + str(player.stack))     #player stacks
+            self.area.window.draw_layout(self.gc, playerx + 10, playery + 20, self.pangolayout)
+
+            if player.justacted:
+                color = cm.alloc_color("red")   #highlights the action
+                self.gc.set_foreground(color)
+
+                self.pangolayout.set_text(player.action)
+                self.area.window.draw_layout(self.gc, playerx + 10, playery + 35, self.pangolayout)
+            if player.chips != 0:  #displays amount
+                self.pangolayout.set_text(self.currency + str(player.chips))
+                self.area.window.draw_layout(self.gc, playerx + 10, playery + 55, self.pangolayout)
+
+        color = cm.alloc_color("white")
         self.gc.set_foreground(color)
 
-        self.pangolayout.set_text(self.currency+str(self.pot)) #displays pot
-        self.area.window.draw_layout(self.gc,270,270, self.pangolayout)
+        self.pangolayout.set_text(self.currency+str(state.pot)) #displays pot
+        self.area.window.draw_layout(self.gc,self.tableImage.get_width() / 2,270, self.pangolayout)
 
-        if self.actions[self.action_number][0]>1:   #displays flop
-            self.pangolayout.set_text(self.MyHand.board['FLOP'][0]+" "+self.MyHand.board['FLOP'][1]+" "+self.MyHand.board['FLOP'][2])
-            self.area.window.draw_layout(self.gc,210,240, self.pangolayout)
-        if self.actions[self.action_number][0]>2:   #displays turn
-            self.pangolayout.set_text(self.MyHand.board['TURN'][0])
-            self.area.window.draw_layout(self.gc,270,240, self.pangolayout)
-        if self.actions[self.action_number][0]>3:   #displays river
-            self.pangolayout.set_text(self.MyHand.board['RIVER'][0])
-            self.area.window.draw_layout(self.gc,290,240, self.pangolayout)
-
-        color = cm.alloc_color("red")   #highlights the action
-        self.gc.set_foreground(color)
-
-        self.pangolayout.set_text(self.actions[self.action_number][2]) #displays action
-        self.area.window.draw_layout(self.gc, self.table[playerid]["x"]+10,self.table[playerid]["y"]+35, self.pangolayout)
-        if self.actions[self.action_number][3]:  #displays amount
-            self.pangolayout.set_text(self.currency+self.actions[self.action_number][3])
-            self.area.window.draw_layout(self.gc, self.table[playerid]["x"]+10,self.table[playerid]["y"]+55, self.pangolayout)
+        if state.showFlop:
+            self.pangolayout.set_text(state.flop[0] + " " + state.flop[1] + " " + state.flop[2])
+            self.area.window.draw_layout(self.gc,communityLeft,communityTop + self.cardheight, self.pangolayout)
+            cardIndex = Card.encodeCard(state.flop[0])
+            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft, communityTop, -1, -1)
+            cardIndex = Card.encodeCard(state.flop[1])
+            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + self.cardwidth + padding, communityTop, -1, -1)
+            cardIndex = Card.encodeCard(state.flop[2])
+            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + 2 * (self.cardwidth + padding), communityTop, -1, -1)
+        if state.showTurn:
+            self.pangolayout.set_text(state.turn[0])
+            self.area.window.draw_layout(self.gc,communityLeft + 60,communityTop + self.cardheight, self.pangolayout)
+            cardIndex = Card.encodeCard(state.turn[0])
+            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + 3 * (self.cardwidth + padding), communityTop, -1, -1)
+        if state.showRiver:
+            self.pangolayout.set_text(state.river[0])
+            self.area.window.draw_layout(self.gc,communityLeft + 80,communityTop + self.cardheight, self.pangolayout)
+            cardIndex = Card.encodeCard(state.river[0])
+            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + 4 * (self.cardwidth + padding), communityTop, -1, -1)
 
         color = cm.alloc_color("black")      #we don't want to draw the filters and others in red
         self.gc.set_foreground(color)
 
     def play_holdem(self):
         actions=('BLINDSANTES','PREFLOP','FLOP','TURN','RIVER')
+        state = TableState(self.MyHand)
         for action in actions:
+            if action != 'PREFLOP':
+                state = copy.deepcopy(state)
+                state.startPhase(action)
+                self.states.append(state)
             for i in range(0,len(self.MyHand.actions[action])):
-                player=self.MyHand.actions[action][i][0]
-                act=self.MyHand.actions[action][i][1]
-                try:
-                    amount=str(self.MyHand.actions[action][i][2])
-                except:
-                    amount=''   #no amount
-                self.actions.append([actions.index(action),player,act,amount])  #create table with all actions
+                state = copy.deepcopy(state)
+                state.updateForAction(self.MyHand.actions[action][i])
+                self.states.append(state)
+        state = copy.deepcopy(state)
+        state.endHand(self.MyHand.collectees)
+        self.states.append(state)
 
+    def increment_state(self):
+        if self.state.get_value() == self.state.get_upper():
+            self.playing = False
+            image = gtk.Image()
+            image.set_from_stock(gtk.STOCK_MEDIA_PLAY, gtk.ICON_SIZE_BUTTON)
+            self.playPauseButton.set_image(image)
 
-    def draw_action(self):
-        if self.action_number==len(self.actions)-1:     #no more actions, we exit the loop
+        if not self.playing:
             return False
 
-        if self.actions[self.action_number][0]!=self.action_level:  #have we changed street ?
-            self.action_level=self.actions[self.action_number][0] #record the new street
-            if self.action_level>1: #we don't want to refresh if simply moving from antes/blinds to preflop action
-                alloc = self.area.get_allocation()
-                rect = gtk.gdk.Rectangle(0, 0, alloc.width, alloc.height)
-                self.area.window.invalidate_rect(rect, True)    #make sure we refresh the whole screen
-
-        self.action_number+=1
-        if self.area.window:
-            playerid='999'  #makes sure we have an error if player is not recognised
-            for i in range(0,len(self.table)):  #surely there must be a better way to find the player id in the table...
-                if self.table[i]['name']==self.actions[self.action_number][1]:
-                    playerid=i
-                    rect = gtk.gdk.Rectangle(self.table[playerid]["x"],self.table[playerid]["y"],100,100)
-                    self.area.window.invalidate_rect(rect, True)    #refresh player area of the screen
-                    rect = gtk.gdk.Rectangle(270,270,100,50)
-                    self.area.window.invalidate_rect(rect, True)    #refresh pot area
-            self.area.window.process_updates(True)
-        print "draw action: ",self.action_number,self.actions[self.action_number][1],self.actions[self.action_number][2],self.actions[self.action_number][3]
+        self.state.set_value(self.state.get_value() + 1)
         return True
-
 
     def get_vbox(self):
         """returns the vbox of this thread"""
         return self.mainHBox
+
+    def slider_changed(self, adjustment):
+        alloc = self.area.get_allocation()
+        rect = gtk.gdk.Rectangle(0, 0, alloc.width, alloc.height)
+        self.area.window.invalidate_rect(rect, True)    #make sure we refresh the whole screen
+        self.area.window.process_updates(True)
 
     def importhand(self, handnumber=1):
         """Temporary function that grabs a Hand object from a specified file. Obviously this will
@@ -250,7 +326,6 @@ class GuiReplayer:
             importer.setCallHud(False)
             importer.setFakeCacheHHC(True)
 
-            print "DEBUG: self.filename: '%s' self.site: '%s'" %(self.filename, self.site)
             importer.addBulkImportImportFileOrDir(self.filename, site=self.site)
             (stored, dups, partial, errs, ttime) = importer.runImport()
 
@@ -275,7 +350,6 @@ class GuiReplayer:
             gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
             #FIXME: smallbet and bigbet are res[8] and res[9] respectively
             ###### End section ########
-            print "DEBUG: gametype: %s" % gametype
             if gametype['base'] == 'hold':
                 h = HoldemOmahaHand(config = self.conf, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
                 h.select(self.db, handid)
@@ -285,71 +359,105 @@ class GuiReplayer:
                 print "DEBUG: Create draw hand here"
             return h
 
-    def temp(self):
-        pass
+    def play_clicked(self, button):
+        self.playing = not self.playing
+        image = gtk.Image()
+        if self.playing:
+            image.set_from_stock(gtk.STOCK_MEDIA_PAUSE, gtk.ICON_SIZE_BUTTON)
+            gobject.timeout_add(1000, self.increment_state)
+        else:
+            image.set_from_stock(gtk.STOCK_MEDIA_PLAY, gtk.ICON_SIZE_BUTTON)
+        self.playPauseButton.set_image(image)
+    def start_clicked(self, button):
+        self.state.set_value(0)
+    def end_clicked(self, button):
+        self.state.set_value(self.state.get_upper())
+    def flop_clicked(self, button):
+        for i in range(0, len(self.states)):
+            if self.states[i].showFlop:
+                self.state.set_value(i)
+                break
+    def turn_clicked(self, button):
+        for i in range(0, len(self.states)):
+            if self.states[i].showTurn:
+                self.state.set_value(i)
+                break
+    def river_clicked(self, button):
+        for i in range(0, len(self.states)):
+            if self.states[i].showRiver:
+                self.state.set_value(i)
+                break
 
-class Table:
-    def __init__(self, darea, hand):
-        self.darea = darea
-        self.hand = hand
-        self.players = []
-        #self.pixmap = gtk.gdk.Pixmap(darea, width, height, depth=-1)
+class TableState:
+    def __init__(self, hand):
+        self.pot = 0
+        self.flop = hand.board["FLOP"]
+        self.turn = hand.board["TURN"]
+        self.river = hand.board["RIVER"]
+        self.showFlop = False
+        self.showTurn = False
+        self.showRiver = False
 
-        # tmp var while refactoring
-        self.table = {}
-        i = 0
-        for seat, name, chips in hand.players:
-            self.players.append(Player(hand, name, chips, seat))
-            self.table[i] = self.players[i].get_hash()
-            i += 1
+        self.players = {}
 
-        pp.pprint(self.table)
+        for seat, name, chips, dummy, dummy in hand.players:
+            self.players[name] = Player(hand, name, chips, seat)
 
-    def draw(self):
-        draw_players()
-        draw_pot()
-        draw_community_cards()
+    def startPhase(self, phase):
+        if phase == "BLINDSANTES":
+            return
+        if phase == "PREFLOP":
+            return
+        
+        for player in self.players.values():
+            player.justacted = False
+            self.pot += player.chips
+            player.chips = 0
+
+        if phase == "FLOP":
+            self.showFlop = True
+        elif phase == "TURN":
+            self.showTurn = True
+        elif phase == "RIVER":
+            self.showRiver = True
+
+    def updateForAction(self, action):
+        for player in self.players.values():
+            player.justacted = False
+
+        player = self.players[action[0]]
+        player.action = action[1]
+        player.justacted = True
+        if action[1] == "folds" or action[1] == "checks":
+            pass
+        elif action[1] == "raises" or action[1] == "bets" or action[1] == "calls" or action[1] == "small blind" or action[1] == "big blind":
+            player.chips += action[2]
+            player.stack -= action[2]
+        else:
+            print action
+
+    def endHand(self, collectees):
+        self.pot = 0
+        for player in self.players.values():
+            player.justacted = False
+            player.chips = 0
+        for name,amount in collectees.items():
+            player = self.players[name]
+            player.chips += amount
+            player.action = "collected"
+            player.justacted = True
 
 class Player:
     def __init__(self, hand, name, stack, seat):
-        self.status    = 'live'
         self.stack     = Decimal(stack)
         self.chips     = 0
         self.seat      = seat
         self.name      = name
+        self.action    = None
+        self.justacted = False
         self.holecards = hand.join_holecards(name)
-        self.x         = int (round(250+200*math.cos(2*self.seat*math.pi/hand.maxseats)))
-        self.y         = int (round(250+200*math.sin(2*self.seat*math.pi/hand.maxseats)))
-
-    def get_hash(self):
-        return { 'chips': 0,
-                 'holecards': self.holecards,
-                 'name': self.name,
-                 'stack': self.stack,
-                 'status': self.status,
-                 'x': self.x,
-                 'y': self.y,
-                }
-
-    def draw(self):
-        draw_name()
-        draw_stack()
-        draw_cards()
-
-class Pot:
-    def __init__(self, hand):
-        self.total = 0.0
-
-    def draw(self):
-        pass
-
-class CommunityCards:
-    def __init__(self, hand):
-        self.pixbuf = self.gen_pixbuf_from_file(PATH_TO_THE_FILE)
-
-    def draw(self):
-        pass
-
+        self.x         = 0.5 + 0.5 * math.cos(2 * self.seat * math.pi / hand.maxseats)
+        self.y         = 0.5 + 0.5 * math.sin(2 * self.seat * math.pi / hand.maxseats)
 
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""

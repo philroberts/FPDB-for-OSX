@@ -80,6 +80,8 @@ def init_translation():
             return pass_through
         else:
             return set_translation(lang)
+    elif conf.general['ui_language'] == "en":
+        return pass_through
     else:
         return set_translation(conf.general['ui_language'])
 
@@ -102,12 +104,10 @@ def get_installed_translations():
                 la_list.append(la_co)
             la_co_list.append(la_co)
     #
-    #eliminate dupes and sort
+    #eliminate dupes
     #
     la_set=set(la_list)
     la_list=list(la_set)
-    la_list.sort()
-    la_co_list.sort()
     
     la_dict = {}
     la_co_dict = {}
