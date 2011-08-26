@@ -143,7 +143,6 @@ class GuiReplayer:
                 return
             self.cardwidth = pb.get_width() / 14
             self.cardheight = pb.get_height() / 6
-            print self.cardwidth, self.cardheight
             
             self.cardImages = [gtk.gdk.Pixmap(self.area.window, self.cardwidth, self.cardheight) for i in range(53)]
             suits = ('s', 'h', 'd', 'c')
@@ -268,7 +267,6 @@ class GuiReplayer:
                     rect = gtk.gdk.Rectangle(270,270,100,50)
                     self.area.window.invalidate_rect(rect, True)    #refresh pot area
             self.area.window.process_updates(True)
-        print "draw action: ",self.action_number,self.actions[self.action_number][1],self.actions[self.action_number][2],self.actions[self.action_number][3]
         return True
 
 
@@ -294,7 +292,6 @@ class GuiReplayer:
             importer.setCallHud(False)
             importer.setFakeCacheHHC(True)
 
-            print "DEBUG: self.filename: '%s' self.site: '%s'" %(self.filename, self.site)
             importer.addBulkImportImportFileOrDir(self.filename, site=self.site)
             (stored, dups, partial, errs, ttime) = importer.runImport()
 
@@ -319,7 +316,6 @@ class GuiReplayer:
             gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
             #FIXME: smallbet and bigbet are res[8] and res[9] respectively
             ###### End section ########
-            print "DEBUG: gametype: %s" % gametype
             if gametype['base'] == 'hold':
                 h = HoldemOmahaHand(config = self.conf, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
                 h.select(self.db, handid)
@@ -347,8 +343,6 @@ class Table:
             self.table[i] = self.players[i].get_hash()
             i += 1
 
-        pp.pprint(self.table)
-
     def draw(self):
         draw_players()
         draw_pot()
@@ -356,7 +350,6 @@ class Table:
 
 class Player:
     def __init__(self, hand, name, stack, seat):
-        print hand
         self.status    = 'live'
         self.stack     = Decimal(stack)
         self.chips     = 0
