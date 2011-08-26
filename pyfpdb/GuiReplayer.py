@@ -249,23 +249,15 @@ class GuiReplayer:
         if self.action_number==len(self.actions)-1:     #no more actions, we exit the loop
             return False
 
+        alloc = self.area.get_allocation()
+        rect = gtk.gdk.Rectangle(0, 0, alloc.width, alloc.height)
+        self.area.window.invalidate_rect(rect, True)    #make sure we refresh the whole screen
+        
         if self.actions[self.action_number][0]!=self.action_level:  #have we changed street ?
             self.action_level=self.actions[self.action_number][0] #record the new street
-            if self.action_level>1: #we don't want to refresh if simply moving from antes/blinds to preflop action
-                alloc = self.area.get_allocation()
-                rect = gtk.gdk.Rectangle(0, 0, alloc.width, alloc.height)
-                self.area.window.invalidate_rect(rect, True)    #make sure we refresh the whole screen
 
         self.action_number+=1
         if self.area.window:
-            playerid='999'  #makes sure we have an error if player is not recognised
-            for i in range(0,len(self.table)):  #surely there must be a better way to find the player id in the table...
-                if self.table[i]['name']==self.actions[self.action_number][1]:
-                    playerid=i
-                    rect = gtk.gdk.Rectangle(self.table[playerid]["x"],self.table[playerid]["y"],100,100)
-                    self.area.window.invalidate_rect(rect, True)    #refresh player area of the screen
-                    rect = gtk.gdk.Rectangle(270,270,100,50)
-                    self.area.window.invalidate_rect(rect, True)    #refresh pot area
             self.area.window.process_updates(True)
         return True
 
