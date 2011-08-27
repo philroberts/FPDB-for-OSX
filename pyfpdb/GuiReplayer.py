@@ -76,8 +76,8 @@ class GuiReplayer:
         self.states = [] # List with all table states.
         
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
-        #self.filters.registerButton1Name(_("Import Hand"))
-        #self.filters.registerButton1Callback(self.importhand)
+        self.filters.registerButton1Name(_("Load Hands"))
+        self.filters.registerButton1Callback(self.loadHands)
         #self.filters.registerButton2Name(_("temp"))
         #self.filters.registerButton2Callback(self.temp())
 
@@ -152,6 +152,16 @@ class GuiReplayer:
         self.tableImage = None
         self.cardImages = None
         self.playing = False
+
+    def loadHands(self, button, userdata):
+        q = "SELECT id FROM Hands h WHERE datetime(h.startTime) between '" + self.filters.getDates()[0] + "' and '" + self.filters.getDates()[1] + "'"
+
+        c = self.db.get_cursor()
+
+        c.execute(q)
+        result = c.fetchall()
+
+        self.refreshHands([r[0] for r in result])
 
     def refreshHands(self, handids):
         self.handids = handids
