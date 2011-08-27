@@ -219,6 +219,8 @@ class GuiReplayer:
             self.currency="$"
         elif hand.gametype['currency']=="EUR":
             self.currency="€"
+        else:
+            self.currency = hand.gametype['currency']
 
         if isinstance(hand, HoldemOmahaHand):
             if hand.gametype['category'] == 'holdem':
