@@ -480,11 +480,17 @@ class TableState:
         player.justacted = True
         if action[1] == "folds" or action[1] == "checks":
             pass
-        elif action[1] == "raises" or action[1] == "bets" or action[1] == "calls" or action[1] == "small blind" or action[1] == "big blind":
+        elif action[1] == "raises" or action[1] == "bets" or action[1] == "calls" or action[1] == "small blind" or action[1] == "secondsb" or action[1] == "big blind":
             player.chips += action[2]
             player.stack -= action[2]
+        elif action[1] == "both":
+            player.chips += action[2]
+            player.stack -= action[2]
+        elif action[1] == "ante":
+            self.pot += action[2]
+            player.stack -= action[2]
         else:
-            print "unhandled action: " + action
+            print "unhandled action: " + str(action)
 
     def endHand(self, collectees):
         self.pot = 0

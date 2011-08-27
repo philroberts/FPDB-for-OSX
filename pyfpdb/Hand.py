@@ -441,10 +441,16 @@ dealt   whether they were seen in a 'dealt to' line
             bet = row['bet']
             street = self.allStreets[int(street)+1]
             #print "DEBUG: name: '%s' street: '%s' act: '%s' bet: '%s'" %(name, street, act, bet)
-            if   act == 2: # Small Blind
+            if   act == 1: # Ante
+                self.addAnte(name, str(bet))
+            elif act == 2: # Small Blind
                 self.addBlind(name, 'small blind', str(bet))
+            elif act == 3: # Second small blind
+                self.addBlind(name, 'secondsb', str(bet))
             elif act == 4: # Big Blind
                 self.addBlind(name, 'big blind', str(bet))
+            elif act == 5: # Post both blinds
+                self.addBlind(name, 'both', str(bet))
             elif act == 6: # Call
                 self.addCall(street, name, str(bet))
             elif act == 8: # Bet
@@ -552,7 +558,7 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
             self.actions['BLINDSANTES'].append(act)
 #            self.pot.addMoney(player, ante)
             self.pot.addCommonMoney(player, ante)
-            if self.gametype['ante'] == 0:
+            if not 'ante' in self.gametype.keys() or self.gametype['ante'] == 0:
                 if self.gametype['type'] == 'ring':
                     self.gametype['ante'] = int(100*ante)
                 else:
@@ -578,14 +584,14 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
             if blindtype == 'both':
                 # work with the real amount. limit games are listed as $1, $2, where
                 # the SB 0.50 and the BB is $1, after the turn the minimum bet amount is $2....
-                amount = Decimal(self.bb)
-                sb = Decimal(self.sb)
+                amount = Decimal(str(self.bb))
+                sb = Decimal(str(self.sb))
                 self.bets['BLINDSANTES'][player].append(sb)
                 self.pot.addCommonMoney(player, sb)
 
             if blindtype == 'secondsb':
                 amount = Decimal(0)
-                sb = Decimal(self.sb)
+                sb = Decimal(str(self.sb))
                 self.bets['BLINDSANTES'][player].append(sb)
                 self.pot.addCommonMoney(player, sb)
 
