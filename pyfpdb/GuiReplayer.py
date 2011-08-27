@@ -434,7 +434,7 @@ class TableState:
             player.chips += action[2]
             player.stack -= action[2]
         else:
-            print action
+            print "unhandled action: " + action
 
     def endHand(self, collectees):
         self.pot = 0
