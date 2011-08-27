@@ -73,6 +73,8 @@ class GuiReplayer:
                   }
 
 
+        self.states = [] # List with all table states.
+        
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
         #self.filters.registerButton1Name(_("Import Hand"))
         #self.filters.registerButton1Callback(self.importhand)
@@ -138,7 +140,7 @@ class GuiReplayer:
         
         self.replayBox.pack_start(self.buttonBox, False)
 
-        self.state = gtk.Adjustment(0, 0, 10, 1)
+        self.state = gtk.Adjustment(0, 0, 0, 1)
         self.stateSlider = gtk.HScale(self.state)
         self.stateSlider.connect("format_value", lambda x,y: "")
         self.stateSlider.set_digits(0)
@@ -147,26 +149,88 @@ class GuiReplayer:
 
         self.replayBox.pack_start(self.stateSlider, False)
 
-        self.MyHand = self.importhand()
-
-        if self.MyHand.gametype['currency']=="USD":    #TODO: check if there are others ..
-            self.currency="$"
-        elif self.MyHand.gametype['currency']=="EUR":
-            self.currency="€"
-
-        self.states = [] # List with all table states.
-        
-        if isinstance(self.MyHand, HoldemOmahaHand):
-            if self.MyHand.gametype['category'] == 'holdem':
-                self.play_holdem()
-
-        self.state.set_upper(len(self.states) - 1)
-        for i in range(len(self.states)):
-            self.stateSlider.add_mark(i, gtk.POS_BOTTOM, None)
-
         self.tableImage = None
         self.cardImages = None
         self.playing = False
+
+    def refreshHands(self, handids):
+        self.handids = handids
+        self.hands = []
+        for handid in self.handids:
+            self.hands.append(self.importhand(handid))
+
+        try:
+            self.handswin.destroy()
+        except:
+            pass
+        self.handswin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
+        self.handswin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.replayBox.pack_end(self.handswin)
+        liststore = gtk.ListStore(*([str] * 5))
+        view = gtk.TreeView(model=liststore)
+        view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
+        self.handswin.add(view)
+
+        textcell = gtk.CellRendererText()
+        textcell50 = gtk.CellRendererText()
+        textcell50.set_property('xalign', 0.5)
+        numcell = gtk.CellRendererText()
+        numcell.set_property('xalign', 1.0)
+
+        
+        col = gtk.TreeViewColumn("Hero")
+        col.pack_start(textcell)
+        col.add_attribute(textcell, 'text', 0)
+        view.append_column(col)
+        col = gtk.TreeViewColumn("Flop")
+        col.pack_start(textcell)
+        col.add_attribute(textcell, 'text', 1)
+        view.append_column(col)
+        col = gtk.TreeViewColumn("Turn")
+        col.pack_start(textcell)
+        col.add_attribute(textcell, 'text', 2)
+        view.append_column(col)
+        col = gtk.TreeViewColumn("River")
+        col.pack_start(textcell)
+        col.add_attribute(textcell, 'text', 3)
+        view.append_column(col)
+        col = gtk.TreeViewColumn("Won")
+        col.pack_start(textcell)
+        col.add_attribute(textcell, 'text', 4)
+        view.append_column(col)
+        selection = view.get_selection()
+        selection.set_select_function(self.select_hand, None, True)
+
+        for hand in self.hands:
+            hero = self.filters.getHeroes()[hand.sitename]
+            won = 0
+            if hero in hand.collectees.keys():
+                won = hand.collectees[hero]
+            liststore.append([hand.join_holecards(hero), hand.board["FLOP"], hand.board["TURN"], hand.board["RIVER"], str(won)])
+        self.handswin.show_all()
+
+    def select_hand(self, selection, model, path, is_selected, userdata):
+        self.states = [] # List with all table states.
+        if is_selected:
+            return True
+
+        hand = self.hands[path[0]]
+        if hand.gametype['currency']=="USD":    #TODO: check if there are others ..
+            self.currency="$"
+        elif hand.gametype['currency']=="EUR":
+            self.currency="€"
+
+        if isinstance(hand, HoldemOmahaHand):
+            if hand.gametype['category'] == 'holdem':
+                self.play_holdem(hand)
+            else:
+                print "Unhandled game type " + hand.gametype['category']
+                return False
+
+        self.state.set_value(0)
+        self.state.set_upper(len(self.states) - 1)
+        self.state.value_changed()
+        return True
 
     def area_expose(self, area, event):
         self.style = self.area.get_style()
@@ -196,6 +260,9 @@ class GuiReplayer:
             self.cardImages[0].draw_pixbuf(self.gc, pb, self.cardwidth*13, self.cardheight*2, 0, 0, self.cardwidth, self.cardheight)
 
         self.area.window.draw_pixbuf(self.gc, self.tableImage, 0, 0, 0, 0)
+
+        if len(self.states) == 0:
+            return
 
         state = self.states[int(self.state.get_value())]
 
@@ -269,20 +336,19 @@ class GuiReplayer:
         color = cm.alloc_color("black")      #we don't want to draw the filters and others in red
         self.gc.set_foreground(color)
 
-    def play_holdem(self):
+    def play_holdem(self, hand):
         actions=('BLINDSANTES','PREFLOP','FLOP','TURN','RIVER')
-        state = TableState(self.MyHand)
+        state = TableState(hand)
         for action in actions:
-            if action != 'PREFLOP':
-                state = copy.deepcopy(state)
-                state.startPhase(action)
+            state = copy.deepcopy(state)
+            if state.startPhase(action):
                 self.states.append(state)
-            for i in range(0,len(self.MyHand.actions[action])):
+            for i in range(0,len(hand.actions[action])):
                 state = copy.deepcopy(state)
-                state.updateForAction(self.MyHand.actions[action][i])
+                state.updateForAction(hand.actions[action][i])
                 self.states.append(state)
         state = copy.deepcopy(state)
-        state.endHand(self.MyHand.collectees)
+        state.endHand(hand.collectees)
         self.states.append(state)
 
     def increment_state(self):
@@ -308,56 +374,30 @@ class GuiReplayer:
         self.area.window.invalidate_rect(rect, True)    #make sure we refresh the whole screen
         self.area.window.process_updates(True)
 
-    def importhand(self, handnumber=1):
-        """Temporary function that grabs a Hand object from a specified file. Obviously this will
-        be replaced by a function to select a hand from the db in the not so distant future.
-        This code has been shamelessly stolen from Carl
-        """
-        if False:
-            settings = {}
-            settings.update(self.conf.get_db_parameters())
-            settings.update(self.conf.get_import_parameters())
-            settings.update(self.conf.get_default_paths())
+    def importhand(self, handid=1):
+        # Fetch hand info
+        # We need at least sitename, gametype, handid
+        # for the Hand.__init__
 
-            importer = fpdb_import.Importer(False, settings, self.conf, None)
-            importer.setDropIndexes("don't drop")
-            importer.setFailOnError(True)
-            importer.setThreads(-1)
-            importer.setCallHud(False)
-            importer.setFakeCacheHHC(True)
+        ####### Shift this section in Database.py for all to use ######
+        q = self.sql.query['get_gameinfo_from_hid']
+        q = q.replace('%s', self.sql.query['placeholder'])
 
-            importer.addBulkImportImportFileOrDir(self.filename, site=self.site)
-            (stored, dups, partial, errs, ttime) = importer.runImport()
+        c = self.db.get_cursor()
 
-            hhc = importer.getCachedHHC()
-            handlist = hhc.getProcessedHands()
-
-            return handlist[0]
-        else:
-            # Fetch hand info
-            # We need at least sitename, gametype, handid
-            # for the Hand.__init__
-
-            ####### Shift this section in Database.py for all to use ######
-            handid = 1
-            q = self.sql.query['get_gameinfo_from_hid']
-            q = q.replace('%s', self.sql.query['placeholder'])
-
-            c = self.db.get_cursor()
-
-            c.execute(q, (handid,))
-            res = c.fetchone()
-            gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
-            #FIXME: smallbet and bigbet are res[8] and res[9] respectively
-            ###### End section ########
-            if gametype['base'] == 'hold':
-                h = HoldemOmahaHand(config = self.conf, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
-                h.select(self.db, handid)
-            elif gametype['base'] == 'stud':
-                print "DEBUG: Create stud hand here"
-            elif gametype['base'] == 'draw':
-                print "DEBUG: Create draw hand here"
-            return h
+        c.execute(q, (handid,))
+        res = c.fetchone()
+        gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
+        #FIXME: smallbet and bigbet are res[8] and res[9] respectively
+        ###### End section ########
+        if gametype['base'] == 'hold':
+            h = HoldemOmahaHand(config = self.conf, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
+            h.select(self.db, handid)
+        elif gametype['base'] == 'stud':
+            print "DEBUG: Create stud hand here"
+        elif gametype['base'] == 'draw':
+            print "DEBUG: Create draw hand here"
+        return h
 
     def play_clicked(self, button):
         self.playing = not self.playing
@@ -405,9 +445,15 @@ class TableState:
 
     def startPhase(self, phase):
         if phase == "BLINDSANTES":
-            return
+            return True
         if phase == "PREFLOP":
-            return
+            return False
+        if phase == "FLOP" and len(self.flop) == 0:
+            return False
+        if phase == "TURN" and len(self.turn) == 0:
+            return False
+        if phase == "RIVER" and len(self.river) == 0:
+            return False
         
         for player in self.players.values():
             player.justacted = False
@@ -420,6 +466,8 @@ class TableState:
             self.showTurn = True
         elif phase == "RIVER":
             self.showRiver = True
+
+        return True
 
     def updateForAction(self, action):
         for player in self.players.values():
