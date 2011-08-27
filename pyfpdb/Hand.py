@@ -420,15 +420,12 @@ dealt   whether they were seen in a 'dealt to' line
                       round(ha.amount / 100.0,2) as bet
                 FROM
                       HandsActions as ha,
-                      HandsPlayers as hp,
                       Players as p,
                       Hands as h
                 WHERE
                           h.id = %s
                       AND ha.handId = h.id
-                      AND ha.playerId = hp.playerid
-                      AND hp.playerId = p.id
-                      AND h.id = hp.handId
+                      AND ha.playerId = p.id
                 ORDER BY
                       ha.id ASC
 """
