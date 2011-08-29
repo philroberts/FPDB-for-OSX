@@ -449,6 +449,7 @@ class TableState:
         self.showFlop = False
         self.showTurn = False
         self.showRiver = False
+        self.bet = 0
 
         self.players = {}
 
@@ -471,6 +472,7 @@ class TableState:
             player.justacted = False
             self.pot += player.chips
             player.chips = 0
+        self.bet = 0
 
         if phase == "FLOP":
             self.showFlop = True
@@ -490,7 +492,16 @@ class TableState:
         player.justacted = True
         if action[1] == "folds" or action[1] == "checks":
             pass
-        elif action[1] == "raises" or action[1] == "bets" or action[1] == "calls" or action[1] == "small blind" or action[1] == "secondsb" or action[1] == "big blind":
+        elif action[1] == "raises" or action[1] == "bets":
+            diff = self.bet - player.chips
+            self.bet += action[2]
+            player.chips += action[2] + diff
+            player.stack -= action[2] + diff
+        elif action[1] == "big blind":
+            self.bet = action[2]
+            player.chips += action[2]
+            player.stack -= action[2]
+        elif action[1] == "calls" or action[1] == "small blind" or action[1] == "secondsb":
             player.chips += action[2]
             player.stack -= action[2]
         elif action[1] == "both":
