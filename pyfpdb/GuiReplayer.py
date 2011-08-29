@@ -154,14 +154,16 @@ class GuiReplayer:
         self.playing = False
 
     def loadHands(self, button, userdata):
-        q = "SELECT id FROM Hands h WHERE datetime(h.startTime) between '" + self.filters.getDates()[0] + "' and '" + self.filters.getDates()[1] + "'"
+        result = self.handIdsFromDateRange(self.filters.getDates()[0], self.filters.getDates()[1])
+        self.refreshHands(result)
+
+    def handIdsFromDateRange(self, start, end):
+        q = "SELECT id FROM Hands h WHERE datetime(h.startTime) between '" + start + "' and '" + end + "' order by startTime"
 
         c = self.db.get_cursor()
 
         c.execute(q)
-        result = c.fetchall()
-
-        self.refreshHands([r[0] for r in result])
+        return [r[0] for r in c.fetchall()]
 
     def refreshHands(self, handids):
         self.handids = handids
