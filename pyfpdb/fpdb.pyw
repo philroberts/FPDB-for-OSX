@@ -15,39 +15,12 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 import L10n
-_ = L10n.get_translation()
+_ = L10n.init_translation()
 
 import os
 import sys
 import re
 import Queue
-
-# if path is set to use an old version of python look for a new one:
-# (does this work in linux?)
-if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6', '2.7') and '-r' not in sys.argv:
-    #print "old path =", os.environ['PATH']
-    dirs = re.split(os.pathsep, os.environ['PATH'])
-    # remove any trailing / or \ chars from dirs:
-    dirs = [re.sub('[\\/]$', '', p) for p in dirs]
-    # remove any dirs containing 'python' apart from those ending in 'python25', 'python26' or 'python':
-    dirs = [p for p in dirs if not re.search('python', p, re.I) or re.search('python25$', p, re.I) or re.search('python26$', p, re.I) or re.search('python27$', p, re.I)]
-    tmppath = ";".join(dirs)
-    #print "new path =", tmppath
-    if re.search('python', tmppath, re.I):
-        os.environ['PATH'] = tmppath
-        print _("Python %s found.") + " " + sys.version[0:3] + " " + _("Press ENTER to continue.")
-        sys.stdin.readline()
-        if os.name == 'nt':
-            os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ)
-        else:
-            os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ)
-    else:
-        print "\n" + _("Python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb.")
-        raw_input(_("Press ENTER to continue."))
-        exit()
-else:
-    pass
-    #print "debug - not changing path"
 
 if os.name == 'nt':
     import win32api
@@ -63,8 +36,6 @@ cl_options = string.join(sys.argv[1:])
 (options, argv) = Options.fpdb_options()
 
 import logging
-import logging.config
-log = logging.getLogger("fpdb")
 
 import pygtk
 pygtk.require('2.0')
@@ -108,19 +79,22 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.26 + git"
+Configuration.set_logfile("fpdb-log.txt")
+log = logging.getLogger("fpdb")
+
+try:
+    import subprocess
+    VERSION = subprocess.Popen(["git", "describe", "--tags", "--dirty"], stdout=subprocess.PIPE).communicate()[0]
+    VERSION = VERSION[:-1]
+except:
+    VERSION = "0.26 + git"
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
         """called when a tab button is clicked to activate that tab"""
         self.display_tab(tab_name)
 
-    def add_and_display_tab(self, new_tab, new_tab_name):
-        """just calls the component methods"""
-        self.add_tab(new_tab, new_tab_name)
-        self.display_tab(new_tab_name)
-
-    def add_tab(self, new_page, new_tab_name):
+    def add_and_display_tab(self, new_page, new_tab_name):
         """adds a tab, namely creates the button and displays it and appends all the relevant arrays"""
         for name in self.nb_tab_names:  # todo: check this is valid
             if name == new_tab_name:
@@ -141,10 +115,10 @@ class fpdb:
             self.tabs.append(event_box)
             self.tab_names.append(new_tab_name)
 
-        #self.nb.append_page(new_page, gtk.Label(new_tab_name))
         self.nb.append_page(page, event_box)
         self.nb_tab_names.append(new_tab_name)
         page.show()
+        self.display_tab(new_tab_name)
 
     def display_tab(self, new_tab_name):
         """displays the indicated tab"""
@@ -217,7 +191,6 @@ class fpdb:
         iconBox.pack_start(image, True, False, 0)
         button.add(iconBox)
         iconBox.show()
-        return
 
     # Remove a page from the notebook
     def remove_tab(self, button, data):
@@ -327,8 +300,6 @@ class fpdb:
             dia.destroy()
 
     def dia_maintain_dbs(self, widget, data=None):
-        #self.warning_box("Unimplemented: Maintain Databases")
-        #return
         if len(self.tab_names) == 1:
             if self.obtain_global_lock("dia_maintain_dbs"):  # returns true if successful
                 # only main tab has been opened, open dialog
@@ -346,10 +317,8 @@ class fpdb:
                     # save updated config
                     self.config.save()
                     self.load_profile()
-                    for name in self.config.supported_databases:  # db_ip/db_user/db_pass/db_server
-                        log.info('fpdb: name,desc=' + name + ',' + self.config.supported_databases[name].db_desc)
-                else:
-                    log.info(_('guidb response was ') + str(response))
+                    #for name in self.config.supported_databases:  # db_ip/db_user/db_pass/db_server
+                    #    log.debug('fpdb: name,desc=' + name + ',' + self.config.supported_databases[name].db_desc)
 
                 self.release_global_lock()
 
@@ -540,8 +509,6 @@ class fpdb:
     def dia_recreate_tables(self, widget, data=None):
         """Dialogue that asks user to confirm that he wants to delete and recreate the tables"""
         if self.obtain_global_lock("fpdb.dia_recreate_tables"):  # returns true if successful
-
-            #lock_released = False
             dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING,
                     buttons=(gtk.BUTTONS_YES_NO), message_format=_("Confirm deleting and recreating tables"))
             diastring = _("Please confirm that you want to (re-)create the tables.") \
@@ -554,25 +521,15 @@ class fpdb:
             response = dia_confirm.run()
             dia_confirm.destroy()
             if response == gtk.RESPONSE_YES:
-                #if self.db.backend == self.fdb_lock.fdb.MYSQL_INNODB:
-                    # mysql requires locks on all tables or none - easier to release this lock
-                    # than lock all the other tables
-                    # ToDo: lock all other tables so that lock doesn't have to be released
-                #    self.release_global_lock()
-                #    lock_released = True
                 self.db.recreate_tables()
                 # find any guibulkimport/guiautoimport windows and clear player cache:
                 for t in self.threads:
                     if isinstance(t, GuiBulkImport.GuiBulkImport) or isinstance(t, GuiAutoImport.GuiAutoImport):
                         t.importer.database.resetPlayerIDs()
                 self.release_global_lock()
-                #else:
-                    # for other dbs use same connection as holds global lock
-                #    self.fdb_lock.fdb.recreate_tables()
             elif response == gtk.RESPONSE_NO:
                 self.release_global_lock()
                 print _('User cancelled recreating tables')
-            #if not lock_released:
     #end def dia_recreate_tables
 
     def dia_recreate_hudcache(self, widget, data=None):
@@ -947,13 +904,13 @@ class fpdb:
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
         if self.config.file_error:
             self.warning_box(_("There is an error in your config file %s") % self.config.file
-                              + "\n\n" + _("Error is:") + " " + str(self.config.file_error),
+                              + ":\n" + str(self.config.file_error),
                               diatitle=_("CONFIG FILE ERROR"))
             sys.exit()
 
-        log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
+        log = logging.getLogger("fpdb")
         print (_("Logfile is %s") % os.path.join(self.config.dir_log, self.config.log_file))
-        if self.config.example_copy:
+        if self.config.example_copy or options.initialRun:
             self.info_box(_("Config file"),
                           _("Config file has been created at %s.") % self.config.file
                            + _("Enter your screen_name and hand history path in the Site Preferences window (Main menu) before trying to import hands."))
@@ -1026,7 +983,11 @@ class fpdb:
             # rollback to make sure any locks are cleared:
             self.db.rollback()
 
-        self.validate_config()
+        #If the db-version is out of date, don't validate the config 
+        # otherwise the end user gets bombarded with false messages
+        # about every site not existing
+        if not self.db.wrongDbVersion:
+            self.validate_config()
 
     def obtain_global_lock(self, source):
         ret = self.lock.acquire(source=source)  # will return false if lock is already held
@@ -1253,8 +1214,8 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         # setup error logging
         if not options.errorsToConsole:
             fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
-            print (_("Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in: %s") % self.config.dir_log) \
-                  + _("Any major error will be reported there _only_.")
+            print((_("Note: error output is being diverted to %s.") % self.config.dir_log) + " " +
+                  _("Any major error will be reported there _only_."))
             errorFile = open(fileName, 'w', 0)
             sys.stderr = errorFile
 

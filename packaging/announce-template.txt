@@ -8,7 +8,7 @@ So... what is FPDB?
 ===================
 FPDB (Free Poker Database) is a free/open source suite of steadily growing tools to track and analyse your online poker game. FPDB is able to import the hand histories that poker sites write to your computer and to store additional data from each hand in a database for use in later analysis.
 
-FPDB is ambitious, intending to support all games. Currently we support flop based games (Hold’em, Omaha, Omaha Hi/Lo), stud games (7 Card Stud, 7 Card Stud Hi/Lo, and Razz) and draw games (Triple Draw Lowball, 5 Card Draw) on most major poker sites.
+FPDB is ambitious, intending to support all games. Currently we support flop based games (Hold’em, Omaha, Omaha Hi/Lo), stud games (7 Card Stud, 7 Card Stud Hi/Lo, and Razz) and draw games (Triple Draw Lowball, 5 Card Draw, and Badugi) on most major poker sites.
 
 FPDB provides a Heads Up Display (HUD), Profit Grapher and Stats viewers with a list of features that is growing.
 
@@ -56,13 +56,13 @@ Join us in IRC (see below) and say you want to do something :)
 How to get help
 ===============
 Please also see the "Bug reports" section below to enable us to help you.
-These are listed in order of usefulness - the 2+2 thread in particular is rather chaotic so if we miss your post feel free to bring it up again
+These are listed in order of usefulness - the 2+2 thread in particular is rather chaotic so if we miss your post feel free to bring it up again.
 1) Chat/IRC
-One of the developers is usually around, but it is IRC. Dont get discouraged because we didn't answer within 10 minutes, once we do you've probably got our full attention.
+One of the developers is usually around, but it is IRC. Dont get discouraged if we don't answer within 10 minutes, once we do you've probably got our full attention.
 This link takes you to a website where you can talk to us directly: http://webchat.freenode.net/?channels=fpdb
 Alternatively use can use any IRC client to connect to #fpdb on freenode.net
 2) Mailing List
-Visit http://lists.sourceforge.net/lists/listinfo/fpdb-main to subscribe to the development&support mailing list and send us an email
+Visit http://lists.sourceforge.net/lists/listinfo/fpdb-main to subscribe to the development&support mailing list and send us an email. You should subscribe to the list at least until your problem is solved to ensure you get all replies.
 3) The monster 2+2 forum thread (registration required).
 http://forumserver.twoplustwo.com/16...2009-a-273001/ Please dont let the size of the thread phase you. It is monitored and sends email notifications to some of the developers. (Note: If you play poker and don't frequent the 2+2 forums, you may want to become better acquainted. Its a bit daunting at first, but well worth the effort)
 
@@ -78,16 +78,15 @@ You can find most of these details for easy copy&paste in the Help menu under Ab
 
 Important known problems
 ========================
-YYY(PKR is not working correctly)YYY
+PKR is not working correctly.
 
 Notice for Windows users
 ========================
-YYY(First-time installs may need to download and install the C++ runtime executable from Microsoft.)YYY
-YYY(Fpdb on Windows is not currently compatible with PostgreSQL 9.x (it works fine in Linux).)YYY
+First-time installs may need to download and install the C++ runtime executable from Microsoft. Fpdb on Windows is not currently compatible with PostgreSQL 9.x (it works fine in Linux). Please let us know if you know a way to solve either of these problems.
 
 Notice for Arch Linux users
 ===========================
-YYY(You will need to change the shebang in fpdb.pyw and HUD_main.pyw from python to python2. Join us in IRC if you have questions about this.)YYY
+You will need to change the shebang in fpdb.pyw and HUD_main.pyw from python to python2. Get in touch if you have questions about this or if you have a solution to this problem that doesn't affect compatibility for other distros.
 
 Contributors
 ============

@@ -30,6 +30,7 @@ import re
 import Queue
 from collections import deque # using Queue for now
 import threading
+import shutil
 
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
@@ -52,7 +53,6 @@ class Importer:
         self.sql        = sql
         self.parent     = parent
 
-        #log = Configuration.get_logger("logging.conf", "importer", log_dir=self.config.dir_log)
         self.filelist   = {}
         self.dirlist    = {}
         self.siteIds    = {}
@@ -178,7 +178,7 @@ class Importer:
                 if len(result) == 0:
                     log.error(_("Database ID for %s not found") % site)
                 else:
-                    log.error(_("[ERROR] More than 1 Database ID found for %s - Multiple currencies not implemented yet") % site)
+                    log.error(_("More than 1 Database ID found for %s") % site)
 
 
     # Called from GuiBulkImport to add a file or directory. Bulk import never monitors
@@ -295,27 +295,47 @@ class Importer:
         totpartial = 0
         toterrors = 0
         tottime = 0
+        filecount = 0
+        fileerrorcount = 0
+        moveimportedfiles = False #TODO need to wire this into GUI and make it prettier
+        movefailedfiles = False #TODO and this too
         
         #prepare progress popup window
         ProgressDialog = ProgressBar(len(self.filelist), self.parent)
         
         for file in self.filelist:
             
+            filecount = filecount + 1
             ProgressDialog.progress_update(file, str(self.database.getHandCount()))
-            
-            (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0]
-                                                           ,self.filelist[file][1], self.filelist[file][2], q)
-            totstored += stored
-            totdups += duplicates
-            totpartial += partial
-            toterrors += errors
+        
+            if not moveimportedfiles and not movefailedfiles:    
+                (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0]
+                                                               ,self.filelist[file][1], self.filelist[file][2], q)
+                totstored += stored
+                totdups += duplicates
+                totpartial += partial
+                toterrors += errors
+            else:
+                try:
+                    (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0]
+                                                                   ,self.filelist[file][1], self.filelist[file][2], q)
+                    totstored += stored
+                    totdups += duplicates
+                    totpartial += partial
+                    toterrors += errors
+                    if moveimportedfiles:
+                        shutil.move(file, "c:\\fpdbimported\\%d-%s" % (filecount, os.path.basename(file[3:]) ) )
+                except:
+                    fileerrorcount = fileerrorcount + 1
+                    if movefailedfiles:
+                        shutil.move(file, "c:\\fpdbfailed\\%d-%s" % (fileerrorcount, os.path.basename(file[3:]) ) )
             
             self.logImport('bulk', file, stored, duplicates, partial, errors, ttime, self.filelist[file][2])
         self.database.commit()
         del ProgressDialog
         
         for i in xrange( self.settings['threads'] ):
-            print _("sending finish message queue length ="), q.qsize()
+            #print ("sending finish message queue length ="), q.qsize()
             db.send_finish_msg(q)
 
         
@@ -539,7 +559,7 @@ class Importer:
                 # TODO: appropriate response?
                 return (0, 0, 0, 1, time() - ttime)
         else:
-            log.warning(_("Unknown filter filter_name:'%s' in filter:'%s'") %(filter_name, filter))
+            log.warning(_("Unknown filter name %s in filter %s.") %(filter_name, filter))
             return (0, 0, 0, 1, time() - ttime)
 
         ttime = time() - ttime

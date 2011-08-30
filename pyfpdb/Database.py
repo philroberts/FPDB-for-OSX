@@ -279,7 +279,6 @@ class Database:
 
 
     def __init__(self, c, sql = None, autoconnect = True):
-        #log = Configuration.get_logger("logging.conf", "db", log_dir=c.dir_log)
         log.debug(_("Creating Database instance, sql = %s") % sql)
         self.config = c
         self.__connected = False
@@ -1812,11 +1811,11 @@ class Database:
 
     def storeHand(self, hdata, hbulk, doinsert = False, printdata = False):
         if printdata:
-            print _("######## Hands ##########")
+            print ("######## Hands ##########")
             import pprint
             pp = pprint.PrettyPrinter(indent=4)
             pp.pprint(hdata)
-            print _("###### End Hands ########")
+            print ("###### End Hands ########")
             
         # Tablename can have odd charachers
         hdata['tableName'] = Charset.to_db_utf8(hdata['tableName'])
@@ -2574,11 +2573,11 @@ class Database:
         if (tmp == None):
                 
             if self.gtprintdata:
-                print _("######## Gametype ##########")
+                print ("######## Gametype ##########")
                 import pprint
                 pp = pprint.PrettyPrinter(indent=4)
                 pp.pprint(gtinsert)
-                print _("###### End Gametype ########")
+                print ("###### End Gametype ########")
                 
             c.execute(self.sql.query['insertGameTypes'], gtinsert)
             result = self.get_last_insert_id(c)
@@ -2757,11 +2756,11 @@ class Database:
                 result = tmp[0]
             except TypeError: #this means we need to create a new entry
                 if self.printdata:
-                    print _("######## TourneyType ##########")
+                    print ("######## TourneyType ##########")
                     import pprint
                     pp = pprint.PrettyPrinter(indent=4)
                     pp.pprint(tourneyInsert)
-                    print _("###### End TourneyType ########")
+                    print ("###### End TourneyType ########")
                 c.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']), tourneyInsert)
                 #Get last id might be faster here.
                 #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
@@ -2805,11 +2804,11 @@ class Database:
                    summary.endTime, summary.tourneyName, summary.matrixIdProcessed, summary.totalRebuyCount, 
                    summary.totalAddOnCount)
             if self.printdata:
-                print _("######## Tourneys ##########")
+                print ("######## Tourneys ##########")
                 import pprint
                 pp = pprint.PrettyPrinter(indent=4)
                 pp.pprint(row)
-                print _("###### End Tourneys ########")
+                print ("###### End Tourneys ########")
             cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']), row)
             tourneyId = self.get_last_insert_id(cursor)
         return tourneyId
@@ -2965,47 +2964,43 @@ class Database:
 class HandToWrite:
 
     def __init__(self, finished = False): # db_name and game not used any more
-        try:
-            self.finished = finished
-            self.config = None
-            self.settings = None
-            self.base = None
-            self.category = None
-            self.siteTourneyNo = None
-            self.buyin = None
-            self.fee = None
-            self.knockout = None
-            self.entries = None
-            self.prizepool = None
-            self.tourneyStartTime = None
-            self.isTourney = None
-            self.tourneyTypeId = None
-            self.siteID = None
-            self.siteHandNo = None
-            self.gametypeID = None
-            self.handStartTime = None
-            self.names = None
-            self.playerIDs = None
-            self.startCashes = None
-            self.positions = None
-            self.antes = None
-            self.cardValues = None
-            self.cardSuits = None
-            self.boardValues = None
-            self.boardSuits = None
-            self.winnings = None
-            self.rakes = None
-            self.actionTypes = None
-            self.allIns = None
-            self.actionAmounts = None
-            self.actionNos = None
-            self.hudImportData = None
-            self.maxSeats = None
-            self.tableName = None
-            self.seatNos = None
-        except:
-            print _("%s error: %s") % ("HandToWrite.init", str(sys.exc_info()))
-            raise
+        self.finished = finished
+        self.config = None
+        self.settings = None
+        self.base = None
+        self.category = None
+        self.siteTourneyNo = None
+        self.buyin = None
+        self.fee = None
+        self.knockout = None
+        self.entries = None
+        self.prizepool = None
+        self.tourneyStartTime = None
+        self.isTourney = None
+        self.tourneyTypeId = None
+        self.siteID = None
+        self.siteHandNo = None
+        self.gametypeID = None
+        self.handStartTime = None
+        self.names = None
+        self.playerIDs = None
+        self.startCashes = None
+        self.positions = None
+        self.antes = None
+        self.cardValues = None
+        self.cardSuits = None
+        self.boardValues = None
+        self.boardSuits = None
+        self.winnings = None
+        self.rakes = None
+        self.actionTypes = None
+        self.allIns = None
+        self.actionAmounts = None
+        self.actionNos = None
+        self.hudImportData = None
+        self.maxSeats = None
+        self.tableName = None
+        self.seatNos = None
     # end def __init__
 
     def set_all( self, config, settings, base, category, siteTourneyNo, buyin

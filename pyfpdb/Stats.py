@@ -251,8 +251,8 @@ def profit100(stat_dict, player):
                 _('Profit per 100 hands')
                 )
     except:
-            print _("exception calculating p/100: 100 * %d / %d") % (stat_dict[player]['net'], stat_dict[player]['n'])
-            return (stat,
+        log.info(_("exception calculating %s") % ("p/100: 100 * %d / %d" % (stat_dict[player]['net'], stat_dict[player]['n'])))
+        return (stat,
                     'NA',
                     'p=NA',
                     'p/100=NA',
@@ -273,7 +273,7 @@ def bbper100(stat_dict, player):
                 _('Big blinds won per 100 hands')
                 )
     except:
-        log.info(_("exception calculating bb/100: ")+str(stat_dict[player]))
+        log.info(_("exception calculating %s") % ("bb/100: "+str(stat_dict[player])))
         return (stat,
                 'NA',
                 'bb100=NA',
@@ -295,7 +295,7 @@ def BBper100(stat_dict, player):
                 _('Big bets won per 100 hands')
                 )
     except:
-        log.info(_("exception calculating BB/100: ")+str(stat_dict[player]))
+        log.info(_("exception calculating %s") % ("BB/100: "+str(stat_dict[player])))
         return (stat,
                 'NA',
                 'BB100=NA',
@@ -992,10 +992,11 @@ def starthands(stat_dict, player, handid):
     # <pu_stat pu_stat_name="starthands"> </pu_stat>
     
     stat_descriptions["starthands"] = _("starting hands at this table") + " (starting hands)"
-    PFcall=" PFcall:"
+    PFlimp=" PFlimp:"
     PFaggr=" PFaggr:"
+    PFcar=" PFCaRa:"
     PFdefend=" PFdefBB:"
-    count_pfc = count_pfa = count_pfd = 2
+    count_pfl = count_pfa = count_pfc = count_pfd = 2
     
     if handid == -1:
         return ((''),
@@ -1009,7 +1010,7 @@ def starthands(stat_dict, player, handid):
     db_connection = Database.Database(c)
     sc = db_connection.get_cursor()
 
-    sc.execute(("SELECT distinct startCards, street0Aggr, " +
+    sc.execute(("SELECT distinct startCards, street0Aggr, street0CalledRaiseDone, " +
     			"case when HandsPlayers.position = 'B' then 'b' " +
                             "when HandsPlayers.position = 'S' then 'b' " +
                             "when HandsPlayers.position = '0' then 'l' " +
@@ -1042,7 +1043,7 @@ def starthands(stat_dict, player, handid):
                         ";")
                          % (int(handid), int(handid), int(handid), int(player)))
 
-    for (qstartcards, qstreet0Aggr, qposition) in sc.fetchall():
+    for (qstartcards, qstreet0Aggr, qstreet0CalledRaiseDone, qposition) in sc.fetchall():
         humancards = Card.decodeStartHandValue("holdem", qstartcards)
                 
         if qposition == "B" and qstreet0Aggr == False:
@@ -1055,14 +1056,19 @@ def starthands(stat_dict, player, handid):
             count_pfa += 1
             if (count_pfa / 8.0 == int(count_pfa / 8.0)):
                 PFaggr=PFaggr+"\n"
-        else:
-            PFcall=PFcall+"/"+humancards+"."+qposition
+        elif qstreet0CalledRaiseDone:
+            PFcar=PFcar+"/"+humancards+"."+qposition
             count_pfc += 1
             if (count_pfc / 8.0 == int(count_pfc / 8.0)):
-                PFcall=PFcall+"\n"
+                PFcar=PFcar+"\n"
+        else:
+            PFlimp=PFlimp+"/"+humancards+"."+qposition
+            count_pfl += 1
+            if (count_pfl / 8.0 == int(count_pfl / 8.0)):
+                PFlimp=PFlimp+"\n"
     sc.close()
     
-    returnstring = PFcall + "\n" + PFaggr + "\n" + PFdefend  #+ "\n" + str(handid)
+    returnstring = PFlimp + "\n" + PFaggr + "\n" + PFcar + "\n" + PFdefend  #+ "\n" + str(handid)
 
     return ((returnstring),
             (returnstring),
@@ -1107,40 +1113,10 @@ if __name__== "__main__":
     stat_dict = db_connection.get_stats_from_hand(h, "ring")
     
     for player in stat_dict.keys():
-        print (_("Example stats, player = %s  hand = %s:") % (player, h))
+        print (_("Example stats. Player = %s, Hand = %s:") % (player, h))
         for attr in statlist:
             print "  ", do_stat(stat_dict, player=player, stat=attr)
         break
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'vpip') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'pfr') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'wtsd') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'profit100') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'saw_f') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'n') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'fold_f') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'wmsd') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'steal') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'f_SB_steal') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'f_BB_steal') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'f_steal')
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'three_B')
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'WMsF') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq1') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq2') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq3') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq4') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq_123') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'cb1') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'cb2') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'cb3') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'cb4') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq1') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq2') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq3') 
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq4')
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'playershort')
-        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'starthands')
-        #print "\n" 
 
     print _("Legal stats:")
     print _("(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)")

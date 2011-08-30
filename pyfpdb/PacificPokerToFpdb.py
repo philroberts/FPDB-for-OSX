@@ -263,14 +263,14 @@ class PacificPoker(HandHistoryConverter):
                         elif info[key].find(u"€")!=-1:
                             hand.buyinCurrency="EUR"
                         elif info[key].find("FPP")!=-1:
-                            hand.buyinCurrency="PSFP"
+                            hand.buyinCurrency="PCFP"
                         else:
                             #FIXME: handle other currencies, FPP, play money
-                            raise FpdbParseError(_("Failed to detect currency.") + " " + _("Hand ID: %s: '%s'") % (hand.handid, info[key]))
+                            raise FpdbParseError(_("Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
 
                         info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
                         
-                        if hand.buyinCurrency!="PSFP":
+                        if hand.buyinCurrency!="PCFP":
                             if info['BOUNTY'] != None:
                                 # There is a bounty, Which means we need to switch BOUNTY and BIRAKE values
                                 tmp = info['BOUNTY']
@@ -332,8 +332,8 @@ class PacificPoker(HandHistoryConverter):
                        r"(\*\* Dealing river \*\* (?P<RIVER>\[ \S\S \].+))?"
                        , hand.handText,re.DOTALL)
         if m is None:
-            log.error("Didn't match markStreets")
-            raise FpdbParseError(_("No match in markStreets"))
+            log.error(_("Unable to recognise streets"))
+            raise FpdbParseError(_("Unable to recognise streets"))
         else:
             #print "DEBUG: Matched markStreets"
             mg = m.groupdict()

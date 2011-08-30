@@ -59,15 +59,14 @@ class iPoker(HandHistoryConverter):
     suit_trans  = { 'S':'s', 'H':'h', 'C':'c', 'D':'d'}
 
     substitutions = {
-                     'LS' : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|",
+                     'LS' : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|",
                      'PLYR': r'(?P<PNAME>[a-zA-Z0-9]+)',
                     }
 
     # Static regexes
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
-    #re_GameInfo = re.compile(ur'<gametype>(?P<GAME>[a-zA-Z0-9 ]+) (%(LS)s)(?P<BLAH>.+)</gametype>' % substitutions, re.MULTILINE)
-    re_GameInfo = re.compile(r'<gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL) (%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+)</gametype>' % substitutions, re.MULTILINE)
+    re_GameInfo = re.compile(r'<gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL) (%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+)</gametype>' % substitutions, re.MULTILINE)
     re_HandInfo = re.compile(r'gamecode="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-: 0-9]+)</startdate>', re.MULTILINE)
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" name="(?P<PNAME>[^"]+)" chips="(%(LS)s)(?P<CASH>[.0-9]+)" dealer="(?P<BUTTONPOS>(0|1))" win="(%(LS)s)(?P<WIN>[.0-9]+)" (bet="(%(LS)s)(?P<BET>[^"]+))?' % substitutions, re.MULTILINE)
     re_Board = re.compile(r'<cards type="(?P<STREET>Flop|Turn|River)" player="">(?P<CARDS>.+?)</cards>', re.MULTILINE)
@@ -96,6 +95,8 @@ class iPoker(HandHistoryConverter):
         return [
                 ["ring", "stud", "fl"],
                 ["ring", "hold", "nl"],
+                ["ring", "hold", "pl"],
+                ["ring", "hold", "fl"],
                 #["tour", "hold", "nl"]
                 ]
 
@@ -122,6 +123,8 @@ class iPoker(HandHistoryConverter):
         games = {              # base, category
                     '7 Card Stud L' : ('stud','studhilo'),
                         'Holdem NL' : ('hold','holdem'),
+                         'Holdem L' : ('hold','holdem'),
+                         'Omaha PL' : ('hold','omahahi'),
                 }
 
         if 'GAME' in mg:
@@ -144,6 +147,7 @@ class iPoker(HandHistoryConverter):
             self.info['currency'] = 'T$'
         else:
             self.info['type'] = 'ring'
+            #FIXME: Need to fix currencies for this site
             self.info['currency'] = 'USD'
 
         return self.info
@@ -223,10 +227,10 @@ class iPoker(HandHistoryConverter):
         pass
 
     def readBlinds(self, hand):
-        m = self.re_PostSB.search(hand.streets['PREFLOP'])
-        hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
-        for a in self.re_PostBB.finditer(hand.handText):
-            hand.addBlind(m.group('PNAME'), 'big blind', a.group('BB'))
+        for a in self.re_PostSB.finditer(hand.streets['PREFLOP']):
+            hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
+        for a in self.re_PostBB.finditer(hand.streets['PREFLOP']):
+            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         #for a in self.re_PostBoth.finditer(hand.handText):
 
     def readButton(self, hand):

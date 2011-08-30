@@ -69,8 +69,10 @@ RSOAndrew
 
 Translations (alphabetically by language)
 ============
+mcnito (Catalan ca_ES
 sjp (Chinese zh_CN)
 kibbitzer (French fr_FR)
+Julien_ (French fr_FR)
 PassThePeas (French fr_FR)
 tribumarchal (French fr_FR)
 Wedge (French fr_FR))

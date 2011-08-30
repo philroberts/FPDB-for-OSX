@@ -387,7 +387,7 @@ class Fulltilt(HandHistoryConverter):
 
         if plist == {}:
             #No players! The hand is either missing stacks or everyone is sitting out
-            raise FpdbParseError(_("readPlayerStacks: No players detected (hand #%s)") % hand.handid)
+            raise FpdbParseError(_("No players detected in hand %s.") % hand.handid)
 
 
     def markStreets(self, hand):
@@ -812,8 +812,8 @@ class Fulltilt(HandHistoryConverter):
             tourney.hero = heroName
             # Is this really useful ?
             if heroName not in tourney.ranks:
-                print (_("%s not found in %s...") % ("tourney.ranks", heroName))
+                log.error(_("Could not find rank for %s.") % (heroName))
             elif (tourney.ranks[heroName] != Decimal(n.group('HERO_FINISHING_POS'))):            
-                print (_("Error:")+ _("Parsed finish position incoherent : %s / %s") % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS')))
+                log.error(_("Parsed finish position incoherent : %s / %s") % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS')))
 
         return True

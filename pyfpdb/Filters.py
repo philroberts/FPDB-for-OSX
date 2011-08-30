@@ -79,7 +79,7 @@ class Filters(threading.Thread):
                           ,'groupstitle':_('Grouping:'), 'posnshow':_('Show Position Stats')
                           ,'datestitle':_('Date:'), 'currenciestitle':(_('Currencies')+':')
                           ,'groupsall':_('All Players')
-                          ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'limitsCN':'CAP', 'ring':_('Ring'), 'tour':_('Tourney'), 'limitsHP':_('HP')
+                          ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'limitsCN':'CAP', 'ring':_('Ring'), 'tour':_('Tourney'), 'limitsHP':'HP'
                           }
 
         gen = self.conf.get_general_params()
@@ -127,7 +127,7 @@ class Filters(threading.Thread):
             if len(result) == 1:
                 self.siteid[site] = result[0][0]
             else:
-                print _("Either 0 or more than one site matched (%s) - EEK") % site
+                log.debug(_("Either 0 or more than one site matched for %s") % site)
 
         # For use in date ranges.
         self.start_date = gtk.Entry(max=12)

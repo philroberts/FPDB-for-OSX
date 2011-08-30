@@ -95,12 +95,6 @@ def decodeStartHandValue(game, value):
     else:
         return "xx"
 
-
-# FIXME: the following is a workaround until switching to newimport.
-#        This should be moved into DerivedStats
-#        I'd also like to change HandsPlayers.startCards to a different datatype
-#        so we can 'trivially' add different start card classifications
-
 def calcStartCards(hand, player):
     hcs = hand.join_holecards(player, asList=True)
     if hand.gametype['category'] == 'holdem':
@@ -474,14 +468,17 @@ def encodeRazzStartHand(cards):
     return encodeRazzList[startHand]
 
 if __name__ == '__main__':
-    print("1) Card from list id (suitFromCardList: 1=2h)")
-    print("2) listid from Card (encodeCardList: 2h=2)")
+    print("1) "+_("Convert list ID to card (e.g. 1 to 2h)"))
+    print("2) "+_("Convert card to list ID (e.g. 2h to 1)"))
     s = raw_input('--> ')
     if s == '1':
-        cardid = raw_input('Enter cardid: ')
-        print("Value: '%s'" % suitFromCardList[int(cardid)])
+        while True:
+            cardid = raw_input(_('Enter list ID:')+" ")
+            print(_("Card:")+" '%s'" % suitFromCardList[int(cardid)])
     elif s == '2':
         while True:
-            cardid = raw_input('Enter card: ')
-            print("Encoded card: '%s'" % encodeCard(cardid))
+            cardid = raw_input(_('Enter card:')+" ")
+            print(_("Encoded card:")+" '%s'" % encodeCard(cardid))
+    else:
+        print(_("Please enter 1 or 2"))
 

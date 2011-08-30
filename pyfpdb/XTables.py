@@ -26,6 +26,7 @@ _ = L10n.get_translation()
 #    Standard Library modules
 import re
 import os
+import logging
 
 #    pyGTK modules
 import gtk
@@ -42,7 +43,7 @@ disp = Xlib.display.Display()
 root = disp.screen().root
 
 c = Configuration.Config()
-log = Configuration.get_logger("logging.conf", "hud", log_dir=c.dir_log, log_file='HUD-log.txt')
+log = logging.getLogger("hud")
 
 class Table(Table_Window):
 

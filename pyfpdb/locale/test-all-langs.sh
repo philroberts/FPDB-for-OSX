@@ -1,4 +1,5 @@
 #!/bin/sh
+LC_ALL="ca_ES.UTF-8" ../../run_fpdb.py 
 LC_ALL="de_DE.UTF-8" ../../run_fpdb.py 
 LC_ALL="es_ES.UTF-8" ../../run_fpdb.py 
 LC_ALL="fr_FR.UTF-8" ../../run_fpdb.py 

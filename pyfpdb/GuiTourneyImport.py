@@ -70,7 +70,7 @@ class GuiTourneyImport():
             ttime = time() - starttime
             if ttime == 0:
                 ttime = 1
-            print _('Tourney import done: Stored: %d \tErrors: %d in %s seconds - %.0f/sec')\
+            print _('Tourney import done: Stored: %d, Errors: %d in %s seconds - %.0f/sec')\
                      % (stored, errs, ttime, (stored+0.0) / ttime)
             self.importer.clearFileList()
 
@@ -426,7 +426,7 @@ def main(argv=None):
     ttime = time() - starttime
     if ttime == 0:
         ttime = 1
-    print _('Tourney import done: Stored: %d \tErrors: %d in %s seconds - %.0f/sec')\
+    print _('Tourney import done: Stored: %d, Errors: %d in %s seconds - %.0f/sec')\
                      % (stored, errs, ttime, (stored+0.0) / ttime)
     importer.clearFileList()
 

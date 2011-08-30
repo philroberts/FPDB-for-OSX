@@ -1217,8 +1217,8 @@ class Sql:
         elif db_server == 'postgresql':
             self.query['createHandsStoveTable'] = """CREATE TABLE HandsStove (
                         id BIGSERIAL, PRIMARY KEY (id),
-                        handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
-                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        handId BIGINT NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                        playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         street SMALLINT,
                         boardId SMALLINT,
                         hiString TEXT,
@@ -1649,7 +1649,7 @@ class Sql:
                         type char(7) NOT NULL,
                         gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                         tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
-                        tourneyId INT UNSIGNED UNSIGNED, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
+                        tourneyId INT UNSIGNED, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         played INT NOT NULL,
                         hands INT NOT NULL,
@@ -2664,6 +2664,9 @@ class Sql:
                             ,100.0*sum(cast(hp.street1Seen as <signed>integer))/count(1)            AS saw_f
                             ,100.0*sum(cast(hp.sawShowdown as <signed>integer))/count(1)            AS sawsd
                             ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.wonWhenSeenStreet1 as <signed>integer))/sum(cast(hp.street1Seen as <signed>integer))
+                             end                                                                    AS wmsf
+                            ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.sawShowdown as <signed>integer))/sum(cast(hp.street1Seen as <signed>integer))
                              end                                                                    AS wtsdwsf
                             ,case when sum(cast(hp.sawShowdown as <signed>integer)) = 0 then -999
@@ -2810,6 +2813,9 @@ class Sql:
                              end                                                                    AS suc_steal
                             ,100.0*sum(cast(hp.street1Seen as <signed>integer))/count(1)            AS saw_f
                             ,100.0*sum(cast(hp.sawShowdown as <signed>integer))/count(1)            AS sawsd
+                            ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.wonWhenSeenStreet1 as <signed>integer))/sum(cast(hp.street1Seen as <signed>integer))
+                             end                                                                    AS wmsf
                             ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.sawShowdown as <signed>integer))/sum(cast(hp.street1Seen as <signed>integer))
                              end                                                                    AS wtsdwsf
@@ -2970,6 +2976,9 @@ class Sql:
                              end                                                                    AS suc_steal
                             ,100.0*sum(cast(hp.street1Seen as <signed>integer))/count(1)            AS saw_f
                             ,100.0*sum(cast(hp.sawShowdown as <signed>integer))/count(1)            AS sawsd
+                            ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.wonWhenSeenStreet1 as <signed>integer))/sum(cast(hp.street1Seen as <signed>integer))
+                             end                                                                    AS wmsf
                             ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.sawShowdown as <signed>integer))/sum(cast(hp.street1Seen as <signed>integer))
                              end                                                                    AS wtsdwsf
@@ -3154,7 +3163,10 @@ class Sql:
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
                             ,SUM(tp.winnings)/100.0                                                 AS won
-                            ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS spent
+                            ,SUM(CASE
+                                   WHEN tt.currency = 'play' THEN tt.buyIn
+                                   ELSE (tt.buyIn+tt.fee)/100.0
+                                 END)                                                               AS spent
                             ,ROUND(
                                 (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS REAL)/
                                 CAST(SUM(tt.buyin+tt.fee) AS REAL))* 100.0
@@ -3951,7 +3963,7 @@ class Sql:
             ORDER BY h.startTime"""
 
         self.query['getRingProfitAllHandsPlayerIdSiteInBB'] = """
-            SELECT hp.handId, ( hp.totalProfit / ( gt.bigBlind  * 2.0 ) ) * 100 , hp.sawShowdown, hp.allInEV
+            SELECT hp.handId, ( hp.totalProfit / ( gt.bigBlind  * 2.0 ) ) * 100 , hp.sawShowdown, ( hp.allInEV / ( gt.bigBlind * 2.0 ) ) * 100
             FROM HandsPlayers hp
             INNER JOIN Players pl      ON  (pl.id = hp.playerId)
             INNER JOIN Hands h         ON  (h.id  = hp.handId)

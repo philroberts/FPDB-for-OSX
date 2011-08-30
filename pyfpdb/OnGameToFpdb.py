@@ -94,7 +94,7 @@ class OnGame(HandHistoryConverter):
             (?P<M>[a-zA-Z]{3})\s
             (?P<D>[0-9]+)\s
             (?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s
-            (?P<OFFSET>\w+[-+]\d+)\s
+            (?P<OFFSET>\w+([-+]\d+)?)\s
             (?P<Y>[0-9]{4})
             """, re.MULTILINE|re.VERBOSE)
         
@@ -177,9 +177,8 @@ class OnGame(HandHistoryConverter):
                 info['limitType'] = self.limits[mg['LIMIT']]
             else:
                 tmp = handText[0:100]
-                log.error(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
+                log.error(_("Limit not found in %s.") % tmp)
+                raise FpdbParseError(_("Limit not found in %s.") % tmp)
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
@@ -289,7 +288,7 @@ class OnGame(HandHistoryConverter):
             m = self.re_PostSB.search(hand.handText)
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
         except exceptions.AttributeError: # no small blind
-            log.debug( _("readBlinds in noSB exception - no SB created")+str(sys.exc_info()) )
+            log.debug( _("No small blinds found.")+str(sys.exc_info()) )
             #hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))

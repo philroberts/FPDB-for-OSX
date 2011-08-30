@@ -1,0 +1,783 @@
+Everleaf Gaming Game #282025676
+***** Hand history for game #282025676 *****
+300/600 Hold'em - 2011/06/23 - 17:30:41
+Table 1
+Seat 5 is the button
+Total number of players: 4
+Seat 2: 2pair05 (  10290 Chips )
+Seat 3: JAKEWOOD (  6570 Chips )
+Seat 4: EricBlade (  2000 Chips )
+Seat 5: snklzona (  4550 Chips )
+2pair05: posts ante [ 25 Chips]
+JAKEWOOD: posts ante [ 25 Chips]
+EricBlade: posts ante [ 25 Chips]
+snklzona: posts ante [ 25 Chips]
+2pair05: posts big blind [ 300 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ 9s, Jc ]
+JAKEWOOD folds
+EricBlade folds
+snklzona folds
+2pair05 does not show cards
+2pair05 wins 100 chips from main pot
+
+
+
+Everleaf Gaming Game #282025754
+***** Hand history for game #282025754 *****
+300/600 Hold'em - 2011/06/23 - 17:30:58
+Table 1
+Seat 5 is the button
+Total number of players: 4
+Seat 2: 2pair05 (  10365 Chips )
+Seat 3: JAKEWOOD (  6545 Chips )
+Seat 4: EricBlade (  1975 Chips )
+Seat 5: snklzona (  4525 Chips )
+2pair05: posts ante [ 25 Chips]
+JAKEWOOD: posts ante [ 25 Chips]
+EricBlade: posts ante [ 25 Chips]
+snklzona: posts ante [ 25 Chips]
+2pair05: posts small blind [ 150 Chips]
+JAKEWOOD: posts big blind [ 300 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ 7d, Kd ]
+EricBlade folds
+snklzona calls [ 300 Chips]
+2pair05 calls [ 150 Chips]
+JAKEWOOD checks
+** Dealing Flop ** [ Ks, 3c, 7s ]
+2pair05: bets [ 300 Chips]
+JAKEWOOD folds
+snklzona folds
+2pair05 does not show cards
+2pair05 wins 1000 chips from main pot
+
+
+
+Everleaf Gaming Game #282025934
+***** Hand history for game #282025934 *****
+300/600 Hold'em - 2011/06/23 - 17:31:34
+Table 1
+Seat 2 is the button
+Total number of players: 4
+Seat 2: 2pair05 (  11040 Chips )
+Seat 3: JAKEWOOD (  6220 Chips )
+Seat 4: EricBlade (  1950 Chips )
+Seat 5: snklzona (  4200 Chips )
+2pair05: posts ante [ 25 Chips]
+JAKEWOOD: posts ante [ 25 Chips]
+EricBlade: posts ante [ 25 Chips]
+snklzona: posts ante [ 25 Chips]
+JAKEWOOD: posts small blind [ 150 Chips]
+EricBlade: posts big blind [ 300 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ 8s, 4c ]
+snklzona raises [ 600 Chips]
+2pair05 folds
+JAKEWOOD calls [ 450 Chips]
+EricBlade folds
+** Dealing Flop ** [ 9s, 4h, Td ]
+JAKEWOOD: bets [ 300 Chips]
+snklzona raises [ 600 Chips]
+JAKEWOOD calls [ 300 Chips]
+** Dealing Turn ** [ 3c ]
+JAKEWOOD checks
+snklzona: bets [ 600 Chips]
+JAKEWOOD calls [ 600 Chips]
+** Dealing River ** [ 3d ]
+JAKEWOOD: bets [ 600 Chips]
+snklzona calls [ 600 Chips]
+JAKEWOOD shows [ Ah, Kc ] a pair of threes
+snklzona shows [ Kh, 9h ] two pairs, nines and threes
+snklzona wins 5200 chips from main pot with two pairs, nines and threes [ Kh, 9h, 9s, 3c, 3d ]
+
+
+
+Everleaf Gaming Game #282026122
+***** Hand history for game #282026122 *****
+300/600 Hold'em - 2011/06/23 - 17:32:13
+Table 1
+Seat 3 is the button
+Total number of players: 4
+Seat 2: 2pair05 (  11015 Chips )
+Seat 3: JAKEWOOD (  3795 Chips )
+Seat 4: EricBlade (  1625 Chips )
+Seat 5: snklzona (  6975 Chips )
+2pair05: posts ante [ 25 Chips]
+JAKEWOOD: posts ante [ 25 Chips]
+EricBlade: posts ante [ 25 Chips]
+snklzona: posts ante [ 25 Chips]
+EricBlade: posts small blind [ 150 Chips]
+snklzona: posts big blind [ 300 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ 2s, Qs ]
+2pair05 raises [ 600 Chips]
+JAKEWOOD folds
+EricBlade folds
+snklzona raises [ 600 Chips]
+2pair05 calls [ 300 Chips]
+** Dealing Flop ** [ 7h, Ks, 9s ]
+snklzona: bets [ 300 Chips]
+2pair05 calls [ 300 Chips]
+** Dealing Turn ** [ 6h ]
+snklzona: bets [ 600 Chips]
+2pair05 calls [ 600 Chips]
+** Dealing River ** [ Qc ]
+snklzona: bets [ 600 Chips]
+2pair05 raises [ 1,200 Chips]
+snklzona raises [ 1,200 Chips]
+2pair05 calls [ 600 Chips]
+snklzona shows [ Kc, Kh ] three of a kind, kings
+2pair05 does not show cards
+snklzona wins 7450 chips from main pot with three of a kind, kings [ Kc, Kh, Ks, Qc, 9s ]
+
+
+
+Everleaf Gaming Game #282026404
+***** Hand history for game #282026404 *****
+300/600 Hold'em - 2011/06/23 - 17:33:10
+Table 1
+Seat 4 is the button
+Total number of players: 4
+Seat 2: 2pair05 (  7390 Chips )
+Seat 3: JAKEWOOD (  3770 Chips )
+Seat 4: EricBlade (  1450 Chips )
+Seat 5: snklzona (  10800 Chips )
+2pair05: posts ante [ 25 Chips]
+JAKEWOOD: posts ante [ 25 Chips]
+EricBlade: posts ante [ 25 Chips]
+snklzona: posts ante [ 25 Chips]
+snklzona: posts small blind [ 150 Chips]
+2pair05: posts big blind [ 300 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ Js, 2d ]
+JAKEWOOD folds
+EricBlade folds
+snklzona calls [ 150 Chips]
+2pair05 checks
+** Dealing Flop ** [ Kc, 4s, 6h ]
+snklzona checks
+2pair05 checks
+** Dealing Turn ** [ 4h ]
+snklzona checks
+2pair05 checks
+** Dealing River ** [ 7h ]
+snklzona checks
+2pair05: bets [ 600 Chips]
+snklzona folds
+2pair05 does not show cards
+2pair05 wins 700 chips from main pot
+
+
+
+Everleaf Gaming Game #282026578
+***** Hand history for game #282026578 *****
+300/600 Hold'em - 2011/06/23 - 17:33:44
+Table 1
+Seat 5 is the button
+Total number of players: 5
+Seat 1: Nicole7 ( new player )
+Seat 2: 2pair05 (  7765 Chips )
+Seat 3: JAKEWOOD (  3745 Chips )
+Seat 4: EricBlade (  1425 Chips )
+Seat 5: snklzona (  10475 Chips )
+2pair05: posts ante [ 25 Chips]
+JAKEWOOD: posts ante [ 25 Chips]
+EricBlade: posts ante [ 25 Chips]
+snklzona: posts ante [ 25 Chips]
+2pair05: posts small blind [ 150 Chips]
+JAKEWOOD: posts big blind [ 300 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ 7c, 8c ]
+EricBlade raises [ 600 Chips]
+snklzona folds
+2pair05 folds
+JAKEWOOD calls [ 300 Chips]
+** Dealing Flop ** [ 9d, 3c, 3s ]
+JAKEWOOD: bets [ 300 Chips]
+EricBlade raises [ 600 Chips]
+JAKEWOOD calls [ 300 Chips]
+** Dealing Turn ** [ 6h ]
+JAKEWOOD: bets [ 600 Chips]
+EricBlade calls [ 200 Chips]
+** Dealing River ** [ 8d ]
+JAKEWOOD shows [ 7d, 7h ] two pairs, sevens and threes
+EricBlade shows [ 7c, 8c ] two pairs, eights and threes
+EricBlade wins 3050 chips from main pot with two pairs, eights and threes [ 9d, 8c, 8d, 3c, 3s ]
+
+
+
+Everleaf Gaming Game #282026769
+***** Hand history for game #282026769 *****
+400/800 Hold'em - 2011/06/23 - 17:34:22
+Table 1
+Seat 2 is the button
+Total number of players: 5
+Seat 1: Nicole7 (  1000 Chips )
+Seat 2: 2pair05 (  7590 Chips )
+Seat 3: JAKEWOOD (  2320 Chips )
+Seat 4: EricBlade (  3050 Chips )
+Seat 5: snklzona (  10450 Chips )
+Nicole7: posts ante [ 50 Chips]
+2pair05: posts ante [ 50 Chips]
+JAKEWOOD: posts ante [ 50 Chips]
+EricBlade: posts ante [ 50 Chips]
+snklzona: posts ante [ 50 Chips]
+JAKEWOOD: posts small blind [ 200 Chips]
+EricBlade: posts big blind [ 400 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ Qh, Ad ]
+snklzona folds
+Nicole7 folds
+2pair05 calls [ 400 Chips]
+JAKEWOOD calls [ 200 Chips]
+EricBlade raises [ 400 Chips]
+2pair05 calls [ 400 Chips]
+JAKEWOOD calls [ 400 Chips]
+** Dealing Flop ** [ 2c, 9d, 5c ]
+JAKEWOOD: bets [ 400 Chips]
+EricBlade folds
+2pair05 calls [ 400 Chips]
+** Dealing Turn ** [ Jc ]
+JAKEWOOD: bets [ 800 Chips]
+2pair05 folds
+JAKEWOOD does not show cards
+JAKEWOOD wins 3450 chips from main pot
+
+
+
+Everleaf Gaming Game #282027009
+***** Hand history for game #282027009 *****
+400/800 Hold'em - 2011/06/23 - 17:35:13
+Table 1
+Seat 3 is the button
+Total number of players: 5
+Seat 1: Nicole7 (  950 Chips )
+Seat 2: 2pair05 (  6340 Chips )
+Seat 3: JAKEWOOD (  4520 Chips )
+Seat 4: EricBlade (  2200 Chips )
+Seat 5: snklzona (  10400 Chips )
+Nicole7: posts ante [ 50 Chips]
+2pair05: posts ante [ 50 Chips]
+JAKEWOOD: posts ante [ 50 Chips]
+EricBlade: posts ante [ 50 Chips]
+snklzona: posts ante [ 50 Chips]
+EricBlade: posts small blind [ 200 Chips]
+snklzona: posts big blind [ 400 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ 8s, 7s ]
+Nicole7 folds
+2pair05 folds
+JAKEWOOD raises [ 800 Chips]
+EricBlade calls [ 600 Chips]
+snklzona folds
+** Dealing Flop ** [ 5s, 7h, 2c ]
+EricBlade: bets [ 400 Chips]
+JAKEWOOD raises [ 800 Chips]
+EricBlade raises [ 800 Chips]
+JAKEWOOD raises [ 800 Chips]
+EricBlade calls [ 150 Chips]
+** Dealing Turn ** [ 3d ]
+** Dealing River ** [ 4c ]
+JAKEWOOD shows [ Ac, Qs ] a straight, five high
+EricBlade shows [ 8s, 7s ] a pair of sevens
+JAKEWOOD wins 4950 chips from main pot with a straight, five high [ Ac, 5s, 4c, 3d, 2c ]
+
+
+
+Everleaf Gaming Game #282027210
+***** Hand history for game #282027210 *****
+400/800 Hold'em - 2011/06/23 - 17:35:55
+Table 1
+Seat 4 is the button
+Total number of players: 5
+Seat 1: Nicole7 (  900 Chips )
+Seat 2: 2pair05 (  6290 Chips )
+Seat 3: JAKEWOOD (  7270 Chips )
+Seat 4: EricBlade (  2000 Chips )
+Seat 5: snklzona (  9950 Chips )
+Nicole7: posts ante [ 50 Chips]
+2pair05: posts ante [ 50 Chips]
+JAKEWOOD: posts ante [ 50 Chips]
+EricBlade: posts ante [ 50 Chips]
+snklzona: posts ante [ 50 Chips]
+snklzona: posts small blind [ 200 Chips]
+Nicole7: posts big blind [ 400 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ Td, 7h ]
+EricBlade: tard
+2pair05 folds
+JAKEWOOD folds
+EricBlade folds
+snklzona folds
+Nicole7 does not show cards
+Nicole7 wins 650 chips from main pot
+
+
+
+Everleaf Gaming Game #282027342
+***** Hand history for game #282027342 *****
+400/800 Hold'em - 2011/06/23 - 17:36:21
+Table 1
+Seat 5 is the button
+Total number of players: 5
+Seat 1: Nicole7 (  1300 Chips )
+Seat 2: 2pair05 (  6240 Chips )
+Seat 3: JAKEWOOD (  7220 Chips )
+Seat 4: EricBlade (  1950 Chips )
+Seat 5: snklzona (  9700 Chips )
+Nicole7: posts ante [ 50 Chips]
+2pair05: posts ante [ 50 Chips]
+JAKEWOOD: posts ante [ 50 Chips]
+EricBlade: posts ante [ 50 Chips]
+snklzona: posts ante [ 50 Chips]
+Nicole7: posts small blind [ 200 Chips]
+2pair05: posts big blind [ 400 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ Qh, Jd ]
+JAKEWOOD raises [ 800 Chips]
+EricBlade raises [ 1,200 Chips]
+snklzona folds
+Nicole7 raises [ 1,050 Chips]
+2pair05 folds
+JAKEWOOD calls [ 450 Chips]
+EricBlade calls [ 50 Chips]
+** Dealing Flop ** [ Qd, 6s, 4h ]
+JAKEWOOD: bets [ 400 Chips]
+EricBlade raises [ 650 Chips]
+JAKEWOOD calls [ 250 Chips]
+** Dealing Turn ** [ Tc ]
+** Dealing River ** [ 5d ]
+Nicole7 shows [ Kd, Qc ] a pair of queens
+JAKEWOOD shows [ Ah, 5c ] a pair of fives
+EricBlade shows [ Qh, Jd ] a pair of queens
+Nicole7 wins 4400 chips from main pot with a pair of queens [ Kd, Qc, Qd, Tc, 6s ] with kicker [ K ]
+EricBlade wins 1300 chips from side pot with a pair of queens [ Qh, Qd, Jd, Tc, 6s ]
+
+
+
+Everleaf Gaming Game #282027484
+***** Hand history for game #282027484 *****
+400/800 Hold'em - 2011/06/23 - 17:36:52
+Table 1
+Seat 1 is the button
+Total number of players: 5
+Seat 1: Nicole7 (  4400 Chips )
+Seat 2: 2pair05 (  5790 Chips )
+Seat 3: JAKEWOOD (  5270 Chips )
+Seat 4: EricBlade (  1300 Chips )
+Seat 5: snklzona (  9650 Chips )
+Nicole7: posts ante [ 50 Chips]
+2pair05: posts ante [ 50 Chips]
+JAKEWOOD: posts ante [ 50 Chips]
+EricBlade: posts ante [ 50 Chips]
+snklzona: posts ante [ 50 Chips]
+2pair05: posts small blind [ 200 Chips]
+JAKEWOOD: posts big blind [ 400 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ 7d, Jc ]
+EricBlade folds
+snklzona calls [ 400 Chips]
+EricBlade: christ jake you're stupid
+Nicole7 calls [ 400 Chips]
+2pair05 calls [ 200 Chips]
+JAKEWOOD checks
+** Dealing Flop ** [ Ks, 6h, Jh ]
+2pair05 checks
+JAKEWOOD checks
+snklzona: bets [ 400 Chips]
+Nicole7 calls [ 400 Chips]
+2pair05 raises [ 800 Chips]
+JAKEWOOD folds
+snklzona folds
+Nicole7 folds
+2pair05 does not show cards
+2pair05 wins 3050 chips from main pot
+
+
+
+Everleaf Gaming Game #282027708
+***** Hand history for game #282027708 *****
+400/800 Hold'em - 2011/06/23 - 17:37:39
+Table 1
+Seat 2 is the button
+Total number of players: 5
+Seat 1: Nicole7 (  3550 Chips )
+Seat 2: 2pair05 (  7990 Chips )
+Seat 3: JAKEWOOD (  4820 Chips )
+Seat 4: EricBlade (  1250 Chips )
+Seat 5: snklzona (  8800 Chips )
+Nicole7: posts ante [ 50 Chips]
+2pair05: posts ante [ 50 Chips]
+JAKEWOOD: posts ante [ 50 Chips]
+EricBlade: posts ante [ 50 Chips]
+snklzona: posts ante [ 50 Chips]
+JAKEWOOD: posts small blind [ 200 Chips]
+EricBlade: posts big blind [ 400 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ Jd, Qs ]
+snklzona folds
+Nicole7 calls [ 400 Chips]
+2pair05 folds
+JAKEWOOD calls [ 200 Chips]
+EricBlade raises [ 400 Chips]
+Nicole7 calls [ 400 Chips]
+JAKEWOOD calls [ 400 Chips]
+** Dealing Flop ** [ Kh, Ts, Qd ]
+JAKEWOOD checks
+EricBlade: bets [ 400 Chips]
+Nicole7 calls [ 400 Chips]
+JAKEWOOD calls [ 400 Chips]
+** Dealing Turn ** [ As ]
+JAKEWOOD checks
+Nicole7 checks
+** Dealing River ** [ Jh ]
+JAKEWOOD: bets [ 800 Chips]
+Nicole7 calls [ 800 Chips]
+JAKEWOOD shows [ Ac, 9c ] a straight, ace high
+EricBlade shows [ Jd, Qs ] a straight, ace high
+Nicole7 shows [ 7c, Ah ] a straight, ace high
+Nicole7 wins 1283 chips from main pot with a straight, ace high [ As, Kh, Qd, Jh, Ts ]
+JAKEWOOD wins 1284 chips from main pot with a straight, ace high [ As, Kh, Qd, Jh, Ts ]
+EricBlade wins 1283 chips from main pot with a straight, ace high [ As, Kh, Qd, Jh, Ts ]
+JAKEWOOD wins 800 chips from side pot with a straight, ace high [ As, Kh, Qd, Jh, Ts ]
+Nicole7 wins 800 chips from side pot with a straight, ace high [ As, Kh, Qd, Jh, Ts ]
+
+
+
+Everleaf Gaming Game #282027903
+***** Hand history for game #282027903 *****
+400/800 Hold'em - 2011/06/23 - 17:38:21
+Table 1
+Seat 3 is the button
+Total number of players: 5
+Seat 1: Nicole7 (  3583 Chips )
+Seat 2: 2pair05 (  7940 Chips )
+Seat 3: JAKEWOOD (  4854 Chips )
+Seat 4: EricBlade (  1283 Chips )
+Seat 5: snklzona (  8750 Chips )
+Seat 6: lilloelory ( new player )
+Nicole7: posts ante [ 50 Chips]
+2pair05: posts ante [ 50 Chips]
+JAKEWOOD: posts ante [ 50 Chips]
+EricBlade: posts ante [ 50 Chips]
+snklzona: posts ante [ 50 Chips]
+EricBlade: posts small blind [ 200 Chips]
+snklzona: posts big blind [ 400 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ As, 2s ]
+Nicole7 calls [ 400 Chips]
+2pair05 folds
+EricBlade: lol
+JAKEWOOD calls [ 400 Chips]
+EricBlade calls [ 200 Chips]
+snklzona checks
+** Dealing Flop ** [ Jc, Qd, 8h ]
+EricBlade checks
+snklzona checks
+Nicole7 checks
+JAKEWOOD checks
+** Dealing Turn ** [ 7h ]
+EricBlade checks
+snklzona checks
+Nicole7: bets [ 800 Chips]
+JAKEWOOD folds
+EricBlade folds
+snklzona calls [ 800 Chips]
+** Dealing River ** [ Td ]
+snklzona: bets [ 800 Chips]
+Nicole7 calls [ 800 Chips]
+snklzona shows [ Ad, 9h ] a straight, queen high
+lilloelory has been reseated to this table
+Nicole7 does not show cards
+snklzona wins 5050 chips from main pot with a straight, queen high [ Qd, Jc, Td, 9h, 8h ]
+
+
+
+Everleaf Gaming Game #282028187
+***** Hand history for game #282028187 *****
+400/800 Hold'em - 2011/06/23 - 17:39:32
+Table 1
+Seat 4 is the button
+Total number of players: 6
+Seat 1: Nicole7 (  1533 Chips )
+Seat 2: 2pair05 (  7890 Chips )
+Seat 3: JAKEWOOD (  4404 Chips )
+Seat 4: EricBlade (  1833 Chips )
+Seat 5: snklzona (  11750 Chips )
+Seat 6: lilloelory (  1000 Chips )
+Nicole7: posts ante [ 50 Chips]
+2pair05: posts ante [ 50 Chips]
+JAKEWOOD: posts ante [ 50 Chips]
+EricBlade: posts ante [ 50 Chips]
+snklzona: posts ante [ 50 Chips]
+lilloelory: posts ante [ 50 Chips]
+snklzona: posts small blind [ 200 Chips]
+lilloelory: posts big blind [ 400 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ Qh, 2d ]
+Nicole7 folds
+2pair05 folds
+JAKEWOOD calls [ 400 Chips]
+EricBlade folds
+snklzona calls [ 200 Chips]
+lilloelory checks
+** Dealing Flop ** [ 6d, Ah, Ac ]
+snklzona checks
+lilloelory checks
+JAKEWOOD checks
+** Dealing Turn ** [ 8d ]
+snklzona checks
+lilloelory checks
+JAKEWOOD: bets [ 800 Chips]
+snklzona folds
+lilloelory folds
+JAKEWOOD does not show cards
+JAKEWOOD wins 1500 chips from main pot
+
+
+
+Everleaf Gaming Game #282028385
+***** Hand history for game #282028385 *****
+400/800 Hold'em - 2011/06/23 - 17:39:58
+Table 1
+Seat 5 is the button
+Total number of players: 6
+Seat 1: Nicole7 (  1483 Chips )
+Seat 2: 2pair05 (  7840 Chips )
+Seat 3: JAKEWOOD (  5454 Chips )
+Seat 4: EricBlade (  1783 Chips )
+Seat 5: snklzona (  11300 Chips )
+Seat 6: lilloelory (  550 Chips )
+Nicole7: posts ante [ 50 Chips]
+2pair05: posts ante [ 50 Chips]
+JAKEWOOD: posts ante [ 50 Chips]
+EricBlade: posts ante [ 50 Chips]
+snklzona: posts ante [ 50 Chips]
+lilloelory: posts ante [ 50 Chips]
+lilloelory: posts small blind [ 200 Chips]
+Nicole7: posts big blind [ 400 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ 4s, 4d ]
+2pair05 calls [ 400 Chips]
+JAKEWOOD calls [ 400 Chips]
+EricBlade calls [ 400 Chips]
+snklzona raises [ 800 Chips]
+lilloelory calls [ 300 Chips]
+Nicole7 calls [ 400 Chips]
+2pair05 calls [ 400 Chips]
+JAKEWOOD calls [ 400 Chips]
+EricBlade calls [ 400 Chips]
+** Dealing Flop ** [ 3c, Qd, Th ]
+Nicole7: bets [ 400 Chips]
+2pair05 calls [ 400 Chips]
+JAKEWOOD folds
+EricBlade folds
+snklzona raises [ 800 Chips]
+Nicole7 calls [ 233 Chips]
+2pair05 calls [ 400 Chips]
+** Dealing Turn ** [ Jc ]
+2pair05 checks
+snklzona: bets [ 800 Chips]
+2pair05 calls [ 800 Chips]
+** Dealing River ** [ 2d ]
+2pair05 checks
+snklzona: bets [ 800 Chips]
+2pair05 folds
+snklzona shows [ Jd, Jh ] three of a kind, jacks
+lilloelory shows [ 8s, Kh ] high card king
+Nicole7 shows [ Qh, 3h ] two pairs, queens and threes
+snklzona wins 3300 chips from main pot with three of a kind, jacks [ Qd, Jd, Jh, Jc, Th ]
+snklzona wins 3399 chips from side pot with three of a kind, jacks [ Qd, Jd, Jh, Jc, Th ]
+snklzona wins 1934 chips from side pot with three of a kind, jacks [ Qd, Jd, Jh, Jc, Th ]
+
+
+
+Everleaf Gaming Game #282030817
+***** Hand history for game #282030817 *****
+600/1,200 Hold'em - 2011/06/23 - 17:48:40
+Table 1
+Seat 5 is the button
+Total number of players: 5
+Seat 1: Nicole7 (  3000 Chips )
+Seat 2: 2pair05 (  7390 Chips )
+Seat 3: JAKEWOOD (  6604 Chips )
+Seat 4: EricBlade (  3933 Chips )
+Seat 5: snklzona (  17483 Chips )
+Nicole7: posts ante [ 75 Chips]
+2pair05: posts ante [ 75 Chips]
+JAKEWOOD: posts ante [ 75 Chips]
+EricBlade: posts ante [ 75 Chips]
+snklzona: posts ante [ 75 Chips]
+Nicole7: posts small blind [ 300 Chips]
+2pair05: posts big blind [ 600 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ 7s, 7d ]
+JAKEWOOD folds
+EricBlade raises [ 1,200 Chips]
+snklzona folds
+Nicole7 folds
+2pair05 raises [ 1,200 Chips]
+EricBlade calls [ 600 Chips]
+** Dealing Flop ** [ 8d, Kd, As ]
+2pair05: bets [ 600 Chips]
+EricBlade folds
+2pair05 does not show cards
+2pair05 wins 4275 chips from main pot
+
+
+
+Everleaf Gaming Game #282030972
+***** Hand history for game #282030972 *****
+600/1,200 Hold'em - 2011/06/23 - 17:49:10
+Table 1
+Seat 1 is the button
+Total number of players: 5
+Seat 1: Nicole7 (  2625 Chips )
+Seat 2: 2pair05 (  9790 Chips )
+Seat 3: JAKEWOOD (  6529 Chips )
+Seat 4: EricBlade (  2058 Chips )
+Seat 5: snklzona (  17408 Chips )
+Nicole7: posts ante [ 75 Chips]
+2pair05: posts ante [ 75 Chips]
+JAKEWOOD: posts ante [ 75 Chips]
+EricBlade: posts ante [ 75 Chips]
+snklzona: posts ante [ 75 Chips]
+2pair05: posts small blind [ 300 Chips]
+JAKEWOOD: posts big blind [ 600 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ Jc, 6c ]
+EricBlade folds
+snklzona folds
+Nicole7 raises [ 1,200 Chips]
+2pair05 folds
+JAKEWOOD raises [ 1,200 Chips]
+Nicole7 raises [ 1,200 Chips]
+JAKEWOOD calls [ 600 Chips]
+** Dealing Flop ** [ Kd, 8d, As ]
+JAKEWOOD: bets [ 600 Chips]
+Nicole7 calls [ 150 Chips]
+** Dealing Turn ** [ 5d ]
+** Dealing River ** [ 9s ]
+Nicole7 shows [ 2d, 2c ] a pair of twos
+JAKEWOOD shows [ Ad, Ac ] three of a kind, aces
+JAKEWOOD wins 5775 chips from main pot with three of a kind, aces [ Ad, Ac, As, Kd, 9s ]
+
+
+
+Everleaf Gaming Game #282031206
+***** Hand history for game #282031206 *****
+600/1,200 Hold'em - 2011/06/23 - 17:49:59
+Table 1
+Seat 2 is the button
+Total number of players: 4
+Seat 2: 2pair05 (  9415 Chips )
+Seat 3: JAKEWOOD (  9679 Chips )
+Seat 4: EricBlade (  1983 Chips )
+Seat 5: snklzona (  17333 Chips )
+Seat 6: willy2105 ( new player )
+2pair05: posts ante [ 75 Chips]
+JAKEWOOD: posts ante [ 75 Chips]
+EricBlade: posts ante [ 75 Chips]
+snklzona: posts ante [ 75 Chips]
+JAKEWOOD: posts small blind [ 300 Chips]
+EricBlade: posts big blind [ 600 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ 7s, Js ]
+snklzona calls [ 600 Chips]
+2pair05 calls [ 600 Chips]
+JAKEWOOD calls [ 300 Chips]
+EricBlade checks
+** Dealing Flop ** [ 4d, Kd, Qc ]
+willy2105 has been reseated to this table
+JAKEWOOD checks
+EricBlade checks
+snklzona: bets [ 600 Chips]
+2pair05 folds
+JAKEWOOD folds
+EricBlade folds
+snklzona does not show cards
+snklzona wins 2700 chips from main pot
+
+
+
+Everleaf Gaming Game #282031335
+***** Hand history for game #282031335 *****
+600/1,200 Hold'em - 2011/06/23 - 17:50:29
+Table 1
+Seat 3 is the button
+Total number of players: 5
+Seat 2: 2pair05 (  8740 Chips )
+Seat 3: JAKEWOOD (  9004 Chips )
+Seat 4: EricBlade (  1308 Chips )
+Seat 5: snklzona (  19358 Chips )
+Seat 6: willy2105 (  2925 Chips )
+2pair05: posts ante [ 75 Chips]
+JAKEWOOD: posts ante [ 75 Chips]
+EricBlade: posts ante [ 75 Chips]
+snklzona: posts ante [ 75 Chips]
+willy2105: posts ante [ 75 Chips]
+EricBlade: posts small blind [ 300 Chips]
+snklzona: posts big blind [ 600 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ 8d, 8c ]
+willy2105 folds
+2pair05 folds
+JAKEWOOD folds
+EricBlade raises [ 900 Chips]
+snklzona calls [ 600 Chips]
+** Dealing Flop ** [ 6h, 3c, 9s ]
+EricBlade: bets [ 33 Chips]
+snklzona calls [ 33 Chips]
+** Dealing Turn ** [ Th ]
+** Dealing River ** [ Jd ]
+EricBlade shows [ 8d, 8c ] a pair of eights
+snklzona shows [ Ah, 3s ] a pair of threes
+EricBlade wins 2841 chips from main pot with a pair of eights [ Jd, Th, 9s, 8d, 8c ]
+
+
+
+Everleaf Gaming Game #282031476
+***** Hand history for game #282031476 *****
+600/1,200 Hold'em - 2011/06/23 - 17:51:01
+Table 1
+Seat 4 is the button
+Total number of players: 5
+Seat 2: 2pair05 (  8665 Chips )
+Seat 3: JAKEWOOD (  8929 Chips )
+Seat 4: EricBlade (  2841 Chips )
+Seat 5: snklzona (  18050 Chips )
+Seat 6: willy2105 (  2850 Chips )
+2pair05: posts ante [ 75 Chips]
+JAKEWOOD: posts ante [ 75 Chips]
+EricBlade: posts ante [ 75 Chips]
+snklzona: posts ante [ 75 Chips]
+willy2105: posts ante [ 75 Chips]
+snklzona: posts small blind [ 300 Chips]
+willy2105: posts big blind [ 600 Chips]
+** Dealing down cards **
+Dealt to EricBlade [ 8c, 9c ]
+2pair05 folds
+JAKEWOOD folds
+EricBlade raises [ 1,200 Chips]
+snklzona calls [ 900 Chips]
+willy2105 raises [ 1,200 Chips]
+EricBlade calls [ 600 Chips]
+snklzona calls [ 600 Chips]
+** Dealing Flop ** [ 7h, 2h, 8s ]
+snklzona checks
+willy2105: bets [ 600 Chips]
+EricBlade raises [ 966 Chips]
+snklzona calls [ 966 Chips]
+willy2105 raises [ 375 Chips]
+snklzona calls [ 9 Chips]
+** Dealing Turn ** [ 5d ]
+** Dealing River ** [ Jh ]
+EricBlade shows [ 8c, 9c ] a pair of eights
+snklzona shows [ 6d, Td ] high card jack
+willy2105 shows [ Ts, Th ] a pair of tens
+willy2105 wins 8673 chips from main pot with a pair of tens [ Jh, Ts, Th, 8s, 7h ]
+willy2105 wins 18 chips from side pot with a pair of tens [ Jh, Ts, Th, 8s, 7h ]
+
+
+

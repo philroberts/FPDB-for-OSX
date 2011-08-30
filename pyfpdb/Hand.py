@@ -29,6 +29,7 @@ from decimal_wrapper import Decimal
 import operator
 import time,datetime
 from copy import deepcopy
+from string import upper
 import pprint
 
 import logging
@@ -59,7 +60,6 @@ class Hand(object):
         self.saveActions = self.config.get_import_parameters().get('saveActions')
         self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
         self.cacheSessions = self.config.get_import_parameters().get("cacheSessions")
-        #log = Configuration.get_logger("logging.conf", "db", log_dir=self.config.dir_log)
         self.sitename = sitename
         self.siteId = self.config.get_site_id(sitename)
         self.stats = DerivedStats.DerivedStats(self)
@@ -221,7 +221,7 @@ dealt   whether they were seen in a 'dealt to' line
         try:
             self.checkPlayerExists(player)
         except FpdbParseError, e:
-            log.error(_("[ERROR] Tried to add holecards for unknown player: %s") % (player,))
+            log.error(_("Tried to add holecards for unknown player: '%s'") % (player,))
             return
 
         if dealt:  self.dealt.add(player)
@@ -506,14 +506,14 @@ rank        (int) rank the player finished the tournament"""
             log.debug("markStreets:\n"+ str(self.streets))
         else:
             tmp = self.handText[0:100]
-            log.error(_("markstreets didn't match - Assuming hand %s was cancelled") % self.handid)
+            log.debug(_("Streets didn't match - Assuming hand %s was cancelled.") % (self.handid) + " " + _("First 100 characters: %s") % tmp)
             self.cancelled = True
-            raise FpdbParseError(_("markStreets appeared to fail: First 100 chars: '%s'") % tmp)
+            raise FpdbParseError(_("Streets didn't match - Assuming hand %s was cancelled.") % (self.handid) + " " + _("First 100 characters: %s") % tmp)
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
-            log.error(_("DEBUG:") + " checkPlayerExists: " + _("%s fail on hand number %s") % (player, self.handid))
-            raise FpdbParseError("checkPlayerExists: " + _("%s fail on hand number %s") % (player, self.handid))
+            log.debug("checkPlayerExists: " + _("'%s' fail on hand number %s") % (player, self.handid))
+            raise FpdbParseError("checkPlayerExists: " + _("'%s' fail on hand number %s") % (player, self.handid))
 
     def setCommunityCards(self, street, cards):
         log.debug("setCommunityCards %s %s" %(street,  cards))
@@ -940,7 +940,7 @@ class HoldemOmahaHand(Hand):
             #    log.warning(_("HoldemOmahaHand.__init__:Can't assemble hand from db without a handid"))
             print "DEBUG: HoldemOmaha hand initialised for select()"
         else:
-            log.warning(_("HoldemOmahaHand.__init__:Neither HHC nor DB+handid provided"))
+            log.warning("HoldemOmahaHand.__init__: " + _("Neither HHC nor DB+handID provided"))
             pass
 
 
@@ -979,11 +979,13 @@ class HoldemOmahaHand(Hand):
 
         for street in self.holeStreets:
             if player in self.holecards[street].keys():
-                hcs[0] = self.holecards[street][player][1][0]
-                hcs[1] = self.holecards[street][player][1][1]
+                for i in 0,1:
+                    hcs[i] = self.holecards[street][player][1][i]
+                    hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 try:
-                    hcs[2] = self.holecards[street][player][1][2]
-                    hcs[3] = self.holecards[street][player][1][3]
+                    for i in 2,3:
+                        hcs[i] = self.holecards[street][player][1][i]
+                        hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 except IndexError:
                     pass
 
@@ -1213,7 +1215,7 @@ class DrawHand(Hand):
             hhc.markStreets(self)
             # markStreets in Draw may match without dealing cards
             if self.streets['DEAL'] == None:
-                raise FpdbParseError(_("DrawHand.__init__: street 'DEAL' is empty. Hand cancelled? HandID: '%s'") % self.handid)
+                raise FpdbParseError("DrawHand.__init__: " + _("Street 'DEAL' is empty. Was hand %s cancelled?") % self.handid)
             hhc.readBlinds(self)
             hhc.readAntes(self)
             hhc.readButton(self)
@@ -1442,7 +1444,7 @@ closed    likewise, but known only to player
             self.checkPlayerExists(player)
             self.holecards[street][player] = (open, closed)
         except FpdbParseError, e:
-            log.error(_("[ERROR] Tried to add holecards for unknown player: %s") % (player,))
+            log.error(_("Tried to add holecards for unknown player: %s") % (player,))
 
     # TODO: def addComplete(self, player, amount):
     def addComplete(self, street, player, amountTo):
@@ -1652,7 +1654,7 @@ Add a complete on [street] by [player] to [amountTo]
                 holecards = [u'0x', u'0x'] + holecards
             else:
                 log.warning(_("join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should be impossible for anyone who is not a hero"))
-                log.warning(_("join_holcards: holecards(%s): %s") %(player, holecards))
+                log.warning("join_holcards: holecards(%s): %s" % (player, holecards))
             if holecards == [u'0x', u'0x']:
                 log.warning(_("join_holecards: Player '%s' appears not to have been dealt a card"))
                 # If a player is listed but not dealt a card in a cash game this can occur
@@ -1731,8 +1733,8 @@ class Pot(object):
                 self.pots += [sum([min(v,v1) for (v,k) in commitsall])]
                 commitsall = [((v-v1),k) for (v,k) in commitsall if v-v1 >0]
         except IndexError, e:
-            log.error(_("Pot.end(): Major failure while calculating pot: '%s'") % e)
-            raise FpdbParseError(_("Pot.end(): Major failure while calculating pot: '%s'") % e)
+            log.error(_("Major failure while calculating pot: '%s'") % e)
+            raise FpdbParseError(_("Major failure while calculating pot: '%s'") % e)
 
         # TODO: I think rake gets taken out of the pots.
         # so it goes:
@@ -1745,7 +1747,6 @@ class Pot(object):
         if self.sym is None:
             self.sym = "C"
         if self.total is None:
-            print (_("DEBUG:") + " " + _("call Pot.end() before printing pot total"))
             # NB if I'm sure end() is idempotent, call it here.
             raise FpdbParseError(_("Error in printing Hand object"))
 
