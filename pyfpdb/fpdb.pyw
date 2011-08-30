@@ -98,6 +98,7 @@ class fpdb:
         """adds a tab, namely creates the button and displays it and appends all the relevant arrays"""
         for name in self.nb_tab_names:  # todo: check this is valid
             if name == new_tab_name:
+                self.display_tab(new_tab_name)
                 return  # if tab already exists, just go to it
 
         used_before = False
@@ -1091,7 +1092,7 @@ class fpdb:
         self.add_and_display_tab(ps_tab, _("Positional Stats"))
 
     def tab_session_stats(self, widget, data=None):
-        new_ps_thread = GuiSessionViewer.GuiSessionViewer(self.config, self.sql, self.window)
+        new_ps_thread = GuiSessionViewer.GuiSessionViewer(self.config, self.sql, self.window, self)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, _("Session Stats"))
