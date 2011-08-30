@@ -1343,7 +1343,7 @@ class Config:
         except:  imp['saveStarsHH'] = False
 
         try:    imp['fastStoreHudCache'] = self.imp.fastStoreHudCache
-        except:  imp['fastStoreHudCache'] = True
+        except:  imp['fastStoreHudCache'] = False
 
         return imp
 
