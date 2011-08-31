@@ -914,7 +914,7 @@ class fpdb:
         print (_("Logfile is %s") % os.path.join(self.config.dir_log, self.config.log_file))
         if self.config.example_copy or self.display_config_created_dialogue:
             self.info_box(_("Config file"),
-                          _("Config file has been created at %s.") % self.config.file
+                          _("Config file has been created at %s.") % self.config.file + " "
                            + _("Enter your screen_name and hand history path in the Site Preferences window (Main menu) before trying to import hands."))
             self.display_config_created_dialogue = False
         self.settings = {}
