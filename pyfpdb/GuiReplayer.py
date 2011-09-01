@@ -406,11 +406,11 @@ class GuiReplayer:
         ###### End section ########
         if gametype['base'] == 'hold':
             h = HoldemOmahaHand(config = self.conf, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
-            h.select(self.db, handid)
         elif gametype['base'] == 'stud':
-            print "DEBUG: Create stud hand here"
+            h = StudHand(config = self.conf, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
         elif gametype['base'] == 'draw':
-            print "DEBUG: Create draw hand here"
+            h = DrawHand(config = self.conf, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
+        h.select(self.db, handid)
         return h
 
     def play_clicked(self, button):
