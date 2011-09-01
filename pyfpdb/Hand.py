@@ -937,10 +937,7 @@ class HoldemOmahaHand(Hand):
             hhc.readOther(self)
             #print "\nHand:\n"+str(self)
         elif builtFrom == "DB":
-            #if handid is not None:
-            #    self.select(handid) # Will need a handId
-            #else:
-            #    log.warning(_("HoldemOmahaHand.__init__:Can't assemble hand from db without a handid"))
+            # Creator expected to call hhc.select(hid) to fill out object
             print "DEBUG: HoldemOmaha hand initialised for select()"
             self.maxseats = 10
         else:
@@ -1197,7 +1194,7 @@ class HoldemOmahaHand(Hand):
         print >>fh, "\n\n"
 
 class DrawHand(Hand):
-    def __init__(self, config, hhc, sitename, gametype, handText, builtFrom = "HHC"):
+    def __init__(self, config, hhc, sitename, gametype, handText, builtFrom = "HHC", handid=None):
         self.config = config
         if gametype['base'] != 'draw':
             pass # or indeed don't pass and complain instead
@@ -1238,7 +1235,9 @@ class DrawHand(Hand):
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
         elif builtFrom == "DB":
-            self.select("dummy") # Will need a handId
+            # Creator expected to call hhc.select(hid) to fill out object
+            print "DEBUG: DrawHand initialised for select()"
+            self.maxseats = 10
 
     def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False, string=None):
         if player == self.hero: # we have hero's cards just update shown/mucked
@@ -1376,7 +1375,7 @@ class DrawHand(Hand):
 
 
 class StudHand(Hand):
-    def __init__(self, config, hhc, sitename, gametype, handText, builtFrom = "HHC"):
+    def __init__(self, config, hhc, sitename, gametype, handText, builtFrom = "HHC", handid=None):
         self.config = config
         if gametype['base'] != 'stud':
             pass # or indeed don't pass and complain instead
@@ -1418,7 +1417,9 @@ class StudHand(Hand):
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
         elif builtFrom == "DB":
-            self.select("dummy") # Will need a handId
+            # Creator expected to call hhc.select(hid) to fill out object
+            print "DEBUG: StudHand initialised for select()"
+            self.maxseats = 10
 
     def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False, string=None):
         if player == self.hero: # we have hero's cards just update shown/mucked
