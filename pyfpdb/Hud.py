@@ -558,7 +558,7 @@ class Hud:
                         if number[0] > (float(this_stat.stat_hith)/100):
                             window.labels[r][c].setTextColor_(parseColor(this_stat.stat_hicolor))
 
-                    window.labels[r][c].setStringValue_(statstring)
+                    window.labels[r][c].setStringValue_(unicode(statstring))
                     if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
                         unhidewindow = True
                     tip = "%s\n%s\n%s, %s" % (statd['screen_name'], number[5], number[3], number[4])
