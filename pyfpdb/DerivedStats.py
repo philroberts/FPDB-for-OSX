@@ -474,7 +474,14 @@ class DerivedStats():
                                     ] )
         self.handsstove += [i[:6] + [0] for i in inserts_temp]
         startstreet = None
-        for street, board in boards.iteritems():
+        streets = [str] * len(Card.streets[game[0]])
+        for street, idx in Card.streets[game[0]].items():
+            streets[idx] = street
+        for street in streets:
+            try:
+                board = boards[street]
+            except KeyError:
+                continue
             tid = Card.streets[game[0]][street]
             for n in range(len(board['board'])):
                 if len(board['board']) > 1: 
