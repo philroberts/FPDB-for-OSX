@@ -280,7 +280,7 @@ class GuiReplayer:
 
         state = self.states[int(self.state.get_value())]
 
-        padding = 5
+        padding = 6
         communityLeft = int(self.tableImage.get_width() / 2 - 2.5 * self.cardwidth - 2 * padding)
         communityTop = int(self.tableImage.get_height() / 2 - 1.5 * self.cardheight)
 
