@@ -150,6 +150,7 @@ class GuiReplayer:
         self.replayBox.pack_start(self.stateSlider, False)
 
         self.tableImage = None
+        self.playerBackdrop = None
         self.cardImages = None
         self.playing = False
 
@@ -250,8 +251,9 @@ class GuiReplayer:
         self.style = self.area.get_style()
         self.gc = self.style.fg_gc[gtk.STATE_NORMAL]
 
-        if self.tableImage is None:
+        if self.tableImage is None or self.playerBackdrop is None:
             try:
+                self.playerBackdrop = gtk.gdk.pixbuf_new_from_file("../gfx/playerbackdrop.png")
                 self.tableImage = gtk.gdk.pixbuf_new_from_file("../gfx/Table.png")
                 self.area.set_size_request(self.tableImage.get_width(), self.tableImage.get_height())
             except:
@@ -295,6 +297,7 @@ class GuiReplayer:
         for player in state.players.values():
             playerx = convertx(player.x)
             playery = converty(player.y)
+            self.area.window.draw_pixbuf(self.gc, self.playerBackdrop, 0, 0, playerx - self.playerBackdrop.get_width() / 2, playery - padding / 2)
             if player.action=="folds":
                 color = cm.alloc_color("grey") #player has folded => greyed out
                 self.gc.set_foreground(color)
