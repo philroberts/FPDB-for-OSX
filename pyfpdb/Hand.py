@@ -522,6 +522,7 @@ rank        (int) rank the player finished the tournament"""
 
     def card(self,c):
         """upper case the ranks but not suits, 'atjqk' => 'ATJQK'"""
+        c = c.replace("10", "T")
         for k,v in self.UPS.items():
             c = c.replace(k,v)
         return c
@@ -981,11 +982,11 @@ class HoldemOmahaHand(Hand):
         for street in self.holeStreets:
             if player in self.holecards[street].keys():
                 for i in 0,1:
-                    hcs[i] = self.holecards[street][player][1][i]
+                    hcs[i] = self.holecards[street][player][1][i].replace('10', 'T')
                     hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 try:
                     for i in 2,3:
-                        hcs[i] = self.holecards[street][player][1][i]
+                        hcs[i] = self.holecards[street][player][1][i].replace('10', 'T')
                         hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 except IndexError:
                     pass
@@ -1734,7 +1735,6 @@ class Pot(object):
                 self.pots += [(sum([min(v,v1) for (v,k) in commitsall]), set(k for (v,k) in commitsall if k in self.contenders))]
                 commitsall = [((v-v1),k) for (v,k) in commitsall if v-v1 >0]
         except IndexError, e:
-            log.error(_("Major failure while calculating pot: '%s'") % e)
             raise FpdbParseError(_("Major failure while calculating pot: '%s'") % e)
 
         # TODO: I think rake gets taken out of the pots.

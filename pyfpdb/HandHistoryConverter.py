@@ -185,9 +185,10 @@ Otherwise, finish at EOF.
         # Some HH formats leave dangling text after the split
         # ie. </game> (split) </session>EOL
         # Remove this dangler if less than 50 characters and warn in the log
-        if len(handlist[-1]) <= 50:
-            handlist.pop()
-            log.warn(_("Removing text < 50 characters"))
+        for i in (-1, 0, 0):
+            if len(handlist[i]) <= 50:
+                handlist.pop()
+                log.warn(_("Removing text < 50 characters"))                                    
         return handlist
 
     def processHand(self, handText):
