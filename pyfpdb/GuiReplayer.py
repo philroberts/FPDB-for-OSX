@@ -306,26 +306,24 @@ class GuiReplayer:
                 cardIndex = Card.encodeCard(player.holecards[3:5])
                 self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + padding / 2, playery - self.cardheight, -1, -1)
 
-            self.pangolayout.set_text(player.name + player.holecards)     #player names + holecards
-            self.area.window.draw_layout(self.gc, playerx, playery, self.pangolayout)
-            self.pangolayout.set_text(self.currency + str(player.stack))     #player stacks
-            self.area.window.draw_layout(self.gc, playerx + 10, playery + 20, self.pangolayout)
+            self.pangolayout.set_text("%s %s%.2f" % (player.name, self.currency, player.stack))
+            self.area.window.draw_layout(self.gc, playerx - self.pangolayout.get_pixel_size()[0] / 2, playery, self.pangolayout)
 
             if player.justacted:
                 color = cm.alloc_color("red")   #highlights the action
                 self.gc.set_foreground(color)
 
                 self.pangolayout.set_text(player.action)
-                self.area.window.draw_layout(self.gc, playerx + 10, playery + 35, self.pangolayout)
+                self.area.window.draw_layout(self.gc, playerx - self.pangolayout.get_pixel_size()[0] / 2, playery + self.pangolayout.get_pixel_size()[1], self.pangolayout)
             if player.chips != 0:  #displays amount
-                self.pangolayout.set_text(self.currency + str(player.chips))
-                self.area.window.draw_layout(self.gc, playerx + 10, playery + 55, self.pangolayout)
+                self.pangolayout.set_text("%s%.2f" % (self.currency, player.chips))
+                self.area.window.draw_layout(self.gc, convertx(player.x * .65) - self.pangolayout.get_pixel_size()[0] / 2, converty(player.y * 0.65), self.pangolayout)
 
         color = cm.alloc_color("white")
         self.gc.set_foreground(color)
 
-        self.pangolayout.set_text(self.currency+str(state.pot)) #displays pot
-        self.area.window.draw_layout(self.gc,self.tableImage.get_width() / 2,270, self.pangolayout)
+        self.pangolayout.set_text("%s%.2f" % (self.currency, state.pot)) #displays pot
+        self.area.window.draw_layout(self.gc,self.tableImage.get_width() / 2 - self.pangolayout.get_pixel_size()[0] / 2, self.tableImage.get_height() / 2, self.pangolayout)
 
         if state.showFlop:
             cardIndex = Card.encodeCard(state.flop[0])
