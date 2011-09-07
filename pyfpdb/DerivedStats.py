@@ -116,7 +116,7 @@ class DerivedStats():
     def getStats(self, hand):
         for player in hand.players:
             self.handsplayers[player[1]] = self._initStats.copy()
-
+        
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
 
@@ -389,7 +389,7 @@ class DerivedStats():
                                         cards  = [str(c) for c in cards]
                                         bcards = []
                                 holecards[player[1]]['cards'] += [cards]
-                                if (u'0x' not in cards and 'null' not in cards) and ((game[0] == 'hold' and len(board['board'][n])>=3) or 
+                                if (u'0x' not in cards and 'Nu' not in cards) and ((game[0] == 'hold' and len(board['board'][n])>=3) or 
                                    (game[0] == 'stud' and len(cards)==7) or (game[0] == 'draw' and len(cards)==5)):
                                      if game[2] == 'h':
                                          best_hi = pokereval.best_hand("hi", cards, bcards)
@@ -490,11 +490,17 @@ class DerivedStats():
                         bid = n
                         portion = 1
                     if board['allin']:
-                        if len([p for p in players if u'0x' not in holecards[p]['cards'][n] and 'null' not in holecards[p]['cards'][n]]) > 0:
+                        if len([p for p in players
+                                if p in holecards 
+                                and u'0x' not in holecards[p]['cards'][n] 
+                                and 'Nu' not in holecards[p]['cards'][n]]) > 0:
                             if not startstreet: startstreet = street
                             bcards = [str(b) for b in board['board'][n]]
                             b = bcards + (5 - len(board['board'][n])) * ['__']
-                            holeshow = [holecards[p]['hole'] for p in players if self.handsplayers[p]['sawShowdown']]
+                            holeshow = [holecards[p]['hole'] for p in players 
+                                        if self.handsplayers[p]['sawShowdown'] 
+                                        and u'0x' not in holecards[p]['cards'][n]
+                                        and 'Nu' not in holecards[p]['cards'][n]]
                             if len(holeshow)> 1:
                                 evs = pokereval.poker_eval(game = game[1]
                                                           ,iterations = Card.iter[tid]
