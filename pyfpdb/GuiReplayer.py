@@ -289,8 +289,8 @@ class GuiReplayer:
         color = cm.alloc_color("white") #defaults to black
         self.gc.set_foreground(color)
 
-        convertx = lambda x: int(x * self.tableImage.get_width() * 0.85) + self.cardwidth
-        converty = lambda y: int(y * self.tableImage.get_height() * 0.6) + self.cardheight * 2
+        convertx = lambda x: int(x * self.tableImage.get_width() * 0.8) + self.tableImage.get_width() / 2
+        converty = lambda y: int(y * self.tableImage.get_height() * 0.6) + self.tableImage.get_height() / 2
 
         for player in state.players.values():
             if player.action=="folds":
@@ -535,8 +535,8 @@ class Player:
         self.action    = None
         self.justacted = False
         self.holecards = hand.join_holecards(name)
-        self.x         = 0.5 + 0.5 * math.cos(2 * self.seat * math.pi / hand.maxseats)
-        self.y         = 0.5 + 0.5 * math.sin(2 * self.seat * math.pi / hand.maxseats)
+        self.x         = 0.5 * math.cos(2 * self.seat * math.pi / hand.maxseats)
+        self.y         = 0.5 * math.sin(2 * self.seat * math.pi / hand.maxseats)
 
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""
