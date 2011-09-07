@@ -293,21 +293,21 @@ class GuiReplayer:
         converty = lambda y: int(y * self.tableImage.get_height() * 0.6) + self.tableImage.get_height() / 2
 
         for player in state.players.values():
+            playerx = convertx(player.x)
+            playery = converty(player.y)
             if player.action=="folds":
                 color = cm.alloc_color("grey") #player has folded => greyed out
                 self.gc.set_foreground(color)
             else:
                 color = cm.alloc_color("white") #player is live
                 self.gc.set_foreground(color)
+                cardIndex = Card.encodeCard(player.holecards[0:2])
+                self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx - self.cardwidth - padding / 2, playery - self.cardheight, -1, -1)
+                cardIndex = Card.encodeCard(player.holecards[3:5])
+                self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + padding / 2, playery - self.cardheight, -1, -1)
 
-            playerx = convertx(player.x)
-            playery = converty(player.y)
             self.pangolayout.set_text(player.name + player.holecards)     #player names + holecards
             self.area.window.draw_layout(self.gc, playerx, playery, self.pangolayout)
-            cardIndex = Card.encodeCard(player.holecards[0:2])
-            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx, playery - self.cardheight, -1, -1)
-            cardIndex = Card.encodeCard(player.holecards[3:5])
-            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + self.cardwidth + padding, playery - self.cardheight, -1, -1)
             self.pangolayout.set_text(self.currency + str(player.stack))     #player stacks
             self.area.window.draw_layout(self.gc, playerx + 10, playery + 20, self.pangolayout)
 
