@@ -150,6 +150,7 @@ class GuiReplayer:
         self.replayBox.pack_start(self.stateSlider, False)
 
         self.tableImage = None
+        self.playerBackdrop = None
         self.cardImages = None
         self.playing = False
 
@@ -250,8 +251,9 @@ class GuiReplayer:
         self.style = self.area.get_style()
         self.gc = self.style.fg_gc[gtk.STATE_NORMAL]
 
-        if self.tableImage is None:
+        if self.tableImage is None or self.playerBackdrop is None:
             try:
+                self.playerBackdrop = gtk.gdk.pixbuf_new_from_file("../gfx/playerbackdrop.png")
                 self.tableImage = gtk.gdk.pixbuf_new_from_file("../gfx/Table.png")
                 self.area.set_size_request(self.tableImage.get_width(), self.tableImage.get_height())
             except:
@@ -280,7 +282,7 @@ class GuiReplayer:
 
         state = self.states[int(self.state.get_value())]
 
-        padding = 5
+        padding = 6
         communityLeft = int(self.tableImage.get_width() / 2 - 2.5 * self.cardwidth - 2 * padding)
         communityTop = int(self.tableImage.get_height() / 2 - 1.5 * self.cardheight)
 
@@ -289,47 +291,44 @@ class GuiReplayer:
         color = cm.alloc_color("white") #defaults to black
         self.gc.set_foreground(color)
 
-        convertx = lambda x: int(x * self.tableImage.get_width() * 0.85) + self.cardwidth
-        converty = lambda y: int(y * self.tableImage.get_height() * 0.6) + self.cardheight * 2
+        convertx = lambda x: int(x * self.tableImage.get_width() * 0.8) + self.tableImage.get_width() / 2
+        converty = lambda y: int(y * self.tableImage.get_height() * 0.6) + self.tableImage.get_height() / 2
 
         for player in state.players.values():
+            playerx = convertx(player.x)
+            playery = converty(player.y)
+            self.area.window.draw_pixbuf(self.gc, self.playerBackdrop, 0, 0, playerx - self.playerBackdrop.get_width() / 2, playery - padding / 2)
             if player.action=="folds":
                 color = cm.alloc_color("grey") #player has folded => greyed out
                 self.gc.set_foreground(color)
             else:
                 color = cm.alloc_color("white") #player is live
                 self.gc.set_foreground(color)
+                cardIndex = Card.encodeCard(player.holecards[0:2])
+                self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx - self.cardwidth - padding / 2, playery - self.cardheight, -1, -1)
+                cardIndex = Card.encodeCard(player.holecards[3:5])
+                self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + padding / 2, playery - self.cardheight, -1, -1)
 
-            playerx = convertx(player.x)
-            playery = converty(player.y)
-            self.pangolayout.set_text(player.name + player.holecards)     #player names + holecards
-            self.area.window.draw_layout(self.gc, playerx, playery, self.pangolayout)
-            cardIndex = Card.encodeCard(player.holecards[0:2])
-            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx, playery - self.cardheight, -1, -1)
-            cardIndex = Card.encodeCard(player.holecards[3:5])
-            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + self.cardwidth + padding, playery - self.cardheight, -1, -1)
-            self.pangolayout.set_text(self.currency + str(player.stack))     #player stacks
-            self.area.window.draw_layout(self.gc, playerx + 10, playery + 20, self.pangolayout)
+            self.pangolayout.set_text("%s %s%.2f" % (player.name, self.currency, player.stack))
+            self.area.window.draw_layout(self.gc, playerx - self.pangolayout.get_pixel_size()[0] / 2, playery, self.pangolayout)
 
             if player.justacted:
                 color = cm.alloc_color("red")   #highlights the action
                 self.gc.set_foreground(color)
 
                 self.pangolayout.set_text(player.action)
-                self.area.window.draw_layout(self.gc, playerx + 10, playery + 35, self.pangolayout)
+                self.area.window.draw_layout(self.gc, playerx - self.pangolayout.get_pixel_size()[0] / 2, playery + self.pangolayout.get_pixel_size()[1], self.pangolayout)
             if player.chips != 0:  #displays amount
-                self.pangolayout.set_text(self.currency + str(player.chips))
-                self.area.window.draw_layout(self.gc, playerx + 10, playery + 55, self.pangolayout)
+                self.pangolayout.set_text("%s%.2f" % (self.currency, player.chips))
+                self.area.window.draw_layout(self.gc, convertx(player.x * .65) - self.pangolayout.get_pixel_size()[0] / 2, converty(player.y * 0.65), self.pangolayout)
 
         color = cm.alloc_color("white")
         self.gc.set_foreground(color)
 
-        self.pangolayout.set_text(self.currency+str(state.pot)) #displays pot
-        self.area.window.draw_layout(self.gc,self.tableImage.get_width() / 2,270, self.pangolayout)
+        self.pangolayout.set_text("%s%.2f" % (self.currency, state.pot)) #displays pot
+        self.area.window.draw_layout(self.gc,self.tableImage.get_width() / 2 - self.pangolayout.get_pixel_size()[0] / 2, self.tableImage.get_height() / 2, self.pangolayout)
 
         if state.showFlop:
-            self.pangolayout.set_text(state.flop[0] + " " + state.flop[1] + " " + state.flop[2])
-            self.area.window.draw_layout(self.gc,communityLeft,communityTop + self.cardheight, self.pangolayout)
             cardIndex = Card.encodeCard(state.flop[0])
             self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft, communityTop, -1, -1)
             cardIndex = Card.encodeCard(state.flop[1])
@@ -337,13 +336,9 @@ class GuiReplayer:
             cardIndex = Card.encodeCard(state.flop[2])
             self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + 2 * (self.cardwidth + padding), communityTop, -1, -1)
         if state.showTurn:
-            self.pangolayout.set_text(state.turn[0])
-            self.area.window.draw_layout(self.gc,communityLeft + 60,communityTop + self.cardheight, self.pangolayout)
             cardIndex = Card.encodeCard(state.turn[0])
             self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + 3 * (self.cardwidth + padding), communityTop, -1, -1)
         if state.showRiver:
-            self.pangolayout.set_text(state.river[0])
-            self.area.window.draw_layout(self.gc,communityLeft + 80,communityTop + self.cardheight, self.pangolayout)
             cardIndex = Card.encodeCard(state.river[0])
             self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + 4 * (self.cardwidth + padding), communityTop, -1, -1)
 
@@ -444,14 +439,14 @@ class GuiReplayer:
 
 class TableState:
     def __init__(self, hand):
-        self.pot = 0
+        self.pot = Decimal(0)
         self.flop = hand.board["FLOP"]
         self.turn = hand.board["TURN"]
         self.river = hand.board["RIVER"]
         self.showFlop = False
         self.showTurn = False
         self.showRiver = False
-        self.bet = 0
+        self.bet = Decimal(0)
 
         self.players = {}
 
@@ -473,8 +468,8 @@ class TableState:
         for player in self.players.values():
             player.justacted = False
             self.pot += player.chips
-            player.chips = 0
-        self.bet = 0
+            player.chips = Decimal(0)
+        self.bet = Decimal(0)
 
         if phase == "FLOP":
             self.showFlop = True
@@ -516,10 +511,10 @@ class TableState:
             print "unhandled action: " + str(action)
 
     def endHand(self, collectees):
-        self.pot = 0
+        self.pot = Decimal(0)
         for player in self.players.values():
             player.justacted = False
-            player.chips = 0
+            player.chips = Decimal(0)
         for name,amount in collectees.items():
             player = self.players[name]
             player.chips += amount
@@ -529,14 +524,14 @@ class TableState:
 class Player:
     def __init__(self, hand, name, stack, seat):
         self.stack     = Decimal(stack)
-        self.chips     = 0
+        self.chips     = Decimal(0)
         self.seat      = seat
         self.name      = name
         self.action    = None
         self.justacted = False
         self.holecards = hand.join_holecards(name)
-        self.x         = 0.5 + 0.5 * math.cos(2 * self.seat * math.pi / hand.maxseats)
-        self.y         = 0.5 + 0.5 * math.sin(2 * self.seat * math.pi / hand.maxseats)
+        self.x         = 0.5 * math.cos(2 * self.seat * math.pi / hand.maxseats)
+        self.y         = 0.5 * math.sin(2 * self.seat * math.pi / hand.maxseats)
 
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""
