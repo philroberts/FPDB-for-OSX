@@ -328,8 +328,6 @@ class GuiReplayer:
         self.area.window.draw_layout(self.gc,self.tableImage.get_width() / 2,270, self.pangolayout)
 
         if state.showFlop:
-            self.pangolayout.set_text(state.flop[0] + " " + state.flop[1] + " " + state.flop[2])
-            self.area.window.draw_layout(self.gc,communityLeft,communityTop + self.cardheight, self.pangolayout)
             cardIndex = Card.encodeCard(state.flop[0])
             self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft, communityTop, -1, -1)
             cardIndex = Card.encodeCard(state.flop[1])
@@ -337,13 +335,9 @@ class GuiReplayer:
             cardIndex = Card.encodeCard(state.flop[2])
             self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + 2 * (self.cardwidth + padding), communityTop, -1, -1)
         if state.showTurn:
-            self.pangolayout.set_text(state.turn[0])
-            self.area.window.draw_layout(self.gc,communityLeft + 60,communityTop + self.cardheight, self.pangolayout)
             cardIndex = Card.encodeCard(state.turn[0])
             self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + 3 * (self.cardwidth + padding), communityTop, -1, -1)
         if state.showRiver:
-            self.pangolayout.set_text(state.river[0])
-            self.area.window.draw_layout(self.gc,communityLeft + 80,communityTop + self.cardheight, self.pangolayout)
             cardIndex = Card.encodeCard(state.river[0])
             self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + 4 * (self.cardwidth + padding), communityTop, -1, -1)
 
