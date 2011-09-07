@@ -38,8 +38,25 @@ import wnck
 from TableWindow import Table_Window
 import Configuration
 
-#    We might as well do this once and make them globals
+# Wnck caches the results of queries. A window once retrieved remains in
+# the list of Wnck internal objects even after the window no longer
+# exists. To make things worse, event callbacks for signal
+# "window-closed" can only be set for the WnckScreen, not for individual
+# WnckWindow objects. For this reason, we need to track the known table
+# windows.
+WNCK_XTABLES = set()
+
+# Prototype for callback is 'func(WnckScreen, WnckWindow, user_data)';
+# We're only interested in the XID of tables we're tracking.
+def remove_wnck_win(scr, w, *args):
+    _xid = w.get_xid()
+    if _xid in WNCK_XTABLES:
+        WNCK_XTABLES.remove(_xid)
+
+# Connect the signal handler to the single global root (screen)
 root = wnck.screen_get_default()
+root.connect('window-closed', remove_wnck_win)
+
 
 c = Configuration.Config()
 log = logging.getLogger("hud")
@@ -65,9 +82,14 @@ class Table(Table_Window):
                 log.info('"%s" matches: "%s"' % (w_title, self.search_string))
                 title = w_title.replace('"', '')
                 if self.check_bad_words(title): continue
+                # XXX: If we could connect to 'window-closed' here, it
+                # would make things SOOO much easier... Alas, the signal
+                # is not available for individual windows.
                 self.wnck_table_w = win
                 self.number = int(win.get_xid())
                 self.title = title
+                # XID is a consistent key
+                WNCK_XTABLES.add(self.number)
                 break
 
         if self.number is None:
@@ -106,16 +128,20 @@ class Table(Table_Window):
         #except:
             #return None
 
+    # This function serves a double purpose. It fetches the X geometry
+    # information from the WnckWindow, which is the normal behaviour -
+    # but it also is used to track for window lifecycle. When
+    # get_geometry() returns False [None is deal as False], the table is
+    # assumed dead and thus the HUD instance may be killed off.
     def get_geometry(self):
-        (_x, _y, _h, _w) = self.wnck_table_w.get_client_window_geometry()
-        try:
-            return {'x'        : int(_x),
-                    'y'        : int(_y),
-                    'width'    : int(_w),
-                    'height'   : int(_h)
-                   }
-        except AttributeError:
+        if self.number not in WNCK_XTABLES:
             return None
+        (_x, _y, _h, _w) = self.wnck_table_w.get_client_window_geometry()
+        return {'x'        : int(_x),
+                'y'        : int(_y),
+                'width'    : int(_w),
+                'height'   : int(_h)
+               }
 
     def get_window_title(self):
         return self.wnck_table_w.get_name()
