@@ -466,7 +466,7 @@ dealt   whether they were seen in a 'dealt to' line
 
         self.totalPot()
         self.rake = self.totalpot - self.totalcollected
-        self.writeHand()
+        #self.writeHand()
 
         #hhc.readShowdownActions(self)
         #hc.readShownCards(self)
@@ -938,7 +938,7 @@ class HoldemOmahaHand(Hand):
             #print "\nHand:\n"+str(self)
         elif builtFrom == "DB":
             # Creator expected to call hhc.select(hid) to fill out object
-            print "DEBUG: HoldemOmaha hand initialised for select()"
+            log.debug("HoldemOmahaHand.__init__: " + _("DEBUG: HoldemOmaha hand initialised for select()"))
             self.maxseats = 10
         else:
             log.warning("HoldemOmahaHand.__init__: " + _("Neither HHC nor DB+handID provided"))
