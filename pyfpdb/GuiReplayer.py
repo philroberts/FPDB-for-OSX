@@ -444,14 +444,14 @@ class GuiReplayer:
 
 class TableState:
     def __init__(self, hand):
-        self.pot = 0
+        self.pot = Decimal(0)
         self.flop = hand.board["FLOP"]
         self.turn = hand.board["TURN"]
         self.river = hand.board["RIVER"]
         self.showFlop = False
         self.showTurn = False
         self.showRiver = False
-        self.bet = 0
+        self.bet = Decimal(0)
 
         self.players = {}
 
@@ -473,8 +473,8 @@ class TableState:
         for player in self.players.values():
             player.justacted = False
             self.pot += player.chips
-            player.chips = 0
-        self.bet = 0
+            player.chips = Decimal(0)
+        self.bet = Decimal(0)
 
         if phase == "FLOP":
             self.showFlop = True
@@ -516,10 +516,10 @@ class TableState:
             print "unhandled action: " + str(action)
 
     def endHand(self, collectees):
-        self.pot = 0
+        self.pot = Decimal(0)
         for player in self.players.values():
             player.justacted = False
-            player.chips = 0
+            player.chips = Decimal(0)
         for name,amount in collectees.items():
             player = self.players[name]
             player.chips += amount
@@ -529,7 +529,7 @@ class TableState:
 class Player:
     def __init__(self, hand, name, stack, seat):
         self.stack     = Decimal(stack)
-        self.chips     = 0
+        self.chips     = Decimal(0)
         self.seat      = seat
         self.name      = name
         self.action    = None
