@@ -71,6 +71,20 @@ def card_renderer_cell_func(tree_column, cell, model, tree_iter, data):
     cell.set_property('pixbuf', pixbuf)
 
 
+# This function is a duplicate of 'ledger_style_render_func' in GuiRingPlayerStats
+# TODO: Pull generic cell formatting functions into something common.
+def cash_renderer_cell_func(tree_column, cell, model, tree_iter, data):
+    col = data
+    coldata = model.get_value(tree_iter, col)
+    if '-' in coldata:
+        coldata = coldata.replace("-", "")
+        coldata = "(%s)" %(coldata)
+        cell.set_property('foreground', 'red')
+    else:
+        cell.set_property('foreground', 'darkgreen')
+    cell.set_property('text', coldata)
+
+
 class GuiReplayer:
     def __init__(self, config, querylist, mainwin, options = None, debug=True):
         self.debug = debug
@@ -229,7 +243,7 @@ class GuiReplayer:
         self.handswin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
         self.handswin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.replayBox.pack_end(self.handswin)
-        liststore = gtk.ListStore(*([str] * 5))
+        liststore = gtk.ListStore(*([str] * 7))
         view = gtk.TreeView(model=liststore)
         view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
         self.handswin.add(view)
@@ -244,10 +258,10 @@ class GuiReplayer:
         view.insert_column_with_data_func(-1, 'Flop', gtk.CellRendererPixbuf(), card_renderer_cell_func, 1)
         view.insert_column_with_data_func(-1, 'Turn', gtk.CellRendererPixbuf(), card_renderer_cell_func, 2)
         view.insert_column_with_data_func(-1, 'River', gtk.CellRendererPixbuf(), card_renderer_cell_func, 3)
-        col = gtk.TreeViewColumn("Won")
-        col.pack_start(textcell)
-        col.add_attribute(textcell, 'text', 4)
-        view.append_column(col)
+        view.insert_column_with_data_func(-1, 'Won', textcell, cash_renderer_cell_func, 4)
+        view.insert_column_with_data_func(-1, 'Bet', textcell, cash_renderer_cell_func, 5)
+        view.insert_column_with_data_func(-1, 'Net', textcell, cash_renderer_cell_func, 6)
+
         selection = view.get_selection()
         selection.set_select_function(self.select_hand, None, True)
 
@@ -256,7 +270,9 @@ class GuiReplayer:
             won = 0
             if hero in hand.collectees.keys():
                 won = hand.collectees[hero]
-            liststore.append([hand.join_holecards(hero), hand.board["FLOP"], hand.board["TURN"], hand.board["RIVER"], str(won)])
+            bet = hand.pot.committed[hero]
+            net = won - bet
+            liststore.append([hand.join_holecards(hero), hand.board["FLOP"], hand.board["TURN"], hand.board["RIVER"], str(won), str(bet), str(net)])
         self.handswin.show_all()
 
     def select_hand(self, selection, model, path, is_selected, userdata):
