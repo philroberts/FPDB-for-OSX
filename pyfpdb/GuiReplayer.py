@@ -36,6 +36,54 @@ import copy
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
+# The ListView renderer data function requires a function signature of
+# renderer_cell_func(tree_column, cell, model, tree_iter, data)
+# Placing the function into the Replayer object changes the call singature
+# card_images has been made global to facilitate this.
+
+global card_images
+card_images = 53 * [0]
+
+def card_renderer_cell_func(tree_column, cell, model, tree_iter, data):
+    card_width  = 30
+    card_height = 42
+    col = data
+    coldata = model.get_value(tree_iter, col)
+    coldata = coldata.replace("'","")
+    coldata = coldata.replace("[","")
+    coldata = coldata.replace("]","")
+    coldata = coldata.replace("'","")
+    coldata = coldata.replace(",","")
+    #print "DEBUG: coldata: %s" % (coldata)
+    cards = [Card.encodeCard(c) for c in coldata.split(' ')]
+    n_cards = len(cards)
+
+    #print "DEBUG: cards: %s" % cards
+    pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8, card_width * n_cards, card_height)
+    if pixbuf:
+        x = 0 # x coord where the next card starts in scratch
+        for card in cards:
+            if card == None or card ==0:
+                card_images[0].copy_area(0, 0, card_width, card_height, pixbuf, x, 0)
+
+            card_images[card].copy_area(0, 0, card_width, card_height, pixbuf, x, 0)
+            x = x + card_width
+    cell.set_property('pixbuf', pixbuf)
+
+
+# This function is a duplicate of 'ledger_style_render_func' in GuiRingPlayerStats
+# TODO: Pull generic cell formatting functions into something common.
+def cash_renderer_cell_func(tree_column, cell, model, tree_iter, data):
+    col = data
+    coldata = model.get_value(tree_iter, col)
+    if '-' in coldata:
+        coldata = coldata.replace("-", "")
+        coldata = "(%s)" %(coldata)
+        cell.set_property('foreground', 'red')
+    else:
+        cell.set_property('foreground', 'darkgreen')
+    cell.set_property('text', coldata)
+
 
 class GuiReplayer:
     def __init__(self, config, querylist, mainwin, options = None, debug=True):
@@ -46,13 +94,7 @@ class GuiReplayer:
 
         # These are temporary variables until it becomes possible
         # to select() a Hand object from the database
-        self.filename="regression-test-files/cash/Stars/Flop/NLHE-FR-USD-0.01-0.02-201005.microgrind.txt"
         self.site="PokerStars"
-
-#        if options.filename != None:
-#            self.filename = options.filename
-#        if options.sitename != None:
-#            self.site = options.sitename
 
         self.db = Database.Database(self.conf, sql=self.sql)
 
@@ -149,10 +191,32 @@ class GuiReplayer:
 
         self.replayBox.pack_start(self.stateSlider, False)
 
+        self.playing = False
+
+        self.deck_image = "Cards01.png" #FIXME: read from config (requires deck to be defined somewhere appropriate
         self.tableImage = None
         self.playerBackdrop = None
         self.cardImages = None
-        self.playing = False
+        #NOTE: There are two caches of card images as I haven't found a way to
+        #      replicate the copy_area() function from Pixbuf in the Pixmap class
+        #      cardImages is used for the tables display card_images is used for the
+        #      table display. Sooner or later we should probably use one or the other.
+        card_images = self.init_card_images(config)
+
+    def init_card_images(self, config):
+        suits = ('s', 'h', 'd', 'c')
+        ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
+        pb = gtk.gdk.pixbuf_new_from_file(config.execution_path(self.deck_image))
+        print "DEBUG: init_card_images: pb = %s" % pb
+
+        for j in range(0, 13):
+            for i in range(0, 4):
+                loc = Card.cardFromValueSuit(ranks[j], suits[i])
+                card_images[loc] = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(), pb.get_bits_per_sample(), 30, 42)
+                pb.copy_area(30*j, 42*i, 30, 42, card_images[loc], 0, 0)
+        card_images[0] = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(), pb.get_bits_per_sample(), 30, 42)
+        pb.copy_area(30*13, 0, 30, 42, card_images[0], 0, 0)
+        return card_images
 
     def loadHands(self, button, userdata):
         result = self.handIdsFromDateRange(self.filters.getDates()[0], self.filters.getDates()[1])
@@ -179,7 +243,7 @@ class GuiReplayer:
         self.handswin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
         self.handswin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.replayBox.pack_end(self.handswin)
-        liststore = gtk.ListStore(*([str] * 5))
+        liststore = gtk.ListStore(*([str] * 7))
         view = gtk.TreeView(model=liststore)
         view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
         self.handswin.add(view)
@@ -190,27 +254,14 @@ class GuiReplayer:
         numcell = gtk.CellRendererText()
         numcell.set_property('xalign', 1.0)
 
-        
-        col = gtk.TreeViewColumn("Hero")
-        col.pack_start(textcell)
-        col.add_attribute(textcell, 'text', 0)
-        view.append_column(col)
-        col = gtk.TreeViewColumn("Flop")
-        col.pack_start(textcell)
-        col.add_attribute(textcell, 'text', 1)
-        view.append_column(col)
-        col = gtk.TreeViewColumn("Turn")
-        col.pack_start(textcell)
-        col.add_attribute(textcell, 'text', 2)
-        view.append_column(col)
-        col = gtk.TreeViewColumn("River")
-        col.pack_start(textcell)
-        col.add_attribute(textcell, 'text', 3)
-        view.append_column(col)
-        col = gtk.TreeViewColumn("Won")
-        col.pack_start(textcell)
-        col.add_attribute(textcell, 'text', 4)
-        view.append_column(col)
+        view.insert_column_with_data_func(-1, 'Hero', gtk.CellRendererPixbuf(), card_renderer_cell_func, 0)
+        view.insert_column_with_data_func(-1, 'Flop', gtk.CellRendererPixbuf(), card_renderer_cell_func, 1)
+        view.insert_column_with_data_func(-1, 'Turn', gtk.CellRendererPixbuf(), card_renderer_cell_func, 2)
+        view.insert_column_with_data_func(-1, 'River', gtk.CellRendererPixbuf(), card_renderer_cell_func, 3)
+        view.insert_column_with_data_func(-1, 'Won', textcell, cash_renderer_cell_func, 4)
+        view.insert_column_with_data_func(-1, 'Bet', textcell, cash_renderer_cell_func, 5)
+        view.insert_column_with_data_func(-1, 'Net', textcell, cash_renderer_cell_func, 6)
+
         selection = view.get_selection()
         selection.set_select_function(self.select_hand, None, True)
 
@@ -219,7 +270,9 @@ class GuiReplayer:
             won = 0
             if hero in hand.collectees.keys():
                 won = hand.collectees[hero]
-            liststore.append([hand.join_holecards(hero), hand.board["FLOP"], hand.board["TURN"], hand.board["RIVER"], str(won)])
+            bet = hand.pot.committed[hero]
+            net = won - bet
+            liststore.append([hand.join_holecards(hero), hand.board["FLOP"], hand.board["TURN"], hand.board["RIVER"], str(won), str(bet), str(net)])
         self.handswin.show_all()
 
     def select_hand(self, selection, model, path, is_selected, userdata):
@@ -260,7 +313,7 @@ class GuiReplayer:
                 return
         if self.cardImages is None:
             try:
-                pb = gtk.gdk.pixbuf_new_from_file("Cards01.png")
+                pb = gtk.gdk.pixbuf_new_from_file(self.deck_image)
             except:
                 return
             self.cardwidth = pb.get_width() / 14
@@ -401,11 +454,11 @@ class GuiReplayer:
         ###### End section ########
         if gametype['base'] == 'hold':
             h = HoldemOmahaHand(config = self.conf, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
-            h.select(self.db, handid)
         elif gametype['base'] == 'stud':
-            print "DEBUG: Create stud hand here"
+            h = StudHand(config = self.conf, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
         elif gametype['base'] == 'draw':
-            print "DEBUG: Create draw hand here"
+            h = DrawHand(config = self.conf, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
+        h.select(self.db, handid)
         return h
 
     def play_clicked(self, button):
