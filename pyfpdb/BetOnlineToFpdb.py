@@ -396,7 +396,9 @@ class BetOnline(HandHistoryConverter):
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
             if m:
                 if m.group(street):
-                    hand.setCommunityCards(street, m.group(street).split(' '))
+                    cards = m.group(street).split(' ')
+                    cards = [c.replace("10", "T") for c in cards]
+                    hand.setCommunityCards(street, cards)
 
     def readAntes(self, hand):
         log.debug(_("reading antes"))
@@ -437,6 +439,7 @@ class BetOnline(HandHistoryConverter):
 #                    else:
                     hand.hero = found.group('PNAME')
                     newcards = found.group('NEWCARDS').split(' ')
+                    newcards = [n.replace("10", "T") for n in newcards]
                     hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
         for street, text in hand.streets.iteritems():
@@ -448,11 +451,12 @@ class BetOnline(HandHistoryConverter):
                     newcards = []
                 else:
                     newcards = found.group('NEWCARDS').split(' ')
+                    newcards = [n.replace("10", "T") for n in newcards]
                 if found.group('OLDCARDS') is None:
                     oldcards = []
                 else:
                     oldcards = found.group('OLDCARDS').split(' ')
-
+                    oldcards = [o.replace("10", "T") for o in oldcards]
                 if street == 'THIRD' and len(newcards) == 3: # hero in stud game
                     hand.hero = player
                     hand.dealt.add(player) # need this for stud??
@@ -489,6 +493,7 @@ class BetOnline(HandHistoryConverter):
 # TODO: pick up mucks also??
         for shows in self.re_ShowdownAction.finditer(hand.handText):            
             cards = shows.group('CARDS').split(' ')
+            cards = [c.replace("10", "T") for c in cards]
             hand.addShownCards(cards, shows.group('PNAME'))
 
         for winningrankone in self.re_WinningRankOne.finditer(hand.handText):
@@ -509,7 +514,7 @@ class BetOnline(HandHistoryConverter):
             if m.group('CARDS') is not None:
                 cards = m.group('CARDS')
                 cards = cards.split(' ') # needs to be a list, not a set--stud needs the order
-
+                cards = [c.replace("10", "T") for c in cards]
                 (shown, mucked) = (False, False)
                 if m.group('SHOWED') == "showed": shown = True
                 elif m.group('SHOWED') == "mucked": mucked = True

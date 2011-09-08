@@ -522,7 +522,6 @@ rank        (int) rank the player finished the tournament"""
 
     def card(self,c):
         """upper case the ranks but not suits, 'atjqk' => 'ATJQK'"""
-        c = c.replace("10", "T")
         for k,v in self.UPS.items():
             c = c.replace(k,v)
         return c
@@ -982,11 +981,11 @@ class HoldemOmahaHand(Hand):
         for street in self.holeStreets:
             if player in self.holecards[street].keys():
                 for i in 0,1:
-                    hcs[i] = self.holecards[street][player][1][i].replace('10', 'T')
+                    hcs[i] = self.holecards[street][player][1][i]
                     hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 try:
                     for i in 2,3:
-                        hcs[i] = self.holecards[street][player][1][i].replace('10', 'T')
+                        hcs[i] = self.holecards[street][player][1][i]
                         hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 except IndexError:
                     pass
