@@ -289,11 +289,10 @@ class GuiReplayer:
             self.currency = hand.gametype['currency']
 
         if isinstance(hand, HoldemOmahaHand):
-            if hand.gametype['category'] == 'holdem':
-                self.play_holdem(hand)
-            else:
-                print "Unhandled game type " + hand.gametype['category']
-                return False
+            self.play_holdem(hand)
+        else:
+            print "Unhandled game type " + hand.gametype['category']
+            return False
 
         self.state.set_value(0)
         self.state.set_upper(len(self.states) - 1)
@@ -357,10 +356,20 @@ class GuiReplayer:
             else:
                 color = cm.alloc_color("white") #player is live
                 self.gc.set_foreground(color)
-                cardIndex = Card.encodeCard(player.holecards[0:2])
-                self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx - self.cardwidth - padding / 2, playery - self.cardheight, -1, -1)
-                cardIndex = Card.encodeCard(player.holecards[3:5])
-                self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + padding / 2, playery - self.cardheight, -1, -1)
+                if state.gametype == 'holdem':
+                    cardIndex = Card.encodeCard(player.holecards[0:2])
+                    self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx - self.cardwidth - padding / 2, playery - self.cardheight, -1, -1)
+                    cardIndex = Card.encodeCard(player.holecards[3:5])
+                    self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + padding / 2, playery - self.cardheight, -1, -1)
+                elif state.gametype in ('omahahi', 'omahahilo'):
+                    cardIndex = Card.encodeCard(player.holecards[0:2])
+                    self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx - 2 * self.cardwidth - 3 * padding / 2, playery - self.cardheight, -1, -1)
+                    cardIndex = Card.encodeCard(player.holecards[3:5])
+                    self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx - self.cardwidth - padding / 2, playery - self.cardheight, -1, -1)
+                    cardIndex = Card.encodeCard(player.holecards[6:8])
+                    self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + padding / 2, playery - self.cardheight, -1, -1)
+                    cardIndex = Card.encodeCard(player.holecards[9:11])
+                    self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + self.cardwidth + 3 * padding / 2, playery - self.cardheight, -1, -1)
 
             self.pangolayout.set_text("%s %s%.2f" % (player.name, self.currency, player.stack))
             self.area.window.draw_layout(self.gc, playerx - self.pangolayout.get_pixel_size()[0] / 2, playery, self.pangolayout)
@@ -500,6 +509,7 @@ class TableState:
         self.showTurn = False
         self.showRiver = False
         self.bet = Decimal(0)
+        self.gametype = hand.gametype['category']
 
         self.players = {}
 
