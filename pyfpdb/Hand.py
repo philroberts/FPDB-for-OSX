@@ -988,6 +988,7 @@ class HoldemOmahaHand(Hand):
                         hcs[i] = self.holecards[street][player][1][i]
                         hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 except IndexError:
+                    hcs = hcs[0:2]
                     pass
 
         if asList == False:
