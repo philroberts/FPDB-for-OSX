@@ -27,6 +27,7 @@ import sys
 from optparse import OptionParser
 from time import gmtime, mktime, strftime, strptime, localtime
 import gobject
+import pango
 #import pokereval
 
 import logging
@@ -36,6 +37,7 @@ import Database
 import SQL
 import Charset
 import Filters
+import Card
 
 if __name__ == "__main__":
     Configuration.set_logfile("fpdb-log.txt")
@@ -81,7 +83,7 @@ class Filters(threading.Thread):
                           ,'limitstitle':_('Limits:'), 'seatstitle':_('Number of Players:')
                           ,'groupstitle':_('Grouping:'), 'posnshow':_('Show Position Stats')
                           ,'datestitle':_('Date:'), 'currenciestitle':(_('Currencies')+':')
-                          ,'groupsall':_('All Players')
+                          ,'groupsall':_('All Players'), 'cardstitle':(_('Hole Cards')+':')
                           ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'limitsCN':'CAP', 'ring':_('Ring'), 'tour':_('Tourney'), 'limitsHP':'HP'
                           }
 
@@ -122,6 +124,7 @@ class Filters(threading.Thread):
         self.toggles  = {}
         self.graphops = {}
         self.currencies  = {}
+        self.cards  = {}
 
         for site in self.conf.get_supported_sites():
             #Get db site id for filtering later
@@ -245,6 +248,15 @@ class Filters(threading.Thread):
         self.fillDateFrame(vbox)
         dateFrame.add(vbox)
 
+        # Hole cards
+        cardsFrame = gtk.Frame()
+        cardsFrame.set_label_align(0.0, 0.0)
+        cardsFrame.show()
+        vbox = gtk.VBox(False, 0)
+
+        self.fillHoleCardsFrame(vbox)
+        cardsFrame.add(vbox)
+
         # Buttons
         self.Button1=gtk.Button("Unnamed 1")
         self.Button1.set_sensitive(False)
@@ -262,6 +274,7 @@ class Filters(threading.Thread):
         self.mainVBox.pack_start(groupsFrame, expand)
         self.mainVBox.pack_start(dateFrame, expand)
         self.mainVBox.pack_start(graphopsFrame, expand)
+        self.mainVBox.pack_start(cardsFrame, expand)
         self.mainVBox.pack_start(gtk.VBox(False, 0))
         self.mainVBox.pack_start(self.Button1, expand)
         self.mainVBox.pack_start(self.Button2, expand)
@@ -287,6 +300,8 @@ class Filters(threading.Thread):
             dateFrame.hide()
         if "GraphOps" not in self.display or self.display["GraphOps"] == False:
             graphopsFrame.hide()
+        if "Cards" not in self.display or self.display["Cards"] == False:
+            cardsFrame.hide()
         if "Button1" not in self.display or self.display["Button1"] == False:
             self.Button1.hide()
         if "Button2" not in self.display or self.display["Button2"] == False:
@@ -330,6 +345,9 @@ class Filters(threading.Thread):
     def getGames(self):
         return self.games
     #end def getGames
+
+    def getCards(self):
+        return self.cards
 
     def getCurrencies(self):
         return self.currencies
@@ -468,6 +486,23 @@ class Filters(threading.Thread):
             cb.set_active(True)
         return(cb)
 
+    def createCardsWidget(self, hbox):
+        font = "Sans"
+        font_size = "4"
+        for i in range(0,13):
+            vbox = gtk.VBox(False, 0)
+            for j in range(0,13):
+                abbr = Card.card_map_abbr[j][i]
+                self.cards[abbr] = True
+                b = gtk.Button("%s" % abbr)
+                b.connect('clicked', self.__set_card_select, abbr)
+                # Shrink font - Not working
+                #b.modify_font(pango.FontDescription("%s %s" % (font, font_size)))
+                self.__set_card_select(b, abbr)
+                vbox.pack_start(b, False, False, 0)
+            hbox.pack_start(vbox, False, False, 0)
+
+
     def createCurrencyLine(self, hbox, currency, ctext):
         cb = gtk.CheckButton(ctext.replace("_", "__"))
         cb.connect('clicked', self.__set_currency_select, currency)
@@ -508,6 +543,18 @@ class Filters(threading.Thread):
                 if (self.cbAllGames and self.cbAllGames.get_active()):
                     self.cbAllGames.set_active(False)
     #end def __set_game_select
+
+    def __set_card_select(self, w, card):
+        bg_color = "lightgrey"
+        if self.cards[card] == False:
+            self.cards[card] = True
+        else:
+            bg_color = "#FFFFFF"
+            self.cards[card] = False
+
+        style = w.get_style().copy()
+        style.bg[gtk.STATE_NORMAL] = w.get_colormap().alloc(bg_color)
+        w.set_style(style)
 
     def __set_currency_select(self, w, currency):
         if (currency == 'all'):
@@ -882,6 +929,26 @@ class Filters(threading.Thread):
             print _("INFO: No games returned from database")
             log.info(_("No games returned from database"))
     #end def fillGamesFrame
+
+    def fillHoleCardsFrame(self, vbox):
+        top_hbox = gtk.HBox(False, 0)
+        vbox.pack_start(top_hbox, False, False, 0)
+        lbl_title = gtk.Label(self.filterText['cardstitle'])
+        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
+        top_hbox.pack_start(lbl_title, expand=True, padding=3)
+        showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'Cards')
+        self.toggles['Cards'] = showb
+        top_hbox.pack_start(showb, expand=False, padding=1)
+
+        vbox1 = gtk.VBox(False, 0)
+        vbox.pack_start(vbox1, False, False, 0)
+        self.boxes['Cards'] = vbox1
+
+        hbox = gtk.HBox(False, 0)
+        vbox1.pack_start(hbox, False, True, 0)
+        self.createCardsWidget(hbox)
 
     def fillCurrenciesFrame(self, vbox):
         top_hbox = gtk.HBox(False, 0)
@@ -1435,10 +1502,11 @@ def main(argv=None):
     filters_display = { "Heroes"    : False,
                         "Sites"     : False,
                         "Games"     : False,
+                        "Cards"     : True,
                         "Currencies": False,
-                        "Limits"    : True,
-                        "LimitSep"  : True,
-                        "LimitType" : True,
+                        "Limits"    : False,
+                        "LimitSep"  : False,
+                        "LimitType" : False,
                         "Type"      : False,
                         "UseType"   : 'ring',
                         "Seats"     : False,
@@ -1452,6 +1520,7 @@ def main(argv=None):
 
     i = Filters(db, config, qdict, display = filters_display)
     main_window = gtk.Window()
+    main_window.set_default_size(600,600)
     main_window.connect('destroy', destroy)
     main_window.add(i.get_vbox())
     main_window.show()
