@@ -363,7 +363,7 @@ dealt   whether they were seen in a 'dealt to' line
                 pass
             elif self.gametype['category'] == 'holdem':
                 self.addHoleCards('PREFLOP', name, closed=cardlist[0:2], shown=False, mucked=False, dealt=True)
-            elif self.gametype['category'] == 'omaha':
+            elif self.gametype['category'] in ('omahahi', 'omahahilo'):
                 self.addHoleCards('PREFLOP', name, closed=cardlist, shown=False, mucked=False, dealt=True)
             if winnings > 0:
                 self.addCollectPot(name, str(winnings))
@@ -988,6 +988,7 @@ class HoldemOmahaHand(Hand):
                         hcs[i] = self.holecards[street][player][1][i]
                         hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 except IndexError:
+                    hcs = hcs[0:2]
                     pass
 
         if asList == False:
