@@ -409,8 +409,8 @@ class Filters(threading.Thread):
         self.callback['button2'] = callback
     #end def registerButton2Callback
 
-    def cardCallback(self, widget, data=None):
-        log.debug( _("%s was toggled %s") % (data, (_("OFF"), _("ON"))[widget.get_active()]) )
+    def registerCardsCallback(self, callback):
+        self.callback['cards'] = callback
 
     def createPlayerLine(self, vbox, site, player):
         log.debug('add:"%s"' % player)
@@ -487,18 +487,14 @@ class Filters(threading.Thread):
         return(cb)
 
     def createCardsWidget(self, hbox):
-        font = "Sans"
-        font_size = "4"
         for i in range(0,13):
             vbox = gtk.VBox(False, 0)
             for j in range(0,13):
                 abbr = Card.card_map_abbr[j][i]
-                self.cards[abbr] = True
-                b = gtk.Button("%s" % abbr)
-                b.connect('clicked', self.__set_card_select, abbr)
-                # Shrink font - Not working
-                #b.modify_font(pango.FontDescription("%s %s" % (font, font_size)))
-                self.__set_card_select(b, abbr)
+                b = gtk.Button("")
+                b.connect('clicked', self.__toggle_card_select, abbr)
+                self.cards[abbr] = False # NOTE: This is flippped in __toggle_card_select below
+                self.__toggle_card_select(b, abbr)
                 vbox.pack_start(b, False, False, 0)
             hbox.pack_start(vbox, False, False, 0)
 
@@ -544,17 +540,32 @@ class Filters(threading.Thread):
                     self.cbAllGames.set_active(False)
     #end def __set_game_select
 
-    def __set_card_select(self, w, card):
-        bg_color = "lightgrey"
-        if self.cards[card] == False:
-            self.cards[card] = True
-        else:
-            bg_color = "#FFFFFF"
-            self.cards[card] = False
+    def __card_select_bgcolor(self, card, selected):
+        s_on  = "red"
+        s_off = "orange"
+        o_on  = "white"
+        o_off = "lightgrey"
+        p_on  = "blue"
+        p_off = "lightblue"
+        if len(card) == 2: return p_on if selected else p_off
+        if card[2] == 's': return s_on if selected else s_off
+        if card[2] == 'o': return o_on if selected else o_off
+
+    def __toggle_card_select(self, w, card):
+        font_size = "xx-small"
+        markup = "<span size='%s'>%s</span>" % (font_size, card)
+        w.child.set_use_markup(True)
+        w.child.set_label(markup)
+
+        self.cards[card] = (self.cards[card] == False)
+
+        bg_color = self.__card_select_bgcolor(card, self.cards[card])
 
         style = w.get_style().copy()
         style.bg[gtk.STATE_NORMAL] = w.get_colormap().alloc(bg_color)
         w.set_style(style)
+        if 'cards' in self.callback:
+            self.callback['cards'](card)
 
     def __set_currency_select(self, w, currency):
         if (currency == 'all'):
