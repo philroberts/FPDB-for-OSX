@@ -37,9 +37,9 @@ class Win2day(HandHistoryConverter):
     # Static regexes
     re_GameInfo     = re.compile("""<HISTORY\sID="(?P<HID>[0-9]+)"\sSESSION="session[0-9]+\.xml"\s
                                     TABLE="(?P<TABLE>[-\sa-zA-Z0-9\xc0-\xfc/.]+)"\s
-                                    GAME="(?P<GAME>GAME_THM|GAME_OMA)"\sGAMETYPE="[_a-zA-Z]+"\sGAMEKIND="[_a-zA-Z]+"\s
+                                    GAME="(?P<GAME>GAME_THM|GAME_OMA|GAME_FCD)"\sGAMETYPE="[_a-zA-Z]+"\sGAMEKIND="[_a-zA-Z]+"\s
                                     TABLECURRENCY="(?P<CURRENCY>[A-Z]+)"\s
-                                    LIMIT="(?P<LIMIT>NL|PL)"\s
+                                    LIMIT="(?P<LIMIT>NL|PL|FL)"\s
                                     STAKES="(?P<SB>[.0-9]+)/(?P<BB>[.0-9]+)"\s
                                     DATE="(?P<DATETIME>[0-9]+)"\s
                                     (TABLETOURNEYID=""\s)?
@@ -107,10 +107,11 @@ class Win2day(HandHistoryConverter):
         
         # translations from captured groups to our info strings
         #limits = { 'NL':'nl', 'PL':'pl', 'Limit':'fl' }
-        limits = { 'NL':'nl', 'PL':'pl'}
+        limits = { 'NL':'nl', 'PL':'pl', 'FL':'fl'}
         games = {              # base, category
                   "GAME_THM" : ('hold','holdem'), 
                   "GAME_OMA" : ('hold','omahahi'),
+                  "GAME_FCD" : ('draw','fivecard'),
 
               #'Omaha Hi/Lo' : ('hold','omahahilo'),
               #       'Razz' : ('stud','razz'), 
