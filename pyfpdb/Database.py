@@ -2069,18 +2069,15 @@ class Database:
         
         d = timedelta(hours=tz_day_start_offset)
         starttime_offset = starttime - d
-        
+
+        # hard-code styleKey as 'A000000' (all-time cache, no key) for now
+        seats = '0'
+        position = '0'
+        styleKey = 'A000000'
+
         if self.build_full_hudcache:
-            seats = len(pids)
-            pos = {'B':'B', 'S':'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }
-            position = pos[pdata[p]['position']]
             styleKey = datetime.strftime(starttime_offset, 'd%y%m%d')
-            #styleKey = "d%02d%02d%02d" % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day)
-        else:
-            # hard-code styleKey as 'A000000' (all-time cache, no key) for now
-            seats = '0'
-            position = '0'
-            styleKey = 'A000000'
+            seats = len(pids)
 
         update_hudcache = self.sql.query['update_hudcache']
         update_hudcache = update_hudcache.replace('%s', self.sql.query['placeholder'])
@@ -2183,6 +2180,9 @@ class Database:
             line.append(pdata[p]['street3Raises'])               
             line.append(pdata[p]['street4Raises'])               
             
+            if self.build_full_hudcache:
+                pos = {'B':'B', 'S':'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }
+                position = pos[pdata[p]['position']]
             hc = {}
             hc['gametypeId'] = gid
             hc['playerId'] = pids[p]
