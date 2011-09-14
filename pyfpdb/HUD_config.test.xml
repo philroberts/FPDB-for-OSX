@@ -312,13 +312,13 @@ Left-Drag to Move"
         </site>
 
         <site enabled="True"
-              site_name="Win2day"
-              table_finder="Win2day.exe"
+              site_name="Boss"
+              table_finder="Boss.exe"
               screen_name="Hero"
               site_path=""
               HH_path=""
               decoder="everleaf_decode_table"
-              converter="Win2dayToFpdb"
+              converter="BossToFpdb"
               supported_games="holdem">
             <layout fav_seat="0" height="547" max="8" width="794">
                 <location seat="1" x="640" y="64">  </location>
@@ -1000,7 +1000,7 @@ Left-Drag to Move"
         <hhc site="PokerStars" converter="PokerStarsToFpdb" summaryImporter="PokerStarsSummary"/>
         <hhc site="Full Tilt Poker" converter="FulltiltToFpdb" summaryImporter="FullTiltPokerSummary"/>
         <hhc site="Everleaf" converter="EverleafToFpdb"/>
-        <hhc site="Win2day" converter="Win2dayToFpdb"/>
+        <hhc site="Boss" converter="BossToFpdb"/>
         <hhc site="Absolute" converter="AbsoluteToFpdb"/>
         <hhc site="PartyPoker" converter="PartyPokerToFpdb"/>
         <hhc site="Betfair" converter="BetfairToFpdb"/>
