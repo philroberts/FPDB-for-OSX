@@ -302,7 +302,7 @@ class DerivedStats():
     
     def assembleHandsStove(self, hand):
         game = Card.games[hand.gametype['category']]
-        holecards, holeplayers, streets, boards, boardcards, inserts_temp = {}, [], {}, {}, [], []
+        holecards, holeplayers, streets, boards, boardcards, inserts_temp, allInStreets = {}, [], {}, {}, [], [], []
         defaultStreet = {'board': [[]], 'allin': False}
         showdown = False
         for player in hand.players:
@@ -359,7 +359,7 @@ class DerivedStats():
                             hole = hcs[5:10]
                         else:
                             hole = hcs[-5:]
-                        if hand.gametype['category']=='27_1draw':
+                        if hand.gametype['category']=='27_1draw' or hand.gametype['category']=='fivedraw':
                             boards['DRAWONE'] = defaultStreet
                             last = 'DRAWONE'
                         else:
