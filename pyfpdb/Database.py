@@ -46,8 +46,6 @@ import codecs
 import math
 import pytz
 import logging
-# logging has been set up in fpdb.py or HUD_main.py, use their settings:
-log = logging.getLogger("db")
 
 #    FreePokerTools modules
 import SQL
@@ -56,6 +54,10 @@ import Charset
 from Exceptions import *
 import Configuration
 
+if __name__ == "__main__":
+    Configuration.set_logfile("fpdb-log.txt")
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("db")
 
 #    Other library modules
 try:

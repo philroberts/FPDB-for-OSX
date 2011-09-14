@@ -182,7 +182,6 @@ def get_config(file_name, fallback = True):
             sys.stderr.write( str(sys.exc_info()) )
             sys.exit()
     elif fallback:
-        print(_("No %s found, cannot fall back. Exiting.") % file_name, "\n")
         sys.stderr.write((_("No %s found, cannot fall back. Exiting.") % file_name) + "\n")
         sys.exit()
 
@@ -201,7 +200,7 @@ def set_logfile(file_name):
             log_file = log_file.replace('\\', '\\\\')  # replace each \ with \\
             logging.config.fileConfig(conf_file, {"logFile":log_file})
         except:
-            sys.stderr.write("logfile setup failed")
+            sys.stderr.write(_("Could not setup log file %s") % file_name)
 
 def check_dir(path, create = True):
     """Check if a dir exists, optionally creates if not."""
@@ -972,7 +971,7 @@ class Config:
                 shutil.move(file, file+".backup")
             except:
                 pass
-
+                
         with open(file, 'w') as f:
             #self.doc.writexml(f)
             f.write( self.wrap_long_lines( self.doc.toxml() ) )
@@ -1011,7 +1010,7 @@ class Config:
         emailNode.setAttribute("folder", newEmail.folder)
         emailNode.setAttribute("useSsl", newEmail.useSsl)
     #end def editEmail
-    
+        
     def edit_layout(self, site_name, max, width = None, height = None,
                     fav_seat = None, locations = None):
         site_node   = self.get_site_node(site_name)
@@ -1450,6 +1449,11 @@ class Config:
             if font_size      is not None: site_node.setAttribute("font_size", font_size)
         return
 
+    def set_general(self,lang=None):
+
+       for general_node in self.doc.getElementsByTagName('general'):
+            if lang: general_node.setAttribute("ui_language", lang)
+
     def set_site_ids(self, sites):
         self.site_ids = dict(sites)
 
@@ -1505,6 +1509,7 @@ class Config:
         return( self.gui_cash_stats )
 
 if __name__== "__main__":
+    set_logfile("fpdb-log.txt")
     c = Config()
 
     print "\n----------- SUPPORTED SITES -----------"

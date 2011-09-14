@@ -240,6 +240,7 @@ def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
 
+    Configuration.set_logfile("fpdb-log.txt")
     (options, argv) = Options.fpdb_options()
 
     test_all_sites = True
