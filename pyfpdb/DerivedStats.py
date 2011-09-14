@@ -309,13 +309,15 @@ class DerivedStats():
             if (self.handsplayers[player[1]]['sawShowdown']):
                 showdown = True
         if game[0] == 'hold':
+            allInStreets = hand.communityStreets
             boards['FLOP']  = {'board': [hand.board['FLOP']], 'allin': False}
             boards['TURN']  = {'board': [hand.board['FLOP'] + hand.board['TURN']], 'allin': False}
             boards['RIVER'] = {'board': [hand.board['FLOP'] + hand.board['TURN'] + hand.board['RIVER']], 'allin': False}
             for street in hand.communityStreets:
                 boardcards += hand.board[street]
                 if not hand.actions[street] and showdown:
-                    if street=='FLOP': 
+                    if street=='FLOP':
+                        allInStreets = ['PREFLOP'] + allInStreets
                         boards['PREFLOP'] = {'board': [[]], 'allin': True}
                     else: 
                         id = Card.streets[game[0]][street]
@@ -480,7 +482,8 @@ class DerivedStats():
         startstreet = None
         for pot, players in hand.pots:
             players = [p for p in players]
-            for street, board in boards.iteritems():
+            for street in allInStreets:
+                board = boards[street]
                 tid = Card.streets[game[0]][street]
                 for n in range(len(board['board'])):
                     if len(board['board']) > 1: 
