@@ -25,11 +25,11 @@ import sys
 import datetime
 from HandHistoryConverter import *
 
-# Win2day HH Format
+# Boss HH Format
 
-class Win2day(HandHistoryConverter):
+class Boss(HandHistoryConverter):
 
-    sitename = "Win2day"
+    sitename = "Boss"
     filetype = "text"
     codepage = "utf-8"
     siteId   = 4
@@ -150,7 +150,7 @@ class Win2day(HandHistoryConverter):
         logging.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
-                # Win2day uses UTC timestamp
+                # Boss uses UTC timestamp
                 hand.startTime = datetime.datetime.fromtimestamp(int(info[key]))
             if key == 'HID':
                 hand.handid = info[key]
@@ -200,10 +200,10 @@ class Win2day(HandHistoryConverter):
             if street == 'FLOP':
                 m = self.re_Card.findall(hand.streets[street])
                 for card in m:
-                    boardCards.append(self.convertWin2dayCards(card))
+                    boardCards.append(self.convertBossCards(card))
             else:
                 m = self.re_BoardLast.search(hand.streets[street])
-                boardCards.append(self.convertWin2dayCards(m.group('CARD')))
+                boardCards.append(self.convertBossCards(m.group('CARD')))
 
             hand.setCommunityCards(street, boardCards)
 
@@ -239,13 +239,13 @@ class Win2day(HandHistoryConverter):
         for found in m:
             hand.hero = found.group('PNAME')
             for card in self.re_Card.finditer(found.group('CARDS')):
-                #print self.convertWin2dayCards(card.group('CARD'))
-                newcards.append(self.convertWin2dayCards(card.group('CARD')))
+                #print self.convertBossCards(card.group('CARD'))
+                newcards.append(self.convertBossCards(card.group('CARD')))
             
                     #hand.addHoleCards(holeCards, m.group('PNAME'))
             hand.addHoleCards('PREFLOP', hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
-    def convertWin2dayCards(self, card):
+    def convertBossCards(self, card):
         card = int(card)
         retCard = ''
         cardconvert = { 1:'A',
@@ -353,8 +353,8 @@ class Win2day(HandHistoryConverter):
         for shows in self.re_ShowdownAction.finditer(hand.handText):
             showdownCards = []
             for card in self.re_Card.finditer(shows.group('CARDS')):
-                #print "DEBUG:", card, card.group('CARD'), self.convertWin2dayCards(card.group('CARD'))
-                showdownCards.append(self.convertWin2dayCards(card.group('CARD')))
+                #print "DEBUG:", card, card.group('CARD'), self.convertBossCards(card.group('CARD'))
+                showdownCards.append(self.convertBossCards(card.group('CARD')))
             
             hand.addShownCards(showdownCards, shows.group('PNAME'))
 
