@@ -365,21 +365,21 @@ dealt   whether they were seen in a 'dealt to' line
             cardlist.append(Card.valueSuitFromCard(row['card3']))
             cardlist.append(Card.valueSuitFromCard(row['card4']))
             cardlist.append(Card.valueSuitFromCard(row['card5']))
-            #cardlist.append(Card.valueSuitFromCard(row['card6']))
-            #cardlist.append(Card.valueSuitFromCard(row['card7']))
-            #cardlist.append(Card.valueSuitFromCard(row['card8']))
-            #cardlist.append(Card.valueSuitFromCard(row['card9']))
-            #cardlist.append(Card.valueSuitFromCard(row['card10']))
-            #cardlist.append(Card.valueSuitFromCard(row['card11']))
-            #cardlist.append(Card.valueSuitFromCard(row['card12']))
-            #cardlist.append(Card.valueSuitFromCard(row['card13']))
-            #cardlist.append(Card.valueSuitFromCard(row['card14']))
-            #cardlist.append(Card.valueSuitFromCard(row['card15']))
-            #cardlist.append(Card.valueSuitFromCard(row['card16']))
-            #cardlist.append(Card.valueSuitFromCard(row['card17']))
-            #cardlist.append(Card.valueSuitFromCard(row['card18']))
-            #cardlist.append(Card.valueSuitFromCard(row['card19']))
-            #cardlist.append(Card.valueSuitFromCard(row['card20']))
+            cardlist.append(Card.valueSuitFromCard(row['card6']))
+            cardlist.append(Card.valueSuitFromCard(row['card7']))
+            cardlist.append(Card.valueSuitFromCard(row['card8']))
+            cardlist.append(Card.valueSuitFromCard(row['card9']))
+            cardlist.append(Card.valueSuitFromCard(row['card10']))
+            cardlist.append(Card.valueSuitFromCard(row['card11']))
+            cardlist.append(Card.valueSuitFromCard(row['card12']))
+            cardlist.append(Card.valueSuitFromCard(row['card13']))
+            cardlist.append(Card.valueSuitFromCard(row['card14']))
+            cardlist.append(Card.valueSuitFromCard(row['card15']))
+            cardlist.append(Card.valueSuitFromCard(row['card16']))
+            cardlist.append(Card.valueSuitFromCard(row['card17']))
+            cardlist.append(Card.valueSuitFromCard(row['card18']))
+            cardlist.append(Card.valueSuitFromCard(row['card19']))
+            cardlist.append(Card.valueSuitFromCard(row['card20']))
             if cardlist[0] == '':
                 pass
             elif self.gametype['category'] == 'holdem':
@@ -388,6 +388,13 @@ dealt   whether they were seen in a 'dealt to' line
                 self.addHoleCards('PREFLOP', row['name'], closed=cardlist[0:4], shown=False, mucked=False, dealt=True)
             elif self.gametype['category'] in ('27_3draw', '27_1draw', 'fivedraw'):
                 self.addHoleCards('DEAL', row['name'], closed=cardlist[0:5], shown=False, mucked=False, dealt=True)
+            elif self.gametype['category'] in ('razz', 'studhi', 'studhilo'):
+                #print "DEBUG: cardlist: %s" % cardlist
+                self.addHoleCards('THIRD',   row['name'], open=[cardlist[2]], closed=cardlist[0:2], shown=False, dealt=True)
+                self.addHoleCards('FOURTH',  row['name'], open=[cardlist[3]], closed=[cardlist[0:3]], shown=False, mucked=False)
+                self.addHoleCards('FIFTH',   row['name'], open=[cardlist[4]], closed=cardlist[0:4], shown=False, mucked=False)
+                self.addHoleCards('SIXTH',   row['name'], open=[cardlist[5]], closed=cardlist[0:5], shown=False, mucked=False)
+                self.addHoleCards('SEVENTH', row['name'], open=[cardlist[6]], closed=cardlist[0:6], shown=False, mucked=False)
             if row['winnings'] > 0:
                 self.addCollectPot(row['name'], str(row['winnings']))
             if row['position'] == 'B':
