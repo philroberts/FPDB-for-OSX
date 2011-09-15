@@ -1320,22 +1320,31 @@ class DrawHand(Hand):
         # showdownPot INT,                 /* pot size at sd/street7 */
         return (0,0,0,0,0)
 
-    def join_holecards(self, player, asList=False):
+    def join_holecards(self, player, asList=False, street=False):
         """With asList = True it returns the set cards for a player including down cards if they aren't know"""
-        # FIXME: This should actually return
         holecards = [u'0x']*20
         
-        for i, street in enumerate(self.holeStreets):
-            if player in self.holecards[street].keys():
-                allhole = self.holecards[street][player][1] + self.holecards[street][player][0]
+        for i, _street in enumerate(self.holeStreets):
+            if player in self.holecards[_street].keys():
+                allhole = self.holecards[_street][player][1] + self.holecards[_street][player][0]
                 for c in range(len(allhole)):
                     idx = c + (i*5)
                     holecards[idx] = allhole[c]
 
-        if asList == False:
-            return " ".join(holecards)
-        else:
-            return holecards
+        if street == False:
+            if asList == False:
+                return " ".join(holecards)
+            else:
+                return holecards
+        if street in self.holeStreets:
+            if street == 'DEAL':
+                return holecards[0:5] if asList else " ".join(holecards[0:5])
+            elif street == 'DRAWONE':
+                return holecards[5:10] if asList else " ".join(holecards[5:10])
+            elif street == 'DRAWTWO':
+                return holecards[10:15] if asList else " ".join(holecards[10:15])
+            elif street == 'DRAWTHREE':
+                return holecards[15:20] if asList else " ".join(holecards[15:20])
 
 
     def writeHand(self, fh=sys.__stdout__):
