@@ -48,40 +48,36 @@ class Boss(HandHistoryConverter):
     re_SplitHands   = re.compile('</HISTORY>')
     re_HandInfo     = re.compile("^Table \'(?P<TABLE>[- a-zA-Z]+)\'(?P<TABLEATTRIBUTES>.+?$)?", re.MULTILINE)
     re_Button       = re.compile('<ACTION TYPE="HAND_DEAL" PLAYER="(?P<BUTTON>[^"]+)">\n<CARD LINK="[0-9b]+"></CARD>\n<CARD LINK="[0-9b]+"></CARD></ACTION>\n<ACTION TYPE="ACTION_', re.MULTILINE)
-    #<PLAYER NAME="prato" SEAT="1" AMOUNT="61.29"></PLAYER>
-    re_PlayerInfo   = re.compile('^<PLAYER NAME="(?P<PNAME>.*)" SEAT="(?P<SEAT>[0-9]+)" AMOUNT="(?P<CASH>[.0-9]+)"></PLAYER>', re.MULTILINE)
+    re_PlayerInfo   = re.compile('^<PLAYER NAME="(?P<PNAME>.*)" SEAT="(?P<SEAT>[0-9]+)" AMOUNT="(?P<CASH>[.0-9]+)"( STATE="(?P<STATE>STATE_EMPTY|STATE_PLAYING)" DEALER="(Y|N)")?></PLAYER>', re.MULTILINE)
     re_Card        = re.compile('^<CARD LINK="(?P<CARD>[0-9]+)"></CARD>', re.MULTILINE)
     re_BoardLast    = re.compile('^<CARD LINK="(?P<CARD>[0-9]+)"></CARD></ACTION>', re.MULTILINE)
     
 
-    def compilePlayerRegexs(self,  hand):
-        players = set([player[1] for player in hand.players])
-        if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
-            # we need to recompile the player regexs.
-            self.compiledPlayers = players
-            player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
-            logging.debug("player_re: " + player_re)
-            #<ACTION TYPE="HAND_BLINDS" PLAYER="prato" KIND="HAND_SB" VALUE="0.25"></ACTION>
+    # we need to recompile the player regexs.
+    player_re = "(?P<PNAME>[\w_]+)"
+    logging.error("player_re: " + player_re)
+    #<ACTION TYPE="HAND_BLINDS" PLAYER="prato" KIND="HAND_SB" VALUE="0.25"></ACTION>
 
-            self.re_PostSB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_SB" VALUE="(?P<SB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
-            self.re_PostBB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_BB" VALUE="(?P<BB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
-            self.re_Antes            = re.compile(r"^%s: posts the ante \$?(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_BringIn          = re.compile(r"^%s: brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_PostBoth         = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_AB" VALUE="(?P<SBBB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
+    re_PostSB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_SB" VALUE="(?P<SB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
+    re_PostBB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_BB" VALUE="(?P<BB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
+    re_Antes            = re.compile(r"^%s: posts the ante \$?(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
+    re_BringIn          = re.compile(r"^%s: brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
+    re_PostBoth         = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_AB" VALUE="(?P<SBBB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
     
-            #r'<ACTION TYPE="HAND_DEAL" PLAYER="%s">\n<CARD LINK="(?P<CARD1>[0-9]+)"></CARD>\n<CARD LINK="(?P<CARD2>[0-9]+)"></CARD></ACTION>'
-            self.re_HeroCards        = re.compile(r'<ACTION TYPE="HAND_DEAL" PLAYER="%s">\n(?P<CARDS><CARD LINK="[0-9]+"></CARD>\n<CARD LINK="[0-9]+"></CARD>)</ACTION>' % player_re, re.MULTILINE)
-            
-            #'^<ACTION TYPE="(?P<ATYPE>[_A-Z]+)" PLAYER="%s"( VALUE="(?P<BET>[.0-9]+)")?></ACTION>'
-            self.re_Action           = re.compile(r'^<ACTION TYPE="(?P<ATYPE>[_A-Z]+)" PLAYER="%s"( VALUE="(?P<BET>[.0-9]+)")?></ACTION>' %  player_re, re.MULTILINE)
+    re_HeroCards        = re.compile(r'PLAYER="%s">(?P<CARDS>(\s+<CARD LINK="[0-9]+"></CARD>){2,5})</ACTION>' % player_re, re.MULTILINE)
 
-            self.re_ShowdownAction   = re.compile(r'<RESULT PLAYER="%s" WIN="[.0-9]+" HAND="(?P<HAND>\(\$STR_G_FOLD\)|[\$\(\)_ A-Z]+)">\n(?P<CARDS><CARD LINK="[0-9]+"></CARD>\n<CARD LINK="[0-9]+"></CARD>)</RESULT>' %  player_re, re.MULTILINE)
-            #<RESULT PLAYER="wig0r" WIN="4.10" HAND="$(STR_G_WIN_TWOPAIR) $(STR_G_CARDS_TENS) $(STR_G_ANDTEXT) $(STR_G_CARDS_EIGHTS)">
-            #
-            self.re_CollectPot       = re.compile(r'<RESULT PLAYER="%s" WIN="(?P<POT>[.\d]+)" HAND=".+">' %  player_re, re.MULTILINE)
-            self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
-            self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s \(.*\) showed \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
+    #'^<ACTION TYPE="(?P<ATYPE>[_A-Z]+)" PLAYER="%s"( VALUE="(?P<BET>[.0-9]+)")?></ACTION>'
+    re_Action           = re.compile(r'^<ACTION TYPE="(?P<ATYPE>[_A-Z]+)" PLAYER="%s"( VALUE="(?P<BET>[.0-9]+)")?></ACTION>' %  player_re, re.MULTILINE)
 
+    re_ShowdownAction   = re.compile(r'<RESULT PLAYER="%s" WIN="[.0-9]+" HAND="(?P<HAND>\(\$STR_G_FOLD\)|[\$\(\)_ A-Z]+)">\n(?P<CARDS><CARD LINK="[0-9]+"></CARD>\n<CARD LINK="[0-9]+"></CARD>)</RESULT>' %  player_re, re.MULTILINE)
+    #<RESULT PLAYER="wig0r" WIN="4.10" HAND="$(STR_G_WIN_TWOPAIR) $(STR_G_CARDS_TENS) $(STR_G_ANDTEXT) $(STR_G_CARDS_EIGHTS)">
+    #
+    re_CollectPot       = re.compile(r'<RESULT PLAYER="%s" WIN="(?P<POT>[.\d]+)" HAND=".+">' %  player_re, re.MULTILINE)
+    re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
+    re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s \(.*\) showed \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
+
+    def compilePlayerRegexs(self,  hand):
+        pass
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
@@ -111,13 +107,8 @@ class Boss(HandHistoryConverter):
         games = {              # base, category
                   "GAME_THM" : ('hold','holdem'), 
                   "GAME_OMA" : ('hold','omahahi'),
-                  "GAME_FCD" : ('draw','fivecard'),
-
-              #'Omaha Hi/Lo' : ('hold','omahahilo'),
-              #       'Razz' : ('stud','razz'), 
-              #'7 Card Stud' : ('stud','studhi'),
-              #     'Badugi' : ('draw','badugi')
-               }
+                  "GAME_FCD" : ('draw','fivedraw'),
+                }
         if 'LIMIT' in mg:
             info['limitType'] = limits[mg['LIMIT']]
         if 'GAME' in mg:
@@ -129,7 +120,6 @@ class Boss(HandHistoryConverter):
         if 'CURRENCY' in mg:
             info['currency'] = mg['CURRENCY']
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
-        
         return info
 
 
@@ -174,22 +164,26 @@ class Boss(HandHistoryConverter):
         m = self.re_PlayerInfo.finditer(hand.handText)
         players = []
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            if a.group('STATE') is not None:
+                if a.group('STATE') == 'STATE_PLAYING':
+                    hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            else:
+                hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
         if hand.gametype['base'] in ("hold"):
-           #m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
-           #           r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN \*\*\*)|.+))?"
-           #           r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN>\[\S\S\].+(?=\*\*\* RIVER \*\*\*)|.+))?"
-           #           r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?", hand.handText,re.DOTALL)
-
             m =  re.search('<ACTION TYPE="HAND_BLINDS" PLAYER=".+" KIND="HAND_BB" VALUE="[.0-9]+"></ACTION>(?P<PREFLOP>.+(?=<ACTION TYPE="HAND_BOARD" VALUE="BOARD_FLOP")|.+)'
                        '((?P<FLOP><ACTION TYPE="HAND_BOARD" VALUE="BOARD_FLOP" POT="[.0-9]+">.+(?=<ACTION TYPE="HAND_BOARD" VALUE="BOARD_TURN")|.+))?'
                        '((?P<TURN><ACTION TYPE="HAND_BOARD" VALUE="BOARD_TURN" POT="[.0-9]+">.+(?=<ACTION TYPE="HAND_BOARD" VALUE="BOARD_RIVER")|.+))?'
                        '((?P<RIVER><ACTION TYPE="HAND_BOARD" VALUE="BOARD_RIVER" POT="[.0-9]+">.+(?=<SHOWDOWN NAME="HAND_SHOWDOWN")|.+))?', hand.handText,re.DOTALL)
-
+        if hand.gametype['category'] in ('27_1draw', 'fivedraw'):
+            m =  re.search(r'(?P<PREDEAL>.+?(?=<ACTION TYPE="HAND_DEAL")|.+)'
+                           r'(<ACTION TYPE="HAND_DEAL"(?P<DEAL>.+(?=<ACTION TYPE="HAND_BOARD")|.+))?'
+                           r'(<ACTION TYPE="(?P<DRAWONE>.+))?', hand.handText,re.DOTALL)
+        #import pprint
+        #pprint.pprint(m.groupdict())
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
@@ -234,16 +228,15 @@ class Boss(HandHistoryConverter):
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
 #    we need to grab hero's cards
-        m = self.re_HeroCards.finditer(hand.streets['PREFLOP'])
-        newcards = []
-        for found in m:
-            hand.hero = found.group('PNAME')
-            for card in self.re_Card.finditer(found.group('CARDS')):
-                #print self.convertBossCards(card.group('CARD'))
-                newcards.append(self.convertBossCards(card.group('CARD')))
-            
-                    #hand.addHoleCards(holeCards, m.group('PNAME'))
-            hand.addHoleCards('PREFLOP', hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
+        for street in ('PREFLOP', 'DEAL'):
+            if street in hand.streets.keys():
+                m = self.re_HeroCards.finditer(hand.streets[street])
+                newcards = []
+                for found in m:
+                    hand.hero = found.group('PNAME')
+                    for card in self.re_Card.finditer(found.group('CARDS')):
+                        newcards.append(self.convertBossCards(card.group('CARD')))
+                    hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
     def convertBossCards(self, card):
         card = int(card)
