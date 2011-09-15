@@ -336,7 +336,10 @@ dealt   whether they were seen in a 'dealt to' line
                         round(hp.winnings / 100.0,2) as winnings,
                         p.name,
                         round(hp.startCash / 100.0,2) as chips,
-                        hp.card1,hp.card2,hp.card3,hp.card4,
+                        hp.card1,hp.card2,hp.card3,hp.card4,hp.card5,
+                        hp.card6,hp.card7,hp.card8,hp.card9,hp.card10,
+                        hp.card11,hp.card12,hp.card13,hp.card14,hp.card15,
+                        hp.card16,hp.card17,hp.card18,hp.card19,hp.card20,
                         hp.position
                     FROM
                         HandsPlayers as hp,
@@ -351,24 +354,44 @@ dealt   whether they were seen in a 'dealt to' line
 
         # PlayerStacks
         c.execute(q, (handId,))
-        for (seat, winnings, name, chips, card1, card2, card3, card4, position) in c.fetchall():
+        # See NOTE: below on what this does.
+        res = [dict(line) for line in [zip([ column[0] for column in c.description], row) for row in c.fetchall()]]
+        for row in res:
             #print "DEBUG: addPlayer(%s, %s, %s)" %(seat,name,str(chips))
-            self.addPlayer(seat,name,str(chips))
-            #print "DEBUG: card1: %s" % card1
-            # map() should work, but is returning integers... FIXME later
-            #cardlist = map(Card.valueSuitFromCard, [card1, card2, card3, card4])
-            cardlist = [Card.valueSuitFromCard(card1), Card.valueSuitFromCard(card2), Card.valueSuitFromCard(card3), Card.valueSuitFromCard(card4)]
-            #print "DEUBG: cardlist: '%s'" % cardlist
+            self.addPlayer(row['seatNo'],row['name'],str(row['chips']))
+            cardlist = []
+            cardlist.append(Card.valueSuitFromCard(row['card1']))
+            cardlist.append(Card.valueSuitFromCard(row['card2']))
+            cardlist.append(Card.valueSuitFromCard(row['card3']))
+            cardlist.append(Card.valueSuitFromCard(row['card4']))
+            cardlist.append(Card.valueSuitFromCard(row['card5']))
+            #cardlist.append(Card.valueSuitFromCard(row['card6']))
+            #cardlist.append(Card.valueSuitFromCard(row['card7']))
+            #cardlist.append(Card.valueSuitFromCard(row['card8']))
+            #cardlist.append(Card.valueSuitFromCard(row['card9']))
+            #cardlist.append(Card.valueSuitFromCard(row['card10']))
+            #cardlist.append(Card.valueSuitFromCard(row['card11']))
+            #cardlist.append(Card.valueSuitFromCard(row['card12']))
+            #cardlist.append(Card.valueSuitFromCard(row['card13']))
+            #cardlist.append(Card.valueSuitFromCard(row['card14']))
+            #cardlist.append(Card.valueSuitFromCard(row['card15']))
+            #cardlist.append(Card.valueSuitFromCard(row['card16']))
+            #cardlist.append(Card.valueSuitFromCard(row['card17']))
+            #cardlist.append(Card.valueSuitFromCard(row['card18']))
+            #cardlist.append(Card.valueSuitFromCard(row['card19']))
+            #cardlist.append(Card.valueSuitFromCard(row['card20']))
             if cardlist[0] == '':
                 pass
             elif self.gametype['category'] == 'holdem':
-                self.addHoleCards('PREFLOP', name, closed=cardlist[0:2], shown=False, mucked=False, dealt=True)
+                self.addHoleCards('PREFLOP', row['name'], closed=cardlist[0:2], shown=False, mucked=False, dealt=True)
             elif self.gametype['category'] in ('omahahi', 'omahahilo'):
-                self.addHoleCards('PREFLOP', name, closed=cardlist, shown=False, mucked=False, dealt=True)
-            if winnings > 0:
-                self.addCollectPot(name, str(winnings))
-            if position == 'B':
-                self.buttonpos = seat
+                self.addHoleCards('PREFLOP', row['name'], closed=cardlist[0:4], shown=False, mucked=False, dealt=True)
+            elif self.gametype['category'] in ('27_3draw', '27_1draw', 'fivedraw'):
+                self.addHoleCards('DEAL', row['name'], closed=cardlist[0:5], shown=False, mucked=False, dealt=True)
+            if row['winnings'] > 0:
+                self.addCollectPot(row['name'], str(row['winnings']))
+            if row['position'] == 'B':
+                self.buttonpos = row['seatNo']
 
 
         # HandInfo
@@ -392,8 +415,13 @@ dealt   whether they were seen in a 'dealt to' line
         #res['tourneyId'] #res['seats'] #res['rush']
         self.tablename = res['tableName']
         self.handid    = res['siteHandNo']
+        # FIXME: Need to figure out why some times come out of the DB as %Y-%m-%d %H:%M:%S+00:00,
+        #        and others as %Y-%m-%d %H:%M:%S
         #print "DBEUG: res['startTime']: %s" % res['startTime']
-        self.startTime = datetime.datetime.strptime(res['startTime'], "%Y-%m-%d %H:%M:%S+00:00")
+        try:
+            self.startTime = datetime.datetime.strptime(res['startTime'], "%Y-%m-%d %H:%M:%S+00:00")
+        except ValueError:
+            self.startTime = datetime.datetime.strptime(res['startTime'], "%Y-%m-%d %H:%M:%S")
 
         cards = map(Card.valueSuitFromCard, [res['boardcard1'], res['boardcard2'], res['boardcard3'], res['boardcard4'], res['boardcard5']])
         #print "DEBUG: res['boardcard1']: %s" % res['boardcard1']
@@ -417,7 +445,9 @@ dealt   whether they were seen in a 'dealt to' line
                       ha.street,
                       ha.actionId,
                       ha.allIn,
-                      round(ha.amount / 100.0,2) as bet
+                      round(ha.amount / 100.0,2) as bet,
+                      ha.numDiscarded,
+                      ha.cardsDiscarded
                 FROM
                       HandsActions as ha,
                       Players as p,
@@ -440,6 +470,7 @@ dealt   whether they were seen in a 'dealt to' line
             # allin True/False if row['allIn'] == 0
             bet = row['bet']
             street = self.allStreets[int(street)+1]
+            discards = row['cardsDiscarded']
             #print "DEBUG: name: '%s' street: '%s' act: '%s' bet: '%s'" %(name, street, act, bet)
             if   act == 1: # Ante
                 self.addAnte(name, str(bet))
@@ -453,14 +484,22 @@ dealt   whether they were seen in a 'dealt to' line
                 self.addBlind(name, 'both', str(bet))
             elif act == 6: # Call
                 self.addCall(street, name, str(bet))
+            elif act == 7: # Raise
+                self.addRaiseBy(street, name, str(bet))
             elif act == 8: # Bet
                 self.addBet(street, name, str(bet))
+            elif act == 9: # Stands pat
+                self.addStandsPat(street, name, discards)
             elif act == 10: # Fold
                 self.addFold(street, name)
             elif act == 11: # Check
                 self.addCheck(street, name)
-            elif act == 7: # Raise
-                self.addRaiseBy(street, name, str(bet))
+            elif act == 12: # Discard
+                self.addDiscard(street, name, row['numDiscarded'], discards)
+            elif act == 13: # Bringin
+                self.addBringIn(name, str(bet))
+            elif act == 14: # Complete
+                self.addComplete(street, name, str(bet))
             else:
                 print "DEBUG: unknown action: '%s'" % act
 
