@@ -49,6 +49,8 @@ def card_renderer_cell_func(tree_column, cell, model, tree_iter, data):
     card_height = 42
     col = data
     coldata = model.get_value(tree_iter, col)
+    if coldata == None or coldata == '':
+        coldata = "0x"
     coldata = coldata.replace("'","")
     coldata = coldata.replace("[","")
     coldata = coldata.replace("]","")
@@ -245,10 +247,11 @@ class GuiReplayer:
         self.handswin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.replayBox.pack_end(self.handswin)
         cols = [
-                str,    # Hero cards
-                str,    # Flop
-                str,    # Turn
-                str,    # River
+                str,    # Street0 cards
+                str,    # Street1 cards
+                str,    # Street2 cards
+                str,    # Street3 cards
+                str,    # Street4 cards
                 str,    # Won
                 str,    # Bet
                 str,    # Net
@@ -256,14 +259,15 @@ class GuiReplayer:
                 ]
         # Dict of colnames and their column idx in the model/ListStore
         self.colnum = {
-                  'Hero'      : 0,
-                  'Flop'      : 1,
-                  'Turn'      : 2,
-                  'River'     : 3,
-                  'Won'       : 4,
-                  'Bet'       : 5,
-                  'Net'       : 6,
-                  'Game'      : 7,
+                  'Street0'      : 0,
+                  'Street1'      : 1,
+                  'Street2'      : 2,
+                  'Street3'      : 3,
+                  'Street4'      : 4,
+                  'Won'          : 5,
+                  'Bet'          : 6,
+                  'Net'          : 7,
+                  'Game'         : 8,
                  }
         self.liststore = gtk.ListStore(*cols)
         self.view = gtk.TreeView()
@@ -273,11 +277,13 @@ class GuiReplayer:
         self.viewfilter = self.liststore.filter_new()
         self.view.set_model(self.viewfilter)
         textcell = gtk.CellRendererText()
+        pixbuf   = gtk.CellRendererPixbuf()
 
-        self.view.insert_column_with_data_func(-1, 'Hero', gtk.CellRendererPixbuf(), card_renderer_cell_func, self.colnum['Hero'])
-        self.view.insert_column_with_data_func(-1, 'Flop', gtk.CellRendererPixbuf(), card_renderer_cell_func, self.colnum['Flop'])
-        self.view.insert_column_with_data_func(-1, 'Turn', gtk.CellRendererPixbuf(), card_renderer_cell_func, self.colnum['Turn'])
-        self.view.insert_column_with_data_func(-1, 'River', gtk.CellRendererPixbuf(), card_renderer_cell_func, self.colnum['River'])
+        self.view.insert_column_with_data_func(-1, 'Street 0', pixbuf, card_renderer_cell_func, self.colnum['Street0'])
+        self.view.insert_column_with_data_func(-1, 'Street 1', pixbuf, card_renderer_cell_func, self.colnum['Street1'])
+        self.view.insert_column_with_data_func(-1, 'Street 2', pixbuf, card_renderer_cell_func, self.colnum['Street2'])
+        self.view.insert_column_with_data_func(-1, 'Street 3', pixbuf, card_renderer_cell_func, self.colnum['Street3'])
+        self.view.insert_column_with_data_func(-1, 'Street 4', pixbuf, card_renderer_cell_func, self.colnum['Street4'])
         self.view.insert_column_with_data_func(-1, 'Won', textcell, cash_renderer_cell_func, self.colnum['Won'])
         self.view.insert_column_with_data_func(-1, 'Bet', textcell, cash_renderer_cell_func, self.colnum['Bet'])
         self.view.insert_column_with_data_func(-1, 'Net', textcell, cash_renderer_cell_func, self.colnum['Net'])
@@ -293,7 +299,21 @@ class GuiReplayer:
                 won = hand.collectees[hero]
             bet = hand.pot.committed[hero]
             net = won - bet
-            row = [hand.join_holecards(hero), hand.board["FLOP"], hand.board["TURN"], hand.board["RIVER"], str(won), str(bet), str(net), hand.gametype['category']]
+            gt =  hand.gametype['category']
+            row = []
+            if hand.gametype['base'] == 'hold':
+                row = [hand.join_holecards(hero), hand.board["FLOP"], hand.board["TURN"], hand.board["RIVER"], None, str(won), str(bet), str(net), gt]
+            elif hand.gametype['base'] == 'stud':
+                third = " ".join(hand.holecards['THIRD'][hero][0]) + " " + " ".join(hand.holecards['THIRD'][hero][1]) 
+                #ugh - fix the stud join_holecards function so we can retrieve sanely
+                fourth  = " ".join(hand.holecards['FOURTH'] [hero][0])
+                fifth   = " ".join(hand.holecards['FIFTH']  [hero][0])
+                sixth   = " ".join(hand.holecards['SIXTH']  [hero][0])
+                seventh = " ".join(hand.holecards['SEVENTH'][hero][0])
+                row = [third, fourth, fifth, sixth, seventh, str(won), str(bet), str(net), gt]
+            elif hand.gametype['base'] == 'draw':
+                row = [hand.join_holecards(hero,street='DEAL'), None, None, None, None, str(won), str(bet), str(net), gt]
+            #print "DEBUG: row: %s" % row
             self.liststore.append(row)
         self.viewfilter.set_visible_func(self.viewfilter_visible_cb)
         self.handswin.show_all()
