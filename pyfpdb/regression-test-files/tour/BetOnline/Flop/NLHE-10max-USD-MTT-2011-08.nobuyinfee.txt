@@ -1,0 +1,874 @@
+
+
+
+Tournament will start in a moment.
+
+
+
+BetOnline Poker Game #900218526: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:02 Eastern Daylight Time
+Table '3427473-004' 10-Max, Seat #9 is the button
+Seat 9: Player19 (1000.00 in chips) - The button
+Seat 8: Player5 (1000.00 in chips)
+Seat 7: Player14 (1000.00 in chips)
+Seat 6: Player15 (1000.00 in chips)
+Seat 5: Player7 (1000.00 in chips)
+Seat 4: Player6 (1000.00 in chips)
+Seat 3: Player13 (1000.00 in chips)
+Seat 2: Player10 (1000.00 in chips)
+Seat 1: Player20 (1000.00 in chips) - Big Blind
+Seat 0: Player2 (1000.00 in chips) - Small Blind
+Player2: posts small blind 10.00
+Player20: posts big blind 20.00
+*** HOLE CARDS *** 
+Dealt to Player13 [4s 8c]
+Player10: calls 20.00
+Player13: folds
+Player6: folds
+Player7: folds
+Player15: folds
+Player14: raises 40.00 to 40.00
+Player5: folds
+Player19: folds
+Player2: folds
+Player20: folds
+Player10: calls 20.00
+*** FLOP *** [7c 2d 9h]
+Player10: checks
+Player14: checks
+*** TURN *** [7c 2d 9h][Qc]
+Player10: checks
+Player14: checks
+*** RIVER *** [7c 2d 9h Qc][7s]
+Player10: checks
+Player14: checks
+*** SHOW DOWN *** 
+Player14 shows 3c 3d
+Player10 shows Kh Js
+*** SUMMARY *** 
+Total pot 110.00
+Board [7c 2d 9h Qc 7s]
+Seat 9: Player19 folded before Flop
+Seat 8: Player5 folded before Flop
+Seat 7: Player14 showed [3c 3d] and won (110.00)
+Seat 6: Player15 folded before Flop
+Seat 5: Player7 folded before Flop
+Seat 4: Player6 folded before Flop
+Seat 3: Player13 folded before Flop
+Seat 2: Player10 showed [Kh Js] but did not win
+Seat 1: Player20 folded before Flop
+Seat 0: Player2 folded before Flop
+
+
+
+BetOnline Poker Game #900219162: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:03 Eastern Daylight Time
+Table '3427473-004' 10-Max, Seat #0 is the button
+Seat 9: Player19 (1000.00 in chips)
+Seat 8: Player5 (1000.00 in chips)
+Seat 7: Player14 (1070.00 in chips)
+Seat 6: Player15 (1000.00 in chips)
+Seat 5: Player7 (1000.00 in chips)
+Seat 4: Player6 (1000.00 in chips)
+Seat 3: Player13 (1000.00 in chips) - Big Blind
+Seat 2: Player10 (960.00 in chips) - Small Blind
+Seat 1: Player20 (980.00 in chips)
+Seat 0: Player2 (990.00 in chips) - The button
+Player20: posts small blind 10.00
+Player10: posts big blind 20.00
+*** HOLE CARDS *** 
+Dealt to Player13 [5c 4d]
+Player13: folds
+Player6: folds
+Player7: folds
+Player15: folds
+Player14: folds
+Player5: folds
+Player19: calls 20.00
+Player2: folds
+Player20: folds
+Player10: raises 30.00 to 50.00
+Player19: calls 30.00
+*** FLOP *** [Js 6s 4c]
+Player10: bets 110.00
+Player19: calls 110.00
+*** TURN *** [Js 6s 4c][Kc]
+Player10: bets 330.00
+Player19: calls 330.00
+*** RIVER *** [Js 6s 4c Kc][9c]
+Player10: bets 470.00
+Player19: folds
+Uncalled bet (470.00) returned to Player10
+*** SUMMARY *** 
+Total pot 990.00
+Board [Js 6s 4c Kc 9c]
+Total pot 990.00
+Board [Js 6s 4c Kc 9c]
+Seat 9: Player19 folded on the River
+Seat 8: Player5 folded before Flop
+Seat 7: Player14 folded before Flop
+Seat 6: Player15 folded before Flop
+Seat 5: Player7 folded before Flop
+Seat 4: Player6 folded before Flop
+Seat 3: Player13 folded before Flop
+Seat 2: Player10 collected (990.00)
+Seat 1: Player20 folded before Flop
+Seat 0: Player2 folded before Flop
+Player13 has left the table
+
+
+
+BetOnline Poker Game #900219408: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:04 Eastern Daylight Time
+Table '3427473-176' 10-Max, Seat #2684684 is the button
+Seat 9: Player21 (1000.00 in chips)
+Seat 8: Player0 (1000.00 in chips)
+Seat 7: Player4 (1450.00 in chips)
+Seat 6: Player8 (1000.00 in chips)
+Seat 5: Player11 (1000.00 in chips)
+Seat 4: Player12 (1000.00 in chips)
+Seat 3: Player13 (1000.00 in chips)
+Seat 2: Player1 (980.00 in chips)
+Seat 1: Player18 (1010.00 in chips)
+Seat 0: Player9 (990.00 in chips)
+Joined table during game.  History will only be recorded from the next hand.
+Player1: posts small blind 10.00
+Player12: posts big blind 20.00
+*** HOLE CARDS *** 
+Dealt to Player13 []
+Player11: folds
+Player8: folds
+Player4: calls 20.00
+Player0: folds
+Player21: folds
+Player9: folds
+Player18: calls 20.00
+Player1: folds
+Player12: checks
+*** FLOP *** [Js 7s 6s]
+Player12: checks
+Player4: checks
+Player18: bets 100.00
+Player12: calls 100.00
+Player4: folds
+*** TURN *** [Js 7s 6s][Ad]
+Player12: checks
+Player18: bets 270.00
+Player12: folds
+Uncalled bet (270.00) returned to Player18
+*** SUMMARY *** 
+Total pot 270.00
+Board [Js 7s 6s Ad]
+Total pot 270.00
+Board [Js 7s 6s Ad]
+Seat 9: Player21 folded before Flop
+Seat 8: Player0 folded before Flop
+Seat 7: Player4 folded on the Flop
+Seat 6: Player8 folded before Flop
+Seat 5: Player11 folded before Flop
+Seat 4: Player12 folded on the Turn
+Seat 3: Player13 collected (0.00)
+Seat 2: Player1 folded before Flop
+Seat 1: Player18 showed [2d 4d] and won (270.00)
+Seat 0: Player9 folded before Flop
+
+
+
+BetOnline Poker Game #900219823: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:05 Eastern Daylight Time
+Table '3427473-176' 10-Max, Seat #2 is the button
+Seat 9: Player21 (1000.00 in chips)
+Seat 8: Player0 (1000.00 in chips)
+Seat 7: Player4 (1430.00 in chips) - Small Blind
+Seat 6: Player8 (1000.00 in chips)
+Seat 5: Player11 (1000.00 in chips)
+Seat 4: Player12 (880.00 in chips)
+Seat 3: Player13 (1000.00 in chips)
+Seat 2: Player1 (970.00 in chips) - The button
+Seat 1: Player18 (1160.00 in chips) - Big Blind
+Seat 0: Player9 (990.00 in chips)
+Player12: posts small blind 10.00
+Player11: posts big blind 20.00
+*** HOLE CARDS *** 
+Dealt to Player13 []
+Player8: folds
+Player4: calls 20.00
+Player0: folds
+Player21: folds
+Player9: folds
+Player18: calls 20.00
+Player1: folds
+Player12: folds
+Player11: folds
+*** FLOP *** [Kd 2c 7s]
+Player4: bets 20.00
+Player18: raises 90.00 to 90.00
+Player4: calls 70.00
+*** TURN *** [Kd 2c 7s][7h]
+Player4: bets 20.00
+Player18: calls 20.00
+*** RIVER *** [Kd 2c 7s 7h][6s]
+Player4: bets 290.00
+Player18: raises 1030.00 to 1030.00 and is all in
+Player4: folds
+Uncalled bet (740.00) returned to Player18
+*** SUMMARY *** 
+Total pot 870.00
+Board [Kd 2c 7s 7h 6s]
+Total pot 870.00
+Board [Kd 2c 7s 7h 6s]
+Seat 9: Player21 folded before Flop
+Seat 8: Player0 folded before Flop
+Seat 7: Player4 folded on the River
+Seat 6: Player8 folded before Flop
+Seat 5: Player11 folded before Flop
+Seat 4: Player12 folded before Flop
+Seat 3: Player13 collected (0.00)
+Seat 2: Player1 folded before Flop
+Seat 1: Player18 collected (870.00)
+Seat 0: Player9 folded before Flop
+
+
+
+BetOnline Poker Game #900220209: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:06 Eastern Daylight Time
+Table '3427473-176' 10-Max, Seat #4 is the button
+Seat 9: Player21 (1000.00 in chips)
+Seat 8: Player0 (1000.00 in chips)
+Seat 7: Player4 (1010.00 in chips) - Small Blind
+Seat 6: Player8 (1000.00 in chips)
+Seat 5: Player11 (980.00 in chips)
+Seat 4: Player12 (870.00 in chips) - The button
+Seat 3: Player13 (1000.00 in chips)
+Seat 2: Player1 (970.00 in chips)
+Seat 1: Player18 (1610.00 in chips) - Big Blind
+Seat 0: Player9 (990.00 in chips)
+Player11: posts small blind 10.00
+Player8: posts big blind 20.00
+*** HOLE CARDS *** 
+Dealt to Player13 [2h 6d]
+Player4: folds
+Player0: folds
+Player21: folds
+Player9: folds
+Player18: calls 20.00
+Player1: folds
+Player13: folds
+Player12: raises 870.00 to 870.00 and is all in
+Player11: folds
+Player8: folds
+Player18: calls 850.00
+*** SHOW DOWN *** 
+Player12 shows Jd Qd
+Player18 shows 2c 2s
+*** SUMMARY *** 
+Total pot 1770.00
+Board [As Jh Ks 3s 8d]
+Seat 9: Player21 folded before Flop
+Seat 8: Player0 folded before Flop
+Seat 7: Player4 folded before Flop
+Seat 6: Player8 folded before Flop
+Seat 5: Player11 folded before Flop
+Seat 4: Player12 showed [Jd Qd] and won (1770.00)
+Seat 3: Player13 folded before Flop
+Seat 2: Player1 folded before Flop
+Seat 1: Player18 showed [2c 2s] but did not win
+Seat 0: Player9 folded before Flop
+
+
+
+BetOnline Poker Game #900220510: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:07 Eastern Daylight Time
+Table '3427473-176' 10-Max, Seat #5 is the button
+Seat 9: Player21 (1000.00 in chips)
+Seat 8: Player0 (1000.00 in chips)
+Seat 7: Player4 (1010.00 in chips) - Small Blind
+Seat 6: Player8 (980.00 in chips)
+Seat 5: Player11 (970.00 in chips) - The button
+Seat 4: Player12 (1770.00 in chips)
+Seat 3: Player13 (1000.00 in chips)
+Seat 2: Player1 (970.00 in chips)
+Seat 1: Player18 (740.00 in chips) - Big Blind
+Seat 0: Player9 (990.00 in chips)
+Player8: posts small blind 10.00
+Player4: posts big blind 20.00
+*** HOLE CARDS *** 
+Dealt to Player13 [7d 3c]
+Player0: folds
+Player21: folds
+Player9: folds
+Player18: folds
+Player1: folds
+Player13: folds
+Player12: folds
+Player11: folds
+Player8: folds
+Uncalled bet (10.00) returned to Player4
+*** SUMMARY *** 
+Total pot 20.00
+Board []
+Total pot 20.00
+Board []
+Seat 9: Player21 folded before Flop
+Seat 8: Player0 folded before Flop
+Seat 7: Player4 collected (20.00)
+Seat 6: Player8 folded before Flop
+Seat 5: Player11 folded before Flop
+Seat 4: Player12 folded before Flop
+Seat 3: Player13 folded before Flop
+Seat 2: Player1 folded before Flop
+Seat 1: Player18 folded before Flop
+Seat 0: Player9 folded before Flop
+
+
+
+BetOnline Poker Game #900220684: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:08 Eastern Daylight Time
+Table '3427473-176' 10-Max, Seat #6 is the button
+Seat 9: Player21 (1000.00 in chips)
+Seat 8: Player0 (1000.00 in chips)
+Seat 7: Player4 (1020.00 in chips) - Small Blind
+Seat 6: Player8 (970.00 in chips) - The button
+Seat 5: Player11 (970.00 in chips)
+Seat 4: Player12 (1770.00 in chips)
+Seat 3: Player13 (1000.00 in chips)
+Seat 2: Player1 (970.00 in chips)
+Seat 1: Player18 (740.00 in chips) - Big Blind
+Seat 0: Player9 (990.00 in chips)
+Player4: posts small blind 10.00
+Player0: posts big blind 20.00
+*** HOLE CARDS *** 
+Dealt to Player13 [6d Qh]
+Player21: folds
+Player9: folds
+Player18: raises 740.00 to 740.00 and is all in
+Player1: folds
+Player13: folds
+Player12: folds
+Player11: folds
+Player8: folds
+Player4: folds
+Player0: folds
+Uncalled bet (720.00) returned to Player18
+*** SUMMARY *** 
+Total pot 50.00
+Board []
+Total pot 50.00
+Board []
+Seat 9: Player21 folded before Flop
+Seat 8: Player0 folded before Flop
+Seat 7: Player4 folded before Flop
+Seat 6: Player8 folded before Flop
+Seat 5: Player11 folded before Flop
+Seat 4: Player12 folded before Flop
+Seat 3: Player13 folded before Flop
+Seat 2: Player1 folded before Flop
+Seat 1: Player18 collected (50.00)
+Seat 0: Player9 folded before Flop
+
+
+
+BetOnline Poker Game #900220806: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:08 Eastern Daylight Time
+Table '3427473-176' 10-Max, Seat #7 is the button
+Seat 9: Player21 (1000.00 in chips)
+Seat 8: Player0 (980.00 in chips)
+Seat 7: Player4 (1010.00 in chips) - The button
+Seat 6: Player8 (970.00 in chips)
+Seat 5: Player11 (970.00 in chips)
+Seat 4: Player12 (1770.00 in chips)
+Seat 3: Player13 (1000.00 in chips) - Big Blind
+Seat 2: Player1 (970.00 in chips)
+Seat 1: Player18 (770.00 in chips) - Small Blind
+Seat 0: Player9 (990.00 in chips)
+Player0: posts small blind 10.00
+Player21: posts big blind 20.00
+*** HOLE CARDS *** 
+Dealt to Player13 [Qc 2d]
+Player9: folds
+Player18: calls 20.00
+Player1: folds
+Player13: folds
+Player12: folds
+Player11: folds
+Player8: folds
+Player4: calls 20.00
+Player0: folds
+Player21: folds
+*** FLOP *** [9c Qs Qd]
+Player18: bets 70.00
+Player4: folds
+Uncalled bet (70.00) returned to Player18
+*** SUMMARY *** 
+Total pot 70.00
+Board [9c Qs Qd]
+Total pot 70.00
+Board [9c Qs Qd]
+Seat 9: Player21 folded on the Flop
+Seat 8: Player0 folded before Flop
+Seat 7: Player4 folded on the Flop
+Seat 6: Player8 folded before Flop
+Seat 5: Player11 folded before Flop
+Seat 4: Player12 folded before Flop
+Seat 3: Player13 folded before Flop
+Seat 2: Player1 folded before Flop
+Seat 1: Player18 collected (70.00)
+Seat 0: Player9 folded before Flop
+Player9 has left the table
+Player17 joins the table at seat #0
+
+
+
+BetOnline Poker Game #900221098: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:09 Eastern Daylight Time
+Table '3427473-176' 10-Max, Seat #8 is the button
+Seat 9: Player21 (980.00 in chips)
+Seat 8: Player0 (970.00 in chips) - The button
+Seat 7: Player4 (990.00 in chips)
+Seat 6: Player8 (970.00 in chips)
+Seat 5: Player11 (970.00 in chips)
+Seat 4: Player12 (1770.00 in chips)
+Seat 3: Player13 (1000.00 in chips) - Big Blind
+Seat 2: Player1 (970.00 in chips)
+Seat 1: Player18 (820.00 in chips) - Small Blind
+Seat 0: Player17 (940.00 in chips) - Sitting out
+Player21: posts small blind 10.00
+Player18: posts big blind 20.00
+*** HOLE CARDS *** 
+Dealt to Player13 [9h 2s]
+Player1: folds
+Player13: folds
+Player12: folds
+Player11: folds
+Player8: folds
+Player4: folds
+Player0: folds
+Player21: folds
+Uncalled bet (10.00) returned to Player18
+*** SUMMARY *** 
+Total pot 20.00
+Board []
+Total pot 20.00
+Board []
+Seat 9: Player21 folded before Flop
+Seat 8: Player0 folded before Flop
+Seat 7: Player4 folded before Flop
+Seat 6: Player8 folded before Flop
+Seat 5: Player11 folded before Flop
+Seat 4: Player12 folded before Flop
+Seat 3: Player13 folded before Flop
+Seat 2: Player1 folded before Flop
+Seat 1: Player18 collected (20.00)
+Player1 has left the table
+Player16 joins the table at seat #2
+
+
+
+BetOnline Poker Game #900221194: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:09 Eastern Daylight Time
+Table '3427473-176' 10-Max, Seat #9 is the button
+Seat 9: Player21 (970.00 in chips) - The button
+Seat 8: Player0 (970.00 in chips)
+Seat 7: Player4 (990.00 in chips)
+Seat 6: Player8 (970.00 in chips)
+Seat 5: Player11 (970.00 in chips)
+Seat 4: Player12 (1770.00 in chips)
+Seat 3: Player13 (1000.00 in chips) - Big Blind
+Seat 1: Player18 (830.00 in chips) - Small Blind
+Seat 0: Player17 (940.00 in chips)
+Seat 2: Player16 (880.00 in chips) - Sitting out
+Player18: posts small blind 10.00
+Player13: posts big blind 20.00
+*** HOLE CARDS *** 
+Dealt to Player13 [9s Qd]
+Player12: folds
+Player11: folds
+Player8: folds
+Player4: calls 20.00
+Player0: folds
+Player21: folds
+Player18: calls 10.00
+Player13: checks
+*** FLOP *** [Qc 7c Jd]
+Player18: checks
+Player13: checks
+Player4: checks
+*** TURN *** [Qc 7c Jd][6s]
+Player18: checks
+Player13: bets 20.00
+Player4: folds
+Player18: folds
+Uncalled bet (20.00) returned to Player13
+Player13 shows 9s Qd
+*** SUMMARY *** 
+Total pot 60.00
+Board [Qc 7c Jd 6s]
+Player13 shows 9s Qd
+Total pot 60.00
+Board [Qc 7c Jd 6s]
+Seat 9: Player21 folded before Flop
+Seat 8: Player0 folded before Flop
+Seat 7: Player4 folded on the Turn
+Seat 6: Player8 folded before Flop
+Seat 5: Player11 folded before Flop
+Seat 4: Player12 folded before Flop
+Seat 3: Player13 showed [9s Qd] and won (60.00)
+Seat 1: Player18 folded on the Turn
+Seat 0: Player17 collected (0.00)
+
+
+
+BetOnline Poker Game #900221545: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:10 Eastern Daylight Time
+Table '3427473-176' 10-Max, Seat #1 is the button
+Seat 9: Player21 (970.00 in chips)
+Seat 8: Player0 (970.00 in chips)
+Seat 7: Player4 (970.00 in chips) - Big Blind
+Seat 6: Player8 (970.00 in chips)
+Seat 5: Player11 (970.00 in chips)
+Seat 4: Player12 (1770.00 in chips)
+Seat 3: Player13 (1040.00 in chips) - Small Blind
+Seat 1: Player18 (810.00 in chips) - The button
+Seat 0: Player17 (940.00 in chips)
+Seat 2: Player16 (880.00 in chips)
+Player13: posts small blind 15.00
+Player12: posts big blind 30.00
+*** HOLE CARDS *** 
+Dealt to Player13 [Ac 7s]
+Player11: folds
+Player8: folds
+Player4: calls 30.00
+Player0: folds
+Player21: folds
+Player17: folds
+Player18: calls 30.00
+Player13: folds
+Player12: folds
+*** FLOP *** [2d As Qs]
+Player4: checks
+Player18: checks
+*** TURN *** [2d As Qs][9h]
+Player4: checks
+Player18: bets 105.00
+Player4: folds
+Uncalled bet (105.00) returned to Player18
+*** SUMMARY *** 
+Total pot 105.00
+Board [2d As Qs 9h]
+Total pot 105.00
+Board [2d As Qs 9h]
+Seat 9: Player21 folded before Flop
+Seat 8: Player0 folded before Flop
+Seat 7: Player4 folded on the Turn
+Seat 6: Player8 folded before Flop
+Seat 5: Player11 folded before Flop
+Seat 4: Player12 folded before Flop
+Seat 3: Player13 folded before Flop
+Seat 1: Player18 collected (105.00)
+Seat 0: Player17 folded before Flop
+Seat 2: Player16 collected (0.00)
+
+
+
+BetOnline Poker Game #900221873: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:11 Eastern Daylight Time
+Table '3427473-176' 10-Max, Seat #3 is the button
+Seat 9: Player21 (970.00 in chips) - Big Blind
+Seat 8: Player0 (970.00 in chips)
+Seat 7: Player4 (940.00 in chips) - Small Blind
+Seat 6: Player8 (970.00 in chips)
+Seat 5: Player11 (970.00 in chips)
+Seat 4: Player12 (1740.00 in chips)
+Seat 3: Player13 (1025.00 in chips) - The button
+Seat 1: Player18 (885.00 in chips)
+Seat 0: Player17 (940.00 in chips)
+Seat 2: Player16 (880.00 in chips)
+Player12: posts small blind 15.00
+Player11: posts big blind 30.00
+*** HOLE CARDS *** 
+Dealt to Player13 [Qh 7c]
+Player8: folds
+Player4: calls 30.00
+Player0: folds
+Player21: calls 30.00
+Player17: folds
+Player18: raises 885.00 to 885.00 and is all in
+Player16: folds
+Player13: folds
+Player12: folds
+Player11: folds
+Player4: folds
+Player21: folds
+Uncalled bet (855.00) returned to Player18
+*** SUMMARY *** 
+Total pot 135.00
+Board []
+Total pot 135.00
+Board []
+Seat 9: Player21 folded before Flop
+Seat 8: Player0 folded before Flop
+Seat 7: Player4 folded before Flop
+Seat 6: Player8 folded before Flop
+Seat 5: Player11 folded before Flop
+Seat 4: Player12 folded before Flop
+Seat 3: Player13 folded before Flop
+Seat 1: Player18 showed [3s 4s] and won (135.00)
+Seat 0: Player17 folded before Flop
+Seat 2: Player16 folded before Flop
+
+
+
+BetOnline Poker Game #900222217: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:12 Eastern Daylight Time
+Table '3427473-176' 10-Max, Seat #4 is the button
+Seat 9: Player21 (940.00 in chips)
+Seat 8: Player0 (970.00 in chips)
+Seat 7: Player4 (910.00 in chips) - Small Blind
+Seat 6: Player8 (970.00 in chips)
+Seat 5: Player11 (940.00 in chips)
+Seat 4: Player12 (1725.00 in chips) - The button
+Seat 3: Player13 (1025.00 in chips)
+Seat 1: Player18 (990.00 in chips) - Big Blind
+Seat 0: Player17 (940.00 in chips)
+Seat 2: Player16 (880.00 in chips)
+Player11: posts small blind 15.00
+Player8: posts big blind 30.00
+*** HOLE CARDS *** 
+Dealt to Player13 [6d 8h]
+Player4: calls 30.00
+Player0: folds
+Player21: folds
+Player17: folds
+Player18: folds
+Player16: folds
+Player13: folds
+Player12: calls 30.00
+Player11: folds
+Player8: folds
+*** FLOP *** [Ah 4s 10d]
+Player4: checks
+Player12: checks
+*** TURN *** [Ah 4s 10d][Jc]
+Player4: checks
+Player12: folds
+*** SUMMARY *** 
+Total pot 105.00
+Board [Ah 4s 10d Jc]
+Total pot 105.00
+Board [Ah 4s 10d Jc]
+Seat 9: Player21 folded before Flop
+Seat 8: Player0 folded before Flop
+Seat 7: Player4 collected (105.00)
+Seat 6: Player8 folded before Flop
+Seat 5: Player11 folded before Flop
+Seat 4: Player12 folded on the Turn
+Seat 3: Player13 folded before Flop
+Seat 1: Player18 folded before Flop
+Seat 0: Player17 folded before Flop
+Seat 2: Player16 folded before Flop
+
+
+
+BetOnline Poker Game #900222500: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:13 Eastern Daylight Time
+Table '3427473-176' 10-Max, Seat #5 is the button
+Seat 9: Player21 (940.00 in chips)
+Seat 8: Player0 (970.00 in chips)
+Seat 7: Player4 (985.00 in chips) - Small Blind
+Seat 6: Player8 (940.00 in chips)
+Seat 5: Player11 (925.00 in chips) - The button
+Seat 4: Player12 (1695.00 in chips)
+Seat 3: Player13 (1025.00 in chips)
+Seat 1: Player18 (990.00 in chips) - Big Blind
+Seat 0: Player17 (940.00 in chips)
+Seat 2: Player16 (880.00 in chips)
+Player8: posts small blind 15.00
+Player4: posts big blind 30.00
+*** HOLE CARDS *** 
+Dealt to Player13 [10s Ad]
+Player0: folds
+Player21: folds
+Player17: folds
+Player18: folds
+Player16: folds
+Player13: calls 30.00
+Player12: raises 1695.00 to 1695.00 and is all in
+Player11: folds
+Player8: folds
+Player4: folds
+Player13: folds
+Uncalled bet (1665.00) returned to Player12
+*** SUMMARY *** 
+Total pot 105.00
+Board []
+Total pot 105.00
+Board []
+Seat 9: Player21 folded before Flop
+Seat 8: Player0 folded before Flop
+Seat 7: Player4 folded before Flop
+Seat 6: Player8 folded before Flop
+Seat 5: Player11 folded before Flop
+Seat 4: Player12 collected (105.00)
+Seat 3: Player13 folded before Flop
+Seat 1: Player18 folded before Flop
+Seat 0: Player17 folded before Flop
+Seat 2: Player16 folded before Flop
+Player0 has left the table
+Player3 joins the table at seat #8
+Player3 has left the table
+
+
+
+BetOnline Poker Game #900222789: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:13 Eastern Daylight Time
+Table '3427473-176' 10-Max, Seat #6 is the button
+Seat 9: Player21 (940.00 in chips)
+Seat 7: Player4 (955.00 in chips) - Small Blind
+Seat 6: Player8 (925.00 in chips) - The button
+Seat 5: Player11 (925.00 in chips)
+Seat 4: Player12 (1770.00 in chips)
+Seat 3: Player13 (995.00 in chips)
+Seat 1: Player18 (990.00 in chips) - Big Blind
+Seat 0: Player17 (940.00 in chips)
+Seat 2: Player16 (880.00 in chips)
+Seat 8: Player3 (40.00 in chips) - Sitting out
+Player4: posts small blind 15.00
+Player21: posts big blind 30.00
+*** HOLE CARDS *** 
+Dealt to Player13 [8s 10c]
+Player17: folds
+Player18: folds
+Player16: calls 30.00
+Player13: folds
+Player12: calls 30.00
+Player11: folds
+Player8: folds
+Player4: calls 15.00
+Player21: checks
+*** FLOP *** [7c 10s 7h]
+Player4: checks
+Player21: checks
+Player16: checks
+Player12: checks
+*** TURN *** [7c 10s 7h][Ad]
+Player4: checks
+Player21: checks
+Player16: checks
+Player12: checks
+*** RIVER *** [7c 10s 7h Ad][9s]
+Player4: bets 120.00
+Player21: folds
+Player16: folds
+Player12: folds
+Uncalled bet (120.00) returned to Player4
+*** SUMMARY *** 
+Total pot 120.00
+Board [7c 10s 7h Ad 9s]
+Total pot 120.00
+Board [7c 10s 7h Ad 9s]
+Seat 9: Player21 folded on the River
+Seat 7: Player4 collected (120.00)
+Seat 6: Player8 folded before Flop
+Seat 5: Player11 folded before Flop
+Seat 4: Player12 folded on the River
+Seat 3: Player13 folded before Flop
+Seat 1: Player18 folded before Flop
+Seat 0: Player17 folded before Flop
+Seat 2: Player16 folded on the River
+
+
+
+BetOnline Poker Game #900223168: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:15 Eastern Daylight Time
+Table '3427473-176' 10-Max, Seat #7 is the button
+Seat 9: Player21 (910.00 in chips) - Small Blind
+Seat 7: Player4 (1045.00 in chips) - The button
+Seat 6: Player8 (925.00 in chips)
+Seat 5: Player11 (925.00 in chips)
+Seat 4: Player12 (1740.00 in chips)
+Seat 3: Player13 (995.00 in chips)
+Seat 1: Player18 (990.00 in chips) - Big Blind
+Seat 0: Player17 (940.00 in chips)
+Seat 2: Player16 (850.00 in chips)
+Seat 8: Player3 (40.00 in chips)
+Player21: posts small blind 15.00
+Player17: posts big blind 30.00
+*** HOLE CARDS *** 
+Dealt to Player13 [Kc 9d]
+Player18: calls 30.00
+Player16: folds
+Player13: folds
+Player12: folds
+Player11: folds
+Player8: folds
+Player4: calls 30.00
+Player21: calls 15.00
+Player17: folds
+*** FLOP *** [Jc 3s Ks]
+Player21: checks
+Player18: checks
+Player4: checks
+*** TURN *** [Jc 3s Ks][6h]
+Player21: checks
+Player18: checks
+Player4: checks
+*** RIVER *** [Jc 3s Ks 6h][9c]
+Player21: checks
+Player18: checks
+Player4: checks
+Player21 shows Ad 9h
+*** SUMMARY *** 
+Total pot 120.00
+Board [Jc 3s Ks 6h 9c]
+Player21 shows Ad 9h
+Total pot 120.00
+Board [Jc 3s Ks 6h 9c]
+Seat 9: Player21 showed [Ad 9h] and won (120.00)
+Seat 7: Player4 collected (0.00)
+Seat 6: Player8 folded before Flop
+Seat 5: Player11 folded before Flop
+Seat 4: Player12 folded before Flop
+Seat 3: Player13 folded before Flop
+Seat 1: Player18 collected (0.00)
+Seat 0: Player17 folded before Flop
+Seat 2: Player16 folded before Flop
+Seat 8: Player3 collected (0.00)
+
+
+
+BetOnline Poker Game #900223632: Tournament #3427473: Hold'em $10.00/$20.00 - 2011/08/07 16:16 Eastern Daylight Time
+Table '3427473-176' 10-Max, Seat #9 is the button
+Seat 9: Player21 (1000.00 in chips) - The button
+Seat 7: Player4 (1015.00 in chips)
+Seat 6: Player8 (925.00 in chips)
+Seat 5: Player11 (925.00 in chips)
+Seat 4: Player12 (1740.00 in chips)
+Seat 3: Player13 (995.00 in chips)
+Seat 1: Player18 (960.00 in chips) - Small Blind
+Seat 0: Player17 (910.00 in chips)
+Seat 2: Player16 (850.00 in chips) - Big Blind
+Seat 8: Player3 (40.00 in chips)
+Player17: posts small blind 15.00
+Player18: posts big blind 30.00
+*** HOLE CARDS *** 
+Dealt to Player13 [Ac Ad]
+Player16: folds
+Player13: raises 90.00 to 90.00
+Player12: folds
+Player11: folds
+Player8: folds
+Player4: folds
+Player3: folds
+Player21: calls 90.00
+Player17: folds
+Player18: calls 60.00
+*** FLOP *** [9c 2c 10s]
+Player18: bets 285.00
+Player13: raises 905.00 to 905.00 and is all in
+Player21: raises 910.00 to 910.00 and is all in
+Player18: calls 585.00
+Uncalled bet (5.00) returned to Player21
+Total pot 70.00
+Total pot 70.00
+*** SHOW DOWN *** 
+Player21 shows 8c 6c
+Player13 shows Ac Ad
+Player18 shows 2s 3c
+*** SUMMARY *** 
+Total pot 2895.00
+Board [9c 2c 10s 7d Qd]
+Seat 9: Player21 showed [8c 6c] and won (2895.00)
+Seat 7: Player4 folded before Flop
+Seat 6: Player8 folded before Flop
+Seat 5: Player11 folded before Flop
+Seat 4: Player12 folded before Flop
+Seat 3: Player13 showed [Ac Ad] but did not win
+Seat 1: Player18 showed [2s 3c] but did not win
+Seat 0: Player17 folded before Flop
+Seat 2: Player16 folded before Flop
+Seat 8: Player3 folded before Flop
+

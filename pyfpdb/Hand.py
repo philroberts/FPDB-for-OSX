@@ -762,7 +762,8 @@ Card ranks will be uppercased
         # This gives us the total amount put in the pot
         if self.totalpot is None:
             self.pot.end()
-            self.totalpot = self.pot.total
+            self.totalpot   = self.pot.total
+            self.pots       = self.pot.pots
 
         # This gives us the amount collected, i.e. after rake
         if self.totalcollected is None:
@@ -1736,10 +1737,9 @@ class Pot(object):
             while len(commitsall) > 0:
                 commitslive = [(v,k) for (v,k) in commitsall if k in self.contenders]
                 v1 = commitslive[0][0]
-                self.pots += [sum([min(v,v1) for (v,k) in commitsall])]
+                self.pots += [(sum([min(v,v1) for (v,k) in commitsall]), set(k for (v,k) in commitsall if k in self.contenders))]
                 commitsall = [((v-v1),k) for (v,k) in commitsall if v-v1 >0]
         except IndexError, e:
-            log.error(_("Major failure while calculating pot: '%s'") % e)
             raise FpdbParseError(_("Major failure while calculating pot: '%s'") % e)
 
         # TODO: I think rake gets taken out of the pots.
@@ -1759,6 +1759,6 @@ class Pot(object):
         ret = "Total pot %s%.2f" % (self.sym, self.total)
         if len(self.pots) < 2:
             return ret;
-        ret += " Main pot %s%.2f" % (self.sym, self.pots[0])
+        ret += " Main pot %s%.2f" % (self.sym, self.pots[0][0])
 
-        return ret + ''.join([ (" Side pot %s%.2f." % (self.sym, self.pots[x]) ) for x in xrange(1, len(self.pots)) ])
+        return ret + ''.join([ (" Side pot %s%.2f." % (self.sym, self.pots[x][0]) ) for x in xrange(1, len(self.pots)) ])

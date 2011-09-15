@@ -289,16 +289,17 @@ def main(argv=None):
     CarbonErrors      = FpdbError('Carbon')
     PKRErrors         = FpdbError('PKR')
     iPokerErrors      = FpdbError('iPoker')
-    Win2dayErrors     = FpdbError('Win2day')
+    BossErrors     = FpdbError('Boss')
     WinamaxErrors     = FpdbError('Winamax')
     EntractionErrors  = FpdbError('Entraction')
+    BetOnlineErrors   = FpdbError('BetOnline')
 
     ErrorsList = [
                     PacificPokerErrors, PokerStarsErrors, FTPErrors, PartyPokerErrors,
                     BetfairErrors, OnGameErrors, AbsoluteErrors,
                     EverleafErrors, CarbonErrors, PKRErrors,
                     iPokerErrors, WinamaxErrors, UltimateBetErrors,
-                    Win2dayErrors, EverestErrors, EntractionErrors
+                    BossErrors, EverestErrors, EntractionErrors, BetOnlineErrors
                 ]
 
     sites = {
@@ -314,10 +315,11 @@ def main(argv=None):
                 'Carbon' : False,
                 #'PKR' : False,
                 'iPoker' : False,
-                'Win2day' : False,
+                'Boss' : False,
                 'Winamax' : False,
                 'Everest' : False,
                 'Entraction' : False,
+                'BetOnline': False
             }
 
     if test_all_sites == True:
@@ -390,14 +392,19 @@ def main(argv=None):
         walk_testfiles("regression-test-files/tour/Winamax/", compare, importer, WinamaxErrors, "Winamax")
     elif sites['Winamax'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, WinamaxErrors, "Winamax")
-    if sites['Win2day'] == True and not single_file_test:
-        walk_testfiles("regression-test-files/cash/Win2day/", compare, importer, Win2dayErrors, "Win2day")
-    elif sites['Win2day'] == True and single_file_test:
-        walk_testfiles(options.filename, compare, importer, Win2dayErrors, "Win2day")
+    if sites['Boss'] == True and not single_file_test:
+        walk_testfiles("regression-test-files/cash/Boss/", compare, importer, BossErrors, "Boss")
+    elif sites['Boss'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, BossErrors, "Boss")
     if sites['Entraction'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Entraction/", compare, importer, EntractionErrors, "Entraction")
     elif sites['Entraction'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, EntractionErrors, "Entraction")
+    if sites['BetOnline'] == True and not single_file_test:
+        walk_testfiles("regression-test-files/cash/BetOnline/", compare, importer, BetOnlineErrors, "BetOnline")
+        walk_testfiles("regression-test-files/tour/BetOnline/", compare, importer, BetOnlineErrors, "BetOnline")
+    elif sites['BetOnline'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, BetOnlineErrors, "BetOnline")
 
     totalerrors = 0
 

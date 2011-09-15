@@ -75,7 +75,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 163
+DB_VERSION = 164
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -333,8 +333,8 @@ class Database:
             self.cachemiss   = 0        # Delete me later - using to count player cache misses
             self.cachehit    = 0        # Delete me later - using to count player cache hits
 
-            # config while trying out new hudcache mechanism
-            self.use_date_in_hudcache = True
+            # if fastStoreHudCache is true then the hudcache will be build using the limited configuration which ignores date, seats, and position
+            self.build_full_hudcache = not self.import_options['fastStoreHudCache']
 
             #self.hud_hero_style = 'T'  # Duplicate set of vars just for hero - not used yet.
             #self.hud_hero_hands = 2000 # Idea is that you might want all-time stats for others
@@ -1480,7 +1480,7 @@ class Database:
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('1', 'Full Tilt Poker', 'FT')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('2', 'PokerStars', 'PS')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('3', 'Everleaf', 'EV')")
-        c.execute("INSERT INTO Sites (id,name,code) VALUES ('4', 'Win2day', 'W2')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('4', 'Boss', 'BM')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('5', 'OnGame', 'OG')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('6', 'UltimateBet', 'UB')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('7', 'Betfair', 'BF')")
@@ -1495,6 +1495,7 @@ class Database:
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('16', 'Everest', 'EP')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('17', 'Cake', 'CK')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('18', 'Entraction', 'TR')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('19', 'BetOnline', 'BO')")
         #Fill Actions
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('1', 'ante', 'A')")
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('2', 'small blind', 'SB')")
@@ -1519,6 +1520,39 @@ class Database:
         self.dropAllForeignKeys()
         self.createAllForeignKeys()
     #end def rebuild_indexes
+    
+    def replace_statscache(self, query):
+        if self.build_full_hudcache:
+            query = query.replace('<seat_num>', "h.seats as seat_num")
+            query = query.replace('<hc_position>', """case when hp.position = 'B' then 'B'
+                        when hp.position = 'S' then 'S'
+                        when hp.position = '0' then 'D'
+                        when hp.position = '1' then 'C'
+                        when hp.position = '2' then 'M'
+                        when hp.position = '3' then 'M'
+                        when hp.position = '4' then 'M'
+                        when hp.position = '5' then 'E'
+                        when hp.position = '6' then 'E'
+                        when hp.position = '7' then 'E'
+                        when hp.position = '8' then 'E'
+                        when hp.position = '9' then 'E'
+                        else 'E'
+                   end                                            as hc_position""")
+            if self.backend == self.PGSQL:
+                query = query.replace('<styleKey>', "'d' || to_char(h.startTime, 'YYMMDD')")
+                query = query.replace('<styleKeyGroup>', ",to_char(h.startTime, 'YYMMDD')")
+            elif self.backend == self.SQLITE:
+                query = query.replace('<styleKey>', "'d' || substr(strftime('%Y%m%d', h.startTime),3,7)")
+                query = query.replace('<styleKeyGroup>', ",substr(strftime('%Y%m%d', h.startTime),3,7)")
+            elif self.backend == self.MYSQL_INNODB:
+                query = query.replace('<styleKey>', "date_format(h.startTime, 'd%y%m%d')")
+                query = query.replace('<styleKeyGroup>', ",date_format(h.startTime, 'd%y%m%d')")
+        else:
+            query = query.replace('<seat_num>', "'0' as seat_num")
+            query = query.replace('<hc_position>', "'0' as hc_position")
+            query = query.replace('<styleKey>', "'A000000' as styleKey")
+            query = query.replace('<styleKeyGroup>', ',styleKey')
+        return query
 
     def rebuild_hudcache(self, h_start=None, v_start=None):
         """clears hudcache and rebuilds from the individual handsplayers records"""
@@ -1558,7 +1592,7 @@ class Database:
             rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_join_clause>', "")
             rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_group_clause>', "")
             rebuild_sql_cash = rebuild_sql_cash.replace('<where_clause>', where)
-            #print "rebuild_sql_cash:",rebuild_sql_cash
+            rebuild_sql_cash = self.replace_statscache(rebuild_sql_cash)
             self.get_cursor().execute(self.sql.query['clearHudCache'])
             self.get_cursor().execute(rebuild_sql_cash)
             print _("Rebuild hudcache(cash) took %.1f seconds") % (time() - stime,)
@@ -1577,7 +1611,7 @@ class Database:
                 INNER JOIN Tourneys t ON (t.id = tp.tourneyId)""")
             rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_group_clause>', ",t.tourneyTypeId")
             rebuild_sql_tourney = rebuild_sql_tourney.replace('<where_clause>', where)
-            #print "rebuild_sql_tourney:",rebuild_sql_tourney
+            rebuild_sql_tourney = self.replace_statscache(rebuild_sql_tourney)
 
             self.get_cursor().execute(rebuild_sql_tourney)
             self.commit()
@@ -2035,13 +2069,15 @@ class Database:
         
         d = timedelta(hours=tz_day_start_offset)
         starttime_offset = starttime - d
-        
-        if self.use_date_in_hudcache:
+
+        # hard-code styleKey as 'A000000' (all-time cache, no key) for now
+        seats = '0'
+        position = '0'
+        styleKey = 'A000000'
+
+        if self.build_full_hudcache:
             styleKey = datetime.strftime(starttime_offset, 'd%y%m%d')
-            #styleKey = "d%02d%02d%02d" % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day)
-        else:
-            # hard-code styleKey as 'A000000' (all-time cache, no key) for now
-            styleKey = 'A000000'
+            seats = len(pids)
 
         update_hudcache = self.sql.query['update_hudcache']
         update_hudcache = update_hudcache.replace('%s', self.sql.query['placeholder'])
@@ -2144,12 +2180,14 @@ class Database:
             line.append(pdata[p]['street3Raises'])               
             line.append(pdata[p]['street4Raises'])               
             
+            if self.build_full_hudcache:
+                pos = {'B':'B', 'S':'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }
+                position = pos[pdata[p]['position']]
             hc = {}
             hc['gametypeId'] = gid
             hc['playerId'] = pids[p]
-            hc['activeSeats'] = len(pids)
-            pos = {'B':'B', 'S':'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }
-            hc['position'] = pos[pdata[p]['position']]
+            hc['activeSeats'] = seats
+            hc['position'] = position
             hc['tourneyTypeId'] = pdata[p]['tourneyTypeId']
             hc['styleKey'] = styleKey
             for i in range(len(line)):

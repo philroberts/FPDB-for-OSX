@@ -108,6 +108,7 @@ class GuiReplayer:
                     "Seats"     : False,
                     "SeatSep"   : False,
                     "Dates"     : True,
+                    "Cards"     : True,
                     "Groups"    : False,
                     "GroupsAll" : False,
                     "Button1"   : True,
@@ -120,6 +121,7 @@ class GuiReplayer:
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
         self.filters.registerButton1Name(_("Load Hands"))
         self.filters.registerButton1Callback(self.loadHands)
+        self.filters.registerCardsCallback(self.filter_cards_cb)
         #self.filters.registerButton2Name(_("temp"))
         #self.filters.registerButton2Callback(self.temp())
 
@@ -207,7 +209,6 @@ class GuiReplayer:
         suits = ('s', 'h', 'd', 'c')
         ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
         pb = gtk.gdk.pixbuf_new_from_file(config.execution_path(self.deck_image))
-        print "DEBUG: init_card_images: pb = %s" % pb
 
         for j in range(0, 13):
             for i in range(0, 4):
@@ -243,26 +244,46 @@ class GuiReplayer:
         self.handswin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
         self.handswin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.replayBox.pack_end(self.handswin)
-        liststore = gtk.ListStore(*([str] * 7))
-        view = gtk.TreeView(model=liststore)
-        view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
-        self.handswin.add(view)
+        cols = [
+                str,    # Hero cards
+                str,    # Flop
+                str,    # Turn
+                str,    # River
+                str,    # Won
+                str,    # Bet
+                str,    # Net
+                str,    # Gametype
+                ]
+        # Dict of colnames and their column idx in the model/ListStore
+        self.colnum = {
+                  'Hero'      : 0,
+                  'Flop'      : 1,
+                  'Turn'      : 2,
+                  'River'     : 3,
+                  'Won'       : 4,
+                  'Bet'       : 5,
+                  'Net'       : 6,
+                  'Game'      : 7,
+                 }
+        self.liststore = gtk.ListStore(*cols)
+        self.view = gtk.TreeView()
+        self.view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
+        self.handswin.add(self.view)
 
+        self.viewfilter = self.liststore.filter_new()
+        self.view.set_model(self.viewfilter)
         textcell = gtk.CellRendererText()
-        textcell50 = gtk.CellRendererText()
-        textcell50.set_property('xalign', 0.5)
-        numcell = gtk.CellRendererText()
-        numcell.set_property('xalign', 1.0)
 
-        view.insert_column_with_data_func(-1, 'Hero', gtk.CellRendererPixbuf(), card_renderer_cell_func, 0)
-        view.insert_column_with_data_func(-1, 'Flop', gtk.CellRendererPixbuf(), card_renderer_cell_func, 1)
-        view.insert_column_with_data_func(-1, 'Turn', gtk.CellRendererPixbuf(), card_renderer_cell_func, 2)
-        view.insert_column_with_data_func(-1, 'River', gtk.CellRendererPixbuf(), card_renderer_cell_func, 3)
-        view.insert_column_with_data_func(-1, 'Won', textcell, cash_renderer_cell_func, 4)
-        view.insert_column_with_data_func(-1, 'Bet', textcell, cash_renderer_cell_func, 5)
-        view.insert_column_with_data_func(-1, 'Net', textcell, cash_renderer_cell_func, 6)
+        self.view.insert_column_with_data_func(-1, 'Hero', gtk.CellRendererPixbuf(), card_renderer_cell_func, self.colnum['Hero'])
+        self.view.insert_column_with_data_func(-1, 'Flop', gtk.CellRendererPixbuf(), card_renderer_cell_func, self.colnum['Flop'])
+        self.view.insert_column_with_data_func(-1, 'Turn', gtk.CellRendererPixbuf(), card_renderer_cell_func, self.colnum['Turn'])
+        self.view.insert_column_with_data_func(-1, 'River', gtk.CellRendererPixbuf(), card_renderer_cell_func, self.colnum['River'])
+        self.view.insert_column_with_data_func(-1, 'Won', textcell, cash_renderer_cell_func, self.colnum['Won'])
+        self.view.insert_column_with_data_func(-1, 'Bet', textcell, cash_renderer_cell_func, self.colnum['Bet'])
+        self.view.insert_column_with_data_func(-1, 'Net', textcell, cash_renderer_cell_func, self.colnum['Net'])
+        self.view.insert_column_with_data_func(-1, 'Game', textcell, cash_renderer_cell_func, self.colnum['Game'])
 
-        selection = view.get_selection()
+        selection = self.view.get_selection()
         selection.set_select_function(self.select_hand, None, True)
 
         for hand in self.hands:
@@ -272,8 +293,26 @@ class GuiReplayer:
                 won = hand.collectees[hero]
             bet = hand.pot.committed[hero]
             net = won - bet
-            liststore.append([hand.join_holecards(hero), hand.board["FLOP"], hand.board["TURN"], hand.board["RIVER"], str(won), str(bet), str(net)])
+            row = [hand.join_holecards(hero), hand.board["FLOP"], hand.board["TURN"], hand.board["RIVER"], str(won), str(bet), str(net), hand.gametype['category']]
+            self.liststore.append(row)
+        self.viewfilter.set_visible_func(self.viewfilter_visible_cb)
         self.handswin.show_all()
+
+    def filter_cards_cb(self, card):
+        self.viewfilter.refilter()
+
+    def viewfilter_visible_cb(self, model, iter_):
+        card_filter = self.filters.getCards()
+        hcs = model.get_value(iter_, self.colnum['Hero']).split(' ')
+        gt = model.get_value(iter_, self.colnum['Game'])
+
+        if gt not in ('holdem', 'omaha'): return True
+        # Holdem: Compare the real start cards to the selected filter (ie. AhKh = AKs)
+        value1 = Card.card_map[hcs[0][0]]
+        value2 = Card.card_map[hcs[1][0]]
+        idx = Card.twoStartCards(value1, hcs[0][1], value2, hcs[1][1])
+        abbr = Card.twoStartCardString(idx)
+        return False if card_filter[abbr] == False else True
 
     def select_hand(self, selection, model, path, is_selected, userdata):
         self.states = [] # List with all table states.

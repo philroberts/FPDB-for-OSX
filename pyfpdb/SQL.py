@@ -4182,23 +4182,10 @@ class Sql:
                 )
                 SELECT h.gametypeId
                       ,hp.playerId
-                      ,h.seats
-                      ,case when hp.position = 'B' then 'B'
-                            when hp.position = 'S' then 'S'
-                            when hp.position = '0' then 'D'
-                            when hp.position = '1' then 'C'
-                            when hp.position = '2' then 'M'
-                            when hp.position = '3' then 'M'
-                            when hp.position = '4' then 'M'
-                            when hp.position = '5' then 'E'
-                            when hp.position = '6' then 'E'
-                            when hp.position = '7' then 'E'
-                            when hp.position = '8' then 'E'
-                            when hp.position = '9' then 'E'
-                            else 'E'
-                       end                                            AS hc_position
+                      ,<seat_num>
+                      ,<hc_position>
                       <tourney_select_clause>
-                      ,date_format(h.startTime, 'd%y%m%d')
+                      ,<styleKey>
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonWhenSeenStreet2)
@@ -4295,10 +4282,10 @@ class Sql:
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
-                        ,h.seats
+                        ,seat_num
                         ,hc_position
                         <tourney_group_clause>
-                        ,date_format(h.startTime, 'd%y%m%d')
+                        <styleKeyGroup>
 """
         elif db_server == 'postgresql':
             self.query['rebuildHudCache'] = """
@@ -4402,23 +4389,10 @@ class Sql:
                 )
                 SELECT h.gametypeId
                       ,hp.playerId
-                      ,h.seats
-                      ,case when hp.position = 'B' then 'B'
-                            when hp.position = 'S' then 'S'
-                            when hp.position = '0' then 'D'
-                            when hp.position = '1' then 'C'
-                            when hp.position = '2' then 'M'
-                            when hp.position = '3' then 'M'
-                            when hp.position = '4' then 'M'
-                            when hp.position = '5' then 'E'
-                            when hp.position = '6' then 'E'
-                            when hp.position = '7' then 'E'
-                            when hp.position = '8' then 'E'
-                            when hp.position = '9' then 'E'
-                            else 'E'
-                       end                                            AS hc_position
+                      ,<seat_num>
+                      ,<hc_position>
                       <tourney_select_clause>
-                      ,'d' || to_char(h.startTime, 'YYMMDD')
+                      ,<styleKey>
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonWhenSeenStreet2)
@@ -4515,10 +4489,10 @@ class Sql:
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
-                        ,h.seats
+                        ,seat_num
                         ,hc_position
                         <tourney_group_clause>
-                        ,to_char(h.startTime, 'YYMMDD')
+                        <styleKeyGroup>
 """
         else:   # assume sqlite
             self.query['rebuildHudCache'] = """
@@ -4622,23 +4596,10 @@ class Sql:
                 )
                 SELECT h.gametypeId
                       ,hp.playerId
-                      ,h.seats
-                      ,case when hp.position = 'B' then 'B'
-                            when hp.position = 'S' then 'S'
-                            when hp.position = '0' then 'D'
-                            when hp.position = '1' then 'C'
-                            when hp.position = '2' then 'M'
-                            when hp.position = '3' then 'M'
-                            when hp.position = '4' then 'M'
-                            when hp.position = '5' then 'E'
-                            when hp.position = '6' then 'E'
-                            when hp.position = '7' then 'E'
-                            when hp.position = '8' then 'E'
-                            when hp.position = '9' then 'E'
-                            else 'E'
-                       end                                            AS hc_position
+                      ,<seat_num>
+                      ,<hc_position>
                       <tourney_select_clause>
-                      ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
+                      ,<styleKey>
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonWhenSeenStreet2)
@@ -4735,10 +4696,10 @@ class Sql:
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
-                        ,h.seats
+                        ,seat_num
                         ,hc_position
                         <tourney_group_clause>
-                        ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
+                        <styleKeyGroup>
 """
 
         self.query['insert_hudcache'] = """
