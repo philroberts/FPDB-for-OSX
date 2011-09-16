@@ -430,23 +430,26 @@ class GuiReplayer:
                     cardIndex = Card.encodeCard(player.holecards[9:11])
                     self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + self.cardwidth + 3 * padding / 2, playery - self.cardheight, -1, -1)
 
-            self.pangolayout.set_text("%s %s%.2f" % (player.name, self.currency, player.stack))
+            color_string = '#FFFFFF'
+            background_color = ''
+            self.pangolayout.set_markup('<span foreground="%s" size="medium">%s %s%.2f</span>' % (color_string, player.name, self.currency, player.stack))
             self.area.window.draw_layout(self.gc, playerx - self.pangolayout.get_pixel_size()[0] / 2, playery, self.pangolayout)
 
             if player.justacted:
-                color = cm.alloc_color("red")   #highlights the action
-                self.gc.set_foreground(color)
-
-                self.pangolayout.set_text(player.action)
+                color_string = '#FF0000'
+                background_color = 'background="#000000" '
+                self.pangolayout.set_markup('<span foreground="%s" size="medium">%s</span>' % (color_string, player.action))
                 self.area.window.draw_layout(self.gc, playerx - self.pangolayout.get_pixel_size()[0] / 2, playery + self.pangolayout.get_pixel_size()[1], self.pangolayout)
+            else:
+                color_string = '#FFFF00'
+                background_color = ''
             if player.chips != 0:  #displays amount
-                self.pangolayout.set_text("%s%.2f" % (self.currency, player.chips))
+                self.pangolayout.set_markup('<span foreground="%s" %s weight="heavy" size="large">%s%.2f</span>' % (color_string, background_color, self.currency, player.chips))
                 self.area.window.draw_layout(self.gc, convertx(player.x * .65) - self.pangolayout.get_pixel_size()[0] / 2, converty(player.y * 0.65), self.pangolayout)
 
-        color = cm.alloc_color("white")
-        self.gc.set_foreground(color)
+        color_string = '#FFFFFF'
 
-        self.pangolayout.set_text("%s%.2f" % (self.currency, state.pot)) #displays pot
+        self.pangolayout.set_markup('<span foreground="%s" size="large">%s%.2f</span>' % (color_string, self.currency, state.pot)) #displays pot
         self.area.window.draw_layout(self.gc,self.tableImage.get_width() / 2 - self.pangolayout.get_pixel_size()[0] / 2, self.tableImage.get_height() / 2, self.pangolayout)
 
         if state.showFlop:
