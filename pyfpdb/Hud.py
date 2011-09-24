@@ -603,14 +603,15 @@ class Stat_Window:
         self.seat = seat            # seat number of his player
         self.adj = adj              # the adjusted seat number for this player
         self.x = x + table.x        # table.x and y are the location of the table
-        self.y = NSScreen.mainScreen().frame().size.height - table.y - y - titlebarheight - self.parent.fontpixels.height * game.rows
+        self.fontpixels = NSString.stringWithString_("player").sizeWithAttributes_(NSDictionary.dictionaryWithObject_forKey_(self.parent.font, NSFontAttributeName))
+        self.y = NSScreen.mainScreen().frame().size.height - table.y - y - titlebarheight - self.fontpixels.height * game.rows
         self.player_id = player_id  # looks like this isn't used ;)
         self.sb_click = 0           # used to figure out button clicks
         self.popups = []            # list of open popups for this stat window
         self.useframes = parent.config.get_frames(parent.site)
 
-        colWidth = self.parent.fontpixels.width / 6.5
-        rowHeight = self.parent.fontpixels.height
+        colWidth = self.fontpixels.width
+        rowHeight = self.fontpixels.height
         rect = NSMakeRect(self.x, self.y, colWidth * game.cols, rowHeight * game.rows)
         self.window = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(rect, NSBorderlessWindowMask, NSBackingStoreBuffered, False)
         self.window.setAllowsToolTipsWhenApplicationIsInactive_(True)
@@ -659,8 +660,10 @@ class Popup_window:
                 stat_list = stat_window.parent.config.popup_windows[w].pu_stats
                 break
 
-        colWidth = stat_window.parent.fontpixels.width / 2
-        rowHeight = stat_window.parent.fontpixels.height
+        self.fontpixels = NSString.stringWithString_("totalprofit=$-10.00").sizeWithAttributes_(NSDictionary.dictionaryWithObject_forKey_(self.stat_window.parent.font, NSFontAttributeName))
+
+        colWidth = self.fontpixels.width
+        rowHeight = self.fontpixels.height
         frame = stat_window.window.frame()
         rect = NSMakeRect(frame.origin.x, frame.origin.y - rowHeight * len(stat_list) / 2, colWidth, rowHeight * len(stat_list))
         screenheight = NSScreen.mainScreen().frame().size.height - titlebarheight
