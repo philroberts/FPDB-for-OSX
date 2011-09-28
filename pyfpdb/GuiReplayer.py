@@ -347,11 +347,7 @@ class GuiReplayer:
         else:
             self.currency = hand.gametype['currency']
 
-        if isinstance(hand, HoldemOmahaHand):
-            self.play_holdem(hand)
-        else:
-            print "Unhandled game type " + hand.gametype['category']
-            return False
+        self.play_hand(hand)
 
         self.state.set_value(0)
         self.state.set_upper(len(self.states) - 1)
@@ -469,8 +465,8 @@ class GuiReplayer:
         color = cm.alloc_color("black")      #we don't want to draw the filters and others in red
         self.gc.set_foreground(color)
 
-    def play_holdem(self, hand):
-        actions=('BLINDSANTES','PREFLOP','FLOP','TURN','RIVER')
+    def play_hand(self, hand):
+        actions = hand.allStreets
         state = TableState(hand)
         for action in actions:
             state = copy.deepcopy(state)
