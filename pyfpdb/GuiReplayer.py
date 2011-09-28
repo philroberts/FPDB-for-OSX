@@ -233,11 +233,67 @@ class GuiReplayer:
         c.execute(q)
         return [r[0] for r in c.fetchall()]
 
+    def rankedhand(self, hand, game):
+        ranks = {'0':0, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 'J':11, 'Q':12, 'K':13, 'A':14}
+        suits = {'x':0, 's':1, 'c':2, 'd':3, 'h':4}
+
+        if game == 'holdem':
+            card1 = ranks[hand[0]]
+            card2 = ranks[hand[3]]
+            suit1 = suits[hand[1]]
+            suit2 = suits[hand[4]]
+            if card1 < card2:
+                (card1, card2) = (card2, card1)
+                (suit1, suit2) = (suit2, suit1)
+            if suit1 == suit2:
+                suit1 += 4
+            return card1 * 14 * 14 + card2 * 14 + suit1
+        else:
+            return 0
+
+    def sorthand(self, model, iter1, iter2):
+        
+        hand1 = self.hands[int(model.get_value(iter1, 7))]
+        hand2 = self.hands[int(model.get_value(iter2, 7))]
+        base1 = hand1.gametype['base']
+        base2 = hand2.gametype['base']
+        if base1 < base2:
+            return -1
+        elif base1 > base2:
+            return 1
+
+        cat1 = hand1.gametype['category']
+        cat2 = hand2.gametype['category']
+        if cat1 < cat2:
+            return -1
+        elif cat1 > cat2:
+            return 1
+
+        a = self.rankedhand(model.get_value(iter1, 0), hand1.gametype['category'])
+        b = self.rankedhand(model.get_value(iter2, 0), hand2.gametype['category'])
+        
+        if a < b:
+            return -1
+        elif a > b:
+            return 1
+
+        return 0
+
+    def sortnet(self, model, iter1, iter2):
+        a = float(model.get_value(iter1, 6))
+        b = float(model.get_value(iter2, 6))
+
+        if a < b:
+            return -1
+        elif a > b:
+            return 1
+        
+        return 0
+
     def refreshHands(self, handids):
-        self.handids = handids
-        self.hands = []
-        for handid in self.handids:
-            self.hands.append(self.importhand(handid))
+        self.hands = {}
+        for handid in handids:
+            self.hands[handid] = self.importhand(handid)
 
         try:
             self.handswin.destroy()
@@ -289,15 +345,22 @@ class GuiReplayer:
         self.view.insert_column_with_data_func(-1, 'Net', textcell, cash_renderer_cell_func, self.colnum['Net'])
         self.view.insert_column_with_data_func(-1, 'Game', textcell, cash_renderer_cell_func, self.colnum['Game'])
 
+        self.liststore.set_sort_func(self.colnum['Street0'], self.sorthand)
+        self.liststore.set_sort_func(self.colnum['Net'], self.sortnet)
+        self.view.get_column(self.colnum['Street0']).set_sort_column_id(self.colnum['Street0'])
+        self.view.get_column(self.colnum['Net']).set_sort_column_id(self.colnum['Net'])
+
         selection = self.view.get_selection()
         selection.set_select_function(self.select_hand, None, True)
 
-        for hand in self.hands:
+        for handid, hand in self.hands.items():
             hero = self.filters.getHeroes()[hand.sitename]
             won = 0
             if hero in hand.collectees.keys():
                 won = hand.collectees[hero]
-            bet = hand.pot.committed[hero]
+            bet = 0
+            if hero in hand.pot.committed.keys():
+                bet = hand.pot.committed[hero]
             net = won - bet
             gt =  hand.gametype['category']
             row = []
@@ -339,7 +402,7 @@ class GuiReplayer:
         if is_selected:
             return True
 
-        hand = self.hands[path[0]]
+        hand = self.hands[int(model.get_value(model.get_iter(path), 7))]
         if hand.gametype['currency']=="USD":    #TODO: check if there are others ..
             self.currency="$"
         elif hand.gametype['currency']=="EUR":
@@ -347,11 +410,7 @@ class GuiReplayer:
         else:
             self.currency = hand.gametype['currency']
 
-        if isinstance(hand, HoldemOmahaHand):
-            self.play_holdem(hand)
-        else:
-            print "Unhandled game type " + hand.gametype['category']
-            return False
+        self.play_hand(hand)
 
         self.state.set_value(0)
         self.state.set_upper(len(self.states) - 1)
@@ -430,23 +489,26 @@ class GuiReplayer:
                     cardIndex = Card.encodeCard(player.holecards[9:11])
                     self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + self.cardwidth + 3 * padding / 2, playery - self.cardheight, -1, -1)
 
-            self.pangolayout.set_text("%s %s%.2f" % (player.name, self.currency, player.stack))
+            color_string = '#FFFFFF'
+            background_color = ''
+            self.pangolayout.set_markup('<span foreground="%s" size="medium">%s %s%.2f</span>' % (color_string, player.name, self.currency, player.stack))
             self.area.window.draw_layout(self.gc, playerx - self.pangolayout.get_pixel_size()[0] / 2, playery, self.pangolayout)
 
             if player.justacted:
-                color = cm.alloc_color("red")   #highlights the action
-                self.gc.set_foreground(color)
-
-                self.pangolayout.set_text(player.action)
+                color_string = '#FF0000'
+                background_color = 'background="#000000" '
+                self.pangolayout.set_markup('<span foreground="%s" size="medium">%s</span>' % (color_string, player.action))
                 self.area.window.draw_layout(self.gc, playerx - self.pangolayout.get_pixel_size()[0] / 2, playery + self.pangolayout.get_pixel_size()[1], self.pangolayout)
+            else:
+                color_string = '#FFFF00'
+                background_color = ''
             if player.chips != 0:  #displays amount
-                self.pangolayout.set_text("%s%.2f" % (self.currency, player.chips))
+                self.pangolayout.set_markup('<span foreground="%s" %s weight="heavy" size="large">%s%.2f</span>' % (color_string, background_color, self.currency, player.chips))
                 self.area.window.draw_layout(self.gc, convertx(player.x * .65) - self.pangolayout.get_pixel_size()[0] / 2, converty(player.y * 0.65), self.pangolayout)
 
-        color = cm.alloc_color("white")
-        self.gc.set_foreground(color)
+        color_string = '#FFFFFF'
 
-        self.pangolayout.set_text("%s%.2f" % (self.currency, state.pot)) #displays pot
+        self.pangolayout.set_markup('<span foreground="%s" size="large">%s%.2f</span>' % (color_string, self.currency, state.pot)) #displays pot
         self.area.window.draw_layout(self.gc,self.tableImage.get_width() / 2 - self.pangolayout.get_pixel_size()[0] / 2, self.tableImage.get_height() / 2, self.pangolayout)
 
         if state.showFlop:
@@ -466,8 +528,8 @@ class GuiReplayer:
         color = cm.alloc_color("black")      #we don't want to draw the filters and others in red
         self.gc.set_foreground(color)
 
-    def play_holdem(self, hand):
-        actions=('BLINDSANTES','PREFLOP','FLOP','TURN','RIVER')
+    def play_hand(self, hand):
+        actions = hand.allStreets
         state = TableState(hand)
         for action in actions:
             state = copy.deepcopy(state)
