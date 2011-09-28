@@ -345,12 +345,12 @@ class GuiReplayer:
         self.view.insert_column_with_data_func(-1, 'Net', textcell, cash_renderer_cell_func, self.colnum['Net'])
         self.view.insert_column_with_data_func(-1, 'Game', textcell, cash_renderer_cell_func, self.colnum['Game'])
 
-        liststore.set_sort_func(self.colnum['Street0'], self.sorthand)
-        liststore.set_sort_func(self.colnum['Net'], self.sortnet)
-        view.get_column(self.colnum['Street0']).set_sort_column_id(self.colnum['Street0'])
-        view.get_column(self.colnum['Net']).set_sort_column_id(self.colnum['Net'])
+        self.liststore.set_sort_func(self.colnum['Street0'], self.sorthand)
+        self.liststore.set_sort_func(self.colnum['Net'], self.sortnet)
+        self.view.get_column(self.colnum['Street0']).set_sort_column_id(self.colnum['Street0'])
+        self.view.get_column(self.colnum['Net']).set_sort_column_id(self.colnum['Net'])
 
-        selection = view.get_selection()
+        selection = self.view.get_selection()
         selection.set_select_function(self.select_hand, None, True)
 
         for handid, hand in self.hands.items():
