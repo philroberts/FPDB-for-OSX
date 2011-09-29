@@ -480,7 +480,7 @@ class DerivedStats():
                                     ] )
         self.handsstove += [t[:6] + [0] for t in inserts_temp]
         startstreet = None
-        for pot, players in hand.pots:
+        for pot, players in hand.pot.pots:
             players = [p for p in players]
             for street in allInStreets:
                 board = boards[street]
