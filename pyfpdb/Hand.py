@@ -809,7 +809,6 @@ Card ranks will be uppercased
         if self.totalpot is None:
             self.pot.end()
             self.totalpot   = self.pot.total
-            self.pots       = self.pot.pots
 
         # This gives us the amount collected, i.e. after rake
         if self.totalcollected is None:
@@ -1736,6 +1735,7 @@ class Pot(object):
         self.total        = None
         self.returned     = {}
         self.sym          = u'$' # this is the default currency symbol
+        self.pots         = []
 
     def setSym(self, sym):
         self.sym = sym
@@ -1787,7 +1787,6 @@ class Pot(object):
         # Work out side pots
         commitsall = sorted([(v,k) for (k,v) in self.committed.items() if v >0])
 
-        self.pots = []
         try:
             while len(commitsall) > 0:
                 commitslive = [(v,k) for (v,k) in commitsall if k in self.contenders]

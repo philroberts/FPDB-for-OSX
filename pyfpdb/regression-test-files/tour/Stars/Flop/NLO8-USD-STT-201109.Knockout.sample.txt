@@ -1,0 +1,2927 @@
+﻿PokerStars Game #68173182547: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level I (10/20) - 2011/09/28 8:42:10 ET
+Table '447493868 1' 9-max Seat #1 is the button
+Seat 1: tredex (1500 in chips) 
+Seat 2: APTEM-89 (1500 in chips) 
+Seat 3: Sooners83 (1500 in chips) 
+Seat 4: barlowdog1 (1500 in chips) 
+Seat 5: Jorge44alc (1500 in chips) 
+Seat 6: VORON1976511 (1500 in chips) 
+Seat 7: Lord Minge (1500 in chips) 
+Seat 8: StaKuGorPS (1500 in chips) 
+Seat 9: Hero (1500 in chips) 
+APTEM-89: posts small blind 10
+Sooners83: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [Ts Kh 8h 3c]
+barlowdog1: calls 20
+Jorge44alc: calls 20
+VORON1976511: folds 
+Lord Minge: calls 20
+StaKuGorPS: calls 20
+Hero: folds 
+tredex: folds 
+APTEM-89: raises 40 to 60
+Sooners83: folds 
+barlowdog1: calls 40
+Jorge44alc: calls 40
+Lord Minge: folds 
+StaKuGorPS: calls 40
+*** FLOP *** [7h 5c Tc]
+APTEM-89: checks 
+barlowdog1: bets 40
+Jorge44alc: folds 
+StaKuGorPS: calls 40
+APTEM-89: calls 40
+*** TURN *** [7h 5c Tc] [4d]
+APTEM-89: checks 
+barlowdog1: checks 
+StaKuGorPS: checks 
+*** RIVER *** [7h 5c Tc 4d] [6d]
+APTEM-89: bets 60
+barlowdog1: folds 
+StaKuGorPS: calls 60
+*** SHOW DOWN ***
+APTEM-89: shows [Ks 9d 4s 4c] (HI: three of a kind, Fours)
+StaKuGorPS: shows [Kd 7c Ac 6h] (HI: two pair, Sevens and Sixes; LO: 7,6,5,4,A)
+APTEM-89 collected 260 from pot
+StaKuGorPS collected 260 from pot
+*** SUMMARY ***
+Total pot 520 | Rake 0 
+Board [7h 5c Tc 4d 6d]
+Seat 1: tredex (button) folded before Flop (didn't bet)
+Seat 2: APTEM-89 (small blind) showed [Ks 9d 4s 4c] and won (260) with HI: three of a kind, Fours
+Seat 3: Sooners83 (big blind) folded before Flop
+Seat 4: barlowdog1 folded on the River
+Seat 5: Jorge44alc folded on the Flop
+Seat 6: VORON1976511 folded before Flop (didn't bet)
+Seat 7: Lord Minge folded before Flop
+Seat 8: StaKuGorPS showed [Kd 7c Ac 6h] and won (260) with HI: two pair, Sevens and Sixes; LO: 7,6,5,4,A
+Seat 9: Hero folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68173232304: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level I (10/20) - 2011/09/28 8:43:38 ET
+Table '447493868 1' 9-max Seat #2 is the button
+Seat 1: tredex (1500 in chips) 
+Seat 2: APTEM-89 (1600 in chips) 
+Seat 3: Sooners83 (1480 in chips) 
+Seat 4: barlowdog1 (1400 in chips) 
+Seat 5: Jorge44alc (1440 in chips) 
+Seat 6: VORON1976511 (1500 in chips) 
+Seat 7: Lord Minge (1480 in chips) 
+Seat 8: StaKuGorPS (1600 in chips) 
+Seat 9: Hero (1500 in chips) 
+Sooners83: posts small blind 10
+barlowdog1: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [7c 9d 6h 4h]
+Jorge44alc: folds 
+VORON1976511: calls 20
+Lord Minge: folds 
+StaKuGorPS: folds 
+Hero: calls 20
+tredex: folds 
+APTEM-89: raises 40 to 60
+Sooners83: folds 
+barlowdog1: calls 40
+VORON1976511: calls 40
+Hero: calls 40
+*** FLOP *** [Td Tc 9s]
+barlowdog1: checks 
+VORON1976511: bets 40
+Hero: folds 
+APTEM-89: folds 
+barlowdog1: calls 40
+*** TURN *** [Td Tc 9s] [5h]
+barlowdog1: checks 
+VORON1976511: checks 
+*** RIVER *** [Td Tc 9s 5h] [Qd]
+barlowdog1: bets 120
+VORON1976511: calls 120
+*** SHOW DOWN ***
+barlowdog1: shows [Ks Jc Qc 9h] (HI: a straight, Nine to King)
+VORON1976511: mucks hand 
+barlowdog1 collected 570 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 570 | Rake 0 
+Board [Td Tc 9s 5h Qd]
+Seat 1: tredex folded before Flop (didn't bet)
+Seat 2: APTEM-89 (button) folded on the Flop
+Seat 3: Sooners83 (small blind) folded before Flop
+Seat 4: barlowdog1 (big blind) showed [Ks Jc Qc 9h] and won (570) with HI: a straight, Nine to King
+Seat 5: Jorge44alc folded before Flop (didn't bet)
+Seat 6: VORON1976511 mucked [Ac Ad Ts 2s]
+Seat 7: Lord Minge folded before Flop (didn't bet)
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero folded on the Flop
+
+
+
+PokerStars Game #68173266106: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level I (10/20) - 2011/09/28 8:44:38 ET
+Table '447493868 1' 9-max Seat #3 is the button
+Seat 1: tredex (1500 in chips) 
+Seat 2: APTEM-89 (1540 in chips) 
+Seat 3: Sooners83 (1470 in chips) 
+Seat 4: barlowdog1 (1750 in chips) 
+Seat 5: Jorge44alc (1440 in chips) 
+Seat 6: VORON1976511 (1280 in chips) 
+Seat 7: Lord Minge (1480 in chips) 
+Seat 8: StaKuGorPS (1600 in chips) 
+Seat 9: Hero (1440 in chips) 
+barlowdog1: posts small blind 10
+Jorge44alc: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [2d 2s 4h 5d]
+VORON1976511: folds 
+Lord Minge: calls 20
+StaKuGorPS: folds 
+Hero: calls 20
+tredex: folds 
+APTEM-89: raises 20 to 40
+Sooners83: folds 
+barlowdog1: calls 30
+Jorge44alc: calls 20
+Lord Minge: calls 20
+Hero: calls 20
+*** FLOP *** [9d 5c As]
+barlowdog1: checks 
+Jorge44alc: checks 
+Lord Minge: bets 1440 and is all-in
+Hero: folds 
+APTEM-89: folds 
+barlowdog1: folds 
+Jorge44alc: folds 
+Uncalled bet (1440) returned to Lord Minge
+Lord Minge collected 200 from pot
+Lord Minge: doesn't show hand 
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Board [9d 5c As]
+Seat 1: tredex folded before Flop (didn't bet)
+Seat 2: APTEM-89 folded on the Flop
+Seat 3: Sooners83 (button) folded before Flop (didn't bet)
+Seat 4: barlowdog1 (small blind) folded on the Flop
+Seat 5: Jorge44alc (big blind) folded on the Flop
+Seat 6: VORON1976511 folded before Flop (didn't bet)
+Seat 7: Lord Minge collected (200)
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero folded on the Flop
+
+
+
+PokerStars Game #68173305484: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level I (10/20) - 2011/09/28 8:45:46 ET
+Table '447493868 1' 9-max Seat #4 is the button
+Seat 1: tredex (1500 in chips) 
+Seat 2: APTEM-89 (1500 in chips) 
+Seat 3: Sooners83 (1470 in chips) 
+Seat 4: barlowdog1 (1710 in chips) 
+Seat 5: Jorge44alc (1400 in chips) 
+Seat 6: VORON1976511 (1280 in chips) 
+Seat 7: Lord Minge (1640 in chips) 
+Seat 8: StaKuGorPS (1600 in chips) 
+Seat 9: Hero (1400 in chips) 
+Jorge44alc: posts small blind 10
+VORON1976511: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [5h Ts 5d 8h]
+Lord Minge: folds 
+StaKuGorPS: folds 
+Hero: folds 
+tredex has timed out
+tredex: folds 
+tredex is sitting out
+APTEM-89: raises 40 to 60
+Sooners83: folds 
+tredex has returned
+barlowdog1: folds 
+Jorge44alc: folds 
+VORON1976511: calls 40
+*** FLOP *** [2h 2c 8d]
+VORON1976511: bets 65
+APTEM-89: folds 
+Uncalled bet (65) returned to VORON1976511
+VORON1976511 collected 130 from pot
+VORON1976511: doesn't show hand 
+*** SUMMARY ***
+Total pot 130 | Rake 0 
+Board [2h 2c 8d]
+Seat 1: tredex folded before Flop (didn't bet)
+Seat 2: APTEM-89 folded on the Flop
+Seat 3: Sooners83 folded before Flop (didn't bet)
+Seat 4: barlowdog1 (button) folded before Flop (didn't bet)
+Seat 5: Jorge44alc (small blind) folded before Flop
+Seat 6: VORON1976511 (big blind) collected (130)
+Seat 7: Lord Minge folded before Flop (didn't bet)
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68173332012: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level I (10/20) - 2011/09/28 8:46:31 ET
+Table '447493868 1' 9-max Seat #5 is the button
+Seat 1: tredex (1500 in chips) 
+Seat 2: APTEM-89 (1440 in chips) 
+Seat 3: Sooners83 (1470 in chips) 
+Seat 4: barlowdog1 (1710 in chips) 
+Seat 5: Jorge44alc (1390 in chips) 
+Seat 6: VORON1976511 (1350 in chips) 
+Seat 7: Lord Minge (1640 in chips) 
+Seat 8: StaKuGorPS (1600 in chips) 
+Seat 9: Hero (1400 in chips) 
+VORON1976511: posts small blind 10
+Lord Minge: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [6d 3h Ad 3s]
+StaKuGorPS: folds 
+Hero: raises 40 to 60
+tredex: folds 
+APTEM-89: calls 60
+Sooners83: folds 
+barlowdog1: calls 60
+Jorge44alc: folds 
+VORON1976511: folds 
+Lord Minge: calls 40
+*** FLOP *** [Qc 8d Ks]
+Lord Minge: checks 
+Hero: checks 
+APTEM-89: checks 
+barlowdog1: checks 
+*** TURN *** [Qc 8d Ks] [Kc]
+Lord Minge: checks 
+Hero: checks 
+APTEM-89: checks 
+barlowdog1: checks 
+*** RIVER *** [Qc 8d Ks Kc] [2c]
+Lord Minge: checks 
+Hero: checks 
+APTEM-89: folds 
+barlowdog1: checks 
+*** SHOW DOWN ***
+Lord Minge: shows [5c Ah 6h 2d] (HI: two pair, Kings and Deuces)
+Hero: shows [6d 3h Ad 3s] (HI: two pair, Kings and Threes)
+barlowdog1: mucks hand 
+Hero collected 250 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 250 | Rake 0 
+Board [Qc 8d Ks Kc 2c]
+Seat 1: tredex folded before Flop (didn't bet)
+Seat 2: APTEM-89 folded on the River
+Seat 3: Sooners83 folded before Flop (didn't bet)
+Seat 4: barlowdog1 mucked [Js 3d 5s 4c]
+Seat 5: Jorge44alc (button) folded before Flop (didn't bet)
+Seat 6: VORON1976511 (small blind) folded before Flop
+Seat 7: Lord Minge (big blind) showed [5c Ah 6h 2d] and lost with HI: two pair, Kings and Deuces
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero showed [6d 3h Ad 3s] and won (250) with HI: two pair, Kings and Threes
+
+
+
+PokerStars Game #68173372296: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level I (10/20) - 2011/09/28 8:47:39 ET
+Table '447493868 1' 9-max Seat #6 is the button
+Seat 1: tredex (1500 in chips) 
+Seat 2: APTEM-89 (1380 in chips) 
+Seat 3: Sooners83 (1470 in chips) 
+Seat 4: barlowdog1 (1650 in chips) 
+Seat 5: Jorge44alc (1390 in chips) 
+Seat 6: VORON1976511 (1340 in chips) 
+Seat 7: Lord Minge (1580 in chips) 
+Seat 8: StaKuGorPS (1600 in chips) 
+Seat 9: Hero (1590 in chips) 
+Lord Minge: posts small blind 10
+StaKuGorPS: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [3h 2c Ad Qs]
+Hero: raises 40 to 60
+tredex: raises 120 to 180
+APTEM-89: calls 180
+Sooners83: folds 
+barlowdog1: folds 
+Jorge44alc: folds 
+VORON1976511: folds 
+Lord Minge: calls 170
+StaKuGorPS: folds 
+Hero: calls 120
+*** FLOP *** [Ts 6d Js]
+Lord Minge: checks 
+Hero: checks 
+tredex: checks 
+APTEM-89: checks 
+*** TURN *** [Ts 6d Js] [9s]
+Lord Minge: bets 577
+Hero: calls 577
+tredex: folds 
+APTEM-89: folds 
+*** RIVER *** [Ts 6d Js 9s] [7h]
+Lord Minge: bets 823 and is all-in
+Hero: folds 
+Uncalled bet (823) returned to Lord Minge
+Lord Minge collected 1894 from pot
+Lord Minge: doesn't show hand 
+*** SUMMARY ***
+Total pot 1894 | Rake 0 
+Board [Ts 6d Js 9s 7h]
+Seat 1: tredex folded on the Turn
+Seat 2: APTEM-89 folded on the Turn
+Seat 3: Sooners83 folded before Flop (didn't bet)
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 5: Jorge44alc folded before Flop (didn't bet)
+Seat 6: VORON1976511 (button) folded before Flop (didn't bet)
+Seat 7: Lord Minge (small blind) collected (1894)
+Seat 8: StaKuGorPS (big blind) folded before Flop
+Seat 9: Hero folded on the River
+
+
+
+PokerStars Game #68173410950: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level I (10/20) - 2011/09/28 8:48:44 ET
+Table '447493868 1' 9-max Seat #7 is the button
+Seat 1: tredex (1320 in chips) 
+Seat 2: APTEM-89 (1200 in chips) 
+Seat 3: Sooners83 (1470 in chips) 
+Seat 4: barlowdog1 (1650 in chips) 
+Seat 5: Jorge44alc (1390 in chips) 
+Seat 6: VORON1976511 (1340 in chips) 
+Seat 7: Lord Minge (2717 in chips) 
+Seat 8: StaKuGorPS (1580 in chips) 
+Seat 9: Hero (833 in chips) 
+StaKuGorPS: posts small blind 10
+Hero: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [8s 5c Kh 2h]
+tredex: folds 
+APTEM-89: raises 60 to 80
+Sooners83: folds 
+barlowdog1: calls 80
+Jorge44alc: folds 
+VORON1976511: folds 
+Lord Minge: folds 
+StaKuGorPS: folds 
+Hero: folds 
+*** FLOP *** [As Kc 4s]
+APTEM-89: bets 60
+barlowdog1: calls 60
+*** TURN *** [As Kc 4s] [Ac]
+APTEM-89: bets 60
+barlowdog1: calls 60
+*** RIVER *** [As Kc 4s Ac] [Ad]
+APTEM-89: bets 360
+barlowdog1: folds 
+Uncalled bet (360) returned to APTEM-89
+APTEM-89 collected 430 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 430 | Rake 0 
+Board [As Kc 4s Ac Ad]
+Seat 1: tredex folded before Flop (didn't bet)
+Seat 2: APTEM-89 collected (430)
+Seat 3: Sooners83 folded before Flop (didn't bet)
+Seat 4: barlowdog1 folded on the River
+Seat 5: Jorge44alc folded before Flop (didn't bet)
+Seat 6: VORON1976511 folded before Flop (didn't bet)
+Seat 7: Lord Minge (button) folded before Flop (didn't bet)
+Seat 8: StaKuGorPS (small blind) folded before Flop
+Seat 9: Hero (big blind) folded before Flop
+
+
+
+PokerStars Game #68173435202: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level I (10/20) - 2011/09/28 8:49:26 ET
+Table '447493868 1' 9-max Seat #8 is the button
+Seat 1: tredex (1320 in chips) 
+Seat 2: APTEM-89 (1430 in chips) 
+Seat 3: Sooners83 (1470 in chips) 
+Seat 4: barlowdog1 (1450 in chips) 
+Seat 5: Jorge44alc (1390 in chips) 
+Seat 6: VORON1976511 (1340 in chips) 
+Seat 7: Lord Minge (2717 in chips) 
+Seat 8: StaKuGorPS (1570 in chips) 
+Seat 9: Hero (813 in chips) 
+Hero: posts small blind 10
+tredex: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [9c 7h 5c 6d]
+APTEM-89: raises 80 to 100
+Sooners83: folds 
+barlowdog1: folds 
+Jorge44alc: folds 
+VORON1976511: calls 100
+Lord Minge: calls 100
+StaKuGorPS: folds 
+Hero: folds 
+tredex: folds 
+*** FLOP *** [9h 3h Jd]
+APTEM-89: checks 
+VORON1976511: checks 
+Lord Minge: checks 
+*** TURN *** [9h 3h Jd] [4s]
+APTEM-89: bets 120
+VORON1976511: calls 120
+Lord Minge: folds 
+*** RIVER *** [9h 3h Jd 4s] [Jh]
+APTEM-89: checks 
+VORON1976511: checks 
+*** SHOW DOWN ***
+APTEM-89: shows [Ts 5d 2d As] (HI: a pair of Jacks)
+VORON1976511: shows [Ad 4c 6c 2s] (HI: two pair, Jacks and Fours)
+VORON1976511 collected 570 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 570 | Rake 0 
+Board [9h 3h Jd 4s Jh]
+Seat 1: tredex (big blind) folded before Flop
+Seat 2: APTEM-89 showed [Ts 5d 2d As] and lost with HI: a pair of Jacks
+Seat 3: Sooners83 folded before Flop (didn't bet)
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 5: Jorge44alc folded before Flop (didn't bet)
+Seat 6: VORON1976511 showed [Ad 4c 6c 2s] and won (570) with HI: two pair, Jacks and Fours
+Seat 7: Lord Minge folded on the Turn
+Seat 8: StaKuGorPS (button) folded before Flop (didn't bet)
+Seat 9: Hero (small blind) folded before Flop
+
+
+
+PokerStars Game #68173459573: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level I (10/20) - 2011/09/28 8:50:08 ET
+Table '447493868 1' 9-max Seat #9 is the button
+Seat 1: tredex (1300 in chips) 
+Seat 2: APTEM-89 (1210 in chips) 
+Seat 3: Sooners83 (1470 in chips) 
+Seat 4: barlowdog1 (1450 in chips) 
+Seat 5: Jorge44alc (1390 in chips) 
+Seat 6: VORON1976511 (1690 in chips) 
+Seat 7: Lord Minge (2617 in chips) 
+Seat 8: StaKuGorPS (1570 in chips) 
+Seat 9: Hero (803 in chips) 
+tredex: posts small blind 10
+APTEM-89: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [Jc 9d 4c 8s]
+Sooners83: folds 
+barlowdog1 is disconnected 
+barlowdog1 is connected 
+barlowdog1: calls 20
+Jorge44alc: folds 
+VORON1976511: calls 20
+Lord Minge: calls 20
+StaKuGorPS: folds 
+Hero: calls 20
+tredex: calls 10
+APTEM-89: raises 35 to 55
+barlowdog1: calls 35
+VORON1976511: calls 35
+Lord Minge: calls 35
+Hero: calls 35
+tredex: calls 35
+*** FLOP *** [2d Td Kd]
+tredex: checks 
+APTEM-89: bets 155
+barlowdog1: folds 
+VORON1976511: calls 155
+Lord Minge: folds 
+Hero: folds 
+tredex: folds 
+*** TURN *** [2d Td Kd] [9s]
+APTEM-89: bets 200
+VORON1976511: folds 
+Uncalled bet (200) returned to APTEM-89
+APTEM-89 collected 640 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 640 | Rake 0 
+Board [2d Td Kd 9s]
+Seat 1: tredex (small blind) folded on the Flop
+Seat 2: APTEM-89 (big blind) collected (640)
+Seat 3: Sooners83 folded before Flop (didn't bet)
+Seat 4: barlowdog1 folded on the Flop
+Seat 5: Jorge44alc folded before Flop (didn't bet)
+Seat 6: VORON1976511 folded on the Turn
+Seat 7: Lord Minge folded on the Flop
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero (button) folded on the Flop
+
+
+
+PokerStars Game #68173523876: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level I (10/20) - 2011/09/28 8:52:00 ET
+Table '447493868 1' 9-max Seat #1 is the button
+Seat 1: tredex (1245 in chips) 
+Seat 2: APTEM-89 (1640 in chips) 
+Seat 3: Sooners83 (1470 in chips) 
+Seat 4: barlowdog1 (1395 in chips) 
+Seat 5: Jorge44alc (1390 in chips) 
+Seat 6: VORON1976511 (1480 in chips) 
+Seat 7: Lord Minge (2562 in chips) 
+Seat 8: StaKuGorPS (1570 in chips) 
+Seat 9: Hero (748 in chips) 
+APTEM-89: posts small blind 10
+Sooners83: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [Qd Qs Jc 3c]
+barlowdog1: folds 
+Jorge44alc: calls 20
+VORON1976511: calls 20
+Lord Minge: folds 
+StaKuGorPS: calls 20
+Hero: calls 20
+tredex: folds 
+APTEM-89: raises 36 to 56
+Sooners83: calls 36
+Jorge44alc: calls 36
+VORON1976511: calls 36
+StaKuGorPS: calls 36
+Hero: calls 36
+*** FLOP *** [4h 8c 5s]
+APTEM-89: bets 360
+Sooners83: folds 
+Jorge44alc: folds 
+VORON1976511: raises 1056 to 1416
+StaKuGorPS: raises 98 to 1514 and is all-in
+Hero: folds 
+APTEM-89: folds 
+VORON1976511: calls 8 and is all-in
+Uncalled bet (90) returned to StaKuGorPS
+*** TURN *** [4h 8c 5s] [6h]
+*** RIVER *** [4h 8c 5s 6h] [8h]
+*** SHOW DOWN ***
+VORON1976511: shows [Ac 2d 4s Jh] (HI: two pair, Eights and Fours; LO: 6,5,4,2,A)
+StaKuGorPS: shows [2s Ad 6s Ks] (HI: two pair, Eights and Sixes; LO: 6,5,4,2,A)
+StaKuGorPS collected 1772 from pot
+VORON1976511 collected 886 from pot
+StaKuGorPS collected 886 from pot
+*** SUMMARY ***
+Total pot 3544 | Rake 0 
+Board [4h 8c 5s 6h 8h]
+Seat 1: tredex (button) folded before Flop (didn't bet)
+Seat 2: APTEM-89 (small blind) folded on the Flop
+Seat 3: Sooners83 (big blind) folded on the Flop
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 5: Jorge44alc folded on the Flop
+Seat 6: VORON1976511 showed [Ac 2d 4s Jh] and won (886) with HI: two pair, Eights and Fours; LO: 6,5,4,2,A
+Seat 7: Lord Minge folded before Flop (didn't bet)
+Seat 8: StaKuGorPS showed [2s Ad 6s Ks] and won (2658) with HI: two pair, Eights and Sixes; LO: 6,5,4,2,A
+Seat 9: Hero folded on the Flop
+
+
+
+PokerStars Game #68173567793: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level II (15/30) - 2011/09/28 8:53:17 ET
+Table '447493868 1' 9-max Seat #2 is the button
+Seat 1: tredex (1245 in chips) 
+Seat 2: APTEM-89 (1224 in chips) 
+Seat 3: Sooners83 (1414 in chips) 
+Seat 4: barlowdog1 (1395 in chips) 
+Seat 5: Jorge44alc (1334 in chips) 
+Seat 6: VORON1976511 (886 in chips) 
+Seat 7: Lord Minge (2562 in chips) 
+Seat 8: StaKuGorPS (2748 in chips) 
+Seat 9: Hero (692 in chips) 
+Sooners83: posts small blind 15
+barlowdog1: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [9d 6d 4c Qd]
+Jorge44alc: folds 
+VORON1976511: calls 30
+Lord Minge: folds 
+StaKuGorPS: folds 
+Hero: folds 
+tredex: folds 
+APTEM-89: raises 44 to 74
+Sooners83: calls 59
+barlowdog1: calls 44
+VORON1976511: calls 44
+*** FLOP *** [5c 3h 2s]
+Sooners83: checks 
+barlowdog1: checks 
+VORON1976511: checks 
+APTEM-89: checks 
+*** TURN *** [5c 3h 2s] [Ac]
+Sooners83: checks 
+barlowdog1: checks 
+VORON1976511: checks 
+APTEM-89: checks 
+*** RIVER *** [5c 3h 2s Ac] [3s]
+Sooners83: bets 30
+barlowdog1: folds 
+VORON1976511: calls 30
+APTEM-89: calls 30
+*** SHOW DOWN ***
+Sooners83: shows [5s Ks 2c 3c] (HI: a full house, Threes full of Fives)
+VORON1976511: shows [2h Ad 8s 8h] (HI: two pair, Aces and Threes; LO: 8,5,3,2,A)
+APTEM-89: mucks hand 
+Sooners83 collected 193 from pot
+VORON1976511 collected 193 from pot
+*** SUMMARY ***
+Total pot 386 | Rake 0 
+Board [5c 3h 2s Ac 3s]
+Seat 1: tredex folded before Flop (didn't bet)
+Seat 2: APTEM-89 (button) mucked [Jh Ah 9h Qc]
+Seat 3: Sooners83 (small blind) showed [5s Ks 2c 3c] and won (193) with HI: a full house, Threes full of Fives
+Seat 4: barlowdog1 (big blind) folded on the River
+Seat 5: Jorge44alc folded before Flop (didn't bet)
+Seat 6: VORON1976511 showed [2h Ad 8s 8h] and won (193) with HI: two pair, Aces and Threes; LO: 8,5,3,2,A
+Seat 7: Lord Minge folded before Flop (didn't bet)
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68173600752: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level II (15/30) - 2011/09/28 8:54:15 ET
+Table '447493868 1' 9-max Seat #3 is the button
+Seat 1: tredex (1245 in chips) 
+Seat 2: APTEM-89 (1120 in chips) 
+Seat 3: Sooners83 (1503 in chips) 
+Seat 4: barlowdog1 (1321 in chips) 
+Seat 5: Jorge44alc (1334 in chips) 
+Seat 6: VORON1976511 (975 in chips) 
+Seat 7: Lord Minge (2562 in chips) 
+Seat 8: StaKuGorPS (2748 in chips) 
+Seat 9: Hero (692 in chips) 
+barlowdog1: posts small blind 15
+Jorge44alc: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Jd Qd Ks 2c]
+VORON1976511: raises 30 to 60
+Lord Minge: folds 
+StaKuGorPS: folds 
+Hero: calls 60
+tredex: calls 60
+APTEM-89: calls 60
+Sooners83: folds 
+barlowdog1: calls 45
+Jorge44alc: folds 
+*** FLOP *** [Ts Tc As]
+barlowdog1: bets 30
+VORON1976511: calls 30
+Hero: raises 602 to 632 and is all-in
+tredex: folds 
+APTEM-89: folds 
+barlowdog1: folds 
+VORON1976511: folds 
+Uncalled bet (602) returned to Hero
+Hero collected 420 from pot
+*** SUMMARY ***
+Total pot 420 | Rake 0 
+Board [Ts Tc As]
+Seat 1: tredex folded on the Flop
+Seat 2: APTEM-89 folded on the Flop
+Seat 3: Sooners83 (button) folded before Flop (didn't bet)
+Seat 4: barlowdog1 (small blind) folded on the Flop
+Seat 5: Jorge44alc (big blind) folded before Flop
+Seat 6: VORON1976511 folded on the Flop
+Seat 7: Lord Minge folded before Flop (didn't bet)
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero collected (420)
+
+
+
+PokerStars Game #68173625773: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level II (15/30) - 2011/09/28 8:54:59 ET
+Table '447493868 1' 9-max Seat #4 is the button
+Seat 1: tredex (1185 in chips) 
+Seat 2: APTEM-89 (1060 in chips) 
+Seat 3: Sooners83 (1503 in chips) 
+Seat 4: barlowdog1 (1231 in chips) 
+Seat 5: Jorge44alc (1304 in chips) 
+Seat 6: VORON1976511 (885 in chips) 
+Seat 7: Lord Minge (2562 in chips) 
+Seat 8: StaKuGorPS (2748 in chips) 
+Seat 9: Hero (1022 in chips) 
+Jorge44alc: posts small blind 15
+VORON1976511: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Jd 2h 4c Td]
+Lord Minge: calls 30
+StaKuGorPS: folds 
+Hero: folds 
+tredex: folds 
+APTEM-89: raises 192 to 222
+Sooners83: folds 
+barlowdog1: folds 
+Jorge44alc: folds 
+VORON1976511: folds 
+Lord Minge: calls 192
+*** FLOP *** [3s 9s 7h]
+Lord Minge: checks 
+APTEM-89: bets 838 and is all-in
+Lord Minge: calls 838
+*** TURN *** [3s 9s 7h] [9h]
+*** RIVER *** [3s 9s 7h 9h] [Kc]
+*** SHOW DOWN ***
+Lord Minge: shows [5s As 6c 2d] (HI: a pair of Nines)
+APTEM-89: shows [Kd 3d Kh Jc] (HI: a full house, Kings full of Nines)
+APTEM-89 collected 2165 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 2165 | Rake 0 
+Board [3s 9s 7h 9h Kc]
+Seat 1: tredex folded before Flop (didn't bet)
+Seat 2: APTEM-89 showed [Kd 3d Kh Jc] and won (2165) with HI: a full house, Kings full of Nines
+Seat 3: Sooners83 folded before Flop (didn't bet)
+Seat 4: barlowdog1 (button) folded before Flop (didn't bet)
+Seat 5: Jorge44alc (small blind) folded before Flop
+Seat 6: VORON1976511 (big blind) folded before Flop
+Seat 7: Lord Minge showed [5s As 6c 2d] and lost with HI: a pair of Nines
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68173649872: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level II (15/30) - 2011/09/28 8:55:49 ET
+Table '447493868 1' 9-max Seat #5 is the button
+Seat 1: tredex (1185 in chips) 
+Seat 2: APTEM-89 (2165 in chips) 
+Seat 3: Sooners83 (1503 in chips) 
+Seat 4: barlowdog1 (1231 in chips) 
+Seat 5: Jorge44alc (1289 in chips) 
+Seat 6: VORON1976511 (855 in chips) 
+Seat 7: Lord Minge (1502 in chips) 
+Seat 8: StaKuGorPS (2748 in chips) 
+Seat 9: Hero (1022 in chips) 
+VORON1976511: posts small blind 15
+Lord Minge: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Jc 6s 3s 5s]
+StaKuGorPS: calls 30
+Hero: folds 
+tredex: folds 
+APTEM-89: raises 203 to 233
+Sooners83: folds 
+barlowdog1: folds 
+Jorge44alc: folds 
+VORON1976511: folds 
+Lord Minge: calls 203
+StaKuGorPS: calls 203
+*** FLOP *** [Qs 8h Js]
+Lord Minge: bets 1269 and is all-in
+StaKuGorPS: folds 
+APTEM-89: folds 
+Uncalled bet (1269) returned to Lord Minge
+Lord Minge collected 714 from pot
+Lord Minge: doesn't show hand 
+*** SUMMARY ***
+Total pot 714 | Rake 0 
+Board [Qs 8h Js]
+Seat 1: tredex folded before Flop (didn't bet)
+Seat 2: APTEM-89 folded on the Flop
+Seat 3: Sooners83 folded before Flop (didn't bet)
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 5: Jorge44alc (button) folded before Flop (didn't bet)
+Seat 6: VORON1976511 (small blind) folded before Flop
+Seat 7: Lord Minge (big blind) collected (714)
+Seat 8: StaKuGorPS folded on the Flop
+Seat 9: Hero folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68173673628: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level II (15/30) - 2011/09/28 8:56:39 ET
+Table '447493868 1' 9-max Seat #6 is the button
+Seat 1: tredex (1185 in chips) 
+Seat 2: APTEM-89 (1932 in chips) 
+Seat 3: Sooners83 (1503 in chips) 
+Seat 4: barlowdog1 (1231 in chips) 
+Seat 5: Jorge44alc (1289 in chips) 
+Seat 6: VORON1976511 (840 in chips) 
+Seat 7: Lord Minge (1983 in chips) 
+Seat 8: StaKuGorPS (2515 in chips) 
+Seat 9: Hero (1022 in chips) 
+Lord Minge: posts small blind 15
+StaKuGorPS: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Qh 7s 3h 5s]
+Hero: folds 
+tredex: calls 30
+APTEM-89: raises 303 to 333
+Sooners83: folds 
+barlowdog1: folds 
+Jorge44alc: folds 
+VORON1976511: folds 
+Lord Minge: folds 
+StaKuGorPS: folds 
+tredex: folds 
+Uncalled bet (303) returned to APTEM-89
+APTEM-89 collected 105 from pot
+*** SUMMARY ***
+Total pot 105 | Rake 0 
+Seat 1: tredex folded before Flop
+Seat 2: APTEM-89 collected (105)
+Seat 3: Sooners83 folded before Flop (didn't bet)
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 5: Jorge44alc folded before Flop (didn't bet)
+Seat 6: VORON1976511 (button) folded before Flop (didn't bet)
+Seat 7: Lord Minge (small blind) folded before Flop
+Seat 8: StaKuGorPS (big blind) folded before Flop
+Seat 9: Hero folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68173693354: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level II (15/30) - 2011/09/28 8:57:21 ET
+Table '447493868 1' 9-max Seat #7 is the button
+Seat 1: tredex (1155 in chips) 
+Seat 2: APTEM-89 (2007 in chips) 
+Seat 3: Sooners83 (1503 in chips) 
+Seat 4: barlowdog1 (1231 in chips) 
+Seat 5: Jorge44alc (1289 in chips) 
+Seat 6: VORON1976511 (840 in chips) 
+Seat 7: Lord Minge (1968 in chips) 
+Seat 8: StaKuGorPS (2485 in chips) 
+Seat 9: Hero (1022 in chips) 
+StaKuGorPS: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Jh Ad 2s 3s]
+tredex: calls 30
+APTEM-89: raises 37 to 67
+Sooners83: folds 
+barlowdog1: calls 67
+Jorge44alc: folds 
+VORON1976511: folds 
+Lord Minge: calls 67
+StaKuGorPS: folds 
+Hero: calls 37
+tredex: raises 1088 to 1155 and is all-in
+APTEM-89: calls 1088
+barlowdog1: folds 
+Lord Minge: raises 813 to 1968 and is all-in
+Hero: calls 955 and is all-in
+APTEM-89: calls 813
+*** FLOP *** [4c 5c Qc]
+*** TURN *** [4c 5c Qc] [2d]
+*** RIVER *** [4c 5c Qc 2d] [5s]
+*** SHOW DOWN ***
+APTEM-89: shows [Qs 7s Td 3d] (HI: two pair, Queens and Fives; LO: 7,5,4,3,2)
+Lord Minge: shows [9s 2h Ac Kh] (HI: two pair, Fives and Deuces)
+APTEM-89 collected 813 from side pot-2 
+APTEM-89 collected 813 from side pot-2 
+tredex: shows [Jc 9d As Ah] (HI: two pair, Aces and Fives)
+tredex collected 200 from side pot-1 
+APTEM-89 collected 199 from side pot-1 
+Hero: shows [Jh Ad 2s 3s] (HI: a straight, Ace to Five; LO: 5,4,3,2,A)
+Hero collected 2085 from main pot
+Hero collected 2085 from main pot
+APTEM-89 wins the $0.27 bounty for eliminating Lord Minge
+Lord Minge finished the tournament in 9th place
+*** SUMMARY ***
+Total pot 6195 Main pot 4170. Side pot-1 399. Side pot-2 1626. | Rake 0 
+Board [4c 5c Qc 2d 5s]
+Seat 1: tredex showed [Jc 9d As Ah] and won (200) with HI: two pair, Aces and Fives
+Seat 2: APTEM-89 showed [Qs 7s Td 3d] and won (1825) with HI: two pair, Queens and Fives; LO: 7,5,4,3,2
+Seat 3: Sooners83 folded before Flop (didn't bet)
+Seat 4: barlowdog1 folded before Flop
+Seat 5: Jorge44alc folded before Flop (didn't bet)
+Seat 6: VORON1976511 folded before Flop (didn't bet)
+Seat 7: Lord Minge (button) showed [9s 2h Ac Kh] and lost with HI: two pair, Fives and Deuces
+Seat 8: StaKuGorPS (small blind) folded before Flop
+Seat 9: Hero (big blind) showed [Jh Ad 2s 3s] and won (4170) with HI: a straight, Ace to Five; LO: 5,4,3,2,A
+
+
+
+PokerStars Game #68173719021: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level II (15/30) - 2011/09/28 8:58:17 ET
+Table '447493868 1' 9-max Seat #8 is the button
+Seat 1: tredex (200 in chips) 
+Seat 2: APTEM-89 (1864 in chips) 
+Seat 3: Sooners83 (1503 in chips) 
+Seat 4: barlowdog1 (1164 in chips) 
+Seat 5: Jorge44alc (1289 in chips) 
+Seat 6: VORON1976511 (840 in chips) 
+Seat 8: StaKuGorPS (2470 in chips) 
+Seat 9: Hero (4170 in chips) 
+Hero: posts small blind 15
+tredex: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [2c Th 3d 5s]
+APTEM-89: raises 1834 to 1864 and is all-in
+Sooners83: folds 
+barlowdog1: folds 
+Jorge44alc: folds 
+VORON1976511: folds 
+StaKuGorPS: folds 
+Hero: folds 
+tredex: calls 170 and is all-in
+Uncalled bet (1664) returned to APTEM-89
+*** FLOP *** [Jh 7c 5h]
+*** TURN *** [Jh 7c 5h] [Js]
+*** RIVER *** [Jh 7c 5h Js] [Jc]
+*** SHOW DOWN ***
+tredex: shows [7s Kh 7d Qs] (HI: a full house, Jacks full of Sevens)
+APTEM-89: shows [8h 5c Ah Ac] (HI: a full house, Jacks full of Aces)
+APTEM-89 collected 415 from pot
+No low hand qualified
+APTEM-89 wins the $0.27 bounty for eliminating tredex
+tredex finished the tournament in 8th place
+*** SUMMARY ***
+Total pot 415 | Rake 0 
+Board [Jh 7c 5h Js Jc]
+Seat 1: tredex (big blind) showed [7s Kh 7d Qs] and lost with HI: a full house, Jacks full of Sevens
+Seat 2: APTEM-89 showed [8h 5c Ah Ac] and won (415) with HI: a full house, Jacks full of Aces
+Seat 3: Sooners83 folded before Flop (didn't bet)
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 5: Jorge44alc folded before Flop (didn't bet)
+Seat 6: VORON1976511 folded before Flop (didn't bet)
+Seat 8: StaKuGorPS (button) folded before Flop (didn't bet)
+Seat 9: Hero (small blind) folded before Flop
+
+
+
+PokerStars Game #68173738858: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level II (15/30) - 2011/09/28 8:58:59 ET
+Table '447493868 1' 9-max Seat #9 is the button
+Seat 2: APTEM-89 (2079 in chips) 
+Seat 3: Sooners83 (1503 in chips) 
+Seat 4: barlowdog1 (1164 in chips) 
+Seat 5: Jorge44alc (1289 in chips) 
+Seat 6: VORON1976511 (840 in chips) 
+Seat 8: StaKuGorPS (2470 in chips) 
+Seat 9: Hero (4155 in chips) 
+APTEM-89: posts small blind 15
+Sooners83: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [6s 9d 8d Ac]
+barlowdog1: calls 30
+Jorge44alc: folds 
+VORON1976511 has timed out
+VORON1976511: folds 
+VORON1976511 is sitting out
+StaKuGorPS: folds 
+VORON1976511 has returned
+Hero: calls 30
+APTEM-89: raises 43 to 73
+Sooners83: calls 43
+barlowdog1: calls 43
+Hero: calls 43
+*** FLOP *** [3s Tc Jd]
+APTEM-89: checks 
+Sooners83: checks 
+barlowdog1: checks 
+Hero: checks 
+*** TURN *** [3s Tc Jd] [3d]
+APTEM-89: checks 
+Sooners83: checks 
+barlowdog1: checks 
+Hero: bets 150
+APTEM-89: folds 
+Sooners83: folds 
+barlowdog1: calls 150
+*** RIVER *** [3s Tc Jd 3d] [Th]
+barlowdog1: checks 
+Hero: bets 360
+barlowdog1: folds 
+Uncalled bet (360) returned to Hero
+Hero collected 592 from pot
+*** SUMMARY ***
+Total pot 592 | Rake 0 
+Board [3s Tc Jd 3d Th]
+Seat 2: APTEM-89 (small blind) folded on the Turn
+Seat 3: Sooners83 (big blind) folded on the Turn
+Seat 4: barlowdog1 folded on the River
+Seat 5: Jorge44alc folded before Flop (didn't bet)
+Seat 6: VORON1976511 folded before Flop (didn't bet)
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero (button) collected (592)
+
+
+
+PokerStars Game #68173801000: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level II (15/30) - 2011/09/28 9:01:03 ET
+Table '447493868 1' 9-max Seat #2 is the button
+Seat 2: APTEM-89 (2006 in chips) 
+Seat 3: Sooners83 (1430 in chips) 
+Seat 4: barlowdog1 (941 in chips) 
+Seat 5: Jorge44alc (1289 in chips) 
+Seat 6: VORON1976511 (840 in chips) 
+Seat 8: StaKuGorPS (2470 in chips) 
+Seat 9: Hero (4524 in chips) 
+Sooners83: posts small blind 15
+barlowdog1: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [3s 8c Qc 4h]
+Jorge44alc: folds 
+VORON1976511: folds 
+StaKuGorPS: folds 
+Hero: folds 
+APTEM-89: raises 56 to 86
+Sooners83: calls 71
+barlowdog1: calls 56
+*** FLOP *** [As 2s 5h]
+StaKuGorPS is sitting out
+Sooners83: checks 
+barlowdog1: checks 
+APTEM-89: bets 435
+Sooners83: folds 
+barlowdog1: folds 
+Uncalled bet (435) returned to APTEM-89
+APTEM-89 collected 258 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 258 | Rake 0 
+Board [As 2s 5h]
+Seat 2: APTEM-89 (button) collected (258)
+Seat 3: Sooners83 (small blind) folded on the Flop
+Seat 4: barlowdog1 (big blind) folded on the Flop
+Seat 5: Jorge44alc folded before Flop (didn't bet)
+Seat 6: VORON1976511 folded before Flop (didn't bet)
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68173819239: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level II (15/30) - 2011/09/28 9:01:36 ET
+Table '447493868 1' 9-max Seat #3 is the button
+Seat 2: APTEM-89 (2178 in chips) 
+Seat 3: Sooners83 (1344 in chips) 
+Seat 4: barlowdog1 (855 in chips) 
+Seat 5: Jorge44alc (1289 in chips) 
+Seat 6: VORON1976511 (840 in chips) 
+Seat 8: StaKuGorPS (2470 in chips) is sitting out
+Seat 9: Hero (4524 in chips) 
+barlowdog1: posts small blind 15
+Jorge44alc: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [8d 3d 4c 8h]
+VORON1976511: calls 30
+StaKuGorPS: folds 
+Hero: folds 
+APTEM-89: raises 35 to 65
+Sooners83: folds 
+barlowdog1: folds 
+Jorge44alc: calls 35
+VORON1976511: raises 775 to 840 and is all-in
+APTEM-89: calls 775
+Jorge44alc: folds 
+*** FLOP *** [8c 2h 6h]
+*** TURN *** [8c 2h 6h] [7d]
+*** RIVER *** [8c 2h 6h 7d] [Qs]
+*** SHOW DOWN ***
+VORON1976511: shows [4d 6s Ac Ah] (HI: a pair of Aces; LO: 7,6,4,2,A)
+APTEM-89: shows [Ks Ts 3s 5s] (HI: high card King; LO: 7,6,5,3,2)
+VORON1976511 collected 880 from pot
+VORON1976511 collected 880 from pot
+*** SUMMARY ***
+Total pot 1760 | Rake 0 
+Board [8c 2h 6h 7d Qs]
+Seat 2: APTEM-89 showed [Ks Ts 3s 5s] and lost with HI: high card King; LO: 7,6,5,3,2
+Seat 3: Sooners83 (button) folded before Flop (didn't bet)
+Seat 4: barlowdog1 (small blind) folded before Flop
+Seat 5: Jorge44alc (big blind) folded before Flop
+Seat 6: VORON1976511 showed [4d 6s Ac Ah] and won (1760) with HI: a pair of Aces; LO: 7,6,4,2,A
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68173842857: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level II (15/30) - 2011/09/28 9:02:17 ET
+Table '447493868 1' 9-max Seat #4 is the button
+Seat 2: APTEM-89 (1338 in chips) 
+Seat 3: Sooners83 (1344 in chips) 
+Seat 4: barlowdog1 (840 in chips) 
+Seat 5: Jorge44alc (1224 in chips) 
+Seat 6: VORON1976511 (1760 in chips) 
+Seat 8: StaKuGorPS (2470 in chips) is sitting out
+Seat 9: Hero (4524 in chips) 
+Jorge44alc: posts small blind 15
+VORON1976511: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Kc As 3h 3s]
+StaKuGorPS: folds 
+Hero: raises 60 to 90
+StaKuGorPS has returned
+APTEM-89: raises 66 to 156
+Sooners83: folds 
+barlowdog1: folds 
+Jorge44alc: folds 
+VORON1976511: calls 126
+Hero: calls 66
+*** FLOP *** [Kh Ad 4h]
+VORON1976511: bets 30
+Hero: raises 150 to 180
+APTEM-89: raises 150 to 330
+VORON1976511: calls 300
+Hero: calls 150
+*** TURN *** [Kh Ad 4h] [Js]
+VORON1976511: checks 
+Hero: checks 
+APTEM-89: checks 
+*** RIVER *** [Kh Ad 4h Js] [6c]
+VORON1976511: bets 60
+Hero: calls 60
+APTEM-89: calls 60
+*** SHOW DOWN ***
+VORON1976511: shows [2h 9c 5c Ah] (HI: a pair of Aces; LO: 6,5,4,2,A)
+Hero: shows [Kc As 3h 3s] (HI: two pair, Aces and Kings)
+APTEM-89: mucks hand 
+Hero collected 827 from pot
+VORON1976511 collected 826 from pot
+*** SUMMARY ***
+Total pot 1653 | Rake 0 
+Board [Kh Ad 4h Js 6c]
+Seat 2: APTEM-89 mucked [8h 9h 7d Th]
+Seat 3: Sooners83 folded before Flop (didn't bet)
+Seat 4: barlowdog1 (button) folded before Flop (didn't bet)
+Seat 5: Jorge44alc (small blind) folded before Flop
+Seat 6: VORON1976511 (big blind) showed [2h 9c 5c Ah] and won (826) with HI: a pair of Aces; LO: 6,5,4,2,A
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero showed [Kc As 3h 3s] and won (827) with HI: two pair, Aces and Kings
+
+
+
+PokerStars Game #68173882577: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level III (25/50) - 2011/09/28 9:03:25 ET
+Table '447493868 1' 9-max Seat #5 is the button
+Seat 2: APTEM-89 (792 in chips) 
+Seat 3: Sooners83 (1344 in chips) 
+Seat 4: barlowdog1 (840 in chips) 
+Seat 5: Jorge44alc (1209 in chips) 
+Seat 6: VORON1976511 (2040 in chips) 
+Seat 8: StaKuGorPS (2470 in chips) 
+Seat 9: Hero (4805 in chips) 
+VORON1976511: posts small blind 25
+StaKuGorPS: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Hero [2d 7d 7c 5c]
+Hero: folds 
+APTEM-89: raises 742 to 792 and is all-in
+Sooners83: folds 
+barlowdog1: folds 
+Jorge44alc: folds 
+VORON1976511: calls 767
+StaKuGorPS: folds 
+*** FLOP *** [6h 5s 4s]
+*** TURN *** [6h 5s 4s] [4c]
+*** RIVER *** [6h 5s 4s 4c] [Ah]
+*** SHOW DOWN ***
+VORON1976511: shows [Td Qd 3s Ts] (HI: two pair, Tens and Fours)
+APTEM-89: shows [Js 2h Qc As] (HI: two pair, Aces and Fours; LO: 6,5,4,2,A)
+APTEM-89 collected 817 from pot
+APTEM-89 collected 817 from pot
+*** SUMMARY ***
+Total pot 1634 | Rake 0 
+Board [6h 5s 4s 4c Ah]
+Seat 2: APTEM-89 showed [Js 2h Qc As] and won (1634) with HI: two pair, Aces and Fours; LO: 6,5,4,2,A
+Seat 3: Sooners83 folded before Flop (didn't bet)
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 5: Jorge44alc (button) folded before Flop (didn't bet)
+Seat 6: VORON1976511 (small blind) showed [Td Qd 3s Ts] and lost with HI: two pair, Tens and Fours
+Seat 8: StaKuGorPS (big blind) folded before Flop
+Seat 9: Hero folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68173900812: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level III (25/50) - 2011/09/28 9:03:55 ET
+Table '447493868 1' 9-max Seat #6 is the button
+Seat 2: APTEM-89 (1634 in chips) 
+Seat 3: Sooners83 (1344 in chips) 
+Seat 4: barlowdog1 (840 in chips) 
+Seat 5: Jorge44alc (1209 in chips) 
+Seat 6: VORON1976511 (1248 in chips) 
+Seat 8: StaKuGorPS (2420 in chips) 
+Seat 9: Hero (4805 in chips) 
+StaKuGorPS: posts small blind 25
+Hero: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Hero [Ah Kh 4h 3d]
+APTEM-89: raises 56 to 106
+Sooners83: calls 106
+barlowdog1: folds 
+Jorge44alc: raises 1103 to 1209 and is all-in
+VORON1976511: folds 
+StaKuGorPS: folds 
+Hero: folds 
+APTEM-89: calls 1103
+Sooners83: folds 
+*** FLOP *** [7c 3s 6c]
+*** TURN *** [7c 3s 6c] [4s]
+*** RIVER *** [7c 3s 6c 4s] [5h]
+*** SHOW DOWN ***
+APTEM-89: shows [8h Ad 9c 7s] (HI: a straight, Five to Nine; LO: 7,5,4,3,A)
+Jorge44alc: shows [8d Kc Th Js] (HI: high card King)
+APTEM-89 collected 1300 from pot
+APTEM-89 collected 1299 from pot
+APTEM-89 wins the $0.27 bounty for eliminating Jorge44alc
+Jorge44alc finished the tournament in 7th place
+*** SUMMARY ***
+Total pot 2599 | Rake 0 
+Board [7c 3s 6c 4s 5h]
+Seat 2: APTEM-89 showed [8h Ad 9c 7s] and won (2599) with HI: a straight, Five to Nine; LO: 7,5,4,3,A
+Seat 3: Sooners83 folded before Flop
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 5: Jorge44alc showed [8d Kc Th Js] and lost with HI: high card King
+Seat 6: VORON1976511 (button) folded before Flop (didn't bet)
+Seat 8: StaKuGorPS (small blind) folded before Flop
+Seat 9: Hero (big blind) folded before Flop
+
+
+
+PokerStars Game #68173926711: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level III (25/50) - 2011/09/28 9:04:39 ET
+Table '447493868 1' 9-max Seat #8 is the button
+Seat 2: APTEM-89 (3024 in chips) 
+Seat 3: Sooners83 (1238 in chips) 
+Seat 4: barlowdog1 (840 in chips) 
+Seat 6: VORON1976511 (1248 in chips) 
+Seat 8: StaKuGorPS (2395 in chips) 
+Seat 9: Hero (4755 in chips) 
+Hero: posts small blind 25
+APTEM-89: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Hero [Th 5d 5h 9c]
+Sooners83: folds 
+barlowdog1: folds 
+VORON1976511: folds 
+StaKuGorPS: folds 
+Hero: calls 25
+APTEM-89: raises 150 to 200
+Hero: folds 
+Uncalled bet (150) returned to APTEM-89
+APTEM-89 collected 100 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 100 | Rake 0 
+Seat 2: APTEM-89 (big blind) collected (100)
+Seat 3: Sooners83 folded before Flop (didn't bet)
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 6: VORON1976511 folded before Flop (didn't bet)
+Seat 8: StaKuGorPS (button) folded before Flop (didn't bet)
+Seat 9: Hero (small blind) folded before Flop
+
+
+
+PokerStars Game #68173944167: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level III (25/50) - 2011/09/28 9:05:07 ET
+Table '447493868 1' 9-max Seat #9 is the button
+Seat 2: APTEM-89 (3074 in chips) 
+Seat 3: Sooners83 (1238 in chips) 
+Seat 4: barlowdog1 (840 in chips) 
+Seat 6: VORON1976511 (1248 in chips) 
+Seat 8: StaKuGorPS (2395 in chips) 
+Seat 9: Hero (4705 in chips) 
+APTEM-89: posts small blind 25
+Sooners83: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Hero [3h Jd 8d 9s]
+barlowdog1: calls 50
+VORON1976511: folds 
+StaKuGorPS: folds 
+Hero: folds 
+APTEM-89: raises 100 to 150
+Sooners83: calls 100
+barlowdog1: calls 100
+*** FLOP *** [Th 3d 4h]
+APTEM-89: bets 150
+Sooners83: calls 150
+barlowdog1: calls 150
+*** TURN *** [Th 3d 4h] [6d]
+APTEM-89: bets 1050
+Sooners83: folds 
+barlowdog1: folds 
+Uncalled bet (1050) returned to APTEM-89
+APTEM-89 collected 900 from pot
+*** SUMMARY ***
+Total pot 900 | Rake 0 
+Board [Th 3d 4h 6d]
+Seat 2: APTEM-89 (small blind) collected (900)
+Seat 3: Sooners83 (big blind) folded on the Turn
+Seat 4: barlowdog1 folded on the Turn
+Seat 6: VORON1976511 folded before Flop (didn't bet)
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68173979358: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level III (25/50) - 2011/09/28 9:06:06 ET
+Table '447493868 1' 9-max Seat #2 is the button
+Seat 2: APTEM-89 (3674 in chips) 
+Seat 3: Sooners83 (938 in chips) 
+Seat 4: barlowdog1 (540 in chips) 
+Seat 6: VORON1976511 (1248 in chips) 
+Seat 8: StaKuGorPS (2395 in chips) 
+Seat 9: Hero (4705 in chips) 
+Sooners83: posts small blind 25
+barlowdog1: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Hero [Qs 3h Ts 4d]
+VORON1976511: calls 50
+StaKuGorPS: folds 
+Hero: folds 
+APTEM-89: raises 200 to 250
+Sooners83: folds 
+barlowdog1: folds 
+VORON1976511: calls 200
+*** FLOP *** [5c Ks 9d]
+VORON1976511: checks 
+APTEM-89: checks 
+*** TURN *** [5c Ks 9d] [8s]
+VORON1976511: checks 
+APTEM-89: checks 
+*** RIVER *** [5c Ks 9d 8s] [9h]
+VORON1976511: bets 50
+APTEM-89: calls 50
+*** SHOW DOWN ***
+VORON1976511: shows [6h Tc 6c Ac] (HI: two pair, Nines and Sixes)
+APTEM-89: shows [7d 2c 7s 2s] (HI: two pair, Nines and Sevens)
+APTEM-89 collected 675 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 675 | Rake 0 
+Board [5c Ks 9d 8s 9h]
+Seat 2: APTEM-89 (button) showed [7d 2c 7s 2s] and won (675) with HI: two pair, Nines and Sevens
+Seat 3: Sooners83 (small blind) folded before Flop
+Seat 4: barlowdog1 (big blind) folded before Flop
+Seat 6: VORON1976511 showed [6h Tc 6c Ac] and lost with HI: two pair, Nines and Sixes
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68174000651: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level III (25/50) - 2011/09/28 9:06:41 ET
+Table '447493868 1' 9-max Seat #3 is the button
+Seat 2: APTEM-89 (4049 in chips) 
+Seat 3: Sooners83 (913 in chips) 
+Seat 4: barlowdog1 (490 in chips) 
+Seat 6: VORON1976511 (948 in chips) 
+Seat 8: StaKuGorPS (2395 in chips) 
+Seat 9: Hero (4705 in chips) 
+barlowdog1: posts small blind 25
+VORON1976511: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Hero [8d 7s 7c Ad]
+StaKuGorPS: folds 
+Hero: raises 100 to 150
+APTEM-89: calls 150
+Sooners83: folds 
+barlowdog1: calls 125
+VORON1976511: folds 
+*** FLOP *** [5h Ah 7d]
+barlowdog1: bets 340 and is all-in
+Hero: calls 340
+APTEM-89: raises 340 to 680
+Hero: calls 340
+*** TURN *** [5h Ah 7d] [Kd]
+Hero: checks 
+APTEM-89: bets 750
+Hero: calls 750
+*** RIVER *** [5h Ah 7d Kd] [Qc]
+Hero: checks 
+APTEM-89: checks 
+*** SHOW DOWN ***
+Hero: shows [8d 7s 7c Ad] (HI: three of a kind, Sevens)
+APTEM-89: shows [Qh 4s 2s 4d] (HI: a pair of Queens; LO: 7,5,4,2,A)
+Hero collected 1090 from side pot
+APTEM-89 collected 1090 from side pot
+barlowdog1: shows [2c As 4c Jh] (HI: a pair of Aces; LO: 7,5,4,2,A)
+Hero collected 760 from main pot
+barlowdog1 collected 380 from main pot
+APTEM-89 collected 380 from main pot
+*** SUMMARY ***
+Total pot 3700 Main pot 1520. Side pot 2180. | Rake 0 
+Board [5h Ah 7d Kd Qc]
+Seat 2: APTEM-89 showed [Qh 4s 2s 4d] and won (1470) with HI: a pair of Queens; LO: 7,5,4,2,A
+Seat 3: Sooners83 (button) folded before Flop (didn't bet)
+Seat 4: barlowdog1 (small blind) showed [2c As 4c Jh] and won (380) with HI: a pair of Aces; LO: 7,5,4,2,A
+Seat 6: VORON1976511 (big blind) folded before Flop
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero showed [8d 7s 7c Ad] and won (1850) with HI: three of a kind, Sevens
+
+
+
+PokerStars Game #68174033887: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level III (25/50) - 2011/09/28 9:07:36 ET
+Table '447493868 1' 9-max Seat #4 is the button
+Seat 2: APTEM-89 (3939 in chips) 
+Seat 3: Sooners83 (913 in chips) 
+Seat 4: barlowdog1 (380 in chips) 
+Seat 6: VORON1976511 (898 in chips) 
+Seat 8: StaKuGorPS (2395 in chips) 
+Seat 9: Hero (4975 in chips) 
+VORON1976511: posts small blind 25
+StaKuGorPS: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Hero [Td 6d Tc 3s]
+Hero: folds 
+APTEM-89: raises 128 to 178
+Sooners83: folds 
+barlowdog1 has timed out
+barlowdog1: folds 
+barlowdog1 is sitting out
+VORON1976511: folds 
+StaKuGorPS: calls 128
+*** FLOP *** [Kh 4c Kd]
+StaKuGorPS: checks 
+APTEM-89: bets 344
+StaKuGorPS: calls 344
+*** TURN *** [Kh 4c Kd] [3d]
+StaKuGorPS: checks 
+APTEM-89: checks 
+*** RIVER *** [Kh 4c Kd 3d] [7s]
+StaKuGorPS: checks 
+APTEM-89: checks 
+*** SHOW DOWN ***
+StaKuGorPS: shows [2s 4d Ks Kc] (HI: four of a kind, Kings)
+APTEM-89: mucks hand 
+StaKuGorPS collected 1069 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 1069 | Rake 0 
+Board [Kh 4c Kd 3d 7s]
+Seat 2: APTEM-89 mucked [Qc 7c 9d Th]
+Seat 3: Sooners83 folded before Flop (didn't bet)
+Seat 4: barlowdog1 (button) folded before Flop (didn't bet)
+Seat 6: VORON1976511 (small blind) folded before Flop
+Seat 8: StaKuGorPS (big blind) showed [2s 4d Ks Kc] and won (1069) with HI: four of a kind, Kings
+Seat 9: Hero folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68174076854: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level III (25/50) - 2011/09/28 9:08:47 ET
+Table '447493868 1' 9-max Seat #6 is the button
+Seat 2: APTEM-89 (3417 in chips) 
+Seat 3: Sooners83 (913 in chips) 
+Seat 4: barlowdog1 (380 in chips) is sitting out
+Seat 6: VORON1976511 (873 in chips) 
+Seat 8: StaKuGorPS (2942 in chips) 
+Seat 9: Hero (4975 in chips) 
+StaKuGorPS: posts small blind 25
+Hero: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Hero [Qc Jc Th 9s]
+APTEM-89: raises 100 to 150
+Sooners83: raises 763 to 913 and is all-in
+barlowdog1: folds 
+VORON1976511: folds 
+StaKuGorPS: folds 
+Hero: folds 
+APTEM-89: calls 763
+*** FLOP *** [Qh 8d 6d]
+*** TURN *** [Qh 8d 6d] [Ts]
+*** RIVER *** [Qh 8d 6d Ts] [2c]
+*** SHOW DOWN ***
+APTEM-89: shows [8h 3c 2h 4c] (HI: two pair, Eights and Deuces; LO: 8,6,4,3,2)
+Sooners83: shows [5s 2s Kc As] (HI: a pair of Deuces; LO: 8,6,5,2,A)
+APTEM-89 collected 951 from pot
+APTEM-89 collected 950 from pot
+APTEM-89 wins the $0.27 bounty for eliminating Sooners83
+Sooners83 finished the tournament in 6th place
+*** SUMMARY ***
+Total pot 1901 | Rake 0 
+Board [Qh 8d 6d Ts 2c]
+Seat 2: APTEM-89 showed [8h 3c 2h 4c] and won (1901) with HI: two pair, Eights and Deuces; LO: 8,6,4,3,2
+Seat 3: Sooners83 showed [5s 2s Kc As] and lost with HI: a pair of Deuces; LO: 8,6,5,2,A
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 6: VORON1976511 (button) folded before Flop (didn't bet)
+Seat 8: StaKuGorPS (small blind) folded before Flop
+Seat 9: Hero (big blind) folded before Flop
+
+
+
+PokerStars Game #68174097445: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level III (25/50) - 2011/09/28 9:09:21 ET
+Table '447493868 1' 9-max Seat #8 is the button
+Seat 2: APTEM-89 (4405 in chips) 
+Seat 4: barlowdog1 (380 in chips) is sitting out
+Seat 6: VORON1976511 (873 in chips) 
+Seat 8: StaKuGorPS (2917 in chips) 
+Seat 9: Hero (4925 in chips) 
+Hero: posts small blind 25
+APTEM-89: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Hero [Kc 8h 9c 5h]
+barlowdog1: folds 
+VORON1976511: folds 
+StaKuGorPS: folds 
+Hero: calls 25
+APTEM-89: raises 128 to 178
+Hero: calls 128
+*** FLOP *** [7s Ac Jd]
+Hero: checks 
+APTEM-89: bets 435
+Hero: calls 435
+*** TURN *** [7s Ac Jd] [3s]
+Hero: checks 
+APTEM-89: bets 345
+Hero: calls 345
+*** RIVER *** [7s Ac Jd 3s] [3c]
+Hero: checks 
+APTEM-89: bets 345
+Hero: folds 
+Uncalled bet (345) returned to APTEM-89
+APTEM-89 collected 1916 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 1916 | Rake 0 
+Board [7s Ac Jd 3s 3c]
+Seat 2: APTEM-89 (big blind) collected (1916)
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 6: VORON1976511 folded before Flop (didn't bet)
+Seat 8: StaKuGorPS (button) folded before Flop (didn't bet)
+Seat 9: Hero (small blind) folded on the River
+
+
+
+PokerStars Game #68174129317: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level III (25/50) - 2011/09/28 9:10:14 ET
+Table '447493868 1' 9-max Seat #9 is the button
+Seat 2: APTEM-89 (5363 in chips) 
+Seat 4: barlowdog1 (380 in chips) is sitting out
+Seat 6: VORON1976511 (873 in chips) 
+Seat 8: StaKuGorPS (2917 in chips) 
+Seat 9: Hero (3967 in chips) 
+APTEM-89: posts small blind 25
+barlowdog1: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Hero [7s Js Td 4c]
+VORON1976511: folds 
+StaKuGorPS: calls 50
+Hero: folds 
+APTEM-89: raises 250 to 300
+barlowdog1: folds 
+StaKuGorPS: calls 250
+*** FLOP *** [9d 4h Qd]
+APTEM-89: checks 
+StaKuGorPS: bets 250
+APTEM-89: folds 
+Uncalled bet (250) returned to StaKuGorPS
+StaKuGorPS collected 650 from pot
+StaKuGorPS: doesn't show hand 
+*** SUMMARY ***
+Total pot 650 | Rake 0 
+Board [9d 4h Qd]
+Seat 2: APTEM-89 (small blind) folded on the Flop
+Seat 4: barlowdog1 (big blind) folded before Flop
+Seat 6: VORON1976511 folded before Flop (didn't bet)
+Seat 8: StaKuGorPS collected (650)
+Seat 9: Hero (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68174154370: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level III (25/50) - 2011/09/28 9:10:56 ET
+Table '447493868 1' 9-max Seat #2 is the button
+Seat 2: APTEM-89 (5063 in chips) 
+Seat 4: barlowdog1 (330 in chips) is sitting out
+Seat 6: VORON1976511 (873 in chips) 
+Seat 8: StaKuGorPS (3267 in chips) 
+Seat 9: Hero (3967 in chips) 
+barlowdog1: posts small blind 25
+VORON1976511: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Hero [7s 8d 9c Ks]
+StaKuGorPS: folds 
+Hero: folds 
+APTEM-89: raises 193 to 243
+barlowdog1: folds 
+barlowdog1 has returned
+VORON1976511: calls 193
+*** FLOP *** [Ts 2s 9h]
+VORON1976511: checks 
+APTEM-89: bets 4820 and is all-in
+VORON1976511: calls 630 and is all-in
+Uncalled bet (4190) returned to APTEM-89
+*** TURN *** [Ts 2s 9h] [5s]
+*** RIVER *** [Ts 2s 9h 5s] [Kc]
+*** SHOW DOWN ***
+VORON1976511: shows [Js 3d 4d Qh] (HI: a straight, Nine to King)
+APTEM-89: shows [Kh Ad 7h Jd] (HI: a pair of Kings)
+VORON1976511 collected 1771 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 1771 | Rake 0 
+Board [Ts 2s 9h 5s Kc]
+Seat 2: APTEM-89 (button) showed [Kh Ad 7h Jd] and lost with HI: a pair of Kings
+Seat 4: barlowdog1 (small blind) folded before Flop
+Seat 6: VORON1976511 (big blind) showed [Js 3d 4d Qh] and won (1771) with HI: a straight, Nine to King
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68174178035: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level III (25/50) - 2011/09/28 9:11:35 ET
+Table '447493868 1' 9-max Seat #4 is the button
+Seat 2: APTEM-89 (4190 in chips) 
+Seat 4: barlowdog1 (305 in chips) 
+Seat 6: VORON1976511 (1771 in chips) 
+Seat 8: StaKuGorPS (3267 in chips) 
+Seat 9: Hero (3967 in chips) 
+VORON1976511: posts small blind 25
+StaKuGorPS: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Hero [3h 6h 3c 2h]
+Hero: calls 50
+APTEM-89: raises 184 to 234
+barlowdog1: calls 234
+VORON1976511: folds 
+StaKuGorPS: folds 
+Hero: calls 184
+*** FLOP *** [As Ks 6d]
+Hero: checks 
+APTEM-89: bets 235
+barlowdog1: calls 71 and is all-in
+Hero: calls 235
+*** TURN *** [As Ks 6d] [2c]
+Hero: checks 
+APTEM-89: bets 455
+Hero: calls 455
+*** RIVER *** [As Ks 6d 2c] [Ac]
+Hero: checks 
+APTEM-89: checks 
+*** SHOW DOWN ***
+Hero: shows [3h 6h 3c 2h] (HI: two pair, Aces and Sixes)
+APTEM-89: shows [8c 7c 6s Kd] (HI: two pair, Aces and Kings; LO: 8,7,6,2,A)
+APTEM-89 collected 619 from side pot
+APTEM-89 collected 619 from side pot
+barlowdog1: shows [5h Kc Ad Qc] (HI: a full house, Aces full of Kings)
+barlowdog1 collected 495 from main pot
+APTEM-89 collected 495 from main pot
+*** SUMMARY ***
+Total pot 2228 Main pot 990. Side pot 1238. | Rake 0 
+Board [As Ks 6d 2c Ac]
+Seat 2: APTEM-89 showed [8c 7c 6s Kd] and won (1733) with HI: two pair, Aces and Kings; LO: 8,7,6,2,A
+Seat 4: barlowdog1 (button) showed [5h Kc Ad Qc] and won (495) with HI: a full house, Aces full of Kings
+Seat 6: VORON1976511 (small blind) folded before Flop
+Seat 8: StaKuGorPS (big blind) folded before Flop
+Seat 9: Hero showed [3h 6h 3c 2h] and lost with HI: two pair, Aces and Sixes
+
+
+
+PokerStars Game #68174215929: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:12:38 ET
+Table '447493868 1' 9-max Seat #6 is the button
+Seat 2: APTEM-89 (4999 in chips) 
+Seat 4: barlowdog1 (495 in chips) 
+Seat 6: VORON1976511 (1746 in chips) 
+Seat 8: StaKuGorPS (3217 in chips) 
+Seat 9: Hero (3043 in chips) 
+StaKuGorPS: posts small blind 50
+Hero: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [Kc Jd 6c 4s]
+APTEM-89: raises 100 to 200
+barlowdog1: folds 
+VORON1976511: folds 
+StaKuGorPS: folds 
+Hero: calls 100
+*** FLOP *** [Ac Jc Ts]
+Hero: checks 
+APTEM-89: bets 300
+Hero: raises 2543 to 2843 and is all-in
+APTEM-89: folds 
+Uncalled bet (2543) returned to Hero
+Hero collected 1050 from pot
+*** SUMMARY ***
+Total pot 1050 | Rake 0 
+Board [Ac Jc Ts]
+Seat 2: APTEM-89 folded on the Flop
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 6: VORON1976511 (button) folded before Flop (didn't bet)
+Seat 8: StaKuGorPS (small blind) folded before Flop
+Seat 9: Hero (big blind) collected (1050)
+
+
+
+PokerStars Game #68174239249: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:13:16 ET
+Table '447493868 1' 9-max Seat #8 is the button
+Seat 2: APTEM-89 (4499 in chips) 
+Seat 4: barlowdog1 (495 in chips) 
+Seat 6: VORON1976511 (1746 in chips) 
+Seat 8: StaKuGorPS (3167 in chips) 
+Seat 9: Hero (3593 in chips) 
+Hero: posts small blind 50
+APTEM-89: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [3c Ts 5d 9s]
+barlowdog1: calls 100
+VORON1976511: calls 100
+StaKuGorPS: folds 
+Hero: folds 
+APTEM-89: raises 200 to 300
+barlowdog1: calls 200
+VORON1976511: calls 200
+*** FLOP *** [7c Kd 6h]
+APTEM-89: bets 200
+barlowdog1: calls 195 and is all-in
+VORON1976511: calls 200
+*** TURN *** [7c Kd 6h] [Ad]
+APTEM-89: bets 400
+VORON1976511: folds 
+Uncalled bet (400) returned to APTEM-89
+*** RIVER *** [7c Kd 6h Ad] [8h]
+*** SHOW DOWN ***
+APTEM-89: shows [7d 4d 3d Th] (HI: a pair of Sevens; LO: 7,6,4,3,A)
+APTEM-89 collected 5 from side pot
+APTEM-89 collected 5 from side pot
+barlowdog1: shows [8d 4s Qd 2d] (HI: a pair of Eights; LO: 7,6,4,2,A)
+barlowdog1 collected 768 from main pot
+barlowdog1 collected 767 from main pot
+*** SUMMARY ***
+Total pot 1545 Main pot 1535. Side pot 10. | Rake 0 
+Board [7c Kd 6h Ad 8h]
+Seat 2: APTEM-89 (big blind) showed [7d 4d 3d Th] and won (10) with HI: a pair of Sevens; LO: 7,6,4,3,A
+Seat 4: barlowdog1 showed [8d 4s Qd 2d] and won (1535) with HI: a pair of Eights; LO: 7,6,4,2,A
+Seat 6: VORON1976511 folded on the Turn
+Seat 8: StaKuGorPS (button) folded before Flop (didn't bet)
+Seat 9: Hero (small blind) folded before Flop
+
+
+
+PokerStars Game #68174281179: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:14:26 ET
+Table '447493868 1' 9-max Seat #9 is the button
+Seat 2: APTEM-89 (4009 in chips) 
+Seat 4: barlowdog1 (1535 in chips) 
+Seat 6: VORON1976511 (1246 in chips) 
+Seat 8: StaKuGorPS (3167 in chips) 
+Seat 9: Hero (3543 in chips) 
+APTEM-89: posts small blind 50
+barlowdog1: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [5h Ah 9d 2h]
+VORON1976511: calls 100
+StaKuGorPS: folds 
+Hero: raises 300 to 400
+APTEM-89: calls 350
+barlowdog1: calls 300
+VORON1976511: calls 300
+*** FLOP *** [8s 8h 3h]
+APTEM-89: checks 
+barlowdog1: bets 100
+VORON1976511: calls 100
+Hero: raises 1100 to 1200
+APTEM-89: folds 
+barlowdog1: folds 
+VORON1976511: calls 746 and is all-in
+Uncalled bet (354) returned to Hero
+*** TURN *** [8s 8h 3h] [8c]
+*** RIVER *** [8s 8h 3h 8c] [2s]
+*** SHOW DOWN ***
+VORON1976511: shows [2c 6h 9s As] (HI: three of a kind, Eights; LO: 8,6,3,2,A)
+Hero: shows [5h Ah 9d 2h] (HI: three of a kind, Eights; LO: 8,5,3,2,A)
+VORON1976511 collected 848 from pot
+Hero collected 848 from pot
+Hero collected 1696 from pot
+*** SUMMARY ***
+Total pot 3392 | Rake 0 
+Board [8s 8h 3h 8c 2s]
+Seat 2: APTEM-89 (small blind) folded on the Flop
+Seat 4: barlowdog1 (big blind) folded on the Flop
+Seat 6: VORON1976511 showed [2c 6h 9s As] and won (848) with HI: three of a kind, Eights; LO: 8,6,3,2,A
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero (button) showed [5h Ah 9d 2h] and won (2544) with HI: three of a kind, Eights; LO: 8,5,3,2,A
+
+
+
+PokerStars Game #68174313240: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:15:19 ET
+Table '447493868 1' 9-max Seat #2 is the button
+Seat 2: APTEM-89 (3609 in chips) 
+Seat 4: barlowdog1 (1035 in chips) 
+Seat 6: VORON1976511 (848 in chips) 
+Seat 8: StaKuGorPS (3167 in chips) 
+Seat 9: Hero (4841 in chips) 
+barlowdog1: posts small blind 50
+VORON1976511: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [Th 9d Ad 5d]
+StaKuGorPS: calls 100
+Hero: folds 
+APTEM-89: raises 200 to 300
+barlowdog1: folds 
+VORON1976511: calls 200
+StaKuGorPS: calls 200
+*** FLOP *** [9s Qh 8c]
+VORON1976511: checks 
+StaKuGorPS: checks 
+APTEM-89: bets 300
+VORON1976511: folds 
+StaKuGorPS: folds 
+Uncalled bet (300) returned to APTEM-89
+APTEM-89 collected 950 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 950 | Rake 0 
+Board [9s Qh 8c]
+Seat 2: APTEM-89 (button) collected (950)
+Seat 4: barlowdog1 (small blind) folded before Flop
+Seat 6: VORON1976511 (big blind) folded on the Flop
+Seat 8: StaKuGorPS folded on the Flop
+Seat 9: Hero folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68174351015: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:16:22 ET
+Table '447493868 1' 9-max Seat #4 is the button
+Seat 2: APTEM-89 (4259 in chips) 
+Seat 4: barlowdog1 (985 in chips) 
+Seat 6: VORON1976511 (548 in chips) 
+Seat 8: StaKuGorPS (2867 in chips) 
+Seat 9: Hero (4841 in chips) 
+VORON1976511: posts small blind 50
+StaKuGorPS: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [4c 9c Tc 2h]
+Hero: folds 
+APTEM-89: raises 500 to 600
+barlowdog1: folds 
+VORON1976511: folds 
+StaKuGorPS: folds 
+Uncalled bet (500) returned to APTEM-89
+APTEM-89 collected 250 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 250 | Rake 0 
+Seat 2: APTEM-89 collected (250)
+Seat 4: barlowdog1 (button) folded before Flop (didn't bet)
+Seat 6: VORON1976511 (small blind) folded before Flop
+Seat 8: StaKuGorPS (big blind) folded before Flop
+Seat 9: Hero folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68174361045: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:16:38 ET
+Table '447493868 1' 9-max Seat #6 is the button
+Seat 2: APTEM-89 (4409 in chips) 
+Seat 4: barlowdog1 (985 in chips) 
+Seat 6: VORON1976511 (498 in chips) 
+Seat 8: StaKuGorPS (2767 in chips) 
+Seat 9: Hero (4841 in chips) 
+StaKuGorPS: posts small blind 50
+Hero: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [5h 3h 5c Ts]
+APTEM-89: raises 200 to 300
+barlowdog1: folds 
+VORON1976511: folds 
+StaKuGorPS: folds 
+Hero: folds 
+Uncalled bet (200) returned to APTEM-89
+APTEM-89 collected 250 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 250 | Rake 0 
+Seat 2: APTEM-89 collected (250)
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 6: VORON1976511 (button) folded before Flop (didn't bet)
+Seat 8: StaKuGorPS (small blind) folded before Flop
+Seat 9: Hero (big blind) folded before Flop
+
+
+
+PokerStars Game #68174367767: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:16:49 ET
+Table '447493868 1' 9-max Seat #8 is the button
+Seat 2: APTEM-89 (4559 in chips) 
+Seat 4: barlowdog1 (985 in chips) 
+Seat 6: VORON1976511 (498 in chips) 
+Seat 8: StaKuGorPS (2717 in chips) 
+Seat 9: Hero (4741 in chips) 
+Hero: posts small blind 50
+APTEM-89: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [Jc Kh Ks Jd]
+barlowdog1: folds 
+VORON1976511: folds 
+StaKuGorPS: folds 
+Hero: calls 50
+APTEM-89: raises 400 to 500
+Hero: calls 400
+*** FLOP *** [Ah 7d 2c]
+Hero: checks 
+APTEM-89: bets 500
+Hero: folds 
+Uncalled bet (500) returned to APTEM-89
+APTEM-89 collected 1000 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 1000 | Rake 0 
+Board [Ah 7d 2c]
+Seat 2: APTEM-89 (big blind) collected (1000)
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 6: VORON1976511 folded before Flop (didn't bet)
+Seat 8: StaKuGorPS (button) folded before Flop (didn't bet)
+Seat 9: Hero (small blind) folded on the Flop
+
+
+
+PokerStars Game #68174393110: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:17:31 ET
+Table '447493868 1' 9-max Seat #9 is the button
+Seat 2: APTEM-89 (5059 in chips) 
+Seat 4: barlowdog1 (985 in chips) 
+Seat 6: VORON1976511 (498 in chips) 
+Seat 8: StaKuGorPS (2717 in chips) 
+Seat 9: Hero (4241 in chips) 
+APTEM-89: posts small blind 50
+barlowdog1: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [7h 2h 3s 6h]
+VORON1976511: folds 
+StaKuGorPS: folds 
+Hero: folds 
+APTEM-89: raises 400 to 500
+barlowdog1: raises 400 to 900
+APTEM-89: raises 400 to 1300
+barlowdog1: calls 85 and is all-in
+Uncalled bet (315) returned to APTEM-89
+*** FLOP *** [7d 4h Qc]
+*** TURN *** [7d 4h Qc] [8s]
+*** RIVER *** [7d 4h Qc 8s] [Qh]
+*** SHOW DOWN ***
+APTEM-89: shows [9h 8d 9d Js] (HI: two pair, Queens and Nines)
+barlowdog1: shows [As 2s Tc Ac] (HI: two pair, Aces and Queens; LO: 8,7,4,2,A)
+barlowdog1 collected 985 from pot
+barlowdog1 collected 985 from pot
+*** SUMMARY ***
+Total pot 1970 | Rake 0 
+Board [7d 4h Qc 8s Qh]
+Seat 2: APTEM-89 (small blind) showed [9h 8d 9d Js] and lost with HI: two pair, Queens and Nines
+Seat 4: barlowdog1 (big blind) showed [As 2s Tc Ac] and won (1970) with HI: two pair, Aces and Queens; LO: 8,7,4,2,A
+Seat 6: VORON1976511 folded before Flop (didn't bet)
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68174420477: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:18:16 ET
+Table '447493868 1' 9-max Seat #2 is the button
+Seat 2: APTEM-89 (4074 in chips) 
+Seat 4: barlowdog1 (1970 in chips) 
+Seat 6: VORON1976511 (498 in chips) 
+Seat 8: StaKuGorPS (2717 in chips) 
+Seat 9: Hero (4241 in chips) 
+barlowdog1: posts small blind 50
+VORON1976511: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [6h Ah Js 2s]
+StaKuGorPS: folds 
+Hero: folds 
+APTEM-89: raises 300 to 400
+barlowdog1: folds 
+VORON1976511: raises 98 to 498 and is all-in
+APTEM-89: calls 98
+*** FLOP *** [2c 7d 7c]
+*** TURN *** [2c 7d 7c] [9s]
+*** RIVER *** [2c 7d 7c 9s] [Tc]
+*** SHOW DOWN ***
+VORON1976511: shows [5s Td 9h Jd] (HI: two pair, Tens and Nines)
+APTEM-89: shows [Kc Kd 4s 5h] (HI: two pair, Kings and Sevens)
+APTEM-89 collected 1046 from pot
+No low hand qualified
+APTEM-89 wins the $0.27 bounty for eliminating VORON1976511
+VORON1976511 finished the tournament in 5th place
+*** SUMMARY ***
+Total pot 1046 | Rake 0 
+Board [2c 7d 7c 9s Tc]
+Seat 2: APTEM-89 (button) showed [Kc Kd 4s 5h] and won (1046) with HI: two pair, Kings and Sevens
+Seat 4: barlowdog1 (small blind) folded before Flop
+Seat 6: VORON1976511 (big blind) showed [5s Td 9h Jd] and lost with HI: two pair, Tens and Nines
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68174434746: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:18:39 ET
+Table '447493868 1' 9-max Seat #4 is the button
+Seat 2: APTEM-89 (4622 in chips) 
+Seat 4: barlowdog1 (1920 in chips) 
+Seat 8: StaKuGorPS (2717 in chips) 
+Seat 9: Hero (4241 in chips) 
+StaKuGorPS: posts small blind 50
+Hero: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [8h As Ts Ad]
+APTEM-89: calls 100
+barlowdog1: calls 100
+StaKuGorPS: calls 50
+Hero: checks 
+*** FLOP *** [Js 4s 2c]
+StaKuGorPS: checks 
+Hero: bets 300
+APTEM-89: raises 300 to 600
+barlowdog1: folds 
+StaKuGorPS: folds 
+Hero: calls 300
+*** TURN *** [Js 4s 2c] [Jd]
+Hero: checks 
+APTEM-89: bets 1000
+Hero: calls 1000
+*** RIVER *** [Js 4s 2c Jd] [Td]
+Hero: checks 
+APTEM-89: bets 1100
+Hero: calls 1100
+*** SHOW DOWN ***
+APTEM-89: shows [7s 2h Jc 6c] (HI: a full house, Jacks full of Deuces)
+Hero: mucks hand 
+APTEM-89 collected 5800 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 5800 | Rake 0 
+Board [Js 4s 2c Jd Td]
+Seat 2: APTEM-89 showed [7s 2h Jc 6c] and won (5800) with HI: a full house, Jacks full of Deuces
+Seat 4: barlowdog1 (button) folded on the Flop
+Seat 8: StaKuGorPS (small blind) folded on the Flop
+Seat 9: Hero (big blind) mucked [8h As Ts Ad]
+
+
+
+PokerStars Game #68174468872: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:19:36 ET
+Table '447493868 1' 9-max Seat #8 is the button
+Seat 2: APTEM-89 (7622 in chips) 
+Seat 4: barlowdog1 (1820 in chips) 
+Seat 8: StaKuGorPS (2617 in chips) 
+Seat 9: Hero (1441 in chips) 
+Hero: posts small blind 50
+APTEM-89: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [7h Jc Ah 2s]
+barlowdog1: folds 
+StaKuGorPS: folds 
+Hero: raises 200 to 300
+APTEM-89: raises 2300 to 2600
+Hero: calls 1141 and is all-in
+Uncalled bet (1159) returned to APTEM-89
+*** FLOP *** [Ac 9s Js]
+*** TURN *** [Ac 9s Js] [Jh]
+*** RIVER *** [Ac 9s Js Jh] [5c]
+*** SHOW DOWN ***
+Hero: shows [7h Jc Ah 2s] (HI: a full house, Jacks full of Aces)
+APTEM-89: shows [9d Ad 2h Tc] (HI: two pair, Aces and Jacks)
+Hero collected 2882 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 2882 | Rake 0 
+Board [Ac 9s Js Jh 5c]
+Seat 2: APTEM-89 (big blind) showed [9d Ad 2h Tc] and lost with HI: two pair, Aces and Jacks
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 8: StaKuGorPS (button) folded before Flop (didn't bet)
+Seat 9: Hero (small blind) showed [7h Jc Ah 2s] and won (2882) with HI: a full house, Jacks full of Aces
+
+
+
+PokerStars Game #68174487422: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:20:06 ET
+Table '447493868 1' 9-max Seat #9 is the button
+Seat 2: APTEM-89 (6181 in chips) 
+Seat 4: barlowdog1 (1820 in chips) 
+Seat 8: StaKuGorPS (2617 in chips) 
+Seat 9: Hero (2882 in chips) 
+APTEM-89: posts small blind 50
+barlowdog1: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [Td 8h Qd 2c]
+StaKuGorPS: folds 
+Hero: folds 
+APTEM-89: raises 200 to 300
+barlowdog1: folds 
+Uncalled bet (200) returned to APTEM-89
+APTEM-89 collected 200 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Seat 2: APTEM-89 (small blind) collected (200)
+Seat 4: barlowdog1 (big blind) folded before Flop
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68174499448: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:20:26 ET
+Table '447493868 1' 9-max Seat #2 is the button
+Seat 2: APTEM-89 (6281 in chips) 
+Seat 4: barlowdog1 (1720 in chips) 
+Seat 8: StaKuGorPS (2617 in chips) 
+Seat 9: Hero (2882 in chips) 
+barlowdog1: posts small blind 50
+StaKuGorPS: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [6s 7s Ah Th]
+Hero: folds 
+APTEM-89: raises 400 to 500
+barlowdog1: folds 
+StaKuGorPS: folds 
+Uncalled bet (400) returned to APTEM-89
+APTEM-89 collected 250 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 250 | Rake 0 
+Seat 2: APTEM-89 (button) collected (250)
+Seat 4: barlowdog1 (small blind) folded before Flop
+Seat 8: StaKuGorPS (big blind) folded before Flop
+Seat 9: Hero folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68174511129: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:20:45 ET
+Table '447493868 1' 9-max Seat #4 is the button
+Seat 2: APTEM-89 (6431 in chips) 
+Seat 4: barlowdog1 (1670 in chips) 
+Seat 8: StaKuGorPS (2517 in chips) 
+Seat 9: Hero (2882 in chips) 
+StaKuGorPS: posts small blind 50
+Hero: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [6s 2d 9s 8s]
+APTEM-89: raises 400 to 500
+barlowdog1: folds 
+StaKuGorPS: folds 
+Hero: folds 
+Uncalled bet (400) returned to APTEM-89
+APTEM-89 collected 250 from pot
+*** SUMMARY ***
+Total pot 250 | Rake 0 
+Seat 2: APTEM-89 collected (250)
+Seat 4: barlowdog1 (button) folded before Flop (didn't bet)
+Seat 8: StaKuGorPS (small blind) folded before Flop
+Seat 9: Hero (big blind) folded before Flop
+
+
+
+PokerStars Game #68174519047: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:20:59 ET
+Table '447493868 1' 9-max Seat #8 is the button
+Seat 2: APTEM-89 (6581 in chips) 
+Seat 4: barlowdog1 (1670 in chips) 
+Seat 8: StaKuGorPS (2467 in chips) 
+Seat 9: Hero (2782 in chips) 
+Hero: posts small blind 50
+APTEM-89: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [2h 3h 6h Qh]
+barlowdog1: folds 
+StaKuGorPS: folds 
+Hero: folds 
+Uncalled bet (50) returned to APTEM-89
+APTEM-89 collected 100 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 100 | Rake 0 
+Seat 2: APTEM-89 (big blind) collected (100)
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 8: StaKuGorPS (button) folded before Flop (didn't bet)
+Seat 9: Hero (small blind) folded before Flop
+
+
+
+PokerStars Game #68174526090: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:21:10 ET
+Table '447493868 1' 9-max Seat #9 is the button
+Seat 2: APTEM-89 (6631 in chips) 
+Seat 4: barlowdog1 (1670 in chips) 
+Seat 8: StaKuGorPS (2467 in chips) 
+Seat 9: Hero (2732 in chips) 
+APTEM-89: posts small blind 50
+barlowdog1: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [4d Kd Th 8c]
+StaKuGorPS: folds 
+Hero: folds 
+APTEM-89: raises 200 to 300
+barlowdog1: calls 200
+*** FLOP *** [Qh Ac 5h]
+APTEM-89: bets 200
+barlowdog1: calls 200
+*** TURN *** [Qh Ac 5h] [5c]
+APTEM-89: bets 200
+barlowdog1: calls 200
+*** RIVER *** [Qh Ac 5h 5c] [3s]
+APTEM-89: bets 200
+barlowdog1: calls 200
+*** SHOW DOWN ***
+APTEM-89: shows [8h Qc 4c 6s] (HI: two pair, Queens and Fives; LO: 6,5,4,3,A)
+barlowdog1: shows [Ad 6h 7c 9h] (HI: two pair, Aces and Fives; LO: 7,6,5,3,A)
+barlowdog1 collected 900 from pot
+APTEM-89 collected 900 from pot
+*** SUMMARY ***
+Total pot 1800 | Rake 0 
+Board [Qh Ac 5h 5c 3s]
+Seat 2: APTEM-89 (small blind) showed [8h Qc 4c 6s] and won (900) with HI: two pair, Queens and Fives; LO: 6,5,4,3,A
+Seat 4: barlowdog1 (big blind) showed [Ad 6h 7c 9h] and won (900) with HI: two pair, Aces and Fives; LO: 7,6,5,3,A
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68174545297: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level IV (50/100) - 2011/09/28 9:21:42 ET
+Table '447493868 1' 9-max Seat #2 is the button
+Seat 2: APTEM-89 (6631 in chips) 
+Seat 4: barlowdog1 (1670 in chips) 
+Seat 8: StaKuGorPS (2467 in chips) 
+Seat 9: Hero (2732 in chips) 
+barlowdog1: posts small blind 50
+StaKuGorPS: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [6h 6c 7d 4d]
+Hero: raises 200 to 300
+APTEM-89: raises 200 to 500
+barlowdog1: calls 450
+StaKuGorPS: folds 
+Hero: calls 200
+*** FLOP *** [Kc 5d Jd]
+barlowdog1: bets 100
+Hero: calls 100
+APTEM-89: raises 700 to 800
+barlowdog1: calls 700
+Hero: folds 
+*** TURN *** [Kc 5d Jd] [2s]
+barlowdog1: bets 370 and is all-in
+APTEM-89: calls 370
+*** RIVER *** [Kc 5d Jd 2s] [8h]
+*** SHOW DOWN ***
+barlowdog1: shows [Jh Ah 5c 3c] (HI: two pair, Jacks and Fives; LO: 8,5,3,2,A)
+APTEM-89: shows [Ks 9s Jc 9d] (HI: two pair, Kings and Jacks)
+APTEM-89 collected 2020 from pot
+barlowdog1 collected 2020 from pot
+*** SUMMARY ***
+Total pot 4040 | Rake 0 
+Board [Kc 5d Jd 2s 8h]
+Seat 2: APTEM-89 (button) showed [Ks 9s Jc 9d] and won (2020) with HI: two pair, Kings and Jacks
+Seat 4: barlowdog1 (small blind) showed [Jh Ah 5c 3c] and won (2020) with HI: two pair, Jacks and Fives; LO: 8,5,3,2,A
+Seat 8: StaKuGorPS (big blind) folded before Flop
+Seat 9: Hero folded on the Flop
+
+
+
+PokerStars Game #68174580765: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:22:40 ET
+Table '447493868 1' 9-max Seat #4 is the button
+Seat 2: APTEM-89 (6981 in chips) 
+Seat 4: barlowdog1 (2020 in chips) 
+Seat 8: StaKuGorPS (2367 in chips) 
+Seat 9: Hero (2132 in chips) 
+StaKuGorPS: posts small blind 75
+Hero: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [Tc 3c 2d 4s]
+APTEM-89: raises 150 to 300
+barlowdog1: calls 300
+StaKuGorPS: folds 
+Hero: calls 150
+*** FLOP *** [Ah 4h 3h]
+Hero: checks 
+APTEM-89: checks 
+barlowdog1: checks 
+*** TURN *** [Ah 4h 3h] [6s]
+Hero: checks 
+APTEM-89: bets 300
+barlowdog1: calls 300
+Hero: calls 300
+*** RIVER *** [Ah 4h 3h 6s] [Jd]
+Hero: checks 
+APTEM-89: checks 
+barlowdog1: checks 
+*** SHOW DOWN ***
+Hero: shows [Tc 3c 2d 4s] (HI: two pair, Fours and Threes; LO: 6,4,3,2,A)
+APTEM-89: mucks hand 
+barlowdog1: shows [Kc Ad Qd 2s] (HI: a pair of Aces; LO: 6,4,3,2,A)
+Hero collected 938 from pot
+Hero collected 469 from pot
+barlowdog1 collected 468 from pot
+*** SUMMARY ***
+Total pot 1875 | Rake 0 
+Board [Ah 4h 3h 6s Jd]
+Seat 2: APTEM-89 mucked [7s Kh Td 8d]
+Seat 4: barlowdog1 (button) showed [Kc Ad Qd 2s] and won (468) with HI: a pair of Aces; LO: 6,4,3,2,A
+Seat 8: StaKuGorPS (small blind) folded before Flop
+Seat 9: Hero (big blind) showed [Tc 3c 2d 4s] and won (1407) with HI: two pair, Fours and Threes; LO: 6,4,3,2,A
+
+
+
+PokerStars Game #68174606986: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:23:24 ET
+Table '447493868 1' 9-max Seat #8 is the button
+Seat 2: APTEM-89 (6381 in chips) 
+Seat 4: barlowdog1 (1888 in chips) 
+Seat 8: StaKuGorPS (2292 in chips) 
+Seat 9: Hero (2939 in chips) 
+Hero: posts small blind 75
+APTEM-89: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [Ts 6h Qh Ah]
+barlowdog1: folds 
+StaKuGorPS: folds 
+Hero: calls 75
+APTEM-89: raises 300 to 450
+Hero: folds 
+Uncalled bet (300) returned to APTEM-89
+APTEM-89 collected 300 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 2: APTEM-89 (big blind) collected (300)
+Seat 4: barlowdog1 folded before Flop (didn't bet)
+Seat 8: StaKuGorPS (button) folded before Flop (didn't bet)
+Seat 9: Hero (small blind) folded before Flop
+
+
+
+PokerStars Game #68174619918: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:23:45 ET
+Table '447493868 1' 9-max Seat #9 is the button
+Seat 2: APTEM-89 (6531 in chips) 
+Seat 4: barlowdog1 (1888 in chips) 
+Seat 8: StaKuGorPS (2292 in chips) 
+Seat 9: Hero (2789 in chips) 
+APTEM-89: posts small blind 75
+barlowdog1: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [Td 6h Kd 3d]
+StaKuGorPS: folds 
+Hero: folds 
+APTEM-89: raises 155 to 305
+barlowdog1: raises 1583 to 1888 and is all-in
+APTEM-89: calls 1583
+*** FLOP *** [Ks 2h Qs]
+*** TURN *** [Ks 2h Qs] [7c]
+*** RIVER *** [Ks 2h Qs 7c] [8s]
+*** SHOW DOWN ***
+APTEM-89: shows [Jd Kh 4c Th] (HI: a pair of Kings)
+barlowdog1: shows [Ah Jh 2d Jc] (HI: a pair of Jacks)
+APTEM-89 collected 3776 from pot
+No low hand qualified
+APTEM-89 wins the $0.27 bounty for eliminating barlowdog1
+barlowdog1 finished the tournament in 4th place
+*** SUMMARY ***
+Total pot 3776 | Rake 0 
+Board [Ks 2h Qs 7c 8s]
+Seat 2: APTEM-89 (small blind) showed [Jd Kh 4c Th] and won (3776) with HI: a pair of Kings
+Seat 4: barlowdog1 (big blind) showed [Ah Jh 2d Jc] and lost with HI: a pair of Jacks
+Seat 8: StaKuGorPS folded before Flop (didn't bet)
+Seat 9: Hero (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68174635584: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:24:11 ET
+Table '447493868 1' 9-max Seat #2 is the button
+Seat 2: APTEM-89 (8419 in chips) 
+Seat 8: StaKuGorPS (2292 in chips) 
+Seat 9: Hero (2789 in chips) 
+StaKuGorPS: posts small blind 75
+Hero: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [9c 5c Qd Jh]
+APTEM-89: raises 150 to 300
+StaKuGorPS: folds 
+Hero: calls 150
+*** FLOP *** [4c 2c Qh]
+Hero: checks 
+APTEM-89: bets 450
+Hero: raises 2039 to 2489 and is all-in
+APTEM-89: calls 2039
+*** TURN *** [4c 2c Qh] [5s]
+*** RIVER *** [4c 2c Qh 5s] [9d]
+*** SHOW DOWN ***
+Hero: shows [9c 5c Qd Jh] (HI: two pair, Queens and Nines)
+APTEM-89: shows [Qc 6s Tc 7h] (HI: a pair of Queens; LO: 7,6,5,4,2)
+Hero collected 2827 from pot
+APTEM-89 collected 2826 from pot
+*** SUMMARY ***
+Total pot 5653 | Rake 0 
+Board [4c 2c Qh 5s 9d]
+Seat 2: APTEM-89 (button) showed [Qc 6s Tc 7h] and won (2826) with HI: a pair of Queens; LO: 7,6,5,4,2
+Seat 8: StaKuGorPS (small blind) folded before Flop
+Seat 9: Hero (big blind) showed [9c 5c Qd Jh] and won (2827) with HI: two pair, Queens and Nines
+
+
+
+PokerStars Game #68174654261: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:24:42 ET
+Table '447493868 1' 9-max Seat #8 is the button
+Seat 2: APTEM-89 (8456 in chips) 
+Seat 8: StaKuGorPS (2217 in chips) 
+Seat 9: Hero (2827 in chips) 
+Hero: posts small blind 75
+APTEM-89: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [Ks 7d 6s Qc]
+StaKuGorPS: folds 
+Hero: calls 75
+APTEM-89: raises 300 to 450
+Hero: calls 300
+*** FLOP *** [Kd 4d 5h]
+Hero: checks 
+APTEM-89: bets 450
+Hero: calls 450
+*** TURN *** [Kd 4d 5h] [Jh]
+Hero: checks 
+APTEM-89: bets 600
+Hero: calls 600
+*** RIVER *** [Kd 4d 5h Jh] [Td]
+Hero: checks 
+APTEM-89: checks 
+*** SHOW DOWN ***
+Hero: shows [Ks 7d 6s Qc] (HI: a pair of Kings)
+APTEM-89: mucks hand 
+Hero collected 3000 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 3000 | Rake 0 
+Board [Kd 4d 5h Jh Td]
+Seat 2: APTEM-89 (big blind) mucked [4s 8h 9h 3d]
+Seat 8: StaKuGorPS (button) folded before Flop (didn't bet)
+Seat 9: Hero (small blind) showed [Ks 7d 6s Qc] and won (3000) with HI: a pair of Kings
+
+
+
+PokerStars Game #68174681638: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:25:27 ET
+Table '447493868 1' 9-max Seat #9 is the button
+Seat 2: APTEM-89 (6956 in chips) 
+Seat 8: StaKuGorPS (2217 in chips) 
+Seat 9: Hero (4327 in chips) 
+APTEM-89: posts small blind 75
+StaKuGorPS: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [5h Tc Qh Ts]
+Hero: folds 
+APTEM-89: raises 450 to 600
+StaKuGorPS: folds 
+Uncalled bet (450) returned to APTEM-89
+APTEM-89 collected 300 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 2: APTEM-89 (small blind) collected (300)
+Seat 8: StaKuGorPS (big blind) folded before Flop
+Seat 9: Hero (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68174694973: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:25:49 ET
+Table '447493868 1' 9-max Seat #2 is the button
+Seat 2: APTEM-89 (7106 in chips) 
+Seat 8: StaKuGorPS (2067 in chips) 
+Seat 9: Hero (4327 in chips) 
+StaKuGorPS: posts small blind 75
+Hero: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [2d Jh Tc Ad]
+APTEM-89: raises 300 to 450
+StaKuGorPS: calls 375
+Hero: folds 
+*** FLOP *** [2s 3c 9d]
+StaKuGorPS: checks 
+APTEM-89: checks 
+*** TURN *** [2s 3c 9d] [Td]
+StaKuGorPS: checks 
+APTEM-89: checks 
+*** RIVER *** [2s 3c 9d Td] [7c]
+StaKuGorPS: checks 
+APTEM-89: checks 
+*** SHOW DOWN ***
+StaKuGorPS: shows [As 8d Js 7h] (HI: a straight, Seven to Jack; LO: 8,7,3,2,A)
+APTEM-89: mucks hand 
+StaKuGorPS collected 525 from pot
+StaKuGorPS collected 525 from pot
+*** SUMMARY ***
+Total pot 1050 | Rake 0 
+Board [2s 3c 9d Td 7c]
+Seat 2: APTEM-89 (button) mucked [Kd 4h Qh 4s]
+Seat 8: StaKuGorPS (small blind) showed [As 8d Js 7h] and won (1050) with HI: a straight, Seven to Jack; LO: 8,7,3,2,A
+Seat 9: Hero (big blind) folded before Flop
+
+
+
+PokerStars Game #68174717193: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:26:25 ET
+Table '447493868 1' 9-max Seat #8 is the button
+Seat 2: APTEM-89 (6656 in chips) 
+Seat 8: StaKuGorPS (2667 in chips) 
+Seat 9: Hero (4177 in chips) 
+Hero: posts small blind 75
+APTEM-89: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [Jd 5h Ks Ac]
+StaKuGorPS: raises 150 to 300
+Hero: folds 
+APTEM-89: raises 150 to 450
+StaKuGorPS: raises 2217 to 2667 and is all-in
+APTEM-89: calls 2217
+*** FLOP *** [3s 4c Qh]
+*** TURN *** [3s 4c Qh] [Kd]
+*** RIVER *** [3s 4c Qh Kd] [4h]
+*** SHOW DOWN ***
+APTEM-89: shows [9c 9s Qc Ad] (HI: two pair, Queens and Fours)
+StaKuGorPS: shows [7c 7h Ah 4s] (HI: three of a kind, Fours)
+StaKuGorPS collected 5409 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 5409 | Rake 0 
+Board [3s 4c Qh Kd 4h]
+Seat 2: APTEM-89 (big blind) showed [9c 9s Qc Ad] and lost with HI: two pair, Queens and Fours
+Seat 8: StaKuGorPS (button) showed [7c 7h Ah 4s] and won (5409) with HI: three of a kind, Fours
+Seat 9: Hero (small blind) folded before Flop
+
+
+
+PokerStars Game #68174732825: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:26:50 ET
+Table '447493868 1' 9-max Seat #9 is the button
+Seat 2: APTEM-89 (3989 in chips) 
+Seat 8: StaKuGorPS (5409 in chips) 
+Seat 9: Hero (4102 in chips) 
+APTEM-89: posts small blind 75
+StaKuGorPS: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [3h 9d Jh 5h]
+Hero: folds 
+APTEM-89: raises 450 to 600
+StaKuGorPS: folds 
+Uncalled bet (450) returned to APTEM-89
+APTEM-89 collected 300 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 2: APTEM-89 (small blind) collected (300)
+Seat 8: StaKuGorPS (big blind) folded before Flop
+Seat 9: Hero (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68174742580: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:27:06 ET
+Table '447493868 1' 9-max Seat #2 is the button
+Seat 2: APTEM-89 (4139 in chips) 
+Seat 8: StaKuGorPS (5259 in chips) 
+Seat 9: Hero (4102 in chips) 
+StaKuGorPS: posts small blind 75
+Hero: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [Ks Td Js 7d]
+APTEM-89: raises 150 to 300
+StaKuGorPS: raises 600 to 900
+Hero: folds 
+APTEM-89: calls 600
+*** FLOP *** [9d 2h 8s]
+StaKuGorPS: checks 
+APTEM-89: bets 300
+StaKuGorPS: calls 300
+*** TURN *** [9d 2h 8s] [5h]
+StaKuGorPS: checks 
+APTEM-89: checks 
+*** RIVER *** [9d 2h 8s 5h] [9h]
+StaKuGorPS: checks 
+APTEM-89: checks 
+*** SHOW DOWN ***
+StaKuGorPS: shows [Qs Jc 5s Ac] (HI: two pair, Nines and Fives)
+APTEM-89: mucks hand 
+StaKuGorPS collected 2550 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 2550 | Rake 0 
+Board [9d 2h 8s 5h 9h]
+Seat 2: APTEM-89 (button) mucked [6c Kd Ts Jh]
+Seat 8: StaKuGorPS (small blind) showed [Qs Jc 5s Ac] and won (2550) with HI: two pair, Nines and Fives
+Seat 9: Hero (big blind) folded before Flop
+
+
+
+PokerStars Game #68174773013: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:27:56 ET
+Table '447493868 1' 9-max Seat #8 is the button
+Seat 2: APTEM-89 (2939 in chips) 
+Seat 8: StaKuGorPS (6609 in chips) 
+Seat 9: Hero (3952 in chips) 
+Hero: posts small blind 75
+APTEM-89: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [Ts Tc 6c 4h]
+StaKuGorPS: folds 
+Hero: calls 75
+APTEM-89: raises 300 to 450
+Hero: calls 300
+*** FLOP *** [Ah 9s 8s]
+Hero: checks 
+APTEM-89: bets 300
+Hero: calls 300
+*** TURN *** [Ah 9s 8s] [9h]
+Hero: checks 
+APTEM-89: checks 
+*** RIVER *** [Ah 9s 8s 9h] [5c]
+Hero: checks 
+APTEM-89: checks 
+*** SHOW DOWN ***
+Hero: shows [Ts Tc 6c 4h] (HI: two pair, Tens and Nines; LO: 8,6,5,4,A)
+APTEM-89: mucks hand 
+Hero collected 750 from pot
+Hero collected 750 from pot
+*** SUMMARY ***
+Total pot 1500 | Rake 0 
+Board [Ah 9s 8s 9h 5c]
+Seat 2: APTEM-89 (big blind) mucked [5s Qs 7h Kc]
+Seat 8: StaKuGorPS (button) folded before Flop (didn't bet)
+Seat 9: Hero (small blind) showed [Ts Tc 6c 4h] and won (1500) with HI: two pair, Tens and Nines; LO: 8,6,5,4,A
+
+
+
+PokerStars Game #68174793999: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:28:31 ET
+Table '447493868 1' 9-max Seat #9 is the button
+Seat 2: APTEM-89 (2189 in chips) 
+Seat 8: StaKuGorPS (6609 in chips) 
+Seat 9: Hero (4702 in chips) 
+APTEM-89: posts small blind 75
+StaKuGorPS: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [Qh 3h Ad 2s]
+Hero: raises 300 to 450
+APTEM-89: raises 1739 to 2189 and is all-in
+StaKuGorPS: folds 
+Hero: calls 1739
+*** FLOP *** [2c Qs 3s]
+*** TURN *** [2c Qs 3s] [7d]
+*** RIVER *** [2c Qs 3s 7d] [7s]
+*** SHOW DOWN ***
+APTEM-89: shows [8c Kd Ks 9s] (HI: a flush, King high)
+Hero: shows [Qh 3h Ad 2s] (HI: two pair, Queens and Sevens)
+APTEM-89 collected 4528 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 4528 | Rake 0 
+Board [2c Qs 3s 7d 7s]
+Seat 2: APTEM-89 (small blind) showed [8c Kd Ks 9s] and won (4528) with HI: a flush, King high
+Seat 8: StaKuGorPS (big blind) folded before Flop
+Seat 9: Hero (button) showed [Qh 3h Ad 2s] and lost with HI: two pair, Queens and Sevens
+
+
+
+PokerStars Game #68174807966: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:28:53 ET
+Table '447493868 1' 9-max Seat #2 is the button
+Seat 2: APTEM-89 (4528 in chips) 
+Seat 8: StaKuGorPS (6459 in chips) 
+Seat 9: Hero (2513 in chips) 
+StaKuGorPS: posts small blind 75
+Hero: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [8d 9s 2c Th]
+APTEM-89: calls 150
+StaKuGorPS: calls 75
+Hero: checks 
+*** FLOP *** [4h 6d Ac]
+StaKuGorPS: checks 
+Hero: checks 
+APTEM-89: bets 300
+StaKuGorPS: folds 
+Hero: calls 300
+*** TURN *** [4h 6d Ac] [8s]
+Hero: checks 
+APTEM-89: bets 600
+Hero: folds 
+Uncalled bet (600) returned to APTEM-89
+APTEM-89 collected 1050 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 1050 | Rake 0 
+Board [4h 6d Ac 8s]
+Seat 2: APTEM-89 (button) collected (1050)
+Seat 8: StaKuGorPS (small blind) folded on the Flop
+Seat 9: Hero (big blind) folded on the Turn
+
+
+
+PokerStars Game #68174835139: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:29:36 ET
+Table '447493868 1' 9-max Seat #8 is the button
+Seat 2: APTEM-89 (5128 in chips) 
+Seat 8: StaKuGorPS (6309 in chips) 
+Seat 9: Hero (2063 in chips) 
+Hero: posts small blind 75
+APTEM-89: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [Js Qh 3h 6s]
+StaKuGorPS: folds 
+Hero: folds 
+Uncalled bet (75) returned to APTEM-89
+APTEM-89 collected 150 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 150 | Rake 0 
+Seat 2: APTEM-89 (big blind) collected (150)
+Seat 8: StaKuGorPS (button) folded before Flop (didn't bet)
+Seat 9: Hero (small blind) folded before Flop
+
+
+
+PokerStars Game #68174840894: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:29:46 ET
+Table '447493868 1' 9-max Seat #9 is the button
+Seat 2: APTEM-89 (5203 in chips) 
+Seat 8: StaKuGorPS (6309 in chips) 
+Seat 9: Hero (1988 in chips) 
+APTEM-89: posts small blind 75
+StaKuGorPS: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [Jh 5d 3d Qh]
+Hero: calls 150
+APTEM-89: raises 300 to 450
+StaKuGorPS: folds 
+Hero: folds 
+Uncalled bet (300) returned to APTEM-89
+APTEM-89 collected 450 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 450 | Rake 0 
+Seat 2: APTEM-89 (small blind) collected (450)
+Seat 8: StaKuGorPS (big blind) folded before Flop
+Seat 9: Hero (button) folded before Flop
+
+
+
+PokerStars Game #68174850011: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:30:00 ET
+Table '447493868 1' 9-max Seat #2 is the button
+Seat 2: APTEM-89 (5503 in chips) 
+Seat 8: StaKuGorPS (6159 in chips) 
+Seat 9: Hero (1838 in chips) 
+StaKuGorPS: posts small blind 75
+Hero: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [2s 3h 5h 6h]
+APTEM-89: calls 150
+StaKuGorPS: calls 75
+Hero: checks 
+*** FLOP *** [2h 8s 7s]
+StaKuGorPS: checks 
+Hero: bets 1688 and is all-in
+APTEM-89: calls 1688
+StaKuGorPS: folds 
+*** TURN *** [2h 8s 7s] [6s]
+*** RIVER *** [2h 8s 7s 6s] [3d]
+*** SHOW DOWN ***
+Hero: shows [2s 3h 5h 6h] (HI: two pair, Sixes and Threes; LO: 7,6,5,3,2)
+APTEM-89: shows [Th 5c Qd 7c] (HI: a pair of Sevens; LO: 7,6,5,3,2)
+Hero collected 1913 from pot
+Hero collected 957 from pot
+APTEM-89 collected 956 from pot
+*** SUMMARY ***
+Total pot 3826 | Rake 0 
+Board [2h 8s 7s 6s 3d]
+Seat 2: APTEM-89 (button) showed [Th 5c Qd 7c] and won (956) with HI: a pair of Sevens; LO: 7,6,5,3,2
+Seat 8: StaKuGorPS (small blind) folded on the Flop
+Seat 9: Hero (big blind) showed [2s 3h 5h 6h] and won (2870) with HI: two pair, Sixes and Threes; LO: 7,6,5,3,2
+
+
+
+PokerStars Game #68174873253: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:30:38 ET
+Table '447493868 1' 9-max Seat #8 is the button
+Seat 2: APTEM-89 (4621 in chips) 
+Seat 8: StaKuGorPS (6009 in chips) 
+Seat 9: Hero (2870 in chips) 
+Hero: posts small blind 75
+APTEM-89: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [Kd 5c 2h 6d]
+StaKuGorPS: folds 
+Hero: calls 75
+APTEM-89: raises 300 to 450
+Hero: folds 
+Uncalled bet (300) returned to APTEM-89
+APTEM-89 collected 300 from pot
+APTEM-89: doesn't show hand 
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 2: APTEM-89 (big blind) collected (300)
+Seat 8: StaKuGorPS (button) folded before Flop (didn't bet)
+Seat 9: Hero (small blind) folded before Flop
+
+
+
+PokerStars Game #68174885369: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:30:57 ET
+Table '447493868 1' 9-max Seat #9 is the button
+Seat 2: APTEM-89 (4771 in chips) 
+Seat 8: StaKuGorPS (6009 in chips) 
+Seat 9: Hero (2720 in chips) 
+APTEM-89: posts small blind 75
+StaKuGorPS: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [Kd 4c Th 8h]
+Hero: folds 
+APTEM-89: raises 300 to 450
+StaKuGorPS: folds 
+Uncalled bet (300) returned to APTEM-89
+APTEM-89 collected 300 from pot
+*** SUMMARY ***
+Total pot 300 | Rake 0 
+Seat 2: APTEM-89 (small blind) collected (300)
+Seat 8: StaKuGorPS (big blind) folded before Flop
+Seat 9: Hero (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68174894061: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:31:11 ET
+Table '447493868 1' 9-max Seat #2 is the button
+Seat 2: APTEM-89 (4921 in chips) 
+Seat 8: StaKuGorPS (5859 in chips) 
+Seat 9: Hero (2720 in chips) 
+StaKuGorPS: posts small blind 75
+Hero: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [5s Qd Tc 8s]
+APTEM-89: calls 150
+StaKuGorPS: calls 75
+Hero: checks 
+*** FLOP *** [4d As 7h]
+StaKuGorPS: checks 
+Hero: checks 
+APTEM-89: bets 900
+StaKuGorPS: calls 900
+Hero: folds 
+*** TURN *** [4d As 7h] [9h]
+StaKuGorPS: checks 
+APTEM-89: bets 1500
+StaKuGorPS: calls 1500
+*** RIVER *** [4d As 7h 9h] [Ks]
+StaKuGorPS: checks 
+APTEM-89: bets 2371 and is all-in
+StaKuGorPS: calls 2371
+*** SHOW DOWN ***
+APTEM-89: shows [9d 8d 4c 4s] (HI: three of a kind, Fours)
+StaKuGorPS: shows [Jh 4h 2c 3h] (HI: a pair of Fours; LO: 7,4,3,2,A)
+APTEM-89 collected 4996 from pot
+StaKuGorPS collected 4996 from pot
+*** SUMMARY ***
+Total pot 9992 | Rake 0 
+Board [4d As 7h 9h Ks]
+Seat 2: APTEM-89 (button) showed [9d 8d 4c 4s] and won (4996) with HI: three of a kind, Fours
+Seat 8: StaKuGorPS (small blind) showed [Jh 4h 2c 3h] and won (4996) with HI: a pair of Fours; LO: 7,4,3,2,A
+Seat 9: Hero (big blind) folded on the Flop
+
+
+
+PokerStars Game #68174921350: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:31:55 ET
+Table '447493868 1' 9-max Seat #8 is the button
+Seat 2: APTEM-89 (4996 in chips) 
+Seat 8: StaKuGorPS (5934 in chips) 
+Seat 9: Hero (2570 in chips) 
+Hero: posts small blind 75
+APTEM-89: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [5s 6c 7s Kh]
+StaKuGorPS: folds 
+Hero: raises 300 to 450
+APTEM-89: calls 300
+*** FLOP *** [Tc Th 2h]
+Hero: bets 750
+APTEM-89: folds 
+Uncalled bet (750) returned to Hero
+Hero collected 900 from pot
+*** SUMMARY ***
+Total pot 900 | Rake 0 
+Board [Tc Th 2h]
+Seat 2: APTEM-89 (big blind) folded on the Flop
+Seat 8: StaKuGorPS (button) folded before Flop (didn't bet)
+Seat 9: Hero (small blind) collected (900)
+
+
+
+PokerStars Game #68174935422: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level V (75/150) - 2011/09/28 9:32:18 ET
+Table '447493868 1' 9-max Seat #9 is the button
+Seat 2: APTEM-89 (4546 in chips) 
+Seat 8: StaKuGorPS (5934 in chips) 
+Seat 9: Hero (3020 in chips) 
+APTEM-89: posts small blind 75
+StaKuGorPS: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [7s 7c 5d 6d]
+Hero: folds 
+APTEM-89: raises 300 to 450
+StaKuGorPS: calls 300
+*** FLOP *** [4h 8s 4d]
+APTEM-89: bets 300
+StaKuGorPS: calls 300
+*** TURN *** [4h 8s 4d] [Js]
+APTEM-89: bets 300
+StaKuGorPS: calls 300
+*** RIVER *** [4h 8s 4d Js] [3s]
+APTEM-89: checks 
+StaKuGorPS: checks 
+*** SHOW DOWN ***
+APTEM-89: shows [2d 2s 9h 7h] (HI: two pair, Fours and Deuces; LO: 8,7,4,3,2)
+StaKuGorPS: shows [3d 6h 6c As] (HI: two pair, Sixes and Fours; LO: 8,6,4,3,A)
+StaKuGorPS collected 1050 from pot
+StaKuGorPS collected 1050 from pot
+*** SUMMARY ***
+Total pot 2100 | Rake 0 
+Board [4h 8s 4d Js 3s]
+Seat 2: APTEM-89 (small blind) showed [2d 2s 9h 7h] and lost with HI: two pair, Fours and Deuces; LO: 8,7,4,3,2
+Seat 8: StaKuGorPS (big blind) showed [3d 6h 6c As] and won (2100) with HI: two pair, Sixes and Fours; LO: 8,6,4,3,A
+Seat 9: Hero (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Game #68174966950: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level VI (100/200) - 2011/09/28 9:33:08 ET
+Table '447493868 1' 9-max Seat #2 is the button
+Seat 2: APTEM-89 (3496 in chips) 
+Seat 8: StaKuGorPS (6984 in chips) 
+Seat 9: Hero (3020 in chips) 
+StaKuGorPS: posts small blind 100
+Hero: posts big blind 200
+*** HOLE CARDS ***
+Dealt to Hero [6s Ac 7c Th]
+APTEM-89: raises 400 to 600
+StaKuGorPS: folds 
+Hero: folds 
+Uncalled bet (400) returned to APTEM-89
+APTEM-89 collected 500 from pot
+*** SUMMARY ***
+Total pot 500 | Rake 0 
+Seat 2: APTEM-89 (button) collected (500)
+Seat 8: StaKuGorPS (small blind) folded before Flop
+Seat 9: Hero (big blind) folded before Flop
+
+
+
+PokerStars Game #68174975772: Tournament #447493868, $1.08+$0.27+$0.15 USD Omaha Hi/Lo No Limit - Level VI (100/200) - 2011/09/28 9:33:23 ET
+Table '447493868 1' 9-max Seat #8 is the button
+Seat 2: APTEM-89 (3796 in chips) 
+Seat 8: StaKuGorPS (6884 in chips) 
+Seat 9: Hero (2820 in chips) 
+Hero: posts small blind 100
+APTEM-89: posts big blind 200
+*** HOLE CARDS ***
+Dealt to Hero [Tc 9d 7s 4s]
+StaKuGorPS: folds 
+Hero: raises 400 to 600
+APTEM-89 said, "krisa"
+APTEM-89: calls 400
+*** FLOP *** [8c Qh 8h]
+Hero: bets 2220 and is all-in
+APTEM-89: calls 2220
+*** TURN *** [8c Qh 8h] [2c]
+*** RIVER *** [8c Qh 8h 2c] [8d]
+*** SHOW DOWN ***
+Hero: shows [Tc 9d 7s 4s] (HI: three of a kind, Eights)
+APTEM-89: shows [6d Ks Js Kc] (HI: a full house, Eights full of Kings)
+APTEM-89 collected 5640 from pot
+No low hand qualified
+APTEM-89 wins the $0.27 bounty for eliminating Hero
+Hero finished the tournament in 3rd place and received $1.94.
+*** SUMMARY ***
+Total pot 5640 | Rake 0 
+Board [8c Qh 8h 2c 8d]
+Seat 2: APTEM-89 (big blind) showed [6d Ks Js Kc] and won (5640) with HI: a full house, Eights full of Kings
+Seat 8: StaKuGorPS (button) folded before Flop (didn't bet)
+Seat 9: Hero (small blind) showed [Tc 9d 7s 4s] and lost with HI: three of a kind, Eights
+
+
+
