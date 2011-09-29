@@ -1,0 +1,40 @@
+PokerStars Game #68217212777: Tournament #477913777, $3.26+$0.24 USD Hold'em No Limit - Level III (25/50) - 2011/09/29 12:42:47 WET [2011/09/29 7:42:47 ET]
+Table '447913777 1' 10-max Seat #7 is the button
+Seat 1: Player0 (1390 in chips) 
+Seat 2: Player5 (2110 in chips) 
+Seat 3: Player3 (1375 in chips) 
+Seat 5: Player4 (3023 in chips) 
+Seat 6: Player2 (2220 in chips) 
+Seat 7: Player7 (1387 in chips) 
+Seat 9: Player1 (1240 in chips) 
+Seat 10: Player6 (2255 in chips) 
+Player1: posts small blind 25
+Player6: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Player2 [7c Qd]
+Player0: folds 
+Player5: folds 
+Player3: folds 
+Player4: folds 
+Player2: folds 
+Player7: folds 
+Player1: raises 50 to 100
+Player6: calls 50
+*** FLOP *** [Kh 3c As]
+Player1: bets 150
+Player6: folds [Ks]
+Uncalled bet (150) returned to Player1
+Player1 collected 200 from pot
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Board [Kh 3c As]
+Seat 1: Player0 folded before Flop (didn't bet)
+Seat 2: Player5 folded before Flop (didn't bet)
+Seat 3: Player3 folded before Flop (didn't bet)
+Seat 5: Player4 folded before Flop (didn't bet)
+Seat 6: Player2 folded before Flop (didn't bet)
+Seat 7: Player7 (button) folded before Flop (didn't bet)
+Seat 9: Player1 (small blind) collected (200)
+Seat 10: Player6 (big blind) folded on the Flop
+
+
