@@ -435,11 +435,14 @@ class PartyPoker(HandHistoryConverter):
 
             if unseatedActivePlayers:
                 for player in unseatedActivePlayers:
-                    previousBBPoster = match_BBPostingPlayers[match_BBPostingPlayers.index(player)-1]
-                    previousBBPosterSeat = dict([(f[1], f[0]) for f in hand.players])[previousBBPoster]
                     occupiedSeats = list([(f[0]) for f in hand.players])
                     occupiedSeats.sort()
-                    newPlayerSeat = findFirstEmptySeat(previousBBPosterSeat)
+                    #previousBBPoster = match_BBPostingPlayers[match_BBPostingPlayers.index(player)-1]
+                    #previousBBPosterSeat = dict([(f[1], f[0]) for f in hand.players])[previousBBPoster]
+                    #newPlayerSeat = findFirstEmptySeat(previousBBPosterSeat)
+                    # The commented out code above is 'correct' unless the unseated player is the only BB
+                    # I'm willing to live with the unseated player being placed in the lowest seat for now.
+                    newPlayerSeat = findFirstEmptySeat(1)
                     hand.addPlayer(newPlayerSeat,player,self.clearMoneyString(maxKnownStack))
 
     def markStreets(self, hand):
