@@ -572,6 +572,7 @@ class TableState:
         self.showTurn = False
         self.showRiver = False
         self.bet = Decimal(0)
+        self.called = Decimal(0)
         self.gametype = hand.gametype['category']
 
         self.players = {}
@@ -593,9 +594,13 @@ class TableState:
         
         for player in self.players.values():
             player.justacted = False
+            if player.chips > self.called:
+                player.stack += player.chips - self.called
+                player.chips = self.called
             self.pot += player.chips
             player.chips = Decimal(0)
         self.bet = Decimal(0)
+        self.called = Decimal(0)
 
         if phase == "FLOP":
             self.showFlop = True
@@ -616,6 +621,7 @@ class TableState:
         if action[1] == "folds" or action[1] == "checks":
             pass
         elif action[1] == "raises" or action[1] == "bets":
+            self.called = Decimal(0)
             diff = self.bet - player.chips
             self.bet += action[2]
             player.chips += action[2] + diff
@@ -627,6 +633,7 @@ class TableState:
         elif action[1] == "calls" or action[1] == "small blind" or action[1] == "secondsb":
             player.chips += action[2]
             player.stack -= action[2]
+            self.called = max(self.called, player.chips)
         elif action[1] == "both":
             player.chips += action[2]
             player.stack -= action[2]
