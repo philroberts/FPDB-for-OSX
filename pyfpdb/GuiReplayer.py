@@ -312,6 +312,7 @@ class GuiReplayer:
                 str,    # Bet
                 str,    # Net
                 str,    # Gametype
+                str,    # Hand Id
                 ]
         # Dict of colnames and their column idx in the model/ListStore
         self.colnum = {
@@ -324,6 +325,7 @@ class GuiReplayer:
                   'Bet'          : 6,
                   'Net'          : 7,
                   'Game'         : 8,
+                  'HID'          : 9,
                  }
         self.liststore = gtk.ListStore(*cols)
         self.view = gtk.TreeView()
@@ -365,7 +367,7 @@ class GuiReplayer:
             gt =  hand.gametype['category']
             row = []
             if hand.gametype['base'] == 'hold':
-                row = [hand.join_holecards(hero), hand.board["FLOP"], hand.board["TURN"], hand.board["RIVER"], None, str(won), str(bet), str(net), gt]
+                row = [hand.join_holecards(hero), hand.board["FLOP"], hand.board["TURN"], hand.board["RIVER"], None, str(won), str(bet), str(net), gt, handid]
             elif hand.gametype['base'] == 'stud':
                 third = " ".join(hand.holecards['THIRD'][hero][0]) + " " + " ".join(hand.holecards['THIRD'][hero][1]) 
                 #ugh - fix the stud join_holecards function so we can retrieve sanely
@@ -373,9 +375,9 @@ class GuiReplayer:
                 fifth   = " ".join(hand.holecards['FIFTH']  [hero][0])
                 sixth   = " ".join(hand.holecards['SIXTH']  [hero][0])
                 seventh = " ".join(hand.holecards['SEVENTH'][hero][0])
-                row = [third, fourth, fifth, sixth, seventh, str(won), str(bet), str(net), gt]
+                row = [third, fourth, fifth, sixth, seventh, str(won), str(bet), str(net), gt, handid]
             elif hand.gametype['base'] == 'draw':
-                row = [hand.join_holecards(hero,street='DEAL'), None, None, None, None, str(won), str(bet), str(net), gt]
+                row = [hand.join_holecards(hero,street='DEAL'), None, None, None, None, str(won), str(bet), str(net), gt, handid]
             #print "DEBUG: row: %s" % row
             self.liststore.append(row)
         self.viewfilter.set_visible_func(self.viewfilter_visible_cb)
@@ -386,10 +388,10 @@ class GuiReplayer:
 
     def viewfilter_visible_cb(self, model, iter_):
         card_filter = self.filters.getCards()
-        hcs = model.get_value(iter_, self.colnum['Hero']).split(' ')
+        hcs = model.get_value(iter_, self.colnum['Street0']).split(' ')
         gt = model.get_value(iter_, self.colnum['Game'])
 
-        if gt not in ('holdem', 'omaha'): return True
+        if gt not in ('holdem', 'omaha', 'omahahilo'): return True
         # Holdem: Compare the real start cards to the selected filter (ie. AhKh = AKs)
         value1 = Card.card_map[hcs[0][0]]
         value2 = Card.card_map[hcs[1][0]]
@@ -402,7 +404,7 @@ class GuiReplayer:
         if is_selected:
             return True
 
-        hand = self.hands[int(model.get_value(model.get_iter(path), 7))]
+        hand = self.hands[int(model.get_value(model.get_iter(path), self.colnum['HID']))]
         if hand.gametype['currency']=="USD":    #TODO: check if there are others ..
             self.currency="$"
         elif hand.gametype['currency']=="EUR":
