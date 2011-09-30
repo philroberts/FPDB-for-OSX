@@ -622,6 +622,32 @@ class GuiReplayer:
                 self.state.set_value(i)
                 break
 
+# ICM code originally grabbed from http://svn.gna.org/svn/pokersource/trunk/icm-calculator/icm-webservice.py
+# Copyright (c) 2008 Thomas Johnson <tomfmason@gmail.com>
+
+class ICM:
+    def __init__(self, stacks, payouts):
+        self.stacks = stacks
+        self.payouts = payouts
+        self.equities = []
+        self.prepare()
+    def prepare(self):
+        total = sum(self.stacks)
+        for k,v in enumerate(stacks):
+            self.equities.append(round(Decimal(str(self.getEquities(total, k,0))),4))
+    def getEquities(self, total, player, depth):
+        D = Decimal
+        eq = D(self.stacks[player]) / total * D(str(self.payouts[depth]))
+        if(depth + 1 < len(self.payouts)):
+            i=0
+            for stack in self.stacks:
+                if i != player and stack > 0.0:
+                    self.stacks[i] = 0.0
+                    eq += self.getEquities((total - stack), player, (depth + 1)) * (stack / D(total))
+                    self.stacks[i] = stack
+                i += 1
+        return eq
+
 class TableState:
     def __init__(self, hand):
         self.pot = Decimal(0)
@@ -634,6 +660,9 @@ class TableState:
         self.bet = Decimal(0)
         self.called = Decimal(0)
         self.gametype = hand.gametype['category']
+        # NOTE: Need a useful way to grab payouts
+        #self.icm = ICM(stacks,payouts)
+        #print icm.equities
 
         self.players = {}
 
