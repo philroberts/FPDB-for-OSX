@@ -33,26 +33,27 @@ class IdentifySite:
     def __init__(self, config, in_path = '-', list = []):
         self.in_path = in_path
         self.config = config
+        self.codepage = ("utf8", "cp1252", "utf-16")
         self.db = Database.Database(self.config)
         self.sitelist = {}
         self.filelist = {}
         self.generateSiteList()
         if list:
-            for file in list:
-                self.idSite(file, self.sitelist)
+            for file, id in list:
+                self.processFile(file)
         else:
             if os.path.isdir(self.in_path):
                 self.walkDirectory(self.in_path, self.sitelist)
             else:
-                self.idSite(self.in_path, self.sitelist)
+                self.processFile(self.in_path)
             
     def get_filelist(self):
         return self.filelist
         
     def generateSiteList(self):
         """Generates a ordered dictionary of site, filter and filter name for each site in hhcs"""
-        #print self.config.hhcs
-        for site, hhc in self.config.hhcs.iteritems():
+        hhcs = self.config.hhcs
+        for site, hhc in hhcs.iteritems():
             filter = hhc.converter
             filter_name = filter.replace("ToFpdb", "")
             summary = hhc.summaryImporter
@@ -65,8 +66,6 @@ class IdentifySite:
                     smod = __import__(summary)
                     sobj = getattr(smod, summary, None)
                 self.sitelist[result[0][0]] = (site, filter, filter_name, summary, mod, obj, smod, sobj)
-            else:
-                pass
 
     def walkDirectory(self, dir, sitelist):
         """Walks a directory, and executes a callback on each file"""
@@ -76,56 +75,77 @@ class IdentifySite:
             if os.path.isdir(nfile):
                 self.walkDirectory(nfile, sitelist)
             else:
-                self.idSite(nfile, sitelist)
+                self.processFile(nfile)
                 
     def __listof(self, x):
         if isinstance(x, list) or isinstance(x, tuple):
             return x
         else:
             return [x]
+        
+    def processFile(self, path):
+        if path.endswith('.txt') or path.endswith('.xml'):
+            self.filelist[path] = ''
+            whole_file, kodec = self.read_file(path)
+            if whole_file:
+                info = self.idSite(path, whole_file, kodec)
+                    
+    def read_file(self, in_path):
+        for kodec in self.codepage:
+            try:
+                infile = codecs.open(in_path, 'r', kodec)
+                whole_file = infile.read()
+                infile.close()
+                return whole_file, kodec
+            except:
+                continue
+        return None, None
     
-    def idSite(self, file, sitelist):
+    def idSite(self, file, whole_file, kodec):
         """Identifies the site the hh file originated from"""
-        if file.endswith('.txt') or file.endswith('.xml'):
-            self.filelist[file] = ''
-            archive = False
-            for id, info in sitelist.iteritems():
-                site = info[0]
-                filter = info[1]
-                filter_name = info[2]
-                summary = info[3]
-                mod = info[4]
-                obj = info[5]
-                if summary:
-                    smod = info[6]
-                    sobj = info[7]
-                
-                for kodec in self.__listof(obj.codepage):
-                    try:
-                        in_fh = codecs.open(file, 'r', kodec)
-                        whole_file = in_fh.read(250)
-                        in_fh.close()
-                        if filter_name in ('OnGame', 'Winamax'):
-                            m = obj.re_HandInfo.search(whole_file)
-                        elif filter_name in ('PartyPoker'):
-                            m = obj.re_GameInfo.search(whole_file)
-                            if not m:
-                                m = obj.re_GameInfoTrny.search(whole_file)
-                        else:
-                            m = obj.re_GameInfo.search(whole_file)
-                            if m and re_SplitArchive.search(whole_file):
-                                archive = True
-                            if not m and summary:
-                                m = sobj.re_TourneyInfo.search(whole_file)
-                                if m:
-                                    filter = summary            
-                        if m:
-                            self.filelist[file] = [site] + [filter] + [kodec] + [archive]
-                            if self.verbose: print 'found --', site, filter, kodec, archive
-                            break
+        archive = False
+        whole_file = whole_file[:1000]
+        for id, info in self.sitelist.iteritems():
+            site = info[0]
+            filter = info[1]
+            filter_name = info[2]
+            summary = info[3]
+            mod = info[4]
+            obj = info[5]
 
-                    except:
-                        pass
+            if filter_name in ('OnGame', 'Winamax'):
+                m = obj.re_HandInfo.search(whole_file)
+            elif filter_name in ('Win2day'):
+                m = obj.re_GameInfo.search(whole_file)
+            elif filter_name in ('PartyPoker'):
+                m = obj.re_GameInfo.search(whole_file)
+                if not m:
+                    m = obj.re_GameInfoTrny.search(whole_file)
+            else:
+                m = obj.re_GameInfo.search(whole_file)
+                if m and re_SplitArchive.search(whole_file):
+                    archive = True        
+            if m:
+                self.filelist[file] = [site] + [filter] + [kodec] + [archive]
+                return self.filelist[file]
+            
+        for id, info in self.sitelist.iteritems():
+            site = info[0]
+            filter = info[1]
+            filter_name = info[2]
+            summary = info[3]
+            if summary:
+                smod = info[6]
+                sobj = info[7]
+                
+                if filter_name in ('Winamax'):
+                    m = sobj.re_Details.search(whole_file)
+                else:
+                    m = sobj.re_TourneyInfo.search(whole_file)
+                if m:
+                    filter = summary
+                    self.filelist[file] = [site] + [filter] + [kodec] + [archive]
+                    return self.filelist[file] 
             
 def main(argv=None):
     if argv is None:
