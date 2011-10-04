@@ -179,6 +179,19 @@ class IdentifySite:
                     return f
         return False
 
+    def getFilesForSite(self, sitename, ftype):
+        l = []
+        sid = self.db.get_site_id(sitename)
+        site = self.sitelist[sid[0][0]]
+        for name, f in self.filelist.iteritems():
+            if f.ftype != None and f.site.name == sitename and f.ftype == "hh":
+                print name
+                hhc = site.obj(self.config, in_path = name, sitename = site.hhc_fname, autostart = False)
+                hhc.readFile()
+                f.gametype = hhc.determineGameType(hhc.whole_file)
+                l.append(f)
+        return l
+
 def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
@@ -205,6 +218,10 @@ def main(argv=None):
             tmp += "Conv: %s" % ffile.site.summary
         print tmp
     print "----------- END ID REGRESSION FILES -----------"
+
+    print "----------- RETRIEVE FOR SINGLE SITE -----------"
+    IdSite.getFilesForSite("PokerStars", "hh")
+    print "----------- END RETRIEVE FOR SINGLE SITE -----------"
 
 if __name__ == '__main__':
     sys.exit(main())
