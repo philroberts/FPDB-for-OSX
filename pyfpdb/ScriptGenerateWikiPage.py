@@ -139,6 +139,7 @@ config = Configuration.Config(file = "HUD_config.test.xml")
 in_path = os.path.abspath('regression-test-files')
 idsite = IdentifySite.IdentifySite(config, in_path)
 idsite.scan()
+idsite.fetchGameTypes()
 
 
 sites = { "PokerStars": copy.deepcopy(games),
@@ -165,21 +166,19 @@ tour = copy.deepcopy(sites)
 summ = copy.deepcopy(sites)
 
 for idx, f in idsite.filelist.iteritems():
-    if f.gameinfo != False:
-        a = f.gameinfo['category']
-        b = f.gameinfo['limitType']
-        c = f.site.site
-        if f.gameinfo['type'] == 'ring':
+    if f.gametype != False:
+        a = f.gametype['category']
+        b = f.gametype['limitType']
+        c = f.site.name
+        if f.gametype['type'] == 'ring':
             ring[c][a][b] = True
-        if f.gameinfo['type'] == 'tour':
+        if f.gametype['type'] == 'tour':
+            if f.site.name == "Full Tilt Poker":
+                print "DEBUG: Found FTP: %s" % f.path
             tour[c][a][b] = True
     else:
         print "Skipping: %s" % f.path
 
-print "------------------- CASH -------------------"
-pp.pprint(ring)
-print "------------------- TOUR -------------------"
-pp.pprint(tour)
 
 gametypes = [ ('holdem',    ['nl','pl','fl']),
               ('omahahi',   ['nl','pl','fl']),
