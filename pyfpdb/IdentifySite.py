@@ -156,7 +156,7 @@ class IdentifySite:
                 self.filelist[file] = [name] + [filter] + [kodec] + [archive]
                 return self.filelist[file]
 
-        for id, info in self.sitelist.iteritems():
+        for id, site in self.sitelist.iteritems():
             name = site.name
             filter = site.hhc_fname
             filter_name = site.filter_name
