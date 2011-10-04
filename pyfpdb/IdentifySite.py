@@ -62,8 +62,11 @@ class IdentifySite:
         self.sitelist = {}
         self.filelist = {}
         self.generateSiteList()
-        if list:
-            for file, id in list:
+        self.list = list
+
+    def scan(self):
+        if self.list:
+            for file, id in self.list:
                 self.processFile(file)
         else:
             if os.path.isdir(self.in_path):
@@ -179,6 +182,7 @@ def main(argv=None):
     config = Configuration.Config(file = "HUD_config.test.xml")
     in_path = os.path.abspath('regression-test-files')
     IdSite = IdentifySite(config, in_path)
+    IdSite.scan()
 
     print "\n----------- SITE LIST -----------"
     for site, info in IdSite.sitelist.iteritems():
