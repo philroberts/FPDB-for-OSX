@@ -29,6 +29,30 @@ import Configuration
 __ARCHIVE_PRE_HEADER_REGEX='^Hand #(\d+)\s*$|\*{20}\s#\s\d+\s\*{20,25}\s+'
 re_SplitArchive = re.compile(__ARCHIVE_PRE_HEADER_REGEX, re.MULTILINE)
 
+class FPDBFile:
+    path = ""
+    ftype = None # Valid: hh, summary, both
+    site = None
+    codepage = None
+    archive = False
+    gameinfo = False
+
+    def __init__(self, path):
+        self.path = path
+
+class Site:
+    def __init__(self, site, hhc_fname, filter_name, summary, mod, hhc, smod, sobj):
+        self.site = site
+        # FIXME: rename filter to hhc_fname
+        self.hhc_fname = hhc_fname
+        # FIXME: rename filter_name to hhc_type
+        self.filter_name = filter_name
+        self.summary = summary
+        self.mod = mod
+        self.hhc = hhc
+        self.smod = smod
+        self.sobj = sobj
+
 class IdentifySite:
     def __init__(self, config, in_path = '-', list = []):
         self.in_path = in_path
