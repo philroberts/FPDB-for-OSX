@@ -35,7 +35,7 @@ class FPDBFile:
     site = None
     codepage = None
     archive = False
-    gameinfo = False
+    gametype = False
 
     def __init__(self, path):
         self.path = path
@@ -57,7 +57,7 @@ class IdentifySite:
     def __init__(self, config, in_path = '-', list = []):
         self.in_path = in_path
         self.config = config
-        self.codepage = ("utf8", "cp1252", "utf-16")
+        self.codepage = ("utf8", "utf-16", "cp1252")
         self.db = Database.Database(self.config)
         self.sitelist = {}
         self.filelist = {}
@@ -118,7 +118,7 @@ class IdentifySite:
                 if whole_file:
                     fobj = self.idSite(path, whole_file, kodec)
                     if fobj == False: # Site id failed
-                        pass
+                        print "DEBUG: siteId Failed for: %s" % path
                     else:
                         self.filelist[path] = fobj
 
@@ -181,16 +181,21 @@ class IdentifySite:
 
     def getFilesForSite(self, sitename, ftype):
         l = []
-        sid = self.db.get_site_id(sitename)
-        site = self.sitelist[sid[0][0]]
         for name, f in self.filelist.iteritems():
             if f.ftype != None and f.site.name == sitename and f.ftype == "hh":
-                print name
-                hhc = site.obj(self.config, in_path = name, sitename = site.hhc_fname, autostart = False)
-                hhc.readFile()
-                f.gametype = hhc.determineGameType(hhc.whole_file)
                 l.append(f)
         return l
+
+    def fetchGameTypes(self):
+        for name, f in self.filelist.iteritems():
+            if f.ftype != None and f.ftype == "hh":
+                try: #TODO: this is a dirty hack. Borrowed from fpdb_import
+                    name = unicode(name, "utf8", "replace")
+                except TypeError:
+                    print TypeError
+                hhc = f.site.obj(self.config, in_path = name, sitename = f.site.hhc_fname, autostart = False)
+                if hhc.readFile():
+                    f.gametype = hhc.determineGameType(hhc.whole_file)
 
 def main(argv=None):
     if argv is None:
@@ -209,14 +214,13 @@ def main(argv=None):
 
     print "\n----------- ID REGRESSION FILES -----------"
     for f, ffile in IdSite.filelist.iteritems():
-        print f
         tmp = ""
         tmp += ": Type: %s " % ffile.ftype
         if ffile.ftype == "hh":
             tmp += "Conv: %s" % ffile.site.hhc_fname
         elif ffile.ftype == "summary":
             tmp += "Conv: %s" % ffile.site.summary
-        print tmp
+        print f, tmp
     print "----------- END ID REGRESSION FILES -----------"
 
     print "----------- RETRIEVE FOR SINGLE SITE -----------"
