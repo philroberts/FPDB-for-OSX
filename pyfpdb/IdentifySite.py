@@ -112,10 +112,15 @@ class IdentifySite:
 
     def processFile(self, path):
         if path.endswith('.txt') or path.endswith('.xml') or path.endswith('.log'):
-            self.filelist[path] = ''
-            whole_file, kodec = self.read_file(path)
-            if whole_file:
-                info = self.idSite(path, whole_file, kodec)
+            if path not in self.filelist:
+                whole_file, kodec = self.read_file(path)
+
+                if whole_file:
+                    fobj = self.idSite(path, whole_file, kodec)
+                    if fobj == False: # Site id failed
+                        pass
+                    else:
+                        self.filelist[path] = fobj
 
     def read_file(self, in_path):
         for kodec in self.codepage:
@@ -130,11 +135,11 @@ class IdentifySite:
 
     def idSite(self, file, whole_file, kodec):
         """Identifies the site the hh file originated from"""
-        archive = False
         whole_file = whole_file[:1000]
+        f = FPDBFile(file)
+        f.codepage = kodec
+
         for id, site in self.sitelist.iteritems():
-            name = site.name
-            filter = site.hhc_fname
             filter_name = site.filter_name
             summary = site.summary
             mod = site.mod
@@ -151,14 +156,13 @@ class IdentifySite:
             else:
                 m = obj.re_GameInfo.search(whole_file)
                 if m and re_SplitArchive.search(whole_file):
-                    archive = True
+                    f.archive = True
             if m:
-                self.filelist[file] = [name] + [filter] + [kodec] + [archive]
-                return self.filelist[file]
+                f.site = site
+                f.ftype = "hh"
+                return f
 
         for id, site in self.sitelist.iteritems():
-            name = site.name
-            filter = site.hhc_fname
             filter_name = site.filter_name
             summary = site.summary
             if summary:
@@ -170,9 +174,10 @@ class IdentifySite:
                 else:
                     m = sobj.re_TourneyInfo.search(whole_file)
                 if m:
-                    filter = summary
-                    self.filelist[file] = [name] + [filter] + [kodec] + [archive]
-                    return self.filelist[file]
+                    f.site = site
+                    f.ftype = "summary"
+                    return f
+        return False
 
 def main(argv=None):
     if argv is None:
@@ -185,13 +190,20 @@ def main(argv=None):
     IdSite.scan()
 
     print "\n----------- SITE LIST -----------"
-    for site, info in IdSite.sitelist.iteritems():
-        print site, info
+    for sid, site in IdSite.sitelist.iteritems():
+        print "%2d: Name: %s HHC: %s Summary: %s" %(sid, site.name, site.filter_name, site.summary)
     print "----------- END SITE LIST -----------"
 
     print "\n----------- ID REGRESSION FILES -----------"
-    for file, site in IdSite.filelist.iteritems():
-        print file, site
+    for f, ffile in IdSite.filelist.iteritems():
+        print f
+        tmp = ""
+        tmp += ": Type: %s " % ffile.ftype
+        if ffile.ftype == "hh":
+            tmp += "Conv: %s" % ffile.site.hhc_fname
+        elif ffile.ftype == "summary":
+            tmp += "Conv: %s" % ffile.site.summary
+        print tmp
     print "----------- END ID REGRESSION FILES -----------"
 
 if __name__ == '__main__':
