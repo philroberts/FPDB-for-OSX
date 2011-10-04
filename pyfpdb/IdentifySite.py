@@ -41,15 +41,15 @@ class FPDBFile:
         self.path = path
 
 class Site:
-    def __init__(self, site, hhc_fname, filter_name, summary, mod, hhc, smod, sobj):
-        self.site = site
+    def __init__(self, name, hhc_fname, filter_name, summary, mod, obj, smod, sobj):
+        self.name = name
         # FIXME: rename filter to hhc_fname
         self.hhc_fname = hhc_fname
         # FIXME: rename filter_name to hhc_type
         self.filter_name = filter_name
         self.summary = summary
         self.mod = mod
-        self.hhc = hhc
+        self.obj = obj
         self.smod = smod
         self.sobj = sobj
 
@@ -92,7 +92,7 @@ class IdentifySite:
                 if summary:
                     smod = __import__(summary)
                     sobj = getattr(smod, summary, None)
-                self.sitelist[result[0][0]] = (site, filter, filter_name, summary, mod, obj, smod, sobj)
+                self.sitelist[result[0][0]] = Site(site, filter, filter_name, summary, mod, obj, smod, sobj)
 
     def walkDirectory(self, dir, sitelist):
         """Walks a directory, and executes a callback on each file"""
@@ -111,7 +111,7 @@ class IdentifySite:
             return [x]
 
     def processFile(self, path):
-        if path.endswith('.txt') or path.endswith('.xml'):
+        if path.endswith('.txt') or path.endswith('.xml') or path.endswith('.log'):
             self.filelist[path] = ''
             whole_file, kodec = self.read_file(path)
             if whole_file:
@@ -132,13 +132,13 @@ class IdentifySite:
         """Identifies the site the hh file originated from"""
         archive = False
         whole_file = whole_file[:1000]
-        for id, info in self.sitelist.iteritems():
-            site = info[0]
-            filter = info[1]
-            filter_name = info[2]
-            summary = info[3]
-            mod = info[4]
-            obj = info[5]
+        for id, site in self.sitelist.iteritems():
+            name = site.name
+            filter = site.hhc_fname
+            filter_name = site.filter_name
+            summary = site.summary
+            mod = site.mod
+            obj = site.obj
 
             if filter_name in ('OnGame', 'Winamax'):
                 m = obj.re_HandInfo.search(whole_file)
@@ -153,17 +153,17 @@ class IdentifySite:
                 if m and re_SplitArchive.search(whole_file):
                     archive = True
             if m:
-                self.filelist[file] = [site] + [filter] + [kodec] + [archive]
+                self.filelist[file] = [name] + [filter] + [kodec] + [archive]
                 return self.filelist[file]
 
         for id, info in self.sitelist.iteritems():
-            site = info[0]
-            filter = info[1]
-            filter_name = info[2]
-            summary = info[3]
+            name = site.name
+            filter = site.hhc_fname
+            filter_name = site.filter_name
+            summary = site.summary
             if summary:
-                smod = info[6]
-                sobj = info[7]
+                smod = site.smod
+                sobj = site.sobj
 
                 if filter_name in ('Winamax'):
                     m = sobj.re_Details.search(whole_file)
@@ -171,7 +171,7 @@ class IdentifySite:
                     m = sobj.re_TourneyInfo.search(whole_file)
                 if m:
                     filter = summary
-                    self.filelist[file] = [site] + [filter] + [kodec] + [archive]
+                    self.filelist[file] = [name] + [filter] + [kodec] + [archive]
                     return self.filelist[file]
 
 def main(argv=None):
