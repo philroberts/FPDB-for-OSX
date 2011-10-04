@@ -408,12 +408,13 @@ or None if we fail to get the info """
                     in_fh.close()
                     self.obs = self.whole_file[self.index:]
                     self.index = len(self.whole_file)
-                    break
+                    return True
                 except:
                     pass
             else:
                 print _("unable to read file with any codec in list!"), self.in_path
                 self.obs = ""
+                return False
         elif self.filetype == "xml":
             doc = xml.dom.minidom.parse(filename)
             self.doc = doc
