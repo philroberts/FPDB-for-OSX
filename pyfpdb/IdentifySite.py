@@ -46,10 +46,10 @@ class IdentifySite:
                 self.walkDirectory(self.in_path, self.sitelist)
             else:
                 self.processFile(self.in_path)
-            
+
     def get_filelist(self):
         return self.filelist
-        
+
     def generateSiteList(self):
         """Generates a ordered dictionary of site, filter and filter name for each site in hhcs"""
         hhcs = self.config.hhcs
@@ -76,20 +76,20 @@ class IdentifySite:
                 self.walkDirectory(nfile, sitelist)
             else:
                 self.processFile(nfile)
-                
+
     def __listof(self, x):
         if isinstance(x, list) or isinstance(x, tuple):
             return x
         else:
             return [x]
-        
+
     def processFile(self, path):
         if path.endswith('.txt') or path.endswith('.xml'):
             self.filelist[path] = ''
             whole_file, kodec = self.read_file(path)
             if whole_file:
                 info = self.idSite(path, whole_file, kodec)
-                    
+
     def read_file(self, in_path):
         for kodec in self.codepage:
             try:
@@ -100,7 +100,7 @@ class IdentifySite:
             except:
                 continue
         return None, None
-    
+
     def idSite(self, file, whole_file, kodec):
         """Identifies the site the hh file originated from"""
         archive = False
@@ -124,11 +124,11 @@ class IdentifySite:
             else:
                 m = obj.re_GameInfo.search(whole_file)
                 if m and re_SplitArchive.search(whole_file):
-                    archive = True        
+                    archive = True
             if m:
                 self.filelist[file] = [site] + [filter] + [kodec] + [archive]
                 return self.filelist[file]
-            
+
         for id, info in self.sitelist.iteritems():
             site = info[0]
             filter = info[1]
@@ -137,7 +137,7 @@ class IdentifySite:
             if summary:
                 smod = info[6]
                 sobj = info[7]
-                
+
                 if filter_name in ('Winamax'):
                     m = sobj.re_Details.search(whole_file)
                 else:
@@ -145,12 +145,12 @@ class IdentifySite:
                 if m:
                     filter = summary
                     self.filelist[file] = [site] + [filter] + [kodec] + [archive]
-                    return self.filelist[file] 
-            
+                    return self.filelist[file]
+
 def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
-        
+
     Configuration.set_logfile("fpdb-log.txt")
     config = Configuration.Config(file = "HUD_config.test.xml")
     in_path = os.path.abspath('regression-test-files')
@@ -160,7 +160,7 @@ def main(argv=None):
     for site, info in IdSite.sitelist.iteritems():
         print site, info
     print "----------- END SITE LIST -----------"
-    
+
     print "\n----------- ID REGRESSION FILES -----------"
     for file, site in IdSite.filelist.iteritems():
         print file, site
