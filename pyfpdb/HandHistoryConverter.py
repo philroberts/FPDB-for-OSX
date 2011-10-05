@@ -63,12 +63,12 @@ class HandHistoryConverter():
     copyGameHeader = False
 
     # maybe archive params should be one archive param, then call method in specific converter.   if archive:  convert_archive()
-    def __init__( self, config, in_path = '-', out_path = '-', follow=False, index=0
+    def __init__( self, config, in_path = '-', out_path = '-', index=0
                 , autostart=True, starsArchive=False, ftpArchive=False, sitename="PokerStars"):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
-follow :  whether to tail -f the input"""
+"""
 
         self.config = config
         self.import_parameters = self.config.get_import_parameters()
@@ -94,7 +94,6 @@ follow :  whether to tail -f the input"""
             self.in_fh = sys.stdin
         self.out_fh = get_out_fh(out_path, self.import_parameters)
 
-        self.follow = follow
         self.compiledPlayers   = set()
         self.maxseats  = 10
 
@@ -112,15 +111,10 @@ HandHistoryConverter: '%(sitename)s'
     filetype    '%(filetype)s'
     in_path     '%(in_path)s'
     out_path    '%(out_path)s'
-    follow      '%(follow)s'
     """ %  locals()
 
     def start(self):
-        """Process a hand at a time from the input specified by in_path.
-If in follow mode, wait for more data to turn up.
-Otherwise, finish at EOF.
-
-"""
+        """Process a hand at a time from the input specified by in_path."""
         starttime = time.time()
         if not self.sanityCheck():
             log.warning(_("Failed sanity check"))
@@ -414,12 +408,13 @@ or None if we fail to get the info """
                     in_fh.close()
                     self.obs = self.whole_file[self.index:]
                     self.index = len(self.whole_file)
-                    break
+                    return True
                 except:
                     pass
             else:
                 print _("unable to read file with any codec in list!"), self.in_path
                 self.obs = ""
+                return False
         elif self.filetype == "xml":
             doc = xml.dom.minidom.parse(filename)
             self.doc = doc

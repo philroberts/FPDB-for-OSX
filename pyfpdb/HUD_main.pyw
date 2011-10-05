@@ -129,9 +129,7 @@ class HUD_main(object):
         hud.up_update_table_position()
 
     def client_resized(self, widget, hud):
-#TODO   Don't forget to get rid of this.
-        if not is_windows:
-            gigobject.idle_add(idle_resize, hud)
+        gobject.idle_add(idle_resize, hud)
 
     def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
         self.kill_hud(None, hud.table.key)

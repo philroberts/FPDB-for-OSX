@@ -312,6 +312,7 @@ class GuiReplayer:
                 str,    # Bet
                 str,    # Net
                 str,    # Gametype
+                str,    # Hand Id
                 ]
         # Dict of colnames and their column idx in the model/ListStore
         self.colnum = {
@@ -324,6 +325,7 @@ class GuiReplayer:
                   'Bet'          : 6,
                   'Net'          : 7,
                   'Game'         : 8,
+                  'HID'          : 9,
                  }
         self.liststore = gtk.ListStore(*cols)
         self.view = gtk.TreeView()
@@ -365,7 +367,7 @@ class GuiReplayer:
             gt =  hand.gametype['category']
             row = []
             if hand.gametype['base'] == 'hold':
-                row = [hand.join_holecards(hero), hand.board["FLOP"], hand.board["TURN"], hand.board["RIVER"], None, str(won), str(bet), str(net), gt]
+                row = [hand.join_holecards(hero), hand.board["FLOP"], hand.board["TURN"], hand.board["RIVER"], None, str(won), str(bet), str(net), gt, handid]
             elif hand.gametype['base'] == 'stud':
                 third = " ".join(hand.holecards['THIRD'][hero][0]) + " " + " ".join(hand.holecards['THIRD'][hero][1]) 
                 #ugh - fix the stud join_holecards function so we can retrieve sanely
@@ -373,9 +375,9 @@ class GuiReplayer:
                 fifth   = " ".join(hand.holecards['FIFTH']  [hero][0])
                 sixth   = " ".join(hand.holecards['SIXTH']  [hero][0])
                 seventh = " ".join(hand.holecards['SEVENTH'][hero][0])
-                row = [third, fourth, fifth, sixth, seventh, str(won), str(bet), str(net), gt]
+                row = [third, fourth, fifth, sixth, seventh, str(won), str(bet), str(net), gt, handid]
             elif hand.gametype['base'] == 'draw':
-                row = [hand.join_holecards(hero,street='DEAL'), None, None, None, None, str(won), str(bet), str(net), gt]
+                row = [hand.join_holecards(hero,street='DEAL'), None, None, None, None, str(won), str(bet), str(net), gt, handid]
             #print "DEBUG: row: %s" % row
             self.liststore.append(row)
         self.viewfilter.set_visible_func(self.viewfilter_visible_cb)
@@ -386,10 +388,10 @@ class GuiReplayer:
 
     def viewfilter_visible_cb(self, model, iter_):
         card_filter = self.filters.getCards()
-        hcs = model.get_value(iter_, self.colnum['Hero']).split(' ')
+        hcs = model.get_value(iter_, self.colnum['Street0']).split(' ')
         gt = model.get_value(iter_, self.colnum['Game'])
 
-        if gt not in ('holdem', 'omaha'): return True
+        if gt not in ('holdem', 'omaha', 'omahahilo'): return True
         # Holdem: Compare the real start cards to the selected filter (ie. AhKh = AKs)
         value1 = Card.card_map[hcs[0][0]]
         value2 = Card.card_map[hcs[1][0]]
@@ -402,7 +404,7 @@ class GuiReplayer:
         if is_selected:
             return True
 
-        hand = self.hands[int(model.get_value(model.get_iter(path), 7))]
+        hand = self.hands[int(model.get_value(model.get_iter(path), self.colnum['HID']))]
         if hand.gametype['currency']=="USD":    #TODO: check if there are others ..
             self.currency="$"
         elif hand.gametype['currency']=="EUR":
@@ -620,6 +622,32 @@ class GuiReplayer:
                 self.state.set_value(i)
                 break
 
+# ICM code originally grabbed from http://svn.gna.org/svn/pokersource/trunk/icm-calculator/icm-webservice.py
+# Copyright (c) 2008 Thomas Johnson <tomfmason@gmail.com>
+
+class ICM:
+    def __init__(self, stacks, payouts):
+        self.stacks = stacks
+        self.payouts = payouts
+        self.equities = []
+        self.prepare()
+    def prepare(self):
+        total = sum(self.stacks)
+        for k,v in enumerate(stacks):
+            self.equities.append(round(Decimal(str(self.getEquities(total, k,0))),4))
+    def getEquities(self, total, player, depth):
+        D = Decimal
+        eq = D(self.stacks[player]) / total * D(str(self.payouts[depth]))
+        if(depth + 1 < len(self.payouts)):
+            i=0
+            for stack in self.stacks:
+                if i != player and stack > 0.0:
+                    self.stacks[i] = 0.0
+                    eq += self.getEquities((total - stack), player, (depth + 1)) * (stack / D(total))
+                    self.stacks[i] = stack
+                i += 1
+        return eq
+
 class TableState:
     def __init__(self, hand):
         self.pot = Decimal(0)
@@ -630,7 +658,11 @@ class TableState:
         self.showTurn = False
         self.showRiver = False
         self.bet = Decimal(0)
+        self.called = Decimal(0)
         self.gametype = hand.gametype['category']
+        # NOTE: Need a useful way to grab payouts
+        #self.icm = ICM(stacks,payouts)
+        #print icm.equities
 
         self.players = {}
 
@@ -651,9 +683,13 @@ class TableState:
         
         for player in self.players.values():
             player.justacted = False
+            if player.chips > self.called:
+                player.stack += player.chips - self.called
+                player.chips = self.called
             self.pot += player.chips
             player.chips = Decimal(0)
         self.bet = Decimal(0)
+        self.called = Decimal(0)
 
         if phase == "FLOP":
             self.showFlop = True
@@ -674,6 +710,7 @@ class TableState:
         if action[1] == "folds" or action[1] == "checks":
             pass
         elif action[1] == "raises" or action[1] == "bets":
+            self.called = Decimal(0)
             diff = self.bet - player.chips
             self.bet += action[2]
             player.chips += action[2] + diff
@@ -685,6 +722,7 @@ class TableState:
         elif action[1] == "calls" or action[1] == "small blind" or action[1] == "secondsb":
             player.chips += action[2]
             player.stack -= action[2]
+            self.called = max(self.called, player.chips)
         elif action[1] == "both":
             player.chips += action[2]
             player.stack -= action[2]
