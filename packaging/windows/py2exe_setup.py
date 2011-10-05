@@ -150,11 +150,12 @@ setup(
                       'includes'    : ['gio', 'cairo', 'pango', 'pangocairo', 'atk', 'gobject'    
                                       ,'matplotlib.numerix.random_array'
                                       ,'AbsoluteToFpdb',      'BetfairToFpdb'
+                                      ,'BetOnlineToFpdb',     'BossToFpdb'
                                       ,'CarbonToFpdb',        'EverleafToFpdb'
                                       ,'FulltiltToFpdb',      'iPokerToFpdb'
                                       ,'OnGameToFpdb',        'PartyPokerToFpdb'
                                       ,'PkrToFpdb',           'PokerStarsToFpdb'
-                                      ,'Win2dayToFpdb',       'WinamaxToFpdb'
+                                      ,'WinamaxToFpdb'
                                       ,'EntractionToFpdb',    'EverestToFpdb'
                                       ,'CakeToFpdb',          'PacificPokerToFpdb'
 
