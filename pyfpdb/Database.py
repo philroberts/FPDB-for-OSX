@@ -1868,8 +1868,9 @@ class Database:
                     h[4] = hdata['sc'][id]['id']
                     h[5] = hdata['gsc'][id]['id']
                 boards = h.pop()
-                for b in boards:
-                    bbulk += [[id] + b]
+                if isinstance(boards, list):
+                    for b in boards:
+                        bbulk += [[id] + b]
             q = self.sql.query['store_hand']
             q = q.replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
