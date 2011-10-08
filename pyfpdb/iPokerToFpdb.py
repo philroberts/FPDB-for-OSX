@@ -68,8 +68,15 @@ class iPoker(HandHistoryConverter):
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r"""
-            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL)\s
-            (%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+)</gametype>
+            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL)
+                (\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>
+            """ % substitutions, re.MULTILINE|re.VERBOSE)
+    re_GameInfoTrny = re.compile(r"""
+                <tournamentname>.+?<place>(?P<PLACE>\d+)</place>
+                <buyin>(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)\+?(?P<BIRAKE>[%(LS)s\d\.]+)?)</buyin>\s+?
+                <totalbuyin>(?P<TOTBUYIN>.+)</totalbuyin>\s+?
+                <ipoints>[%(NUM)s]+</ipoints>\s+?
+                <win>(%(LS)s)?(?P<WIN>[%(NUM)s]+)</win>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_HandInfo = re.compile(r'gamecode="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-: 0-9]+)</startdate>', re.MULTILINE)
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" name="(?P<PNAME>[^"]+)" chips="(%(LS)s)(?P<CASH>[%(NUM)s]+)" dealer="(?P<BUTTONPOS>(0|1))" win="(%(LS)s)(?P<WIN>[%(NUM)s]+)" (bet="(%(LS)s)(?P<BET>[^"]+))?' % substitutions, re.MULTILINE)
@@ -101,10 +108,13 @@ class iPoker(HandHistoryConverter):
                 ["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
-                #["tour", "hold", "nl"]
+                ["tour", "hold", "nl"],
+                ["tour", "hold", "pl"],
+                ["tour", "hold", "fl"],
                 ]
 
     def determineGameType(self, handText):
+        tourney = False
         m = self.re_GameInfo.search(handText)
         if not m:
             # Information about the game type appears only at the beginning of
@@ -142,13 +152,37 @@ class iPoker(HandHistoryConverter):
                 self.info['limitType'] = 'pl'
             else:
                 self.info['limitType'] = 'fl'
-        if 'SB' in mg:
+        if 'SB' in mg and mg['SB'] != None:
             self.info['sb'] = mg['SB']
-        if 'BB' in mg:
+        else:
+            tourney = True
+        if 'BB' in mg and mg['BB'] != None:
             self.info['bb'] = mg['BB']
-        if mg['GAME'] == 'Holdem Tournament':
+        if tourney:
             self.info['type'] = 'tour'
             self.info['currency'] = 'T$'
+            # FIXME: The sb/bb isn't listed in the game header. Fixing to 1/2 for now
+            self.info['sb'], self.info['bb'] = '1', '2'
+
+            self.tinfo = {} # FIXME?: Full tourney info is only at the top of the file. After the
+                            #         first hand in a file, there is no way for auto-import to
+                            #         gather the info unless it reads the entire file every time.
+            m2 = self.re_GameInfoTrny.search(handText)
+            mg =  m2.groupdict()
+            #FIXME: tournament no looks liek it is in the table name
+            self.tinfo['tourNo'] = "11111111111111"
+            if mg['BUYIN'].find("$") != -1:
+                self.tinfo['buyinCurrency'] = "USD"
+            elif mg['BUYIN'].find(u"£") !=- 1:
+                self.tinfo['buyinCurrency'] = "GBP"
+            elif mg['BUYIN'].find(u"€") != -1:
+                self.tinfo['buyinCurrency'] = "EUR"
+
+            mg['BIAMT']  = mg['BIAMT'].strip(u'$€£FPP')
+            mg['BIRAKE'] = mg['BIRAKE'].strip(u'$€£')
+
+            self.tinfo['buyin'] = int(100*Decimal(mg['BIAMT']))
+            self.tinfo['fee']   = int(100*Decimal(mg['BIRAKE']))
         else:
             self.info['type'] = 'ring'
             #FIXME: Need to fix currencies for this site
@@ -165,9 +199,13 @@ class iPoker(HandHistoryConverter):
         mg = m.groupdict()
         #print "DEBUG: m.groupdict(): %s" % mg
         hand.handid = m.group('HID')
-        #hand.tablename = m.group('TABLE')[:-1]
         hand.maxseats = None
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
+        if self.info['type'] == 'tour':
+            hand.tourNo = self.tinfo['tourNo']
+            hand.buyinCurrency = self.tinfo['buyinCurrency']
+            hand.buyin = self.tinfo['buyin']
+            hand.feee = self.tinfo['fee']
 
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.handText)
@@ -189,9 +227,11 @@ class iPoker(HandHistoryConverter):
 
             if a.group('BUTTONPOS') == '1':
                 hand.buttonpos = seatno
-            hand.addPlayer(seatno, a.group('PNAME'), a.group('CASH'))
+            cash = self.clearMoneyString(a.group('CASH'))
+            hand.addPlayer(seatno, a.group('PNAME'), cash)
             if a.group('WIN') != '0':
-                hand.addCollectPot(player=a.group('PNAME'), pot=a.group('WIN'))
+                win = self.clearMoneyString(a.group('WIN'))
+                hand.addCollectPot(player=a.group('PNAME'), pot=win)
 
     def markStreets(self, hand):
         if hand.gametype['base'] in ('hold'):
