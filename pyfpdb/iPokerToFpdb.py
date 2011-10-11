@@ -316,6 +316,8 @@ class iPoker(HandHistoryConverter):
                 hand.addBringIn(player, action['BET'])
             elif atype == '7':
                 hand.addAllIn(street, player, action['BET'])
+            elif atype == '15': # Ante
+                hand.addAnte(player, action['BET'])
             elif atype == '1' or atype == '2' or atype == '8': #sb/bb/no action this hand (joined table)
                 pass
             elif atype == '9': #FIXME: Sitting out
