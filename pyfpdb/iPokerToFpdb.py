@@ -72,11 +72,11 @@ class iPoker(HandHistoryConverter):
                 (\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_GameInfoTrny = re.compile(r"""
-                <tournamentname>.+?<place>(?P<PLACE>\d+)</place>
+                <tournamentname>.+?<place>(?P<PLACE>.+?)</place>
                 <buyin>(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)\+?(?P<BIRAKE>[%(LS)s\d\.]+)?)</buyin>\s+?
                 <totalbuyin>(?P<TOTBUYIN>.+)</totalbuyin>\s+?
                 <ipoints>[%(NUM)s]+</ipoints>\s+?
-                <win>(%(LS)s)?(?P<WIN>[%(NUM)s]+)</win>
+                <win>(%(LS)s)?(?P<WIN>([%(NUM)s]+)|N/A)</win>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_HandInfo = re.compile(r'gamecode="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-: 0-9]+)</startdate>', re.MULTILINE)
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" name="(?P<PNAME>[^"]+)" chips="(%(LS)s)(?P<CASH>[%(NUM)s]+)" dealer="(?P<BUTTONPOS>(0|1))" win="(%(LS)s)(?P<WIN>[%(NUM)s]+)" (bet="(%(LS)s)(?P<BET>[^"]+))?' % substitutions, re.MULTILINE)
@@ -183,6 +183,8 @@ class iPoker(HandHistoryConverter):
 
             self.tinfo['buyin'] = int(100*Decimal(mg['BIAMT']))
             self.tinfo['fee']   = int(100*Decimal(mg['BIRAKE']))
+            # FIXME: <place> and <win> not parsed at the moment.
+            #  NOTE: Both place and win can have the value N/A
         else:
             self.info['type'] = 'ring'
             #FIXME: Need to fix currencies for this site
