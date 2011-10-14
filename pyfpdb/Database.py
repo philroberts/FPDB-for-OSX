@@ -1862,7 +1862,7 @@ class Database:
 
         if doinsert:
             bbulk = []
-            for h in hbulk_temp:
+            for h in hbulk:
                 id = h[-1]
                 if id in hdata['sc'] and id in hdata['gsc']:
                     h[4] = hdata['sc'][id]['id']
