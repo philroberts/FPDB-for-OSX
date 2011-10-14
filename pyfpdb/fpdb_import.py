@@ -152,6 +152,7 @@ class Importer:
         now = datetime.datetime.utcnow()
         ttime100 = ttime * 100
         self.database.updateFile([type, now, now, hands, stored, dups, partial, errs, ttime100, True, id])
+        self.database.commit()
     
     def addFileToList(self, file, site, filter):
         now = datetime.datetime.utcnow()
