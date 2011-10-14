@@ -1823,7 +1823,7 @@ class Database:
         # Tablename can have odd charachers
         hdata['tableName'] = Charset.to_db_utf8(hdata['tableName'])
         
-        hbulk.append( ( hdata['tableName'],
+        hbulk.append( [ hdata['tableName'],
                         hdata['siteHandNo'],
                         hdata['tourneyId'],
                         hdata['gametypeId'],
@@ -1858,11 +1858,11 @@ class Database:
                         hdata['showdownPot'],
                         hdata['boards'],
                         hdata['id']
-                        ))
+                        ])
 
         if doinsert:
             bbulk = []
-            for h in hbulk:
+            for h in hbulk_temp:
                 id = h[-1]
                 if id in hdata['sc'] and id in hdata['gsc']:
                     h[4] = hdata['sc'][id]['id']
@@ -1870,11 +1870,11 @@ class Database:
                 boards = h[-2]
                 for b in boards:
                     bbulk += [[id] + b]
-            hbulk_inserts = [h[:-2] for h in hbulk]
+            hbulk = [tuple([x for x in h[:-2]]) for h in hbulk]
             q = self.sql.query['store_hand']
             q = q.replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
-            c.executemany(q, hbulk_inserts)
+            c.executemany(q, hbulk)
             if bbulk: self.storeBoards(bbulk)
             self.commit()
         return hbulk
