@@ -254,7 +254,7 @@ dealt   whether they were seen in a 'dealt to' line
                             self.gametype['category'], self.gametype['limitType'], hilo, self.gametype['mix'],
                             int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
                             int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200),
-                            int(self.gametype['maxSeats']), int(self.gametype['ante']))
+                            int(self.gametype['maxSeats']), int(self.gametype['ante']*100))
         # Note: the above data is calculated in db.getGameTypeId
         #       Only being calculated above so we can grab the testdata
         
@@ -602,13 +602,9 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
             self.stacks[player] -= ante
             act = (player, 'ante', ante, self.stacks[player]==0)
             self.actions['BLINDSANTES'].append(act)
-#            self.pot.addMoney(player, ante)
             self.pot.addCommonMoney(player, ante)
             if not 'ante' in self.gametype.keys() or self.gametype['ante'] == 0:
-                if self.gametype['type'] == 'ring':
-                    self.gametype['ante'] = int(100*ante)
-                else:
-                    self.gametype['ante'] = int(ante)
+                self.gametype['ante'] = ante
 #I think the antes should be common money, don't have enough hand history to check
 
     def addBlind(self, player, blindtype, amount):
