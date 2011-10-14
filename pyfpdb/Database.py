@@ -1823,7 +1823,7 @@ class Database:
         # Tablename can have odd charachers
         hdata['tableName'] = Charset.to_db_utf8(hdata['tableName'])
         
-        hbulk.append( [ hdata['tableName'],
+        hbulk.append( ( hdata['tableName'],
                         hdata['siteHandNo'],
                         hdata['tourneyId'],
                         hdata['gametypeId'],
@@ -1858,29 +1858,32 @@ class Database:
                         hdata['showdownPot'],
                         hdata['boards'],
                         hdata['id']
-                        ])
+                        ))
 
         if doinsert:
             bbulk = []
             for h in hbulk:
-                id = h.pop()
+                id = h[-1]
                 if id in hdata['sc'] and id in hdata['gsc']:
                     h[4] = hdata['sc'][id]['id']
                     h[5] = hdata['gsc'][id]['id']
-                boards = h.pop()
-                if isinstance(boards, list):
-                    for b in boards:
-                        bbulk += [[id] + b]
+                boards = h[-2]
+                for b in boards:
+                    bbulk += [[id] + b]
+            hbulk_inserts = [h[:-2] for h in hbulk]
             q = self.sql.query['store_hand']
             q = q.replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
-            c.executemany(q, hbulk)
-            q = self.sql.query['store_boards']
-            q = q.replace('%s', self.sql.query['placeholder'])
-            c = self.get_cursor()
-            c.executemany(q, bbulk)
+            c.executemany(q, hbulk_inserts)
+            if bbulk: self.storeBoards(bbulk)
             self.commit()
         return hbulk
+    
+    def storeBoards(self, bbulk):
+        q = self.sql.query['store_boards']
+        q = q.replace('%s', self.sql.query['placeholder'])
+        c = self.get_cursor()
+        c.executemany(q, bbulk)
 
     def storeHandsPlayers(self, hid, pids, pdata, hpbulk, doinsert = False, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
