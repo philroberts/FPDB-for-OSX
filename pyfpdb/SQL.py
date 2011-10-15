@@ -5082,13 +5082,26 @@ class Sql:
 
         if db_server == 'mysql':
             self.query['analyze'] = """
-            analyze table Autorates, GameTypes, Hands, HandsPlayers, HudCache, Players
-                        , Settings, Sites, Tourneys, TourneysPlayers, TourneyTypes
+            analyze table Actions, Autorates, Backings, Boards, Files, Gametypes, Hands, HandsActions, HandsPlayers, 
+                          HandsStove, HudCache, Players, RawHands, RawTourneys, SessionsCache, Settings, Sites,
+                          Tourneys, TourneysPlayers, TourneyTypes
             """
         elif db_server == 'postgresql':
             self.query['analyze'] = "analyze"
         elif db_server == 'sqlite':
             self.query['analyze'] = "analyze"
+            
+
+        if db_server == 'mysql':
+            self.query['vacuum'] = """
+            optimize table Actions, Autorates, Backings, Boards, Files, Gametypes, Hands, HandsActions, HandsPlayers, 
+                           HandsStove, HudCache, Players, RawHands, RawTourneys, SessionsCache, Settings, Sites,
+                           Tourneys, TourneysPlayers, TourneyTypes
+            """
+        elif db_server == 'postgresql':
+            self.query['vacuum'] = """ vacuum """
+        elif db_server == 'sqlite':
+            self.query['vacuum'] = """ vacuum """
             
         if db_server == 'mysql':
             self.query['switchLockOn'] = """
@@ -5114,16 +5127,6 @@ class Sql:
             self.query['lockForInsert'] = ""
         elif db_server == 'sqlite':
             self.query['lockForInsert'] = ""
-
-        if db_server == 'mysql':
-            self.query['vacuum'] = """optimize table Hands, HandsPlayers, HandsActions, Players
-                                                   , HudCache, GameTypes, Sites, Tourneys
-                                                   , TourneysPlayers, TourneyTypes, Autorates
-                                      """
-        elif db_server == 'postgresql':
-            self.query['vacuum'] = """ vacuum """
-        elif db_server == 'sqlite':
-            self.query['vacuum'] = """ vacuum """
 
         self.query['getGametypeFL'] = """SELECT id
                                            FROM Gametypes
