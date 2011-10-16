@@ -1,0 +1,241 @@
+***** History for hand R5-174428515-248 *****
+Start hand: Sun Sep 11 15:26:27 EEST 2011
+Table: Irbid [174428515] (LIMIT FIVE_CARD_DRAW $1/$2, Real money)
+User: Hero
+Button: seat 4
+Players in round: 3
+Seat 1: Hero ($81.70)
+Seat 4: Player4 ($24.80)
+Seat 8: Player8 ($69.85)
+Player8 posts small blind ($0.50)
+Hero posts big blind ($1)
+---
+Dealing pocket cards
+Dealing to Hero: [9d, Ts, Qc, 6c, 3c]
+Player4 folds
+Player8 folds
+---
+Summary:
+Main pot: $1 won by Hero ($1)
+Rake taken: $0
+Seat 1: Hero ($82.20), net: +$0.50
+Seat 4: Player4 ($24.80)
+Seat 8: Player8 ($69.35), net: -$0.50
+***** End of hand R5-174428515-248 *****
+***** History for hand R5-174428515-249 *****
+Start hand: Sun Sep 11 15:26:37 EEST 2011
+Table: Irbid [174428515] (LIMIT FIVE_CARD_DRAW $1/$2, Real money)
+User: Hero
+Button: seat 8
+Players in round: 3
+Seat 1: Hero ($82.20)
+Seat 4: Player4 ($24.80)
+Seat 8: Player8 ($69.35)
+Hero posts small blind ($0.50)
+Player4 posts big blind ($1)
+---
+Dealing pocket cards
+Dealing to Hero: [7d, 5s, Qh, Th, 8s]
+Player8 calls $1
+Hero folds
+Player4 checks
+Player4 changed 3 cards
+Player8 changed 1 cards
+Player4 checks
+Player8 bets $2
+Player4 folds
+---
+Summary:
+Main pot: $2.50 won by Player8 ($2.40)
+Rake taken: $0.10
+Seat 1: Hero ($81.70), net: -$0.50
+Seat 4: Player4 ($23.80), net: -$1
+Seat 8: Player8 ($70.75), net: +$1.40
+***** End of hand R5-174428515-249 *****
+***** History for hand R5-174428515-250 *****
+Start hand: Sun Sep 11 15:27:03 EEST 2011
+Table: Irbid [174428515] (LIMIT FIVE_CARD_DRAW $1/$2, Real money)
+User: Hero
+Button: seat 1
+Players in round: 3
+Seat 1: Hero ($81.70)
+Seat 4: Player4 ($23.80)
+Seat 8: Player8 ($70.75)
+Player4 posts small blind ($0.50)
+Player8 posts big blind ($1)
+---
+Dealing pocket cards
+Dealing to Hero: [As, 5h, Jh, Ac, Jd]
+Hero raises $2 to $2
+Player4 calls $1.50
+Player8 folds
+---
+Player4 changed 1 cards
+New hand for Hero: [As, 7c, Jh, Ac, Jd]
+Player4 checks
+Hero checks
+---
+Summary:
+Main pot: $5 won by Hero ($4.75)
+Rake taken: $0.25
+Seat 1: Hero ($84.45), net: +$2.75, [As, 7c, Jh, Ac, Jd] (TWO_PAIR ACE, JACK)
+Seat 4: Player4 ($21.80), net: -$2, [3d, 7s, 7h, 3c, Td] (TWO_PAIR SEVEN, THREE)
+Seat 8: Player8 ($69.75), net: -$1
+***** End of hand R5-174428515-250 *****
+***** History for hand R5-174428515-251 *****
+Start hand: Sun Sep 11 15:27:32 EEST 2011
+Table: Irbid [174428515] (LIMIT FIVE_CARD_DRAW $1/$2, Real money)
+User: Hero
+Button: seat 4
+Players in round: 3
+Seat 1: Hero ($84.45)
+Seat 4: Player4 ($21.80)
+Seat 8: Player8 ($69.75)
+Player8 posts small blind ($0.50)
+Hero posts big blind ($1)
+---
+Dealing pocket cards
+Dealing to Hero: [Qd, Jh, 6c, Ac, 9s]
+Player4 folds
+Player8 folds
+---
+Summary:
+Main pot: $1 won by Hero ($1)
+Rake taken: $0
+Seat 1: Hero ($84.95), net: +$0.50
+Seat 4: Player4 ($21.80)
+Seat 8: Player8 ($69.25), net: -$0.50
+***** End of hand R5-174428515-251 *****
+***** History for hand R5-174428515-252 *****
+Start hand: Sun Sep 11 15:27:42 EEST 2011
+Table: Irbid [174428515] (LIMIT FIVE_CARD_DRAW $1/$2, Real money)
+User: Hero
+Button: seat 8
+Players in round: 3
+Seat 1: Hero ($84.95)
+Seat 4: Player4 ($21.80)
+Seat 8: Player8 ($69.25)
+Hero posts small blind ($0.50)
+Player4 posts big blind ($1)
+---
+Dealing pocket cards
+Dealing to Hero: [As, 8c, 7d, Ks, 3d]
+Player8 folds
+Hero folds
+---
+Summary:
+Main pot: $1 won by Player4 ($1)
+Rake taken: $0
+Seat 1: Hero ($84.45), net: -$0.50
+Seat 4: Player4 ($22.30), net: +$0.50
+Seat 8: Player8 ($69.25)
+***** End of hand R5-174428515-252 *****
+***** History for hand R5-174428515-253 *****
+Start hand: Sun Sep 11 15:27:52 EEST 2011
+Table: Irbid [174428515] (LIMIT FIVE_CARD_DRAW $1/$2, Real money)
+User: Hero
+Button: seat 1
+Players in round: 2
+Seat 1: Hero ($84.45)
+Seat 4: Player4 ($22.30)
+Hero posts small blind ($0.50)
+Player4 posts big blind ($1)
+---
+Dealing pocket cards
+Dealing to Hero: [Ks, 5c, Qc, Ts, 8d]
+Hero folds
+---
+Summary:
+Main pot: $1 won by Player4 ($1)
+Rake taken: $0
+Seat 1: Hero ($83.95), net: -$0.50
+Seat 4: Player4 ($22.80), net: +$0.50
+***** End of hand R5-174428515-253 *****
+***** History for hand R5-174428515-254 *****
+Start hand: Sun Sep 11 15:28:07 EEST 2011
+Table: Irbid [174428515] (LIMIT FIVE_CARD_DRAW $1/$2, Real money)
+User: Hero
+Button: seat 4
+Players in round: 2
+Seat 1: Hero ($83.95)
+Seat 4: Player4 ($22.80)
+Player4 posts small blind ($0.50)
+Hero posts big blind ($1)
+---
+Dealing pocket cards
+Dealing to Hero: [Ac, Jh, 2s, 5s, 6s]
+Player4 raises $1.50 to $2
+Hero folds
+---
+Summary:
+Main pot: $2 won by Player4 ($2)
+Rake taken: $0
+Seat 1: Hero ($82.95), net: -$1
+Seat 4: Player4 ($23.80), net: +$1
+***** End of hand R5-174428515-254 *****
+***** History for hand R5-174428515-255 *****
+Start hand: Sun Sep 11 15:28:18 EEST 2011
+Table: Irbid [174428515] (LIMIT FIVE_CARD_DRAW $1/$2, Real money)
+User: Hero
+Button: seat 1
+Players in round: 2
+Seat 1: Hero ($82.95)
+Seat 4: Player4 ($23.80)
+Hero posts small blind ($0.50)
+Player4 posts big blind ($1)
+---
+Dealing pocket cards
+Dealing to Hero: [Jd, 9d, Td, 8h, 6d]
+Hero raises $1.50 to $2
+Player4 folds
+---
+Summary:
+Main pot: $2 won by Hero ($2)
+Rake taken: $0
+Seat 1: Hero ($83.95), net: +$1
+Seat 4: Player4 ($22.80), net: -$1
+***** End of hand R5-174428515-255 *****
+***** History for hand R5-174428515-256 *****
+Start hand: Sun Sep 11 15:28:31 EEST 2011
+Table: Irbid [174428515] (LIMIT FIVE_CARD_DRAW $1/$2, Real money)
+User: Hero
+Button: seat 4
+Players in round: 2
+Seat 1: Hero ($83.95)
+Seat 4: Player4 ($22.80)
+Player4 posts small blind ($0.50)
+Hero posts big blind ($1)
+---
+Dealing pocket cards
+Dealing to Hero: [7d, 2s, 5d, Qh, Jh]
+Player4 folds
+---
+Summary:
+Main pot: $1 won by Hero ($1)
+Rake taken: $0
+Seat 1: Hero ($84.45), net: +$0.50
+Seat 4: Player4 ($22.30), net: -$0.50
+***** End of hand R5-174428515-256 *****
+***** History for hand R5-174428515-257 *****
+Start hand: Sun Sep 11 15:28:37 EEST 2011
+Table: Irbid [174428515] (LIMIT FIVE_CARD_DRAW $1/$2, Real money)
+User: Hero
+Button: seat 1
+Players in round: 2
+Seat 1: Hero ($84.45)
+Seat 4: Player4 ($22.30)
+Hero posts small blind ($0.50)
+Player4 posts big blind ($1)
+---
+Dealing pocket cards
+Dealing to Hero: [7h, Qc, 5c, 7c, 3h]
+Hero raises $1.50 to $2
+Player4 folds
+---
+Summary:
+Main pot: $2 won by Hero ($2)
+Rake taken: $0
+Seat 1: Hero ($85.45), net: +$1
+Seat 4: Player4 ($21.30), net: -$1
+***** End of hand R5-174428515-257 *****
+
