@@ -209,6 +209,7 @@ copy_tree(os.path.join(gtk_dir, 'share'), os.path.join(dest, 'share'))
 print "*** Activating MS-Windows GTK theme ***"
 gtkrc = open(os.path.join(distdir, 'pyfpdb', 'etc', 'gtk-2.0', 'gtkrc'), 'w')
 print >>gtkrc, 'gtk-theme-name = "MS-Windows"'
+print >>gtkrc, 'gtk-tooltip-timeout = 1750'
 gtkrc.close()
 
 print "*** deleting temporary build folder ***"
