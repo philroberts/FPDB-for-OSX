@@ -251,12 +251,10 @@ class SummaryImporter:
 
             ####Lock Placeholder####
             for j, summaryText in enumerate(summaryTexts, start=1):
-                sc, gsc = {'bk': []}, {'bk': []}
                 doinsert = len(summaryTexts)==j
                 try:
                     conv = obj(db=None, config=self.config, siteName=site, summaryText=summaryText, builtFrom = "IMAP")
                     conv.insertOrUpdate(printtest = self.settings['testData'])
-                    sc, gsc = conv.updateSessionsCache(sc, gsc, None, doinsert)
                 except FpdbParseError, e:
                     log.error(_("Tourney import parse error in file: %s") % filename)
                     errors += 1
