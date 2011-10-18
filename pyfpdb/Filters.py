@@ -498,6 +498,12 @@ class Filters(threading.Thread):
                 vbox.pack_start(b, False, False, 0)
             hbox.pack_start(vbox, False, False, 0)
 
+    def createCardsControls(self, hbox):
+        selections = ["All", "Suited", "Off Suit"]
+        for s in selections:
+            cb = gtk.CheckButton(s)
+            cb.connect('clicked', self.__set_cards, s)
+            hbox.pack_start(cb, False, False, 0)
 
     def createCurrencyLine(self, hbox, currency, ctext):
         cb = gtk.CheckButton(ctext.replace("_", "__"))
@@ -566,6 +572,9 @@ class Filters(threading.Thread):
         w.set_style(style)
         if 'cards' in self.callback:
             self.callback['cards'](card)
+
+    def __set_cards(self, w, val):
+        print "DEBUG: val: %s = %s" %(val, w.get_active())
 
     def __set_currency_select(self, w, currency):
         if (currency == 'all'):
@@ -960,6 +969,11 @@ class Filters(threading.Thread):
         hbox = gtk.HBox(False, 0)
         vbox1.pack_start(hbox, False, True, 0)
         self.createCardsWidget(hbox)
+
+        # Additional controls for bulk changing card selection
+        hbox = gtk.HBox(False, 0)
+        vbox1.pack_start(hbox, False, True, 0)
+        self.createCardsControls(hbox)
 
     def fillCurrenciesFrame(self, vbox):
         top_hbox = gtk.HBox(False, 0)
