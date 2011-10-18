@@ -85,7 +85,9 @@ class Boss(HandHistoryConverter):
                 ["ring", "hold", "fl"],
                 ["ring", "stud", "fl"],
                 ["ring", "draw", "fl"],
-                ["ring", "omaha", "pl"]
+                ["tour", "hold", "fl"],
+                ["tour", "hold", "pl"],
+                ["tour", "hold", "nl"],
                ]
 
     def determineGameType(self, handText):
