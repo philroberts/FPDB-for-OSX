@@ -144,7 +144,7 @@ class DerivedStats():
         self.hands['siteHandNo']    = hand.handid
         self.hands['gametypeId']    = None                    # Leave None, handled later after checking db
         self.hands['sessionId']     = None                    # Leave None, added later if caching sessions
-        self.hands['gameSessionId'] = None                    # Leave None, added later if caching sessions
+        self.hands['gameId']        = None                    # Leave None, added later if caching sessions
         self.hands['startTime']     = hand.startTime          # format this!
         self.hands['importTime']    = None
         self.hands['seats']         = self.countPlayers(hand) 

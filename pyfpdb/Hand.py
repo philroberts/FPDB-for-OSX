@@ -315,18 +315,36 @@ dealt   whether they were seen in a 'dealt to' line
             hcbulk = db.storeHudCache(self.dbid_gt, self.dbid_pids, self.startTime, self.handsplayers, hcbulk, doinsert)
         return hcbulk
         
-    def updateSessionsCache(self, db, sc, gsc, tz, doinsert = False):
+    def updateSessionsCache(self, db, sc, gc, tz, doinsert = False):
         """ Function to update the SessionsCache"""
         if self.cacheSessions:
             heros = []
-            if self.hero in self.dbid_pids: heros = [self.dbid_pids[self.hero]]   
-            sc = db.prepSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, sc, heros, doinsert)
-            gsc = db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.gametype, self.dbid_gt
-                                       ,self.tourneyId, self.handsplayers, sc, gsc, tz, heros, doinsert)
+            if self.hero in self.dbid_pids: 
+                heros = [self.dbid_pids[self.hero]]
+                
+            sc = db.storeSessionsCache(self.dbid_hands
+                                      ,self.dbid_pids
+                                      ,self.startTime
+                                      ,sc
+                                      ,heros
+                                      ,doinsert)
+            
+            gc = db.storeGamesCache(self.dbid_hands
+                                   ,self.dbid_pids
+                                   ,self.startTime
+                                   ,self.gametype
+                                   ,self.dbid_gt
+                                   ,self.handsplayers
+                                   ,sc
+                                   ,gc
+                                   ,tz
+                                   ,heros
+                                   ,doinsert)
+                                   
         if doinsert:
             self.hands['sc'] = sc
-            self.hands['gsc'] = gsc
-        return sc, gsc
+            self.hands['gc'] = gc
+        return sc, gc
 
     def select(self, db, handId):
         """ Function to create Hand object from database """
