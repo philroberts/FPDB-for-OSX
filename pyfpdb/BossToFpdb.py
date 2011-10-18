@@ -35,9 +35,11 @@ class Boss(HandHistoryConverter):
     siteId   = 4
 
     # Static regexes
-    re_GameInfo     = re.compile("""<HISTORY\sID="(?P<HID>[0-9]+)"\sSESSION="session[0-9]+\.xml"\s
+    re_GameInfo     = re.compile("""<HISTORY\sID="(?P<HID>[0-9]+)"\s
+                                    SESSION="session(?P<SESSIONID>[0-9]+)\.xml"\s
                                     TABLE="(?P<TABLE>[-\sa-zA-Z0-9\xc0-\xfc/.]+)"\s
-                                    GAME="(?P<GAME>GAME_THM|GAME_OMA|GAME_FCD)"\sGAMETYPE="[_a-zA-Z]+"\sGAMEKIND="[_a-zA-Z]+"\s
+                                    GAME="(?P<GAME>GAME_THM|GAME_OMA|GAME_FCD)"\sGAMETYPE="[_a-zA-Z]+"\s
+                                    GAMEKIND="(?P<GAMEKIND>[_a-zA-Z]+)"\s
                                     TABLECURRENCY="(?P<CURRENCY>[A-Z]+)"\s
                                     LIMIT="(?P<LIMIT>NL|PL|FL)"\s
                                     STAKES="(?P<SB>[.0-9]+)/(?P<BB>[.0-9]+)"\s
@@ -46,7 +48,6 @@ class Boss(HandHistoryConverter):
                                     WIN="[.0-9]+"\sLOSS="[.0-9]+"
                                     """, re.MULTILINE| re.VERBOSE)
     re_SplitHands   = re.compile('</HISTORY>')
-    re_HandInfo     = re.compile("^Table \'(?P<TABLE>[- a-zA-Z]+)\'(?P<TABLEATTRIBUTES>.+?$)?", re.MULTILINE)
     re_Button       = re.compile('<ACTION TYPE="HAND_DEAL" PLAYER="(?P<BUTTON>[^"]+)">\n<CARD LINK="[0-9b]+"></CARD>\n<CARD LINK="[0-9b]+"></CARD></ACTION>\n<ACTION TYPE="ACTION_', re.MULTILINE)
     re_PlayerInfo   = re.compile('^<PLAYER NAME="(?P<PNAME>.*)" SEAT="(?P<SEAT>[0-9]+)" AMOUNT="(?P<CASH>[.0-9]+)"( STATE="(?P<STATE>STATE_EMPTY|STATE_PLAYING)" DEALER="(Y|N)")?></PLAYER>', re.MULTILINE)
     re_Card        = re.compile('^<CARD LINK="(?P<CARD>[0-9]+)"></CARD>', re.MULTILINE)
@@ -91,8 +92,7 @@ class Boss(HandHistoryConverter):
                ]
 
     def determineGameType(self, handText):
-        info = {'type':'ring'}
-        
+        info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
             tmp = handText[0:1000]
@@ -111,6 +111,10 @@ class Boss(HandHistoryConverter):
                   "GAME_OMA" : ('hold','omahahi'),
                   "GAME_FCD" : ('draw','fivedraw'),
                 }
+        if 'GAMEKIND' in mg:
+            info['type'] = 'ring'
+            if mg['GAMEKIND'] == 'GAMEKIND_TOURNAMENT':
+                info['type'] = 'tour'
         if 'LIMIT' in mg:
             info['limitType'] = limits[mg['LIMIT']]
         if 'GAME' in mg:
@@ -127,19 +131,16 @@ class Boss(HandHistoryConverter):
 
     def readHandInfo(self, hand):
         info = {}
-        m = self.re_HandInfo.search(hand.handText,re.DOTALL)
-        if m:
-            info.update(m.groupdict())
-            # TODO: Be less lazy and parse maxseats from the HandInfo regex
-            if m.group('TABLEATTRIBUTES'):
-                m2 = re.search("\s*(\d+)-max", m.group('TABLEATTRIBUTES'))
-                hand.maxseats = int(m2.group(1))
         m = self.re_GameInfo.search(hand.handText)
-        if m: info.update(m.groupdict())
+
+        if m is None:
+            log.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+
+        info.update(m.groupdict())
         m = self.re_Button.search(hand.handText)
-        if m: info.update(m.groupdict()) 
-        # TODO : I rather like the idea of just having this dict as hand.info
-        logging.debug("readHandInfo: %s" % info)
+        if m: info.update(m.groupdict())
+
         for key in info:
             if key == 'DATETIME':
                 # Boss uses UTC timestamp
@@ -150,6 +151,18 @@ class Boss(HandHistoryConverter):
                 hand.tablename = info[key]
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
+            if key == 'LEVEL':
+                hand.level = info[key]
+            if hand.gametype['type'] == 'tour':
+                if key == 'SESSIONID': # No idea why Boss doesn't use the TABLETOURNEYID xml field...
+                    hand.tourNo = info[key]
+                if key == 'CURRENCY':
+                    hand.buyinCurrency = info[key]
+                # Hmm. Other useful tourney info doesn't appear to be readily available.
+                hand.buyin = 100
+                hand.fee = 10
+                hand.isKO = False
+
         
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
