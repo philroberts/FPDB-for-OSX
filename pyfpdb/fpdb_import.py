@@ -485,7 +485,7 @@ class Importer:
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
                 (hbulk, hpbulk, habulk, hcbulk, hsbulk, phands, ihands, to_hud) = ([], [], [], [], [], [], [], [])
-                sc, gc = {'bk': []}, {'bk': []}
+                sc, gc, tc = {'bk': []}, {'bk': []}, {}
                 
                 ####Lock Placeholder####
                 for hand in handlist:
@@ -506,7 +506,7 @@ class Importer:
                     try:
                         id = hand.getHandId(self.database, id)
                         stime = time()
-                        sc, gc = hand.updateSessionsCache(self.database, sc, gc, None, doinsert)
+                        sc, gc, tc = hand.updateSessionsCache(self.database, sc, gc, tc, None, doinsert)
                         sctimer += time() - stime
                         stime = time()
                         hbulk = hand.insertHands(self.database, hbulk, fileId, doinsert, self.settings['testData'])
@@ -523,7 +523,7 @@ class Importer:
                             hand = ihands[-1]
                             hp = hand.handsplayers
                             hand.hero, hbulk, hand.handsplayers  = 0, hbulk[:-1], [] #making sure we don't insert data from this hand
-                            sc, gc = hand.updateSessionsCache(self.database, sc, gc, None, doinsert)
+                            sc, gc, tc = hand.updateSessionsCache(self.database, sc, gc, tc, None, doinsert)
                             hbulk = hand.insertHands(self.database, hbulk, fileId, doinsert, self.settings['testData'])
                             hcbulk = hand.updateHudCache(self.database, hcbulk, doinsert)
                             hand.handsplayers = hp

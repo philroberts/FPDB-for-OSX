@@ -623,9 +623,8 @@ class Sql:
                         siteTourneyNo BIGINT NOT NULL,
                         entries INT,
                         prizepool INT,
-                        startTime DATETIME NOT NULL,
+                        startTime DATETIME,
                         endTime DATETIME,
-                        hands INT,
                         tourneyName varchar(40),
                         matrixIdProcessed TINYINT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
                         totalRebuyCount INT,
@@ -643,7 +642,6 @@ class Sql:
                         prizepool INT,
                         startTime timestamp without time zone,
                         endTime timestamp without time zone,
-                        hands INT,
                         tourneyName varchar(40),
                         matrixIdProcessed SMALLINT DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
                         totalRebuyCount INT,
@@ -660,7 +658,6 @@ class Sql:
                         prizepool INT,
                         startTime REAL,
                         endTime REAL,
-                        hands INT,
                         tourneyName TEXT,
                         matrixIdProcessed INT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
                         totalRebuyCount INT,
@@ -1113,12 +1110,16 @@ class Sql:
                         id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         tourneyId INT UNSIGNED NOT NULL, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        startTime DATETIME,
+                        endTime DATETIME,
                         rank INT,
                         winnings INT,
                         winningsCurrency VARCHAR(4),
                         rebuyCount INT,
                         addOnCount INT,
                         koCount INT,
+                        played INT,
+                        hands INT,
                         comment TEXT,
                         commentTs DATETIME)
                         ENGINE=INNODB"""
@@ -1127,12 +1128,16 @@ class Sql:
                         id BIGSERIAL, PRIMARY KEY (id),
                         tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        startTime timestamp without time zone,
+                        endTime timestamp without time zone,
                         rank INT,
                         winnings INT,
                         winningsCurrency VARCHAR(4),
                         rebuyCount INT,
                         addOnCount INT,
                         koCount INT,
+                        played INT,
+                        hands INT,
                         comment TEXT,
                         commentTs timestamp without time zone)"""
         elif db_server == 'sqlite':
@@ -1140,12 +1145,16 @@ class Sql:
                         id INTEGER PRIMARY KEY,
                         tourneyId INT,
                         playerId INT,
+                        startTime timestamp,
+                        endTime timestamp,
                         rank INT,
                         winnings INT,
                         winningsCurrency VARCHAR(4),
                         rebuyCount INT,
                         addOnCount INT,
                         koCount INT,
+                        played INT,
+                        hands INT,
                         comment TEXT,
                         commentTs timestamp without time zone,
                         FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
@@ -1677,9 +1686,7 @@ class Sql:
                         gameStart DATETIME NOT NULL,
                         gameEnd DATETIME NOT NULL,
                         date CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
-                        type char(7) NOT NULL,
                         gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-                        tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         played INT NOT NULL,
                         hands INT NOT NULL,
@@ -1695,9 +1702,7 @@ class Sql:
                         gameStart timestamp without time zone NOT NULL,
                         gameEnd timestamp without time zone NOT NULL,
                         date CHAR(7) NOT NULL, /* 1st char is style (A/T/H/S), other 6 are the key */
-                        type char(7),
                         gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-                        tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
                         played INT,
                         hands INT,
@@ -1712,9 +1717,7 @@ class Sql:
                         gameStart timestamp NOT NULL,
                         gameEnd timestamp NOT NULL,
                         date TEXT NOT NULL, /* 1st char is style (A/T/H/S), other 6 are the key */
-                        type TEXT,
                         gametypeId INT,
-                        tourneyTypeId INT,
                         playerId INT,
                         played INT,
                         hands INT,
@@ -4989,11 +4992,6 @@ class Sql:
                     sessionId,
                     gameStart,
                     gameEnd,
-                    date,
-                    type,
-                    gametypeId,
-                    tourneyTypeId,
-                    playerId,
                     played,
                     hands,
                     totalProfit,
@@ -5002,11 +5000,7 @@ class Sql:
                     WHERE gameEnd>=%s
                     AND gameStart<=%s
                     AND date=%s
-                    AND type=%s
-                    AND (case when gametypeId is NULL then 1 else 
-                        (case when gametypeId=%s then 1 else 0 end) end)=1
-                    AND (case when tourneyTypeId is NULL then 1 else 
-                        (case when tourneyTypeId=%s then 1 else 0 end) end)=1
+                    AND gametypeId=%s
                     AND playerId=%s"""
                     
         ####################################
@@ -5025,16 +5019,14 @@ class Sql:
                     gameStart,
                     gameEnd,
                     date,
-                    type,
                     gametypeId,
-                    tourneyTypeId,
                     playerId,
                     played,
                     hands,
                     totalProfit,
                     allInEV)
-                    values (%s, %s, %s, %s, %s, %s,
-                            %s, %s, %s, %s, %s, %s)"""
+                    values (%s, %s, %s, %s, %s,
+                            %s, %s, %s, %s, %s)"""
                     
         ####################################
         # update
@@ -5092,11 +5084,43 @@ class Sql:
                     gameId=%s
                     WHERE gameId=%s"""
                     
-        self.query['updateTourneySessions'] = """
+        ####################################
+        # update Tourneys w. sessionIds, hands, start/end
+        ####################################
+                    
+        self.query['updateTourneysSessions'] = """
                     UPDATE Tourneys SET
-                    sessionId=%s, 
+                    sessionId=%s
+                    WHERE id=%s"""
+                    
+        self.query['selectTourneysPlayersStartEnd'] = """
+                    SELECT startTime, endTime
+                    FROM TourneysPlayers
+                    WHERE id=%s"""
+        
+        self.query['updateTourneysPlayersStart'] = """
+                    UPDATE TourneysPlayers SET
+                    startTime=%s,
+                    played=played+%s,
                     hands=hands+%s
                     WHERE id=%s"""
+        
+        self.query['updateTourneysPlayersEnd'] = """
+                    UPDATE TourneysPlayers SET
+                    endTime=%s,
+                    played=played+%s,
+                    hands=hands+%s
+                    WHERE id=%s
+        """
+        
+        self.query['updateTourneysPlayersStartEnd'] = """
+                    UPDATE TourneysPlayers SET
+                    startTime=%s,
+                    endTime=%s,
+                    played=played+%s,
+                    hands=hands+%s
+                    WHERE id=%s
+        """
         
         ####################################
         # Database management queries
@@ -5254,9 +5278,9 @@ class Sql:
         
         self.query['insertTourney'] = """INSERT INTO Tourneys
                                             (tourneyTypeId, sessionId, siteTourneyNo, entries, prizepool,
-                                             startTime, endTime, hands, tourneyName, matrixIdProcessed,
+                                             startTime, endTime, tourneyName, matrixIdProcessed,
                                              totalRebuyCount, totalAddOnCount)
-                                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         
         self.query['updateTourney'] = """UPDATE Tourneys
@@ -5288,9 +5312,22 @@ class Sql:
                                                  WHERE id=%s
         """
 
-        self.query['insertTourneysPlayer'] = """insert into TourneysPlayers
-                                                    (tourneyId, playerId, rank, winnings, winningsCurrency, rebuyCount, addOnCount, koCount)
-                                                values (%s, %s, %s, %s, %s, %s, %s, %s)
+        self.query['insertTourneysPlayer'] = """insert into TourneysPlayers(
+                                                    tourneyId,
+                                                    playerId,
+                                                    startTime,
+                                                    endTime,
+                                                    rank,
+                                                    winnings,
+                                                    winningsCurrency,
+                                                    rebuyCount,
+                                                    addOnCount,
+                                                    koCount,
+                                                    played,
+                                                    hands
+                                                )
+                                                values (%s, %s, %s, %s, %s, %s,
+                                                        %s, %s, %s, %s, %s, %s)
         """
 
         self.query['selectHandsPlayersWithWrongTTypeId'] = """SELECT id

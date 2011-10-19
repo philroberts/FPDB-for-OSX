@@ -315,7 +315,7 @@ dealt   whether they were seen in a 'dealt to' line
             hcbulk = db.storeHudCache(self.dbid_gt, self.dbid_pids, self.startTime, self.handsplayers, hcbulk, doinsert)
         return hcbulk
         
-    def updateSessionsCache(self, db, sc, gc, tz, doinsert = False):
+    def updateSessionsCache(self, db, sc, gc, tc, tz, doinsert = False):
         """ Function to update the SessionsCache"""
         if self.cacheSessions:
             heros = []
@@ -329,22 +329,31 @@ dealt   whether they were seen in a 'dealt to' line
                                       ,heros
                                       ,doinsert)
             
-            gc = db.storeGamesCache(self.dbid_hands
-                                   ,self.dbid_pids
-                                   ,self.startTime
-                                   ,self.gametype
-                                   ,self.dbid_gt
-                                   ,self.handsplayers
-                                   ,sc
-                                   ,gc
-                                   ,tz
-                                   ,heros
-                                   ,doinsert)
+            if not self.tourNo:
+                gc = db.storeGamesCache(self.dbid_hands
+                                       ,self.dbid_pids
+                                       ,self.startTime
+                                       ,self.dbid_gt
+                                       ,self.handsplayers
+                                       ,sc
+                                       ,gc
+                                       ,tz
+                                       ,heros
+                                       ,doinsert)
+            
+            else:
+                tc = db.updateTourneysPlayersSessions(self.dbid_pids
+                                                     ,self.tourneyId
+                                                     ,self.startTime
+                                                     ,self.handsplayers
+                                                     ,tc
+                                                     ,heros
+                                                     ,doinsert)
                                    
         if doinsert:
             self.hands['sc'] = sc
             self.hands['gc'] = gc
-        return sc, gc
+        return sc, gc, tc
 
     def select(self, db, handId):
         """ Function to create Hand object from database """
