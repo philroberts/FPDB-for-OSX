@@ -4949,7 +4949,8 @@ class Sql:
         
         self.query['clear_GC_H']  = """UPDATE Hands SET gameId = NULL"""
         self.query['clear_SC_H']  = """UPDATE Hands SET sessionId = NULL"""
-        self.query['clear_SC_T']  = """UPDATE Tourneys SET sessionId = NULL, hands = 0"""
+        self.query['clear_SC_T']  = """UPDATE Tourneys SET sessionId = NULL"""
+        self.query['clear_SC_TP'] = """UPDATE TourneysPlayers SET startTime = NULL, endTime = NULL, played=0, hands=0"""
         self.query['clear_SC_GC'] = """UPDATE GamesCache SET sessionId = NULL"""
         self.query['clearSessionsCache'] = """DELETE FROM SessionsCache WHERE 1"""
         self.query['clearGamesCache']    = """DELETE FROM GamesCache WHERE 1"""
