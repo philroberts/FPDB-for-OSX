@@ -1639,6 +1639,15 @@ class Database:
         herorecords = c.fetchall()
         for h in herorecords:
             heros += h
+        if not heros:
+            for site in self.config.get_supported_sites():
+                result = self.get_site_id(site)
+                if result:
+                    site_id = result[0][0]
+                    self.hero[site_id] = self.config.supported_sites[site].screen_name
+                    p_id = self.get_player_id(self.config, site, self.hero[site_id])
+                    if p_id:
+                        heros.append(int(p_id))
                                 
         rebuildSessionsCache    = self.sql.query['rebuildSessionsCache'] 
         if len(heros) == 0:
@@ -1669,8 +1678,6 @@ class Database:
         c.execute(self.sql.query['clear_SC_GC'])
         c.execute(self.sql.query['clearGamesCache'])
         c.execute(self.sql.query['clearSessionsCache'])
-        #c.execute(self.sql.query['createSessionsCacheTable'])
-        #c.execute(self.sql.query['createGamesCacheTable'])
         self.commit()
         
         for k in range(2):
@@ -1907,10 +1914,11 @@ class Database:
             c = self.get_cursor()
             for t, sid in self.tbulk.iteritems():
                 c.execute(q_update_sessions,  (sid, t))
+                self.commit()
     
     def updateTourneysPlayersSessions(self, pids, tid, startTime, pdata, heros, doinsert):
         for p, id in pids.iteritems():
-            if id in heros:
+            if id in heros and tid:
                 if tid not in self.tc:
                     self.tc[tid] =   {'tpid' : None,
                                     'played' : 0,
@@ -1944,6 +1952,7 @@ class Database:
                     c.execute(q_update_start,(d['startTime'], d['played'], d['hands'], d['tpid']))
                 elif d['endTime']>end:
                     c.execute(q_update_end,(d['endTime'], d['played'], d['hands'], d['tpid']))
+                self.commit()
 
     def storeHandsPlayers(self, hid, pids, pdata, doinsert = False, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
@@ -2398,7 +2407,7 @@ class Database:
                     for h in self.sc['bk'][i]['ids']: self.sc[h] = {'id': sid}
             self.commit()
     
-    def storeGamesCache(self, hid, pids, startTime, gtid, pdata, tz_name, heros, doinsert = False):
+    def storeGamesCache(self, hid, pids, startTime, gtid, game, pdata, tz_name, heros, doinsert = False):
         """Update cached sessions. If no record exists, do an insert"""
         utc = pytz.utc
         if tz_name in pytz.common_timezones:
@@ -2427,7 +2436,7 @@ class Database:
 
         hand = {}
         for p, pid in pids.iteritems():
-            if pid in heros:
+            if pid in heros and game['type']=='ring':
                 hand['hands']         = 0
                 hand['totalProfit']   = 0
                 hand['allInEV']       = 0
@@ -2556,11 +2565,13 @@ class Database:
     
     def appendSessionIds(self):
         for h in self.hbulk:
-            id = h[-1]
-            if id in self.sc and id in self.gc:
+            id  = h[-1]
+            tid = h[2]
+            if id in self.sc:
                 h[4] = self.sc[id]['id']
-                h[5] = self.gc[id]['id']
-            if h[2]: self.tbulk[h[2]] = h[4]
+                if tid: self.tbulk[tid] = h[4]
+            if id in self.gc:
+                h[5] = self.gc[id]['id']                
 
     def getSqlGameTypeId(self, siteid, game, printdata = False):
         if(self.gtcache == None):

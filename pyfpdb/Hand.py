@@ -257,7 +257,6 @@ dealt   whether they were seen in a 'dealt to' line
                             int(self.gametype['maxSeats']), int(self.gametype['ante']*100))
         # Note: the above data is calculated in db.getGameTypeId
         #       Only being calculated above so we can grab the testdata
-        
         if self.tourNo!=None:
             self.tourneyTypeId = db.getSqlTourneyTypeIDs(self)
             self.tourneyId = db.getSqlTourneyIDs(self)
@@ -280,6 +279,12 @@ dealt   whether they were seen in a 'dealt to' line
             self.hands['id'] = self.dbid_hands
             next = id +1
         return next
+    
+    #def insertTourneys(self, db):
+    #    if self.tourNo!=None:
+    #        self.tourneyTypeId = db.getSqlTourneyTypeIDs(self)
+    #        self.tourneyId = db.getSqlTourneyIDs(self)
+    #        self.tourneysPlayersIds = db.getSqlTourneysPlayersIDs(self)
 
     def insertHands(self, db, fileId, doinsert = False, printtest = False):
         """ Function to insert Hand into database
@@ -319,11 +324,8 @@ dealt   whether they were seen in a 'dealt to' line
                 heros = [self.dbid_pids[self.hero]]
                 
             db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, heros, doinsert) 
-            if not self.tourNo:
-                db.storeGamesCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.handsplayers, tz, heros, doinsert)
-            
-            else:
-                db.updateTourneysPlayersSessions(self.dbid_pids, self.tourneyId, self.startTime, self.handsplayers, heros, doinsert)
+            db.storeGamesCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, tz, heros, doinsert)
+            db.updateTourneysPlayersSessions(self.dbid_pids, self.tourneyId, self.startTime, self.handsplayers, heros, doinsert)
                                
             if doinsert:
                 db.appendSessionIds()
