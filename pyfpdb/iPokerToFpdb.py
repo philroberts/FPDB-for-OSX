@@ -55,6 +55,7 @@ class iPoker(HandHistoryConverter):
     filetype = "text"
     codepage = "cp1252"
     siteId   = 13
+    copyGameHeader = True   #NOTE: Not sure if this is necessary yet. The file is xml so its likely
 
     suit_trans  = { 'S':'s', 'H':'h', 'C':'c', 'D':'d'}
 
@@ -68,7 +69,7 @@ class iPoker(HandHistoryConverter):
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r"""
-            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL)
+            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL|Omaha\sL)
                 (\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_GameInfoTrny = re.compile(r"""
