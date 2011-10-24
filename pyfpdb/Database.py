@@ -1893,6 +1893,8 @@ class Database:
                              ])
 
         if doinsert:
+            self.appendSessionIds()
+            self.updateTourneysSessions()
             self.hbulk = [tuple([x for x in h[:-1]]) for h in self.hbulk]
             q = self.sql.query['store_hand']
             q = q.replace('%s', self.sql.query['placeholder'])
@@ -1936,9 +1938,10 @@ class Database:
                 
         if doinsert:
             q_select           = self.sql.query['selectTourneysPlayersStartEnd'].replace('%s', self.sql.query['placeholder'])
+            q_update_start_end = self.sql.query['updateTourneysPlayersStartEnd'].replace('%s', self.sql.query['placeholder'])
             q_update_start     = self.sql.query['updateTourneysPlayersStart'].replace('%s', self.sql.query['placeholder'])
             q_update_end       = self.sql.query['updateTourneysPlayersEnd'].replace('%s', self.sql.query['placeholder'])
-            q_update_start_end = self.sql.query['updateTourneysPlayersStartEnd'].replace('%s', self.sql.query['placeholder'])
+            q_update           = self.sql.query['updateTourneysPlayers'].replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
             for t, d in self.tc.iteritems():
                 d['startTime'] = d['startTime'].replace(tzinfo=None)
@@ -1952,6 +1955,8 @@ class Database:
                     c.execute(q_update_start,(d['startTime'], d['played'], d['hands'], d['tpid']))
                 elif d['endTime']>end:
                     c.execute(q_update_end,(d['endTime'], d['played'], d['hands'], d['tpid']))
+                else:
+                    c.execute(q_update,(d['played'], d['hands'], d['tpid']))
                 self.commit()
 
     def storeHandsPlayers(self, hid, pids, pdata, doinsert = False, printdata = False):

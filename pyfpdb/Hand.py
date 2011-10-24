@@ -326,10 +326,6 @@ dealt   whether they were seen in a 'dealt to' line
             db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, heros, doinsert) 
             db.storeGamesCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, tz, heros, doinsert)
             db.updateTourneysPlayersSessions(self.dbid_pids, self.tourneyId, self.startTime, self.handsplayers, heros, doinsert)
-                               
-            if doinsert:
-                db.appendSessionIds()
-                db.updateTourneysSessions()
 
     def select(self, db, handId):
         """ Function to create Hand object from database """

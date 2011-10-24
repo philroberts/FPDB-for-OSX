@@ -5123,6 +5123,13 @@ class Sql:
                     WHERE id=%s
         """
         
+        self.query['updateTourneysPlayers'] = """
+                    UPDATE TourneysPlayers SET
+                    played=played+%s,
+                    hands=hands+%s
+                    WHERE id=%s
+        """
+        
         ####################################
         # Database management queries
         ####################################
