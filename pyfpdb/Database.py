@@ -1633,19 +1633,24 @@ class Database:
     
     def rebuild_sessionscache(self, tz_name = None):
         """clears sessionscache and rebuilds from the individual records"""
-        heros = []
+        heros, hero, = [], {}
         c = self.get_cursor()
         c.execute("SELECT playerId FROM GamesCache GROUP BY playerId")
-        herorecords = c.fetchall()
-        for h in herorecords:
+        herorecords_cash = c.fetchall()
+        for h in herorecords_cash:
             heros += h
+        c.execute("SELECT playerId FROM TourneysPlayers WHERE startTime is not NULL GROUP BY playerId")
+        herorecords_tour = c.fetchall()
+        for h in herorecords_tour:
+            if h not in heros:
+                heros += h
         if not heros:
             for site in self.config.get_supported_sites():
                 result = self.get_site_id(site)
                 if result:
                     site_id = result[0][0]
-                    self.hero[site_id] = self.config.supported_sites[site].screen_name
-                    p_id = self.get_player_id(self.config, site, self.hero[site_id])
+                    hero[site_id] = self.config.supported_sites[site].screen_name
+                    p_id = self.get_player_id(self.config, site, hero[site_id])
                     if p_id:
                         heros.append(int(p_id))
                                 
@@ -1676,6 +1681,7 @@ class Database:
         c.execute(self.sql.query['clear_SC_H'])
         c.execute(self.sql.query['clear_SC_T'])
         c.execute(self.sql.query['clear_SC_GC'])
+        c.execute(self.sql.query['clear_SC_TP'])
         c.execute(self.sql.query['clearGamesCache'])
         c.execute(self.sql.query['clearSessionsCache'])
         self.commit()
@@ -1704,10 +1710,8 @@ class Database:
                     tmp = c.fetchone()
                     hid[id] = tid
                     self.storeSessionsCache (id, pids, startTime, heros, tmp == None)
-                    if game['type']=='ring':
-                        self.storeGamesCache(id, pids, startTime, gtid, pdata, tz_name, heros, tmp == None)
-                    else:
-                        self.updateTourneysPlayersSessions(pids, tid, startTime, pdata, heros, tmp == None)
+                    self.storeGamesCache(id, pids, startTime, gtid, game, pdata, tz_name, heros, tmp == None)
+                    self.updateTourneysPlayersSessions(pids, tid, startTime, pdata, heros, tmp == None)
                     if tmp == None:
                         for i, id in self.sc.iteritems():
                             if i!='bk':
