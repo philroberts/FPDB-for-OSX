@@ -76,10 +76,6 @@ class IdentifySite:
                 self.walkDirectory(self.in_path, self.sitelist)
             else:
                 self.processFile(self.in_path)
-                
-    def reset_list(self, list):
-        self.list = list
-        self.filelist = {}
 
     def get_filelist(self):
         return self.filelist
