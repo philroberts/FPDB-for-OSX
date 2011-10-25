@@ -2403,6 +2403,10 @@ class Database:
                     sid = self.get_last_insert_id(c)
                     for h in self.sc['bk'][i]['ids']: self.sc[h] = {'id': sid}
                     for m in merge:
+                        for h, n in self.sc.iteritems():
+                            if h!='bk':
+                                if n['id'] == m:
+                                    self.sc[h] = {'id': sid}
                         c.execute(update_SC_GC,(sid, m))
                         c.execute(update_SC_T, (sid, m))
                         c.execute(update_SC_H, (sid, m))
@@ -2557,6 +2561,10 @@ class Database:
                     gid = self.get_last_insert_id(c)
                     for h in self.gc['bk'][i]['ids']: self.gc[h] = {'id': gid}
                     for m in merge:
+                        for h, n in self.gc.iteritems():
+                            if h!='bk':
+                                if n['id'] == m:
+                                    self.gc[h] = {'id': gid}
                         c.execute(update_GC_H, (gid, m))
                         c.execute(delete_GC, m)
                 elif (num == 0):
