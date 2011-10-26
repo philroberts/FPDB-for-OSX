@@ -4954,6 +4954,7 @@ class Sql:
         self.query['clear_SC_GC'] = """UPDATE GamesCache SET sessionId = NULL"""
         self.query['clearSessionsCache'] = """DELETE FROM SessionsCache WHERE 1"""
         self.query['clearGamesCache']    = """DELETE FROM GamesCache WHERE 1"""
+        self.query['update_RSC_H']        = """UPDATE Hands SET sessionId = %s, gameId = %s WHERE id = %s"""
         
         self.query['rebuildSessionsCache'] = """
                     SELECT Hands.id as id,
@@ -4974,7 +4975,7 @@ class Sql:
                     WHERE  (HandsPlayers.playerId = <where_clause>)
                     AND Gametypes.type = %s
                     ORDER BY Hands.startTime ASC
-                    LIMIT %s, %s"""
+                    LIMIT %s OFFSET %s"""
                     
         ####################################
         # select

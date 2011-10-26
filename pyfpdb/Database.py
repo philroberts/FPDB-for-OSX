@@ -1654,7 +1654,7 @@ class Database:
                     if p_id:
                         heros.append(int(p_id))
                                 
-        rebuildSessionsCache    = self.sql.query['rebuildSessionsCache'] 
+        rebuildSessionsCache    = self.sql.query['rebuildSessionsCache']
         if len(heros) == 0:
             where         = '0'
             where_summary = '0'
@@ -1670,6 +1670,8 @@ class Database:
         rebuildSessionsCacheRing = rebuildSessionsCacheRing.replace('<tourney_type_clause>','NULL,')
         rebuildSessionsCacheTour = rebuildSessionsCache.replace('<tourney_join_clause>',"""INNER JOIN Tourneys ON (Tourneys.id = Hands.tourneyId)""")
         rebuildSessionsCacheTour = rebuildSessionsCacheTour.replace('<tourney_type_clause>','HandsPlayers.tourneysPlayersId,')
+        rebuildSessionsCacheRing = rebuildSessionsCacheRing.replace('%s', self.sql.query['placeholder'])
+        rebuildSessionsCacheTour = rebuildSessionsCacheTour.replace('%s', self.sql.query['placeholder'])
 
         max, queries, type = [], [rebuildSessionsCacheTour, rebuildSessionsCacheRing], ['tour', 'ring']
         c = self.get_cursor()
@@ -1691,7 +1693,7 @@ class Database:
             while start < max[k]:
                 hid = {}
                 self.resetBulkCache()
-                c.execute(queries[k], (type[k], start, limit))
+                c.execute(queries[k], (type[k], limit, start))
                 tmp = c.fetchone()
                 while tmp:
                     pids, game, pdata = {}, {}, {}
@@ -1720,7 +1722,9 @@ class Database:
                                     self.tbulk[hid[i]] = sid
                                     gid = None
                                 else: gid = self.gc[i]['id']
-                                c.execute("UPDATE Hands SET sessionId = %s, gameId = %s WHERE id = %s", (sid, gid, i))
+                                q = self.query['update_RSC_H']
+                                q = q.replace('%s', self.sql.query['placeholder'])
+                                c.execute(q, (sid, gid, i))
                         self.updateTourneysSessions()
                         self.commit()
                         break
@@ -1948,8 +1952,12 @@ class Database:
             q_update           = self.sql.query['updateTourneysPlayers'].replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
             for t, d in self.tc.iteritems():
-                d['startTime'] = d['startTime'].replace(tzinfo=None)
-                d['endTime']   = d['endTime'].replace(tzinfo=None)
+                if self.backend == self.SQLITE:
+                    d['startTime'] = datetime.strptime(d['startTime'], '%Y-%m-%d %H:%M:%S')
+                    d['endTime']   = datetime.strptime(d['endTime'], '%Y-%m-%d %H:%M:%S')
+                else:
+                    d['startTime'] = d['startTime'].replace(tzinfo=None)
+                    d['endTime']   = d['endTime'].replace(tzinfo=None)
                 c.execute(q_select, d['tpid'])
                 start, end = c.fetchone()
                 update = not start or not end
@@ -2327,7 +2335,10 @@ class Database:
         hand = {}
         for p, id in pids.iteritems():
             if id in heros:
-                hand['startTime'] = startTime.replace(tzinfo=None)
+                if self.backend == self.SQLITE:
+                    hand['startTime'] = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
+                else:
+                    hand['startTime'] = startTime.replace(tzinfo=None)
                 hand['ids'] = []
         
         if hand:
@@ -2424,7 +2435,10 @@ class Database:
         """Update cached sessions. If no record exists, do an insert"""
         utc = pytz.utc
         if tz_name in pytz.common_timezones:
-            naive = startTime.replace(tzinfo=None)
+            if self.backend == self.SQLITE:
+                naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
+            else:
+                naive = startTime.replace(tzinfo=None)
             utc_start = utc.localize(naive)
             tz = pytz.timezone(tz_name)
             loc_tz = utc_start.astimezone(tz).strftime('%z')
@@ -2456,7 +2470,10 @@ class Database:
                 hand['playerId']      = pid
                 hand['gametypeId']    = None
                 hand['date']          = date
-                hand['startTime']     = startTime.replace(tzinfo=None)
+                if self.backend == self.SQLITE:
+                    hand['startTime'] = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
+                else:
+                    hand['startTime'] = startTime.replace(tzinfo=None)
                 hand['hid']           = hid
                 hand['played']        = 0
                 hand['ids']           = []
