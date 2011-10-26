@@ -1604,7 +1604,7 @@ class Database:
             rebuild_sql_cash = self.replace_statscache(rebuild_sql_cash)
             self.get_cursor().execute(self.sql.query['clearHudCache'])
             self.get_cursor().execute(rebuild_sql_cash)
-            print _("Rebuild hudcache(cash) took %.1f seconds") % (time() - stime,)
+            #print _("Rebuild hudcache(cash) took %.1f seconds") % (time() - stime,)
 
             if self.hero_ids == {}:
                 where = "WHERE hp.tourneysPlayersId >= 0"
@@ -1624,7 +1624,7 @@ class Database:
 
             self.get_cursor().execute(rebuild_sql_tourney)
             self.commit()
-            print _("Rebuild hudcache took %.1f seconds") % (time() - stime,)
+            #print _("Rebuild hudcache took %.1f seconds") % (time() - stime,)
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
             print _("Error rebuilding hudcache:"), str(sys.exc_value)
