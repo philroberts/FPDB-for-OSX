@@ -426,29 +426,8 @@ dealt   whether they were seen in a 'dealt to' line
         # street2Raises | street3Raises | street4Raises | street1Pot | street2Pot |
         # street3Pot | street4Pot | showdownPot | comment | commentTs | texture
 
-
         # Actions
-        q = """SELECT
-                      ha.actionNo,
-                      p.name,
-                      ha.street,
-                      ha.actionId,
-                      ha.allIn,
-                      round(ha.amount / 100.0,2) as bet,
-                      ha.numDiscarded,
-                      ha.cardsDiscarded
-                FROM
-                      HandsActions as ha,
-                      Players as p,
-                      Hands as h
-                WHERE
-                          h.id = %s
-                      AND ha.handId = h.id
-                      AND ha.playerId = p.id
-                ORDER BY
-                      ha.id ASC
-"""
-
+        q = db.sql.query['handActions']
         q = q.replace('%s', db.sql.query['placeholder'])
         c.execute(q, (handId,))
         res = [dict(line) for line in [zip([ column[0] for column in c.description], row) for row in c.fetchall()]]

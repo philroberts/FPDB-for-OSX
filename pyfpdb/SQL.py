@@ -4107,6 +4107,31 @@ class Sql:
                 """
 
         ####################################
+        # Query for the actions of a hand
+        ####################################
+        self.query['handActions'] = """
+            SELECT
+-                      ha.actionNo,
+-                      p.name,
+-                      ha.street,
+-                      ha.actionId,
+-                      ha.allIn,
+-                      round(ha.amount / 100.0,2) as bet,
+-                      ha.numDiscarded,
+-                      ha.cardsDiscarded
+-                FROM
+-                      HandsActions as ha,
+-                      Players as p,
+-                      Hands as h
+-                WHERE
+-                          h.id = %s
+-                      AND ha.handId = h.id
+-                      AND ha.playerId = p.id
+-                ORDER BY
+-                      ha.id ASC
+                """
+
+        ####################################
         # Queries to rebuild/modify hudcache
         ####################################
       
