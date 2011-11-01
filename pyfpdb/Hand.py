@@ -337,10 +337,10 @@ dealt   whether they were seen in a 'dealt to' line
         # PlayerStacks
         c.execute(q, (handId,))
         # See NOTE: below on what this does.
-        res = [dict(line) for line in [zip([ column[0] for column in c.description], row) for row in c.fetchall()]]
+        res = [dict(line) for line in [zip([ column[0].lower() for column in c.description], row) for row in c.fetchall()]]
         for row in res:
             #print "DEBUG: addPlayer(%s, %s, %s)" %(seat,name,str(chips))
-            self.addPlayer(row['seatNo'],row['name'],str(row['chips']))
+            self.addPlayer(row['seatno'],row['name'],str(row['chips']))
             cardlist = []
             cardlist.append(Card.valueSuitFromCard(row['card1']))
             cardlist.append(Card.valueSuitFromCard(row['card2']))
@@ -380,7 +380,7 @@ dealt   whether they were seen in a 'dealt to' line
             if row['winnings'] > 0:
                 self.addCollectPot(row['name'], str(row['winnings']))
             if row['position'] == 'B':
-                self.buttonpos = row['seatNo']
+                self.buttonpos = row['seatno']
 
 
         # HandInfo
@@ -395,19 +395,20 @@ dealt   whether they were seen in a 'dealt to' line
 
         # Using row_factory is global, and affects the rest of fpdb. The following 2 line achieves
         # a similar result
-        res = [dict(line) for line in [zip([ column[0] for column in c.description], row) for row in c.fetchall()]]
+        # Discripter must be set to lowercase as supported dbs differ on what is returned.
+        res = [dict(line) for line in [zip([ column[0].lower() for column in c.description], row) for row in c.fetchall()]]
         res = res[0]
 
         #res['tourneyId'] #res['seats'] #res['rush']
-        self.tablename = res['tableName']
-        self.handid    = res['siteHandNo']
+        self.tablename = res['tablename']
+        self.handid    = res['sitehandno']
         # FIXME: Need to figure out why some times come out of the DB as %Y-%m-%d %H:%M:%S+00:00,
         #        and others as %Y-%m-%d %H:%M:%S
         #print "DBEUG: res['startTime']: %s" % res['startTime']
         try:
-            self.startTime = datetime.datetime.strptime(res['startTime'], "%Y-%m-%d %H:%M:%S+00:00")
+            self.startTime = datetime.datetime.strptime(res['starttime'], "%Y-%m-%d %H:%M:%S+00:00")
         except ValueError:
-            self.startTime = datetime.datetime.strptime(res['startTime'], "%Y-%m-%d %H:%M:%S")
+            self.startTime = datetime.datetime.strptime(res['starttime'], "%Y-%m-%d %H:%M:%S")
 
         cards = map(Card.valueSuitFromCard, [res['boardcard1'], res['boardcard2'], res['boardcard3'], res['boardcard4'], res['boardcard5']])
         #print "DEBUG: res['boardcard1']: %s" % res['boardcard1']
@@ -427,15 +428,15 @@ dealt   whether they were seen in a 'dealt to' line
         q = db.sql.query['handActions']
         q = q.replace('%s', db.sql.query['placeholder'])
         c.execute(q, (handId,))
-        res = [dict(line) for line in [zip([ column[0] for column in c.description], row) for row in c.fetchall()]]
+        res = [dict(line) for line in [zip([ column[0].lower() for column in c.description], row) for row in c.fetchall()]]
         for row in res:
             name = row['name']
             street = row['street']
-            act = row['actionId']
+            act = row['actionid']
             # allin True/False if row['allIn'] == 0
             bet = row['bet']
             street = self.allStreets[int(street)+1]
-            discards = row['cardsDiscarded']
+            discards = row['cardsdiscarded']
             #print "DEBUG: name: '%s' street: '%s' act: '%s' bet: '%s'" %(name, street, act, bet)
             if   act == 1: # Ante
                 self.addAnte(name, str(bet))
@@ -460,7 +461,7 @@ dealt   whether they were seen in a 'dealt to' line
             elif act == 11: # Check
                 self.addCheck(street, name)
             elif act == 12: # Discard
-                self.addDiscard(street, name, row['numDiscarded'], discards)
+                self.addDiscard(street, name, row['numdiscarded'], discards)
             elif act == 13: # Bringin
                 self.addBringIn(name, str(bet))
             elif act == 14: # Complete
