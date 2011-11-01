@@ -4083,6 +4083,30 @@ class Sql:
                 ORDER BY startTime"""
 
         ####################################
+        # Query to get a single player hand for the replayer
+        ####################################
+        self.query['playerHand'] = """
+            SELECT
+                        hp.seatno,
+                        round(hp.winnings / 100.0,2) as winnings,
+                        p.name,
+                        round(hp.startCash / 100.0,2) as chips,
+                        hp.card1,hp.card2,hp.card3,hp.card4,hp.card5,
+                        hp.card6,hp.card7,hp.card8,hp.card9,hp.card10,
+                        hp.card11,hp.card12,hp.card13,hp.card14,hp.card15,
+                        hp.card16,hp.card17,hp.card18,hp.card19,hp.card20,
+                        hp.position
+                    FROM
+                        HandsPlayers as hp,
+                        Players as p
+                    WHERE
+                        hp.handId = %s
+                        and p.id = hp.playerId
+                    ORDER BY
+                        hp.seatno
+                """
+
+        ####################################
         # Queries to rebuild/modify hudcache
         ####################################
       
