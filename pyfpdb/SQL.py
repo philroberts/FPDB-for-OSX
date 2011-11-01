@@ -4073,6 +4073,14 @@ class Sql:
                  <currency_test>
                 ORDER by time"""
 
+        ####################################
+        # Querry to get all hands in a date range
+        ####################################
+        self.query['handsInRange'] = """
+            SELECT id
+                FROM Hands h
+                WHERE h.startTime <datetest>
+                ORDER BY startTime"""
 
         ####################################
         # Queries to rebuild/modify hudcache
