@@ -66,7 +66,7 @@ class PokerStarsSummary(TourneySummary):
                         (Target\sTournament\s.*)?
                         Tournament\sstarted\s+(-\s)?
                         (?P<DATETIME>.*$)
-                        """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
+                        """ % substitutions ,re.VERBOSE|re.MULTILINE)
 
     re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP)""" % substitutions)
 
