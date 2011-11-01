@@ -364,10 +364,10 @@ class Sql:
                             id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                             tableName VARCHAR(50) NOT NULL,
                             siteHandNo BIGINT NOT NULL,
-                            tourneyId INT UNSIGNED, 
+                            tourneyId INT UNSIGNED, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                             gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-                            sessionId INT UNSIGNED,
-                            gameSessionId INT UNSIGNED,
+                            sessionId INT UNSIGNED, FOREIGN KEY (sessionId) REFERENCES SessionsCache(id),
+                            gameId INT UNSIGNED, FOREIGN KEY (gameId) REFERENCES GamesCache(id),
                             fileId INT(10) UNSIGNED NOT NULL, FOREIGN KEY (fileId) REFERENCES Files(id), 
                             startTime DATETIME NOT NULL,
                             importTime DATETIME NOT NULL,
@@ -404,10 +404,10 @@ class Sql:
                             id BIGSERIAL, PRIMARY KEY (id),
                             tableName VARCHAR(50) NOT NULL,
                             siteHandNo BIGINT NOT NULL,
-                            tourneyId INT,
+                            tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                             gametypeId INT NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-                            sessionId INT,
-                            gameSessionId INT,
+                            sessionId INT, FOREIGN KEY (sessionId) REFERENCES SessionsCache(id),
+                            gameId INT, FOREIGN KEY (gameId) REFERENCES GamesCache(id),
                             fileId BIGINT NOT NULL, FOREIGN KEY (fileId) REFERENCES Files(id),
                             startTime timestamp without time zone NOT NULL,
                             importTime timestamp without time zone NOT NULL,
@@ -446,7 +446,7 @@ class Sql:
                             tourneyId INT,
                             gametypeId INT NOT NULL,
                             sessionId INT,
-                            gameSessionId INT,
+                            gameId INT,
                             fileId INT NOT NULL,
                             startTime REAL NOT NULL,
                             importTime REAL NOT NULL,
@@ -479,7 +479,7 @@ class Sql:
                             commentTs REAL)"""
                             
         ################################
-        # Create Hands
+        # Create Boards
         ################################
 
         if db_server == 'mysql':
@@ -619,10 +619,11 @@ class Sql:
             self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
                         id INT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        sessionId INT UNSIGNED, FOREIGN KEY (sessionId) REFERENCES SessionsCache(id),
                         siteTourneyNo BIGINT NOT NULL,
                         entries INT,
                         prizepool INT,
-                        startTime DATETIME NOT NULL,
+                        startTime DATETIME,
                         endTime DATETIME,
                         tourneyName varchar(40),
                         matrixIdProcessed TINYINT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
@@ -635,6 +636,7 @@ class Sql:
             self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
                         id SERIAL, PRIMARY KEY (id),
                         tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        sessionId INT, FOREIGN KEY (sessionId) REFERENCES SessionsCache(id),
                         siteTourneyNo BIGINT,
                         entries INT,
                         prizepool INT,
@@ -650,6 +652,7 @@ class Sql:
             self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
                         id INTEGER PRIMARY KEY,
                         tourneyTypeId INT,
+                        sessionId INT,
                         siteTourneyNo INT,
                         entries INT,
                         prizepool INT,
@@ -661,6 +664,7 @@ class Sql:
                         totalAddOnCount INT,
                         comment TEXT,
                         commentTs REAL)"""
+                        
         ################################
         # Create HandsPlayers
         ################################
@@ -1106,12 +1110,16 @@ class Sql:
                         id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         tourneyId INT UNSIGNED NOT NULL, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        startTime DATETIME,
+                        endTime DATETIME,
                         rank INT,
                         winnings INT,
                         winningsCurrency VARCHAR(4),
                         rebuyCount INT,
                         addOnCount INT,
                         koCount INT,
+                        played INT,
+                        hands INT,
                         comment TEXT,
                         commentTs DATETIME)
                         ENGINE=INNODB"""
@@ -1120,12 +1128,16 @@ class Sql:
                         id BIGSERIAL, PRIMARY KEY (id),
                         tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        startTime timestamp without time zone,
+                        endTime timestamp without time zone,
                         rank INT,
                         winnings INT,
                         winningsCurrency VARCHAR(4),
                         rebuyCount INT,
                         addOnCount INT,
                         koCount INT,
+                        played INT,
+                        hands INT,
                         comment TEXT,
                         commentTs timestamp without time zone)"""
         elif db_server == 'sqlite':
@@ -1133,12 +1145,16 @@ class Sql:
                         id INTEGER PRIMARY KEY,
                         tourneyId INT,
                         playerId INT,
+                        startTime timestamp,
+                        endTime timestamp,
                         rank INT,
                         winnings INT,
                         winningsCurrency VARCHAR(4),
                         rebuyCount INT,
                         addOnCount INT,
                         koCount INT,
+                        played INT,
+                        hands INT,
                         comment TEXT,
                         commentTs timestamp without time zone,
                         FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
@@ -1639,60 +1655,69 @@ class Sql:
 
         if db_server == 'mysql':
             self.query['createSessionsCacheTable'] = """CREATE TABLE SessionsCache (
-                        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        id INT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         sessionStart DATETIME NOT NULL,
-                        sessionEnd DATETIME NOT NULL,
-                        gameStart DATETIME NOT NULL,
-                        gameEnd DATETIME NOT NULL,
-                        sessionId BIGINT,
-                        date CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
-                        type char(7) NOT NULL,
-                        gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-                        tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
-                        tourneyId INT UNSIGNED, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
-                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        played INT NOT NULL,
-                        hands INT NOT NULL,
-                        tourneys INT NOT NULL,
-                        totalProfit INT,
-                        allInEV INT)
+                        sessionEnd DATETIME NOT NULL)
                         ENGINE=INNODB
                         """
                         
         elif db_server == 'postgresql':
             self.query['createSessionsCacheTable'] = """CREATE TABLE SessionsCache (
-                        id BIGSERIAL, PRIMARY KEY (id),
+                        id SERIAL, PRIMARY KEY (id),
                         sessionStart timestamp without time zone NOT NULL,
-                        sessionEnd timestamp without time zone NOT NULL,
-                        gameStart timestamp without time zone NOT NULL,
-                        gameEnd timestamp without time zone NOT NULL,
-                        sessionId INT,
-                        date CHAR(7) NOT NULL, /* 1st char is style (A/T/H/S), other 6 are the key */
-                        type char(7),
-                        gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-                        tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
-                        tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
-                        playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        played INT,
-                        hands INT,
-                        tourneys INT,
-                        totalProfit INT,
-                        allInEV INT)
+                        sessionEnd timestamp without time zone NOT NULL)
                         """
                         
         elif db_server == 'sqlite':
             self.query['createSessionsCacheTable'] = """CREATE TABLE SessionsCache (
                         id INTEGER PRIMARY KEY,
                         sessionStart timestamp NOT NULL,
-                        sessionEnd timestamp NOT NULL,
+                        sessionEnd timestamp NOT NULL)
+                        """
+                        
+        ################################
+        # Create GamesCache
+        ################################
+
+        if db_server == 'mysql':
+            self.query['createGamesCacheTable'] = """CREATE TABLE GamesCache (
+                        id INT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        sessionId INT UNSIGNED, FOREIGN KEY (sessionId) REFERENCES SessionsCache(id),
+                        gameStart DATETIME NOT NULL,
+                        gameEnd DATETIME NOT NULL,
+                        date CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
+                        gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        played INT NOT NULL,
+                        hands INT NOT NULL,
+                        totalProfit INT,
+                        allInEV INT)
+                        ENGINE=INNODB
+                        """
+                        
+        elif db_server == 'postgresql':
+            self.query['createGamesCacheTable'] = """CREATE TABLE GamesCache (
+                        id SERIAL, PRIMARY KEY (id),
+                        sessionId INT, FOREIGN KEY (sessionId) REFERENCES SessionsCache(id),
+                        gameStart timestamp without time zone NOT NULL,
+                        gameEnd timestamp without time zone NOT NULL,
+                        date CHAR(7) NOT NULL, /* 1st char is style (A/T/H/S), other 6 are the key */
+                        gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                        playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        played INT,
+                        hands INT,
+                        totalProfit INT,
+                        allInEV INT)
+                        """
+                        
+        elif db_server == 'sqlite':
+            self.query['createGamesCacheTable'] = """CREATE TABLE GamesCache (
+                        id INTEGER PRIMARY KEY,
+                        sessionId INT,
                         gameStart timestamp NOT NULL,
                         gameEnd timestamp NOT NULL,
-                        sessionId INT,
                         date TEXT NOT NULL, /* 1st char is style (A/T/H/S), other 6 are the key */
-                        type TEXT,
                         gametypeId INT,
-                        tourneyTypeId INT,
-                        tourneyId INT,
                         playerId INT,
                         played INT,
                         hands INT,
@@ -1700,14 +1725,6 @@ class Sql:
                         totalProfit INT,
                         allInEV INT)
                         """
-        
-        self.query['dropSessionIdIndex'] = "ALTER TABLE SessionsCache DROP INDEX index_SessionId"
-        self.query['dropHandsSessionIdIndex'] = "ALTER TABLE Hands DROP INDEX index_handsSessionId"
-        self.query['dropHandsGameSessionIdIndex'] = "ALTER TABLE Hands DROP INDEX index_handsGameSessionId"
-                        
-        self.query['addSessionIdIndex'] = """CREATE INDEX index_SessionId ON SessionsCache (sessionId)"""
-        self.query['addHandsSessionIdIndex'] = """CREATE INDEX index_handsSessionId ON Hands (sessionId)"""
-        self.query['addHandsGameSessionIdIndex'] = """CREATE INDEX index_handsGameSessionId ON Hands (gameSessionId)"""
 
         if db_server == 'mysql':
             self.query['addTourneyIndex'] = """ALTER TABLE Tourneys ADD UNIQUE INDEX siteTourneyNo(siteTourneyNo, tourneyTypeId)"""
@@ -4995,15 +5012,22 @@ class Sql:
         # Queries to rebuild/modify sessionscache
         ####################################
         
-        self.query['clearSessionsCache'] = """DROP TABLE IF EXISTS SessionsCache"""
+        self.query['clear_GC_H']  = """UPDATE Hands SET gameId = NULL"""
+        self.query['clear_SC_H']  = """UPDATE Hands SET sessionId = NULL"""
+        self.query['clear_SC_T']  = """UPDATE Tourneys SET sessionId = NULL"""
+        self.query['clear_SC_TP'] = """UPDATE TourneysPlayers SET startTime = NULL, endTime = NULL, played=0, hands=0"""
+        self.query['clear_SC_GC'] = """UPDATE GamesCache SET sessionId = NULL"""
+        self.query['clearSessionsCache'] = """DELETE FROM SessionsCache WHERE 1"""
+        self.query['clearGamesCache']    = """DELETE FROM GamesCache WHERE 1"""
+        self.query['update_RSC_H']        = """UPDATE Hands SET sessionId = %s, gameId = %s WHERE id = %s"""
         
         self.query['rebuildSessionsCache'] = """
                     SELECT Hands.id as id,
                     Hands.startTime as startTime,
                     HandsPlayers.playerId as playerId,
+                    Hands.tourneyId as tourneyId,
                     Hands.gametypeId as gametypeId,
                     Gametypes.type as game,
-                    Hands.tourneyId as tourneyId,
                     <tourney_type_clause>
                     HandsPlayers.totalProfit as totalProfit,
                     HandsPlayers.allInEV as allInEV,
@@ -5016,130 +5040,161 @@ class Sql:
                     WHERE  (HandsPlayers.playerId = <where_clause>)
                     AND Gametypes.type = %s
                     ORDER BY Hands.startTime ASC
-                    LIMIT %s, %s"""
+                    LIMIT %s OFFSET %s"""
                     
-        self.query['rebuildSessionsCacheSum'] = """
-                    SELECT Tourneys.id as id,
-                    Tourneys.startTime as startTime,
-                    TourneysPlayers.playerId,
-                    TourneyTypes.id as tourneyTypeId,
-                    TourneysPlayers.winnings as winnings,
-                    TourneysPlayers.winningsCurrency as winningsCurrency,
-                    TourneyTypes.currency as buyinCurrency,
-                    TourneyTypes.buyIn as buyIn,
-                    TourneyTypes.fee as fee,
-                    case when TourneyTypes.rebuy then TourneyTypes.rebuyCost else 0 end as rebuyCost,
-                    case when TourneyTypes.rebuy then TourneyTypes.rebuyFee else 0 end as rebuyFee,
-                    case when TourneyTypes.addOn then TourneyTypes.addOnCost else 0 end as addOnCost,
-                    case when TourneyTypes.addOn then TourneyTypes.addOnFee else 0 end as addOnFee,
-                    case when TourneyTypes.knockout then TourneyTypes.koBounty else 0 end as koBounty
-                    FROM  Tourneys, TourneyTypes, TourneysPlayers
-                    WHERE Tourneys.tourneyTypeId = TourneyTypes.id
-                    AND   Tourneys.id = TourneysPlayers.tourneyId
-                    AND (case when TourneysPlayers.playerId = <where_clause> then 1 else 0 end) = 1
-                    ORDER BY Tourneys.startTime ASC"""
-            
-        self.query['select_prepSC'] = """
-                    SELECT sessionId as id,
+        ####################################
+        # select
+        ####################################
+        
+        self.query['select_SC'] = """
+                    SELECT id,
                     sessionStart,
-                    sessionEnd,
-                    count(sessionId) as count
+                    sessionEnd
                     FROM SessionsCache
                     WHERE sessionEnd>=%s
-                    AND sessionStart<=%s
-                    GROUP BY sessionId, sessionStart, sessionEnd"""
+                    AND sessionStart<=%s"""
                     
-        self.query['update_prepSC'] = """
-                    UPDATE SessionsCache SET 
-                    sessionStart=%s,
-                    sessionEnd=%s
-                    WHERE sessionId=%s"""
+        self.query['select_GC'] = """
+                    SELECT id,
+                    sessionId,
+                    gameStart,
+                    gameEnd,
+                    played,
+                    hands,
+                    totalProfit,
+                    allInEV
+                    FROM GamesCache
+                    WHERE gameEnd>=%s
+                    AND gameStart<=%s
+                    AND date=%s
+                    AND gametypeId=%s
+                    AND playerId=%s"""
+                    
+        ####################################
+        # insert
+        ####################################
+                            
+        self.query['insert_SC'] = """
+                    insert into SessionsCache (
+                    sessionStart,
+                    sessionEnd)
+                    values (%s, %s)"""
+                            
+        self.query['insert_GC'] = """
+                    insert into GamesCache (
+                    sessionId,
+                    gameStart,
+                    gameEnd,
+                    date,
+                    gametypeId,
+                    playerId,
+                    played,
+                    hands,
+                    totalProfit,
+                    allInEV)
+                    values (%s, %s, %s, %s, %s,
+                            %s, %s, %s, %s, %s)"""
+                    
+        ####################################
+        # update
+        ####################################
                     
         self.query['update_SC'] = """
                     UPDATE SessionsCache SET 
                     sessionStart=%s,
-                    sessionEnd=%s,
+                    sessionEnd=%s
+                    WHERE id=%s"""
+                    
+        self.query['update_GC'] = """
+                    UPDATE GamesCache SET
                     gameStart=%s,
                     gameEnd=%s,
                     played=played+%s,
                     hands=hands+%s,
-                    tourneys=tourneys+%s, 
                     totalProfit=totalProfit+%s,
                     allInEV=allInEV+%s
                     WHERE id=%s"""
                     
-        self.query['select_SC'] = """
-                    SELECT id,
-                    sessionStart,
-                    sessionEnd,
-                    gameStart,
-                    gameEnd,
-                    sessionId,
-                    date,
-                    type,
-                    gametypeId,
-                    tourneyTypeId,
-                    tourneyId,
-                    playerId,
-                    played,
-                    hands,
-                    tourneys,
-                    totalProfit,
-                    allInEV
-                    FROM SessionsCache
-                    WHERE gameEnd>=%s
-                    AND gameStart<=%s
-                    AND date=%s
-                    AND type=%s
-                    AND (case when gametypeId is NULL then 1 else 
-                        (case when gametypeId=%s then 1 else 0 end) end)=1
-                    AND (case when tourneyTypeId is NULL then 1 else 
-                        (case when tourneyTypeId=%s then 1 else 0 end) end)=1
-                    AND (case when tourneyId is NULL then 1 else 
-                        (case when tourneyId=%s then 1 else 0 end) end)=1
-                    AND playerId=%s"""
-                    
-        self.query['insert_SC'] = """
-                    insert into SessionsCache (
-                    sessionStart,
-                    sessionEnd,
-                    gameStart,
-                    gameEnd,
-                    sessionId,
-                    date,
-                    type,
-                    gametypeId,
-                    tourneyTypeId,
-                    tourneyId,
-                    playerId,
-                    played,
-                    hands,
-                    tourneys,
-                    totalProfit,
-                    allInEV)
-                    values (%s, %s, %s, %s, %s, %s, %s, %s,
-                            %s, %s, %s, %s, %s, %s, %s, %s)"""
-                            
-        self.query['update_Hands_gsid'] = """
-                    UPDATE Hands SET
-                    gameSessionId=%s
-                    WHERE gameSessionId=%s"""
-                            
-        self.query['update_Hands_sid'] = """
-                    UPDATE Hands SET
-                    sessionId=%s
-                    WHERE sessionId=%s"""
-                    
-        self.query['update_SC_sid'] = """
-                    UPDATE SessionsCache SET
-                    sessionStart=%s,
-                    sessionEnd=%s,
-                    sessionId=%s
-                    WHERE sessionId=%s"""
+        ####################################
+        # delete
+        ####################################
                     
         self.query['delete_SC'] = """
                     DELETE FROM SessionsCache
                     WHERE id=%s"""
+                    
+        self.query['delete_GC'] = """
+                    DELETE FROM GamesCache
+                    WHERE id=%s"""
+                    
+        ####################################
+        # update GamesCache, Hands, Tourneys
+        ####################################
+                    
+        self.query['update_SC_GC'] = """
+                    UPDATE GamesCache SET
+                    sessionId=%s
+                    WHERE sessionId=%s"""
+                    
+        self.query['update_SC_T'] = """
+                    UPDATE Tourneys SET
+                    sessionId=%s
+                    WHERE sessionId=%s"""
+                            
+        self.query['update_SC_H'] = """
+                    UPDATE Hands SET
+                    sessionId=%s
+                    WHERE sessionId=%s"""
+                            
+        self.query['update_GC_H'] = """
+                    UPDATE Hands SET
+                    gameId=%s
+                    WHERE gameId=%s"""
+                    
+        ####################################
+        # update Tourneys w. sessionIds, hands, start/end
+        ####################################
+                    
+        self.query['updateTourneysSessions'] = """
+                    UPDATE Tourneys SET
+                    sessionId=%s
+                    WHERE id=%s"""
+                    
+        self.query['selectTourneysPlayersStartEnd'] = """
+                    SELECT startTime, endTime
+                    FROM TourneysPlayers
+                    WHERE id=%s"""
+        
+        self.query['updateTourneysPlayersStart'] = """
+                    UPDATE TourneysPlayers SET
+                    startTime=%s,
+                    played=played+%s,
+                    hands=hands+%s
+                    WHERE id=%s"""
+        
+        self.query['updateTourneysPlayersEnd'] = """
+                    UPDATE TourneysPlayers SET
+                    endTime=%s,
+                    played=played+%s,
+                    hands=hands+%s
+                    WHERE id=%s
+        """
+        
+        self.query['updateTourneysPlayersStartEnd'] = """
+                    UPDATE TourneysPlayers SET
+                    startTime=%s,
+                    endTime=%s,
+                    played=played+%s,
+                    hands=hands+%s
+                    WHERE id=%s
+        """
+        
+        self.query['updateTourneysPlayers'] = """
+                    UPDATE TourneysPlayers SET
+                    played=played+%s,
+                    hands=hands+%s
+                    WHERE id=%s
+        """
         
         ####################################
         # Database management queries
@@ -5296,10 +5351,10 @@ class Sql:
         """
         
         self.query['insertTourney'] = """INSERT INTO Tourneys
-                                            (tourneyTypeId, siteTourneyNo, entries, prizepool,
+                                            (tourneyTypeId, sessionId, siteTourneyNo, entries, prizepool,
                                              startTime, endTime, tourneyName, matrixIdProcessed,
                                              totalRebuyCount, totalAddOnCount)
-                                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         
         self.query['updateTourney'] = """UPDATE Tourneys
@@ -5331,9 +5386,22 @@ class Sql:
                                                  WHERE id=%s
         """
 
-        self.query['insertTourneysPlayer'] = """insert into TourneysPlayers
-                                                    (tourneyId, playerId, rank, winnings, winningsCurrency, rebuyCount, addOnCount, koCount)
-                                                values (%s, %s, %s, %s, %s, %s, %s, %s)
+        self.query['insertTourneysPlayer'] = """insert into TourneysPlayers(
+                                                    tourneyId,
+                                                    playerId,
+                                                    startTime,
+                                                    endTime,
+                                                    rank,
+                                                    winnings,
+                                                    winningsCurrency,
+                                                    rebuyCount,
+                                                    addOnCount,
+                                                    koCount,
+                                                    played,
+                                                    hands
+                                                )
+                                                values (%s, %s, %s, %s, %s, %s,
+                                                        %s, %s, %s, %s, %s, %s)
         """
 
         self.query['selectHandsPlayersWithWrongTTypeId'] = """SELECT id
@@ -5361,7 +5429,7 @@ class Sql:
                                             tourneyId,
                                             gametypeid,
                                             sessionId,
-                                            gameSessionId,
+                                            gameId,
                                             fileId,
                                             startTime,
                                             importtime,

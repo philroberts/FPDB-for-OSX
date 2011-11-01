@@ -257,7 +257,6 @@ dealt   whether they were seen in a 'dealt to' line
                             int(self.gametype['maxSeats']), int(self.gametype['ante']*100))
         # Note: the above data is calculated in db.getGameTypeId
         #       Only being calculated above so we can grab the testdata
-        
         if self.tourNo!=None:
             self.tourneyTypeId = db.getSqlTourneyTypeIDs(self)
             self.tourneyId = db.getSqlTourneyIDs(self)
@@ -280,53 +279,53 @@ dealt   whether they were seen in a 'dealt to' line
             self.hands['id'] = self.dbid_hands
             next = id +1
         return next
+    
+    #def insertTourneys(self, db):
+    #    if self.tourNo!=None:
+    #        self.tourneyTypeId = db.getSqlTourneyTypeIDs(self)
+    #        self.tourneyId = db.getSqlTourneyIDs(self)
+    #        self.tourneysPlayersIds = db.getSqlTourneysPlayersIDs(self)
 
-    def insertHands(self, db, hbulk, fileId, doinsert = False, printtest = False):
+    def insertHands(self, db, fileId, doinsert = False, printtest = False):
         """ Function to insert Hand into database
             Should not commit, and do minimal selects. Callers may want to cache commits
             db: a connected Database object"""
         self.hands['gametypeId'] = self.dbid_gt
-        self.hands['seats'] = len(self.dbid_pids)
-        self.hands['fileId'] = fileId
-        hbulk = db.storeHand(self.hands, hbulk, doinsert, printtest)
-        return hbulk
+        self.hands['seats']      = len(self.dbid_pids)
+        self.hands['fileId']     = fileId
+        db.storeHand(self.hands, doinsert, printtest)
+        db.storeBoards(self.dbid_hands, self.hands['boards'], doinsert)
 
-    def insertHandsPlayers(self, db, hpbulk, doinsert = False, printtest = False):
+    def insertHandsPlayers(self, db, doinsert = False, printtest = False):
         """ Function to inserts HandsPlayers into database"""
-        hpbulk = db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.handsplayers, hpbulk, doinsert, printtest)
-        return hpbulk
+        db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.handsplayers, doinsert, printtest)
     
-    def insertHandsActions(self, db, habulk, doinsert = False, printtest = False):
+    def insertHandsActions(self, db, doinsert = False, printtest = False):
         """ Function to inserts HandsActions into database"""
         handsactions = self.stats.getHandsActions()
-        habulk = db.storeHandsActions(self.dbid_hands, self.dbid_pids, handsactions, habulk, doinsert, printtest)
-        return habulk
+        db.storeHandsActions(self.dbid_hands, self.dbid_pids, handsactions, doinsert, printtest)
     
-    def insertHandsStove(self, db, hsbulk, doinsert = False):
+    def insertHandsStove(self, db, doinsert = False):
         """ Function to inserts HandsActions into database"""
         if self.handsstove:
             for hs in self.handsstove: hs[0] = self.dbid_hands
-            hsbulk = db.storeHandsStove(self.handsstove, hsbulk, doinsert)
-        return hsbulk
+            db.storeHandsStove(self.handsstove, doinsert)
 
-    def updateHudCache(self, db, hcbulk, doinsert = False):
+    def updateHudCache(self, db, doinsert = False):
         """ Function to update the HudCache"""
         if self.callHud:
-            hcbulk = db.storeHudCache(self.dbid_gt, self.dbid_pids, self.startTime, self.handsplayers, hcbulk, doinsert)
-        return hcbulk
+            db.storeHudCache(self.dbid_gt, self.dbid_pids, self.startTime, self.handsplayers, doinsert)
         
-    def updateSessionsCache(self, db, sc, gsc, tz, doinsert = False):
+    def updateSessionsCache(self, db, tz, doinsert = False):
         """ Function to update the SessionsCache"""
         if self.cacheSessions:
             heros = []
-            if self.hero in self.dbid_pids: heros = [self.dbid_pids[self.hero]]   
-            sc = db.prepSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, sc, heros, doinsert)
-            gsc = db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.gametype, self.dbid_gt
-                                       ,self.tourneyId, self.handsplayers, sc, gsc, tz, heros, doinsert)
-        if doinsert:
-            self.hands['sc'] = sc
-            self.hands['gsc'] = gsc
-        return sc, gsc
+            if self.hero in self.dbid_pids: 
+                heros = [self.dbid_pids[self.hero]]
+                
+            db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, heros, doinsert) 
+            db.storeGamesCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, tz, heros, doinsert)
+            db.updateTourneysPlayersSessions(self.dbid_pids, self.tourneyId, self.startTime, self.handsplayers, heros, doinsert)
 
     def select(self, db, handId):
         """ Function to create Hand object from database """

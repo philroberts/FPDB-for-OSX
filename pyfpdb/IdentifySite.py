@@ -25,6 +25,9 @@ from optparse import OptionParser
 import codecs
 import Database
 import Configuration
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("parser")
 
 __ARCHIVE_PRE_HEADER_REGEX='^Hand #(\d+)\s*$|\*{20}\s#\s\d+\s\*{20,25}\s+'
 re_SplitArchive = re.compile(__ARCHIVE_PRE_HEADER_REGEX, re.MULTILINE)
@@ -118,7 +121,7 @@ class IdentifySite:
                 if whole_file:
                     fobj = self.idSite(path, whole_file, kodec)
                     if fobj == False: # Site id failed
-                        print "DEBUG: siteId Failed for: %s" % path
+                        log.debug(_("DEBUG: siteId Failed for: %s") % path)
                     else:
                         self.filelist[path] = fobj
 
