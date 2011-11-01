@@ -65,14 +65,14 @@ class PokerStarsSummary(TourneySummary):
                         (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[.0-9]+)(\s(%(LEGAL_ISO)s))?\s+)?
                         (Target\sTournament\s.*)?
                         Tournament\sstarted\s+(-\s)?
-                        (?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\-\s]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s?\(?(?P<TZ>[A-Z]+)\)?\s
-                               """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
+                        (?P<DATETIME>.*$)
+                        """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
 
     re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP)""" % substitutions)
 
     re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s)?([%(LS)s](?P<WINNINGS>[0-9]+\.[0-9]+))?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(\s+)?""" % substitutions)
 
-    re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
+    re_DateTime = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
     codepage = ["utf-8"]
 
@@ -99,13 +99,13 @@ class PokerStarsSummary(TourneySummary):
             self.fee   = int(100*Decimal(mg['FEE']))
         if 'PRIZEPOOL' in mg: self.prizepool             = mg['PRIZEPOOL']
         if 'ENTRIES'   in mg: self.entries               = mg['ENTRIES']
-
-        datetimestr = "%s/%s/%s %s:%s:%s" % (mg['Y'], mg['M'], mg['D'], mg['H'], mg['MIN'], mg['S'])
-        self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
-
-        if 'TZ' in mg:
-            self.startTime = HandHistoryConverter.changeTimezone(self.startTime, mg['TZ'], "UTC")
-
+        if 'DATETIME'  in mg: m1 = self.re_DateTime.finditer(mg['DATETIME'])
+        datetimestr = "2000/01/01 00:00:00"  # default used if time not found
+        for a in m1:
+            datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
+            
+        self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+        self.startTime = HandHistoryConverter.changeTimezone(self.startTime, "ET", "UTC")
 
         m = self.re_Currency.search(self.summaryText)
         if m == None:
