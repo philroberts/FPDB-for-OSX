@@ -4083,6 +4083,14 @@ class Sql:
                 ORDER BY startTime"""
 
         ####################################
+        # Query to get a single hand for the replayer
+        ####################################
+        self.query['singleHand'] = """
+                 SELECT h.*
+                    FROM hands h
+                    WHERE id = %s"""
+
+        ####################################
         # Query to get a single player hand for the replayer
         ####################################
         self.query['playerHand'] = """

@@ -384,10 +384,7 @@ dealt   whether they were seen in a 'dealt to' line
 
 
         # HandInfo
-        q = """SELECT *
-                    FROM Hands
-                    WHERE id = %s
-            """
+        q = db.sql.query['singleHand']
         q = q.replace('%s', db.sql.query['placeholder'])
         c.execute(q, (handId,))
 
