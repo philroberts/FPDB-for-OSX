@@ -328,30 +328,13 @@ class Hand(object):
     def select(self, db, handId):
         """ Function to create Hand object from database """
         c = db.get_cursor()
-        q = """SELECT
-                        hp.seatno,
-                        round(hp.winnings / 100.0,2) as winnings,
-                        p.name,
-                        round(hp.startCash / 100.0,2) as chips,
-                        hp.card1,hp.card2,hp.card3,hp.card4,hp.card5,
-                        hp.card6,hp.card7,hp.card8,hp.card9,hp.card10,
-                        hp.card11,hp.card12,hp.card13,hp.card14,hp.card15,
-                        hp.card16,hp.card17,hp.card18,hp.card19,hp.card20,
-                        hp.position
-                    FROM
-                        HandsPlayers as hp,
-                        Players as p
-                    WHERE
-                        hp.handId = %s
-                        and p.id = hp.playerId
-                    ORDER BY
-                        hp.seatno
-                """
+        q = db.sql.query['playerHand']
         q = q.replace('%s', db.sql.query['placeholder'])
 
         # PlayerStacks
         c.execute(q, (handId,))
         # See NOTE: below on what this does.
+
         # Discripter must be set to lowercase as postgres returns all descriptors lower case and SQLight returns them as they are
         res = [dict(line) for line in [zip([ column[0].lower() for column in c.description], row) for row in c.fetchall()]]
         for row in res:
@@ -400,10 +383,7 @@ class Hand(object):
 
 
         # HandInfo
-        q = """SELECT *
-                    FROM Hands
-                    WHERE id = %s
-            """
+        q = db.sql.query['singleHand']
         q = q.replace('%s', db.sql.query['placeholder'])
         c.execute(q, (handId,))
 
@@ -414,7 +394,8 @@ class Hand(object):
 
         # Using row_factory is global, and affects the rest of fpdb. The following 2 line achieves
         # a similar result
-        # Discripter must be set to lowercase as postgres returns all descriptors lower case and SQLight returns them as they are
+
+        # Discripter must be set to lowercase as supported dbs differ on what is returned.
         res = [dict(line) for line in [zip([ column[0].lower() for column in c.description], row) for row in c.fetchall()]]
         res = res[0]
 
@@ -446,32 +427,12 @@ class Hand(object):
         # street2Raises | street3Raises | street4Raises | street1Pot | street2Pot |
         # street3Pot | street4Pot | showdownPot | comment | commentTs | texture
 
-
         # Actions
-        q = """SELECT
-                      ha.actionNo,
-                      p.name,
-                      ha.street,
-                      ha.actionId,
-                      ha.allIn,
-                      round(ha.amount / 100.0,2) as bet,
-                      ha.numDiscarded,
-                      ha.cardsDiscarded
-                FROM
-                      HandsActions as ha,
-                      Players as p,
-                      Hands as h
-                WHERE
-                          h.id = %s
-                      AND ha.handId = h.id
-                      AND ha.playerId = p.id
-                ORDER BY
-                      ha.id ASC
-"""
-
+        q = db.sql.query['handActions']
         q = q.replace('%s', db.sql.query['placeholder'])
         c.execute(q, (handId,))
-        # Discripter must be set to lowercase as postgres returns all descriptors lower case and SQLight returns them as they are
+        
+        # Discripter must be set to lowercase as supported dbs differ on what is returned.
         res = [dict(line) for line in [zip([ column[0].lower() for column in c.description], row) for row in c.fetchall()]]
         for row in res:
             name = row['name']

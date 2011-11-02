@@ -226,7 +226,9 @@ class GuiReplayer:
         self.refreshHands(result)
 
     def handIdsFromDateRange(self, start, end):
-        q = "SELECT id FROM Hands h WHERE h.startTime between '" + start + "' and '" + end + "' order by startTime"
+
+        q = self.db.sql.query['handsInRange']
+        q = q.replace('<datetest>', "between '" + start + "' and '" + end + "'")
 
         c = self.db.get_cursor()
 
