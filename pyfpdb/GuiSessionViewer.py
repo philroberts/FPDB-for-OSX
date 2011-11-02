@@ -48,7 +48,7 @@ import Database
 import Filters
 import Charset
 
-import GuiReplayer
+import GuiHandViewer
 
 DEBUG = False
 
@@ -518,14 +518,14 @@ class GuiSessionViewer:
         if path[0] < len(self.times):
             replayer = None
             for tabobject in self.owner.threads:
-                if isinstance(tabobject, GuiReplayer.GuiReplayer):
+                if isinstance(tabobject, GuiHandViewer.GuiHandViewer):
                     replayer = tabobject
-                    self.owner.display_tab(_("Hand Replayer"))
+                    self.owner.display_tab(_("Hand Viewer"))
                     break
             if replayer is None:
-                self.owner.tab_replayer(None)
+                self.owner.tab_hand_viewer(None)
                 for tabobject in self.owner.threads:
-                    if isinstance(tabobject, GuiReplayer.GuiReplayer):
+                    if isinstance(tabobject, GuiHandViewer.GuiHandViewer):
                         replayer = tabobject
                         break
             reformat = lambda t: strftime("%Y-%m-%d %H:%M:%S", gmtime(t))

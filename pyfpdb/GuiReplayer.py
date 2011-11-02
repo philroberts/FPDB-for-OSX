@@ -15,6 +15,8 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+# Note that this now contains the replayer only! The list of hands has been moved to GuiHandViewer by zarturo.
+
 import L10n
 _ = L10n.get_translation()
 
@@ -24,7 +26,6 @@ import Configuration
 import Database
 import SQL
 import fpdb_import
-import Filters
 import pygtk
 pygtk.require('2.0')
 import gtk
@@ -36,113 +37,29 @@ import copy
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
-# The ListView renderer data function requires a function signature of
-# renderer_cell_func(tree_column, cell, model, tree_iter, data)
-# Placing the function into the Replayer object changes the call singature
-# card_images has been made global to facilitate this.
 
 global card_images
 card_images = 53 * [0]
 
-def card_renderer_cell_func(tree_column, cell, model, tree_iter, data):
-    card_width  = 30
-    card_height = 42
-    col = data
-    coldata = model.get_value(tree_iter, col)
-    if coldata == None or coldata == '':
-        coldata = "0x"
-    coldata = coldata.replace("'","")
-    coldata = coldata.replace("[","")
-    coldata = coldata.replace("]","")
-    coldata = coldata.replace("'","")
-    coldata = coldata.replace(",","")
-    #print "DEBUG: coldata: %s" % (coldata)
-    cards = [Card.encodeCard(c) for c in coldata.split(' ')]
-    n_cards = len(cards)
-
-    #print "DEBUG: cards: %s" % cards
-    pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8, card_width * n_cards, card_height)
-    if pixbuf:
-        x = 0 # x coord where the next card starts in scratch
-        for card in cards:
-            if card == None or card ==0:
-                card_images[0].copy_area(0, 0, card_width, card_height, pixbuf, x, 0)
-
-            card_images[card].copy_area(0, 0, card_width, card_height, pixbuf, x, 0)
-            x = x + card_width
-    cell.set_property('pixbuf', pixbuf)
-
-
-# This function is a duplicate of 'ledger_style_render_func' in GuiRingPlayerStats
-# TODO: Pull generic cell formatting functions into something common.
-def cash_renderer_cell_func(tree_column, cell, model, tree_iter, data):
-    col = data
-    coldata = model.get_value(tree_iter, col)
-    if '-' in coldata:
-        coldata = coldata.replace("-", "")
-        coldata = "(%s)" %(coldata)
-        cell.set_property('foreground', 'red')
-    else:
-        cell.set_property('foreground', 'darkgreen')
-    cell.set_property('text', coldata)
-
 
 class GuiReplayer:
+    """A Replayer to replay hands."""
     def __init__(self, config, querylist, mainwin, options = None, debug=True):
         self.debug = debug
         self.conf = config
         self.main_window = mainwin
         self.sql = querylist
 
-        # These are temporary variables until it becomes possible
-        # to select() a Hand object from the database
-        self.site="PokerStars"
-
         self.db = Database.Database(self.conf, sql=self.sql)
-
-        filters_display = { "Heroes"    : True,
-                    "Sites"     : False,
-                    "Games"     : False,
-                    "Limits"    : False,
-                    "LimitSep"  : False,
-                    "LimitType" : False,
-                    "Type"      : False,
-                    "Seats"     : False,
-                    "SeatSep"   : False,
-                    "Dates"     : True,
-                    "Cards"     : True,
-                    "Groups"    : False,
-                    "GroupsAll" : False,
-                    "Button1"   : True,
-                    "Button2"   : False
-                  }
-
-
         self.states = [] # List with all table states.
+
+        self.window = gtk.Window()
         
-        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
-        self.filters.registerButton1Name(_("Load Hands"))
-        self.filters.registerButton1Callback(self.loadHands)
-        self.filters.registerCardsCallback(self.filter_cards_cb)
-        #self.filters.registerButton2Name(_("temp"))
-        #self.filters.registerButton2Callback(self.temp())
-
-        # hierarchy:  self.mainHBox / self.hpane / self.replayBox / self.area
-
-        self.mainHBox = gtk.HBox(False, 0)
-        self.mainHBox.show()
-
-        self.leftPanelBox = self.filters.get_vbox()
-
-        self.hpane = gtk.HPaned()
-        self.hpane.pack1(self.leftPanelBox)
-        self.mainHBox.add(self.hpane)
-
         self.replayBox = gtk.VBox(False, 0)
         self.replayBox.show()
+        
+        self.window.add(self.replayBox)
 
-        self.hpane.pack2(self.replayBox)
-        self.hpane.show()
 
         self.area=gtk.DrawingArea()
         self.pangolayout = self.area.create_pango_layout("")
@@ -194,6 +111,8 @@ class GuiReplayer:
         self.stateSlider.show()
 
         self.replayBox.pack_start(self.stateSlider, False)
+        
+        self.window.show_all()
 
         self.playing = False
 
@@ -221,205 +140,6 @@ class GuiReplayer:
         pb.copy_area(30*13, 0, 30, 42, card_images[0], 0, 0)
         return card_images
 
-    def loadHands(self, button, userdata):
-        result = self.handIdsFromDateRange(self.filters.getDates()[0], self.filters.getDates()[1])
-        self.refreshHands(result)
-
-    def handIdsFromDateRange(self, start, end):
-
-        q = self.db.sql.query['handsInRange']
-        q = q.replace('<datetest>', "between '" + start + "' and '" + end + "'")
-
-        c = self.db.get_cursor()
-
-        c.execute(q)
-        return [r[0] for r in c.fetchall()]
-
-    def rankedhand(self, hand, game):
-        ranks = {'0':0, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 'J':11, 'Q':12, 'K':13, 'A':14}
-        suits = {'x':0, 's':1, 'c':2, 'd':3, 'h':4}
-
-        if game == 'holdem':
-            card1 = ranks[hand[0]]
-            card2 = ranks[hand[3]]
-            suit1 = suits[hand[1]]
-            suit2 = suits[hand[4]]
-            if card1 < card2:
-                (card1, card2) = (card2, card1)
-                (suit1, suit2) = (suit2, suit1)
-            if suit1 == suit2:
-                suit1 += 4
-            return card1 * 14 * 14 + card2 * 14 + suit1
-        else:
-            return 0
-
-    def sorthand(self, model, iter1, iter2):
-        
-        hand1 = self.hands[int(model.get_value(iter1, 7))]
-        hand2 = self.hands[int(model.get_value(iter2, 7))]
-        base1 = hand1.gametype['base']
-        base2 = hand2.gametype['base']
-        if base1 < base2:
-            return -1
-        elif base1 > base2:
-            return 1
-
-        cat1 = hand1.gametype['category']
-        cat2 = hand2.gametype['category']
-        if cat1 < cat2:
-            return -1
-        elif cat1 > cat2:
-            return 1
-
-        a = self.rankedhand(model.get_value(iter1, 0), hand1.gametype['category'])
-        b = self.rankedhand(model.get_value(iter2, 0), hand2.gametype['category'])
-        
-        if a < b:
-            return -1
-        elif a > b:
-            return 1
-
-        return 0
-
-    def sortnet(self, model, iter1, iter2):
-        a = float(model.get_value(iter1, 6))
-        b = float(model.get_value(iter2, 6))
-
-        if a < b:
-            return -1
-        elif a > b:
-            return 1
-        
-        return 0
-
-    def refreshHands(self, handids):
-        self.hands = {}
-        for handid in handids:
-            self.hands[handid] = self.importhand(handid)
-
-        try:
-            self.handswin.destroy()
-        except:
-            pass
-        self.handswin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
-        self.handswin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.replayBox.pack_end(self.handswin)
-        cols = [
-                str,    # Street0 cards
-                str,    # Street1 cards
-                str,    # Street2 cards
-                str,    # Street3 cards
-                str,    # Street4 cards
-                str,    # Won
-                str,    # Bet
-                str,    # Net
-                str,    # Gametype
-                str,    # Hand Id
-                ]
-        # Dict of colnames and their column idx in the model/ListStore
-        self.colnum = {
-                  'Street0'      : 0,
-                  'Street1'      : 1,
-                  'Street2'      : 2,
-                  'Street3'      : 3,
-                  'Street4'      : 4,
-                  'Won'          : 5,
-                  'Bet'          : 6,
-                  'Net'          : 7,
-                  'Game'         : 8,
-                  'HID'          : 9,
-                 }
-        self.liststore = gtk.ListStore(*cols)
-        self.view = gtk.TreeView()
-        self.view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
-        self.handswin.add(self.view)
-
-        self.viewfilter = self.liststore.filter_new()
-        self.view.set_model(self.viewfilter)
-        textcell = gtk.CellRendererText()
-        pixbuf   = gtk.CellRendererPixbuf()
-
-        self.view.insert_column_with_data_func(-1, 'Street 0', pixbuf, card_renderer_cell_func, self.colnum['Street0'])
-        self.view.insert_column_with_data_func(-1, 'Street 1', pixbuf, card_renderer_cell_func, self.colnum['Street1'])
-        self.view.insert_column_with_data_func(-1, 'Street 2', pixbuf, card_renderer_cell_func, self.colnum['Street2'])
-        self.view.insert_column_with_data_func(-1, 'Street 3', pixbuf, card_renderer_cell_func, self.colnum['Street3'])
-        self.view.insert_column_with_data_func(-1, 'Street 4', pixbuf, card_renderer_cell_func, self.colnum['Street4'])
-        self.view.insert_column_with_data_func(-1, 'Won', textcell, cash_renderer_cell_func, self.colnum['Won'])
-        self.view.insert_column_with_data_func(-1, 'Bet', textcell, cash_renderer_cell_func, self.colnum['Bet'])
-        self.view.insert_column_with_data_func(-1, 'Net', textcell, cash_renderer_cell_func, self.colnum['Net'])
-        self.view.insert_column_with_data_func(-1, 'Game', textcell, cash_renderer_cell_func, self.colnum['Game'])
-
-        self.liststore.set_sort_func(self.colnum['Street0'], self.sorthand)
-        self.liststore.set_sort_func(self.colnum['Net'], self.sortnet)
-        self.view.get_column(self.colnum['Street0']).set_sort_column_id(self.colnum['Street0'])
-        self.view.get_column(self.colnum['Net']).set_sort_column_id(self.colnum['Net'])
-
-        selection = self.view.get_selection()
-        selection.set_select_function(self.select_hand, None, True)
-
-        for handid, hand in self.hands.items():
-            hero = self.filters.getHeroes()[hand.sitename]
-            won = 0
-            if hero in hand.collectees.keys():
-                won = hand.collectees[hero]
-            bet = 0
-            if hero in hand.pot.committed.keys():
-                bet = hand.pot.committed[hero]
-            net = won - bet
-            gt =  hand.gametype['category']
-            row = []
-            if hand.gametype['base'] == 'hold':
-                row = [hand.join_holecards(hero), hand.board["FLOP"], hand.board["TURN"], hand.board["RIVER"], None, str(won), str(bet), str(net), gt, handid]
-            elif hand.gametype['base'] == 'stud':
-                third = " ".join(hand.holecards['THIRD'][hero][0]) + " " + " ".join(hand.holecards['THIRD'][hero][1]) 
-                #ugh - fix the stud join_holecards function so we can retrieve sanely
-                fourth  = " ".join(hand.holecards['FOURTH'] [hero][0])
-                fifth   = " ".join(hand.holecards['FIFTH']  [hero][0])
-                sixth   = " ".join(hand.holecards['SIXTH']  [hero][0])
-                seventh = " ".join(hand.holecards['SEVENTH'][hero][0])
-                row = [third, fourth, fifth, sixth, seventh, str(won), str(bet), str(net), gt, handid]
-            elif hand.gametype['base'] == 'draw':
-                row = [hand.join_holecards(hero,street='DEAL'), None, None, None, None, str(won), str(bet), str(net), gt, handid]
-            #print "DEBUG: row: %s" % row
-            self.liststore.append(row)
-        self.viewfilter.set_visible_func(self.viewfilter_visible_cb)
-        self.handswin.show_all()
-
-    def filter_cards_cb(self, card):
-        self.viewfilter.refilter()
-
-    def viewfilter_visible_cb(self, model, iter_):
-        card_filter = self.filters.getCards()
-        hcs = model.get_value(iter_, self.colnum['Street0']).split(' ')
-        gt = model.get_value(iter_, self.colnum['Game'])
-
-        if gt not in ('holdem', 'omaha', 'omahahilo'): return True
-        # Holdem: Compare the real start cards to the selected filter (ie. AhKh = AKs)
-        value1 = Card.card_map[hcs[0][0]]
-        value2 = Card.card_map[hcs[1][0]]
-        idx = Card.twoStartCards(value1, hcs[0][1], value2, hcs[1][1])
-        abbr = Card.twoStartCardString(idx)
-        return False if card_filter[abbr] == False else True
-
-    def select_hand(self, selection, model, path, is_selected, userdata):
-        self.states = [] # List with all table states.
-        if is_selected:
-            return True
-
-        hand = self.hands[int(model.get_value(model.get_iter(path), self.colnum['HID']))]
-        if hand.gametype['currency']=="USD":    #TODO: check if there are others ..
-            self.currency="$"
-        elif hand.gametype['currency']=="EUR":
-            self.currency="€"
-        else:
-            self.currency = hand.gametype['currency']
-
-        self.play_hand(hand)
-
-        self.state.set_value(0)
-        self.state.set_upper(len(self.states) - 1)
-        self.state.value_changed()
-        return True
 
     def area_expose(self, area, event):
         self.style = self.area.get_style()
@@ -546,6 +266,10 @@ class GuiReplayer:
         state = copy.deepcopy(state)
         state.endHand(hand.collectees)
         self.states.append(state)
+        
+        self.state.set_value(0)
+        self.state.set_upper(len(self.states) - 1)
+        self.state.value_changed()
 
     def increment_state(self):
         if self.state.get_value() == self.state.get_upper():
@@ -559,10 +283,6 @@ class GuiReplayer:
 
         self.state.set_value(self.state.get_value() + 1)
         return True
-
-    def get_vbox(self):
-        """returns the vbox of this thread"""
-        return self.mainHBox
 
     def slider_changed(self, adjustment):
         alloc = self.area.get_allocation()
