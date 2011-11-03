@@ -1842,16 +1842,17 @@ class Database:
     #end def lock_for_insert
     
     def resetBulkCache(self):
-        self.hbulk      = []         # Hands bulk inserts
-        self.bbulk      = []         # Boards bulk inserts
-        self.hpbulk     = []         # HandsPlayers bulk inserts
-        self.habulk     = []         # HandsActions bulk inserts
-        self.hcbulk     = []         # HudCache bulk inserts
-        self.hsbulk     = []         # HandsStove bulk inserts
-        self.tbulk      = {}         # Tourneys bulk updates
-        self.sc         = {'bk': []} # SessionsCache bulk updates
-        self.gc         = {'bk': []} # GamesCache bulk updates
-        self.tc         = {}         # TourneysPlayers bulk updates
+        self.siteHandNos = []         # cache of siteHandNo
+        self.hbulk       = []         # Hands bulk inserts
+        self.bbulk       = []         # Boards bulk inserts
+        self.hpbulk      = []         # HandsPlayers bulk inserts
+        self.habulk      = []         # HandsActions bulk inserts
+        self.hcbulk      = []         # HudCache bulk inserts
+        self.hsbulk      = []         # HandsStove bulk inserts
+        self.tbulk       = {}         # Tourneys bulk updates
+        self.sc          = {'bk': []} # SessionsCache bulk updates
+        self.gc          = {'bk': []} # GamesCache bulk updates
+        self.tc          = {}         # TourneysPlayers bulk updates
 
     def storeHand(self, hdata, doinsert = False, printdata = False):
         if printdata:
@@ -2714,14 +2715,15 @@ class Database:
         return id
 
     def isDuplicate(self, gametypeID, siteHandNo):
-        dup = False
+        if (gametypeID, siteHandNo) in self.siteHandNos:
+            return True
         c = self.get_cursor()
         c.execute(self.sql.query['isAlreadyInDB'], (gametypeID, siteHandNo))
         result = c.fetchall()
         if len(result) > 0:
-            dup = True
-        return dup
-
+            return True
+        self.siteHandNos.append((gametypeID, siteHandNo))
+        return False
 
     # read HandToWrite objects from q and insert into database
     def insert_queue_hands(self, q, maxwait=10, commitEachHand=True):
