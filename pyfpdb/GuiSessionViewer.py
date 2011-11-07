@@ -530,7 +530,7 @@ class GuiSessionViewer:
                         break
             reformat = lambda t: strftime("%Y-%m-%d %H:%M:%S", gmtime(t))
             handids = replayer.handIdsFromDateRange(reformat(self.times[path[0]][0]), reformat(self.times[path[0]][1]))
-            replayer.refreshHands(handids)
+            replayer.reload_hands(handids)
 
 def main(argv=None):
     Configuration.set_logfile("fpdb-log.txt")

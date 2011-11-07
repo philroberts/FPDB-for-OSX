@@ -91,6 +91,10 @@ def cash_renderer_cell_func(tree_column, cell, model, tree_iter, data):
     else:
         cell.set_property('foreground', 'darkgreen')
     cell.set_property('text', coldata)
+    
+def reset_style_render_func(tree_column, cell, model, iter, data):
+    cell.set_property('foreground', None)
+    cell.set_property('text', model.get_value(iter, data))
 
 
 class GuiHandViewer:
@@ -178,8 +182,8 @@ class GuiHandViewer:
         return card_images
 
     def loadHands(self, button, userdata):
-        result = self.handIdsFromDateRange(self.filters.getDates()[0], self.filters.getDates()[1])
-        self.refreshHands(result)
+        hand_ids = self.handIdsFromDateRange(self.filters.getDates()[0], self.filters.getDates()[1])
+        self.reload_hands(hand_ids)
 
     def handIdsFromDateRange(self, start, end):
 
@@ -210,8 +214,7 @@ class GuiHandViewer:
             return 0
 
     def sorthand(self, model, iter1, iter2):
-        
-        hand1 = self.hands[int(model.get_value(iter1, 7))]
+        hand1 = self.hands[int(model.get_value(iter1, 7))]         #FIXME throws ValueError: invalid literal for int() with base 10: '31.60'
         hand2 = self.hands[int(model.get_value(iter2, 7))]
         base1 = hand1.gametype['base']
         base2 = hand2.gametype['base']
@@ -248,11 +251,13 @@ class GuiHandViewer:
         
         return 0
     
-    def refreshHands(self, handids):
+    def reload_hands(self, handids):
         self.hands = {}
         for handid in handids:
             self.hands[handid] = self.importhand(handid)
-
+        self.refreshHands()
+    
+    def refreshHands(self):
         try:
             self.handsWindow.destroy()
         except:
@@ -290,8 +295,9 @@ class GuiHandViewer:
         self.view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
         self.handsWindow.add(self.view)
 
-        self.viewfilter = self.liststore.filter_new()
-        self.view.set_model(self.viewfilter)
+        #self.viewfilter = self.liststore.filter_new()     #if a filter is used, the sorting doesnt work anymore!! As GtkTreeModelFilter does NOT implement GtkTreeSortable
+        #self.view.set_model(self.viewfilter)
+        self.view.set_model(self.liststore)
         textcell = gtk.CellRendererText()
         pixbuf   = gtk.CellRendererPixbuf()
 
@@ -303,8 +309,8 @@ class GuiHandViewer:
         self.view.insert_column_with_data_func(-1, 'Won', textcell, cash_renderer_cell_func, self.colnum['Won'])
         self.view.insert_column_with_data_func(-1, 'Bet', textcell, cash_renderer_cell_func, self.colnum['Bet'])
         self.view.insert_column_with_data_func(-1, 'Net', textcell, cash_renderer_cell_func, self.colnum['Net'])
-        self.view.insert_column_with_data_func(-1, 'Game', textcell, cash_renderer_cell_func, self.colnum['Game'])
-
+        self.view.insert_column_with_data_func(-1, 'Game', textcell, reset_style_render_func ,self.colnum['Game'])
+        
         self.liststore.set_sort_func(self.colnum['Street0'], self.sorthand)
         self.liststore.set_sort_func(self.colnum['Net'], self.sortnet)
         self.view.get_column(self.colnum['Street0']).set_sort_column_id(self.colnum['Street0'])
@@ -312,7 +318,7 @@ class GuiHandViewer:
 
         #selection = self.view.get_selection()
         #selection.set_select_function(self.select_hand, None, True) #listen on selection (single click)
-        print self.view.connect("row-activated", self.row_activated)      #listen to double klick
+        self.view.connect("row-activated", self.row_activated)      #listen to double klick
 
         for handid, hand in self.hands.items():
             hero = self.filters.getHeroes()[hand.sitename]
@@ -337,20 +343,24 @@ class GuiHandViewer:
                 row = [third, fourth, fifth, sixth, seventh, str(won), str(bet), str(net), gt, handid]
             elif hand.gametype['base'] == 'draw':
                 row = [hand.join_holecards(hero,street='DEAL'), None, None, None, None, str(won), str(bet), str(net), gt, handid]
-            #print "DEBUG: row: %s" % row
-            self.liststore.append(row)
-        self.viewfilter.set_visible_func(self.viewfilter_visible_cb)
+            
+            if self.is_row_in_card_filter(row):
+                self.liststore.append(row)
+        #self.viewfilter.set_visible_func(self.viewfilter_visible_cb)
         self.handsWindow.show_all()
 
     def filter_cards_cb(self, card):
-        self.viewfilter.refilter()
+        self.refreshHands()
+        #self.viewfilter.refilter()    #As the sorting doesnt work if this is used, a refresh is needed.
 
-    def viewfilter_visible_cb(self, model, iter_):
-        card_filter = self.filters.getCards()
-        hcs = model.get_value(iter_, self.colnum['Street0']).split(' ')
-        gt = model.get_value(iter_, self.colnum['Game'])
+    def is_row_in_card_filter(self, row):
+        """ Returns true if the cards of the given row are in the card filter """
+        #FIXME every card in the card_filter dict is True no matter wich cards are selected ... so this method always returns true
+        card_filter = self.filters.getCards() 
+        hcs = row[self.colnum['Street0']].split(' ')
+        gt = row[self.colnum['Game']]
 
-        if gt not in ('holdem', 'omaha', 'omahahilo'): return True
+        if gt not in ('holdem', 'omahahi', 'omahahilo'): return True
         # Holdem: Compare the real start cards to the selected filter (ie. AhKh = AKs)
         value1 = Card.card_map[hcs[0][0]]
         value2 = Card.card_map[hcs[1][0]]
