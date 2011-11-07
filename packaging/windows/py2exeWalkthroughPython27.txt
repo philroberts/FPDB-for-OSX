@@ -132,15 +132,7 @@ dos>path  ...  system should respond with  ...   PATH=c:\GTK\bin;C:\WIN........
 
 dos> gtk-demo
 
-
-Step 4 Get the fpdb GIT tree
-----------------------------
-
-4.1/ Best to take a copy to work with; following steps will assume that the fpdb folder is on the Desktop
-4.2/ Edit the script in packaging/windows/py2exe_setup.py to set the fpdbver variable for this release
-
-
-5.3/ Install correct Numpy for this build
+4/ Install correct Numpy for this build
 -----------------------------------------
 
 Numpy needs special handling, as by default it will install an optimised version for the SSE level of your CPU (SSE3, SSE2 or noSSE).  This means that the completed package will not run on an older CPU.  
@@ -148,16 +140,16 @@ Numpy needs special handling, as by default it will install an optimised version
 For this reason, do not just run the installer.  We will force a nosse version, to minimise problems on
 older client PC's
 
-5.3.1/ download the package to the Desktop
+4.1/ download the package to the Desktop
  
 numpy 1.5.1 ... http://sourceforge.net/projects/numpy/files/NumPy/1.5.1/numpy-1.5.1-win32-superpack-python2.7.exe/download
 
-5.3.3/ You are normally wanting to build a package which works on all CPU's, so install for noSSE as follows:
+4.2/ You are normally wanting to build a package which works on all CPU's, so install for noSSE as follows:
 
 dos> cd Desktop
 dos> numpy-1.5.1-win32-superpack-python2.7.exe /arch nosse
 
-5.3.4/ At the end of the installation, click on "show details" to confirm the installation.
+4.3/ At the end of the installation, click on "show details" to confirm the installation.
 
 "Target CPU handles SSE2"
 "Target CPU handles SSE3"
@@ -167,15 +159,18 @@ Extract: numpy-1.5.1-nosse.exe... 100%
 Execute: "C:\DOCUME~1\user\LOCALS~1\Temp\numpy-1.5.1-nosse.exe"
 Completed
 
-Step 6 compile fpdb_folder_check.exe
-------------------------------------
+Step 5 install mingw/gcc
+------------------------
 
-6.1/
-Install minGW minimal installation
+5.1/ Install minGW minimal installation
 See instructions here....http://www.mingw.org/wiki/InstallationHOWTOforMinGW
 
-6.2/
-dos>gcc fpdb_folder_check.c -o fpdb_folder_check.exe
+
+Step 6 Get the fpdb GIT tree
+----------------------------
+
+6.1/ Best to take a copy to work with; following steps will assume that the fpdb folder has been copied onto the Desktop
+
 
 Step 7 Run py2exe to generate fpdb.exe
 --------------------------------------
