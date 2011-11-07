@@ -54,6 +54,7 @@ class GuiReplayer:
         self.states = [] # List with all table states.
 
         self.window = gtk.Window()
+        self.window.set_title("FPDB Hand Replayer")
         
         self.replayBox = gtk.VBox(False, 0)
         self.replayBox.show()
@@ -107,12 +108,14 @@ class GuiReplayer:
         self.stateSlider = gtk.HScale(self.state)
         self.stateSlider.connect("format_value", lambda x,y: "")
         self.stateSlider.set_digits(0)
-        self.state.connect("value_changed", self.slider_changed)
+        self.handler_id = self.state.connect("value_changed", self.slider_changed)
         self.stateSlider.show()
 
         self.replayBox.pack_start(self.stateSlider, False)
         
         self.window.show_all()
+        
+        self.window.connect('destroy', self.on_destroy)
 
         self.playing = False
 
@@ -283,6 +286,10 @@ class GuiReplayer:
 
         self.state.set_value(self.state.get_value() + 1)
         return True
+    
+    def on_destroy(self, window):
+        """ Prevent replayer from continue playing after window is closed """
+        self.state.disconnect(self.handler_id)
 
     def slider_changed(self, adjustment):
         alloc = self.area.get_allocation()
