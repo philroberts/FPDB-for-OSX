@@ -188,7 +188,6 @@ class GuiPositionalStats (threading.Thread):
 
         tmp = self.sql.query['playerStatsByPosition']
         tmp = self.refineQuery(tmp, playerids, sitenos, limits, seats, dates)
-        print tmp
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
         colnames = [desc[0].lower() for desc in self.cursor.description]
