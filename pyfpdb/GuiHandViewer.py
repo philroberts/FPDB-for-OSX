@@ -355,7 +355,7 @@ class GuiHandViewer:
 
     def is_row_in_card_filter(self, row):
         """ Returns true if the cards of the given row are in the card filter """
-        #FIXME every card in the card_filter dict is True no matter wich cards are selected ... so this method always returns true
+        #Does work but all cards that should NOT be displayed have to be clicked.
         card_filter = self.filters.getCards() 
         hcs = row[self.colnum['Street0']].split(' ')
         gt = row[self.colnum['Game']]

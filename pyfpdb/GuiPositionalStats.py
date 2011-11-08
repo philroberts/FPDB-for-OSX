@@ -104,6 +104,8 @@ class GuiPositionalStats (threading.Thread):
         self.stats_frame.show()
         self.stats_vbox = gtk.VBox(False, 0)
         self.stats_vbox.show()
+        
+        #FIXME Fliter box is not moveable, Treeviewer is NOT scrollable
 
         # This could be stored in config eventually, or maybe configured in this window somehow.
         # Each posncols element is the name of a column returned by the sql 
@@ -121,7 +123,7 @@ class GuiPositionalStats (threading.Thread):
                          , "PoFAFq", "Net($)", "bb/100", "$/hand", "Variance", "Hds"
                          )
 
-        self.fillStatsFrame(self.stats_vbox)
+        #self.fillStatsFrame(self.stats_vbox) #dont autoload, enter filters first (because of the bug that the tree is not scrollable, you cannot reach the refresh button with a lot of data)
         self.stats_frame.add(self.stats_vbox)
 
         self.main_hbox.pack_start(self.filters.get_vbox())
@@ -186,6 +188,7 @@ class GuiPositionalStats (threading.Thread):
 
         tmp = self.sql.query['playerStatsByPosition']
         tmp = self.refineQuery(tmp, playerids, sitenos, limits, seats, dates)
+        print tmp
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
         colnames = [desc[0].lower() for desc in self.cursor.description]
