@@ -240,9 +240,9 @@ class GuiHandViewer:
 
         return 0
 
-    def sortnet(self, model, iter1, iter2):
-        a = float(model.get_value(iter1, 6))
-        b = float(model.get_value(iter2, 6))
+    def sort_float(self, model, iter1, iter2, col):
+        a = float(model.get_value(iter1, col))
+        b = float(model.get_value(iter2, col))
 
         if a < b:
             return -1
@@ -312,9 +312,11 @@ class GuiHandViewer:
         self.view.insert_column_with_data_func(-1, 'Game', textcell, reset_style_render_func ,self.colnum['Game'])
         
         self.liststore.set_sort_func(self.colnum['Street0'], self.sorthand)
-        self.liststore.set_sort_func(self.colnum['Net'], self.sortnet)
+        self.liststore.set_sort_func(self.colnum['Net'], self.sort_float, self.colnum['Net'])
+        self.liststore.set_sort_func(self.colnum['Bet'], self.sort_float, self.colnum['Bet'])
         self.view.get_column(self.colnum['Street0']).set_sort_column_id(self.colnum['Street0'])
         self.view.get_column(self.colnum['Net']).set_sort_column_id(self.colnum['Net'])
+        self.view.get_column(self.colnum['Bet']).set_sort_column_id(self.colnum['Bet'])
 
         #selection = self.view.get_selection()
         #selection.set_select_function(self.select_hand, None, True) #listen on selection (single click)
@@ -473,7 +475,7 @@ class GuiHandViewer:
         self.view.insert_column_with_attributes(-1, 'Game', text, text = self.colnum['Game'])
 
         self.liststore.set_sort_func(self.colnum['Street0'], self.sorthand)
-        self.liststore.set_sort_func(self.colnum['+/-'], self.sortnet)
+        self.liststore.set_sort_func(self.colnum['+/-'], self.sort_float)
         self.view.get_column(self.colnum['Street0']).set_sort_column_id(self.colnum['Street0'])
         self.view.get_column(self.colnum['+/-']).set_sort_column_id(self.colnum['+/-'])
 
