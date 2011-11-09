@@ -265,50 +265,42 @@ class GuiHandViewer:
         self.handsWindow = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
         self.handsWindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.handsVBox.pack_end(self.handsWindow)
-        cols = [
-                str,    # Street0 cards
-                str,    # Street1 cards
-                str,    # Street2 cards
-                str,    # Street3 cards
-                str,    # Street4 cards
-                str,    # Won
-                str,    # Bet
-                str,    # Net
-                str,    # Gametype
-                str,    # Hand Id
-                ]
+
         # Dict of colnames and their column idx in the model/ListStore
         self.colnum = {
-                  'Street0'      : 0,
-                  'Street1'      : 1,
-                  'Street2'      : 2,
-                  'Street3'      : 3,
-                  'Street4'      : 4,
+                  'Stakes'       : 0,
+                  'Street0'      : 1,
+                  'Action0'      : 2,
+                  'Street1-4'    : 3,
+                  'Action1-4'    : 4,
                   'Won'          : 5,
                   'Bet'          : 6,
                   'Net'          : 7,
                   'Game'         : 8,
                   'HID'          : 9,
                  }
-        self.liststore = gtk.ListStore(*cols)
+        self.liststore = gtk.ListStore(*([str] * len(self.colnum)))
         self.view = gtk.TreeView()
         self.view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
         self.handsWindow.add(self.view)
 
-        #self.viewfilter = self.liststore.filter_new()     #if a filter is used, the sorting doesnt work anymore!! As GtkTreeModelFilter does NOT implement GtkTreeSortable
+        #self.viewfilter = self.liststore.filter_new()                  #if a filter is used, the sorting doesnt work anymore!! As GtkTreeModelFilter does NOT implement GtkTreeSortable
         #self.view.set_model(self.viewfilter)
         self.view.set_model(self.liststore)
         textcell = gtk.CellRendererText()
+        numcell = gtk.CellRendererText()
+        numcell.set_property('xalign', 1.0)
         pixbuf   = gtk.CellRendererPixbuf()
+        pixbuf.set_property('xalign', 0.0)
 
+        self.view.insert_column_with_data_func(-1, 'Stakes', textcell, reset_style_render_func ,self.colnum['Stakes'])
         self.view.insert_column_with_data_func(-1, 'Street 0', pixbuf, card_renderer_cell_func, self.colnum['Street0'])
-        self.view.insert_column_with_data_func(-1, 'Street 1', pixbuf, card_renderer_cell_func, self.colnum['Street1'])
-        self.view.insert_column_with_data_func(-1, 'Street 2', pixbuf, card_renderer_cell_func, self.colnum['Street2'])
-        self.view.insert_column_with_data_func(-1, 'Street 3', pixbuf, card_renderer_cell_func, self.colnum['Street3'])
-        self.view.insert_column_with_data_func(-1, 'Street 4', pixbuf, card_renderer_cell_func, self.colnum['Street4'])
-        self.view.insert_column_with_data_func(-1, 'Won', textcell, cash_renderer_cell_func, self.colnum['Won'])
-        self.view.insert_column_with_data_func(-1, 'Bet', textcell, cash_renderer_cell_func, self.colnum['Bet'])
-        self.view.insert_column_with_data_func(-1, 'Net', textcell, cash_renderer_cell_func, self.colnum['Net'])
+        self.view.insert_column_with_data_func(-1, 'Action 0', textcell, reset_style_render_func ,self.colnum['Action0'])
+        self.view.insert_column_with_data_func(-1, 'Street 1-4', pixbuf, card_renderer_cell_func, self.colnum['Street1-4'])
+        self.view.insert_column_with_data_func(-1, 'Action 1-4', textcell, reset_style_render_func ,self.colnum['Action1-4'])
+        self.view.insert_column_with_data_func(-1, 'Won', numcell, reset_style_render_func, self.colnum['Won'])
+        self.view.insert_column_with_data_func(-1, 'Bet', numcell, reset_style_render_func, self.colnum['Bet'])
+        self.view.insert_column_with_data_func(-1, 'Net', numcell, cash_renderer_cell_func, self.colnum['Net'])
         self.view.insert_column_with_data_func(-1, 'Game', textcell, reset_style_render_func ,self.colnum['Game'])
         
         self.liststore.set_sort_func(self.colnum['Street0'], self.sorthand)
@@ -319,8 +311,8 @@ class GuiHandViewer:
         self.view.get_column(self.colnum['Bet']).set_sort_column_id(self.colnum['Bet'])
 
         #selection = self.view.get_selection()
-        #selection.set_select_function(self.select_hand, None, True) #listen on selection (single click)
-        self.view.connect("row-activated", self.row_activated)      #listen to double klick
+        #selection.set_select_function(self.select_hand, None, True)     #listen on selection (single click)
+        self.view.connect('row-activated', self.row_activated)           #listen to double klick
 
         for handid, hand in self.hands.items():
             hero = self.filters.getHeroes()[hand.sitename]
@@ -334,17 +326,39 @@ class GuiHandViewer:
             gt =  hand.gametype['category']
             row = []
             if hand.gametype['base'] == 'hold':
-                row = [hand.join_holecards(hero), hand.board["FLOP"], hand.board["TURN"], hand.board["RIVER"], None, str(won), str(bet), str(net), gt, handid]
+                board =  []
+                board.extend(hand.board['FLOP'])
+                board.extend(hand.board['TURN'])
+                board.extend(hand.board['RIVER'])
+                
+                pre_actions = hand.get_actions_short(hero, 'PREFLOP')
+                post_actions = ''
+                if 'F' not in pre_actions:
+                    post_actions = hand.get_actions_short_streets(hero, 'FLOP', 'TURN', 'RIVER')
+                
+                row = [hand.getStakesAsString(), hand.join_holecards(hero), pre_actions, ' '.join(board), post_actions, str(won), str(bet), 
+                       str(net), gt, handid]
+                
             elif hand.gametype['base'] == 'stud':
                 third = " ".join(hand.holecards['THIRD'][hero][0]) + " " + " ".join(hand.holecards['THIRD'][hero][1]) 
                 #ugh - fix the stud join_holecards function so we can retrieve sanely
-                fourth  = " ".join(hand.holecards['FOURTH'] [hero][0])
-                fifth   = " ".join(hand.holecards['FIFTH']  [hero][0])
-                sixth   = " ".join(hand.holecards['SIXTH']  [hero][0])
-                seventh = " ".join(hand.holecards['SEVENTH'][hero][0])
-                row = [third, fourth, fifth, sixth, seventh, str(won), str(bet), str(net), gt, handid]
+                later_streets= []
+                later_streets.extend(hand.holecards['FOURTH'] [hero][0])
+                later_streets.extend(hand.holecards['FIFTH']  [hero][0])
+                later_streets.extend(hand.holecards['SIXTH']  [hero][0])
+                later_streets.extend(hand.holecards['SEVENTH'][hero][0])
+                
+                pre_actions = hand.get_actions_short(hero, 'THIRD')
+                post_actions = ''
+                if 'F' not in pre_actions:
+                    post_actions = hand.get_actions_short_streets(hero, 'FOURTH', 'FIFTH', 'SIXTH', 'SEVENTH')
+                    
+                row = [hand.getStakesAsString(), third, pre_actions, ' '.join(later_streets), post_actions, str(won), str(bet), str(net), 
+                       gt, handid]
+                
             elif hand.gametype['base'] == 'draw':
-                row = [hand.join_holecards(hero,street='DEAL'), None, None, None, None, str(won), str(bet), str(net), gt, handid]
+                row = [hand.getStakesAsString(), hand.join_holecards(hero,street='DEAL'), hand.get_actions_short(hero, 'DEAL'), None, None, 
+                       str(won), str(bet), str(net), gt, handid]
             
             if self.is_row_in_card_filter(row):
                 self.liststore.append(row)

@@ -828,6 +828,36 @@ class Hand(object):
             return ("%s: discards %s %s%s" %(act[0], act[2], 'card' if act[2] == 1 else 'cards' , " [" + " ".join(self.discards[street][act[0]]) + "]" if self.hero == act[0] else ''))
         elif act[1] == 'stands pat':
             return ("%s: stands pat" %(act[0]))
+        
+    def get_actions_short(self, player, street):
+        """ Returns a string with shortcuts for the actions of the given player and the given street
+            F ... fold, X ... Check, B ...Bet, C ... Call, R ... Raise
+        """
+        actions = self.actions[street]
+        list = []
+        for action in actions:
+            if player in action:
+                if action[1] == 'folds':
+                    list.append('F')
+                elif action[1] == 'checks':
+                    list.append('X')
+                elif action[1] == 'bets':
+                    list.append('B')
+                elif action[1] == 'calls':
+                    list.append('C')
+                elif action[1] == 'raises':
+                    list.append('R')
+                
+        return ''.join(list) 
+
+    def get_actions_short_streets(self, player, *streets):
+        """ Returns a string with shortcuts for the actions of the given player on all given streets seperated by ',' """
+        list = []
+        for street in streets:
+            str = self.get_actions_short(player, street)
+            if len(str) > 0:                            #if there is no action on later streets, nothing is added.
+                list.append(str)
+        return ','.join(list)
 
     def getStakesAsString(self):
         """Return a string of the stakes of the current hand."""
