@@ -78,27 +78,6 @@ class Aux_Window(object):
         temp_pb = deck.card(suitkey, rank)
         return temp_pb
 
-    def cropper(self, pb, i, j, card_width, card_height):
-        """Crop out a card image given an FTP deck and the i, j position."""
-        cropped_pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(),
-                                    pb.get_bits_per_sample(), 30, 42)
-        pb.copy_area(30*j, 42*i, 30, 42, cropped_pb, 0, 0)
-
-        if card_height == 42:
-            """ no scaling """
-            return cropped_pb
-        else:
-            """Apply scaling to the the 30w x 42h card image """
-            scaled_pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(),
-                                        pb.get_bits_per_sample(),
-                                        card_width, card_height)
-            scaled_card = cropped_pb.scale_simple(card_width, card_height,
-                                                gtk.gdk.INTERP_BILINEAR)
-
-            scaled_card.copy_area(0, 0, self.card_width, self.card_height,
-                                        scaled_pb, 0, 0)
-            return scaled_pb
-
     def has_cards(self, cards):
         """Returns the number of cards in the list."""
         n = 0
