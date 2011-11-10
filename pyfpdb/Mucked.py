@@ -474,26 +474,51 @@ class Flop_Mucked(Aux_Seats):
         container.seen_cards = gtk.image_new_from_pixbuf(self.card_images[0])
         container.eb.add(container.seen_cards)
 
+    # NOTE: self.hud.cards is a dictionary of:
+    # { seat_num: (card, card, [...]) }
+    #
+    # Thus the individual hands (cards for seat) are tuples
     def update_contents(self, container, i):
         if not self.hud.cards.has_key(i): return
         cards = self.hud.cards[i]
-        n_cards = self.has_cards(cards)
+        # Here we want to know how many cards the given seat showed;
+        # board is considered a seat, and has the id 'common'
+        # 'cards' on the other hand is a tuple. The format is:
+        # (card_num, card_num, ...)
+        # XXX XXX XXX XXX XXX XXX
+        n_cards = len(cards)
         if n_cards > 1:
-
 #    scratch is a working pixbuf, used to assemble the image
-            scratch = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8,
-                                        self.card_width * n_cards,
-                                        self.card_height)
+            scratch = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB,
+                                        has_alpha=True, bits_per_sample=8,
+                                        width=int(self.card_width)*n_cards,
+                                        height=int(self.card_height))
             x = 0 # x coord where the next card starts in scratch
             for card in cards:
 #    concatenate each card image to scratch
+                # flop game never(?) has unknown cards.
+                # FIXME: if "show one and fold" ever becomes an option,
+                # this needs to be changed
                 if card == None or card ==0:
                     break
 
-                self.card_images[card].copy_area(0, 0, 
-                                        self.card_width, self.card_height,
-                                        scratch, x, 0)
-                x = x + self.card_width
+                # This gives us the card symbol again
+                (_rank, _suit) = Card.valueSuitFromCard(card)
+                # We copy the image data. Technically we __could__ use
+                # the pixmap directly but it seems there are some subtle
+                # races and explicitly creating a new pixbuf seems to
+                # work around most of them.
+                #
+                # We also should not use copy_area() but it is far
+                # easier to work with than _render_to_drawable()
+                px = self.card_images[_suit][_rank].copy()
+                px.copy_area(0, 0,
+                        px.get_width(), px.get_height(),
+                        scratch, x, 0)
+                x += px.get_width()
+
+            # Once we have the scratch image ready, use it for seen
+            # cards in the specified seat position
             container.seen_cards.set_from_pixbuf(scratch)
             container.resize(1,1)
             container.show()
