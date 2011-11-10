@@ -78,12 +78,16 @@ class Aux_Window(object):
         temp_pb = deck.card(suitkey, rank)
         return temp_pb
 
+    # Returns the number of places where cards were shown. This can be N
+    # players + common cards
     def has_cards(self, cards):
         """Returns the number of cards in the list."""
-        n = 0
-        for c in cards:
-            if c != None and c > 0: n = n + 1
-        return n
+        n = len(cards)
+        if 'common' in cards:
+            return n-1
+        else:
+            return n
+
 
     def get_id_from_seat(self, seat):
         """Determine player id from seat number, given stat_dict."""
