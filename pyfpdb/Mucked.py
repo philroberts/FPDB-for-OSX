@@ -508,13 +508,8 @@ class Flop_Mucked(Aux_Seats):
     def update_gui(self, new_hand_id):
         """Prepare and show the mucked cards."""
         if self.displayed: self.hide()
-
 #   See how many players showed a hand. Skip if only 1 shows (= hero)
-        n_sd = 0
-        for (i, cards) in self.hud.cards.iteritems():
-            n_cards = self.has_cards(cards)
-            if n_cards > 0 and i != 'common':
-                n_sd = n_sd + 1
+        n_sd = self.has_cards(self.hud.cards)
         if n_sd < 2: 
             return
 
