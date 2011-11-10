@@ -28,6 +28,12 @@ import gobject
 
 #    FreePokerTools modules
 import Card
+import Deck
+
+# This holds all card images in a nice lookup table. One instance is
+# created at module load, and that it then used by all Aux_Window
+# objects.
+deck = Deck.Deck('colour')
 
 class Aux_Window(object):
     def __init__(self, hud, params, config):
@@ -53,24 +59,24 @@ class Aux_Window(object):
 #
     def get_card_images(self, card_width=30, card_height=42):
 
-        card_images = 53 * [0]
+        card_images = dict()
         suits = ('s', 'h', 'd', 'c')
         ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
-        deckimg = self.params['deck']
-        try:
-            pb = gtk.gdk.pixbuf_new_from_file(self.config.execution_path(deckimg))
-        except:
-            #FIXME: this can't be right? /usr will not exist on windows
-            stockpath = '/usr/share/python-fpdb/' + deckimg
-            pb = gtk.gdk.pixbuf_new_from_file(stockpath)
-        
-        for j in range(0, 13):
-            for i in range(0, 4):
-                card_images[Card.cardFromValueSuit(ranks[j], suits[i])] = self.cropper(pb, i, j, card_width, card_height)
-#    also pick out a card back and store in [0]
-        card_images[0] = self.cropper(pb, 2, 13, card_width, card_height)
-        return(card_images)
-#   cards are 30 wide x 42 high
+
+        for suit in suits:
+            card_images[suit] = dict()
+            for rank in ranks:
+                card_images[suit][rank] = self.card(suit, rank)
+
+        # This is a nice trick. We put the card back image behind key 0,
+        # which allows the old code to work. A dict[0] looks like first
+        # index of an array.
+        card_images[0] = deck.back()
+        return card_images
+
+    def card(self, suitkey, rank):
+        temp_pb = deck.card(suitkey, rank)
+        return temp_pb
 
     def cropper(self, pb, i, j, card_width, card_height):
         """Crop out a card image given an FTP deck and the i, j position."""
