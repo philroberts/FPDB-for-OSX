@@ -305,6 +305,7 @@ class Stud_cards:
                 if not i[1] == 0:
                     # Pixmaps are stored in dict with rank+suit keys
                     (_rank, _suit) = Card.valueSuitFromCard(i[1])
+                    _rank = Card.card_map[_rank]
                     px = self.card_images[_suit][_rank].copy()
                     self.seen_cards[(i[0], c - 1)].set_from_pixbuf(px)
 ##    action in tool tips for 3rd street cards
@@ -508,6 +509,7 @@ class Flop_Mucked(Aux_Seats):
 
                 # This gives us the card symbol again
                 (_rank, _suit) = Card.valueSuitFromCard(card)
+                _rank = Card.card_map[_rank]
                 # We copy the image data. Technically we __could__ use
                 # the pixmap directly but it seems there are some subtle
                 # races and explicitly creating a new pixbuf seems to
