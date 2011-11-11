@@ -214,8 +214,8 @@ class GuiHandViewer:
             return 0
 
     def sorthand(self, model, iter1, iter2):
-        hand1 = self.hands[int(model.get_value(iter1, 7))]         #FIXME throws ValueError: invalid literal for int() with base 10: '31.60'
-        hand2 = self.hands[int(model.get_value(iter2, 7))]
+        hand1 = self.hands[int(model.get_value(iter1, self.colnum['HandId']))]         
+        hand2 = self.hands[int(model.get_value(iter2, self.colnum['HandId']))]
         base1 = hand1.gametype['base']
         base2 = hand2.gametype['base']
         if base1 < base2:
@@ -277,7 +277,7 @@ class GuiHandViewer:
                   'Bet'          : 6,
                   'Net'          : 7,
                   'Game'         : 8,
-                  'HID'          : 9,
+                  'HandId'       : 9,
                  }
         self.liststore = gtk.ListStore(*([str] * len(self.colnum)))
         self.view = gtk.TreeView()
