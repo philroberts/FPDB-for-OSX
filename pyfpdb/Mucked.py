@@ -251,7 +251,8 @@ class Stud_cards:
 
         for r in range(0, self.rows):
             for c in range(0, self.cols):
-                self.seen_cards[(c, r)] = gtk.image_new_from_pixbuf(self.card_images[(0)])
+                # Start by creating a box of nothing but card backs
+                self.seen_cards[(c, r)] = gtk.image_new_from_pixbuf(self.card_images[0].copy())
                 self.eb[(c, r)]= gtk.EventBox()
 
 #    set up the contents for the cells
@@ -302,8 +303,10 @@ class Stud_cards:
             for i in ((0, cards[0]), (1, cards[1]), (2, cards[2]), (3, cards[3]), 
                       (4, cards[4]), (5, cards[5]), (6, cards[6])):
                 if not i[1] == 0:
-                    self.seen_cards[(i[0], c - 1)]. \
-                        set_from_pixbuf(self.card_images[i[1]])
+                    # Pixmaps are stored in dict with rank+suit keys
+                    (_rank, _suit) = Card.valueSuitFromCard(i[1])
+                    px = self.card_images[_suit][_rank].copy()
+                    self.seen_cards[(i[0], c - 1)].set_from_pixbuf(px)
 ##    action in tool tips for 3rd street cards
         for c in (0, 1, 2):
             for r in range(0, self.rows):
@@ -327,7 +330,8 @@ class Stud_cards:
         for r in range(0, self.rows):
             self.grid_contents[(1, r)].set_text("             ")
             for c in range(0, 7):
-                self.seen_cards[(c, r)].set_from_pixbuf(self.card_images[0])
+                # Start by creating a box of nothing but card backs
+                self.seen_cards[(c, r)].set_from_pixbuf(self.card_images[0].copy())
                 self.eb[(c, r)].set_tooltip_text('')
 
 class Seat_Window(gtk.Window):
@@ -471,7 +475,7 @@ class Flop_Mucked(Aux_Seats):
         container.eb = gtk.EventBox()
         container.eb.connect("button_press_event", self.button_press_cb)
         container.add(container.eb)
-        container.seen_cards = gtk.image_new_from_pixbuf(self.card_images[0])
+        container.seen_cards = gtk.image_new_from_pixbuf(self.card_images[0].copy())
         container.eb.add(container.seen_cards)
 
     # NOTE: self.hud.cards is a dictionary of:
