@@ -35,6 +35,14 @@ import Deck
 # subsequent uses will have the same instance available.
 deck = None
 
+# This allows for a performance gain. Loading and parsing 53 SVG cards
+# takes some time. If that is done at the first access of
+# Aux_Window.get_card_images(), it can add a delay of several seconds.
+# A pre-populated deck on the other hand grants instant access.
+def populate_deck(dtype, w, h):
+    global deck
+    deck = Deck.Deck(decktype=dtype, width=w, height=h)
+
 
 # Utility routine to get the number of valid cards in the card tuple
 def valid_cards(ct):
