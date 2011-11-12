@@ -35,6 +35,16 @@ import Deck
 # objects.
 deck = Deck.Deck('colour')
 
+
+# Utility routine to get the number of valid cards in the card tuple
+def valid_cards(ct):
+    n = 0
+    for c in ct:
+        if c != 0:
+            n += 1
+    return n
+
+
 class Aux_Window(object):
     def __init__(self, hud, params, config):
         self.hud     = hud
@@ -80,9 +90,18 @@ class Aux_Window(object):
 
     # Returns the number of places where cards were shown. This can be N
     # players + common cards
+    # XXX XXX: AAAAAGGGGGGHHHHHHHHHHHHHH!
+    # XXX XXX: 'cards' is a dictionary with EVERY INVOLVED SEAT included;
+    # XXX XXX: in addition, the unknown/unshown cards are marked with
+    # zeroes, not None
     def has_cards(self, cards):
-        """Returns the number of cards in the list."""
-        n = len(cards)
+        """Returns the number of seats with shown cards in the list."""
+        n = 0
+        for k in cards.keys():
+            seat_tuple = cards[k]
+            if seat_tuple[0] != 0:
+                n += 1
+        # Now we have the number of seats where we had valid cards.
         if 'common' in cards:
             return n-1
         else:
@@ -490,8 +509,7 @@ class Flop_Mucked(Aux_Seats):
         # board is considered a seat, and has the id 'common'
         # 'cards' on the other hand is a tuple. The format is:
         # (card_num, card_num, ...)
-        # XXX XXX XXX XXX XXX XXX
-        n_cards = len(cards)
+        n_cards = valid_cards(cards)
         if n_cards > 1:
 #    scratch is a working pixbuf, used to assemble the image
             scratch = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB,
