@@ -31,9 +31,9 @@ import Card
 import Deck
 
 # This holds all card images in a nice lookup table. One instance is
-# created at module load, and that it then used by all Aux_Window
-# objects.
-deck = Deck.Deck('colour')
+# populated on the first run of Aux_Window.get_card_images() and all
+# subsequent uses will have the same instance available.
+deck = None
 
 
 # Utility routine to get the number of valid cards in the card tuple
@@ -68,6 +68,9 @@ class Aux_Window(object):
 #    Some utility routines useful for Aux_Windows
 #
     def get_card_images(self, card_width=30, card_height=42):
+        global deck # We're modifying a variable outside class scope
+        if deck is None:
+            deck = Deck.Deck('colour')
 
         card_images = dict()
         suits = ('s', 'h', 'd', 'c')
