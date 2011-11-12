@@ -70,7 +70,8 @@ class Aux_Window(object):
     def get_card_images(self, card_width=30, card_height=42):
         global deck # We're modifying a variable outside class scope
         if deck is None:
-            deck = Deck.Deck('colour')
+            deck = Deck.Deck(decktype='colour',
+                        width=card_width, height=card_height)
 
         card_images = dict()
         suits = ('s', 'h', 'd', 'c')
