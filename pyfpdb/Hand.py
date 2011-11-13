@@ -339,7 +339,7 @@ class Hand(object):
         res = [dict(line) for line in [zip([ column[0].lower() for column in c.description], row) for row in c.fetchall()]]
         for row in res:
             #print "DEBUG: addPlayer(%s, %s, %s)" %(seat,name,str(chips))
-            self.addPlayer(row['seatno'],row['name'],str(row['chips']))
+            self.addPlayer(row['seatno'],row['name'],str(row['chips']), str(row['position']))
             cardlist = []
             cardlist.append(Card.valueSuitFromCard(row['card1']))
             cardlist.append(Card.valueSuitFromCard(row['card2']))
@@ -378,7 +378,7 @@ class Hand(object):
                 self.addHoleCards('SEVENTH', row['name'], open=[cardlist[6]], closed=cardlist[0:6], shown=False, mucked=False)
             if row['winnings'] > 0:
                 self.addCollectPot(row['name'], str(row['winnings']))
-            if row['position'] == 'B':
+            if row['position'] == 'B':          #FIXME or Remove if not needed ... B is BigBlind ... 0 is the actual button position. Maybe unneeded field as position has been added to players list.
                 self.buttonpos = row['seatno']
 
 
@@ -482,16 +482,17 @@ class Hand(object):
         #hc.readShownCards(self)
 
 
-    def addPlayer(self, seat, name, chips):
+    def addPlayer(self, seat, name, chips, position):
         """ Adds a player to the hand, and initialises data structures indexed by player.
             seat    (int) indicating the seat
             name    (string) player name
             chips   (string) the chips the player has at the start of the hand (can be None)
+            position     (string) indicating the position of the player (S,B, 0-7)
             If a player has None chips he won't be added."""
         log.debug("addPlayer: %s %s (%s)" % (seat, name, chips))
         if chips is not None:
             chips = chips.replace(u',', u'') #some sites have commas
-            self.players.append([seat, name, chips, 0, 0])
+            self.players.append([seat, name, chips, position]) #removed most likely unused 0s from list and added position... former list: [seat, name, chips, 0, 0]
             self.stacks[name] = Decimal(chips)
             self.pot.addPlayer(name)
             for street in self.actionStreets:
@@ -858,6 +859,14 @@ class Hand(object):
             if len(str) > 0:                            #if there is no action on later streets, nothing is added.
                 list.append(str)
         return ','.join(list)
+    
+    def get_player_position(self, player):
+        """ Returns the given players postion (S, B, 0-7) """
+        #position has been added to the players list. It could be calculated from buttonpos and player seatnums, 
+        #but whats the point in calculating a value that has been there anyway?
+        for p in self.players:
+            if p[1] == player:
+                return p[3]
 
     def getStakesAsString(self):
         """Return a string of the stakes of the current hand."""

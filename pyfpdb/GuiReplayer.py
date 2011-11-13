@@ -395,7 +395,7 @@ class TableState:
 
         self.players = {}
 
-        for seat, name, chips, dummy, dummy in hand.players:
+        for seat, name, chips, pos in hand.players:
             self.players[name] = Player(hand, name, chips, seat)
 
     def startPhase(self, phase):
