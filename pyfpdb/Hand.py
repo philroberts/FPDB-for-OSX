@@ -482,12 +482,12 @@ class Hand(object):
         #hc.readShownCards(self)
 
 
-    def addPlayer(self, seat, name, chips, position):
+    def addPlayer(self, seat, name, chips, position=None):
         """ Adds a player to the hand, and initialises data structures indexed by player.
             seat    (int) indicating the seat
             name    (string) player name
             chips   (string) the chips the player has at the start of the hand (can be None)
-            position     (string) indicating the position of the player (S,B, 0-7)
+            position     (string) indicating the position of the player (S,B, 0-7) (optional, not needed on Hand import from Handhistory).
             If a player has None chips he won't be added."""
         log.debug("addPlayer: %s %s (%s)" % (seat, name, chips))
         if chips is not None:
