@@ -39,7 +39,7 @@ deck = None
 # takes some time. If that is done at the first access of
 # Aux_Window.get_card_images(), it can add a delay of several seconds.
 # A pre-populated deck on the other hand grants instant access.
-def populate_deck(dtype, w, h):
+def populate_deck(dtype='colour', w=30, h=42):
     global deck
     deck = Deck.Deck(decktype=dtype, width=w, height=h)
 
