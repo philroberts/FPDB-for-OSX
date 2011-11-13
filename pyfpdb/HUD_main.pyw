@@ -44,6 +44,12 @@ import Configuration
 import Database
 import Hud
 import Options
+import Mucked   # For deck preloading
+
+
+def preload_deck(conf):
+    Mucked.populate_deck()
+
 
 (options, argv) = Options.fpdb_options()
 
@@ -60,6 +66,10 @@ else: # This is bad--figure out the values for the various windows flavors
 Configuration.set_logfile("HUD-log.txt")
 c = Configuration.Config(file=options.config, dbname=options.dbname)
 log = logging.getLogger("hud")
+
+# Reduce start time for HUD instances
+preload_deck(c)
+
 
 class HUD_main(object):
     """A main() object to own both the read_stdin thread and the gui."""
