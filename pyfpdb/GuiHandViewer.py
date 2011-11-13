@@ -251,6 +251,25 @@ class GuiHandViewer:
         
         return 0
     
+    def sort_pos(self, model, iter1, iter2, col):
+        a = self.__get_sortable_int_from_pos__(model.get_value(iter1, col))
+        b = self.__get_sortable_int_from_pos__(model.get_value(iter2, col))
+        
+        if a < b:
+            return -1
+        elif a > b:
+            return 1
+        
+        return 0
+        
+    def __get_sortable_int_from_pos__(self, pos):
+        if pos == 'B':
+            return 8
+        if pos == 'S':
+            return 9
+        else:
+            return int(pos)
+    
     def reload_hands(self, handids):
         self.hands = {}
         for handid in handids:
@@ -269,15 +288,16 @@ class GuiHandViewer:
         # Dict of colnames and their column idx in the model/ListStore
         self.colnum = {
                   'Stakes'       : 0,
-                  'Street0'      : 1,
-                  'Action0'      : 2,
-                  'Street1-4'    : 3,
-                  'Action1-4'    : 4,
-                  'Won'          : 5,
-                  'Bet'          : 6,
-                  'Net'          : 7,
-                  'Game'         : 8,
-                  'HandId'       : 9,
+                  'Pos'          : 1,
+                  'Street0'      : 2,
+                  'Action0'      : 3,
+                  'Street1-4'    : 4,
+                  'Action1-4'    : 5,
+                  'Won'          : 6,
+                  'Bet'          : 7,
+                  'Net'          : 8,
+                  'Game'         : 9,
+                  'HandId'       : 10,
                  }
         self.liststore = gtk.ListStore(*([str] * len(self.colnum)))
         self.view = gtk.TreeView()
@@ -294,6 +314,7 @@ class GuiHandViewer:
         pixbuf.set_property('xalign', 0.0)
 
         self.view.insert_column_with_data_func(-1, 'Stakes', textcell, reset_style_render_func ,self.colnum['Stakes'])
+        self.view.insert_column_with_data_func(-1, 'Pos', textcell, reset_style_render_func ,self.colnum['Pos'])
         self.view.insert_column_with_data_func(-1, 'Street 0', pixbuf, card_renderer_cell_func, self.colnum['Street0'])
         self.view.insert_column_with_data_func(-1, 'Action 0', textcell, reset_style_render_func ,self.colnum['Action0'])
         self.view.insert_column_with_data_func(-1, 'Street 1-4', pixbuf, card_renderer_cell_func, self.colnum['Street1-4'])
@@ -304,11 +325,13 @@ class GuiHandViewer:
         self.view.insert_column_with_data_func(-1, 'Game', textcell, reset_style_render_func ,self.colnum['Game'])
         
         self.liststore.set_sort_func(self.colnum['Street0'], self.sorthand)
+        self.liststore.set_sort_func(self.colnum['Pos'], self.sort_pos, self.colnum['Pos'])
         self.liststore.set_sort_func(self.colnum['Net'], self.sort_float, self.colnum['Net'])
         self.liststore.set_sort_func(self.colnum['Bet'], self.sort_float, self.colnum['Bet'])
         self.view.get_column(self.colnum['Street0']).set_sort_column_id(self.colnum['Street0'])
         self.view.get_column(self.colnum['Net']).set_sort_column_id(self.colnum['Net'])
         self.view.get_column(self.colnum['Bet']).set_sort_column_id(self.colnum['Bet'])
+        self.view.get_column(self.colnum['Pos']).set_sort_column_id(self.colnum['Pos'])
 
         #selection = self.view.get_selection()
         #selection.set_select_function(self.select_hand, None, True)     #listen on selection (single click)
@@ -323,6 +346,7 @@ class GuiHandViewer:
             if hero in hand.pot.committed.keys():
                 bet = hand.pot.committed[hero]
             net = won - bet
+            pos = hand.get_player_position(hero)
             gt =  hand.gametype['category']
             row = []
             if hand.gametype['base'] == 'hold':
@@ -333,10 +357,10 @@ class GuiHandViewer:
                 
                 pre_actions = hand.get_actions_short(hero, 'PREFLOP')
                 post_actions = ''
-                if 'F' not in pre_actions:
+                if 'F' not in pre_actions:      #if player hasen't folded preflop
                     post_actions = hand.get_actions_short_streets(hero, 'FLOP', 'TURN', 'RIVER')
                 
-                row = [hand.getStakesAsString(), hand.join_holecards(hero), pre_actions, ' '.join(board), post_actions, str(won), str(bet), 
+                row = [hand.getStakesAsString(), pos, hand.join_holecards(hero), pre_actions, ' '.join(board), post_actions, str(won), str(bet), 
                        str(net), gt, handid]
                 
             elif hand.gametype['base'] == 'stud':
@@ -353,11 +377,11 @@ class GuiHandViewer:
                 if 'F' not in pre_actions:
                     post_actions = hand.get_actions_short_streets(hero, 'FOURTH', 'FIFTH', 'SIXTH', 'SEVENTH')
                     
-                row = [hand.getStakesAsString(), third, pre_actions, ' '.join(later_streets), post_actions, str(won), str(bet), str(net), 
+                row = [hand.getStakesAsString(), pos, third, pre_actions, ' '.join(later_streets), post_actions, str(won), str(bet), str(net), 
                        gt, handid]
                 
             elif hand.gametype['base'] == 'draw':
-                row = [hand.getStakesAsString(), hand.join_holecards(hero,street='DEAL'), hand.get_actions_short(hero, 'DEAL'), None, None, 
+                row = [hand.getStakesAsString(), pos, hand.join_holecards(hero,street='DEAL'), hand.get_actions_short(hero, 'DEAL'), None, None, 
                        str(won), str(bet), str(net), gt, handid]
             
             if self.is_row_in_card_filter(row):
@@ -390,7 +414,7 @@ class GuiHandViewer:
         #if is_selected:
         #    return True
         model = view.get_model()
-        hand = self.hands[int(model.get_value(model.get_iter(path), self.colnum['HID']))]
+        hand = self.hands[int(model.get_value(model.get_iter(path), self.colnum['HandId']))]
         if hand.gametype['currency']=="USD":    #TODO: check if there are others ..
             currency="$"
         elif hand.gametype['currency']=="EUR":
