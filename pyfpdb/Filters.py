@@ -77,10 +77,11 @@ class Filters(threading.Thread):
         # text used on screen stored here so that it can be configured
         self.filterText = {'limitsall':_('All'), 'limitsnone':_('None'), 'limitsshow':_('Show _Limits')
                           ,'gamesall':_('All'), 'gamesnone':_('None')
+                          ,'positionsall':_('All'), 'positionsnone':_('None')
                           ,'currenciesall':_('All'), 'currenciesnone':_('None')
                           ,'seatsbetween':_('Between:'), 'seatsand':_('And:'), 'seatsshow':_('Show Number of _Players')
                           ,'playerstitle':_('Hero:'), 'sitestitle':(_('Sites')+':'), 'gamestitle':(_('Games')+':')
-                          ,'limitstitle':_('Limits:'), 'seatstitle':_('Number of Players:')
+                          ,'limitstitle':_('Limits:'), 'positionstitle':_('Positions:'), 'seatstitle':_('Number of Players:')
                           ,'groupstitle':_('Grouping:'), 'posnshow':_('Show Position Stats')
                           ,'datestitle':_('Date:'), 'currenciestitle':(_('Currencies')+':')
                           ,'groupsall':_('All Players'), 'cardstitle':(_('Hole Cards')+':')
@@ -116,6 +117,7 @@ class Filters(threading.Thread):
         self.sites  = {}
         self.games  = {}
         self.limits = {}
+        self.positions = {}
         self.seats  = {}
         self.groups = {}
         self.siteid = {}
@@ -161,6 +163,7 @@ class Filters(threading.Thread):
         self.fillPlayerFrame(vbox, self.display)
         playerFrame.add(vbox)
 
+        # Sites
         sitesFrame = gtk.Frame()
         sitesFrame.set_label_align(0.0, 0.0)
         vbox = gtk.VBox(False, 0)
@@ -211,6 +214,18 @@ class Filters(threading.Thread):
 
         self.fillLimitsFrame(vbox, self.display)
         limitsFrame.add(vbox)
+        
+        #Positions  
+        positionsFrame = gtk.Frame()
+        positionsFrame.set_label_align(0.0, 0.0)
+        vbox = gtk.VBox(False, 0)
+        
+        self.cbPositions = {}
+        self.cbNoPositions = None
+        self.cbAllPositions = None
+
+        self.fillPositionsFrame(vbox, self.display)
+        positionsFrame.add(vbox)
 
         # GraphOps
         graphopsFrame = gtk.Frame()
@@ -270,6 +285,7 @@ class Filters(threading.Thread):
         self.mainVBox.pack_start(gamesFrame, expand)
         self.mainVBox.pack_start(currenciesFrame, expand)
         self.mainVBox.pack_start(limitsFrame, expand)
+        self.mainVBox.pack_start(positionsFrame, expand)
         self.mainVBox.pack_start(seatsFrame, expand)
         self.mainVBox.pack_start(groupsFrame, expand)
         self.mainVBox.pack_start(dateFrame, expand)
@@ -292,6 +308,8 @@ class Filters(threading.Thread):
             currenciesFrame.hide()
         if "Limits" not in self.display or self.display["Limits"] == False:
             limitsFrame.hide()
+        if "Positions" not in self.display or self.display["Positions"] == False:
+            positionsFrame.hide()
         if "Seats" not in self.display or self.display["Seats"] == False:
             seatsFrame.hide()
         if "Groups" not in self.display or self.display["Groups"] == False:
@@ -337,6 +355,10 @@ class Filters(threading.Thread):
     def getSites(self):
         return self.sites
     #end def getSites
+    
+    def getPositions(self):
+        return self.positions
+    #end def getPositions
 
     def getTourneyTypes(self):
         return self.tourneyTypes
@@ -485,6 +507,15 @@ class Filters(threading.Thread):
         if game != "none":
             cb.set_active(True)
         return(cb)
+    
+    def createPositionLine(self, hbox, pos, pos_text):
+        cb = gtk.CheckButton(pos_text.replace("_", "__"))
+        cb.connect('clicked', self.__set_position_select, pos)
+        hbox.pack_start(cb, False, False, 0)
+        if pos != "none":
+            cb.set_active(True)
+        return cb
+    #end def createPositionLine
 
     def createCardsWidget(self, hbox):
         for i in range(0,13):
@@ -538,13 +569,32 @@ class Filters(threading.Thread):
                     cb.set_active(False)
         else:
             self.games[game] = w.get_active()
-            if (w.get_active()): # when we turn a game on, turn 'none' off if it's on
+            if (w.get_active()): # when we turn a pos on, turn 'none' off if it's on
                 if (self.cbNoGames and self.cbNoGames.get_active()):
                     self.cbNoGames.set_active(False)
-            else:                # when we turn a game off, turn 'all' off if it's on
+            else:                # when we turn a pos off, turn 'all' off if it's on
                 if (self.cbAllGames and self.cbAllGames.get_active()):
                     self.cbAllGames.set_active(False)
     #end def __set_game_select
+
+    def __set_position_select(self, w, pos):      
+        if (pos == 'all'):
+            if (w.get_active()):
+                for cb in self.cbPositions.values():
+                    cb.set_active(True)
+        elif (pos == 'none'):
+            if (w.get_active()):
+                for cb in self.cbPositions.values():
+                    cb.set_active(False)
+        else:
+            self.positions[pos] = w.get_active()
+            if (w.get_active()): # when we turn a pos on, turn 'none' off if it's on
+                if (self.cbNoPositions and self.cbNoPositions.get_active()):
+                    self.cbNoPositions.set_active(False)
+            else:                # when we turn a pos off, turn 'all' off if it's on
+                if (self.cbAllPositions and self.cbAllPositions.get_active()):
+                    self.cbAllPositions.set_active(False)
+    #end def __set_position_select
 
     def __card_select_bgcolor(self, card, selected):
         s_on  = "red"
@@ -949,6 +999,67 @@ class Filters(threading.Thread):
             print _("INFO: No games returned from database")
             log.info(_("No games returned from database"))
     #end def fillGamesFrame
+    
+    def fillPositionsFrame(self, vbox, display):
+        top_hbox = gtk.HBox(False, 0)
+        top_hbox.show()
+        vbox.pack_start(top_hbox, False, False, 0)
+
+        lbl_title = gtk.Label(self.filterText['positionstitle'])
+        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
+        top_hbox.pack_start(lbl_title, expand=True, padding=3)
+
+        showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'Positions')
+        self.toggles['Positions'] = showb
+        showb.show()
+        top_hbox.pack_start(showb, expand=False, padding=1)
+
+        vbox1 = gtk.VBox(False, 0)
+        self.boxes['Positions'] = vbox1
+        vbox.pack_start(vbox1, False, False, 0)
+        
+        #the following is not the fastest query (as it querys a table with potentialy a lot of data), so dont execute it if not necessary
+        if "Positions" not in display or display["Positions"] == False:
+            return
+        
+        self.cursor.execute(self.sql.query['getPositions'])
+        result = self.db.cursor.fetchall()
+        res_count = len(result)
+        
+        if res_count > 0:     
+            v_count = 0
+            COL_COUNT = 4           #Number of columns
+            hbox = None
+            for line in result:
+                if v_count == 0:    #start a new line when the vertical count is 0
+                    hbox = gtk.HBox(True, 0)
+                    vbox1.pack_start(hbox, False, True, 0)
+                
+                self.cbPositions[line[0]] = self.createPositionLine(hbox, line[0], line[0])
+                
+                v_count += 1
+                if v_count == COL_COUNT:    #set the counter to 0 if the line is full
+                    v_count = 0
+            
+            dif = res_count % COL_COUNT    
+            while dif > 0:          #fill the rest of the line with empy boxes, so that every line contains COL_COUNT elements
+                fillbox = gtk.VBox(False, 0)
+                hbox.pack_start(fillbox, False, False, 0)
+                dif -= 1
+
+            if res_count > 1:
+                hbox = gtk.HBox(True, 0)
+                vbox1.pack_start(hbox, False, False, 0)
+                self.cbAllPositions = self.createPositionLine(hbox, 'all', self.filterText['positionsall'])
+                self.cbNoPositions = self.createPositionLine(hbox, 'none', self.filterText['positionsnone'])
+        else:
+            print _("INFO: No positions returned from database")
+            log.info(_("No positions returned from database"))
+        
+    #end def fillSitesFrame(self, vbox, display):
+
 
     def fillHoleCardsFrame(self, vbox):
         top_hbox = gtk.HBox(False, 0)

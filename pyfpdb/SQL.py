@@ -2607,6 +2607,11 @@ class Sql:
                                       from Gametypes gt
                                       WHERE type = 'ring'
                                       order by type, limitType DESC, bb_or_buyin DESC"""
+                                      
+        self.query['getPositions'] = """select distinct position
+                                      from HandsPlayers gt
+                                      order by position"""
+                                      
         #FIXME: Some stats not added to DetailedStats (miss raise to steal)
         if db_server == 'mysql':
             self.query['playerDetailedStats'] = """
