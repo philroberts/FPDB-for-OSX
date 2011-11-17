@@ -58,7 +58,7 @@ class FullTiltPokerSummary(TourneySummary):
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
 
     re_TourneyInfo = re.compile(u"""
-                        (\s*.*(?P<TYPE>Tournament|Sit\s\&\sGo|Sit\&Go|\(Rebuy\)|Matrix|Knockout|KO|Rush|Satellite|FTOPS|MiniFTOPS|Step\s\d|Daily\sDollar|Madness|Freeroll|Heads-Up|Challenge|Super\sTurbo|The\sKitchen\sSink|Tier\sOne).*\s)
+                        (\s*.*(?P<TYPE>Tournament|Sit\s\&\sGo|Sit\&Go|\(Rebuy\)|(Turbo\s)?[%(LS)s][%(NUM)s]+(K)?\sGuarantee|Matrix|Knockout|KO|Rush|Satellite|FTOPS|MiniFTOPS|Step\s\d|Daily\sDollar|Madness|Freeroll|([%(LS)s][%(NUM)s]+\s\+\s[%(LS)s][%(NUM)s]+\s)?Heads(\s|\-)Up(\sShootout)?|Challenge|Super\sTurbo|The\sKitchen\sSink|Tier\sOne|The\sFifty\-Fifty|The\sFifty\-Hundo).*\s)
                         \((?P<TOURNO>[0-9]+)\)
                         (\s+)?(\sMatch\s\d\s)?
                         (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw|7-Game\sMixed)\s+
