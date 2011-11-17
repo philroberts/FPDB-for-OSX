@@ -3292,7 +3292,7 @@ class Sql:
                           inner join Sites s on s.Id = gt.siteId
                           inner join HudCache hc on hc.gametypeId = gt.Id
                      where hc.playerId in <player_test>
-                     and   <gtbigBlind_test>
+                     <gtbigBlind_test>
                      and   hc.activeSeats <seats_test>
                      and   concat( '20', substring(hc.styleKey,2,2), '-', substring(hc.styleKey,4,2), '-'
                                  , substring(hc.styleKey,6,2) ) <datestest>
@@ -3347,7 +3347,7 @@ class Sql:
                            ,round(100.0*sum(street0VPI)/sum(HDs),1)                         AS vpip
                            ,round(100.0*sum(street0Aggr)/sum(HDs),1)                        AS pfr
                            ,case when sum(street0CalledRaiseChance) = 0 then '0'
-                                 else format(100.0*sum(street0CalledRaiseDone)/sum(street0CalledRaiseChance),1)
+                                 else round(100.0*sum(street0CalledRaiseDone)/sum(street0CalledRaiseChance),1)
                             end                                                             AS car0
                            ,case when sum(street0_3Bchance) = 0 then '0'
                                  else round(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),1)
@@ -3394,7 +3394,7 @@ class Sql:
                           inner join Sites s on s.Id = gt.siteId
                           inner join HudCache hc on hc.gametypeId = gt.Id
                      where hc.playerId in <player_test>
-                     and   <gtbigBlind_test>
+                     <gtbigBlind_test>
                      and   hc.activeSeats <seats_test>
                      and   '20' || substr(hc.styleKey,2,2) || '-' || substr(hc.styleKey,4,2) || '-' ||
                                    substr(hc.styleKey,6,2) <datestest>
@@ -3498,7 +3498,7 @@ class Sql:
                           inner join Sites s on s.Id = gt.siteId
                           inner join HudCache hc on hc.gametypeId = gt.Id
                      where hc.playerId in <player_test>
-                     and   <gtbigBlind_test>
+                     <gtbigBlind_test>
                      and   hc.activeSeats <seats_test>
                      and   '20' || SUBSTR(hc.styleKey,2,2) || '-' || SUBSTR(hc.styleKey,4,2) || '-'
                            || SUBSTR(hc.styleKey,6,2) <datestest>
@@ -3637,7 +3637,7 @@ class Sql:
                           inner join Sites s on s.Id = gt.siteId
                           inner join HudCache hc on hc.gametypeId = gt.Id
                      where hc.playerId in <player_test>
-                     and   <gtbigBlind_test>
+                     <gtbigBlind_test>
                      and   hc.activeSeats <seats_test>
                      and   concat( '20', substring(hc.styleKey,2,2), '-', substring(hc.styleKey,4,2), '-'
                                  , substring(hc.styleKey,6,2) ) <datestest>
@@ -3722,7 +3722,7 @@ class Sql:
                            ,round(100.0*sum(street0VPI)/sum(HDs),1)                         AS vpip
                            ,round(100.0*sum(street0Aggr)/sum(HDs),1)                        AS pfr
                            ,case when sum(street0CalledRaiseChance) = 0 then '0'
-                                 else format(100.0*sum(street0CalledRaiseDone)/sum(street0CalledRaiseChance),1)
+                                 else round(100.0*sum(street0CalledRaiseDone)/sum(street0CalledRaiseChance),1)
                             end                                                             AS car0
                            ,case when sum(street0_3Bchance) = 0 then '0'
                                  else round(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),1)
@@ -3769,7 +3769,7 @@ class Sql:
                           inner join Sites s on s.Id = gt.siteId
                           inner join HudCache hc on hc.gametypeId = gt.Id
                      where hc.playerId in <player_test>
-                     and   <gtbigBlind_test>
+                     <gtbigBlind_test>
                      and   hc.activeSeats <seats_test>
                      and   '20' || substr(hc.styleKey,2,2) || '-' || substr(hc.styleKey,4,2) || '-' ||
                                    substr(hc.styleKey,6,2) <datestest>
@@ -3915,7 +3915,7 @@ class Sql:
                           inner join Sites s     on (s.Id = gt.siteId)
                           inner join HudCache hc on (hc.gametypeId = gt.Id)
                      where hc.playerId in <player_test>
-                     and   <gtbigBlind_test>
+                     <gtbigBlind_test>
                      and   hc.activeSeats <seats_test>
                      and   '20' || SUBSTR(hc.styleKey,2,2) || '-' || SUBSTR(hc.styleKey,4,2) || '-'
                            || SUBSTR(hc.styleKey,6,2) <datestest>

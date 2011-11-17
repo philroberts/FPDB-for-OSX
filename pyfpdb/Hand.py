@@ -334,10 +334,12 @@ class Hand(object):
         # PlayerStacks
         c.execute(q, (handId,))
         # See NOTE: below on what this does.
+
+        # Discripter must be set to lowercase as postgres returns all descriptors lower case and SQLight returns them as they are
         res = [dict(line) for line in [zip([ column[0].lower() for column in c.description], row) for row in c.fetchall()]]
         for row in res:
             #print "DEBUG: addPlayer(%s, %s, %s)" %(seat,name,str(chips))
-            self.addPlayer(row['seatno'],row['name'],str(row['chips']))
+            self.addPlayer(row['seatno'],row['name'],str(row['chips']), str(row['position']))
             cardlist = []
             cardlist.append(Card.valueSuitFromCard(row['card1']))
             cardlist.append(Card.valueSuitFromCard(row['card2']))
@@ -376,7 +378,7 @@ class Hand(object):
                 self.addHoleCards('SEVENTH', row['name'], open=[cardlist[6]], closed=cardlist[0:6], shown=False, mucked=False)
             if row['winnings'] > 0:
                 self.addCollectPot(row['name'], str(row['winnings']))
-            if row['position'] == 'B':
+            if row['position'] == 'B':          #FIXME or Remove if not needed ... B is BigBlind ... 0 is the actual button position. Maybe unneeded field as position has been added to players list.
                 self.buttonpos = row['seatno']
 
 
@@ -392,6 +394,7 @@ class Hand(object):
 
         # Using row_factory is global, and affects the rest of fpdb. The following 2 line achieves
         # a similar result
+
         # Discripter must be set to lowercase as supported dbs differ on what is returned.
         res = [dict(line) for line in [zip([ column[0].lower() for column in c.description], row) for row in c.fetchall()]]
         res = res[0]
@@ -402,10 +405,13 @@ class Hand(object):
         # FIXME: Need to figure out why some times come out of the DB as %Y-%m-%d %H:%M:%S+00:00,
         #        and others as %Y-%m-%d %H:%M:%S
         #print "DBEUG: res['startTime']: %s" % res['startTime']
-        try:
-            self.startTime = datetime.datetime.strptime(res['starttime'], "%Y-%m-%d %H:%M:%S+00:00")
-        except ValueError:
-            self.startTime = datetime.datetime.strptime(res['starttime'], "%Y-%m-%d %H:%M:%S")
+        
+        #self.startTime currently unused in the replayer and commented out. 
+        #    Can't be done like this because not all dbs return the same type for starttime
+        #try:
+        #    self.startTime = datetime.datetime.strptime(res['starttime'], "%Y-%m-%d %H:%M:%S+00:00")
+        #except ValueError:
+        #    self.startTime = datetime.datetime.strptime(res['starttime'], "%Y-%m-%d %H:%M:%S")
 
         cards = map(Card.valueSuitFromCard, [res['boardcard1'], res['boardcard2'], res['boardcard3'], res['boardcard4'], res['boardcard5']])
         #print "DEBUG: res['boardcard1']: %s" % res['boardcard1']
@@ -425,6 +431,8 @@ class Hand(object):
         q = db.sql.query['handActions']
         q = q.replace('%s', db.sql.query['placeholder'])
         c.execute(q, (handId,))
+        
+        # Discripter must be set to lowercase as supported dbs differ on what is returned.
         res = [dict(line) for line in [zip([ column[0].lower() for column in c.description], row) for row in c.fetchall()]]
         for row in res:
             name = row['name']
@@ -474,16 +482,17 @@ class Hand(object):
         #hc.readShownCards(self)
 
 
-    def addPlayer(self, seat, name, chips):
+    def addPlayer(self, seat, name, chips, position=None):
         """ Adds a player to the hand, and initialises data structures indexed by player.
             seat    (int) indicating the seat
             name    (string) player name
             chips   (string) the chips the player has at the start of the hand (can be None)
+            position     (string) indicating the position of the player (S,B, 0-7) (optional, not needed on Hand import from Handhistory).
             If a player has None chips he won't be added."""
         log.debug("addPlayer: %s %s (%s)" % (seat, name, chips))
         if chips is not None:
             chips = chips.replace(u',', u'') #some sites have commas
-            self.players.append([seat, name, chips, 0, 0])
+            self.players.append([seat, name, chips, position]) #removed most likely unused 0s from list and added position... former list: [seat, name, chips, 0, 0]
             self.stacks[name] = Decimal(chips)
             self.pot.addPlayer(name)
             for street in self.actionStreets:
@@ -820,6 +829,44 @@ class Hand(object):
             return ("%s: discards %s %s%s" %(act[0], act[2], 'card' if act[2] == 1 else 'cards' , " [" + " ".join(self.discards[street][act[0]]) + "]" if self.hero == act[0] else ''))
         elif act[1] == 'stands pat':
             return ("%s: stands pat" %(act[0]))
+        
+    def get_actions_short(self, player, street):
+        """ Returns a string with shortcuts for the actions of the given player and the given street
+            F ... fold, X ... Check, B ...Bet, C ... Call, R ... Raise
+        """
+        actions = self.actions[street]
+        list = []
+        for action in actions:
+            if player in action:
+                if action[1] == 'folds':
+                    list.append('F')
+                elif action[1] == 'checks':
+                    list.append('X')
+                elif action[1] == 'bets':
+                    list.append('B')
+                elif action[1] == 'calls':
+                    list.append('C')
+                elif action[1] == 'raises':
+                    list.append('R')
+                
+        return ''.join(list) 
+
+    def get_actions_short_streets(self, player, *streets):
+        """ Returns a string with shortcuts for the actions of the given player on all given streets seperated by ',' """
+        list = []
+        for street in streets:
+            str = self.get_actions_short(player, street)
+            if len(str) > 0:                            #if there is no action on later streets, nothing is added.
+                list.append(str)
+        return ','.join(list)
+    
+    def get_player_position(self, player):
+        """ Returns the given players postion (S, B, 0-7) """
+        #position has been added to the players list. It could be calculated from buttonpos and player seatnums, 
+        #but whats the point in calculating a value that has been there anyway?
+        for p in self.players:
+            if p[1] == player:
+                return p[3]
 
     def getStakesAsString(self):
         """Return a string of the stakes of the current hand."""
