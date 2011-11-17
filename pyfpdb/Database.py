@@ -1911,8 +1911,10 @@ class Database:
             c.executemany(q, self.hbulk)
             self.commit()
     
-    def storeBoards(self, id, b, doinsert):
-        if b: self.bbulk += [[id] + b]
+    def storeBoards(self, id, boards, doinsert):
+        if boards: 
+            for b in boards:
+                self.bbulk += [[id] + b]
         if doinsert and self.bbulk:
             q = self.sql.query['store_boards']
             q = q.replace('%s', self.sql.query['placeholder'])
