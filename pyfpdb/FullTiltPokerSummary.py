@@ -32,7 +32,7 @@ class FullTiltPokerSummary(TourneySummary):
     games = {                          # base, category
                               "Hold'em" : ('hold','holdem'), 
                                 'Omaha' : ('hold','omahahi'),
-                            'Omahai Hi' : ('hold','omahahi'),
+                             'Omaha Hi' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
                             'Omaha H/L' : ('hold','omahahilo'),
                                  'Razz' : ('stud','razz'), 
