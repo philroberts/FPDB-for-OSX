@@ -196,6 +196,11 @@ class TourneySummary(object):
     def getSummaryText(self):
         return self.summaryText
     
+    @staticmethod
+    def clearMoneyString(money):
+        "Renders 'numbers' like '1 200' and '2,000'"
+        return money.replace(' ', '').replace(',', '')
+    
     def insertOrUpdate(self, printtest = False):
         # First : check all needed info is filled in the object, especially for the initial select
 
