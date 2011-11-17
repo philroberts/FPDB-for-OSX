@@ -330,34 +330,16 @@ dealt   whether they were seen in a 'dealt to' line
     def select(self, db, handId):
         """ Function to create Hand object from database """
         c = db.get_cursor()
-        q = """SELECT
-                        hp.seatno,
-                        round(hp.winnings / 100.0,2) as winnings,
-                        p.name,
-                        round(hp.startCash / 100.0,2) as chips,
-                        hp.card1,hp.card2,hp.card3,hp.card4,hp.card5,
-                        hp.card6,hp.card7,hp.card8,hp.card9,hp.card10,
-                        hp.card11,hp.card12,hp.card13,hp.card14,hp.card15,
-                        hp.card16,hp.card17,hp.card18,hp.card19,hp.card20,
-                        hp.position
-                    FROM
-                        HandsPlayers as hp,
-                        Players as p
-                    WHERE
-                        hp.handId = %s
-                        and p.id = hp.playerId
-                    ORDER BY
-                        hp.seatno
-                """
+        q = db.sql.query['playerHand']
         q = q.replace('%s', db.sql.query['placeholder'])
 
         # PlayerStacks
         c.execute(q, (handId,))
         # See NOTE: below on what this does.
-        res = [dict(line) for line in [zip([ column[0] for column in c.description], row) for row in c.fetchall()]]
+        res = [dict(line) for line in [zip([ column[0].lower() for column in c.description], row) for row in c.fetchall()]]
         for row in res:
             #print "DEBUG: addPlayer(%s, %s, %s)" %(seat,name,str(chips))
-            self.addPlayer(row['seatNo'],row['name'],str(row['chips']))
+            self.addPlayer(row['seatno'],row['name'],str(row['chips']))
             cardlist = []
             cardlist.append(Card.valueSuitFromCard(row['card1']))
             cardlist.append(Card.valueSuitFromCard(row['card2']))
@@ -397,14 +379,11 @@ dealt   whether they were seen in a 'dealt to' line
             if row['winnings'] > 0:
                 self.addCollectPot(row['name'], str(row['winnings']))
             if row['position'] == 'B':
-                self.buttonpos = row['seatNo']
+                self.buttonpos = row['seatno']
 
 
         # HandInfo
-        q = """SELECT *
-                    FROM Hands
-                    WHERE id = %s
-            """
+        q = db.sql.query['singleHand']
         q = q.replace('%s', db.sql.query['placeholder'])
         c.execute(q, (handId,))
 
@@ -415,19 +394,20 @@ dealt   whether they were seen in a 'dealt to' line
 
         # Using row_factory is global, and affects the rest of fpdb. The following 2 line achieves
         # a similar result
-        res = [dict(line) for line in [zip([ column[0] for column in c.description], row) for row in c.fetchall()]]
+        # Discripter must be set to lowercase as supported dbs differ on what is returned.
+        res = [dict(line) for line in [zip([ column[0].lower() for column in c.description], row) for row in c.fetchall()]]
         res = res[0]
 
         #res['tourneyId'] #res['seats'] #res['rush']
-        self.tablename = res['tableName']
-        self.handid    = res['siteHandNo']
+        self.tablename = res['tablename']
+        self.handid    = res['sitehandno']
         # FIXME: Need to figure out why some times come out of the DB as %Y-%m-%d %H:%M:%S+00:00,
         #        and others as %Y-%m-%d %H:%M:%S
         #print "DBEUG: res['startTime']: %s" % res['startTime']
         try:
-            self.startTime = datetime.datetime.strptime(res['startTime'], "%Y-%m-%d %H:%M:%S+00:00")
+            self.startTime = datetime.datetime.strptime(res['starttime'], "%Y-%m-%d %H:%M:%S+00:00")
         except ValueError:
-            self.startTime = datetime.datetime.strptime(res['startTime'], "%Y-%m-%d %H:%M:%S")
+            self.startTime = datetime.datetime.strptime(res['starttime'], "%Y-%m-%d %H:%M:%S")
 
         cards = map(Card.valueSuitFromCard, [res['boardcard1'], res['boardcard2'], res['boardcard3'], res['boardcard4'], res['boardcard5']])
         #print "DEBUG: res['boardcard1']: %s" % res['boardcard1']
@@ -443,40 +423,19 @@ dealt   whether they were seen in a 'dealt to' line
         # street2Raises | street3Raises | street4Raises | street1Pot | street2Pot |
         # street3Pot | street4Pot | showdownPot | comment | commentTs | texture
 
-
         # Actions
-        q = """SELECT
-                      ha.actionNo,
-                      p.name,
-                      ha.street,
-                      ha.actionId,
-                      ha.allIn,
-                      round(ha.amount / 100.0,2) as bet,
-                      ha.numDiscarded,
-                      ha.cardsDiscarded
-                FROM
-                      HandsActions as ha,
-                      Players as p,
-                      Hands as h
-                WHERE
-                          h.id = %s
-                      AND ha.handId = h.id
-                      AND ha.playerId = p.id
-                ORDER BY
-                      ha.id ASC
-"""
-
+        q = db.sql.query['handActions']
         q = q.replace('%s', db.sql.query['placeholder'])
         c.execute(q, (handId,))
-        res = [dict(line) for line in [zip([ column[0] for column in c.description], row) for row in c.fetchall()]]
+        res = [dict(line) for line in [zip([ column[0].lower() for column in c.description], row) for row in c.fetchall()]]
         for row in res:
             name = row['name']
             street = row['street']
-            act = row['actionId']
+            act = row['actionid']
             # allin True/False if row['allIn'] == 0
             bet = row['bet']
             street = self.allStreets[int(street)+1]
-            discards = row['cardsDiscarded']
+            discards = row['cardsdiscarded']
             #print "DEBUG: name: '%s' street: '%s' act: '%s' bet: '%s'" %(name, street, act, bet)
             if   act == 1: # Ante
                 self.addAnte(name, str(bet))
@@ -501,7 +460,7 @@ dealt   whether they were seen in a 'dealt to' line
             elif act == 11: # Check
                 self.addCheck(street, name)
             elif act == 12: # Discard
-                self.addDiscard(street, name, row['numDiscarded'], discards)
+                self.addDiscard(street, name, row['numdiscarded'], discards)
             elif act == 13: # Bringin
                 self.addBringIn(name, str(bet))
             elif act == 14: # Complete

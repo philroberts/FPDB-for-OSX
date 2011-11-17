@@ -4090,6 +4090,71 @@ class Sql:
                  <currency_test>
                 ORDER by time"""
 
+        ####################################
+        # Querry to get all hands in a date range
+        ####################################
+        self.query['handsInRange'] = """
+            SELECT id
+                FROM Hands h
+                WHERE h.startTime <datetest>
+                ORDER BY startTime"""
+
+        ####################################
+        # Query to get a single hand for the replayer
+        ####################################
+        self.query['singleHand'] = """
+                 SELECT h.*
+                    FROM hands h
+                    WHERE id = %s"""
+
+        ####################################
+        # Query to get a single player hand for the replayer
+        ####################################
+        self.query['playerHand'] = """
+            SELECT
+                        hp.seatno,
+                        round(hp.winnings / 100.0,2) as winnings,
+                        p.name,
+                        round(hp.startCash / 100.0,2) as chips,
+                        hp.card1,hp.card2,hp.card3,hp.card4,hp.card5,
+                        hp.card6,hp.card7,hp.card8,hp.card9,hp.card10,
+                        hp.card11,hp.card12,hp.card13,hp.card14,hp.card15,
+                        hp.card16,hp.card17,hp.card18,hp.card19,hp.card20,
+                        hp.position
+                    FROM
+                        HandsPlayers as hp,
+                        Players as p
+                    WHERE
+                        hp.handId = %s
+                        and p.id = hp.playerId
+                    ORDER BY
+                        hp.seatno
+                """
+
+        ####################################
+        # Query for the actions of a hand
+        ####################################
+        self.query['handActions'] = """
+            SELECT
+                      ha.actionNo,
+                      p.name,
+                      ha.street,
+                      ha.actionId,
+                      ha.allIn,
+                      round(ha.amount / 100.0,2) as bet,
+                      ha.numDiscarded,
+                      ha.cardsDiscarded
+                FROM
+                      HandsActions as ha,
+                      Players as p,
+                      Hands as h
+                WHERE
+                          h.id = %s
+                      AND ha.handId = h.id
+                      AND ha.playerId = p.id
+                ORDER BY
+                      ha.id ASC
+                """
 
         ####################################
         # Queries to rebuild/modify hudcache

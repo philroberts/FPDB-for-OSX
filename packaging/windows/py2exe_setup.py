@@ -61,6 +61,7 @@ if sys.argv[1] <> "py2exe":
 from distutils.core import setup
 import py2exe
 import glob
+import fnmatch
 import matplotlib
 import shutil
 import cdecimal
@@ -116,8 +117,10 @@ rootdir = r'../../' #cwd is normally /packaging/windows
 pydir = rootdir+'pyfpdb/'
 packagedir = rootdir+'packaging/windows/'
 gfxdir = rootdir+'gfx/'
-sys.path.append( pydir )  # allows fpdb modules to be found by options/includes below
-
+sys.path.append(pydir)  # allows fpdb modules to be found in the setup() below
+tofpdb_file_list = fnmatch.filter(os.listdir(pydir), '*ToFpdb.py')
+#convert to module list by removing extensions in this list comprehension
+tofpdb_module_list = [os.path.splitext(filename)[0] for filename in tofpdb_file_list]
 
 print "\n" + r"Output will be created in "+distdir
 
@@ -147,20 +150,12 @@ setup(
 
     options = {'py2exe': {
                       'packages'    : ['encodings', 'matplotlib'],
-                      'includes'    : ['gio', 'cairo', 'pango', 'pangocairo', 'atk', 'gobject'    
-                                      ,'matplotlib.numerix.random_array'
-                                      ,'AbsoluteToFpdb',      'BetfairToFpdb'
-                                      ,'BetOnlineToFpdb',     'BossToFpdb'
-                                      ,'CarbonToFpdb',        'EverleafToFpdb'
-                                      ,'FulltiltToFpdb',      'iPokerToFpdb'
-                                      ,'OnGameToFpdb',        'PartyPokerToFpdb'
-                                      ,'PkrToFpdb',           'PokerStarsToFpdb'
-                                      ,'WinamaxToFpdb'
-                                      ,'EntractionToFpdb',    'EverestToFpdb'
-                                      ,'CakeToFpdb',          'PacificPokerToFpdb'
-
-                                      ],
+                                                            
+                      'includes'    : ['gio', 'cairo', 'pango', 'pangocairo', 'atk', 'gobject'
+                                      ,'matplotlib.numerix.random_array']+tofpdb_module_list,
+                                      
                       'excludes'    : ['_tkagg', '_agg2', 'cocoaagg', 'fltkagg'],
+                      
                       'dll_excludes': ['libglade-2.0-0.dll', 'libgdk-win32-2.0-0.dll', 'libgobject-2.0-0.dll'
                                       , 'msvcr90.dll', 'MSVCP90.dll', 'MSVCR90.dll','msvcr90.dll'],  # these are vis c / c++ runtimes, and must not be redistributed
                   }
