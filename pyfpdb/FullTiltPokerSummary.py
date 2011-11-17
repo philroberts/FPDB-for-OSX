@@ -149,7 +149,7 @@ class FullTiltPokerSummary(TourneySummary):
             mg = a.groupdict()
             #print "DEBUG: a.groupdict(): %s" % mg
             name = mg['NAME']
-            rank = mg['RANK']
+            rank = int(mg['RANK'])
             winnings = 0
 
             if 'WINNINGS' in mg and mg['WINNINGS'] != None:
@@ -167,7 +167,7 @@ class FullTiltPokerSummary(TourneySummary):
                                 '7' : '210000', # Step 7 - $2100.00 USD
                               }
                 winnings = step_values[mg['LEVEL']]
-            self.addPlayer(rank, name, winnings, self.currency, None, None, None)
+            self.addPlayer(rank, name, winnings, self.currency, 0, 0, 0)
 
             playercount += 1
 

@@ -1850,6 +1850,7 @@ class Database:
         self.hcbulk      = []         # HudCache bulk inserts
         self.hsbulk      = []         # HandsStove bulk inserts
         self.tbulk       = {}         # Tourneys bulk updates
+        self.tpbulk      = []         # TourneysPlayers bulk updates
         self.sc          = {'bk': []} # SessionsCache bulk updates
         self.gc          = {'bk': []} # GamesCache bulk updates
         self.tc          = {}         # TourneysPlayers bulk updates
@@ -2919,16 +2920,20 @@ class Database:
         return result                
     
     def createOrUpdateTourneysPlayers(self, summary):
+        tplayers = []
         tourneysPlayersIds={}
+        cursor = self.get_cursor()
+        cursor.execute (self.sql.query['getTourneysPlayersByTourney'].replace('%s', self.sql.query['placeholder']),
+                            (summary.tourneyId))
+        result=cursor.fetchall()
+        if result: tplayers += [i[0] for i in result]
         for player in summary.players:
             playerId = summary.dbid_pids[player]
-            cursor = self.get_cursor()
-            cursor.execute (self.sql.query['getTourneysPlayersByIds'].replace('%s', self.sql.query['placeholder']),
-                            (summary.tourneyId, playerId))
-            columnNames=[desc[0] for desc in cursor.description]
-            result=cursor.fetchone()
-
-            if result != None:
+            if playerId in tplayers:
+                cursor.execute (self.sql.query['getTourneysPlayersByIds'].replace('%s', self.sql.query['placeholder']),
+                                (summary.tourneyId, playerId))
+                columnNames=[desc[0] for desc in cursor.description]
+                result=cursor.fetchone()
                 expectedValues = ('rank', 'winnings', 'winningsCurrency', 'rebuyCount', 'addOnCount', 'koCount')
                 updateDb=False
                 resultDict = dict(zip(columnNames, result))
@@ -2959,15 +2964,13 @@ class Database:
             else:
                 #print "all values: tourneyId",summary.tourneyId, "playerId",playerId, "rank",summary.ranks[player], "winnings",summary.winnings[player], "winCurr",summary.winningsCurrency[player], summary.rebuyCounts[player], summary.addOnCounts[player], summary.koCounts[player]
                 if summary.ranks[player]:
-                    cursor.execute (self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),
-                            (summary.tourneyId, playerId, None, None, int(summary.ranks[player]), int(summary.winnings[player]), summary.winningsCurrency[player],
-                             summary.rebuyCounts[player], summary.addOnCounts[player], summary.koCounts[player], 0, 0))
+                    self.tpbulk.append((summary.tourneyId, playerId, None, None, int(summary.ranks[player]), int(summary.winnings[player]), summary.winningsCurrency[player],
+                                        summary.rebuyCounts[player], summary.addOnCounts[player], summary.koCounts[player], 0, 0))
                 else:
-                    cursor.execute (self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),
-                            (summary.tourneyId, playerId, None, None, None, None, None,
-                             summary.rebuyCounts[player], summary.addOnCounts[player], summary.koCounts[player], 0, 0))
-                tourneysPlayersIds[player[1]]=self.get_last_insert_id(cursor)
-        return tourneysPlayersIds
+                    self.tpbulk.append((summary.tourneyId, playerId, None, None, None, None, None,
+                                         summary.rebuyCounts[player], summary.addOnCounts[player], summary.koCounts[player], 0, 0))
+        cursor.executemany(self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),self.tpbulk)
+        
     
     def getSqlTourneysPlayersIDs(self, hand):
         result = {}

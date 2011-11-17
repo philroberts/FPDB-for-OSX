@@ -125,7 +125,7 @@ class PokerStarsSummary(TourneySummary):
             mg = a.groupdict()
             #print "DEBUG: a.groupdict(): %s" % mg
             name = mg['NAME']
-            rank = mg['RANK']
+            rank = int(mg['RANK'])
             winnings = 0
 
             if 'WINNINGS' in mg and mg['WINNINGS'] != None:
@@ -151,7 +151,7 @@ class PokerStarsSummary(TourneySummary):
             #TODO: currency, ko/addon/rebuy count -> need examples!
             #print "DEBUG: addPlayer(%s, %s, %s, %s, None, None, None)" %(rank, name, winnings, self.currency)
             #print "DEBUG: self.buyin: %s self.fee %s" %(self.buyin, self.fee)
-            self.addPlayer(rank, name, winnings, self.currency, None, None, None)
+            self.addPlayer(rank, name, winnings, self.currency, 0, 0, 0)
 
         #print self
 
