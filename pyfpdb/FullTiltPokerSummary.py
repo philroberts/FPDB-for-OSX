@@ -115,7 +115,7 @@ class FullTiltPokerSummary(TourneySummary):
         if mg['FEE'] != None:
             self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))
         if 'PRIZEPOOL' in mg:
-            self.prizepool = int(self.clearMoneyString(mg['PRIZEPOOL']))
+            self.prizepool = int(Decimal(self.clearMoneyString(mg['PRIZEPOOL'])))
         if 'ENTRIES'   in mg:
             self.entries = mg['ENTRIES']
 
