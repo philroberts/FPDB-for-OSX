@@ -111,13 +111,16 @@ class GuiHandViewer:
 
         self.db = Database.Database(self.config, sql=self.sql)
 
+        
         filters_display = { "Heroes"    : True,
-                    "Sites"     : False,
-                    "Games"     : False,
-                    "Limits"    : False,
-                    "LimitSep"  : False,
-                    "LimitType" : False,
-                    "Type"      : False,
+                    "Sites"     : True,
+                    "Games"     : True,
+                    "Currencies": False,
+                    "Limits"    : True,
+                    "LimitSep"  : True,
+                    "LimitType" : True,
+                    "Positions" : True,
+                    "Type"      : True,
                     "Seats"     : False,
                     "SeatSep"   : False,
                     "Dates"     : True,
@@ -127,9 +130,6 @@ class GuiHandViewer:
                     "Button1"   : True,
                     "Button2"   : False
                   }
-
-
-        self.states = [] # List with all table states.
         
         self.filters = Filters.Filters(self.db, self.config, self.sql, display = filters_display)
         self.filters.registerButton1Name(_("Load Hands"))
@@ -410,9 +410,6 @@ class GuiHandViewer:
 
     #def select_hand(self, selection, model, path, is_selected, userdata):    #function head for single click event
     def row_activated(self, view, path, column):
-        self.states = [] # List with all table states.
-        #if is_selected:
-        #    return True
         model = view.get_model()
         hand = self.hands[int(model.get_value(model.get_iter(path), self.colnum['HandId']))]
         if hand.gametype['currency']=="USD":    #TODO: check if there are others ..
