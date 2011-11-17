@@ -94,10 +94,11 @@ class PokerStarsSummary(TourneySummary):
             self.gametype['limitType'] = 'fl'
         if 'GAME'      in mg: self.gametype['category']  = self.games[mg['GAME']][1]
         if mg['BUYIN'] != None:
-            self.buyin = int(100*Decimal(mg['BUYIN']))
+            self.buyin = int(100*Decimal(self.clearMoneyString(mg['BUYIN'])))
         if mg['FEE'] != None:
-            self.fee   = int(100*Decimal(mg['FEE']))
-        if 'PRIZEPOOL' in mg: self.prizepool             = mg['PRIZEPOOL']
+            self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))
+        if 'PRIZEPOOL' in mg:
+            self.prizepool = int(self.clearMoneyString(mg['PRIZEPOOL']))
         if 'ENTRIES'   in mg: self.entries               = mg['ENTRIES']
         if 'DATETIME'  in mg: m1 = self.re_DateTime.finditer(mg['DATETIME'])
         datetimestr = "2000/01/01 00:00:00"  # default used if time not found

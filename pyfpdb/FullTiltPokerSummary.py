@@ -111,11 +111,13 @@ class FullTiltPokerSummary(TourneySummary):
             self.gametype['limitType'] = 'mx'
         if 'GAME'      in mg: self.gametype['category']  = self.games[mg['GAME']][1]
         if mg['BUYIN'] != None:
-            self.buyin = int(100*Decimal(mg['BUYIN']))
+            self.buyin = int(100*Decimal(self.clearMoneyString(mg['BUYIN'])))
         if mg['FEE'] != None:
-            self.fee   = int(100*Decimal(mg['FEE']))
-        if 'PRIZEPOOL' in mg: self.prizepool             = mg['PRIZEPOOL']
-        if 'ENTRIES'   in mg: self.entries               = mg['ENTRIES']
+            self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))
+        if 'PRIZEPOOL' in mg:
+            self.prizepool = int(self.clearMoneyString(mg['PRIZEPOOL']))
+        if 'ENTRIES'   in mg:
+            self.entries = mg['ENTRIES']
 
         datetimestr = ""
         if mg['YEAR'] == None:
