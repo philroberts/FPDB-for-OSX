@@ -1644,11 +1644,6 @@ class Filters(threading.Thread):
         t1 = self.start_date.get_text()
         t2 = self.end_date.get_text()
 
-        if t1 == '':
-            t1 = '1970-01-02'
-        if t2 == '':
-            t2 = '2020-12-12'
-
         adj_t1 = self.MIN_DATE
         adj_t2 = self.MAX_DATE
         
