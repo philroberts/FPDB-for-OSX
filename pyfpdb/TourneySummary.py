@@ -196,6 +196,11 @@ class TourneySummary(object):
     def getSummaryText(self):
         return self.summaryText
     
+    @staticmethod
+    def clearMoneyString(money):
+        "Renders 'numbers' like '1 200' and '2,000'"
+        return money.replace(' ', '').replace(',', '')
+    
     def insertOrUpdate(self, printtest = False):
         # First : check all needed info is filled in the object, especially for the initial select
 
@@ -223,7 +228,7 @@ class TourneySummary(object):
         #print "TS.self before starting insert",self
         self.tourneyTypeId = self.db.getSqlTourneyTypeIDs(self)
         self.tourneyId = self.db.createOrUpdateTourney(self)
-        self.tourneysPlayersIds = self.db.createOrUpdateTourneysPlayers(self)
+        self.db.createOrUpdateTourneysPlayers(self)
         self.db.commit()
         
         logging.debug(_("Tourney Insert/Update done"))
@@ -247,29 +252,37 @@ name        (string) player name
 winnings    (int) the money the player ended the tourney with (can be 0, or -1 if unknown)
 """
         log.debug("addPlayer: rank:%s - name : '%s' - Winnings (%s)" % (rank, name, winnings))
-        self.players.append(name)
-        if rank:
-            self.ranks.update( { name : rank } )
-            self.winnings.update( { name : winnings } )
-            self.winningsCurrency.update( { name : winningsCurrency } )
+        if name in self.players:
+            if rank:
+                if rank > self.ranks[name]:
+                    self.ranks[name] = rank
+                self.winnings[name] += winnings
+                self.winningsCurrency.update( { name : winningsCurrency } )
+            self.rebuyCounts[name] += 1
         else:
-            self.ranks.update( { name : None } )
-            self.winnings.update( { name : None } )
-            self.winningsCurrency.update( { name : None } )
-        if rebuyCount:
-            self.rebuyCounts.update( {name: Decimal(rebuyCount) } )
-        else:
-            self.rebuyCounts.update( {name: None } )
-        
-        if addOnCount:
-            self.addOnCounts.update( {name: Decimal(addOnCount) } )
-        else:
-            self.addOnCounts.update( {name: None } )
-        
-        if koCount:
-            self.koCounts.update( {name : Decimal(koCount) } )
-        else:
-            self.koCounts.update( {name: None } )
+            self.players.append(name)
+            if rank:
+                self.ranks.update( { name : rank } )
+                self.winnings.update( { name : winnings } )
+                self.winningsCurrency.update( { name : winningsCurrency } )
+            else:
+                self.ranks.update( { name : None } )
+                self.winnings.update( { name : 0 } )
+                self.winningsCurrency.update( { name : None } )
+            if rebuyCount:
+                self.rebuyCounts.update( {name: rebuyCount } )
+            else:
+                self.rebuyCounts.update( {name: 0 } )
+            
+            if addOnCount:
+                self.addOnCounts.update( {name: addOnCount } )
+            else:
+                self.addOnCounts.update( {name: 0 } )
+            
+            if koCount:
+                self.koCounts.update( {name : koCount } )
+            else:
+                self.koCounts.update( {name: 0 } )
     #end def addPlayer
 
     def incrementPlayerWinnings(self, name, additionnalWinnings):

@@ -660,7 +660,7 @@ class Filters(threading.Thread):
                     self.cbAllLimits.set_active(False)
             # turning off a leaf limit turns off the corresponding fl. nl, cn or pl
             if not self.limits[limit]:
-                if limit.isdigit():
+                if (limit.isdigit() or (len(limit) > 2 and (limit[-2:] == 'fl'))):
                     if self.cbFL is not None:
                         self.cbFL.set_active(False)
                 elif (len(limit) > 2 and (limit[-2:] == 'nl')):
@@ -712,14 +712,14 @@ class Filters(threading.Thread):
                 all_fl_on = True
                 for cb in self.cbLimits.values():
                     t = cb.get_children()[0].get_text()
-                    if t.isdigit():
+                    if (t.isdigit() or ("fl" in t and len(t) > 2)):
                         if not cb.get_active():
                             all_fl_on = False
             found = {'ring':False, 'tour':False}
             for cb in self.cbLimits.values():
                 #print "cb label: ", cb.children()[0].get_text()
                 t = cb.get_children()[0].get_text()
-                if t.isdigit():
+                if (t.isdigit() or ("fl" in t and len(t) > 2)):
                     if self.limits[limit] or all_fl_on:
                         cb.set_active(self.limits[limit])
                     found[self.types[t]] = True

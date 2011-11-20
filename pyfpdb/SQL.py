@@ -5380,6 +5380,11 @@ class Sql:
                                                 FROM TourneysPlayers
                                                 WHERE tourneyId=%s AND playerId+0=%s            
         """
+        
+        self.query['getTourneysPlayersByTourney'] = """SELECT playerId
+                                                       FROM TourneysPlayers
+                                                       WHERE tourneyId=%s            
+        """
 
         self.query['updateTourneysPlayer'] = """UPDATE TourneysPlayers
                                                  SET rank = %s,

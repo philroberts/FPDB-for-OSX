@@ -94,10 +94,11 @@ class PokerStarsSummary(TourneySummary):
             self.gametype['limitType'] = 'fl'
         if 'GAME'      in mg: self.gametype['category']  = self.games[mg['GAME']][1]
         if mg['BUYIN'] != None:
-            self.buyin = int(100*Decimal(mg['BUYIN']))
+            self.buyin = int(100*Decimal(self.clearMoneyString(mg['BUYIN'])))
         if mg['FEE'] != None:
-            self.fee   = int(100*Decimal(mg['FEE']))
-        if 'PRIZEPOOL' in mg: self.prizepool             = mg['PRIZEPOOL']
+            self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))
+        if 'PRIZEPOOL' in mg:
+            self.prizepool = int(Decimal(self.clearMoneyString(mg['PRIZEPOOL'])))
         if 'ENTRIES'   in mg: self.entries               = mg['ENTRIES']
         if 'DATETIME'  in mg: m1 = self.re_DateTime.finditer(mg['DATETIME'])
         datetimestr = "2000/01/01 00:00:00"  # default used if time not found
@@ -124,7 +125,7 @@ class PokerStarsSummary(TourneySummary):
             mg = a.groupdict()
             #print "DEBUG: a.groupdict(): %s" % mg
             name = mg['NAME']
-            rank = mg['RANK']
+            rank = int(mg['RANK'])
             winnings = 0
 
             if 'WINNINGS' in mg and mg['WINNINGS'] != None:
@@ -150,7 +151,7 @@ class PokerStarsSummary(TourneySummary):
             #TODO: currency, ko/addon/rebuy count -> need examples!
             #print "DEBUG: addPlayer(%s, %s, %s, %s, None, None, None)" %(rank, name, winnings, self.currency)
             #print "DEBUG: self.buyin: %s self.fee %s" %(self.buyin, self.fee)
-            self.addPlayer(rank, name, winnings, self.currency, None, None, None)
+            self.addPlayer(rank, name, winnings, self.currency, 0, 0, 0)
 
         #print self
 

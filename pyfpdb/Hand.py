@@ -501,16 +501,6 @@ class Hand(object):
                 #self.discards[name] = {} # dict from street names.
 
 
-    def addPlayerRank(self, name, winnings, rank):
-        """ name        (string) player name
-            winnings    (int) winnings
-            rank        (int) rank the player finished the tournament """
-        log.debug("addPlayerRank: %s %s (%s)" % (name, winnings, rank))
-        for player in self.players:
-            if player[1] == name:
-                player[3]=rank
-                player[4]=winnings
-
     def addStreets(self, match):
         # go through m and initialise actions to empty list for each street.
         if match:

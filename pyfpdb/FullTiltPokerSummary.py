@@ -32,7 +32,7 @@ class FullTiltPokerSummary(TourneySummary):
     games = {                          # base, category
                               "Hold'em" : ('hold','holdem'), 
                                 'Omaha' : ('hold','omahahi'),
-                            'Omahai Hi' : ('hold','omahahi'),
+                             'Omaha Hi' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
                             'Omaha H/L' : ('hold','omahahilo'),
                                  'Razz' : ('stud','razz'), 
@@ -58,7 +58,7 @@ class FullTiltPokerSummary(TourneySummary):
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
 
     re_TourneyInfo = re.compile(u"""
-                        (\s*.*(?P<TYPE>Tournament|Sit\s\&\sGo|Sit\&Go|\(Rebuy\)|Matrix|Knockout|KO|Rush|Satellite|FTOPS|MiniFTOPS|Step\s\d|Daily\sDollar|Madness|Freeroll|Heads-Up|Challenge|Super\sTurbo|The\sKitchen\sSink|Tier\sOne).*\s)
+                        (\s*.*(?P<TYPE>Tournament|Sit\s\&\sGo|Sit\&Go|\(Rebuy\)|(Turbo\s)?[%(LS)s][%(NUM)s]+(K)?\sGuarantee|Matrix|Knockout|KO|Rush|Satellite|FTOPS|MiniFTOPS|Step\s\d|Daily\sDollar|Madness|Freeroll|([%(LS)s][%(NUM)s]+\s\+\s[%(LS)s][%(NUM)s]+\s)?Heads(\s|\-)Up(\sShootout)?|Challenge|Super\sTurbo|The\sKitchen\sSink|Tier\sOne|The\sFifty\-Fifty|The\sFifty\-Hundo).*\s)
                         \((?P<TOURNO>[0-9]+)\)
                         (\s+)?(\sMatch\s\d\s)?
                         (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw|7-Game\sMixed)\s+
@@ -111,11 +111,13 @@ class FullTiltPokerSummary(TourneySummary):
             self.gametype['limitType'] = 'mx'
         if 'GAME'      in mg: self.gametype['category']  = self.games[mg['GAME']][1]
         if mg['BUYIN'] != None:
-            self.buyin = int(100*Decimal(mg['BUYIN']))
+            self.buyin = int(100*Decimal(self.clearMoneyString(mg['BUYIN'])))
         if mg['FEE'] != None:
-            self.fee   = int(100*Decimal(mg['FEE']))
-        if 'PRIZEPOOL' in mg: self.prizepool             = mg['PRIZEPOOL']
-        if 'ENTRIES'   in mg: self.entries               = mg['ENTRIES']
+            self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))
+        if 'PRIZEPOOL' in mg:
+            self.prizepool = int(Decimal(self.clearMoneyString(mg['PRIZEPOOL'])))
+        if 'ENTRIES'   in mg:
+            self.entries = mg['ENTRIES']
 
         datetimestr = ""
         if mg['YEAR'] == None:
@@ -147,7 +149,7 @@ class FullTiltPokerSummary(TourneySummary):
             mg = a.groupdict()
             #print "DEBUG: a.groupdict(): %s" % mg
             name = mg['NAME']
-            rank = mg['RANK']
+            rank = int(mg['RANK'])
             winnings = 0
 
             if 'WINNINGS' in mg and mg['WINNINGS'] != None:
@@ -165,7 +167,7 @@ class FullTiltPokerSummary(TourneySummary):
                                 '7' : '210000', # Step 7 - $2100.00 USD
                               }
                 winnings = step_values[mg['LEVEL']]
-            self.addPlayer(rank, name, winnings, self.currency, None, None, None)
+            self.addPlayer(rank, name, winnings, self.currency, 0, 0, 0)
 
             playercount += 1
 
