@@ -53,7 +53,9 @@ class Filters(threading.Thread):
         self.sql = db.sql
         self.conf = db.config
         self.display = display
-
+        self.MIN_DATE = '1970-01-02 00:00:00'
+        self.MAX_DATE = '2100-12-12 23:59:59'
+            
         self.gameName = {"27_1draw"  : _("Single Draw 2-7 Lowball")
                         ,"27_3draw"  : _("Triple Draw 2-7 Lowball")
                         ,"a5_3draw"  : _("Triple Draw A-5 Lowball")
@@ -1448,7 +1450,8 @@ class Filters(threading.Thread):
     #end def fillDateFrame
 
     def get_limits_where_clause(self, limits):
-        "Accepts a list of limits and returns a formatted SQL where clause"
+        """Accepts a list of limits and returns a formatted SQL where clause starting with AND.
+            Sql statement MUST link to gameType table and use the alias gt for that table."""
         where = ""
         lims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'fl']
         potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
@@ -1485,6 +1488,75 @@ class Filters(threading.Thread):
         where = where + clause + ' )'
 
         return where
+    
+    def replace_placeholders_with_filter_values(self, query):
+        """ Returnes given query with replaced placeholders by the filter values from self.
+        
+            List of Placeholders that are replaced and some infos how the statement has to look like:
+            (whole clause means it starts with AND and contains the whole clause)
+        
+            Placeholders      table & alias or field     SQL usage          coresponding filter Name
+            <player_test>     Players.Id                in <player_test>   Heroes
+            <game_test>       GameType gt               whole clause       Game
+            <limit_test>      GameType gt               whole clause       Limits, LimitSep, LimitType
+            <position_test>   HandsPlayers hp           whole clause       Positions
+        """
+        
+        #copyed from GuiRingPlayerStats withouth thinking if this could be done any better
+        if '<game_test>' in query:
+            games = self.getGames()    
+            q = []
+
+            for n in games:
+                if games[n]:
+                    q.append(n)
+            if len(q) > 0:
+                gametest = str(tuple(q))
+                gametest = gametest.replace("L", "")
+                gametest = gametest.replace(",)",")")
+                gametest = gametest.replace("u'","'")
+                gametest = "and gt.category in %s" % gametest
+            else:
+                gametest = "and gt.category IS NULL"
+            query = query.replace('<game_test>', gametest)
+            
+        if '<limit_test>' in query:  #copyed from GuiGraphView
+            limits = self.getLimits()
+            for i in ('show', 'none'):
+                if i in limits:
+                    limits.remove(i)
+            limittest = self.get_limits_where_clause(limits)
+            query = query.replace('<limit_test>', limittest)
+            
+        if '<player_test>' in query: #copyed from GuiGraphView
+            sites = self.getSites()
+            heroes = self.getHeroes()
+            siteids = self.getSiteIds()
+            sitenos = []
+            playerids = []
+
+            for site in sites:
+                if sites[site] == True:
+                    sitenos.append(siteids[site])
+                    _hname = Charset.to_utf8(heroes[site])
+                    result = self.db.get_player_id(self.conf, site, _hname)
+                    if result is not None:
+                        playerids.append(str(result))
+            
+            query = query.replace('<player_test>', '(' + ','.join(playerids) + ')')
+            
+        if '<position_test>' in query:
+            positions = self.getPositions()
+            pos_list = []
+            
+            for pos in positions:
+                if positions[pos]:
+                    pos_list.append(pos)
+            
+            positiontest = "AND hp.position in ('" + "','".join(pos_list) + "')"   #values must be set in '' because they can be strings as well as numbers
+            query = query.replace('<position_test>', positiontest)
+
+        return query
 
     def __refresh(self, widget, entry):
         for w in self.mainVBox.get_children():
@@ -1577,14 +1649,20 @@ class Filters(threading.Thread):
         if t2 == '':
             t2 = '2020-12-12'
 
-        s1 = strptime(t1, "%Y-%m-%d") # make time_struct
-        s2 = strptime(t2, "%Y-%m-%d")
-        e1 = mktime(s1) + offset  # s1 is localtime, but returned time since epoch is UTC, then add the 
-        e2 = mktime(s2) + offset  # s2 is localtime, but returned time since epoch is UTC
-        e2 = e2 + 24 * 3600 - 1   # date test is inclusive, so add 23h 59m 59s to e2
-
-        adj_t1 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e1)) # make adjusted string including time
-        adj_t2 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e2))
+        adj_t1 = self.MIN_DATE
+        adj_t2 = self.MAX_DATE
+        
+        if t1 != '':
+            s1 = strptime(t1, "%Y-%m-%d") # make time_struct
+            e1 = mktime(s1) + offset  # s1 is localtime, but returned time since epoch is UTC, then add the 
+            adj_t1 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e1)) # make adjusted string including time
+         
+        if t2 != '':   
+            s2 = strptime(t2, "%Y-%m-%d")
+            e2 = mktime(s2) + offset  # s2 is localtime, but returned time since epoch is UTC
+            e2 = e2 + 24 * 3600 - 1   # date test is inclusive, so add 23h 59m 59s to e2
+            adj_t2 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e2))
+            
         log.info("t1="+t1+" adj_t1="+adj_t1+'.')
 
         return (adj_t1, adj_t2)
