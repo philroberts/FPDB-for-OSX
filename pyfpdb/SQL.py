@@ -4099,10 +4099,15 @@ class Sql:
         # Querry to get all hands in a date range
         ####################################
         self.query['handsInRange'] = """
-            SELECT id
-                FROM Hands h
-                WHERE h.startTime <datetest>
-                ORDER BY startTime"""
+            select h.id
+                from hands h
+                join HandsPlayers hp on h.id = hp.handId
+                join GameTypes gt on gt.id = h.gametypeId
+            where h.startTime <datetest>
+                and hp.playerId in <player_test>
+                <game_test>
+                <limit_test>
+                <position_test>"""
 
         ####################################
         # Query to get a single hand for the replayer

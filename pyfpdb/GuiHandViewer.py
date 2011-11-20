@@ -104,6 +104,8 @@ class GuiHandViewer:
         self.main_window = mainwin
         self.sql = querylist
         self.replayer = None
+        self.date_from = None
+        self.date_to = None
 
         # These are temporary variables until it becomes possible
         # to select() a Hand object from the database
@@ -182,13 +184,31 @@ class GuiHandViewer:
         return card_images
 
     def loadHands(self, button, userdata):
-        hand_ids = self.handIdsFromDateRange(self.filters.getDates()[0], self.filters.getDates()[1])
+        hand_ids = self.get_hand_ids_from_date_range(self.filters.getDates()[0], self.filters.getDates()[1])
         self.reload_hands(hand_ids)
 
-    def handIdsFromDateRange(self, start, end):
+    def get_hand_ids_from_date_range(self, start, end, save_date = False):
+        """Returns the handids in the given date range and in the filters. 
+            Set save_data to true if you want to keep the start and end date if no other date is specified through the filters by the user."""
+            
+        if save_date:
+            self.date_from = start
+            self.date_to = end
+        else:
+            if start != self.filters.MIN_DATE:  #if date is ever changed by the user previously saved dates are deleted
+                self.date_from = None
+            if end != self.filters.MAX_DATE:
+                self.date_to = None
+            
+        if self.date_from != None and start == self.filters.MIN_DATE:
+            start = self.date_from
+            
+        if self.date_to != None and end == self.filters.MAX_DATE:
+            end = self.date_to
 
         q = self.db.sql.query['handsInRange']
         q = q.replace('<datetest>', "between '" + start + "' and '" + end + "'")
+        q = self.filters.replace_placeholders_with_filter_values(q)
 
         c = self.db.get_cursor()
 
@@ -398,6 +418,10 @@ class GuiHandViewer:
         #Does work but all cards that should NOT be displayed have to be clicked.
         card_filter = self.filters.getCards() 
         hcs = row[self.colnum['Street0']].split(' ')
+        
+        if '0x' in hcs:      #if cards are unknown return True
+            return True
+        
         gt = row[self.colnum['Game']]
 
         if gt not in ('holdem', 'omahahi', 'omahahilo'): return True
