@@ -479,6 +479,11 @@ class PokerStars(HandHistoryConverter):
             cards = shows.group('CARDS').split(' ')
             hand.addShownCards(cards, shows.group('PNAME'))
 
+    def readTourneyResults(self, hand):
+        """This function is not called. A recent patch broke the ability for the Stars parser to fetch
+            tourney results from hh's. As the current Stars client supports writing tourney results files
+            directly to the client machine i'm removing the ability to parse tourney results from hh files
+            until we merge/resolve IdentifySite into the parsing despatch sequence"""
         for winningrankone in self.re_WinningRankOne.finditer(hand.handText):
             hand.addPlayerRank (winningrankone.group('PNAME'),int(100*Decimal(winningrankone.group('AMT'))),1)
 

@@ -129,6 +129,12 @@ test_and_remove('dist')
 test_and_remove('build')
 test_and_remove(distdir)
 
+print "compiling fpdb_folder_check.exe"
+
+returncode=os.system("gcc  fpdb_folder_check.c -o fpdb_folder_check.exe")
+if returncode <> 0:
+    quit()
+
 print "*** Building now in dist folder ***"
 
 origIsSystemDLL = py2exe.build_exe.isSystemDLL
