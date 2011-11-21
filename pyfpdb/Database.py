@@ -966,9 +966,12 @@ class Database:
         result = c.fetchall()
         return result
 
-    def resetPlayerIDs(self):
-        self.pcache = None
-        self.tpcache = None
+    def resetCache(self):
+        self.gtcache    = None       # GameTypeId cache
+        self.ttcache    = None       # TourneyTypeId cache   
+        self.tcache     = None       # TourneyId cache
+        self.pcache     = None       # PlayerId cache
+        self.tpcache    = None       # TourneysPlayersId cache
 
     def getSqlPlayerIDs(self, pnames, siteid):
         result = {}
@@ -1234,7 +1237,7 @@ class Database:
         """(Re-)creates the tables of the current DB"""
 
         self.drop_tables()
-        self.resetPlayerIDs()
+        self.resetCache()
         self.create_tables()
         self.createAllIndexes()
         self.commit()
