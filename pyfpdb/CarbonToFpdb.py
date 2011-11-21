@@ -213,7 +213,7 @@ or None if we fail to get the info """
         # Check that the hand is complete up to the awarding of the pot; if
         # not, the hand is unparseable
         if self.re_EndOfHand.search(hand.handText) is None:
-            raise FpdbParseError("readHandInfo: " + _("Partial hand history") + ": '%s-%s'" % (m.group('HID1'), m.group('HID2')))
+            raise FpdbHandPartial("readHandInfo: " + _("Partial hand history") + ": '%s-%s'" % (m.group('HID1'), m.group('HID2')))
 
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.handText)
@@ -234,7 +234,7 @@ or None if we fail to get the info """
             if a.group('DEALTIN') == "true":
                 hand.addPlayer(seatno, a.group('PNAME'), a.group('CASH'))
         if not hand.players:
-            raise FpdbParseError("readPlayerStacks: " + _("No one was dealt in"))
+            raise FpdbHandPartial("readPlayerStacks: " + _("No one was dealt in"))
 
     def markStreets(self, hand):
         if hand.gametype['base'] == 'hold':

@@ -510,7 +510,7 @@ class Hand(object):
             tmp = self.handText[0:100]
             log.debug(_("Streets didn't match - Assuming hand %s was cancelled.") % (self.handid) + " " + _("First 100 characters: %s") % tmp)
             self.cancelled = True
-            raise FpdbParseError(_("Streets didn't match - Assuming hand %s was cancelled.") % (self.handid) + " " + _("First 100 characters: %s") % tmp)
+            raise FpdbHandPartial(_("Streets didn't match - Assuming hand %s was cancelled.") % (self.handid) + " " + _("First 100 characters: %s") % tmp)
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:

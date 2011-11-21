@@ -550,10 +550,12 @@ class Importer:
                         except IOError, e:
                             log.error(_("Failed to send hand to HUD: %s") % e)
 
-                errors = getattr(hhc, 'numErrors')
-                stored = getattr(hhc, 'numHands')
+                partial = getattr(hhc, 'numPartial')
+                errors  = getattr(hhc, 'numErrors')
+                stored  = getattr(hhc, 'numHands')
                 stored -= duplicates
                 stored -= errors
+                stored -= partial
                 # Really ugly hack to allow testing Hands within the HHC from someone
                 # with only an Importer objec
                 if self.settings['cacheHHC']:
