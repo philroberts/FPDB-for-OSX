@@ -231,6 +231,10 @@ test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'gtk-2.0'))
 test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'gtk-doc'))
 test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'locale'))
 test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'man'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'dtds'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'icon-naming-utils'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'icons'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'xml'))
 
 print "***++++++++++++++++++++++++++++++++++++++++++++++"
 print "All done!"
