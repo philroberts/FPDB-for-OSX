@@ -1026,8 +1026,10 @@ class Filters(threading.Thread):
         if "Positions" not in display or display["Positions"] == False:
             return
         
-        self.cursor.execute(self.sql.query['getPositions'])
-        result = self.db.cursor.fetchall()
+        #This takes too long if there are a couple of 100k hands in the DB
+        #self.cursor.execute(self.sql.query['getPositions'])
+        #result = self.db.cursor.fetchall()
+        result = [[0], [1], [2], [3], [4], [5], [5], [7], ['S'], ['B']]
         res_count = len(result)
         
         if res_count > 0:     
@@ -1038,8 +1040,9 @@ class Filters(threading.Thread):
                 if v_count == 0:    #start a new line when the vertical count is 0
                     hbox = gtk.HBox(True, 0)
                     vbox1.pack_start(hbox, False, True, 0)
-                
-                self.cbPositions[line[0]] = self.createPositionLine(hbox, line[0], line[0])
+                    
+                line_str = str(line[0])
+                self.cbPositions[line_str] = self.createPositionLine(hbox, line_str, line_str)
                 
                 v_count += 1
                 if v_count == COL_COUNT:    #set the counter to 0 if the line is full
