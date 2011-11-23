@@ -34,7 +34,7 @@ Step 2, install pygtk and gtk all-in-1 package
 ----------------------------------------------
 
 2.1/ Download
-pygtk 2.24 allin1bundle ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.22/pygtk-2.22.0-1.win32-py2.7.exe
+pygtk 2.24 allin1bundle ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.24/pygtk-all-in-one-2.24.0.win32-py2.7.msi
 
 2.2/ Run installer ***IMPORTANT***: Select option to install PyRsvg
 
