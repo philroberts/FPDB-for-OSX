@@ -136,7 +136,7 @@ class Table(Table_Window):
     def get_geometry(self):
         if self.number not in WNCK_XTABLES:
             return None
-        (_x, _y, _h, _w) = self.wnck_table_w.get_client_window_geometry()
+        (_x, _y, _w, _h) = self.wnck_table_w.get_client_window_geometry()
         return {'x'        : int(_x),
                 'y'        : int(_y),
                 'width'    : int(_w),
