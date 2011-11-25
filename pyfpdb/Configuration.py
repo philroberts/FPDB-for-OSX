@@ -1081,6 +1081,8 @@ class Config:
         if layout_node is None:
             print "aux node not found"
             return
+        if width: layout_node.setAttribute("width", str(width))
+        if height: layout_node.setAttribute("height", str(height))
         print "editing locations =", locations
         for (i, pos) in locations.iteritems():
             location_node = self.get_location_node(layout_node, i)
