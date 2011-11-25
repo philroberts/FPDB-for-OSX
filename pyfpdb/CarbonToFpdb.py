@@ -60,11 +60,14 @@ class Carbon(HandHistoryConverter):
          'Holdem Tournament' : ('hold','holdem'),
                     'Omaha'  : ('hold','omahahi'),
          'Omaha Tournament'  : ('hold','omahahi'),
+               'Omaha H/L8'  : ('hold','omahahilo'),
               '2-7 Lowball'  : ('draw','27_3draw'),
               'A-5 Lowball'  : ('draw','a5_3draw'),
                    'Badugi'  : ('draw','badugi'),
            '5-Draw w/Joker'  : ('draw','fivedraw'),
+                   '5-Draw'  : ('draw','fivedraw'),
                    '7-Stud'  : ('stud','studhi'),
+              '7-Stud H/L8'  : ('stud','studhilo'),
                    '5-Stud'  : ('stud','5studhi'),
                      'Razz'  : ('stud','razz'),
             }
@@ -86,7 +89,7 @@ class Carbon(HandHistoryConverter):
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Holdem\sTournament|Omaha|Omaha\sTournament|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|7\-Stud|5\-Stud|Razz)" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
+    re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Holdem\sTournament|Omaha|Omaha\sTournament|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz)" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
     re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLE>[\/,\.\-\ &%\$\#a-zA-Z\d\'\(\)]+)(\(\d+\))?\|(?P<TOURNO>\d+)?.*>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
@@ -213,7 +216,7 @@ or None if we fail to get the info """
         # Check that the hand is complete up to the awarding of the pot; if
         # not, the hand is unparseable
         if self.re_EndOfHand.search(hand.handText) is None:
-            raise FpdbParseError("readHandInfo: " + _("Partial hand history") + ": '%s-%s'" % (m.group('HID1'), m.group('HID2')))
+            raise FpdbHandPartial("readHandInfo: " + _("Partial hand history") + ": '%s-%s'" % (m.group('HID1'), m.group('HID2')))
 
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.handText)
@@ -234,7 +237,7 @@ or None if we fail to get the info """
             if a.group('DEALTIN') == "true":
                 hand.addPlayer(seatno, a.group('PNAME'), a.group('CASH'))
         if not hand.players:
-            raise FpdbParseError("readPlayerStacks: " + _("No one was dealt in"))
+            raise FpdbHandPartial("readPlayerStacks: " + _("No one was dealt in"))
 
     def markStreets(self, hand):
         if hand.gametype['base'] == 'hold':
