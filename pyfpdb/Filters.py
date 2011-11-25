@@ -53,7 +53,9 @@ class Filters(threading.Thread):
         self.sql = db.sql
         self.conf = db.config
         self.display = display
-
+        self.MIN_DATE = '1970-01-02 00:00:00'
+        self.MAX_DATE = '2100-12-12 23:59:59'
+            
         self.gameName = {"27_1draw"  : _("Single Draw 2-7 Lowball")
                         ,"27_3draw"  : _("Triple Draw 2-7 Lowball")
                         ,"a5_3draw"  : _("Triple Draw A-5 Lowball")
@@ -77,10 +79,11 @@ class Filters(threading.Thread):
         # text used on screen stored here so that it can be configured
         self.filterText = {'limitsall':_('All'), 'limitsnone':_('None'), 'limitsshow':_('Show _Limits')
                           ,'gamesall':_('All'), 'gamesnone':_('None')
+                          ,'positionsall':_('All'), 'positionsnone':_('None')
                           ,'currenciesall':_('All'), 'currenciesnone':_('None')
                           ,'seatsbetween':_('Between:'), 'seatsand':_('And:'), 'seatsshow':_('Show Number of _Players')
                           ,'playerstitle':_('Hero:'), 'sitestitle':(_('Sites')+':'), 'gamestitle':(_('Games')+':')
-                          ,'limitstitle':_('Limits:'), 'seatstitle':_('Number of Players:')
+                          ,'limitstitle':_('Limits:'), 'positionstitle':_('Positions:'), 'seatstitle':_('Number of Players:')
                           ,'groupstitle':_('Grouping:'), 'posnshow':_('Show Position Stats')
                           ,'datestitle':_('Date:'), 'currenciestitle':(_('Currencies')+':')
                           ,'groupsall':_('All Players'), 'cardstitle':(_('Hole Cards')+':')
@@ -116,6 +119,7 @@ class Filters(threading.Thread):
         self.sites  = {}
         self.games  = {}
         self.limits = {}
+        self.positions = {}
         self.seats  = {}
         self.groups = {}
         self.siteid = {}
@@ -161,6 +165,7 @@ class Filters(threading.Thread):
         self.fillPlayerFrame(vbox, self.display)
         playerFrame.add(vbox)
 
+        # Sites
         sitesFrame = gtk.Frame()
         sitesFrame.set_label_align(0.0, 0.0)
         vbox = gtk.VBox(False, 0)
@@ -211,6 +216,18 @@ class Filters(threading.Thread):
 
         self.fillLimitsFrame(vbox, self.display)
         limitsFrame.add(vbox)
+        
+        #Positions  
+        positionsFrame = gtk.Frame()
+        positionsFrame.set_label_align(0.0, 0.0)
+        vbox = gtk.VBox(False, 0)
+        
+        self.cbPositions = {}
+        self.cbNoPositions = None
+        self.cbAllPositions = None
+
+        self.fillPositionsFrame(vbox, self.display)
+        positionsFrame.add(vbox)
 
         # GraphOps
         graphopsFrame = gtk.Frame()
@@ -270,6 +287,7 @@ class Filters(threading.Thread):
         self.mainVBox.pack_start(gamesFrame, expand)
         self.mainVBox.pack_start(currenciesFrame, expand)
         self.mainVBox.pack_start(limitsFrame, expand)
+        self.mainVBox.pack_start(positionsFrame, expand)
         self.mainVBox.pack_start(seatsFrame, expand)
         self.mainVBox.pack_start(groupsFrame, expand)
         self.mainVBox.pack_start(dateFrame, expand)
@@ -292,6 +310,8 @@ class Filters(threading.Thread):
             currenciesFrame.hide()
         if "Limits" not in self.display or self.display["Limits"] == False:
             limitsFrame.hide()
+        if "Positions" not in self.display or self.display["Positions"] == False:
+            positionsFrame.hide()
         if "Seats" not in self.display or self.display["Seats"] == False:
             seatsFrame.hide()
         if "Groups" not in self.display or self.display["Groups"] == False:
@@ -337,6 +357,10 @@ class Filters(threading.Thread):
     def getSites(self):
         return self.sites
     #end def getSites
+    
+    def getPositions(self):
+        return self.positions
+    #end def getPositions
 
     def getTourneyTypes(self):
         return self.tourneyTypes
@@ -485,6 +509,15 @@ class Filters(threading.Thread):
         if game != "none":
             cb.set_active(True)
         return(cb)
+    
+    def createPositionLine(self, hbox, pos, pos_text):
+        cb = gtk.CheckButton(pos_text.replace("_", "__"))
+        cb.connect('clicked', self.__set_position_select, pos)
+        hbox.pack_start(cb, False, False, 0)
+        if pos != "none":
+            cb.set_active(True)
+        return cb
+    #end def createPositionLine
 
     def createCardsWidget(self, hbox):
         for i in range(0,13):
@@ -538,13 +571,32 @@ class Filters(threading.Thread):
                     cb.set_active(False)
         else:
             self.games[game] = w.get_active()
-            if (w.get_active()): # when we turn a game on, turn 'none' off if it's on
+            if (w.get_active()): # when we turn a pos on, turn 'none' off if it's on
                 if (self.cbNoGames and self.cbNoGames.get_active()):
                     self.cbNoGames.set_active(False)
-            else:                # when we turn a game off, turn 'all' off if it's on
+            else:                # when we turn a pos off, turn 'all' off if it's on
                 if (self.cbAllGames and self.cbAllGames.get_active()):
                     self.cbAllGames.set_active(False)
     #end def __set_game_select
+
+    def __set_position_select(self, w, pos):      
+        if (pos == 'all'):
+            if (w.get_active()):
+                for cb in self.cbPositions.values():
+                    cb.set_active(True)
+        elif (pos == 'none'):
+            if (w.get_active()):
+                for cb in self.cbPositions.values():
+                    cb.set_active(False)
+        else:
+            self.positions[pos] = w.get_active()
+            if (w.get_active()): # when we turn a pos on, turn 'none' off if it's on
+                if (self.cbNoPositions and self.cbNoPositions.get_active()):
+                    self.cbNoPositions.set_active(False)
+            else:                # when we turn a pos off, turn 'all' off if it's on
+                if (self.cbAllPositions and self.cbAllPositions.get_active()):
+                    self.cbAllPositions.set_active(False)
+    #end def __set_position_select
 
     def __card_select_bgcolor(self, card, selected):
         s_on  = "red"
@@ -949,6 +1001,70 @@ class Filters(threading.Thread):
             print _("INFO: No games returned from database")
             log.info(_("No games returned from database"))
     #end def fillGamesFrame
+    
+    def fillPositionsFrame(self, vbox, display):
+        top_hbox = gtk.HBox(False, 0)
+        top_hbox.show()
+        vbox.pack_start(top_hbox, False, False, 0)
+
+        lbl_title = gtk.Label(self.filterText['positionstitle'])
+        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
+        top_hbox.pack_start(lbl_title, expand=True, padding=3)
+
+        showb = gtk.Button(label=_("hide"), stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'Positions')
+        self.toggles['Positions'] = showb
+        showb.show()
+        top_hbox.pack_start(showb, expand=False, padding=1)
+
+        vbox1 = gtk.VBox(False, 0)
+        self.boxes['Positions'] = vbox1
+        vbox.pack_start(vbox1, False, False, 0)
+        
+        #the following is not the fastest query (as it querys a table with potentialy a lot of data), so dont execute it if not necessary
+        if "Positions" not in display or display["Positions"] == False:
+            return
+        
+        #This takes too long if there are a couple of 100k hands in the DB
+        #self.cursor.execute(self.sql.query['getPositions'])
+        #result = self.db.cursor.fetchall()
+        result = [[0], [1], [2], [3], [4], [5], [5], [7], ['S'], ['B']]
+        res_count = len(result)
+        
+        if res_count > 0:     
+            v_count = 0
+            COL_COUNT = 4           #Number of columns
+            hbox = None
+            for line in result:
+                if v_count == 0:    #start a new line when the vertical count is 0
+                    hbox = gtk.HBox(True, 0)
+                    vbox1.pack_start(hbox, False, True, 0)
+                    
+                line_str = str(line[0])
+                self.cbPositions[line_str] = self.createPositionLine(hbox, line_str, line_str)
+                
+                v_count += 1
+                if v_count == COL_COUNT:    #set the counter to 0 if the line is full
+                    v_count = 0
+            
+            dif = res_count % COL_COUNT    
+            while dif > 0:          #fill the rest of the line with empy boxes, so that every line contains COL_COUNT elements
+                fillbox = gtk.VBox(False, 0)
+                hbox.pack_start(fillbox, False, False, 0)
+                dif -= 1
+
+            if res_count > 1:
+                hbox = gtk.HBox(True, 0)
+                vbox1.pack_start(hbox, False, False, 0)
+                self.cbAllPositions = self.createPositionLine(hbox, 'all', self.filterText['positionsall'])
+                self.cbNoPositions = self.createPositionLine(hbox, 'none', self.filterText['positionsnone'])
+        else:
+            print _("INFO: No positions returned from database")
+            log.info(_("No positions returned from database"))
+        
+    #end def fillSitesFrame(self, vbox, display):
+
 
     def fillHoleCardsFrame(self, vbox):
         top_hbox = gtk.HBox(False, 0)
@@ -1337,7 +1453,8 @@ class Filters(threading.Thread):
     #end def fillDateFrame
 
     def get_limits_where_clause(self, limits):
-        "Accepts a list of limits and returns a formatted SQL where clause"
+        """Accepts a list of limits and returns a formatted SQL where clause starting with AND.
+            Sql statement MUST link to gameType table and use the alias gt for that table."""
         where = ""
         lims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'fl']
         potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
@@ -1374,6 +1491,75 @@ class Filters(threading.Thread):
         where = where + clause + ' )'
 
         return where
+    
+    def replace_placeholders_with_filter_values(self, query):
+        """ Returnes given query with replaced placeholders by the filter values from self.
+        
+            List of Placeholders that are replaced and some infos how the statement has to look like:
+            (whole clause means it starts with AND and contains the whole clause)
+        
+            Placeholders      table & alias or field     SQL usage          coresponding filter Name
+            <player_test>     Players.Id                in <player_test>   Heroes
+            <game_test>       GameType gt               whole clause       Game
+            <limit_test>      GameType gt               whole clause       Limits, LimitSep, LimitType
+            <position_test>   HandsPlayers hp           whole clause       Positions
+        """
+        
+        #copyed from GuiRingPlayerStats withouth thinking if this could be done any better
+        if '<game_test>' in query:
+            games = self.getGames()    
+            q = []
+
+            for n in games:
+                if games[n]:
+                    q.append(n)
+            if len(q) > 0:
+                gametest = str(tuple(q))
+                gametest = gametest.replace("L", "")
+                gametest = gametest.replace(",)",")")
+                gametest = gametest.replace("u'","'")
+                gametest = "and gt.category in %s" % gametest
+            else:
+                gametest = "and gt.category IS NULL"
+            query = query.replace('<game_test>', gametest)
+            
+        if '<limit_test>' in query:  #copyed from GuiGraphView
+            limits = self.getLimits()
+            for i in ('show', 'none'):
+                if i in limits:
+                    limits.remove(i)
+            limittest = self.get_limits_where_clause(limits)
+            query = query.replace('<limit_test>', limittest)
+            
+        if '<player_test>' in query: #copyed from GuiGraphView
+            sites = self.getSites()
+            heroes = self.getHeroes()
+            siteids = self.getSiteIds()
+            sitenos = []
+            playerids = []
+
+            for site in sites:
+                if sites[site] == True:
+                    sitenos.append(siteids[site])
+                    _hname = Charset.to_utf8(heroes[site])
+                    result = self.db.get_player_id(self.conf, site, _hname)
+                    if result is not None:
+                        playerids.append(str(result))
+            
+            query = query.replace('<player_test>', '(' + ','.join(playerids) + ')')
+            
+        if '<position_test>' in query:
+            positions = self.getPositions()
+            pos_list = []
+            
+            for pos in positions:
+                if positions[pos]:
+                    pos_list.append(pos)
+            
+            positiontest = "AND hp.position in ('" + "','".join(pos_list) + "')"   #values must be set in '' because they can be strings as well as numbers
+            query = query.replace('<position_test>', positiontest)
+
+        return query
 
     def __refresh(self, widget, entry):
         for w in self.mainVBox.get_children():
@@ -1461,19 +1647,20 @@ class Filters(threading.Thread):
         t1 = self.start_date.get_text()
         t2 = self.end_date.get_text()
 
-        if t1 == '':
-            t1 = '1970-01-02'
-        if t2 == '':
-            t2 = '2020-12-12'
-
-        s1 = strptime(t1, "%Y-%m-%d") # make time_struct
-        s2 = strptime(t2, "%Y-%m-%d")
-        e1 = mktime(s1) + offset  # s1 is localtime, but returned time since epoch is UTC, then add the 
-        e2 = mktime(s2) + offset  # s2 is localtime, but returned time since epoch is UTC
-        e2 = e2 + 24 * 3600 - 1   # date test is inclusive, so add 23h 59m 59s to e2
-
-        adj_t1 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e1)) # make adjusted string including time
-        adj_t2 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e2))
+        adj_t1 = self.MIN_DATE
+        adj_t2 = self.MAX_DATE
+        
+        if t1 != '':
+            s1 = strptime(t1, "%Y-%m-%d") # make time_struct
+            e1 = mktime(s1) + offset  # s1 is localtime, but returned time since epoch is UTC, then add the 
+            adj_t1 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e1)) # make adjusted string including time
+         
+        if t2 != '':   
+            s2 = strptime(t2, "%Y-%m-%d")
+            e2 = mktime(s2) + offset  # s2 is localtime, but returned time since epoch is UTC
+            e2 = e2 + 24 * 3600 - 1   # date test is inclusive, so add 23h 59m 59s to e2
+            adj_t2 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e2))
+            
         log.info("t1="+t1+" adj_t1="+adj_t1+'.')
 
         return (adj_t1, adj_t2)
