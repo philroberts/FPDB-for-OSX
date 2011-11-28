@@ -365,7 +365,8 @@ or None if we fail to get the info """
                 elif raises == 1:
                     hand.addRaiseTo(street, player, action.group('BET'))
                 else: # raises > 1
-                    hand.addCallandRaise(street, player, action.group('BET'))
+                    hand.addRaiseTo(street, player, action.group('BET'))
+                    #hand.addCallandRaise(street, player, action.group('BET'))
             elif action.group('ATYPE') == 'CALL':
                 hand.addCall(street, player, action.group('BET'))
             elif action.group('ATYPE') == 'BET':
@@ -392,8 +393,13 @@ or None if we fail to get the info """
         pots = [Decimal(0) for n in range(hand.maxseats)]
         for m in self.re_CollectPot.finditer(hand.handText):
             pname = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
+            pot = m.group('POT')
+            committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
+            lastbet = committed[-1][0] - committed[-2][0]
+            if lastbet > 0: # uncalled
+                pot = str(Decimal(m.group('POT')) - lastbet)
             #print "DEBUG: addCollectPot(%s, %s)" %(pname, m.group('POT'))
-            hand.addCollectPot(player=pname, pot=m.group('POT'))
+            hand.addCollectPot(player=pname, pot=pot)
 
     def readShownCards(self, hand):
         for street in ('FLOP', 'TURN', 'RIVER', 'SEVENTH', 'DRAWTHREE'):
