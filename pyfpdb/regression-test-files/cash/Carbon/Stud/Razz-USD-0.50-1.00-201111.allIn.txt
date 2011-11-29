@@ -1,9 +1,9 @@
 <description type="Razz" stakes="Limit $0.50/$1"/>
 <game id="43618199-14" starttime="20111115223628" numholecards="7" gametype="47" realmoney="true" data="20111115|Pinatubo (43618199)|43618199|43618199-14|false">
 	<players dealer="7">
-		<player seat="3" nickname="OJLimpson82" balance="$2.96" dealtin="true" />
-		<player seat="5" nickname="TheWuster74" balance="$10.00" dealtin="true" />
-		<player seat="6" nickname="6infamous9" balance="$15.39" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$2.96" dealtin="true" />
+		<player seat="5" nickname="Player1" balance="$10.00" dealtin="true" />
+		<player seat="6" nickname="Player2" balance="$15.39" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="ANTE" timestamp="1321414699986" player="3" amount="0.05"/>
