@@ -475,6 +475,7 @@ class Hud:
         # anyone know how to do this in unix, or better yet, trap the X11 error that is triggered when executing the get_origin() for a closed window?
         if self.table.gdkhandle is not None:
             (oldx, oldy) = self.table.gdkhandle.get_origin() # In Windows, this call returns (0,0) if it's an invalid window.  In X, the X server is immediately killed.
+            log.debug(_("update_table_position:")+str(oldx)+","+str(oldy))
             #(x, y, width, height) = self.table.get_geometry()
             #print "self.table.get_geometry=",x,y,width,height
             if self.table.oldx != oldx or self.table.oldy != oldy: # If the current position does not equal the stored position, save the new position, and then move all the sub windows.
@@ -502,6 +503,7 @@ class Hud:
 
 #    move the stat windows
         (self.table.oldx, self.table.oldy) = self.table.gdkhandle.get_origin()
+        log.debug(_("up_update_table_position:")+str(self.table.oldx)+","+str(self.table.oldy))
         adj = self.adj_seats(self.hand, self.config)
         loc = self.config.get_locations(self.table.site, self.max)
         for i, w in enumerate(self.stat_windows.itervalues()):
@@ -540,6 +542,8 @@ class Hud:
         self.aux_windows = []
 
     def resize_windows(self, *args):
+        log.debug(_("resize_windows:")+"old:"+str(self.table.oldwidth)+"x"+str(self.table.oldheight))
+        log.debug(_("resize_windows:")+"new:"+str(self.table.width)+"x"+str(self.table.height))
         for w in self.stat_windows.itervalues():
             if type(w) == int:
                 continue
