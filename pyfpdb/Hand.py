@@ -226,9 +226,9 @@ class Hand(object):
         if shown:  self.shown.add(player)
         if mucked: self.mucked.add(player)
 
-        if '' in closed:
-            tmp = closed.index('')
-            closed[tmp] = '0x'
+        for i in range(len(closed)):
+            if closed[i] in ('', 'Xx', 'Nu', 'nu'):
+                closed[i] = '0x'
 
         self.holecards[street][player] = [open, closed]
 
@@ -1279,7 +1279,7 @@ class DrawHand(Hand):
         self.discards[street][player] = set([cards])
 
 
-    def addDiscard(self, street, player, num, cards):
+    def addDiscard(self, street, player, num, cards=None):
         self.checkPlayerExists(player)
         if cards:
             act = (player, 'discards', Decimal(num), cards)
