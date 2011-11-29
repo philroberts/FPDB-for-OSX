@@ -227,7 +227,7 @@ class Hand(object):
         if mucked: self.mucked.add(player)
 
         for i in range(len(closed)):
-            if closed[i] in ('', 'Xx', 'Nu', 'nu'):
+            if closed[i] in ('', 'Xx', 'Null', 'null'):
                 closed[i] = '0x'
 
         self.holecards[street][player] = [open, closed]
