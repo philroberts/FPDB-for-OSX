@@ -340,33 +340,42 @@ or None if we fail to get the info """
                     cards = found.group('CARDS').split(',')
                     hand.addHoleCards(street, hand.hero, closed=cards, shown=False, mucked=False, dealt=True)
 
-        for street, text in hand.streets.iteritems():
-            if not text or street in ('PREFLOP', 'DEAL') or hand.gametype['base'] == 'hold': continue  # already done these
-            m = self.re_HeroCards.finditer(hand.streets[street])
-            for found in m:
-                player = self.playerNameFromSeatNo(found.group('PSEAT'), hand)
-                if found.group('CARDS') is None:
-                    cards    = []
-                    newcards = []
-                    oldcards = []
-                else:
-                    if hand.gametype['base'] == 'stud':
-                        cards = found.group('CARDS').replace('null,', '').replace(',null','').split(',')
-                        oldcards = cards[:-1]
-                        newcards = [cards[-1]]
-                    else:
-                        cards = found.group('CARDS').split(',')
-                        oldcards = cards
+        for street in hand.holeStreets:
+            if hand.streets.has_key(street):
+                if not hand.streets[street] or street in ('PREFLOP', 'DEAL') or hand.gametype['base'] == 'hold': continue  # already done these
+                m = self.re_HeroCards.finditer(hand.streets[street])
+                for found in m:
+                    player = self.playerNameFromSeatNo(found.group('PSEAT'), hand)
+                    if found.group('CARDS') is None:
+                        cards    = []
                         newcards = []
-                if street == 'THIRD' and len(cards) == 3: # hero in stud game
-                    hand.hero = player
-                    herocards = cards
-                    hand.dealt.add(hand.hero) # need this for stud??
-                    hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
-                elif (cards != herocards) or hand.gametype['base'] == 'draw':
-                    if hand.hero == player:
+                        oldcards = []
+                    else:
+                        if hand.gametype['base'] == 'stud':
+                            cards = found.group('CARDS').replace('null,', '').replace(',null','').split(',')
+                            oldcards = cards[:-1]
+                            newcards = [cards[-1]]
+                        else:
+                            cards = found.group('CARDS').split(',')
+                            oldcards = cards
+                            newcards = []
+                    if street == 'THIRD' and len(cards) == 3: # hero in stud game
+                        hand.hero = player
                         herocards = cards
-                    hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
+                        hand.dealt.add(hand.hero) # need this for stud??
+                        hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
+                    elif (cards != herocards and hand.gametype['base'] == 'stud'):
+                        if hand.hero == player:
+                            herocards = cards
+                            hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
+                        elif (len(cards)<5):
+                            hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
+                        elif (len(cards)==7):
+                            for street in hand.holeStreets:
+                                hand.holecards[street][player] = [[], []]
+                            hand.addHoleCards(street, player, closed=cards, open=[], shown=False, mucked=False, dealt=False)
+                    elif (hand.gametype['base'] == 'draw'):
+                        hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
 
     def readAction(self, hand, street):
         logging.debug("readAction (%s)" % street)
