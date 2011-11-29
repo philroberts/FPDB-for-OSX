@@ -1,0 +1,50 @@
+<description type="7-Stud H/L8" stakes="Limit $0.25/$0.50"/>
+<game id="40263637-116" starttime="20110908220212" numholecards="7" gametype="43" realmoney="true" data="20110908|Euphrates (40263637)|40263637|40263637-116|false">
+	<players dealer="7">
+		<player seat="5" nickname="Player1" balance="$9.92" dealtin="true" />
+		<player seat="7" nickname="Hero" balance="$5.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="ANTE" timestamp="1315537296291" player="7" amount="0.02"/>
+		<event sequence="2" type="ANTE" timestamp="1315537298483" player="5" amount="0.02"/>
+	</round>
+	<round id="BRING_IN" sequence="2">
+		<event sequence="3" type="BRING_IN" timestamp="1315537301467" player="7" amount="0.05"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="null,null,7h" player="5"/>
+		<cards type="HOLE" cards="8h,2s,3h" player="7" hand="Eight High - Lo (8-3-2)"/>
+	</round>
+	<round id="THIRD_STREET" sequence="3">
+		<event sequence="4" type="CALL" timestamp="1315537302900" player="5" amount="0.05"/>
+	</round>
+	<round id="FOURTH_STREET" sequence="4">
+		<event sequence="5" type="CHECK" timestamp="1315537305149" player="5"/>
+		<event sequence="6" type="CHECK" timestamp="1315537306739" player="7"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="null,null,7h,Qh" player="5"/>
+		<cards type="HOLE" cards="8h,2s,3h,Jc" player="7" hand="Jack High"/>
+	</round>
+	<round id="FIFTH_STREET" sequence="5">
+		<event sequence="7" type="CHECK" timestamp="1315537308350" player="7"/>
+		<event sequence="8" type="CHECK" timestamp="1315537309759" player="5"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="null,null,7h,Qh,Js" player="5"/>
+		<cards type="HOLE" cards="8h,2s,3h,Jc,Kh" player="7" hand="King High"/>
+	</round>
+	<round id="SIXTH_STREET" sequence="6">
+		<event sequence="9" type="CHECK" timestamp="1315537311827" player="5"/>
+		<event sequence="10" type="CHECK" timestamp="1315537313477" player="7"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="null,null,7h,Qh,Js,7s" player="5"/>
+		<cards type="HOLE" cards="8h,2s,3h,Jc,Kh,As" player="7" hand="Ace High"/>
+	</round>
+	<round id="SEVENTH_STREET" sequence="7">
+		<event sequence="11" type="CHECK" timestamp="1315537315477" player="5"/>
+		<event sequence="12" type="BET" timestamp="1315537316559" player="7" amount="0.50"/>
+		<event sequence="13" type="FOLD" timestamp="1315537318087" player="5"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="null,null,7h,Qh,Js,7s,null" player="5"/>
+		<cards type="HOLE" cards="8h,2s,3h,Jc,Kh,As,5d" player="7" hand="Ace High - Lo (8-5-3-2-A)"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="8">
+		<event sequence="14" type="MUCK" timestamp="1315537324236" player="7"/>
+		<winner amount="0.64" uncalled="false" potnumber="1" player="7" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="9">
+	</round>
+</game>
