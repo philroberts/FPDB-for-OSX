@@ -105,7 +105,7 @@ class Carbon(HandHistoryConverter):
     re_Antes = re.compile(r'<event sequence="[0-9]+" type="ANTE" (?P<TIMESTAMP>timestamp="\d+" )?player="(?P<PSEAT>[0-9])" amount="(?P<ANTE>[.0-9]+)"/>', re.MULTILINE)
     re_BringIn = re.compile(r'<event sequence="[0-9]+" type="BRING_IN" (?P<TIMESTAMP>timestamp="\d+" )?player="(?P<PSEAT>[0-9])" amount="(?P<BRINGIN>[.0-9]+)"/>', re.MULTILINE)
     re_HeroCards = re.compile(r'<cards type="(HOLE|DRAW_DRAWN_CARDS)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
-    re_Action = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT|DRAW)"( timestamp="(?P<TIMESTAMP>[0-9]+)")? player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?( text="(?P<NUM>[0-9])")?/>', re.MULTILINE)
+    re_Action = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT|DRAW)"( timestamp="(?P<TIMESTAMP>[0-9]+)")? player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?( text="(?P<TXT>.+)")?/>', re.MULTILINE)
     re_ShowdownAction = re.compile(r'<cards type="SHOWN" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_CollectPot = re.compile(r'<winner amount="(?P<POT>[.0-9]+)" uncalled="false" potnumber="[0-9]+" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
@@ -369,6 +369,9 @@ or None if we fail to get the info """
                             herocards = cards
                             hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
                         elif (len(cards)<5):
+                            if street == 'SEVENTH':
+                                oldcards = []
+                                newcards = []
                             hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
                         elif (len(cards)==7):
                             for street in hand.holeStreets:
@@ -404,7 +407,7 @@ or None if we fail to get the info """
             elif action.group('ATYPE') == 'ALL_IN':
                 hand.addAllIn(street, player, action.group('BET'))
             elif action.group('ATYPE') == 'DRAW':
-                hand.addDiscard(street, player, action.group('NUM'))
+                hand.addDiscard(street, player, action.group('TXT'))
             else:
                 logging.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
 

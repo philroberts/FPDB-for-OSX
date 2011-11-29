@@ -1681,6 +1681,7 @@ class StudHand(Hand):
                         holecards = holecards + self.holecards[street][player][1]
                 else:
                     holecards = holecards + self.holecards[street][player][0]
+                #print "DEBUG: street, holecards, player, self.holecards[street][player][0], self.holecards[street][player][1]
 
         if asList == False:
             return " ".join(holecards)
