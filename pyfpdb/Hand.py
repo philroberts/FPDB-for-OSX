@@ -227,7 +227,7 @@ class Hand(object):
         if mucked: self.mucked.add(player)
 
         for i in range(len(closed)):
-            if closed[i] in ('', 'Xx', 'Nu', 'nu'):
+            if closed[i] in ('', 'Xx', 'Null', 'null'):
                 closed[i] = '0x'
 
         self.holecards[street][player] = [open, closed]
@@ -1681,6 +1681,7 @@ class StudHand(Hand):
                         holecards = holecards + self.holecards[street][player][1]
                 else:
                     holecards = holecards + self.holecards[street][player][0]
+                #print "DEBUG: street, holecards, player, self.holecards[street][player][0], self.holecards[street][player][1]
 
         if asList == False:
             return " ".join(holecards)

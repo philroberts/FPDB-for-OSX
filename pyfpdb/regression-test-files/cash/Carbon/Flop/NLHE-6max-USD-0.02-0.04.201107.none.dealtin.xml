@@ -1,7 +1,7 @@
 <description type="Holdem" stakes="No Limit ($0.02/$0.04)"/>
 <game id="34717229-304" starttime="20110517172454" numholecards="2" gametype="2" realmoney="true" data="20110517|Santiago (34717229)|34717229|34717229-304|false">
 	<players dealer="3">
-		<player seat="0" nickname="Player5" balance="$8.48" dealtin="false" />
+		<player seat="0" nickname="Hero" balance="$8.48" dealtin="false" />
 		<player seat="1" nickname="Player4" balance="$1.40" dealtin="false" />
 		<player seat="2" nickname="Player2" balance="$4.00" dealtin="false" />
 		<player seat="3" nickname="Player1" balance="$1.71" dealtin="false" />
