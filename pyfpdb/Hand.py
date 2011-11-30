@@ -226,9 +226,9 @@ class Hand(object):
         if shown:  self.shown.add(player)
         if mucked: self.mucked.add(player)
 
-        if '' in closed:
-            tmp = closed.index('')
-            closed[tmp] = '0x'
+        for i in range(len(closed)):
+            if closed[i] in ('', 'Xx', 'Null', 'null'):
+                closed[i] = '0x'
 
         self.holecards[street][player] = [open, closed]
 
@@ -510,7 +510,7 @@ class Hand(object):
             tmp = self.handText[0:100]
             log.debug(_("Streets didn't match - Assuming hand %s was cancelled.") % (self.handid) + " " + _("First 100 characters: %s") % tmp)
             self.cancelled = True
-            raise FpdbParseError(_("Streets didn't match - Assuming hand %s was cancelled.") % (self.handid) + " " + _("First 100 characters: %s") % tmp)
+            raise FpdbHandPartial(_("Streets didn't match - Assuming hand %s was cancelled.") % (self.handid) + " " + _("First 100 characters: %s") % tmp)
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
@@ -1279,7 +1279,7 @@ class DrawHand(Hand):
         self.discards[street][player] = set([cards])
 
 
-    def addDiscard(self, street, player, num, cards):
+    def addDiscard(self, street, player, num, cards=None):
         self.checkPlayerExists(player)
         if cards:
             act = (player, 'discards', Decimal(num), cards)
@@ -1681,6 +1681,7 @@ class StudHand(Hand):
                         holecards = holecards + self.holecards[street][player][1]
                 else:
                     holecards = holecards + self.holecards[street][player][0]
+                #print "DEBUG: street, holecards, player, self.holecards[street][player][0], self.holecards[street][player][1]
 
         if asList == False:
             return " ".join(holecards)
@@ -1694,7 +1695,7 @@ class StudHand(Hand):
                 log.warning(_("join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should be impossible for anyone who is not a hero"))
                 log.warning("join_holcards: holecards(%s): %s" % (player, holecards))
             if holecards == [u'0x', u'0x']:
-                log.warning(_("join_holecards: Player '%s' appears not to have been dealt a card"))
+                log.warning(_("join_holecards: Player '%s' appears not to have been dealt a card" % player))
                 # If a player is listed but not dealt a card in a cash game this can occur
                 # Noticed in FTP Razz hand. Return 3 empty cards in this case
                 holecards = [u'0x', u'0x', u'0x']

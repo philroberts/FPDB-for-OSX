@@ -57,8 +57,6 @@ class iPoker(HandHistoryConverter):
     siteId   = 13
     copyGameHeader = True   #NOTE: Not sure if this is necessary yet. The file is xml so its likely
 
-    suit_trans  = { 'S':'s', 'H':'h', 'C':'c', 'D':'d'}
-
     substitutions = {
                      'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|",
                      'PLYR': r'(?P<PNAME>[a-zA-Z0-9]+)',
@@ -69,8 +67,8 @@ class iPoker(HandHistoryConverter):
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r"""
-            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL|Omaha\sL)
-                (\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>
+            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL|Omaha\sL)(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
+            <tablename>(?P<TABLE>.+)?</tablename>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_GameInfoTrny = re.compile(r"""
                 <tournamentname>.+?<place>(?P<PLACE>.+?)</place>
@@ -86,12 +84,11 @@ class iPoker(HandHistoryConverter):
     re_PostSB = re.compile(r'<action no="[0-9]+" player="%(PLYR)s" type="1" sum="(%(LS)s)(?P<SB>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
     re_PostBB = re.compile(r'<action no="[0-9]+" player="%(PLYR)s" type="2" sum="(%(LS)s)(?P<BB>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
     re_PostBoth = re.compile(r'<event sequence="[0-9]+" type="(RETURN_BLIND)" player="(?P<PSEAT>[0-9])" amount="(?P<SBBB>[%(NUM)s]+)"/>' % substitutions, re.MULTILINE)
-    re_HeroCards = re.compile(r'<cards type="HOLE" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
+    re_Hero = re.compile(r'<nickname>(?P<HERO>.+)</nickname>', re.MULTILINE)
+    re_HeroCards = re.compile(r'<cards type="(Pocket|Third\sStreet|Fourth\sStreet|Fifth\sStreet|Sixth\sStreet|River)" player="(?P<PNAME>[^"]+)">(?P<CARDS>.+?)</cards>', re.MULTILINE)
     re_Action = re.compile(r'<action no="(?P<ACT>[0-9]+)" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>\d+)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
     re_Ante   = re.compile(r'<action no="[0-9]+" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>15)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)" cards="' % substitutions, re.MULTILINE)
-    re_ShowdownAction = re.compile(r'<cards type="SHOWN" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
-    re_ShownCards = re.compile(r'<cards type="(SHOWN|MUCKED)" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
 
     def compilePlayerRegexs(self, hand):
         pass
@@ -144,6 +141,9 @@ class iPoker(HandHistoryConverter):
 
         if 'GAME' in mg:
             (self.info['base'], self.info['category']) = games[mg['GAME']]
+            m = self.re_Hero.search(handText)
+            if m:
+                self.hero = m.group('HERO')
         if self.info['base'] == 'stud':
             self.info['limitType'] = 'fl'
         if self.info['base'] == 'hold':
@@ -159,6 +159,8 @@ class iPoker(HandHistoryConverter):
             tourney = True
         if 'BB' in mg and mg['BB'] != None:
             self.info['bb'] = mg['BB']
+            
+        self.tablename = mg['TABLE']
         if tourney:
             self.info['type'] = 'tour'
             self.info['currency'] = 'T$'
@@ -201,6 +203,7 @@ class iPoker(HandHistoryConverter):
             raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
         mg = m.groupdict()
         #print "DEBUG: m.groupdict(): %s" % mg
+        hand.tablename = self.tablename
         hand.handid = m.group('HID')
         hand.maxseats = None
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
@@ -255,12 +258,7 @@ class iPoker(HandHistoryConverter):
         cards = []
         m = self.re_Board.search(hand.streets[street])
         cards = m.group('CARDS').split(' ')
-        for i, c in enumerate(cards):
-            val, suit = c[1:], c[0]
-            if val == '10': val = 'T'
-            suit = self.suit_trans[suit]
-            cards[i] = "%s%s" %(val, suit)
-
+        cards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards]
         hand.setCommunityCards(street, cards)
 
     def readAntes(self, hand):
@@ -282,14 +280,40 @@ class iPoker(HandHistoryConverter):
     def readButton(self, hand):
         # Found in re_Player
         pass
-
+            
     def readHeroCards(self, hand):
-        m = self.re_HeroCards.search(hand.handText)
-        if m:
-            hand.hero = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
-            cards = m.group('CARDS').split(',')
-            hand.addHoleCards('PREFLOP', hand.hero, closed=cards, shown=False,
-                              mucked=False, dealt=True)
+#    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
+#    we need to grab hero's cards
+        for street in ('PREFLOP', 'DEAL'):
+            if street in hand.streets.keys():
+                m = self.re_HeroCards.finditer(hand.streets[street])
+                for found in m:
+                    player = found.group('PNAME')
+                    cards = found.group('CARDS').split(' ')
+                    cards = [c[1:].replace('10', 'T') + c[0].lower().replace('x', '') for c in cards]
+                    if player == self.hero and cards[0]:
+                        hand.hero = player
+                    hand.addHoleCards(street, player, closed=cards, shown=True, mucked=False, dealt=True)
+                    
+        for street, text in hand.streets.iteritems():
+            if not text or street in ('PREFLOP', 'DEAL'): continue  # already done these
+            m = self.re_HeroCards.finditer(hand.streets[street])
+            for found in m:
+                player = found.group('PNAME')
+                cards = found.group('CARDS').split(' ')
+                if street == 'SEVENTH' and hand.hero != player:
+                    newcards = []
+                    oldcards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards if c != 'X']
+                else:
+                    newcards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards if c != 'X']
+                    oldcards = []
+
+                if street == 'THIRD' and len(newcards) == 3 and self.hero == player: # hero in stud game
+                    hand.hero = player
+                    hand.dealt.add(player) # need this for stud??
+                    hand.addHoleCards(street, player, closed=newcards[0:2], open=[newcards[2]], shown=True, mucked=False, dealt=False)
+                else:                       
+                    hand.addHoleCards(street, player, open=newcards, closed=oldcards, shown=True, mucked=False, dealt=False)
 
     def readAction(self, hand, street):
         # HH format doesn't actually print the actions in order!
@@ -329,17 +353,13 @@ class iPoker(HandHistoryConverter):
                 logging.error(_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action['PNAME'], action['ATYPE']))
 
     def readShowdownActions(self, hand):
-        for shows in self.re_ShowdownAction.finditer(hand.handText):
-            cards = shows.group('CARDS').split(',')
-            hand.addShownCards(cards,
-                               self.playerNameFromSeatNo(shows.group('PSEAT'),
-                                                         hand))
+        # Cards lines contain cards
+        pass
 
     def readCollectPot(self, hand):
         # Player lines contain winnings
         pass
 
     def readShownCards(self, hand):
-        for m in self.re_ShownCards.finditer(hand.handText):
-            cards = m.group('CARDS').split(',')
-            hand.addShownCards(cards=cards, player=self.playerNameFromSeatNo(m.group('PSEAT'), hand))
+        # Cards lines contain cards
+        pass

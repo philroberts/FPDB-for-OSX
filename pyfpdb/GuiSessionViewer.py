@@ -529,7 +529,7 @@ class GuiSessionViewer:
                         replayer = tabobject
                         break
             reformat = lambda t: strftime("%Y-%m-%d %H:%M:%S", gmtime(t))
-            handids = replayer.handIdsFromDateRange(reformat(self.times[path[0]][0]), reformat(self.times[path[0]][1]))
+            handids = replayer.get_hand_ids_from_date_range(reformat(self.times[path[0]][0]), reformat(self.times[path[0]][1]), save_date = True)
             replayer.reload_hands(handids)
 
 def main(argv=None):

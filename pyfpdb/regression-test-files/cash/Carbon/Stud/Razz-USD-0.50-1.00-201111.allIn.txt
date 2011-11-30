@@ -1,0 +1,57 @@
+<description type="Razz" stakes="Limit $0.50/$1"/>
+<game id="43618199-14" starttime="20111115223628" numholecards="7" gametype="47" realmoney="true" data="20111115|Pinatubo (43618199)|43618199|43618199-14|false">
+	<players dealer="7">
+		<player seat="3" nickname="Hero" balance="$2.96" dealtin="true" />
+		<player seat="5" nickname="Player1" balance="$10.00" dealtin="true" />
+		<player seat="6" nickname="Player2" balance="$15.39" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="ANTE" timestamp="1321414699986" player="3" amount="0.05"/>
+		<event sequence="2" type="ANTE" timestamp="1321414700236" player="6" amount="0.05"/>
+		<event sequence="3" type="ANTE" timestamp="1321414705555" player="5" amount="0.05"/>
+	</round>
+	<round id="BRING_IN" sequence="2">
+		<event sequence="4" type="BRING_IN" timestamp="1321414708889" player="3" amount="0.10"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="null,null,6c" player="5"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="null,null,5c" player="6"/>
+		<cards type="HOLE" cards="As,7h,Kc" player="3" hand="K-7-A"/>
+	</round>
+	<round id="THIRD_STREET" sequence="3">
+		<event sequence="5" type="COMPLETE" timestamp="1321414710730" player="5" amount="0.50"/>
+		<event sequence="6" type="CALL" timestamp="1321414712337" player="6" amount="0.50"/>
+		<event sequence="7" type="RAISE" timestamp="1321414715488" player="3" amount="1.00"/>
+		<event sequence="8" type="RAISE" timestamp="1321414718804" player="5" amount="1.50"/>
+		<event sequence="9" type="CALL" timestamp="1321414721766" player="6" amount="1.00"/>
+		<event sequence="10" type="RAISE" timestamp="1321414722873" player="3" amount="2.00"/>
+		<event sequence="11" type="CALL" timestamp="1321414724211" player="5" amount="0.50"/>
+		<event sequence="12" type="CALL" timestamp="1321414726156" player="6" amount="0.50"/>
+	</round>
+	<round id="FOURTH_STREET" sequence="4">
+		<event sequence="13" type="BET" timestamp="1321414728307" player="5" amount="0.50"/>
+		<event sequence="14" type="FOLD" timestamp="1321414729477" player="6"/>
+		<event sequence="15" type="ALL_IN" timestamp="1321414731815" player="3" amount="0.91"/>
+		<event sequence="16" type="CALL" timestamp="1321414733130" player="5" amount="0.41"/>
+		<event sequence="17" type="SHOW" timestamp="1321414733844" player="3"/>
+		<event sequence="18" type="SHOW" timestamp="1321414734045" player="5"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="null,null,6c,2c" player="5"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="null,null,5c,Jd" player="6"/>
+		<cards type="HOLE" cards="As,7h,Kc,4c" player="3" hand="K-7-4-A"/>
+		<cards type="SHOWN" cards="As,7h,Kc,4c" player="3"/>
+		<cards type="SHOWN" cards="2h,8d,6c,2c" player="5"/>
+	</round>
+	<round id="FIFTH_STREET" sequence="5">
+		<cards type="DRAW_DRAWN_CARDS" cards="2h,8d,6c,2c,3d" player="5"/>
+		<cards type="HOLE" cards="As,7h,Kc,4c,Jh" player="3" hand="K-J-7-4-A"/>
+	</round>
+	<round id="SIXTH_STREET" sequence="6">
+		<cards type="DRAW_DRAWN_CARDS" cards="2h,8d,6c,2c,3d,Kd" player="5"/>
+		<cards type="HOLE" cards="As,7h,Kc,4c,Jh,Qc" player="3" hand="Q-J-7-4-A"/>
+	</round>
+	<round id="SEVENTH_STREET" sequence="7">
+		<cards type="DRAW_DRAWN_CARDS" cards="2h,8d,6c,2c,3d,Kd,9d" player="5"/>
+		<cards type="HOLE" cards="As,7h,Kc,4c,Jh,Qc,8s" player="3" hand="J-8-7-4-A"/>
+	</round>
+	<round id="END_OF_GAME" sequence="8">
+		<winner amount="7.58" uncalled="false" potnumber="1" player="5" hand="9-8-6-3-2" pottype="n"/>
+	</round>
+</game>

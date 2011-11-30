@@ -312,7 +312,7 @@ class BetOnline(HandHistoryConverter):
 #                hand.currency = 'play' # overrides previously set value
                 hand.gametype['currency'] = 'play'
         if not self.re_Board.search(hand.handText):
-            raise FpdbParseError("readHandInfo: " + _("Partial hand history") + ": '%s'" % hand.handid)
+            raise FpdbHandPartial("readHandInfo: " + _("Partial hand history") + ": '%s'" % hand.handid)
     
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)

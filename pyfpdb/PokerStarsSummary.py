@@ -98,7 +98,7 @@ class PokerStarsSummary(TourneySummary):
         if mg['FEE'] != None:
             self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))
         if 'PRIZEPOOL' in mg:
-            self.prizepool = int(Decimal(self.clearMoneyString(mg['PRIZEPOOL'])))
+            if mg['PRIZEPOOL'] != None: self.prizepool = int(Decimal(self.clearMoneyString(mg['PRIZEPOOL'])))
         if 'ENTRIES'   in mg: self.entries               = mg['ENTRIES']
         if 'DATETIME'  in mg: m1 = self.re_DateTime.finditer(mg['DATETIME'])
         datetimestr = "2000/01/01 00:00:00"  # default used if time not found

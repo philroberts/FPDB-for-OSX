@@ -42,7 +42,7 @@ log = logging.getLogger("parser")
 
 
 import Hand
-from Exceptions import FpdbParseError
+from Exceptions import *
 import Configuration
 
 class HandHistoryConverter():
@@ -86,6 +86,7 @@ out_path  (default '-' = sys.stdout)
         self.processedHands = []
         self.numHands = 0
         self.numErrors = 0
+        self.numPartial = 0
 
         # Tourney object used to store TourneyInfo when called to deal with a Summary file
         self.tourney = None
@@ -132,12 +133,15 @@ HandHistoryConverter: '%(sitename)s'
             for handText in handsList:
                 try:
                     self.processedHands.append(self.processHand(handText))
+                except FpdbHandPartial, e:
+                    self.numPartial += 1
+                    log.error("%s" % e)
                 except FpdbParseError, e:
                     self.numErrors += 1
                     log.error("%s" % e)
             self.numHands = len(handsList)
             endtime = time.time()
-            log.info(_("Read %d hands (%d failed) in %.3f seconds") % (self.numHands, self.numErrors, endtime - starttime))
+            log.info(_("Read %d hands (%d failed) in %.3f seconds") % (self.numHands, (self.numErrors + self.numPartial), endtime - starttime))
         else:
             self.parsedObjectType = "Summary"
             summaryParsingStatus = self.readSummaryInfo(handsList)
