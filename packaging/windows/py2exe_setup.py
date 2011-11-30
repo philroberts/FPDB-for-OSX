@@ -233,7 +233,7 @@ test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'locale'))
 test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'man'))
 test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'dtds'))
 test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'icon-naming-utils'))
-test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'icons'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'icons', 'Tango'))
 test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'xml'))
 
 print "***++++++++++++++++++++++++++++++++++++++++++++++"
