@@ -511,6 +511,8 @@ or None if we fail to get the info """
             # GMT cannot be treated as WET because some HH's are explicitly
             # GMT+-delta so would be incorrect during the summertime 
             # if substituted as WET+-delta
+        elif givenTimezone == 'BST':
+             givenTZ = timezone('Europe/London')
         elif givenTimezone == 'WET': # WET is GMT with daylight saving delta
             givenTZ = timezone('WET')
         elif givenTimezone == 'HST': # Hawaiian Standard Time
