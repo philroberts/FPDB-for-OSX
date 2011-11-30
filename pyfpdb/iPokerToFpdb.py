@@ -53,7 +53,7 @@ class iPoker(HandHistoryConverter):
 
     sitename = "iPoker"
     filetype = "text"
-    codepage = "cp1252"
+    codepage = ("utf8", "cp1252")
     siteId   = 13
     copyGameHeader = True   #NOTE: Not sure if this is necessary yet. The file is xml so its likely
 
