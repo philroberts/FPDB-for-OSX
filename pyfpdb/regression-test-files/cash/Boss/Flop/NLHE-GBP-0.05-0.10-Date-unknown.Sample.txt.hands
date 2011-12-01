@@ -5,7 +5,7 @@
     'boardcard5': 21,
     'boards': [],
     'fileId': 1,
-    'gameSessionId': None,
+    'gameId': None,
     'gametypeId': 1,
     'gsc': {   'bk': []},
     'id': 1,
