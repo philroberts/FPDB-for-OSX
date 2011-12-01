@@ -69,8 +69,12 @@ class iPoker(HandHistoryConverter):
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r"""
-            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL|Omaha\sL)(\s(?P<CURRENCY>%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
-            <tablename>(?P<TABLE>.+)?</tablename>
+            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL|Omaha\sL)(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
+            <tablename>(?P<TABLE>.+)?</tablename>\s+?
+            <duration>.+</duration>\s+?
+            <gamecount>[0-9]+</gamecount>\s+?
+            <startdate>.+</startdate>\s+?
+            <currency>(?P<CURRENCY>.+)</currency>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_GameInfoTrny = re.compile(r"""
                 <tournamentname>.+?<place>(?P<PLACE>.+?)</place>
@@ -79,7 +83,7 @@ class iPoker(HandHistoryConverter):
                 <ipoints>([%(NUM)s]+|N/A)</ipoints>\s+?
                 <win>(%(LS)s)?(?P<WIN>([%(NUM)s]+)|N/A)</win>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
-    re_HandInfo = re.compile(r'gamecode="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-: 0-9]+)</startdate>', re.MULTILINE)
+    re_HandInfo = re.compile(r'code="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-: 0-9]+)</startdate>', re.MULTILINE)
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" name="(?P<PNAME>[^"]+)" chips="(%(LS)s)(?P<CASH>[%(NUM)s]+)" dealer="(?P<BUTTONPOS>(0|1))" win="(%(LS)s)(?P<WIN>[%(NUM)s]+)" (bet="(%(LS)s)(?P<BET>[^"]+))?' % substitutions, re.MULTILINE)
     re_Board = re.compile(r'<cards type="(?P<STREET>Flop|Turn|River)" player="">(?P<CARDS>.+?)</cards>', re.MULTILINE)
     re_EndOfHand = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
@@ -162,38 +166,34 @@ class iPoker(HandHistoryConverter):
         if 'BB' in mg and mg['BB'] != None:
             self.info['bb'] = mg['BB']
 
-        self.tablename = mg['TABLE']
         if tourney:
             self.info['type'] = 'tour'
             self.info['currency'] = 'T$'
             # FIXME: The sb/bb isn't listed in the game header. Fixing to 1/2 for now
             self.info['sb'], self.info['bb'] = '1', '2'
-
             self.tinfo = {} # FIXME?: Full tourney info is only at the top of the file. After the
                             #         first hand in a file, there is no way for auto-import to
                             #         gather the info unless it reads the entire file every time.
+            self.tinfo['tourNo'] = mg['TABLE'].split(',')[-1].strip()
+            self.tablename = mg['TABLE'].split(',')[0].strip()
+            self.tinfo['buyinCurrency'] = mg['CURRENCY']
             m2 = self.re_GameInfoTrny.search(handText)
-            mg =  m2.groupdict()
-            #FIXME: tournament no looks liek it is in the table name
-            self.tinfo['tourNo'] = "11111111111111"
-            if mg['BUYIN'].find("$") != -1:
-                self.tinfo['buyinCurrency'] = "USD"
-            elif mg['BUYIN'].find(u"£") !=- 1:
-                self.tinfo['buyinCurrency'] = "GBP"
-            elif mg['BUYIN'].find(u"€") != -1:
-                self.tinfo['buyinCurrency'] = "EUR"
-
-            mg['BIAMT']  = mg['BIAMT'].strip(u'$€£FPP')
-            mg['BIRAKE'] = mg['BIRAKE'].strip(u'$€£')
-
-            self.tinfo['buyin'] = int(100*Decimal(mg['BIAMT']))
-            self.tinfo['fee']   = int(100*Decimal(mg['BIRAKE']))
-            # FIXME: <place> and <win> not parsed at the moment.
-            #  NOTE: Both place and win can have the value N/A
+            if m2:
+                mg =  m2.groupdict()
+                #FIXME: tournament no looks liek it is in the table name
+                mg['BIAMT']  = mg['BIAMT'].strip(u'$€£FPP')
+                mg['BIRAKE'] = mg['BIRAKE'].strip(u'$€£')
+                self.tinfo['buyin'] = int(100*Decimal(mg['BIAMT']))
+                self.tinfo['fee']   = int(100*Decimal(mg['BIRAKE']))
+                # FIXME: <place> and <win> not parsed at the moment.
+                #  NOTE: Both place and win can have the value N/A
+            else:
+                self.tinfo['buyin'] = 0
+                self.tinfo['fee'] = 0
         else:
             self.info['type'] = 'ring'
-            if 'CURRENCY' in mg:
-                self.info['currency'] = self.currencies[mg['CURRENCY']]
+            self.tablename = mg['TABLE']
+            self.info['currency'] = mg['CURRENCY']
 
         return self.info
 
@@ -213,7 +213,7 @@ class iPoker(HandHistoryConverter):
             hand.tourNo = self.tinfo['tourNo']
             hand.buyinCurrency = self.tinfo['buyinCurrency']
             hand.buyin = self.tinfo['buyin']
-            hand.feee = self.tinfo['fee']
+            hand.fee = self.tinfo['fee']
 
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.handText)
