@@ -1236,6 +1236,42 @@ Left-Drag to Move"
                 <location seat="4" x="150" y="273"> </location>
                 <location seat="5" x="150" y="169">  </location>
                 <location seat="6" x="363" y="113">  </location>
+                <location common="1" x="323" y="232"> </location>
+            </layout>
+            <layout height="546" max="9" width="792">
+                <location seat="1" x="486" y="113">  </location>
+                <location seat="2" x="555" y="169"> </location>
+                <location seat="3" x="572" y="276"> </location>
+                <location seat="4" x="522" y="345"> </location>
+                <location seat="5" x="363" y="348"> </location>
+                <location seat="6" x="217" y="341"> </location>
+                <location seat="7" x="150" y="273"> </location>
+                <location seat="8" x="150" y="169">  </location>
+                <location seat="9" x="230" y="115">  </location>
+                <location common="1" x="323" y="232"> </location>
+            </layout>
+            <layout height="546" max="10" width="792">
+                <location seat="1" x="486" y="113">  </location>
+                <location seat="2" x="499" y="138"> </location>
+                <location seat="3" x="522" y="212"> </location>
+                <location seat="4" x="501" y="281"> </location>
+                <location seat="5" x="402" y="323"> </location>
+                <location seat="6" x="243" y="311"> </location>
+                <location seat="7" x="203" y="262"> </location>
+                <location seat="8" x="170" y="185">  </location>
+                <location seat="9" x="183" y="128">  </location>
+                <location seat="10" x="213" y="86">  </location>
+                <location common="1" x="317" y="237"> </location>
+            </layout>
+        </aw>
+        <aw class="Simple_HUD" bgcolor="#000000" fgcolor="#FFFFFF" font="Sans" font_size="8" module="Aux_Hud" name="Simple_HUD" opacity="0.7">
+            <layout height="546" max="6" width="792">
+                <location seat="1" x="555" y="169"> </location>
+                <location seat="2" x="572" y="276"> </location>
+                <location seat="3" x="363" y="348"> </location>
+                <location seat="4" x="150" y="273"> </location>
+                <location seat="5" x="150" y="169">  </location>
+                <location seat="6" x="363" y="113">  </location>
                 <location common="1" x="1" y="1"> </location>
             </layout>
             <layout height="546" max="9" width="792">
@@ -1263,20 +1299,6 @@ Left-Drag to Move"
                 <location seat="10" x="213" y="86">  </location>
                 <location common="1" x="1" y="1"> </location>
             </layout>
-        </aw>
-        <aw class="Simple_HUD" bgcolor="#000000" fgcolor="#FFFFFF" font="Sans" font_size="8" module="Aux_Hud" name="Simple_HUD" opacity="0.7">
-            <layout height="546" max="9" width="792">
-               <location seat="1" x="731" y="60">  </location>
-               <location seat="2" x="838" y="382"> </location>
-               <location seat="3" x="857" y="674"> </location>
-               <location seat="4" x="731" y="870"> </location>
-               <location seat="5" x="458" y="910"> </location>
-               <location seat="6" x="282" y="835"> </location>
-               <location seat="7" x="2" y="674"> </location>
-               <location seat="8" x="16" y="383">  </location>
-               <location seat="9" x="134" y="69">  </location>
-               <location common="1" x="1" y="1"> </location>
-           </layout>
         </aw>
     </aux_windows>
 
