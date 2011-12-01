@@ -438,6 +438,7 @@ class Aux_Seats(Aux_Window):
                 self.m_windows[i].set_accept_focus(False)
                 self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
 #                self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)
+                self.positions[i] =  self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
                 self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
                 if self.params.has_key('opacity'):
                     self.m_windows[i].set_opacity(float(self.params['opacity']))

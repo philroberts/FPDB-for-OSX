@@ -690,4 +690,3 @@ class Hud:
 #        if not self.table.gdkhandle:
 #            self.table.gdkhandle = gtk.gdk.window_foreign_new(int(self.table.number)) # gtk handle to poker window
 #        window.window.set_transient_for(self.table.gdkhandle)
->>>>>>> 054c13a8a54f6ceffe31ada5c1827b3aa0384c51
