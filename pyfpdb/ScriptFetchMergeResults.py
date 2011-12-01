@@ -27,9 +27,13 @@ import re, urllib2
 
 
 def fetch_results_page(tourney_id):
-    url = "http://www.carbonpoker.ag/tournaments/tournament-details.html?id=%s" % tourney_id
-    data = urllib2.urlopen(url).read()
-    return data
+    url = "http://www.carbonpoker.ag/tournaments/tournament-details.html?id=%s-1" % tourney_id
+    try:
+        data = urllib2.urlopen(url).read()
+        return data
+    except urllib2.HTTPError, e:
+        print e
+        return None
 
 def write_file(filename, data):
     f = open(filename, 'w')
@@ -70,8 +74,9 @@ def main():
         for tid in tids:
             filename = os.path.join(site_dir, tid)
             data = fetch_results_page(tid)
-            print u"DEBUG: write_file(%s)" %(filename)
-            write_file(filename, data)
+            if data != None:
+                print u"DEBUG: write_file(%s)" %(filename)
+                write_file(filename, data)
 
 if __name__ == '__main__':
     main()
