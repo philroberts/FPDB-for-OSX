@@ -697,11 +697,13 @@ class Database:
 
     def getSiteTourneyNos(self, site):
         c = self.connection.cursor()
-        # FIXME: Take site and actually fetch siteId from that
-        # Fixed to Winamax atm
+        q = self.sql.query['getSiteId']
+        q = q.replace('%s', self.sql.query['placeholder'])
+        c.execute(q, (site,))
+        siteid = c.fetchone()[0]
         q = self.sql.query['getSiteTourneyNos']
         q = q.replace('%s', self.sql.query['placeholder'])
-        c.execute(q, (14,))
+        c.execute(q, (siteid,))
         alist = []
         for row in c.fetchall():
             alist.append(row)
