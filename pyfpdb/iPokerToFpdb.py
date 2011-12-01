@@ -53,21 +53,23 @@ class iPoker(HandHistoryConverter):
 
     sitename = "iPoker"
     filetype = "text"
-    codepage = "cp1252"
+    codepage = ("utf8", "cp1252")
     siteId   = 13
     copyGameHeader = True   #NOTE: Not sure if this is necessary yet. The file is xml so its likely
 
     substitutions = {
-                     'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|",
+                     'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|\£|",
                      'PLYR': r'(?P<PNAME>[a-zA-Z0-9]+)',
                      'NUM' : r'.,0-9',
                     }
+    
+    currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP' }
 
     # Static regexes
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r"""
-            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL|Omaha\sL)(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
+            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL|Omaha\sL)(\s(?P<CURRENCY>%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_GameInfoTrny = re.compile(r"""
@@ -89,7 +91,7 @@ class iPoker(HandHistoryConverter):
     re_Action = re.compile(r'<action no="(?P<ACT>[0-9]+)" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>\d+)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
     re_Ante   = re.compile(r'<action no="[0-9]+" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>15)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)" cards="' % substitutions, re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
-
+    
     def compilePlayerRegexs(self, hand):
         pass
 
@@ -159,7 +161,7 @@ class iPoker(HandHistoryConverter):
             tourney = True
         if 'BB' in mg and mg['BB'] != None:
             self.info['bb'] = mg['BB']
-            
+
         self.tablename = mg['TABLE']
         if tourney:
             self.info['type'] = 'tour'
@@ -190,8 +192,8 @@ class iPoker(HandHistoryConverter):
             #  NOTE: Both place and win can have the value N/A
         else:
             self.info['type'] = 'ring'
-            #FIXME: Need to fix currencies for this site
-            self.info['currency'] = 'USD'
+            if 'CURRENCY' in mg:
+                self.info['currency'] = self.currencies[mg['CURRENCY']]
 
         return self.info
 
