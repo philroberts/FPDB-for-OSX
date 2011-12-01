@@ -336,7 +336,7 @@ class Fulltilt(HandHistoryConverter):
                     elif n.group('CURRENCY')==u"€":
                         hand.buyinCurrency="EUR"
                     else:
-                        hand.buyinCurrency="NA"
+                        hand.buyinCurrency="FREE"
                     hand.buyin = int(100*Decimal(n.group('BUYIN')))
                     hand.fee = int(100*Decimal(n.group('FEE')))
                 if n.group('TURBO') is not None :
@@ -387,7 +387,7 @@ class Fulltilt(HandHistoryConverter):
 
         if plist == {}:
             #No players! The hand is either missing stacks or everyone is sitting out
-            raise FpdbParseError(_("No players detected in hand %s.") % hand.handid)
+            raise FpdbHandPartial(_("No players detected in hand %s.") % hand.handid)
 
 
     def markStreets(self, hand):
