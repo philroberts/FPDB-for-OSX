@@ -153,8 +153,7 @@ class HUD_main(object):
         gobject.idle_add(idle_kill, self, table)
     
     def check_tables(self):
-        for hud in self.hud_dict.keys():
-            self.hud_dict[hud].table.check_table(self.hud_dict[hud])
+        gobject.idle_add(idle_check_tables, self)
         return True
 
     def create_HUD(self, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards):
@@ -328,7 +327,7 @@ def idle_kill(hud_main, table):
     try:
         if table in hud_main.hud_dict:
             hud_main.vb.remove(hud_main.hud_dict[table].tablehudlabel)
-            hud_main.hud_dict[table].main_window.destroy()
+#            hud_main.hud_dict[table].main_window.destroy()
             hud_main.hud_dict[table].kill()
             del(hud_main.hud_dict[table])
         hud_main.main_window.resize(1, 1)
@@ -353,8 +352,8 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
         for m in hud_main.hud_dict[temp_key].aux_windows:
             m.create()
             m.update_gui(new_hand_id)
-        hud_main.hud_dict[temp_key].update(new_hand_id, hud_main.config)
-        hud_main.hud_dict[temp_key].reposition_windows()
+#        hud_main.hud_dict[temp_key].update(new_hand_id, hud_main.config)
+#        hud_main.hud_dict[temp_key].reposition_windows()
     except:
         log.exception(_("Error creating HUD for hand %s.") % new_hand_id)
     finally:
@@ -368,6 +367,17 @@ def idle_update(hud_main, new_hand_id, table_name, config):
         [aw.update_gui(new_hand_id) for aw in hud_main.hud_dict[table_name].aux_windows]
     except:
         log.exception(_("Error updating HUD for hand %s.") % new_hand_id)
+    finally:
+        gtk.gdk.threads_leave()
+        return False
+
+def idle_check_tables(hud_main):
+    gtk.gdk.threads_enter()
+    try:
+        for hud in hud_main.hud_dict.keys():
+            hud_main.hud_dict[hud].table.check_table(hud_main.hud_dict[hud])
+    except:
+        log.exception("Error checking tables.")
     finally:
         gtk.gdk.threads_leave()
         return False

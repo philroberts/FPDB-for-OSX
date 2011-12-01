@@ -25,18 +25,14 @@ Mucked cards display for FreePokerTools HUD.
 #    to do
 
 #    Standard Library modules
-#import sys
-#import pprint
 
 #    pyGTK modules
-#import pygtk
 import gtk
 import gobject
 
 #    FreePokerTools modules
-#import Configuration
-#import Database
 import Card
+import Popup
 
 class Aux_Window(object):
     def __init__(self, hud, params, config):
@@ -352,9 +348,34 @@ class Stud_cards:
 
 class Seat_Window(gtk.Window):
     """Subclass gtk.Window for the seat windows."""
-    def __init__(self, aw = None):
+    def __init__(self, aw = None, seat = None):
         super(Seat_Window, self).__init__()
         self.aw = aw
+        self.seat = seat
+        self.set_skip_taskbar_hint(True)  # invisible to taskbar
+        self.set_gravity(gtk.gdk.GRAVITY_STATIC)
+        self.set_decorated(False)    # kill titlebars
+        self.set_focus(None)
+        self.set_focus_on_map(False)
+        self.set_accept_focus(False)
+        self.connect("configure_event", self.aw.configure_event_cb, self.seat)
+
+    def button_press_cb(self, widget, event, *args):
+        """Handle button clicks in the event boxes."""
+#TODO:    Create a method for each button so that the subclasses can override
+#        only the buttons that it needs to override.
+        if event.button == 3:   # right button event -- hide the window
+            pass
+
+        elif event.button == 2:   # middle button event -- show pop up
+            pu_to_run = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup].pu_class
+            Popup.__dict__[pu_to_run](seat = widget.aw_seat,
+                                      stat_dict = widget.stat_dict,
+                                      win = widget.get_ancestor(gtk.Window),
+                                      pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup])
+
+        elif event.button == 1:   # left button event -- drag the window
+            self.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
 
 class Aux_Seats(Aux_Window):
     """A super class to display an aux_window at each seat."""
@@ -372,6 +393,7 @@ class Aux_Seats(Aux_Window):
 
 #    placeholders that should be overridden--so we don't throw errors
     def create_contents(self): pass
+    def create_common(self, x, y): pass
     def update_contents(self): pass
 
     def update_card_positions(self):
@@ -402,24 +424,29 @@ class Aux_Seats(Aux_Window):
         height = self.hud.table.height
         for i in (range(1, self.hud.max + 1) + ['common']):           
             if i == 'common':
+#    The common window is different from the others. Note that it needs to 
+#    get realized, shown, topified, etc. in create_common
                 (x, y) = self.params['layout'][self.hud.max].common
+                self.m_windows[i] = self.create_common(x, y)
             else:
                 (x, y) = loc[self.adj[i]]
-            self.m_windows[i] = self.aw_window_type(self)
-            self.m_windows[i].set_decorated(False)
-            self.m_windows[i].set_property("skip-taskbar-hint", True)
-            self.m_windows[i].set_transient_for(self.hud.main_window)  # FIXME: shouldn't this be the table window??
-            self.m_windows[i].set_focus_on_map(False)
-            self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
-#            self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)
-            self.positions[i] =  self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
-            self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
-            if self.params.has_key('opacity'):
-                self.m_windows[i].set_opacity(float(self.params['opacity']))
+                self.m_windows[i] = self.aw_window_type(self, i)
+                self.m_windows[i].set_decorated(False)
+                self.m_windows[i].set_property("skip-taskbar-hint", True)
+                self.m_windows[i].set_focus_on_map(False)
+                self.m_windows[i].set_focus(None)
+                self.m_windows[i].set_accept_focus(False)
+                self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
+#                self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)
+                self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
+                if self.params.has_key('opacity'):
+                    self.m_windows[i].set_opacity(float(self.params['opacity']))
 
 #    the create_contents method is supplied by the subclass
             self.create_contents(self.m_windows[i], i)
 
+            self.m_windows[i].realize()
+            self.hud.table.topify(self.m_windows[i])
             self.m_windows[i].show_all()
             if self.uses_timer:
                 self.m_windows[i].hide()
@@ -450,7 +477,7 @@ class Aux_Seats(Aux_Window):
     def hide(self):
         """Hide the seat windows."""
         for (i, w) in self.m_windows.iteritems():
-            w.hide()
+            if w is not None: w.hide()
         self.displayed = False
 
     def save_layout(self, *args):
@@ -460,17 +487,17 @@ class Aux_Seats(Aux_Window):
         witdh = self.hud.table.width
         height = self.hud.table.height
         for (i, pos) in self.positions.iteritems():
-             if i != 'common':
+            if i != 'common':
 #                new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x) * 1000 / witdh, (pos[1] - self.hud.table.y) * 1000 / height)
                 new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y) )
-             else:
+            else:
 #                new_locs[i] = ((pos[0] - self.hud.table.x) * 1000 / witdh, (pos[1] - self.hud.table.y) * 1000 / height)
                 new_locs[i] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y))
+
         self.config.edit_aux_layout(self.params['name'], self.hud.max, locations = new_locs)
 
     def configure_event_cb(self, widget, event, i, *args):
         self.positions[i] = widget.get_position()
-#        self.rel_positions[i] = (self.positions[i][0] - self.hud.table.x, self.positions[i][1] - self.hud.table.y)
 
 class Flop_Mucked(Aux_Seats):
     """Aux_Window class for displaying mucked cards for flop games."""
@@ -485,6 +512,22 @@ class Flop_Mucked(Aux_Seats):
         
         self.card_images = self.get_card_images(self.card_width, self.card_height)
         self.uses_timer = True  # this Aux_seats object uses a timer to control hiding
+
+    def create_common(self, x, y):
+        "Create the window for the board cards and do the initial population."
+        w = self.aw_window_type(self, "common")
+        w.set_decorated(False)
+        w.set_property("skip-taskbar-hint", True)
+        w.set_focus_on_map(False)
+        w.set_focus(None)
+        w.set_accept_focus(False)
+        w.connect("configure_event", self.configure_event_cb, "common")
+        self.positions["common"] = self.card_positions((x * self.hud.table.width) / 1000, self.hud.table.x, (y * self.hud.table.height) /1000, self.hud.table.y)
+        w.move(self.positions["common"][0], self.positions["common"][1])
+        if self.params.has_key('opacity'):
+            w.set_opacity(float(self.params['opacity']))
+#        self.create_contents(w, "common")
+        return w
 
     def create_contents(self, container, i):
         """Create the widgets for showing the contents of the Aux_seats window."""
@@ -514,10 +557,12 @@ class Flop_Mucked(Aux_Seats):
                                         self.card_width, self.card_height,
                                         scratch, x, 0)
                 x = x + self.card_width
-            container.seen_cards.set_from_pixbuf(scratch)
-            container.resize(1,1)
-            container.show()
-            container.move(self.positions[i][0], self.positions[i][1])   # here is where I move back
+            if container is not None:
+                container.seen_cards.set_from_pixbuf(scratch)
+                container.resize(1,1)
+                container.show()
+                container.move(self.positions[i][0], self.positions[i][1])   # here is where I move back
+
             self.displayed = True
             if i != "common":
                 id = self.get_id_from_seat(i)
