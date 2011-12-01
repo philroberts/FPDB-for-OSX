@@ -72,7 +72,7 @@ class iPoker(HandHistoryConverter):
             <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL|Omaha\sL)(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
             <duration>.+</duration>\s+?
-            <gamecount>[0-9]+</gamecount>\s+?
+            <gamecount>.+</gamecount>\s+?
             <startdate>.+</startdate>\s+?
             <currency>(?P<CURRENCY>.+)</currency>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
