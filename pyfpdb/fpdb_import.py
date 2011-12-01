@@ -523,7 +523,7 @@ class Importer:
                             hand = ihands[-1]
                             hp = hand.handsplayers
                             hand.hero, self.database.hbulk, hand.handsplayers  = 0, self.database.hbulk[:-1], [] #making sure we don't insert data from this hand
-                            hand.updateSessionsCache(self.database, self.tz, doinsert)
+                            hand.updateSessionsCache(self.database, None, doinsert)
                             hand.insertHands(self.database, fileId, doinsert, self.settings['testData'])
                             hand.updateHudCache(self.database, doinsert)
                             hand.handsplayers = hp
