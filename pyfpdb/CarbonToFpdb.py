@@ -704,7 +704,7 @@ or None if we fail to get the info """
             else:
                 raise FpdbParseError(_("No match in MTT or SnG Structures: '%s'") % hand.tablename)
         else:
-            hand.tablename = m.group('TABLE')[:-1]
+            hand.tablename = m.group('TABLE')
         if m.group('SEATS'):
             hand.maxseats = int(m.group('SEATS'))
         else:
