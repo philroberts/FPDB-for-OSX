@@ -1,22 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR ORGANIZATION
 #
-#   <OvidijusSv@gmail.com>, 2011.
+# Translators:
+#   <hdps.een@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-12-03 22:52+CET\n"
-"PO-Revision-Date: 2011-07-09 14:23+0000\n"
-"Last-Translator: OvidijusSv <OvidijusSv@gmail.com>\n"
-"Language-Team: Lithuanian (Lithuania) (http://www.transifex.net/projects/p/"
-"fpdb/team/lt_LT/)\n"
-"Language: lt_LT\n"
+"POT-Creation-Date: 2011-12-03 23:02+CET\n"
+"PO-Revision-Date: 2011-12-03 21:57+0000\n"
+"Last-Translator: LimburgCwboy <hdps.een@gmail.com>\n"
+"Language-Team: Dutch (Netherlands) (http://www.transifex.net/projects/p/fpdb/"
+"team/nl_NL/)\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: ENCODING\n"
 "Generated-By: pygettext.py 1.5\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: AbsoluteToFpdb.py:140 AbsoluteToFpdb.py:142 BetOnlineToFpdb.py:189
 #: BetOnlineToFpdb.py:191 BetfairToFpdb.py:76 BetfairToFpdb.py:78
@@ -30,7 +30,7 @@ msgstr ""
 #: PokerStarsToFpdb.py:198 PokerStarsToFpdb.py:200 WinamaxToFpdb.py:172
 #: WinamaxToFpdb.py:174 iPokerToFpdb.py:133 iPokerToFpdb.py:135
 msgid "Unable to recognise gametype from: '%s'"
-msgstr "Nepavyksta atpažinti žaidimo rūšies iš: '%s'"
+msgstr "Speltype niet te vinden in '%s'"
 
 #: AbsoluteToFpdb.py:141 BetOnlineToFpdb.py:190 BetOnlineToFpdb.py:220
 #: BetfairToFpdb.py:77 BossToFpdb.py:100 CakeToFpdb.py:133 CakeToFpdb.py:159
@@ -62,7 +62,7 @@ msgstr ""
 
 #: AbsoluteToFpdb.py:209
 msgid "File name: %s"
-msgstr "Falio pavadinimas: %s"
+msgstr "Bestandsnaam %s"
 
 #: AbsoluteToFpdb.py:210
 msgid "Didn't match re_*InfoFromFilename: '%s'"
@@ -73,7 +73,7 @@ msgstr ""
 #: OnGameToFpdb.py:302 PacificPokerToFpdb.py:358 PokerStarsToFpdb.py:391
 #: WinamaxToFpdb.py:359
 msgid "reading antes"
-msgstr ""
+msgstr "Lezen antes"
 
 #: AbsoluteToFpdb.py:288 BetfairToFpdb.py:160 FulltiltToFpdb.py:461
 msgid "Player bringing in: %s for %s"
@@ -81,11 +81,11 @@ msgstr ""
 
 #: AbsoluteToFpdb.py:291 EverleafToFpdb.py:240
 msgid "No bringin found."
-msgstr "Užvedantis statymas nerastas."
+msgstr "Geen inzet gevonden"
 
 #: AbsoluteToFpdb.py:298 EverleafToFpdb.py:247
 msgid "No small blind"
-msgstr "Nėra mažojo statymo"
+msgstr "Geen small blind"
 
 #: AbsoluteToFpdb.py:324 EverleafToFpdb.py:274
 msgid "%s cannot read all stud/razz hands yet."
@@ -102,7 +102,7 @@ msgstr ""
 
 #: Anonymise.py:54
 msgid "Could not find file %s"
-msgstr "Failas nerastas %s"
+msgstr "Kan bestand %s niet vinden"
 
 #: Anonymise.py:60
 msgid "Output being written to %s"
@@ -151,7 +151,7 @@ msgstr ""
 
 #: BetfairToFpdb.py:163
 msgid "No bringin found"
-msgstr "Užvedantis statymas nerastas"
+msgstr "Geen inzet gevonden"
 
 #: CarbonToFpdb.py:243
 msgid "No one was dealt in"
@@ -182,9 +182,8 @@ msgid "Enter card:"
 msgstr ""
 
 #: Card.py:497
-#, fuzzy
 msgid "Encoded card:"
-msgstr "Turimos kortos"
+msgstr ""
 
 #: Card.py:499
 msgid "Please enter 1 or 2"
@@ -217,11 +216,11 @@ msgstr ""
 #: Configuration.py:203
 #, fuzzy
 msgid "Could not setup log file %s"
-msgstr "Failas nerastas %s"
+msgstr "Kan bestand %s niet vinden"
 
 #: Configuration.py:213 Database.py:509 Database.py:510
 msgid "Creating directory: '%s'"
-msgstr ""
+msgstr "Directory aanmaken: '%s'"
 
 #: Configuration.py:240
 msgid "Default encoding set to US-ASCII, defaulting to CP1252 instead."
@@ -233,11 +232,11 @@ msgstr ""
 
 #: Configuration.py:557
 msgid "config.general: adding %s = %s"
-msgstr ""
+msgstr "config.algemeen: toevoegen %s = %s"
 
 #: Configuration.py:604 Configuration.py:605
 msgid "bad number in xalignment was ignored"
-msgstr ""
+msgstr "Incorrect getal in xalignment is genegeerd"
 
 #: Configuration.py:660 Configuration.py:667 Configuration.py:686
 #: Configuration.py:693
@@ -250,7 +249,7 @@ msgstr ""
 
 #: Configuration.py:757
 msgid "Reading configuration file %s"
-msgstr "Skaito nustatymų failą %s"
+msgstr "Lezen configuratiebestand %s"
 
 #: Configuration.py:764
 msgid "Error parsing %s."
@@ -266,19 +265,19 @@ msgstr ""
 
 #: Database.py:67
 msgid "Not using sqlalchemy connection pool."
-msgstr ""
+msgstr "Sqlalchemy verbindingspool niet gebruikt"
 
 #: Database.py:74
 msgid "Not using numpy to define variance in sqlite."
-msgstr ""
+msgstr "Numpy ongebruikt om de variantie te definiëren"
 
 #: Database.py:300
 msgid "Creating Database instance, sql = %s"
-msgstr ""
+msgstr "Database wordt aangemaakt: sql = %s"
 
 #: Database.py:457
 msgid "*** WARNING UNKNOWN MYSQL ERROR:"
-msgstr "*** ĮSPĖJIMAS. NEŽINOMA MYSQL KLAIDA:"
+msgstr "*** WAARSCHUWING ONBEKENDE MYSQL FOUT"
 
 #: Database.py:514
 msgid "Connecting to SQLite: %s"
@@ -286,7 +285,7 @@ msgstr ""
 
 #: Database.py:526
 msgid "Some database functions will not work without NumPy support"
-msgstr "Kaikurios duombazės funkcijos neveiks be NumPy palaikymo."
+msgstr "Sommige database-functies zullen niet werken zonder NumPy support"
 
 #: Database.py:552
 msgid "Outdated or too new database version (%s)."
@@ -306,31 +305,31 @@ msgstr ""
 
 #: Database.py:584
 msgid "commit %s failed: info=%s value=%s"
-msgstr ""
+msgstr "Binding %s mislukt: info=%s waarde=%s"
 
 #: Database.py:588
 msgid "commit failed"
-msgstr ""
+msgstr "Binding mislukt"
 
 #: Database.py:935
 msgid "ERROR: query %s result does not have player_id as first column"
-msgstr "KLAIDA: užklausos %s rezultatas nenurodo player_id pirmame stulpelyje"
+msgstr "FOUT: resultaat op vraag %s heeft geen speler_id als eerste kolom"
 
 #: Database.py:1030
 msgid "getLastInsertId(): problem fetching insert_id? ret=%d"
-msgstr ""
+msgstr "getLastInsertId(): probleem opvragen insert-id? ret=%d"
 
 #: Database.py:1042
 msgid "getLastInsertId(%s): problem fetching lastval? row=%d"
-msgstr ""
+msgstr "getLastInsertId(%s): probleem opvragen lastval? rij=%d"
 
 #: Database.py:1049
 msgid "getLastInsertId(): unknown backend: %d"
-msgstr ""
+msgstr "getLastInsertId(): onbekend backend: %d"
 
 #: Database.py:1054
 msgid "*** Database get_last_insert_id error: "
-msgstr ""
+msgstr "*** Databasefout get_last_insert_id"
 
 #: Database.py:1084 Database.py:1091 Database.py:1452 Database.py:1460
 msgid "Dropping foreign key:"
@@ -393,7 +392,7 @@ msgstr ""
 
 #: Database.py:1247
 msgid "Finished recreating tables"
-msgstr "Lentelių atkūrimas baigtas."
+msgstr "Klaar met regenereren tabellen"
 
 #: Database.py:1304 Database.py:1315
 msgid "***Error dropping tables:"
@@ -409,31 +408,31 @@ msgstr ""
 
 #: Database.py:1635 Database.py:1769
 msgid "Error rebuilding hudcache:"
-msgstr "Klaida atkuriant HUD"
+msgstr "Fout heropbouwen hudcache:"
 
 #: Database.py:1781 Database.py:1787
 msgid "Error during analyze:"
-msgstr "Klaida analizuojant"
+msgstr "Fout tijdens analyse:"
 
 #: Database.py:1791
 msgid "Analyze took %.1f seconds"
-msgstr "Analizė užtruko %.1f sekundžių"
+msgstr "Analyse duurde %.1f seconden"
 
 #: Database.py:1801 Database.py:1807
 msgid "Error during vacuum:"
-msgstr ""
+msgstr "Fout tijdens vacuum:"
 
 #: Database.py:1811
 msgid "Vacuum took %.1f seconds"
-msgstr ""
+msgstr "Vacuum duurde %.1f seconden"
 
 #: Database.py:1846
 msgid "Error during lock_for_insert:"
-msgstr ""
+msgstr "Fout tijdens sluit_voor_invoegen"
 
 #: Database.py:2751
 msgid "queue empty too long - writer stopping ..."
-msgstr ""
+msgstr "Rij leeg te lang - schrijven gestopt"
 
 #: Database.py:2754
 msgid "writer stopping, error reading queue:"
@@ -441,7 +440,7 @@ msgstr ""
 
 #: Database.py:2779
 msgid "deadlock detected - trying again ..."
-msgstr ""
+msgstr "Dood punt bereikt - probeer opnieuw"
 
 #: Database.py:2784
 msgid "Too many deadlocks - failed to store hand"
@@ -453,7 +452,7 @@ msgstr ""
 
 #: Database.py:2798
 msgid "db writer finished: stored %d hands (%d fails) in %.1f seconds"
-msgstr "duombazė baigė darbą: įkelta %d rankų (%d nepavyko) per %.1f sekundžių"
+msgstr "db schrijver klaar: %d handen opgeslagen (%d fout) in %.1f seconden"
 
 #: Database.py:2807
 msgid "***Error sending finish:"
@@ -465,7 +464,7 @@ msgstr ""
 
 #: Database.py:3184
 msgid "cards ="
-msgstr "kortos ="
+msgstr "Kaarten ="
 
 #: Database.py:3187
 msgid "get_stats took: %4.3f seconds"
@@ -473,12 +472,11 @@ msgstr ""
 
 #: Database.py:3189
 msgid "Press ENTER to continue."
-msgstr "Norėdami tęsti spauskite ENTER"
+msgstr ""
 
 #: DerivedStats.py:546
-#, fuzzy
 msgid "%s and %s"
-msgstr "%s buvo pažymėta %s"
+msgstr ""
 
 #: DerivedStats.py:552 DerivedStats.py:555 DerivedStats.py:566
 msgid "high"
@@ -562,27 +560,27 @@ msgstr ""
 
 #: Filters.py:80
 msgid "Show _Limits"
-msgstr "Rodyti _Limitus"
+msgstr "Toon_Limieten"
 
 #: Filters.py:80 Filters.py:81 Filters.py:82 Filters.py:83
 msgid "All"
-msgstr "Visi"
+msgstr "Alle"
 
 #: Filters.py:80 Filters.py:81 Filters.py:82 Filters.py:83
 msgid "None"
-msgstr "Nieko"
+msgstr "Geen"
 
 #: Filters.py:84
 msgid "Show Number of _Players"
-msgstr "Rodyti skaičių _Žaidėjų"
+msgstr "Toon aantal spelers"
 
 #: Filters.py:84 TourneyFilters.py:53
 msgid "And:"
-msgstr "Ir:"
+msgstr "En:"
 
 #: Filters.py:84 TourneyFilters.py:53
 msgid "Between:"
-msgstr "Tarp:"
+msgstr "Tussen:"
 
 #: Filters.py:85 GuiPrefs.py:33
 msgid "Games"
@@ -594,28 +592,28 @@ msgstr ""
 
 #: Filters.py:85 TourneyFilters.py:52
 msgid "Hero:"
-msgstr "Herojus:"
+msgstr "Held:"
 
 #: Filters.py:86
 msgid "Limits:"
-msgstr "Limitai:"
+msgstr "Limieten:"
 
 #: Filters.py:86
 #, fuzzy
 msgid "Positions:"
-msgstr "Pozicija"
+msgstr "Toon Positie Stats"
 
 #: Filters.py:86 TourneyFilters.py:52
 msgid "Number of Players:"
-msgstr "Žaidėjų skaičius:"
+msgstr "Spelersaantal:"
 
 #: Filters.py:87
 msgid "Grouping:"
-msgstr "Grupavimas:"
+msgstr "Groepering:"
 
 #: Filters.py:87
 msgid "Show Position Stats"
-msgstr "Rodyti pozicinius rodiklius:"
+msgstr "Toon Positie Stats"
 
 #: Filters.py:88
 msgid "Currencies"
@@ -623,29 +621,27 @@ msgstr ""
 
 #: Filters.py:88 TourneyFilters.py:53
 msgid "Date:"
-msgstr "Data:"
+msgstr "Datum:"
 
 #: Filters.py:89
 msgid "All Players"
-msgstr "Visi Žaidėjai"
+msgstr "Alle spelers"
 
 #: Filters.py:89
-#, fuzzy
 msgid "Hole Cards"
-msgstr "Turimos kortos"
+msgstr ""
 
 #: Filters.py:90
 msgid "Ring"
-msgstr "Grynųjų pinigų"
+msgstr "Ring"
 
 #: Filters.py:90
 msgid "Tourney"
-msgstr "Turnyras"
+msgstr ""
 
 #: Filters.py:140 TourneyFilters.py:100
-#, fuzzy
 msgid "Either 0 or more than one site matched for %s"
-msgstr "Arba 0 arba daugiau nei vienas saitas atitiko (%s) - EEK"
+msgstr ""
 
 #: Filters.py:560
 msgid "self.sites[%s] set to %s"
@@ -675,7 +671,7 @@ msgstr ""
 
 #: Filters.py:868 GuiLogView.py:90 GuiPositionalStats.py:64
 msgid "Refresh"
-msgstr "Atnaujinti"
+msgstr ""
 
 #: Filters.py:890
 msgid "Min # Hands:"
@@ -683,29 +679,27 @@ msgstr ""
 
 #: Filters.py:958
 msgid "INFO: No tourney types returned from database"
-msgstr "INFO: Turnyro tipai neįkelti iš duombazės"
+msgstr ""
 
 #: Filters.py:959
 msgid "No tourney types returned from database"
-msgstr "Turnyro tipai neįkelti iš duombazės"
+msgstr ""
 
 #: Filters.py:1001 Filters.py:1231
 msgid "INFO: No games returned from database"
-msgstr "INFO: Žaidimai neįkelti iš duombazės"
+msgstr ""
 
 #: Filters.py:1002 Filters.py:1232
 msgid "No games returned from database"
-msgstr "Žaidimai neįkelti iš duombazės"
+msgstr ""
 
 #: Filters.py:1063
-#, fuzzy
 msgid "INFO: No positions returned from database"
-msgstr "INFO: Žaidimai neįkelti iš duombazės"
+msgstr ""
 
 #: Filters.py:1064
-#, fuzzy
 msgid "No positions returned from database"
-msgstr "Žaidimai neįkelti iš duombazės"
+msgstr ""
 
 #: Filters.py:1138
 msgid "No currencies returned from database"
@@ -717,15 +711,15 @@ msgstr ""
 
 #: Filters.py:1272
 msgid "Show Graph In:"
-msgstr "Rodyti grafą:"
+msgstr ""
 
 #: Filters.py:1288
 msgid "Showdown Winnings"
-msgstr "Laimėjimai po bendrų kortų atvertimo"
+msgstr ""
 
 #: Filters.py:1296
 msgid "Non-Showdown Winnings"
-msgstr "Laimėjimai be kortų atvertimo"
+msgstr ""
 
 #: Filters.py:1303
 msgid "EV"
@@ -733,11 +727,11 @@ msgstr ""
 
 #: Filters.py:1425
 msgid "From:"
-msgstr "Nuo:"
+msgstr ""
 
 #: Filters.py:1434
 msgid "To:"
-msgstr "Iki:"
+msgstr ""
 
 #: Filters.py:1576 Filters.py:1591
 msgid "show all"
@@ -749,22 +743,22 @@ msgstr ""
 
 #: Filters.py:1606 fpdb.pyw:771
 msgid "Pick a date"
-msgstr "Pasirinkite datą"
+msgstr ""
 
 #: Filters.py:1625 fpdb.pyw:777
 msgid "Done"
-msgstr "Baigta"
+msgstr ""
 
 #: FullTiltPokerSummary.py:100 FullTiltPokerSummary.py:102
 #: PokerStarsSummary.py:83 PokerStarsSummary.py:85 SitenameSummary.py:81
 #: SitenameSummary.py:83
 msgid "Unable to recognise Tourney Info: '%s'"
-msgstr "Nepavyko atpažinti turnyro informacijos: '%s'"
+msgstr ""
 
 #: FullTiltPokerSummary.py:136 FullTiltPokerSummary.py:138
 #: PokerStarsSummary.py:113 PokerStarsSummary.py:115
 msgid "Unable to locate currency"
-msgstr "Nepavyko nustatyti valiutos"
+msgstr ""
 
 #: FulltiltToFpdb.py:210
 msgid "Raising FpdbParseError for file '%s'"
@@ -789,7 +783,7 @@ msgstr ""
 
 #: FulltiltToFpdb.py:662
 msgid "Unable to get a valid Tournament ID -- File rejected"
-msgstr "Nepavyko rasti tinkamą turnyro ID -- Failas atmestas"
+msgstr ""
 
 #: FulltiltToFpdb.py:694
 msgid "Conflict between buyins read in top line (%s) and in BuyIn field (%s)"
@@ -808,9 +802,8 @@ msgid "Player finishing stats unreadable : %s"
 msgstr ""
 
 #: FulltiltToFpdb.py:815
-#, fuzzy
 msgid "Could not find rank for %s."
-msgstr "Failas nerastas %s"
+msgstr ""
 
 #: FulltiltToFpdb.py:817
 msgid "Parsed finish position incoherent : %s / %s"
@@ -818,7 +811,7 @@ msgstr ""
 
 #: GuiAutoImport.py:93
 msgid "Time between imports in seconds:"
-msgstr "Importavimo intervalai sekundėmis:"
+msgstr ""
 
 #: GuiAutoImport.py:125 GuiAutoImport.py:201 GuiAutoImport.py:314
 msgid "Start _Auto Import"
@@ -826,15 +819,15 @@ msgstr ""
 
 #: GuiAutoImport.py:129
 msgid "Detect Directories"
-msgstr "Aptikti direktorijas"
+msgstr ""
 
 #: GuiAutoImport.py:148
 msgid "Auto Import Ready."
-msgstr "Automatinis importavimas paruoštas."
+msgstr ""
 
 #: GuiAutoImport.py:165
 msgid "Please choose the path that you want to Auto Import"
-msgstr "Pasirinkite vietą kurią norite automatiškai importuoti"
+msgstr ""
 
 #: GuiAutoImport.py:188
 msgid "_Auto Import Running"
@@ -894,7 +887,7 @@ msgstr ""
 
 #: GuiAutoImport.py:340
 msgid "Browse..."
-msgstr "Naršyti..."
+msgstr ""
 
 #: GuiBulkImport.py:55 GuiBulkImport.py:56 GuiBulkImport.py:268
 msgid "Please select site"
@@ -912,7 +905,7 @@ msgstr ""
 
 #: GuiBulkImport.py:136
 msgid "Import Complete"
-msgstr "Importavimas baigtas."
+msgstr ""
 
 #: GuiBulkImport.py:144
 msgid "bulk import aborted - global lock not available"
@@ -920,11 +913,11 @@ msgstr ""
 
 #: GuiBulkImport.py:172
 msgid "Print Start/Stop Info"
-msgstr "Spausdinimo Pradžia/Pabaiga info"
+msgstr ""
 
 #: GuiBulkImport.py:179
 msgid "Hands/status print:"
-msgstr "Rankos/Būsena spausdinti"
+msgstr ""
 
 #: GuiBulkImport.py:196
 msgid "Number of threads:"
@@ -932,11 +925,11 @@ msgstr ""
 
 #: GuiBulkImport.py:216
 msgid "Archive File"
-msgstr "Archyvuoti failą"
+msgstr ""
 
 #: GuiBulkImport.py:221
 msgid "Hands/file:"
-msgstr "Rankos/failas"
+msgstr ""
 
 #: GuiBulkImport.py:236
 msgid "Drop indexes:"
@@ -944,7 +937,7 @@ msgstr ""
 
 #: GuiBulkImport.py:245 GuiBulkImport.py:296
 msgid "auto"
-msgstr "automatiškai"
+msgstr ""
 
 #: GuiBulkImport.py:246 GuiBulkImport.py:297 GuiBulkImport.py:403
 msgid "don't drop"
@@ -956,11 +949,11 @@ msgstr ""
 
 #: GuiBulkImport.py:253
 msgid "HUD Test mode"
-msgstr "HUD bandymo rėžimas"
+msgstr ""
 
 #: GuiBulkImport.py:258 GuiTourneyImport.py:109
 msgid "Site filter:"
-msgstr "Saitos filtas:"
+msgstr ""
 
 #: GuiBulkImport.py:287
 msgid "Drop HudCache:"
@@ -976,7 +969,7 @@ msgstr ""
 
 #: GuiBulkImport.py:325
 msgid "Waiting..."
-msgstr "Laukiama..."
+msgstr ""
 
 #: GuiBulkImport.py:354 Options.py:60
 msgid "Input file"
@@ -985,7 +978,7 @@ msgstr ""
 #: GuiBulkImport.py:356 GuiImapFetcher.py:110 GuiTourneyPlayerStats.py:76
 #: fpdb.pyw:675
 msgid "Site"
-msgstr "Saitas"
+msgstr ""
 
 #: GuiBulkImport.py:358
 msgid ""
@@ -995,7 +988,7 @@ msgstr ""
 
 #: GuiBulkImport.py:360 Options.py:57
 msgid "Print some useful one liners"
-msgstr ""
+msgstr "Druk een paar bruikbare zinnen af"
 
 #: GuiBulkImport.py:362 GuiBulkImport.py:364
 msgid ""
@@ -1008,7 +1001,7 @@ msgstr ""
 
 #: GuiBulkImport.py:371 GuiTourneyImport.py:387 ImapFetcher.py:172
 msgid "USAGE:"
-msgstr ""
+msgstr "GEBRUIK:"
 
 #: GuiBulkImport.py:372 GuiBulkImport.py:373 GuiBulkImport.py:374
 #: GuiBulkImport.py:375 GuiBulkImport.py:376
@@ -1021,55 +1014,55 @@ msgstr ""
 
 #: GuiDatabase.py:110
 msgid "_Add"
-msgstr ""
+msgstr "_VoegToe"
 
 #: GuiDatabase.py:114
 msgid "_Refresh"
-msgstr ""
+msgstr "_Ververs"
 
 #: GuiDatabase.py:118
 msgid "Type"
-msgstr "Tipas"
+msgstr "Type"
 
 #: GuiDatabase.py:119 GuiTourneyPlayerStats.py:83
 msgid "Name"
-msgstr "Pavadinimas"
+msgstr "Naam"
 
 #: GuiDatabase.py:120
 msgid "Description"
-msgstr "Apibūdinimas"
+msgstr "Omschrijving"
 
 #: GuiDatabase.py:121 GuiDatabase.py:451 GuiImapFetcher.py:110
 msgid "Username"
-msgstr "Naudotojo vardas"
+msgstr "Gebruikersnaam"
 
 #: GuiDatabase.py:122 GuiDatabase.py:458 GuiImapFetcher.py:110
 msgid "Password"
-msgstr "Slaptažodis"
+msgstr "Wachtwoord"
 
 #: GuiDatabase.py:123
 msgid "Host"
-msgstr "Tiekėjas"
+msgstr "Host"
 
 #: GuiDatabase.py:124
 msgid "Open"
-msgstr "Atidaryti"
+msgstr "Open"
 
 #: GuiDatabase.py:125
 msgid "Status"
-msgstr "Būsena"
+msgstr "Status"
 
 #: GuiDatabase.py:259
 msgid "Testing database connections ... "
-msgstr "Tikrinamas duombazės ryšys ..."
+msgstr "Testen database verbindingen ..."
 
 #: GuiDatabase.py:286
 msgid "finished."
-msgstr "baiga."
+msgstr "Klaar"
 
 #: GuiDatabase.py:296
 msgid "loadDbs error: "
-msgstr "loadDbs klaida"
+msgstr "LaadDbs fout:"
 
 #: GuiDatabase.py:317 GuiDatabase.py:319 GuiRingPlayerStats.py:417
 msgid "error"
@@ -1091,59 +1084,58 @@ msgstr ""
 msgid ""
 "MySQL Server reports: Access denied. Are your permissions set correctly?"
 msgstr ""
-"MySQL serveris praneša: prieiga negalima. Ar jūsų leidimai nustatyti "
-"teisingai?"
+"MySQL Server meldt: Toegang geweigerd. Zijn uw permissies correct ingesteld?"
 
 #: GuiDatabase.py:380 fpdb.pyw:946
 msgid "MySQL client reports: 2002 or 2003 error. Unable to connect - "
-msgstr "MySQL programa praneša: 2002 arba 2003 klaida. Neįmanoma prisijungti -"
+msgstr "MySQL client meldt: 2002 of 2003 fout. Kan geen verbinding maken -"
 
 #: GuiDatabase.py:381 fpdb.pyw:947
 msgid "Please check that the MySQL service has been started"
-msgstr "Patikrikinte ar MySQL įjungtas"
+msgstr "Controleer aub of de MySQL service gestart is"
 
 #: GuiDatabase.py:385 fpdb.pyw:949
 msgid ""
 "PostgreSQL Server reports: Access denied. Are your permissions set correctly?"
 msgstr ""
-"MySQL serveris praneša: prieiga negalima. Ar jūsų leidimai nustatyti "
-"teisingai?"
+"PostgreSQL Server meldt: Toegang geweigerd. Zijn uw permissies correct "
+"ingesteld?"
 
 #: GuiDatabase.py:388 fpdb.pyw:951
 msgid "PostgreSQL client reports: Unable to connect - "
-msgstr ""
+msgstr "PostgreSQL client meldt: Kan geen verbinding maken -"
 
 #: GuiDatabase.py:389 fpdb.pyw:952
 msgid "Please check that the PostgreSQL service has been started"
-msgstr ""
+msgstr "Controleer aub of de PostgreSQL service gestart is"
 
 #: GuiDatabase.py:399
 msgid "db connection to %s, %s, %s, %s, %s failed: %s"
-msgstr "Duombazės prisijungimas prie %s, %s, %s, %s, %s nepavyko: %s"
+msgstr "db connectie naar %s, %s, %s, %s, %s fout: %s"
 
 #: GuiDatabase.py:407
 msgid "AddDB starting"
-msgstr "Atidaromas AddDB"
+msgstr "Starten AddDB"
 
 #: GuiDatabase.py:416
 msgid "Add New Database"
-msgstr "Sukurti naują duombazę."
+msgstr "Toevoegen Nieuwe Database"
 
 #: GuiDatabase.py:426
 msgid "DB Type"
-msgstr "DB Tipas"
+msgstr "DB type"
 
 #: GuiDatabase.py:436
 msgid "DB Name"
-msgstr "DB Pavadinimas"
+msgstr "DB Naam"
 
 #: GuiDatabase.py:444
 msgid "DB Description"
-msgstr "DB Apibūdinimas"
+msgstr "DB Omschrijving"
 
 #: GuiDatabase.py:465
 msgid "Host Computer"
-msgstr "Tiekėjo kompiuteris"
+msgstr "Host Computer"
 
 #: GuiDatabase.py:484
 msgid "addDB.run: response is %s, accept is %s"
@@ -1151,47 +1143,47 @@ msgstr ""
 
 #: GuiDatabase.py:498
 msgid "start creating new db"
-msgstr "pradėti naujos duombazės kūrimą"
+msgstr "Start aanmaken nieuwe DB"
 
 #: GuiDatabase.py:517
 msgid "tested new db, result=%s"
-msgstr ""
+msgstr "Nieuwe DB getest, resultaat=%s"
 
 #: GuiDatabase.py:520
 msgid "Database created"
-msgstr "Duombazė sukurta"
+msgstr "Database aangemaakt"
 
 #: GuiDatabase.py:523
 msgid "Database creation failed"
-msgstr "Duombazės kūrimas nepavyko"
+msgstr "Database-aanmaak mislukt"
 
 #: GuiDatabase.py:536
 msgid "check_fields: starting"
-msgstr ""
+msgstr "constroleer_velden: starten"
 
 #: GuiDatabase.py:542
 msgid "No Database Name given"
-msgstr ""
+msgstr "Geen Database Naam aangegeven"
 
 #: GuiDatabase.py:545
 msgid "No Database Description given"
-msgstr ""
+msgstr "Geen Database Omschrijving aangegeven"
 
 #: GuiDatabase.py:548
 msgid "No Username given"
-msgstr "Nenurodytas Vartotojo vardas"
+msgstr "Geen Gebruikersnaam aangegeven"
 
 #: GuiDatabase.py:551
 msgid "No Password given"
-msgstr "Nenurodytas Slaptažodis"
+msgstr ""
 
 #: GuiDatabase.py:554
 msgid "No Host given"
-msgstr "Nenurodytas Tiekėjas"
+msgstr ""
 
 #: GuiDatabase.py:568
 msgid "Unknown Database Type selected"
-msgstr "Netinkamas duombazės tipas"
+msgstr ""
 
 #: GuiDatabase.py:572
 msgid "check_fields: open dialog"
@@ -1199,7 +1191,7 @@ msgstr ""
 
 #: GuiDatabase.py:581
 msgid "Do you want to try again?"
-msgstr "Ar norite bandyti dar kartą?"
+msgstr ""
 
 #: GuiDatabase.py:694 GuiDatabase.py:699 fpdb.pyw:308
 msgid "Maintain Databases"
@@ -1229,30 +1221,30 @@ msgstr ""
 #: GuiSessionViewer.py:206 GuiTourneyGraphViewer.py:150
 #: GuiTourneyPlayerStats.py:263
 msgid "No sites selected - defaulting to PokerStars"
-msgstr "Neaptikta jokių saitų - PokerStars nustatytas kaip pagrindinis"
+msgstr ""
 
 #: GuiGraphViewer.py:172 GuiPositionalStats.py:174 GuiRingPlayerStats.py:285
 #: GuiSessionViewer.py:215 GuiTourneyGraphViewer.py:155
 #: GuiTourneyPlayerStats.py:266
 msgid "No player ids found"
-msgstr "Nerasta jokių žaidėjų ID"
+msgstr ""
 
 #: GuiGraphViewer.py:177 GuiPositionalStats.py:177 GuiRingPlayerStats.py:288
 #: GuiSessionViewer.py:218
 msgid "No limits found"
-msgstr "Nerasti limitai"
+msgstr ""
 
 #: GuiGraphViewer.py:187 GuiTourneyGraphViewer.py:165
 msgid "Graph generated in: %s"
-msgstr "Grafikas sugeneruotas per: %s"
+msgstr ""
 
 #: GuiGraphViewer.py:190 GuiGraphViewer.py:218 GuiGraphViewer.py:228
 msgid "Hands"
-msgstr "Rankos"
+msgstr ""
 
 #: GuiGraphViewer.py:195 GuiTourneyGraphViewer.py:173
 msgid "No Data for Player(s) Found"
-msgstr "Nearasta duomenų šiems žaidėjams(ui)"
+msgstr ""
 
 #: GuiGraphViewer.py:218 GuiGraphViewer.py:228 GuiTourneyGraphViewer.py:196
 #: GuiTourneyGraphViewer.py:206
@@ -1277,67 +1269,62 @@ msgstr ""
 
 #: GuiGraphViewer.py:335 GuiTourneyGraphViewer.py:259
 msgid "Please choose the directory you wish to export to:"
-msgstr "Pasirinkite vietą, į kurią norite eksportuoti:"
+msgstr ""
 
 #: GuiGraphViewer.py:348 GuiTourneyGraphViewer.py:272
 msgid "Closed, no graph exported"
-msgstr "Uždaryta, jokių grafikų neeksportuota"
+msgstr ""
 
 #: GuiGraphViewer.py:366 GuiTourneyGraphViewer.py:290
 msgid "Graph created"
-msgstr "Grafikas sukurtas"
+msgstr ""
 
 #: GuiHandViewer.py:137
-#, fuzzy
 msgid "Load Hands"
-msgstr "Rankos"
+msgstr ""
 
 #: GuiImapFetcher.py:40
 msgid "To cancel just close this tab."
-msgstr "Norėdami nutraukti, uždarykite šį langelį"
+msgstr ""
 
 #: GuiImapFetcher.py:43
 msgid "_Save"
-msgstr "_Išsaugoti"
+msgstr ""
 
 #: GuiImapFetcher.py:47
 msgid "_Import All"
-msgstr "_Įkelti Viską"
+msgstr ""
 
 #: GuiImapFetcher.py:51
 msgid "If you change the config you must save before importing"
-msgstr "Jei pakeisite konfiguraciją, jūs turite ją išsaugoti prieš įkeldami."
+msgstr ""
 
 #: GuiImapFetcher.py:89
 msgid "Starting import. Please wait."
-msgstr "Pradedamas įkėlimas. Palaukite."
+msgstr ""
 
 #: GuiImapFetcher.py:94
 msgid "Finished import without error."
-msgstr "Įkėlimas baigtas be kalidų."
+msgstr ""
 
 #: GuiImapFetcher.py:97
 msgid ""
 "Login to mailserver failed: please check mailserver, username and password"
 msgstr ""
-"Prisijungti prie pašto serverio nepavyko: patikrikinte pašto serverį, "
-"vartotojo vardą ir slaptažodį"
 
 #: GuiImapFetcher.py:100
 msgid ""
 "Could not connect to mailserver: check mailserver and use SSL settings and "
 "internet connectivity"
 msgstr ""
-"Nepavyko prisijungti prie pašto serverio. Patikrikinte pašto serverį ir "
-"naudokite SSLnustatymus ir interneto ryšį"
 
 #: GuiImapFetcher.py:110
 msgid "Fetch Type"
-msgstr "Priėmimo būdas"
+msgstr ""
 
 #: GuiImapFetcher.py:110
 msgid "Mail Folder"
-msgstr "Pašto aplankas"
+msgstr ""
 
 #: GuiImapFetcher.py:110
 msgid "Mail Server"
@@ -1345,15 +1332,15 @@ msgstr ""
 
 #: GuiImapFetcher.py:110
 msgid "Use SSL"
-msgstr "Naudoti SSL"
+msgstr ""
 
 #: GuiImapFetcher.py:142
 msgid "Yes"
-msgstr "Taip"
+msgstr ""
 
 #: GuiImapFetcher.py:143
 msgid "No"
-msgstr "Ne"
+msgstr ""
 
 #: GuiLogView.py:41
 msgid "Fpdb Errors"
@@ -1485,7 +1472,7 @@ msgstr ""
 
 #: GuiPrefs.py:72
 msgid "Setting"
-msgstr "Nustatymai"
+msgstr ""
 
 #: GuiPrefs.py:78
 msgid "Value (double-click to change)"
@@ -1497,15 +1484,15 @@ msgstr ""
 
 #: GuiRingPlayerStats.py:44
 msgid "Type of Game"
-msgstr "Žaidimo tipas"
+msgstr ""
 
 #: GuiRingPlayerStats.py:45
 msgid "Hole cards"
-msgstr "Turimos kortos"
+msgstr ""
 
 #: GuiRingPlayerStats.py:46
 msgid "Position"
-msgstr "Pozicija"
+msgstr ""
 
 #: GuiRingPlayerStats.py:47 Stats.py:137 Stats.py:146 Stats.py:155
 msgid "Player Name"
@@ -1517,7 +1504,7 @@ msgstr ""
 
 #: GuiRingPlayerStats.py:49
 msgid "Number of Seats"
-msgstr "Vietų skaičius"
+msgstr ""
 
 #: GuiRingPlayerStats.py:50 Stats.py:159 Stats.py:168 Stats.py:175
 msgid "Voluntarily put in preflop/3rd street %"
@@ -1561,7 +1548,7 @@ msgstr ""
 
 #: GuiRingPlayerStats.py:60 Stats.py:386 Stats.py:395
 msgid "% steal attempted"
-msgstr "% bandyta vogti"
+msgstr ""
 
 #: GuiRingPlayerStats.py:61 Stats.py:572 Stats.py:581 Stats.py:588
 msgid "% called a raise preflop"
@@ -1601,7 +1588,7 @@ msgstr ""
 
 #: GuiRingPlayerStats.py:71 Stats.py:130 Stats.py:133 Stats.py:134
 msgid "Total Profit"
-msgstr "Bendras Pelnas"
+msgstr ""
 
 #: GuiRingPlayerStats.py:72 Stats.py:266 Stats.py:275 Stats.py:284
 msgid "Big blinds won per 100 hands"
@@ -1609,7 +1596,7 @@ msgstr ""
 
 #: GuiRingPlayerStats.py:73
 msgid "Amount of rake paid"
-msgstr "Sumokėtų mokesčių kiekis"
+msgstr ""
 
 #: GuiRingPlayerStats.py:74
 msgid "Big blinds won per 100 hands when excluding rake"
@@ -1629,7 +1616,7 @@ msgstr ""
 
 #: GuiRingPlayerStats.py:148 GuiTourneyPlayerStats.py:69
 msgid "_Refresh Stats"
-msgstr "_Atnaujinti Rodiklius"
+msgstr ""
 
 #: GuiRingPlayerStats.py:176
 msgid "Pocket pairs"
@@ -1654,23 +1641,23 @@ msgstr ""
 #: GuiRingPlayerStats.py:353 GuiSessionViewer.py:251
 #: GuiTourneyPlayerStats.py:238
 msgid "Stats page displayed in %4.2f seconds"
-msgstr "Rodiklių puslapis atidarytas per %4.2f sekundes"
+msgstr ""
 
 #: GuiRingPlayerStats.py:701
 msgid "Detailed Filters"
-msgstr "Išsamūs filtrai"
+msgstr ""
 
 #: GuiRingPlayerStats.py:710
 msgid "Hand Filters:"
-msgstr "Rankų filtrai:"
+msgstr ""
 
 #: GuiRingPlayerStats.py:726
 msgid "between"
-msgstr "tarp"
+msgstr ""
 
 #: GuiRingPlayerStats.py:727
 msgid "and"
-msgstr "ir"
+msgstr ""
 
 #: GuiRingPlayerStats.py:752
 msgid "Restrict to hand types:"
@@ -1682,7 +1669,7 @@ msgstr ""
 
 #: GuiSessionViewer.py:155 GuiStove.py:70 fpdb.pyw:1340
 msgid "FPDB WARNING"
-msgstr "FPDB ĮSPĖJIMAS"
+msgstr ""
 
 #: GuiSessionViewer.py:209
 msgid "No games found"
@@ -1698,16 +1685,15 @@ msgstr ""
 
 #: GuiSessionViewer.py:470
 msgid "Session candlestick graph"
-msgstr "Sesijos žvakinis grafikas"
+msgstr ""
 
 #: GuiSessionViewer.py:473
 msgid "Sessions"
-msgstr "Sesijos"
+msgstr ""
 
 #: GuiSessionViewer.py:523 fpdb.pyw:1104
-#, fuzzy
 msgid "Hand Viewer"
-msgstr "Rankų filtrai:"
+msgstr ""
 
 #: GuiStove.py:63
 msgid ""
@@ -1729,7 +1715,7 @@ msgstr ""
 
 #: GuiStove.py:66
 msgid "Thank you"
-msgstr "Ačiū"
+msgstr ""
 
 #: GuiStove.py:97
 msgid "Draw"
@@ -1782,11 +1768,11 @@ msgstr ""
 #: GuiTourneyGraphViewer.py:169 GuiTourneyGraphViewer.py:196
 #: GuiTourneyGraphViewer.py:206
 msgid "Tournaments"
-msgstr "Turnyrai"
+msgstr ""
 
 #: GuiTourneyGraphViewer.py:203
 msgid "Tournament Results"
-msgstr "Turnyrų Rezultatai"
+msgstr ""
 
 #: GuiTourneyImport.py:75 GuiTourneyImport.py:429
 msgid "Tourney import done: Stored: %d, Errors: %d in %s seconds - %.0f/sec"
@@ -1802,7 +1788,7 @@ msgstr ""
 
 #: GuiTourneyImport.py:207
 msgid "Tourney Summary Import started at %s - %d files to import."
-msgstr "Turnyrų apžvalgos įkėlimas pradėtas per %s - liko %d failų"
+msgstr ""
 
 #: GuiTourneyImport.py:246
 msgid "Tourney import: Removing text < 100 characters from end of file: %s"
@@ -1818,7 +1804,7 @@ msgstr ""
 
 #: GuiTourneyImport.py:262 ImapFetcher.py:159
 msgid "Finished importing %s/%s tournament summaries"
-msgstr "Įkelta turnyrų apžvalgų: %s/%s"
+msgstr ""
 
 #: GuiTourneyImport.py:325 fpdb.pyw:333
 msgid "Number of Tourneys:"
@@ -1830,11 +1816,11 @@ msgstr ""
 
 #: GuiTourneyImport.py:406 ImapFetcher.py:176
 msgid "Need to define a converter"
-msgstr "Reikia nurodyti konvertuotoją"
+msgstr ""
 
 #: GuiTourneyImport.py:414
 msgid "Need a filename to import"
-msgstr "Nurodykite failo vardą, kad pradėtumėte importuoti"
+msgstr ""
 
 #: GuiTourneyPlayerStats.py:78
 msgid "Cat."
@@ -1898,15 +1884,15 @@ msgstr ""
 
 #: GuiTourneyViewer.py:40
 msgid "Enter the tourney number you want to display:"
-msgstr "Rodomų turnyrų skaičius:"
+msgstr ""
 
 #: GuiTourneyViewer.py:46
 msgid "_Display"
-msgstr "_Rodyti"
+msgstr ""
 
 #: GuiTourneyViewer.py:53
 msgid "Display _Player"
-msgstr "Rodyti _Žaidėją"
+msgstr ""
 
 #: GuiTourneyViewer.py:68
 msgid "Tournament not found."
@@ -1922,11 +1908,11 @@ msgstr ""
 
 #: GuiTourneyViewer.py:110
 msgid "N/A"
-msgstr "N/A"
+msgstr ""
 
 #: GuiTourneyViewer.py:131
 msgid "invalid entry in tourney number - must enter numbers only"
-msgstr "netinkamas įrašas - turite įrašyti tik skaičius"
+msgstr ""
 
 #: HUD_main.pyw:71 HUD_main.pyw:80 HUD_run_me.py:45
 msgid "HUD_main starting"
@@ -1946,7 +1932,7 @@ msgstr ""
 
 #: HUD_main.pyw:110 HUD_run_me.py:62
 msgid "Closing this window will exit from the HUD."
-msgstr "Jei uždarysit šį langą, bus uždarytas ir HUD"
+msgstr ""
 
 #: HUD_main.pyw:125
 msgid "Error initializing main_window"
@@ -2010,7 +1996,7 @@ msgstr ""
 
 #: HUD_main.pyw:322
 msgid "Error resizing HUD for table: %s."
-msgstr "Klaida keičiant HUD matmenis stalui: %s"
+msgstr ""
 
 #: HUD_main.pyw:336
 msgid "Error killing HUD for table: %s."
@@ -2026,15 +2012,15 @@ msgstr ""
 
 #: HUD_run_me.py:66
 msgid "HUD Main Window"
-msgstr "HUD pagrindinis langas"
+msgstr ""
 
 #: Hand.py:149
 msgid "BB"
-msgstr "BB"
+msgstr ""
 
 #: Hand.py:150
 msgid "SB"
-msgstr "MS"
+msgstr ""
 
 #: Hand.py:151
 msgid "BUTTON POS"
@@ -2042,19 +2028,19 @@ msgstr ""
 
 #: Hand.py:152
 msgid "HAND NO."
-msgstr "RANKOS NR."
+msgstr ""
 
 #: Hand.py:153 TourneySummary.py:130
 msgid "SITE"
-msgstr "SAITAS"
+msgstr ""
 
 #: Hand.py:154
 msgid "TABLE NAME"
-msgstr "STALO PAVADINIMAS"
+msgstr ""
 
 #: Hand.py:155 TourneySummary.py:140
 msgid "HERO"
-msgstr "HEROJUS"
+msgstr ""
 
 #: Hand.py:156 TourneySummary.py:141
 msgid "MAX SEATS"
@@ -2062,11 +2048,11 @@ msgstr ""
 
 #: Hand.py:157
 msgid "LEVEL"
-msgstr "LYGIS"
+msgstr ""
 
 #: Hand.py:158 TourneySummary.py:146
 msgid "MIXED"
-msgstr "MAIŠYTA"
+msgstr ""
 
 #: Hand.py:159
 msgid "LAST BET"
@@ -2074,139 +2060,139 @@ msgstr ""
 
 #: Hand.py:160
 msgid "ACTION STREETS"
-msgstr "VEIKSMŲ GATVĖS"
+msgstr ""
 
 #: Hand.py:161
 msgid "STREETS"
-msgstr "GATVĖS"
+msgstr ""
 
 #: Hand.py:162
 msgid "ALL STREETS"
-msgstr "VISOS GATVĖS"
+msgstr ""
 
 #: Hand.py:163
 msgid "COMMUNITY STREETS"
-msgstr "BENDROS GATVĖS"
+msgstr ""
 
 #: Hand.py:164
 msgid "HOLE STREETS"
-msgstr "TURIMOS GATVĖS"
+msgstr ""
 
 #: Hand.py:165
 msgid "COUNTED SEATS"
-msgstr "SUSKAIČIUOTOS VIETOS"
+msgstr ""
 
 #: Hand.py:166
 msgid "DEALT"
-msgstr "PADALINTA"
+msgstr ""
 
 #: Hand.py:167
 msgid "SHOWN"
-msgstr "PARODYTA"
+msgstr ""
 
 #: Hand.py:168
 msgid "MUCKED"
-msgstr "NUMESTA NERODŽIUS"
+msgstr ""
 
 #: Hand.py:169
 msgid "TOTAL POT"
-msgstr "VISAS BANKAS"
+msgstr ""
 
 #: Hand.py:170
 msgid "TOTAL COLLECTED"
-msgstr "IŠ VISO SURINKTA"
+msgstr ""
 
 #: Hand.py:171
 msgid "RAKE"
-msgstr "MOKESTIS"
+msgstr ""
 
 #: Hand.py:172 TourneySummary.py:131
 msgid "START TIME"
-msgstr "PRADĖJIMO LAIKAS"
+msgstr ""
 
 #: Hand.py:173
 msgid "TOURNAMENT NO"
-msgstr "TURNYRO NR"
+msgstr ""
 
 #: Hand.py:174 TourneySummary.py:136
 msgid "TOURNEY ID"
-msgstr "TURNYRO ID"
+msgstr ""
 
 #: Hand.py:175 TourneySummary.py:135
 msgid "TOURNEY TYPE ID"
-msgstr "TURNYRO TIPO ID"
+msgstr ""
 
 #: Hand.py:176 TourneySummary.py:137
 msgid "BUYIN"
-msgstr "ĮPIRKA"
+msgstr ""
 
 #: Hand.py:177
 msgid "BUYIN CURRENCY"
-msgstr "ĮPIRKOS VALIUTA"
+msgstr ""
 
 #: Hand.py:178
 msgid "BUYIN CHIPS"
-msgstr "ĮSIPIRKTA ŽETONŲ"
+msgstr ""
 
 #: Hand.py:179 TourneySummary.py:138
 msgid "FEE"
-msgstr "MOKESTIS"
+msgstr ""
 
 #: Hand.py:180
 msgid "IS REBUY"
-msgstr "YRA ATSIPIRKIMAI"
+msgstr ""
 
 #: Hand.py:181
 msgid "IS ADDON"
-msgstr "YRA PAPILDYMAS"
+msgstr ""
 
 #: Hand.py:182
 msgid "IS KO"
-msgstr "YRA GALVŲ MEDŽIOKLĖ"
+msgstr ""
 
 #: Hand.py:183 TourneySummary.py:162
 msgid "KO BOUNTY"
-msgstr "GALVŲ MEDŽIOKLĖ"
+msgstr ""
 
 #: Hand.py:184
 msgid "IS MATRIX"
-msgstr "YRA MATRICA"
+msgstr ""
 
 #: Hand.py:185
 msgid "IS SHOOTOUT"
-msgstr "YRA SHOOTOUTAS"
+msgstr ""
 
 #: Hand.py:186 TourneySummary.py:163
 msgid "TOURNEY COMMENT"
-msgstr "TURNYRO KOMENTARAS"
+msgstr ""
 
 #: Hand.py:189 TourneySummary.py:175
 msgid "PLAYERS"
-msgstr "ŽAIDĖJAI"
+msgstr ""
 
 #: Hand.py:190
 msgid "STACKS"
-msgstr "ŽETONAI"
+msgstr ""
 
 #: Hand.py:191
 msgid "POSTED"
-msgstr "ĮDĖTA"
+msgstr ""
 
 #: Hand.py:192
 msgid "POT"
-msgstr "BANKAS"
+msgstr ""
 
 #: Hand.py:193
 msgid "SEATING"
-msgstr "IŠSODINIMAS"
+msgstr ""
 
 #: Hand.py:194
 msgid "GAMETYPE"
-msgstr "ŽAIDIMO TIPAS"
+msgstr ""
 
 #: Hand.py:195
 msgid "ACTION"
-msgstr "VEIKSMAS"
+msgstr ""
 
 #: Hand.py:196
 msgid "COLLECTEES"
@@ -2214,28 +2200,27 @@ msgstr ""
 
 #: Hand.py:197
 msgid "BETS"
-msgstr "STATYMAI"
+msgstr ""
 
 #: Hand.py:198
 msgid "BOARD"
-msgstr "STALAS"
+msgstr ""
 
 #: Hand.py:199
 msgid "DISCARDS"
-msgstr "NUMESTOS KORTOS"
+msgstr ""
 
 #: Hand.py:200
 msgid "HOLECARDS"
-msgstr "TURIMOS KORTOS"
+msgstr ""
 
 #: Hand.py:201
 msgid "TOURNEYS PLAYER IDS"
-msgstr "TURNYRO ŽAIDĖJŲ ID"
+msgstr ""
 
 #: Hand.py:222
-#, fuzzy
 msgid "Tried to add holecards for unknown player: '%s'"
-msgstr "[ERROR] Bandyta pridėti turimas kortas nežinomam žaidėjui: %s"
+msgstr ""
 
 #: Hand.py:511 Hand.py:513
 msgid "First 100 characters: %s"
@@ -2251,23 +2236,23 @@ msgstr ""
 
 #: Hand.py:609
 msgid "%s %s calls %s"
-msgstr "%s %s atsako %s"
+msgstr ""
 
 #: Hand.py:675
 msgid "%s %s raise %s"
-msgstr "%s %s kelia %s"
+msgstr ""
 
 #: Hand.py:686
 msgid "%s %s bets %s"
-msgstr "%s %s stato %s"
+msgstr ""
 
 #: Hand.py:709
 msgid "%s %s folds"
-msgstr "%s %s numeta"
+msgstr ""
 
 #: Hand.py:718
 msgid "%s %s checks"
-msgstr "%s %s praleidžia"
+msgstr ""
 
 #: Hand.py:886
 msgid ""
@@ -2297,17 +2282,16 @@ msgid "Street 'DEAL' is empty. Was hand %s cancelled?"
 msgstr ""
 
 #: Hand.py:1485
-#, fuzzy
 msgid "Tried to add holecards for unknown player: %s"
-msgstr "[ERROR] Bandyta pridėti turimas kortas nežinomam žaidėjui: %s"
+msgstr ""
 
 #: Hand.py:1494
 msgid "%s %s completes %s"
-msgstr "%s %s prideda %s"
+msgstr ""
 
 #: Hand.py:1512
 msgid "Bringin: %s, %s"
-msgstr "Pradeda: %s, %s"
+msgstr ""
 
 #: Hand.py:1695
 msgid ""
@@ -2344,13 +2328,12 @@ msgid "Read %d hands (%d failed) in %.3f seconds"
 msgstr ""
 
 #: HandHistoryConverter.py:150
-#, fuzzy
 msgid "Summary file '%s' correctly parsed (took %.3f seconds)"
-msgstr "Nepavyko konvertuoti apžvalgos failų '%s' (užtruko %.3f sekundžių)"
+msgstr ""
 
 #: HandHistoryConverter.py:152
 msgid "Error converting summary file '%s' (took %.3f seconds)"
-msgstr "Nepavyko konvertuoti apžvalgos failų '%s' (užtruko %.3f sekundžių)"
+msgstr ""
 
 #: HandHistoryConverter.py:180
 msgid "Read no hands from file: '%s'"
@@ -2358,7 +2341,7 @@ msgstr ""
 
 #: HandHistoryConverter.py:188
 msgid "Removing text < 50 characters"
-msgstr "Panaikinamas tekstas < 50 simbolių"
+msgstr ""
 
 #: HandHistoryConverter.py:221 HandHistoryConverter.py:222
 #: HandHistoryConverter.py:228
@@ -2371,7 +2354,7 @@ msgstr ""
 
 #: HandHistoryConverter.py:421
 msgid "unable to read file with any codec in list!"
-msgstr "nepavyko perskaityti failo su nė vienu kodeku sąraše"
+msgstr ""
 
 #: HandHistoryConverter.py:493 HandHistoryConverter.py:494
 msgid "Unsupported target timezone: "
@@ -2387,7 +2370,7 @@ msgstr ""
 
 #: HandHistoryConverter.py:618
 msgid "Created directory '%s'"
-msgstr "Sukurta direktorija '%s'"
+msgstr ""
 
 #: HandHistoryConverter.py:622
 msgid "Output path %s couldn't be opened."
@@ -2395,15 +2378,15 @@ msgstr ""
 
 #: Hud.py:150
 msgid "Kill This HUD"
-msgstr "Užbaigti šį HUD"
+msgstr ""
 
 #: Hud.py:155
 msgid "Save HUD Layout"
-msgstr "Išsaugoti HUD išdėstymą"
+msgstr ""
 
 #: Hud.py:159
 msgid "Reposition StatWindows"
-msgstr "Perstatyti StatWindows"
+msgstr ""
 
 #: Hud.py:163
 msgid "Show Player Stats for"
@@ -2411,59 +2394,51 @@ msgstr ""
 
 #: Hud.py:168 Hud.py:237
 msgid "For This Blind Level Only"
-msgstr "Tik šiam statymų lygiui"
+msgstr ""
 
 #: Hud.py:173 Hud.py:242
 msgid "For Multiple Blind Levels:"
-msgstr "Keliems statymų lygiams:"
+msgstr ""
 
 #: Hud.py:176 Hud.py:181 Hud.py:186 Hud.py:245 Hud.py:250 Hud.py:255
-#, fuzzy
 msgid "%s to %s * Current Blinds"
-msgstr "nuo 0.1 iki 10 x esami statymai"
+msgstr ""
 
 #: Hud.py:191 Hud.py:260
-#, fuzzy
 msgid "All Levels"
-msgstr "Visi lygiai"
+msgstr ""
 
 #: Hud.py:196 Hud.py:265
 msgid "Number of Seats:"
 msgstr ""
 
 #: Hud.py:199 Hud.py:268
-#, fuzzy
 msgid "Any Number"
-msgstr "Betkoks skaičius"
+msgstr ""
 
 #: Hud.py:204 Hud.py:273
-#, fuzzy
 msgid "Custom"
-msgstr "Pagal nuožiūrą"
+msgstr ""
 
 #: Hud.py:209 Hud.py:278
-#, fuzzy
 msgid "Exact"
-msgstr "Būtent"
+msgstr ""
 
 #: Hud.py:214 Hud.py:283
 msgid "Since:"
-msgstr "Nuo:"
+msgstr ""
 
 #: Hud.py:217 Hud.py:286
-#, fuzzy
 msgid "All Time"
-msgstr "Visą laiką"
+msgstr ""
 
 #: Hud.py:222 Hud.py:291
-#, fuzzy
 msgid "Session"
-msgstr "Sesijos"
+msgstr ""
 
 #: Hud.py:227 Hud.py:296
-#, fuzzy
 msgid "%s Days"
-msgstr "%s Dienų"
+msgstr ""
 
 #: Hud.py:232
 msgid "Show Opponent Stats for"
@@ -2475,7 +2450,7 @@ msgstr ""
 
 #: Hud.py:358
 msgid "Set max seats"
-msgstr "Nurodyti maksimalų vietų skaičių"
+msgstr ""
 
 #: Hud.py:478
 msgid "update_table_position:"
@@ -2518,22 +2493,20 @@ msgid "DEBUG: siteId Failed for: %s"
 msgstr ""
 
 #: ImapFetcher.py:44 ImapFetcher.py:53
-#, fuzzy
 msgid "Could not split tourneys"
-msgstr "Failas nerastas %s"
+msgstr ""
 
 #: ImapFetcher.py:83
 msgid "Found %s eMails to fetch"
 msgstr ""
 
 #: ImapFetcher.py:103
-#, fuzzy
 msgid "Finished downloading emails."
-msgstr "Lentelių atkūrimas baigtas."
+msgstr ""
 
 #: ImapFetcher.py:109
 msgid "No Tournament summaries found."
-msgstr "Jokių turnyrų apžvalgų nerasta"
+msgstr ""
 
 #: ImapFetcher.py:111
 msgid "Errors:"
@@ -2541,35 +2514,32 @@ msgstr ""
 
 #: Mucked.py:344
 msgid "No Name"
-msgstr "Nėra Vardo"
+msgstr ""
 
 #: OnGameToFpdb.py:180 OnGameToFpdb.py:181 WinamaxToFpdb.py:190
 #: WinamaxToFpdb.py:191
-#, fuzzy
 msgid "Limit not found in %s."
-msgstr "Failas nerastas"
+msgstr ""
 
 #: OnGameToFpdb.py:213 OnGameToFpdb.py:214 WinamaxToFpdb.py:216
 msgid "DATETIME not matched: '%s'"
 msgstr ""
 
 #: OnGameToFpdb.py:291 WinamaxToFpdb.py:348
-#, fuzzy
 msgid "No small blinds found."
-msgstr "Nėra mažojo statymo"
+msgstr ""
 
 #: Options.py:31
 msgid "Send error messages to the console rather than the log file."
 msgstr ""
 
 #: Options.py:34
-#, fuzzy
 msgid "Specifies a database name."
-msgstr "Perrašo numatytąjį duombazės pavadinimą"
+msgstr ""
 
 #: Options.py:37
 msgid "Specifies a configuration file."
-msgstr "Nurodo nustatymų failą"
+msgstr ""
 
 #: Options.py:40
 msgid ""
@@ -2582,7 +2552,7 @@ msgstr ""
 
 #: Options.py:46
 msgid "A sitename"
-msgstr "Saito pavadinimas"
+msgstr ""
 
 #: Options.py:50
 msgid "Error logging level:"
@@ -2642,20 +2612,19 @@ msgstr ""
 
 #: Options.py:127
 msgid "press enter to end"
-msgstr "norėdami baigti spauskite enter"
+msgstr ""
 
 #: P5sResultsParser.py:10
 msgid "You need to manually enter the playername"
-msgstr "Jūs turite pats įrašyti žaidėjo vardą"
+msgstr ""
 
 #: PacificPokerToFpdb.py:335 PacificPokerToFpdb.py:336
-#, fuzzy
 msgid "Unable to recognise streets"
-msgstr "Nepavyko atpažinti turnyro informacijos: '%s'"
+msgstr ""
 
 #: SplitHandHistory.py:76 fpdb_prerun.py:64 fpdb_prerun.py:79
 msgid "File not found"
-msgstr "Failas nerastas"
+msgstr ""
 
 #: SplitHandHistory.py:86
 msgid "%s processed"
@@ -2691,11 +2660,11 @@ msgstr ""
 
 #: Stats.py:416 Stats.py:425 Stats.py:432
 msgid "% folded SB to steal"
-msgstr "% numesta iš SB kai vagia"
+msgstr ""
 
 #: Stats.py:435 Stats.py:444 Stats.py:451
 msgid "% folded BB to steal"
-msgstr "% numestas iš BB kai vagia"
+msgstr ""
 
 #: Stats.py:454 Stats.py:466 Stats.py:473
 msgid "% folded blind to steal"
@@ -2772,7 +2741,7 @@ msgstr ""
 
 #: TableWindow.py:153
 msgid "Can't find table %s"
-msgstr "Nepavyksta rasti stalo %s"
+msgstr ""
 
 #: Tables_Demo.py:63
 msgid "Fake HUD Main Window"
@@ -2791,9 +2760,8 @@ msgid "Closing this window will stop the Tournament Tracker"
 msgstr ""
 
 #: TournamentTracker.py:146
-#, fuzzy
 msgid "Add Tournament"
-msgstr "Turnyrai"
+msgstr ""
 
 #: TournamentTracker.py:151
 msgid "FPDB Tournament Tracker"
@@ -2801,11 +2769,11 @@ msgstr ""
 
 #: TournamentTracker.py:162
 msgid "Edit"
-msgstr "Keisti"
+msgstr ""
 
 #: TournamentTracker.py:165
 msgid "Rebuy"
-msgstr "Atsipirkimas"
+msgstr ""
 
 #: TournamentTracker.py:266
 msgid "Database error %s in hand %d. Skipping."
@@ -2825,59 +2793,59 @@ msgstr ""
 
 #: TourneyFilters.py:52
 msgid "Sites:"
-msgstr "Saitai:"
+msgstr "Sites"
 
 #: TourneyFilters.py:54
 msgid "Tourney Type"
-msgstr "Turnyro tipas"
+msgstr ""
 
 #: TourneySummary.py:132
 msgid "END TIME"
-msgstr "BAIGIMO LAIKAS"
+msgstr ""
 
 #: TourneySummary.py:133
 msgid "TOURNEY NAME"
-msgstr "TURNYRO PAVADINIMAS"
+msgstr ""
 
 #: TourneySummary.py:134
 msgid "TOURNEY NO"
-msgstr "TURNYRO NUMERIS"
+msgstr ""
 
 #: TourneySummary.py:139
 msgid "CURRENCY"
-msgstr "VALIUTA"
+msgstr ""
 
 #: TourneySummary.py:142
 msgid "ENTRIES"
-msgstr "DALYVIAI"
+msgstr ""
 
 #: TourneySummary.py:143
 msgid "SPEED"
-msgstr "GREITIS"
+msgstr ""
 
 #: TourneySummary.py:144
 msgid "PRIZE POOL"
-msgstr "PRIZINIS FONDAS"
+msgstr ""
 
 #: TourneySummary.py:145
 msgid "STARTING CHIP COUNT"
-msgstr "PRADINIS ŽETONŲ KIEKIS"
+msgstr ""
 
 #: TourneySummary.py:147
 msgid "REBUY"
-msgstr "ATSIPIRKIMAI"
+msgstr ""
 
 #: TourneySummary.py:148
 msgid "ADDON"
-msgstr "PAPILDYMAS"
+msgstr ""
 
 #: TourneySummary.py:149
 msgid "KO"
-msgstr "MEDŽIOKLĖ"
+msgstr ""
 
 #: TourneySummary.py:150
 msgid "MATRIX"
-msgstr "MATRICA"
+msgstr ""
 
 #: TourneySummary.py:151
 msgid "MATRIX ID PROCESSED"
@@ -2885,7 +2853,7 @@ msgstr ""
 
 #: TourneySummary.py:152
 msgid "SHOOTOUT"
-msgstr "IŠSIŠAUDYMAS"
+msgstr ""
 
 #: TourneySummary.py:153
 msgid "MATRIX MATCH ID"
@@ -2901,35 +2869,35 @@ msgstr ""
 
 #: TourneySummary.py:156
 msgid "REBUY CHIPS"
-msgstr "ATSIPIRKIMO ŽETONAI"
+msgstr ""
 
 #: TourneySummary.py:157
 msgid "ADDON CHIPS"
-msgstr "PAPILDYMO ŽETONAI"
+msgstr ""
 
 #: TourneySummary.py:158
 msgid "REBUY COST"
-msgstr "ATSIPIRKIMO KAINA"
+msgstr ""
 
 #: TourneySummary.py:159
 msgid "ADDON COST"
-msgstr "PAPILDYMO KAINA"
+msgstr ""
 
 #: TourneySummary.py:160
 msgid "TOTAL REBUYS"
-msgstr "ATSIPIRKIMŲ KIEKIS"
+msgstr ""
 
 #: TourneySummary.py:161
 msgid "TOTAL ADDONS"
-msgstr "PAPILDYMŲ KIEKIS"
+msgstr ""
 
 #: TourneySummary.py:164
 msgid "SNG"
-msgstr "SNG"
+msgstr ""
 
 #: TourneySummary.py:165
 msgid "SATELLITE"
-msgstr "SATELITAS"
+msgstr ""
 
 #: TourneySummary.py:166
 msgid "DOUBLE OR NOTHING"
@@ -3361,9 +3329,8 @@ msgid "Session Stats"
 msgstr ""
 
 #: fpdb.pyw:876
-#, fuzzy
 msgid "Hand _Viewer"
-msgstr "Rankų filtrai:"
+msgstr ""
 
 #: fpdb.pyw:877
 msgid "_Database"
@@ -3645,68 +3612,4 @@ msgid "No gtk directories found in your path."
 msgstr ""
 
 #~ msgid "Rebuild hudcache took %.1f seconds"
-#~ msgstr "HUD atkūrimas užtruko %.1f sekundžių"
-
-#~ msgid "%s was toggled %s"
-#~ msgstr "%s buvo pažymėta %s"
-
-#~ msgid "OFF"
-#~ msgstr "Išjungti"
-
-#~ msgid "ON"
-#~ msgstr "Įjungti"
-
-#~ msgid "[ERROR] Tried to add holecards for unknown player: %s"
-#~ msgstr "[ERROR] Bandyta pridėti turimas kortas nežinomam žaidėjui: %s"
-
-#~ msgid "Either 0 or more than one site matched (%s) - EEK"
-#~ msgstr "Arba 0 arba daugiau nei vienas saitas atitiko (%s) - EEK"
-
-#~ msgid "  Session"
-#~ msgstr "Sesija"
-
-#~ msgid "  0.5 to 2.0 x Current Blinds"
-#~ msgstr "nuo 0.5 iki 2.0 x esami statymai"
-
-#~ msgid "  0.33 to 3.0 x Current Blinds"
-#~ msgstr "nuo 0.33 iki 3.0 x esami statymai"
-
-#~ msgid "Converting starsArchive format to readable"
-#~ msgstr "starsArchive formatas verčiamas į skaitomą"
-
-#~ msgid "Converting ftpArchive format to readable"
-#~ msgstr "ftpArchive formatas verčiamas į skaitomą"
-
-#, fuzzy
-#~ msgid "The lower, the more stable the amounts won"
-#~ msgstr ""
-#~ "Neužtikrintumo rodiklis\n"
-#~ "Kuo mažesnis, tuo stabilesni laimėjimai"
-
-#~ msgid "######## Hands ##########"
-#~ msgstr "######## Rankos ##########"
-
-#~ msgid "###### End Hands ########"
-#~ msgstr "###### Rankos Pabaiga ########"
-
-#~ msgid "######## Gametype ##########"
-#~ msgstr "######## Žaidimo Tipas ##########"
-
-#~ msgid "###### End Gametype ########"
-#~ msgstr "###### Žaidimo Tipas Pabaiga ########"
-
-#, fuzzy
-#~ msgid "######## TourneyType ##########"
-#~ msgstr "######## Žaidimo Tipas ##########"
-
-#, fuzzy
-#~ msgid "###### End TourneyType ########"
-#~ msgstr "###### Žaidimo Tipas Pabaiga ########"
-
-#, fuzzy
-#~ msgid "######## Tourneys ##########"
-#~ msgstr "######## Rankos ##########"
-
-#, fuzzy
-#~ msgid "###### End Tourneys ########"
-#~ msgstr "###### Rankos Pabaiga ########"
+#~ msgstr "Heropbouwen hudcache duurde %.1f seconden"
