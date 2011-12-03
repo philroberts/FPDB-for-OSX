@@ -2,7 +2,7 @@
 <game id="35035866-453" starttime="20110524014601" numholecards="2" gametype="2" realmoney="true" data="20110524|Santiago (35035866)|35035866|35035866-453|false">
 	<players dealer="5">
 		<player seat="0" nickname="Player4" balance="$3.16" dealtin="true" />
-		<player seat="2" nickname="Player2" balance="$4.49" dealtin="true" />
+		<player seat="2" nickname="Hero" balance="$4.49" dealtin="true" />
 		<player seat="3" nickname="Player1" balance="$3.70" dealtin="true" />
 		<player seat="4" nickname="Player3" balance="$3.90" dealtin="true" />
 		<player seat="5" nickname="Player0" balance="$4.06" dealtin="true" />

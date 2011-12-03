@@ -25,34 +25,65 @@ from optparse import OptionParser
 import codecs
 import Database
 import Configuration
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("parser")
 
 __ARCHIVE_PRE_HEADER_REGEX='^Hand #(\d+)\s*$|\*{20}\s#\s\d+\s\*{20,25}\s+'
 re_SplitArchive = re.compile(__ARCHIVE_PRE_HEADER_REGEX, re.MULTILINE)
+
+class FPDBFile:
+    path = ""
+    ftype = None # Valid: hh, summary, both
+    site = None
+    codepage = None
+    archive = False
+    gametype = False
+
+    def __init__(self, path):
+        self.path = path
+
+class Site:
+    def __init__(self, name, hhc_fname, filter_name, summary, mod, obj, smod, sobj):
+        self.name = name
+        # FIXME: rename filter to hhc_fname
+        self.hhc_fname = hhc_fname
+        # FIXME: rename filter_name to hhc_type
+        self.filter_name = filter_name
+        self.summary = summary
+        self.mod = mod
+        self.obj = obj
+        self.smod = smod
+        self.sobj = sobj
 
 class IdentifySite:
     def __init__(self, config, in_path = '-', list = []):
         self.in_path = in_path
         self.config = config
+        self.codepage = ("utf8", "utf-16", "cp1252")
         self.db = Database.Database(self.config)
         self.sitelist = {}
         self.filelist = {}
         self.generateSiteList()
-        if list:
-            for file in list:
-                self.idSite(file, self.sitelist)
+        self.list = list
+
+    def scan(self):
+        if self.list:
+            for file, id in self.list:
+                self.processFile(file)
         else:
             if os.path.isdir(self.in_path):
                 self.walkDirectory(self.in_path, self.sitelist)
             else:
-                self.idSite(self.in_path, self.sitelist)
-            
+                self.processFile(self.in_path)
+
     def get_filelist(self):
         return self.filelist
-        
+
     def generateSiteList(self):
         """Generates a ordered dictionary of site, filter and filter name for each site in hhcs"""
-        #print self.config.hhcs
-        for site, hhc in self.config.hhcs.iteritems():
+        hhcs = self.config.hhcs
+        for site, hhc in hhcs.iteritems():
             filter = hhc.converter
             filter_name = filter.replace("ToFpdb", "")
             summary = hhc.summaryImporter
@@ -64,9 +95,7 @@ class IdentifySite:
                 if summary:
                     smod = __import__(summary)
                     sobj = getattr(smod, summary, None)
-                self.sitelist[result[0][0]] = (site, filter, filter_name, summary, mod, obj, smod, sobj)
-            else:
-                pass
+                self.sitelist[result[0][0]] = Site(site, filter, filter_name, summary, mod, obj, smod, sobj)
 
     def walkDirectory(self, dir, sitelist):
         """Walks a directory, and executes a callback on each file"""
@@ -76,75 +105,130 @@ class IdentifySite:
             if os.path.isdir(nfile):
                 self.walkDirectory(nfile, sitelist)
             else:
-                self.idSite(nfile, sitelist)
-                
+                self.processFile(nfile)
+
     def __listof(self, x):
         if isinstance(x, list) or isinstance(x, tuple):
             return x
         else:
             return [x]
-    
-    def idSite(self, file, sitelist):
-        """Identifies the site the hh file originated from"""
-        if file.endswith('.txt') or file.endswith('.xml'):
-            self.filelist[file] = ''
-            archive = False
-            for id, info in sitelist.iteritems():
-                site = info[0]
-                filter = info[1]
-                filter_name = info[2]
-                summary = info[3]
-                mod = info[4]
-                obj = info[5]
-                if summary:
-                    smod = info[6]
-                    sobj = info[7]
-                
-                for kodec in self.__listof(obj.codepage):
-                    try:
-                        in_fh = codecs.open(file, 'r', kodec)
-                        whole_file = in_fh.read(250)
-                        in_fh.close()
-                        if filter_name in ('OnGame', 'Winamax'):
-                            m = obj.re_HandInfo.search(whole_file)
-                        elif filter_name in ('PartyPoker'):
-                            m = obj.re_GameInfo.search(whole_file)
-                            if not m:
-                                m = obj.re_GameInfoTrny.search(whole_file)
-                        else:
-                            m = obj.re_GameInfo.search(whole_file)
-                            if m and re_SplitArchive.search(whole_file):
-                                archive = True
-                            if not m and summary:
-                                m = sobj.re_TourneyInfo.search(whole_file)
-                                if m:
-                                    filter = summary            
-                        if m:
-                            self.filelist[file] = [site] + [filter] + [kodec] + [archive]
-                            if self.verbose: print 'found --', site, filter, kodec, archive
-                            break
 
-                    except:
-                        pass
-            
+    def processFile(self, path):
+        if path.endswith('.txt') or path.endswith('.xml') or path.endswith('.log'):
+            if path not in self.filelist:
+                whole_file, kodec = self.read_file(path)
+
+                if whole_file:
+                    fobj = self.idSite(path, whole_file, kodec)
+                    if fobj == False: # Site id failed
+                        log.debug(_("DEBUG: siteId Failed for: %s") % path)
+                    else:
+                        self.filelist[path] = fobj
+
+    def read_file(self, in_path):
+        for kodec in self.codepage:
+            try:
+                infile = codecs.open(in_path, 'r', kodec)
+                whole_file = infile.read()
+                infile.close()
+                return whole_file, kodec
+            except:
+                continue
+        return None, None
+
+    def idSite(self, file, whole_file, kodec):
+        """Identifies the site the hh file originated from"""
+        whole_file = whole_file[:1000]
+        f = FPDBFile(file)
+        f.codepage = kodec
+
+        for id, site in self.sitelist.iteritems():
+            filter_name = site.filter_name
+            summary = site.summary
+            mod = site.mod
+            obj = site.obj
+
+            if filter_name in ('OnGame', 'Winamax'):
+                m = obj.re_HandInfo.search(whole_file)
+            elif filter_name in ('Win2day'):
+                m = obj.re_GameInfo.search(whole_file)
+            elif filter_name in ('PartyPoker'):
+                m = obj.re_GameInfo.search(whole_file)
+                if not m:
+                    m = obj.re_GameInfoTrny.search(whole_file)
+            else:
+                m = obj.re_GameInfo.search(whole_file)
+                if m and re_SplitArchive.search(whole_file):
+                    f.archive = True
+            if m:
+                f.site = site
+                f.ftype = "hh"
+                return f
+
+        for id, site in self.sitelist.iteritems():
+            filter_name = site.filter_name
+            summary = site.summary
+            if summary:
+                smod = site.smod
+                sobj = site.sobj
+
+                if filter_name in ('Winamax'):
+                    m = sobj.re_Details.search(whole_file)
+                else:
+                    m = sobj.re_TourneyInfo.search(whole_file)
+                if m:
+                    f.site = site
+                    f.ftype = "summary"
+                    return f
+        return False
+
+    def getFilesForSite(self, sitename, ftype):
+        l = []
+        for name, f in self.filelist.iteritems():
+            if f.ftype != None and f.site.name == sitename and f.ftype == "hh":
+                l.append(f)
+        return l
+
+    def fetchGameTypes(self):
+        for name, f in self.filelist.iteritems():
+            if f.ftype != None and f.ftype == "hh":
+                try: #TODO: this is a dirty hack. Borrowed from fpdb_import
+                    name = unicode(name, "utf8", "replace")
+                except TypeError:
+                    print TypeError
+                hhc = f.site.obj(self.config, in_path = name, sitename = f.site.hhc_fname, autostart = False)
+                if hhc.readFile():
+                    f.gametype = hhc.determineGameType(hhc.whole_file)
+
 def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
-        
+
     Configuration.set_logfile("fpdb-log.txt")
     config = Configuration.Config(file = "HUD_config.test.xml")
     in_path = os.path.abspath('regression-test-files')
     IdSite = IdentifySite(config, in_path)
+    IdSite.scan()
 
     print "\n----------- SITE LIST -----------"
-    for site, info in IdSite.sitelist.iteritems():
-        print site, info
+    for sid, site in IdSite.sitelist.iteritems():
+        print "%2d: Name: %s HHC: %s Summary: %s" %(sid, site.name, site.filter_name, site.summary)
     print "----------- END SITE LIST -----------"
-    
+
     print "\n----------- ID REGRESSION FILES -----------"
-    for file, site in IdSite.filelist.iteritems():
-        print file, site
+    for f, ffile in IdSite.filelist.iteritems():
+        tmp = ""
+        tmp += ": Type: %s " % ffile.ftype
+        if ffile.ftype == "hh":
+            tmp += "Conv: %s" % ffile.site.hhc_fname
+        elif ffile.ftype == "summary":
+            tmp += "Conv: %s" % ffile.site.summary
+        print f, tmp
     print "----------- END ID REGRESSION FILES -----------"
+
+    print "----------- RETRIEVE FOR SINGLE SITE -----------"
+    IdSite.getFilesForSite("PokerStars", "hh")
+    print "----------- END RETRIEVE FOR SINGLE SITE -----------"
 
 if __name__ == '__main__':
     sys.exit(main())

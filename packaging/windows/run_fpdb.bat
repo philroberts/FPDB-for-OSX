@@ -19,6 +19,14 @@ rem   In the "official" distribution you can find the license in agpl-3.0.txt.
 
 cd pyfpdb
 
+rem   rebuild the gtk svg loader cache file
+
+rem   Needed because the stored path is absolute, not relative
+rem   so must be regenerated for the current fpdb location
+rem   on the client machine
+
+gdk-pixbuf-query-loaders.exe --update-cache
+
 rem    Sanity-check that executable is installed in a valid ascii path.
 rem    Work-around for horrible py2exe/python "missing dll" runtime crash
 

@@ -1,0 +1,47 @@
+<description type="Omaha" stakes="Pot Limit ($0.25/$0.50)"/>
+<game id="44314871-72" starttime="20111128134906" numholecards="4" gametype="9" seats="6" realmoney="true" data="20111128|Himalayas (44314871)|44314871|44314871-72|false">
+	<players dealer="3">
+		<player seat="0" nickname="Player4" balance="$67.07" dealtin="true" />
+		<player seat="1" nickname="Hero" balance="$57.11" dealtin="true" />
+		<player seat="2" nickname="Player2" balance="$36.54" dealtin="true" />
+		<player seat="3" nickname="Player0" balance="$46.70" dealtin="true" />
+		<player seat="4" nickname="Player5" balance="$31.87" dealtin="true" />
+		<player seat="5" nickname="Player1" balance="$36.66" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1322506265290" player="4" amount="0.25"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1322506265759" player="5" amount="0.50"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1322506270696" player="0" amount="1.22"/>
+		<event sequence="4" type="CALL" timestamp="1322506287555" player="1" amount="1.22"/>
+		<event sequence="5" type="FOLD" timestamp="1322506291368" player="2"/>
+		<event sequence="6" type="CALL" timestamp="1322506298383" player="3" amount="1.22"/>
+		<event sequence="7" type="CALL" timestamp="1322506298665" player="4" amount="0.97"/>
+		<event sequence="8" type="FOLD" timestamp="1322506307196" player="5"/>
+		<cards type="HOLE" cards="Ac,2s,Qh,As" player="1" hand="Pair of Aces"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="9" type="CHECK" timestamp="1322506311180" player="4"/>
+		<event sequence="10" type="CHECK" timestamp="1322506313961" player="0"/>
+		<event sequence="11" type="BET" timestamp="1322506321024" player="1" amount="4.00"/>
+		<event sequence="12" type="RAISE" timestamp="1322506338367" player="3" amount="12.00"/>
+		<event sequence="13" type="FOLD" timestamp="1322506341133" player="4"/>
+		<event sequence="14" type="FOLD" timestamp="1322506344742" player="0"/>
+		<event sequence="15" type="RAISE" timestamp="1322506361335" player="1" amount="20.00"/>
+		<event sequence="16" type="CALL" timestamp="1322506374507" player="3" amount="8.00"/>
+		<cards type="COMMUNITY" cards="7d,Qs,Ah" hand="Three of a Kind Aces"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="17" type="BET" timestamp="1322506387897" player="1" amount="25.00"/>
+		<event sequence="18" type="FOLD" timestamp="1322506412397" player="3"/>
+		<cards type="COMMUNITY" cards="7d,Qs,Ah,Qd" hand="Full House - Aces over Queens"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="5">
+		<event sequence="19" type="MUCK" timestamp="1322506412975" player="1"/>
+		<winner amount="68.12" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+	</round>
+</game>
+

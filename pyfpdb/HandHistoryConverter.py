@@ -42,7 +42,7 @@ log = logging.getLogger("parser")
 
 
 import Hand
-from Exceptions import FpdbParseError
+from Exceptions import *
 import Configuration
 
 class HandHistoryConverter():
@@ -63,12 +63,12 @@ class HandHistoryConverter():
     copyGameHeader = False
 
     # maybe archive params should be one archive param, then call method in specific converter.   if archive:  convert_archive()
-    def __init__( self, config, in_path = '-', out_path = '-', follow=False, index=0
+    def __init__( self, config, in_path = '-', out_path = '-', index=0
                 , autostart=True, starsArchive=False, ftpArchive=False, sitename="PokerStars"):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
-follow :  whether to tail -f the input"""
+"""
 
         self.config = config
         self.import_parameters = self.config.get_import_parameters()
@@ -86,6 +86,7 @@ follow :  whether to tail -f the input"""
         self.processedHands = []
         self.numHands = 0
         self.numErrors = 0
+        self.numPartial = 0
 
         # Tourney object used to store TourneyInfo when called to deal with a Summary file
         self.tourney = None
@@ -94,7 +95,6 @@ follow :  whether to tail -f the input"""
             self.in_fh = sys.stdin
         self.out_fh = get_out_fh(out_path, self.import_parameters)
 
-        self.follow = follow
         self.compiledPlayers   = set()
         self.maxseats  = 10
 
@@ -112,15 +112,10 @@ HandHistoryConverter: '%(sitename)s'
     filetype    '%(filetype)s'
     in_path     '%(in_path)s'
     out_path    '%(out_path)s'
-    follow      '%(follow)s'
     """ %  locals()
 
     def start(self):
-        """Process a hand at a time from the input specified by in_path.
-If in follow mode, wait for more data to turn up.
-Otherwise, finish at EOF.
-
-"""
+        """Process a hand at a time from the input specified by in_path."""
         starttime = time.time()
         if not self.sanityCheck():
             log.warning(_("Failed sanity check"))
@@ -138,12 +133,15 @@ Otherwise, finish at EOF.
             for handText in handsList:
                 try:
                     self.processedHands.append(self.processHand(handText))
+                except FpdbHandPartial, e:
+                    self.numPartial += 1
+                    log.error("%s" % e)
                 except FpdbParseError, e:
                     self.numErrors += 1
                     log.error("%s" % e)
             self.numHands = len(handsList)
             endtime = time.time()
-            log.info(_("Read %d hands (%d failed) in %.3f seconds") % (self.numHands, self.numErrors, endtime - starttime))
+            log.info(_("Read %d hands (%d failed) in %.3f seconds") % (self.numHands, (self.numErrors + self.numPartial), endtime - starttime))
         else:
             self.parsedObjectType = "Summary"
             summaryParsingStatus = self.readSummaryInfo(handsList)
@@ -363,6 +361,8 @@ or None if we fail to get the info """
     def readAction(self, hand, street): abstract
     def readCollectPot(self, hand): abstract
     def readShownCards(self, hand): abstract
+    def readTourneyResults(self, hand): abstract
+    """This function is for future use in parsing tourney results directly from a hand"""
     
     # EDIT: readOther is depreciated
     # Some sites do odd stuff that doesn't fall in to the normal HH parsing.
@@ -414,12 +414,13 @@ or None if we fail to get the info """
                     in_fh.close()
                     self.obs = self.whole_file[self.index:]
                     self.index = len(self.whole_file)
-                    break
+                    return True
                 except:
                     pass
             else:
                 print _("unable to read file with any codec in list!"), self.in_path
                 self.obs = ""
+                return False
         elif self.filetype == "xml":
             doc = xml.dom.minidom.parse(filename)
             self.doc = doc
@@ -510,6 +511,8 @@ or None if we fail to get the info """
             # GMT cannot be treated as WET because some HH's are explicitly
             # GMT+-delta so would be incorrect during the summertime 
             # if substituted as WET+-delta
+        elif givenTimezone == 'BST':
+             givenTZ = timezone('Europe/London')
         elif givenTimezone == 'WET': # WET is GMT with daylight saving delta
             givenTZ = timezone('WET')
         elif givenTimezone == 'HST': # Hawaiian Standard Time

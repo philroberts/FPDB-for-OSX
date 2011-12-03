@@ -25,7 +25,7 @@ pygtk.require('2.0')
 import gtk
 import os
 import traceback
-from time import time, strftime, localtime
+from time import time, strftime, localtime, gmtime
 try:
     calluse = not 'matplotlib' in sys.modules
     import matplotlib
@@ -48,14 +48,17 @@ import Database
 import Filters
 import Charset
 
+import GuiHandViewer
+
 DEBUG = False
 
-class GuiSessionViewer (threading.Thread):
-    def __init__(self, config, querylist, mainwin, debug=True):
+class GuiSessionViewer:
+    def __init__(self, config, querylist, mainwin, owner, debug=True):
         self.debug = debug
         self.conf = config
         self.sql = querylist
         self.window = mainwin
+        self.owner = owner
 
         self.liststore = None
 
@@ -369,6 +372,7 @@ class GuiSessionViewer (threading.Thread):
         global_lwm = None
         global_hwm = None
 
+        self.times = []
         # Take all results and format them into a list for feeding into gui model.
         #print "DEBUG: range(len(index[0]): %s" % range(len(index[0]))
         for i in range(len(index[0])):
@@ -377,6 +381,7 @@ class GuiSessionViewer (threading.Thread):
             if hds > 0:
                 stime = strftime("%d/%m/%Y %H:%M", localtime(times[first_idx]))      # Formatted start time
                 etime = strftime("%d/%m/%Y %H:%M", localtime(times[last_idx]))       # Formatted end time
+                self.times.append((times[first_idx], times[last_idx]))
                 minutesplayed = (times[last_idx] - times[first_idx])/60
                 minutesplayed = minutesplayed + PADDING
                 if minutesplayed == 0:
@@ -486,6 +491,7 @@ class GuiSessionViewer (threading.Thread):
         view = gtk.TreeView(model=self.liststore)
         view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
         vbox.add(view)
+        print view.connect("row-activated", self.row_activated)
         cell05 = gtk.CellRendererText()
         cell05.set_property('xalign', 0.5)
         cell10 = gtk.CellRendererText()
@@ -507,6 +513,24 @@ class GuiSessionViewer (threading.Thread):
             listcols[col].set_expand(True)
 
         vbox.show_all()
+
+    def row_activated(self, view, path, column):
+        if path[0] < len(self.times):
+            replayer = None
+            for tabobject in self.owner.threads:
+                if isinstance(tabobject, GuiHandViewer.GuiHandViewer):
+                    replayer = tabobject
+                    self.owner.display_tab(_("Hand Viewer"))
+                    break
+            if replayer is None:
+                self.owner.tab_hand_viewer(None)
+                for tabobject in self.owner.threads:
+                    if isinstance(tabobject, GuiHandViewer.GuiHandViewer):
+                        replayer = tabobject
+                        break
+            reformat = lambda t: strftime("%Y-%m-%d %H:%M:%S", gmtime(t))
+            handids = replayer.get_hand_ids_from_date_range(reformat(self.times[path[0]][0]), reformat(self.times[path[0]][1]), save_date = True)
+            replayer.reload_hands(handids)
 
 def main(argv=None):
     Configuration.set_logfile("fpdb-log.txt")

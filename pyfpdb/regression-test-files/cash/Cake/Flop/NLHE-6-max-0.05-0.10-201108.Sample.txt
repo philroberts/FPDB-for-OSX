@@ -1,0 +1,481 @@
+﻿ï»¿Hand#2701011985001689 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 00:53:30
+Seat 3: Hero ($10 in chips) DEALER
+Seat 8: 1UIG***8 ($10 in chips) 
+Hero: posts small blind $0.05
+1UIG***8: posts big blind $0.10
+Dealt to Hero [7c,Th]
+Hero: raises to $0.30
+1UIG***8: calls $0.20
+*** FLOP *** [Kh,3h,8c]
+1UIG***8: checks
+Hero: checks
+*** TURN *** [8d]
+1UIG***8: bets $0.30
+Hero: folds
+1UIG***8: returns uncalled bet $0.30
+***SHOW DOWN***
+1UIG***8: mucks
+1UIG***8 wins $0.56 
+
+
+Hand#2701011985001690 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 00:54:03
+Seat 3: Hero ($9.70 in chips) 
+Seat 8: 1UIG***8 ($10.26 in chips) DEALER
+1UIG***8: posts small blind $0.05
+Hero: posts big blind $0.10
+Dealt to Hero [6d,6c]
+1UIG***8: raises to $0.30
+Hero: raises to $0.90
+1UIG***8: folds
+1UIG***8: mucks
+Hero: returns uncalled bet $0.60
+***SHOW DOWN***
+Hero: mucks
+Hero wins $0.60 
+
+
+Hand#2701011985001691 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 00:54:23
+Seat 3: Hero ($10 in chips) DEALER
+Seat 8: 1UIG***8 ($9.96 in chips) 
+Hero: posts small blind $0.05
+1UIG***8: posts big blind $0.10
+Dealt to Hero [2s,9c]
+Hero: folds
+***SHOW DOWN***
+1UIG***8: mucks
+1UIG***8 wins $0.15 
+
+
+Hand#2701011985001692 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 00:54:34
+Seat 3: Hero ($9.95 in chips) 
+Seat 8: 1UIG***8 ($10.01 in chips) DEALER
+1UIG***8: posts small blind $0.05
+Hero: posts big blind $0.10
+Dealt to Hero [9h,4s]
+1UIG***8: raises to $0.30
+Hero: folds
+1UIG***8: returns uncalled bet $0.20
+***SHOW DOWN***
+1UIG***8: mucks
+1UIG***8 wins $0.20 
+
+
+Hand#2701011985001693 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 00:54:46
+Seat 3: Hero ($9.85 in chips) DEALER
+Seat 8: 1UIG***8 ($10.11 in chips) 
+Seat 10: Hams***10 ($10 in chips) 
+Hero: posts small blind $0.05
+1UIG***8: posts big blind $0.10
+Dealt to Hero [4d,Td]
+Hero: raises to $0.30
+1UIG***8: calls $0.20
+*** FLOP *** [8s,Qc,7d]
+1UIG***8: checks
+Hero: checks
+*** TURN *** [4c]
+1UIG***8: checks
+Hero: bets $0.35
+1UIG***8: calls $0.35
+*** RIVER *** [Th]
+1UIG***8: checks
+Hero: bets $1.33
+1UIG***8: folds
+Hero: returns uncalled bet $1.33
+***SHOW DOWN***
+Hero: mucks
+Hero wins $1.22 
+
+
+Hand#2701011985001694 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 00:55:54
+Seat 3: Hero ($10.42 in chips) DEALER
+Seat 8: 1UIG***8 ($9.46 in chips) 
+Seat 10: Hams***10 ($10 in chips) 
+1UIG***8: posts small blind $0.05
+Hams***10: posts big blind $0.10
+Dealt to Hero [8h,Th]
+Hero: raises to $0.35
+1UIG***8: folds
+Hams***10: folds
+Hero: returns uncalled bet $0.25
+***SHOW DOWN***
+Hero: mucks
+Hero wins $0.25 
+
+
+Hand#2701011985001695 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 00:56:15
+Seat 2: 1Eye***2 ($4.50 in chips) 
+Seat 3: Hero ($10.57 in chips) 
+Seat 8: 1UIG***8 ($10 in chips) DEALER
+Seat 10: Hams***10 ($9.90 in chips) 
+Hams***10: posts small blind $0.05
+1Eye***2: posts big blind $0.10
+Dealt to Hero [Ks,Ad]
+Hero: raises to $0.35
+1UIG***8: raises to $1.30
+Hams***10: folds
+1Eye***2: folds
+Hero: raises to $4.05
+1UIG***8: folds
+Hero: returns uncalled bet $2.75
+***SHOW DOWN***
+Hero: mucks
+Hero wins $2.75 
+
+
+Hand#2701011985001696 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 00:56:53
+Seat 2: 1Eye***2 ($4.40 in chips) 
+Seat 3: Hero ($12.02 in chips) 
+Seat 8: 1UIG***8 ($8.70 in chips) 
+Seat 10: Hams***10 ($9.85 in chips) DEALER
+1Eye***2: posts small blind $0.05
+Hero: posts big blind $0.10
+Dealt to Hero [Ts,5h]
+1UIG***8: raises to $0.35
+Hams***10: folds
+1Eye***2: folds
+Hero: folds
+1UIG***8: returns uncalled bet $0.25
+***SHOW DOWN***
+1UIG***8: mucks
+1UIG***8 wins $0.25 
+
+
+Hand#2701011985001697 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 00:57:09
+Seat 2: 1Eye***2 ($4.35 in chips) DEALER
+Seat 3: Hero ($11.92 in chips) 
+Seat 8: 1UIG***8 ($8.85 in chips) 
+Seat 10: Hams***10 ($9.85 in chips) 
+Hero: posts small blind $0.05
+1UIG***8: posts big blind $0.10
+Dealt to Hero [2s,6h]
+Hams***10: folds
+1Eye***2: raises to $0.20
+Hero: folds
+1UIG***8: folds
+1Eye***2: returns uncalled bet $0.10
+***SHOW DOWN***
+1Eye***2: mucks
+1Eye***2 wins $0.25 
+
+
+Hand#2701011985001698 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 00:57:26
+Seat 2: 1Eye***2 ($4.50 in chips) 
+Seat 3: Hero ($11.87 in chips) DEALER
+Seat 8: 1UIG***8 ($10 in chips) 
+Seat 10: Hams***10 ($9.85 in chips) 
+1UIG***8: posts small blind $0.05
+Hams***10: posts big blind $0.10
+Dealt to Hero [2d,9s]
+1Eye***2: folds
+Hero: folds
+1UIG***8: raises to $0.40
+Hams***10: calls $0.30
+*** FLOP *** [6d,7c,4s]
+1UIG***8: bets $0.50
+Hams***10: calls $0.50
+*** TURN *** [Ts]
+1UIG***8: bets $1.20
+Hams***10: calls $1.20
+*** RIVER *** [As]
+1UIG***8: bets $2.15
+Hams***10: calls $2.15
+***SHOW DOWN***
+1UIG***8: shows [6h Th] (Two Pairs Tens and Sixes  )
+Hams***10: mucks
+1UIG***8 wins $7.94 with Two Pairs Tens and Sixes   
+Hams***10: mucks [Td,Qd] (Pair) .
+
+
+Hand#2701011985001699 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 00:58:12
+Seat 1: reds***1 ($10 in chips) 
+Seat 2: 1Eye***2 ($4.50 in chips) 
+Seat 3: Hero ($11.87 in chips) 
+Seat 8: 1UIG***8 ($13.69 in chips) DEALER
+Seat 10: Hams***10 ($5.60 in chips) 
+Hams***10: posts small blind $0.05
+reds***1: posts big blind $0.10
+Dealt to Hero [Kd,5s]
+1Eye***2: folds
+Hero: folds
+1UIG***8: raises to $0.25
+Hams***10: folds
+reds***1: folds
+1UIG***8: returns uncalled bet $0.15
+***SHOW DOWN***
+1UIG***8: mucks
+1UIG***8 wins $0.25 
+
+
+Hand#2701011985001700 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 00:58:31
+Seat 1: reds***1 ($9.90 in chips) 
+Seat 2: 1Eye***2 ($4.50 in chips) 
+Seat 3: Hero ($11.87 in chips) 
+Seat 8: 1UIG***8 ($13.84 in chips) 
+Seat 10: Hams***10 ($9.95 in chips) DEALER
+reds***1: posts small blind $0.05
+1Eye***2: posts big blind $0.10
+Dealt to Hero [9c,Js]
+Hero: folds
+1UIG***8: calls $0.10
+Hams***10: calls $0.10
+reds***1: folds
+1Eye***2: checks
+*** FLOP *** [2d,4d,5s]
+1Eye***2: checks
+1UIG***8: checks
+Hams***10: bets $0.18
+1Eye***2: calls $0.18
+1UIG***8: folds
+*** TURN *** [Qh]
+1Eye***2: bets $0.20
+Hams***10: calls $0.20
+*** RIVER *** [8c]
+1Eye***2: bets $0.40
+Hams***10: calls $0.40
+***SHOW DOWN***
+1Eye***2: shows [4h 4c] (Three of a Kind Fours  )
+Hams***10: mucks
+1Eye***2 wins $1.79 with Three of a Kind Fours   
+Hams***10: mucks [Th,4s] (Pair) .
+
+
+Hand#2701011985001701 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 01:00:02
+Seat 1: reds***1 ($9.85 in chips) DEALER
+Seat 2: 1Eye***2 ($5.41 in chips) 
+Seat 3: Hero ($11.87 in chips) 
+Seat 8: 1UIG***8 ($13.74 in chips) 
+Seat 9: sher***9 ($4.50 in chips) 
+Seat 10: Hams***10 ($9.60 in chips) 
+1Eye***2: posts small blind $0.05
+Hero: posts big blind $0.10
+sher***9: posts big blind $0.10
+Dealt to Hero [Qc,2s]
+1UIG***8: folds
+sher***9: checks
+Hams***10: calls $0.10
+reds***1: folds
+1Eye***2: folds
+Hero: checks
+*** FLOP *** [Kh,7s,9h]
+Hero: checks
+sher***9: checks
+Hams***10: checks
+*** TURN *** [3h]
+Hero: checks
+sher***9: checks
+Hams***10: checks
+*** RIVER *** [Th]
+Hero: checks
+sher***9: bets $0.10
+Hams***10: folds
+Hero: folds
+sher***9: returns uncalled bet $0.10
+***SHOW DOWN***
+sher***9: mucks
+sher***9 wins $0.33 
+
+
+Hand#2701011985001702 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 01:01:30
+Seat 1: reds***1 ($9.85 in chips) 
+Seat 2: 1Eye***2 ($5.36 in chips) DEALER
+Seat 3: Hero ($11.77 in chips) 
+Seat 9: sher***9 ($4.73 in chips) 
+Seat 10: Hams***10 ($9.90 in chips) 
+Hero: posts small blind $0.05
+sher***9: posts big blind $0.10
+Dealt to Hero [8s,6h]
+Hams***10: folds
+reds***1: folds
+1Eye***2: folds
+Hero: raises to $0.30
+sher***9: folds
+Hero: returns uncalled bet $0.20
+***SHOW DOWN***
+Hero: mucks
+Hero wins $0.20 
+
+
+Hand#2701011985001703 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 01:01:52
+Seat 1: reds***1 ($9.85 in chips) 
+Seat 2: 1Eye***2 ($5.36 in chips) 
+Seat 3: Hero ($11.87 in chips) DEALER
+Seat 9: sher***9 ($4.63 in chips) 
+Seat 10: Hams***10 ($9.90 in chips) 
+sher***9: posts small blind $0.05
+Hams***10: posts big blind $0.10
+Dealt to Hero [8s,7d]
+reds***1: raises to $0.30
+1Eye***2: calls $0.30
+Hero: folds
+sher***9: calls $0.25
+Hams***10: folds
+*** FLOP *** [3c,3d,Jh]
+sher***9: bets $0.10
+reds***1: raises to $0.90
+1Eye***2: folds
+sher***9: calls $0.80
+*** TURN *** [7s]
+sher***9: bets $0.10
+reds***1: raises to $1.80
+sher***9: calls $1.70
+*** RIVER *** [Ts]
+sher***9: checks
+reds***1: bets $2
+sher***9: is all in $1.63
+reds***1: returns uncalled bet $0.37
+reds***1: shows [5h 2h]
+sher***9: shows [9c Jd]
+***SHOW DOWN***
+sher***9 wins $9.02 with Two Pairs Jacks and Threes   
+
+
+Hand#2701011985001704 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 01:03:20
+Seat 1: reds***1 ($5.22 in chips) 
+Seat 2: 1Eye***2 ($5.06 in chips) 
+Seat 3: Hero ($11.87 in chips) 
+Seat 8: feli***8 ($4.50 in chips) 
+Seat 9: sher***9 ($9.02 in chips) DEALER
+Seat 10: Hams***10 ($9.80 in chips) 
+Hams***10: posts small blind $0.05
+reds***1: posts big blind $0.10
+Dealt to Hero [Jd,Ts]
+1Eye***2: folds
+Hero: raises to $0.35
+sher***9: folds
+Hams***10: folds
+reds***1: raises to $1.10
+Hero: folds
+reds***1: returns uncalled bet $0.75
+***SHOW DOWN***
+reds***1: mucks
+reds***1 wins $0.75 
+
+
+Hand#2701011985001705 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 01:04:04
+Seat 1: reds***1 ($5.62 in chips) 
+Seat 2: 1Eye***2 ($5.06 in chips) 
+Seat 3: Hero ($11.52 in chips) 
+Seat 8: feli***8 ($4.50 in chips) 
+Seat 9: sher***9 ($9.02 in chips) 
+Seat 10: Hams***10 ($9.75 in chips) DEALER
+reds***1: posts small blind $0.05
+1Eye***2: posts big blind $0.10
+Dealt to Hero [4c,Kc]
+Hero: folds
+sher***9: calls $0.10
+Hams***10: calls $0.10
+reds***1: calls $0.05
+1Eye***2: checks
+*** FLOP *** [Th,9h,3s]
+reds***1: checks
+1Eye***2: checks
+sher***9: checks
+Hams***10: checks
+*** TURN *** [6c]
+reds***1: checks
+1Eye***2: bets $0.20
+sher***9: folds
+Hams***10: calls $0.20
+reds***1: folds
+*** RIVER *** [Ks]
+1Eye***2: checks
+Hams***10: checks
+***SHOW DOWN***
+1Eye***2: shows [8c Ad] (High card Ace  )
+Hams***10: mucks
+1Eye***2 wins $0.75 with High card Ace   
+Hams***10: mucks [4h,7h] (HighCard) .
+
+
+Hand#2701011985001706 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 01:05:12
+Seat 1: reds***1 ($10 in chips) DEALER
+Seat 2: 1Eye***2 ($5.51 in chips) 
+Seat 3: Hero ($11.52 in chips) 
+Seat 8: feli***8 ($4.50 in chips) 
+Seat 9: sher***9 ($8.92 in chips) 
+Seat 10: Hams***10 ($9.45 in chips) 
+1Eye***2: posts small blind $0.05
+Hero: posts big blind $0.10
+Dealt to Hero [Qh,7h]
+sher***9: folds
+Hams***10: folds
+reds***1: folds
+1Eye***2: raises to $0.20
+Hero: raises to $0.60
+1Eye***2: calls $0.40
+*** FLOP *** [6c,Td,Ad]
+1Eye***2: checks
+Hero: bets $0.75
+1Eye***2: folds
+1Eye***2: mucks
+Hero: returns uncalled bet $0.75
+***SHOW DOWN***
+Hero: mucks
+Hero wins $1.12 
+
+
+Hand#2701011985001707 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 01:06:15
+Seat 1: reds***1 ($10 in chips) 
+Seat 2: 1Eye***2 ($4.91 in chips) DEALER
+Seat 3: Hero ($12.04 in chips) 
+Seat 8: feli***8 ($4.50 in chips) 
+Seat 9: sher***9 ($8.92 in chips) 
+Seat 10: Hams***10 ($9.45 in chips) 
+Hero: posts small blind $0.05
+feli***8: posts big blind $0.10
+Dealt to Hero [4c,2c]
+sher***9: calls $0.10
+Hams***10: raises to $0.34
+reds***1: calls $0.34
+1Eye***2: calls $0.34
+Hero: folds
+feli***8: folds
+sher***9: calls $0.24
+*** FLOP *** [9c,Kh,Jd]
+sher***9: bets $0.10
+Hams***10: calls $0.10
+reds***1: folds
+1Eye***2: calls $0.10
+*** TURN *** [3h]
+sher***9: bets $0.10
+Hams***10: calls $0.10
+1Eye***2: calls $0.10
+*** RIVER *** [Qs]
+sher***9: checks
+Hams***10: checks
+1Eye***2: checks
+***SHOW DOWN***
+sher***9: shows [Kc 7h] (Pair of Kings  )
+Hams***10: mucks
+1Eye***2: mucks
+sher***9 wins $1.97 with Pair of Kings   
+Hams***10: mucks [Ad,Qc] (Pair) .
+1Eye***2: mucks [8s,9s] (Pair) .
+
+
+Hand#2701011985001708 - Paris (6-max) 11985 -- $0.05/$0.10 NL Hold'em -- 2011/08/28 - 01:07:17
+Seat 1: reds***1 ($9.66 in chips) 
+Seat 2: 1Eye***2 ($4.37 in chips) 
+Seat 3: Hero ($11.99 in chips) DEALER
+Seat 8: feli***8 ($4.40 in chips) 
+Seat 9: sher***9 ($10.35 in chips) 
+Seat 10: Hams***10 ($10 in chips) 
+feli***8: posts small blind $0.05
+sher***9: posts big blind $0.10
+Dealt to Hero [Kh,As]
+Hams***10: calls $0.10
+reds***1: folds
+1Eye***2: folds
+Hero: raises to $0.45
+feli***8: calls $0.40
+sher***9: folds
+Hams***10: folds
+*** FLOP *** [Td,Ad,Kc]
+feli***8: checks
+Hero: bets $0.70
+feli***8: folds
+Hero: returns uncalled bet $0.70
+***SHOW DOWN***
+Hero: mucks
+Hero wins $1.03 
+

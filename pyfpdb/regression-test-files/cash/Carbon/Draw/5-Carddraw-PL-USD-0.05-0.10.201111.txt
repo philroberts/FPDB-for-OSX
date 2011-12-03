@@ -1,0 +1,47 @@
+<description type="5-Draw" stakes="Pot Limit ($0.05/$0.10)"/>
+<game id="40346359-19" starttime="20110909235102" numholecards="5" gametype="55" realmoney="true" data="20110909|Shishapangma (40346359)|40346359|40346359-19|false">
+	<players dealer="2">
+		<player seat="0" nickname="Player3" balance="$4.00" dealtin="true" />
+		<player seat="1" nickname="Hero" balance="$10.00" dealtin="true" />
+		<player seat="2" nickname="Player1" balance="$10.70" dealtin="true" />
+		<player seat="3" nickname="Player0" balance="$5.76" dealtin="true" />
+		<player seat="4" nickname="Player4" balance="$5.64" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1315630225221" player="3" amount="0.05"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1315630225517" player="4" amount="0.10"/>
+		<event sequence="3" type="INITIAL_BLIND" timestamp="1315630225807" player="1" amount="0.10"/>
+	</round>
+	<round id="PRE_FIRST_DRAW" sequence="2">
+		<event sequence="4" type="CALL" timestamp="1315630230474" player="0" amount="0.10"/>
+		<event sequence="5" type="CHECK" timestamp="1315630234694" player="1"/>
+		<event sequence="6" type="CALL" timestamp="1315630235087" player="2" amount="0.10"/>
+		<event sequence="7" type="CALL" timestamp="1315630236386" player="3" amount="0.05"/>
+		<event sequence="8" type="CHECK" timestamp="1315630257006" player="4"/>
+		<cards type="HOLE" cards="4h,7h,Ac,7c,6s" player="1" hand="Pair of Sevens"/>
+	</round>
+	<round id="FIRST_DRAW" sequence="3">
+		<event sequence="9" type="DRAW" timestamp="1315630259447" player="3" text="3"/>
+		<event sequence="10" type="DRAW" timestamp="1315630263807" player="4" text="3"/>
+		<event sequence="11" type="DRAW" timestamp="1315630265525" player="0" text="3"/>
+		<event sequence="12" type="DRAW" timestamp="1315630267354" player="1" text="3"/>
+		<event sequence="13" type="DRAW" timestamp="1315630268996" player="2" text="2"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="8d,7h,9c,7c,2s" player="1" hand="Pair of Sevens"/>
+	</round>
+	<round id="POST_FIRST_DRAW" sequence="4">
+		<event sequence="14" type="CHECK" timestamp="1315630270774" player="3"/>
+		<event sequence="15" type="CHECK" timestamp="1315630272344" player="4"/>
+		<event sequence="16" type="BET" timestamp="1315630277010" player="0" amount="0.50"/>
+		<event sequence="17" type="FOLD" timestamp="1315630277325" player="1"/>
+		<event sequence="18" type="FOLD" timestamp="1315630279424" player="2"/>
+		<event sequence="19" type="FOLD" timestamp="1315630280616" player="3"/>
+		<event sequence="20" type="FOLD" timestamp="1315630283145" player="4"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="5">
+		<event sequence="21" type="MUCK" timestamp="1315630285825" player="0"/>
+		<winner amount="0.98" uncalled="false" potnumber="1" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+	</round>
+</game>
+

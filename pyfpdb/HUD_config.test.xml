@@ -312,13 +312,13 @@ Left-Drag to Move"
         </site>
 
         <site enabled="True"
-              site_name="Win2day"
-              table_finder="Win2day.exe"
+              site_name="Boss"
+              table_finder="Boss.exe"
               screen_name="Hero"
               site_path=""
               HH_path=""
               decoder="everleaf_decode_table"
-              converter="Win2dayToFpdb"
+              converter="BossToFpdb"
               supported_games="holdem">
             <layout fav_seat="0" height="547" max="8" width="794">
                 <location seat="1" x="640" y="64">  </location>
@@ -748,6 +748,120 @@ Left-Drag to Move"
                 <location seat="10" x="562" y="8">  </location>
             </layout>
         </site>
+
+        <site HH_path="C:/Program Files/Cake/HandHistory/YOUR SCREEN NAME HERE/" converter="CakeToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="Cake" site_path="C:/Program Files/Cake/" supported_games="holdem" table_finder="Cake.exe">
+            <layout fav_seat="0" height="547" max="8" width="794">
+                <location seat="1" x="640" y="64">  </location>
+                <location seat="2" x="650" y="230"> </location>
+                <location seat="3" x="650" y="385"> </location>
+                <location seat="4" x="588" y="425"> </location>
+                <location seat="5" x="92" y="425"> </location>
+                <location seat="6" x="0" y="373"> </location>
+                <location seat="7" x="0" y="223"> </location>
+                <location seat="8" x="25" y="50">  </location>
+            </layout>
+            <layout fav_seat="0" height="547" max="6" width="794">
+                <location seat="1" x="640" y="58"> </location>
+                <location seat="2" x="654" y="288"> </location>
+                <location seat="3" x="615" y="424"> </location>
+                <location seat="4" x="70" y="421"> </location>
+                <location seat="5" x="0" y="280"> </location>
+                <location seat="6" x="70" y="58"> </location>
+            </layout>
+            <layout fav_seat="0" height="547" max="2" width="794">
+                <location seat="1" x="651" y="288"> </location>
+                <location seat="2" x="10" y="288"> </location>
+            </layout>
+            <layout fav_seat="0" height="547" max="9" width="794">
+                <location seat="1" x="634" y="38">  </location>
+                <location seat="2" x="667" y="184"> </location>
+                <location seat="3" x="667" y="321"> </location>
+                <location seat="4" x="667" y="445"> </location>
+                <location seat="5" x="337" y="459"> </location>
+                <location seat="6" x="0" y="400"> </location>
+                <location seat="7" x="0" y="322"> </location>
+                <location seat="8" x="0" y="181">  </location>
+                <location seat="9" x="70" y="53">  </location>
+            </layout>
+            <layout max="10" width="792" height="546" fav_seat="0">
+                <location seat="1" x="684" y="61">  </location>
+                <location seat="2" x="689" y="239"> </location>
+                <location seat="3" x="692" y="346"> </location>
+                <location seat="4" x="586" y="393"> </location>
+                <location seat="5" x="421" y="440"> </location>
+                <location seat="6" x="267" y="440"> </location>
+                <location seat="7" x="0"   y="361"> </location>
+                <location seat="8" x="0"   y="280">  </location>
+                <location seat="9" x="121" y="280">  </location>
+                <location seat="10" x="46"  y="30">  </location>
+            </layout>
+        </site>
+
+        <site enabled="True"
+              site_name="BetOnline"
+              table_finder="BetOnline.exe"
+              screen_name="Hero"
+              site_path="C:/Program Files/BetOnline/"
+              HH_path="C:/Program Files/BetOnline/HandHistory/Hero/"
+              decoder="betonline_decode_table"
+              converter="BetOnlineToFpdb"
+              bgcolor="#000000"
+              fgcolor="#FFFFFF"
+              hudopacity="1.0"
+              font="Sans"
+              font_size="8"
+              xpad="1"
+              ypad="0"
+              xshift="0"
+              yshift="0"
+              supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
+            <email fetchType="request-summary" host="YOUR_EMAIL_SERVER" username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD" useSsl="True" folder="INBOX"/>
+            <layout max="8" width="792" height="546" fav_seat="0">
+                <location seat="1" x="684" y="61">  </location>
+                <location seat="2" x="689" y="239"> </location>
+                <location seat="3" x="692" y="346"> </location>
+                <location seat="4" x="525" y="402"> </location>
+                <location seat="5" x="259" y="402"> </location>
+                <location seat="6" x="0"   y="348"> </location>
+                <location seat="7" x="0"   y="240"> </location>
+                <location seat="8" x="0"   y="35">  </location>
+            </layout>
+            <layout max="6" width="792" height="546" fav_seat="0">
+                <location seat="1" x="681" y="119"> </location>
+                <location seat="2" x="681" y="301"> </location>
+                <location seat="3" x="487" y="369"> </location>
+                <location seat="4" x="226" y="369"> </location>
+                <location seat="5" x="0"   y="301"> </location>
+                <location seat="6" x="0"   y="119"> </location>
+            </layout>
+            <layout max="10" width="792" height="546" fav_seat="0">
+                <location seat="1" x="684" y="61">  </location>
+                <location seat="2" x="689" y="239"> </location>
+                <location seat="3" x="692" y="346"> </location>
+                <location seat="4" x="586" y="393"> </location>
+                <location seat="5" x="421" y="440"> </location>
+                <location seat="6" x="267" y="440"> </location>
+                <location seat="7" x="0"   y="361"> </location>
+                <location seat="8" x="0"   y="280">  </location>
+                <location seat="9" x="121" y="280">  </location>
+                <location seat="10" x="46"  y="30">  </location>
+            </layout>
+            <layout max="9" width="792" height="546" fav_seat="0">
+                <location seat="1" x="560" y="0">  </location>
+                <location seat="2" x="679" y="123"> </location>
+                <location seat="3" x="688" y="309"> </location>
+                <location seat="4" x="483" y="370"> </location>
+                <location seat="5" x="444" y="413"> </location>
+                <location seat="6" x="224" y="372"> </location>
+                <location seat="7" x="0"   y="307"> </location>
+                <location seat="8" x="0"   y="121">  </location>
+                <location seat="9" x="140" y="0">  </location>
+            </layout>
+            <layout fav_seat="0" height="546" max="2" width="792">
+                <location seat="1" x="651" y="288"> </location>
+                <location seat="2" x="10"  y="288"> </location>
+            </layout>
+        </site>
     </supported_sites>
 
     <supported_games>
@@ -934,7 +1048,7 @@ Left-Drag to Move"
         <hhc site="PokerStars" converter="PokerStarsToFpdb" summaryImporter="PokerStarsSummary"/>
         <hhc site="Full Tilt Poker" converter="FulltiltToFpdb" summaryImporter="FullTiltPokerSummary"/>
         <hhc site="Everleaf" converter="EverleafToFpdb"/>
-        <hhc site="Win2day" converter="Win2dayToFpdb"/>
+        <hhc site="Boss" converter="BossToFpdb"/>
         <hhc site="Absolute" converter="AbsoluteToFpdb"/>
         <hhc site="PartyPoker" converter="PartyPokerToFpdb"/>
         <hhc site="Betfair" converter="BetfairToFpdb"/>
@@ -945,7 +1059,9 @@ Left-Drag to Move"
         <hhc site="Winamax" converter="WinamaxToFpdb" summaryImporter="WinamaxSummary"/>
         <hhc site="Everest" converter="EverestToFpdb"/>
         <hhc site="PacificPoker" converter="PacificPokerToFpdb"/>
+        <hhc site="Cake" converter="CakeToFpdb"/>
         <hhc site="Entraction" converter="EntractionToFpdb"/>
+        <hhc site="BetOnline" converter="BetOnlineToFpdb"/>
     </hhcs>
 
     <raw_hands save="none" compression="none"/>
