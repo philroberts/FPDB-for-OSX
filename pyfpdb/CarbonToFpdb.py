@@ -82,6 +82,7 @@ class Carbon(HandHistoryConverter):
                        '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
                        '30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
                        '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
+                       '50.00': ('10.00', '25.00'),    '50': ('10.00', '25.00'),
                        '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
                       '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
                   }
@@ -418,6 +419,7 @@ class Carbon(HandHistoryConverter):
                         'Emu Room - Turbo Heads Up'             : {'buyIn': 11, 'fee': 0.5, 'currency': 'USD', 'seats': 2, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (22,)},
                         'Falcon Room'                           : {'buyIn': 50, 'fee': 5, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (250, 150, 100)},
                         'Falcon Room Turbo'                     : {'buyIn': 50, 'fee': 5, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (250, 150, 100)},
+                        'Fast Fifty SnG'                        : {'buyIn': 0.5, 'fee': 0.1, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (2.50, 1.50, 1)},
                         'Fast Fifty Turbo'                      : {'buyIn': 0.5, 'fee': 0.1, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (2.50, 1.50, 1)},
                         'Ferret Room - Turbo'                   : {'buyIn': 10, 'fee': 1, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (50, 30, 20)},
                         'Fox Room - Heads Up'                   : {'buyIn': 10, 'fee': 1, 'currency': 'USD', 'seats': 2, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (20,)},
