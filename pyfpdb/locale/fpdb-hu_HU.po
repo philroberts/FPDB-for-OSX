@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2011-12-03 22:52+CET\n"
+"POT-Creation-Date: 2011-12-04 06:19+CET\n"
 "PO-Revision-Date: 2011-08-23 23:08+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -25,7 +25,7 @@ msgstr ""
 #: FulltiltToFpdb.py:211 OnGameToFpdb.py:161 OnGameToFpdb.py:163
 #: PacificPokerToFpdb.py:182 PacificPokerToFpdb.py:184 PartyPokerToFpdb.py:223
 #: PartyPokerToFpdb.py:225 PkrToFpdb.py:128 PkrToFpdb.py:130
-#: PokerStarsToFpdb.py:198 PokerStarsToFpdb.py:200 WinamaxToFpdb.py:172
+#: PokerStarsToFpdb.py:200 PokerStarsToFpdb.py:202 WinamaxToFpdb.py:172
 #: WinamaxToFpdb.py:174 iPokerToFpdb.py:133 iPokerToFpdb.py:135
 msgid "Unable to recognise gametype from: '%s'"
 msgstr "Nem sikerült felismerni a játéktípust innen: '%s'"
@@ -38,7 +38,7 @@ msgstr "Nem sikerült felismerni a játéktípust innen: '%s'"
 #: FulltiltToFpdb.py:269 FulltiltToFpdb.py:287 OnGameToFpdb.py:162
 #: PacificPokerToFpdb.py:183 PartyPokerToFpdb.py:224 PartyPokerToFpdb.py:282
 #: PkrToFpdb.py:129 PkrToFpdb.py:154 PokerStarsSummary.py:84
-#: PokerStarsSummary.py:114 PokerStarsToFpdb.py:199 PokerStarsToFpdb.py:227
+#: PokerStarsSummary.py:114 PokerStarsToFpdb.py:201 PokerStarsToFpdb.py:229
 #: SitenameSummary.py:82 WinamaxToFpdb.py:173 iPokerToFpdb.py:134
 msgid "Raising FpdbParseError"
 msgstr "FpdbParseError"
@@ -49,8 +49,8 @@ msgstr "FpdbParseError"
 #: CarbonToFpdb.py:203 CarbonToFpdb.py:205 EntractionToFpdb.py:169
 #: EntractionToFpdb.py:170 EverestToFpdb.py:149 EverestToFpdb.py:151
 #: EverleafToFpdb.py:163 PacificPokerToFpdb.py:226 PacificPokerToFpdb.py:227
-#: PartyPokerToFpdb.py:297 PartyPokerToFpdb.py:298 PokerStarsToFpdb.py:237
-#: PokerStarsToFpdb.py:238 iPokerToFpdb.py:203 iPokerToFpdb.py:205
+#: PartyPokerToFpdb.py:297 PartyPokerToFpdb.py:298 PokerStarsToFpdb.py:239
+#: PokerStarsToFpdb.py:240 iPokerToFpdb.py:203 iPokerToFpdb.py:205
 msgid "No match in readHandInfo: '%s'"
 msgstr "readHandInfo nem illeszkedik: '%s'"
 
@@ -68,7 +68,7 @@ msgstr "nem illeszkedik re_*InfoFromFilename-re: '%s'"
 
 #: AbsoluteToFpdb.py:279 BetOnlineToFpdb.py:404 BossToFpdb.py:220
 #: CakeToFpdb.py:221 EverleafToFpdb.py:228 FulltiltToFpdb.py:446
-#: OnGameToFpdb.py:302 PacificPokerToFpdb.py:358 PokerStarsToFpdb.py:391
+#: OnGameToFpdb.py:302 PacificPokerToFpdb.py:358 PokerStarsToFpdb.py:393
 #: WinamaxToFpdb.py:359
 msgid "reading antes"
 msgstr "antek olvasása"
@@ -94,7 +94,7 @@ msgstr "%s még nem tud minden stud/razz leosztást feldolgozni."
 #: EntractionToFpdb.py:309 EverestToFpdb.py:238 EverestToFpdb.py:239
 #: EverleafToFpdb.py:295 FulltiltToFpdb.py:529 OnGameToFpdb.py:345
 #: PacificPokerToFpdb.py:440 PartyPokerToFpdb.py:579 PkrToFpdb.py:351
-#: PokerStarsToFpdb.py:473 WinamaxToFpdb.py:405 iPokerToFpdb.py:355
+#: PokerStarsToFpdb.py:475 WinamaxToFpdb.py:405 iPokerToFpdb.py:355
 msgid "Unimplemented %s: '%s' '%s'"
 msgstr "Nem kivitelezett %s: '%s' '%s'"
 
@@ -110,16 +110,17 @@ msgstr "Az eredmény ide kerül kiírásra %s"
 #: CakeToFpdb.py:160 CarbonToFpdb.py:194 CarbonToFpdb.py:196
 #: FulltiltToFpdb.py:268 FulltiltToFpdb.py:270 PartyPokerToFpdb.py:281
 #: PartyPokerToFpdb.py:283 PkrToFpdb.py:153 PkrToFpdb.py:155
-#: PokerStarsToFpdb.py:226 PokerStarsToFpdb.py:228
+#: PokerStarsToFpdb.py:228 PokerStarsToFpdb.py:230
 msgid "Lim_Blinds has no lookup for '%s'"
 msgstr "Lim_Blinds nem tartalmazza ezt: '%s'"
 
 #: BetOnlineToFpdb.py:275
-msgid "Hand ID: %s: '%s'"
-msgstr "Leosztás ID: %s: '%s'"
+#, fuzzy
+msgid "Hand ID"
+msgstr "Leosztások"
 
 #: BetOnlineToFpdb.py:275 PacificPokerToFpdb.py:269 PartyPokerToFpdb.py:375
-#: PokerStarsToFpdb.py:284 WinamaxToFpdb.py:262
+#: PokerStarsToFpdb.py:286 WinamaxToFpdb.py:262
 msgid "Failed to detect currency."
 msgstr "Nem sikerült a pénznem felismerése."
 
@@ -129,7 +130,7 @@ msgstr "Részleges leosztástörténet"
 
 #: BetOnlineToFpdb.py:322 BossToFpdb.py:175 CakeToFpdb.py:196
 #: EntractionToFpdb.py:197 OnGameToFpdb.py:272 PacificPokerToFpdb.py:316
-#: PartyPokerToFpdb.py:392 PokerStarsToFpdb.py:329 WinamaxToFpdb.py:328
+#: PartyPokerToFpdb.py:392 PokerStarsToFpdb.py:331 WinamaxToFpdb.py:328
 msgid "not found"
 msgstr "nem található"
 
@@ -137,9 +138,10 @@ msgstr "nem található"
 #: CakeToFpdb.py:280 EntractionToFpdb.py:309 FulltiltToFpdb.py:529
 #: GuiAutoImport.py:211 GuiPositionalStats.py:140 GuiStove.py:221
 #: GuiStove.py:225 GuiStove.py:229 GuiStove.py:233 GuiStove.py:237
-#: GuiStove.py:239 ImapFetcher.py:44 ImapFetcher.py:53 OnGameToFpdb.py:214
-#: OnGameToFpdb.py:345 PacificPokerToFpdb.py:440 PkrToFpdb.py:351
-#: PokerStarsToFpdb.py:473 WinamaxToFpdb.py:405 iPokerToFpdb.py:355
+#: GuiStove.py:239 Hand.py:964 IdentifySite.py:124 ImapFetcher.py:44
+#: ImapFetcher.py:53 OnGameToFpdb.py:214 OnGameToFpdb.py:345
+#: PacificPokerToFpdb.py:440 PkrToFpdb.py:351 PokerStarsToFpdb.py:475
+#: WinamaxToFpdb.py:405 iPokerToFpdb.py:355
 msgid "DEBUG:"
 msgstr "DEBUG: "
 
@@ -629,7 +631,7 @@ msgstr "Dátum:"
 msgid "All Players"
 msgstr "Minden játékos"
 
-#: Filters.py:89
+#: Filters.py:89 GuiRingPlayerStats.py:45
 #, fuzzy
 msgid "Hole Cards"
 msgstr "Osztott lapok"
@@ -697,11 +699,10 @@ msgid "No games returned from database"
 msgstr "Nem található játék az adatbázisban"
 
 #: Filters.py:1063
-#, fuzzy
-msgid "INFO: No positions returned from database"
-msgstr "INFO: nem található játék az adatbázisban"
+msgid "INFO"
+msgstr ""
 
-#: Filters.py:1064
+#: Filters.py:1063 Filters.py:1064
 #, fuzzy
 msgid "No positions returned from database"
 msgstr "Nem található játék az adatbázisban"
@@ -1513,10 +1514,6 @@ msgstr "Haladó beállítások"
 msgid "Type of Game"
 msgstr "Játék típusa"
 
-#: GuiRingPlayerStats.py:45
-msgid "Hole cards"
-msgstr "Osztott lapok"
-
 #: GuiRingPlayerStats.py:46
 msgid "Position"
 msgstr "Pozíció"
@@ -1975,18 +1972,6 @@ msgstr "Ezen ablak bezárása a HUD-ot is bezárja."
 msgid "Error initializing main_window"
 msgstr "Hiba a main_window inicializálása közben"
 
-#: HUD_main.pyw:129
-msgid "client_moved event"
-msgstr ""
-
-#: HUD_main.pyw:133
-msgid "client_resized event"
-msgstr ""
-
-#: HUD_main.pyw:137
-msgid "client_destroyed event"
-msgstr ""
-
 #: HUD_main.pyw:141
 msgid "Game changed."
 msgstr "Játékváltás."
@@ -1999,10 +1984,6 @@ msgstr "Játékváltás."
 #: HUD_main.pyw:148 fpdb.pyw:1012
 msgid "Quitting normally"
 msgstr "Normál kilépés"
-
-#: HUD_main.pyw:152
-msgid "kill_hud event"
-msgstr ""
 
 #: HUD_main.pyw:210
 msgid "Received hand no %s"
@@ -2313,8 +2294,9 @@ msgid "*** Game String:"
 msgstr "*** Játék sztring:"
 
 #: Hand.py:964
-msgid "DEBUG: HoldemOmaha hand initialised for select()"
-msgstr ""
+#, fuzzy
+msgid "HoldemOmaha hand initialised for %s"
+msgstr "Alapértelmezett naplózó előkészítve ehhez: %s"
 
 #: Hand.py:967
 msgid "Neither HHC nor DB+handID provided"
@@ -2497,18 +2479,6 @@ msgstr "Statisztika ablakok debugolása"
 msgid "Set max seats"
 msgstr "Max. székek beállítása"
 
-#: Hud.py:478
-msgid "update_table_position:"
-msgstr ""
-
-#: Hud.py:506
-msgid "up_update_table_position:"
-msgstr ""
-
-#: Hud.py:545 Hud.py:546
-msgid "resize_windows:"
-msgstr ""
-
 #: Hud.py:590
 msgid "Updating config file"
 msgstr "Konfigurációs fájl frissítése"
@@ -2534,7 +2504,7 @@ msgid "HUD process overloaded, skipping this hand."
 msgstr "HUD folyamat túlterhelve, aktuális lesoztás kihagyása."
 
 #: IdentifySite.py:124
-msgid "DEBUG: siteId Failed for: %s"
+msgid "siteId Failed for: %s"
 msgstr ""
 
 #: ImapFetcher.py:44 ImapFetcher.py:53
@@ -3737,6 +3707,16 @@ msgstr "Telepítsd a GTK-t, vagy állítsd be kézzel az útvonalat"
 msgid "No gtk directories found in your path."
 msgstr "Nem találhatóak GTK könyvtárak az útvonaladban."
 
+#, fuzzy
+#~ msgid "INFO: No positions returned from database"
+#~ msgstr "INFO: nem található játék az adatbázisban"
+
+#~ msgid "Hand ID: %s: '%s'"
+#~ msgstr "Leosztás ID: %s: '%s'"
+
+#~ msgid "Hole cards"
+#~ msgstr "Osztott lapok"
+
 #~ msgid "Rebuild hudcache(cash) took %.1f seconds"
 #~ msgstr "A HUD cache (készpénzes) újraépítése %.1f másodpercig tartott"
 
@@ -3762,9 +3742,6 @@ msgstr "Nem találhatóak GTK könyvtárak az útvonaladban."
 
 #~ msgid "Hand Replayer"
 #~ msgstr "Leosztás visszajátszása"
-
-#~ msgid "Default logger initialised for %s"
-#~ msgstr "Alapértelmezett naplózó előkészítve ehhez: %s"
 
 #~ msgid "guidb response was "
 #~ msgstr "a guidb válasza ez volt: "

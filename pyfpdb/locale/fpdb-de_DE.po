@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-12-03 22:52+CET\n"
-"PO-Revision-Date: 2011-08-09 19:56+0200\n"
+"POT-Creation-Date: 2011-12-04 06:19+CET\n"
+"PO-Revision-Date: 2011-12-04 06:20+0200\n"
 "Last-Translator: Steffen Schaumburg <steffen@schaumburger.info>\n"
 "Language-Team: Fpdb\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.6.1\n"
+"X-Generator: Virtaal 0.7.0\n"
 "Generated-By: pygettext.py 1.5\n"
 
 #: AbsoluteToFpdb.py:140 AbsoluteToFpdb.py:142 BetOnlineToFpdb.py:189
@@ -25,7 +25,7 @@ msgstr ""
 #: FulltiltToFpdb.py:211 OnGameToFpdb.py:161 OnGameToFpdb.py:163
 #: PacificPokerToFpdb.py:182 PacificPokerToFpdb.py:184 PartyPokerToFpdb.py:223
 #: PartyPokerToFpdb.py:225 PkrToFpdb.py:128 PkrToFpdb.py:130
-#: PokerStarsToFpdb.py:198 PokerStarsToFpdb.py:200 WinamaxToFpdb.py:172
+#: PokerStarsToFpdb.py:200 PokerStarsToFpdb.py:202 WinamaxToFpdb.py:172
 #: WinamaxToFpdb.py:174 iPokerToFpdb.py:133 iPokerToFpdb.py:135
 msgid "Unable to recognise gametype from: '%s'"
 msgstr "Konnte Gametype in '%s' nicht erkennen"
@@ -38,7 +38,7 @@ msgstr "Konnte Gametype in '%s' nicht erkennen"
 #: FulltiltToFpdb.py:269 FulltiltToFpdb.py:287 OnGameToFpdb.py:162
 #: PacificPokerToFpdb.py:183 PartyPokerToFpdb.py:224 PartyPokerToFpdb.py:282
 #: PkrToFpdb.py:129 PkrToFpdb.py:154 PokerStarsSummary.py:84
-#: PokerStarsSummary.py:114 PokerStarsToFpdb.py:199 PokerStarsToFpdb.py:227
+#: PokerStarsSummary.py:114 PokerStarsToFpdb.py:201 PokerStarsToFpdb.py:229
 #: SitenameSummary.py:82 WinamaxToFpdb.py:173 iPokerToFpdb.py:134
 msgid "Raising FpdbParseError"
 msgstr "FpdbParseError"
@@ -49,8 +49,8 @@ msgstr "FpdbParseError"
 #: CarbonToFpdb.py:203 CarbonToFpdb.py:205 EntractionToFpdb.py:169
 #: EntractionToFpdb.py:170 EverestToFpdb.py:149 EverestToFpdb.py:151
 #: EverleafToFpdb.py:163 PacificPokerToFpdb.py:226 PacificPokerToFpdb.py:227
-#: PartyPokerToFpdb.py:297 PartyPokerToFpdb.py:298 PokerStarsToFpdb.py:237
-#: PokerStarsToFpdb.py:238 iPokerToFpdb.py:203 iPokerToFpdb.py:205
+#: PartyPokerToFpdb.py:297 PartyPokerToFpdb.py:298 PokerStarsToFpdb.py:239
+#: PokerStarsToFpdb.py:240 iPokerToFpdb.py:203 iPokerToFpdb.py:205
 msgid "No match in readHandInfo: '%s'"
 msgstr "Keine Treffer für re_HandInfo: '%s'"
 
@@ -68,7 +68,7 @@ msgstr "re*InfoFromFilename konnte '%s' nicht erkennen"
 
 #: AbsoluteToFpdb.py:279 BetOnlineToFpdb.py:404 BossToFpdb.py:220
 #: CakeToFpdb.py:221 EverleafToFpdb.py:228 FulltiltToFpdb.py:446
-#: OnGameToFpdb.py:302 PacificPokerToFpdb.py:358 PokerStarsToFpdb.py:391
+#: OnGameToFpdb.py:302 PacificPokerToFpdb.py:358 PokerStarsToFpdb.py:393
 #: WinamaxToFpdb.py:359
 msgid "reading antes"
 msgstr "Lese Antes"
@@ -94,7 +94,7 @@ msgstr "%s kann noch nicht alle Stud/Razz Hände einlesen."
 #: EntractionToFpdb.py:309 EverestToFpdb.py:238 EverestToFpdb.py:239
 #: EverleafToFpdb.py:295 FulltiltToFpdb.py:529 OnGameToFpdb.py:345
 #: PacificPokerToFpdb.py:440 PartyPokerToFpdb.py:579 PkrToFpdb.py:351
-#: PokerStarsToFpdb.py:473 WinamaxToFpdb.py:405 iPokerToFpdb.py:355
+#: PokerStarsToFpdb.py:475 WinamaxToFpdb.py:405 iPokerToFpdb.py:355
 msgid "Unimplemented %s: '%s' '%s'"
 msgstr "Nicht implementierte %s: '%s' '%s'"
 
@@ -110,18 +110,18 @@ msgstr "Output wird nach %s geschrieben"
 #: CakeToFpdb.py:160 CarbonToFpdb.py:194 CarbonToFpdb.py:196
 #: FulltiltToFpdb.py:268 FulltiltToFpdb.py:270 PartyPokerToFpdb.py:281
 #: PartyPokerToFpdb.py:283 PkrToFpdb.py:153 PkrToFpdb.py:155
-#: PokerStarsToFpdb.py:226 PokerStarsToFpdb.py:228
+#: PokerStarsToFpdb.py:228 PokerStarsToFpdb.py:230
 msgid "Lim_Blinds has no lookup for '%s'"
 msgstr "Lim_Blinds hat keinen Eintrag für '%s'"
 
 #: BetOnlineToFpdb.py:275
-msgid "Hand ID: %s: '%s'"
-msgstr ""
+msgid "Hand ID"
+msgstr "Hand ID"
 
 #: BetOnlineToFpdb.py:275 PacificPokerToFpdb.py:269 PartyPokerToFpdb.py:375
-#: PokerStarsToFpdb.py:284 WinamaxToFpdb.py:262
+#: PokerStarsToFpdb.py:286 WinamaxToFpdb.py:262
 msgid "Failed to detect currency."
-msgstr "Konnte Währung nicht finden."
+msgstr "Konnte Währung nicht erkennen."
 
 #: BetOnlineToFpdb.py:315 CarbonToFpdb.py:222
 msgid "Partial hand history"
@@ -129,7 +129,7 @@ msgstr "Unvollständige Hand History"
 
 #: BetOnlineToFpdb.py:322 BossToFpdb.py:175 CakeToFpdb.py:196
 #: EntractionToFpdb.py:197 OnGameToFpdb.py:272 PacificPokerToFpdb.py:316
-#: PartyPokerToFpdb.py:392 PokerStarsToFpdb.py:329 WinamaxToFpdb.py:328
+#: PartyPokerToFpdb.py:392 PokerStarsToFpdb.py:331 WinamaxToFpdb.py:328
 msgid "not found"
 msgstr "nicht gefunden"
 
@@ -137,9 +137,10 @@ msgstr "nicht gefunden"
 #: CakeToFpdb.py:280 EntractionToFpdb.py:309 FulltiltToFpdb.py:529
 #: GuiAutoImport.py:211 GuiPositionalStats.py:140 GuiStove.py:221
 #: GuiStove.py:225 GuiStove.py:229 GuiStove.py:233 GuiStove.py:237
-#: GuiStove.py:239 ImapFetcher.py:44 ImapFetcher.py:53 OnGameToFpdb.py:214
-#: OnGameToFpdb.py:345 PacificPokerToFpdb.py:440 PkrToFpdb.py:351
-#: PokerStarsToFpdb.py:473 WinamaxToFpdb.py:405 iPokerToFpdb.py:355
+#: GuiStove.py:239 Hand.py:964 IdentifySite.py:124 ImapFetcher.py:44
+#: ImapFetcher.py:53 OnGameToFpdb.py:214 OnGameToFpdb.py:345
+#: PacificPokerToFpdb.py:440 PkrToFpdb.py:351 PokerStarsToFpdb.py:475
+#: WinamaxToFpdb.py:405 iPokerToFpdb.py:355
 msgid "DEBUG:"
 msgstr "DEBUG:"
 
@@ -602,9 +603,8 @@ msgid "Limits:"
 msgstr "Limits:"
 
 #: Filters.py:86
-#, fuzzy
 msgid "Positions:"
-msgstr "Position"
+msgstr "Positionen:"
 
 #: Filters.py:86 TourneyFilters.py:52
 msgid "Number of Players:"
@@ -630,8 +630,7 @@ msgstr "Datum:"
 msgid "All Players"
 msgstr "Alle Spieler"
 
-#: Filters.py:89
-#, fuzzy
+#: Filters.py:89 GuiRingPlayerStats.py:45
 msgid "Hole Cards"
 msgstr "Verdeckte Karten"
 
@@ -698,14 +697,12 @@ msgid "No games returned from database"
 msgstr "Keine Spielarten (games) von der Datenbank erhalten"
 
 #: Filters.py:1063
-#, fuzzy
-msgid "INFO: No positions returned from database"
-msgstr "INFO: Keine Spielarten (games) von der Datenbank erhalten"
+msgid "INFO"
+msgstr "INFO"
 
-#: Filters.py:1064
-#, fuzzy
+#: Filters.py:1063 Filters.py:1064
 msgid "No positions returned from database"
-msgstr "Keine Spielarten (games) von der Datenbank erhalten"
+msgstr "Keine Positionen von der Datenbank erhalten"
 
 #: Filters.py:1138
 msgid "No currencies returned from database"
@@ -1303,9 +1300,8 @@ msgid "Graph created"
 msgstr "Graph erstellt"
 
 #: GuiHandViewer.py:137
-#, fuzzy
 msgid "Load Hands"
-msgstr "Hände"
+msgstr "Lade Hände"
 
 #: GuiImapFetcher.py:40
 msgid "To cancel just close this tab."
@@ -1517,10 +1513,6 @@ msgstr "Erweiterte Einstellungen"
 msgid "Type of Game"
 msgstr "Art des Spiels"
 
-#: GuiRingPlayerStats.py:45
-msgid "Hole cards"
-msgstr "Verdeckte Karten"
-
 #: GuiRingPlayerStats.py:46
 msgid "Position"
 msgstr "Position"
@@ -1724,9 +1716,8 @@ msgid "Sessions"
 msgstr "Sitzungen"
 
 #: GuiSessionViewer.py:523 fpdb.pyw:1104
-#, fuzzy
 msgid "Hand Viewer"
-msgstr "Log-Betrachter"
+msgstr "Hand-Betrachter"
 
 #: GuiStove.py:63
 msgid ""
@@ -1985,34 +1976,17 @@ msgstr "Schließen dieses Fensters beendet das HUD"
 msgid "Error initializing main_window"
 msgstr "Fehler bei der Initialisierung des main_window"
 
-#: HUD_main.pyw:129
-msgid "client_moved event"
-msgstr ""
-
-#: HUD_main.pyw:133
-msgid "client_resized event"
-msgstr ""
-
-#: HUD_main.pyw:137
-msgid "client_destroyed event"
-msgstr ""
-
 #: HUD_main.pyw:141
 msgid "Game changed."
 msgstr "Spiel gewechselt."
 
 #: HUD_main.pyw:144
-#, fuzzy
 msgid "Table changed"
-msgstr "Spiel gewechselt."
+msgstr "Tisch gewechselt"
 
 #: HUD_main.pyw:148 fpdb.pyw:1012
 msgid "Quitting normally"
 msgstr "Beende normal"
-
-#: HUD_main.pyw:152
-msgid "kill_hud event"
-msgstr ""
 
 #: HUD_main.pyw:210
 msgid "Received hand no %s"
@@ -2321,8 +2295,8 @@ msgid "*** Game String:"
 msgstr "*** Spiel-String:"
 
 #: Hand.py:964
-msgid "DEBUG: HoldemOmaha hand initialised for select()"
-msgstr ""
+msgid "HoldemOmaha hand initialised for %s"
+msgstr "HoldemOmaha-Hand für %s initialisiert"
 
 #: Hand.py:967
 msgid "Neither HHC nor DB+handID provided"
@@ -2506,18 +2480,6 @@ msgstr "Statistikfenster debuggen"
 msgid "Set max seats"
 msgstr "Maximalsitze einstellen"
 
-#: Hud.py:478
-msgid "update_table_position:"
-msgstr ""
-
-#: Hud.py:506
-msgid "up_update_table_position:"
-msgstr ""
-
-#: Hud.py:545 Hud.py:546
-msgid "resize_windows:"
-msgstr ""
-
 #: Hud.py:590
 msgid "Updating config file"
 msgstr "Konfigurationsdatei wird aktualisiert"
@@ -2543,8 +2505,8 @@ msgid "HUD process overloaded, skipping this hand."
 msgstr "HUD-Prozess überladen, überspringe diese Hand."
 
 #: IdentifySite.py:124
-msgid "DEBUG: siteId Failed for: %s"
-msgstr ""
+msgid "siteId Failed for: %s"
+msgstr "siteId fehlgeschlagen für: %s"
 
 #: ImapFetcher.py:44 ImapFetcher.py:53
 msgid "Could not split tourneys"
@@ -3408,9 +3370,8 @@ msgid "Session Stats"
 msgstr "Statistiken nach Sitzung"
 
 #: fpdb.pyw:876
-#, fuzzy
 msgid "Hand _Viewer"
-msgstr "_Betrachter"
+msgstr "Hand-_Betrachter"
 
 #: fpdb.pyw:877
 msgid "_Database"
@@ -3732,6 +3693,12 @@ msgstr "Installiere gtk oder konfiguriere den Pfad von Hand."
 msgid "No gtk directories found in your path."
 msgstr "Keine gtk-Verzeichnisse in Deinem Pfad gefunden."
 
+#~ msgid "INFO: No positions returned from database"
+#~ msgstr "INFO: Keine Positionen von der Datenbank erhalten"
+
+#~ msgid "Hole cards"
+#~ msgstr "Verdeckte Karten"
+
 #~ msgid "Rebuild hudcache(cash) took %.1f seconds"
 #~ msgstr "Neuerstellung des HUD-Cache (Cash) dauerte %.1f Sekunden"
 
@@ -3755,9 +3722,6 @@ msgstr "Keine gtk-Verzeichnisse in Deinem Pfad gefunden."
 
 #~ msgid "Hand Replayer"
 #~ msgstr "Hand-Replayer"
-
-#~ msgid "Default logger initialised for %s"
-#~ msgstr "Default Logger für %s initialisiert"
 
 #~ msgid "guidb response was "
 #~ msgstr "GuiDBs Antwort war "

@@ -1060,7 +1060,7 @@ class Filters(threading.Thread):
                 self.cbAllPositions = self.createPositionLine(hbox, 'all', self.filterText['positionsall'])
                 self.cbNoPositions = self.createPositionLine(hbox, 'none', self.filterText['positionsnone'])
         else:
-            print _("INFO: No positions returned from database")
+            print(_("INFO") + ": " + _("No positions returned from database"))
             log.info(_("No positions returned from database"))
         
     #end def fillSitesFrame(self, vbox, display):

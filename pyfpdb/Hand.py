@@ -961,7 +961,7 @@ class HoldemOmahaHand(Hand):
             #print "\nHand:\n"+str(self)
         elif builtFrom == "DB":
             # Creator expected to call hhc.select(hid) to fill out object
-            log.debug("HoldemOmahaHand.__init__: " + _("DEBUG: HoldemOmaha hand initialised for select()"))
+            log.debug("HoldemOmahaHand.__init__: " + _("DEBUG:") + " " +_("HoldemOmaha hand initialised for %s") % "select()")
             self.maxseats = 10
         else:
             log.warning("HoldemOmahaHand.__init__: " + _("Neither HHC nor DB+handID provided"))

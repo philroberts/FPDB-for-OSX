@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Free Poker Database\n"
-"POT-Creation-Date: 2011-12-03 22:52+CET\n"
+"POT-Creation-Date: 2011-12-04 06:19+CET\n"
 "PO-Revision-Date: 2011-04-07 08:53+0000\n"
 "Last-Translator: steffen123 <steffen@schaumburger.info>\n"
 "Language-Team: Chinese (China) <>\n"
@@ -25,7 +25,7 @@ msgstr ""
 #: FulltiltToFpdb.py:211 OnGameToFpdb.py:161 OnGameToFpdb.py:163
 #: PacificPokerToFpdb.py:182 PacificPokerToFpdb.py:184 PartyPokerToFpdb.py:223
 #: PartyPokerToFpdb.py:225 PkrToFpdb.py:128 PkrToFpdb.py:130
-#: PokerStarsToFpdb.py:198 PokerStarsToFpdb.py:200 WinamaxToFpdb.py:172
+#: PokerStarsToFpdb.py:200 PokerStarsToFpdb.py:202 WinamaxToFpdb.py:172
 #: WinamaxToFpdb.py:174 iPokerToFpdb.py:133 iPokerToFpdb.py:135
 msgid "Unable to recognise gametype from: '%s'"
 msgstr "无法识别的游戏类型：‘%s’"
@@ -38,7 +38,7 @@ msgstr "无法识别的游戏类型：‘%s’"
 #: FulltiltToFpdb.py:269 FulltiltToFpdb.py:287 OnGameToFpdb.py:162
 #: PacificPokerToFpdb.py:183 PartyPokerToFpdb.py:224 PartyPokerToFpdb.py:282
 #: PkrToFpdb.py:129 PkrToFpdb.py:154 PokerStarsSummary.py:84
-#: PokerStarsSummary.py:114 PokerStarsToFpdb.py:199 PokerStarsToFpdb.py:227
+#: PokerStarsSummary.py:114 PokerStarsToFpdb.py:201 PokerStarsToFpdb.py:229
 #: SitenameSummary.py:82 WinamaxToFpdb.py:173 iPokerToFpdb.py:134
 msgid "Raising FpdbParseError"
 msgstr ""
@@ -49,8 +49,8 @@ msgstr ""
 #: CarbonToFpdb.py:203 CarbonToFpdb.py:205 EntractionToFpdb.py:169
 #: EntractionToFpdb.py:170 EverestToFpdb.py:149 EverestToFpdb.py:151
 #: EverleafToFpdb.py:163 PacificPokerToFpdb.py:226 PacificPokerToFpdb.py:227
-#: PartyPokerToFpdb.py:297 PartyPokerToFpdb.py:298 PokerStarsToFpdb.py:237
-#: PokerStarsToFpdb.py:238 iPokerToFpdb.py:203 iPokerToFpdb.py:205
+#: PartyPokerToFpdb.py:297 PartyPokerToFpdb.py:298 PokerStarsToFpdb.py:239
+#: PokerStarsToFpdb.py:240 iPokerToFpdb.py:203 iPokerToFpdb.py:205
 msgid "No match in readHandInfo: '%s'"
 msgstr ""
 
@@ -68,7 +68,7 @@ msgstr ""
 
 #: AbsoluteToFpdb.py:279 BetOnlineToFpdb.py:404 BossToFpdb.py:220
 #: CakeToFpdb.py:221 EverleafToFpdb.py:228 FulltiltToFpdb.py:446
-#: OnGameToFpdb.py:302 PacificPokerToFpdb.py:358 PokerStarsToFpdb.py:391
+#: OnGameToFpdb.py:302 PacificPokerToFpdb.py:358 PokerStarsToFpdb.py:393
 #: WinamaxToFpdb.py:359
 msgid "reading antes"
 msgstr "读取赌注"
@@ -94,7 +94,7 @@ msgstr ""
 #: EntractionToFpdb.py:309 EverestToFpdb.py:238 EverestToFpdb.py:239
 #: EverleafToFpdb.py:295 FulltiltToFpdb.py:529 OnGameToFpdb.py:345
 #: PacificPokerToFpdb.py:440 PartyPokerToFpdb.py:579 PkrToFpdb.py:351
-#: PokerStarsToFpdb.py:473 WinamaxToFpdb.py:405 iPokerToFpdb.py:355
+#: PokerStarsToFpdb.py:475 WinamaxToFpdb.py:405 iPokerToFpdb.py:355
 msgid "Unimplemented %s: '%s' '%s'"
 msgstr ""
 
@@ -110,16 +110,16 @@ msgstr ""
 #: CakeToFpdb.py:160 CarbonToFpdb.py:194 CarbonToFpdb.py:196
 #: FulltiltToFpdb.py:268 FulltiltToFpdb.py:270 PartyPokerToFpdb.py:281
 #: PartyPokerToFpdb.py:283 PkrToFpdb.py:153 PkrToFpdb.py:155
-#: PokerStarsToFpdb.py:226 PokerStarsToFpdb.py:228
+#: PokerStarsToFpdb.py:228 PokerStarsToFpdb.py:230
 msgid "Lim_Blinds has no lookup for '%s'"
 msgstr ""
 
 #: BetOnlineToFpdb.py:275
-msgid "Hand ID: %s: '%s'"
+msgid "Hand ID"
 msgstr ""
 
 #: BetOnlineToFpdb.py:275 PacificPokerToFpdb.py:269 PartyPokerToFpdb.py:375
-#: PokerStarsToFpdb.py:284 WinamaxToFpdb.py:262
+#: PokerStarsToFpdb.py:286 WinamaxToFpdb.py:262
 msgid "Failed to detect currency."
 msgstr ""
 
@@ -130,7 +130,7 @@ msgstr "处理输入历史记录"
 
 #: BetOnlineToFpdb.py:322 BossToFpdb.py:175 CakeToFpdb.py:196
 #: EntractionToFpdb.py:197 OnGameToFpdb.py:272 PacificPokerToFpdb.py:316
-#: PartyPokerToFpdb.py:392 PokerStarsToFpdb.py:329 WinamaxToFpdb.py:328
+#: PartyPokerToFpdb.py:392 PokerStarsToFpdb.py:331 WinamaxToFpdb.py:328
 #, fuzzy
 msgid "not found"
 msgstr "文件%s无法找到"
@@ -139,9 +139,10 @@ msgstr "文件%s无法找到"
 #: CakeToFpdb.py:280 EntractionToFpdb.py:309 FulltiltToFpdb.py:529
 #: GuiAutoImport.py:211 GuiPositionalStats.py:140 GuiStove.py:221
 #: GuiStove.py:225 GuiStove.py:229 GuiStove.py:233 GuiStove.py:237
-#: GuiStove.py:239 ImapFetcher.py:44 ImapFetcher.py:53 OnGameToFpdb.py:214
-#: OnGameToFpdb.py:345 PacificPokerToFpdb.py:440 PkrToFpdb.py:351
-#: PokerStarsToFpdb.py:473 WinamaxToFpdb.py:405 iPokerToFpdb.py:355
+#: GuiStove.py:239 Hand.py:964 IdentifySite.py:124 ImapFetcher.py:44
+#: ImapFetcher.py:53 OnGameToFpdb.py:214 OnGameToFpdb.py:345
+#: PacificPokerToFpdb.py:440 PkrToFpdb.py:351 PokerStarsToFpdb.py:475
+#: WinamaxToFpdb.py:405 iPokerToFpdb.py:355
 msgid "DEBUG:"
 msgstr ""
 
@@ -636,7 +637,7 @@ msgstr ""
 msgid "All Players"
 msgstr ""
 
-#: Filters.py:89
+#: Filters.py:89 GuiRingPlayerStats.py:45
 msgid "Hole Cards"
 msgstr ""
 
@@ -703,10 +704,10 @@ msgid "No games returned from database"
 msgstr ""
 
 #: Filters.py:1063
-msgid "INFO: No positions returned from database"
+msgid "INFO"
 msgstr ""
 
-#: Filters.py:1064
+#: Filters.py:1063 Filters.py:1064
 msgid "No positions returned from database"
 msgstr ""
 
@@ -1494,10 +1495,6 @@ msgstr ""
 msgid "Type of Game"
 msgstr ""
 
-#: GuiRingPlayerStats.py:45
-msgid "Hole cards"
-msgstr ""
-
 #: GuiRingPlayerStats.py:46
 msgid "Position"
 msgstr ""
@@ -1948,18 +1945,6 @@ msgstr ""
 msgid "Error initializing main_window"
 msgstr ""
 
-#: HUD_main.pyw:129
-msgid "client_moved event"
-msgstr ""
-
-#: HUD_main.pyw:133
-msgid "client_resized event"
-msgstr ""
-
-#: HUD_main.pyw:137
-msgid "client_destroyed event"
-msgstr ""
-
 #: HUD_main.pyw:141
 msgid "Game changed."
 msgstr ""
@@ -1970,10 +1955,6 @@ msgstr ""
 
 #: HUD_main.pyw:148 fpdb.pyw:1012
 msgid "Quitting normally"
-msgstr ""
-
-#: HUD_main.pyw:152
-msgid "kill_hud event"
 msgstr ""
 
 #: HUD_main.pyw:210
@@ -2281,7 +2262,7 @@ msgid "*** Game String:"
 msgstr ""
 
 #: Hand.py:964
-msgid "DEBUG: HoldemOmaha hand initialised for select()"
+msgid "HoldemOmaha hand initialised for %s"
 msgstr ""
 
 #: Hand.py:967
@@ -2464,18 +2445,6 @@ msgstr ""
 msgid "Set max seats"
 msgstr ""
 
-#: Hud.py:478
-msgid "update_table_position:"
-msgstr ""
-
-#: Hud.py:506
-msgid "up_update_table_position:"
-msgstr ""
-
-#: Hud.py:545 Hud.py:546
-msgid "resize_windows:"
-msgstr ""
-
 #: Hud.py:590
 msgid "Updating config file"
 msgstr ""
@@ -2502,7 +2471,7 @@ msgid "HUD process overloaded, skipping this hand."
 msgstr ""
 
 #: IdentifySite.py:124
-msgid "DEBUG: siteId Failed for: %s"
+msgid "siteId Failed for: %s"
 msgstr ""
 
 #: ImapFetcher.py:44 ImapFetcher.py:53
