@@ -705,7 +705,7 @@ or None if we fail to get the info """
             else:
                 m1 = self.re_Buyin.search(hand.tablename)
                 if m1:
-                    if m1.group('Freeroll'):
+                    if m1.group('FREEROLL'):
                         hand.buyin = 0
                         hand.fee = 0
                         hand.buyinCurrency="FREE"
