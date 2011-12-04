@@ -579,6 +579,7 @@ class Carbon(HandHistoryConverter):
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
     re_Board = re.compile(r'<cards type="COMMUNITY" cards="(?P<CARDS>[^"]+)"', re.MULTILINE)
     re_EndOfHand = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
+    re_Buyin = re.compile(r'\$(?P<BUYIN>[.0-9]+)\s(?P<FREEROLL>Freeroll)?', re.MULTILINE)
 
     # The following are also static regexes: there is no need to call
     # compilePlayerRegexes (which does nothing), since players are identified
@@ -702,7 +703,18 @@ or None if we fail to get the info """
                 hand.fee   = int(100*self.MTT_Structures[hand.tablename]['fee'])
                 hand.buyinCurrency="USD"
             else:
-                raise FpdbParseError(_("No match in MTT or SnG Structures: '%s'") % hand.tablename)
+                m1 = self.re_Buyin.search(hand.tablename)
+                if m1:
+                    if m1.group('Freeroll'):
+                        hand.buyin = 0
+                        hand.fee = 0
+                        hand.buyinCurrency="FREE"
+                    else:
+                        hand.buyin = int(100*Decimal(m1.group('BUYIN')))
+                        hand.fee = int(100*Decimal(m1.group('BUYIN'))/10)
+                        hand.buyinCurrency="USD"
+                else:
+                    raise FpdbParseError(_("No match in MTT or SnG Structures: '%s' %s") % (hand.tablename, hand.tourNo))
         else:
             hand.tablename = m.group('TABLE')
         if m.group('SEATS'):
