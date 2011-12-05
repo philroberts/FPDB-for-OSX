@@ -1017,7 +1017,7 @@ Left-Drag to Move"
              wtsd  steal        totalprofit
 
           -->
-        <game aux="mucked, Simple_HUD" cols="3" db="fpdb" game_name="holdem" rows="3">
+        <game aux="mucked, Classic_HUD" cols="3" db="fpdb" game_name="holdem" rows="3">
             <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" stat_loth="25" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
             <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" stat_loth="20" stat_locolor ="#408000" stat_hith="35" stat_hicolor ="#F05000" tip="tip1"> </stat>
             <stat click="tog_decorate" col="2" popup="default" row="0" stat_name="three_B" stat_loth="4" stat_locolor ="#408000" stat_hith="13" stat_hicolor ="#F05000" tip="tip1"> </stat>
@@ -1265,6 +1265,42 @@ Left-Drag to Move"
             </layout>
         </aw>
         <aw class="Simple_HUD" bgcolor="#000000" fgcolor="#FFFFFF" font="Sans" font_size="8" module="Aux_Hud" name="Simple_HUD" opacity="0.7">
+            <layout height="546" max="6" width="792">
+                <location seat="1" x="555" y="169"> </location>
+                <location seat="2" x="572" y="276"> </location>
+                <location seat="3" x="363" y="348"> </location>
+                <location seat="4" x="150" y="273"> </location>
+                <location seat="5" x="150" y="169">  </location>
+                <location seat="6" x="363" y="113">  </location>
+                <location common="1" x="1" y="1"> </location>
+            </layout>
+            <layout height="546" max="9" width="792">
+                <location seat="1" x="486" y="113">  </location>
+                <location seat="2" x="555" y="169"> </location>
+                <location seat="3" x="572" y="276"> </location>
+                <location seat="4" x="522" y="345"> </location>
+                <location seat="5" x="363" y="348"> </location>
+                <location seat="6" x="217" y="341"> </location>
+                <location seat="7" x="150" y="273"> </location>
+                <location seat="8" x="150" y="169">  </location>
+                <location seat="9" x="230" y="115">  </location>
+                <location common="1" x="1" y="1"> </location>
+            </layout>
+            <layout height="546" max="10" width="792">
+                <location seat="1" x="486" y="113">  </location>
+                <location seat="2" x="499" y="138"> </location>
+                <location seat="3" x="522" y="212"> </location>
+                <location seat="4" x="501" y="281"> </location>
+                <location seat="5" x="402" y="323"> </location>
+                <location seat="6" x="243" y="311"> </location>
+                <location seat="7" x="203" y="262"> </location>
+                <location seat="8" x="170" y="185">  </location>
+                <location seat="9" x="183" y="128">  </location>
+                <location seat="10" x="213" y="86">  </location>
+                <location common="1" x="1" y="1"> </location>
+            </layout>
+            
+        <aw class="Classic_HUD" bgcolor="#000000" fgcolor="#FFFFFF" font="Sans" font_size="8" module="Aux_Classic_Hud" name="Classic_HUD" opacity="0.7">
             <layout height="546" max="6" width="792">
                 <location seat="1" x="555" y="169"> </location>
                 <location seat="2" x="572" y="276"> </location>
