@@ -1274,7 +1274,7 @@ Left-Drag to Move"
         <hhc site="Absolute" converter="AbsoluteToFpdb"/>
         <hhc site="PartyPoker" converter="PartyPokerToFpdb"/>
         <hhc site="Betfair" converter="BetfairToFpdb"/>
-        <hhc site="Carbon" converter="CarbonToFpdb"/>
+        <hhc site="Carbon" converter="CarbonToFpdb" summaryImporter="CarbonSummary"/>
         <hhc site="OnGame" converter="OnGameToFpdb"/>
         <hhc site="PKR" converter="PkrToFpdb"/>
         <hhc site="iPoker" converter="iPokerToFpdb"/>

@@ -126,15 +126,15 @@ class HUD_main(object):
             gtk.main_quit()   # we're hosed, just terminate
 
     def client_moved(self, widget, hud):
-        log.debug(_("client_moved event"))
+        log.debug("client_moved event")
         hud.up_update_table_position()
 
     def client_resized(self, widget, hud):
-        log.debug(_("client_resized event"))
+        log.debug("client_resized event")
         gobject.idle_add(idle_resize, hud)
 
     def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
-        log.debug(_("client_destroyed event"))
+        log.debug("client_destroyed event")
         self.kill_hud(None, hud.table.key)
 
     def game_changed(self, widget, hud):
@@ -149,7 +149,7 @@ class HUD_main(object):
         gtk.main_quit()
 
     def kill_hud(self, event, table):
-        log.debug(_("kill_hud event"))
+        log.debug("kill_hud event")
         gobject.idle_add(idle_kill, self, table)
     
     def check_tables(self):

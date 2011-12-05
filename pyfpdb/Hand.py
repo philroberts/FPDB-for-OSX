@@ -961,7 +961,7 @@ class HoldemOmahaHand(Hand):
             #print "\nHand:\n"+str(self)
         elif builtFrom == "DB":
             # Creator expected to call hhc.select(hid) to fill out object
-            log.debug("HoldemOmahaHand.__init__: " + _("DEBUG: HoldemOmaha hand initialised for select()"))
+            log.debug("HoldemOmahaHand.__init__: " + _("DEBUG:") + " " +_("HoldemOmaha hand initialised for %s") % "select()")
             self.maxseats = 10
         else:
             log.warning("HoldemOmahaHand.__init__: " + _("Neither HHC nor DB+handID provided"))
@@ -1695,7 +1695,7 @@ class StudHand(Hand):
                 log.warning(_("join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should be impossible for anyone who is not a hero"))
                 log.warning("join_holcards: holecards(%s): %s" % (player, holecards))
             if holecards == [u'0x', u'0x']:
-                log.warning(_("join_holecards: Player '%s' appears not to have been dealt a card" % player))
+                log.warning(_("join_holecards: Player '%s' appears not to have been dealt a card") % player)
                 # If a player is listed but not dealt a card in a cash game this can occur
                 # Noticed in FTP Razz hand. Return 3 empty cards in this case
                 holecards = [u'0x', u'0x', u'0x']
