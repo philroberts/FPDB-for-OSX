@@ -45,6 +45,8 @@ if __name__ == "__main__":
 log = logging.getLogger("filter")
 
 class Filters(threading.Thread):
+    MIN_DATE = '1970-01-02 00:00:00'
+    MAX_DATE = '2100-12-12 23:59:59'
     def __init__(self, db, config, qdict, display = {}, debug=True):
         # config and qdict are now redundant
         self.debug = debug
@@ -53,8 +55,6 @@ class Filters(threading.Thread):
         self.sql = db.sql
         self.conf = db.config
         self.display = display
-        self.MIN_DATE = '1970-01-02 00:00:00'
-        self.MAX_DATE = '2100-12-12 23:59:59'
             
         self.gameName = {"27_1draw"  : _("Single Draw 2-7 Lowball")
                         ,"27_3draw"  : _("Triple Draw 2-7 Lowball")
