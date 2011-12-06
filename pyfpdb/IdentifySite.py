@@ -21,6 +21,7 @@ _ = L10n.get_translation()
 import re
 import sys
 import os
+from time import time
 from optparse import OptionParser
 import codecs
 import Database
@@ -64,6 +65,7 @@ class IdentifySite:
         self.db = Database.Database(self.config)
         self.sitelist = {}
         self.filelist = {}
+        self.re_identify = self.getSiteRegex()
         self.generateSiteList()
         self.list = list
 
@@ -79,6 +81,29 @@ class IdentifySite:
 
     def get_filelist(self):
         return self.filelist
+    
+    def getSiteRegex(self):
+        re_identify = {}
+        re_identify['Fulltilt']     = re.compile(u'FullTiltPoker|Full\sTilt\sPoker\sGame\s#\d+:')
+        re_identify['PokerStars']   = re.compile(u'PokerStars\sGame\s#\d+:',)
+        re_identify['Everleaf']     = re.compile(u'\*{5}\sHand\shistory\sfor\sgame\s#\d+\s|Partouche\sPoker\s')
+        re_identify['Boss']         = re.compile(u'<HISTORY\sID="\d+"\sSESSION=')
+        re_identify['OnGame']       = re.compile(u'\*{5}\sHistory\sfor\shand\s[A-Z0-9\-]+\s')
+        re_identify['Betfair']      = re.compile(u'\*{5}\sBetfair\sPoker\sHand\sHistory\sfor\sGame\s\d+\s')
+        re_identify['Absolute']     = re.compile(u'Stage\s#[A-Z0-9]+:')
+        re_identify['PartyPoker']   = re.compile(u'\*{5}\sHand\sHistory\s[fF]or\sGame\s\d+\s')
+        re_identify['PacificPoker'] = re.compile(u'\*{5}\sCassava\sHand\sHistory\sfor\sGame\s\d+\s')
+        re_identify['Carbon']       = re.compile(u'<description\stype=')
+        re_identify['Pkr']          = re.compile(u'Starting\sHand\s\#\d+')
+        re_identify['iPoker']       = re.compile(u'<session\ssessioncode="\d+">')
+        re_identify['Winamax']      = re.compile(u'Winamax\sPoker\s\-\s(CashGame|Tournament)')
+        re_identify['Everest']      = re.compile(u'<SESSION\stime="\d+"\stableName=".+"\sid=')
+        re_identify['Cake']         = re.compile(u'Hand\#\d+\s\-\s')
+        re_identify['Entraction']   = re.compile(u'Game\s\#\s\d+\s\-\s')
+        re_identify['BetOnline']    = re.compile(u'BetOnline\sPoker\sGame\s\#\d+')
+        re_identify['FullTiltPokerSummary'] = re.compile(u'Full\sTilt\sPoker\.fr\sTournament|Full\sTilt\sPoker\sTournament\sSummary')
+        re_identify['PokerStarsSummary']    = re.compile(u'PokerStars\sTournament\s\#\d+')
+        return re_identify
 
     def generateSiteList(self):
         """Generates a ordered dictionary of site, filter and filter name for each site in hhcs"""
@@ -117,9 +142,8 @@ class IdentifySite:
         if path.endswith('.txt') or path.endswith('.xml') or path.endswith('.log'):
             if path not in self.filelist:
                 whole_file, kodec = self.read_file(path)
-
                 if whole_file:
-                    fobj = self.idSite(path, whole_file, kodec)
+                    fobj = self.idSite(path, whole_file[:250], kodec)
                     if fobj == False: # Site id failed
                         log.debug(_("DEBUG:") + " " + _("siteId Failed for: %s") % path)
                     else:
@@ -135,30 +159,16 @@ class IdentifySite:
             except:
                 continue
         return None, None
-
+    
     def idSite(self, file, whole_file, kodec):
         """Identifies the site the hh file originated from"""
-        whole_file = whole_file[:1000]
         f = FPDBFile(file)
         f.codepage = kodec
-
         for id, site in self.sitelist.iteritems():
             filter_name = site.filter_name
-            summary = site.summary
-            mod = site.mod
-            obj = site.obj
-
-            if filter_name in ('OnGame', 'Winamax'):
-                m = obj.re_HandInfo.search(whole_file)
-            elif filter_name in ('Win2day'):
-                m = obj.re_GameInfo.search(whole_file)
-            elif filter_name in ('PartyPoker'):
-                m = obj.re_GameInfo.search(whole_file)
-                if not m:
-                    m = obj.re_GameInfoTrny.search(whole_file)
-            else:
-                m = obj.re_GameInfo.search(whole_file)
-                if m and re_SplitArchive.search(whole_file):
+            m = self.re_identify[filter_name].search(whole_file)
+            if m and filter_name in ('FullTilt', 'PokerStars'):
+                if re_SplitArchive.search(whole_file):
                     f.archive = True
             if m:
                 f.site = site
@@ -168,14 +178,8 @@ class IdentifySite:
         for id, site in self.sitelist.iteritems():
             filter_name = site.filter_name
             summary = site.summary
-            if summary:
-                smod = site.smod
-                sobj = site.sobj
-
-                if filter_name in ('Winamax'):
-                    m = sobj.re_Details.search(whole_file)
-                else:
-                    m = sobj.re_TourneyInfo.search(whole_file)
+            if summary in ('FullTiltPokerSummary', 'PokerStarsSummary'):
+                m = self.re_identify[summary].search(whole_file)
                 if m:
                     f.site = site
                     f.ftype = "summary"
@@ -208,7 +212,9 @@ def main(argv=None):
     config = Configuration.Config(file = "HUD_config.test.xml")
     in_path = os.path.abspath('regression-test-files')
     IdSite = IdentifySite(config, in_path)
+    start = time()
     IdSite.scan()
+    print 'duration', time() - start
 
     print "\n----------- SITE LIST -----------"
     for sid, site in IdSite.sitelist.iteritems():
@@ -216,14 +222,17 @@ def main(argv=None):
     print "----------- END SITE LIST -----------"
 
     print "\n----------- ID REGRESSION FILES -----------"
+    count = 0
     for f, ffile in IdSite.filelist.iteritems():
         tmp = ""
         tmp += ": Type: %s " % ffile.ftype
+        count += 1
         if ffile.ftype == "hh":
             tmp += "Conv: %s" % ffile.site.hhc_fname
         elif ffile.ftype == "summary":
             tmp += "Conv: %s" % ffile.site.summary
         print f, tmp
+    print count, 'files identified'
     print "----------- END ID REGRESSION FILES -----------"
 
     print "----------- RETRIEVE FOR SINGLE SITE -----------"
