@@ -93,7 +93,7 @@ class IdentifySite:
         re_identify['Absolute']     = re.compile(u'Stage\s#[A-Z0-9]+:')
         re_identify['PartyPoker']   = re.compile(u'\*{5}\sHand\sHistory\s[fF]or\sGame\s\d+\s')
         re_identify['PacificPoker'] = re.compile(u'\*{5}\sCassava\sHand\sHistory\sfor\sGame\s\d+\s')
-        re_identify['Carbon']       = re.compile(u'<description\stype=')
+        re_identify['Merge']        = re.compile(u'<description\stype=')
         re_identify['Pkr']          = re.compile(u'Starting\sHand\s\#\d+')
         re_identify['iPoker']       = re.compile(u'<session\ssessioncode="\d+">')
         re_identify['Winamax']      = re.compile(u'Winamax\sPoker\s\-\s(CashGame|Tournament)')

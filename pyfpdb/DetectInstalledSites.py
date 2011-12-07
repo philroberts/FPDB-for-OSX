@@ -70,7 +70,7 @@ class DetectInstalledSites():
         #
         self.supportedSites = [ "Full Tilt Poker",
                                 "PartyPoker",
-                                "Carbon",
+                                "Merge",
                                 "PokerStars"]#,
                                 #"Everleaf",
                                 #"Win2day",
@@ -109,8 +109,8 @@ class DetectInstalledSites():
             self.detectPartyPoker()
         elif siteToDetect == "PokerStars":
             self.detectPokerStars()
-        elif siteToDetect == "Carbon":
-            self.detectCarbonMergeNetwork()
+        elif siteToDetect == "Merge":
+            self.detectMergeNetwork()
 
         if (self.pathfound and self.herofound):
             self.pathfound = unicode(self.pathfound)
@@ -195,17 +195,16 @@ class DetectInstalledSites():
 
         return
 
-    def detectCarbonMergeNetwork(self):
+    def detectMergeNetwork(self):
 
 # Carbon is the principal room on the Merge network but there are many other skins.
-# FPDB slightly confusingly uses the "Carbon" identifier for sites on the merge network
 
 # Normally, we understand that a player can only be valid at one
 # room on the Merge network so we will exit once successful
 
 # Many thanks to Ilithios for the PlayersOnly information
 
-        merge_skin_names = ["CarbonPoker", "PlayersOnly"]
+        merge_skin_names = ["CarbonPoker", "PlayersOnly", "BlackChipPoker", "RPMPoker", "HeroPoker"]
         
         for skin in merge_skin_names:
             if self.Config.os_family == "Linux":

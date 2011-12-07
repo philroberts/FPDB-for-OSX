@@ -157,7 +157,7 @@ def main(argv=None):
     #AbsoluteErrors    = FpdbError('Absolute Poker')
     #UltimateBetErrors = FpdbError('Ultimate Bet')
     #EverleafErrors    = FpdbError('Everleaf Poker')
-    #CarbonErrors      = FpdbError('Carbon')
+    #MergeErrors       = FpdbError('Merge')
     #PKRErrors         = FpdbError('PKR')
     #iPokerErrors      = FpdbError('iPoker')
     #WinamaxErrors     = FpdbError('Winamax')
@@ -166,7 +166,7 @@ def main(argv=None):
                     PokerStarsErrors, FTPErrors, #WinamaxErrors,
                     #PartyPokerErrors,
                     #BetfairErrors, OnGameErrors, AbsoluteErrors,
-                    #EverleafErrors, CarbonErrors, PKRErrors,
+                    #EverleafErrors, MergeErrors, PKRErrors,
                     #iPokerErrors, UltimateBetErrors,
                 ]
 
@@ -179,7 +179,7 @@ def main(argv=None):
                 #'Absolute' : True,
                 #'UltimateBet' : True,
                 #'Everleaf' : True,
-                #'Carbon' : True,
+                #'Merge' : True,
                 #'PKR' : False,
                 #'iPoker' : True,
                 #'Winamax' : False,
@@ -212,8 +212,8 @@ def main(argv=None):
     #    walk_testfiles("regression-test-files/cash/UltimateBet/", compare, importer, UltimateBetErrors, "Absolute")
     #if sites['Everleaf'] == True:
     #    walk_testfiles("regression-test-files/cash/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
-    #if sites['Carbon'] == True:
-    #    walk_testfiles("regression-test-files/cash/Carbon/", compare, importer, CarbonErrors, "Carbon")
+    #if sites['Merge'] == True:
+    #    walk_testfiles("regression-test-files/cash/Merge/", compare, importer, MergeErrors, "Merge")
     #if sites['PKR'] == True:
     #    walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
     #if sites['iPoker'] == True:

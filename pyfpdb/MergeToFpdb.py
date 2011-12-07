@@ -47,8 +47,8 @@ from HandHistoryConverter import *
 from decimal_wrapper import Decimal
 
 
-class Carbon(HandHistoryConverter):
-    sitename = "Carbon"
+class Merge(HandHistoryConverter):
+    sitename = "Merge"
     filetype = "text"
     codepage = ("cp1252", "utf8")
     siteId   = 11
@@ -602,7 +602,7 @@ class Carbon(HandHistoryConverter):
         pass
 
     def playerNameFromSeatNo(self, seatNo, hand):
-        # This special function is required because Carbon Poker records
+        # This special function is required because Merge Poker records
         # actions by seat number, not by the player's name
         for p in hand.players:
             if p[0] == int(seatNo):

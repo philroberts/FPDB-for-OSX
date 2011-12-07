@@ -28,7 +28,7 @@ import PokerStarsToFpdb
 from TourneySummary import *
 
 
-class CarbonSummary(TourneySummary):
+class MergeSummary(TourneySummary):
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
     games = {                          # base, category
                               "Hold'em" : ('hold','holdem'), 
