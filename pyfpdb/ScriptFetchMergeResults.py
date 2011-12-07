@@ -47,7 +47,7 @@ def main():
     config = Configuration.Config()
     db = Database.Database(config)
 
-    tourney_ids = db.getSiteTourneyNos("Carbon")
+    tourney_ids = db.getSiteTourneyNos("Merge")
     tids = []
 
     for tid in tourney_ids:
@@ -56,7 +56,7 @@ def main():
     #    winamax_get_winning(tid,"blah")
     results_dir = config.get_import_parameters().get("ResultsDirectory")
     results_dir = os.path.expanduser(results_dir)
-    site_dir = os.path.join(results_dir, "Carbon")
+    site_dir = os.path.join(results_dir, "Merge")
     print "DEBUG: site_dir: %s" % site_dir
     filelist = [file for file in os.listdir(site_dir) if not file in [".",".."]]
     print "DEBUG: filelist : %s" % filelist

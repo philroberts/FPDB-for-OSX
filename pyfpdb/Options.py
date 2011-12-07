@@ -97,7 +97,7 @@ def site_alias(alias):
                 "Absolute"       : "Absolute",
                 "UltimateBet"    : "UltimateBet",
                 "Everleaf"       : "Everleaf",
-                "Carbon"         : "Carbon",
+                "Merge"          : "Merge",
                 "iPoker"         : "iPoker",
                 "Winamax"        : "Winamax",
                 "Boss"           : "Boss",

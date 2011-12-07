@@ -77,7 +77,9 @@ class PokerStars(HandHistoryConverter):
                                  'Razz' : ('stud','razz'), 
                                  'RAZZ' : ('stud','razz'),
                           '7 Card Stud' : ('stud','studhi'),
+                          '7 CARD STUD' : ('stud','studhi'),
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
+                    '7 CARD STUD HI/LO' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
               'Single Draw 2-7 Lowball' : ('draw','27_1draw'),
@@ -86,6 +88,7 @@ class PokerStars(HandHistoryConverter):
     mixes = {
                                  'HORSE': 'horse',
                                 '8-Game': '8game',
+                                '8-GAME': '8game',
                                   'HOSE': 'hose',
                          'Mixed PLH/PLO': 'plh_plo',
                        'Mixed Omaha H/L': 'plo_lo',
@@ -102,8 +105,8 @@ class PokerStars(HandHistoryConverter):
           # here's how I plan to use LS
           (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
           # close paren of tournament info
-          (?P<MIXED>HORSE|8\-Game|HOSE|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Triple\sStud)?\s?\(?
-          (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
+          (?P<MIXED>HORSE|8\-Game|8\-GAME|HOSE|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Triple\sStud)?\s?\(?
+          (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCARD\sSTUD|7\sCARD\sSTUD\sHI/LO|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
           (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\)?,?\s
           (-\s)?
           (Match.*)?                  #TODO: waiting for reply from user as to what this means

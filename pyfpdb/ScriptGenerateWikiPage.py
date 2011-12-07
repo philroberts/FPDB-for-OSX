@@ -64,7 +64,7 @@ sitemasks = { "PokerStars": copy.deepcopy(defaultmask),
               "Absolute": copy.deepcopy(defaultmask),
               "PartyPoker": copy.deepcopy(defaultmask),
               "Betfair": copy.deepcopy(defaultmask),
-              "Carbon": copy.deepcopy(defaultmask),
+              "Merge": copy.deepcopy(defaultmask),
               "OnGame": copy.deepcopy(defaultmask),
               "PKR": copy.deepcopy(defaultmask),
               "iPoker": copy.deepcopy(defaultmask),
@@ -149,7 +149,7 @@ sites = { "PokerStars": copy.deepcopy(games),
           "Absolute": copy.deepcopy(games),
           "PartyPoker": copy.deepcopy(games),
           "Betfair": copy.deepcopy(games),
-          "Carbon": copy.deepcopy(games),
+          "Merge": copy.deepcopy(games),
           "OnGame": copy.deepcopy(games),
           "PKR": copy.deepcopy(games),
           "iPoker": copy.deepcopy(games),
@@ -230,7 +230,7 @@ print_site("Full Tilt Poker", ring, sitemasks)
 print_site("PartyPoker", ring, sitemasks)
 print_site("Everleaf", ring, sitemasks)
 print_site("Boss", ring, sitemasks)
-print_site("Carbon", ring, sitemasks)
+print_site("Merge", ring, sitemasks)
 print_site("OnGame", ring, sitemasks)
 print_site("iPoker", ring, sitemasks)
 print_site("Winamax", ring, sitemasks)
@@ -260,7 +260,7 @@ print_site("Full Tilt Poker", tour, sitemasks)
 print_site("PartyPoker", tour, sitemasks)
 print_site("Everleaf", tour, sitemasks)
 print_site("Boss", tour, sitemasks)
-print_site("Carbon", tour, sitemasks)
+print_site("Merge", tour, sitemasks)
 print_site("OnGame", tour, sitemasks)
 print_site("iPoker", tour, sitemasks)
 print_site("Winamax", tour, sitemasks)
