@@ -1691,6 +1691,9 @@ class Sql:
                         played INT NOT NULL,
                         hands INT NOT NULL,
                         totalProfit INT,
+                        rake INT,
+                        showdownWinnings INT,
+                        nonShowdownWinnings INT,
                         allInEV INT)
                         ENGINE=INNODB
                         """
@@ -1707,6 +1710,9 @@ class Sql:
                         played INT,
                         hands INT,
                         totalProfit INT,
+                        rake INT,
+                        showdownWinnings INT,
+                        nonShowdownWinnings INT,
                         allInEV INT)
                         """
                         
@@ -1723,6 +1729,9 @@ class Sql:
                         hands INT,
                         tourneys INT,
                         totalProfit INT,
+                        rake INT,
+                        showdownWinnings INT,
+                        nonShowdownWinnings INT,
                         allInEV INT)
                         """
 
@@ -5040,9 +5049,11 @@ class Sql:
                     Gametypes.type as game,
                     <tourney_type_clause>
                     HandsPlayers.totalProfit as totalProfit,
+                    HandsPlayers.rake as rake,
                     HandsPlayers.allInEV as allInEV,
                     HandsPlayers.street0VPI as street0VPI,
-                    HandsPlayers.street1Seen as street1Seen
+                    HandsPlayers.street1Seen as street1Seen,
+                    HandsPlayers.sawShowdown as sawShowdown
                     FROM  HandsPlayers HandsPlayers
                     INNER JOIN Hands ON (HandsPlayers.handId = Hands.id)
                     INNER JOIN Gametypes ON (Gametypes.id = Hands.gametypeId)
@@ -5072,6 +5083,9 @@ class Sql:
                     played,
                     hands,
                     totalProfit,
+                    rake,
+                    showdownWinnings,
+                    nonShowdownWinnings,
                     allInEV
                     FROM GamesCache
                     WHERE gameEnd>=%s
@@ -5101,9 +5115,12 @@ class Sql:
                     played,
                     hands,
                     totalProfit,
+                    rake,
+                    showdownWinnings,
+                    nonShowdownWinnings,
                     allInEV)
-                    values (%s, %s, %s, %s, %s,
-                            %s, %s, %s, %s, %s)"""
+                    values (%s, %s, %s, %s, %s, %s, %s,
+                            %s, %s, %s, %s, %s, %s)"""
                     
         ####################################
         # update
@@ -5122,6 +5139,9 @@ class Sql:
                     played=played+%s,
                     hands=hands+%s,
                     totalProfit=totalProfit+%s,
+                    rake=rake+%s,
+                    showdownWinnings=showdownWinnings+%s,
+                    nonShowdownWinnings=nonShowdownWinnings+%s,
                     allInEV=allInEV+%s
                     WHERE id=%s"""
                     

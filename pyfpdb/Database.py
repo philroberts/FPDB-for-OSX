@@ -75,7 +75,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 167
+DB_VERSION = 168
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -1703,17 +1703,19 @@ class Database:
                 while tmp:
                     pids, game, pdata = {}, {}, {}
                     pdata['pname'] = {}
-                    id                                   = tmp[0]
-                    startTime                            = tmp[1]
-                    pids['pname']                        = tmp[2]
-                    tid                                  = tmp[3]
-                    gtid                                 = tmp[4]
-                    game['type']                         = tmp[5]
-                    pdata['pname']['tourneysPlayersIds'] = tmp[6]
-                    pdata['pname']['totalProfit']        = tmp[7]
-                    pdata['pname']['allInEV']            = tmp[8]
-                    pdata['pname']['street0VPI']         = tmp[9]
-                    pdata['pname']['street1Seen']        = tmp[10]
+                    id                                    = tmp[0]
+                    startTime                             = tmp[1]
+                    pids['pname']                         = tmp[2]
+                    tid                                   = tmp[3]
+                    gtid                                  = tmp[4]
+                    game['type']                          = tmp[5]
+                    pdata['pname']['tourneysPlayersIds']  = tmp[6]
+                    pdata['pname']['totalProfit']         = tmp[7]
+                    pdata['pname']['rake']                = tmp[8]
+                    pdata['pname']['allInEV']             = tmp[9]
+                    pdata['pname']['street0VPI']          = tmp[10]
+                    pdata['pname']['street1Seen']         = tmp[11]
+                    pdata['pname']['sawShowdown']         = tmp[12]
                     tmp = c.fetchone()
                     hid[id] = tid
                     self.storeSessionsCache (id, pids, startTime, heros, tmp == None)
@@ -1727,7 +1729,7 @@ class Database:
                                     self.tbulk[hid[i]] = sid
                                     gid = None
                                 else: gid = self.gc[i]['id']
-                                q = self.query['update_RSC_H']
+                                q = self.sql.query['update_RSC_H']
                                 q = q.replace('%s', self.sql.query['placeholder'])
                                 c.execute(q, (sid, gid, i))
                         self.updateTourneysSessions()
@@ -2473,9 +2475,6 @@ class Database:
         hand = {}
         for p, pid in pids.iteritems():
             if pid in heros and game['type']=='ring':
-                hand['hands']         = 0
-                hand['totalProfit']   = 0
-                hand['allInEV']       = 0
                 hand['playerId']      = pid
                 hand['gametypeId']    = None
                 hand['date']          = date
@@ -2484,15 +2483,24 @@ class Database:
                 else:
                     hand['startTime'] = startTime.replace(tzinfo=None)
                 hand['hid']           = hid
-                hand['played']        = 0
+                hand['hands']         = 1
+                
                 hand['ids']           = []
                 hand['gametypeId'] = gtid
                 if pdata[p]['street0VPI'] or pdata[p]['street1Seen']:
                     hand['played'] = 1
+                else:
+                    hand['played'] = 0
                 hand['totalProfit'] = pdata[p]['totalProfit']
+                hand['rake']        = pdata[p]['rake']
+                if pdata[p]['sawShowdown']:
+                    hand['showdownWinnings']    = pdata[p]['totalProfit']
+                    hand['nonShowdownWinnings'] = 0
+                else:
+                    hand['showdownWinnings'] = 0
+                    hand['nonShowdownWinnings'] = pdata[p]['totalProfit']
                 hand['allInEV'] = pdata[p]['allInEV']
-                hand['hands'] = 1
-        
+                
         if hand:
             id = []
             lower = hand['startTime']-THRESHOLD
@@ -2503,9 +2511,12 @@ class Database:
                 and (hand['playerId']      == self.gc['bk'][i]['playerId'])): 
                     if ((lower <= self.gc['bk'][i]['gameEnd'])
                     and (upper >= self.gc['bk'][i]['gameStart'])):
-                        self.gc['bk'][i]['played']        += hand['played']
-                        self.gc['bk'][i]['hands']         += hand['hands']
-                        self.gc['bk'][i]['totalProfit']   += hand['totalProfit']
+                        self.gc['bk'][i]['played']              += hand['played']
+                        self.gc['bk'][i]['hands']               += hand['hands']
+                        self.gc['bk'][i]['totalProfit']         += hand['totalProfit']
+                        self.gc['bk'][i]['rake']                += hand['rake']
+                        self.gc['bk'][i]['showdownWinnings']    += hand['showdownWinnings']
+                        self.gc['bk'][i]['nonShowdownWinnings'] += hand['nonShowdownWinnings']
                         self.gc['bk'][i]['allInEV']       += hand['allInEV']
                         if hand['startTime']  <  self.gc['bk'][i]['gameStart']:
                             self.gc['bk'][i]['gameStart']      = hand['startTime']
@@ -2518,14 +2529,20 @@ class Database:
                 if    self.gc['bk'][id[0]]['gameStart'] < self.gc['bk'][id[1]]['gameStart']:
                       self.gc['bk'][id[0]]['gameEnd']   = self.gc['bk'][id[1]]['gameEnd']
                 else: self.gc['bk'][id[0]]['gameStart'] = self.gc['bk'][id[1]]['gameStart']
-                self.gc['bk'][id[0]]['played']         += self.gc['bk'][id[1]]['played']
-                self.gc['bk'][id[0]]['hands']          += self.gc['bk'][id[1]]['hands']
-                self.gc['bk'][id[0]]['totalProfit']    += self.gc['bk'][id[1]]['totalProfit']
-                self.gc['bk'][id[0]]['allInEV']        += self.gc['bk'][id[1]]['allInEV']
-                self.gc['bk'][id[0]]['played']         += hand['played']
-                self.gc['bk'][id[0]]['hands']          += hand['hands']
-                self.gc['bk'][id[0]]['totalProfit']    += hand['totalProfit']
-                self.gc['bk'][id[0]]['allInEV']        += hand['allInEV']
+                self.gc['bk'][id[0]]['played']              += self.gc['bk'][id[1]]['played']
+                self.gc['bk'][id[0]]['hands']               += self.gc['bk'][id[1]]['hands']
+                self.gc['bk'][id[0]]['totalProfit']         += self.gc['bk'][id[1]]['totalProfit']
+                self.gc['bk'][id[0]]['rake']                += self.gc['bk'][id[1]]['rake']
+                self.gc['bk'][id[0]]['showdownWinnings']    += self.gc['bk'][id[1]]['showdownWinnings']
+                self.gc['bk'][id[0]]['nonShowdownWinnings'] += self.gc['bk'][id[1]]['nonShowdownWinnings']
+                self.gc['bk'][id[0]]['allInEV']             += self.gc['bk'][id[1]]['allInEV']
+                self.gc['bk'][id[0]]['played']              += hand['played']
+                self.gc['bk'][id[0]]['hands']               += hand['hands']
+                self.gc['bk'][id[0]]['totalProfit']         += hand['totalProfit']
+                self.gc['bk'][id[0]]['rake']                += hand['rake']
+                self.gc['bk'][id[0]]['showdownWinnings']    += hand['showdownWinnings']
+                self.gc['bk'][id[0]]['nonShowdownWinnings'] += hand['nonShowdownWinnings']
+                self.gc['bk'][id[0]]['allInEV']             += hand['allInEV']
                 gh = self.gc['bk'].pop(id[1])
                 self.gc['bk'][id[0]]['ids'].append(hid)
                 self.gc['bk'][id[0]]['ids'] += gh['ids']
@@ -2560,12 +2577,16 @@ class Database:
                           ,self.gc['bk'][i]['played']
                           ,self.gc['bk'][i]['hands']
                           ,self.gc['bk'][i]['totalProfit']
+                          ,self.gc['bk'][i]['rake']
+                          ,self.gc['bk'][i]['showdownWinnings']
+                          ,self.gc['bk'][i]['nonShowdownWinnings']
                           ,self.gc['bk'][i]['allInEV']
                           ,r[0]['id']]
                     c.execute(update_GC, row)
                     for h in self.gc['bk'][i]['ids']: self.gc[h] = {'id': r[0]['id']} 
                 elif (num > 1):
-                    start, end, played, hands, totalProfit, allInEV, merge = None, None, 0, 0, 0, 0, []
+                    start, end, merge = None, None, []
+                    played, hands, totalProfit, rake, showdownWinnings, nonShowdownWinnings, allInEV = 0, 0, 0, 0, 0, 0, 0
                     for n in r: merge.append(n['id'])
                     merge.sort()
                     r.append(self.gc['bk'][i])
@@ -2578,11 +2599,14 @@ class Database:
                             if  end < n['gameEnd']: 
                                 end = n['gameEnd']
                         else:   end = n['gameEnd']
-                        played        += n['played']
-                        hands         += n['hands']
-                        totalProfit   += n['totalProfit']
-                        allInEV       += n['allInEV']
-                    row = [sid, start, end] + game + [played, hands, totalProfit, allInEV]
+                        played              += n['played']
+                        hands               += n['hands']
+                        totalProfit         += n['totalProfit']
+                        rake                += n['rake']
+                        showdownWinnings    += n['showdownWinnings']
+                        nonShowdownWinnings += n['nonShowdownWinnings']
+                        allInEV             += n['allInEV']
+                    row = [sid, start, end] + game + [played, hands, totalProfit, rake, showdownWinnings, nonShowdownWinnings, allInEV]
                     c.execute(insert_GC, row)
                     gid = self.get_last_insert_id(c)
                     for h in self.gc['bk'][i]['ids']: self.gc[h] = {'id': gid}
@@ -2594,13 +2618,16 @@ class Database:
                         c.execute(update_GC_H, (gid, m))
                         c.execute(delete_GC, m)
                 elif (num == 0):
-                    start       = self.gc['bk'][i]['gameStart']
-                    end         = self.gc['bk'][i]['gameEnd']
-                    played      = self.gc['bk'][i]['played']
-                    hands       = self.gc['bk'][i]['hands']
-                    totalProfit = self.gc['bk'][i]['totalProfit']
-                    allInEV     = self.gc['bk'][i]['allInEV']
-                    row = [sid, start, end] + game + [played, hands, totalProfit, allInEV]
+                    start               = self.gc['bk'][i]['gameStart']
+                    end                 = self.gc['bk'][i]['gameEnd']
+                    played              = self.gc['bk'][i]['played']
+                    hands               = self.gc['bk'][i]['hands']
+                    totalProfit         = self.gc['bk'][i]['totalProfit']
+                    rake                = self.gc['bk'][i]['rake']
+                    showdownWinnings    = self.gc['bk'][i]['showdownWinnings']
+                    nonShowdownWinnings = self.gc['bk'][i]['nonShowdownWinnings']
+                    allInEV             = self.gc['bk'][i]['allInEV']
+                    row = [sid, start, end] + game + [played, hands, totalProfit, rake, showdownWinnings, nonShowdownWinnings, allInEV]
                     c.execute(insert_GC, row)
                     gid = self.get_last_insert_id(c)
                     for h in self.gc['bk'][i]['ids']: self.gc[h] = {'id': gid}
