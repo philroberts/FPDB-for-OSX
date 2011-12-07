@@ -39,7 +39,7 @@ Note about super() and MRO patching.
 The call to super() invokes that method in the Aux_Hud code - therefore 
 local code can be placed before or after the Aux_Hud code runs.
 
-To replace a method from Aux_Hud, simply do not include a super() call.
+To completely replace a method from Aux_Hud, do not call super().
 
 With the exception of class Classic_HUD, all other classes are instanted
 in Aux_Hud, and therefore local code here is never recognised.
@@ -48,30 +48,32 @@ here using a command "Aux_Hud.some_class = local_class"
 This causes the class to be instanted in THIS CODE rather than in Aux_Hud
 
 To debug mro problems, import inspect and inspect.getmro(some_class_name)
-"""#    to do
+
+General comments about overriding simple_hud
+--------------------------------------------
+Although there is some flexibility to augment the Aux_Hud, it is not possible
+to supplement everything.  For example, when Aux_Hud reads a value from a 
+method and then acts on that value, it is difficult to pre-process here to
+set a different value.  In those cases, one simply block-copies the method here
+but that wasn't the design philosophy of new-hud.
+
+"""
+#    to do
 
 #    Standard Library modules
 
 #    pyGTK modules
 import gtk
-#import gobject
-#import pango
 
 #    FreePokerTools modules
-#import Mucked
-#import Stats
-#import Popup
 import Aux_Hud
+import Stats
 
 class Classic_Stat_Window(Aux_Hud.Stat_Window):
     """Stat windows are the blocks shown continually, 1 for each player."""
+
+
     def update_contents(self, i):
-        #print "SW UP con"
-        #print self.set_focus
-        #print type(self.aw.config)
-        #print type(self.aw.hud)
-        #print self.aw.params
-        
         super(Classic_Stat_Window, self).update_contents(i)
 Aux_Hud.Stat_Window=Classic_Stat_Window  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
         
@@ -83,10 +85,6 @@ class Classic_HUD(Aux_Hud.Simple_HUD):
     """
 
     def __init__(self, hud, config, params):
-        #print "SH init"
-        #print dir(hud)
-        #print config
-        #print params
         super(Classic_HUD, self).__init__(hud, config, params)
 
     def create_contents(self, container, i):
@@ -96,33 +94,45 @@ class Classic_HUD(Aux_Hud.Simple_HUD):
 
 class Classic_stat(Aux_Hud.Simple_stat):
     """A class to display each individual statistic on the Stat_Window"""
+    
+    def __init__(self, stat, seat, popup, game_stat_config, aw):
+        super(Classic_stat, self).__init__(stat, seat, popup, game_stat_config, aw)
+        #game_stat_config is the instance of this stat in the supported games stat configuration
+        #use this prefix to directly extract the attributes
+
+        self.click = game_stat_config.click
+        self.popup = game_stat_config.popup
+        self.tip = game_stat_config.tip
+        try: 
+            self.stat_locolor = gtk.gdk.Color(game_stat_config.stat_locolor)
+            self.stat_loth = game_stat_config.stat_loth
+        except: self.stat_locolor=self.stat_loth=""
+        try: 
+            self.stat_hicolor = gtk.gdk.Color(game_stat_config.stat_hicolor)
+            self.stat_hith = game_stat_config.stat_hith
+        except: self.stat_hicolor=self.stat_hith=""   
+        try: self.hudcolor = gtk.gdk.Color(game_stat_config.hudcolor)
+        except: self.hudcolor = gtk.gdk.Color(aw.params['fgcolor']) 
+
     def update(self, player_id, stat_dict):
         super(Classic_stat, self).update(player_id, stat_dict)
-        #print str(type(self.stat_window))
-        '''
-#                    this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
-#                    number = Stats.do_stat(self.stat_dict, player = statd['player_id'], stat = self.stats[r][c])
-#                    statstring = "%s%s%s" % (this_stat.hudprefix, str(number[1]), this_stat.hudsuffix)
-#                    window = self.stat_windows[statd['seat']]
-#
-#                    if this_stat.hudcolor != "":
-#                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
-#                    else:
-#                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))	
-#                    
-#                    if this_stat.stat_loth != "":
-#                        if number[0] < (float(this_stat.stat_loth)/100):
-#                            window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_locolor))
-#
-#                    if this_stat.stat_hith != "":
-#                        if number[0] > (float(this_stat.stat_hith)/100):
-#                            window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_hicolor))
-#
-#                    window.label[r][c].set_text(statstring)
-        '''
-        fg=gtk.gdk.Color("#FFFF00")
-        bg=gtk.gdk.Color("#6F6F1E")
-        self.set_color(fg,bg)
+
+        #Colouring logic as follows:
+        # Simple hud uses the colour from <aw>; colour from <site> is deprecated
+        #
+
+        fg=self.hudcolor        
+        if self.stat_loth != "":
+            if self.number[0] < (float(self.stat_loth)/100):
+                fg=self.stat_locolor
+        if self.stat_hith != "":
+            if self.number[0] > (float(self.stat_hith)/100):
+                fg=self.stat_hicolor
+        self.set_color(fg=fg,bg=None)
+        
+        tip = "%s\n%s\n%s, %s" % (stat_dict[player_id]['screen_name'], self.number[5], self.number[3], self.number[4])
+        Stats.do_tip(self.widget, tip)
+        
 Aux_Hud.Simple_stat=Classic_stat  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
 
 class Classic_eb(Aux_Hud.Simple_eb): pass
@@ -131,5 +141,21 @@ Aux_Hud.Simple_eb=Classic_eb  ##Aux_Hud instances this class, so must patch MRO 
 class Classic_label(Aux_Hud.Simple_label): pass
 Aux_Hud.Simple_label=Classic_label  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
 
-#class Classic_table_mw(Aux_Hud.Simple_table_mw): pass
-#Aux_Hud.Simple_table_mw=Classic_table_mw  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
+class Classic_table_mw(Aux_Hud.Simple_table_mw):
+    """
+    A class controlling the table menu and the statblocks for that table
+    Normally a 1:1 relationship with the Classic_HUD class ???? 
+    """
+    def __init__(self, hud, aw = None):
+        self.menu_label = hud.config.get_hud_ui_parameters()['label']
+        super(Classic_table_mw, self).__init__(hud, aw)
+
+    def create_menu_item_build_list(self):
+        # A tuple of menu items
+        return  (  ('Kill This HUD', self.kill),  #self.hud.parent.kill_hud),
+                        ('Save HUD Layout', self.save_current_layouts), 
+                        ('HUD options', None)
+                     )
+
+Aux_Hud.Simple_table_mw=Classic_table_mw  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
+                                          ##see FIXME note in Aux_Hud Simple_table_mw init method

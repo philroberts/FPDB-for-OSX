@@ -1299,6 +1299,7 @@ Left-Drag to Move"
                 <location seat="10" x="213" y="86">  </location>
                 <location common="1" x="1" y="1"> </location>
             </layout>
+        </aw>
             
         <aw class="Classic_HUD" bgcolor="#000000" fgcolor="#FFFFFF" font="Sans" font_size="8" module="Aux_Classic_Hud" name="Classic_HUD" opacity="0.7">
             <layout height="546" max="6" width="792">

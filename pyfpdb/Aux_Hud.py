@@ -46,10 +46,18 @@ class Stat_Window(Mucked.Seat_Window):
         self.modify_bg(gtk.STATE_NORMAL, self.aw.bgcolor)
 
         self.stat_box = [ [None]*self.aw.ncols for i in range(self.aw.nrows) ]
+        
+        #print "config?!"
+        #print type(self.aw.config.supported_games[self.aw.poker_game]).stats#[self.stats[r][c]])
+        #print (self.aw.poker_game)
 
         for r in xrange(self.aw.nrows):
             for c in xrange(self.aw.ncols):
-                self.stat_box[r][c] = Simple_stat(self.aw.stats[r][c], seat =  self.seat, popup = self.aw.popups[r][c])
+                self.stat_box[r][c] = Simple_stat(self.aw.stats[r][c], 
+                                                seat = self.seat, 
+                                                popup = self.aw.popups[r][c], 
+                                                game_stat_config = self.aw.config.supported_games[self.aw.poker_game].stats[self.aw.stats[r][c]],
+                                                aw = self.aw)
                 self.grid.attach(self.stat_box[r][c].widget, c, c+1, r, r+1, xpadding = self.aw.xpad, ypadding = self.aw.ypad)
                 self.stat_box[r][c].set_color(self.aw.fgcolor, self.aw.bgcolor)
                 self.stat_box[r][c].set_font(self.aw.font)
@@ -70,6 +78,14 @@ class Simple_HUD(Mucked.Aux_Seats):
         super(Simple_HUD, self).__init__(hud, config, params)
 #    Save everything you need to know about the hud as attrs.
 #    That way a subclass doesn't have to grab them.
+#    Also, the subclass can override any of these attributes
+        #print str(params)
+        '''
+        {'opacity': u'0.7', 'font_size': u'8', 'name': u'Classic_HUD', 'module': u'Aux_Classic_Hud', 
+        'fgcolor': u'#FFFFFF', 'bgcolor': u'#000000', 
+        'layout': {9: <Configuration.Layout instance at 0xae4ef6c>, 10: <Configuration.Layout instance at 0xae4efcc>, 6: <Configuration.Layout instance at 0xae4ef0c>},
+         'font': u'Sans', 'class': u'Classic_HUD'}
+        '''
         self.poker_game  = self.hud.poker_game
         self.game_params = self.hud.config.get_game_parameters(self.hud.poker_game)
         self.game        = self.hud.config.supported_games[self.hud.poker_game]
@@ -85,6 +101,7 @@ class Simple_HUD(Mucked.Aux_Seats):
         self.bgcolor   = gtk.gdk.color_parse(params["bgcolor"])
         self.opacity   = params["opacity"]
         self.font      = pango.FontDescription("%s %s" % (params["font"], params["font_size"]))
+        #todo - checkout what these two commands are doing, exactly
         self.aw_window_type = Stat_Window
         self.aw_mw_type = Simple_table_mw
 
@@ -120,7 +137,7 @@ class Simple_HUD(Mucked.Aux_Seats):
 
 class Simple_stat(object):
     """A simple class for displaying a single stat."""
-    def __init__(self, stat, seat, popup):
+    def __init__(self, stat, seat, popup, game_stat_config=None, aw=None):
         self.stat = stat
         self.eb = Simple_eb();
         self.eb.aw_seat = seat
@@ -134,14 +151,16 @@ class Simple_stat(object):
     def update(self, player_id, stat_dict):
         self.stat_dict = stat_dict     # So the Simple_stat obj always has a fresh stat_dict
         self.eb.stat_dict = stat_dict
-        self.lab.set_text( str(Stats.do_stat(stat_dict, player_id, self.stat)[1]) )
+        self.number = Stats.do_stat(stat_dict, player_id, self.stat)
+        self.lab.set_text( str(self.number[1]))
 
-    def set_color(self, fg, bg):
-        self.eb.modify_fg(gtk.STATE_NORMAL, fg)
-        self.eb.modify_bg(gtk.STATE_NORMAL, bg)
-
-        self.lab.modify_fg(gtk.STATE_NORMAL, fg)
-        self.lab.modify_bg(gtk.STATE_NORMAL, bg)
+    def set_color(self, fg=None, bg=None):
+        if fg:
+            self.eb.modify_fg(gtk.STATE_NORMAL, fg)
+            self.lab.modify_fg(gtk.STATE_NORMAL, fg)
+        if bg:
+            self.eb.modify_bg(gtk.STATE_NORMAL, bg)
+            self.lab.modify_bg(gtk.STATE_NORMAL, bg)
 
     def set_font(self, font):
         self.lab.modify_font(font)
@@ -158,9 +177,16 @@ class Simple_table_mw(Mucked.Seat_Window):
 #    BTW: It might be better to do this with a different AW.
 
     def __init__(self, hud, aw = None):
-        super(Simple_table_mw, self).__init__(aw)
+        #### FIXME: (Gimick)
+        #### I had to replace super() call with direct call to __init__
+        #### Needed for the moment because Classic_hud can't patch MRO for 
+        #### table_mw class.  Get a wierd recursion level exceeded message
+        Mucked.Seat_Window.__init__(self, aw)
+        #####super(Simple_table_mw, self).__init__(aw)
         self.hud = hud
-
+        #print dir(hud)
+        #print dir(self)
+        #print dir(aw)
 #        self.set_skip_taskbar_hint(True)  # invisible to taskbar
 #        self.set_gravity(gtk.gdk.GRAVITY_STATIC)
 #        self.set_decorated(False)    # kill titlebars
@@ -170,7 +196,8 @@ class Simple_table_mw(Mucked.Seat_Window):
         self.connect("configure_event", self.aw.configure_event_cb, "common")
 
         eb = gtk.EventBox()
-        lab = gtk.Label("Menu")
+        try: lab=gtk.Label(self.menu_label)
+        except: lab=gtk.Label("defmenu")
 
         eb.modify_bg(gtk.STATE_NORMAL, self.aw.bgcolor)
         eb.modify_fg(gtk.STATE_NORMAL, self.aw.fgcolor)
@@ -182,12 +209,9 @@ class Simple_table_mw(Mucked.Seat_Window):
 
         self.menu = gtk.Menu()
         menus = {}
-        menu_items = (  ('Kill This HUD', self.kill),  #self.hud.parent.kill_hud),
-                        ('Save HUD Layout', self.save_current_layouts), 
-#                        ('Reposition Windows', self.aw.reposition_windows), 
-                        ('Show Player Stats', None)
-                     )
-        for item, cb in menu_items:
+        menu_item_build_list = self.create_menu_items()
+        
+        for item, cb in menu_item_build_list:
             menus[item] = gtk.MenuItem(item)
             self.menu.append(menus[item])
             if cb is not None:
@@ -200,6 +224,14 @@ class Simple_table_mw(Mucked.Seat_Window):
         self.show_all()
         self.hud.table.topify(self)
 
+    def create_menu_items(self):
+        # A tuple of menu items
+        return  (  ('Kill This HUD', self.kill),  #self.hud.parent.kill_hud),
+                        ('Save HUD Layout', self.save_current_layouts), 
+#                        ('Reposition Windows', self.aw.reposition_windows), 
+                        ('Show Player Stats', None)
+                     )
+                     
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the main window event box."""
 
