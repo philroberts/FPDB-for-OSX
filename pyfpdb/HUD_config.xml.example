@@ -1284,6 +1284,7 @@ Left-Drag to Move"
         <hhc site="Cake" converter="CakeToFpdb"/>
         <hhc site="Entraction" converter="EntractionToFpdb"/>
         <hhc site="BetOnline" converter="BetOnlineToFpdb"/>
+        <hhc site="Microgaming" converter="MicrogamingToFpdb"/>
     </hhcs>
 
     <raw_hands save="none" compression="none"/>
