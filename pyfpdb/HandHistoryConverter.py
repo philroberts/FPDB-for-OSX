@@ -571,7 +571,7 @@ or None if we fail to get the info """
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         "Returns string to search in windows titles"
         if type=="tour":
-            return re.escape("%s.+Table %s" % (tournament, table_number))
+            return ( re.escape(str(tournament)) + ".+\\Table " + re.escape(str(table_number)) )
         else:
             return re.escape(table_name)
 
