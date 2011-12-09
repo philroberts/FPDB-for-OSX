@@ -103,6 +103,9 @@ class Classic_stat(Aux_Hud.Simple_stat):
         self.click = game_stat_config.click
         self.popup = game_stat_config.popup
         self.tip = game_stat_config.tip
+        self.hudprefix = game_stat_config.hudprefix
+        self.hudsuffix = game_stat_config.hudsuffix
+                
         try: 
             self.stat_locolor = gtk.gdk.Color(game_stat_config.stat_locolor)
             self.stat_loth = game_stat_config.stat_loth
@@ -130,6 +133,9 @@ class Classic_stat(Aux_Hud.Simple_stat):
                 fg=self.stat_hicolor
         self.set_color(fg=fg,bg=None)
         
+        statstring = "%s%s%s" % (self.hudprefix, str(self.number[1]), self.hudsuffix)
+        self.lab.set_text(statstring)
+        
         tip = "%s\n%s\n%s, %s" % (stat_dict[player_id]['screen_name'], self.number[5], self.number[3], self.number[4])
         Stats.do_tip(self.widget, tip)
         
@@ -150,7 +156,7 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
         self.menu_label = hud.config.get_hud_ui_parameters()['label']
         super(Classic_table_mw, self).__init__(hud, aw)
 
-    def create_menu_item_build_list(self):
+    def create_menu_items(self):
         # A tuple of menu items
         return  (  ('Kill This HUD', self.kill),  #self.hud.parent.kill_hud),
                         ('Save HUD Layout', self.save_current_layouts), 

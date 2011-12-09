@@ -46,10 +46,6 @@ class Stat_Window(Mucked.Seat_Window):
         self.modify_bg(gtk.STATE_NORMAL, self.aw.bgcolor)
 
         self.stat_box = [ [None]*self.aw.ncols for i in range(self.aw.nrows) ]
-        
-        #print "config?!"
-        #print type(self.aw.config.supported_games[self.aw.poker_game]).stats#[self.stats[r][c]])
-        #print (self.aw.poker_game)
 
         for r in xrange(self.aw.nrows):
             for c in xrange(self.aw.ncols):
@@ -79,13 +75,6 @@ class Simple_HUD(Mucked.Aux_Seats):
 #    Save everything you need to know about the hud as attrs.
 #    That way a subclass doesn't have to grab them.
 #    Also, the subclass can override any of these attributes
-        #print str(params)
-        '''
-        {'opacity': u'0.7', 'font_size': u'8', 'name': u'Classic_HUD', 'module': u'Aux_Classic_Hud', 
-        'fgcolor': u'#FFFFFF', 'bgcolor': u'#000000', 
-        'layout': {9: <Configuration.Layout instance at 0xae4ef6c>, 10: <Configuration.Layout instance at 0xae4efcc>, 6: <Configuration.Layout instance at 0xae4ef0c>},
-         'font': u'Sans', 'class': u'Classic_HUD'}
-        '''
         self.poker_game  = self.hud.poker_game
         self.game_params = self.hud.config.get_game_parameters(self.hud.poker_game)
         self.game        = self.hud.config.supported_games[self.hud.poker_game]
@@ -143,7 +132,7 @@ class Simple_stat(object):
         self.eb.aw_seat = seat
         self.eb.aw_popup = popup
         self.eb.stat_dict = None
-        self.lab = Simple_label(self.stat)
+        self.lab = Simple_label("xxx") # xxx is used as initial value because label does't shrink
         self.eb.add(self.lab)
         self.widget = self.eb
         self.stat_dict = None
@@ -184,9 +173,6 @@ class Simple_table_mw(Mucked.Seat_Window):
         Mucked.Seat_Window.__init__(self, aw)
         #####super(Simple_table_mw, self).__init__(aw)
         self.hud = hud
-        #print dir(hud)
-        #print dir(self)
-        #print dir(aw)
 #        self.set_skip_taskbar_hint(True)  # invisible to taskbar
 #        self.set_gravity(gtk.gdk.GRAVITY_STATIC)
 #        self.set_decorated(False)    # kill titlebars
