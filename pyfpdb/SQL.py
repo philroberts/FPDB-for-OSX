@@ -1399,6 +1399,7 @@ class Sql:
                         foldToStreet4CBDone INT,
                         
                         totalProfit INT,
+                        rake INT,
                         
                         street1CheckCallRaiseChance INT,
                         street1CheckCallRaiseDone INT,
@@ -1511,6 +1512,7 @@ class Sql:
                         foldToStreet4CBDone INT,
 
                         totalProfit INT,
+                        rake INT,
 
                         street1CheckCallRaiseChance INT,
                         street1CheckCallRaiseDone INT,
@@ -1622,6 +1624,7 @@ class Sql:
                         foldToStreet4CBDone INT,
 
                         totalProfit INT,
+                        rake INT,
 
                         street1CheckCallRaiseChance INT,
                         street1CheckCallRaiseDone INT,
@@ -4257,6 +4260,7 @@ class Sql:
                 ,foldToStreet4CBChance
                 ,foldToStreet4CBDone
                 ,totalProfit
+                ,rake
                 ,street1CheckCallRaiseChance
                 ,street1CheckCallRaiseDone
                 ,street2CheckCallRaiseChance
@@ -4354,6 +4358,7 @@ class Sql:
                       ,sum(foldToStreet4CBChance)
                       ,sum(foldToStreet4CBDone)
                       ,sum(totalProfit)
+                      ,sum(rake)
                       ,sum(street1CheckCallRaiseChance)
                       ,sum(street1CheckCallRaiseDone)
                       ,sum(street2CheckCallRaiseChance)
@@ -4464,6 +4469,7 @@ class Sql:
                 ,foldToStreet4CBChance
                 ,foldToStreet4CBDone
                 ,totalProfit
+                ,rake
                 ,street1CheckCallRaiseChance
                 ,street1CheckCallRaiseDone
                 ,street2CheckCallRaiseChance
@@ -4561,6 +4567,7 @@ class Sql:
                       ,sum(CAST(foldToStreet4CBChance as integer))
                       ,sum(CAST(foldToStreet4CBDone as integer))
                       ,sum(CAST(totalProfit as integer))
+                      ,sum(CAST(rake as integer))
                       ,sum(CAST(street1CheckCallRaiseChance as integer))
                       ,sum(CAST(street1CheckCallRaiseDone as integer))
                       ,sum(CAST(street2CheckCallRaiseChance as integer))
@@ -4671,6 +4678,7 @@ class Sql:
                 ,foldToStreet4CBChance
                 ,foldToStreet4CBDone
                 ,totalProfit
+                ,rake
                 ,street1CheckCallRaiseChance
                 ,street1CheckCallRaiseDone
                 ,street2CheckCallRaiseChance
@@ -4768,6 +4776,7 @@ class Sql:
                       ,sum(CAST(foldToStreet4CBChance as integer))
                       ,sum(CAST(foldToStreet4CBDone as integer))
                       ,sum(CAST(totalProfit as integer))
+                      ,sum(CAST(rake as integer))
                       ,sum(CAST(street1CheckCallRaiseChance as integer))
                       ,sum(CAST(street1CheckCallRaiseDone as integer))
                       ,sum(CAST(street2CheckCallRaiseChance as integer))
@@ -4878,6 +4887,7 @@ class Sql:
                 foldToStreet4CBChance,
                 foldToStreet4CBDone,
                 totalProfit,
+                rake,
                 street1CheckCallRaiseChance,
                 street1CheckCallRaiseDone,
                 street2CheckCallRaiseChance,
@@ -4920,7 +4930,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s)"""
+                    %s, %s)"""
 
         self.query['update_hudcache'] = """
             UPDATE HudCache SET
@@ -4991,6 +5001,7 @@ class Sql:
             foldToStreet4CBChance=foldToStreet4CBChance+%s,
             foldToStreet4CBDone=foldToStreet4CBDone+%s,
             totalProfit=totalProfit+%s,
+            rake=rake+%s,
             street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
             street1CheckCallRaiseDone=street1CheckCallRaiseDone+%s,
             street2CheckCallRaiseChance=street2CheckCallRaiseChance+%s,
