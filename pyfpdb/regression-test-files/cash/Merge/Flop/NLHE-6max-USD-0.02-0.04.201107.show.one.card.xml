@@ -1,0 +1,35 @@
+<description type="Holdem" stakes="No Limit ($0.02/$0.04)"/>
+<game id="35368081-1133" starttime="20110531030610" numholecards="2" gametype="2" realmoney="true" data="20110531|Santiago (35368081)|35368081|35368081-1133|false">
+	<players dealer="3">
+		<player seat="0" nickname="Hero" balance="$5.05" dealtin="true" />
+		<player seat="1" nickname="Player4" balance="$13.28" dealtin="true" />
+		<player seat="3" nickname="Player1" balance="$11.98" dealtin="true" />
+		<player seat="4" nickname="Player3" balance="$4.06" dealtin="true" />
+		<player seat="5" nickname="Player0" balance="$6.72" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1306829175748" player="4" amount="0.02"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1306829176149" player="5" amount="0.04"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1306829178833" player="0"/>
+		<event sequence="4" type="CALL" timestamp="1306829180953" player="1" amount="0.04"/>
+		<event sequence="5" type="FOLD" timestamp="1306829183385" player="3"/>
+		<event sequence="6" type="FOLD" timestamp="1306829188444" player="4"/>
+		<event sequence="7" type="CHECK" timestamp="1306829191428" player="5"/>
+		<cards type="HOLE" cards="Qc,3d" player="0" hand="Queen High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="8" type="CHECK" timestamp="1306829193458" player="5"/>
+		<event sequence="9" type="BET" timestamp="1306829197567" player="1" amount="0.04"/>
+		<event sequence="10" type="FOLD" timestamp="1306829199738" player="5"/>
+		<cards type="COMMUNITY" cards="7s,Jc,Ad" hand="Ace High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="4">
+		<event sequence="11" type="SHOW" timestamp="1306829205066" player="1"/>
+		<cards type="SHOWN" cards="null,Ac" player="1"/>
+		<winner amount="0.14" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="5">
+	</round>
+</game>

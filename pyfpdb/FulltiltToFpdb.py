@@ -307,13 +307,13 @@ class Fulltilt(HandHistoryConverter):
                     timezone = a.group('TZ2')
                     hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%B/%d %H:%M")
                 if a.group('PARTIAL'):
-                    raise FpdbParseError(hid=m.group('HID'))
+                    raise FpdbHandPartial(hid=m.group('HID'))
 
             hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, timezone, "UTC")
 
         if m.group("CANCELLED") or m.group("PARTIAL"):
             # It would appear this can't be triggered as DATETIME is a bit greedy
-            raise FpdbParseError(hid=m.group('HID'))
+            raise FpdbHandPartial(hid=m.group('HID'))
 
         if m.group('TABLEATTRIBUTES'):
             m2 = self.re_Max.search(m.group('TABLEATTRIBUTES'))
@@ -336,7 +336,7 @@ class Fulltilt(HandHistoryConverter):
                     elif n.group('CURRENCY')==u"€":
                         hand.buyinCurrency="EUR"
                     else:
-                        hand.buyinCurrency="NA"
+                        hand.buyinCurrency="FREE"
                     hand.buyin = int(100*Decimal(n.group('BUYIN')))
                     hand.fee = int(100*Decimal(n.group('FEE')))
                 if n.group('TURBO') is not None :
@@ -387,7 +387,7 @@ class Fulltilt(HandHistoryConverter):
 
         if plist == {}:
             #No players! The hand is either missing stacks or everyone is sitting out
-            raise FpdbParseError(_("No players detected in hand %s.") % hand.handid)
+            raise FpdbHandPartial(_("No players detected in hand %s.") % hand.handid)
 
 
     def markStreets(self, hand):
@@ -468,7 +468,7 @@ class Fulltilt(HandHistoryConverter):
             hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
         except AttributeError, e:
             # FTP has no indication that a hand is cancelled.
-            raise FpdbParseError(_("%s Failed to detect button (hand #%s cancelled?)") % ("readButton:", hand.handid))
+            raise FpdbHandPartial(_("%s Failed to detect button (hand #%s cancelled?)") % ("readButton:", hand.handid))
 
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause

@@ -1,0 +1,31 @@
+<description type="Holdem" stakes="No Limit ($0.02/$0.04)"/>
+<game id="34717229-304" starttime="20110517172454" numholecards="2" gametype="2" realmoney="true" data="20110517|Santiago (34717229)|34717229|34717229-304|false">
+	<players dealer="3">
+		<player seat="0" nickname="Hero" balance="$8.48" dealtin="false" />
+		<player seat="1" nickname="Player4" balance="$1.40" dealtin="false" />
+		<player seat="2" nickname="Player2" balance="$4.00" dealtin="false" />
+		<player seat="3" nickname="Player1" balance="$1.71" dealtin="false" />
+		<player seat="4" nickname="Player3" balance="$5.70" dealtin="false" />
+		<player seat="5" nickname="Player0" balance="$7.76" dealtin="false" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1305671098365" player="4" amount="0.02"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1305671098365" player="5" amount="0.04"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="CALL" timestamp="1305671110379" player="0" amount="0.04"/>
+		<event sequence="4" type="RAISE" timestamp="1305671118454" player="1" amount="0.13"/>
+		<event sequence="5" type="FOLD" timestamp="1305671119904" player="2"/>
+		<event sequence="6" type="FOLD" timestamp="1305671119904" player="3"/>
+		<event sequence="7" type="FOLD" timestamp="1305671122212" player="4"/>
+		<event sequence="8" type="FOLD" timestamp="1305671130229" player="5"/>
+		<event sequence="9" type="FOLD" timestamp="1305671141221" player="0"/>
+		<cards type="HOLE" cards="Td,8h" player="0" hand="Ten High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="10" type="MUCK" timestamp="1305671144330" player="1"/>
+		<winner amount="0.23" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>

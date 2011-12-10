@@ -1,0 +1,803 @@
+
+
+
+BetOnline Poker Game #900202143: Hold'em No Limit ($0.25/0.50) - 2011/08/07 14:59 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #9 is the button
+Seat 9: Player0 (55.58 in chips) - The button
+Seat 7: Player5 (33.96 in chips)
+Seat 6: Player11 (77.58 in chips)
+Seat 5: Player8 (0.00 in chips) - Sitting out
+Seat 4: Player7 (5.05 in chips) - Sitting out
+Seat 2: Player10 (18.48 in chips)
+Seat 1: Player3 (22.87 in chips) - Big Blind
+Seat 0: Player4 (23.50 in chips) - Small Blind
+Seat 3: Player2 (25.00 in chips)
+Seat 8: Player9 (25.00 in chips)
+Player4: posts small blind 0.25
+Player3: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 []
+Player10: folds
+Player11: folds
+Player5: folds
+Player0: folds
+Player4: calls 0.25
+Player3: checks
+*** FLOP *** [Qc 4c 8h]
+Player7 has left the table
+Player4: checks
+Player3: checks
+*** TURN *** [Qc 4c 8h][Ah]
+Player4: bets 0.50
+Player1 joins the table at seat #4
+Player3: folds
+Uncalled bet (0.50) returned to Player4
+*** SUMMARY *** 
+Total pot 0.95 | Rake 0.05
+Board [Qc 4c 8h Ah]
+Total pot 0.95 | Rake 0.05
+Board [Qc 4c 8h Ah]
+Seat 9: Player0 folded before Flop
+Seat 7: Player5 folded before Flop
+Seat 6: Player11 folded before Flop
+Seat 2: Player10 folded before Flop
+Seat 1: Player3 folded on the Turn
+Seat 0: Player4 collected (0.95)
+Seat 3: Player2 collected (0.00)
+Seat 8: Player9 collected (0.00)
+
+
+
+BetOnline Poker Game #900202264: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:00 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #0 is the button
+Seat 9: Player0 (55.58 in chips)
+Seat 7: Player5 (33.96 in chips)
+Seat 6: Player11 (77.58 in chips)
+Seat 5: Player8 (5.00 in chips)
+Seat 2: Player10 (18.48 in chips) - Big Blind
+Seat 1: Player3 (22.37 in chips) - Small Blind
+Seat 0: Player4 (23.95 in chips) - The button
+Seat 3: Player2 (25.00 in chips)
+Seat 8: Player9 (25.00 in chips)
+Seat 4: Player1 (9.00 in chips)
+Player3: posts small blind 0.25
+Player10: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 []
+Player8: raises 2.50 to 2.50
+Player11: folds
+Player5: folds
+Player0: folds
+Player4: folds
+Player3: folds
+Player10: folds
+Uncalled bet (2.00) returned to Player8
+*** SUMMARY *** 
+Total pot 1.25 | Rake 0.00
+Board []
+Total pot 1.25 | Rake 0.00
+Board []
+Seat 9: Player0 folded before Flop
+Seat 7: Player5 folded before Flop
+Seat 6: Player11 folded before Flop
+Seat 5: Player8 collected (1.25)
+Seat 2: Player10 folded before Flop
+Seat 1: Player3 folded before Flop
+Seat 0: Player4 folded before Flop
+Seat 3: Player2 collected (0.00)
+Seat 8: Player9 collected (0.00)
+Seat 4: Player1 collected (0.00)
+
+
+
+BetOnline Poker Game #900202374: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:01 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #1 is the button
+Seat 9: Player0 (55.58 in chips)
+Seat 7: Player5 (33.96 in chips)
+Seat 6: Player11 (77.58 in chips)
+Seat 5: Player8 (5.75 in chips)
+Seat 2: Player10 (17.98 in chips) - Small Blind
+Seat 1: Player3 (22.12 in chips) - The button
+Seat 0: Player4 (23.95 in chips)
+Seat 3: Player2 (25.00 in chips) - Big Blind
+Seat 8: Player9 (25.00 in chips)
+Seat 4: Player1 (9.00 in chips)
+Player10: posts small blind 0.25
+Player2: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 [8s Kd]
+Player8: raises 5.75 to 5.75 and is all in
+Player11: folds
+Player5: folds
+Player0: folds
+Player4: folds
+Player3: folds
+Player10: folds
+Player2: folds
+Uncalled bet (5.25) returned to Player8
+*** SUMMARY *** 
+Total pot 1.25 | Rake 0.00
+Board []
+Total pot 1.25 | Rake 0.00
+Board []
+Seat 9: Player0 folded before Flop
+Seat 7: Player5 folded before Flop
+Seat 6: Player11 folded before Flop
+Seat 5: Player8 collected (1.25)
+Seat 2: Player10 folded before Flop
+Seat 1: Player3 folded before Flop
+Seat 0: Player4 folded before Flop
+Seat 3: Player2 folded before Flop
+Seat 8: Player9 collected (0.00)
+Seat 4: Player1 collected (0.00)
+
+
+
+BetOnline Poker Game #900202587: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:01 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #2 is the button
+Seat 9: Player0 (55.58 in chips)
+Seat 7: Player5 (33.96 in chips)
+Seat 6: Player11 (77.58 in chips)
+Seat 5: Player8 (6.50 in chips)
+Seat 2: Player10 (17.73 in chips) - The button
+Seat 1: Player3 (22.12 in chips)
+Seat 0: Player4 (23.95 in chips)
+Seat 3: Player2 (24.50 in chips) - Small Blind
+Seat 8: Player9 (25.00 in chips)
+Seat 4: Player1 (9.00 in chips) - Big Blind
+Player2: posts small blind 0.25
+Player1: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 [8s 2h]
+Player8: raises 1.00 to 1.00
+Player11: folds
+Player5: calls 1.00
+Player0: folds
+Player4: folds
+Player3: folds
+Player10: folds
+Player2: folds
+Player1: folds
+*** FLOP *** [3d 7d 6c]
+Player8: bets 2.75
+Player5: raises 5.50 to 5.50
+Player8: calls 2.75
+*** SHOW DOWN *** 
+Player5 shows Ah Jh
+Player8 shows Qh Ks
+*** SUMMARY *** 
+Total pot 13.07 | Rake 0.68
+Board [3d 7d 6c 10h Jc]
+Seat 9: Player0 folded before Flop
+Seat 7: Player5 showed [Ah Jh] and won (13.07)
+Seat 6: Player11 folded before Flop
+Seat 5: Player8 showed [Qh Ks] but did not win
+Seat 2: Player10 folded before Flop
+Seat 1: Player3 folded before Flop
+Seat 0: Player4 folded before Flop
+Seat 3: Player2 folded before Flop
+Seat 8: Player9 collected (0.00)
+Seat 4: Player1 folded before Flop
+Player8 has left the table
+
+
+
+BetOnline Poker Game #900202762: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:02 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #3 is the button
+Seat 9: Player0 (55.58 in chips)
+Seat 7: Player5 (40.53 in chips)
+Seat 6: Player11 (77.58 in chips) - Big Blind
+Seat 2: Player10 (17.73 in chips)
+Seat 1: Player3 (22.12 in chips)
+Seat 0: Player4 (23.95 in chips)
+Seat 3: Player2 (24.25 in chips) - The button
+Seat 8: Player9 (25.00 in chips)
+Seat 4: Player1 (8.50 in chips) - Small Blind
+Player1: posts small blind 0.25
+Player11: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 [7c 5h]
+Player5: folds
+Player0: folds
+Player4: folds
+Player3: folds
+Player10: raises 1.00 to 1.00
+Player2: folds
+Player1: folds
+Player11: folds
+Uncalled bet (0.50) returned to Player10
+*** SUMMARY *** 
+Total pot 1.25 | Rake 0.00
+Board []
+Total pot 1.25 | Rake 0.00
+Board []
+Seat 9: Player0 folded before Flop
+Seat 7: Player5 folded before Flop
+Seat 6: Player11 folded before Flop
+Seat 2: Player10 collected (1.25)
+Seat 1: Player3 folded before Flop
+Seat 0: Player4 folded before Flop
+Seat 3: Player2 folded before Flop
+Seat 8: Player9 collected (0.00)
+Seat 4: Player1 folded before Flop
+
+
+
+BetOnline Poker Game #900202861: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:03 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #4 is the button
+Seat 9: Player0 (55.58 in chips)
+Seat 7: Player5 (40.53 in chips) - Big Blind
+Seat 6: Player11 (77.08 in chips) - Small Blind
+Seat 2: Player10 (18.48 in chips)
+Seat 1: Player3 (22.12 in chips)
+Seat 0: Player4 (23.95 in chips)
+Seat 3: Player2 (24.25 in chips)
+Seat 8: Player9 (25.00 in chips)
+Seat 4: Player1 (8.25 in chips) - The button
+Player11: posts small blind 0.25
+Player6 joins the table at seat #5
+Player5: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 [Kc 4s]
+Player0: folds
+Player4: folds
+Player3: folds
+Player10: calls 0.50
+Player2: folds
+Player1: folds
+Player11: calls 0.25
+Player5: checks
+*** FLOP *** [8s Ad 2s]
+Player11: checks
+Player5: bets 0.50
+Player10: calls 0.50
+Player11: folds
+*** TURN *** [8s Ad 2s][5s]
+Player5: checks
+Player10: bets 1.00
+Player5: folds
+Uncalled bet (1.00) returned to Player10
+*** SUMMARY *** 
+Total pot 2.38 | Rake 0.12
+Board [8s Ad 2s 5s]
+Total pot 2.38 | Rake 0.12
+Board [8s Ad 2s 5s]
+Seat 9: Player0 folded before Flop
+Seat 7: Player5 folded on the Turn
+Seat 6: Player11 folded on the Flop
+Seat 2: Player10 collected (2.38)
+Seat 1: Player3 folded before Flop
+Seat 0: Player4 folded before Flop
+Seat 3: Player2 folded before Flop
+Seat 8: Player9 collected (0.00)
+Seat 4: Player1 folded before Flop
+
+
+
+BetOnline Poker Game #900203093: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:04 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #6 is the button
+Seat 9: Player0 (55.58 in chips) - Big Blind
+Seat 7: Player5 (39.53 in chips)
+Seat 6: Player11 (76.58 in chips) - The button
+Seat 2: Player10 (19.86 in chips)
+Seat 1: Player3 (22.12 in chips)
+Seat 0: Player4 (23.95 in chips)
+Seat 3: Player2 (24.25 in chips)
+Seat 8: Player9 (25.00 in chips) - Small Blind
+Seat 4: Player1 (8.25 in chips)
+Seat 5: Player6 (25.00 in chips)
+Player9: posts big blind 0.50
+Player6: post now 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 [5h 2c]
+Player0: folds
+Player4: folds
+Player3: folds
+Player10: folds
+Player2: folds
+Player1: raises 2.50 to 2.50
+Player6: folds
+Player11: folds
+Player9: folds
+Uncalled bet (2.00) returned to Player1
+*** SUMMARY *** 
+Total pot 1.50 | Rake 0.00
+Board []
+Total pot 1.50 | Rake 0.00
+Board []
+Seat 9: Player0 folded before Flop
+Seat 7: Player5 collected (0.00)
+Seat 6: Player11 folded before Flop
+Seat 2: Player10 folded before Flop
+Seat 1: Player3 folded before Flop
+Seat 0: Player4 folded before Flop
+Seat 3: Player2 folded before Flop
+Seat 8: Player9 folded before Flop
+Seat 4: Player1 collected (1.50)
+Seat 5: Player6 folded before Flop
+
+
+
+BetOnline Poker Game #900203361: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:05 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #7 is the button
+Seat 9: Player0 (55.58 in chips) - Big Blind
+Seat 7: Player5 (39.53 in chips) - The button
+Seat 6: Player11 (76.58 in chips)
+Seat 2: Player10 (19.86 in chips)
+Seat 1: Player3 (22.12 in chips)
+Seat 0: Player4 (23.95 in chips)
+Seat 3: Player2 (24.25 in chips)
+Seat 8: Player9 (24.50 in chips) - Small Blind
+Seat 4: Player1 (9.25 in chips)
+Seat 5: Player6 (24.50 in chips)
+Player9: posts small blind 0.25
+Player0: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 [9d As]
+Player4: folds
+Player3: folds
+Player10: folds
+Player2: folds
+Player1: folds
+Player6: folds
+Player11: folds
+Player9: calls 0.25
+Player0: checks
+*** FLOP *** [6d 5h 8d]
+Player9: bets 0.50
+Player0: calls 0.50
+*** TURN *** [6d 5h 8d][Kc]
+Player9: bets 1.00
+Player0: calls 1.00
+*** RIVER *** [6d 5h 8d Kc][Qd]
+Player9: checks
+Player0: bets 3.80
+Player9: folds
+Uncalled bet (3.80) returned to Player0
+*** SUMMARY *** 
+Total pot 3.80 | Rake 0.20
+Board [6d 5h 8d Kc Qd]
+Total pot 3.80 | Rake 0.20
+Board [6d 5h 8d Kc Qd]
+Seat 9: Player0 collected (3.80)
+Seat 7: Player5 collected (0.00)
+Seat 6: Player11 folded before Flop
+Seat 2: Player10 folded before Flop
+Seat 1: Player3 folded before Flop
+Seat 0: Player4 folded before Flop
+Seat 3: Player2 folded before Flop
+Seat 8: Player9 folded on the River
+Seat 4: Player1 folded before Flop
+Seat 5: Player6 folded before Flop
+
+
+
+BetOnline Poker Game #900203618: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:06 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #8 is the button
+Seat 9: Player0 (57.38 in chips) - Small Blind
+Seat 7: Player5 (39.53 in chips)
+Seat 6: Player11 (76.58 in chips)
+Seat 2: Player10 (19.86 in chips)
+Seat 1: Player3 (22.12 in chips)
+Seat 0: Player4 (23.95 in chips) - Big Blind
+Seat 3: Player2 (24.25 in chips)
+Seat 8: Player9 (22.50 in chips) - The button
+Seat 4: Player1 (9.25 in chips)
+Seat 5: Player6 (24.50 in chips)
+Player0: posts small blind 0.25
+Player4: posts big blind 0.50
+Player5: post dead 0.00
+*** HOLE CARDS *** 
+Dealt to Player2 [Kd 6s]
+Player3: raises 3.50 to 3.50
+Player10: folds
+Player2: folds
+Player1: folds
+Player6: folds
+Player11: folds
+Player5: raises 6.50 to 6.50
+Player9: folds
+Player0: folds
+Player4: folds
+Player3: raises 18.62 to 22.12 and is all in
+Player5: calls 15.62
+*** SHOW DOWN *** 
+Player5 shows Js As
+Player3 shows Ks Ah
+*** SUMMARY *** 
+Total pot 42.98 | Rake 2.26
+Board [Qh 7c Qc 4h Ac]
+Seat 9: Player0 folded before Flop
+Seat 7: Player5 showed [Js As] but did not win
+Seat 6: Player11 folded before Flop
+Seat 2: Player10 folded before Flop
+Seat 1: Player3 showed [Ks Ah] and won (42.98)
+Seat 0: Player4 folded before Flop
+Seat 3: Player2 folded before Flop
+Seat 8: Player9 folded before Flop
+Seat 4: Player1 folded before Flop
+Seat 5: Player6 folded before Flop
+
+
+
+BetOnline Poker Game #900203897: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:07 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #9 is the button
+Seat 9: Player0 (57.13 in chips) - The button
+Seat 7: Player5 (17.16 in chips)
+Seat 6: Player11 (76.58 in chips)
+Seat 2: Player10 (19.86 in chips)
+Seat 1: Player3 (42.98 in chips) - Big Blind
+Seat 0: Player4 (23.45 in chips) - Small Blind
+Seat 3: Player2 (24.25 in chips)
+Seat 8: Player9 (22.50 in chips)
+Seat 4: Player1 (9.25 in chips)
+Seat 5: Player6 (24.50 in chips)
+Player4: posts small blind 0.25
+Player3: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 [7c 7d]
+Player10: raises 2.00 to 2.00
+Player2: folds
+Player1: folds
+Player6: folds
+Player11: folds
+Player5: calls 2.00
+Player9: folds
+Player0: folds
+Player4: folds
+Player3: calls 1.50
+*** FLOP *** [Qs 9d 10d]
+Player3: checks
+Player10: bets 6.25
+Player5: calls 6.25
+Player3: folds
+*** TURN *** [Qs 9d 10d][5c]
+Player10: bets 11.61
+Player5: calls 8.91
+Uncalled bet (2.70) returned to Player10
+*** SHOW DOWN *** 
+Player5 shows 9h 6d
+Player10 shows Kc Qd
+*** SUMMARY *** 
+Total pot 34.75 | Rake 1.82
+Board [Qs 9d 10d 5c 4s]
+Seat 9: Player0 folded before Flop
+Seat 7: Player5 showed [9h 6d] but did not win
+Seat 6: Player11 folded before Flop
+Seat 2: Player10 showed [Kc Qd] and won (34.75)
+Seat 1: Player3 folded on the Flop
+Seat 0: Player4 folded before Flop
+Seat 3: Player2 folded before Flop
+Seat 8: Player9 folded before Flop
+Seat 4: Player1 folded before Flop
+Seat 5: Player6 folded before Flop
+
+
+
+BetOnline Poker Game #900204250: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:08 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #0 is the button
+Seat 9: Player0 (57.13 in chips)
+Seat 7: Player5 (0.00 in chips)
+Seat 6: Player11 (76.58 in chips)
+Seat 2: Player10 (37.45 in chips) - Big Blind
+Seat 1: Player3 (40.98 in chips) - Small Blind
+Seat 0: Player4 (23.20 in chips) - The button
+Seat 3: Player2 (24.25 in chips)
+Seat 8: Player9 (22.50 in chips)
+Seat 4: Player1 (9.25 in chips)
+Seat 5: Player6 (24.50 in chips)
+Player3: posts small blind 0.25
+Player10: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 [9h 10h]
+Player2: folds
+Player1: folds
+Player6: folds
+Player11: folds
+Player5: raises 3.59 to 3.59
+Player9: folds
+Player0: folds
+Player4: folds
+Player3: calls 3.34
+Player10: folds
+*** FLOP *** [3h 8d 5h]
+Player3: checks
+Player5: checks
+*** TURN *** [3h 8d 5h][Qh]
+Player10 has left the table
+Player3: bets 3.50
+Player5: calls 3.50
+*** RIVER *** [3h 8d 5h Qh][Ad]
+Player3: bets 10.00
+Player5: folds
+Uncalled bet (10.00) returned to Player3
+*** SUMMARY *** 
+Total pot 13.95 | Rake 0.73
+Board [3h 8d 5h Qh Ad]
+Total pot 13.95 | Rake 0.73
+Board [3h 8d 5h Qh Ad]
+Seat 9: Player0 folded before Flop
+Seat 7: Player5 folded on the River
+Seat 6: Player11 folded before Flop
+Seat 1: Player3 collected (13.95)
+Seat 0: Player4 folded before Flop
+Seat 3: Player2 folded before Flop
+Seat 8: Player9 folded before Flop
+Seat 4: Player1 folded before Flop
+Seat 5: Player6 folded before Flop
+
+
+
+BetOnline Poker Game #900204578: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:09 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #1 is the button
+Seat 9: Player0 (57.13 in chips)
+Seat 7: Player5 (17.91 in chips)
+Seat 6: Player11 (76.58 in chips)
+Seat 1: Player3 (47.84 in chips) - The button
+Seat 0: Player4 (23.20 in chips)
+Seat 3: Player2 (24.25 in chips) - Small Blind
+Seat 8: Player9 (22.50 in chips)
+Seat 4: Player1 (9.25 in chips) - Big Blind
+Seat 5: Player6 (24.50 in chips)
+Player2: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 [10d Ac]
+Player5 has left the table
+Player1: folds
+Player1 has left the table
+Player6: folds
+Player11: folds
+Player9: folds
+Player0: folds
+Player4: folds
+Player3: raises 3.25 to 3.25
+Player2: folds
+Uncalled bet (2.75) returned to Player3
+*** SUMMARY *** 
+Total pot 1.00 | Rake 0.00
+Board []
+Total pot 1.00 | Rake 0.00
+Board []
+Seat 9: Player0 folded before Flop
+Seat 6: Player11 folded before Flop
+Seat 1: Player3 collected (1.00)
+Seat 0: Player4 folded before Flop
+Seat 3: Player2 folded before Flop
+Seat 8: Player9 folded before Flop
+Seat 5: Player6 folded before Flop
+
+
+
+BetOnline Poker Game #900204711: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:10 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #2 is the button
+Seat 9: Player0 (57.13 in chips)
+Seat 6: Player11 (76.58 in chips)
+Seat 1: Player3 (48.34 in chips)
+Seat 0: Player4 (23.20 in chips)
+Seat 3: Player2 (23.75 in chips) - Small Blind
+Seat 8: Player9 (22.50 in chips)
+Seat 5: Player6 (24.50 in chips) - Big Blind
+Player2: posts small blind 0.25
+Player6: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 [9c 9h]
+Player11: calls 0.50
+Player9: folds
+Player0: folds
+Player4: raises 1.50 to 1.50
+Player3: folds
+Player2: calls 1.25
+Player6: folds
+Player11: calls 1.00
+*** FLOP *** [8h 3h 6c]
+Player2: bets 3.00
+Player11: folds
+Player11 has left the table
+Player4: folds
+Uncalled bet (3.00) returned to Player2
+Player2 shows 9c 9h
+*** SUMMARY *** 
+Total pot 4.75 | Rake 0.25
+Board [8h 3h 6c]
+Player2 shows 9c 9h
+Total pot 4.75 | Rake 0.25
+Board [8h 3h 6c]
+Seat 9: Player0 folded before Flop
+Seat 1: Player3 folded before Flop
+Seat 0: Player4 folded on the Flop
+Seat 3: Player2 showed [9c 9h] and won (4.75)
+Seat 8: Player9 folded before Flop
+Seat 5: Player6 folded before Flop
+
+
+
+BetOnline Poker Game #900204952: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:11 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #3 is the button
+Seat 9: Player0 (57.13 in chips)
+Seat 1: Player3 (48.34 in chips)
+Seat 0: Player4 (21.70 in chips)
+Seat 3: Player2 (27.00 in chips) - The button
+Seat 8: Player9 (22.50 in chips) - Big Blind
+Seat 5: Player6 (24.00 in chips) - Small Blind
+Player6: posts small blind 0.25
+Player9: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 [Ac 7c]
+Player0: calls 0.50
+Player4: calls 0.50
+Player3: raises 5.00 to 5.00
+Player2: folds
+Player6: folds
+Player0 has left the table
+Player9: folds
+Player4: folds
+Uncalled bet (4.50) returned to Player3
+*** SUMMARY *** 
+Total pot 2.25 | Rake 0.00
+Board []
+Total pot 2.25 | Rake 0.00
+Board []
+Seat 1: Player3 collected (2.25)
+Seat 0: Player4 folded before Flop
+Seat 3: Player2 folded before Flop
+Seat 8: Player9 folded before Flop
+Seat 5: Player6 folded before Flop
+
+
+
+BetOnline Poker Game #900205080: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:11 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #5 is the button
+Seat 1: Player3 (50.09 in chips)
+Seat 0: Player4 (21.20 in chips) - Big Blind
+Seat 3: Player2 (27.00 in chips)
+Seat 8: Player9 (22.00 in chips) - Small Blind
+Seat 5: Player6 (23.75 in chips) - The button
+Player9: posts small blind 0.25
+Player4: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 [Ks 2s]
+Player3: folds
+Player2: folds
+Player6: raises 1.50 to 1.50
+Player9: folds
+Player4: folds
+Uncalled bet (1.00) returned to Player6
+*** SUMMARY *** 
+Total pot 1.25 | Rake 0.00
+Board []
+Total pot 1.25 | Rake 0.00
+Board []
+Seat 1: Player3 folded before Flop
+Seat 0: Player4 folded before Flop
+Seat 3: Player2 folded before Flop
+Seat 8: Player9 folded before Flop
+Seat 5: Player6 collected (1.25)
+
+
+
+BetOnline Poker Game #900205218: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:11 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #8 is the button
+Seat 1: Player3 (50.09 in chips) - Big Blind
+Seat 0: Player4 (20.70 in chips) - Small Blind
+Seat 3: Player2 (27.00 in chips)
+Seat 8: Player9 (21.75 in chips) - The button
+Seat 5: Player6 (24.50 in chips)
+Player4: posts small blind 0.25
+Player3: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 [10s 6d]
+Player2: folds
+Player6: calls 0.50
+Player9: calls 0.50
+Player4: folds
+Player3: checks
+*** FLOP *** [6h 5h Qc]
+Player3: checks
+Player6: checks
+Player9: bets 1.74
+Player3: folds
+Player6: folds
+Uncalled bet (1.74) returned to Player9
+*** SUMMARY *** 
+Total pot 1.67 | Rake 0.08
+Board [6h 5h Qc]
+Total pot 1.67 | Rake 0.08
+Board [6h 5h Qc]
+Player6 has left the table
+Seat 1: Player3 folded on the Flop
+Seat 0: Player4 folded before Flop
+Seat 3: Player2 folded before Flop
+Seat 8: Player9 collected (1.67)
+
+
+
+BetOnline Poker Game #900205431: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:12 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #0 is the button
+Seat 1: Player3 (49.59 in chips) - Small Blind
+Seat 0: Player4 (20.45 in chips) - The button
+Seat 3: Player2 (27.00 in chips) - Big Blind
+Seat 8: Player9 (22.92 in chips)
+Player3: posts small blind 0.25
+Player2: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 [9d 4c]
+Player9: folds
+Player4: calls 0.50
+Player3: folds
+Player2: checks
+*** FLOP *** [4s 7d Qs]
+Player9 has left the table
+Player2: checks
+Player4: checks
+*** TURN *** [4s 7d Qs][Ah]
+Player2: checks
+Player4: checks
+*** RIVER *** [4s 7d Qs Ah][Ac]
+Player2: checks
+Player4: bets 1.19
+Player2: folds
+Uncalled bet (1.19) returned to Player4
+*** SUMMARY *** 
+Total pot 1.19 | Rake 0.06
+Board [4s 7d Qs Ah Ac]
+Total pot 1.19 | Rake 0.06
+Board [4s 7d Qs Ah Ac]
+Seat 1: Player3 folded before Flop
+Seat 0: Player4 collected (1.19)
+Seat 3: Player2 folded on the River
+
+
+
+BetOnline Poker Game #900205688: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:13 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #1 is the button
+Seat 1: Player3 (49.34 in chips) - The button
+Seat 0: Player4 (21.14 in chips) - Big Blind
+Seat 3: Player2 (26.50 in chips) - Small Blind
+Player2: posts small blind 0.25
+Player4: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 [8s 2c]
+Player3: folds
+Player2: folds
+Uncalled bet (0.25) returned to Player4
+*** SUMMARY *** 
+Total pot 0.50 | Rake 0.00
+Board []
+Total pot 0.50 | Rake 0.00
+Board []
+Seat 1: Player3 folded before Flop
+Seat 0: Player4 collected (0.50)
+Seat 3: Player2 folded before Flop
+
+
+
+BetOnline Poker Game #900205774: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:14 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #3 is the button
+Seat 1: Player3 (49.34 in chips) - Small Blind
+Seat 0: Player4 (21.39 in chips)
+Seat 3: Player2 (26.25 in chips) - The button
+Player3: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player2 [8c 8s]
+Player2: raises 1.50 to 1.50
+Player4 has left the table
+Player3: folds
+Uncalled bet (1.00) returned to Player2
+Player2 shows 8c 8s
+*** SUMMARY *** 
+Total pot 1.00 | Rake 0.00
+Board []
+Player2 shows 8c 8s
+Total pot 1.00 | Rake 0.00
+Board []
+Seat 1: Player3 folded before Flop
+Seat 3: Player2 showed [8c 8s] and won (1.00)
+
+
+
+BetOnline Poker Game #900205887: Hold'em No Limit ($0.25/0.50) - 2011/08/07 15:14 Eastern Daylight Time
+Table 'John Wayne (50bb)' 10-Max, Seat #1 is the button
+Seat 1: Player3 (48.84 in chips) - The button
+Seat 3: Player2 (26.75 in chips) - Small Blind
+Player3: posts small blind 0.25
+

@@ -26,7 +26,7 @@ import os
 import sys
 import traceback
 from time import *
-from datetime import datetime
+
 #import pokereval
 
 import fpdb_import
@@ -49,6 +49,12 @@ except ImportError, inst:
     print _("""Failed to load libs for graphing, graphing will not function. Please install numpy and matplotlib if you want to use graphs.""")
     print _("""This is of no consequence for other parts of the program, e.g. import and HUD are NOT affected by this problem.""")
     print "ImportError: %s" % inst.args
+
+# Must import datetime class AFTER matplotlib/numpy/pylab
+# because one of those modules messes-up the definition of datetime
+# and causes traceback on windows only when executing datetime.now()
+
+from datetime import datetime
 
 class GuiGraphViewer (threading.Thread):
 

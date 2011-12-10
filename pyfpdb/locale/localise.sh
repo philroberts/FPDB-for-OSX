@@ -13,10 +13,11 @@ msgmerge --update locale/fpdb-fr_FR.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-hu_HU.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-it_IT.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-lt_LT.po locale/fpdb-en_GB.pot
+msgmerge --update locale/fpdb-nl_NL.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-pl_PL.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-pt_BR.po locale/fpdb-en_GB.pot
-msgmerge --update locale/fpdb-ru_RU.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-ro_RO.po locale/fpdb-en_GB.pot
+msgmerge --update locale/fpdb-ru_RU.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-zh_CN.po locale/fpdb-en_GB.pot
 
 echo "checking translated files"
@@ -28,6 +29,7 @@ msgfmt -c --check-accelerators locale/fpdb-fr_FR.po
 msgfmt -c --check-accelerators locale/fpdb-hu_HU.po
 msgfmt -c --check-accelerators locale/fpdb-it_IT.po
 msgfmt -c --check-accelerators locale/fpdb-lt_LT.po
+msgfmt -c --check-accelerators locale/fpdb-nl_NL.po
 msgfmt -c --check-accelerators locale/fpdb-pl_PL.po
 msgfmt -c --check-accelerators locale/fpdb-pt_BR.po
 msgfmt -c --check-accelerators locale/fpdb-ro_RO.po
@@ -46,6 +48,7 @@ python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=loc
 python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/hu/LC_MESSAGES/fpdb.mo locale/fpdb-hu_HU.po
 python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/it/LC_MESSAGES/fpdb.mo locale/fpdb-it_IT.po
 python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/lt/LC_MESSAGES/fpdb.mo locale/fpdb-lt_LT.po
+python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/nl/LC_MESSAGES/fpdb.mo locale/fpdb-nl_NL.po
 python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/pl/LC_MESSAGES/fpdb.mo locale/fpdb-pl_PL.po
 python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/pt/LC_MESSAGES/fpdb.mo locale/fpdb-pt_BR.po
 python /usr/share/doc/python-2.*/examples/Tools/i18n/msgfmt.py --output-file=locale/ro/LC_MESSAGES/fpdb.mo locale/fpdb-ro_RO.po

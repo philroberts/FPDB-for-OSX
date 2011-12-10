@@ -170,6 +170,7 @@ def compare_hands_file(filename, importer, errors):
                     # Stats don't match. 
                     if (datum == "gametypeId" 
                         or datum == 'sessionId' 
+                        or datum == 'id'
                         or datum == 'tourneyId' 
                         or datum == 'gameSessionId'
                         or datum == 'fileId'
@@ -286,19 +287,20 @@ def main(argv=None):
     UltimateBetErrors = FpdbError('Ultimate Bet')
     EverleafErrors    = FpdbError('Everleaf Poker')
     EverestErrors     = FpdbError('Everest Poker')
-    CarbonErrors      = FpdbError('Carbon')
+    MergeErrors      = FpdbError('Merge')
     PKRErrors         = FpdbError('PKR')
     iPokerErrors      = FpdbError('iPoker')
-    Win2dayErrors     = FpdbError('Win2day')
+    BossErrors     = FpdbError('Boss')
     WinamaxErrors     = FpdbError('Winamax')
     EntractionErrors  = FpdbError('Entraction')
+    BetOnlineErrors   = FpdbError('BetOnline')
 
     ErrorsList = [
                     PacificPokerErrors, PokerStarsErrors, FTPErrors, PartyPokerErrors,
                     BetfairErrors, OnGameErrors, AbsoluteErrors,
-                    EverleafErrors, CarbonErrors, PKRErrors,
+                    EverleafErrors, MergeErrors, PKRErrors,
                     iPokerErrors, WinamaxErrors, UltimateBetErrors,
-                    Win2dayErrors, EverestErrors, EntractionErrors
+                    BossErrors, EverestErrors, EntractionErrors, BetOnlineErrors
                 ]
 
     sites = {
@@ -311,13 +313,14 @@ def main(argv=None):
                 'Absolute' : False,
                 'UltimateBet' : False,
                 'Everleaf' : False,
-                'Carbon' : False,
+                'Merge' : False,
                 #'PKR' : False,
                 'iPoker' : False,
-                'Win2day' : False,
+                'Boss' : False,
                 'Winamax' : False,
                 'Everest' : False,
                 'Entraction' : False,
+                'BetOnline': False
             }
 
     if test_all_sites == True:
@@ -353,7 +356,7 @@ def main(argv=None):
         walk_testfiles(options.filename, compare, importer, BetfairErrors, "Betfair")
     if sites['OnGame'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/OnGame/", compare, importer, OnGameErrors, "OnGame")
-        walk_testfiles("regression-test-files/tour/ongame/", compare, importer, OnGameErrors, "OnGame")
+        walk_testfiles("regression-test-files/tour/OnGame/", compare, importer, OnGameErrors, "OnGame")
     elif sites['OnGame'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, OnGameErrors, "OnGame")
     if sites['Absolute'] == True and not single_file_test:
@@ -374,11 +377,11 @@ def main(argv=None):
         walk_testfiles("regression-test-files/cash/Everest/", compare, importer, EverestErrors, "Everest")
     elif sites['Everest'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, EverestErrors, "Everest")
-    if sites['Carbon'] == True and not single_file_test:
-        walk_testfiles("regression-test-files/cash/Carbon/", compare, importer, CarbonErrors, "Carbon")
-        walk_testfiles("regression-test-files/tour/Carbon/", compare, importer, CarbonErrors, "Carbon")
-    elif sites['Carbon'] == True and single_file_test:
-        walk_testfiles(options.filename, compare, importer, CarbonErrors, "Carbon")
+    if sites['Merge'] == True and not single_file_test:
+        walk_testfiles("regression-test-files/cash/Merge/", compare, importer, MergeErrors, "Merge")
+        walk_testfiles("regression-test-files/tour/Merge/", compare, importer, MergeErrors, "Merge")
+    elif sites['Merge'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, MergeErrors, "Merge")
     #if sites['PKR'] == True and not single_file_test:
     #    walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
     if sites['iPoker'] == True and not single_file_test:
@@ -390,14 +393,19 @@ def main(argv=None):
         walk_testfiles("regression-test-files/tour/Winamax/", compare, importer, WinamaxErrors, "Winamax")
     elif sites['Winamax'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, WinamaxErrors, "Winamax")
-    if sites['Win2day'] == True and not single_file_test:
-        walk_testfiles("regression-test-files/cash/Win2day/", compare, importer, Win2dayErrors, "Win2day")
-    elif sites['Win2day'] == True and single_file_test:
-        walk_testfiles(options.filename, compare, importer, Win2dayErrors, "Win2day")
+    if sites['Boss'] == True and not single_file_test:
+        walk_testfiles("regression-test-files/cash/Boss/", compare, importer, BossErrors, "Boss")
+    elif sites['Boss'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, BossErrors, "Boss")
     if sites['Entraction'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Entraction/", compare, importer, EntractionErrors, "Entraction")
     elif sites['Entraction'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, EntractionErrors, "Entraction")
+    if sites['BetOnline'] == True and not single_file_test:
+        walk_testfiles("regression-test-files/cash/BetOnline/", compare, importer, BetOnlineErrors, "BetOnline")
+        walk_testfiles("regression-test-files/tour/BetOnline/", compare, importer, BetOnlineErrors, "BetOnline")
+    elif sites['BetOnline'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, BetOnlineErrors, "BetOnline")
 
     totalerrors = 0
 

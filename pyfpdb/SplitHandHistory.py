@@ -65,7 +65,7 @@ class SplitHandHistory:
         #Add new line addendum for sites which match SplitHand to next line as well
         if filter_name == 'OnGame':
             self.line_addendum = '*'
-        if filter_name == 'Carbon':
+        if filter_name == 'Merge':
             self.line_addendum = '<game'
             
         #Open the gargantuan file

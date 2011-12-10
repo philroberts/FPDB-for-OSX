@@ -1,0 +1,39 @@
+<description type="Holdem" stakes="No Limit ($0.02/$0.04)"/>
+<game id="35035866-453" starttime="20110524014601" numholecards="2" gametype="2" realmoney="true" data="20110524|Santiago (35035866)|35035866|35035866-453|false">
+	<players dealer="5">
+		<player seat="0" nickname="Player4" balance="$3.16" dealtin="true" />
+		<player seat="2" nickname="Hero" balance="$4.49" dealtin="true" />
+		<player seat="3" nickname="Player1" balance="$3.70" dealtin="true" />
+		<player seat="4" nickname="Player3" balance="$3.90" dealtin="true" />
+		<player seat="5" nickname="Player0" balance="$4.06" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1306219564452" player="0" amount="0.02"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1306219567894" player="2" amount="0.04"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1306219569869" player="3"/>
+		<event sequence="4" type="FOLD" timestamp="1306219571283" player="4"/>
+		<event sequence="5" type="FOLD" timestamp="1306219571790" player="5"/>
+		<event sequence="6" type="CALL" timestamp="1306219573057" player="0" amount="0.02"/>
+		<event sequence="7" type="DISCONNECTED" timestamp="1306219618286" player="2"/>
+		<cards type="HOLE" cards="Qs,2h" player="2" hand="Queen High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="8" type="RECONNECTED" timestamp="1306219618286" player="2"/>
+		<event sequence="9" type="CHECK" timestamp="1306219624830" player="2"/>
+		<cards type="HOLE" cards="Qs,2h" player="2" hand="Pair of Twos"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="10" type="BET" timestamp="1306219626695" player="0" amount="0.04"/>
+		<event sequence="11" type="RAISE" timestamp="1306219633137" player="2" amount="0.20"/>
+		<event sequence="12" type="FOLD" timestamp="1306219634501" player="0"/>
+		<cards type="COMMUNITY" cards="8h,3s,2d,6h" hand="Pair of Twos"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="5">
+		<event sequence="13" type="MUCK" timestamp="1306219636326" player="2"/>
+		<winner amount="0.32" uncalled="false" potnumber="1" player="2" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+	</round>
+</game>

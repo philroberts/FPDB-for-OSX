@@ -46,25 +46,27 @@ class PokerStars(HandHistoryConverter):
                     }
                     
     # translations from captured groups to fpdb info strings
-    Lim_Blinds = {  '0.04': ('0.01', '0.02'),        '0.08': ('0.02', '0.04'),
-                        '0.10': ('0.02', '0.05'),    '0.20': ('0.05', '0.10'),
-                        '0.40': ('0.10', '0.20'),    '0.50': ('0.10', '0.25'),
-                        '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
-                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
-                        '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
-                        '6.00': ('1.00', '3.00'),       '6': ('1.00', '3.00'),
-                        '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
-                       '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
-                       '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
-                       '30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
-                       '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
-                       '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
-                       '80.00': ('20.00', '40.00'),    '80': ('20.00', '40.00'),
-                      '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
-                      '200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
-                      '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
-                      '800.00': ('200.00', '400.00'), '800': ('200.00', '400.00'),
-                     '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00')
+    Lim_Blinds = {      '0.04': ('0.01', '0.02'),         '0.08': ('0.02', '0.04'),
+                        '0.10': ('0.02', '0.05'),         '0.20': ('0.05', '0.10'),
+                        '0.40': ('0.10', '0.20'),         '0.50': ('0.10', '0.25'),
+                        '1.00': ('0.25', '0.50'),         '1': ('0.25', '0.50'),
+                        '2.00': ('0.50', '1.00'),         '2': ('0.50', '1.00'),
+                        '4.00': ('1.00', '2.00'),         '4': ('1.00', '2.00'),
+                        '6.00': ('1.00', '3.00'),         '6': ('1.00', '3.00'),
+                        '8.00': ('2.00', '4.00'),         '8': ('2.00', '4.00'),
+                       '10.00': ('2.00', '5.00'),        '10': ('2.00', '5.00'),
+                       '20.00': ('5.00', '10.00'),       '20': ('5.00', '10.00'),
+                       '30.00': ('10.00', '15.00'),      '30': ('10.00', '15.00'),
+                       '40.00': ('10.00', '20.00'),      '40': ('10.00', '20.00'),
+                       '60.00': ('15.00', '30.00'),      '60': ('15.00', '30.00'),
+                       '80.00': ('20.00', '40.00'),      '80': ('20.00', '40.00'),
+                      '100.00': ('25.00', '50.00'),     '100': ('25.00', '50.00'),
+                      '150.00': ('50.00', '75.00'),     '150': ('50.00', '75.00'),
+                      '200.00': ('50.00', '100.00'),    '200': ('50.00', '100.00'),
+                      '400.00': ('100.00', '200.00'),   '400': ('100.00', '200.00'),
+                      '800.00': ('200.00', '400.00'),   '800': ('200.00', '400.00'),
+                     '1000.00': ('250.00', '500.00'),  '1000': ('250.00', '500.00'),
+                     '2000.00': ('500.00', '1000.00'), '2000': ('500.00', '1000.00'),
                   }
 
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
@@ -75,7 +77,9 @@ class PokerStars(HandHistoryConverter):
                                  'Razz' : ('stud','razz'), 
                                  'RAZZ' : ('stud','razz'),
                           '7 Card Stud' : ('stud','studhi'),
+                          '7 CARD STUD' : ('stud','studhi'),
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
+                    '7 CARD STUD HI/LO' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
               'Single Draw 2-7 Lowball' : ('draw','27_1draw'),
@@ -84,6 +88,7 @@ class PokerStars(HandHistoryConverter):
     mixes = {
                                  'HORSE': 'horse',
                                 '8-Game': '8game',
+                                '8-GAME': '8game',
                                   'HOSE': 'hose',
                          'Mixed PLH/PLO': 'plh_plo',
                        'Mixed Omaha H/L': 'plo_lo',
@@ -100,8 +105,8 @@ class PokerStars(HandHistoryConverter):
           # here's how I plan to use LS
           (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
           # close paren of tournament info
-          (?P<MIXED>HORSE|8\-Game|HOSE|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Triple\sStud)?\s?\(?
-          (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
+          (?P<MIXED>HORSE|8\-Game|8\-GAME|HOSE|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Triple\sStud)?\s?\(?
+          (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCARD\sSTUD|7\sCARD\sSTUD\sHI/LO|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
           (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\)?,?\s
           (-\s)?
           (Match.*)?                  #TODO: waiting for reply from user as to what this means
@@ -479,6 +484,11 @@ class PokerStars(HandHistoryConverter):
             cards = shows.group('CARDS').split(' ')
             hand.addShownCards(cards, shows.group('PNAME'))
 
+    def readTourneyResults(self, hand):
+        """This function is not called. A recent patch broke the ability for the Stars parser to fetch
+            tourney results from hh's. As the current Stars client supports writing tourney results files
+            directly to the client machine i'm removing the ability to parse tourney results from hh files
+            until we merge/resolve IdentifySite into the parsing despatch sequence"""
         for winningrankone in self.re_WinningRankOne.finditer(hand.handText):
             hand.addPlayerRank (winningrankone.group('PNAME'),int(100*Decimal(winningrankone.group('AMT'))),1)
 

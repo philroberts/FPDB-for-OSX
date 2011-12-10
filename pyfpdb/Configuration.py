@@ -1018,6 +1018,8 @@ class Config:
         # TODO: how do we support inserting new layouts?
         if layout_node is None:
             return
+        if width: layout_node.setAttribute("width", str(width))
+        if height: layout_node.setAttribute("height", str(height))
         for i in range(1, max + 1):
             location_node = self.get_location_node(layout_node, i)
             location_node.setAttribute("x", str( locations[i-1][0] ))
@@ -1079,6 +1081,8 @@ class Config:
         if layout_node is None:
             print "aux node not found"
             return
+        if width: layout_node.setAttribute("width", str(width))
+        if height: layout_node.setAttribute("height", str(height))
         print "editing locations =", locations
         for (i, pos) in locations.iteritems():
             location_node = self.get_location_node(layout_node, i)
@@ -1326,7 +1330,7 @@ class Config:
         except:  imp['saveStarsHH'] = False
 
         try:    imp['fastStoreHudCache'] = self.imp.fastStoreHudCache
-        except:  imp['fastStoreHudCache'] = True
+        except:  imp['fastStoreHudCache'] = False
 
         return imp
 

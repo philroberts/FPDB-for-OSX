@@ -143,16 +143,16 @@ def playername(stat_dict, player):
             stat_dict[player]['screen_name'])
 
 def playershort(stat_dict, player):
-    stat_descriptions["playershort"] = (_("Player Name")+" 1-6") + " (playershort)"
+    stat_descriptions["playershort"] = (_("Player Name")+" 1-5") + " (playershort)"
     r = stat_dict[player]['screen_name']
-    if (len(r) > 7):
-        r = r[:6] + ".."
+    if (len(r) > 6):
+        r = r[:5] + "."
     return (r,
             r,
             r,
             r,
             stat_dict[player]['screen_name'],
-            (_("Player Name")+" 1-6")
+            (_("Player Name")+" 1-5")
             )
             
 def vpip(stat_dict, player):

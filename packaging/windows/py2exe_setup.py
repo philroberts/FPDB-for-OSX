@@ -61,6 +61,7 @@ if sys.argv[1] <> "py2exe":
 from distutils.core import setup
 import py2exe
 import glob
+import fnmatch
 import matplotlib
 import shutil
 import cdecimal
@@ -114,10 +115,13 @@ def copy_file(source,destination):
 distdir = r'fpdb-' + fpdbver
 rootdir = r'../../' #cwd is normally /packaging/windows
 pydir = rootdir+'pyfpdb/'
+cardsdir = rootdir+'pyfpdb/cards'
 packagedir = rootdir+'packaging/windows/'
 gfxdir = rootdir+'gfx/'
-sys.path.append( pydir )  # allows fpdb modules to be found by options/includes below
-
+sys.path.append(pydir)  # allows fpdb modules to be found in the setup() below
+tofpdb_file_list = fnmatch.filter(os.listdir(pydir), '*ToFpdb.py')
+#convert to module list by removing extensions in this list comprehension
+tofpdb_module_list = [os.path.splitext(filename)[0] for filename in tofpdb_file_list]
 
 print "\n" + r"Output will be created in "+distdir
 
@@ -125,6 +129,12 @@ print "*** Cleaning working folders ***"
 test_and_remove('dist')
 test_and_remove('build')
 test_and_remove(distdir)
+
+print "compiling fpdb_folder_check.exe"
+
+returncode=os.system("gcc  fpdb_folder_check.c -o fpdb_folder_check.exe")
+if returncode <> 0:
+    quit()
 
 print "*** Building now in dist folder ***"
 
@@ -134,7 +144,6 @@ py2exe.build_exe.isSystemDLL = isSystemDLL
 setup(
     name        = 'fpdb',
     description = 'Free Poker DataBase',
-    version     = fpdbver,
 
     windows = [   {'script': pydir+'fpdb.pyw', 'uac_info': "requireAdministrator", "icon_resources": [(1, gfxdir+"fpdb_large_icon.ico")]},
                   {'script': pydir+'HUD_main.pyw', 'uac_info': "requireAdministrator", }
@@ -147,19 +156,12 @@ setup(
 
     options = {'py2exe': {
                       'packages'    : ['encodings', 'matplotlib'],
-                      'includes'    : ['gio', 'cairo', 'pango', 'pangocairo', 'atk', 'gobject'    
-                                      ,'matplotlib.numerix.random_array'
-                                      ,'AbsoluteToFpdb',      'BetfairToFpdb'
-                                      ,'CarbonToFpdb',        'EverleafToFpdb'
-                                      ,'FulltiltToFpdb',      'iPokerToFpdb'
-                                      ,'OnGameToFpdb',        'PartyPokerToFpdb'
-                                      ,'PkrToFpdb',           'PokerStarsToFpdb'
-                                      ,'Win2dayToFpdb',       'WinamaxToFpdb'
-                                      ,'EntractionToFpdb',    'EverestToFpdb'
-                                      ,'CakeToFpdb',          'PacificPokerToFpdb'
-
-                                      ],
+                                                            
+                      'includes'    : ['gio', 'cairo', 'pango', 'pangocairo'
+				      ,'atk', 'gobject']+tofpdb_module_list,
+                                      
                       'excludes'    : ['_tkagg', '_agg2', 'cocoaagg', 'fltkagg'],
+                      
                       'dll_excludes': ['libglade-2.0-0.dll', 'libgdk-win32-2.0-0.dll', 'libgobject-2.0-0.dll'
                                       , 'msvcr90.dll', 'MSVCP90.dll', 'MSVCR90.dll','msvcr90.dll'],  # these are vis c / c++ runtimes, and must not be redistributed
                   }
@@ -177,9 +179,10 @@ setup(
 
 print "*** py2exe build phase complete ***"
 
-# copy zone info and fpdb translation folders
+# copy zone info, fpdb translation folders and cards folders
 copy_tree (r'c:\python27\Lib\site-packages\pytz\zoneinfo', os.path.join(r'dist', 'zoneinfo'))
 copy_tree (pydir+r'locale', os.path.join(r'dist', 'locale'))
+#copy_tree (cardsdir, os.path.join(r'dist', 'cards'))#enable this line when Bostik's svg cards goes live
 
 # create distribution folder and populate with gfx + bat
 copy_tree (gfxdir, os.path.join(distdir, 'gfx'))
@@ -191,16 +194,19 @@ os.rename( 'dist', dest )
 
 copy_file (packagedir+'fpdb_folder_check.exe', dest)
 
-print "*** copying GTK runtime ***"
-gtk_dir = ""
+gtk_dir = "C:/Python27/Lib/site-packages/gtk-2.0/runtime/"
 while not os.path.exists(gtk_dir):
     print "Enter directory name for GTK (e.g. c:/gtk) : ",     # the comma means no newline
     gtk_dir = sys.stdin.readline().rstrip()
 
-print "*** copying GTK runtime ***"
+print "*** copying GTK runtime from ", gtk_dir
 dest = os.path.join(distdir, 'pyfpdb')
 copy_file(os.path.join(gtk_dir, 'bin', 'libgdk-win32-2.0-0.dll'), dest )
 copy_file(os.path.join(gtk_dir, 'bin', 'libgobject-2.0-0.dll'), dest)
+copy_file(os.path.join(gtk_dir, 'bin', 'libcroco-0.6-3.dll'), dest)
+copy_file(os.path.join(gtk_dir, 'bin', 'librsvg-2-2.dll'), dest)
+copy_file(os.path.join(gtk_dir, 'bin', 'libxml2-2.dll'), dest)
+copy_file(os.path.join(gtk_dir, 'bin', 'gdk-pixbuf-query-loaders.exe'), dest)
 copy_tree(os.path.join(gtk_dir, 'etc'), os.path.join(dest, 'etc'))
 copy_tree(os.path.join(gtk_dir, 'lib'), os.path.join(dest, 'lib'))
 copy_tree(os.path.join(gtk_dir, 'share'), os.path.join(dest, 'share'))
@@ -208,6 +214,7 @@ copy_tree(os.path.join(gtk_dir, 'share'), os.path.join(dest, 'share'))
 print "*** Activating MS-Windows GTK theme ***"
 gtkrc = open(os.path.join(distdir, 'pyfpdb', 'etc', 'gtk-2.0', 'gtkrc'), 'w')
 print >>gtkrc, 'gtk-theme-name = "MS-Windows"'
+print >>gtkrc, 'gtk-tooltip-timeout = 1750'
 gtkrc.close()
 
 print "*** deleting temporary build folder ***"
@@ -224,6 +231,10 @@ test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'gtk-2.0'))
 test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'gtk-doc'))
 test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'locale'))
 test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'man'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'dtds'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'icon-naming-utils'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'icons', 'Tango'))
+test_and_remove(os.path.join(distdir, 'pyfpdb', 'share', 'xml'))
 
 print "***++++++++++++++++++++++++++++++++++++++++++++++"
 print "All done!"

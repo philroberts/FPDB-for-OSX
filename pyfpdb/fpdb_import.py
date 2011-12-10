@@ -152,6 +152,7 @@ class Importer:
         now = datetime.datetime.utcnow()
         ttime100 = ttime * 100
         self.database.updateFile([type, now, now, hands, stored, dups, partial, errs, ttime100, True, id])
+        self.database.commit()
     
     def addFileToList(self, file, site, filter):
         now = datetime.datetime.utcnow()
@@ -483,8 +484,8 @@ class Importer:
                 if self.caller: hhc.progressNotify()
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
-                (hbulk, hpbulk, habulk, hcbulk, hsbulk, phands, ihands, to_hud) = ([], [], [], [], [], [], [], [])
-                sc, gsc = {'bk': []}, {'bk': []}
+                (phands, ihands, to_hud) = ([], [], [])
+                self.database.resetBulkCache()
                 
                 ####Lock Placeholder####
                 for hand in handlist:
@@ -505,13 +506,13 @@ class Importer:
                     try:
                         id = hand.getHandId(self.database, id)
                         stime = time()
-                        sc, gsc = hand.updateSessionsCache(self.database, sc, gsc, None, doinsert)
+                        hand.updateSessionsCache(self.database, None, doinsert)
                         sctimer += time() - stime
                         stime = time()
-                        hbulk = hand.insertHands(self.database, hbulk, fileId, doinsert, self.settings['testData'])
+                        hand.insertHands(self.database, fileId, doinsert, self.settings['testData'])
                         ihtimer = time() - stime
                         stime = time()
-                        hcbulk = hand.updateHudCache(self.database, hcbulk, doinsert)
+                        hand.updateHudCache(self.database, doinsert)
                         hctimer = time() - stime
                         ihands.append(hand)
                         to_hud.append(hand.dbid_hands)
@@ -521,10 +522,10 @@ class Importer:
                         if (doinsert and ihands):
                             hand = ihands[-1]
                             hp = hand.handsplayers
-                            hand.hero, hbulk, hand.handsplayers  = 0, hbulk[:-1], [] #making sure we don't insert data from this hand
-                            sc, gsc = hand.updateSessionsCache(self.database, sc, gsc, None, doinsert)
-                            hbulk = hand.insertHands(self.database, hbulk, fileId, doinsert, self.settings['testData'])
-                            hcbulk = hand.updateHudCache(self.database, hcbulk, doinsert)
+                            hand.hero, self.database.hbulk, hand.handsplayers  = 0, self.database.hbulk[:-1], [] #making sure we don't insert data from this hand
+                            hand.updateSessionsCache(self.database, None, doinsert)
+                            hand.insertHands(self.database, fileId, doinsert, self.settings['testData'])
+                            hand.updateHudCache(self.database, doinsert)
                             hand.handsplayers = hp
                 #log.debug("DEBUG: hand.updateSessionsCache: %s" % (t5tot))
                 #log.debug("DEBUG: hand.insertHands: %s" % (t6tot))
@@ -535,9 +536,9 @@ class Importer:
                 for i in range(len(ihands)):
                     doinsert = len(ihands)==i+1
                     hand = ihands[i]
-                    hpbulk = hand.insertHandsPlayers(self.database, hpbulk, doinsert, self.settings['testData'])
-                    habulk = hand.insertHandsActions(self.database, habulk, doinsert, self.settings['testData'])
-                    hsbulk = hand.insertHandsStove(self.database, hsbulk, doinsert)
+                    hand.insertHandsPlayers(self.database, doinsert, self.settings['testData'])
+                    hand.insertHandsActions(self.database, doinsert, self.settings['testData'])
+                    hand.insertHandsStove(self.database, doinsert)
                 self.database.commit()
 
                 #pipe the Hands.id out to the HUD
@@ -549,10 +550,12 @@ class Importer:
                         except IOError, e:
                             log.error(_("Failed to send hand to HUD: %s") % e)
 
-                errors = getattr(hhc, 'numErrors')
-                stored = getattr(hhc, 'numHands')
+                partial = getattr(hhc, 'numPartial')
+                errors  = getattr(hhc, 'numErrors')
+                stored  = getattr(hhc, 'numHands')
                 stored -= duplicates
                 stored -= errors
+                stored -= partial
                 # Really ugly hack to allow testing Hands within the HHC from someone
                 # with only an Importer objec
                 if self.settings['cacheHHC']:

@@ -32,22 +32,25 @@ class FullTiltPokerSummary(TourneySummary):
     games = {                          # base, category
                               "Hold'em" : ('hold','holdem'), 
                                 'Omaha' : ('hold','omahahi'),
-                            'Omahai Hi' : ('hold','omahahi'),
+                             'Omaha Hi' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
                             'Omaha H/L' : ('hold','omahahilo'),
                                  'Razz' : ('stud','razz'), 
                                  'RAZZ' : ('stud','razz'),
                           '7 Card Stud' : ('stud','studhi'),
+                              'Stud Hi' : ('stud','studhi'),
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                              'Stud H/L' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
                           '5 Card Draw' : ('draw','fivedraw'),
-                         '7-Game Mixed' : ('mixed','mix_7game'),
+                         '7-Game Mixed' : ('mixed','7game'),
+                        '10-Game Mixed' : ('mixed','10game'),
+                                'HORSE' : ('mixed','horse'),
                }
 
     substitutions = {
-                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",      # legal ISO currency codes
+                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP|FTP",      # legal ISO currency codes
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|", # legal currency symbols - Euro(cp1252, utf-8)
                            'TAB' : u"-\u2013'\s\da-zA-Z",      # legal characters for tablename
                            'NUM' : u".,\d",                    # legal characters in number format
@@ -56,14 +59,13 @@ class FullTiltPokerSummary(TourneySummary):
     re_SplitTourneys = re.compile("^Full Tilt Poker Tournament Summary")
     
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
-
     re_TourneyInfo = re.compile(u"""
-                        (\s*.*(?P<TYPE>Tournament|Sit\s\&\sGo|Sit\&Go|\(Rebuy\)|Matrix|Knockout|KO|Rush|Satellite|FTOPS|MiniFTOPS|Step\s\d|Daily\sDollar|Madness|Freeroll|Heads-Up|Challenge|Super\sTurbo|The\sKitchen\sSink|Tier\sOne).*\s)
+                        (\s*.*(?P<TYPE>.+\s))
                         \((?P<TOURNO>[0-9]+)\)
                         (\s+)?(\sMatch\s\d\s)?
-                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw|7-Game\sMixed)\s+
+                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Stud\sHi|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw|7-Game\sMixed|HORSE|10-Game\sMixed)\s+
                         ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+)?
-                        (Buy-In:\s[%(LS)s](?P<BUYIN>[%(NUM)s]+)(\s\+\s[%(LS)s](?P<FEE>[%(NUM)s]+))?\s+)?
+                        (Buy-In:\s[%(LS)s]?(?P<BUYIN>[%(NUM)s]+)(\sFTP)?(\s\+\s[%(LS)s]?(?P<FEE>[%(NUM)s]+)(\sFTP)?)?\s+)?
                         (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[%(NUM)s]+)\s+)?
                         ((?P<PNAMEBOUNTIES>.{2,15})\sreceived\s\d+\sKnockout\sBounty\sAwards?\s+)?
                         (Add-On:\s[%(LS)s](?P<ADDON>[%(NUM)s]+)\s+)?
@@ -84,7 +86,7 @@ class FullTiltPokerSummary(TourneySummary):
                         (?P<DATETIME>((?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s??(?P<TZ>[A-Z]+)\s|\w+,\s(?P<MONTH>\w+)\s(?P<DAY>\d+),\s(?P<YEAR>[\d]{4})\s(?P<HOUR>\d+):(?P<MIN2>\d+)))
                                """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
 
-    re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP)""" % substitutions)
+    re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP|FTP)""" % substitutions)
 
     re_Player = re.compile(u"""(?P<RANK>[\d]+):\s(?P<NAME>[^,\r\n]{2,15})(,\s[%(LS)s](?P<WINNINGS>[.\d]+))?(,\s(?P<TICKET>Step\s(?P<LEVEL>\d)\sTicket))?""" % substitutions)
     re_Finished = re.compile(u"""(?P<NAME>[^,\r\n]{2,15}) finished in (?P<RANK>[\d]+)\S\S place""")
@@ -111,11 +113,13 @@ class FullTiltPokerSummary(TourneySummary):
             self.gametype['limitType'] = 'mx'
         if 'GAME'      in mg: self.gametype['category']  = self.games[mg['GAME']][1]
         if mg['BUYIN'] != None:
-            self.buyin = int(100*Decimal(mg['BUYIN']))
+            self.buyin = int(100*Decimal(self.clearMoneyString(mg['BUYIN'])))
         if mg['FEE'] != None:
-            self.fee   = int(100*Decimal(mg['FEE']))
-        if 'PRIZEPOOL' in mg: self.prizepool             = mg['PRIZEPOOL']
-        if 'ENTRIES'   in mg: self.entries               = mg['ENTRIES']
+            self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))
+        if 'PRIZEPOOL' in mg:
+            if mg['PRIZEPOOL'] != None: self.prizepool = int(Decimal(self.clearMoneyString(mg['PRIZEPOOL'])))
+        if 'ENTRIES'   in mg:
+            self.entries = mg['ENTRIES']
 
         datetimestr = ""
         if mg['YEAR'] == None:
@@ -140,6 +144,7 @@ class FullTiltPokerSummary(TourneySummary):
         if mg['CURRENCY'] == "$":     self.currency = "USD"
         elif mg['CURRENCY'] == u"€":  self.currency="EUR"
         elif mg['CURRENCY'] == "FPP": self.currency="FTFP"
+        elif mg['CURRENCY'] == "FTP": self.currency="FTFP"
 
         m = self.re_Player.finditer(self.summaryText)
         playercount = 0
@@ -147,7 +152,7 @@ class FullTiltPokerSummary(TourneySummary):
             mg = a.groupdict()
             #print "DEBUG: a.groupdict(): %s" % mg
             name = mg['NAME']
-            rank = mg['RANK']
+            rank = int(mg['RANK'])
             winnings = 0
 
             if 'WINNINGS' in mg and mg['WINNINGS'] != None:
@@ -165,7 +170,7 @@ class FullTiltPokerSummary(TourneySummary):
                                 '7' : '210000', # Step 7 - $2100.00 USD
                               }
                 winnings = step_values[mg['LEVEL']]
-            self.addPlayer(rank, name, winnings, self.currency, None, None, None)
+            self.addPlayer(rank, name, winnings, self.currency, 0, 0, 0)
 
             playercount += 1
 

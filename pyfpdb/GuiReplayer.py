@@ -15,6 +15,8 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+# Note that this now contains the replayer only! The list of hands has been moved to GuiHandViewer by zarturo.
+
 import L10n
 _ = L10n.get_translation()
 
@@ -24,7 +26,6 @@ import Configuration
 import Database
 import SQL
 import fpdb_import
-import Filters
 import pygtk
 pygtk.require('2.0')
 import gtk
@@ -36,109 +37,30 @@ import copy
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
-# The ListView renderer data function requires a function signature of
-# renderer_cell_func(tree_column, cell, model, tree_iter, data)
-# Placing the function into the Replayer object changes the call singature
-# card_images has been made global to facilitate this.
 
 global card_images
 card_images = 53 * [0]
 
-def card_renderer_cell_func(tree_column, cell, model, tree_iter, data):
-    card_width  = 30
-    card_height = 42
-    col = data
-    coldata = model.get_value(tree_iter, col)
-    coldata = coldata.replace("'","")
-    coldata = coldata.replace("[","")
-    coldata = coldata.replace("]","")
-    coldata = coldata.replace("'","")
-    coldata = coldata.replace(",","")
-    #print "DEBUG: coldata: %s" % (coldata)
-    cards = [Card.encodeCard(c) for c in coldata.split(' ')]
-    n_cards = len(cards)
-
-    #print "DEBUG: cards: %s" % cards
-    pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8, card_width * n_cards, card_height)
-    if pixbuf:
-        x = 0 # x coord where the next card starts in scratch
-        for card in cards:
-            if card == None or card ==0:
-                card_images[0].copy_area(0, 0, card_width, card_height, pixbuf, x, 0)
-
-            card_images[card].copy_area(0, 0, card_width, card_height, pixbuf, x, 0)
-            x = x + card_width
-    cell.set_property('pixbuf', pixbuf)
-
-
-# This function is a duplicate of 'ledger_style_render_func' in GuiRingPlayerStats
-# TODO: Pull generic cell formatting functions into something common.
-def cash_renderer_cell_func(tree_column, cell, model, tree_iter, data):
-    col = data
-    coldata = model.get_value(tree_iter, col)
-    if '-' in coldata:
-        coldata = coldata.replace("-", "")
-        coldata = "(%s)" %(coldata)
-        cell.set_property('foreground', 'red')
-    else:
-        cell.set_property('foreground', 'darkgreen')
-    cell.set_property('text', coldata)
-
 
 class GuiReplayer:
+    """A Replayer to replay hands."""
     def __init__(self, config, querylist, mainwin, options = None, debug=True):
         self.debug = debug
         self.conf = config
         self.main_window = mainwin
         self.sql = querylist
 
-        # These are temporary variables until it becomes possible
-        # to select() a Hand object from the database
-        self.site="PokerStars"
-
         self.db = Database.Database(self.conf, sql=self.sql)
-
-        filters_display = { "Heroes"    : True,
-                    "Sites"     : False,
-                    "Games"     : False,
-                    "Limits"    : False,
-                    "LimitSep"  : False,
-                    "LimitType" : False,
-                    "Type"      : False,
-                    "Seats"     : False,
-                    "SeatSep"   : False,
-                    "Dates"     : True,
-                    "Groups"    : False,
-                    "GroupsAll" : False,
-                    "Button1"   : True,
-                    "Button2"   : False
-                  }
-
-
         self.states = [] # List with all table states.
+
+        self.window = gtk.Window()
+        self.window.set_title("FPDB Hand Replayer")
         
-        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
-        self.filters.registerButton1Name(_("Load Hands"))
-        self.filters.registerButton1Callback(self.loadHands)
-        #self.filters.registerButton2Name(_("temp"))
-        #self.filters.registerButton2Callback(self.temp())
-
-        # hierarchy:  self.mainHBox / self.hpane / self.replayBox / self.area
-
-        self.mainHBox = gtk.HBox(False, 0)
-        self.mainHBox.show()
-
-        self.leftPanelBox = self.filters.get_vbox()
-
-        self.hpane = gtk.HPaned()
-        self.hpane.pack1(self.leftPanelBox)
-        self.mainHBox.add(self.hpane)
-
         self.replayBox = gtk.VBox(False, 0)
         self.replayBox.show()
+        
+        self.window.add(self.replayBox)
 
-        self.hpane.pack2(self.replayBox)
-        self.hpane.show()
 
         self.area=gtk.DrawingArea()
         self.pangolayout = self.area.create_pango_layout("")
@@ -186,10 +108,14 @@ class GuiReplayer:
         self.stateSlider = gtk.HScale(self.state)
         self.stateSlider.connect("format_value", lambda x,y: "")
         self.stateSlider.set_digits(0)
-        self.state.connect("value_changed", self.slider_changed)
+        self.handler_id = self.state.connect("value_changed", self.slider_changed)
         self.stateSlider.show()
 
         self.replayBox.pack_start(self.stateSlider, False)
+        
+        self.window.show_all()
+        
+        self.window.connect('destroy', self.on_destroy)
 
         self.playing = False
 
@@ -207,7 +133,6 @@ class GuiReplayer:
         suits = ('s', 'h', 'd', 'c')
         ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
         pb = gtk.gdk.pixbuf_new_from_file(config.execution_path(self.deck_image))
-        print "DEBUG: init_card_images: pb = %s" % pb
 
         for j in range(0, 13):
             for i in range(0, 4):
@@ -218,149 +143,6 @@ class GuiReplayer:
         pb.copy_area(30*13, 0, 30, 42, card_images[0], 0, 0)
         return card_images
 
-    def loadHands(self, button, userdata):
-        result = self.handIdsFromDateRange(self.filters.getDates()[0], self.filters.getDates()[1])
-        self.refreshHands(result)
-
-    def handIdsFromDateRange(self, start, end):
-        q = "SELECT id FROM Hands h WHERE datetime(h.startTime) between '" + start + "' and '" + end + "' order by startTime"
-
-        c = self.db.get_cursor()
-
-        c.execute(q)
-        return [r[0] for r in c.fetchall()]
-
-    def rankedhand(self, hand, game):
-        ranks = {'0':0, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 'J':11, 'Q':12, 'K':13, 'A':14}
-        suits = {'x':0, 's':1, 'c':2, 'd':3, 'h':4}
-
-        if game == 'holdem':
-            card1 = ranks[hand[0]]
-            card2 = ranks[hand[3]]
-            suit1 = suits[hand[1]]
-            suit2 = suits[hand[4]]
-            if card1 < card2:
-                (card1, card2) = (card2, card1)
-                (suit1, suit2) = (suit2, suit1)
-            if suit1 == suit2:
-                suit1 += 4
-            return card1 * 14 * 14 + card2 * 14 + suit1
-        else:
-            return 0
-
-    def sorthand(self, model, iter1, iter2):
-        
-        hand1 = self.hands[int(model.get_value(iter1, 7))]
-        hand2 = self.hands[int(model.get_value(iter2, 7))]
-        base1 = hand1.gametype['base']
-        base2 = hand2.gametype['base']
-        if base1 < base2:
-            return -1
-        elif base1 > base2:
-            return 1
-
-        cat1 = hand1.gametype['category']
-        cat2 = hand2.gametype['category']
-        if cat1 < cat2:
-            return -1
-        elif cat1 > cat2:
-            return 1
-
-        a = self.rankedhand(model.get_value(iter1, 0), hand1.gametype['category'])
-        b = self.rankedhand(model.get_value(iter2, 0), hand2.gametype['category'])
-        
-        if a < b:
-            return -1
-        elif a > b:
-            return 1
-
-        return 0
-
-    def sortnet(self, model, iter1, iter2):
-        a = float(model.get_value(iter1, 6))
-        b = float(model.get_value(iter2, 6))
-
-        if a < b:
-            return -1
-        elif a > b:
-            return 1
-        
-        return 0
-
-    def refreshHands(self, handids):
-        self.hands = {}
-        for handid in handids:
-            self.hands[handid] = self.importhand(handid)
-
-        try:
-            self.handswin.destroy()
-        except:
-            pass
-        self.handswin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
-        self.handswin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.replayBox.pack_end(self.handswin)
-        liststore = gtk.ListStore(*([str] * 8))
-        view = gtk.TreeView(model=liststore)
-        view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
-        self.handswin.add(view)
-
-        textcell = gtk.CellRendererText()
-        textcell50 = gtk.CellRendererText()
-        textcell50.set_property('xalign', 0.5)
-        numcell = gtk.CellRendererText()
-        numcell.set_property('xalign', 1.0)
-
-        view.insert_column_with_data_func(-1, 'Hero', gtk.CellRendererPixbuf(), card_renderer_cell_func, 0)
-        view.insert_column_with_data_func(-1, 'Flop', gtk.CellRendererPixbuf(), card_renderer_cell_func, 1)
-        view.insert_column_with_data_func(-1, 'Turn', gtk.CellRendererPixbuf(), card_renderer_cell_func, 2)
-        view.insert_column_with_data_func(-1, 'River', gtk.CellRendererPixbuf(), card_renderer_cell_func, 3)
-        view.insert_column_with_data_func(-1, 'Won', textcell, cash_renderer_cell_func, 4)
-        view.insert_column_with_data_func(-1, 'Bet', textcell, cash_renderer_cell_func, 5)
-        view.insert_column_with_data_func(-1, 'Net', textcell, cash_renderer_cell_func, 6)
-
-        liststore.set_sort_func(0, self.sorthand)
-        liststore.set_sort_func(6, self.sortnet)
-        view.get_column(0).set_sort_column_id(0)
-        view.get_column(6).set_sort_column_id(6)
-
-        selection = view.get_selection()
-        selection.set_select_function(self.select_hand, None, True)
-
-        for handid, hand in self.hands.items():
-            hero = self.filters.getHeroes()[hand.sitename]
-            won = 0
-            if hero in hand.collectees.keys():
-                won = hand.collectees[hero]
-            bet = 0
-            if hero in hand.pot.committed.keys():
-                bet = hand.pot.committed[hero]
-            net = won - bet
-            liststore.append([hand.join_holecards(hero), hand.board["FLOP"], hand.board["TURN"], hand.board["RIVER"], str(won), str(bet), str(net), str(handid)])
-        self.handswin.show_all()
-
-    def select_hand(self, selection, model, path, is_selected, userdata):
-        self.states = [] # List with all table states.
-        if is_selected:
-            return True
-
-        hand = self.hands[int(model.get_value(model.get_iter(path), 7))]
-        if hand.gametype['currency']=="USD":    #TODO: check if there are others ..
-            self.currency="$"
-        elif hand.gametype['currency']=="EUR":
-            self.currency="€"
-        else:
-            self.currency = hand.gametype['currency']
-
-        if isinstance(hand, HoldemOmahaHand):
-            self.play_holdem(hand)
-        else:
-            print "Unhandled game type " + hand.gametype['category']
-            return False
-
-        self.state.set_value(0)
-        self.state.set_upper(len(self.states) - 1)
-        self.state.value_changed()
-        return True
 
     def area_expose(self, area, event):
         self.style = self.area.get_style()
@@ -434,23 +216,26 @@ class GuiReplayer:
                     cardIndex = Card.encodeCard(player.holecards[9:11])
                     self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + self.cardwidth + 3 * padding / 2, playery - self.cardheight, -1, -1)
 
-            self.pangolayout.set_text("%s %s%.2f" % (player.name, self.currency, player.stack))
+            color_string = '#FFFFFF'
+            background_color = ''
+            self.pangolayout.set_markup('<span foreground="%s" size="medium">%s %s%.2f</span>' % (color_string, player.name, self.currency, player.stack))
             self.area.window.draw_layout(self.gc, playerx - self.pangolayout.get_pixel_size()[0] / 2, playery, self.pangolayout)
 
             if player.justacted:
-                color = cm.alloc_color("red")   #highlights the action
-                self.gc.set_foreground(color)
-
-                self.pangolayout.set_text(player.action)
+                color_string = '#FF0000'
+                background_color = 'background="#000000" '
+                self.pangolayout.set_markup('<span foreground="%s" size="medium">%s</span>' % (color_string, player.action))
                 self.area.window.draw_layout(self.gc, playerx - self.pangolayout.get_pixel_size()[0] / 2, playery + self.pangolayout.get_pixel_size()[1], self.pangolayout)
+            else:
+                color_string = '#FFFF00'
+                background_color = ''
             if player.chips != 0:  #displays amount
-                self.pangolayout.set_text("%s%.2f" % (self.currency, player.chips))
+                self.pangolayout.set_markup('<span foreground="%s" %s weight="heavy" size="large">%s%.2f</span>' % (color_string, background_color, self.currency, player.chips))
                 self.area.window.draw_layout(self.gc, convertx(player.x * .65) - self.pangolayout.get_pixel_size()[0] / 2, converty(player.y * 0.65), self.pangolayout)
 
-        color = cm.alloc_color("white")
-        self.gc.set_foreground(color)
+        color_string = '#FFFFFF'
 
-        self.pangolayout.set_text("%s%.2f" % (self.currency, state.pot)) #displays pot
+        self.pangolayout.set_markup('<span foreground="%s" size="large">%s%.2f</span>' % (color_string, self.currency, state.pot)) #displays pot
         self.area.window.draw_layout(self.gc,self.tableImage.get_width() / 2 - self.pangolayout.get_pixel_size()[0] / 2, self.tableImage.get_height() / 2, self.pangolayout)
 
         if state.showFlop:
@@ -470,8 +255,8 @@ class GuiReplayer:
         color = cm.alloc_color("black")      #we don't want to draw the filters and others in red
         self.gc.set_foreground(color)
 
-    def play_holdem(self, hand):
-        actions=('BLINDSANTES','PREFLOP','FLOP','TURN','RIVER')
+    def play_hand(self, hand):
+        actions = hand.allStreets
         state = TableState(hand)
         for action in actions:
             state = copy.deepcopy(state)
@@ -484,6 +269,10 @@ class GuiReplayer:
         state = copy.deepcopy(state)
         state.endHand(hand.collectees)
         self.states.append(state)
+        
+        self.state.set_value(0)
+        self.state.set_upper(len(self.states) - 1)
+        self.state.value_changed()
 
     def increment_state(self):
         if self.state.get_value() == self.state.get_upper():
@@ -497,10 +286,10 @@ class GuiReplayer:
 
         self.state.set_value(self.state.get_value() + 1)
         return True
-
-    def get_vbox(self):
-        """returns the vbox of this thread"""
-        return self.mainHBox
+    
+    def on_destroy(self, window):
+        """ Prevent replayer from continue playing after window is closed """
+        self.state.disconnect(self.handler_id)
 
     def slider_changed(self, adjustment):
         alloc = self.area.get_allocation()
@@ -562,6 +351,32 @@ class GuiReplayer:
                 self.state.set_value(i)
                 break
 
+# ICM code originally grabbed from http://svn.gna.org/svn/pokersource/trunk/icm-calculator/icm-webservice.py
+# Copyright (c) 2008 Thomas Johnson <tomfmason@gmail.com>
+
+class ICM:
+    def __init__(self, stacks, payouts):
+        self.stacks = stacks
+        self.payouts = payouts
+        self.equities = []
+        self.prepare()
+    def prepare(self):
+        total = sum(self.stacks)
+        for k,v in enumerate(stacks):
+            self.equities.append(round(Decimal(str(self.getEquities(total, k,0))),4))
+    def getEquities(self, total, player, depth):
+        D = Decimal
+        eq = D(self.stacks[player]) / total * D(str(self.payouts[depth]))
+        if(depth + 1 < len(self.payouts)):
+            i=0
+            for stack in self.stacks:
+                if i != player and stack > 0.0:
+                    self.stacks[i] = 0.0
+                    eq += self.getEquities((total - stack), player, (depth + 1)) * (stack / D(total))
+                    self.stacks[i] = stack
+                i += 1
+        return eq
+
 class TableState:
     def __init__(self, hand):
         self.pot = Decimal(0)
@@ -574,10 +389,13 @@ class TableState:
         self.bet = Decimal(0)
         self.called = Decimal(0)
         self.gametype = hand.gametype['category']
+        # NOTE: Need a useful way to grab payouts
+        #self.icm = ICM(stacks,payouts)
+        #print icm.equities
 
         self.players = {}
 
-        for seat, name, chips, dummy, dummy in hand.players:
+        for seat, name, chips, pos in hand.players:
             self.players[name] = Player(hand, name, chips, seat)
 
     def startPhase(self, phase):
