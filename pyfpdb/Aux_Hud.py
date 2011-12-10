@@ -194,14 +194,7 @@ class Simple_table_mw(Mucked.Seat_Window):
         eb.add(lab)
 
         self.menu = gtk.Menu()
-        menus = {}
-        menu_item_build_list = self.create_menu_items()
-        
-        for item, cb in menu_item_build_list:
-            menus[item] = gtk.MenuItem(item)
-            self.menu.append(menus[item])
-            if cb is not None:
-                menus[item].connect("activate", cb)
+        self.create_menu_items(self.menu)
         eb.connect_object("button-press-event", self.button_press_cb, self.menu)
 
         (x, y) = self.aw.params['layout'][self.hud.max].common
@@ -210,13 +203,20 @@ class Simple_table_mw(Mucked.Seat_Window):
         self.show_all()
         self.hud.table.topify(self)
 
-    def create_menu_items(self):
-        # A tuple of menu items
-        return  (  ('Kill This HUD', self.kill),  #self.hud.parent.kill_hud),
+    def create_menu_items(self, menu):
+        #a gtk.menu item is passed in and returned
+        
+        menu_item_build_list = ( ('Kill This HUD', self.kill),
                         ('Save HUD Layout', self.save_current_layouts), 
-#                        ('Reposition Windows', self.aw.reposition_windows), 
-                        ('Show Player Stats', None)
-                     )
+                        ('Show Player Stats', None) )
+        
+        for item, cb in menu_item_build_list:
+            this_item = gtk.MenuItem(item)
+            menu.append(this_item)
+            if cb is not None:
+                this_item.connect("activate", cb)
+                     
+        return menu
                      
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the main window event box."""

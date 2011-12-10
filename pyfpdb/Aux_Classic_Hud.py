@@ -58,6 +58,9 @@ set a different value.  In those cases, one simply block-copies the method here
 but that wasn't the design philosophy of new-hud.
 
 """
+import L10n
+_ = L10n.get_translation()
+
 #    to do
 
 #    Standard Library modules
@@ -74,7 +77,6 @@ import Popup
 
 class Classic_Stat_Window(Aux_Hud.Stat_Window):
     """Stat windows are the blocks shown continually, 1 for each player."""
-
 
     def update_contents(self, i):
         super(Classic_Stat_Window, self).update_contents(i)
@@ -182,14 +184,207 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
     """
     def __init__(self, hud, aw = None):
         self.menu_label = hud.config.get_hud_ui_parameters()['label']
+        self.hud_params={}
         super(Classic_table_mw, self).__init__(hud, aw)
 
-    def create_menu_items(self):
-        # A tuple of menu items
-        return  (  ('Kill This HUD', self.kill),  #self.hud.parent.kill_hud),
-                        ('Save HUD Layout', self.save_current_layouts), 
-                        ('HUD options', None)
-                     )
+    def create_menu_items(self, menu):
+
+        killitem = gtk.MenuItem(_('Kill This HUD'))
+        menu.append(killitem)
+        killitem.connect("activate", self.kill)
+
+        saveitem = gtk.MenuItem(_('Save HUD Layout'))
+        menu.append(saveitem)
+        saveitem.connect("activate", self.save_current_layouts)
+
+        aggitem = gtk.MenuItem(_('Show Player Stats for'))
+        menu.append(aggitem)
+        aggMenu = gtk.Menu()
+        aggitem.set_submenu(aggMenu)
+
+        def build_aggmenu(legend, cb_params, attrname):
+            item = gtk.CheckMenuItem(legend)
+            aggMenu.append(item)
+            item.connect("activate", self.set_aggregation, cb_params)
+            setattr(self, attrname, item)
+                    
+        # set agg_bb_mult to 1 to stop aggregation
+        build_aggmenu(_('For This Blind Level Only'),('P', 1), 'h_aggBBmultItem1')
+        aggMenu.append(gtk.MenuItem(_('For Multiple Blind Levels:')))
+        build_aggmenu((_('%s to %s * Current Blinds') % ("  0.5", "2.0")),('P',2), 'h_aggBBmultItem2')
+        build_aggmenu((_('%s to %s * Current Blinds') % ("  0.33", "3.0")),('P',3), 'h_aggBBmultItem3')
+        build_aggmenu((_('%s to %s * Current Blinds') % ("  0.1", "10.0")),('P',10), 'h_aggBBmultItem10')
+        build_aggmenu(("  " + _('All Levels')),('P',10000), 'h_aggBBmultItem10000')
+        
+        aggMenu.append(gtk.MenuItem(_('Number of Seats:')))
+        build_aggmenu(("  " + _('Any Number')),('P','A'), 'h_seatsStyleOptionA')
+        build_aggmenu(("  " + _('Custom')),('P','C'), 'h_seatsStyleOptionC')
+        build_aggmenu(("  " + _('Exact')),('P','E'), 'h_seatsStyleOptionE')
+
+        aggMenu.append(gtk.MenuItem(_('Since:')))
+        build_aggmenu(("  " + _('All Time')),('P','A'), 'h_hudStyleOptionA')
+        build_aggmenu(("  " + _('Session')),('P','S'), 'h_hudStyleOptionS')
+        #build_aggmenu(("  " + _('%s Days') % (self.hud_params['h_hud_days'])),('P','S'), 'h_hudStyleOptionS')
+ 
+        aggitem = gtk.MenuItem(_('Show Opponent Stats for'))
+        menu.append(aggitem)
+        aggMenu = gtk.Menu()
+        aggitem.set_submenu(aggMenu)
+        
+        build_aggmenu(_('For This Blind Level Only'),('O', 1), 'aggBBmultItem1')
+        aggMenu.append(gtk.MenuItem(_('For Multiple Blind Levels:')))
+        build_aggmenu((_('%s to %s * Current Blinds') % ("  0.5", "2.0")),('O',2), 'aggBBmultItem2')
+        build_aggmenu((_('%s to %s * Current Blinds') % ("  0.33", "3.0")),('O',3), 'aggBBmultItem3')
+        build_aggmenu((_('%s to %s * Current Blinds') % ("  0.1", "10.0")),('O',10), 'aggBBmultItem10')
+        build_aggmenu(("  " + _('All Levels')),('O',10000), 'aggBBmultItem10000')
+        
+        aggMenu.append(gtk.MenuItem(_('Number of Seats:')))
+        build_aggmenu(("  " + _('Any Number')),('O','A'), 'seatsStyleOptionA')
+        build_aggmenu(("  " + _('Custom')),('O','C'), 'seatsStyleOptionC')
+        build_aggmenu(("  " + _('Exact')),('O','E'), 'seatsStyleOptionE')
+
+        aggMenu.append(gtk.MenuItem(_('Since:')))
+        build_aggmenu(("  " + _('All Time')),('O','A'), 'hudStyleOptionA')
+        build_aggmenu(("  " + _('Session')),('O','S'), 'hudStyleOptionS')
+        #build_aggmenu(("  " + _('%s Days') % (self.hud_params['h_hud_days'])),('O','S'), 'hudStyleOptionS')
+
+        # set active on current options:
+        if self.hud_params['h_agg_bb_mult'] == 1:
+            getattr(self, 'h_aggBBmultItem1').set_active(True)
+        elif self.hud_params['h_agg_bb_mult'] == 2:
+            getattr(self, 'h_aggBBmultItem2').set_active(True)
+        elif self.hud_params['h_agg_bb_mult'] == 3:
+            getattr(self, 'h_aggBBmultItem3').set_active(True)
+        elif self.hud_params['h_agg_bb_mult'] == 10:
+            getattr(self, 'h_aggBBmultItem10').set_active(True)
+        elif self.hud_params['h_agg_bb_mult'] > 9000:
+            getattr(self, 'h_aggBBmultItem10000').set_active(True)
+        
+        if self.hud_params['agg_bb_mult'] == 1:
+            getattr(self, 'aggBBmultItem1').set_active(True)
+        elif self.hud_params['agg_bb_mult'] == 2:
+            getattr(self, 'aggBBmultItem2').set_active(True)
+        elif self.hud_params['agg_bb_mult'] == 3:
+            getattr(self, 'aggBBmultItem3').set_active(True)
+        elif self.hud_params['agg_bb_mult'] == 10:
+            getattr(self, 'aggBBmultItem10').set_active(True)
+        elif self.hud_params['agg_bb_mult'] > 9000:
+            getattr(self, 'aggBBmultItem10000').set_active(True)
+        
+        if self.hud_params['h_seats_style'] == 'A':
+            getattr(self, 'h_seatsStyleOptionA').set_active(True)
+        elif self.hud_params['h_seats_style'] == 'C':
+            getattr(self, 'h_seatsStyleOptionC').set_active(True)
+        elif self.hud_params['h_seats_style'] == 'E':
+            getattr(self, 'h_seatsStyleOptionE').set_active(True)
+        
+        if self.hud_params['seats_style'] == 'A':
+            getattr(self, 'seatsStyleOptionA').set_active(True)
+        elif self.hud_params['seats_style'] == 'C':
+            getattr(self, 'seatsStyleOptionC').set_active(True)
+        elif self.hud_params['seats_style'] == 'E':
+            getattr(self, 'seatsStyleOptionE').set_active(True)
+        
+        if self.hud_params['h_hud_style'] == 'A':
+            getattr(self, 'h_hudStyleOptionA').set_active(True)
+        elif self.hud_params['h_hud_style'] == 'S':
+            getattr(self, 'h_hudStyleOptionS').set_active(True)
+        elif self.hud_params['h_hud_style'] == 'T':
+            getattr(self, 'h_hudStyleOptionT').set_active(True)
+        
+        if self.hud_params['hud_style'] == 'A':
+            getattr(self, 'hudStyleOptionA').set_active(True)
+        elif self.hud_params['hud_style'] == 'S':
+            getattr(self, 'hudStyleOptionS').set_active(True)
+        elif self.hud_params['hud_style'] == 'T':
+            getattr(self, 'hudStyleOptionT').set_active(True)
+
+        return menu
+        
+        item5 = gtk.MenuItem(_('Set max seats'))
+        menu.append(item5)
+        maxSeatsMenu = gtk.Menu()
+        item5.set_submenu(maxSeatsMenu)
+        for i in range(2, 11, 1):
+            item = gtk.MenuItem('%d-max' % i)
+            item.ms = i
+            maxSeatsMenu.append(item)
+            item.connect("activate", self.change_max_seats)
+            setattr(self, 'maxSeatsMenuItem%d' % (i - 1), item)
+
+
+    def set_aggregation(self, widget, val):
+        (player_opp, num) = val
+        if player_opp == 'P':
+            # set these true all the time, set the multiplier to 1 to turn agg off:
+            self.hud_params['h_aggregate_ring'] = True
+            self.hud_params['h_aggregate_tour'] = True
+
+            if     self.hud_params['h_agg_bb_mult'] != num \
+               and getattr(self, 'h_aggBBmultItem'+str(num)).get_active():
+                log.debug('set_player_aggregation %d', num)
+                self.hud_params['h_agg_bb_mult'] = num
+                for mult in ('1', '2', '3', '10', '10000'):
+                    if mult != str(num):
+                        getattr(self, 'h_aggBBmultItem'+mult).set_active(False)
+        else:
+            self.hud_params['aggregate_ring'] = True
+            self.hud_params['aggregate_tour'] = True
+
+            if     self.hud_params['agg_bb_mult'] != num \
+               and getattr(self, 'aggBBmultItem'+str(num)).get_active():
+                log.debug('set_opponent_aggregation %d', num)
+                self.hud_params['agg_bb_mult'] = num
+                for mult in ('1', '2', '3', '10', '10000'):
+                    if mult != str(num):
+                        getattr(self, 'aggBBmultItem'+mult).set_active(False)
+
+    def set_seats_style(self, widget, val):
+        (player_opp, style) = val
+        if player_opp == 'P':
+            param = 'h_seats_style'
+            prefix = 'h_'
+        else:
+            param = 'seats_style'
+            prefix = ''
+
+        if style == 'A' and getattr(self, prefix+'seatsStyleOptionA').get_active():
+            self.hud_params[param] = 'A'
+            getattr(self, prefix+'seatsStyleOptionC').set_active(False)
+            getattr(self, prefix+'seatsStyleOptionE').set_active(False)
+        elif style == 'C' and getattr(self, prefix+'seatsStyleOptionC').get_active():
+            self.hud_params[param] = 'C'
+            getattr(self, prefix+'seatsStyleOptionA').set_active(False)
+            getattr(self, prefix+'seatsStyleOptionE').set_active(False)
+        elif style == 'E' and getattr(self, prefix+'seatsStyleOptionE').get_active():
+            self.hud_params[param] = 'E'
+            getattr(self, prefix+'seatsStyleOptionA').set_active(False)
+            getattr(self, prefix+'seatsStyleOptionC').set_active(False)
+        log.debug("setting self.hud_params[%s] = %s" % (param, style))
+
+    def set_hud_style(self, widget, val):
+        (player_opp, style) = val
+        if player_opp == 'P':
+            param = 'h_hud_style'
+            prefix = 'h_'
+        else:
+            param = 'hud_style'
+            prefix = ''
+
+        if style == 'A' and getattr(self, prefix+'hudStyleOptionA').get_active():
+            self.hud_params[param] = 'A'
+            getattr(self, prefix+'hudStyleOptionS').set_active(False)
+            getattr(self, prefix+'hudStyleOptionT').set_active(False)
+        elif style == 'S' and getattr(self, prefix+'hudStyleOptionS').get_active():
+            self.hud_params[param] = 'S'
+            getattr(self, prefix+'hudStyleOptionA').set_active(False)
+            getattr(self, prefix+'hudStyleOptionT').set_active(False)
+        elif style == 'T' and getattr(self, prefix+'hudStyleOptionT').get_active():
+            self.hud_params[param] = 'T'
+            getattr(self, prefix+'hudStyleOptionA').set_active(False)
+            getattr(self, prefix+'hudStyleOptionS').set_active(False)
+        log.debug("setting self.hud_params[%s] = %s" % (param, style))
+
 
 Aux_Hud.Simple_table_mw=Classic_table_mw  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
                                           ##see FIXME note in Aux_Hud Simple_table_mw init method
