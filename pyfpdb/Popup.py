@@ -41,14 +41,17 @@ class Popup(gtk.Window):
         self.win = win
         self.pop = pop
         super(Popup, self).__init__()
+        
+
+        self.set_destroy_with_parent(True)
 
 #    Most (all?) popups want a label and eb, so let's create them here
         self.eb = gtk.EventBox()
         self.lab = gtk.Label()
         self.add(self.eb)
         self.eb.add(self.lab)
-        self.lab.modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
-        self.lab.modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
+        self.eb.modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
+        self.eb.modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
 
 #    They will also usually want to be undecorated, default colors, etc.
         self.set_decorated(False)
@@ -57,6 +60,7 @@ class Popup(gtk.Window):
         self.set_focus(None)
         self.set_transient_for(win)
         self.connect("button_press_event", self.button_press_cb)
+        self.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
         self.create()
 
 #    Every popup window needs one of these
@@ -84,4 +88,6 @@ class default(Popup):
             number = Stats.do_stat(self.stat_dict, player = int(player_id), stat = stat)
             text += number[3] + "\n"
         self.lab.set_text(text)
+        self.lab.modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
+        self.lab.modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
         self.show_all()

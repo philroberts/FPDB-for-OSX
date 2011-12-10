@@ -68,6 +68,9 @@ import gtk
 #    FreePokerTools modules
 import Aux_Hud
 import Stats
+import Popup
+
+
 
 class Classic_Stat_Window(Aux_Hud.Stat_Window):
     """Stat windows are the blocks shown continually, 1 for each player."""
@@ -75,8 +78,28 @@ class Classic_Stat_Window(Aux_Hud.Stat_Window):
 
     def update_contents(self, i):
         super(Classic_Stat_Window, self).update_contents(i)
+
+    def button_press_cb(self, widget, event, *args):
+        """Handle button clicks in the stat box."""
+        # standard Aux method has been overriden to activate hide() button
+
+        if event.button == 2:   # middle button event -- hide the window
+            self.hide()
+
+        elif event.button == 3:   # right button event -- show pop up
+            pu_to_run = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup].pu_class
+            Popup.default(seat = widget.aw_seat,
+                                      stat_dict = widget.stat_dict,
+                                      win = widget.get_ancestor(gtk.Window),
+                                      pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup])
+
+        elif event.button == 1:   # left button event -- drag the window
+            self.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)      
+
 Aux_Hud.Stat_Window=Classic_Stat_Window  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
-        
+      
+      
+              
 class Classic_HUD(Aux_Hud.Simple_HUD):
     """
         There is one instance of this class per poker table
@@ -91,6 +114,8 @@ class Classic_HUD(Aux_Hud.Simple_HUD):
         #print "SH create contents"
         super(Classic_HUD, self).create_contents(container, i)
 ##No-need to patch MRO in Aux_Hud - this is instanced here, not in Aux_hud
+
+
 
 class Classic_stat(Aux_Hud.Simple_stat):
     """A class to display each individual statistic on the Stat_Window"""
@@ -120,10 +145,7 @@ class Classic_stat(Aux_Hud.Simple_stat):
     def update(self, player_id, stat_dict):
         super(Classic_stat, self).update(player_id, stat_dict)
 
-        #Colouring logic as follows:
         # Simple hud uses the colour from <aw>; colour from <site> is deprecated
-        #
-
         fg=self.hudcolor        
         if self.stat_loth != "":
             if self.number[0] < (float(self.stat_loth)/100):
@@ -141,11 +163,17 @@ class Classic_stat(Aux_Hud.Simple_stat):
         
 Aux_Hud.Simple_stat=Classic_stat  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
 
+
+
 class Classic_eb(Aux_Hud.Simple_eb): pass
 Aux_Hud.Simple_eb=Classic_eb  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
 
+
+
 class Classic_label(Aux_Hud.Simple_label): pass
 Aux_Hud.Simple_label=Classic_label  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
+
+
 
 class Classic_table_mw(Aux_Hud.Simple_table_mw):
     """
