@@ -75,7 +75,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 169
+DB_VERSION = 170
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -2255,6 +2255,7 @@ class Database:
             line.append(pdata[p]['foldToStreet4CBChance'])       
             line.append(pdata[p]['foldToStreet4CBDone'])         
             line.append(pdata[p]['totalProfit'])
+            line.append(pdata[p]['rake'])
             line.append(pdata[p]['street1CheckCallRaiseChance']) 
             line.append(pdata[p]['street1CheckCallRaiseDone'])   
             line.append(pdata[p]['street2CheckCallRaiseChance']) 
