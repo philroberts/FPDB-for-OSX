@@ -167,7 +167,7 @@ class IdentifySite:
         for id, site in self.sitelist.iteritems():
             filter_name = site.filter_name
             m = self.re_identify[filter_name].search(whole_file)
-            if m and filter_name in ('FullTilt', 'PokerStars'):
+            if m and filter_name in ('Fulltilt', 'PokerStars'):
                 if re_SplitArchive.search(whole_file):
                     f.archive = True
             if m:
