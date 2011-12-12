@@ -61,13 +61,23 @@ but that wasn't the design philosophy of new-hud.
 import L10n
 _ = L10n.get_translation()
 
-#    to do
+# to do
+#=======
+
+# logging not activated yet
+# Killed hud-blocks do not re-appear
+# Save not working at all yet
+# hud menu options for stat display currently being ignored
+# move stat blocks menu item not implemnted (is this deprecated)
+# debug hud option not implemented
+# check that the parameters stored at AW level make sense for players
+#    playing more than one site
+# activate the set-max-seats logic (on the menu but not working)
+# fix the existing bugs with move/resize table (fix in aux_hud, not here)
 
 #    Standard Library modules
-
 #    pyGTK modules
 import gtk
-
 #    FreePokerTools modules
 import Aux_Hud
 import Stats
@@ -89,11 +99,11 @@ class Classic_Stat_Window(Aux_Hud.Stat_Window):
             self.hide()
 
         elif event.button == 3:   # right button event -- show pop up
-            pu_to_run = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup].pu_class
-            Popup.default(seat = widget.aw_seat,
-                                      stat_dict = widget.stat_dict,
-                                      win = widget.get_ancestor(gtk.Window),
-                                      pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup])
+            #pu_to_run = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup].pu_class
+            Classic_popup(seat = widget.aw_seat,
+                        stat_dict = widget.stat_dict,
+                        win = widget.get_ancestor(gtk.Window),
+                        pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup])
 
         elif event.button == 1:   # left button event -- drag the window
             self.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)      
@@ -113,7 +123,6 @@ class Classic_HUD(Aux_Hud.Simple_HUD):
         super(Classic_HUD, self).__init__(hud, config, params)
 
     def create_contents(self, container, i):
-        #print "SH create contents"
         super(Classic_HUD, self).create_contents(container, i)
 ##No-need to patch MRO in Aux_Hud - this is instanced here, not in Aux_hud
 
@@ -183,8 +192,9 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
     Normally a 1:1 relationship with the Classic_HUD class ???? 
     """
     def __init__(self, hud, aw = None):
-        self.menu_label = hud.config.get_hud_ui_parameters()['label']
-        self.hud_params={}
+        self.hud_params = hud.config.get_hud_ui_parameters()
+        self.menu_label = self.hud_params['label']
+
         super(Classic_table_mw, self).__init__(hud, aw)
 
     def create_menu_items(self, menu):
@@ -205,7 +215,9 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
         def build_aggmenu(legend, cb_params, attrname):
             item = gtk.CheckMenuItem(legend)
             aggMenu.append(item)
-            item.connect("activate", self.set_aggregation, cb_params)
+            if   "_agg" in attrname: item.connect("activate", self.set_aggregation, cb_params)
+            elif "_seats" in attrname: item.connect("activate", self.set_seats_style, cb_params)
+            elif "_hud" in attrname: item.connect("activate", self.set_hud_style, cb_params)
             setattr(self, attrname, item)
                     
         # set agg_bb_mult to 1 to stop aggregation
@@ -224,7 +236,7 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
         aggMenu.append(gtk.MenuItem(_('Since:')))
         build_aggmenu(("  " + _('All Time')),('P','A'), 'h_hudStyleOptionA')
         build_aggmenu(("  " + _('Session')),('P','S'), 'h_hudStyleOptionS')
-        #build_aggmenu(("  " + _('%s Days') % (self.hud_params['h_hud_days'])),('P','S'), 'h_hudStyleOptionS')
+        build_aggmenu(("  " + _('%s Days') % (self.hud_params['h_hud_days'])),('P','T'), 'h_hudStyleOptionT')
  
         aggitem = gtk.MenuItem(_('Show Opponent Stats for'))
         menu.append(aggitem)
@@ -246,7 +258,7 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
         aggMenu.append(gtk.MenuItem(_('Since:')))
         build_aggmenu(("  " + _('All Time')),('O','A'), 'hudStyleOptionA')
         build_aggmenu(("  " + _('Session')),('O','S'), 'hudStyleOptionS')
-        #build_aggmenu(("  " + _('%s Days') % (self.hud_params['h_hud_days'])),('O','S'), 'hudStyleOptionS')
+        build_aggmenu(("  " + _('%s Days') % (self.hud_params['h_hud_days'])),('O','T'), 'hudStyleOptionT')
 
         # set active on current options:
         if self.hud_params['h_agg_bb_mult'] == 1:
@@ -299,8 +311,6 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
         elif self.hud_params['hud_style'] == 'T':
             getattr(self, 'hudStyleOptionT').set_active(True)
 
-        return menu
-        
         item5 = gtk.MenuItem(_('Set max seats'))
         menu.append(item5)
         maxSeatsMenu = gtk.Menu()
@@ -311,6 +321,8 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
             maxSeatsMenu.append(item)
             item.connect("activate", self.change_max_seats)
             setattr(self, 'maxSeatsMenuItem%d' % (i - 1), item)
+            
+        return menu
 
 
     def set_aggregation(self, widget, val):
@@ -322,7 +334,6 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
 
             if     self.hud_params['h_agg_bb_mult'] != num \
                and getattr(self, 'h_aggBBmultItem'+str(num)).get_active():
-                log.debug('set_player_aggregation %d', num)
                 self.hud_params['h_agg_bb_mult'] = num
                 for mult in ('1', '2', '3', '10', '10000'):
                     if mult != str(num):
@@ -333,11 +344,11 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
 
             if     self.hud_params['agg_bb_mult'] != num \
                and getattr(self, 'aggBBmultItem'+str(num)).get_active():
-                log.debug('set_opponent_aggregation %d', num)
                 self.hud_params['agg_bb_mult'] = num
                 for mult in ('1', '2', '3', '10', '10000'):
                     if mult != str(num):
                         getattr(self, 'aggBBmultItem'+mult).set_active(False)
+
 
     def set_seats_style(self, widget, val):
         (player_opp, style) = val
@@ -360,7 +371,7 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
             self.hud_params[param] = 'E'
             getattr(self, prefix+'seatsStyleOptionA').set_active(False)
             getattr(self, prefix+'seatsStyleOptionC').set_active(False)
-        log.debug("setting self.hud_params[%s] = %s" % (param, style))
+
 
     def set_hud_style(self, widget, val):
         (player_opp, style) = val
@@ -383,8 +394,35 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
             self.hud_params[param] = 'T'
             getattr(self, prefix+'hudStyleOptionA').set_active(False)
             getattr(self, prefix+'hudStyleOptionS').set_active(False)
-        log.debug("setting self.hud_params[%s] = %s" % (param, style))
 
+
+    def change_max_seats(self, widget):
+        print self.hud.max
+        print widget.ms
+        if self.hud.max != widget.ms:
+            self.hud.max = widget.ms
+            self.kill("whatever")
 
 Aux_Hud.Simple_table_mw=Classic_table_mw  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
                                           ##see FIXME note in Aux_Hud Simple_table_mw init method
+                                          
+class Classic_popup(Popup.Popup):
+
+    def create(self):
+        player_id = None
+        for id in self.stat_dict.keys():
+            if self.seat == self.stat_dict[id]['seat']:
+                player_id = id
+        if player_id is None:
+            self.destroy_pop()
+        popup_text = tip_text = ""
+        for stat in self.pop.pu_stats:
+            number = Stats.do_stat(self.stat_dict, player = int(player_id), stat = stat)
+            popup_text += number[3] + "\n"
+            tip_text += number[5] + " " + number[4] + "\n"
+
+        self.lab.set_text(popup_text)
+        Stats.do_tip(self.lab, tip_text)
+        self.lab.modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
+        self.lab.modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
+        self.show_all()    
