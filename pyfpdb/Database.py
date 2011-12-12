@@ -75,7 +75,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 170
+DB_VERSION = 171
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -313,6 +313,8 @@ class Database:
         self.day_start = 0
         self._has_lock = False
         self.printdata = False
+        self.resetCache()
+        self.resetBulkCache()
         
         if 'day_start' in gen:
             self.day_start = float(gen['day_start'])
@@ -889,7 +891,7 @@ class Database:
         """Get stats for just this session (currently defined as any play in the last 24 hours - to
            be improved at some point ...)
            h_hud_style and hud_style params indicate whether to get stats for hero and/or others
-           - only fetch heros stats if h_hud_style == 'S',
+           - only fetch heroes stats if h_hud_style == 'S',
              and only fetch others stats if hud_style == 'S'
            seats_min/max params give seats limits, only include stats if between these values
         """
@@ -993,12 +995,11 @@ class Database:
         return result
     
     def insertPlayer(self, name, site_id):
-        result = None
+        insert_player = "INSERT INTO Players (name, siteId) VALUES (%s, %s)"
+        insert_player = insert_player.replace('%s', self.sql.query['placeholder'])
         _name = Charset.to_db_utf8(name)
-        c = self.get_cursor()
-        q = "SELECT id, name FROM Players WHERE siteid=%s and name=%s"
-        q = q.replace('%s', self.sql.query['placeholder'])
-
+        key = (_name, site_id)
+        
         #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
         #Usage:
         #        INSERT INTO `tags` (`tag`, `count`)
@@ -1007,16 +1008,19 @@ class Database:
 
 
         #print "DEBUG: name: %s site: %s" %(name, site_id)
-
-        c.execute (q, (site_id, _name))
-
-        tmp = c.fetchone()
-        if (tmp == None): #new player
-            c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
-                      ,(_name, site_id))
-            #Get last id might be faster here.
-            #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
-            result = self.get_last_insert_id(c)
+        result = None
+        c = self.get_cursor()
+        q = "SELECT id, name FROM Players WHERE name=%s and siteid=%s"
+        q = q.replace('%s', self.sql.query['placeholder'])
+        result = self.insertOrUpdate(c, key, q, insert_player)
+        return result
+    
+    def insertOrUpdate(self, cursor, key, select, insert):
+        cursor.execute (select, key)
+        tmp = cursor.fetchone()
+        if (tmp == None):
+            cursor.execute (insert, key)
+            result = self.get_last_insert_id(cursor)
         else:
             result = tmp[0]
         return result
@@ -1240,6 +1244,7 @@ class Database:
 
         self.drop_tables()
         self.resetCache()
+        self.resetBulkCache()
         self.create_tables()
         self.createAllIndexes()
         self.commit()
@@ -1269,6 +1274,8 @@ class Database:
         c.execute(self.sql.query['createHandsActionsTable'])
         c.execute(self.sql.query['createHandsStoveTable'])
         c.execute(self.sql.query['createHudCacheTable'])
+        c.execute(self.sql.query['createCardsCacheTable'])
+        c.execute(self.sql.query['createPositionsCacheTable'])
         c.execute(self.sql.query['createBoardsTable'])
         c.execute(self.sql.query['createBackingsTable'])
         c.execute(self.sql.query['createRawHands'])
@@ -1283,6 +1290,8 @@ class Database:
         c.execute(self.sql.query['addTTypesIndex'])
 
         c.execute(self.sql.query['addHudCacheCompundIndex'])
+        c.execute(self.sql.query['addCardsCacheCompundIndex'])
+        c.execute(self.sql.query['addPositionsCacheCompundIndex'])
 
         self.fillDefaultData()
         self.commit()
@@ -1639,18 +1648,18 @@ class Database:
     
     def rebuild_sessionscache(self, tz_name = None):
         """clears sessionscache and rebuilds from the individual records"""
-        heros, hero, = [], {}
+        heroes, hero, = [], {}
         c = self.get_cursor()
         c.execute("SELECT playerId FROM GamesCache GROUP BY playerId")
         herorecords_cash = c.fetchall()
         for h in herorecords_cash:
-            heros += h
+            heroes += h
         c.execute("SELECT playerId FROM TourneysPlayers WHERE startTime is not NULL GROUP BY playerId")
         herorecords_tour = c.fetchall()
         for h in herorecords_tour:
-            if h not in heros:
-                heros += h
-        if not heros:
+            if h not in heroes:
+                heroes += h
+        if not heroes:
             for site in self.config.get_supported_sites():
                 result = self.get_site_id(site)
                 if result:
@@ -1658,18 +1667,18 @@ class Database:
                     hero[site_id] = self.config.supported_sites[site].screen_name
                     p_id = self.get_player_id(self.config, site, hero[site_id])
                     if p_id:
-                        heros.append(int(p_id))
+                        heroes.append(int(p_id))
                                 
         rebuildSessionsCache    = self.sql.query['rebuildSessionsCache']
-        if len(heros) == 0:
+        if len(heroes) == 0:
             where         = '0'
             where_summary = '0'
-        elif len(heros) > 0:
-            where         = str(heros[0])
-            where_summary = str(heros[0])
-            if len(heros) > 1:
-                for i in heros:
-                    if i != heros[0]:
+        elif len(heroes) > 0:
+            where         = str(heroes[0])
+            where_summary = str(heroes[0])
+            if len(heroes) > 1:
+                for i in heroes:
+                    if i != heroes[0]:
                         where = where + ' OR HandsPlayers.playerId = %s' % str(i)
         rebuildSessionsCache     = rebuildSessionsCache.replace('<where_clause>', where)
         rebuildSessionsCacheRing = rebuildSessionsCache.replace('<tourney_join_clause>','')
@@ -1719,9 +1728,9 @@ class Database:
                     pdata['pname']['sawShowdown']         = tmp[12]
                     tmp = c.fetchone()
                     hid[id] = tid
-                    self.storeSessionsCache (id, pids, startTime, heros, tmp == None)
-                    self.storeGamesCache(id, pids, startTime, gtid, game, pdata, tz_name, heros, tmp == None)
-                    self.updateTourneysPlayersSessions(pids, tid, startTime, pdata, heros, tmp == None)
+                    self.storeSessionsCache (id, pids, startTime, heroes, tmp == None)
+                    self.storeGamesCache(id, pids, startTime, gtid, game, pdata, tz_name, heroes, tmp == None)
+                    self.updateTourneysPlayersSessions(pids, tid, startTime, pdata, heroes, tmp == None)
                     if tmp == None:
                         for i, id in self.sc.iteritems():
                             if i!='bk':
@@ -1849,13 +1858,16 @@ class Database:
             print _("Error during lock_for_insert:"), str(sys.exc_value)
     #end def lock_for_insert
     
-    def resetBulkCache(self):
+    def resetBulkCache(self, reset=True):
         self.siteHandNos = []         # cache of siteHandNo
         self.hbulk       = []         # Hands bulk inserts
         self.bbulk       = []         # Boards bulk inserts
         self.hpbulk      = []         # HandsPlayers bulk inserts
         self.habulk      = []         # HandsActions bulk inserts
-        self.hcbulk      = []         # HudCache bulk inserts
+        self.hcbulk      = {}         # HudCache bulk inserts
+        if reset:
+            self.dcbulk  = {}
+            self.pcbulk  = {}
         self.hsbulk      = []         # HandsStove bulk inserts
         self.tbulk       = {}         # Tourneys bulk updates
         self.tpbulk      = []         # TourneysPlayers bulk updates
@@ -1938,9 +1950,9 @@ class Database:
                 c.execute(q_update_sessions,  (sid, t))
                 self.commit()
     
-    def updateTourneysPlayersSessions(self, pids, tid, startTime, pdata, heros, doinsert):
+    def updateTourneysPlayersSessions(self, pids, tid, startTime, pdata, heroes, doinsert):
         for p, id in pids.iteritems():
-            if id in heros and tid:
+            if id in heroes and tid:
                 if tid not in self.tc:
                     self.tc[tid] =   {'tpid' : None,
                                     'played' : 0,
@@ -2158,180 +2170,249 @@ class Database:
             q = q.replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
             c.executemany(q, self.hsbulk)
-
-    def storeHudCache(self, gid, pids, starttime, pdata, doinsert = False):
-        """Update cached statistics. If update fails because no record exists, do an insert."""
-
-        tz = datetime.utcnow() - datetime.today()
-        tz_offset = tz.seconds/3600
-        tz_day_start_offset = self.day_start + tz_offset
+            
+    def appendStats(self, pdata, p):
+        #NOTE: Insert new stats at right place because SQL needs strict order
+        line = []
+        line.append(1)  # HDs
+        line.append(pdata[p]['street0VPI'])
+        line.append(pdata[p]['street0Aggr'])  
+        line.append(pdata[p]['street0CalledRaiseChance'])
+        line.append(pdata[p]['street0CalledRaiseDone'])
+        line.append(pdata[p]['street0_3BChance'])            
+        line.append(pdata[p]['street0_3BDone'])              
+        line.append(pdata[p]['street0_4BChance'])            
+        line.append(pdata[p]['street0_4BDone'])              
+        line.append(pdata[p]['street0_C4BChance'])              
+        line.append(pdata[p]['street0_C4BDone'])              
+        line.append(pdata[p]['street0_FoldTo3BChance'])      
+        line.append(pdata[p]['street0_FoldTo3BDone'])        
+        line.append(pdata[p]['street0_FoldTo4BChance'])      
+        line.append(pdata[p]['street0_FoldTo4BDone'])        
+        line.append(pdata[p]['street0_SqueezeChance'])        
+        line.append(pdata[p]['street0_SqueezeDone'])        
+        line.append(pdata[p]['raiseToStealChance'])        
+        line.append(pdata[p]['raiseToStealDone'])        
+        line.append(pdata[p]['success_Steal'])        
+        line.append(pdata[p]['street1Seen'])                 
+        line.append(pdata[p]['street2Seen'])                 
+        line.append(pdata[p]['street3Seen'])                 
+        line.append(pdata[p]['street4Seen'])                 
+        line.append(pdata[p]['sawShowdown'])                 
+        line.append(pdata[p]['street1Aggr'])                 
+        line.append(pdata[p]['street2Aggr'])                 
+        line.append(pdata[p]['street3Aggr'])                 
+        line.append(pdata[p]['street4Aggr'])                 
+        line.append(pdata[p]['otherRaisedStreet0'])          
+        line.append(pdata[p]['otherRaisedStreet1'])          
+        line.append(pdata[p]['otherRaisedStreet2'])          
+        line.append(pdata[p]['otherRaisedStreet3'])          
+        line.append(pdata[p]['otherRaisedStreet4'])          
+        line.append(pdata[p]['foldToOtherRaisedStreet0'])    
+        line.append(pdata[p]['foldToOtherRaisedStreet1'])    
+        line.append(pdata[p]['foldToOtherRaisedStreet2'])    
+        line.append(pdata[p]['foldToOtherRaisedStreet3'])    
+        line.append(pdata[p]['foldToOtherRaisedStreet4'])    
+        line.append(pdata[p]['wonWhenSeenStreet1'])
+        line.append(pdata[p]['wonWhenSeenStreet2'])
+        line.append(pdata[p]['wonWhenSeenStreet3'])
+        line.append(pdata[p]['wonWhenSeenStreet4'])
+        line.append(pdata[p]['wonAtSD'])
+        line.append(pdata[p]['raiseFirstInChance'])          
+        line.append(pdata[p]['raisedFirstIn'])               
+        line.append(pdata[p]['foldBbToStealChance'])         
+        line.append(pdata[p]['foldedBbToSteal'])             
+        line.append(pdata[p]['foldSbToStealChance'])         
+        line.append(pdata[p]['foldedSbToSteal'])             
+        line.append(pdata[p]['street1CBChance'])             
+        line.append(pdata[p]['street1CBDone'])               
+        line.append(pdata[p]['street2CBChance'])             
+        line.append(pdata[p]['street2CBDone'])               
+        line.append(pdata[p]['street3CBChance'])             
+        line.append(pdata[p]['street3CBDone'])               
+        line.append(pdata[p]['street4CBChance'])             
+        line.append(pdata[p]['street4CBDone'])               
+        line.append(pdata[p]['foldToStreet1CBChance'])       
+        line.append(pdata[p]['foldToStreet1CBDone'])         
+        line.append(pdata[p]['foldToStreet2CBChance'])       
+        line.append(pdata[p]['foldToStreet2CBDone'])         
+        line.append(pdata[p]['foldToStreet3CBChance'])       
+        line.append(pdata[p]['foldToStreet3CBDone'])         
+        line.append(pdata[p]['foldToStreet4CBChance'])       
+        line.append(pdata[p]['foldToStreet4CBDone'])         
+        line.append(pdata[p]['totalProfit'])
+        line.append(pdata[p]['rake'])
+        line.append(pdata[p]['street1CheckCallRaiseChance']) 
+        line.append(pdata[p]['street1CheckCallRaiseDone'])   
+        line.append(pdata[p]['street2CheckCallRaiseChance']) 
+        line.append(pdata[p]['street2CheckCallRaiseDone'])   
+        line.append(pdata[p]['street3CheckCallRaiseChance']) 
+        line.append(pdata[p]['street3CheckCallRaiseDone'])   
+        line.append(pdata[p]['street4CheckCallRaiseChance']) 
+        line.append(pdata[p]['street4CheckCallRaiseDone'])   
+        line.append(pdata[p]['street0Calls'])                
+        line.append(pdata[p]['street1Calls'])                
+        line.append(pdata[p]['street2Calls'])                
+        line.append(pdata[p]['street3Calls'])                
+        line.append(pdata[p]['street4Calls'])                
+        line.append(pdata[p]['street0Bets'])                 
+        line.append(pdata[p]['street1Bets'])                 
+        line.append(pdata[p]['street2Bets'])                 
+        line.append(pdata[p]['street3Bets'])                 
+        line.append(pdata[p]['street4Bets'])                 
+        line.append(pdata[p]['street0Raises'])               
+        line.append(pdata[p]['street1Raises'])               
+        line.append(pdata[p]['street2Raises'])               
+        line.append(pdata[p]['street3Raises'])               
+        line.append(pdata[p]['street4Raises'])               
         
-        d = timedelta(hours=tz_day_start_offset)
-        starttime_offset = starttime - d
-
-        # hard-code styleKey as 'A000000' (all-time cache, no key) for now
-        seats = '0'
-        position = '0'
-        styleKey = 'A000000'
-
-        if self.build_full_hudcache:
-            styleKey = datetime.strftime(starttime_offset, 'd%y%m%d')
-            seats = len(pids)
-
+        for i in range(len(line)):
+            if line[i]==True:  line[i] = 1
+            if line[i]==False: line[i] = 0
+            
+        return line
+            
+    def storeHudCache(self, gid, pids, starttime, pdata, doinsert=False):
         update_hudcache = self.sql.query['update_hudcache']
         update_hudcache = update_hudcache.replace('%s', self.sql.query['placeholder'])
         insert_hudcache = self.sql.query['insert_hudcache']
         insert_hudcache = insert_hudcache.replace('%s', self.sql.query['placeholder'])
-
-        #print "DEBUG: %s %s %s" %(hid, pids, pdata)
-        hcs = []
-        for p in pdata:
-            #NOTE: Insert new stats at right place because SQL needs strict order
-            line = []
-            line.append(1)  # HDs
-            line.append(pdata[p]['street0VPI'])
-            line.append(pdata[p]['street0Aggr'])  
-            line.append(pdata[p]['street0CalledRaiseChance'])
-            line.append(pdata[p]['street0CalledRaiseDone'])
-            line.append(pdata[p]['street0_3BChance'])            
-            line.append(pdata[p]['street0_3BDone'])              
-            line.append(pdata[p]['street0_4BChance'])            
-            line.append(pdata[p]['street0_4BDone'])              
-            line.append(pdata[p]['street0_C4BChance'])              
-            line.append(pdata[p]['street0_C4BDone'])              
-            line.append(pdata[p]['street0_FoldTo3BChance'])      
-            line.append(pdata[p]['street0_FoldTo3BDone'])        
-            line.append(pdata[p]['street0_FoldTo4BChance'])      
-            line.append(pdata[p]['street0_FoldTo4BDone'])        
-            line.append(pdata[p]['street0_SqueezeChance'])        
-            line.append(pdata[p]['street0_SqueezeDone'])        
-            line.append(pdata[p]['raiseToStealChance'])        
-            line.append(pdata[p]['raiseToStealDone'])        
-            line.append(pdata[p]['success_Steal'])        
-            line.append(pdata[p]['street1Seen'])                 
-            line.append(pdata[p]['street2Seen'])                 
-            line.append(pdata[p]['street3Seen'])                 
-            line.append(pdata[p]['street4Seen'])                 
-            line.append(pdata[p]['sawShowdown'])                 
-            line.append(pdata[p]['street1Aggr'])                 
-            line.append(pdata[p]['street2Aggr'])                 
-            line.append(pdata[p]['street3Aggr'])                 
-            line.append(pdata[p]['street4Aggr'])                 
-            line.append(pdata[p]['otherRaisedStreet0'])          
-            line.append(pdata[p]['otherRaisedStreet1'])          
-            line.append(pdata[p]['otherRaisedStreet2'])          
-            line.append(pdata[p]['otherRaisedStreet3'])          
-            line.append(pdata[p]['otherRaisedStreet4'])          
-            line.append(pdata[p]['foldToOtherRaisedStreet0'])    
-            line.append(pdata[p]['foldToOtherRaisedStreet1'])    
-            line.append(pdata[p]['foldToOtherRaisedStreet2'])    
-            line.append(pdata[p]['foldToOtherRaisedStreet3'])    
-            line.append(pdata[p]['foldToOtherRaisedStreet4'])    
-            line.append(pdata[p]['wonWhenSeenStreet1'])
-            line.append(pdata[p]['wonWhenSeenStreet2'])
-            line.append(pdata[p]['wonWhenSeenStreet3'])
-            line.append(pdata[p]['wonWhenSeenStreet4'])
-            line.append(pdata[p]['wonAtSD'])
-            line.append(pdata[p]['raiseFirstInChance'])          
-            line.append(pdata[p]['raisedFirstIn'])               
-            line.append(pdata[p]['foldBbToStealChance'])         
-            line.append(pdata[p]['foldedBbToSteal'])             
-            line.append(pdata[p]['foldSbToStealChance'])         
-            line.append(pdata[p]['foldedSbToSteal'])             
-            line.append(pdata[p]['street1CBChance'])             
-            line.append(pdata[p]['street1CBDone'])               
-            line.append(pdata[p]['street2CBChance'])             
-            line.append(pdata[p]['street2CBDone'])               
-            line.append(pdata[p]['street3CBChance'])             
-            line.append(pdata[p]['street3CBDone'])               
-            line.append(pdata[p]['street4CBChance'])             
-            line.append(pdata[p]['street4CBDone'])               
-            line.append(pdata[p]['foldToStreet1CBChance'])       
-            line.append(pdata[p]['foldToStreet1CBDone'])         
-            line.append(pdata[p]['foldToStreet2CBChance'])       
-            line.append(pdata[p]['foldToStreet2CBDone'])         
-            line.append(pdata[p]['foldToStreet3CBChance'])       
-            line.append(pdata[p]['foldToStreet3CBDone'])         
-            line.append(pdata[p]['foldToStreet4CBChance'])       
-            line.append(pdata[p]['foldToStreet4CBDone'])         
-            line.append(pdata[p]['totalProfit'])
-            line.append(pdata[p]['rake'])
-            line.append(pdata[p]['street1CheckCallRaiseChance']) 
-            line.append(pdata[p]['street1CheckCallRaiseDone'])   
-            line.append(pdata[p]['street2CheckCallRaiseChance']) 
-            line.append(pdata[p]['street2CheckCallRaiseDone'])   
-            line.append(pdata[p]['street3CheckCallRaiseChance']) 
-            line.append(pdata[p]['street3CheckCallRaiseDone'])   
-            line.append(pdata[p]['street4CheckCallRaiseChance']) 
-            line.append(pdata[p]['street4CheckCallRaiseDone'])   
-            line.append(pdata[p]['street0Calls'])                
-            line.append(pdata[p]['street1Calls'])                
-            line.append(pdata[p]['street2Calls'])                
-            line.append(pdata[p]['street3Calls'])                
-            line.append(pdata[p]['street4Calls'])                
-            line.append(pdata[p]['street0Bets'])                 
-            line.append(pdata[p]['street1Bets'])                 
-            line.append(pdata[p]['street2Bets'])                 
-            line.append(pdata[p]['street3Bets'])                 
-            line.append(pdata[p]['street4Bets'])                 
-            line.append(pdata[p]['street0Raises'])               
-            line.append(pdata[p]['street1Raises'])               
-            line.append(pdata[p]['street2Raises'])               
-            line.append(pdata[p]['street3Raises'])               
-            line.append(pdata[p]['street4Raises'])               
             
+        if pdata:   
+            # hard-code styleKey as 'A000000' (all-time cache, no key) for now
+            seats = '0'
+            position = '0'
+            styleKey = 'A000000'
+    
+            if self.build_full_hudcache:
+                tz = datetime.utcnow() - datetime.today()
+                tz_offset = tz.seconds/3600
+                tz_day_start_offset = self.day_start + tz_offset
+                
+                d = timedelta(hours=tz_day_start_offset)
+                starttime_offset = starttime - d
+                styleKey = datetime.strftime(starttime_offset, 'd%y%m%d')
+                seats = len(pids)
+
+        for p in pdata:
+            line = self.appendStats(pdata, p)
             if self.build_full_hudcache:
                 pos = {'B':'B', 'S':'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }
                 position = pos[pdata[p]['position']]
-            hc = {}
-            hc['gametypeId'] = gid
-            hc['playerId'] = pids[p]
-            hc['activeSeats'] = seats
-            hc['position'] = position
-            hc['tourneyTypeId'] = pdata[p]['tourneyTypeId']
-            hc['styleKey'] = styleKey
-            for i in range(len(line)):
-                if line[i]==True:  line[i] = 1
-                if line[i]==False: line[i] = 0
-            hc['line'] = line
-            hc['game'] = [hc['gametypeId']
-                         ,hc['playerId']
-                         ,hc['activeSeats']
-                         ,hc['position']
-                         ,hc['tourneyTypeId']
-                         ,hc['styleKey']]
-            hcs.append(hc)
+            k   = (gid
+                  ,pids[p]
+                  ,seats
+                  ,position
+                  ,pdata[p]['tourneyTypeId']
+                  ,styleKey
+                  )
             
-        for h in hcs:
-            match = False
-            for b in self.hcbulk:
-                #print h['game']==b['game'], h['game'], b['game']
-                if  h['game']==b['game']:
-                    b['line'] = [sum(l) for l in zip(b['line'], h['line'])]
-                    match = True
-            if not match: self.hcbulk.append(h)
-        
+            if k in self.hcbulk:
+                self.hcbulk[k] = [sum(l) for l in zip(self.hcbulk[k], line)]
+            else:
+                self.hcbulk[k] = line
+                
         if doinsert:
             inserts = []
             c = self.get_cursor()
-            for hc in self.hcbulk:
-                row = hc['line'] + hc['game']
+            for k, line in self.hcbulk.iteritems():
+                row = line + [k[0], k[1], k[2], k[3], k[4], k[5]]
                 num = c.execute(update_hudcache, row)
                 # Try to do the update first. Do insert it did not work
                 if ((self.backend == self.PGSQL and c.statusmessage != "UPDATE 1")
                         or (self.backend == self.MYSQL_INNODB and num == 0)
                         or (self.backend == self.SQLITE and num.rowcount == 0)):
-                    inserts.append(hc['game'] + hc['line'])
-                    #row = hc['game'] + hc['line']
-                    #num = c.execute(insert_hudcache, row)
+                    inserts.append([k[0], k[1], k[2], k[3], k[4], k[5]] + line)
                     #print "DEBUG: Successfully(?: %s) updated HudCacho using INSERT" % num
                 else:
                     #print "DEBUG: Successfully updated HudCacho using UPDATE"
                     pass
             if inserts:
                 c.executemany(insert_hudcache, inserts)
+            self.commit()
             
-    def storeSessionsCache(self, hid, pids, startTime, heros, doinsert = False):
+    def storeCardsCache(self, gametype, pids, heroes, pdata, doinsert):
+        """Update cached statistics. If update fails because no record exists, do an insert."""
+        update_cardscache = self.sql.query['update_cardscache']
+        update_cardscache = update_cardscache.replace('%s', self.sql.query['placeholder'])
+        insert_cardscache = self.sql.query['insert_cardscache']
+        insert_cardscache = insert_cardscache.replace('%s', self.sql.query['placeholder'])
+            
+        for p in pdata:
+            if pids[p] in heroes:
+                line = self.appendStats(pdata, p)
+                k =   (gametype['type']
+                      ,gametype['category']
+                      ,pids[p]
+                      ,pdata[p]['startCards']
+                      )
+                if k in self.dcbulk:
+                    self.dcbulk[k] = [sum(l) for l in zip(self.dcbulk[k], line)]
+                else:
+                    self.dcbulk[k] = line
+                #id = self.dccache[(k,line)]
+                
+        if doinsert:
+            inserts = []
+            c = self.get_cursor()
+            for k, line in self.dcbulk.iteritems():
+                row = line + [k[0], k[1], k[2], k[3]]
+                num = c.execute(update_cardscache, row)
+                # Try to do the update first. Do insert it did not work
+                if ((self.backend == self.PGSQL and c.statusmessage != "UPDATE 1")
+                        or (self.backend == self.MYSQL_INNODB and num == 0)
+                        or (self.backend == self.SQLITE and num.rowcount == 0)):
+                    inserts.append([k[0], k[1], k[2], k[3]] + line)
+                    #print "DEBUG: Successfully(?: %s) updated HudCacho using INSERT" % num
+                else:
+                    #print "DEBUG: Successfully updated HudCacho using UPDATE"
+                    pass
+            if inserts:
+                c.executemany(insert_cardscache, inserts)
+            self.commit()
+
+    def storePositionsCache(self, gametype, pids, heroes, pdata, doinsert):
+        """Update cached statistics. If update fails because no record exists, do an insert."""
+        update_positionscache = self.sql.query['update_positionscache']
+        update_positionscache = update_positionscache.replace('%s', self.sql.query['placeholder'])
+        insert_positionscache = self.sql.query['insert_positionscache']
+        insert_positionscache = insert_positionscache.replace('%s', self.sql.query['placeholder'])
+            
+        for p in pdata:
+            if pids[p] in heroes:
+                line = self.appendStats(pdata, p)
+                k =   (gametype['type']
+                      ,pids[p]
+                      ,len(pids)
+                      ,str(pdata[p]['position'])[0]
+                      )
+                #id = self.pccache[(k,line)]
+                if k in self.pcbulk:
+                    self.pcbulk[k] = [sum(l) for l in zip(self.pcbulk[k], line)]
+                else:
+                    self.pcbulk[k] = line
+                #id = self.dccache[(k,line)]
+                
+        if doinsert:
+            inserts = []
+            c = self.get_cursor()
+            for k, line in self.pcbulk.iteritems():
+                row = line + [k[0], k[1], k[2], k[3]]
+                num = c.execute(update_positionscache, row)
+                # Try to do the update first. Do insert it did not work
+                if ((self.backend == self.PGSQL and c.statusmessage != "UPDATE 1")
+                        or (self.backend == self.MYSQL_INNODB and num == 0)
+                        or (self.backend == self.SQLITE and num.rowcount == 0)):
+                    inserts.append([k[0], k[1], k[2], k[3]] + line)
+                    #print "DEBUG: Successfully(?: %s) updated HudCacho using INSERT" % num
+                else:
+                    #print "DEBUG: Successfully updated HudCacho using UPDATE"
+                    pass
+            if inserts:
+                c.executemany(insert_positionscache, inserts)
+            self.commit()
+            
+    def storeSessionsCache(self, hid, pids, startTime, heroes, doinsert = False):
         """Update cached sessions. If no record exists, do an insert"""
         THRESHOLD = timedelta(seconds=int(self.sessionTimeout * 60))
         
@@ -2343,11 +2424,10 @@ class Database:
         update_SC_H   = self.sql.query['update_SC_H'].replace('%s', self.sql.query['placeholder'])
         delete_SC     = self.sql.query['delete_SC'].replace('%s', self.sql.query['placeholder'])
         
-        
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
         hand = {}
         for p, id in pids.iteritems():
-            if id in heros:
+            if id in heroes:
                 if self.backend == self.SQLITE:
                     hand['startTime'] = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
                 else:
@@ -2444,7 +2524,7 @@ class Database:
                     for h in self.sc['bk'][i]['ids']: self.sc[h] = {'id': sid}
             self.commit()
     
-    def storeGamesCache(self, hid, pids, startTime, gtid, game, pdata, tz_name, heros, doinsert = False):
+    def storeGamesCache(self, hid, pids, startTime, gtid, game, pdata, tz_name, heroes, doinsert = False):
         """Update cached sessions. If no record exists, do an insert"""
         utc = pytz.utc
         if tz_name in pytz.common_timezones:
@@ -2476,7 +2556,7 @@ class Database:
 
         hand = {}
         for p, pid in pids.iteritems():
-            if pid in heros and game['type']=='ring':
+            if pid in heroes and game['type']=='ring':
                 hand['playerId']      = pid
                 hand['gametypeId']    = None
                 hand['date']          = date
