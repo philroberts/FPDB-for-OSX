@@ -246,7 +246,7 @@ class Winamax(HandHistoryConverter):
                         if k in info.keys() and info[k]:
                             info[k] = info[k].replace(',','.')
 
-                    if info[key] == 'Gratuit' or info[key] == 'Freeroll':
+                    if info[key] == 'Gratuit' or info[key] == 'Freeroll' or info[key] == 'Ticket uniquement':
                         hand.buyin = 0
                         hand.fee = 0
                         hand.buyinCurrency = "FREE"

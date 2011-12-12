@@ -1029,7 +1029,7 @@ class Filters(threading.Thread):
         #This takes too long if there are a couple of 100k hands in the DB
         #self.cursor.execute(self.sql.query['getPositions'])
         #result = self.db.cursor.fetchall()
-        result = [[0], [1], [2], [3], [4], [5], [5], [7], ['S'], ['B']]
+        result = [[0], [1], [2], [3], [4], [5], [6], [7], ['S'], ['B']]
         res_count = len(result)
         
         if res_count > 0:     
