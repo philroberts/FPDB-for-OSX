@@ -977,53 +977,7 @@ class Database:
         self.pcache     = None       # PlayerId cache
         self.tpcache    = None       # TourneysPlayersId cache
 
-    def getSqlPlayerIDs(self, pnames, siteid):
-        result = {}
-        if(self.pcache == None):
-            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key[0], key[1]))
 
-        for player in pnames:
-            result[player] = self.pcache[(player,siteid)]
-            # NOTE: Using the LambdaDict does the same thing as:
-            #if player in self.pcache:
-            #    #print "DEBUG: cachehit"
-            #    pass
-            #else:
-            #    self.pcache[player] = self.insertPlayer(player, siteid)
-            #result[player] = self.pcache[player]
-
-        return result
-    
-    def insertPlayer(self, name, site_id):
-        insert_player = "INSERT INTO Players (name, siteId) VALUES (%s, %s)"
-        insert_player = insert_player.replace('%s', self.sql.query['placeholder'])
-        _name = Charset.to_db_utf8(name)
-        key = (_name, site_id)
-        
-        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
-        #Usage:
-        #        INSERT INTO `tags` (`tag`, `count`)
-        #         VALUES ($tag, 1)
-        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
-
-
-        #print "DEBUG: name: %s site: %s" %(name, site_id)
-        result = None
-        c = self.get_cursor()
-        q = "SELECT id, name FROM Players WHERE name=%s and siteid=%s"
-        q = q.replace('%s', self.sql.query['placeholder'])
-        result = self.insertOrUpdate(c, key, q, insert_player)
-        return result
-    
-    def insertOrUpdate(self, cursor, key, select, insert):
-        cursor.execute (select, key)
-        tmp = cursor.fetchone()
-        if (tmp == None):
-            cursor.execute (insert, key)
-            result = self.get_last_insert_id(cursor)
-        else:
-            result = tmp[0]
-        return result
 
     def get_last_insert_id(self, cursor=None):
         ret = None
@@ -1059,164 +1013,6 @@ class Database:
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
             raise
         return ret
-
-
-    def prepareBulkImport(self):
-        """Drop some indexes/foreign keys to prepare for bulk import.
-           Currently keeping the standalone indexes as needed to import quickly"""
-        stime = time()
-        c = self.get_cursor()
-        # sc: don't think autocommit=0 is needed, should already be in that mode
-        if self.backend == self.MYSQL_INNODB:
-            c.execute("SET foreign_key_checks=0")
-            c.execute("SET autocommit=0")
-            return
-        if self.backend == self.PGSQL:
-            self.connection.set_isolation_level(0)   # allow table/index operations to work
-        for fk in self.foreignKeys[self.backend]:
-            if fk['drop'] == 1:
-                if self.backend == self.MYSQL_INNODB:
-                    c.execute("SELECT constraint_name " +
-                              "FROM information_schema.KEY_COLUMN_USAGE " +
-                              "WHERE 1=1 " +
-                              "AND table_name = %s AND column_name = %s " +
-                              "AND referenced_table_name = %s " +
-                              "AND referenced_column_name = %s ",
-                              (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
-                    cons = c.fetchone()
-                    if cons:
-                        print _("Dropping foreign key:"), cons[0], fk['fktab'], fk['fkcol']
-                        try:
-                            c.execute("alter table " + fk['fktab'] + " drop foreign key " + cons[0])
-                        except:
-                            print _("Warning:"), _("Drop foreign key %s_%s_fkey failed: %s, continuing ...") \
-                                      % (fk['fktab'], fk['fkcol'], str(sys.exc_value).rstrip('\n') )
-                elif self.backend == self.PGSQL:
-                    print _("Dropping foreign key:"), fk['fktab'], fk['fkcol']
-                    try:
-                        # try to lock table to see if index drop will work:
-                        # hmmm, tested by commenting out rollback in grapher. lock seems to work but
-                        # then drop still hangs :-(  does work in some tests though??
-                        # will leave code here for now pending further tests/enhancement ...
-                        c.execute("BEGIN TRANSACTION")
-                        c.execute( "lock table %s in exclusive mode nowait" % (fk['fktab'],) )
-                        try:
-                            c.execute("alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol']))
-                            print _("dropped foreign key %s_%s_fkey, continuing ...") % (fk['fktab'], fk['fkcol'])
-                        except:
-                            if "does not exist" not in str(sys.exc_value):
-                                print _("Warning:"), _("Drop foreign key %s_%s_fkey failed: %s, continuing ...") \
-                                      % (fk['fktab'], fk['fkcol'], str(sys.exc_value).rstrip('\n') )
-                        c.execute("END TRANSACTION")
-                    except:
-                        print _("Warning:"), _("constraint %s_%s_fkey not dropped: %s, continuing ...") \
-                              % (fk['fktab'],fk['fkcol'], str(sys.exc_value).rstrip('\n'))
-                else:
-                    return -1
-
-        for idx in self.indexes[self.backend]:
-            print _("Dropping index:"), idx['tab'], idx['col']
-            if idx['drop'] == 1:
-                if self.backend == self.MYSQL_INNODB:
-                    c.execute( "ALTER TABLE %s DROP INDEX %s;", (idx['tab'],idx['col']) )
-                elif self.backend == self.PGSQL:
-                    try:
-                        c.execute("BEGIN TRANSACTION")
-                        c.execute( "LOCK TABLE %s IN EXCLUSIVE MODE NOWAIT" % (idx['tab'],) )
-                        try:
-                            c.execute( "DROP INDEX IF EXISTS %s_%s_idx" % (idx['tab'],idx['col']) )
-                        except:
-                            if "does not exist" not in str(sys.exc_value):
-                                print _("Warning:"), _("drop index %s_%s_idx failed: %s, continuing ...") \
-                                      % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n'))
-                        c.execute("END TRANSACTION")
-                    except:
-                        print _("Warning:"), _("index %s_%s_idx not dropped: %s, continuing ...") \
-                              % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n'))
-                else:
-                    return -1
-
-        if self.backend == self.PGSQL:
-            self.connection.set_isolation_level(1)   # go back to normal isolation level
-        self.commit() # seems to clear up errors if there were any in postgres
-        ptime = time() - stime
-        print (_("prepare import took %s seconds") % ptime)
-    #end def prepareBulkImport
-
-    def afterBulkImport(self):
-        """Re-create any dropped indexes/foreign keys after bulk import"""
-        stime = time()
-
-        c = self.get_cursor()
-        if self.backend == self.MYSQL_INNODB:
-            c.execute("SET foreign_key_checks=1")
-            c.execute("SET autocommit=1")
-            return
-
-        if self.backend == self.PGSQL:
-            self.connection.set_isolation_level(0)   # allow table/index operations to work
-        for fk in self.foreignKeys[self.backend]:
-            if fk['drop'] == 1:
-                if self.backend == self.MYSQL_INNODB:
-                    c.execute("SELECT constraint_name " +
-                              "FROM information_schema.KEY_COLUMN_USAGE " +
-                              #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
-                              "WHERE 1=1 " +
-                              "AND table_name = %s AND column_name = %s " +
-                              "AND referenced_table_name = %s " +
-                              "AND referenced_column_name = %s ",
-                              (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
-                    cons = c.fetchone()
-                    #print "afterbulk: cons=", cons
-                    if cons:
-                        pass
-                    else:
-                        print _("Creating foreign key:"), fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
-                        try:
-                            c.execute("alter table " + fk['fktab'] + " add foreign key ("
-                                      + fk['fkcol'] + ") references " + fk['rtab'] + "("
-                                      + fk['rcol'] + ")")
-                        except:
-                            print _("Create foreign key failed:"), str(sys.exc_info())
-                elif self.backend == self.PGSQL:
-                    print _("Creating foreign key:"), fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
-                    try:
-                        c.execute("alter table " + fk['fktab'] + " add constraint "
-                                  + fk['fktab'] + '_' + fk['fkcol'] + '_fkey'
-                                  + " foreign key (" + fk['fkcol']
-                                  + ") references " + fk['rtab'] + "(" + fk['rcol'] + ")")
-                    except:
-                        print _("Create foreign key failed:"), str(sys.exc_info())
-                else:
-                    return -1
-
-        for idx in self.indexes[self.backend]:
-            if idx['drop'] == 1:
-                if self.backend == self.MYSQL_INNODB:
-                    print _("Creating index %s %s") % (idx['tab'], idx['col'])
-                    try:
-                        s = "alter table %s add index %s(%s)" % (idx['tab'],idx['col'],idx['col'])
-                        c.execute(s)
-                    except:
-                        print _("Create foreign key failed:"), str(sys.exc_info())
-                elif self.backend == self.PGSQL:
-    #                pass
-                    # mod to use tab_col for index name?
-                    print _("Creating index %s %s") % (idx['tab'], idx['col'])
-                    try:
-                        s = "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
-                        c.execute(s)
-                    except:
-                        print _("Create index failed:"), str(sys.exc_info())
-                else:
-                    return -1
-
-        if self.backend == self.PGSQL:
-            self.connection.set_isolation_level(1)   # go back to normal isolation level
-        self.commit()   # seems to clear up errors if there were any in postgres
-        atime = time() - stime
-        print (_("After import took %s seconds") % atime)
-    #end def afterBulkImport
 
     def drop_referential_integrity(self):
         """Update all tables to remove foreign keys"""
@@ -2725,58 +2521,6 @@ class Database:
             if id in self.gc:
                 h[5] = self.gc[id]['id']                
 
-    def getSqlGameTypeId(self, siteid, game, printdata = False):
-        if(self.gtcache == None):
-            self.gtcache = LambdaDict(lambda  key:self.insertGameTypes(key[0], key[1]))
-            
-        self.gtprintdata = printdata
-        hilo = "h"
-        if game['category'] in ['studhilo', 'omahahilo']:
-            hilo = "s"
-        elif game['category'] in ['razz','27_3draw','badugi', '27_1draw']:
-            hilo = "l"
-            
-        gtinfo = (siteid, game['type'], game['category'], game['limitType'], game['currency'],
-                  game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
-                  game['maxSeats'], int(game['ante']*100))
-        
-        gtinsert = (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
-                    game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
-                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200), game['maxSeats'], int(game['ante']*100))
-        
-        result = self.gtcache[(gtinfo, gtinsert)]
-        # NOTE: Using the LambdaDict does the same thing as:
-        #if player in self.pcache:
-        #    #print "DEBUG: cachehit"
-        #    pass
-        #else:
-        #    self.pcache[player] = self.insertPlayer(player, siteid)
-        #result[player] = self.pcache[player]
-
-        return result
-
-    def insertGameTypes(self, gtinfo, gtinsert):
-        result = None
-        c = self.get_cursor()
-        q = self.sql.query['getGametypeNL']
-        q = q.replace('%s', self.sql.query['placeholder'])
-        c.execute(q, gtinfo)
-        tmp = c.fetchone()
-        if (tmp == None):
-                
-            if self.gtprintdata:
-                print ("######## Gametype ##########")
-                import pprint
-                pp = pprint.PrettyPrinter(indent=4)
-                pp.pprint(gtinsert)
-                print ("###### End Gametype ########")
-                
-            c.execute(self.sql.query['insertGameTypes'], gtinsert)
-            result = self.get_last_insert_id(c)
-        else:
-            result = tmp[0]
-        return result
-    
     def storeFile(self, fdata):
         q = self.sql.query['store_file']
         q = q.replace('%s', self.sql.query['placeholder'])
@@ -2841,80 +2585,106 @@ class Database:
             return True
         self.siteHandNos.append((gametypeID, siteHandNo))
         return False
+    
+    def getSqlPlayerIDs(self, pnames, siteid):
+        result = {}
+        if(self.pcache == None):
+            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key[0], key[1]))
 
-    # read HandToWrite objects from q and insert into database
-    def insert_queue_hands(self, q, maxwait=10, commitEachHand=True):
-        n,fails,maxTries,firstWait = 0,0,4,0.1
-        sendFinal = False
-        t0 = time()
-        while True:
-            try:
-                h = q.get(True)  # (True,maxWait) has probs if 1st part of import is all dups
-            except Queue.Empty:
-                # Queue.Empty exception thrown if q was empty for
-                # if q.empty() also possible - no point if testing for Queue.Empty exception
-                # maybe increment a counter and only break after a few times?
-                # could also test threading.active_count() or look through threading.enumerate()
-                # so break immediately if no threads, but count up to X exceptions if a writer
-                # thread is still alive???
-                print _("queue empty too long - writer stopping ...")
-                break
-            except:
-                print _("writer stopping, error reading queue:"), str(sys.exc_info())
-                break
-            #print "got hand", str(h.get_finished())
+        for player in pnames:
+            result[player] = self.pcache[(player,siteid)]
+            # NOTE: Using the LambdaDict does the same thing as:
+            #if player in self.pcache:
+            #    #print "DEBUG: cachehit"
+            #    pass
+            #else:
+            #    self.pcache[player] = self.insertPlayer(player, siteid)
+            #result[player] = self.pcache[player]
 
-            tries,wait,again = 0,firstWait,True
-            while again:
-                try:
-                    again = False # set this immediately to avoid infinite loops!
-                    if h.get_finished():
-                        # all items on queue processed
-                        sendFinal = True
-                    else:
-                        self.store_the_hand(h)
-                        # optional commit, could be every hand / every N hands / every time a
-                        # commit message received?? mark flag to indicate if commits outstanding
-                        if commitEachHand:
-                            self.commit()
-                        n = n + 1
-                except:
-                    #print "iqh store error", sys.exc_value # debug
-                    self.rollback()
-                    if re.search('deadlock', str(sys.exc_info()[1]), re.I):
-                        # deadlocks only a problem if hudcache is being updated
-                        tries = tries + 1
-                        if tries < maxTries and wait < 5:    # wait < 5 just to make sure
-                            print _("deadlock detected - trying again ...")
-                            sleep(wait)
-                            wait = wait + wait
-                            again = True
-                        else:
-                            print _("Too many deadlocks - failed to store hand"), h.get_siteHandNo()
-                    if not again:
-                        fails = fails + 1
-                        err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                        print _("***Error storing hand:"), err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-            # finished trying to store hand
+        return result
+    
+    def insertPlayer(self, name, site_id):
+        insert_player = "INSERT INTO Players (name, siteId) VALUES (%s, %s)"
+        insert_player = insert_player.replace('%s', self.sql.query['placeholder'])
+        _name = Charset.to_db_utf8(name)
+        key = (_name, site_id)
+        
+        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
+        #Usage:
+        #        INSERT INTO `tags` (`tag`, `count`)
+        #         VALUES ($tag, 1)
+        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
 
-            # always reduce q count, whether or not this hand was saved ok
-            q.task_done()
-        # while True loop
 
-        self.commit()
-        if sendFinal:
-            q.task_done()
-        print _("db writer finished: stored %d hands (%d fails) in %.1f seconds") % (n, fails, time()-t0)
-    # end def insert_queue_hands():
+        #print "DEBUG: name: %s site: %s" %(name, site_id)
+        result = None
+        c = self.get_cursor()
+        q = "SELECT id, name FROM Players WHERE name=%s and siteid=%s"
+        q = q.replace('%s', self.sql.query['placeholder'])
+        result = self.insertOrUpdate(c, key, q, insert_player)
+        return result
+    
+    def insertOrUpdate(self, cursor, key, select, insert):
+        cursor.execute (select, key)
+        tmp = cursor.fetchone()
+        if (tmp == None):
+            cursor.execute (insert, key)
+            result = self.get_last_insert_id(cursor)
+        else:
+            result = tmp[0]
+        return result
+    
+    def getSqlGameTypeId(self, siteid, game, printdata = False):
+        if(self.gtcache == None):
+            self.gtcache = LambdaDict(lambda  key:self.insertGameTypes(key[0], key[1]))
+            
+        self.gtprintdata = printdata
+        hilo = "h"
+        if game['category'] in ['studhilo', 'omahahilo']:
+            hilo = "s"
+        elif game['category'] in ['razz','27_3draw','badugi', '27_1draw']:
+            hilo = "l"
+            
+        gtinfo = (siteid, game['type'], game['category'], game['limitType'], game['currency'],
+                  game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
+                  game['maxSeats'], int(game['ante']*100))
+        
+        gtinsert = (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
+                    game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
+                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200), game['maxSeats'], int(game['ante']*100))
+        
+        result = self.gtcache[(gtinfo, gtinsert)]
+        # NOTE: Using the LambdaDict does the same thing as:
+        #if player in self.pcache:
+        #    #print "DEBUG: cachehit"
+        #    pass
+        #else:
+        #    self.pcache[player] = self.insertPlayer(player, siteid)
+        #result[player] = self.pcache[player]
 
-    def send_finish_msg(self, q):
-        try:
-            h = HandToWrite(True)
-            q.put(h)
-        except:
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("***Error sending finish:"), err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-    # end def send_finish_msg():
+        return result
+
+    def insertGameTypes(self, gtinfo, gtinsert):
+        result = None
+        c = self.get_cursor()
+        q = self.sql.query['getGametypeNL']
+        q = q.replace('%s', self.sql.query['placeholder'])
+        c.execute(q, gtinfo)
+        tmp = c.fetchone()
+        if (tmp == None):
+                
+            if self.gtprintdata:
+                print ("######## Gametype ##########")
+                import pprint
+                pp = pprint.PrettyPrinter(indent=4)
+                pp.pprint(gtinsert)
+                print ("###### End Gametype ########")
+                
+            c.execute(self.sql.query['insertGameTypes'], gtinsert)
+            result = self.get_last_insert_id(c)
+        else:
+            result = tmp[0]
+        return result
     
     def getSqlTourneyTypeIDs(self, hand):
         if(self.ttcache == None):
@@ -3149,111 +2919,6 @@ class Database:
         return (names,data)
     #end def getTourneyPlayerInfo
 #end class Database
-
-# Class used to hold all the data needed to write a hand to the db
-# mainParser() in fpdb_parse_logic.py creates one of these and then passes it to
-# self.insert_queue_hands()
-
-class HandToWrite:
-
-    def __init__(self, finished = False): # db_name and game not used any more
-        self.finished = finished
-        self.config = None
-        self.settings = None
-        self.base = None
-        self.category = None
-        self.siteTourneyNo = None
-        self.buyin = None
-        self.fee = None
-        self.knockout = None
-        self.entries = None
-        self.prizepool = None
-        self.tourneyStartTime = None
-        self.isTourney = None
-        self.tourneyTypeId = None
-        self.siteID = None
-        self.siteHandNo = None
-        self.gametypeID = None
-        self.handStartTime = None
-        self.names = None
-        self.playerIDs = None
-        self.startCashes = None
-        self.positions = None
-        self.antes = None
-        self.cardValues = None
-        self.cardSuits = None
-        self.boardValues = None
-        self.boardSuits = None
-        self.winnings = None
-        self.rakes = None
-        self.actionTypes = None
-        self.allIns = None
-        self.actionAmounts = None
-        self.actionNos = None
-        self.hudImportData = None
-        self.maxSeats = None
-        self.tableName = None
-        self.seatNos = None
-    # end def __init__
-
-    def set_all( self, config, settings, base, category, siteTourneyNo, buyin
-               , fee, knockout, entries, prizepool, tourneyStartTime
-               , isTourney, tourneyTypeId, siteID, siteHandNo
-               , gametypeID, handStartTime, names, playerIDs, startCashes
-               , positions, antes, cardValues, cardSuits, boardValues, boardSuits
-               , winnings, rakes, actionTypes, allIns, actionAmounts
-               , actionNos, hudImportData, maxSeats, tableName, seatNos):
-
-        try:
-            self.config = config
-            self.settings = settings
-            self.base = base
-            self.category = category
-            self.siteTourneyNo = siteTourneyNo
-            self.buyin = buyin
-            self.fee = fee
-            self.knockout = knockout
-            self.entries = entries
-            self.prizepool = prizepool
-            self.tourneyStartTime = tourneyStartTime
-            self.isTourney = isTourney
-            self.tourneyTypeId = tourneyTypeId
-            self.siteID = siteID
-            self.siteHandNo = siteHandNo
-            self.gametypeID = gametypeID
-            self.handStartTime = handStartTime
-            self.names = names
-            self.playerIDs = playerIDs
-            self.startCashes = startCashes
-            self.positions = positions
-            self.antes = antes
-            self.cardValues = cardValues
-            self.cardSuits = cardSuits
-            self.boardValues = boardValues
-            self.boardSuits = boardSuits
-            self.winnings = winnings
-            self.rakes = rakes
-            self.actionTypes = actionTypes
-            self.allIns = allIns
-            self.actionAmounts = actionAmounts
-            self.actionNos = actionNos
-            self.hudImportData = hudImportData
-            self.maxSeats = maxSeats
-            self.tableName = tableName
-            self.seatNos = seatNos
-        except:
-            print _("%s error: %s") % ("HandToWrite.set_all", str(sys.exc_info()))
-            raise
-    # end def set_hand
-
-    def get_finished(self):
-        return( self.finished )
-    # end def get_finished
-
-    def get_siteHandNo(self):
-        return( self.siteHandNo )
-    # end def get_siteHandNo
-
 
 if __name__=="__main__":
     c = Configuration.Config()
