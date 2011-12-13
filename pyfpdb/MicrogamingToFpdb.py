@@ -44,7 +44,7 @@ class Microgaming(HandHistoryConverter):
                                     tabletype="Cash\sGame"\s
                                     gametypeid="1"\sgametype="(?P<GAME>[a-zA-Z\&;]+)"\s
                                     realmoney="true"\scurrencysymbol="(?P<CURRENCY>[A-Za-z=]+)"\s
-                                    playerseat="1"\sbetamount="0"\sistournament="0"\srake="1">
+                                    playerseat="\d+"\sbetamount="\d+"\sistournament="\d+"\srake="\d+">
                                     """, re.MULTILINE| re.VERBOSE)
     re_SplitHands   = re.compile('</Game>')
     re_Button       = re.compile('<ACTION TYPE="HAND_DEAL" PLAYER="(?P<BUTTON>[^"]+)">\n<CARD LINK="[0-9b]+"></CARD>\n<CARD LINK="[0-9b]+"></CARD></ACTION>\n<ACTION TYPE="ACTION_', re.MULTILINE)
@@ -184,16 +184,16 @@ class Microgaming(HandHistoryConverter):
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
         if hand.gametype['base'] in ("hold"):
-            m =  re.search('<ACTION TYPE="HAND_BLINDS" PLAYER=".+" KIND="HAND_BB" VALUE="[.0-9]+"></ACTION>(?P<PREFLOP>.+(?=<ACTION TYPE="HAND_BOARD" VALUE="BOARD_FLOP")|.+)'
-                       '((?P<FLOP><ACTION TYPE="HAND_BOARD" VALUE="BOARD_FLOP" POT="[.0-9]+">.+(?=<ACTION TYPE="HAND_BOARD" VALUE="BOARD_TURN")|.+))?'
-                       '((?P<TURN><ACTION TYPE="HAND_BOARD" VALUE="BOARD_TURN" POT="[.0-9]+">.+(?=<ACTION TYPE="HAND_BOARD" VALUE="BOARD_RIVER")|.+))?'
-                       '((?P<RIVER><ACTION TYPE="HAND_BOARD" VALUE="BOARD_RIVER" POT="[.0-9]+">.+(?=<SHOWDOWN NAME="HAND_SHOWDOWN")|.+))?', hand.handText,re.DOTALL)
+            m =  re.search('</Seats>(?P<PREFLOP>.+(?=<Action seq="\d+" type="DealFlop")|.+)'
+                       '((?P<FLOP><Action seq="\d+" type="DealFlop">.+(?=<Action seq="\d+" type="DealTurn")|.+))?'
+                       '((?P<TURN><Action seq="\d+" type="DealTurn">.+(?=<Action seq="\d+" type="DealRiver")|.+))?'
+                       '((?P<RIVER><Action seq="\d+" type="DealRiver">.+|.+))?', hand.handText,re.DOTALL)
         if hand.gametype['category'] in ('27_1draw', 'fivedraw'):
             m =  re.search(r'(?P<PREDEAL>.+?(?=<ACTION TYPE="HAND_DEAL")|.+)'
                            r'(<ACTION TYPE="HAND_DEAL"(?P<DEAL>.+(?=<ACTION TYPE="HAND_BOARD")|.+))?'
                            r'(<ACTION TYPE="(?P<DRAWONE>.+))?', hand.handText,re.DOTALL)
-        #import pprint
-        #pprint.pprint(m.groupdict())
+        import pprint
+        pprint.pprint(m.groupdict())
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
