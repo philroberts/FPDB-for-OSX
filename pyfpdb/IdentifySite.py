@@ -30,14 +30,17 @@ import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("parser")
 
-__ARCHIVE_PRE_HEADER_REGEX='^Hand #(\d+)\s*$|\*{20}\s#\s\d+\s\*{20,25}\s+'
-re_SplitArchive = re.compile(__ARCHIVE_PRE_HEADER_REGEX, re.MULTILINE)
+__ARCHIVE_PRE_HEADER_REGEX, re_SplitArchive = {}, {}
+__ARCHIVE_PRE_HEADER_REGEX['PokerStars'] ='Transcript\sfor\syour\slast\s\d+\sgames\srequested\sby'
+__ARCHIVE_PRE_HEADER_REGEX['Fulltilt'] ='\*{20}\s#\s\d+\s\*{20,25}\s+'
+re_SplitArchive['PokerStars'] = re.compile(__ARCHIVE_PRE_HEADER_REGEX['PokerStars'], re.MULTILINE)
+re_SplitArchive['Fulltilt'] = re.compile(__ARCHIVE_PRE_HEADER_REGEX['Fulltilt'], re.MULTILINE)
 
 class FPDBFile:
     path = ""
     ftype = None # Valid: hh, summary, both
     site = None
-    codepage = None
+    kodec = None
     archive = False
     gametype = False
 
@@ -45,20 +48,32 @@ class FPDBFile:
         self.path = path
 
 class Site:
-    def __init__(self, name, hhc_fname, filter_name, summary, mod, obj, smod, sobj):
+    def __init__(self, name, hhc_fname, filter_name, summary, obj):
         self.name = name
         # FIXME: rename filter to hhc_fname
         self.hhc_fname = hhc_fname
         # FIXME: rename filter_name to hhc_type
-        self.filter_name = filter_name
-        self.summary = summary
-        self.mod = mod
-        self.obj = obj
-        self.smod = smod
-        self.sobj = sobj
+        self.filter_name    = filter_name
+        self.summary        = summary
+        self.re_SplitHands  = obj.re_SplitHands
+        self.codepage       = obj.codepage
+        self.copyGameHeader = obj.copyGameHeader
+        self.line_delimiter = None
+        if self.re_SplitHands.match('\n\n\n') or self.re_SplitHands.match('\n\n'):
+            if self.filter_name == 'PokerStars':
+                self.line_delimiter = '\n\n'
+            elif self.filter_name == 'Fulltilt':
+                self.line_delimiter = '\n\n\n'
+            else: self.line_delimiter = '\n\n'
+        if self.filter_name == 'OnGame':
+            self.line_addendum = '*'
+        elif self.filter_name == 'Merge':
+            self.line_addendum = '<game'
+        else:
+            self.line_addendum = '' 
 
 class IdentifySite:
-    def __init__(self, config, in_path = '-', list = []):
+    def __init__(self, config, in_path = '-', list = [], verbose = False):
         self.in_path = in_path
         self.config = config
         self.codepage = ("utf8", "utf-16", "cp1252")
@@ -68,10 +83,17 @@ class IdentifySite:
         self.re_identify = self.getSiteRegex()
         self.generateSiteList()
         self.list = list
+        self.verbose = verbose
 
     def scan(self):
         if self.list:
+            i = 0
+            start = time()
             for file, id in self.list:
+                i += 1
+                if i%1000==0:
+                    if self.verbose: print i, time() - start, 'seconds'
+                    start = time()
                 self.processFile(file)
         else:
             if os.path.isdir(self.in_path):
@@ -101,6 +123,7 @@ class IdentifySite:
         re_identify['Cake']         = re.compile(u'Hand\#\d+\s\-\s')
         re_identify['Entraction']   = re.compile(u'Game\s\#\s\d+\s\-\s')
         re_identify['BetOnline']    = re.compile(u'BetOnline\sPoker\sGame\s\#\d+')
+        re_identify['Microgaming']  = re.compile(u'<Game\sid=\"\d+\"\sdate=\"[\d\-\s:]+\"\sunicodetablename')
         re_identify['FullTiltPokerSummary'] = re.compile(u'Full\sTilt\sPoker\.fr\sTournament|Full\sTilt\sPoker\sTournament\sSummary')
         re_identify['PokerStarsSummary']    = re.compile(u'PokerStars\sTournament\s\#\d+')
         return re_identify
@@ -120,7 +143,7 @@ class IdentifySite:
                 if summary:
                     smod = __import__(summary)
                     sobj = getattr(smod, summary, None)
-                self.sitelist[result[0][0]] = Site(site, filter, filter_name, summary, mod, obj, smod, sobj)
+                self.sitelist[result[0][0]] = Site(site, filter, filter_name, summary, obj)
 
     def walkDirectory(self, dir, sitelist):
         """Walks a directory, and executes a callback on each file"""
@@ -143,7 +166,7 @@ class IdentifySite:
             if path not in self.filelist:
                 whole_file, kodec = self.read_file(path)
                 if whole_file:
-                    fobj = self.idSite(path, whole_file[:250], kodec)
+                    fobj = self.idSite(path, whole_file[:1000], kodec)
                     if fobj == False: # Site id failed
                         log.debug(_("DEBUG:") + " " + _("siteId Failed for: %s") % path)
                     else:
@@ -160,15 +183,15 @@ class IdentifySite:
                 continue
         return None, None
     
-    def idSite(self, file, whole_file, kodec):
+    def idSite(self, path, whole_file, kodec):
         """Identifies the site the hh file originated from"""
-        f = FPDBFile(file)
-        f.codepage = kodec
+        f = FPDBFile(path)
+        f.kodec = kodec
         for id, site in self.sitelist.iteritems():
             filter_name = site.filter_name
             m = self.re_identify[filter_name].search(whole_file)
             if m and filter_name in ('Fulltilt', 'PokerStars'):
-                if re_SplitArchive.search(whole_file):
+                if re_SplitArchive[filter_name].search(whole_file):
                     f.archive = True
             if m:
                 f.site = site
@@ -200,7 +223,9 @@ class IdentifySite:
                     name = unicode(name, "utf8", "replace")
                 except TypeError:
                     print TypeError
-                hhc = f.site.obj(self.config, in_path = name, sitename = f.site.hhc_fname, autostart = False)
+                mod = __import__(f.site.hhc_fname)
+                obj = getattr(mod, f.site.filter_name, None)
+                hhc = obj(self.config, in_path = name, sitename = f.site.hhc_fname, autostart = False)
                 if hhc.readFile():
                     f.gametype = hhc.determineGameType(hhc.whole_file)
 
