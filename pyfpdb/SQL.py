@@ -2460,8 +2460,8 @@ class Sql:
                                              , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
 
         self.query['addHudCacheCompundIndex'] = """CREATE UNIQUE INDEX HudCache_Compound_idx ON HudCache(gametypeId, playerId, activeSeats, position, tourneyTypeId, styleKey)"""
-        self.query['addCardsCacheCompundIndex'] = """CREATE UNIQUE INDEX CardsCache_Compound_idx ON CardsCache(type, category, playerId, startCards)"""
-        self.query['addPositionsCacheCompundIndex'] = """CREATE UNIQUE INDEX PositionsCache_Compound_idx ON PositionsCache(type, playerId, activeSeats, position)"""
+        self.query['addCardsCacheCompundIndex'] = """CREATE UNIQUE INDEX CardsCache_Compound_idx ON CardsCache(type, playerId, currency, category, startCards)"""
+        self.query['addPositionsCacheCompundIndex'] = """CREATE UNIQUE INDEX PositionsCache_Compound_idx ON PositionsCache(type, playerId, currency, activeSeats, position)"""
 
         self.query['get_last_hand'] = "select max(id) from Hands"
         
