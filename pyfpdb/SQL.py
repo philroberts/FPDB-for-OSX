@@ -4732,7 +4732,7 @@ class Sql:
             <game_test>
             <currency_test>
             AND   hp.tourneysPlayersId IS NULL
-            GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit, hp.allInEV
+            GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit, hp.allInEV, gt.bigBlind
             ORDER BY h.startTime"""
 
         self.query['getRingProfitAllHandsPlayerIdSiteInDollars'] = """
