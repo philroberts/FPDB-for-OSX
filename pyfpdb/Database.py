@@ -2810,7 +2810,7 @@ class Database:
         tourneysPlayersIds={}
         cursor = self.get_cursor()
         cursor.execute (self.sql.query['getTourneysPlayersByTourney'].replace('%s', self.sql.query['placeholder']),
-                            (summary.tourneyId))
+                            (summary.tourneyId,))
         result=cursor.fetchall()
         if result: tplayers += [i[0] for i in result]
         for player in summary.players:
