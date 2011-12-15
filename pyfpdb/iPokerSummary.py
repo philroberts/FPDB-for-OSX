@@ -100,8 +100,8 @@ class iPokerSummary(TourneySummary):
                 mg2 =  m2.groupdict()
                 self.buyin = 0
                 self.fee   = 0
-                self.prizepool = 0
-                self.entries   = 1000
+                self.prizepool = None
+                self.entries   = None
 
                 self.buyin =  int(100*convert_to_decimal(mg2['BIAMT']))
                 self.fee   =  int(100*convert_to_decimal(mg2['BIRAKE']))
@@ -111,6 +111,8 @@ class iPokerSummary(TourneySummary):
                 hero     = mg['HERO']
                 winnings = int(100*convert_to_decimal(mg2['WIN']))
                 rank     = mg2['PLACE']
+                if rank == 'N/A':
+                    rank = None
 
                 self.addPlayer(rank, hero, winnings, self.currency, None, None, None)
         else:
@@ -121,6 +123,8 @@ def convert_to_decimal(string):
     dec = string.strip(u'$£€&euro;\u20ac')
     dec = dec.replace(u',','.')
     dec = dec.replace(u' ','')
+    if dec == 'N/A':
+        dec = 0
     dec = Decimal(dec)
     return dec
 
