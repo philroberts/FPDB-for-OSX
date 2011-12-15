@@ -192,8 +192,9 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
     Normally a 1:1 relationship with the Classic_HUD class ???? 
     """
     def __init__(self, hud, aw = None):
-        self.hud_params = hud.config.get_hud_ui_parameters()
-        self.menu_label = self.hud_params['label']
+        self.hud = hud
+        self.hud_params = hud.hud_params
+        self.menu_label = hud.hud_params['label']
 
         super(Classic_table_mw, self).__init__(hud, aw)
 
