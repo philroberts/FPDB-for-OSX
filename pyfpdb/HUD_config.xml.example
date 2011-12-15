@@ -1344,7 +1344,7 @@ Left-Drag to Move"
         <hhc site="Merge" converter="MergeToFpdb" summaryImporter="MergeSummary"/>
         <hhc site="OnGame" converter="OnGameToFpdb"/>
         <hhc site="PKR" converter="PkrToFpdb"/>
-        <hhc site="iPoker" converter="iPokerToFpdb"/>
+        <hhc site="iPoker" converter="iPokerToFpdb" summaryImporter="iPokerSummary"/>
         <hhc site="Winamax" converter="WinamaxToFpdb"/>
         <hhc site="Everest" converter="EverestToFpdb"/>
         <hhc site="PacificPoker" converter="PacificPokerToFpdb"/>
