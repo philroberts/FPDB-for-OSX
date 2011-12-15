@@ -103,13 +103,13 @@ class iPokerSummary(TourneySummary):
                 self.prizepool = 0
                 self.entries   = 1000
 
-                #FIXME: tournament no looks liek it is in the table name
-                self.buyin = convert_to_decimal(mg2['BIAMT'])
-                self.fee   = convert_to_decimal(mg2['BIRAKE'])
+                self.buyin =  int(100*convert_to_decimal(mg2['BIAMT']))
+                self.fee   =  int(100*convert_to_decimal(mg2['BIRAKE']))
+                #FIXME: Tournament # looks like it is in the table name
                 self.tourNo = mg['TABLE'].split(',')[-1].strip()
 
                 hero     = mg['HERO']
-                winnings = mg2['WIN']
+                winnings = int(100*convert_to_decimal(mg2['WIN']))
                 rank     = mg2['PLACE']
 
                 self.addPlayer(rank, hero, winnings, self.currency, None, None, None)
