@@ -1660,9 +1660,9 @@ class Sql:
             self.query['createCardsCacheTable'] = """CREATE TABLE CardsCache (
                         id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         type char(4) NOT NULL,
-                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        currency char(4) NOT NULL,
                         category varchar(9) NOT NULL,
+                        currency char(4) NOT NULL,
+                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         startCards SMALLINT NOT NULL,
                         HDs INT NOT NULL,
 
@@ -1774,9 +1774,9 @@ class Sql:
             self.query['createCardsCacheTable'] = """CREATE TABLE CardsCache (
                         id BIGSERIAL, PRIMARY KEY (id),
                         type char(4) NOT NULL,
-                        playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        currency char(4) NOT NULL,
                         category varchar(9) NOT NULL,
+                        currency char(4) NOT NULL,
+                        playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
                         startCards SMALLINT,
                         HDs INT,
 
@@ -1885,9 +1885,9 @@ class Sql:
             self.query['createCardsCacheTable'] = """CREATE TABLE CardsCache (
                         id INTEGER PRIMARY KEY,
                         type TEXT NOT NULL,
-                        playerId INT,
-                        currency TEXT NOT NULL,
                         category TEXT NOT NULL,
+                        currency TEXT NOT NULL,
+                        playerId INT,
                         startCards INT
                         HDs INT,
 
@@ -2001,8 +2001,11 @@ class Sql:
             self.query['createPositionsCacheTable'] = """CREATE TABLE PositionsCache (
                         id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         type char(4) NOT NULL,
-                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        base char(4) NOT NULL,
+                        category varchar(9) NOT NULL,
                         currency char(4) NOT NULL,
+                        maxSeats TINYINT NOT NULL,
+                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         activeSeats SMALLINT NOT NULL,
                         position CHAR(1),
                         HDs INT NOT NULL,
@@ -2115,8 +2118,11 @@ class Sql:
             self.query['createPositionsCacheTable'] = """CREATE TABLE PositionsCache (
                         id BIGSERIAL, PRIMARY KEY (id),
                         type char(4) NOT NULL,
-                        playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        base char(4) NOT NULL,
+                        category varchar(9) NOT NULL,
                         currency char(4) NOT NULL,
+                        maxSeats SMALLINT NOT NULL,
+                        playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
                         activeSeats SMALLINT,
                         position CHAR(1),
                         HDs INT,
@@ -2226,8 +2232,11 @@ class Sql:
             self.query['createPositionsCacheTable'] = """CREATE TABLE PositionsCache (
                         id INTEGER PRIMARY KEY,
                         type TEXT NOT NULL,
-                        playerId INT,
+                        base TEXT NOT NULL,
+                        category TEXT NOT NULL,
                         currency TEXT NOT NULL,
+                        maxSeats INT NOT NULL,
+                        playerId INT,
                         activeSeats INT,
                         position TEXT,
                         HDs INT,
@@ -2460,8 +2469,8 @@ class Sql:
                                              , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
 
         self.query['addHudCacheCompundIndex'] = """CREATE UNIQUE INDEX HudCache_Compound_idx ON HudCache(gametypeId, playerId, activeSeats, position, tourneyTypeId, styleKey)"""
-        self.query['addCardsCacheCompundIndex'] = """CREATE UNIQUE INDEX CardsCache_Compound_idx ON CardsCache(type, playerId, currency, category, startCards)"""
-        self.query['addPositionsCacheCompundIndex'] = """CREATE UNIQUE INDEX PositionsCache_Compound_idx ON PositionsCache(type, playerId, currency, activeSeats, position)"""
+        self.query['addCardsCacheCompundIndex'] = """CREATE UNIQUE INDEX CardsCache_Compound_idx ON CardsCache(type, category, currency, playerId, startCards)"""
+        self.query['addPositionsCacheCompundIndex'] = """CREATE UNIQUE INDEX PositionsCache_Compound_idx ON PositionsCache(type, base, category, currency, maxSeats, playerId, activeSeats, position)"""
 
         self.query['get_last_hand'] = "select max(id) from Hands"
         
@@ -5730,9 +5739,9 @@ class Sql:
         self.query['insert_cardscache'] = """
             insert into CardsCache (
                 type,
-                playerId,
-                currency,
                 category,
+                currency,
+                playerId,
                 startCards,
                 HDs,
                 street0VPI,
@@ -5941,9 +5950,9 @@ class Sql:
             street3Raises=street3Raises+%s,
             street4Raises=street4Raises+%s
         WHERE type=%s
-            AND   playerId=%s
-            AND   currency=%s
             AND   category=%s
+            AND   currency=%s
+            AND   playerId=%s
             AND   startCards=%s"""
                    
         ####################################
@@ -5953,8 +5962,11 @@ class Sql:
         self.query['insert_positionscache'] = """
             insert into PositionsCache (
                 type,
-                playerId,
+                base,
+                category,
                 currency,
+                maxSeats,
+                playerId,
                 activeSeats,
                 position,
                 HDs,
@@ -6067,7 +6079,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s
+                    %s, %s, %s, %s
                     )"""
 
         self.query['update_positionscache'] = """
@@ -6164,8 +6176,11 @@ class Sql:
             street3Raises=street3Raises+%s,
             street4Raises=street4Raises+%s
         WHERE type=%s
-            AND   playerId=%s
+            AND   base=%s
+            AND   category=%s
             AND   currency=%s
+            AND   maxSeats=%s
+            AND   playerId=%s
             AND   activeSeats=%s
             AND   position=%s"""
             

@@ -2138,9 +2138,9 @@ class Database:
             if pids[p] in heroes:
                 line = self.appendStats(pdata, p)
                 k =   (gametype['type']
-                      ,pids[p]
-                      ,gametype['currency']
                       ,gametype['category']
+                      ,gametype['currency']
+                      ,pids[p]
                       ,pdata[p]['startCards']
                       )
                 if k in self.dcbulk:
@@ -2179,8 +2179,11 @@ class Database:
             if pids[p] in heroes:
                 line = self.appendStats(pdata, p)
                 k =   (gametype['type']
-                      ,pids[p]
+                      ,gametype['base']
+                      ,gametype['category']
                       ,gametype['currency']
+                      ,gametype['maxSeats']
+                      ,pids[p]
                       ,len(pids)
                       ,str(pdata[p]['position'])[0]
                       )
@@ -2195,13 +2198,13 @@ class Database:
             inserts = []
             c = self.get_cursor()
             for k, line in self.pcbulk.iteritems():
-                row = line + [k[0], k[1], k[2], k[3], k[4]]
+                row = line + [k[0], k[1], k[2], k[3], k[4], k[5], k[6], k[7]]
                 num = c.execute(update_positionscache, row)
                 # Try to do the update first. Do insert it did not work
                 if ((self.backend == self.PGSQL and c.statusmessage != "UPDATE 1")
                         or (self.backend == self.MYSQL_INNODB and num == 0)
                         or (self.backend == self.SQLITE and num.rowcount == 0)):
-                    inserts.append([k[0], k[1], k[2], k[3], k[4]] + line)
+                    inserts.append([k[0], k[1], k[2], k[3], k[4], k[5], k[6], k[7]] + line)
                     #print "DEBUG: Successfully(?: %s) updated HudCacho using INSERT" % num
                 else:
                     #print "DEBUG: Successfully updated HudCacho using UPDATE"
