@@ -44,50 +44,56 @@ class Microgaming(HandHistoryConverter):
                                     tabletype="Cash\sGame"\s
                                     gametypeid="1"\sgametype="(?P<GAME>[a-zA-Z\&;]+)"\s
                                     realmoney="true"\scurrencysymbol="(?P<CURRENCY>[A-Za-z=]+)"\s
-                                    playerseat="1"\sbetamount="0"\sistournament="0"\srake="1">
+                                    playerseat="\d+"\sbetamount="\d+"\sistournament="\d+"\srake="\d+">
                                     """, re.MULTILINE| re.VERBOSE)
-    re_SplitHands   = re.compile('</Game>')
+    re_SplitHands   = re.compile('\n\n+')
     re_Button       = re.compile('<ACTION TYPE="HAND_DEAL" PLAYER="(?P<BUTTON>[^"]+)">\n<CARD LINK="[0-9b]+"></CARD>\n<CARD LINK="[0-9b]+"></CARD></ACTION>\n<ACTION TYPE="ACTION_', re.MULTILINE)
     re_PlayerInfo   = re.compile('<Seat num="(?P<SEAT>[0-9]+)" alias="(?P<PNAME>.*)" unicodealias=".+" balance="(?P<CASH>[.0-9]+)"', re.MULTILINE)
-    re_Card        = re.compile('^<CARD LINK="(?P<CARD>[0-9]+)"></CARD>', re.MULTILINE)
+    re_Card        = re.compile('<Card value="[2-9TJQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"/>', re.MULTILINE)
     re_BoardLast    = re.compile('^<CARD LINK="(?P<CARD>[0-9]+)"></CARD></ACTION>', re.MULTILINE)
     
 
-    # we need to recompile the player regexs.
-    player_re = "(?P<PNAME>[\w_]+)"
-    #logging.debug("player_re: " + player_re)
-    #<ACTION TYPE="HAND_BLINDS" PLAYER="prato" KIND="HAND_SB" VALUE="0.25"></ACTION>
-
-    re_PostSB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_SB" VALUE="(?P<SB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
-    re_PostBB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_BB" VALUE="(?P<BB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
-    re_Antes            = re.compile(r"^%s: posts the ante \$?(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
-    re_BringIn          = re.compile(r"^%s: brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
-    re_PostBoth         = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_AB" VALUE="(?P<SBBB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
+    re_PostSB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="(?P<SEAT>\d+)" KIND="HAND_SB" VALUE="(?P<SB>[.0-9]+)"></ACTION>', re.MULTILINE)
+    re_PostBB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="(?P<SEAT>\d+)" KIND="HAND_BB" VALUE="(?P<BB>[.0-9]+)"></ACTION>', re.MULTILINE)
+    re_Antes            = re.compile(r"^(?P<SEAT>\d+): posts the ante \$?(?P<ANTE>[.0-9]+)", re.MULTILINE)
+    re_BringIn          = re.compile(r"^(?P<SEAT>\d+): brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)", re.MULTILINE)
+    re_PostBoth         = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="(?P<SEAT>\d+)" KIND="HAND_AB" VALUE="(?P<SBBB>[.0-9]+)"></ACTION>', re.MULTILINE)
     
-    re_HeroCards        = re.compile(r'PLAYER="%s">(?P<CARDS>(\s+<CARD LINK="[0-9]+"></CARD>){2,5})</ACTION>' % player_re, re.MULTILINE)
+    re_HeroCards        = re.compile(r'PLAYER="(?P<SEAT>\d+)">(?P<CARDS>(\s+<CARD LINK="[0-9]+"></CARD>){2,5})</ACTION>', re.MULTILINE)
 
-    #'^<ACTION TYPE="(?P<ATYPE>[_A-Z]+)" PLAYER="%s"( VALUE="(?P<BET>[.0-9]+)")?></ACTION>'
-    re_Action           = re.compile(r'^<ACTION TYPE="(?P<ATYPE>[_A-Z]+)" PLAYER="%s"( VALUE="(?P<BET>[.0-9]+)")?></ACTION>' %  player_re, re.MULTILINE)
+    re_Action           = re.compile(r'<Action seq="\d+" type="(?P<ATYPE>[a-zA-Z]+)" seat="(?P<SEAT>\d+)"( value="(?P<BET>[.0-9]+)")?/>', re.MULTILINE)
 
-    re_ShowdownAction   = re.compile(r'<RESULT PLAYER="%s" WIN="[.0-9]+" HAND="(?P<HAND>\(\$STR_G_FOLD\)|[\$\(\)_ A-Z]+)">\n(?P<CARDS><CARD LINK="[0-9]+"></CARD>\n<CARD LINK="[0-9]+"></CARD>)</RESULT>' %  player_re, re.MULTILINE)
-    #<RESULT PLAYER="wig0r" WIN="4.10" HAND="$(STR_G_WIN_TWOPAIR) $(STR_G_CARDS_TENS) $(STR_G_ANDTEXT) $(STR_G_CARDS_EIGHTS)">
-    #
-    re_CollectPot       = re.compile(r'<RESULT PLAYER="%s" WIN="(?P<POT>[.\d]+)" HAND=".+">' %  player_re, re.MULTILINE)
-    re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
-    re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s \(.*\) showed \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
+    re_ShowdownAction   = re.compile(r'<RESULT PLAYER="(?P<SEAT>\d+)" WIN="[.0-9]+" HAND="(?P<HAND>\(\$STR_G_FOLD\)|[\$\(\)_ A-Z]+)">\n(?P<CARDS><CARD LINK="[0-9]+"></CARD>\n<CARD LINK="[0-9]+"></CARD>)</RESULT>', re.MULTILINE)
+    re_CollectPot       = re.compile(r'<Seat num="(?P<SEAT>\d+)" amount="(?P<POT>[.\d]+)" pot=".+" type=".*" lowhandwin="\d+"/>', re.MULTILINE)
+    re_sitsOut          = re.compile("^(?P<SEAT>\d+) sits out", re.MULTILINE)
+    re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): (?P<SEAT1>\d+) \(.*\) showed \[(?P<CARDS>.*)\].*", re.MULTILINE)
+
+    cid_toval = {
+                 "1":"2s",   "2":"3s",  "3":"4s",  "4": "5s", "5":"6s",  "6":"7s",  "7":"8s",  "8":"9s",  "9":"Ts", "10":"Js", "11":"Qs", "12":"Ks", "13":"As",
+                 "14":"2c", "15":"3c", "16":"4c", "17":"5c", "18":"6c", "19":"7c", "20":"8c", "21":"9c", "22":"Tc", "23":"Jc", "24":"Qc", "25":"Kc", "26":"Ac",
+                 "27":"2d", "28":"3d", "29":"4d", "30":"5d", "31":"6d", "32":"7d", "33":"8d", "34":"9d", "35":"Td", "36": "Jd", "37":"Qd", "38":"Kd", "39":"Ad",
+                 "40":"2h", "41":"3h", "42":"4h", "43":"5h", "44":"6h", "45":"7h", "46":"9h", "47":"9h", "48":"Th", "49": "Jh", "50":"Qh", "51":"Kh", "52":"Ah",
+                   }
 
     def compilePlayerRegexs(self,  hand):
         pass
+
+    def playerNameFromSeatNo(self, seatNo, hand):
+        # This special function is required because Merge Poker records
+        # actions by seat number, not by the player's name
+        for p in hand.players:
+            if p[0] == int(seatNo):
+                return p[1]
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
-                ["ring", "stud", "fl"],
-                ["ring", "draw", "fl"],
-                ["tour", "hold", "fl"],
-                ["tour", "hold", "pl"],
-                ["tour", "hold", "nl"],
+                #["ring", "stud", "fl"],
+                #["ring", "draw", "fl"],
+                #["tour", "hold", "fl"],
+                #["tour", "hold", "pl"],
+                #["tour", "hold", "nl"],
                ]
 
     def determineGameType(self, handText):
@@ -100,15 +106,13 @@ class Microgaming(HandHistoryConverter):
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
-        print "DEBUG: mg: %s" % mg
+        #print "DEBUG: mg: %s" % mg
         
-        # translations from captured groups to our info strings
-        #limits = { 'NL':'nl', 'PL':'pl', 'Limit':'fl' }
         limits = { 'NL':'nl', 'PL':'pl', 'FL':'fl'}
         games = {              # base, category
                   "Hold&apos;em" : ('hold','holdem'), 
-                  "GAME_OMA" : ('hold','omahahi'),
-                  "GAME_FCD" : ('draw','fivedraw'),
+                  #"GAME_OMA" : ('hold','omahahi'),
+                  #"GAME_FCD" : ('draw','fivedraw'),
                 }
         info['type'] = 'ring'
         #if 'GAMEKIND' in mg:
@@ -181,13 +185,11 @@ class Microgaming(HandHistoryConverter):
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
-        # PREFLOP = ** Dealing down cards **
-        # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
         if hand.gametype['base'] in ("hold"):
-            m =  re.search('<ACTION TYPE="HAND_BLINDS" PLAYER=".+" KIND="HAND_BB" VALUE="[.0-9]+"></ACTION>(?P<PREFLOP>.+(?=<ACTION TYPE="HAND_BOARD" VALUE="BOARD_FLOP")|.+)'
-                       '((?P<FLOP><ACTION TYPE="HAND_BOARD" VALUE="BOARD_FLOP" POT="[.0-9]+">.+(?=<ACTION TYPE="HAND_BOARD" VALUE="BOARD_TURN")|.+))?'
-                       '((?P<TURN><ACTION TYPE="HAND_BOARD" VALUE="BOARD_TURN" POT="[.0-9]+">.+(?=<ACTION TYPE="HAND_BOARD" VALUE="BOARD_RIVER")|.+))?'
-                       '((?P<RIVER><ACTION TYPE="HAND_BOARD" VALUE="BOARD_RIVER" POT="[.0-9]+">.+(?=<SHOWDOWN NAME="HAND_SHOWDOWN")|.+))?', hand.handText,re.DOTALL)
+            m =  re.search('</Seats>(?P<PREFLOP>.+(?=<Action seq="\d+" type="DealFlop")|.+)'
+                       '((?P<FLOP><Action seq="\d+" type="DealFlop">.+(?=<Action seq="\d+" type="DealTurn")|.+))?'
+                       '((?P<TURN><Action seq="\d+" type="DealTurn">.+(?=<Action seq="\d+" type="DealRiver")|.+))?'
+                       '((?P<RIVER><Action seq="\d+" type="DealRiver">.+|.+))?', hand.handText,re.DOTALL)
         if hand.gametype['category'] in ('27_1draw', 'fivedraw'):
             m =  re.search(r'(?P<PREDEAL>.+?(?=<ACTION TYPE="HAND_DEAL")|.+)'
                            r'(<ACTION TYPE="HAND_DEAL"(?P<DEAL>.+(?=<ACTION TYPE="HAND_BOARD")|.+))?'
@@ -199,15 +201,11 @@ class Microgaming(HandHistoryConverter):
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
             #print "DEBUG readCommunityCards:", street, hand.streets.group(street)
-
             boardCards = []
             if street == 'FLOP':
-                m = self.re_Card.findall(hand.streets[street])
-                for card in m:
-                    boardCards.append(self.convertMicroCards(card))
-            else:
-                m = self.re_BoardLast.search(hand.streets[street])
-                boardCards.append(self.convertMicroCards(m.group('CARD')))
+                m = self.re_Card.finditer(hand.streets[street])
+                for a in m:
+                    boardCards.append(self.convertMicroCards(a.group('CARD')))
 
             hand.setCommunityCards(street, boardCards)
 
@@ -225,15 +223,7 @@ class Microgaming(HandHistoryConverter):
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         
     def readBlinds(self, hand):
-        try:
-            m = self.re_PostSB.search(hand.handText)
-            hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
-        except: # no small blind
-            hand.addBlind(None, None, None)
-        for a in self.re_PostBB.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
-        for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+        pass # Dealt with in readAction
 
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
@@ -249,29 +239,7 @@ class Microgaming(HandHistoryConverter):
                     hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
     def convertMicroCards(self, card):
-        card = int(card)
-        retCard = ''
-        cardconvert = { 1:'A',
-                       10:'T',
-                       11:'J',
-                       12:'Q',
-                       13:'K'}
-        realNumber = card % 13 + 1
-        if(realNumber in cardconvert):
-            retCard += cardconvert[realNumber]
-        else:
-            retCard += str(realNumber)
-       
-        if(card > 38):
-            retCard += 's'
-        elif(card > 25):
-            retCard += 'h'
-        elif(card > 12):
-            retCard += 'c'
-        else:
-            retCard += 'd'
-            
-        return(retCard)
+        return self.cid_toval[card]
     
     def readDrawCards(self, hand, street):
         logging.debug("readDrawCards")
@@ -332,24 +300,32 @@ class Microgaming(HandHistoryConverter):
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            if action.group('ATYPE') == 'ACTION_RAISE':
-                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == 'ACTION_CALL':
-                hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == 'ACTION_ALLIN':
-                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == 'ACTION_BET':
-                hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == 'ACTION_FOLD':
-                hand.addFold( street, action.group('PNAME'))
-            elif action.group('ATYPE') == 'ACTION_CHECK':
-                hand.addCheck( street, action.group('PNAME'))
-            elif action.group('ATYPE') == 'ACTION_DISCARD':
-                hand.addDiscard(street, action.group('PNAME'), action.group('NODISCARDED'), action.group('DISCARDED'))
-            elif action.group('ATYPE') == 'ACTION_STAND':
-                hand.addStandsPat( street, action.group('PNAME'))
+            #print "DEBUG: action.groupdict(): %s" % action.groupdict()
+            pname = self.playerNameFromSeatNo(action.group('SEAT'), hand)
+            if action.group('ATYPE') == 'Raise':
+                hand.addRaiseBy(street, pname, action.group('BET') )
+            elif action.group('ATYPE') == 'Call':
+                hand.addCall(street, pname, action.group('BET') )
+            elif action.group('ATYPE') == 'Bet':
+                hand.addBet(street, pname, action.group('BET') )
+            elif action.group('ATYPE') == 'Fold':
+                hand.addFold(street, pname)
+            elif action.group('ATYPE') == 'Check':
+                hand.addCheck(street, pname)
+            elif action.group('ATYPE') == 'SmallBlind':
+                hand.addBlind(pname, 'small blind', action.group('BET'))
+            elif action.group('ATYPE') == 'BigBlind':
+                hand.addBlind(pname, 'big blind', action.group('BET'))
+            elif action.group('ATYPE') == 'MuckCards':
+                pass # Deal with elsewhere
             else:
-                print (_("DEBUG:") + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
+                print (_("DEBUG:") + _("Unimplemented %s: '%s' '%s'") % ("readAction", pname, action.group('ATYPE')))
+            #elif action.group('ATYPE') == 'ACTION_ALLIN':
+            #    hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
+            #elif action.group('ATYPE') == 'ACTION_DISCARD':
+            #    hand.addDiscard(street, action.group('PNAME'), action.group('NODISCARDED'), action.group('DISCARDED'))
+            #elif action.group('ATYPE') == 'ACTION_STAND':
+            #    hand.addStandsPat( street, action.group('PNAME'))
 
 
     def readShowdownActions(self, hand):
@@ -364,8 +340,9 @@ class Microgaming(HandHistoryConverter):
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
             potcoll = Decimal(m.group('POT'))
+            pname = self.playerNameFromSeatNo(m.group('SEAT'), hand)
             if potcoll > 0:
-                 hand.addCollectPot(player=m.group('PNAME'),pot=potcoll)
+                 hand.addCollectPot(player=pname,pot=potcoll)
 
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
