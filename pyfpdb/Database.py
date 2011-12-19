@@ -977,8 +977,6 @@ class Database:
         self.pcache     = None       # PlayerId cache
         self.tpcache    = None       # TourneysPlayersId cache
 
-
-
     def get_last_insert_id(self, cursor=None):
         ret = None
         try:
@@ -1013,6 +1011,181 @@ class Database:
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
             raise
         return ret
+    
+    def prepareBulkImport(self):
+        """Drop some indexes/foreign keys to prepare for bulk import.
+           Currently keeping the standalone indexes as needed to import quickly"""
+        stime = time()
+        c = self.get_cursor()
+        # sc: don't think autocommit=0 is needed, should already be in that mode
+        if self.backend == self.MYSQL_INNODB:
+            c.execute("SET foreign_key_checks=0")
+            c.execute("SET autocommit=0")
+            return
+        if self.backend == self.PGSQL:
+            self.connection.set_isolation_level(0)   # allow table/index operations to work
+        for fk in self.foreignKeys[self.backend]:
+            if fk['drop'] == 1:
+                if self.backend == self.MYSQL_INNODB:
+                    c.execute("SELECT constraint_name " +
+                              "FROM information_schema.KEY_COLUMN_USAGE " +
+                              #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
+                              "WHERE 1=1 " +
+                              "AND table_name = %s AND column_name = %s " +
+                              "AND referenced_table_name = %s " +
+                              "AND referenced_column_name = %s ",
+                              (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
+                    cons = c.fetchone()
+                    #print "preparebulk find fk: cons=", cons
+                    if cons:
+                        print "dropping mysql fk", cons[0], fk['fktab'], fk['fkcol']
+                        try:
+                            c.execute("alter table " + fk['fktab'] + " drop foreign key " + cons[0])
+                        except:
+                            print "    drop failed: " + str(sys.exc_info())
+                elif self.backend == self.PGSQL:
+    #    DON'T FORGET TO RECREATE THEM!!
+                    print "dropping pg fk", fk['fktab'], fk['fkcol']
+                    try:
+                        # try to lock table to see if index drop will work:
+                        # hmmm, tested by commenting out rollback in grapher. lock seems to work but
+                        # then drop still hangs :-(  does work in some tests though??
+                        # will leave code here for now pending further tests/enhancement ...
+                        c.execute("BEGIN TRANSACTION")
+                        c.execute( "lock table %s in exclusive mode nowait" % (fk['fktab'],) )
+                        #print "after lock, status:", c.statusmessage
+                        #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
+                        try:
+                            c.execute("alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol']))
+                            print "dropped pg fk pg fk %s_%s_fkey, continuing ..." % (fk['fktab'], fk['fkcol'])
+                        except:
+                            if "does not exist" not in str(sys.exc_value):
+                                print _("warning: drop pg fk %s_%s_fkey failed: %s, continuing ...") \
+                                      % (fk['fktab'], fk['fkcol'], str(sys.exc_value).rstrip('\n') )
+                        c.execute("END TRANSACTION")
+                    except:
+                        print _("warning: constraint %s_%s_fkey not dropped: %s, continuing ...") \
+                              % (fk['fktab'],fk['fkcol'], str(sys.exc_value).rstrip('\n'))
+                else:
+                    return -1
+
+        for idx in self.indexes[self.backend]:
+            if idx['drop'] == 1:
+                if self.backend == self.MYSQL_INNODB:
+                    print _("dropping mysql index "), idx['tab'], idx['col']
+                    try:
+                        # apparently nowait is not implemented in mysql so this just hangs if there are locks
+                        # preventing the index drop :-(
+                        c.execute( "alter table %s drop index %s;", (idx['tab'],idx['col']) )
+                    except:
+                        print _("    drop index failed: ") + str(sys.exc_info())
+                            # ALTER TABLE `fpdb`.`handsplayers` DROP INDEX `playerId`;
+                            # using: 'HandsPlayers' drop index 'playerId'
+                elif self.backend == self.PGSQL:
+    #    DON'T FORGET TO RECREATE THEM!!
+                    print _("dropping pg index "), idx['tab'], idx['col']
+                    try:
+                        # try to lock table to see if index drop will work:
+                        c.execute("BEGIN TRANSACTION")
+                        c.execute( "lock table %s in exclusive mode nowait" % (idx['tab'],) )
+                        #print "after lock, status:", c.statusmessage
+                        try:
+                            # table locked ok so index drop should work:
+                            #print "drop index %s_%s_idx" % (idx['tab'],idx['col'])
+                            c.execute( "drop index if exists %s_%s_idx" % (idx['tab'],idx['col']) )
+                            #print "dropped  pg index ", idx['tab'], idx['col']
+                        except:
+                            if "does not exist" not in str(sys.exc_value):
+                                print _("warning: drop index %s_%s_idx failed: %s, continuing ...") \
+                                      % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n'))
+                        c.execute("END TRANSACTION")
+                    except:
+                        print _("warning: index %s_%s_idx not dropped %s, continuing ...") \
+                              % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n'))
+                else:
+                    return -1
+
+        if self.backend == self.PGSQL:
+            self.connection.set_isolation_level(1)   # go back to normal isolation level
+        self.commit() # seems to clear up errors if there were any in postgres
+        ptime = time() - stime
+        print (_("prepare import took %s seconds") % ptime)
+    #end def prepareBulkImport
+
+    def afterBulkImport(self):
+        """Re-create any dropped indexes/foreign keys after bulk import"""
+        stime = time()
+
+        c = self.get_cursor()
+        if self.backend == self.MYSQL_INNODB:
+            c.execute("SET foreign_key_checks=1")
+            c.execute("SET autocommit=1")
+            return
+
+        if self.backend == self.PGSQL:
+            self.connection.set_isolation_level(0)   # allow table/index operations to work
+        for fk in self.foreignKeys[self.backend]:
+            if fk['drop'] == 1:
+                if self.backend == self.MYSQL_INNODB:
+                    c.execute("SELECT constraint_name " +
+                              "FROM information_schema.KEY_COLUMN_USAGE " +
+                              #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
+                              "WHERE 1=1 " +
+                              "AND table_name = %s AND column_name = %s " +
+                              "AND referenced_table_name = %s " +
+                              "AND referenced_column_name = %s ",
+                              (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
+                    cons = c.fetchone()
+                    #print "afterbulk: cons=", cons
+                    if cons:
+                        pass
+                    else:
+                        print _("Creating foreign key "), fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
+                        try:
+                            c.execute("alter table " + fk['fktab'] + " add foreign key ("
+                                      + fk['fkcol'] + ") references " + fk['rtab'] + "("
+                                      + fk['rcol'] + ")")
+                        except:
+                            print _("Create foreign key failed: ") + str(sys.exc_info())
+                elif self.backend == self.PGSQL:
+                    print _("Creating foreign key "), fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
+                    try:
+                        c.execute("alter table " + fk['fktab'] + " add constraint "
+                                  + fk['fktab'] + '_' + fk['fkcol'] + '_fkey'
+                                  + " foreign key (" + fk['fkcol']
+                                  + ") references " + fk['rtab'] + "(" + fk['rcol'] + ")")
+                    except:
+                        print _("Create foreign key failed: ") + str(sys.exc_info())
+                else:
+                    return -1
+
+        for idx in self.indexes[self.backend]:
+            if idx['drop'] == 1:
+                if self.backend == self.MYSQL_INNODB:
+                    print _("Creating MySQL index %s %s") % (idx['tab'], idx['col'])
+                    try:
+                        s = "alter table %s add index %s(%s)" % (idx['tab'],idx['col'],idx['col'])
+                        c.execute(s)
+                    except:
+                        print _("Create foreign key failed: ") + str(sys.exc_info())
+                elif self.backend == self.PGSQL:
+    #                pass
+                    # mod to use tab_col for index name?
+                    print _("Creating PostgreSQL index "), idx['tab'], idx['col']
+                    try:
+                        s = "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
+                        c.execute(s)
+                    except:
+                        print _("Create index failed: ") + str(sys.exc_info())
+                else:
+                    return -1
+
+        if self.backend == self.PGSQL:
+            self.connection.set_isolation_level(1)   # go back to normal isolation level
+        self.commit()   # seems to clear up errors if there were any in postgres
+        atime = time() - stime
+        print (_("After import took %s seconds") % atime)
+    #end def afterBulkImport
 
     def drop_referential_integrity(self):
         """Update all tables to remove foreign keys"""
