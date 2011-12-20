@@ -61,6 +61,7 @@ class HandHistoryConverter():
 
     re_tzOffset = re.compile('^\w+[+-]\d{4}$')
     copyGameHeader = False
+    summaryInFile  = False
 
     # maybe archive params should be one archive param, then call method in specific converter.   if archive:  convert_archive()
     def __init__( self, config, in_path = '-', out_path = '-', index=0
