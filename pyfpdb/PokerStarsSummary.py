@@ -77,6 +77,14 @@ class PokerStarsSummary(TourneySummary):
     codepage = ["utf-8"]
 
     def parseSummary(self):
+        #FIXME: id type of file and call correct function
+        self.parseSummaryFile()
+    def parseSummaryFromHH(self):
+        pass
+    def parseSummaryHtml(self):
+        pass
+
+    def parseSummaryFile(self):
         m = self.re_TourneyInfo.search(self.summaryText)
         if m == None:
             tmp = self.summaryText[0:200]
