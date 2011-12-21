@@ -901,22 +901,16 @@ or None if we fail to get the info """
     def readAction(self, hand, street):
         logging.debug("readAction (%s)" % street)
         m = self.re_Action.finditer(hand.streets[street])
-        raises = 0
         for action in m:
             logging.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
             player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
             if action.group('ATYPE') == 'RAISE':
-                raises += 1
-                if self.info['limitType'] == 'fl':
-                    hand.addRaiseTo(street, player, action.group('BET'))
-                elif raises == 1:
-                    hand.addRaiseTo(street, player, action.group('BET'))
-                else: # raises > 1
-                    hand.addRaiseTo(street, player, action.group('BET'))
-                    #hand.addCallandRaise(street, player, action.group('BET'))
+                hand.addRaiseTo(street, player, action.group('BET'))
             elif action.group('ATYPE') == 'COMPLETE':
-                raises += 1
-                hand.addComplete( street, player, action.group('BET') )
+                if hand.gametype['base'] != 'stud':
+                    hand.addRaiseTo(street, player, action.group('BET'))
+                else:
+                    hand.addComplete( street, player, action.group('BET') )
             elif action.group('ATYPE') == 'CALL':
                 hand.addCall(street, player, action.group('BET'))
             elif action.group('ATYPE') == 'BET':
