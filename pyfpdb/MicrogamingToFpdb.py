@@ -31,7 +31,7 @@ class Microgaming(HandHistoryConverter):
 
     sitename = "Microgaming"
     filetype = "text"
-    codepage = "utf-8"
+    codepage = ["utf-8","cp1252"]
     siteId   = 20
 
     # Static regexes
