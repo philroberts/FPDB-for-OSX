@@ -186,7 +186,7 @@ HandHistoryConverter: '%(sitename)s'
         # Remove this dangler if less than 50 characters and warn in the log
         if len(handlist[-1]) <= 50:
             handlist.pop()
-            log.warn(_("Removing text < 50 characters"))
+            log.info(_("Removing text < 50 characters"))
         return handlist
 
     def processHand(self, handText):

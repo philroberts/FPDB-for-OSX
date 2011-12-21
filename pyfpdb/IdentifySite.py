@@ -70,7 +70,7 @@ class Site:
         elif self.filter_name == 'Merge':
             self.line_addendum = '<game'
         else:
-            self.line_addendum = '' 
+            self.line_addendum = ''
 
 class IdentifySite:
     def __init__(self, config, in_path = '-', list = [], verbose = False):
