@@ -247,7 +247,7 @@ class Hand(object):
             hilo = "s"
         elif self.gametype['category'] in ['razz','27_3draw','badugi', '27_1draw']:
             hilo = "l"
-
+        
         self.gametyperow = (self.siteId, self.gametype['currency'], self.gametype['type'], self.gametype['base'],
                             self.gametype['category'], self.gametype['limitType'], hilo, self.gametype['mix'],
                             int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
