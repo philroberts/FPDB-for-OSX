@@ -825,18 +825,19 @@ or None if we fail to get the info """
         # FIXME
         # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
         # see http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
-        if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
-            hand.gametype['sb'] = "1"
-            hand.gametype['bb'] = "2"
-        elif hand.gametype['sb'] == None:
-            hand.gametype['sb'] = str(int(hand.gametype['bb']/2))
-        elif hand.gametype['bb'] == None:
-            hand.gametype['bb'] = str(int(hand.gametype['sb']*2))
-        if int(hand.gametype['bb'])/2 != int(hand.gametype['sb']):
-            if int(hand.gametype['bb'])/2 < int(hand.gametype['sb']):
-                hand.gametype['bb'] = str(int(hand.gametype['sb'])*2)
-            else:
-                hand.gametype['sb'] = str(int(hand.gametype['bb'])/2)
+        if hand.gametype['type'] == 'tour':
+            if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
+                hand.gametype['sb'] = "1"
+                hand.gametype['bb'] = "2"
+            elif hand.gametype['sb'] == None:
+                hand.gametype['sb'] = str(int(hand.gametype['bb']/2))
+            elif hand.gametype['bb'] == None:
+                hand.gametype['bb'] = str(int(hand.gametype['sb']*2))
+            if int(hand.gametype['bb'])/2 != int(hand.gametype['sb']):
+                if int(hand.gametype['bb'])/2 < int(hand.gametype['sb']):
+                    hand.gametype['bb'] = str(int(hand.gametype['sb'])*2)
+                else:
+                    hand.gametype['sb'] = str(int(hand.gametype['bb'])/2)
 
 
     def readButton(self, hand):
