@@ -61,6 +61,7 @@ class HandHistoryConverter():
 
     re_tzOffset = re.compile('^\w+[+-]\d{4}$')
     copyGameHeader = False
+    summaryInFile  = False
 
     # maybe archive params should be one archive param, then call method in specific converter.   if archive:  convert_archive()
     def __init__( self, config, in_path = '-', out_path = '-', index=0
@@ -185,7 +186,7 @@ HandHistoryConverter: '%(sitename)s'
         # Remove this dangler if less than 50 characters and warn in the log
         if len(handlist[-1]) <= 50:
             handlist.pop()
-            log.warn(_("Removing text < 50 characters"))
+            log.info(_("Removing text < 50 characters"))
         return handlist
 
     def processHand(self, handText):

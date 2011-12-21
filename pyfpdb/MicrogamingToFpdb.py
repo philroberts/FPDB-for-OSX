@@ -46,10 +46,10 @@ class Microgaming(HandHistoryConverter):
                                     realmoney="true"\scurrencysymbol="(?P<CURRENCY>[A-Za-z=]+)"\s
                                     playerseat="\d+"\sbetamount="\d+"\sistournament="\d+"\srake="\d+">
                                     """, re.MULTILINE| re.VERBOSE)
-    re_SplitHands   = re.compile('\n\n+')
+    re_SplitHands   = re.compile('\n*----.+.DAT----\n*')
     re_Button       = re.compile('<ACTION TYPE="HAND_DEAL" PLAYER="(?P<BUTTON>[^"]+)">\n<CARD LINK="[0-9b]+"></CARD>\n<CARD LINK="[0-9b]+"></CARD></ACTION>\n<ACTION TYPE="ACTION_', re.MULTILINE)
     re_PlayerInfo   = re.compile('<Seat num="(?P<SEAT>[0-9]+)" alias="(?P<PNAME>.*)" unicodealias=".+" balance="(?P<CASH>[.0-9]+)"', re.MULTILINE)
-    re_Card        = re.compile('<Card value="[2-9TJQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"/>', re.MULTILINE)
+    re_Card        = re.compile('<Card value="[0-9JQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"/>', re.MULTILINE)
     re_BoardLast    = re.compile('^<CARD LINK="(?P<CARD>[0-9]+)"></CARD></ACTION>', re.MULTILINE)
     
 
@@ -59,14 +59,14 @@ class Microgaming(HandHistoryConverter):
     re_BringIn          = re.compile(r"^(?P<SEAT>\d+): brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)", re.MULTILINE)
     re_PostBoth         = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="(?P<SEAT>\d+)" KIND="HAND_AB" VALUE="(?P<SBBB>[.0-9]+)"></ACTION>', re.MULTILINE)
     
-    re_HeroCards        = re.compile(r'PLAYER="(?P<SEAT>\d+)">(?P<CARDS>(\s+<CARD LINK="[0-9]+"></CARD>){2,5})</ACTION>', re.MULTILINE)
+    re_HeroCards        = re.compile(r'<Action seq="\d+" type="DealCards" seat="(?P<SEAT>\d+)">\s+?(?P<CARDS>(<Card value="[0-9TJQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"/>\s+)+)', re.MULTILINE)
 
     re_Action           = re.compile(r'<Action seq="\d+" type="(?P<ATYPE>[a-zA-Z]+)" seat="(?P<SEAT>\d+)"( value="(?P<BET>[.0-9]+)")?/>', re.MULTILINE)
 
     re_ShowdownAction   = re.compile(r'<RESULT PLAYER="(?P<SEAT>\d+)" WIN="[.0-9]+" HAND="(?P<HAND>\(\$STR_G_FOLD\)|[\$\(\)_ A-Z]+)">\n(?P<CARDS><CARD LINK="[0-9]+"></CARD>\n<CARD LINK="[0-9]+"></CARD>)</RESULT>', re.MULTILINE)
     re_CollectPot       = re.compile(r'<Seat num="(?P<SEAT>\d+)" amount="(?P<POT>[.\d]+)" pot=".+" type=".*" lowhandwin="\d+"/>', re.MULTILINE)
     re_sitsOut          = re.compile("^(?P<SEAT>\d+) sits out", re.MULTILINE)
-    re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): (?P<SEAT1>\d+) \(.*\) showed \[(?P<CARDS>.*)\].*", re.MULTILINE)
+    re_ShownCards       = re.compile(r'<Action seq="\d+" type="(?P<SHOWED>ShowCards|MuckCards)" seat="(?P<SEAT>\d+)">\s+?(?P<CARDS>(<Card value="[0-9TJQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"/>\s+)+)', re.MULTILINE)
 
     cid_toval = {
              "0":"As",   "1":"2s",  "2":"3s",  "3":"4s",  "4": "5s", "5":"6s",  "6":"7s",  "7":"8s",  "8":"9s",  "9":"Ts", "10":"Js", "11":"Qs", "12":"Ks",
@@ -202,11 +202,9 @@ class Microgaming(HandHistoryConverter):
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
             #print "DEBUG readCommunityCards:", street, hand.streets.group(street)
             boardCards = []
-            if street == 'FLOP':
-                m = self.re_Card.finditer(hand.streets[street])
-                for a in m:
-                    boardCards.append(self.convertMicroCards(a.group('CARD')))
-
+            m = self.re_Card.finditer(hand.streets[street])
+            for a in m:
+                boardCards.append(self.convertMicroCards(a.group('CARD')))
             hand.setCommunityCards(street, boardCards)
 
     def readAntes(self, hand):
@@ -233,7 +231,7 @@ class Microgaming(HandHistoryConverter):
                 m = self.re_HeroCards.finditer(hand.streets[street])
                 newcards = []
                 for found in m:
-                    hand.hero = found.group('PNAME')
+                    hand.hero = self.playerNameFromSeatNo(found.group('SEAT'), hand)
                     for card in self.re_Card.finditer(found.group('CARDS')):
                         newcards.append(self.convertMicroCards(card.group('CARD')))
                     hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
@@ -308,6 +306,8 @@ class Microgaming(HandHistoryConverter):
                 hand.addCall(street, pname, action.group('BET') )
             elif action.group('ATYPE') == 'Bet':
                 hand.addBet(street, pname, action.group('BET') )
+            elif action.group('ATYPE') == 'AllIn':
+                hand.addAllIn(street, pname, action.group('BET'))
             elif action.group('ATYPE') == 'Fold':
                 hand.addFold(street, pname)
             elif action.group('ATYPE') == 'Check':
@@ -316,6 +316,12 @@ class Microgaming(HandHistoryConverter):
                 hand.addBlind(pname, 'small blind', action.group('BET'))
             elif action.group('ATYPE') == 'BigBlind':
                 hand.addBlind(pname, 'big blind', action.group('BET'))
+            elif action.group('ATYPE') == 'PostedToPlay':
+                hand.addBlind(pname, 'secondsb', action.group('BET'))
+            elif action.group('ATYPE') == 'Disconnect':
+                pass # Deal with elsewhere
+            elif action.group('ATYPE') == 'Reconnect':
+                pass # Deal with elsewhere
             elif action.group('ATYPE') == 'MuckCards':
                 pass # Deal with elsewhere
             else:
@@ -329,13 +335,8 @@ class Microgaming(HandHistoryConverter):
 
 
     def readShowdownActions(self, hand):
-        for shows in self.re_ShowdownAction.finditer(hand.handText):
-            showdownCards = []
-            for card in self.re_Card.finditer(shows.group('CARDS')):
-                #print "DEBUG:", card, card.group('CARD'), self.convertBossCards(card.group('CARD'))
-                showdownCards.append(self.convertBossCards(card.group('CARD')))
-            
-            hand.addShownCards(showdownCards, shows.group('PNAME'))
+        pass
+
 
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
@@ -344,9 +345,13 @@ class Microgaming(HandHistoryConverter):
             if potcoll > 0:
                  hand.addCollectPot(player=pname,pot=potcoll)
 
-    def readShownCards(self,hand):
-        for m in self.re_ShownCards.finditer(hand.handText):
-            if m.group('CARDS') is not None:
-                cards = m.group('CARDS')
-                cards = cards.split(' ')
-                hand.addShownCards(cards=cards, player=m.group('PNAME'))
+    def readShownCards(self, hand):
+        for shows in self.re_ShownCards.finditer(hand.handText):
+            cards = []
+            for card in self.re_Card.finditer(shows.group('CARDS')):
+                cards.append(self.convertMicroCards(card.group('CARD')))
+            (shown, mucked) = (False, False)
+            if shows.group('SHOWED') == "ShowCards": shown = True
+            elif shows.group('SHOWED') == "MuckCards": mucked = True
+            print cards
+            hand.addShownCards(cards, self.playerNameFromSeatNo(shows.group('SEAT'), hand), shown=shown, mucked=mucked)

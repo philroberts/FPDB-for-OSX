@@ -56,6 +56,7 @@ class iPoker(HandHistoryConverter):
     codepage = ("utf8", "cp1252")
     siteId   = 13
     copyGameHeader = True   #NOTE: Not sure if this is necessary yet. The file is xml so its likely
+    summaryInFile = True
 
     substitutions = {
                      'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|\£|",

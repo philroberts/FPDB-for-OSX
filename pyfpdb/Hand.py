@@ -543,7 +543,7 @@ class Hand(object):
         return c
 
     def addAllIn(self, street, player, amount):
-        """ For sites (currently only Merge Poker) which record "all in" as a special action, 
+        """ For sites (currently only Merge & Microgaming) which record "all in" as a special action, 
             which can mean either "calls and is all in" or "raises all in"."""
         self.checkPlayerExists(player)
         amount = amount.replace(u',', u'') #some sites have commas

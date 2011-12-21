@@ -55,7 +55,7 @@ class iPokerSummary(TourneySummary):
 
     re_GameInfoTrny = re.compile(r"""
                 <tournamentname>.+?<place>(?P<PLACE>.+?)</place>
-                <buyin>(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)\+?(?P<BIRAKE>[%(LS)s\d\.]+)?)</buyin>\s+?
+                <buyin>(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)\+?(?P<BIRAKE>[%(LS)s\d\.]+)?|.+?)</buyin>\s+?
                 <totalbuyin>(?P<TOTBUYIN>.+)</totalbuyin>\s+?
                 <ipoints>([%(NUM)s]+|N/A)</ipoints>\s+?
                 <win>(%(LS)s)?(?P<WIN>([%(NUM)s]+)|N/A)</win>
@@ -74,7 +74,7 @@ class iPokerSummary(TourneySummary):
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
-        print "DEBUG: m.groupdict(): %s" % mg
+        #print "DEBUG: m.groupdict(): %s" % mg
 
         if 'SB' in mg and mg['SB'] != None:
             raise FpdbParseError(_("File '%s' does not appear to be a tourney") % 'XXX')
@@ -102,9 +102,13 @@ class iPokerSummary(TourneySummary):
                 self.fee   = 0
                 self.prizepool = None
                 self.entries   = None
-
-                self.buyin =  int(100*convert_to_decimal(mg2['BIAMT']))
-                self.fee   =  int(100*convert_to_decimal(mg2['BIRAKE']))
+                
+                if mg2['BIAMT'] and mg2['BIRAKE']:
+                    self.buyin =  int(100*convert_to_decimal(mg2['BIAMT']))
+                    self.fee   =  int(100*convert_to_decimal(mg2['BIRAKE']))
+                else:
+                    self.buyin = 0
+                    self.fee   = 0
                 #FIXME: Tournament # looks like it is in the table name
                 self.tourNo = mg['TABLE'].split(',')[-1].strip()
 
