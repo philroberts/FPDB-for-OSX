@@ -1052,7 +1052,7 @@ Left-Drag to Move"
         <hhc site="Absolute" converter="AbsoluteToFpdb"/>
         <hhc site="PartyPoker" converter="PartyPokerToFpdb"/>
         <hhc site="Betfair" converter="BetfairToFpdb"/>
-        <hhc site="Merge" converter="MergeToFpdb"/>
+        <hhc site="Merge" converter="MergeToFpdb" summaryImporter="MergeSummary"/>
         <hhc site="OnGame" converter="OnGameToFpdb"/>
         <hhc site="PKR" converter="PkrToFpdb"/>
         <hhc site="iPoker" converter="iPokerToFpdb" summaryImporter="iPokerSummary"/>
