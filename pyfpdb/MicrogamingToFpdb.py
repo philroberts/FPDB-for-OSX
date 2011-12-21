@@ -165,7 +165,7 @@ class Microgaming(HandHistoryConverter):
                 hand.buyin = 100
                 hand.fee = 10
                 hand.isKO = False
-
+        hand.maxseats = 2
         
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
@@ -180,9 +180,21 @@ class Microgaming(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         logging.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
-        players = []
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            seatno = int(a.group('SEAT'))
+            # It may be necessary to adjust 'hand.maxseats', which is an
+            # educated guess, starting with 2 (indicating a heads-up table) and
+            # adjusted upwards in steps to 6, then 9, then 10. An adjustment is
+            # made whenever a player is discovered whose seat number is
+            # currently above the maximum allowable for the table.
+            if seatno >= hand.maxseats:
+                if seatno > 8:
+                    hand.maxseats = 10
+                elif seatno > 5:
+                    hand.maxseats = 9
+                else:
+                    hand.maxseats = 6
+            hand.addPlayer(seatno, a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
         if hand.gametype['base'] in ("hold"):
@@ -301,11 +313,14 @@ class Microgaming(HandHistoryConverter):
             #print "DEBUG: action.groupdict(): %s" % action.groupdict()
             pname = self.playerNameFromSeatNo(action.group('SEAT'), hand)
             if action.group('ATYPE') == 'Raise':
-                hand.addRaiseBy(street, pname, action.group('BET') )
+                hand.addRaiseTo(street, pname, action.group('BET') )
             elif action.group('ATYPE') == 'Call':
-                hand.addCall(street, pname, action.group('BET') )
+                hand.addCallTo(street, pname, action.group('BET') )
             elif action.group('ATYPE') == 'Bet':
-                hand.addBet(street, pname, action.group('BET') )
+                if street in ('PREFLOP', 'THIRD', 'DEAL'):
+                    hand.addRaiseTo(street, pname, action.group('BET'))
+                else:
+                    hand.addBet(street, pname, action.group('BET'))
             elif action.group('ATYPE') == 'AllIn':
                 hand.addAllIn(street, pname, action.group('BET'))
             elif action.group('ATYPE') == 'Fold':
@@ -339,11 +354,16 @@ class Microgaming(HandHistoryConverter):
 
 
     def readCollectPot(self,hand):
+        pots = [Decimal(0) for n in range(hand.maxseats)]
         for m in self.re_CollectPot.finditer(hand.handText):
-            potcoll = Decimal(m.group('POT'))
+            pot = m.group('POT')
+            committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
+            lastbet = committed[-1][0] - committed[-2][0]
             pname = self.playerNameFromSeatNo(m.group('SEAT'), hand)
-            if potcoll > 0:
-                 hand.addCollectPot(player=pname,pot=potcoll)
+            if lastbet > 0: # uncalled
+                pot = str(Decimal(m.group('POT')) - lastbet)
+            #print "DEBUG: addCollectPot(%s, %s)" %(pname, m.group('POT'))
+            hand.addCollectPot(player=pname, pot=pot)
 
     def readShownCards(self, hand):
         for shows in self.re_ShownCards.finditer(hand.handText):

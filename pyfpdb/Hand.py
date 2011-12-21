@@ -632,6 +632,25 @@ class Hand(object):
             act = (player, 'calls', amount, self.stacks[player] == 0)
             self.actions[street].append(act)
             self.pot.addMoney(player, amount)
+            
+    def addCallTo(self, street, player=None, amountTo=None):
+        if amountTo:
+            amountTo = amountTo.replace(u',', u'') #some sites have commas
+        #log.debug(_("%s %s calls %s") %(street, player, amount))
+        # Potentially calculate the amount of the callTo if not supplied
+        # corner cases include if player would be all in
+        if amountTo is not None:
+            Bc = sum(self.bets[street][player])
+            Ct = Decimal(amountTo)
+            C = Ct - Bc
+            amount = C
+            self.bets[street][player].append(amount)
+            #self.lastBet[street] = amount
+            self.stacks[player] -= amount
+            #print "DEBUG %s calls %s, stack %s" % (player, amount, self.stacks[player])
+            act = (player, 'calls', amount, self.stacks[player] == 0)
+            self.actions[street].append(act)
+            self.pot.addMoney(player, amount)
 
     def addRaiseBy(self, street, player, amountBy):
         """ Add a raise by amountBy on [street] by [player] """
