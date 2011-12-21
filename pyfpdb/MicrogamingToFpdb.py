@@ -189,7 +189,7 @@ class Microgaming(HandHistoryConverter):
             m =  re.search('</Seats>(?P<PREFLOP>.+(?=<Action seq="\d+" type="DealFlop")|.+)'
                        '((?P<FLOP><Action seq="\d+" type="DealFlop">.+(?=<Action seq="\d+" type="DealTurn")|.+))?'
                        '((?P<TURN><Action seq="\d+" type="DealTurn">.+(?=<Action seq="\d+" type="DealRiver")|.+))?'
-                       '((?P<RIVER><Action seq="\d+" type="DealRiver">.+|.+))?', hand.handText,re.DOTALL)
+                       '((?P<RIVER><Action seq="\d+" type="DealRiver">.+(?=<Action seq="\d+" type="ShowCards|MuckCards")|.+))?', hand.handText,re.DOTALL)
         if hand.gametype['category'] in ('27_1draw', 'fivedraw'):
             m =  re.search(r'(?P<PREDEAL>.+?(?=<ACTION TYPE="HAND_DEAL")|.+)'
                            r'(<ACTION TYPE="HAND_DEAL"(?P<DEAL>.+(?=<ACTION TYPE="HAND_BOARD")|.+))?'
@@ -353,5 +353,4 @@ class Microgaming(HandHistoryConverter):
             (shown, mucked) = (False, False)
             if shows.group('SHOWED') == "ShowCards": shown = True
             elif shows.group('SHOWED') == "MuckCards": mucked = True
-            print cards
             hand.addShownCards(cards, self.playerNameFromSeatNo(shows.group('SEAT'), hand), shown=shown, mucked=mucked)
