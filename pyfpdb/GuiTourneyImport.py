@@ -237,7 +237,7 @@ class SummaryImporter:
             if len(foabs) == 0:
                 log.error("Found: '%s' with 0 characters... skipping" % filename)
                 return (0, 1) # File had 0 characters
-            re_Split = obj.getSplitRe(foabs[:1000])
+            re_Split = obj.getSplitRe(obj,foabs[:1000])
             summaryTexts = re.split(re_Split, foabs)
 
             # The summary files tend to have a header or footer

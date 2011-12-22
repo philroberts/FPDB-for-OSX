@@ -50,7 +50,6 @@ class PokerStarsSummary(TourneySummary):
                             'LS' : u"\$|\xe2\x82\xac|\u20AC|" # legal currency symbols - Euro(cp1252, utf-8)
                     }
 
-    re_SplitTourneys = re.compile("PokerStars Tournament ")
     
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
 
@@ -76,7 +75,9 @@ class PokerStarsSummary(TourneySummary):
 
     codepage = ["utf-8"]
 
+    @staticmethod
     def getSplitRe(self, head):
+        re_SplitTourneys = re.compile("PokerStars Tournament ")
         return re_SplitTourneys
 
     def parseSummary(self):

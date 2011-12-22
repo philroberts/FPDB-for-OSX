@@ -61,11 +61,11 @@ class iPokerSummary(TourneySummary):
                 <win>(%(LS)s)?(?P<WIN>([%(NUM)s]+)|N/A)</win>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
 
-    re_SplitTourneys = re.compile("PokerStars Tournament ")
-
     codepage = ["utf-8"]
 
+    @staticmethod
     def getSplitRe(self, head):
+        re_SplitTourneys = re.compile("PokerStars Tournament ")
         return re_SplitTourneys
 
 

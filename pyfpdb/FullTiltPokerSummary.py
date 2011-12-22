@@ -56,8 +56,6 @@ class FullTiltPokerSummary(TourneySummary):
                            'NUM' : u".,\d",                    # legal characters in number format
                     }
 
-    re_SplitTourneys = re.compile("^Full Tilt Poker Tournament Summary")
-    
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
     re_TourneyInfo = re.compile(u"""
                         (\s*.*(?P<TYPE>.+\s))
@@ -95,7 +93,9 @@ class FullTiltPokerSummary(TourneySummary):
 
     codepage = ["utf-16", "cp1252", "utf-8"]
 
+    @staticmethod
     def getSplitRe(self, head):
+        re_SplitTourneys = re.compile("^Full Tilt Poker Tournament Summary")
         return re_SplitTourneys
 
     def parseSummary(self):
