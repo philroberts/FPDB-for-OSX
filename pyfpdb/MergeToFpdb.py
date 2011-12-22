@@ -825,9 +825,19 @@ or None if we fail to get the info """
         # FIXME
         # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
         # see http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
-        if hand.gametype['sb'] == None or hand.gametype['bb'] == None:
-            hand.gametype['sb'] = "1"
-            hand.gametype['bb'] = "1"
+        if hand.gametype['type'] == 'tour':
+            if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
+                hand.gametype['sb'] = "1"
+                hand.gametype['bb'] = "2"
+            elif hand.gametype['sb'] == None:
+                hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
+            elif hand.gametype['bb'] == None:
+                hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
+            if int(Decimal(hand.gametype['bb']))/2 != int(Decimal(hand.gametype['sb'])):
+                if int(Decimal(hand.gametype['bb']))/2 < int(Decimal(hand.gametype['sb'])):
+                    hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
+                else:
+                    hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
 
 
     def readButton(self, hand):
@@ -891,22 +901,16 @@ or None if we fail to get the info """
     def readAction(self, hand, street):
         logging.debug("readAction (%s)" % street)
         m = self.re_Action.finditer(hand.streets[street])
-        raises = 0
         for action in m:
             logging.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
             player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
             if action.group('ATYPE') == 'RAISE':
-                raises += 1
-                if self.info['limitType'] == 'fl':
-                    hand.addRaiseTo(street, player, action.group('BET'))
-                elif raises == 1:
-                    hand.addRaiseTo(street, player, action.group('BET'))
-                else: # raises > 1
-                    hand.addRaiseTo(street, player, action.group('BET'))
-                    #hand.addCallandRaise(street, player, action.group('BET'))
+                hand.addRaiseTo(street, player, action.group('BET'))
             elif action.group('ATYPE') == 'COMPLETE':
-                raises += 1
-                hand.addComplete( street, player, action.group('BET') )
+                if hand.gametype['base'] != 'stud':
+                    hand.addRaiseTo(street, player, action.group('BET'))
+                else:
+                    hand.addComplete( street, player, action.group('BET') )
             elif action.group('ATYPE') == 'CALL':
                 hand.addCall(street, player, action.group('BET'))
             elif action.group('ATYPE') == 'BET':

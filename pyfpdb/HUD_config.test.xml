@@ -1052,7 +1052,7 @@ Left-Drag to Move"
         <hhc site="Absolute" converter="AbsoluteToFpdb"/>
         <hhc site="PartyPoker" converter="PartyPokerToFpdb"/>
         <hhc site="Betfair" converter="BetfairToFpdb"/>
-        <hhc site="Merge" converter="MergeToFpdb"/>
+        <hhc site="Merge" converter="MergeToFpdb" summaryImporter="MergeSummary"/>
         <hhc site="OnGame" converter="OnGameToFpdb"/>
         <hhc site="PKR" converter="PkrToFpdb"/>
         <hhc site="iPoker" converter="iPokerToFpdb" summaryImporter="iPokerSummary"/>
@@ -1062,6 +1062,7 @@ Left-Drag to Move"
         <hhc site="Cake" converter="CakeToFpdb"/>
         <hhc site="Entraction" converter="EntractionToFpdb"/>
         <hhc site="BetOnline" converter="BetOnlineToFpdb"/>
+        <hhc site="Microgaming" converter="MicrogamingToFpdb"/>
     </hhcs>
 
     <raw_hands save="none" compression="none"/>

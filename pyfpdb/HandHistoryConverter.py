@@ -586,6 +586,8 @@ or None if we fail to get the info """
     @staticmethod
     def clearMoneyString(money):
         "Renders 'numbers' like '1 200' and '2,000'"
+        if not money:
+            return money
         return money.replace(' ', '').replace(',', '')
 
 def getTableTitleRe(config, sitename, *args, **kwargs):

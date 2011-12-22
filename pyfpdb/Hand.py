@@ -247,7 +247,7 @@ class Hand(object):
             hilo = "s"
         elif self.gametype['category'] in ['razz','27_3draw','badugi', '27_1draw']:
             hilo = "l"
-
+        
         self.gametyperow = (self.siteId, self.gametype['currency'], self.gametype['type'], self.gametype['base'],
                             self.gametype['category'], self.gametype['limitType'], hilo, self.gametype['mix'],
                             int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
@@ -625,6 +625,25 @@ class Hand(object):
         # corner cases include if player would be all in
         if amount is not None:
             amount = Decimal(amount)
+            self.bets[street][player].append(amount)
+            #self.lastBet[street] = amount
+            self.stacks[player] -= amount
+            #print "DEBUG %s calls %s, stack %s" % (player, amount, self.stacks[player])
+            act = (player, 'calls', amount, self.stacks[player] == 0)
+            self.actions[street].append(act)
+            self.pot.addMoney(player, amount)
+            
+    def addCallTo(self, street, player=None, amountTo=None):
+        if amountTo:
+            amountTo = amountTo.replace(u',', u'') #some sites have commas
+        #log.debug(_("%s %s calls %s") %(street, player, amount))
+        # Potentially calculate the amount of the callTo if not supplied
+        # corner cases include if player would be all in
+        if amountTo is not None:
+            Bc = sum(self.bets[street][player])
+            Ct = Decimal(amountTo)
+            C = Ct - Bc
+            amount = C
             self.bets[street][player].append(amount)
             #self.lastBet[street] = amount
             self.stacks[player] -= amount
