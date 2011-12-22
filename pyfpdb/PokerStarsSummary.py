@@ -76,6 +76,9 @@ class PokerStarsSummary(TourneySummary):
 
     codepage = ["utf-8"]
 
+    def getSplitRe(self, head):
+        return re_SplitTourneys
+
     def parseSummary(self):
         #FIXME: id type of file and call correct function
         self.parseSummaryFile()

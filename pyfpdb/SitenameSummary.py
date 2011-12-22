@@ -74,6 +74,9 @@ class Sitename(TourneySummary):
 
     codepage = ["utf-8"]
 
+    def getSplitRe(self, head):
+        return re_SplitTourneys
+
     def parseSummary(self):
         m = self.re_TourneyInfo.search(self.summaryText)
         if m == None:

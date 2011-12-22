@@ -95,6 +95,9 @@ class FullTiltPokerSummary(TourneySummary):
 
     codepage = ["utf-16", "cp1252", "utf-8"]
 
+    def getSplitRe(self, head):
+        return re_SplitTourneys
+
     def parseSummary(self):
         m = self.re_TourneyInfo.search(self.summaryText[:2000])
         if m == None:

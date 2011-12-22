@@ -65,6 +65,10 @@ class iPokerSummary(TourneySummary):
 
     codepage = ["utf-8"]
 
+    def getSplitRe(self, head):
+        return re_SplitTourneys
+
+
     def parseSummary(self):
         m = self.re_GameType.search(self.summaryText)
         if not m:

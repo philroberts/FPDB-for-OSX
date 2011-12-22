@@ -64,6 +64,9 @@ class MergeSummary(TourneySummary):
 
     codepage = ["utf-8"]
 
+    def getSplitRe(self, head):
+        return re_SplitTourneys
+
     def parseSummary(self):
         self.currency = "EUR"
         soup = BeautifulSoup(self.summaryText)

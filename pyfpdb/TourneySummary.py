@@ -192,6 +192,9 @@ class TourneySummary(object):
             str = str + "\n%s =\n" % name + pprint.pformat(struct, 4)
         return str
     #end def __str__
+
+    def getSplitRe(self, head): abstract
+    """Function to return a re object to split the summary text into separate tourneys, based on head of file"""
     
     def parseSummary(self): abstract
     """should fill the class variables with the parsed information"""
