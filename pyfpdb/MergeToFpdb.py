@@ -786,7 +786,7 @@ or None if we fail to get the info """
             elif street in ('TURN','RIVER'):
                 hand.setCommunityCards(street, [m.group('CARDS').split(',')[-1]])
         else:
-            raise FpdbParseError("readCommunityCards: " + _("No community cards found on this street"))
+            raise FpdbParseError("readCommunityCards: " + _("'%s': No community cards found on %s") % (hand.handid, street))
 
     def readAntes(self, hand):
         m = self.re_Antes.finditer(hand.handText)
