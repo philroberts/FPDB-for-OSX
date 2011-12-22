@@ -597,6 +597,7 @@ class Merge(HandHistoryConverter):
     re_CollectPot = re.compile(r'<winner amount="(?P<POT>[.0-9]+)" uncalled="false" potnumber="[0-9]+" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_ShownCards = re.compile(r'<cards type="(SHOWN|MUCKED)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
+    re_Reconnected = re.compile(r'<event sequence="[0-9]+" type="RECONNECTED" timestamp="[0-9]+" player="[0-9]"/>', re.MULTILINE)
 
     def compilePlayerRegexs(self, hand):
         pass
@@ -786,6 +787,9 @@ or None if we fail to get the info """
             elif street in ('TURN','RIVER'):
                 hand.setCommunityCards(street, [m.group('CARDS').split(',')[-1]])
         else:
+            m2 = self.re_Reconnected.search(hand.streets[street])
+            if m2:
+                raise FpdbHandPartial("readCommunityCards: " + _("Partial hand history") + ": '%s' No community cards found due to RECONNECTED" % (hand.handid))
             raise FpdbParseError("readCommunityCards: " + _("'%s': No community cards found on %s") % (hand.handid, street))
 
     def readAntes(self, hand):
