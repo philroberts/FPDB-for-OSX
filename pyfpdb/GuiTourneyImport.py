@@ -196,7 +196,7 @@ class SummaryImporter:
         if os.path.isdir(inputPath):
             for subdir in os.walk(inputPath):
                 for file in subdir[2]:
-                    self.addImportFile(unicode(os.path.join(subdir[0], file),'utf-8'),
+                    self.addImportFile(os.path.join(subdir[0], file),
                                        site=site, tsc=tsc)
         else:
             self.addImportFile(inputPath, site=site, tsc=tsc)
