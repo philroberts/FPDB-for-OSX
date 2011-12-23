@@ -67,13 +67,12 @@ _ = L10n.get_translation()
 # logging not activated yet
 # Killed hud-blocks do not re-appear
 # Save not working at all yet
-# hud menu options for stat display currently being ignored
 # move stat blocks menu item not implemnted (is this deprecated)
 # debug hud option not implemented
 # check that the parameters stored at AW level make sense for players
-#    playing more than one site
-# activate the set-max-seats logic (on the menu but not working)
+#  - when playing more than one site
 # fix the existing bugs with move/resize table (fix in aux_hud, not here)
+# activate the set-max-seats logic 
 
 #    Standard Library modules
 #    pyGTK modules
@@ -311,17 +310,6 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
             getattr(self, 'hudStyleOptionS').set_active(True)
         elif self.hud_params['hud_style'] == 'T':
             getattr(self, 'hudStyleOptionT').set_active(True)
-
-        item5 = gtk.MenuItem(_('Set max seats'))
-        menu.append(item5)
-        maxSeatsMenu = gtk.Menu()
-        item5.set_submenu(maxSeatsMenu)
-        for i in range(2, 11, 1):
-            item = gtk.MenuItem('%d-max' % i)
-            item.ms = i
-            maxSeatsMenu.append(item)
-            item.connect("activate", self.change_max_seats)
-            setattr(self, 'maxSeatsMenuItem%d' % (i - 1), item)
             
         return menu
 
@@ -396,13 +384,6 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
             getattr(self, prefix+'hudStyleOptionA').set_active(False)
             getattr(self, prefix+'hudStyleOptionS').set_active(False)
 
-
-    def change_max_seats(self, widget):
-        print self.hud.max
-        print widget.ms
-        if self.hud.max != widget.ms:
-            self.hud.max = widget.ms
-            self.kill("whatever")
 
 Aux_Hud.Simple_table_mw=Classic_table_mw  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
                                           ##see FIXME note in Aux_Hud Simple_table_mw init method

@@ -242,6 +242,7 @@ class Simple_table_mw(Mucked.Seat_Window):
     def save_current_layouts(self, event):
 #    This calls the save_layout method of the Hud object. The Hud object 
 #    then calls the save_layout method in each installed AW.
+        print self.hud.hud_params
         self.hud.save_layout()
 
     def kill(self, event):
