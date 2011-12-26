@@ -219,7 +219,7 @@ class Hand(object):
         try:
             self.checkPlayerExists(player)
         except FpdbParseError, e:
-            log.error(_("Tried to add holecards for unknown player: '%s'") % (player,))
+            log.error(_("Hand.addHoleCards: '%s' Tried to add holecards for unknown player: '%s'") % (self.handid, player))
             return
 
         if dealt:  self.dealt.add(player)
@@ -986,6 +986,7 @@ class HoldemOmahaHand(Hand):
                     self.pot.markTotal(street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self)
+            self.pot.handid = self.handid # This is only required so Pot can throw it in totalPot
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
             if self.maxseats is None:
@@ -1286,6 +1287,7 @@ class DrawHand(Hand):
                     self.pot.markTotal(street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self)
+            self.pot.handid = self.handid # This is only required so Pot can throw it in totalPot
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
             if self.maxseats is None:
@@ -1477,6 +1479,7 @@ class StudHand(Hand):
                     self.pot.markTotal(street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self) # not done yet
+            self.pot.handid = self.handid # This is only required so Pot can throw it in totalPot
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
             if self.maxseats is None:
@@ -1515,7 +1518,7 @@ class StudHand(Hand):
             self.checkPlayerExists(player)
             self.holecards[street][player] = (open, closed)
         except FpdbParseError, e:
-            log.error(_("Tried to add holecards for unknown player: %s") % (player,))
+            log.error(_("Hand.addPlayerCards: '%s' Tried to add holecards for unknown player: %s") % (self.handid, player))
 
     # TODO: def addComplete(self, player, amount):
     def addComplete(self, street, player, amountTo):
@@ -1747,6 +1750,7 @@ class Pot(object):
         self.returned     = {}
         self.sym          = u'$' # this is the default currency symbol
         self.pots         = []
+        self.handid       = 0
 
     def setSym(self, sym):
         self.sym = sym
@@ -1805,7 +1809,7 @@ class Pot(object):
                 self.pots += [(sum([min(v,v1) for (v,k) in commitsall]), set(k for (v,k) in commitsall if k in self.contenders))]
                 commitsall = [((v-v1),k) for (v,k) in commitsall if v-v1 >0]
         except IndexError, e:
-            raise FpdbParseError(_("Major failure while calculating pot: '%s'") % e)
+            raise FpdbParseError(_("Pot.end(): '%s': Major failure while calculating pot: '%s'") % (self.handid, e))
 
         # TODO: I think rake gets taken out of the pots.
         # so it goes:
