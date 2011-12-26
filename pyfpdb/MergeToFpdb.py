@@ -22,24 +22,14 @@
 import L10n
 _ = L10n.get_translation()
 
-# This code is based heavily on EverleafToFpdb.py, by Carl Gherardi
-#
 # TODO:
 #
-# -- No support for tournaments (see also the last item below)
 # -- Assumes that the currency of ring games is USD
 # -- Only accepts 'realmoney="true"'
-# -- A hand's time-stamp does not record seconds past the minute (a
-#    limitation of the history format)
+# -- A hand's time-stamp does not record seconds past the minute (a limitation of the history format)
 # -- hand.maxseats can only be guessed at
-# -- Is behaviour currently correct when someone shows an uncalled hand?
-# -- Information may be lost when the hand ID is converted from the native form
-#    xxxxxxxx-yyy(y*) to xxxxxxxxyyy(y*) (in principle this should be stored as
-#    a string, but the database does not support this). Is there a possibility
-#    of collision between hand IDs that ought to be distinct?
 # -- Cannot parse tables that run it twice
-# -- Cannot parse hands in which someone is all in in one of the blinds. Until
-#    this is corrected tournaments will be unparseable
+# -- Cannot parse hands in which someone is all in in one of the blinds.
 
 import sys
 import logging
@@ -729,7 +719,16 @@ or None if we fail to get the info """
         # Check that the hand is complete up to the awarding of the pot; if
         # not, the hand is unparseable
         if self.re_EndOfHand.search(hand.handText) is None:
-            raise FpdbHandPartial("readHandInfo: " + _("Partial hand history") + ": '%s-%s'" % (m.group('HID1'), m.group('HID2')))
+            # Situations found so far where this is triggered:
+                # A player leaving the table in a cash game before the last hand they played (or observed) is finished
+                # The hand was cancelled
+                # Player was disconnected and didn't see the end of the hand (NOTE: this isn't the only place disconnected triggers a partial)
+            # We almost certainly don't have full information so throw a Partial.
+            # FIXME: We should probably differentiate between them.
+                # re_Reconnected already exists
+                # re_Cancelled: <event sequence="\d+" type="GAME_CANCELLED" timestamp="\d+"/>
+                # re_LeaveTable: <event sequence="\d+" type="LEAVE" timestamp="\d+" player="\d"/>
+            raise FpdbHandPartial("readHandInfo: " + _("Partial hand history") + ": '%s-%s' - No 'END_OF_GAME'. Hero left, disconnected or hand cancelled." % (m.group('HID1'), m.group('HID2')))
 
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.handText)
@@ -789,7 +788,7 @@ or None if we fail to get the info """
         else:
             m2 = self.re_Reconnected.search(hand.streets[street])
             if m2:
-                raise FpdbHandPartial("readCommunityCards: " + _("Partial hand history") + ": '%s' No community cards found due to RECONNECTED" % (hand.handid))
+                raise FpdbHandPartial("readCommunityCards: " + _("Partial hand history") + ": '%s' No community cards found on %s due to RECONNECTED" % (hand.handid, street))
             raise FpdbParseError("readCommunityCards: " + _("'%s': No community cards found on %s") % (hand.handid, street))
 
     def readAntes(self, hand):
