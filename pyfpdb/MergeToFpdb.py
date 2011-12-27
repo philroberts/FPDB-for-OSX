@@ -582,6 +582,7 @@ class Merge(HandHistoryConverter):
     re_BringIn = re.compile(r'<event sequence="[0-9]+" type="BRING_IN" (?P<TIMESTAMP>timestamp="\d+" )?player="(?P<PSEAT>[0-9])" amount="(?P<BRINGIN>[.0-9]+)"/>', re.MULTILINE)
     re_HeroCards = re.compile(r'<cards type="(HOLE|DRAW_DRAWN_CARDS)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_Action = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT|DRAW|COMPLETE)"( timestamp="(?P<TIMESTAMP>[0-9]+)")? player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?( text="(?P<TXT>.+)")?/>', re.MULTILINE)
+    re_AllActions = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT|DRAW|COMPLETE|BIG_BLIND|INITIAL_BLIND|SMALL_BLIND|RETURN_BLIND|BRING_IN|ANTE)"( timestamp="(?P<TIMESTAMP>[0-9]+)")? player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?( text="(?P<TXT>.+)")?/>', re.MULTILINE)
     re_ShowdownAction = re.compile(r'<cards type="SHOWN" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_CollectPot = re.compile(r'<winner amount="(?P<POT>[.0-9]+)" uncalled="false" potnumber="[0-9]+" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
@@ -713,10 +714,6 @@ or None if we fail to get the info """
                     raise FpdbParseError(_("No match in MTT or SnG Structures: '%s' %s") % (hand.tablename, hand.tourNo))
         else:
             hand.tablename = m.group('TABLE')
-        if m.group('SEATS'):
-            hand.maxseats = int(m.group('SEATS'))
-        else:
-            hand.maxseats = 2 # This value may be increased as necessary
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],'%Y%m%d%H%M')
         # Check that the hand is complete up to the awarding of the pot; if
         # not, the hand is unparseable
@@ -724,23 +721,30 @@ or None if we fail to get the info """
             self.determineErrorType(hand, "readHandInfo")
 
     def readPlayerStacks(self, hand):
+        acted = {}
+        seated = {}
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
-            seatno = int(a.group('SEAT'))
-            # It may be necessary to adjust 'hand.maxseats', which is an
-            # educated guess, starting with 2 (indicating a heads-up table) and
-            # adjusted upwards in steps to 6, then 9, then 10. An adjustment is
-            # made whenever a player is discovered whose seat number is
-            # currently above the maximum allowable for the table.
-            if seatno >= hand.maxseats:
-                if seatno > 8:
-                    hand.maxseats = 10
-                elif seatno > 5:
-                    hand.maxseats = 9
-                else:
-                    hand.maxseats = 6
-            if a.group('DEALTIN') == "true":
-                hand.addPlayer(seatno, a.group('PNAME'), a.group('CASH'))
+            seatno = a.group('SEAT')
+            seated[seatno] = [a.group('PNAME'), a.group('CASH')]
+
+        if hand.gametype['type'] == "ring" :
+            # We can't 100% trust the 'dealtin' field. So read the actions and see if the players acted
+            m2 = self.re_AllActions.finditer(hand.handText)
+            for action in m2:
+                acted[action.group('PSEAT')] = True
+                if len(seated) == len(acted): # We've faound all players
+                    break
+
+            for seatno in seated.keys():
+                if seatno not in acted:
+                    del seated[seatno]
+
+        for seat in seated:
+            name, stack = seated[seat]
+            hand.addPlayer(int(seat), name, stack)
+
+        # No players found at all.
         if not hand.players:
             self.determineErrorType(hand, "readPlayerStacks")
 
@@ -928,7 +932,6 @@ or None if we fail to get the info """
                     hand.addShownCards(cards, self.playerNameFromSeatNo(shows.group('PSEAT'), hand))
 
     def readCollectPot(self, hand):
-        pots = [Decimal(0) for n in range(hand.maxseats)]
         for m in self.re_CollectPot.finditer(hand.handText):
             pname = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
             pot = m.group('POT')
