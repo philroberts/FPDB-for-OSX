@@ -777,7 +777,8 @@ or None if we fail to get the info """
                        r'(<round id="FIFTH_STREET" sequence="[0-9]+">(?P<FIFTH>.+(?=<round id="SIXTH_STREET" sequence="[0-9]+">)|.+))?'
                        r'(<round id="SIXTH_STREET" sequence="[0-9]+">(?P<SIXTH>.+(?=<round id="SEVENTH_STREET" sequence="[0-9]+">)|.+))?'
                        r'(<round id="SEVENTH_STREET" sequence="[0-9]+">(?P<SEVENTH>.+))?', hand.handText,re.DOTALL)
-
+        if m == None:
+            self.determineErrorType(hand, "markStreets")
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street):
@@ -955,7 +956,7 @@ or None if we fail to get the info """
                     hand.addShownCards(cards=cards, player=self.playerNameFromSeatNo(m.group('PSEAT'),hand))
 
     def determineErrorType(self, hand, function):
-        message = "Default message"
+        message = False
         m = self.re_Connection.search(hand.handText)
         if m:
             message = _("Found %s. Hand missing information." % m.group('TYPE'))
@@ -965,6 +966,8 @@ or None if we fail to get the info """
         m = self.re_Cancelled.search(hand.handText)
         if m:
             message = _("Found CANCELLED")
+        if message == False and function == "markStreets":
+            message = _("Failed to identify all streets")
 
         raise FpdbHandPartial("Partial hand history: %s '%s' %s" % (function, hand.handid, message))
 
