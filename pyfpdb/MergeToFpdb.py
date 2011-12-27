@@ -731,14 +731,19 @@ or None if we fail to get the info """
         if hand.gametype['type'] == "ring" :
             # We can't 100% trust the 'dealtin' field. So read the actions and see if the players acted
             m2 = self.re_AllActions.finditer(hand.handText)
+            fulltable = False
             for action in m2:
                 acted[action.group('PSEAT')] = True
                 if len(seated) == len(acted): # We've faound all players
                     break
+            if fulltable != True:
+                for seatno in seated.keys():
+                    if seatno not in acted:
+                        del seated[seatno]
 
-            for seatno in seated.keys():
-                if seatno not in acted:
-                    del seated[seatno]
+                for seatno in acted.keys():
+                    if seatno not in seated:
+                        raise FpdbParseError(_("readPlayerStacks: '%s' Seat:%s acts but not listed") % (hand.handid, seatno))
 
         for seat in seated:
             name, stack = seated[seat]
