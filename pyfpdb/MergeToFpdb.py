@@ -968,6 +968,8 @@ or None if we fail to get the info """
             message = _("Found CANCELLED")
         if message == False and function == "markStreets":
             message = _("Failed to identify all streets")
+        if message == False and function == "readHandInfo":
+            message = _("END_OF_HAND not found. No obvious reason")
 
         raise FpdbHandPartial("Partial hand history: %s '%s' %s" % (function, hand.handid, message))
 
