@@ -62,7 +62,8 @@ class Merge(HandHistoryConverter):
                      'Razz'  : ('stud','razz'),
             }
     Lim_Blinds = {      '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),
-                        '0.20': ('0.05', '0.10'),    '0.50': ('0.10', '0.25'),
+                        '0.20': ('0.05', '0.10'),
+                        '0.25': ('0.05', '0.10'),    '0.50': ('0.10', '0.25'),
                         '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
                         '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
                         '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
@@ -76,6 +77,13 @@ class Merge(HandHistoryConverter):
                        '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
                       '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
                   }
+
+    Multigametypes = {  '2': ('hold','holdem'),
+                        '4': ('hold','omahahi'),
+                       '47': ('stud','razz'),
+                       '39': ('stud','studhi'),
+                       '43': ('stud','studhilo'),
+                     }
     
     MTT_Structures = {
                         'Monthly Charity Event - $50 Added' : {'buyIn': 2.5, 'fee': 2.5, 'currency': 'USD'},
@@ -565,8 +573,8 @@ class Merge(HandHistoryConverter):
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Holdem\sTournament|Omaha|Omaha\sTournament|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz)" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
-    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" (seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLE>[^|]+)\|(?P<TOURNO>\d+)?.*>', re.MULTILINE)
+    re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Holdem\sTournament|Omaha|Omaha\sTournament|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE)" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
+    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLE>[^|]+)\|(?P<TOURNO>\d+)?.*>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
     re_Board = re.compile(r'<cards type="COMMUNITY" cards="(?P<CARDS>[^"]+)"', re.MULTILINE)
@@ -655,7 +663,11 @@ or None if we fail to get the info """
         if 'LIMIT' in mg:
             self.info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
-            (self.info['base'], self.info['category']) = self.games[mg['GAME']]
+            if mg['GAME'] == "HORSE":
+                m2 = self.re_HandInfo.search(handText)
+                (self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
+            else:
+                (self.info['base'], self.info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
             self.info['sb'] = mg['SB']
         if 'BB' in mg:
@@ -777,7 +789,8 @@ or None if we fail to get the info """
                        r'(<round id="FIFTH_STREET" sequence="[0-9]+">(?P<FIFTH>.+(?=<round id="SIXTH_STREET" sequence="[0-9]+">)|.+))?'
                        r'(<round id="SIXTH_STREET" sequence="[0-9]+">(?P<SIXTH>.+(?=<round id="SEVENTH_STREET" sequence="[0-9]+">)|.+))?'
                        r'(<round id="SEVENTH_STREET" sequence="[0-9]+">(?P<SEVENTH>.+))?', hand.handText,re.DOTALL)
-
+        if m == None:
+            self.determineErrorType(hand, "markStreets")
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street):
@@ -957,7 +970,7 @@ or None if we fail to get the info """
                     hand.addShownCards(cards=cards, player=self.playerNameFromSeatNo(m.group('PSEAT'),hand))
 
     def determineErrorType(self, hand, function):
-        message = "Default message"
+        message = False
         m = self.re_Connection.search(hand.handText)
         if m:
             message = _("Found %s. Hand missing information." % m.group('TYPE'))
@@ -967,6 +980,10 @@ or None if we fail to get the info """
         m = self.re_Cancelled.search(hand.handText)
         if m:
             message = _("Found CANCELLED")
+        if message == False and function == "markStreets":
+            message = _("Failed to identify all streets")
+        if message == False and function == "readHandInfo":
+            message = _("END_OF_HAND not found. No obvious reason")
 
         raise FpdbHandPartial("Partial hand history: %s '%s' %s" % (function, hand.handid, message))
 
