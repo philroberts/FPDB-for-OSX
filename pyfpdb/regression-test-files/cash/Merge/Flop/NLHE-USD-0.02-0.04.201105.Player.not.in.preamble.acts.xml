@@ -1,0 +1,27 @@
+<description type="Holdem" stakes="No Limit ($0.02/$0.04)"/>
+<game id="34205042-1" starttime="20110507140723" numholecards="2" gametype="2" realmoney="true" data="20110507|Santiago (34205042)|34205042|34205042-59|false">
+	<players dealer="3">
+		<player seat="1" nickname="Player1" balance="$5.30" dealtin="true" />
+		<player seat="2" nickname="Player2" balance="$4.00" dealtin="false" />
+		<player seat="3" nickname="Hero" balance="$2.00" dealtin="true" />
+		<player seat="4" nickname="Player4" balance="$4.11" dealtin="true" />
+		<player seat="5" nickname="Player5" balance="$8.42" dealtin="false" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1304795244005" player="4" amount="0.02"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1304795252069" player="0" amount="0.04"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1304795257492" player="1" amount="0.14"/>
+		<event sequence="4" type="FOLD" timestamp="1304795259351" player="3"/>
+		<event sequence="5" type="FOLD" timestamp="1304795259594" player="4"/>
+		<event sequence="6" type="FOLD" timestamp="1304795263584" player="0"/>
+		<cards type="HOLE" cards="Ac,6d" player="3" hand="Ace High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="7" type="MUCK" timestamp="1304795264375" player="1"/>
+		<winner amount="0.20" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>

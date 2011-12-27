@@ -570,7 +570,6 @@ class Merge(HandHistoryConverter):
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
     re_Board = re.compile(r'<cards type="COMMUNITY" cards="(?P<CARDS>[^"]+)"', re.MULTILINE)
-    re_EndOfHand = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
     re_Buyin = re.compile(r'\$(?P<BUYIN>[.,0-9]+)\s(?P<FREEROLL>Freeroll)?', re.MULTILINE)
 
     # The following are also static regexes: there is no need to call
@@ -583,11 +582,15 @@ class Merge(HandHistoryConverter):
     re_BringIn = re.compile(r'<event sequence="[0-9]+" type="BRING_IN" (?P<TIMESTAMP>timestamp="\d+" )?player="(?P<PSEAT>[0-9])" amount="(?P<BRINGIN>[.0-9]+)"/>', re.MULTILINE)
     re_HeroCards = re.compile(r'<cards type="(HOLE|DRAW_DRAWN_CARDS)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_Action = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT|DRAW|COMPLETE)"( timestamp="(?P<TIMESTAMP>[0-9]+)")? player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?( text="(?P<TXT>.+)")?/>', re.MULTILINE)
+    re_AllActions = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT|DRAW|COMPLETE|BIG_BLIND|INITIAL_BLIND|SMALL_BLIND|RETURN_BLIND|BRING_IN|ANTE)"( timestamp="(?P<TIMESTAMP>[0-9]+)")? player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?( text="(?P<TXT>.+)")?/>', re.MULTILINE)
     re_ShowdownAction = re.compile(r'<cards type="SHOWN" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_CollectPot = re.compile(r'<winner amount="(?P<POT>[.0-9]+)" uncalled="false" potnumber="[0-9]+" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_ShownCards = re.compile(r'<cards type="(SHOWN|MUCKED)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
-    re_Reconnected = re.compile(r'<event sequence="[0-9]+" type="RECONNECTED" timestamp="[0-9]+" player="[0-9]"/>', re.MULTILINE)
+    re_Connection  = re.compile(r'<event sequence="[0-9]+" type="(?P<TYPE>RECONNECTED|DISCONNECTED)" timestamp="[0-9]+" player="[0-9]"/>', re.MULTILINE)
+    re_Cancelled   = re.compile(r'<event sequence="\d+" type="GAME_CANCELLED" timestamp="\d+"/>', re.MULTILINE)
+    re_LeaveTable  = re.compile(r'<event sequence="\d+" type="LEAVE" timestamp="\d+" player="\d"/>', re.MULTILINE)
+    re_EndOfHand   = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
 
     def compilePlayerRegexs(self, hand):
         pass
@@ -711,45 +714,44 @@ or None if we fail to get the info """
                     raise FpdbParseError(_("No match in MTT or SnG Structures: '%s' %s") % (hand.tablename, hand.tourNo))
         else:
             hand.tablename = m.group('TABLE')
-        if m.group('SEATS'):
-            hand.maxseats = int(m.group('SEATS'))
-        else:
-            hand.maxseats = 2 # This value may be increased as necessary
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],'%Y%m%d%H%M')
         # Check that the hand is complete up to the awarding of the pot; if
         # not, the hand is unparseable
         if self.re_EndOfHand.search(hand.handText) is None:
-            # Situations found so far where this is triggered:
-                # A player leaving the table in a cash game before the last hand they played (or observed) is finished
-                # The hand was cancelled
-                # Player was disconnected and didn't see the end of the hand (NOTE: this isn't the only place disconnected triggers a partial)
-            # We almost certainly don't have full information so throw a Partial.
-            # FIXME: We should probably differentiate between them.
-                # re_Reconnected already exists
-                # re_Cancelled: <event sequence="\d+" type="GAME_CANCELLED" timestamp="\d+"/>
-                # re_LeaveTable: <event sequence="\d+" type="LEAVE" timestamp="\d+" player="\d"/>
-            raise FpdbHandPartial("readHandInfo: " + _("Partial hand history") + ": '%s-%s' - No 'END_OF_GAME'. Hero left, disconnected or hand cancelled." % (m.group('HID1'), m.group('HID2')))
+            self.determineErrorType(hand, "readHandInfo")
 
     def readPlayerStacks(self, hand):
+        acted = {}
+        seated = {}
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
-            seatno = int(a.group('SEAT'))
-            # It may be necessary to adjust 'hand.maxseats', which is an
-            # educated guess, starting with 2 (indicating a heads-up table) and
-            # adjusted upwards in steps to 6, then 9, then 10. An adjustment is
-            # made whenever a player is discovered whose seat number is
-            # currently above the maximum allowable for the table.
-            if seatno >= hand.maxseats:
-                if seatno > 8:
-                    hand.maxseats = 10
-                elif seatno > 5:
-                    hand.maxseats = 9
-                else:
-                    hand.maxseats = 6
-            if a.group('DEALTIN') == "true":
-                hand.addPlayer(seatno, a.group('PNAME'), a.group('CASH'))
-        if not hand.players or len(hand.players)<2:
-            raise FpdbHandPartial("readPlayerStacks: " + _("No one was dealt in"))
+            seatno = a.group('SEAT')
+            seated[seatno] = [a.group('PNAME'), a.group('CASH')]
+
+        if hand.gametype['type'] == "ring" :
+            # We can't 100% trust the 'dealtin' field. So read the actions and see if the players acted
+            m2 = self.re_AllActions.finditer(hand.handText)
+            fulltable = False
+            for action in m2:
+                acted[action.group('PSEAT')] = True
+                if len(seated) == len(acted): # We've faound all players
+                    break
+            if fulltable != True:
+                for seatno in seated.keys():
+                    if seatno not in acted:
+                        del seated[seatno]
+
+                for seatno in acted.keys():
+                    if seatno not in seated:
+                        raise FpdbParseError(_("readPlayerStacks: '%s' Seat:%s acts but not listed") % (hand.handid, seatno))
+
+        for seat in seated:
+            name, stack = seated[seat]
+            hand.addPlayer(int(seat), name, stack)
+
+        # No players found at all.
+        if not hand.players:
+            self.determineErrorType(hand, "readPlayerStacks")
 
     def markStreets(self, hand):
         if hand.gametype['base'] == 'hold':
@@ -786,10 +788,7 @@ or None if we fail to get the info """
             elif street in ('TURN','RIVER'):
                 hand.setCommunityCards(street, [m.group('CARDS').split(',')[-1]])
         else:
-            m2 = self.re_Reconnected.search(hand.streets[street])
-            if m2:
-                raise FpdbHandPartial("readCommunityCards: " + _("Partial hand history") + ": '%s' No community cards found on %s due to RECONNECTED" % (hand.handid, street))
-            raise FpdbParseError("readCommunityCards: " + _("'%s': No community cards found on %s") % (hand.handid, street))
+            self.determineErrorType(hand, "readCommunityCards")
 
     def readAntes(self, hand):
         m = self.re_Antes.finditer(hand.handText)
@@ -940,7 +939,6 @@ or None if we fail to get the info """
                     hand.addShownCards(cards, self.playerNameFromSeatNo(shows.group('PSEAT'), hand))
 
     def readCollectPot(self, hand):
-        pots = [Decimal(0) for n in range(hand.maxseats)]
         for m in self.re_CollectPot.finditer(hand.handText):
             pname = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
             pot = m.group('POT')
@@ -957,4 +955,18 @@ or None if we fail to get the info """
                 for m in self.re_ShownCards.finditer(hand.streets[street]):
                     cards = m.group('CARDS').split(',')
                     hand.addShownCards(cards=cards, player=self.playerNameFromSeatNo(m.group('PSEAT'),hand))
+
+    def determineErrorType(self, hand, function):
+        message = "Default message"
+        m = self.re_Connection.search(hand.handText)
+        if m:
+            message = _("Found %s. Hand missing information." % m.group('TYPE'))
+        m = self.re_LeaveTable.search(hand.handText)
+        if m:
+            message = _("Found LEAVE. Player left table before hand completed")
+        m = self.re_Cancelled.search(hand.handText)
+        if m:
+            message = _("Found CANCELLED")
+
+        raise FpdbHandPartial("Partial hand history: %s '%s' %s" % (function, hand.handid, message))
 
