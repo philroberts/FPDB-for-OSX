@@ -271,10 +271,10 @@ class OnGame(HandHistoryConverter):
                            r"(Dealing river(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
         elif hand.gametype['base'] in ("draw"):
             m =  re.search(r"(?P<PREDEAL>.+(?=Dealing pocket cards)|.+)"
-                           r"(Dealing pocket cards(?P<DEAL>.+(?=\*\*\* FIRST DRAW \*\*\*)|.+))?"
-                           r"(\*\*\* FIRST DRAW \*\*\*(?P<DRAWONE>.+(?=\*\*\* SECOND DRAW \*\*\*)|.+))?"
-                           r"(\*\*\* SECOND DRAW \*\*\*(?P<DRAWTWO>.+(?=\*\*\* THIRD DRAW \*\*\*)|.+))?"
-                           r"(\*\*\* THIRD DRAW \*\*\*(?P<DRAWTHREE>.+))?", hand.handText,re.DOTALL)
+                           r"(Dealing pocket cards(?P<DEAL>.*?(?=\-\-\-\n|\-\-\-\s*Summary:)))?"
+                           r"(\-\-\-\n(?P<DRAWONE>.*?(?=\-\-\-\n|\-\-\-\s*Summary:)))?"
+                           r"(\-\-\-\n(?P<DRAWTWO>.*?(?=\-\-\-\n|\-\-\-\s*Summary:)))?"
+                           r"(\-\-\-\n(?P<DRAWTHREE>.*?(?=\-\-\-\s*Summary:)))?", hand.handText,re.DOTALL)
 
         hand.addStreets(m)
 
