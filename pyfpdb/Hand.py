@@ -729,7 +729,7 @@ class Hand(object):
         self.pot.addMoney(player, amount)
 
 
-    def addStandsPat(self, street, player, cards):
+    def addStandsPat(self, street, player, cards=None):
         self.checkPlayerExists(player)
         act = (player, 'stands pat')
         self.actions[street].append(act)

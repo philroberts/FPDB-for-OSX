@@ -45,7 +45,7 @@ class OnGame(HandHistoryConverter):
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": u"\u20ac", "GBP": "\xa3"}
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : u"\$|\xe2\x82\xac|\u20ac" # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : u"\$|\xe2\x82\xac|\u20ac|" # legal currency symbols - Euro(cp1252, utf-8)
                     }
     currencies = { u'\u20ac':'EUR', u'\xe2\x82\xac':'EUR', '$':'USD', '':'T$' }
 
@@ -125,7 +125,7 @@ class OnGame(HandHistoryConverter):
             self.re_PostDead  = re.compile('(?P<PNAME>.*) posts dead blind \((%(CUR)s)?(?P<DEAD>[\.0-9]+)\)' % subst, re.MULTILINE)
             self.re_HeroCards = re.compile('(New\shand\sfor|Dealing\sto)\s%(PLYR)s:\s\[(?P<CARDS>.*)\]' % subst)
 
-            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( (%(CUR)s)?(?P<BET>[\d\.]+))?( to (%(CUR)s)?(?P<BET2>[\d\.]+))?( and is all-in)?' % subst)
+            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds| changed)( (%(CUR)s)?(?P<BET>[\d\.]+))?( to (%(CUR)s)?(?P<BET2>[\d\.]+))?( and is all-in)?' % subst)
             #self.re_Board = re.compile(r"\[board cards (?P<CARDS>.+) \]")
 
             #Uchilka shows [ KC,JD ]
@@ -252,7 +252,8 @@ class OnGame(HandHistoryConverter):
 
     def readPlayerStacks(self, hand):
         #log.debug("readplayerstacks: re is '%s'" % self.re_PlayerInfo)
-        m = self.re_PlayerInfo.finditer(hand.handText)
+        head = re.split(re.compile('Summary:'),  hand.handText)
+        m = self.re_PlayerInfo.finditer(head[0])
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
@@ -356,24 +357,42 @@ class OnGame(HandHistoryConverter):
                         hand.addHoleCards(street, player, closed=newcards, shown=False, mucked=False, dealt=False)
 
     def readAction(self, hand, street):
+        i, d = 0, 0
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             #acts = action.groupdict()
             #print "readaction: acts: %s" %acts
+            
             if action.group('ATYPE') == ' raises':
                 hand.addRaiseTo( street, action.group('PNAME'), action.group('BET2') )
+                i+=1
+                d=0
             elif action.group('ATYPE') == ' calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
+                i+=1
+                d=0
             elif action.group('ATYPE') == ' bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
+                i+=1
+                d=0
             elif action.group('ATYPE') == ' folds':
                 hand.addFold( street, action.group('PNAME'))
+                i+=1
+                d=0
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
-            elif action.group('ATYPE') == ' discards':
-                hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('DISCARDED'))
-            elif action.group('ATYPE') == ' stands pat':
-                hand.addStandsPat( street, action.group('PNAME'))
+                i+=1
+                d=0
+            elif action.group('ATYPE') == ' changed':
+                if i>0 and d==0:
+                    idx = hand.allStreets.index(street)+1
+                    if idx<4: street = hand.allStreets[idx]
+                    i=0
+                d+=1
+                if int(action.group('BET'))>0:
+                    hand.addDiscard(street, action.group('PNAME'), action.group('BET'))
+                else:
+                    hand.addStandsPat( street, action.group('PNAME'))
             else:
                 print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 
