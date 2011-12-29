@@ -501,7 +501,7 @@ class Aux_Seats(Aux_Window):
         self.config.edit_aux_layout(self.params['name'], self.hud.max, locations = new_locs)
 
     def configure_event_cb(self, widget, event, i, *args):
-        self.positions[i] = widget.get_position()
+        if (i): self.positions[i] = widget.get_position()
 
 class Flop_Mucked(Aux_Seats):
     """Aux_Window class for displaying mucked cards for flop games."""
