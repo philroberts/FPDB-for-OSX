@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #    Copyright 2011,  "Gimick" of the FPDB project  fpdb.sourceforge.net
+#                     -  bbtgaf@googlemail.com
 #
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
@@ -63,16 +64,15 @@ _ = L10n.get_translation()
 
 # to do
 #=======
-
 # logging not activated yet
-# Killed hud-blocks do not re-appear
-# Save not working at all yet
+# activate the set-max-seats logic
+
 # move stat blocks menu item not implemnted (is this deprecated)
 # debug hud option not implemented
 # check that the parameters stored at AW level make sense for players
 #  - when playing more than one site
 # fix the existing bugs with move/resize table (fix in aux_hud, not here)
-# activate the set-max-seats logic 
+
 
 #    Standard Library modules
 #    pyGTK modules
@@ -83,12 +83,22 @@ import Stats
 import Popup
 
 
-
 class Classic_Stat_Window(Aux_Hud.Stat_Window):
     """Stat windows are the blocks shown continually, 1 for each player."""
 
     def update_contents(self, i):
         super(Classic_Stat_Window, self).update_contents(i)
+        if i == "common": return
+                
+        # control kill/display of active/inactive player stat blocks
+        if self.aw.get_id_from_seat(i) is None:
+            #no player dealt in this seat for this hand
+            self.hide()
+        else:
+            #player dealt-in, force display of stat block
+            #need to call move() to re-establish window position
+            self.move(self.aw.positions[i][0], self.aw.positions[i][1])
+            self.show()
 
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the stat box."""
@@ -331,7 +341,7 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
             self.hud_params['aggregate_ring'] = True
             self.hud_params['aggregate_tour'] = True
 
-            if     self.hud_params['agg_bb_mult'] != num \
+            if self.hud_params['agg_bb_mult'] != num \
                and getattr(self, 'aggBBmultItem'+str(num)).get_active():
                 self.hud_params['agg_bb_mult'] = num
                 for mult in ('1', '2', '3', '10', '10000'):

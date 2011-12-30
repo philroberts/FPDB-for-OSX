@@ -378,7 +378,7 @@ class Seat_Window(gtk.Window):
             self.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
 
 class Aux_Seats(Aux_Window):
-    """A super class to display an aux_window at each seat."""
+    """A super class to display an aux_window or a stat block at each seat."""
 
     def __init__(self, hud, config, params):
         self.hud     = hud       # hud object that this aux window supports
@@ -418,7 +418,6 @@ class Aux_Seats(Aux_Window):
     def create(self):
         self.adj = self.hud.adj_seats(0, self.config)  # move adj_seats to aux and get rid of it in Hud.py
         loc = self.config.get_aux_locations(self.params['name'], int(self.hud.max))
-        print loc
         
         self.m_windows = {}      # windows to put the card images in
         width = self.hud.table.width
@@ -488,9 +487,7 @@ class Aux_Seats(Aux_Window):
 #        print "adj =", self.adj
         witdh = self.hud.table.width
         height = self.hud.table.height
-        print self.positions
         for (i, pos) in self.positions.iteritems():
-            print i
             if i != 'common':
 #                new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x) * 1000 / witdh, (pos[1] - self.hud.table.y) * 1000 / height)
                 new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y) )
