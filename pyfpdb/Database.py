@@ -652,7 +652,7 @@ class Database:
             l.append(None)
             return l
         else:    # tournament
-            tour_no, tab_no = re.split(" ", row[0])
+            tour_no, tab_no = re.split(" ", row[0], 1)
             l.append(tour_no)
             l.append(tab_no)
             return l
