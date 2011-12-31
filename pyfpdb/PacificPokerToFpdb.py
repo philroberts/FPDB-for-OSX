@@ -370,16 +370,25 @@ class PacificPoker(HandHistoryConverter):
     def readBlinds(self, hand):
         liveBlind = True
         for a in self.re_PostSB.finditer(hand.handText):
-            if liveBlind:
-                hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
-                liveBlind = False
+            if a.group('PNAME') in hand.stacks:
+                if liveBlind:
+                    hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
+                    liveBlind = False
+                else:
+                    # Post dead blinds as ante
+                    hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
             else:
-                # Post dead blinds as ante
-                hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
+                raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
         for a in self.re_PostBB.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+            if a.group('PNAME') in hand.stacks:
+                hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+            else:
+                raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
         for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+            if a.group('PNAME') in hand.stacks:
+                hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+            else:
+                raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
 
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
