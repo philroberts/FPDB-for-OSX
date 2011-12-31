@@ -605,9 +605,9 @@ class Merge(HandHistoryConverter):
 
     def playerNameFromSeatNo(self, seatNo, hand):
         # This special function is required because Merge Poker records
-        # actions by seat number, not by the player's name
+        # actions by seat number (-1), not by the player's name
         for p in hand.players:
-            if p[0] == int(seatNo):
+            if p[0] == int(seatNo) + 1:
                 return p[1]
 
     def readSupportedGames(self):
@@ -759,7 +759,8 @@ or None if we fail to get the info """
 
         for seat in seated:
             name, stack = seated[seat]
-            hand.addPlayer(int(seat), name, stack)
+            # Merge indexes seats from 0. Add 1 so we don't have to add corner cases everywhere else.
+            hand.addPlayer(int(seat) + 1, name, stack)
 
         # No players found at all.
         if not hand.players:
