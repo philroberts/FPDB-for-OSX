@@ -215,6 +215,7 @@ class iPoker(HandHistoryConverter):
             hand.fee = self.tinfo['fee']
 
     def readPlayerStacks(self, hand):
+        self.playerWinnings = {}
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             ag = a.groupdict()
@@ -238,7 +239,7 @@ class iPoker(HandHistoryConverter):
             hand.addPlayer(seatno, a.group('PNAME'), cash)
             if a.group('WIN') != '0':
                 win = self.clearMoneyString(a.group('WIN'))
-                hand.addCollectPot(player=a.group('PNAME'), pot=win)
+                self.playerWinnings[a.group('PNAME')] = win
 
     def markStreets(self, hand):
         if hand.gametype['base'] in ('hold'):
@@ -388,8 +389,12 @@ class iPoker(HandHistoryConverter):
         pass
 
     def readCollectPot(self, hand):
-        # Player lines contain winnings
-        pass
+        for pname, pot in self.playerWinnings.iteritems():
+            committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
+            lastbet = committed[-1][0] - committed[-2][0]
+            if lastbet > 0: # uncalled
+                pot = str(Decimal(pot) - lastbet)
+            hand.addCollectPot(player=pname, pot=pot)
 
     def readShownCards(self, hand):
         # Cards lines contain cards

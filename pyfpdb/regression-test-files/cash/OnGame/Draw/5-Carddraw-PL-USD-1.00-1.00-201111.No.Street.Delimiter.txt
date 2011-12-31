@@ -1,0 +1,34 @@
+***** History for hand R5-192626403-203 *****
+Start hand: Fri Nov 18 12:48:10 CET 2011
+Table: Flensburg [192626403] (POT_LIMIT FIVE_CARD_DRAW $1/$1, Real money)
+User: Hero
+Button: seat 1
+Players in round: 4
+Seat 1: Hero ($98)
+Seat 3: Player0 ($22.40)
+Seat 6: Player3 ($34.74)
+Seat 9: Player1 ($72.27)
+Player0 posts big blind ($1)
+Player3 posts big blind ($1)
+---
+Dealing pocket cards
+Dealing to Hero: [Qs, 8c, 5h, Th, 5s]
+Player1 raises $3 to $3
+Hero folds
+Player0 raises $4 to $5
+Player3 folds
+Player1 calls $2
+Player0 changed 2 cards
+Player1 changed 3 cards
+Player0 bets $5
+Player1 folds
+---
+Summary:
+Main pot: $11 won by Player0 ($10.45)
+Rake taken: $0.55
+Seat 1: Hero ($98)
+Seat 3: Player0 ($27.85), net: +$5.45
+Seat 6: Player3 ($33.74), net: -$1
+Seat 9: Player1 ($67.27), net: -$5
+***** End of hand R5-192626403-203 *****
+

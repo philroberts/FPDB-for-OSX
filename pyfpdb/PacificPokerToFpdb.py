@@ -370,16 +370,25 @@ class PacificPoker(HandHistoryConverter):
     def readBlinds(self, hand):
         liveBlind = True
         for a in self.re_PostSB.finditer(hand.handText):
-            if liveBlind:
-                hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
-                liveBlind = False
+            if a.group('PNAME') in hand.stacks:
+                if liveBlind:
+                    hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
+                    liveBlind = False
+                else:
+                    # Post dead blinds as ante
+                    hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
             else:
-                # Post dead blinds as ante
-                hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
+                raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
         for a in self.re_PostBB.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+            if a.group('PNAME') in hand.stacks:
+                hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+            else:
+                raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
         for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+            if a.group('PNAME') in hand.stacks:
+                hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+            else:
+                raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
 
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
@@ -422,23 +431,26 @@ class PacificPoker(HandHistoryConverter):
         for action in m:
             acts = action.groupdict()
             #print "DEBUG: acts: %s" %acts
-            if action.group('ATYPE') == ' raises':
-                hand.addCallandRaise( street, action.group('PNAME'), action.group('BET').replace(',','') )
-            elif action.group('ATYPE') == ' calls':
-                hand.addCall( street, action.group('PNAME'), action.group('BET').replace(',','') )
-            elif action.group('ATYPE') == ' bets':
-                hand.addBet( street, action.group('PNAME'), action.group('BET').replace(',','') )
-            elif action.group('ATYPE') == ' folds':
-                hand.addFold( street, action.group('PNAME'))
-            elif action.group('ATYPE') == ' checks':
-                hand.addCheck( street, action.group('PNAME'))
-            elif action.group('ATYPE') == ' discards':
-                hand.addDiscard(street, action.group('PNAME'), action.group('BET').replace(',',''), action.group('DISCARDED'))
-            elif action.group('ATYPE') == ' stands pat':
-                hand.addStandsPat( street, action.group('PNAME'))
+            if action.group('PNAME') in hand.stacks:
+                if action.group('ATYPE') == ' raises':
+                    hand.addCallandRaise( street, action.group('PNAME'), action.group('BET').replace(',','') )
+                elif action.group('ATYPE') == ' calls':
+                    hand.addCall( street, action.group('PNAME'), action.group('BET').replace(',','') )
+                elif action.group('ATYPE') == ' bets':
+                    hand.addBet( street, action.group('PNAME'), action.group('BET').replace(',','') )
+                elif action.group('ATYPE') == ' folds':
+                    hand.addFold( street, action.group('PNAME'))
+                elif action.group('ATYPE') == ' checks':
+                    hand.addCheck( street, action.group('PNAME'))
+                elif action.group('ATYPE') == ' discards':
+                    hand.addDiscard(street, action.group('PNAME'), action.group('BET').replace(',',''), action.group('DISCARDED'))
+                elif action.group('ATYPE') == ' stands pat':
+                    hand.addStandsPat( street, action.group('PNAME'))
+                else:
+                    print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
             else:
-                print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
-
+                raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
+            
 
     def readShowdownActions(self, hand):
 # TODO: pick up mucks also??

@@ -881,39 +881,40 @@ or None if we fail to get the info """
                 m = self.re_HeroCards.finditer(hand.streets[street])
                 for found in m:
                     player = self.playerNameFromSeatNo(found.group('PSEAT'), hand)
-                    if found.group('CARDS') is None:
-                        cards    = []
-                        newcards = []
-                        oldcards = []
-                    else:
-                        if hand.gametype['base'] == 'stud':
-                            cards = found.group('CARDS').replace('null,', '').replace(',null','').split(',')
-                            oldcards = cards[:-1]
-                            newcards = [cards[-1]]
-                        else:
-                            cards = found.group('CARDS').split(',')
-                            oldcards = cards
+                    if player in hand.stacks:
+                        if found.group('CARDS') is None:
+                            cards    = []
                             newcards = []
-                    if street == 'THIRD' and len(cards) == 3: # hero in stud game
-                        hand.hero = player
-                        herocards = cards
-                        hand.dealt.add(hand.hero) # need this for stud??
-                        hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
-                    elif (cards != herocards and hand.gametype['base'] == 'stud'):
-                        if hand.hero == player:
-                            herocards = cards
-                            hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
-                        elif (len(cards)<5):
-                            if street == 'SEVENTH':
-                                oldcards = []
+                            oldcards = []
+                        else:
+                            if hand.gametype['base'] == 'stud':
+                                cards = found.group('CARDS').replace('null,', '').replace(',null','').split(',')
+                                oldcards = cards[:-1]
+                                newcards = [cards[-1]]
+                            else:
+                                cards = found.group('CARDS').split(',')
+                                oldcards = cards
                                 newcards = []
+                        if street == 'THIRD' and len(cards) == 3: # hero in stud game
+                            hand.hero = player
+                            herocards = cards
+                            hand.dealt.add(hand.hero) # need this for stud??
                             hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
-                        elif (len(cards)==7):
-                            for street in hand.holeStreets:
-                                hand.holecards[street][player] = [[], []]
-                            hand.addHoleCards(street, player, closed=cards, open=[], shown=False, mucked=False, dealt=False)
-                    elif (hand.gametype['base'] == 'draw'):
-                        hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
+                        elif (cards != herocards and hand.gametype['base'] == 'stud'):
+                            if hand.hero == player:
+                                herocards = cards
+                                hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
+                            elif (len(cards)<5):
+                                if street == 'SEVENTH':
+                                    oldcards = []
+                                    newcards = []
+                                hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
+                            elif (len(cards)==7):
+                                for street in hand.holeStreets:
+                                    hand.holecards[street][player] = [[], []]
+                                hand.addHoleCards(street, player, closed=cards, open=[], shown=False, mucked=False, dealt=False)
+                        elif (hand.gametype['base'] == 'draw'):
+                            hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
 
     def readAction(self, hand, street):
         logging.debug("readAction (%s)" % street)
@@ -921,27 +922,28 @@ or None if we fail to get the info """
         for action in m:
             logging.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
             player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
-            if action.group('ATYPE') == 'RAISE':
-                hand.addRaiseTo(street, player, action.group('BET'))
-            elif action.group('ATYPE') == 'COMPLETE':
-                if hand.gametype['base'] != 'stud':
+            if player in hand.stacks:
+                if action.group('ATYPE') == 'RAISE':
                     hand.addRaiseTo(street, player, action.group('BET'))
+                elif action.group('ATYPE') == 'COMPLETE':
+                    if hand.gametype['base'] != 'stud':
+                        hand.addRaiseTo(street, player, action.group('BET'))
+                    else:
+                        hand.addComplete( street, player, action.group('BET') )
+                elif action.group('ATYPE') == 'CALL':
+                    hand.addCall(street, player, action.group('BET'))
+                elif action.group('ATYPE') == 'BET':
+                    hand.addBet(street, player, action.group('BET'))
+                elif action.group('ATYPE') in ('FOLD', 'SIT_OUT'):
+                    hand.addFold(street, player)
+                elif action.group('ATYPE') == 'CHECK':
+                    hand.addCheck(street, player)
+                elif action.group('ATYPE') == 'ALL_IN':
+                    hand.addAllIn(street, player, action.group('BET'))
+                elif action.group('ATYPE') == 'DRAW':
+                    hand.addDiscard(street, player, action.group('TXT'))
                 else:
-                    hand.addComplete( street, player, action.group('BET') )
-            elif action.group('ATYPE') == 'CALL':
-                hand.addCall(street, player, action.group('BET'))
-            elif action.group('ATYPE') == 'BET':
-                hand.addBet(street, player, action.group('BET'))
-            elif action.group('ATYPE') in ('FOLD', 'SIT_OUT'):
-                hand.addFold(street, player)
-            elif action.group('ATYPE') == 'CHECK':
-                hand.addCheck(street, player)
-            elif action.group('ATYPE') == 'ALL_IN':
-                hand.addAllIn(street, player, action.group('BET'))
-            elif action.group('ATYPE') == 'DRAW':
-                hand.addDiscard(street, player, action.group('TXT'))
-            else:
-                logging.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
+                    logging.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
 
     def readShowdownActions(self, hand):
         for street in ('RIVER', 'SEVENTH', 'DRAWTHREE'):

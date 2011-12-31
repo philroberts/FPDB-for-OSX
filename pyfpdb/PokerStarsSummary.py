@@ -58,11 +58,11 @@ class PokerStarsSummary(TourneySummary):
                         ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s)?
                         (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw|HORSE|8-Game)\s+
                         (?P<DESC>[ a-zA-Z]+\s+)?
-                        (Buy-In:\s[%(LS)s](?P<BUYIN>[.0-9]+)(\/[%(LS)s](?P<FEE>[.0-9]+))?(?P<CUR>\s(%(LEGAL_ISO)s))?\s+)?
+                        (Buy-In:\s[%(LS)s]?(?P<BUYIN>[.0-9]+)(\/[%(LS)s](?P<FEE>[.0-9]+))?(?P<CUR>\s(%(LEGAL_ISO)s))?\s+)?
                         (?P<ENTRIES>[0-9]+)\splayers\s+
                         ([%(LS)s]?(?P<ADDED>[.\d]+)(\s(%(LEGAL_ISO)s))?\sadded\sto\sthe\sprize\spool\sby\sPokerStars(\.com)?\s+)?
                         (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[.0-9]+)(\s(%(LEGAL_ISO)s))?\s+)?
-                        (Target\sTournament\s.*)?
+                        (Target\sTournament\s.+?\s)?
                         Tournament\sstarted\s+(-\s)?
                         (?P<DATETIME>.*$)
                         """ % substitutions ,re.VERBOSE|re.MULTILINE)
