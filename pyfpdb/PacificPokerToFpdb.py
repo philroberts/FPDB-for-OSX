@@ -422,23 +422,26 @@ class PacificPoker(HandHistoryConverter):
         for action in m:
             acts = action.groupdict()
             #print "DEBUG: acts: %s" %acts
-            if action.group('ATYPE') == ' raises':
-                hand.addCallandRaise( street, action.group('PNAME'), action.group('BET').replace(',','') )
-            elif action.group('ATYPE') == ' calls':
-                hand.addCall( street, action.group('PNAME'), action.group('BET').replace(',','') )
-            elif action.group('ATYPE') == ' bets':
-                hand.addBet( street, action.group('PNAME'), action.group('BET').replace(',','') )
-            elif action.group('ATYPE') == ' folds':
-                hand.addFold( street, action.group('PNAME'))
-            elif action.group('ATYPE') == ' checks':
-                hand.addCheck( street, action.group('PNAME'))
-            elif action.group('ATYPE') == ' discards':
-                hand.addDiscard(street, action.group('PNAME'), action.group('BET').replace(',',''), action.group('DISCARDED'))
-            elif action.group('ATYPE') == ' stands pat':
-                hand.addStandsPat( street, action.group('PNAME'))
+            if action.group('PNAME') in hand.stacks:
+                if action.group('ATYPE') == ' raises':
+                    hand.addCallandRaise( street, action.group('PNAME'), action.group('BET').replace(',','') )
+                elif action.group('ATYPE') == ' calls':
+                    hand.addCall( street, action.group('PNAME'), action.group('BET').replace(',','') )
+                elif action.group('ATYPE') == ' bets':
+                    hand.addBet( street, action.group('PNAME'), action.group('BET').replace(',','') )
+                elif action.group('ATYPE') == ' folds':
+                    hand.addFold( street, action.group('PNAME'))
+                elif action.group('ATYPE') == ' checks':
+                    hand.addCheck( street, action.group('PNAME'))
+                elif action.group('ATYPE') == ' discards':
+                    hand.addDiscard(street, action.group('PNAME'), action.group('BET').replace(',',''), action.group('DISCARDED'))
+                elif action.group('ATYPE') == ' stands pat':
+                    hand.addStandsPat( street, action.group('PNAME'))
+                else:
+                    print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
             else:
-                print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
-
+                raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
+            
 
     def readShowdownActions(self, hand):
 # TODO: pick up mucks also??
