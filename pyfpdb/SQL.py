@@ -3821,7 +3821,8 @@ class Sql:
                            inner join Sites s           on  (s.Id = tt.siteId)
                            inner join Players p         on  (p.Id = tp.playerId)
                       where tp.playerId in <nametest> <sitetest>
-                      and   date_format(t.startTime, '%Y-%m-%d %T') <datestest>
+                      AND   ((t.startTime > '<startdate_test>' AND t.startTime < '<enddate_test>')
+                                        OR t.startTime is NULL)
                       group by tourneyTypeId, playerName
                       order by tourneyTypeId
                               ,playerName
@@ -3865,7 +3866,8 @@ class Sql:
                            inner join Sites s           on  (s.Id = tt.siteId)
                            inner join Players p         on  (p.Id = tp.playerId)
                       where tp.playerId in <nametest> <sitetest>
-                      and   to_char(t.startTime, 'YYYY-MM-DD HH24:MI:SS') <datestest>
+                      AND   ((t.startTime > '<startdate_test>' AND t.startTime < '<enddate_test>')
+                                        OR t.startTime is NULL)
                       group by t.tourneyTypeId, s.name, p.name, tt.currency, tt.buyin, tt.fee
                              , tt.category, tt.limitType
                       order by t.tourneyTypeId
@@ -3906,7 +3908,8 @@ class Sql:
                            inner join Sites s           on  (s.Id = tt.siteId)
                            inner join Players p         on  (p.Id = tp.playerId)
                       where tp.playerId in <nametest> <sitetest>
-                      and   datetime(t.startTime) <datestest>
+                      AND   ((t.startTime > '<startdate_test>' AND t.startTime < '<enddate_test>')
+                                        OR t.startTime is NULL)
                       group by tourneyTypeId, playerName
                       order by tourneyTypeId
                               ,playerName
