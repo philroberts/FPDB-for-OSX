@@ -1078,22 +1078,25 @@ Left-Drag to Move"
 
     <supported_games>
         <!-- holdem
-
-             vpip  pfr          three_B
-             n     playershort  cb1
-             wtsd  steal        totalprofit
+             playershort    n         blank
+             vpip           pfr       agg_fact
+             three_B        ffreq1    f_3bet
+             cb1            cb2       steal
 
           -->
         <game aux="mucked" cols="3" db="fpdb" game_name="holdem" rows="3">
-            <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" stat_loth="25" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" stat_loth="20" stat_locolor ="#408000" stat_hith="35" stat_hicolor ="#F05000" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="0" stat_name="three_B" stat_loth="4" stat_locolor ="#408000" stat_hith="13" stat_hicolor ="#F05000" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="1" stat_name="playershort" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="cb1" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="wtsd" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="steal" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="2" stat_name="totalprofit" stat_loth="0" stat_locolor ="#F05000" stat_hith="0" stat_hicolor ="#408000" tip="tip1"> </stat>
+	  <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="playershort" tip="tip1"/>
+	  <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"/>
+	  <stat click="tog_decorate" col="2" popup="default" row="0" stat_name="blank" tip="tip1"/>
+	  <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" tip="tip1"/>
+	  <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"/>
+	  <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="agg_fact" tip="tip1"/>
+	  <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="three_B" tip="tip1"/>
+	  <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"/>
+	  <stat click="tog_decorate" col="2" popup="default" row="2" stat_name="f_3bet" tip="tip1"/>
+	  <stat click="tog_decorate" col="0" popup="default" row="3" stat_name="cb1" tip="tip1"/>
+	  <stat click="tog_decorate" col="1" popup="default" row="3" stat_name="cb2" tip="tip1"/>
+	  <stat click="tog_decorate" col="2" popup="default" row="3" stat_name="steal" tip="tip1"/>
         </game>
 
         <!-- razz

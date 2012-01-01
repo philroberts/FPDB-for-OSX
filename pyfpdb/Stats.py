@@ -126,6 +126,10 @@ def do_stat(stat_dict, player = 24, stat = 'vpip', handid = -1):
 ########################################### 
 #    functions that return individual stats
 
+def blank(stat_dict, player):
+    stat_descriptions["blank"] = _(" -----")
+    return (0, ' ', ' ', ' ', ' ', ' ')
+
 def totalprofit(stat_dict, player):
     stat_descriptions["totalprofit"] = _("Total Profit") + " (totalprofit)"
     if stat_dict[player]['net'] != 0:
@@ -1100,8 +1104,10 @@ if __name__== "__main__":
     #TODO: fix
     statlist = dir()
     misslist = [ "Configuration", "Database", "Charset", "codecs", "encoder"
-               , "do_stat", "do_tip", "GInitiallyUnowned", "gtk", "pygtk"
-               , "re", "re_Places"
+                 , "do_stat", "do_tip", "GInitiallyUnowned", "gtk", "pygtk", "Card"
+                 , "L10n", "_", "__stat_override", "build_stat_descriptions", "log"
+                 , "logging", "stat_descriptions"
+                 , "re", "re_Places"
                ]
     statlist = [ x for x in statlist if x not in dir(sys) ]
     statlist = [ x for x in statlist if x not in dir(codecs) ]
