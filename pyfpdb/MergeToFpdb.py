@@ -576,8 +576,7 @@ class Merge(HandHistoryConverter):
     re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Holdem\sTournament|Omaha|Omaha\sTournament|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE)" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
     # <game id="46154255-645" starttime="20111230232051" numholecards="2" gametype="1" seats="9" realmoney="false" data="20111230|Play Money (46154255)|46154255|46154255-645|false">
     # <game id="46165919-1" starttime="20111230161824" numholecards="2" gametype="23" seats="10" realmoney="true" data="20111230|Fun Step 1|46165833-1|46165919-1|true">
-    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLE>[^|]+)\|(?P<TOURNO>\d+)?.*>', re.MULTILINE)
-    re_TourHandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLENAME>[^|]+)\|(?P<TOURNO>\d+)\-(?P<TABLE>\d+)\|?.*>', re.MULTILINE)
+    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLENAME>[^|]+)\|(?P<TDATA>[^|]+)\|?.*>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
     re_Board = re.compile(r'<cards type="COMMUNITY" cards="(?P<CARDS>[^"]+)"', re.MULTILINE)
@@ -667,9 +666,6 @@ or None if we fail to get the info """
             self.info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
             if mg['GAME'] == "HORSE":
-                m2 = self.re_TourHandInfo.search(handText)
-                if m2 is None:
-                    m2 = self.re_HandInfo.search(handText)
                 (self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
             else:
                 (self.info['base'], self.info['category']) = self.games[mg['GAME']]
@@ -696,22 +692,20 @@ or None if we fail to get the info """
         return self.info
 
     def readHandInfo(self, hand):
-        m = self.re_TourHandInfo.search(hand.handText)
+        m = self.re_HandInfo.search(hand.handText)
         if m is None:
-            m = self.re_HandInfo.search(hand.handText)
-            if m is None:
-                logging.info(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-                logging.info(hand.handText)
-                raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            logging.info(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            logging.info(hand.handText)
+            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
 
         hand.handid = m.group('HID1') + m.group('HID2')
-            
+
         if hand.gametype['type'] == 'tour':
-            logging.debug("HID %s-%s, Table %s" % (m.group('HID1'),
-                                                   m.group('HID2'), m.group('TABLE')[:-1]))
+            tid, table = re.split('-', m.group('TDATA'))
+            logging.info("HID %s-%s, Tourney %s Table %s" % (m.group('HID1'), m.group('HID2'), tid, table))
             self.info['tablename'] = m.group('TABLENAME')
-            hand.tablename = m.group('TABLE').strip()
-            hand.tourNo = m.group('TOURNO')
+            hand.tourNo = tid
+            hand.tablename = table
             if self.info['tablename'] in self.SnG_Structures:
                 hand.buyin = int(100*self.SnG_Structures[self.info['tablename']]['buyIn'])
                 hand.fee   = int(100*self.SnG_Structures[self.info['tablename']]['fee'])
@@ -735,9 +729,8 @@ or None if we fail to get the info """
                 else:
                     raise FpdbParseError(_("No match in MTT or SnG Structures: '%s' %s") % (self.info['tablename'], hand.tourNo))
         else:
-            logging.debug("HID %s-%s, Table %s" % (m.group('HID1'),
-                                                   m.group('HID2'), m.group('TABLE')[:-1]))
-            hand.tablename = m.group('TABLE')
+            logging.debug("HID %s-%s, Table %s" % (m.group('HID1'), m.group('HID2'), m.group('TABLENAME')))
+            hand.tablename = m.group('TABLENAME')
 
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],'%Y%m%d%H%M')
         # Check that the hand is complete up to the awarding of the pot; if
@@ -1006,6 +999,7 @@ or None if we fail to get the info """
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         "Returns string to search in windows titles"
         if type=="tour":
-            return ( ".+\(" + re.escape(str(tournament)) + "\)\ \-\ \Table " + re.escape(str(table_number)) )
+            # Ignoring table number as it doesn't appear to be in the window title
+            return ( "\(" + re.escape(str(tournament)) + "\)")
         else:
             return re.escape(table_name)
