@@ -3801,7 +3801,7 @@ class Sql:
                             ,p.name                                                                 AS playerName
                             ,COUNT(1)                                                               AS tourneyCount
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
-                            ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)/(COUNT(1) - SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS itm
+                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS REAL)/CAST(COUNT(1) AS REAL))*100                 AS itm
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS _1st
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
@@ -3844,8 +3844,7 @@ class Sql:
                             ,p.name                                                                 AS "playerName"
                             ,COUNT(1)                                                               AS "tourneyCount"
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS "unknownRank"
-                            ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)
-                             /(COUNT(1) - SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))             AS "itm"
+                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS REAL)/CAST(COUNT(1) AS REAL))*100                 AS itm
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS "_1st"
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS "_2nd"
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS "_3rd"
@@ -3888,7 +3887,7 @@ class Sql:
                             ,p.name                                                                 AS playerName
                             ,COUNT(1)                                                               AS tourneyCount
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
-                            ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)                          AS itm
+                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS REAL)/CAST(COUNT(1) AS REAL))*100                 AS itm
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS _1st
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
