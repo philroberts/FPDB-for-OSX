@@ -710,6 +710,7 @@ or None if we fail to get the info """
                 hand.buyin = int(100*self.SnG_Structures[self.info['tablename']]['buyIn'])
                 hand.fee   = int(100*self.SnG_Structures[self.info['tablename']]['fee'])
                 hand.buyinCurrency="USD"
+                hand.maxseats = self.SnG_Structures[self.info['tablename']]['seats']
             elif self.info['tablename'] in self.MTT_Structures:
                 hand.buyin = int(100*self.MTT_Structures[self.info['tablename']]['buyIn'])
                 hand.fee   = int(100*self.MTT_Structures[self.info['tablename']]['fee'])
