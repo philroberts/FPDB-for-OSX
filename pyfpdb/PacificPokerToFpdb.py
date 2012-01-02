@@ -200,10 +200,10 @@ class PacificPoker(HandHistoryConverter):
             (info['base'], info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
             #print "DEBUG: re_GameInfo[SB] \'", mg['SB'], "\'"
-            info['sb'] = mg['SB']
+            info['sb'] = self.clearMoneyString(mg['SB'])
         if 'BB' in mg:
             #print "DEBUG: re_GameInfo[BB] \'", mg['BB'], "\'"
-            info['bb'] = mg['BB']
+            info['bb'] = self.clearMoneyString(mg['BB'])
         if 'CURRENCY' in mg:
             #print "DEBUG: re_GameInfo[CURRENCY] \'", mg['CURRENCY'], "\'"
             info['currency'] = self.currencies[mg['CURRENCY']]
