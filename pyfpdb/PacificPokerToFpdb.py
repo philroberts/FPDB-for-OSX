@@ -115,12 +115,19 @@ class PacificPoker(HandHistoryConverter):
           re.MULTILINE|re.VERBOSE)
 
     re_HandInfo     = re.compile("""
-          ^Table\s(?P<TABLE>[-\ \#a-zA-Z\d]+)\s
+          ^(
+            (Table\s(?P<TABLE>[-\ \#a-zA-Z\d]+)\s)
+            |
+            (Tournament\s\#(?P<TID>\d+)\s
+              (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\s\+\s?(?P<BIRAKE>[%(LS)s\d\.]+))\s-\s
+              Table\s\#(?P<TABLENO>\d+)\s
+            )
+           )
           (\(Real\sMoney\))?
           (?P<PLAY>\(Practice\sPlay\))?
           \\n
           Seat\s(?P<BUTTON>[0-9]+)\sis\sthe\sbutton
-          """, re.MULTILINE|re.VERBOSE)
+          """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
@@ -184,7 +191,7 @@ class PacificPoker(HandHistoryConverter):
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
-        #print "DEBUG: mg==", mg
+        #print "DEBUG: mg: ", mg
         if 'LIMIT' in mg:
             #print "DEBUG: re_GameInfo[LIMIT] \'", mg['LIMIT'], "\'"
             info['limitType'] = self.limits[mg['LIMIT']]
@@ -232,78 +239,46 @@ class PacificPoker(HandHistoryConverter):
         log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
-                #2008/11/12 10:00:48 CET [2008/11/12 4:00:48 ET] # (both dates are parsed so ET date overrides the other)
-                #2008/08/17 - 01:14:43 (ET)
-                #2008/09/07 06:23:14 ET
+                # 28 11 2011 19:05:11
                 m1 = self.re_DateTime.finditer(info[key])
                 datetimestr = "2000/01/01 00:00:00"  # default used if time not found
                 for a in m1:
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
-                    #tz = a.group('TZ')  # just assume ET??
-                    #print "   tz = ", tz, " datetime =", datetimestr
-                hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+                hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
             if key == 'HID':
                 hand.handid = info[key]
             if key == 'TOURNO':
                 hand.tourNo = info[key]
-            if key == 'BUYIN':
-                if hand.tourNo!=None:
-                    print "DEBUG: info['BUYIN']: %s" % info['BUYIN']
-                    print "DEBUG: info['BIAMT']: %s" % info['BIAMT']
-                    print "DEBUG: info['BIRAKE']: %s" % info['BIRAKE']
-                    print "DEBUG: info['BOUNTY']: %s" % info['BOUNTY']
-                    if info[key] == 'Freeroll':
-                        hand.buyin = 0
-                        hand.fee = 0
-                        hand.buyinCurrency = "FREE"
-                    else:
-                        if info[key].find("$")!=-1:
-                            hand.buyinCurrency="USD"
-                        elif info[key].find(u"€")!=-1:
-                            hand.buyinCurrency="EUR"
-                        elif info[key].find("FPP")!=-1:
-                            hand.buyinCurrency="PCFP"
-                        else:
-                            #FIXME: handle other currencies, FPP, play money
-                            raise FpdbParseError(_("Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
-
-                        info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
-                        
-                        if hand.buyinCurrency!="PCFP":
-                            if info['BOUNTY'] != None:
-                                # There is a bounty, Which means we need to switch BOUNTY and BIRAKE values
-                                tmp = info['BOUNTY']
-                                info['BOUNTY'] = info['BIRAKE']
-                                info['BIRAKE'] = tmp
-                                info['BOUNTY'] = info['BOUNTY'].strip(u'$€') # Strip here where it isn't 'None'
-                                hand.koBounty = int(100*Decimal(info['BOUNTY']))
-                                hand.isKO = True
-                            else:
-                                hand.isKO = False
-
-                            info['BIRAKE'] = info['BIRAKE'].strip(u'$€')
-
-                            hand.buyin = int(100*Decimal(info['BIAMT']))
-                            hand.fee = int(100*Decimal(info['BIRAKE']))
-                        else:
-                            hand.buyin = int(Decimal(info['BIAMT']))
-                            hand.fee = 0
-            if key == 'LEVEL':
-                hand.level = info[key]
-
-            if key == 'TABLE':
-                if hand.tourNo != None:
-                    hand.tablename = re.split(" ", info[key])[1]
+                hand.isKO = False
+            if key == 'BUYIN' and info['BUYIN'] != None:
+                #print "DEBUG: info['BUYIN']: %s" % info['BUYIN']
+                #print "DEBUG: info['BIAMT']: %s" % info['BIAMT']
+                #print "DEBUG: info['BIRAKE']: %s" % info['BIRAKE']
+                if info[key] == 'Freeroll':
+                    hand.buyin = 0
+                    hand.fee = 0
+                    hand.buyinCurrency = "FREE"
                 else:
-                    hand.tablename = info[key]
+                    if info[key].find("$")!=-1:
+                        hand.buyinCurrency="USD"
+                    else:
+                        #FIXME: handle other currencies, FPP, play money
+                        raise FpdbParseError(_("Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
+
+                    info['BIAMT'] = info['BIAMT'].strip(u'$€')
+                    info['BIRAKE'] = info['BIRAKE'].strip(u'$€')
+
+                    hand.buyin = int(100*Decimal(info['BIAMT']))
+                    hand.fee = int(100*Decimal(info['BIRAKE']))
+
+            if key == 'TABLE' and info['TABLE'] != None:
+                hand.tablename = info[key]
+            if key == 'TABLEID' and info['TABLEID'] != None:
+                hand.tablename = info[key]
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
-            if key == 'MAX' and info[key] != None:
-                hand.maxseats = int(info[key])
 
-            if key == 'MIXED':
-                hand.mixed = self.mixes[info[key]] if info[key] is not None else None
             if key == 'PLAY' and info['PLAY'] is not None:
 #                hand.currency = 'play' # overrides previously set value
                 hand.gametype['currency'] = 'play'
