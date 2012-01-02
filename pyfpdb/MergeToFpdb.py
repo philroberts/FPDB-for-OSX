@@ -698,6 +698,9 @@ or None if we fail to get the info """
             logging.info(hand.handText)
             raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
 
+        #mg = m.groupdict()
+        #print "DEBUG: mg: %s" % mg
+
         hand.handid = m.group('HID1') + m.group('HID2')
 
         if hand.gametype['type'] == 'tour':
