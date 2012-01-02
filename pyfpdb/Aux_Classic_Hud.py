@@ -65,7 +65,6 @@ _ = L10n.get_translation()
 # to do
 #=======
 # logging not activated yet
-# activate the set-max-seats logic
 
 # move stat blocks menu item not implemnted (is this deprecated)
 # debug hud option not implemented
@@ -202,6 +201,7 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
     """
     def __init__(self, hud, aw = None):
         self.hud = hud
+        self.aw = aw
         self.hud_params = hud.hud_params
         self.menu_label = hud.hud_params['label']
 
@@ -274,7 +274,7 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
         menu.append(item5)
         maxSeatsMenu = gtk.Menu()
         item5.set_submenu(maxSeatsMenu)
-        for i in range(2, 11, 1):
+        for i in (sorted(self.aw.params['layout'])):
             item = gtk.MenuItem('%d-max' % i)
             item.ms = i
             maxSeatsMenu.append(item)
@@ -406,11 +406,7 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
             getattr(self, prefix+'hudStyleOptionS').set_active(False)
 
     def change_max_seats(self, widget):
-        #self=classic_table_mw object
-        if self.max != widget.ms:
-            #this flag will signal a recreate to HUD_main
-            self.max = widget.ms
-
+        self.hud_params['new_max_seats'] = widget.ms
 
 Aux_Hud.Simple_table_mw=Classic_table_mw  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
                                           ##see FIXME note in Aux_Hud Simple_table_mw init method

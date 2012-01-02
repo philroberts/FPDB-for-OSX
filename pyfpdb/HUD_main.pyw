@@ -163,6 +163,8 @@ class HUD_main(object):
         self.hud_dict[temp_key].table_name = temp_key
         self.hud_dict[temp_key].stat_dict = stat_dict
         self.hud_dict[temp_key].cards = cards
+        self.hud_dict[temp_key].max = max
+        
         table.hud = self.hud_dict[temp_key]
         
         # set agg_bb_mult so that aggregate_tour and aggregate_ring can be ignored,
@@ -242,7 +244,21 @@ class HUD_main(object):
                 temp_key = "%s Table %s" % (tour_number, tab_number)
             else:
                 temp_key = table_name
-
+                
+#       detect maxseats changed in hud
+#       if so, kill and create new hud with specified "max"
+            if temp_key in self.hud_dict:
+                try:
+                    newmax=self.hud_dict[temp_key].hud_params['new_max_seats']
+                    print "new max, ", newmax
+                    if newmax and self.hud_dict[temp_key].max != newmax:
+                        self.kill_hud("activate", temp_key) #kill everything
+                        while temp_key in self.hud_dict: time.sleep(0.1) #wait for idle complete
+                        max = newmax # "max" will be used in create_HUD call below
+                        self.hud_dict[temp_key].hud_params['new_max_seats']=None
+                except:
+                    pass
+                            
 #        Update an existing HUD
             if temp_key in self.hud_dict:
                 # get stats using hud's specific params and get cards
