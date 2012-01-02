@@ -298,13 +298,13 @@ class Merge(HandHistoryConverter):
                         '$3,500 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
                         '$750 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
                         '$2,500 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$200 Freeroll - NL Holdem - 20:00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$200 Freeroll - PL Omaha - 18:00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
+                        '$200 Freeroll - NL Holdem - 20%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
+                        '$200 Freeroll - PL Omaha - 18%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
                         '100 Seats to $100k Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
                         'Daily First Deposit Freeroll - Saturday' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$200 Freeroll - HORSE - 12:00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$200 Freeroll - NL Holdem - 06:00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$200 Freeroll - NL Holdem - 00:00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'} 
+                        '$200 Freeroll - HORSE - 12%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
+                        '$200 Freeroll - NL Holdem - 06%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
+                        '$200 Freeroll - NL Holdem - 00%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'} 
                      }
     
     SnG_Structures = {  '$1 NL Holdem Double Up - 10 Handed'    : {'buyIn': 1,   'fee': 0.08, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (2,2,2,2,2)},
@@ -576,6 +576,7 @@ class Merge(HandHistoryConverter):
     re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Holdem\sTournament|Omaha|Omaha\sTournament|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE)" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
     # <game id="46154255-645" starttime="20111230232051" numholecards="2" gametype="1" seats="9" realmoney="false" data="20111230|Play Money (46154255)|46154255|46154255-645|false">
     # <game id="46165919-1" starttime="20111230161824" numholecards="2" gametype="23" seats="10" realmoney="true" data="20111230|Fun Step 1|46165833-1|46165919-1|true">
+    # <game id="46289039-1" starttime="20120101200100" numholecards="2" gametype="23" seats="9" realmoney="true" data="20120101|$200 Freeroll - NL Holdem - 20%3A00|46245544-1|46289039-1|true">
     re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLENAME>[^|]+)\|(?P<TDATA>[^|]+)\|?.*>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)

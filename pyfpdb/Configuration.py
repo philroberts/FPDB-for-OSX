@@ -382,8 +382,6 @@ class Stat:
 class Game:
     def __init__(self, node):
         self.game_name = node.getAttribute("game_name")
-        self.rows    = int( node.getAttribute("rows") )
-        self.cols    = int( node.getAttribute("cols") )
         self.xpad    = node.getAttribute("xpad")
         self.ypad    = node.getAttribute("ypad")
         self.xshift  = node.getAttribute("xshift")
@@ -405,7 +403,21 @@ class Game:
             aux_list[i] = aux_list[i].strip()
         self.aux = aux_list
 
-        self.stats    = {}
+        # first find the total rows and cols
+        nrows = 0
+        ncols = 0
+        for stat_node in node.getElementsByTagName('stat'):
+            row = int( stat_node.getAttribute("row") )
+            if nrows < row:
+                nrows = row
+            col = int( stat_node.getAttribute("col") )
+            if ncols < col:
+                ncols = col
+
+        self.rows = nrows+1 # num rows is 1 higher than the max row index for any stat
+        self.cols = ncols+1 # num cols is 1 higher than the max col index for any stat
+
+        self.stats    = [None for i in range(self.rows*self.cols)]
         for stat_node in node.getElementsByTagName('stat'):
             stat = Stat()
             stat.stat_name = stat_node.getAttribute("stat_name")
@@ -422,7 +434,9 @@ class Game:
             stat.stat_locolor = stat_node.getAttribute("stat_locolor")
             stat.stat_hicolor = stat_node.getAttribute("stat_hicolor")
 
-            self.stats[stat.stat_name] = stat
+            # self.stats[stat.stat_name] = stat
+            self.stats[stat.row*self.cols+stat.col] = stat # row major
+
 
     def __str__(self):
         temp = "Game = " + self.game_name + "\n"
@@ -434,8 +448,8 @@ class Game:
         temp = temp + "    yshift = %d\n" % self.yshift
         temp = temp + "    aux = %s\n" % self.aux
 
-        for stat in self.stats.keys():
-            temp = temp + "%s" % self.stats[stat]
+        for i in range(self.rows*self.cols):
+            temp = temp + "%s" % self.stats[i]
 
         return temp
 
