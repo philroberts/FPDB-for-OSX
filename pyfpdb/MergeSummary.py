@@ -24,29 +24,36 @@ from BeautifulSoup import BeautifulSoup
 
 from Exceptions import FpdbParseError
 from HandHistoryConverter import *
-import PokerStarsToFpdb
+import MergeToFpdb
 from TourneySummary import *
 
 
 class MergeSummary(TourneySummary):
-    limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
-    games = {                          # base, category
-                              "Hold'em" : ('hold','holdem'), 
-                                'Omaha' : ('hold','omahahi'),
-                          'Omaha Hi/Lo' : ('hold','omahahilo'),
-                                 'Razz' : ('stud','razz'), 
-                                 'RAZZ' : ('stud','razz'),
-                          '7 Card Stud' : ('stud','studhi'),
-                    '7 Card Stud Hi/Lo' : ('stud','studhilo'),
-                               'Badugi' : ('draw','badugi'),
-              'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
-                          '5 Card Draw' : ('draw','fivedraw')
-               }
+    limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'Pot Limit':'pl', 'Pot Limit ':'pl', 'Half Pot Limit':'hp'}
+    games = {              # base, category
+                    'Holdem' : ('hold','holdem'),
+         'Holdem Tournament' : ('hold','holdem'),
+                    'Omaha'  : ('hold','omahahi'),
+         'Omaha Tournament'  : ('hold','omahahi'),
+               'Omaha H/L8'  : ('hold','omahahilo'),
+              '2-7 Lowball'  : ('draw','27_3draw'),
+              'A-5 Lowball'  : ('draw','a5_3draw'),
+                   'Badugi'  : ('draw','badugi'),
+           '5-Draw w/Joker'  : ('draw','fivedraw'),
+                   '5-Draw'  : ('draw','fivedraw'),
+                   '7-Stud'  : ('stud','studhi'),
+              '7-Stud H/L8'  : ('stud','studhilo'),
+                   '5-Stud'  : ('stud','5studhi'),
+                     'Razz'  : ('stud','razz'),
+            }
+
 
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",     # legal ISO currency codes
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|" # legal currency symbols
                     }
+    re_GameTypeHH = re.compile(r'<description type="(?P<GAME>Holdem|Holdem\sTournament|Omaha|Omaha\sTournament|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE)" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
+    re_HandInfoHH = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLENAME>[^|]+)\|(?P<TDATA>[^|]+)\|?.*>', re.MULTILINE)
 
     re_GameType = re.compile("""<h1>((?P<LIMIT>No Limit|Pot Limit) (?P<GAME>Hold\'em))</h1>""")
 
@@ -68,6 +75,44 @@ class MergeSummary(TourneySummary):
         return re_SplitTourneys
 
     def parseSummary(self):
+        # id type of file and call correct function
+        m = self.re_GameTypeHH.search(self.summaryText)
+        if m and 'Tournament' in m.group('GAME'):
+            self.parseSummaryFromHH(m)
+        else:
+            self.parseSummaryFile()
+
+    def parseSummaryFromHH(self, gt):
+        obj = getattr(MergeToFpdb, "Merge", None)
+        hhc = obj(self.config, in_path = None, sitename = None, autostart = False)
+
+        m = self.re_HandInfoHH.search(self.summaryText)
+        if m:
+            if m.group('TABLENAME') in hhc.SnG_Structures:
+                print "DEBUG: SnG: ", hhc.SnG_Structures[m.group('TABLENAME')]
+        if hand.gametype['type'] == 'tour':
+            tid, table = re.split('-', m.group('TDATA'))
+            logging.info("HID %s-%s, Tourney %s Table %s" % (m.group('HID1'), m.group('HID2'), tid, table))
+            self.info['tablename'] = m.group('TABLENAME')
+            hand.tourNo = tid
+            hand.tablename = table
+
+
+        self.tourNo = ''
+        self.gametype['limitType'] = ''
+        self.gametype['category']  = ''
+        self.buyin = 0
+        self.fee   = 0
+        self.prizepool = 0
+        self.entries   = 0
+        #self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+
+        self.currency = "USD"
+
+        #self.addPlayer(rank, name, winnings, self.currency, None, None, None)
+
+
+    def parseSummaryFile(self):
         self.currency = "EUR"
         soup = BeautifulSoup(self.summaryText)
         tl = soup.findAll('table')
