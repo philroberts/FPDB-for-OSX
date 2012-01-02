@@ -797,6 +797,28 @@ def agg_fact(stat_dict, player):
                 'agg_fa=NA',
                 '(0/0)',
                 _('Aggression factor'))
+        
+def agg_fact_pct(stat_dict, player):
+    stat_descriptions["agg_fact_pct"] = _("Aggression factor pct") + " (agg_fact_pct)"
+    stat = 0.0
+    try:
+        bet_raise =   stat_dict[player]['aggr_1'] + stat_dict[player]['aggr_2'] + stat_dict[player]['aggr_3'] + stat_dict[player]['aggr_4']
+        post_call  =  stat_dict[player]['call_1'] + stat_dict[player]['call_2'] + stat_dict[player]['call_3'] + stat_dict[player]['call_4']
+       
+        stat = float (bet_raise) / float(post_call + bet_raise)
+        return (stat,
+                '%2.2f'        % (stat) ,
+                'afap=%2.2f'    % (stat) ,
+                'agg_fa_pct=%2.2f' % (stat) ,
+                '(%d/%d)'      % (bet_raise, post_call),
+                _('Aggression factor pct'))
+    except:
+        return (stat,
+                'NA',
+                'afap=NA',
+                'agg_fa_pct=NA',
+                '(0/0)',
+                _('Aggression factor pct'))
 
 def cbet(stat_dict, player):
     stat_descriptions["cbet"] = _("% continuation bet") + " (cbet)"
@@ -970,6 +992,82 @@ def ffreq4(stat_dict, player):
                 'ff_4=NA',
                 '(0/0)',
                 _('% fold frequency 7th street'))
+        
+def f_cb1(stat_dict, player):
+    stat_descriptions["f_cb1"] = _("% fold to continuation bet flop/4th street") + " (f_cb1)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['f_cb_1'])/float(stat_dict[player]['f_cb_opp_1'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                'f_cb1=%3.1f%%'   % (100.0*stat),
+                'f_cb_1=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['f_cb_1'], stat_dict[player]['f_cb_opp_1']),
+                _('% fold to continuation bet flop/4th street'))
+    except:
+        return (stat,
+                'NA',
+                'f_cb1=NA',
+                'f_cb_1=NA',
+                '(0/0)',
+                _('% fold to continuation bet flop/4th street'))
+    
+def f_cb2(stat_dict, player):
+    stat_descriptions["f_cb2"] = _("% fold to continuation bet turn/5th street") + " (f_cb2)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['f_cb_2'])/float(stat_dict[player]['f_cb_opp_2'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                'f_cb2=%3.1f%%'   % (100.0*stat),
+                'f_cb_2=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['f_cb_2'], stat_dict[player]['f_cb_opp_2']),
+                _('% fold to continuation bet turn/5th street'))
+    except:
+        return (stat,
+                'NA',
+                'f_cb2=NA',
+                'f_cb_2=NA',
+                '(0/0)',
+                _('% fold to continuation bet turn/5th street'))
+    
+def f_cb3(stat_dict, player):
+    stat_descriptions["f_cb3"] = _("% fold to continuation bet river/6th street") + " (f_cb3)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['f_cb_3'])/float(stat_dict[player]['f_cb_opp_3'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                'f_cb3=%3.1f%%'   % (100.0*stat),
+                'f_cb_3=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['f_cb_3'], stat_dict[player]['f_cb_opp_3']),
+                _('% fold to continuation bet river/6th street'))
+    except:
+        return (stat,
+                'NA',
+                'f_cb3=NA',
+                'f_cb_3=NA',
+                '(0/0)',
+                _('% fold to continuation bet river/6th street'))
+    
+def f_cb4(stat_dict, player):
+    stat_descriptions["f_cb4"] = _("% fold to continuation bet 7th street") + " (f_cb4)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['f_cb_4'])/float(stat_dict[player]['f_cb_opp_4'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                'f_cb4=%3.1f%%'   % (100.0*stat),
+                'f_cb_4=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'      % (stat_dict[player]['f_cb_4'], stat_dict[player]['f_cb_opp_4']),
+                _('% fold to continuation bet 7th street'))
+    except:
+        return (stat,
+                'NA',
+                'f_cb4=NA',
+                'f_cb_4=NA',
+                '(0/0)',
+                _('% fold to continuation bet 7th street'))
 
 def starthands(stat_dict, player, handid):
     
