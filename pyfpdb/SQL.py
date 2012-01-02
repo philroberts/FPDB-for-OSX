@@ -3801,7 +3801,7 @@ class Sql:
                             ,p.name                                                                 AS playerName
                             ,COUNT(1)                                                               AS tourneyCount
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
-                            ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)/(COUNT(1) - SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS itm
+                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS REAL)/CAST(COUNT(1) AS REAL))*100                 AS itm
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS _1st
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
@@ -3821,7 +3821,8 @@ class Sql:
                            inner join Sites s           on  (s.Id = tt.siteId)
                            inner join Players p         on  (p.Id = tp.playerId)
                       where tp.playerId in <nametest> <sitetest>
-                      and   date_format(t.startTime, '%Y-%m-%d %T') <datestest>
+                      AND   ((t.startTime > '<startdate_test>' AND t.startTime < '<enddate_test>')
+                                        OR t.startTime is NULL)
                       group by tourneyTypeId, playerName
                       order by tourneyTypeId
                               ,playerName
@@ -3843,8 +3844,7 @@ class Sql:
                             ,p.name                                                                 AS "playerName"
                             ,COUNT(1)                                                               AS "tourneyCount"
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS "unknownRank"
-                            ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)
-                             /(COUNT(1) - SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))             AS "itm"
+                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS REAL)/CAST(COUNT(1) AS REAL))*100                 AS itm
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS "_1st"
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS "_2nd"
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS "_3rd"
@@ -3865,7 +3865,8 @@ class Sql:
                            inner join Sites s           on  (s.Id = tt.siteId)
                            inner join Players p         on  (p.Id = tp.playerId)
                       where tp.playerId in <nametest> <sitetest>
-                      and   to_char(t.startTime, 'YYYY-MM-DD HH24:MI:SS') <datestest>
+                      AND   ((t.startTime > '<startdate_test>' AND t.startTime < '<enddate_test>')
+                                        OR t.startTime is NULL)
                       group by t.tourneyTypeId, s.name, p.name, tt.currency, tt.buyin, tt.fee
                              , tt.category, tt.limitType
                       order by t.tourneyTypeId
@@ -3886,7 +3887,7 @@ class Sql:
                             ,p.name                                                                 AS playerName
                             ,COUNT(1)                                                               AS tourneyCount
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
-                            ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)                          AS itm
+                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS REAL)/CAST(COUNT(1) AS REAL))*100                 AS itm
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS _1st
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
@@ -3906,7 +3907,8 @@ class Sql:
                            inner join Sites s           on  (s.Id = tt.siteId)
                            inner join Players p         on  (p.Id = tp.playerId)
                       where tp.playerId in <nametest> <sitetest>
-                      and   datetime(t.startTime) <datestest>
+                      AND   ((t.startTime > '<startdate_test>' AND t.startTime < '<enddate_test>')
+                                        OR t.startTime is NULL)
                       group by tourneyTypeId, playerName
                       order by tourneyTypeId
                               ,playerName

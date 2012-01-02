@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Mucked.py
+"""Aux_Hud.py
 
-Mucked cards display for FreePokerTools HUD.
+Aux Hud stats display for FreePokerTools HUD.
 """
 #    Copyright 2008-2011,  Ray E. Barker
 #    
@@ -29,21 +29,25 @@ Mucked cards display for FreePokerTools HUD.
 #    pyGTK modules
 import gtk
 import gobject
+import logging
 
 #    FreePokerTools modules
 import Mucked
 import Stats
+
+log = logging.getLogger("hud")
+
 class Stat_Window(Mucked.Seat_Window):
     """Simple window class for stat windows."""
 
     def create_contents(self, i):
         self.grid = gtk.Table(rows = self.aw.nrows, columns = self.aw.ncols, homogeneous = False)
         self.add(self.grid)
-
+        log.debug("Stat_Window rows: "+str(self.aw.rows)+", cols:"+str(self.aw.cols))
         self.stat_box = [ [None]*self.aw.ncols for i in range(self.aw.nrows) ]
         for r in xrange(self.aw.nrows):
             for c in xrange(self.aw.ncols):
-                self.stat_box[r][c] = Simple_stat(self.aw.stats[r][c])
+                self.stat_box[r][c] = Simple_stat(self.aw.stats[r*self.aw.ncols+c])
                 self.grid.attach(self.stat_box[r][c].widget, c, c+1, r, r+1, xpadding = self.aw.xpad, ypadding = self.aw.ypad)
 
     def update_contents(self, i):
@@ -75,11 +79,13 @@ class Simple_HUD(Mucked.Aux_Seats):
         self.aw_window_type = Stat_Window
 
 #    layout is handled by superclass!
-        self.stats = [ [None]*self.ncols for i in range(self.nrows) ]
+        log.debug("SimpleHUD rows: "+str(self.nrows)+", cols:"+str(self.ncols))
+        self.stats = [None for i in range(self.nrows*self.cols) ]
         for stat in self.game.stats:
-            self.stats[self.config.supported_games[self.poker_game].stats[stat].row] \
-                      [self.config.supported_games[self.poker_game].stats[stat].col] = \
-                      self.config.supported_games[self.poker_game].stats[stat].stat_name
+            log.debug("Simple_HUD stat: "+str(self.config.supported_games[self.poker_game].stats[stat].stat_name))
+            self.stats[self.config.supported_games[self.poker_game].stats[stat].row*self.ncols + \
+                           self.config.supported_games[self.poker_game].stats[stat].col] = \
+                           self.config.supported_games[self.poker_game].stats[stat].stat_name
 
     def create_contents(self, container, i):
         container.create_contents(i)
@@ -92,12 +98,19 @@ class Simple_stat(object):
     def __init__(self, stat):
         self.stat = stat
         self.eb = Simple_eb();
-        self.lab = Simple_label(self.stat)
+        if self.stat is not None:
+            self.lab = Simple_label(self.stat)
+        else:
+            self.lab = gtk.Label()
         self.eb.add(self.lab)
         self.widget = self.eb
 
     def update(self, player_id, stat_dict):
-        self.lab.set_text( str(Stats.do_stat(stat_dict, player_id, self.stat)[1]) )
+        if self.stat is None:
+            self.lab.set_text( str(" ") )
+        else:
+            self.lab.set_text( str(Stats.do_stat(stat_dict, player_id, self.stat)[1]) )
+            
 
 #    Override thise methods to customize your eb or label
 class Simple_eb(gtk.EventBox): pass

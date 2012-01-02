@@ -1078,11 +1078,9 @@ Left-Drag to Move"
 
     <supported_games>
         <!-- holdem
-
              vpip  pfr          three_B
              n     playershort  cb1
              wtsd  steal        totalprofit
-
           -->
         <game aux="mucked" cols="3" db="fpdb" game_name="holdem" rows="3">
             <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" stat_loth="25" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>

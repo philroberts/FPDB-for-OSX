@@ -196,7 +196,7 @@ def compare(leaf, importer, errors, site):
         importer.addBulkImportImportFileOrDir(filename, site=site)
         (stored, dups, partial, errs, ttime) = importer.runImport()
 
-        if errs > 0:
+        if errs > 0 or partial > 0:
             errors.error_report(filename, False, "Parse", False, False, False)
         else:
             if os.path.isfile(filename + '.hp'):

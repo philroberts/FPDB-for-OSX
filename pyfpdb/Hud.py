@@ -661,16 +661,12 @@ class Hud:
         self.topify_window(self.main_window)
         for i in xrange(1, self.max + 1):
             self.topify_window(self.stat_windows[i].window, self.main_window)
-        self.stats = []
-        game = config.supported_games[self.poker_game]
 
-        for i in xrange(0, game.rows + 1):
-            row_list = [''] * game.cols
-            self.stats.append(row_list)
-        for stat in game.stats:
-            self.stats[config.supported_games[self.poker_game].stats[stat].row] \
-                      [config.supported_games[self.poker_game].stats[stat].col] = \
-                      config.supported_games[self.poker_game].stats[stat].stat_name
+        game = config.supported_games[self.poker_game]
+        self.stats = [None for i in range (game.rows*game.cols)] # initialize to None for not present stats at [row][col]
+        for i in range (game.rows*game.cols):
+            if config.supported_games[self.poker_game].stats[i] is not None:
+                self.stats[i] = config.supported_games[self.poker_game].stats[i].stat_name
 
 #        if os.name == "nt": # we call update_table_position() regularly in Windows to see if we're moving around.  See comments on that function for why this isn't done in X.
 #            gobject.timeout_add(500, self.update_table_position)
@@ -696,31 +692,35 @@ class Hud:
                 self.create(hand, config, self.stat_dict, self.cards)
                 self.stat_windows[statd['seat']].player_id = statd['player_id']
 
+            unhidewindow = False
             for r in xrange(0, config.supported_games[self.poker_game].rows):
                 for c in xrange(0, config.supported_games[self.poker_game].cols):
-                    this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
-                    number = Stats.do_stat(self.stat_dict, player = statd['player_id'], stat = self.stats[r][c])
-                    statstring = "%s%s%s" % (this_stat.hudprefix, str(number[1]), this_stat.hudsuffix)
-                    window = self.stat_windows[statd['seat']]
+                    # stats may be None if the user hasn't configured a stat for this row,col
+                    if self.stats[r*config.supported_games[self.poker_game].cols+c] is not None:
+                        this_stat = config.supported_games[self.poker_game].stats[r*config.supported_games[self.poker_game].cols+c]
+                        number = Stats.do_stat(self.stat_dict, player = statd['player_id'], stat = self.stats[r*config.supported_games[self.poker_game].cols+c])
+                        statstring = "%s%s%s" % (this_stat.hudprefix, str(number[1]), this_stat.hudsuffix)
+                        window = self.stat_windows[statd['seat']]
 
-                    if this_stat.hudcolor != "":
-                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
-                    else:
-                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
+                        if this_stat.hudcolor != "":
+                            window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
+                        else:
+                            window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
                     
-                    if this_stat.stat_loth != "":
-                        if number[0] < (float(this_stat.stat_loth)/100):
-                            window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_locolor))
+                        if this_stat.stat_loth != "":
+                            if number[0] < (float(this_stat.stat_loth)/100):
+                                window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_locolor))
 
-                    if this_stat.stat_hith != "":
-                        if number[0] > (float(this_stat.stat_hith)/100):
-                            window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_hicolor))
+                        if this_stat.stat_hith != "":
+                            if number[0] > (float(this_stat.stat_hith)/100):
+                                window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_hicolor))
 
-                    window.label[r][c].set_text(statstring)
-                    if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
-                        unhidewindow = True
-                    tip = "%s\n%s\n%s, %s" % (statd['screen_name'], number[5], number[3], number[4])
-                    Stats.do_tip(window.e_box[r][c], tip)
+                        window.label[r][c].set_text(statstring)
+                        if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
+                            unhidewindow = True
+                        tip = "%s\n%s\n%s, %s" % (statd['screen_name'], number[5], number[3], number[4])
+                        Stats.do_tip(window.e_box[r][c], tip)
+
             if unhidewindow: #and not window.window.visible: # there is no "visible" attribute in gtk.Window, although the docs seem to indicate there should be
                 window.window.show_all()
             unhidewindow = False
@@ -843,7 +843,7 @@ class Stat_Window:
                     self.frame[r][c].add(e_box[r][c])
                 else:
                     grid.attach(e_box[r][c], c, c+1, r, r+1, xpadding = game.xpad, ypadding = game.ypad)
-                label[r].append( gtk.Label('xxx') )
+                label[r].append( gtk.Label('   ') )
 
                 if usegtkframes:
                     self.frame[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)

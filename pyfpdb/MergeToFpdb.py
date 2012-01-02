@@ -298,13 +298,13 @@ class Merge(HandHistoryConverter):
                         '$3,500 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
                         '$750 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
                         '$2,500 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$200 Freeroll - NL Holdem - 20:00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$200 Freeroll - PL Omaha - 18:00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
+                        '$200 Freeroll - NL Holdem - 20%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
+                        '$200 Freeroll - PL Omaha - 18%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
                         '100 Seats to $100k Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
                         'Daily First Deposit Freeroll - Saturday' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$200 Freeroll - HORSE - 12:00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$200 Freeroll - NL Holdem - 06:00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$200 Freeroll - NL Holdem - 00:00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'} 
+                        '$200 Freeroll - HORSE - 12%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
+                        '$200 Freeroll - NL Holdem - 06%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
+                        '$200 Freeroll - NL Holdem - 00%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'} 
                      }
     
     SnG_Structures = {  '$1 NL Holdem Double Up - 10 Handed'    : {'buyIn': 1,   'fee': 0.08, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (2,2,2,2,2)},
@@ -574,7 +574,10 @@ class Merge(HandHistoryConverter):
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Holdem\sTournament|Omaha|Omaha\sTournament|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE)" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
-    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLE>[^|]+)\|(?P<TOURNO>\d+)?.*>', re.MULTILINE)
+    # <game id="46154255-645" starttime="20111230232051" numholecards="2" gametype="1" seats="9" realmoney="false" data="20111230|Play Money (46154255)|46154255|46154255-645|false">
+    # <game id="46165919-1" starttime="20111230161824" numholecards="2" gametype="23" seats="10" realmoney="true" data="20111230|Fun Step 1|46165833-1|46165919-1|true">
+    # <game id="46289039-1" starttime="20120101200100" numholecards="2" gametype="23" seats="9" realmoney="true" data="20120101|$200 Freeroll - NL Holdem - 20%3A00|46245544-1|46289039-1|true">
+    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLENAME>[^|]+)\|(?P<TDATA>[^|]+)\|?.*>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
     re_Board = re.compile(r'<cards type="COMMUNITY" cards="(?P<CARDS>[^"]+)"', re.MULTILINE)
@@ -605,9 +608,9 @@ class Merge(HandHistoryConverter):
 
     def playerNameFromSeatNo(self, seatNo, hand):
         # This special function is required because Merge Poker records
-        # actions by seat number, not by the player's name
+        # actions by seat number (0 based), not by the player's name
         for p in hand.players:
-            if p[0] == int(seatNo):
+            if p[0] == int(seatNo)+1:
                 return p[1]
 
     def readSupportedGames(self):
@@ -664,7 +667,6 @@ or None if we fail to get the info """
             self.info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
             if mg['GAME'] == "HORSE":
-                m2 = self.re_HandInfo.search(handText)
                 (self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
             else:
                 (self.info['base'], self.info['category']) = self.games[mg['GAME']]
@@ -696,22 +698,29 @@ or None if we fail to get the info """
             logging.info(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
             logging.info(hand.handText)
             raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-        logging.debug("HID %s-%s, Table %s" % (m.group('HID1'),
-                      m.group('HID2'), m.group('TABLE')[:-1]))
+
+        #mg = m.groupdict()
+        #print "DEBUG: mg: %s" % mg
+
         hand.handid = m.group('HID1') + m.group('HID2')
+
         if hand.gametype['type'] == 'tour':
-            hand.tablename = m.group('TABLE').strip()
-            hand.tourNo = m.group('TOURNO')
-            if hand.tablename in self.SnG_Structures:
-                hand.buyin = int(100*self.SnG_Structures[hand.tablename]['buyIn'])
-                hand.fee   = int(100*self.SnG_Structures[hand.tablename]['fee'])
+            tid, table = re.split('-', m.group('TDATA'))
+            logging.info("HID %s-%s, Tourney %s Table %s" % (m.group('HID1'), m.group('HID2'), tid, table))
+            self.info['tablename'] = m.group('TABLENAME')
+            hand.tourNo = tid
+            hand.tablename = table
+            if self.info['tablename'] in self.SnG_Structures:
+                hand.buyin = int(100*self.SnG_Structures[self.info['tablename']]['buyIn'])
+                hand.fee   = int(100*self.SnG_Structures[self.info['tablename']]['fee'])
                 hand.buyinCurrency="USD"
-            elif hand.tablename in self.MTT_Structures:
-                hand.buyin = int(100*self.MTT_Structures[hand.tablename]['buyIn'])
-                hand.fee   = int(100*self.MTT_Structures[hand.tablename]['fee'])
+                hand.maxseats = self.SnG_Structures[self.info['tablename']]['seats']
+            elif self.info['tablename'] in self.MTT_Structures:
+                hand.buyin = int(100*self.MTT_Structures[self.info['tablename']]['buyIn'])
+                hand.fee   = int(100*self.MTT_Structures[self.info['tablename']]['fee'])
                 hand.buyinCurrency="USD"
             else:
-                m1 = self.re_Buyin.search(hand.tablename)
+                m1 = self.re_Buyin.search(self.info['tablename'])
                 if m1:
                     if m1.group('FREEROLL'):
                         hand.buyin = 0
@@ -723,9 +732,11 @@ or None if we fail to get the info """
                         hand.fee = int(100*Decimal(buyin)/10)
                         hand.buyinCurrency="USD"
                 else:
-                    raise FpdbParseError(_("No match in MTT or SnG Structures: '%s' %s") % (hand.tablename, hand.tourNo))
+                    raise FpdbParseError(_("No match in MTT or SnG Structures: '%s' %s") % (self.info['tablename'], hand.tourNo))
         else:
-            hand.tablename = m.group('TABLE')
+            logging.debug("HID %s-%s, Table %s" % (m.group('HID1'), m.group('HID2'), m.group('TABLENAME')))
+            hand.tablename = m.group('TABLENAME')
+
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],'%Y%m%d%H%M')
         # Check that the hand is complete up to the awarding of the pot; if
         # not, the hand is unparseable
@@ -747,6 +758,7 @@ or None if we fail to get the info """
             for action in m2:
                 acted[action.group('PSEAT')] = True
                 if len(seated) == len(acted): # We've faound all players
+                    fulltable = True
                     break
             if fulltable != True:
                 for seatno in seated.keys():
@@ -759,7 +771,8 @@ or None if we fail to get the info """
 
         for seat in seated:
             name, stack = seated[seat]
-            hand.addPlayer(int(seat), name, stack)
+            # Merge indexes seats from 0. Add 1 so we don't have to add corner cases everywhere else.
+            hand.addPlayer(int(seat) + 1, name, stack)
 
         # No players found at all.
         if not hand.players:
@@ -987,3 +1000,11 @@ or None if we fail to get the info """
 
         raise FpdbHandPartial("Partial hand history: %s '%s' %s" % (function, hand.handid, message))
 
+    @staticmethod
+    def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
+        "Returns string to search in windows titles"
+        if type=="tour":
+            # Ignoring table number as it doesn't appear to be in the window title
+            return ( "\(" + re.escape(str(tournament)) + "\)")
+        else:
+            return re.escape(table_name)
