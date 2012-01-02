@@ -269,6 +269,17 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
         build_aggmenu(("  " + _('All Time')),('O','A'), 'hudStyleOptionA')
         build_aggmenu(("  " + _('Session')),('O','S'), 'hudStyleOptionS')
         build_aggmenu(("  " + _('%s Days') % (self.hud_params['h_hud_days'])),('O','T'), 'hudStyleOptionT')
+        
+        item5 = gtk.MenuItem(_('Set max seats'))
+        menu.append(item5)
+        maxSeatsMenu = gtk.Menu()
+        item5.set_submenu(maxSeatsMenu)
+        for i in range(2, 11, 1):
+            item = gtk.MenuItem('%d-max' % i)
+            item.ms = i
+            maxSeatsMenu.append(item)
+            item.connect("activate", self.change_max_seats)
+            setattr(self, 'maxSeatsMenuItem%d' % (i - 1), item)
 
         # set active on current options:
         if self.hud_params['h_agg_bb_mult'] == 1:
@@ -393,6 +404,12 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
             self.hud_params[param] = 'T'
             getattr(self, prefix+'hudStyleOptionA').set_active(False)
             getattr(self, prefix+'hudStyleOptionS').set_active(False)
+
+    def change_max_seats(self, widget):
+        #self=classic_table_mw object
+        if self.max != widget.ms:
+            #this flag will signal a recreate to HUD_main
+            self.max = widget.ms
 
 
 Aux_Hud.Simple_table_mw=Classic_table_mw  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
