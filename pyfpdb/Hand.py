@@ -90,6 +90,7 @@ class Hand(object):
         self.level = None
         self.mixed = None
         self.speed = "Normal"
+        self.isSng = False
         self.isRebuy = False
         self.isAddOn = False
         self.isKO = False

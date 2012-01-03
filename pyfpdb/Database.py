@@ -2869,12 +2869,12 @@ class Database:
             self.ttcache = LambdaDict(lambda  key:self.insertTourneyType(key[0], key[1], key[2], key[3]))
             
         tourneydata =   (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'],
-                         hand.gametype['limitType'], hand.maxseats, hand.isKO,
+                         hand.gametype['limitType'], hand.maxseats, hand.isSng, hand.isKO,
                          hand.isRebuy, hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix)
         
         tourneyInsert = (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'],
                          hand.gametype['limitType'], hand.maxseats,
-                         hand.buyInChips, hand.isKO, hand.koBounty, hand.isRebuy,
+                         hand.buyInChips, hand.isSng, hand.isKO, hand.koBounty, hand.isRebuy,
                          hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency)
         
         result = self.ttcache[(hand.tourNo, hand.siteId, tourneydata, tourneyInsert)]
