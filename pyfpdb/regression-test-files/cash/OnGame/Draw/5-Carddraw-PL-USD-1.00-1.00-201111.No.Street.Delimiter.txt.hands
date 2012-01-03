@@ -20,7 +20,7 @@
     'sessionId': None,
     'showdownPot': 0,
     'siteHandNo': u'5192626403203',
-    'startTime': datetime.datetime(2011, 11, 18, 11, 48, 10, tzinfo=<UTC>),
+    'startTime': datetime.datetime(2011, 11, 18, 11, 48, 10, tzinfo=pytz.utc),
     'street0Raises': 2,
     'street1Pot': 0,
     'street1Raises': 1,
