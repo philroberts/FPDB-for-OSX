@@ -130,7 +130,8 @@ def compare_handsplayers_file(filename, importer, errors):
                         # The stats match - continue
                         pass
                     else:
-                        if stat == 'tourneyTypeId' or stat == 'tourneysPlayersIds' or stat == 'showed':
+                        ignorelist = ['tourneyTypeId', 'tourneysPlayersIds']
+                        if stat in ignorelist:
                             # Not and error
                             pass
                         else:
