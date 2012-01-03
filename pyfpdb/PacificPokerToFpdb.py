@@ -424,7 +424,7 @@ class PacificPoker(HandHistoryConverter):
                 else:
                     print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
             else:
-                raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
+                raise FpdbHandPartial("Partial hand history: '%s', '%s' not in hand.stacks" % (hand.handid, action.group('PNAME')))
             
 
     def readShowdownActions(self, hand):
