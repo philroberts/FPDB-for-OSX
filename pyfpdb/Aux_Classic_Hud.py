@@ -74,8 +74,13 @@ _ = L10n.get_translation()
 
 
 #    Standard Library modules
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("hud")
+
 #    pyGTK modules
 import gtk
+
 #    FreePokerTools modules
 import Aux_Hud
 import Stats

@@ -25,6 +25,9 @@ Mucked cards display for FreePokerTools HUD.
 #    to do
 
 #    Standard Library modules
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("hud")
 
 #    pyGTK modules
 import gtk

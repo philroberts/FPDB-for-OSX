@@ -22,7 +22,10 @@ Create and manage the hud overlays.
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 ########################################################################
-
+# todo 
+#   sort out default fonts etc. currently set in __init__ (should these be
+#       moved out to mucked/aux or are there genuine hud-level visual defaults?
+ 
 import L10n
 _ = L10n.get_translation()
 
@@ -35,20 +38,20 @@ import logging
 log = logging.getLogger("hud")
 
 #    pyGTK modules
-import pygtk
-import gtk
-import pango
-import gobject
+#import pygtk
+#import gtk
+#import pango
+#import gobject
 
 #    win32 modules -- only imported on windows systems
-if os.name == 'nt':
-    import win32gui
-    import win32con
-    import win32api
+#if os.name == 'nt':
+#    import win32gui
+#    import win32con
+#    import win32api
 
 #    FreePokerTools modules
 import Configuration
-import Stats
+#import Stats
 import Mucked
 import Database
 #import HUD_main
@@ -95,10 +98,10 @@ class Hud:
         self.hud_ui     = config.get_hud_ui_parameters()
         self.site_params = config.get_site_parameters(self.table.site)
 
-        self.backgroundcolor = gtk.gdk.color_parse(self.colors['hudbgcolor'])
-        self.foregroundcolor = gtk.gdk.color_parse(self.colors['hudfgcolor'])
+        #self.backgroundcolor = gtk.gdk.color_parse(self.colors['hudbgcolor'])
+        #self.foregroundcolor = gtk.gdk.color_parse(self.colors['hudfgcolor'])
 
-        self.font = pango.FontDescription("%s %s" % (font, font_size))
+        #self.font = pango.FontDescription("%s %s" % (font, font_size))
         # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
 
         game_params = config.get_game_parameters(self.poker_game)
@@ -114,7 +117,8 @@ class Hud:
         self.creation_attrs = None
 
     # Set up a main window for this this instance of the HUD
-    def create_mw(self):
+    """
+    def xNOTUSED_create_mw(self):
         win = gtk.Window()
         win.set_skip_taskbar_hint(True)  # invisible to taskbar
         win.set_gravity(gtk.gdk.GRAVITY_STATIC)
@@ -373,6 +377,7 @@ class Hud:
         menu.show_all()
         self.main_window.show_all()
 #        self.topify_window(self.main_window)
+    """
 
 #    def change_max_seats(self, widget):
 #        if self.max != widget.ms:
@@ -386,7 +391,8 @@ class Hud:
 #                log.error("Exception:",str(e))
 #                pass
 
-    def set_aggregation(self, widget, val):
+    """
+    def xNOTUSED_set_aggregation(self, widget, val):
         (player_opp, num) = val
         if player_opp == 'P':
             # set these true all the time, set the multiplier to 1 to turn agg off:
@@ -411,8 +417,9 @@ class Hud:
                 for mult in ('1', '2', '3', '10', '10000'):
                     if mult != str(num):
                         getattr(self, 'aggBBmultItem'+mult).set_active(False)
-
-    def set_seats_style(self, widget, val):
+    """
+    """
+    def xNOTUSED_set_seats_style(self, widget, val):
         (player_opp, style) = val
         if player_opp == 'P':
             param = 'h_seats_style'
@@ -434,8 +441,9 @@ class Hud:
             getattr(self, prefix+'seatsStyleOptionA').set_active(False)
             getattr(self, prefix+'seatsStyleOptionC').set_active(False)
         log.debug("setting self.hud_params[%s] = %s" % (param, style))
-
-    def set_hud_style(self, widget, val):
+    """
+    """
+    def xNOTUSED_set_hud_style(self, widget, val):
         (player_opp, style) = val
         if player_opp == 'P':
             param = 'h_hud_style'
@@ -457,7 +465,7 @@ class Hud:
             getattr(self, prefix+'hudStyleOptionA').set_active(False)
             getattr(self, prefix+'hudStyleOptionS').set_active(False)
         log.debug("setting self.hud_params[%s] = %s" % (param, style))
-
+    """
 
 #    def update_table_position(self):
 #        # get table's X/Y position on the desktop, and relocate all of our child windows to accomodate
