@@ -131,6 +131,7 @@ def compare_handsplayers_file(filename, importer, errors):
                         pass
                     else:
                         ignorelist = ['tourneyTypeId', 'tourneysPlayersIds']
+                        # 'allInEV', 'street0CalledRaiseDone', 'street0CalledRaiseChance'
                         if stat in ignorelist:
                             # Not and error
                             pass
