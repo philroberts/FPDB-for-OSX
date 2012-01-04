@@ -271,7 +271,7 @@ class SummaryImporter:
         self.filelist = {}
 
     def readFile(self, tsc, filename):
-        codepage = ["utf16", "utf8"]
+        codepage = ["utf16", "utf8", "cp1252"]
         whole_file = None
         tsc.codepage
 
