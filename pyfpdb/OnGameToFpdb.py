@@ -271,11 +271,22 @@ class OnGame(HandHistoryConverter):
                            r"(Dealing 6th street(?P<SIXTH>.+(?=Dealing river)|.+))?"
                            r"(Dealing river(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
         elif hand.gametype['base'] in ("draw"):
+            # isolate the first discard/stand pat line
+            discard_split = re.split(r"(?:(.+(?: changed).+))", hand.handText,re.DOTALL)
+            if len(hand.handText) == len(discard_split[0]):
+                # handText was not split, no DRAW street occurred
+                pass
+            else:
+                # DRAW street found, reassemble, with DRAW marker added
+                discard_split[0] += "*** DRAW ***\r\n"
+                hand.handText = ""
+                for i in discard_split:
+                    hand.handText += i
             m =  re.search(r"(?P<PREDEAL>.+(?=Dealing pocket cards)|.+)"
-                           r"(Dealing pocket cards(?P<DEAL>.*?(?=\-\-\-\n|\-\-\-\s*Summary:)))?"
-                           r"(\-\-\-\n(?P<DRAWONE>.*?(?=\-\-\-\n|\-\-\-\s*Summary:)))?"
-                           r"(\-\-\-\n(?P<DRAWTWO>.*?(?=\-\-\-\n|\-\-\-\s*Summary:)))?"
-                           r"(\-\-\-\n(?P<DRAWTHREE>.*?(?=\-\-\-\s*Summary:)))?", hand.handText,re.DOTALL)
+                           r"(Dealing pocket cards(?P<DEAL>.*(?=\*\*\* DRAW \*\*\*)|.+))?"
+                           r"(\*\*\* DRAW \*\*\*(?P<DRAWONE>.+))?", hand.handText,re.DOTALL)
+        #import pprint
+        #pprint.pprint(m.groupdict())
 
         hand.addStreets(m)
 
