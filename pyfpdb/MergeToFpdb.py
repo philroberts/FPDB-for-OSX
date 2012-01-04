@@ -1005,6 +1005,9 @@ or None if we fail to get the info """
         "Returns string to search in windows titles"
         if type=="tour":
             # Ignoring table number as it doesn't appear to be in the window title
+            # "$200 Freeroll - NL Holdem - 20:00 (46302299) - Table 1" -- the table number doesn't matter, it seems to always be 1 in the HH.
+            # "Fun Step 1 (4358174) - Table 1"
             return ( "\(" + re.escape(str(tournament)) + "\)")
         else:
+            # "Play Money (4631994)"
             return re.escape(table_name)

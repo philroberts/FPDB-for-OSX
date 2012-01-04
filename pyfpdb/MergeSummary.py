@@ -118,6 +118,7 @@ class MergeSummary(TourneySummary):
 
         ps = soup.findAll('tr')
         # FIXME: Searching every line for all regexes is pretty horrible
+        # FIXME: Need to search for 'Status:  Finished'
         for p in ps:
             m = self.re_HTMLGameType.search(str(p))
             if m:

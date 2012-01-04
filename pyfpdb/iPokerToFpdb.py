@@ -403,8 +403,10 @@ class iPoker(HandHistoryConverter):
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         log.info("iPoker getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
-        regex = re.escape("%s" % (table_name))
+        regex = "%s" % (table_name)
         if tournament:
-            regex = re.escape("%s" % (table_number))
+            regex = "%s" % (table_number)
+        else:
+            regex = table_name.split(',')[0]
         log.info("iPoker getTableTitleRe: returns: '%s'" % (regex))
         return regex
