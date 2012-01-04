@@ -972,7 +972,7 @@ or None if we fail to get the info """
             lastbet = committed[-1][0] - committed[-2][0]
             if lastbet > 0 and m.group('UNCALLED')=='false': # uncalled
                 pot = str(Decimal(m.group('POT')) - lastbet)
-            print "DEBUG: addCollectPot(%s, %s)" %(pname, m.group('POT'))
+            #print "DEBUG: addCollectPot(%s, %s)" %(pname, m.group('POT'))
             hand.addCollectPot(player=pname, pot=pot)
 
     def readShownCards(self, hand):
