@@ -285,8 +285,8 @@ class OnGame(HandHistoryConverter):
             m =  re.search(r"(?P<PREDEAL>.+(?=Dealing pocket cards)|.+)"
                            r"(Dealing pocket cards(?P<DEAL>.*(?=\*\*\* DRAW \*\*\*)|.+))?"
                            r"(\*\*\* DRAW \*\*\*(?P<DRAWONE>.+))?", hand.handText,re.DOTALL)
-        import pprint
-        pprint.pprint(m.groupdict())
+        #import pprint
+        #pprint.pprint(m.groupdict())
 
         hand.addStreets(m)
 
