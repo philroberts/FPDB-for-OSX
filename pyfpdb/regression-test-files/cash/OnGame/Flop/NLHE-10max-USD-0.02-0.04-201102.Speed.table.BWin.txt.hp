@@ -51,7 +51,7 @@
                  'rake': 1,
                  'sawShowdown': True,
                  'seatNo': 3,
-                 'showed': False,
+                 'showed': True,
                  'sitout': False,
                  'startCards': 110,
                  'startCash': 400,
