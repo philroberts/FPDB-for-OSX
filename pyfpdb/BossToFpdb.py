@@ -55,7 +55,7 @@ class Boss(HandHistoryConverter):
     
 
     # we need to recompile the player regexs.
-    player_re = "(?P<PNAME>[\w_]+)"
+    player_re = "(?P<PNAME>[\w_ ]+)"
     #logging.debug("player_re: " + player_re)
     #<ACTION TYPE="HAND_BLINDS" PLAYER="prato" KIND="HAND_SB" VALUE="0.25"></ACTION>
 
