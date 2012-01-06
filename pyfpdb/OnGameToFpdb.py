@@ -368,7 +368,6 @@ class OnGame(HandHistoryConverter):
                         hand.addHoleCards(street, player, closed=newcards, shown=False, mucked=False, dealt=False)
 
     def readAction(self, hand, street):
-        i, d = 0, 0
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             #acts = action.groupdict()
@@ -376,30 +375,15 @@ class OnGame(HandHistoryConverter):
             
             if action.group('ATYPE') == ' raises':
                 hand.addRaiseTo( street, action.group('PNAME'), action.group('BET2') )
-                i+=1
-                d=0
             elif action.group('ATYPE') == ' calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
-                i+=1
-                d=0
             elif action.group('ATYPE') == ' bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
-                i+=1
-                d=0
             elif action.group('ATYPE') == ' folds':
                 hand.addFold( street, action.group('PNAME'))
-                i+=1
-                d=0
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
-                i+=1
-                d=0
             elif action.group('ATYPE') == ' changed':
-                if i>0 and d==0:
-                    idx = hand.allStreets.index(street)+1
-                    if idx<4: street = hand.allStreets[idx]
-                    i=0
-                d+=1
                 if int(action.group('BET'))>0:
                     hand.addDiscard(street, action.group('PNAME'), action.group('BET'))
                 else:

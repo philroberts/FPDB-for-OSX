@@ -73,7 +73,7 @@ class Site:
             self.line_addendum = ''
 
 class IdentifySite:
-    def __init__(self, config, in_path = '-', list = [], verbose = False):
+    def __init__(self, config, in_path = '-', list = [], hhcs = None, verbose = False):
         self.in_path = in_path
         self.config = config
         self.codepage = ("utf8", "utf-16", "cp1252")
@@ -81,7 +81,7 @@ class IdentifySite:
         self.sitelist = {}
         self.filelist = {}
         self.re_identify = self.getSiteRegex()
-        self.generateSiteList()
+        self.generateSiteList(hhcs)
         self.list = list
         self.verbose = verbose
 
@@ -126,11 +126,13 @@ class IdentifySite:
         re_identify['Microgaming']  = re.compile(u'<Game\sid=\"\d+\"\sdate=\"[\d\-\s:]+\"\sunicodetablename')
         re_identify['FullTiltPokerSummary'] = re.compile(u'Full\sTilt\sPoker\.fr\sTournament|Full\sTilt\sPoker\sTournament\sSummary')
         re_identify['PokerStarsSummary']    = re.compile(u'PokerStars\sTournament\s\#\d+')
+        re_identify['PacificPokerSummary']  = re.compile(u'\*{5}\sCassava\Tournament\Summary')
         return re_identify
 
-    def generateSiteList(self):
+    def generateSiteList(self, hhcs):
         """Generates a ordered dictionary of site, filter and filter name for each site in hhcs"""
-        hhcs = self.config.hhcs
+        if not hhcs:
+            hhcs = self.config.hhcs
         for site, hhc in hhcs.iteritems():
             filter = hhc.converter
             filter_name = filter.replace("ToFpdb", "")
