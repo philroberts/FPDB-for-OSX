@@ -136,6 +136,7 @@ HandHistoryConverter: '%(sitename)s'
                     self.processedHands.append(self.processHand(handText))
                 except FpdbHandPartial, e:
                     self.numPartial += 1
+                    log.info("%s" % e)
                 except FpdbParseError, e:
                     self.numErrors += 1
                     log.error("%s" % e)
