@@ -168,7 +168,7 @@ class IdentifySite:
             if path not in self.filelist:
                 whole_file, kodec = self.read_file(path)
                 if whole_file:
-                    fobj = self.idSite(path, whole_file[:1000], kodec)
+                    fobj = self.idSite(path, whole_file[:5000], kodec)
                     if fobj == False: # Site id failed
                         log.debug(_("DEBUG:") + " " + _("siteId Failed for: %s") % path)
                     else:
