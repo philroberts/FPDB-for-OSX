@@ -920,10 +920,8 @@ class Popup_window:
 
 #    figure out what popup format we're using
         popup_format = "default"
-        for stat in stat_window.game.stats:
-            if stat_window.game.stats[stat].row == row and stat_window.game.stats[stat].col == col:
-                popup_format = stat_window.game.stats[stat].popup
-                break
+        if stat_window.game.stats[row*stat_window.game.rows+col] is not None:
+            popup_format = stat_window.game.stats[row*stat_window.game.rows+col].popup
 
 #    get the list of stats to be presented from the config
         stat_list = []
