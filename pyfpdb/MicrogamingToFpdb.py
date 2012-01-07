@@ -312,7 +312,7 @@ class Microgaming(HandHistoryConverter):
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            #print "DEBUG: action.groupdict(): %s" % action.groupdict()
+            #print "DEBUG: %s action.groupdict(): %s" % (street, action.groupdict())
             pname = self.playerNameFromSeatNo(action.group('SEAT'), hand)
             if action.group('ATYPE') == 'Raise':
                 hand.addRaiseTo(street, pname, action.group('BET') )
@@ -334,7 +334,7 @@ class Microgaming(HandHistoryConverter):
             elif action.group('ATYPE') == 'BigBlind':
                 hand.addBlind(pname, 'big blind', action.group('BET'))
             elif action.group('ATYPE') == 'PostedToPlay':
-                hand.addBlind(pname, 'secondsb', action.group('BET'))
+                hand.addBlind(pname, 'big blind', action.group('BET'))
             elif action.group('ATYPE') == 'Disconnect':
                 pass # Deal with elsewhere
             elif action.group('ATYPE') == 'Reconnect':
