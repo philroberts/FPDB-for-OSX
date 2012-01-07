@@ -172,7 +172,7 @@ class PartyPoker(HandHistoryConverter):
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             subst = {'PLYR': player_re, 'CUR_SYM': self.sym[hand.gametype['currency']],
-                'CUR': hand.gametype['currency'] if hand.gametype['currency']!='T$' else '',
+                'CUR': hand.gametype['currency'] if hand.gametype['currency']!='T$' else '(chips|)',
                 'BRAX' : u"\[\(\)\]"
                     }
             self.re_PostSB = re.compile(
@@ -199,8 +199,7 @@ class PartyPoker(HandHistoryConverter):
                 r"\[ *(?P<CARDS>.+) *\](?P<COMBINATION>.+)\.",
                 re.MULTILINE)
             self.re_CollectPot = re.compile(
-                r"""^%(PLYR)s \s+ wins \s+
-                %(CUR_SYM)s(?P<POT>[.,\d]+)\s*%(CUR)s""" %  subst,
+                r"""^%(PLYR)s\s+wins\s+%(CUR_SYM)s?(?P<POT>[.,\d]+)\s*(%(CUR)s)?""" %  subst,
                 re.MULTILINE|re.VERBOSE)
 
     def readSupportedGames(self):
