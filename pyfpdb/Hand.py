@@ -67,6 +67,7 @@ class Hand(object):
         self.startTime = 0
         self.handText = handText
         self.handid = 0
+        self.in_path = None
         self.cancelled = False
         self.dbid_hands = 0
         self.dbid_pids = None
@@ -219,7 +220,7 @@ class Hand(object):
         try:
             self.checkPlayerExists(player)
         except FpdbParseError, e:
-            log.error(_("Hand.addHoleCards: '%s' Tried to add holecards for unknown player: '%s'") % (self.handid, player))
+            log.error(_("Hand.addHoleCards: '%s' - 's' Tried to add holecards for unknown player: '%s'") % (self.handid, self.in_path, player))
             return
 
         if dealt:  self.dealt.add(player)
@@ -522,14 +523,14 @@ class Hand(object):
             log.debug("markStreets:\n"+ str(self.streets))
         else:
             tmp = self.handText[0:100]
-            log.debug(_("Streets didn't match - Assuming hand %s was cancelled.") % (self.handid) + " " + _("First 100 characters: %s") % tmp)
+            log.debug(_("Streets didn't match - Assuming hand '%s' was cancelled.") % (self.handid) + " " + _("First 100 characters: %s") % tmp)
             self.cancelled = True
-            raise FpdbHandPartial(_("Streets didn't match - Assuming hand %s was cancelled.") % (self.handid) + " " + _("First 100 characters: %s") % tmp)
+            raise FpdbHandPartial(_("Streets didn't match - Assuming hand '%s' was cancelled.") % (self.handid) + " " + _("First 100 characters: %s") % tmp)
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
-            log.debug("checkPlayerExists: " + _("'%s' fail on hand number %s") % (player, self.handid))
-            raise FpdbParseError("checkPlayerExists: " + _("'%s' fail on hand number %s") % (player, self.handid))
+            log.debug("checkPlayerExists: " + _("'%s' fail on hand number '%s' - '%s'") % (player, self.handid, self.in_path))
+            raise FpdbParseError("checkPlayerExists: " + _("'%s' fail on hand number '%s' - '%s'") % (player, self.handid, self.in_path))
 
     def setCommunityCards(self, street, cards):
         log.debug("setCommunityCards %s %s" %(street,  cards))
@@ -775,7 +776,7 @@ class Hand(object):
             holeandboard = set([self.card(c) for c in holeandboard])
             board = set([c for s in self.board.values() for c in s])
             self.addHoleCards(holeandboard.difference(board),player,shown, mucked)
-
+            
     def totalPot(self):
         """ If all bets and blinds have been added, totals up the total pot size"""
 
@@ -955,6 +956,7 @@ class HoldemOmahaHand(Hand):
         Hand.__init__(self, self.config, sitename, gametype, handText, builtFrom = "HHC")
         self.sb = gametype['sb']
         self.bb = gametype['bb']
+        self.in_path = hhc.in_path
 
         #Populate a HoldemOmahaHand
         #Generally, we call 'read' methods here, which get the info according to the particular filter (hhc)
@@ -986,7 +988,6 @@ class HoldemOmahaHand(Hand):
                     self.pot.markTotal(street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self)
-            self.pot.handid = self.handid # This is only required so Pot can throw it in totalPot
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
             if self.maxseats is None:
@@ -1264,6 +1265,7 @@ class DrawHand(Hand):
         Hand.__init__(self, self.config, sitename, gametype, handText)
         self.sb = gametype['sb']
         self.bb = gametype['bb']
+        self.in_path = hhc.in_path
         # Populate the draw hand.
         if builtFrom == "HHC":
             hhc.readHandInfo(self)
@@ -1274,7 +1276,7 @@ class DrawHand(Hand):
             hhc.markStreets(self)
             # markStreets in Draw may match without dealing cards
             if self.streets['DEAL'] == None:
-                raise FpdbParseError("DrawHand.__init__: " + _("Street 'DEAL' is empty. Was hand %s cancelled?") % self.handid)
+                raise FpdbParseError("DrawHand.__init__: " + _("Street 'DEAL' is empty. Was hand '%s' - '%s' cancelled?") % (self.handid, self.in_path))
             hhc.readBlinds(self)
             hhc.readAntes(self)
             hhc.readButton(self)
@@ -1457,6 +1459,7 @@ class StudHand(Hand):
         Hand.__init__(self, self.config, sitename, gametype, handText)
         self.sb = gametype['sb']
         self.bb = gametype['bb']
+        self.in_path = hhc.in_path
         #Populate the StudHand
         #Generally, we call a 'read' method here, which gets the info according to the particular filter (hhc)
         # which then invokes a 'addXXX' callback
@@ -1518,7 +1521,7 @@ class StudHand(Hand):
             self.checkPlayerExists(player)
             self.holecards[street][player] = (open, closed)
         except FpdbParseError, e:
-            log.error(_("Hand.addPlayerCards: '%s' Tried to add holecards for unknown player: %s") % (self.handid, player))
+            log.error(_("Hand.addPlayerCards: '%s' - '%s' Tried to add holecards for unknown player: %s") % (self.handid, self.in_path, player))
 
     # TODO: def addComplete(self, player, amount):
     def addComplete(self, street, player, amountTo):
