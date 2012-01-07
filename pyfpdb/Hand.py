@@ -308,7 +308,7 @@ class Hand(object):
         """ Function to inserts HandsActions into database"""
         if self.handsstove:
             for hs in self.handsstove: hs[0] = self.dbid_hands
-            db.storeHandsStove(self.handsstove, doinsert)
+        db.storeHandsStove(self.handsstove, doinsert)
 
     def updateHudCache(self, db, doinsert = False):
         """ Function to update the HudCache"""
