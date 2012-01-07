@@ -19,7 +19,8 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 ########################################################################
-
+# to do
+# for win7 the fixed b_width and tb_height are not correct - need to discover these from os
 import L10n
 _ = L10n.get_translation()
 

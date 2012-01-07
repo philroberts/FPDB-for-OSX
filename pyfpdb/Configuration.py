@@ -306,6 +306,12 @@ class Email:
         return "    fetchType=%s\n    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
             % (self.fetchType, self.host, self.username, self.password, self.useSsl, self.folder) 
 
+class Fav_seat:
+    def __init__(self, node):
+        self.node = node
+        self.fav_seat = node.getAttribute("fav_seat")
+        self.max = node.getAttribute("max")
+            
 class Site:
     def __init__(self, node):
         def normalizePath(path):
@@ -315,47 +321,50 @@ class Site:
             return path
 
         self.site_name    = node.getAttribute("site_name")
-        self.table_finder = node.getAttribute("table_finder")
+        #self.table_finder = node.getAttribute("table_finder")
         self.screen_name  = node.getAttribute("screen_name")
         self.site_path    = normalizePath(node.getAttribute("site_path"))
         self.HH_path    = normalizePath(node.getAttribute("HH_path"))
-        self.decoder    = node.getAttribute("decoder")
-        self.hudopacity   = node.getAttribute("hudopacity")
-        self.hudbgcolor   = node.getAttribute("bgcolor")
-        self.hudfgcolor   = node.getAttribute("fgcolor")
+        #self.decoder    = node.getAttribute("decoder")
+        #self.hudopacity   = node.getAttribute("hudopacity")
+        #self.hudbgcolor   = node.getAttribute("bgcolor")
+        #self.hudfgcolor   = node.getAttribute("fgcolor")
         self.converter    = node.getAttribute("converter")
-        self.aux_window   = node.getAttribute("aux_window")
-        self.font        = node.getAttribute("font")
-        self.font_size    = node.getAttribute("font_size")
-        self.use_frames   = node.getAttribute("use_frames")
+        #self.aux_window   = node.getAttribute("aux_window")
+        #self.font        = node.getAttribute("font")
+        #self.font_size    = node.getAttribute("font_size")
+        #self.use_frames   = node.getAttribute("use_frames")
         self.enabled    = string_to_bool(node.getAttribute("enabled"), default=True)
-        self.xpad         = node.getAttribute("xpad")
-        self.ypad         = node.getAttribute("ypad")
-        self.xshift       = node.getAttribute("xshift")
-        self.yshift       = node.getAttribute("yshift")
-        self.layout       = {}
+        self.hud_enabled  = string_to_bool(node.getAttribute("hud_enabled"), default=True)
+        #self.xpad         = node.getAttribute("xpad")
+        #self.ypad         = node.getAttribute("ypad")
+        self.hud_menu_xshift = node.getAttribute("hud_menu_xshift")
+        self.hud_menu_yshift = node.getAttribute("hud_menu_yshift")
+        self.fav_seat     = {}
         self.emails       = {}
-
-        for layout_node in node.getElementsByTagName('layout'):
-            lo = Layout(layout_node)
-            self.layout[lo.max] = lo
+            
+        for fav_node in node.getElementsByTagName('fav'):
+            fav = Fav_seat(fav_node)
+            self.fav_seat[max] = fav
+        
+            print str(self.fav_seat[max].fav_seat), " ", str(max)
         
         for email_node in node.getElementsByTagName('email'):
             email = Email(email_node)
             self.emails[email.fetchType] = email
 
 #   Site defaults
-        self.xpad = 1 if self.xpad == "" else int(self.xpad)
-        self.ypad = 0 if self.ypad == "" else int(self.ypad)
-        self.xshift = 1 if self.xshift == "" else int(self.xshift)
-        self.yshift = 0 if self.yshift == "" else int(self.yshift)
-        self.font_size = 7 if self.font_size == "" else int(self.font_size)
-        self.hudopacity = 1.0 if self.hudopacity == "" else float(self.hudopacity)
+        #self.xpad = 1 if self.xpad == "" else int(self.xpad)
+        #self.ypad = 0 if self.ypad == "" else int(self.ypad)
+        self.hud_menu_xshift = 1 if self.hud_menu_xshift == "" else int(self.hud_menu_xshift)
+        self.hud_menu_yshift = 0 if self.hud_menu_yshift == "" else int(self.hud_menu_yshift)
+        #self.font_size = 7 if self.font_size == "" else int(self.font_size)
+        #self.hudopacity = 1.0 if self.hudopacity == "" else float(self.hudopacity)
 
-        if self.use_frames == "": self.use_frames = False
-        if self.font       == "": self.font = "Sans"
-        if self.hudbgcolor == "": self.hudbgcolor = "#000000"
-        if self.hudfgcolor == "": self.hudfgcolor = "#FFFFFF"
+        #if self.use_frames == "": self.use_frames = False
+        #if self.font       == "": self.font = "Sans"
+        #if self.hudbgcolor == "": self.hudbgcolor = "#000000"
+        #if self.hudfgcolor == "": self.hudfgcolor = "#FFFFFF"
 
     def __str__(self):
         temp = "Site = " + self.site_name + "\n"
@@ -379,31 +388,31 @@ class Stat:
         temp = "        stat_name = %s, row = %d, col = %d, tip = %s, click = %s, popup = %s\n" % (self.stat_name, self.row, self.col, self.tip, self.click, self.popup)
         return temp
 
-class Game:
+class Stat_sets:
     def __init__(self, node):
-        self.game_name = node.getAttribute("game_name")
+        self.name    = node.getAttribute("name")
         self.rows    = int( node.getAttribute("rows") )
         self.cols    = int( node.getAttribute("cols") )
         self.xpad    = node.getAttribute("xpad")
         self.ypad    = node.getAttribute("ypad")
-        self.xshift  = node.getAttribute("xshift")
-        self.yshift  = node.getAttribute("yshift")
+        #self.xshift  = node.getAttribute("xshift")
+        #self.yshift  = node.getAttribute("yshift")
 
 #    Defaults
         if self.xpad == "": self.xpad = 1
         else: self.xpad = int(self.xpad)
         if self.ypad == "": self.ypad = 0
         else: self.ypad = int(self.ypad)
-        if self.xshift == "": self.xshift = 1
-        else: self.xshift = int(self.xshift)
-        if self.yshift == "": self.yshift = 0
-        else: self.yshift = int(self.yshift)
+        #if self.xshift == "": self.xshift = 1
+        #else: self.xshift = int(self.xshift)
+        #if self.yshift == "": self.yshift = 0
+        #else: self.yshift = int(self.yshift)
 
-        aux_text = node.getAttribute("aux")
-        aux_list = aux_text.split(',')
-        for i in range(0, len(aux_list)):
-            aux_list[i] = aux_list[i].strip()
-        self.aux = aux_list
+        #aux_text = node.getAttribute("aux")
+        #aux_list = aux_text.split(',')
+        #for i in range(0, len(aux_list)):
+        #    aux_list[i] = aux_list[i].strip()
+        #self.aux = aux_list
 
         self.stats    = {}
         for stat_node in node.getElementsByTagName('stat'):
@@ -483,6 +492,87 @@ class Aux_window:
             temp = temp + "%s" % self.layout[layout]
         return temp
 
+class Supported_games:
+    '''
+        <game game_name="holdem" aux="mucked, Classic_HUD">
+            <game_stats game_type="tournament" stat_set ="holdem tourney"></game_stats>
+            <game_stats game_type="cash" stat_set ="holdem cash"></game_stats>
+        </game>
+    '''
+    def __init__(self, node):
+        for (name, value) in node.attributes.items():
+            setattr(self, name, value)
+            print node
+            print name
+            print value
+
+        self.game_stats = {}
+        for game_stats_node in node.getElementsByTagName('game_stats'):
+            gs = Game_stats(game_stats_node)
+            self.game_stats[gs] = gs
+
+    def __str__(self):
+        temp = 'Supported_games = ' + self.name + "\n"
+        for key in dir(self):
+            if key.startswith('__'): continue
+            if key == 'game_stats':  continue
+            value = getattr(self, key)
+            if callable(value): continue
+            temp = temp + '    ' + key + " = " + value + "\n"
+
+        for gs in self.game_stats:
+            temp = temp + "%s" % self.layout[gs]
+        return temp
+
+
+
+                
+class Layout_set:
+    def __init__(self, node):
+        for (name, value) in node.attributes.items():
+            setattr(self, name, value)
+
+        self.layout = {}
+        for layout_node in node.getElementsByTagName('layout'):
+            lo = Layout(layout_node)
+            self.layout[lo.max] = lo
+
+    def __str__(self):
+        temp = 'Layout set = ' + self.name + "\n"
+        for key in dir(self):
+            if key.startswith('__'): continue
+            if key == 'layout':  continue
+            value = getattr(self, key)
+            if callable(value): continue
+            temp = temp + '    ' + key + " = " + value + "\n"
+
+        for layout in self.layout:
+            temp = temp + "%s" % self.layout[layout]
+        return temp
+        
+class Stat_set:
+    def __init__(self, node):
+        for (name, value) in node.attributes.items():
+            setattr(self, name, value)
+
+        self.statset = {}
+        for ss_node in node.getElementsByTagName('ss'):
+            ss = Stat_set(ss_node)
+            self.layout[lo.max] = ss
+
+    def __str__(self):
+        temp = 'Stat set = ' + self.name + "\n"
+        for key in dir(self):
+            if key.startswith('__'): continue
+            if key == 'layout':  continue
+            value = getattr(self, key)
+            if callable(value): continue
+            temp = temp + '    ' + key + " = " + value + "\n"
+
+        for ss in self.layout:
+            temp = temp + "%s" % self.statset[ss]
+        return temp
+        
 class HHC:
     def __init__(self, node):
         self.site            = node.getAttribute("site")
@@ -725,7 +815,7 @@ class Config:
 #    we check the existence of "file" and try to recover if it doesn't exist
 
 #        self.default_config_path = self.get_default_config_path()
-        
+        print "file,",file
         self.example_copy = False
         if file is not None: # config file path passed in
             file = os.path.expanduser(file)
@@ -743,6 +833,8 @@ class Config:
         self.supported_games = {}
         self.supported_databases = {}        # databaseName --> Database instance
         self.aux_windows = {}
+        self.layout_sets = {}
+        self.stat_sets = {}
         self.hhcs = {}
         self.popup_windows = {}
         self.db_selected = None              # database the user would like to use
@@ -794,9 +886,9 @@ class Config:
             self.supported_sites[site.site_name] = site
 
 #        s_games = doc.getElementsByTagName("supported_games")
-        for game_node in doc.getElementsByTagName("game"):
-            game = Game(node = game_node)
-            self.supported_games[game.game_name] = game
+        for supported_game_node in doc.getElementsByTagName("supported_games"):
+            supported_game = Supported_games(node=supported_game_node)
+            self.supported_games[supported_game.game_name] = supported_game
 
         # parse databases defined by user in the <supported_databases> section
         # the user may select the actual database to use via commandline or by setting the selected="bool"
@@ -825,6 +917,14 @@ class Config:
             aw = Aux_window(node = aw_node)
             self.aux_windows[aw.name] = aw
 
+        for ls_node in doc.getElementsByTagName("ls"):
+            ls = Layout_set(node = ls_node)
+            self.layout_sets[ls.name] = ls
+            
+        for ss_node in doc.getElementsByTagName("ss"):
+            ss = Stat_set(node = ss_node)
+            self.stat_sets[ss.name] = ss
+            
 #     s_dbs = doc.getElementsByTagName("mucked_windows")
         for hhc_node in doc.getElementsByTagName("hhc"):
             hhc = HHC(node = hhc_node)
@@ -941,6 +1041,16 @@ class Config:
         for aux_node in self.doc.getElementsByTagName("aw"):
             if aux_node.getAttribute("name") == aux:
                 return aux_node
+
+    def get_layout_set_node(self, ls):
+        for layout_set_node in self.doc.getElementsByTagName("ls"):
+            if set_node.getAttribute("name") == ls:
+                return layout_set_node
+                
+    def get_stat_set_node(self, ss):
+        for stat_set_node in self.doc.getElementsByTagName("ss"):
+            if set_node.getAttribute("name") == ss:
+                return stat_set_node
 
     def get_db_node(self, db_name):
         for db_node in self.doc.getElementsByTagName("database"):
@@ -1094,6 +1204,24 @@ class Config:
             else:
                 self.aux_windows[aux_name].layout[max].location[i] = ( locations[i][0], locations[i][1] )
 
+    def edit_layout_set_layout(self, aux_name, max, width = None, height = None, locations = None):
+        aux_node   = self.get_aux_node(aux_name)
+        layout_node = self.get_layout_node(aux_node, max)
+        if layout_node is None:
+            print "aux node not found"
+            return
+        if width: layout_node.setAttribute("width", str(width))
+        if height: layout_node.setAttribute("height", str(height))
+        print "editing locations =", locations
+        for (i, pos) in locations.iteritems():
+            location_node = self.get_location_node(layout_node, i)
+            location_node.setAttribute("x", str( locations[i][0] ))
+            location_node.setAttribute("y", str( locations[i][1] ))
+            if i == "common":
+                self.aux_windows[aux_name].layout[max].common = ( locations[i][0], locations[i][1] )
+            else:
+                self.aux_windows[aux_name].layout[max].location[i] = ( locations[i][0], locations[i][1] )
+                
     #NOTE: we got a nice Database class, so why map it again here?
     #            user input validation should be done when initializing the Database class. this allows to give appropriate feddback when something goes wrong
     #            try ..except is evil here. it swallows all kinds of errors. dont do this
@@ -1391,16 +1519,26 @@ class Config:
                     (  0, 280), (121, 280), ( 46,  30)
                 )
 
-    def get_aux_locations(self, aux = "mucked", max = "9"):
+#    def get_aux_locations(self, aux = "mucked", max = "9"):
+#
+#        try:
+#            locations = self.aux_windows[aux].layout[max].location
+#        except:
+#            locations = ( (  0,   0), (684,  61), (689, 239), (692, 346),
+#                        (586, 393), (421, 440), (267, 440), (  0, 361),
+#                        (  0, 280), (121, 280), ( 46,  30) )
+#        return locations
+
+    def get_layout_set_locations(self, set = "mucked", max = "9"):
 
         try:
-            locations = self.aux_windows[aux].layout[max].location
+            locations = self.layout_sets[set].layout[max].location
         except:
             locations = ( (  0,   0), (684,  61), (689, 239), (692, 346),
                         (586, 393), (421, 440), (267, 440), (  0, 361),
                         (  0, 280), (121, 280), ( 46,  30) )
         return locations
-
+             
     def get_supported_sites(self, all=False):
         """Returns the list of supported sites."""
         if all:
@@ -1481,7 +1619,28 @@ class Config:
 
             return param
         return None
+        
+    def get_layout_sets(self):
+        """Gets the list of block layouts in the configuration."""
+        return self.layout_sets.keys()
+        
+    def get_stat_sets(self):
+        """Gets the list of stat block contents in the configuration."""
+        return self.stat_sets.keys()
+        
+    def get_layout_set_parameters(self, name):
+        """Gets a dict of parameters from the named ls."""
+        param = {}
+        if self.layout_sets.has_key(name):
+            for key in dir(self.layout_sets[name]):
+                if key.startswith('__'): continue
+                value = getattr(self.layout_sets[name], key)
+                if callable(value): continue
+                param[key] = value
 
+            return param
+        return None
+        
     def get_game_parameters(self, name):
         """Get the configuration parameters for the named game."""
         param = {}
@@ -1538,6 +1697,11 @@ if __name__== "__main__":
     for w in c.aux_windows.keys():
         print c.aux_windows[w]
     print "----------- END AUX WINDOW FORMATS -----------"
+    
+    print "\n----------- LAYOUT SETS FORMATS -----------"
+    for w in c.layout_sets.keys():
+        print c.layout_sets[w]
+    print "----------- END LAYOUT SETS FORMATS -----------"
 
     print "\n----------- HAND HISTORY CONVERTERS -----------"
     for w in c.hhcs.keys():
@@ -1564,7 +1728,7 @@ if __name__== "__main__":
     for mw in c.get_aux_windows():
         print c.get_aux_parameters(mw)
 
-    print "mucked locations =", c.get_aux_locations('mucked', 9)
+#    print "mucked locations =", c.get_aux_locations('mucked', 9)
 #    c.edit_aux_layout('mucked', 9, locations = [(487, 113), (555, 469), (572, 276), (522, 345),
 #                                                (333, 354), (217, 341), (150, 273), (150, 169), (230, 115)])
 #    print "mucked locations =", c.get_aux_locations('mucked', 9)

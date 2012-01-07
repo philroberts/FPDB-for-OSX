@@ -140,1034 +140,286 @@
     aggregate_hero_tourney_stats="False"
     hero_aggregation_level_multiplier="1"
 
-    label="FPDB Menu - Right-click
-Left-Drag to Move"
+    label="R-click FPDB Menu L-Drag to Move"
     />
 
     <supported_sites>
-        <site enabled="True"
-              site_name="PokerStars"
-              table_finder="PokerStars.exe"
-              screen_name="YOUR SCREEN NAME HERE"
-              site_path="C:/Program Files/PokerStars/"
-              HH_path="C:/Program Files/PokerStars/HandHistory/YOUR SCREEN NAME HERE/"
-              decoder="pokerstars_decode_table"
-              converter="PokerStarsToFpdb"
-              bgcolor="#000000"
-              fgcolor="#FFFFFF"
-              hudopacity="1.0"
-              font="Sans"
-              font_size="8"
-              xpad="1"
-              ypad="0"
-              xshift="0"
-              yshift="0"
-              supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
-            <email fetchType="request-summary" host="YOUR_EMAIL_SERVER" username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD" useSsl="True" folder="INBOX"/>
-            <layout max="8" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="525" y="402"> </location>
-                <location seat="5" x="259" y="402"> </location>
-                <location seat="6" x="0"   y="348"> </location>
-                <location seat="7" x="0"   y="240"> </location>
-                <location seat="8" x="0"   y="35">  </location>
-            </layout>
-            <layout max="6" width="792" height="546" fav_seat="0">
-                <location seat="1" x="566" y="90"> </location>
-                <location seat="2" x="660" y="291"> </location>
-                <location seat="3" x="409" y="379"> </location>
-                <location seat="4" x="113" y="402"> </location>
-                <location seat="5" x="19" y="291"> </location>
-                <location seat="6" x="110" y="87"> </location>
-                
-            </layout>
-            <layout max="10" width="792" height="546" fav_seat="0">
-                <location seat="1" x="633" y="26">  </location>
-                <location seat="2" x="677" y="65"> </location>
-                <location seat="3" x="680" y="281"> </location>
-                <location seat="4" x="677" y="351"> </location>
-                <location seat="5" x="496" y="407"> </location>
-                <location seat="6" x="197" y="411"> </location>
-                <location seat="7" x="7" y="351"> </location>
-                <location seat="8" x="3" y="281">  </location>
-                <location seat="9" x="0" y="64">  </location>
-                <location seat="10" x="52" y="27">  </location>
-                
-            </layout>
-            <layout max="9" width="792" height="546" fav_seat="0">
-                <location seat="1" x="560" y="0">  </location>
-                <location seat="2" x="679" y="123"> </location>
-                <location seat="3" x="688" y="309"> </location>
-                <location seat="4" x="483" y="370"> </location>
-                <location seat="5" x="444" y="413"> </location>
-                <location seat="6" x="224" y="372"> </location>
-                <location seat="7" x="0"   y="307"> </location>
-                <location seat="8" x="0"   y="121">  </location>
-                <location seat="9" x="140" y="0">  </location>
-            </layout>
-            <layout fav_seat="0" height="546" max="2" width="792">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10"  y="288"> </location>
-            </layout>
+        <site site_name="PokerStars"
+                enabled="False"
+                screen_name="YOUR SCREEN NAME HERE"
+                site_path="C:/Program Files/PokerStars/"
+                HH_path="C:/Program Files/PokerStars/HandHistory/YOUR SCREEN NAME HERE/"
+                converter="PokerStarsToFpdb"
+                hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
+            <email fetchType="request-summary" host="YOUR_EMAIL_SERVER" username="YOUR_EMAIL_USERNAME" 
+                        password="YOUR_EMAIL_PASSWORD" useSsl="True" folder="INBOX"/>
+            <fav max="2" fav_seat="0"> </fav>
+            <fav max="4" fav_seat="0"> </fav>
+            <fav max="6" fav_seat="0"> </fav>
+            <fav max="7" fav_seat="0"> </fav>
+            <fav max="8" fav_seat="0"> </fav>
+            <fav max="9" fav_seat="0"> </fav>
+            <fav max="10" fav_seat="0"> </fav>
         </site>
 
-        <site enabled="True"
-              site_name="Full Tilt Poker"
-              table_finder="FullTiltPoker"
-              screen_name="YOUR SCREEN NAME HERE"
-              site_path="C:/Program Files/Full Tilt Poker/"
-              HH_path="C:/Program Files/Full Tilt Poker/HandHistory/YOUR SCREEN NAME HERE/"
-              decoder="fulltilt_decode_table"
-              converter="FulltiltToFpdb"
-              bgcolor="#000000"
-              fgcolor="#FFFFFF"
-              hudopacity="1.0"
-              font="Sans"
-              font_size="8"
-              supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
-            <layout fav_seat="5" height="547" max="8" width="794">
-                <location seat="1" x="367" y="-6">  </location>
-                <location seat="2" x="606" y="45"> </location>
-                <location seat="3" x="622" y="197"> </location>
-                <location seat="4" x="558" y="410"> </location>
-                <location seat="5" x="240" y="444"> </location>
-                <location seat="6" x="33" y="346"> </location>
-                <location seat="7" x="4" y="198"> </location>
-                <location seat="8" x="28" y="39">  </location>
-            </layout>
-            <layout fav_seat="4" height="547" max="6" width="794">
-                <location seat="1" x="377" y="-5"> </location>
-                <location seat="2" x="620" y="43"> </location>
-                <location seat="3" x="605" y="179"> </location>
-                <location seat="4" x="212" y="444"> </location>
-                <location seat="5" x="-2" y="186"> </location>
-                <location seat="6" x="78" y="24"> </location>
-            </layout>
-            <layout fav_seat="2" height="547" max="2" width="794">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10" y="288"> </location>
-            </layout>
-            <layout fav_seat="5" height="547" max="9" width="794">
-                <location seat="1" x="487" y="12">  </location>
-                <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="647" y="323"> </location>
-                <location seat="4" x="667" y="445"> </location>
-                <location seat="5" x="337" y="459"> </location>
-                <location seat="6" x="0" y="400"> </location>
-                <location seat="7" x="0" y="322"> </location>
-                <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="95" y="18">  </location>
-            </layout>
-            <layout max="9" width="792" height="546" fav_seat="0">
-                <location seat="1" x="560" y="0">  </location>
-                <location seat="2" x="679" y="123"> </location>
-                <location seat="3" x="688" y="309"> </location>
-                <location seat="4" x="483" y="370"> </location>
-                <location seat="5" x="444" y="413"> </location>
-                <location seat="6" x="224" y="372"> </location>
-                <location seat="7" x="0"   y="307"> </location>
-                <location seat="8" x="0"   y="121">  </location>
-                <location seat="9" x="140" y="0">  </location>
-            </layout>
-            <layout max="10" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="586" y="393"> </location>
-                <location seat="5" x="421" y="440"> </location>
-                <location seat="6" x="267" y="440"> </location>
-                <location seat="7" x="0"   y="361"> </location>
-                <location seat="8" x="0"   y="280">  </location>
-                <location seat="9" x="121" y="280">  </location>
-                <location seat="10" x="46"  y="30">  </location>
-            </layout>
+        <site site_name="Full Tilt Poker"
+                enabled="False"
+                screen_name="YOUR SCREEN NAME HERE"
+                site_path="C:/Program Files/Full Tilt Poker/"
+                HH_path="C:/Program Files/Full Tilt Poker/HandHistory/YOUR SCREEN NAME HERE/"
+                converter="FulltiltToFpdb"
+                hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
+            <fav max="2" fav_seat="0"> </fav>
+            <fav max="4" fav_seat="0"> </fav>
+            <fav max="6" fav_seat="0"> </fav>
+            <fav max="7" fav_seat="0"> </fav>
+            <fav max="8" fav_seat="0"> </fav>
+            <fav max="9" fav_seat="0"> </fav>
+            <fav max="10" fav_seat="0"> </fav>
         </site>
 
-        <site HH_path="C:\Users\WindowsUserName\Documents\EverleafSiteName\HandHistory\YOUR SCREEN NAME HERE"
-              bgcolor="#000000"
-              converter="EverleafToFpdb"
-              decoder="everleaf_decode_table"
-              enabled="True"
-              fgcolor="#EEEEEE"
-              hudopacity="0.75"
-              screen_name="YOUR SCREEN NAME HERE"
-              site_name="Everleaf"
-              site_path="C:\Users\WindowsUserName\AppData\Roaming\EverleafSiteName\"
-              supported_games="holdem,omahahi,omahahilo"
-              table_finder="Poker.exe">
-            <layout fav_seat="0" height="546" max="6" width="792">
-                <location seat="0" x="0" y="0"> </location>
-                <location seat="1" x="586" y="109"> </location>
-                <location seat="2" x="605" y="283"> </location>
-                <location seat="3" x="544" y="383"> </location>
-                <location seat="4" x="67" y="383"> </location>
-                <location seat="5" x="5" y="284"> </location>
-                <location seat="6" x="61" y="111"> </location>
-            </layout>
-            <layout fav_seat="0" height="546" max="10" width="792">
-                <location seat="0" x="182" y="69"> </location>
-                <location seat="1" x="485" y="66">  </location>
-                <location seat="2" x="661" y="79"> </location>
-                <location seat="3" x="675" y="210"> </location>
-                <location seat="4" x="644" y="346"> </location>
-                <location seat="5" x="449" y="375"> </location>
-                <location seat="6" x="253" y="374"> </location>
-                <location seat="7" x="46" y="348"> </location>
-                <location seat="8" x="23" y="204">  </location>
-                <location seat="9" x="38" y="79">  </location>
-                <location seat="10" x="226" y="67">  </location>
-            </layout>
-            <layout fav_seat="0" height="546" max="8" width="792">
-                <location seat="0" x="182" y="69"> </location>
-                <location seat="1" x="456" y="74">  </location>
-                <location seat="2" x="630" y="81"> </location>
-                <location seat="3" x="618" y="352"> </location>
-                <location seat="4" x="426" y="380"> </location>
-                <location seat="5" x="243" y="382"> </location>
-                <location seat="6" x="34" y="351"> </location>
-                <location seat="7" x="22" y="82"> </location>
-                <location seat="8" x="213" y="74">  </location>
-            </layout>
-
-            <layout fav_seat="0" height="546" max="2" width="792">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10" y="288"> </location>
-            </layout>
+        <site site_name="Everleaf"
+                enabled="False"
+                HH_path="C:\Users\WindowsUserName\Documents\EverleafSiteName\HandHistory\YOUR SCREEN NAME HERE"
+                converter="EverleafToFpdb"
+                screen_name="YOUR SCREEN NAME HERE"
+                site_path="C:\Users\WindowsUserName\AppData\Roaming\EverleafSiteName\"
+                hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
+            <fav max="2" fav_seat="0"> </fav>
+            <fav max="4" fav_seat="0"> </fav>
+            <fav max="6" fav_seat="0"> </fav>
+            <fav max="7" fav_seat="0"> </fav>
+            <fav max="8" fav_seat="0"> </fav>
+            <fav max="9" fav_seat="0"> </fav>
+            <fav max="10" fav_seat="0"> </fav>
         </site>
 
-        <site enabled="True"
-              site_name="Boss"
-              table_finder="Boss.exe"
-              screen_name="YOUR SCREEN NAME HERE"
-              site_path=""
-              HH_path=""
-              decoder="everleaf_decode_table"
-              converter="BossToFpdb"
-              supported_games="holdem">
-            <layout fav_seat="0" height="547" max="8" width="794">
-                <location seat="1" x="640" y="64">  </location>
-                <location seat="2" x="650" y="230"> </location>
-                <location seat="3" x="650" y="385"> </location>
-                <location seat="4" x="588" y="425"> </location>
-                <location seat="5" x="92" y="425"> </location>
-                <location seat="6" x="0" y="373"> </location>
-                <location seat="7" x="0" y="223"> </location>
-                <location seat="8" x="25" y="50">  </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="6" width="794">
-                <location seat="1" x="640" y="58"> </location>
-                <location seat="2" x="654" y="288"> </location>
-                <location seat="3" x="615" y="424"> </location>
-                <location seat="4" x="70" y="421"> </location>
-                <location seat="5" x="0" y="280"> </location>
-                <location seat="6" x="70" y="58"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="2" width="794">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10"  y="288"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="9" width="794">
-                <location seat="1" x="634" y="38">  </location>
-                <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="667" y="321"> </location>
-                <location seat="4" x="667" y="445"> </location>
-                <location seat="5" x="337" y="459"> </location>
-                <location seat="6" x="0" y="400"> </location>
-                <location seat="7" x="0" y="322"> </location>
-                <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="70" y="53">  </location>
-            </layout>
-            <layout max="10" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="586" y="393"> </location>
-                <location seat="5" x="421" y="440"> </location>
-                <location seat="6" x="267" y="440"> </location>
-                <location seat="7" x="0"   y="361"> </location>
-                <location seat="8" x="0"   y="280">  </location>
-                <location seat="9" x="121" y="280">  </location>
-                <location seat="10" x="46"  y="30">  </location>
-            </layout>
+        <site site_name="Boss"
+                enabled="False"
+                screen_name="YOUR SCREEN NAME HERE"
+                site_path=""
+                HH_path=""
+                converter="BossToFpdb"
+                hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
+            <fav max="2" fav_seat="0"> </fav>
+            <fav max="4" fav_seat="0"> </fav>
+            <fav max="6" fav_seat="0"> </fav>
+            <fav max="7" fav_seat="0"> </fav>
+            <fav max="8" fav_seat="0"> </fav>
+            <fav max="9" fav_seat="0"> </fav>
+            <fav max="10" fav_seat="0"> </fav>
         </site>
 
-        <site enabled="True"
-              site_name="Absolute"
-              table_finder="AbsolutePoker.exe"
-              screen_name="YOUR SCREEN NAME HERE"
-              site_path=""
-              HH_path=""
-              decoder="everleaf_decode_table"
-              converter="AbsoluteToFpdb"
-              supported_games="holdem">
-            <layout fav_seat="0" height="547" max="8" width="794">
-                <location seat="1" x="640" y="64">  </location>
-                <location seat="2" x="650" y="230"> </location>
-                <location seat="3" x="650" y="385"> </location>
-                <location seat="4" x="588" y="425"> </location>
-                <location seat="5" x="92" y="425"> </location>
-                <location seat="6" x="0" y="373"> </location>
-                <location seat="7" x="0" y="223"> </location>
-                <location seat="8" x="25" y="50">  </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="6" width="794">
-                <location seat="1" x="640" y="58"> </location>
-                <location seat="2" x="654" y="288"> </location>
-                <location seat="3" x="615" y="424"> </location>
-                <location seat="4" x="70" y="421"> </location>
-                <location seat="5" x="0" y="280"> </location>
-                <location seat="6" x="70" y="58"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="2" width="794">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10"  y="288"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="9" width="794">
-                <location seat="1" x="634" y="38">  </location>
-                <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="667" y="321"> </location>
-                <location seat="4" x="667" y="445"> </location>
-                <location seat="5" x="337" y="459"> </location>
-                <location seat="6" x="0" y="400"> </location>
-                <location seat="7" x="0" y="322"> </location>
-                <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="70" y="53">  </location>
-            </layout>
-            <layout max="10" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="586" y="393"> </location>
-                <location seat="5" x="421" y="440"> </location>
-                <location seat="6" x="267" y="440"> </location>
-                <location seat="7" x="0"   y="361"> </location>
-                <location seat="8" x="0"   y="280">  </location>
-                <location seat="9" x="121" y="280">  </location>
-                <location seat="10" x="46"  y="30">  </location>
-            </layout>
+        <site site_name="Absolute" 
+                enabled="False"
+                screen_name="YOUR SCREEN NAME HERE"
+                site_path=""
+                HH_path=""
+                converter="AbsoluteToFpdb"
+                hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
+            <fav max="2" fav_seat="0"> </fav>
+            <fav max="4" fav_seat="0"> </fav>
+            <fav max="6" fav_seat="0"> </fav>
+            <fav max="7" fav_seat="0"> </fav>
+            <fav max="8" fav_seat="0"> </fav>
+            <fav max="9" fav_seat="0"> </fav>
+            <fav max="10" fav_seat="0"> </fav>
         </site>
 
-        <site enabled="True"
-              site_name="PartyPoker"
-              table_finder="PartyGaming.exe"
-              screen_name="YOUR SCREEN NAME HERE"
-              site_path="C:/Program Files/PartyGaming/PartyPoker"
-              HH_path="C:/Program Files/PartyGaming/PartyPoker/HandHistory/YOUR SCREEN NAME HERE/"
-              decoder="everleaf_decode_table"
-              converter="PartyPokerToFpdb"
-              bgcolor="#000000"
-              fgcolor="#FFFFFF"
-              hudopacity="1.0"
-              font="Sans"
-              font_size="8"
-              supported_games="holdem">
-            <layout fav_seat="0" height="547" max="8" width="794">
-                <location seat="1" x="640" y="64">  </location>
-                <location seat="2" x="650" y="230"> </location>
-                <location seat="3" x="650" y="385"> </location>
-                <location seat="4" x="588" y="425"> </location>
-                <location seat="5" x="92" y="425"> </location>
-                <location seat="6" x="0" y="373"> </location>
-                <location seat="7" x="0" y="223"> </location>
-                <location seat="8" x="25" y="50">  </location>
-            </layout>
-            <layout fav_seat="2" height="547" max="6" width="794">
-                <location seat="1" x="640" y="58"> </location>
-                <location seat="2" x="654" y="288"> </location>
-                <location seat="3" x="615" y="424"> </location>
-                <location seat="4" x="70" y="421"> </location>
-                <location seat="5" x="0" y="280"> </location>
-                <location seat="6" x="70" y="58"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="2" width="794">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10"  y="288"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="9" width="794">
-                <location seat="1" x="634" y="38">  </location>
-                <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="667" y="321"> </location>
-                <location seat="4" x="667" y="445"> </location>
-                <location seat="5" x="337" y="459"> </location>
-                <location seat="6" x="0" y="400"> </location>
-                <location seat="7" x="0" y="322"> </location>
-                <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="70" y="53">  </location>
-            </layout>
-            <layout fav_seat="4" height="547" max="10" width="794">
-                <location seat="1" x="698" y="69">  </location>
-                <location seat="2" x="716" y="243"> </location>
-                <location seat="3" x="699" y="301"> </location>
-                <location seat="4" x="456" y="391"> </location>
-                <location seat="5" x="338" y="369"> </location>
-                <location seat="6" x="98" y="363"> </location>
-                <location seat="7" x="15" y="242"> </location>
-                <location seat="8" x="11" y="55">  </location>
-                <location seat="9" x="341" y="30">  </location>
-                <location seat="10" x="562" y="8">  </location>
-            </layout>
+        <site site_name="PartyPoker"
+                enabled="False"
+                screen_name="YOUR SCREEN NAME HERE"
+                site_path="C:/Program Files/PartyGaming/PartyPoker"
+                HH_path="C:/Program Files/PartyGaming/PartyPoker/HandHistory/YOUR SCREEN NAME HERE/"
+                converter="PartyPokerToFpdb"
+                hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
+            <fav max="2" fav_seat="0"> </fav>
+            <fav max="4" fav_seat="0"> </fav>
+            <fav max="6" fav_seat="0"> </fav>
+            <fav max="7" fav_seat="0"> </fav>
+            <fav max="8" fav_seat="0"> </fav>
+            <fav max="9" fav_seat="0"> </fav>
+            <fav max="10" fav_seat="0"> </fav>
         </site>
 
-        <site HH_path="C:/Program Files/Carbon Poker/HandHistory/YOUR SCREEN NAME HERE/" converter="CarbonToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="Carbon" site_path="C:/Program Files/Carbin/" supported_games="holdem" table_finder="Carbon Poker.exe">
-            <layout fav_seat="0" height="547" max="8" width="794">
-                <location seat="1" x="640" y="64">  </location>
-                <location seat="2" x="650" y="230"> </location>
-                <location seat="3" x="650" y="385"> </location>
-                <location seat="4" x="588" y="425"> </location>
-                <location seat="5" x="92" y="425"> </location>
-                <location seat="6" x="0" y="373"> </location>
-                <location seat="7" x="0" y="223"> </location>
-                <location seat="8" x="25" y="50">  </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="6" width="794">
-                <location seat="1" x="640" y="58"> </location>
-                <location seat="2" x="654" y="288"> </location>
-                <location seat="3" x="615" y="424"> </location>
-                <location seat="4" x="70" y="421"> </location>
-                <location seat="5" x="0" y="280"> </location>
-                <location seat="6" x="70" y="58"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="2" width="794">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10" y="288"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="9" width="794">
-                <location seat="1" x="634" y="38">  </location>
-                <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="667" y="321"> </location>
-                <location seat="4" x="667" y="445"> </location>
-                <location seat="5" x="337" y="459"> </location>
-                <location seat="6" x="0" y="400"> </location>
-                <location seat="7" x="0" y="322"> </location>
-                <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="70" y="53">  </location>
-            </layout>
-            <layout max="10" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="586" y="393"> </location>
-                <location seat="5" x="421" y="440"> </location>
-                <location seat="6" x="267" y="440"> </location>
-                <location seat="7" x="0"   y="361"> </location>
-                <location seat="8" x="0"   y="280">  </location>
-                <location seat="9" x="121" y="280">  </location>
-                <location seat="10" x="46"  y="30">  </location>
-            </layout>
+        <site site_name="Merge"
+                enabled="False" 
+                HH_path="C:/Program Files/Carbon Poker/HandHistory/YOUR SCREEN NAME HERE/" 
+                converter="MergeToFpdb"
+                screen_name="YOUR SCREEN NAME HERE" 
+                site_path="C:/Program Files/Merge/"
+                hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
+            <fav max="2" fav_seat="0"> </fav>
+            <fav max="4" fav_seat="0"> </fav>
+            <fav max="6" fav_seat="0"> </fav>
+            <fav max="7" fav_seat="0"> </fav>
+            <fav max="8" fav_seat="0"> </fav>
+            <fav max="9" fav_seat="0"> </fav>
+            <fav max="10" fav_seat="0"> </fav>
         </site>
 
-        <site HH_path="C:/Program Files/OnGame Sking/HandHistory/YOUR SCREEN NAME HERE/" converter="OnGameToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="OnGame" site_path="C:/Program Files/OnGame/" supported_games="holdem" table_finder="OnGame.exe">
-            <layout fav_seat="0" height="547" max="8" width="794">
-                <location seat="1" x="640" y="64">  </location>
-                <location seat="2" x="650" y="230"> </location>
-                <location seat="3" x="650" y="385"> </location>
-                <location seat="4" x="588" y="425"> </location>
-                <location seat="5" x="92" y="425"> </location>
-                <location seat="6" x="0" y="373"> </location>
-                <location seat="7" x="0" y="223"> </location>
-                <location seat="8" x="25" y="50">  </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="6" width="794">
-                <location seat="1" x="640" y="58"> </location>
-                <location seat="2" x="654" y="288"> </location>
-                <location seat="3" x="615" y="424"> </location>
-                <location seat="4" x="70" y="421"> </location>
-                <location seat="5" x="0" y="280"> </location>
-                <location seat="6" x="70" y="58"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="2" width="794">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10" y="288"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="9" width="794">
-                <location seat="1" x="634" y="38">  </location>
-                <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="667" y="321"> </location>
-                <location seat="4" x="667" y="445"> </location>
-                <location seat="5" x="337" y="459"> </location>
-                <location seat="6" x="0" y="400"> </location>
-                <location seat="7" x="0" y="322"> </location>
-                <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="70" y="53">  </location>
-            </layout>
-            <layout max="10" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="586" y="393"> </location>
-                <location seat="5" x="421" y="440"> </location>
-                <location seat="6" x="267" y="440"> </location>
-                <location seat="7" x="0"   y="361"> </location>
-                <location seat="8" x="0"   y="280">  </location>
-                <location seat="9" x="121" y="280">  </location>
-                <location seat="10" x="46"  y="30">  </location>
-            </layout>
+        <site site_name="OnGame"
+                enabled="False"
+                HH_path="C:/Program Files/OnGame Sking/HandHistory/YOUR SCREEN NAME HERE/" 
+                converter="OnGameToFpdb" 
+                screen_name="YOUR SCREEN NAME HERE" 
+                site_path="C:/Program Files/OnGame/"
+                hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
+            <fav max="2" fav_seat="0"> </fav>
+            <fav max="4" fav_seat="0"> </fav>
+            <fav max="6" fav_seat="0"> </fav>
+            <fav max="7" fav_seat="0"> </fav>
+            <fav max="8" fav_seat="0"> </fav>
+            <fav max="9" fav_seat="0"> </fav>
+            <fav max="10" fav_seat="0"> </fav>
         </site>
 
-        <site HH_path="C:/Program Files/PKR/HandHistory/YOUR SCREEN NAME HERE/" converter="PkrToFpdb" decoder="everleaf_decode_table" enabled="False" screen_name="YOUR SCREEN NAME HERE" site_name="PKR" site_path="C:/Program Files/PKR/" supported_games="holdem" table_finder="PKR.exe">
-            <layout fav_seat="0" height="547" max="8" width="794">
-                <location seat="1" x="640" y="64">  </location>
-                <location seat="2" x="650" y="230"> </location>
-                <location seat="3" x="650" y="385"> </location>
-                <location seat="4" x="588" y="425"> </location>
-                <location seat="5" x="92" y="425"> </location>
-                <location seat="6" x="0" y="373"> </location>
-                <location seat="7" x="0" y="223"> </location>
-                <location seat="8" x="25" y="50">  </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="6" width="794">
-                <location seat="1" x="640" y="58"> </location>
-                <location seat="2" x="654" y="288"> </location>
-                <location seat="3" x="615" y="424"> </location>
-                <location seat="4" x="70" y="421"> </location>
-                <location seat="5" x="0" y="280"> </location>
-                <location seat="6" x="70" y="58"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="2" width="794">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10" y="288"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="9" width="794">
-                <location seat="1" x="634" y="38">  </location>
-                <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="667" y="321"> </location>
-                <location seat="4" x="667" y="445"> </location>
-                <location seat="5" x="337" y="459"> </location>
-                <location seat="6" x="0" y="400"> </location>
-                <location seat="7" x="0" y="322"> </location>
-                <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="70" y="53">  </location>
-            </layout>
-            <layout max="10" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="586" y="393"> </location>
-                <location seat="5" x="421" y="440"> </location>
-                <location seat="6" x="267" y="440"> </location>
-                <location seat="7" x="0"   y="361"> </location>
-                <location seat="8" x="0"   y="280">  </location>
-                <location seat="9" x="121" y="280">  </location>
-                <location seat="10" x="46"  y="30">  </location>
-            </layout>
+        <site site_name="PKR"
+                enabled="False"
+                HH_path="C:/Program Files/PKR/HandHistory/YOUR SCREEN NAME HERE/" 
+                converter="PkrToFpdb" 
+                screen_name="YOUR SCREEN NAME HERE" 
+                site_path="C:/Program Files/PKR/"
+                hud_enabled="False" hud_menu_xshift="0" hud_menu_yshift="0">
+            <fav max="2" fav_seat="0"> </fav>
+            <fav max="4" fav_seat="0"> </fav>
+            <fav max="6" fav_seat="0"> </fav>
+            <fav max="7" fav_seat="0"> </fav>
+            <fav max="8" fav_seat="0"> </fav>
+            <fav max="9" fav_seat="0"> </fav>
+            <fav max="10" fav_seat="0"> </fav>
         </site>
 
-        <site HH_path="C:/Program Files/Winamax/HandHistory/YOUR SCREEN NAME HERE/" converter="WinamaxToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="Winamax" site_path="C:/Program Files/Winamax/" supported_games="holdem" table_finder="Winamax.exe">
-            <layout fav_seat="0" height="547" max="8" width="794">
-                <location seat="1" x="640" y="64">  </location>
-                <location seat="2" x="650" y="230"> </location>
-                <location seat="3" x="650" y="385"> </location>
-                <location seat="4" x="588" y="425"> </location>
-                <location seat="5" x="92" y="425"> </location>
-                <location seat="6" x="0" y="373"> </location>
-                <location seat="7" x="0" y="223"> </location>
-                <location seat="8" x="25" y="50">  </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="6" width="794">
-                <location seat="1" x="640" y="58"> </location>
-                <location seat="2" x="654" y="288"> </location>
-                <location seat="3" x="615" y="424"> </location>
-                <location seat="4" x="70" y="421"> </location>
-                <location seat="5" x="0" y="280"> </location>
-                <location seat="6" x="70" y="58"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="2" width="794">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10" y="288"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="9" width="794">
-                <location seat="1" x="634" y="38">  </location>
-                <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="667" y="321"> </location>
-                <location seat="4" x="667" y="445"> </location>
-                <location seat="5" x="337" y="459"> </location>
-                <location seat="6" x="0" y="400"> </location>
-                <location seat="7" x="0" y="322"> </location>
-                <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="70" y="53">  </location>
-            </layout>
-            <layout max="10" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="586" y="393"> </location>
-                <location seat="5" x="421" y="440"> </location>
-                <location seat="6" x="267" y="440"> </location>
-                <location seat="7" x="0"   y="361"> </location>
-                <location seat="8" x="0"   y="280">  </location>
-                <location seat="9" x="121" y="280">  </location>
-                <location seat="10" x="46"  y="30">  </location>
-            </layout>
+        <site site_name="Winamax"
+                enabled="False" 
+                HH_path="C:/Program Files/Winamax/HandHistory/YOUR SCREEN NAME HERE/" 
+                converter="WinamaxToFpdb" 
+                screen_name="YOUR SCREEN NAME HERE" 
+                site_path="C:/Program Files/Winamax/"
+                hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
+            <fav max="2" fav_seat="0"> </fav>
+            <fav max="4" fav_seat="0"> </fav>
+            <fav max="6" fav_seat="0"> </fav>
+            <fav max="7" fav_seat="0"> </fav>
+            <fav max="8" fav_seat="0"> </fav>
+            <fav max="9" fav_seat="0"> </fav>
+            <fav max="10" fav_seat="0"> </fav>
         </site>
 
-        <site HH_path="C:/Program Files/Everest/HandHistory/YOUR SCREEN NAME HERE/" converter="EverestToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="Everest" site_path="C:/Program Files/Everest/" supported_games="holdem" table_finder="Everest.exe">
-            <layout fav_seat="0" height="547" max="8" width="794">
-                <location seat="1" x="640" y="64">  </location>
-                <location seat="2" x="650" y="230"> </location>
-                <location seat="3" x="650" y="385"> </location>
-                <location seat="4" x="588" y="425"> </location>
-                <location seat="5" x="92" y="425"> </location>
-                <location seat="6" x="0" y="373"> </location>
-                <location seat="7" x="0" y="223"> </location>
-                <location seat="8" x="25" y="50">  </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="6" width="794">
-                <location seat="1" x="640" y="58"> </location>
-                <location seat="2" x="654" y="288"> </location>
-                <location seat="3" x="615" y="424"> </location>
-                <location seat="4" x="70" y="421"> </location>
-                <location seat="5" x="0" y="280"> </location>
-                <location seat="6" x="70" y="58"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="2" width="794">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10" y="288"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="9" width="794">
-                <location seat="1" x="634" y="38">  </location>
-                <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="667" y="321"> </location>
-                <location seat="4" x="667" y="445"> </location>
-                <location seat="5" x="337" y="459"> </location>
-                <location seat="6" x="0" y="400"> </location>
-                <location seat="7" x="0" y="322"> </location>
-                <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="70" y="53">  </location>
-            </layout>
-            <layout max="10" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="586" y="393"> </location>
-                <location seat="5" x="421" y="440"> </location>
-                <location seat="6" x="267" y="440"> </location>
-                <location seat="7" x="0"   y="361"> </location>
-                <location seat="8" x="0"   y="280">  </location>
-                <location seat="9" x="121" y="280">  </location>
-                <location seat="10" x="46"  y="30">  </location>
-            </layout>
+        <site site_name="Everest"
+                enabled="False" 
+                HH_path="C:/Program Files/Everest/HandHistory/YOUR SCREEN NAME HERE/" 
+                converter="EverestToFpdb" 
+                screen_name="YOUR SCREEN NAME HERE" 
+                site_path="C:/Program Files/Everest/"
+                hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
+            <fav max="2" fav_seat="0"> </fav>
+            <fav max="4" fav_seat="0"> </fav>
+            <fav max="6" fav_seat="0"> </fav>
+            <fav max="7" fav_seat="0"> </fav>
+            <fav max="8" fav_seat="0"> </fav>
+            <fav max="9" fav_seat="0"> </fav>
+            <fav max="10" fav_seat="0"> </fav>
         </site>
 
-        <site HH_path="C:/Program Files/PacificPoker/HandHistory/YOUR SCREEN NAME HERE/" converter="PacificPokerToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="PacificPoker" site_path="C:/Program Files/PacificPoker/" supported_games="holdem" table_finder="PacificPoker.exe">
-            <layout fav_seat="0" height="547" max="8" width="794">
-                <location seat="1" x="640" y="64">  </location>
-                <location seat="2" x="650" y="230"> </location>
-                <location seat="3" x="650" y="385"> </location>
-                <location seat="4" x="588" y="425"> </location>
-                <location seat="5" x="92" y="425"> </location>
-                <location seat="6" x="0" y="373"> </location>
-                <location seat="7" x="0" y="223"> </location>
-                <location seat="8" x="25" y="50">  </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="6" width="794">
-                <location seat="1" x="640" y="58"> </location>
-                <location seat="2" x="654" y="288"> </location>
-                <location seat="3" x="615" y="424"> </location>
-                <location seat="4" x="70" y="421"> </location>
-                <location seat="5" x="0" y="280"> </location>
-                <location seat="6" x="70" y="58"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="2" width="794">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10" y="288"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="9" width="794">
-                <location seat="1" x="634" y="38">  </location>
-                <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="667" y="321"> </location>
-                <location seat="4" x="667" y="445"> </location>
-                <location seat="5" x="337" y="459"> </location>
-                <location seat="6" x="0" y="400"> </location>
-                <location seat="7" x="0" y="322"> </location>
-                <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="70" y="53">  </location>
-            </layout>
-            <layout max="10" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="586" y="393"> </location>
-                <location seat="5" x="421" y="440"> </location>
-                <location seat="6" x="267" y="440"> </location>
-                <location seat="7" x="0"   y="361"> </location>
-                <location seat="8" x="0"   y="280">  </location>
-                <location seat="9" x="121" y="280">  </location>
-                <location seat="10" x="46"  y="30">  </location>
-            </layout>
+        <site site_name="PacificPoker"
+                enabled="False"
+                HH_path="C:/Program Files/PacificPoker/HandHistory/YOUR SCREEN NAME HERE/" 
+                converter="PacificPokerToFpdb" 
+                screen_name="YOUR SCREEN NAME HERE" 
+                site_path="C:/Program Files/PacificPoker/"
+                hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
+            <fav max="2" fav_seat="0"> </fav>
+            <fav max="4" fav_seat="0"> </fav>
+            <fav max="6" fav_seat="0"> </fav>
+            <fav max="7" fav_seat="0"> </fav>
+            <fav max="8" fav_seat="0"> </fav>
+            <fav max="9" fav_seat="0"> </fav>
+            <fav max="10" fav_seat="0"> </fav>
         </site>
 
-        <site HH_path="C:/Program Files/Cake/HandHistory/YOUR SCREEN NAME HERE/" converter="CakeToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="Cake" site_path="C:/Program Files/Cake/" supported_games="holdem" table_finder="Cake.exe">
-            <layout fav_seat="0" height="547" max="8" width="794">
-                <location seat="1" x="640" y="64">  </location>
-                <location seat="2" x="650" y="230"> </location>
-                <location seat="3" x="650" y="385"> </location>
-                <location seat="4" x="588" y="425"> </location>
-                <location seat="5" x="92" y="425"> </location>
-                <location seat="6" x="0" y="373"> </location>
-                <location seat="7" x="0" y="223"> </location>
-                <location seat="8" x="25" y="50">  </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="6" width="794">
-                <location seat="1" x="640" y="58"> </location>
-                <location seat="2" x="654" y="288"> </location>
-                <location seat="3" x="615" y="424"> </location>
-                <location seat="4" x="70" y="421"> </location>
-                <location seat="5" x="0" y="280"> </location>
-                <location seat="6" x="70" y="58"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="2" width="794">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10" y="288"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="9" width="794">
-                <location seat="1" x="634" y="38">  </location>
-                <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="667" y="321"> </location>
-                <location seat="4" x="667" y="445"> </location>
-                <location seat="5" x="337" y="459"> </location>
-                <location seat="6" x="0" y="400"> </location>
-                <location seat="7" x="0" y="322"> </location>
-                <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="70" y="53">  </location>
-            </layout>
-            <layout max="10" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="586" y="393"> </location>
-                <location seat="5" x="421" y="440"> </location>
-                <location seat="6" x="267" y="440"> </location>
-                <location seat="7" x="0"   y="361"> </location>
-                <location seat="8" x="0"   y="280">  </location>
-                <location seat="9" x="121" y="280">  </location>
-                <location seat="10" x="46"  y="30">  </location>
-            </layout>
+        <site site_name="Cake"
+                enabled="False" 
+                HH_path="C:/Program Files/Cake/HandHistory/YOUR SCREEN NAME HERE/" 
+                converter="CakeToFpdb"
+                screen_name="YOUR SCREEN NAME HERE" 
+                site_path="C:/Program Files/Cake/"
+                hud_enabled="False" hud_menu_xshift="0" hud_menu_yshift="0">
+            <fav max="2" fav_seat="0"> </fav>
+            <fav max="4" fav_seat="0"> </fav>
+            <fav max="6" fav_seat="0"> </fav>
+            <fav max="7" fav_seat="0"> </fav>
+            <fav max="8" fav_seat="0"> </fav>
+            <fav max="9" fav_seat="0"> </fav>
+            <fav max="10" fav_seat="0"> </fav>
         </site>
 
-        <site HH_path="C:/Program Files/Entraction/HandHistory/YOUR SCREEN NAME HERE/" converter="EntractionToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="Entraction" site_path="C:/Program Files/Entraction/" supported_games="holdem" table_finder="Entraction.exe">
-            <layout fav_seat="0" height="547" max="8" width="794">
-                <location seat="1" x="640" y="64">  </location>
-                <location seat="2" x="650" y="230"> </location>
-                <location seat="3" x="650" y="385"> </location>
-                <location seat="4" x="588" y="425"> </location>
-                <location seat="5" x="92" y="425"> </location>
-                <location seat="6" x="0" y="373"> </location>
-                <location seat="7" x="0" y="223"> </location>
-                <location seat="8" x="25" y="50">  </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="6" width="794">
-                <location seat="1" x="640" y="58"> </location>
-                <location seat="2" x="654" y="288"> </location>
-                <location seat="3" x="615" y="424"> </location>
-                <location seat="4" x="70" y="421"> </location>
-                <location seat="5" x="0" y="280"> </location>
-                <location seat="6" x="70" y="58"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="2" width="794">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10" y="288"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="9" width="794">
-                <location seat="1" x="634" y="38">  </location>
-                <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="667" y="321"> </location>
-                <location seat="4" x="667" y="445"> </location>
-                <location seat="5" x="337" y="459"> </location>
-                <location seat="6" x="0" y="400"> </location>
-                <location seat="7" x="0" y="322"> </location>
-                <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="70" y="53">  </location>
-            </layout>
-            <layout max="10" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="586" y="393"> </location>
-                <location seat="5" x="421" y="440"> </location>
-                <location seat="6" x="267" y="440"> </location>
-                <location seat="7" x="0"   y="361"> </location>
-                <location seat="8" x="0"   y="280">  </location>
-                <location seat="9" x="121" y="280">  </location>
-                <location seat="10" x="46"  y="30">  </location>
-            </layout>
+        <site site_name="Entraction" 
+                enabled="False" 
+                HH_path="C:/Program Files/Entraction/HandHistory/YOUR SCREEN NAME HERE/" 
+                converter="EntractionToFpdb" 
+                screen_name="YOUR SCREEN NAME HERE" 
+                site_path="C:/Program Files/Entraction/"
+                hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
+            <fav max="2" fav_seat="0"> </fav>
+            <fav max="4" fav_seat="0"> </fav>
+            <fav max="6" fav_seat="0"> </fav>
+            <fav max="7" fav_seat="0"> </fav>
+            <fav max="8" fav_seat="0"> </fav>
+            <fav max="9" fav_seat="0"> </fav>
+            <fav max="10" fav_seat="0"> </fav>
         </site>
 
-        <site HH_path="C:/Program Files/iPoker/HandHistory/YOUR SCREEN NAME HERE/" converter="iPokerToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="iPoker" site_path="C:/Program Files/iPoker/" supported_games="holdem" table_finder="iPoker.exe">
-            <layout fav_seat="0" height="547" max="8" width="794">
-                <location seat="1" x="640" y="64">  </location>
-                <location seat="2" x="650" y="230"> </location>
-                <location seat="3" x="650" y="385"> </location>
-                <location seat="4" x="588" y="425"> </location>
-                <location seat="5" x="92" y="425"> </location>
-                <location seat="6" x="0" y="373"> </location>
-                <location seat="7" x="0" y="223"> </location>
-                <location seat="8" x="25" y="50">  </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="6" width="794">
-                <location seat="1" x="640" y="58"> </location>
-                <location seat="2" x="654" y="288"> </location>
-                <location seat="3" x="615" y="424"> </location>
-                <location seat="4" x="70" y="421"> </location>
-                <location seat="5" x="0" y="280"> </location>
-                <location seat="6" x="70" y="58"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="2" width="794">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10" y="288"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="9" width="794">
-                <location seat="1" x="634" y="38">  </location>
-                <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="667" y="321"> </location>
-                <location seat="4" x="667" y="445"> </location>
-                <location seat="5" x="337" y="459"> </location>
-                <location seat="6" x="0" y="400"> </location>
-                <location seat="7" x="0" y="322"> </location>
-                <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="70" y="53">  </location>
-            </layout>
-            <layout max="10" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="586" y="393"> </location>
-                <location seat="5" x="421" y="440"> </location>
-                <location seat="6" x="267" y="440"> </location>
-                <location seat="7" x="0"   y="361"> </location>
-                <location seat="8" x="0"   y="280">  </location>
-                <location seat="9" x="121" y="280">  </location>
-                <location seat="10" x="46"  y="30">  </location>
-            </layout>
+        <site site_name="iPoker" 
+                enabled="False" 
+                HH_path="C:/Program Files/iPoker/HandHistory/YOUR SCREEN NAME HERE/" 
+                converter="iPokerToFpdb" 
+                screen_name="YOUR SCREEN NAME HERE" 
+                site_path="C:/Program Files/iPoker/"
+                hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
+            <fav max="2" fav_seat="0"> </fav>
+            <fav max="4" fav_seat="0"> </fav>
+            <fav max="6" fav_seat="0"> </fav>
+            <fav max="7" fav_seat="0"> </fav>
+            <fav max="8" fav_seat="0"> </fav>
+            <fav max="9" fav_seat="0"> </fav>
+            <fav max="10" fav_seat="0"> </fav>
         </site>
         
-        <site enabled="True"
-              site_name="BetOnline"
-              table_finder="BetOnline.exe"
-              screen_name="Hero"
-              site_path="C:/Program Files/BetOnline/"
-              HH_path="C:/Program Files/BetOnline/HandHistory/Hero/"
-              decoder="betonline_decode_table"
-              converter="BetOnlineToFpdb"
-              bgcolor="#000000"
-              fgcolor="#FFFFFF"
-              hudopacity="1.0"
-              font="Sans"
-              font_size="8"
-              xpad="1"
-              ypad="0"
-              xshift="0"
-              yshift="0"
-              supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
+        <site site_name="BetOnline"
+                enabled="False"
+                screen_name="Hero"
+                site_path="C:/Program Files/BetOnline/"
+                HH_path="C:/Program Files/BetOnline/HandHistory/Hero/"
+                converter="BetOnlineToFpdb"
+                hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
             <email fetchType="request-summary" host="YOUR_EMAIL_SERVER" username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD" useSsl="True" folder="INBOX"/>
-            <layout max="8" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="525" y="402"> </location>
-                <location seat="5" x="259" y="402"> </location>
-                <location seat="6" x="0"   y="348"> </location>
-                <location seat="7" x="0"   y="240"> </location>
-                <location seat="8" x="0"   y="35">  </location>
-            </layout>
-            <layout max="6" width="792" height="546" fav_seat="0">
-                <location seat="1" x="681" y="119"> </location>
-                <location seat="2" x="681" y="301"> </location>
-                <location seat="3" x="487" y="369"> </location>
-                <location seat="4" x="226" y="369"> </location>
-                <location seat="5" x="0"   y="301"> </location>
-                <location seat="6" x="0"   y="119"> </location>
-            </layout>
-            <layout max="10" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="586" y="393"> </location>
-                <location seat="5" x="421" y="440"> </location>
-                <location seat="6" x="267" y="440"> </location>
-                <location seat="7" x="0"   y="361"> </location>
-                <location seat="8" x="0"   y="280">  </location>
-                <location seat="9" x="121" y="280">  </location>
-                <location seat="10" x="46"  y="30">  </location>
-            </layout>
-            <layout max="9" width="792" height="546" fav_seat="0">
-                <location seat="1" x="560" y="0">  </location>
-                <location seat="2" x="679" y="123"> </location>
-                <location seat="3" x="688" y="309"> </location>
-                <location seat="4" x="483" y="370"> </location>
-                <location seat="5" x="444" y="413"> </location>
-                <location seat="6" x="224" y="372"> </location>
-                <location seat="7" x="0"   y="307"> </location>
-                <location seat="8" x="0"   y="121">  </location>
-                <location seat="9" x="140" y="0">  </location>
-            </layout>
-            <layout fav_seat="0" height="546" max="2" width="792">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10"  y="288"> </location>
-            </layout>
+            <fav max="2" fav_seat="0"> </fav>
+            <fav max="4" fav_seat="0"> </fav>
+            <fav max="6" fav_seat="0"> </fav>
+            <fav max="7" fav_seat="0"> </fav>
+            <fav max="8" fav_seat="0"> </fav>
+            <fav max="9" fav_seat="0"> </fav>
+            <fav max="10" fav_seat="0"> </fav>
         </site>
     </supported_sites>
 
     <supported_games>
-        <!-- holdem
-
-             vpip  pfr          three_B
-             n     playershort  cb1
-             wtsd  steal        totalprofit
-
-          -->
-        <game aux="mucked, Classic_HUD" cols="3" db="fpdb" game_name="holdem" rows="3">
-            <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" stat_loth="25" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" stat_loth="20" stat_locolor ="#408000" stat_hith="35" stat_hicolor ="#F05000" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="0" stat_name="three_B" stat_loth="4" stat_locolor ="#408000" stat_hith="13" stat_hicolor ="#F05000" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="1" stat_name="playershort" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="cb1" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="wtsd" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="steal" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="2" stat_name="totalprofit" stat_loth="0" stat_locolor ="#F05000" stat_hith="0" stat_hicolor ="#408000" tip="tip1"> </stat>
+        <game game_name="holdem" aux="mucked, Classic_HUD">
+            <game_stat_set game_type="tournament" stat_set ="holdem tourney"></game_stat_set>
+            <game_stat_set game_type="cash" stat_set ="holdem cash"></game_stat_set>
         </game>
-
-        <!-- razz
-
-             playershort  n
-             vpip         pfr
-             saw_f        ffreq1
-
-          -->
-        <game aux="stud_mucked, Simple_HUD" cols="2" db="fpdb" game_name="razz" rows="3">
-            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
+        <game game_name="razz" aux="stud_mucked, Classic_HUD">
+            <game_stats game_type="all" stat_set ="stud default"></game_stats>
         </game>
-
-        <!-- omahahi
-
-             playershort  n
-             vpip         pfr
-             saw_f        ffreq1
-
-          -->
-        <game aux="mucked, Simple_HUD" cols="2" db="fpdb" game_name="omahahi" rows="3">
-            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
-        </game>
-
-        <!-- omahahilo
-
-             playershort  n
-             vpip         pfr
-             saw_f        ffreq1
-
-          -->
-        <game aux="mucked, Simple_HUD" cols="2" db="fpdb" game_name="omahahilo" rows="3">
-            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
-        </game>
-
-        <!-- studhi
-
-             playershort  n
-             vpip         pfr
-             saw_f        ffreq1
-
-          -->
-        <game aux="stud_mucked, Simple_HUD" cols="2" db="fpdb" game_name="studhi" rows="3">
-            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
-        </game>
-
-        <!-- studhilo
-
-             playershort  n
-             vpip         pfr
-             saw_f        ffreq1
-
-          -->
-        <game aux="stud_mucked, Simple_HUD" cols="2" db="fpdb" game_name="studhilo" rows="3">
-            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
-        </game>
-
-        <!-- 27_3draw
-
-             vpip  pfr   ffreq1
-             n     wtsd  wmsd
-
-          -->
-        <game aux="mucked, Simple_HUD" cols="3" db="fpdb" game_name="27_3draw" rows="2">
-            <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
-        </game>
-
-        <!-- 27_1draw
-
-             vpip  pfr   ffreq1
-             n     wtsd  wmsd
-
-          -->
-        <game aux="mucked, Simple_HUD" cols="3" db="fpdb" game_name="27_1draw" rows="2">
-            <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
-        </game>
-
-        <!-- badugi
-
-             vpip  pfr   ffreq1
-             n     wtsd  wmsd
-
-          -->
-        <game aux="mucked, Simple_HUD" cols="3" db="fpdb" game_name="badugi" rows="2">
-            <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
-        </game>
-
-        <!-- fivedraw
-
-             vpip  pfr   ffreq1
-             n     wtsd  wmsd
-
-          -->
-        <game aux="mucked, Simple_HUD" cols="3" db="fpdb" game_name="fivedraw" rows="2">
-            <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
-        </game>
+        <game game_name="omahahi" game_type="all" aux="mucked, Simple_HUD"> </game>
+        <game game_name="omahahilo" game_type="all" aux="mucked, Simple_HUD"> </game>
+        <game game_name="studhi" game_type="all" aux="stud_mucked, Simple_HUD"> </game>
+        <game game_name="studhilo" game_type="all" aux="stud_mucked, Simple_HUD"> </game>
+        <game game_name="27_3draw" game_type="all" aux="mucked, Simple_HUD"> </game>
+        <game game_name="27_1draw" game_type="all" aux="mucked, Simple_HUD"> </game>
+        <game game_name="badugi" game_type="all" aux="mucked, Simple_HUD"></game>
+        <game game_name="fivedraw" game_type="all" aux="mucked, Simple_HUD"> </game>
     </supported_games>
 
     <popup_windows>
@@ -1215,129 +467,104 @@ Left-Drag to Move"
 
     <aux_windows>
         <!--
-        Choose mucked card size (between 21 and 84 pixels high)
-            Standard size: card_ht="42"
-            2/3 size:  card_ht="28"
-            half size: card_ht="21"
-            Double size: card_ht="84"
-            
-        Card height cannot be set for stud games
+        Aux windows control Huds, Mucked Card displays etc.
+        The parameter elements for each <aw> are specific to that handler
         -->
         
-        <aw class="Stud_mucked" cols="11" deck="Cards01.png" module="Mucked" name="stud_mucked" rows="8"> </aw>
-        <aw class="Hello" module="Hello" name="Hello"> </aw>
-        <aw class="Hello_Menu" module="Hello" name="Hello_menu"> </aw>
-        <aw class="Hello_plus" module="Hello" name="Hello_plus"> </aw>
-        <aw card_ht="28" class="Flop_Mucked" deck="Cards01.png" module="Mucked" name="mucked" opacity="0.7" timeout="5">
+        <aw name="stud_mucked" class="Stud_mucked" cols="11" deck="Cards01.png" module="Mucked" rows="8"> </aw>
+        <aw name="Hello" class="Hello" module="Hello"> </aw>
+        <aw name="Hello_menu" class="Hello_Menu" module="Hello"> </aw>
+        <aw name="Hello_plus" class="Hello_plus" module="Hello"> </aw>
+        <aw name="mucked" card_ht="28" class="Flop_Mucked" deck="Cards01.png" module="Mucked" opacity="0.7" timeout="5"> </aw>
+        <aw name="Simple_HUD" class="Simple_HUD" bgcolor="#000000" fgcolor="#FFFFFF" font="Sans" font_size="8" module="Aux_Hud" opacity="0.7"> </aw>
+        <aw name="Classic_HUD" class="Classic_HUD" bgcolor="#000000" fgcolor="#FFFFFF" font="Sans" font_size="8" module="Aux_Classic_Hud" opacity="0.7"> </aw>
+    </aux_windows>
+
+
+    <layout_sets>
+        <!--
+            shared layouts used for stats, mucked cards and any other aux
+            - all layouts must include a "common" element
+        -->
+        <ls name="default">
             <layout height="546" max="6" width="792">
                 <location seat="1" x="555" y="169"> </location>
                 <location seat="2" x="572" y="276"> </location>
                 <location seat="3" x="363" y="348"> </location>
                 <location seat="4" x="150" y="273"> </location>
-                <location seat="5" x="150" y="169">  </location>
-                <location seat="6" x="363" y="113">  </location>
+                <location seat="5" x="150" y="169"> </location>
+                <location seat="6" x="363" y="113"> </location>
                 <location common="1" x="323" y="232"> </location>
             </layout>
             <layout height="546" max="9" width="792">
-                <location seat="1" x="486" y="113">  </location>
+                <location seat="1" x="486" y="113"> </location>
                 <location seat="2" x="555" y="169"> </location>
                 <location seat="3" x="572" y="276"> </location>
                 <location seat="4" x="522" y="345"> </location>
                 <location seat="5" x="363" y="348"> </location>
                 <location seat="6" x="217" y="341"> </location>
                 <location seat="7" x="150" y="273"> </location>
-                <location seat="8" x="150" y="169">  </location>
-                <location seat="9" x="230" y="115">  </location>
+                <location seat="8" x="150" y="169"> </location>
+                <location seat="9" x="230" y="115"> </location>
                 <location common="1" x="323" y="232"> </location>
             </layout>
             <layout height="546" max="10" width="792">
-                <location seat="1" x="486" y="113">  </location>
+                <location seat="1" x="486" y="113"> </location>
                 <location seat="2" x="499" y="138"> </location>
                 <location seat="3" x="522" y="212"> </location>
                 <location seat="4" x="501" y="281"> </location>
                 <location seat="5" x="402" y="323"> </location>
                 <location seat="6" x="243" y="311"> </location>
                 <location seat="7" x="203" y="262"> </location>
-                <location seat="8" x="170" y="185">  </location>
-                <location seat="9" x="183" y="128">  </location>
-                <location seat="10" x="213" y="86">  </location>
+                <location seat="8" x="170" y="185"> </location>
+                <location seat="9" x="183" y="128"> </location>
+                <location seat="10" x="213" y="86"> </location>
                 <location common="1" x="317" y="237"> </location>
             </layout>
-        </aw>
-        <aw class="Simple_HUD" bgcolor="#000000" fgcolor="#FFFFFF" font="Sans" font_size="8" module="Aux_Hud" name="Simple_HUD" opacity="0.7">
-            <layout height="546" max="6" width="792">
-                <location seat="1" x="555" y="169"> </location>
-                <location seat="2" x="572" y="276"> </location>
-                <location seat="3" x="363" y="348"> </location>
-                <location seat="4" x="150" y="273"> </location>
-                <location seat="5" x="150" y="169">  </location>
-                <location seat="6" x="363" y="113">  </location>
-                <location common="1" x="1" y="1"> </location>
-            </layout>
-            <layout height="546" max="9" width="792">
-                <location seat="1" x="486" y="113">  </location>
-                <location seat="2" x="555" y="169"> </location>
-                <location seat="3" x="572" y="276"> </location>
-                <location seat="4" x="522" y="345"> </location>
-                <location seat="5" x="363" y="348"> </location>
-                <location seat="6" x="217" y="341"> </location>
-                <location seat="7" x="150" y="273"> </location>
-                <location seat="8" x="150" y="169">  </location>
-                <location seat="9" x="230" y="115">  </location>
-                <location common="1" x="1" y="1"> </location>
-            </layout>
-            <layout height="546" max="10" width="792">
-                <location seat="1" x="486" y="113">  </location>
-                <location seat="2" x="499" y="138"> </location>
-                <location seat="3" x="522" y="212"> </location>
-                <location seat="4" x="501" y="281"> </location>
-                <location seat="5" x="402" y="323"> </location>
-                <location seat="6" x="243" y="311"> </location>
-                <location seat="7" x="203" y="262"> </location>
-                <location seat="8" x="170" y="185">  </location>
-                <location seat="9" x="183" y="128">  </location>
-                <location seat="10" x="213" y="86">  </location>
-                <location common="1" x="1" y="1"> </location>
-            </layout>
-        </aw>
-            
-        <aw class="Classic_HUD" bgcolor="#000000" fgcolor="#FFFFFF" font="Sans" font_size="8" module="Aux_Classic_Hud" name="Classic_HUD" opacity="0.7">
-            <layout height="546" max="6" width="792">
-                <location seat="1" x="555" y="169"> </location>
-                <location seat="2" x="572" y="276"> </location>
-                <location seat="3" x="363" y="348"> </location>
-                <location seat="4" x="150" y="273"> </location>
-                <location seat="5" x="150" y="169">  </location>
-                <location seat="6" x="363" y="113">  </location>
-                <location common="1" x="1" y="1"> </location>
-            </layout>
-            <layout height="546" max="9" width="792">
-                <location seat="1" x="486" y="113">  </location>
-                <location seat="2" x="555" y="169"> </location>
-                <location seat="3" x="572" y="276"> </location>
-                <location seat="4" x="522" y="345"> </location>
-                <location seat="5" x="363" y="348"> </location>
-                <location seat="6" x="217" y="341"> </location>
-                <location seat="7" x="150" y="273"> </location>
-                <location seat="8" x="150" y="169">  </location>
-                <location seat="9" x="230" y="115">  </location>
-                <location common="1" x="1" y="1"> </location>
-            </layout>
-            <layout height="546" max="10" width="792">
-                <location seat="1" x="486" y="113">  </location>
-                <location seat="2" x="499" y="138"> </location>
-                <location seat="3" x="522" y="212"> </location>
-                <location seat="4" x="501" y="281"> </location>
-                <location seat="5" x="402" y="323"> </location>
-                <location seat="6" x="243" y="311"> </location>
-                <location seat="7" x="203" y="262"> </location>
-                <location seat="8" x="170" y="185">  </location>
-                <location seat="9" x="183" y="128">  </location>
-                <location seat="10" x="213" y="86">  </location>
-                <location common="1" x="1" y="1"> </location>
-            </layout>
-        </aw>
-    </aux_windows>
+        </ls>
+    </layout_sets>
+
+
+    <stat_sets>
+        <ss name="draw default" cols="3" rows="2" xpad="1" ypad="0">
+            <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
+        </ss>
+        
+        <ss name="stud default" cols="2" rows="3" xpad="1" ypad="0">
+            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
+        </ss>
+        
+        <ss name="omaha default" cols="2" rows="3" xpad="1" ypad="0">        
+            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
+        </ss>
+        
+        <ss name="holdem default" cols="3" rows="3" xpad="1" ypad="0">          
+            <stat click="tog_decorate" col="0" popup="default" row="0" stat_hicolor="#F05000" stat_hith="40" stat_locolor="#408000" stat_loth="25" stat_name="vpip" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="0" stat_hicolor="#F05000" stat_hith="35" stat_locolor="#408000" stat_loth="20" stat_name="pfr" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="2" popup="default" row="0" stat_hicolor="#F05000" stat_hith="13" stat_locolor="#408000" stat_loth="4" stat_name="three_B" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="1" stat_name="playershort" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="cb1" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="wtsd" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="steal" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="2" popup="default" row="2" stat_hicolor="#408000" stat_hith="0" stat_locolor="#F05000" stat_loth="0" stat_name="totalprofit" tip="tip1"> </stat>
+        </ss>          
+    </stat_sets>
 
     <hhcs>
         <hhc site="PokerStars" converter="PokerStarsToFpdb" summaryImporter="PokerStarsSummary"/>
@@ -1347,7 +574,7 @@ Left-Drag to Move"
         <hhc site="Absolute" converter="AbsoluteToFpdb"/>
         <hhc site="PartyPoker" converter="PartyPokerToFpdb"/>
         <hhc site="Betfair" converter="BetfairToFpdb"/>
-        <hhc site="Carbon" converter="CarbonToFpdb"/>
+        <hhc site="Merge" converter="MergeToFpdb"/>
         <hhc site="OnGame" converter="OnGameToFpdb"/>
         <hhc site="PKR" converter="PkrToFpdb"/>
         <hhc site="iPoker" converter="iPokerToFpdb"/>

@@ -64,14 +64,12 @@ _ = L10n.get_translation()
 
 # to do
 #=======
-# logging not activated yet
-
-# move stat blocks menu item not implemnted (is this deprecated)
-# debug hud option not implemented
+# move stat blocks menu item not implemnted (assume this is deprecated)
+# debug hud option (assume this is deprecated)
 # check that the parameters stored at AW level make sense for players
 #  - when playing more than one site
 # fix the existing bugs with move/resize table (fix in aux_hud, not here)
-
+# fix updat_contents() show() positions - need to be offset if the table has moved
 
 #    Standard Library modules
 import logging

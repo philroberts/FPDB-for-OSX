@@ -34,7 +34,7 @@ def fpdb_options():
                       help=_("Specifies a database name."))
     parser.add_option("-c", "--configFile",
                       dest="config", default=None,
-                      help=_("Specifies a configuration file."))
+                      help=_("Specifies the full path to a configuration file."))
     parser.add_option("-r", "--rerunPython",
                       action="store_true",
                       help=_("Indicates program was restarted with a different path (only allowed once)."))
