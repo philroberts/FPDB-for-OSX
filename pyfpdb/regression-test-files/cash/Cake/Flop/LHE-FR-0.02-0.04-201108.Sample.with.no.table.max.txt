@@ -1,0 +1,28 @@
+﻿Hand#2682014481000020 - New Castle 14481 -- $0.02/$0.04 FL Hold'em -- 2011/08/09 - 07:00:40
+Seat 3: Jure***3 ($0.78 in chips) 
+Seat 5: Hero1234 ($0.62 in chips) 
+Seat 7: wwws***7 ($1.06 in chips) 
+Seat 8: role***8 ($1.02 in chips) DEALER
+Jure***3: posts small blind $0.01
+Hero1234: posts big blind $0.02
+Dealt to Hero1234 [Ks,8c]
+wwws***7: calls $0.02
+role***8: folds
+Jure***3: folds
+Hero1234: checks
+*** FLOP *** [4c,Kd,7h]
+Hero1234: bets $0.02
+wwws***7: calls $0.02
+*** TURN *** [Ac]
+Hero1234: checks
+wwws***7: checks
+*** RIVER *** [4d]
+Hero1234: checks
+wwws***7: checks
+***SHOW DOWN***
+Hero1234: shows [Ks 8c] (Two Pairs Kings and Fours  )
+wwws***7: mucks
+Hero1234 wins $0.09 with Two Pairs Kings and Fours   
+wwws***7: mucks [7s,Qh] (TwoPair) .
+
+

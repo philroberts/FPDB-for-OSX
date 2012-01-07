@@ -196,7 +196,7 @@ class SummaryImporter:
         if os.path.isdir(inputPath):
             for subdir in os.walk(inputPath):
                 for file in subdir[2]:
-                    self.addImportFile(unicode(os.path.join(subdir[0], file),'utf-8'),
+                    self.addImportFile(os.path.join(subdir[0], file),
                                        site=site, tsc=tsc)
         else:
             self.addImportFile(inputPath, site=site, tsc=tsc)
@@ -237,7 +237,8 @@ class SummaryImporter:
             if len(foabs) == 0:
                 log.error("Found: '%s' with 0 characters... skipping" % filename)
                 return (0, 1) # File had 0 characters
-            summaryTexts = re.split(obj.re_SplitTourneys, foabs)
+            re_Split = obj.getSplitRe(obj,foabs[:1000])
+            summaryTexts = re.split(re_Split, foabs)
 
             # The summary files tend to have a header or footer
             # Remove the first and/or last entry if it has < 100 characters
@@ -270,7 +271,7 @@ class SummaryImporter:
         self.filelist = {}
 
     def readFile(self, tsc, filename):
-        codepage = ["utf16", "utf8"]
+        codepage = ["utf16", "utf8", "cp1252"]
         whole_file = None
         tsc.codepage
 

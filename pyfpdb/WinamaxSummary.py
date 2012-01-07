@@ -50,8 +50,6 @@ class WinamaxSummary(TourneySummary):
 
     re_GameType = re.compile("""<h1>((?P<LIMIT>No Limit|Pot Limit) (?P<GAME>Hold\'em))</h1>""")
 
-    re_SplitTourneys = re.compile("PokerStars Tournament ")
-    
     re_TourNo = re.compile("ID\=(?P<TOURNO>[0-9]+)")
 
     re_Player = re.compile(u"""(?P<RANK>\d+)<\/td><td width="30%">(?P<PNAME>.+?)<\/td><td width="60%">(?P<WINNINGS>.+?)</td>""")
@@ -63,6 +61,11 @@ class WinamaxSummary(TourneySummary):
     re_Ticket = re.compile(u""" / Ticket (?P<VALUE>[0-9.]+)&euro;""")
 
     codepage = ["utf-8"]
+
+    @staticmethod
+    def getSplitRe(self, head):
+        re_SplitTourneys = re.compile("PokerStars Tournament ")
+        return re_SplitTourneys
 
     def parseSummary(self):
         self.currency = "EUR"

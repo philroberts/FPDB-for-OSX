@@ -130,7 +130,9 @@ def compare_handsplayers_file(filename, importer, errors):
                         # The stats match - continue
                         pass
                     else:
-                        if stat == 'tourneyTypeId' or stat == 'tourneysPlayersIds' or stat == 'showed':
+                        ignorelist = ['tourneyTypeId', 'tourneysPlayersIds']
+                        # 'allInEV', 'street0CalledRaiseDone', 'street0CalledRaiseChance'
+                        if stat in ignorelist:
                             # Not and error
                             pass
                         else:
@@ -189,14 +191,14 @@ def compare(leaf, importer, errors, site):
     #print "DEBUG: fileanme: %s" % filename
 
     # Test if this is a hand history file
-    if filename.endswith('.txt'):
+    if filename.endswith('.txt') or filename.endswith('.xml'):
         # test if there is a .hp version of the file
         if DEBUG: print "Site: %s" % site
         if DEBUG: print "Filename: %s" % filename
         importer.addBulkImportImportFileOrDir(filename, site=site)
         (stored, dups, partial, errs, ttime) = importer.runImport()
 
-        if errs > 0:
+        if errs > 0 or partial > 0:
             errors.error_report(filename, False, "Parse", False, False, False)
         else:
             if os.path.isfile(filename + '.hp'):
@@ -395,6 +397,7 @@ def main(argv=None):
         walk_testfiles(options.filename, compare, importer, WinamaxErrors, "Winamax")
     if sites['Boss'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Boss/", compare, importer, BossErrors, "Boss")
+        walk_testfiles("regression-test-files/tour/Boss/", compare, importer, BossErrors, "Boss")
     elif sites['Boss'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, BossErrors, "Boss")
     if sites['Entraction'] == True and not single_file_test:

@@ -219,7 +219,7 @@ class Hand(object):
         try:
             self.checkPlayerExists(player)
         except FpdbParseError, e:
-            log.error(_("Tried to add holecards for unknown player: '%s'") % (player,))
+            log.error(_("Hand.addHoleCards: '%s' Tried to add holecards for unknown player: '%s'") % (self.handid, player))
             return
 
         if dealt:  self.dealt.add(player)
@@ -247,7 +247,7 @@ class Hand(object):
             hilo = "s"
         elif self.gametype['category'] in ['razz','27_3draw','badugi', '27_1draw']:
             hilo = "l"
-
+        
         self.gametyperow = (self.siteId, self.gametype['currency'], self.gametype['type'], self.gametype['base'],
                             self.gametype['category'], self.gametype['limitType'], hilo, self.gametype['mix'],
                             int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
@@ -317,13 +317,27 @@ class Hand(object):
     def updateSessionsCache(self, db, tz, doinsert = False):
         """ Function to update the SessionsCache"""
         if self.cacheSessions:
-            heros = []
+            heroes = []
             if self.hero in self.dbid_pids: 
-                heros = [self.dbid_pids[self.hero]]
+                heroes = [self.dbid_pids[self.hero]]
                 
-            db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, heros, doinsert) 
-            db.storeGamesCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, tz, heros, doinsert)
-            db.updateTourneysPlayersSessions(self.dbid_pids, self.tourneyId, self.startTime, self.handsplayers, heros, doinsert)
+            db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, heroes, doinsert) 
+            db.storeGamesCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, tz, heroes, doinsert)
+            db.updateTourneysPlayersSessions(self.dbid_pids, self.tourneyId, self.startTime, self.handsplayers, heroes, doinsert)
+            
+    def updateCardsCache(self, db, doinsert = False):
+        """ Function to update the HandsCache"""
+        heroes = []
+        if self.hero in self.dbid_pids: 
+            heroes = [self.dbid_pids[self.hero]]
+        db.storeCardsCache(self.gametype, self.dbid_pids, heroes, self.handsplayers, doinsert)
+                
+    def updatePositionsCache(self, db, doinsert = False):
+        """ Function to update the PositionsCache"""
+        heroes = []
+        if self.hero in self.dbid_pids: 
+            heroes = [self.dbid_pids[self.hero]]
+        db.storePositionsCache(self.gametype, self.dbid_pids, heroes, self.handsplayers, doinsert)
 
     def select(self, db, handId):
         """ Function to create Hand object from database """
@@ -529,7 +543,7 @@ class Hand(object):
         return c
 
     def addAllIn(self, street, player, amount):
-        """ For sites (currently only Merge Poker) which record "all in" as a special action, 
+        """ For sites (currently only Merge & Microgaming) which record "all in" as a special action, 
             which can mean either "calls and is all in" or "raises all in"."""
         self.checkPlayerExists(player)
         amount = amount.replace(u',', u'') #some sites have commas
@@ -618,6 +632,25 @@ class Hand(object):
             act = (player, 'calls', amount, self.stacks[player] == 0)
             self.actions[street].append(act)
             self.pot.addMoney(player, amount)
+            
+    def addCallTo(self, street, player=None, amountTo=None):
+        if amountTo:
+            amountTo = amountTo.replace(u',', u'') #some sites have commas
+        #log.debug(_("%s %s calls %s") %(street, player, amount))
+        # Potentially calculate the amount of the callTo if not supplied
+        # corner cases include if player would be all in
+        if amountTo is not None:
+            Bc = sum(self.bets[street][player])
+            Ct = Decimal(amountTo)
+            C = Ct - Bc
+            amount = C
+            self.bets[street][player].append(amount)
+            #self.lastBet[street] = amount
+            self.stacks[player] -= amount
+            #print "DEBUG %s calls %s, stack %s" % (player, amount, self.stacks[player])
+            act = (player, 'calls', amount, self.stacks[player] == 0)
+            self.actions[street].append(act)
+            self.pot.addMoney(player, amount)
 
     def addRaiseBy(self, street, player, amountBy):
         """ Add a raise by amountBy on [street] by [player] """
@@ -696,7 +729,7 @@ class Hand(object):
         self.pot.addMoney(player, amount)
 
 
-    def addStandsPat(self, street, player, cards):
+    def addStandsPat(self, street, player, cards=None):
         self.checkPlayerExists(player)
         act = (player, 'stands pat')
         self.actions[street].append(act)
@@ -953,6 +986,7 @@ class HoldemOmahaHand(Hand):
                     self.pot.markTotal(street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self)
+            self.pot.handid = self.handid # This is only required so Pot can throw it in totalPot
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
             if self.maxseats is None:
@@ -1253,6 +1287,7 @@ class DrawHand(Hand):
                     self.pot.markTotal(street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self)
+            self.pot.handid = self.handid # This is only required so Pot can throw it in totalPot
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
             if self.maxseats is None:
@@ -1444,6 +1479,7 @@ class StudHand(Hand):
                     self.pot.markTotal(street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self) # not done yet
+            self.pot.handid = self.handid # This is only required so Pot can throw it in totalPot
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
             if self.maxseats is None:
@@ -1482,7 +1518,7 @@ class StudHand(Hand):
             self.checkPlayerExists(player)
             self.holecards[street][player] = (open, closed)
         except FpdbParseError, e:
-            log.error(_("Tried to add holecards for unknown player: %s") % (player,))
+            log.error(_("Hand.addPlayerCards: '%s' Tried to add holecards for unknown player: %s") % (self.handid, player))
 
     # TODO: def addComplete(self, player, amount):
     def addComplete(self, street, player, amountTo):
@@ -1714,6 +1750,7 @@ class Pot(object):
         self.returned     = {}
         self.sym          = u'$' # this is the default currency symbol
         self.pots         = []
+        self.handid       = 0
 
     def setSym(self, sym):
         self.sym = sym
@@ -1772,7 +1809,7 @@ class Pot(object):
                 self.pots += [(sum([min(v,v1) for (v,k) in commitsall]), set(k for (v,k) in commitsall if k in self.contenders))]
                 commitsall = [((v-v1),k) for (v,k) in commitsall if v-v1 >0]
         except IndexError, e:
-            raise FpdbParseError(_("Major failure while calculating pot: '%s'") % e)
+            raise FpdbParseError(_("Pot.end(): '%s': Major failure while calculating pot: '%s'") % (self.handid, e))
 
         # TODO: I think rake gets taken out of the pots.
         # so it goes:

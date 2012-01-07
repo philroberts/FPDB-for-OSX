@@ -511,16 +511,12 @@ class Hud:
         self.topify_window(self.main_window)
         for i in xrange(1, self.max + 1):
             self.topify_window(self.stat_windows[i].window)
-        self.stats = []
-        game = config.supported_games[self.poker_game]
 
-        for i in xrange(0, game.rows + 1):
-            row_list = [''] * game.cols
-            self.stats.append(row_list)
-        for stat in game.stats:
-            self.stats[config.supported_games[self.poker_game].stats[stat].row] \
-                      [config.supported_games[self.poker_game].stats[stat].col] = \
-                      config.supported_games[self.poker_game].stats[stat].stat_name
+        game = config.supported_games[self.poker_game]
+        self.stats = [None for i in range (game.rows*game.cols)] # initialize to None for not present stats at [row][col]
+        for i in range (game.rows*game.cols):
+            if config.supported_games[self.poker_game].stats[i] is not None:
+                self.stats[i] = config.supported_games[self.poker_game].stats[i].stat_name
 
     def update(self, hand, config):
         self.hand = hand   # this is the last hand, so it is available later
@@ -538,31 +534,34 @@ class Hud:
                 self.create(hand, config, self.stat_dict, self.cards)
                 self.stat_windows[statd['seat']].player_id = statd['player_id']
 
+            unhidewindow = False
             for r in xrange(0, config.supported_games[self.poker_game].rows):
                 for c in xrange(0, config.supported_games[self.poker_game].cols):
-                    this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
-                    number = Stats.do_stat(self.stat_dict, player = statd['player_id'], stat = self.stats[r][c])
-                    statstring = "%s%s%s" % (this_stat.hudprefix, str(number[1]), this_stat.hudsuffix)
-                    window = self.stat_windows[statd['seat']]
-
-                    if this_stat.hudcolor != "":
-                        window.labels[r][c].setTextColor_(parseColor(this_stat.hudcolor))
-                    else:
-                        window.labels[r][c].setTextColor_(parseColor(self.colors['hudfgcolor']))
-                    
-                    if this_stat.stat_loth != "":
-                        if number[0] < (float(this_stat.stat_loth)/100):
-                            window.labels[r][c].setTextColor_(parseColor(this_stat.stat_locolor))
- 
-                    if this_stat.stat_hith != "":
-                        if number[0] > (float(this_stat.stat_hith)/100):
-                            window.labels[r][c].setTextColor_(parseColor(this_stat.stat_hicolor))
-
-                    window.labels[r][c].setStringValue_(unicode(statstring))
-                    if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
-                        unhidewindow = True
-                    tip = "%s\n%s\n%s, %s" % (statd['screen_name'], number[5], number[3], number[4])
-                    Stats.do_tip(window.labels[r][c], tip)
+                    # stats may be None if the user hasn't configured a stat for this row,col
+                    if self.stats[r*config.supported_games[self.poker_game].cols+c] is not None:
+                        this_stat = config.supported_games[self.poker_game].stats[r*config.supported_games[self.poker_game].cols+c]
+                        number = Stats.do_stat(self.stat_dict, player = statd['player_id'], stat = self.stats[r*config.supported_games[self.poker_game].cols+c])
+                        statstring = "%s%s%s" % (this_stat.hudprefix, str(number[1]), this_stat.hudsuffix)
+                        window = self.stat_windows[statd['seat']]
+    
+                        if this_stat.hudcolor != "":
+                            window.labels[r][c].setTextColor_(parseColor(this_stat.hudcolor))
+                        else:
+                            window.labels[r][c].setTextColor_(parseColor(self.colors['hudfgcolor']))
+                        
+                        if this_stat.stat_loth != "":
+                            if number[0] < (float(this_stat.stat_loth)/100):
+                                window.labels[r][c].setTextColor_(parseColor(this_stat.stat_locolor))
+     
+                        if this_stat.stat_hith != "":
+                            if number[0] > (float(this_stat.stat_hith)/100):
+                                window.labels[r][c].setTextColor_(parseColor(this_stat.stat_hicolor))
+    
+                        window.labels[r][c].setStringValue_(unicode(statstring))
+                        if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
+                            unhidewindow = True
+                        tip = "%s\n%s\n%s, %s" % (statd['screen_name'], number[5], number[3], number[4])
+                        Stats.do_tip(window.labels[r][c], tip)
             if unhidewindow:
                 window.window.display()
             unhidewindow = False
@@ -634,8 +633,8 @@ class Stat_Window:
                 label.setSelectable_(False)
                 label.setAlignment_(NSCenterTextAlignment)
                 for stat in game.stats:
-                    if game.stats[stat].row == r and game.stats[stat].col == c:
-                        label.popup_format = game.stats[stat].popup
+                    if stat.row == r and stat.col == c:
+                        label.popup_format = stat.popup
                         break
                 self.window.contentView().addSubview_(label)
                 self.labels[r].append(label)
