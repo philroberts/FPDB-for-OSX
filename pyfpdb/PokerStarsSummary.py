@@ -50,7 +50,6 @@ class PokerStarsSummary(TourneySummary):
                             'LS' : u"\$|\xe2\x82\xac|\u20AC|" # legal currency symbols - Euro(cp1252, utf-8)
                     }
 
-    re_SplitTourneys = re.compile("PokerStars Tournament ")
     
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
 
@@ -59,11 +58,11 @@ class PokerStarsSummary(TourneySummary):
                         ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s)?
                         (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw|HORSE|8-Game)\s+
                         (?P<DESC>[ a-zA-Z]+\s+)?
-                        (Buy-In:\s[%(LS)s](?P<BUYIN>[.0-9]+)(\/[%(LS)s](?P<FEE>[.0-9]+))?(?P<CUR>\s(%(LEGAL_ISO)s))?\s+)?
+                        (Buy-In:\s[%(LS)s]?(?P<BUYIN>[.0-9]+)(\/[%(LS)s](?P<FEE>[.0-9]+))?(?P<CUR>\s(%(LEGAL_ISO)s))?\s+)?
                         (?P<ENTRIES>[0-9]+)\splayers\s+
                         ([%(LS)s]?(?P<ADDED>[.\d]+)(\s(%(LEGAL_ISO)s))?\sadded\sto\sthe\sprize\spool\sby\sPokerStars(\.com)?\s+)?
                         (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[.0-9]+)(\s(%(LEGAL_ISO)s))?\s+)?
-                        (Target\sTournament\s.*)?
+                        (Target\sTournament\s.+?\s)?
                         Tournament\sstarted\s+(-\s)?
                         (?P<DATETIME>.*$)
                         """ % substitutions ,re.VERBOSE|re.MULTILINE)
@@ -74,9 +73,26 @@ class PokerStarsSummary(TourneySummary):
 
     re_DateTime = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
+    #re_WinningRankOne   = re.compile(u"^%(PLYR)s wins the tournament and receives %(CUR)s(?P<AMT>[\.0-9]+) - congratulations!$" %  substitutions, re.MULTILINE)
+    #re_WinningRankOther = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place and received %(CUR)s(?P<AMT>[.0-9]+)\.$" %  substitutions, re.MULTILINE)
+    #re_RankOther        = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place$" %  substitutions, re.MULTILINE)
+
     codepage = ["utf-8"]
 
+    @staticmethod
+    def getSplitRe(self, head):
+        re_SplitTourneys = re.compile("PokerStars Tournament ")
+        return re_SplitTourneys
+
     def parseSummary(self):
+        #FIXME: id type of file and call correct function
+        self.parseSummaryFile()
+    def parseSummaryFromHH(self):
+        pass
+    def parseSummaryHtml(self):
+        pass
+
+    def parseSummaryFile(self):
         m = self.re_TourneyInfo.search(self.summaryText)
         if m == None:
             tmp = self.summaryText[0:200]

@@ -56,6 +56,7 @@ class iPoker(HandHistoryConverter):
     codepage = ("utf8", "cp1252")
     siteId   = 13
     copyGameHeader = True   #NOTE: Not sure if this is necessary yet. The file is xml so its likely
+    summaryInFile = True
 
     substitutions = {
                      'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|\£|",
@@ -159,18 +160,16 @@ class iPoker(HandHistoryConverter):
                 self.info['limitType'] = 'pl'
             else:
                 self.info['limitType'] = 'fl'
-        if 'SB' in mg and mg['SB'] != None:
-            self.info['sb'] = mg['SB']
-        else:
-            tourney = True
-        if 'BB' in mg and mg['BB'] != None:
-            self.info['bb'] = mg['BB']
+        if 'SB' in mg:
+            self.info['sb'] = self.clearMoneyString(mg['SB'])
+            if not mg['SB']: tourney = True
+        if 'BB' in mg:
+            self.info['bb'] = self.clearMoneyString(mg['BB'])
 
         if tourney:
             self.info['type'] = 'tour'
             self.info['currency'] = 'T$'
             # FIXME: The sb/bb isn't listed in the game header. Fixing to 1/2 for now
-            self.info['sb'], self.info['bb'] = '1', '2'
             self.tinfo = {} # FIXME?: Full tourney info is only at the top of the file. After the
                             #         first hand in a file, there is no way for auto-import to
                             #         gather the info unless it reads the entire file every time.
@@ -183,8 +182,8 @@ class iPoker(HandHistoryConverter):
                 #FIXME: tournament no looks liek it is in the table name
                 mg['BIAMT']  = mg['BIAMT'].strip(u'$€£FPP')
                 mg['BIRAKE'] = mg['BIRAKE'].strip(u'$€£')
-                self.tinfo['buyin'] = int(100*Decimal(mg['BIAMT']))
-                self.tinfo['fee']   = int(100*Decimal(mg['BIRAKE']))
+                self.tinfo['buyin'] = int(100*Decimal(self.clearMoneyString(mg['BIAMT'])))
+                self.tinfo['fee']   = int(100*Decimal(self.clearMoneyString(mg['BIRAKE'])))
                 # FIXME: <place> and <win> not parsed at the moment.
                 #  NOTE: Both place and win can have the value N/A
             else:
@@ -216,6 +215,7 @@ class iPoker(HandHistoryConverter):
             hand.fee = self.tinfo['fee']
 
     def readPlayerStacks(self, hand):
+        self.playerWinnings = {}
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             ag = a.groupdict()
@@ -239,7 +239,7 @@ class iPoker(HandHistoryConverter):
             hand.addPlayer(seatno, a.group('PNAME'), cash)
             if a.group('WIN') != '0':
                 win = self.clearMoneyString(a.group('WIN'))
-                hand.addCollectPot(player=a.group('PNAME'), pot=win)
+                self.playerWinnings[a.group('PNAME')] = win
 
     def markStreets(self, hand):
         if hand.gametype['base'] in ('hold'):
@@ -274,10 +274,39 @@ class iPoker(HandHistoryConverter):
 
     def readBlinds(self, hand):
         for a in self.re_PostSB.finditer(hand.streets['PREFLOP']):
-            hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
+            hand.addBlind(a.group('PNAME'), 'small blind', self.clearMoneyString(a.group('SB')))
+            if not hand.gametype['sb']:
+                hand.gametype['sb'] = self.clearMoneyString(a.group('SB'))
         for a in self.re_PostBB.finditer(hand.streets['PREFLOP']):
-            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
-        #for a in self.re_PostBoth.finditer(hand.handText):
+            if not hand.gametype['bb']:
+                hand.gametype['bb'] = self.clearMoneyString(a.group('BB'))
+            hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
+        for a in self.re_PostBoth.finditer(hand.streets['PREFLOP']):
+            bb = Decimal(self.info['bb'])
+            amount = Decimal(self.clearMoneyString(a.group('SBBB')))
+            if amount < bb:
+                hand.addBlind(a.group('PNAME'), 'small blind', self.clearMoneyString(a.group('SBBB')))
+            elif amount == bb:
+                hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('SBBB')))
+            else:
+                hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
+
+        # FIXME
+        # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
+        # see http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
+        if hand.gametype['type'] == 'tour':
+            if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
+                hand.gametype['sb'] = "1"
+                hand.gametype['bb'] = "2"
+            elif hand.gametype['sb'] == None:
+                hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
+            elif hand.gametype['bb'] == None:
+                hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
+            if int(Decimal(hand.gametype['bb']))/2 != int(Decimal(hand.gametype['sb'])):
+                if int(Decimal(hand.gametype['bb']))/2 < int(Decimal(hand.gametype['sb'])):
+                    hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
+                else:
+                    hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
 
     def readButton(self, hand):
         # Found in re_Player
@@ -346,7 +375,8 @@ class iPoker(HandHistoryConverter):
             elif atype == '7':
                 hand.addAllIn(street, player, action['BET'])
             elif atype == '15': # Ante
-                hand.addAnte(player, action['BET'])
+                pass
+                #hand.addAnte(player, action['BET'])
             elif atype == '1' or atype == '2' or atype == '8': #sb/bb/no action this hand (joined table)
                 pass
             elif atype == '9': #FIXME: Sitting out
@@ -359,9 +389,24 @@ class iPoker(HandHistoryConverter):
         pass
 
     def readCollectPot(self, hand):
-        # Player lines contain winnings
-        pass
+        for pname, pot in self.playerWinnings.iteritems():
+            committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
+            lastbet = committed[-1][0] - committed[-2][0]
+            if lastbet > 0: # uncalled
+                pot = str(Decimal(pot) - lastbet)
+            hand.addCollectPot(player=pname, pot=pot)
 
     def readShownCards(self, hand):
         # Cards lines contain cards
         pass
+
+    @staticmethod
+    def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
+        log.info("iPoker getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
+        regex = "%s" % (table_name)
+        if tournament:
+            regex = "%s" % (table_number)
+        else:
+            regex = table_name.split(',')[0]
+        log.info("iPoker getTableTitleRe: returns: '%s'" % (regex))
+        return regex

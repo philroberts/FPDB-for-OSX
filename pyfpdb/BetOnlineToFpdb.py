@@ -122,18 +122,13 @@ class BetOnline(HandHistoryConverter):
           (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
           re.MULTILINE|re.VERBOSE)
 
-    re_SplitHands   = re.compile('\n\n+')
+    re_SplitHands   = re.compile('\n\n\n+')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
     re_Board        = re.compile(r"Board \[(?P<FLOP>\S\S\S? \S\S\S? \S\S\S?)?\s?(?P<TURN>\S\S\S?)?\s?(?P<RIVER>\S\S\S?)?\]")
-#        self.re_setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[ a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>.*) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)Table (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')    
 
     re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+)""", re.MULTILINE)
-    # revised re including timezone (not currently used):
-    #re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+) \(?(?P<TZ>[A-Z0-9]+)""", re.MULTILINE)
 
-    # These used to be compiled per player, but regression tests say
-    # we don't have to, and it makes life faster.
     re_PostSB           = re.compile(r"^%(PLYR)s: posts small blind (%(LS)s)?(?P<SB>[.0-9]+)" %  substitutions, re.MULTILINE)
     re_PostBB           = re.compile(r"^%(PLYR)s: posts big blind (%(LS)s)?(?P<BB>[.0-9]+)" %  substitutions, re.MULTILINE)
     re_Antes            = re.compile(r"^%(PLYR)s: posts the ante (%(LS)s)?(?P<ANTE>[.0-9]+)" % substitutions, re.MULTILINE)
@@ -150,6 +145,7 @@ class BetOnline(HandHistoryConverter):
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_ShowdownAction   = re.compile(r"^%s: shows (?P<CARDS>.*)" % substitutions['PLYR'], re.MULTILINE)
     re_sitsOut          = re.compile("^%s sits out" %  substitutions['PLYR'], re.MULTILINE)
+    re_JoinsTable       = re.compile("^.+ joins the table at seat #\d+", re.MULTILINE)
     re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\]( and won \([.\d]+\))?" %  substitutions['PLYR'], re.MULTILINE)
     re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s (collected|showed \[.*\] and won) \((%(LS)s)?(?P<POT>[.\d]+)\)" %  substitutions, re.MULTILINE)
     re_WinningRankOne   = re.compile(u"^%(PLYR)s wins the tournament and receives (%(LS)s)?(?P<AMT>[\.0-9]+) - congratulations!$" %  substitutions, re.MULTILINE)
@@ -185,10 +181,16 @@ class BetOnline(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
-            tmp = handText[0:150]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            # BetOnline starts writing the hh the moment you sit down.
+            # Test if the hh contains the join line, and throw a partial if so.
+            m2 = self.re_JoinsTable.search(handText)
+            if not m2:
+                tmp = handText[0:150]
+                log.error(_("Unable to recognise gametype from: '%s'") % tmp)
+                log.error("determineGameType: " + _("Raising FpdbParseError"))
+                raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            else:
+                raise FpdbHandPartial("determineGameType: " + _("Partial hand history: 'Player joining table'"))
 
         mg = m.groupdict()
         if mg['LIMIT']:

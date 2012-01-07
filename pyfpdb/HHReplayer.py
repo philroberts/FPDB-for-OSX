@@ -46,7 +46,7 @@ def main():
     screen = pygame.display.set_mode((640, 480))
     table_string = "Tournament 2010090009 Table %s - Blinds $600/$1200 Anto $150"
     table_no = 1
-    table_title = "Nongoma V - $200/$400 USD - Limit Holdem"
+    table_title = "Yarmouth Texas Hold'em NL -$0.01/$0.02"
     pygame.display.set_caption(table_title)
     pygame.mouse.set_visible(0)
 
@@ -58,7 +58,7 @@ def main():
     #Put Text On The Background, Centered
     if pygame.font:
         font = pygame.font.Font(None, 24)
-        text = font.render("FPDB Replayer Table", 1, (10, 10, 10))
+        text = font.render("Yarmouth Texas Hold'em NL -$0.01/$0.02", 1, (10, 10, 10))
         textpos = text.get_rect(centerx=background.get_width()/2)
         background.blit(text, textpos)
 

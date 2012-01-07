@@ -238,12 +238,6 @@ class Importer:
         if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'auto':
             self.settings['dropHudCache'] = self.calculate_auto2(self.database, 25.0, 500.0)    # returns "drop"/"don't drop"
 
-        if self.settings['dropIndexes'] == 'drop':
-            self.database.prepareBulkImport()
-        else:
-            log.info(_("No need to drop indexes."))
-        #print "dropInd =", self.settings['dropIndexes'], "  dropHudCache =", self.settings['dropHudCache']
-
         if self.settings['threads'] <= 0:
             (totstored, totdups, totpartial, toterrors) = self.importFiles(None)
         else:
@@ -276,10 +270,6 @@ class Importer:
                 print _("... writers finished")
 
         # Tidying up after import
-        if self.settings['dropIndexes'] == 'drop':
-            self.database.afterBulkImport()
-        else:
-            log.info (_("No need to rebuild indexes."))
         if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'drop':
             self.database.rebuild_hudcache()
         else:

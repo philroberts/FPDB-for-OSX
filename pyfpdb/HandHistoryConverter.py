@@ -61,6 +61,7 @@ class HandHistoryConverter():
 
     re_tzOffset = re.compile('^\w+[+-]\d{4}$')
     copyGameHeader = False
+    summaryInFile  = False
 
     # maybe archive params should be one archive param, then call method in specific converter.   if archive:  convert_archive()
     def __init__( self, config, in_path = '-', out_path = '-', index=0
@@ -185,7 +186,7 @@ HandHistoryConverter: '%(sitename)s'
         # Remove this dangler if less than 50 characters and warn in the log
         if len(handlist[-1]) <= 50:
             handlist.pop()
-            log.warn(_("Removing text < 50 characters"))
+            log.info(_("Removing text < 50 characters"))
         return handlist
 
     def processHand(self, handText):
@@ -571,7 +572,7 @@ or None if we fail to get the info """
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         "Returns string to search in windows titles"
         if type=="tour":
-            return re.escape("%s.+Table %s" % (tournament, table_number))
+            return ( re.escape(str(tournament)) + ".+\\Table " + re.escape(str(table_number)) )
         else:
             return re.escape(table_name)
 
@@ -585,6 +586,8 @@ or None if we fail to get the info """
     @staticmethod
     def clearMoneyString(money):
         "Renders 'numbers' like '1 200' and '2,000'"
+        if not money:
+            return money
         return money.replace(' ', '').replace(',', '')
 
 def getTableTitleRe(config, sitename, *args, **kwargs):
