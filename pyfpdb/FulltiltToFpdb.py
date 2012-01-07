@@ -206,7 +206,6 @@ class Fulltilt(HandHistoryConverter):
         m = self.re_GameInfo.search(handText)
         if not m:
             tmp = handText[0:200]
-            #log.error(_("Unable to recognise gametype from: '%s'") % tmp)
             log.error("determineGameType: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
         mg = m.groupdict()
@@ -266,7 +265,6 @@ class Fulltilt(HandHistoryConverter):
                 info['bb'] = self.Lim_Blinds[bb][1]
             except KeyError:
                 tmp = handText[0:200]
-                log.error(_("Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
                 log.error("determineGameType: "  + _("Raising FpdbParseError for file '%s'") % self.in_path)
                 raise FpdbParseError(_("Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
 
@@ -284,7 +282,6 @@ class Fulltilt(HandHistoryConverter):
         m =  self.re_HandInfo.search(hand.handText)
         if m is None:
             tmp = hand.handText[0:200]
-            #log.error(_("Unable to recognise hand info from: '%s'") % tmp)
             log.error("readHandInfo: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
             raise FpdbParseError(_("Unable to recognise hand info from: '%s'") % tmp)
 
