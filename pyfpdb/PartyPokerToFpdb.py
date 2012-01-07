@@ -105,7 +105,7 @@ class PartyPoker(HandHistoryConverter):
             """ % substitutions, re.VERBOSE | re.UNICODE)
 
     re_HandInfo     = re.compile("""
-            ^Table\s+(?P<TTYPE>[$,a-zA-Z0-9 ]+)?\s+
+            ^Table\s+(?P<TTYPE>.+?)?\s+
             (?: \#|\(|)(?P<TABLE>\d+)\)?\s+
             (?:[a-zA-Z0-9 ]+\s+\#(?P<MTTTABLE>\d+).+)?
             (\(No\sDP\)\s)?
@@ -147,6 +147,8 @@ class PartyPoker(HandHistoryConverter):
                     '^There is no Small Blind in this hand as the Big Blind '
                     'of the previous hand left the table', re.MULTILINE)
     re_20BBmin       = re.compile(r"Table 20BB Min")
+    re_Cancelled     = re.compile('Table\sClosed\s?', re.MULTILINE)
+    re_Disconnected  = re.compile('Connection\sLost\sdue\sto\ssome\sreason\s?', re.MULTILINE)
 
     def allHandsAsList(self):
         list = HandHistoryConverter.allHandsAsList(self)
@@ -219,9 +221,16 @@ class PartyPoker(HandHistoryConverter):
         if not m:
             m = self.re_GameInfoTrny.search(handText)
         if not m:
-            tmp = handText[0:150]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
+            m = self.re_Disconnected.search(handText)
+            if m:
+                message = _("Player Disconnected")
+                raise FpdbHandPartial("Partial hand history: %s" % message)
+            m = self.re_Cancelled.search(handText)
+            if m:
+                message = _("Table Closed")
+                raise FpdbHandPartial("Partial hand history: %s" % message)
+            tmp = handText[0:200]
+            log.error("determineGameType: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
@@ -294,8 +303,8 @@ class PartyPoker(HandHistoryConverter):
         else:
             m2 = self.re_GameInfoTrny.search(hand.handText)
         if m is None or m2 is None:
-            log.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            log.error("readHandInfo: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
+            raise FpdbParseError(_("Unable to recognise hand info from: '%s'") % hand.handText[0:200])
         info.update(m.groupdict())
         info.update(m2.groupdict())
 
