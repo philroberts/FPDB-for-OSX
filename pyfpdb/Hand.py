@@ -221,7 +221,7 @@ class Hand(object):
         try:
             self.checkPlayerExists(player)
         except FpdbParseError, e:
-            log.error(_("Hand.addHoleCards: '%s' - 's' Tried to add holecards for unknown player: '%s'") % (self.handid, self.in_path, player))
+            log.error(_("Hand.addHoleCards: '%s' - '%s' Tried to add holecards for unknown player: '%s'") % (self.handid, self.in_path, player))
             return
 
         if dealt:  self.dealt.add(player)
