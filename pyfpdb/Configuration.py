@@ -506,10 +506,10 @@ class Supported_games:
             print name
             print value
 
-        self.game_stats = {}
-        for game_stats_node in node.getElementsByTagName('game_stats'):
-            gs = Game_stats(game_stats_node)
-            self.game_stats[gs] = gs
+        self.game_stat_set = {}
+        for game_stats_node in node.getElementsByTagName('game_stat_set'):
+            gss = Game_stat_set(game_stat_set_node)
+            self.game_stat_set[gss] = gss
 
     def __str__(self):
         temp = 'Supported_games = ' + self.name + "\n"
