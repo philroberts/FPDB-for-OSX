@@ -356,14 +356,10 @@ class Microgaming(HandHistoryConverter):
 
 
     def readCollectPot(self,hand):
-        pots = [Decimal(0) for n in range(hand.maxseats)]
+        hand.setUncalledBets(True)
         for m in self.re_CollectPot.finditer(hand.handText):
-            pot = m.group('POT')
-            committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
-            lastbet = committed[-1][0] - committed[-2][0]
             pname = self.playerNameFromSeatNo(m.group('SEAT'), hand)
-            if lastbet > 0: # uncalled
-                pot = str(Decimal(m.group('POT')) - lastbet)
+            pot = m.group('POT')
             #print "DEBUG: addCollectPot(%s, %s)" %(pname, m.group('POT'))
             hand.addCollectPot(player=pname, pot=pot)
 

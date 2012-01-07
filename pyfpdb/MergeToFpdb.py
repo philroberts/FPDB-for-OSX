@@ -963,14 +963,10 @@ or None if we fail to get the info """
                     hand.addShownCards(cards, self.playerNameFromSeatNo(shows.group('PSEAT'), hand))
 
     def readCollectPot(self, hand):
+        hand.setUncalledBets(True)
         for m in self.re_CollectPot.finditer(hand.handText):
             pname = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
             pot = m.group('POT')
-            committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
-            lastbet = committed[-1][0] - committed[-2][0]
-            if lastbet > 0 and m.group('UNCALLED')=='false': # uncalled
-                pot = str(Decimal(m.group('POT')) - lastbet)
-            #print "DEBUG: addCollectPot(%s, %s)" %(pname, m.group('POT'))
             hand.addCollectPot(player=pname, pot=pot)
 
     def readShownCards(self, hand):

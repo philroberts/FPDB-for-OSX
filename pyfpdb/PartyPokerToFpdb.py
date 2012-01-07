@@ -308,27 +308,6 @@ class PartyPoker(HandHistoryConverter):
         info.update(m.groupdict())
         info.update(m2.groupdict())
 
-        #print "DEBUG: readHand.info: %s" % info
-
-        # FIXME: it's dirty hack
-        # party doesnt subtract uncalled money from commited money
-        # so hand.totalPot calculation has to be redefined
-        from Hand import Pot, HoldemOmahaHand
-        def getNewTotalPot(origTotalPot):
-            def totalPot(self):
-                if self.totalpot is None:
-                    self.pot.end()
-                    self.totalpot = self.pot.total
-                for i,v in enumerate(self.collected):
-                    if v[0] in self.pot.returned:
-                        self.collected[i][1] = Decimal(v[1]) - self.pot.returned[v[0]]
-                        self.collectees[v[0]] -= self.pot.returned[v[0]]
-                        self.pot.returned[v[0]] = 0
-                return origTotalPot()
-            return totalPot
-        instancemethod = type(hand.totalPot)
-        hand.totalPot = instancemethod(getNewTotalPot(hand.totalPot), hand, HoldemOmahaHand)
-
         for key in info:
             pass
             if key == 'DATETIME':
@@ -596,6 +575,7 @@ class PartyPoker(HandHistoryConverter):
         pass
 
     def readCollectPot(self,hand):
+        hand.setUncalledBets(True)
         for m in self.re_CollectPot.finditer(hand.handText):
             hand.addCollectPot(player=m.group('PNAME'),pot=self.clearMoneyString(m.group('POT')))
 

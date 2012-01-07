@@ -389,11 +389,8 @@ class iPoker(HandHistoryConverter):
         pass
 
     def readCollectPot(self, hand):
+        hand.setUncalledBets(True)
         for pname, pot in self.playerWinnings.iteritems():
-            committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
-            lastbet = committed[-1][0] - committed[-2][0]
-            if lastbet > 0: # uncalled
-                pot = str(Decimal(pot) - lastbet)
             hand.addCollectPot(player=pname, pot=pot)
 
     def readShownCards(self, hand):

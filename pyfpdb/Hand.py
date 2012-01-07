@@ -79,6 +79,7 @@ class Hand(object):
         self.counted_seats = 0
         self.buttonpos = 0
         self.runItTimes = 0
+        self.uncalledbets = False
 
         #tourney stuff
         self.tourNo = None
@@ -777,13 +778,23 @@ class Hand(object):
             board = set([c for s in self.board.values() for c in s])
             self.addHoleCards(holeandboard.difference(board),player,shown, mucked)
             
+    def setUncalledBets(self, value):
+        self.uncalledbets = value                
+                
     def totalPot(self):
         """ If all bets and blinds have been added, totals up the total pot size"""
 
         # This gives us the total amount put in the pot
         if self.totalpot is None:
             self.pot.end()
-            self.totalpot   = self.pot.total
+            self.totalpot = self.pot.total
+        
+        if self.uncalledbets:
+            for i,v in enumerate(self.collected):
+                if v[0] in self.pot.returned:
+                    self.collected[i][1] = Decimal(v[1]) - self.pot.returned[v[0]]
+                    self.collectees[v[0]] -= self.pot.returned[v[0]]
+                    self.pot.returned[v[0]] = 0
 
         # This gives us the amount collected, i.e. after rake
         if self.totalcollected is None:
