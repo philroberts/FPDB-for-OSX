@@ -126,8 +126,10 @@ class Microgaming(HandHistoryConverter):
         if 'BB' in mg:
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
-            info['currency'] = 'USD'
-            #info['currency'] = mg['CURRENCY']
+            if mg['CURRENCY'] == 'rCA=':
+                info['currency'] = 'EUR'
+            else:
+                info['currency'] = 'USD'
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
 
@@ -201,7 +203,7 @@ class Microgaming(HandHistoryConverter):
             m =  re.search('</Seats>(?P<PREFLOP>.+(?=<Action seq="\d+" type="DealFlop")|.+)'
                        '((?P<FLOP><Action seq="\d+" type="DealFlop">.+(?=<Action seq="\d+" type="DealTurn")|.+))?'
                        '((?P<TURN><Action seq="\d+" type="DealTurn">.+(?=<Action seq="\d+" type="DealRiver")|.+))?'
-                       '((?P<RIVER><Action seq="\d+" type="DealRiver">.+(?=<Action seq="\d+" type="ShowCards|MuckCards")|.+))?', hand.handText,re.DOTALL)
+                       '((?P<RIVER><Action seq="\d+" type="DealRiver">.+?(?=<Action seq="\d+" type="ShowCards|MuckCards")|.+))?', hand.handText,re.DOTALL)
         if hand.gametype['category'] in ('27_1draw', 'fivedraw'):
             m =  re.search(r'(?P<PREDEAL>.+?(?=<ACTION TYPE="HAND_DEAL")|.+)'
                            r'(<ACTION TYPE="HAND_DEAL"(?P<DEAL>.+(?=<ACTION TYPE="HAND_BOARD")|.+))?'
