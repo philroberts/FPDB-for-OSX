@@ -336,14 +336,18 @@ class PartyPoker(HandHistoryConverter):
                 #Thursday, July 30, 21:40:41 MSKS 2009
                 #Sunday, October 25, 13:39:07 MSK 2009
                 #Mon Jul 12 13:38:32 EDT 2010
+                timezone = "ET"
                 m2 = re.search(
                     r"\w+?,?\s+?(?P<M>\w+)\s+(?P<D>\d+),?\s+(?P<H>\d+):(?P<MIN>\d+):(?P<S>\d+)\s+(?P<TZ>[A-Z]+)\s+(?P<Y>\d+)", 
                     info[key], 
                     re.UNICODE
                 )
+                if m2.group('TZ'):
+                    timezone = m2.group('TZ')
                 month = self.months[m2.group('M')]
                 datetimestr = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), month,m2.group('D'),m2.group('H'),m2.group('MIN'),m2.group('S'))
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+                hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, timezone, "UTC")
                 # FIXME: some timezone correction required
                 #tzShift = defaultdict(lambda:0, {'EDT': -5, 'EST': -6, 'MSKS': 3})
                 #hand.starttime -= datetime.timedelta(hours=tzShift[m2.group('TZ')])

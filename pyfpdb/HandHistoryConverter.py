@@ -501,7 +501,7 @@ or None if we fail to get the info """
             #log.debug("changeTimeZone: offset=") + str(offset))
         else: offset=0
 
-        if givenTimezone=="ET":
+        if (givenTimezone=="ET" or givenTimezone=="EST" or givenTimezone=="EDT"):
             givenTZ = timezone('US/Eastern')
         elif (givenTimezone=="CET" or givenTimezone=="CEST"):
             #since CEST will only be used in summer time it's ok to treat it as identical to CET.
@@ -536,7 +536,7 @@ or None if we fail to get the info """
             givenTZ = timezone('America/Sao_Paulo')
         elif givenTimezone == 'EET': # Eastern European Time
             givenTZ = timezone('Europe/Bucharest')
-        elif givenTimezone == 'MSK': # Moscow Standard Time
+        elif (givenTimezone == 'MSK' or givenTimezone == 'MSKS'): # Moscow Standard Time
             givenTZ = timezone('Europe/Moscow')
         elif givenTimezone == 'IST': # India Standard Time
             givenTZ = timezone('Asia/Kolkata')
