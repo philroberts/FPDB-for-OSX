@@ -145,7 +145,7 @@
 
     <supported_sites>
         <site site_name="PokerStars"
-                enabled="False"
+                enabled="True"
                 screen_name="YOUR SCREEN NAME HERE"
                 site_path="C:/Program Files/PokerStars/"
                 HH_path="C:/Program Files/PokerStars/HandHistory/YOUR SCREEN NAME HERE/"

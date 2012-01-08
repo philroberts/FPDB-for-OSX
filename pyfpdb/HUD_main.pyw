@@ -204,6 +204,12 @@ class HUD_main(object):
 #       get hero's screen names and player ids
         self.hero, self.hero_ids = {}, {}
         found = False
+        
+        enabled_sites = self.config.get_supported_sites()
+        if not enabled_sites:
+            log.exception(_("No enabled sites found"))
+            self.destroy()
+            return
 
         while 1:    # wait for a new hand number on stdin
             new_hand_id = sys.stdin.readline()
@@ -218,8 +224,10 @@ class HUD_main(object):
 
 #    FIXME: This doesn't work in the case of the player playing on 2
 #    sites at once (???)  Eratosthenes
+#   Fixme: this fails if there are no active sites in the config
+
             if not found:
-                for site in self.config.get_supported_sites():
+                for site in enabled_sites:
                     result = self.db_connection.get_site_id(site)
                     if result:
                         site_id = result[0][0]
@@ -283,6 +291,7 @@ class HUD_main(object):
 #        Or create a new HUD
             else:
                 # get stats using default params--also get cards
+
                 self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params,
                                                                    self.hero_ids[site_id], num_seats)
