@@ -107,7 +107,7 @@ class IdentifySite:
     def getSiteRegex(self):
         re_identify = {}
         re_identify['Fulltilt']     = re.compile(u'FullTiltPoker|Full\sTilt\sPoker\sGame\s#\d+:')
-        re_identify['PokerStars']   = re.compile(u'PokerStars\sGame\s#\d+:',)
+        re_identify['PokerStars']   = re.compile(u'PokerStars\sGame|Hand\s#\d+:')
         re_identify['Everleaf']     = re.compile(u'\*{5}\sHand\shistory\sfor\sgame\s#\d+\s|Partouche\sPoker\s')
         re_identify['Boss']         = re.compile(u'<HISTORY\sID="\d+"\sSESSION=')
         re_identify['OnGame']       = re.compile(u'\*{5}\sHistory\sfor\shand\s[A-Z0-9\-]+\s')
@@ -126,7 +126,7 @@ class IdentifySite:
         re_identify['Microgaming']  = re.compile(u'<Game\sid=\"\d+\"\sdate=\"[\d\-\s:]+\"\sunicodetablename')
         re_identify['FullTiltPokerSummary'] = re.compile(u'Full\sTilt\sPoker\.fr\sTournament|Full\sTilt\sPoker\sTournament\sSummary')
         re_identify['PokerStarsSummary']    = re.compile(u'PokerStars\sTournament\s\#\d+')
-        re_identify['PacificPokerSummary']  = re.compile(u'\*{5}\sCassava\Tournament\Summary')
+        re_identify['PacificPokerSummary']  = re.compile(u'\*\*\*\*\* Cassava Tournament Summary \*\*\*\*\*')
         return re_identify
 
     def generateSiteList(self, hhcs):
@@ -168,7 +168,7 @@ class IdentifySite:
             if path not in self.filelist:
                 whole_file, kodec = self.read_file(path)
                 if whole_file:
-                    fobj = self.idSite(path, whole_file[:1000], kodec)
+                    fobj = self.idSite(path, whole_file[:5000], kodec)
                     if fobj == False: # Site id failed
                         log.debug(_("DEBUG:") + " " + _("siteId Failed for: %s") % path)
                     else:
@@ -202,9 +202,8 @@ class IdentifySite:
 
         for id, site in self.sitelist.iteritems():
             filter_name = site.filter_name
-            summary = site.summary
-            if summary in ('FullTiltPokerSummary', 'PokerStarsSummary'):
-                m = self.re_identify[summary].search(whole_file)
+            if site.summary in self.re_identify:
+                m = self.re_identify[site.summary].search(whole_file)
                 if m:
                     f.site = site
                     f.ftype = "summary"

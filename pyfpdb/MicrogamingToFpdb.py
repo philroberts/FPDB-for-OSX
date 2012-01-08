@@ -100,9 +100,8 @@ class Microgaming(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
-            tmp = handText[0:1000]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
+            tmp = handText[0:200]
+            log.error("determineGameType: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
@@ -127,8 +126,10 @@ class Microgaming(HandHistoryConverter):
         if 'BB' in mg:
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
-            info['currency'] = 'USD'
-            #info['currency'] = mg['CURRENCY']
+            if mg['CURRENCY'] == 'rCA=':
+                info['currency'] = 'EUR'
+            else:
+                info['currency'] = 'USD'
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
 
@@ -138,8 +139,9 @@ class Microgaming(HandHistoryConverter):
         m = self.re_GameInfo.search(hand.handText)
 
         if m is None:
-            log.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            tmp = hand.handText[0:200]
+            log.error("readHandInfo: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
+            raise FpdbParseError(_("Unable to recognise hand info from: '%s'") % tmp)
 
         info.update(m.groupdict())
         m = self.re_Button.search(hand.handText)
@@ -201,7 +203,7 @@ class Microgaming(HandHistoryConverter):
             m =  re.search('</Seats>(?P<PREFLOP>.+(?=<Action seq="\d+" type="DealFlop")|.+)'
                        '((?P<FLOP><Action seq="\d+" type="DealFlop">.+(?=<Action seq="\d+" type="DealTurn")|.+))?'
                        '((?P<TURN><Action seq="\d+" type="DealTurn">.+(?=<Action seq="\d+" type="DealRiver")|.+))?'
-                       '((?P<RIVER><Action seq="\d+" type="DealRiver">.+(?=<Action seq="\d+" type="ShowCards|MuckCards")|.+))?', hand.handText,re.DOTALL)
+                       '((?P<RIVER><Action seq="\d+" type="DealRiver">.+?(?=<Action seq="\d+" type="ShowCards|MuckCards")|.+))?', hand.handText,re.DOTALL)
         if hand.gametype['category'] in ('27_1draw', 'fivedraw'):
             m =  re.search(r'(?P<PREDEAL>.+?(?=<ACTION TYPE="HAND_DEAL")|.+)'
                            r'(<ACTION TYPE="HAND_DEAL"(?P<DEAL>.+(?=<ACTION TYPE="HAND_BOARD")|.+))?'
@@ -354,14 +356,10 @@ class Microgaming(HandHistoryConverter):
 
 
     def readCollectPot(self,hand):
-        pots = [Decimal(0) for n in range(hand.maxseats)]
+        hand.setUncalledBets(True)
         for m in self.re_CollectPot.finditer(hand.handText):
-            pot = m.group('POT')
-            committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
-            lastbet = committed[-1][0] - committed[-2][0]
             pname = self.playerNameFromSeatNo(m.group('SEAT'), hand)
-            if lastbet > 0: # uncalled
-                pot = str(Decimal(m.group('POT')) - lastbet)
+            pot = m.group('POT')
             #print "DEBUG: addCollectPot(%s, %s)" %(pname, m.group('POT'))
             hand.addCollectPot(player=pname, pot=pot)
 

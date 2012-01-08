@@ -47,9 +47,7 @@ class Merge(HandHistoryConverter):
     limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'Pot Limit':'pl', 'Pot Limit ':'pl', 'Half Pot Limit':'hp'}
     games = {              # base, category
                     'Holdem' : ('hold','holdem'),
-         'Holdem Tournament' : ('hold','holdem'),
                     'Omaha'  : ('hold','omahahi'),
-         'Omaha Tournament'  : ('hold','omahahi'),
                'Omaha H/L8'  : ('hold','omahahilo'),
               '2-7 Lowball'  : ('draw','27_3draw'),
               'A-5 Lowball'  : ('draw','a5_3draw'),
@@ -103,6 +101,7 @@ class Merge(HandHistoryConverter):
                         '$60 Aussie Millions Freezeout Satellite' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
                         '$5 Holdem Freezeout SH' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
                         '$2 Bounty Turbo' : {'buyIn': 1, 'fee': 0.2, 'currency': 'USD'},
+                        '$2.20 Deuce to Seven Low Triple Draw'  : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
                         '$5 Heads Up Turbo' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
                         '$2,000 Guranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
                         '$100,000 Satellite - Rebuys / Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
@@ -319,8 +318,8 @@ class Merge(HandHistoryConverter):
                         '$10 Bounty SnG - 6 Handed'             : {'buyIn': 5, '  fee': 1,    'currency': 'USD', 'seats': 6,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (25, 15, 10)},
                         '$10 Satellite'                         : {'buyIn': 10,  'fee': 1,    'currency': 'USD', 'seats': 6,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (60,)},
                         '$100 Bounty SnG - 6 Handed'            : {'buyIn': 100, 'fee': 9,    'currency': 'USD', 'seats': 6,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (315, 135)},
-                        '$2 Bounty SnG - 10 Handed'             : {'buyIn': 2,   'fee': 0.2,  'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (5, 3, 2)},
-                        '$2 Bounty SnG - 6 Handed'              : {'buyIn': 2,   'fee': 0.2,  'currency': 'USD', 'seats': 6,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (5, 3, 2)},
+                        '$2 Bounty SnG - 10 Handed'             : {'buyIn': 2,   'fee': 0.2,  'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (10,6,4)},
+                        '$2 Bounty SnG - 6 Handed'              : {'buyIn': 2,   'fee': 0.2,  'currency': 'USD', 'seats': 6,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (7, 3, 2)},
                         '$2 NL Holdem All-In or Fold 10 - Handed' : {'buyIn': 2,   'fee': 0.16, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (10,6,4)},
                         '$2 NL Holdem Double Up - 10 Handed'    : {'buyIn': 2,   'fee': 0.16, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (4,4,4,4,4)},
                         '$2 Satellite'                          : {'buyIn': 2,   'fee': 0.2,  'currency': 'USD', 'seats': 5,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (11,)},
@@ -573,7 +572,7 @@ class Merge(HandHistoryConverter):
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Holdem\sTournament|Omaha|Omaha\sTournament|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE)" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
+    re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Omaha|Omaha|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE)(?P<TYPE>\sTournament)?" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
     # <game id="46154255-645" starttime="20111230232051" numholecards="2" gametype="1" seats="9" realmoney="false" data="20111230|Play Money (46154255)|46154255|46154255-645|false">
     # <game id="46165919-1" starttime="20111230161824" numholecards="2" gametype="23" seats="10" realmoney="true" data="20111230|Fun Step 1|46165833-1|46165919-1|true">
     # <game id="46289039-1" starttime="20120101200100" numholecards="2" gametype="23" seats="9" realmoney="true" data="20120101|$200 Freeroll - NL Holdem - 20%3A00|46245544-1|46289039-1|true">
@@ -619,16 +618,21 @@ class Merge(HandHistoryConverter):
                 ["ring", "hold", "fl"],
 
                 ["ring", "stud", "fl"],
-                ["ring", "stud", "pl"],
 
                 ["ring", "draw", "fl"],
                 ["ring", "draw", "pl"],
                 ["ring", "draw", "nl"],
-                ["ring", "draw", "hp"],
-                
+
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
-                ["tour", "hold", "fl"]]
+                ["tour", "hold", "fl"],
+
+                ["tour", "stud", "fl"],
+                
+                ["tour", "draw", "fl"],
+                ["tour", "draw", "pl"],
+                ["tour", "draw", "nl"],
+                ]
 
     def determineGameType(self, handText):
         """return dict with keys/values:
@@ -653,10 +657,8 @@ or None if we fail to get the info """
             try:
                 return self.info
             except AttributeError:
-                tmp = handText[0:100]
-                log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                #print _("Unable to recognise gametype from: '%s'") % tmp
+                tmp = handText[0:200]
+                log.error("determineGameType: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
                 raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         self.info = {}
@@ -674,7 +676,7 @@ or None if we fail to get the info """
             self.info['sb'] = mg['SB']
         if 'BB' in mg:
             self.info['bb'] = mg['BB']
-        if 'Tournament' in mg['GAME']:
+        if 'Tournament' in mg['TYPE']:
             self.info['type'] = 'tour'
             self.info['currency'] = 'T$'
         else:
@@ -695,9 +697,9 @@ or None if we fail to get the info """
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if m is None:
-            logging.info(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-            logging.info(hand.handText)
-            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            tmp = hand.handText[0:200]
+            log.error("readHandInfo: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
+            raise FpdbParseError(_("Unable to recognise hand info from: '%s'") % tmp)
 
         #mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
@@ -965,14 +967,10 @@ or None if we fail to get the info """
                     hand.addShownCards(cards, self.playerNameFromSeatNo(shows.group('PSEAT'), hand))
 
     def readCollectPot(self, hand):
+        hand.setUncalledBets(True)
         for m in self.re_CollectPot.finditer(hand.handText):
             pname = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
             pot = m.group('POT')
-            committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
-            lastbet = committed[-1][0] - committed[-2][0]
-            if lastbet > 0 and m.group('UNCALLED')=='false': # uncalled
-                pot = str(Decimal(m.group('POT')) - lastbet)
-            #print "DEBUG: addCollectPot(%s, %s)" %(pname, m.group('POT'))
             hand.addCollectPot(player=pname, pot=pot)
 
     def readShownCards(self, hand):

@@ -136,7 +136,7 @@ HandHistoryConverter: '%(sitename)s'
                     self.processedHands.append(self.processHand(handText))
                 except FpdbHandPartial, e:
                     self.numPartial += 1
-                    log.error("%s" % e)
+                    log.info("%s" % e)
                 except FpdbParseError, e:
                     self.numErrors += 1
                     log.error("%s" % e)
@@ -501,9 +501,9 @@ or None if we fail to get the info """
             #log.debug("changeTimeZone: offset=") + str(offset))
         else: offset=0
 
-        if givenTimezone=="ET":
+        if (givenTimezone=="ET" or givenTimezone=="EST" or givenTimezone=="EDT"):
             givenTZ = timezone('US/Eastern')
-        elif (givenTimezone=="CET" or givenTimezone=="CEST"):
+        elif (givenTimezone=="CET" or givenTimezone=="CEST" or givenTimezone=="MESZ"):
             #since CEST will only be used in summer time it's ok to treat it as identical to CET.
             givenTZ = timezone('Europe/Berlin')
             #Note: Daylight Saving Time is standardised across the EU so this should be fine
@@ -536,7 +536,7 @@ or None if we fail to get the info """
             givenTZ = timezone('America/Sao_Paulo')
         elif givenTimezone == 'EET': # Eastern European Time
             givenTZ = timezone('Europe/Bucharest')
-        elif givenTimezone == 'MSK': # Moscow Standard Time
+        elif (givenTimezone == 'MSK' or givenTimezone == 'MESZ'): # Moscow Standard Time
             givenTZ = timezone('Europe/Moscow')
         elif givenTimezone == 'IST': # India Standard Time
             givenTZ = timezone('Asia/Kolkata')

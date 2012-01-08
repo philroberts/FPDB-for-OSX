@@ -130,9 +130,8 @@ class iPoker(HandHistoryConverter):
                 self.info
                 return self.info
             except AttributeError:
-                tmp = handText[0:100]
-                log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
+                tmp = handText[0:200]
+                log.error("determineGameType: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
                 raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         self.info = {}
@@ -199,9 +198,10 @@ class iPoker(HandHistoryConverter):
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if m is None:
-            logging.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-            logging.info(hand.handText)
-            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            tmp = hand.handText[0:200]
+            log.error("readHandInfo: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
+            raise FpdbParseError(_("Unable to recognise hand info from: '%s'") % tmp)
+        
         mg = m.groupdict()
         #print "DEBUG: m.groupdict(): %s" % mg
         hand.tablename = self.tablename
@@ -389,11 +389,8 @@ class iPoker(HandHistoryConverter):
         pass
 
     def readCollectPot(self, hand):
+        hand.setUncalledBets(True)
         for pname, pot in self.playerWinnings.iteritems():
-            committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
-            lastbet = committed[-1][0] - committed[-2][0]
-            if lastbet > 0: # uncalled
-                pot = str(Decimal(pot) - lastbet)
             hand.addCollectPot(player=pname, pot=pot)
 
     def readShownCards(self, hand):
