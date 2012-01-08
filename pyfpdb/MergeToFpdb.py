@@ -676,7 +676,7 @@ or None if we fail to get the info """
             self.info['sb'] = mg['SB']
         if 'BB' in mg:
             self.info['bb'] = mg['BB']
-        if 'Tournament' in mg['TYPE']:
+        if ' Tournament' == mg['TYPE']:
             self.info['type'] = 'tour'
             self.info['currency'] = 'T$'
         else:
