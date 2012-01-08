@@ -347,8 +347,6 @@ class Site:
             fav = Fav_seat(fav_node)
             self.fav_seat[max] = fav
         
-            print str(self.fav_seat[max].fav_seat), " ", str(max)
-        
         for email_node in node.getElementsByTagName('email'):
             email = Email(email_node)
             self.emails[email.fetchType] = email
@@ -474,10 +472,10 @@ class Aux_window:
         for (name, value) in node.attributes.items():
             setattr(self, name, value)
 
-        self.layout = {}
-        for layout_node in node.getElementsByTagName('layout'):
-            lo = Layout(layout_node)
-            self.layout[lo.max] = lo
+        #self.layout = {}
+        #for layout_node in node.getElementsByTagName('layout'):
+        #    lo = Layout(layout_node)
+        #    self.layout[lo.max] = lo
 
     def __str__(self):
         temp = 'Aux = ' + self.name + "\n"
@@ -502,12 +500,10 @@ class Supported_games:
     def __init__(self, node):
         for (name, value) in node.attributes.items():
             setattr(self, name, value)
-            print node
-            print name
-            print value
+            self.name   = node.getAttribute("game_name")
 
         self.game_stat_set = {}
-        for game_stats_node in node.getElementsByTagName('game_stat_set'):
+        for game_stat_set_node in node.getElementsByTagName('game_stat_set'):
             gss = Game_stat_set(game_stat_set_node)
             self.game_stat_set[gss] = gss
 
@@ -515,13 +511,13 @@ class Supported_games:
         temp = 'Supported_games = ' + self.name + "\n"
         for key in dir(self):
             if key.startswith('__'): continue
-            if key == 'game_stats':  continue
+            if key == 'game_stat_set':  continue
             value = getattr(self, key)
             if callable(value): continue
             temp = temp + '    ' + key + " = " + value + "\n"
 
-        for gs in self.game_stats:
-            temp = temp + "%s" % self.layout[gs]
+        for gs in self.game_stat_set:
+            temp = temp + "%s" % self.game_stat_set[gs]
         return temp
 
 
@@ -549,29 +545,16 @@ class Layout_set:
         for layout in self.layout:
             temp = temp + "%s" % self.layout[layout]
         return temp
-        
-class Stat_set:
-    def __init__(self, node):
-        for (name, value) in node.attributes.items():
-            setattr(self, name, value)
 
-        self.statset = {}
-        for ss_node in node.getElementsByTagName('ss'):
-            ss = Stat_set(ss_node)
-            self.layout[lo.max] = ss
+class Game_stat_set:
+    def __init__(self, node):
+        
+        self.game_type       = node.getAttribute("game_type")
+        self.stat_set        = node.getAttribute("stat_set")
 
     def __str__(self):
-        temp = 'Stat set = ' + self.name + "\n"
-        for key in dir(self):
-            if key.startswith('__'): continue
-            if key == 'layout':  continue
-            value = getattr(self, key)
-            if callable(value): continue
-            temp = temp + '    ' + key + " = " + value + "\n"
+        return "%s:\Game Type: '%s' Stat Set: '%s'" % (None, self.game_type, self.stat_set)
 
-        for ss in self.layout:
-            temp = temp + "%s" % self.statset[ss]
-        return temp
         
 class HHC:
     def __init__(self, node):
@@ -815,7 +798,6 @@ class Config:
 #    we check the existence of "file" and try to recover if it doesn't exist
 
 #        self.default_config_path = self.get_default_config_path()
-        print "file,",file
         self.example_copy = False
         if file is not None: # config file path passed in
             file = os.path.expanduser(file)
@@ -886,8 +868,8 @@ class Config:
             self.supported_sites[site.site_name] = site
 
 #        s_games = doc.getElementsByTagName("supported_games")
-        for supported_game_node in doc.getElementsByTagName("supported_games"):
-            supported_game = Supported_games(node=supported_game_node)
+        for supported_game_node in doc.getElementsByTagName("game"):
+            supported_game = Supported_games(supported_game_node)
             self.supported_games[supported_game.game_name] = supported_game
 
         # parse databases defined by user in the <supported_databases> section
@@ -921,9 +903,9 @@ class Config:
             ls = Layout_set(node = ls_node)
             self.layout_sets[ls.name] = ls
             
-        for ss_node in doc.getElementsByTagName("ss"):
-            ss = Stat_set(node = ss_node)
-            self.stat_sets[ss.name] = ss
+        #for ss_node in doc.getElementsByTagName("ss"):
+        #    ss = Stat_sets(node = ss_node)
+        #    self.stat_sets[ss.name] = ss
             
 #     s_dbs = doc.getElementsByTagName("mucked_windows")
         for hhc_node in doc.getElementsByTagName("hhc"):

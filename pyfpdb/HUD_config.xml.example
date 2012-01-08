@@ -410,7 +410,7 @@
             <game_stat_set game_type="cash" stat_set ="holdem cash"></game_stat_set>
         </game>
         <game game_name="razz" aux="stud_mucked, Classic_HUD">
-            <game_stats game_type="all" stat_set ="stud default"></game_stats>
+            <game_stat_set game_type="all" stat_set ="stud default"></game_stat_set>
         </game>
         <game game_name="omahahi" game_type="all" aux="mucked, Simple_HUD"> </game>
         <game game_name="omahahilo" game_type="all" aux="mucked, Simple_HUD"> </game>
