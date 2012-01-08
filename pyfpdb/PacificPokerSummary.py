@@ -26,74 +26,88 @@ from HandHistoryConverter import *
 import PacificPokerToFpdb
 from TourneySummary import *
 
-class PacificPoker(TourneySummary):
+class PacificPokerSummary(TourneySummary):
+    
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
+    
     games = {                          # base, category
-                              "Hold'em" : ('hold','holdem'), 
+                             "Hold'em"  : ('hold','holdem'),
+                               'Holdem' : ('hold','holdem'),
                                 'Omaha' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
+                              'OmahaHL' : ('hold','omahahilo'),
                                  'Razz' : ('stud','razz'), 
                                  'RAZZ' : ('stud','razz'),
                           '7 Card Stud' : ('stud','studhi'),
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
+              'Single Draw 2-7 Lowball' : ('draw','27_1draw'),
                           '5 Card Draw' : ('draw','fivedraw')
                }
 
     substitutions = {
-                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : u"\$|\xe2\x82\xac|\u20AC|" # legal currency symbols
+                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",      # legal ISO currency codes
+                            'LS' : u"\$|\xe2\x82\xac|\u20AC|", # legal currency symbols
+                           'NUM' : u".,\d"                     # legal characters in number format
                     }
-
-    re_SplitTourneys = re.compile("PokerStars Tournament ")
     
     re_TourneyInfo = re.compile(u"""
                         Tournament\sID:\s(?P<TOURNO>[0-9]+)\s+
-                        Buy-In:\s[%(LS)s](?P<BUYIN>[.0-9]+)\s\+\s\[%(LS)s](?P<FEE>[.0-9]+)\s+
-                        (?P<NAME>.*)\sfinished\s(?P<RANK>[0-9]+)\/(?P<ENTRIES>[0-9]+)(\sand\swon\s[%(LS)s](?P<WINNINGS>[.0-9]+))?
+                        (Buy-In:\s(?P<CURRENCY>%(LS)s|)?(?P<BUYIN>[,.0-9]+)(\s\+\s[%(LS)s]?(?P<FEE>[,.0-9]+))?\s+)?
+                        (Rebuy:\s[%(LS)s](?P<REBUYAMT>[,.0-9]+)\s+)?
+                        (Add-On:\s[%(LS)s](?P<ADDON>[,.0-9]+)\s+)?
+                        ((?P<P1NAME>.*?)\sperformed\s(?P<PREBUYS>\d+)\srebuys?\s+)?
+                        ((?P<P2NAME>.*?)\sperformed\s(?P<PADDONS>\d+)\sadd-ons?\s+)?
+                        (?P<PNAME>.*)\sfinished\s(?P<RANK>[0-9]+)\/(?P<ENTRIES>[0-9]+)(\sand\swon\s[%(LS)s](?P<WINNINGS>[,.0-9]+))?
                                """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
-                        #(?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s
-                        #(?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s+
-                        #(?P<DESC>[ a-zA-Z]+\s+)?
-                        #(?P<ENTRIES>[0-9]+)\splayers\s+
-                        #([%(LS)s]?(?P<ADDED>[.\d]+)\sadded\sto\sthe\sprize\spool\sby\sPokerStars\.com\s+)?
-                        #(Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[.0-9]+)(\s(%(LEGAL_ISO)s))?\s+)?
-                        #(Target\sTournament\s.*)?
-                        #Tournament\sstarted\s+(-\s)?
-                        #(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\-\s]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s?\(?(?P<TZ>[A-Z]+)\)?\s
+    
+    re_Category = re.compile(u"""
+          (?P<LIMIT>No\sLimit|Fix\sLimit|Pot\sLimit)\s
+          (?P<GAME>Holdem|Omaha|OmahaHL|Hold\'em|Omaha\sHi/Lo|OmahaHL|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)
+                               """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
 
     codepage = ["utf-8"]
 
+    @staticmethod
     def getSplitRe(self, head):
+        re_SplitTourneys = re.compile(u'\*\*\*\*\* Cassava Tournament Summary \*\*\*\*\*')
         return re_SplitTourneys
 
     def parseSummary(self):
-        m = self.re_TourneyInfo.search(self.summaryText)
-        if m == None:
-            tmp = self.summaryText[0:200]
-            log.error("parseSummary: " + _("Unable to recognise Tourney Info: '%s'") % tmp)
-            log.error("parseSummary: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise Tourney Info: '%s'") % tmp)
+        m  = self.re_TourneyInfo.search(self.summaryText)
+        m1 = self.re_Category.search(self.in_path)
+        if m == None or m1 == None:
+            tmp = hand.handText[0:200]
+            log.error("parseSummary: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
+            raise FpdbParseError(_("Unable to recognise tourney info from: '%s'") % tmp)
 
-        mg = m.groupdict()
-        print "DEBUG: m.groupdict(): %s" % mg
+        mg  = m.groupdict()
+        mg1 = m1.groupdict()
+        #print "DEBUG: m.groupdict(): %s" % mg
+        #print "DEBUG: m1.groupdict(): %s" % mg1
 
         self.tourNo = mg['TOURNO']
-        #FIXME: We need info from the filename... or to read the associated hh... both ugh
-        #self.gametype['limitType'] = ''
-        #self.gametype['category']  = ''
-        self.buyin = int(100*convert_to_decimal(mg2['BUYIN']))
-        self.fee   = int(100*convert_to_decimal(mg2['FEE']))
+        if 'LIMIT'     in mg1 and mg1['LIMIT'] is not None:
+            self.gametype['limitType'] = self.limits[mg1['LIMIT']]
+        else:
+            self.gametype['limitType'] = 'fl'
+        if 'GAME'      in mg1: self.gametype['category']  = self.games[mg1['GAME']][1]
+        self.buyin = int(100*convert_to_decimal(mg['BUYIN']))
+        self.fee   = int(100*convert_to_decimal(mg['FEE']))
         self.prizepool = 0
         self.entries   = mg['ENTRIES']
         #self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+        if mg['CURRENCY'] == "$":     self.currency = "USD"
+        elif mg['CURRENCY'] == u"€":  self.currency="EUR"
 
-        self.currency = "USD"
-        player = mg['NAME']
-        rank = mg['RANK']
-        winnings = int(100*convert_to_decimal(mg['WINNINGS']))
-
+        player = mg['PNAME']
+        rank = int(mg['RANK'])
+        winnings = 0
+        
+        if 'WINNINGS' in mg and mg['WINNINGS'] != None:
+            winnings = int(100*convert_to_decimal(mg['WINNINGS']))
+        
         self.addPlayer(rank, player, winnings, self.currency, None, None, None)
 
 def convert_to_decimal(string):

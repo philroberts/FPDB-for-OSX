@@ -105,7 +105,8 @@ class PacificPoker(HandHistoryConverter):
           (?P<LIMIT>No\sLimit|Fix\sLimit|Pot\sLimit)\s
           (?P<GAME>Holdem|Omaha|OmahaHL|Hold\'em|Omaha\sHi/Lo|OmahaHL|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)
           \s-\s\*\*\*\s
-          (?P<DATETIME>.*$)
+          (?P<DATETIME>.*$)\s
+          (Tournament\s\#(?P<TOURNO>\d+))?
           """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_PlayerInfo   = re.compile(u"""
@@ -118,7 +119,7 @@ class PacificPoker(HandHistoryConverter):
           ^(
             (Table\s(?P<TABLE>[-\ \#a-zA-Z\d]+)\s)
             |
-            (Tournament\s\#(?P<TID>\d+)\s
+            (Tournament\s\#(?P<TOURNO>\d+)\s
               (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\s\+\s?(?P<BIRAKE>[%(LS)s\d\.]+))\s-\s
               Table\s\#(?P<TABLENO>\d+)\s
             )
@@ -304,7 +305,7 @@ class PacificPoker(HandHistoryConverter):
             m =  re.search(r"\*\* Dealing down cards \*\*(?P<PREFLOP>.+(?=\*\* Dealing flop \*\*)|.+)"
                        r"(\*\* Dealing flop \*\* (?P<FLOP>\[ \S\S, \S\S, \S\S \].+(?=\*\* Dealing turn \*\*)|.+))?"
                        r"(\*\* Dealing turn \*\* (?P<TURN>\[ \S\S \].+(?=\*\* Dealing river \*\*)|.+))?"
-                       r"(\*\* Dealing river \*\* (?P<RIVER>\[ \S\S \].+))?"
+                       r"(\*\* Dealing river \*\* (?P<RIVER>\[ \S\S \].+?(?=\*\* Summary \*\*)|.+))?"
                        , hand.handText,re.DOTALL)
         if m is None:
             log.error(_("Unable to recognise streets"))

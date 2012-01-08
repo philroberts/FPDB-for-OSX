@@ -241,20 +241,20 @@ class SummaryImporter:
             summaryTexts = re.split(re_Split, foabs)
 
             # The summary files tend to have a header or footer
-            # Remove the first and/or last entry if it has < 100 characters
-            if len(summaryTexts[-1]) <= 100:
+            # Remove the first and/or last entry if it has < 25 characters
+            if len(summaryTexts[-1]) <= 25:
                 summaryTexts.pop()
-                log.warn(_("Tourney import: Removing text < 100 characters from end of file: %s") % filename)
+                log.warn(_("Tourney import: Removing text < 25 characters from end of file: %s") % filename)
 
-            if len(summaryTexts[0]) <= 130:
+            if len(summaryTexts[0]) <= 25:
                 del summaryTexts[0]
-                log.warn(_("Tourney import: Removing text < 100 characters from start of file: %s") % filename)
+                log.warn(_("Tourney import: Removing text < 25 characters from start of file: %s") % filename)
 
             ####Lock Placeholder####
             for j, summaryText in enumerate(summaryTexts, start=1):
                 doinsert = len(summaryTexts)==j
                 try:
-                    conv = obj(db=None, config=self.config, siteName=site, summaryText=summaryText, builtFrom = "IMAP")
+                    conv = obj(db=None, config=self.config, siteName=site, summaryText=summaryText, in_path = filename)
                     conv.insertOrUpdate(printtest = self.settings['testData'])
                 except FpdbParseError, e:
                     log.error(_("Tourney import parse error in file: %s") % filename)

@@ -126,7 +126,7 @@ class IdentifySite:
         re_identify['Microgaming']  = re.compile(u'<Game\sid=\"\d+\"\sdate=\"[\d\-\s:]+\"\sunicodetablename')
         re_identify['FullTiltPokerSummary'] = re.compile(u'Full\sTilt\sPoker\.fr\sTournament|Full\sTilt\sPoker\sTournament\sSummary')
         re_identify['PokerStarsSummary']    = re.compile(u'PokerStars\sTournament\s\#\d+')
-        re_identify['PacificPokerSummary']  = re.compile(u'\*{5}\sCassava\Tournament\Summary')
+        re_identify['PacificPokerSummary']  = re.compile(u'\*\*\*\*\* Cassava Tournament Summary \*\*\*\*\*')
         return re_identify
 
     def generateSiteList(self, hhcs):
@@ -202,9 +202,8 @@ class IdentifySite:
 
         for id, site in self.sitelist.iteritems():
             filter_name = site.filter_name
-            summary = site.summary
-            if summary in ('FullTiltPokerSummary', 'PokerStarsSummary'):
-                m = self.re_identify[summary].search(whole_file)
+            if site.summary in self.re_identify:
+                m = self.re_identify[site.summary].search(whole_file)
                 if m:
                     f.site = site
                     f.ftype = "summary"
