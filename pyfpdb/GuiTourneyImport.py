@@ -241,14 +241,15 @@ class SummaryImporter:
             summaryTexts = re.split(re_Split, foabs)
 
             # The summary files tend to have a header or footer
-            # Remove the first and/or last entry if it has < 25 characters
-            if len(summaryTexts[-1]) <= 25:
-                summaryTexts.pop()
-                log.warn(_("Tourney import: Removing text < 25 characters from end of file: %s") % filename)
-
-            if len(summaryTexts[0]) <= 25:
-                del summaryTexts[0]
-                log.warn(_("Tourney import: Removing text < 25 characters from start of file: %s") % filename)
+            # Remove the first and/or last entry if it has < 100 characters
+            if (summaryTexts)>1:
+                if len(summaryTexts[-1]) <= 100:
+                    summaryTexts.pop()
+                    log.warn(_("TourneyImport: Removing text < 100 characters from end of file"))
+    
+                if len(summaryTexts[0]) <= 130:
+                    del summaryTexts[0]
+                    log.warn(_("TourneyImport: Removing text < 100 characters from start of file"))
 
             ####Lock Placeholder####
             for j, summaryText in enumerate(summaryTexts, start=1):

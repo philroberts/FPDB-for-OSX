@@ -78,7 +78,7 @@ class PacificPokerSummary(TourneySummary):
         m  = self.re_TourneyInfo.search(self.summaryText)
         m1 = self.re_Category.search(self.in_path)
         if m == None or m1 == None:
-            tmp = hand.handText[0:200]
+            tmp = self.summaryText[0:200]
             log.error("parseSummary: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
             raise FpdbParseError(_("Unable to recognise tourney info from: '%s'") % tmp)
 
@@ -97,6 +97,12 @@ class PacificPokerSummary(TourneySummary):
         self.fee   = int(100*convert_to_decimal(mg['FEE']))
         self.prizepool = 0
         self.entries   = mg['ENTRIES']
+        if 'REBUYAMT' in mg and mg['REBUYAMT'] != None:
+            self.isRebuy   = True
+            self.rebuyCost = int(100*convert_to_decimal(mg['REBUYAMT']))
+        if 'ADDON' in mg and mg['ADDON'] != None:
+            self.isAddOn = True
+            self.addOnCost = int(100*convert_to_decimal(mg['ADDON']))
         #self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
         if mg['CURRENCY'] == "$":     self.currency = "USD"
         elif mg['CURRENCY'] == u"€":  self.currency="EUR"
@@ -104,11 +110,17 @@ class PacificPokerSummary(TourneySummary):
         player = mg['PNAME']
         rank = int(mg['RANK'])
         winnings = 0
+        rebuyCount = 0
+        addOnCount = 0
         
         if 'WINNINGS' in mg and mg['WINNINGS'] != None:
             winnings = int(100*convert_to_decimal(mg['WINNINGS']))
+        if 'PREBUYS' in mg and mg['PREBUYS'] != None:
+            rebuyCount = int(mg['PREBUYS'])
+        if 'PADDONS' in mg and mg['PADDONS'] != None:
+            addOnCount = int(mg['PADDONS'])
         
-        self.addPlayer(rank, player, winnings, self.currency, None, None, None)
+        self.addPlayer(rank, player, winnings, self.currency, rebuyCount, addOnCount, None)
 
 def convert_to_decimal(string):
     dec = string.strip(u'€&euro;\u20ac$')

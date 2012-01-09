@@ -94,7 +94,9 @@ class Hand(object):
         self.speed = "Normal"
         self.isSng = False
         self.isRebuy = False
+        self.rebuyCost = None
         self.isAddOn = False
+        self.addOnCost = None
         self.isKO = False
         self.koBounty = None
         self.isMatrix = False
