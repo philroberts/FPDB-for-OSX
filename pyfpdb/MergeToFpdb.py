@@ -669,7 +669,8 @@ or None if we fail to get the info """
             self.info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
             if mg['GAME'] == "HORSE":
-                (self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
+                raise FpdbParseError(_("determineGameType: HORSE found, unsupported"))
+                #(self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
             else:
                 (self.info['base'], self.info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
