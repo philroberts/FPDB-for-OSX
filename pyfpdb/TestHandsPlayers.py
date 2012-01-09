@@ -171,6 +171,7 @@ def compare_hands_file(filename, importer, errors):
                 else:
                     # Stats don't match. 
                     if (datum == "gametypeId" 
+                        or datum == 'gameId' 
                         or datum == 'sessionId' 
                         or datum == 'id'
                         or datum == 'tourneyId' 
