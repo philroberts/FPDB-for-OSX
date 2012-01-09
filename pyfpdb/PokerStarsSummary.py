@@ -96,9 +96,8 @@ class PokerStarsSummary(TourneySummary):
         m = self.re_TourneyInfo.search(self.summaryText)
         if m == None:
             tmp = self.summaryText[0:200]
-            log.error("parseSummary: " + _("Unable to recognise Tourney Info: '%s'") % tmp)
-            log.error("parseSummary: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise Tourney Info: '%s'") % tmp)
+            log.error("parseSummary: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
+            raise FpdbParseError(_("Unable to recognise tourney info from: '%s'") % tmp)
 
         #print "DEBUG: m.groupdict(): %s" % m.groupdict()
 

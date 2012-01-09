@@ -2458,16 +2458,6 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['addTPlayersIndex'] = """CREATE UNIQUE INDEX tourneyId ON TourneysPlayers (tourneyId, playerId)"""
 
-        if db_server == 'mysql':
-            self.query['addTTypesIndex'] = """ALTER TABLE TourneyTypes ADD UNIQUE INDEX tourneytypes_all(siteId, buyin, fee
-                                             , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
-        elif db_server == 'postgresql':
-            self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (siteId, buyin, fee
-                                             , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
-        elif db_server == 'sqlite':
-            self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (siteId, buyin, fee
-                                             , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
-
         self.query['addHudCacheCompundIndex'] = """CREATE UNIQUE INDEX HudCache_Compound_idx ON HudCache(gametypeId, playerId, activeSeats, position, tourneyTypeId, styleKey)"""
         self.query['addCardsCacheCompundIndex'] = """CREATE UNIQUE INDEX CardsCache_Compound_idx ON CardsCache(type, category, currency, playerId, startCards)"""
         self.query['addPositionsCacheCompundIndex'] = """CREATE UNIQUE INDEX PositionsCache_Compound_idx ON PositionsCache(type, base, category, currency, maxSeats, playerId, activeSeats, position)"""
@@ -6473,13 +6463,20 @@ class Sql:
         """
         
         self.query['getTourneyTypeIdByTourneyNo'] = """SELECT tt.id,
+                                                              tt.siteId,
+                                                              tt.currency,
                                                               tt.buyin,
                                                               tt.fee,
+                                                              tt.category,
+                                                              tt.limitType,
                                                               tt.maxSeats,
                                                               tt.sng,
                                                               tt.knockout,
+                                                              tt.koBounty,
                                                               tt.rebuy,
+                                                              tt.rebuyCost,
                                                               tt.addOn,
+                                                              tt.addOnCost,
                                                               tt.speed,
                                                               tt.shootout,
                                                               tt.matrix
@@ -6499,17 +6496,34 @@ class Sql:
                                             AND maxSeats=%s
                                             AND sng=%s
                                             AND knockout=%s
+                                            AND koBounty=%s
                                             AND rebuy=%s
+                                            AND rebuyCost=%s
                                             AND addOn=%s
+                                            AND addOnCost=%s
                                             AND speed=%s
                                             AND shootout=%s
                                             AND matrix=%s
         """
 
         self.query['insertTourneyType'] = """INSERT INTO TourneyTypes
-                                                  (siteId, currency, buyin, fee, category, limitType, maxSeats, buyInChips, sng, knockout, koBounty, rebuy,
-                                                  addOn ,speed, shootout, matrix, added, addedCurrency)
-                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                                  (siteId, currency, buyin, fee, category, limitType, maxSeats, sng, knockout, koBounty,
+                                                   rebuy, rebuyCost, addOn, addOnCost, speed, shootout, matrix)
+                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """
+        
+        self.query['updateTourneyType'] = """UPDATE TourneyTypes
+                                             SET sng = %s,
+                                                 knockout = %s,
+                                                 koBounty = %s,
+                                                 rebuy = %s,
+                                                 rebuyCost = %s,
+                                                 addOn = %s,
+                                                 addOnCost = %s,
+                                                 speed = %s,
+                                                 shootout = %s,
+                                                 matrix = %s
+                                        WHERE id=%s
         """
 
         self.query['getTourneyByTourneyNo'] = """SELECT t.*

@@ -1256,7 +1256,6 @@ class Database:
         c.execute(self.sql.query['addHandsIndex'])
         c.execute(self.sql.query['addPlayersIndex'])
         c.execute(self.sql.query['addTPlayersIndex'])
-        c.execute(self.sql.query['addTTypesIndex'])
 
         c.execute(self.sql.query['addHudCacheCompundIndex'])
         c.execute(self.sql.query['addCardsCacheCompundIndex'])
@@ -2864,24 +2863,39 @@ class Database:
             result = tmp[0]
         return result
     
+    def getTourneyInfo(self, siteName, tourneyNo):
+        c = self.get_cursor()
+        c.execute(self.sql.query['getTourneyInfo'], (siteName, tourneyNo))
+        columnNames=c.description
+
+        names=[]
+        for column in columnNames:
+            names.append(column[0])
+
+        data=c.fetchone()
+        return (names,data)
+    #end def getTourneyInfo
+
+    def getTourneyTypesIds(self):
+        c = self.connection.cursor()
+        c.execute(self.sql.query['getTourneyTypesIds'])
+        result = c.fetchall()
+        return result
+    #end def getTourneyTypesIds
+    
     def getSqlTourneyTypeIDs(self, hand):
         if(self.ttcache == None):
-            self.ttcache = LambdaDict(lambda  key:self.insertTourneyType(key[0], key[1], key[2], key[3]))
+            self.ttcache = LambdaDict(lambda  key:self.insertTourneyType(key[0], key[1], key[2]))
             
         tourneydata =   (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'],
-                         hand.gametype['limitType'], hand.maxseats, hand.isSng, hand.isKO,
-                         hand.isRebuy, hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix)
+                         hand.gametype['limitType'], hand.maxseats, hand.isSng, hand.isKO, hand.koBounty,
+                         hand.isRebuy, hand.rebuyCost, hand.isAddOn, hand.addOnCost, hand.speed, hand.isShootout, hand.isMatrix)
         
-        tourneyInsert = (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'],
-                         hand.gametype['limitType'], hand.maxseats,
-                         hand.buyInChips, hand.isSng, hand.isKO, hand.koBounty, hand.isRebuy,
-                         hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency)
-        
-        result = self.ttcache[(hand.tourNo, hand.siteId, tourneydata, tourneyInsert)]
+        result = self.ttcache[(hand.tourNo, hand.siteId, tourneydata)]
 
         return result
     
-    def insertTourneyType(self, tournNo, siteId, tourneydata, tourneyInsert):
+    def insertTourneyType(self, tournNo, siteId, tourneydata):
         result = None
         c = self.get_cursor()
         q = self.sql.query['getTourneyTypeIdByTourneyNo']
@@ -2902,14 +2916,86 @@ class Database:
                     pp = pprint.PrettyPrinter(indent=4)
                     pp.pprint(tourneyInsert)
                     print ("###### End TourneyType ########")
-                c.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']), tourneyInsert)
+                c.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']), tourneydata)
                 #Get last id might be faster here.
                 #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
                 result = self.get_last_insert_id(c)
         else:
             result = tmp[0]
         return result
+    
+    def createOrUpdateTourneyType(self, summary):
+        cursor = self.get_cursor()
+        q = self.sql.query['getTourneyTypeIdByTourneyNo'].replace('%s', self.sql.query['placeholder'])
+        cursor.execute(q, (summary.tourNo, summary.siteId))
 
+        columnNames=[desc[0] for desc in cursor.description]
+        result=cursor.fetchone()
+
+        if result != None:
+            expectedValues = (('isSng', 'sng'), ('isKO', 'knockout'), ('koBounty', 'koBounty'), ('isRebuy', 'rebuy')
+                             ,('rebuyCost', 'rebuyCost'), ('isAddOn', 'addOn'), ('addOnCost','addOnCost')
+                             ,('speed', 'speed'), ('isShootout', 'shootout'), ('isMatrix', 'matrix'))
+            updateDb=False
+            resultDict = dict(zip(columnNames, result))
+
+            tourneyId = resultDict["id"]
+            for ev in expectedValues :
+                if getattr(summary, ev[0])==None and resultDict[ev[1]]!=None:#DB has this value but object doesnt, so update object
+                    setattr(summary, ev[0], resultDict[ev[1]])
+                elif getattr(summary, ev[0])!=None and resultDict[ev[1]]==None:#object has this value but DB doesnt, so update DB
+                    updateDb=True
+            if updateDb:
+                q = self.sql.query['updateTourneyType'].replace('%s', self.sql.query['placeholder'])
+                row = (summary.isSng, summary.isKO, summary.koBounty, summary.isRebuy, summary.rebuyCost,
+                       summary.isAddOn, summary.addOnCost, summary.speed, summary.isShootout, summary.isMatrix, tourneyId
+                      )
+                cursor.execute(q, row)
+        else:
+            row = (summary.siteId, summary.buyinCurrency, summary.buyin, summary.fee, summary.gametype['category'],
+                   summary.gametype['limitType'], summary.maxseats, summary.isSng, summary.isKO, summary.koBounty,
+                   summary.isRebuy, summary.rebuyCost, summary.isAddOn, summary.addOnCost, summary.speed, summary.isShootout, summary.isMatrix)
+            cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), row)
+            tmp=cursor.fetchone()
+            try:
+                tourneyId = tmp[0]
+            except TypeError: #this means we need to create a new entry
+                if self.printdata:
+                    print ("######## Tourneys ##########")
+                    import pprint
+                    pp = pprint.PrettyPrinter(indent=4)
+                    pp.pprint(row)
+                    print ("###### End Tourneys ########")
+                cursor.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']), row)
+                tourneyId = self.get_last_insert_id(cursor)
+        return tourneyId
+    
+    def getSqlTourneyIDs(self, hand):
+        if(self.tcache == None):
+            self.tcache = LambdaDict(lambda  key:self.insertTourney(key[0], key[1], key[2]))
+
+        result = self.tcache[(hand.siteId, hand.tourNo, hand.tourneyTypeId)]
+
+        return result
+    
+    def insertTourney(self, siteId, tourNo, tourneyTypeId):
+        result = None
+        c = self.get_cursor()
+        q = self.sql.query['getTourneyByTourneyNo']
+        q = q.replace('%s', self.sql.query['placeholder'])
+
+        c.execute (q, (siteId, tourNo))
+
+        tmp = c.fetchone()
+        if (tmp == None): 
+            c.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
+                        (tourneyTypeId, None, tourNo, None, None,
+                         None, None, None, None, None, None))
+            result = self.get_last_insert_id(c)
+        else:
+            result = tmp[0]
+        return result
+    
     def createOrUpdateTourney(self, summary):
         cursor = self.get_cursor()
         q = self.sql.query['getTourneyByTourneyNo'].replace('%s', self.sql.query['placeholder'])
@@ -2954,32 +3040,49 @@ class Database:
             tourneyId = self.get_last_insert_id(cursor)
         return tourneyId
     #end def createOrUpdateTourney
-    
-    def getSqlTourneyIDs(self, hand):
-        if(self.tcache == None):
-            self.tcache = LambdaDict(lambda  key:self.insertTourney(key[0], key[1], key[2]))
 
-        result = self.tcache[(hand.siteId, hand.tourNo, hand.tourneyTypeId)]
+    def getTourneyPlayerInfo(self, siteName, tourneyNo, playerName):
+        c = self.get_cursor()
+        c.execute(self.sql.query['getTourneyPlayerInfo'], (siteName, tourneyNo, playerName))
+        columnNames=c.description
+
+        names=[]
+        for column in columnNames:
+            names.append(column[0])
+
+        data=c.fetchone()
+        return (names,data)
+    #end def getTourneyPlayerInfo  
+    
+    def getSqlTourneysPlayersIDs(self, hand):
+        result = {}
+        if(self.tpcache == None):
+            self.tpcache = LambdaDict(lambda  key:self.insertTourneysPlayers(key[0], key[1]))
+
+        for player in hand.players:
+            playerId = hand.dbid_pids[player[1]]
+            result[player[1]] = self.tpcache[(playerId,hand.tourneyId)]
 
         return result
     
-    def insertTourney(self, siteId, tourNo, tourneyTypeId):
+    def insertTourneysPlayers(self, playerId, tourneyId):
         result = None
         c = self.get_cursor()
-        q = self.sql.query['getTourneyByTourneyNo']
+        q = self.sql.query['getTourneysPlayersByIds']
         q = q.replace('%s', self.sql.query['placeholder'])
 
-        c.execute (q, (siteId, tourNo))
+        c.execute (q, (tourneyId, playerId))
 
         tmp = c.fetchone()
-        if (tmp == None): 
-            c.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
-                        (tourneyTypeId, None, tourNo, None, None,
-                         None, None, None, None, None, None))
+        if (tmp == None): #new player
+            c.execute (self.sql.query['insertTourneysPlayer'].replace('%s',self.sql.query['placeholder'])
+                      ,(tourneyId, playerId, None, None, None, None, None, None, None, None, 0, 0))
+            #Get last id might be faster here.
+            #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
             result = self.get_last_insert_id(c)
         else:
             result = tmp[0]
-        return result                
+        return result
     
     def createOrUpdateTourneysPlayers(self, summary):
         tplayers = []
@@ -3032,70 +3135,7 @@ class Database:
                     self.tpbulk.append((summary.tourneyId, playerId, None, None, None, None, None,
                                          summary.rebuyCounts[player], summary.addOnCounts[player], summary.koCounts[player], 0, 0))
         cursor.executemany(self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),self.tpbulk)
-        
     
-    def getSqlTourneysPlayersIDs(self, hand):
-        result = {}
-        if(self.tpcache == None):
-            self.tpcache = LambdaDict(lambda  key:self.insertTourneysPlayers(key[0], key[1]))
-
-        for player in hand.players:
-            playerId = hand.dbid_pids[player[1]]
-            result[player[1]] = self.tpcache[(playerId,hand.tourneyId)]
-
-        return result
-    
-    def insertTourneysPlayers(self, playerId, tourneyId):
-        result = None
-        c = self.get_cursor()
-        q = self.sql.query['getTourneysPlayersByIds']
-        q = q.replace('%s', self.sql.query['placeholder'])
-
-        c.execute (q, (tourneyId, playerId))
-
-        tmp = c.fetchone()
-        if (tmp == None): #new player
-            c.execute (self.sql.query['insertTourneysPlayer'].replace('%s',self.sql.query['placeholder'])
-                      ,(tourneyId, playerId, None, None, None, None, None, None, None, None, 0, 0))
-            #Get last id might be faster here.
-            #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
-            result = self.get_last_insert_id(c)
-        else:
-            result = tmp[0]
-        return result
-
-    def getTourneyTypesIds(self):
-        c = self.connection.cursor()
-        c.execute(self.sql.query['getTourneyTypesIds'])
-        result = c.fetchall()
-        return result
-    #end def getTourneyTypesIds
-
-    def getTourneyInfo(self, siteName, tourneyNo):
-        c = self.get_cursor()
-        c.execute(self.sql.query['getTourneyInfo'], (siteName, tourneyNo))
-        columnNames=c.description
-
-        names=[]
-        for column in columnNames:
-            names.append(column[0])
-
-        data=c.fetchone()
-        return (names,data)
-    #end def getTourneyInfo
-
-    def getTourneyPlayerInfo(self, siteName, tourneyNo, playerName):
-        c = self.get_cursor()
-        c.execute(self.sql.query['getTourneyPlayerInfo'], (siteName, tourneyNo, playerName))
-        columnNames=c.description
-
-        names=[]
-        for column in columnNames:
-            names.append(column[0])
-
-        data=c.fetchone()
-        return (names,data)
-    #end def getTourneyPlayerInfo
 #end class Database
 
 if __name__=="__main__":

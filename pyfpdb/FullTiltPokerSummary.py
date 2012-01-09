@@ -65,7 +65,7 @@ class FullTiltPokerSummary(TourneySummary):
                         ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+)?
                         (Buy-In:\s[%(LS)s]?(?P<BUYIN>[%(NUM)s]+)(\sFTP)?(\s\+\s[%(LS)s]?(?P<FEE>[%(NUM)s]+)(\sFTP)?)?\s+)?
                         (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[%(NUM)s]+)\s+)?
-                        ((?P<PNAMEBOUNTIES>.{2,15})\sreceived\s\d+\sKnockout\sBounty\sAwards?\s+)?
+                        ((?P<PNAMEBOUNTIES>.{2,15})\sreceived\s(?P<PBOUNTIES>\d+)\sKnockout\sBounty\sAwards?\s+)?
                         (Add-On:\s[%(LS)s](?P<ADDON>[%(NUM)s]+)\s+)?
                         (Rebuy:\s[%(LS)s](?P<REBUYAMT>[%(NUM)s]+)\s+)?
                         ((?P<P1NAME>.{2,15})\sperformed\s(?P<PADDONS>\d+)\sAdd-Ons?\s+)?
@@ -102,12 +102,13 @@ class FullTiltPokerSummary(TourneySummary):
         m = self.re_TourneyInfo.search(self.summaryText[:2000])
         if m == None:
             tmp = self.summaryText[0:200]
-            log.error("parseSummary: " + _("Unable to recognise Tourney Info: '%s'") % tmp)
-            log.error("parseSummary: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise Tourney Info: '%s'") % tmp)
+            log.error("parseSummary: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
+            raise FpdbParseError(_("Unable to recognise tourney info from: '%s'") % tmp)
 
         #print "DEBUG: m.groupdict(): %s" % m.groupdict()
-
+        rebuyCounts = {}
+        addOnCounts = {}
+        koCounts = {}
         mg = m.groupdict()
         if 'TOURNO'    in mg: self.tourNo = mg['TOURNO']
         if 'LIMIT'     in mg and mg['LIMIT'] != None:
@@ -123,7 +124,22 @@ class FullTiltPokerSummary(TourneySummary):
             if mg['PRIZEPOOL'] != None: self.prizepool = int(Decimal(self.clearMoneyString(mg['PRIZEPOOL'])))
         if 'ENTRIES'   in mg:
             self.entries = mg['ENTRIES']
-
+        if 'REBUYAMT'in mg and mg['REBUYAMT'] != None:
+            self.isRebuy   = True
+            self.rebuyCost = int(100*Decimal(self.clearMoneyString(mg['REBUYAMT'])))
+        if 'ADDON' in mg and mg['ADDON'] != None:
+            self.isAddOn = True
+            self.addOnCost = int(100*Decimal(self.clearMoneyString(mg['ADDON'])))
+        if 'KOBOUNTY' in mg and mg['KOBOUNTY'] != None:
+            self.isKO = True
+            self.koBounty = int(100*Decimal(self.clearMoneyString(mg['KOBOUNTY'])))
+        if 'PREBUYS' in mg and mg['PREBUYS'] != None:
+            rebuyCounts[mg['P2NAME']] = int(mg['PREBUYS'])
+        if 'PADDONS' in mg and mg['PADDONS'] != None:
+            addOnCounts[mg['P1NAME']] = int(mg['PADDONS'])
+        if 'PBOUNTIES' in mg and mg['PBOUNTIES'] != None:
+            koCounts[mg['PNAMEBOUNTIES']] = int(mg['PBOUNTIES'])
+        
         datetimestr = ""
         if mg['YEAR'] == None:
             datetimestr = "%s/%s/%s %s:%s:%s" % (mg['Y'], mg['M'], mg['D'], mg['H'], mg['MIN'], mg['S'])
@@ -157,10 +173,22 @@ class FullTiltPokerSummary(TourneySummary):
             name = mg['NAME']
             rank = int(mg['RANK'])
             winnings = 0
+            rebuyCount = 0
+            addOnCount = 0
+            koCount = 0
 
             if 'WINNINGS' in mg and mg['WINNINGS'] != None:
                 winnings = int(100*Decimal(mg['WINNINGS']))
-
+                
+            if name in rebuyCounts:
+                rebuyCount = rebuyCounts[name]
+            
+            if name in addOnCounts:
+                addOnCount = addOnCounts[name]
+                
+            if name in koCounts:
+                koCount = koCounts[name]
+                
             if 'TICKET' and mg['TICKET'] != None:
                 #print "Tournament Ticket Level %s" % mg['LEVEL']
                 step_values = {
@@ -172,8 +200,9 @@ class FullTiltPokerSummary(TourneySummary):
                                 '6' :  '64000', # Step 6 -  $640.00 USD
                                 '7' : '210000', # Step 7 - $2100.00 USD
                               }
-                winnings = step_values[mg['LEVEL']]
-            self.addPlayer(rank, name, winnings, self.currency, 0, 0, 0)
+                winnings = step_values[mg['LEVEL']]    
+                
+            self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
 
             playercount += 1
 
