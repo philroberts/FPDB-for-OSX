@@ -1,0 +1,52 @@
+﻿PokerStars Game #73280765000: Tournament #492967531, $3.00+$0.30 USD Omaha Pot Limit - Level I (10/20) - 2012/01/03 20:34:50 EET [2012/01/04 13:34:54 ET]
+Table '492967531 1' 9-max Seat #1 is the button
+Seat 1: Player1 (3000 in chips) 
+Seat 2: Player2 (3000 in chips) 
+Seat 3: Player3 (3000 in chips) 
+Seat 4: Player4 (3000 in chips) 
+Seat 5: Player5 (3000 in chips) 
+Seat 6: Player6 (3000 in chips) is sitting out
+Seat 7: Hero (3000 in chips) 
+Seat 8: Player8 (3000 in chips) 
+Seat 9: Player9 (3000 in chips) 
+Player2: posts small blind 10
+Player3: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [As 7s 2c 6d]
+Player4: folds 
+Player5: folds 
+Player6: folds 
+Hero: folds 
+Player8: folds 
+Player9: folds 
+Player1: raises 50 to 70
+Player2: calls 60
+Player3: calls 50
+*** FLOP *** [Td 7h 8h]
+Player2: checks 
+Player3: checks 
+Player1: bets 120
+Player2: folds 
+Player3: calls 120
+*** TURN *** [Td 7h 8h] [9h]
+Player3: checks 
+Player1: bets 220
+Player3: folds 
+Uncalled bet (220) returned to Player1
+Player1 collected 450 from pot
+Player1: doesn't show hand 
+*** SUMMARY ***
+Total pot 450 | Rake 0 
+Board [Td 7h 8h 9h]
+Seat 1: Player1 (button) collected (450)
+Seat 2: Player2 (small blind) folded on the Flop
+Seat 3: Player3 (big blind) folded on the Turn
+Seat 4: Player4 folded before Flop (didn't bet)
+Seat 5: Player5 folded before Flop (didn't bet)
+Seat 6: Player6 folded before Flop (didn't bet)
+Seat 7: Hero folded before Flop (didn't bet)
+Seat 8: Player8 folded before Flop (didn't bet)
+Seat 9: Player9 folded before Flop (didn't bet)
+
+
+
