@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2010-2011, Carl Gherardi
+#    Copyright 2010-2012, Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ class iPoker(HandHistoryConverter):
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r"""
-            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL|Omaha\sL)(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
+            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL|Omaha\sL)(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
             <duration>.+</duration>\s+?
             <gamecount>.+</gamecount>\s+?
@@ -140,6 +140,7 @@ class iPoker(HandHistoryConverter):
 
         games = {              # base, category
                     '7 Card Stud L' : ('stud','studhilo'),
+                    '5 Card Stud L' : ('stud','5studhi'),
                         'Holdem NL' : ('hold','holdem'),
                          'Holdem L' : ('hold','holdem'),
                          'Omaha PL' : ('hold','omahahi'),
@@ -375,8 +376,7 @@ class iPoker(HandHistoryConverter):
             elif atype == '7':
                 hand.addAllIn(street, player, action['BET'])
             elif atype == '15': # Ante
-                pass
-                #hand.addAnte(player, action['BET'])
+                pass # Antes dealt with in readAntes
             elif atype == '1' or atype == '2' or atype == '8': #sb/bb/no action this hand (joined table)
                 pass
             elif atype == '9': #FIXME: Sitting out
