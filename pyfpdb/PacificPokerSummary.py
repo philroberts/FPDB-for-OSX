@@ -79,8 +79,8 @@ class PacificPokerSummary(TourneySummary):
         m1 = self.re_Category.search(self.in_path)
         if m == None or m1 == None:
             tmp = self.summaryText[0:200]
-            log.error("parseSummary: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
-            raise FpdbParseError(_("Unable to recognise tourney info from: '%s'") % tmp)
+            log.error(_("PacificPokerSummary.parseSummary: '%s'") % tmp)
+            raise FpdbParseError
 
         mg  = m.groupdict()
         mg1 = m1.groupdict()

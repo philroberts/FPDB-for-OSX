@@ -32,7 +32,6 @@ _ = L10n.get_translation()
 # -- Cannot parse hands in which someone is all in in one of the blinds.
 
 import sys
-import logging
 from HandHistoryConverter import *
 from decimal_wrapper import Decimal
 
@@ -658,8 +657,8 @@ or None if we fail to get the info """
                 return self.info
             except AttributeError:
                 tmp = handText[0:200]
-                log.error("determineGameType: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
-                raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+                log.error(_("MergeToFpdb.determineGameType: '%s'") % tmp)
+                raise FpdbParseError
 
         self.info = {}
         mg = m.groupdict()
@@ -669,7 +668,8 @@ or None if we fail to get the info """
             self.info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
             if mg['GAME'] == "HORSE":
-                raise FpdbParseError(_("determineGameType: HORSE found, unsupported"))
+                log.error(_("MergeToFpdb.determineGameType: HORSE found, unsupported"))
+                raise FpdbParseError
                 #(self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
             else:
                 (self.info['base'], self.info['category']) = self.games[mg['GAME']]
@@ -689,9 +689,9 @@ or None if we fail to get the info """
                 self.info['sb'] = self.Lim_Blinds[mg['BB']][0]
                 self.info['bb'] = self.Lim_Blinds[mg['BB']][1]
             except KeyError:
-                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+                tmp = handText[0:200]
+                log.error(_("MergeToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                raise FpdbParseError
 
         return self.info
 
@@ -699,8 +699,8 @@ or None if we fail to get the info """
         m = self.re_HandInfo.search(hand.handText)
         if m is None:
             tmp = hand.handText[0:200]
-            log.error("readHandInfo: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
-            raise FpdbParseError(_("Unable to recognise hand info from: '%s'") % tmp)
+            log.error(_("MergeToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
 
         #mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
@@ -709,7 +709,7 @@ or None if we fail to get the info """
 
         if hand.gametype['type'] == 'tour':
             tid, table = re.split('-', m.group('TDATA'))
-            logging.info("HID %s-%s, Tourney %s Table %s" % (m.group('HID1'), m.group('HID2'), tid, table))
+            #log.info("HID %s-%s, Tourney %s Table %s" % (m.group('HID1'), m.group('HID2'), tid, table))
             self.info['tablename'] = m.group('TABLENAME')
             hand.tourNo = tid
             hand.tablename = table
@@ -736,9 +736,10 @@ or None if we fail to get the info """
                         hand.fee = int(100*Decimal(buyin)/10)
                         hand.buyinCurrency="USD"
                 else:
-                    raise FpdbParseError(_("No match in MTT or SnG Structures: '%s' %s") % (self.info['tablename'], hand.tourNo))
+                    log.error(_("MergeToFpdb.readHandInfo: No match in MTT or SnG Structures: '%s' %s") % (self.info['tablename'], hand.tourNo))
+                    raise FpdbParseError
         else:
-            logging.debug("HID %s-%s, Table %s" % (m.group('HID1'), m.group('HID2'), m.group('TABLENAME')))
+            log.debug("HID %s-%s, Table %s" % (m.group('HID1'), m.group('HID2'), m.group('TABLENAME')))
             hand.tablename = m.group('TABLENAME')
 
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],'%Y%m%d%H%M')
@@ -771,7 +772,8 @@ or None if we fail to get the info """
 
                 for seatno in acted.keys():
                     if seatno not in seated:
-                        raise FpdbParseError(_("readPlayerStacks: '%s' Seat:%s acts but not listed") % (hand.handid, seatno))
+                        log.error(_("MergeToFpdb.readPlayerStacks: '%s' Seat:%s acts but not listed") % (hand.handid, seatno))
+                        raise FpdbParseError
 
         for seat in seated:
             name, stack = seated[seat]
@@ -933,10 +935,9 @@ or None if we fail to get the info """
                             hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
 
     def readAction(self, hand, street):
-        logging.debug("readAction (%s)" % street)
+        #log.debug("readAction (%s)" % street)
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            logging.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
             player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
             if player in hand.stacks:
                 if action.group('ATYPE') == 'RAISE':
@@ -959,7 +960,7 @@ or None if we fail to get the info """
                 elif action.group('ATYPE') == 'DRAW':
                     hand.addDiscard(street, player, action.group('TXT'))
                 else:
-                    logging.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
+                    log.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
 
     def readShowdownActions(self, hand):
         for street in ('RIVER', 'SEVENTH', 'DRAWTHREE'):

@@ -96,8 +96,8 @@ class PokerStarsSummary(TourneySummary):
         m = self.re_TourneyInfo.search(self.summaryText)
         if m == None:
             tmp = self.summaryText[0:200]
-            log.error("parseSummary: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
-            raise FpdbParseError(_("Unable to recognise tourney info from: '%s'") % tmp)
+            log.error(_("PokerStarsSummary.parseSummary: '%s'") % tmp)
+            raise FpdbParseError
 
         #print "DEBUG: m.groupdict(): %s" % m.groupdict()
 
@@ -125,9 +125,8 @@ class PokerStarsSummary(TourneySummary):
 
         m = self.re_Currency.search(self.summaryText)
         if m == None:
-            log.error("parseSummary: " + _("Unable to locate currency"))
-            log.error("parseSummary: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to locate currency"))
+            log.error("PokerStarsSummary.parseSummary: " + _("Unable to locate currency"))
+            raise FpdbParseError
         #print "DEBUG: m.groupdict(): %s" % m.groupdict()
 
         mg = m.groupdict()

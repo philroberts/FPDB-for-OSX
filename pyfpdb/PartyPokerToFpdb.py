@@ -229,8 +229,8 @@ class PartyPoker(HandHistoryConverter):
                 message = _("Table Closed")
                 raise FpdbHandPartial("Partial hand history: %s" % message)
             tmp = handText[0:200]
-            log.error("determineGameType: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("PartyPokerToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
@@ -269,10 +269,7 @@ class PartyPoker(HandHistoryConverter):
             else:
                 info['currency'] = self.currencies[mg['CURRENCY']]
         if 'BUYIN_CURRENCY' in mg:
-            if mg['BUYIN_CURRENCY'] == None:
-                info['currency'] = self.currencies['$']
-            else:
-                info['currency'] = mg['BUYIN_CURRENCY']
+            info['currency'] = "T$"
         if 'MIXED' in mg:
             if mg['MIXED'] is not None: info['mix'] = self.mixes[mg['MIXED']]
 
@@ -286,9 +283,9 @@ class PartyPoker(HandHistoryConverter):
                 info['sb'] = self.Lim_Blinds[mg['BB']][0]
                 info['bb'] = self.Lim_Blinds[mg['BB']][1]
             except KeyError:
-                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+                tmp = handText[0:200]
+                log.error(_("PartyPokerToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                raise FpdbParseError
         #print "DEUBG: DGT.info: %s" % info
         return info
 
@@ -302,8 +299,9 @@ class PartyPoker(HandHistoryConverter):
         else:
             m2 = self.re_GameInfoTrny.search(hand.handText)
         if m is None or m2 is None:
-            log.error("readHandInfo: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
-            raise FpdbParseError(_("Unable to recognise hand info from: '%s'") % hand.handText[0:200])
+            tmp = hand.handText[0:200]
+            log.error(_("PartyPokerToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
         info.update(m.groupdict())
         info.update(m2.groupdict())
 
@@ -363,7 +361,8 @@ class PartyPoker(HandHistoryConverter):
                     elif info[key].find(u"€")!=-1:
                         hand.buyinCurrency="EUR"
                     else:
-                        raise FpdbParseError(_("Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
+                        log.error(_("PartyPokerToFpdb.readHandInfo: Failed to detect currency Hand ID: '%s' - '%s'") % (hand.handid, info[key]))
+                        raise FpdbParseError
                     info[key] = info[key].strip(u'$€')
                     hand.buyin = int(100*Decimal(info[key]))
             if key == 'LEVEL':
@@ -567,7 +566,8 @@ class PartyPoker(HandHistoryConverter):
             elif actionType == 'is all-In':
                 hand.addAllIn(street, playerName, amount)
             else:
-                raise FpdbParseError((_("Unimplemented %s: '%s' '%s'") + " hid:%s") % ("readAction", playerName, actionType, hand.handid))
+                log.error((_("PartyPokerToFpdb: Unimplemented %s: '%s' '%s'") + " hid:%s") % ("readAction", playerName, actionType, hand.handid))
+                raise FpdbParseError
 
     def readShowdownActions(self, hand):
         # all action in readShownCards

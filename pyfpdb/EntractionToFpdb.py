@@ -129,10 +129,9 @@ class Entraction(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
-            tmp = handText[0:150]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            tmp = handText[0:200]
+            log.error(_("EntractionToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
@@ -166,14 +165,14 @@ class Entraction(HandHistoryConverter):
         m3 = self.re_GameEnds.search(hand.handText)
         m  = self.re_HandInfo.search(hand.handText)
         if m is None or m2 is None or m3 is None:
-            log.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            tmp = hand.handText[0:200]
+            log.error(_("EntractionToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
 
         info.update(m.groupdict())
         info.update(m2.groupdict())
         info.update(m3.groupdict())
 
-        log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'Y':
                 datetimestr = "%s/%s/%s %s:%s:%s" % (info['Y'], info['M'],info['D'],info['H'],info['MIN'],info['S'])

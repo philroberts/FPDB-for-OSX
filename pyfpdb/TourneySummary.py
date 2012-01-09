@@ -304,7 +304,7 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
-            #print "checkPlayerExists", player, "fail"
+            log.error(_("TourneySummary: Tried to add info for unknown player: '%s'") % player)
             raise FpdbParseError
 
     def writeSummary(self, fh=sys.__stdout__):
