@@ -72,7 +72,7 @@ onlinehelp = {'Game':_('Type of Game'),
               'bb/100':_('Big blinds won per 100 hands'),
               'Rake($)':_('Amount of rake paid'),
               'bbxr/100':_('Big blinds won per 100 hands when excluding rake'),
-              'Variance':_('Measure of uncertainty')
+              'Variance':_('Measure of uncertainty'),
               'Std. Dev':_('Measure of uncertainty')
               } 
 
