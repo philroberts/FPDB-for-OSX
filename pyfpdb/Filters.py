@@ -1133,6 +1133,9 @@ class Filters(threading.Thread):
                 hbox = gtk.HBox(False, 0)
                 vbox3.pack_start(hbox, False, False, 0)
                 self.cbNoCurrencies = self.createCurrencyLine(hbox, 'none', self.filterText['currenciesnone'])
+            else:
+                # There is only one currency. Select it, even if it's Play Money.
+                self.cbCurrencies[line[0]].set_active(True)
         else:
             #print "INFO: No currencies returned from database"
             log.info(_("No currencies returned from database"))
