@@ -94,11 +94,11 @@ class Hand(object):
         self.speed = "Normal"
         self.isSng = False
         self.isRebuy = False
-        self.rebuyCost = None
+        self.rebuyCost = 0
         self.isAddOn = False
-        self.addOnCost = None
+        self.addOnCost = 0
         self.isKO = False
-        self.koBounty = None
+        self.koBounty = 0
         self.isMatrix = False
         self.isShootout = False
         self.added = None
@@ -1507,12 +1507,12 @@ class StudHand(Hand):
             if shown:  self.shown.add(player)
             if mucked: self.mucked.add(player)
         else:
-            self.addHoleCards('THIRD',   player, open=[cards[2]], closed=cards[0:2], shown=shown, mucked=mucked)
-            self.addHoleCards('FOURTH',  player, open=[cards[3]], closed=[cards[2]],  shown=shown, mucked=mucked)
-            self.addHoleCards('FIFTH',   player, open=[cards[4]], closed=cards[2:4], shown=shown, mucked=mucked)
-            self.addHoleCards('SIXTH',   player, open=[cards[5]], closed=cards[2:5], shown=shown, mucked=mucked)
             if len(cards) > 6:
-                self.addHoleCards('SEVENTH', player, open=[],         closed=[cards[6]], shown=shown, mucked=mucked)
+                self.addHoleCards('THIRD', player, open=[cards[2]], closed=cards[0:2], shown=shown, mucked=mucked)
+                self.addHoleCards('FOURTH', player, open=[cards[3]], closed=[cards[2]],  shown=shown, mucked=mucked)
+                self.addHoleCards('FIFTH', player, open=[cards[4]], closed=cards[2:4], shown=shown, mucked=mucked)
+                self.addHoleCards('SIXTH', player, open=[cards[5]], closed=cards[2:5], shown=shown, mucked=mucked)
+                self.addHoleCards('SEVENTH', player, open=[], closed=[cards[6]], shown=shown, mucked=mucked)
         if string is not None:
             self.showdownStrings[player] = string
 

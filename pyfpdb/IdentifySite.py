@@ -126,7 +126,8 @@ class IdentifySite:
         re_identify['Microgaming']  = re.compile(u'<Game\sid=\"\d+\"\sdate=\"[\d\-\s:]+\"\sunicodetablename')
         re_identify['FullTiltPokerSummary'] = re.compile(u'Full\sTilt\sPoker\.fr\sTournament|Full\sTilt\sPoker\sTournament\sSummary')
         re_identify['PokerStarsSummary']    = re.compile(u'PokerStars\sTournament\s\#\d+')
-        re_identify['PacificPokerSummary']  = re.compile(u'\*\*\*\*\* Cassava Tournament Summary \*\*\*\*\*')
+        re_identify['PacificPokerSummary']  = re.compile(u'\*{5}\sCassava Tournament Summary\s\*{5}')
+        re_identify['MergeSummary']         = re.compile(u"<meta\sname='Creator'\scontent='support@carbonpoker.ag'\s/>")
         return re_identify
 
     def generateSiteList(self, hhcs):

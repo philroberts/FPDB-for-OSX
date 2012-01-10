@@ -268,8 +268,6 @@ class PartyPoker(HandHistoryConverter):
                 info['currency'] = self.currencies['$']
             else:
                 info['currency'] = self.currencies[mg['CURRENCY']]
-        if 'BUYIN_CURRENCY' in mg:
-            info['currency'] = "T$"
         if 'MIXED' in mg:
             if mg['MIXED'] is not None: info['mix'] = self.mixes[mg['MIXED']]
 
@@ -277,6 +275,7 @@ class PartyPoker(HandHistoryConverter):
             info['type'] = 'ring'
         else:
             info['type'] = 'tour'
+            info['currency'] = "T$"
 
         if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring':
             try:

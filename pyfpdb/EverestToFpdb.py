@@ -99,12 +99,12 @@ class Everest(HandHistoryConverter):
                 return self.info
             except AttributeError:
                 tmp = handText[0:200]
-                log.error(_("EverestToFpdb.determineGameType: '%s'") % tmp)
+                log.error(_("EverestToFpdb.determineGameType: Unable to recognise gametype from: '%s'") % tmp)
                 raise FpdbParseError
 
         if not m2:
             tmp = handText[0:200]
-            log.error(_("EverestToFpdb.determineGameType: '%s'") % tmp)
+            log.error(_("EverestToFpdb.determineGameType: Unable to recognise hand info from: '%s'") % tmp)
             raise FpdbParseError
 
         self.info = {}

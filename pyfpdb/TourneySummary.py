@@ -90,11 +90,11 @@ class TourneySummary(object):
         self.subTourneyFee      = None
         self.rebuyChips         = None
         self.addOnChips         = None
-        self.rebuyCost          = None
-        self.addOnCost          = None
+        self.rebuyCost          = 0
+        self.addOnCost          = 0
         self.totalRebuyCount    = None
         self.totalAddOnCount    = None
-        self.koBounty           = None
+        self.koBounty           = 0
         self.tourneyComment     = None
         self.players            = []
         self.isSng              = False
