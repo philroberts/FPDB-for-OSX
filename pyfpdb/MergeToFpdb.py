@@ -102,7 +102,7 @@ class Merge(HandHistoryConverter):
                         '$2 Bounty Turbo' : {'buyIn': 1, 'fee': 0.2, 'currency': 'USD'},
                         '$2.20 Deuce to Seven Low Triple Draw'  : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
                         '$5 Heads Up Turbo' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$2,000 Guranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
+                        '$2000 Guranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
                         '$100,000 Satellite - Rebuys / Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
                         'The Sixth Cent - 1 Rebuy' : {'buyIn': 0.05, 'fee': 0.01, 'currency': 'USD'},
                         '$5 Holdem SH Freezeout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
@@ -149,6 +149,7 @@ class Merge(HandHistoryConverter):
                         '$3 Holdem Freezeout' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
                         '$22 PL Omaha Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
                         '$1 Dollar Dazzler - $350 Guaranteed' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
+                        '$1 Dollar Dazzler - $275 Guaranteed' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
                         '$11 Daily High Roller Satellite - R/A' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
                         '$1.10 Seven Card Stud HiLo' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
                         '$2 PL Omaha Hi/Lo' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
@@ -184,6 +185,7 @@ class Merge(HandHistoryConverter):
                         '$2 Limit H.O.R.S.E' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
                         '$100,000 Satellite - Rebuys / Addon - 5 Entries Guaranteed!' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
                         '$2 Holdem Turbo' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
+                        '$2 Freezeout SH' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
                         '$5 Holdem SH Turbo' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
                         'The Quarter Quicky - $25 Guaranteed' : {'buyIn': 0.25, 'fee': 0.05, 'currency': 'USD'},
                         '$100,000 Satellite - Rebuys / Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
@@ -196,7 +198,8 @@ class Merge(HandHistoryConverter):
                         'Fast Fifty Freezeout' : {'buyIn': 0.5, 'fee': 0.1, 'currency': 'USD'},
                         '$2 Holdem R/A' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
                         '$5 Daily Satellite - 1 Rebuy / 1 Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$3 Bounty Turbo Freezeout' : {'buyIn': 2, 'fee': 0.3, 'currency': 'USD'},
+                        '$3 Bounty Turbo' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
+                        '$3 Bounty Turbo Freezeout' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
                         '$5 H.A. Freezeout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
                         '$2 Heads Up Freezeout' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
                         'Daily Badugi Freezeout' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
@@ -211,91 +214,92 @@ class Merge(HandHistoryConverter):
                         'Sunday $100,000 Guaranteed Freezeout' : {'buyIn': 100, 'fee': 9, 'currency': 'USD'},
                         'Ladies Only $250 Guaranteed Freezeout' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
                         '$900 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$3,750 Guaranteed Turbo - 1 Rebuy / 1 Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$2,250 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$4,250 Guaranteed NightOwl Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$7,000 Guaranteed Turbo - 1 Rebuy / 1 Addon' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
-                        '$6,500 Guaranteed - 2 Rebuys / 1 Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$3,000 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
-                        '$1,000 Guaranteed Freezeout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
+                        '$3750 Guaranteed Turbo - 1 Rebuy / 1 Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
+                        '$2250 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
+                        '$4250 Guaranteed NightOwl Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
+                        '$7000 Guaranteed Turbo - 1 Rebuy / 1 Addon' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
+                        '$6500 Guaranteed - 2 Rebuys / 1 Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
+                        '$3000 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
+                        '$1000 Guaranteed Freezeout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
+                        '$1000 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
                         '$10,000 Guaranteed Shorthand Turbo - Rebuys / Addon' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$8,000 Guaranteed - Rebuys / Addon' : {'buyIn': 75, 'fee': 7, 'currency': 'USD'},
-                        '$3,000 Guaranteed Freezeout' : {'buyIn': 40, 'fee': 4, 'currency': 'USD'},
-                        '$4,000 Guaranteed Freezeout' : {'buyIn': 15, 'fee': 1.5, 'currency': 'USD'},
-                        '$1,000 PL Omaha HiLo Guaranteed Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$8,000 Guaranteed - Rebuys / Addon' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
-                        '$2,000 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
+                        '$8000 Guaranteed - Rebuys / Addon' : {'buyIn': 75, 'fee': 7, 'currency': 'USD'},
+                        '$3000 Guaranteed Freezeout' : {'buyIn': 40, 'fee': 4, 'currency': 'USD'},
+                        '$4000 Guaranteed Freezeout' : {'buyIn': 15, 'fee': 1.5, 'currency': 'USD'},
+                        '$1000 PL Omaha HiLo Guaranteed Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
+                        '$8000 Guaranteed - Rebuys / Addon' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
+                        '$2000 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
                         '$100 Guaranteed - $2 Bounty Turbo' : {'buyIn': 1, 'fee': 0.2, 'currency': 'USD'},
-                        '$2,250 Guaranteed Freezeout - Short Handed' : {'buyIn': 25, 'fee': 2.5, 'currency': 'USD'},
+                        '$2250 Guaranteed Freezeout - Short Handed' : {'buyIn': 25, 'fee': 2.5, 'currency': 'USD'},
                         '$500 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$1,150 PLO HiLo Guaranteed Freezeout Deepstack' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$1,200 Guaranteed PLO - Rebuys / Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
+                        '$1150 PLO HiLo Guaranteed Freezeout Deepstack' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
+                        '$1200 Guaranteed PLO - Rebuys / Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
                         '$750 Guaranteed Freezeout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
                         '$10,000 Daily High Roller Guaranteed Freezeout' : {'buyIn': 200, 'fee': 15, 'currency': 'USD'},
-                        '$4,500 Guaranteed - Rebuys / Addon' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$3,000 Guaranteed Freezeout' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
-                        '$2,000 PL Omaha HiLo Guaranteed - Rebuys / Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
+                        '$4500 Guaranteed - Rebuys / Addon' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
+                        '$3000 Guaranteed Freezeout' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
+                        '$2000 PL Omaha HiLo Guaranteed - Rebuys / Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
                         '$300 Stud Guaranteed Freezeout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$5,000 Guaranteed Freezeout' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
-                        '$2,000 Guaranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
+                        '$5000 Guaranteed Freezeout' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
+                        '$2000 Guaranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
                         '$100 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$2,500 Guaranteed - $11 Unlimited Rebuys and Addon!' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$9,500 Guaranteed Turbo - 1 Rebuy / 1 Addon' : {'buyIn': 40, 'fee': 4, 'currency': 'USD'},
+                        '$2500 Guaranteed - $11 Unlimited Rebuys and Addon!' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
+                        '$9500 Guaranteed Turbo - 1 Rebuy / 1 Addon' : {'buyIn': 40, 'fee': 4, 'currency': 'USD'},
                         '$100 Guaranteed - $2 Bounty Turbo' : {'buyIn': 1, 'fee': 0.2, 'currency': 'USD'},
-                        '$4,000 Guaranteed Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
+                        '$4000 Guaranteed Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
                         '$750 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$2,500 Guaranteed - Rebuys / Addon' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$5,500 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 100, 'fee': 9, 'currency': 'USD'},
-                        '$4,000 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
+                        '$2500 Guaranteed - Rebuys / Addon' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
+                        '$5500 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 100, 'fee': 9, 'currency': 'USD'},
+                        '$4000 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
                         '$100 Guaranteed - $3 Holdem SH Turbo' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$3,250 Guaranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
+                        '$3250 Guaranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
                         '$750 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$1,500 Guaranteed Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$8,500 Guaranteed - Rebuys / Addon' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
+                        '$1500 Guaranteed Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
+                        '$8500 Guaranteed - Rebuys / Addon' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
                         '$750 Guaranteed Bounty Freezeout' : {'buyIn': 10, 'fee': 1.5, 'currency': 'USD'},
-                        '$1,500 Guaranteed Freezeout - Short Handed' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
-                        '$5,000 Guaranteed Turbo - Rebuys / Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$1,500 Guaranteed Freezeout' : {'buyIn': 15, 'fee': 1.5, 'currency': 'USD'},
-                        '$6,000 Guaranteed - 2 Rebuys / 1 Addon' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
-                        '$1,500 Guaranteed PLO Hi-Lo - Rebuys / Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
+                        '$1500 Guaranteed Freezeout - Short Handed' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
+                        '$5000 Guaranteed Turbo - Rebuys / Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
+                        '$1500 Guaranteed Freezeout' : {'buyIn': 15, 'fee': 1.5, 'currency': 'USD'},
+                        '$6000 Guaranteed - 2 Rebuys / 1 Addon' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
+                        '$1500 Guaranteed PLO Hi-Lo - Rebuys / Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
                         '$300 Guaranteed Bounty Freezeout' : {'buyIn': 3, 'fee': 0.5, 'currency': 'USD'},
-                        '$1,750 Guaranteed Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$3,000 Guaranteed Turbo - Rebuys / Addon' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$3,500 Guaranteed Freezeout' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
-                        '$1,000 Guaranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
+                        '$1750 Guaranteed Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
+                        '$3000 Guaranteed Turbo - Rebuys / Addon' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
+                        '$3500 Guaranteed Freezeout' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
+                        '$1000 Guaranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
                         '$400 Guaranteed - PL Omaha HiLo' : {'buyIn': 6, 'fee': 0.6, 'currency': 'USD'},
-                        '$3,000 Guaranteed - Rebuys / Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
+                        '$3000 Guaranteed - Rebuys / Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
                         '$200 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$2,500 Guaranteed Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
+                        '$2500 Guaranteed Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
                         '$100 Guaranteed - $2 Bounty Turbo' : {'buyIn': 1, 'fee': 0.2, 'currency': 'USD'},
                         'Ladies Only $300 Guaranteed R/A' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$2,000 Guaranteed Deepstack Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
+                        '$2000 Guaranteed Deepstack Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
                         '$300 Guaranteed - Bounty Freezeout' : {'buyIn': 5, 'fee': 1, 'currency': 'USD'},
-                        '$3,000 Guaranteed - Rebuys / Addon' : {'buyIn': 4, 'fee': 0.4, 'currency': 'USD'},
-                        '$1,500 Guaranteed Freezeout' : {'buyIn': 15, 'fee': 1.5, 'currency': 'USD'},
-                        '$1,500 Guaranteed - Rebuys / Addon' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
+                        '$3000 Guaranteed - Rebuys / Addon' : {'buyIn': 4, 'fee': 0.4, 'currency': 'USD'},
+                        '$1500 Guaranteed Freezeout' : {'buyIn': 15, 'fee': 1.5, 'currency': 'USD'},
+                        '$1500 Guaranteed - Rebuys / Addon' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
                         '$700 Guaranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
                         '$700 Guaranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
                         '$900 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
                         '$700 Guaranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
                         '$900 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$1,250 Guaranteed - Rebuys / Addon' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
+                        '$1250 Guaranteed - Rebuys / Addon' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
                         '$150 Guaranteed - Bounty Freezeout' : {'buyIn': 5, 'fee': 1, 'currency': 'USD'},
-                        '$2,250 Guaranteed - 3 Rebuys / 1 Addon' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
+                        '$2250 Guaranteed - 3 Rebuys / 1 Addon' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
                         '$300 Guaranteed Pot Limit HO - Unlimited Rebuys/Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
                         '$500 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
                         '$300 Guaranteed - NLH Shorthanded' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
                         '$750 Guaranteed Freezeout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$3,000 Guaranteed Turbo - 1 Rebuy / 1 Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$2,000 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$2,000 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$4,000 Guaranteed NightOwl Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$7,000 Guaranteed Turbo - 1 Rebuy / 1 Addon' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
-                        '$2,000 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$1,500 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$3,500 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
+                        '$3000 Guaranteed Turbo - 1 Rebuy / 1 Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
+                        '$2000 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
+                        '$2000 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
+                        '$4000 Guaranteed NightOwl Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
+                        '$7000 Guaranteed Turbo - 1 Rebuy / 1 Addon' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
+                        '$2000 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
+                        '$1500 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
+                        '$3500 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
                         '$750 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$2,500 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
+                        '$2500 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
                         '$200 Freeroll - NL Holdem - 20%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
                         '$200 Freeroll - PL Omaha - 18%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
                         '100 Seats to $100k Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
@@ -579,7 +583,7 @@ class Merge(HandHistoryConverter):
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
     re_Board = re.compile(r'<cards type="COMMUNITY" cards="(?P<CARDS>[^"]+)"', re.MULTILINE)
-    re_Buyin = re.compile(r'\$(?P<BUYIN>[.,0-9]+)\s(?P<FREEROLL>Freeroll)?', re.MULTILINE)
+    re_Buyin = re.compile(r'\$(?P<BUYIN>[.,0-9]+)\s(?P<TYPE>Freeroll|Satellite|Guaranteed)?', re.MULTILINE)
 
     # The following are also static regexes: there is no need to call
     # compilePlayerRegexes (which does nothing), since players are identified
@@ -592,10 +596,9 @@ class Merge(HandHistoryConverter):
     re_HeroCards = re.compile(r'<cards type="(HOLE|DRAW_DRAWN_CARDS)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_Action = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT|DRAW|COMPLETE)"( timestamp="(?P<TIMESTAMP>[0-9]+)")? player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?( text="(?P<TXT>.+)")?/>', re.MULTILINE)
     re_AllActions = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT|DRAW|COMPLETE|BIG_BLIND|INITIAL_BLIND|SMALL_BLIND|RETURN_BLIND|BRING_IN|ANTE)"( timestamp="(?P<TIMESTAMP>[0-9]+)")? player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?( text="(?P<TXT>.+)")?/>', re.MULTILINE)
-    re_ShowdownAction = re.compile(r'<cards type="SHOWN" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_CollectPot = re.compile(r'<winner amount="(?P<POT>[.0-9]+)" uncalled="(?P<UNCALLED>false|true)" potnumber="[0-9]+" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
-    re_ShownCards = re.compile(r'<cards type="(SHOWN|MUCKED)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
+    re_ShownCards     = re.compile(r'<cards type="(?P<SHOWED>SHOWN|MUCKED)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_Connection  = re.compile(r'<event sequence="[0-9]+" type="(?P<TYPE>RECONNECTED|DISCONNECTED)" timestamp="[0-9]+" player="[0-9]"/>', re.MULTILINE)
     re_Cancelled   = re.compile(r'<event sequence="\d+" type="GAME_CANCELLED" timestamp="\d+"/>', re.MULTILINE)
     re_LeaveTable  = re.compile(r'<event sequence="\d+" type="LEAVE" timestamp="\d+" player="\d"/>', re.MULTILINE)
@@ -713,8 +716,7 @@ or None if we fail to get the info """
 
         if hand.gametype['type'] == 'tour':
             tid, table = re.split('-', m.group('TDATA'))
-            #log.info("HID %s-%s, Tourney %s Table %s" % (m.group('HID1'), m.group('HID2'), tid, table))
-            self.info['tablename'] = m.group('TABLENAME')
+            self.info['tablename'] = m.group('TABLENAME').strip()
             hand.tourNo = tid
             hand.tablename = table
             if self.info['tablename'] in self.SnG_Structures:
@@ -730,15 +732,19 @@ or None if we fail to get the info """
             else:
                 m1 = self.re_Buyin.search(self.info['tablename'])
                 if m1:
-                    if m1.group('FREEROLL'):
-                        hand.buyin = 0
-                        hand.fee = 0
-                        hand.buyinCurrency="FREE"
-                    else:
+                    print "HID %s-%s, Tourney %s Table %s Name %s" % (m.group('HID1'), m.group('HID2'), tid, table, self.info['tablename'])
+                    if m1.group('TYPE') is None:
                         buyin = self.clearMoneyString(m1.group('BUYIN'))
                         hand.buyin = int(100*Decimal(buyin))
                         hand.fee = int(100*Decimal(buyin)/10)
                         hand.buyinCurrency="USD"
+                    elif m1.group('TYPE')=='FREEROLL':
+                        hand.buyin = 0
+                        hand.fee = 0
+                        hand.buyinCurrency="FREE"
+                    else:
+                        log.error(_("MergeToFpdb.readHandInfo: No match in MTT or SnG Structures: '%s' %s") % (self.info['tablename'], hand.tourNo))
+                        raise FpdbParseError
                 else:
                     log.error(_("MergeToFpdb.readHandInfo: No match in MTT or SnG Structures: '%s' %s") % (self.info['tablename'], hand.tourNo))
                     raise FpdbParseError
@@ -967,11 +973,7 @@ or None if we fail to get the info """
                     log.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
 
     def readShowdownActions(self, hand):
-        for street in ('RIVER', 'SEVENTH', 'DRAWTHREE'):
-            if street in hand.streets.keys() and hand.streets[street] != None:
-                for shows in self.re_ShowdownAction.finditer(hand.streets[street]):
-                    cards = shows.group('CARDS').split(',')
-                    hand.addShownCards(cards, self.playerNameFromSeatNo(shows.group('PSEAT'), hand))
+        pass
 
     def readCollectPot(self, hand):
         hand.setUncalledBets(True)
@@ -981,11 +983,17 @@ or None if we fail to get the info """
             hand.addCollectPot(player=pname, pot=pot)
 
     def readShownCards(self, hand):
-        for street in ('FLOP', 'TURN', 'RIVER', 'SEVENTH', 'DRAWTHREE'):
-            if street in hand.streets.keys() and hand.streets[street] != None:
-                for m in self.re_ShownCards.finditer(hand.streets[street]):
-                    cards = m.group('CARDS').split(',')
-                    hand.addShownCards(cards=cards, player=self.playerNameFromSeatNo(m.group('PSEAT'),hand))
+        for m in self.re_ShownCards.finditer(hand.handText):
+            if m.group('CARDS') is not None:
+                cards = m.group('CARDS')
+                cards = m.group('CARDS').split(',')
+
+                (shown, mucked) = (False, False)
+                if m.group('SHOWED') == "SHOWN": shown = True
+                elif m.group('SHOWED') == "MUCKED": mucked = True
+
+                #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
+                hand.addShownCards(cards=cards, player=self.playerNameFromSeatNo(m.group('PSEAT'),hand), shown=shown, mucked=mucked)
 
     def determineErrorType(self, hand, function):
         message = False
