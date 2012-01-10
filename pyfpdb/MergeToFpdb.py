@@ -615,18 +615,22 @@ class Merge(HandHistoryConverter):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
+                ["ring", "hold", "hp"],
 
                 ["ring", "stud", "fl"],
+                ["ring", "stud", "pl"],
 
                 ["ring", "draw", "fl"],
                 ["ring", "draw", "pl"],
                 ["ring", "draw", "nl"],
+                ["ring", "draw", "hp"],
 
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
                 ["tour", "hold", "fl"],
 
                 ["tour", "stud", "fl"],
+                ["tour", "stud", "pl"],
                 
                 ["tour", "draw", "fl"],
                 ["tour", "draw", "pl"],
@@ -636,7 +640,7 @@ class Merge(HandHistoryConverter):
     def determineGameType(self, handText):
         """return dict with keys/values:
     'type'       in ('ring', 'tour')
-    'limitType'  in ('nl', 'cn', 'pl', 'cp', 'fl')
+    'limitType'  in ('nl', 'cn', 'pl', 'cp', 'fl', 'hp')
     'base'       in ('hold', 'stud', 'draw')
     'category'   in ('holdem', 'omahahi', omahahilo', 'razz', 'studhi', 'studhilo', 'fivedraw', '27_1draw', '27_3draw', 'badugi')
     'hilo'       in ('h','l','s')
