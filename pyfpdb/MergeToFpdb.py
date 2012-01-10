@@ -833,10 +833,10 @@ or None if we fail to get the info """
             self.determineErrorType(hand, "readCommunityCards")
 
     def readAntes(self, hand):
-        m = self.re_Antes.finditer(hand.handText)
-        for player in m:
+        for player in self.re_Antes.finditer(hand.handText):
             pname = self.playerNameFromSeatNo(player.group('PSEAT'), hand)
             #print "DEBUG: hand.addAnte(%s,%s)" %(pname, player.group('ANTE'))
+            self.adjustMergeTourneyStack(hand, pname, player.group('ANTE'))
             hand.addAnte(pname, player.group('ANTE'))
 
     def readBringIn(self, hand):
@@ -844,28 +844,35 @@ or None if we fail to get the info """
         if m:
             pname = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
             #print "DEBUG: hand.addBringIn(%s,%s)" %(pname, m.group('BRINGIN'))
+            self.adjustMergeTourneyStack(hand, pname, m.group('BRINGIN'))
             hand.addBringIn(pname, m.group('BRINGIN'))
 
     def readBlinds(self, hand):
         for a in self.re_PostSB.finditer(hand.handText):
             #print "DEBUG: found sb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('SB'))
-            hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),'small blind', a.group('SB'))
+            player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
+            self.adjustMergeTourneyStack(hand, player, a.group('SB'))
+            hand.addBlind(player,'small blind', a.group('SB'))
             if not hand.gametype['sb']:
                 hand.gametype['sb'] = a.group('SB')
         for a in self.re_PostBB.finditer(hand.handText):
             #print "DEBUG: found bb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('BB'))
-            hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'big blind', a.group('BB'))
+            player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
+            self.adjustMergeTourneyStack(hand, player, a.group('BB'))
+            hand.addBlind(player, 'big blind', a.group('BB'))
             if not hand.gametype['bb']:
                 hand.gametype['bb'] = a.group('BB')
         for a in self.re_PostBoth.finditer(hand.handText):
             bb = Decimal(self.info['bb'])
             amount = Decimal(a.group('SBBB'))
+            player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
+            self.adjustMergeTourneyStack(hand, player, a.group('SBBB'))
             if amount < bb:
-                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'small blind', a.group('SBBB'))
+                hand.addBlind(player, 'small blind', a.group('SBBB'))
             elif amount == bb:
-                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'big blind', a.group('SBBB'))
+                hand.addBlind(player, 'big blind', a.group('SBBB'))
             else:
-                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'both', a.group('SBBB'))
+                hand.addBlind(player, 'both', a.group('SBBB'))
 
         # FIXME
         # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
@@ -883,7 +890,16 @@ or None if we fail to get the info """
                     hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
                 else:
                     hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
-
+                    
+    def adjustMergeTourneyStack(self, hand, player, amount):
+        amount = Decimal(amount)
+        if hand.gametype['type'] == 'tour':
+            for p in hand.players:
+                if p[1]==player:
+                    stack  = Decimal(p[2])
+                    stack += amount
+                    p[2]   = str(stack)
+            hand.stacks[player] += amount
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
