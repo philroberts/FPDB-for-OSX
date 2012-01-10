@@ -111,6 +111,7 @@ class GuiGraphViewer (threading.Thread):
         #self.exportButton.set_sensitive(False)
         self.canvas = None
 
+        self.exportFile = None
 
         self.db.rollback()
 
@@ -332,15 +333,18 @@ class GuiGraphViewer (threading.Thread):
         if self.fig is None:
             return # Might want to disable export button until something has been generated.
 
+        png_filter = gtk.FileFilter()
+        png_filter.add_pattern('*.png')
         dia_chooser = gtk.FileChooserDialog(title=_("Please choose the directory you wish to export to:"),
-                                            action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
+                                            action=gtk.FILE_CHOOSER_ACTION_SAVE,
                                             buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OK,gtk.RESPONSE_OK))
+        dia_chooser.set_filter(png_filter)
         dia_chooser.set_destroy_with_parent(True)
         dia_chooser.set_transient_for(self.parent)
-        try: 
+        if self.exportFile is not None:
             dia_chooser.set_filename(self.exportFile) # use previously chosen export path as default
-        except:
-            pass
+        else:
+            dia_chooser.set_current_name('fpdbgraph.png')
 
         response = dia_chooser.run()
         
@@ -349,16 +353,12 @@ class GuiGraphViewer (threading.Thread):
             dia_chooser.destroy()
             return
             
-        # generate a unique filename for export
-        now = datetime.now()
-        now_formatted = now.strftime("%Y%m%d%H%M%S")
-        self.exportFile = dia_chooser.get_filename() + "/fpdb" + now_formatted + ".png"
+        self.exportFile = dia_chooser.get_filename()
         dia_chooser.destroy()
         
-        #print "DEBUG: self.exportFile = %s" %(self.exportFile)
         self.fig.savefig(self.exportFile, format="png")
 
-        #display info box to confirm graph created
+        # Display info box to confirm graph created.
         diainfo = gtk.MessageDialog(parent=self.parent,
                                 flags=gtk.DIALOG_DESTROY_WITH_PARENT,
                                 type=gtk.MESSAGE_INFO,
