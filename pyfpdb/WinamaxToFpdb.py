@@ -168,10 +168,9 @@ class Winamax(HandHistoryConverter):
 
         m = self.re_HandInfo.search(handText)
         if not m:
-            tmp = handText[0:100]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            tmp = handText[0:200]
+            log.error(_("WinamaxToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
 
@@ -187,8 +186,8 @@ class Winamax(HandHistoryConverter):
                 info['limitType'] = self.limits[mg['LIMIT']]
             else:
                 tmp = handText[0:100]
-                log.error(_("Limit not found in %s.") % tmp)
-                raise FpdbParseError(_("Limit not found in %s.") % tmp)
+                log.error(_("WinamaxToFpdb.determineGameType: Limit not found in %s.") % tmp)
+                raise FpdbParseError
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
@@ -201,10 +200,12 @@ class Winamax(HandHistoryConverter):
     def readHandInfo(self, hand):
         info = {}
         m =  self.re_HandInfo.search(hand.handText)
+        if m is None:
+            tmp = hand.handText[0:200]
+            log.error(_("WinamaxToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
 
-        if m:
-            info.update(m.groupdict())
-
+        info.update(m.groupdict())
         #log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
@@ -259,7 +260,8 @@ class Winamax(HandHistoryConverter):
                             hand.buyinCurrency="WIFP"
                         else:
                             #FIXME: handle other currencies (are there other currencies?)
-                            raise FpdbParseError(_("Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
+                            log.error(_("WinamaxToFpdb.readHandInfo: Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
+                            raise FpdbParseError
 
                         info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
 

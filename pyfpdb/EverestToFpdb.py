@@ -23,7 +23,6 @@ import L10n
 _ = L10n.get_translation()
 
 import sys
-import logging
 from HandHistoryConverter import *
 from decimal_wrapper import Decimal
 
@@ -99,15 +98,14 @@ class Everest(HandHistoryConverter):
                 self.info
                 return self.info
             except AttributeError:
-                tmp = handText[0:100]
-                log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+                tmp = handText[0:200]
+                log.error(_("EverestToFpdb.determineGameType: '%s'") % tmp)
+                raise FpdbParseError
 
         if not m2:
-            tmp = handText[0:100]
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise hand info from: '%s'") % tmp)
+            tmp = handText[0:200]
+            log.error(_("EverestToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         self.info = {}
         mg = m.groupdict()
@@ -146,9 +144,9 @@ class Everest(HandHistoryConverter):
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if m is None:
-            logging.info(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-            logging.info(hand.handText)
-            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            tmp = hand.handText[0:200]
+            log.error(_("EverestToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
         hand.handid = m.group('HID')
         hand.tablename = self.info['TABLENAME']
         hand.maxseats = None
@@ -236,7 +234,7 @@ class Everest(HandHistoryConverter):
                 hand.addFold(street, player)
             else:
                 print (_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
-                logging.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
+                log.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):

@@ -206,8 +206,8 @@ class Fulltilt(HandHistoryConverter):
         m = self.re_GameInfo.search(handText)
         if not m:
             tmp = handText[0:200]
-            log.error("determineGameType: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("FulltiltToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
         mg = m.groupdict()
 
         # translations from captured groups to our info strings
@@ -265,8 +265,8 @@ class Fulltilt(HandHistoryConverter):
                 info['bb'] = self.Lim_Blinds[bb][1]
             except KeyError:
                 tmp = handText[0:200]
-                log.error("determineGameType: "  + _("Raising FpdbParseError for file '%s'") % self.in_path)
-                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                log.error(_("FulltiltToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                raise FpdbParseError
 
         if mg['GAME'] is not None:
             (info['base'], info['category']) = games[mg['GAME']]
@@ -282,8 +282,8 @@ class Fulltilt(HandHistoryConverter):
         m =  self.re_HandInfo.search(hand.handText)
         if m is None:
             tmp = hand.handText[0:200]
-            log.error("readHandInfo: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
-            raise FpdbParseError(_("Unable to recognise hand info from: '%s'") % tmp)
+            log.error(_("FulltiltToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
 
         #print "DEBUG: m.groupdict: %s" % m.groupdict()
         hand.handid = m.group('HID')
@@ -365,7 +365,10 @@ class Fulltilt(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         # Split hand text for FTP, as the regex matches the player names incorrectly
         # in the summary section
-        pre, post = hand.handText.split('*** SUMMARY ***')
+        handsplit = hand.handText.split('*** SUMMARY ***')
+        if len(handsplit)!=2:
+            raise FpdbHandPartial(_("Hand is not cleanly split into pre and post Summary %s.") % hand.handid)
+        pre, post = handsplit
         m = self.re_PlayerInfo.finditer(pre)
         plist = {}
 

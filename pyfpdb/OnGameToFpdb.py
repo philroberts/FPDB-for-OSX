@@ -24,11 +24,6 @@ _ = L10n.get_translation()
 import sys
 import exceptions
 
-import logging
-# logging has been set up in fpdb.py or HUD_main.py, use their settings:
-log = logging.getLogger("parser")
-
-
 import Configuration
 from HandHistoryConverter import *
 from decimal_wrapper import Decimal
@@ -169,10 +164,9 @@ class OnGame(HandHistoryConverter):
 
         m = self.re_HandInfo.search(handText)
         if not m:
-            tmp = handText[0:100]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            tmp = handText[0:200]
+            log.error(_("OnGameToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
@@ -188,9 +182,9 @@ class OnGame(HandHistoryConverter):
             if mg['LIMIT'] in self.limits:
                 info['limitType'] = self.limits[mg['LIMIT']]
             else:
-                tmp = handText[0:100]
-                log.error(_("Limit not found in %s.") % tmp)
-                raise FpdbParseError(_("Limit not found in %s.") % tmp)
+                tmp = handText[0:200]
+                log.error(_("OnGameToFpdb.determineGameType: Limit not found in '%s'") % tmp)
+                raise FpdbParseError
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
@@ -204,10 +198,12 @@ class OnGame(HandHistoryConverter):
     def readHandInfo(self, hand):
         info = {}
         m =  self.re_HandInfo.search(hand.handText)
+        if m is None:
+            tmp = hand.handText[0:200]
+            log.error(_("OnGameToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
 
-        if m:
-            info.update(m.groupdict())
-
+        info.update(m.groupdict())
         #log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
@@ -222,8 +218,9 @@ class OnGame(HandHistoryConverter):
                     tzoffset = a.group('OFFSET')
                 else:
                     datetimestr = "2010/Jan/01 01:01:01"
-                    log.error("readHandInfo: " + _("DATETIME not matched: '%s'") % info[key])
-                    print (_("DEBUG:") + " readHandInfo: " + _("DATETIME not matched: '%s'") % info[key])
+                    log.error("OnGameToFpdb.readHandInfo: " + _("DATETIME not matched: '%s'") % info[key])
+                    raise FpdbParseError
+                    #print (_("DEBUG:") + " readHandInfo: " + _("DATETIME not matched: '%s'") % info[key])
                 # TODO: Manually adjust time against OFFSET
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%b/%d %H:%M:%S") # also timezone at end, e.g. " ET"
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, tzoffset, "UTC")
@@ -332,13 +329,13 @@ class OnGame(HandHistoryConverter):
         log.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
-            #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
+            #~ log.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
             hand.addAnte(player.group('PNAME'), player.group('ANTE'))
     
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
-            #~ logging.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
+            #~ log.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
 
     def readHeroCards(self, hand):

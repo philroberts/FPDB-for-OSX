@@ -44,7 +44,6 @@ _ = L10n.get_translation()
 #    this is corrected tournaments will be unparseable
 
 import sys
-import logging
 from HandHistoryConverter import *
 from decimal_wrapper import Decimal
 
@@ -131,8 +130,8 @@ class iPoker(HandHistoryConverter):
                 return self.info
             except AttributeError:
                 tmp = handText[0:200]
-                log.error("determineGameType: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
-                raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+                log.error(_("iPokerToFpdb.determineGameType: '%s'") % tmp)
+                raise FpdbParseError
 
         self.info = {}
         mg = m.groupdict()
@@ -200,8 +199,8 @@ class iPoker(HandHistoryConverter):
         m = self.re_HandInfo.search(hand.handText)
         if m is None:
             tmp = hand.handText[0:200]
-            log.error("readHandInfo: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
-            raise FpdbParseError(_("Unable to recognise hand info from: '%s'") % tmp)
+            log.error(_("iPokerToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
         
         mg = m.groupdict()
         #print "DEBUG: m.groupdict(): %s" % mg
@@ -382,7 +381,7 @@ class iPoker(HandHistoryConverter):
             elif atype == '9': #FIXME: Sitting out
                 pass
             else:
-                logging.error(_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action['PNAME'], action['ATYPE']))
+                log.error(_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action['PNAME'], action['ATYPE']))
 
     def readShowdownActions(self, hand):
         # Cards lines contain cards

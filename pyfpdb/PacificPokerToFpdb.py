@@ -21,17 +21,6 @@
 import L10n
 _ = L10n.get_translation()
 
-# DONE: Holdem: nl, pl, fl
-# TODO: Tournaments and SNG import
-# TODO: bulkloading summary files hangs fpdb
-# TODO: Ring player stats do not always show, cause in the hhc?
-
-
-import logging
-# logging has been set up in fpdb.py or HUD_main.py, use their settings:
-log = logging.getLogger("888hhc")
-log.info("PacificPokerToFpdb.py")
-
 import sys
 from HandHistoryConverter import *
 from decimal_wrapper import Decimal
@@ -187,8 +176,8 @@ class PacificPoker(HandHistoryConverter):
         m = self.re_GameInfo.search(handText)
         if not m:
             tmp = handText[0:200]
-            log.error("determineGameType: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("PacificPokerToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
         #print "DEBUG: mg: ", mg
@@ -231,13 +220,13 @@ class PacificPoker(HandHistoryConverter):
         m2 = self.re_GameInfo.search(hand.handText)
         if m is None or m2 is None:
             tmp = hand.handText[0:200]
-            log.error("readHandInfo: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
-            raise FpdbParseError(_("Unable to recognise hand info from: '%s'") % tmp)
+            log.error(_("PacificPokerToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
 
         info.update(m.groupdict())
         info.update(m2.groupdict())
 
-        log.debug("readHandInfo: %s" % info)
+        #log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
                 # 28 11 2011 19:05:11
@@ -265,7 +254,8 @@ class PacificPoker(HandHistoryConverter):
                         hand.buyinCurrency="USD"
                     else:
                         #FIXME: handle other currencies, FPP, play money
-                        raise FpdbParseError(_("Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
+                        log.error(_("PacificPokerToFpdb.readHandInfo: Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
+                        raise FpdbParseError
 
                     info['BIAMT'] = info['BIAMT'].strip(u'$€')
                     info['BIRAKE'] = info['BIRAKE'].strip(u'$€')
@@ -308,8 +298,8 @@ class PacificPoker(HandHistoryConverter):
                        r"(\*\* Dealing river \*\* (?P<RIVER>\[ \S\S \].+?(?=\*\* Summary \*\*)|.+))?"
                        , hand.handText,re.DOTALL)
         if m is None:
-            log.error(_("Unable to recognise streets"))
-            raise FpdbParseError(_("Unable to recognise streets"))
+            log.error(_("PacificPokerToFpdb.markStreets: Unable to recognise streets"))
+            raise FpdbParseError
         else:
             #print "DEBUG: Matched markStreets"
             mg = m.groupdict()

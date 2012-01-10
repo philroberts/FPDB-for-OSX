@@ -136,10 +136,10 @@ HandHistoryConverter: '%(sitename)s'
                     self.processedHands.append(self.processHand(handText))
                 except FpdbHandPartial, e:
                     self.numPartial += 1
-                    log.info("%s" % e)
-                except FpdbParseError, e:
+                    log.debug("%s" % e)
+                except FpdbParseError:
                     self.numErrors += 1
-                    log.error("%s" % e)
+                    log.error(_("FpdbParseError for file '%s'") % self.in_path)
             self.numHands = len(handsList)
             endtime = time.time()
             log.info(_("Read %d hands (%d failed) in %.3f seconds") % (self.numHands, (self.numErrors + self.numPartial), endtime - starttime))
@@ -194,7 +194,6 @@ HandHistoryConverter: '%(sitename)s'
             gametype = self.determineGameType(self.whole_file)
         else:
             gametype = self.determineGameType(handText)
-        log.debug("gametype %s" % gametype)
         hand = None
         l = None
         if gametype is None:
@@ -212,21 +211,20 @@ HandHistoryConverter: '%(sitename)s'
 
         if l in self.readSupportedGames():
             if gametype['base'] == 'hold':
-                log.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
                 hand = Hand.HoldemOmahaHand(self.config, self, self.sitename, gametype, handText)
             elif gametype['base'] == 'stud':
                 hand = Hand.StudHand(self.config, self, self.sitename, gametype, handText)
             elif gametype['base'] == 'draw':
                 hand = Hand.DrawHand(self.config, self, self.sitename, gametype, handText)
         else:
-            log.error(_("Unsupported game type: %s") % gametype)
-            raise FpdbParseError(_("Unsupported game type: %s") % gametype)
+            log.error(_("%s Unsupported game type: %s") % (self.sitename, gametype))
+            raise FpdbParseError
 
         if hand:
             #hand.writeHand(self.out_fh)
             return hand
         else:
-            log.error(_("Unsupported game type: %s") % gametype)
+            log.error(_("%s Unsupported game type: %s") % (self.sitename, gametype))
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
 
 

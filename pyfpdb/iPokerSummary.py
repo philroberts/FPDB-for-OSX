@@ -72,16 +72,17 @@ class iPokerSummary(TourneySummary):
     def parseSummary(self):
         m = self.re_GameType.search(self.summaryText)
         if not m:
-            tmp = self.summaryText[0:100]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            tmp = self.summaryText[0:200]
+            log.error(_("iPokerSummary.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
         #print "DEBUG: m.groupdict(): %s" % mg
 
         if 'SB' in mg and mg['SB'] != None:
-            raise FpdbParseError(_("File '%s' does not appear to be a tourney") % 'XXX')
+            tmp = self.summaryText[0:200]
+            log.error(_("iPokerSummary.determineGameType: Text does not appear to be a tournament '%s'") % tmp)
+            raise FpdbParseError
         else:
             tourney = True
 #                self.gametype['limitType'] = 
@@ -124,7 +125,9 @@ class iPokerSummary(TourneySummary):
 
                 self.addPlayer(rank, hero, winnings, self.currency, None, None, None)
         else:
-            raise FpdbParseError(_("iPokerSummary: Text does not appear to be a tourney"))
+            tmp = self.summaryText[0:200]
+            log.error(_("iPokerSummary.determineGameType: Text does not appear to be a tournament '%s'") % tmp)
+            raise FpdbParseError
 
 
 def convert_to_decimal(string):
