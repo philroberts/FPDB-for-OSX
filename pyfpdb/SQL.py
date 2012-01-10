@@ -3423,6 +3423,7 @@ class Sql:
                             ,avg((hp.totalProfit+hp.rake)/100.0)                                    AS profhndxr
                             ,avg(h.seats+0.0)                                                       AS avgseats
                             ,variance(hp.totalProfit/100.0)                                         AS variance
+                            ,sqrt(variance(hp.totalProfit/100.0))                                                         AS stddev
                       from HandsPlayers hp
                            inner join Hands h       on  (h.id = hp.handId)
                            inner join Gametypes gt  on  (gt.Id = h.gametypeId)
@@ -3585,6 +3586,7 @@ class Sql:
                             ,avg((hp.totalProfit+hp.rake)/100.0)                                    AS profhndxr
                             ,avg(h.seats+0.0)                                                       AS avgseats
                             ,variance(hp.totalProfit/100.0)                                         AS variance
+                            ,sqrt(variance(hp.totalProfit/100.0))                                                         AS stddev
                       from HandsPlayers hp
                            inner join Hands h       on  (h.id = hp.handId)
                            inner join Gametypes gt  on  (gt.Id = h.gametypeId)
@@ -3736,6 +3738,7 @@ class Sql:
                             ,avg((hp.totalProfit+hp.rake)/100.0)                                    AS profhndxr
                             ,avg(h.seats+0.0)                                                       AS avgseats
                             ,variance(hp.totalProfit/100.0)                                         AS variance
+                            ,sqrt(variance(hp.totalProfit/100.0))                                                         AS stddev
                       from HandsPlayers hp
                            inner join Hands h       on  (h.id = hp.handId)
                            inner join Gametypes gt  on  (gt.Id = h.gametypeId)
@@ -3934,6 +3937,9 @@ class Sql:
                      ,case when hprof2.variance = -999 then '-'
                            else format(hprof2.variance, 2)
                       end                                                          AS Variance
+                     ,case when hprof2.stddev = -999 then '-'
+                           else format(hprof2.stddev, 2)
+                      end                                                          AS Stddev
                      ,stats.AvgSeats
                 FROM
                     (select /* stats from hudcache */
@@ -4013,6 +4019,7 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
+                            ,sqrt(variance(hprof.profit/100.0))                                                         AS stddev
                       from
                           (select hp.handId, <hgametypeId> as gtId, hp.totalProfit as profit
                            from HandsPlayers hp
@@ -4037,6 +4044,8 @@ class Sql:
                      ,stats.TuAFq,stats.RvAFq,stats.PoFAFq,stats.Net,stats.BBper100,stats.Profitperhand
                      ,case when hprof2.variance = -999 then '-' else round(hprof2.variance, 2)
                       end                                                                   AS Variance
+                     ,case when hprof2.stddev = -999 then '-' else round(hprof2.stddev, 2)
+                      end                                                                   AS Stddev
                      ,stats.AvgSeats
                 FROM
                     (select /* stats from hudcache */
@@ -4110,6 +4119,9 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
+                             case when hprof.gtId = -1 then -999
+                                  else sqrt(variance(hprof.profit/100.0))
+                             end as stddev
                       from
                           (select hp.handId, <hgametypeId> as gtId, hp.totalProfit as profit
                            from HandsPlayers hp
@@ -4151,6 +4163,9 @@ class Sql:
                       ,case when hprof2.variance = -999 then '-'
                             else to_char(hprof2.variance, '0D00')
                        end                                                          AS Variance
+                      ,case when hprof2.stddev = -999 then '-'
+                            else to_char(hprof2.stddev, '0D00')
+                       end                                                          AS Stddev
                       ,AvgSeats
                 FROM
                     (select gt.base
@@ -4219,6 +4234,9 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
+                             case when hprof.gtId = -1 then -999
+                                  else sqrt(variance(hprof.profit/100.0)
+                             end as stddev
                       from
                           (select hp.handId, <hgametypeId> as gtId, hp.totalProfit as profit
                            from HandsPlayers hp
@@ -4272,6 +4290,9 @@ class Sql:
                      ,case when hprof2.variance = -999 then '-'
                            else format(hprof2.variance, 2)
                       end                                                          AS Variance
+                     ,case when hprof2.stddev = -999 then '-'
+                           else format(hprof2.stddev, 2)
+                      end                                                          AS Stddev
                      ,stats.AvgSeats
                 FROM
                     (select /* stats from hudcache */
@@ -4367,6 +4388,9 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
+                             case when hprof.gtId = -1 then -999
+                                  else sqrt(variance(hprof.profit/100.0))
+                             end as stddev
                       from
                           (select hp.handId, <hgametypeId> as gtId, hp.position
                                 , hp.totalProfit as profit
@@ -4404,6 +4428,9 @@ class Sql:
                      ,case when hprof2.variance = -999 then '-'
                            else round(hprof2.variance, 2)
                       end                                                                   AS Variance
+                     ,case when hprof2.variance = -999 then '-'
+                           else round(hprof2.stddev, 2)
+                      end                                                                   AS Stddev
                      ,stats.AvgSeats
                 FROM
                     (select /* stats from hudcache */
@@ -4493,6 +4520,9 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
+                             case when hprof.gtId = -1 then -999
+                                  else sqrt(variance(hprof.profit/100.0))
+                             end as stddev
                       from
                           (select hp.handId, <hgametypeId> as gtId, hp.position
                                 , hp.totalProfit as profit
@@ -4547,6 +4577,9 @@ class Sql:
                       ,case when hprof2.variance = -999 then '-'
                             else to_char(hprof2.variance, '0D00')
                        end                                                          AS Variance
+                      ,case when hprof2.stddev = -999 then '-'
+                            else to_char(hprof2.stddev, '0D00')
+                       end                                                          AS Stddev
                       ,stats.AvgSeats
                 FROM
                     (select /* stats from hudcache */
@@ -4645,6 +4678,9 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
+                             case when hprof.gtId = -1 then -999
+                                  else sqrt(variance(hprof.profit/100.0))
+                             end as stddev
                       from
                           (select hp.handId, <hgametypeId> as gtId, hp.position
                                 , hp.totalProfit as profit
