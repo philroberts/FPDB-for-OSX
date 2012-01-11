@@ -963,7 +963,10 @@ class HoldemOmahaHand(Hand):
         Hand.__init__(self, self.config, sitename, gametype, handText, builtFrom = "HHC")
         self.sb = gametype['sb']
         self.bb = gametype['bb']
-        self.in_path = hhc.in_path
+        if hasattr(hhc, "in_path"):
+            self.in_path = hhc.in_path
+        else:
+            self.in_path = "database"
 
         #Populate a HoldemOmahaHand
         #Generally, we call 'read' methods here, which get the info according to the particular filter (hhc)
@@ -1273,7 +1276,10 @@ class DrawHand(Hand):
         Hand.__init__(self, self.config, sitename, gametype, handText)
         self.sb = gametype['sb']
         self.bb = gametype['bb']
-        self.in_path = hhc.in_path
+        if hasattr(hhc, "in_path"):
+            self.in_path = hhc.in_path
+        else:
+            self.in_path = "database"
         # Populate the draw hand.
         if builtFrom == "HHC":
             hhc.readHandInfo(self)
@@ -1468,7 +1474,10 @@ class StudHand(Hand):
         Hand.__init__(self, self.config, sitename, gametype, handText)
         self.sb = gametype['sb']
         self.bb = gametype['bb']
-        self.in_path = hhc.in_path
+        if hasattr(hhc, "in_path"):
+            self.in_path = hhc.in_path
+        else:
+            self.in_path = "database"
         #Populate the StudHand
         #Generally, we call a 'read' method here, which gets the info according to the particular filter (hhc)
         # which then invokes a 'addXXX' callback
