@@ -54,7 +54,7 @@ class iPokerSummary(TourneySummary):
             """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_GameInfoTrny = re.compile(r"""
-                <tournamentname>.+?<place>(?P<PLACE>.+?)</place>
+                <tournamentname>(?P<NAME>.+?)</tournamentname><place>(?P<PLACE>.+?)</place>
                 <buyin>(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)\+?(?P<BIRAKE>[%(LS)s\d\.]+)?|.+?)</buyin>\s+?
                 <totalbuyin>(?P<TOTBUYIN>.+)</totalbuyin>\s+?
                 <ipoints>([%(NUM)s]+|N/A)</ipoints>\s+?
@@ -116,6 +116,7 @@ class iPokerSummary(TourneySummary):
                     self.fee   = 0
                 #FIXME: Tournament # looks like it is in the table name
                 self.tourNo = mg['TABLE'].split(',')[-1].strip()
+                self.tourneyName = mg2['NAME'][:40]
 
                 hero     = mg['HERO']
                 winnings = int(100*convert_to_decimal(mg2['WIN']))
