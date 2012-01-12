@@ -214,4 +214,4 @@ class FullTiltPokerSummary(TourneySummary):
                 winnings = 0
                 name = a.group('NAME')
                 rank = a.group('RANK')
-                self.addPlayer(rank, name, winnings, self.currency, None, None, None)
+                self.addPlayer(rank, name, winnings, self.currency, 0, 0, 0)

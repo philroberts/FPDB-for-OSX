@@ -112,6 +112,7 @@ class PacificPokerSummary(TourneySummary):
         winnings = 0
         rebuyCount = 0
         addOnCount = 0
+        koCount = 0
         
         if 'WINNINGS' in mg and mg['WINNINGS'] != None:
             winnings = int(100*convert_to_decimal(mg['WINNINGS']))
@@ -120,7 +121,7 @@ class PacificPokerSummary(TourneySummary):
         if 'PADDONS' in mg and mg['PADDONS'] != None:
             addOnCount = int(mg['PADDONS'])
         
-        self.addPlayer(rank, player, winnings, self.currency, rebuyCount, addOnCount, None)
+        self.addPlayer(rank, player, winnings, self.currency, rebuyCount, addOnCount, koCount)
 
 def convert_to_decimal(string):
     dec = string.strip(u'€&euro;\u20ac$')

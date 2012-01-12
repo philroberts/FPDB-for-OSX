@@ -141,6 +141,9 @@ class PokerStarsSummary(TourneySummary):
             name = mg['NAME']
             rank = int(mg['RANK'])
             winnings = 0
+            rebuyCount = 0
+            addOnCount = 0
+            koCount = 0
 
             if 'WINNINGS' in mg and mg['WINNINGS'] != None:
                 winnings = int(100*Decimal(mg['WINNINGS']))
@@ -165,7 +168,7 @@ class PokerStarsSummary(TourneySummary):
             #TODO: currency, ko/addon/rebuy count -> need examples!
             #print "DEBUG: addPlayer(%s, %s, %s, %s, None, None, None)" %(rank, name, winnings, self.currency)
             #print "DEBUG: self.buyin: %s self.fee %s" %(self.buyin, self.fee)
-            self.addPlayer(rank, name, winnings, self.currency, 0, 0, 0)
+            self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
 
         #print self
 

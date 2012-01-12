@@ -123,7 +123,7 @@ class iPokerSummary(TourneySummary):
                 if rank == 'N/A':
                     rank = None
 
-                self.addPlayer(rank, hero, winnings, self.currency, None, None, None)
+                self.addPlayer(rank, hero, winnings, self.currency, 0, 0, 0)
         else:
             tmp = self.summaryText[0:200]
             log.error(_("iPokerSummary.determineGameType: Text does not appear to be a tournament '%s'") % tmp)
