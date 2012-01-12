@@ -520,6 +520,7 @@ class Database:
                 sqlite3.register_converter("bool", lambda x: bool(int(x)))
                 sqlite3.register_adapter(bool, lambda x: 1 if x else 0)
                 self.connection.create_function("floor", 1, math.floor)
+                self.connection.create_function("sqrt", 1, math.sqrt)
                 tmp = sqlitemath()
                 self.connection.create_function("mod", 2, tmp.mod)
                 if use_numpy:

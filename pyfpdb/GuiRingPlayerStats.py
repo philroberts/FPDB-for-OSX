@@ -72,7 +72,8 @@ onlinehelp = {'Game':_('Type of Game'),
               'bb/100':_('Big blinds won per 100 hands'),
               'Rake($)':_('Amount of rake paid'),
               'bbxr/100':_('Big blinds won per 100 hands when excluding rake'),
-              'Variance':_('Measure of uncertainty')
+              'Variance':_('Measure of uncertainty'),
+              'Std. Dev':_('Measure of uncertainty')
               } 
 
 
@@ -204,17 +205,19 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         self.main_hbox.pack2(self.stats_frame)
         self.main_hbox.show()
 
-        # make sure Hand column is not displayed
-        [x for x in self.columns if x[0] == 'hand'][0][colshowsumm] = False
-        [x for x in self.columns if x[0] == 'hand'][0][colshowposn] = False
-        # if rfi and steal both on for summaries, turn rfi off 
-        if ( [x for x in self.columns if x[0] == 'rfi'][0][colshowsumm]
-            and [x for x in self.columns if x[0] == 'steals'][0][colshowsumm]):
-            [x for x in self.columns if x[0] == 'rfi'][0][colshowsumm] = False
-        # if rfi and steal both on for position breakdowns, turn steals off:
-        if ( [x for x in self.columns if x[0] == 'rfi'][0][colshowposn]
-            and [x for x in self.columns if x[0] == 'steals'][0][colshowposn]):
-            [x for x in self.columns if x[0] == 'steals'][0][colshowposn] = False
+        # Make sure Hand column is not displayed.
+        hand_column = (x for x in self.columns if x[0] == 'hand').next()
+        hand_column[colshowsumm] = hand_column[colshowposn] = False
+
+        # If rfi and steal both on for summaries, turn rfi off.
+        rfi_column = (x for x in self.columns if x[0] == 'rfi').next()
+        steals_column = (x for x in self.columns if x[0] == 'steals').next()
+        if rfi_column[colshowsumm] and steals_column[colshowsumm]:
+            rfi_column[colshowsumm] = False
+
+        # If rfi and steal both on for position breakdowns, turn steals off.
+        if rfi_column[colshowposn] and steals_column[colshowposn]:
+            steals_column[colshowposn] = False
 
         self.last_pos = -1
 
@@ -552,19 +555,20 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         colshow = colshowsumm
         if groups['posn']:  colshow = colshowposn 
 
+        pname_column = (x for x in self.columns if x[0] == 'pname').next()
         if 'allplayers' in groups and groups['allplayers']:
             nametest = "(hp.playerId)"
             if holecards or groups['posn']:
                 pname = "'all players'"
                 # set flag in self.columns to not show player name column
-                [x for x in self.columns if x[0] == 'pname'][0][colshow] = False
+                pname_column[colshow] = False
                 # can't do this yet (re-write doing more maths in python instead of sql?)
                 if numhands:
                     nametest = "(-1)"
             else:
                 pname = "p.name"
                 # set flag in self.columns to show player name column
-                [x for x in self.columns if x[0] == 'pname'][0][colshow] = True
+                pname_column[colshow] = True
                 if numhands:
                     having = ' and count(1) > %d ' % (numhands,)
         else:
@@ -576,7 +580,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                 nametest = "1 = 2"
             pname = "p.name"
             # set flag in self.columns to not show player name column
-            [x for x in self.columns if x[0] == 'pname'][0][colshow] = False
+            pname_column[colshow] = False
         query = query.replace("<player_test>", nametest)
         query = query.replace("<playerName>", pname)
         query = query.replace("<havingclause>", having)
@@ -683,15 +687,14 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         query = query.replace("<datestest>", " between '" + dates[0] + "' and '" + dates[1] + "'")
 
         # Group by position?
+        plposition_column = (x for x in self.columns if x[0] == 'plposition').next()
         if groups['posn']:
             #query = query.replace("<position>", "case hp.position when '0' then 'Btn' else hp.position end")
             query = query.replace("<position>", "hp.position")
-            # set flag in self.columns to show posn column
-            [x for x in self.columns if x[0] == 'plposition'][0][colshow] = True
+            plposition_column[colshow] = True
         else:
             query = query.replace("<position>", "gt.base")
-            # unset flag in self.columns to hide posn column
-            [x for x in self.columns if x[0] == 'plposition'][0][colshow] = False
+            plposition_column[colshow] = False
 
         #print "query =\n", query
         return(query)

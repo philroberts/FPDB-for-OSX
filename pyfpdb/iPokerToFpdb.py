@@ -69,7 +69,7 @@ class iPoker(HandHistoryConverter):
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r"""
-            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL|Omaha\sL)(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
+            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L)|Omaha\sPL|Omaha\sL)(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
             <duration>.+</duration>\s+?
             <gamecount>.+</gamecount>\s+?
@@ -141,6 +141,7 @@ class iPoker(HandHistoryConverter):
                     '7 Card Stud L' : ('stud','studhilo'),
                     '5 Card Stud L' : ('stud','5studhi'),
                         'Holdem NL' : ('hold','holdem'),
+                        'Holdem SL' : ('hold','holdem'), #Spanish NL
                          'Holdem L' : ('hold','holdem'),
                          'Omaha PL' : ('hold','omahahi'),
                 }
@@ -153,7 +154,7 @@ class iPoker(HandHistoryConverter):
         if self.info['base'] == 'stud':
             self.info['limitType'] = 'fl'
         if self.info['base'] == 'hold':
-            if mg['GAME'][-2:] == 'NL':
+            if mg['GAME'][-2:] == 'NL' or mg['GAME'][-2:] == 'SL':
                 self.info['limitType'] = 'nl'
             elif mg['GAME'][-2:] == 'PL':
                 self.info['limitType'] = 'pl'
