@@ -6561,6 +6561,11 @@ class Sql:
                                                  matrix = %s
                                         WHERE id=%s
         """
+        
+        self.query['updateTourneyTypeId'] = """UPDATE Tourneys
+                                            SET tourneyTypeId = %s
+                                            WHERE siteTourneyNo=%s
+        """
 
         self.query['getTourneyByTourneyNo'] = """SELECT t.*
                                         FROM Tourneys t

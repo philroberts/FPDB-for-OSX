@@ -2932,19 +2932,22 @@ class Database:
 
         columnNames=[desc[0] for desc in cursor.description]
         result=cursor.fetchone()
+        updateType = False
+        if result != None: 
+            resultDict = dict(zip(columnNames, result))
+            if resultDict['currency'] == 'NA':
+                updateType = True
 
-        if result != None:
+        if result != None and not updateType:
             expectedValues = (('isSng', 'sng'), ('isKO', 'knockout'), ('koBounty', 'koBounty'), ('isRebuy', 'rebuy')
                              ,('rebuyCost', 'rebuyCost'), ('isAddOn', 'addOn'), ('addOnCost','addOnCost')
                              ,('speed', 'speed'), ('isShootout', 'shootout'), ('isMatrix', 'matrix'))
             updateDb=False
-            resultDict = dict(zip(columnNames, result))
-
             tourneyId = resultDict["id"]
             for ev in expectedValues :
-                if getattr(summary, ev[0])==None and resultDict[ev[1]]!=None:#DB has this value but object doesnt, so update object
+                if not getattr(summary, ev[0]) and resultDict[ev[1]]:#DB has this value but object doesnt, so update object
                     setattr(summary, ev[0], resultDict[ev[1]])
-                elif getattr(summary, ev[0])!=None and resultDict[ev[1]]==None:#object has this value but DB doesnt, so update DB
+                elif getattr(summary, ev[0]) and not resultDict[ev[1]]:#object has this value but DB doesnt, so update DB
                     updateDb=True
             if updateDb:
                 q = self.sql.query['updateTourneyType'].replace('%s', self.sql.query['placeholder'])
@@ -2969,6 +2972,9 @@ class Database:
                     print ("###### End Tourneys ########")
                 cursor.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']), row)
                 tourneyId = self.get_last_insert_id(cursor)
+            if updateType:
+                q = self.sql.query['updateTourneyTypeId'].replace('%s', self.sql.query['placeholder'])
+                cursor.execute(q, (tourneyId, summary.tourNo))
         return tourneyId
     
     def getSqlTourneyIDs(self, hand):

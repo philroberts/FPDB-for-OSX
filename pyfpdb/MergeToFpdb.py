@@ -427,9 +427,9 @@ class Merge(HandHistoryConverter):
                         'Frigate Bird Room Super Turbo HU'      : {'buyIn': 2, 'fee': 0.1, 'currency': 'USD', 'seats': 2, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (4,)},
                         'Fruit Fly Room - Super Turbo'          : {'buyIn': 1, 'fee': 0.06, 'currency': 'USD', 'seats': 6, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (4.20, 1.80)},
                         'Fusilier Room Turbo'                   : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD', 'seats': 45, 'multi': True, 'payoutCurrency': 'USD', 'payouts': (13.96, 9.68, 7.42, 5.62, 4.05, 2.70, 1.57)},
-                        'Fun Step 1'                            : {'buyIn': 0, 'fee': 0, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (0, 0, 0)},
-                        'Fun Step 2'                            : {'buyIn': 0, 'fee': 0, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (0, 0, 0)},
-                        'Fun Step 3'                            : {'buyIn': 0, 'fee': 0, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (1, 0, 0)},
+                        'Fun Step 1'                            : {'buyIn': 0, 'fee': 0, 'currency': 'FREE', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (0, 0, 0)},
+                        'Fun Step 2'                            : {'buyIn': 0, 'fee': 0, 'currency': 'FREE', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (0, 0, 0)},
+                        'Fun Step 3'                            : {'buyIn': 0, 'fee': 0, 'currency': 'FREE', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (1, 0, 0)},
                         'Gazelle Room - Super Turbo'            : {'buyIn': 100, 'fee': 3.7, 'currency': 'USD', 'seats': 6, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (420, 180)},
                         'Gecko Room'                            : {'buyIn': 30, 'fee': 3, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (150, 90, 60)},
                         'Gecko Room Turbo'                      : {'buyIn': 30, 'fee': 3, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (150, 90, 60)},
@@ -724,35 +724,21 @@ or None if we fail to get the info """
             if self.info['tablename'] in self.SnG_Structures:
                 hand.buyin = int(100*self.SnG_Structures[self.info['tablename']]['buyIn'])
                 hand.fee   = int(100*self.SnG_Structures[self.info['tablename']]['fee'])
-                hand.buyinCurrency="USD"
+                hand.buyinCurrency=self.SnG_Structures[self.info['tablename']]['currency']
                 hand.maxseats = self.SnG_Structures[self.info['tablename']]['seats']
                 hand.isSng = True
                 self.summaryInFile = True
             elif self.info['tablename'] in self.MTT_Structures:
                 hand.buyin = int(100*self.MTT_Structures[self.info['tablename']]['buyIn'])
                 hand.fee   = int(100*self.MTT_Structures[self.info['tablename']]['fee'])
-                hand.buyinCurrency="USD"
+                hand.buyinCurrency=self.MTT_Structures[self.info['tablename']]['currency']
             else:
-                m1 = self.re_Buyin.search(self.info['tablename'])
-                if m1:
-                    #print "HID %s-%s, Tourney %s Table %s Name %s" % (m.group('HID1'), m.group('HID2'), tid, table, self.info['tablename'])
-                    if m1.group('TYPE') is None:
-                        buyin = self.clearMoneyString(m1.group('BUYIN'))
-                        hand.buyin = int(100*Decimal(buyin))
-                        hand.fee = int(100*Decimal(buyin)/10)
-                        hand.buyinCurrency="USD"
-                    elif m1.group('TYPE')=='FREEROLL':
-                        hand.buyin = 0
-                        hand.fee = 0
-                        hand.buyinCurrency="FREE"
-                    else:
-                        log.error(_("MergeToFpdb.readHandInfo: No match in MTT or SnG Structures: '%s' %s") % (self.info['tablename'], hand.tourNo))
-                        raise FpdbParseError
-                else:
-                    log.error(_("MergeToFpdb.readHandInfo: No match in MTT or SnG Structures: '%s' %s") % (self.info['tablename'], hand.tourNo))
-                    raise FpdbParseError
+                #print 'DEBUG', 'no match for tourney %s tourNo %s' % (self.info['tablename'], tid)
+                hand.buyin = 0
+                hand.fee = 0
+                hand.buyinCurrency="NA"
         else:
-            log.debug("HID %s-%s, Table %s" % (m.group('HID1'), m.group('HID2'), m.group('TABLENAME')))
+            #log.debug("HID %s-%s, Table %s" % (m.group('HID1'), m.group('HID2'), m.group('TABLENAME')))
             hand.tablename = m.group('TABLENAME')
 
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],'%Y%m%d%H%M')
