@@ -37,10 +37,8 @@ def fetch_results_page(tourney_id):
 
 def write_file(filename, data):
     f = open(filename, 'w')
-    print f
     f.write(data)
     f.close()
-    print f
 
 def main():
     Configuration.set_logfile("fpdb-log.txt")

@@ -602,6 +602,7 @@ class Merge(HandHistoryConverter):
     re_Connection  = re.compile(r'<event sequence="[0-9]+" type="(?P<TYPE>RECONNECTED|DISCONNECTED)" timestamp="[0-9]+" player="[0-9]"/>', re.MULTILINE)
     re_Cancelled   = re.compile(r'<event sequence="\d+" type="GAME_CANCELLED" timestamp="\d+"/>', re.MULTILINE)
     re_LeaveTable  = re.compile(r'<event sequence="\d+" type="LEAVE" timestamp="\d+" player="\d"/>', re.MULTILINE)
+    re_PlayerOut   = re.compile(r'<event sequence="\d+" type="PLAYER_OUT" timestamp="\d+" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_EndOfHand   = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
 
     def compilePlayerRegexs(self, hand):
@@ -717,6 +718,7 @@ or None if we fail to get the info """
         if hand.gametype['type'] == 'tour':
             tid, table = re.split('-', m.group('TDATA'))
             self.info['tablename'] = m.group('TABLENAME').strip()
+            self.info['tourNo'] = tid
             hand.tourNo = tid
             hand.tablename = table
             if self.info['tablename'] in self.SnG_Structures:
@@ -725,6 +727,7 @@ or None if we fail to get the info """
                 hand.buyinCurrency="USD"
                 hand.maxseats = self.SnG_Structures[self.info['tablename']]['seats']
                 hand.isSng = True
+                self.summaryInFile = True
             elif self.info['tablename'] in self.MTT_Structures:
                 hand.buyin = int(100*self.MTT_Structures[self.info['tablename']]['buyIn'])
                 hand.fee   = int(100*self.MTT_Structures[self.info['tablename']]['fee'])
@@ -732,7 +735,7 @@ or None if we fail to get the info """
             else:
                 m1 = self.re_Buyin.search(self.info['tablename'])
                 if m1:
-                    print "HID %s-%s, Tourney %s Table %s Name %s" % (m.group('HID1'), m.group('HID2'), tid, table, self.info['tablename'])
+                    #print "HID %s-%s, Tourney %s Table %s Name %s" % (m.group('HID1'), m.group('HID2'), tid, table, self.info['tablename'])
                     if m1.group('TYPE') is None:
                         buyin = self.clearMoneyString(m1.group('BUYIN'))
                         hand.buyin = int(100*Decimal(buyin))
@@ -753,6 +756,7 @@ or None if we fail to get the info """
             hand.tablename = m.group('TABLENAME')
 
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],'%Y%m%d%H%M')
+        hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
         # Check that the hand is complete up to the awarding of the pot; if
         # not, the hand is unparseable
         if self.re_EndOfHand.search(hand.handText) is None:
