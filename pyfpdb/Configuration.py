@@ -306,14 +306,24 @@ class Email:
         return "    fetchType=%s\n    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
             % (self.fetchType, self.host, self.username, self.password, self.useSsl, self.folder) 
 
+        
+class Site_layout:
+    def __init__(self, node):
+        self.node = node
+        self.game_type = node.getAttribute("game_type")
+        self.ls = node.getAttribute("ls")
+
 class Fav_seat:
     def __init__(self, node):
         self.node = node
         self.fav_seat = node.getAttribute("fav_seat")
         self.max = node.getAttribute("max")
-            
+                          
 class Site:
+
+            
     def __init__(self, node):
+        
         def normalizePath(path):
             "Normalized existing pathes"
             if os.path.exists(path):
@@ -329,7 +339,7 @@ class Site:
         #self.hudopacity   = node.getAttribute("hudopacity")
         #self.hudbgcolor   = node.getAttribute("bgcolor")
         #self.hudfgcolor   = node.getAttribute("fgcolor")
-        self.converter    = node.getAttribute("converter")
+        #self.converter    = node.getAttribute("converter")
         #self.aux_window   = node.getAttribute("aux_window")
         #self.font        = node.getAttribute("font")
         #self.font_size    = node.getAttribute("font_size")
@@ -342,11 +352,16 @@ class Site:
         self.hud_menu_yshift = node.getAttribute("hud_menu_yshift")
         self.fav_seat     = {}
         self.emails       = {}
-            
+        self.layout_set   = {}
+                    
         for fav_node in node.getElementsByTagName('fav'):
             fav = Fav_seat(fav_node)
-            self.fav_seat[max] = fav
-        
+            self.fav_seat[fav.max] = fav
+            
+        for site_layout_node in node.getElementsByTagName('layout_set'):
+            layout_set = Site_layout(site_layout_node)
+            self.layout_set[layout_set.game_type] = layout_set  
+                  
         for email_node in node.getElementsByTagName('email'):
             email = Email(email_node)
             self.emails[email.fetchType] = email
@@ -368,15 +383,20 @@ class Site:
         temp = "Site = " + self.site_name + "\n"
         for key in dir(self):
             if key.startswith('__'): continue
-            if key == 'layout':  continue
+            if key == 'layout_set':  continue
+            if key == 'fav_seat':  continue
             value = getattr(self, key)
             if callable(value): continue
             temp = temp + '    ' + key + " = " + str(value) + "\n"
 
-        for layout in self.layout:
-            temp = temp + "%s" % self.layout[layout]
+        for game_type in self.layout_set:
+            temp = temp + "    game_type = %s, layout_set = %s\n" % (self.layout_set[game_type].game_type, self.layout_set[game_type].ls)
 
+        for fav in self.fav_seat:
+            temp = temp + "    max = %s, fav_seat = %s" % (self.fav_seat[fav].max, self.fav_seat[fav].fav_seat)
+            
         return temp
+
 
 class Stat:
     def __init__(self):
