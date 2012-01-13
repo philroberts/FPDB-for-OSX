@@ -278,10 +278,8 @@ class Layout:
 
     def __str__(self):
         if hasattr(self, 'name'):
-            name = str(self.name) + ",   "
-        else:
-            name = ""
-        temp = "    Layout = %s%d max, width= %d, height = %d" % (name, self.max, self.width, self.height)
+            name = str(self.name)
+        temp = "    Layout = %d max, width= %d, height = %d" % (self.max, self.width, self.height)
         if hasattr(self, 'fav_seat'): temp = temp + ", fav_seat = %d\n" % self.fav_seat
         else: temp = temp + "\n"
         if hasattr(self, "common"):
@@ -303,7 +301,7 @@ class Email:
         self.fetchType = node.getAttribute("fetchType")
         
     def __str__(self):
-        return "    fetchType=%s\n    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
+        return "    email\n        fetchType = %s  host = %s\n        username = %s password = %s\n        useSsl = %s folder = %s" \
             % (self.fetchType, self.host, self.username, self.password, self.useSsl, self.folder) 
 
         
@@ -318,12 +316,13 @@ class Fav_seat:
         self.node = node
         self.fav_seat = node.getAttribute("fav_seat")
         self.max = node.getAttribute("max")
-                          
+
+
 class Site:
 
-            
+
     def __init__(self, node):
-        
+
         def normalizePath(path):
             "Normalized existing pathes"
             if os.path.exists(path):
@@ -331,53 +330,31 @@ class Site:
             return path
 
         self.site_name    = node.getAttribute("site_name")
-        #self.table_finder = node.getAttribute("table_finder")
         self.screen_name  = node.getAttribute("screen_name")
         self.site_path    = normalizePath(node.getAttribute("site_path"))
         self.HH_path    = normalizePath(node.getAttribute("HH_path"))
-        #self.decoder    = node.getAttribute("decoder")
-        #self.hudopacity   = node.getAttribute("hudopacity")
-        #self.hudbgcolor   = node.getAttribute("bgcolor")
-        #self.hudfgcolor   = node.getAttribute("fgcolor")
-        #self.converter    = node.getAttribute("converter")
-        #self.aux_window   = node.getAttribute("aux_window")
-        #self.font        = node.getAttribute("font")
-        #self.font_size    = node.getAttribute("font_size")
-        #self.use_frames   = node.getAttribute("use_frames")
         self.enabled    = string_to_bool(node.getAttribute("enabled"), default=True)
         self.hud_enabled  = string_to_bool(node.getAttribute("hud_enabled"), default=True)
-        #self.xpad         = node.getAttribute("xpad")
-        #self.ypad         = node.getAttribute("ypad")
         self.hud_menu_xshift = node.getAttribute("hud_menu_xshift")
+        self.hud_menu_xshift = 1 if self.hud_menu_xshift == "" else int(self.hud_menu_xshift)
         self.hud_menu_yshift = node.getAttribute("hud_menu_yshift")
-        self.fav_seat     = {}
-        self.emails       = {}
-        self.layout_set   = {}
-                    
+        self.hud_menu_yshift = 1 if self.hud_menu_yshift == "" else int(self.hud_menu_yshift)
+
+        self.fav_seat = {}
         for fav_node in node.getElementsByTagName('fav'):
             fav = Fav_seat(fav_node)
             self.fav_seat[fav.max] = fav
-            
+
+        self.layout_set = {}
         for site_layout_node in node.getElementsByTagName('layout_set'):
             layout_set = Site_layout(site_layout_node)
-            self.layout_set[layout_set.game_type] = layout_set  
-                  
+            self.layout_set[layout_set.game_type] = layout_set
+
+        self.emails = {}
         for email_node in node.getElementsByTagName('email'):
             email = Email(email_node)
             self.emails[email.fetchType] = email
 
-#   Site defaults
-        #self.xpad = 1 if self.xpad == "" else int(self.xpad)
-        #self.ypad = 0 if self.ypad == "" else int(self.ypad)
-        self.hud_menu_xshift = 1 if self.hud_menu_xshift == "" else int(self.hud_menu_xshift)
-        self.hud_menu_yshift = 0 if self.hud_menu_yshift == "" else int(self.hud_menu_yshift)
-        #self.font_size = 7 if self.font_size == "" else int(self.font_size)
-        #self.hudopacity = 1.0 if self.hudopacity == "" else float(self.hudopacity)
-
-        #if self.use_frames == "": self.use_frames = False
-        #if self.font       == "": self.font = "Sans"
-        #if self.hudbgcolor == "": self.hudbgcolor = "#000000"
-        #if self.hudfgcolor == "": self.hudfgcolor = "#FFFFFF"
 
     def __str__(self):
         temp = "Site = " + self.site_name + "\n"
@@ -385,15 +362,19 @@ class Site:
             if key.startswith('__'): continue
             if key == 'layout_set':  continue
             if key == 'fav_seat':  continue
+            if key == 'emails':  continue
             value = getattr(self, key)
             if callable(value): continue
             temp = temp + '    ' + key + " = " + str(value) + "\n"
+
+        for fetchtype in self.emails:
+            temp = temp + str(self.emails[fetchtype]) + "\n"
 
         for game_type in self.layout_set:
             temp = temp + "    game_type = %s, layout_set = %s\n" % (self.layout_set[game_type].game_type, self.layout_set[game_type].ls)
 
         for fav in self.fav_seat:
-            temp = temp + "    max = %s, fav_seat = %s" % (self.fav_seat[fav].max, self.fav_seat[fav].fav_seat)
+            temp = temp + "    max = %s, fav_seat = %s\n" % (self.fav_seat[fav].max, self.fav_seat[fav].fav_seat)
             
         return temp
 
@@ -412,25 +393,9 @@ class Stat_sets:
         self.rows    = int( node.getAttribute("rows") )
         self.cols    = int( node.getAttribute("cols") )
         self.xpad    = node.getAttribute("xpad")
+        self.xpad = 0 if self.xpad == "" else int(self.xpad)
         self.ypad    = node.getAttribute("ypad")
-        #self.xshift  = node.getAttribute("xshift")
-        #self.yshift  = node.getAttribute("yshift")
-
-#    Defaults
-        if self.xpad == "": self.xpad = 1
-        else: self.xpad = int(self.xpad)
-        if self.ypad == "": self.ypad = 0
-        else: self.ypad = int(self.ypad)
-        #if self.xshift == "": self.xshift = 1
-        #else: self.xshift = int(self.xshift)
-        #if self.yshift == "": self.yshift = 0
-        #else: self.yshift = int(self.yshift)
-
-        #aux_text = node.getAttribute("aux")
-        #aux_list = aux_text.split(',')
-        #for i in range(0, len(aux_list)):
-        #    aux_list[i] = aux_list[i].strip()
-        #self.aux = aux_list
+        self.ypad = 0 if self.ypad == "" else int(self.ypad)
 
         self.stats    = {}
         for stat_node in node.getElementsByTagName('stat'):
@@ -452,14 +417,12 @@ class Stat_sets:
             self.stats[stat.stat_name] = stat
 
     def __str__(self):
-        temp = "Game = " + self.game_name + "\n"
-        temp = temp + "    rows = %d\n" % self.rows
-        temp = temp + "    cols = %d\n" % self.cols
-        temp = temp + "    xpad = %d\n" % self.xpad
-        temp = temp + "    ypad = %d\n" % self.ypad
-        temp = temp + "    xshift = %d\n" % self.xshift
-        temp = temp + "    yshift = %d\n" % self.yshift
-        temp = temp + "    aux = %s\n" % self.aux
+        
+        temp = "Name = " + self.name + "\n"
+        temp = temp + "    rows = %d" % self.rows
+        temp = temp + " cols = %d" % self.cols
+        temp = temp + "    xpad = %d" % self.xpad
+        temp = temp + " ypad = %d\n" % self.ypad
 
         for stat in self.stats.keys():
             temp = temp + "%s" % self.stats[stat]
@@ -492,22 +455,14 @@ class Aux_window:
         for (name, value) in node.attributes.items():
             setattr(self, name, value)
 
-        #self.layout = {}
-        #for layout_node in node.getElementsByTagName('layout'):
-        #    lo = Layout(layout_node)
-        #    self.layout[lo.max] = lo
-
     def __str__(self):
         temp = 'Aux = ' + self.name + "\n"
         for key in dir(self):
             if key.startswith('__'): continue
-            if key == 'layout':  continue
             value = getattr(self, key)
             if callable(value): continue
             temp = temp + '    ' + key + " = " + value + "\n"
 
-        for layout in self.layout:
-            temp = temp + "%s" % self.layout[layout]
         return temp
 
 class Supported_games:
@@ -520,7 +475,6 @@ class Supported_games:
     def __init__(self, node):
         for (name, value) in node.attributes.items():
             setattr(self, name, value)
-            self.name   = node.getAttribute("game_name")
 
         self.game_stat_set = {}
         for game_stat_set_node in node.getElementsByTagName('game_stat_set'):
@@ -528,7 +482,7 @@ class Supported_games:
             self.game_stat_set[gss] = gss
 
     def __str__(self):
-        temp = 'Supported_games = ' + self.name + "\n"
+        temp = 'Supported_games = ' + self.game_name + "\n"
         for key in dir(self):
             if key.startswith('__'): continue
             if key == 'game_stat_set':  continue
@@ -537,12 +491,10 @@ class Supported_games:
             temp = temp + '    ' + key + " = " + value + "\n"
 
         for gs in self.game_stat_set:
-            temp = temp + "%s" % self.game_stat_set[gs]
+            temp = temp + "%s" % str(self.game_stat_set[gs])
         return temp
 
 
-
-                
 class Layout_set:
     def __init__(self, node):
         for (name, value) in node.attributes.items():
@@ -558,6 +510,7 @@ class Layout_set:
         for key in dir(self):
             if key.startswith('__'): continue
             if key == 'layout':  continue
+            if key == 'name':  continue
             value = getattr(self, key)
             if callable(value): continue
             temp = temp + '    ' + key + " = " + value + "\n"
@@ -573,7 +526,7 @@ class Game_stat_set:
         self.stat_set        = node.getAttribute("stat_set")
 
     def __str__(self):
-        return "%s:\Game Type: '%s' Stat Set: '%s'" % (None, self.game_type, self.stat_set)
+        return "      Game Type: '%s' Stat Set: '%s'\n" % (self.game_type, self.stat_set)
 
         
 class HHC:
@@ -923,9 +876,9 @@ class Config:
             ls = Layout_set(node = ls_node)
             self.layout_sets[ls.name] = ls
             
-        #for ss_node in doc.getElementsByTagName("ss"):
-        #    ss = Stat_sets(node = ss_node)
-        #    self.stat_sets[ss.name] = ss
+        for ss_node in doc.getElementsByTagName("ss"):
+            ss = Stat_sets(node = ss_node)
+            self.stat_sets[ss.name] = ss
             
 #     s_dbs = doc.getElementsByTagName("mucked_windows")
         for hhc_node in doc.getElementsByTagName("hhc"):
