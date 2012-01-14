@@ -159,7 +159,7 @@ class HUD_main(object):
     def create_HUD(self, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards):
         """type is "ring" or "tour" used to set hud_params"""
 
-        self.hud_dict[temp_key] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
+        self.hud_dict[temp_key] = Hud.Hud(self, table, max, poker_game, type, self.config, self.db_connection)
         self.hud_dict[temp_key].table_name = temp_key
         self.hud_dict[temp_key].stat_dict = stat_dict
         self.hud_dict[temp_key].cards = cards

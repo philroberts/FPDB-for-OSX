@@ -406,21 +406,26 @@
     </supported_sites>
 
     <supported_games>
+        <!--
+        Mapping of games to aux-handlers
+        The parameter elements for each <game> can be extended 
+        without changing Configuration.Config()
+        -->
         <game game_name="holdem" aux="mucked, Classic_HUD">
-            <game_stat_set game_type="tournament" stat_set ="holdem tourney"></game_stat_set>
-            <game_stat_set game_type="cash" stat_set ="holdem cash"></game_stat_set>
+            <game_stat_set game_type="tour" stat_set ="holdem_tourney"></game_stat_set>
+            <game_stat_set game_type="ring" stat_set ="holdem_cash"></game_stat_set>
         </game>
         <game game_name="razz" aux="stud_mucked, Classic_HUD">
-            <game_stat_set game_type="all" stat_set ="stud default"></game_stat_set>
+            <game_stat_set game_type="all" stat_set ="stud_default"></game_stat_set>
         </game>
-        <game game_name="omahahi" game_type="all" aux="mucked, Simple_HUD"> </game>
-        <game game_name="omahahilo" game_type="all" aux="mucked, Simple_HUD"> </game>
-        <game game_name="studhi" game_type="all" aux="stud_mucked, Simple_HUD"> </game>
-        <game game_name="studhilo" game_type="all" aux="stud_mucked, Simple_HUD"> </game>
-        <game game_name="27_3draw" game_type="all" aux="mucked, Simple_HUD"> </game>
-        <game game_name="27_1draw" game_type="all" aux="mucked, Simple_HUD"> </game>
-        <game game_name="badugi" game_type="all" aux="mucked, Simple_HUD"></game>
-        <game game_name="fivedraw" game_type="all" aux="mucked, Simple_HUD"> </game>
+        <game game_name="omahahi" aux="mucked, Simple_HUD"> </game>
+        <game game_name="omahahilo" aux="mucked, Simple_HUD"> </game>
+        <game game_name="studhi" aux="stud_mucked, Simple_HUD"> </game>
+        <game game_name="studhilo" aux="stud_mucked, Simple_HUD"> </game>
+        <game game_name="27_3draw" aux="mucked, Simple_HUD"> </game>
+        <game game_name="27_1draw" aux="mucked, Simple_HUD"> </game>
+        <game game_name="badugi" aux="mucked, Simple_HUD"></game>
+        <game game_name="fivedraw" aux="mucked, Simple_HUD"> </game>
     </supported_games>
 
     <popup_windows>
@@ -470,6 +475,7 @@
         <!--
         Aux windows control Huds, Mucked Card displays etc.
         The parameter elements for each <aw> are specific to that handler
+        and can be extended without changing Configuration.Config()
         -->
         
         <aw name="stud_mucked" class="Stud_mucked" cols="11" deck="Cards01.png" module="Mucked" rows="8"> </aw>
@@ -484,9 +490,13 @@
 
     <layout_sets>
         <!--
-            shared layouts used for stats, mucked cards and any other aux
-            - all layouts must include a "common" element
+        shared layouts used for stats, mucked cards and any other aux
+        - all layouts MUST include a "common" element
+
+        The parameter elements for each <ls> can be extended without 
+        changing Configuration.Config()
         -->
+
         <ls name="default">
             <layout height="546" max="6" width="792">
                 <location seat="1" x="555" y="169"> </location>

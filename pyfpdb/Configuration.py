@@ -217,7 +217,12 @@ def check_dir(path, create = True):
     else:
         return False
 
-
+def normalizePath(path):
+    "Normalized existing pathes"
+    if os.path.exists(path):
+        return os.path.abspath(path)
+    return path
+            
 ########################################################################
 # application wide consts
 
@@ -311,6 +316,7 @@ class Site_layout:
         self.game_type = node.getAttribute("game_type")
         self.ls = node.getAttribute("ls")
 
+
 class Fav_seat:
     def __init__(self, node):
         self.node = node
@@ -319,16 +325,7 @@ class Fav_seat:
 
 
 class Site:
-
-
     def __init__(self, node):
-
-        def normalizePath(path):
-            "Normalized existing pathes"
-            if os.path.exists(path):
-                return os.path.abspath(path)
-            return path
-
         self.site_name    = node.getAttribute("site_name")
         self.screen_name  = node.getAttribute("screen_name")
         self.site_path    = normalizePath(node.getAttribute("site_path"))
@@ -380,12 +377,34 @@ class Site:
 
 
 class Stat:
-    def __init__(self):
-        pass
+    def __init__(self, node):
+        self.stat_name = node.getAttribute("stat_name")
+        self.row     = int( node.getAttribute("row") )
+        self.col     = int( node.getAttribute("col") )
+        self.tip     = node.getAttribute("tip")
+        self.click    = node.getAttribute("click")
+        self.popup    = node.getAttribute("popup")
+        self.hudprefix = node.getAttribute("hudprefix")
+        self.hudsuffix = node.getAttribute("hudsuffix")
+        self.hudcolor  = node.getAttribute("hudcolor")
+        self.stat_loth = node.getAttribute("stat_loth")
+        self.stat_hith = node.getAttribute("stat_hith")
+        self.stat_locolor = node.getAttribute("stat_locolor")
+        self.stat_hicolor = node.getAttribute("stat_hicolor")
 
     def __str__(self):
-        temp = "        stat_name = %s, row = %d, col = %d, tip = %s, click = %s, popup = %s\n" % (self.stat_name, self.row, self.col, self.tip, self.click, self.popup)
+        temp = "        stat_name = %s, row = %d, col = %d\n" % (self.stat_name, self.row, self.col)
+        for key in dir(self):
+            if key.startswith('__'): continue
+            if key == 'stat_name':  continue
+            if key == 'row':  continue
+            if key == 'col':  continue
+            value = getattr(self, key)
+            if callable(value): continue
+            temp = temp + '            ' + key + " = " + str(value) + "\n"
+
         return temp
+
 
 class Stat_sets:
     def __init__(self, node):
@@ -399,25 +418,10 @@ class Stat_sets:
 
         self.stats    = {}
         for stat_node in node.getElementsByTagName('stat'):
-            stat = Stat()
-            stat.stat_name = stat_node.getAttribute("stat_name")
-            stat.row     = int( stat_node.getAttribute("row") )
-            stat.col     = int( stat_node.getAttribute("col") )
-            stat.tip     = stat_node.getAttribute("tip")
-            stat.click    = stat_node.getAttribute("click")
-            stat.popup    = stat_node.getAttribute("popup")
-            stat.hudprefix = stat_node.getAttribute("hudprefix")
-            stat.hudsuffix = stat_node.getAttribute("hudsuffix")
-            stat.hudcolor  = stat_node.getAttribute("hudcolor")
-            stat.stat_loth = stat_node.getAttribute("stat_loth")
-            stat.stat_hith = stat_node.getAttribute("stat_hith")
-            stat.stat_locolor = stat_node.getAttribute("stat_locolor")
-            stat.stat_hicolor = stat_node.getAttribute("stat_hicolor")
-
+            stat = Stat(stat_node)
             self.stats[stat.stat_name] = stat
 
     def __str__(self):
-        
         temp = "Name = " + self.name + "\n"
         temp = temp + "    rows = %d" % self.rows
         temp = temp + " cols = %d" % self.cols
@@ -428,6 +432,7 @@ class Stat_sets:
             temp = temp + "%s" % self.stats[stat]
 
         return temp
+
 
 class Database:
     def __init__(self, node):
@@ -450,6 +455,7 @@ class Database:
             temp = temp + '    ' + key + " = " + repr(value) + "\n"
         return temp
 
+
 class Aux_window:
     def __init__(self, node):
         for (name, value) in node.attributes.items():
@@ -465,13 +471,8 @@ class Aux_window:
 
         return temp
 
+
 class Supported_games:
-    '''
-        <game game_name="holdem" aux="mucked, Classic_HUD">
-            <game_stats game_type="tournament" stat_set ="holdem tourney"></game_stats>
-            <game_stats game_type="cash" stat_set ="holdem cash"></game_stats>
-        </game>
-    '''
     def __init__(self, node):
         for (name, value) in node.attributes.items():
             setattr(self, name, value)
@@ -519,9 +520,9 @@ class Layout_set:
             temp = temp + "%s" % self.layout[layout]
         return temp
 
+
 class Game_stat_set:
     def __init__(self, node):
-        
         self.game_type       = node.getAttribute("game_type")
         self.stat_set        = node.getAttribute("stat_set")
 
@@ -1431,36 +1432,36 @@ class Config:
             paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = "** ERROR DEFAULT PATH IN CONFIG DOES NOT EXIST **"
         return paths
 
-    def get_frames(self, site = "PokerStars"):
-        if site not in self.supported_sites: return False
-        return self.supported_sites[site].use_frames == True
+#    def get_frames(self, site = "PokerStars"):
+#        if site not in self.supported_sites: return False
+#        return self.supported_sites[site].use_frames == True
 
-    def get_default_colors(self, site = "PokerStars"):
-        colors = {}
-        if site not in self.supported_sites or self.supported_sites[site].hudopacity == "":
-            colors['hudopacity'] = 0.90
-        else:
-            colors['hudopacity'] = float(self.supported_sites[site].hudopacity)
-        if site not in self.supported_sites or self.supported_sites[site].hudbgcolor == "":
-            colors['hudbgcolor'] = "#FFFFFF"
-        else:
-            colors['hudbgcolor'] = self.supported_sites[site].hudbgcolor
-        if site not in self.supported_sites or self.supported_sites[site].hudfgcolor == "":
-            colors['hudfgcolor'] = "#000000"
-        else:
-            colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor
-        return colors
+#    def get_default_colors(self, site = "PokerStars"):
+#        colors = {}
+#        if site not in self.supported_sites or self.supported_sites[site].hudopacity == "":
+#            colors['hudopacity'] = 0.90
+#        else:
+#            colors['hudopacity'] = float(self.supported_sites[site].hudopacity)
+#        if site not in self.supported_sites or self.supported_sites[site].hudbgcolor == "":
+#            colors['hudbgcolor'] = "#FFFFFF"
+#        else:
+#            colors['hudbgcolor'] = self.supported_sites[site].hudbgcolor
+#        if site not in self.supported_sites or self.supported_sites[site].hudfgcolor == "":
+#            colors['hudfgcolor'] = "#000000"
+#        else:
+#            colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor
+#        return colors
 
-    def get_default_font(self, site='PokerStars'):
-        font = "Sans"
-        font_size = "8"
-        site = self.supported_sites.get(site, None)
-        if site is not None:
-            if site.font:
-                font = site.font
-            if site.font_size:
-                font_size = site.font_size
-        return font, font_size
+#    def get_default_font(self, site='PokerStars'):
+#        font = "Sans"
+#        font_size = "8"
+#        site = self.supported_sites.get(site, None)
+#        if site is not None:
+#            if site.font:
+#                font = site.font
+#            if site.font_size:
+#                font_size = site.font_size
+#        return font, font_size
 
     def get_locations(self, site_name="PokerStars", max=8):
         site = self.supported_sites.get(site_name, None)
@@ -1473,16 +1474,6 @@ class Config:
                     (586, 393), (421, 440), (267, 440), (  0, 361),
                     (  0, 280), (121, 280), ( 46,  30)
                 )
-
-#    def get_aux_locations(self, aux = "mucked", max = "9"):
-#
-#        try:
-#            locations = self.aux_windows[aux].layout[max].location
-#        except:
-#            locations = ( (  0,   0), (684,  61), (689, 239), (692, 346),
-#                        (586, 393), (421, 440), (267, 440), (  0, 361),
-#                        (  0, 280), (121, 280), ( 46,  30) )
-#        return locations
 
     def get_layout_set_locations(self, set = "mucked", max = "9"):
 
@@ -1504,48 +1495,49 @@ class Config:
     def get_site_parameters(self, site):
         """Returns a dict of the site parameters for the specified site"""
         parms = {}
-        parms["converter"]    = self.supported_sites[site].converter
-        parms["decoder"]    = self.supported_sites[site].decoder
-        parms["hudbgcolor"]   = self.supported_sites[site].hudbgcolor
-        parms["hudfgcolor"]   = self.supported_sites[site].hudfgcolor
-        parms["hudopacity"]   = self.supported_sites[site].hudopacity
+        parms["converter"]    = self.hhcs[site].converter
+        #parms["decoder"]    = self.supported_sites[site].decoder
+        #parms["hudbgcolor"]   = self.supported_sites[site].hudbgcolor
+        #parms["hudfgcolor"]   = self.supported_sites[site].hudfgcolor
+        #parms["hudopacity"]   = self.supported_sites[site].hudopacity
         parms["screen_name"]  = self.supported_sites[site].screen_name
         parms["site_path"]    = self.supported_sites[site].site_path
-        parms["table_finder"] = self.supported_sites[site].table_finder
+        #parms["table_finder"] = self.supported_sites[site].table_finder
         parms["HH_path"]    = self.supported_sites[site].HH_path
         parms["site_name"]    = self.supported_sites[site].site_name
-        parms["aux_window"]   = self.supported_sites[site].aux_window
-        parms["font"]        = self.supported_sites[site].font
-        parms["font_size"]    = self.supported_sites[site].font_size
+        #parms["aux_window"]   = self.supported_sites[site].aux_window
+        #parms["font"]        = self.supported_sites[site].font
+        #parms["font_size"]    = self.supported_sites[site].font_size
         parms["enabled"]    = self.supported_sites[site].enabled
-        parms["xpad"]        = self.supported_sites[site].xpad
-        parms["ypad"]        = self.supported_sites[site].ypad
-        parms["xshift"]        = self.supported_sites[site].xshift
-        parms["yshift"]        = self.supported_sites[site].yshift
+        parms["hud_enabled"]    = self.supported_sites[site].hud_enabled
+        #parms["xpad"]        = self.supported_sites[site].xpad
+        #parms["ypad"]        = self.supported_sites[site].ypad
+        parms["hud_menu_xshift"] = self.supported_sites[site].hud_menu_xshift
+        parms["hud_menu_yshift"] = self.supported_sites[site].hud_menu_yshift
         return parms
 
-    def set_site_parameters(self, site_name, converter = None, decoder = None,
-                            hudbgcolor = None, hudfgcolor = None,
-                            hudopacity = None, screen_name = None,
-                            site_path = None, table_finder = None,
-                            HH_path = None, enabled = None,
-                            font = None, font_size = None):
-        """Sets the specified site parameters for the specified site."""
-        site_node = self.get_site_node(site_name)
-        if db_node is not None:
-            if converter      is not None: site_node.setAttribute("converter", converter)
-            if decoder        is not None: site_node.setAttribute("decoder", decoder)
-            if hudbgcolor     is not None: site_node.setAttribute("hudbgcolor", hudbgcolor)
-            if hudfgcolor     is not None: site_node.setAttribute("hudfgcolor", hudfgcolor)
-            if hudopacity     is not None: site_node.setAttribute("hudopacity", hudopacity)
-            if screen_name    is not None: site_node.setAttribute("screen_name", screen_name)
-            if site_path      is not None: site_node.setAttribute("site_path", site_path)
-            if table_finder   is not None: site_node.setAttribute("table_finder", table_finder)
-            if HH_path        is not None: site_node.setAttribute("HH_path", HH_path)
-            if enabled        is not None: site_node.setAttribute("enabled", enabled)
-            if font           is not None: site_node.setAttribute("font", font)
-            if font_size      is not None: site_node.setAttribute("font_size", font_size)
-        return
+#    def set_site_parameters(self, site_name, converter = None, decoder = None,
+#                            hudbgcolor = None, hudfgcolor = None,
+#                            hudopacity = None, screen_name = None,
+#                            site_path = None, table_finder = None,
+#                            HH_path = None, enabled = None,
+#                            font = None, font_size = None):
+#        """Sets the specified site parameters for the specified site."""
+#        site_node = self.get_site_node(site_name)
+#        if db_node is not None:
+#            if converter      is not None: site_node.setAttribute("converter", converter)
+#            if decoder        is not None: site_node.setAttribute("decoder", decoder)
+#            if hudbgcolor     is not None: site_node.setAttribute("hudbgcolor", hudbgcolor)
+#            if hudfgcolor     is not None: site_node.setAttribute("hudfgcolor", hudfgcolor)
+#            if hudopacity     is not None: site_node.setAttribute("hudopacity", hudopacity)
+#            if screen_name    is not None: site_node.setAttribute("screen_name", screen_name)
+#            if site_path      is not None: site_node.setAttribute("site_path", site_path)
+#            if table_finder   is not None: site_node.setAttribute("table_finder", table_finder)
+#            if HH_path        is not None: site_node.setAttribute("HH_path", HH_path)
+#            if enabled        is not None: site_node.setAttribute("enabled", enabled)
+#            if font           is not None: site_node.setAttribute("font", font)
+#            if font_size      is not None: site_node.setAttribute("font_size", font_size)
+#        return
 
     def set_general(self,lang=None):
 
@@ -1601,12 +1593,6 @@ class Config:
         param = {}
         if self.supported_games.has_key(name):
             param['game_name'] = self.supported_games[name].game_name
-            param['rows']    = self.supported_games[name].rows
-            param['cols']    = self.supported_games[name].cols
-            param['xpad']    = self.supported_games[name].xpad
-            param['ypad']    = self.supported_games[name].ypad
-            param['xshift']  = self.supported_games[name].xshift
-            param['yshift']  = self.supported_games[name].yshift
             param['aux']     = self.supported_games[name].aux
         return param
 
@@ -1678,8 +1664,8 @@ if __name__== "__main__":
     print "db    = ", c.get_db_parameters()
 #    print "imp    = ", c.get_import_parameters()
     print "paths  = ", c.get_default_paths("PokerStars")
-    print "colors = ", c.get_default_colors("PokerStars")
-    print "locs   = ", c.get_locations("PokerStars", 8)
+#    print "colors = ", c.get_default_colors("PokerStars")
+#    print "locs   = ", c.get_locations("PokerStars", 8)
     for mw in c.get_aux_windows():
         print c.get_aux_parameters(mw)
 
@@ -1691,7 +1677,7 @@ if __name__== "__main__":
     for site in c.supported_sites.keys():
         print "site = ", site,
         print c.get_site_parameters(site)
-        print c.get_default_font(site)
+        #print c.get_default_font(site)
 
     for game in c.get_supported_games():
         print c.get_game_parameters(game)

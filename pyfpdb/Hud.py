@@ -32,6 +32,7 @@ _ = L10n.get_translation()
 #    Standard Library modules
 import os
 import sys
+import string
 
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
@@ -69,7 +70,7 @@ def importName(module_name, name):
 
 
 class Hud:
-    def __init__(self, parent, table, max, poker_game, config, db_connection):
+    def __init__(self, parent, table, max, poker_game, game_type, config, db_connection):
 #    __init__ is (now) intended to be called from the stdin thread, so it
 #    cannot touch the gui
         if parent is None:  # running from cli ..
@@ -79,6 +80,7 @@ class Hud:
         self.table         = table
         self.config        = config
         self.poker_game    = poker_game
+        self.game_type     = game_type # (ring|tour)
         self.max           = max
         self.db_connection = db_connection
         self.deleted       = False
@@ -105,9 +107,11 @@ class Hud:
         # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
 
         game_params = config.get_game_parameters(self.poker_game)
+        print game_params
         # if there are AUX windows configured, set them up (Ray knows how this works, if anyone needs info)
         if not game_params['aux'] == [""]:
-            for aux in game_params['aux']:
+            for aux in game_params['aux'].split(","):
+                aux=string.strip(aux) # remove leading/trailing spaces
                 aux_params = config.get_aux_parameters(aux)
                 my_import = importName(aux_params['module'], aux_params['class'])
                 if my_import == None:
@@ -115,8 +119,7 @@ class Hud:
                 self.aux_windows.append(my_import(self, config, aux_params))
 
         self.creation_attrs = None
-
-    # Set up a main window for this this instance of the HUD
+        
     """
     def xNOTUSED_create_mw(self):
         win = gtk.Window()
