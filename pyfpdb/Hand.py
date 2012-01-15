@@ -562,6 +562,7 @@ class Hand(object):
         #log.debug("%s %s antes %s" % ('BLINDSANTES', player, ante))
         if player is not None:
             ante = ante.replace(u',', u'') #some sites have commas
+            self.checkPlayerExists(player, 'addAnte')
             ante = Decimal(ante)
             self.bets['BLINDSANTES'][player].append(ante)
             self.stacks[player] -= ante
@@ -582,6 +583,7 @@ class Hand(object):
         #
         log.debug("addBlind: %s posts %s, %s" % (player, blindtype, amount))
         if player is not None:
+            self.checkPlayerExists(player, 'addBlind')
             amount = amount.replace(u',', u'') #some sites have commas
             amount = Decimal(amount)
             self.stacks[player] -= amount
@@ -623,6 +625,7 @@ class Hand(object):
         # Potentially calculate the amount of the call if not supplied
         # corner cases include if player would be all in
         if amount is not None:
+            self.checkPlayerExists(player, 'addCall')
             amount = Decimal(amount)
             self.bets[street][player].append(amount)
             #self.lastBet[street] = amount
@@ -639,6 +642,7 @@ class Hand(object):
         # Potentially calculate the amount of the callTo if not supplied
         # corner cases include if player would be all in
         if amountTo is not None:
+            self.checkPlayerExists(player, 'addCallTo')
             Bc = sum(self.bets[street][player])
             Ct = Decimal(amountTo)
             C = Ct - Bc
@@ -1565,6 +1569,7 @@ class StudHand(Hand):
         if player is not None:
             log.debug(_("Bringin: %s, %s") % (player , bringin))
             bringin = bringin.replace(u',', u'') #some sites have commas
+            self.checkPlayerExists(player, 'addBringIn')
             bringin = Decimal(bringin)
             self.bets['THIRD'][player].append(bringin)
             self.stacks[player] -= bringin
