@@ -246,8 +246,10 @@ class Everest(HandHistoryConverter):
     def readCollectPot(self, hand):
         for m in self.re_CollectPot.finditer(hand.handText):
             player = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
+            amount = Decimal(m.group('POT'))
+            amountstr = "%.2f" % float(amount/100)
             #print "DEBUG: %s collects %s" % (player, m.group('POT'))
-            hand.addCollectPot(player, str(int(m.group('POT'))/100))
+            hand.addCollectPot(player, amountstr)
 
     def readShownCards(self, hand):
         for m in self.re_ShownCards.finditer(hand.handText):
