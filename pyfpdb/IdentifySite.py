@@ -59,6 +59,7 @@ class Site:
         self.codepage       = obj.codepage
         self.copyGameHeader = obj.copyGameHeader
         self.line_delimiter = None
+        self.line_addendum  = ''
         if self.re_SplitHands.match('\n\n\n') or self.re_SplitHands.match('\n\n'):
             if self.filter_name == 'PokerStars':
                 self.line_delimiter = '\n\n'
@@ -69,12 +70,9 @@ class Site:
             self.line_addendum = '*'
         elif self.filter_name == 'Merge':
             self.line_addendum = '<game'
-        else:
-            self.line_addendum = ''
 
 class IdentifySite:
-    def __init__(self, config, in_path = '-', list = [], hhcs = None, verbose = False):
-        self.in_path = in_path
+    def __init__(self, config, hhcs = None):
         self.config = config
         self.codepage = ("utf8", "utf-16", "cp1252")
         self.db = Database.Database(self.config)
@@ -82,27 +80,25 @@ class IdentifySite:
         self.filelist = {}
         self.re_identify = self.getSiteRegex()
         self.generateSiteList(hhcs)
-        self.list = list
-        self.verbose = verbose
 
-    def scan(self):
-        if self.list:
-            i = 0
-            start = time()
-            for file, id in self.list:
-                i += 1
-                if i%1000==0:
-                    if self.verbose: print i, time() - start, 'seconds'
-                    start = time()
-                self.processFile(file)
+    def scan(self, path):
+        if os.path.isdir(path):
+            self.walkDirectory(path, self.sitelist)
         else:
-            if os.path.isdir(self.in_path):
-                self.walkDirectory(self.in_path, self.sitelist)
-            else:
-                self.processFile(self.in_path)
+            self.processFile(path)
+            
+    def get_fobj(self, file):
+        try:
+            fobj = self.filelist[file]
+        except KeyError:
+            return False
+        return fobj
 
     def get_filelist(self):
         return self.filelist
+    
+    def clear_filelist(self):
+        self.filelist = {}
     
     def getSiteRegex(self):
         re_identify = {}
@@ -238,9 +234,9 @@ def main(argv=None):
     Configuration.set_logfile("fpdb-log.txt")
     config = Configuration.Config(file = "HUD_config.test.xml")
     in_path = os.path.abspath('regression-test-files')
-    IdSite = IdentifySite(config, in_path)
+    IdSite = IdentifySite(config)
     start = time()
-    IdSite.scan()
+    IdSite.scan(in_path)
     print 'duration', time() - start
 
     print "\n----------- SITE LIST -----------"
