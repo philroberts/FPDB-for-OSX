@@ -164,15 +164,15 @@ Left-Drag to Move"
               yshift="0"
               supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
             <email fetchType="request-summary" host="YOUR_EMAIL_SERVER" username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD" useSsl="True" folder="INBOX"/>
-            <layout max="8" width="792" height="546" fav_seat="0">
-                <location seat="1" x="684" y="61">  </location>
-                <location seat="2" x="689" y="239"> </location>
-                <location seat="3" x="692" y="346"> </location>
-                <location seat="4" x="525" y="402"> </location>
-                <location seat="5" x="259" y="402"> </location>
-                <location seat="6" x="0"   y="348"> </location>
-                <location seat="7" x="0"   y="240"> </location>
-                <location seat="8" x="0"   y="35">  </location>
+            <layout fav_seat="0" height="546" max="2" width="792">
+                <location seat="1" x="651" y="288"> </location>
+                <location seat="2" x="10"  y="288"> </location>
+            </layout>
+            <layout max="4" width="792" height="546" fav_seat="0">
+                <location seat="1" x="566" y="90"> </location>
+                <location seat="2" x="409" y="379"> </location>
+                <location seat="3" x="113" y="402"> </location>
+                <location seat="4" x="110" y="87"> </location>
             </layout>
             <layout max="6" width="792" height="546" fav_seat="0">
                 <location seat="1" x="566" y="90"> </location>
@@ -181,7 +181,16 @@ Left-Drag to Move"
                 <location seat="4" x="113" y="402"> </location>
                 <location seat="5" x="19" y="291"> </location>
                 <location seat="6" x="110" y="87"> </location>
-                
+            </layout>
+            <layout max="8" width="792" height="546" fav_seat="0">
+                <location seat="1" x="631" y="44">  </location>
+                <location seat="2" x="689" y="121"> </location>
+                <location seat="3" x="693" y="268"> </location>
+                <location seat="4" x="598" y="372"> </location>
+                <location seat="5" x="89" y="372"> </location>
+                <location seat="6" x="4" y="269"> </location>
+                <location seat="7" x="-2" y="122"> </location>
+                <location seat="8" x="54" y="48">  </location>
             </layout>
             <layout max="10" width="792" height="546" fav_seat="0">
                 <location seat="1" x="633" y="26">  </location>
@@ -206,10 +215,6 @@ Left-Drag to Move"
                 <location seat="7" x="0"   y="307"> </location>
                 <location seat="8" x="0"   y="121">  </location>
                 <location seat="9" x="140" y="0">  </location>
-            </layout>
-            <layout fav_seat="0" height="546" max="2" width="792">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10"  y="288"> </location>
             </layout>
         </site>
 
@@ -1294,6 +1299,18 @@ Left-Drag to Move"
         <aw class="Hello_Menu" module="Hello" name="Hello_menu"> </aw>
         <aw class="Hello_plus" module="Hello" name="Hello_plus"> </aw>
         <aw card_ht="28" class="Flop_Mucked" deck="Cards01.png" module="Mucked" name="mucked" opacity="0.7" timeout="5">
+            <layout height="546" max="2" width="792">
+                <location seat="1" x="572" y="276"> </location>
+                <location seat="2" x="150" y="169">  </location>
+                <location common="1" x="323" y="232"> </location>
+            </layout>
+            <layout height="546" max="4" width="792">
+                <location seat="1" x="555" y="169"> </location>
+                <location seat="2" x="363" y="348"> </location>
+                <location seat="3" x="150" y="273"> </location>
+                <location seat="4" x="363" y="113">  </location>
+                <location common="1" x="323" y="232"> </location>
+            </layout>
             <layout height="546" max="6" width="792">
                 <location seat="1" x="555" y="169"> </location>
                 <location seat="2" x="572" y="276"> </location>
@@ -1301,6 +1318,17 @@ Left-Drag to Move"
                 <location seat="4" x="150" y="273"> </location>
                 <location seat="5" x="150" y="169">  </location>
                 <location seat="6" x="363" y="113">  </location>
+                <location common="1" x="323" y="232"> </location>
+            </layout>
+            <layout height="546" max="8" width="792">
+                <location seat="1" x="486" y="113">  </location>
+                <location seat="2" x="555" y="169"> </location>
+                <location seat="3" x="572" y="276"> </location>
+                <location seat="4" x="522" y="345"> </location>
+                <location seat="5" x="363" y="348"> </location>
+                <location seat="6" x="150" y="273"> </location>
+                <location seat="7" x="150" y="169">  </location>
+                <location seat="8" x="230" y="115">  </location>
                 <location common="1" x="323" y="232"> </location>
             </layout>
             <layout height="546" max="9" width="792">
