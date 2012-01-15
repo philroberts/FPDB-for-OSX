@@ -213,9 +213,11 @@ class Everest(HandHistoryConverter):
             player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
             if action.group('ATYPE') == 'BET':
                 amount = Decimal(action.group('BET'))
-                amountstr = "%.2f" % float(int(action.group('BET'))/100)
+                amountstr = "%.2f" % float(amount/100)
                 #Gah! BET can mean check, bet, call or raise...
-                if amount > 0 and curr_pot == 0:
+                if action.group('BET') == '0':
+                    hand.addCheck(street, player)
+                elif amount > 0 and curr_pot == 0:
                     # Open
                     curr_pot = amount
                     hand.addBet(street, player, amountstr)
@@ -228,8 +230,6 @@ class Everest(HandHistoryConverter):
                     elif amount <= curr_pot:
                         # Call
                         hand.addCall(street, player, amountstr)
-                if action.group('BET') == '0':
-                    hand.addCheck(street, player)
             elif action.group('ATYPE') in ('FOLD', 'SIT_OUT'):
                 hand.addFold(street, player)
             else:
@@ -246,8 +246,10 @@ class Everest(HandHistoryConverter):
     def readCollectPot(self, hand):
         for m in self.re_CollectPot.finditer(hand.handText):
             player = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
+            amount = Decimal(m.group('POT'))
+            amountstr = "%.2f" % float(amount/100)
             #print "DEBUG: %s collects %s" % (player, m.group('POT'))
-            hand.addCollectPot(player, str(int(m.group('POT'))/100))
+            hand.addCollectPot(player, amountstr)
 
     def readShownCards(self, hand):
         for m in self.re_ShownCards.finditer(hand.handText):

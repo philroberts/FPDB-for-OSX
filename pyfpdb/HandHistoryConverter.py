@@ -583,10 +583,18 @@ or None if we fail to get the info """
 
     @staticmethod
     def clearMoneyString(money):
-        "Renders 'numbers' like '1 200' and '2,000'"
+        """Converts human readable string representations of numbers like
+        '1 200', '2,000', '0,01' to more machine processable form - no commas, 1 decimal point
+        """
         if not money:
             return money
-        return money.replace(' ', '').replace(',', '')
+        money = money.replace(' ', '')
+        if len(money) < 3:
+            return money # No commas until 0,01 or 1,00
+        if money[-3] == ',':
+            money = money[:-3] + '.' + money[-2:]
+
+        return money.replace(',', '')
 
 def getTableTitleRe(config, sitename, *args, **kwargs):
     "Returns string to search in windows titles for current site"

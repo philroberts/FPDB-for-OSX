@@ -60,7 +60,7 @@ class iPoker(HandHistoryConverter):
     substitutions = {
                      'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|\£|",
                      'PLYR': r'(?P<PNAME>[a-zA-Z0-9]+)',
-                     'NUM' : r'.,0-9',
+                     'NUM' : r'.,\d',
                     }
     
     currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP' }
@@ -69,7 +69,7 @@ class iPoker(HandHistoryConverter):
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r"""
-            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L)|Omaha\sPL|Omaha\sL)(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
+            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L)|Omaha\sPL|Omaha\sL)(\s(%(LS)s)(?P<SB>[%(NUM)s]+)/(%(LS)s)(?P<BB>[%(NUM)s]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
             <duration>.+</duration>\s+?
             <gamecount>.+</gamecount>\s+?
@@ -78,12 +78,12 @@ class iPoker(HandHistoryConverter):
             """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_GameInfoTrny = re.compile(r"""
                 <tournamentname>.+?<place>(?P<PLACE>.+?)</place>
-                <buyin>(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)\+?(?P<BIRAKE>[%(LS)s\d\.]+)?)</buyin>\s+?
+                <buyin>(?P<BUYIN>(?P<BIAMT>[%(LS)s%(NUM)s]+)\+?(?P<BIRAKE>[%(LS)s%(NUM)s]+)?)</buyin>\s+?
                 <totalbuyin>(?P<TOTBUYIN>.+)</totalbuyin>\s+?
                 <ipoints>([%(NUM)s]+|N/A)</ipoints>\s+?
                 <win>(%(LS)s)?(?P<WIN>([%(NUM)s]+)|N/A)</win>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
-    re_HandInfo = re.compile(r'code="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-: 0-9]+)</startdate>', re.MULTILINE)
+    re_HandInfo = re.compile(r'code="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-/: 0-9]+)</startdate>', re.MULTILINE)
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" name="(?P<PNAME>[^"]+)" chips="(%(LS)s)(?P<CASH>[%(NUM)s]+)" dealer="(?P<BUTTONPOS>(0|1))" win="(%(LS)s)(?P<WIN>[%(NUM)s]+)" (bet="(%(LS)s)(?P<BET>[^"]+))?' % substitutions, re.MULTILINE)
     re_Board = re.compile(r'<cards type="(?P<STREET>Flop|Turn|River)" player="">(?P<CARDS>.+?)</cards>', re.MULTILINE)
     re_EndOfHand = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
@@ -208,7 +208,11 @@ class iPoker(HandHistoryConverter):
         hand.tablename = self.tablename
         hand.handid = m.group('HID')
         hand.maxseats = None
-        hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
+        try:
+            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
+        except ValueError:
+            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%d/%m/%Y %H:%M:%S')
+
         if self.info['type'] == 'tour':
             hand.tourNo = self.tinfo['tourNo']
             hand.buyinCurrency = self.tinfo['buyinCurrency']
@@ -344,24 +348,25 @@ class iPoker(HandHistoryConverter):
             action = actions[a]
             atype = action['ATYPE']
             player = action['PNAME']
+            bet = self.clearMoneyString(action['BET'])
             #print "DEBUG: action: %s" % action
             if atype == '23': # Raise to
-                hand.addRaiseTo(street, player, action['BET'])
+                hand.addRaiseTo(street, player, bet)
             elif atype == '6': # Raise by
                 #This is only a guess
-                hand.addRaiseBy(street, player, action['BET'])
+                hand.addRaiseBy(street, player, bet)
             elif atype == '3':
-                hand.addCall(street, player, action['BET'])
+                hand.addCall(street, player, bet)
             elif atype == '5':
-                hand.addBet(street, player, action['BET'])
+                hand.addBet(street, player, bet)
             elif atype == '0':
                 hand.addFold(street, player)
             elif atype == '4':
                 hand.addCheck(street, player)
             elif atype == '16': #BringIn
-                hand.addBringIn(player, action['BET'])
+                hand.addBringIn(player, bet)
             elif atype == '7':
-                hand.addAllIn(street, player, action['BET'])
+                hand.addAllIn(street, player, bet)
             elif atype == '15': # Ante
                 pass # Antes dealt with in readAntes
             elif atype == '1' or atype == '2' or atype == '8': #sb/bb/no action this hand (joined table)
