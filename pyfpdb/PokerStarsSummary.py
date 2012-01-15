@@ -69,7 +69,7 @@ class PokerStarsSummary(TourneySummary):
 
     re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP)""" % substitutions)
 
-    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s)?([%(LS)s](?P<WINNINGS>[0-9]+\.[0-9]+))?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(\s+)?""" % substitutions)
+    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s)?((?P<CUR>[%(LS)s])(?P<WINNINGS>[0-9]+\.[0-9]+))?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(\s+)?""" % substitutions)
 
     re_DateTime = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
@@ -130,9 +130,11 @@ class PokerStarsSummary(TourneySummary):
         #print "DEBUG: m.groupdict(): %s" % m.groupdict()
 
         mg = m.groupdict()
-        if mg['CURRENCY'] == "$":     self.currency = "USD"
-        elif mg['CURRENCY'] == u"€":  self.currency="EUR"
-        elif mg['CURRENCY'] == "FPP": self.currency="PSFP"
+        if mg['CURRENCY'] == "$":     self.buyinCurrency="USD"
+        elif mg['CURRENCY'] == u"€":  self.buyinCurrency="EUR"
+        elif mg['CURRENCY'] == "FPP": self.buyinCurrency="PSFP"
+        if self.buyin == 0:           self.buyinCurrency="FREE"
+        self.currency = self.buyinCurrency
 
         m = self.re_Player.finditer(self.summaryText)
         for a in m:
@@ -147,6 +149,11 @@ class PokerStarsSummary(TourneySummary):
 
             if 'WINNINGS' in mg and mg['WINNINGS'] != None:
                 winnings = int(100*Decimal(mg['WINNINGS']))
+                
+            if 'CUR' in mg and mg['CUR'] != None:
+                if mg['CUR'] == "$":     self.currency="USD"
+                elif mg['CUR'] == u"€":  self.currency="EUR"
+                elif mg['CUR'] == "FPP": self.currency="PSFP"
 
             if 'STILLPLAYING' in mg and mg['STILLPLAYING'] != None:
                 #print "stillplaying"

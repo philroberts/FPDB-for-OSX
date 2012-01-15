@@ -40,7 +40,8 @@ class OnGame(HandHistoryConverter):
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": u"\u20ac", "GBP": "\xa3"}
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : u"\$|\xe2\x82\xac|\u20ac|" # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : u"\$|\xe2\x82\xac|\u20ac|",     # Currency symbols - Euro(cp1252, utf-8)
+                           'NUM' : u".,\d",
                     }
     currencies = { u'\u20ac':'EUR', u'\xe2\x82\xac':'EUR', '$':'USD', '':'T$' }
 
@@ -65,12 +66,11 @@ class OnGame(HandHistoryConverter):
 
     #TODO: detect play money
     # "Play money" rather than "Real money" and set currency accordingly
+    # Table:\s(\[SPEED\]\s)?(?P<TABLE>[-\'\w\#\s\.]+)\s\[\d+\]\s\( 
     re_HandInfo = re.compile(u"""
-            \*\*\*\*\*\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+)
-            (\s\(TOURNAMENT:\s".+",\s(?P<TID>[-A-Z\d]+),\sbuy-in:\s[%(LS)s](?P<BUYIN>\d+))?
-            .*
-            Start\shand:\s(?P<DATETIME>.*)
-            Table:\s(\[SPEED\]\s)?(?P<TABLE>[-\'\w\#\s\.]+)\s\[\d+\]\s\(
+            \*{5}\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+)(\s\(TOURNAMENT:\s\"(?P<NAME>.+?)\",\s(?P<TID>[-A-Z\d]+),\sbuy-in:\s(?P<BUYINCUR>[%(LS)s]?)(?P<BUYIN>[%(NUM)s]+)\))?\s\*{5}\s?
+            Start\shand:\s(?P<DATETIME>.*?)\s?
+            Table:\s(\[SPEED\]\s)?(?P<TABLE>.+?)\s\[\d+\]\s\( 
             (
             (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit|POT_LIMIT)\s
             (?P<GAME>TEXAS_HOLDEM|OMAHA_HI|SEVEN_CARD_STUD|SEVEN_CARD_STUD_HI_LO|RAZZ|FIVE_CARD_DRAW)\s
@@ -188,9 +188,9 @@ class OnGame(HandHistoryConverter):
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
-            info['sb'] = mg['SB']
+            info['sb'] = self.clearMoneyString(mg['SB'])
         if 'BB' in mg:
-            info['bb'] = mg['BB']
+            info['bb'] = self.clearMoneyString(mg['BB'])
 
         #log.debug("determinegametype: returning "+str(info))
         return info
@@ -236,9 +236,16 @@ class OnGame(HandHistoryConverter):
                     hand.tourNo = hand.tourNo.replace('T','')
                     hand.tourNo = hand.tourNo.replace('S','')
                     hand.tourNo = hand.tourNo.replace('R','')
+                    hand.tourNo = hand.tourNo.replace('O','')
                     hand.tourNo = hand.tourNo.replace('-','')
-            if key == 'BUYIN':
-                hand.buyin = info[key]
+            if key == 'BUYIN' and info[key] is not None:
+                hand.buyin = int(100*Decimal(self.clearMoneyString(info[key])))
+                hand.fee = int(hand.buyin - hand.buyin/1.1)
+                hand.buyin -= hand.fee
+            if key == 'BUYINCUR' and info[key] is not None:
+                hand.buyinCurrency = self.currencies[info[key]]
+                if hand.buyin == 0:
+                    hand.buyinCurrency = 'FREE'
             if key == 'TABLE':
                 hand.tablename = info[key]
 
@@ -313,30 +320,30 @@ class OnGame(HandHistoryConverter):
     def readBlinds(self, hand):
         try:
             m = self.re_PostSB.search(hand.handText)
-            hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
+            hand.addBlind(m.group('PNAME'), 'small blind', self.clearMoneyString(m.group('SB')))
         except exceptions.AttributeError: # no small blind
             log.debug( _("No small blinds found.")+str(sys.exc_info()) )
             #hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+            hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
         for a in self.re_PostDead.finditer(hand.handText):
             #print "DEBUG: Found dead blind: addBlind(%s, 'secondsb', %s)" %(a.group('PNAME'), a.group('DEAD'))
-            hand.addBlind(a.group('PNAME'), 'secondsb', a.group('DEAD'))
+            hand.addBlind(a.group('PNAME'), 'secondsb', self.clearMoneyString(a.group('DEAD')))
         for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
+            hand.addBlind(a.group('PNAME'), 'small & big blinds', self.clearMoneyString(a.group('SBBB')))
 
     def readAntes(self, hand):
         log.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             #~ log.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
-            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+            hand.addAnte(player.group('PNAME'), self.clearMoneyString(player.group('ANTE')))
     
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
             #~ log.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
-            hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
+            hand.addBringIn(m.group('PNAME'),  self.clearMoneyString(m.group('BRINGIN')))
 
     def readHeroCards(self, hand):
         # streets PREFLOP, PREDRAW, and THIRD are special cases beacause

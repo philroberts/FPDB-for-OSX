@@ -221,19 +221,6 @@ class iPoker(HandHistoryConverter):
         for a in m:
             ag = a.groupdict()
             seatno = int(a.group('SEAT'))
-            # It may be necessary to adjust 'hand.maxseats', which is an
-            # educated guess, starting with 2 (indicating a heads-up table) and
-            # adjusted upwards in steps to 6, then 9, then 10. An adjustment is
-            # made whenever a player is discovered whose seat number is
-            # currently above the maximum allowable for the table.
-            if seatno >= hand.maxseats:
-                if seatno > 8:
-                    hand.maxseats = 10
-                elif seatno > 5:
-                    hand.maxseats = 9
-                else:
-                    hand.maxseats = 6
-
             if a.group('BUTTONPOS') == '1':
                 hand.buttonpos = seatno
             cash = self.clearMoneyString(a.group('CASH'))

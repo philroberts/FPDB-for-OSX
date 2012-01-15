@@ -113,7 +113,7 @@ class MergeSummary(TourneySummary):
                 raise FpdbParseError
                 #(self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
             else:
-                self.gametype['category'] = self.games[mg['GAME']][0]
+                self.gametype['category'] = self.games[mg['GAME']][1]
         m = self.re_HandInfoHH.search(self.summaryText)
         if m is None:
             tmp = self.summaryText[0:200]
@@ -135,7 +135,9 @@ class MergeSummary(TourneySummary):
         self.buyin     = int(100*hhc.SnG_Structures[tourneyNameFull]['buyIn'])
         self.fee       = int(100*hhc.SnG_Structures[tourneyNameFull]['fee'])
         self.entries   = hhc.SnG_Structures[tourneyNameFull]['seats']
+        self.buyinCurrency = hhc.SnG_Structures[tourneyNameFull]['currency']
         self.currency  = hhc.SnG_Structures[tourneyNameFull]['payoutCurrency']
+        self.maxseats  = hhc.SnG_Structures[tourneyNameFull]['seats']
         self.prizepool = sum(hhc.SnG_Structures[tourneyNameFull]['payouts'])
         payouts = len(hhc.SnG_Structures[tourneyNameFull]['payouts'])
         self.isSng     = True
@@ -169,7 +171,7 @@ class MergeSummary(TourneySummary):
                     self.addPlayer(rank, players[n], winnings, self.currency, 0, 0, 0)
 
     def parseSummaryFile(self):
-        self.currency = "USD"
+        self.buyinCurrency = "USD"
         soup = BeautifulSoup(self.summaryText)
         tables = soup.findAll('table')
         table1 = BeautifulSoup(str(tables[0])).findAll('tr')
@@ -195,9 +197,9 @@ class MergeSummary(TourneySummary):
                 #print "DEBUG: re_HTMLName: '%s'" % m.group('NAME')
                 self.tourneyName = m.group('NAME')[:40]
                 if m.group('NAME').find("$")!=-1:
-                    self.currency="USD"
+                    self.buyinCurrency="USD"
                 elif m.group('NAME').find(u"€")!=-1:
-                    self.currency="EUR"
+                    self.buyinCurrency="EUR"
             m = self.re_HTMLPrizepool.search(str(p))
             if m:
                 #print "DEBUG: re_HTMLPrizepool: '%s'" % m.group('PRIZEPOOL')
@@ -207,7 +209,7 @@ class MergeSummary(TourneySummary):
                 #print "DEBUG: re_HTMLBuyIn: '%s'" % m.group('BUYIN')
                 self.buyin = int(100*convert_to_decimal(m.group('BUYIN')))
                 if self.buyin==0:
-                    self.currency="FREE"
+                    self.buyinCurrency="FREE"
             m = self.re_HTMLFee.search(str(p))
             if m:
                 #print "DEBUG: re_HTMLFee: '%s'" % m.group('FEE')
@@ -239,6 +241,7 @@ class MergeSummary(TourneySummary):
                     self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
                     self.startTime = HandHistoryConverter.changeTimezone(self.startTime, "ET", "UTC")
         
+        self.currency = self.buyinCurrency
         for p in table2:
             m = self.re_HTMLPlayer.search(str(p))
             if m:
@@ -252,6 +255,10 @@ class MergeSummary(TourneySummary):
                 rank = int(m.group('RANK'))
                 name = m.group('PNAME')
                 if m.group('WINNINGS') != None:
+                    if m.group('WINNINGS').find("$")!=-1:
+                        self.currency="USD"
+                    elif m.group('WINNINGS').find(u"€")!=-1:
+                        self.currency="EUR"
                     winnings = int(100*convert_to_decimal(m.group('WINNINGS')))
                 self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
                 

@@ -457,13 +457,13 @@ class Fulltilt(HandHistoryConverter):
         for player in m:
             #log.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
             if player.group('PNAME') not in slist:
-                hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+                hand.addAnte(player.group('PNAME'), self.clearMoneyString(player.group('ANTE')))
 
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
             #log.debug(_("Player bringing in: %s for %s") %(m.group('PNAME'),  m.group('BRINGIN')))
-            hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
+            hand.addBringIn(m.group('PNAME'),  self.clearMoneyString(m.group('BRINGIN')))
         #else:
             #log.debug(_("No bringin found, handid =%s") % hand.handid)
 

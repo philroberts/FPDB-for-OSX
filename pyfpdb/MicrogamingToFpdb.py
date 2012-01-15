@@ -167,7 +167,7 @@ class Microgaming(HandHistoryConverter):
                 hand.buyin = 100
                 hand.fee = 10
                 hand.isKO = False
-        hand.maxseats = 2
+        hand.maxseats = None
         
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
@@ -184,18 +184,6 @@ class Microgaming(HandHistoryConverter):
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             seatno = int(a.group('SEAT'))
-            # It may be necessary to adjust 'hand.maxseats', which is an
-            # educated guess, starting with 2 (indicating a heads-up table) and
-            # adjusted upwards in steps to 6, then 9, then 10. An adjustment is
-            # made whenever a player is discovered whose seat number is
-            # currently above the maximum allowable for the table.
-            if seatno >= hand.maxseats:
-                if seatno > 8:
-                    hand.maxseats = 10
-                elif seatno > 5:
-                    hand.maxseats = 9
-                else:
-                    hand.maxseats = 6
             hand.addPlayer(seatno, a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
