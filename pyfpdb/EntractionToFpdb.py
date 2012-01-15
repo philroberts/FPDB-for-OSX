@@ -30,6 +30,7 @@ class Entraction(HandHistoryConverter):
     filetype = "text"
     codepage = ("utf8", "cp1252")
     siteId   = 18
+    
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3", "play": ""}
     substitutions = {
                      'LEGAL_ISO' : "EUR|",
@@ -91,7 +92,7 @@ class Entraction(HandHistoryConverter):
           Table\s(?P<TABLE>.+)
         """ % substitutions, re.MULTILINE|re.VERBOSE)
 
-    re_SplitHands   = re.compile('Game #')
+    re_SplitHands   = re.compile(r"\n\n(?=Game #)")
     re_Button       = re.compile('^Dealer:\s+(?P<PNAME>.*)$', re.MULTILINE)
     re_Board        = re.compile(r"(?P<CARDS>.+)$")
     re_GameEnds     = re.compile(r"Game\sended\s(?P<Y>[0-9]{4})-(?P<M>[0-9]{2})-(?P<D>[0-9]{2})\s(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", re.MULTILINE)
