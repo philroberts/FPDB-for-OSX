@@ -49,7 +49,7 @@ class Absolute(HandHistoryConverter):
     re_GameInfo = re.compile( ur"""
               ^Stage\s+\#C?(?P<HID>[0-9]+):?\s+
               (?:Tourney\ ID\ (?P<TRNY_ID>\d+)\s+)?
-              (?P<GAME>Holdem|Seven\ Card\ Hi\/L|HORSE)\s+
+              (?P<GAME>Holdem|Seven\ Card\ Hi\/Lo|HORSE)\s+
               (?P<TRNY_TYPE>\(1\son\s1\)|Single\ Tournament|Multi\ Normal\ Tournament|)\s*
               (?P<LIMIT>No\ Limit|Pot\ Limit|Normal|)\s?
               (?P<CURRENCY>\$|\s€|)
@@ -148,7 +148,7 @@ class Absolute(HandHistoryConverter):
                    "Holdem" : ('hold','holdem'),
                     'Omaha' : ('hold','omahahi'),
                      'Razz' : ('stud','razz'),
-          'Seven Card Hi/L' : ('stud','studhilo'),
+         'Seven Card Hi/Lo' : ('stud','studhilo'),
               '7 Card Stud' : ('stud','studhi')
                }
         currencies = { u' €':'EUR', '$':'USD', '':'T$' }
