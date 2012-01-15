@@ -273,6 +273,7 @@ class Importer:
         if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'drop':
             self.database.rebuild_hudcache()
         else:
+            self.database.cleanUpTourneyTypes()
             log.info (_("No need to rebuild hudcache."))
         self.database.analyzeDB()
         endtime = time()

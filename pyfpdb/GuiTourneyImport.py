@@ -35,6 +35,7 @@ import gobject
 
 #    fpdb/FreePokerTools modules
 import Configuration
+import Database
 import Options
 from Exceptions import FpdbParseError
 
@@ -151,6 +152,7 @@ class GuiTourneyImport():
 class SummaryImporter:
     def __init__(self, config, sql = None, parent = None, caller = None):
         self.config     = config
+        self.database   = Database.Database(self.config)
         self.sql        = sql
         self.parent     = parent
         self.caller     = caller
@@ -242,7 +244,10 @@ class SummaryImporter:
 
             # The summary files tend to have a header or footer
             # Remove the first and/or last entry if it has < 100 characters
-            if (summaryTexts)>1:
+            if not len(summaryTexts[0]):
+                del summaryTexts[0]
+            
+            if len(summaryTexts)>1:
                 if len(summaryTexts[-1]) <= 100:
                     summaryTexts.pop()
                     log.warn(_("TourneyImport: Removing text < 100 characters from end of file"))
@@ -255,7 +260,7 @@ class SummaryImporter:
             for j, summaryText in enumerate(summaryTexts, start=1):
                 doinsert = len(summaryTexts)==j
                 try:
-                    conv = obj(db=None, config=self.config, siteName=site, summaryText=summaryText, in_path = filename)
+                    conv = obj(db=self.database, config=self.config, siteName=site, summaryText=summaryText, in_path = filename)
                     conv.insertOrUpdate(printtest = self.settings['testData'])
                 except FpdbParseError, e:
                     log.error(_("Tourney import parse error in file: %s") % filename)
@@ -263,6 +268,7 @@ class SummaryImporter:
                 if j != 1:
                     print _("Finished importing %s/%s tournament summaries") %(j, len(summaryTexts))
                 imported = j
+            self.database.cleanUpTourneyTypes()
             ####Lock Placeholder####
         return (imported - errors, errors)
 
