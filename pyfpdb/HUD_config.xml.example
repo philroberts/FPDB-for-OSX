@@ -412,8 +412,8 @@
         without changing Configuration.Config()
         -->
         <game game_name="holdem" aux="mucked, Classic_HUD">
-            <game_stat_set game_type="tour" stat_set ="draw_default"></game_stat_set>
-            <game_stat_set game_type="ring" stat_set ="holdem_default"></game_stat_set>
+            <game_stat_set game_type="toux" stat_set ="draw_default"></game_stat_set>
+            <game_stat_set game_type="all" stat_set ="holdem_default"></game_stat_set>
         </game>
         <game game_name="razz" aux="stud_mucked, Classic_HUD">
             <game_stat_set game_type="all" stat_set ="stud_default"></game_stat_set>

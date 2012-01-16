@@ -1604,7 +1604,7 @@ class Config:
             sg.append(self.supported_games[game].game_name)
         return sg
 
-    def get_supported_games_parameters(self, name):
+    def get_supported_games_parameters(self, name, game_type):
         """Gets a dict of parameters from the named gametype."""
         param = {}
         if self.supported_games.has_key(name):
@@ -1614,14 +1614,17 @@ class Config:
                 value = getattr(self.supported_games[name], key)
                 if callable(value): continue
                 param[key] = value
-            #some gymnastics here to load the Stats_sets instance into
-            #the game_stat_set dictionary
+                
+            #some gymnastics now to load the correct Stats_sets instance
+            # into the game_stat_set key
+            
             game_stat_set = getattr(self.supported_games[name], 'game_stat_set')
-            ss_dict={}
-            for i in game_stat_set:
-                ss_name = game_stat_set[i].stat_set
-                ss_dict[i] = self.stat_sets[ss_name] 
-            param['game_stat_set'] = ss_dict
+                
+            if game_stat_set.has_key(game_type):
+                param['game_stat_set'] = self.stat_sets[game_stat_set[game_type].stat_set]
+            elif game_stat_set.has_key("all"):
+                param['game_stat_set'] = self.stat_sets[game_stat_set["all"].stat_set]
+
             return param
             
         return None

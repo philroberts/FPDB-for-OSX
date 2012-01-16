@@ -79,15 +79,16 @@ class Simple_HUD(Mucked.Aux_Seats):
 #    That way a subclass doesn't have to grab them.
 #    Also, the subclass can override any of these attributes
         self.poker_game  = self.hud.poker_game
-        self.game_params = self.hud.config.get_supported_games_parameters(self.hud.poker_game)
+        self.site_params = self.hud.site_parameters
+        self.game_params = self.hud.supported_games_parameters["game_stat_set"]
         self.game        = self.hud.config.supported_games[self.hud.poker_game]
         self.max         = self.hud.max
-        self.nrows       = self.game_params['rows']
-        self.ncols       = self.game_params['cols']
-        self.xpad        = self.game_params['xpad']
-        self.ypad        = self.game_params['ypad']
-        self.xshift      = self.game_params['xshift']
-        self.yshift      = self.game_params['yshift']
+        self.nrows       = self.game_params.rows
+        self.ncols       = self.game_params.cols
+        self.xpad        = self.game_params.xpad
+        self.ypad        = self.game_params.ypad
+        self.xshift      = self.site_params['hud_menu_xshift']
+        self.yshift      = self.site_params['hud_menu_yshift']
 
         self.fgcolor   = gtk.gdk.color_parse(params["fgcolor"])
         self.bgcolor   = gtk.gdk.color_parse(params["bgcolor"])

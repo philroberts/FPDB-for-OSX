@@ -112,14 +112,13 @@ class Hud:
         # will exist, or maybe they won't be needed in our
         # children - however, the children will know what to do...
         
-        self.site_params = config.get_site_parameters(self.table.site)
-        self.supported_games = config.get_supported_games_parameters(self.poker_game)
+        self.site_parameters = config.get_site_parameters(self.table.site)
+        self.supported_games_parameters = config.get_supported_games_parameters(self.poker_game, self.game_type)
         
-        
-        print self.supported_games
+        print self.supported_games_parameters
         # if there are AUX windows configured, set them up
-        if not self.supported_games['aux'] == [""]:
-            for aux in self.supported_games['aux'].split(","):
+        if not self.supported_games_parameters['aux'] == [""]:
+            for aux in self.supported_games_parameters['aux'].split(","):
                 aux=string.strip(aux) # remove leading/trailing spaces
                 aux_params = config.get_aux_parameters(aux)
                 my_import = importName(aux_params['module'], aux_params['class'])
