@@ -90,7 +90,7 @@ class Hud:
         self.hud_params    = parent.hud_params
         self.repositioningwindows = False # used to keep reposition_windows from re-entering
 
-        self.stat_windows  = {}
+        self.stat_windows  = {}  #?is this still used?
         self.popup_windows = {}
         self.aux_windows   = []
 
@@ -98,7 +98,6 @@ class Hud:
         #(font, font_size) = config.get_default_font(self.table.site)
         #self.colors        = config.get_default_colors(self.table.site)
         #self.hud_ui     = config.get_hud_ui_parameters()
-        self.site_params = config.get_site_parameters(self.table.site)
 
         #self.backgroundcolor = gtk.gdk.color_parse(self.colors['hudbgcolor'])
         #self.foregroundcolor = gtk.gdk.color_parse(self.colors['hudfgcolor'])
@@ -106,16 +105,33 @@ class Hud:
         #self.font = pango.FontDescription("%s %s" % (font, font_size))
         # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
 
-        game_params = config.get_game_parameters(self.poker_game)
-        print game_params
-        # if there are AUX windows configured, set them up (Ray knows how this works, if anyone needs info)
-        if not game_params['aux'] == [""]:
-            for aux in game_params['aux'].split(","):
+        #Gather together the various parameters which might be needed by
+        # the aux's we are about to instatiate.
+        #  
+        #Do the heavy-lifting here - however, not all these parameters 
+        # will exist, or maybe they won't be needed in our
+        # children - however, the children will know what to do...
+        
+        self.site_params = config.get_site_parameters(self.table.site)
+        self.supported_games = config.get_supported_games_parameters(self.poker_game)
+        
+        
+        print self.supported_games
+        # if there are AUX windows configured, set them up
+        if not self.supported_games['aux'] == [""]:
+            for aux in self.supported_games['aux'].split(","):
                 aux=string.strip(aux) # remove leading/trailing spaces
                 aux_params = config.get_aux_parameters(aux)
                 my_import = importName(aux_params['module'], aux_params['class'])
                 if my_import == None:
                     continue
+                #The main action happening below ! 
+                # the module/class is instantiated and is fed the config
+                # and aux_params.  Normally this is ultimately inherited
+                # at Mucked.Aux_seats for a hud aux
+                #
+                #The resulting object is recorded at self.aux_windows in 
+                # this module
                 self.aux_windows.append(my_import(self, config, aux_params))
 
         self.creation_attrs = None

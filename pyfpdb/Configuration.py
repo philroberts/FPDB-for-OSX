@@ -407,6 +407,7 @@ class Stat:
 
 
 class Stat_sets:
+    
     def __init__(self, node):
         self.name    = node.getAttribute("name")
         self.rows    = int( node.getAttribute("rows") )
@@ -480,20 +481,20 @@ class Supported_games:
         self.game_stat_set = {}
         for game_stat_set_node in node.getElementsByTagName('game_stat_set'):
             gss = Game_stat_set(game_stat_set_node)
-            self.game_stat_set[gss] = gss
+            self.game_stat_set[gss.game_type] = gss
 
-    def __str__(self):
-        temp = 'Supported_games = ' + self.game_name + "\n"
-        for key in dir(self):
-            if key.startswith('__'): continue
-            if key == 'game_stat_set':  continue
-            value = getattr(self, key)
-            if callable(value): continue
-            temp = temp + '    ' + key + " = " + value + "\n"
-
-        for gs in self.game_stat_set:
-            temp = temp + "%s" % str(self.game_stat_set[gs])
-        return temp
+#    def __str__(self):
+#        temp = 'Supported_games = ' + self.game_name + "\n"
+#        for key in dir(self):
+#            if key.startswith('__'): continue
+#            if key == 'game_stat_set':  continue
+#            value = getattr(self, key)
+#            if callable(value): continue
+#            temp = temp + '    ' + key + " = " + value + "\n"
+#
+#        for gs in self.game_stat_set:
+#            temp = temp + "%s" % str(self.game_stat_set[gs])
+#        return temp
 
 
 class Layout_set:
@@ -1588,13 +1589,13 @@ class Config:
             return param
         return None
         
-    def get_game_parameters(self, name):
-        """Get the configuration parameters for the named game."""
-        param = {}
-        if self.supported_games.has_key(name):
-            param['game_name'] = self.supported_games[name].game_name
-            param['aux']     = self.supported_games[name].aux
-        return param
+#    def get_game_parameters(self, name):
+#        """Get the configuration parameters for the named game."""
+#        param = {}
+#        if self.supported_games.has_key(name):
+#            param['game_name'] = self.supported_games[name].game_name
+#            param['aux']     = self.supported_games[name].aux
+#        return param
 
     def get_supported_games(self):
         """Get the list of supported games."""
@@ -1603,6 +1604,28 @@ class Config:
             sg.append(self.supported_games[game].game_name)
         return sg
 
+    def get_supported_games_parameters(self, name):
+        """Gets a dict of parameters from the named gametype."""
+        param = {}
+        if self.supported_games.has_key(name):
+            for key in dir(self.supported_games[name]):
+                if key.startswith('__'): continue
+                if key == ('game_stat_set'): continue
+                value = getattr(self.supported_games[name], key)
+                if callable(value): continue
+                param[key] = value
+            #some gymnastics here to load the Stats_sets instance into
+            #the game_stat_set dictionary
+            game_stat_set = getattr(self.supported_games[name], 'game_stat_set')
+            ss_dict={}
+            for i in game_stat_set:
+                ss_name = game_stat_set[i].stat_set
+                ss_dict[i] = self.stat_sets[ss_name] 
+            param['game_stat_set'] = ss_dict
+            return param
+            
+        return None
+        
     def execution_path(self, filename):
         """Join the fpdb path to filename."""
         return os.path.join(os.path.dirname(inspect.getfile(sys._getframe(0))), filename)
@@ -1680,7 +1703,7 @@ if __name__== "__main__":
         #print c.get_default_font(site)
 
     for game in c.get_supported_games():
-        print c.get_game_parameters(game)
+        print c.get_supported_game_parameters(game)
 
     for hud_param, value in c.get_hud_ui_parameters().iteritems():
         print "hud param %s = %s" % (hud_param, value)

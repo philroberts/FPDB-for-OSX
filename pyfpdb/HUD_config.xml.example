@@ -412,8 +412,8 @@
         without changing Configuration.Config()
         -->
         <game game_name="holdem" aux="mucked, Classic_HUD">
-            <game_stat_set game_type="tour" stat_set ="holdem_tourney"></game_stat_set>
-            <game_stat_set game_type="ring" stat_set ="holdem_cash"></game_stat_set>
+            <game_stat_set game_type="tour" stat_set ="draw_default"></game_stat_set>
+            <game_stat_set game_type="ring" stat_set ="holdem_default"></game_stat_set>
         </game>
         <game game_name="razz" aux="stud_mucked, Classic_HUD">
             <game_stat_set game_type="all" stat_set ="stud_default"></game_stat_set>
@@ -537,7 +537,7 @@
 
 
     <stat_sets>
-        <ss name="draw default" cols="3" rows="2" xpad="1" ypad="0">
+        <ss name="draw_default" cols="3" rows="2" xpad="1" ypad="0">
             <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
             <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
             <stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
@@ -546,7 +546,7 @@
             <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
         </ss>
         
-        <ss name="stud default" cols="2" rows="3" xpad="1" ypad="0">
+        <ss name="stud_default" cols="2" rows="3" xpad="1" ypad="0">
             <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
             <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
             <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
@@ -555,7 +555,7 @@
             <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
         </ss>
         
-        <ss name="omaha default" cols="2" rows="3" xpad="1" ypad="0">        
+        <ss name="omaha_default" cols="2" rows="3" xpad="1" ypad="0">        
             <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
             <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
             <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
@@ -564,7 +564,7 @@
             <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
         </ss>
         
-        <ss name="holdem default" cols="3" rows="3" xpad="1" ypad="0">          
+        <ss name="holdem_default" cols="3" rows="3" xpad="1" ypad="0">          
             <stat click="tog_decorate" col="0" popup="default" row="0" stat_hicolor="#F05000" stat_hith="40" stat_locolor="#408000" stat_loth="25" stat_name="vpip" tip="tip1"> </stat>
             <stat click="tog_decorate" col="1" popup="default" row="0" stat_hicolor="#F05000" stat_hith="35" stat_locolor="#408000" stat_loth="20" stat_name="pfr" tip="tip1"> </stat>
             <stat click="tog_decorate" col="2" popup="default" row="0" stat_hicolor="#F05000" stat_hith="13" stat_locolor="#408000" stat_loth="4" stat_name="three_B" tip="tip1"> </stat>

@@ -79,7 +79,7 @@ class Simple_HUD(Mucked.Aux_Seats):
 #    That way a subclass doesn't have to grab them.
 #    Also, the subclass can override any of these attributes
         self.poker_game  = self.hud.poker_game
-        self.game_params = self.hud.config.get_game_parameters(self.hud.poker_game)
+        self.game_params = self.hud.config.get_supported_games_parameters(self.hud.poker_game)
         self.game        = self.hud.config.supported_games[self.hud.poker_game]
         self.max         = self.hud.max
         self.nrows       = self.game_params['rows']
