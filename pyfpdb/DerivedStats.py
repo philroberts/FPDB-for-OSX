@@ -833,6 +833,11 @@ class DerivedStats():
                 if chance == True:
                     self.handsplayers[name]['street%dCBChance' % (i+1)] = True
                     self.handsplayers[name]['street%dCBDone' % (i+1)] = self.betStreet(hand.actionStreets[i+2], name)
+                    if self.handsplayers[name]['street%dCBDone' % (i+1)]:
+                        for pname, folds in self.foldTofirstsBetOrRaiser(street, name).iteritems():
+                            #print "DEBUG: hand.handid, pname.encode('utf8'), street, folds, '--', name, 'lastbet on ', hand.actionStreets[i+1]
+                            self.handsplayers[pname]['foldToStreet%sCBChance' % (i+1)] = True
+                            self.handsplayers[pname]['foldToStreet%sCBDone' % (i+1)] = folds
 
     def calcCalledRaiseStreet0(self, hand):
         """
@@ -985,6 +990,23 @@ class DerivedStats():
             if act[1] in ('bets', 'raises'):
                 return act[0]
         return None
+    
+    def foldTofirstsBetOrRaiser(self, street, aggressor):
+        """Returns player name that placed the first bet or raise.
+
+        None if there were no bets or raises on that street
+        """
+        i, players = 0, {}
+        for act in self.hand.actions[street]:
+            if i>1: break
+            if act[0] != aggressor:
+                if act[1] in ('folds'):
+                    players[act[0]] = True
+                else:
+                    players[act[0]] = False
+            else:
+                i+=1
+        return players
 
     def lastBetOrRaiser(self, street):
         """Returns player name that placed the last bet or raise for that street.
