@@ -81,7 +81,7 @@ class Simple_HUD(Mucked.Aux_Seats):
         self.poker_game  = self.hud.poker_game
         self.site_params = self.hud.site_parameters
         self.game_params = self.hud.supported_games_parameters["game_stat_set"]
-        self.game        = self.hud.config.supported_games[self.hud.poker_game]
+        self.game        = self.hud.supported_games_parameters["game_stat_set"]
         self.max         = self.hud.max
         self.nrows       = self.game_params.rows
         self.ncols       = self.game_params.cols
@@ -89,7 +89,7 @@ class Simple_HUD(Mucked.Aux_Seats):
         self.ypad        = self.game_params.ypad
         self.xshift      = self.site_params['hud_menu_xshift']
         self.yshift      = self.site_params['hud_menu_yshift']
-
+        blah blah blah next task sort out below 
         self.fgcolor   = gtk.gdk.color_parse(params["fgcolor"])
         self.bgcolor   = gtk.gdk.color_parse(params["bgcolor"])
         self.opacity   = params["opacity"]
@@ -104,20 +104,15 @@ class Simple_HUD(Mucked.Aux_Seats):
         self.stats  = [ [None]*self.ncols for i in range(self.nrows) ]
         self.popups = [ [None]*self.ncols for i in range(self.nrows) ]
         self.tips   = [ [None]*self.ncols for i in range(self.nrows) ]
-        for stat in self.game.stats:
-            self.stats[self.config.supported_games[self.poker_game].stats[stat].row] \
-                      [self.config.supported_games[self.poker_game].stats[stat].col] = \
-                      self.config.supported_games[self.poker_game].stats[stat].stat_name
 
-            self.popups[self.config.supported_games[self.poker_game].stats[stat].row] \
-                      [self.config.supported_games[self.poker_game].stats[stat].col] = \
-                      self.config.supported_games[self.poker_game].stats[stat].popup
-#                       Popup.__dict__.get(self.config.supported_games[self.poker_game].stats[stat].popup, "default")
-                 
-            self.tips[self.config.supported_games[self.poker_game].stats[stat].row] \
-                      [self.config.supported_games[self.poker_game].stats[stat].col] = \
-                      self.config.supported_games[self.poker_game].stats[stat].tip
-
+        for stat in self.game_params.stats:
+            self.stats[self.game_params.stats[stat].row][self.game_params.stats[stat].col] \
+                    = self.game_params.stats[stat].stat_name
+            self.popups[self.game_params.stats[stat].row][self.game_params.stats[stat].col] \
+                    = self.game_params.stats[stat].popup
+            self.tips[self.game_params.stats[stat].row][self.game_params.stats[stat].col] \
+                    = self.game_params.stats[stat].tip
+                                        
     def create_contents(self, container, i):
         container.create_contents(i)
 

@@ -108,9 +108,9 @@ class Hud:
         #Gather together the various parameters which might be needed by
         # the aux's we are about to instatiate.
         #  
-        #Do the heavy-lifting here - however, not all these parameters 
-        # will exist, or maybe they won't be needed in our
-        # children - however, the children will know what to do...
+        #Do the heavy-lifting here - however, not all these variables will
+        # be fully-populated with parameters - however, the aux children 
+        # will know what to do...
         
         self.site_parameters = config.get_site_parameters(self.table.site)
         self.supported_games_parameters = config.get_supported_games_parameters(self.poker_game, self.game_type)
@@ -124,13 +124,13 @@ class Hud:
                 my_import = importName(aux_params['module'], aux_params['class'])
                 if my_import == None:
                     continue
-                #The main action happening below ! 
+                #The main action happening below !!!
                 # the module/class is instantiated and is fed the config
                 # and aux_params.  Normally this is ultimately inherited
-                # at Mucked.Aux_seats for a hud aux
+                # at Mucked.Aux_seats() for a hud aux
                 #
-                #The resulting object is recorded at self.aux_windows in 
-                # this module
+                #The instatiated aux object is recorded in the
+                # self.aux_windows list in this module
                 self.aux_windows.append(my_import(self, config, aux_params))
 
         self.creation_attrs = None
