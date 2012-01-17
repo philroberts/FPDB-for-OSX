@@ -1000,10 +1000,11 @@ class DerivedStats():
         for act in self.hand.actions[street]:
             if i>1: break
             if act[0] != aggressor:
-                if act[1] in ('folds'):
+                if act[1] == 'folds':
                     players[act[0]] = True
                 else:
                     players[act[0]] = False
+                if act[1] == 'raises': break
             else:
                 i+=1
         return players
