@@ -58,7 +58,7 @@ class WinamaxSummary(TourneySummary):
     re_Prizepool = re.compile(u"""<div class="title2">.+: (?P<PRIZEPOOL>[0-9,]+)""")
 
     re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
-    re_Ticket = re.compile(u""" / Ticket (?P<VALUE>[0-9.]+)&euro;""")
+    re_Ticket = re.compile(u""" / (?P<TTYPE>Ticket (?P<VALUE>[0-9.]+)&euro;|Tremplin Winamax Poker Tour|Starting Block Winamax Poker Tour)""")
 
     codepage = ["utf-8"]
 
@@ -115,7 +115,14 @@ class WinamaxSummary(TourneySummary):
             is_satellite = self.re_Ticket.search(mg['WINNINGS'])
             if is_satellite:
                 # Ticket
-                winnings = convert_to_decimal(is_satellite.groupdict()['VALUE'])
+                if is_satellite.group('VALUE'):
+                    winnings = convert_to_decimal(is_satellite.group('VALUE'))
+                else: # Value not specified
+                    rank = 1
+                    # FIXME: Do lookup here
+                    # Tremplin Winamax Poker Tour
+                    # Starting Block Winamax Poker Tour
+                    pass
                 # For stallites, any ticket means 1st
                 if winnings > 0:
                     rank = 1
