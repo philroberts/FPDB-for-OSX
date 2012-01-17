@@ -97,7 +97,7 @@ out_path  (default '-' = sys.stdout)
         self.out_fh = get_out_fh(out_path, self.import_parameters)
 
         self.compiledPlayers   = set()
-        self.maxseats  = 10
+        self.maxseats  = 0
 
         self.status = True
 
