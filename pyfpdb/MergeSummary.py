@@ -29,7 +29,7 @@ from TourneySummary import *
 
 
 class MergeSummary(TourneySummary):
-    limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'Pot Limit':'pl', 'Pot Limit ':'pl', 'Half Pot Limit':'hp'}
+    limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Fixed Limit':'fl', 'Limit':'fl', 'Pot Limit':'pl', 'Pot Limit ':'pl', 'Half Pot Limit':'hp'}
     games = {              # base, category
                     'Holdem' : ('hold','holdem'),
          'Holdem Tournament' : ('hold','holdem'),
