@@ -230,7 +230,11 @@ class Hand(object):
             if closed[i] in ('', 'Xx', 'Null', 'null'):
                 closed[i] = '0x'
 
-        self.holecards[street][player] = [open, closed]
+        try:
+            self.holecards[street][player] = [open, closed]
+        except KeyError, e:
+            log.error(_("Hand.addHoleCards: '%s': Major failure while adding holecards: '%s'") % (self.handid, e))
+            raise FpdbParseError
 
     def prepInsert(self, db, printtest = False):
         #####
