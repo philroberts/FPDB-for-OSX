@@ -231,6 +231,8 @@ class Winamax(HandHistoryConverter):
                 hand.tourNo = info[key]
             if key == 'TABLE':
                 hand.tablename = info[key]
+                if hand.gametype['type'] == 'tour':
+                    hand.tablename = info['TABLENO']
                 # TODO: long-term solution for table naming on Winamax.
                 if hand.tablename.endswith(u'No Limit Hold\'em'):
                     hand.tablename = hand.tablename[:-len(u'No Limit Hold\'em')] + u'NLHE'
@@ -474,3 +476,47 @@ class Winamax(HandHistoryConverter):
             if m.group('CARDS') is not None:
                 shown = True
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
+
+    @staticmethod
+    def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
+        """
+        SnG's
+        No Limit Hold'em(17027463)#0 - 20-40 NL Holdem  - Buy-in: 1€
+        No Limit Hold'em(17055704)#0 - 300-600 (ante 75) NL Holdem  - Buy-in: 0,50€
+        No Limit Hold'em(17056243)#2 - 400-800 (ante 40) NL Holdem  - Buy-in: 0,50€
+        Deglingos !(17060078)#0 - 30-60 NL Holdem  - Buy-in: 0,50€
+        Deglingos Qualif. 2€(17060167)#0 - 20-40 NL Holdem  - Buy-in: 0,50€
+        Double Shootout(17059623)#1 - 15-30 NL Holdem  - Buy-in: 0,50€
+        Double Shootout(17060527)#1 - 40-80 NL Holdem  - Buy-in: 0,50€
+        No Limit Hold'em(17056975)#0 - 300-600 (ante 75) NL Holdem  - Buy-in: 0,50€
+        No Limit Hold'em(17056975)#0 - 300-600 (ante 75) NL Holdem  - Buy-in: 0,50€
+        No Limit Hold'em(17059475)#2 - 15-30 NL Holdem  - Buy-in: 1€
+        No Limit Hold'em(17059934)#0 - 15-30 NL Holdem  - Buy-in: 0,50€
+        No Limit Hold'em(17059934)#0 - 20-40 NL Holdem  - Buy-in: 0,50€
+        Pot Limit Omaha(17059108)#0 - 60-120 PL Omaha  - Buy-in: 0,50€
+        Qualificatif 2€(17057954)#0 - 80-160 NL Holdem  - Buy-in: 0,50€
+        Qualificatif 5€(17057018)#0 - 300-600 (ante 30) NL Holdem  - Buy-in: 1€
+        Quitte ou Double(17057267)#0 - 150-300 PL Omaha  - Buy-in: 0,50€
+        Quitte ou Double(17058093)#0 - 100-200 (ante 10) NL Holdem  - Buy-in: 0,50€
+        Starting Block Winamax Poker Tour(17059192)#0 - 30-60 NL Holdem  - Buy-in: 0€
+        MTT's
+        1€ et un autre...(16362149)#016 - 60-120 (ante 10) NL Holdem  - Buy-in: 1€
+        2€ et l'apéro...(16362145)#000 - 5k-10k (ante 1k) NL Holdem  - Buy-in: 2€
+        Deepstack Hold'em(16362363)#013 - 200-400 (ante 30) NL Holdem  - Buy-in: 5€
+        Deglingos MAIN EVENT(16362466)#002 - 10-20 NL Holdem  - Buy-in: 2€
+        Hold'em(16362170)#013 - 30-60 NL Holdem  - Buy-in: 2€
+        MAIN EVENT(16362311)#008 - 300-600 (ante 60) NL Holdem  - Buy-in: 150€
+        MiniRoll 0.25€(16362117)#045 - 1,25k-2,50k (ante 250) NL Holdem  - Buy-in: 0,25€
+        MiniRoll 0.50€(16362116)#018 - 20k-40k (ante 4k) NL Holdem  - Buy-in: 0,50€
+        MiniRoll 0.50€(16362118)#007 - 75-150 (ante 15) NL Holdem  - Buy-in: 0,50€
+        Qualificatif 5€(16362201)#010 - 10-20 NL Holdem  - Buy-in: 0,50€
+        Tremplin Caen 2(15290669)#026 - 2,50k-5k (ante 500) NL Holdem  - Buy-in: 0€
+        Freeroll 250€(16362273)#035 - 2,50k-5k (ante 500) NL Holdem  - Buy-in: 0€
+        """
+        log.info("Winamax.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
+        regex = "%s" % (table_name)
+        if tournament:
+            regex = "\(%s\)#%s" % (tournament, table_number)
+        log.info("Winamax.getTableTitleRe: returns: '%s'" % (regex))
+        return regex
+
