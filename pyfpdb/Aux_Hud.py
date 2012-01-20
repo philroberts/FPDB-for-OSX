@@ -73,15 +73,17 @@ class Stat_Window(Mucked.Seat_Window):
 class Simple_HUD(Mucked.Aux_Seats):
     """A simple HUD class based on the Aux_Window interface."""
 
-    def __init__(self, hud, config, params):
-        super(Simple_HUD, self).__init__(hud, config, params)
-#    Save everything you need to know about the hud as attrs.
-#    That way a subclass doesn't have to grab them.
-#    Also, the subclass can override any of these attributes
+    def __init__(self, hud, config, aux_params):
+        super(Simple_HUD, self).__init__(hud, config, aux_params)
+        
+        #    Save everything you need to know about the hud as attrs.
+        #    That way a subclass doesn't have to grab them.
+        #    Also, the subclass can override any of these attributes
+
         self.poker_game  = self.hud.poker_game
         self.site_params = self.hud.site_parameters
+        self.aux_params  = aux_params
         self.game_params = self.hud.supported_games_parameters["game_stat_set"]
-        self.game        = self.hud.supported_games_parameters["game_stat_set"]
         self.max         = self.hud.max
         self.nrows       = self.game_params.rows
         self.ncols       = self.game_params.cols
@@ -89,18 +91,19 @@ class Simple_HUD(Mucked.Aux_Seats):
         self.ypad        = self.game_params.ypad
         self.xshift      = self.site_params['hud_menu_xshift']
         self.yshift      = self.site_params['hud_menu_yshift']
-        blah blah blah next task sort out below 
-        self.fgcolor   = gtk.gdk.color_parse(params["fgcolor"])
-        self.bgcolor   = gtk.gdk.color_parse(params["bgcolor"])
-        self.opacity   = params["opacity"]
-        self.font      = pango.FontDescription("%s %s" % (params["font"], params["font_size"]))
+        self.fgcolor     = gtk.gdk.color_parse(self.aux_params["fgcolor"])
+        self.bgcolor     = gtk.gdk.color_parse(self.aux_params["bgcolor"])
+        self.opacity     = self.aux_params["opacity"]
+        self.font        = pango.FontDescription("%s %s" % (self.aux_params["font"], self.aux_params["font_size"]))
+        
         #todo - checkout what these two commands are doing, exactly
         self.aw_window_type = Stat_Window
         self.aw_mw_type = Simple_table_mw
 
-#    layout is handled by superclass!
-#    retrieve the contents of the game element for future use
-#    do this here so that subclasses don't have to bother
+        #    layout is handled by superclass!
+        #    retrieve the contents of the stats. popup and tips elements
+        #    for future use do this here so that subclasses don't have to bother
+        
         self.stats  = [ [None]*self.ncols for i in range(self.nrows) ]
         self.popups = [ [None]*self.ncols for i in range(self.nrows) ]
         self.tips   = [ [None]*self.ncols for i in range(self.nrows) ]
@@ -131,7 +134,7 @@ class Simple_stat(object):
         self.eb.aw_seat = seat
         self.eb.aw_popup = popup
         self.eb.stat_dict = None
-        self.lab = Simple_label("xxx") # xxx is used as initial value because label does't shrink
+        self.lab = Simple_label("xxx") # xxx is used as initial value because labels don't shrink
         self.eb.add(self.lab)
         self.widget = self.eb
         self.stat_dict = None

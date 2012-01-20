@@ -47,19 +47,19 @@ import Options
 
 (options, argv) = Options.fpdb_options()
 
-#    get the correct module for the current os
-if sys.platform[0:5] == 'linux':
-    import XTables as Tables
-elif sys.platform == 'darwin':
-    import OSXTables as Tables
-else: # This is bad--figure out the values for the various windows flavors
-    is_windows = True
-    import WinTables as Tables
-
 # get config and set up logger
 Configuration.set_logfile("HUD-log.txt")
 c = Configuration.Config(file=options.config, dbname=options.dbname)
 log = logging.getLogger("hud")
+
+# get the correct module for the current os
+if c.os_family == 'Linux':
+    import XTables as Tables
+elif c.os_family == 'Mac':
+    import OSXTables as Tables
+elif c.os_family in ('XP', 'Win7'):
+    import WinTables as Tables
+
 
 class HUD_main(object):
     """A main() object to own both the read_stdin thread and the gui."""
@@ -257,13 +257,12 @@ class HUD_main(object):
 #       if so, kill and create new hud with specified "max"
             if temp_key in self.hud_dict:
                 try:
-                    newmax=self.hud_dict[temp_key].hud_params['new_max_seats']
-                    print "new max, ", newmax
-                    if newmax and self.hud_dict[temp_key].max != newmax:
-                        self.kill_hud("activate", temp_key) #kill everything
-                        while temp_key in self.hud_dict: time.sleep(0.1) #wait for idle complete
-                        max = newmax # "max" will be used in create_HUD call below
-                        self.hud_dict[temp_key].hud_params['new_max_seats']=None
+                    newmax = self.hud_dict[temp_key].hud_params['new_max_seats']  # trigger
+                    if newmax and self.hud_dict[temp_key].max != newmax:  # max has changed
+                        self.kill_hud("activate", temp_key)   # kill everything
+                        while temp_key in self.hud_dict: time.sleep(0.5)   # wait for idle_kill to complete
+                        max = newmax   # "max" localvar used in create_HUD call below
+                    self.hud_dict[temp_key].hud_params['new_max_seats'] = None   # reset trigger
                 except:
                     pass
                             
