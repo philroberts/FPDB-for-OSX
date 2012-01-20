@@ -211,7 +211,7 @@ class iPoker(HandHistoryConverter):
         try:
             hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
         except ValueError:
-            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%d/%m/%Y %H:%M:%S')
+            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%d/%m/%Y %H:%M')
 
         if self.info['type'] == 'tour':
             hand.tourNo = self.tinfo['tourNo']
