@@ -274,6 +274,7 @@ class Importer:
             self.database.rebuild_hudcache()
         else:
             self.database.cleanUpTourneyTypes()
+            self.database.resetttclean()
             log.info (_("No need to rebuild hudcache."))
         self.database.analyzeDB()
         endtime = time()

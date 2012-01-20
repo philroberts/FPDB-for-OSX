@@ -2950,17 +2950,20 @@ class Database:
         fetch  = self.sql.query['fetchNewTourneyTypeIds'].replace('%s', self.sql.query['placeholder'])
         cursor = self.get_cursor()
         for ttid in self.ttclean:
-            cursor.execute(clear, ttid)
+            cursor.execute(clear, (ttid,))
             self.commit()
-            cursor.execute(select, ttid)
+            cursor.execute(select, (ttid,))
             result=cursor.fetchone()
             if not result:
-                cursor.execute(delete, ttid)
+                cursor.execute(delete, (ttid,))
                 self.commit()
         if self.ttclean:
             cursor.execute(fetch)
             for id in cursor.fetchall():
                 self.rebuild_hudcache(None, None, id[0])
+                
+    def resetttclean(self):
+        self.ttclean = set()
     
     def getSqlTourneyIDs(self, hand):
         if(self.tcache == None):
