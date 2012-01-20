@@ -59,7 +59,7 @@ class PacificPokerSummary(TourneySummary):
                         (Add-On:\s[%(LS)s](?P<ADDON>[,.0-9]+)\s+)?
                         ((?P<P1NAME>.*?)\sperformed\s(?P<PREBUYS>\d+)\srebuys?\s+)?
                         ((?P<P2NAME>.*?)\sperformed\s(?P<PADDONS>\d+)\sadd-ons?\s+)?
-                        (?P<PNAME>.*)\sfinished\s(?P<RANK>[0-9]+)\/(?P<ENTRIES>[0-9]+)(\sand\swon\s[%(LS)s](?P<WINNINGS>[,.0-9]+))?
+                        (?P<PNAME>.*)\sfinished\s(?P<RANK>[0-9]+)\/(?P<ENTRIES>[0-9]+)(\sand\swon\s(?P<WCURRENCY>[%(LS)s])(?P<WINNINGS>[,.0-9]+))?
                                """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
     
     re_Category = re.compile(u"""
@@ -95,8 +95,8 @@ class PacificPokerSummary(TourneySummary):
         if 'GAME'      in mg1: self.gametype['category']  = self.games[mg1['GAME']][1]
         self.buyin = int(100*convert_to_decimal(mg['BUYIN']))
         self.fee   = int(100*convert_to_decimal(mg['FEE']))
-        self.prizepool = 0
         self.entries   = mg['ENTRIES']
+        self.prizepool = self.buyin * int(self.entries)
         if 'REBUYAMT' in mg and mg['REBUYAMT'] != None:
             self.isRebuy   = True
             self.rebuyCost = int(100*convert_to_decimal(mg['REBUYAMT']))
@@ -104,8 +104,10 @@ class PacificPokerSummary(TourneySummary):
             self.isAddOn = True
             self.addOnCost = int(100*convert_to_decimal(mg['ADDON']))
         #self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
-        if mg['CURRENCY'] == "$":     self.currency = "USD"
-        elif mg['CURRENCY'] == u"€":  self.currency="EUR"
+        if mg['CURRENCY'] == "$":     self.buyinCurrency="USD"
+        elif mg['CURRENCY'] == u"€":  self.buyinCurrency="EUR"
+        if self.buyin == 0:           self.buyinCurrency="FREE"
+        self.currency = self.buyinCurrency
 
         player = mg['PNAME']
         rank = int(mg['RANK'])
@@ -116,6 +118,8 @@ class PacificPokerSummary(TourneySummary):
         
         if 'WINNINGS' in mg and mg['WINNINGS'] != None:
             winnings = int(100*convert_to_decimal(mg['WINNINGS']))
+            if mg['WCURRENCY'] == "$":     self.currency="USD"
+            elif mg['WCURRENCY'] == u"€":  self.currency="EUR"
         if 'PREBUYS' in mg and mg['PREBUYS'] != None:
             rebuyCount = int(mg['PREBUYS'])
         if 'PADDONS' in mg and mg['PADDONS'] != None:

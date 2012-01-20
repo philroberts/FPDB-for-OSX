@@ -344,7 +344,7 @@ class Database:
                 self.wrongDbVersion = False
             
             self.gtcache    = None       # GameTypeId cache
-            self.ttcache    = None       # TourneyTypeId cache   
+            #self.ttcache    = None       # TourneyTypeId cache   
             self.tcache     = None       # TourneyId cache
             self.pcache     = None       # PlayerId cache
             self.tpcache    = None       # TourneysPlayersId cache
@@ -972,8 +972,9 @@ class Database:
         return result
 
     def resetCache(self):
+        self.ttclean    = set()      # TourneyType clean
         self.gtcache    = None       # GameTypeId cache
-        self.ttcache    = None       # TourneyTypeId cache   
+        #self.ttcache    = None       # TourneyTypeId cache   
         self.tcache     = None       # TourneyId cache
         self.pcache     = None       # PlayerId cache
         self.tpcache    = None       # TourneysPlayersId cache
@@ -1547,7 +1548,7 @@ class Database:
             query = query.replace('<styleKeyGroup>', ',styleKey')
         return query
 
-    def rebuild_hudcache(self, h_start=None, v_start=None):
+    def rebuild_hudcache(self, h_start=None, v_start=None, ttid = None):
         """clears hudcache and rebuilds from the individual handsplayers records"""
 
         try:
@@ -1586,12 +1587,15 @@ class Database:
             rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_group_clause>', "")
             rebuild_sql_cash = rebuild_sql_cash.replace('<where_clause>', where)
             rebuild_sql_cash = self.replace_statscache(rebuild_sql_cash)
-            self.get_cursor().execute(self.sql.query['clearHudCache'])
-            self.get_cursor().execute(rebuild_sql_cash)
-            #print _("Rebuild hudcache(cash) took %.1f seconds") % (time() - stime,)
+            if not ttid:
+                self.get_cursor().execute(self.sql.query['clearHudCache'])
+                self.get_cursor().execute(rebuild_sql_cash)
+                #print _("Rebuild hudcache(cash) took %.1f seconds") % (time() - stime,)
 
             if self.hero_ids == {}:
                 where = "WHERE hp.tourneysPlayersId >= 0"
+            elif ttid:
+                where = "WHERE t.tourneyTypeId = %s" % ttid
             else:
                 where =   "where (((    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
                         + "       and h.startTime > '" + v_start + "')" \
@@ -1605,7 +1609,6 @@ class Database:
             rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_group_clause>', ",t.tourneyTypeId")
             rebuild_sql_tourney = rebuild_sql_tourney.replace('<where_clause>', where)
             rebuild_sql_tourney = self.replace_statscache(rebuild_sql_tourney)
-
             self.get_cursor().execute(rebuild_sql_tourney)
             self.commit()
             #print _("Rebuild hudcache took %.1f seconds") % (time() - stime,)
@@ -2885,81 +2888,45 @@ class Database:
     #end def getTourneyTypesIds
     
     def getSqlTourneyTypeIDs(self, hand):
-        if(self.ttcache == None):
-            self.ttcache = LambdaDict(lambda  key:self.insertTourneyType(key[0], key[1], key[2]))
+        #if(self.ttcache == None):
+        #    self.ttcache = LambdaDict(lambda  key:self.insertTourneyType(key[0], key[1], key[2]))
             
-        tourneydata =   (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'],
-                         hand.gametype['limitType'], hand.maxseats, hand.isSng, hand.isKO, hand.koBounty,
-                         hand.isRebuy, hand.rebuyCost, hand.isAddOn, hand.addOnCost, hand.speed, hand.isShootout, hand.isMatrix)
+        #tourneydata =   (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'],
+        #                 hand.gametype['limitType'], hand.maxseats, hand.isSng, hand.isKO, hand.koBounty,
+        #                 hand.isRebuy, hand.rebuyCost, hand.isAddOn, hand.addOnCost, hand.speed, hand.isShootout, hand.isMatrix)
         
-        result = self.ttcache[(hand.tourNo, hand.siteId, tourneydata)]
+        result = self.createOrUpdateTourneyType(hand) #self.ttcache[(hand.tourNo, hand.siteId, tourneydata)]
 
         return result
     
-    def insertTourneyType(self, tournNo, siteId, tourneydata):
-        result = None
-        c = self.get_cursor()
-        q = self.sql.query['getTourneyTypeIdByTourneyNo']
-        q = q.replace('%s', self.sql.query['placeholder'])
-
-        c.execute (q, (tournNo, siteId))
-
-        tmp = c.fetchone()
-        if (tmp == None): #new player
-            c.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), tourneydata)
-            tmp=c.fetchone()
-            try:
-                result = tmp[0]
-            except TypeError: #this means we need to create a new entry
-                if self.printdata:
-                    print ("######## TourneyType ##########")
-                    import pprint
-                    pp = pprint.PrettyPrinter(indent=4)
-                    pp.pprint(tourneyInsert)
-                    print ("###### End TourneyType ########")
-                c.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']), tourneydata)
-                #Get last id might be faster here.
-                #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
-                result = self.get_last_insert_id(c)
-        else:
-            result = tmp[0]
-        return result
-    
-    def createOrUpdateTourneyType(self, summary):
+    def createOrUpdateTourneyType(self, obj):
+        ttid, _ttid, updateDb = None, None, False
         cursor = self.get_cursor()
         q = self.sql.query['getTourneyTypeIdByTourneyNo'].replace('%s', self.sql.query['placeholder'])
-        cursor.execute(q, (summary.tourNo, summary.siteId))
-
-        columnNames=[desc[0] for desc in cursor.description]
+        cursor.execute(q, (obj.tourNo, obj.siteId))
         result=cursor.fetchone()
-
+        
         if result != None:
-            expectedValues = (('isSng', 'sng'), ('isKO', 'knockout'), ('koBounty', 'koBounty'), ('isRebuy', 'rebuy')
-                             ,('rebuyCost', 'rebuyCost'), ('isAddOn', 'addOn'), ('addOnCost','addOnCost')
-                             ,('speed', 'speed'), ('isShootout', 'shootout'), ('isMatrix', 'matrix'))
-            updateDb=False
+            columnNames=[desc[0] for desc in cursor.description]
+            expectedValues = (('buyin', 'buyin'), ('fee', 'fee'), ('buyinCurrency', 'currency'),('isSng', 'sng'), ('maxseats', 'maxSeats')
+                             , ('isKO', 'knockout'), ('koBounty', 'koBounty'), ('isRebuy', 'rebuy'), ('rebuyCost', 'rebuyCost')
+                             , ('isAddOn', 'addOn'), ('addOnCost','addOnCost'), ('speed', 'speed'), ('isShootout', 'shootout'), ('isMatrix', 'matrix'))
             resultDict = dict(zip(columnNames, result))
-
-            tourneyId = resultDict["id"]
-            for ev in expectedValues :
-                if getattr(summary, ev[0])==None and resultDict[ev[1]]!=None:#DB has this value but object doesnt, so update object
-                    setattr(summary, ev[0], resultDict[ev[1]])
-                elif getattr(summary, ev[0])!=None and resultDict[ev[1]]==None:#object has this value but DB doesnt, so update DB
+            ttid = resultDict["id"]
+            for ev in expectedValues:
+                if not getattr(obj, ev[0]) and resultDict[ev[1]]:#DB has this value but object doesnt, so update object
+                    setattr(obj, ev[0], resultDict[ev[1]])
+                elif getattr(obj, ev[0]) and (resultDict[ev[1]] != getattr(obj, ev[0])):#object has this value but DB doesnt, so update DB
                     updateDb=True
-            if updateDb:
-                q = self.sql.query['updateTourneyType'].replace('%s', self.sql.query['placeholder'])
-                row = (summary.isSng, summary.isKO, summary.koBounty, summary.isRebuy, summary.rebuyCost,
-                       summary.isAddOn, summary.addOnCost, summary.speed, summary.isShootout, summary.isMatrix, tourneyId
-                      )
-                cursor.execute(q, row)
-        else:
-            row = (summary.siteId, summary.buyinCurrency, summary.buyin, summary.fee, summary.gametype['category'],
-                   summary.gametype['limitType'], summary.maxseats, summary.isSng, summary.isKO, summary.koBounty,
-                   summary.isRebuy, summary.rebuyCost, summary.isAddOn, summary.addOnCost, summary.speed, summary.isShootout, summary.isMatrix)
+                    _ttid = ttid
+        if not result or updateDb:
+            row = (obj.siteId, obj.buyinCurrency, obj.buyin, obj.fee, obj.gametype['category'],
+                   obj.gametype['limitType'], obj.maxseats, obj.isSng, obj.isKO, obj.koBounty,
+                   obj.isRebuy, obj.rebuyCost, obj.isAddOn, obj.addOnCost, obj.speed, obj.isShootout, obj.isMatrix)
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), row)
             tmp=cursor.fetchone()
             try:
-                tourneyId = tmp[0]
+                ttid = tmp[0]
             except TypeError: #this means we need to create a new entry
                 if self.printdata:
                     print ("######## Tourneys ##########")
@@ -2968,8 +2935,32 @@ class Database:
                     pp.pprint(row)
                     print ("###### End Tourneys ########")
                 cursor.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']), row)
-                tourneyId = self.get_last_insert_id(cursor)
-        return tourneyId
+                ttid = self.get_last_insert_id(cursor)
+            if updateDb:
+                #print 'DEBUG createOrUpdateTourneyType:', 'old', _ttid, 'new', ttid, row
+                q = self.sql.query['updateTourneyTypeId'].replace('%s', self.sql.query['placeholder'])
+                cursor.execute(q, (ttid, obj.tourNo))
+                self.ttclean.add(_ttid)
+        return ttid
+    
+    def cleanUpTourneyTypes(self):
+        clear  = self.sql.query['clearHudCacheTourneyType'].replace('%s', self.sql.query['placeholder'])
+        select = self.sql.query['selectTourneyWithTypeId'].replace('%s', self.sql.query['placeholder'])
+        delete = self.sql.query['deleteTourneyTypeId'].replace('%s', self.sql.query['placeholder'])
+        fetch  = self.sql.query['fetchNewTourneyTypeIds'].replace('%s', self.sql.query['placeholder'])
+        cursor = self.get_cursor()
+        for ttid in self.ttclean:
+            cursor.execute(clear, ttid)
+            self.commit()
+            cursor.execute(select, ttid)
+            result=cursor.fetchone()
+            if not result:
+                cursor.execute(delete, ttid)
+                self.commit()
+        if self.ttclean:
+            cursor.execute(fetch)
+            for id in cursor.fetchall():
+                self.rebuild_hudcache(None, None, id[0])
     
     def getSqlTourneyIDs(self, hand):
         if(self.tcache == None):
@@ -3015,7 +3006,7 @@ class Database:
             for ev in expectedValues :
                 if getattr(summary, ev)==None and resultDict[ev]!=None:#DB has this value but object doesnt, so update object
                     setattr(summary, ev, resultDict[ev])
-                elif getattr(summary, ev)!=None and resultDict[ev]==None:#object has this value but DB doesnt, so update DB
+                elif getattr(summary, ev)!=None and not resultDict[ev]:#object has this value but DB doesnt, so update DB
                     updateDb=True
                 #elif ev=="startTime":
                 #    if (resultDict[ev] < summary.startTime):

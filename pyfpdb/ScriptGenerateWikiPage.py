@@ -137,8 +137,8 @@ games = {"27_1draw"  : copy.deepcopy(defaults)
 Configuration.set_logfile("fpdb-log.txt")
 config = Configuration.Config(file = "HUD_config.test.xml")
 in_path = os.path.abspath('regression-test-files')
-idsite = IdentifySite.IdentifySite(config, in_path)
-idsite.scan()
+idsite = IdentifySite.IdentifySite(config)
+idsite.scan(in_path)
 idsite.fetchGameTypes()
 
 

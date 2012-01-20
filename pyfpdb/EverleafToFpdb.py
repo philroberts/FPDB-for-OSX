@@ -43,20 +43,12 @@ class Everleaf(HandHistoryConverter):
     # Static regexes
     re_SplitHands  = re.compile(r"\n\n\n+")
     re_TailSplitHands  = re.compile(r"(\n\n\n+)")
-    re_GameInfo    = re.compile(ur"^(Blinds )? ?(?P<CURRENCY>[%(LS)s]?)(?P<SB>[.0-9]+) ?/ ? ?[%(LS)s]?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) ?(?P<GAME>(Hold\'em|Omaha|7\sCard\sStud))" % substitutions, re.MULTILINE)
-    
-    #re_HandInfo    = re.compile(ur".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?P<CURRENCY>[$€])?(?P<SB>[.0-9]+)/(?:[$€])?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)", re.MULTILINE)
-    
-    re_HandInfo    = re.compile(ur".*\n(.*#|.* partie )(?P<HID>[0-9]+).*(\n|\n\n)(Blinds )? ?(?P<CURRENCY>[%(LS)s])?(?P<SB>[.0-9]+) ?/ ?(?:[%(LS)s])?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)" % substitutions, re.MULTILINE)
-    #
-    
-    #re_HandInfo    = re.compile(ur"(.*#|.*\n.* partie )(?P<HID>[0-9]+).*(\n|\n\n)(Blinds )?(?:\$| €|)(?P<SB>[.0-9]+)/(?:\$| €|)(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)", re.MULTILINE) 
-    
-    
+    re_GameInfo    = re.compile(ur"^(Blinds )? ?(?P<CURRENCY>[%(LS)s]?)(?P<SB>[%(NUM)s]+) ?/ ? ?[%(LS)s]?(?P<BB>[%(NUM)s]+) (?P<LIMIT>NL|PL|) ?(?P<GAME>(Hold\'em|Omaha|7\sCard\sStud))" % substitutions, re.MULTILINE)
+    re_HandInfo    = re.compile(ur".*\n(.*#|.* partie )(?P<HID>[0-9]+).*(\n|\n\n)(Blinds )? ?(?P<CURRENCY>[%(LS)s])?(?P<SB>[%(NUM)s]+) ?/ ?(?:[%(LS)s])?(?P<BB>[%(NUM)s]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)" % substitutions, re.MULTILINE) 
     re_Button      = re.compile(ur"^Seat (?P<BUTTON>\d+) is the button$", re.MULTILINE)
     re_PlayerInfo  = re.compile(ur"""^Seat\s(?P<SEAT>[0-9]+):\s(?P<PNAME>.*)\s+
                                     \(
-                                      \s+[%(LS)s]?\s?(?P<CASH>[.0-9]+)
+                                      \s+[%(LS)s]?\s?(?P<CASH>[%(NUM)s]+)
                                           (\s(USD|EURO|EUR|Chips)?(new\splayer|All-in)?)?
                                   \s?\)$
                                   """ % substitutions, re.MULTILINE|re.VERBOSE)
@@ -71,16 +63,18 @@ class Everleaf(HandHistoryConverter):
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             log.debug("player_re: "+ player_re)
-            self.re_PostSB          = re.compile(ur"^%s: posts small blind \[ ?[%s]? (?P<SB>[.0-9]+)\s.*\]$" % (player_re, self.substitutions["LS"]), re.MULTILINE)
-            self.re_PostBB          = re.compile(ur"^%s: posts big blind \[ ?[%s]? (?P<BB>[.0-9]+)\s.*\]$" % (player_re, self.substitutions["LS"]), re.MULTILINE)
-            self.re_PostBoth        = re.compile(ur"^%s: posts both blinds \[ ?[%s]? (?P<SBBB>[.0-9]+)\s.*\]$" % (player_re, self.substitutions["LS"]), re.MULTILINE)
-            self.re_Antes           = re.compile(ur"^%s: posts ante \[ ?[%s]? (?P<ANTE>[.0-9]+)\s.*\]$" % (player_re, self.substitutions["LS"]), re.MULTILINE)
-            self.re_BringIn         = re.compile(ur"^%s posts bring-in  ?[%s]? (?P<BRINGIN>[.0-9]+)\." % (player_re, self.substitutions["LS"]), re.MULTILINE)
+            self.substitutions['PLAYERS'] = player_re
+            
+            self.re_PostSB          = re.compile(ur"^%(PLAYERS)s: posts small blind \[ ?[%(LS)s]? (?P<SB>[%(NUM)s]+)\s.*\]$" % self.substitutions, re.MULTILINE)
+            self.re_PostBB          = re.compile(ur"^%(PLAYERS)s: posts big blind \[ ?[%(LS)s]? (?P<BB>[%(NUM)s]+)\s.*\]$" % self.substitutions, re.MULTILINE)
+            self.re_PostBoth        = re.compile(ur"^%(PLAYERS)s: posts both blinds \[ ?[%(LS)s]? (?P<SBBB>[%(NUM)s]+)\s.*\]$" % self.substitutions, re.MULTILINE)
+            self.re_Antes           = re.compile(ur"^%(PLAYERS)s: posts ante \[ ?[%(LS)s]? (?P<ANTE>[%(NUM)s]+)\s.*\]$" % self.substitutions, re.MULTILINE)
+            self.re_BringIn         = re.compile(ur"^%(PLAYERS)s posts bring-in  ?[%(LS)s]? (?P<BRINGIN>[%(NUM)s]+)\." % self.substitutions, re.MULTILINE)
             self.re_HeroCards       = re.compile(ur"^Dealt to %s \[ (?P<CARDS>.*) \]$" % player_re, re.MULTILINE)
             # ^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.,\d]+) (USD|EURO|EUR|Chips)\])?
-            self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?: ?[%s]?) (?P<BET>[.,\d]+)\s?(USD|EURO|EUR|Chips|)\])?" % (player_re, self.substitutions["LS"]), re.MULTILINE)
+            self.re_Action          = re.compile(ur"^%(PLAYERS)s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?: ?[%(LS)s]?) (?P<BET>[%(NUM)s]+)\s?(USD|EURO|EUR|Chips|)\])?" % self.substitutions, re.MULTILINE)
             self.re_ShowdownAction  = re.compile(ur"^%s (?P<SHOWED>shows|mucks) \[ (?P<CARDS>.*) \] (?P<STRING>.*)" % player_re, re.MULTILINE)
-            self.re_CollectPot      = re.compile(ur"^%s wins  ?(?: ?[%s]?)\s?(?P<POT>[.\d]+) (USD|EURO|EUR|chips)(.*?\[ (?P<CARDS>.*?) \])?" % (player_re, self.substitutions["LS"]), re.MULTILINE)
+            self.re_CollectPot      = re.compile(ur"^%(PLAYERS)s wins  ?(?: ?[%(LS)s]?)\s?(?P<POT>[%(NUM)s]+) (USD|EURO|EUR|chips)(.*?\[ (?P<CARDS>.*?) \])?" % self.substitutions, re.MULTILINE)
             self.re_SitsOut         = re.compile(ur"^%s sits out" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
@@ -143,9 +137,9 @@ or None if we fail to get the info """
         if 'GAME' in mg:
             (info['base'], info['category']) = games[mg['GAME']]
         if 'SB' in mg:
-            info['sb'] = mg['SB']
+            info['sb'] = self.clearMoneyString(mg['SB'])
         if 'BB' in mg:
-            info['bb'] = mg['BB']
+            info['bb'] = self.clearMoneyString(mg['BB'])
         if 'CURRENCY' in mg:
             info['currency'] = currencies[mg['CURRENCY']]
             if info['currency'] == 'T$':
@@ -177,6 +171,9 @@ or None if we fail to get the info """
             tourno = t.group('TOURNO')
             hand.tourNo = tourno
             hand.tablename = t.group('TABLE')
+            hand.buyin = 0
+            hand.fee = 0
+            hand.buyinCurrency = 'NA'
             #TODO we should fetch info including buyincurrency, buyin and fee from URL:
             #           https://www.poker4ever.com/tourney/%TOURNEY_NUMBER%
 
@@ -228,27 +225,27 @@ or None if we fail to get the info """
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             log.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
-            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+            hand.addAnte(player.group('PNAME'), self.clearMoneyString(player.group('ANTE')))
 
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
             log.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
-            hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
+            hand.addBringIn(m.group('PNAME'),  self.clearMoneyString(m.group('BRINGIN')))
         else:
             log.warning(_("No bringin found."))
 
     def readBlinds(self, hand):
         m = self.re_PostSB.search(hand.handText)
         if m is not None:
-            hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
+            hand.addBlind(m.group('PNAME'), 'small blind', self.clearMoneyString(m.group('SB')))
         else:
             log.debug(_("No small blind"))
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+            hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
         for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+            hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))

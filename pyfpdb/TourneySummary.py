@@ -70,6 +70,7 @@ class TourneySummary(object):
         self.endTime            = None
         self.tourNo             = None
         self.currency           = None
+        self.buyinCurrency      = None
         self.buyin              = 0
         self.fee                = 0
         self.hero               = None
@@ -228,8 +229,6 @@ class TourneySummary(object):
         #    self.playerIds.update({player:id})
         
         #print "TS.insert players",self.players,"playerIds",self.playerIds
-        
-        self.buyinCurrency=self.currency
         self.dbid_pids=self.playerIds #TODO:rename this field in Hand so this silly renaming can be removed
         
         #print "TS.self before starting insert",self

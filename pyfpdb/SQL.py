@@ -4905,6 +4905,8 @@ class Sql:
         ####################################
       
         self.query['clearHudCache'] = """DELETE FROM HudCache"""
+        self.query['clearHudCacheTourneyType'] = """DELETE FROM HudCache WHERE tourneyTypeId = %s"""
+        
        
         if db_server == 'mysql':
             self.query['rebuildHudCache'] = """
@@ -6548,18 +6550,28 @@ class Sql:
                                               VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         
-        self.query['updateTourneyType'] = """UPDATE TourneyTypes
-                                             SET sng = %s,
-                                                 knockout = %s,
-                                                 koBounty = %s,
-                                                 rebuy = %s,
-                                                 rebuyCost = %s,
-                                                 addOn = %s,
-                                                 addOnCost = %s,
-                                                 speed = %s,
-                                                 shootout = %s,
-                                                 matrix = %s
-                                        WHERE id=%s
+        self.query['updateTourneyTypeId'] = """UPDATE Tourneys
+                                            SET tourneyTypeId = %s
+                                            WHERE siteTourneyNo=%s
+        """
+        
+        self.query['selectTourneyWithTypeId'] = """SELECT id 
+                                                FROM Tourneys
+                                                WHERE tourneyTypeId = %s
+        """
+        
+        self.query['deleteTourneyTypeId'] = """DELETE FROM TourneyTypes WHERE id = %s
+        """
+        
+        self.query['updateTourneyTypeId'] = """UPDATE Tourneys
+                                            SET tourneyTypeId = %s
+                                            WHERE siteTourneyNo=%s
+        """
+        
+        self.query['fetchNewTourneyTypeIds'] = """SELECT TT.id
+                                            FROM TourneyTypes TT
+                                            LEFT OUTER JOIN `HudCache` HC ON (TT.id = HC.tourneyTypeId)
+                                            WHERE HC.tourneyTypeId is NULL
         """
 
         self.query['getTourneyByTourneyNo'] = """SELECT t.*

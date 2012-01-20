@@ -72,10 +72,9 @@ class Pkr(HandHistoryConverter):
             """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_HandInfo     = re.compile("""
-          ^Table\s\'(?P<TABLE>[-\ a-zA-Z\d]+)\'\s
           ((?P<MAX>\d+)-max\s)?
           (?P<PLAY>\(Play\sMoney\)\s)?
-          (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
+          Moving\sButton\sto\sseat\s(?P<BUTTON>\d+)\s""", 
           re.MULTILINE|re.VERBOSE)
 
     re_SplitHands   = re.compile('\n\n+')
@@ -186,11 +185,13 @@ class Pkr(HandHistoryConverter):
                 hand.tourNo = info[key]
             if key == 'BUYIN':
                 if info[key] == 'Freeroll':
-                    hand.buyin = '$0+$0'
+                    hand.buyin = 0
+                    hand.fee = 0
+                    hand.buyinCurrency = 'FREE'
                 else:
                     #FIXME: The key looks like: '€0.82+€0.18 EUR'
                     #       This should be parsed properly and used
-                    hand.buyin = info[key]
+                    hand.buyin = int(100*Decimal(info[key]))
             if key == 'LEVEL':
                 hand.level = info[key]
 
@@ -201,9 +202,8 @@ class Pkr(HandHistoryConverter):
                     hand.tablename = info[key]
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
-            if key == 'MAX':
+            if key == 'MAX' and info[key] is not None:
                 hand.maxseats = int(info[key])
-
             if key == 'MIXED':
                 hand.mixed = self.mixes[info[key]] if info[key] is not None else None
             if key == 'PLAY' and info['PLAY'] is not None:
