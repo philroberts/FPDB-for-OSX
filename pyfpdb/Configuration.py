@@ -309,13 +309,6 @@ class Email:
         return "    email\n        fetchType = %s  host = %s\n        username = %s password = %s\n        useSsl = %s folder = %s" \
             % (self.fetchType, self.host, self.username, self.password, self.useSsl, self.folder) 
 
-        
-class Site_layout:
-    def __init__(self, node):
-        self.node = node
-        self.game_type = node.getAttribute("game_type")
-        self.ls = node.getAttribute("ls")
-
 
 class Fav_seat:
     def __init__(self, node):
@@ -344,9 +337,10 @@ class Site:
 
         self.layout_set = {}
         for site_layout_node in node.getElementsByTagName('layout_set'):
-            layout_set = Site_layout(site_layout_node)
-            self.layout_set[layout_set.game_type] = layout_set
-
+            gt = site_layout_node.getAttribute("game_type")
+            ls = site_layout_node.getAttribute("ls")
+            self.layout_set[gt]=ls
+                        
         self.emails = {}
         for email_node in node.getElementsByTagName('email'):
             email = Email(email_node)
@@ -508,7 +502,8 @@ class Layout_set:
             self.layout[lo.max] = lo
 
     def __str__(self):
-        temp = 'Layout set = ' + self.name + "\n"
+        temp=""
+        #temp = 'Layout set = ' + self.name + "\n"
         for key in dir(self):
             if key.startswith('__'): continue
             if key == 'layout':  continue
@@ -1497,25 +1492,34 @@ class Config:
         """Returns a dict of the site parameters for the specified site"""
         parms = {}
         parms["converter"]    = self.hhcs[site].converter
-        #parms["decoder"]    = self.supported_sites[site].decoder
-        #parms["hudbgcolor"]   = self.supported_sites[site].hudbgcolor
-        #parms["hudfgcolor"]   = self.supported_sites[site].hudfgcolor
-        #parms["hudopacity"]   = self.supported_sites[site].hudopacity
         parms["screen_name"]  = self.supported_sites[site].screen_name
         parms["site_path"]    = self.supported_sites[site].site_path
-        #parms["table_finder"] = self.supported_sites[site].table_finder
         parms["HH_path"]    = self.supported_sites[site].HH_path
         parms["site_name"]    = self.supported_sites[site].site_name
-        #parms["aux_window"]   = self.supported_sites[site].aux_window
-        #parms["font"]        = self.supported_sites[site].font
-        #parms["font_size"]    = self.supported_sites[site].font_size
         parms["enabled"]    = self.supported_sites[site].enabled
         parms["hud_enabled"]    = self.supported_sites[site].hud_enabled
-        #parms["xpad"]        = self.supported_sites[site].xpad
-        #parms["ypad"]        = self.supported_sites[site].ypad
         parms["hud_menu_xshift"] = self.supported_sites[site].hud_menu_xshift
-        parms["hud_menu_yshift"] = self.supported_sites[site].hud_menu_yshift
+        parms["hud_menu_yshift"] = self.supported_sites[site].hud_menu_yshift        
+        parms["layout_set"] = self.supported_sites[site].layout_set
+        parms["emails"] = self.supported_sites[site].emails
+        parms["fav_seat"] = self.supported_sites[site].fav_seat
+        
         return parms
+
+    def get_site_game_layout(self, site, game_type):
+        
+        # find layouts used at site
+        # locate the one used for this game_type
+        # return that Layout-set() instance, 
+        
+        site_layouts = self.get_site_parameters(site)["layout_set"]
+        
+        if site_layouts.has_key(game_type):
+            return self.layout_sets[site_layouts[game_type]]
+        elif site_layouts.has_key("all"):
+            return self.layout_sets["all"]
+        else:
+            return None
 
 #    def set_site_parameters(self, site_name, converter = None, decoder = None,
 #                            hudbgcolor = None, hudfgcolor = None,
@@ -1567,14 +1571,14 @@ class Config:
 
             return param
         return None
+
+    def get_stat_sets(self):
+        """Gets the list of stat block contents in the configuration."""
+        return self.stat_sets.keys()
         
     def get_layout_sets(self):
         """Gets the list of block layouts in the configuration."""
         return self.layout_sets.keys()
-        
-    def get_stat_sets(self):
-        """Gets the list of stat block contents in the configuration."""
-        return self.stat_sets.keys()
         
     def get_layout_set_parameters(self, name):
         """Gets a dict of parameters from the named ls."""

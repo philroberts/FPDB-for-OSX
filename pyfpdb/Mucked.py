@@ -419,6 +419,7 @@ class Aux_Seats(Aux_Window):
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
 
     def create(self):
+        print self
         self.adj = self.hud.adj_seats(0, self.config)  # move adj_seats to aux and get rid of it in Hud.py
         loc = self.config.get_aux_locations(self.params['name'], int(self.hud.max))
         

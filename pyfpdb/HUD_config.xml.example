@@ -153,7 +153,7 @@
             <email fetchType="request-summary" host="YOUR_EMAIL_SERVER"
                 username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD"
                 useSsl="True" folder="INBOX"/>
-            <layout_set game_type="all" ls="ps classic theme"></layout_set>
+            <layout_set game_type="tour" ls="ps classic"></layout_set>
             <fav max="2" fav_seat="0"> </fav>
             <fav max="4" fav_seat="4"> </fav>
             <fav max="6" fav_seat="0"> </fav>
@@ -411,7 +411,7 @@
         The parameter elements for each <game> can be extended 
         without changing Configuration.Config()
         -->
-        <game game_name="holdem" aux="mucked, Classic_HUD">
+        <game game_name="holdem" aux="Simple_HUD">
             <game_stat_set game_type="toux" stat_set ="draw_default"></game_stat_set>
             <game_stat_set game_type="all" stat_set ="holdem_default"></game_stat_set>
         </game>
@@ -498,6 +498,43 @@
         -->
 
         <ls name="default">
+            <layout height="546" max="6" width="792">
+                <location seat="1" x="555" y="169"> </location>
+                <location seat="2" x="572" y="276"> </location>
+                <location seat="3" x="363" y="348"> </location>
+                <location seat="4" x="150" y="273"> </location>
+                <location seat="5" x="150" y="169"> </location>
+                <location seat="6" x="363" y="113"> </location>
+                <location common="1" x="323" y="232"> </location>
+            </layout>
+            <layout height="546" max="9" width="792">
+                <location seat="1" x="486" y="113"> </location>
+                <location seat="2" x="555" y="169"> </location>
+                <location seat="3" x="572" y="276"> </location>
+                <location seat="4" x="522" y="345"> </location>
+                <location seat="5" x="363" y="348"> </location>
+                <location seat="6" x="217" y="341"> </location>
+                <location seat="7" x="150" y="273"> </location>
+                <location seat="8" x="150" y="169"> </location>
+                <location seat="9" x="230" y="115"> </location>
+                <location common="1" x="323" y="232"> </location>
+            </layout>
+            <layout height="546" max="10" width="792">
+                <location seat="1" x="486" y="113"> </location>
+                <location seat="2" x="499" y="138"> </location>
+                <location seat="3" x="522" y="212"> </location>
+                <location seat="4" x="501" y="281"> </location>
+                <location seat="5" x="402" y="323"> </location>
+                <location seat="6" x="243" y="311"> </location>
+                <location seat="7" x="203" y="262"> </location>
+                <location seat="8" x="170" y="185"> </location>
+                <location seat="9" x="183" y="128"> </location>
+                <location seat="10" x="213" y="86"> </location>
+                <location common="1" x="317" y="237"> </location>
+            </layout>
+        </ls>
+        
+        <ls name="ps classic">
             <layout height="546" max="6" width="792">
                 <location seat="1" x="555" y="169"> </location>
                 <location seat="2" x="572" y="276"> </location>
