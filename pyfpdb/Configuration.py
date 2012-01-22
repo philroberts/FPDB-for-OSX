@@ -310,13 +310,6 @@ class Email:
             % (self.fetchType, self.host, self.username, self.password, self.useSsl, self.folder) 
 
 
-class Fav_seat:
-    def __init__(self, node):
-        self.node = node
-        self.fav_seat = node.getAttribute("fav_seat")
-        self.max = node.getAttribute("max")
-
-
 class Site:
     def __init__(self, node):
         self.site_name    = node.getAttribute("site_name")
@@ -332,8 +325,9 @@ class Site:
 
         self.fav_seat = {}
         for fav_node in node.getElementsByTagName('fav'):
-            fav = Fav_seat(fav_node)
-            self.fav_seat[fav.max] = fav
+            max = int(fav_node.getAttribute("max"))
+            fav = int(fav_node.getAttribute("fav_seat"))
+            self.fav_seat[max] = fav
 
         self.layout_set = {}
         for site_layout_node in node.getElementsByTagName('layout_set'):
@@ -1506,11 +1500,11 @@ class Config:
         
         return parms
 
-    def get_site_game_layout(self, site, game_type):
+    def get_layout(self, site, game_type):
         
         # find layouts used at site
         # locate the one used for this game_type
-        # return that Layout-set() instance, 
+        # return that Layout-set() instance 
         
         site_layouts = self.get_site_parameters(site)["layout_set"]
         

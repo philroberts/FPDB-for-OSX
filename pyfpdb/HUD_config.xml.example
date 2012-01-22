@@ -127,6 +127,8 @@
         - e.g. if set to 3 and current big blind is 50, stats for blind levels from
           16.7 (50 divided by 3) to big blind of 150 (50 times 3) are included
 -->
+<!-- fixme - statrange/stylekey S is not finding hero data in query 'get_stats_from_hand_aggregated'
+-->
     <hud_ui
     stat_range="A"
     stat_days="90"
@@ -134,7 +136,8 @@
     aggregate_tourney_stats="True"
     aggregation_level_multiplier="3"
 
-    hero_stat_range="S"
+    hero_stat_range="A" 
+
     hero_stat_days="30"
     aggregate_hero_ring_game_stats="False"
     aggregate_hero_tourney_stats="False"
@@ -153,14 +156,14 @@
             <email fetchType="request-summary" host="YOUR_EMAIL_SERVER"
                 username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD"
                 useSsl="True" folder="INBOX"/>
-            <layout_set game_type="tour" ls="ps classic"></layout_set>
-            <fav max="2" fav_seat="0"> </fav>
-            <fav max="4" fav_seat="4"> </fav>
-            <fav max="6" fav_seat="0"> </fav>
-            <fav max="7" fav_seat="0"> </fav>
-            <fav max="8" fav_seat="0"> </fav>
-            <fav max="9" fav_seat="5"> </fav>
-            <fav max="10" fav_seat="5"> </fav>
+            <layout_set game_type="ring" ls="ps classic"></layout_set>
+            <fav max="2" fav_seat="1"> </fav>
+            <fav max="4" fav_seat="2"> </fav>
+            <fav max="6" fav_seat="3"> </fav>
+            <fav max="7" fav_seat="4"> </fav>
+            <fav max="8" fav_seat="5"> </fav>
+            <fav max="9" fav_seat="6"> </fav>
+            <fav max="10" fav_seat="10"> </fav>
         </site>
 
         <site site_name="Full Tilt Poker"

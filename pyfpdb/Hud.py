@@ -80,7 +80,18 @@ class Hud:
         
         self.site_parameters = config.get_site_parameters(self.table.site)
         self.supported_games_parameters = config.get_supported_games_parameters(self.poker_game, self.game_type)
+        self.layout_set = config.get_layout(self.table.site, self.game_type)
         
+        if self.layout_set == None:
+            sys.stderr.write(_("No layout found for %s games for site %s."+"\n") % (self.game_type, self.table.site))
+            return
+            
+        if self.max not in self.layout_set.layout:
+            sys.stderr.write(_("No layout found for %d-max %s games for site %s."+"\n") % (self.max, self.game_type, self.table.site))
+            return
+        else:
+            self.layout = self.layout_set.layout[self.max]
+                    
         # if there are AUX windows configured, set them up
         if not self.supported_games_parameters['aux'] == [""]:
             for aux in self.supported_games_parameters['aux'].split(","):
@@ -194,12 +205,9 @@ class Hud:
 #        Need range here, not xrange -> need the actual list
         adj = range(0, self.max + 1) # default seat adjustments = no adjustment
 #    does the user have a fav_seat?
-        if self.max not in config.supported_sites[self.table.site].layout:
-            sys.stderr.write(_("No layout found for %d-max games for site %s.") % (self.max, self.table.site))
-            return adj
-        if self.table.site != None and int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
+        if self.site_parameters["fav_seat"][self.max] > 0:
             try:
-                fav_seat = config.supported_sites[self.table.site].layout[self.max].fav_seat
+                fav_seat = self.site_parameters["fav_seat"][self.max]
                 actual_seat = self.get_actual_seat(config.supported_sites[self.table.site].screen_name)
                 for i in xrange(0, self.max + 1):
                     j = actual_seat + i
