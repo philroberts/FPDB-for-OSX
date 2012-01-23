@@ -33,7 +33,7 @@ def fpdb_options():
                       dest="dbname",
                       help=_("Specifies a database name."))
     parser.add_option("-c", "--configFile",
-                      dest="config", default='HUD_config.test.xml',
+                      dest="config", default=None,
                       help=_("Specifies a configuration file."))
     parser.add_option("-r", "--rerunPython",
                       action="store_true",
