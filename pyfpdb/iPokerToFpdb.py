@@ -95,6 +95,7 @@ class iPoker(HandHistoryConverter):
     re_Action = re.compile(r'<action no="(?P<ACT>[0-9]+)" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>\d+)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
     re_Ante   = re.compile(r'<action no="[0-9]+" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>15)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)" cards="' % substitutions, re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
+    re_DateTime = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
     
     def compilePlayerRegexs(self, hand):
         pass
@@ -211,7 +212,11 @@ class iPoker(HandHistoryConverter):
         try:
             hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
         except ValueError:
-            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%d/%m/%Y %H:%M')
+            datestr = '%d/%m/%Y %H:%M:%S'
+            date_match = self.re_DateTime.search(m.group('DATETIME'))
+            if date_match.group('S') == None:
+                datestr = '%d/%m/%Y %H:%M'
+            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), datestr)
 
         if self.info['type'] == 'tour':
             hand.tourNo = self.tinfo['tourNo']
