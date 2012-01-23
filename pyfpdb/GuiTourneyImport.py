@@ -261,6 +261,7 @@ class SummaryImporter:
                 doinsert = len(summaryTexts)==j
                 try:
                     conv = obj(db=self.database, config=self.config, siteName=site, summaryText=summaryText, in_path = filename)
+                    self.database.resetBulkCache(False)
                     conv.insertOrUpdate(printtest = self.settings['testData'])
                 except FpdbParseError, e:
                     log.error(_("Tourney import parse error in file: %s") % filename)
