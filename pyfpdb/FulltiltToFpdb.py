@@ -295,18 +295,19 @@ class Fulltilt(HandHistoryConverter):
             timezone = "ET"
             m1 = self.re_DateTime.finditer(m.group('DATETIME'))
             datetimestr = "2000/01/01 00:00:00"
+            dateformat  = "%Y/%m/%d %H:%M:%S"
             for a in m1:
                 if a.group('TZ2') == None:
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
                     timezone = a.group('TZ')
-                    hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
                 else: # Short-lived date format
                     datetimestr = "%s/%s/%s %s:%s" % (a.group('Y2'), a.group('M2'),a.group('D2'),a.group('H2'),a.group('MIN2'))
                     timezone = a.group('TZ2')
-                    hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%B/%d %H:%M")
+                    dateformat = "%Y/%B/%d %H:%M"  
                 if a.group('PARTIAL'):
                     raise FpdbHandPartial(hid=m.group('HID'))
-
+            
+            hand.startTime = datetime.datetime.strptime(datetimestr, dateformat)
             hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, timezone, "UTC")
 
         if m.group("PARTIAL"):
