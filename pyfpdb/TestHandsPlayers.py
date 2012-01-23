@@ -265,10 +265,9 @@ def main(argv=None):
             print "Only regression testing '%s' files" % (options.sitename)
         test_all_sites = False
 
-    #config = Configuration.Config(file = "HUD_config.test.xml")
-    config_file = options.config
-    config = Configuration.Config(file = config_file)
+    config = Configuration.Config(file = "HUD_config.test.xml")
     db = Database.Database(config)
+    sql = SQL.Sql(db_server = 'sqlite')
     settings = {}
     settings.update(config.get_db_parameters())
     settings.update(config.get_import_parameters())
