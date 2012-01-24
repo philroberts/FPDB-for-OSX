@@ -55,8 +55,8 @@ class Stat_Window(Mucked.Seat_Window):
                 self.stat_box[r][c] = Simple_stat(self.aw.stats[r][c], 
                                                 seat = self.seat, 
                                                 popup = self.aw.popups[r][c], 
-                                                game_stat_config = self.aw.config.supported_games[self.aw.poker_game].stats[self.aw.stats[r][c]],
-                                                aw = self.aw)
+                                                game_stat_config = self.aw.hud.supported_games_parameters["game_stat_set"].stats[self.aw.stats[r][c]],
+                                               aw = self.aw)
                 self.grid.attach(self.stat_box[r][c].widget, c, c+1, r, r+1, xpadding = self.aw.xpad, ypadding = self.aw.ypad)
                 self.stat_box[r][c].set_color(self.aw.fgcolor, self.aw.bgcolor)
                 self.stat_box[r][c].set_font(self.aw.font)
@@ -123,6 +123,7 @@ class Simple_HUD(Mucked.Aux_Seats):
         container.update_contents(i)
 
     def create_common(self, x, y):
+        # invokes the simple_table_mw class (or similar)
         return self.aw_mw_type(self.hud, aw = self)
 #        return Simple_table_mw(self.hud, aw = self)
 
@@ -175,12 +176,7 @@ class Simple_table_mw(Mucked.Seat_Window):
         Mucked.Seat_Window.__init__(self, aw)
         #####super(Simple_table_mw, self).__init__(aw)
         self.hud = hud
-#        self.set_skip_taskbar_hint(True)  # invisible to taskbar
-#        self.set_gravity(gtk.gdk.GRAVITY_STATIC)
-#        self.set_decorated(False)    # kill titlebars
-#        self.set_focus(None)
-#        self.set_focus_on_map(False)
-#        self.set_accept_focus(False)
+
         self.connect("configure_event", self.aw.configure_event_cb, "common")
 
         eb = gtk.EventBox()
@@ -199,7 +195,7 @@ class Simple_table_mw(Mucked.Seat_Window):
         self.create_menu_items(self.menu)
         eb.connect_object("button-press-event", self.button_press_cb, self.menu)
 
-        (x, y) = self.aw.params['layout'][self.hud.max].common
+        (x, y) = self.hud.layout.common
         self.move(x + self.hud.table.x, y + self.hud.table.y)
         self.menu.show_all()
         self.show_all()

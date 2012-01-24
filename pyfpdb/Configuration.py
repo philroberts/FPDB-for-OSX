@@ -1453,7 +1453,7 @@ class Config:
 #                font_size = site.font_size
 #        return font, font_size
 
-    def get_locations(self, site_name="PokerStars", max=8):
+    def xxx_get_locations(self, site_name="PokerStars", max=8):
         site = self.supported_sites.get(site_name, None)
         if site is not None:
             location = site.layout.get(max, None)

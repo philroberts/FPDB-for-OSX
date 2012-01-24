@@ -405,35 +405,30 @@ class Aux_Seats(Aux_Window):
             adj = self.adj
         except AttributeError:
             return
-        loc = self.config.get_aux_locations(self.params['name'], int(self.hud.max))
-        width = self.hud.table.width
-        height = self.hud.table.height
 
         for i in (range(1, self.hud.max + 1) + ['common']):
             if i == 'common':
-                (x, y) = self.params['layout'][self.hud.max].common
+                (x, y) = self.hud.layout.common
             else:
-                (x, y) = loc[adj[i]]
-#            self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)
+                (x, y) = self.hud.layout.location[self.adj[i]]
+
             self.positions[i] = self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
 
     def create(self):
-        print self.hud.layout
+
         self.adj = self.hud.adj_seats(0, self.config)  # move adj_seats to aux and get rid of it in Hud.py
-        loc = self.config.get_aux_locations(self.params['name'], int(self.hud.max))
         
-        self.m_windows = {}      # windows to put the card images in
-        width = self.hud.table.width
-        height = self.hud.table.height
-        for i in (range(1, self.hud.max + 1) + ['common']):           
+        self.m_windows = {}      # windows to put the card/hud items in
+
+        for i in (range(1, self.hud.max + 1) + ['common']):   
             if i == 'common':
 #    The common window is different from the others. Note that it needs to 
 #    get realized, shown, topified, etc. in create_common
-                (x, y) = self.params['layout'][self.hud.max].common
+                (x, y) = self.hud.layout.common
                 self.m_windows[i] = self.create_common(x, y)
             else:
-                (x, y) = loc[self.adj[i]]
+                (x, y) = self.hud.layout.location[self.adj[i]]
                 self.m_windows[i] = self.aw_window_type(self, i)
                 self.m_windows[i].set_decorated(False)
                 self.m_windows[i].set_property("skip-taskbar-hint", True)
@@ -441,13 +436,13 @@ class Aux_Seats(Aux_Window):
                 self.m_windows[i].set_focus(None)
                 self.m_windows[i].set_accept_focus(False)
                 self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
-#                self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)
                 self.positions[i] =  self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
                 self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
                 if self.params.has_key('opacity'):
                     self.m_windows[i].set_opacity(float(self.params['opacity']))
 
 #    the create_contents method is supplied by the subclass
+#      for hud's this is probably Aux_Hud.stat_window
             self.create_contents(self.m_windows[i], i)
 
             self.m_windows[i].realize()
