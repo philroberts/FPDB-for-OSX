@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2011 Steffen Schaumburg
+#Copyright 2008-2012 Steffen Schaumburg, Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -102,18 +102,34 @@ class PokerStarsSummary(TourneySummary):
             raise FpdbParseError(_("parseSummary FAIL"))
 
     def parseSummaryFromHH(self):
-        pass
+        raise FpdbParseError(_("PokerStarsSummary.parseSummaryHtml: This file format is not yet supported"))
+        # self.entries   = Unavailable from HH
+        # self.prizepool = Unavailable from HH
+        # self.startTime = Unreliable from HH (late reg)
+        #obj = getattr(PokerStarsToFpdb, "PokerStars", None)
+        #hhc = obj(self.config, in_path = self.in_path, sitename = None, autostart = False)
+
+        #self.buyin     = int(100*hhc.SnG_Structures[tourneyNameFull]['buyIn'])
+        #self.fee       = int(100*hhc.SnG_Structures[tourneyNameFull]['fee'])
+
+        #self.tourNo = 
+        #self.buyin     =
+        #self.fee       =
+        #self.buyinCurrency =
+        #self.currency  =
+        #self.maxseats  =
+        #self.isSng     =
+        #self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
 
     def parseSummaryHtml(self):
-        print "DEBUG: w00T"
-        print self.summaryText
-        from BeautifulSoup import BeautifulSoup
-        soup = BeautifulSoup(self.summaryText)
-        h2 = soup.findAll('h2')
-        print h2
-        # Hero name
-        tbl = soup.findAll('tr')
-        print tbl
+        raise FpdbParseError(_("PokerStarsSummary.parseSummaryHtml: This file format is not yet supported"))
+        #from BeautifulSoup import BeautifulSoup
+        #soup = BeautifulSoup(self.summaryText)
+        #h2 = soup.findAll('h2')
+        #print h2
+        ## Hero name
+        #tbl = soup.findAll('tr')
+        #print tbl
 
     def parseSummaryFile(self):
         m = self.re_TourneyInfo.search(self.summaryText)
