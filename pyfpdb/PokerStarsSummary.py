@@ -29,6 +29,7 @@ import PokerStarsToFpdb
 from TourneySummary import *
 
 class PokerStarsSummary(TourneySummary):
+    hhtype = "summary"
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
     games = {                          # base, category
                               "Hold'em" : ('hold','holdem'), 
@@ -82,15 +83,37 @@ class PokerStarsSummary(TourneySummary):
     @staticmethod
     def getSplitRe(self, head):
         re_SplitTourneys = re.compile("PokerStars Tournament ")
+        re_HTMLSplitTourneys = re.compile("TR id=row_\d+")
+        m = re.search("DOCTYPE HTML PUBLIC", head)
+        if m != None:
+            self.hhtype = "html"
+            return re_HTMLSplitTourneys
+        self.hhtype = "summary"
         return re_SplitTourneys
 
     def parseSummary(self):
-        #FIXME: id type of file and call correct function
-        self.parseSummaryFile()
+        if self.hhtype == "summary":
+            self.parseSummaryFile()
+        elif self.hhtype == "html":
+            self.parseSummaryHtml()
+        elif self.hhtype == "hh":
+            self.parseSummaryFromHH()
+        else:
+            raise FpdbParseError(_("parseSummary FAIL"))
+
     def parseSummaryFromHH(self):
         pass
+
     def parseSummaryHtml(self):
-        pass
+        print "DEBUG: w00T"
+        print self.summaryText
+        from BeautifulSoup import BeautifulSoup
+        soup = BeautifulSoup(self.summaryText)
+        h2 = soup.findAll('h2')
+        print h2
+        # Hero name
+        tbl = soup.findAll('tr')
+        print tbl
 
     def parseSummaryFile(self):
         m = self.re_TourneyInfo.search(self.summaryText)

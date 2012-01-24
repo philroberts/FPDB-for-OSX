@@ -58,7 +58,7 @@ class WinamaxSummary(TourneySummary):
     re_Prizepool = re.compile(u"""<div class="title2">.+: (?P<PRIZEPOOL>[0-9,]+)""")
 
     re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
-    re_Ticket = re.compile(u""" / (?P<TTYPE>Ticket (?P<VALUE>[0-9.]+)&euro;|Tremplin Winamax Poker Tour|Starting Block Winamax Poker Tour)""")
+    re_Ticket = re.compile(u""" / (?P<TTYPE>Ticket (?P<VALUE>[0-9.]+)&euro;|Tremplin Winamax Poker Tour|Starting Block Winamax Poker Tour|Finale Freeroll Mobile 2012|SNG Freeroll Mobile 2012)""")
 
     codepage = ["utf-8"]
 
@@ -105,6 +105,14 @@ class WinamaxSummary(TourneySummary):
             #print mg
             self.gametype['limitType'] = self.limits[mg['LIMIT']]
             self.gametype['category'] = self.games[mg['GAME']][1]
+        else:
+            #FIXME: No gametype
+            #       Quitte or Double, Starting Block Winamax Poker Tour
+            #       Do not contain enough the gametype.
+            # Lookup the tid from the db, if it exists get the gametype info from there, otherwise ParseError
+            log.warning(_("WinamaxSummary.parseSummary: Gametype unknown defaulting to NLHE"))
+            self.gametype['limitType'] = 'nl'
+            self.gametype['category'] = 'holdem'
 
         for m in self.re_Player.finditer(str(tl[0])):
             winnings = 0
