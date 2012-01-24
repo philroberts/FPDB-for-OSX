@@ -400,7 +400,10 @@ class iPoker(HandHistoryConverter):
         regex = "%s" % (table_name)
         if tournament:
             regex = "%s" % (table_number)
-        else:
+        elif table_name.find(',') != -1:
             regex = table_name.split(',')[0]
+        else:
+            regex = table_name.split(' ')[0]
+
         log.info("iPoker getTableTitleRe: returns: '%s'" % (regex))
         return regex
