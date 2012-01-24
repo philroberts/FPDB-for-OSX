@@ -356,10 +356,10 @@ class Site:
             temp = temp + str(self.emails[fetchtype]) + "\n"
 
         for game_type in self.layout_set:
-            temp = temp + "    game_type = %s, layout_set = %s\n" % (self.layout_set[game_type].game_type, self.layout_set[game_type].ls)
+            temp = temp + "    game_type = %s, layout_set = %s\n" % (game_type, self.layout_set[game_type])
 
-        for fav in self.fav_seat:
-            temp = temp + "    max = %s, fav_seat = %s\n" % (self.fav_seat[fav].max, self.fav_seat[fav].fav_seat)
+        for max in self.fav_seat:
+            temp = temp + "    max = %s, fav_seat = %s\n" % (max, self.fav_seat[max])
             
         return temp
 
@@ -471,18 +471,19 @@ class Supported_games:
             gss = Game_stat_set(game_stat_set_node)
             self.game_stat_set[gss.game_type] = gss
 
-#    def __str__(self):
-#        temp = 'Supported_games = ' + self.game_name + "\n"
-#        for key in dir(self):
-#            if key.startswith('__'): continue
-#            if key == 'game_stat_set':  continue
-#            value = getattr(self, key)
-#            if callable(value): continue
-#            temp = temp + '    ' + key + " = " + value + "\n"
-#
-#        for gs in self.game_stat_set:
-#            temp = temp + "%s" % str(self.game_stat_set[gs])
-#        return temp
+    def __str__(self):
+        temp = 'Supported_games = ' + self.game_name + "\n"
+        for key in dir(self):
+            if key.startswith('__'): continue
+            if key == 'game_stat_set':  continue
+            if key == 'game_name': continue
+            value = getattr(self, key)
+            if callable(value): continue
+            temp = temp + '    ' + key + " = " + value + "\n"
+
+        for gs in self.game_stat_set:
+            temp = temp + "%s" % str(self.game_stat_set[gs])
+        return temp
 
 
 class Layout_set:
@@ -496,8 +497,7 @@ class Layout_set:
             self.layout[lo.max] = lo
 
     def __str__(self):
-        temp=""
-        #temp = 'Layout set = ' + self.name + "\n"
+        temp = 'Layout set = ' + self.name + "\n"
         for key in dir(self):
             if key.startswith('__'): continue
             if key == 'layout':  continue
@@ -1453,18 +1453,6 @@ class Config:
 #                font_size = site.font_size
 #        return font, font_size
 
-    def xxx_get_locations(self, site_name="PokerStars", max=8):
-        site = self.supported_sites.get(site_name, None)
-        if site is not None:
-            location = site.layout.get(max, None)
-            if location is not None:
-                return location.location
-        return (
-                    (  0,   0), (684,  61), (689, 239), (692, 346),
-                    (586, 393), (421, 440), (267, 440), (  0, 361),
-                    (  0, 280), (121, 280), ( 46,  30)
-                )
-
     def get_layout_set_locations(self, set = "mucked", max = "9"):
 
         try:
@@ -1586,14 +1574,6 @@ class Config:
 
             return param
         return None
-        
-#    def get_game_parameters(self, name):
-#        """Get the configuration parameters for the named game."""
-#        param = {}
-#        if self.supported_games.has_key(name):
-#            param['game_name'] = self.supported_games[name].game_name
-#            param['aux']     = self.supported_games[name].aux
-#        return param
 
     def get_supported_games(self):
         """Get the list of supported games."""
@@ -1644,81 +1624,44 @@ if __name__== "__main__":
     print "\n----------- SUPPORTED SITES -----------"
     for s in c.supported_sites.keys():
         print c.supported_sites[s]
-    print "----------- END SUPPORTED SITES -----------"
-
 
     print "\n----------- SUPPORTED GAMES -----------"
     for game in c.supported_games.keys():
         print c.supported_games[game]
-    print "----------- END SUPPORTED GAMES -----------"
-
 
     print "\n----------- SUPPORTED DATABASES -----------"
     for db in c.supported_databases.keys():
         print c.supported_databases[db]
-    print "----------- END SUPPORTED DATABASES -----------"
 
     print "\n----------- AUX WINDOW FORMATS -----------"
     for w in c.aux_windows.keys():
         print c.aux_windows[w]
-    print "----------- END AUX WINDOW FORMATS -----------"
     
     print "\n----------- LAYOUT SETS FORMATS -----------"
     for w in c.layout_sets.keys():
         print c.layout_sets[w]
-    print "----------- END LAYOUT SETS FORMATS -----------"
-
+    
     print "\n----------- HAND HISTORY CONVERTERS -----------"
     for w in c.hhcs.keys():
         print c.hhcs[w]
-    print "----------- END HAND HISTORY CONVERTERS -----------"
 
     print "\n----------- POPUP WINDOW FORMATS -----------"
     for w in c.popup_windows.keys():
         print c.popup_windows[w]
-    print "----------- END POPUP WINDOW FORMATS -----------"
-
-    print "\n----------- IMPORT -----------"
-#    print c.imp    # Need to add an str method for imp to print
-    print "----------- END IMPORT -----------"
-
-    c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))
-    c.save(file="testout.xml")
-
+        
+    print "\n-----------  DATABASE PARAMS -----------"
     print "db    = ", c.get_db_parameters()
-#    print "imp    = ", c.get_import_parameters()
-    print "paths  = ", c.get_default_paths("PokerStars")
-#    print "colors = ", c.get_default_colors("PokerStars")
-#    print "locs   = ", c.get_locations("PokerStars", 8)
-    for mw in c.get_aux_windows():
-        print c.get_aux_parameters(mw)
-
-#    print "mucked locations =", c.get_aux_locations('mucked', 9)
-#    c.edit_aux_layout('mucked', 9, locations = [(487, 113), (555, 469), (572, 276), (522, 345),
-#                                                (333, 354), (217, 341), (150, 273), (150, 169), (230, 115)])
-#    print "mucked locations =", c.get_aux_locations('mucked', 9)
-
-    for site in c.supported_sites.keys():
-        print "site = ", site,
-        print c.get_site_parameters(site)
-        #print c.get_default_font(site)
-
-    for game in c.get_supported_games():
-        print c.get_supported_game_parameters(game)
-
+    
+    print "\n-----------  HUD PARAMS -----------"
+    print "hud params ="
     for hud_param, value in c.get_hud_ui_parameters().iteritems():
-        print "hud param %s = %s" % (hud_param, value)
-
+        print " %s = %s" % (hud_param, value)
+        
+    print "\n-----------  STARTUP PATH -----------"
     print "start up path = ", c.execution_path("")
-
+    
+    print "\n-----------  GUI CASH STATS -----------"
     print "gui_cash_stats =", c.gui_cash_stats
-
-    try:
-        from xml.dom.ext import PrettyPrint
-        for site_node in c.doc.getElementsByTagName("site"):
-            PrettyPrint(site_node, stream=sys.stdout, encoding="utf-8")
-    except:
-        print "xml.dom.ext needs PyXML to be installed!"
 
     print "\n----------- ENVIRONMENT CONSTANTS -----------"
     print "Configuration.install_method {source,exe} =", INSTALL_METHOD
@@ -1728,7 +1671,20 @@ if __name__== "__main__":
     print "Configuration.os_family {Linux,Mac,XP,Win7} =", OS_FAMILY
     print "Configuration.posix {True/False} =", POSIX
     print "Configuration.python_version =", PYTHON_VERSION
-    print "----------- END ENVIRONMENT CONSTANTS -----------"
+    print "\n\n----------- END OF CONFIG REPORT -----------"
 
     print "press enter to end"
     sys.stdin.readline()
+    
+    c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))
+    c.save(file="testout.xml")
+#    print "mucked locations =", c.get_aux_locations('mucked', 9)
+#    c.edit_aux_layout('mucked', 9, locations = [(487, 113), (555, 469), (572, 276), (522, 345),
+#                                                (333, 354), (217, 341), (150, 273), (150, 169), (230, 115)])
+#    print "mucked locations =", c.get_aux_locations('mucked', 9)
+    try:
+        from xml.dom.ext import PrettyPrint
+        for site_node in c.doc.getElementsByTagName("site"):
+            PrettyPrint(site_node, stream=sys.stdout, encoding="utf-8")
+    except:
+        print "xml.dom.ext needs PyXML to be installed!"
