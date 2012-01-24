@@ -203,7 +203,7 @@ class MergeSummary(TourneySummary):
             m = self.re_HTMLPrizepool.search(str(p))
             if m:
                 #print "DEBUG: re_HTMLPrizepool: '%s'" % m.group('PRIZEPOOL')
-                self.prizepool = int(100*convert_to_decimal(m.group('PRIZEPOOL')))
+                self.prizepool = int(convert_to_decimal(m.group('PRIZEPOOL')))
             m = self.re_HTMLBuyIn.search(str(p))
             if m:
                 #print "DEBUG: re_HTMLBuyIn: '%s'" % m.group('BUYIN')
