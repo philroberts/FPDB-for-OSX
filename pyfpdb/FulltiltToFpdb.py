@@ -51,6 +51,7 @@ class Fulltilt(HandHistoryConverter):
                        '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
                        '16.00': ('4.00', '8.00'),      '16': ('4.00', '8.00'),
                        '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
+                       '24.00': ('6.00', '12.00'),     '24': ('6.00', '12.00'),
                        '30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
                        '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
                        '50.00': ('8.00',  '25.00'),     '50': ('8.00',  '25.00'),
@@ -61,6 +62,7 @@ class Fulltilt(HandHistoryConverter):
                       '300.00': ('75.00', '150.00'),  '300': ('75.00', '150.00'),
                       '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
                       '500.00': ('125.00', '250.00'), '500': ('125.00', '250.00'),
+                      '600.00': ('150.00', '300.00'), '600': ('150.00', '300.00'),
                       '800.00': ('200.00', '400.00'), '800': ('200.00', '400.00'),
                      '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00'),
                      '2000.00': ('500.00', '750.00'),'2000': ('500.00', '1000.00'),
@@ -88,7 +90,7 @@ class Fulltilt(HandHistoryConverter):
                                     ((?P<TABLE>[%(TAB)s]+)(\s|,))
                                     (?P<ENTRYID>\sEntry\s\#\d+\s)?
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
-                                    [%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[.0-9]+)\s)?-\s
+                                    [%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[%(NUM)s]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
                                     (?P<GAMETYPE>[-\da-zA-Z\/\'\s]+)\s-\s
                                     (?P<DATETIME>.*$)
@@ -295,18 +297,19 @@ class Fulltilt(HandHistoryConverter):
             timezone = "ET"
             m1 = self.re_DateTime.finditer(m.group('DATETIME'))
             datetimestr = "2000/01/01 00:00:00"
+            dateformat  = "%Y/%m/%d %H:%M:%S"
             for a in m1:
                 if a.group('TZ2') == None:
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
                     timezone = a.group('TZ')
-                    hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
                 else: # Short-lived date format
                     datetimestr = "%s/%s/%s %s:%s" % (a.group('Y2'), a.group('M2'),a.group('D2'),a.group('H2'),a.group('MIN2'))
                     timezone = a.group('TZ2')
-                    hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%B/%d %H:%M")
+                    dateformat = "%Y/%B/%d %H:%M"  
                 if a.group('PARTIAL'):
                     raise FpdbHandPartial(hid=m.group('HID'))
-
+            
+            hand.startTime = datetime.datetime.strptime(datetimestr, dateformat)
             hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, timezone, "UTC")
 
         if m.group("PARTIAL"):

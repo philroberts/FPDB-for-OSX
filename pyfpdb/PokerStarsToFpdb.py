@@ -168,6 +168,7 @@ class PokerStars(HandHistoryConverter):
     re_WinningRankOne   = re.compile(u"^%(PLYR)s wins the tournament and receives %(CUR)s(?P<AMT>[\.0-9]+) - congratulations!$" %  substitutions, re.MULTILINE)
     re_WinningRankOther = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place and received %(CUR)s(?P<AMT>[.0-9]+)\.$" %  substitutions, re.MULTILINE)
     re_RankOther        = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place$" %  substitutions, re.MULTILINE)
+    re_Cancelled        = re.compile('Hand\scancelled', re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         pass
@@ -325,6 +326,9 @@ class PokerStars(HandHistoryConverter):
             if key == 'PLAY' and info['PLAY'] is not None:
 #                hand.currency = 'play' # overrides previously set value
                 hand.gametype['currency'] = 'play'
+                
+        if self.re_Cancelled.search(hand.handText):
+            raise FpdbHandPartial(_("Hand '%s' was cancelled.") % hand.handid)
     
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)

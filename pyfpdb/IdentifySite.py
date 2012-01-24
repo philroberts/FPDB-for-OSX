@@ -31,8 +31,8 @@ import logging
 log = logging.getLogger("parser")
 
 __ARCHIVE_PRE_HEADER_REGEX, re_SplitArchive = {}, {}
-__ARCHIVE_PRE_HEADER_REGEX['PokerStars'] ='Transcript\sfor\syour\slast\s\d+\sgames\srequested\sby'
-__ARCHIVE_PRE_HEADER_REGEX['Fulltilt'] ='\*{20}\s#\s\d+\s\*{20,25}\s+'
+__ARCHIVE_PRE_HEADER_REGEX['PokerStars'] = '^Hand #(\d+)\s*$'
+__ARCHIVE_PRE_HEADER_REGEX['Fulltilt'] ='\*{20}\s#\s\d+\s\*{20,25}\s?'
 re_SplitArchive['PokerStars'] = re.compile(__ARCHIVE_PRE_HEADER_REGEX['PokerStars'], re.MULTILINE)
 re_SplitArchive['Fulltilt'] = re.compile(__ARCHIVE_PRE_HEADER_REGEX['Fulltilt'], re.MULTILINE)
 
