@@ -436,6 +436,7 @@ class Database:
         self.database = database
         self.connection = None
         self.cursor     = None
+        self.hand_inc   = 1
 
         if backend == Database.MYSQL_INNODB:
             import MySQLdb
@@ -457,6 +458,9 @@ class Database:
                     raise FpdbMySQLNoDatabase(ex.args[0], ex.args[1])
                 else:
                     print _("*** WARNING UNKNOWN MYSQL ERROR:"), ex
+            c = self.get_cursor()
+            c.execute("show variables like 'auto_increment_increment'")
+            self.hand_inc = int(c.fetchone()[1])
         elif backend == Database.PGSQL:
             import psycopg2
             import psycopg2.extensions
@@ -2753,7 +2757,7 @@ class Database:
         c.execute("SELECT max(id) FROM Hands")
         id = c.fetchone()[0]
         if not id: id = 0
-        id += 1
+        id += self.hand_inc
         return id
 
     def isDuplicate(self, gametypeID, siteHandNo):
