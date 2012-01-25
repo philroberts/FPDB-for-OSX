@@ -1,0 +1,254 @@
+#Game No : 339528182
+***** Cassava Hand History for Game 339528182 *****
+$10/$20 Blinds No Limit Holdem - *** 19 01 2012 20:17:23
+Tournament #35590332 $2.50 + $0.25 - Table #1 (Real Money)
+Seat 4 is the button
+Total number of players : 2
+Seat 4: Hero ( $1,200 )
+Seat 9: Villain ( $1,200 )
+Hero posts small blind [$10]
+Villain posts big blind [$20]
+** Dealing down cards **
+Dealt to Hero [ 7s, 7c ]
+Hero raises [$30]
+Villain calls [$20]
+** Dealing flop ** [ Ad, 3s, Jd ]
+Villain checks
+Hero bets [$40]
+Villain folds
+** Summary **
+Hero did not show his hand
+Hero collected [ $80 ]
+
+
+
+#Game No : 339528525
+***** Cassava Hand History for Game 339528525 *****
+$10/$20 Blinds No Limit Holdem - *** 19 01 2012 20:18:02
+Tournament #35590332 $2.50 + $0.25 - Table #1 (Real Money)
+Seat 9 is the button
+Total number of players : 2
+Seat 4: Hero ( $1,240 )
+Seat 9: Villain ( $1,160 )
+Villain posts small blind [$10]
+Hero posts big blind [$20]
+** Dealing down cards **
+Dealt to Hero [ 6c, Td ]
+Villain calls [$10]
+Hero checks
+** Dealing flop ** [ Ks, Th, 3h ]
+Hero bets [$20]
+Villain folds
+** Summary **
+Hero did not show his hand
+Hero collected [ $40 ]
+
+
+
+#Game No : 339528846
+***** Cassava Hand History for Game 339528846 *****
+$10/$20 Blinds No Limit Holdem - *** 19 01 2012 20:18:33
+Tournament #35590332 $2.50 + $0.25 - Table #1 (Real Money)
+Seat 4 is the button
+Total number of players : 2
+Seat 4: Hero ( $1,260 )
+Seat 9: Villain ( $1,140 )
+Hero posts small blind [$10]
+Villain posts big blind [$20]
+** Dealing down cards **
+Dealt to Hero [ 5d, Qs ]
+Hero raises [$30]
+Villain calls [$20]
+** Dealing flop ** [ Kd, Jd, 3h ]
+Villain bets [$40]
+Hero folds
+** Summary **
+Villain did not show his hand
+Villain collected [ $80 ]
+
+
+
+#Game No : 339529014
+***** Cassava Hand History for Game 339529014 *****
+$10/$20 Blinds No Limit Holdem - *** 19 01 2012 20:18:53
+Tournament #35590332 $2.50 + $0.25 - Table #1 (Real Money)
+Seat 9 is the button
+Total number of players : 2
+Seat 4: Hero ( $1,220 )
+Seat 9: Villain ( $1,180 )
+Villain posts small blind [$10]
+Hero posts big blind [$20]
+** Dealing down cards **
+Dealt to Hero [ 8s, Ts ]
+Villain raises [$30]
+Hero calls [$20]
+** Dealing flop ** [ Kc, 2s, 3h ]
+Hero checks
+Villain bets [$40]
+Hero folds
+** Summary **
+Villain did not show his hand
+Villain collected [ $80 ]
+
+
+
+#Game No : 339529244
+***** Cassava Hand History for Game 339529244 *****
+$10/$20 Blinds No Limit Holdem - *** 19 01 2012 20:19:20
+Tournament #35590332 $2.50 + $0.25 - Table #1 (Real Money)
+Seat 4 is the button
+Total number of players : 2
+Seat 4: Hero ( $1,180 )
+Seat 9: Villain ( $1,220 )
+Hero posts small blind [$10]
+Villain posts big blind [$20]
+** Dealing down cards **
+Dealt to Hero [ 2c, 9d ]
+Hero raises [$30]
+Villain raises [$40]
+Hero calls [$20]
+** Dealing flop ** [ 3s, Jh, Th ]
+Villain bets [$60]
+Hero folds
+** Summary **
+Villain did not show his hand
+Villain collected [ $120 ]
+
+
+
+#Game No : 339529515
+***** Cassava Hand History for Game 339529515 *****
+$10/$20 Blinds No Limit Holdem - *** 19 01 2012 20:19:52
+Tournament #35590332 $2.50 + $0.25 - Table #1 (Real Money)
+Seat 9 is the button
+Total number of players : 2
+Seat 4: Hero ( $1,120 )
+Seat 9: Villain ( $1,280 )
+Villain posts small blind [$10]
+Hero posts big blind [$20]
+** Dealing down cards **
+Dealt to Hero [ 5d, Jh ]
+Villain calls [$10]
+Hero checks
+** Dealing flop ** [ Js, Kc, 9h ]
+Hero bets [$20]
+Villain raises [$40]
+Hero calls [$20]
+** Dealing turn ** [ Td ]
+Hero checks
+Villain checks
+** Dealing river ** [ 4s ]
+Hero checks
+Villain checks
+** Summary **
+Hero shows [ 5d, Jh ]
+Villain shows [ 6s, Ks ]
+Villain collected [ $120 ]
+
+
+
+#Game No : 339529895
+***** Cassava Hand History for Game 339529895 *****
+$10/$20 Blinds No Limit Holdem - *** 19 01 2012 20:20:32
+Tournament #35590332 $2.50 + $0.25 - Table #1 (Real Money)
+Seat 4 is the button
+Total number of players : 2
+Seat 4: Hero ( $1,060 )
+Seat 9: Villain ( $1,340 )
+Hero posts small blind [$10]
+Villain posts big blind [$20]
+** Dealing down cards **
+Dealt to Hero [ 9s, 2c ]
+Hero raises [$30]
+Villain calls [$20]
+** Dealing flop ** [ 6d, Qd, 7h ]
+Villain checks
+Hero bets [$40]
+Villain folds
+** Summary **
+Hero did not show his hand
+Hero collected [ $80 ]
+
+
+
+#Game No : 339530409
+***** Cassava Hand History for Game 339530409 *****
+$10/$20 Blinds No Limit Holdem - *** 19 01 2012 20:21:26
+Tournament #35590332 $2.50 + $0.25 - Table #1 (Real Money)
+Seat 9 is the button
+Total number of players : 2
+Seat 4: Hero ( $1,100 )
+Seat 9: Villain ( $1,300 )
+Villain posts small blind [$10]
+Hero posts big blind [$20]
+** Dealing down cards **
+Dealt to Hero [ 9d, Jc ]
+Villain calls [$10]
+Hero checks
+** Dealing flop ** [ 9s, 3s, 9h ]
+Hero checks
+Villain bets [$20]
+Hero raises [$40]
+Villain folds
+** Summary **
+Hero did not show his hand
+Hero collected [ $80 ]
+
+
+
+#Game No : 339530787
+***** Cassava Hand History for Game 339530787 *****
+$10/$20 Blinds No Limit Holdem - *** 19 01 2012 20:22:10
+Tournament #35590332 $2.50 + $0.25 - Table #1 (Real Money)
+Seat 4 is the button
+Total number of players : 2
+Seat 4: Hero ( $1,140 )
+Seat 9: Villain ( $1,260 )
+Hero posts small blind [$10]
+Villain posts big blind [$20]
+** Dealing down cards **
+Dealt to Hero [ 9h, 6d ]
+Hero raises [$30]
+Villain raises [$40]
+Hero calls [$20]
+** Dealing flop ** [ 2h, 3d, Th ]
+Villain bets [$60]
+Hero raises [$150]
+Villain calls [$90]
+** Dealing turn ** [ Kc ]
+Villain bets [$210]
+Hero folds
+** Summary **
+Villain did not show his hand
+Villain collected [ $420 ]
+
+
+
+#Game No : 339531379
+***** Cassava Hand History for Game 339531379 *****
+$10/$20 Blinds No Limit Holdem - *** 19 01 2012 20:23:13
+Tournament #35590332 $2.50 + $0.25 - Table #1 (Real Money)
+Seat 9 is the button
+Total number of players : 2
+Seat 4: Hero ( $930 )
+Seat 9: Villain ( $1,470 )
+Villain posts small blind [$10]
+Hero posts big blind [$20]
+** Dealing down cards **
+Dealt to Hero [ 9h, 9c ]
+Villain raises [$30]
+Hero raises [$113]
+Villain calls [$93]
+** Dealing flop ** [ 2h, 7d, Qc ]
+Hero bets [$133]
+Villain raises [$1,337]
+Hero calls [$664]
+** Dealing turn ** [ 7h ]
+** Dealing river ** [ Ac ]
+** Summary **
+Hero shows [ 9h, 9c ]
+Villain shows [ 8c, Qh ]
+Villain collected [ $1,860 ]
+
+
+
