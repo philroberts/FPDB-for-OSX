@@ -279,14 +279,8 @@ class Hand(object):
         else:
             self.dbid_hands = id
             self.hands['id'] = self.dbid_hands
-            next = id +1
+            next = id + db.hand_inc
         return next
-    
-    #def insertTourneys(self, db):
-    #    if self.tourNo!=None:
-    #        self.tourneyTypeId = db.getSqlTourneyTypeIDs(self)
-    #        self.tourneyId = db.getSqlTourneyIDs(self)
-    #        self.tourneysPlayersIds = db.getSqlTourneysPlayersIDs(self)
 
     def insertHands(self, db, fileId, doinsert = False, printtest = False):
         """ Function to insert Hand into database
