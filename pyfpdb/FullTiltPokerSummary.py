@@ -43,6 +43,7 @@ class FullTiltPokerSummary(TourneySummary):
                              'Stud H/L' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
+                      '2-7 Triple Draw' : ('draw','27_3draw'),
                           '5 Card Draw' : ('draw','fivedraw'),
                          '7-Game Mixed' : ('mixed','7game'),
                         '10-Game Mixed' : ('mixed','10game'),
@@ -52,7 +53,7 @@ class FullTiltPokerSummary(TourneySummary):
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP|FTP",      # legal ISO currency codes
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|", # legal currency symbols - Euro(cp1252, utf-8)
-                           'TAB' : u"-\u2013'\s\da-zA-Z",      # legal characters for tablename
+                           'TAB' : u"-\u2013'\s\da-zA-Z#_\.",      # legal characters for tablename
                            'NUM' : u".,\d",                    # legal characters in number format
                     }
 
@@ -61,7 +62,7 @@ class FullTiltPokerSummary(TourneySummary):
                         (\s*.*(?P<TYPE>.+\s))
                         \((?P<TOURNO>[0-9]+)\)
                         (\s+)?(\sMatch\s\d\s)?
-                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Stud\sHi|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw|7-Game\sMixed|HORSE|10-Game\sMixed)\s+
+                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Stud\sHi|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7\sLowball|2-7\sTriple\sDraw|5\sCard\sDraw|7-Game\sMixed|HORSE|10-Game\sMixed)\s+
                         ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+)?
                         (Buy-In:\s[%(LS)s]?(?P<BUYIN>[%(NUM)s]+)(\sFTP)?(\s\+\s[%(LS)s]?(?P<FEE>[%(NUM)s]+)(\sFTP)?)?\s+)?
                         (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[%(NUM)s]+)\s+)?
