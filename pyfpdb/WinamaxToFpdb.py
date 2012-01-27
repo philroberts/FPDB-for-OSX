@@ -24,13 +24,8 @@ _ = L10n.get_translation()
 import sys
 import exceptions
 
-import logging
-# logging has been set up in fpdb.py or HUD_main.py, use their settings:
-
-import Configuration
 from HandHistoryConverter import *
 from decimal_wrapper import Decimal
-import time
 
 # Winamax HH Format
 
@@ -63,14 +58,7 @@ class Winamax(HandHistoryConverter):
     games = {                          # base, category
                                 "Holdem" : ('hold','holdem'),
                                  'Omaha' : ('hold','omahahi'),
-             #             'Omaha Hi/Lo' : ('hold','omahahilo'),
-             #                    'Razz' : ('stud','razz'),
-             #                    'RAZZ' : ('stud','razz'),
-             #             '7 Card Stud' : ('stud','studhi'),
-             #   'SEVEN_CARD_STUD_HI_LO' : ('stud','studhilo'),
-             #                  'Badugi' : ('draw','badugi'),
-             # 'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
-             #             '5 Card Draw' : ('draw','fivedraw')
+                # It appears French law prevents any other games from being spread.
                }
 
     # Static regexes
@@ -395,7 +383,8 @@ class Winamax(HandHistoryConverter):
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            acts = action.groupdict()
+            #acts = action.groupdict()
+            #print "DEBUG: acts: %s" % acts
             if action.group('ATYPE') == ' raises':
                 hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' calls':
