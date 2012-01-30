@@ -508,7 +508,7 @@ class Winamax(HandHistoryConverter):
         Freeroll 250€(16362273)#035 - 2,50k-5k (ante 500) NL Holdem  - Buy-in: 0€
         """
         log.info("Winamax.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
-        regex = "%s" % (table_name)
+        regex = "%s /" % (table_name)
         if tournament:
             regex = "\(%s\)#%s" % (tournament, table_number)
         log.info("Winamax.getTableTitleRe: returns: '%s'" % (regex))
