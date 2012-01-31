@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
-<FreePokerToolsConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FreePokerToolsConfig.xsd">
+<FreePokerToolsConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <!-- config_wrap_len  is preferred max line length in this file, -1 means no max
          day_start        is time that logical day starts, e.g. 5 means that any play
@@ -13,6 +13,7 @@
              />
 
     <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" saveActions="True" cacheSessions="False" sessionTimeout="30"></import>
+
 
     <gui_cash_stats>
         <col col_name="game"       disp_all="True"  disp_posn="True"  col_title="Game"     xalignment="0.0" field_format="%s"    field_type="str" />
@@ -146,24 +147,25 @@
     label="R-click FPDB Menu L-Drag to Move"
     />
 
+
     <supported_sites>
         <site site_name="PokerStars"
                 enabled="True"
                 screen_name="YOUR SCREEN NAME HERE"
                 site_path="C:/Program Files/PokerStars/"
                 HH_path="C:/Program Files/PokerStars/HandHistory/YOUR SCREEN NAME HERE/"
-                hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
+                hud_enabled="True" hud_menu_xshift="50" hud_menu_yshift="20">
             <email fetchType="request-summary" host="YOUR_EMAIL_SERVER"
                 username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD"
                 useSsl="True" folder="INBOX"/>
-            <layout_set game_type="ring" ls="ps classic"></layout_set>
-            <fav max="2" fav_seat="1"> </fav>
-            <fav max="4" fav_seat="2"> </fav>
-            <fav max="6" fav_seat="3"> </fav>
-            <fav max="7" fav_seat="4"> </fav>
-            <fav max="8" fav_seat="5"> </fav>
-            <fav max="9" fav_seat="6"> </fav>
-            <fav max="10" fav_seat="10"> </fav>
+            <layout_set game_type="ring" ls="ps classic"/>
+            <fav max="2" fav_seat="1"/>
+            <fav max="4" fav_seat="2"/>
+            <fav max="6" fav_seat="3"/>
+            <fav max="7" fav_seat="4"/>
+            <fav max="8" fav_seat="5"/>
+            <fav max="9" fav_seat="6"/>
+            <fav max="10" fav_seat="4"/>
         </site>
 
         <site site_name="Full Tilt Poker"
@@ -172,14 +174,14 @@
                 site_path="C:/Program Files/Full Tilt Poker/"
                 HH_path="C:/Program Files/Full Tilt Poker/HandHistory/YOUR SCREEN NAME HERE/"
                 hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
-            <layout_set game_type="all" ls="default"></layout_set>
-            <fav max="2" fav_seat="0"> </fav>
-            <fav max="4" fav_seat="0"> </fav>
-            <fav max="6" fav_seat="0"> </fav>
-            <fav max="7" fav_seat="0"> </fav>
-            <fav max="8" fav_seat="0"> </fav>
-            <fav max="9" fav_seat="0"> </fav>
-            <fav max="10" fav_seat="0"> </fav>
+            <layout_set game_type="all" ls="default"/>
+            <fav max="2" fav_seat="0"/>
+            <fav max="4" fav_seat="0"/>
+            <fav max="6" fav_seat="0"/>
+            <fav max="7" fav_seat="0"/>
+            <fav max="8" fav_seat="0"/>
+            <fav max="9" fav_seat="0"/>
+            <fav max="10" fav_seat="0"/>
         </site>
 
         <site site_name="Everleaf"
@@ -188,14 +190,14 @@
                 screen_name="YOUR SCREEN NAME HERE"
                 site_path="C:\Users\WindowsUserName\AppData\Roaming\EverleafSiteName\"
                 hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
-            <layout_set game_type="all" ls="default"></layout_set>
-            <fav max="2" fav_seat="0"> </fav>
-            <fav max="4" fav_seat="0"> </fav>
-            <fav max="6" fav_seat="0"> </fav>
-            <fav max="7" fav_seat="0"> </fav>
-            <fav max="8" fav_seat="0"> </fav>
-            <fav max="9" fav_seat="0"> </fav>
-            <fav max="10" fav_seat="0"> </fav>
+            <layout_set game_type="all" ls="default"/>
+            <fav max="2" fav_seat="0"/>
+            <fav max="4" fav_seat="0"/>
+            <fav max="6" fav_seat="0"/>
+            <fav max="7" fav_seat="0"/>
+            <fav max="8" fav_seat="0"/>
+            <fav max="9" fav_seat="0"/>
+            <fav max="10" fav_seat="0"/>
         </site>
 
         <site site_name="Boss"
@@ -204,14 +206,14 @@
                 site_path=""
                 HH_path=""
                 hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
-            <layout_set game_type="all" ls="default"></layout_set>
-            <fav max="2" fav_seat="0"> </fav>
-            <fav max="4" fav_seat="0"> </fav>
-            <fav max="6" fav_seat="0"> </fav>
-            <fav max="7" fav_seat="0"> </fav>
-            <fav max="8" fav_seat="0"> </fav>
-            <fav max="9" fav_seat="0"> </fav>
-            <fav max="10" fav_seat="0"> </fav>
+            <layout_set game_type="all" ls="default"/>
+            <fav max="2" fav_seat="0"/>
+            <fav max="4" fav_seat="0"/>
+            <fav max="6" fav_seat="0"/>
+            <fav max="7" fav_seat="0"/>
+            <fav max="8" fav_seat="0"/>
+            <fav max="9" fav_seat="0"/>
+            <fav max="10" fav_seat="0"/>
         </site>
 
         <site site_name="Absolute" 
@@ -220,14 +222,14 @@
                 site_path=""
                 HH_path=""
                 hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
-            <layout_set game_type="all" ls="default"></layout_set>
-            <fav max="2" fav_seat="0"> </fav>
-            <fav max="4" fav_seat="0"> </fav>
-            <fav max="6" fav_seat="0"> </fav>
-            <fav max="7" fav_seat="0"> </fav>
-            <fav max="8" fav_seat="0"> </fav>
-            <fav max="9" fav_seat="0"> </fav>
-            <fav max="10" fav_seat="0"> </fav>
+            <layout_set game_type="all" ls="default"/>
+            <fav max="2" fav_seat="0"/>
+            <fav max="4" fav_seat="0"/>
+            <fav max="6" fav_seat="0"/>
+            <fav max="7" fav_seat="0"/>
+            <fav max="8" fav_seat="0"/>
+            <fav max="9" fav_seat="0"/>
+            <fav max="10" fav_seat="0"/>
         </site>
 
         <site site_name="PartyPoker"
@@ -236,14 +238,14 @@
                 site_path="C:/Program Files/PartyGaming/PartyPoker"
                 HH_path="C:/Program Files/PartyGaming/PartyPoker/HandHistory/YOUR SCREEN NAME HERE/"
                 hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
-            <layout_set game_type="all" ls="default"></layout_set>
-            <fav max="2" fav_seat="0"> </fav>
-            <fav max="4" fav_seat="0"> </fav>
-            <fav max="6" fav_seat="0"> </fav>
-            <fav max="7" fav_seat="0"> </fav>
-            <fav max="8" fav_seat="0"> </fav>
-            <fav max="9" fav_seat="0"> </fav>
-            <fav max="10" fav_seat="0"> </fav>
+            <layout_set game_type="all" ls="default"/>
+            <fav max="2" fav_seat="0"/>
+            <fav max="4" fav_seat="0"/>
+            <fav max="6" fav_seat="0"/>
+            <fav max="7" fav_seat="0"/>
+            <fav max="8" fav_seat="0"/>
+            <fav max="9" fav_seat="0"/>
+            <fav max="10" fav_seat="0"/>
         </site>
 
         <site site_name="Merge"
@@ -252,14 +254,14 @@
                 screen_name="YOUR SCREEN NAME HERE" 
                 site_path="C:/Program Files/Merge/"
                 hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
-            <layout_set game_type="all" ls="default"></layout_set>
-            <fav max="2" fav_seat="0"> </fav>
-            <fav max="4" fav_seat="0"> </fav>
-            <fav max="6" fav_seat="0"> </fav>
-            <fav max="7" fav_seat="0"> </fav>
-            <fav max="8" fav_seat="0"> </fav>
-            <fav max="9" fav_seat="0"> </fav>
-            <fav max="10" fav_seat="0"> </fav>
+            <layout_set game_type="all" ls="default"/>
+            <fav max="2" fav_seat="0"/>
+            <fav max="4" fav_seat="0"/>
+            <fav max="6" fav_seat="0"/>
+            <fav max="7" fav_seat="0"/>
+            <fav max="8" fav_seat="0"/>
+            <fav max="9" fav_seat="0"/>
+            <fav max="10" fav_seat="0"/>
         </site>
 
         <site site_name="OnGame"
@@ -268,14 +270,14 @@
                 screen_name="YOUR SCREEN NAME HERE" 
                 site_path="C:/Program Files/OnGame/"
                 hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
-            <layout_set game_type="all" ls="default"></layout_set>
-            <fav max="2" fav_seat="0"> </fav>
-            <fav max="4" fav_seat="0"> </fav>
-            <fav max="6" fav_seat="0"> </fav>
-            <fav max="7" fav_seat="0"> </fav>
-            <fav max="8" fav_seat="0"> </fav>
-            <fav max="9" fav_seat="0"> </fav>
-            <fav max="10" fav_seat="0"> </fav>
+            <layout_set game_type="all" ls="default"/>
+            <fav max="2" fav_seat="0"/>
+            <fav max="4" fav_seat="0"/>
+            <fav max="6" fav_seat="0"/>
+            <fav max="7" fav_seat="0"/>
+            <fav max="8" fav_seat="0"/>
+            <fav max="9" fav_seat="0"/>
+            <fav max="10" fav_seat="0"/>
         </site>
 
         <site site_name="PKR"
@@ -284,14 +286,14 @@
                 screen_name="YOUR SCREEN NAME HERE" 
                 site_path="C:/Program Files/PKR/"
                 hud_enabled="False" hud_menu_xshift="0" hud_menu_yshift="0">
-            <layout_set game_type="all" ls="default"></layout_set>
-            <fav max="2" fav_seat="0"> </fav>
-            <fav max="4" fav_seat="0"> </fav>
-            <fav max="6" fav_seat="0"> </fav>
-            <fav max="7" fav_seat="0"> </fav>
-            <fav max="8" fav_seat="0"> </fav>
-            <fav max="9" fav_seat="0"> </fav>
-            <fav max="10" fav_seat="0"> </fav>
+            <layout_set game_type="all" ls="default"/>
+            <fav max="2" fav_seat="0"/>
+            <fav max="4" fav_seat="0"/>
+            <fav max="6" fav_seat="0"/>
+            <fav max="7" fav_seat="0"/>
+            <fav max="8" fav_seat="0"/>
+            <fav max="9" fav_seat="0"/>
+            <fav max="10" fav_seat="0"/>
         </site>
 
         <site site_name="Winamax"
@@ -300,14 +302,14 @@
                 screen_name="YOUR SCREEN NAME HERE" 
                 site_path="C:/Program Files/Winamax/"
                 hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
-            <layout_set game_type="all" ls="default"></layout_set>
-            <fav max="2" fav_seat="0"> </fav>
-            <fav max="4" fav_seat="0"> </fav>
-            <fav max="6" fav_seat="0"> </fav>
-            <fav max="7" fav_seat="0"> </fav>
-            <fav max="8" fav_seat="0"> </fav>
-            <fav max="9" fav_seat="0"> </fav>
-            <fav max="10" fav_seat="0"> </fav>
+            <layout_set game_type="all" ls="default"/>
+            <fav max="2" fav_seat="0"/>
+            <fav max="4" fav_seat="0"/>
+            <fav max="6" fav_seat="0"/>
+            <fav max="7" fav_seat="0"/>
+            <fav max="8" fav_seat="0"/>
+            <fav max="9" fav_seat="0"/>
+            <fav max="10" fav_seat="0"/>
         </site>
 
         <site site_name="Everest"
@@ -316,14 +318,14 @@
                 screen_name="YOUR SCREEN NAME HERE" 
                 site_path="C:/Program Files/Everest/"
                 hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
-            <layout_set game_type="all" ls="default"></layout_set>
-            <fav max="2" fav_seat="0"> </fav>
-            <fav max="4" fav_seat="0"> </fav>
-            <fav max="6" fav_seat="0"> </fav>
-            <fav max="7" fav_seat="0"> </fav>
-            <fav max="8" fav_seat="0"> </fav>
-            <fav max="9" fav_seat="0"> </fav>
-            <fav max="10" fav_seat="0"> </fav>
+            <layout_set game_type="all" ls="default"/>
+            <fav max="2" fav_seat="0"/>
+            <fav max="4" fav_seat="0"/>
+            <fav max="6" fav_seat="0"/>
+            <fav max="7" fav_seat="0"/>
+            <fav max="8" fav_seat="0"/>
+            <fav max="9" fav_seat="0"/>
+            <fav max="10" fav_seat="0"/>
         </site>
 
         <site site_name="PacificPoker"
@@ -332,14 +334,14 @@
                 screen_name="YOUR SCREEN NAME HERE" 
                 site_path="C:/Program Files/PacificPoker/"
                 hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
-            <layout_set game_type="all" ls="default"></layout_set>
-            <fav max="2" fav_seat="0"> </fav>
-            <fav max="4" fav_seat="0"> </fav>
-            <fav max="6" fav_seat="0"> </fav>
-            <fav max="7" fav_seat="0"> </fav>
-            <fav max="8" fav_seat="0"> </fav>
-            <fav max="9" fav_seat="0"> </fav>
-            <fav max="10" fav_seat="0"> </fav>
+            <layout_set game_type="all" ls="default"/>
+            <fav max="2" fav_seat="0"/>
+            <fav max="4" fav_seat="0"/>
+            <fav max="6" fav_seat="0"/>
+            <fav max="7" fav_seat="0"/>
+            <fav max="8" fav_seat="0"/>
+            <fav max="9" fav_seat="0"/>
+            <fav max="10" fav_seat="0"/>
         </site>
 
         <site site_name="Cake"
@@ -348,14 +350,14 @@
                 screen_name="YOUR SCREEN NAME HERE" 
                 site_path="C:/Program Files/Cake/"
                 hud_enabled="False" hud_menu_xshift="0" hud_menu_yshift="0">
-            <layout_set game_type="all" ls="default"></layout_set>
-            <fav max="2" fav_seat="0"> </fav>
-            <fav max="4" fav_seat="0"> </fav>
-            <fav max="6" fav_seat="0"> </fav>
-            <fav max="7" fav_seat="0"> </fav>
-            <fav max="8" fav_seat="0"> </fav>
-            <fav max="9" fav_seat="0"> </fav>
-            <fav max="10" fav_seat="0"> </fav>
+            <layout_set game_type="all" ls="default"/>
+            <fav max="2" fav_seat="0"/>
+            <fav max="4" fav_seat="0"/>
+            <fav max="6" fav_seat="0"/>
+            <fav max="7" fav_seat="0"/>
+            <fav max="8" fav_seat="0"/>
+            <fav max="9" fav_seat="0"/>
+            <fav max="10" fav_seat="0"/>
         </site>
 
         <site site_name="Entraction" 
@@ -364,14 +366,14 @@
                 screen_name="YOUR SCREEN NAME HERE" 
                 site_path="C:/Program Files/Entraction/"
                 hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
-            <layout_set game_type="all" ls="default"></layout_set>
-            <fav max="2" fav_seat="0"> </fav>
-            <fav max="4" fav_seat="0"> </fav>
-            <fav max="6" fav_seat="0"> </fav>
-            <fav max="7" fav_seat="0"> </fav>
-            <fav max="8" fav_seat="0"> </fav>
-            <fav max="9" fav_seat="0"> </fav>
-            <fav max="10" fav_seat="0"> </fav>
+            <layout_set game_type="all" ls="default"/>
+            <fav max="2" fav_seat="0"/>
+            <fav max="4" fav_seat="0"/>
+            <fav max="6" fav_seat="0"/>
+            <fav max="7" fav_seat="0"/>
+            <fav max="8" fav_seat="0"/>
+            <fav max="9" fav_seat="0"/>
+            <fav max="10" fav_seat="0"/>
         </site>
 
         <site site_name="iPoker" 
@@ -380,14 +382,14 @@
                 screen_name="YOUR SCREEN NAME HERE" 
                 site_path="C:/Program Files/iPoker/"
                 hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
-            <layout_set game_type="all" ls="default"></layout_set>
-            <fav max="2" fav_seat="0"> </fav>
-            <fav max="4" fav_seat="0"> </fav>
-            <fav max="6" fav_seat="0"> </fav>
-            <fav max="7" fav_seat="0"> </fav>
-            <fav max="8" fav_seat="0"> </fav>
-            <fav max="9" fav_seat="0"> </fav>
-            <fav max="10" fav_seat="0"> </fav>
+            <layout_set game_type="all" ls="default"/>
+            <fav max="2" fav_seat="0"/>
+            <fav max="4" fav_seat="0"/>
+            <fav max="6" fav_seat="0"/>
+            <fav max="7" fav_seat="0"/>
+            <fav max="8" fav_seat="0"/>
+            <fav max="9" fav_seat="0"/>
+            <fav max="10" fav_seat="0"/>
         </site>
         
         <site site_name="BetOnline"
@@ -397,16 +399,17 @@
                 HH_path="C:/Program Files/BetOnline/HandHistory/Hero/"
                 hud_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
             <email fetchType="request-summary" host="YOUR_EMAIL_SERVER" username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD" useSsl="True" folder="INBOX"/>
-            <layout_set game_type="all" ls="default"></layout_set>
-            <fav max="2" fav_seat="0"> </fav>
-            <fav max="4" fav_seat="0"> </fav>
-            <fav max="6" fav_seat="0"> </fav>
-            <fav max="7" fav_seat="0"> </fav>
-            <fav max="8" fav_seat="0"> </fav>
-            <fav max="9" fav_seat="0"> </fav>
-            <fav max="10" fav_seat="0"> </fav>
+            <layout_set game_type="all" ls="default"/>
+            <fav max="2" fav_seat="0"/>
+            <fav max="4" fav_seat="0"/>
+            <fav max="6" fav_seat="0"/>
+            <fav max="7" fav_seat="0"/>
+            <fav max="8" fav_seat="0"/>
+            <fav max="9" fav_seat="0"/>
+            <fav max="10" fav_seat="0"/>
         </site>
     </supported_sites>
+
 
     <supported_games>
         <!--
@@ -415,64 +418,66 @@
         without changing Configuration.Config()
         -->
         <game game_name="holdem" aux="Simple_HUD">
-            <game_stat_set game_type="tour" stat_set ="draw_default"></game_stat_set>
-            <game_stat_set game_type="ring" stat_set ="holdem_default"></game_stat_set>
+            <game_stat_set game_type="tour" stat_set ="draw_default"/>
+            <game_stat_set game_type="ring" stat_set ="holdem_default"/>
         </game>
         <game game_name="razz" aux="stud_mucked, Classic_HUD">
-            <game_stat_set game_type="all" stat_set ="stud_default"></game_stat_set>
+            <game_stat_set game_type="all" stat_set ="stud_default"/>
         </game>
-        <game game_name="omahahi" aux="mucked, Simple_HUD"> </game>
-        <game game_name="omahahilo" aux="mucked, Simple_HUD"> </game>
-        <game game_name="studhi" aux="stud_mucked, Simple_HUD"> </game>
-        <game game_name="studhilo" aux="stud_mucked, Simple_HUD"> </game>
-        <game game_name="27_3draw" aux="mucked, Simple_HUD"> </game>
-        <game game_name="27_1draw" aux="mucked, Simple_HUD"> </game>
-        <game game_name="badugi" aux="mucked, Simple_HUD"></game>
-        <game game_name="fivedraw" aux="mucked, Simple_HUD"> </game>
+        <game game_name="omahahi" aux="mucked, Simple_HUD"/>
+        <game game_name="omahahilo" aux="mucked, Simple_HUD"/>
+        <game game_name="studhi" aux="stud_mucked, Simple_HUD"/>
+        <game game_name="studhilo" aux="stud_mucked, Simple_HUD"/>
+        <game game_name="27_3draw" aux="mucked, Simple_HUD"/>
+        <game game_name="27_1draw" aux="mucked, Simple_HUD"/>
+        <game game_name="badugi" aux="mucked, Simple_HUD"/>
+        <game game_name="fivedraw" aux="mucked, Simple_HUD"/>
     </supported_games>
 
+
     <popup_windows>
-        <pu pu_name="default">
-            <pu_stat pu_stat_name="playername"> </pu_stat>
-            <pu_stat pu_stat_name="totalprofit"> </pu_stat>
-            <pu_stat pu_stat_name="profit100"> </pu_stat>
-            <pu_stat pu_stat_name="bbper100"> </pu_stat>
-            <pu_stat pu_stat_name="BBper100"> </pu_stat>
-            <pu_stat pu_stat_name="n"> </pu_stat>
-            <pu_stat pu_stat_name="vpip"> </pu_stat>
-            <pu_stat pu_stat_name="pfr"> </pu_stat>
-            <pu_stat pu_stat_name="three_B"> </pu_stat>
-            <pu_stat pu_stat_name="four_B"> </pu_stat>
-            <pu_stat pu_stat_name="cfour_B"> </pu_stat>
-            <pu_stat pu_stat_name="squeeze"> </pu_stat>
-            <pu_stat pu_stat_name="f_3bet"> </pu_stat>
-            <pu_stat pu_stat_name="f_4bet"> </pu_stat>
-            <pu_stat pu_stat_name="steal"> </pu_stat>
-            <pu_stat pu_stat_name="s_steal"> </pu_stat>
-            <pu_stat pu_stat_name="f_steal"> </pu_stat>
-            <pu_stat pu_stat_name="f_BB_steal"> </pu_stat>
-            <pu_stat pu_stat_name="f_SB_steal"> </pu_stat>
-            <pu_stat pu_stat_name="car0"> </pu_stat>
-            <pu_stat pu_stat_name="wmsd"> </pu_stat>
-            <pu_stat pu_stat_name="wtsd"> </pu_stat>
-            <pu_stat pu_stat_name="WMsF"> </pu_stat>
-            <pu_stat pu_stat_name="agg_fact"> </pu_stat>
-            <pu_stat pu_stat_name="a_freq1"> </pu_stat>
-            <pu_stat pu_stat_name="a_freq2"> </pu_stat>
-            <pu_stat pu_stat_name="a_freq3"> </pu_stat>
-            <pu_stat pu_stat_name="a_freq4"> </pu_stat>
-            <pu_stat pu_stat_name="agg_freq"> </pu_stat>
-            <pu_stat pu_stat_name="cbet"> </pu_stat>
-            <pu_stat pu_stat_name="cb1"> </pu_stat>
-            <pu_stat pu_stat_name="cb2"> </pu_stat>
-            <pu_stat pu_stat_name="cb3"> </pu_stat>
-            <pu_stat pu_stat_name="cb4"> </pu_stat>
-            <pu_stat pu_stat_name="ffreq1"> </pu_stat>
-            <pu_stat pu_stat_name="ffreq2"> </pu_stat>
-            <pu_stat pu_stat_name="ffreq3"> </pu_stat>
-            <pu_stat pu_stat_name="ffreq4"> </pu_stat>
+        <pu pu_name="std" pu_class="default">
+            <pu_stat pu_stat_name="playername"/>
+            <pu_stat pu_stat_name="totalprofit"/>
+            <pu_stat pu_stat_name="profit100"/>
+            <pu_stat pu_stat_name="bbper100"/>
+            <pu_stat pu_stat_name="BBper100"/>
+            <pu_stat pu_stat_name="n"/>
+            <pu_stat pu_stat_name="vpip"/>
+            <pu_stat pu_stat_name="pfr"/>
+            <pu_stat pu_stat_name="three_B"/>
+            <pu_stat pu_stat_name="four_B"/>
+            <pu_stat pu_stat_name="cfour_B"/>
+            <pu_stat pu_stat_name="squeeze"/>
+            <pu_stat pu_stat_name="f_3bet"/>
+            <pu_stat pu_stat_name="f_4bet"/>
+            <pu_stat pu_stat_name="steal"/>
+            <pu_stat pu_stat_name="s_steal"/>
+            <pu_stat pu_stat_name="f_steal"/>
+            <pu_stat pu_stat_name="f_BB_steal"/>
+            <pu_stat pu_stat_name="f_SB_steal"/>
+            <pu_stat pu_stat_name="car0"/>
+            <pu_stat pu_stat_name="wmsd"/>
+            <pu_stat pu_stat_name="wtsd"/>
+            <pu_stat pu_stat_name="WMsF"/>
+            <pu_stat pu_stat_name="agg_fact"/>
+            <pu_stat pu_stat_name="a_freq1"/>
+            <pu_stat pu_stat_name="a_freq2"/>
+            <pu_stat pu_stat_name="a_freq3"/>
+            <pu_stat pu_stat_name="a_freq4"/>
+            <pu_stat pu_stat_name="agg_freq"/>
+            <pu_stat pu_stat_name="cbet"/>
+            <pu_stat pu_stat_name="cb1"/>
+            <pu_stat pu_stat_name="cb2"/>
+            <pu_stat pu_stat_name="cb3"/>
+            <pu_stat pu_stat_name="cb4"/>
+            <pu_stat pu_stat_name="ffreq1"/>
+            <pu_stat pu_stat_name="ffreq2"/>
+            <pu_stat pu_stat_name="ffreq3"/>
+            <pu_stat pu_stat_name="ffreq4"/>
         </pu>
     </popup_windows>
+
 
     <aux_windows>
         <!--
@@ -480,7 +485,6 @@
         The parameter elements for each <aw> are specific to that handler
         and can be extended without changing Configuration.Config()
         -->
-        
         <aw name="stud_mucked" class="Stud_mucked" cols="11" deck="Cards01.png" module="Mucked" rows="8"> </aw>
         <aw name="Hello" class="Hello" module="Hello"> </aw>
         <aw name="Hello_menu" class="Hello_Menu" module="Hello"> </aw>
@@ -502,75 +506,75 @@
 
         <ls name="default">
             <layout height="546" max="6" width="792">
-                <location seat="1" x="555" y="169"> </location>
-                <location seat="2" x="572" y="276"> </location>
-                <location seat="3" x="363" y="348"> </location>
-                <location seat="4" x="150" y="273"> </location>
-                <location seat="5" x="150" y="169"> </location>
-                <location seat="6" x="363" y="113"> </location>
-                <location common="1" x="323" y="232"> </location>
+                <location seat="1" x="555" y="169"/>
+                <location seat="2" x="572" y="276"/>
+                <location seat="3" x="363" y="348"/>
+                <location seat="4" x="150" y="273"/>
+                <location seat="5" x="150" y="169"/>
+                <location seat="6" x="363" y="113"/>
+                <location common="1" x="323" y="232"/>
             </layout>
             <layout height="546" max="9" width="792">
-                <location seat="1" x="486" y="113"> </location>
-                <location seat="2" x="555" y="169"> </location>
-                <location seat="3" x="572" y="276"> </location>
-                <location seat="4" x="522" y="345"> </location>
-                <location seat="5" x="363" y="348"> </location>
-                <location seat="6" x="217" y="341"> </location>
-                <location seat="7" x="150" y="273"> </location>
-                <location seat="8" x="150" y="169"> </location>
-                <location seat="9" x="230" y="115"> </location>
-                <location common="1" x="323" y="232"> </location>
+                <location seat="1" x="486" y="113"/>
+                <location seat="2" x="555" y="169"/>
+                <location seat="3" x="572" y="276"/>
+                <location seat="4" x="522" y="345"/>
+                <location seat="5" x="363" y="348"/>
+                <location seat="6" x="217" y="341"/>
+                <location seat="7" x="150" y="273"/>
+                <location seat="8" x="150" y="169"/>
+                <location seat="9" x="230" y="115"/>
+                <location common="1" x="323" y="232"/>
             </layout>
             <layout height="546" max="10" width="792">
-                <location seat="1" x="486" y="113"> </location>
-                <location seat="2" x="499" y="138"> </location>
-                <location seat="3" x="522" y="212"> </location>
-                <location seat="4" x="501" y="281"> </location>
-                <location seat="5" x="402" y="323"> </location>
-                <location seat="6" x="243" y="311"> </location>
-                <location seat="7" x="203" y="262"> </location>
-                <location seat="8" x="170" y="185"> </location>
-                <location seat="9" x="183" y="128"> </location>
-                <location seat="10" x="213" y="86"> </location>
-                <location common="1" x="317" y="237"> </location>
+                <location seat="1" x="486" y="113"/>
+                <location seat="2" x="499" y="138"/>
+                <location seat="3" x="522" y="212"/>
+                <location seat="4" x="501" y="281"/>
+                <location seat="5" x="402" y="323"/>
+                <location seat="6" x="243" y="311"/>
+                <location seat="7" x="203" y="262"/>
+                <location seat="8" x="170" y="185"/>
+                <location seat="9" x="183" y="128"/>
+                <location seat="10" x="213" y="86"/>
+                <location common="1" x="317" y="237"/>
             </layout>
         </ls>
         
         <ls name="ps classic">
             <layout height="546" max="6" width="792">
-                <location seat="1" x="555" y="169"> </location>
-                <location seat="2" x="572" y="276"> </location>
-                <location seat="3" x="363" y="348"> </location>
-                <location seat="4" x="150" y="273"> </location>
-                <location seat="5" x="150" y="169"> </location>
-                <location seat="6" x="363" y="113"> </location>
-                <location common="1" x="323" y="232"> </location>
+                <location seat="1" x="555" y="169"/>
+                <location seat="2" x="572" y="276"/>
+                <location seat="3" x="363" y="348"/>
+                <location seat="4" x="150" y="273"/>
+                <location seat="5" x="150" y="169"/>
+                <location seat="6" x="363" y="113"/>
+                <location common="1" x="323" y="232"/>
             </layout>
             <layout height="546" max="9" width="792">
-                <location seat="1" x="486" y="113"> </location>
-                <location seat="2" x="555" y="169"> </location>
-                <location seat="3" x="572" y="276"> </location>
-                <location seat="4" x="522" y="345"> </location>
-                <location seat="5" x="363" y="348"> </location>
-                <location seat="6" x="217" y="341"> </location>
-                <location seat="7" x="150" y="273"> </location>
-                <location seat="8" x="150" y="169"> </location>
-                <location seat="9" x="230" y="115"> </location>
-                <location common="1" x="323" y="232"> </location>
+                <location seat="1" x="486" y="113"/>
+                <location seat="2" x="555" y="169"/>
+                <location seat="3" x="572" y="276"/>
+                <location seat="4" x="522" y="345"/>
+                <location seat="5" x="363" y="348"/>
+                <location seat="6" x="217" y="341"/>
+                <location seat="7" x="150" y="273"/>
+                <location seat="8" x="150" y="169"/>
+                <location seat="9" x="230" y="115"/>
+                <location common="1" x="323" y="232"/>
             </layout>
             <layout height="546" max="10" width="792">
-                <location seat="1" x="486" y="113"> </location>
-                <location seat="2" x="499" y="138"> </location>
-                <location seat="3" x="522" y="212"> </location>
-                <location seat="4" x="501" y="281"> </location>
-                <location seat="5" x="402" y="323"> </location>
-                <location seat="6" x="243" y="311"> </location>
-                <location seat="7" x="203" y="262"> </location>
-                <location seat="8" x="170" y="185"> </location>
-                <location seat="9" x="183" y="128"> </location>
-                <location seat="10" x="213" y="86"> </location>
-                <location common="1" x="317" y="237"> </location>
+                <location seat="1" x="486" y="113"/>
+                <location seat="2" x="499" y="138"/>
+                <location seat="3" x="522" y="212"/>
+                <location seat="4" x="501" y="281"/>
+                <location seat="5" x="402" y="323"/>
+                <location seat="6" x="243" y="311"/>
+                <location seat="7" x="203" y="262"/>
+                <location seat="8" x="170" y="185"/>
+                <location seat="9" x="183" y="128"/>
+                <location seat="10" x="213" y="86"/>
+                <location common="1" x="317" y="237"/>
             </layout>
         </ls>
     </layout_sets>
@@ -578,44 +582,45 @@
 
     <stat_sets>
         <ss name="draw_default" cols="3" rows="2" xpad="1" ypad="0">
-            <stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" popup="std" row="0" stat_name="vpip" tip="tip1"/>
+            <stat click="tog_decorate" col="1" popup="std" row="0" stat_name="pfr" tip="tip1"/>
+            <stat click="tog_decorate" col="2" popup="std" row="0" stat_name="ffreq1" tip="tip1"/>
+            <stat click="tog_decorate" col="0" popup="std" row="1" stat_name="n" tip="tip1"/>
+            <stat click="tog_decorate" col="1" popup="std" row="1" stat_name="wtsd" tip="tip1"/>
+            <stat click="tog_decorate" col="2" popup="std" row="1" stat_name="wmsd" tip="tip1"/>
         </ss>
         
         <ss name="stud_default" cols="2" rows="3" xpad="1" ypad="0">
-            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
+            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="std" row="0" stat_name="playershort" tip="tip1"/>
+            <stat click="tog_decorate" col="1" popup="std" row="0" stat_name="n" tip="tip1"/>
+            <stat click="tog_decorate" col="0" popup="std" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"/>
+            <stat click="tog_decorate" col="1" popup="std" row="1" stat_name="pfr" tip="tip1"/>
+            <stat click="tog_decorate" col="0" popup="std" row="2" stat_name="saw_f" tip="tip1"/>
+            <stat click="tog_decorate" col="1" popup="std" row="2" stat_name="ffreq1" tip="tip1"/>
         </ss>
         
-        <ss name="omaha_default" cols="2" rows="3" xpad="1" ypad="0">        
-            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="0" stat_name="playershort" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="0" stat_name="n" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="1" stat_name="pfr" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="saw_f" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="ffreq1" tip="tip1"> </stat>
+        <ss name="omaha_default" cols="2" rows="3" xpad="1" ypad="0">
+            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="std" row="0" stat_name="playershort" tip="tip1"/>
+            <stat click="tog_decorate" col="1" popup="std" row="0" stat_name="n" tip="tip1"/>
+            <stat click="tog_decorate" col="0" popup="std" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"/>
+            <stat click="tog_decorate" col="1" popup="std" row="1" stat_name="pfr" tip="tip1"/>
+            <stat click="tog_decorate" col="0" popup="std" row="2" stat_name="saw_f" tip="tip1"/>
+            <stat click="tog_decorate" col="1" popup="std" row="2" stat_name="ffreq1" tip="tip1"/>
         </ss>
         
-        <ss name="holdem_default" cols="3" rows="3" xpad="1" ypad="0">          
-            <stat click="tog_decorate" col="0" popup="default" row="0" stat_hicolor="#F05000" stat_hith="40" stat_locolor="#408000" stat_loth="25" stat_name="vpip" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="0" stat_hicolor="#F05000" stat_hith="35" stat_locolor="#408000" stat_loth="20" stat_name="pfr" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="0" stat_hicolor="#F05000" stat_hith="13" stat_locolor="#408000" stat_loth="4" stat_name="three_B" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="default" row="1" stat_name="playershort" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="1" stat_name="cb1" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="0" popup="default" row="2" stat_name="wtsd" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="1" popup="default" row="2" stat_name="steal" tip="tip1"> </stat>
-            <stat click="tog_decorate" col="2" popup="default" row="2" stat_hicolor="#408000" stat_hith="0" stat_locolor="#F05000" stat_loth="0" stat_name="totalprofit" tip="tip1"> </stat>
-        </ss>          
+        <ss name="holdem_default" cols="3" rows="3" xpad="1" ypad="0">
+            <stat click="tog_decorate" col="0" popup="std" row="0" stat_hicolor="#F05000" stat_hith="40" stat_locolor="#408000" stat_loth="25" stat_name="vpip" tip="tip1"/>
+            <stat click="tog_decorate" col="1" popup="std" row="0" stat_hicolor="#F05000" stat_hith="35" stat_locolor="#408000" stat_loth="20" stat_name="pfr" tip="tip1"/>
+            <stat click="tog_decorate" col="2" popup="std" row="0" stat_hicolor="#F05000" stat_hith="13" stat_locolor="#408000" stat_loth="4" stat_name="three_B" tip="tip1"/>
+            <stat click="tog_decorate" col="0" popup="std" row="1" stat_name="n" tip="tip1"/>
+            <stat click="tog_decorate" col="1" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="std" row="1" stat_name="playershort" tip="tip1"/>
+            <stat click="tog_decorate" col="2" popup="std" row="1" stat_name="cb1" tip="tip1"/>
+            <stat click="tog_decorate" col="0" popup="std" row="2" stat_name="wtsd" tip="tip1"/>
+            <stat click="tog_decorate" col="1" popup="std" row="2" stat_name="steal" tip="tip1"/>
+            <stat click="tog_decorate" col="2" popup="std" row="2" stat_hicolor="#408000" stat_hith="0" stat_locolor="#F05000" stat_loth="0" stat_name="totalprofit" tip="tip1"/>
+        </ss>
     </stat_sets>
+
 
     <hhcs>
         <hhc site="PokerStars" converter="PokerStarsToFpdb" summaryImporter="PokerStarsSummary"/>
@@ -637,9 +642,12 @@
         <hhc site="BetOnline" converter="BetOnlineToFpdb"/>
     </hhcs>
 
+
     <raw_hands save="none" compression="none"/>
 
+
     <raw_tourneys save="none" compression="none"/>
+
 
     <supported_databases>
         <!-- <database db_name="fpdb" db_server="mysql" db_ip="localhost" db_user="fpdb" db_pass="YOUR MYSQL PASSWORD"></database> -->

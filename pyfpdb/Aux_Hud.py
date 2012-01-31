@@ -181,7 +181,7 @@ class Simple_table_mw(Mucked.Seat_Window):
 
         eb = gtk.EventBox()
         try: lab=gtk.Label(self.menu_label)
-        except: lab=gtk.Label("defmenu")
+        except: lab=gtk.Label("fpdb menu")
 
         eb.modify_bg(gtk.STATE_NORMAL, self.aw.bgcolor)
         eb.modify_fg(gtk.STATE_NORMAL, self.aw.fgcolor)
@@ -195,8 +195,9 @@ class Simple_table_mw(Mucked.Seat_Window):
         self.create_menu_items(self.menu)
         eb.connect_object("button-press-event", self.button_press_cb, self.menu)
 
-        (x, y) = self.hud.layout.common
-        self.move(x + self.hud.table.x, y + self.hud.table.y)
+        self.move(self.hud.table.x + self.hud.site_parameters["hud_menu_xshift"]
+                , self.hud.table.y + self.hud.site_parameters["hud_menu_yshift"])
+                
         self.menu.show_all()
         self.show_all()
         self.hud.table.topify(self)

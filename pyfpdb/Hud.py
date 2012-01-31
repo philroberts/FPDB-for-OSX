@@ -83,11 +83,11 @@ class Hud:
         self.layout_set = config.get_layout(self.table.site, self.game_type)
         
         if self.layout_set == None:
-            sys.stderr.write(_("No layout found for %s games for site %s."+"\n") % (self.game_type, self.table.site))
+            log.error(_("No layout found for %s games for site %s."+"\n") % (self.game_type, self.table.site))
             return
             
         if self.max not in self.layout_set.layout:
-            sys.stderr.write(_("No layout found for %d-max %s games for site %s."+"\n") % (self.max, self.game_type, self.table.site))
+            log.error(_("No layout found for %d-max %s games for site %s."+"\n") % (self.max, self.game_type, self.table.site))
             return
         else:
             self.layout = self.layout_set.layout[self.max]
@@ -209,6 +209,9 @@ class Hud:
             try:
                 fav_seat = self.site_parameters["fav_seat"][self.max]
                 actual_seat = self.get_actual_seat(config.supported_sites[self.table.site].screen_name)
+                if not actual_seat:
+                    log.error(_("Error finding hero seat."))
+                    return adj
                 for i in xrange(0, self.max + 1):
                     j = actual_seat + i
                     if j > self.max:
@@ -217,15 +220,14 @@ class Hud:
                     if adj[j] > self.max:
                         adj[j] = adj[j] - self.max
             except Exception, inst:
-                sys.stderr.write(_("Exception in %s") % "Hud.adj_seats")
-                sys.stderr.write("Error:" + (" %s") % inst)           # __str__ allows args to printed directly
+                log.error(_("Exception in %s") % "Hud.adj_seats")
+                log.error("Error:" + (" %s") % inst)           # __str__ allows args to printed directly
         return adj
 
-    def get_actual_seat(self, name):
+    def get_actual_seat(self, heroname):
         for key in self.stat_dict:
-            if self.stat_dict[key]['screen_name'] == name:
+            if self.stat_dict[key]['screen_name'] == heroname:
                 return self.stat_dict[key]['seat']
-        sys.stderr.write(_("Error finding actual seat."))
 
     def create(self, hand, config, stat_dict, cards):
 #    update this hud, to the stats and players as of "hand"
