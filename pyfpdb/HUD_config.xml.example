@@ -144,7 +144,7 @@
     aggregate_hero_tourney_stats="False"
     hero_aggregation_level_multiplier="1"
 
-    label="R-click FPDB Menu L-Drag to Move"
+    label="FPDB"
     />
 
 
@@ -417,7 +417,7 @@
         The parameter elements for each <game> can be extended 
         without changing Configuration.Config()
         -->
-        <game game_name="holdem" aux="Simple_HUD">
+        <game game_name="holdem" aux="mucked, Classic_HUD">
             <game_stat_set game_type="tour" stat_set ="draw_default"/>
             <game_stat_set game_type="ring" stat_set ="holdem_default"/>
         </game>
@@ -485,13 +485,24 @@
         The parameter elements for each <aw> are specific to that handler
         and can be extended without changing Configuration.Config()
         -->
-        <aw name="stud_mucked" class="Stud_mucked" cols="11" deck="Cards01.png" module="Mucked" rows="8"> </aw>
-        <aw name="Hello" class="Hello" module="Hello"> </aw>
-        <aw name="Hello_menu" class="Hello_Menu" module="Hello"> </aw>
-        <aw name="Hello_plus" class="Hello_plus" module="Hello"> </aw>
-        <aw name="mucked" card_ht="28" class="Flop_Mucked" deck="Cards01.png" module="Mucked" opacity="0.7" timeout="5"> </aw>
-        <aw name="Simple_HUD" class="Simple_HUD" bgcolor="#000000" fgcolor="#FFFFFF" font="Sans" font_size="8" module="Aux_Hud" opacity="0.7"> </aw>
-        <aw name="Classic_HUD" class="Classic_HUD" bgcolor="#000000" fgcolor="#FFFFFF" font="Sans" font_size="8" module="Aux_Classic_Hud" opacity="0.7"> </aw>
+        
+        <!-- HUD aux's -->
+        <aw name="Simple_HUD" module="Aux_Hud" class="Simple_HUD"  
+                bgcolor="#000000" fgcolor="#FFFFFF" font="Sans" font_size="8" opacity="0.7"/>
+        <aw name="Classic_HUD" module="Aux_Classic_Hud" class="Classic_HUD" 
+                bgcolor="#000000" fgcolor="#FFFFFF" font="Sans" font_size="8" opacity="0.7"/>
+
+        <!-- Mucked card aux's -->
+        <aw name="stud_mucked" module="Mucked" class="Stud_mucked"
+                cols="11" deck="Cards01.png" rows="8"/>
+        <aw name="mucked" module="Mucked" class="Flop_Mucked" 
+                card_ht="28" deck="Cards01.png" opacity="1.0" timeout="5"/>
+
+        <!-- testing aux's -->
+        <aw name="Hello" module="Hello" class="Hello" />
+        <aw name="Hello_menu" module="Hello" class="Hello_Menu" />
+        <aw name="Hello_plus" module="Hello" class="Hello_plus" />
+        
     </aux_windows>
 
 
@@ -581,43 +592,43 @@
 
 
     <stat_sets>
-        <ss name="draw_default" cols="3" rows="2" xpad="1" ypad="0">
-            <stat click="tog_decorate" col="0" popup="std" row="0" stat_name="vpip" tip="tip1"/>
-            <stat click="tog_decorate" col="1" popup="std" row="0" stat_name="pfr" tip="tip1"/>
-            <stat click="tog_decorate" col="2" popup="std" row="0" stat_name="ffreq1" tip="tip1"/>
-            <stat click="tog_decorate" col="0" popup="std" row="1" stat_name="n" tip="tip1"/>
-            <stat click="tog_decorate" col="1" popup="std" row="1" stat_name="wtsd" tip="tip1"/>
-            <stat click="tog_decorate" col="2" popup="std" row="1" stat_name="wmsd" tip="tip1"/>
+        <ss name="draw_default" rows="2" cols="3" xpad="1" ypad="0">
+            <stat row="0" col="0" stat_name="vpip" popup="std" tip="tip1" click="tog_decorate"/>
+            <stat row="0" col="1" stat_name="pfr" popup="std" tip="tip1" click="tog_decorate"/>
+            <stat row="0" col="2" stat_name="ffreq1" popup="std" tip="tip1" click="tog_decorate"/>
+            <stat row="1" col="0" stat_name="n" popup="std" tip="tip1" click="tog_decorate"/>
+            <stat row="1" col="1" stat_name="wtsd" popup="std" tip="tip1" click="tog_decorate"/>
+            <stat row="1" col="2" stat_name="wmsd" popup="std" tip="tip1" click="tog_decorate"/>
         </ss>
         
-        <ss name="stud_default" cols="2" rows="3" xpad="1" ypad="0">
-            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="std" row="0" stat_name="playershort" tip="tip1"/>
-            <stat click="tog_decorate" col="1" popup="std" row="0" stat_name="n" tip="tip1"/>
-            <stat click="tog_decorate" col="0" popup="std" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"/>
-            <stat click="tog_decorate" col="1" popup="std" row="1" stat_name="pfr" tip="tip1"/>
-            <stat click="tog_decorate" col="0" popup="std" row="2" stat_name="saw_f" tip="tip1"/>
-            <stat click="tog_decorate" col="1" popup="std" row="2" stat_name="ffreq1" tip="tip1"/>
+        <ss name="stud_default" rows="3" cols="2" xpad="1" ypad="0">
+            <stat  row="0" col="0" stat_name="playershort" popup="std" hudcolor="#98FFB0" hudprefix="" hudsuffix="" tip="tip1" click="tog_decorate"/>
+            <stat  row="0" col="1" stat_name="n" popup="std" tip="tip1" click="tog_decorate"/>
+            <stat  row="1" col="0" stat_name="vpip" popup="std" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1" click="tog_decorate"/>
+            <stat  row="1" col="1" stat_name="pfr" popup="std" tip="tip1" click="tog_decorate"/>
+            <stat  row="2" col="0" stat_name="saw_f" popup="std" tip="tip1" click="tog_decorate"/>
+            <stat  row="2" col="1" stat_name="ffreq1" popup="std" tip="tip1" click="tog_decorate"/>
         </ss>
         
-        <ss name="omaha_default" cols="2" rows="3" xpad="1" ypad="0">
-            <stat click="tog_decorate" col="0" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="std" row="0" stat_name="playershort" tip="tip1"/>
-            <stat click="tog_decorate" col="1" popup="std" row="0" stat_name="n" tip="tip1"/>
-            <stat click="tog_decorate" col="0" popup="std" row="1" stat_name="vpip" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1"/>
-            <stat click="tog_decorate" col="1" popup="std" row="1" stat_name="pfr" tip="tip1"/>
-            <stat click="tog_decorate" col="0" popup="std" row="2" stat_name="saw_f" tip="tip1"/>
-            <stat click="tog_decorate" col="1" popup="std" row="2" stat_name="ffreq1" tip="tip1"/>
+        <ss name="omaha_default" rows="3" cols="2" xpad="1" ypad="0">
+            <stat  row="0" col="0" stat_name="playershort" popup="std" hudcolor="#98FFB0" hudprefix="" hudsuffix="" tip="tip1" click="tog_decorate"/>
+            <stat  row="0" col="1" stat_name="n" popup="std" tip="tip1" click="tog_decorate"/>
+            <stat  row="1" col="0" stat_name="vpip" popup="std" stat_loth="20" stat_locolor ="#408000" stat_hith="40" stat_hicolor ="#F05000" tip="tip1" click="tog_decorate"/>
+            <stat  row="1" col="1" stat_name="pfr" popup="std" tip="tip1" click="tog_decorate"/>
+            <stat  row="1" col="0" stat_name="saw_f" popup="std" tip="tip1" click="tog_decorate"/>
+            <stat  row="1" col="1" stat_name="ffreq1" popup="std" tip="tip1" click="tog_decorate"/>
         </ss>
         
-        <ss name="holdem_default" cols="3" rows="3" xpad="1" ypad="0">
-            <stat click="tog_decorate" col="0" popup="std" row="0" stat_hicolor="#F05000" stat_hith="40" stat_locolor="#408000" stat_loth="25" stat_name="vpip" tip="tip1"/>
-            <stat click="tog_decorate" col="1" popup="std" row="0" stat_hicolor="#F05000" stat_hith="35" stat_locolor="#408000" stat_loth="20" stat_name="pfr" tip="tip1"/>
-            <stat click="tog_decorate" col="2" popup="std" row="0" stat_hicolor="#F05000" stat_hith="13" stat_locolor="#408000" stat_loth="4" stat_name="three_B" tip="tip1"/>
-            <stat click="tog_decorate" col="0" popup="std" row="1" stat_name="n" tip="tip1"/>
-            <stat click="tog_decorate" col="1" hudcolor="#98FFB0" hudprefix="" hudsuffix="" popup="std" row="1" stat_name="playershort" tip="tip1"/>
-            <stat click="tog_decorate" col="2" popup="std" row="1" stat_name="cb1" tip="tip1"/>
-            <stat click="tog_decorate" col="0" popup="std" row="2" stat_name="wtsd" tip="tip1"/>
-            <stat click="tog_decorate" col="1" popup="std" row="2" stat_name="steal" tip="tip1"/>
-            <stat click="tog_decorate" col="2" popup="std" row="2" stat_hicolor="#408000" stat_hith="0" stat_locolor="#F05000" stat_loth="0" stat_name="totalprofit" tip="tip1"/>
+        <ss name="holdem_default" rows="3" cols="3" xpad="1" ypad="0">
+            <stat  row="0" col="0" stat_name="vpip" popup="std" stat_hicolor="#F05000" stat_hith="40" stat_locolor="#408000" stat_loth="25" tip="tip1" click="tog_decorate"/>
+            <stat  row="0" col="1" stat_name="pfr" popup="std" stat_hicolor="#F05000" stat_hith="35" stat_locolor="#408000" stat_loth="20" tip="tip1" click="tog_decorate"/>
+            <stat  row="0" col="2" stat_name="three_B" popup="std" stat_hicolor="#F05000" stat_hith="13" stat_locolor="#408000" stat_loth="4" tip="tip1" click="tog_decorate"/>
+            <stat  row="1" col="0" stat_name="n" popup="std" tip="tip1" click="tog_decorate"/>
+            <stat  row="1" col="1" stat_name="playershort" popup="std" hudcolor="#98FFB0" hudprefix="" hudsuffix="" tip="tip1" click="tog_decorate"/>
+            <stat  row="1" col="2" stat_name="cb1" popup="std" tip="tip1" click="tog_decorate"/>
+            <stat  row="2" col="0" stat_name="wtsd" popup="std" tip="tip1" click="tog_decorate"/>
+            <stat  row="2" col="1" stat_name="steal" popup="std" tip="tip1" click="tog_decorate"/>
+            <stat  row="2" col="2" stat_name="totalprofit" popup="std" stat_hicolor="#408000" stat_hith="0" stat_locolor="#F05000" stat_loth="0" tip="tip1" click="tog_decorate"/>
         </ss>
     </stat_sets>
 

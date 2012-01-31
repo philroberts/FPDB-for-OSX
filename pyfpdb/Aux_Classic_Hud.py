@@ -277,7 +277,7 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
         menu.append(item5)
         maxSeatsMenu = gtk.Menu()
         item5.set_submenu(maxSeatsMenu)
-        for i in (sorted(self.aw.params['layout'])):
+        for i in (sorted(self.hud.layout_set.layout)):
             item = gtk.MenuItem('%d-max' % i)
             item.ms = i
             maxSeatsMenu.append(item)

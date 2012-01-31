@@ -29,7 +29,6 @@ _ = L10n.init_translation()
 #    Standard Library modules
 import sys
 import os
-import traceback
 import thread
 import time
 import string
@@ -111,6 +110,7 @@ class HUD_main(object):
             self.vb.add(self.label)
             self.main_window.add(self.vb)
             self.main_window.set_title("HUD Main Window")
+            #FIXME - hardcoded paths need to be replaced with config. constants.
             cards = os.path.join(os.getcwd(), '..','gfx','fpdb-cards.png')
             if os.path.exists(cards):
                 self.main_window.set_icon_from_file(cards)

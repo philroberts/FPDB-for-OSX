@@ -28,10 +28,7 @@ import L10n
 _ = L10n.get_translation()
 
 #    Standard Library modules
-import os
-import sys
 import string
-
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("hud")
