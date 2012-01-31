@@ -128,7 +128,7 @@ class Merge(HandHistoryConverter):
                         'Anaconda Room - Turbo Heads Up'        : {'buyIn': 110, 'fee': 4.5,  'currency': 'USD', 'seats': 2,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (220,)},
                         'Anteater Room'                         : {'buyIn': 10,  'fee': 1,    'currency': 'USD', 'seats': 6,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (42, 18)},
                         'Antelope Room'                         : {'buyIn': 5,   'fee': 0.5,  'currency': 'USD', 'seats': 6,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (21, 9)},
-                        'Arctic Fox Room - Heads Up'            : {'buyIn': 2,   'fee': 0.1, ' currency': 'USD', 'seats': 2,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (4,)},
+                        'Arctic Fox Room - Heads Up'            : {'buyIn': 2,   'fee': 0.1, 'currency': 'USD', 'seats': 2,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (4,)},
                         'Armadillo Room'                        : {'buyIn': 20,  'fee': 2,    'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (100, 60, 40)},
                         'Aussie Millions - Super Turbo Satelite': {'buyIn': 10,  'fee': 1,    'currency': 'USD', 'seats': 6,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (60,)},
                         'Axolotyl Room - Heads Up'              : {'buyIn': 30,  'fee': 1.5,  'currency': 'USD', 'seats': 2,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (60,)},
