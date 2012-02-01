@@ -87,7 +87,7 @@ try:
     VERSION = subprocess.Popen(["git", "describe", "--tags", "--dirty"], stdout=subprocess.PIPE).communicate()[0]
     VERSION = VERSION[:-1]
 except:
-    VERSION = "0.29.902 + git"
+    VERSION = "0.29.903 + git"
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
