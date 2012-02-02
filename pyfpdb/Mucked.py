@@ -482,20 +482,16 @@ class Aux_Seats(Aux_Window):
 
     def save_layout(self, *args):
         """Save new layout back to the aux element in the config file."""
-        print "sl ",self
-        new_locs = {}
-#        print "adj =", self.adj
-        width = self.hud.table.width
-        height = self.hud.table.height
-        for (i, pos) in self.positions.iteritems():
-            if i != 'common':
-#                new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x) * 1000 / witdh, (pos[1] - self.hud.table.y) * 1000 / height)
-                new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y) )
-            else:
-#                new_locs[i] = ((pos[0] - self.hud.table.x) * 1000 / witdh, (pos[1] - self.hud.table.y) * 1000 / height)
-                new_locs[i] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y))
+        """ this method is  overridden in the specific aux because
+        the HUD's controlling stat boxes set the seat positions and
+        the mucked card aux's control the common location
+        This class method would only be valid for an aux which has full control
+        over all seat and common locations
+        """
+        pass
+        #print ("Aux_Seats.save_layout called - this shouldn't happen")
+        #print ("save_layout method should be handled in the aux")
 
-        self.config.save_layout_set(self.hud.layout_set, self.hud.max, width, height, locations = new_locs)
 
     def configure_event_cb(self, widget, event, i, *args):
         if (i): self.positions[i] = widget.get_position()
@@ -523,8 +519,10 @@ class Flop_Mucked(Aux_Seats):
         w.set_focus(None)
         w.set_accept_focus(False)
         w.connect("configure_event", self.configure_event_cb, "common")
-        self.positions["common"] = self.card_positions((x * self.hud.table.width) / 1000, self.hud.table.x, (y * self.hud.table.height) /1000, self.hud.table.y)
+        #self.positions["common"] = self.card_positions((x * self.hud.table.width) / 1000, self.hud.table.x, (y * self.hud.table.height) /1000, self.hud.table.y)
+        self.positions["common"] = self.card_positions(x, self.hud.table.x, y, self.hud.table.y)
         w.move(self.positions["common"][0], self.positions["common"][1])
+        print self.positions["common"]
         if self.params.has_key('opacity'):
             w.set_opacity(float(self.params['opacity']))
 #        self.create_contents(w, "common")
@@ -539,6 +537,7 @@ class Flop_Mucked(Aux_Seats):
         container.eb.add(container.seen_cards)
 
     def update_contents(self, container, i):
+
         if not self.hud.cards.has_key(i): return
         cards = self.hud.cards[i]
         n_cards = self.has_cards(cards)
@@ -570,6 +569,20 @@ class Flop_Mucked(Aux_Seats):
                 # sc: had KeyError here with new table so added id != None test as a guess:
                 if id is not None:
                     self.m_windows[i].eb.set_tooltip_text(self.hud.stat_dict[id]['screen_name'])
+                    
+    def save_layout(self, *args):
+        """Save new common position back to the layout element in the config file."""
+        new_locs = {}
+        for (i, pos) in self.positions.iteritems():
+            if i == 'common':
+                new_locs[i] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y))
+            else:
+                #seat positions are owned by the aux controlling the stat block
+                # we share the locations from that aux, so don't write-back their
+                # locations here
+                pass
+
+        self.config.save_layout_set(self.hud.layout_set, self.hud.max, new_locs, width=None, height=None)
 
     def update_gui(self, new_hand_id):
         """Prepare and show the mucked cards."""

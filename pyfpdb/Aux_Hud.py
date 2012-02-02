@@ -127,6 +127,22 @@ class Simple_HUD(Mucked.Aux_Seats):
         return self.aw_mw_type(self.hud, aw = self)
 #        return Simple_table_mw(self.hud, aw = self)
 
+    def save_layout(self, *args):
+        """Save new layout back to the aux element in the config file."""
+
+        new_locs = {}
+        width = self.hud.table.width
+        height = self.hud.table.height
+        for (i, pos) in self.positions.iteritems():
+            if i != 'common':
+                new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y) )
+            else:
+                #common not used in the aux, don't alter its location
+                pass
+
+        self.config.save_layout_set(self.hud.layout_set, self.hud.max, new_locs ,width, height)
+
+
 class Simple_stat(object):
     """A simple class for displaying a single stat."""
     def __init__(self, stat, seat, popup, game_stat_config=None, aw=None):
@@ -135,7 +151,7 @@ class Simple_stat(object):
         self.eb.aw_seat = seat
         self.eb.aw_popup = popup
         self.eb.stat_dict = None
-        self.lab = Simple_label("xxx") # xxx is used as initial value because labels don't shrink
+        self.lab = Simple_label("xxx") # xxx is used as initial value because longer labels don't shrink
         self.eb.add(self.lab)
         self.widget = self.eb
         self.stat_dict = None
@@ -242,6 +258,7 @@ class Simple_table_mw(Mucked.Seat_Window):
 #    This calls the save_layout method of the Hud object. The Hud object 
 #    then calls the save_layout method in each installed AW.
         self.hud.save_layout()
+
 
     def kill(self, event):
         self.hud.parent.kill_hud(event, self.hud.table.key)

@@ -1135,13 +1135,13 @@ class Config:
     #end def editStats
 
 
-    def save_layout_set(self, ls, max, width, height, locations):
+    def save_layout_set(self, ls, max, locations, width=None, height=None):
         
         print "saving layout =", ls.name, " ", str(max), "Max ", str(locations)
         ls_node = self.get_layout_set_node(ls.name)
         layout_node = self.get_layout_node(ls_node, max)
-        layout_node.setAttribute("width", str(width))
-        layout_node.setAttribute("height", str(height))
+        if width: layout_node.setAttribute("width", str(width))
+        if height: layout_node.setAttribute("height", str(height))
         for (i, pos) in locations.iteritems():
             location_node = self.get_location_node(layout_node, i)
             location_node.setAttribute("x", str( locations[i][0] ))
