@@ -4834,9 +4834,9 @@ class Sql:
         ####################################
         self.query['handsInRange'] = """
             select h.id
-                from hands h
+                from Hands h
                 join HandsPlayers hp on h.id = hp.handId
-                join GameTypes gt on gt.id = h.gametypeId
+                join Gametypes gt on gt.id = h.gametypeId
             where h.startTime <datetest>
                 and hp.playerId in <player_test>
                 <game_test>
@@ -4848,7 +4848,7 @@ class Sql:
         ####################################
         self.query['singleHand'] = """
                  SELECT h.*
-                    FROM hands h
+                    FROM Hands h
                     WHERE id = %s"""
 
         ####################################
@@ -6457,7 +6457,7 @@ class Sql:
         if db_server == 'mysql':
             self.query['lockForInsert'] = """
                 lock tables Hands write, HandsPlayers write, HandsActions write, Players write
-                          , HudCache write, GameTypes write, Sites write, Tourneys write
+                          , HudCache write, Gametypes write, Sites write, Tourneys write
                           , TourneysPlayers write, TourneyTypes write, Autorates write
                 """
         elif db_server == 'postgresql':
