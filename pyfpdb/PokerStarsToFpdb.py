@@ -504,9 +504,11 @@ class PokerStars(HandHistoryConverter):
             hand.addPlayerRank (rankothers.group('PNAME'),0,rankothers.group('RANK'))
 
     def readCollectPot(self,hand):
+        i=0
         for m in self.re_CollectPot.finditer(hand.handText):
             hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
-        else:
+            i+=1
+        if i==0:
             for m in self.re_CollectPot2.finditer(hand.handText):
                 hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
 
