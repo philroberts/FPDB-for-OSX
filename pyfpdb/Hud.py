@@ -35,8 +35,6 @@ log = logging.getLogger("hud")
 
 #    FreePokerTools modules
 import Configuration
-import Mucked
-import Database
 
 
 def importName(module_name, name):
@@ -244,4 +242,3 @@ class Hud:
 
     def update(self, hand, config):
         self.hand = hand   # this is the last hand, so it is available later
-

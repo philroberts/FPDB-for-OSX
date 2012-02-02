@@ -266,9 +266,6 @@ class Layout:
     def __init__(self, node):
 
         self.max    = int( node.getAttribute('max') )
-        if node.hasAttribute('fav_seat'): self.fav_seat = int( node.getAttribute('fav_seat') )
-        if node.hasAttribute('name'): self.name = node.getAttribute('name')
-        else: self.name = None
         self.width    = int( node.getAttribute('width') )
         self.height   = int( node.getAttribute('height') )
 
@@ -990,9 +987,14 @@ class Config:
 
     def get_layout_set_node(self, ls):
         for layout_set_node in self.doc.getElementsByTagName("ls"):
-            if set_node.getAttribute("name") == ls:
+            if layout_set_node.getAttribute("name") == ls:
                 return layout_set_node
-                
+
+    def get_layout_node(self, ls, max):
+        for layout_node in ls.getElementsByTagName("layout"):
+            if layout_node.getAttribute("max") == str(max):
+                return layout_node
+                                
     def get_stat_set_node(self, ss):
         for stat_set_node in self.doc.getElementsByTagName("ss"):
             if set_node.getAttribute("name") == ss:
@@ -1004,12 +1006,12 @@ class Config:
                 return db_node
         return None
 
-    def get_layout_node(self, site_node, layout):
-        for layout_node in site_node.getElementsByTagName("layout"):
-            if layout_node.getAttribute("max") is None:
-                return None
-            if int( layout_node.getAttribute("max") ) == int( layout ):
-                return layout_node
+#    def get_layout_node(self, site_node, layout):
+#        for layout_node in site_node.getElementsByTagName("layout"):
+#            if layout_node.getAttribute("max") is None:
+#                return None
+#            if int( layout_node.getAttribute("max") ) == int( layout ):
+#                return layout_node
 
     def get_location_node(self, layout_node, seat):
         if seat == "common":
@@ -1118,7 +1120,7 @@ class Config:
                 
                 newAttrStatName=self.doc.createAttribute("click")
                 newStat.setAttributeNode(newAttrStatName)
-                newStat.setAttribute("click", "tog_decorate")
+                newStat.setAttribute("click", "")
                 
                 newAttrStatName=self.doc.createAttribute("popup")
                 newStat.setAttributeNode(newAttrStatName)
@@ -1126,47 +1128,30 @@ class Config:
                 
                 newAttrStatName=self.doc.createAttribute("tip")
                 newStat.setAttributeNode(newAttrStatName)
-                newStat.setAttribute("tip", "tip1")
+                newStat.setAttribute("tip", "")
                 
                 gameNode.appendChild(newStat)
         statNodes = gameNode.getElementsByTagName("stat") #TODO remove this line?
     #end def editStats
 
-    def edit_aux_layout(self, aux_name, max, width = None, height = None, locations = None):
-        aux_node   = self.get_aux_node(aux_name)
-        layout_node = self.get_layout_node(aux_node, max)
-        if layout_node is None:
-            print "aux node not found"
-            return
-        if width: layout_node.setAttribute("width", str(width))
-        if height: layout_node.setAttribute("height", str(height))
-        print "editing locations =", locations
-        for (i, pos) in locations.iteritems():
-            location_node = self.get_location_node(layout_node, i)
-            location_node.setAttribute("x", str( locations[i][0] ))
-            location_node.setAttribute("y", str( locations[i][1] ))
-            if i == "common":
-                self.aux_windows[aux_name].layout[max].common = ( locations[i][0], locations[i][1] )
-            else:
-                self.aux_windows[aux_name].layout[max].location[i] = ( locations[i][0], locations[i][1] )
 
-    def edit_layout_set_layout(self, aux_name, max, width = None, height = None, locations = None):
-        aux_node   = self.get_aux_node(aux_name)
-        layout_node = self.get_layout_node(aux_node, max)
-        if layout_node is None:
-            print "aux node not found"
-            return
-        if width: layout_node.setAttribute("width", str(width))
-        if height: layout_node.setAttribute("height", str(height))
-        print "editing locations =", locations
+    def save_layout_set(self, ls, max, width, height, locations):
+        
+        print "saving layout =", ls.name, " ", str(max), "Max ", str(locations)
+        ls_node = self.get_layout_set_node(ls.name)
+        layout_node = self.get_layout_node(ls_node, max)
+        layout_node.setAttribute("width", str(width))
+        layout_node.setAttribute("height", str(height))
         for (i, pos) in locations.iteritems():
             location_node = self.get_location_node(layout_node, i)
             location_node.setAttribute("x", str( locations[i][0] ))
             location_node.setAttribute("y", str( locations[i][1] ))
+            #now refresh the live instance of the layout set with the new locations
+            #fixme - remove this back into the calling module
             if i == "common":
-                self.aux_windows[aux_name].layout[max].common = ( locations[i][0], locations[i][1] )
+                self.layout_sets[ls.name].layout[max].common = ( locations[i][0], locations[i][1] )
             else:
-                self.aux_windows[aux_name].layout[max].location[i] = ( locations[i][0], locations[i][1] )
+                self.layout_sets[ls.name].layout[max].location[i] = ( locations[i][0], locations[i][1] )
                 
     #NOTE: we got a nice Database class, so why map it again here?
     #            user input validation should be done when initializing the Database class. this allows to give appropriate feddback when something goes wrong

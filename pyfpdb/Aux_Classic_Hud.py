@@ -147,9 +147,9 @@ class Classic_stat(Aux_Hud.Simple_stat):
         #game_stat_config is the instance of this stat in the supported games stat configuration
         #use this prefix to directly extract the attributes
 
-        self.click = game_stat_config.click
         self.popup = game_stat_config.popup
-        self.tip = game_stat_config.tip
+        self.click = game_stat_config.click # not implemented yet
+        self.tip = game_stat_config.tip     # not implemented yet
         self.hudprefix = game_stat_config.hudprefix
         self.hudsuffix = game_stat_config.hudsuffix
                 

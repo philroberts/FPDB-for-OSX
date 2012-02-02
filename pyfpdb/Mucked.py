@@ -482,9 +482,10 @@ class Aux_Seats(Aux_Window):
 
     def save_layout(self, *args):
         """Save new layout back to the aux element in the config file."""
+        print "sl ",self
         new_locs = {}
 #        print "adj =", self.adj
-        witdh = self.hud.table.width
+        width = self.hud.table.width
         height = self.hud.table.height
         for (i, pos) in self.positions.iteritems():
             if i != 'common':
@@ -494,7 +495,7 @@ class Aux_Seats(Aux_Window):
 #                new_locs[i] = ((pos[0] - self.hud.table.x) * 1000 / witdh, (pos[1] - self.hud.table.y) * 1000 / height)
                 new_locs[i] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y))
 
-        self.config.edit_aux_layout(self.params['name'], self.hud.max, locations = new_locs)
+        self.config.save_layout_set(self.hud.layout_set, self.hud.max, width, height, locations = new_locs)
 
     def configure_event_cb(self, widget, event, i, *args):
         if (i): self.positions[i] = widget.get_position()
@@ -628,3 +629,4 @@ class Flop_Mucked(Aux_Seats):
             self.m_windows[i].show()
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
             self.displayed = True
+
