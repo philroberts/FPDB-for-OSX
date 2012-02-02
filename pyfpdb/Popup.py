@@ -86,11 +86,15 @@ class default(Popup):
                 player_id = id
         if player_id is None:
             self.destroy_pop()
-        text = ""
+            
+        text,tip_text = "",""
         for stat in self.pop.pu_stats:
             number = Stats.do_stat(self.stat_dict, player = int(player_id), stat = stat)
             text += number[3] + "\n"
+            tip_text += number[5] + " " + number[4] + "\n"
+        
         self.lab.set_text(text)
+        Stats.do_tip(self.lab, tip_text)
         self.lab.modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
         self.lab.modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
         self.show_all()

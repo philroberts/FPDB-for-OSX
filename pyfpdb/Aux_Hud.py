@@ -31,13 +31,11 @@ log = logging.getLogger("hud")
 
 #    pyGTK modules
 import gtk
-import gobject
 import pango
 
 #    FreePokerTools modules
 import Mucked
 import Stats
-import Popup
 
 class Stat_Window(Mucked.Seat_Window):
     """Simple window class for stat windows."""
@@ -53,10 +51,10 @@ class Stat_Window(Mucked.Seat_Window):
         for r in xrange(self.aw.nrows):
             for c in xrange(self.aw.ncols):
                 self.stat_box[r][c] = Simple_stat(self.aw.stats[r][c], 
-                                                seat = self.seat, 
-                                                popup = self.aw.popups[r][c], 
-                                                game_stat_config = self.aw.hud.supported_games_parameters["game_stat_set"].stats[self.aw.stats[r][c]],
-                                               aw = self.aw)
+                    seat = self.seat, 
+                    popup = self.aw.popups[r][c], 
+                    game_stat_config = self.aw.hud.supported_games_parameters["game_stat_set"].stats[self.aw.stats[r][c]],
+                    aw = self.aw)
                 self.grid.attach(self.stat_box[r][c].widget, c, c+1, r, r+1, xpadding = self.aw.xpad, ypadding = self.aw.ypad)
                 self.stat_box[r][c].set_color(self.aw.fgcolor, self.aw.bgcolor)
                 self.stat_box[r][c].set_font(self.aw.font)
@@ -234,7 +232,7 @@ class Simple_table_mw(Mucked.Seat_Window):
         return menu
                      
     def button_press_cb(self, widget, event, *args):
-        """Handle button clicks in the main window event box."""
+        """Handle button clicks in the FPDB main menu event box."""
 
         if event.button == 3:   # right button event does nothing for now
             widget.popup(None, None, None, event.button, event.time)
@@ -249,10 +247,8 @@ class Simple_table_mw(Mucked.Seat_Window):
             return True
         return False
 
-    def create_contents(self, *args):
-        pass
-    def update_contents(self, *args):
-        pass
+    def create_contents(self, *args): pass
+    def update_contents(self, *args): pass
 
     def save_current_layouts(self, event):
 #    This calls the save_layout method of the Hud object. The Hud object 

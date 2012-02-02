@@ -363,23 +363,32 @@ class Seat_Window(gtk.Window):
         self.set_accept_focus(False)
         self.connect("configure_event", self.aw.configure_event_cb, self.seat)
 
+
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the event boxes."""
-#TODO:    Create a method for each button so that the subclasses can override
-#        only the buttons that it needs to override.
-        if event.button == 3:   # right button event -- hide the window
-            pass
+        #double-click events should be avoided
+        # these are not working reliably on windows GTK 2.24 toolchain
 
-        elif event.button == 2:   # middle button event -- show pop up
-            pu_to_run = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup].pu_class
-            Popup.__dict__[pu_to_run](seat = widget.aw_seat,
-                                      stat_dict = widget.stat_dict,
-                                      win = widget.get_ancestor(gtk.Window),
-                                      pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup])
+        if event.button == 1:   # left button event
+            self.button_press_left(widget, event, *args)
+        elif event.button == 2:   # middle button event
+            self.button_press_middle(widget, event, *args)
+        elif event.button == 3:   # right button event
+            self.button_press_right(widget, event, *args)
 
-        elif event.button == 1:   # left button event -- drag the window
-            self.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
 
+    def button_press_left(self, widget, event, *args): #move window
+        self.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
+        
+    def button_press_middle(self, widget, event, *args): pass 
+  
+    def button_press_right(self, widget, event, *args):  #show pop up
+        pu_to_run = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup].pu_class
+        Popup.__dict__[pu_to_run](seat = widget.aw_seat,
+            stat_dict = widget.stat_dict,
+            win = widget.get_ancestor(gtk.Window),
+            pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup])
+    
 class Aux_Seats(Aux_Window):
     """A super class to display an aux_window or a stat block at each seat."""
 
@@ -488,9 +497,9 @@ class Aux_Seats(Aux_Window):
         This class method would only be valid for an aux which has full control
         over all seat and common locations
         """
-        pass
-        #print ("Aux_Seats.save_layout called - this shouldn't happen")
-        #print ("save_layout method should be handled in the aux")
+
+        print ("Aux_Seats.save_layout called - this shouldn't happen")
+        print ("save_layout method should be handled in the aux")
 
 
     def configure_event_cb(self, widget, event, i, *args):
@@ -522,7 +531,6 @@ class Flop_Mucked(Aux_Seats):
         #self.positions["common"] = self.card_positions((x * self.hud.table.width) / 1000, self.hud.table.x, (y * self.hud.table.height) /1000, self.hud.table.y)
         self.positions["common"] = self.card_positions(x, self.hud.table.x, y, self.hud.table.y)
         w.move(self.positions["common"][0], self.positions["common"][1])
-        print self.positions["common"]
         if self.params.has_key('opacity'):
             w.set_opacity(float(self.params['opacity']))
 #        self.create_contents(w, "common")

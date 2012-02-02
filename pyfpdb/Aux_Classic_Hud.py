@@ -82,7 +82,6 @@ import gtk
 #    FreePokerTools modules
 import Aux_Hud
 import Stats
-import Popup
 
 
 class Classic_Stat_Window(Aux_Hud.Stat_Window):
@@ -101,23 +100,9 @@ class Classic_Stat_Window(Aux_Hud.Stat_Window):
             #need to call move() to re-establish window position
             self.move(self.aw.positions[i][0], self.aw.positions[i][1])
             self.show()
-
-    def button_press_cb(self, widget, event, *args):
-        """Handle button clicks in the stat box."""
-        # standard Aux method has been overriden to activate hide() button
-
-        if event.button == 2:   # middle button event -- hide the window
-            self.hide()
-
-        elif event.button == 3:   # right button event -- show pop up
-            #pu_to_run = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup].pu_class
-            Classic_popup(seat = widget.aw_seat,
-                        stat_dict = widget.stat_dict,
-                        win = widget.get_ancestor(gtk.Window),
-                        pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup])
-
-        elif event.button == 1:   # left button event -- drag the window
-            self.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)      
+            
+    def button_press_middle(self, widget, event, *args):
+        self.hide()
 
 Aux_Hud.Stat_Window=Classic_Stat_Window  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
       
@@ -414,23 +399,3 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
 Aux_Hud.Simple_table_mw=Classic_table_mw  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
                                           ##see FIXME note in Aux_Hud Simple_table_mw init method
                                           
-class Classic_popup(Popup.Popup):
-
-    def create(self):
-        player_id = None
-        for id in self.stat_dict.keys():
-            if self.seat == self.stat_dict[id]['seat']:
-                player_id = id
-        if player_id is None:
-            self.destroy_pop()
-        popup_text = tip_text = ""
-        for stat in self.pop.pu_stats:
-            number = Stats.do_stat(self.stat_dict, player = int(player_id), stat = stat)
-            popup_text += number[3] + "\n"
-            tip_text += number[5] + " " + number[4] + "\n"
-
-        self.lab.set_text(popup_text)
-        Stats.do_tip(self.lab, tip_text)
-        self.lab.modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
-        self.lab.modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
-        self.show_all()    
