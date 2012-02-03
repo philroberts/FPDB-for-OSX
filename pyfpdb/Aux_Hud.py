@@ -123,7 +123,6 @@ class Simple_HUD(Mucked.Aux_Seats):
     def create_common(self, x, y):
         # invokes the simple_table_mw class (or similar)
         return self.aw_mw_type(self.hud, aw = self)
-#        return Simple_table_mw(self.hud, aw = self)
 
     def save_layout(self, *args):
         """Save new layout back to the aux element in the config file."""
@@ -177,7 +176,7 @@ class Simple_label(gtk.Label): pass
 
 class Simple_table_mw(Mucked.Seat_Window):
     """Create a default table hud main window with a menu."""
-#    This is a recreation of the table main windeow from the default HUD
+#    This is a recreation of the table main window from the default HUD
 #    in the old Hud.py. This has the menu options from that hud. 
 
 #    BTW: It might be better to do this with a different AW.

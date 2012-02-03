@@ -31,7 +31,6 @@ log = logging.getLogger("hud")
 
 #    pyGTK modules
 import gtk
-import pango
 
 #    FreePokerTools modules
 import Stats

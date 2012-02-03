@@ -503,7 +503,18 @@ class Aux_Seats(Aux_Window):
 
 
     def configure_event_cb(self, widget, event, i, *args):
-        if (i): self.positions[i] = widget.get_position()
+        """This method updates the current location for each statblock"""
+        if (i): 
+            new_abs_position = widget.get_position() #absolute value of the new position
+            new_rel_position = (new_abs_position[0]-self.hud.table.x, new_abs_position[1]-self.hud.table.y)
+            #if i != "common" and int(i) == 5:
+            #    print i, self.hud.table.x, self.hud.table.y, new_abs_position, new_rel_position
+            self.positions[i] = new_abs_position     #write this back to our map
+            if i != "common":
+                self.hud.layout.location[self.adj[i]] = new_rel_position #update the hud-level dict, so other aux can be told
+            else:
+                self.hud.layout.common = new_rel_position
+
 
 class Flop_Mucked(Aux_Seats):
     """Aux_Window class for displaying mucked cards for flop games."""
@@ -569,6 +580,8 @@ class Flop_Mucked(Aux_Seats):
                 container.seen_cards.set_from_pixbuf(scratch)
                 container.resize(1,1)
                 container.show()
+                #print self.positions
+                #print self.hud.layout.location
                 container.move(self.positions[i][0], self.positions[i][1])   # here is where I move back
 
             self.displayed = True

@@ -418,20 +418,36 @@
         without changing Configuration.Config()
         -->
         <game game_name="holdem" aux="mucked, Classic_HUD">
-            <game_stat_set game_type="tour" stat_set ="draw_default"/>
-            <game_stat_set game_type="ring" stat_set ="holdem_default"/>
+            <game_stat_set game_type="tour" stat_set="draw_default"/>
+            <game_stat_set game_type="ring" stat_set="holdem_default"/>
         </game>
         <game game_name="razz" aux="stud_mucked, Classic_HUD">
-            <game_stat_set game_type="all" stat_set ="stud_default"/>
+            <game_stat_set game_type="all" stat_set="stud_default"/>
         </game>
-        <game game_name="omahahi" aux="mucked, Simple_HUD"/>
-        <game game_name="omahahilo" aux="mucked, Simple_HUD"/>
-        <game game_name="studhi" aux="stud_mucked, Simple_HUD"/>
-        <game game_name="studhilo" aux="stud_mucked, Simple_HUD"/>
-        <game game_name="27_3draw" aux="mucked, Simple_HUD"/>
-        <game game_name="27_1draw" aux="mucked, Simple_HUD"/>
-        <game game_name="badugi" aux="mucked, Simple_HUD"/>
-        <game game_name="fivedraw" aux="mucked, Simple_HUD"/>
+        <game game_name="omahahi" aux="mucked, Simple_HUD">
+            <game_stat_set game_type="all" stat_set="holdem_default"/>
+        </game>
+        <game game_name="omahahilo" aux="mucked, Simple_HUD">
+            <game_stat_set game_type="all" stat_set="holdem_default"/>
+        </game>
+        <game game_name="studhi" aux="stud_mucked, Simple_HUD">
+            <game_stat_set game_type="all" stat_set="stud_default"/>
+        </game>
+        <game game_name="studhilo" aux="stud_mucked, Simple_HUD">
+            <game_stat_set game_type="all" stat_set="stud_default"/>
+        </game>
+        <game game_name="27_3draw" aux="mucked, Simple_HUD">
+            <game_stat_set game_type="all" stat_set="holdem_default"/>
+        </game>
+        <game game_name="27_1draw" aux="mucked, Simple_HUD">
+            <game_stat_set game_type="all" stat_set="holdem_default"/>
+        </game>
+        <game game_name="badugi" aux="mucked, Simple_HUD">
+            <game_stat_set game_type="all" stat_set="holdem_default"/>
+        </game>
+            <game game_name="fivedraw" aux="mucked, Simple_HUD">
+        <game_stat_set game_type="all" stat_set ="holdem_default"/>
+        </game>
     </supported_games>
 
 

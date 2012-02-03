@@ -34,7 +34,6 @@ import os
 import sys
 import inspect
 import string
-import traceback
 import shutil
 import locale
 import re
@@ -797,6 +796,7 @@ class Config:
                 self.doc = doc
                 self.file_error = None
             except:
+                import traceback
                 log.error((_("Error parsing %s.") % (file)) + _("See error log file."))
                 traceback.print_exc(file=sys.stderr)
                 self.file_error = sys.exc_info()[1]
@@ -1069,21 +1069,6 @@ class Config:
         emailNode.setAttribute("folder", newEmail.folder)
         emailNode.setAttribute("useSsl", newEmail.useSsl)
     #end def editEmail
-        
-    def edit_layout(self, site_name, max, width = None, height = None,
-                    fav_seat = None, locations = None):
-        site_node   = self.get_site_node(site_name)
-        layout_node = self.get_layout_node(site_node, max)
-        # TODO: how do we support inserting new layouts?
-        if layout_node is None:
-            return
-        if width: layout_node.setAttribute("width", str(width))
-        if height: layout_node.setAttribute("height", str(height))
-        for i in range(1, max + 1):
-            location_node = self.get_location_node(layout_node, i)
-            location_node.setAttribute("x", str( locations[i-1][0] ))
-            location_node.setAttribute("y", str( locations[i-1][1] ))
-            self.supported_sites[site_name].layout[max].location[i] = ( locations[i-1][0], locations[i-1][1] )
     
     def edit_site(self, site_name, enabled, screen_name, history_path):
         site_node = self.get_site_node(site_name)
@@ -1587,6 +1572,8 @@ class Config:
                 param['game_stat_set'] = self.stat_sets[game_stat_set[game_type].stat_set]
             elif game_stat_set.has_key("all"):
                 param['game_stat_set'] = self.stat_sets[game_stat_set["all"].stat_set]
+            else:
+                return None
 
             return param
             
@@ -1660,16 +1647,4 @@ if __name__== "__main__":
 
     print "press enter to end"
     sys.stdin.readline()
-    
-    c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))
-    c.save(file="testout.xml")
-#    print "mucked locations =", c.get_aux_locations('mucked', 9)
-#    c.edit_aux_layout('mucked', 9, locations = [(487, 113), (555, 469), (572, 276), (522, 345),
-#                                                (333, 354), (217, 341), (150, 273), (150, 169), (230, 115)])
-#    print "mucked locations =", c.get_aux_locations('mucked', 9)
-    try:
-        from xml.dom.ext import PrettyPrint
-        for site_node in c.doc.getElementsByTagName("site"):
-            PrettyPrint(site_node, stream=sys.stdout, encoding="utf-8")
-    except:
-        print "xml.dom.ext needs PyXML to be installed!"
+

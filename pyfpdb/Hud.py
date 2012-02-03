@@ -76,11 +76,16 @@ class Hud:
         self.site_parameters = config.get_site_parameters(self.table.site)
         self.supported_games_parameters = config.get_supported_games_parameters(self.poker_game, self.game_type)
         self.layout_set = config.get_layout(self.table.site, self.game_type)
-        
+
+        # Just throw error and die if any serious config issues are discovered
+        if self.supported_games_parameters == None:
+            log.error(_("No <game_stat_set> found for %s games for type %s."+"\n") % (self.poker_game, self.game_type))
+            return
+            
         if self.layout_set == None:
             log.error(_("No layout found for %s games for site %s."+"\n") % (self.game_type, self.table.site))
             return
-            
+                       
         if self.max not in self.layout_set.layout:
             log.error(_("No layout found for %d-max %s games for site %s."+"\n") % (self.max, self.game_type, self.table.site))
             return
@@ -148,7 +153,7 @@ class Hud:
             aux.destroy()
         self.aux_windows = []
 
-#    def resize_windows(self, *args):
+    def resize_windows(self, *args): pass
 #        for w in self.stat_windows.itervalues():
 #            if type(w) == int:
 #                continue
@@ -158,7 +163,7 @@ class Hud:
 #            w.y = self.table.y + rel_y
 #            w.window.move(w.x, w.y) 
 #
-#    def reposition_windows(self, *args):
+    def reposition_windows(self, *args): pass
 #        self.update_table_position()
 #        for w in self.stat_windows.itervalues():
 #            if type(w) == int:
