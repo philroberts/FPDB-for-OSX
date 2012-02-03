@@ -4119,7 +4119,7 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
-                             case when hprof.gtId = -1 then -999
+                             ,case when hprof.gtId = -1 then -999
                                   else sqrt(variance(hprof.profit/100.0))
                              end as stddev
                       from
@@ -4234,7 +4234,7 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
-                             case when hprof.gtId = -1 then -999
+                             ,case when hprof.gtId = -1 then -999
                                   else sqrt(variance(hprof.profit/100.0)
                              end as stddev
                       from
@@ -4388,7 +4388,7 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
-                             case when hprof.gtId = -1 then -999
+                             ,case when hprof.gtId = -1 then -999
                                   else sqrt(variance(hprof.profit/100.0))
                              end as stddev
                       from
@@ -4520,7 +4520,7 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
-                             case when hprof.gtId = -1 then -999
+                             ,case when hprof.gtId = -1 then -999
                                   else sqrt(variance(hprof.profit/100.0))
                              end as stddev
                       from
@@ -4678,7 +4678,7 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
-                             case when hprof.gtId = -1 then -999
+                             ,case when hprof.gtId = -1 then -999
                                   else sqrt(variance(hprof.profit/100.0))
                              end as stddev
                       from
