@@ -269,14 +269,6 @@ class Importer:
                     sleep(0.5)
                 print _("... writers finished")
 
-        # Tidying up after import
-        if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'drop':
-            self.database.rebuild_hudcache()
-        else:
-            self.database.cleanUpTourneyTypes()
-            self.database.resetttclean()
-            log.info (_("No need to rebuild hudcache."))
-        self.database.analyzeDB()
         endtime = time()
         return (totstored, totdups, totpartial, toterrors, endtime-starttime)
     # end def runImport
@@ -327,7 +319,17 @@ class Importer:
                         shutil.move(file, "c:\\fpdbfailed\\%d-%s" % (fileerrorcount, os.path.basename(file[3:]) ) )
             
             self.logImport('bulk', file, stored, duplicates, partial, errors, ttime, self.filelist[file][2])
+
+        # Tidying up after import
+        if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'drop':
+            self.database.rebuild_hudcache()
+        else:
+            self.database.cleanUpTourneyTypes()
+            self.database.resetttclean()
+            log.info (_("No need to rebuild hudcache."))
+        self.database.analyzeDB()
         self.database.commit()
+
         del ProgressDialog
         
         for i in xrange( self.settings['threads'] ):
