@@ -415,15 +415,16 @@ class Aux_Seats(Aux_Window):
         except AttributeError:
             return
 
-        for i in (range(1, self.hud.max + 1) + ['common']):
-            if i == 'common':
-                (x, y) = self.hud.layout.common
-            else:
-                (x, y) = self.hud.layout.location[self.adj[i]]
-
+        for i in (range(1, self.hud.max + 1)):
+            (x, y) = self.hud.layout.location[self.adj[i]]
             self.positions[i] = self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
 
+    def update_common(self):
+        (x, y) = self.hud.layout.common
+        self.positions["common"] = self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
+        self.m_windows["common"].move(self.positions["common"][0], self.positions["common"][1])
+        
     def create(self):
 
         self.adj = self.hud.adj_seats(0, self.config)  # move adj_seats to aux and get rid of it in Hud.py
@@ -558,6 +559,7 @@ class Flop_Mucked(Aux_Seats):
     def update_contents(self, container, i):
 
         if not self.hud.cards.has_key(i): return
+        
         cards = self.hud.cards[i]
         n_cards = self.has_cards(cards)
         if n_cards > 1:
@@ -579,10 +581,8 @@ class Flop_Mucked(Aux_Seats):
             if container is not None:
                 container.seen_cards.set_from_pixbuf(scratch)
                 container.resize(1,1)
-                container.show()
-                #print self.positions
-                #print self.hud.layout.location
                 container.move(self.positions[i][0], self.positions[i][1])   # here is where I move back
+                container.show()
 
             self.displayed = True
             if i != "common":
@@ -608,6 +608,11 @@ class Flop_Mucked(Aux_Seats):
     def update_gui(self, new_hand_id):
         """Prepare and show the mucked cards."""
         if self.displayed: self.hide()
+        
+        # re-initialise block locations, other aux's may have moved them
+        #  since the last hand and locations are shared by all aux's for
+        #  the current table
+        self.update_card_positions()
 
 #   See how many players showed a hand. Skip if only 1 shows (= hero)
         n_sd = 0

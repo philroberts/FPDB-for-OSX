@@ -94,7 +94,7 @@ class Simple_HUD(Mucked.Aux_Seats):
         self.opacity     = self.aux_params["opacity"]
         self.font        = pango.FontDescription("%s %s" % (self.aux_params["font"], self.aux_params["font_size"]))
         
-        #todo - checkout what these two commands are doing, exactly
+        #store these class definitions for use elsewhere
         self.aw_window_type = Stat_Window
         self.aw_mw_type = Simple_table_mw
 
@@ -122,7 +122,12 @@ class Simple_HUD(Mucked.Aux_Seats):
 
     def create_common(self, x, y):
         # invokes the simple_table_mw class (or similar)
-        return self.aw_mw_type(self.hud, aw = self)
+        self.table_mw = self.aw_mw_type(self.hud, aw = self)
+        return self.table_mw
+        
+    def update_common(self):
+        #tell our mw that an update is needed (normally on table move)
+        self.table_mw.update_common()
 
     def save_layout(self, *args):
         """Save new layout back to the aux element in the config file."""
@@ -189,8 +194,9 @@ class Simple_table_mw(Mucked.Seat_Window):
         Mucked.Seat_Window.__init__(self, aw)
         #####super(Simple_table_mw, self).__init__(aw)
         self.hud = hud
+        self.aw = aw
 
-        self.connect("configure_event", self.aw.configure_event_cb, "common")
+        self.connect("configure_event", self.configure_event_cb, "auxmenu")
 
         eb = gtk.EventBox()
         try: lab=gtk.Label(self.menu_label)
@@ -208,12 +214,13 @@ class Simple_table_mw(Mucked.Seat_Window):
         self.create_menu_items(self.menu)
         eb.connect_object("button-press-event", self.button_press_cb, self.menu)
 
-        self.move(self.hud.table.x + self.hud.site_parameters["hud_menu_xshift"]
-                , self.hud.table.y + self.hud.site_parameters["hud_menu_yshift"])
+        self.move(self.hud.table.x + self.aw.xshift, self.hud.table.y + self.aw.yshift)
                 
         self.menu.show_all()
         self.show_all()
         self.hud.table.topify(self)
+        
+    def configure_event_cb(self, widget, event, *args): pass
 
     def create_menu_items(self, menu):
         #a gtk.menu item is passed in and returned
@@ -248,7 +255,10 @@ class Simple_table_mw(Mucked.Seat_Window):
 
     def create_contents(self, *args): pass
     def update_contents(self, *args): pass
-
+    
+    def update_common(self, *args):
+        self.move(self.hud.table.x + self.aw.xshift, self.hud.table.y + self.aw.yshift)
+    
     def save_current_layouts(self, event):
 #    This calls the save_layout method of the Hud object. The Hud object 
 #    then calls the save_layout method in each installed AW.

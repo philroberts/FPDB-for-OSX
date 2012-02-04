@@ -184,8 +184,8 @@ Aux_Hud.Simple_label=Classic_label  ##Aux_Hud instances this class, so must patc
 
 class Classic_table_mw(Aux_Hud.Simple_table_mw):
     """
-    A class controlling the table menu and the statblocks for that table
-    Normally a 1:1 relationship with the Classic_HUD class ???? 
+    A class controlling the table menu for that table
+    Normally a 1:1 relationship with the Classic_HUD class
     """
     def __init__(self, hud, aw = None):
         self.hud = hud
@@ -395,6 +395,7 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
 
     def change_max_seats(self, widget):
         self.hud_params['new_max_seats'] = widget.ms
+
 
 Aux_Hud.Simple_table_mw=Classic_table_mw  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
                                           ##see FIXME note in Aux_Hud Simple_table_mw init method

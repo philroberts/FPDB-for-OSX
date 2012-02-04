@@ -805,9 +805,6 @@ class Config:
                 #print "press enter to continue"
                 #sys.stdin.readline()
                 #sys.exit()
-#ExpatError: not well-formed (invalid token): line 511, column 4
-#sys.exc_info = (<class 'xml.parsers.expat.ExpatError'>, ExpatError('not well-formed (invalid token): line 511,
-# column 4',), <traceback object at 0x024503A0>)
 
             if (not self.example_copy) and (example_file is not None):
                 # reads example file and adds missing elements into current config

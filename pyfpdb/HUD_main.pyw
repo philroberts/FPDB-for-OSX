@@ -340,6 +340,7 @@ def idle_resize(hud):
     gtk.gdk.threads_enter()
     try:
         [aw.update_card_positions() for aw in hud.aux_windows]
+        [aw.update_common() for aw in hud.aux_windows]
         hud.resize_windows()
     except:
         log.exception(_("Error resizing HUD for table: %s.") % hud.table.title)
