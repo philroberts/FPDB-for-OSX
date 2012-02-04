@@ -337,22 +337,22 @@ class Boss(HandHistoryConverter):
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            if action.group('ATYPE') == 'ACTION_RAISE':
-                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == 'ACTION_CALL':
-                hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == 'ACTION_ALLIN':
-                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == 'ACTION_BET':
-                hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == 'ACTION_FOLD':
+            if action.group('ATYPE') == 'ACTION_FOLD':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'ACTION_CHECK':
                 hand.addCheck( street, action.group('PNAME'))
+            elif action.group('ATYPE') == 'ACTION_CALL':
+                hand.addCall( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == 'ACTION_RAISE':
+                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == 'ACTION_BET':
+                hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == 'ACTION_DISCARD':
                 hand.addDiscard(street, action.group('PNAME'), action.group('NODISCARDED'), action.group('DISCARDED'))
             elif action.group('ATYPE') == 'ACTION_STAND':
                 hand.addStandsPat( street, action.group('PNAME'))
+            elif action.group('ATYPE') == 'ACTION_ALLIN':
+                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
             else:
                 print (_("DEBUG:") + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 

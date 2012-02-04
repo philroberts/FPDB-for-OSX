@@ -327,19 +327,19 @@ class Absolute(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             log.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
-            if action.group('ATYPE') == 'Raises ' or action.group('ATYPE') == 'All-In(Raise) ':
-                bet = action.group('BET').replace(',', '')
-                hand.addCallandRaise( street, action.group('PNAME'), bet)
+            if action.group('ATYPE') == 'Folds':
+                hand.addFold( street, action.group('PNAME'))
+            elif action.group('ATYPE') == 'Checks':
+                hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'Calls ':
                 bet = action.group('BET').replace(',', '')
                 hand.addCall( street, action.group('PNAME'), bet)
             elif action.group('ATYPE') == 'Bets ' or action.group('ATYPE') == 'All-In ':
                 bet = action.group('BET').replace(',', '')
                 hand.addBet( street, action.group('PNAME'), bet)
-            elif action.group('ATYPE') == 'Folds':
-                hand.addFold( street, action.group('PNAME'))
-            elif action.group('ATYPE') == 'Checks':
-                hand.addCheck( street, action.group('PNAME'))
+            elif action.group('ATYPE') == 'Raises ' or action.group('ATYPE') == 'All-In(Raise) ':
+                bet = action.group('BET').replace(',', '')
+                hand.addCallandRaise( street, action.group('PNAME'), bet)
             elif action.group('ATYPE') == ' complete to': # TODO: not supported yet ?
                 bet = action.group('BET').replace(',', '')
                 hand.addComplete( street, action.group('PNAME'), bet)

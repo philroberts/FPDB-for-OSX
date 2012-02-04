@@ -275,16 +275,16 @@ or None if we fail to get the info """
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             log.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
-            if action.group('ATYPE') == ' raises':
-                hand.addCallandRaise( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' calls':
-                hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ': bets':
-                hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' folds':
+            if action.group('ATYPE') == ' folds':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
+            elif action.group('ATYPE') == ' calls':
+                hand.addCall( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ' raises':
+                hand.addCallandRaise( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ': bets':
+                hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' complete to':
                 hand.addComplete( street, action.group('PNAME'), action.group('BET'))
             else:

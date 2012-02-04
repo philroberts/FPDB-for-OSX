@@ -355,19 +355,19 @@ class iPoker(HandHistoryConverter):
             player = action['PNAME']
             bet = self.clearMoneyString(action['BET'])
             #print "DEBUG: action: %s" % action
-            if atype == '23': # Raise to
+            if atype == '0':
+                hand.addFold(street, player)
+            elif atype == '4':
+                hand.addCheck(street, player)
+            elif atype == '3':
+                hand.addCall(street, player, bet)
+            elif atype == '23': # Raise to
                 hand.addRaiseTo(street, player, bet)
             elif atype == '6': # Raise by
                 #This is only a guess
                 hand.addRaiseBy(street, player, bet)
-            elif atype == '3':
-                hand.addCall(street, player, bet)
             elif atype == '5':
                 hand.addBet(street, player, bet)
-            elif atype == '0':
-                hand.addFold(street, player)
-            elif atype == '4':
-                hand.addCheck(street, player)
             elif atype == '16': #BringIn
                 hand.addBringIn(player, bet)
             elif atype == '7':

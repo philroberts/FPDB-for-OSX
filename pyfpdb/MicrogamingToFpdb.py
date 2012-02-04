@@ -302,10 +302,18 @@ class Microgaming(HandHistoryConverter):
         for action in m:
             #print "DEBUG: %s action.groupdict(): %s" % (street, action.groupdict())
             pname = self.playerNameFromSeatNo(action.group('SEAT'), hand)
-            if action.group('ATYPE') == 'Raise':
-                hand.addRaiseTo(street, pname, action.group('BET') )
+            if action.group('ATYPE') == 'Fold':
+                hand.addFold(street, pname)
+            elif action.group('ATYPE') == 'Check':
+                hand.addCheck(street, pname)
             elif action.group('ATYPE') == 'Call':
                 hand.addCallTo(street, pname, action.group('BET') )
+            elif action.group('ATYPE') == 'SmallBlind':
+                hand.addBlind(pname, 'small blind', action.group('BET'))
+            elif action.group('ATYPE') == 'BigBlind':
+                hand.addBlind(pname, 'big blind', action.group('BET'))
+            elif action.group('ATYPE') == 'Raise':
+                hand.addRaiseTo(street, pname, action.group('BET') )
             elif action.group('ATYPE') == 'Bet':
                 if street in ('PREFLOP', 'THIRD', 'DEAL'):
                     hand.addRaiseTo(street, pname, action.group('BET'))
@@ -313,14 +321,6 @@ class Microgaming(HandHistoryConverter):
                     hand.addBet(street, pname, action.group('BET'))
             elif action.group('ATYPE') == 'AllIn':
                 hand.addAllIn(street, pname, action.group('BET'))
-            elif action.group('ATYPE') == 'Fold':
-                hand.addFold(street, pname)
-            elif action.group('ATYPE') == 'Check':
-                hand.addCheck(street, pname)
-            elif action.group('ATYPE') == 'SmallBlind':
-                hand.addBlind(pname, 'small blind', action.group('BET'))
-            elif action.group('ATYPE') == 'BigBlind':
-                hand.addBlind(pname, 'big blind', action.group('BET'))
             elif action.group('ATYPE') == 'PostedToPlay':
                 hand.addBlind(pname, 'big blind', action.group('BET'))
             elif action.group('ATYPE') == 'Disconnect':

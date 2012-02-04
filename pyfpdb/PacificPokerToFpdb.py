@@ -398,16 +398,16 @@ class PacificPoker(HandHistoryConverter):
             acts = action.groupdict()
             #print "DEBUG: acts: %s" %acts
             if action.group('PNAME') in hand.stacks:
-                if action.group('ATYPE') == ' raises':
-                    hand.addCallandRaise( street, action.group('PNAME'), action.group('BET').replace(',','') )
-                elif action.group('ATYPE') == ' calls':
-                    hand.addCall( street, action.group('PNAME'), action.group('BET').replace(',','') )
-                elif action.group('ATYPE') == ' bets':
-                    hand.addBet( street, action.group('PNAME'), action.group('BET').replace(',','') )
-                elif action.group('ATYPE') == ' folds':
+                if action.group('ATYPE') == ' folds':
                     hand.addFold( street, action.group('PNAME'))
                 elif action.group('ATYPE') == ' checks':
                     hand.addCheck( street, action.group('PNAME'))
+                elif action.group('ATYPE') == ' calls':
+                    hand.addCall( street, action.group('PNAME'), action.group('BET').replace(',','') )
+                elif action.group('ATYPE') == ' raises':
+                    hand.addCallandRaise( street, action.group('PNAME'), action.group('BET').replace(',','') )
+                elif action.group('ATYPE') == ' bets':
+                    hand.addBet( street, action.group('PNAME'), action.group('BET').replace(',','') )
                 elif action.group('ATYPE') == ' discards':
                     hand.addDiscard(street, action.group('PNAME'), action.group('BET').replace(',',''), action.group('DISCARDED'))
                 elif action.group('ATYPE') == ' stands pat':

@@ -732,25 +732,25 @@ or None if we fail to get the info """
         for action in m:
             player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
             if player in hand.stacks:
-                if action.group('ATYPE') == 'RAISE':
+                if action.group('ATYPE') in ('FOLD', 'SIT_OUT'):
+                    hand.addFold(street, player)
+                elif action.group('ATYPE') == 'CHECK':
+                    hand.addCheck(street, player)
+                elif action.group('ATYPE') == 'CALL':
+                    hand.addCall(street, player, action.group('BET'))
+                elif action.group('ATYPE') == 'RAISE':
                     hand.addRaiseTo(street, player, action.group('BET'))
+                elif action.group('ATYPE') == 'BET':
+                    hand.addBet(street, player, action.group('BET'))
+                elif action.group('ATYPE') == 'ALL_IN':
+                    hand.addAllIn(street, player, action.group('BET'))
+                elif action.group('ATYPE') == 'DRAW':
+                    hand.addDiscard(street, player, action.group('TXT'))
                 elif action.group('ATYPE') == 'COMPLETE':
                     if hand.gametype['base'] != 'stud':
                         hand.addRaiseTo(street, player, action.group('BET'))
                     else:
                         hand.addComplete( street, player, action.group('BET') )
-                elif action.group('ATYPE') == 'CALL':
-                    hand.addCall(street, player, action.group('BET'))
-                elif action.group('ATYPE') == 'BET':
-                    hand.addBet(street, player, action.group('BET'))
-                elif action.group('ATYPE') in ('FOLD', 'SIT_OUT'):
-                    hand.addFold(street, player)
-                elif action.group('ATYPE') == 'CHECK':
-                    hand.addCheck(street, player)
-                elif action.group('ATYPE') == 'ALL_IN':
-                    hand.addAllIn(street, player, action.group('BET'))
-                elif action.group('ATYPE') == 'DRAW':
-                    hand.addDiscard(street, player, action.group('TXT'))
                 else:
                     log.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
 

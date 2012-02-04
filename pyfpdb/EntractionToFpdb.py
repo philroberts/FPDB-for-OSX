@@ -293,16 +293,16 @@ class Entraction(HandHistoryConverter):
         for action in m:
             acts = action.groupdict()
             #print "DEBUG: acts: %s" %acts
-            if action.group('ATYPE') == 'Raise':
-                hand.addCallandRaise( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
-            elif action.group('ATYPE') == 'Call':
-                hand.addCall( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
-            elif action.group('ATYPE') == 'Bet':
-                hand.addBet( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
-            elif action.group('ATYPE') == 'Folds':
+            if action.group('ATYPE') == 'Folds':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'Check':
                 hand.addCheck( street, action.group('PNAME'))
+            elif action.group('ATYPE') == 'Call':
+                hand.addCall( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
+            elif action.group('ATYPE') == 'Raise':
+                hand.addCallandRaise( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
+            elif action.group('ATYPE') == 'Bet':
+                hand.addBet( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
             elif action.group('ATYPE') == 'All-In':
                 hand.addAllIn(street, action.group('PNAME'), self.clearMoneyString(action.group('BET')))
             else:

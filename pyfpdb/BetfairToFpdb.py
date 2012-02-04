@@ -182,18 +182,16 @@ class Betfair(HandHistoryConverter):
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            if action.group('ATYPE') == 'raises to':
-                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
-#            elif action.group('ATYPE') == ' completes it to':
-#                hand.addComplete( street, action.group('PNAME'), action.group('BET') )
+            if action.group('ATYPE') == 'folds':
+                hand.addFold( street, action.group('PNAME'))
+            elif action.group('ATYPE') == 'checks':
+                hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == 'bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == 'folds':
-                hand.addFold( street, action.group('PNAME'))
-            elif action.group('ATYPE') == 'checks':
-                hand.addCheck( street, action.group('PNAME'))
+            elif action.group('ATYPE') == 'raises to':
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
             else:
                 sys.stderr.write(_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 

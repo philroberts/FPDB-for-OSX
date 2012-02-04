@@ -543,21 +543,21 @@ class PartyPoker(HandHistoryConverter):
             amount = self.clearMoneyString(action.group('BET')) if action.group('BET') else None
             actionType = action.group('ATYPE')
 
-            if actionType == 'raises':
+            if actionType == 'folds':
+                hand.addFold( street, playerName )
+            elif actionType == 'checks':
+                hand.addCheck( street, playerName )
+            elif actionType == 'calls':
+                hand.addCall( street, playerName, amount )
+            elif actionType == 'raises':
                 if street == 'PREFLOP' and \
                     playerName in [item[0] for item in hand.actions['BLINDSANTES'] if item[2]!='ante']:
                     # preflop raise from blind
                     hand.addCallandRaise( street, playerName, amount )
                 else:
                     hand.addCallandRaise( street, playerName, amount )
-            elif actionType == 'calls':
-                hand.addCall( street, playerName, amount )
             elif actionType == 'bets':
                 hand.addBet( street, playerName, amount )
-            elif actionType == 'folds':
-                hand.addFold( street, playerName )
-            elif actionType == 'checks':
-                hand.addCheck( street, playerName )
             elif actionType == 'completes':
                 hand.addComplete( street, playerName, amount )
             elif actionType == 'bring-ins':

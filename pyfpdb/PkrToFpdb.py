@@ -326,8 +326,10 @@ class Pkr(HandHistoryConverter):
         for action in m:
             acts = action.groupdict()
             #print "DEBUG: readAction: acts: %s" % acts
-            if action.group('ATYPE') == ' raises':
-                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
+            if action.group('ATYPE') == ' folds':
+                hand.addFold( street, action.group('PNAME'))
+            elif action.group('ATYPE') == ' checks':
+                hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' calls':
                 # Amount in hand history is not cumulative
                 # ie. Player3 calls 0.08
@@ -336,12 +338,10 @@ class Pkr(HandHistoryConverter):
                 # TODO: Going to have to write an addCallStoopid()
                 #print "DEBUG: addCall( %s, %s, None)" %(street,action.group('PNAME'))
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ' raises':
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' folds':
-                hand.addFold( street, action.group('PNAME'))
-            elif action.group('ATYPE') == ' checks':
-                hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' discards':
                 hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('DISCARDED'))
             elif action.group('ATYPE') == ' stands pat':

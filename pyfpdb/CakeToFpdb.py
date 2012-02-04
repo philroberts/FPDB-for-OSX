@@ -264,16 +264,16 @@ class Cake(HandHistoryConverter):
             amount = action.group('BET') if action.group('BET') else None
             actionType = action.group('ATYPE')
 
-            if actionType == ' raises':
-                hand.addRaiseTo( street, action.group('PNAME'), action.group('BETTO') )
-            elif actionType == ' calls':
-                hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif actionType == ' bets':
-                hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif actionType == ' folds':
+            if actionType == ' folds':
                 hand.addFold( street, action.group('PNAME'))
             elif actionType == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
+            elif actionType == ' calls':
+                hand.addCall( street, action.group('PNAME'), action.group('BET') )
+            elif actionType == ' raises':
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BETTO') )
+            elif actionType == ' bets':
+                hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif actionType == ' is all in':
                 hand.addAllIn(street, action.group('PNAME'), action.group('BET'))
             else:

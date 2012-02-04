@@ -377,16 +377,16 @@ class OnGame(HandHistoryConverter):
             #acts = action.groupdict()
             #print "readaction: acts: %s" %acts
             
-            if action.group('ATYPE') == ' raises':
-                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET2') )
-            elif action.group('ATYPE') == ' calls':
-                hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' bets':
-                hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' folds':
+            if action.group('ATYPE') == ' folds':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
+            elif action.group('ATYPE') == ' calls':
+                hand.addCall( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ' raises':
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET2') )
+            elif action.group('ATYPE') == ' bets':
+                hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' changed':
                 if int(action.group('BET'))>0:
                     hand.addDiscard(street, action.group('PNAME'), action.group('BET'))
