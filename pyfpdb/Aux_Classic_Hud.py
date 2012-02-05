@@ -104,7 +104,7 @@ class Classic_Stat_Window(Aux_Hud.Simple_Stat_Window):
     def button_press_middle(self, widget, event, *args):
         self.hide()
 
-Aux_Hud.Stat_Window=Classic_Stat_Window  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
+Aux_Hud.Simple_Stat_Window=Classic_Stat_Window  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
       
       
               
