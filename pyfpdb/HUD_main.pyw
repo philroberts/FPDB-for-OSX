@@ -388,6 +388,7 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
 
 def idle_update(hud_main, new_hand_id, table_name, config):
     gtk.gdk.threads_enter()
+    
     try:
         hud_main.hud_dict[table_name].update(new_hand_id, config)
         [aw.update_gui(new_hand_id) for aw in hud_main.hud_dict[table_name].aux_windows]

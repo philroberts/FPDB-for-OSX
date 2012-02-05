@@ -37,7 +37,7 @@ import pango
 import Mucked
 import Stats
 
-class Stat_Window(Mucked.Seat_Window):
+class Simple_Stat_Window(Mucked.Seat_Window):
     """Simple window class for stat windows."""
 
     def create_contents(self, i):
@@ -45,12 +45,11 @@ class Stat_Window(Mucked.Seat_Window):
         self.add(self.grid)
         self.grid.modify_bg(gtk.STATE_NORMAL, self.aw.bgcolor)
         self.modify_bg(gtk.STATE_NORMAL, self.aw.bgcolor)
-
         self.stat_box = [ [None]*self.aw.ncols for i in range(self.aw.nrows) ]
 
         for r in xrange(self.aw.nrows):
             for c in xrange(self.aw.ncols):
-                self.stat_box[r][c] = Simple_stat(self.aw.stats[r][c], 
+                self.stat_box[r][c] = self.aw.aw_simple_stat(self.aw.stats[r][c], 
                     seat = self.seat, 
                     popup = self.aw.popups[r][c], 
                     game_stat_config = self.aw.hud.supported_games_parameters["game_stat_set"].stats[self.aw.stats[r][c]],
@@ -95,7 +94,12 @@ class Simple_HUD(Mucked.Aux_Seats):
         self.font        = pango.FontDescription("%s %s" % (self.aux_params["font"], self.aux_params["font_size"]))
         
         #store these class definitions for use elsewhere
-        self.aw_window_type = Stat_Window
+        # this is needed to guarantee that the classes in _this_ module
+        # are called, and that some other overriding class is not used.
+        # to see this in action, locate the place where these classes are
+        # instatiated, and compare Simple_stat.__mro__ to self.aw_simple_stat.__mro__
+        self.aw_window_type = Simple_Stat_Window
+        self.aw_simple_stat = Simple_stat
         self.aw_mw_type = Simple_table_mw
 
         #    layout is handled by superclass!

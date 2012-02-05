@@ -125,7 +125,6 @@ class Hud:
 #        self.main_window.move(self.table.x + self.site_params['xshift'], self.table.y + self.site_params['yshift'])
 #    and move any auxs
         for aux in self.aux_windows:
-            print "aux ", aux
             aux.update_card_positions()
             aux.update_common()
         return True

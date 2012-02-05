@@ -84,7 +84,7 @@ import Aux_Hud
 import Stats
 
 
-class Classic_Stat_Window(Aux_Hud.Stat_Window):
+class Classic_Stat_Window(Aux_Hud.Simple_Stat_Window):
     """Stat windows are the blocks shown continually, 1 for each player."""
 
     def update_contents(self, i):
@@ -111,7 +111,7 @@ Aux_Hud.Stat_Window=Classic_Stat_Window  ##Aux_Hud instances this class, so must
 class Classic_HUD(Aux_Hud.Simple_HUD):
     """
         There is one instance of this class per poker table
-        the MENU block and stat_windows for each player are controlled
+        the stat_windows for each player are controlled
         from this class.
     """
 
@@ -151,7 +151,6 @@ class Classic_stat(Aux_Hud.Simple_stat):
 
     def update(self, player_id, stat_dict):
         super(Classic_stat, self).update(player_id, stat_dict)
-
         # Simple hud uses the colour from <aw>; colour from <site> is deprecated
         fg=self.hudcolor        
         if self.stat_loth != "":
