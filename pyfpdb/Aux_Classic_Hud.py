@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#    Copyright 2011,  "Gimick" of the FPDB project  fpdb.sourceforge.net
+#    Copyright 2011-2012,  "Gimick" of the FPDB project  fpdb.sourceforge.net
 #                     -  bbtgaf@googlemail.com
 #
 #This program is free software: you can redistribute it and/or modify
@@ -39,12 +39,10 @@ _ = L10n.get_translation()
 
 # to do
 #=======
-# move stat blocks menu item not implemnted (assume this is deprecated)
-# debug hud option (assume this is deprecated)
 # check that the parameters stored at AW level make sense for players
 #  - when playing more than one site
-# fix the existing bugs with move/resize table (fix in aux_hud, not here)
-# fix updat_contents() show() positions - need to be offset if the table has moved
+# implement resize
+# sort out the wierd focus issues in flop-mucked.
 
 #    Standard Library modules
 import logging

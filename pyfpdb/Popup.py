@@ -4,7 +4,7 @@
 
 Popup windows for the HUD.
 """
-#    Copyright 2011,  Ray E. Barker
+#    Copyright 2011-2012,  Ray E. Barker
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
