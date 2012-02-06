@@ -158,6 +158,7 @@ class HUD_main(object):
 
     def create_HUD(self, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards):
         """type is "ring" or "tour" used to set hud_params"""
+        print "create HUD"
 
         self.hud_dict[temp_key] = Hud.Hud(self, table, max, poker_game, type, self.config, self.db_connection)
         self.hud_dict[temp_key].table_name = temp_key
@@ -246,6 +247,10 @@ class HUD_main(object):
                                 self.db_connection.get_table_info(new_hand_id)
             except Exception:
                 log.exception(_("database error: skipping %s") % new_hand_id)
+                continue
+                
+            if not c.get_site_parameters(site_name)['aux_enabled']:
+                log.debug(_("Aux disabled for site %s") % site_name)
                 continue
 
             if type == "tour":   # hand is from a tournament

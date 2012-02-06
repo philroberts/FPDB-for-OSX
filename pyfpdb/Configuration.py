@@ -313,7 +313,7 @@ class Site:
         self.site_path    = normalizePath(node.getAttribute("site_path"))
         self.HH_path    = normalizePath(node.getAttribute("HH_path"))
         self.enabled    = string_to_bool(node.getAttribute("enabled"), default=True)
-        self.hud_enabled  = string_to_bool(node.getAttribute("hud_enabled"), default=True)
+        self.aux_enabled  = string_to_bool(node.getAttribute("aux_enabled"), default=True)
         self.hud_menu_xshift = node.getAttribute("hud_menu_xshift")
         self.hud_menu_xshift = 1 if self.hud_menu_xshift == "" else int(self.hud_menu_xshift)
         self.hud_menu_yshift = node.getAttribute("hud_menu_yshift")
@@ -1446,7 +1446,7 @@ class Config:
         parms["HH_path"]    = self.supported_sites[site].HH_path
         parms["site_name"]    = self.supported_sites[site].site_name
         parms["enabled"]    = self.supported_sites[site].enabled
-        parms["hud_enabled"]    = self.supported_sites[site].hud_enabled
+        parms["aux_enabled"]    = self.supported_sites[site].aux_enabled
         parms["hud_menu_xshift"] = self.supported_sites[site].hud_menu_xshift
         parms["hud_menu_yshift"] = self.supported_sites[site].hud_menu_yshift        
         parms["layout_set"] = self.supported_sites[site].layout_set

@@ -37,35 +37,6 @@ import pango
 import Mucked
 import Stats
 
-class Simple_Stat_Window(Mucked.Seat_Window):
-    """Simple window class for stat windows."""
-
-    def create_contents(self, i):
-        self.grid = gtk.Table(rows = self.aw.nrows, columns = self.aw.ncols, homogeneous = False)
-        self.add(self.grid)
-        self.grid.modify_bg(gtk.STATE_NORMAL, self.aw.bgcolor)
-        self.modify_bg(gtk.STATE_NORMAL, self.aw.bgcolor)
-        self.stat_box = [ [None]*self.aw.ncols for i in range(self.aw.nrows) ]
-
-        for r in xrange(self.aw.nrows):
-            for c in xrange(self.aw.ncols):
-                self.stat_box[r][c] = self.aw.aw_class_stat(self.aw.stats[r][c],
-                    seat = self.seat, 
-                    popup = self.aw.popups[r][c], 
-                    game_stat_config = self.aw.hud.supported_games_parameters["game_stat_set"].stats[self.aw.stats[r][c]],
-                    aw = self.aw)
-                self.grid.attach(self.stat_box[r][c].widget, c, c+1, r, r+1, xpadding = self.aw.xpad, ypadding = self.aw.ypad)
-                self.stat_box[r][c].set_color(self.aw.fgcolor, self.aw.bgcolor)
-                self.stat_box[r][c].set_font(self.aw.font)
-                self.stat_box[r][c].widget.connect("button_press_event", self.button_press_cb)
-
-    def update_contents(self, i):
-        if i == "common": return
-        player_id = self.aw.get_id_from_seat(i)
-        if player_id is None: return
-        for r in xrange(self.aw.nrows):
-            for c in xrange(self.aw.ncols):
-                self.stat_box[r][c].update(player_id, self.aw.hud.stat_dict)
 
 class Simple_HUD(Mucked.Aux_Seats):
     """A simple HUD class based on the Aux_Window interface."""
@@ -120,9 +91,11 @@ class Simple_HUD(Mucked.Aux_Seats):
                     = self.game_params.stats[stat].tip
                                         
     def create_contents(self, container, i):
+        # this is a call to whatever is in self.aw_class_window but it isn't obvious
         container.create_contents(i)
 
     def update_contents(self, container, i):
+        # this is a call to whatever is in self.aw_class_window but it isn't obvious
         container.update_contents(i)
 
     def create_common(self, x, y):
@@ -148,6 +121,37 @@ class Simple_HUD(Mucked.Aux_Seats):
                 pass
 
         self.config.save_layout_set(self.hud.layout_set, self.hud.max, new_locs ,width, height)
+
+
+class Simple_Stat_Window(Mucked.Seat_Window):
+    """Simple window class for stat windows."""
+
+    def create_contents(self, i):
+        self.grid = gtk.Table(rows = self.aw.nrows, columns = self.aw.ncols, homogeneous = False)
+        self.add(self.grid)
+        self.grid.modify_bg(gtk.STATE_NORMAL, self.aw.bgcolor)
+        self.modify_bg(gtk.STATE_NORMAL, self.aw.bgcolor)
+        self.stat_box = [ [None]*self.aw.ncols for i in range(self.aw.nrows) ]
+
+        for r in xrange(self.aw.nrows):
+            for c in xrange(self.aw.ncols):
+                self.stat_box[r][c] = self.aw.aw_class_stat(self.aw.stats[r][c],
+                    seat = self.seat,
+                    popup = self.aw.popups[r][c],
+                    game_stat_config = self.aw.hud.supported_games_parameters["game_stat_set"].stats[self.aw.stats[r][c]],
+                    aw = self.aw)
+                self.grid.attach(self.stat_box[r][c].widget, c, c+1, r, r+1, xpadding = self.aw.xpad, ypadding = self.aw.ypad)
+                self.stat_box[r][c].set_color(self.aw.fgcolor, self.aw.bgcolor)
+                self.stat_box[r][c].set_font(self.aw.font)
+                self.stat_box[r][c].widget.connect("button_press_event", self.button_press_cb)
+
+    def update_contents(self, i):
+        if i == "common": return
+        player_id = self.aw.get_id_from_seat(i)
+        if player_id is None: return
+        for r in xrange(self.aw.nrows):
+            for c in xrange(self.aw.ncols):
+                self.stat_box[r][c].update(player_id, self.aw.hud.stat_dict)
 
 
 class Simple_stat(object):

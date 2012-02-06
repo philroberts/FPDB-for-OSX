@@ -470,8 +470,14 @@ class Aux_Seats(Aux_Window):
 
     def update_gui(self, new_hand_id):
         """Update the gui, LDO."""
+
         for i in self.m_windows.keys():
-            self.update_contents(self.m_windows[i], i)           
+            self.update_contents(self.m_windows[i], i)
+        #reload latest player positions, in case another aux has changed them
+        #these lines cause the propagation of block-moves across
+        #tables without the need to kill the hud
+        self.update_player_positions()
+        self.update_common_position()
 
 #   Methods likely to be of use for any Seat_Window implementation
     def destroy(self):
@@ -608,11 +614,6 @@ class Flop_Mucked(Aux_Seats):
     def update_gui(self, new_hand_id):
         """Prepare and show the mucked cards."""
         if self.displayed: self.hide()
-        
-        # re-initialise block locations, other aux's may have moved them
-        #  since the last hand and locations are shared by all aux's for
-        #  the current table
-        self.update_player_positions()
 
 #   See how many players showed a hand. Skip if only 1 shows (= hero)
         n_sd = 0
