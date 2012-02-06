@@ -49,7 +49,7 @@ class Aux_Window(object):
     def create(self, *args):      pass
     def relocate(self, *args):    pass
     def save_layout(self, *args): pass
-    def update_card_positions(self, *args): pass
+    def update_player_positions(self, *args): pass
     def destroy(self):
         try:
             self.container.destroy()
@@ -408,7 +408,7 @@ class Aux_Seats(Aux_Window):
     def create_common(self, x, y): pass
     def update_contents(self): pass
 
-    def update_card_positions(self):
+    def update_player_positions(self):
         # self.adj does not exist until .create() has been run
         try:
             adj = self.adj
@@ -420,7 +420,7 @@ class Aux_Seats(Aux_Window):
             self.positions[i] = self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
 
-    def update_common(self):
+    def update_common_position(self):
         (x, y) = self.hud.layout.common
         self.positions["common"] = self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
         self.m_windows["common"].move(self.positions["common"][0], self.positions["common"][1])
@@ -612,7 +612,7 @@ class Flop_Mucked(Aux_Seats):
         # re-initialise block locations, other aux's may have moved them
         #  since the last hand and locations are shared by all aux's for
         #  the current table
-        self.update_card_positions()
+        self.update_player_positions()
 
 #   See how many players showed a hand. Skip if only 1 shows (= hero)
         n_sd = 0

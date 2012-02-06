@@ -130,9 +130,9 @@ class Simple_HUD(Mucked.Aux_Seats):
         self.table_mw = self.aw_class_table_mw(self.hud, aw = self)
         return self.table_mw
         
-    def update_common(self):
+    def update_common_position(self):
         #tell our mw that an update is needed (normally on table move)
-        self.table_mw.update_common()
+        self.table_mw.update_common_position()
 
     def save_layout(self, *args):
         """Save new layout back to the aux element in the config file."""
@@ -256,7 +256,7 @@ class Simple_table_mw(Mucked.Seat_Window):
     def create_contents(self, *args): pass
     def update_contents(self, *args): pass
     
-    def update_common(self, *args):
+    def update_common_position(self, *args):
         self.move(self.hud.table.x + self.aw.xshift, self.hud.table.y + self.aw.yshift)
     
     def save_current_layouts(self, event):

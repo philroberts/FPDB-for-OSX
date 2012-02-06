@@ -127,7 +127,7 @@ class HUD_main(object):
 
     def client_moved(self, widget, hud):
         log.debug(_("client_moved event"))
-        hud.up_update_table_position()
+        hud.update_table_position()
 
     def client_resized(self, widget, hud):
         log.debug(_("client_resized event"))

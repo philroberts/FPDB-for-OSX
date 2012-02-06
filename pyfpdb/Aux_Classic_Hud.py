@@ -33,31 +33,6 @@ Please take extra care making changes to this code - there is
 multiple-level inheritence in much of this code, class heirarchies
 are not immediately obvious, and there is very close linkage with most of 
 the Hud modules.
-
-Note about super() and MRO patching.
-------------------------------------
-
-The call to super() invokes that method in the Aux_Hud code - therefore 
-local code can be placed before or after the Aux_Hud code runs.
-
-To completely replace a method from Aux_Hud, do not call super().
-
-With the exception of class Classic_HUD, all other classes are instanted
-in Aux_Hud, and therefore local code here is never recognised.
-To overcome this, the Method Resolution Order (MRO) is patched in the code
-here using a command "Aux_Hud.some_class = local_class"
-This causes the class to be instanted in THIS CODE rather than in Aux_Hud
-
-To debug mro problems, import inspect and inspect.getmro(some_class_name)
-
-General comments about overriding simple_hud
---------------------------------------------
-Although there is some flexibility to augment the Aux_Hud, it is not possible
-to supplement everything.  For example, when Aux_Hud reads a value from a 
-method and then acts on that value, it is difficult to pre-process here to
-set a different value.  In those cases, one simply block-copies the method here
-but that wasn't the design philosophy of new-hud.
-
 """
 import L10n
 _ = L10n.get_translation()
@@ -178,6 +153,11 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
     """
     A class normally controlling the table menu for that table
     Normally a 1:1 relationship with the Classic_HUD class
+    
+    This is invoked by the create_common method of the Classic/Simple_HUD class
+    (although note that the positions of this block are controlled by shiftx/y
+    and NOT by the common position in the layout)
+    Movements of the menu block are handled through Classic_HUD/common methods
     """
     def __init__(self, hud, aw = None):
         self.hud = hud

@@ -112,7 +112,7 @@ class Hud:
         self.creation_attrs = None
         
 
-    def up_update_table_position(self):
+    def update_table_position(self):
 #    callback for table moved
 
 ##    move the stat windows
@@ -125,8 +125,8 @@ class Hud:
 #        self.main_window.move(self.table.x + self.site_params['xshift'], self.table.y + self.site_params['yshift'])
 #    and move any auxs
         for aux in self.aux_windows:
-            aux.update_card_positions()
-            aux.update_common()
+            aux.update_player_positions()
+            aux.update_common_position()
         return True
 
 #    def on_button_press(self, widget, event):
