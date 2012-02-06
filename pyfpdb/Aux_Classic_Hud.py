@@ -84,6 +84,26 @@ import Aux_Hud
 import Stats
 
 
+class Classic_HUD(Aux_Hud.Simple_HUD):
+    """
+        There is one instance of this class per poker table
+        the stat_windows for each player are controlled
+        from this class.
+    """
+
+    def __init__(self, hud, config, params):
+        super(Classic_HUD, self).__init__(hud, config, params)
+        
+        # the following attributes ensure that the correct
+        # classes are invoked by the calling modules (aux_hud+mucked)
+        
+        self.aw_class_window = Classic_Stat_Window
+        self.aw_class_stat = Classic_stat
+        self.aw_class_table_mw = Classic_table_mw
+        self.aw_class_eb = Classic_eb
+        self.aw_class_label = Classic_label
+
+
 class Classic_Stat_Window(Aux_Hud.Simple_Stat_Window):
     """Stat windows are the blocks shown continually, 1 for each player."""
 
@@ -104,34 +124,16 @@ class Classic_Stat_Window(Aux_Hud.Simple_Stat_Window):
     def button_press_middle(self, widget, event, *args):
         self.hide()
 
-Aux_Hud.Simple_Stat_Window=Classic_Stat_Window  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
-      
-      
-              
-class Classic_HUD(Aux_Hud.Simple_HUD):
-    """
-        There is one instance of this class per poker table
-        the stat_windows for each player are controlled
-        from this class.
-    """
-
-    def __init__(self, hud, config, params):
-        super(Classic_HUD, self).__init__(hud, config, params)
-
-    def create_contents(self, container, i):
-        super(Classic_HUD, self).create_contents(container, i)
-##No-need to patch MRO in Aux_Hud - this is instanced here, not in Aux_hud
-
-
 
 class Classic_stat(Aux_Hud.Simple_stat):
     """A class to display each individual statistic on the Stat_Window"""
     
     def __init__(self, stat, seat, popup, game_stat_config, aw):
+    
         super(Classic_stat, self).__init__(stat, seat, popup, game_stat_config, aw)
         #game_stat_config is the instance of this stat in the supported games stat configuration
         #use this prefix to directly extract the attributes
-
+        
         self.popup = game_stat_config.popup
         self.click = game_stat_config.click # not implemented yet
         self.tip = game_stat_config.tip     # not implemented yet
@@ -166,24 +168,15 @@ class Classic_stat(Aux_Hud.Simple_stat):
         
         tip = "%s\n%s\n%s, %s" % (stat_dict[player_id]['screen_name'], self.number[5], self.number[3], self.number[4])
         Stats.do_tip(self.widget, tip)
-        
-Aux_Hud.Simple_stat=Classic_stat  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
-
 
 
 class Classic_eb(Aux_Hud.Simple_eb): pass
-Aux_Hud.Simple_eb=Classic_eb  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
-
-
-
 class Classic_label(Aux_Hud.Simple_label): pass
-Aux_Hud.Simple_label=Classic_label  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
-
 
 
 class Classic_table_mw(Aux_Hud.Simple_table_mw):
     """
-    A class controlling the table menu for that table
+    A class normally controlling the table menu for that table
     Normally a 1:1 relationship with the Classic_HUD class
     """
     def __init__(self, hud, aw = None):
@@ -394,8 +387,4 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
 
     def change_max_seats(self, widget):
         self.hud_params['new_max_seats'] = widget.ms
-
-
-Aux_Hud.Simple_table_mw=Classic_table_mw  ##Aux_Hud instances this class, so must patch MRO in Aux_Hud
-                                          ##see FIXME note in Aux_Hud Simple_table_mw init method
                                           

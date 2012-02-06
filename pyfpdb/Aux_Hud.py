@@ -49,7 +49,7 @@ class Simple_Stat_Window(Mucked.Seat_Window):
 
         for r in xrange(self.aw.nrows):
             for c in xrange(self.aw.ncols):
-                self.stat_box[r][c] = self.aw.aw_simple_stat(self.aw.stats[r][c], 
+                self.stat_box[r][c] = self.aw.aw_class_stat(self.aw.stats[r][c],
                     seat = self.seat, 
                     popup = self.aw.popups[r][c], 
                     game_stat_config = self.aw.hud.supported_games_parameters["game_stat_set"].stats[self.aw.stats[r][c]],
@@ -96,11 +96,12 @@ class Simple_HUD(Mucked.Aux_Seats):
         #store these class definitions for use elsewhere
         # this is needed to guarantee that the classes in _this_ module
         # are called, and that some other overriding class is not used.
-        # to see this in action, locate the place where these classes are
-        # instatiated, and compare Simple_stat.__mro__ to self.aw_simple_stat.__mro__
-        self.aw_window_type = Simple_Stat_Window
-        self.aw_simple_stat = Simple_stat
-        self.aw_mw_type = Simple_table_mw
+
+        self.aw_class_window = Simple_Stat_Window
+        self.aw_class_stat = Simple_stat
+        self.aw_class_table_mw = Simple_table_mw
+        self.aw_class_eb = Simple_eb
+        self.aw_class_label = Simple_label
 
         #    layout is handled by superclass!
         #    retrieve the contents of the stats. popup and tips elements
@@ -126,7 +127,7 @@ class Simple_HUD(Mucked.Aux_Seats):
 
     def create_common(self, x, y):
         # invokes the simple_table_mw class (or similar)
-        self.table_mw = self.aw_mw_type(self.hud, aw = self)
+        self.table_mw = self.aw_class_table_mw(self.hud, aw = self)
         return self.table_mw
         
     def update_common(self):
@@ -153,11 +154,11 @@ class Simple_stat(object):
     """A simple class for displaying a single stat."""
     def __init__(self, stat, seat, popup, game_stat_config=None, aw=None):
         self.stat = stat
-        self.eb = Simple_eb();
+        self.eb = aw.aw_class_eb()
         self.eb.aw_seat = seat
         self.eb.aw_popup = popup
         self.eb.stat_dict = None
-        self.lab = Simple_label("xxx") # xxx is used as initial value because longer labels don't shrink
+        self.lab = aw.aw_class_label("xxx") # xxx is used as initial value because longer labels don't shrink
         self.eb.add(self.lab)
         self.widget = self.eb
         self.stat_dict = None
@@ -191,12 +192,7 @@ class Simple_table_mw(Mucked.Seat_Window):
 #    BTW: It might be better to do this with a different AW.
 
     def __init__(self, hud, aw = None):
-        #### FIXME: (Gimick)
-        #### I had to replace super() call with direct call to __init__
-        #### Needed for the moment because Classic_hud can't patch MRO for 
-        #### table_mw class.  Get a wierd recursion level exceeded message
-        Mucked.Seat_Window.__init__(self, aw)
-        #####super(Simple_table_mw, self).__init__(aw)
+        super(Simple_table_mw, self).__init__(aw)
         self.hud = hud
         self.aw = aw
 

@@ -401,7 +401,7 @@ class Aux_Seats(Aux_Window):
         self.uses_timer = False  # the Aux_seats object uses a timer to control hiding
         self.timer_on = False    # bool = Ture if the timeout for removing the cards is on
 
-        self.aw_window_type = Seat_Window
+        self.aw_class_window = Seat_Window
 
 #    placeholders that should be overridden--so we don't throw errors
     def create_contents(self): pass
@@ -439,7 +439,7 @@ class Aux_Seats(Aux_Window):
                 self.m_windows[i] = self.create_common(x, y)
             else:
                 (x, y) = self.hud.layout.location[self.adj[i]]
-                self.m_windows[i] = self.aw_window_type(self, i)
+                self.m_windows[i] = self.aw_class_window(self, i)
                 self.m_windows[i].set_decorated(False)
                 self.m_windows[i].set_property("skip-taskbar-hint", True)
                 self.m_windows[i].set_focus_on_map(False)
@@ -533,7 +533,7 @@ class Flop_Mucked(Aux_Seats):
 
     def create_common(self, x, y):
         "Create the window for the board cards and do the initial population."
-        w = self.aw_window_type(self, "common")
+        w = self.aw_class_window(self, "common")
         w.set_decorated(False)
         w.set_property("skip-taskbar-hint", True)
         w.set_focus_on_map(False)
