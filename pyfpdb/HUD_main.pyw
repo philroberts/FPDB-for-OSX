@@ -158,7 +158,6 @@ class HUD_main(object):
 
     def create_HUD(self, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards):
         """type is "ring" or "tour" used to set hud_params"""
-        print "create HUD"
 
         self.hud_dict[temp_key] = Hud.Hud(self, table, max, poker_game, type, self.config, self.db_connection)
         self.hud_dict[temp_key].table_name = temp_key
@@ -211,6 +210,12 @@ class HUD_main(object):
             log.exception(_("No enabled sites found"))
             self.destroy()
             return
+        
+        aux_disabled_sites = []
+        for i in enabled_sites:
+            if not c.get_site_parameters(i)['aux_enabled']:
+                log.info(_("Aux disabled for site %s") % i)
+                aux_disabled_sites.append(i)
 
         while 1:    # wait for a new hand number on stdin
             new_hand_id = sys.stdin.readline()
@@ -225,7 +230,6 @@ class HUD_main(object):
 
 #    FIXME: This doesn't work in the case of the player playing on 2
 #    sites at once (???)  Eratosthenes
-#   Fixme: this fails if there are no active sites in the config
 
             if not found:
                 for site in enabled_sites:
@@ -241,7 +245,7 @@ class HUD_main(object):
 
 #        get basic info about the new hand from the db
 #        if there is a db error, complain, skip hand, and proceed
-            log.info("HUD_main.read_stdin: " + _("Hand processing starting."))
+            #log.info("HUD_main.read_stdin: " + _("Hand processing starting."))
             try:
                 (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
@@ -249,8 +253,7 @@ class HUD_main(object):
                 log.exception(_("database error: skipping %s") % new_hand_id)
                 continue
                 
-            if not c.get_site_parameters(site_name)['aux_enabled']:
-                log.debug(_("Aux disabled for site %s") % site_name)
+            if site_name in aux_disabled_sites:
                 continue
 
             if type == "tour":   # hand is from a tournament
@@ -344,8 +347,8 @@ class HUD_main(object):
 def idle_resize(hud):
     gtk.gdk.threads_enter()
     try:
-        [aw.update_card_positions() for aw in hud.aux_windows]
-        [aw.update_common() for aw in hud.aux_windows]
+        [aw.update_player_positions() for aw in hud.aux_windows]
+        [aw.update_common_position() for aw in hud.aux_windows]
         hud.resize_windows()
     except:
         log.exception(_("Error resizing HUD for table: %s.") % hud.table.title)

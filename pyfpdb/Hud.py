@@ -62,15 +62,9 @@ class Hud:
         self.game_type     = game_type # (ring|tour)
         self.max           = max
         self.db_connection = db_connection
-        self.deleted       = False
-        self.stacked       = True
         self.site          = table.site
-        self.mw_created    = False
         self.hud_params    = parent.hud_params
-        self.repositioningwindows = False # used to keep reposition_windows from re-entering
-
-        self.stat_windows  = {}  #?is this still used?
-        self.popup_windows = {}
+        
         self.aux_windows   = []
         
         self.site_parameters = config.get_site_parameters(self.table.site)
@@ -114,16 +108,6 @@ class Hud:
 
     def update_table_position(self):
 #    callback for table moved
-
-##    move the stat windows
-#        adj = self.adj_seats(self.hand, self.config)
-#        loc = self.config.get_locations(self.table.site, self.max)
-#        for i, w in enumerate(self.stat_windows.itervalues()):
-#            (x, y) = loc[adj[i+1]]
-#            w.relocate(x, y)
-##    move the main window
-#        self.main_window.move(self.table.x + self.site_params['xshift'], self.table.y + self.site_params['yshift'])
-#    and move any auxs
         for aux in self.aux_windows:
             aux.update_player_positions()
             aux.update_common_position()
@@ -141,15 +125,7 @@ class Hud:
     def kill(self, *args):
 #    kill all stat_windows, popups and aux_windows in this HUD
 #    heap dead, burnt bodies, blood 'n guts, veins between my teeth
-        for s in self.stat_windows.itervalues():
-            s.kill_popups()
-            try:
-                # throws "invalid window handle" in WinXP (sometimes?)
-                s.window.destroy()
-            except: # TODO: what exception?
-                pass
-        self.stat_windows = {}
-#    also kill any aux windows
+#    kill all aux windows
         for aux in self.aux_windows:
             aux.destroy()
         self.aux_windows = []
@@ -165,14 +141,6 @@ class Hud:
 #            w.window.move(w.x, w.y) 
 #
     def reposition_windows(self, *args): pass
-#        self.update_table_position()
-#        for w in self.stat_windows.itervalues():
-#            if type(w) == int:
-##                print "in reposition, w =", w
-#                continue
-##            print "in reposition, w =", w, w.x, w.y
-#            w.window.move(w.x, w.y)
-#        return True
 
 #    def debug_stat_windows(self, *args):
 ##        print self.table, "\n", self.main_window.window.get_transient_for()
@@ -199,6 +167,7 @@ class Hud:
     def save_layout(self, *args):
 #    ask each aux to save its layout back to the config object
         [aux.save_layout() for aux in self.aux_windows]
+#    write the layouts back to the HUD_config
         self.config.save()
 
     def adj_seats(self, hand, config):
