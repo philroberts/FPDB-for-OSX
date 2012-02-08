@@ -401,7 +401,7 @@ class Aux_Seats(Aux_Window):
         self.uses_timer = False  # the Aux_seats object uses a timer to control hiding
         self.timer_on = False    # bool = Ture if the timeout for removing the cards is on
 
-        self.aw_class_window = Seat_Window
+        self.aw_class_window = Seat_Window # classname to be used by the aw_class_window
 
 #    placeholders that should be overridden--so we don't throw errors
     def create_contents(self): pass
@@ -415,18 +415,27 @@ class Aux_Seats(Aux_Window):
         except AttributeError:
             return
 
+        
+
         for i in (range(1, self.hud.max + 1)):
             (x, y) = self.hud.layout.location[self.adj[i]]
-            self.positions[i] = self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
+            print i,(x,y)
+            self.positions[i] = self.true_player_position(x, y)
+            print i,self.positions[i]
+            print i,(x,y)
+            print self.hud.layout.location[self.adj[i]]
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
 
+                
     def update_common_position(self):
         (x, y) = self.hud.layout.common
-        self.positions["common"] = self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
+        self.positions["common"] = self.true_player_position(x, y)
         self.m_windows["common"].move(self.positions["common"][0], self.positions["common"][1])
         
     def create(self):
 
+        print self.hud.layout.height
+        
         self.adj = self.hud.adj_seats(0, self.config)  # move adj_seats to aux and get rid of it in Hud.py
         
         self.m_windows = {}      # windows to put the card/hud items in
@@ -446,7 +455,7 @@ class Aux_Seats(Aux_Window):
                 self.m_windows[i].set_focus(None)
                 self.m_windows[i].set_accept_focus(False)
                 self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
-                self.positions[i] =  self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
+                self.positions[i] = self.true_player_position(x, y)
                 self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
                 if self.params.has_key('opacity'):
                     self.m_windows[i].set_opacity(float(self.params['opacity']))
@@ -462,9 +471,16 @@ class Aux_Seats(Aux_Window):
                 self.m_windows[i].hide()
 
 
-    def card_positions(self, x, table_x, y, table_y):
-        _x = int(x) + int(table_x)
-        _y = int(y) + int(table_y)
+    def true_player_position(self, x, y):
+        # for a given x/y, scale according to current height/wid vs. reference
+        # height/width
+
+        x_scale = 1.0 * self.hud.table.width / self.hud.layout.width
+        y_scale = 1.0 * self.hud.table.height / self.hud.layout.height        
+
+        #finally, offset from relative to absolute
+        _x = int(x * x_scale) + self.hud.table.x
+        _y = int(y * y_scale) + self.hud.table.y
         return (_x, _y)
 
 
@@ -521,6 +537,8 @@ class Aux_Seats(Aux_Window):
                 self.hud.layout.location[self.adj[i]] = new_rel_position #update the hud-level dict, so other aux can be told
             else:
                 self.hud.layout.common = new_rel_position
+            self.hud.layout.height = self.hud.table.height # write back the current width and height too fixme
+            self.hud.layout.width = self.hud.table.width # write back the current width and height too fixme
 
 
 class Flop_Mucked(Aux_Seats):
@@ -546,8 +564,7 @@ class Flop_Mucked(Aux_Seats):
         w.set_focus(None)
         w.set_accept_focus(False)
         w.connect("configure_event", self.configure_event_cb, "common")
-        #self.positions["common"] = self.card_positions((x * self.hud.table.width) / 1000, self.hud.table.x, (y * self.hud.table.height) /1000, self.hud.table.y)
-        self.positions["common"] = self.card_positions(x, self.hud.table.x, y, self.hud.table.y)
+        self.positions["common"] = self.true_player_position(x, y)
         w.move(self.positions["common"][0], self.positions["common"][1])
         if self.params.has_key('opacity'):
             w.set_opacity(float(self.params['opacity']))
