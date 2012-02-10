@@ -122,10 +122,10 @@ class Simple_HUD(Mucked.Aux_Seats):
 
         self.config.save_layout_set(self.hud.layout_set, self.hud.max, new_locs ,width, height)
 
-
+        
 class Simple_Stat_Window(Mucked.Seat_Window):
     """Simple window class for stat windows."""
-
+    
     def create_contents(self, i):
         self.grid = gtk.Table(rows = self.aw.nrows, columns = self.aw.ncols, homogeneous = False)
         self.add(self.grid)
@@ -143,7 +143,7 @@ class Simple_Stat_Window(Mucked.Seat_Window):
                 self.grid.attach(self.stat_box[r][c].widget, c, c+1, r, r+1, xpadding = self.aw.xpad, ypadding = self.aw.ypad)
                 self.stat_box[r][c].set_color(self.aw.fgcolor, self.aw.bgcolor)
                 self.stat_box[r][c].set_font(self.aw.font)
-                self.stat_box[r][c].widget.connect("button_press_event", self.button_press_cb)
+                self.stat_box[r][c].widget.connect("button_press_event", self.button_press_cb) #setup callback on each stat
 
     def update_contents(self, i):
         if i == "common": return
@@ -200,7 +200,7 @@ class Simple_table_mw(Mucked.Seat_Window):
         self.hud = hud
         self.aw = aw
 
-        self.connect("configure_event", self.configure_event_cb, "auxmenu")
+        #self.connect("configure_event", self.configure_event_cb, "auxmenu") base class will deal with this
 
         eb = gtk.EventBox()
         try: lab=gtk.Label(self.menu_label)
@@ -224,7 +224,8 @@ class Simple_table_mw(Mucked.Seat_Window):
         self.show_all()
         self.hud.table.topify(self)
         
-    def configure_event_cb(self, widget, event, *args): pass
+#    def configure_event_cb(self, widget, event, *args):
+#        print "aux_hud.table_mw.cec"
 
     def create_menu_items(self, menu):
         #a gtk.menu item is passed in and returned

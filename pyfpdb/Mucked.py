@@ -361,11 +361,12 @@ class Seat_Window(gtk.Window):
         self.set_focus(None)
         self.set_focus_on_map(False)
         self.set_accept_focus(False)
-        self.connect("configure_event", self.aw.configure_event_cb, self.seat)
+        self.connect("configure_event", self.aw.configure_event_cb, self.seat) #probably ultimately pointing at Aux_seats class
 
 
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the event boxes."""
+        print "mucked.seat_window.bpc", self, widget
         #double-click events should be avoided
         # these are not working reliably on windows GTK 2.24 toolchain
 
@@ -378,16 +379,18 @@ class Seat_Window(gtk.Window):
 
 
     def button_press_left(self, widget, event, *args): #move window
+        print "mucked.seat_window.bpleft"
         self.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
         
     def button_press_middle(self, widget, event, *args): pass 
   
     def button_press_right(self, widget, event, *args):  #show pop up
         pu_to_run = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup].pu_class
-        Popup.__dict__[pu_to_run](seat = widget.aw_seat,
-            stat_dict = widget.stat_dict,
-            win = widget.get_ancestor(gtk.Window),
-            pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup])
+        if widget.stat_dict: # do not popup on "xxx" empty blocks
+            Popup.__dict__[pu_to_run](seat = widget.aw_seat,
+                stat_dict = widget.stat_dict,
+                win = widget.get_ancestor(gtk.Window),
+                pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup])
     
 class Aux_Seats(Aux_Window):
     """A super class to display an aux_window or a stat block at each seat."""
@@ -419,11 +422,7 @@ class Aux_Seats(Aux_Window):
 
         for i in (range(1, self.hud.max + 1)):
             (x, y) = self.hud.layout.location[self.adj[i]]
-            print i,(x,y)
             self.positions[i] = self.true_player_position(x, y)
-            print i,self.positions[i]
-            print i,(x,y)
-            print self.hud.layout.location[self.adj[i]]
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
 
                 
@@ -433,8 +432,6 @@ class Aux_Seats(Aux_Window):
         self.m_windows["common"].move(self.positions["common"][0], self.positions["common"][1])
         
     def create(self):
-
-        print self.hud.layout.height
         
         self.adj = self.hud.adj_seats(0, self.config)  # move adj_seats to aux and get rid of it in Hud.py
         
@@ -454,7 +451,7 @@ class Aux_Seats(Aux_Window):
                 self.m_windows[i].set_focus_on_map(False)
                 self.m_windows[i].set_focus(None)
                 self.m_windows[i].set_accept_focus(False)
-                self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
+                #self.m_windows[i].connect("configure_event", self.aw_class_window.configure_event_cb, i) ##self.aw_class_window will define this
                 self.positions[i] = self.true_player_position(x, y)
                 self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
                 if self.params.has_key('opacity'):
@@ -526,6 +523,7 @@ class Aux_Seats(Aux_Window):
 
 
     def configure_event_cb(self, widget, event, i, *args):
+        print "mucked.aux_seats.cec"
         """This method updates the current location for each statblock"""
         if (i): 
             new_abs_position = widget.get_position() #absolute value of the new position
@@ -660,7 +658,7 @@ class Flop_Mucked(Aux_Seats):
 
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the event boxes."""
-
+        print "mucked.flop_mucked.bpc"
 #    shift-any button exposes all the windows and turns off the timer
         if event.state & gtk.gdk.SHIFT_MASK:
             self.timer_on = False
