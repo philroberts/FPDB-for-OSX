@@ -572,7 +572,7 @@ class Flop_Mucked(Aux_Seats):
     def create_contents(self, container, i):
         """Create the widgets for showing the contents of the Aux_seats window."""
         container.eb = gtk.EventBox()
-        container.eb.connect("button_press_event", self.button_press_cb)
+        container.eb.connect("button_press_event", self.button_press_cb, i)
         container.add(container.eb)
         container.seen_cards = gtk.image_new_from_pixbuf(self.card_images[0])
         container.eb.add(container.seen_cards)
@@ -647,7 +647,6 @@ class Flop_Mucked(Aux_Seats):
 
     def timed_out(self):
 #    this is the callback from the timeout
-
 #    if timer_on is False the user has cancelled the timer with a click
 #    so just return False to cancel the timer
         if not self.timer_on:
@@ -656,26 +655,22 @@ class Flop_Mucked(Aux_Seats):
             self.hide()
             return False
 
-    def button_press_cb(self, widget, event, *args):
+    def button_press_cb(self, widget, event, i, *args):
         """Handle button clicks in the event boxes."""
+        # disable flopped buttons
         print "mucked.flop_mucked.bpc"
-#    shift-any button exposes all the windows and turns off the timer
+#    debug use: shift-any button exposes all the windows and turns off the timer
         if event.state & gtk.gdk.SHIFT_MASK:
             self.timer_on = False
             self.expose_all()
             return
 
-        if event.button == 3:   # right button event
-            pass
-
-        elif event.button == 2:   # middle button event
-            if self.timer_on == True:
-                self.timer_on = False
-            else:
-                self.timer_on = False
-                self.hide()
-
-        elif event.button == 1:   # left button event
+        if event.button == 2:   # middle button event (do not timeout)
+            if self.timer_on == True:  self.timer_on = False
+            else: self.timer_on = False;  self.hide()
+        elif event.button == 1 and i == "common":   # left button event (move)
+            #only allow move on "common" element - seat positions are 
+            # determined by aux_hud, not mucked card display
             window = widget.get_parent()
             window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
 
