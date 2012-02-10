@@ -1466,7 +1466,7 @@ class Config:
         if site_layouts.has_key(game_type):
             return self.layout_sets[site_layouts[game_type]]
         elif site_layouts.has_key("all"):
-            return self.layout_sets["all"]
+            return self.layout_sets[site_layouts["all"]]
         else:
             return None
 
