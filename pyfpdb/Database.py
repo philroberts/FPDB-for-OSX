@@ -1696,7 +1696,7 @@ class Database:
             c.execute("SELECT playerId FROM TourneysPlayers WHERE startTime is not NULL GROUP BY playerId")
             herorecords_tour = c.fetchall()
             for h in herorecords_tour:
-                if h not in heroes:
+                if h[0] not in heroes:
                     heroes += h
         if not heroes:
             hero = {}
@@ -1728,12 +1728,10 @@ class Database:
         rebuildSessionsCacheRing = rebuildSessionsCacheRing.replace('%s', self.sql.query['placeholder'])
         rebuildSessionsCacheTour = rebuildSessionsCacheTour.replace('%s', self.sql.query['placeholder'])
 
-        max, queries, type = [], [rebuildSessionsCacheTour, rebuildSessionsCacheRing], ['tour', 'ring']
+        queries, type = [rebuildSessionsCacheTour, rebuildSessionsCacheRing], ['tour', 'ring']
         c = self.get_cursor()
-        c.execute("SELECT count(H.id) FROM Hands H INNER JOIN Gametypes G ON (G.id = H.gametypeId) WHERE G.type='tour'")
-        max.append(c.fetchone()[0])
-        c.execute("SELECT count(H.id) FROM Hands H INNER JOIN Gametypes G ON (G.id = H.gametypeId) WHERE G.type='ring'")
-        max.append(c.fetchone()[0])
+        c.execute("SELECT count(H.id) FROM Hands H")
+        max = c.fetchone()[0]
         c.execute(self.sql.query['clear_GC_H'])
         c.execute(self.sql.query['clear_SC_H'])
         c.execute(self.sql.query['clear_SC_T'])
@@ -1756,13 +1754,18 @@ class Database:
             c.execute(self.sql.query['createGamesCacheTable'])            
         self.commit()
         
-        for k in range(2):
-            start, limit =  0, 5000
-            while start < max[k]:
+        start, end, limit =  0, 5000, 5000
+        print max, 'total hands'
+        while start < max:
+            ttime = time()
+            t, r = 0, 0
+            for k in range(2):
                 hid = {}
                 self.resetBulkCache()
-                c.execute(queries[k], (type[k], limit, start))
+                c.execute(queries[k], (type[k], start, end))
                 tmp = c.fetchone()
+                if tmp and type[k]=='ring': r += 1
+                if tmp and type[k]=='tour': t += 1
                 while tmp:
                     pids, game, pdata = {}, {}, {}
                     pdata['pname'] = {}
@@ -1798,9 +1801,14 @@ class Database:
                         self.updateTourneysSessions()
                         self.commit()
                         break
-                start += limit
+                    if type[k]=='ring': r += 1
+                    if type[k]=='tour': t += 1
+            print 'Hand ids', start, '-', end, '\t', 'total', (r+t), 'ring:', r, 'tour:', t, '\t', int(time() - ttime), 'sec',  int((r+t)/(time() - ttime)), 'hands/sec'
+            start += limit
+            end   += limit
             self.commit()
-        self.commit()        
+        self.commit()
+       
 
     def get_hero_hudcache_start(self):
         """fetches earliest stylekey from hudcache for one of hero's player ids"""

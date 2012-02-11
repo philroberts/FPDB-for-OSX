@@ -6340,8 +6340,8 @@ class Sql:
                     <tourney_join_clause>
                     WHERE  (HandsPlayers.playerId = <where_clause>)
                     AND Gametypes.type = %s
-                    ORDER BY Hands.startTime ASC
-                    LIMIT %s OFFSET %s"""
+                    AND Hands.id > %s
+                    AND Hands.id <= %s"""
                     
         ####################################
         # select
