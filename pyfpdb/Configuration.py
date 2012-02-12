@@ -1118,8 +1118,9 @@ class Config:
 
 
     def save_layout_set(self, ls, max, locations, width=None, height=None):
+        #wid/height normally not specified when saving common from the mucked display
         
-        print "saving layout =", ls.name, " ", str(max), "Max ", str(locations)
+        print "saving layout =", ls.name, " ", str(max), "Max ", str(locations), "size:", str(width), "x", str(height)
         ls_node = self.get_layout_set_node(ls.name)
         layout_node = self.get_layout_node(ls_node, max)
         if width: layout_node.setAttribute("width", str(width))

@@ -366,7 +366,6 @@ class Seat_Window(gtk.Window):
 
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the event boxes."""
-        print "mucked.seat_window.bpc", self, widget
         #double-click events should be avoided
         # these are not working reliably on windows GTK 2.24 toolchain
 
@@ -379,7 +378,6 @@ class Seat_Window(gtk.Window):
 
 
     def button_press_left(self, widget, event, *args): #move window
-        print "mucked.seat_window.bpleft"
         self.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
         
     def button_press_middle(self, widget, event, *args): pass 
@@ -392,6 +390,9 @@ class Seat_Window(gtk.Window):
                 win = widget.get_ancestor(gtk.Window),
                 pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup])
     
+    def create_contents(self, *args): pass
+    def update_contents(self, *args): pass
+    
 class Aux_Seats(Aux_Window):
     """A super class to display an aux_window or a stat block at each seat."""
 
@@ -399,7 +400,8 @@ class Aux_Seats(Aux_Window):
         self.hud     = hud       # hud object that this aux window supports
         self.config  = config    # configuration object for this aux window to use
         self.params  = params    # dict aux params from config
-        self.positions = {}      # dict of window positions
+        self.positions = {}      # dict of window positions. normalised for favourite seat and offset
+                                 #  this is needed because 
         self.displayed = False   # the seat windows are displayed
         self.uses_timer = False  # the Aux_seats object uses a timer to control hiding
         self.timer_on = False    # bool = Ture if the timeout for removing the cards is on
@@ -410,26 +412,33 @@ class Aux_Seats(Aux_Window):
     def create_contents(self): pass
     def create_common(self, x, y): pass
     def update_contents(self): pass
+    
+    def resize_windows(self): 
+        for i in (range(1, self.hud.max + 1)):
+            self.positions[i] = self.hud.layout.location[self.adj[i]]
+            self.m_windows[i].move(self.positions[i][0] + self.hud.table.x,
+                            self.positions[i][1] + self.hud.table.y)
+
+        self.positions["common"] = self.hud.layout.common        
+        self.m_windows["common"].move(self.hud.layout.common[0] + self.hud.table.x,
+                                self.hud.layout.common[1] + self.hud.table.y)
 
     def update_player_positions(self):
-        # self.adj does not exist until .create() has been run
-        try:
-            adj = self.adj
-        except AttributeError:
-            return
-
-        
+        print "upp ", self.positions
 
         for i in (range(1, self.hud.max + 1)):
-            (x, y) = self.hud.layout.location[self.adj[i]]
-            self.positions[i] = self.true_player_position(x, y)
-            self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
+            #(x, y) = self.hud.layout.location[self.adj[i]]
+            #self.positions[i] = self.offset_position(x, y)
+            self.m_windows[i].move(self.positions[i][0] + self.hud.table.x,
+                            self.positions[i][1] + self.hud.table.y)
 
                 
     def update_common_position(self):
-        (x, y) = self.hud.layout.common
-        self.positions["common"] = self.true_player_position(x, y)
-        self.m_windows["common"].move(self.positions["common"][0], self.positions["common"][1])
+        #(x, y) = self.hud.layout.common
+        #self.positions["common"] = self.offset_position(x, y)
+        
+        self.m_windows["common"].move(self.hud.layout.common[0] + self.hud.table.x,
+                                self.hud.layout.common[1] + self.hud.table.y)
         
     def create(self):
         
@@ -441,8 +450,10 @@ class Aux_Seats(Aux_Window):
             if i == 'common':
 #    The common window is different from the others. Note that it needs to 
 #    get realized, shown, topified, etc. in create_common
+#    self.hud.layout.xxxxx is updated after scaling, to ensure everything is in sync
                 (x, y) = self.hud.layout.common
                 self.m_windows[i] = self.create_common(x, y)
+                self.hud.layout.common = self.create_scale_position(x, y)
             else:
                 (x, y) = self.hud.layout.location[self.adj[i]]
                 self.m_windows[i] = self.aw_class_window(self, i)
@@ -452,8 +463,10 @@ class Aux_Seats(Aux_Window):
                 self.m_windows[i].set_focus(None)
                 self.m_windows[i].set_accept_focus(False)
                 #self.m_windows[i].connect("configure_event", self.aw_class_window.configure_event_cb, i) ##self.aw_class_window will define this
-                self.positions[i] = self.true_player_position(x, y)
-                self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
+                self.positions[i] = self.create_scale_position(x, y)
+                self.m_windows[i].move(self.positions[i][0] + self.hud.table.x,
+                                self.positions[i][1] + self.hud.table.y)
+                self.hud.layout.location[self.adj[i]] = self.positions[i]
                 if self.params.has_key('opacity'):
                     self.m_windows[i].set_opacity(float(self.params['opacity']))
 
@@ -466,29 +479,35 @@ class Aux_Seats(Aux_Window):
             self.m_windows[i].show_all()
             if self.uses_timer:
                 self.m_windows[i].hide()
+                
+        self.hud.layout.height = self.hud.table.height
+        self.hud.layout.width = self.hud.table.width
+        
 
 
-    def true_player_position(self, x, y):
+    def create_scale_position(self, x, y):
         # for a given x/y, scale according to current height/wid vs. reference
         # height/width
+        # This method is needed for create (because the table may not be 
+        # the same size as the layout in config)
+        
+        # any subsequent resizing of this table will be handled through
+        # hud_main.idle_resize
 
-        x_scale = 1.0 * self.hud.table.width / self.hud.layout.width
-        y_scale = 1.0 * self.hud.table.height / self.hud.layout.height        
+        x_scale = (1.0 * self.hud.table.width / self.hud.layout.width)
+        y_scale = (1.0 * self.hud.table.height / self.hud.layout.height)
+        return (int(x * x_scale), int(y * y_scale))
 
-        #finally, offset from relative to absolute
-        _x = int(x * x_scale) + self.hud.table.x
-        _y = int(y * y_scale) + self.hud.table.y
-        return (_x, _y)
-
-
+#    def offset_position(self, x, y):
+#        return (x + self.hud.table.x, y + self.hud.table.y)
+        
     def update_gui(self, new_hand_id):
         """Update the gui, LDO."""
-
         for i in self.m_windows.keys():
             self.update_contents(self.m_windows[i], i)
         #reload latest player positions, in case another aux has changed them
         #these lines cause the propagation of block-moves across
-        #tables without the need to kill the hud
+        #the hud and mucked handlers without the need to kill the hud
         self.update_player_positions()
         self.update_common_position()
 
@@ -523,20 +542,15 @@ class Aux_Seats(Aux_Window):
 
 
     def configure_event_cb(self, widget, event, i, *args):
-        print "mucked.aux_seats.cec"
         """This method updates the current location for each statblock"""
         if (i): 
             new_abs_position = widget.get_position() #absolute value of the new position
-            new_rel_position = (new_abs_position[0]-self.hud.table.x, new_abs_position[1]-self.hud.table.y)
-            #if i != "common" and int(i) == 5:
-            #    print i, self.hud.table.x, self.hud.table.y, new_abs_position, new_rel_position
-            self.positions[i] = new_abs_position     #write this back to our map
+            new_position = (new_abs_position[0]-self.hud.table.x, new_abs_position[1]-self.hud.table.y)
+            self.positions[i] = new_position     #write this back to our map
             if i != "common":
-                self.hud.layout.location[self.adj[i]] = new_rel_position #update the hud-level dict, so other aux can be told
+                self.hud.layout.location[self.adj[i]] = new_position #update the hud-level dict, so other aux can be told
             else:
-                self.hud.layout.common = new_rel_position
-            self.hud.layout.height = self.hud.table.height # write back the current width and height too fixme
-            self.hud.layout.width = self.hud.table.width # write back the current width and height too fixme
+                self.hud.layout.common = new_position
 
 
 class Flop_Mucked(Aux_Seats):
@@ -562,8 +576,9 @@ class Flop_Mucked(Aux_Seats):
         w.set_focus(None)
         w.set_accept_focus(False)
         w.connect("configure_event", self.configure_event_cb, "common")
-        self.positions["common"] = self.true_player_position(x, y)
-        w.move(self.positions["common"][0], self.positions["common"][1])
+        self.positions["common"] = self.create_scale_position(x, y)
+        w.move(self.positions["common"][0]+ self.hud.table.x,
+                self.positions["common"][1]+ self.hud.table.y)
         if self.params.has_key('opacity'):
             w.set_opacity(float(self.params['opacity']))
 #        self.create_contents(w, "common")
@@ -602,7 +617,8 @@ class Flop_Mucked(Aux_Seats):
             if container is not None:
                 container.seen_cards.set_from_pixbuf(scratch)
                 container.resize(1,1)
-                container.move(self.positions[i][0], self.positions[i][1])   # here is where I move back
+                container.move(self.positions[i][0] + self.hud.table.x,
+                            self.positions[i][1] + self.hud.table.y)   # here is where I move back
                 container.show()
 
             self.displayed = True
@@ -617,7 +633,7 @@ class Flop_Mucked(Aux_Seats):
         new_locs = {}
         for (i, pos) in self.positions.iteritems():
             if i == 'common':
-                new_locs[i] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y))
+                new_locs[i] = ((pos[0]), (pos[1]))
             else:
                 #seat positions are owned by the aux controlling the stat block
                 # we share the locations from that aux, so don't write-back their
@@ -658,12 +674,6 @@ class Flop_Mucked(Aux_Seats):
     def button_press_cb(self, widget, event, i, *args):
         """Handle button clicks in the event boxes."""
         # disable flopped buttons
-        print "mucked.flop_mucked.bpc"
-#    debug use: shift-any button exposes all the windows and turns off the timer
-        if event.state & gtk.gdk.SHIFT_MASK:
-            self.timer_on = False
-            self.expose_all()
-            return
 
         if event.button == 2:   # middle button event (do not timeout)
             if self.timer_on == True:  self.timer_on = False
@@ -677,6 +687,7 @@ class Flop_Mucked(Aux_Seats):
     def expose_all(self):
         for (i, cards) in self.hud.cards.iteritems():
             self.m_windows[i].show()
-            self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
+            self.m_windows[i].move(self.positions[i][0] + self.hud.table.x,
+                                self.positions[i][1] + self.hud.table.y)   # here is where I move back
             self.displayed = True
 

@@ -30,6 +30,8 @@ _ = L10n.get_translation()
 #    Standard Library modules
 import string
 import logging
+import copy
+
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("hud")
 
@@ -84,8 +86,16 @@ class Hud:
             log.error(_("No layout found for %d-max %s games for site %s."+"\n") % (self.max, self.game_type, self.table.site))
             return
         else:
-            self.layout = self.layout_set.layout[self.max]
-                    
+            self.layout = copy.deepcopy(self.layout_set.layout[self.max]) # deepcopy required here, because self.layout is used
+                                                                        # to propagate block moves from hud to mucked display
+                                                                        # (needed because there is only 1 layout for all aux)
+                                                                        #
+                                                                        # if we didn't deepcopy, self.layout would be shared
+                                                                        # amongst all open huds - this is fine until one of the
+                                                                        # huds does a resize, and then we have a total mess to 
+                                                                        # understand how a single block move on a resized screen
+                                                                        # should be propagated to other tables of different sizes
+                                
         # if there are AUX windows configured, set them up
         if not self.supported_games_parameters['aux'] == [""]:
             for aux in self.supported_games_parameters['aux'].split(","):
@@ -103,15 +113,13 @@ class Hud:
                 # self.aux_windows list in this module
                 self.aux_windows.append(my_import(self, config, aux_params))
 
+
         self.creation_attrs = None
         
 
-    def update_table_position(self):
+    def move_table_position(self): pass
 #    callback for table moved
-        for aux in self.aux_windows:
-            aux.update_player_positions()
-            aux.update_common_position()
-        return True
+
 
 #    def on_button_press(self, widget, event):
 #        if event.button == 1: # if primary button, start movement
@@ -130,16 +138,30 @@ class Hud:
             aux.destroy()
         self.aux_windows = []
 
-    def resize_windows(self, *args): pass
-#        for w in self.stat_windows.itervalues():
-#            if type(w) == int:
-#                continue
-#            rel_x = (w.x - self.table.x) * self.table.width  / self.table.oldwidth
-#            rel_y = (w.y - self.table.y) * self.table.height / self.table.oldheight
-#            w.x = self.table.x + rel_x
-#            w.y = self.table.y + rel_y
-#            w.window.move(w.x, w.y) 
-#
+    def resize_windows(self):
+        print "resize", self
+        
+        # resize self.layout object; this will be picked-up
+        # by all attached aux's when called by hud_main.idle_update
+        
+        x_scale = 1.0 * self.table.width / self.layout.width
+        y_scale = 1.0 * self.table.height / self.layout.height
+        
+        for i in (range(1, self.max + 1)):
+            if self.layout.location[i]:
+                self.layout.location[i] = (
+                (int(self.layout.location[i][0] * x_scale)),
+                (int(self.layout.location[i][1] * y_scale))      )
+
+        print self.layout.common
+        self.layout.common = (
+                int(self.layout.common[0] * x_scale),
+                int(self.layout.common[1] * y_scale)       )
+        
+        self.layout.width = self.table.width
+        self.layout.height = self.table.height
+        print self.layout.location
+        
     def reposition_windows(self, *args): pass
 
 #    def debug_stat_windows(self, *args):

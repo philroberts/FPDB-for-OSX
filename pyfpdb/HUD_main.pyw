@@ -127,10 +127,12 @@ class HUD_main(object):
 
     def client_moved(self, widget, hud):
         log.debug(_("client_moved event"))
-        hud.update_table_position()
+        print "client_moved"
+        gobject.idle_add(idle_move, hud)
 
     def client_resized(self, widget, hud):
         log.debug(_("client_resized event"))
+        print "client_resized event"
         gobject.idle_add(idle_resize, hud)
 
     def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
@@ -345,16 +347,28 @@ class HUD_main(object):
 #    with the gui.
 
 def idle_resize(hud):
+
     gtk.gdk.threads_enter()
     try:
-        [aw.update_player_positions() for aw in hud.aux_windows]
-        [aw.update_common_position() for aw in hud.aux_windows]
         hud.resize_windows()
+        [aw.resize_windows() for aw in hud.aux_windows]
     except:
         log.exception(_("Error resizing HUD for table: %s.") % hud.table.title)
     finally:
         gtk.gdk.threads_leave()
-
+        
+def idle_move(hud):
+        
+    gtk.gdk.threads_enter()
+    try:
+        hud.move_table_position()
+        [aw.update_player_positions() for aw in hud.aux_windows]
+        [aw.update_common_position() for aw in hud.aux_windows]
+    except:
+        log.exception(_("Error moving HUD for table: %s.") % hud.table.title)
+    finally:
+        gtk.gdk.threads_leave()
+        
 def idle_kill(hud_main, table):
     gtk.gdk.threads_enter()
     try:

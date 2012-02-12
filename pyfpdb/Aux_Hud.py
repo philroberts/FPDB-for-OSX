@@ -111,16 +111,15 @@ class Simple_HUD(Mucked.Aux_Seats):
         """Save new layout back to the aux element in the config file."""
 
         new_locs = {}
-        width = self.hud.table.width
-        height = self.hud.table.height
         for (i, pos) in self.positions.iteritems():
             if i != 'common':
                 new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y) )
             else:
-                #common not used in the aux, don't alter its location
+                #common not used in this aux, don't alter its location
                 pass
 
-        self.config.save_layout_set(self.hud.layout_set, self.hud.max, new_locs ,width, height)
+        self.config.save_layout_set(self.hud.layout_set, self.hud.max,
+                    new_locs ,self.hud.table.width, self.hud.table.height)
 
         
 class Simple_Stat_Window(Mucked.Seat_Window):
@@ -257,9 +256,6 @@ class Simple_table_mw(Mucked.Seat_Window):
                 pass
             return True
         return False
-
-    def create_contents(self, *args): pass
-    def update_contents(self, *args): pass
     
     def update_common_position(self, *args):
         self.move(self.hud.table.x + self.aw.xshift, self.hud.table.y + self.aw.yshift)
