@@ -661,12 +661,14 @@ class Flop_Mucked(Aux_Seats):
 
     def button_press_cb(self, widget, event, i, *args):
         """Handle button clicks in the event boxes."""
-        # disable flopped buttons
 
-        if event.button == 2:   # middle button event (do not timeout)
+        if event.button == 2:   # middle button event, hold display (do not timeout)
             if self.timer_on == True:  self.timer_on = False
             else: self.timer_on = False;  self.hide()
         elif event.button == 1 and i == "common":   # left button event (move)
+            # firstly, cancel timer, otherwise block becomes locked if move event
+            #   is happening when timer eventually times-out
+            if self.timer_on == True:  self.timer_on = False
             #only allow move on "common" element - seat block positions are 
             # determined by aux_hud, not mucked card display
             window = widget.get_parent()

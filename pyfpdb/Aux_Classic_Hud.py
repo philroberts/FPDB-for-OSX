@@ -87,12 +87,16 @@ class Classic_Stat_Window(Aux_Hud.Simple_Stat_Window):
         # control kill/display of active/inactive player stat blocks
         if self.aw.get_id_from_seat(i) is None:
             #no player dealt in this seat for this hand
-            self.hide()
+            # dim the display to indicate that this block
+            # is currently inactive
+            self.set_opacity(float(self.aw.params['opacity'])*0.3)
         else:
             #player dealt-in, force display of stat block
             #need to call move() to re-establish window position
             self.move(self.aw.positions[i][0]+self.aw.hud.table.x,
                         self.aw.positions[i][1]+self.aw.hud.table.y)
+            self.set_opacity(float(self.aw.params['opacity']))
+            # show item, just in case it was hidden by the user
             self.show()
             
     def button_press_middle(self, widget, event, *args):
