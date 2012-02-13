@@ -279,6 +279,7 @@ class HUD_main(object):
                 # get stats using hud's specific params and get cards
                 self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
                                                      , self.hud_dict[temp_key].hud_params['h_hud_days'])
+                #print "update an existing hud ", temp_key, self.hud_dict[temp_key].hud_params
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params,
                                                                    self.hero_ids[site_id], num_seats)
 
@@ -393,6 +394,7 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
         hud_main.main_window.resize_children()
 
         hud_main.hud_dict[temp_key].tablehudlabel = newlabel
+        # call the hud.create method, apparently
         hud_main.hud_dict[temp_key].create(new_hand_id, hud_main.config, stat_dict, cards)
         for m in hud_main.hud_dict[temp_key].aux_windows:
             m.create() # create method of aux_window class (generally Mucked.aux_seats.create)

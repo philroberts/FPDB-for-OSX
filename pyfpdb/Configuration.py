@@ -1305,7 +1305,7 @@ class Config:
         try:    hui['aggregate_tour']   = self.ui.aggregate_tour
         except: hui['aggregate_tour']   = True
 
-        try:    hui['agg_bb_mult']    = self.ui.agg_bb_mult
+        try:    hui['agg_bb_mult']    = int(self.ui.agg_bb_mult)
         except: hui['agg_bb_mult']    = 1
 
         try:    hui['seats_style']    = self.ui.seats_style
@@ -1328,7 +1328,7 @@ class Config:
         try:    hui['h_aggregate_tour'] = self.ui.h_aggregate_tour
         except: hui['h_aggregate_tour'] = True
 
-        try:    hui['h_agg_bb_mult']    = self.ui.h_agg_bb_mult
+        try:    hui['h_agg_bb_mult']    = int(self.ui.h_agg_bb_mult)
         except: hui['h_agg_bb_mult']    = 1
 
         try:    hui['h_seats_style']    = self.ui.h_seats_style

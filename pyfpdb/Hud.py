@@ -53,20 +53,26 @@ def importName(module_name, name):
 class Hud:
     def __init__(self, parent, table, max, poker_game, game_type, config, db_connection):
 #    __init__ is (now) intended to be called from the stdin thread, so it
-#    cannot touch the gui
-        if parent is None:  # running from cli ..
-            self.parent = self
-        else:
-            self.parent    = parent
+#    must not touch the gui
+        #if parent is None:  # running from cli .. # fixme dont think this is working as expected
+        #    self.parent = self
+        #else:
+        #    self.parent    = parent
+        #print "parent", parent
+        self.parent        = parent
         self.table         = table
         self.config        = config
         self.poker_game    = poker_game
         self.game_type     = game_type # (ring|tour)
         self.max           = max
+
         self.db_connection = db_connection
         self.site          = table.site
-        self.hud_params    = parent.hud_params
-        
+        self.hud_params    = dict.copy(parent.hud_params) # we must dict.copy a fresh hud_params dict
+                                                          # because each aux hud can control local hud param 
+                                                          # settings.  Simply assigning the dictionary does not
+                                                          # create a local/discrete version of the dictionary,
+                                                          # so the different hud-windows get cross-contaminated
         self.aux_windows   = []
         
         self.site_parameters = config.get_site_parameters(self.table.site)
@@ -111,6 +117,10 @@ class Hud:
                 #
                 #The instatiated aux object is recorded in the
                 # self.aux_windows list in this module
+                #
+                #Subsequent updates to the aux's are controlled by
+                # hud_main.pyw
+                #
                 self.aux_windows.append(my_import(self, config, aux_params))
 
 
@@ -118,17 +128,6 @@ class Hud:
         
 
     def move_table_position(self): pass
-#    callback for table moved
-
-
-#    def on_button_press(self, widget, event):
-#        if event.button == 1: # if primary button, start movement
-#            self.main_window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
-#            return True
-#        if event.button == 3: # if secondary button, popup our main popup window
-#            widget.popup(None, None, None, event.button, event.time)
-#            return True
-#        return False
 
     def kill(self, *args):
 #    kill all stat_windows, popups and aux_windows in this HUD
@@ -167,19 +166,6 @@ class Hud:
 #                print self.stat_windows[w].window.window.get_transient_for()
 #            except AttributeError:
 #                print "this window doesnt have get_transient_for"
-#
-#    def save_layout(self, *args):
-#        new_layout = [(0, 0)] * self.max
-#        for sw in self.stat_windows:
-#            loc = self.stat_windows[sw].window.get_position()
-#            new_loc = (loc[0] - self.table.x, loc[1] - self.table.y)
-#            new_layout[self.stat_windows[sw].adj - 1] = new_loc
-#        self.config.edit_layout(self.table.site, self.max, locations=new_layout)
-##    ask each aux to save its layout back to the config object
-#        [aux.save_layout() for aux in self.aux_windows]
-##    save the config object back to the file
-#        print _("Updating config file")
-#        self.config.save()
 
 
     def save_layout(self, *args):
@@ -229,8 +215,8 @@ class Hud:
 #        if not self.mw_created:
 #            self.create_mw()
 
-        self.stat_dict = stat_dict
-        self.cards = cards
+        self.stat_dict = stat_dict  #fixme - not sure what this is doing here?
+        self.cards = cards          #fixme - not sure what this is doing here?
         log.info(_('Creating hud from hand ')+str(hand))
 
     def update(self, hand, config):
