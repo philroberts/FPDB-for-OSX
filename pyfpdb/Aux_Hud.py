@@ -103,9 +103,13 @@ class Simple_HUD(Mucked.Aux_Seats):
         self.table_mw = self.aw_class_table_mw(self.hud, aw = self)
         return self.table_mw
         
-    def update_common_position(self):
+    def move_windows(self):
+        super(Simple_HUD, self).move_windows()
+        #
         #tell our mw that an update is needed (normally on table move)
-        self.table_mw.update_common_position()
+        # custom code here, because we don't use the ['common'] element
+        # to control menu position
+        self.table_mw.move_windows()
 
     def save_layout(self, *args):
         """Save new layout back to the aux element in the config file."""
@@ -113,9 +117,9 @@ class Simple_HUD(Mucked.Aux_Seats):
         new_locs = {}
         for (i, pos) in self.positions.iteritems():
             if i != 'common':
-                new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y) )
+                new_locs[self.adj[int(i)]] = ((pos[0]), (pos[1]))
             else:
-                #common not used in this aux, don't alter its location
+                #common position belongs to mucked display so, don't alter its location
                 pass
 
         self.config.save_layout_set(self.hud.layout_set, self.hud.max,
@@ -222,9 +226,7 @@ class Simple_table_mw(Mucked.Seat_Window):
         self.menu.show_all()
         self.show_all()
         self.hud.table.topify(self)
-        
-#    def configure_event_cb(self, widget, event, *args):
-#        print "aux_hud.table_mw.cec"
+
 
     def create_menu_items(self, menu):
         #a gtk.menu item is passed in and returned
@@ -257,7 +259,8 @@ class Simple_table_mw(Mucked.Seat_Window):
             return True
         return False
     
-    def update_common_position(self, *args):
+    def move_windows(self, *args):
+        # force menu to the offset position from table origin (do not use common setting)
         self.move(self.hud.table.x + self.aw.xshift, self.hud.table.y + self.aw.yshift)
     
     def save_current_layouts(self, event):

@@ -91,7 +91,8 @@ class Classic_Stat_Window(Aux_Hud.Simple_Stat_Window):
         else:
             #player dealt-in, force display of stat block
             #need to call move() to re-establish window position
-            self.move(self.aw.positions[i][0], self.aw.positions[i][1])
+            self.move(self.aw.positions[i][0]+self.aw.hud.table.x,
+                        self.aw.positions[i][1]+self.aw.hud.table.y)
             self.show()
             
     def button_press_middle(self, widget, event, *args):
@@ -167,9 +168,10 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
 
     def create_menu_items(self, menu):
 
-        killitem = gtk.MenuItem(_('Kill This HUD'))
+        killitem = gtk.MenuItem(_('Restart This HUD'))
         menu.append(killitem)
         killitem.connect("activate", self.kill)
+
 
         saveitem = gtk.MenuItem(_('Save HUD Layout'))
         menu.append(saveitem)

@@ -139,9 +139,7 @@ class Hud:
         self.aux_windows = []
 
     def resize_windows(self):
-        print "resize", self
-        
-        # resize self.layout object; this will be picked-up
+        # resize self.layout object; this will then be picked-up
         # by all attached aux's when called by hud_main.idle_update
         
         x_scale = 1.0 * self.table.width / self.layout.width
@@ -153,14 +151,12 @@ class Hud:
                 (int(self.layout.location[i][0] * x_scale)),
                 (int(self.layout.location[i][1] * y_scale))      )
 
-        print self.layout.common
         self.layout.common = (
                 int(self.layout.common[0] * x_scale),
                 int(self.layout.common[1] * y_scale)       )
         
         self.layout.width = self.table.width
         self.layout.height = self.table.height
-        print self.layout.location
         
     def reposition_windows(self, *args): pass
 

@@ -47,9 +47,8 @@ class Aux_Window(object):
     def update_data(self, *args): pass
     def update_gui(self, *args):  pass
     def create(self, *args):      pass
-    def relocate(self, *args):    pass
     def save_layout(self, *args): pass
-    def update_player_positions(self, *args): pass
+    def move_windows(self, *args): pass
     def destroy(self):
         try:
             self.container.destroy()
@@ -401,7 +400,7 @@ class Aux_Seats(Aux_Window):
         self.config  = config    # configuration object for this aux window to use
         self.params  = params    # dict aux params from config
         self.positions = {}      # dict of window positions. normalised for favourite seat and offset
-                                 #  this is needed because 
+                                 # but _not_ offset to the absolute screen position
         self.displayed = False   # the seat windows are displayed
         self.uses_timer = False  # the Aux_seats object uses a timer to control hiding
         self.timer_on = False    # bool = Ture if the timeout for removing the cards is on
@@ -423,20 +422,11 @@ class Aux_Seats(Aux_Window):
         self.m_windows["common"].move(self.hud.layout.common[0] + self.hud.table.x,
                                 self.hud.layout.common[1] + self.hud.table.y)
 
-    def update_player_positions(self):
-        print "upp ", self.positions
-
+    def move_windows(self):
         for i in (range(1, self.hud.max + 1)):
-            #(x, y) = self.hud.layout.location[self.adj[i]]
-            #self.positions[i] = self.offset_position(x, y)
             self.m_windows[i].move(self.positions[i][0] + self.hud.table.x,
                             self.positions[i][1] + self.hud.table.y)
 
-                
-    def update_common_position(self):
-        #(x, y) = self.hud.layout.common
-        #self.positions["common"] = self.offset_position(x, y)
-        
         self.m_windows["common"].move(self.hud.layout.common[0] + self.hud.table.x,
                                 self.hud.layout.common[1] + self.hud.table.y)
         
@@ -448,9 +438,10 @@ class Aux_Seats(Aux_Window):
 
         for i in (range(1, self.hud.max + 1) + ['common']):   
             if i == 'common':
-#    The common window is different from the others. Note that it needs to 
-#    get realized, shown, topified, etc. in create_common
-#    self.hud.layout.xxxxx is updated after scaling, to ensure everything is in sync
+                #    The common window is different from the others. Note that it needs to 
+                #    get realized, shown, topified, etc. in create_common
+                #    self.hud.layout.xxxxx is updated here after scaling, to ensure
+                #    layout and positions are in sync
                 (x, y) = self.hud.layout.common
                 self.m_windows[i] = self.create_common(x, y)
                 self.hud.layout.common = self.create_scale_position(x, y)
@@ -470,8 +461,9 @@ class Aux_Seats(Aux_Window):
                 if self.params.has_key('opacity'):
                     self.m_windows[i].set_opacity(float(self.params['opacity']))
 
-#    the create_contents method is supplied by the subclass
-#      for hud's this is probably Aux_Hud.stat_window
+            # main action below - fill the created window with content
+            #    the create_contents method is supplied by the subclass
+            #      for hud's this is probably Aux_Hud.stat_window
             self.create_contents(self.m_windows[i], i)
 
             self.m_windows[i].realize()
@@ -498,18 +490,15 @@ class Aux_Seats(Aux_Window):
         y_scale = (1.0 * self.hud.table.height / self.hud.layout.height)
         return (int(x * x_scale), int(y * y_scale))
 
-#    def offset_position(self, x, y):
-#        return (x + self.hud.table.x, y + self.hud.table.y)
         
     def update_gui(self, new_hand_id):
         """Update the gui, LDO."""
         for i in self.m_windows.keys():
             self.update_contents(self.m_windows[i], i)
-        #reload latest player positions, in case another aux has changed them
-        #these lines cause the propagation of block-moves across
-        #the hud and mucked handlers without the need to kill the hud
-        self.update_player_positions()
-        self.update_common_position()
+        #reload latest block positions, in case another aux has changed them
+        #these lines allow the propagation of block-moves across
+        #the hud and mucked handlers for this table
+        self.move_windows()
 
 #   Methods likely to be of use for any Seat_Window implementation
     def destroy(self):
@@ -581,7 +570,6 @@ class Flop_Mucked(Aux_Seats):
                 self.positions["common"][1]+ self.hud.table.y)
         if self.params.has_key('opacity'):
             w.set_opacity(float(self.params['opacity']))
-#        self.create_contents(w, "common")
         return w
 
     def create_contents(self, container, i):
@@ -679,7 +667,7 @@ class Flop_Mucked(Aux_Seats):
             if self.timer_on == True:  self.timer_on = False
             else: self.timer_on = False;  self.hide()
         elif event.button == 1 and i == "common":   # left button event (move)
-            #only allow move on "common" element - seat positions are 
+            #only allow move on "common" element - seat block positions are 
             # determined by aux_hud, not mucked card display
             window = widget.get_parent()
             window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)

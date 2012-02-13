@@ -127,12 +127,10 @@ class HUD_main(object):
 
     def client_moved(self, widget, hud):
         log.debug(_("client_moved event"))
-        print "client_moved"
         gobject.idle_add(idle_move, hud)
 
     def client_resized(self, widget, hud):
         log.debug(_("client_resized event"))
-        print "client_resized event"
         gobject.idle_add(idle_resize, hud)
 
     def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
@@ -362,8 +360,7 @@ def idle_move(hud):
     gtk.gdk.threads_enter()
     try:
         hud.move_table_position()
-        [aw.update_player_positions() for aw in hud.aux_windows]
-        [aw.update_common_position() for aw in hud.aux_windows]
+        [aw.move_windows() for aw in hud.aux_windows]
     except:
         log.exception(_("Error moving HUD for table: %s.") % hud.table.title)
     finally:
@@ -400,8 +397,8 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
         for m in hud_main.hud_dict[temp_key].aux_windows:
             m.create() # create method of aux_window class (generally Mucked.aux_seats.create)
             m.update_gui(new_hand_id)
-#        hud_main.hud_dict[temp_key].update(new_hand_id, hud_main.config)
-#        hud_main.hud_dict[temp_key].reposition_windows()
+
+
     except:
         log.exception(_("Error creating HUD for hand %s.") % new_hand_id)
     finally:
