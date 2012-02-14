@@ -24,11 +24,6 @@ _ = L10n.get_translation()
 import sys
 import exceptions
 
-import logging
-# logging has been set up in fpdb.py or HUD_main.py, use their settings:
-log = logging.getLogger("parser")
-
-
 import Configuration
 from HandHistoryConverter import *
 from decimal_wrapper import Decimal
@@ -45,7 +40,8 @@ class OnGame(HandHistoryConverter):
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": u"\u20ac", "GBP": "\xa3"}
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : u"\$|\xe2\x82\xac|\u20ac|" # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : u"\$|\xe2\x82\xac|\u20ac|",     # Currency symbols - Euro(cp1252, utf-8)
+                           'NUM' : u".,\d",
                     }
     currencies = { u'\u20ac':'EUR', u'\xe2\x82\xac':'EUR', '$':'USD', '':'T$' }
 
@@ -70,12 +66,11 @@ class OnGame(HandHistoryConverter):
 
     #TODO: detect play money
     # "Play money" rather than "Real money" and set currency accordingly
+    # Table:\s(\[SPEED\]\s)?(?P<TABLE>[-\'\w\#\s\.]+)\s\[\d+\]\s\( 
     re_HandInfo = re.compile(u"""
-            \*\*\*\*\*\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+)
-            (\s\(TOURNAMENT:\s".+",\s(?P<TID>[-A-Z\d]+),\sbuy-in:\s[%(LS)s](?P<BUYIN>\d+))?
-            .*
-            Start\shand:\s(?P<DATETIME>.*)
-            Table:\s(\[SPEED\]\s)?(?P<TABLE>[-\'\w\#\s\.]+)\s\[\d+\]\s\(
+            \*{5}\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+)(\s\(TOURNAMENT:\s\"(?P<NAME>.+?)\",\s(?P<TID>[-A-Z\d]+),\sbuy-in:\s(?P<BUYINCUR>[%(LS)s]?)(?P<BUYIN>[%(NUM)s]+)\))?\s\*{5}\s?
+            Start\shand:\s(?P<DATETIME>.*?)\s?
+            Table:\s(\[SPEED\]\s)?(?P<TABLE>.+?)\s\[\d+\]\s\( 
             (
             (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit|POT_LIMIT)\s
             (?P<GAME>TEXAS_HOLDEM|OMAHA_HI|SEVEN_CARD_STUD|SEVEN_CARD_STUD_HI_LO|RAZZ|FIVE_CARD_DRAW)\s
@@ -169,10 +164,9 @@ class OnGame(HandHistoryConverter):
 
         m = self.re_HandInfo.search(handText)
         if not m:
-            tmp = handText[0:100]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            tmp = handText[0:200]
+            log.error(_("OnGameToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
@@ -188,15 +182,15 @@ class OnGame(HandHistoryConverter):
             if mg['LIMIT'] in self.limits:
                 info['limitType'] = self.limits[mg['LIMIT']]
             else:
-                tmp = handText[0:100]
-                log.error(_("Limit not found in %s.") % tmp)
-                raise FpdbParseError(_("Limit not found in %s.") % tmp)
+                tmp = handText[0:200]
+                log.error(_("OnGameToFpdb.determineGameType: Limit not found in '%s'") % tmp)
+                raise FpdbParseError
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
-            info['sb'] = mg['SB']
+            info['sb'] = self.clearMoneyString(mg['SB'])
         if 'BB' in mg:
-            info['bb'] = mg['BB']
+            info['bb'] = self.clearMoneyString(mg['BB'])
 
         #log.debug("determinegametype: returning "+str(info))
         return info
@@ -204,10 +198,12 @@ class OnGame(HandHistoryConverter):
     def readHandInfo(self, hand):
         info = {}
         m =  self.re_HandInfo.search(hand.handText)
+        if m is None:
+            tmp = hand.handText[0:200]
+            log.error(_("OnGameToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
 
-        if m:
-            info.update(m.groupdict())
-
+        info.update(m.groupdict())
         #log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
@@ -222,8 +218,9 @@ class OnGame(HandHistoryConverter):
                     tzoffset = a.group('OFFSET')
                 else:
                     datetimestr = "2010/Jan/01 01:01:01"
-                    log.error("readHandInfo: " + _("DATETIME not matched: '%s'") % info[key])
-                    print (_("DEBUG:") + " readHandInfo: " + _("DATETIME not matched: '%s'") % info[key])
+                    log.error("OnGameToFpdb.readHandInfo: " + _("DATETIME not matched: '%s'") % info[key])
+                    raise FpdbParseError
+                    #print (_("DEBUG:") + " readHandInfo: " + _("DATETIME not matched: '%s'") % info[key])
                 # TODO: Manually adjust time against OFFSET
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%b/%d %H:%M:%S") # also timezone at end, e.g. " ET"
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, tzoffset, "UTC")
@@ -239,9 +236,16 @@ class OnGame(HandHistoryConverter):
                     hand.tourNo = hand.tourNo.replace('T','')
                     hand.tourNo = hand.tourNo.replace('S','')
                     hand.tourNo = hand.tourNo.replace('R','')
+                    hand.tourNo = hand.tourNo.replace('O','')
                     hand.tourNo = hand.tourNo.replace('-','')
-            if key == 'BUYIN':
-                hand.buyin = info[key]
+            if key == 'BUYIN' and info[key] is not None:
+                hand.buyin = int(100*Decimal(self.clearMoneyString(info[key])))
+                hand.fee = int(hand.buyin - hand.buyin/1.1)
+                hand.buyin -= hand.fee
+            if key == 'BUYINCUR' and info[key] is not None:
+                hand.buyinCurrency = self.currencies[info[key]]
+                if hand.buyin == 0:
+                    hand.buyinCurrency = 'FREE'
             if key == 'TABLE':
                 hand.tablename = info[key]
 
@@ -316,30 +320,30 @@ class OnGame(HandHistoryConverter):
     def readBlinds(self, hand):
         try:
             m = self.re_PostSB.search(hand.handText)
-            hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
+            hand.addBlind(m.group('PNAME'), 'small blind', self.clearMoneyString(m.group('SB')))
         except exceptions.AttributeError: # no small blind
             log.debug( _("No small blinds found.")+str(sys.exc_info()) )
             #hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+            hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
         for a in self.re_PostDead.finditer(hand.handText):
             #print "DEBUG: Found dead blind: addBlind(%s, 'secondsb', %s)" %(a.group('PNAME'), a.group('DEAD'))
-            hand.addBlind(a.group('PNAME'), 'secondsb', a.group('DEAD'))
+            hand.addBlind(a.group('PNAME'), 'secondsb', self.clearMoneyString(a.group('DEAD')))
         for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
+            hand.addBlind(a.group('PNAME'), 'small & big blinds', self.clearMoneyString(a.group('SBBB')))
 
     def readAntes(self, hand):
         log.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
-            #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
-            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+            #~ log.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
+            hand.addAnte(player.group('PNAME'), self.clearMoneyString(player.group('ANTE')))
     
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
-            #~ logging.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
-            hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
+            #~ log.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
+            hand.addBringIn(m.group('PNAME'),  self.clearMoneyString(m.group('BRINGIN')))
 
     def readHeroCards(self, hand):
         # streets PREFLOP, PREDRAW, and THIRD are special cases beacause
@@ -373,16 +377,16 @@ class OnGame(HandHistoryConverter):
             #acts = action.groupdict()
             #print "readaction: acts: %s" %acts
             
-            if action.group('ATYPE') == ' raises':
-                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET2') )
-            elif action.group('ATYPE') == ' calls':
-                hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' bets':
-                hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' folds':
+            if action.group('ATYPE') == ' folds':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
+            elif action.group('ATYPE') == ' calls':
+                hand.addCall( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ' raises':
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET2') )
+            elif action.group('ATYPE') == ' bets':
+                hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' changed':
                 if int(action.group('BET'))>0:
                     hand.addDiscard(street, action.group('PNAME'), action.group('BET'))

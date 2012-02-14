@@ -364,7 +364,7 @@
                     'wonWhenSeenStreet2': 0.0,
                     'wonWhenSeenStreet3': 0.0,
                     'wonWhenSeenStreet4': 0.0},
-    u'player4': {   'allInEV': 0,
+    u'player4': {   'allInEV': -25,
                     'card1': 0,
                     'card10': 0,
                     'card11': 0,

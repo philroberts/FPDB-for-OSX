@@ -2458,16 +2458,6 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['addTPlayersIndex'] = """CREATE UNIQUE INDEX tourneyId ON TourneysPlayers (tourneyId, playerId)"""
 
-        if db_server == 'mysql':
-            self.query['addTTypesIndex'] = """ALTER TABLE TourneyTypes ADD UNIQUE INDEX tourneytypes_all(siteId, buyin, fee
-                                             , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
-        elif db_server == 'postgresql':
-            self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (siteId, buyin, fee
-                                             , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
-        elif db_server == 'sqlite':
-            self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (siteId, buyin, fee
-                                             , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
-
         self.query['addHudCacheCompundIndex'] = """CREATE UNIQUE INDEX HudCache_Compound_idx ON HudCache(gametypeId, playerId, activeSeats, position, tourneyTypeId, styleKey)"""
         self.query['addCardsCacheCompundIndex'] = """CREATE UNIQUE INDEX CardsCache_Compound_idx ON CardsCache(type, category, currency, playerId, startCards)"""
         self.query['addPositionsCacheCompundIndex'] = """CREATE UNIQUE INDEX PositionsCache_Compound_idx ON PositionsCache(type, base, category, currency, maxSeats, playerId, activeSeats, position)"""
@@ -3433,6 +3423,7 @@ class Sql:
                             ,avg((hp.totalProfit+hp.rake)/100.0)                                    AS profhndxr
                             ,avg(h.seats+0.0)                                                       AS avgseats
                             ,variance(hp.totalProfit/100.0)                                         AS variance
+                            ,sqrt(variance(hp.totalProfit/100.0))                                                         AS stddev
                       from HandsPlayers hp
                            inner join Hands h       on  (h.id = hp.handId)
                            inner join Gametypes gt  on  (gt.Id = h.gametypeId)
@@ -3595,6 +3586,7 @@ class Sql:
                             ,avg((hp.totalProfit+hp.rake)/100.0)                                    AS profhndxr
                             ,avg(h.seats+0.0)                                                       AS avgseats
                             ,variance(hp.totalProfit/100.0)                                         AS variance
+                            ,sqrt(variance(hp.totalProfit/100.0))                                                         AS stddev
                       from HandsPlayers hp
                            inner join Hands h       on  (h.id = hp.handId)
                            inner join Gametypes gt  on  (gt.Id = h.gametypeId)
@@ -3746,6 +3738,7 @@ class Sql:
                             ,avg((hp.totalProfit+hp.rake)/100.0)                                    AS profhndxr
                             ,avg(h.seats+0.0)                                                       AS avgseats
                             ,variance(hp.totalProfit/100.0)                                         AS variance
+                            ,sqrt(variance(hp.totalProfit/100.0))                                                         AS stddev
                       from HandsPlayers hp
                            inner join Hands h       on  (h.id = hp.handId)
                            inner join Gametypes gt  on  (gt.Id = h.gametypeId)
@@ -3944,6 +3937,9 @@ class Sql:
                      ,case when hprof2.variance = -999 then '-'
                            else format(hprof2.variance, 2)
                       end                                                          AS Variance
+                     ,case when hprof2.stddev = -999 then '-'
+                           else format(hprof2.stddev, 2)
+                      end                                                          AS Stddev
                      ,stats.AvgSeats
                 FROM
                     (select /* stats from hudcache */
@@ -4023,6 +4019,7 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
+                            ,sqrt(variance(hprof.profit/100.0))                                                         AS stddev
                       from
                           (select hp.handId, <hgametypeId> as gtId, hp.totalProfit as profit
                            from HandsPlayers hp
@@ -4047,6 +4044,8 @@ class Sql:
                      ,stats.TuAFq,stats.RvAFq,stats.PoFAFq,stats.Net,stats.BBper100,stats.Profitperhand
                      ,case when hprof2.variance = -999 then '-' else round(hprof2.variance, 2)
                       end                                                                   AS Variance
+                     ,case when hprof2.stddev = -999 then '-' else round(hprof2.stddev, 2)
+                      end                                                                   AS Stddev
                      ,stats.AvgSeats
                 FROM
                     (select /* stats from hudcache */
@@ -4120,6 +4119,9 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
+                             ,case when hprof.gtId = -1 then -999
+                                  else sqrt(variance(hprof.profit/100.0))
+                             end as stddev
                       from
                           (select hp.handId, <hgametypeId> as gtId, hp.totalProfit as profit
                            from HandsPlayers hp
@@ -4161,6 +4163,9 @@ class Sql:
                       ,case when hprof2.variance = -999 then '-'
                             else to_char(hprof2.variance, '0D00')
                        end                                                          AS Variance
+                      ,case when hprof2.stddev = -999 then '-'
+                            else to_char(hprof2.stddev, '0D00')
+                       end                                                          AS Stddev
                       ,AvgSeats
                 FROM
                     (select gt.base
@@ -4229,6 +4234,9 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
+                             ,case when hprof.gtId = -1 then -999
+                                  else sqrt(variance(hprof.profit/100.0)
+                             end as stddev
                       from
                           (select hp.handId, <hgametypeId> as gtId, hp.totalProfit as profit
                            from HandsPlayers hp
@@ -4282,6 +4290,9 @@ class Sql:
                      ,case when hprof2.variance = -999 then '-'
                            else format(hprof2.variance, 2)
                       end                                                          AS Variance
+                     ,case when hprof2.stddev = -999 then '-'
+                           else format(hprof2.stddev, 2)
+                      end                                                          AS Stddev
                      ,stats.AvgSeats
                 FROM
                     (select /* stats from hudcache */
@@ -4377,6 +4388,9 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
+                             ,case when hprof.gtId = -1 then -999
+                                  else sqrt(variance(hprof.profit/100.0))
+                             end as stddev
                       from
                           (select hp.handId, <hgametypeId> as gtId, hp.position
                                 , hp.totalProfit as profit
@@ -4414,6 +4428,9 @@ class Sql:
                      ,case when hprof2.variance = -999 then '-'
                            else round(hprof2.variance, 2)
                       end                                                                   AS Variance
+                     ,case when hprof2.variance = -999 then '-'
+                           else round(hprof2.stddev, 2)
+                      end                                                                   AS Stddev
                      ,stats.AvgSeats
                 FROM
                     (select /* stats from hudcache */
@@ -4503,6 +4520,9 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
+                             ,case when hprof.gtId = -1 then -999
+                                  else sqrt(variance(hprof.profit/100.0))
+                             end as stddev
                       from
                           (select hp.handId, <hgametypeId> as gtId, hp.position
                                 , hp.totalProfit as profit
@@ -4557,6 +4577,9 @@ class Sql:
                       ,case when hprof2.variance = -999 then '-'
                             else to_char(hprof2.variance, '0D00')
                        end                                                          AS Variance
+                      ,case when hprof2.stddev = -999 then '-'
+                            else to_char(hprof2.stddev, '0D00')
+                       end                                                          AS Stddev
                       ,stats.AvgSeats
                 FROM
                     (select /* stats from hudcache */
@@ -4655,6 +4678,9 @@ class Sql:
                              case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
+                             ,case when hprof.gtId = -1 then -999
+                                  else sqrt(variance(hprof.profit/100.0))
+                             end as stddev
                       from
                           (select hp.handId, <hgametypeId> as gtId, hp.position
                                 , hp.totalProfit as profit
@@ -4706,7 +4732,7 @@ class Sql:
             <game_test>
             <currency_test>
             AND   hp.tourneysPlayersId IS NULL
-            GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
+            GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit, hp.allInEV
             ORDER BY h.startTime"""
 
         self.query['getRingProfitAllHandsPlayerIdSiteInDollars'] = """
@@ -4723,7 +4749,7 @@ class Sql:
             <game_test>
             <currency_test>
             AND   hp.tourneysPlayersId IS NULL
-            GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
+            GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit, hp.allInEV
             ORDER BY h.startTime"""
 
 
@@ -4808,9 +4834,9 @@ class Sql:
         ####################################
         self.query['handsInRange'] = """
             select h.id
-                from hands h
+                from Hands h
                 join HandsPlayers hp on h.id = hp.handId
-                join GameTypes gt on gt.id = h.gametypeId
+                join Gametypes gt on gt.id = h.gametypeId
             where h.startTime <datetest>
                 and hp.playerId in <player_test>
                 <game_test>
@@ -4822,7 +4848,7 @@ class Sql:
         ####################################
         self.query['singleHand'] = """
                  SELECT h.*
-                    FROM hands h
+                    FROM Hands h
                     WHERE id = %s"""
 
         ####################################
@@ -4879,6 +4905,8 @@ class Sql:
         ####################################
       
         self.query['clearHudCache'] = """DELETE FROM HudCache"""
+        self.query['clearHudCacheTourneyType'] = """DELETE FROM HudCache WHERE tourneyTypeId = %s"""
+        
        
         if db_server == 'mysql':
             self.query['rebuildHudCache'] = """
@@ -6429,7 +6457,7 @@ class Sql:
         if db_server == 'mysql':
             self.query['lockForInsert'] = """
                 lock tables Hands write, HandsPlayers write, HandsActions write, Players write
-                          , HudCache write, GameTypes write, Sites write, Tourneys write
+                          , HudCache write, Gametypes write, Sites write, Tourneys write
                           , TourneysPlayers write, TourneyTypes write, Autorates write
                 """
         elif db_server == 'postgresql':
@@ -6473,12 +6501,20 @@ class Sql:
         """
         
         self.query['getTourneyTypeIdByTourneyNo'] = """SELECT tt.id,
+                                                              tt.siteId,
+                                                              tt.currency,
                                                               tt.buyin,
                                                               tt.fee,
+                                                              tt.category,
+                                                              tt.limitType,
                                                               tt.maxSeats,
+                                                              tt.sng,
                                                               tt.knockout,
+                                                              tt.koBounty,
                                                               tt.rebuy,
+                                                              tt.rebuyCost,
                                                               tt.addOn,
+                                                              tt.addOnCost,
                                                               tt.speed,
                                                               tt.shootout,
                                                               tt.matrix
@@ -6496,18 +6532,46 @@ class Sql:
                                             AND category=%s
                                             AND limitType=%s
                                             AND maxSeats=%s
+                                            AND sng=%s
                                             AND knockout=%s
+                                            AND koBounty=%s
                                             AND rebuy=%s
+                                            AND rebuyCost=%s
                                             AND addOn=%s
+                                            AND addOnCost=%s
                                             AND speed=%s
                                             AND shootout=%s
                                             AND matrix=%s
         """
 
         self.query['insertTourneyType'] = """INSERT INTO TourneyTypes
-                                                  (siteId, currency, buyin, fee, category, limitType, maxSeats, buyInChips, knockout, koBounty, rebuy,
-                                                  addOn ,speed, shootout, matrix, added, addedCurrency)
+                                                  (siteId, currency, buyin, fee, category, limitType, maxSeats, sng, knockout, koBounty,
+                                                   rebuy, rebuyCost, addOn, addOnCost, speed, shootout, matrix)
                                               VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """
+        
+        self.query['updateTourneyTypeId'] = """UPDATE Tourneys
+                                            SET tourneyTypeId = %s
+                                            WHERE siteTourneyNo=%s
+        """
+        
+        self.query['selectTourneyWithTypeId'] = """SELECT id 
+                                                FROM Tourneys
+                                                WHERE tourneyTypeId = %s
+        """
+        
+        self.query['deleteTourneyTypeId'] = """DELETE FROM TourneyTypes WHERE id = %s
+        """
+        
+        self.query['updateTourneyTypeId'] = """UPDATE Tourneys
+                                            SET tourneyTypeId = %s
+                                            WHERE siteTourneyNo=%s
+        """
+        
+        self.query['fetchNewTourneyTypeIds'] = """SELECT TT.id
+                                            FROM TourneyTypes TT
+                                            LEFT OUTER JOIN `HudCache` HC ON (TT.id = HC.tourneyTypeId)
+                                            WHERE HC.tourneyTypeId is NULL
         """
 
         self.query['getTourneyByTourneyNo'] = """SELECT t.*

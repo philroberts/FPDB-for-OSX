@@ -21,17 +21,6 @@
 import L10n
 _ = L10n.get_translation()
 
-# DONE: Holdem: nl, pl, fl
-# TODO: Tournaments and SNG import
-# TODO: bulkloading summary files hangs fpdb
-# TODO: Ring player stats do not always show, cause in the hhc?
-
-
-import logging
-# logging has been set up in fpdb.py or HUD_main.py, use their settings:
-log = logging.getLogger("888hhc")
-log.info("PacificPokerToFpdb.py")
-
 import sys
 from HandHistoryConverter import *
 from decimal_wrapper import Decimal
@@ -105,7 +94,8 @@ class PacificPoker(HandHistoryConverter):
           (?P<LIMIT>No\sLimit|Fix\sLimit|Pot\sLimit)\s
           (?P<GAME>Holdem|Omaha|OmahaHL|Hold\'em|Omaha\sHi/Lo|OmahaHL|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)
           \s-\s\*\*\*\s
-          (?P<DATETIME>.*$)
+          (?P<DATETIME>.*$)\s
+          (Tournament\s\#(?P<TOURNO>\d+))?
           """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_PlayerInfo   = re.compile(u"""
@@ -118,7 +108,7 @@ class PacificPoker(HandHistoryConverter):
           ^(
             (Table\s(?P<TABLE>[-\ \#a-zA-Z\d]+)\s)
             |
-            (Tournament\s\#(?P<TID>\d+)\s
+            (Tournament\s\#(?P<TOURNO>\d+)\s
               (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\s\+\s?(?P<BIRAKE>[%(LS)s\d\.]+))\s-\s
               Table\s\#(?P<TABLENO>\d+)\s
             )
@@ -185,10 +175,9 @@ class PacificPoker(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
-            tmp = handText[0:120]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            tmp = handText[0:200]
+            log.error(_("PacificPokerToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
         #print "DEBUG: mg: ", mg
@@ -230,13 +219,14 @@ class PacificPoker(HandHistoryConverter):
         m  = self.re_HandInfo.search(hand.handText,re.DOTALL)
         m2 = self.re_GameInfo.search(hand.handText)
         if m is None or m2 is None:
-            log.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            tmp = hand.handText[0:200]
+            log.error(_("PacificPokerToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
 
         info.update(m.groupdict())
         info.update(m2.groupdict())
 
-        log.debug("readHandInfo: %s" % info)
+        #log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
                 # 28 11 2011 19:05:11
@@ -264,7 +254,8 @@ class PacificPoker(HandHistoryConverter):
                         hand.buyinCurrency="USD"
                     else:
                         #FIXME: handle other currencies, FPP, play money
-                        raise FpdbParseError(_("Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
+                        log.error(_("PacificPokerToFpdb.readHandInfo: Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
+                        raise FpdbParseError
 
                     info['BIAMT'] = info['BIAMT'].strip(u'$€')
                     info['BIRAKE'] = info['BIRAKE'].strip(u'$€')
@@ -304,11 +295,11 @@ class PacificPoker(HandHistoryConverter):
             m =  re.search(r"\*\* Dealing down cards \*\*(?P<PREFLOP>.+(?=\*\* Dealing flop \*\*)|.+)"
                        r"(\*\* Dealing flop \*\* (?P<FLOP>\[ \S\S, \S\S, \S\S \].+(?=\*\* Dealing turn \*\*)|.+))?"
                        r"(\*\* Dealing turn \*\* (?P<TURN>\[ \S\S \].+(?=\*\* Dealing river \*\*)|.+))?"
-                       r"(\*\* Dealing river \*\* (?P<RIVER>\[ \S\S \].+))?"
+                       r"(\*\* Dealing river \*\* (?P<RIVER>\[ \S\S \].+?(?=\*\* Summary \*\*)|.+))?"
                        , hand.handText,re.DOTALL)
         if m is None:
-            log.error(_("Unable to recognise streets"))
-            raise FpdbParseError(_("Unable to recognise streets"))
+            log.error(_("PacificPokerToFpdb.markStreets: Unable to recognise streets"))
+            raise FpdbParseError
         else:
             #print "DEBUG: Matched markStreets"
             mg = m.groupdict()
@@ -407,16 +398,16 @@ class PacificPoker(HandHistoryConverter):
             acts = action.groupdict()
             #print "DEBUG: acts: %s" %acts
             if action.group('PNAME') in hand.stacks:
-                if action.group('ATYPE') == ' raises':
-                    hand.addCallandRaise( street, action.group('PNAME'), action.group('BET').replace(',','') )
-                elif action.group('ATYPE') == ' calls':
-                    hand.addCall( street, action.group('PNAME'), action.group('BET').replace(',','') )
-                elif action.group('ATYPE') == ' bets':
-                    hand.addBet( street, action.group('PNAME'), action.group('BET').replace(',','') )
-                elif action.group('ATYPE') == ' folds':
+                if action.group('ATYPE') == ' folds':
                     hand.addFold( street, action.group('PNAME'))
                 elif action.group('ATYPE') == ' checks':
                     hand.addCheck( street, action.group('PNAME'))
+                elif action.group('ATYPE') == ' calls':
+                    hand.addCall( street, action.group('PNAME'), action.group('BET').replace(',','') )
+                elif action.group('ATYPE') == ' raises':
+                    hand.addCallandRaise( street, action.group('PNAME'), action.group('BET').replace(',','') )
+                elif action.group('ATYPE') == ' bets':
+                    hand.addBet( street, action.group('PNAME'), action.group('BET').replace(',','') )
                 elif action.group('ATYPE') == ' discards':
                     hand.addDiscard(street, action.group('PNAME'), action.group('BET').replace(',',''), action.group('DISCARDED'))
                 elif action.group('ATYPE') == ' stands pat':

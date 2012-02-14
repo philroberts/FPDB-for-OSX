@@ -25,7 +25,6 @@ _ = L10n.get_translation()
 
 # TODO: I have no idea if AP has multi-currency options, i just copied the regex out of Everleaf converter for the currency symbols.. weeeeee - Eric
 import sys
-import logging
 from HandHistoryConverter import *
 
 # Class for converting Absolute HH format.
@@ -50,7 +49,7 @@ class Absolute(HandHistoryConverter):
     re_GameInfo = re.compile( ur"""
               ^Stage\s+\#C?(?P<HID>[0-9]+):?\s+
               (?:Tourney\ ID\ (?P<TRNY_ID>\d+)\s+)?
-              (?P<GAME>Holdem|Seven\ Card\ Hi\/L|HORSE)\s+
+              (?P<GAME>Holdem|Seven\ Card\ Hi\/Lo|HORSE)\s+
               (?P<TRNY_TYPE>\(1\son\s1\)|Single\ Tournament|Multi\ Normal\ Tournament|)\s*
               (?P<LIMIT>No\ Limit|Pot\ Limit|Normal|)\s?
               (?P<CURRENCY>\$|\s€|)
@@ -94,10 +93,11 @@ class Absolute(HandHistoryConverter):
             # we need to recompile the player regexs.
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
-            logging.debug("player_re: "+ player_re)
+            log.debug("player_re: "+ player_re)
             #(?P<CURRENCY>\$| €|)(?P<BB>[0-9]*[.0-9]+)
             self.re_PostSB          = re.compile(ur"^%s - Posts small blind (?:\$| €|)(?P<SB>[,.0-9]+)" % player_re, re.MULTILINE)
             self.re_PostBB          = re.compile(ur"^%s - Posts big blind (?:\$| €|)(?P<BB>[.,0-9]+)" % player_re, re.MULTILINE)
+            self.re_Post            = re.compile(ur"^%s - Posts (?:\$| €|)(?P<BB>[.,0-9]+)" % player_re, re.MULTILINE)
             # TODO: Absolute posting when coming in new: %s - Posts $0.02 .. should that be a new Post line? where do we need to add support for that? *confused*
             self.re_PostBoth        = re.compile(ur"^%s - Posts dead (?:\$| €|)(?P<SBBB>[,.0-9]+)" % player_re, re.MULTILINE)
             self.re_Action          = re.compile(ur"^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[,.0-9]+)?" % player_re, re.MULTILINE)
@@ -136,11 +136,9 @@ class Absolute(HandHistoryConverter):
 
         m = self.re_GameInfo.search(handText)
         if not m:
-            tmp = handText[0:100]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
-
+            tmp = handText[0:200]
+            log.error(_("AbsoluteToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
@@ -151,7 +149,7 @@ class Absolute(HandHistoryConverter):
                    "Holdem" : ('hold','holdem'),
                     'Omaha' : ('hold','omahahi'),
                      'Razz' : ('stud','razz'),
-          'Seven Card Hi/L' : ('stud','studhilo'),
+         'Seven Card Hi/Lo' : ('stud','studhilo'),
               '7 Card Stud' : ('stud','studhi')
                }
         currencies = { u' €':'EUR', '$':'USD', '':'T$' }
@@ -201,15 +199,14 @@ class Absolute(HandHistoryConverter):
 
         if m is None or fname_info is None:
             if m is None:
-                tmp = hand.handText[0:100]
-                logging.error(_("No match in readHandInfo: '%s'") % tmp)
-                raise FpdbParseError("Absolute: " + _("No match in readHandInfo: '%s'") % tmp)
+                tmp = hand.handText[0:200]
+                log.error(_("AbsoluteToFpdb.readHandInfo: '%s'") % tmp)
+                raise FpdbParseError
             elif fname_info is None:
-                logging.error(_("File name didn't match re_*InfoFromFilename"))
-                logging.error(_("File name: %s") % self.in_path)
-                raise FpdbParseError("Absolute: " + _("Didn't match re_*InfoFromFilename: '%s'") % self.in_path)
+                log.error(_("AbsoluteToFpdb.readHandInfo: File name didn't match re_*InfoFromFilename"))
+                raise FpdbParseError
 
-        logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
+        log.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid =  m.group('HID')
         if m.group('TABLE'):
             hand.tablename = m.group('TABLE')
@@ -269,38 +266,40 @@ class Absolute(HandHistoryConverter):
         # community cards by type hand but it might be worth checking somehow.
         # if street in ('FLOP','TURN','RIVER'):
         #    a list of streets which get dealt community cards (i.e. all but PREFLOP)
-        logging.debug("readCommunityCards (%s)" % street)
+        log.debug("readCommunityCards (%s)" % street)
         m = self.re_Board.search(hand.streets[street])
         cards = m.group('CARDS')
         cards = [validCard(card) for card in cards.split(' ')]
         hand.setCommunityCards(street=street, cards=cards)
 
     def readAntes(self, hand):
-        logging.debug(_("reading antes"))
+        log.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
-            logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
+            log.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
             hand.addAnte(player.group('PNAME'), player.group('ANTE'))
 
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
-            logging.debug(_("Player bringing in: %s for %s") % (m.group('PNAME'),  m.group('BRINGIN')))
+            log.debug(_("Player bringing in: %s for %s") % (m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         else:
-            logging.warning(_("No bringin found."))
+            log.warning(_("No bringin found."))
 
     def readBlinds(self, hand):
         m = self.re_PostSB.search(hand.handText)
         if m is not None:
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
         else:
-            logging.debug(_("No small blind"))
+            log.debug(_("No small blind"))
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+        for a in self.re_Post.finditer(hand.handText):
+            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
@@ -321,40 +320,40 @@ class Absolute(HandHistoryConverter):
             hand.involved = False
 
     def readStudPlayerCards(self, hand, street):
-        logging.warning(_("%s cannot read all stud/razz hands yet.") % hand.sitename)
+        log.warning(_("%s cannot read all stud/razz hands yet.") % hand.sitename)
 
     def readAction(self, hand, street):
-        logging.debug("readAction (%s)" % street)
+        log.debug("readAction (%s)" % street)
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            logging.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
-            if action.group('ATYPE') == 'Raises ' or action.group('ATYPE') == 'All-In(Raise) ':
-                bet = action.group('BET').replace(',', '')
-                hand.addCallandRaise( street, action.group('PNAME'), bet)
+            log.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
+            if action.group('ATYPE') == 'Folds':
+                hand.addFold( street, action.group('PNAME'))
+            elif action.group('ATYPE') == 'Checks':
+                hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'Calls ':
                 bet = action.group('BET').replace(',', '')
                 hand.addCall( street, action.group('PNAME'), bet)
             elif action.group('ATYPE') == 'Bets ' or action.group('ATYPE') == 'All-In ':
                 bet = action.group('BET').replace(',', '')
                 hand.addBet( street, action.group('PNAME'), bet)
-            elif action.group('ATYPE') == 'Folds':
-                hand.addFold( street, action.group('PNAME'))
-            elif action.group('ATYPE') == 'Checks':
-                hand.addCheck( street, action.group('PNAME'))
+            elif action.group('ATYPE') == 'Raises ' or action.group('ATYPE') == 'All-In(Raise) ':
+                bet = action.group('BET').replace(',', '')
+                hand.addCallandRaise( street, action.group('PNAME'), bet)
             elif action.group('ATYPE') == ' complete to': # TODO: not supported yet ?
                 bet = action.group('BET').replace(',', '')
                 hand.addComplete( street, action.group('PNAME'), bet)
             else:
-                logging.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
+                log.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):
         """Reads lines where holecards are reported in a showdown"""
-        logging.debug("readShowdownActions")
+        log.debug("readShowdownActions")
         for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
             cards = [validCard(card) for card in cards.split(' ')]
-            logging.debug("readShowdownActions %s %s" %(cards, shows.group('PNAME')))
+            log.debug("readShowdownActions %s %s" %(cards, shows.group('PNAME')))
             hand.addShownCards(cards, shows.group('PNAME'))
 
 
@@ -371,7 +370,7 @@ class Absolute(HandHistoryConverter):
                     cards = m.group('CARDS')
                     cards = [validCard(card) for card in cards.split(' ')]
                     player = m.group('PNAME')
-                    logging.debug("readShownCards %s cards=%s" % (player, cards))
+                    log.debug("readShownCards %s cards=%s" % (player, cards))
     #                hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
                     hand.addShownCards(cards=cards, player=m.group('PNAME'))
             except IndexError:

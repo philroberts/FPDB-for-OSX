@@ -54,11 +54,11 @@ class iPokerSummary(TourneySummary):
             """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_GameInfoTrny = re.compile(r"""
-                <tournamentname>.+?<place>(?P<PLACE>.+?)</place>
+                <tournamentname>(?P<NAME>.+?)</tournamentname><place>(?P<PLACE>.+?)</place>
                 <buyin>(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)\+?(?P<BIRAKE>[%(LS)s\d\.]+)?|.+?)</buyin>\s+?
                 <totalbuyin>(?P<TOTBUYIN>.+)</totalbuyin>\s+?
                 <ipoints>([%(NUM)s]+|N/A)</ipoints>\s+?
-                <win>(%(LS)s)?(?P<WIN>([%(NUM)s]+)|N/A)</win>
+                <win>(?P<CURRENCY>%(LS)s)?(?P<WIN>([%(NUM)s]+)|N/A)</win>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     codepage = ["utf-8"]
@@ -72,16 +72,17 @@ class iPokerSummary(TourneySummary):
     def parseSummary(self):
         m = self.re_GameType.search(self.summaryText)
         if not m:
-            tmp = self.summaryText[0:100]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            tmp = self.summaryText[0:200]
+            log.error(_("iPokerSummary.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
         #print "DEBUG: m.groupdict(): %s" % mg
 
         if 'SB' in mg and mg['SB'] != None:
-            raise FpdbParseError(_("File '%s' does not appear to be a tourney") % 'XXX')
+            tmp = self.summaryText[0:200]
+            log.error(_("iPokerSummary.determineGameType: Text does not appear to be a tournament '%s'") % tmp)
+            raise FpdbParseError
         else:
             tourney = True
 #                self.gametype['limitType'] = 
@@ -96,7 +97,8 @@ class iPokerSummary(TourneySummary):
             self.gametype['limitType'] = 'fl'
 
         self.startTime = datetime.datetime.strptime(mg['DATETIME'], '%Y-%m-%d %H:%M:%S')
-        self.currency = mg['CURRENCY']
+        self.buyinCurrency = mg['CURRENCY']
+        self.currency = self.buyinCurrency
 
         if tourney:
             m2 = self.re_GameInfoTrny.search(self.summaryText)
@@ -113,18 +115,25 @@ class iPokerSummary(TourneySummary):
                 else:
                     self.buyin = 0
                     self.fee   = 0
+                if self.buyin == 0:
+                    self.buyinCurrency = 'FREE'
                 #FIXME: Tournament # looks like it is in the table name
                 self.tourNo = mg['TABLE'].split(',')[-1].strip()
+                self.tourneyName = mg2['NAME'][:40]
 
                 hero     = mg['HERO']
                 winnings = int(100*convert_to_decimal(mg2['WIN']))
+                if mg2['CURRENCY']:
+                    self.currency = self.currencies[mg2['CURRENCY']]
                 rank     = mg2['PLACE']
                 if rank == 'N/A':
                     rank = None
 
-                self.addPlayer(rank, hero, winnings, self.currency, None, None, None)
+                self.addPlayer(rank, hero, winnings, self.currency, 0, 0, 0)
         else:
-            raise FpdbParseError(_("iPokerSummary: Text does not appear to be a tourney"))
+            tmp = self.summaryText[0:200]
+            log.error(_("iPokerSummary.determineGameType: Text does not appear to be a tournament '%s'") % tmp)
+            raise FpdbParseError
 
 
 def convert_to_decimal(string):

@@ -72,10 +72,9 @@ class Pkr(HandHistoryConverter):
             """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_HandInfo     = re.compile("""
-          ^Table\s\'(?P<TABLE>[-\ a-zA-Z\d]+)\'\s
           ((?P<MAX>\d+)-max\s)?
           (?P<PLAY>\(Play\sMoney\)\s)?
-          (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
+          Moving\sButton\sto\sseat\s(?P<BUTTON>\d+)\s""", 
           re.MULTILINE|re.VERBOSE)
 
     re_SplitHands   = re.compile('\n\n+')
@@ -124,10 +123,9 @@ class Pkr(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
-            tmp = handText[0:100]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            tmp = handText[0:200]
+            log.error(_("PkrToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
         #print "DEBUG: %s" % mg
@@ -150,23 +148,23 @@ class Pkr(HandHistoryConverter):
                 info['sb'] = self.Lim_Blinds[mg['BB']][0]
                 info['bb'] = self.Lim_Blinds[mg['BB']][1]
             except KeyError:
-                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+                tmp = handText[0:200]
+                log.error(_("PkrToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                raise FpdbParseError
 
         return info
 
     def readHandInfo(self, hand):
         info = {}
-        m = self.re_HandInfo.search(hand.handText,re.DOTALL)
-        if m:
-            info.update(m.groupdict())
-#                hand.maxseats = int(m2.group(1))
-        else:
-            pass  # throw an exception here, eh?
-        m = self.re_GameInfo.search(hand.handText)
-        if m:
-            info.update(m.groupdict())
+        m1 = self.re_HandInfo.search(hand.handText,re.DOTALL)
+        m2 = self.re_GameInfo.search(hand.handText)
+        if m1 is None or m2 is None:
+            tmp = hand.handText[0:200]
+            log.error(_("PkrToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
+
+        info.update(m1.groupdict())
+        info.update(m2.groupdict())
 #        m = self.re_Button.search(hand.handText)
 #        if m: info.update(m.groupdict()) 
         # TODO : I rather like the idea of just having this dict as hand.info
@@ -176,9 +174,9 @@ class Pkr(HandHistoryConverter):
                 #2008/11/12 10:00:48 CET [2008/11/12 4:00:48 ET]
                 #2008/08/17 - 01:14:43 (ET)
                 #2008/09/07 06:23:14 ET
-                m1 = self.re_DateTime.finditer(info[key])
+                m3 = self.re_DateTime.finditer(info[key])
                 datetimestr = "2000/01/01 00:00:00"  # default used if time not found
-                for a in m1:
+                for a in m3:
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
             if key == 'HID':
@@ -187,11 +185,13 @@ class Pkr(HandHistoryConverter):
                 hand.tourNo = info[key]
             if key == 'BUYIN':
                 if info[key] == 'Freeroll':
-                    hand.buyin = '$0+$0'
+                    hand.buyin = 0
+                    hand.fee = 0
+                    hand.buyinCurrency = 'FREE'
                 else:
                     #FIXME: The key looks like: '€0.82+€0.18 EUR'
                     #       This should be parsed properly and used
-                    hand.buyin = info[key]
+                    hand.buyin = int(100*Decimal(info[key]))
             if key == 'LEVEL':
                 hand.level = info[key]
 
@@ -202,9 +202,8 @@ class Pkr(HandHistoryConverter):
                     hand.tablename = info[key]
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
-            if key == 'MAX':
+            if key == 'MAX' and info[key] is not None:
                 hand.maxseats = int(info[key])
-
             if key == 'MIXED':
                 hand.mixed = self.mixes[info[key]] if info[key] is not None else None
             if key == 'PLAY' and info['PLAY'] is not None:
@@ -327,8 +326,10 @@ class Pkr(HandHistoryConverter):
         for action in m:
             acts = action.groupdict()
             #print "DEBUG: readAction: acts: %s" % acts
-            if action.group('ATYPE') == ' raises':
-                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
+            if action.group('ATYPE') == ' folds':
+                hand.addFold( street, action.group('PNAME'))
+            elif action.group('ATYPE') == ' checks':
+                hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' calls':
                 # Amount in hand history is not cumulative
                 # ie. Player3 calls 0.08
@@ -337,12 +338,10 @@ class Pkr(HandHistoryConverter):
                 # TODO: Going to have to write an addCallStoopid()
                 #print "DEBUG: addCall( %s, %s, None)" %(street,action.group('PNAME'))
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ' raises':
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' folds':
-                hand.addFold( street, action.group('PNAME'))
-            elif action.group('ATYPE') == ' checks':
-                hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' discards':
                 hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('DISCARDED'))
             elif action.group('ATYPE') == ' stands pat':

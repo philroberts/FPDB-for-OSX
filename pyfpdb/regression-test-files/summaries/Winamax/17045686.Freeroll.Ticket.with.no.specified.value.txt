@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="canonical" href="https://www.winamax.fr/poker/tournament.php?ID=17045686" />	<meta name="title" content="Tournoi de poker Starting Block Winamax Poker Tour du 15-01-2012 18:10" />
+	<meta name="description" content="Winamax Poker - Le premier site de poker français" />
+	<meta name="keywords" content=", poker" />
+<meta name="verify-v1" content="divGwlYLgkmoS558zISY8BYg1KLLvQLFmRf0CmPJ1kc=" /><meta name="google-site-verification" content="DB-aVdWJ00FHClrX_fsXFGgZzaYUKGVcvY7uSfOkXsw" />
+	<meta name="robots" content="NOODP" />
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+	<meta property="og:image" content="https://www.winamax.fr/img/style/logo_fr.png"/>	
+	<meta property="og:site_name" content="Winamax.fr" /> 
+	<meta property="og:type" content="game" /> 
+	<meta property="og:url" content="https://www.winamax.fr/poker/tournament.php" />
+	<meta property="og:title" content="Tournoi de poker Starting Block Winamax Poker Tour du 15-01-2012 18:10" />	
+		<meta property="fb:admins" content="519584907" />
+	<link title="general" 	rel="stylesheet" href="https://static.winamax.fr/style/general-20111122.css" type="text/css" media="screen"/> 
+	<link title="general" 	rel="stylesheet" href="https://static.winamax.fr/style/inherit-20110304.css" type="text/css" media="screen"/> 
+	<link title="general" 	rel="stylesheet" href="https://static.winamax.fr/style/menu-20110304.css" type="text/css" media="screen"/> 
+	<link title="home_css2" rel="alternate stylesheet" href="https://static.winamax.fr/style/home_css2.css" type="text/css" media="screen"/> 
+	<link title="home_css3" rel="stylesheet" type="text/css" href="https://static.winamax.fr/style/home_css3.css" media="screen"/>
+	<link title="general" 	rel="stylesheet" type="text/css" href="https://static.winamax.fr/style/jquery.fancybox-1.2.6_V3.css" /> 
+	<link title="general" 	rel="stylesheet" type="text/css" href="https://static.winamax.fr/style/jquery.autocomplete.css" />
+	<!--[if IE 6]>
+		<link title="general" rel="stylesheet" href="https://static.winamax.fr/style/fix_png.css" type="text/css" media="screen"/>
+	<![endif]-->
+	
+		<script language="Javascript" type="text/javascript" src="https://static.winamax.fr/script/detect_navigateur.js"></script> 
+	<script language="Javascript" type="text/javascript" src="https://static.winamax.fr/script/jquery-latest.pack.js"></script>
+	<script language="Javascript" type="text/javascript" src="https://static.winamax.fr/script/jquery.fancybox-1.2.6.js"></script>
+	<script language="Javascript" type="text/javascript" src="https://static.winamax.fr/script/jquery.simpletip.js"></script>
+	<script language="JavaScript" type="text/javascript" src="https://static.winamax.fr/script/jquery.cookie.js"></script>
+	<script language="JavaScript" type="text/javascript" src="https://static.winamax.fr/script/general.js"></script>
+	<script language="Javascript" type="text/javascript" src="https://static.winamax.fr/script/commun.js?v=20120109"></script>
+		<script language="JavaScript" type="text/javascript" src="https://static.winamax.fr/script/menu_handling.js"></script>
+	<script language="JavaScript" type="text/javascript" src="https://static.winamax.fr/script/swfobject.js"></script>
+	<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+  {lang: 'fr'}
+	</script>
+	<!--<script language="JavaScript" type="text/javascript" src="/script/lightbox.js"></script>-->
+		<script type="text/javascript" language="Javascript"> 
+		/*Cette balise commentaire permet de na pas avoir de problème avec le AND javascript pour la validation w3c*/
+		<!-- 
+			/** CHARGEMENT DU CSS APPROPRIE EN FONCTION DU NAVIGATEUR**/
+			var browser= BrowserDetect.browser;
+			var version = BrowserDetect.version;
+			
+			if (browser=="Explorer" || (browser=="Firefox" && version<"3.6")) {
+				setActiveStyleSheet('home_css2');
+			} else {
+				setActiveStyleSheet('home_css3');
+			}
+		--></script>
+	<title>Tournoi de poker Starting Block Winamax Poker Tour du 15-01-2012 18:10</title>
+</head>
+<body>
+<script type="text/javascript">
+var current_banner = 2;
+function change_infoservicebanner() {
+	if ( current_banner == 1 ) {
+		current_banner = 2;
+	}
+	else {
+		current_banner = 1;
+	}
+	document.getElementById('banner_infoservice').src = 'https://static.winamax.fr/img/style/mise_en_garde_' + current_banner + '.jpg';
+	setTimeout('change_infoservicebanner()', 3 * 60 * 1000);
+}
+	setTimeout('change_infoservicebanner()', 3 * 60 * 1000);
+</script>
+<div class="englobe">
+	<div class="general_background png">
+	<div class="prevention" style="background-color: #000"><a href="http://www.joueurs-info-service.fr/" target="_blank"><img src="https://static.winamax.fr/img/style/mise_en_garde_2.jpg" border="0" alt="Mise en garde" id="banner_infoservice"/></a></div>
+		<div class="general_content">
+		<!-- BEGIN NO SCRIPT JS --> 
+		<noscript> 
+			 <div class="need_js"> 
+				  <p><strong>We detected that your JavaScript seem to be disabled.</strong></p> 
+				  <p>You must have JavaScript enabled in your browser to utilize the functionality of this website.</p> 
+			 </div> 
+		</noscript> 
+		<!-- END NO SCRIPT JS --> 
+		<!-- BEGIN HEADER --> 
+		<div  class="header" style="background-image:url('https://static.winamax.fr/img/style/bg_header_tournaments.jpg ');"><a class="link_logo_winamax link_logo_winamax_new_header png" href="/" title="Winamax"></a>				<div class="content_top_nav content_top_nav_new_header">						<ul class="top_nav">							<li class="first"><a class="link_new_account" href="https://www.winamax.fr/account/create.php"  title="Cliquez ici pour créer votre compte gratuitement sur Winamax.fr">S'inscrire</a></li>							<li class="last"><a id="login_link" class="link_connect" href="https://www.winamax.fr/account/popup_connect.php?url=https%3A%2F%2Fwww.winamax.fr%2Fpoker%2Ftournament.php"  title="Se connecter sur votre compte">Se Connecter</a></li> <li style="padding:0"><span id="status_icon"><a href="#" title="&Eacute;tat du système"><img src="https://static.winamax.fr/img/icons/bullet_green.png" alt="&Eacute;tat des systèmes" align="absmiddle"/></a>  <div id="system_status">
+    <div class="icon"><img src="https://static.winamax.fr/img/icons/bullet_green.png" alt="&Eacute;tat des systèmes" align="absmiddle"/></div>
+    <div class="title">&Eacute;tat des systèmes : </div>
+    <div class="explanation">
+Tous les services sont fonctionnels.    </div>
+  </div>
+</span>
+</li>						</ul>				</div>			<a class="link_bt_play_inside png" href="https://www.winamax.fr/jouer-au-poker" title="Jouez au poker"></a>		</div>		<!-- END HEADER -->	
+		<!-- BEGIN CONTENT_MIDDLE --> 
+		<div class="content_middle"> 
+			<!-- BEGIN CONTENT_BOX -->
+			<div class="content_box content_box_inside"> 
+<div id="menu_container">
+		<div id="top_menu">
+			<ul class="level_0">
+<li  ><a href="/les-tournois_introduction">Introduction</a>
+<ul class="level_1">
+<li><a href="/les-tournois_introduction_introduction-aux-tournois">Introduction aux tournois</a></li>
+<li><a href="/les-tournois_introduction_les-tournois-multitables">Les tournois multitables</a></li>
+<li><a href="/les-tournois_introduction_les-sit&go">Les Sit&Go</a></li>
+<li><a href="/les-tournois_introduction_inscriptions-tardives">Inscriptions tardives </a></li>
+</ul>
+</li>
+<li  ><a href="/les-tournois_actus">Actus</a></li>
+<li  ><a href="/les-tournois_winamax-series-iii">Winamax Series III</a>
+<ul class="level_1">
+<li><a href="/winamax-series">Programme</a></li>
+</ul>
+</li>
+<li  ><a href="/les-tournois_tous-les-tournois">Tous les tournois</a>
+<ul class="level_1">
+<li><a href="/les-tournois_tous-les-tournois_freerolls">Freerolls</a></li>
+<li><a href="/les-tournois_tous-les-tournois_minirolls">MiniRolls</a></li>
+<li><a href="/les-tournois_tous-les-tournois_super-freeroll">Super Freeroll</a></li>
+<li><a href="/les-tournois_tous-les-tournois_freeroll-mobile">Freeroll Mobile</a></li>
+<li><a href="/les-tournois_tous-les-tournois_sunday-surprise">Sunday Surprise</a></li>
+<li><a href="/les-tournois_tous-les-tournois_le-main-event">Le Main Event</a></li>
+<li><a href="/les-tournois_tous-les-tournois_kill-the-pros">Kill the Pros</a></li>
+<li><a href="/les-tournois_tous-les-tournois_kill-the-champions">Kill The Champions</a></li>
+<li><a href="/les-tournois_tous-les-tournois_kill-the-fish">Kill the Fish</a></li>
+<li><a href="/les-tournois_tous-les-tournois_kill-the-people">Kill the People</a></li>
+<li><a href="/les-tournois_tous-les-tournois_tournoi-xtra">Tournoi XTRA</a></li>
+<li><a href="/les-tournois_tous-les-tournois_tournoi-xtase">Tournoi XTASE</a></li>
+<li><a href="/les-tournois_tous-les-tournois_tournoi-xpert">Tournoi XPERT</a></li>
+<li><a href="/les-tournois_tous-les-tournois_tournoi-xtrem">Tournoi XTREM</a></li>
+<li><a href="/les-tournois_tous-les-tournois_le-high-roller">Le High-Roller</a></li>
+<li><a href="/les-tournois_tous-les-tournois_le-grand-tournoi">Le Grand Tournoi</a></li>
+<li><a href="/les-tournois_tous-les-tournois_tournois-flight">Tournois Flight</a></li>
+<li><a href="/les-tournois_tous-les-tournois_tournois-deepstack">Tournois Deepstack</a></li>
+<li><a href="/les-tournois_tous-les-tournois_tournois-omaha">Tournois OMAHA</a></li>
+<li><a href="/les-tournois_tous-les-tournois_tournois-ladies">Tournois Ladies</a></li>
+<li><a href="/les-tournois_tous-les-tournois_tournois-psg">Tournois PSG</a></li>
+<li><a href="/les-tournois_tous-les-tournois_tournois-asse">Tournois ASSE</a></li>
+<li><a href="/tournois-cinema">Tournois Cinéma</a></li>
+<li><a href="/wcpt">Winamax Campus Poker Tour</a></li>
+<li><a href="/les-tournois_tous-les-tournois_heads-up-challenge-psg-et-asse">Heads-Up Challenge PSG et ASSE</a></li>
+<li><a href="/les-tournois_tous-les-tournois_psg-poker-live">PSG Poker Live</a></li>
+<li><a href="/tournois-prives">Les tournois privés</a></li>
+<li><a href="/ahpt">Alpe d’Huez Poker Tour</a></li>
+</ul>
+</li>
+<li  ><a href="/les-tournois_planning">Planning</a></li>
+<li  ><a href="/les-tournois_qualifications-live-">Qualifications 'Live'</a>
+<ul class="level_1">
+<li><a href="/les-tournois_qualifications-live-_european-deepstack-2012">European Deepstack 2012</a></li>
+<li><a href="/les-tournois_qualifications-live-_finale-winamax-poker-tour">Finale Winamax Poker Tour</a></li>
+<li><a href="/les-tournois_qualifications-live-_wpt-national-paris">WPT National Paris</a></li>
+</ul>
+</li>
+			</ul>
+		</div>
+</div>				<div class="spacer"></div>
+				<!-- BEGIN CONTENT -->
+				<div id="content">
+					<!-- LEFT_CONTENT -->
+					<div class="left_content">
+<h1>Starting Block Winamax Poker Tour</h1><div id="tournament"><p class="text">Argent réel</p><p class='text'>Inscription avec ticket</p><p class='text'>Buy-in : 0.00&euro; +0.00&euro; </p><br/><hr/><div class='status'>Terminé</div><hr/><br/><p class='text'>Début du tournoi : 15-01-2012 18:10</p><p class='text'>Fin du tournoi : 15-01-2012 19:10</p><p class='text'>Nombre de joueurs inscrits : 10</p><p class='text'>Nombre de joueurs max : 10</p><br/><hr/><br/><div class='text'>Jouez pour gagner un ticket 'Tremplin', s&eacute;same pour vous qualifier &agrave; une &eacute;tape Live du Winamax Poker Tour !</div><br/><hr style='clear:both;'/><div class='title2'>Résultats - Prizepool : 0,00&euro;</div><div class="list"><table class="table_list"><tr><td width="10%">1</td><td width="30%">remyxmen</td><td width="60%">0,00€ / Tremplin Winamax Poker Tour</td></tr><tr><td width="10%">2</td><td width="30%">gpelle</td><td width="60%">0,00€ / Starting Block Winamax Poker Tour</td></tr><tr><td width="10%">3</td><td width="30%">Bigkingtimeo</td><td width="60%">0,00€</td></tr><tr><td width="10%">4</td><td width="30%">Bullet54</td><td width="60%">0,00€</td></tr><tr><td width="10%">5</td><td width="30%">fantome49</td><td width="60%">0,00€</td></tr><tr><td width="10%">6</td><td width="30%">ofsana74</td><td width="60%">0,00€</td></tr><tr><td width="10%">7</td><td width="30%">koukouk67</td><td width="60%">0,00€</td></tr><tr><td width="10%">8</td><td width="30%">tomy04_x</td><td width="60%">0,00€</td></tr><tr><td width="10%">9</td><td width="30%">mimi2202</td><td width="60%">0,00€</td></tr><tr><td width="10%">10</td><td width="30%">CIRIO94400</td><td width="60%">0,00€</td></tr></table></div>			</div>		
+
+
+					</div>
+					<!-- END OF LEFT_CONTENT -->
+					<!-- BEGIN CONTEXTUAL_MENU -->
+					<div id="contextual_menu">
+					<div id="inner_contextual_menu">
+<div class="toolbar_menu">
+<div class="menu_title">Outils</div>
+<div class="menu_entry"><a href="/les-tournois_tous-les-tournois_planning" title="Calendrier des tournois de poker sur Winamax"rel="nofollow">Calendrier des tournois</a></div>
+<div class="menu_entry"><a href="/winamax-mode-emploi_logiciel-poker" title="Logiciel Poker sur Winamax"rel="nofollow">Pour débuter</a></div>
+<div class="menu_entry"><a href="/parrainage" title="Parrainage Winamax, recevez 20€ par ami parrainé"rel="nofollow">Parrainer un ami</a></div>
+<div class="menu_entry"><a href="/team-winamax_les-pros" title="Team Winamax, la meilleure équipe de Poker francophone">Le Team Winamax</a></div>
+<div class="menu_entry"><a href="/winamax-mode-emploi_bonus" title="">Bonus Winamax</a></div>
+<div class="menu_entry"><a href="/les-tournois_tous-les-tournois" title="Tournois Poker | Profitez de tous les tournois de poker en ligne sur Winamax">Tournois Winamax</a></div>
+<div class="menu_entry"><a href="/les-tournois_tous-les-tournois_freerolls" title="Freerolls - 12 tournois de Poker Gratuit tous les jours - Winamax Poker">Freerolls (Tournois gratuits)</a></div>
+<div>&nbsp;</div>
+</div>
+<div class="toolbar_menu">
+</div>
+</div><div style="clear:both"></div>					</div>
+					<!-- END OF CONTEXTUAL_MENU -->
+					<div class='spacer1'></div>
+					</div>
+					<!-- END OF CONTENT -->
+				</div>
+				<!-- END OF CONTENT_BOX -->
+			</div>
+			<!-- END OF CONTENT_MIDDLE -->
+		</div>
+		<!-- END OF GENERAL_CONTENT -->
+		<div class="bg_top_footer_inside"></div>
+
+		<!-- FOOTER --> 
+		<div class="content_footer "> 
+						<p class="over18">
+				<img src="https://static.winamax.fr/img/style/arjel.png" alt="Winamax est agréé par l'ARJEL" class="png"/><img src="https://static.winamax.fr/img/style/interdit-18.png" alt="Interdit aux moins de 18 ans" />
+				Les jeux de hasard et d'argent sont strictement interdits aux mineurs
+			</p> 
+			
+        <p class="site_description">
+        Sur Winamax.fr,  rejoignez la communautée N°1 du <a href="https://www.winamax.fr/">poker en ligne</a> !
+        Jouez sur un <a href="https://www.winamax.fr/jouer-au-poker">logiciel de poker</a> légal et sécurisé, disponible 24h/24 et 7j/7, accessible sur PC, Mac et Linux.
+        Vous pouvez même jouer au poker sur votre <a href="https://www.winamax.fr/winamax-mode-emploi_applications-mobiles">iPhone</a>, votre <a href="https://www.winamax.fr/winamax-mode-emploi_applications-mobiles">iPad</a> ou votre <a href="https://www.winamax.fr/android">Android</a>. Des <a href="https://www.winamax.fr/les-tournois_tous-les-tournois">tournois de Poker</a> gratuits,  les &quot;<a href="https://www.winamax.fr/les-tournois_tous-les-tournois_freerolls">Freerolls</a>&quot;, aux tables de cash game, partagez notre esprit de compétition, de stratégie et de convivialité.
+        Dans le cadre d'un &quot;<a href="https://www.winamax.fr/prevention_non-au-jeu-dangereux">jeu responsable</a>&quot;, prenez l'ascendant sur le hasard : notre Poker School vous  permet d'<a href="https://www.winamax.fr/ecole-de-poker_texas-hold-em">apprendre le poker</a> et de progresser, grâce aux <a href="https://www.winamax.fr/ecole-de-poker_videos-des-pros">vidéos de poker</a>, aux articles  et aux Master Class où les pros du <a href="https://www.winamax.fr/team-winamax_les-pros">Team Winamax</a> vous font partager tous leurs  secrets.
+        Recevez un <a href="https://www.winamax.fr/winamax-mode-emploi_bonus">bonus poker</a> lors de votre premier dépôt et profitez des avantages et des cadeaux de <a href="https://www.winamax.fr/l-espace-vip_statuts-vip">votre statut VIP</a>.
+        Participez aussi aux discussions passionnées de nos <a href="http://www.wam-poker.com/">forums de poker</a>  et suivez l'actualité  des grands tournois internationaux (<a href="https://www.winamax.fr/team-winamax_tournois-live">WSOP</a>, <a href="https://www.winamax.fr/team-winamax_tournois-live">EPT</a>, <a href="https://www.winamax.fr/team-winamax_tournois-live">WPT</a>) avec nos reportages et  vidéos en direct !
+        </p>
+
+			
+			<p class="links">
+				<a href="/a-propos-de-winamax">À propos...</a> - 
+				<a href="/conditions-generales">C.G.U.</a> -
+				<a href="/contact">Contact</a> -
+				<a href="/winamax-mode-emploi_applications-mobiles_winamax-sur-android">Android</a> - 
+				<a href="/winamax-mode-emploi_appli-iphone">iPhone / iPad</a> -
+				<a href="/prevention_non-au-jeu-dangereux">Jeu responsable</a> -
+				<a href="/winamax-mode-emploi_faq-questions-reponses">Mode d'emploi / FAQ</a> -
+				<a href="/a-propos_winamax_offres-d-emploi">Offres d'emploi</a> -
+				<a href="/mes-amis_parrainer-un-ami">Parrainage</a>
+ 			</p>
+			<p class="self_exclusion">
+			<a href="http://www.interieur.gouv.fr/sections/a_votre_service/vos_demarches/interdiction-jeux" target="_blank">
+				INTERDICTION VOLONTAIRE DE JEUX: Toute personne souhaitant faire l'objet d'une interdiction de jeux doit le faire elle-même auprès du Ministère de l'Intérieur. Cette interdiction est valable dans les casinos, les cercles de jeux et sur les sites de jeux en ligne autorisés en vertu de la loi no 2010-476 du 12 mai 2010. Elle est prononcée pour une durée de trois ans non réductible.
+			</a>
+			</p>
+			
+		</div> 
+		<!-- END FOOTER --> 
+	</div>
+	<!-- END GENERAL_BACKGROUND --> 
+</div>
+<!-- END ENGLOBE -->
+<!--
+   <script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+		var pageTracker = _gat._getTracker("UA-16886136-1");
+		pageTracker._trackPageview('');
+	</script>
+	-->
+<script type="text/javascript">
+<!-- TAGCOMMANDER START //-->
+var tc_vars = new Array();
+tc_vars["type"] = 'CONTENT'; 
+tc_vars["category"] = ''; 
+tc_vars["sub_category"] = ''; 
+tc_vars["page"] = '/poker/tournament.php?ID=17045686'; 
+tc_vars["step"] = ''; 
+tc_vars["landing"] = '0'; 
+tc_vars["visit_affiliate"] = ''; 
+tc_vars["visit_info1"] = ''; 
+tc_vars["visit_info2"] = ''; 
+tc_vars["visit_info3"] = ''; 
+tc_vars["visit_info4"] = ''; 
+tc_vars["visit_info5"] = ''; 
+tc_vars["visit_info6"] = ''; 
+tc_vars["creation_affiliate"] = ''; 
+tc_vars["creation_info1"] = ''; 
+tc_vars["creation_info2"] = ''; 
+tc_vars["creation_info3"] = ''; 
+tc_vars["creation_info4"] = ''; 
+tc_vars["creation_info5"] = ''; 
+tc_vars["creation_info6"] = ''; 
+tc_vars["deposit_affiliate"] = ''; 
+tc_vars["deposit_info1"] = ''; 
+tc_vars["deposit_info2"] = ''; 
+tc_vars["deposit_info3"] = ''; 
+tc_vars["deposit_info4"] = ''; 
+tc_vars["deposit_info5"] = ''; 
+tc_vars["deposit_info6"] = ''; 
+tc_vars["custom1"] = 'A'; 
+tc_vars["custom2"] = 'Y'; 
+tc_vars["custom3"] = ''; 
+tc_vars["custom4"] = ''; 
+tc_vars["custom5"] = ''; 
+tc_vars["uu"] = ''; 
+//-->
+</script>
+<script type="text/javascript" src="https://www.winamax.fr/script/tc_load.js"></script><script type="text/javascript" src="https://www.winamax.fr/script/tc_exec.js"></script><noscript><iframe src="https://manager.tagcommander.com/utils/noscript.php?id=1&mode=iframe" width="1" height="1"></iframe></noscript><!-- TAGCOMMANDER END //-->
+
+</body>
+</html>
+   
+   
+   

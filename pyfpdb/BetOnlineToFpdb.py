@@ -185,12 +185,11 @@ class BetOnline(HandHistoryConverter):
             # Test if the hh contains the join line, and throw a partial if so.
             m2 = self.re_JoinsTable.search(handText)
             if not m2:
-                tmp = handText[0:150]
-                log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+                tmp = handText[0:200]
+                log.error(_("BetOnlineToFpdb.determineGameType: '%s'") % tmp)
+                raise FpdbParseError
             else:
-                raise FpdbHandPartial("determineGameType: " + _("Partial hand history: 'Player joining table'"))
+                raise FpdbHandPartial("BetOnlineToFpdb.determineGameType: " + _("Partial hand history: 'Player joining table'"))
 
         mg = m.groupdict()
         if mg['LIMIT']:
@@ -218,9 +217,9 @@ class BetOnline(HandHistoryConverter):
                 info['sb'] = self.Lim_Blinds[mg['BB']][0]
                 info['bb'] = self.Lim_Blinds[mg['BB']][1]
             except KeyError:
-                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+                tmp = handText[0:200]
+                log.error(_("BetOnlineToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                raise FpdbParseError
 
         return info
 
@@ -229,8 +228,9 @@ class BetOnline(HandHistoryConverter):
         m  = self.re_HandInfo.search(hand.handText,re.DOTALL)
         m2 = self.re_GameInfo.search(hand.handText)
         if m is None or m2 is None:
-            log.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            tmp = hand.handText[0:200]
+            log.error(_("BetOnlineToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
 
         info.update(m.groupdict())
         info.update(m2.groupdict())
@@ -274,7 +274,7 @@ class BetOnline(HandHistoryConverter):
                             hand.buyinCurrency="play"
                         else:
                             #FIXME: handle other currencies, play money
-                            raise FpdbParseError(_("Failed to detect currency.") + " " + _("Hand ID") + ": %s: '%s'" % (hand.handid, info[key]))
+                            raise FpdbParseError(_("BetOnlineToFpdb.readHandInfo: Failed to detect currency.") + " " + _("Hand ID") + ": %s: '%s'" % (hand.handid, info[key]))
 
                         info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
                         
@@ -473,16 +473,16 @@ class BetOnline(HandHistoryConverter):
             acts = action.groupdict()
             #print "DEBUG: acts: %s" %acts
             if action.group('PNAME') != 'Unknown player':
-                if action.group('ATYPE') == ' raises':
-                    hand.addCallandRaise( street, action.group('PNAME'), action.group('BET') )
-                elif action.group('ATYPE') == ' calls':
-                    hand.addCall( street, action.group('PNAME'), action.group('BET') )
-                elif action.group('ATYPE') == ' bets':
-                    hand.addBet( street, action.group('PNAME'), action.group('BET') )
-                elif action.group('ATYPE') == ' folds':
+                if action.group('ATYPE') == ' folds':
                     hand.addFold( street, action.group('PNAME'))
                 elif action.group('ATYPE') == ' checks':
                     hand.addCheck( street, action.group('PNAME'))
+                elif action.group('ATYPE') == ' calls':
+                    hand.addCall( street, action.group('PNAME'), action.group('BET') )
+                elif action.group('ATYPE') == ' raises':
+                    hand.addCallandRaise( street, action.group('PNAME'), action.group('BET') )
+                elif action.group('ATYPE') == ' bets':
+                    hand.addBet( street, action.group('PNAME'), action.group('BET') )
                 elif action.group('ATYPE') == ' discards':
                     hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('CARDS'))
                 elif action.group('ATYPE') == ' stands pat':

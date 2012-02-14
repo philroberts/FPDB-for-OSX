@@ -31,8 +31,8 @@ import logging
 log = logging.getLogger("parser")
 
 __ARCHIVE_PRE_HEADER_REGEX, re_SplitArchive = {}, {}
-__ARCHIVE_PRE_HEADER_REGEX['PokerStars'] ='Transcript\sfor\syour\slast\s\d+\sgames\srequested\sby'
-__ARCHIVE_PRE_HEADER_REGEX['Fulltilt'] ='\*{20}\s#\s\d+\s\*{20,25}\s+'
+__ARCHIVE_PRE_HEADER_REGEX['PokerStars'] = '^Hand #(\d+)\s*$'
+__ARCHIVE_PRE_HEADER_REGEX['Fulltilt'] ='\*{20}\s#\s\d+\s\*{20,25}\s?'
 re_SplitArchive['PokerStars'] = re.compile(__ARCHIVE_PRE_HEADER_REGEX['PokerStars'], re.MULTILINE)
 re_SplitArchive['Fulltilt'] = re.compile(__ARCHIVE_PRE_HEADER_REGEX['Fulltilt'], re.MULTILINE)
 
@@ -59,6 +59,7 @@ class Site:
         self.codepage       = obj.codepage
         self.copyGameHeader = obj.copyGameHeader
         self.line_delimiter = None
+        self.line_addendum  = ''
         if self.re_SplitHands.match('\n\n\n') or self.re_SplitHands.match('\n\n'):
             if self.filter_name == 'PokerStars':
                 self.line_delimiter = '\n\n'
@@ -69,12 +70,9 @@ class Site:
             self.line_addendum = '*'
         elif self.filter_name == 'Merge':
             self.line_addendum = '<game'
-        else:
-            self.line_addendum = ''
 
 class IdentifySite:
-    def __init__(self, config, in_path = '-', list = [], hhcs = None, verbose = False):
-        self.in_path = in_path
+    def __init__(self, config, hhcs = None):
         self.config = config
         self.codepage = ("utf8", "utf-16", "cp1252")
         self.db = Database.Database(self.config)
@@ -82,32 +80,30 @@ class IdentifySite:
         self.filelist = {}
         self.re_identify = self.getSiteRegex()
         self.generateSiteList(hhcs)
-        self.list = list
-        self.verbose = verbose
 
-    def scan(self):
-        if self.list:
-            i = 0
-            start = time()
-            for file, id in self.list:
-                i += 1
-                if i%1000==0:
-                    if self.verbose: print i, time() - start, 'seconds'
-                    start = time()
-                self.processFile(file)
+    def scan(self, path):
+        if os.path.isdir(path):
+            self.walkDirectory(path, self.sitelist)
         else:
-            if os.path.isdir(self.in_path):
-                self.walkDirectory(self.in_path, self.sitelist)
-            else:
-                self.processFile(self.in_path)
+            self.processFile(path)
+            
+    def get_fobj(self, file):
+        try:
+            fobj = self.filelist[file]
+        except KeyError:
+            return False
+        return fobj
 
     def get_filelist(self):
         return self.filelist
     
+    def clear_filelist(self):
+        self.filelist = {}
+    
     def getSiteRegex(self):
         re_identify = {}
         re_identify['Fulltilt']     = re.compile(u'FullTiltPoker|Full\sTilt\sPoker\sGame\s#\d+:')
-        re_identify['PokerStars']   = re.compile(u'PokerStars\sGame\s#\d+:',)
+        re_identify['PokerStars']   = re.compile(u'PokerStars(\sHome)?\s(Game|Hand)\s\#\d+:')
         re_identify['Everleaf']     = re.compile(u'\*{5}\sHand\shistory\sfor\sgame\s#\d+\s|Partouche\sPoker\s')
         re_identify['Boss']         = re.compile(u'<HISTORY\sID="\d+"\sSESSION=')
         re_identify['OnGame']       = re.compile(u'\*{5}\sHistory\sfor\shand\s[A-Z0-9\-]+\s')
@@ -126,7 +122,8 @@ class IdentifySite:
         re_identify['Microgaming']  = re.compile(u'<Game\sid=\"\d+\"\sdate=\"[\d\-\s:]+\"\sunicodetablename')
         re_identify['FullTiltPokerSummary'] = re.compile(u'Full\sTilt\sPoker\.fr\sTournament|Full\sTilt\sPoker\sTournament\sSummary')
         re_identify['PokerStarsSummary']    = re.compile(u'PokerStars\sTournament\s\#\d+')
-        re_identify['PacificPokerSummary']  = re.compile(u'\*{5}\sCassava\Tournament\Summary')
+        re_identify['PacificPokerSummary']  = re.compile(u'\*{5}\sCassava Tournament Summary\s\*{5}')
+        re_identify['MergeSummary']         = re.compile(u"<meta\sname='Creator'\scontent='support@carbonpoker.ag'\s/>")
         return re_identify
 
     def generateSiteList(self, hhcs):
@@ -168,7 +165,7 @@ class IdentifySite:
             if path not in self.filelist:
                 whole_file, kodec = self.read_file(path)
                 if whole_file:
-                    fobj = self.idSite(path, whole_file[:1000], kodec)
+                    fobj = self.idSite(path, whole_file[:5000], kodec)
                     if fobj == False: # Site id failed
                         log.debug(_("DEBUG:") + " " + _("siteId Failed for: %s") % path)
                     else:
@@ -202,9 +199,8 @@ class IdentifySite:
 
         for id, site in self.sitelist.iteritems():
             filter_name = site.filter_name
-            summary = site.summary
-            if summary in ('FullTiltPokerSummary', 'PokerStarsSummary'):
-                m = self.re_identify[summary].search(whole_file)
+            if site.summary in self.re_identify:
+                m = self.re_identify[site.summary].search(whole_file)
                 if m:
                     f.site = site
                     f.ftype = "summary"
@@ -238,9 +234,9 @@ def main(argv=None):
     Configuration.set_logfile("fpdb-log.txt")
     config = Configuration.Config(file = "HUD_config.test.xml")
     in_path = os.path.abspath('regression-test-files')
-    IdSite = IdentifySite(config, in_path)
+    IdSite = IdentifySite(config)
     start = time()
-    IdSite.scan()
+    IdSite.scan(in_path)
     print 'duration', time() - start
 
     print "\n----------- SITE LIST -----------"

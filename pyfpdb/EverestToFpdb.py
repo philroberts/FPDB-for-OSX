@@ -23,7 +23,6 @@ import L10n
 _ = L10n.get_translation()
 
 import sys
-import logging
 from HandHistoryConverter import *
 from decimal_wrapper import Decimal
 
@@ -99,15 +98,14 @@ class Everest(HandHistoryConverter):
                 self.info
                 return self.info
             except AttributeError:
-                tmp = handText[0:100]
-                log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+                tmp = handText[0:200]
+                log.error(_("EverestToFpdb.determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+                raise FpdbParseError
 
         if not m2:
-            tmp = handText[0:100]
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise hand info from: '%s'") % tmp)
+            tmp = handText[0:200]
+            log.error(_("EverestToFpdb.determineGameType: Unable to recognise hand info from: '%s'") % tmp)
+            raise FpdbParseError
 
         self.info = {}
         mg = m.groupdict()
@@ -146,9 +144,9 @@ class Everest(HandHistoryConverter):
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if m is None:
-            logging.info(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-            logging.info(hand.handText)
-            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            tmp = hand.handText[0:200]
+            log.error(_("EverestToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
         hand.handid = m.group('HID')
         hand.tablename = self.info['TABLENAME']
         hand.maxseats = None
@@ -215,9 +213,11 @@ class Everest(HandHistoryConverter):
             player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
             if action.group('ATYPE') == 'BET':
                 amount = Decimal(action.group('BET'))
-                amountstr = "%.2f" % float(int(action.group('BET'))/100)
+                amountstr = "%.2f" % float(amount/100)
                 #Gah! BET can mean check, bet, call or raise...
-                if amount > 0 and curr_pot == 0:
+                if action.group('BET') == '0':
+                    hand.addCheck(street, player)
+                elif amount > 0 and curr_pot == 0:
                     # Open
                     curr_pot = amount
                     hand.addBet(street, player, amountstr)
@@ -230,13 +230,11 @@ class Everest(HandHistoryConverter):
                     elif amount <= curr_pot:
                         # Call
                         hand.addCall(street, player, amountstr)
-                if action.group('BET') == '0':
-                    hand.addCheck(street, player)
             elif action.group('ATYPE') in ('FOLD', 'SIT_OUT'):
                 hand.addFold(street, player)
             else:
                 print (_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
-                logging.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
+                log.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):
@@ -248,8 +246,10 @@ class Everest(HandHistoryConverter):
     def readCollectPot(self, hand):
         for m in self.re_CollectPot.finditer(hand.handText):
             player = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
+            amount = Decimal(m.group('POT'))
+            amountstr = "%.2f" % float(amount/100)
             #print "DEBUG: %s collects %s" % (player, m.group('POT'))
-            hand.addCollectPot(player, str(int(m.group('POT'))/100))
+            hand.addCollectPot(player, amountstr)
 
     def readShownCards(self, hand):
         for m in self.re_ShownCards.finditer(hand.handText):

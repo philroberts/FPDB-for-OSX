@@ -364,6 +364,7 @@ def main(argv=None):
                     help=_("Do the required conversion for %s archive format (ie. as provided by support)") % "Full Tilt Poker")
     parser.add_option("-t", "--testdata", action="store_true", dest="testData", default=False,
                     help=_("Generate and print test data for regression testing"))
+    parser.add_option("-C", "--configFile", dest="config", default=None, help=_("Specifies a configuration file."))
     (options, argv) = parser.parse_args(args = argv)
 
     if options.usage == True:
@@ -377,7 +378,10 @@ def main(argv=None):
         sys.exit(0)
 
     Configuration.set_logfile("GuiBulkImport-log.txt")
-    config = Configuration.Config()
+    if options.config:
+        config = Configuration.Config(options.config)
+    else:
+        config = Configuration.Config()
 
     settings = {}
     if os.name == 'nt': settings['os'] = 'windows'
