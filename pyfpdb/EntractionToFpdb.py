@@ -30,6 +30,7 @@ class Entraction(HandHistoryConverter):
     filetype = "text"
     codepage = ("utf8", "cp1252")
     siteId   = 18
+    
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3", "play": ""}
     substitutions = {
                      'LEGAL_ISO' : "EUR|",
@@ -91,7 +92,7 @@ class Entraction(HandHistoryConverter):
           Table\s(?P<TABLE>.+)
         """ % substitutions, re.MULTILINE|re.VERBOSE)
 
-    re_SplitHands   = re.compile('Game #')
+    re_SplitHands   = re.compile(r"\n\n(?=Game #)")
     re_Button       = re.compile('^Dealer:\s+(?P<PNAME>.*)$', re.MULTILINE)
     re_Board        = re.compile(r"(?P<CARDS>.+)$")
     re_GameEnds     = re.compile(r"Game\sended\s(?P<Y>[0-9]{4})-(?P<M>[0-9]{2})-(?P<D>[0-9]{2})\s(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", re.MULTILINE)
@@ -129,10 +130,9 @@ class Entraction(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
-            tmp = handText[0:150]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            tmp = handText[0:200]
+            log.error(_("EntractionToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
@@ -166,14 +166,14 @@ class Entraction(HandHistoryConverter):
         m3 = self.re_GameEnds.search(hand.handText)
         m  = self.re_HandInfo.search(hand.handText)
         if m is None or m2 is None or m3 is None:
-            log.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            tmp = hand.handText[0:200]
+            log.error(_("EntractionToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
 
         info.update(m.groupdict())
         info.update(m2.groupdict())
         info.update(m3.groupdict())
 
-        log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'Y':
                 datetimestr = "%s/%s/%s %s:%s:%s" % (info['Y'], info['M'],info['D'],info['H'],info['MIN'],info['S'])
@@ -293,16 +293,16 @@ class Entraction(HandHistoryConverter):
         for action in m:
             acts = action.groupdict()
             #print "DEBUG: acts: %s" %acts
-            if action.group('ATYPE') == 'Raise':
-                hand.addCallandRaise( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
-            elif action.group('ATYPE') == 'Call':
-                hand.addCall( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
-            elif action.group('ATYPE') == 'Bet':
-                hand.addBet( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
-            elif action.group('ATYPE') == 'Folds':
+            if action.group('ATYPE') == 'Folds':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'Check':
                 hand.addCheck( street, action.group('PNAME'))
+            elif action.group('ATYPE') == 'Call':
+                hand.addCall( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
+            elif action.group('ATYPE') == 'Raise':
+                hand.addCallandRaise( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
+            elif action.group('ATYPE') == 'Bet':
+                hand.addBet( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
             elif action.group('ATYPE') == 'All-In':
                 hand.addAllIn(street, action.group('PNAME'), self.clearMoneyString(action.group('BET')))
             else:

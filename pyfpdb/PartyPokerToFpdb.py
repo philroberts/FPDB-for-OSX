@@ -105,7 +105,7 @@ class PartyPoker(HandHistoryConverter):
             """ % substitutions, re.VERBOSE | re.UNICODE)
 
     re_HandInfo     = re.compile("""
-            ^Table\s+(?P<TTYPE>[$,a-zA-Z0-9 ]+)?\s+
+            ^Table\s+(?P<TTYPE>.+?)?\s+
             (?: \#|\(|)(?P<TABLE>\d+)\)?\s+
             (?:[a-zA-Z0-9 ]+\s+\#(?P<MTTTABLE>\d+).+)?
             (\(No\sDP\)\s)?
@@ -147,6 +147,8 @@ class PartyPoker(HandHistoryConverter):
                     '^There is no Small Blind in this hand as the Big Blind '
                     'of the previous hand left the table', re.MULTILINE)
     re_20BBmin       = re.compile(r"Table 20BB Min")
+    re_Cancelled     = re.compile('Table\sClosed\s?', re.MULTILINE)
+    re_Disconnected  = re.compile('Connection\sLost\sdue\sto\ssome\sreason\s?', re.MULTILINE)
 
     def allHandsAsList(self):
         list = HandHistoryConverter.allHandsAsList(self)
@@ -170,7 +172,7 @@ class PartyPoker(HandHistoryConverter):
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             subst = {'PLYR': player_re, 'CUR_SYM': self.sym[hand.gametype['currency']],
-                'CUR': hand.gametype['currency'] if hand.gametype['currency']!='T$' else '',
+                'CUR': hand.gametype['currency'] if hand.gametype['currency']!='T$' else '(chips|)',
                 'BRAX' : u"\[\(\)\]"
                     }
             self.re_PostSB = re.compile(
@@ -197,8 +199,7 @@ class PartyPoker(HandHistoryConverter):
                 r"\[ *(?P<CARDS>.+) *\](?P<COMBINATION>.+)\.",
                 re.MULTILINE)
             self.re_CollectPot = re.compile(
-                r"""^%(PLYR)s \s+ wins \s+
-                %(CUR_SYM)s(?P<POT>[.,\d]+)\s*%(CUR)s""" %  subst,
+                r"""^%(PLYR)s\s+wins\s+%(CUR_SYM)s?(?P<POT>[.,\d]+)\s*(%(CUR)s)?""" %  subst,
                 re.MULTILINE|re.VERBOSE)
 
     def readSupportedGames(self):
@@ -219,10 +220,17 @@ class PartyPoker(HandHistoryConverter):
         if not m:
             m = self.re_GameInfoTrny.search(handText)
         if not m:
-            tmp = handText[0:150]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            m = self.re_Disconnected.search(handText)
+            if m:
+                message = _("Player Disconnected")
+                raise FpdbHandPartial("Partial hand history: %s" % message)
+            m = self.re_Cancelled.search(handText)
+            if m:
+                message = _("Table Closed")
+                raise FpdbHandPartial("Partial hand history: %s" % message)
+            tmp = handText[0:200]
+            log.error(_("PartyPokerToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
@@ -260,11 +268,6 @@ class PartyPoker(HandHistoryConverter):
                 info['currency'] = self.currencies['$']
             else:
                 info['currency'] = self.currencies[mg['CURRENCY']]
-        if 'BUYIN_CURRENCY' in mg:
-            if mg['BUYIN_CURRENCY'] == None:
-                info['currency'] = self.currencies['$']
-            else:
-                info['currency'] = mg['BUYIN_CURRENCY']
         if 'MIXED' in mg:
             if mg['MIXED'] is not None: info['mix'] = self.mixes[mg['MIXED']]
 
@@ -272,15 +275,16 @@ class PartyPoker(HandHistoryConverter):
             info['type'] = 'ring'
         else:
             info['type'] = 'tour'
+            info['currency'] = "T$"
 
         if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring':
             try:
                 info['sb'] = self.Lim_Blinds[mg['BB']][0]
                 info['bb'] = self.Lim_Blinds[mg['BB']][1]
             except KeyError:
-                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+                tmp = handText[0:200]
+                log.error(_("PartyPokerToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                raise FpdbParseError
         #print "DEUBG: DGT.info: %s" % info
         return info
 
@@ -294,31 +298,11 @@ class PartyPoker(HandHistoryConverter):
         else:
             m2 = self.re_GameInfoTrny.search(hand.handText)
         if m is None or m2 is None:
-            log.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            tmp = hand.handText[0:200]
+            log.error(_("PartyPokerToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
         info.update(m.groupdict())
         info.update(m2.groupdict())
-
-        #print "DEBUG: readHand.info: %s" % info
-
-        # FIXME: it's dirty hack
-        # party doesnt subtract uncalled money from commited money
-        # so hand.totalPot calculation has to be redefined
-        from Hand import Pot, HoldemOmahaHand
-        def getNewTotalPot(origTotalPot):
-            def totalPot(self):
-                if self.totalpot is None:
-                    self.pot.end()
-                    self.totalpot = self.pot.total
-                for i,v in enumerate(self.collected):
-                    if v[0] in self.pot.returned:
-                        self.collected[i][1] = Decimal(v[1]) - self.pot.returned[v[0]]
-                        self.collectees[v[0]] -= self.pot.returned[v[0]]
-                        self.pot.returned[v[0]] = 0
-                return origTotalPot()
-            return totalPot
-        instancemethod = type(hand.totalPot)
-        hand.totalPot = instancemethod(getNewTotalPot(hand.totalPot), hand, HoldemOmahaHand)
 
         for key in info:
             pass
@@ -327,14 +311,18 @@ class PartyPoker(HandHistoryConverter):
                 #Thursday, July 30, 21:40:41 MSKS 2009
                 #Sunday, October 25, 13:39:07 MSK 2009
                 #Mon Jul 12 13:38:32 EDT 2010
+                timezone = "ET"
                 m2 = re.search(
                     r"\w+?,?\s+?(?P<M>\w+)\s+(?P<D>\d+),?\s+(?P<H>\d+):(?P<MIN>\d+):(?P<S>\d+)\s+(?P<TZ>[A-Z]+)\s+(?P<Y>\d+)", 
                     info[key], 
                     re.UNICODE
                 )
+                if m2.group('TZ'):
+                    timezone = m2.group('TZ')
                 month = self.months[m2.group('M')]
                 datetimestr = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), month,m2.group('D'),m2.group('H'),m2.group('MIN'),m2.group('S'))
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+                hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, timezone, "UTC")
                 # FIXME: some timezone correction required
                 #tzShift = defaultdict(lambda:0, {'EDT': -5, 'EST': -6, 'MSKS': 3})
                 #hand.starttime -= datetime.timedelta(hours=tzShift[m2.group('TZ')])
@@ -372,7 +360,8 @@ class PartyPoker(HandHistoryConverter):
                     elif info[key].find(u"€")!=-1:
                         hand.buyinCurrency="EUR"
                     else:
-                        raise FpdbParseError(_("Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
+                        log.error(_("PartyPokerToFpdb.readHandInfo: Failed to detect currency Hand ID: '%s' - '%s'") % (hand.handid, info[key]))
+                        raise FpdbParseError
                     info[key] = info[key].strip(u'$€')
                     hand.buyin = int(100*Decimal(info[key]))
             if key == 'LEVEL':
@@ -554,21 +543,21 @@ class PartyPoker(HandHistoryConverter):
             amount = self.clearMoneyString(action.group('BET')) if action.group('BET') else None
             actionType = action.group('ATYPE')
 
-            if actionType == 'raises':
+            if actionType == 'folds':
+                hand.addFold( street, playerName )
+            elif actionType == 'checks':
+                hand.addCheck( street, playerName )
+            elif actionType == 'calls':
+                hand.addCall( street, playerName, amount )
+            elif actionType == 'raises':
                 if street == 'PREFLOP' and \
                     playerName in [item[0] for item in hand.actions['BLINDSANTES'] if item[2]!='ante']:
                     # preflop raise from blind
                     hand.addCallandRaise( street, playerName, amount )
                 else:
                     hand.addCallandRaise( street, playerName, amount )
-            elif actionType == 'calls':
-                hand.addCall( street, playerName, amount )
             elif actionType == 'bets':
                 hand.addBet( street, playerName, amount )
-            elif actionType == 'folds':
-                hand.addFold( street, playerName )
-            elif actionType == 'checks':
-                hand.addCheck( street, playerName )
             elif actionType == 'completes':
                 hand.addComplete( street, playerName, amount )
             elif actionType == 'bring-ins':
@@ -576,13 +565,15 @@ class PartyPoker(HandHistoryConverter):
             elif actionType == 'is all-In':
                 hand.addAllIn(street, playerName, amount)
             else:
-                raise FpdbParseError((_("Unimplemented %s: '%s' '%s'") + " hid:%s") % ("readAction", playerName, actionType, hand.handid))
+                log.error((_("PartyPokerToFpdb: Unimplemented %s: '%s' '%s'") + " hid:%s") % ("readAction", playerName, actionType, hand.handid))
+                raise FpdbParseError
 
     def readShowdownActions(self, hand):
         # all action in readShownCards
         pass
 
     def readCollectPot(self,hand):
+        hand.setUncalledBets(True)
         for m in self.re_CollectPot.finditer(hand.handText):
             hand.addCollectPot(player=m.group('PNAME'),pot=self.clearMoneyString(m.group('POT')))
 

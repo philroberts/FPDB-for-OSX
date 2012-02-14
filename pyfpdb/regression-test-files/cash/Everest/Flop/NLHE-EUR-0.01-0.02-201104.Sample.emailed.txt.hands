@@ -25,7 +25,7 @@
     'siteHandNo': u'6754716931',
     'startTime': datetime.datetime(2011, 2, 9, 11, 58),
     'street0Raises': 1,
-    'street1Pot': 3,
+    'street1Pot': 10,
     'street1Raises': 1,
     'street2Pot': 0,
     'street2Raises': 0,

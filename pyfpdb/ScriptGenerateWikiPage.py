@@ -74,6 +74,7 @@ sitemasks = { "PokerStars": copy.deepcopy(defaultmask),
               "Cake": copy.deepcopy(defaultmask),
               "Entraction": copy.deepcopy(defaultmask),
               "BetOnline": copy.deepcopy(defaultmask),
+              "Microgaming": copy.deepcopy(defaultmask),
         }
 
 # Site specific changes from the defaults
@@ -115,6 +116,17 @@ sitemasks['Boss']['27_1draw'] = {   'nl': False,  'pl': False, 'fl': False}
 sitemasks['Boss']['27_3draw'] = {   'nl': False,  'pl': False, 'fl': False}
 sitemasks['Boss']['a5_3draw'] = {   'nl': False,  'pl': False, 'fl': False}
 sitemasks['Boss']['badugi']   = {   'nl': False,  'pl': False, 'fl': False}
+# Winamax - Only Omaha and Holdem
+sitemasks['Winamax']['omahahilo'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['razz'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['studhi'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['studhilo'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['5studhi'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['fivedraw'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['27_1draw'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['27_3draw'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['a5_3draw'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['badugi']   = {   'nl': False,  'pl': False, 'fl': False}
 
 
 
@@ -159,6 +171,7 @@ sites = { "PokerStars": copy.deepcopy(games),
           "Cake": copy.deepcopy(games),
           "Entraction": copy.deepcopy(games),
           "BetOnline": copy.deepcopy(games),
+          "Microgaming": copy.deepcopy(games),
         }
 
 ring = copy.deepcopy(sites)

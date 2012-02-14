@@ -1,0 +1,1402 @@
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 0 - HandId: #56408884989919569-1-1319722234 - Holdem no limit (10/20) - 2011/10/27 15:30:34 UTC
+Table: 'Freeroll 100€(13133717)#336' 9-max (real money) Seat #6 is the button
+Seat 1: CYRANO32 (3000)
+Seat 2: cardsjacker (3000)
+Seat 3: croket32x (3000)
+Seat 4: crumble75 (3000)
+Seat 5: Slayton (3000)
+Seat 6: gpelle (3000)
+Seat 7: aruna.d27 (3000)
+Seat 8: pichou69 (3000)
+Seat 9: karnajh71 (3000)
+*** ANTE/BLINDS *** 
+aruna.d27 posts small blind 10
+pichou69 posts big blind 20
+Dealt to gpelle [7c Ts]
+*** PRE-FLOP *** 
+karnajh71 calls 20
+CYRANO32 calls 20
+cardsjacker raises 20 to 40
+croket32x folds
+crumble75 folds
+Slayton calls 40
+gpelle folds
+aruna.d27 folds
+pichou69 folds
+karnajh71 calls 20
+CYRANO32 calls 20
+*** FLOP *** [Tc Qs 5d]
+karnajh71 checks
+CYRANO32 checks
+cardsjacker bets 143
+Slayton raises 476 to 619
+karnajh71 folds
+CYRANO32 folds
+cardsjacker calls 476
+*** TURN *** [Tc Qs 5d][Jh]
+cardsjacker bets 1071
+Slayton calls 1071
+*** RIVER *** [Tc Qs 5d Jh][Js]
+cardsjacker bets 1270 and is all-in
+Slayton calls 1270 and is all-in
+*** SHOW DOWN ***
+cardsjacker shows [2c 2s] (Two pairs : Jacks and 2)
+Slayton shows [Th 5h] (Two pairs : Jacks and Tens)
+Slayton collected 6110 from pot
+*** SUMMARY ***
+Total pot 6110 | No rake
+Board: [Tc Qs 5d Jh Js]
+Seat 1: CYRANO32 folded on the flop
+Seat 2: cardsjacker showed [2c 2s] and lost with Two pairs : Jacks and 2
+Seat 3: croket32x folded on the pre-flop
+Seat 4: crumble75 folded on the pre-flop
+Seat 5: Slayton showed [Th 5h] and won 6110 with Two pairs : Jacks and Tens
+Seat 6: gpelle (button) folded on the pre-flop
+Seat 7: aruna.d27 (small blind) folded on the pre-flop
+Seat 8: pichou69 (big blind) folded on the pre-flop
+Seat 9: karnajh71 folded on the flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 0 - HandId: #56408884989919569-2-1319722416 - Holdem no limit (10/20) - 2011/10/27 15:33:36 UTC
+Table: 'Freeroll 100€(13133717)#336' 9-max (real money) Seat #7 is the button
+Seat 1: CYRANO32 (2960)
+Seat 2: Bud74200 (3000)
+Seat 3: croket32x (3000)
+Seat 4: crumble75 (3000)
+Seat 5: Slayton (6110)
+Seat 6: gpelle (3000)
+Seat 7: aruna.d27 (2990)
+Seat 8: pichou69 (2980)
+Seat 9: karnajh71 (2960)
+*** ANTE/BLINDS *** 
+pichou69 posts small blind 10
+karnajh71 posts big blind 20
+Dealt to gpelle [5h Ah]
+*** PRE-FLOP *** 
+CYRANO32 folds
+Bud74200 folds
+croket32x calls 20
+crumble75 folds
+Slayton calls 20
+gpelle calls 20
+aruna.d27 folds
+pichou69 raises 80 to 100
+karnajh71 folds
+croket32x calls 80
+Slayton calls 80
+gpelle calls 80
+*** FLOP *** [9h 5c Td]
+pichou69 bets 210
+croket32x calls 210
+Slayton calls 210
+gpelle folds
+*** TURN *** [9h 5c Td][3h]
+pichou69 bets 2670 and is all-in
+croket32x folds
+Slayton folds
+pichou69 collected 3720 from pot
+*** SUMMARY ***
+Total pot 3720 | No rake
+Board: [9h 5c Td 3h]
+Seat 1: CYRANO32 folded on the pre-flop
+Seat 2: Bud74200 folded on the pre-flop
+Seat 3: croket32x folded on the turn
+Seat 4: crumble75 folded on the pre-flop
+Seat 5: Slayton folded on the turn
+Seat 6: gpelle folded on the flop
+Seat 7: aruna.d27 (button) folded on the pre-flop
+Seat 8: pichou69 (small blind) won 3720
+Seat 9: karnajh71 (big blind) folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 1 - HandId: #56408884989919422-4-1319722672 - Holdem no limit (15/30) - 2011/10/27 15:37:52 UTC
+Table: 'Freeroll 100€(13133717)#189' 9-max (real money) Seat #6 is the button
+Seat 1: Hcalagan (3000)
+Seat 2: lafrig50 (3160)
+Seat 3: mamine21 (2735)
+Seat 4: chris83340 (3125)
+Seat 5: lolo2512 (3000)
+Seat 6: gpelle (2900)
+Seat 7: elo_85 (2960)
+Seat 8: jpg45 (3000)
+Seat 9: KalisTa (2920)
+*** ANTE/BLINDS *** 
+elo_85 posts small blind 15
+jpg45 posts big blind 30
+*** PRE-FLOP *** 
+KalisTa calls 30
+Hcalagan folds
+lafrig50 calls 30
+mamine21 calls 30
+chris83340 calls 30
+lolo2512 folds
+elo_85 folds
+jpg45 checks
+*** FLOP *** [Jd 5h Jh]
+jpg45 checks
+KalisTa checks
+lafrig50 bets 60
+mamine21 calls 60
+chris83340 raises 3035 to 3095 and is all-in
+jpg45 folds
+KalisTa folds
+lafrig50 folds
+mamine21 folds
+chris83340 collected 3380 from pot
+*** SUMMARY ***
+Total pot 3380 | No rake
+Board: [Jd 5h Jh]
+Seat 1: Hcalagan folded on the pre-flop
+Seat 2: lafrig50 folded on the flop
+Seat 3: mamine21 folded on the flop
+Seat 4: chris83340 won 3380
+Seat 5: lolo2512 folded on the pre-flop
+Seat 7: elo_85 (small blind) folded on the pre-flop
+Seat 8: jpg45 (big blind) folded on the flop
+Seat 9: KalisTa folded on the flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 1 - HandId: #56408884989919422-5-1319722792 - Holdem no limit (15/30) - 2011/10/27 15:39:52 UTC
+Table: 'Freeroll 100€(13133717)#189' 9-max (real money) Seat #7 is the button
+Seat 1: Hcalagan (3000)
+Seat 2: lafrig50 (3070)
+Seat 3: mamine21 (2645)
+Seat 4: chris83340 (3380)
+Seat 5: lolo2512 (3000)
+Seat 6: gpelle (2900)
+Seat 7: elo_85 (2945)
+Seat 8: jpg45 (2970)
+Seat 9: KalisTa (2890)
+*** ANTE/BLINDS *** 
+jpg45 posts small blind 15
+KalisTa posts big blind 30
+Dealt to gpelle [8c 2d]
+*** PRE-FLOP *** 
+Hcalagan folds
+lafrig50 calls 30
+mamine21 calls 30
+chris83340 calls 30
+lolo2512 calls 30
+gpelle folds
+elo_85 calls 30
+jpg45 folds
+KalisTa checks
+*** FLOP *** [5d 3d Qh]
+KalisTa checks
+lafrig50 bets 60
+mamine21 calls 60
+chris83340 folds
+lolo2512 raises 360 to 420
+elo_85 calls 420
+KalisTa folds
+lafrig50 calls 360
+mamine21 folds
+*** TURN *** [5d 3d Qh][Ks]
+lafrig50 checks
+lolo2512 bets 2550 and is all-in
+elo_85 calls 2495 and is all-in
+lafrig50 folds
+*** RIVER *** [5d 3d Qh Ks][8s]
+*** SHOW DOWN ***
+elo_85 shows [Qd Jc] (One pair : Queens)
+lolo2512 shows [3c 3h] (Trips of 3)
+lolo2512 collected 6560 from pot
+*** SUMMARY ***
+Total pot 6560 | No rake
+Board: [5d 3d Qh Ks 8s]
+Seat 1: Hcalagan folded on the pre-flop
+Seat 2: lafrig50 folded on the turn
+Seat 3: mamine21 folded on the flop
+Seat 4: chris83340 folded on the flop
+Seat 5: lolo2512 showed [3c 3h] and won 6560 with Trips of 3
+Seat 6: gpelle folded on the pre-flop
+Seat 7: elo_85 (button) showed [Qd Jc] and lost with One pair : Queens
+Seat 8: jpg45 (small blind) folded on the pre-flop
+Seat 9: KalisTa (big blind) folded on the flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 2 - HandId: #56408884989919351-15-1319722989 - Holdem no limit (20/40) - 2011/10/27 15:43:09 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #2 is the button
+Seat 1: x Razhiel (2560)
+Seat 2: peri_20 (4690)
+Seat 3: xphil69x (3060)
+Seat 4: fabien0076 (2970)
+Seat 5: gpelle (2900)
+Seat 6: jay36_x (2955)
+Seat 7: nico-du-29 (3660)
+Seat 8: JFK-64 (2945)
+Seat 9: dies irae 76 (6900)
+*** ANTE/BLINDS *** 
+xphil69x posts small blind 20
+fabien0076 posts big blind 40
+Dealt to gpelle [9d 4d]
+*** PRE-FLOP *** 
+gpelle calls 40
+jay36_x folds
+nico-du-29 folds
+JFK-64 folds
+dies irae 76 folds
+x Razhiel folds
+peri_20 raises 180 to 220
+xphil69x folds
+fabien0076 folds
+gpelle folds
+peri_20 collected 320 from pot
+*** SUMMARY ***
+Total pot 320 | No rake
+Seat 1: x Razhiel folded on the pre-flop
+Seat 2: peri_20 (button) won 320
+Seat 3: xphil69x (small blind) folded on the pre-flop
+Seat 4: fabien0076 (big blind) folded on the pre-flop
+Seat 5: gpelle folded on the pre-flop
+Seat 6: jay36_x folded on the pre-flop
+Seat 7: nico-du-29 folded on the pre-flop
+Seat 8: JFK-64 folded on the pre-flop
+Seat 9: dies irae 76 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 2 - HandId: #56408884989919351-16-1319723083 - Holdem no limit (20/40) - 2011/10/27 15:44:43 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #3 is the button
+Seat 1: x Razhiel (2560)
+Seat 2: peri_20 (4790)
+Seat 3: xphil69x (3040)
+Seat 4: fabien0076 (2930)
+Seat 5: gpelle (2860)
+Seat 6: jay36_x (2955)
+Seat 7: nico-du-29 (3660)
+Seat 8: JFK-64 (2945)
+Seat 9: dies irae 76 (6900)
+*** ANTE/BLINDS *** 
+fabien0076 posts small blind 20
+gpelle posts big blind 40
+Dealt to gpelle [2h Qh]
+*** PRE-FLOP *** 
+jay36_x folds
+nico-du-29 folds
+JFK-64 folds
+dies irae 76 raises 160 to 200
+x Razhiel folds
+peri_20 calls 200
+xphil69x folds
+fabien0076 folds
+gpelle folds
+*** FLOP *** [Jh Qs Td]
+dies irae 76 bets 345
+peri_20 calls 345
+*** TURN *** [Jh Qs Td][7h]
+dies irae 76 bets 767
+peri_20 calls 767
+*** RIVER *** [Jh Qs Td 7h][2s]
+dies irae 76 bets 1342
+peri_20 calls 1342
+*** SHOW DOWN ***
+peri_20 shows [Ah 7d] (One pair : 7)
+dies irae 76 shows [Kc Kh] (One pair : Kings)
+dies irae 76 collected 5368 from pot
+*** SUMMARY ***
+Total pot 5368 | No rake
+Board: [Jh Qs Td 7h 2s]
+Seat 1: x Razhiel folded on the pre-flop
+Seat 2: peri_20 showed [Ah 7d] and lost with One pair : 7
+Seat 3: xphil69x (button) folded on the pre-flop
+Seat 4: fabien0076 (small blind) folded on the pre-flop
+Seat 5: gpelle (big blind) folded on the pre-flop
+Seat 6: jay36_x folded on the pre-flop
+Seat 7: nico-du-29 folded on the pre-flop
+Seat 8: JFK-64 folded on the pre-flop
+Seat 9: dies irae 76 showed [Kc Kh] and won 5368 with One pair : Kings
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 2 - HandId: #56408884989919351-17-1319723114 - Holdem no limit (20/40) - 2011/10/27 15:45:14 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #4 is the button
+Seat 1: x Razhiel (2560)
+Seat 2: peri_20 (2136)
+Seat 3: xphil69x (3040)
+Seat 4: fabien0076 (2910)
+Seat 5: gpelle (2820)
+Seat 6: jay36_x (2955)
+Seat 7: nico-du-29 (3660)
+Seat 8: JFK-64 (2945)
+Seat 9: dies irae 76 (9614)
+*** ANTE/BLINDS *** 
+gpelle posts small blind 20
+jay36_x posts big blind 40
+Dealt to gpelle [7h 9s]
+*** PRE-FLOP *** 
+nico-du-29 folds
+JFK-64 folds
+dies irae 76 calls 40
+x Razhiel folds
+peri_20 raises 1020 to 1060
+xphil69x folds
+fabien0076 folds
+gpelle folds
+jay36_x folds
+dies irae 76 folds
+peri_20 collected 1160 from pot
+*** SUMMARY ***
+Total pot 1160 | No rake
+Seat 1: x Razhiel folded on the pre-flop
+Seat 2: peri_20 won 1160
+Seat 3: xphil69x folded on the pre-flop
+Seat 4: fabien0076 (button) folded on the pre-flop
+Seat 5: gpelle (small blind) folded on the pre-flop
+Seat 6: jay36_x (big blind) folded on the pre-flop
+Seat 7: nico-du-29 folded on the pre-flop
+Seat 8: JFK-64 folded on the pre-flop
+Seat 9: dies irae 76 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 2 - HandId: #56408884989919351-18-1319723130 - Holdem no limit (20/40) - 2011/10/27 15:45:30 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #5 is the button
+Seat 1: x Razhiel (2560)
+Seat 2: peri_20 (2236)
+Seat 3: xphil69x (3040)
+Seat 4: fabien0076 (2910)
+Seat 5: gpelle (2800)
+Seat 6: jay36_x (2915)
+Seat 7: nico-du-29 (3660)
+Seat 8: JFK-64 (2945)
+Seat 9: dies irae 76 (9574)
+*** ANTE/BLINDS *** 
+jay36_x posts small blind 20
+nico-du-29 posts big blind 40
+Dealt to gpelle [5h Tc]
+*** PRE-FLOP *** 
+JFK-64 folds
+dies irae 76 folds
+x Razhiel folds
+peri_20 raises 160 to 200
+xphil69x folds
+fabien0076 folds
+gpelle folds
+jay36_x folds
+nico-du-29 calls 160
+*** FLOP *** [7h Kc Ah]
+nico-du-29 checks
+peri_20 bets 640
+nico-du-29 folds
+peri_20 collected 1060 from pot
+*** SUMMARY ***
+Total pot 1060 | No rake
+Board: [7h Kc Ah]
+Seat 1: x Razhiel folded on the pre-flop
+Seat 2: peri_20 won 1060
+Seat 3: xphil69x folded on the pre-flop
+Seat 4: fabien0076 folded on the pre-flop
+Seat 5: gpelle (button) folded on the pre-flop
+Seat 6: jay36_x (small blind) folded on the pre-flop
+Seat 7: nico-du-29 (big blind) folded on the flop
+Seat 8: JFK-64 folded on the pre-flop
+Seat 9: dies irae 76 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 2 - HandId: #56408884989919351-19-1319723157 - Holdem no limit (20/40) - 2011/10/27 15:45:57 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #6 is the button
+Seat 1: x Razhiel (2560)
+Seat 2: peri_20 (2456)
+Seat 3: xphil69x (3040)
+Seat 4: fabien0076 (2910)
+Seat 5: gpelle (2800)
+Seat 6: jay36_x (2895)
+Seat 7: nico-du-29 (3460)
+Seat 8: JFK-64 (2945)
+Seat 9: dies irae 76 (9574)
+*** ANTE/BLINDS *** 
+nico-du-29 posts small blind 20
+JFK-64 posts big blind 40
+Dealt to gpelle [2h 5h]
+*** PRE-FLOP *** 
+dies irae 76 calls 40
+x Razhiel folds
+peri_20 raises 440 to 480
+xphil69x folds
+fabien0076 folds
+gpelle folds
+jay36_x folds
+nico-du-29 folds
+JFK-64 folds
+dies irae 76 calls 440
+*** FLOP *** [As 8d 8h]
+dies irae 76 checks
+peri_20 checks
+*** TURN *** [As 8d 8h][7c]
+dies irae 76 bets 765
+peri_20 raises 1211 to 1976 and is all-in
+dies irae 76 calls 1211
+*** RIVER *** [As 8d 8h 7c][Jd]
+*** SHOW DOWN ***
+peri_20 shows [7h Ah] (Two pairs : Aces and 8)
+dies irae 76 shows [Jc Ac] (Two pairs : Aces and Jacks)
+dies irae 76 collected 4972 from pot
+*** SUMMARY ***
+Total pot 4972 | No rake
+Board: [As 8d 8h 7c Jd]
+Seat 1: x Razhiel folded on the pre-flop
+Seat 2: peri_20 showed [7h Ah] and lost with Two pairs : Aces and 8
+Seat 3: xphil69x folded on the pre-flop
+Seat 4: fabien0076 folded on the pre-flop
+Seat 5: gpelle folded on the pre-flop
+Seat 6: jay36_x (button) folded on the pre-flop
+Seat 7: nico-du-29 (small blind) folded on the pre-flop
+Seat 8: JFK-64 (big blind) folded on the pre-flop
+Seat 9: dies irae 76 showed [Jc Ac] and won 4972 with Two pairs : Aces and Jacks
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 2 - HandId: #56408884989919351-20-1319723180 - Holdem no limit (20/40) - 2011/10/27 15:46:20 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #7 is the button
+Seat 1: x Razhiel (2560)
+Seat 2: Gief77 (2580)
+Seat 3: xphil69x (3040)
+Seat 4: fabien0076 (2910)
+Seat 5: gpelle (2800)
+Seat 6: jay36_x (2895)
+Seat 7: nico-du-29 (3440)
+Seat 8: JFK-64 (2905)
+Seat 9: dies irae 76 (12090)
+*** ANTE/BLINDS *** 
+JFK-64 posts small blind 20
+dies irae 76 posts big blind 40
+Dealt to gpelle [5s 9s]
+*** PRE-FLOP *** 
+x Razhiel folds
+Gief77 calls 40
+xphil69x folds
+fabien0076 folds
+gpelle calls 40
+jay36_x folds
+nico-du-29 folds
+JFK-64 folds
+dies irae 76 checks
+*** FLOP *** [Ac Kd Ts]
+dies irae 76 checks
+Gief77 checks
+gpelle checks
+*** TURN *** [Ac Kd Ts][Jh]
+dies irae 76 bets 105
+Gief77 folds
+gpelle folds
+dies irae 76 collected 245 from pot
+*** SUMMARY ***
+Total pot 245 | No rake
+Board: [Ac Kd Ts Jh]
+Seat 1: x Razhiel folded on the pre-flop
+Seat 2: Gief77 folded on the turn
+Seat 3: xphil69x folded on the pre-flop
+Seat 4: fabien0076 folded on the pre-flop
+Seat 5: gpelle folded on the turn
+Seat 6: jay36_x folded on the pre-flop
+Seat 7: nico-du-29 (button) folded on the pre-flop
+Seat 8: JFK-64 (small blind) folded on the pre-flop
+Seat 9: dies irae 76 (big blind) won 245
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 2 - HandId: #56408884989919351-21-1319723211 - Holdem no limit (20/40) - 2011/10/27 15:46:51 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #8 is the button
+Seat 1: x Razhiel (2560)
+Seat 2: Gief77 (2540)
+Seat 3: xphil69x (3040)
+Seat 4: fabien0076 (2910)
+Seat 5: gpelle (2760)
+Seat 6: jay36_x (2895)
+Seat 7: nico-du-29 (3440)
+Seat 8: JFK-64 (2885)
+Seat 9: dies irae 76 (12190)
+*** ANTE/BLINDS *** 
+dies irae 76 posts small blind 20
+x Razhiel posts big blind 40
+Dealt to gpelle [8h Ks]
+*** PRE-FLOP *** 
+Gief77 folds
+xphil69x calls 40
+fabien0076 folds
+gpelle calls 40
+jay36_x folds
+nico-du-29 calls 40
+JFK-64 folds
+dies irae 76 calls 20
+x Razhiel checks
+*** FLOP *** [9d 5h 6h]
+dies irae 76 checks
+x Razhiel bets 133
+xphil69x calls 133
+gpelle folds
+nico-du-29 calls 133
+dies irae 76 calls 133
+*** TURN *** [9d 5h 6h][Qd]
+dies irae 76 checks
+x Razhiel bets 488
+xphil69x calls 488
+nico-du-29 calls 488
+dies irae 76 folds
+*** RIVER *** [9d 5h 6h Qd][Js]
+x Razhiel bets 1899 and is all-in
+xphil69x raises 480 to 2379 and is all-in
+nico-du-29 folds
+*** SHOW DOWN ***
+x Razhiel shows [7c 8c] (Straight 9 high)
+xphil69x shows [Jd Jc] (Trips of Jacks)
+xphil69x collected 480 from side pot 1
+x Razhiel collected 5994 from main pot
+*** SUMMARY ***
+Total pot 6474 | No rake
+Board: [9d 5h 6h Qd Js]
+Seat 1: x Razhiel (big blind) showed [7c 8c] and won 5994 with Straight 9 high
+Seat 2: Gief77 folded on the pre-flop
+Seat 3: xphil69x showed [Jd Jc] and won 480 with Trips of Jacks
+Seat 4: fabien0076 folded on the pre-flop
+Seat 5: gpelle folded on the flop
+Seat 6: jay36_x folded on the pre-flop
+Seat 7: nico-du-29 folded on the river
+Seat 8: JFK-64 (button) folded on the pre-flop
+Seat 9: dies irae 76 (small blind) folded on the turn
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 2 - HandId: #56408884989919351-22-1319723284 - Holdem no limit (20/40) - 2011/10/27 15:48:04 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #9 is the button
+Seat 1: x Razhiel (5994)
+Seat 2: Gief77 (2540)
+Seat 3: xphil69x (480)
+Seat 4: fabien0076 (2910)
+Seat 5: gpelle (2720)
+Seat 6: jay36_x (2895)
+Seat 7: nico-du-29 (2779)
+Seat 8: JFK-64 (2885)
+Seat 9: dies irae 76 (12017)
+*** ANTE/BLINDS *** 
+x Razhiel posts small blind 20
+Gief77 posts big blind 40
+Dealt to gpelle [8d Qc]
+*** PRE-FLOP *** 
+xphil69x folds
+fabien0076 calls 40
+gpelle folds
+jay36_x folds
+nico-du-29 calls 40
+JFK-64 folds
+dies irae 76 calls 40
+x Razhiel calls 20
+Gief77 checks
+*** FLOP *** [8s 7d 7h]
+x Razhiel bets 100
+Gief77 calls 100
+fabien0076 raises 100 to 200
+nico-du-29 calls 200
+dies irae 76 folds
+x Razhiel calls 100
+Gief77 calls 100
+*** TURN *** [8s 7d 7h][3d]
+x Razhiel checks
+Gief77 checks
+fabien0076 checks
+nico-du-29 checks
+*** RIVER *** [8s 7d 7h 3d][9d]
+x Razhiel checks
+Gief77 checks
+fabien0076 bets 750
+nico-du-29 folds
+x Razhiel folds
+Gief77 calls 750
+*** SHOW DOWN ***
+Gief77 shows [5s 9h] (Two pairs : 9 and 7)
+fabien0076 shows [9s 6h] (Two pairs : 9 and 7)
+fabien0076 collected 1250 from pot
+Gief77 collected 1250 from pot
+*** SUMMARY ***
+Total pot 2500 | No rake
+Board: [8s 7d 7h 3d 9d]
+Seat 1: x Razhiel (small blind) folded on the river
+Seat 2: Gief77 (big blind) showed [5s 9h] and won 1250 with Two pairs : 9 and 7
+Seat 3: xphil69x folded on the pre-flop
+Seat 4: fabien0076 showed [9s 6h] and won 1250 with Two pairs : 9 and 7
+Seat 5: gpelle folded on the pre-flop
+Seat 6: jay36_x folded on the pre-flop
+Seat 7: nico-du-29 folded on the river
+Seat 8: JFK-64 folded on the pre-flop
+Seat 9: dies irae 76 (button) folded on the flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 3 - HandId: #56408884989919351-23-1319723376 - Holdem no limit (30/60) - 2011/10/27 15:49:36 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #1 is the button
+Seat 1: x Razhiel (5754)
+Seat 2: Gief77 (2800)
+Seat 3: xphil69x (480)
+Seat 4: fabien0076 (3170)
+Seat 5: gpelle (2720)
+Seat 6: jay36_x (2895)
+Seat 7: nico-du-29 (2539)
+Seat 8: JFK-64 (2885)
+Seat 9: dies irae 76 (11977)
+*** ANTE/BLINDS *** 
+Gief77 posts small blind 30
+xphil69x posts big blind 60
+Dealt to gpelle [Qs 6c]
+*** PRE-FLOP *** 
+fabien0076 raises 60 to 120
+gpelle folds
+jay36_x calls 120
+nico-du-29 folds
+JFK-64 folds
+dies irae 76 calls 120
+x Razhiel folds
+Gief77 folds
+xphil69x calls 60
+*** FLOP *** [7c 2h 6s]
+xphil69x bets 360 and is all-in
+fabien0076 calls 360
+jay36_x folds
+dies irae 76 folds
+*** TURN *** [7c 2h 6s][8c]
+*** RIVER *** [7c 2h 6s 8c][2d]
+*** SHOW DOWN ***
+fabien0076 shows [Qc Jh] (One pair : 2)
+xphil69x shows [Ks Ah] (One pair : 2)
+xphil69x collected 1230 from pot
+*** SUMMARY ***
+Total pot 1230 | No rake
+Board: [7c 2h 6s 8c 2d]
+Seat 1: x Razhiel (button) folded on the pre-flop
+Seat 2: Gief77 (small blind) folded on the pre-flop
+Seat 3: xphil69x (big blind) showed [Ks Ah] and won 1230 with One pair : 2
+Seat 4: fabien0076 showed [Qc Jh] and lost with One pair : 2
+Seat 5: gpelle folded on the pre-flop
+Seat 6: jay36_x folded on the flop
+Seat 7: nico-du-29 folded on the pre-flop
+Seat 8: JFK-64 folded on the pre-flop
+Seat 9: dies irae 76 folded on the flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 3 - HandId: #56408884989919351-24-1319723456 - Holdem no limit (30/60) - 2011/10/27 15:50:56 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #2 is the button
+Seat 1: x Razhiel (5754)
+Seat 2: Gief77 (2770)
+Seat 3: xphil69x (1230)
+Seat 4: fabien0076 (2690)
+Seat 5: gpelle (2720)
+Seat 6: jay36_x (2775)
+Seat 7: nico-du-29 (2539)
+Seat 8: JFK-64 (2885)
+Seat 9: dies irae 76 (11857)
+*** ANTE/BLINDS *** 
+xphil69x posts small blind 30
+fabien0076 posts big blind 60
+Dealt to gpelle [2s 9s]
+*** PRE-FLOP *** 
+gpelle calls 60
+jay36_x folds
+nico-du-29 raises 120 to 180
+JFK-64 folds
+dies irae 76 calls 180
+x Razhiel folds
+Gief77 folds
+xphil69x folds
+fabien0076 raises 720 to 900
+gpelle folds
+nico-du-29 calls 720
+dies irae 76 folds
+*** FLOP *** [7c 8h Jh]
+fabien0076 bets 1552
+nico-du-29 folds
+fabien0076 collected 3622 from pot
+*** SUMMARY ***
+Total pot 3622 | No rake
+Board: [7c 8h Jh]
+Seat 1: x Razhiel folded on the pre-flop
+Seat 2: Gief77 (button) folded on the pre-flop
+Seat 3: xphil69x (small blind) folded on the pre-flop
+Seat 4: fabien0076 (big blind) won 3622
+Seat 5: gpelle folded on the pre-flop
+Seat 6: jay36_x folded on the pre-flop
+Seat 7: nico-du-29 folded on the flop
+Seat 8: JFK-64 folded on the pre-flop
+Seat 9: dies irae 76 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 3 - HandId: #56408884989919351-25-1319723516 - Holdem no limit (30/60) - 2011/10/27 15:51:56 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #3 is the button
+Seat 1: x Razhiel (5754)
+Seat 2: Gief77 (2770)
+Seat 3: xphil69x (1200)
+Seat 4: fabien0076 (3860)
+Seat 5: gpelle (2660)
+Seat 6: jay36_x (2775)
+Seat 7: nico-du-29 (1639)
+Seat 8: JFK-64 (2885)
+Seat 9: dies irae 76 (11677)
+*** ANTE/BLINDS *** 
+fabien0076 posts small blind 30
+gpelle posts big blind 60
+Dealt to gpelle [Tc Jd]
+*** PRE-FLOP *** 
+jay36_x calls 60
+nico-du-29 folds
+JFK-64 folds
+dies irae 76 calls 60
+x Razhiel folds
+Gief77 folds
+xphil69x folds
+fabien0076 raises 240 to 300
+gpelle calls 240
+jay36_x calls 240
+dies irae 76 calls 240
+*** FLOP *** [7s 7d 4s]
+fabien0076 bets 60
+gpelle calls 60
+jay36_x folds
+dies irae 76 raises 900 to 960
+fabien0076 calls 900
+gpelle folds
+*** TURN *** [7s 7d 4s][6s]
+fabien0076 bets 60
+dies irae 76 raises 2460 to 2520
+fabien0076 calls 2460
+*** RIVER *** [7s 7d 4s 6s][Jh]
+fabien0076 bets 60
+dies irae 76 raises 7837 to 7897 and is all-in
+fabien0076 calls 20 and is all-in
+*** SHOW DOWN ***
+fabien0076 shows [Qc As] (One pair : 7)
+dies irae 76 shows [7h 6c] (Full of 7 and 6)
+dies irae 76 collected 16197 from pot
+*** SUMMARY ***
+Total pot 16197 | No rake
+Board: [7s 7d 4s 6s Jh]
+Seat 1: x Razhiel folded on the pre-flop
+Seat 2: Gief77 folded on the pre-flop
+Seat 3: xphil69x (button) folded on the pre-flop
+Seat 4: fabien0076 (small blind) showed [Qc As] and lost with One pair : 7
+Seat 5: gpelle (big blind) folded on the flop
+Seat 6: jay36_x folded on the flop
+Seat 7: nico-du-29 folded on the pre-flop
+Seat 8: JFK-64 folded on the pre-flop
+Seat 9: dies irae 76 showed [7h 6c] and won 16197 with Full of 7 and 6
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 3 - HandId: #56408884989919351-26-1319723606 - Holdem no limit (30/60) - 2011/10/27 15:53:26 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #4 is the button
+Seat 1: x Razhiel (5754)
+Seat 2: Gief77 (2770)
+Seat 3: xphil69x (1200)
+Seat 4: beretta49 (5820)
+Seat 5: gpelle (2300)
+Seat 6: jay36_x (2475)
+Seat 7: nico-du-29 (1639)
+Seat 8: JFK-64 (2885)
+Seat 9: dies irae 76 (16197)
+*** ANTE/BLINDS *** 
+gpelle posts small blind 30
+jay36_x posts big blind 60
+Dealt to gpelle [2s 4d]
+*** PRE-FLOP *** 
+nico-du-29 calls 60
+JFK-64 folds
+dies irae 76 folds
+x Razhiel folds
+Gief77 calls 60
+xphil69x calls 60
+gpelle folds
+jay36_x checks
+*** FLOP *** [5s Ts 3s]
+jay36_x checks
+nico-du-29 bets 60
+Gief77 folds
+xphil69x calls 60
+jay36_x folds
+*** TURN *** [5s Ts 3s][Td]
+nico-du-29 bets 195
+xphil69x calls 195
+*** RIVER *** [5s Ts 3s Td][Tc]
+nico-du-29 bets 1324 and is all-in
+xphil69x folds
+nico-du-29 collected 2104 from pot
+*** SUMMARY ***
+Total pot 2104 | No rake
+Board: [5s Ts 3s Td Tc]
+Seat 1: x Razhiel folded on the pre-flop
+Seat 2: Gief77 folded on the flop
+Seat 3: xphil69x folded on the river
+Seat 5: gpelle (small blind) folded on the pre-flop
+Seat 6: jay36_x (big blind) folded on the flop
+Seat 7: nico-du-29 won 2104
+Seat 8: JFK-64 folded on the pre-flop
+Seat 9: dies irae 76 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 4 - HandId: #56408884989919351-27-1319723680 - Holdem no limit (40/80) - 2011/10/27 15:54:40 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #5 is the button
+Seat 1: x Razhiel (5754)
+Seat 2: Gief77 (2710)
+Seat 3: xphil69x (885)
+Seat 4: beretta49 (5820)
+Seat 5: gpelle (2270)
+Seat 6: jay36_x (2415)
+Seat 7: nico-du-29 (2104)
+Seat 8: JFK-64 (2885)
+Seat 9: dies irae 76 (16197)
+*** ANTE/BLINDS *** 
+jay36_x posts small blind 40
+nico-du-29 posts big blind 80
+Dealt to gpelle [5h 7h]
+*** PRE-FLOP *** 
+JFK-64 folds
+dies irae 76 folds
+x Razhiel folds
+Gief77 folds
+xphil69x folds
+beretta49 calls 80
+gpelle calls 80
+jay36_x folds
+nico-du-29 checks
+*** FLOP *** [8s Kh Th]
+nico-du-29 bets 80
+beretta49 calls 80
+gpelle calls 80
+*** TURN *** [8s Kh Th][Kc]
+nico-du-29 checks
+beretta49 checks
+gpelle checks
+*** RIVER *** [8s Kh Th Kc][Kd]
+nico-du-29 checks
+beretta49 checks
+gpelle checks
+*** SHOW DOWN ***
+gpelle shows [5h 7h] (Trips of Kings)
+beretta49 shows [2d Ad] (Trips of Kings)
+nico-du-29 shows [5d Ah] (Trips of Kings)
+nico-du-29 collected 260 from pot
+beretta49 collected 260 from pot
+*** SUMMARY ***
+Total pot 520 | No rake
+Board: [8s Kh Th Kc Kd]
+Seat 1: x Razhiel folded on the pre-flop
+Seat 2: Gief77 folded on the pre-flop
+Seat 3: xphil69x folded on the pre-flop
+Seat 4: beretta49 showed [2d Ad] and won 260 with Trips of Kings
+Seat 5: gpelle (button) showed [5h 7h] and lost with Trips of Kings
+Seat 6: jay36_x (small blind) folded on the pre-flop
+Seat 7: nico-du-29 (big blind) showed [5d Ah] and won 260 with Trips of Kings
+Seat 8: JFK-64 folded on the pre-flop
+Seat 9: dies irae 76 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 4 - HandId: #56408884989919351-28-1319724000 - Holdem no limit (40/80) - 2011/10/27 16:00:00 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #6 is the button
+Seat 1: x Razhiel (5754)
+Seat 2: Gief77 (2710)
+Seat 3: xphil69x (885)
+Seat 4: beretta49 (5920)
+Seat 5: gpelle (2110)
+Seat 6: jay36_x (2375)
+Seat 7: nico-du-29 (2204)
+Seat 8: JFK-64 (2885)
+Seat 9: dies irae 76 (16197)
+*** ANTE/BLINDS *** 
+nico-du-29 posts small blind 40
+JFK-64 posts big blind 80
+Dealt to gpelle [5d 6s]
+*** PRE-FLOP *** 
+dies irae 76 folds
+x Razhiel folds
+Gief77 folds
+xphil69x folds
+beretta49 raises 80 to 160
+gpelle folds
+jay36_x folds
+nico-du-29 calls 120
+JFK-64 folds
+*** FLOP *** [Ts Kh 7c]
+nico-du-29 checks
+beretta49 bets 80
+nico-du-29 calls 80
+*** TURN *** [Ts Kh 7c][Jh]
+nico-du-29 checks
+beretta49 bets 640
+nico-du-29 calls 640
+*** RIVER *** [Ts Kh 7c Jh][8s]
+nico-du-29 checks
+beretta49 bets 80
+nico-du-29 calls 80
+*** SHOW DOWN ***
+nico-du-29 shows [Ah Th] (One pair : Tens)
+beretta49 shows [Qs Qc] (One pair : Queens)
+beretta49 collected 2000 from pot
+*** SUMMARY ***
+Total pot 2000 | No rake
+Board: [Ts Kh 7c Jh 8s]
+Seat 1: x Razhiel folded on the pre-flop
+Seat 2: Gief77 folded on the pre-flop
+Seat 3: xphil69x folded on the pre-flop
+Seat 4: beretta49 showed [Qs Qc] and won 2000 with One pair : Queens
+Seat 5: gpelle folded on the pre-flop
+Seat 6: jay36_x (button) folded on the pre-flop
+Seat 7: nico-du-29 (small blind) showed [Ah Th] and lost with One pair : Tens
+Seat 8: JFK-64 (big blind) folded on the pre-flop
+Seat 9: dies irae 76 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 4 - HandId: #56408884989919351-29-1319724062 - Holdem no limit (40/80) - 2011/10/27 16:01:02 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #7 is the button
+Seat 1: x Razhiel (5754)
+Seat 2: Gief77 (2710)
+Seat 3: xphil69x (885)
+Seat 4: beretta49 (6960)
+Seat 5: gpelle (2110)
+Seat 6: jay36_x (2375)
+Seat 7: nico-du-29 (1244)
+Seat 8: JFK-64 (2805)
+Seat 9: dies irae 76 (16197)
+*** ANTE/BLINDS *** 
+JFK-64 posts small blind 40
+dies irae 76 posts big blind 80
+Dealt to gpelle [Tc 4h]
+*** PRE-FLOP *** 
+x Razhiel calls 80
+Gief77 folds
+xphil69x folds
+beretta49 folds
+gpelle folds
+jay36_x calls 80
+nico-du-29 folds
+JFK-64 folds
+dies irae 76 checks
+*** FLOP *** [Kd 6s Kh]
+dies irae 76 checks
+x Razhiel bets 140
+jay36_x folds
+dies irae 76 folds
+x Razhiel collected 420 from pot
+*** SUMMARY ***
+Total pot 420 | No rake
+Board: [Kd 6s Kh]
+Seat 1: x Razhiel won 420
+Seat 2: Gief77 folded on the pre-flop
+Seat 3: xphil69x folded on the pre-flop
+Seat 4: beretta49 folded on the pre-flop
+Seat 5: gpelle folded on the pre-flop
+Seat 6: jay36_x folded on the flop
+Seat 7: nico-du-29 (button) folded on the pre-flop
+Seat 8: JFK-64 (small blind) folded on the pre-flop
+Seat 9: dies irae 76 (big blind) folded on the flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 4 - HandId: #56408884989919351-30-1319724102 - Holdem no limit (40/80) - 2011/10/27 16:01:42 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #8 is the button
+Seat 1: x Razhiel (5954)
+Seat 2: Gief77 (2710)
+Seat 3: xphil69x (885)
+Seat 4: beretta49 (6960)
+Seat 5: gpelle (2110)
+Seat 6: jay36_x (2295)
+Seat 7: nico-du-29 (1244)
+Seat 8: JFK-64 (2765)
+Seat 9: dies irae 76 (16117)
+*** ANTE/BLINDS *** 
+dies irae 76 posts small blind 40
+x Razhiel posts big blind 80
+Dealt to gpelle [3c Ah]
+*** PRE-FLOP *** 
+Gief77 folds
+xphil69x calls 80
+beretta49 folds
+gpelle folds
+jay36_x folds
+nico-du-29 calls 80
+JFK-64 folds
+dies irae 76 calls 40
+x Razhiel checks
+*** FLOP *** [Td Js Kh]
+dies irae 76 checks
+x Razhiel checks
+xphil69x bets 80
+nico-du-29 calls 80
+dies irae 76 folds
+x Razhiel folds
+*** TURN *** [Td Js Kh][Th]
+xphil69x bets 480
+nico-du-29 calls 480
+*** RIVER *** [Td Js Kh Th][Jh]
+xphil69x bets 245 and is all-in
+nico-du-29 folds
+xphil69x collected 1685 from pot
+*** SUMMARY ***
+Total pot 1685 | No rake
+Board: [Td Js Kh Th Jh]
+Seat 1: x Razhiel (big blind) folded on the flop
+Seat 2: Gief77 folded on the pre-flop
+Seat 3: xphil69x won 1685
+Seat 4: beretta49 folded on the pre-flop
+Seat 5: gpelle folded on the pre-flop
+Seat 6: jay36_x folded on the pre-flop
+Seat 7: nico-du-29 folded on the river
+Seat 8: JFK-64 (button) folded on the pre-flop
+Seat 9: dies irae 76 (small blind) folded on the flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 4 - HandId: #56408884989919351-31-1319724152 - Holdem no limit (40/80) - 2011/10/27 16:02:32 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #9 is the button
+Seat 1: x Razhiel (5874)
+Seat 2: Gief77 (2710)
+Seat 3: xphil69x (1685)
+Seat 4: beretta49 (6960)
+Seat 5: gpelle (2110)
+Seat 6: jay36_x (2295)
+Seat 7: nico-du-29 (604)
+Seat 8: JFK-64 (2765)
+Seat 9: dies irae 76 (16037)
+*** ANTE/BLINDS *** 
+x Razhiel posts small blind 40
+Gief77 posts big blind 80
+Dealt to gpelle [Jh 7d]
+*** PRE-FLOP *** 
+xphil69x calls 80
+beretta49 calls 80
+gpelle folds
+jay36_x calls 80
+nico-du-29 folds
+JFK-64 folds
+dies irae 76 folds
+x Razhiel calls 40
+Gief77 checks
+*** FLOP *** [7c 8c 5d]
+x Razhiel checks
+Gief77 checks
+xphil69x checks
+beretta49 checks
+jay36_x checks
+*** TURN *** [7c 8c 5d][8h]
+x Razhiel checks
+Gief77 checks
+xphil69x checks
+beretta49 checks
+jay36_x checks
+*** RIVER *** [7c 8c 5d 8h][8d]
+x Razhiel checks
+Gief77 bets 160
+xphil69x folds
+beretta49 folds
+jay36_x folds
+x Razhiel folds
+Gief77 collected 560 from pot
+*** SUMMARY ***
+Total pot 560 | No rake
+Board: [7c 8c 5d 8h 8d]
+Seat 1: x Razhiel (small blind) folded on the river
+Seat 2: Gief77 (big blind) won 560
+Seat 3: xphil69x folded on the river
+Seat 4: beretta49 folded on the river
+Seat 5: gpelle folded on the pre-flop
+Seat 6: jay36_x folded on the river
+Seat 7: nico-du-29 folded on the pre-flop
+Seat 8: JFK-64 folded on the pre-flop
+Seat 9: dies irae 76 (button) folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 4 - HandId: #56408884989919351-32-1319724241 - Holdem no limit (40/80) - 2011/10/27 16:04:01 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #1 is the button
+Seat 1: x Razhiel (5794)
+Seat 2: Gief77 (3030)
+Seat 3: xphil69x (1605)
+Seat 4: beretta49 (6880)
+Seat 5: gpelle (2110)
+Seat 6: jay36_x (2215)
+Seat 7: nico-du-29 (604)
+Seat 8: JFK-64 (2765)
+Seat 9: dies irae 76 (16037)
+*** ANTE/BLINDS *** 
+Gief77 posts small blind 40
+xphil69x posts big blind 80
+Dealt to gpelle [9d As]
+*** PRE-FLOP *** 
+beretta49 calls 80
+gpelle calls 80
+jay36_x calls 80
+nico-du-29 folds
+JFK-64 folds
+dies irae 76 calls 80
+x Razhiel calls 80
+Gief77 folds
+xphil69x checks
+*** FLOP *** [Tc 5s 8s]
+xphil69x checks
+beretta49 bets 80
+gpelle calls 80
+jay36_x calls 80
+dies irae 76 calls 80
+x Razhiel folds
+xphil69x raises 80 to 160
+beretta49 raises 80 to 240
+gpelle calls 160
+jay36_x folds
+dies irae 76 folds
+xphil69x calls 80
+*** TURN *** [Tc 5s 8s][6h]
+xphil69x bets 80
+beretta49 calls 80
+gpelle calls 80
+*** RIVER *** [Tc 5s 8s 6h][Qd]
+xphil69x bets 80
+beretta49 calls 80
+gpelle folds
+*** SHOW DOWN ***
+beretta49 shows [Td Jh] (One pair : Tens)
+xphil69x shows [Ac Ts] (One pair : Tens)
+xphil69x collected 1800 from pot
+*** SUMMARY ***
+Total pot 1800 | No rake
+Board: [Tc 5s 8s 6h Qd]
+Seat 1: x Razhiel (button) folded on the flop
+Seat 2: Gief77 (small blind) folded on the pre-flop
+Seat 3: xphil69x (big blind) showed [Ac Ts] and won 1800 with One pair : Tens
+Seat 4: beretta49 showed [Td Jh] and lost with One pair : Tens
+Seat 5: gpelle folded on the river
+Seat 6: jay36_x folded on the flop
+Seat 7: nico-du-29 folded on the pre-flop
+Seat 8: JFK-64 folded on the pre-flop
+Seat 9: dies irae 76 folded on the flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 5 - HandId: #56408884989919351-33-1319724341 - Holdem no limit (60/120) - 2011/10/27 16:05:41 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #2 is the button
+Seat 1: x Razhiel (5714)
+Seat 2: Gief77 (2990)
+Seat 3: xphil69x (2925)
+Seat 4: beretta49 (6400)
+Seat 5: gpelle (1710)
+Seat 6: jay36_x (2055)
+Seat 7: nico-du-29 (604)
+Seat 8: JFK-64 (2765)
+Seat 9: dies irae 76 (15877)
+*** ANTE/BLINDS *** 
+xphil69x posts small blind 60
+beretta49 posts big blind 120
+Dealt to gpelle [Th 4h]
+*** PRE-FLOP *** 
+gpelle calls 120
+jay36_x calls 120
+nico-du-29 folds
+JFK-64 folds
+dies irae 76 folds
+x Razhiel folds
+Gief77 folds
+xphil69x calls 60
+beretta49 checks
+*** FLOP *** [4s 2s 9s]
+xphil69x checks
+beretta49 checks
+gpelle checks
+jay36_x bets 120
+xphil69x folds
+beretta49 folds
+gpelle folds
+jay36_x collected 600 from pot
+*** SUMMARY ***
+Total pot 600 | No rake
+Board: [4s 2s 9s]
+Seat 1: x Razhiel folded on the pre-flop
+Seat 2: Gief77 (button) folded on the pre-flop
+Seat 3: xphil69x (small blind) folded on the flop
+Seat 4: beretta49 (big blind) folded on the flop
+Seat 5: gpelle folded on the flop
+Seat 6: jay36_x won 600
+Seat 7: nico-du-29 folded on the pre-flop
+Seat 8: JFK-64 folded on the pre-flop
+Seat 9: dies irae 76 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 5 - HandId: #56408884989919351-34-1319724384 - Holdem no limit (60/120) - 2011/10/27 16:06:24 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #3 is the button
+Seat 1: x Razhiel (5714)
+Seat 2: Gief77 (2990)
+Seat 3: xphil69x (2805)
+Seat 4: beretta49 (6280)
+Seat 5: gpelle (1590)
+Seat 6: jay36_x (2415)
+Seat 7: nico-du-29 (604)
+Seat 8: JFK-64 (2765)
+Seat 9: dies irae 76 (15877)
+*** ANTE/BLINDS *** 
+beretta49 posts small blind 60
+gpelle posts big blind 120
+Dealt to gpelle [Ac 9s]
+*** PRE-FLOP *** 
+jay36_x calls 120
+nico-du-29 raises 484 to 604 and is all-in
+JFK-64 folds
+dies irae 76 folds
+x Razhiel folds
+Gief77 folds
+xphil69x folds
+beretta49 folds
+gpelle calls 484
+jay36_x calls 484
+*** FLOP *** [2h 5h 7h]
+gpelle checks
+jay36_x checks
+*** TURN *** [2h 5h 7h][8h]
+gpelle checks
+jay36_x bets 120
+gpelle calls 120
+*** RIVER *** [2h 5h 7h 8h][2s]
+gpelle checks
+jay36_x bets 1691 and is all-in
+gpelle folds
+*** SHOW DOWN ***
+nico-du-29 shows [Ad 4d] (One pair : 2)
+jay36_x shows [Td Kh] (Flush King high)
+jay36_x collected 3803 from pot
+*** SUMMARY ***
+Total pot 3803 | No rake
+Board: [2h 5h 7h 8h 2s]
+Seat 1: x Razhiel folded on the pre-flop
+Seat 2: Gief77 folded on the pre-flop
+Seat 3: xphil69x (button) folded on the pre-flop
+Seat 4: beretta49 (small blind) folded on the pre-flop
+Seat 5: gpelle (big blind) folded on the river
+Seat 6: jay36_x showed [Td Kh] and won 3803 with Flush King high
+Seat 7: nico-du-29 showed [Ad 4d] and lost with One pair : 2
+Seat 8: JFK-64 folded on the pre-flop
+Seat 9: dies irae 76 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 5 - HandId: #56408884989919351-35-1319724452 - Holdem no limit (60/120) - 2011/10/27 16:07:32 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #4 is the button
+Seat 1: x Razhiel (5714)
+Seat 2: Gief77 (2990)
+Seat 3: xphil69x (2805)
+Seat 4: beretta49 (6220)
+Seat 5: gpelle (866)
+Seat 6: jay36_x (3803)
+Seat 8: JFK-64 (2765)
+Seat 9: dies irae 76 (15877)
+*** ANTE/BLINDS *** 
+gpelle posts small blind 60
+jay36_x posts big blind 120
+Dealt to gpelle [8s 6h]
+*** PRE-FLOP *** 
+JFK-64 folds
+dies irae 76 folds
+x Razhiel calls 120
+Gief77 folds
+xphil69x folds
+beretta49 folds
+gpelle folds
+jay36_x checks
+*** FLOP *** [2c Ac Kd]
+jay36_x checks
+x Razhiel bets 150
+jay36_x folds
+x Razhiel collected 450 from pot
+*** SUMMARY ***
+Total pot 450 | No rake
+Board: [2c Ac Kd]
+Seat 1: x Razhiel won 450
+Seat 2: Gief77 folded on the pre-flop
+Seat 3: xphil69x folded on the pre-flop
+Seat 4: beretta49 (button) folded on the pre-flop
+Seat 5: gpelle (small blind) folded on the pre-flop
+Seat 6: jay36_x (big blind) folded on the flop
+Seat 8: JFK-64 folded on the pre-flop
+Seat 9: dies irae 76 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 5 - HandId: #56408884989919351-36-1319724475 - Holdem no limit (60/120) - 2011/10/27 16:07:55 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #5 is the button
+Seat 1: x Razhiel (5894)
+Seat 2: Gief77 (2990)
+Seat 3: xphil69x (2805)
+Seat 4: beretta49 (6220)
+Seat 5: gpelle (806)
+Seat 6: jay36_x (3683)
+Seat 7: vince62210 (2805)
+Seat 8: JFK-64 (2765)
+Seat 9: dies irae 76 (15877)
+*** ANTE/BLINDS *** 
+jay36_x posts small blind 60
+vince62210 posts big blind 120
+Dealt to gpelle [6d 7h]
+*** PRE-FLOP *** 
+JFK-64 folds
+dies irae 76 folds
+x Razhiel folds
+Gief77 calls 120
+xphil69x calls 120
+beretta49 folds
+gpelle folds
+jay36_x calls 60
+vince62210 checks
+*** FLOP *** [6s 5s Qc]
+jay36_x checks
+vince62210 checks
+Gief77 checks
+xphil69x bets 120
+jay36_x calls 120
+vince62210 folds
+Gief77 calls 120
+*** TURN *** [6s 5s Qc][2h]
+jay36_x checks
+Gief77 checks
+xphil69x bets 840
+jay36_x folds
+Gief77 folds
+xphil69x collected 1680 from pot
+*** SUMMARY ***
+Total pot 1680 | No rake
+Board: [6s 5s Qc 2h]
+Seat 1: x Razhiel folded on the pre-flop
+Seat 2: Gief77 folded on the turn
+Seat 3: xphil69x won 1680
+Seat 4: beretta49 folded on the pre-flop
+Seat 5: gpelle (button) folded on the pre-flop
+Seat 6: jay36_x (small blind) folded on the turn
+Seat 7: vince62210 (big blind) folded on the flop
+Seat 8: JFK-64 folded on the pre-flop
+Seat 9: dies irae 76 folded on the pre-flop
+
+
+Winamax Poker - Tournament "Freeroll 100€" buyIn: Free level: 5 - HandId: #56408884989919351-37-1319724555 - Holdem no limit (60/120) - 2011/10/27 16:09:15 UTC
+Table: 'Freeroll 100€(13133717)#118' 9-max (real money) Seat #6 is the button
+Seat 1: x Razhiel (5894)
+Seat 2: Gief77 (2750)
+Seat 3: xphil69x (3405)
+Seat 4: beretta49 (6220)
+Seat 5: gpelle (806)
+Seat 6: jay36_x (3443)
+Seat 7: vince62210 (2685)
+Seat 8: JFK-64 (2765)
+Seat 9: dies irae 76 (15877)
+*** ANTE/BLINDS *** 
+vince62210 posts small blind 60
+JFK-64 posts big blind 120
+Dealt to gpelle [5d 5s]
+*** PRE-FLOP *** 
+dies irae 76 folds
+x Razhiel folds
+Gief77 folds
+xphil69x folds
+beretta49 calls 120
+gpelle raises 686 to 806 and is all-in
+jay36_x folds
+vince62210 folds
+JFK-64 folds
+beretta49 calls 686
+*** FLOP *** [Ah 9s Kc]
+*** TURN *** [Ah 9s Kc][2h]
+*** RIVER *** [Ah 9s Kc 2h][8d]
+*** SHOW DOWN ***
+gpelle shows [5d 5s] (One pair : 5)
+beretta49 shows [8h 7h] (One pair : 8)
+beretta49 collected 1792 from pot
+*** SUMMARY ***
+Total pot 1792 | No rake
+Board: [Ah 9s Kc 2h 8d]
+Seat 1: x Razhiel folded on the pre-flop
+Seat 2: Gief77 folded on the pre-flop
+Seat 3: xphil69x folded on the pre-flop
+Seat 4: beretta49 showed [8h 7h] and won 1792 with One pair : 8
+Seat 5: gpelle showed [5d 5s] and lost with One pair : 5
+Seat 6: jay36_x (button) folded on the pre-flop
+Seat 7: vince62210 (small blind) folded on the pre-flop
+Seat 8: JFK-64 (big blind) folded on the pre-flop
+Seat 9: dies irae 76 folded on the pre-flop
+
+

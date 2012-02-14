@@ -32,7 +32,6 @@ _ = L10n.get_translation()
 # -- Cannot parse hands in which someone is all in in one of the blinds.
 
 import sys
-import logging
 from HandHistoryConverter import *
 from decimal_wrapper import Decimal
 
@@ -47,9 +46,7 @@ class Merge(HandHistoryConverter):
     limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'Pot Limit':'pl', 'Pot Limit ':'pl', 'Half Pot Limit':'hp'}
     games = {              # base, category
                     'Holdem' : ('hold','holdem'),
-         'Holdem Tournament' : ('hold','holdem'),
                     'Omaha'  : ('hold','omahahi'),
-         'Omaha Tournament'  : ('hold','omahahi'),
                'Omaha H/L8'  : ('hold','omahahilo'),
               '2-7 Lowball'  : ('draw','27_3draw'),
               'A-5 Lowball'  : ('draw','a5_3draw'),
@@ -85,228 +82,7 @@ class Merge(HandHistoryConverter):
                        '43': ('stud','studhilo'),
                      }
     
-    MTT_Structures = {
-                        'Monthly Charity Event - $50 Added' : {'buyIn': 2.5, 'fee': 2.5, 'currency': 'USD'},
-                        'Aussie Millions Grand Final - $15,000 Package Guaranteed' : {'buyIn': 500, 'fee': 50, 'currency': 'USD'},
-                        'Slim Stack $10 Tournament - Rake Free' : {'buyIn': 10, 'fee': 0, 'currency': 'USD'},
-                        'Fat Stack $10 Tournament - Rake Free' : {'buyIn': 10, 'fee': 0, 'currency': 'USD'},
-                        'Slim Stack $5 Tournament - Rake Free' : {'buyIn': 5, 'fee': 0, 'currency': 'USD'},
-                        'Fat Stack $5 Tournament - Rake Free' : {'buyIn': 5, 'fee': 0, 'currency': 'USD'},
-                        'Slim Stack $2 Tournament - Rake Free' : {'buyIn': 2, 'fee': 0, 'currency': 'USD'},
-                        'Fat Stack $2 Tournament - Rake Free' : {'buyIn': 2, 'fee': 0, 'currency': 'USD'},
-                        '$22 Seven Card Stud HiLo' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        'Aussie Millions Satellite - 1 Rebuy' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
-                        'The Fast Fifty' : {'buyIn': 0.5, 'fee': 0.1, 'currency': 'USD'},
-                        'Aussie Millions - Rebuys / Addon - 2 Entries Guaranteed!' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$5 Shootout SH' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$2 HA Freezeout' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$60 Aussie Millions Freezeout Satellite' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
-                        '$5 Holdem Freezeout SH' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$2 Bounty Turbo' : {'buyIn': 1, 'fee': 0.2, 'currency': 'USD'},
-                        '$5 Heads Up Turbo' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$2,000 Guranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$100,000 Satellite - Rebuys / Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        'The Sixth Cent - 1 Rebuy' : {'buyIn': 0.05, 'fee': 0.01, 'currency': 'USD'},
-                        '$5 Holdem SH Freezeout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$15 Bounty SH Freezeout' : {'buyIn': 10, 'fee': 1.5, 'currency': 'USD'},
-                        'Daily Badugi Freezeout' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$2 Holdem R/A' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        'Dollar Frenzy Turbo! $2750 Guaranteed!' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$3 PL H.O. Feezeout' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$5 Daily Satellite - 1 Rebuy / 1 Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$3.30 NL Holdem Super Turbo - Rebuys # Addons' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$5 Shootout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$11 HORSE' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        'Aussie Millions - Rebuys / Addon - 2 Entries Guaranteed!' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$3 PL Omaha' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$60 Daily High Roller Satellite - 2 Entries Guaranteed.' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
-                        '$3 All-in or Fold BOUNTY Tournament' : {'buyIn': 1.5, 'fee': 0.3, 'currency': 'USD'},
-                        '$2 Heads Up Turbo' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        'Aussie Millions - Rebuys / Addon - 1 Entry Guaranteed!' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$1 Dollar Dazzler - $300 Guaranteed' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$1 Turbo Freezeout' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$11 PL Omaha Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$1.10 NL Holdem Super Turbo - Rebuys # Addons' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$100,000 Satellite - Rebuys / Addon' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$5 Heads Up Shootout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$100,000 Satellite - Rebuys / Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$11 Seven Card Stud HiLo' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$15 SH Bounty Turbo' : {'buyIn': 10, 'fee': 1.5, 'currency': 'USD'},
-                        '$3 All-in or Fold Tournament' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$22 PL Omaha HiLo Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$5 Satellite - 1R/A' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$11 Daily High Roller Satellite - 1 Entry Guaranteed.' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$5 PL Omaha Hi/Lo' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$22 Seven Card Stud' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$100,000 Satellite - Rebuys / Addon - 2 Entries Guaranteed!' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$100,000 Satellite - Rebuys / Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$11 PL Omaha HiLo Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        'Fast Fifty Freezeout' : {'buyIn': 0.5, 'fee': 0.1, 'currency': 'USD'},
-                        '$5 Heads Up Turbo' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$6.60 Seven Card Stud' : {'buyIn': 6, 'fee': 0.6, 'currency': 'USD'},
-                        '$2 H.A. Freezeout' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$10 Bounty Turbo' : {'buyIn': 5, 'fee': 1, 'currency': 'USD'},
-                        'Aussie Millions - Rebuys / Addon - 1 Entries Guaranteed!' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$3 Daily High Roller Satellite - Unlimited Rebuys and Addon' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$3 Holdem Freezeout' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$22 PL Omaha Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$1 Dollar Dazzler - $350 Guaranteed' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$11 Daily High Roller Satellite - R/A' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$1.10 Seven Card Stud HiLo' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$2 PL Omaha Hi/Lo' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$33 Coupon Satellite - Rebuys/Addon - 2 x Entries Guaranteed' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$100,000 Satellite - Rebuys / Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$11 Seven Card Stud' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$5 Holdem SH Turbo' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$2 Holdem Freezeout' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$5 Daily Satellite - 1 Rebuy / 1 Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$3.30 Deuce to Seven Low Triple Draw' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$5 Bounty Turbo' : {'buyIn': 3, 'fee': 0.5, 'currency': 'USD'},
-                        'Daily Badugi Freezeout' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$100,000 Satellite - 50 Cent Unlimited Rebuy Frenzy' : {'buyIn': 0.5, 'fee': 0.05, 'currency': 'USD'},
-                        '$10 Freezeout SH' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$3 Shootout SH' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$2 Sunday $100,000 Satellte - R/A' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$2 Holdem Freezeout' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$3 H.A. Freezeout' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$1 Dollar Dazzler - $400 Guaranteed' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$3.30 Seven Card Stud HiLo' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$1 Establishing' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$100,000 Satellite - Rebuys / Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$5 Holdem Turbo SH' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        'Fast Fifty Freezeout' : {'buyIn': 0.5, 'fee': 0.1, 'currency': 'USD'},
-                        '$4 PL Omaha' : {'buyIn': 4, 'fee': 0.4, 'currency': 'USD'},
-                        '$100,000 Satellite - Rebuys / Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$5 Daily Satellite - 1 Rebuy / 1 Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$3 All-in or Fold Tournament' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$1 Limit Badugi' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$5 Shootout (10 Handed)' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$5 Holdem Turbo' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$3 Holdem (50 Max)' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$2 Limit H.O.R.S.E' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$100,000 Satellite - Rebuys / Addon - 5 Entries Guaranteed!' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$2 Holdem Turbo' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$5 Holdem SH Turbo' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        'The Quarter Quicky - $25 Guaranteed' : {'buyIn': 0.25, 'fee': 0.05, 'currency': 'USD'},
-                        '$100,000 Satellite - Rebuys / Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        'Daily Badugi Freezeout' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$15 Bounty SH' : {'buyIn': 10, 'fee': 1.5, 'currency': 'USD'},
-                        '$1 Heads Up Turbo' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$3 PL Omaha' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$5 Holdem Turbo SH' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$3 Holdem Freezeout' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        'Fast Fifty Freezeout' : {'buyIn': 0.5, 'fee': 0.1, 'currency': 'USD'},
-                        '$2 Holdem R/A' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$5 Daily Satellite - 1 Rebuy / 1 Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$3 Bounty Turbo Freezeout' : {'buyIn': 2, 'fee': 0.3, 'currency': 'USD'},
-                        '$5 H.A. Freezeout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$2 Heads Up Freezeout' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        'Daily Badugi Freezeout' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$2.20 Daily Satellite - R/A' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$5 PL Holdem Turbo' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$5 Bounty SH' : {'buyIn': 3, 'fee': 0.5, 'currency': 'USD'},
-                        'The Quarter Quicky - $25 Guaranteed' : {'buyIn': 0.25, 'fee': 0.05, 'currency': 'USD'},
-                        '$3 PL Omaha Hi/Lo' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$2 Satellite - R/A' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        'Ladies Only $250 Guaranteed Turbo with R/A' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        'Ladies Only $100 Guaranteed Freezeout' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        'Sunday $100,000 Guaranteed Freezeout' : {'buyIn': 100, 'fee': 9, 'currency': 'USD'},
-                        'Ladies Only $250 Guaranteed Freezeout' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$900 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$3,750 Guaranteed Turbo - 1 Rebuy / 1 Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$2,250 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$4,250 Guaranteed NightOwl Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$7,000 Guaranteed Turbo - 1 Rebuy / 1 Addon' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
-                        '$6,500 Guaranteed - 2 Rebuys / 1 Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$3,000 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
-                        '$1,000 Guaranteed Freezeout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$10,000 Guaranteed Shorthand Turbo - Rebuys / Addon' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$8,000 Guaranteed - Rebuys / Addon' : {'buyIn': 75, 'fee': 7, 'currency': 'USD'},
-                        '$3,000 Guaranteed Freezeout' : {'buyIn': 40, 'fee': 4, 'currency': 'USD'},
-                        '$4,000 Guaranteed Freezeout' : {'buyIn': 15, 'fee': 1.5, 'currency': 'USD'},
-                        '$1,000 PL Omaha HiLo Guaranteed Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$8,000 Guaranteed - Rebuys / Addon' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
-                        '$2,000 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$100 Guaranteed - $2 Bounty Turbo' : {'buyIn': 1, 'fee': 0.2, 'currency': 'USD'},
-                        '$2,250 Guaranteed Freezeout - Short Handed' : {'buyIn': 25, 'fee': 2.5, 'currency': 'USD'},
-                        '$500 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$1,150 PLO HiLo Guaranteed Freezeout Deepstack' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$1,200 Guaranteed PLO - Rebuys / Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$750 Guaranteed Freezeout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$10,000 Daily High Roller Guaranteed Freezeout' : {'buyIn': 200, 'fee': 15, 'currency': 'USD'},
-                        '$4,500 Guaranteed - Rebuys / Addon' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$3,000 Guaranteed Freezeout' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
-                        '$2,000 PL Omaha HiLo Guaranteed - Rebuys / Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$300 Stud Guaranteed Freezeout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$5,000 Guaranteed Freezeout' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
-                        '$2,000 Guaranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$100 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$2,500 Guaranteed - $11 Unlimited Rebuys and Addon!' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$9,500 Guaranteed Turbo - 1 Rebuy / 1 Addon' : {'buyIn': 40, 'fee': 4, 'currency': 'USD'},
-                        '$100 Guaranteed - $2 Bounty Turbo' : {'buyIn': 1, 'fee': 0.2, 'currency': 'USD'},
-                        '$4,000 Guaranteed Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$750 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$2,500 Guaranteed - Rebuys / Addon' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$5,500 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 100, 'fee': 9, 'currency': 'USD'},
-                        '$4,000 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$100 Guaranteed - $3 Holdem SH Turbo' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$3,250 Guaranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$750 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$1,500 Guaranteed Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$8,500 Guaranteed - Rebuys / Addon' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
-                        '$750 Guaranteed Bounty Freezeout' : {'buyIn': 10, 'fee': 1.5, 'currency': 'USD'},
-                        '$1,500 Guaranteed Freezeout - Short Handed' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
-                        '$5,000 Guaranteed Turbo - Rebuys / Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$1,500 Guaranteed Freezeout' : {'buyIn': 15, 'fee': 1.5, 'currency': 'USD'},
-                        '$6,000 Guaranteed - 2 Rebuys / 1 Addon' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
-                        '$1,500 Guaranteed PLO Hi-Lo - Rebuys / Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$300 Guaranteed Bounty Freezeout' : {'buyIn': 3, 'fee': 0.5, 'currency': 'USD'},
-                        '$1,750 Guaranteed Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$3,000 Guaranteed Turbo - Rebuys / Addon' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$3,500 Guaranteed Freezeout' : {'buyIn': 55, 'fee': 5, 'currency': 'USD'},
-                        '$1,000 Guaranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$400 Guaranteed - PL Omaha HiLo' : {'buyIn': 6, 'fee': 0.6, 'currency': 'USD'},
-                        '$3,000 Guaranteed - Rebuys / Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$200 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD'},
-                        '$2,500 Guaranteed Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$100 Guaranteed - $2 Bounty Turbo' : {'buyIn': 1, 'fee': 0.2, 'currency': 'USD'},
-                        'Ladies Only $300 Guaranteed R/A' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$2,000 Guaranteed Deepstack Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$300 Guaranteed - Bounty Freezeout' : {'buyIn': 5, 'fee': 1, 'currency': 'USD'},
-                        '$3,000 Guaranteed - Rebuys / Addon' : {'buyIn': 4, 'fee': 0.4, 'currency': 'USD'},
-                        '$1,500 Guaranteed Freezeout' : {'buyIn': 15, 'fee': 1.5, 'currency': 'USD'},
-                        '$1,500 Guaranteed - Rebuys / Addon' : {'buyIn': 2, 'fee': 0.2, 'currency': 'USD'},
-                        '$700 Guaranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$700 Guaranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$900 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$700 Guaranteed Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$900 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$1,250 Guaranteed - Rebuys / Addon' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$150 Guaranteed - Bounty Freezeout' : {'buyIn': 5, 'fee': 1, 'currency': 'USD'},
-                        '$2,250 Guaranteed - 3 Rebuys / 1 Addon' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
-                        '$300 Guaranteed Pot Limit HO - Unlimited Rebuys/Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$500 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$300 Guaranteed - NLH Shorthanded' : {'buyIn': 3, 'fee': 0.3, 'currency': 'USD'},
-                        '$750 Guaranteed Freezeout' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$3,000 Guaranteed Turbo - 1 Rebuy / 1 Addon' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$2,000 Guaranteed - 1 Rebuy / 1 Addon' : {'buyIn': 5, 'fee': 0.5, 'currency': 'USD'},
-                        '$2,000 Guaranteed Deepstack Turbo Freezeout' : {'buyIn': 10, 'fee': 1, 'currency': 'USD'},
-                        '$4,000 Guaranteed NightOwl Freezeout' : {'buyIn': 20, 'fee': 2, 'currency': 'USD'},
-                        '$7,000 Guaranteed Turbo - 1 Rebuy / 1 Addon' : {'buyIn': 30, 'fee': 3, 'currency': 'USD'},
-                        '$2,000 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$1,500 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$3,500 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$750 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$2,500 VIP Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$200 Freeroll - NL Holdem - 20%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$200 Freeroll - PL Omaha - 18%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '100 Seats to $100k Freeroll' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        'Daily First Deposit Freeroll - Saturday' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$200 Freeroll - HORSE - 12%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$200 Freeroll - NL Holdem - 06%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'},
-                        '$200 Freeroll - NL Holdem - 00%3A00' : {'buyIn': 0, 'fee': 0, 'currency': 'USD'} 
-                     }
-    
+
     SnG_Structures = {  '$1 NL Holdem Double Up - 10 Handed'    : {'buyIn': 1,   'fee': 0.08, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (2,2,2,2,2)},
                         '$10 Bounty SnG - 10 Handed'            : {'buyIn': 5,   'fee': 1,    'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (25, 15, 10)},
                         '$10 NL Holdem Double Up - 10 Handed'   : {'buyIn': 10,  'fee': 0.8,  'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (20,20,20,20,20)},
@@ -319,8 +95,8 @@ class Merge(HandHistoryConverter):
                         '$10 Bounty SnG - 6 Handed'             : {'buyIn': 5, '  fee': 1,    'currency': 'USD', 'seats': 6,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (25, 15, 10)},
                         '$10 Satellite'                         : {'buyIn': 10,  'fee': 1,    'currency': 'USD', 'seats': 6,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (60,)},
                         '$100 Bounty SnG - 6 Handed'            : {'buyIn': 100, 'fee': 9,    'currency': 'USD', 'seats': 6,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (315, 135)},
-                        '$2 Bounty SnG - 10 Handed'             : {'buyIn': 2,   'fee': 0.2,  'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (5, 3, 2)},
-                        '$2 Bounty SnG - 6 Handed'              : {'buyIn': 2,   'fee': 0.2,  'currency': 'USD', 'seats': 6,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (5, 3, 2)},
+                        '$2 Bounty SnG - 10 Handed'             : {'buyIn': 2,   'fee': 0.2,  'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (10,6,4)},
+                        '$2 Bounty SnG - 6 Handed'              : {'buyIn': 2,   'fee': 0.2,  'currency': 'USD', 'seats': 6,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (7, 3, 2)},
                         '$2 NL Holdem All-In or Fold 10 - Handed' : {'buyIn': 2,   'fee': 0.16, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (10,6,4)},
                         '$2 NL Holdem Double Up - 10 Handed'    : {'buyIn': 2,   'fee': 0.16, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (4,4,4,4,4)},
                         '$2 Satellite'                          : {'buyIn': 2,   'fee': 0.2,  'currency': 'USD', 'seats': 5,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (11,)},
@@ -352,7 +128,7 @@ class Merge(HandHistoryConverter):
                         'Anaconda Room - Turbo Heads Up'        : {'buyIn': 110, 'fee': 4.5,  'currency': 'USD', 'seats': 2,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (220,)},
                         'Anteater Room'                         : {'buyIn': 10,  'fee': 1,    'currency': 'USD', 'seats': 6,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (42, 18)},
                         'Antelope Room'                         : {'buyIn': 5,   'fee': 0.5,  'currency': 'USD', 'seats': 6,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (21, 9)},
-                        'Arctic Fox Room - Heads Up'            : {'buyIn': 2,   'fee': 0.1, ' currency': 'USD', 'seats': 2,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (4,)},
+                        'Arctic Fox Room - Heads Up'            : {'buyIn': 2,   'fee': 0.1, 'currency': 'USD', 'seats': 2,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (4,)},
                         'Armadillo Room'                        : {'buyIn': 20,  'fee': 2,    'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (100, 60, 40)},
                         'Aussie Millions - Super Turbo Satelite': {'buyIn': 10,  'fee': 1,    'currency': 'USD', 'seats': 6,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (60,)},
                         'Axolotyl Room - Heads Up'              : {'buyIn': 30,  'fee': 1.5,  'currency': 'USD', 'seats': 2,  'multi': False, 'payoutCurrency': 'USD', 'payouts': (60,)},
@@ -425,9 +201,9 @@ class Merge(HandHistoryConverter):
                         'Frigate Bird Room Super Turbo HU'      : {'buyIn': 2, 'fee': 0.1, 'currency': 'USD', 'seats': 2, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (4,)},
                         'Fruit Fly Room - Super Turbo'          : {'buyIn': 1, 'fee': 0.06, 'currency': 'USD', 'seats': 6, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (4.20, 1.80)},
                         'Fusilier Room Turbo'                   : {'buyIn': 1, 'fee': 0.1, 'currency': 'USD', 'seats': 45, 'multi': True, 'payoutCurrency': 'USD', 'payouts': (13.96, 9.68, 7.42, 5.62, 4.05, 2.70, 1.57)},
-                        'Fun Step 1'                            : {'buyIn': 0, 'fee': 0, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (0, 0, 0)},
-                        'Fun Step 2'                            : {'buyIn': 0, 'fee': 0, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (0, 0, 0)},
-                        'Fun Step 3'                            : {'buyIn': 0, 'fee': 0, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (1, 0, 0)},
+                        'Fun Step 1'                            : {'buyIn': 0, 'fee': 0, 'currency': 'FREE', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (0, 0, 0)},
+                        'Fun Step 2'                            : {'buyIn': 0, 'fee': 0, 'currency': 'FREE', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (0, 0, 0)},
+                        'Fun Step 3'                            : {'buyIn': 0, 'fee': 0, 'currency': 'FREE', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (1, 0, 0)},
                         'Gazelle Room - Super Turbo'            : {'buyIn': 100, 'fee': 3.7, 'currency': 'USD', 'seats': 6, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (420, 180)},
                         'Gecko Room'                            : {'buyIn': 30, 'fee': 3, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (150, 90, 60)},
                         'Gecko Room Turbo'                      : {'buyIn': 30, 'fee': 3, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (150, 90, 60)},
@@ -573,7 +349,7 @@ class Merge(HandHistoryConverter):
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Holdem\sTournament|Omaha|Omaha\sTournament|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE)" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
+    re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Omaha|Omaha|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE)(?P<TYPE>\sTournament)?" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
     # <game id="46154255-645" starttime="20111230232051" numholecards="2" gametype="1" seats="9" realmoney="false" data="20111230|Play Money (46154255)|46154255|46154255-645|false">
     # <game id="46165919-1" starttime="20111230161824" numholecards="2" gametype="23" seats="10" realmoney="true" data="20111230|Fun Step 1|46165833-1|46165919-1|true">
     # <game id="46289039-1" starttime="20120101200100" numholecards="2" gametype="23" seats="9" realmoney="true" data="20120101|$200 Freeroll - NL Holdem - 20%3A00|46245544-1|46289039-1|true">
@@ -581,7 +357,7 @@ class Merge(HandHistoryConverter):
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
     re_Board = re.compile(r'<cards type="COMMUNITY" cards="(?P<CARDS>[^"]+)"', re.MULTILINE)
-    re_Buyin = re.compile(r'\$(?P<BUYIN>[.,0-9]+)\s(?P<FREEROLL>Freeroll)?', re.MULTILINE)
+    re_Buyin = re.compile(r'\$(?P<BUYIN>[.,0-9]+)\s(?P<TYPE>Freeroll|Satellite|Guaranteed)?', re.MULTILINE)
 
     # The following are also static regexes: there is no need to call
     # compilePlayerRegexes (which does nothing), since players are identified
@@ -594,13 +370,13 @@ class Merge(HandHistoryConverter):
     re_HeroCards = re.compile(r'<cards type="(HOLE|DRAW_DRAWN_CARDS)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_Action = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT|DRAW|COMPLETE)"( timestamp="(?P<TIMESTAMP>[0-9]+)")? player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?( text="(?P<TXT>.+)")?/>', re.MULTILINE)
     re_AllActions = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT|DRAW|COMPLETE|BIG_BLIND|INITIAL_BLIND|SMALL_BLIND|RETURN_BLIND|BRING_IN|ANTE)"( timestamp="(?P<TIMESTAMP>[0-9]+)")? player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?( text="(?P<TXT>.+)")?/>', re.MULTILINE)
-    re_ShowdownAction = re.compile(r'<cards type="SHOWN" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_CollectPot = re.compile(r'<winner amount="(?P<POT>[.0-9]+)" uncalled="(?P<UNCALLED>false|true)" potnumber="[0-9]+" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
-    re_ShownCards = re.compile(r'<cards type="(SHOWN|MUCKED)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
+    re_ShownCards     = re.compile(r'<cards type="(?P<SHOWED>SHOWN|MUCKED)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_Connection  = re.compile(r'<event sequence="[0-9]+" type="(?P<TYPE>RECONNECTED|DISCONNECTED)" timestamp="[0-9]+" player="[0-9]"/>', re.MULTILINE)
     re_Cancelled   = re.compile(r'<event sequence="\d+" type="GAME_CANCELLED" timestamp="\d+"/>', re.MULTILINE)
     re_LeaveTable  = re.compile(r'<event sequence="\d+" type="LEAVE" timestamp="\d+" player="\d"/>', re.MULTILINE)
+    re_PlayerOut   = re.compile(r'<event sequence="\d+" type="PLAYER_OUT" timestamp="\d+" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_EndOfHand   = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
 
     def compilePlayerRegexs(self, hand):
@@ -617,6 +393,7 @@ class Merge(HandHistoryConverter):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
+                ["ring", "hold", "hp"],
 
                 ["ring", "stud", "fl"],
                 ["ring", "stud", "pl"],
@@ -625,15 +402,23 @@ class Merge(HandHistoryConverter):
                 ["ring", "draw", "pl"],
                 ["ring", "draw", "nl"],
                 ["ring", "draw", "hp"],
-                
+
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
-                ["tour", "hold", "fl"]]
+                ["tour", "hold", "fl"],
+
+                ["tour", "stud", "fl"],
+                ["tour", "stud", "pl"],
+                
+                ["tour", "draw", "fl"],
+                ["tour", "draw", "pl"],
+                ["tour", "draw", "nl"],
+                ]
 
     def determineGameType(self, handText):
         """return dict with keys/values:
     'type'       in ('ring', 'tour')
-    'limitType'  in ('nl', 'cn', 'pl', 'cp', 'fl')
+    'limitType'  in ('nl', 'cn', 'pl', 'cp', 'fl', 'hp')
     'base'       in ('hold', 'stud', 'draw')
     'category'   in ('holdem', 'omahahi', omahahilo', 'razz', 'studhi', 'studhilo', 'fivedraw', '27_1draw', '27_3draw', 'badugi')
     'hilo'       in ('h','l','s')
@@ -653,11 +438,9 @@ or None if we fail to get the info """
             try:
                 return self.info
             except AttributeError:
-                tmp = handText[0:100]
-                log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                #print _("Unable to recognise gametype from: '%s'") % tmp
-                raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+                tmp = handText[0:200]
+                log.error(_("MergeToFpdb.determineGameType: '%s'") % tmp)
+                raise FpdbParseError
 
         self.info = {}
         mg = m.groupdict()
@@ -667,14 +450,16 @@ or None if we fail to get the info """
             self.info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
             if mg['GAME'] == "HORSE":
-                (self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
+                log.error(_("MergeToFpdb.determineGameType: HORSE found, unsupported"))
+                raise FpdbParseError
+                #(self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
             else:
                 (self.info['base'], self.info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
             self.info['sb'] = mg['SB']
         if 'BB' in mg:
             self.info['bb'] = mg['BB']
-        if 'Tournament' in mg['GAME']:
+        if ' Tournament' == mg['TYPE']:
             self.info['type'] = 'tour'
             self.info['currency'] = 'T$'
         else:
@@ -686,18 +471,18 @@ or None if we fail to get the info """
                 self.info['sb'] = self.Lim_Blinds[mg['BB']][0]
                 self.info['bb'] = self.Lim_Blinds[mg['BB']][1]
             except KeyError:
-                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+                tmp = handText[0:200]
+                log.error(_("MergeToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                raise FpdbParseError
 
         return self.info
 
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if m is None:
-            logging.info(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-            logging.info(hand.handText)
-            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            tmp = hand.handText[0:200]
+            log.error(_("MergeToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
 
         #mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
@@ -706,38 +491,34 @@ or None if we fail to get the info """
 
         if hand.gametype['type'] == 'tour':
             tid, table = re.split('-', m.group('TDATA'))
-            logging.info("HID %s-%s, Tourney %s Table %s" % (m.group('HID1'), m.group('HID2'), tid, table))
-            self.info['tablename'] = m.group('TABLENAME')
+            self.info['tablename'] = m.group('TABLENAME').strip()
+            self.info['tourNo'] = tid
             hand.tourNo = tid
             hand.tablename = table
             if self.info['tablename'] in self.SnG_Structures:
                 hand.buyin = int(100*self.SnG_Structures[self.info['tablename']]['buyIn'])
                 hand.fee   = int(100*self.SnG_Structures[self.info['tablename']]['fee'])
-                hand.buyinCurrency="USD"
+                hand.buyinCurrency=self.SnG_Structures[self.info['tablename']]['currency']
                 hand.maxseats = self.SnG_Structures[self.info['tablename']]['seats']
-            elif self.info['tablename'] in self.MTT_Structures:
-                hand.buyin = int(100*self.MTT_Structures[self.info['tablename']]['buyIn'])
-                hand.fee   = int(100*self.MTT_Structures[self.info['tablename']]['fee'])
-                hand.buyinCurrency="USD"
+                hand.isSng = True
+                self.summaryInFile = True
+            #elif self.info['tablename'] in self.MTT_Structures:
+            #    hand.buyin = int(100*self.MTT_Structures[self.info['tablename']]['buyIn'])
+            #    hand.fee   = int(100*self.MTT_Structures[self.info['tablename']]['fee'])
+            #    hand.buyinCurrency=self.MTT_Structures[self.info['tablename']]['currency']
             else:
-                m1 = self.re_Buyin.search(self.info['tablename'])
-                if m1:
-                    if m1.group('FREEROLL'):
-                        hand.buyin = 0
-                        hand.fee = 0
-                        hand.buyinCurrency="FREE"
-                    else:
-                        buyin = self.clearMoneyString(m1.group('BUYIN'))
-                        hand.buyin = int(100*Decimal(buyin))
-                        hand.fee = int(100*Decimal(buyin)/10)
-                        hand.buyinCurrency="USD"
-                else:
-                    raise FpdbParseError(_("No match in MTT or SnG Structures: '%s' %s") % (self.info['tablename'], hand.tourNo))
+                #print 'DEBUG', 'no match for tourney %s tourNo %s' % (self.info['tablename'], tid)
+                hand.buyin = 0
+                hand.fee = 0
+                hand.buyinCurrency="NA"
+                hand.maxseats = None
         else:
-            logging.debug("HID %s-%s, Table %s" % (m.group('HID1'), m.group('HID2'), m.group('TABLENAME')))
+            #log.debug("HID %s-%s, Table %s" % (m.group('HID1'), m.group('HID2'), m.group('TABLENAME')))
             hand.tablename = m.group('TABLENAME')
+            hand.maxseats = None
 
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],'%Y%m%d%H%M')
+        hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
         # Check that the hand is complete up to the awarding of the pot; if
         # not, the hand is unparseable
         if self.re_EndOfHand.search(hand.handText) is None:
@@ -767,7 +548,8 @@ or None if we fail to get the info """
 
                 for seatno in acted.keys():
                     if seatno not in seated:
-                        raise FpdbParseError(_("readPlayerStacks: '%s' Seat:%s acts but not listed") % (hand.handid, seatno))
+                        log.error(_("MergeToFpdb.readPlayerStacks: '%s' Seat:%s acts but not listed") % (hand.handid, seatno))
+                        raise FpdbParseError
 
         for seat in seated:
             name, stack = seated[seat]
@@ -817,10 +599,10 @@ or None if we fail to get the info """
             self.determineErrorType(hand, "readCommunityCards")
 
     def readAntes(self, hand):
-        m = self.re_Antes.finditer(hand.handText)
-        for player in m:
+        for player in self.re_Antes.finditer(hand.handText):
             pname = self.playerNameFromSeatNo(player.group('PSEAT'), hand)
             #print "DEBUG: hand.addAnte(%s,%s)" %(pname, player.group('ANTE'))
+            self.adjustMergeTourneyStack(hand, pname, player.group('ANTE'))
             hand.addAnte(pname, player.group('ANTE'))
 
     def readBringIn(self, hand):
@@ -828,28 +610,35 @@ or None if we fail to get the info """
         if m:
             pname = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
             #print "DEBUG: hand.addBringIn(%s,%s)" %(pname, m.group('BRINGIN'))
+            self.adjustMergeTourneyStack(hand, pname, m.group('BRINGIN'))
             hand.addBringIn(pname, m.group('BRINGIN'))
 
     def readBlinds(self, hand):
         for a in self.re_PostSB.finditer(hand.handText):
             #print "DEBUG: found sb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('SB'))
-            hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),'small blind', a.group('SB'))
+            player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
+            self.adjustMergeTourneyStack(hand, player, a.group('SB'))
+            hand.addBlind(player,'small blind', a.group('SB'))
             if not hand.gametype['sb']:
                 hand.gametype['sb'] = a.group('SB')
         for a in self.re_PostBB.finditer(hand.handText):
             #print "DEBUG: found bb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('BB'))
-            hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'big blind', a.group('BB'))
+            player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
+            self.adjustMergeTourneyStack(hand, player, a.group('BB'))
+            hand.addBlind(player, 'big blind', a.group('BB'))
             if not hand.gametype['bb']:
                 hand.gametype['bb'] = a.group('BB')
         for a in self.re_PostBoth.finditer(hand.handText):
             bb = Decimal(self.info['bb'])
             amount = Decimal(a.group('SBBB'))
+            player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
+            self.adjustMergeTourneyStack(hand, player, a.group('SBBB'))
             if amount < bb:
-                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'small blind', a.group('SBBB'))
+                hand.addBlind(player, 'small blind', a.group('SBBB'))
             elif amount == bb:
-                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'big blind', a.group('SBBB'))
+                hand.addBlind(player, 'big blind', a.group('SBBB'))
             else:
-                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand), 'both', a.group('SBBB'))
+                hand.addBlind(player, 'both', a.group('SBBB'))
 
         # FIXME
         # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
@@ -867,7 +656,16 @@ or None if we fail to get the info """
                     hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
                 else:
                     hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
-
+                    
+    def adjustMergeTourneyStack(self, hand, player, amount):
+        amount = Decimal(amount)
+        if hand.gametype['type'] == 'tour':
+            for p in hand.players:
+                if p[1]==player:
+                    stack  = Decimal(p[2])
+                    stack += amount
+                    p[2]   = str(stack)
+            hand.stacks[player] += amount
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
@@ -929,58 +727,55 @@ or None if we fail to get the info """
                             hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
 
     def readAction(self, hand, street):
-        logging.debug("readAction (%s)" % street)
+        #log.debug("readAction (%s)" % street)
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            logging.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
             player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
             if player in hand.stacks:
-                if action.group('ATYPE') == 'RAISE':
+                if action.group('ATYPE') in ('FOLD', 'SIT_OUT'):
+                    hand.addFold(street, player)
+                elif action.group('ATYPE') == 'CHECK':
+                    hand.addCheck(street, player)
+                elif action.group('ATYPE') == 'CALL':
+                    hand.addCall(street, player, action.group('BET'))
+                elif action.group('ATYPE') == 'RAISE':
                     hand.addRaiseTo(street, player, action.group('BET'))
+                elif action.group('ATYPE') == 'BET':
+                    hand.addBet(street, player, action.group('BET'))
+                elif action.group('ATYPE') == 'ALL_IN':
+                    hand.addAllIn(street, player, action.group('BET'))
+                elif action.group('ATYPE') == 'DRAW':
+                    hand.addDiscard(street, player, action.group('TXT'))
                 elif action.group('ATYPE') == 'COMPLETE':
                     if hand.gametype['base'] != 'stud':
                         hand.addRaiseTo(street, player, action.group('BET'))
                     else:
                         hand.addComplete( street, player, action.group('BET') )
-                elif action.group('ATYPE') == 'CALL':
-                    hand.addCall(street, player, action.group('BET'))
-                elif action.group('ATYPE') == 'BET':
-                    hand.addBet(street, player, action.group('BET'))
-                elif action.group('ATYPE') in ('FOLD', 'SIT_OUT'):
-                    hand.addFold(street, player)
-                elif action.group('ATYPE') == 'CHECK':
-                    hand.addCheck(street, player)
-                elif action.group('ATYPE') == 'ALL_IN':
-                    hand.addAllIn(street, player, action.group('BET'))
-                elif action.group('ATYPE') == 'DRAW':
-                    hand.addDiscard(street, player, action.group('TXT'))
                 else:
-                    logging.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
+                    log.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PSEAT'), action.group('ATYPE')))
 
     def readShowdownActions(self, hand):
-        for street in ('RIVER', 'SEVENTH', 'DRAWTHREE'):
-            if street in hand.streets.keys() and hand.streets[street] != None:
-                for shows in self.re_ShowdownAction.finditer(hand.streets[street]):
-                    cards = shows.group('CARDS').split(',')
-                    hand.addShownCards(cards, self.playerNameFromSeatNo(shows.group('PSEAT'), hand))
+        pass
 
     def readCollectPot(self, hand):
+        hand.setUncalledBets(True)
         for m in self.re_CollectPot.finditer(hand.handText):
             pname = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
             pot = m.group('POT')
-            committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
-            lastbet = committed[-1][0] - committed[-2][0]
-            if lastbet > 0 and m.group('UNCALLED')=='false': # uncalled
-                pot = str(Decimal(m.group('POT')) - lastbet)
-            #print "DEBUG: addCollectPot(%s, %s)" %(pname, m.group('POT'))
             hand.addCollectPot(player=pname, pot=pot)
 
     def readShownCards(self, hand):
-        for street in ('FLOP', 'TURN', 'RIVER', 'SEVENTH', 'DRAWTHREE'):
-            if street in hand.streets.keys() and hand.streets[street] != None:
-                for m in self.re_ShownCards.finditer(hand.streets[street]):
-                    cards = m.group('CARDS').split(',')
-                    hand.addShownCards(cards=cards, player=self.playerNameFromSeatNo(m.group('PSEAT'),hand))
+        for m in self.re_ShownCards.finditer(hand.handText):
+            if m.group('CARDS') is not None:
+                cards = m.group('CARDS')
+                cards = m.group('CARDS').split(',')
+
+                (shown, mucked) = (False, False)
+                if m.group('SHOWED') == "SHOWN": shown = True
+                elif m.group('SHOWED') == "MUCKED": mucked = True
+
+                #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
+                hand.addShownCards(cards=cards, player=self.playerNameFromSeatNo(m.group('PSEAT'),hand), shown=shown, mucked=mucked)
 
     def determineErrorType(self, hand, function):
         message = False
@@ -1003,11 +798,12 @@ or None if we fail to get the info """
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         "Returns string to search in windows titles"
+        regex = re.escape(table_name)
         if type=="tour":
             # Ignoring table number as it doesn't appear to be in the window title
             # "$200 Freeroll - NL Holdem - 20:00 (46302299) - Table 1" -- the table number doesn't matter, it seems to always be 1 in the HH.
             # "Fun Step 1 (4358174) - Table 1"
-            return ( "\(" + re.escape(str(tournament)) + "\)")
-        else:
-            # "Play Money (4631994)"
-            return re.escape(table_name)
+            regex = "\(" + re.escape(str(tournament)) + "\)"
+        log.info("Merge.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
+        log.info("Merge.getTableTitleRe: returns: '%s'" % (regex))
+        return regex

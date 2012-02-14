@@ -100,10 +100,9 @@ class Microgaming(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
-            tmp = handText[0:1000]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            tmp = handText[0:200]
+            log.error(_("MicrogamingToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
@@ -127,8 +126,10 @@ class Microgaming(HandHistoryConverter):
         if 'BB' in mg:
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
-            info['currency'] = 'USD'
-            #info['currency'] = mg['CURRENCY']
+            if mg['CURRENCY'] == 'rCA=':
+                info['currency'] = 'EUR'
+            else:
+                info['currency'] = 'USD'
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
 
@@ -138,8 +139,9 @@ class Microgaming(HandHistoryConverter):
         m = self.re_GameInfo.search(hand.handText)
 
         if m is None:
-            log.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            tmp = hand.handText[0:200]
+            log.error(_("MicrogamingToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
 
         info.update(m.groupdict())
         m = self.re_Button.search(hand.handText)
@@ -165,7 +167,7 @@ class Microgaming(HandHistoryConverter):
                 hand.buyin = 100
                 hand.fee = 10
                 hand.isKO = False
-        hand.maxseats = 2
+        hand.maxseats = None
         
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
@@ -182,18 +184,6 @@ class Microgaming(HandHistoryConverter):
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             seatno = int(a.group('SEAT'))
-            # It may be necessary to adjust 'hand.maxseats', which is an
-            # educated guess, starting with 2 (indicating a heads-up table) and
-            # adjusted upwards in steps to 6, then 9, then 10. An adjustment is
-            # made whenever a player is discovered whose seat number is
-            # currently above the maximum allowable for the table.
-            if seatno >= hand.maxseats:
-                if seatno > 8:
-                    hand.maxseats = 10
-                elif seatno > 5:
-                    hand.maxseats = 9
-                else:
-                    hand.maxseats = 6
             hand.addPlayer(seatno, a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
@@ -201,7 +191,7 @@ class Microgaming(HandHistoryConverter):
             m =  re.search('</Seats>(?P<PREFLOP>.+(?=<Action seq="\d+" type="DealFlop")|.+)'
                        '((?P<FLOP><Action seq="\d+" type="DealFlop">.+(?=<Action seq="\d+" type="DealTurn")|.+))?'
                        '((?P<TURN><Action seq="\d+" type="DealTurn">.+(?=<Action seq="\d+" type="DealRiver")|.+))?'
-                       '((?P<RIVER><Action seq="\d+" type="DealRiver">.+(?=<Action seq="\d+" type="ShowCards|MuckCards")|.+))?', hand.handText,re.DOTALL)
+                       '((?P<RIVER><Action seq="\d+" type="DealRiver">.+?(?=<Action seq="\d+" type="ShowCards|MuckCards")|.+))?', hand.handText,re.DOTALL)
         if hand.gametype['category'] in ('27_1draw', 'fivedraw'):
             m =  re.search(r'(?P<PREDEAL>.+?(?=<ACTION TYPE="HAND_DEAL")|.+)'
                            r'(<ACTION TYPE="HAND_DEAL"(?P<DEAL>.+(?=<ACTION TYPE="HAND_BOARD")|.+))?'
@@ -312,10 +302,18 @@ class Microgaming(HandHistoryConverter):
         for action in m:
             #print "DEBUG: %s action.groupdict(): %s" % (street, action.groupdict())
             pname = self.playerNameFromSeatNo(action.group('SEAT'), hand)
-            if action.group('ATYPE') == 'Raise':
-                hand.addRaiseTo(street, pname, action.group('BET') )
+            if action.group('ATYPE') == 'Fold':
+                hand.addFold(street, pname)
+            elif action.group('ATYPE') == 'Check':
+                hand.addCheck(street, pname)
             elif action.group('ATYPE') == 'Call':
                 hand.addCallTo(street, pname, action.group('BET') )
+            elif action.group('ATYPE') == 'SmallBlind':
+                hand.addBlind(pname, 'small blind', action.group('BET'))
+            elif action.group('ATYPE') == 'BigBlind':
+                hand.addBlind(pname, 'big blind', action.group('BET'))
+            elif action.group('ATYPE') == 'Raise':
+                hand.addRaiseTo(street, pname, action.group('BET') )
             elif action.group('ATYPE') == 'Bet':
                 if street in ('PREFLOP', 'THIRD', 'DEAL'):
                     hand.addRaiseTo(street, pname, action.group('BET'))
@@ -323,14 +321,6 @@ class Microgaming(HandHistoryConverter):
                     hand.addBet(street, pname, action.group('BET'))
             elif action.group('ATYPE') == 'AllIn':
                 hand.addAllIn(street, pname, action.group('BET'))
-            elif action.group('ATYPE') == 'Fold':
-                hand.addFold(street, pname)
-            elif action.group('ATYPE') == 'Check':
-                hand.addCheck(street, pname)
-            elif action.group('ATYPE') == 'SmallBlind':
-                hand.addBlind(pname, 'small blind', action.group('BET'))
-            elif action.group('ATYPE') == 'BigBlind':
-                hand.addBlind(pname, 'big blind', action.group('BET'))
             elif action.group('ATYPE') == 'PostedToPlay':
                 hand.addBlind(pname, 'big blind', action.group('BET'))
             elif action.group('ATYPE') == 'Disconnect':
@@ -354,14 +344,10 @@ class Microgaming(HandHistoryConverter):
 
 
     def readCollectPot(self,hand):
-        pots = [Decimal(0) for n in range(hand.maxseats)]
+        hand.setUncalledBets(True)
         for m in self.re_CollectPot.finditer(hand.handText):
-            pot = m.group('POT')
-            committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
-            lastbet = committed[-1][0] - committed[-2][0]
             pname = self.playerNameFromSeatNo(m.group('SEAT'), hand)
-            if lastbet > 0: # uncalled
-                pot = str(Decimal(m.group('POT')) - lastbet)
+            pot = m.group('POT')
             #print "DEBUG: addCollectPot(%s, %s)" %(pname, m.group('POT'))
             hand.addCollectPot(player=pname, pot=pot)
 

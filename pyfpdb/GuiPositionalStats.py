@@ -90,6 +90,7 @@ class GuiPositionalStats (threading.Thread):
                        , ["rake",       True,  "Rake($)",  1.0, "%6.2f"]
                        , ["bb100xr",    True,  "bbxr/100", 1.0, "%4.2f"]
                        , ["variance",   True,  "Variance", 1.0, "%5.2f"]
+                       , ["stddev",     True,  "Stddev",   1.0, "%5.2f"]
                        ]
 
         self.stat_table = None
@@ -116,11 +117,11 @@ class GuiPositionalStats (threading.Thread):
         # If the first list element does not match a query column that pair is ignored
         self.posncols =  ( "game", "avgseats", "plposition", "vpip", "pfr", "pf3", "pf4", "pff3", "pff4", "steals"
                          , "saw_f", "sawsd", "wtsdwsf", "wmsd", "flafq", "tuafq", "rvafq"
-                         , "pofafq", "net", "bbper100", "profitperhand", "variance", "n"
+                         , "pofafq", "net", "bbper100", "profitperhand", "variance", "stddev", "n"
                          )
         self.posnheads = ( "Game", "Seats", "Posn", "VPIP", "PFR", "PF3", "PF4", "PFF3", "PFF4", "Steals"
                          , "Saw_F", "SawSD", "WtSDwsF", "W$SD", "FlAFq", "TuAFq", "RvAFq"
-                         , "PoFAFq", "Net($)", "bb/100", "$/hand", "Variance", "Hds"
+                         , "PoFAFq", "Net($)", "bb/100", "$/hand", "Variance", "Stddev", "Hds"
                          )
 
         #self.fillStatsFrame(self.stats_vbox) #dont autoload, enter filters first (because of the bug that the tree is not scrollable, you cannot reach the refresh button with a lot of data)
@@ -188,6 +189,7 @@ class GuiPositionalStats (threading.Thread):
 
         tmp = self.sql.query['playerStatsByPosition']
         tmp = self.refineQuery(tmp, playerids, sitenos, limits, seats, dates)
+        #print "DEBUG:\n%s" % tmp
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
         colnames = [desc[0].lower() for desc in self.cursor.description]
@@ -287,6 +289,7 @@ class GuiPositionalStats (threading.Thread):
         # show totals at bottom
         tmp = self.sql.query['playerStats']
         tmp = self.refineQuery(tmp, playerids, sitenos, limits, seats, dates)
+        #print "DEBUG:\n%s" % tmp
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
         rows = len(result)

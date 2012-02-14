@@ -21,7 +21,6 @@
 import L10n
 _ = L10n.get_translation()
 
-import logging
 from HandHistoryConverter import *
 #import TourneySummary
 
@@ -37,7 +36,7 @@ class Fulltilt(HandHistoryConverter):
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",       # legal ISO currency codes
                             'LS' : u"\$|\u20AC|\xe2\x82\xac|",  # legal currency symbols - Euro(cp1252, utf-8)
-                           'TAB' : u"-\u2013'\s\da-zA-Z#_",     # legal characters for tablename
+                           'TAB' : u"-\u2013'\s\da-zA-Z#_\.",     # legal characters for tablename
                            'NUM' : u".,\d",                     # legal characters in number format
                     }
 
@@ -52,8 +51,10 @@ class Fulltilt(HandHistoryConverter):
                        '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
                        '16.00': ('4.00', '8.00'),      '16': ('4.00', '8.00'),
                        '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
+                       '24.00': ('6.00', '12.00'),     '24': ('6.00', '12.00'),
                        '30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
                        '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
+                       '50.00': ('8.00',  '25.00'),     '50': ('8.00',  '25.00'),
                        '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
                        '80.00': ('20.00', '40.00'),    '80': ('20.00', '40.00'),
                       '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
@@ -61,6 +62,7 @@ class Fulltilt(HandHistoryConverter):
                       '300.00': ('75.00', '150.00'),  '300': ('75.00', '150.00'),
                       '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
                       '500.00': ('125.00', '250.00'), '500': ('125.00', '250.00'),
+                      '600.00': ('150.00', '300.00'), '600': ('150.00', '300.00'),
                       '800.00': ('200.00', '400.00'), '800': ('200.00', '400.00'),
                      '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00'),
                      '2000.00': ('500.00', '750.00'),'2000': ('500.00', '1000.00'),
@@ -88,13 +90,13 @@ class Fulltilt(HandHistoryConverter):
                                     ((?P<TABLE>[%(TAB)s]+)(\s|,))
                                     (?P<ENTRYID>\sEntry\s\#\d+\s)?
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
-                                    [%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[.0-9]+)\s)?-\s
+                                    [%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[%(NUM)s]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
                                     (?P<GAMETYPE>[-\da-zA-Z\/\'\s]+)\s-\s
                                     (?P<DATETIME>.*$)
                                     (?P<PARTIAL>\(partial\))?\s
-                                    (?:.*?\n(?P<CANCELLED>Hand\s\#(?P=HID)\shas\sbeen\scanceled))?
                                  ''' % substitutions, re.MULTILINE|re.VERBOSE)
+    re_Cancelled = re.compile("Hand\s\#[0-9]+\shas\sbeen\scanceled?")
     re_TourneyExtraInfo  = re.compile('''(((?P<TOURNEY_NAME>[^$]+)?
                                          (?P<CURRENCY>[%(LS)s])?(?P<BUYIN>[.0-9]+)?\s*\+\s*[%(LS)s]?(?P<FEE>[.0-9]+)?
                                          (\s(?P<SPECIAL>(KO|Heads\sUp|Matrix\s\dx|Rebuy|Madness)))?
@@ -161,7 +163,7 @@ class Fulltilt(HandHistoryConverter):
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             self.substitutions['PLAYERS'] = player_re
 
-            logging.debug("player_re: " + player_re)
+            #log.debug("player_re: " + player_re)
             self.re_PostSB           = re.compile(r"^%(PLAYERS)s posts the small blind of [%(LS)s]?(?P<SB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_PostDead         = re.compile(r"^%(PLAYERS)s posts a dead small blind of [%(LS)s]?(?P<SB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_PostBB           = re.compile(r"^%(PLAYERS)s posts (the big blind of )?[%(LS)s]?(?P<BB>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
@@ -205,10 +207,9 @@ class Fulltilt(HandHistoryConverter):
         
         m = self.re_GameInfo.search(handText)
         if not m:
-            tmp = handText[0:100]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError for file '%s'") % self.in_path)
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            tmp = handText[0:200]
+            log.error(_("FulltiltToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
         mg = m.groupdict()
 
         # translations from captured groups to our info strings
@@ -265,9 +266,9 @@ class Fulltilt(HandHistoryConverter):
                 info['sb'] = self.Lim_Blinds[bb][0]
                 info['bb'] = self.Lim_Blinds[bb][1]
             except KeyError:
-                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+                tmp = handText[0:200]
+                log.error(_("FulltiltToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                raise FpdbParseError
 
         if mg['GAME'] is not None:
             (info['base'], info['category']) = games[mg['GAME']]
@@ -282,10 +283,9 @@ class Fulltilt(HandHistoryConverter):
     def readHandInfo(self, hand):
         m =  self.re_HandInfo.search(hand.handText)
         if m is None:
-            tmp = hand.handText[0:100]
-            log.error(_("Unable to recognise hand info from: '%s'") % tmp)
-            log.error("readHandInfo: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise hand info from: '%s'"))
+            tmp = hand.handText[0:200]
+            log.error(_("FulltiltToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
 
         #print "DEBUG: m.groupdict: %s" % m.groupdict()
         hand.handid = m.group('HID')
@@ -297,23 +297,27 @@ class Fulltilt(HandHistoryConverter):
             timezone = "ET"
             m1 = self.re_DateTime.finditer(m.group('DATETIME'))
             datetimestr = "2000/01/01 00:00:00"
+            dateformat  = "%Y/%m/%d %H:%M:%S"
             for a in m1:
                 if a.group('TZ2') == None:
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
                     timezone = a.group('TZ')
-                    hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
                 else: # Short-lived date format
                     datetimestr = "%s/%s/%s %s:%s" % (a.group('Y2'), a.group('M2'),a.group('D2'),a.group('H2'),a.group('MIN2'))
                     timezone = a.group('TZ2')
-                    hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%B/%d %H:%M")
+                    dateformat = "%Y/%B/%d %H:%M"  
                 if a.group('PARTIAL'):
                     raise FpdbHandPartial(hid=m.group('HID'))
-
+            
+            hand.startTime = datetime.datetime.strptime(datetimestr, dateformat)
             hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, timezone, "UTC")
 
-        if m.group("CANCELLED") or m.group("PARTIAL"):
+        if m.group("PARTIAL"):
             # It would appear this can't be triggered as DATETIME is a bit greedy
             raise FpdbHandPartial(hid=m.group('HID'))
+        
+        if self.re_Cancelled.search(hand.handText):
+            raise FpdbHandPartial(_("Hand '%s' was cancelled.") % m.group('HID'))
 
         if m.group('TABLEATTRIBUTES'):
             m2 = self.re_Max.search(m.group('TABLEATTRIBUTES'))
@@ -364,7 +368,10 @@ class Fulltilt(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         # Split hand text for FTP, as the regex matches the player names incorrectly
         # in the summary section
-        pre, post = hand.handText.split('*** SUMMARY ***')
+        handsplit = hand.handText.split('*** SUMMARY ***')
+        if len(handsplit)!=2:
+            raise FpdbHandPartial(_("Hand is not cleanly split into pre and post Summary %s.") % hand.handid)
+        pre, post = handsplit
         m = self.re_PlayerInfo.finditer(pre)
         plist = {}
 
@@ -440,10 +447,10 @@ class Fulltilt(HandHistoryConverter):
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
         for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'small & big blinds', self.clearMoneyString(a.group('SBBB')))
+            hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
 
     def readAntes(self, hand):
-        logging.debug(_("reading antes"))
+        #log.debug(_("reading antes"))
         slist = []
         n = self.re_ReturnsAnte.finditer(hand.handText)
         for player in n:
@@ -451,17 +458,17 @@ class Fulltilt(HandHistoryConverter):
             slist.append(player.group('PNAME'))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
-            logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
+            #log.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
             if player.group('PNAME') not in slist:
-                hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+                hand.addAnte(player.group('PNAME'), self.clearMoneyString(player.group('ANTE')))
 
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
-            logging.debug(_("Player bringing in: %s for %s") %(m.group('PNAME'),  m.group('BRINGIN')))
-            hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
-        else:
-            logging.debug(_("No bringin found, handid =%s") % hand.handid)
+            #log.debug(_("Player bringing in: %s for %s") %(m.group('PNAME'),  m.group('BRINGIN')))
+            hand.addBringIn(m.group('PNAME'),  self.clearMoneyString(m.group('BRINGIN')))
+        #else:
+            #log.debug(_("No bringin found, handid =%s") % hand.handid)
 
     def readButton(self, hand):
         try:
@@ -509,20 +516,20 @@ class Fulltilt(HandHistoryConverter):
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            if action.group('ATYPE') == ' raises to':
-                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' completes it to':
-                hand.addComplete( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' calls':
-                hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' bets':
-                hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' folds':
+            if action.group('ATYPE') == ' folds':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
+            elif action.group('ATYPE') == ' calls':
+                hand.addCall( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ' raises to':
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ' bets':
+                hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' discards':
                 hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('CARDS'))
+            elif action.group('ATYPE') == ' completes it to':
+                hand.addComplete( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' stands pat':
                 hand.addStandsPat( street, action.group('PNAME'), action.group('CARDS'))
             else:

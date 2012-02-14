@@ -171,6 +171,7 @@ def compare_hands_file(filename, importer, errors):
                 else:
                     # Stats don't match. 
                     if (datum == "gametypeId" 
+                        or datum == 'gameId' 
                         or datum == 'sessionId' 
                         or datum == 'id'
                         or datum == 'tourneyId' 
@@ -296,13 +297,14 @@ def main(argv=None):
     WinamaxErrors     = FpdbError('Winamax')
     EntractionErrors  = FpdbError('Entraction')
     BetOnlineErrors   = FpdbError('BetOnline')
+    MicrogamingErrors = FpdbError('Microgaming')
 
     ErrorsList = [
                     PacificPokerErrors, PokerStarsErrors, FTPErrors, PartyPokerErrors,
                     BetfairErrors, OnGameErrors, AbsoluteErrors,
                     EverleafErrors, MergeErrors, PKRErrors,
                     iPokerErrors, WinamaxErrors, UltimateBetErrors,
-                    BossErrors, EverestErrors, EntractionErrors, BetOnlineErrors
+                    BossErrors, EverestErrors, EntractionErrors, BetOnlineErrors, MicrogamingErrors
                 ]
 
     sites = {
@@ -322,7 +324,8 @@ def main(argv=None):
                 'Winamax' : False,
                 'Everest' : False,
                 'Entraction' : False,
-                'BetOnline': False
+                'BetOnline': False,
+                'Microgaming': False,
             }
 
     if test_all_sites == True:
@@ -409,6 +412,10 @@ def main(argv=None):
         walk_testfiles("regression-test-files/tour/BetOnline/", compare, importer, BetOnlineErrors, "BetOnline")
     elif sites['BetOnline'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, BetOnlineErrors, "BetOnline")
+    if sites['Microgaming'] == True and not single_file_test:
+        walk_testfiles("regression-test-files/cash/Microgaming/", compare, importer, MicrogamingErrors, "Microgaming")
+    elif sites['Microgaming'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, MicrogamingErrors, "Microgaming")
 
     totalerrors = 0
 

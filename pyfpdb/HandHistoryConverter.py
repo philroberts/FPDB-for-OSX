@@ -97,7 +97,7 @@ out_path  (default '-' = sys.stdout)
         self.out_fh = get_out_fh(out_path, self.import_parameters)
 
         self.compiledPlayers   = set()
-        self.maxseats  = 10
+        self.maxseats  = 0
 
         self.status = True
 
@@ -136,10 +136,10 @@ HandHistoryConverter: '%(sitename)s'
                     self.processedHands.append(self.processHand(handText))
                 except FpdbHandPartial, e:
                     self.numPartial += 1
-                    log.error("%s" % e)
-                except FpdbParseError, e:
+                    log.debug("%s" % e)
+                except FpdbParseError:
                     self.numErrors += 1
-                    log.error("%s" % e)
+                    log.error(_("FpdbParseError for file '%s'") % self.in_path)
             self.numHands = len(handsList)
             endtime = time.time()
             log.info(_("Read %d hands (%d failed) in %.3f seconds") % (self.numHands, (self.numErrors + self.numPartial), endtime - starttime))
@@ -194,7 +194,6 @@ HandHistoryConverter: '%(sitename)s'
             gametype = self.determineGameType(self.whole_file)
         else:
             gametype = self.determineGameType(handText)
-        log.debug("gametype %s" % gametype)
         hand = None
         l = None
         if gametype is None:
@@ -212,21 +211,20 @@ HandHistoryConverter: '%(sitename)s'
 
         if l in self.readSupportedGames():
             if gametype['base'] == 'hold':
-                log.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
                 hand = Hand.HoldemOmahaHand(self.config, self, self.sitename, gametype, handText)
             elif gametype['base'] == 'stud':
                 hand = Hand.StudHand(self.config, self, self.sitename, gametype, handText)
             elif gametype['base'] == 'draw':
                 hand = Hand.DrawHand(self.config, self, self.sitename, gametype, handText)
         else:
-            log.error(_("Unsupported game type: %s") % gametype)
-            raise FpdbParseError(_("Unsupported game type: %s") % gametype)
+            log.error(_("%s Unsupported game type: %s") % (self.sitename, gametype))
+            raise FpdbParseError
 
         if hand:
             #hand.writeHand(self.out_fh)
             return hand
         else:
-            log.error(_("Unsupported game type: %s") % gametype)
+            log.error(_("%s Unsupported game type: %s") % (self.sitename, gametype))
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
 
 
@@ -501,9 +499,9 @@ or None if we fail to get the info """
             #log.debug("changeTimeZone: offset=") + str(offset))
         else: offset=0
 
-        if givenTimezone=="ET":
+        if (givenTimezone=="ET" or givenTimezone=="EST" or givenTimezone=="EDT"):
             givenTZ = timezone('US/Eastern')
-        elif (givenTimezone=="CET" or givenTimezone=="CEST"):
+        elif (givenTimezone=="CET" or givenTimezone=="CEST" or givenTimezone=="MESZ"):
             #since CEST will only be used in summer time it's ok to treat it as identical to CET.
             givenTZ = timezone('Europe/Berlin')
             #Note: Daylight Saving Time is standardised across the EU so this should be fine
@@ -536,7 +534,7 @@ or None if we fail to get the info """
             givenTZ = timezone('America/Sao_Paulo')
         elif givenTimezone == 'EET': # Eastern European Time
             givenTZ = timezone('Europe/Bucharest')
-        elif givenTimezone == 'MSK': # Moscow Standard Time
+        elif (givenTimezone == 'MSK' or givenTimezone == 'MESZ'): # Moscow Standard Time
             givenTZ = timezone('Europe/Moscow')
         elif givenTimezone == 'IST': # India Standard Time
             givenTZ = timezone('Asia/Kolkata')
@@ -585,10 +583,18 @@ or None if we fail to get the info """
 
     @staticmethod
     def clearMoneyString(money):
-        "Renders 'numbers' like '1 200' and '2,000'"
+        """Converts human readable string representations of numbers like
+        '1 200', '2,000', '0,01' to more machine processable form - no commas, 1 decimal point
+        """
         if not money:
             return money
-        return money.replace(' ', '').replace(',', '')
+        money = money.replace(' ', '')
+        if len(money) < 3:
+            return money # No commas until 0,01 or 1,00
+        if money[-3] == ',':
+            money = money[:-3] + '.' + money[-2:]
+
+        return money.replace(',', '')
 
 def getTableTitleRe(config, sitename, *args, **kwargs):
     "Returns string to search in windows titles for current site"
