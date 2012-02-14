@@ -172,7 +172,7 @@ class PokerStarsSummary(TourneySummary):
         if mg['CURRENCY'] == "$":     self.buyinCurrency="USD"
         elif mg['CURRENCY'] == u"€":  self.buyinCurrency="EUR"
         elif mg['CURRENCY'] == "FPP": self.buyinCurrency="PSFP"
-        elif mg['CURRENCY'] == None:  self.buyinCurrency="play"
+        elif not mg['CURRENCY']:      self.buyinCurrency="play"
         if self.buyin == 0:           self.buyinCurrency="FREE"
         self.currency = self.buyinCurrency
 
@@ -194,7 +194,6 @@ class PokerStarsSummary(TourneySummary):
                 if mg['CUR'] == "$":     self.currency="USD"
                 elif mg['CUR'] == u"€":  self.currency="EUR"
                 elif mg['CUR'] == "FPP": self.currency="PSFP"
-            elif  mg['CUR'] == None:     self.currency="play"
 
             if 'STILLPLAYING' in mg and mg['STILLPLAYING'] != None:
                 #print "stillplaying"
