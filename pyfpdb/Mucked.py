@@ -35,7 +35,6 @@ import gobject
 
 #    FreePokerTools modules
 import Card
-import Popup
 
 class Aux_Window(object):
     def __init__(self, hud, params, config):
@@ -362,7 +361,6 @@ class Seat_Window(gtk.Window):
         self.set_accept_focus(False)
         self.connect("configure_event", self.aw.configure_event_cb, self.seat) #probably ultimately pointing at Aux_seats class
 
-
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the event boxes."""
         #double-click events should be avoided
@@ -375,19 +373,9 @@ class Seat_Window(gtk.Window):
         elif event.button == 3:   # right button event
             self.button_press_right(widget, event, *args)
 
-
-    def button_press_left(self, widget, event, *args): #move window
-        self.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
-        
+    def button_press_left(self, widget, event, *args): pass
     def button_press_middle(self, widget, event, *args): pass 
-  
-    def button_press_right(self, widget, event, *args):  #show pop up
-        pu_to_run = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup].pu_class
-        if widget.stat_dict: # do not popup on "xxx" empty blocks
-            Popup.__dict__[pu_to_run](seat = widget.aw_seat,
-                stat_dict = widget.stat_dict,
-                win = widget.get_ancestor(gtk.Window),
-                pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup])
+    def button_press_right(self, widget, event, *args):  pass
     
     def create_contents(self, *args): pass
     def update_contents(self, *args): pass

@@ -36,6 +36,7 @@ import pango
 #    FreePokerTools modules
 import Mucked
 import Stats
+import Popup
 
 
 class Simple_HUD(Mucked.Aux_Seats):
@@ -128,7 +129,20 @@ class Simple_HUD(Mucked.Aux_Seats):
         
 class Simple_Stat_Window(Mucked.Seat_Window):
     """Simple window class for stat windows."""
-    
+
+    def button_press_left(self, widget, event, *args): #move window
+        self.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
+        
+    def button_press_middle(self, widget, event, *args): pass 
+
+    def button_press_right(self, widget, event, *args):  #show pop up
+        pu_to_run = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup].pu_class
+        if widget.stat_dict: # do not popup on "xxx" empty blocks
+            Popup.__dict__[pu_to_run](seat = widget.aw_seat,
+                stat_dict = widget.stat_dict,
+                win = widget.get_ancestor(gtk.Window),
+                pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup])
+                    
     def create_contents(self, i):
         self.grid = gtk.Table(rows = self.aw.nrows, columns = self.aw.ncols, homogeneous = False)
         self.add(self.grid)
