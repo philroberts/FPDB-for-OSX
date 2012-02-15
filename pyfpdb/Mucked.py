@@ -359,7 +359,7 @@ class Seat_Window(gtk.Window):
         self.set_focus(None)
         self.set_focus_on_map(False)
         self.set_accept_focus(False)
-        self.connect("configure_event", self.aw.configure_event_cb, self.seat) #probably ultimately pointing at Aux_seats class
+        self.connect("configure_event", self.aw.configure_event_cb, self.seat) #normally pointing at Aux_seats class
 
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the event boxes."""
@@ -373,9 +373,9 @@ class Seat_Window(gtk.Window):
         elif event.button == 3:   # right button event
             self.button_press_right(widget, event, *args)
 
-    def button_press_left(self, widget, event, *args): pass
-    def button_press_middle(self, widget, event, *args): pass 
-    def button_press_right(self, widget, event, *args):  pass
+    def button_press_left(self, widget, event, *args): pass #superclass will define this
+    def button_press_middle(self, widget, event, *args): pass #superclass will define this 
+    def button_press_right(self, widget, event, *args):  pass #superclass will define this
     
     def create_contents(self, *args): pass
     def update_contents(self, *args): pass
@@ -420,7 +420,7 @@ class Aux_Seats(Aux_Window):
     def create(self):
         
         self.adj = self.hud.adj_seats(0, self.config)  # move adj_seats to aux and get rid of it in Hud.py
-        
+        print self.hud.layout
         self.m_windows = {}      # windows to put the card/hud items in
 
         for i in (range(1, self.hud.max + 1) + ['common']):   
@@ -462,7 +462,6 @@ class Aux_Seats(Aux_Window):
         self.hud.layout.height = self.hud.table.height
         self.hud.layout.width = self.hud.table.width
         
-
 
     def create_scale_position(self, x, y):
         # for a given x/y, scale according to current height/wid vs. reference
@@ -518,7 +517,12 @@ class Aux_Seats(Aux_Window):
 
 
     def configure_event_cb(self, widget, event, i, *args):
-        """This method updates the current location for each statblock"""
+        """
+        This method updates the current location for each statblock.
+        This method is needed to record moves for an individual block.
+        Move/resize also end up in here due to it being a configure.
+        This is not optimal, but isn't easy to work around. fixme.
+        """
         if (i): 
             new_abs_position = widget.get_position() #absolute value of the new position
             new_position = (new_abs_position[0]-self.hud.table.x, new_abs_position[1]-self.hud.table.y)
