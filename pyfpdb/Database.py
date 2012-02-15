@@ -2569,22 +2569,26 @@ class Database:
             lower = hand['startTime']-THRESHOLD
             upper = hand['startTime']+THRESHOLD
             for i in range(len(self.gc['bk'])):
-                if ((hand['date']          == self.gc['bk'][i]['date']) 
-                and (hand['gametypeId']    == self.gc['bk'][i]['gametypeId'])
-                and (hand['playerId']      == self.gc['bk'][i]['playerId'])): 
-                    if ((lower <= self.gc['bk'][i]['gameEnd'])
-                    and (upper >= self.gc['bk'][i]['gameStart'])):
+                if ((hand['gametypeId'] == self.gc['bk'][i]['gametypeId'])
+                and (hand['playerId']   == self.gc['bk'][i]['playerId'])
+                and (lower <= self.gc['bk'][i]['gameEnd'])
+                and (upper >= self.gc['bk'][i]['gameStart'])):
+                    if len(id)==0:
                         self.gc['bk'][i]['played']              += hand['played']
                         self.gc['bk'][i]['hands']               += hand['hands']
                         self.gc['bk'][i]['totalProfit']         += hand['totalProfit']
                         self.gc['bk'][i]['rake']                += hand['rake']
                         self.gc['bk'][i]['showdownWinnings']    += hand['showdownWinnings']
                         self.gc['bk'][i]['nonShowdownWinnings'] += hand['nonShowdownWinnings']
-                        self.gc['bk'][i]['allInEV']       += hand['allInEV']
-                        if hand['startTime']  <  self.gc['bk'][i]['gameStart']:
-                            self.gc['bk'][i]['gameStart']      = hand['startTime']
-                        elif hand['startTime']  >  self.gc['bk'][i]['gameEnd']:
-                            self.gc['bk'][i]['gameEnd']        = hand['startTime']
+                        self.gc['bk'][i]['allInEV']             += hand['allInEV']
+                    if ((hand['startTime'] <= self.gc['bk'][i]['gameEnd']) 
+                    and (hand['startTime'] >= self.gc['bk'][i]['gameStart'])):
+                        id.append(i)
+                    elif hand['startTime']  <  self.gc['bk'][i]['gameStart']:
+                        self.gc['bk'][i]['gameStart']      = hand['startTime']
+                        id.append(i)
+                    elif hand['startTime']  >  self.gc['bk'][i]['gameEnd']:
+                        self.gc['bk'][i]['gameEnd']        = hand['startTime']
                         id.append(i)
             if len(id) == 1:
                 self.gc['bk'][id[0]]['ids'].append(hid)
@@ -2599,13 +2603,6 @@ class Database:
                 self.gc['bk'][id[0]]['showdownWinnings']    += self.gc['bk'][id[1]]['showdownWinnings']
                 self.gc['bk'][id[0]]['nonShowdownWinnings'] += self.gc['bk'][id[1]]['nonShowdownWinnings']
                 self.gc['bk'][id[0]]['allInEV']             += self.gc['bk'][id[1]]['allInEV']
-                self.gc['bk'][id[0]]['played']              += hand['played']
-                self.gc['bk'][id[0]]['hands']               += hand['hands']
-                self.gc['bk'][id[0]]['totalProfit']         += hand['totalProfit']
-                self.gc['bk'][id[0]]['rake']                += hand['rake']
-                self.gc['bk'][id[0]]['showdownWinnings']    += hand['showdownWinnings']
-                self.gc['bk'][id[0]]['nonShowdownWinnings'] += hand['nonShowdownWinnings']
-                self.gc['bk'][id[0]]['allInEV']             += hand['allInEV']
                 gh = self.gc['bk'].pop(id[1])
                 self.gc['bk'][id[0]]['ids'].append(hid)
                 self.gc['bk'][id[0]]['ids'] += gh['ids']

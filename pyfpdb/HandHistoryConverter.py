@@ -435,14 +435,10 @@ or None if we fail to get the info """
 
         if hand.gametype['base'] == 'stud':
             if mo <= 8: return 8
-            else: return mo
 
         if hand.gametype['base'] == 'draw':
             if mo <= 6: return 6
-            else: return mo
-
-        if mo == 2: return 2
-        if mo <= 6: return 6
+            
         return 10
 
     def maxOccSeat(self, hand):
