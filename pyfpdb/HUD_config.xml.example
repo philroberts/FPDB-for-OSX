@@ -516,7 +516,6 @@
 
         <!-- testing aux's -->
         <aw name="Hello" module="Hello" class="Hello"/>
-        <aw name="Hello_menu" module="Hello" class="Hello_Menu"/>
         <aw name="Hello_plus" module="Hello" class="Hello_plus"/>
         
     </aux_windows>

@@ -34,12 +34,12 @@ import gtk
 import pango
 
 #    FreePokerTools modules
-import Mucked
+import Aux_Base
 import Stats
 import Popup
 
 
-class Simple_HUD(Mucked.Aux_Seats):
+class Simple_HUD(Aux_Base.Aux_Seats):
     """A simple HUD class based on the Aux_Window interface."""
 
     def __init__(self, hud, config, aux_params):
@@ -127,7 +127,7 @@ class Simple_HUD(Mucked.Aux_Seats):
                     new_locs ,self.hud.table.width, self.hud.table.height)
 
         
-class Simple_Stat_Window(Mucked.Seat_Window):
+class Simple_Stat_Window(Aux_Base.Seat_Window):
     """Simple window class for stat windows."""
 
     def button_press_left(self, widget, event, *args): #move window
@@ -205,7 +205,7 @@ class Simple_stat(object):
 class Simple_eb(gtk.EventBox): pass
 class Simple_label(gtk.Label): pass
 
-class Simple_table_mw(Mucked.Seat_Window):
+class Simple_table_mw(Aux_Base.Seat_Window):
     """Create a default table hud main window with a menu."""
 #    This is a recreation of the table main window from the default HUD
 #    in the old Hud.py. This has the menu options from that hud. 
