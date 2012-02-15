@@ -413,14 +413,13 @@ class Aux_Seats(Aux_Window):
     def update_contents(self): pass
     
     def resize_windows(self): 
+        #Resize calculation has already happened in HUD_main&hud.py
+        # refresh our internal map to reflect these changes
         for i in (range(1, self.hud.max + 1)):
             self.positions[i] = self.hud.layout.location[self.adj[i]]
-            self.m_windows[i].move(self.positions[i][0] + self.hud.table.x,
-                            self.positions[i][1] + self.hud.table.y)
-
-        self.positions["common"] = self.hud.layout.common        
-        self.m_windows["common"].move(self.hud.layout.common[0] + self.hud.table.x,
-                                self.hud.layout.common[1] + self.hud.table.y)
+        self.positions["common"] = self.hud.layout.common
+        # and then move everything to the new places
+        self.move_windows()
 
     def move_windows(self):
         for i in (range(1, self.hud.max + 1)):
@@ -498,7 +497,7 @@ class Aux_Seats(Aux_Window):
         #reload latest block positions, in case another aux has changed them
         #these lines allow the propagation of block-moves across
         #the hud and mucked handlers for this table
-        self.move_windows()
+        self.resize_windows()
 
 #   Methods likely to be of use for any Seat_Window implementation
     def destroy(self):
@@ -526,8 +525,8 @@ class Aux_Seats(Aux_Window):
         over all seat and common locations
         """
 
-        print ("Aux_Seats.save_layout called - this shouldn't happen")
-        print ("save_layout method should be handled in the aux")
+        log.error(_("Aux_Seats.save_layout called - this shouldn't happen"))
+        log.error(_("save_layout method should be handled in the aux"))
 
 
     def configure_event_cb(self, widget, event, i, *args):
