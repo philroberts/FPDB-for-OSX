@@ -1125,16 +1125,23 @@ class Config:
         layout_node = self.get_layout_node(ls_node, max)
         if width: layout_node.setAttribute("width", str(width))
         if height: layout_node.setAttribute("height", str(height))
+        
         for (i, pos) in locations.iteritems():
             location_node = self.get_location_node(layout_node, i)
             location_node.setAttribute("x", str( locations[i][0] ))
             location_node.setAttribute("y", str( locations[i][1] ))
             #now refresh the live instance of the layout set with the new locations
-            #fixme - remove this back into the calling module
+            # this is needed because any future windows created after a save layout
+            # MUST pickup the new layout
+            #fixme - this is horrid 
             if i == "common":
                 self.layout_sets[ls.name].layout[max].common = ( locations[i][0], locations[i][1] )
             else:
                 self.layout_sets[ls.name].layout[max].location[i] = ( locations[i][0], locations[i][1] )
+        # more horridness below, fixme
+        if height: self.layout_sets[ls.name].layout[max].height = height
+        if width: self.layout_sets[ls.name].layout[max].width = width
+        
                 
     #NOTE: we got a nice Database class, so why map it again here?
     #            user input validation should be done when initializing the Database class. this allows to give appropriate feddback when something goes wrong
