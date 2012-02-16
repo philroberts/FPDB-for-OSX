@@ -189,9 +189,9 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
         def build_aggmenu(legend, cb_params, attrname):
             item = gtk.CheckMenuItem(legend)
             aggMenu.append(item)
-            if   "_agg" in attrname: item.connect("activate", self.set_aggregation, cb_params)
-            elif "_seats" in attrname: item.connect("activate", self.set_seats_style, cb_params)
-            elif "_hud" in attrname: item.connect("activate", self.set_hud_style, cb_params)
+            if   "aggBB" in attrname: item.connect("activate", self.set_aggregation, cb_params)
+            elif "seatsStyle" in attrname: item.connect("activate", self.set_seats_style, cb_params)
+            elif "hudStyle" in attrname: item.connect("activate", self.set_hud_style, cb_params)
             setattr(self, attrname, item)
                     
         # set agg_bb_mult to 1 to stop aggregation
@@ -301,6 +301,7 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
 
     def set_aggregation(self, widget, val):
         (player_opp, num) = val
+        
         if player_opp == 'P':
             # set these true all the time, set the multiplier to 1 to turn agg off:
             self.hud_params['h_aggregate_ring'] = True
