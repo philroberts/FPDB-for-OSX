@@ -107,12 +107,15 @@ class Table(Table_Window):
                 #print "x=", x, "y=", y, "width=", width, "height=", height
                 width = width - x
                 height = height - y
+                log.debug(("newhud - get_geo w h x y",str(width), str(height), str(x), str(y)))
                 return {
                     'x'      : int(x) + b_width,
                     'y'      : int(y) + tb_height,
                     'height' : int(height) - y,
                     'width'  : int(width) - x
                 }
+            else:
+                log.debug("newhud - WinTables window not found")
         except AttributeError:
             return None
 
