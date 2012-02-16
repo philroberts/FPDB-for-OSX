@@ -232,7 +232,7 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
         aggMenu.append(gtk.MenuItem(_('Since:')))
         build_aggmenu(("  " + _('All Time')),('O','A'), 'hudStyleOptionA')
         build_aggmenu(("  " + _('Session')),('O','S'), 'hudStyleOptionS')
-        build_aggmenu(("  " + _('%s Days') % (self.hud_params['h_hud_days'])),('O','T'), 'hudStyleOptionT')
+        build_aggmenu(("  " + _('%s Days') % (self.hud_params['hud_days'])),('O','T'), 'hudStyleOptionT')
         
         item5 = gtk.MenuItem(_('Set max seats'))
         menu.append(item5)

@@ -128,8 +128,6 @@
         - e.g. if set to 3 and current big blind is 50, stats for blind levels from
           16.7 (50 divided by 3) to big blind of 150 (50 times 3) are included
 -->
-<!-- fixme - statrange/stylekey S is not finding hero data in query 'get_stats_from_hand_aggregated'
--->
     <hud_ui
     stat_range="A"
     stat_days="90"
@@ -138,7 +136,6 @@
     aggregation_level_multiplier="3"
 
     hero_stat_range="A" 
-
     hero_stat_days="30"
     aggregate_hero_ring_game_stats="False"
     aggregate_hero_tourney_stats="False"
