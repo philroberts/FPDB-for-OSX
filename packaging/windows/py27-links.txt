@@ -11,7 +11,7 @@ Python 2.7 ... http://python.org/ftp/python/2.7/python-2.7.msi
 matplotlib 1.1.0 ... http://sourceforge.net/projects/matplotlib/files/matplotlib/matplotlib-1.1.0/matplotlib-1.1.0.win32-py2.7.exe
 pywin 216 ... http://sourceforge.net/projects/pywin32/files/pywin32/Build216/pywin32-216.win32-py2.7.exe/download
 pypokereval 138 ... http://sourceforge.net/projects/fpdb/files/fpdb/pypoker-eval-win32/pokereval-138.win32-py2.7.exe/download
-pygtk 2.24 all-in-1 bundle ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.24/pygtk-all-in-one-2.24.0.win32-py2.7.msi
+pygtk 2.24 all-in-1 bundle ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.24/pygtk-all-in-one-2.24.2.win32-py2.7.msi
   ***IMPORTANT***: Select option to install PyRsvg with this package
 numpy 1.6.1 ... http://sourceforge.net/projects/numpy/files/NumPy/1.6.1/numpy-1.6.1-win32-superpack-python2.7.exe/download
 winpaths 0.2 ... http://pypi.python.org/packages/any/w/winpaths/winpaths-0.2.win32.exe#md5=bd99492eb311530c630ec3f26828cd48
