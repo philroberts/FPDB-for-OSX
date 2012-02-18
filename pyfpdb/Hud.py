@@ -37,6 +37,7 @@ log = logging.getLogger("hud")
 
 #    FreePokerTools modules
 import Configuration
+import Database
 
 
 def importName(module_name, name):
@@ -51,7 +52,7 @@ def importName(module_name, name):
 
 
 class Hud:
-    def __init__(self, parent, table, max, poker_game, game_type, config, db_connection):
+    def __init__(self, parent, table, max, poker_game, game_type, config):
 #    __init__ is (now) intended to be called from the stdin thread, so it
 #    must not touch the gui
         #if parent is None:  # running from cli .. # fixme dont think this is working as expected
@@ -66,7 +67,13 @@ class Hud:
         self.game_type     = game_type # (ring|tour)
         self.max           = max
 
-        self.db_connection = db_connection
+        #create new database connection for this table - must create a fresh one
+        # here because the one used in HUD_Main is not available in this thread
+        self.db_connection = Database.Database(self.config)
+
+        #print self.db_connection.getHandCount() #test connect
+        #self.db_connection.connection.rollback()
+              
         self.site          = table.site
         self.hud_params    = dict.copy(parent.hud_params) # we must dict.copy a fresh hud_params dict
                                                           # because each aux hud can control local hud param 
