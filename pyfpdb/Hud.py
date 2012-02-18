@@ -66,13 +66,9 @@ class Hud:
         self.poker_game    = poker_game
         self.game_type     = game_type # (ring|tour)
         self.max           = max
-
-        #create new database connection for this table - must create a fresh one
-        # here because the one used in HUD_Main is not available in this thread
-        self.db_connection = Database.Database(self.config)
-
-        #print self.db_connection.getHandCount() #test connect
-        #self.db_connection.connection.rollback()
+        #A db connection is available to this thread - attribute name is self.db_hud_connection
+        # this is available once the create() method has been called
+        
               
         self.site          = table.site
         self.hud_params    = dict.copy(parent.hud_params) # we must dict.copy a fresh hud_params dict
@@ -217,14 +213,26 @@ class Hud:
 #    this method also manages the creating and destruction of stat
 #    windows via calls to the Stat_Window class
         self.creation_attrs = hand, config, stat_dict, cards
+#    load a hand object now using local db-connection self.db_hud_connection
 
-        self.hand = hand
-#        if not self.mw_created:
-#            self.create_mw()
-
+        #create new database connection for this table - must create a fresh one
+        # here because the one used in HUD_Main is not available in this thread
+        self.db_hud_connection = Database.Database(self.config)
+        
+        result = self.db_hud_connection.get_gameinfo_from_hid(hand)
+        gamebase = result[0][2]
+        
+        self.hand = hand            #fixme - not sure what this is doing here?
         self.stat_dict = stat_dict  #fixme - not sure what this is doing here?
         self.cards = cards          #fixme - not sure what this is doing here?
+
         log.info(_('Creating hud from hand ')+str(hand))
 
+
     def update(self, hand, config):
+        result = self.db_hud_connection.get_gameinfo_from_hid(hand)
+        gamebase = result[0][2]
+        
         self.hand = hand   # this is the last hand, so it is available later
+        #print self.db_connection.getHandCount() #test conn
+        #self.db_connection.connection.rollback()

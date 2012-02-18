@@ -676,6 +676,11 @@ class Database:
         c = self.connection.cursor()
         c.execute(self.sql.query['get_hand_info'], new_hand_id)
         return c.fetchall()
+        
+    def get_gameinfo_from_hid(self, new_hand_id):
+        c = self.connection.cursor()
+        c.execute(self.sql.query['get_gameinfo_from_hid'], (new_hand_id,))
+        return c.fetchall()        
 
     def getHandCount(self):
         c = self.connection.cursor()

@@ -19,6 +19,9 @@
 
 ########################################################################
 
+#TODO
+# mixed game support - pretty sure this code won't cope with a gamechange atm
+
 """Hud_main.py
 
 Main for FreePokerTools HUD.
