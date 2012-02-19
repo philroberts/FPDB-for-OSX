@@ -272,7 +272,7 @@ class HUD_main(object):
             if type == "tour":
                 try:
                     if temp_key in self.hud_dict:
-                        if tablewindow.table != tab_number:
+                        if unicode(tablewindow.table) != tab_number:  # tab_number is unicode, tablewindow.table is not :(
                             log.info(_("Table number changed: %s %s >>> %s") % (str(tour_number),str(tablewindow.table),str(tab_number)))
                             try:
                                 self.kill_hud("activate", temp_key)   # kill everything
