@@ -187,7 +187,9 @@ class HUD_main(object):
         # so maybe the tour ones should be set as well? does this fix the bug I see mentioned?
         self.hud_params['aggregate_tour'] = True
         self.hud_params['h_aggregate_tour'] = True
-
+        #fixme - passing self.db_connection into another thread
+        # is probably pointless. Note that the valid db_connection for
+        # that thread is NOT realised until Hud.create() has been called
         [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
         gobject.idle_add(idle_create, self, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards)
 
@@ -296,6 +298,8 @@ class HUD_main(object):
                     return
 
                 self.hud_dict[temp_key].cards = self.get_cards(new_hand_id)
+                #fixme - passing self.db_connection into another thread
+                # is probably pointless
                 [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
                 self.update_HUD(new_hand_id, temp_key, self.config)
 

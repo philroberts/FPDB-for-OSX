@@ -38,6 +38,8 @@ log = logging.getLogger("hud")
 #    FreePokerTools modules
 import Configuration
 import Database
+import Hand
+import SQL
 
 
 def importName(module_name, name):
@@ -66,9 +68,10 @@ class Hud:
         self.poker_game    = poker_game
         self.game_type     = game_type # (ring|tour)
         self.max           = max
-        #A db connection is available to this thread - attribute name is self.db_hud_connection
-        # this is available once the create() method has been called
-        
+        # self.db_hud_connection is available to this thread 
+        #  this is available once the create() method has been called
+        # the db_connection created in HUD_Main is NOT available to the
+        #  hud.py and aux handlers
               
         self.site          = table.site
         self.hud_params    = dict.copy(parent.hud_params) # we must dict.copy a fresh hud_params dict
@@ -217,11 +220,46 @@ class Hud:
 
         #create new database connection for this table - must create a fresh one
         # here because the one used in HUD_Main is not available in this thread
+        
+        #fixme - yet another copy of this code (With handcoded db)
+        # remove this to somewhere else
+        
         self.db_hud_connection = Database.Database(self.config)
+        self.sql = SQL.Sql(db_server = self.db_hud_connection.db_server)
         
-        result = self.db_hud_connection.get_gameinfo_from_hid(hand)
-        gamebase = result[0][2]
-        
+        q = self.sql.query['get_gameinfo_from_hid']
+        q = q.replace('%s', self.sql.query['placeholder'])
+
+        c = self.db_hud_connection.get_cursor()
+
+        c.execute(q, (hand,))
+        res = c.fetchone()
+        gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
+        #FIXME: smallbet and bigbet are res[8] and res[9] respectively
+        ###### End section ########
+        if gametype['base'] == 'hold':
+            self.hand_instance = Hand.HoldemOmahaHand(config = config, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=hand)
+        elif gametype['base'] == 'stud':
+            self.hand_instance= Hand.StudHand(config = config, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=hand)
+        elif gametype['base'] == 'draw':
+            self.hand_instance = Hand.DrawHand(config = config, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=hand)
+        self.hand_instance.select(self.db_hud_connection, hand)
+
+        '''
+        res = self.db_hud_connection.get_gameinfo_from_hid(hand)
+        res=res[0]
+        print res
+        gametypedict = {'sitename':res[0],'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
+                
+        if gametypedict['base'] == 'hold':
+            hand = Hand.HoldemOmahaHand(config=config, hhc=None, sitename=gametypedict['sitename'], gametype=gametypedict, handText=None, builtFrom="DB", handid=hand)
+        elif gametypedict['base'] == 'stud':
+            hand = Hand.StudHand(config=config, hhc=None, sitename=gametypedict['sitename'], gametype=gametypedict, handText=None, builtFrom="DB", handid=hand)
+        elif gametypedict['base'] == 'draw':
+            hand = Hand.DrawHand(config=config, hhc=None, sitename=gametypedict['sitename'], gametype=gametypedict, handText=None, builtFrom="DB", handid=hand)
+        print hand
+        hand.select(self.db_hud_connection, hand)
+        '''
         self.hand = hand            #fixme - not sure what this is doing here?
         self.stat_dict = stat_dict  #fixme - not sure what this is doing here?
         self.cards = cards          #fixme - not sure what this is doing here?
@@ -230,8 +268,27 @@ class Hud:
 
 
     def update(self, hand, config):
+        #fixme - yet another copy of this code (With handcoded db)
+        # remove this to somewhere else
+
         result = self.db_hud_connection.get_gameinfo_from_hid(hand)
-        gamebase = result[0][2]
+        q = self.sql.query['get_gameinfo_from_hid']
+        q = q.replace('%s', self.sql.query['placeholder'])
+
+        c = self.db_hud_connection.get_cursor()
+
+        c.execute(q, (hand,))
+        res = c.fetchone()
+        gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
+        #FIXME: smallbet and bigbet are res[8] and res[9] respectively
+        ###### End section ########
+        if gametype['base'] == 'hold':
+            self.hand_instance = Hand.HoldemOmahaHand(config = config, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=hand)
+        elif gametype['base'] == 'stud':
+            self.hand_instance= Hand.StudHand(config = config, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=hand)
+        elif gametype['base'] == 'draw':
+            self.hand_instance = Hand.DrawHand(config = config, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=hand)
+        self.hand_instance.select(self.db_hud_connection, hand)
         
         self.hand = hand   # this is the last hand, so it is available later
         #print self.db_connection.getHandCount() #test conn
