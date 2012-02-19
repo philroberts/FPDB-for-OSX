@@ -257,15 +257,35 @@ class HUD_main(object):
             except Exception:
                 log.exception(_("database error: skipping %s") % new_hand_id)
                 continue
-                
+            
+            # Do nothing if this site is on the ignore list
             if site_name in aux_disabled_sites:
                 continue
 
+
+            # Have we moved tables in a tournament?
+            # Check if our table from last hand still exists;
+            #  if it does not, then a table-move has taken place
+            #  so we must kill-off the existing hud
+            # Note that kill+restart will reset the aggregation settings
+                                
+            if type == "tour":
+                try:
+                    if temp_key in self.hud_dict:
+                        if tablewindow.table != tab_number:
+                            log.info(_("Table number changed: %s %s >>> %s") % (str(tour_number),str(tablewindow.table),str(tab_number)))
+                            try:
+                                self.kill_hud("activate", temp_key)   # kill everything
+                                while temp_key in self.hud_dict: time.sleep(0.5)   # wait for idle_kill to complete
+                            except: continue
+                except: pass
+                
+            # regenerate temp_key
             if type == "tour":   # hand is from a tournament
                 temp_key = "%s Table %s" % (tour_number, tab_number)
             else:
                 temp_key = table_name
-                
+
 #       detect maxseats changed in hud
 #       if so, kill and create new hud with specified "max"
             if temp_key in self.hud_dict:
@@ -281,6 +301,7 @@ class HUD_main(object):
                     
 #       detect poker_game changed in latest hand (i.e. mixed game)
 #       if so, kill and create new hud with specified poker_game
+#       Note that this will reset the aggretation params for that table
             if temp_key in self.hud_dict:
                 if self.hud_dict[temp_key].poker_game != poker_game:
                     print "game changed!:", poker_game
