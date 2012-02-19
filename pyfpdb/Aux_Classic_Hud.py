@@ -41,7 +41,6 @@ _ = L10n.get_translation()
 #=======
 # check that the parameters stored at AW level make sense for players
 #  - when playing more than one site
-# implement resize
 # sort out the wierd focus issues in flop-mucked.
 
 #    Standard Library modules

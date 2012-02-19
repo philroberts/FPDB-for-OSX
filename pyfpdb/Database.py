@@ -672,15 +672,23 @@ class Database:
         c.execute(self.sql.query['get_recent_hands'], {'last_hand': last_hand})
         return c.fetchall()
 
-    def get_hand_info(self, new_hand_id):
+    def get_gameinfo_from_hid(self, hand_id):
+        # returns a gameinfo (gametype) dictionary suitable for passing
+        #  to Hand.hand_factory
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_hand_info'], new_hand_id)
-        return c.fetchall()
+        q = self.sql.query['get_gameinfo_from_hid']
+        q = q.replace('%s', self.sql.query['placeholder'])
+        c.execute (q, (hand_id, ))
+        row = c.fetchone()
+        gameinfo = {'sitename':row[0],'category':row[1],'base':row[2],'type':row[3],'limitType':row[4],
+                'hilo':row[5],'sb':row[6],'bb':row[7], 'sbet':row[8],'bbet':row[9], 'currency':row[10]}
+        return gameinfo
         
-    def get_gameinfo_from_hid(self, new_hand_id):
-        c = self.connection.cursor()
-        c.execute(self.sql.query['get_gameinfo_from_hid'], (new_hand_id,))
-        return c.fetchall()        
+#   Query 'get_hand_info' does not exist, so it seems
+#    def get_hand_info(self, new_hand_id):
+#        c = self.connection.cursor()
+#        c.execute(self.sql.query['get_hand_info'], new_hand_id)
+#        return c.fetchall()      
 
     def getHandCount(self):
         c = self.connection.cursor()

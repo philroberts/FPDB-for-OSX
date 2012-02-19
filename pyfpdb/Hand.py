@@ -1794,3 +1794,25 @@ class Pot(object):
         ret += " Main pot %s%.2f" % (self.sym, self.pots[0][0])
 
         return ret + ''.join([ (" Side pot %s%.2f." % (self.sym, self.pots[x][0]) ) for x in xrange(1, len(self.pots)) ])
+        
+def hand_factory(hand_id, config, db_connection):
+    # a factory function to discover the base type of the hand
+    # and to return a populated class instance of the correct hand
+    
+    gameinfo = db_connection.get_gameinfo_from_hid(hand_id)
+
+    if gameinfo['base'] == 'hold':
+        hand_instance = HoldemOmahaHand(config=config, hhc=None, sitename=gameinfo['sitename'],
+         gametype = gameinfo, handText=None, builtFrom = "DB", handid=hand_id)
+    elif gameinfo['base'] == 'stud':
+        hand_instance = StudHand(config=config, hhc=None, sitename=gameinfo['sitename'],
+         gametype = gameinfo, handText=None, builtFrom = "DB", handid=hand_id)
+    elif gameinfo['base'] == 'draw':
+        hand_instance = DrawHand(config=config, hhc=None, sitename=gameinfo['sitename'],
+         gametype = gameinfo, handText=None, builtFrom = "DB", handid=hand_id)
+
+    hand_instance.select(db_connection, hand_id)
+    
+    return hand_instance
+
+
