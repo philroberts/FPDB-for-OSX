@@ -20,7 +20,7 @@
 ########################################################################
 
 #TODO
-# mixed game support - pretty sure this code won't cope with a gamechange atm
+
 
 """Hud_main.py
 
@@ -105,8 +105,8 @@ class HUD_main(object):
             self.main_window.connect("client_moved", self.client_moved)
             self.main_window.connect("client_resized", self.client_resized)
             self.main_window.connect("client_destroyed", self.client_destroyed)
-            self.main_window.connect("game_changed", self.game_changed)
-            self.main_window.connect("table_changed", self.table_changed)
+            #self.main_window.connect("game_changed", self.game_changed)
+            #self.main_window.connect("table_changed", self.table_changed)
             self.main_window.connect("destroy", self.destroy)
             self.vb = gtk.VBox()
             self.label = gtk.Label(_('Closing this window will exit from the HUD.'))
@@ -140,12 +140,12 @@ class HUD_main(object):
         log.debug(_("client_destroyed event"))
         self.kill_hud(None, hud.table.key)
 
-    def game_changed(self, widget, hud):
-        print "hud_main: " + _("Game changed.")
+#    def game_changed(self, widget, hud):
+#        print "hud_main: " + _("Game changed.")
 
-    def table_changed(self, widget, hud):
-        print "hud_main: " + _("Table changed")
-        self.kill_hud(None, hud.table.key)
+#    def table_changed(self, widget, hud):
+#        print "hud_main: " + _("Table changed")
+#        self.kill_hud(None, hud.table.key)
 
     def destroy(self, *args):             # call back for terminating the main eventloop
         log.info(_("Quitting normally"))
@@ -278,7 +278,18 @@ class HUD_main(object):
                     self.hud_dict[temp_key].hud_params['new_max_seats'] = None   # reset trigger
                 except:
                     pass
-                            
+                    
+#       detect poker_game changed in latest hand (i.e. mixed game)
+#       if so, kill and create new hud with specified poker_game
+            if temp_key in self.hud_dict:
+                if self.hud_dict[temp_key].poker_game != poker_game:
+                    print "game changed!:", poker_game
+                    try:
+                        self.kill_hud("activate", temp_key)   # kill everything
+                        while temp_key in self.hud_dict: time.sleep(0.5)   # wait for idle_kill to complete
+                    except:
+                        pass
+
 #        Update an existing HUD
             if temp_key in self.hud_dict:
                 # get stats using hud's specific params and get cards
