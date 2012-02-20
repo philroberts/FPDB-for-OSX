@@ -23,6 +23,7 @@ Handles fpdb/fpdb-hud configuration files.
 
 ########################################################################
 
+#TODO fix / rethink edit stats - it is broken badly just now
 
 #    Standard Library modules
 from __future__ import with_statement
@@ -362,9 +363,9 @@ class Site:
 
 class Stat:
     def __init__(self, node):
-        self.stat_name = node.getAttribute("stat_name")
-        self.row     = int( node.getAttribute("row") )
-        self.col     = int( node.getAttribute("col") )
+        rowcol         = node.getAttribute("_rowcol")                      # human string "(r,c)" values >0)
+        self.rowcol    = tuple(int(s)-1 for s in rowcol[1:-1].split(',')) # tuple (r-1,c-1)
+        self.stat_name = node.getAttribute("_stat_name")
         self.tip     = node.getAttribute("tip")
         self.click    = node.getAttribute("click")
         self.popup    = node.getAttribute("popup")
@@ -377,12 +378,11 @@ class Stat:
         self.stat_hicolor = node.getAttribute("stat_hicolor")
 
     def __str__(self):
-        temp = "        stat_name = %s, row = %d, col = %d\n" % (self.stat_name, self.row, self.col)
+        temp = "        row/col = %s, stat_name = %s, \n" % (self.rowcol, self.stat_name)
         for key in dir(self):
             if key.startswith('__'): continue
-            if key == 'stat_name':  continue
-            if key == 'row':  continue
-            if key == 'col':  continue
+            if key == '_stat_name':  continue
+            if key == '_rowcol':  continue
             value = getattr(self, key)
             if callable(value): continue
             temp = temp + '            ' + key + " = " + str(value) + "\n"
@@ -404,7 +404,7 @@ class Stat_sets:
         self.stats    = {}
         for stat_node in node.getElementsByTagName('stat'):
             stat = Stat(stat_node)
-            self.stats[stat.stat_name] = stat
+            self.stats[stat.rowcol] = stat # this is the key!
 
     def __str__(self):
         temp = "Name = " + self.name + "\n"
@@ -1088,17 +1088,13 @@ class Config:
             for columnNumber in range(len(statArray[rowNumber])):
                 newStat=self.doc.createElement("stat")
                 
-                newAttrStatName=self.doc.createAttribute("stat_name")
+                newAttrStatName=self.doc.createAttribute("_stat_name")
                 newStat.setAttributeNode(newAttrStatName)
-                newStat.setAttribute("stat_name", statArray[rowNumber][columnNumber])
+                newStat.setAttribute("_stat_name", statArray[rowNumber][columnNumber])
                 
-                newAttrStatName=self.doc.createAttribute("row")
+                newAttrStatName=self.doc.createAttribute("_rowcol")
                 newStat.setAttributeNode(newAttrStatName)
-                newStat.setAttribute("row", str(rowNumber))
-                
-                newAttrStatName=self.doc.createAttribute("col")
-                newStat.setAttributeNode(newAttrStatName)
-                newStat.setAttribute("col", str(columnNumber))
+                newStat.setAttribute("_rowcol", ("("+str(rowNumber+1)+","+str(columnNumber+1)+")"))
                 
                 newAttrStatName=self.doc.createAttribute("click")
                 newStat.setAttributeNode(newAttrStatName)
