@@ -84,11 +84,11 @@ class Simple_HUD(Aux_Base.Aux_Seats):
         self.tips   = [ [None]*self.ncols for i in range(self.nrows) ]
 
         for stat in self.game_params.stats:
-            self.stats[self.game_params.stats[stat].row][self.game_params.stats[stat].col] \
+            self.stats[self.game_params.stats[stat].rowcol[0]][self.game_params.stats[stat].rowcol[1]] \
                     = self.game_params.stats[stat].stat_name
-            self.popups[self.game_params.stats[stat].row][self.game_params.stats[stat].col] \
+            self.popups[self.game_params.stats[stat].rowcol[0]][self.game_params.stats[stat].rowcol[1]] \
                     = self.game_params.stats[stat].popup
-            self.tips[self.game_params.stats[stat].row][self.game_params.stats[stat].col] \
+            self.tips[self.game_params.stats[stat].rowcol[0]][self.game_params.stats[stat].rowcol[1]] \
                     = self.game_params.stats[stat].tip
                                         
     def create_contents(self, container, i):
@@ -155,7 +155,7 @@ class Simple_Stat_Window(Aux_Base.Seat_Window):
                 self.stat_box[r][c] = self.aw.aw_class_stat(self.aw.stats[r][c],
                     seat = self.seat,
                     popup = self.aw.popups[r][c],
-                    game_stat_config = self.aw.hud.supported_games_parameters["game_stat_set"].stats[self.aw.stats[r][c]],
+                    game_stat_config = self.aw.hud.supported_games_parameters["game_stat_set"].stats[(r,c)],
                     aw = self.aw)
                 self.grid.attach(self.stat_box[r][c].widget, c, c+1, r, r+1, xpadding = self.aw.xpad, ypadding = self.aw.ypad)
                 self.stat_box[r][c].set_color(self.aw.fgcolor, self.aw.bgcolor)

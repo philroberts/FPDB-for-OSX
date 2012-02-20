@@ -971,6 +971,12 @@ def ffreq4(stat_dict, player):
                 '(0/0)',
                 _('% fold frequency 7th street'))
 
+def blank(stat_dict, player):
+    # blank space on the grid
+    stat_descriptions["blank"] = " "
+    stat = " "
+    return (" ", " ", " ", " ", " ", " ")
+                
 def starthands(stat_dict, player, handid):
     
     

@@ -378,7 +378,7 @@ class Stat:
         self.stat_hicolor = node.getAttribute("stat_hicolor")
 
     def __str__(self):
-        temp = "        row/col = %s, stat_name = %s, \n" % (self.rowcol, self.stat_name)
+        temp = "        _rowcol = %s, _stat_name = %s, \n" % (self.rowcol, self.stat_name)
         for key in dir(self):
             if key.startswith('__'): continue
             if key == '_stat_name':  continue
@@ -1614,6 +1614,10 @@ if __name__== "__main__":
     for w in c.layout_sets.keys():
         print c.layout_sets[w]
     
+    print "\n----------- STAT SETS FORMATS -----------"
+    for w in c.stat_sets.keys():
+        print c.stat_sets[w]
+
     print "\n----------- HAND HISTORY CONVERTERS -----------"
     for w in c.hhcs.keys():
         print c.hhcs[w]
