@@ -416,3 +416,13 @@ class OnGame(HandHistoryConverter):
             if m.group('CARDS') is not None:
                 shown = True
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
+
+    @staticmethod
+    def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
+        "Returns string to search in windows titles"
+        regex = table_name
+        if type=="tour":
+            regex = "%s %s" %(tournament, table_number)
+        log.info("OnGame.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
+        log.info("OnGame.getTableTitleRe: returns: '%s'" % (regex))
+        return regex
