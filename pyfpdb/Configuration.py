@@ -969,6 +969,14 @@ class Config:
                 break
     #end def getEmailNode
 
+    def getStatSetNode(self,statsetName):
+        """returns DOM game node for a given game"""
+        for statsetNode in self.doc.getElementsByTagName("ss"):
+            #print "getStatSetNode statsetNode:",statsetNode
+            if statsetNode.getAttribute("name") == statsetName:
+                return statsetNode
+    
+    
     def getGameNode(self,gameName):
         """returns DOM game node for a given game"""
         for gameNode in self.doc.getElementsByTagName("game"):
@@ -976,6 +984,7 @@ class Config:
             if gameNode.getAttribute("game_name") == gameName:
                 return gameNode
     #end def getGameNode
+
     
     def get_aux_node(self, aux):
         for aux_node in self.doc.getElementsByTagName("aw"):
@@ -1073,16 +1082,16 @@ class Config:
         site_node.setAttribute("screen_name", screen_name)
         site_node.setAttribute("HH_path", history_path)
     
-    def editStats(self, gameName, statArray):
+    def editStats(self, statsetName, statArray):
         """replaces stat selection for the given gameName with the given statArray"""
-        gameNode = self.getGameNode(gameName)
-        statNodes = gameNode.getElementsByTagName("stat")
+        statsetNode = self.getStatSetNode(statsetName)
+        statNodes = statsetNode.getElementsByTagName("stat")
         
         for node in statNodes:
-            gameNode.removeChild(node)
+            statsetNode.removeChild(node)
         
-        gameNode.setAttribute("rows", str(len(statArray)))
-        gameNode.setAttribute("cols", str(len(statArray[0])))
+        statsetNode.setAttribute("rows", str(len(statArray)))
+        statsetNode.setAttribute("cols", str(len(statArray[0])))
         
         for rowNumber in range(len(statArray)):
             for columnNumber in range(len(statArray[rowNumber])):
@@ -1108,8 +1117,8 @@ class Config:
                 newStat.setAttributeNode(newAttrStatName)
                 newStat.setAttribute("tip", "")
                 
-                gameNode.appendChild(newStat)
-        statNodes = gameNode.getElementsByTagName("stat") #TODO remove this line?
+                statsetNode.appendChild(newStat)
+        statNodes = statsetNode.getElementsByTagName("stat") #TODO remove this line?
     #end def editStats
 
 

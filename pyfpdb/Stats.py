@@ -973,7 +973,7 @@ def ffreq4(stat_dict, player):
 
 def blank(stat_dict, player):
     # blank space on the grid
-    stat_descriptions["blank"] = " "
+    stat_descriptions["blank"] = "Blank"
     stat = " "
     return (" ", " ", " ", " ", " ", " ")
                 

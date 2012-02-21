@@ -359,7 +359,7 @@ class fpdb:
         comboGame = gtk.combo_box_new_text()
         comboGame.connect("changed", self.hud_preferences_combo_selection)
         diaSelections.vbox.add(comboGame)
-        games = self.config.get_supported_games()
+        games = self.config.get_stat_sets()
         for game in games:
             comboGame.append_text(game)
         comboGame.set_active(0)
@@ -416,13 +416,13 @@ class fpdb:
         diaHudTable.vbox.add(label)
         label.show()
 
-        label = gtk.Label(_("Note that you may not select any stat more than once or it will crash."))
-        diaHudTable.vbox.add(label)
-        label.show()
+        #label = gtk.Label(_("Note that you may not select any stat more than once or it will crash."))
+        #diaHudTable.vbox.add(label)
+        #label.show()
 
-        label = gtk.Label(_("It is not currently possible to select \"empty\" or anything else to that end."))
-        diaHudTable.vbox.add(label)
-        label.show()
+        #label = gtk.Label(_("It is not currently possible to select \"empty\" or anything else to that end."))
+        #diaHudTable.vbox.add(label)
+        #label.show()
 
         label = gtk.Label(_("To configure things like colouring you will still have to use the Advanced Preferences dialogue or manually edit your HUD_config.xml."))
         diaHudTable.vbox.add(label)
