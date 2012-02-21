@@ -83,6 +83,7 @@ class iPoker(HandHistoryConverter):
                 <ipoints>([%(NUM)s]+|N/A)</ipoints>\s+?
                 <win>(%(LS)s)?(?P<WIN>([%(NUM)s]+)|N/A)</win>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
+    re_TotalBuyin  = re.compile(r"""(?P<BUYIN>(?P<BIAMT>[%(LS)s%(NUM)s]+)\s\+\s?(?P<BIRAKE>[%(LS)s%(NUM)s]+)?)""" % substitutions, re.MULTILINE|re.VERBOSE)
     re_HandInfo = re.compile(r'code="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-/: 0-9]+)</startdate>', re.MULTILINE)
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" name="(?P<PNAME>[^"]+)" chips="(%(LS)s)(?P<CASH>[%(NUM)s]+)" dealer="(?P<BUTTONPOS>(0|1))" win="(%(LS)s)(?P<WIN>[%(NUM)s]+)" (bet="(%(LS)s)(?P<BET>[^"]+))?' % substitutions, re.MULTILINE)
     re_Board = re.compile(r'<cards type="(?P<STREET>Flop|Turn|River)" player="">(?P<CARDS>.+?)</cards>', re.MULTILINE)
@@ -177,19 +178,22 @@ class iPoker(HandHistoryConverter):
             self.tinfo['tourNo'] = mg['TABLE'].split(',')[-1].strip()
             self.tablename = mg['TABLE'].split(',')[0].strip()
             self.tinfo['buyinCurrency'] = mg['CURRENCY']
+            self.tinfo['buyin'] = 0
+            self.tinfo['fee'] = 0
             m2 = self.re_GameInfoTrny.search(handText)
             if m2:
                 mg =  m2.groupdict()
-                #FIXME: tournament no looks liek it is in the table name
-                mg['BIAMT']  = mg['BIAMT'].strip(u'$€£FPP')
-                mg['BIRAKE'] = mg['BIRAKE'].strip(u'$€£')
-                self.tinfo['buyin'] = int(100*Decimal(self.clearMoneyString(mg['BIAMT'])))
-                self.tinfo['fee']   = int(100*Decimal(self.clearMoneyString(mg['BIRAKE'])))
-                # FIXME: <place> and <win> not parsed at the moment.
-                #  NOTE: Both place and win can have the value N/A
-            else:
-                self.tinfo['buyin'] = 0
-                self.tinfo['fee'] = 0
+                if not mg['BIRAKE'] and mg['TOTBUYIN']:
+                    m3 = self.re_TotalBuyin.search(mg['TOTBUYIN'])
+                    if m3: mg = m3.groupdict()
+                if mg['BIRAKE']:
+                    #FIXME: tournament no looks liek it is in the table name
+                    mg['BIAMT']  = mg['BIAMT'].strip(u'$€£FPP')
+                    mg['BIRAKE'] = mg['BIRAKE'].strip(u'$€£')
+                    self.tinfo['buyin'] = int(100*Decimal(self.clearMoneyString(mg['BIAMT'])))
+                    self.tinfo['fee']   = int(100*Decimal(self.clearMoneyString(mg['BIRAKE'])))
+                    # FIXME: <place> and <win> not parsed at the moment.
+                    #  NOTE: Both place and win can have the value N/A
         else:
             self.info['type'] = 'ring'
             self.tablename = mg['TABLE']

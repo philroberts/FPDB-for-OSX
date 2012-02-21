@@ -60,6 +60,7 @@ class iPokerSummary(TourneySummary):
                 <ipoints>([%(NUM)s]+|N/A)</ipoints>\s+?
                 <win>(?P<CURRENCY>%(LS)s)?(?P<WIN>([%(NUM)s]+)|N/A)</win>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
+    re_DateTime = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
 
     codepage = ["utf-8"]
 
@@ -96,7 +97,14 @@ class iPokerSummary(TourneySummary):
         else:
             self.gametype['limitType'] = 'fl'
 
-        self.startTime = datetime.datetime.strptime(mg['DATETIME'], '%Y-%m-%d %H:%M:%S')
+        try:
+            self.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
+        except ValueError:
+            datestr = '%d/%m/%Y %H:%M:%S'
+            date_match = self.re_DateTime.search(m.group('DATETIME'))
+            if date_match.group('S') == None:
+                datestr = '%d/%m/%Y %H:%M'
+            self.startTime = datetime.datetime.strptime(m.group('DATETIME'), datestr)
         self.buyinCurrency = mg['CURRENCY']
         self.currency = self.buyinCurrency
 
