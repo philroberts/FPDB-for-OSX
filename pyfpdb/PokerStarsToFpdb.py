@@ -100,7 +100,7 @@ class PokerStars(HandHistoryConverter):
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
-          PokerStars(\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand)\s\#(?P<HID>[0-9]+):\s+
+          PokerStars(\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game)\s\#(?P<HID>[0-9]+):\s+
           (\{.*\}\s+)?(Tournament\s\#                # open paren of tournament info
           (?P<TOURNO>\d+),\s
           # here's how I plan to use LS
@@ -131,7 +131,7 @@ class PokerStars(HandHistoryConverter):
           re.MULTILINE|re.VERBOSE)
 
     re_HandInfo     = re.compile("""
-          ^Table\s\'(?P<TABLE>[-\ \#a-zA-Z\d\']+)\'\s
+          ^Table\s\'(?P<TABLE>[-\ \#a-zA-Z\d\'_]+)\'\s
           ((?P<MAX>\d+)-max\s)?
           (?P<PLAY>\(Play\sMoney\)\s)?
           (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
