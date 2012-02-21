@@ -669,7 +669,7 @@ class GUICashStats(list):
             [u'bbper100', u'bb/100', True, True, u'%4.2f', u'str', 1.0],
             [u'rake', u'Rake($)', True, True, u'%6.2f', u'cash', 1.0],
             [u'bb100xr', u'bbxr/100', True, True, u'%4.2f', u'str', 1.0],
-            [u'variance', u'Variance', True, True, u'%5.2f', u'str', 1.0]
+            [u'stddev', u'Standard Deviation', True, True, u'%5.2f', u'str', 1.0]
             ]
         for col in defaults:
             self.append (col)
