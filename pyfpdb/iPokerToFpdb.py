@@ -194,8 +194,8 @@ class iPoker(HandHistoryConverter):
                     self.tinfo['fee']   = int(100*Decimal(self.clearMoneyString(mg['BIRAKE'])))
                     # FIXME: <place> and <win> not parsed at the moment.
                     #  NOTE: Both place and win can have the value N/A
-            if self.buyin == 0:
-                self.buyinCurrency = 'FREE'
+            if self.tinfo['buyin'] == 0:
+                self.tinfo['buyinCurrency'] = 'FREE'
         else:
             self.info['type'] = 'ring'
             self.tablename = mg['TABLE']
