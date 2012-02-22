@@ -403,6 +403,28 @@ class iPoker(HandHistoryConverter):
     def readShownCards(self, hand):
         # Cards lines contain cards
         pass
+    
+    def guessMaxSeats(self, hand):
+        """Return a guess at maxseats when not specified in HH."""
+        # if some other code prior to this has already set it, return it
+        if self.maxseats > 1 and self.maxseats < 11:
+            if self.maxseats >= len(hand.players):
+                return self.maxseats
+        mo = len(hand.players)
+
+        if mo == 10: return 10 #that was easy
+
+        if hand.gametype['base'] == 'stud':
+            if mo <= 8: return 8
+            else: return mo
+
+        if hand.gametype['base'] == 'draw':
+            if mo <= 6: return 6
+            else: return mo
+
+        if mo == 2: return 2
+        if mo <= 6: return 6
+        return 10
 
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
