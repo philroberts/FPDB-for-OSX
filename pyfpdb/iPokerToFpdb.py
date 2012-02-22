@@ -218,7 +218,10 @@ class iPoker(HandHistoryConverter):
         #print "DEBUG: m.groupdict(): %s" % mg
         hand.tablename = self.tablename
         hand.handid = m.group('HID')
-        hand.maxseats = None
+        if self.info['type'] == 'tour' and self.maxseats==0:
+            self.maxseats = self.guessMaxSeats(hand)
+        else:
+            hand.maxseats = None
         try:
             hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
         except ValueError:
