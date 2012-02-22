@@ -99,13 +99,14 @@ class iPokerSummary(TourneySummary):
             self.gametype['limitType'] = 'fl'
 
         try:
-            self.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
+            self.startTime = datetime.datetime.strptime(mg['DATETIME'], '%Y-%m-%d %H:%M:%S')
         except ValueError:
             datestr = '%d/%m/%Y %H:%M:%S'
             date_match = self.re_DateTime.search(m.group('DATETIME'))
             if date_match.group('S') == None:
                 datestr = '%d/%m/%Y %H:%M'
             self.startTime = datetime.datetime.strptime(m.group('DATETIME'), datestr)
+            
         self.buyinCurrency = mg['CURRENCY']
         self.currency = self.buyinCurrency
 

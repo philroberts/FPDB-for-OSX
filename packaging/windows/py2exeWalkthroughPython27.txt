@@ -1,15 +1,46 @@
-PY2EXE walkthrough for Python 2.7 & FPDB 
-created on 27th Feb 2011 by Gimick , updated 19th Nov 2011
+Manual fpdb dependency install and PY2EXE walkthrough for Python 2.7 & FPDB
+
+created on 27th Feb 2011 by Gimick , updated 20th Feb 2012
 
 This walkthrough is derived from comments in the py2exe script made by Ray and SqlCoder
 Additional information, formatting, updating to Python 2.6 and Python 2.7 and sequencing added by Gimick
 Content is available under the the GNU Affero General Public License version 3
 
 
-Step 0 Get a fresh XP installation
-----------------------------------
+#    Copyright 2011-2012,  "Gimick" of the FPDB project  fpdb.sourceforge.net
+#
+#This program is free software: you can redistribute it and/or modify
+#it under the terms of the GNU Affero General Public License as published by
+#the Free Software Foundation, version 3 of the License.
+#
+#This program is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#GNU General Public License for more details.
+#
+#You should have received a copy of the GNU Affero General Public License
+#along with this program. If not, see <http://www.gnu.org/licenses/>.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
-0.1/ Using XPhome or Pro 32bit
+
+
+Step 0 Introduction
+-------------------
+
+***********************************************************************************
+*** If you are just wanting to use fpdb, please download the                    ***
+*** ".exe" package from sourceforge.  Do not follow any of these instructions.  ***
+***********************************************************************************
+
+If you do continue the installation, please remember that these instructions
+were written on a freshly installed XP system.  fpdb uses python and GTK and
+if you already have these installed on your system, overwriting the packages
+could break other applications (for example GIMP, which uses GTK toolkit).
+
+This walkthrough was written for XP 32bit, your mileage may vary with Vista and Win7
+
+We will always install the 32-bit packages (even if we have a 64bit windows).
+fpdb will NOT work with 64-bit/AMD dependencies
 
 
 Step 1, basic dependency install
@@ -22,12 +53,12 @@ matplotlib 1.1.0 ... http://sourceforge.net/projects/matplotlib/files/matplotlib
 pywin 216 ... http://sourceforge.net/projects/pywin32/files/pywin32/Build216/pywin32-216.win32-py2.7.exe/download
 pypokereval 138 ... http://sourceforge.net/projects/fpdb/files/fpdb/pypoker-eval-win32/pokereval-138.win32-py2.7.exe/download
 cdecimal 2.2 ... http://www.bytereef.org/software/mpdecimal/releases/cdecimal-2.2.win32-py2.7.msi
-mysql-python 1.2.3 ... http://sourceforge.net/projects/fpdb/files/fpdb/MySQL-python-1.2.3-win32-py2.7/MySQL-python-1.2.3.win32-py2.7.exe/download
-psycopg2 ... http://www.stickpeople.com/projects/python/win-psycopg/psycopg2-2.3.1.win32-py2.7-pg9.0.1-release.exe
-(Note: stickpeople is the offical repository, not a community build)
-pyICU ... http://www.lfd.uci.edu/~gohlke/pythonlibs/ (PyICU-1.2.win32-py2.7.exe)
 winpaths 0.2 ... http://pypi.python.org/packages/any/w/winpaths/winpaths-0.2.win32.exe#md5=bd99492eb311530c630ec3f26828cd48
-py2exe 0.6.9 ... http://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/py2exe-0.6.9.win32-py2.7.exe/download
+
+1.2/ Add the python install directory to the PATH environment variable on your system
+This will depend on your system, and the place where you installed python.
+
+This document might help: http://docs.python.org/using/windows.html
 
 
 Step 2, install pygtk and gtk all-in-1 package
@@ -36,70 +67,74 @@ Step 2, install pygtk and gtk all-in-1 package
 2.1/ Download
 pygtk 2.24 allin1bundle ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.24/pygtk-all-in-one-2.24.2.win32-py2.7.msi
 
-2.2/ Run installer ***IMPORTANT***: Select option to install PyRsvg
+2.2/ Run installer ***IMPORTANT***: You must select the option to install PyRsvg
 
 
-Step 3, fixup pytz to work in an executable package
----------------------------------------------------
+Step 3 install git and get fpdb sourcode
+----------------------------------------
 
-pytz was installed as part of the matplotlib package, but needs fixing to allow runtime access to timezone definition files.  pytz is hard-coded to search in the directory from which the pytz .py modules are being run.
-In a py2exe package, this directory is actually a library.zip container file, so windows cannot find the timezone definitions, and will crash the app.
+3.1/ git + fpdbsourcecode installation
 
-We need to make a one-line change to pytz to search in the current working directory (which is not a container), and not the application directory.
-The py2exe script copies the timezone datafiles into the package folder pyfpdb/zoneinfo.
+Download and install an up to date git client (choose a full installer)
+git ... http://code.google.com/p/msysgit/downloads/list
 
-Thanks to Jeff Peck <peck.jeff <at> gmail.com> on the py2exe mailing list for documenting this problem and solution.
+3.2/ get the fpdb sourcecode
 
-3.1/ dos> write C:\Python27\Lib\site-packages\pytz\__init__.py 
-3.2/ At line 94 replace the following line(s):
-
-        filename = os.path.join(os.path.dirname(__file__),
-                                'zoneinfo', *name_parts)
-
-with this line:
-
-        filename = os.path.join(os.getcwd(), 'zoneinfo', *name_parts)
-
-3.3/ Save and exit
+Help is here: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Git_intro
+fpdb can normally started by selecting run_fpdb.py from the fpdb folder.
 
 
-Step 4, Patch py2exe to stop popup runtime error message
---------------------------------------------------------
+3.3/ next steps
+---------------
 
-see http://www.py2exe.org/index.cgi/StderrLog for technical info.
+If you are fpdb developer who wants to build an exe package, go to Step 6 now.
 
-4.1/ dos> write C:\Python27\Lib\site-packages\py2exe\boot_common.py
-
-at line 63, replace:
-                    atexit.register(alert, 0,
-                                    "See the logfile '%s' for details" % fname,
-                                    "Errors occurred")
-with:
-                    #atexit.register(alert, 0,
-                    #                "See the logfile '%s' for details" % fname,
-                    #                "Errors occurred")
-
-4.2/ save and exit
+If you just want to run fpdb from source, go to Step 4.
 
 
-5/ Install correct Numpy for this build
------------------------------------------
+Step 4 Numpy installation
+-------------------------
 
-Numpy needs special handling, as by default it will install an optimised version for the SSE level of your CPU (SSE3, SSE2 or noSSE).  This means that the completed package will not run on an older CPU.  
+Download and install the following - just accept the default options, there should be no errors !
 
-For this reason, do not just run the installer.  We will force a nosse version, to minimise problems on
-older client PC's
+numpy 1.6.1 ... http://sourceforge.net/projects/numpy/files/NumPy/1.6.1/numpy-1.6.1-win32-superpack-python2.7.exe/download
 
-5.1/ download the package to the Desktop
+
+Step 5 - Test python and get fpdb sourcecode
+--------------------------------------------
+
+5.1/ Open the python command line and make sure everything imports.
+
+>>> import gtk
+>>> import win32gui
+>>> import numpy
+>>> import matplotlib
+>>> import winpaths
+
+
+5.2/ go to Step 7 now, ignore step 6 
+
+
+6/ Numpy Developer install 
+--------------------------
+
+Numpy needs special handling, as by default it will install an optimised version
+ for the SSE level of your CPU (SSE3, SSE2 or noSSE).
+This means that the completed package will not run on an older CPU.  
+
+For this reason, do not just run the installer.  
+We will force a nosse version, to maximise compatibility on older client PC's
+
+6.1/ download the package to the Desktop
  
 numpy 1.6.1 ... http://sourceforge.net/projects/numpy/files/NumPy/1.6.1/numpy-1.6.1-win32-superpack-python2.7.exe/download
 
-5.2/ You are normally wanting to build a package which works on all CPU's, so install for noSSE as follows:
+6.2/ You are normally wanting to build a package which works on all CPU's, so install for noSSE as follows:
 
 dos> cd Desktop
 dos> numpy-1.6.1-win32-superpack-python2.7.exe /arch nosse
 
-5.3/ At the end of the installation, click on "show details" to confirm the installation.
+6.3/ At the end of the installation, click on "show details" to confirm the installation.
 
 "Target CPU handles SSE2"
 "Target CPU handles SSE3"
@@ -110,25 +145,111 @@ Execute: "C:\DOCUME~1\user\LOCALS~1\Temp\numpy-1.6.1-nosse.exe"
 Completed
 
 
-Step 6 install mingw/gcc
-------------------------
+Step 7 Optional database installation
+-------------------------------------
 
-6.1/ Install minGW minimal installation
+#*******************************************************************************************#
+# Most people can STOP NOW, This step is only needed if you do not want to use the standard # 
+# database, or if you are a developer wanting to build an executable package !!!!           #
+#*******************************************************************************************#
+
+7.1/ For mysql support, or if you are a exe developer, do this
+
+*** Note that this driver package supports mysql version 5.1.34-win32 only ***
+
+download and install.....
+mysql-python 1.2.3 ... http://sourceforge.net/projects/fpdb/files/fpdb/MySQL-python-1.2.3-win32-py2.7/MySQL-python-1.2.3.win32-py2.7.exe/download
+
+
+7.2/ For postgres support, or if you are a exe developer, do this
+
+*** Note that this driver package supports postgres version 9.0.1 only ***
+
+download and install.....
+psycopg2 ... http://www.stickpeople.com/projects/python/win-psycopg/psycopg2-2.3.1.win32-py2.7-pg9.0.1-release.exe
+(Note: stickpeople is the offical repository, not a community build)
+
+
+#***********************************************************************************************#
+# Almost everyone can STOP NOW, the remaining sections of this document are just for developers #
+# who want to build an executable package !!!!                                                  #
+#***********************************************************************************************#
+
+
+Step 8, Install pyICU to display language names
+-----------------------------------------------
+
+Download and install...
+8.1/ pyICU ... http://www.lfd.uci.edu/~gohlke/pythonlibs/ (PyICU-1.2.win32-py2.7.exe)
+
+
+step 9, install and patch py2exe
+--------------------------------
+
+py2exe 0.6.9 ... http://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/py2exe-0.6.9.win32-py2.7.exe/download
+
+9.1/ dos> write C:\Python27\Lib\site-packages\py2exe\boot_common.py
+
+at line 63, replace:
+                    atexit.register(alert, 0,
+                                    "See the logfile '%s' for details" % fname,
+                                    "Errors occurred")
+with:
+                    #atexit.register(alert, 0,
+                    #                "See the logfile '%s' for details" % fname,
+                    #                "Errors occurred")
+
+see http://www.py2exe.org/index.cgi/StderrLog for technical info about this patch.
+
+9.2/ save and exit
+
+
+Step 10 install mingw/gcc
+-------------------------
+
+10.1/ Install minGW minimal installation
 See instructions here....http://www.mingw.org/wiki/InstallationHOWTOforMinGW
-6.2/ Alter the windows path to ensure that command "gcc" executes from the DOS prompt
+10.2/ Alter the windows path to ensure that command "gcc" executes from the DOS prompt
 
 
-Step 7 Get the fpdb GIT tree and prepare for build
---------------------------------------------------
+Step 11, fixup pytz to work in an executable package
+----------------------------------------------------
 
-7.1/ Take a copy of the GIT tree; the remaining steps will assume that the fpdb folder has been copied onto the Desktop
+pytz was installed as part of the matplotlib package, but needs fixing to allow runtime access to timezone definition files.  pytz is hard-coded to search in the directory from which the pytz .py modules are being run.
+In a py2exe package, this directory is actually a library.zip container file, so windows cannot find the timezone definitions, and will crash the app.
 
-7.2/ Set version number of build folder
+We need to make a one-line change to pytz to search in the current working directory (which is not a container), and not the application directory.
+The py2exe script copies the timezone datafiles into the package folder pyfpdb/zoneinfo.
+
+Thanks to Jeff Peck <peck.jeff <at> gmail.com> on the py2exe mailing list for documenting this problem and solution.
+
+11.1/ dos> write C:\Python27\Lib\site-packages\pytz\__init__.py 
+11.2/ At line 94 replace the following line(s):
+
+        filename = os.path.join(os.path.dirname(__file__),
+                                'zoneinfo', *name_parts)
+
+with this line:
+
+        filename = os.path.join(os.getcwd(), 'zoneinfo', *name_parts)
+
+11.3/ Save and exit
+
+****REALLY REALLY IMPORTANT NOTE****: Once you have patched pytz, running fpdb
+ from SOURCECODE will ___not___ work correctly (timezones not found by hand importer)
+
+
+Step 12 Get the fpdb GIT tree and prepare for build
+---------------------------------------------------
+
+12.1/ Take a copy of the GIT tree; the remaining steps will assume that the fpdb folder has been copied onto the Desktop
+
+12.2/ Set version number of build folder
 dos> cd Desktop\fpdb\packaging\windows
 dos> write py2exe_setup.py
 change the value of the variable "fpdbver" and save the file
 
-7.3/ edit pyfpdb/card_path.py
+12.3/ edit pyfpdb/card_path.py
 
 Define this function (overwrite any existing definition):
 
@@ -136,20 +257,20 @@ def deck_path():
     return os.path.dirname(sys.executable)
 
 
-Step 8 Run py2exe to generate fpdb.exe
---------------------------------------
+Step 13 Run py2exe to generate fpdb.exe
+---------------------------------------
 
-8.1/ Run the script to create the fpdb.exe bundle
+13.1/ Run the script to create the fpdb.exe bundle
 
 dos> cd Desktop\fpdb\packaging\windows
 dos> c:\python27\python.exe py2exe_setup.py py2exe
 
 wait a while, watch lots of copying and whatever.
 
-8.2/ You might get prompted for the GTK folder.
+13.2/ You might get prompted for the GTK folder.
 Enter the absolute path, e.g. c:\GTK
 
-8.3/ If there are no errors reported, it has probably worked, we will test soon.
+13.3/ If there are no errors reported, it has probably worked, we will test soon.
 
 Build notes:
 
@@ -157,33 +278,33 @@ There is a warning about dll's not included  "umath.pyd - c:\Python27\lib\site-p
  - reason for this is not understood at present.  (Umath is apparently included in the built package).
 
 
-Step 9 Drag out the completed bundle
+Step 14 Drag out the completed bundle
 ------------------------------------
 
 py2exe creates a new folder for the created software bundle, drag this out to the desktop for ease of working.
 
-9.1/ Drag Desktop\fpdb\packaging\windows\fpdb-n.nn.nnn to Desktop\
+14.1/ Drag Desktop\fpdb\packaging\windows\fpdb-n.nn.nnn to Desktop\
 
 
-Step 10 Compress to executable archive
+Step 15 Compress to executable archive
 --------------------------------------
 
-10.1/ Download and install 7zip 920 ... http://sourceforge.net/projects/sevenzip/files/7-Zip/9.20/7z920.exe/download
-10.2/ Rightclick on fpdb executable folder, select 7zip Add to archive... select SFX archive option switch
-10.3/ This executable will be the released software
+15.1/ Download and install 7zip 920 ... http://sourceforge.net/projects/sevenzip/files/7-Zip/9.20/7z920.exe/download
+15.2/ Rightclick on fpdb executable folder, select 7zip Add to archive... select SFX archive option switch
+15.3/ This executable will be the released software
 
 
-Step 11 basic testing
+Step 16 basic testing
 ---------------------
 
-11.1/ Open the Desktop\fpdb-n.nn.nnn  folder
-11.2/ In explorer...tools...folder options...View uncheck "Hide extensions for known file types" 
-11.3/ Double click run_fpdb.bat
-11.4/ hopefully, fpdb will run 
+16.1/ Open the Desktop\fpdb-n.nn.nnn  folder
+16.2/ In explorer...tools...folder options...View uncheck "Hide extensions for known file types" 
+16.3/ Double click run_fpdb.bat
+16.4/ hopefully, fpdb will run 
 
-11.5/ check the contents of pyfpdb\fpdb.exe.log
-11.6/ check the contents of fpdb_prerun.txt
-11.7/ check the contents of C:\Documents and Settings\xxxxxxx\Application Data\fpdb\log
+16.5/ check the contents of pyfpdb\fpdb.exe.log
+16.6/ check the contents of fpdb_prerun.txt
+16.7/ check the contents of C:\Documents and Settings\xxxxxxx\Application Data\fpdb\log
 
-Note: msvcp90.dll was provided by the python runtime package, so we don't have to install the separate package from Microsoft.  End-users will, however need the dependency.
-
+Note: msvcp90.dll was provided by the python runtime package, so we don't have to install the separate package from Microsoft.
+End-users will, however need the dependency.
