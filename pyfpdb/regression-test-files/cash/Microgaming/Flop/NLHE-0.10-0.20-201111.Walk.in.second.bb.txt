@@ -1,0 +1,29 @@
+<Game id="4155596174" date="2011-11-01 23:42:20" unicodetablename="QgB1AHQAdABvAG4AIAAxACAALQAgAKwgMgAwACAATQBhAHgA" tablename="Button 1 - €20 Max" stakes="0.10|0.20" betlimit="NL" tabletype="Cash Game" gametypeid="1" gametype="Hold&apos;em" realmoney="true" currencysymbol="rCA=" playerseat="5" betamount="10" istournament="0" rake="0">
+   <Seats>
+      <Seat num="1" alias="Player1" unicodealias="MAAwADAAUABlAG4AaQBuAGEA" balance="20.00" endbalance="20.30"/>
+      <Seat num="2" alias="Player2" unicodealias="SwBoAGUAbQBpAGsAYQBsAA==" balance="28.66" endbalance="28.66"/>
+      <Seat num="3" alias="Player3" unicodealias="SQBuAHoAYQBnAGgAaQBKAEsATAA=" balance="20.42" endbalance="20.42"/>
+      <Seat num="4" alias="Player4" unicodealias="UgBhAGkAdAB6AHoA" balance="22.02" endbalance="22.02" dealer="true"/>
+      <Seat num="5" alias="Hero" unicodealias="cwB0AGEAcgB2AGkAbgBnAA==" balance="21.10" endbalance="21.00"/>
+      <Seat num="6" alias="Player5" unicodealias="TQBlAHQAYQBQAHIAbwBmAGkAdAA=" balance="24.20" endbalance="24.00"/>
+   </Seats>
+   <Gameplay>
+      <Action seq="1" type="SmallBlind" seat="5" value="0.10"/>
+      <Action seq="2" type="BigBlind" seat="6" value="0.20"/>
+      <Action seq="3" type="PostedToPlay" seat="1" value="0.20"/>
+      <Action seq="4" type="DealCards" seat="5">
+         <Card value="K" suit="h" id="51"/>
+         <Card value="8" suit="d" id="33"/>
+      </Action>
+      <Action seq="5" type="Check" seat="1"/>
+      <Action seq="6" type="Fold" seat="2"/>
+      <Action seq="7" type="Fold" seat="3"/>
+      <Action seq="8" type="Fold" seat="4"/>
+      <Action seq="9" type="Fold" seat="5"/>
+      <Action seq="10" type="Fold" seat="6"/>
+      <Action seq="11" type="MuckCards" seat="1"/>
+      <Action type="Win">
+         <Seat num="1" amount="0.50" pot="0" type="" lowhandwin="0"/>
+      </Action>
+   </Gameplay>
+</Game>

@@ -49,14 +49,18 @@ class TourneySummary(object):
     LCS = {'H':'h', 'D':'d', 'C':'c', 'S':'s'}                                                  # SAL- TO KEEP ??
     SYMBOL = {'USD': '$', 'EUR': u'$', 'T$': '', 'play': ''}
     MS = {'horse' : 'HORSE', '8game' : '8-Game', 'hose'  : 'HOSE', 'ha': 'HA'}
-    SITEIDS = {'Fulltilt':1, 'Full Tilt Poker':1, 'PokerStars':2, 'Everleaf':3, 'Boss':4, 'OnGame':5, 'UltimateBet':6, 'Betfair':7, 'Absolute':8, 'PartyPoker':9, 'Winamax':14 }
+    SITEIDS = {'Fulltilt':1, 'Full Tilt Poker':1, 'PokerStars':2, 'Everleaf':3, 'Boss':4, 'OnGame':5,
+               'UltimateBet':6, 'Betfair':7, 'Absolute':8, 'PartyPoker':9, 'PacificPoker':10,
+               'Partouche':11, 'Merge':12, 'PKR':13, 'iPoker':14, 'Winamax':15,
+               'Everest':16, 'Cake':17, 'Entraction':18, 'BetOnline':19, 'Microgaming':20 }
 
 
-    def __init__(self, db, config, siteName, summaryText, builtFrom = "HHC"):
+    def __init__(self, db, config, siteName, summaryText, in_path = '-', builtFrom = "HHC"):
         self.db                 = db
         self.config             = config
         self.siteName           = siteName
         self.siteId             = self.SITEIDS[siteName]
+        self.in_path            = in_path
         
         self.summaryText        = summaryText
         self.tourneyName        = None
@@ -66,6 +70,7 @@ class TourneySummary(object):
         self.endTime            = None
         self.tourNo             = None
         self.currency           = None
+        self.buyinCurrency      = None
         self.buyin              = 0
         self.fee                = 0
         self.hero               = None
@@ -86,11 +91,11 @@ class TourneySummary(object):
         self.subTourneyFee      = None
         self.rebuyChips         = None
         self.addOnChips         = None
-        self.rebuyCost          = None
-        self.addOnCost          = None
+        self.rebuyCost          = 0
+        self.addOnCost          = 0
         self.totalRebuyCount    = None
         self.totalAddOnCount    = None
-        self.koBounty           = None
+        self.koBounty           = 0
         self.tourneyComment     = None
         self.players            = []
         self.isSng              = False
@@ -189,6 +194,9 @@ class TourneySummary(object):
             str = str + "\n%s =\n" % name + pprint.pformat(struct, 4)
         return str
     #end def __str__
+
+    def getSplitRe(self, head): abstract
+    """Function to return a re object to split the summary text into separate tourneys, based on head of file"""
     
     def parseSummary(self): abstract
     """should fill the class variables with the parsed information"""
@@ -221,12 +229,10 @@ class TourneySummary(object):
         #    self.playerIds.update({player:id})
         
         #print "TS.insert players",self.players,"playerIds",self.playerIds
-        
-        self.buyinCurrency=self.currency
         self.dbid_pids=self.playerIds #TODO:rename this field in Hand so this silly renaming can be removed
         
         #print "TS.self before starting insert",self
-        self.tourneyTypeId = self.db.getSqlTourneyTypeIDs(self)
+        self.tourneyTypeId = self.db.createOrUpdateTourneyType(self)
         self.tourneyId = self.db.createOrUpdateTourney(self)
         self.db.createOrUpdateTourneysPlayers(self)
         self.db.commit()
@@ -297,7 +303,7 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
-            #print "checkPlayerExists", player, "fail"
+            log.error(_("TourneySummary: Tried to add info for unknown player: '%s'") % player)
             raise FpdbParseError
 
     def writeSummary(self, fh=sys.__stdout__):

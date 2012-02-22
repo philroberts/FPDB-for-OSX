@@ -22,7 +22,6 @@ import L10n
 _ = L10n.get_translation()
 
 import sys
-import logging
 from HandHistoryConverter import *
 
 # Class for converting Everleaf HH format.
@@ -44,20 +43,12 @@ class Everleaf(HandHistoryConverter):
     # Static regexes
     re_SplitHands  = re.compile(r"\n\n\n+")
     re_TailSplitHands  = re.compile(r"(\n\n\n+)")
-    re_GameInfo    = re.compile(ur"^(Blinds )? ?(?P<CURRENCY>[%(LS)s]?)(?P<SB>[.0-9]+) ?/ ? ?[%(LS)s]?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) ?(?P<GAME>(Hold\'em|Omaha|7\sCard\sStud))" % substitutions, re.MULTILINE)
-    
-    #re_HandInfo    = re.compile(ur".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?P<CURRENCY>[$€])?(?P<SB>[.0-9]+)/(?:[$€])?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)", re.MULTILINE)
-    
-    re_HandInfo    = re.compile(ur".*\n(.*#|.* partie )(?P<HID>[0-9]+).*(\n|\n\n)(Blinds )? ?(?P<CURRENCY>[%(LS)s])?(?P<SB>[.0-9]+) ?/ ?(?:[%(LS)s])?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)" % substitutions, re.MULTILINE)
-    #
-    
-    #re_HandInfo    = re.compile(ur"(.*#|.*\n.* partie )(?P<HID>[0-9]+).*(\n|\n\n)(Blinds )?(?:\$| €|)(?P<SB>[.0-9]+)/(?:\$| €|)(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)", re.MULTILINE) 
-    
-    
+    re_GameInfo    = re.compile(ur"^(Blinds )? ?(?P<CURRENCY>[%(LS)s]?)(?P<SB>[%(NUM)s]+) ?/ ? ?[%(LS)s]?(?P<BB>[%(NUM)s]+) (?P<LIMIT>NL|PL|) ?(?P<GAME>(Hold\'em|Omaha|7\sCard\sStud))" % substitutions, re.MULTILINE)
+    re_HandInfo    = re.compile(ur".*\n(.*#|.* partie )(?P<HID>[0-9]+).*(\n|\n\n)(Blinds )? ?(?P<CURRENCY>[%(LS)s])?(?P<SB>[%(NUM)s]+) ?/ ?(?:[%(LS)s])?(?P<BB>[%(NUM)s]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)" % substitutions, re.MULTILINE) 
     re_Button      = re.compile(ur"^Seat (?P<BUTTON>\d+) is the button$", re.MULTILINE)
     re_PlayerInfo  = re.compile(ur"""^Seat\s(?P<SEAT>[0-9]+):\s(?P<PNAME>.*)\s+
                                     \(
-                                      \s+[%(LS)s]?\s?(?P<CASH>[.0-9]+)
+                                      \s+[%(LS)s]?\s?(?P<CASH>[%(NUM)s]+)
                                           (\s(USD|EURO|EUR|Chips)?(new\splayer|All-in)?)?
                                   \s?\)$
                                   """ % substitutions, re.MULTILINE|re.VERBOSE)
@@ -71,17 +62,19 @@ class Everleaf(HandHistoryConverter):
             # we need to recompile the player regexs.
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
-            logging.debug("player_re: "+ player_re)
-            self.re_PostSB          = re.compile(ur"^%s: posts small blind \[ ?[%s]? (?P<SB>[.0-9]+)\s.*\]$" % (player_re, self.substitutions["LS"]), re.MULTILINE)
-            self.re_PostBB          = re.compile(ur"^%s: posts big blind \[ ?[%s]? (?P<BB>[.0-9]+)\s.*\]$" % (player_re, self.substitutions["LS"]), re.MULTILINE)
-            self.re_PostBoth        = re.compile(ur"^%s: posts both blinds \[ ?[%s]? (?P<SBBB>[.0-9]+)\s.*\]$" % (player_re, self.substitutions["LS"]), re.MULTILINE)
-            self.re_Antes           = re.compile(ur"^%s: posts ante \[ ?[%s]? (?P<ANTE>[.0-9]+)\s.*\]$" % (player_re, self.substitutions["LS"]), re.MULTILINE)
-            self.re_BringIn         = re.compile(ur"^%s posts bring-in  ?[%s]? (?P<BRINGIN>[.0-9]+)\." % (player_re, self.substitutions["LS"]), re.MULTILINE)
+            log.debug("player_re: "+ player_re)
+            self.substitutions['PLAYERS'] = player_re
+            
+            self.re_PostSB          = re.compile(ur"^%(PLAYERS)s: posts small blind \[ ?[%(LS)s]? (?P<SB>[%(NUM)s]+)\s.*\]$" % self.substitutions, re.MULTILINE)
+            self.re_PostBB          = re.compile(ur"^%(PLAYERS)s: posts big blind \[ ?[%(LS)s]? (?P<BB>[%(NUM)s]+)\s.*\]$" % self.substitutions, re.MULTILINE)
+            self.re_PostBoth        = re.compile(ur"^%(PLAYERS)s: posts both blinds \[ ?[%(LS)s]? (?P<SBBB>[%(NUM)s]+)\s.*\]$" % self.substitutions, re.MULTILINE)
+            self.re_Antes           = re.compile(ur"^%(PLAYERS)s: posts ante \[ ?[%(LS)s]? (?P<ANTE>[%(NUM)s]+)\s.*\]$" % self.substitutions, re.MULTILINE)
+            self.re_BringIn         = re.compile(ur"^%(PLAYERS)s posts bring-in  ?[%(LS)s]? (?P<BRINGIN>[%(NUM)s]+)\." % self.substitutions, re.MULTILINE)
             self.re_HeroCards       = re.compile(ur"^Dealt to %s \[ (?P<CARDS>.*) \]$" % player_re, re.MULTILINE)
             # ^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.,\d]+) (USD|EURO|EUR|Chips)\])?
-            self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?: ?[%s]?) (?P<BET>[.,\d]+)\s?(USD|EURO|EUR|Chips|)\])?" % (player_re, self.substitutions["LS"]), re.MULTILINE)
+            self.re_Action          = re.compile(ur"^%(PLAYERS)s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?: ?[%(LS)s]?) (?P<BET>[%(NUM)s]+)\s?(USD|EURO|EUR|Chips|)\])?" % self.substitutions, re.MULTILINE)
             self.re_ShowdownAction  = re.compile(ur"^%s (?P<SHOWED>shows|mucks) \[ (?P<CARDS>.*) \] (?P<STRING>.*)" % player_re, re.MULTILINE)
-            self.re_CollectPot      = re.compile(ur"^%s wins  ?(?: ?[%s]?)\s?(?P<POT>[.\d]+) (USD|EURO|EUR|chips)(.*?\[ (?P<CARDS>.*?) \])?" % (player_re, self.substitutions["LS"]), re.MULTILINE)
+            self.re_CollectPot      = re.compile(ur"^%(PLAYERS)s wins  ?(?: ?[%(LS)s]?)\s?(?P<POT>[%(NUM)s]+) (USD|EURO|EUR|chips)(.*?\[ (?P<CARDS>.*?) \])?" % self.substitutions, re.MULTILINE)
             self.re_SitsOut         = re.compile(ur"^%s sits out" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
@@ -124,10 +117,9 @@ or None if we fail to get the info """
         
         m = self.re_GameInfo.search(handText)
         if not m:
-            tmp = handText[0:150]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            tmp = handText[0:200]
+            log.error(_("EverleafToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
 
@@ -145,9 +137,9 @@ or None if we fail to get the info """
         if 'GAME' in mg:
             (info['base'], info['category']) = games[mg['GAME']]
         if 'SB' in mg:
-            info['sb'] = mg['SB']
+            info['sb'] = self.clearMoneyString(mg['SB'])
         if 'BB' in mg:
-            info['bb'] = mg['BB']
+            info['bb'] = self.clearMoneyString(mg['BB'])
         if 'CURRENCY' in mg:
             info['currency'] = currencies[mg['CURRENCY']]
             if info['currency'] == 'T$':
@@ -160,10 +152,11 @@ or None if we fail to get the info """
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if(m == None):
-            logging.info(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-            logging.info(hand.handText)
-            return None
-        logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
+            tmp = hand.handText[0:200]
+            log.error(_("EverleafToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
+        
+        #log.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid =  m.group('HID')
         hand.tablename = m.group('TABLE')
         hand.maxseats = 4     # assume 4-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
@@ -178,6 +171,9 @@ or None if we fail to get the info """
             tourno = t.group('TOURNO')
             hand.tourNo = tourno
             hand.tablename = t.group('TABLE')
+            hand.buyin = 0
+            hand.fee = 0
+            hand.buyinCurrency = 'NA'
             #TODO we should fetch info including buyincurrency, buyin and fee from URL:
             #           https://www.poker4ever.com/tourney/%TOURNEY_NUMBER%
 
@@ -218,38 +214,38 @@ or None if we fail to get the info """
         # If this has been called, street is a street which gets dealt community cards by type hand
         # but it might be worth checking somehow.
 #        if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
-        logging.debug("readCommunityCards (%s)" % street)
+        log.debug("readCommunityCards (%s)" % street)
         m = self.re_Board.search(hand.streets[street])
         cards = m.group('CARDS')
         cards = [card.strip() for card in cards.split(',')]
         hand.setCommunityCards(street=street, cards=cards)
 
     def readAntes(self, hand):
-        logging.debug(_("reading antes"))
+        log.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
-            logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
-            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+            log.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
+            hand.addAnte(player.group('PNAME'), self.clearMoneyString(player.group('ANTE')))
 
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
-            logging.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
-            hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
+            log.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
+            hand.addBringIn(m.group('PNAME'),  self.clearMoneyString(m.group('BRINGIN')))
         else:
-            logging.warning(_("No bringin found."))
+            log.warning(_("No bringin found."))
 
     def readBlinds(self, hand):
         m = self.re_PostSB.search(hand.handText)
         if m is not None:
-            hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
+            hand.addBlind(m.group('PNAME'), 'small blind', self.clearMoneyString(m.group('SB')))
         else:
-            logging.debug(_("No small blind"))
+            log.debug(_("No small blind"))
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+            hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
         for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+            hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
@@ -271,37 +267,37 @@ or None if we fail to get the info """
 
 
     def readStudPlayerCards(self, hand, street):
-        logging.warning(_("%s cannot read all stud/razz hands yet.") % hand.sitename)
+        log.warning(_("%s cannot read all stud/razz hands yet.") % hand.sitename)
 
 
     def readAction(self, hand, street):
-        logging.debug("readAction (%s)" % street)
+        log.debug("readAction (%s)" % street)
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            logging.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
-            if action.group('ATYPE') == ' raises':
-                hand.addCallandRaise( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' calls':
-                hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ': bets':
-                hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' folds':
+            log.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
+            if action.group('ATYPE') == ' folds':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
+            elif action.group('ATYPE') == ' calls':
+                hand.addCall( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ' raises':
+                hand.addCallandRaise( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ': bets':
+                hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' complete to':
                 hand.addComplete( street, action.group('PNAME'), action.group('BET'))
             else:
-                logging.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
+                log.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):
         """Reads lines where holecards are reported in a showdown"""
-        logging.debug("readShowdownActions")
+        log.debug("readShowdownActions")
         for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
             cards = cards.split(', ')
-            logging.debug("readShowdownActions %s %s" % (cards, shows.group('PNAME')))
+            log.debug("readShowdownActions %s %s" % (cards, shows.group('PNAME')))
             hand.addShownCards(cards, shows.group('PNAME'))
 
 
@@ -322,7 +318,7 @@ or None if we fail to get the info """
                 if m.group('SHOWED') == "showed": shown = True
                 elif m.group('SHOWED') == "mucked": mucked = True
                 
-                logging.debug("readShownCards %s cards=%s" % (player, cards))
+                log.debug("readShownCards %s cards=%s" % (player, cards))
 #                hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
                 hand.addShownCards(cards=cards, player=player, shown=shown, mucked=mucked, string=string)
 

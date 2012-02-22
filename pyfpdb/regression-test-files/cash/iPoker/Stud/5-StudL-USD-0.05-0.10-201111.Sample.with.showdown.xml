@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<session sessioncode="3463716601">  
+			<general>  
+	    	<mode>real</mode>
+	      		<gametype>5 Card Stud L $0.05/$0.10</gametype>  
+	          <tablename>Dundee, 637718441</tablename>  
+	          <duration>00:17</duration>  
+	          <gamecount>51</gamecount>  
+	          <startdate>2011-11-02 18:11:00</startdate>  
+	          <currency>USD</currency>  
+	          <nickname>Hero</nickname>  
+	          <bets>$5.41</bets>  
+	          <wins>$3.41</wins>  
+	          <chipsin>$2</chipsin>
+			  		<chipsout>$0</chipsout>
+			  		<ipoints>3.40</ipoints>
+        		<statuspoints>3.40</statuspoints>
+			  		<awardpoints>3.40</awardpoints>
+	            
+	    </general>  
+		<game gamecode="3013529647">
+		 <general>
+		  <startdate>2011-11-02 18:10:00</startdate>		  
+		  <players>
+		   <player seat="1" name="Player1" chips="$2.67" dealer="1" win="$0.42" bet="$0.22" rebuy="0" addon="0"/><player seat="4" name="Hero" chips="$1.28" dealer="0" win="$0" bet="$0.22" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player1" type="15" sum="$0.02" cards="[cards]"/><action no="2" player="Hero" type="15" sum="$0.02" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 
+	</round>
+	<round no="2">
+	 <cards type="Second Street" player="Player1">H8 DJ</cards><action no="4" player="Player1" type="5" sum="$0.05" cards=""/><cards type="Second Street" player="Hero">SQ C3</cards><action no="3" player="Hero" type="16" sum="$0.02" cards=""/><action no="5" player="Hero" type="3" sum="$0.03" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Third Street" player="Player1">C4</cards><action no="6" player="Player1" type="5" sum="$0.05" cards=""/><cards type="Third Street" player="Hero">C2</cards><action no="7" player="Hero" type="3" sum="$0.05" cards=""/>
+	</round>
+	<round no="4">
+	 <cards type="Fourth Street" player="Player1">S4</cards><action no="8" player="Player1" type="5" sum="$0.10" cards=""/><cards type="Fourth Street" player="Hero">CK</cards><action no="9" player="Hero" type="3" sum="$0.10" cards=""/>
+	</round>
+	<round no="5">
+	 <cards type="River" player="Player1">DK</cards><action no="10" player="Player1" type="4" sum="$0" cards=""/><cards type="River" player="Hero">C5</cards><action no="11" player="Hero" type="4" sum="$0" cards=""/>
+	</round>
+	
+		</game>
+

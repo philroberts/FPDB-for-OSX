@@ -238,12 +238,6 @@ class Importer:
         if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'auto':
             self.settings['dropHudCache'] = self.calculate_auto2(self.database, 25.0, 500.0)    # returns "drop"/"don't drop"
 
-        if self.settings['dropIndexes'] == 'drop':
-            self.database.prepareBulkImport()
-        else:
-            log.info(_("No need to drop indexes."))
-        #print "dropInd =", self.settings['dropIndexes'], "  dropHudCache =", self.settings['dropHudCache']
-
         if self.settings['threads'] <= 0:
             (totstored, totdups, totpartial, toterrors) = self.importFiles(None)
         else:
@@ -275,16 +269,6 @@ class Importer:
                     sleep(0.5)
                 print _("... writers finished")
 
-        # Tidying up after import
-        if self.settings['dropIndexes'] == 'drop':
-            self.database.afterBulkImport()
-        else:
-            log.info (_("No need to rebuild indexes."))
-        if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'drop':
-            self.database.rebuild_hudcache()
-        else:
-            log.info (_("No need to rebuild hudcache."))
-        self.database.analyzeDB()
         endtime = time()
         return (totstored, totdups, totpartial, toterrors, endtime-starttime)
     # end def runImport
@@ -335,7 +319,17 @@ class Importer:
                         shutil.move(file, "c:\\fpdbfailed\\%d-%s" % (fileerrorcount, os.path.basename(file[3:]) ) )
             
             self.logImport('bulk', file, stored, duplicates, partial, errors, ttime, self.filelist[file][2])
+
+        # Tidying up after import
+        if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'drop':
+            self.database.rebuild_hudcache()
+        else:
+            self.database.cleanUpTourneyTypes()
+            self.database.resetttclean()
+            log.info (_("No need to rebuild hudcache."))
+        self.database.analyzeDB()
         self.database.commit()
+
         del ProgressDialog
         
         for i in xrange( self.settings['threads'] ):
@@ -523,7 +517,7 @@ class Importer:
                             hand = ihands[-1]
                             hp = hand.handsplayers
                             hand.hero, self.database.hbulk, hand.handsplayers  = 0, self.database.hbulk[:-1], [] #making sure we don't insert data from this hand
-                            hand.updateSessionsCache(self.database, self.tz, doinsert)
+                            hand.updateSessionsCache(self.database, None, doinsert)
                             hand.insertHands(self.database, fileId, doinsert, self.settings['testData'])
                             hand.updateHudCache(self.database, doinsert)
                             hand.handsplayers = hp

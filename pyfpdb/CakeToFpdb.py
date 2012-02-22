@@ -75,7 +75,7 @@ class Cake(HandHistoryConverter):
     re_GameInfo     = re.compile(u"""
           Hand\#(?P<HID>[0-9]+)\s+-\s+
           (?P<TABLE>[-\ \#a-zA-Z\d\']+)\s
-          \((Turbo\s)?(?P<MAX>\d+)-max\)\s\d+\s\--\s
+          (\((Turbo\s)?(?P<MAX>\d+)-max\)\s\d+\s)?\--\s
           (?P<CURRENCY>%(LS)s|)?
           (?P<SB>[.0-9]+)/(%(LS)s)?
           (?P<BB>[.0-9]+)\s
@@ -128,10 +128,9 @@ class Cake(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
-            tmp = handText[0:150]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            tmp = handText[0:200]
+            log.error(_("CakeToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
@@ -155,9 +154,9 @@ class Cake(HandHistoryConverter):
                 info['sb'] = self.Lim_Blinds[mg['BB']][0]
                 info['bb'] = self.Lim_Blinds[mg['BB']][1]
             except KeyError:
-                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+                tmp = handText[0:200]
+                log.error(_("CakeToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                raise FpdbParseError
 
         return info
 
@@ -165,8 +164,9 @@ class Cake(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(hand.handText)
         if m is None:
-            log.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            tmp = hand.handText[0:200]
+            log.error(_("CakeToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
 
         info.update(m.groupdict())
 
@@ -264,16 +264,16 @@ class Cake(HandHistoryConverter):
             amount = action.group('BET') if action.group('BET') else None
             actionType = action.group('ATYPE')
 
-            if actionType == ' raises':
-                hand.addRaiseTo( street, action.group('PNAME'), action.group('BETTO') )
-            elif actionType == ' calls':
-                hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif actionType == ' bets':
-                hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif actionType == ' folds':
+            if actionType == ' folds':
                 hand.addFold( street, action.group('PNAME'))
             elif actionType == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
+            elif actionType == ' calls':
+                hand.addCall( street, action.group('PNAME'), action.group('BET') )
+            elif actionType == ' raises':
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BETTO') )
+            elif actionType == ' bets':
+                hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif actionType == ' is all in':
                 hand.addAllIn(street, action.group('PNAME'), action.group('BET'))
             else:

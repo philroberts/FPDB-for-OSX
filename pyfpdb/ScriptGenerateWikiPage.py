@@ -64,7 +64,7 @@ sitemasks = { "PokerStars": copy.deepcopy(defaultmask),
               "Absolute": copy.deepcopy(defaultmask),
               "PartyPoker": copy.deepcopy(defaultmask),
               "Betfair": copy.deepcopy(defaultmask),
-              "Carbon": copy.deepcopy(defaultmask),
+              "Merge": copy.deepcopy(defaultmask),
               "OnGame": copy.deepcopy(defaultmask),
               "PKR": copy.deepcopy(defaultmask),
               "iPoker": copy.deepcopy(defaultmask),
@@ -74,6 +74,7 @@ sitemasks = { "PokerStars": copy.deepcopy(defaultmask),
               "Cake": copy.deepcopy(defaultmask),
               "Entraction": copy.deepcopy(defaultmask),
               "BetOnline": copy.deepcopy(defaultmask),
+              "Microgaming": copy.deepcopy(defaultmask),
         }
 
 # Site specific changes from the defaults
@@ -115,6 +116,17 @@ sitemasks['Boss']['27_1draw'] = {   'nl': False,  'pl': False, 'fl': False}
 sitemasks['Boss']['27_3draw'] = {   'nl': False,  'pl': False, 'fl': False}
 sitemasks['Boss']['a5_3draw'] = {   'nl': False,  'pl': False, 'fl': False}
 sitemasks['Boss']['badugi']   = {   'nl': False,  'pl': False, 'fl': False}
+# Winamax - Only Omaha and Holdem
+sitemasks['Winamax']['omahahilo'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['razz'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['studhi'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['studhilo'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['5studhi'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['fivedraw'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['27_1draw'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['27_3draw'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['a5_3draw'] = {   'nl': False,  'pl': False, 'fl': False}
+sitemasks['Winamax']['badugi']   = {   'nl': False,  'pl': False, 'fl': False}
 
 
 
@@ -149,7 +161,7 @@ sites = { "PokerStars": copy.deepcopy(games),
           "Absolute": copy.deepcopy(games),
           "PartyPoker": copy.deepcopy(games),
           "Betfair": copy.deepcopy(games),
-          "Carbon": copy.deepcopy(games),
+          "Merge": copy.deepcopy(games),
           "OnGame": copy.deepcopy(games),
           "PKR": copy.deepcopy(games),
           "iPoker": copy.deepcopy(games),
@@ -159,6 +171,7 @@ sites = { "PokerStars": copy.deepcopy(games),
           "Cake": copy.deepcopy(games),
           "Entraction": copy.deepcopy(games),
           "BetOnline": copy.deepcopy(games),
+          "Microgaming": copy.deepcopy(games),
         }
 
 ring = copy.deepcopy(sites)
@@ -230,7 +243,7 @@ print_site("Full Tilt Poker", ring, sitemasks)
 print_site("PartyPoker", ring, sitemasks)
 print_site("Everleaf", ring, sitemasks)
 print_site("Boss", ring, sitemasks)
-print_site("Carbon", ring, sitemasks)
+print_site("Merge", ring, sitemasks)
 print_site("OnGame", ring, sitemasks)
 print_site("iPoker", ring, sitemasks)
 print_site("Winamax", ring, sitemasks)
@@ -260,7 +273,7 @@ print_site("Full Tilt Poker", tour, sitemasks)
 print_site("PartyPoker", tour, sitemasks)
 print_site("Everleaf", tour, sitemasks)
 print_site("Boss", tour, sitemasks)
-print_site("Carbon", tour, sitemasks)
+print_site("Merge", tour, sitemasks)
 print_site("OnGame", tour, sitemasks)
 print_site("iPoker", tour, sitemasks)
 print_site("Winamax", tour, sitemasks)

@@ -19,17 +19,26 @@ IRC: steffen123/steffen123_/steffen123__
 Jabber: steffen@schaumburger.info
 2+2 Forum: steffen123
 
-Ray
-
 Carl Gherardi
 carl.gherardi@gmail.com
 IRC: Worros/s0rrow
 2+2 Forum: Sorrow
 
+gimick/steve
+bbtgaf@googlemail.com
+IRC: gimick
+2+2 Forum: gimick
+
+Ray/Eratosthenes
+
+Chaz Littlejohn
+chaz.littlejohn@gmail.com
+IRC: ChazDazzle/Chazzzz
+2+2 Forum: ChazDazzle
+
 Code
 ====
-atinm
-Chaz Littlejohn
+Atin M
 
 Chris Moore
 dooglus@gmail.com
@@ -44,22 +53,20 @@ Erki Ferenc
 evilny/moomoo
 Forrest
 Gerko de Roo
-
-gimick/steve
-bbtgaf@googlemail.com
-IRC: gimick
-2+2 Forum: gimick
-
 grindi
 lastpoet
 Matt Turnbull
 Mika Bostrom
 mme
 PassThePeas
+philr
 Robert Wielinga
 Scott Wolchok
 sqlcoder
+toedder
 tribumarchal
+Ugo M
+Zarturo
 
 Documentation
 =============

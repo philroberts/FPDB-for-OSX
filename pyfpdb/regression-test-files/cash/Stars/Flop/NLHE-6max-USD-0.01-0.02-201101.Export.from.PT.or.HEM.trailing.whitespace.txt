@@ -1,0 +1,75 @@
+﻿PokerStars Game #56397699000:  Hold'em No Limit ($0.01/$0.02 USD) - 2011/01/20 19:59:00 ET
+Table 'Hesperia XVI' 6-max Seat #1 is the button
+Seat 1: Wonderboy_06 ($2.21 in chips) 
+Seat 2: shedelf ($0.71 in chips) 
+Seat 3: Hero ($2 in chips) 
+Seat 4: kotpan ($0.58 in chips) 
+Seat 6: sergelev ($1.32 in chips) 
+shedelf: posts small blind $0.01
+Hero: posts big blind $0.02
+*** HOLE CARDS ***
+Dealt to Hero [Qh 7d]
+kotpan: folds 
+sergelev: calls $0.02
+Wonderboy_06: raises $0.04 to $0.06
+shedelf: calls $0.05
+Hero: folds 
+sergelev: calls $0.04
+*** FLOP *** [3h Qc 7h]
+shedelf: checks 
+sergelev: checks 
+Wonderboy_06: bets $0.08
+shedelf: folds 
+sergelev: folds 
+Uncalled bet ($0.08) returned to Wonderboy_06
+Wonderboy_06 collected $0.19 from pot
+Wonderboy_06: doesn't show hand 
+*** SUMMARY ***
+Total pot $0.20 | Rake $0.01 
+Board [3h Qc 7h]
+Seat 1: Wonderboy_06 (button) collected ($0.19)
+Seat 2: shedelf (small blind) folded on the Flop
+Seat 3: Hero (big blind) folded before Flop
+Seat 4: kotpan folded before Flop (didn't bet)
+Seat 6: sergelev folded on the Flop
+ 
+ 
+ 
+PokerStars Game #56397717005:  Hold'em No Limit ($0.01/$0.02 USD) - 2011/01/20 19:59:10 ET
+Table 'Hesperia XVI' 6-max Seat #2 is the button
+Seat 1: Wonderboy_06 ($2.34 in chips) 
+Seat 2: shedelf ($0.65 in chips) 
+Seat 3: Hero ($1.98 in chips) 
+Seat 4: kotpan ($0.58 in chips) 
+Seat 6: sergelev ($1.26 in chips) 
+Hero: posts small blind $0.01
+kotpan: posts big blind $0.02
+*** HOLE CARDS ***
+Dealt to Hero [7h 7s]
+sergelev: calls $0.02
+Wonderboy_06: calls $0.02
+shedelf: folds 
+Hero: raises $0.04 to $0.06
+kotpan: folds 
+sergelev: calls $0.04
+Wonderboy_06: calls $0.04
+*** FLOP *** [3s 4s Kd]
+Hero: checks 
+sergelev: checks 
+Wonderboy_06: bets $0.08
+Hero: folds 
+sergelev: folds 
+Uncalled bet ($0.08) returned to Wonderboy_06
+Wonderboy_06 collected $0.19 from pot
+Wonderboy_06: shows [As 4h] (a pair of Fours)
+*** SUMMARY ***
+Total pot $0.20 | Rake $0.01 
+Board [3s 4s Kd]
+Seat 1: Wonderboy_06 collected ($0.19)
+Seat 2: shedelf (button) folded before Flop (didn't bet)
+Seat 3: Hero (small blind) folded on the Flop
+Seat 4: kotpan (big blind) folded before Flop
+Seat 6: sergelev folded on the Flop
+ 
+ 
+ 

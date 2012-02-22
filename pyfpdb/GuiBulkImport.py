@@ -353,7 +353,7 @@ def main(argv=None):
     parser.add_option("-f", "--file", dest="filename", metavar="FILE", default=None,
                     help=_("Input file"))
     parser.add_option("-c", "--convert", dest="filtername", default=None, metavar="FILTER",
-                    help=_("Site")+ " (Absolute, Carbon, Everleaf, Full Tilt Poker, PokerStars, ...)") #TODO: dynamically generate list
+                    help=_("Site")+ " (Absolute, Merge, Everleaf, Full Tilt Poker, PokerStars, ...)") #TODO: dynamically generate list
     parser.add_option("-x", "--failOnError", action="store_true", default=False,
                     help=_("If this option is used it quits with an extended error message if it encounters any error"))
     parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False,
@@ -364,6 +364,7 @@ def main(argv=None):
                     help=_("Do the required conversion for %s archive format (ie. as provided by support)") % "Full Tilt Poker")
     parser.add_option("-t", "--testdata", action="store_true", dest="testData", default=False,
                     help=_("Generate and print test data for regression testing"))
+    parser.add_option("-C", "--configFile", dest="config", default=None, help=_("Specifies a configuration file."))
     (options, argv) = parser.parse_args(args = argv)
 
     if options.usage == True:
@@ -377,7 +378,10 @@ def main(argv=None):
         sys.exit(0)
 
     Configuration.set_logfile("GuiBulkImport-log.txt")
-    config = Configuration.Config()
+    if options.config:
+        config = Configuration.Config(options.config)
+    else:
+        config = Configuration.Config()
 
     settings = {}
     if os.name == 'nt': settings['os'] = 'windows'

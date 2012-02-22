@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2010-2011, Carl Gherardi
+#    Copyright 2010-2012, Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -44,7 +44,6 @@ _ = L10n.get_translation()
 #    this is corrected tournaments will be unparseable
 
 import sys
-import logging
 from HandHistoryConverter import *
 from decimal_wrapper import Decimal
 
@@ -53,31 +52,38 @@ class iPoker(HandHistoryConverter):
 
     sitename = "iPoker"
     filetype = "text"
-    codepage = "cp1252"
+    codepage = ("utf8", "cp1252")
     siteId   = 13
     copyGameHeader = True   #NOTE: Not sure if this is necessary yet. The file is xml so its likely
+    summaryInFile = True
 
     substitutions = {
-                     'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|",
+                     'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|\£|",
                      'PLYR': r'(?P<PNAME>[a-zA-Z0-9]+)',
-                     'NUM' : r'.,0-9',
+                     'NUM' : r'.,\d',
                     }
+    
+    currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP' }
 
     # Static regexes
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r"""
-            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL|Omaha\sL)(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
-            <tablename>(?P<TABLE>.+)?</tablename>
+            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L)|Omaha\sPL|Omaha\sL)(\s(%(LS)s)(?P<SB>[%(NUM)s]+)/(%(LS)s)(?P<BB>[%(NUM)s]+))?</gametype>\s+?
+            <tablename>(?P<TABLE>.+)?</tablename>\s+?
+            <duration>.+</duration>\s+?
+            <gamecount>.+</gamecount>\s+?
+            <startdate>.+</startdate>\s+?
+            <currency>(?P<CURRENCY>.+)</currency>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_GameInfoTrny = re.compile(r"""
                 <tournamentname>.+?<place>(?P<PLACE>.+?)</place>
-                <buyin>(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)\+?(?P<BIRAKE>[%(LS)s\d\.]+)?)</buyin>\s+?
+                <buyin>(?P<BUYIN>(?P<BIAMT>[%(LS)s%(NUM)s]+)\+?(?P<BIRAKE>[%(LS)s%(NUM)s]+)?)</buyin>\s+?
                 <totalbuyin>(?P<TOTBUYIN>.+)</totalbuyin>\s+?
                 <ipoints>([%(NUM)s]+|N/A)</ipoints>\s+?
                 <win>(%(LS)s)?(?P<WIN>([%(NUM)s]+)|N/A)</win>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
-    re_HandInfo = re.compile(r'gamecode="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-: 0-9]+)</startdate>', re.MULTILINE)
+    re_HandInfo = re.compile(r'code="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-/: 0-9]+)</startdate>', re.MULTILINE)
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" name="(?P<PNAME>[^"]+)" chips="(%(LS)s)(?P<CASH>[%(NUM)s]+)" dealer="(?P<BUTTONPOS>(0|1))" win="(%(LS)s)(?P<WIN>[%(NUM)s]+)" (bet="(%(LS)s)(?P<BET>[^"]+))?' % substitutions, re.MULTILINE)
     re_Board = re.compile(r'<cards type="(?P<STREET>Flop|Turn|River)" player="">(?P<CARDS>.+?)</cards>', re.MULTILINE)
     re_EndOfHand = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
@@ -89,7 +95,8 @@ class iPoker(HandHistoryConverter):
     re_Action = re.compile(r'<action no="(?P<ACT>[0-9]+)" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>\d+)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
     re_Ante   = re.compile(r'<action no="[0-9]+" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>15)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)" cards="' % substitutions, re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
-
+    re_DateTime = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
+    
     def compilePlayerRegexs(self, hand):
         pass
 
@@ -123,10 +130,9 @@ class iPoker(HandHistoryConverter):
                 self.info
                 return self.info
             except AttributeError:
-                tmp = handText[0:100]
-                log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+                tmp = handText[0:200]
+                log.error(_("iPokerToFpdb.determineGameType: '%s'") % tmp)
+                raise FpdbParseError
 
         self.info = {}
         mg = m.groupdict()
@@ -134,7 +140,9 @@ class iPoker(HandHistoryConverter):
 
         games = {              # base, category
                     '7 Card Stud L' : ('stud','studhilo'),
+                    '5 Card Stud L' : ('stud','5studhi'),
                         'Holdem NL' : ('hold','holdem'),
+                        'Holdem SL' : ('hold','holdem'), #Spanish NL
                          'Holdem L' : ('hold','holdem'),
                          'Omaha PL' : ('hold','omahahi'),
                 }
@@ -147,97 +155,91 @@ class iPoker(HandHistoryConverter):
         if self.info['base'] == 'stud':
             self.info['limitType'] = 'fl'
         if self.info['base'] == 'hold':
-            if mg['GAME'][-2:] == 'NL':
+            if mg['GAME'][-2:] == 'NL' or mg['GAME'][-2:] == 'SL':
                 self.info['limitType'] = 'nl'
             elif mg['GAME'][-2:] == 'PL':
                 self.info['limitType'] = 'pl'
             else:
                 self.info['limitType'] = 'fl'
-        if 'SB' in mg and mg['SB'] != None:
-            self.info['sb'] = mg['SB']
-        else:
-            tourney = True
-        if 'BB' in mg and mg['BB'] != None:
-            self.info['bb'] = mg['BB']
-            
-        self.tablename = mg['TABLE']
+        if 'SB' in mg:
+            self.info['sb'] = self.clearMoneyString(mg['SB'])
+            if not mg['SB']: tourney = True
+        if 'BB' in mg:
+            self.info['bb'] = self.clearMoneyString(mg['BB'])
+
         if tourney:
             self.info['type'] = 'tour'
             self.info['currency'] = 'T$'
             # FIXME: The sb/bb isn't listed in the game header. Fixing to 1/2 for now
-            self.info['sb'], self.info['bb'] = '1', '2'
-
             self.tinfo = {} # FIXME?: Full tourney info is only at the top of the file. After the
                             #         first hand in a file, there is no way for auto-import to
                             #         gather the info unless it reads the entire file every time.
+            self.tinfo['tourNo'] = mg['TABLE'].split(',')[-1].strip()
+            self.tablename = mg['TABLE'].split(',')[0].strip()
+            self.tinfo['buyinCurrency'] = mg['CURRENCY']
             m2 = self.re_GameInfoTrny.search(handText)
-            mg =  m2.groupdict()
-            #FIXME: tournament no looks liek it is in the table name
-            self.tinfo['tourNo'] = "11111111111111"
-            if mg['BUYIN'].find("$") != -1:
-                self.tinfo['buyinCurrency'] = "USD"
-            elif mg['BUYIN'].find(u"£") !=- 1:
-                self.tinfo['buyinCurrency'] = "GBP"
-            elif mg['BUYIN'].find(u"€") != -1:
-                self.tinfo['buyinCurrency'] = "EUR"
-
-            mg['BIAMT']  = mg['BIAMT'].strip(u'$€£FPP')
-            mg['BIRAKE'] = mg['BIRAKE'].strip(u'$€£')
-
-            self.tinfo['buyin'] = int(100*Decimal(mg['BIAMT']))
-            self.tinfo['fee']   = int(100*Decimal(mg['BIRAKE']))
-            # FIXME: <place> and <win> not parsed at the moment.
-            #  NOTE: Both place and win can have the value N/A
+            if m2:
+                mg =  m2.groupdict()
+                #FIXME: tournament no looks like it is in the table name
+                mg['BIAMT']  = mg['BIAMT'].strip(u'$€£FPP')
+                self.tinfo['buyin'] = int(100*Decimal(self.clearMoneyString(mg['BIAMT'])))
+                if mg['BIRAKE'] == None:
+                    self.tinfo['fee'] = 0
+                else:
+                    mg['BIRAKE'] = mg['BIRAKE'].strip(u'$€£')
+                    self.tinfo['fee']   = int(100*Decimal(self.clearMoneyString(mg['BIRAKE'])))
+                # FIXME: <place> and <win> not parsed at the moment.
+                #  NOTE: Both place and win can have the value N/A
+            else:
+                self.tinfo['buyin'] = 0
+                self.tinfo['fee'] = 0
         else:
             self.info['type'] = 'ring'
-            #FIXME: Need to fix currencies for this site
-            self.info['currency'] = 'USD'
+            self.tablename = mg['TABLE']
+            self.info['currency'] = mg['CURRENCY']
 
         return self.info
 
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if m is None:
-            logging.error(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
-            logging.info(hand.handText)
-            raise FpdbParseError(_("No match in readHandInfo: '%s'") % hand.handText[0:100])
+            tmp = hand.handText[0:200]
+            log.error(_("iPokerToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
+        
         mg = m.groupdict()
         #print "DEBUG: m.groupdict(): %s" % mg
         hand.tablename = self.tablename
         hand.handid = m.group('HID')
         hand.maxseats = None
-        hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
+        try:
+            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
+        except ValueError:
+            datestr = '%d/%m/%Y %H:%M:%S'
+            date_match = self.re_DateTime.search(m.group('DATETIME'))
+            if date_match.group('S') == None:
+                datestr = '%d/%m/%Y %H:%M'
+            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), datestr)
+
         if self.info['type'] == 'tour':
             hand.tourNo = self.tinfo['tourNo']
             hand.buyinCurrency = self.tinfo['buyinCurrency']
             hand.buyin = self.tinfo['buyin']
-            hand.feee = self.tinfo['fee']
+            hand.fee = self.tinfo['fee']
 
     def readPlayerStacks(self, hand):
+        self.playerWinnings = {}
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             ag = a.groupdict()
             seatno = int(a.group('SEAT'))
-            # It may be necessary to adjust 'hand.maxseats', which is an
-            # educated guess, starting with 2 (indicating a heads-up table) and
-            # adjusted upwards in steps to 6, then 9, then 10. An adjustment is
-            # made whenever a player is discovered whose seat number is
-            # currently above the maximum allowable for the table.
-            if seatno >= hand.maxseats:
-                if seatno > 8:
-                    hand.maxseats = 10
-                elif seatno > 5:
-                    hand.maxseats = 9
-                else:
-                    hand.maxseats = 6
-
             if a.group('BUTTONPOS') == '1':
                 hand.buttonpos = seatno
             cash = self.clearMoneyString(a.group('CASH'))
             hand.addPlayer(seatno, a.group('PNAME'), cash)
             if a.group('WIN') != '0':
                 win = self.clearMoneyString(a.group('WIN'))
-                hand.addCollectPot(player=a.group('PNAME'), pot=win)
+                self.playerWinnings[a.group('PNAME')] = win
 
     def markStreets(self, hand):
         if hand.gametype['base'] in ('hold'):
@@ -272,10 +274,39 @@ class iPoker(HandHistoryConverter):
 
     def readBlinds(self, hand):
         for a in self.re_PostSB.finditer(hand.streets['PREFLOP']):
-            hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
+            hand.addBlind(a.group('PNAME'), 'small blind', self.clearMoneyString(a.group('SB')))
+            if not hand.gametype['sb']:
+                hand.gametype['sb'] = self.clearMoneyString(a.group('SB'))
         for a in self.re_PostBB.finditer(hand.streets['PREFLOP']):
-            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
-        #for a in self.re_PostBoth.finditer(hand.handText):
+            if not hand.gametype['bb']:
+                hand.gametype['bb'] = self.clearMoneyString(a.group('BB'))
+            hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
+        for a in self.re_PostBoth.finditer(hand.streets['PREFLOP']):
+            bb = Decimal(self.info['bb'])
+            amount = Decimal(self.clearMoneyString(a.group('SBBB')))
+            if amount < bb:
+                hand.addBlind(a.group('PNAME'), 'small blind', self.clearMoneyString(a.group('SBBB')))
+            elif amount == bb:
+                hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('SBBB')))
+            else:
+                hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
+
+        # FIXME
+        # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
+        # see http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
+        if hand.gametype['type'] == 'tour':
+            if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
+                hand.gametype['sb'] = "1"
+                hand.gametype['bb'] = "2"
+            elif hand.gametype['sb'] == None:
+                hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
+            elif hand.gametype['bb'] == None:
+                hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
+            if int(Decimal(hand.gametype['bb']))/2 != int(Decimal(hand.gametype['sb'])):
+                if int(Decimal(hand.gametype['bb']))/2 < int(Decimal(hand.gametype['sb'])):
+                    hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
+                else:
+                    hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
 
     def readButton(self, hand):
         # Found in re_Player
@@ -325,41 +356,57 @@ class iPoker(HandHistoryConverter):
             action = actions[a]
             atype = action['ATYPE']
             player = action['PNAME']
+            bet = self.clearMoneyString(action['BET'])
             #print "DEBUG: action: %s" % action
-            if atype == '23': # Raise to
-                hand.addRaiseTo(street, player, action['BET'])
-            elif atype == '6': # Raise by
-                #This is only a guess
-                hand.addRaiseBy(street, player, action['BET'])
-            elif atype == '3':
-                hand.addCall(street, player, action['BET'])
-            elif atype == '5':
-                hand.addBet(street, player, action['BET'])
-            elif atype == '0':
+            if atype == '0':
                 hand.addFold(street, player)
             elif atype == '4':
                 hand.addCheck(street, player)
+            elif atype == '3':
+                hand.addCall(street, player, bet)
+            elif atype == '23': # Raise to
+                hand.addRaiseTo(street, player, bet)
+            elif atype == '6': # Raise by
+                #This is only a guess
+                hand.addRaiseBy(street, player, bet)
+            elif atype == '5':
+                hand.addBet(street, player, bet)
             elif atype == '16': #BringIn
-                hand.addBringIn(player, action['BET'])
+                hand.addBringIn(player, bet)
             elif atype == '7':
-                hand.addAllIn(street, player, action['BET'])
+                hand.addAllIn(street, player, bet)
             elif atype == '15': # Ante
-                hand.addAnte(player, action['BET'])
+                pass # Antes dealt with in readAntes
             elif atype == '1' or atype == '2' or atype == '8': #sb/bb/no action this hand (joined table)
                 pass
             elif atype == '9': #FIXME: Sitting out
                 pass
             else:
-                logging.error(_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action['PNAME'], action['ATYPE']))
+                log.error(_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action['PNAME'], action['ATYPE']))
 
     def readShowdownActions(self, hand):
         # Cards lines contain cards
         pass
 
     def readCollectPot(self, hand):
-        # Player lines contain winnings
-        pass
+        hand.setUncalledBets(True)
+        for pname, pot in self.playerWinnings.iteritems():
+            hand.addCollectPot(player=pname, pot=pot)
 
     def readShownCards(self, hand):
         # Cards lines contain cards
         pass
+
+    @staticmethod
+    def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
+        log.info("iPoker getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
+        regex = "%s" % (table_name)
+        if tournament:
+            regex = "%s" % (table_number)
+        elif table_name.find(',') != -1:
+            regex = table_name.split(',')[0]
+        else:
+            regex = table_name.split(' ')[0]
+
+        log.info("iPoker getTableTitleRe: returns: '%s'" % (regex))
+        return regex

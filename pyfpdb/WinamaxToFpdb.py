@@ -24,13 +24,8 @@ _ = L10n.get_translation()
 import sys
 import exceptions
 
-import logging
-# logging has been set up in fpdb.py or HUD_main.py, use their settings:
-
-import Configuration
 from HandHistoryConverter import *
 from decimal_wrapper import Decimal
-import time
 
 # Winamax HH Format
 
@@ -63,14 +58,7 @@ class Winamax(HandHistoryConverter):
     games = {                          # base, category
                                 "Holdem" : ('hold','holdem'),
                                  'Omaha' : ('hold','omahahi'),
-             #             'Omaha Hi/Lo' : ('hold','omahahilo'),
-             #                    'Razz' : ('stud','razz'),
-             #                    'RAZZ' : ('stud','razz'),
-             #             '7 Card Stud' : ('stud','studhi'),
-             #   'SEVEN_CARD_STUD_HI_LO' : ('stud','studhilo'),
-             #                  'Badugi' : ('draw','badugi'),
-             # 'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
-             #             '5 Card Draw' : ('draw','fivedraw')
+                # It appears French law prevents any other games from being spread.
                }
 
     # Static regexes
@@ -86,7 +74,7 @@ class Winamax(HandHistoryConverter):
             (?P<RING>CashGame)?
             (?P<TOUR>Tournament\s
             (?P<TOURNAME>.+)?\s
-            buyIn:\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\,]+)?\s\+?\s(?P<BIRAKE>[%(LS)s\d\,]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll|Gratuit|Ticket\suniquement)?\s
+            buyIn:\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\,]+)?\s\+?\s(?P<BIRAKE>[%(LS)s\d\,]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll|Gratuit|Ticket\suniquement|Free)?\s
             (level:\s(?P<LEVEL>\d+))?
             .*)?
             \s-\sHandId:\s\#(?P<HID1>\d+)-(?P<HID2>\d+)-(?P<HID3>\d+).*\s  # REB says: HID3 is the correct hand number
@@ -168,10 +156,9 @@ class Winamax(HandHistoryConverter):
 
         m = self.re_HandInfo.search(handText)
         if not m:
-            tmp = handText[0:100]
-            log.error(_("Unable to recognise gametype from: '%s'") % tmp)
-            log.error("determineGameType: " + _("Raising FpdbParseError"))
-            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+            tmp = handText[0:200]
+            log.error(_("WinamaxToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
 
@@ -187,8 +174,8 @@ class Winamax(HandHistoryConverter):
                 info['limitType'] = self.limits[mg['LIMIT']]
             else:
                 tmp = handText[0:100]
-                log.error(_("Limit not found in %s.") % tmp)
-                raise FpdbParseError(_("Limit not found in %s.") % tmp)
+                log.error(_("WinamaxToFpdb.determineGameType: Limit not found in %s.") % tmp)
+                raise FpdbParseError
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
@@ -201,10 +188,12 @@ class Winamax(HandHistoryConverter):
     def readHandInfo(self, hand):
         info = {}
         m =  self.re_HandInfo.search(hand.handText)
+        if m is None:
+            tmp = hand.handText[0:200]
+            log.error(_("WinamaxToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
 
-        if m:
-            info.update(m.groupdict())
-
+        info.update(m.groupdict())
         #log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
@@ -230,6 +219,8 @@ class Winamax(HandHistoryConverter):
                 hand.tourNo = info[key]
             if key == 'TABLE':
                 hand.tablename = info[key]
+                if hand.gametype['type'] == 'tour':
+                    hand.tablename = info['TABLENO']
                 # TODO: long-term solution for table naming on Winamax.
                 if hand.tablename.endswith(u'No Limit Hold\'em'):
                     hand.tablename = hand.tablename[:-len(u'No Limit Hold\'em')] + u'NLHE'
@@ -246,7 +237,7 @@ class Winamax(HandHistoryConverter):
                         if k in info.keys() and info[k]:
                             info[k] = info[k].replace(',','.')
 
-                    if info[key] == 'Gratuit' or info[key] == 'Freeroll':
+                    if info[key] == 'Gratuit' or info[key] == 'Freeroll' or info[key] == 'Ticket uniquement':
                         hand.buyin = 0
                         hand.fee = 0
                         hand.buyinCurrency = "FREE"
@@ -257,11 +248,17 @@ class Winamax(HandHistoryConverter):
                             hand.buyinCurrency="EUR"
                         elif info[key].find("FPP")!=-1:
                             hand.buyinCurrency="WIFP"
+                        elif info[key].find("Free")!=-1:
+                            hand.buyinCurrency="WIFP"
                         else:
                             #FIXME: handle other currencies (are there other currencies?)
-                            raise FpdbParseError(_("Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
+                            log.error(_("WinamaxToFpdb.readHandInfo: Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
+                            raise FpdbParseError
 
-                        info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
+                        if info['BIAMT'] is not None:
+                            info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
+                        else:
+                            info['BIAMT'] = 0
 
                         if hand.buyinCurrency!="WIFP":
                             if info['BOUNTY'] != None:
@@ -386,17 +383,18 @@ class Winamax(HandHistoryConverter):
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            acts = action.groupdict()
-            if action.group('ATYPE') == ' raises':
-                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' calls':
-                hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' bets':
-                hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' folds':
+            #acts = action.groupdict()
+            #print "DEBUG: acts: %s" % acts
+            if action.group('ATYPE') == ' folds':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
+            elif action.group('ATYPE') == ' calls':
+                hand.addCall( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ' raises':
+                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ' bets':
+                hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' discards':
                 hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('DISCARDED'))
             elif action.group('ATYPE') == ' stands pat':
@@ -472,3 +470,47 @@ class Winamax(HandHistoryConverter):
             if m.group('CARDS') is not None:
                 shown = True
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
+
+    @staticmethod
+    def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
+        """
+        SnG's
+        No Limit Hold'em(17027463)#0 - 20-40 NL Holdem  - Buy-in: 1€
+        No Limit Hold'em(17055704)#0 - 300-600 (ante 75) NL Holdem  - Buy-in: 0,50€
+        No Limit Hold'em(17056243)#2 - 400-800 (ante 40) NL Holdem  - Buy-in: 0,50€
+        Deglingos !(17060078)#0 - 30-60 NL Holdem  - Buy-in: 0,50€
+        Deglingos Qualif. 2€(17060167)#0 - 20-40 NL Holdem  - Buy-in: 0,50€
+        Double Shootout(17059623)#1 - 15-30 NL Holdem  - Buy-in: 0,50€
+        Double Shootout(17060527)#1 - 40-80 NL Holdem  - Buy-in: 0,50€
+        No Limit Hold'em(17056975)#0 - 300-600 (ante 75) NL Holdem  - Buy-in: 0,50€
+        No Limit Hold'em(17056975)#0 - 300-600 (ante 75) NL Holdem  - Buy-in: 0,50€
+        No Limit Hold'em(17059475)#2 - 15-30 NL Holdem  - Buy-in: 1€
+        No Limit Hold'em(17059934)#0 - 15-30 NL Holdem  - Buy-in: 0,50€
+        No Limit Hold'em(17059934)#0 - 20-40 NL Holdem  - Buy-in: 0,50€
+        Pot Limit Omaha(17059108)#0 - 60-120 PL Omaha  - Buy-in: 0,50€
+        Qualificatif 2€(17057954)#0 - 80-160 NL Holdem  - Buy-in: 0,50€
+        Qualificatif 5€(17057018)#0 - 300-600 (ante 30) NL Holdem  - Buy-in: 1€
+        Quitte ou Double(17057267)#0 - 150-300 PL Omaha  - Buy-in: 0,50€
+        Quitte ou Double(17058093)#0 - 100-200 (ante 10) NL Holdem  - Buy-in: 0,50€
+        Starting Block Winamax Poker Tour(17059192)#0 - 30-60 NL Holdem  - Buy-in: 0€
+        MTT's
+        1€ et un autre...(16362149)#016 - 60-120 (ante 10) NL Holdem  - Buy-in: 1€
+        2€ et l'apéro...(16362145)#000 - 5k-10k (ante 1k) NL Holdem  - Buy-in: 2€
+        Deepstack Hold'em(16362363)#013 - 200-400 (ante 30) NL Holdem  - Buy-in: 5€
+        Deglingos MAIN EVENT(16362466)#002 - 10-20 NL Holdem  - Buy-in: 2€
+        Hold'em(16362170)#013 - 30-60 NL Holdem  - Buy-in: 2€
+        MAIN EVENT(16362311)#008 - 300-600 (ante 60) NL Holdem  - Buy-in: 150€
+        MiniRoll 0.25€(16362117)#045 - 1,25k-2,50k (ante 250) NL Holdem  - Buy-in: 0,25€
+        MiniRoll 0.50€(16362116)#018 - 20k-40k (ante 4k) NL Holdem  - Buy-in: 0,50€
+        MiniRoll 0.50€(16362118)#007 - 75-150 (ante 15) NL Holdem  - Buy-in: 0,50€
+        Qualificatif 5€(16362201)#010 - 10-20 NL Holdem  - Buy-in: 0,50€
+        Tremplin Caen 2(15290669)#026 - 2,50k-5k (ante 500) NL Holdem  - Buy-in: 0€
+        Freeroll 250€(16362273)#035 - 2,50k-5k (ante 500) NL Holdem  - Buy-in: 0€
+        """
+        log.info("Winamax.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
+        regex = "%s /" % (table_name)
+        if tournament:
+            regex = "\(%s\)#(%s|%03d)" % (tournament, table_number,int(table_number))
+        log.info("Winamax.getTableTitleRe: returns: '%s'" % (regex))
+        return regex
+

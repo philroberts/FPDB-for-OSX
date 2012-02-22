@@ -45,6 +45,8 @@ if __name__ == "__main__":
 log = logging.getLogger("filter")
 
 class Filters(threading.Thread):
+    MIN_DATE = '1970-01-02 00:00:00'
+    MAX_DATE = '2100-12-12 23:59:59'
     def __init__(self, db, config, qdict, display = {}, debug=True):
         # config and qdict are now redundant
         self.debug = debug
@@ -53,8 +55,6 @@ class Filters(threading.Thread):
         self.sql = db.sql
         self.conf = db.config
         self.display = display
-        self.MIN_DATE = '1970-01-02 00:00:00'
-        self.MAX_DATE = '2100-12-12 23:59:59'
             
         self.gameName = {"27_1draw"  : _("Single Draw 2-7 Lowball")
                         ,"27_3draw"  : _("Triple Draw 2-7 Lowball")
@@ -1029,7 +1029,7 @@ class Filters(threading.Thread):
         #This takes too long if there are a couple of 100k hands in the DB
         #self.cursor.execute(self.sql.query['getPositions'])
         #result = self.db.cursor.fetchall()
-        result = [[0], [1], [2], [3], [4], [5], [5], [7], ['S'], ['B']]
+        result = [[0], [1], [2], [3], [4], [5], [6], [7], ['S'], ['B']]
         res_count = len(result)
         
         if res_count > 0:     
@@ -1060,7 +1060,7 @@ class Filters(threading.Thread):
                 self.cbAllPositions = self.createPositionLine(hbox, 'all', self.filterText['positionsall'])
                 self.cbNoPositions = self.createPositionLine(hbox, 'none', self.filterText['positionsnone'])
         else:
-            print _("INFO: No positions returned from database")
+            print(_("INFO") + ": " + _("No positions returned from database"))
             log.info(_("No positions returned from database"))
         
     #end def fillSitesFrame(self, vbox, display):
@@ -1133,6 +1133,9 @@ class Filters(threading.Thread):
                 hbox = gtk.HBox(False, 0)
                 vbox3.pack_start(hbox, False, False, 0)
                 self.cbNoCurrencies = self.createCurrencyLine(hbox, 'none', self.filterText['currenciesnone'])
+            else:
+                # There is only one currency. Select it, even if it's Play Money.
+                self.cbCurrencies[line[0]].set_active(True)
         else:
             #print "INFO: No currencies returned from database"
             log.info(_("No currencies returned from database"))

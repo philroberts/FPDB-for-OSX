@@ -97,7 +97,7 @@ def site_alias(alias):
                 "Absolute"       : "Absolute",
                 "UltimateBet"    : "UltimateBet",
                 "Everleaf"       : "Everleaf",
-                "Carbon"         : "Carbon",
+                "Merge"          : "Merge",
                 "iPoker"         : "iPoker",
                 "Winamax"        : "Winamax",
                 "Boss"           : "Boss",
@@ -109,6 +109,8 @@ def site_alias(alias):
                 "AP"             : "Absolute",
                 "UB"             : "UltimateBet",
                 "Entraction"     : "Entraction",
+                "BetOnline"      : "BetOnline",
+                "Microgaming"    : "Microgaming",
               }
     try:
         tmp = aliases[alias]

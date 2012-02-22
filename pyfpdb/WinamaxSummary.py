@@ -50,8 +50,6 @@ class WinamaxSummary(TourneySummary):
 
     re_GameType = re.compile("""<h1>((?P<LIMIT>No Limit|Pot Limit) (?P<GAME>Hold\'em))</h1>""")
 
-    re_SplitTourneys = re.compile("PokerStars Tournament ")
-    
     re_TourNo = re.compile("ID\=(?P<TOURNO>[0-9]+)")
 
     re_Player = re.compile(u"""(?P<RANK>\d+)<\/td><td width="30%">(?P<PNAME>.+?)<\/td><td width="60%">(?P<WINNINGS>.+?)</td>""")
@@ -60,9 +58,14 @@ class WinamaxSummary(TourneySummary):
     re_Prizepool = re.compile(u"""<div class="title2">.+: (?P<PRIZEPOOL>[0-9,]+)""")
 
     re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
-    re_Ticket = re.compile(u""" / Ticket (?P<VALUE>[0-9.]+)&euro;""")
+    re_Ticket = re.compile(u""" / (?P<TTYPE>Ticket (?P<VALUE>[0-9.]+)&euro;|Tremplin Winamax Poker Tour|Starting Block Winamax Poker Tour|Finale Freeroll Mobile 2012|SNG Freeroll Mobile 2012)""")
 
     codepage = ["utf-8"]
+
+    @staticmethod
+    def getSplitRe(self, head):
+        re_SplitTourneys = re.compile("PokerStars Tournament ")
+        return re_SplitTourneys
 
     def parseSummary(self):
         self.currency = "EUR"
@@ -102,6 +105,14 @@ class WinamaxSummary(TourneySummary):
             #print mg
             self.gametype['limitType'] = self.limits[mg['LIMIT']]
             self.gametype['category'] = self.games[mg['GAME']][1]
+        else:
+            #FIXME: No gametype
+            #       Quitte or Double, Starting Block Winamax Poker Tour
+            #       Do not contain enough the gametype.
+            # Lookup the tid from the db, if it exists get the gametype info from there, otherwise ParseError
+            log.warning(_("WinamaxSummary.parseSummary: Gametype unknown defaulting to NLHE"))
+            self.gametype['limitType'] = 'nl'
+            self.gametype['category'] = 'holdem'
 
         for m in self.re_Player.finditer(str(tl[0])):
             winnings = 0
@@ -112,7 +123,14 @@ class WinamaxSummary(TourneySummary):
             is_satellite = self.re_Ticket.search(mg['WINNINGS'])
             if is_satellite:
                 # Ticket
-                winnings = convert_to_decimal(is_satellite.groupdict()['VALUE'])
+                if is_satellite.group('VALUE'):
+                    winnings = convert_to_decimal(is_satellite.group('VALUE'))
+                else: # Value not specified
+                    rank = 1
+                    # FIXME: Do lookup here
+                    # Tremplin Winamax Poker Tour
+                    # Starting Block Winamax Poker Tour
+                    pass
                 # For stallites, any ticket means 1st
                 if winnings > 0:
                     rank = 1
