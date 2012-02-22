@@ -175,7 +175,7 @@ class iPoker(HandHistoryConverter):
             self.tinfo = {} # FIXME?: Full tourney info is only at the top of the file. After the
                             #         first hand in a file, there is no way for auto-import to
                             #         gather the info unless it reads the entire file every time.
-            self.tinfo['tourNo'] = mg['TABLE'].split(',')[-1].strip()
+            self.tinfo['tourNo'] = mg['TABLE'].split(',')[-1].strip().split(' ')[0]
             self.tablename = mg['TABLE'].split(',')[0].strip()
             self.tinfo['buyinCurrency'] = mg['CURRENCY']
             self.tinfo['buyin'] = 0

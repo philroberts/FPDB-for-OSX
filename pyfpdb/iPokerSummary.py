@@ -109,6 +109,7 @@ class iPokerSummary(TourneySummary):
             
         self.buyinCurrency = mg['CURRENCY']
         self.currency = self.buyinCurrency
+        self.tourNo = mg['TABLE'].split(',')[-1].strip().split(' ')[0]
 
         if tourney:
             m2 = self.re_GameInfoTrny.search(self.summaryText)
@@ -136,8 +137,6 @@ class iPokerSummary(TourneySummary):
                     self.fee   = 0
                 if self.buyin == 0:
                     self.buyinCurrency = 'FREE'
-                #FIXME: Tournament # looks like it is in the table name
-                self.tourNo = mg['TABLE'].split(',')[-1].strip()
                 hero = mg['HERO']
                 if rank == 'N/A':
                     rank = None
