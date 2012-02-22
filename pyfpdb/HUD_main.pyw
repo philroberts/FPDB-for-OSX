@@ -230,11 +230,11 @@ class HUD_main(object):
                 self.destroy()
                 break # this thread is not always killed immediately with gtk.main_quit()
 
-#    This block cannot be hoisted outside the while loop, because it would
+#    The following block cannot be hoisted outside the while loop, because it would
 #    cause a problem when auto importing into an empty db.
-
-#    FIXME: This doesn't work in the case of the player playing on 2
-#    sites at once (???)  Eratosthenes
+#    FIXME (corner-case): Because this block only executes once when the hud starts,
+#    if our hero plays at another site for the __first_time__ during that session,
+#     the hud won't display correctly, because the heroname isn't known yet.
 
             if not found:
                 for site in enabled_sites:

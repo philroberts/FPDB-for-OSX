@@ -219,7 +219,6 @@ class Aux_Seats(Aux_Window):
             # main action below - fill the created window with content
             #    the create_contents method is supplied by the subclass
             #      for hud's this is probably Aux_Hud.stat_window
-            print "hafkjdfhakjhf", self.hud.supported_games_parameters["game_stat_set"].stats
             self.create_contents(self.m_windows[i], i)
 
             self.m_windows[i].realize()
