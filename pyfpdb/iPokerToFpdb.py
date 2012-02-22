@@ -180,11 +180,14 @@ class iPoker(HandHistoryConverter):
             m2 = self.re_GameInfoTrny.search(handText)
             if m2:
                 mg =  m2.groupdict()
-                #FIXME: tournament no looks liek it is in the table name
+                #FIXME: tournament no looks like it is in the table name
                 mg['BIAMT']  = mg['BIAMT'].strip(u'$€£FPP')
-                mg['BIRAKE'] = mg['BIRAKE'].strip(u'$€£')
                 self.tinfo['buyin'] = int(100*Decimal(self.clearMoneyString(mg['BIAMT'])))
-                self.tinfo['fee']   = int(100*Decimal(self.clearMoneyString(mg['BIRAKE'])))
+                if mg['BIRAKE'] == None:
+                    self.tinfo['fee'] = 0
+                else:
+                    mg['BIRAKE'] = mg['BIRAKE'].strip(u'$€£')
+                    self.tinfo['fee']   = int(100*Decimal(self.clearMoneyString(mg['BIRAKE'])))
                 # FIXME: <place> and <win> not parsed at the moment.
                 #  NOTE: Both place and win can have the value N/A
             else:
