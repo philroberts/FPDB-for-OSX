@@ -51,6 +51,7 @@ _ = L10n.get_translation()
 
 #    Standard Library modules
 import sys
+from decimal import Decimal   # needed by hand_instance in m_ratio
 
 #    pyGTK modules
 import pygtk
@@ -100,14 +101,14 @@ def do_stat(stat_dict, player = 24, stat = 'vpip', hand_instance = None):
     if match:   # override if necessary
         statname = stat[0:-2]
     
-    if stat == 'starthands':
+    if stat in ['starthands','m_ratio']:
         if hand_instance:
-            result = eval("%(stat)s(stat_dict, %(player)d, %(handid)d)" % 
-                {'stat': statname, 'player': player, 'handid': int(hand_instance.handid_selected)})
+            result = eval("%(stat)s(stat_dict, %(player)d, hand_instance)" %
+                {'stat': statname, 'player': player})
         else:
             return ((''),(''),(''),(''),(''),(''))
     else:
-        result = eval("%(stat)s(stat_dict, %(player)d)" % 
+        result = eval("%(stat)s(stat_dict, %(player)d)" %
             {'stat': statname, 'player': player})
 
     # If decimal places have been defined, override result[1]
@@ -151,6 +152,61 @@ def playername(stat_dict, player):
             stat_dict[player]['screen_name'],
             stat_dict[player]['screen_name'],
             stat_dict[player]['screen_name'])
+            
+def m_ratio(stat_dict, player, hand_instance):
+    
+    #Tournament M-ratio calculation
+    # Using the end-of-hand stack count vs. that hand's antes/blinds
+         
+    stat_descriptions["M ratio (last hand)"] = _("M") + " (M)"
+    
+    # sum all blinds/antes
+    compulsory_bets = 0
+    for p in hand_instance.bets['BLINDSANTES']:
+        for i in hand_instance.bets['BLINDSANTES'][p]:
+            compulsory_bets += float(i)
+    compulsory_bets += float(hand_instance.gametype['sb'])
+    compulsory_bets += float(hand_instance.gametype['sb'])
+    
+    #To reflect the end-of-hand position, we need a end-stack calculation
+    # fixme, is there an easier way to do this from the hand_instance???
+    # can't seem to find a hand_instance "end_of_hand_stack" attribute
+    
+    #First, find player stack size at the start of the hand
+    stack = 0
+    for item in hand_instance.players:
+        if item[1] == stat_dict[player]['screen_name']:
+            stack = float(item[2])
+            
+    #Next, deduct all action from this player
+    for street in hand_instance.bets:
+        for item in hand_instance.bets[street]:
+            if item == stat_dict[player]['screen_name']:
+                for amount in hand_instance.bets[street][stat_dict[player]['screen_name']]:
+                    stack -= float(amount)
+    
+    #Next, add back any money returned
+    for p in hand_instance.pot.returned:
+        if p == stat_dict[player]['screen_name']:
+            stack += float(hand_instance.pot.returned[p])
+        
+    #Finally, add back any winnings
+    for item in hand_instance.collectees:
+        if item == stat_dict[player]['screen_name']:
+            stack += float(hand_instance.collectees[item])
+
+    if compulsory_bets != 0:
+        stat = stack / compulsory_bets
+    else:
+        stat = 0
+
+    return      ((int(stat)),
+                '%d'        % (int(stat)),
+                'M=%d'      % (int(stat)),
+                'M=%d'      % (int(stat)),
+                '(%d)'      % (int(stat)),
+                _('M ratio') )
+
 
 def playershort(stat_dict, player):
     stat_descriptions["playershort"] = (_("Player Name")+" 1-5") + " (playershort)"
@@ -1085,7 +1141,7 @@ def blank(stat_dict, player):
     stat = " "
     return (" ", " ", " ", " ", " ", " ")
                 
-def starthands(stat_dict, player, handid):
+def starthands(stat_dict, player, hand_instance):
     
     
     #summary of known starting hands+position
@@ -1106,7 +1162,7 @@ def starthands(stat_dict, player, handid):
     # due to screen space required for this stat, it should only
     # be used in the popup section i.e.
     # <pu_stat pu_stat_name="starthands"> </pu_stat>
-    
+    handid = int(hand_instance.handid_selected)
     stat_descriptions["starthands"] = _("starting hands at this table") + " (starting hands)"
     PFlimp=" PFlimp:"
     PFaggr=" PFaggr:"

@@ -151,7 +151,7 @@
                 screen_name="YOUR SCREEN NAME HERE"
                 site_path="C:/Program Files/PokerStars/"
                 HH_path="C:/Program Files/PokerStars/HandHistory/YOUR SCREEN NAME HERE/"
-                aux_enabled="True" hud_menu_xshift="50" hud_menu_yshift="20">
+                aux_enabled="True" hud_menu_xshift="10" hud_menu_yshift="10">
             <email fetchType="request-summary" host="YOUR_EMAIL_SERVER"
                 username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD"
                 useSsl="True" folder="INBOX"/>
@@ -416,7 +416,7 @@
         without changing Configuration.Config()
         -->
         <game game_name="holdem" aux="mucked, Classic_HUD">
-            <game_stat_set game_type="tour" stat_set="holdem_ring"/>
+            <game_stat_set game_type="tour" stat_set="holdem_tour"/>
             <game_stat_set game_type="ring" stat_set="holdem_ring"/>
         </game>
         <game game_name="razz" aux="stud_mucked, Classic_HUD">
@@ -633,6 +633,18 @@
             <stat  _rowcol="(3,1)" _stat_name="wtsd" popup="popwtsd" tip="" click=""/>
             <stat  _rowcol="(3,2)" _stat_name="steal" popup="popsteal" tip="" click=""/>
             <stat  _rowcol="(3,3)" _stat_name="totalprofit" popup="pophands" stat_hicolor="#408000" stat_hith="0" stat_locolor="#F05000" stat_loth="0" tip="" click=""/>
+        </ss>
+        
+        <ss cols="3" name="holdem_tour" rows="3" xpad="1" ypad="0">
+            <stat  _rowcol="(1,1)" _stat_name="vpip" popup="poppreflop" stat_hicolor="#F05000" stat_hith="40" stat_locolor="#408000" stat_loth="25" tip="" click=""/>
+            <stat  _rowcol="(1,2)" _stat_name="pfr" popup="poppreflop" stat_hicolor="#F05000" stat_hith="35" stat_locolor="#408000" stat_loth="20" tip="" click=""/>
+            <stat  _rowcol="(1,3)" _stat_name="three_B" popup="pop3bet" stat_hicolor="#F05000" stat_hith="13" stat_locolor="#408000" stat_loth="4" tip="" click=""/>
+            <stat  _rowcol="(2,1)" _stat_name="n" popup="pophands" tip="" click=""/>
+            <stat  _rowcol="(2,2)" _stat_name="playershort" popup="default" hudcolor="#98FFB0" hudprefix="" hudsuffix="" tip="" click=""/>
+            <stat  _rowcol="(2,3)" _stat_name="cb1" popup="popcb1" tip="" click=""/>
+            <stat  _rowcol="(3,1)" _stat_name="wtsd" popup="popwtsd" tip="" click=""/>
+            <stat  _rowcol="(3,2)" _stat_name="steal" popup="popsteal" tip="" click=""/>
+            <stat  _rowcol="(3,3)" _stat_name="m_ratio" click="" popup="default" stat_hicolor="#408000" hudcolor="#FFFC00"  stat_hith="19.99" stat_locolor="#FF0000" stat_loth="9.99" tip=""/>
         </ss>
     </stat_sets>
 
