@@ -88,8 +88,8 @@ class PacificPoker(HandHistoryConverter):
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
-          \#Game\sNo\s:\s(?P<HID>[0-9]+)\\n
-          \*\*\*\*\*\sCassava\sHand\sHistory\sfor\sGame\s[0-9]+\s\*\*\*\*\*\\n
+          (\#Game\sNo\s:\s[0-9]+\\n)?
+          \*\*\*\*\*\sCassava\sHand\sHistory\sfor\sGame\s(?P<HID>[0-9]+)\s\*\*\*\*\*\\n
           (?P<CURRENCY>%(LS)s)?(?P<SB>[.,0-9]+)/(%(LS)s)?(?P<BB>[.,0-9]+)\sBlinds\s
           (?P<LIMIT>No\sLimit|Fix\sLimit|Pot\sLimit)\s
           (?P<GAME>Holdem|Omaha|OmahaHL|Hold\'em|Omaha\sHi/Lo|OmahaHL|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)
@@ -441,3 +441,15 @@ class PacificPoker(HandHistoryConverter):
 
                 #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
+
+    @staticmethod
+    def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
+        # Tournament tables look like:
+        # Tour NLH 50+5 Brouhaha ID #28353026 Table #7 Blinds: 200/400
+        log.info("Pacific.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
+        regex = "%s" % (table_name)
+        if tournament:
+            regex = "%s Table #%s" % (tournament, table_number)
+
+        log.info("Pacific.getTableTitleRe: returns: '%s'" % (regex))
+        return regex

@@ -83,6 +83,7 @@ class iPoker(HandHistoryConverter):
                 <ipoints>([%(NUM)s]+|N/A)</ipoints>\s+?
                 <win>(%(LS)s)?(?P<WIN>([%(NUM)s]+)|N/A)</win>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
+    re_TotalBuyin  = re.compile(r"""(?P<BUYIN>(?P<BIAMT>[%(LS)s%(NUM)s]+)\s\+\s?(?P<BIRAKE>[%(LS)s%(NUM)s]+)?)""" % substitutions, re.MULTILINE|re.VERBOSE)
     re_HandInfo = re.compile(r'code="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-/: 0-9]+)</startdate>', re.MULTILINE)
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" name="(?P<PNAME>[^"]+)" chips="(%(LS)s)(?P<CASH>[%(NUM)s]+)" dealer="(?P<BUTTONPOS>(0|1))" win="(%(LS)s)(?P<WIN>[%(NUM)s]+)" (bet="(%(LS)s)(?P<BET>[^"]+))?' % substitutions, re.MULTILINE)
     re_Board = re.compile(r'<cards type="(?P<STREET>Flop|Turn|River)" player="">(?P<CARDS>.+?)</cards>', re.MULTILINE)
@@ -174,25 +175,31 @@ class iPoker(HandHistoryConverter):
             self.tinfo = {} # FIXME?: Full tourney info is only at the top of the file. After the
                             #         first hand in a file, there is no way for auto-import to
                             #         gather the info unless it reads the entire file every time.
-            self.tinfo['tourNo'] = mg['TABLE'].split(',')[-1].strip()
+            self.tinfo['tourNo'] = mg['TABLE'].split(',')[-1].strip().split(' ')[0]
             self.tablename = mg['TABLE'].split(',')[0].strip()
             self.tinfo['buyinCurrency'] = mg['CURRENCY']
+            self.tinfo['buyin'] = 0
+            self.tinfo['fee'] = 0
             m2 = self.re_GameInfoTrny.search(handText)
             if m2:
                 mg =  m2.groupdict()
-                #FIXME: tournament no looks like it is in the table name
-                mg['BIAMT']  = mg['BIAMT'].strip(u'$€£FPP')
-                self.tinfo['buyin'] = int(100*Decimal(self.clearMoneyString(mg['BIAMT'])))
-                if mg['BIRAKE'] == None:
-                    self.tinfo['fee'] = 0
-                else:
+                if not mg['BIRAKE'] and mg['TOTBUYIN']:
+                    m3 = self.re_TotalBuyin.search(mg['TOTBUYIN'])
+                    if m3: mg = m3.groupdict()
+                if mg['BIRAKE']:
+                    #FIXME: tournament no looks liek it is in the table name
+                    mg['BIAMT']  = mg['BIAMT'].strip(u'$€£')
                     mg['BIRAKE'] = mg['BIRAKE'].strip(u'$€£')
-                    self.tinfo['fee']   = int(100*Decimal(self.clearMoneyString(mg['BIRAKE'])))
-                # FIXME: <place> and <win> not parsed at the moment.
-                #  NOTE: Both place and win can have the value N/A
-            else:
-                self.tinfo['buyin'] = 0
-                self.tinfo['fee'] = 0
+                    self.tinfo['buyin'] = int(100*Decimal(self.clearMoneyString(mg['BIAMT'])))
+                    if mg['BIRAKE'] == None:
+                        self.tinfo['fee'] = 0
+                    else:
+                        mg['BIRAKE'] = mg['BIRAKE'].strip(u'$€£')
+                        self.tinfo['fee']   = int(100*Decimal(self.clearMoneyString(mg['BIRAKE'])))
+                    # FIXME: <place> and <win> not parsed at the moment.
+                    #  NOTE: Both place and win can have the value N/A
+            if self.tinfo['buyin'] == 0:
+                self.tinfo['buyinCurrency'] = 'FREE'
         else:
             self.info['type'] = 'ring'
             self.tablename = mg['TABLE']
@@ -211,7 +218,10 @@ class iPoker(HandHistoryConverter):
         #print "DEBUG: m.groupdict(): %s" % mg
         hand.tablename = self.tablename
         hand.handid = m.group('HID')
-        hand.maxseats = None
+        if self.info['type'] == 'tour' and self.maxseats==0:
+            self.maxseats = self.guessMaxSeats(hand)
+        else:
+            hand.maxseats = None
         try:
             hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
         except ValueError:
@@ -396,6 +406,28 @@ class iPoker(HandHistoryConverter):
     def readShownCards(self, hand):
         # Cards lines contain cards
         pass
+    
+    def guessMaxSeats(self, hand):
+        """Return a guess at maxseats when not specified in HH."""
+        # if some other code prior to this has already set it, return it
+        if self.maxseats > 1 and self.maxseats < 11:
+            if self.maxseats >= len(hand.players):
+                return self.maxseats
+        mo = len(hand.players)
+
+        if mo == 10: return 10 #that was easy
+
+        if hand.gametype['base'] == 'stud':
+            if mo <= 8: return 8
+            else: return mo
+
+        if hand.gametype['base'] == 'draw':
+            if mo <= 6: return 6
+            else: return mo
+
+        if mo == 2: return 2
+        if mo <= 6: return 6
+        return 10
 
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
