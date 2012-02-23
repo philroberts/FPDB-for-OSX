@@ -138,7 +138,7 @@ class PartyPoker(HandHistoryConverter):
 
 
     re_CountedSeats = re.compile("^Total\s+number\s+of\s+players\s*:\s*(?P<COUNTED_SEATS>\d+)", re.MULTILINE)
-    re_SplitHands   = re.compile('\x00+')
+    re_SplitHands   = re.compile('\x00*Game\s#')
     re_TailSplitHands   = re.compile('(\x00+)')
     lineSplitter    = '\n'
     re_Button       = re.compile('Seat (?P<BUTTON>\d+) is the button', re.MULTILINE)
