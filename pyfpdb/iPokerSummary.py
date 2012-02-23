@@ -99,7 +99,7 @@ class iPokerSummary(TourneySummary):
             self.gametype['limitType'] = 'fl'
 
         try:
-            self.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
+            self.startTime = datetime.datetime.strptime(mg['DATETIME'], '%Y-%m-%d %H:%M:%S')
         except ValueError:
             datestr = '%d/%m/%Y %H:%M:%S'
             date_match = self.re_DateTime.search(m.group('DATETIME'))
@@ -109,6 +109,7 @@ class iPokerSummary(TourneySummary):
 
         self.buyinCurrency = mg['CURRENCY']
         self.currency = self.buyinCurrency
+        self.tourNo = mg['TABLE'].split(',')[-1].strip().split(' ')[0]
 
         if tourney:
             m2 = self.re_GameInfoTrny.search(self.summaryText)
@@ -136,12 +137,12 @@ class iPokerSummary(TourneySummary):
                     self.fee   = 0
                 if self.buyin == 0:
                     self.buyinCurrency = 'FREE'
-                #FIXME: Tournament # looks like it is in the table name
-                self.tourNo = mg['TABLE'].split(',')[-1].strip()
                 hero = mg['HERO']
                 if rank == 'N/A':
                     rank = None
                 self.addPlayer(rank, hero, winnings, self.currency, 0, 0, 0)
+            else:
+                raise FpdbHandPartial(hid=self.tourNo)
         else:
             tmp = self.summaryText[0:200]
             log.error(_("iPokerSummary.determineGameType: Text does not appear to be a tournament '%s'") % tmp)
