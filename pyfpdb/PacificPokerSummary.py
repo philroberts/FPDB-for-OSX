@@ -54,12 +54,12 @@ class PacificPokerSummary(TourneySummary):
     
     re_TourneyInfo = re.compile(u"""
                         Tournament\sID:\s(?P<TOURNO>[0-9]+)\s+
-                        (Buy-In:\s(?P<CURRENCY>%(LS)s|)?(?P<BUYIN>[,.0-9]+)(\s\+\s[%(LS)s]?(?P<FEE>[,.0-9]+))?\s+)?
+                        (Buy-In:\s(?P<CURRENCY>%(LS)s|)?(?P<BUYIN>(Free)|([,.0-9]+))(\s\+\s[%(LS)s]?(?P<FEE>[,.0-9]+))?\s+)?
                         (Rebuy:\s[%(LS)s](?P<REBUYAMT>[,.0-9]+)\s+)?
                         (Add-On:\s[%(LS)s](?P<ADDON>[,.0-9]+)\s+)?
                         ((?P<P1NAME>.*?)\sperformed\s(?P<PREBUYS>\d+)\srebuys?\s+)?
                         ((?P<P2NAME>.*?)\sperformed\s(?P<PADDONS>\d+)\sadd-ons?\s+)?
-                        (?P<PNAME>.*)\sfinished\s(?P<RANK>[0-9]+)\/(?P<ENTRIES>[0-9]+)(\sand\swon\s(?P<WCURRENCY>[%(LS)s])(?P<WINNINGS>[,.0-9]+))?
+                        (?P<PNAME>.*)\sfinished\s(?P<RANK>[0-9]+)\/(?P<ENTRIES>[0-9]+)(\sand\swon\s(?P<WCURRENCY>[%(LS)s])?(?P<WINNINGS>[,.0-9]+))?
                                """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
     
     re_Category = re.compile(u"""
@@ -93,8 +93,12 @@ class PacificPokerSummary(TourneySummary):
         else:
             self.gametype['limitType'] = 'fl'
         if 'GAME'      in mg1: self.gametype['category']  = self.games[mg1['GAME']][1]
-        self.buyin = int(100*convert_to_decimal(mg['BUYIN']))
-        self.fee   = int(100*convert_to_decimal(mg['FEE']))
+        if 'BUYIN' in mg or mg['BUYIN'] == 'Free':
+          self.buyin = 0
+          self.fee = 0
+        else:
+          self.buyin = int(100*convert_to_decimal(mg['BUYIN']))
+          self.fee   = int(100*convert_to_decimal(mg['FEE']))
         self.entries   = mg['ENTRIES']
         self.prizepool = self.buyin * int(self.entries)
         if 'REBUYAMT' in mg and mg['REBUYAMT'] != None:
@@ -120,6 +124,9 @@ class PacificPokerSummary(TourneySummary):
             winnings = int(100*convert_to_decimal(mg['WINNINGS']))
             if mg['WCURRENCY'] == "$":     self.currency="USD"
             elif mg['WCURRENCY'] == u"€":  self.currency="EUR"
+        if self.currency != "" and self.buyinCurrency == "FREE":
+            # "Setting buyinCurrency to currency:"
+            self.buyinCurrency = self.currency
         if 'PREBUYS' in mg and mg['PREBUYS'] != None:
             rebuyCount = int(mg['PREBUYS'])
         if 'PADDONS' in mg and mg['PADDONS'] != None:
