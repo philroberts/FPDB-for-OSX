@@ -130,14 +130,18 @@ class Classic_stat(Aux_Hud.Simple_stat):
 
     def update(self, player_id, stat_dict):
         super(Classic_stat, self).update(player_id, stat_dict)
-        # Simple hud uses the colour from <aw>; colour from <site> is deprecated
+
         fg=self.hudcolor        
         if self.stat_loth != "":
-            if self.number[0] < (float(self.stat_loth)/100):
-                fg=self.stat_locolor
+            try: # number[1] might not be a numeric (e.g. NA)
+                if float(self.number[1]) < float(self.stat_loth):
+                    fg=self.stat_locolor
+            except: pass
         if self.stat_hith != "":
-            if self.number[0] > (float(self.stat_hith)/100):
-                fg=self.stat_hicolor
+            try: # number[1] might not be a numeric (e.g. NA)
+                if float(self.number[1]) > float(self.stat_hith):
+                    fg=self.stat_hicolor
+            except: pass
         self.set_color(fg=fg,bg=None)
         
         statstring = "%s%s%s" % (self.hudprefix, str(self.number[1]), self.hudsuffix)
