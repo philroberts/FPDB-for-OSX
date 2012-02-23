@@ -60,8 +60,8 @@ class iPokerSummary(TourneySummary):
                 <ipoints>([%(NUM)s]+|N/A)</ipoints>\s+?
                 <win>(?P<CURRENCY>%(LS)s)?(?P<WIN>([%(NUM)s]+)|N/A)</win>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
+    re_TotalBuyin = re.compile(r"""(?P<BUYIN>(?P<BIAMT>[%(LS)s%(NUM)s]+)\s\+\s?(?P<BIRAKE>[%(LS)s%(NUM)s]+)?)""" % substitutions, re.MULTILINE|re.VERBOSE)
     re_DateTime = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
-
 
     codepage = ["utf-8"]
 
@@ -99,7 +99,7 @@ class iPokerSummary(TourneySummary):
             self.gametype['limitType'] = 'fl'
 
         try:
-            self.startTime = datetime.datetime.strptime(mg['DATETIME'], '%Y-%m-%d %H:%M:%S')
+            self.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
         except ValueError:
             datestr = '%d/%m/%Y %H:%M:%S'
             date_match = self.re_DateTime.search(m.group('DATETIME'))
@@ -119,6 +119,15 @@ class iPokerSummary(TourneySummary):
                 self.prizepool = None
                 self.entries   = None
                 
+                winnings = int(100*convert_to_decimal(mg2['WIN']))
+                if mg2['CURRENCY']:
+                    self.currency = self.currencies[mg2['CURRENCY']]
+                rank     = mg2['PLACE']
+                self.tourneyName = mg2['NAME'][:40]
+                
+                if not mg2['BIRAKE'] and mg2['TOTBUYIN']:
+                    m3 = self.re_TotalBuyin.search(mg2['TOTBUYIN'])
+                    if m3: mg2 = m3.groupdict()
                 if mg2['BIAMT'] and mg2['BIRAKE']:
                     self.buyin =  int(100*convert_to_decimal(mg2['BIAMT']))
                     self.fee   =  int(100*convert_to_decimal(mg2['BIRAKE']))
@@ -129,16 +138,9 @@ class iPokerSummary(TourneySummary):
                     self.buyinCurrency = 'FREE'
                 #FIXME: Tournament # looks like it is in the table name
                 self.tourNo = mg['TABLE'].split(',')[-1].strip()
-                self.tourneyName = mg2['NAME'][:40]
-
-                hero     = mg['HERO']
-                winnings = int(100*convert_to_decimal(mg2['WIN']))
-                if mg2['CURRENCY']:
-                    self.currency = self.currencies[mg2['CURRENCY']]
-                rank     = mg2['PLACE']
+                hero = mg['HERO']
                 if rank == 'N/A':
                     rank = None
-
                 self.addPlayer(rank, hero, winnings, self.currency, 0, 0, 0)
         else:
             tmp = self.summaryText[0:200]
