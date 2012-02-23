@@ -1875,6 +1875,7 @@ def hand_factory(hand_id, config, db_connection):
          gametype = gameinfo, handText=None, builtFrom = "DB", handid=hand_id)
 
     hand_instance.select(db_connection, hand_id)
+    hand_instance.handid_selected = hand_id #hand_instance does not supply this, create it here
     
     return hand_instance
 

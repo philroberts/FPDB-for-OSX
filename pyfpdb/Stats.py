@@ -62,6 +62,7 @@ import Configuration
 import Database
 import Charset
 import Card
+import Hand
 
 import logging
 if __name__ == "__main__":
@@ -93,16 +94,21 @@ def do_tip(widget, tip):
     widget.set_tooltip_text(_tip)
 
 
-def do_stat(stat_dict, player = 24, stat = 'vpip', handid = -1):
+def do_stat(stat_dict, player = 24, stat = 'vpip', hand_instance = None):
     statname = stat
     match = re_Places.search(stat)
     if match:   # override if necessary
         statname = stat[0:-2]
     
     if stat == 'starthands':
-        result = eval("%(stat)s(stat_dict, %(player)d, %(handid)d)" % {'stat': statname, 'player': player, 'handid': int(handid)})
+        if hand_instance:
+            result = eval("%(stat)s(stat_dict, %(player)d, %(handid)d)" % 
+                {'stat': statname, 'player': player, 'handid': int(hand_instance.handid_selected)})
+        else:
+            return ((''),(''),(''),(''),(''),(''))
     else:
-        result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': statname, 'player': player})
+        result = eval("%(stat)s(stat_dict, %(player)d)" % 
+            {'stat': statname, 'player': player})
 
     # If decimal places have been defined, override result[1]
     # NOTE: decimal place override ALWAYS assumes the raw result is a
@@ -1108,14 +1114,6 @@ def starthands(stat_dict, player, handid):
     PFdefend=" PFdefBB:"
     count_pfl = count_pfa = count_pfc = count_pfd = 2
     
-    if handid == -1:
-        return ((''),
-                (''),
-                (''),
-                (''),
-                (''),
-                (''))
-
     c = Configuration.Config()
     db_connection = Database.Database(c)
     sc = db_connection.get_cursor()

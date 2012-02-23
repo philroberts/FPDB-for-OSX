@@ -141,7 +141,8 @@ class Simple_Stat_Window(Aux_Base.Seat_Window):
             Popup.__dict__[pu_to_run](seat = widget.aw_seat,
                 stat_dict = widget.stat_dict,
                 win = widget.get_ancestor(gtk.Window),
-                pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup])
+                pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup],
+                hand_instance = widget.get_ancestor(gtk.Window).aw.hud.hand_instance)
                     
     def create_contents(self, i):
         self.grid = gtk.Table(rows = self.aw.nrows, columns = self.aw.ncols, homogeneous = False)
@@ -183,11 +184,12 @@ class Simple_stat(object):
         self.eb.add(self.lab)
         self.widget = self.eb
         self.stat_dict = None
+        self.hud = aw.hud
 
     def update(self, player_id, stat_dict):
         self.stat_dict = stat_dict     # So the Simple_stat obj always has a fresh stat_dict
         self.eb.stat_dict = stat_dict
-        self.number = Stats.do_stat(stat_dict, player_id, self.stat)
+        self.number = Stats.do_stat(stat_dict, player_id, self.stat, self.hud.hand_instance)
         self.lab.set_text( str(self.number[1]))
 
     def set_color(self, fg=None, bg=None):

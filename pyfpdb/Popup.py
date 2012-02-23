@@ -37,11 +37,12 @@ import Stats
 
 class Popup(gtk.Window):
 
-    def __init__(self, seat = None, stat_dict = None, win = None, pop = None):
+    def __init__(self, seat = None, stat_dict = None, win = None, pop = None, hand_instance = None):
         self.seat = seat
         self.stat_dict = stat_dict
         self.win = win
         self.pop = pop
+        self.hand_instance = hand_instance
         super(Popup, self).__init__()
         
 
@@ -88,7 +89,8 @@ class default(Popup):
             
         text,tip_text = "",""
         for stat in self.pop.pu_stats:
-            number = Stats.do_stat(self.stat_dict, player = int(player_id), stat = stat)
+            number = Stats.do_stat(
+                self.stat_dict, player = int(player_id),stat = stat, hand_instance = self.hand_instance)
             text += number[3] + "\n"
             tip_text += number[5] + " " + number[4] + "\n"
             
