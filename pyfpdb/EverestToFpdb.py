@@ -132,12 +132,12 @@ class Everest(HandHistoryConverter):
             self.info['bb'] = bb
 
         self.info['type'] = 'ring'
-         if mg['CURRENCY'] == u'\u20ac':
-             self.info['currency'] = 'EUR'
-         elif mg['CURRENCY'] == '\$':
-             self.info['currency'] = 'USD'
-         elif not mg['CURRENCY']:
-             self.info['currency'] = 'play'
+        if mg['CURRENCY'] == u'\u20ac':
+            self.info['currency'] = 'EUR'
+        elif mg['CURRENCY'] == '\$':
+            self.info['currency'] = 'USD'
+        elif not mg['CURRENCY']:
+            self.info['currency'] = 'play'
 
         # HACK - tablename not in every hand.
         self.info['TABLENAME'] = mg['TABLE']
