@@ -47,12 +47,12 @@ class Everest(HandHistoryConverter):
                                     tableName="(?P<TABLE>[%(TAB)s]+)"\s
                                     id="[\d\.]+"\s
                                     type="(?P<TYPE>[a-zA-Z ]+)"\s
-                                    money="(?P<CURRENCY>[%(LS)s])"\s
+                                    money="(?P<CURRENCY>[%(LS)s])?"\s
                                     screenName="[a-zA-Z]+"\s
                                     game="(?P<GAME>hold\-em|Holdem\sTournament|omaha\-hi)"\s
                                     gametype="(?P<LIMIT>[-a-zA-Z ]+)"/>
                                 """ % substitutions, re.VERBOSE|re.MULTILINE)
-    re_HandInfo = re.compile(r'<HAND time="(?P<DATETIME>[0-9]+)" id="(?P<HID>[0-9]+)" index="\d+" blinds="((?P<SB>[%(NUM)s]+) (?P<CURRENCY>[%(LS)s])/(?P<BB>[%(NUM)s]+))' % substitutions, re.MULTILINE)
+    re_HandInfo = re.compile(r'<HAND time="(?P<DATETIME>[0-9]+)" id="(?P<HID>[0-9]+)" index="\d+" blinds="((?P<SB>[%(NUM)s]+)\s?(?P<CURRENCY>[%(LS)s])?/(?P<BB>[%(NUM)s]+))' % substitutions, re.MULTILINE)
     re_Button = re.compile(r'<DEALER position="(?P<BUTTON>[0-9]+)"\/>')
     re_PlayerInfo = re.compile(r'<SEAT position="(?P<SEAT>[0-9]+)" name="(?P<PNAME>.+)" balance="(?P<CASH>[.0-9]+)"/>', re.MULTILINE)
     re_Board = re.compile(r'(?P<CARDS>.+)<\/COMMUNITY>', re.MULTILINE)
@@ -82,6 +82,7 @@ class Everest(HandHistoryConverter):
     def readSupportedGames(self):
         return [
                 ["ring", "hold", "nl"],
+                ["ring", "hold", "fl"],
                 ["ring", "hold", "pl"],
                 #["tour", "hold", "nl"]
                ]
@@ -112,7 +113,7 @@ class Everest(HandHistoryConverter):
         mg.update(m2.groupdict())
         #print "DEBUG: mg: %s" % mg
 
-        limits = { 'no-limit':'nl', 'limit':'fl', 'pot-limit':'pl' }
+        limits = { 'no-limit':'nl', 'fixed-limit':'fl', 'limit':'fl', 'pot-limit':'pl' }
         games = {              # base, category
                     'hold-em' : ('hold','holdem'),
          'Holdem Tournament' : ('hold','holdem'),
@@ -131,8 +132,12 @@ class Everest(HandHistoryConverter):
             self.info['bb'] = bb
 
         self.info['type'] = 'ring'
-        if mg['CURRENCY'] == u'\u20ac':
-            self.info['currency'] = 'EUR'
+         if mg['CURRENCY'] == u'\u20ac':
+             self.info['currency'] = 'EUR'
+         elif mg['CURRENCY'] == '\$':
+             self.info['currency'] = 'USD'
+         elif not mg['CURRENCY']:
+             self.info['currency'] = 'play'
 
         # HACK - tablename not in every hand.
         self.info['TABLENAME'] = mg['TABLE']
