@@ -114,7 +114,7 @@ class IdentifySite:
         re_identify['Merge']        = re.compile(u'<description\stype=')
         re_identify['Pkr']          = re.compile(u'Starting\sHand\s\#\d+')
         re_identify['iPoker']       = re.compile(u'<session\ssessioncode="\d+">')
-        re_identify['Winamax']      = re.compile(u'Winamax\sPoker\s\-\s(CashGame|Tournament)')
+        re_identify['Winamax']      = re.compile(u'Winamax\sPoker\s\-\s(CashGame|Tournament\s")')
         re_identify['Everest']      = re.compile(u'<SESSION\stime="\d+"\stableName=".+"\sid=')
         re_identify['Cake']         = re.compile(u'Hand\#\d+\s\-\s')
         re_identify['Entraction']   = re.compile(u'Game\s\#\s\d+\s\-\s')
@@ -124,6 +124,7 @@ class IdentifySite:
         re_identify['PokerStarsSummary']    = re.compile(u'PokerStars\sTournament\s\#\d+')
         re_identify['PacificPokerSummary']  = re.compile(u'\*{5}\sCassava Tournament Summary\s\*{5}')
         re_identify['MergeSummary']         = re.compile(u"<meta\sname='Creator'\scontent='support@carbonpoker.ag'\s/>")
+        re_identify['WinamaxSummary']       = re.compile(u"Winamax\sPoker\s\-\sTournament\ssummary")
         return re_identify
 
     def generateSiteList(self, hhcs):

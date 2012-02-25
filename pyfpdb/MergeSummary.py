@@ -57,6 +57,16 @@ class MergeSummary(TourneySummary):
                  'Five Card Stud'  : ('stud','studhilo'),
                            'Razz'  : ('stud','razz')
                 }
+
+    mixes = {
+                   'HA' : 'ha',
+                 'RASH' : 'rash',
+                   'HO' : 'ho',
+                 'SHOE' : 'shoe',
+                'HORSE' : 'horse',
+                 'HOSE' : 'hose',
+                  'HAR' : 'har'
+        }
     
     months = { 'January':1, 'Jan':1, 'February':2, 'Feb':2, 'March':3, 'Mar':3,
                      'April':4, 'Apr':4, 'May':5, 'May':5, 'June':6, 'Jun':6,
@@ -183,11 +193,11 @@ class MergeSummary(TourneySummary):
             m = self.re_HTMLGameType.search(str(p))
             if m:
                 #print "DEBUG: re_HTMLGameType: '%s' '%s'" %(m.group('LIMIT'), m.group('GAME'))
-                if m.group('GAME') in ("HORSE", "HA", "HO"):
-                    log.error(_("MergeSummary.parseSummaryFile: %s found, unsupported") % m.group('GAME'))
-                    raise FpdbParseError
+                if m.group('GAME') in self.mixes:
+                    self.gametype['category'] = self.mixes[m.group('GAME')]
+                else:
+                   self.gametype['category']  = self.games_html[m.group('GAME')][1] 
                 self.gametype['limitType'] = self.limits[m.group('LIMIT')]
-                self.gametype['category']  = self.games_html[m.group('GAME')][1]
             m = self.re_HTMLTourNo.search(str(p))
             if m:
                 #print "DEBUG: re_HTMLTourNo: '%s'" % m.group('TOURNO')

@@ -89,12 +89,16 @@ class Merge(HandHistoryConverter):
     Multigametypes = {  '2': ('hold','holdem'),
                         '4': ('hold','omahahi'),
                         '9': ('hold', 'holdem'),
-                       '35': ('hold','omahahilo'),
-                       '39': ('stud','studhi'),
-                       '43': ('stud','studhilo'),
-                       '47': ('stud','razz')
-                     }
-    
+                        '23': ('hold', 'holdem'),
+                        '35': ('hold','omahahilo'),
+                        '37': ('hold','omahahilo'),
+                        '39': ('stud','studhi'),
+                        '41': ('stud','studhi'),
+                        '43': ('stud','studhilo'),
+                        '45': ('stud','studhilo'),
+                        '47': ('stud','razz'),
+                        '49': ('stud','razz')
+                  }    
 
     SnG_Structures = {  '$1 NL Holdem Double Up - 10 Handed'    : {'buyIn': 1,   'fee': 0.08, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (2,2,2,2,2)},
                         '$10 Bounty SnG - 10 Handed'            : {'buyIn': 5,   'fee': 1,    'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (25, 15, 10)},
@@ -475,7 +479,7 @@ or None if we fail to get the info """
         if 'BB' in mg:
             self.info['bb'] = mg['BB']
         self.info['secondGame'] = False
-        if 'blah' in mg:
+        if mg['blah'] is not None:
             if self.re_secondGame.search(mg['blah']):
                 self.info['secondGame'] = True
         if ' Tournament' == mg['TYPE']:
@@ -503,7 +507,7 @@ or None if we fail to get the info """
             log.error(_("MergeToFpdb.readHandInfo: '%s'") % tmp)
             raise FpdbParseError
 
-        mg = m.groupdict()
+        #mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
 
         hand.handid = m.group('HID1') + m.group('HID2')
@@ -531,14 +535,14 @@ or None if we fail to get the info """
                 hand.fee = 0
                 hand.buyinCurrency="NA"
                 hand.maxseats = None
-                if 'SEATS' in mg:
-                    hand.maxseats = int(mg['SEATS'])                    
+                if m.group('SEATS')!=None:
+                    hand.maxseats = int(m.group('SEATS'))                    
         else:
             #log.debug("HID %s-%s, Table %s" % (m.group('HID1'), m.group('HID2'), m.group('TABLENAME')))
             hand.tablename = m.group('TABLENAME')
             hand.maxseats = None
-            if 'SEATS' in mg:
-                hand.maxseats = int(mg['SEATS'])
+            if m.group('SEATS')!=None:
+                hand.maxseats = int(m.group('SEATS')) 
 
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],'%Y%m%d%H%M')
         hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
@@ -578,6 +582,15 @@ or None if we fail to get the info """
             name, stack = seated[seat]
             # Merge indexes seats from 0. Add 1 so we don't have to add corner cases everywhere else.
             hand.addPlayer(int(seat) + 1, name, stack)
+            
+        if hand.maxseats==None:
+            if hand.gametype['type'] == 'tour' and self.maxseats==0:
+                hand.maxseats = self.guessMaxSeats(hand)
+                self.maxseats = hand.maxseats
+            elif hand.gametype['type'] == 'tour':
+                hand.maxseats = self.maxseats
+            else:
+                hand.maxseats = None
 
         # No players found at all.
         if not hand.players:
@@ -635,6 +648,10 @@ or None if we fail to get the info """
             #print "DEBUG: hand.addBringIn(%s,%s)" %(pname, m.group('BRINGIN'))
             self.adjustMergeTourneyStack(hand, pname, m.group('BRINGIN'))
             hand.addBringIn(pname, m.group('BRINGIN'))
+            
+        if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
+            hand.gametype['sb'] = "1"
+            hand.gametype['bb'] = "2"
 
     def readBlinds(self, hand):
         for a in self.re_PostSB.finditer(hand.handText):
