@@ -192,6 +192,8 @@ HandHistoryConverter: '%(sitename)s'
     def processHand(self, handText):
         if self.copyGameHeader:
             gametype = self.determineGameType(self.whole_file)
+            if 'mix' in gametype:
+                gametype = self.determineGameType(handText)
         else:
             gametype = self.determineGameType(handText)
         hand = None

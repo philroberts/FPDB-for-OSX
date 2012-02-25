@@ -58,6 +58,17 @@ class Merge(HandHistoryConverter):
                    '5-Stud'  : ('stud','5studhi'),
                      'Razz'  : ('stud','razz'),
             }
+    
+    mixes = {
+                   'HA' : 'ha',
+                 'RASH' : 'rash',
+                   'HO' : 'ho',
+                 'SHOE' : 'shoe',
+                'HORSE' : 'horse',
+                 'HOSE' : 'hose',
+                  'HAR' : 'har'
+        }
+    
     Lim_Blinds = {      '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),
                         '0.20': ('0.05', '0.10'),
                         '0.25': ('0.05', '0.10'),    '0.50': ('0.10', '0.25'),
@@ -77,9 +88,11 @@ class Merge(HandHistoryConverter):
 
     Multigametypes = {  '2': ('hold','holdem'),
                         '4': ('hold','omahahi'),
-                       '47': ('stud','razz'),
+                        '9': ('hold', 'holdem'),
+                       '35': ('hold','omahahilo'),
                        '39': ('stud','studhi'),
                        '43': ('stud','studhilo'),
+                       '47': ('stud','razz')
                      }
     
 
@@ -349,7 +362,7 @@ class Merge(HandHistoryConverter):
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Omaha|Omaha|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE)(?P<TYPE>\sTournament)?" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
+    re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Omaha|Omaha|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE|RASH|HA|HO|SHOE|HOSE|HAR)(?P<TYPE>\sTournament)?" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
     # <game id="46154255-645" starttime="20111230232051" numholecards="2" gametype="1" seats="9" realmoney="false" data="20111230|Play Money (46154255)|46154255|46154255-645|false">
     # <game id="46165919-1" starttime="20111230161824" numholecards="2" gametype="23" seats="10" realmoney="true" data="20111230|Fun Step 1|46165833-1|46165919-1|true">
     # <game id="46289039-1" starttime="20120101200100" numholecards="2" gametype="23" seats="9" realmoney="true" data="20120101|$200 Freeroll - NL Holdem - 20%3A00|46245544-1|46289039-1|true">
@@ -358,7 +371,8 @@ class Merge(HandHistoryConverter):
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
     re_Board = re.compile(r'<cards type="COMMUNITY" cards="(?P<CARDS>[^"]+)"', re.MULTILINE)
     re_Buyin = re.compile(r'\$(?P<BUYIN>[.,0-9]+)\s(?P<TYPE>Freeroll|Satellite|Guaranteed)?', re.MULTILINE)
-
+    re_secondGame = re.compile(r'\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)', re.MULTILINE)
+    
     # The following are also static regexes: there is no need to call
     # compilePlayerRegexes (which does nothing), since players are identified
     # not by name but by seat number
@@ -436,6 +450,8 @@ or None if we fail to get the info """
             # and subsequent hands. In these cases we use the value previously
             # stored.
             try:
+                if self.info['mix']!=None:
+                    self.mergeMultigametypes(handText)
                 return self.info
             except AttributeError:
                 tmp = handText[0:200]
@@ -449,16 +465,19 @@ or None if we fail to get the info """
         if 'LIMIT' in mg:
             self.info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
-            if mg['GAME'] == "HORSE":
-                log.error(_("MergeToFpdb.determineGameType: HORSE found, unsupported"))
-                raise FpdbParseError
-                #(self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
+            if mg['GAME'] in self.mixes:
+                self.info['mix'] = self.mixes[mg['GAME']]
+                self.mergeMultigametypes(handText)
             else:
                 (self.info['base'], self.info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
             self.info['sb'] = mg['SB']
         if 'BB' in mg:
             self.info['bb'] = mg['BB']
+        self.info['secondGame'] = False
+        if 'blah' in mg:
+            if self.re_secondGame.search(mg['blah']):
+                self.info['secondGame'] = True
         if ' Tournament' == mg['TYPE']:
             self.info['type'] = 'tour'
             self.info['currency'] = 'T$'
@@ -484,7 +503,7 @@ or None if we fail to get the info """
             log.error(_("MergeToFpdb.readHandInfo: '%s'") % tmp)
             raise FpdbParseError
 
-        #mg = m.groupdict()
+        mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
 
         hand.handid = m.group('HID1') + m.group('HID2')
@@ -512,10 +531,14 @@ or None if we fail to get the info """
                 hand.fee = 0
                 hand.buyinCurrency="NA"
                 hand.maxseats = None
+                if 'SEATS' in mg:
+                    hand.maxseats = int(mg['SEATS'])                    
         else:
             #log.debug("HID %s-%s, Table %s" % (m.group('HID1'), m.group('HID2'), m.group('TABLENAME')))
             hand.tablename = m.group('TABLENAME')
             hand.maxseats = None
+            if 'SEATS' in mg:
+                hand.maxseats = int(mg['SEATS'])
 
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],'%Y%m%d%H%M')
         hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
@@ -619,14 +642,14 @@ or None if we fail to get the info """
             player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
             self.adjustMergeTourneyStack(hand, player, a.group('SB'))
             hand.addBlind(player,'small blind', a.group('SB'))
-            if not hand.gametype['sb']:
+            if not hand.gametype['sb'] or hand.gametype['secondGame']:
                 hand.gametype['sb'] = a.group('SB')
         for a in self.re_PostBB.finditer(hand.handText):
             #print "DEBUG: found bb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('BB'))
             player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
             self.adjustMergeTourneyStack(hand, player, a.group('BB'))
             hand.addBlind(player, 'big blind', a.group('BB'))
-            if not hand.gametype['bb']:
+            if not hand.gametype['bb'] or hand.gametype['secondGame']:
                 hand.gametype['bb'] = a.group('BB')
         for a in self.re_PostBoth.finditer(hand.handText):
             bb = Decimal(self.info['bb'])
@@ -643,7 +666,7 @@ or None if we fail to get the info """
         # FIXME
         # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
         # see http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
-        if hand.gametype['type'] == 'tour':
+        if hand.gametype['type'] == 'tour' or hand.gametype['secondGame']:
             if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
                 hand.gametype['sb'] = "1"
                 hand.gametype['bb'] = "2"
@@ -656,6 +679,19 @@ or None if we fail to get the info """
                     hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
                 else:
                     hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
+                    
+    def mergeMultigametypes(self, handText):
+        m2 = self.re_HandInfo.search(handText)
+        if m2 is None:
+            tmp = handText[0:200]
+            log.error(_("MergeToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
+        try:
+            (self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
+        except KeyError:
+            tmp = handText[0:200]
+            log.error(_("MergeToFpdb.determineGameType: Multigametypes has no lookup for '%s'") % m2.group('MULTIGAMETYPE'))
+            raise FpdbParseError
                     
     def adjustMergeTourneyStack(self, hand, player, amount):
         amount = Decimal(amount)
