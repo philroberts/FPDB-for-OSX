@@ -260,7 +260,7 @@ class Hand(object):
         # Note: the above data is calculated in db.getGameTypeId
         #       Only being calculated above so we can grab the testdata
         if self.tourNo!=None:
-            if 'mix' in self.gametype:
+            if self.gametype['mix']!='none':
                 self.gametype['category'] = self.gametype['mix']
 
             self.tourneyTypeId = db.getSqlTourneyTypeIDs(self)
