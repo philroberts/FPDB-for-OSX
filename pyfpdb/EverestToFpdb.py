@@ -69,6 +69,7 @@ class Everest(HandHistoryConverter):
     re_CollectPot = re.compile(r'<WIN position="(?P<PSEAT>[0-9])" amount="(?P<POT>[.0-9]+)" pot="[0-9]+"', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_ShownCards = re.compile(r'<(?P<SHOW>SHOW|MUCK) position="(?P<PSEAT>[0-9])">(?P<CARDS>.+)?</(SHOW|MUCK)>', re.MULTILINE)
+    re_Prize = re.compile(r'\s<(PRIZE|PLACE)', re.MULTILINE)
 
     def compilePlayerRegexs(self, hand):
         pass
@@ -158,6 +159,8 @@ class Everest(HandHistoryConverter):
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if m is None:
+            if self.re_Prize.match(hand.handText):
+                raise FpdbHandPartial
             tmp = hand.handText[0:200]
             log.error(_("EverestToFpdb.readHandInfo: '%s'") % tmp)
             raise FpdbParseError
