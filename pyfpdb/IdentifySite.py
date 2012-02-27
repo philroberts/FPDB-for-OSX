@@ -119,6 +119,7 @@ class IdentifySite:
         re_identify['Cake']         = re.compile(u'Hand\#\d+\s\-\s')
         re_identify['Entraction']   = re.compile(u'Game\s\#\s\d+\s\-\s')
         re_identify['BetOnline']    = re.compile(u'BetOnline\sPoker\sGame\s\#\d+')
+        re_identify['PokerTracker'] = re.compile(u'(EverestPoker\sGame\s\#|GAME\s\#|MERGE_GAME\s\#)\d+') #Microgaming: \*{2}\sGame\sID\s
         re_identify['Microgaming']  = re.compile(u'<Game\sid=\"\d+\"\sdate=\"[\d\-\s:]+\"\sunicodetablename')
         re_identify['FullTiltPokerSummary'] = re.compile(u'Full\sTilt\sPoker\.fr\sTournament|Full\sTilt\sPoker\sTournament\sSummary')
         re_identify['PokerStarsSummary']    = re.compile(u'PokerStars\sTournament\s\#\d+')
@@ -206,6 +207,17 @@ class IdentifySite:
                     f.site = site
                     f.ftype = "summary"
                     return f
+                
+        m = self.re_identify['PokerTracker'].search(whole_file)
+        if m:
+            filter = 'PokerTrackerToFpdb'
+            filter_name = 'PokerTracker'
+            mod = __import__(filter)
+            obj = getattr(mod, filter_name, None)
+            f.site = Site('PokerTracker', filter, filter_name, None, obj)
+            f.ftype = "hh"
+            return f
+        
         return False
 
     def getFilesForSite(self, sitename, ftype):

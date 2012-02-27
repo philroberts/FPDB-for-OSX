@@ -1,0 +1,1831 @@
+EverestPoker Game #7164315170: Tourney ID: 49630157, Table 49630157-0 - 100/200 - Limit Hold'em - 09:01:24 - 2011/11/02
+Seat 1: Player0 ($1,170.00)
+Seat 2: Player7 ($680.00)
+Seat 3: Player3 ($1,305.00)
+Seat 4: Player1 ($1,895.00)
+Seat 5: Player6 ($470.00)
+Seat 6: Player2 ($870.00)
+Seat 7: Player4 ($4,660.00)
+Seat 8: Player5 ($1,540.00)
+Player2 posts the small blind of $50.00
+Player4 posts the big blind of $100.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [Ad 9h]
+Player5 raises to $200.00
+Player0 folds
+Player7 folds
+Player3 folds
+Player1 folds
+Player6 calls $200.00
+Player2 calls $150.00
+Player4 raises to $300.00
+Player5 folds
+Player6 calls $100.00
+Player2 calls $100.00
+*** FLOP *** [Ah 9d 9s]
+Player2 checks
+Player4 bets $100.00
+Player6 raises to $170.00, and is all-in
+Player2 folds
+Player4 calls $70.00
+Player4 shows [4s 4c]
+Player6 shows [Ad 9h]
+*** TURN *** [3d]
+*** RIVER *** [8c]
+Player6 shows [Ad 9h]
+Player4 shows [4s 4c]
+*** SUMMARY ***
+Player4 shows [4s 4c]
+Player6 shows [Ad 9h]
+Player6 collects $1,440.00
+
+
+EverestPoker Game #7164317794: Tourney ID: 49630157, Table 49630157-0 - 100/200 - Limit Hold'em - 09:02:52 - 2011/11/02
+Seat 1: Player0 ($1,170.00)
+Seat 2: Player7 ($680.00)
+Seat 3: Player3 ($1,305.00)
+Seat 4: Player1 ($1,895.00)
+Seat 5: Player6 ($1,440.00)
+Seat 6: Player2 ($570.00)
+Seat 7: Player4 ($4,190.00)
+Seat 8: Player5 ($1,340.00)
+Player4 posts the small blind of $50.00
+Player5 posts the big blind of $100.00
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Player6 [2s Ts]
+Player0 folds
+Player7 folds
+Player3 folds
+Player1 folds
+Player6 calls $100.00
+Player2 calls $100.00
+Player4 folds
+Player5 checks
+*** FLOP *** [9d 5c Qc]
+Player5 checks
+Player6 checks
+Player2 bets $100.00
+Player5 folds
+Player6 folds
+Uncalled bet of $100.00 returned to Player2
+*** SUMMARY ***
+Player2 collects $350.00
+
+
+EverestPoker Game #7164319707: Tourney ID: 49630157, Table 49630157-0 - 150/300 - Limit Hold'em - 09:03:52 - 2011/11/02
+Seat 1: Player0 ($1,170.00)
+Seat 2: Player7 ($680.00)
+Seat 3: Player3 ($1,305.00)
+Seat 4: Player1 ($1,895.00)
+Seat 5: Player6 ($1,340.00)
+Seat 6: Player2 ($820.00)
+Seat 7: Player4 ($4,140.00)
+Seat 8: Player5 ($1,240.00)
+Player5 posts the small blind of $75.00
+Player0 posts the big blind of $150.00
+The button is in seat #7
+*** HOLE CARDS ***
+Dealt to Player6 [8c 6s]
+Player7 folds
+Player3 folds
+Player1 calls $150.00
+Player6 folds
+Player2 calls $150.00
+Player4 folds
+Player5 folds
+Player0 checks
+*** FLOP *** [8d 10s Kh]
+Player0 bets $150.00
+Player1 calls $150.00
+Player2 folds
+*** TURN *** [4h]
+Player0 bets $300.00
+Player1 calls $300.00
+*** RIVER *** [3s]
+Player0 bets $300.00
+Player1 calls $300.00
+Player0 shows [4d Kc]
+Player1 mucked [Qh Js]
+*** SUMMARY ***
+Player0 shows [4d Kc]
+Player1 mucked [Qh Js]
+Player0 collects $2,025.00
+Player7 finished in place 8 and won $$0
+
+
+EverestPoker Game #7164321511: Tourney ID: 49630157, Table 49630157-0 - 150/300 - Limit Hold'em - 09:04:48 - 2011/11/02
+Seat 1: Player0 ($2,295.00)
+Seat 3: Player3 ($1,305.00)
+Seat 4: Player1 ($995.00)
+Seat 5: Player6 ($1,340.00)
+Seat 6: Player2 ($670.00)
+Seat 7: Player4 ($4,140.00)
+Seat 8: Player5 ($1,165.00)
+Player0 posts the small blind of $75.00
+Player3 posts the big blind of $150.00
+The button is in seat #8
+*** HOLE CARDS ***
+Dealt to Player6 [Ac 8s]
+Player1 folds
+Player6 calls $150.00
+Player2 calls $150.00
+Player4 calls $150.00
+Player5 calls $150.00
+Player0 calls $75.00
+Player3 checks
+*** FLOP *** [8h Qs 8d]
+Player0 checks
+Player3 checks
+Player6 bets $150.00
+Player2 calls $150.00
+Player4 raises to $300.00
+Player5 folds
+Player0 folds
+Player3 folds
+Player6 raises to $450.00
+Player2 raises to $520.00, and is all-in
+Player4 raises to $670.00
+Player6 raises to $820.00
+Player4 raises to $970.00
+Player6 raises to $1,120.00
+Player4 raises to $1,270.00
+Player6 calls $70.00, and is all-in
+Uncalled bet of $80.00 returned to Player4
+Player6 shows [Ac 8s]
+Player2 shows [6d Qc]
+Player4 shows [Qd Kc]
+*** TURN *** [10d]
+*** RIVER *** [4s]
+Player4 shows [Qd Kc]
+Player6 shows [Ac 8s]
+Player2 shows [6d Qc]
+*** SUMMARY ***
+Player6 shows [Ac 8s]
+Player2 shows [6d Qc]
+Player4 shows [Qd Kc]
+Player6 collects $2,460.00
+Player6 shows [Ac 8s]
+Player2 shows [6d Qc]
+Player4 shows [Qd Kc]
+Player6 collects $1,340.00
+Player2 finished in place 7 and won $$0
+
+
+EverestPoker Game #7164323987: Tourney ID: 49630157, Table 49630157-0 - 150/300 - Limit Hold'em - 09:06:06 - 2011/11/02
+Seat 1: Player0 ($2,145.00)
+Seat 3: Player3 ($1,155.00)
+Seat 4: Player1 ($995.00)
+Seat 5: Player6 ($3,800.00)
+Seat 7: Player4 ($2,800.00)
+Seat 8: Player5 ($1,015.00)
+Player3 posts the small blind of $75.00
+Player1 posts the big blind of $150.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [4c 6s]
+Player6 folds
+Player4 calls $150.00
+Player5 folds
+Player0 folds
+Player3 folds
+Player1 checks
+*** FLOP *** [10h 10s 4s]
+Player1 bets $150.00
+Player4 raises to $300.00
+Player1 calls $150.00
+*** TURN *** [8s]
+Player1 bets $300.00
+Player4 raises to $600.00
+Player1 calls $245.00, and is all-in
+Uncalled bet of $55.00 returned to Player4
+Player1 shows [Ad 4h]
+Player4 shows [Jh Tc]
+*** RIVER *** [Ah]
+Player4 shows [Jh Tc]
+Player1 shows [Ad 4h]
+*** SUMMARY ***
+Player1 shows [Ad 4h]
+Player4 shows [Jh Tc]
+Player4 collects $2,065.00
+Player1 finished in place 6 and won $$0
+
+
+EverestPoker Game #7164325481: Tourney ID: 49630157, Table 49630157-0 - 150/300 - Limit Hold'em - 09:06:52 - 2011/11/02
+Seat 1: Player0 ($2,145.00)
+Seat 3: Player3 ($1,080.00)
+Seat 5: Player6 ($3,800.00)
+Seat 7: Player4 ($3,870.00)
+Seat 8: Player5 ($1,015.00)
+Player6 posts the small blind of $150.00
+The button is in seat #3
+*** HOLE CARDS ***
+Dealt to Player6 [7s Kh]
+Player4 folds
+Player5 raises to $300.00
+Player0 folds
+Player3 folds
+Player6 folds
+Uncalled bet of $150.00 returned to Player5
+*** SUMMARY ***
+Player5 collects $300.00
+
+
+EverestPoker Game #7164326055: Tourney ID: 49630157, Table 49630157-0 - 150/300 - Limit Hold'em - 09:07:10 - 2011/11/02
+Seat 1: Player0 ($2,145.00)
+Seat 3: Player3 ($1,080.00)
+Seat 5: Player6 ($3,650.00)
+Seat 7: Player4 ($3,870.00)
+Seat 8: Player5 ($1,165.00)
+Player6 posts the small blind of $75.00
+Player4 posts the big blind of $150.00
+The button is in seat #4
+*** HOLE CARDS ***
+Dealt to Player6 [Ks Js]
+Player5 folds
+Player0 calls $150.00
+Player3 folds
+Player6 calls $75.00
+Player4 checks
+*** FLOP *** [10h 10s 3c]
+Player6 checks
+Player4 bets $150.00
+Player0 calls $150.00
+Player6 folds
+*** TURN *** [6d]
+Player4 bets $300.00
+Player0 calls $300.00
+*** RIVER *** [Kd]
+Player4 bets $300.00
+Player0 calls $300.00
+Player4 shows [8d 3h]
+Player0 mucked [2s 2h]
+*** SUMMARY ***
+Player4 shows [8d 3h]
+Player0 mucked [2s 2h]
+Player4 collects $1,950.00
+
+
+EverestPoker Game #7164328458: Tourney ID: 49630157, Table 49630157-0 - 150/300 - Limit Hold'em - 09:08:32 - 2011/11/02
+Seat 1: Player0 ($1,245.00)
+Seat 3: Player3 ($1,080.00)
+Seat 5: Player6 ($3,500.00)
+Seat 7: Player4 ($4,920.00)
+Seat 8: Player5 ($1,165.00)
+Player4 posts the small blind of $75.00
+Player5 posts the big blind of $150.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [Th Ts]
+Player0 folds
+Player3 folds
+Player6 calls $150.00
+Player4 calls $75.00
+Player5 checks
+*** FLOP *** [Js 10c 5c]
+Player4 bets $150.00
+Player5 folds
+Player6 raises to $300.00
+Player4 raises to $450.00
+Player6 calls $150.00
+*** TURN *** [Jd]
+Player4 bets $300.00
+Player6 raises to $600.00
+Player4 raises to $900.00
+Player6 raises to $1,200.00
+Player4 raises to $1,500.00
+Player6 raises to $1,800.00
+Player4 raises to $2,100.00
+Player6 raises to $2,400.00
+Player4 raises to $2,700.00
+Player6 raises to $2,900.00, and is all-in
+Player4 raises to $3,200.00
+Uncalled bet of $300.00 returned to Player4
+Player4 shows [Jc 9d]
+Player6 shows [Th Ts]
+*** RIVER *** [10d]
+Player4 shows [Jc 9d]
+Player6 shows [Th Ts]
+*** SUMMARY ***
+Player4 shows [Jc 9d]
+Player6 shows [Th Ts]
+Player6 collects $7,150.00
+
+
+EverestPoker Game #7164330444: Tourney ID: 49630157, Table 49630157-0 - 150/300 - Limit Hold'em - 09:09:40 - 2011/11/02
+Seat 1: Player0 ($1,245.00)
+Seat 3: Player3 ($1,080.00)
+Seat 5: Player6 ($7,150.00)
+Seat 7: Player4 ($1,420.00)
+Seat 8: Player5 ($1,015.00)
+Player5 posts the small blind of $75.00
+Player0 posts the big blind of $150.00
+The button is in seat #7
+*** HOLE CARDS ***
+Dealt to Player6 [Kd Kh]
+Player3 folds
+Player6 raises to $300.00
+Player4 folds
+Player5 folds
+Player0 folds
+Uncalled bet of $150.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $375.00
+
+
+EverestPoker Game #7164330911: Tourney ID: 49630157, Table 49630157-0 - 150/300 - Limit Hold'em - 09:09:56 - 2011/11/02
+Seat 1: Player0 ($1,095.00)
+Seat 3: Player3 ($1,080.00)
+Seat 5: Player6 ($7,375.00)
+Seat 7: Player4 ($1,420.00)
+Seat 8: Player5 ($940.00)
+Player0 posts the small blind of $75.00
+Player3 posts the big blind of $150.00
+The button is in seat #8
+*** HOLE CARDS ***
+Dealt to Player6 [8h 6s]
+Player6 folds
+Player4 calls $150.00
+Player5 folds
+Player0 calls $75.00
+Player3 checks
+*** FLOP *** [Ah 10c 5s]
+Player0 checks
+Player3 checks
+Player4 bets $150.00
+Player0 folds
+Player3 folds
+Uncalled bet of $150.00 returned to Player4
+*** SUMMARY ***
+Player4 collects $450.00
+
+
+EverestPoker Game #7164332112: Tourney ID: 49630157, Table 49630157-0 - 150/300 - Limit Hold'em - 09:10:36 - 2011/11/02
+Seat 1: Player0 ($945.00)
+Seat 3: Player3 ($930.00)
+Seat 5: Player6 ($7,375.00)
+Seat 7: Player4 ($1,720.00)
+Seat 8: Player5 ($940.00)
+Player3 posts the small blind of $75.00
+Player6 posts the big blind of $150.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [6h Ks]
+Player4 calls $150.00
+Player5 calls $150.00
+Player0 folds
+Player3 folds
+Player6 checks
+*** FLOP *** [6d 2h 4h]
+Player6 checks
+Player4 bets $150.00
+Player5 calls $150.00
+Player6 folds
+*** TURN *** [5c]
+Player4 checks
+Player5 checks
+*** RIVER *** [2c]
+Player4 checks
+Player5 checks
+Player4 shows [Ad 8h]
+Player5 shows [Jh 9h]
+*** SUMMARY ***
+Player4 shows [Ad 8h]
+Player5 shows [Jh 9h]
+Player4 collects $825.00
+
+
+EverestPoker Game #7164335216: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:12:20 - 2011/11/02
+Seat 1: Player0 ($945.00)
+Seat 3: Player3 ($855.00)
+Seat 5: Player6 ($7,225.00)
+Seat 7: Player4 ($2,245.00)
+Seat 8: Player5 ($640.00)
+Player6 posts the small blind of $100.00
+Player4 posts the big blind of $200.00
+The button is in seat #3
+*** HOLE CARDS ***
+Dealt to Player6 [3s Ac]
+Player5 folds
+Player0 raises to $400.00
+Player3 folds
+Player6 folds
+Player4 raises to $600.00
+Player0 calls $200.00
+*** FLOP *** [7d 9h 2c]
+Player4 checks
+Player0 bets $200.00
+Player4 calls $200.00
+*** TURN *** [6c]
+Player4 bets $400.00
+Player0 calls $145.00, and is all-in
+Uncalled bet of $255.00 returned to Player4
+Player4 shows [Th Jc]
+Player0 shows [Jh Ad]
+*** RIVER *** [9d]
+Player4 shows [Th Jc]
+Player0 shows [Jh Ad]
+*** SUMMARY ***
+Player4 shows [Th Jc]
+Player0 shows [Jh Ad]
+Player0 collects $1,990.00
+
+
+EverestPoker Game #7164336595: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:13:06 - 2011/11/02
+Seat 1: Player0 ($1,990.00)
+Seat 3: Player3 ($855.00)
+Seat 5: Player6 ($7,125.00)
+Seat 7: Player4 ($1,300.00)
+Seat 8: Player5 ($640.00)
+Player4 posts the small blind of $100.00
+Player5 posts the big blind of $200.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [Qc Kh]
+Player0 folds
+Player3 folds
+Player6 calls $200.00
+Player4 calls $100.00
+Player5 checks
+*** FLOP *** [8c 5s 9h]
+Player4 checks
+Player5 checks
+Player6 checks
+*** TURN *** [10h]
+Player4 checks
+Player5 checks
+Player6 checks
+*** RIVER *** [2c]
+Player4 bets $400.00
+Player5 folds
+Player6 folds
+Uncalled bet of $400.00 returned to Player4
+*** SUMMARY ***
+Player4 collects $600.00
+
+
+EverestPoker Game #7164339421: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:14:42 - 2011/11/02
+Seat 1: Player0 ($1,990.00)
+Seat 3: Player3 ($855.00)
+Seat 5: Player6 ($6,925.00)
+Seat 7: Player4 ($1,700.00)
+Seat 8: Player5 ($440.00)
+Player5 posts the small blind of $100.00
+Player0 posts the big blind of $200.00
+The button is in seat #7
+*** HOLE CARDS ***
+Dealt to Player6 [4c 2c]
+Player3 folds
+Player6 folds
+Player4 raises to $400.00
+Player5 raises to $440.00, and is all-in
+Player0 folds
+Player4 calls $40.00
+Player5 shows [8s Ad]
+Player4 shows [Ac 8h]
+*** FLOP *** [8d 8c 5d]
+*** TURN *** [6h]
+*** RIVER *** [4d]
+Player4 shows [Ac 8h]
+Player5 shows [8s Ad]
+*** SUMMARY ***
+Player5 shows [8s Ad]
+Player4 shows [Ac 8h]
+Player4 collects $540.00
+Player5 shows [8s Ad]
+Player4 shows [Ac 8h]
+Player5 collects $540.00
+
+
+EverestPoker Game #7164340699: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:15:26 - 2011/11/02
+Seat 1: Player0 ($1,790.00)
+Seat 3: Player3 ($855.00)
+Seat 5: Player6 ($6,925.00)
+Seat 7: Player4 ($1,800.00)
+Seat 8: Player5 ($540.00)
+Player0 posts the small blind of $100.00
+Player3 posts the big blind of $200.00
+The button is in seat #8
+*** HOLE CARDS ***
+Dealt to Player6 [Js Jh]
+Player6 raises to $400.00
+Player4 raises to $600.00
+Player5 folds
+Player0 folds
+Player3 folds
+Player6 calls $200.00
+*** FLOP *** [3s 5c 8c]
+Player6 checks
+Player4 bets $200.00
+Player6 calls $200.00
+*** TURN *** [7s]
+Player6 checks
+Player4 checks
+*** RIVER *** [7h]
+Player6 bets $400.00
+Player4 folds
+Uncalled bet of $400.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $1,900.00
+
+
+EverestPoker Game #7164342196: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:16:16 - 2011/11/02
+Seat 1: Player0 ($1,690.00)
+Seat 3: Player3 ($655.00)
+Seat 5: Player6 ($8,025.00)
+Seat 7: Player4 ($1,000.00)
+Seat 8: Player5 ($540.00)
+Player3 posts the small blind of $100.00
+Player6 posts the big blind of $200.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [3s 6c]
+Player4 folds
+Player5 folds
+Player0 calls $200.00
+Player3 folds
+Player6 checks
+*** FLOP *** [10s Ac Ad]
+Player6 checks
+Player0 checks
+*** TURN *** [4c]
+Player6 checks
+Player0 checks
+*** RIVER *** [Ks]
+Player6 checks
+Player0 checks
+Player6 shows [3s 6c]
+Player0 shows [Qd 9c]
+*** SUMMARY ***
+Player6 shows [3s 6c]
+Player0 shows [Qd 9c]
+Player0 collects $500.00
+
+
+EverestPoker Game #7164343333: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:16:56 - 2011/11/02
+Seat 1: Player0 ($1,990.00)
+Seat 3: Player3 ($555.00)
+Seat 5: Player6 ($7,825.00)
+Seat 7: Player4 ($1,000.00)
+Seat 8: Player5 ($540.00)
+Player6 posts the small blind of $100.00
+Player4 posts the big blind of $200.00
+The button is in seat #3
+*** HOLE CARDS ***
+Dealt to Player6 [4h Ad]
+Player5 folds
+Player0 folds
+Player3 folds
+Player6 calls $100.00
+Player4 checks
+*** FLOP *** [7c Ah Kh]
+Player6 bets $200.00
+Player4 folds
+Uncalled bet of $200.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $400.00
+
+
+EverestPoker Game #7164344143: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:17:24 - 2011/11/02
+Seat 1: Player0 ($1,990.00)
+Seat 3: Player3 ($555.00)
+Seat 5: Player6 ($8,025.00)
+Seat 7: Player4 ($800.00)
+Seat 8: Player5 ($540.00)
+Player4 posts the small blind of $100.00
+Player5 posts the big blind of $200.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [Jh Th]
+Player0 folds
+Player3 folds
+Player6 calls $200.00
+Player4 calls $100.00
+Player5 checks
+*** FLOP *** [Kd 9d 3s]
+Player4 checks
+Player5 checks
+Player6 checks
+*** TURN *** [8h]
+Player4 checks
+Player5 checks
+Player6 checks
+*** RIVER *** [Kc]
+Player4 checks
+Player5 checks
+Player6 bets $400.00
+Player4 folds
+Player5 folds
+Uncalled bet of $400.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $600.00
+
+
+EverestPoker Game #7164346611: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:18:48 - 2011/11/02
+Seat 1: Player0 ($1,990.00)
+Seat 3: Player3 ($555.00)
+Seat 5: Player6 ($8,425.00)
+Seat 7: Player4 ($600.00)
+Seat 8: Player5 ($340.00)
+Player5 posts the small blind of $100.00
+Player0 posts the big blind of $200.00
+The button is in seat #7
+*** HOLE CARDS ***
+Dealt to Player6 [Kd As]
+Player3 folds
+Player6 raises to $400.00
+Player4 folds
+Player5 calls $240.00, and is all-in
+Player0 folds
+Uncalled bet of $60.00 returned to Player6
+Player5 shows [Jd 2c]
+Player6 shows [Kd As]
+*** FLOP *** [7s 8s 5d]
+*** TURN *** [5h]
+*** RIVER *** [9d]
+Player6 shows [Kd As]
+Player5 shows [Jd 2c]
+*** SUMMARY ***
+Player5 shows [Jd 2c]
+Player6 shows [Kd As]
+Player6 collects $880.00
+Player5 finished in place 5 and won $$0
+
+
+EverestPoker Game #7164348086: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:19:43 - 2011/11/02
+Seat 1: Player0 ($1,790.00)
+Seat 3: Player3 ($555.00)
+Seat 5: Player6 ($8,965.00)
+Seat 7: Player4 ($600.00)
+Player0 posts the small blind of $100.00
+Player3 posts the big blind of $200.00
+The button is in seat #8
+*** HOLE CARDS ***
+Dealt to Player6 [Ks 9h]
+Player6 calls $200.00
+Player4 calls $200.00
+Player0 folds
+Player3 checks
+*** FLOP *** [5s Jd 7d]
+Player3 checks
+Player6 checks
+Player4 checks
+*** TURN *** [6d]
+Player3 checks
+Player6 checks
+Player4 checks
+*** RIVER *** [Jh]
+Player3 checks
+Player6 checks
+Player4 checks
+Player3 shows [2c 6h]
+Player6 shows [Ks 9h]
+Player4 shows [Kc 9c]
+*** SUMMARY ***
+Player3 shows [2c 6h]
+Player6 shows [Ks 9h]
+Player4 shows [Kc 9c]
+Player3 collects $700.00
+
+
+EverestPoker Game #7164350869: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:21:19 - 2011/11/02
+Seat 1: Player0 ($1,690.00)
+Seat 3: Player3 ($1,055.00)
+Seat 5: Player6 ($8,765.00)
+Seat 7: Player4 ($400.00)
+Player0 posts the ante of $20.00
+Player3 posts the ante of $20.00
+Player6 posts the ante of $20.00
+Player4 posts the ante of $20.00
+Player3 posts the small blind of $100.00
+Player6 posts the big blind of $200.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [2d 6h]
+Player4 raises to $380.00, and is all-in
+Player0 folds
+Player3 folds
+Player6 folds
+Uncalled bet of $180.00 returned to Player4
+*** SUMMARY ***
+Player4 collects $580.00
+
+
+EverestPoker Game #7164351855: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:21:53 - 2011/11/02
+Seat 1: Player0 ($1,670.00)
+Seat 3: Player3 ($935.00)
+Seat 5: Player6 ($8,545.00)
+Seat 7: Player4 ($760.00)
+Player0 posts the ante of $20.00
+Player3 posts the ante of $20.00
+Player6 posts the ante of $20.00
+Player4 posts the ante of $20.00
+Player6 posts the small blind of $100.00
+Player4 posts the big blind of $200.00
+The button is in seat #3
+*** HOLE CARDS ***
+Dealt to Player6 [4c Th]
+Player0 calls $200.00
+Player3 folds
+Player6 calls $100.00
+Player4 checks
+*** FLOP *** [5h Qc Qs]
+Player6 checks
+Player4 checks
+Player0 bets $200.00
+Player6 folds
+Player4 folds
+Uncalled bet of $200.00 returned to Player0
+*** SUMMARY ***
+Player0 collects $680.00
+
+
+EverestPoker Game #7164352931: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:22:31 - 2011/11/02
+Seat 1: Player0 ($2,130.00)
+Seat 3: Player3 ($915.00)
+Seat 5: Player6 ($8,325.00)
+Seat 7: Player4 ($540.00)
+Player0 posts the ante of $20.00
+Player3 posts the ante of $20.00
+Player6 posts the ante of $20.00
+Player4 posts the ante of $20.00
+Player4 posts the small blind of $100.00
+Player0 posts the big blind of $200.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [3d 5s]
+Player3 folds
+Player6 folds
+Player4 calls $100.00
+Player0 checks
+*** FLOP *** [8d 4h 8c]
+Player4 checks
+Player0 checks
+*** TURN *** [6d]
+Player4 bets $320.00, and is all-in
+Player0 folds
+Uncalled bet of $320.00 returned to Player4
+*** SUMMARY ***
+Player4 collects $480.00
+
+
+EverestPoker Game #7164354404: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:23:21 - 2011/11/02
+Seat 1: Player0 ($1,910.00)
+Seat 3: Player3 ($895.00)
+Seat 5: Player6 ($8,305.00)
+Seat 7: Player4 ($800.00)
+Player0 posts the ante of $20.00
+Player3 posts the ante of $20.00
+Player6 posts the ante of $20.00
+Player4 posts the ante of $20.00
+Player0 posts the small blind of $100.00
+Player3 posts the big blind of $200.00
+The button is in seat #7
+*** HOLE CARDS ***
+Dealt to Player6 [7h Qc]
+Player6 calls $200.00
+Player4 raises to $400.00
+Player0 raises to $600.00
+Player3 folds
+Player6 folds
+Player4 raises to $780.00, and is all-in
+Player0 raises to $980.00
+Uncalled bet of $200.00 returned to Player0
+Player0 shows [Ah As]
+Player4 shows [Th Qd]
+*** FLOP *** [4h 4d 2c]
+*** TURN *** [Jh]
+*** RIVER *** [8c]
+Player0 shows [Ah As]
+Player4 shows [Th Qd]
+*** SUMMARY ***
+Player0 shows [Ah As]
+Player4 shows [Th Qd]
+Player0 collects $2,040.00
+Player4 finished in place 4 and won $$0
+
+
+EverestPoker Game #7164355451: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:24:01 - 2011/11/02
+Seat 1: Player0 ($3,150.00)
+Seat 3: Player3 ($675.00)
+Seat 5: Player6 ($8,085.00)
+Player0 posts the ante of $20.00
+Player3 posts the ante of $20.00
+Player6 posts the ante of $20.00
+Player3 posts the small blind of $100.00
+Player6 posts the big blind of $200.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [Ad 3d]
+Player0 calls $200.00
+Player3 folds
+Player6 checks
+*** FLOP *** [6d 3c Ah]
+Player6 bets $200.00
+Player0 calls $200.00
+*** TURN *** [Qh]
+Player6 bets $400.00
+Player0 calls $400.00
+*** RIVER *** [3s]
+Player6 bets $400.00
+Player0 folds
+Uncalled bet of $400.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $1,760.00
+
+
+EverestPoker Game #7164357479: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:25:11 - 2011/11/02
+Seat 1: Player0 ($2,330.00)
+Seat 3: Player3 ($555.00)
+Seat 5: Player6 ($9,025.00)
+Player0 posts the ante of $20.00
+Player3 posts the ante of $20.00
+Player6 posts the ante of $20.00
+Player6 posts the small blind of $100.00
+Player0 posts the big blind of $200.00
+The button is in seat #3
+*** HOLE CARDS ***
+Dealt to Player6 [8c 5h]
+Player3 folds
+Player6 calls $100.00
+Player0 raises to $400.00
+Player6 folds
+Uncalled bet of $200.00 returned to Player0
+*** SUMMARY ***
+Player0 collects $460.00
+
+
+EverestPoker Game #7164357907: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:25:25 - 2011/11/02
+Seat 1: Player0 ($2,570.00)
+Seat 3: Player3 ($535.00)
+Seat 5: Player6 ($8,805.00)
+Player0 posts the ante of $20.00
+Player3 posts the ante of $20.00
+Player6 posts the ante of $20.00
+Player0 posts the small blind of $100.00
+Player3 posts the big blind of $200.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [7h 5s]
+Player6 folds
+Player0 folds
+Uncalled bet of $100.00 returned to Player3
+*** SUMMARY ***
+Player3 collects $260.00
+
+
+EverestPoker Game #7164358181: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:25:35 - 2011/11/02
+Seat 1: Player0 ($2,450.00)
+Seat 3: Player3 ($675.00)
+Seat 5: Player6 ($8,785.00)
+Player0 posts the ante of $20.00
+Player3 posts the ante of $20.00
+Player6 posts the ante of $20.00
+Player3 posts the small blind of $100.00
+Player6 posts the big blind of $200.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [7s 2s]
+Player0 folds
+Player3 folds
+Uncalled bet of $100.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $260.00
+
+
+EverestPoker Game #7164358470: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:25:45 - 2011/11/02
+Seat 1: Player0 ($2,430.00)
+Seat 3: Player3 ($555.00)
+Seat 5: Player6 ($8,925.00)
+Player0 posts the ante of $20.00
+Player3 posts the ante of $20.00
+Player6 posts the ante of $20.00
+Player6 posts the small blind of $100.00
+Player0 posts the big blind of $200.00
+The button is in seat #3
+*** HOLE CARDS ***
+Dealt to Player6 [5s Th]
+Player3 folds
+Player6 calls $100.00
+Player0 checks
+*** FLOP *** [10s 6c 5c]
+Player6 checks
+Player0 bets $200.00
+Player6 raises to $400.00
+Player0 calls $200.00
+*** TURN *** [6h]
+Player6 checks
+Player0 bets $400.00
+Player6 calls $400.00
+*** RIVER *** [Qh]
+Player6 checks
+Player0 bets $400.00
+Player6 calls $400.00
+Player0 shows [Td 8d]
+Player6 shows [5s Th]
+*** SUMMARY ***
+Player0 shows [Td 8d]
+Player6 shows [5s Th]
+Player0 collects $1,430.00
+Player0 shows [Td 8d]
+Player6 shows [5s Th]
+Player6 collects $1,430.00
+
+
+EverestPoker Game #7164359705: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:26:27 - 2011/11/02
+Seat 1: Player0 ($2,440.00)
+Seat 3: Player3 ($535.00)
+Seat 5: Player6 ($8,935.00)
+Player0 posts the ante of $20.00
+Player3 posts the ante of $20.00
+Player6 posts the ante of $20.00
+Player0 posts the small blind of $100.00
+Player3 posts the big blind of $200.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [4s 8c]
+Player6 folds
+Player0 folds
+Uncalled bet of $100.00 returned to Player3
+*** SUMMARY ***
+Player3 collects $260.00
+
+
+EverestPoker Game #7164360025: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:26:37 - 2011/11/02
+Seat 1: Player0 ($2,320.00)
+Seat 3: Player3 ($675.00)
+Seat 5: Player6 ($8,915.00)
+Player0 posts the ante of $20.00
+Player3 posts the ante of $20.00
+Player6 posts the ante of $20.00
+Player3 posts the small blind of $100.00
+Player6 posts the big blind of $200.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [Js Qd]
+Player0 raises to $400.00
+Player3 folds
+Player6 calls $200.00
+*** FLOP *** [Kd 3d 3h]
+Player6 checks
+Player0 bets $200.00
+Player6 calls $200.00
+*** TURN *** [Ac]
+Player6 checks
+Player0 bets $400.00
+Player6 calls $400.00
+*** RIVER *** [8d]
+Player6 checks
+Player0 bets $400.00
+Player6 calls $400.00
+Player0 shows [9h 9s]
+Player6 mucked [Js Qd]
+*** SUMMARY ***
+Player0 shows [9h 9s]
+Player6 mucked [Js Qd]
+Player0 collects $2,960.00
+
+
+EverestPoker Game #7164360990: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:27:11 - 2011/11/02
+Seat 1: Player0 ($3,860.00)
+Seat 3: Player3 ($555.00)
+Seat 5: Player6 ($7,495.00)
+Player0 posts the ante of $20.00
+Player3 posts the ante of $20.00
+Player6 posts the ante of $20.00
+Player6 posts the small blind of $100.00
+Player0 posts the big blind of $200.00
+The button is in seat #3
+*** HOLE CARDS ***
+Dealt to Player6 [2s 9s]
+Player3 folds
+Player6 calls $100.00
+Player0 checks
+*** FLOP *** [8d 7c 6c]
+Player6 checks
+Player0 bets $200.00
+Player6 calls $200.00
+*** TURN *** [Ks]
+Player6 checks
+Player0 bets $400.00
+Player6 calls $400.00
+*** RIVER *** [Ad]
+Player6 checks
+Player0 bets $400.00
+Player6 folds
+Uncalled bet of $400.00 returned to Player0
+*** SUMMARY ***
+Player0 collects $1,660.00
+Player3 finished in place 3 and won 0,02 €
+
+
+EverestPoker Game #7164362273: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:27:55 - 2011/11/02
+Seat 1: Player0 ($4,700.00)
+Seat 5: Player6 ($6,675.00)
+Player0 posts the ante of $20.00
+Player6 posts the ante of $20.00
+Player0 posts the small blind of $100.00
+Player6 posts the big blind of $200.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [Tc 8s]
+Player0 calls $100.00
+Player6 checks
+*** FLOP *** [Jc Ac Jd]
+Player6 checks
+Player0 bets $200.00
+Player6 calls $200.00
+*** TURN *** [6d]
+Player6 checks
+Player0 checks
+*** RIVER *** [3h]
+Player6 checks
+Player0 bets $400.00
+Player6 calls $400.00
+Player0 shows [5c Kc]
+Player6 mucked [Tc 8s]
+*** SUMMARY ***
+Player0 shows [5c Kc]
+Player6 mucked [Tc 8s]
+Player0 collects $1,640.00
+
+
+EverestPoker Game #7164363231: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:28:27 - 2011/11/02
+Seat 1: Player0 ($5,520.00)
+Seat 5: Player6 ($5,855.00)
+Player0 posts the ante of $20.00
+Player6 posts the ante of $20.00
+Player6 posts the small blind of $100.00
+Player0 posts the big blind of $200.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [4d 9h]
+Player6 folds
+Uncalled bet of $100.00 returned to Player0
+*** SUMMARY ***
+Player0 collects $240.00
+
+
+EverestPoker Game #7164363514: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:28:37 - 2011/11/02
+Seat 1: Player0 ($5,640.00)
+Seat 5: Player6 ($5,735.00)
+Player0 posts the ante of $20.00
+Player6 posts the ante of $20.00
+Player0 posts the small blind of $100.00
+Player6 posts the big blind of $200.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [8d 5s]
+Player0 calls $100.00
+Player6 checks
+*** FLOP *** [5d Ad 10h]
+Player6 checks
+Player0 checks
+*** TURN *** [8s]
+Player6 checks
+Player0 checks
+*** RIVER *** [7c]
+Player6 bets $400.00
+Player0 raises to $800.00
+Player6 raises to $1,200.00
+Player0 calls $400.00
+Player6 shows [8d 5s]
+Player0 mucked [7h 9s]
+*** SUMMARY ***
+Player6 shows [8d 5s]
+Player0 mucked [7h 9s]
+Player6 collects $2,840.00
+
+
+EverestPoker Game #7164364661: Tourney ID: 49630157, Table 49630157-0 - 200/400 - Limit Hold'em - 09:29:17 - 2011/11/02
+Seat 1: Player0 ($4,220.00)
+Seat 5: Player6 ($7,155.00)
+Player0 posts the ante of $20.00
+Player6 posts the ante of $20.00
+Player6 posts the small blind of $100.00
+Player0 posts the big blind of $200.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [Qs 2h]
+Player6 calls $100.00
+Player0 raises to $400.00
+Player6 calls $200.00
+*** FLOP *** [6s 2c 6h]
+Player0 bets $200.00
+Player6 raises to $400.00
+Player0 calls $200.00
+*** TURN *** [8h]
+Player0 checks
+Player6 checks
+*** RIVER *** [Qh]
+Player0 bets $400.00
+Player6 raises to $800.00
+Player0 calls $400.00
+Player6 shows [Qs 2h]
+Player0 shows [Qd Tc]
+*** SUMMARY ***
+Player6 shows [Qs 2h]
+Player0 shows [Qd Tc]
+Player0 collects $3,240.00
+
+
+EverestPoker Game #7164366168: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:30:07 - 2011/11/02
+Seat 1: Player0 ($5,840.00)
+Seat 5: Player6 ($5,535.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player0 posts the small blind of $150.00
+Player6 posts the big blind of $300.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [Ac 2h]
+Player0 calls $150.00
+Player6 raises to $600.00
+Player0 folds
+Uncalled bet of $300.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $660.00
+
+
+EverestPoker Game #7164366514: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:30:19 - 2011/11/02
+Seat 1: Player0 ($5,510.00)
+Seat 5: Player6 ($5,865.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player6 posts the small blind of $150.00
+Player0 posts the big blind of $300.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [Js Kc]
+Player6 calls $150.00
+Player0 checks
+*** FLOP *** [Ad 9h 10s]
+Player0 bets $300.00
+Player6 raises to $600.00
+Player0 calls $300.00
+*** TURN *** [Qh]
+Player0 bets $600.00
+Player6 raises to $1,200.00
+Player0 calls $600.00
+*** RIVER *** [Jc]
+Player0 bets $600.00
+Player6 raises to $1,200.00
+Player0 calls $600.00
+Player6 shows [Js Kc]
+Player0 mucked [9c 8h]
+*** SUMMARY ***
+Player6 shows [Js Kc]
+Player0 mucked [9c 8h]
+Player6 collects $6,660.00
+
+
+EverestPoker Game #7164367532: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:30:53 - 2011/11/02
+Seat 1: Player0 ($2,180.00)
+Seat 5: Player6 ($9,195.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player0 posts the small blind of $150.00
+Player6 posts the big blind of $300.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [3d Ks]
+Player0 folds
+Uncalled bet of $150.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $360.00
+
+
+EverestPoker Game #7164367838: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:31:03 - 2011/11/02
+Seat 1: Player0 ($2,000.00)
+Seat 5: Player6 ($9,375.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player6 posts the small blind of $150.00
+Player0 posts the big blind of $300.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [6c 8d]
+Player6 calls $150.00
+Player0 checks
+*** FLOP *** [Qd 4c 5s]
+Player0 checks
+Player6 checks
+*** TURN *** [9c]
+Player0 bets $600.00
+Player6 folds
+Uncalled bet of $600.00 returned to Player0
+*** SUMMARY ***
+Player0 collects $660.00
+
+
+EverestPoker Game #7164368420: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:31:23 - 2011/11/02
+Seat 1: Player0 ($2,330.00)
+Seat 5: Player6 ($9,045.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player0 posts the small blind of $150.00
+Player6 posts the big blind of $300.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [7c 4h]
+Player0 raises to $600.00
+Player6 folds
+Uncalled bet of $300.00 returned to Player0
+*** SUMMARY ***
+Player0 collects $660.00
+
+
+EverestPoker Game #7164368793: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:31:35 - 2011/11/02
+Seat 1: Player0 ($2,660.00)
+Seat 5: Player6 ($8,715.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player6 posts the small blind of $150.00
+Player0 posts the big blind of $300.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [Jd 2d]
+Player6 calls $150.00
+Player0 raises to $600.00
+Player6 calls $300.00
+*** FLOP *** [2h 10c 10s]
+Player0 bets $300.00
+Player6 raises to $600.00
+Player0 raises to $900.00
+Player6 raises to $1,200.00
+Player0 raises to $1,500.00
+Player6 raises to $1,800.00
+Player0 raises to $2,030.00, and is all-in
+Player6 raises to $2,330.00
+Uncalled bet of $300.00 returned to Player6
+Player0 shows [Kh Td]
+Player6 shows [Jd 2d]
+*** TURN *** [8c]
+*** RIVER *** [Ks]
+Player6 shows [Jd 2d]
+Player0 shows [Kh Td]
+*** SUMMARY ***
+Player0 shows [Kh Td]
+Player6 shows [Jd 2d]
+Player0 collects $5,320.00
+
+
+EverestPoker Game #7164369614: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:32:03 - 2011/11/02
+Seat 1: Player0 ($5,320.00)
+Seat 5: Player6 ($6,055.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player0 posts the small blind of $150.00
+Player6 posts the big blind of $300.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [9d 2h]
+Player0 folds
+Uncalled bet of $150.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $360.00
+
+
+EverestPoker Game #7164369984: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:32:15 - 2011/11/02
+Seat 1: Player0 ($5,140.00)
+Seat 5: Player6 ($6,235.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player6 posts the small blind of $150.00
+Player0 posts the big blind of $300.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [As 6c]
+Player6 calls $150.00
+Player0 checks
+*** FLOP *** [6s 4d 8s]
+Player0 bets $300.00
+Player6 folds
+Uncalled bet of $300.00 returned to Player0
+*** SUMMARY ***
+Player0 collects $660.00
+
+
+EverestPoker Game #7164370584: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:32:35 - 2011/11/02
+Seat 1: Player0 ($5,470.00)
+Seat 5: Player6 ($5,905.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player0 posts the small blind of $150.00
+Player6 posts the big blind of $300.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [4s 3s]
+Player0 folds
+Uncalled bet of $150.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $360.00
+
+
+EverestPoker Game #7164370836: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:32:43 - 2011/11/02
+Seat 1: Player0 ($5,290.00)
+Seat 5: Player6 ($6,085.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player6 posts the small blind of $150.00
+Player0 posts the big blind of $300.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [8c Th]
+Player6 calls $150.00
+Player0 checks
+*** FLOP *** [6h 9d 7c]
+Player0 checks
+Player6 bets $300.00
+Player0 folds
+Uncalled bet of $300.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $660.00
+
+
+EverestPoker Game #7164371356: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:33:01 - 2011/11/02
+Seat 1: Player0 ($4,960.00)
+Seat 5: Player6 ($6,415.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player0 posts the small blind of $150.00
+Player6 posts the big blind of $300.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [2d 9s]
+Player0 folds
+Uncalled bet of $150.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $360.00
+
+
+EverestPoker Game #7164371718: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:33:13 - 2011/11/02
+Seat 1: Player0 ($4,780.00)
+Seat 5: Player6 ($6,595.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player6 posts the small blind of $150.00
+Player0 posts the big blind of $300.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [7h 2s]
+Player6 calls $150.00
+Player0 checks
+*** FLOP *** [2d Js 5h]
+Player0 checks
+Player6 checks
+*** TURN *** [Qd]
+Player0 checks
+Player6 bets $600.00
+Player0 folds
+Uncalled bet of $600.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $660.00
+
+
+EverestPoker Game #7164372588: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:33:43 - 2011/11/02
+Seat 1: Player0 ($4,450.00)
+Seat 5: Player6 ($6,925.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player0 posts the small blind of $150.00
+Player6 posts the big blind of $300.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [7c Jc]
+Player0 folds
+Uncalled bet of $150.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $360.00
+
+
+EverestPoker Game #7164372962: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:33:55 - 2011/11/02
+Seat 1: Player0 ($4,270.00)
+Seat 5: Player6 ($7,105.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player6 posts the small blind of $150.00
+Player0 posts the big blind of $300.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [Ts As]
+Player6 calls $150.00
+Player0 checks
+*** FLOP *** [Jh 4d 10d]
+Player0 checks
+Player6 checks
+*** TURN *** [Qd]
+Player0 checks
+Player6 checks
+*** RIVER *** [7d]
+Player0 checks
+Player6 bets $600.00
+Player0 folds
+Uncalled bet of $600.00 returned to Player6
+Player6 shows [Ts As]
+*** SUMMARY ***
+Player6 shows [Ts As]
+Player6 collects $660.00
+
+
+EverestPoker Game #7164373949: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:34:29 - 2011/11/02
+Seat 1: Player0 ($3,940.00)
+Seat 5: Player6 ($7,435.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player0 posts the small blind of $150.00
+Player6 posts the big blind of $300.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [7s 8s]
+Player0 calls $150.00
+Player6 checks
+*** FLOP *** [5s Jc Qd]
+Player6 checks
+Player0 checks
+*** TURN *** [10s]
+Player6 checks
+Player0 checks
+*** RIVER *** [2h]
+Player6 checks
+Player0 checks
+Player6 shows [7s 8s]
+Player0 shows [7h 9c]
+*** SUMMARY ***
+Player6 shows [7s 8s]
+Player0 shows [7h 9c]
+Player0 collects $660.00
+
+
+EverestPoker Game #7164374842: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:34:59 - 2011/11/02
+Seat 1: Player0 ($4,270.00)
+Seat 5: Player6 ($7,105.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player6 posts the small blind of $150.00
+Player0 posts the big blind of $300.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [4s 4d]
+Player6 raises to $600.00
+Player0 calls $300.00
+*** FLOP *** [Js 6c 5c]
+Player0 checks
+Player6 checks
+*** TURN *** [Jh]
+Player0 checks
+Player6 bets $600.00
+Player0 folds
+Uncalled bet of $600.00 returned to Player6
+Player6 shows [4s 4d]
+*** SUMMARY ***
+Player6 shows [4s 4d]
+Player6 collects $1,260.00
+
+
+EverestPoker Game #7164375639: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:35:25 - 2011/11/02
+Seat 1: Player0 ($3,640.00)
+Seat 5: Player6 ($7,735.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player0 posts the small blind of $150.00
+Player6 posts the big blind of $300.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [Ac 2d]
+Player0 folds
+Uncalled bet of $150.00 returned to Player6
+Player6 shows [Ac 2d]
+*** SUMMARY ***
+Player6 shows [Ac 2d]
+Player6 collects $360.00
+
+
+EverestPoker Game #7164375928: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:35:35 - 2011/11/02
+Seat 1: Player0 ($3,460.00)
+Seat 5: Player6 ($7,915.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player6 posts the small blind of $150.00
+Player0 posts the big blind of $300.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [Qd 4h]
+Player6 calls $150.00
+Player0 checks
+*** FLOP *** [Ad 5h 2c]
+Player0 bets $300.00
+Player6 folds
+Uncalled bet of $300.00 returned to Player0
+*** SUMMARY ***
+Player0 collects $660.00
+
+
+EverestPoker Game #7164376343: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:35:49 - 2011/11/02
+Seat 1: Player0 ($3,790.00)
+Seat 5: Player6 ($7,585.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player0 posts the small blind of $150.00
+Player6 posts the big blind of $300.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [Tc 3d]
+Player0 raises to $600.00
+Player6 folds
+Uncalled bet of $300.00 returned to Player0
+*** SUMMARY ***
+Player0 collects $660.00
+
+
+EverestPoker Game #7164376583: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:35:57 - 2011/11/02
+Seat 1: Player0 ($4,120.00)
+Seat 5: Player6 ($7,255.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player6 posts the small blind of $150.00
+Player0 posts the big blind of $300.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [3s Js]
+Player6 raises to $600.00
+Player0 folds
+Uncalled bet of $300.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $660.00
+
+
+EverestPoker Game #7164376991: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:36:11 - 2011/11/02
+Seat 1: Player0 ($3,790.00)
+Seat 5: Player6 ($7,585.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player0 posts the small blind of $150.00
+Player6 posts the big blind of $300.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [Ad 6d]
+Player0 calls $150.00
+Player6 raises to $600.00
+Player0 calls $300.00
+*** FLOP *** [6c Jh 10s]
+Player6 bets $300.00
+Player0 calls $300.00
+*** TURN *** [9d]
+Player6 bets $600.00
+Player0 raises to $1,200.00
+Player6 raises to $1,800.00
+Player0 raises to $2,400.00
+Player6 raises to $3,000.00
+Player0 calls $460.00, and is all-in
+Uncalled bet of $140.00 returned to Player6
+Player6 shows [Ad 6d]
+Player0 shows [Qh 8h]
+*** RIVER *** [3c]
+Player6 shows [Ad 6d]
+Player0 shows [Qh 8h]
+*** SUMMARY ***
+Player6 shows [Ad 6d]
+Player0 shows [Qh 8h]
+Player0 collects $7,580.00
+
+
+EverestPoker Game #7164378193: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:36:51 - 2011/11/02
+Seat 1: Player0 ($7,580.00)
+Seat 5: Player6 ($3,795.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player6 posts the small blind of $150.00
+Player0 posts the big blind of $300.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [8s 4h]
+Player6 folds
+Uncalled bet of $150.00 returned to Player0
+*** SUMMARY ***
+Player0 collects $360.00
+
+
+EverestPoker Game #7164378428: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:36:59 - 2011/11/02
+Seat 1: Player0 ($7,760.00)
+Seat 5: Player6 ($3,615.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player0 posts the small blind of $150.00
+Player6 posts the big blind of $300.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [3d Kc]
+Player0 folds
+Uncalled bet of $150.00 returned to Player6
+Player6 shows [3d Kc]
+*** SUMMARY ***
+Player6 shows [3d Kc]
+Player6 collects $360.00
+
+
+EverestPoker Game #7164378919: Tourney ID: 49630157, Table 49630157-0 - 300/600 - Limit Hold'em - 09:37:15 - 2011/11/02
+Seat 1: Player0 ($7,580.00)
+Seat 5: Player6 ($3,795.00)
+Player0 posts the ante of $30.00
+Player6 posts the ante of $30.00
+Player6 posts the small blind of $150.00
+Player0 posts the big blind of $300.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [6d Ac]
+Player6 calls $150.00
+Player0 raises to $600.00
+Player6 calls $300.00
+*** FLOP *** [Ah 3c 9h]
+Player0 bets $300.00
+Player6 calls $300.00
+*** TURN *** [2s]
+Player0 bets $600.00
+Player6 calls $600.00
+*** RIVER *** [6s]
+Player0 bets $600.00
+Player6 raises to $1,200.00
+Player0 calls $600.00
+Player6 shows [6d Ac]
+Player0 mucked [7s 7d]
+*** SUMMARY ***
+Player6 shows [6d Ac]
+Player0 mucked [7s 7d]
+Player6 collects $5,460.00
+
+
+EverestPoker Game #7164379868: Tourney ID: 49630157, Table 49630157-0 - 400/800 - Limit Hold'em - 09:37:47 - 2011/11/02
+Seat 1: Player0 ($4,850.00)
+Seat 5: Player6 ($6,525.00)
+Player0 posts the ante of $40.00
+Player6 posts the ante of $40.00
+Player0 posts the small blind of $200.00
+Player6 posts the big blind of $400.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [Kd Th]
+Player0 calls $200.00
+Player6 raises to $800.00
+Player0 folds
+Uncalled bet of $400.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $880.00
+
+
+EverestPoker Game #7164380356: Tourney ID: 49630157, Table 49630157-0 - 400/800 - Limit Hold'em - 09:38:03 - 2011/11/02
+Seat 1: Player0 ($4,410.00)
+Seat 5: Player6 ($6,965.00)
+Player0 posts the ante of $40.00
+Player6 posts the ante of $40.00
+Player6 posts the small blind of $200.00
+Player0 posts the big blind of $400.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [2d 5h]
+Player6 calls $200.00
+Player0 checks
+*** FLOP *** [4c Ac 2s]
+Player0 bets $400.00
+Player6 calls $400.00
+*** TURN *** [9c]
+Player0 bets $800.00
+Player6 calls $800.00
+*** RIVER *** [3h]
+Player0 bets $800.00
+Player6 raises to $1,600.00
+Player0 raises to $2,400.00
+Player6 raises to $3,200.00
+Player0 calls $370.00, and is all-in
+Uncalled bet of $430.00 returned to Player6
+Player6 shows [2d 5h]
+Player0 shows [7c Qc]
+*** SUMMARY ***
+Player6 shows [2d 5h]
+Player0 shows [7c Qc]
+Player0 collects $8,820.00
+
+
+EverestPoker Game #7164381347: Tourney ID: 49630157, Table 49630157-0 - 400/800 - Limit Hold'em - 09:38:37 - 2011/11/02
+Seat 1: Player0 ($8,820.00)
+Seat 5: Player6 ($2,555.00)
+Player0 posts the ante of $40.00
+Player6 posts the ante of $40.00
+Player0 posts the small blind of $200.00
+Player6 posts the big blind of $400.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [5s Jh]
+Player0 calls $200.00
+Player6 raises to $800.00
+Player0 calls $400.00
+*** FLOP *** [4c 10c 6d]
+Player6 bets $400.00
+Player0 folds
+Uncalled bet of $400.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $1,680.00
+
+
+EverestPoker Game #7164382054: Tourney ID: 49630157, Table 49630157-0 - 400/800 - Limit Hold'em - 09:39:01 - 2011/11/02
+Seat 1: Player0 ($7,980.00)
+Seat 5: Player6 ($3,395.00)
+Player0 posts the ante of $40.00
+Player6 posts the ante of $40.00
+Player6 posts the small blind of $200.00
+Player0 posts the big blind of $400.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [Th 4c]
+Player6 calls $200.00
+Player0 checks
+*** FLOP *** [9s Qh 3h]
+Player0 bets $400.00
+Player6 folds
+Uncalled bet of $400.00 returned to Player0
+*** SUMMARY ***
+Player0 collects $880.00
+
+
+EverestPoker Game #7164382471: Tourney ID: 49630157, Table 49630157-0 - 400/800 - Limit Hold'em - 09:39:15 - 2011/11/02
+Seat 1: Player0 ($8,420.00)
+Seat 5: Player6 ($2,955.00)
+Player0 posts the ante of $40.00
+Player6 posts the ante of $40.00
+Player0 posts the small blind of $200.00
+Player6 posts the big blind of $400.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [8d 2d]
+Player0 folds
+Uncalled bet of $200.00 returned to Player6
+*** SUMMARY ***
+Player6 collects $480.00
+
+
+EverestPoker Game #7164382785: Tourney ID: 49630157, Table 49630157-0 - 400/800 - Limit Hold'em - 09:39:25 - 2011/11/02
+Seat 1: Player0 ($8,180.00)
+Seat 5: Player6 ($3,195.00)
+Player0 posts the ante of $40.00
+Player6 posts the ante of $40.00
+Player6 posts the small blind of $200.00
+Player0 posts the big blind of $400.00
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player6 [8d Qs]
+Player6 calls $200.00
+Player0 checks
+*** FLOP *** [9c 4c 7s]
+Player0 checks
+Player6 checks
+*** TURN *** [Ac]
+Player0 checks
+Player6 checks
+*** RIVER *** [9d]
+Player0 checks
+Player6 checks
+Player0 shows [6d Ts]
+Player6 shows [8d Qs]
+*** SUMMARY ***
+Player0 shows [6d Ts]
+Player6 shows [8d Qs]
+Player6 collects $880.00
+
+
+EverestPoker Game #7164383759: Tourney ID: 49630157, Table 49630157-0 - 400/800 - Limit Hold'em - 09:39:57 - 2011/11/02
+Seat 1: Player0 ($7,740.00)
+Seat 5: Player6 ($3,635.00)
+Player0 posts the ante of $40.00
+Player6 posts the ante of $40.00
+Player0 posts the small blind of $200.00
+Player6 posts the big blind of $400.00
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Player6 [Th 6c]
+Player0 raises to $800.00
+Player6 calls $400.00
+*** FLOP *** [Kh Jc Ks]
+Player6 checks
+Player0 bets $400.00
+Player6 raises to $800.00
+Player0 calls $400.00
+*** TURN *** [10c]
+Player6 bets $800.00
+Player0 raises to $1,600.00
+Player6 raises to $1,995.00, and is all-in
+Player0 calls $395.00
+Player6 shows [Th 6c]
+Player0 shows [Qs As]
+*** RIVER *** [4h]
+Player0 shows [Qs As]
+Player6 shows [Th 6c]
+*** SUMMARY ***
+Player6 shows [Th 6c]
+Player0 shows [Qs As]
+Player0 collects $7,270.00
+Player6 finished in place 2 and won 0,03 €
+Player0 finished in place 1 and won 0,05 €
+
+
+
