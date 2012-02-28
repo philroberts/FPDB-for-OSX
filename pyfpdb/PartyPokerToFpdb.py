@@ -156,15 +156,6 @@ class PartyPoker(HandHistoryConverter):
             return []
         return filter(lambda text: len(text.strip()), list)
 
-    def guessMaxSeats(self, hand):
-        """Return a guess at max_seats when not specified in HH."""
-        mo = self.maxOccSeat(hand)
-        if mo == 10: return mo
-        if mo == 2: return 2
-        if mo <= 6: return 6
-        # there are 9-max tables for cash and 10-max for tournaments
-        return 9 if hand.gametype['type']=='ring' else 10
-
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
@@ -397,7 +388,7 @@ class PartyPoker(HandHistoryConverter):
             #finds first vacant seat after an exact seat
             def findFirstEmptySeat(startSeat):
                 while startSeat in occupiedSeats:
-                    if startSeat >= hand.maxseats:
+                    if startSeat >= hand.maxseats and hand.maxseats!=None:
                         startSeat = 0
                     startSeat += 1
                 return startSeat
