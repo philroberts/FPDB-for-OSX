@@ -130,7 +130,7 @@ class MergeSummary(TourneySummary):
             log.error(_("MergeSummary.readHandInfo: '%s'") % tmp)
             raise FpdbParseError
             
-        tourneyNameFull = m.group('TABLENAME')
+        tourneyNameFull = m.group('TABLENAME').replace('  - ', ' - ').strip()
         self.tourneyName = m.group('TABLENAME')[:40]
         self.tourNo = re.split('-', m.group('TDATA'))[0]
         self.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],'%Y%m%d%H%M')

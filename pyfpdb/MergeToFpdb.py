@@ -514,7 +514,7 @@ or None if we fail to get the info """
 
         if hand.gametype['type'] == 'tour':
             tid, table = re.split('-', m.group('TDATA'))
-            self.info['tablename'] = m.group('TABLENAME').strip()
+            self.info['tablename'] = m.group('TABLENAME').replace('  - ', ' - ').strip()
             self.info['tourNo'] = tid
             hand.tourNo = tid
             hand.tablename = table
