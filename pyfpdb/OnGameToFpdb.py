@@ -68,7 +68,7 @@ class OnGame(HandHistoryConverter):
     # "Play money" rather than "Real money" and set currency accordingly
     # Table:\s(\[SPEED\]\s)?(?P<TABLE>[-\'\w\#\s\.]+)\s\[\d+\]\s\( 
     re_HandInfo = re.compile(u"""
-            \*{5}\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+)(\s\(TOURNAMENT:\s\"(?P<NAME>.+?)\",\s(?P<TID>[-A-Z\d]+),\sbuy-in:\s(?P<BUYINCUR>[%(LS)s]?)(?P<BUYIN>[%(NUM)s]+)\))?\s\*{5}\s?
+            \*{5}\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+)(\s\(TOURNAMENT:(\s\"(?P<NAME>.+?)\",)?\s(?P<TID>[-A-Z\d]+)(?P<BUY>,\sbuy-in:\s(?P<BUYINCUR>[%(LS)s]?)(?P<BUYIN>[%(NUM)s]+))?\))?\s\*{5}\s?
             Start\shand:\s(?P<DATETIME>.*?)\s?
             Table:\s(\[SPEED\]\s)?(?P<TABLE>.+?)\s\[\d+\]\s\( 
             (
@@ -238,14 +238,21 @@ class OnGame(HandHistoryConverter):
                     hand.tourNo = hand.tourNo.replace('R','')
                     hand.tourNo = hand.tourNo.replace('O','')
                     hand.tourNo = hand.tourNo.replace('-','')
-            if key == 'BUYIN' and info[key] is not None:
-                hand.buyin = int(100*Decimal(self.clearMoneyString(info[key])))
-                hand.fee = int(hand.buyin - hand.buyin/1.1)
-                hand.buyin -= hand.fee
-            if key == 'BUYINCUR' and info[key] is not None:
-                hand.buyinCurrency = self.currencies[info[key]]
-                if hand.buyin == 0:
-                    hand.buyinCurrency = 'FREE'
+            if key == 'BUYIN':
+                if info[key] is not None:
+                    hand.buyin = int(100*Decimal(self.clearMoneyString(info[key])))
+                    hand.fee = int(hand.buyin - hand.buyin/1.1)
+                    hand.buyin -= hand.fee
+                else:
+                    hand.buyin = 0
+                    hand.fee = 0
+            if key == 'BUYINCUR':
+                if info[key] is not None:
+                    hand.buyinCurrency = self.currencies[info[key]]
+                    if hand.buyin == 0:
+                        hand.buyinCurrency = 'FREE'
+                else:
+                    hand.buyinCurrency = 'NA'
             if key == 'TABLE':
                 hand.tablename = info[key]
 
