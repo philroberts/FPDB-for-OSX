@@ -114,9 +114,9 @@ class OnGame(HandHistoryConverter):
             subst = {'PLYR': player_re, 'CUR': self.sym[hand.gametype['currency']]}
             self.re_PostSB    = re.compile('(?P<PNAME>.*) posts small blind \((%(CUR)s)?(?P<SB>[\.0-9]+)\)' % subst, re.MULTILINE)
             self.re_PostBB    = re.compile('(?P<PNAME>.*) posts big blind \((%(CUR)s)?(?P<BB>[\.0-9]+)\)' % subst, re.MULTILINE)
-            self.re_Antes     = re.compile(r"^%(PLYR)s: posts ante (%(CUR)s)?(?P<ANTE>[\.0-9]+)" % subst, re.MULTILINE)
-            self.re_BringIn   = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for (%(CUR)s)?(?P<BRINGIN>[\.0-9]+)" % subst, re.MULTILINE)
-            self.re_PostBoth  = re.compile('(?P<PNAME>.*): posts small \& big blind \( (%(CUR)s)?(?P<SBBB>[\.0-9]+)\)' % subst)
+            self.re_Antes     = re.compile(r"^%(PLYR)s posts ante (%(CUR)s)?(?P<ANTE>[\.0-9]+)" % subst, re.MULTILINE)
+            self.re_BringIn   = re.compile(r"^%(PLYR)s brings[- ]in( low|) for (%(CUR)s)?(?P<BRINGIN>[\.0-9]+)" % subst, re.MULTILINE)
+            self.re_PostBoth  = re.compile('(?P<PNAME>.*) posts small \& big blind \( (%(CUR)s)?(?P<SBBB>[\.0-9]+)\)' % subst)
             self.re_PostDead  = re.compile('(?P<PNAME>.*) posts dead blind \((%(CUR)s)?(?P<DEAD>[\.0-9]+)\)' % subst, re.MULTILINE)
             self.re_HeroCards = re.compile('(New\shand\sfor|Dealing\sto)\s%(PLYR)s:\s\[(?P<CARDS>.*)\]' % subst)
 
