@@ -178,7 +178,7 @@ class iPoker(HandHistoryConverter):
                             #         gather the info unless it reads the entire file every time.
             self.tinfo['tourNo'] = mg['TABLE'].split(',')[-1].strip().split(' ')[0]
             self.tablename = mg['TABLE'].split(',')[0].strip()
-            if not mg['CURRENCY']:
+            if not mg['CURRENCY'] or mg['CURRENCY']=='fun':
                 self.tinfo['buyinCurrency'] = 'play'
             else:
                 self.tinfo['buyinCurrency'] = mg['CURRENCY']
@@ -227,7 +227,10 @@ class iPoker(HandHistoryConverter):
         #print "DEBUG: m.groupdict(): %s" % mg
         hand.tablename = self.tablename
         m3 = self.re_MaxSeats.search(self.tablename)
-        if m3: hand.maxseats = int(m3.group('SEATS'))
+        if m3: 
+            seats = int(m3.group('SEATS'))
+            if seats > 1 and seats < 11:
+                hand.maxseats = seats
         hand.handid = m.group('HID')
         try:
             hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
