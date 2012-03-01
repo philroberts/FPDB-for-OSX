@@ -383,7 +383,7 @@ class Merge(HandHistoryConverter):
     # <game id="46154255-645" starttime="20111230232051" numholecards="2" gametype="1" seats="9" realmoney="false" data="20111230|Play Money (46154255)|46154255|46154255-645|false">
     # <game id="46165919-1" starttime="20111230161824" numholecards="2" gametype="23" seats="10" realmoney="true" data="20111230|Fun Step 1|46165833-1|46165919-1|true">
     # <game id="46289039-1" starttime="20120101200100" numholecards="2" gametype="23" seats="9" realmoney="true" data="20120101|$200 Freeroll - NL Holdem - 20%3A00|46245544-1|46289039-1|true">
-    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLENAME>[^|]+)\|(?P<TDATA>[^|]+)\|?.*>', re.MULTILINE)
+    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+[|:](?P<TABLENAME>[^|:]+)[|:](?P<TDATA>[^|:]+)[|:]?.*>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
     re_Board = re.compile(r'<cards type="COMMUNITY" cards="(?P<CARDS>[^"]+)"', re.MULTILINE)
