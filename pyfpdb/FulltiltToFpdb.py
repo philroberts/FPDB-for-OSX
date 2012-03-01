@@ -560,24 +560,6 @@ class Fulltilt(HandHistoryConverter):
                 #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
 
-    def guessMaxSeats(self, hand):
-        """Return a guess at max_seats when not specified in HH."""
-        mo = self.maxOccSeat(hand)
-
-        if mo == 10: return 10 #that was easy
-
-        if hand.gametype['base'] == 'stud':
-            if mo <= 8: return 8
-            else: return mo 
-
-        if hand.gametype['base'] == 'draw':
-            if mo <= 6: return 6
-            else: return mo
-
-        if mo == 2: return 2
-        if mo <= 6: return 6
-        return 9
-
     def readSummaryInfo(self, summaryInfoList):
         self.status = True
 

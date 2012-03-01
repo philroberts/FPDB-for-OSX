@@ -167,7 +167,6 @@ class Everest(HandHistoryConverter):
         mg = m.groupdict()
         hand.handid = m.group('HID')
         hand.tablename = self.info['TABLENAME']
-        hand.maxseats = None
         if hand.gametype['type'] == 'tour':
             hand.tourNo = self.info['tourNo']
             hand.buyin = 0
@@ -179,6 +178,15 @@ class Everest(HandHistoryConverter):
         if 'BB' in mg:
             bb = mg['BB'].replace(',','.')
             hand.gametype['bb'] = bb
+
+        if hand.maxseats==None:
+            if hand.gametype['type'] == 'tour' and self.maxseats==0:
+                hand.maxseats = self.guessMaxSeats(hand)
+                self.maxseats = hand.maxseats
+            elif hand.gametype['type'] == 'tour':
+                hand.maxseats = self.maxseats
+            else:
+                hand.maxseats = None
         #FIXME: u'DATETIME': u'1291155932'
         hand.startTime = datetime.datetime.fromtimestamp(float(m.group('DATETIME')))
         #hand.startTime = datetime.datetime.strptime('201102091158', '%Y%m%d%H%M')
