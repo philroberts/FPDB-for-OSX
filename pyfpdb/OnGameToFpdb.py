@@ -189,9 +189,9 @@ class OnGame(HandHistoryConverter):
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
-            info['sb'] = self.clearMoneyString(mg['SB'])
+            info['sb'] = self.clearMoneyString(mg['SB'].replace(',', ''))
         if 'BB' in mg:
-            info['bb'] = self.clearMoneyString(mg['BB'])
+            info['bb'] = self.clearMoneyString(mg['BB'].replace(',', ''))
 
         #log.debug("determinegametype: returning "+str(info))
         return info
