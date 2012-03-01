@@ -70,7 +70,7 @@ class Fulltilt(HandHistoryConverter):
                   }
 
     # Static regexes
-    re_GameInfo     = re.compile(u'''.*\#(?P<HID>[0-9]+):\s
+    re_GameInfo     = re.compile(u'''\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
                                     .+
                                     -\s(?P<CURRENCY>[%(LS)s]|)?
@@ -83,7 +83,7 @@ class Fulltilt(HandHistoryConverter):
                                  ''' % substitutions, re.VERBOSE)
     re_SplitHands   = re.compile(r"\n\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
-    re_HandInfo     = re.compile(u'''.*\#(?P<HID>[0-9]+):\s
+    re_HandInfo     = re.compile(u'''\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
                                     ((Table|Match)\s)?
                                     (?P<PLAY>Play\sChip\s|PC)?
@@ -93,7 +93,7 @@ class Fulltilt(HandHistoryConverter):
                                     [%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[%(NUM)s]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
                                     (?P<GAMETYPE>[-\da-zA-Z\/\'\s]+)\s-\s
-                                    (?P<DATETIME>.*$)
+                                    (?P<DATETIME>.+$)
                                     (?P<PARTIAL>\(partial\))?\s
                                  ''' % substitutions, re.MULTILINE|re.VERBOSE)
     re_Cancelled = re.compile("Hand\s\#[0-9]+\shas\sbeen\scanceled?")
