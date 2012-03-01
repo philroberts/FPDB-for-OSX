@@ -40,7 +40,7 @@ class Merge(HandHistoryConverter):
     sitename = "Merge"
     filetype = "text"
     codepage = ("cp1252", "utf8")
-    siteId   = 11
+    siteId   = 12
     copyGameHeader = True
 
     limits = { 'No Limit':'nl', 'No Limit ':'nl', 'Limit':'fl', 'Pot Limit':'pl', 'Pot Limit ':'pl', 'Half Pot Limit':'hp'}
