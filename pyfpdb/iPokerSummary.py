@@ -55,7 +55,7 @@ class iPokerSummary(TourneySummary):
 
     re_GameInfoTrny = re.compile(r"""
                 <tournamentname>(?P<NAME>.+?)</tournamentname><place>(?P<PLACE>.+?)</place>
-                <buyin>(?P<BUYIN>(?P<BIAMT>.+)\+?(?P<BIRAKE>.+)?)</buyin>\s+?
+                <buyin>(?P<BUYIN>(?P<BIAMT>.+?)(\+(?P<BIRAKE>.+?))?)</buyin>\s+?
                 <totalbuyin>(?P<TOTBUYIN>.+)</totalbuyin>\s+?
                 <ipoints>.+?</ipoints>\s+?
                 <win>(?P<CURRENCY>%(LS)s)?(?P<WIN>([%(NUM)s]+)|.+?)</win>

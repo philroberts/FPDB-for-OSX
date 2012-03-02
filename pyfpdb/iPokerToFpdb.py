@@ -78,7 +78,7 @@ class iPoker(HandHistoryConverter):
             """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_GameInfoTrny = re.compile(r"""
                 <tournamentname>.+?<place>(?P<PLACE>.+?)</place>
-                <buyin>(?P<BUYIN>(?P<BIAMT>.+)\+?(?P<BIRAKE>.+)?)</buyin>\s+?
+                <buyin>(?P<BUYIN>(?P<BIAMT>.+?)(\+(?P<BIRAKE>.+?))?)</buyin>\s+?
                 <totalbuyin>(?P<TOTBUYIN>.+)</totalbuyin>\s+?
                 <ipoints>.+?</ipoints>\s+?
                 <win>(%(LS)s)?(?P<WIN>([%(NUM)s]+)|.+?)</win>
