@@ -1,0 +1,45 @@
+Game #11480841734 starts.
+
+#Game No : 11480841734 
+***** Hand History for Game 11480841734 *****
+$10/$20 USD FL 7 Card Stud Hi-Lo - Monday, February 27, 09:51:26 EST 2012
+Table Table  125524 (Real Money)
+Seat 0 is the button
+Total number of players : 2/8 
+Seat 1: Player0 ( $390 USD )
+Seat 3: Player1 ( $510 USD )
+Player0 posts ante [$1 USD]
+Player1 posts ante [$1 USD]
+** Dealing **
+Dealt to Player0 [  Ah 4h 4d ]
+Player0 opens
+Player0 bring-ins [$3 USD]
+Player1 completes [$10 USD]
+Player0 raises [$17 USD]
+Player1 calls [$10 USD]
+** Dealing Fourth street **
+Dealt to Player0 [  Td ]
+Player1 opens
+Player1 bets [$10 USD]
+Player0 calls [$10 USD]
+** Dealing Fifth street **
+Dealt to Player0 [  Qd ]
+Player1 opens
+Player1 bets [$20 USD]
+Player0 calls [$20 USD]
+** Dealing Sixth street **
+Dealt to Player0 [  Kc ]
+Player1 opens
+Player1 bets [$20 USD]
+Player0 calls [$20 USD]
+** Dealing River **
+Dealt to Player0 [  8s ]
+Player1 opens
+Player1 bets [$20 USD]
+Player0 calls [$20 USD]
+Player1 shows [ Qc, 3d, Ac, 8h, 2s, 5h, Jc ]high card Ace.
+Player1 shows8,5,3,2,A  for low.
+Player0 shows [ Ah, 4h, 4d, Td, Qd, Kc, 8s ]a pair of Fours.
+Player0 wins $90.50 USD from the main pot with a pair of Fours.
+Player1 wins Lo ($90.50 USD) from the main pot with 8,5,3,2,A.
+

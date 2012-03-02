@@ -190,7 +190,7 @@ class PartyPoker(HandHistoryConverter):
                 r"\[ *(?P<CARDS>.+) *\](?P<COMBINATION>.+)\.",
                 re.MULTILINE)
             self.re_CollectPot = re.compile(
-                r"""^%(PLYR)s\s+wins\s+%(CUR_SYM)s?(?P<POT>[.,\d]+)\s*(%(CUR)s)?""" %  subst,
+                r"""^%(PLYR)s\s+wins\s+(Lo\s\()?%(CUR_SYM)s?(?P<POT>[.,\d]+)\s*(%(CUR)s)?\)?""" %  subst,
                 re.MULTILINE|re.VERBOSE)
 
     def readSupportedGames(self):
