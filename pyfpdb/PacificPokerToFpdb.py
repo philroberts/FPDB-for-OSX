@@ -34,7 +34,7 @@ class PacificPoker(HandHistoryConverter):
     sitename = "PacificPoker"
     filetype = "text"
     codepage = ("utf8", "cp1252")
-    siteId   = 13 # Needs to match id entry in Sites database
+    siteId   = 10 # Needs to match id entry in Sites database
 
     mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'} # Legal mixed games
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3", "play": ""}         # ADD Euro, Sterling, etc HERE

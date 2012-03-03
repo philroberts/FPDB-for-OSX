@@ -429,8 +429,12 @@ or None if we fail to get the info """
     def guessMaxSeats(self, hand):
         """Return a guess at maxseats when not specified in HH."""
         # if some other code prior to this has already set it, return it
+        if not self.copyGameHeader and hand.gametype['type']=='tour':
+            return 10
+            
         if self.maxseats > 1 and self.maxseats < 11:
             return self.maxseats
+        
         mo = self.maxOccSeat(hand)
 
         if mo == 10: return 10 #that was easy

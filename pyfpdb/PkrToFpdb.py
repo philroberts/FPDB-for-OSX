@@ -32,7 +32,7 @@ class Pkr(HandHistoryConverter):
     sitename = "PKR"
     filetype = "text"
     codepage = ("utf8", "cp1252")
-    siteId   = 12 # Needs to match id entry in Sites database
+    siteId   = 13 # Needs to match id entry in Sites database
 
     mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'} # Legal mixed games
     sym = {'USD': "\$"}         # ADD Euro, Sterling, etc HERE

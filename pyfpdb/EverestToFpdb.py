@@ -41,18 +41,18 @@ class Everest(HandHistoryConverter):
                     }
 
     # Static regexes
-    re_SplitHands = re.compile(r'</HAND>\n+(?=<HAND)')
+    re_SplitHands = re.compile(r'</HAND>')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(u"""<SESSION\stime="\d+"\s
                                     tableName="(?P<TABLE>[%(TAB)s]+)"\s
-                                    id="[\d\.]+"\s
+                                    id="(?P<ID>[\d\.]+)"\s
                                     type="(?P<TYPE>[a-zA-Z ]+)"\s
                                     money="(?P<CURRENCY>[%(LS)s])?"\s
                                     screenName="[a-zA-Z]+"\s
-                                    game="(?P<GAME>hold\-em|Holdem\sTournament|omaha\-hi)"\s
+                                    game="(?P<GAME>hold\-em|omaha\-hi)"\s
                                     gametype="(?P<LIMIT>[-a-zA-Z ]+)"/>
                                 """ % substitutions, re.VERBOSE|re.MULTILINE)
-    re_HandInfo = re.compile(r'<HAND time="(?P<DATETIME>[0-9]+)" id="(?P<HID>[0-9]+)" index="\d+" blinds="((?P<SB>[%(NUM)s]+)\s?(?P<CURRENCY>[%(LS)s])?/(?P<BB>[%(NUM)s]+))' % substitutions, re.MULTILINE)
+    re_HandInfo = re.compile(r'time="(?P<DATETIME>[0-9]+)" id="(?P<HID>[0-9]+)" index="\d+" blinds="((?P<SB>[%(NUM)s]+)\s?(?P<CURRENCY>[%(LS)s])?/(?P<BB>[%(NUM)s]+))' % substitutions, re.MULTILINE)
     re_Button = re.compile(r'<DEALER position="(?P<BUTTON>[0-9]+)"\/>')
     re_PlayerInfo = re.compile(r'<SEAT position="(?P<SEAT>[0-9]+)" name="(?P<PNAME>.+)" balance="(?P<CASH>[.0-9]+)"/>', re.MULTILINE)
     re_Board = re.compile(r'(?P<CARDS>.+)<\/COMMUNITY>', re.MULTILINE)
@@ -61,14 +61,15 @@ class Everest(HandHistoryConverter):
     # compilePlayerRegexes (which does nothing), since players are identified
     # not by name but by seat number
     re_PostXB = re.compile(r'<BLIND position="(?P<PSEAT>[0-9]+)" amount="(?P<XB>[0-9]+)" penalty="(?P<PENALTY>[0-9]+)"\/>', re.MULTILINE)
-    #re_Antes = ???
+    re_Antes = re.compile(r'<ANTE position="(?P<PSEAT>[0-9])" amount="(?P<ANTE>[.0-9]+)"/>', re.MULTILINE)
     #re_BringIn = ???
-    re_HeroCards = re.compile(r'<cards type="HOLE" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
-    re_Action = re.compile(r'<(?P<ATYPE>FOLD|BET) position="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?\/>', re.MULTILINE)
+    re_HeroCards = re.compile(r'<HOLE position="(?P<PSEAT>[0-9])">(?P<CARD>[^-]+)</HOLE>', re.MULTILINE)
+    re_Action = re.compile(r'<(?P<ATYPE>FOLD|BET) position="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?( allin="1")?/>', re.MULTILINE)
     re_ShowdownAction = re.compile(r'<cards type="SHOWN" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_CollectPot = re.compile(r'<WIN position="(?P<PSEAT>[0-9])" amount="(?P<POT>[.0-9]+)" pot="[0-9]+"', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
-    re_ShownCards = re.compile(r'<cards type="(SHOWN|MUCKED)" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
+    re_ShownCards = re.compile(r'<(?P<SHOW>SHOW|MUCK) position="(?P<PSEAT>[0-9])">(?P<CARDS>.+)?</(SHOW|MUCK)>', re.MULTILINE)
+    re_Prize = re.compile(r'\s<(PRIZE|PLACE)', re.MULTILINE)
 
     def compilePlayerRegexs(self, hand):
         pass
@@ -84,7 +85,10 @@ class Everest(HandHistoryConverter):
                 ["ring", "hold", "nl"],
                 ["ring", "hold", "fl"],
                 ["ring", "hold", "pl"],
-                #["tour", "hold", "nl"]
+                
+                ["tour", "hold", "nl"],
+                ["tour", "hold", "fl"],
+                ["tour", "hold", "pl"]
                ]
 
     def determineGameType(self, handText):
@@ -116,8 +120,7 @@ class Everest(HandHistoryConverter):
         limits = { 'no-limit':'nl', 'fixed-limit':'fl', 'limit':'fl', 'pot-limit':'pl' }
         games = {              # base, category
                     'hold-em' : ('hold','holdem'),
-         'Holdem Tournament' : ('hold','holdem'),
-                  'omaha-hi' : ('hold','omahahi'),
+                   'omaha-hi' : ('hold','omahahi'),
                 }
 
         if 'LIMIT' in mg:
@@ -130,14 +133,21 @@ class Everest(HandHistoryConverter):
         if 'BB' in mg:
             bb = mg['BB'].replace(',','.')
             self.info['bb'] = bb
-
-        self.info['type'] = 'ring'
+        
+        if mg['TYPE']=='ring':
+            self.info['type'] = 'ring'
+        else:
+            self.info['type'] = 'tour'
+            self.info['tourNo'] = mg['ID']
+            
         if mg['CURRENCY'] == u'\u20ac':
             self.info['currency'] = 'EUR'
         elif mg['CURRENCY'] == '\$':
             self.info['currency'] = 'USD'
         elif not mg['CURRENCY']:
             self.info['currency'] = 'play'
+            
+        
 
         # HACK - tablename not in every hand.
         self.info['TABLENAME'] = mg['TABLE']
@@ -149,28 +159,53 @@ class Everest(HandHistoryConverter):
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if m is None:
+            if self.re_Prize.match(hand.handText):
+                raise FpdbHandPartial
             tmp = hand.handText[0:200]
             log.error(_("EverestToFpdb.readHandInfo: '%s'") % tmp)
             raise FpdbParseError
+        mg = m.groupdict()
         hand.handid = m.group('HID')
         hand.tablename = self.info['TABLENAME']
-        hand.maxseats = None
+        if hand.gametype['type'] == 'tour':
+            hand.tourNo = self.info['tourNo']
+            hand.buyin = 0
+            hand.fee = 0
+            hand.buyinCurrency="NA"
+        if 'SB' in mg:
+            sb = mg['SB'].replace(',','.')
+            hand.gametype['sb'] = sb
+        if 'BB' in mg:
+            bb = mg['BB'].replace(',','.')
+            hand.gametype['bb'] = bb
+
+        if hand.maxseats==None:
+            if hand.gametype['type'] == 'tour' and self.maxseats==0:
+                hand.maxseats = self.guessMaxSeats(hand)
+                self.maxseats = hand.maxseats
+            elif hand.gametype['type'] == 'tour':
+                hand.maxseats = self.maxseats
+            else:
+                hand.maxseats = None
         #FIXME: u'DATETIME': u'1291155932'
-        hand.startTime = datetime.datetime.strptime('201102091158', '%Y%m%d%H%M')
+        hand.startTime = datetime.datetime.fromtimestamp(float(m.group('DATETIME')))
+        #hand.startTime = datetime.datetime.strptime('201102091158', '%Y%m%d%H%M')
         #hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12], '%Y%m%d%H%M')
 
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
-            hand.addPlayer(a.group('SEAT'), a.group('PNAME'), a.group('CASH'))
+            stack = Decimal(a.group('CASH'))
+            stackstr = "%.2f" % float(stack/100)
+            hand.addPlayer(a.group('SEAT'), a.group('PNAME'), stackstr)
 
     def markStreets(self, hand):
         #if hand.gametype['base'] == 'hold':
         
         m =  re.search(r"<DEALER (?P<PREFLOP>.+?(?=<COMMUNITY>)|.+)"
-                       r"(<COMMUNITY>(?P<FLOP>\S\S, \S\S, \S\S<\/COMMUNITY>.+?(?=<COMMUNITY>)|.+))?"
-                       r"(<COMMUNITY>(?P<TURN>\S\S<\/COMMUNITY>.+?(?=<COMMUNITY>)|.+))?"
-                       r"(<COMMUNITY>(?P<RIVER>\S\S<\/COMMUNITY>.+))?", hand.handText,re.DOTALL)
+                       r"(<COMMUNITY>(?P<FLOP>\S\S\S?, \S\S\S?, \S\S\S?<\/COMMUNITY>.+?(?=<COMMUNITY>)|.+))?"
+                       r"(<COMMUNITY>(?P<TURN>\S\S\S?<\/COMMUNITY>.+?(?=<COMMUNITY>)|.+))?"
+                       r"(<COMMUNITY>(?P<RIVER>\S\S\S?<\/COMMUNITY>.+?(?=<WIN>)|.+))?", hand.handText,re.DOTALL)
         #import pprint
         #pp = pprint.PrettyPrinter(indent=4)
         #pp.pprint(m.groupdict())
@@ -179,12 +214,17 @@ class Everest(HandHistoryConverter):
     def readCommunityCards(self, hand, street):
         m = self.re_Board.search(hand.streets[street])
         if street == 'FLOP':
-            hand.setCommunityCards(street, m.group('CARDS').split(','))
+            cards = [c.replace('10', 'T').strip() for c in m.group('CARDS').split(',')]
+            hand.setCommunityCards(street, cards)
         elif street in ('TURN','RIVER'):
-            hand.setCommunityCards(street, [m.group('CARDS').split(',')[-1]])
+            cards = [c.replace('10', 'T').strip() for c in m.group('CARDS').split(',')]
+            hand.setCommunityCards(street, cards)
 
     def readAntes(self, hand):
-        pass # ???
+        m = self.re_Antes.finditer(hand.handText)
+        for player in m:
+            amount = "%.2f" % float(float(player.group('ANTE'))/100)
+            hand.addAnte(self.playerNameFromSeatNo(player.group('PSEAT'), hand), amount)
 
     def readBringIn(self, hand):
         pass # ???
@@ -192,7 +232,7 @@ class Everest(HandHistoryConverter):
     def readBlinds(self, hand):
         for a in self.re_PostXB.finditer(hand.handText):
             amount = "%.2f" % float(float(a.group('XB'))/100)
-            #print "DEBUG: readBlinds amount: %s" % amount
+            #print "DEBUG: handid %s readBlinds amount: %s sb: %s bb: %s" % (hand.handid, amount, str(Decimal(self.info['sb'])), str(Decimal(self.info['bb'])))
             if Decimal(a.group('XB'))/100 == Decimal(self.info['sb']):
                 hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),'small blind', amount)
             elif Decimal(a.group('XB'))/100 == Decimal(self.info['bb']):
@@ -202,12 +242,13 @@ class Everest(HandHistoryConverter):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
 
     def readHeroCards(self, hand):
-        m = self.re_HeroCards.search(hand.handText)
-        if m:
+        cards = []
+        for m in self.re_HeroCards.finditer(hand.handText):
             hand.hero = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
-            cards = m.group('CARDS').split(',')
-            hand.addHoleCards('PREFLOP', hand.hero, closed=cards, shown=False,
-                              mucked=False, dealt=True)
+            cards.append(m.group('CARD').replace('10', 'T'))
+        if cards:
+            #print "DEBUG: addHoleCards(%s, %s, %s)" %('PREFLOP', hand.hero, cards)
+            hand.addHoleCards('PREFLOP', hand.hero, closed=cards, shown=False,mucked=False, dealt=True)
 
     def readAction(self, hand, street):
         #print "DEBUG: readAction (%s)" % street
@@ -258,6 +299,12 @@ class Everest(HandHistoryConverter):
 
     def readShownCards(self, hand):
         for m in self.re_ShownCards.finditer(hand.handText):
-            cards = m.group('CARDS').split(',')
-            hand.addShownCards(cards=cards, player=self.playerNameFromSeatNo(m.group('PSEAT'), hand))
+            name = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
+            if name != hand.hero:
+                show = False
+                muck = False
+                if m.group('SHOW')=='SHOW': show=True
+                if m.group('SHOW')=='MUCK': muck=True
+                cards = [c.replace('10', 'T').strip() for c in m.group('CARDS').split(',')]
+                hand.addShownCards(cards=cards, player=name, shown=show, mucked=show)
 
