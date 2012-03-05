@@ -122,6 +122,7 @@ sys.path.append(pydir)  # allows fpdb modules to be found in the setup() below
 tofpdb_file_list = fnmatch.filter(os.listdir(pydir), '*ToFpdb.py')
 #convert to module list by removing extensions in this list comprehension
 tofpdb_module_list = [os.path.splitext(filename)[0] for filename in tofpdb_file_list]
+fpdb_aux_module_list = ['Hello','Aux_Hud','Aux_Classic_Hud','Mucked']
 
 print "\n" + r"Output will be created in "+distdir
 
@@ -158,7 +159,7 @@ setup(
                       'packages'    : ['encodings', 'matplotlib'],
                                                             
                       'includes'    : ['gio', 'cairo', 'pango', 'pangocairo'
-				      ,'atk', 'gobject']+tofpdb_module_list,
+				      ,'atk', 'gobject'] + tofpdb_module_list + fpdb_aux_module_list,
                                       
                       'excludes'    : ['_tkagg', '_agg2', 'cocoaagg', 'fltkagg'],
                       
