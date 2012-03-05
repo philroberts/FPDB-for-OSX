@@ -222,6 +222,7 @@ class SummaryImporter:
             else:
                 print "Unable to access: %s" % f
         del ProgressDialog
+        self.database.cleanUpTourneyTypes()
         return (total_imported, total_errors)
             
 
@@ -269,7 +270,6 @@ class SummaryImporter:
                 if j != 1:
                     print _("Finished importing %s/%s tournament summaries") %(j, len(summaryTexts))
                 imported = j
-            self.database.cleanUpTourneyTypes()
             ####Lock Placeholder####
         return (imported - errors, errors)
 
