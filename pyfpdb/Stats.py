@@ -101,7 +101,7 @@ def do_stat(stat_dict, player = 24, stat = 'vpip', hand_instance = None):
     if match:   # override if necessary
         statname = stat[0:-2]
     
-    if stat in ['starthands','m_ratio']:
+    if stat in ['starthands','m_ratio','bbstack']:
         if hand_instance:
             result = eval("%(stat)s(stat_dict, %(player)d, hand_instance)" %
                 {'stat': statname, 'player': player})
@@ -133,9 +133,6 @@ def do_stat(stat_dict, player = 24, stat = 'vpip', hand_instance = None):
 ########################################### 
 #    functions that return individual stats
 
-def blank(stat_dict, player):
-    stat_descriptions["blank"] = _(" -----")
-    return (0, ' ', ' ', ' ', ' ', ' ')
 
 def totalprofit(stat_dict, player):
     stat_descriptions["totalprofit"] = _("Total Profit") + " (totalprofit)"
@@ -152,28 +149,17 @@ def playername(stat_dict, player):
             stat_dict[player]['screen_name'],
             stat_dict[player]['screen_name'],
             stat_dict[player]['screen_name'])
-            
-def m_ratio(stat_dict, player, hand_instance):
-    
-    #Tournament M-ratio calculation
-    # Using the end-of-hand stack count vs. that hand's antes/blinds
-         
-    stat_descriptions["M ratio (last hand)"] = _("M") + " (M)"
-    
-    # sum all blinds/antes
-    compulsory_bets = 0
-    for p in hand_instance.bets['BLINDSANTES']:
-        for i in hand_instance.bets['BLINDSANTES'][p]:
-            compulsory_bets += float(i)
-    compulsory_bets += float(hand_instance.gametype['sb'])
-    compulsory_bets += float(hand_instance.gametype['sb'])
-    
+
+def calculate_end_stack(stat_dict, player, hand_instance):
+    #fixme - move this code into Hands.py - it really belongs there
+
     #To reflect the end-of-hand position, we need a end-stack calculation
     # fixme, is there an easier way to do this from the hand_instance???
     # can't seem to find a hand_instance "end_of_hand_stack" attribute
     
     #First, find player stack size at the start of the hand
-    stack = 0
+    
+    stack = 0.0
     for item in hand_instance.players:
         if item[1] == stat_dict[player]['screen_name']:
             stack = float(item[2])
@@ -194,6 +180,24 @@ def m_ratio(stat_dict, player, hand_instance):
     for item in hand_instance.collectees:
         if item == stat_dict[player]['screen_name']:
             stack += float(hand_instance.collectees[item])
+    return stack
+
+def m_ratio(stat_dict, player, hand_instance):
+    
+    #Tournament M-ratio calculation
+    # Using the end-of-hand stack count vs. that hand's antes/blinds
+         
+    stat_descriptions["M ratio (last hand)"] = _("M") + " (M)"
+    
+    # sum all blinds/antes
+    compulsory_bets = 0.0
+    for p in hand_instance.bets['BLINDSANTES']:
+        for i in hand_instance.bets['BLINDSANTES'][p]:
+            compulsory_bets += float(i)
+    compulsory_bets += float(hand_instance.gametype['sb'])
+    compulsory_bets += float(hand_instance.gametype['sb'])
+    
+    stack = calculate_end_stack(stat_dict, player, hand_instance)
 
     if compulsory_bets != 0:
         stat = stack / compulsory_bets
@@ -207,6 +211,27 @@ def m_ratio(stat_dict, player, hand_instance):
                 '(%d)'      % (int(stat)),
                 _('M ratio') )
 
+def bbstack(stat_dict, player, hand_instance):
+    #Tournament Stack calculation in Big Blinds
+    #Result is end of hand stack count / Current Big Blind limit
+    stat_descriptions["Stack in bb"] = _("bb") + " (bb)"
+    # current big blind limit
+    current_bigblindlimit = 0
+    current_bigblindlimit += float(hand_instance.gametype['bb'])
+    
+    stack = calculate_end_stack(stat_dict, player, hand_instance)
+
+    if current_bigblindlimit != 0:
+        stat = stack / current_bigblindlimit
+    else:
+        stat = 0
+
+    return      ((int(stat)),
+                '%d'        % (int(stat)),
+                "bb's=%d"      % (int(stat)),
+                "#bb's=%d"      % (int(stat)),
+                '(%d)'      % (int(stat)),
+                _('bb stack') )
 
 def playershort(stat_dict, player):
     stat_descriptions["playershort"] = (_("Player Name")+" 1-5") + " (playershort)"
@@ -1139,7 +1164,7 @@ def blank(stat_dict, player):
     # blank space on the grid
     stat_descriptions["blank"] = "Blank"
     stat = " "
-    return (" ", " ", " ", " ", " ", " ")
+    return (" ", " ", " ", " ", " ", "<blank>")
                 
 def starthands(stat_dict, player, hand_instance):
     
@@ -1259,13 +1284,13 @@ def build_stat_descriptions(stats_file):
     return stat_descriptions
 
 if __name__== "__main__":
-    #TODO: fix
     statlist = dir()
     misslist = [ "Configuration", "Database", "Charset", "codecs", "encoder"
                  , "do_stat", "do_tip", "GInitiallyUnowned", "gtk", "pygtk", "Card"
                  , "L10n", "_", "__stat_override", "build_stat_descriptions", "log"
-                 , "logging", "stat_descriptions"
-                 , "re", "re_Places"
+                 , "logging", "stat_descriptions", 'Decimal', 'GFileDescriptorBased'
+                 , 'GPollableInputStream', 'GPollableOutputStream', 'calculate_end_stack'
+                 , "re", "re_Places", 'Hand'
                ]
     statlist = [ x for x in statlist if x not in dir(sys) ]
     statlist = [ x for x in statlist if x not in dir(codecs) ]
@@ -1273,15 +1298,15 @@ if __name__== "__main__":
     #print "statlist is", statlist
 
     c = Configuration.Config()
-    #TODO: restore the below code. somehow it creates a version 119 DB but commenting this out makes it print a stat list
     db_connection = Database.Database(c)
     h = db_connection.get_last_hand()
     stat_dict = db_connection.get_stats_from_hand(h, "ring")
+    hand_instance = Hand.hand_factory(h, c, db_connection)
     
     for player in stat_dict.keys():
         print (_("Example stats. Player = %s, Hand = %s:") % (player, h))
         for attr in statlist:
-            print "  ", do_stat(stat_dict, player=player, stat=attr)
+            print "  ", do_stat(stat_dict, player=player, stat=attr, hand_instance=hand_instance)
         break
 
     print _("Legal stats:")
