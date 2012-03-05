@@ -93,9 +93,10 @@ class default(Popup):
                 self.stat_dict, player = int(player_id),stat = stat, hand_instance = self.hand_instance)
             text += number[3] + "\n"
             tip_text += number[5] + " " + number[4] + "\n"
-            
+        
         #trim final \n
         tip_text = tip_text[:-2]
+        text = text[:-2]
         
         self.lab.set_text(text)
         Stats.do_tip(self.lab, tip_text)
