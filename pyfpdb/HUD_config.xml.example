@@ -423,10 +423,10 @@
             <game_stat_set game_type="all" stat_set="stud_default"/>
         </game>
         <game game_name="omahahi" aux="mucked, Classic_HUD">
-            <game_stat_set game_type="all" stat_set="holdem_default"/>
+            <game_stat_set game_type="all" stat_set="omaha_default"/>
         </game>
         <game game_name="omahahilo" aux="mucked, Classic_HUD">
-            <game_stat_set game_type="all" stat_set="holdem_default"/>
+            <game_stat_set game_type="all" stat_set="omaha_default"/>
         </game>
         <game game_name="studhi" aux="stud_mucked, Classic_HUD">
             <game_stat_set game_type="all" stat_set="stud_default"/>
@@ -435,16 +435,16 @@
             <game_stat_set game_type="all" stat_set="stud_default"/>
         </game>
         <game game_name="27_3draw" aux="mucked, Classic_HUD">
-            <game_stat_set game_type="all" stat_set="holdem_default"/>
+            <game_stat_set game_type="all" stat_set="draw_default"/>
         </game>
         <game game_name="27_1draw" aux="mucked, Classic_HUD">
-            <game_stat_set game_type="all" stat_set="holdem_default"/>
+            <game_stat_set game_type="all" stat_set="draw_default"/>
         </game>
         <game game_name="badugi" aux="mucked, Classic_HUD">
-            <game_stat_set game_type="all" stat_set="holdem_default"/>
+            <game_stat_set game_type="all" stat_set="draw_default"/>
         </game>
             <game game_name="fivedraw" aux="mucked, Classic_HUD">
-        <game_stat_set game_type="all" stat_set ="holdem_default"/>
+        <game_stat_set game_type="all" stat_set ="draw_default"/>
         </game>
     </supported_games>
 
@@ -485,98 +485,142 @@
         -->
 
         <ls name="default">
+            <layout max="2" height="546" width="792">
+                <location seat="1" x="681" y="221"/>
+                <location seat="2" x="2" y="221"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
+            <layout max="4" height="546" width="792">
+                <location seat="1" x="573" y="41"/>
+                <location seat="2" x="512" y="411"/>
+                <location seat="3" x="162" y="413"/>
+                <location seat="4" x="112" y="41"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
             <layout max="6" height="546" width="792">
-                <location seat="1" x="555" y="169"/>
-                <location seat="2" x="572" y="276"/>
-                <location seat="3" x="363" y="348"/>
-                <location seat="4" x="150" y="273"/>
-                <location seat="5" x="150" y="169"/>
-                <location seat="6" x="363" y="113"/>
+                <location seat="1" x="663" y="48"/>
+                <location seat="2" x="664" y="293"/>
+                <location seat="3" x="563" y="402"/>
+                <location seat="4" x="120" y="401"/>
+                <location seat="5" x="32" y="291"/>
+                <location seat="6" x="12" y="46"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
+            <layout max="7" height="546" width="792">
+                <location seat="1" x="643" y="99"/>
+                <location seat="2" x="660" y="290"/>
+                <location seat="3" x="633" y="393"/>
+                <location seat="4" x="427" y="409"/>
+                <location seat="5" x="224" y="393"/>
+                <location seat="6" x="-4" y="290"/>
+                <location seat="7" x="-4" y="100"/>
                 <location common="1" x="323" y="232"/>
             </layout>
             <layout max="8" height="546" width="792">
-                <location seat="1" x="632" y="44"/>
-                <location seat="2" x="691" y="208"/>
-                <location seat="3" x="676" y="352"/>
+                <location seat="1" x="573" y="41"/>
+                <location seat="2" x="681" y="221"/>
+                <location seat="3" x="686" y="338"/>
                 <location seat="4" x="512" y="411"/>
-                <location seat="5" x="218" y="410"/>
-                <location seat="6" x="38" y="351"/>
-                <location seat="7" x="8" y="202"/>
-                <location seat="8" x="90" y="47"/>
+                <location seat="5" x="162" y="413"/>
+                <location seat="6" x="3" y="339"/>
+                <location seat="7" x="2" y="221"/>
+                <location seat="8" x="112" y="41"/>
                 <location common="1" x="323" y="232"/>
             </layout>
             <layout max="9" height="546" width="792">
-                <location seat="1" x="486" y="113"/>
-                <location seat="2" x="555" y="169"/>
-                <location seat="3" x="572" y="276"/>
-                <location seat="4" x="522" y="345"/>
-                <location seat="5" x="363" y="348"/>
-                <location seat="6" x="217" y="341"/>
-                <location seat="7" x="150" y="273"/>
-                <location seat="8" x="150" y="169"/>
-                <location seat="9" x="230" y="115"/>
+                <location seat="1" x="663" y="48"/>
+                <location seat="2" x="694" y="205"/>
+                <location seat="3" x="682" y="325"/>
+                <location seat="4" x="630" y="393"/>
+                <location seat="5" x="429" y="410"/>
+                <location seat="6" x="231" y="392"/>
+                <location seat="7" x="8" y="332"/>
+                <location seat="8" x="10" y="204"/>
+                <location seat="9" x="10" y="48"/>
                 <location common="1" x="323" y="232"/>
             </layout>
             <layout max="10" height="546" width="792">
-                <location seat="1" x="486" y="113"/>
-                <location seat="2" x="499" y="138"/>
-                <location seat="3" x="522" y="212"/>
-                <location seat="4" x="501" y="281"/>
-                <location seat="5" x="402" y="323"/>
-                <location seat="6" x="243" y="311"/>
-                <location seat="7" x="203" y="262"/>
-                <location seat="8" x="170" y="185"/>
-                <location seat="9" x="183" y="128"/>
-                <location seat="10" x="213" y="86"/>
-                <location common="1" x="317" y="237"/>
+                <location seat="1" x="531" y="14"/>
+                <location seat="2" x="678" y="66"/>
+                <location seat="3" x="669" y="278"/>
+                <location seat="4" x="682" y="351"/>
+                <location seat="5" x="508" y="411"/>
+                <location seat="6" x="183" y="411"/>
+                <location seat="7" x="11" y="352"/>
+                <location seat="8" x="1" y="277"/>
+                <location seat="9" x="6" y="65"/>
+                <location seat="10" x="159" y="11"/>
+                <location common="1" x="316" y="237"/>
             </layout>
         </ls>
         
         <ls name="ps_classic">
-            <layout max="6" height="546" width="792">
-                <location seat="1" x="555" y="169"/>
-                <location seat="2" x="572" y="276"/>
-                <location seat="3" x="363" y="348"/>
-                <location seat="4" x="150" y="273"/>
-                <location seat="5" x="150" y="169"/>
-                <location seat="6" x="363" y="113"/>
+            <layout max="2" height="546" width="792">
+                <location seat="1" x="681" y="221"/>
+                <location seat="2" x="2" y="221"/>
                 <location common="1" x="323" y="232"/>
             </layout>
-            <layout max="9" height="546" width="792">
-                <location seat="1" x="486" y="113"/>
-                <location seat="2" x="555" y="169"/>
-                <location seat="3" x="572" y="276"/>
-                <location seat="4" x="522" y="345"/>
-                <location seat="5" x="363" y="348"/>
-                <location seat="6" x="217" y="341"/>
-                <location seat="7" x="150" y="273"/>
-                <location seat="8" x="150" y="169"/>
-                <location seat="9" x="230" y="115"/>
+            <layout max="4" height="546" width="792">
+                <location seat="1" x="573" y="41"/>
+                <location seat="2" x="512" y="411"/>
+                <location seat="3" x="162" y="413"/>
+                <location seat="4" x="112" y="41"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
+            <layout max="6" height="546" width="792">
+                <location seat="1" x="663" y="48"/>
+                <location seat="2" x="664" y="293"/>
+                <location seat="3" x="563" y="402"/>
+                <location seat="4" x="120" y="401"/>
+                <location seat="5" x="32" y="291"/>
+                <location seat="6" x="12" y="46"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
+            <layout max="7" height="546" width="792">
+                <location seat="1" x="643" y="99"/>
+                <location seat="2" x="660" y="290"/>
+                <location seat="3" x="633" y="393"/>
+                <location seat="4" x="427" y="409"/>
+                <location seat="5" x="224" y="393"/>
+                <location seat="6" x="-4" y="290"/>
+                <location seat="7" x="-4" y="100"/>
                 <location common="1" x="323" y="232"/>
             </layout>
             <layout max="8" height="546" width="792">
-                <location seat="1" x="632" y="44"/>
-                <location seat="2" x="691" y="208"/>
-                <location seat="3" x="676" y="352"/>
+                <location seat="1" x="573" y="41"/>
+                <location seat="2" x="681" y="221"/>
+                <location seat="3" x="686" y="338"/>
                 <location seat="4" x="512" y="411"/>
-                <location seat="5" x="218" y="410"/>
-                <location seat="6" x="38" y="351"/>
-                <location seat="7" x="8" y="202"/>
-                <location seat="8" x="90" y="47"/>
+                <location seat="5" x="162" y="413"/>
+                <location seat="6" x="3" y="339"/>
+                <location seat="7" x="2" y="221"/>
+                <location seat="8" x="112" y="41"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
+            <layout max="9" height="546" width="792">
+                <location seat="1" x="663" y="48"/>
+                <location seat="2" x="694" y="205"/>
+                <location seat="3" x="682" y="325"/>
+                <location seat="4" x="630" y="393"/>
+                <location seat="5" x="429" y="410"/>
+                <location seat="6" x="231" y="392"/>
+                <location seat="7" x="8" y="332"/>
+                <location seat="8" x="10" y="204"/>
+                <location seat="9" x="10" y="48"/>
                 <location common="1" x="323" y="232"/>
             </layout>
             <layout max="10" height="546" width="792">
-                <location seat="1" x="486" y="113"/>
-                <location seat="2" x="499" y="138"/>
-                <location seat="3" x="522" y="212"/>
-                <location seat="4" x="501" y="281"/>
-                <location seat="5" x="402" y="323"/>
-                <location seat="6" x="243" y="311"/>
-                <location seat="7" x="203" y="262"/>
-                <location seat="8" x="170" y="185"/>
-                <location seat="9" x="183" y="128"/>
-                <location seat="10" x="213" y="86"/>
-                <location common="1" x="317" y="237"/>
+                <location seat="1" x="531" y="14"/>
+                <location seat="2" x="678" y="66"/>
+                <location seat="3" x="669" y="278"/>
+                <location seat="4" x="682" y="351"/>
+                <location seat="5" x="508" y="411"/>
+                <location seat="6" x="183" y="411"/>
+                <location seat="7" x="11" y="352"/>
+                <location seat="8" x="1" y="277"/>
+                <location seat="9" x="6" y="65"/>
+                <location seat="10" x="159" y="11"/>
+                <location common="1" x="316" y="237"/>
             </layout>
         </ls>
     </layout_sets>
