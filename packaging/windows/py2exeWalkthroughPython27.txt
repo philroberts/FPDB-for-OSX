@@ -226,19 +226,26 @@ The py2exe script copies the timezone datafiles into the package folder pyfpdb/z
 Thanks to Jeff Peck <peck.jeff <at> gmail.com> on the py2exe mailing list for documenting this problem and solution.
 
 11.1/ dos> write C:\Python27\Lib\site-packages\pytz\__init__.py 
-11.2/ At line 94 replace the following line(s):
+11.2/ At about line 94 replace the following line(s):
 
+    filename = os.path.join(os.path.dirname(__file__),
+                            'zoneinfo', *name_parts)
+
+with this section of code (which supports exe-building _and_ sourcecode running on the build system):
+
+    #py2exe installs need this syntax
+    #
+    filename = os.path.join(os.getcwd(), 'zoneinfo', *name_parts)
+    
+    #sourcecode installs need this syntax
+    #
+    if not os.path.exists(filename):
         filename = os.path.join(os.path.dirname(__file__),
                                 'zoneinfo', *name_parts)
 
-with this line:
-
-        filename = os.path.join(os.getcwd(), 'zoneinfo', *name_parts)
 
 11.3/ Save and exit
 
-****REALLY REALLY IMPORTANT NOTE****: Once you have patched pytz, running fpdb
- from SOURCECODE will ___not___ work correctly (timezones not found by hand importer)
 
 
 Step 12 Get the fpdb GIT tree and prepare for build
