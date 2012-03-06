@@ -101,26 +101,33 @@ class Table(Table_Window):
         try:
             if win32gui.IsWindow(self.number):
                 (x, y, width, height) = win32gui.GetWindowRect(self.number)
+                #log.debug(("newhud - get_geo w h x y",str(width), str(height), str(x), str(y)))
+                #print "x=", x, "y=", y, "width=", width, "height=", height
+                                
                 # this apparently returns x = far left side of window, width = far right side of window, y = top of window, height = bottom of window
                 # so apparently we have to subtract x from "width" to get actual width, and y from "height" to get actual height ?
                 # it definitely gives slightly different results than the GTK code that does the same thing.
-                #print "x=", x, "y=", y, "width=", width, "height=", height
+
+                # minimised windows are given -32000 (x,y) value,
+                #   so just zeroise to avoid downstream confusion
+                if x < 0: x = 0
+                if y < 0: y = 0
+                
                 width = width - x
                 height = height - y
                 
-                #log.debug(("newhud - get_geo w h x y",str(width), str(height), str(x), str(y)))
-                
-                if self.config.os_family == "XP":
-                    #adjust some more
-                    width = width -x
-                    height = height -y
-                else:
-                    # win7 (and probably Vista) do not need yet another adjustment
-                    pass
-                    
+                #determine system titlebar and border setting constant values
+                # see http://stackoverflow.com/questions/431470/window-border-width-and-height-in-win32-how-do-i-get-it
+                try:
+                    self.b_width; self.tb_height
+                except:
+                    self.b_width = win32api.GetSystemMetrics(win32con.SM_CXSIZEFRAME) # bordersize
+                    self.tb_height = win32api.GetSystemMetrics(win32con.SM_CYCAPTION) # titlebar height (excl border)
+
+                #fixme - x and y must _not_ be adjusted by the b_width if the window has been maximised
                 return {
-                    'x'      : int(x) + b_width,
-                    'y'      : int(y) + tb_height,
+                    'x'      : int(x) + self.b_width,
+                    'y'      : int(y) + self.tb_height + self.b_width,
                     'height' : int(height),
                     'width'  : int(width)
                 }
