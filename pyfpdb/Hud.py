@@ -223,12 +223,13 @@ class Hud:
         self.hand = hand            #fixme - not sure what this is doing here?
         self.stat_dict = stat_dict  #fixme - not sure what this is doing here?
         self.cards = cards          #fixme - not sure what this is doing here?
-
+        self.db_hud_connection.connection.rollback()
         log.info(_('Creating hud from hand ')+str(hand))
 
 
     def update(self, hand, config):
          # Load a hand instance (factory will load correct type for this hand)
         self.hand_instance = Hand.hand_factory(hand, config, self.db_hud_connection)
+        self.db_hud_connection.connection.rollback()
         self.hand = hand   # this is the last hand, so it is available later
 

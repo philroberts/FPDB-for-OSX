@@ -213,6 +213,7 @@ class HUD_main(object):
         enabled_sites = self.config.get_supported_sites()
         if not enabled_sites:
             log.exception(_("No enabled sites found"))
+            self.db_connection.connection.rollback()
             self.destroy()
             return
         
@@ -227,6 +228,7 @@ class HUD_main(object):
             new_hand_id = string.rstrip(new_hand_id)
             log.debug(_("Received hand no %s") % new_hand_id)
             if new_hand_id == "":           # blank line means quit
+                self.db_connection.connection.rollback()
                 self.destroy()
                 break # this thread is not always killed immediately with gtk.main_quit()
 
@@ -359,15 +361,17 @@ class HUD_main(object):
                         self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
                     else:
                         log.error(_('Table "%s" no longer exists') % table_name)
+                        self.db_connection.connection.rollback()
                         return
 
-            self.db_connection.connection.rollback()
             if type == "tour":
                 try:
                     self.hud_dict[temp_key].table.check_table_no(self.hud_dict[temp_key])
                 except KeyError:
                     pass
 
+        self.db_connection.connection.rollback()
+            
     def get_cards(self, new_hand_id):
         cards = self.db_connection.get_cards(new_hand_id)
         comm_cards = self.db_connection.get_common_cards(new_hand_id)
