@@ -310,23 +310,30 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
             self.hud_params['h_aggregate_ring'] = True
             self.hud_params['h_aggregate_tour'] = True
 
-            if     self.hud_params['h_agg_bb_mult'] != num \
-               and getattr(self, 'h_aggBBmultItem'+str(num)).get_active():
-                self.hud_params['h_agg_bb_mult'] = num
-                for mult in ('1', '2', '3', '10', '10000'):
-                    if mult != str(num):
-                        getattr(self, 'h_aggBBmultItem'+mult).set_active(False)
+            if self.hud_params['h_agg_bb_mult'] != num:
+                if getattr(self, 'h_aggBBmultItem'+str(num)).get_active():
+                    self.hud_params['h_agg_bb_mult'] = num
+                    for mult in ('1', '2', '3', '10', '10000'):
+                        if mult != str(num):
+                            getattr(self, 'h_aggBBmultItem'+mult).set_active(False)
+                        else:
+                            getattr(self, 'h_aggBBmultItem'+mult).set_active(True)
+            else:
+                # do not allow current item to be switched off
+                getattr(self, 'h_aggBBmultItem'+str(num)).set_active(True)
         else:
             self.hud_params['aggregate_ring'] = True
             self.hud_params['aggregate_tour'] = True
 
-            if self.hud_params['agg_bb_mult'] != num \
-               and getattr(self, 'aggBBmultItem'+str(num)).get_active():
-                self.hud_params['agg_bb_mult'] = num
-                for mult in ('1', '2', '3', '10', '10000'):
-                    if mult != str(num):
-                        getattr(self, 'aggBBmultItem'+mult).set_active(False)
-
+            if self.hud_params['agg_bb_mult'] != num:
+                if getattr(self, 'aggBBmultItem'+str(num)).get_active():
+                    self.hud_params['agg_bb_mult'] = num
+                    for mult in ('1', '2', '3', '10', '10000'):
+                        if mult != str(num):
+                            getattr(self, 'aggBBmultItem'+mult).set_active(False)
+            else:
+                # do not allow current item to be switched off
+                getattr(self, 'aggBBmultItem'+str(num)).set_active(True)
 
     def set_seats_style(self, widget, val):
         (player_opp, style) = val
@@ -336,6 +343,12 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
         else:
             param = 'seats_style'
             prefix = ''
+            
+        # do not allow current item to be switched off
+        if style == self.hud_params[param]:
+            if not getattr(self, prefix+'seatsStyleOption'+style).get_active():
+                getattr(self, prefix+'seatsStyleOption'+style).set_active(True)
+                return
 
         if style == 'A' and getattr(self, prefix+'seatsStyleOptionA').get_active():
             self.hud_params[param] = 'A'
@@ -360,6 +373,12 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
             param = 'hud_style'
             prefix = ''
 
+        # do not allow current item to be switched off
+        if style == self.hud_params[param]:
+            if not getattr(self, prefix+'hudStyleOption'+style).get_active():
+                getattr(self, prefix+'hudStyleOption'+style).set_active(True)
+                return
+                
         if style == 'A' and getattr(self, prefix+'hudStyleOptionA').get_active():
             self.hud_params[param] = 'A'
             getattr(self, prefix+'hudStyleOptionS').set_active(False)
