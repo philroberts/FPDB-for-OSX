@@ -256,7 +256,7 @@ class GuiReplayer:
         self.gc.set_foreground(color)
 
     def play_hand(self, hand):
-        hand.writeHand()  # Print handhistory to stdout
+        # hand.writeHand()  # Print handhistory to stdout -> should be an option in the GUI
         actions = hand.allStreets
         state = TableState(hand)
         for action in actions:
