@@ -95,8 +95,8 @@ class default(Popup):
             tip_text += number[5] + " " + number[4] + "\n"
         
         #trim final \n
-        tip_text = tip_text[:-2]
-        text = text[:-2]
+        tip_text = tip_text[:-1]
+        text = text[:-1]
         
         self.lab.set_text(text)
         Stats.do_tip(self.lab, tip_text)
