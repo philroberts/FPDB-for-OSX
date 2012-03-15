@@ -42,10 +42,11 @@ class PartyPoker(HandHistoryConverter):
                             'LS' : u"\$|\u20ac|\xe2\x82\xac|",    # Currency symbols - Euro(cp1252, utf-8)
                            'NUM' : u".,\d",
                     }
-    limits = { 'NL':'nl', 'PL':'pl', '':'fl' }
+    limits = { 'NL':'nl', 'PL':'pl', '':'fl', 'FL':'fl' }
     games = {                         # base, category
                    "Texas Hold'em" : ('hold','holdem'),
                            'Omaha' : ('hold','omahahi'),
+                     'Omaha Hi-Lo' : ('hold','omahahilo'),
                "7 Card Stud Hi-Lo" : ('stud','studhilo'),
                      "7 Card Stud" : ('stud','studhi'),
             }
@@ -59,13 +60,12 @@ class PartyPoker(HandHistoryConverter):
                         '6.00': ('1.00', '3.00'),       '6': ('1.00', '3.00'),
                        '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
                        '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
-                       # Commented lines need verification
-                       #'30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
-                       #'40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
+                       '30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
+                       '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
                        '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
-                      #'100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
-                      #'200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
-                      #'500.00': ('??', '250.00'), '500': ('??', '250.00'),
+                      '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
+                      '200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
+                      '500.00': ('125.00', '250.00'), '500': ('125.00', '250.00'),
                   }
     NLim_Blinds_20bb = {    '0.80': ('0.01', '0.02'),
                             '1.60': ('0.02', '0.04'),
@@ -90,14 +90,14 @@ class PartyPoker(HandHistoryConverter):
             \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
             ((?P<CURRENCY>[%(LS)s]))?\s*
             (
-             ([%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s*)|
-             ((?P<CASHBI>[%(NUM)s]+)\s(?:%(LEGAL_ISO)s)?\s*)(?P<LIMIT2>(NL|PL|))?\s*
+             ([%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s+((?P<LIMIT3>NL|PL|FL|)\s+)?)|
+             ((?P<CASHBI>[%(NUM)s]+)\s(?:%(LEGAL_ISO)s)?\s*)(?P<LIMIT2>(NL|PL|FL|))?\s*
             )
             (Tourney\s*)?
-            (?P<GAME>(Texas\sHold\'em|Omaha|7\sCard\sStud\sHi-Lo|7\sCard\sStud))\s*
+            (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha|7\sCard\sStud\sHi-Lo|7\sCard\sStud))\s*
             (Game\sTable\s*)?
             (
-             (\((?P<LIMIT>(NL|PL|))\)\s*)?
+             (\((?P<LIMIT>(NL|PL|FL|))\)\s*)?
              (\(STT\sTournament\s\#(?P<TOURNO>\d+)\)\s*)?
             )?
             \s*-\s*
@@ -138,7 +138,7 @@ class PartyPoker(HandHistoryConverter):
 
 
     re_CountedSeats = re.compile("^Total\s+number\s+of\s+players\s*:\s*(?P<COUNTED_SEATS>\d+)", re.MULTILINE)
-    re_SplitHands   = re.compile('\x00+')
+    re_SplitHands   = re.compile('\x00*Game\s#')
     re_TailSplitHands   = re.compile('(\x00+)')
     lineSplitter    = '\n'
     re_Button       = re.compile('Seat (?P<BUTTON>\d+) is the button', re.MULTILINE)
@@ -155,15 +155,6 @@ class PartyPoker(HandHistoryConverter):
         if list is None:
             return []
         return filter(lambda text: len(text.strip()), list)
-
-    def guessMaxSeats(self, hand):
-        """Return a guess at max_seats when not specified in HH."""
-        mo = self.maxOccSeat(hand)
-        if mo == 10: return mo
-        if mo == 2: return 2
-        if mo <= 6: return 6
-        # there are 9-max tables for cash and 10-max for tournaments
-        return 9 if hand.gametype['type']=='ring' else 10
 
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
@@ -199,7 +190,7 @@ class PartyPoker(HandHistoryConverter):
                 r"\[ *(?P<CARDS>.+) *\](?P<COMBINATION>.+)\.",
                 re.MULTILINE)
             self.re_CollectPot = re.compile(
-                r"""^%(PLYR)s\s+wins\s+%(CUR_SYM)s?(?P<POT>[.,\d]+)\s*(%(CUR)s)?""" %  subst,
+                r"""^%(PLYR)s\s+wins\s+(Lo\s\()?%(CUR_SYM)s?(?P<POT>[.,\d]+)\s*(%(CUR)s)?\)?""" %  subst,
                 re.MULTILINE|re.VERBOSE)
 
     def readSupportedGames(self):
@@ -239,7 +230,9 @@ class PartyPoker(HandHistoryConverter):
             info['limitType'] = self.limits[mg['LIMIT']]
         if 'LIMIT2' in mg and mg['LIMIT2'] != None:
             info['limitType'] = self.limits[mg['LIMIT2']]
-        if mg['LIMIT'] == None and mg['LIMIT2'] == None:
+        if 'LIMIT3' in mg and mg['LIMIT3'] != None:
+            info['limitType'] = self.limits[mg['LIMIT3']]
+        if mg['LIMIT'] == None and mg['LIMIT2'] == None and mg['LIMIT3'] == None:
             info['limitType'] = 'fl'
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
@@ -397,7 +390,7 @@ class PartyPoker(HandHistoryConverter):
             #finds first vacant seat after an exact seat
             def findFirstEmptySeat(startSeat):
                 while startSeat in occupiedSeats:
-                    if startSeat >= hand.maxseats:
+                    if startSeat >= hand.maxseats and hand.maxseats!=None:
                         startSeat = 0
                     startSeat += 1
                 return startSeat

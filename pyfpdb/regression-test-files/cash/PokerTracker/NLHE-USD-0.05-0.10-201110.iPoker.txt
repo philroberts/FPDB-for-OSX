@@ -1,0 +1,1206 @@
+﻿GAME #2978859505: Texas Hold'em  NL $0.05/$0.10 2011-10-12 02:52:19
+Table Goole
+Seat 1: Player2 ($2.87 in chips)
+Seat 2: Player3 ($7.40 in chips) DEALER
+Seat 3: Player13 ($10.00 in chips)
+Seat 4: Player17 ($10.00 in chips)
+Seat 5: Player4 ($18.81 in chips)
+Seat 6: Player12 ($10.00 in chips)
+Seat 7: Player11 ($10.00 in chips) (REBUY) (ADDON)
+Seat 8: Player0 ($20.69 in chips)
+Seat 9: Player7 ($4.24 in chips)
+Seat 10: Player6 ($6.82 in chips)
+Player17: Post SB $0.05
+Player4: Post BB $0.10
+*** HOLE CARDS ***
+Player12: Fold
+Player0: Fold
+Player7: Fold
+Player6: Fold
+Player2: Call $0.10
+Player3: Fold
+Player17: Fold
+Player4: Check
+*** FLOP *** [H10 SK S5]
+Player4: Check
+Player2: Check
+*** TURN *** [S9]
+Player4: Check
+Player2: Check
+*** RIVER *** [D9]
+Player4: Check
+Player2: Check
+*** SUMMARY ***
+Total pot $0.24 Rake $0.01
+Player2: Shows [H8 C9]
+Player4: Shows [H6 D8]
+Player2: wins $0.24
+
+
+GAME #2978860249: Texas Hold'em  NL $0.05/$0.10 2011-10-12 02:53:50
+Table Goole
+Seat 1: Player2 ($3.01 in chips)
+Seat 2: Player3 ($7.40 in chips)
+Seat 3: Player13 ($10.00 in chips)
+Seat 4: Player17 ($9.95 in chips) DEALER
+Seat 5: Player4 ($18.71 in chips)
+Seat 6: Player12 ($10.00 in chips)
+Seat 7: Player11 ($10.00 in chips)
+Seat 8: Player0 ($20.69 in chips)
+Seat 9: Player7 ($4.24 in chips)
+Seat 10: Player6 ($6.82 in chips)
+Player4: Post SB $0.05
+Player12: Post BB $0.10
+*** HOLE CARDS ***
+Player0: Fold
+Player7: Raise (NF) $0.40
+Player6: Fold
+Player3: Fold
+Player17: Fold
+Player4: Fold
+Player12: Fold
+*** SUMMARY ***
+Total pot $0.55 Rake $0.00
+Player7: wins $0.55
+
+
+GAME #2978860482: Texas Hold'em  NL $0.05/$0.10 2011-10-12 02:54:17
+Table Goole
+Seat 1: Player2 ($3.01 in chips)
+Seat 2: Player3 ($7.40 in chips)
+Seat 3: Player13 ($10.00 in chips)
+Seat 4: Player17 ($9.95 in chips)
+Seat 5: Player4 ($18.66 in chips) DEALER
+Seat 6: Player12 ($10.00 in chips)
+Seat 7: Player11 ($10.00 in chips)
+Seat 8: Player0 ($20.69 in chips)
+Seat 9: Player7 ($4.39 in chips)
+Seat 10: Player6 ($6.82 in chips)
+Player12: Post SB $0.05
+Player11: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [C2 D5]
+Player0: Fold
+Player7: Fold
+Player6: Fold
+Player3: Raise (NF) $0.30
+Player17: Fold
+Player4: Fold
+Player12: Fold
+Player11: Fold
+*** SUMMARY ***
+Total pot $0.45 Rake $0.00
+Player3: wins $0.45
+
+
+GAME #2978860697: Texas Hold'em  NL $0.05/$0.10 2011-10-12 02:54:41
+Table Goole
+Seat 1: Player2 ($3.01 in chips)
+Seat 2: Player3 ($7.55 in chips)
+Seat 3: Player8 ($0.00 in chips)
+Seat 4: Player17 ($9.95 in chips)
+Seat 5: Player4 ($18.66 in chips)
+Seat 6: Player12 ($10.00 in chips) DEALER
+Seat 7: Player11 ($10.00 in chips)
+Seat 8: Player0 ($20.69 in chips)
+Seat 9: Player7 ($4.39 in chips)
+Seat 10: Player6 ($6.82 in chips)
+Player11: Post SB $0.05
+Player0: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [D6 D2]
+Player7: Fold
+Player6: Call $0.10
+Player3: Fold
+Player17: Raise (NF) $0.40
+Player4: Fold
+Player12: Fold
+Player11: Fold
+Player0: Fold
+Player6: Call $0.30
+*** FLOP *** [H2 C9 CJ]
+Player6: Check
+Player17: Bet $0.60
+Player6: Fold
+*** SUMMARY ***
+Total pot $1.49 Rake $0.06
+Player17: wins $1.49
+
+
+GAME #2978861100: Texas Hold'em  NL $0.05/$0.10 2011-10-12 02:55:27
+Table Goole
+Seat 1: Player2 ($3.01 in chips)
+Seat 2: Player3 ($7.55 in chips)
+Seat 3: Player8 ($10.00 in chips)
+Seat 4: Player17 ($10.44 in chips)
+Seat 5: Player4 ($18.66 in chips)
+Seat 6: Player12 ($10.00 in chips)
+Seat 7: Player11 ($10.00 in chips) DEALER
+Seat 8: Player0 ($20.59 in chips)
+Seat 10: Player6 ($6.42 in chips)
+Player0: Post SB $0.05
+Player6: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [D8 D5]
+Player3: Fold
+Player17: Fold
+Player4: Raise (NF) $0.35
+Player12: Fold
+Player11: Raise (NF) $1.10
+Player0: Fold
+Player6: Fold
+Player4: Fold
+*** SUMMARY ***
+Total pot $1.60 Rake $0.00
+Player11: Shows [D8 D5]
+Player11: wins $1.60
+
+
+GAME #2978861378: Texas Hold'em  NL $0.05/$0.10 2011-10-12 02:55:59
+Table Goole
+Seat 1: Player2 ($3.01 in chips)
+Seat 2: Player3 ($7.55 in chips)
+Seat 3: Player8 ($10.00 in chips)
+Seat 4: Player17 ($10.44 in chips)
+Seat 5: Player4 ($18.31 in chips)
+Seat 6: Player12 ($10.00 in chips)
+Seat 7: Player11 ($10.50 in chips)
+Seat 8: Player0 ($20.54 in chips) DEALER
+Seat 9: Player16 ($6.00 in chips)
+Seat 10: Player6 ($6.32 in chips)
+Player6: Post SB $0.05
+Player3: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [C7 S3]
+Player17: Fold
+Player4: Raise (NF) $0.35
+Player12: Fold
+Player11: Fold
+Player0: Fold
+Player6: Fold
+Player3: Raise (NF) $0.80
+Player4: Fold
+*** SUMMARY ***
+Total pot $1.20 Rake $0.00
+Player3: wins $1.20
+
+
+GAME #2978861740: Texas Hold'em  NL $0.05/$0.10 2011-10-12 02:56:42
+Table Goole
+Seat 1: Player2 ($3.01 in chips)
+Seat 2: Player3 ($7.95 in chips)
+Seat 3: Player8 ($10.00 in chips)
+Seat 4: Player17 ($10.44 in chips)
+Seat 5: Player4 ($17.96 in chips)
+Seat 6: Player12 ($10.00 in chips)
+Seat 7: Player11 ($10.50 in chips)
+Seat 8: Player0 ($20.54 in chips)
+Seat 9: Player16 ($6.00 in chips)
+Seat 10: Player6 ($6.27 in chips) DEALER
+Player3: Post SB $0.05
+Player8: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [S6 C5]
+Player17: Fold
+Player4: Fold
+Player12: Fold
+Player11: Fold
+Player0: Raise (NF) $0.40
+Player6: Fold
+Player3: Call $0.35
+Player8: Fold
+*** FLOP *** [DJ S9 HA]
+Player3: Check
+Player0: Bet $0.50
+Player3: Call $0.50
+*** TURN *** [H6]
+Player3: Check
+Player0: Bet $1.00
+Player3: Fold
+*** SUMMARY ***
+Total pot $2.78 Rake $0.12
+Player0: wins $2.78
+
+
+GAME #2978862602: Texas Hold'em  NL $0.05/$0.10 2011-10-12 02:58:23
+Table Goole
+Seat 1: Player2 ($3.01 in chips)
+Seat 2: Player3 ($7.05 in chips) DEALER
+Seat 3: Player8 ($9.90 in chips)
+Seat 4: Player17 ($10.44 in chips)
+Seat 5: Player4 ($17.96 in chips)
+Seat 6: Player12 ($10.00 in chips)
+Seat 7: Player11 ($10.50 in chips)
+Seat 8: Player0 ($21.42 in chips)
+Seat 9: Player16 ($6.00 in chips)
+Seat 10: Player6 ($6.27 in chips)
+Player8: Post SB $0.05
+Player17: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [C4 H10]
+Player4: Fold
+Player12: Fold
+Player11: Fold
+Player0: Fold
+Player6: Fold
+Player3: Raise (NF) $0.20
+Player8: Fold
+Player17: Call $0.10
+*** FLOP *** [S3 C10 D7]
+Player17: Check
+Player3: Bet $0.33
+Player17: Fold
+*** SUMMARY ***
+Total pot $0.75 Rake $0.03
+Player3: wins $0.75
+
+
+GAME #2978863008: Texas Hold'em  NL $0.05/$0.10 2011-10-12 02:59:11
+Table Goole
+Seat 1: Player2 ($3.01 in chips)
+Seat 2: Player3 ($7.27 in chips)
+Seat 3: Player8 ($9.85 in chips) DEALER
+Seat 4: Player17 ($10.24 in chips)
+Seat 5: Player4 ($17.96 in chips)
+Seat 6: Player12 ($10.00 in chips)
+Seat 7: Player11 ($10.50 in chips)
+Seat 8: Player0 ($21.42 in chips)
+Seat 9: Player16 ($6.00 in chips)
+Seat 10: Player6 ($6.27 in chips)
+Player17: Post SB $0.05
+Player4: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [H10 H8]
+Player12: Fold
+Player11: Fold
+Player0: Fold
+Player6: Fold
+Player3: Fold
+Player8: Fold
+Player17: Fold
+*** SUMMARY ***
+Total pot $0.15 Rake $0.00
+Player4: wins $0.15
+
+
+GAME #2978863294: Texas Hold'em  NL $0.05/$0.10 2011-10-12 02:59:44
+Table Goole
+Seat 1: Player2 ($3.01 in chips)
+Seat 2: Player3 ($7.27 in chips)
+Seat 3: Player8 ($9.85 in chips)
+Seat 4: Player17 ($10.19 in chips) DEALER
+Seat 5: Player4 ($18.01 in chips)
+Seat 6: Player12 ($10.00 in chips)
+Seat 7: Player11 ($10.50 in chips)
+Seat 8: Player0 ($21.42 in chips)
+Seat 9: Player16 ($6.00 in chips)
+Seat 10: Player6 ($6.27 in chips)
+Player4: Post SB $0.05
+Player12: Post BB $0.10
+Player2: Post BB $0.15
+*** HOLE CARDS ***
+Dealt to Player11 [DJ SK]
+Player11: Fold
+Player0: Fold
+Player6: Fold
+Player2: Check
+Player3: Fold
+Player8: Raise (NF) $0.40
+Player17: Fold
+Player4: Fold
+Player12: Fold
+Player2: Fold
+*** SUMMARY ***
+Total pot $0.70 Rake $0.00
+Player8: wins $0.70
+
+
+GAME #2978863619: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:00:25
+Table Goole
+Seat 1: Player2 ($2.86 in chips)
+Seat 2: Player3 ($7.27 in chips)
+Seat 3: Player8 ($10.15 in chips)
+Seat 4: Player17 ($10.19 in chips)
+Seat 5: Player4 ($17.96 in chips) DEALER
+Seat 6: Player12 ($10.00 in chips)
+Seat 7: Player11 ($10.50 in chips)
+Seat 8: Player0 ($21.42 in chips)
+Seat 9: Player16 ($6.00 in chips)
+Seat 10: Player6 ($6.27 in chips)
+Player12: Post SB $0.05
+Player11: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [S6 D6]
+Player0: Fold
+Player6: Fold
+Player2: Fold
+Player3: Raise (NF) $0.30
+Player8: Fold
+Player4: Fold
+Player12: Fold
+Player11: Call $0.20
+*** FLOP *** [H7 SQ D2]
+Player11: Check
+Player3: Bet $0.48
+Player11: Fold
+*** SUMMARY ***
+Total pot $1.09 Rake $0.04
+Player3: wins $1.09
+
+
+GAME #2978864035: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:01:16
+Table Goole
+Seat 1: Player2 ($2.86 in chips)
+Seat 2: Player3 ($7.58 in chips)
+Seat 3: Player8 ($10.15 in chips)
+Seat 4: Player17 ($10.19 in chips)
+Seat 5: Player4 ($17.96 in chips)
+Seat 6: Player12 ($10.00 in chips) DEALER
+Seat 7: Player11 ($10.20 in chips)
+Seat 8: Player0 ($21.42 in chips)
+Seat 9: Player16 ($6.00 in chips)
+Seat 10: Player6 ($6.27 in chips)
+Player11: Post SB $0.05
+Player0: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [HQ C5]
+Player6: Fold
+Player2: Fold
+Player3: Fold
+Player8: Fold
+Player4: Raise (NF) $0.30
+Player12: Fold
+Player11: Fold
+Player0: Fold
+*** SUMMARY ***
+Total pot $0.45 Rake $0.00
+Player4: wins $0.45
+
+
+GAME #2978864299: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:01:49
+Table Goole
+Seat 1: Player2 ($2.86 in chips)
+Seat 2: Player3 ($7.58 in chips)
+Seat 3: Player8 ($10.15 in chips)
+Seat 4: Player17 ($10.19 in chips)
+Seat 5: Player4 ($18.11 in chips)
+Seat 6: Player12 ($10.00 in chips)
+Seat 7: Player11 ($10.15 in chips) DEALER
+Seat 8: Player0 ($21.32 in chips)
+Seat 9: Player16 ($6.00 in chips)
+Seat 10: Player6 ($6.27 in chips)
+Player0: Post SB $0.05
+Player16: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [D3 S9]
+Player6: Fold
+Player2: Fold
+Player3: Fold
+Player8: Fold
+Player17: Fold
+Player4: Fold
+Player12: Fold
+Player11: Fold
+Player0: Fold
+*** SUMMARY ***
+Total pot $0.15 Rake $0.00
+Player16: wins $0.15
+
+
+GAME #2978864622: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:02:27
+Table Goole
+Seat 1: Player2 ($2.86 in chips)
+Seat 2: Player3 ($7.58 in chips)
+Seat 3: Player8 ($10.15 in chips)
+Seat 4: Player17 ($10.19 in chips)
+Seat 5: Player4 ($18.11 in chips)
+Seat 6: Player12 ($10.00 in chips)
+Seat 7: Player11 ($10.15 in chips)
+Seat 8: Player0 ($21.27 in chips) DEALER
+Seat 9: Player16 ($6.05 in chips)
+Seat 10: Player6 ($6.27 in chips)
+Player16: Post SB $0.05
+Player6: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [S9 C8]
+Player2: Fold
+Player3: Fold
+Player8: Fold
+Player17: Fold
+Player4: Fold
+Player12: Raise (NF) $0.35
+Player11: Fold
+Player0: Fold
+Player16: Fold
+Player6: Call $0.25
+*** FLOP *** [H10 D8 C2]
+Player6: Check
+Player12: Check
+*** TURN *** [S6]
+Player6: Bet $0.56
+Player12: Fold
+*** SUMMARY ***
+Total pot $1.26 Rake $0.05
+Player6: wins $1.26
+
+
+GAME #2978865153: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:03:26
+Table Goole
+Seat 1: Player2 ($2.86 in chips)
+Seat 2: Player3 ($7.58 in chips)
+Seat 3: Player8 ($10.15 in chips)
+Seat 4: Player17 ($10.19 in chips)
+Seat 5: Player4 ($18.11 in chips)
+Seat 6: Player12 ($10.00 in chips)
+Seat 7: Player11 ($10.15 in chips)
+Seat 8: Player0 ($21.27 in chips)
+Seat 9: Player16 ($6.00 in chips) DEALER
+Seat 10: Player6 ($6.62 in chips)
+Player6: Post SB $0.05
+Player2: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [S3 H8]
+Player3: Fold
+Player8: Fold
+Player17: Call $0.10
+Player4: Fold
+Player12: Fold
+Player11: Fold
+Player0: Call $0.10
+Player16: Fold
+Player6: Call $0.05
+Player2: Check
+*** FLOP *** [S8 D7 S9]
+Player6: Check
+Player2: Check
+Player17: Bet $0.30
+Player0: Raise (NF) $0.60
+Player6: Fold
+Player2: Call $0.60
+Player17: Call $0.30
+*** TURN *** [D3]
+Player2: Check
+Player17: Bet $1.20
+Player0: Raise (NF) $2.40
+Player2: Fold
+Player17: Call $1.20
+*** RIVER *** [D8]
+Player17: Check
+Player0: Bet $7.00
+Player17: Allin $7.09
+Player0: Call $0.09
+*** SUMMARY ***
+Total pot $19.77 Rake $1.41
+Player17: Shows [C6 D6]
+Player0: Shows [H9 D9]
+Player0: wins $19.77
+
+
+GAME #2978866478: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:06:10
+Table Goole
+Seat 1: Player2 ($2.16 in chips)
+Seat 2: Player3 ($7.58 in chips)
+Seat 3: Player8 ($10.15 in chips)
+Seat 5: Player4 ($18.11 in chips)
+Seat 6: Player12 ($10.00 in chips)
+Seat 7: Player11 ($10.15 in chips)
+Seat 8: Player0 ($30.85 in chips)
+Seat 9: Player16 ($6.00 in chips)
+Seat 10: Player6 ($6.52 in chips) DEALER
+Player2: Post SB $0.05
+Player3: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [D9 S6]
+Player8: Fold
+Player4: Fold
+Player12: Fold
+Player11: Fold
+Player0: Fold
+Player16: Fold
+Player6: Fold
+Player2: Call $0.05
+Player3: Check
+*** FLOP *** [S7 H2 S5]
+Player2: Check
+Player3: Bet $0.15
+Player2: Call $0.15
+*** TURN *** [CK]
+Player2: Check
+Player3: Check
+*** RIVER *** [C2]
+Player2: Bet $0.25
+Player3: Raise (NF) $0.60
+Player2: Raise (NF) $1.91
+Player3: Fold
+*** SUMMARY ***
+Total pot $2.90 Rake $0.11
+Player2: wins $2.90
+
+
+GAME #2978867256: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:07:43
+Table Goole
+Seat 1: Player2 ($2.90 in chips) DEALER
+Seat 2: Player3 ($6.73 in chips)
+Seat 3: Player8 ($10.15 in chips)
+Seat 4: Player1 ($10.00 in chips)
+Seat 5: Player4 ($18.11 in chips)
+Seat 6: Player12 ($10.00 in chips)
+Seat 7: Player11 ($10.15 in chips)
+Seat 8: Player0 ($30.85 in chips)
+Seat 9: Player16 ($6.00 in chips)
+Seat 10: Player6 ($6.52 in chips)
+Player3: Post SB $0.05
+Player4: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [SK S8]
+Player8:
+Player1:
+Player12: Raise (NF) $0.35
+Player11: Fold
+Player0: Fold
+Player16: Fold
+Player6: Fold
+Player2: Fold
+Player3: Fold
+Player4: Call $0.25
+*** FLOP *** [S2 DK H3]
+Player4: Check
+Player12: Bet $0.40
+Player4: Fold
+*** SUMMARY ***
+Total pot $1.10 Rake $0.05
+Player12: wins $1.10
+
+
+GAME #2978867720: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:08:37
+Table Goole
+Seat 1: Player2 ($2.90 in chips)
+Seat 2: Player3 ($6.68 in chips) DEALER
+Seat 5: Player4 ($17.76 in chips)
+Seat 6: Player12 ($10.35 in chips)
+Seat 7: Player11 ($10.15 in chips)
+Seat 8: Player0 ($30.85 in chips)
+Seat 9: Player16 ($6.00 in chips)
+Seat 10: Player6 ($6.52 in chips)
+Player4: Post SB $0.05
+Player12: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [S8 CJ]
+Player11: Fold
+Player0: Fold
+Player16: Fold
+Player6: Fold
+Player2: Call $0.10
+Player3: Fold
+Player4: Fold
+Player12: Check
+*** FLOP *** [C2 C4 S7]
+Player12: Check
+Player2: Check
+*** TURN *** [H5]
+Player12: Bet $0.20
+Player2: Fold
+*** SUMMARY ***
+Total pot $0.44 Rake $0.01
+Player12: wins $0.44
+
+
+GAME #2978868148: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:09:28
+Table Goole
+Seat 1: Player2 ($2.80 in chips)
+Seat 2: Player3 ($6.68 in chips)
+Seat 5: Player4 ($17.71 in chips) DEALER
+Seat 6: Player12 ($10.49 in chips)
+Seat 7: Player11 ($10.15 in chips)
+Seat 8: Player0 ($30.85 in chips)
+Seat 9: Player16 ($6.00 in chips)
+Seat 10: Player6 ($6.52 in chips)
+Player12: Post SB $0.05
+Player11: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [H4 C6]
+Player0: Fold
+Player16: Fold
+Player6: Raise (NF) $0.40
+Player2: Fold
+Player3: Call $0.40
+Player4: Fold
+Player12: Fold
+Player11: Fold
+*** FLOP *** [C5 HK CQ]
+Player6: Bet $0.71
+Player3: Raise (NF) $1.50
+Player6: Raise (NF) $4.08
+Player3: Fold
+*** SUMMARY ***
+Total pot $6.27 Rake $0.26
+Player6: wins $6.27
+
+
+GAME #2978868893: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:10:54
+Table Goole
+Seat 1: Player2 ($2.80 in chips)
+Seat 2: Player3 ($4.78 in chips)
+Seat 5: Player4 ($17.71 in chips)
+Seat 6: Player12 ($10.44 in chips) DEALER
+Seat 7: Player11 ($10.05 in chips)
+Seat 8: Player0 ($30.85 in chips)
+Seat 9: Player16 ($6.00 in chips)
+Seat 10: Player6 ($8.31 in chips)
+Player11: Post SB $0.05
+Player0: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [D2 DK]
+Player16: Fold
+Player6: Call $0.10
+Player2: Fold
+Player3: Fold
+Player4: Fold
+Player12: Fold
+Player11: Call $0.05
+Player0: Check
+*** FLOP *** [H9 S4 HK]
+Player11: Check
+Player0: Bet $0.20
+Player6: Raise (NF) $0.60
+Player11: Fold
+Player0: Call $0.40
+*** TURN *** [CJ]
+Player0: Check
+Player6: Bet $1.12
+Player0: Fold
+*** SUMMARY ***
+Total pot $2.52 Rake $0.10
+Player6: wins $2.52
+
+
+GAME #2978869442: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:12:02
+Table Goole
+Seat 1: Player2 ($2.80 in chips)
+Seat 2: Player3 ($4.78 in chips)
+Seat 4: Player5 ($6.00 in chips)
+Seat 5: Player4 ($17.71 in chips)
+Seat 7: Player11 ($10.00 in chips) DEALER
+Seat 8: Player0 ($30.15 in chips)
+Seat 9: Player16 ($6.00 in chips)
+Seat 10: Player6 ($9.01 in chips)
+Player0: Post SB $0.05
+Player16: Post BB $0.10
+Player5: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [S3 H6]
+Player6: Call $0.10
+Player2: Fold
+Player3: Fold
+Player5: Check
+Player4: Fold
+Player11: Fold
+Player0: Call $0.05
+Player16: Check
+*** FLOP *** [SK D10 SA]
+Player0: Check
+Player16: Check
+Player6: Bet $0.30
+Player5: Raise (NF) $1.00
+Player0: Fold
+Player16: Fold
+Player6: Fold
+*** SUMMARY ***
+Total pot $1.64 Rake $0.06
+Player5: wins $1.64
+
+
+GAME #2978870172: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:13:33
+Table Goole
+Seat 1: Player2 ($2.80 in chips)
+Seat 2: Player3 ($4.78 in chips)
+Seat 3: Player9 ($10.00 in chips)
+Seat 4: Player5 ($6.54 in chips)
+Seat 5: Player4 ($17.71 in chips)
+Seat 7: Player11 ($10.00 in chips)
+Seat 8: Player0 ($30.05 in chips) DEALER
+Seat 9: Player16 ($5.90 in chips)
+Seat 10: Player6 ($8.61 in chips)
+Player16: Post SB $0.05
+Player6: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [C7 CK]
+Player9:
+Player2: Fold
+Player3: Call $0.10
+Player5: Fold
+Player4: Fold
+Player11: Fold
+Player0: Raise (NF) $0.50
+Player16: Fold
+Player6: Fold
+Player3: Fold
+*** SUMMARY ***
+Total pot $0.75 Rake $0.00
+Player0: wins $0.75
+
+
+GAME #2978870565: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:14:22
+Table Goole
+Seat 1: Player2 ($2.80 in chips)
+Seat 2: Player3 ($4.68 in chips)
+Seat 3: Player9 ($10.00 in chips)
+Seat 4: Player5 ($6.54 in chips)
+Seat 5: Player4 ($17.71 in chips)
+Seat 6: Player10 ($10.00 in chips)
+Seat 7: Player11 ($10.00 in chips)
+Seat 8: Player0 ($30.30 in chips)
+Seat 9: Player16 ($5.85 in chips) DEALER
+Seat 10: Player6 ($8.51 in chips)
+Player6: Post SB $0.05
+Player2: Post BB $0.10
+Player10: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [CJ C4]
+Player3: Fold
+Player5: Fold
+Player4: Fold
+Player10: Check
+Player11: Fold
+Player0: Fold
+Player16: Raise (NF) $0.30
+Player6: Fold
+Player2: Call $0.20
+Player10: Fold
+*** FLOP *** [D8 H7 CK]
+Player2: Check
+Player16: Bet $0.37
+Player2: Call $0.37
+*** TURN *** [D5]
+Player2: Check
+Player16: Bet $0.60
+Player2: Fold
+*** SUMMARY ***
+Total pot $2.00 Rake $0.09
+Player16: wins $2.00
+
+
+GAME #2978871237: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:15:45
+Table Goole
+Seat 1: Player2 ($2.13 in chips)
+Seat 2: Player3 ($4.68 in chips)
+Seat 3: Player9 ($10.00 in chips)
+Seat 4: Player5 ($6.54 in chips)
+Seat 5: Player4 ($17.71 in chips)
+Seat 6: Player10 ($9.90 in chips)
+Seat 7: Player11 ($10.00 in chips)
+Seat 8: Player0 ($30.30 in chips)
+Seat 9: Player16 ($6.58 in chips)
+Seat 10: Player6 ($8.46 in chips) DEALER
+Player2: Post SB $0.05
+Player3: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [HA C8]
+Player5: Fold
+Player4: Fold
+Player10: Fold
+Player11: Fold
+Player0: Fold
+Player16: Fold
+Player6: Fold
+Player2: Call $0.05
+Player3: Check
+*** FLOP *** [D7 D4 C4]
+Player2: Check
+Player3: Bet $0.20
+Player2: Call $0.20
+*** TURN *** [SQ]
+Player2: Check
+Player3: Check
+*** RIVER *** [C3]
+Player2: Bet $0.30
+Player3: Call $0.30
+*** SUMMARY ***
+Total pot $1.12 Rake $0.08
+Player2: Shows [DK H7]
+Player3: Shows [D5 S7]
+Player2: wins $1.12
+
+
+GAME #2978872069: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:17:33
+Table Goole
+Seat 1: Player2 ($2.65 in chips) DEALER
+Seat 2: Player3 ($4.08 in chips)
+Seat 3: Player9 ($10.00 in chips)
+Seat 4: Player5 ($6.54 in chips)
+Seat 5: Player4 ($17.71 in chips)
+Seat 6: Player10 ($9.90 in chips)
+Seat 7: Player11 ($10.00 in chips)
+Seat 8: Player0 ($30.30 in chips)
+Seat 9: Player16 ($6.58 in chips)
+Seat 10: Player6 ($8.46 in chips)
+Player3: Post SB $0.05
+Player9: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [C3 D7]
+Player5: Fold
+Player4: Fold
+Player10: Fold
+Player11: Fold
+Player0: Call $0.10
+Player16: Raise (NF) $0.30
+Player6: Fold
+Player2: Fold
+Player3: Fold
+Player9: Fold
+Player0: Fold
+*** SUMMARY ***
+Total pot $0.55 Rake $0.00
+Player16: wins $0.55
+
+
+GAME #2978872512: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:18:26
+Table Goole
+Seat 1: Player2 ($2.65 in chips)
+Seat 2: Player3 ($4.03 in chips) DEALER
+Seat 3: Player9 ($9.90 in chips)
+Seat 4: Player5 ($6.54 in chips)
+Seat 5: Player4 ($17.71 in chips)
+Seat 6: Player10 ($9.90 in chips)
+Seat 7: Player11 ($10.00 in chips)
+Seat 8: Player0 ($30.20 in chips)
+Seat 9: Player16 ($6.83 in chips)
+Seat 10: Player6 ($8.46 in chips)
+Player9: Post SB $0.05
+Player5: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [D6 C4]
+Player4: Fold
+Player10: Fold
+Player11: Fold
+Player0: Fold
+Player16: Fold
+Player6: Fold
+Player2: Call $0.10
+Player3: Raise (NF) $0.40
+Player9: Fold
+Player5: Fold
+Player2: Call $0.30
+*** FLOP *** [D8 D4 S5]
+Player2: Check
+Player3: Bet $0.71
+Player2: Fold
+*** SUMMARY ***
+Total pot $1.60 Rake $0.06
+Player3: wins $1.60
+
+
+GAME #2978873209: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:19:53
+Table Goole
+Seat 1: Player2 ($2.25 in chips)
+Seat 2: Player3 ($4.52 in chips)
+Seat 3: Player9 ($9.85 in chips) DEALER
+Seat 4: Player5 ($6.44 in chips)
+Seat 5: Player4 ($17.71 in chips)
+Seat 6: Player10 ($9.90 in chips)
+Seat 7: Player11 ($10.00 in chips)
+Seat 8: Player0 ($30.20 in chips)
+Seat 9: Player16 ($6.83 in chips)
+Seat 10: Player6 ($8.46 in chips)
+Player5: Post SB $0.05
+Player10: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [C3 C6]
+Player4:
+Player11: Fold
+Player0: Raise (NF) $0.40
+Player16: Fold
+Player2: Fold
+Player3: Fold
+Player9: Fold
+Player5: Fold
+Player10: Call $0.30
+*** FLOP *** [CJ CQ C8]
+Player10: Check
+Player0: Bet $0.50
+Player10: Fold
+*** SUMMARY ***
+Total pot $1.30 Rake $0.05
+Player0: wins $1.30
+
+
+GAME #2978873709: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:20:58
+Table Goole
+Seat 1: Player2 ($2.25 in chips)
+Seat 2: Player3 ($4.52 in chips)
+Seat 3: Player9 ($9.85 in chips)
+Seat 4: Player5 ($6.39 in chips) DEALER
+Seat 5: Player14 ($0.00 in chips)
+Seat 6: Player10 ($9.50 in chips)
+Seat 7: Player11 ($10.00 in chips)
+Seat 8: Player0 ($30.60 in chips)
+Seat 9: Player16 ($6.83 in chips)
+Seat 10: Player6 ($8.46 in chips)
+Player10: Post SB $0.05
+Player11: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [D9 C3]
+Player0: Fold
+Player16: Fold
+Player6: Raise (NF) $0.30
+Player2: Fold
+Player3: Call $0.30
+Player9: Fold
+Player5: Call $0.30
+Player10: Fold
+Player11: Fold
+*** FLOP *** [H4 D10 HA]
+Player6: Check
+Player3: Check
+Player5: Bet $0.80
+Player6: Call $0.80
+Player3: Call $0.80
+*** TURN *** [D2]
+Player6: Check
+Player3: Check
+Player5: Bet $3.45
+Player6: Call $3.45
+Player3: Fold
+*** RIVER *** [H8]
+Player6: Check
+Player5: Bet $1.84
+Player6: Fold
+*** SUMMARY ***
+Total pot $11.50 Rake $0.69
+Player5: wins $11.50
+
+
+GAME #2978874670: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:22:58
+Table Goole
+Seat 1: Player2 ($2.25 in chips)
+Seat 2: Player3 ($3.42 in chips)
+Seat 3: Player9 ($9.85 in chips)
+Seat 4: Player5 ($11.50 in chips)
+Seat 5: Player14 ($10.00 in chips)
+Seat 6: Player10 ($9.45 in chips) DEALER
+Seat 7: Player11 ($10.00 in chips)
+Seat 9: Player16 ($6.83 in chips)
+Seat 10: Player6 ($3.91 in chips)
+Player11: Post SB $0.05
+Player16: Post BB $0.10
+Player14: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [S7 D9]
+Player6: Call $0.10
+Player2: Call $0.10
+Player3: Fold
+Player9: Fold
+Player5: Raise (NF) $0.70
+Player14: Fold
+Player10: Call $0.70
+Player11: Fold
+Player16: Fold
+Player6: Fold
+Player2: Call $0.60
+*** FLOP *** [H8 H9 D5]
+Player2: Check
+Player5: Bet $1.90
+Player10: Fold
+Player2: Allin $1.55
+*** TURN *** [DK]
+*** RIVER *** [CK]
+*** SUMMARY ***
+Total pot $5.53 Rake $0.37
+Player2: Shows [C8 D8]
+Player5: Shows [DQ D2]
+Player2: wins $5.18
+Player5: wins $0.35
+
+
+GAME #2978875395: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:24:35
+Table Goole
+Seat 1: Player2 ($5.18 in chips)
+Seat 2: Player3 ($3.42 in chips)
+Seat 3: Player9 ($9.85 in chips)
+Seat 4: Player5 ($9.25 in chips)
+Seat 5: Player14 ($9.90 in chips)
+Seat 6: Player10 ($8.75 in chips)
+Seat 7: Player11 ($10.00 in chips) DEALER
+Seat 9: Player16 ($6.73 in chips)
+Seat 10: Player6 ($3.81 in chips)
+Player16: Post SB $0.05
+Player6: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [C3 C10]
+Player2: Call $0.10
+Player3: Fold
+Player9: Call $0.10
+Player5: Call $0.10
+Player14: Fold
+Player10: Fold
+Player11: Fold
+Player16: Call $0.05
+Player6: Check
+*** FLOP *** [H2 HJ CQ]
+Player16: Check
+Player6: Check
+Player2: Check
+Player9: Check
+Player5: Check
+*** TURN *** [S5]
+Player16: Bet $0.25
+Player6: Fold
+Player2: Raise (NF) $1.25
+Player9: Fold
+Player5: Fold
+Player16: Fold
+*** SUMMARY ***
+Total pot $1.94 Rake $0.06
+Player2: wins $1.94
+
+
+GAME #2978876517: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:27:00
+Table Goole
+Seat 1: Player2 ($5.77 in chips)
+Seat 2: Player3 ($3.42 in chips)
+Seat 3: Player9 ($9.75 in chips)
+Seat 4: Player5 ($9.15 in chips)
+Seat 5: Player14 ($9.90 in chips)
+Seat 6: Player10 ($10.00 in chips)
+Seat 7: Player11 ($10.00 in chips)
+Seat 9: Player16 ($6.38 in chips) DEALER
+Seat 10: Player6 ($3.71 in chips)
+Player6: Post SB $0.05
+Player2: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [C2 H5]
+Player3: Fold
+Player9: Raise (NF) $0.30
+Player5: Fold
+Player14: Fold
+Player10: Fold
+Player11: Fold
+Player16: Fold
+Player6: Call $0.25
+Player2: Fold
+*** FLOP *** [SK D7 S3]
+Player6: Check
+Player9: Bet $0.35
+Player6: Call $0.35
+*** TURN *** [H7]
+Player6: Check
+Player9: Check
+*** RIVER *** [S9]
+Player6: Bet $1.05
+Player9: Call $1.05
+*** SUMMARY ***
+Total pot $3.27 Rake $0.23
+Player9: Shows [CK CQ]
+Player6: Shows [C8 S7]
+Player6: wins $3.27
+
+
+GAME #2978877200: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:28:34
+Table Goole
+Seat 1: Player2 ($5.67 in chips)
+Seat 2: Player3 ($3.42 in chips)
+Seat 3: Player9 ($8.05 in chips)
+Seat 4: Player5 ($9.15 in chips)
+Seat 5: Player14 ($9.90 in chips)
+Seat 6: Player10 ($10.00 in chips)
+Seat 7: Player11 ($10.00 in chips)
+Seat 8: Player15 ($3.00 in chips)
+Seat 9: Player16 ($6.38 in chips)
+Seat 10: Player6 ($5.28 in chips) DEALER
+Player2: Post SB $0.05
+Player3: Post BB $0.10
+Player15: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [C8 SJ]
+Player9: Fold
+Player5: Fold
+Player14: Fold
+Player10: Fold
+Player11: Fold
+Player15: Raise (NF) $0.30
+Player16: Fold
+Player6: Fold
+Player2: Fold
+Player3: Fold
+*** SUMMARY ***
+Total pot $0.45 Rake $0.00
+Player15: wins $0.45
+
+
+GAME #2978877642: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:29:33
+Table Goole
+Seat 1: Player2 ($5.62 in chips) DEALER
+Seat 2: Player3 ($3.32 in chips)
+Seat 3: Player9 ($10.00 in chips)
+Seat 5: Player14 ($9.90 in chips)
+Seat 6: Player10 ($10.00 in chips)
+Seat 7: Player11 ($10.00 in chips)
+Seat 8: Player15 ($3.15 in chips)
+Seat 9: Player16 ($6.38 in chips)
+Seat 10: Player6 ($5.28 in chips)
+Player3: Post SB $0.05
+Player9: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [H8 S10]
+Player14: Fold
+Player10: Fold
+Player11: Fold
+Player15: Fold
+Player16: Fold
+Player6: Raise (NF) $0.30
+Player2: Fold
+Player3: Fold
+Player9: Fold
+*** SUMMARY ***
+Total pot $0.45 Rake $0.00
+Player6: wins $0.45
+
+
+GAME #2978877995: Texas Hold'em  NL $0.05/$0.10 2011-10-12 03:30:19
+Table Goole
+Seat 1: Player2 ($5.62 in chips)
+Seat 2: Player3 ($3.27 in chips) DEALER
+Seat 3: Player9 ($9.90 in chips)
+Seat 5: Player14 ($9.90 in chips)
+Seat 6: Player10 ($10.00 in chips)
+Seat 7: Player11 ($10.00 in chips)
+Seat 8: Player15 ($3.15 in chips)
+Seat 9: Player16 ($6.38 in chips)
+Seat 10: Player6 ($5.43 in chips)
+Player9: Post SB $0.05
+Player14: Post BB $0.10
+*** HOLE CARDS ***
+Dealt to Player11 [S9 D5]
+Player10: Fold
+Player11: Fold
+Player15: Raise (NF) $0.30
+Player16: Fold
+Player6: Fold
+Player2: Call $0.30
+Player3: Call $0.30
+Player9: Fold
+Player14: Call $0.20
+*** FLOP *** [C4 HK D7]
+Player14: Check
+Player15: Check
+Player2: Check
+Player3: Check
+*** TURN *** [S6]
+Player14: Check
+Player15: Bet $0.30
+Player2: Call $0.30
+Player3: Fold
+Player14: Call $0.30
+*** RIVER *** [H4]
+Player14: Check
+Player15: Bet $1.20
+Player2: Call $1.20
+Player14: Fold
+*** SUMMARY ***
+Total pot $4.25 Rake $0.30
+Player2: Shows [D10 H10]
+Player15: Shows [C6 H6]
+Player15: wins $4.25
+
+
+

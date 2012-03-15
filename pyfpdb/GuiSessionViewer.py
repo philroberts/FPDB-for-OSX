@@ -520,7 +520,7 @@ class GuiSessionViewer:
             for tabobject in self.owner.threads:
                 if isinstance(tabobject, GuiHandViewer.GuiHandViewer):
                     replayer = tabobject
-                    self.owner.display_tab(_("Hand Viewer"))
+                    self.owner.tab_hand_viewer(None)
                     break
             if replayer is None:
                 self.owner.tab_hand_viewer(None)
