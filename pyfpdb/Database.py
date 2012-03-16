@@ -297,7 +297,6 @@ class Database:
 
 
     def __init__(self, c, sql = None, autoconnect = True):
-        log.debug(_("Creating Database instance, sql = %s") % sql)
         self.config = c
         self.__connected = False
         self.settings = {}
