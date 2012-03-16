@@ -1743,8 +1743,11 @@ class StudHand(Hand):
         if asList == False:
             return " ".join(holecards)
         else:
-            if player == self.hero or len(holecards) == 7:
-                return holecards
+            if player == self.hero:
+                if len(holecards) < 3:
+                    holecards = [u'0x', u'0x'] + holecards
+                else:
+                    return holecards
             elif len(holecards) <= 4:
                 #Non hero folded before showdown, add first two downcards
                 holecards = [u'0x', u'0x'] + holecards
