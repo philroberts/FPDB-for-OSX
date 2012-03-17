@@ -1,0 +1,72 @@
+﻿** Game ID 4152594215 starting - 2011-11-02 23:08:51
+** Deal 252 (Deep) - €5 Min [Hold'em] (0.05|0.10 NL - € Cash Game) Real Money
+
+- player1 sitting in seat 1 with €10.00 [Sitting out]
+- player2 sitting in seat 2 with €0.00 [Sitting out]
+- player4 sitting in seat 3 with €6.90 [Dealer]
+- player3 sitting in seat 4 with €8.26
+- Hero sitting in seat 5 with €10.76
+- player5 sitting in seat 6 with €16.57
+
+player3 posted the small blind - €0.05
+Hero posted the big blind - €0.10
+** Dealing card to Hero: 2 of d, 2 of h
+player5 raised - €0.20
+player4 folded
+player3 folded
+Hero called - €0.20
+** Dealing the flop: A of s, 10 of s, 2 of c
+Hero bet - €0.30
+player5 called - €0.30
+** Dealing the turn: K of c
+Hero bet - €0.80
+player5 raised - €1.60
+Hero raised - €4.80
+player5 went all-in - €14.47
+Hero went all-in - €5.46
+** Dealing the river: Q of h
+Hero shows: 2 of d, 2 of h
+player5 mucks: K of d, A of c
+Hero wins €20.50 from the main pot
+
+End of game 4152594215
+
+
+** Game ID 4162388199 starting - 2011-11-09 18:01:36
+** Deal 290 (Deep) - €5 Min [Hold'em] (0.05|0.10 NL - € Cash Game) Real Money
+
+- player6 sitting in seat 1 with €11.26
+- player7 sitting in seat 2 with €11.85
+- player8 sitting in seat 3 with €10.61 [Dealer]
+- Hero sitting in seat 4 with €19.60
+- player9 sitting in seat 5 with €8.65
+- player10 sitting in seat 6 with €10.40
+
+Hero posted the small blind - €0.05
+player9 posted the big blind - €0.10
+** Dealing card to Hero: K of h, 3 of h
+player10 raised - €0.40
+player6 folded
+player7 folded
+player8 called - €0.40
+Hero called - €0.40
+player9 folded
+** Dealing the flop: Q of h, 10 of h, J of s
+Hero bet - €0.85
+player10 raised - €2.60
+player8 called - €2.60
+Hero went all-in - €18.35
+player10 went all-in - €7.40
+player8 went all-in - €7.61
+** Dealing the turn: 9 of s
+** Dealing the river: Q of s
+Hero shows: K of h, 3 of h
+player8 shows: 10 of d, 10 of c
+player10 mucks: K of s, A of c
+player8 wins €29.74 from the main pot
+player8 wins €0.40 from side pot 1
+
+End of game 4162388199
+
+
+

@@ -104,7 +104,7 @@ class TourneySummary(object):
         self.guarantee          = None
         self.added              = None
         self.addedCurrency      = None
-        self.gametype           = {'category':None, 'limitType':None}
+        self.gametype           = {'category':None, 'limitType':None, 'mix':'none'}
         self.comment            = None
         self.commentTs          = None
 

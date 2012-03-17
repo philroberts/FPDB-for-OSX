@@ -1,0 +1,524 @@
+MERGE_GAME #4290961700035: Holdem NL Tournament 11/02/2011 21:16:13
+Table $2 Bounty Turbo, 42862423 (Tournament: $2 Bounty Turbo, 42862423 Buy-In: $2+$0.20)
+Seat 1: Player9 ($6,679.00 in chips) DEALER
+Seat 2: Player2 ($1,275.00 in chips)
+Seat 3: Player0 ($8,109.00 in chips)
+Seat 4: Player3 ($5,153.00 in chips)
+Seat 5: Player7 ($1,975.00 in chips)
+Seat 6: Player1 ($6,432.00 in chips)
+Seat 7: Player8 ($1,975.00 in chips)
+Seat 8: Player4 ($1,470.00 in chips)
+Seat 9: Player5 ($1,280.00 in chips)
+Player9: Post Ante $25.00
+Player2: Post Ante $25.00
+Player0: Post Ante $25.00
+Player3: Post Ante $25.00
+Player7: Post Ante $25.00
+Player1: Post Ante $25.00
+Player8: Post Ante $25.00
+Player4: Post Ante $25.00
+Player5: Post Ante $25.00
+Player2: Post SB $125.00
+Player0: Post BB $250.00
+*** HOLE CARDS ***
+Dealt to Player8 [9d 4c]
+Player3: Fold
+Player7: Fold
+Player1: Fold
+Player8: Fold
+Player4: Fold
+Player5: Fold
+Player9: Fold
+Player2: Allin $1,275.00
+Player0: Call $1,150.00
+*** FLOP *** [9h 5s Qc]
+*** TURN *** [6c]
+*** RIVER *** [Jd]
+*** SUMMARY ***
+Player2: Shows [6s 2h]
+Player0: Shows [6h 7s]
+Player2: wins $1,513.00
+Player0: wins $1,512.00
+
+
+MERGE_GAME #4290961700036: Holdem NL Tournament 11/02/2011 21:16:41
+Table $2 Bounty Turbo, 42862423 (Tournament: $2 Bounty Turbo, 42862423 Buy-In: $2+$0.20)
+Seat 1: Player9 ($6,654.00 in chips)
+Seat 2: Player2 ($1,488.00 in chips) DEALER
+Seat 3: Player0 ($8,321.00 in chips)
+Seat 4: Player3 ($4,878.00 in chips)
+Seat 5: Player7 ($1,950.00 in chips)
+Seat 6: Player1 ($6,407.00 in chips)
+Seat 7: Player8 ($1,950.00 in chips)
+Seat 8: Player4 ($1,445.00 in chips)
+Seat 9: Player5 ($1,255.00 in chips)
+Player9: Post Ante $25.00
+Player2: Post Ante $25.00
+Player0: Post Ante $25.00
+Player3: Post Ante $25.00
+Player7: Post Ante $25.00
+Player1: Post Ante $25.00
+Player8: Post Ante $25.00
+Player4: Post Ante $25.00
+Player5: Post Ante $25.00
+Player0: Post SB $125.00
+Player3: Post BB $250.00
+*** HOLE CARDS ***
+Dealt to Player8 [Th 9c]
+Player7: Fold
+Player1: Fold
+Player8: Fold
+Player4: Fold
+Player5: Fold
+Player9: Call $250.00
+Player2: Allin $1,488.00
+Player0: Fold
+Player3: Fold
+Player9: Call $1,238.00
+*** FLOP *** [2d 9d 4c]
+*** TURN *** [Qd]
+*** RIVER *** [3s]
+*** SUMMARY ***
+Player9: Shows [Kh 7h]
+Player2: Shows [8h 8c]
+Player2: wins $3,576.00
+
+
+MERGE_GAME #4290961700037: Holdem NL Tournament 11/02/2011 21:17:24
+Table $2 Bounty Turbo, 42862423 (Tournament: $2 Bounty Turbo, 42862423 Buy-In: $2+$0.20)
+Seat 1: Player9 ($5,141.00 in chips)
+Seat 2: Player2 ($3,551.00 in chips)
+Seat 3: Player0 ($8,296.00 in chips) DEALER
+Seat 4: Player3 ($4,728.00 in chips)
+Seat 5: Player7 ($1,675.00 in chips)
+Seat 6: Player1 ($6,382.00 in chips)
+Seat 7: Player8 ($1,925.00 in chips)
+Seat 8: Player4 ($1,420.00 in chips)
+Seat 9: Player5 ($1,230.00 in chips)
+Player9: Post Ante $25.00
+Player2: Post Ante $25.00
+Player0: Post Ante $25.00
+Player3: Post Ante $25.00
+Player7: Post Ante $25.00
+Player1: Post Ante $25.00
+Player8: Post Ante $25.00
+Player4: Post Ante $25.00
+Player5: Post Ante $25.00
+Player3: Post SB $125.00
+Player7: Post BB $250.00
+*** HOLE CARDS ***
+Dealt to Player8 [8c Th]
+Player1: Fold
+Player8: Fold
+Player4: Fold
+Player5: Fold
+Player9: Fold
+Player2: Fold
+Player0: Call $250.00
+Player3: Call $125.00
+Player7: Check
+*** FLOP *** [Qs 4s 8s]
+Player3: Check
+Player7: Bet $500.00
+Player0: Fold
+Player3: Fold
+*** SUMMARY ***
+Player7: Shows [3s 5s]
+Player7: wins $1,475.00
+
+
+MERGE_GAME #4290961700038: Holdem NL Tournament 11/02/2011 21:17:49
+Table $2 Bounty Turbo, 42862423 (Tournament: $2 Bounty Turbo, 42862423 Buy-In: $2+$0.20)
+Seat 1: Player9 ($5,116.00 in chips)
+Seat 2: Player2 ($3,526.00 in chips)
+Seat 3: Player0 ($8,021.00 in chips)
+Seat 4: Player3 ($4,578.00 in chips) DEALER
+Seat 5: Player7 ($2,500.00 in chips)
+Seat 6: Player1 ($6,107.00 in chips)
+Seat 7: Player8 ($1,900.00 in chips)
+Seat 8: Player4 ($1,395.00 in chips)
+Seat 9: Player5 ($1,205.00 in chips)
+Player9: Post Ante $25.00
+Player2: Post Ante $25.00
+Player0: Post Ante $25.00
+Player3: Post Ante $25.00
+Player7: Post Ante $25.00
+Player1: Post Ante $25.00
+Player8: Post Ante $25.00
+Player4: Post Ante $25.00
+Player5: Post Ante $25.00
+Player7: Post SB $125.00
+Player1: Post BB $250.00
+*** HOLE CARDS ***
+Dealt to Player8 [5d 8s]
+Player8: Fold
+Player4: Fold
+Player5: Fold
+Player9: Call $250.00
+Player2: Fold
+Player0: Fold
+Player3: Fold
+Player7: Call $125.00
+Player1: Check
+*** FLOP *** [Tc Ad Ts]
+Player7: Check
+Player1: Bet $250.00
+Player9: Call $250.00
+Player7: Fold
+*** TURN *** [4s]
+Player1: Check
+Player9: Bet $983.00
+Player1: Fold
+*** SUMMARY ***
+Player9: wins $2,458.00
+
+
+MERGE_GAME #4290961700039: Holdem NL Tournament 11/02/2011 21:18:25
+Table $2 Bounty Turbo, 42862423 (Tournament: $2 Bounty Turbo, 42862423 Buy-In: $2+$0.20)
+Seat 1: Player9 ($6,066.00 in chips)
+Seat 2: Player2 ($3,501.00 in chips)
+Seat 3: Player0 ($7,996.00 in chips)
+Seat 4: Player3 ($4,553.00 in chips)
+Seat 5: Player7 ($2,350.00 in chips) DEALER
+Seat 6: Player1 ($5,707.00 in chips)
+Seat 7: Player8 ($1,625.00 in chips)
+Seat 8: Player4 ($1,370.00 in chips)
+Seat 9: Player5 ($1,180.00 in chips)
+Player9: Post Ante $25.00
+Player2: Post Ante $25.00
+Player0: Post Ante $25.00
+Player3: Post Ante $25.00
+Player7: Post Ante $25.00
+Player1: Post Ante $25.00
+Player8: Post Ante $25.00
+Player4: Post Ante $25.00
+Player5: Post Ante $25.00
+Player1: Post SB $125.00
+Player8: Post BB $250.00
+*** HOLE CARDS ***
+Dealt to Player8 [9s 2s]
+Player4: Fold
+Player5: Fold
+Player9: Call $250.00
+Player2: Fold
+Player0: Fold
+Player3: Fold
+Player7: Fold
+Player1: Call $125.00
+Player8: Check
+*** FLOP *** [4s 8d 4d]
+Player1: Check
+Player8: Check
+Player9: Bet $487.00
+Player1: Fold
+Player8: Fold
+*** SUMMARY ***
+Player9: wins $1,462.00
+
+
+MERGE_GAME #4290961700040: Holdem NL Tournament 11/02/2011 21:18:51
+Table $2 Bounty Turbo, 42862423 (Tournament: $2 Bounty Turbo, 42862423 Buy-In: $2+$0.20)
+Seat 1: Player9 ($6,766.00 in chips)
+Seat 2: Player2 ($3,476.00 in chips)
+Seat 3: Player0 ($7,971.00 in chips)
+Seat 4: Player3 ($4,528.00 in chips)
+Seat 5: Player7 ($2,325.00 in chips)
+Seat 6: Player1 ($5,557.00 in chips) DEALER
+Seat 7: Player8 ($1,475.00 in chips)
+Seat 8: Player4 ($1,095.00 in chips)
+Seat 9: Player5 ($1,155.00 in chips)
+Player9: Post Ante $25.00
+Player2: Post Ante $25.00
+Player0: Post Ante $25.00
+Player3: Post Ante $25.00
+Player7: Post Ante $25.00
+Player1: Post Ante $25.00
+Player8: Post Ante $25.00
+Player4: Post Ante $25.00
+Player5: Post Ante $25.00
+Player8: Post SB $125.00
+Player4: Post BB $250.00
+*** HOLE CARDS ***
+Dealt to Player8 [8d Td]
+Player5: Fold
+Player9: Fold
+Player2: Fold
+Player0: Fold
+Player3: Call $250.00
+Player7: Fold
+Player1: Call $250.00
+Player8: Fold
+Player4: Check
+*** FLOP *** [Ac 9d Jd]
+Player4: Check
+Player3: Check
+Player1: Bet $250.00
+Player4: Fold
+Player3: Call $250.00
+*** TURN *** [9s]
+Player3: Check
+Player1: Allin $5,057.00
+Player3: Fold
+*** SUMMARY ***
+Player1: Shows [9h Ks]
+Player1: wins $6,657.00
+
+
+MERGE_GAME #4290961700041: Holdem NL Tournament 11/02/2011 21:19:27
+Table $2 Bounty Turbo, 42862423 (Tournament: $2 Bounty Turbo, 42862423 Buy-In: $2+$0.20)
+Seat 1: Player9 ($6,741.00 in chips)
+Seat 2: Player2 ($3,451.00 in chips)
+Seat 3: Player0 ($7,946.00 in chips)
+Seat 4: Player3 ($4,003.00 in chips)
+Seat 5: Player7 ($2,300.00 in chips)
+Seat 6: Player1 ($6,632.00 in chips)
+Seat 7: Player8 ($1,450.00 in chips) DEALER
+Seat 8: Player4 ($945.00 in chips)
+Seat 9: Player5 ($880.00 in chips)
+Player9: Post Ante $25.00
+Player2: Post Ante $25.00
+Player0: Post Ante $25.00
+Player3: Post Ante $25.00
+Player7: Post Ante $25.00
+Player1: Post Ante $25.00
+Player8: Post Ante $25.00
+Player4: Post Ante $25.00
+Player5: Post Ante $25.00
+Player4: Post SB $125.00
+Player5: Post BB $250.00
+*** HOLE CARDS ***
+Dealt to Player8 [5c 6s]
+Player9: Fold
+Player2: Fold
+Player0: Fold
+Player3: Fold
+Player7: Fold
+Player1: Fold
+Player8: Fold
+Player4: Allin $945.00
+Player5: Fold
+*** SUMMARY ***
+Player4: wins $1,545.00
+
+
+MERGE_GAME #4290961700042: Holdem NL Tournament 11/02/2011 21:20:00
+Table $2 Bounty Turbo, 42862423 (Tournament: $2 Bounty Turbo, 42862423 Buy-In: $2+$0.20)
+Seat 1: Player9 ($6,466.00 in chips)
+Seat 2: Player2 ($3,426.00 in chips)
+Seat 3: Player0 ($7,921.00 in chips)
+Seat 4: Player3 ($3,978.00 in chips)
+Seat 5: Player7 ($2,275.00 in chips)
+Seat 6: Player1 ($6,607.00 in chips)
+Seat 7: Player8 ($1,425.00 in chips)
+Seat 8: Player4 ($1,520.00 in chips) DEALER
+Seat 9: Player5 ($730.00 in chips)
+Player9: Post Ante $25.00
+Player2: Post Ante $25.00
+Player0: Post Ante $25.00
+Player3: Post Ante $25.00
+Player7: Post Ante $25.00
+Player1: Post Ante $25.00
+Player8: Post Ante $25.00
+Player4: Post Ante $25.00
+Player5: Post Ante $25.00
+Player5: Post SB $125.00
+Player9: Post BB $250.00
+*** HOLE CARDS ***
+Dealt to Player8 [Jc 4c]
+Player2: Fold
+Player0: Call $250.00
+Player3: Call $250.00
+Player7: Fold
+Player1: Fold
+Player8: Fold
+Player4: Fold
+Player5: Fold
+Player9: Check
+*** FLOP *** [Qs Jh Ks]
+Player9: Check
+Player0: Bet $250.00
+Player3: Call $250.00
+Player9: Fold
+*** TURN *** [Ah]
+Player0: Check
+Player3: Check
+*** RIVER *** [8s]
+Player0: Bet $800.00
+Player3: Raise $1,600.00
+Player0: Call $800.00
+*** SUMMARY ***
+Player3: Shows [6s As]
+Player0: Shows [Js 9s]
+Player3: wins $4,800.00
+
+
+MERGE_GAME #4290961700043: Holdem NL Tournament 11/02/2011 21:21:05
+Table $2 Bounty Turbo, 42862423 (Tournament: $2 Bounty Turbo, 42862423 Buy-In: $2+$0.20)
+Seat 1: Player9 ($6,286.00 in chips)
+Seat 2: Player2 ($3,096.00 in chips)
+Seat 3: Player0 ($5,791.00 in chips)
+Seat 4: Player3 ($6,648.00 in chips)
+Seat 5: Player7 ($2,245.00 in chips)
+Seat 6: Player1 ($6,577.00 in chips)
+Seat 7: Player8 ($1,395.00 in chips)
+Seat 8: Player4 ($1,490.00 in chips)
+Seat 9: Player5 ($700.00 in chips) DEALER
+Player9: Post Ante $30.00
+Player2: Post Ante $30.00
+Player0: Post Ante $30.00
+Player3: Post Ante $30.00
+Player7: Post Ante $30.00
+Player1: Post Ante $30.00
+Player8: Post Ante $30.00
+Player4: Post Ante $30.00
+Player5: Post Ante $30.00
+Player9: Post SB $150.00
+Player2: Post BB $300.00
+*** HOLE CARDS ***
+Dealt to Player8 [Ts Ac]
+Player0: Fold
+Player3: Call $300.00
+Player7: Allin $2,245.00
+Player1: Fold
+Player8: Allin $1,395.00
+Player4: Fold
+Player5: Fold
+Player9: Fold
+Player2: Fold
+Player3: Call $1,945.00
+*** FLOP *** [Kc 3d 4s]
+*** TURN *** [9s]
+*** RIVER *** [6c]
+*** SUMMARY ***
+Player3: Shows [Jc As]
+Player7: Shows [Ah 9d]
+Player8: Shows [Ts Ac]
+Player7: wins $1,700.00
+Player7: wins $4,905.00
+
+
+MERGE_GAME #4291306800001: Holdem NL Tournament 11/02/2011 21:36:27
+Table Frigate Bird Room Super Turbo HU, 42912843 (Tournament: Frigate Bird Room Super Turbo HU, 42912843 Buy-In: $0+$0.00)
+Seat 1: Player8 ($1,475.00 in chips) DEALER
+Seat 2: Player6 ($1,450.00 in chips)
+Player8: Post SB $25.00
+Player6: Post BB $50.00
+*** HOLE CARDS ***
+Dealt to Player8 [3s 4h]
+Player8: Fold
+*** SUMMARY ***
+Player6: wins $75.00
+
+
+MERGE_GAME #4291306800002: Holdem NL Tournament 11/02/2011 21:36:38
+Table Frigate Bird Room Super Turbo HU, 42912843 (Tournament: Frigate Bird Room Super Turbo HU, 42912843 Buy-In: $0+$0.00)
+Seat 1: Player8 ($1,425.00 in chips)
+Seat 2: Player6 ($1,500.00 in chips) DEALER
+Player6: Post SB $25.00
+Player8: Post BB $50.00
+*** HOLE CARDS ***
+Dealt to Player8 [4s 3h]
+Player6: Raise $100.00
+Player8: Fold
+*** SUMMARY ***
+Player6: wins $150.00
+
+
+MERGE_GAME #4291306800003: Holdem NL Tournament 11/02/2011 21:36:49
+Table Frigate Bird Room Super Turbo HU, 42912843 (Tournament: Frigate Bird Room Super Turbo HU, 42912843 Buy-In: $0+$0.00)
+Seat 1: Player8 ($1,400.00 in chips) DEALER
+Seat 2: Player6 ($1,525.00 in chips)
+Player8: Post SB $25.00
+Player6: Post BB $50.00
+*** HOLE CARDS ***
+Dealt to Player8 [2d Tc]
+Player8: Fold
+*** SUMMARY ***
+Player6: wins $75.00
+
+
+MERGE_GAME #4291306800004: Holdem NL Tournament 11/02/2011 21:37:00
+Table Frigate Bird Room Super Turbo HU, 42912843 (Tournament: Frigate Bird Room Super Turbo HU, 42912843 Buy-In: $0+$0.00)
+Seat 1: Player8 ($1,350.00 in chips)
+Seat 2: Player6 ($1,575.00 in chips) DEALER
+Player6: Post SB $25.00
+Player8: Post BB $50.00
+*** HOLE CARDS ***
+Dealt to Player8 [2h Js]
+Player6: Raise $100.00
+Player8: Fold
+*** SUMMARY ***
+Player6: wins $150.00
+
+
+MERGE_GAME #4291306800005: Holdem NL Tournament 11/02/2011 21:37:14
+Table Frigate Bird Room Super Turbo HU, 42912843 (Tournament: Frigate Bird Room Super Turbo HU, 42912843 Buy-In: $0+$0.00)
+Seat 1: Player8 ($1,325.00 in chips) DEALER
+Seat 2: Player6 ($1,600.00 in chips)
+Player8: Post SB $25.00
+Player6: Post BB $50.00
+*** HOLE CARDS ***
+Dealt to Player8 [7s Qh]
+Player8: Fold
+*** SUMMARY ***
+Player6: wins $75.00
+
+
+MERGE_GAME #4291306800006: Holdem NL Tournament 11/02/2011 21:37:21
+Table Frigate Bird Room Super Turbo HU, 42912843 (Tournament: Frigate Bird Room Super Turbo HU, 42912843 Buy-In: $0+$0.00)
+Seat 1: Player8 ($1,275.00 in chips)
+Seat 2: Player6 ($1,650.00 in chips) DEALER
+Player6: Post SB $25.00
+Player8: Post BB $50.00
+*** HOLE CARDS ***
+Dealt to Player8 [9c 9s]
+Player6: Call $25.00
+Player8: Raise $116.00
+Player6: Call $66.00
+*** FLOP *** [2c Js Jd]
+Player8: Bet $154.00
+Player6: Fold
+*** SUMMARY ***
+Player8: wins $386.00
+
+
+MERGE_GAME #4291306800007: Holdem NL Tournament 11/02/2011 21:37:49
+Table Frigate Bird Room Super Turbo HU, 42912843 (Tournament: Frigate Bird Room Super Turbo HU, 42912843 Buy-In: $0+$0.00)
+Seat 1: Player8 ($1,416.00 in chips) DEALER
+Seat 2: Player6 ($1,509.00 in chips)
+Player8: Post SB $25.00
+Player6: Post BB $50.00
+*** HOLE CARDS ***
+Dealt to Player8 [8s As]
+Player8: Raise $166.00
+Player6: Call $116.00
+*** FLOP *** [3c Qc 3s]
+Player6: Bet $50.00
+Player8: Fold
+*** SUMMARY ***
+Player6: wins $382.00
+
+
+MERGE_GAME #4291306800008: Holdem NL Tournament 11/02/2011 21:38:12
+Table Frigate Bird Room Super Turbo HU, 42912843 (Tournament: Frigate Bird Room Super Turbo HU, 42912843 Buy-In: $0+$0.00)
+Seat 1: Player8 ($1,225.00 in chips)
+Seat 2: Player6 ($1,700.00 in chips) DEALER
+Player6: Post SB $25.00
+Player8: Post BB $50.00
+*** HOLE CARDS ***
+Dealt to Player8 [7h Ac]
+Player6: Raise $100.00
+Player8: Raise $233.00
+Player6: Allin $1,625.00
+Player8: Allin $1,042.00
+*** FLOP *** [9d 4h Td]
+*** TURN *** [4c]
+*** RIVER *** [Qs]
+*** SUMMARY ***
+Player8: Shows [7h Ac]
+Player6: Shows [Th As]
+Player6: wins $450.00
+Player6: wins $2,550.00
+
+
+

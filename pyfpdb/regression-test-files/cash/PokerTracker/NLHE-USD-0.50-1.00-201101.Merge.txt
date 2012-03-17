@@ -1,0 +1,1345 @@
+MERGE_GAME #3047310402797: Texas Hold'em NL $0.50/$1 01/01/2011 12:01:23
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($127.26 in chips)
+Seat 2: Player7 ($163.06 in chips)
+Seat 3: Player8 ($74.44 in chips)
+Seat 4: Player4 ($70.99 in chips)
+Seat 5: Player6 ($98.50 in chips)
+Seat 6: Player10 ($114.46 in chips)
+Seat 7: Player1 ($122.27 in chips)
+Seat 8: Player9 ($80.45 in chips)
+Seat 9: Player2 ($116.13 in chips) DEALER
+Player0: Post SB $0.50
+Player7: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Ks 8s]
+Player8: Call $1.00
+Player4: Fold
+Player6: Fold
+Player10: Fold
+Player1: Fold
+Player9: Fold
+Player2: Fold
+Player0: Call $0.50
+Player7: Check
+*** FLOP *** [Qc Ts Ah]
+Player0: Bet $1.50
+Player7: Fold
+Player8: Call $1.50
+*** TURN *** [6d]
+Player0: Check
+Player8: Bet $3.00
+Player0: Call $3.00
+*** RIVER *** [9s]
+Player0: Check
+Player8: Bet $8.00
+Player0: Fold
+*** SUMMARY ***
+Player8: wins $18.90
+
+
+MERGE_GAME #3047310402798: Texas Hold'em NL $0.50/$1 01/01/2011 12:03:05
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($121.76 in chips) DEALER
+Seat 2: Player7 ($162.06 in chips)
+Seat 3: Player8 ($79.84 in chips)
+Seat 4: Player4 ($70.99 in chips)
+Seat 5: Player6 ($98.50 in chips)
+Seat 6: Player10 ($114.46 in chips)
+Seat 7: Player1 ($122.27 in chips)
+Seat 8: Player9 ($80.45 in chips)
+Player7: Post SB $0.50
+Player8: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [4c 9d]
+Player4: Fold
+Player6: Call $1.00
+Player10: Fold
+Player1: Fold
+Player9: Fold
+Player0: Call $1.00
+Player7: Fold
+Player8: Check
+*** FLOP *** [2h Kd Ac]
+Player8: Check
+Player6: Check
+Player0: Check
+*** TURN *** [3d]
+Player8: Check
+Player6: Bet $2.00
+Player0: Raise $4.00
+Player8: Fold
+Player6: Call $2.00
+*** RIVER *** [3c]
+Player6: Check
+Player0: Bet $5.75
+Player6: Raise $17.25
+Player0: Call $11.50
+*** SUMMARY ***
+Player6: Shows [3s As]
+Player0: Shows [5d 4d]
+Player6: wins $43.20
+
+
+MERGE_GAME #3047310402799: Texas Hold'em NL $0.50/$1 01/01/2011 12:04:10
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($99.51 in chips)
+Seat 2: Player7 ($161.56 in chips) DEALER
+Seat 3: Player8 ($78.84 in chips)
+Seat 4: Player4 ($70.99 in chips)
+Seat 5: Player6 ($119.45 in chips)
+Seat 6: Player10 ($114.46 in chips)
+Seat 7: Player1 ($122.27 in chips)
+Seat 8: Player9 ($80.45 in chips)
+Seat 9: Player3 ($30.00 in chips)
+Player8: Post SB $0.50
+Player4: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [9c 4s]
+Player6: Fold
+Player10: Fold
+Player1: Fold
+Player9: Fold
+Player0: Call $1.00
+Player7: Fold
+Player8: Call $0.50
+Player4: Check
+*** FLOP *** [Jc 7h 6s]
+Player8: Check
+Player4: Check
+Player0: Check
+*** TURN *** [7d]
+Player8: Bet $1.50
+Player4: Fold
+Player0: Call $1.50
+*** RIVER *** [Ts]
+Player8: Check
+Player0: Bet $3.00
+Player8: Fold
+*** SUMMARY ***
+Player0: wins $8.20
+
+
+MERGE_GAME #3047310402800: Texas Hold'em NL $0.50/$1 01/01/2011 12:05:51
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($102.21 in chips)
+Seat 2: Player7 ($161.56 in chips)
+Seat 3: Player8 ($76.34 in chips) DEALER
+Seat 4: Player4 ($69.99 in chips)
+Seat 5: Player6 ($119.45 in chips)
+Seat 6: Player10 ($114.46 in chips)
+Seat 7: Player1 ($122.27 in chips)
+Seat 8: Player9 ($80.45 in chips)
+Seat 9: Player3 ($30.00 in chips)
+Player4: Post SB $0.50
+Player6: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Qc 8h]
+Player10: Fold
+Player1: Fold
+Player9: Fold
+Player0: Raise $3.50
+Player7: Fold
+Player8: Fold
+Player4: Fold
+Player6: Fold
+*** SUMMARY ***
+Player0: wins $5.00
+
+
+MERGE_GAME #3047310402801: Texas Hold'em NL $0.50/$1 01/01/2011 12:06:21
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($103.71 in chips)
+Seat 2: Player7 ($161.56 in chips)
+Seat 3: Player8 ($76.34 in chips)
+Seat 4: Player4 ($69.49 in chips) DEALER
+Seat 5: Player6 ($118.45 in chips)
+Seat 6: Player10 ($114.46 in chips)
+Seat 7: Player1 ($122.27 in chips)
+Seat 8: Player9 ($80.45 in chips)
+Seat 9: Player3 ($30.00 in chips)
+Player6: Post SB $0.50
+Player10: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [4h 5d]
+Player1: Call $1.00
+Player9: Fold
+Player0: Call $1.00
+Player7: Fold
+Player8: Fold
+Player4: Call $1.00
+Player6: Fold
+Player10: Check
+*** FLOP *** [Ac 6d 9c]
+Player10: Check
+Player1: Check
+Player0: Bet $3.00
+Player4: Fold
+Player10: Fold
+Player1: Call $3.00
+*** TURN *** [7d]
+Player1: Check
+Player0: Check
+*** RIVER *** [Kc]
+Player1: Bet $7.00
+Player0: Fold
+*** SUMMARY ***
+Player1: wins $16.48
+
+
+MERGE_GAME #3047310402802: Texas Hold'em NL $0.50/$1 01/01/2011 12:07:30
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($99.71 in chips)
+Seat 2: Player7 ($161.56 in chips)
+Seat 3: Player8 ($76.34 in chips)
+Seat 4: Player4 ($68.49 in chips)
+Seat 5: Player6 ($117.95 in chips) DEALER
+Seat 6: Player10 ($113.46 in chips)
+Seat 7: Player1 ($127.75 in chips)
+Seat 8: Player9 ($80.45 in chips)
+Seat 9: Player3 ($30.00 in chips)
+Player10: Post SB $0.50
+Player1: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Ad Kd]
+Player9: Fold
+Player0: Call $1.00
+Player7: Fold
+Player4: Raise $4.50
+Player6: Fold
+Player10: Raise $15.50
+Player1: Fold
+Player0: Fold
+Player4: Raise $32.00
+Player10: Raise $98.00
+Player4: Allin $36.49
+*** FLOP *** [Jd 7c Kh]
+*** TURN *** [4c]
+*** RIVER *** [Qc]
+*** SUMMARY ***
+Player4: Shows [Qd Qh]
+Player10: Shows [Ad Kd]
+Player4: wins $135.48
+Player10: wins $29.51
+
+
+MERGE_GAME #3047310402803: Texas Hold'em NL $0.50/$1 01/01/2011 12:09:24
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($98.71 in chips)
+Seat 2: Player7 ($161.56 in chips)
+Seat 3: Player8 ($76.34 in chips)
+Seat 4: Player4 ($135.48 in chips)
+Seat 5: Player6 ($117.95 in chips)
+Seat 6: Player10 ($100.00 in chips) DEALER
+Seat 7: Player1 ($126.75 in chips)
+Seat 8: Player9 ($80.45 in chips)
+Seat 9: Player3 ($30.00 in chips)
+Player1: Post SB $0.50
+Player9: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [6h Kd]
+Player0: Call $1.00
+Player7: Fold
+Player4: Fold
+Player6: Fold
+Player10: Fold
+Player1: Fold
+Player9: Check
+*** FLOP *** [7h 7s 7c]
+Player9: Check
+Player0: Check
+*** TURN *** [8c]
+Player9: Check
+Player0: Bet $1.00
+Player9: Fold
+*** SUMMARY ***
+Player0: wins $3.38
+
+
+MERGE_GAME #3047310402804: Texas Hold'em NL $0.50/$1 01/01/2011 12:10:20
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($100.09 in chips)
+Seat 2: Player7 ($161.56 in chips)
+Seat 3: Player8 ($76.34 in chips)
+Seat 4: Player4 ($135.48 in chips)
+Seat 5: Player6 ($117.95 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($126.25 in chips) DEALER
+Seat 8: Player9 ($79.45 in chips)
+Seat 9: Player3 ($30.00 in chips)
+Player9: Post SB $0.50
+Player3: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [8c Qd]
+Player0: Call $1.00
+Player7: Fold
+Player8: Fold
+Player4: Fold
+Player6: Fold
+Player10: Fold
+Player1: Fold
+Player9: Call $0.50
+Player3: Check
+*** FLOP *** [9h Ad 9c]
+Player9: Check
+Player3: Check
+Player0: Check
+*** TURN *** [Ks]
+Player9: Bet $1.00
+Player3: Fold
+Player0: Fold
+*** SUMMARY ***
+Player9: wins $3.85
+
+
+MERGE_GAME #3047310402805: Texas Hold'em NL $0.50/$1 01/01/2011 12:11:53
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($99.09 in chips)
+Seat 2: Player7 ($161.56 in chips)
+Seat 3: Player8 ($76.34 in chips)
+Seat 4: Player4 ($135.48 in chips)
+Seat 5: Player6 ($117.95 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($126.25 in chips)
+Seat 8: Player9 ($81.30 in chips) DEALER
+Seat 9: Player3 ($29.00 in chips)
+Player3: Post SB $0.50
+Player0: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Qc 4h]
+Player7: Fold
+Player8: Fold
+Player4: Fold
+Player6: Fold
+Player10: Fold
+Player1: Fold
+Player9: Raise $2.00
+Player3: Call $1.50
+Player0: Call $1.00
+*** FLOP *** [3h 5h 3c]
+Player3: Bet $1.00
+Player0: Fold
+Player9: Fold
+*** TURN *** [Js]
+*** RIVER *** [8d]
+*** SUMMARY ***
+Player3: Shows [Jh 2h]
+Player3: wins $6.20
+
+
+MERGE_GAME #3047310402806: Texas Hold'em NL $0.50/$1 01/01/2011 12:12:36
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($97.09 in chips)
+Seat 2: Player7 ($161.56 in chips)
+Seat 3: Player8 ($76.34 in chips)
+Seat 4: Player4 ($135.48 in chips)
+Seat 5: Player6 ($117.95 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($126.25 in chips)
+Seat 8: Player9 ($79.30 in chips)
+Seat 9: Player3 ($32.20 in chips) DEALER
+Player0: Post SB $0.50
+Player7: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [8d 3d]
+Player8: Fold
+Player4: Fold
+Player6: Fold
+Player10: Fold
+Player1: Raise $2.88
+Player9: Fold
+Player3: Fold
+Player0: Fold
+Player7: Fold
+*** SUMMARY ***
+Player1: wins $4.38
+
+
+MERGE_GAME #3047310402807: Texas Hold'em NL $0.50/$1 01/01/2011 12:13:11
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($96.59 in chips) DEALER
+Seat 2: Player7 ($160.56 in chips)
+Seat 3: Player8 ($76.34 in chips)
+Seat 4: Player4 ($135.48 in chips)
+Seat 5: Player6 ($117.95 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($127.75 in chips)
+Seat 8: Player9 ($79.30 in chips)
+Seat 9: Player3 ($32.20 in chips)
+Player7: Post SB $0.50
+Player8: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [3s 8c]
+Player4: Fold
+Player6: Fold
+Player10: Fold
+Player1: Fold
+Player9: Fold
+Player3: Raise $2.00
+Player0: Call $2.00
+Player7: Fold
+Player8: Fold
+*** FLOP *** [3d 8d Qd]
+Player3: Check
+Player0: Check
+*** TURN *** [5c]
+Player3: Check
+Player0: Bet $3.67
+Player3: Call $3.67
+*** RIVER *** [As]
+Player3: Check
+Player0: Bet $8.56
+Player3: Call $8.56
+*** SUMMARY ***
+Player0: Shows [9s Kh]
+Player3: Shows [Jd Ah]
+Player3: wins $27.97
+
+
+MERGE_GAME #3047310402808: Texas Hold'em NL $0.50/$1 01/01/2011 12:14:11
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($82.36 in chips)
+Seat 2: Player7 ($160.06 in chips) DEALER
+Seat 3: Player8 ($75.34 in chips)
+Seat 4: Player4 ($135.48 in chips)
+Seat 5: Player6 ($117.95 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($127.75 in chips)
+Seat 8: Player9 ($79.30 in chips)
+Seat 9: Player3 ($45.94 in chips)
+Player8: Post SB $0.50
+Player4: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [6s 2d]
+Player6: Fold
+Player10: Fold
+Player1: Raise $3.50
+Player9: Call $3.50
+Player3: Fold
+Player0: Call $3.50
+Player7: Fold
+Player8: Call $3.00
+Player4: Fold
+*** FLOP *** [2s 4c 9d]
+Player8: Check
+Player1: Bet $15.00
+Player9: Call $15.00
+Player0: Fold
+Player8: Fold
+*** TURN *** [8s]
+Player1: Check
+Player9: Check
+*** RIVER *** [6d]
+Player1: Check
+Player9: Check
+*** SUMMARY ***
+Player1: Shows [Ah Jd]
+Player9: Shows [6h 3h]
+Player9: wins $42.25
+
+
+MERGE_GAME #3047310402809: Texas Hold'em NL $0.50/$1 01/01/2011 12:15:50
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($78.86 in chips)
+Seat 2: Player7 ($160.06 in chips)
+Seat 3: Player8 ($71.84 in chips) DEALER
+Seat 4: Player4 ($134.48 in chips)
+Seat 5: Player6 ($117.95 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($109.25 in chips)
+Seat 8: Player9 ($103.05 in chips)
+Seat 9: Player3 ($45.94 in chips)
+Player4: Post SB $0.50
+Player6: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Ad 5c]
+Player10: Fold
+Player1: Fold
+Player9: Call $1.00
+Player3: Fold
+Player0: Call $1.00
+Player7: Fold
+Player8: Fold
+Player4: Fold
+Player6: Check
+*** FLOP *** [Ts Kd 3c]
+Player6: Check
+Player9: Check
+Player0: Check
+*** TURN *** [9c]
+Player6: Bet $2.00
+Player9: Fold
+Player0: Fold
+*** SUMMARY ***
+Player6: wins $5.33
+
+
+MERGE_GAME #3047310402810: Texas Hold'em NL $0.50/$1 01/01/2011 12:16:34
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($77.86 in chips)
+Seat 2: Player7 ($160.06 in chips)
+Seat 3: Player8 ($71.84 in chips)
+Seat 4: Player4 ($133.98 in chips) DEALER
+Seat 5: Player6 ($120.28 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($109.25 in chips)
+Seat 8: Player9 ($102.05 in chips)
+Seat 9: Player3 ($45.94 in chips)
+Player6: Post SB $0.50
+Player10: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Ah 8d]
+Player1: Fold
+Player9: Raise $2.00
+Player3: Fold
+Player0: Fold
+Player7: Fold
+Player8: Raise $7.50
+Player4: Fold
+Player6: Fold
+Player10: Fold
+Player9: Call $5.50
+*** FLOP *** [5c 5d Ac]
+Player9: Check
+Player8: Bet $8.25
+Player9: Fold
+*** SUMMARY ***
+Player8: wins $23.43
+
+
+MERGE_GAME #3047310402811: Texas Hold'em NL $0.50/$1 01/01/2011 12:17:44
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($77.86 in chips)
+Seat 2: Player7 ($160.06 in chips)
+Seat 3: Player8 ($79.52 in chips)
+Seat 4: Player4 ($133.98 in chips)
+Seat 5: Player6 ($119.78 in chips) DEALER
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($109.25 in chips)
+Seat 8: Player9 ($94.55 in chips)
+Seat 9: Player3 ($45.94 in chips)
+Player10: Post SB $0.50
+Player1: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Td 2s]
+Player9: Fold
+Player3: Fold
+Player0: Fold
+Player7: Fold
+Player8: Fold
+Player4: Fold
+Player6: Call $1.00
+Player10: Fold
+Player1: Check
+*** FLOP *** [Kh 8s Ah]
+Player1: Check
+Player6: Bet $2.00
+Player1: Fold
+*** SUMMARY ***
+Player6: wins $4.38
+
+
+MERGE_GAME #3047310402812: Texas Hold'em NL $0.50/$1 01/01/2011 12:18:16
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($77.86 in chips)
+Seat 2: Player7 ($160.06 in chips)
+Seat 3: Player8 ($79.52 in chips)
+Seat 4: Player4 ($133.98 in chips)
+Seat 5: Player6 ($121.16 in chips)
+Seat 6: Player10 ($100.00 in chips) DEALER
+Seat 7: Player1 ($108.25 in chips)
+Seat 8: Player9 ($94.55 in chips)
+Seat 9: Player3 ($45.94 in chips)
+Player1: Post SB $0.50
+Player9: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [3h 2c]
+Player3: Fold
+Player0: Fold
+Player7: Fold
+Player8: Fold
+Player4: Raise $3.00
+Player6: Fold
+Player10: Fold
+Player1: Fold
+Player9: Call $2.00
+*** FLOP *** [Kd Th 8s]
+Player9: Check
+Player4: Bet $3.25
+Player9: Raise $6.50
+Player4: Call $3.25
+*** TURN *** [As]
+Player9: Bet $5.05
+Player4: Raise $10.10
+Player9: Call $5.05
+*** RIVER *** [9h]
+Player9: Check
+Player4: Check
+*** SUMMARY ***
+Player9: Shows [8h Tc]
+Player4: Shows [Js Kc]
+Player9: wins $37.22
+
+
+MERGE_GAME #3047310402813: Texas Hold'em NL $0.50/$1 01/01/2011 12:19:41
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($77.86 in chips)
+Seat 2: Player7 ($160.06 in chips)
+Seat 3: Player8 ($79.52 in chips)
+Seat 4: Player4 ($114.38 in chips)
+Seat 5: Player6 ($121.16 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($107.75 in chips) DEALER
+Seat 8: Player9 ($112.17 in chips)
+Seat 9: Player3 ($45.94 in chips)
+Player9: Post SB $0.50
+Player3: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Qc 8h]
+Player0: Raise $2.88
+Player7: Fold
+Player8: Fold
+Player4: Fold
+Player6: Fold
+Player10: Fold
+Player1: Fold
+Player9: Fold
+Player3: Fold
+*** SUMMARY ***
+Player0: wins $4.38
+
+
+MERGE_GAME #3047310402814: Texas Hold'em NL $0.50/$1 01/01/2011 12:20:19
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($79.36 in chips)
+Seat 2: Player7 ($160.06 in chips)
+Seat 3: Player8 ($79.52 in chips)
+Seat 4: Player4 ($114.38 in chips)
+Seat 5: Player6 ($121.16 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($107.75 in chips)
+Seat 8: Player9 ($111.67 in chips) DEALER
+Seat 9: Player3 ($44.94 in chips)
+Player3: Post SB $0.50
+Player0: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [3d 8d]
+Player7: Fold
+Player8: Raise $3.50
+Player4: Fold
+Player6: Fold
+Player10: Fold
+Player1: Fold
+Player9: Call $3.50
+Player3: Fold
+Player0: Fold
+*** FLOP *** [7s 2c As]
+Player8: Bet $4.25
+Player9: Fold
+*** SUMMARY ***
+Player8: wins $11.83
+
+
+MERGE_GAME #3047310402815: Texas Hold'em NL $0.50/$1 01/01/2011 12:20:59
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($78.36 in chips)
+Seat 2: Player7 ($160.06 in chips)
+Seat 3: Player8 ($83.60 in chips)
+Seat 4: Player4 ($114.38 in chips)
+Seat 5: Player6 ($121.16 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($107.75 in chips)
+Seat 8: Player9 ($108.17 in chips)
+Seat 9: Player3 ($44.44 in chips) DEALER
+Player0: Post SB $0.50
+Player7: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [5h 4s]
+Player8: Fold
+Player4: Fold
+Player6: Call $1.00
+Player10: Fold
+Player1: Fold
+Player9: Raise $3.00
+Player3: Fold
+Player0: Fold
+Player7: Fold
+Player6: Call $2.00
+*** FLOP *** [Jh 8c Ad]
+Player6: Check
+Player9: Bet $1.00
+Player6: Call $1.00
+*** TURN *** [9d]
+Player6: Check
+Player9: Bet $2.00
+Player6: Raise $21.00
+Player9: Call $19.00
+*** RIVER *** [Kh]
+Player6: Bet $51.50
+Player9: Call $51.50
+*** SUMMARY ***
+Player6: Shows [Ts Qs]
+Player9: Shows [Jd Js]
+Player6: wins $151.00
+
+
+MERGE_GAME #3047310402816: Texas Hold'em NL $0.50/$1 01/01/2011 12:22:05
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($77.86 in chips) DEALER
+Seat 2: Player7 ($159.06 in chips)
+Seat 3: Player8 ($83.60 in chips)
+Seat 4: Player4 ($114.38 in chips)
+Seat 5: Player6 ($195.66 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($107.75 in chips)
+Seat 8: Player9 ($31.67 in chips)
+Seat 9: Player3 ($44.44 in chips)
+Player7: Post SB $0.50
+Player8: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Qc Jc]
+Player4: Fold
+Player6: Fold
+Player10: Raise $3.50
+Player1: Fold
+Player9: Fold
+Player3: Fold
+Player0: Fold
+Player7: Fold
+Player8: Call $2.50
+*** FLOP *** [Ac 6d Ts]
+Player8: Check
+Player10: Bet $5.00
+Player8: Call $5.00
+*** TURN *** [Th]
+Player8: Check
+Player10: Check
+*** RIVER *** [9h]
+Player8: Bet $8.75
+Player10: Fold
+*** SUMMARY ***
+Player8: wins $24.88
+
+
+MERGE_GAME #3047310402817: Texas Hold'em NL $0.50/$1 01/01/2011 12:23:18
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($77.86 in chips)
+Seat 2: Player7 ($158.56 in chips) DEALER
+Seat 3: Player8 ($91.23 in chips)
+Seat 4: Player4 ($114.38 in chips)
+Seat 5: Player6 ($195.66 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($107.75 in chips)
+Seat 8: Player9 ($46.67 in chips)
+Seat 9: Player3 ($44.44 in chips)
+Player8: Post SB $0.50
+Player4: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Ts 3s]
+Player6: Call $1.00
+Player10: Fold
+Player1: Raise $9.00
+Player9: Fold
+Player3: Fold
+Player0: Fold
+Player7: Fold
+Player8: Fold
+Player4: Fold
+Player6: Fold
+*** SUMMARY ***
+Player1: wins $11.50
+
+
+MERGE_GAME #3047310402818: Texas Hold'em NL $0.50/$1 01/01/2011 12:24:09
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($77.86 in chips)
+Seat 2: Player7 ($158.56 in chips)
+Seat 3: Player8 ($90.73 in chips) DEALER
+Seat 4: Player4 ($113.38 in chips)
+Seat 5: Player6 ($194.66 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($110.25 in chips)
+Seat 8: Player9 ($46.67 in chips)
+Seat 9: Player3 ($44.44 in chips)
+Player4: Post SB $0.50
+Player6: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [2h As]
+Player10: Fold
+Player1: Fold
+Player9: Fold
+Player3: Fold
+Player0: Raise $3.50
+Player7: Call $3.50
+Player8: Fold
+Player4: Raise $11.17
+Player6: Fold
+Player0: Call $7.67
+Player7: Fold
+*** FLOP *** [7h 7c 6h]
+Player4: Bet $17.89
+Player0: Fold
+*** SUMMARY ***
+Player4: wins $42.89
+
+
+MERGE_GAME #3047310402819: Texas Hold'em NL $0.50/$1 01/01/2011 12:25:11
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($66.69 in chips)
+Seat 2: Player7 ($155.06 in chips)
+Seat 3: Player8 ($90.73 in chips)
+Seat 4: Player4 ($127.21 in chips) DEALER
+Seat 5: Player6 ($193.66 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($110.25 in chips)
+Seat 8: Player9 ($46.67 in chips)
+Seat 9: Player3 ($44.44 in chips)
+Player6: Post SB $0.50
+Player10: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Kh Ts]
+Player1: Fold
+Player9: Call $1.00
+Player3: Fold
+Player0: Fold
+Player7: Fold
+Player8: Fold
+Player4: Fold
+Player6: Fold
+Player10: Check
+*** FLOP *** [7c 2c 3s]
+Player10: Check
+Player9: Check
+*** TURN *** [Ad]
+Player10: Check
+Player9: Bet $1.00
+Player10: Fold
+*** SUMMARY ***
+Player9: wins $3.38
+
+
+MERGE_GAME #3047310402820: Texas Hold'em NL $0.50/$1 01/01/2011 12:25:51
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($66.69 in chips)
+Seat 2: Player7 ($155.06 in chips)
+Seat 3: Player8 ($90.73 in chips)
+Seat 4: Player4 ($127.21 in chips)
+Seat 5: Player6 ($193.16 in chips) DEALER
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($110.25 in chips)
+Seat 8: Player9 ($48.05 in chips)
+Seat 9: Player3 ($44.44 in chips)
+Player10: Post SB $0.50
+Player1: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Ah 9s]
+Player9: Fold
+Player3: Call $1.00
+Player0: Call $1.00
+Player7: Fold
+Player8: Fold
+Player4: Fold
+Player6: Fold
+Player10: Call $0.50
+Player1: Check
+*** FLOP *** [Jd 5h 5d]
+Player10: Check
+Player1: Bet $4.00
+Player3: Fold
+Player0: Call $4.00
+Player10: Fold
+*** TURN *** [7h]
+Player1: Check
+Player0: Check
+*** RIVER *** [Th]
+Player1: Bet $12.00
+Player0: Call $12.00
+*** SUMMARY ***
+Player1: Shows [2d 3d]
+Player0: Shows [Jh Kc]
+Player0: wins $33.70
+
+
+MERGE_GAME #3047310402821: Texas Hold'em NL $0.50/$1 01/01/2011 12:26:50
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($83.39 in chips)
+Seat 2: Player7 ($155.06 in chips)
+Seat 3: Player8 ($90.73 in chips)
+Seat 4: Player4 ($127.21 in chips)
+Seat 5: Player6 ($193.16 in chips)
+Seat 6: Player10 ($100.00 in chips) DEALER
+Seat 7: Player1 ($93.25 in chips)
+Seat 8: Player9 ($48.05 in chips)
+Seat 9: Player3 ($43.44 in chips)
+Player1: Post SB $0.50
+Player9: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Kd 7c]
+Player3: Fold
+Player0: Call $1.00
+Player7: Fold
+Player8: Fold
+Player4: Fold
+Player6: Fold
+Player10: Fold
+Player1: Fold
+Player9: Check
+*** FLOP *** [Ah 2d Kc]
+Player9: Check
+Player0: Check
+*** TURN *** [Qs]
+Player9: Check
+Player0: Bet $1.00
+Player9: Fold
+*** SUMMARY ***
+Player0: wins $3.38
+
+
+MERGE_GAME #3047310402822: Texas Hold'em NL $0.50/$1 01/01/2011 12:27:38
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($84.77 in chips)
+Seat 2: Player7 ($155.06 in chips)
+Seat 3: Player8 ($90.73 in chips)
+Seat 4: Player4 ($127.21 in chips)
+Seat 5: Player6 ($193.16 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($92.75 in chips) DEALER
+Seat 8: Player9 ($47.05 in chips)
+Seat 9: Player3 ($43.44 in chips)
+Player9: Post SB $0.50
+Player3: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [6h 4d]
+Player0: Call $1.00
+Player7: Fold
+Player8: Raise $4.50
+Player4: Fold
+Player6: Fold
+Player10: Fold
+Player1: Fold
+Player9: Fold
+Player3: Fold
+Player0: Fold
+*** SUMMARY ***
+Player8: wins $7.00
+
+
+MERGE_GAME #3047310402823: Texas Hold'em NL $0.50/$1 01/01/2011 12:28:28
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($83.77 in chips)
+Seat 2: Player7 ($155.06 in chips)
+Seat 3: Player8 ($93.23 in chips)
+Seat 4: Player4 ($127.21 in chips)
+Seat 5: Player6 ($193.16 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($92.75 in chips)
+Seat 9: Player3 ($42.44 in chips) DEALER
+Player3: Post SB $0.50
+Player0: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [9d Js]
+Player7: Fold
+Player8: Fold
+Player4: Fold
+Player6: Fold
+Player10: Fold
+Player1: Fold
+Player3: Fold
+*** SUMMARY ***
+Player0: wins $1.50
+
+
+MERGE_GAME #3047310402824: Texas Hold'em NL $0.50/$1 01/01/2011 12:28:49
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($84.27 in chips)
+Seat 2: Player7 ($155.06 in chips)
+Seat 3: Player8 ($93.23 in chips)
+Seat 4: Player4 ($127.21 in chips)
+Seat 5: Player6 ($193.16 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($92.75 in chips)
+Seat 9: Player3 ($41.94 in chips) DEALER
+Player0: Post SB $0.50
+Player7: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Ac Tc]
+Player8: Fold
+Player4: Fold
+Player6: Call $1.00
+Player10: Raise $4.50
+Player1: Fold
+Player3: Fold
+Player0: Fold
+Player7: Fold
+Player6: Fold
+*** SUMMARY ***
+Player10: wins $7.00
+
+
+MERGE_GAME #3047310402825: Texas Hold'em NL $0.50/$1 01/01/2011 12:29:20
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($83.77 in chips) DEALER
+Seat 2: Player7 ($154.06 in chips)
+Seat 3: Player8 ($93.23 in chips)
+Seat 4: Player4 ($127.21 in chips)
+Seat 5: Player6 ($192.16 in chips)
+Seat 6: Player10 ($102.50 in chips)
+Seat 7: Player1 ($92.75 in chips)
+Seat 9: Player3 ($41.94 in chips)
+Player7: Post SB $0.50
+Player4: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Tc 5d]
+Player6: Fold
+Player10: Fold
+Player1: Fold
+Player3: Fold
+Player0: Raise $2.88
+Player7: Fold
+Player4: Fold
+*** SUMMARY ***
+Player0: wins $4.38
+
+
+MERGE_GAME #3047310402826: Texas Hold'em NL $0.50/$1 01/01/2011 12:29:59
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($85.27 in chips)
+Seat 2: Player7 ($153.56 in chips) DEALER
+Seat 3: Player8 ($93.23 in chips)
+Seat 4: Player4 ($126.21 in chips)
+Seat 5: Player6 ($192.16 in chips)
+Seat 6: Player10 ($102.50 in chips)
+Seat 7: Player1 ($92.75 in chips)
+Seat 8: Player5 ($100.00 in chips)
+Seat 9: Player3 ($41.94 in chips)
+Player4: Post SB $0.50
+Player6: Post BB $1.00
+Player5: Post DB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [7c 5d]
+Player10: Fold
+Player1: Raise $4.50
+Player5: Fold
+Player3: Fold
+Player0: Fold
+Player7: Raise $12.50
+Player4: Fold
+Player6: Fold
+Player1: Fold
+*** SUMMARY ***
+Player7: wins $19.50
+
+
+MERGE_GAME #3047310402827: Texas Hold'em NL $0.50/$1 01/01/2011 12:30:57
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($85.27 in chips)
+Seat 2: Player7 ($160.56 in chips)
+Seat 3: Player8 ($93.23 in chips)
+Seat 4: Player4 ($125.71 in chips) DEALER
+Seat 5: Player6 ($191.16 in chips)
+Seat 6: Player10 ($102.50 in chips)
+Seat 7: Player1 ($88.25 in chips)
+Seat 8: Player5 ($99.00 in chips)
+Seat 9: Player3 ($41.94 in chips)
+Player6: Post SB $0.50
+Player10: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Ah Js]
+Player1: Fold
+Player5: Fold
+Player3: Fold
+Player0: Fold
+Player7: Fold
+Player4: Fold
+Player6: Fold
+*** SUMMARY ***
+Player10: wins $1.50
+
+
+MERGE_GAME #3047310402828: Texas Hold'em NL $0.50/$1 01/01/2011 12:31:20
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($85.27 in chips)
+Seat 2: Player7 ($160.56 in chips)
+Seat 3: Player8 ($93.23 in chips)
+Seat 4: Player4 ($125.71 in chips)
+Seat 5: Player6 ($190.66 in chips) DEALER
+Seat 6: Player10 ($103.00 in chips)
+Seat 7: Player1 ($88.25 in chips)
+Seat 8: Player5 ($99.00 in chips)
+Seat 9: Player3 ($41.94 in chips)
+Player10: Post SB $0.50
+Player1: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [3c Qc]
+Player5: Fold
+Player3: Fold
+Player0: Call $1.00
+Player7: Fold
+Player4: Raise $3.00
+Player6: Fold
+Player10: Fold
+Player1: Fold
+Player0: Call $2.00
+*** FLOP *** [Td As 3d]
+Player0: Check
+Player4: Check
+*** TURN *** [2d]
+Player0: Check
+Player4: Check
+*** RIVER *** [8h]
+Player0: Check
+Player4: Check
+*** SUMMARY ***
+Player0: Shows [9d 8s]
+Player4: Shows [Js Jh]
+Player4: wins $6.63
+
+
+MERGE_GAME #3047310402829: Texas Hold'em NL $0.50/$1 01/01/2011 12:32:23
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($82.27 in chips)
+Seat 2: Player7 ($160.56 in chips)
+Seat 3: Player8 ($93.23 in chips)
+Seat 4: Player4 ($129.34 in chips)
+Seat 5: Player6 ($190.66 in chips)
+Seat 6: Player10 ($102.50 in chips) DEALER
+Seat 7: Player1 ($87.25 in chips)
+Seat 8: Player5 ($99.00 in chips)
+Seat 9: Player3 ($41.94 in chips)
+Player1: Post SB $0.50
+Player5: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Jd 7h]
+Player3: Call $1.00
+Player0: Fold
+Player7: Fold
+Player4: Fold
+Player6: Fold
+Player10: Fold
+Player1: Raise $4.00
+Player5: Fold
+Player3: Call $3.00
+*** FLOP *** [2d As 3h]
+Player1: Bet $9.00
+Player3: Fold
+*** SUMMARY ***
+Player1: wins $17.05
+
+
+MERGE_GAME #3047310402830: Texas Hold'em NL $0.50/$1 01/01/2011 12:33:09
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($82.27 in chips)
+Seat 2: Player7 ($160.56 in chips)
+Seat 3: Player8 ($93.23 in chips)
+Seat 4: Player4 ($129.34 in chips)
+Seat 5: Player6 ($190.66 in chips)
+Seat 6: Player10 ($102.50 in chips)
+Seat 7: Player1 ($91.30 in chips) DEALER
+Seat 8: Player5 ($98.00 in chips)
+Seat 9: Player3 ($37.94 in chips)
+Player5: Post SB $0.50
+Player3: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [9s Ad]
+Player0: Call $1.00
+Player7: Fold
+Player4: Fold
+Player6: Fold
+Player10: Fold
+Player1: Call $1.00
+Player5: Call $0.50
+Player3: Check
+*** FLOP *** [6c 3s 5h]
+Player5: Check
+Player3: Check
+Player0: Check
+Player1: Check
+*** TURN *** [Ks]
+Player5: Bet $3.00
+Player3: Fold
+Player0: Fold
+Player1: Fold
+*** SUMMARY ***
+Player5: wins $6.80
+
+
+MERGE_GAME #3047310402831: Texas Hold'em NL $0.50/$1 01/01/2011 12:34:33
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($81.27 in chips)
+Seat 2: Player7 ($160.56 in chips)
+Seat 3: Player8 ($93.23 in chips)
+Seat 4: Player4 ($129.34 in chips)
+Seat 5: Player6 ($190.66 in chips)
+Seat 6: Player10 ($102.50 in chips)
+Seat 7: Player1 ($90.30 in chips)
+Seat 8: Player5 ($100.80 in chips) DEALER
+Seat 9: Player3 ($36.94 in chips)
+Player3: Post SB $0.50
+Player0: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [9d Ah]
+Player7: Fold
+Player4: Fold
+Player6: Fold
+Player10: Fold
+Player1: Fold
+Player5: Fold
+Player3: Call $0.50
+Player0: Check
+*** FLOP *** [Jh 8s Kc]
+Player3: Check
+Player0: Bet $1.00
+Player3: Call $1.00
+*** TURN *** [6s]
+Player3: Check
+Player0: Bet $2.67
+Player3: Call $2.67
+*** RIVER *** [6c]
+Player3: Check
+Player0: Check
+*** SUMMARY ***
+Player3: Shows [Th Js]
+Player0: Shows [5c Jc]
+Player3: wins $4.19
+Player0: wins $4.19
+
+
+MERGE_GAME #3047310402832: Texas Hold'em NL $0.50/$1 01/01/2011 12:35:23
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($80.79 in chips)
+Seat 2: Player7 ($160.56 in chips)
+Seat 3: Player8 ($93.23 in chips)
+Seat 4: Player4 ($129.34 in chips)
+Seat 5: Player6 ($190.66 in chips)
+Seat 6: Player10 ($102.50 in chips)
+Seat 7: Player1 ($90.30 in chips)
+Seat 8: Player5 ($100.80 in chips)
+Seat 9: Player3 ($36.46 in chips) DEALER
+Player0: Post SB $0.50
+Player7: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [Qd Kc]
+Player4: Fold
+Player6: Call $1.00
+Player10: Raise $4.50
+Player1: Fold
+Player5: Raise $16.00
+Player3: Fold
+Player0: Fold
+Player7: Fold
+Player6: Fold
+Player10: Fold
+*** SUMMARY ***
+Player5: wins $23.00
+
+
+MERGE_GAME #3047310402833: Texas Hold'em NL $0.50/$1 01/01/2011 12:36:01
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($80.29 in chips) DEALER
+Seat 2: Player7 ($159.56 in chips)
+Seat 3: Player8 ($93.23 in chips)
+Seat 4: Player4 ($129.34 in chips)
+Seat 5: Player6 ($189.66 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($90.30 in chips)
+Seat 8: Player5 ($107.80 in chips)
+Seat 9: Player3 ($36.46 in chips)
+Player7: Post SB $0.50
+Player8: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [3s 8d]
+Player4: Fold
+Player6: Fold
+Player10: Fold
+Player1: Raise $3.50
+Player5: Fold
+Player3: Fold
+Player0: Fold
+Player7: Fold
+Player8: Call $2.50
+*** FLOP *** [2d 9s 2c]
+Player8: Check
+Player1: Check
+*** TURN *** [Qs]
+Player8: Bet $3.75
+Player1: Call $3.75
+*** RIVER *** [7c]
+Player8: Bet $7.50
+Player1: Fold
+*** SUMMARY ***
+Player8: wins $21.25
+
+
+MERGE_GAME #3047310402834: Texas Hold'em NL $0.50/$1 01/01/2011 12:37:05
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($80.29 in chips)
+Seat 2: Player7 ($159.06 in chips) DEALER
+Seat 3: Player8 ($99.73 in chips)
+Seat 4: Player4 ($129.34 in chips)
+Seat 5: Player6 ($189.66 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($83.05 in chips)
+Seat 8: Player5 ($107.80 in chips)
+Seat 9: Player3 ($36.46 in chips)
+Player8: Post SB $0.50
+Player4: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [4d Th]
+Player6: Call $1.00
+Player10: Fold
+Player1: Fold
+Player5: Fold
+Player3: Fold
+Player0: Call $1.00
+Player7: Fold
+Player8: Fold
+Player4: Check
+*** FLOP *** [Kh 3s Ks]
+Player4: Check
+Player6: Bet $2.00
+Player0: Call $2.00
+Player4: Fold
+*** TURN *** [9d]
+Player6: Bet $5.00
+Player0: Call $5.00
+*** RIVER *** [4s]
+Player6: Allin $181.66
+Player0: Allin $72.29
+*** SUMMARY ***
+Player6: Shows [3c 3d]
+Player0: Shows [Js 6s]
+Player6: wins $109.37
+Player6: wins $158.58
+
+
+MERGE_GAME #3047310402835: Texas Hold'em NL $0.50/$1 01/01/2011 12:38:10
+Table Bad Beat - Rue St Catherine (30473104)
+Seat 1: Player0 ($0.00 in chips)
+Seat 2: Player7 ($159.06 in chips)
+Seat 3: Player8 ($99.23 in chips) DEALER
+Seat 4: Player4 ($128.34 in chips)
+Seat 5: Player6 ($267.95 in chips)
+Seat 6: Player10 ($100.00 in chips)
+Seat 7: Player1 ($83.05 in chips)
+Seat 8: Player5 ($107.80 in chips)
+Seat 9: Player3 ($36.46 in chips)
+Player4: Post SB $0.50
+Player6: Post BB $1.00
+*** HOLE CARDS ***
+Dealt to Player10 [6s 3s]
+Player10: Fold
+Player1: Call $1.00
+Player3: Fold
+Player7: Fold
+Player8: Fold
+Player4: Raise $3.00
+Player6: Fold
+Player1: Call $2.00
+*** FLOP *** [7c 8h Kd]
+Player4: Bet $3.50
+Player1: Fold
+*** SUMMARY ***
+Player4: wins $9.65
+
+
+
