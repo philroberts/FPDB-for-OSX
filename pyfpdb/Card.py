@@ -97,7 +97,7 @@ streets = {'stud': {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4},
            'draw': {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}
           }
 
-iter = {0: 100000,
+iter = {0: 50000,
         1: 0,
         2: 0,
         3: 0

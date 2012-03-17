@@ -1,0 +1,28 @@
+Game #11354414824 starts.
+
+#Game No : 11354414824 
+***** Hand History for Game 11354414824 *****
+$20/$40 USD FL Omaha Hi-Lo - Thursday, January 26, 18:13:53 EST 2012
+Table Table  125516 (Real Money)
+Seat 9 is the button
+Total number of players : 2/10 
+Seat 10: Player0 ( $200 USD )
+Seat 9: Player1 ( $300 USD )
+Player1 posts small blind [$10 USD].
+Player0 posts big blind [$20 USD].
+** Dealing down cards **
+Dealt to Player0 [  7d Ah 6s 2h ]
+Player1 raises [$30 USD]
+Player0 raises [$40 USD]
+Player1 raises [$40 USD]
+Player0 calls [$20 USD]
+** Dealing Flop ** [ Qh, Kd, 6d ]
+Player0 checks
+Player1 bets [$20 USD]
+Player0 calls [$20 USD]
+** Dealing Turn ** [ Qs ]
+Player0 checks
+Player1 bets [$40 USD]
+Player0 folds
+Player1 does not show cards.
+Player1 wins $239 USD

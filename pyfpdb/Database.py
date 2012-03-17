@@ -2934,7 +2934,11 @@ class Database:
                     updateDb=True
                     _ttid = ttid
         if not result or updateDb:
-            row = (obj.siteId, obj.buyinCurrency, obj.buyin, obj.fee, obj.gametype['category'],
+            if obj.gametype['mix']!='none':
+                category = obj.gametype['mix']
+            else:
+                category = obj.gametype['category']
+            row = (obj.siteId, obj.buyinCurrency, obj.buyin, obj.fee, category,
                    obj.gametype['limitType'], obj.maxseats, obj.isSng, obj.isKO, obj.koBounty,
                    obj.isRebuy, obj.rebuyCost, obj.isAddOn, obj.addOnCost, obj.speed, obj.isShootout, obj.isMatrix)
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), row)

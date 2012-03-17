@@ -410,7 +410,8 @@ class GuiHandViewer:
         self.handsWindow.show_all()
 
     def filter_cards_cb(self, card):
-        self.refreshHands()
+        if hasattr(self, 'hands'):     #Do not call refresh if only filters are refreshed and no hands have been loaded yet
+            self.refreshHands()
         #self.viewfilter.refilter()    #As the sorting doesnt work if this is used, a refresh is needed.
 
     def is_row_in_card_filter(self, row):

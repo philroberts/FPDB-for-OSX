@@ -1236,8 +1236,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
 
         # set up tray-icon and menu
         self.statusIcon = gtk.StatusIcon()
-        # use getcwd() here instead of sys.path[0] so that py2exe works:
-        cards = os.path.join(os.getcwd(), '..', 'gfx', 'fpdb-cards.png')
+        cards = os.path.join(self.config.fpdb_program_path, u'..', u'gfx', u'fpdb-cards.png')
         if os.path.exists(cards):
             self.statusIcon.set_from_file(cards)
             self.window.set_icon_from_file(cards)

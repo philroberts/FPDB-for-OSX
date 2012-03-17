@@ -44,7 +44,7 @@ class Winamax(HandHistoryConverter):
     siteName = "Winamax"
     filetype = "text"
     codepage = ("utf8", "cp1252")
-    siteId   = 14 # Needs to match id entry in Sites database
+    siteId   = 15 # Needs to match id entry in Sites database
 
     mixes = { } # Legal mixed games
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": u"\xe2\x82\xac|\u20ac", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
@@ -251,9 +251,7 @@ class Winamax(HandHistoryConverter):
                         elif info[key].find("Free")!=-1:
                             hand.buyinCurrency="WIFP"
                         else:
-                            #FIXME: handle other currencies (are there other currencies?)
-                            log.error(_("WinamaxToFpdb.readHandInfo: Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
-                            raise FpdbParseError
+                            hand.buyinCurrency="play"
 
                         if info['BIAMT'] is not None:
                             info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
@@ -283,6 +281,8 @@ class Winamax(HandHistoryConverter):
                         else:
                             hand.buyin = int(Decimal(info['BIAMT']))
                             hand.fee = 0
+                        if hand.buyin == 0 and hand.fee == 0:
+                            hand.buyinCurrency = "FREE"
 
             if key == 'LEVEL':
                 hand.level = info[key]

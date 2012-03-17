@@ -72,7 +72,7 @@ uniq = set(players)
 for i, name in enumerate(uniq):
     filecontents = filecontents.replace(name, 'Player%d' %i)
 
-print(filecontents)
+print(filecontents.encode('utf-8'))
 
 sys.stdout = savestdout
 fsock.close()

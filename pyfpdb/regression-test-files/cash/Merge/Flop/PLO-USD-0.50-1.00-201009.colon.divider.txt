@@ -1,0 +1,50 @@
+<description type="Omaha" stakes="Pot Limit ($0.50/$1)"/>
+<game id="27618225-108" starttime="20100907114335" numholecards="4" gametype="9" realmoney="true" data="20100907:Ganges River (27618225):27618225:27618225-108:false">
+	<players dealer="5">
+		<player seat="0" nickname="Player0" balance="$40.62" dealtin="true" />
+		<player seat="1" nickname="Player4" balance="$100.00" dealtin="true" />
+		<player seat="2" nickname="Player3" balance="$331.28" dealtin="true" />
+		<player seat="3" nickname="Player9" balance="$193.56" dealtin="true" />
+		<player seat="4" nickname="Player7" balance="$286.57" dealtin="true" />
+		<player seat="5" nickname="Player1" balance="$177.35" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1283877817285" player="0" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1283877817605" player="1" amount="1.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="CALL" timestamp="1283877820764" player="2" amount="1.00"/>
+		<event sequence="4" type="FOLD" timestamp="1283877822343" player="3"/>
+		<event sequence="5" type="RAISE" timestamp="1283877830852" player="4" amount="4.50"/>
+		<event sequence="6" type="FOLD" timestamp="1283877831006" player="5"/>
+		<event sequence="7" type="FOLD" timestamp="1283877836306" player="0"/>
+		<event sequence="8" type="FOLD" timestamp="1283877838463" player="1"/>
+		<event sequence="9" type="CALL" timestamp="1283877842423" player="2" amount="3.50"/>
+		<cards type="HOLE" cards="As,5d,Jc,5h" player="1" hand="Pair of Fives"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="10" type="CHECK" timestamp="1283877844383" player="2"/>
+		<event sequence="11" type="CHECK" timestamp="1283877847759" player="4"/>
+		<cards type="COMMUNITY" cards="3d,2h,Kc" hand="Pair of Fives"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="12" type="CHECK" timestamp="1283877849682" player="2"/>
+		<event sequence="13" type="CHECK" timestamp="1283877852412" player="4"/>
+		<cards type="COMMUNITY" cards="3d,2h,Kc,9c" hand="Pair of Fives"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="14" type="CHECK" timestamp="1283877856345" player="2"/>
+		<event sequence="15" type="CHECK" timestamp="1283877856662" player="4"/>
+		<cards type="COMMUNITY" cards="3d,2h,Kc,9c,Th" hand="Pair of Fives"/>
+	</round>
+	<round id="SHOWDOWN" sequence="6">
+		<event sequence="16" type="SHOW" timestamp="1283877857314" player="2"/>
+		<event sequence="17" type="SHOW" timestamp="1283877857814" player="4"/>
+		<cards type="SHOWN" cards="Ac,Jd,4d,9s" player="2"/>
+		<cards type="SHOWN" cards="9d,4c,Ah,8h" player="4"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+		<winner amount="4.99" uncalled="false" potnumber="1" player="2" hand="Pair of Nines" pottype="n"/>
+		<winner amount="4.99" uncalled="false" potnumber="1" player="4" hand="Pair of Nines" pottype="n"/>
+	</round>
+</game>
