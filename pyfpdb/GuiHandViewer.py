@@ -296,6 +296,19 @@ class GuiHandViewer:
             self.hands[handid] = self.importhand(handid)
         self.refreshHands()
     
+    def cb(widget, data, event):
+        # TODO: find the Hand data that was clicked
+        # TODO: add "Open" and "Copy" menu items
+        # TODO: call writeHand
+        if(event.button != 3):
+            return False
+        m = gtk.Menu()
+        i = gtk.MenuItem("Hello")
+        i.show()
+        m.append(i)
+        m.popup(None, None, None, event.button, event.time, None)
+        return False
+
     def refreshHands(self):
         try:
             self.handsWindow.destroy()
@@ -356,6 +369,7 @@ class GuiHandViewer:
         #selection = self.view.get_selection()
         #selection.set_select_function(self.select_hand, None, True)     #listen on selection (single click)
         self.view.connect('row-activated', self.row_activated)           #listen to double klick
+        self.view.connect("button_press_event", self.cb)
 
         for handid, hand in self.hands.items():
             hero = self.filters.getHeroes()[hand.sitename]
