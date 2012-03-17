@@ -440,7 +440,9 @@ class GuiHandViewer:
         if hand.gametype['currency']=="USD":    #TODO: check if there are others ..
             currency="$"
         elif hand.gametype['currency']=="EUR":
-            currency="�"
+            currency="\xe2\x82\xac"
+        elif hand.gametype['currency']=="GBP":
+            currency="£"
         else:
             currency = hand.gametype['currency']
             
