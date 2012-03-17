@@ -70,9 +70,9 @@ else:
     INSTALL_METHOD = "source"
     
 if INSTALL_METHOD == "exe":
-    FPDB_PROGRAM_PATH = os.path.dirname(sys.executable) # should be exe path to /fpdb
+    FPDB_PROGRAM_PATH = os.path.dirname( unicode(sys.executable, sys.getfilesystemencoding()) ) # should be exe path to /fpdb
 else:
-    FPDB_PROGRAM_PATH = os.path.dirname(sys.path[0])  # should be source path to /fpdb
+    FPDB_PROGRAM_PATH = os.path.dirname( unicode(sys.path[0], sys.getfilesystemencoding()) )  # should be source path to /fpdb
 
 sysPlatform = platform.system()  #Linux, Windows, Darwin
 if sysPlatform[0:5] == 'Linux':
@@ -172,10 +172,9 @@ def get_config(file_name, fallback = True):
             if not config_found and fallback:
                 shutil.copyfile(example_path, config_path)
                 example_copy = True
-                msg = _("No %s found in \"%s\" or \"%s\".") % (file_name, FPDB_PROGRAM_PATH, CONFIG_PATH) \
-                     + " " + _("Config file has been created at %s.") % (config_path+"\n")
-                print(msg)
-                log.info(msg)
+                log.info (_("No %s found in \"%s\" or \"%s\".") % (file_name, FPDB_PROGRAM_PATH, CONFIG_PATH) \
+                     + " " + _("Config file has been created at %s.") % (config_path+"\n") )
+
         except:
             print(_("Error copying .example config file, cannot fall back. Exiting."), "\n")
             sys.stderr.write(_("Error copying .example config file, cannot fall back. Exiting.")+"\n")
@@ -189,7 +188,7 @@ def get_config(file_name, fallback = True):
     return (config_path,example_copy,example_path)
 
 def set_logfile(file_name):
-    (conf_file,copied,example_file) = get_config("logging.conf", fallback = False)
+    (conf_file,copied,example_file) = get_config(u"logging.conf", fallback = False)
 
     log_dir = os.path.join(CONFIG_PATH, u'log')
     check_dir(log_dir)
@@ -748,7 +747,7 @@ class Config:
                 file = None
 
         self.example_copy,example_file = True,None
-        if file is None: (file,self.example_copy,example_file) = get_config("HUD_config.xml", True)
+        if file is None: (file,self.example_copy,example_file) = get_config(u"HUD_config.xml", True)
 
         self.file = file
                     
@@ -1527,7 +1526,7 @@ class Config:
         return( self.gui_cash_stats )
 
 if __name__== "__main__":
-    set_logfile("fpdb-log.txt")
+    set_logfile(u"fpdb-log.txt")
     c = Config()
 
     print "\n----------- SUPPORTED SITES -----------"
@@ -1606,9 +1605,9 @@ if __name__== "__main__":
 
     print "\n----------- ENVIRONMENT CONSTANTS -----------"
     print "Configuration.install_method {source,exe} =", INSTALL_METHOD
-    print "Configuration.fpdb_program_path =", FPDB_PROGRAM_PATH
-    print "Configuration.appdata_path =", APPDATA_PATH
-    print "Configuration.config_path =", CONFIG_PATH
+    print "Configuration.fpdb_program_path =", FPDB_PROGRAM_PATH, type(FPDB_PROGRAM_PATH)
+    print "Configuration.appdata_path =", APPDATA_PATH, type(APPDATA_PATH)
+    print "Configuration.config_path =", CONFIG_PATH, type(CONFIG_PATH)
     print "Configuration.os_family {Linux,Mac,XP,Win7} =", OS_FAMILY
     print "Configuration.posix {True/False} =", POSIX
     print "Configuration.python_version =", PYTHON_VERSION
