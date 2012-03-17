@@ -70,9 +70,10 @@ else:
     INSTALL_METHOD = "source"
     
 if INSTALL_METHOD == "exe":
-    FPDB_PROGRAM_PATH = os.path.dirname( unicode(sys.executable, sys.getfilesystemencoding()) ) # should be exe path to /fpdb
+    FPDB_PROGRAM_PATH = os.path.dirname( unicode(sys.executable, sys.getfilesystemencoding()) ) # should be exe path to \fpdbroot\pyfpdb
+    FPDB_PROGRAM_PATH = os.path.join(FPDB_PROGRAM_PATH, u"..")   # go up one level (to fpdbroot)
 else:
-    FPDB_PROGRAM_PATH = os.path.dirname( unicode(sys.path[0], sys.getfilesystemencoding()) )  # should be source path to /fpdb
+    FPDB_PROGRAM_PATH = os.path.dirname( unicode(sys.path[0], sys.getfilesystemencoding()) )  # should be source path to /fpdbroot
 
 sysPlatform = platform.system()  #Linux, Windows, Darwin
 if sysPlatform[0:5] == 'Linux':
@@ -122,11 +123,9 @@ def get_config(file_name, fallback = True):
     config_found,example_found,example_copy = False,False,False
     config_path, example_path = None,None
 
-    if file_name == 'logging.conf' and INSTALL_METHOD == "source":
-        config_path = os.path.join(FPDB_PROGRAM_PATH, 'pyfpdb', file_name)
-    else:
-        config_path = os.path.join(FPDB_PROGRAM_PATH, file_name)
-        #print "config_path=", config_path
+    config_path = os.path.join(FPDB_PROGRAM_PATH, 'pyfpdb', file_name)
+    
+    #print "config_path=", config_path
     if os.path.exists(config_path):    # there is a file in the cwd
         config_found = True            # so we use it
     else: # no file in the cwd, look where it should be in the first place
