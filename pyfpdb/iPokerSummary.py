@@ -106,7 +106,7 @@ class iPokerSummary(TourneySummary):
             if date_match.group('S') == None:
                 datestr = '%d/%m/%Y %H:%M'
             self.startTime = datetime.datetime.strptime(m.group('DATETIME'), datestr)
-            
+
         if not mg['CURRENCY'] or mg['CURRENCY']=='fun':
             self.buyinCurrency = 'play'
         else:

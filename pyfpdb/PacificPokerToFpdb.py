@@ -441,3 +441,15 @@ class PacificPoker(HandHistoryConverter):
 
                 #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
+
+    @staticmethod
+    def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
+        # Tournament tables look like:
+        # Tour NLH 50+5 Brouhaha ID #28353026 Table #7 Blinds: 200/400
+        log.info("Pacific.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
+        regex = "%s" % (table_name)
+        if tournament:
+            regex = "%s Table #%s" % (tournament, table_number)
+
+        log.info("Pacific.getTableTitleRe: returns: '%s'" % (regex))
+        return regex
