@@ -215,18 +215,23 @@ class GuiGraphViewer (threading.Thread):
             self.ax.set_title((_("Profit graph for ring games")+names))
 
             #Draw plot
-            self.ax.plot(green, color='green', label=_('Hands') + ': %d\n' % len(green) + _('Profit') + ': (%s): %.2f' % (graphops['dspin'], green[-1]))
             if graphops['showdown'] == 'ON':
                 self.ax.plot(blue, color='blue', label=_('Showdown') + ' (%s): %.2f' %(graphops['dspin'], blue[-1]))
             if graphops['nonshowdown'] == 'ON':
                 self.ax.plot(red, color='red', label=_('Non-showdown') + ' (%s): %.2f' %(graphops['dspin'], red[-1]))
             if graphops['ev'] == 'ON':
                 self.ax.plot(orange, color='orange', label=_('All-in EV') + ' (%s): %.2f' %(graphops['dspin'], orange[-1]))
+            self.ax.plot(green, color='green', label=_('Hands') + ': %d\n' % len(green) + _('Profit') + ': (%s): %.2f' % (graphops['dspin'], green[-1]))
+
+            # order legend, greenline on top
+            handles, labels = self.ax.get_legend_handles_labels()
+            handles = handles[-1:]+handles[:-1]
+            labels = labels[-1:]+labels[:-1]
 
             if sys.version[0:3] == '2.5':
-                self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
+                self.ax.legend(handles, labels, loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
             else:
-                self.ax.legend(loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
+                self.ax.legend(handles, labels, loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
 
             self.graphBox.add(self.canvas)
             self.canvas.show()

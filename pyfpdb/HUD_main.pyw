@@ -57,7 +57,7 @@ else: # This is bad--figure out the values for the various windows flavors
     import WinTables as Tables
 
 # get config and set up logger
-Configuration.set_logfile("HUD-log.txt")
+Configuration.set_logfile(u"HUD-log.txt")
 c = Configuration.Config(file=options.config, dbname=options.dbname)
 log = logging.getLogger("hud")
 
@@ -72,7 +72,7 @@ class HUD_main(object):
 
         try:
             if not options.errorsToConsole:
-                fileName = os.path.join(self.config.dir_log, 'HUD-errors.txt')
+                fileName = os.path.join(self.config.dir_log, u'HUD-errors.txt')
                 log.info(_("Note: error output is being diverted to %s.") % fileName)
                 log.info(_("Any major error will be reported there _only_."))
                 errorFile = open(fileName, 'w', 0)
