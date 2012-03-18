@@ -296,12 +296,19 @@ class GuiHandViewer:
             self.hands[handid] = self.importhand(handid)
         self.refreshHands()
     
-    def cb(widget, data, event):
-        # TODO: find the Hand data that was clicked
+    def cb(self, view, event):
+        print "GuiHandViewer.cb(self::" + str(self) + ", view::" + str(view) + ", event::" + str(event) + ")"
+        # DONE: find the Hand data that was clicked
         # TODO: add "Open" and "Copy" menu items
         # TODO: call writeHand
+        # TODO: build context menu seperately
         if(event.button != 3):
             return False
+        coords = event.get_coords()
+        path = view.get_path_at_pos(int(coords[0]), int(coords[1]))
+        model = view.get_model()
+        hand = self.hands[int(model.get_value(model.get_iter(path[0]), self.colnum['HandId']))]
+        #hand.writeHand()
         m = gtk.Menu()
         i = gtk.MenuItem("Hello")
         i.show()
@@ -449,6 +456,7 @@ class GuiHandViewer:
 
     #def select_hand(self, selection, model, path, is_selected, userdata):    #function head for single click event
     def row_activated(self, view, path, column):
+        print "GuiHandViewer.row_activated(self::" + str(self) + ", view::" + str(view) + ", path::" + str(path) + ", column::" + str(column) + ")"
         model = view.get_model()
         hand = self.hands[int(model.get_value(model.get_iter(path), self.colnum['HandId']))]
         if hand.gametype['currency']=="USD":    #TODO: check if there are others ..
