@@ -592,11 +592,9 @@ or None if we fail to get the info """
             return money
         money = money.replace(' ', '')
         if 'K' in money:
-            money = money.replace('K', '')
-            money += '000'
+            money = money.replace('K', '000')
         if 'M' in money:
-            money = money.replace('M', '')
-            money += '000000'
+            money = money.replace('M', '000000')
         if len(money) < 3:
             return money # No commas until 0,01 or 1,00
         if money[-3] == ',':
