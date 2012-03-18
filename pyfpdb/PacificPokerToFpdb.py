@@ -109,8 +109,14 @@ class PacificPoker(HandHistoryConverter):
             (Table\s(?P<TABLE>[-\ \#a-zA-Z\d]+)\s)
             |
             (Tournament\s\#(?P<TOURNO>\d+)\s
-              (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\s\+\s?(?P<BIRAKE>[%(LS)s\d\.]+))\s-\s
-              Table\s\#(?P<TABLENO>\d+)\s
+              (
+                (?P<BUYIN>(
+                  ((?P<BIAMT>[%(LS)s\d\.]+)?\s\+\s?(?P<BIRAKE>[%(LS)s\d\.]+))
+                  |
+                  (Free)
+                ))
+              )
+              \s-\sTable\s\#(?P<TABLENO>\d+)\s
             )
            )
           (\(Real\sMoney\))?
@@ -217,7 +223,11 @@ class PacificPoker(HandHistoryConverter):
     def readHandInfo(self, hand):
         info = {}
         m  = self.re_HandInfo.search(hand.handText,re.DOTALL)
+        if m is None:
+            log.error("re_HandInfo could not be parsed")
         m2 = self.re_GameInfo.search(hand.handText)
+        if m2 is None:
+            log.error("re_GameInfo could not be parsed")
         if m is None or m2 is None:
             tmp = hand.handText[0:200]
             log.error(_("PacificPokerToFpdb.readHandInfo: '%s'") % tmp)
@@ -227,6 +237,7 @@ class PacificPoker(HandHistoryConverter):
         info.update(m2.groupdict())
 
         #log.debug("readHandInfo: %s" % info)
+
         for key in info:
             if key == 'DATETIME':
                 # 28 11 2011 19:05:11
@@ -239,19 +250,21 @@ class PacificPoker(HandHistoryConverter):
             if key == 'HID':
                 hand.handid = info[key]
             if key == 'TOURNO':
-                hand.tourNo = info[key]
+                hand.tourNo = info[key] + " " + info['TABLENO']
                 hand.isKO = False
             if key == 'BUYIN' and info['BUYIN'] != None:
-                #print "DEBUG: info['BUYIN']: %s" % info['BUYIN']
-                #print "DEBUG: info['BIAMT']: %s" % info['BIAMT']
-                #print "DEBUG: info['BIRAKE']: %s" % info['BIRAKE']
-                if info[key] == 'Freeroll':
+                if info[key] == 'Free':
                     hand.buyin = 0
                     hand.fee = 0
-                    hand.buyinCurrency = "FREE"
+                    if 'CURRENCY' in info and info['CURRENCY'] == "$":
+                        hand.buyinCurrency = "USD"
+                    else:
+                        hand.buyinCurrency = "FREE"
                 else:
                     if info[key].find("$")!=-1:
                         hand.buyinCurrency="USD"
+                    if 'PLAY' in info and info['PLAY'] != "Practice Play":
+                        hand.buyinCurrency="FREE"
                     else:
                         #FIXME: handle other currencies, FPP, play money
                         log.error(_("PacificPokerToFpdb.readHandInfo: Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
@@ -271,7 +284,7 @@ class PacificPoker(HandHistoryConverter):
                 hand.buttonpos = info[key]
 
             if key == 'PLAY' and info['PLAY'] is not None:
-#                hand.currency = 'play' # overrides previously set value
+                #hand.currency = 'play' # overrides previously set value
                 hand.gametype['currency'] = 'play'
     
     def readButton(self, hand):
@@ -282,7 +295,6 @@ class PacificPoker(HandHistoryConverter):
             log.info('readButton: ' + _('not found'))
 
     def readPlayerStacks(self, hand):
-        log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             #print "DEBUG: Seat[", a.group('SEAT'), "]; PNAME[", a.group('PNAME'), "]; CASH[", a.group('CASH'), "]"
@@ -321,7 +333,6 @@ class PacificPoker(HandHistoryConverter):
             hand.setCommunityCards(street, m.group('CARDS').split(', '))
 
     def readAntes(self, hand):
-        log.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
@@ -419,7 +430,7 @@ class PacificPoker(HandHistoryConverter):
             
 
     def readShowdownActions(self, hand):
-# TODO: pick up mucks also??
+        # TODO: pick up mucks also??
         for shows in self.re_ShowdownAction.finditer(hand.handText):            
             cards = shows.group('CARDS').split(', ')
             hand.addShownCards(cards, shows.group('PNAME'))
