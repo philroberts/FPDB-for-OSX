@@ -59,7 +59,6 @@ class FullTiltPokerSummary(TourneySummary):
 
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
     re_TourneyInfo = re.compile(u"""
-                        (\s*.*(?P<TYPE>.+\s))
                         \((?P<TOURNO>[0-9]+)\)
                         (\s+)?(\sMatch\s\d\s)?
                         (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Stud\sHi|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7\sLowball|2-7\sTriple\sDraw|5\sCard\sDraw|7-Game\sMixed|HORSE|10-Game\sMixed)\s+
@@ -77,10 +76,9 @@ class FullTiltPokerSummary(TourneySummary):
                         (?P<ENTRIES>[0-9]+)\sEntries\s+
                         (Total\sAdd-Ons:\s(?P<ADDONS>\d+)\s+)?
                         (Total\sRebuys:\s(?P<REBUYS>\d+)\s+)?
-                        ([%(LS)s]?(?P<ADDED>[.\d]+)\sadded\sto\sthe\sprize\spool\sby\sPokerStars\.com\s+)?
-                        (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[%(NUM)s]+)\s+)?
-                        (Top\s(\d+\s)?finishers?\sreceives?\s(entry\sto\s[Tt]ournament\s\d+|Step\s\d\sTicket|FTPA\sChallenge\sFinals\sTicket|[%(LS)s]\d+\sSatellite\sToken)\s+)?
-                        (Target\sTournament\s.*)?
+                        (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[%(NUM)s]+)(\sFTP)?\s+)?
+                        (Top\s(\d+\s)?finishers?\sreceives?\s.+\s+)?
+                        (Target\sTournament\s.+\s+)?
                         Tournament\sstarted:\s
                         (?P<DATETIME>((?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s??(?P<TZ>[A-Z]+)\s|\w+,\s(?P<MONTH>\w+)\s(?P<DAY>\d+),\s(?P<YEAR>[\d]{4})\s(?P<HOUR>\d+):(?P<MIN2>\d+)))
                                """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)

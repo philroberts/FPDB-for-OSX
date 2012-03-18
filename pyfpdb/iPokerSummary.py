@@ -123,10 +123,15 @@ class iPokerSummary(TourneySummary):
                 self.prizepool = None
                 self.entries   = None
                 
-                winnings = int(100*convert_to_decimal(mg2['WIN']))
                 if mg2['CURRENCY']:
                     self.currency = self.currencies[mg2['CURRENCY']]
-                rank     = mg2['PLACE']
+                rank = mg2['PLACE']
+                if rank in ('N/A', 'N/D', 'N/V'):
+                    rank = None
+                    winnings = None
+                else:
+                    winnings = int(100*convert_to_decimal(mg2['WIN']))
+                    
                 self.tourneyName = mg2['NAME'][:40]
                 
                 if not mg2['BIRAKE'] and mg2['TOTBUYIN']:
@@ -143,8 +148,6 @@ class iPokerSummary(TourneySummary):
                 if self.buyin == 0:
                     self.buyinCurrency = 'FREE'
                 hero = mg['HERO']
-                if rank in ('N/A', 'N/D'):
-                    rank = None
                 self.addPlayer(rank, hero, winnings, self.currency, 0, 0, 0)
             else:
                 raise FpdbHandPartial(hid=self.tourNo)
