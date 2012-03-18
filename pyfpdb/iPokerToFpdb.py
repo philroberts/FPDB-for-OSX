@@ -64,24 +64,49 @@ class iPoker(HandHistoryConverter):
                     }
     
     currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP' }
+    
+    # translations from captured groups to fpdb info strings
+    Lim_Blinds = {      '0.04': ('0.01', '0.02'),         '0.08': ('0.02', '0.04'),
+                        '0.10': ('0.02', '0.05'),         '0.20': ('0.05', '0.10'),
+                        '0.40': ('0.10', '0.20'),         '0.50': ('0.10', '0.25'),
+                        '1.00': ('0.25', '0.50'),         '1': ('0.25', '0.50'),
+                        '2.00': ('0.50', '1.00'),         '2': ('0.50', '1.00'),
+                        '4.00': ('1.00', '2.00'),         '4': ('1.00', '2.00'),
+                        '6.00': ('1.00', '3.00'),         '6': ('1.00', '3.00'),
+                        '8.00': ('2.00', '4.00'),         '8': ('2.00', '4.00'),
+                       '10.00': ('2.00', '5.00'),        '10': ('2.00', '5.00'),
+                       '20.00': ('5.00', '10.00'),       '20': ('5.00', '10.00'),
+                       '30.00': ('10.00', '15.00'),      '30': ('10.00', '15.00'),
+                       '40.00': ('10.00', '20.00'),      '40': ('10.00', '20.00'),
+                       '60.00': ('15.00', '30.00'),      '60': ('15.00', '30.00'),
+                       '80.00': ('20.00', '40.00'),      '80': ('20.00', '40.00'),
+                      '100.00': ('25.00', '50.00'),     '100': ('25.00', '50.00'),
+                      '150.00': ('50.00', '75.00'),     '150': ('50.00', '75.00'),
+                      '200.00': ('50.00', '100.00'),    '200': ('50.00', '100.00'),
+                      '400.00': ('100.00', '200.00'),   '400': ('100.00', '200.00'),
+                      '800.00': ('200.00', '400.00'),   '800': ('200.00', '400.00'),
+                     '1000.00': ('250.00', '500.00'),  '1000': ('250.00', '500.00'),
+                     '2000.00': ('500.00', '1000.00'), '2000': ('500.00', '1000.00'),
+                  }
 
     # Static regexes
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r"""
-            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L)|Omaha\sPL|Omaha\sL)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
+    re_GameInfo = re.compile(r"""(?P<HEAD>
+            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L)|Omaha\sPL|Omaha\sL|Omaha\sHi\-Lo\sPL)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
             <duration>.+</duration>\s+?
             <gamecount>.+</gamecount>\s+?
             <startdate>.+</startdate>\s+?
-            <currency>(?P<CURRENCY>.+)?</currency>
+            <currency>(?P<CURRENCY>.+)?</currency>\s+?
+            <nickname>(?P<HERO>.+)?</nickname>)
             """ % substitutions, re.MULTILINE|re.VERBOSE)
-    re_GameInfoTrny = re.compile(r"""
+    re_GameInfoTrny = re.compile(r"""(?P<HEAD>
                 <tournamentname>.+?<place>(?P<PLACE>.+?)</place>
                 <buyin>(?P<BUYIN>(?P<BIAMT>.+?)(\+(?P<BIRAKE>.+?))?)</buyin>\s+?
                 <totalbuyin>(?P<TOTBUYIN>.+)</totalbuyin>\s+?
                 <ipoints>.+?</ipoints>\s+?
-                <win>(%(LS)s)?(?P<WIN>([%(NUM)s]+)|.+?)</win>
+                <win>(%(LS)s)?(?P<WIN>([%(NUM)s]+)|.+?)</win>\s+?)
             """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_TotalBuyin  = re.compile(r"""(?P<BUYIN>(?P<BIAMT>[%(LS)s%(NUM)s]+)\s\+\s?(?P<BIRAKE>[%(LS)s%(NUM)s]+)?)""" % substitutions, re.MULTILINE|re.VERBOSE)
     re_HandInfo = re.compile(r'code="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-/: 0-9]+)</startdate>', re.MULTILINE)
@@ -147,13 +172,17 @@ class iPoker(HandHistoryConverter):
                         'Holdem SL' : ('hold','holdem'), #Spanish NL
                          'Holdem L' : ('hold','holdem'),
                          'Omaha PL' : ('hold','omahahi'),
+                   'Omaha Hi-Lo PL' : ('hold','omahahilo'),
+                         
                 }
 
         if 'GAME' in mg:
             (self.info['base'], self.info['category']) = games[mg['GAME']]
-            m = self.re_Hero.search(handText)
-            if m:
-                self.hero = m.group('HERO')
+            #m = self.re_Hero.search(handText)
+            #if m:
+            #    self.hero = m.group('HERO')
+        if 'HERO' in mg:
+            self.hero = mg['HERO']
         if self.info['base'] == 'stud':
             self.info['limitType'] = 'fl'
         if self.info['base'] == 'hold':
@@ -168,6 +197,7 @@ class iPoker(HandHistoryConverter):
             if not mg['SB']: tourney = True
         if 'BB' in mg:
             self.info['bb'] = self.clearMoneyString(mg['BB'])
+        self.header = mg['HEAD']
 
         if tourney:
             self.info['type'] = 'tour'
@@ -187,6 +217,7 @@ class iPoker(HandHistoryConverter):
             m2 = self.re_GameInfoTrny.search(handText)
             if m2:
                 mg =  m2.groupdict()
+                self.header = self.header + mg['HEAD']
                 if not mg['BIRAKE'] and mg['TOTBUYIN']:
                     m3 = self.re_TotalBuyin.search(mg['TOTBUYIN'])
                     if m3:
@@ -213,6 +244,15 @@ class iPoker(HandHistoryConverter):
                 self.info['currency'] = 'play'
             else:
                 self.info['currency'] = mg['CURRENCY']
+                
+            if self.info['limitType'] == 'fl' and self.info['bb'] is not None:
+                try:
+                    self.info['sb'] = self.Lim_Blinds[self.clearMoneyString(mg['BB'])][0]
+                    self.info['bb'] = self.Lim_Blinds[self.clearMoneyString(mg['BB'])][1]
+                except KeyError:
+                    tmp = handText[0:200]
+                    log.error(_("iPokerToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                    raise FpdbParseError
 
         return self.info
 
@@ -344,6 +384,7 @@ class iPoker(HandHistoryConverter):
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
 #    we need to grab hero's cards
+
         for street in ('PREFLOP', 'DEAL'):
             if street in hand.streets.keys():
                 m = self.re_HeroCards.finditer(hand.streets[street])
@@ -361,13 +402,13 @@ class iPoker(HandHistoryConverter):
             for found in m:
                 player = found.group('PNAME')
                 cards = found.group('CARDS').split(' ')
-                if street == 'SEVENTH' and hand.hero != player:
+                if street == 'SEVENTH' and self.hero != player:
                     newcards = []
-                    oldcards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards if c != 'X']
+                    oldcards = [c[1:].replace('10', 'T') + c[0].lower().replace('x', '') for c in cards]
                 else:
-                    newcards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards if c != 'X']
+                    newcards = [c[1:].replace('10', 'T') + c[0].lower().replace('x', '') for c in cards]
                     oldcards = []
-
+                
                 if street == 'THIRD' and len(newcards) == 3 and self.hero == player: # hero in stud game
                     hand.hero = player
                     hand.dealt.add(player) # need this for stud??

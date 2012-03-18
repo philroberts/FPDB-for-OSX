@@ -60,7 +60,7 @@ class FpdbError:
 
 def compare(leaf, importer, errors, site):
     filename = leaf
-    #print "DEBUG: fileanme: %s" % filename
+    print "DEBUG: fileanme: %s" % filename
 
     if filename.endswith('.txt'):
         # test if there is a .hp version of the file
@@ -150,6 +150,7 @@ def main(argv=None):
     importer = SummaryImporter(config, sql, None)
 
     PokerStarsErrors  = FpdbError('PokerStars')
+    PacificPokerErrors = FpdbError('PacificPoker')
     FTPErrors         = FpdbError('Full Tilt Poker')
     #PartyPokerErrors  = FpdbError('Party Poker')
     #BetfairErrors     = FpdbError('Betfair')
@@ -164,7 +165,7 @@ def main(argv=None):
 
     ErrorsList = [
                     PokerStarsErrors, FTPErrors, #WinamaxErrors,
-                    MergeErrors, iPokerErrors,
+                    MergeErrors, iPokerErrors, PacificPokerErrors,
                     #PartyPokerErrors,
                     #BetfairErrors, OnGameErrors, AbsoluteErrors,
                     #EverleafErrors, PKRErrors,
@@ -173,6 +174,7 @@ def main(argv=None):
 
     sites = {
                 'PokerStars' : False,
+                'PacificPoker' : False,
                 'Full Tilt Poker' : False,
                 #'PartyPoker' : True,
                 #'Betfair' : True,
@@ -196,6 +198,10 @@ def main(argv=None):
         walk_testfiles("regression-test-files/summaries/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
     elif sites['PokerStars'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, PokerStarsErrors, "PokerStars")
+    if sites['PacificPoker'] == True and not single_file_test:
+        walk_testfiles("regression-test-files/summaries/PacificPoker/", compare, importer, PacificPokerErrors, "PacificPoker")
+    elif sites['PacificPoker'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, PacificPokerErrors, "PacificPoker")
     if sites['Full Tilt Poker'] == True and not single_file_test:
         walk_testfiles("regression-test-files/summaries/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
     elif sites['Full Tilt Poker'] == True and single_file_test:

@@ -133,7 +133,7 @@ class MergeSummary(TourneySummary):
         tourneyNameFull = m.group('TABLENAME').replace('  - ', ' - ').strip()
         self.tourneyName = m.group('TABLENAME')[:40]
         self.tourNo = re.split('-', m.group('TDATA'))[0]
-        self.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],'%Y%m%d%H%M')
+        self.startTime = datetime.datetime.strptime(m.group('DATETIME')[:14],'%Y%m%d%H%M%S')
         self.startTime = HandHistoryConverter.changeTimezone(self.startTime, "ET", "UTC")
         obj = getattr(MergeToFpdb, "Merge", None)
         hhc = obj(self.config, in_path = self.in_path, sitename = None, autostart = False)
